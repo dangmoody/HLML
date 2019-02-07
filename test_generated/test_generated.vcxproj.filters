@@ -1,0 +1,410 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="test_generated_main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\out\hlml_user.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\out\gen\bool2.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\out\gen\bool2x2.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\out\gen\bool2x3.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\out\gen\bool2x4.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\out\gen\bool3.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\out\gen\bool3x2.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\out\gen\bool3x3.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\out\gen\bool3x4.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\out\gen\bool4.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\out\gen\bool4x2.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\out\gen\bool4x3.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\out\gen\bool4x4.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\out\gen\double2.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\out\gen\double2x2.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\out\gen\double2x3.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\out\gen\double2x4.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\out\gen\double3.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\out\gen\double3x2.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\out\gen\double3x3.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\out\gen\double3x4.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\out\gen\double4.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\out\gen\double4x2.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\out\gen\double4x3.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\out\gen\double4x4.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\out\gen\float2.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\out\gen\float2x2.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\out\gen\float2x3.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\out\gen\float2x4.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\out\gen\float3.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\out\gen\float3x2.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\out\gen\float3x3.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\out\gen\float3x4.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\out\gen\float4.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\out\gen\float4x2.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\out\gen\float4x3.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\out\gen\float4x4.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\out\gen\int2.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\out\gen\int2x2.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\out\gen\int2x3.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\out\gen\int2x4.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\out\gen\int3.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\out\gen\int3x2.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\out\gen\int3x3.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\out\gen\int3x4.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\out\gen\int4.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\out\gen\int4x2.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\out\gen\int4x3.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\out\gen\int4x4.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\out\gen\uint2.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\out\gen\uint2x2.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\out\gen\uint2x3.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\out\gen\uint2x4.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\out\gen\uint3.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\out\gen\uint3x2.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\out\gen\uint3x3.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\out\gen\uint3x4.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\out\gen\uint4.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\out\gen\uint4x2.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\out\gen\uint4x3.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\out\gen\uint4x4.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\out\hlml_main.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\out\gen\hlml_functions_matrix.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\out\gen\hlml_functions_vector.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\out\gen\hlml_matrix.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\out\gen\hlml_vector.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\out\gen\bool2.inl">
+      <Filter>Header Files</Filter>
+    </None>
+    <None Include="..\out\gen\bool2x2.inl">
+      <Filter>Header Files</Filter>
+    </None>
+    <None Include="..\out\gen\bool2x3.inl">
+      <Filter>Header Files</Filter>
+    </None>
+    <None Include="..\out\gen\bool2x4.inl">
+      <Filter>Header Files</Filter>
+    </None>
+    <None Include="..\out\gen\bool3.inl">
+      <Filter>Header Files</Filter>
+    </None>
+    <None Include="..\out\gen\bool3x2.inl">
+      <Filter>Header Files</Filter>
+    </None>
+    <None Include="..\out\gen\bool3x3.inl">
+      <Filter>Header Files</Filter>
+    </None>
+    <None Include="..\out\gen\bool3x4.inl">
+      <Filter>Header Files</Filter>
+    </None>
+    <None Include="..\out\gen\bool4.inl">
+      <Filter>Header Files</Filter>
+    </None>
+    <None Include="..\out\gen\bool4x2.inl">
+      <Filter>Header Files</Filter>
+    </None>
+    <None Include="..\out\gen\bool4x3.inl">
+      <Filter>Header Files</Filter>
+    </None>
+    <None Include="..\out\gen\bool4x4.inl">
+      <Filter>Header Files</Filter>
+    </None>
+    <None Include="..\out\gen\double2.inl">
+      <Filter>Header Files</Filter>
+    </None>
+    <None Include="..\out\gen\double2x2.inl">
+      <Filter>Header Files</Filter>
+    </None>
+    <None Include="..\out\gen\double2x3.inl">
+      <Filter>Header Files</Filter>
+    </None>
+    <None Include="..\out\gen\double2x4.inl">
+      <Filter>Header Files</Filter>
+    </None>
+    <None Include="..\out\gen\double3.inl">
+      <Filter>Header Files</Filter>
+    </None>
+    <None Include="..\out\gen\double3x2.inl">
+      <Filter>Header Files</Filter>
+    </None>
+    <None Include="..\out\gen\double3x3.inl">
+      <Filter>Header Files</Filter>
+    </None>
+    <None Include="..\out\gen\double3x4.inl">
+      <Filter>Header Files</Filter>
+    </None>
+    <None Include="..\out\gen\double4.inl">
+      <Filter>Header Files</Filter>
+    </None>
+    <None Include="..\out\gen\double4x2.inl">
+      <Filter>Header Files</Filter>
+    </None>
+    <None Include="..\out\gen\double4x3.inl">
+      <Filter>Header Files</Filter>
+    </None>
+    <None Include="..\out\gen\double4x4.inl">
+      <Filter>Header Files</Filter>
+    </None>
+    <None Include="..\out\gen\float2.inl">
+      <Filter>Header Files</Filter>
+    </None>
+    <None Include="..\out\gen\float2x2.inl">
+      <Filter>Header Files</Filter>
+    </None>
+    <None Include="..\out\gen\float2x3.inl">
+      <Filter>Header Files</Filter>
+    </None>
+    <None Include="..\out\gen\float2x4.inl">
+      <Filter>Header Files</Filter>
+    </None>
+    <None Include="..\out\gen\float3.inl">
+      <Filter>Header Files</Filter>
+    </None>
+    <None Include="..\out\gen\float3x2.inl">
+      <Filter>Header Files</Filter>
+    </None>
+    <None Include="..\out\gen\float3x3.inl">
+      <Filter>Header Files</Filter>
+    </None>
+    <None Include="..\out\gen\float3x4.inl">
+      <Filter>Header Files</Filter>
+    </None>
+    <None Include="..\out\gen\float4.inl">
+      <Filter>Header Files</Filter>
+    </None>
+    <None Include="..\out\gen\float4x2.inl">
+      <Filter>Header Files</Filter>
+    </None>
+    <None Include="..\out\gen\float4x3.inl">
+      <Filter>Header Files</Filter>
+    </None>
+    <None Include="..\out\gen\float4x4.inl">
+      <Filter>Header Files</Filter>
+    </None>
+    <None Include="..\out\gen\int2.inl">
+      <Filter>Header Files</Filter>
+    </None>
+    <None Include="..\out\gen\int2x2.inl">
+      <Filter>Header Files</Filter>
+    </None>
+    <None Include="..\out\gen\int2x3.inl">
+      <Filter>Header Files</Filter>
+    </None>
+    <None Include="..\out\gen\int2x4.inl">
+      <Filter>Header Files</Filter>
+    </None>
+    <None Include="..\out\gen\int3.inl">
+      <Filter>Header Files</Filter>
+    </None>
+    <None Include="..\out\gen\int3x2.inl">
+      <Filter>Header Files</Filter>
+    </None>
+    <None Include="..\out\gen\int3x3.inl">
+      <Filter>Header Files</Filter>
+    </None>
+    <None Include="..\out\gen\int3x4.inl">
+      <Filter>Header Files</Filter>
+    </None>
+    <None Include="..\out\gen\int4.inl">
+      <Filter>Header Files</Filter>
+    </None>
+    <None Include="..\out\gen\int4x2.inl">
+      <Filter>Header Files</Filter>
+    </None>
+    <None Include="..\out\gen\int4x3.inl">
+      <Filter>Header Files</Filter>
+    </None>
+    <None Include="..\out\gen\int4x4.inl">
+      <Filter>Header Files</Filter>
+    </None>
+    <None Include="..\out\gen\uint2.inl">
+      <Filter>Header Files</Filter>
+    </None>
+    <None Include="..\out\gen\uint2x2.inl">
+      <Filter>Header Files</Filter>
+    </None>
+    <None Include="..\out\gen\uint2x3.inl">
+      <Filter>Header Files</Filter>
+    </None>
+    <None Include="..\out\gen\uint2x4.inl">
+      <Filter>Header Files</Filter>
+    </None>
+    <None Include="..\out\gen\uint3.inl">
+      <Filter>Header Files</Filter>
+    </None>
+    <None Include="..\out\gen\uint3x2.inl">
+      <Filter>Header Files</Filter>
+    </None>
+    <None Include="..\out\gen\uint3x3.inl">
+      <Filter>Header Files</Filter>
+    </None>
+    <None Include="..\out\gen\uint3x4.inl">
+      <Filter>Header Files</Filter>
+    </None>
+    <None Include="..\out\gen\uint4.inl">
+      <Filter>Header Files</Filter>
+    </None>
+    <None Include="..\out\gen\uint4x2.inl">
+      <Filter>Header Files</Filter>
+    </None>
+    <None Include="..\out\gen\uint4x3.inl">
+      <Filter>Header Files</Filter>
+    </None>
+    <None Include="..\out\gen\uint4x4.inl">
+      <Filter>Header Files</Filter>
+    </None>
+    <None Include="..\out\gen\hlml_functions_vector.inl">
+      <Filter>Header Files</Filter>
+    </None>
+    <None Include="..\out\gen\hlml_functions_matrix.inl">
+      <Filter>Header Files</Filter>
+    </None>
+  </ItemGroup>
+</Project>

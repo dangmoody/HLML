@@ -1,0 +1,19 @@
+# visual studio folders
+.vs/*
+
+# visual studio files
+*.opendb
+*.vcxproj.user
+*.lastcodeanalysissucceeded
+*.cap
+*.sdf
+*.pdb
+*.ilk
+*.exe
+*.exp
+*.obj
+*.log
+*.tlog
+
+# vim files
+*.*~
