@@ -711,6 +711,7 @@ void Gen_MatrixOrtho( const hand_t hand, const genType_t type, const uint32_t nu
 		}
 
 		case GEN_HAND_RIGHT: {
+			// TODO(DM):
 			break;
 		}
 
@@ -763,6 +764,7 @@ void Gen_MatrixPerspective( const hand_t hand, const genType_t type, const uint3
 		}
 
 		case GEN_HAND_RIGHT: {
+			// TODO(DM):
 			break;
 		}
 
@@ -814,6 +816,7 @@ void Gen_MatrixLookAt( const hand_t hand, const genType_t type, const uint32_t n
 		}
 
 		case GEN_HAND_RIGHT: {
+			// TODO(DM):
 			break;
 		}
 

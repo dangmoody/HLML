@@ -19,6 +19,8 @@
 #define GEN_COMPONENT_COUNT_MAX		4
 
 #define GEN_OUT_FOLDER_PATH			"out/gen/"
+#define GEN_TESTS_FOLDER_PATH		"hlml-gen-test/"
+
 #define GEN_HEADER_MAIN				"hlml_main.h"
 #define GEN_HEADER_USER				"hlml_user.h"
 
@@ -27,6 +29,8 @@
 
 #define GEN_HEADER_FUNCTIONS_VECTOR	"hlml_functions_vector"
 #define GEN_HEADER_FUNCTIONS_MATRIX	"hlml_functions_matrix"
+
+#define GEN_TEST_SUITES_HEADER		"suites.h"
 
 enum genType_t {
 	GEN_TYPE_BOOL					= 0,

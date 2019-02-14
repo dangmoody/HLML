@@ -22,6 +22,7 @@
     <ClCompile Include="FileIO_win32.cpp" />
     <ClCompile Include="gen_common.cpp" />
     <ClCompile Include="MatrixGenerator.cpp" />
+    <ClCompile Include="TestsGenerator.cpp" />
     <ClCompile Include="VectorGenerator.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
@@ -29,6 +30,7 @@
     <ClInclude Include="FileIO.h" />
     <ClInclude Include="gen_common.h" />
     <ClInclude Include="MatrixGenerator.h" />
+    <ClInclude Include="TestsGenerator.h" />
     <ClInclude Include="VectorGenerator.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">

@@ -9,6 +9,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "test_generated", "test_gene
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "test_template", "test_template\test_template.vcxproj", "{430A25A6-741D-472E-BE61-55EEF335E97A}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "hlml-gen-test", "hlml-gen-test\hlml-gen-test.vcxproj", "{0F2EA363-0C9E-424B-8279-A4F8751E119E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -41,6 +43,14 @@ Global
 		{430A25A6-741D-472E-BE61-55EEF335E97A}.Release|x64.Build.0 = Release|x64
 		{430A25A6-741D-472E-BE61-55EEF335E97A}.Release|x86.ActiveCfg = Release|Win32
 		{430A25A6-741D-472E-BE61-55EEF335E97A}.Release|x86.Build.0 = Release|Win32
+		{0F2EA363-0C9E-424B-8279-A4F8751E119E}.Debug|x64.ActiveCfg = Debug|x64
+		{0F2EA363-0C9E-424B-8279-A4F8751E119E}.Debug|x64.Build.0 = Debug|x64
+		{0F2EA363-0C9E-424B-8279-A4F8751E119E}.Debug|x86.ActiveCfg = Debug|Win32
+		{0F2EA363-0C9E-424B-8279-A4F8751E119E}.Debug|x86.Build.0 = Debug|Win32
+		{0F2EA363-0C9E-424B-8279-A4F8751E119E}.Release|x64.ActiveCfg = Release|x64
+		{0F2EA363-0C9E-424B-8279-A4F8751E119E}.Release|x64.Build.0 = Release|x64
+		{0F2EA363-0C9E-424B-8279-A4F8751E119E}.Release|x86.ActiveCfg = Release|Win32
+		{0F2EA363-0C9E-424B-8279-A4F8751E119E}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
