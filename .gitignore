@@ -14,6 +14,7 @@
 *.obj
 *.log
 *.tlog
+*.idb
 
 # vim files
 *.*~
