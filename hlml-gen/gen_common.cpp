@@ -12,7 +12,7 @@ const std::string GEN_COPYRIGHT_HEADER = \
 "===========================================================================\n" \
 "\n" \
 "hlml.\n" \
-"Copyright (c) Dan Moody 2018 - Present.\n" \
+"Copyright (c) Dan Moody 2019 - Present.\n" \
 "\n" \
 "This file is part of hlml.\n" \
 "\n" \
