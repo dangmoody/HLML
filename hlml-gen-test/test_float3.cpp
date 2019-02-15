@@ -57,7 +57,7 @@ TEMPER_TEST( TestArray_float3 ) {
 	TEMPER_PASS();
 }
 
-TEMPER_TEST( TestEquality_float3 ) {
+TEMPER_TEST( TestRelational_float3 ) {
 	float3 vec0 = float3( 0.0f, 0.0f, 0.0f );
 	float3 vec1 = float3( 1.0f, 1.0f, 1.0f );
 	float3 vec2 = float3( 2.0f, 2.0f, 2.0f );

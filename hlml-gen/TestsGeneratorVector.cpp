@@ -170,7 +170,7 @@ void TestsGeneratorVector::GenerateTestRelational() {
 		paramList += " )";
 	}
 
-	m_code += "TEMPER_TEST( TestEquality_" + m_fullTypeName + " ) {\n";
+	m_code += "TEMPER_TEST( TestRelational_" + m_fullTypeName + " ) {\n";
 	for ( uint32_t i = 0; i < m_numComponents; i++ ) {
 		m_code += "\t" + m_fullTypeName + " vec" + std::to_string( i ) + " = " + m_fullTypeName + paramLists[i] + ";\n";
 	}

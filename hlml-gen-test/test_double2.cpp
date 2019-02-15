@@ -56,7 +56,7 @@ TEMPER_TEST( TestArray_double2 ) {
 	TEMPER_PASS();
 }
 
-TEMPER_TEST( TestEquality_double2 ) {
+TEMPER_TEST( TestRelational_double2 ) {
 	double2 vec0 = double2( 0.0, 0.0 );
 	double2 vec1 = double2( 1.0, 1.0 );
 

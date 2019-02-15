@@ -58,7 +58,7 @@ TEMPER_TEST( TestArray_uint4 ) {
 	TEMPER_PASS();
 }
 
-TEMPER_TEST( TestEquality_uint4 ) {
+TEMPER_TEST( TestRelational_uint4 ) {
 	uint4 vec0 = uint4( 0, 0, 0, 0 );
 	uint4 vec1 = uint4( 1, 1, 1, 1 );
 	uint4 vec2 = uint4( 2, 2, 2, 2 );
