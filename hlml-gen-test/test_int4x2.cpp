@@ -46,23 +46,43 @@ TEMPER_TEST( TestRelational_int4x2 ) {
 	TEMPER_FAIL();
 }
 
-TEMPER_TEST( TestLength_int4x2 ) {
+TEMPER_TEST( TestIdentity_int4x2 ) {
 	TEMPER_FAIL();
 }
 
-TEMPER_TEST( TestNormalized_int4x2 ) {
+TEMPER_TEST( TestTranspose_int4x2 ) {
 	TEMPER_FAIL();
 }
 
-TEMPER_TEST( TestDot_int4x2 ) {
+TEMPER_TEST( TestInverse_int4x2 ) {
 	TEMPER_FAIL();
 }
 
-TEMPER_TEST( TestCross_int4x2 ) {
+TEMPER_TEST( TestDeterminant_int4x2 ) {
 	TEMPER_FAIL();
 }
 
-TEMPER_TEST( TestAngle_int4x2 ) {
+TEMPER_TEST( TestTranslate_int4x2 ) {
+	TEMPER_FAIL();
+}
+
+TEMPER_TEST( TestRotate_int4x2 ) {
+	TEMPER_FAIL();
+}
+
+TEMPER_TEST( TestScale_int4x2 ) {
+	TEMPER_FAIL();
+}
+
+TEMPER_TEST( TestOrtho_int4x2 ) {
+	TEMPER_FAIL();
+}
+
+TEMPER_TEST( TestPerspective_int4x2 ) {
+	TEMPER_FAIL();
+}
+
+TEMPER_TEST( TestLookAt_int4x2 ) {
 	TEMPER_FAIL();
 }
 
@@ -73,9 +93,14 @@ TEMPER_SUITE( Test_int4x2 ) {
 	TEMPER_RUN_TEST( TestEquality_int4x2 );
 	TEMPER_RUN_TEST( TestRelational_int4x2 );
 
-	TEMPER_RUN_TEST( TestLength_int4x2 );
-	TEMPER_RUN_TEST( TestNormalized_int4x2 );
-	TEMPER_RUN_TEST( TestDot_int4x2 );
-	TEMPER_RUN_TEST( TestCross_int4x2 );
-	TEMPER_RUN_TEST( TestAngle_int4x2 );
+	TEMPER_RUN_TEST( TestIdentity_int4x2 );
+	TEMPER_RUN_TEST( TestTranspose_int4x2 );
+	TEMPER_RUN_TEST( TestInverse_int4x2 );
+	TEMPER_RUN_TEST( TestDeterminant_int4x2 );
+	TEMPER_RUN_TEST( TestTranslate_int4x2 );
+	TEMPER_RUN_TEST( TestRotate_int4x2 );
+	TEMPER_RUN_TEST( TestScale_int4x2 );
+	TEMPER_RUN_TEST( TestOrtho_int4x2 );
+	TEMPER_RUN_TEST( TestPerspective_int4x2 );
+	TEMPER_RUN_TEST( TestLookAt_int4x2 );
 };

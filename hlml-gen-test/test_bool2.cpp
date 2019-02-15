@@ -24,58 +24,35 @@ along with hlml.  If not, see <http://www.gnu.org/licenses/>.
 
 // GENERATED FILE.  DO NOT EDIT.
 
+#include "../out/gen/bool2.h"
+
 #include <temper.h>
 
+// also tests equality operators
 TEMPER_TEST( TestAssignment_bool2 ) {
-	TEMPER_FAIL();
-}
+	bool2 a;
 
-TEMPER_TEST( TestArithmetic_bool2 ) {
-	TEMPER_FAIL();
+	a = bool2( true );
+	TEMPER_EXPECT_TRUE( a == bool2( true ) );
+	TEMPER_EXPECT_TRUE( a != bool2( false, true ) );
+
+	a = bool2( false, true );
+	TEMPER_EXPECT_TRUE( a == bool2( false, true ) );
+	TEMPER_EXPECT_TRUE( a != bool2( true ) );
+
+	TEMPER_PASS();
 }
 
 TEMPER_TEST( TestArray_bool2 ) {
-	TEMPER_FAIL();
-}
+	bool2 a = bool2( false, true );
 
-TEMPER_TEST( TestEquality_bool2 ) {
-	TEMPER_FAIL();
-}
+	TEMPER_EXPECT_TRUE( a[0] == false );
+	TEMPER_EXPECT_TRUE( a[1] == true );
 
-TEMPER_TEST( TestRelational_bool2 ) {
-	TEMPER_FAIL();
-}
-
-TEMPER_TEST( TestLength_bool2 ) {
-	TEMPER_FAIL();
-}
-
-TEMPER_TEST( TestNormalized_bool2 ) {
-	TEMPER_FAIL();
-}
-
-TEMPER_TEST( TestDot_bool2 ) {
-	TEMPER_FAIL();
-}
-
-TEMPER_TEST( TestCross_bool2 ) {
-	TEMPER_FAIL();
-}
-
-TEMPER_TEST( TestAngle_bool2 ) {
-	TEMPER_FAIL();
+	TEMPER_PASS();
 }
 
 TEMPER_SUITE( Test_bool2 ) {
 	TEMPER_RUN_TEST( TestAssignment_bool2 );
-	TEMPER_RUN_TEST( TestArithmetic_bool2 );
 	TEMPER_RUN_TEST( TestArray_bool2 );
-	TEMPER_RUN_TEST( TestEquality_bool2 );
-	TEMPER_RUN_TEST( TestRelational_bool2 );
-
-	TEMPER_RUN_TEST( TestLength_bool2 );
-	TEMPER_RUN_TEST( TestNormalized_bool2 );
-	TEMPER_RUN_TEST( TestDot_bool2 );
-	TEMPER_RUN_TEST( TestCross_bool2 );
-	TEMPER_RUN_TEST( TestAngle_bool2 );
 };

@@ -54,6 +54,9 @@ void VectorGenerator::GenerateHeader() {
 		m_codeHeader += "\n";
 	}
 
+	m_codeHeader += "#include <stdint.h>\n";
+	m_codeHeader += "\n";
+
 	HeaderGenerateForwardDeclarations();
 	m_codeHeader += "\n";
 
@@ -113,6 +116,8 @@ void VectorGenerator::GenerateInl() {
 
 	m_codeInl += "// others\n";
 	m_codeInl += "#include <math.h>\n";
+	m_codeInl += "#include <memory.h>\n";
+	m_codeInl += "#include <assert.h>\n";
 	m_codeInl += "\n";
 
 	InlGenerateConstructors();

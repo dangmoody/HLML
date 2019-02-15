@@ -46,23 +46,43 @@ TEMPER_TEST( TestRelational_float2x3 ) {
 	TEMPER_FAIL();
 }
 
-TEMPER_TEST( TestLength_float2x3 ) {
+TEMPER_TEST( TestIdentity_float2x3 ) {
 	TEMPER_FAIL();
 }
 
-TEMPER_TEST( TestNormalized_float2x3 ) {
+TEMPER_TEST( TestTranspose_float2x3 ) {
 	TEMPER_FAIL();
 }
 
-TEMPER_TEST( TestDot_float2x3 ) {
+TEMPER_TEST( TestInverse_float2x3 ) {
 	TEMPER_FAIL();
 }
 
-TEMPER_TEST( TestCross_float2x3 ) {
+TEMPER_TEST( TestDeterminant_float2x3 ) {
 	TEMPER_FAIL();
 }
 
-TEMPER_TEST( TestAngle_float2x3 ) {
+TEMPER_TEST( TestTranslate_float2x3 ) {
+	TEMPER_FAIL();
+}
+
+TEMPER_TEST( TestRotate_float2x3 ) {
+	TEMPER_FAIL();
+}
+
+TEMPER_TEST( TestScale_float2x3 ) {
+	TEMPER_FAIL();
+}
+
+TEMPER_TEST( TestOrtho_float2x3 ) {
+	TEMPER_FAIL();
+}
+
+TEMPER_TEST( TestPerspective_float2x3 ) {
+	TEMPER_FAIL();
+}
+
+TEMPER_TEST( TestLookAt_float2x3 ) {
 	TEMPER_FAIL();
 }
 
@@ -73,9 +93,14 @@ TEMPER_SUITE( Test_float2x3 ) {
 	TEMPER_RUN_TEST( TestEquality_float2x3 );
 	TEMPER_RUN_TEST( TestRelational_float2x3 );
 
-	TEMPER_RUN_TEST( TestLength_float2x3 );
-	TEMPER_RUN_TEST( TestNormalized_float2x3 );
-	TEMPER_RUN_TEST( TestDot_float2x3 );
-	TEMPER_RUN_TEST( TestCross_float2x3 );
-	TEMPER_RUN_TEST( TestAngle_float2x3 );
+	TEMPER_RUN_TEST( TestIdentity_float2x3 );
+	TEMPER_RUN_TEST( TestTranspose_float2x3 );
+	TEMPER_RUN_TEST( TestInverse_float2x3 );
+	TEMPER_RUN_TEST( TestDeterminant_float2x3 );
+	TEMPER_RUN_TEST( TestTranslate_float2x3 );
+	TEMPER_RUN_TEST( TestRotate_float2x3 );
+	TEMPER_RUN_TEST( TestScale_float2x3 );
+	TEMPER_RUN_TEST( TestOrtho_float2x3 );
+	TEMPER_RUN_TEST( TestPerspective_float2x3 );
+	TEMPER_RUN_TEST( TestLookAt_float2x3 );
 };

@@ -32,6 +32,8 @@ along with hlml.  If not, see <http://www.gnu.org/licenses/>.
 
 // others
 #include <math.h>
+#include <memory.h>
+#include <assert.h>
 
 float4::float4() {
 	memset( data, 0, 4 * sizeof( float ) );

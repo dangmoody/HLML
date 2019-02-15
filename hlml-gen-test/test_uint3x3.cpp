@@ -46,23 +46,43 @@ TEMPER_TEST( TestRelational_uint3x3 ) {
 	TEMPER_FAIL();
 }
 
-TEMPER_TEST( TestLength_uint3x3 ) {
+TEMPER_TEST( TestIdentity_uint3x3 ) {
 	TEMPER_FAIL();
 }
 
-TEMPER_TEST( TestNormalized_uint3x3 ) {
+TEMPER_TEST( TestTranspose_uint3x3 ) {
 	TEMPER_FAIL();
 }
 
-TEMPER_TEST( TestDot_uint3x3 ) {
+TEMPER_TEST( TestInverse_uint3x3 ) {
 	TEMPER_FAIL();
 }
 
-TEMPER_TEST( TestCross_uint3x3 ) {
+TEMPER_TEST( TestDeterminant_uint3x3 ) {
 	TEMPER_FAIL();
 }
 
-TEMPER_TEST( TestAngle_uint3x3 ) {
+TEMPER_TEST( TestTranslate_uint3x3 ) {
+	TEMPER_FAIL();
+}
+
+TEMPER_TEST( TestRotate_uint3x3 ) {
+	TEMPER_FAIL();
+}
+
+TEMPER_TEST( TestScale_uint3x3 ) {
+	TEMPER_FAIL();
+}
+
+TEMPER_TEST( TestOrtho_uint3x3 ) {
+	TEMPER_FAIL();
+}
+
+TEMPER_TEST( TestPerspective_uint3x3 ) {
+	TEMPER_FAIL();
+}
+
+TEMPER_TEST( TestLookAt_uint3x3 ) {
 	TEMPER_FAIL();
 }
 
@@ -73,9 +93,14 @@ TEMPER_SUITE( Test_uint3x3 ) {
 	TEMPER_RUN_TEST( TestEquality_uint3x3 );
 	TEMPER_RUN_TEST( TestRelational_uint3x3 );
 
-	TEMPER_RUN_TEST( TestLength_uint3x3 );
-	TEMPER_RUN_TEST( TestNormalized_uint3x3 );
-	TEMPER_RUN_TEST( TestDot_uint3x3 );
-	TEMPER_RUN_TEST( TestCross_uint3x3 );
-	TEMPER_RUN_TEST( TestAngle_uint3x3 );
+	TEMPER_RUN_TEST( TestIdentity_uint3x3 );
+	TEMPER_RUN_TEST( TestTranspose_uint3x3 );
+	TEMPER_RUN_TEST( TestInverse_uint3x3 );
+	TEMPER_RUN_TEST( TestDeterminant_uint3x3 );
+	TEMPER_RUN_TEST( TestTranslate_uint3x3 );
+	TEMPER_RUN_TEST( TestRotate_uint3x3 );
+	TEMPER_RUN_TEST( TestScale_uint3x3 );
+	TEMPER_RUN_TEST( TestOrtho_uint3x3 );
+	TEMPER_RUN_TEST( TestPerspective_uint3x3 );
+	TEMPER_RUN_TEST( TestLookAt_uint3x3 );
 };

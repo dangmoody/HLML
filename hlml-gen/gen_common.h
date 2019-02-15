@@ -145,7 +145,7 @@ std::string Gen_GetDefaultLiteralValue( const genType_t type ) {
 
 std::string Gen_GetNumericLiteral( const genType_t type, const int32_t value ) {
 	switch ( type ) {
-		case GEN_TYPE_BOOL:		return std::to_string( value != 1 );
+		case GEN_TYPE_BOOL:		return ( value != 0 ) ? "true" : "false";
 		case GEN_TYPE_INT:		return std::to_string( value );
 		case GEN_TYPE_UINT:		return std::to_string( value );
 		case GEN_TYPE_FLOAT:	return std::to_string( value ) + ".0f";

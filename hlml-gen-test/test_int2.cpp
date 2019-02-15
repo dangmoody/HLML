@@ -24,10 +24,23 @@ along with hlml.  If not, see <http://www.gnu.org/licenses/>.
 
 // GENERATED FILE.  DO NOT EDIT.
 
+#include "../out/gen/int2.h"
+
 #include <temper.h>
 
+// also tests equality operators
 TEMPER_TEST( TestAssignment_int2 ) {
-	TEMPER_FAIL();
+	int2 a;
+
+	a = int2( 1 );
+	TEMPER_EXPECT_TRUE( a == int2( 1 ) );
+	TEMPER_EXPECT_TRUE( a != int2( 0, 1 ) );
+
+	a = int2( 0, 1 );
+	TEMPER_EXPECT_TRUE( a == int2( 0, 1 ) );
+	TEMPER_EXPECT_TRUE( a != int2( 1 ) );
+
+	TEMPER_PASS();
 }
 
 TEMPER_TEST( TestArithmetic_int2 ) {
@@ -35,15 +48,34 @@ TEMPER_TEST( TestArithmetic_int2 ) {
 }
 
 TEMPER_TEST( TestArray_int2 ) {
-	TEMPER_FAIL();
+	int2 a = int2( 0, 1 );
+
+	TEMPER_EXPECT_TRUE( a[0] == 0 );
+	TEMPER_EXPECT_TRUE( a[1] == 1 );
+
+	TEMPER_PASS();
 }
 
 TEMPER_TEST( TestEquality_int2 ) {
-	TEMPER_FAIL();
-}
+	int2 vec0 = int2( 0, 0 );
+	int2 vec1 = int2( 1, 1 );
 
-TEMPER_TEST( TestRelational_int2 ) {
-	TEMPER_FAIL();
+	bool2 test0 = vec0 <= vec0;
+	bool2 test1 = vec0 >= vec0;
+	bool2 test2 = vec0 < vec1;
+
+	bool2 test3 = vec1 <= vec1;
+	bool2 test4 = vec1 >= vec1;
+	bool2 test5 = vec1 > vec0;
+
+	TEMPER_EXPECT_TRUE( test0 == bool2( true ) );
+	TEMPER_EXPECT_TRUE( test1 == bool2( true ) );
+	TEMPER_EXPECT_TRUE( test2 == bool2( true ) );
+	TEMPER_EXPECT_TRUE( test3 == bool2( true ) );
+	TEMPER_EXPECT_TRUE( test4 == bool2( true ) );
+	TEMPER_EXPECT_TRUE( test5 == bool2( true ) );
+
+	TEMPER_PASS();
 }
 
 TEMPER_TEST( TestLength_int2 ) {
@@ -70,7 +102,6 @@ TEMPER_SUITE( Test_int2 ) {
 	TEMPER_RUN_TEST( TestAssignment_int2 );
 	TEMPER_RUN_TEST( TestArithmetic_int2 );
 	TEMPER_RUN_TEST( TestArray_int2 );
-	TEMPER_RUN_TEST( TestEquality_int2 );
 	TEMPER_RUN_TEST( TestRelational_int2 );
 
 	TEMPER_RUN_TEST( TestLength_int2 );

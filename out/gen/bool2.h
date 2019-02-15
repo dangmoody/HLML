@@ -26,6 +26,8 @@ along with hlml.  If not, see <http://www.gnu.org/licenses/>.
 
 #pragma once
 
+#include <stdint.h>
+
 struct bool3;
 struct bool4;
 

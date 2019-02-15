@@ -4,12 +4,12 @@
 
 #include <string>
 
-class TestsGenerator {
+class TestsGeneratorVector {
 public:
-				TestsGenerator() {}
-				~TestsGenerator() {}
+				TestsGeneratorVector() {}
+				~TestsGeneratorVector() {}
 
-	void		Generate( const genType_t type, const uint32_t numRows, const uint32_t numCols );
+	void		Generate( const genType_t type, const uint32_t numComponents );
 
 private:
 	std::string	m_code;
@@ -22,14 +22,12 @@ private:
 
 	genType_t	m_type;
 
-	uint32_t	m_numRows;
-	uint32_t	m_numCols;
+	uint32_t	m_numComponents;
 
 private:
 	void		GenerateTestAssignment();
 	void		GenerateTestArithmetic();
 	void		GenerateTestArray();
-	void		GenerateTestEquality();
 	void		GenerateTestRelational();
 
 	void		GenerateTestLength();

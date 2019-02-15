@@ -32,6 +32,8 @@ along with hlml.  If not, see <http://www.gnu.org/licenses/>.
 
 // others
 #include <math.h>
+#include <memory.h>
+#include <assert.h>
 
 int3::int3() {
 	memset( data, 0, 3 * sizeof( int32_t ) );

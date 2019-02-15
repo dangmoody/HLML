@@ -28,6 +28,8 @@ along with hlml.  If not, see <http://www.gnu.org/licenses/>.
 
 #include "bool3.h"
 
+#include <stdint.h>
+
 struct int2;
 struct int4;
 struct float3;

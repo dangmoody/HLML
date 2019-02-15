@@ -24,7 +24,8 @@ along with hlml.  If not, see <http://www.gnu.org/licenses/>.
 
 #include "VectorGenerator.h"
 #include "MatrixGenerator.h"
-#include "TestsGenerator.h"
+#include "TestsGeneratorVector.h"
+#include "TestsGeneratorMatrix.h"
 
 #include "FileIO.h"
 
@@ -521,9 +522,33 @@ int main( int argc, char** argv ) {
 
 	// generate tests
 	{
-		printf( "======= Generating matrix tests. =======\n" );
+		printf( "======= Generating Vector tests. =======\n" );
 
-		TestsGenerator gen;
+		TestsGeneratorVector gen;
+
+		for ( uint32_t typeIndex = 0; typeIndex < GEN_TYPE_COUNT; typeIndex++ ) {
+			genType_t type = static_cast<genType_t>( typeIndex );
+
+			std::string typeString = Gen_GetTypeString( type );
+
+			for ( uint32_t componentIndex = GEN_COMPONENT_COUNT_MIN; componentIndex <= GEN_COMPONENT_COUNT_MAX; componentIndex++ ) {
+				std::string typeName = typeString + std::to_string( componentIndex );
+
+				printf( "Generating test_%s.cpp...", typeName.c_str() );
+
+				gen.Generate( type, componentIndex );
+
+				printf( "OK.\n" );
+			}
+		}
+
+		printf( "======= Done. =======\n" );
+	}
+
+	{
+		printf( "======= Generating Matrix tests. =======\n" );
+
+		TestsGeneratorMatrix gen;
 
 		for ( uint32_t typeIndex = 0; typeIndex < GEN_TYPE_COUNT; typeIndex++ ) {
 			genType_t type = static_cast<genType_t>( typeIndex );
@@ -533,14 +558,10 @@ int main( int argc, char** argv ) {
 			for ( uint32_t col = GEN_COMPONENT_COUNT_MIN; col <= GEN_COMPONENT_COUNT_MAX; col++ ) {
 				std::string colStr = std::to_string( col );
 
-				for ( uint32_t row = 1; row <= GEN_COMPONENT_COUNT_MAX; row++ ) {
+				for ( uint32_t row = GEN_COMPONENT_COUNT_MIN; row <= GEN_COMPONENT_COUNT_MAX; row++ ) {
 					std::string rowStr = std::to_string( row );
 
-					std::string typeName = typeString;
-					if ( row > 1 ) {
-						typeName += rowStr + "x";
-					}
-					typeName += colStr;
+					std::string typeName = typeString + rowStr + "x" + colStr;
 
 					printf( "Generating test_%s.cpp...", typeName.c_str() );
 

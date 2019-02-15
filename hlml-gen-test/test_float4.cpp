@@ -24,10 +24,23 @@ along with hlml.  If not, see <http://www.gnu.org/licenses/>.
 
 // GENERATED FILE.  DO NOT EDIT.
 
+#include "../out/gen/float4.h"
+
 #include <temper.h>
 
+// also tests equality operators
 TEMPER_TEST( TestAssignment_float4 ) {
-	TEMPER_FAIL();
+	float4 a;
+
+	a = float4( 1.0f );
+	TEMPER_EXPECT_TRUE( a == float4( 1.0f ) );
+	TEMPER_EXPECT_TRUE( a != float4( 0.0f, 1.0f, 2.0f, 3.0f ) );
+
+	a = float4( 0.0f, 1.0f, 2.0f, 3.0f );
+	TEMPER_EXPECT_TRUE( a == float4( 0.0f, 1.0f, 2.0f, 3.0f ) );
+	TEMPER_EXPECT_TRUE( a != float4( 1.0f ) );
+
+	TEMPER_PASS();
 }
 
 TEMPER_TEST( TestArithmetic_float4 ) {
@@ -35,15 +48,56 @@ TEMPER_TEST( TestArithmetic_float4 ) {
 }
 
 TEMPER_TEST( TestArray_float4 ) {
-	TEMPER_FAIL();
+	float4 a = float4( 0.0f, 1.0f, 2.0f, 3.0f );
+
+	TEMPER_EXPECT_TRUE( a[0] == 0.0f );
+	TEMPER_EXPECT_TRUE( a[1] == 1.0f );
+	TEMPER_EXPECT_TRUE( a[2] == 2.0f );
+	TEMPER_EXPECT_TRUE( a[3] == 3.0f );
+
+	TEMPER_PASS();
 }
 
 TEMPER_TEST( TestEquality_float4 ) {
-	TEMPER_FAIL();
-}
+	float4 vec0 = float4( 0.0f, 0.0f, 0.0f, 0.0f );
+	float4 vec1 = float4( 1.0f, 1.0f, 1.0f, 1.0f );
+	float4 vec2 = float4( 2.0f, 2.0f, 2.0f, 2.0f );
+	float4 vec3 = float4( 3.0f, 3.0f, 3.0f, 3.0f );
 
-TEMPER_TEST( TestRelational_float4 ) {
-	TEMPER_FAIL();
+	bool4 test0 = vec0 <= vec0;
+	bool4 test1 = vec0 >= vec0;
+	bool4 test2 = vec0 < vec1;
+
+	bool4 test3 = vec1 <= vec1;
+	bool4 test4 = vec1 >= vec1;
+	bool4 test5 = vec1 < vec2;
+	bool4 test6 = vec1 > vec0;
+
+	bool4 test7 = vec2 <= vec2;
+	bool4 test8 = vec2 >= vec2;
+	bool4 test9 = vec2 < vec3;
+	bool4 test10 = vec2 > vec1;
+
+	bool4 test11 = vec3 <= vec3;
+	bool4 test12 = vec3 >= vec3;
+	bool4 test13 = vec3 > vec2;
+
+	TEMPER_EXPECT_TRUE( test0 == bool4( true ) );
+	TEMPER_EXPECT_TRUE( test1 == bool4( true ) );
+	TEMPER_EXPECT_TRUE( test2 == bool4( true ) );
+	TEMPER_EXPECT_TRUE( test3 == bool4( true ) );
+	TEMPER_EXPECT_TRUE( test4 == bool4( true ) );
+	TEMPER_EXPECT_TRUE( test5 == bool4( true ) );
+	TEMPER_EXPECT_TRUE( test6 == bool4( true ) );
+	TEMPER_EXPECT_TRUE( test7 == bool4( true ) );
+	TEMPER_EXPECT_TRUE( test8 == bool4( true ) );
+	TEMPER_EXPECT_TRUE( test9 == bool4( true ) );
+	TEMPER_EXPECT_TRUE( test10 == bool4( true ) );
+	TEMPER_EXPECT_TRUE( test11 == bool4( true ) );
+	TEMPER_EXPECT_TRUE( test12 == bool4( true ) );
+	TEMPER_EXPECT_TRUE( test13 == bool4( true ) );
+
+	TEMPER_PASS();
 }
 
 TEMPER_TEST( TestLength_float4 ) {
@@ -70,7 +124,6 @@ TEMPER_SUITE( Test_float4 ) {
 	TEMPER_RUN_TEST( TestAssignment_float4 );
 	TEMPER_RUN_TEST( TestArithmetic_float4 );
 	TEMPER_RUN_TEST( TestArray_float4 );
-	TEMPER_RUN_TEST( TestEquality_float4 );
 	TEMPER_RUN_TEST( TestRelational_float4 );
 
 	TEMPER_RUN_TEST( TestLength_float4 );

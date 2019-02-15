@@ -42,27 +42,11 @@ TEMPER_TEST( TestEquality_bool4x4 ) {
 	TEMPER_FAIL();
 }
 
-TEMPER_TEST( TestRelational_bool4x4 ) {
+TEMPER_TEST( TestIdentity_bool4x4 ) {
 	TEMPER_FAIL();
 }
 
-TEMPER_TEST( TestLength_bool4x4 ) {
-	TEMPER_FAIL();
-}
-
-TEMPER_TEST( TestNormalized_bool4x4 ) {
-	TEMPER_FAIL();
-}
-
-TEMPER_TEST( TestDot_bool4x4 ) {
-	TEMPER_FAIL();
-}
-
-TEMPER_TEST( TestCross_bool4x4 ) {
-	TEMPER_FAIL();
-}
-
-TEMPER_TEST( TestAngle_bool4x4 ) {
+TEMPER_TEST( TestTranspose_bool4x4 ) {
 	TEMPER_FAIL();
 }
 
@@ -71,11 +55,7 @@ TEMPER_SUITE( Test_bool4x4 ) {
 	TEMPER_RUN_TEST( TestArithmetic_bool4x4 );
 	TEMPER_RUN_TEST( TestArray_bool4x4 );
 	TEMPER_RUN_TEST( TestEquality_bool4x4 );
-	TEMPER_RUN_TEST( TestRelational_bool4x4 );
 
-	TEMPER_RUN_TEST( TestLength_bool4x4 );
-	TEMPER_RUN_TEST( TestNormalized_bool4x4 );
-	TEMPER_RUN_TEST( TestDot_bool4x4 );
-	TEMPER_RUN_TEST( TestCross_bool4x4 );
-	TEMPER_RUN_TEST( TestAngle_bool4x4 );
+	TEMPER_RUN_TEST( TestIdentity_bool4x4 );
+	TEMPER_RUN_TEST( TestTranspose_bool4x4 );
 };

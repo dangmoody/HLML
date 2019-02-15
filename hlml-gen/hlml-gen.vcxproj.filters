@@ -30,7 +30,10 @@
     <ClCompile Include="FileIO_win32.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="TestsGenerator.cpp">
+    <ClCompile Include="TestsGeneratorVector.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="TestsGeneratorMatrix.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -47,7 +50,10 @@
     <ClInclude Include="FileIO.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="TestsGenerator.h">
+    <ClInclude Include="TestsGeneratorVector.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="TestsGeneratorMatrix.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
