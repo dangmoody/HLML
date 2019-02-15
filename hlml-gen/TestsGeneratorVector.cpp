@@ -201,13 +201,14 @@ void TestsGeneratorVector::GenerateTestArithmetic() {
 		std::string paramListAnswerAddition = "( ";
 		for ( uint32_t i = 0; i < m_numComponents; i++ ) {
 			if ( Gen_IsFloatingPointType( m_type ) ) {
+				// TODO(DM): find a better way of representing this
 				if ( m_type == GEN_TYPE_FLOAT ) {
 					paramListAnswerAddition += std::to_string( (float) baseNumber / (float)( i + baseNumber ) );
 				} else {
 					paramListAnswerAddition += std::to_string( (double) baseNumber / (double) ( i + baseNumber ) );
 				}
 			} else {
-				paramListAnswerAddition += Gen_GetNumericLiteral( m_type, 1 / ( i + 1 ) );
+				paramListAnswerAddition += Gen_GetNumericLiteral( m_type, baseNumber / ( i + baseNumber ) );
 			}
 
 			if ( i != m_numComponents - 1 ) {
