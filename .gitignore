@@ -15,6 +15,3 @@
 *.log
 *.tlog
 *.idb
-
-# vim files
-*.*~
