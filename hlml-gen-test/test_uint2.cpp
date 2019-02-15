@@ -44,18 +44,18 @@ TEMPER_TEST( TestAssignment_uint2 ) {
 }
 
 TEMPER_TEST( TestArithmeticAddition_uint2 ) {
-	uint2 a = uint2( 1 );
-	uint2 b = uint2( 1, 2 );
+	uint2 a = uint2( 2 );
+	uint2 b = uint2( 2, 3 );
 	uint2 c = a + b;
 
-	TEMPER_EXPECT_TRUE( c == uint2( 2, 3 ) );
+	TEMPER_EXPECT_TRUE( c == uint2( 4, 5 ) );
 
 	TEMPER_PASS();
 }
 
 TEMPER_TEST( TestArithmeticSubtraction_uint2 ) {
-	uint2 a = uint2( 1 );
-	uint2 b = uint2( 1, 2 );
+	uint2 a = uint2( 2 );
+	uint2 b = uint2( 2, 3 );
 	uint2 c = a - b;
 
 	TEMPER_EXPECT_TRUE( c == uint2( 0, -1 ) );
@@ -64,18 +64,18 @@ TEMPER_TEST( TestArithmeticSubtraction_uint2 ) {
 }
 
 TEMPER_TEST( TestArithmeticMultiplication_uint2 ) {
-	uint2 a = uint2( 1 );
-	uint2 b = uint2( 1, 2 );
+	uint2 a = uint2( 2 );
+	uint2 b = uint2( 2, 3 );
 	uint2 c = a * b;
 
-	TEMPER_EXPECT_TRUE( c == uint2( 1, 2 ) );
+	TEMPER_EXPECT_TRUE( c == uint2( 4, 6 ) );
 
 	TEMPER_PASS();
 }
 
 TEMPER_TEST( TestArithmeticDivision_uint2 ) {
-	uint2 a = uint2( 1 );
-	uint2 b = uint2( 1, 2 );
+	uint2 a = uint2( 2 );
+	uint2 b = uint2( 2, 3 );
 	uint2 c = a / b;
 
 	TEMPER_EXPECT_TRUE( c == uint2( 1, 0 ) );

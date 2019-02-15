@@ -44,18 +44,18 @@ TEMPER_TEST( TestAssignment_double4 ) {
 }
 
 TEMPER_TEST( TestArithmeticAddition_double4 ) {
-	double4 a = double4( 1.0 );
-	double4 b = double4( 1.0, 2.0, 3.0, 4.0 );
+	double4 a = double4( 2.0 );
+	double4 b = double4( 2.0, 3.0, 4.0, 5.0 );
 	double4 c = a + b;
 
-	TEMPER_EXPECT_TRUE( c == double4( 2.0, 3.0, 4.0, 5.0 ) );
+	TEMPER_EXPECT_TRUE( c == double4( 4.0, 5.0, 6.0, 7.0 ) );
 
 	TEMPER_PASS();
 }
 
 TEMPER_TEST( TestArithmeticSubtraction_double4 ) {
-	double4 a = double4( 1.0 );
-	double4 b = double4( 1.0, 2.0, 3.0, 4.0 );
+	double4 a = double4( 2.0 );
+	double4 b = double4( 2.0, 3.0, 4.0, 5.0 );
 	double4 c = a - b;
 
 	TEMPER_EXPECT_TRUE( c == double4( 0.0, -1.0, -2.0, -3.0 ) );
@@ -64,21 +64,21 @@ TEMPER_TEST( TestArithmeticSubtraction_double4 ) {
 }
 
 TEMPER_TEST( TestArithmeticMultiplication_double4 ) {
-	double4 a = double4( 1.0 );
-	double4 b = double4( 1.0, 2.0, 3.0, 4.0 );
+	double4 a = double4( 2.0 );
+	double4 b = double4( 2.0, 3.0, 4.0, 5.0 );
 	double4 c = a * b;
 
-	TEMPER_EXPECT_TRUE( c == double4( 1.0, 2.0, 3.0, 4.0 ) );
+	TEMPER_EXPECT_TRUE( c == double4( 4.0, 6.0, 8.0, 10.0 ) );
 
 	TEMPER_PASS();
 }
 
 TEMPER_TEST( TestArithmeticDivision_double4 ) {
-	double4 a = double4( 1.0 );
-	double4 b = double4( 1.0, 2.0, 3.0, 4.0 );
+	double4 a = double4( 2.0 );
+	double4 b = double4( 2.0, 3.0, 4.0, 5.0 );
 	double4 c = a / b;
 
-	TEMPER_EXPECT_TRUE( c == double4( 1.000000, 0.500000, 0.333333, 0.250000 ) );
+	TEMPER_EXPECT_TRUE( c == double4( 1.000000, 0.666667, 0.500000, 0.400000 ) );
 
 	TEMPER_PASS();
 }

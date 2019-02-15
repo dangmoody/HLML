@@ -44,18 +44,18 @@ TEMPER_TEST( TestAssignment_float4 ) {
 }
 
 TEMPER_TEST( TestArithmeticAddition_float4 ) {
-	float4 a = float4( 1.0f );
-	float4 b = float4( 1.0f, 2.0f, 3.0f, 4.0f );
+	float4 a = float4( 2.0f );
+	float4 b = float4( 2.0f, 3.0f, 4.0f, 5.0f );
 	float4 c = a + b;
 
-	TEMPER_EXPECT_TRUE( c == float4( 2.0f, 3.0f, 4.0f, 5.0f ) );
+	TEMPER_EXPECT_TRUE( c == float4( 4.0f, 5.0f, 6.0f, 7.0f ) );
 
 	TEMPER_PASS();
 }
 
 TEMPER_TEST( TestArithmeticSubtraction_float4 ) {
-	float4 a = float4( 1.0f );
-	float4 b = float4( 1.0f, 2.0f, 3.0f, 4.0f );
+	float4 a = float4( 2.0f );
+	float4 b = float4( 2.0f, 3.0f, 4.0f, 5.0f );
 	float4 c = a - b;
 
 	TEMPER_EXPECT_TRUE( c == float4( 0.0f, -1.0f, -2.0f, -3.0f ) );
@@ -64,21 +64,21 @@ TEMPER_TEST( TestArithmeticSubtraction_float4 ) {
 }
 
 TEMPER_TEST( TestArithmeticMultiplication_float4 ) {
-	float4 a = float4( 1.0f );
-	float4 b = float4( 1.0f, 2.0f, 3.0f, 4.0f );
+	float4 a = float4( 2.0f );
+	float4 b = float4( 2.0f, 3.0f, 4.0f, 5.0f );
 	float4 c = a * b;
 
-	TEMPER_EXPECT_TRUE( c == float4( 1.0f, 2.0f, 3.0f, 4.0f ) );
+	TEMPER_EXPECT_TRUE( c == float4( 4.0f, 6.0f, 8.0f, 10.0f ) );
 
 	TEMPER_PASS();
 }
 
 TEMPER_TEST( TestArithmeticDivision_float4 ) {
-	float4 a = float4( 1.0f );
-	float4 b = float4( 1.0f, 2.0f, 3.0f, 4.0f );
+	float4 a = float4( 2.0f );
+	float4 b = float4( 2.0f, 3.0f, 4.0f, 5.0f );
 	float4 c = a / b;
 
-	TEMPER_EXPECT_TRUE( c == float4( 1.000000, 0.500000, 0.333333, 0.250000 ) );
+	TEMPER_EXPECT_TRUE( c == float4( 1.000000, 0.666667, 0.500000, 0.400000 ) );
 
 	TEMPER_PASS();
 }

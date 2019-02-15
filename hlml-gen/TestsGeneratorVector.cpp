@@ -135,10 +135,13 @@ void TestsGeneratorVector::GenerateTestArithmetic() {
 		return;
 	}
 
-	std::string paramListOne = "( " + Gen_GetNumericLiteral( m_type, 1 ) + " )";
+	// number picked at random
+	const uint32_t baseNumber = 2;
+
+	std::string paramListOne = "( " + Gen_GetNumericLiteral( m_type, baseNumber ) + " )";
 	std::string paramListVarying = "( ";
 	for ( uint32_t i = 0; i < m_numComponents; i++ ) {
-		paramListVarying += Gen_GetNumericLiteral( m_type, i + 1 );
+		paramListVarying += Gen_GetNumericLiteral( m_type, i + baseNumber );
 
 		if ( i != m_numComponents - 1 ) {
 			paramListVarying += ", ";
@@ -152,7 +155,7 @@ void TestsGeneratorVector::GenerateTestArithmetic() {
 	{
 		std::string paramListAnswerAddition = "( ";
 		for ( uint32_t i = 0; i < m_numComponents; i++ ) {
-			paramListAnswerAddition += Gen_GetNumericLiteral( m_type, 1 + ( i + 1 ) );
+			paramListAnswerAddition += Gen_GetNumericLiteral( m_type, baseNumber + ( i + baseNumber ) );
 
 			if ( i != m_numComponents - 1 ) {
 				paramListAnswerAddition += ", ";
@@ -167,7 +170,7 @@ void TestsGeneratorVector::GenerateTestArithmetic() {
 	{
 		std::string paramListAnswerAddition = "( ";
 		for ( uint32_t i = 0; i < m_numComponents; i++ ) {
-			paramListAnswerAddition += Gen_GetNumericLiteral( m_type, 1 - ( i + 1 ) );
+			paramListAnswerAddition += Gen_GetNumericLiteral( m_type, baseNumber - ( i + baseNumber ) );
 
 			if ( i != m_numComponents - 1 ) {
 				paramListAnswerAddition += ", ";
@@ -182,7 +185,7 @@ void TestsGeneratorVector::GenerateTestArithmetic() {
 	{
 		std::string paramListAnswerAddition = "( ";
 		for ( uint32_t i = 0; i < m_numComponents; i++ ) {
-			paramListAnswerAddition += Gen_GetNumericLiteral( m_type, 1 * ( i + 1 ) );
+			paramListAnswerAddition += Gen_GetNumericLiteral( m_type, baseNumber * ( i + baseNumber ) );
 
 			if ( i != m_numComponents - 1 ) {
 				paramListAnswerAddition += ", ";
@@ -199,9 +202,9 @@ void TestsGeneratorVector::GenerateTestArithmetic() {
 		for ( uint32_t i = 0; i < m_numComponents; i++ ) {
 			if ( Gen_IsFloatingPointType( m_type ) ) {
 				if ( m_type == GEN_TYPE_FLOAT ) {
-					paramListAnswerAddition += std::to_string( (float) 1 / (float)( i + 1 ) );
+					paramListAnswerAddition += std::to_string( (float) baseNumber / (float)( i + baseNumber ) );
 				} else {
-					paramListAnswerAddition += std::to_string( (double) 1 / (double) ( i + 1 ) );
+					paramListAnswerAddition += std::to_string( (double) baseNumber / (double) ( i + baseNumber ) );
 				}
 			} else {
 				paramListAnswerAddition += Gen_GetNumericLiteral( m_type, 1 / ( i + 1 ) );

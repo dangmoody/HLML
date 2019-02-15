@@ -44,18 +44,18 @@ TEMPER_TEST( TestAssignment_int3 ) {
 }
 
 TEMPER_TEST( TestArithmeticAddition_int3 ) {
-	int3 a = int3( 1 );
-	int3 b = int3( 1, 2, 3 );
+	int3 a = int3( 2 );
+	int3 b = int3( 2, 3, 4 );
 	int3 c = a + b;
 
-	TEMPER_EXPECT_TRUE( c == int3( 2, 3, 4 ) );
+	TEMPER_EXPECT_TRUE( c == int3( 4, 5, 6 ) );
 
 	TEMPER_PASS();
 }
 
 TEMPER_TEST( TestArithmeticSubtraction_int3 ) {
-	int3 a = int3( 1 );
-	int3 b = int3( 1, 2, 3 );
+	int3 a = int3( 2 );
+	int3 b = int3( 2, 3, 4 );
 	int3 c = a - b;
 
 	TEMPER_EXPECT_TRUE( c == int3( 0, -1, -2 ) );
@@ -64,18 +64,18 @@ TEMPER_TEST( TestArithmeticSubtraction_int3 ) {
 }
 
 TEMPER_TEST( TestArithmeticMultiplication_int3 ) {
-	int3 a = int3( 1 );
-	int3 b = int3( 1, 2, 3 );
+	int3 a = int3( 2 );
+	int3 b = int3( 2, 3, 4 );
 	int3 c = a * b;
 
-	TEMPER_EXPECT_TRUE( c == int3( 1, 2, 3 ) );
+	TEMPER_EXPECT_TRUE( c == int3( 4, 6, 8 ) );
 
 	TEMPER_PASS();
 }
 
 TEMPER_TEST( TestArithmeticDivision_int3 ) {
-	int3 a = int3( 1 );
-	int3 b = int3( 1, 2, 3 );
+	int3 a = int3( 2 );
+	int3 b = int3( 2, 3, 4 );
 	int3 c = a / b;
 
 	TEMPER_EXPECT_TRUE( c == int3( 1, 0, 0 ) );

@@ -44,18 +44,18 @@ TEMPER_TEST( TestAssignment_double2 ) {
 }
 
 TEMPER_TEST( TestArithmeticAddition_double2 ) {
-	double2 a = double2( 1.0 );
-	double2 b = double2( 1.0, 2.0 );
+	double2 a = double2( 2.0 );
+	double2 b = double2( 2.0, 3.0 );
 	double2 c = a + b;
 
-	TEMPER_EXPECT_TRUE( c == double2( 2.0, 3.0 ) );
+	TEMPER_EXPECT_TRUE( c == double2( 4.0, 5.0 ) );
 
 	TEMPER_PASS();
 }
 
 TEMPER_TEST( TestArithmeticSubtraction_double2 ) {
-	double2 a = double2( 1.0 );
-	double2 b = double2( 1.0, 2.0 );
+	double2 a = double2( 2.0 );
+	double2 b = double2( 2.0, 3.0 );
 	double2 c = a - b;
 
 	TEMPER_EXPECT_TRUE( c == double2( 0.0, -1.0 ) );
@@ -64,21 +64,21 @@ TEMPER_TEST( TestArithmeticSubtraction_double2 ) {
 }
 
 TEMPER_TEST( TestArithmeticMultiplication_double2 ) {
-	double2 a = double2( 1.0 );
-	double2 b = double2( 1.0, 2.0 );
+	double2 a = double2( 2.0 );
+	double2 b = double2( 2.0, 3.0 );
 	double2 c = a * b;
 
-	TEMPER_EXPECT_TRUE( c == double2( 1.0, 2.0 ) );
+	TEMPER_EXPECT_TRUE( c == double2( 4.0, 6.0 ) );
 
 	TEMPER_PASS();
 }
 
 TEMPER_TEST( TestArithmeticDivision_double2 ) {
-	double2 a = double2( 1.0 );
-	double2 b = double2( 1.0, 2.0 );
+	double2 a = double2( 2.0 );
+	double2 b = double2( 2.0, 3.0 );
 	double2 c = a / b;
 
-	TEMPER_EXPECT_TRUE( c == double2( 1.000000, 0.500000 ) );
+	TEMPER_EXPECT_TRUE( c == double2( 1.000000, 0.666667 ) );
 
 	TEMPER_PASS();
 }
