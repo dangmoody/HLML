@@ -43,8 +43,44 @@ TEMPER_TEST( TestAssignment_float4 ) {
 	TEMPER_PASS();
 }
 
-TEMPER_TEST( TestArithmetic_float4 ) {
-	TEMPER_FAIL();
+TEMPER_TEST( TestArithmeticAddition_float4 ) {
+	float4 a = float4( 1.0f );
+	float4 b = float4( 1.0f, 2.0f, 3.0f, 4.0f );
+	float4 c = a + b;
+
+	TEMPER_EXPECT_TRUE( c == float4( 2.0f, 3.0f, 4.0f, 5.0f ) );
+
+	TEMPER_PASS();
+}
+
+TEMPER_TEST( TestArithmeticSubtraction_float4 ) {
+	float4 a = float4( 1.0f );
+	float4 b = float4( 1.0f, 2.0f, 3.0f, 4.0f );
+	float4 c = a - b;
+
+	TEMPER_EXPECT_TRUE( c == float4( 0.0f, -1.0f, -2.0f, -3.0f ) );
+
+	TEMPER_PASS();
+}
+
+TEMPER_TEST( TestArithmeticMultiplication_float4 ) {
+	float4 a = float4( 1.0f );
+	float4 b = float4( 1.0f, 2.0f, 3.0f, 4.0f );
+	float4 c = a * b;
+
+	TEMPER_EXPECT_TRUE( c == float4( 1.0f, 2.0f, 3.0f, 4.0f ) );
+
+	TEMPER_PASS();
+}
+
+TEMPER_TEST( TestArithmeticDivision_float4 ) {
+	float4 a = float4( 1.0f );
+	float4 b = float4( 1.0f, 2.0f, 3.0f, 4.0f );
+	float4 c = a / b;
+
+	TEMPER_EXPECT_TRUE( c == float4( 1.000000, 0.500000, 0.333333, 0.250000 ) );
+
+	TEMPER_PASS();
 }
 
 TEMPER_TEST( TestArray_float4 ) {
@@ -122,13 +158,18 @@ TEMPER_TEST( TestAngle_float4 ) {
 
 TEMPER_SUITE( Test_float4 ) {
 	TEMPER_RUN_TEST( TestAssignment_float4 );
-	TEMPER_RUN_TEST( TestArithmetic_float4 );
 	TEMPER_RUN_TEST( TestArray_float4 );
+
+	TEMPER_RUN_TEST( TestArithmeticAddition_float4 );
+	TEMPER_RUN_TEST( TestArithmeticSubtraction_float4 );
+	TEMPER_RUN_TEST( TestArithmeticMultiplication_float4 );
+	TEMPER_RUN_TEST( TestArithmeticDivision_float4 );
+
 	TEMPER_RUN_TEST( TestRelational_float4 );
 
-	TEMPER_RUN_TEST( TestLength_float4 );
-	TEMPER_RUN_TEST( TestNormalized_float4 );
-	TEMPER_RUN_TEST( TestDot_float4 );
-	TEMPER_RUN_TEST( TestCross_float4 );
-	TEMPER_RUN_TEST( TestAngle_float4 );
+	TEMPER_SKIP_TEST( TestLength_float4, "TODO" );
+	TEMPER_SKIP_TEST( TestNormalized_float4, "TODO" );
+	TEMPER_SKIP_TEST( TestDot_float4, "TODO" );
+	TEMPER_SKIP_TEST( TestCross_float4, "TODO" );
+	TEMPER_SKIP_TEST( TestAngle_float4, "TODO" );
 };

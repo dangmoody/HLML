@@ -49,20 +49,21 @@ void TestsGeneratorVector::Generate( const genType_t type, const uint32_t numCom
 
 	m_code += "TEMPER_SUITE( " + m_testPrefix + " ) {\n";
 	m_code += "\tTEMPER_RUN_TEST( TestAssignment_" + m_fullTypeName + " );\n";
-	if ( m_type != GEN_TYPE_BOOL ) {
-		m_code += "\tTEMPER_RUN_TEST( TestArithmetic_" + m_fullTypeName + " );\n";
-	}
 	m_code += "\tTEMPER_RUN_TEST( TestArray_" + m_fullTypeName + " );\n";
 	if ( m_type != GEN_TYPE_BOOL ) {
-		m_code += "\tTEMPER_RUN_TEST( TestRelational_" + m_fullTypeName + " );\n";
-	}
-	if ( m_type != GEN_TYPE_BOOL ) {
 		m_code += "\n";
-		m_code += "\tTEMPER_RUN_TEST( TestLength_" + m_fullTypeName + " );\n";
-		m_code += "\tTEMPER_RUN_TEST( TestNormalized_" + m_fullTypeName + " );\n";
-		m_code += "\tTEMPER_RUN_TEST( TestDot_" + m_fullTypeName + " );\n";
-		m_code += "\tTEMPER_RUN_TEST( TestCross_" + m_fullTypeName + " );\n";
-		m_code += "\tTEMPER_RUN_TEST( TestAngle_" + m_fullTypeName + " );\n";
+		m_code += "\tTEMPER_RUN_TEST( TestArithmeticAddition_" + m_fullTypeName + " );\n";
+		m_code += "\tTEMPER_RUN_TEST( TestArithmeticSubtraction_" + m_fullTypeName + " );\n";
+		m_code += "\tTEMPER_RUN_TEST( TestArithmeticMultiplication_" + m_fullTypeName + " );\n";
+		m_code += "\tTEMPER_RUN_TEST( TestArithmeticDivision_" + m_fullTypeName + " );\n";
+		m_code += "\n";
+		m_code += "\tTEMPER_RUN_TEST( TestRelational_" + m_fullTypeName + " );\n";
+		m_code += "\n";
+		m_code += "\tTEMPER_SKIP_TEST( TestLength_" + m_fullTypeName + ", \"TODO\" );\n";
+		m_code += "\tTEMPER_SKIP_TEST( TestNormalized_" + m_fullTypeName + ", \"TODO\" );\n";
+		m_code += "\tTEMPER_SKIP_TEST( TestDot_" + m_fullTypeName + ", \"TODO\" );\n";
+		m_code += "\tTEMPER_SKIP_TEST( TestCross_" + m_fullTypeName + ", \"TODO\" );\n";
+		m_code += "\tTEMPER_SKIP_TEST( TestAngle_" + m_fullTypeName + ", \"TODO\" );\n";
 	}
 	m_code += "};\n";
 
@@ -106,17 +107,6 @@ void TestsGeneratorVector::GenerateTestAssignment() {
 	m_code += "\n";
 }
 
-void TestsGeneratorVector::GenerateTestArithmetic() {
-	if ( m_type == GEN_TYPE_BOOL ) {
-		return;
-	}
-
-	m_code += "TEMPER_TEST( TestArithmetic_" + m_fullTypeName + " ) {\n";
-	m_code += "\tTEMPER_FAIL();\n";
-	m_code += "}\n";
-	m_code += "\n";
-}
-
 void TestsGeneratorVector::GenerateTestArray() {
 	std::string paramList = "( ";
 	for ( uint32_t i = 0; i < m_numComponents; i++ ) {
@@ -138,6 +128,113 @@ void TestsGeneratorVector::GenerateTestArray() {
 	m_code += "\tTEMPER_PASS();\n";
 	m_code += "}\n";
 	m_code += "\n";
+}
+
+void TestsGeneratorVector::GenerateTestArithmetic() {
+	if ( m_type == GEN_TYPE_BOOL ) {
+		return;
+	}
+
+	std::string paramListOne = "( " + Gen_GetNumericLiteral( m_type, 1 ) + " )";
+	std::string paramListVarying = "( ";
+	for ( uint32_t i = 0; i < m_numComponents; i++ ) {
+		paramListVarying += Gen_GetNumericLiteral( m_type, i + 1 );
+
+		if ( i != m_numComponents - 1 ) {
+			paramListVarying += ", ";
+		}
+	}
+	paramListVarying += " )";
+
+	std::vector<std::string> paramListAnswers( _countof( GEN_OPERATORS_ARITHMETIC ) );
+
+	// addition
+	{
+		std::string paramListAnswerAddition = "( ";
+		for ( uint32_t i = 0; i < m_numComponents; i++ ) {
+			paramListAnswerAddition += Gen_GetNumericLiteral( m_type, 1 + ( i + 1 ) );
+
+			if ( i != m_numComponents - 1 ) {
+				paramListAnswerAddition += ", ";
+			}
+		}
+		paramListAnswerAddition += " )";
+
+		paramListAnswers[0] = paramListAnswerAddition;
+	}
+
+	// subtraction
+	{
+		std::string paramListAnswerAddition = "( ";
+		for ( uint32_t i = 0; i < m_numComponents; i++ ) {
+			paramListAnswerAddition += Gen_GetNumericLiteral( m_type, 1 - ( i + 1 ) );
+
+			if ( i != m_numComponents - 1 ) {
+				paramListAnswerAddition += ", ";
+			}
+		}
+		paramListAnswerAddition += " )";
+
+		paramListAnswers[1] = paramListAnswerAddition;
+	}
+
+	// multiplication
+	{
+		std::string paramListAnswerAddition = "( ";
+		for ( uint32_t i = 0; i < m_numComponents; i++ ) {
+			paramListAnswerAddition += Gen_GetNumericLiteral( m_type, 1 * ( i + 1 ) );
+
+			if ( i != m_numComponents - 1 ) {
+				paramListAnswerAddition += ", ";
+			}
+		}
+		paramListAnswerAddition += " )";
+
+		paramListAnswers[2] = paramListAnswerAddition;
+	}
+
+	// division
+	{
+		std::string paramListAnswerAddition = "( ";
+		for ( uint32_t i = 0; i < m_numComponents; i++ ) {
+			if ( Gen_IsFloatingPointType( m_type ) ) {
+				if ( m_type == GEN_TYPE_FLOAT ) {
+					paramListAnswerAddition += std::to_string( (float) 1 / (float)( i + 1 ) );
+				} else {
+					paramListAnswerAddition += std::to_string( (double) 1 / (double) ( i + 1 ) );
+				}
+			} else {
+				paramListAnswerAddition += Gen_GetNumericLiteral( m_type, 1 / ( i + 1 ) );
+			}
+
+			if ( i != m_numComponents - 1 ) {
+				paramListAnswerAddition += ", ";
+			}
+		}
+		paramListAnswerAddition += " )";
+
+		paramListAnswers[3] = paramListAnswerAddition;
+	}
+
+	std::vector<std::string> testSuffices = {
+		"Addition",
+		"Subtraction",
+		"Multiplication",
+		"Division",
+	};
+
+	for ( uint32_t operatorIndex = 0; operatorIndex < _countof( GEN_OPERATORS_ARITHMETIC ); operatorIndex++ ) {
+		m_code += "TEMPER_TEST( TestArithmetic" + testSuffices[operatorIndex] + "_" + m_fullTypeName + " ) {\n";
+		m_code += "\t" + m_fullTypeName + " a = " + m_fullTypeName + paramListOne + ";\n";
+		m_code += "\t" + m_fullTypeName + " b = " + m_fullTypeName + paramListVarying + ";\n";
+		m_code += "\t" + m_fullTypeName + " c = a " + GEN_OPERATORS_ARITHMETIC[operatorIndex] + " b;\n";
+		m_code += "\n";
+		m_code += "\tTEMPER_EXPECT_TRUE( c == " + m_fullTypeName + paramListAnswers[operatorIndex] + " );\n";
+		m_code += "\n";
+		m_code += "\tTEMPER_PASS();\n";
+		m_code += "}\n";
+		m_code += "\n";
+	}
 }
 
 void TestsGeneratorVector::GenerateTestRelational() {

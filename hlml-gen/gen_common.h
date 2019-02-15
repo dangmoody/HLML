@@ -80,6 +80,7 @@ inline std::string					Gen_GetDefaultLiteralValue( const genType_t type );
 inline std::string					Gen_GetNumericLiteral( const genType_t type, const int32_t value );
 
 inline genType_t					Gen_GetSupportedFloatingPointType( const genType_t type );
+inline bool							Gen_IsFloatingPointType( const genType_t type );
 
 extern void							Gen_VectorLength( const genType_t type, const uint32_t numComponents, std::string& outHeader, std::string& outInl );
 extern void							Gen_VectorNormalize( const genType_t type, const uint32_t numComponents, std::string& outHeader, std::string& outInl );
@@ -158,9 +159,9 @@ std::string Gen_GetNumericLiteral( const genType_t type, const int32_t value ) {
 }
 
 genType_t Gen_GetSupportedFloatingPointType( const genType_t type ) {
-	if ( type == GEN_TYPE_DOUBLE ) {
-		return GEN_TYPE_DOUBLE;
-	}
+	return ( type == GEN_TYPE_DOUBLE ) ? GEN_TYPE_DOUBLE : GEN_TYPE_FLOAT;
+}
 
-	return GEN_TYPE_FLOAT;
+bool Gen_IsFloatingPointType( const genType_t type ) {
+	return type == GEN_TYPE_FLOAT || type == GEN_TYPE_DOUBLE;
 }

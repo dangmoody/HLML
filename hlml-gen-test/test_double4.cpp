@@ -43,8 +43,44 @@ TEMPER_TEST( TestAssignment_double4 ) {
 	TEMPER_PASS();
 }
 
-TEMPER_TEST( TestArithmetic_double4 ) {
-	TEMPER_FAIL();
+TEMPER_TEST( TestArithmeticAddition_double4 ) {
+	double4 a = double4( 1.0 );
+	double4 b = double4( 1.0, 2.0, 3.0, 4.0 );
+	double4 c = a + b;
+
+	TEMPER_EXPECT_TRUE( c == double4( 2.0, 3.0, 4.0, 5.0 ) );
+
+	TEMPER_PASS();
+}
+
+TEMPER_TEST( TestArithmeticSubtraction_double4 ) {
+	double4 a = double4( 1.0 );
+	double4 b = double4( 1.0, 2.0, 3.0, 4.0 );
+	double4 c = a - b;
+
+	TEMPER_EXPECT_TRUE( c == double4( 0.0, -1.0, -2.0, -3.0 ) );
+
+	TEMPER_PASS();
+}
+
+TEMPER_TEST( TestArithmeticMultiplication_double4 ) {
+	double4 a = double4( 1.0 );
+	double4 b = double4( 1.0, 2.0, 3.0, 4.0 );
+	double4 c = a * b;
+
+	TEMPER_EXPECT_TRUE( c == double4( 1.0, 2.0, 3.0, 4.0 ) );
+
+	TEMPER_PASS();
+}
+
+TEMPER_TEST( TestArithmeticDivision_double4 ) {
+	double4 a = double4( 1.0 );
+	double4 b = double4( 1.0, 2.0, 3.0, 4.0 );
+	double4 c = a / b;
+
+	TEMPER_EXPECT_TRUE( c == double4( 1.000000, 0.500000, 0.333333, 0.250000 ) );
+
+	TEMPER_PASS();
 }
 
 TEMPER_TEST( TestArray_double4 ) {
@@ -122,13 +158,18 @@ TEMPER_TEST( TestAngle_double4 ) {
 
 TEMPER_SUITE( Test_double4 ) {
 	TEMPER_RUN_TEST( TestAssignment_double4 );
-	TEMPER_RUN_TEST( TestArithmetic_double4 );
 	TEMPER_RUN_TEST( TestArray_double4 );
+
+	TEMPER_RUN_TEST( TestArithmeticAddition_double4 );
+	TEMPER_RUN_TEST( TestArithmeticSubtraction_double4 );
+	TEMPER_RUN_TEST( TestArithmeticMultiplication_double4 );
+	TEMPER_RUN_TEST( TestArithmeticDivision_double4 );
+
 	TEMPER_RUN_TEST( TestRelational_double4 );
 
-	TEMPER_RUN_TEST( TestLength_double4 );
-	TEMPER_RUN_TEST( TestNormalized_double4 );
-	TEMPER_RUN_TEST( TestDot_double4 );
-	TEMPER_RUN_TEST( TestCross_double4 );
-	TEMPER_RUN_TEST( TestAngle_double4 );
+	TEMPER_SKIP_TEST( TestLength_double4, "TODO" );
+	TEMPER_SKIP_TEST( TestNormalized_double4, "TODO" );
+	TEMPER_SKIP_TEST( TestDot_double4, "TODO" );
+	TEMPER_SKIP_TEST( TestCross_double4, "TODO" );
+	TEMPER_SKIP_TEST( TestAngle_double4, "TODO" );
 };

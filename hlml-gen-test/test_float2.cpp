@@ -43,8 +43,44 @@ TEMPER_TEST( TestAssignment_float2 ) {
 	TEMPER_PASS();
 }
 
-TEMPER_TEST( TestArithmetic_float2 ) {
-	TEMPER_FAIL();
+TEMPER_TEST( TestArithmeticAddition_float2 ) {
+	float2 a = float2( 1.0f );
+	float2 b = float2( 1.0f, 2.0f );
+	float2 c = a + b;
+
+	TEMPER_EXPECT_TRUE( c == float2( 2.0f, 3.0f ) );
+
+	TEMPER_PASS();
+}
+
+TEMPER_TEST( TestArithmeticSubtraction_float2 ) {
+	float2 a = float2( 1.0f );
+	float2 b = float2( 1.0f, 2.0f );
+	float2 c = a - b;
+
+	TEMPER_EXPECT_TRUE( c == float2( 0.0f, -1.0f ) );
+
+	TEMPER_PASS();
+}
+
+TEMPER_TEST( TestArithmeticMultiplication_float2 ) {
+	float2 a = float2( 1.0f );
+	float2 b = float2( 1.0f, 2.0f );
+	float2 c = a * b;
+
+	TEMPER_EXPECT_TRUE( c == float2( 1.0f, 2.0f ) );
+
+	TEMPER_PASS();
+}
+
+TEMPER_TEST( TestArithmeticDivision_float2 ) {
+	float2 a = float2( 1.0f );
+	float2 b = float2( 1.0f, 2.0f );
+	float2 c = a / b;
+
+	TEMPER_EXPECT_TRUE( c == float2( 1.000000, 0.500000 ) );
+
+	TEMPER_PASS();
 }
 
 TEMPER_TEST( TestArray_float2 ) {
@@ -100,13 +136,18 @@ TEMPER_TEST( TestAngle_float2 ) {
 
 TEMPER_SUITE( Test_float2 ) {
 	TEMPER_RUN_TEST( TestAssignment_float2 );
-	TEMPER_RUN_TEST( TestArithmetic_float2 );
 	TEMPER_RUN_TEST( TestArray_float2 );
+
+	TEMPER_RUN_TEST( TestArithmeticAddition_float2 );
+	TEMPER_RUN_TEST( TestArithmeticSubtraction_float2 );
+	TEMPER_RUN_TEST( TestArithmeticMultiplication_float2 );
+	TEMPER_RUN_TEST( TestArithmeticDivision_float2 );
+
 	TEMPER_RUN_TEST( TestRelational_float2 );
 
-	TEMPER_RUN_TEST( TestLength_float2 );
-	TEMPER_RUN_TEST( TestNormalized_float2 );
-	TEMPER_RUN_TEST( TestDot_float2 );
-	TEMPER_RUN_TEST( TestCross_float2 );
-	TEMPER_RUN_TEST( TestAngle_float2 );
+	TEMPER_SKIP_TEST( TestLength_float2, "TODO" );
+	TEMPER_SKIP_TEST( TestNormalized_float2, "TODO" );
+	TEMPER_SKIP_TEST( TestDot_float2, "TODO" );
+	TEMPER_SKIP_TEST( TestCross_float2, "TODO" );
+	TEMPER_SKIP_TEST( TestAngle_float2, "TODO" );
 };

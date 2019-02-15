@@ -87,20 +87,20 @@ TEMPER_TEST( TestLookAt_int3x3 ) {
 }
 
 TEMPER_SUITE( Test_int3x3 ) {
-	TEMPER_RUN_TEST( TestAssignment_int3x3 );
-	TEMPER_RUN_TEST( TestArithmetic_int3x3 );
-	TEMPER_RUN_TEST( TestArray_int3x3 );
-	TEMPER_RUN_TEST( TestEquality_int3x3 );
-	TEMPER_RUN_TEST( TestRelational_int3x3 );
+	TEMPER_SKIP_TEST( TestAssignment_int3x3, "TODO" );
+	TEMPER_SKIP_TEST( TestArithmetic_int3x3, "TODO" );
+	TEMPER_SKIP_TEST( TestArray_int3x3, "TODO" );
+	TEMPER_SKIP_TEST( TestEquality_int3x3, "TODO" );
+	TEMPER_SKIP_TEST( TestRelational_int3x3, "TODO" );
 
-	TEMPER_RUN_TEST( TestIdentity_int3x3 );
-	TEMPER_RUN_TEST( TestTranspose_int3x3 );
-	TEMPER_RUN_TEST( TestInverse_int3x3 );
-	TEMPER_RUN_TEST( TestDeterminant_int3x3 );
-	TEMPER_RUN_TEST( TestTranslate_int3x3 );
-	TEMPER_RUN_TEST( TestRotate_int3x3 );
-	TEMPER_RUN_TEST( TestScale_int3x3 );
-	TEMPER_RUN_TEST( TestOrtho_int3x3 );
-	TEMPER_RUN_TEST( TestPerspective_int3x3 );
-	TEMPER_RUN_TEST( TestLookAt_int3x3 );
+	TEMPER_SKIP_TEST( TestIdentity_int3x3, "TODO" );
+	TEMPER_SKIP_TEST( TestTranspose_int3x3, "TODO" );
+	TEMPER_SKIP_TEST( TestInverse_int3x3, "TODO" );
+	TEMPER_SKIP_TEST( TestDeterminant_int3x3, "TODO" );
+	TEMPER_SKIP_TEST( TestTranslate_int3x3, "TODO" );
+	TEMPER_SKIP_TEST( TestRotate_int3x3, "TODO" );
+	TEMPER_SKIP_TEST( TestScale_int3x3, "TODO" );
+	TEMPER_SKIP_TEST( TestOrtho_int3x3, "TODO" );
+	TEMPER_SKIP_TEST( TestPerspective_int3x3, "TODO" );
+	TEMPER_SKIP_TEST( TestLookAt_int3x3, "TODO" );
 };

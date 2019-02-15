@@ -26,8 +26,8 @@ private:
 
 private:
 	void		GenerateTestAssignment();
-	void		GenerateTestArithmetic();
 	void		GenerateTestArray();
+	void		GenerateTestArithmetic();
 	void		GenerateTestRelational();
 
 	void		GenerateTestLength();

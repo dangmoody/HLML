@@ -43,8 +43,44 @@ TEMPER_TEST( TestAssignment_uint3 ) {
 	TEMPER_PASS();
 }
 
-TEMPER_TEST( TestArithmetic_uint3 ) {
-	TEMPER_FAIL();
+TEMPER_TEST( TestArithmeticAddition_uint3 ) {
+	uint3 a = uint3( 1 );
+	uint3 b = uint3( 1, 2, 3 );
+	uint3 c = a + b;
+
+	TEMPER_EXPECT_TRUE( c == uint3( 2, 3, 4 ) );
+
+	TEMPER_PASS();
+}
+
+TEMPER_TEST( TestArithmeticSubtraction_uint3 ) {
+	uint3 a = uint3( 1 );
+	uint3 b = uint3( 1, 2, 3 );
+	uint3 c = a - b;
+
+	TEMPER_EXPECT_TRUE( c == uint3( 0, -1, -2 ) );
+
+	TEMPER_PASS();
+}
+
+TEMPER_TEST( TestArithmeticMultiplication_uint3 ) {
+	uint3 a = uint3( 1 );
+	uint3 b = uint3( 1, 2, 3 );
+	uint3 c = a * b;
+
+	TEMPER_EXPECT_TRUE( c == uint3( 1, 2, 3 ) );
+
+	TEMPER_PASS();
+}
+
+TEMPER_TEST( TestArithmeticDivision_uint3 ) {
+	uint3 a = uint3( 1 );
+	uint3 b = uint3( 1, 2, 3 );
+	uint3 c = a / b;
+
+	TEMPER_EXPECT_TRUE( c == uint3( 1, 0, 0 ) );
+
+	TEMPER_PASS();
 }
 
 TEMPER_TEST( TestArray_uint3 ) {
@@ -111,13 +147,18 @@ TEMPER_TEST( TestAngle_uint3 ) {
 
 TEMPER_SUITE( Test_uint3 ) {
 	TEMPER_RUN_TEST( TestAssignment_uint3 );
-	TEMPER_RUN_TEST( TestArithmetic_uint3 );
 	TEMPER_RUN_TEST( TestArray_uint3 );
+
+	TEMPER_RUN_TEST( TestArithmeticAddition_uint3 );
+	TEMPER_RUN_TEST( TestArithmeticSubtraction_uint3 );
+	TEMPER_RUN_TEST( TestArithmeticMultiplication_uint3 );
+	TEMPER_RUN_TEST( TestArithmeticDivision_uint3 );
+
 	TEMPER_RUN_TEST( TestRelational_uint3 );
 
-	TEMPER_RUN_TEST( TestLength_uint3 );
-	TEMPER_RUN_TEST( TestNormalized_uint3 );
-	TEMPER_RUN_TEST( TestDot_uint3 );
-	TEMPER_RUN_TEST( TestCross_uint3 );
-	TEMPER_RUN_TEST( TestAngle_uint3 );
+	TEMPER_SKIP_TEST( TestLength_uint3, "TODO" );
+	TEMPER_SKIP_TEST( TestNormalized_uint3, "TODO" );
+	TEMPER_SKIP_TEST( TestDot_uint3, "TODO" );
+	TEMPER_SKIP_TEST( TestCross_uint3, "TODO" );
+	TEMPER_SKIP_TEST( TestAngle_uint3, "TODO" );
 };

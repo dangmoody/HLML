@@ -51,11 +51,11 @@ TEMPER_TEST( TestTranspose_bool4x3 ) {
 }
 
 TEMPER_SUITE( Test_bool4x3 ) {
-	TEMPER_RUN_TEST( TestAssignment_bool4x3 );
-	TEMPER_RUN_TEST( TestArithmetic_bool4x3 );
-	TEMPER_RUN_TEST( TestArray_bool4x3 );
-	TEMPER_RUN_TEST( TestEquality_bool4x3 );
+	TEMPER_SKIP_TEST( TestAssignment_bool4x3, "TODO" );
+	TEMPER_SKIP_TEST( TestArithmetic_bool4x3, "TODO" );
+	TEMPER_SKIP_TEST( TestArray_bool4x3, "TODO" );
+	TEMPER_SKIP_TEST( TestEquality_bool4x3, "TODO" );
 
-	TEMPER_RUN_TEST( TestIdentity_bool4x3 );
-	TEMPER_RUN_TEST( TestTranspose_bool4x3 );
+	TEMPER_SKIP_TEST( TestIdentity_bool4x3, "TODO" );
+	TEMPER_SKIP_TEST( TestTranspose_bool4x3, "TODO" );
 };
