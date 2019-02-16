@@ -72,7 +72,16 @@ void Gen_VectorLength( const genType_t type, const uint32_t numComponents, std::
 	outHeader += "\n";
 
 	outInl += returnTypeString + " lengthsqr( const " + fullTypeName + "& vec ) {\n";
-	outInl += "\treturn dot( vec, vec );\n";
+	outInl += "\treturn ";
+	for ( uint32_t i = 0; i < numComponents; i++ ) {
+		char componentName = GEN_COMPONENT_NAMES_VECTOR[i];
+		outInl += std::string( "( vec." ) + componentName + " * vec." + componentName + " )";
+
+		if ( i != numComponents - 1 ) {
+			outInl += " + ";
+		}
+	}
+	outInl += ";\n";
 	outInl += "}\n";
 
 	outInl += "\n";
@@ -122,7 +131,7 @@ void Gen_VectorDot( const genType_t type, const uint32_t numComponents, std::str
 	assert( numComponents >= GEN_COMPONENT_COUNT_MIN );
 	assert( numComponents <= GEN_COMPONENT_COUNT_MAX );
 
-	if ( type == GEN_TYPE_BOOL ) {
+	if ( type == GEN_TYPE_BOOL || type == GEN_TYPE_UINT ) {
 		return;
 	}
 

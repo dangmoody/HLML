@@ -59,22 +59,16 @@ inline float length( const int4& vec );
 
 
 // uint2
-inline float dot( const uint2& lhs, const uint2& rhs );
-
 inline float lengthsqr( const uint2& vec );
 inline float length( const uint2& vec );
 
 
 // uint3
-inline float dot( const uint3& lhs, const uint3& rhs );
-
 inline float lengthsqr( const uint3& vec );
 inline float length( const uint3& vec );
 
 
 // uint4
-inline float dot( const uint4& lhs, const uint4& rhs );
-
 inline float lengthsqr( const uint4& vec );
 inline float length( const uint4& vec );
 

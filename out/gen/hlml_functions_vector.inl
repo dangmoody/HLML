@@ -31,7 +31,7 @@ float dot( const int2& lhs, const int2& rhs ) {
 }
 
 float lengthsqr( const int2& vec ) {
-	return dot( vec, vec );
+	return ( vec.x * vec.x ) + ( vec.y * vec.y );
 }
 
 float length( const int2& vec ) {
@@ -45,7 +45,7 @@ float dot( const int3& lhs, const int3& rhs ) {
 }
 
 float lengthsqr( const int3& vec ) {
-	return dot( vec, vec );
+	return ( vec.x * vec.x ) + ( vec.y * vec.y ) + ( vec.z * vec.z );
 }
 
 float length( const int3& vec ) {
@@ -59,7 +59,7 @@ float dot( const int4& lhs, const int4& rhs ) {
 }
 
 float lengthsqr( const int4& vec ) {
-	return dot( vec, vec );
+	return ( vec.x * vec.x ) + ( vec.y * vec.y ) + ( vec.z * vec.z ) + ( vec.w * vec.w );
 }
 
 float length( const int4& vec ) {
@@ -68,12 +68,8 @@ float length( const int4& vec ) {
 
 
 // uint2
-float dot( const uint2& lhs, const uint2& rhs ) {
-	return ( lhs.x * rhs.x ) + ( lhs.y * rhs.y );
-}
-
 float lengthsqr( const uint2& vec ) {
-	return dot( vec, vec );
+	return ( vec.x * vec.x ) + ( vec.y * vec.y );
 }
 
 float length( const uint2& vec ) {
@@ -82,12 +78,8 @@ float length( const uint2& vec ) {
 
 
 // uint3
-float dot( const uint3& lhs, const uint3& rhs ) {
-	return ( lhs.x * rhs.x ) + ( lhs.y * rhs.y ) + ( lhs.z * rhs.z );
-}
-
 float lengthsqr( const uint3& vec ) {
-	return dot( vec, vec );
+	return ( vec.x * vec.x ) + ( vec.y * vec.y ) + ( vec.z * vec.z );
 }
 
 float length( const uint3& vec ) {
@@ -96,12 +88,8 @@ float length( const uint3& vec ) {
 
 
 // uint4
-float dot( const uint4& lhs, const uint4& rhs ) {
-	return ( lhs.x * rhs.x ) + ( lhs.y * rhs.y ) + ( lhs.z * rhs.z ) + ( lhs.w * rhs.w );
-}
-
 float lengthsqr( const uint4& vec ) {
-	return dot( vec, vec );
+	return ( vec.x * vec.x ) + ( vec.y * vec.y ) + ( vec.z * vec.z ) + ( vec.w * vec.w );
 }
 
 float length( const uint4& vec ) {
@@ -115,7 +103,7 @@ float dot( const float2& lhs, const float2& rhs ) {
 }
 
 float lengthsqr( const float2& vec ) {
-	return dot( vec, vec );
+	return ( vec.x * vec.x ) + ( vec.y * vec.y );
 }
 
 float length( const float2& vec ) {
@@ -139,7 +127,7 @@ float dot( const float3& lhs, const float3& rhs ) {
 }
 
 float lengthsqr( const float3& vec ) {
-	return dot( vec, vec );
+	return ( vec.x * vec.x ) + ( vec.y * vec.y ) + ( vec.z * vec.z );
 }
 
 float length( const float3& vec ) {
@@ -171,7 +159,7 @@ float dot( const float4& lhs, const float4& rhs ) {
 }
 
 float lengthsqr( const float4& vec ) {
-	return dot( vec, vec );
+	return ( vec.x * vec.x ) + ( vec.y * vec.y ) + ( vec.z * vec.z ) + ( vec.w * vec.w );
 }
 
 float length( const float4& vec ) {
@@ -204,7 +192,7 @@ double dot( const double2& lhs, const double2& rhs ) {
 }
 
 double lengthsqr( const double2& vec ) {
-	return dot( vec, vec );
+	return ( vec.x * vec.x ) + ( vec.y * vec.y );
 }
 
 double length( const double2& vec ) {
@@ -228,7 +216,7 @@ double dot( const double3& lhs, const double3& rhs ) {
 }
 
 double lengthsqr( const double3& vec ) {
-	return dot( vec, vec );
+	return ( vec.x * vec.x ) + ( vec.y * vec.y ) + ( vec.z * vec.z );
 }
 
 double length( const double3& vec ) {
@@ -260,7 +248,7 @@ double dot( const double4& lhs, const double4& rhs ) {
 }
 
 double lengthsqr( const double4& vec ) {
-	return dot( vec, vec );
+	return ( vec.x * vec.x ) + ( vec.y * vec.y ) + ( vec.z * vec.z ) + ( vec.w * vec.w );
 }
 
 double length( const double4& vec ) {
