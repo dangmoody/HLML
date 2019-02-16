@@ -117,14 +117,10 @@ TEMPER_TEST( TestRelational_int2 ) {
 TEMPER_TEST( TestLength_int2 ) {
 	int2 vec = int2( 2 );
 
-	TEMPER_EXPECT_TRUE( floateq( lengthsqr( vec ), 8.000000 ) );
-	TEMPER_EXPECT_TRUE( floateq( length( vec ), 2.828427 ) );
+	TEMPER_EXPECT_TRUE( floateq( lengthsqr( vec ), 8.0f ) );
+	TEMPER_EXPECT_TRUE( floateq( length( vec ), 2.82842712475f ) );
 
 	TEMPER_PASS();
-}
-
-TEMPER_TEST( TestNormalized_int2 ) {
-	TEMPER_FAIL();
 }
 
 TEMPER_TEST( TestDot_int2 ) {
@@ -147,7 +143,5 @@ TEMPER_SUITE( Test_int2 ) {
 	TEMPER_RUN_TEST( TestRelational_int2 );
 
 	TEMPER_RUN_TEST( TestLength_int2 );
-	TEMPER_SKIP_TEST( TestNormalized_int2, "TODO" );
 	TEMPER_SKIP_TEST( TestDot_int2, "TODO" );
-	TEMPER_SKIP_TEST( TestCross_int2, "TODO" );
 };

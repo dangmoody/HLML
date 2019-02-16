@@ -60,11 +60,15 @@ void TestsGeneratorVector::Generate( const genType_t type, const uint32_t numCom
 		m_code += "\tTEMPER_RUN_TEST( TestRelational_" + m_fullTypeName + " );\n";
 		m_code += "\n";
 		m_code += "\tTEMPER_RUN_TEST( TestLength_" + m_fullTypeName + " );\n";
-		m_code += "\tTEMPER_SKIP_TEST( TestNormalized_" + m_fullTypeName + ", \"TODO\" );\n";
-		m_code += "\tTEMPER_SKIP_TEST( TestDot_" + m_fullTypeName + ", \"TODO\" );\n";
-		m_code += "\tTEMPER_SKIP_TEST( TestCross_" + m_fullTypeName + ", \"TODO\" );\n";
 	}
 	if ( m_type == GEN_TYPE_FLOAT || m_type == GEN_TYPE_DOUBLE ) {
+		m_code += "\tTEMPER_RUN_TEST( TestNormalized_" + m_fullTypeName + " );\n";
+	}
+	if ( m_type != GEN_TYPE_BOOL ) {
+		m_code += "\tTEMPER_SKIP_TEST( TestDot_" + m_fullTypeName + ", \"TODO\" );\n";
+	}
+	if ( m_type == GEN_TYPE_FLOAT || m_type == GEN_TYPE_DOUBLE ) {
+		m_code += "\tTEMPER_SKIP_TEST( TestCross_" + m_fullTypeName + ", \"TODO\" );\n";
 		m_code += "\tTEMPER_SKIP_TEST( TestAngle_" + m_fullTypeName + ", \"TODO\" );\n";
 	}
 	m_code += "};\n";
@@ -307,24 +311,31 @@ void TestsGeneratorVector::GenerateTestLength() {
 		return;
 	}
 
-	float squaredLengths[] = {
-		8.0f,
-		12.0f,
-		16.0f,
+	std::string squaredLengths[] = {
+		"8.0",
+		"12.0",
+		"16.0",
 	};
 
-	// FIXME: these tests fail for some reason
-	float lengths[] = {
-		2.82842712475f,
-		3.46410161514f,
-		4
+	std::string lengths[] = {
+		"2.82842712475",
+		"3.46410161514",
+		"4.0",
 	};
+
+	std::string squaredLength = squaredLengths[m_numComponents - 2];
+	std::string length = lengths[m_numComponents - 2];
+
+	if ( m_type != GEN_TYPE_DOUBLE ) {
+		squaredLength += "f";
+		length += "f";
+	}
 
 	m_code += "TEMPER_TEST( TestLength_" + m_fullTypeName + " ) {\n";
 	m_code += "\t" + m_fullTypeName + " vec = " + m_fullTypeName + "( " + Gen_GetNumericLiteral( m_type, 2 ) + " );\n";
 	m_code += "\n";
-	m_code += "\tTEMPER_EXPECT_TRUE( floateq( lengthsqr( vec ), " + std::to_string( squaredLengths[m_numComponents - 2] ) + " ) );\n";
-	m_code += "\tTEMPER_EXPECT_TRUE( floateq( length( vec ), " + std::to_string( lengths[m_numComponents - 2] ) + " ) );\n";
+	m_code += "\tTEMPER_EXPECT_TRUE( floateq( lengthsqr( vec ), " + squaredLength + " ) );\n";
+	m_code += "\tTEMPER_EXPECT_TRUE( floateq( length( vec ), " + length + " ) );\n";
 	m_code += "\n";
 	m_code += "\tTEMPER_PASS();\n";
 	m_code += "}\n";
@@ -332,12 +343,30 @@ void TestsGeneratorVector::GenerateTestLength() {
 }
 
 void TestsGeneratorVector::GenerateTestNormalized() {
-	if ( m_type == GEN_TYPE_BOOL ) {
+	if ( m_type != GEN_TYPE_FLOAT && m_type != GEN_TYPE_DOUBLE ) {
 		return;
 	}
 
+	std::string paramListVarying = "( ";
+	for ( uint32_t i = 0; i < m_numComponents; i++ ) {
+		paramListVarying += Gen_GetNumericLiteral( m_type, i + 2 );
+
+		if ( i != m_numComponents - 1 ) {
+			paramListVarying += ", ";
+		}
+	}
+	paramListVarying += " )";
+
+	genType_t floatingPointType = Gen_GetSupportedFloatingPointType( m_type );
+	std::string oneStr = Gen_GetNumericLiteral( floatingPointType, 1 );
+
 	m_code += "TEMPER_TEST( TestNormalized_" + m_fullTypeName + " ) {\n";
-	m_code += "\tTEMPER_FAIL();\n";
+	m_code += "\t" + m_fullTypeName + " vec = " + m_fullTypeName + paramListVarying + ";\n";
+	m_code += "\tvec = normalized( vec );\n";
+	m_code += "\n";
+	m_code += "\tTEMPER_EXPECT_TRUE( length( vec ) == " + oneStr + " );\n";
+	m_code += "\n";
+	m_code += "\tTEMPER_PASS();\n";
 	m_code += "}\n";
 	m_code += "\n";
 }

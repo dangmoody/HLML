@@ -117,14 +117,19 @@ TEMPER_TEST( TestRelational_float2 ) {
 TEMPER_TEST( TestLength_float2 ) {
 	float2 vec = float2( 2.0f );
 
-	TEMPER_EXPECT_TRUE( floateq( lengthsqr( vec ), 8.000000 ) );
-	TEMPER_EXPECT_TRUE( floateq( length( vec ), 2.828427 ) );
+	TEMPER_EXPECT_TRUE( floateq( lengthsqr( vec ), 8.0f ) );
+	TEMPER_EXPECT_TRUE( floateq( length( vec ), 2.82842712475f ) );
 
 	TEMPER_PASS();
 }
 
 TEMPER_TEST( TestNormalized_float2 ) {
-	TEMPER_FAIL();
+	float2 vec = float2( 2.0f, 3.0f );
+	vec = normalized( vec );
+
+	TEMPER_EXPECT_TRUE( length( vec ) == 1.0f );
+
+	TEMPER_PASS();
 }
 
 TEMPER_TEST( TestDot_float2 ) {
@@ -151,7 +156,7 @@ TEMPER_SUITE( Test_float2 ) {
 	TEMPER_RUN_TEST( TestRelational_float2 );
 
 	TEMPER_RUN_TEST( TestLength_float2 );
-	TEMPER_SKIP_TEST( TestNormalized_float2, "TODO" );
+	TEMPER_RUN_TEST( TestNormalized_float2 );
 	TEMPER_SKIP_TEST( TestDot_float2, "TODO" );
 	TEMPER_SKIP_TEST( TestCross_float2, "TODO" );
 	TEMPER_SKIP_TEST( TestAngle_float2, "TODO" );

@@ -128,14 +128,10 @@ TEMPER_TEST( TestRelational_int3 ) {
 TEMPER_TEST( TestLength_int3 ) {
 	int3 vec = int3( 2 );
 
-	TEMPER_EXPECT_TRUE( floateq( lengthsqr( vec ), 12.000000 ) );
-	TEMPER_EXPECT_TRUE( floateq( length( vec ), 3.464102 ) );
+	TEMPER_EXPECT_TRUE( floateq( lengthsqr( vec ), 12.0f ) );
+	TEMPER_EXPECT_TRUE( floateq( length( vec ), 3.46410161514f ) );
 
 	TEMPER_PASS();
-}
-
-TEMPER_TEST( TestNormalized_int3 ) {
-	TEMPER_FAIL();
 }
 
 TEMPER_TEST( TestDot_int3 ) {
@@ -158,7 +154,5 @@ TEMPER_SUITE( Test_int3 ) {
 	TEMPER_RUN_TEST( TestRelational_int3 );
 
 	TEMPER_RUN_TEST( TestLength_int3 );
-	TEMPER_SKIP_TEST( TestNormalized_int3, "TODO" );
 	TEMPER_SKIP_TEST( TestDot_int3, "TODO" );
-	TEMPER_SKIP_TEST( TestCross_int3, "TODO" );
 };
