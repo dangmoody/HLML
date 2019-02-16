@@ -134,10 +134,6 @@ TEMPER_TEST( TestLength_uint3 ) {
 	TEMPER_PASS();
 }
 
-TEMPER_TEST( TestAngle_uint3 ) {
-	TEMPER_FAIL();
-}
-
 TEMPER_SUITE( Test_uint3 ) {
 	TEMPER_RUN_TEST( TestAssignment_uint3 );
 	TEMPER_RUN_TEST( TestArray_uint3 );

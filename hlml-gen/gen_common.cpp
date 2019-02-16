@@ -197,7 +197,7 @@ void Gen_VectorAngle( const genType_t type, const uint32_t numComponents, std::s
 	assert( numComponents >= GEN_COMPONENT_COUNT_MIN );
 	assert( numComponents <= GEN_COMPONENT_COUNT_MAX );
 
-	if ( type == GEN_TYPE_BOOL ) {
+	if ( type != GEN_TYPE_FLOAT && type != GEN_TYPE_DOUBLE ) {
 		return;
 	}
 

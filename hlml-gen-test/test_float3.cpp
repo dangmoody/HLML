@@ -163,7 +163,13 @@ TEMPER_TEST( TestCross_float3 ) {
 }
 
 TEMPER_TEST( TestAngle_float3 ) {
-	TEMPER_FAIL();
+	float3 right = float3( 1.0f, 0.0f, 0.0f );
+	float3 up = float3( 0.0f, 1.0f, 0.0f );
+	float answer = angle( up, right );
+
+	TEMPER_EXPECT_TRUE( floateq( answer, 90.0f ) );
+
+	TEMPER_PASS();
 }
 
 TEMPER_SUITE( Test_float3 ) {
@@ -181,5 +187,5 @@ TEMPER_SUITE( Test_float3 ) {
 	TEMPER_RUN_TEST( TestNormalized_float3 );
 	TEMPER_RUN_TEST( TestDot_float3 );
 	TEMPER_RUN_TEST( TestCross_float3 );
-	TEMPER_SKIP_TEST( TestAngle_float3, "TODO" );
+	TEMPER_RUN_TEST( TestAngle_float3 );
 };

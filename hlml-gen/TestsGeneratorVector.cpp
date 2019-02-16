@@ -71,7 +71,7 @@ void TestsGeneratorVector::Generate( const genType_t type, const uint32_t numCom
 		if ( m_numComponents >= 3 ) {
 			m_code += "\tTEMPER_RUN_TEST( TestCross_" + m_fullTypeName + " );\n";
 		}
-		m_code += "\tTEMPER_SKIP_TEST( TestAngle_" + m_fullTypeName + ", \"TODO\" );\n";
+		m_code += "\tTEMPER_RUN_TEST( TestAngle_" + m_fullTypeName + " );\n";
 	}
 	m_code += "};\n";
 
@@ -472,12 +472,42 @@ void TestsGeneratorVector::GenerateTestCross() {
 }
 
 void TestsGeneratorVector::GenerateTestAngle() {
-	if ( m_type == GEN_TYPE_BOOL ) {
+	if ( m_type != GEN_TYPE_FLOAT && m_type != GEN_TYPE_DOUBLE ) {
 		return;
 	}
 
+	std::string zeroStr = Gen_GetNumericLiteral( m_type, 0 );
+	std::string oneStr = Gen_GetNumericLiteral( m_type, 1 );
+	std::string ninetyStr = Gen_GetNumericLiteral( Gen_GetSupportedFloatingPointType( m_type ), 90 );
+
+	std::string paramListRight = "( ";
+	for ( uint32_t i = 0; i < m_numComponents; i++ ) {
+		paramListRight += ( i == 0 ) ? oneStr : zeroStr;
+
+		if ( i != m_numComponents - 1 ) {
+			paramListRight += ", ";
+		}
+	}
+	paramListRight += " )";
+
+	std::string paramListUp = "( ";
+	for ( uint32_t i = 0; i < m_numComponents; i++ ) {
+		paramListUp += ( i == 1 ) ? oneStr : zeroStr;
+
+		if ( i != m_numComponents - 1 ) {
+			paramListUp += ", ";
+		}
+	}
+	paramListUp += " )";
+
 	m_code += "TEMPER_TEST( TestAngle_" + m_fullTypeName + " ) {\n";
-	m_code += "\tTEMPER_FAIL();\n";
+	m_code += "\t" + m_fullTypeName + " right = " + m_fullTypeName + paramListRight + ";\n";
+	m_code += "\t" + m_fullTypeName + " up = " + m_fullTypeName + paramListUp + ";\n";
+	m_code += "\t" + m_typeString + " answer = angle( up, right );\n";
+	m_code += "\n";
+	m_code += "\tTEMPER_EXPECT_TRUE( floateq( answer, " + ninetyStr + " ) );\n";
+	m_code += "\n";
+	m_code += "\tTEMPER_PASS();\n";
 	m_code += "}\n";
 	m_code += "\n";
 }

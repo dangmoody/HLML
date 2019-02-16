@@ -120,6 +120,10 @@ float2 normalized( const float2& vec ) {
 	return (float2) vec * invlen;
 }
 
+float angle( const float2& lhs, const float2& rhs ) {
+	return degrees( acosf( dot( normalized( lhs ), normalized( rhs ) ) ) );
+}
+
 
 // float3
 float dot( const float3& lhs, const float3& rhs ) {
@@ -150,6 +154,10 @@ float3 cross( const float3& lhs, const float3& rhs ) {
 		( lhs.z * rhs.x ) - ( lhs.x * rhs.z ),
 		( lhs.x * rhs.y ) - ( lhs.y * rhs.x )
 	);
+}
+
+float angle( const float3& lhs, const float3& rhs ) {
+	return degrees( acosf( dot( normalized( lhs ), normalized( rhs ) ) ) );
 }
 
 
@@ -185,6 +193,10 @@ float4 cross( const float4& lhs, const float4& rhs ) {
 	);
 }
 
+float angle( const float4& lhs, const float4& rhs ) {
+	return degrees( acosf( dot( normalized( lhs ), normalized( rhs ) ) ) );
+}
+
 
 // double2
 double dot( const double2& lhs, const double2& rhs ) {
@@ -207,6 +219,10 @@ void normalize( double2& vec ) {
 double2 normalized( const double2& vec ) {
 	double invlen = 1.0 / length( vec );
 	return (double2) vec * invlen;
+}
+
+double angle( const double2& lhs, const double2& rhs ) {
+	return degrees( acos( dot( normalized( lhs ), normalized( rhs ) ) ) );
 }
 
 
@@ -241,6 +257,10 @@ double3 cross( const double3& lhs, const double3& rhs ) {
 	);
 }
 
+double angle( const double3& lhs, const double3& rhs ) {
+	return degrees( acos( dot( normalized( lhs ), normalized( rhs ) ) ) );
+}
+
 
 // double4
 double dot( const double4& lhs, const double4& rhs ) {
@@ -272,6 +292,10 @@ double4 cross( const double4& lhs, const double4& rhs ) {
 		( lhs.x * rhs.y ) - ( lhs.y * rhs.x ),
 		0.0
 	);
+}
+
+double angle( const double4& lhs, const double4& rhs ) {
+	return degrees( acos( dot( normalized( lhs ), normalized( rhs ) ) ) );
 }
 
 

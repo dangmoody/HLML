@@ -196,7 +196,7 @@ static bool GenerateFunctionsVector( void ) {
 			Gen_VectorLength( type, componentIndex, contentHeader, contentInl );
 			Gen_VectorNormalize( type, componentIndex, contentHeader, contentInl );
 			Gen_VectorCross( type, componentIndex, contentHeader, contentInl );
-//			Gen_VectorAngle( type, componentIndex, contentHeader, contentInl );
+			Gen_VectorAngle( type, componentIndex, contentHeader, contentInl );
 
 			contentHeader += "\n";
 			contentInl += "\n";

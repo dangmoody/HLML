@@ -145,10 +145,6 @@ TEMPER_TEST( TestLength_uint4 ) {
 	TEMPER_PASS();
 }
 
-TEMPER_TEST( TestAngle_uint4 ) {
-	TEMPER_FAIL();
-}
-
 TEMPER_SUITE( Test_uint4 ) {
 	TEMPER_RUN_TEST( TestAssignment_uint4 );
 	TEMPER_RUN_TEST( TestArray_uint4 );

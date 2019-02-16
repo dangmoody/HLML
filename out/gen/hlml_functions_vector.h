@@ -82,6 +82,8 @@ inline float length( const float2& vec );
 inline void normalize( float2& vec );
 inline float2 normalized( const float2& vec );
 
+inline float angle( const float2& lhs, const float2& rhs );
+
 
 // float3
 inline float dot( const float3& lhs, const float3& rhs );
@@ -93,6 +95,8 @@ inline void normalize( float3& vec );
 inline float3 normalized( const float3& vec );
 
 inline float3 cross( const float3& lhs, const float3& rhs );
+
+inline float angle( const float3& lhs, const float3& rhs );
 
 
 // float4
@@ -106,6 +110,8 @@ inline float4 normalized( const float4& vec );
 
 inline float4 cross( const float4& lhs, const float4& rhs );
 
+inline float angle( const float4& lhs, const float4& rhs );
+
 
 // double2
 inline double dot( const double2& lhs, const double2& rhs );
@@ -115,6 +121,8 @@ inline double length( const double2& vec );
 
 inline void normalize( double2& vec );
 inline double2 normalized( const double2& vec );
+
+inline double angle( const double2& lhs, const double2& rhs );
 
 
 // double3
@@ -128,6 +136,8 @@ inline double3 normalized( const double3& vec );
 
 inline double3 cross( const double3& lhs, const double3& rhs );
 
+inline double angle( const double3& lhs, const double3& rhs );
+
 
 // double4
 inline double dot( const double4& lhs, const double4& rhs );
@@ -139,6 +149,8 @@ inline void normalize( double4& vec );
 inline double4 normalized( const double4& vec );
 
 inline double4 cross( const double4& lhs, const double4& rhs );
+
+inline double angle( const double4& lhs, const double4& rhs );
 
 
 #include "hlml_functions_vector.inl"

@@ -174,7 +174,13 @@ TEMPER_TEST( TestCross_double4 ) {
 }
 
 TEMPER_TEST( TestAngle_double4 ) {
-	TEMPER_FAIL();
+	double4 right = double4( 1.0, 0.0, 0.0, 0.0 );
+	double4 up = double4( 0.0, 1.0, 0.0, 0.0 );
+	double answer = angle( up, right );
+
+	TEMPER_EXPECT_TRUE( floateq( answer, 90.0 ) );
+
+	TEMPER_PASS();
 }
 
 TEMPER_SUITE( Test_double4 ) {
@@ -192,5 +198,5 @@ TEMPER_SUITE( Test_double4 ) {
 	TEMPER_RUN_TEST( TestNormalized_double4 );
 	TEMPER_RUN_TEST( TestDot_double4 );
 	TEMPER_RUN_TEST( TestCross_double4 );
-	TEMPER_SKIP_TEST( TestAngle_double4, "TODO" );
+	TEMPER_RUN_TEST( TestAngle_double4 );
 };
