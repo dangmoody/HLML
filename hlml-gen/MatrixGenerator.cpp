@@ -20,8 +20,8 @@ void MatrixGenerator::Generate( const genType_t type, const uint32_t numRows, co
 	GenerateHeader();
 	GenerateInl();
 
-	FS_WriteToFile( ( GEN_OUT_FOLDER_PATH + m_fullTypeName + ".h" ).c_str(), m_codeHeader.c_str(), m_codeHeader.size() );
-	FS_WriteToFile( ( GEN_OUT_FOLDER_PATH + m_fullTypeName + ".inl" ).c_str(), m_codeInl.c_str(), m_codeInl.size() );
+	FS_WriteToFile( ( GEN_OUT_GEN_FOLDER_PATH + m_fullTypeName + ".h" ).c_str(), m_codeHeader.c_str(), m_codeHeader.size() );
+	FS_WriteToFile( ( GEN_OUT_GEN_FOLDER_PATH + m_fullTypeName + ".inl" ).c_str(), m_codeInl.c_str(), m_codeInl.size() );
 }
 
 void MatrixGenerator::PrintHeader() const {

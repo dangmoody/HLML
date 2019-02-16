@@ -24,7 +24,7 @@ along with hlml.  If not, see <http://www.gnu.org/licenses/>.
 
 // GENERATED FILE.  DO NOT EDIT.
 
-#include "../out/gen/double3.h"
+#include "../out/gen/hlml_functions_vector.h"
 
 #include <temper.h>
 
@@ -126,7 +126,12 @@ TEMPER_TEST( TestRelational_double3 ) {
 }
 
 TEMPER_TEST( TestLength_double3 ) {
-	TEMPER_FAIL();
+	double3 vec = double3( 2.0 );
+
+	TEMPER_EXPECT_TRUE( floateq( lengthsqr( vec ), 12.000000 ) );
+	TEMPER_EXPECT_TRUE( floateq( length( vec ), 3.464102 ) );
+
+	TEMPER_PASS();
 }
 
 TEMPER_TEST( TestNormalized_double3 ) {
@@ -156,7 +161,7 @@ TEMPER_SUITE( Test_double3 ) {
 
 	TEMPER_RUN_TEST( TestRelational_double3 );
 
-	TEMPER_SKIP_TEST( TestLength_double3, "TODO" );
+	TEMPER_RUN_TEST( TestLength_double3 );
 	TEMPER_SKIP_TEST( TestNormalized_double3, "TODO" );
 	TEMPER_SKIP_TEST( TestDot_double3, "TODO" );
 	TEMPER_SKIP_TEST( TestCross_double3, "TODO" );

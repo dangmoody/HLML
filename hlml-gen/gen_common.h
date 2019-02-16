@@ -18,7 +18,8 @@
 #define GEN_COMPONENT_COUNT_MIN		2
 #define GEN_COMPONENT_COUNT_MAX		4
 
-#define GEN_OUT_FOLDER_PATH			"out/gen/"
+#define GEN_OUT_FOLDER_PATH			"out/"
+#define GEN_OUT_GEN_FOLDER_PATH		"out/gen/"
 #define GEN_TESTS_FOLDER_PATH		"hlml-gen-test/"
 
 #define GEN_HEADER_MAIN				"hlml_main.h"

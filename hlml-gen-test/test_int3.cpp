@@ -24,7 +24,7 @@ along with hlml.  If not, see <http://www.gnu.org/licenses/>.
 
 // GENERATED FILE.  DO NOT EDIT.
 
-#include "../out/gen/int3.h"
+#include "../out/gen/hlml_functions_vector.h"
 
 #include <temper.h>
 
@@ -126,7 +126,12 @@ TEMPER_TEST( TestRelational_int3 ) {
 }
 
 TEMPER_TEST( TestLength_int3 ) {
-	TEMPER_FAIL();
+	int3 vec = int3( 2 );
+
+	TEMPER_EXPECT_TRUE( floateq( lengthsqr( vec ), 12.000000 ) );
+	TEMPER_EXPECT_TRUE( floateq( length( vec ), 3.464102 ) );
+
+	TEMPER_PASS();
 }
 
 TEMPER_TEST( TestNormalized_int3 ) {
@@ -134,10 +139,6 @@ TEMPER_TEST( TestNormalized_int3 ) {
 }
 
 TEMPER_TEST( TestDot_int3 ) {
-	TEMPER_FAIL();
-}
-
-TEMPER_TEST( TestCross_int3 ) {
 	TEMPER_FAIL();
 }
 
@@ -156,9 +157,8 @@ TEMPER_SUITE( Test_int3 ) {
 
 	TEMPER_RUN_TEST( TestRelational_int3 );
 
-	TEMPER_SKIP_TEST( TestLength_int3, "TODO" );
+	TEMPER_RUN_TEST( TestLength_int3 );
 	TEMPER_SKIP_TEST( TestNormalized_int3, "TODO" );
 	TEMPER_SKIP_TEST( TestDot_int3, "TODO" );
 	TEMPER_SKIP_TEST( TestCross_int3, "TODO" );
-	TEMPER_SKIP_TEST( TestAngle_int3, "TODO" );
 };

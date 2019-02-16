@@ -87,7 +87,7 @@ static void ShowUsage( void ) {
 
 static bool GenerateMainTypeHeaderVector( void ) {
 	char headerFilePath[1024] = { 0 };
-	sprintf( headerFilePath, "%s%s", GEN_OUT_FOLDER_PATH, GEN_HEADER_VECTOR );
+	sprintf( headerFilePath, "%s%s", GEN_OUT_GEN_FOLDER_PATH, GEN_HEADER_VECTOR );
 
 	// TODO(DM): cache this as "GEN_FILE_HEADER" constant
 	std::string content = GEN_COPYRIGHT_HEADER;
@@ -113,7 +113,7 @@ static bool GenerateMainTypeHeaderVector( void ) {
 
 static bool GenerateMainTypeHeaderMatrix( void ) {
 	char headerFilePath[1024] = { 0 };
-	sprintf( headerFilePath, "%s%s", GEN_OUT_FOLDER_PATH, GEN_HEADER_MATRIX );
+	sprintf( headerFilePath, "%s%s", GEN_OUT_GEN_FOLDER_PATH, GEN_HEADER_MATRIX );
 
 	// TODO(DM): cache this as "GEN_FILE_HEADER" constant
 	std::string content = GEN_COPYRIGHT_HEADER;
@@ -145,10 +145,10 @@ static bool GenerateMainTypeHeaderMatrix( void ) {
 
 static bool GenerateFunctionsVector( void ) {
 	char filePathHeader[1024] = { 0 };
-	sprintf( filePathHeader, "%s%s.h", GEN_OUT_FOLDER_PATH, GEN_HEADER_FUNCTIONS_VECTOR );
+	sprintf( filePathHeader, "%s%s.h", GEN_OUT_GEN_FOLDER_PATH, GEN_HEADER_FUNCTIONS_VECTOR );
 
 	char filePathInl[1024] = { 0 };
-	sprintf( filePathInl, "%s%s.inl", GEN_OUT_FOLDER_PATH, GEN_HEADER_FUNCTIONS_VECTOR );
+	sprintf( filePathInl, "%s%s.inl", GEN_OUT_GEN_FOLDER_PATH, GEN_HEADER_FUNCTIONS_VECTOR );
 
 	std::string content = GEN_COPYRIGHT_HEADER;
 	content += "\n";
@@ -218,10 +218,10 @@ static bool GenerateFunctionsVector( void ) {
 
 static bool GenerateFunctionsMatrix( void ) {
 	char filePathHeader[1024] = { 0 };
-	sprintf( filePathHeader, "%s%s.h", GEN_OUT_FOLDER_PATH, GEN_HEADER_FUNCTIONS_MATRIX );
+	sprintf( filePathHeader, "%s%s.h", GEN_OUT_GEN_FOLDER_PATH, GEN_HEADER_FUNCTIONS_MATRIX );
 
 	char filePathInl[1024] = { 0 };
-	sprintf( filePathInl, "%s%s.inl", GEN_OUT_FOLDER_PATH, GEN_HEADER_FUNCTIONS_MATRIX );
+	sprintf( filePathInl, "%s%s.inl", GEN_OUT_GEN_FOLDER_PATH, GEN_HEADER_FUNCTIONS_MATRIX );
 
 	std::string content = GEN_COPYRIGHT_HEADER;
 	content += "\n";
@@ -445,7 +445,7 @@ int main( int argc, char** argv ) {
 	printf( "Generating %s hand linear algebra functions.\n", ( g_hand == GEN_HAND_LEFT ) ? "left" : "right" );
 	printf( "\n" );
 
-	FS_CreateFolder( GEN_OUT_FOLDER_PATH );
+	FS_CreateFolder( GEN_OUT_GEN_FOLDER_PATH );
 	FS_CreateFolder( GEN_TESTS_FOLDER_PATH );
 
 	genFlags_t genFlags;

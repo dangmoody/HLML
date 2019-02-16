@@ -24,7 +24,7 @@ along with hlml.  If not, see <http://www.gnu.org/licenses/>.
 
 // GENERATED FILE.  DO NOT EDIT.
 
-#include "../out/gen/bool4.h"
+#include "../out/gen/hlml_functions_vector.h"
 
 #include <temper.h>
 
