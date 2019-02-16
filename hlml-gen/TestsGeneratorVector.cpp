@@ -68,7 +68,9 @@ void TestsGeneratorVector::Generate( const genType_t type, const uint32_t numCom
 		m_code += "\tTEMPER_RUN_TEST( TestDot_" + m_fullTypeName + " );\n";
 	}
 	if ( m_type == GEN_TYPE_FLOAT || m_type == GEN_TYPE_DOUBLE ) {
-		m_code += "\tTEMPER_SKIP_TEST( TestCross_" + m_fullTypeName + ", \"TODO\" );\n";
+		if ( m_numComponents >= 3 ) {
+			m_code += "\tTEMPER_RUN_TEST( TestCross_" + m_fullTypeName + " );\n";
+		}
 		m_code += "\tTEMPER_SKIP_TEST( TestAngle_" + m_fullTypeName + ", \"TODO\" );\n";
 	}
 	m_code += "};\n";
@@ -407,7 +409,7 @@ void TestsGeneratorVector::GenerateTestDot() {
 	m_code += "\t" + m_fullTypeName + " a = " + m_fullTypeName + paramListA + ";\n";
 	m_code += "\t" + m_fullTypeName + " b = " + m_fullTypeName + paramListB + ";\n";
 	m_code += "\n";
-	m_code += "\tTEMPER_EXPECT_TRUE( dot( a, b ) == " + minusOneFloatStr + " );";
+	m_code += "\tTEMPER_EXPECT_TRUE( dot( a, b ) == " + minusOneFloatStr + " );\n";
 	m_code += "\n";
 	m_code += "\tTEMPER_PASS();\n";
 	m_code += "}\n";
@@ -419,8 +421,52 @@ void TestsGeneratorVector::GenerateTestCross() {
 		return;
 	}
 
+	if ( m_numComponents < 3 ) {
+		return;
+	}
+
+	std::string zeroStr = Gen_GetNumericLiteral( m_type, 0 );
+	std::string oneStr = Gen_GetNumericLiteral( m_type, 1 );
+	std::string minusOneStr = Gen_GetNumericLiteral( m_type, -1 );
+
+	std::string paramListLeft = "( ";
+	for ( uint32_t i = 0; i < m_numComponents; i++ ) {
+		paramListLeft += ( i == 0 ) ? minusOneStr : zeroStr;
+
+		if ( i != m_numComponents - 1 ) {
+			paramListLeft += ", ";
+		}
+	}
+	paramListLeft += " )";
+
+	std::string paramListUp = "( ";
+	for ( uint32_t i = 0; i < m_numComponents; i++ ) {
+		paramListUp += ( i == 1 ) ? oneStr : zeroStr;
+
+		if ( i != m_numComponents - 1 ) {
+			paramListUp += ", ";
+		}
+	}
+	paramListUp += " )";
+
+	std::string paramListForward = "( ";
+	for ( uint32_t i = 0; i < m_numComponents; i++ ) {
+		paramListForward += ( i == 2 ) ? oneStr : zeroStr;
+
+		if ( i != m_numComponents - 1 ) {
+			paramListForward += ", ";
+		}
+	}
+	paramListForward += " )";
+
 	m_code += "TEMPER_TEST( TestCross_" + m_fullTypeName + " ) {\n";
-	m_code += "\tTEMPER_FAIL();\n";
+	m_code += "\t" + m_fullTypeName + " left = " + m_fullTypeName + paramListLeft + ";\n";
+	m_code += "\t" + m_fullTypeName + " forward = " + m_fullTypeName + paramListForward + ";\n";
+	m_code += "\t" + m_fullTypeName + " up = " + m_fullTypeName + paramListUp + ";\n";
+	m_code += "\n";
+	m_code += "\tTEMPER_EXPECT_TRUE( cross( left, forward ) == up );\n";
+	m_code += "\n";
+	m_code += "\tTEMPER_PASS();\n";
 	m_code += "}\n";
 	m_code += "\n";
 }

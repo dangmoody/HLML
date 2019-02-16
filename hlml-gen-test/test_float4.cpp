@@ -159,11 +159,18 @@ TEMPER_TEST( TestDot_float4 ) {
 	float4 b = float4( 0.0f, 0.0f, 0.0f, -1.0f );
 
 	TEMPER_EXPECT_TRUE( dot( a, b ) == -1.0f );
+
 	TEMPER_PASS();
 }
 
 TEMPER_TEST( TestCross_float4 ) {
-	TEMPER_FAIL();
+	float4 left = float4( -1.0f, 0.0f, 0.0f, 0.0f );
+	float4 forward = float4( 0.0f, 0.0f, 1.0f, 0.0f );
+	float4 up = float4( 0.0f, 1.0f, 0.0f, 0.0f );
+
+	TEMPER_EXPECT_TRUE( cross( left, forward ) == up );
+
+	TEMPER_PASS();
 }
 
 TEMPER_TEST( TestAngle_float4 ) {
@@ -184,6 +191,6 @@ TEMPER_SUITE( Test_float4 ) {
 	TEMPER_RUN_TEST( TestLength_float4 );
 	TEMPER_RUN_TEST( TestNormalized_float4 );
 	TEMPER_RUN_TEST( TestDot_float4 );
-	TEMPER_SKIP_TEST( TestCross_float4, "TODO" );
+	TEMPER_RUN_TEST( TestCross_float4 );
 	TEMPER_SKIP_TEST( TestAngle_float4, "TODO" );
 };

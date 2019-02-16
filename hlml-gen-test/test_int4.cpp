@@ -150,6 +150,7 @@ TEMPER_TEST( TestDot_int4 ) {
 	int4 b = int4( 0, 0, 0, -1 );
 
 	TEMPER_EXPECT_TRUE( dot( a, b ) == -1.0f );
+
 	TEMPER_PASS();
 }
 
