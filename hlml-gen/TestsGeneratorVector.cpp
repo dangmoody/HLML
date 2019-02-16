@@ -64,8 +64,8 @@ void TestsGeneratorVector::Generate( const genType_t type, const uint32_t numCom
 	if ( m_type == GEN_TYPE_FLOAT || m_type == GEN_TYPE_DOUBLE ) {
 		m_code += "\tTEMPER_RUN_TEST( TestNormalized_" + m_fullTypeName + " );\n";
 	}
-	if ( m_type != GEN_TYPE_BOOL ) {
-		m_code += "\tTEMPER_SKIP_TEST( TestDot_" + m_fullTypeName + ", \"TODO\" );\n";
+	if ( m_type != GEN_TYPE_BOOL && m_type != GEN_TYPE_UINT ) {
+		m_code += "\tTEMPER_RUN_TEST( TestDot_" + m_fullTypeName + " );\n";
 	}
 	if ( m_type == GEN_TYPE_FLOAT || m_type == GEN_TYPE_DOUBLE ) {
 		m_code += "\tTEMPER_SKIP_TEST( TestCross_" + m_fullTypeName + ", \"TODO\" );\n";
@@ -372,12 +372,44 @@ void TestsGeneratorVector::GenerateTestNormalized() {
 }
 
 void TestsGeneratorVector::GenerateTestDot() {
-	if ( m_type == GEN_TYPE_BOOL ) {
+	if ( m_type == GEN_TYPE_BOOL || m_type == GEN_TYPE_UINT ) {
 		return;
 	}
 
+	std::string minusOneFloatStr;
+	if ( m_type == GEN_TYPE_DOUBLE ) {
+		minusOneFloatStr = "-1.0";
+	} else {
+		minusOneFloatStr = "-1.0f";
+	}
+
+	std::string paramListA = "( ";
+	for ( uint32_t i = 0; i < m_numComponents; i++ ) {
+		paramListA += ( i == m_numComponents - 1 ) ? Gen_GetNumericLiteral( m_type, 1 ) : Gen_GetNumericLiteral( m_type, 0 );
+
+		if ( i != m_numComponents - 1 ) {
+			paramListA += ", ";
+		}
+	}
+	paramListA += " )";
+
+	std::string paramListB = "( ";
+	for ( uint32_t i = 0; i < m_numComponents; i++ ) {
+		paramListB += ( i == m_numComponents - 1 ) ? Gen_GetNumericLiteral( m_type, -1 ) : Gen_GetNumericLiteral( m_type, 0 );
+
+		if ( i != m_numComponents - 1 ) {
+			paramListB += ", ";
+		}
+	}
+	paramListB += " )";
+
 	m_code += "TEMPER_TEST( TestDot_" + m_fullTypeName + " ) {\n";
-	m_code += "\tTEMPER_FAIL();\n";
+	m_code += "\t" + m_fullTypeName + " a = " + m_fullTypeName + paramListA + ";\n";
+	m_code += "\t" + m_fullTypeName + " b = " + m_fullTypeName + paramListB + ";\n";
+	m_code += "\n";
+	m_code += "\tTEMPER_EXPECT_TRUE( dot( a, b ) == " + minusOneFloatStr + " );";
+	m_code += "\n";
+	m_code += "\tTEMPER_PASS();\n";
 	m_code += "}\n";
 	m_code += "\n";
 }

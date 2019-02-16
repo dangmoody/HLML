@@ -134,10 +134,6 @@ TEMPER_TEST( TestLength_uint3 ) {
 	TEMPER_PASS();
 }
 
-TEMPER_TEST( TestDot_uint3 ) {
-	TEMPER_FAIL();
-}
-
 TEMPER_TEST( TestAngle_uint3 ) {
 	TEMPER_FAIL();
 }
@@ -154,5 +150,4 @@ TEMPER_SUITE( Test_uint3 ) {
 	TEMPER_RUN_TEST( TestRelational_uint3 );
 
 	TEMPER_RUN_TEST( TestLength_uint3 );
-	TEMPER_SKIP_TEST( TestDot_uint3, "TODO" );
 };

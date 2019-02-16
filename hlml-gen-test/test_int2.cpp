@@ -124,7 +124,11 @@ TEMPER_TEST( TestLength_int2 ) {
 }
 
 TEMPER_TEST( TestDot_int2 ) {
-	TEMPER_FAIL();
+	int2 a = int2( 0, 1 );
+	int2 b = int2( 0, -1 );
+
+	TEMPER_EXPECT_TRUE( dot( a, b ) == -1.0f );
+	TEMPER_PASS();
 }
 
 TEMPER_TEST( TestAngle_int2 ) {
@@ -143,5 +147,5 @@ TEMPER_SUITE( Test_int2 ) {
 	TEMPER_RUN_TEST( TestRelational_int2 );
 
 	TEMPER_RUN_TEST( TestLength_int2 );
-	TEMPER_SKIP_TEST( TestDot_int2, "TODO" );
+	TEMPER_RUN_TEST( TestDot_int2 );
 };
