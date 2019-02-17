@@ -43,20 +43,6 @@ enum genType_t {
 	GEN_TYPE_COUNT,
 };
 
-enum genFlagBits_t {
-	GEN_FLAGS_BIT_NONE				= 0,
-
-	GEN_FLAGS_BIT_COLOR				= BIT( 0 ),
-
-	GEN_FLAGS_BIT_ARITHMETIC		= BIT( 1 ),
-	GEN_FLAGS_BIT_ARRAY				= BIT( 2 ),
-	GEN_FLAGS_BIT_EQUALITY			= BIT( 3 ),
-	GEN_FLAGS_BIT_RELATIONAL		= BIT( 4 ),
-
-	GEN_FLAGS_BIT_ALL				= UINT32_MAX
-};
-typedef uint32_t					genFlags_t;
-
 enum hand_t {
 	GEN_HAND_LEFT					= 0,
 	GEN_HAND_RIGHT,

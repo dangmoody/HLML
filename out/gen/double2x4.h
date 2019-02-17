@@ -39,7 +39,6 @@ struct double2x4 {
 	inline ~double2x4() {}
 
 	inline double2x4 operator=( const double2x4& other );
-
 	inline double2x4 operator+( const double rhs ) const;
 	inline double2x4 operator+=( const double rhs );
 	inline double2x4 operator+( const double2x4& rhs ) const;

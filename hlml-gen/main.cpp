@@ -85,6 +85,44 @@ static void ShowUsage( void ) {
 	);
 }
 
+static void GenerateImplVectors( void ) {
+	VectorGenerator gen;
+
+	for ( uint32_t typeIndex = 0; typeIndex < GEN_TYPE_COUNT; typeIndex++ ) {
+		genType_t type = static_cast<genType_t>( typeIndex );
+
+		std::string typeString = Gen_GetTypeString( type );
+
+		for ( uint32_t componentIndex = GEN_COMPONENT_COUNT_MIN; componentIndex <= GEN_COMPONENT_COUNT_MAX; componentIndex++ ) {
+			printf( "Generating %s%d...", typeString.c_str(), componentIndex );
+
+			gen.Generate( type, componentIndex );
+
+			printf( "OK.\n" );
+		}
+	}
+}
+
+static void GenerateImplMatrices( void ) {
+	MatrixGenerator gen;
+
+	for ( uint32_t typeIndex = 0; typeIndex < GEN_TYPE_COUNT; typeIndex++ ) {
+		genType_t type = static_cast<genType_t>( typeIndex );
+
+		std::string typeString = Gen_GetTypeString( type );
+
+		for ( uint32_t col = GEN_COMPONENT_COUNT_MIN; col <= GEN_COMPONENT_COUNT_MAX; col++ ) {
+			for ( uint32_t row = GEN_COMPONENT_COUNT_MIN; row <= GEN_COMPONENT_COUNT_MAX; row++ ) {
+				printf( "Generating %s%dx%d...", typeString.c_str(), row, col );
+
+				gen.Generate( type, row, col );
+
+				printf( "OK.\n" );
+			}
+		}
+	}
+}
+
 static bool GenerateMainTypeHeaderVector( void ) {
 	char headerFilePath[1024] = { 0 };
 	sprintf( headerFilePath, "%s%s", GEN_OUT_GEN_FOLDER_PATH, GEN_HEADER_VECTOR );
@@ -306,6 +344,52 @@ static bool GenerateFunctionsMatrix( void ) {
 	return true;
 }
 
+static void GenerateTestsVector( void ) {
+	TestsGeneratorVector gen;
+
+	for ( uint32_t typeIndex = 0; typeIndex < GEN_TYPE_COUNT; typeIndex++ ) {
+		genType_t type = static_cast<genType_t>( typeIndex );
+
+		std::string typeString = Gen_GetTypeString( type );
+
+		for ( uint32_t componentIndex = GEN_COMPONENT_COUNT_MIN; componentIndex <= GEN_COMPONENT_COUNT_MAX; componentIndex++ ) {
+			std::string typeName = typeString + std::to_string( componentIndex );
+
+			printf( "Generating test_%s.cpp...", typeName.c_str() );
+
+			gen.Generate( type, componentIndex );
+
+			printf( "OK.\n" );
+		}
+	}
+}
+
+static void GenerateTestsMatrix( void ) {
+	TestsGeneratorMatrix gen;
+
+	for ( uint32_t typeIndex = 0; typeIndex < GEN_TYPE_COUNT; typeIndex++ ) {
+		genType_t type = static_cast<genType_t>( typeIndex );
+
+		std::string typeString = Gen_GetTypeString( type );
+
+		for ( uint32_t col = GEN_COMPONENT_COUNT_MIN; col <= GEN_COMPONENT_COUNT_MAX; col++ ) {
+			std::string colStr = std::to_string( col );
+
+			for ( uint32_t row = GEN_COMPONENT_COUNT_MIN; row <= GEN_COMPONENT_COUNT_MAX; row++ ) {
+				std::string rowStr = std::to_string( row );
+
+				std::string typeName = typeString + rowStr + "x" + colStr;
+
+				printf( "Generating test_%s.cpp...", typeName.c_str() );
+
+				gen.Generate( type, row, col );
+
+				printf( "OK.\n" );
+			}
+		}
+	}
+}
+
 static bool GenerateTestsMain( void ) {
 	char filePathMain[1024] = { 0 };
 	snprintf( filePathMain, 1024, "%smain.cpp", GEN_TESTS_FOLDER_PATH );
@@ -448,132 +532,15 @@ int main( int argc, char** argv ) {
 	FS_CreateFolder( GEN_OUT_GEN_FOLDER_PATH );
 	FS_CreateFolder( GEN_TESTS_FOLDER_PATH );
 
-	genFlags_t genFlags;
+	printf( "======= Generating type implementations. =======\n" );
+	GenerateImplVectors();
+	GenerateImplMatrices();
+	printf( "======= Done. =======\n\n" );
 
-	// generate vectors
-	{
-		printf( "======= Generating vector types. =======\n" );
-
-		genFlags = GEN_FLAGS_BIT_EQUALITY | GEN_FLAGS_BIT_ARRAY;
-
-		VectorGenerator gen;
-
-		for ( uint32_t typeIndex = 0; typeIndex < GEN_TYPE_COUNT; typeIndex++ ) {
-			genType_t type = static_cast<genType_t>( typeIndex );
-
-			std::string typeString = Gen_GetTypeString( type );
-
-			for ( uint32_t componentIndex = GEN_COMPONENT_COUNT_MIN; componentIndex <= GEN_COMPONENT_COUNT_MAX; componentIndex++ ) {
-				printf( "Generating %s%d...", typeString.c_str(), componentIndex );
-
-				// DM: is this a hack?
-				if ( type != GEN_TYPE_BOOL ) {
-					genFlags |= GEN_FLAGS_BIT_COLOR | GEN_FLAGS_BIT_ARITHMETIC | GEN_FLAGS_BIT_RELATIONAL;
-				}
-
-				gen.Generate( type, componentIndex, genFlags );
-//				gen.PrintHeader();
-//				gen.PrintInl();
-
-				printf( "OK.\n" );
-			}
-		}
-
-		printf( "======= Done. =======\n" );
-	}
-
-	printf( "\n" );
-
-	// generate matrices
-	{
-		printf( "======= Generating matrix types. =======\n" );
-
-		genFlags = GEN_FLAGS_BIT_EQUALITY | GEN_FLAGS_BIT_ARRAY;
-
-		MatrixGenerator gen;
-
-		for ( uint32_t typeIndex = 0; typeIndex < GEN_TYPE_COUNT; typeIndex++ ) {
-			genType_t type = static_cast<genType_t>( typeIndex );
-
-			std::string typeString = Gen_GetTypeString( type );
-
-			for ( uint32_t col = GEN_COMPONENT_COUNT_MIN; col <= GEN_COMPONENT_COUNT_MAX; col++ ) {
-				for ( uint32_t row = GEN_COMPONENT_COUNT_MIN; row <= GEN_COMPONENT_COUNT_MAX; row++ ) {
-					printf( "Generating %s%dx%d...", typeString.c_str(), row, col );
-
-					// DM: is this a hack?
-					if ( type != GEN_TYPE_BOOL ) {
-						genFlags |= GEN_FLAGS_BIT_ARITHMETIC;
-					}
-
-					gen.Generate( type, row, col, genFlags );
-//					gen.PrintHeader();
-//					gen.PrintInl();
-
-					printf( "OK.\n" );
-				}
-			}
-		}
-
-		printf( "======= Done. =======\n" );
-	}
-
-	printf( "\n" );
-
-	// generate tests
-	{
-		printf( "======= Generating Vector tests. =======\n" );
-
-		TestsGeneratorVector gen;
-
-		for ( uint32_t typeIndex = 0; typeIndex < GEN_TYPE_COUNT; typeIndex++ ) {
-			genType_t type = static_cast<genType_t>( typeIndex );
-
-			std::string typeString = Gen_GetTypeString( type );
-
-			for ( uint32_t componentIndex = GEN_COMPONENT_COUNT_MIN; componentIndex <= GEN_COMPONENT_COUNT_MAX; componentIndex++ ) {
-				std::string typeName = typeString + std::to_string( componentIndex );
-
-				printf( "Generating test_%s.cpp...", typeName.c_str() );
-
-				gen.Generate( type, componentIndex );
-
-				printf( "OK.\n" );
-			}
-		}
-
-		printf( "======= Done. =======\n" );
-	}
-
-	{
-		printf( "======= Generating Matrix tests. =======\n" );
-
-		TestsGeneratorMatrix gen;
-
-		for ( uint32_t typeIndex = 0; typeIndex < GEN_TYPE_COUNT; typeIndex++ ) {
-			genType_t type = static_cast<genType_t>( typeIndex );
-
-			std::string typeString = Gen_GetTypeString( type );
-
-			for ( uint32_t col = GEN_COMPONENT_COUNT_MIN; col <= GEN_COMPONENT_COUNT_MAX; col++ ) {
-				std::string colStr = std::to_string( col );
-
-				for ( uint32_t row = GEN_COMPONENT_COUNT_MIN; row <= GEN_COMPONENT_COUNT_MAX; row++ ) {
-					std::string rowStr = std::to_string( row );
-
-					std::string typeName = typeString + rowStr + "x" + colStr;
-
-					printf( "Generating test_%s.cpp...", typeName.c_str() );
-
-					gen.Generate( type, row, col );
-
-					printf( "OK.\n" );
-				}
-			}
-		}
-
-		printf( "======= Done. =======\n" );
-	}
+	printf( "======= Generating tests. =======\n" );
+	GenerateTestsVector();
+	GenerateTestsMatrix();
+	printf( "======= Done. =======\n\n" );
 
 	// TODO(DM): tidy this
 	printf( "======= Generating main headers. =======\n" );
@@ -600,21 +567,16 @@ int main( int argc, char** argv ) {
 		printf( "ERROR: Failed generating main matrix functions header!\n" );
 		return EXIT_FAILURE;
 	}
-	printf( "======= Done. =======\n" );
+	printf( "======= Done. =======\n\n" );
 
 	printf( "======= Generating tests. =======\n" );
 	if ( !GenerateTestsMain() ) {
 		printf( "ERROR: Failed generating %s/main.cpp.\n", GEN_TESTS_FOLDER_PATH );
 		return EXIT_FAILURE;
 	}
+	printf( "======= Done. =======\n\n" );
 
-//	if ( !GenerateTestSuitesHeader() ) {
-//		printf( "ERROR: Failed generating %s%s.\n", GEN_TESTS_FOLDER_PATH, GEN_TEST_SUITES_HEADER );
-//		return EXIT_FAILURE;
-//	}
-	printf( "======= Done. =======\n" );
-
-	printf( "\nFinished.\n" );
+	printf( "Finished.\n" );
 
 	return 0;
 }

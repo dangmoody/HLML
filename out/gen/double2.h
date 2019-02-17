@@ -40,10 +40,12 @@ struct double2 {
 			double y;
 		};
 
+
 		struct {
 			double r;
 			double g;
 		};
+
 
 		double data[2] = { 0 };
 	};

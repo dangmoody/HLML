@@ -39,7 +39,6 @@ struct float4x4 {
 	inline ~float4x4() {}
 
 	inline float4x4 operator=( const float4x4& other );
-
 	inline float4x4 operator+( const float rhs ) const;
 	inline float4x4 operator+=( const float rhs );
 	inline float4x4 operator+( const float4x4& rhs ) const;

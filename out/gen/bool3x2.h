@@ -39,7 +39,6 @@ struct bool3x2 {
 	inline ~bool3x2() {}
 
 	inline bool3x2 operator=( const bool3x2& other );
-
 	inline bool2& operator[]( const uint32_t index );
 	inline const bool2& operator[]( const uint32_t index ) const;
 };

@@ -39,7 +39,6 @@ struct int4x4 {
 	inline ~int4x4() {}
 
 	inline int4x4 operator=( const int4x4& other );
-
 	inline int4x4 operator+( const int32_t rhs ) const;
 	inline int4x4 operator+=( const int32_t rhs );
 	inline int4x4 operator+( const int4x4& rhs ) const;

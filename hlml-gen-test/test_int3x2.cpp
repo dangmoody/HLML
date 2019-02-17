@@ -95,11 +95,14 @@ TEMPER_SUITE( Test_int3x2 ) {
 
 	TEMPER_SKIP_TEST( TestIdentity_int3x2, "TODO" );
 	TEMPER_SKIP_TEST( TestTranspose_int3x2, "TODO" );
+
 	TEMPER_SKIP_TEST( TestInverse_int3x2, "TODO" );
 	TEMPER_SKIP_TEST( TestDeterminant_int3x2, "TODO" );
+
 	TEMPER_SKIP_TEST( TestTranslate_int3x2, "TODO" );
 	TEMPER_SKIP_TEST( TestRotate_int3x2, "TODO" );
 	TEMPER_SKIP_TEST( TestScale_int3x2, "TODO" );
+
 	TEMPER_SKIP_TEST( TestOrtho_int3x2, "TODO" );
 	TEMPER_SKIP_TEST( TestPerspective_int3x2, "TODO" );
 	TEMPER_SKIP_TEST( TestLookAt_int3x2, "TODO" );

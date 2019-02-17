@@ -43,12 +43,14 @@ struct int4 {
 			int32_t w;
 		};
 
+
 		struct {
 			int32_t r;
 			int32_t g;
 			int32_t b;
 			int32_t a;
 		};
+
 
 		int32_t data[4] = { 0 };
 	};

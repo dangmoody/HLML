@@ -40,10 +40,12 @@ struct float2 {
 			float y;
 		};
 
+
 		struct {
 			float r;
 			float g;
 		};
+
 
 		float data[2] = { 0 };
 	};

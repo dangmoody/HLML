@@ -5,10 +5,9 @@
 #include <assert.h>
 #include <string>
 
-void VectorGenerator::Generate( const genType_t type, const uint32_t numComponents, const genFlags_t genFlags ) {
+void VectorGenerator::Generate( const genType_t type, const uint32_t numComponents ) {
 	m_type = type;
 	m_numComponents = numComponents;
-	m_genFlags = genFlags;
 
 	if ( m_numComponents < GEN_COMPONENT_COUNT_MIN ) {
 		printf( "ERROR: Can't generator a math type with less than %d components!\n", GEN_COMPONENT_COUNT_MIN );
@@ -58,39 +57,24 @@ void VectorGenerator::GenerateHeader() {
 	m_codeHeader += "\n";
 
 	HeaderGenerateForwardDeclarations();
-	m_codeHeader += "\n";
 
 	m_codeHeader += "struct " + m_fullTypeName + " {\n";
 	HeaderGenerateMembers();
-	m_codeHeader += "\n";
 
 	HeaderGenerateConstructors();
-	m_codeHeader += "\n";
 
 	HeaderGenerateOperatorsAssignment();
-	m_codeHeader += "\n";
 
-	if ( ( m_genFlags & GEN_FLAGS_BIT_ARITHMETIC ) != 0 ) {
-		HeaderGenerateOperatorsArithmetic();
-		m_codeHeader += "\n";
-	}
+	HeaderGenerateOperatorsArithmetic();
 
-	if ( ( m_genFlags & GEN_FLAGS_BIT_ARRAY ) != 0 ) {
-		HeaderGenerateOperatorsArray();
-	}
+	HeaderGenerateOperatorsArray();
 
 	m_codeHeader += "};\n\n";
 
-	if ( ( m_genFlags & GEN_FLAGS_BIT_EQUALITY ) != 0 ) {
-		HeaderGenerateOperatorsEquality();
-		m_codeHeader += "\n";
-	}
+	HeaderGenerateOperatorsEquality();
 
-	if ( ( m_genFlags & GEN_FLAGS_BIT_RELATIONAL ) != 0 ) {
-		HeaderGenerateOperatorsRelational();
-		m_codeHeader += "\n";
-	}
-
+	HeaderGenerateOperatorsRelational();
+	
 	m_codeHeader += "#include \"" + m_fullTypeName + ".inl\"";
 }
 
@@ -121,29 +105,16 @@ void VectorGenerator::GenerateInl() {
 	m_codeInl += "\n";
 
 	InlGenerateConstructors();
-	m_codeInl += "\n";
 
 	InlGenerateOperatorsAssignment();
-	m_codeInl += "\n";
 
-	if ( ( m_genFlags & GEN_FLAGS_BIT_ARITHMETIC ) != 0 ) {
-		InlGenerateOperatorsArithmetic();
-	}
+	InlGenerateOperatorsArithmetic();
 
-	if ( ( m_genFlags & GEN_FLAGS_BIT_ARRAY ) != 0 ) {
-		InlGenerateOperatorsArray();
-		m_codeInl += "\n";
-	}
+	InlGenerateOperatorsArray();
 
-	if ( ( m_genFlags & GEN_FLAGS_BIT_EQUALITY ) != 0 ) {
-		InlGenerateOperatorsEquality();
-		m_codeInl += "\n";
-	}
+	InlGenerateOperatorsEquality();
 
-	if ( ( m_genFlags & GEN_FLAGS_BIT_RELATIONAL ) ) {
-		InlGenerateOperatorsRelational();
-		m_codeInl += "\n";
-	}
+	InlGenerateOperatorsRelational();
 }
 
 void VectorGenerator::HeaderGenerateForwardDeclarations() {
@@ -157,6 +128,8 @@ void VectorGenerator::HeaderGenerateForwardDeclarations() {
 	if ( m_numComponents >= 3 ) {
 		m_codeHeader += "struct float3;\n";
 	}
+
+	m_codeHeader += "\n";
 }
 
 void VectorGenerator::HeaderGenerateMembers() {
@@ -164,12 +137,14 @@ void VectorGenerator::HeaderGenerateMembers() {
 
 	HeaderGenerateMembersStruct( GEN_COMPONENT_NAMES_VECTOR );
 
-	if ( ( m_genFlags & GEN_FLAGS_BIT_COLOR ) != 0 ) {
+	if ( m_type != GEN_TYPE_BOOL ) {
 		HeaderGenerateMembersStruct( GEN_COMPONENT_NAMES_COLOR );
 	}
 
 	m_codeHeader += "\t\t" + m_typeString + std::string( " data[" ) + std::to_string( m_numComponents ) + std::string( "] = { 0 };\n" );
 	m_codeHeader += "\t};\n";
+
+	m_codeHeader += "\n";
 }
 
 void VectorGenerator::HeaderGenerateMembersStruct( const std::string& componentNames ) {
@@ -179,6 +154,8 @@ void VectorGenerator::HeaderGenerateMembersStruct( const std::string& componentN
 		m_codeHeader += "\t\t\t" + m_typeString + " " + componentNames[i] + ";\n";
 	}
 	m_codeHeader += "\t\t};\n";
+
+	m_codeHeader += "\n";
 
 	m_codeHeader += "\n";
 }
@@ -208,15 +185,23 @@ void VectorGenerator::HeaderGenerateConstructors() {
 
 	// dtor
 	m_codeHeader += "\t~" + m_fullTypeName + "() {}\n";
+
+	m_codeHeader += "\n";
 }
 
 void VectorGenerator::HeaderGenerateOperatorsAssignment() {
 	for ( uint32_t i = GEN_COMPONENT_COUNT_MIN; i <= GEN_COMPONENT_COUNT_MAX; i++ ) {
 		m_codeHeader += "\tinline " + m_fullTypeName + " operator=( const " + Gen_GetTypeString( m_type ) + std::to_string( i ) + "& rhs );\n";
 	}
+
+	m_codeHeader += "\n";
 }
 
 void VectorGenerator::HeaderGenerateOperatorsArithmetic() {
+	if ( m_type == GEN_TYPE_BOOL ) {
+		return;
+	}
+
 	for ( uint32_t i = 0; i < _countof( GEN_OPERATORS_ARITHMETIC ); i++ ) {
 		const std::string op = GEN_OPERATORS_ARITHMETIC[i];
 
@@ -226,6 +211,8 @@ void VectorGenerator::HeaderGenerateOperatorsArithmetic() {
 		m_codeHeader += "\tinline " + m_fullTypeName + " operator" + op + "( const " + m_fullTypeName + "& rhs ) const;\n";
 		m_codeHeader += "\tinline " + m_fullTypeName + " operator" + op + "=( const " + m_fullTypeName + "& rhs );\n";
 	}
+
+	m_codeHeader += "\n";
 }
 
 void VectorGenerator::HeaderGenerateOperatorsArray() {
@@ -236,12 +223,20 @@ void VectorGenerator::HeaderGenerateOperatorsArray() {
 void VectorGenerator::HeaderGenerateOperatorsEquality() {
 	m_codeHeader += "inline bool operator==( const " + m_fullTypeName + "& lhs, const " + m_fullTypeName + "& rhs );\n";
 	m_codeHeader += "inline bool operator!=( const " + m_fullTypeName + "& lhs, const " + m_fullTypeName + "& rhs );\n";
+
+	m_codeHeader += "\n";
 }
 
 void VectorGenerator::HeaderGenerateOperatorsRelational() {
+	if ( m_type == GEN_TYPE_BOOL ) {
+		return;
+	}
+
 	for ( uint32_t i = 0; i < _countof( GEN_OPERATORS_EQUALITY ); i++ ) {
 		m_codeHeader += "inline bool" + std::to_string( m_numComponents ) + " operator" + GEN_OPERATORS_EQUALITY[i] + "( const " + m_fullTypeName + "& lhs, const " + m_fullTypeName + "& rhs );\n";
 	}
+
+	m_codeHeader += "\n";
 }
 
 
@@ -293,6 +288,8 @@ void VectorGenerator::InlGenerateConstructors() {
 			m_codeInl += "\n";
 		}
 	}
+
+	m_codeInl += "\n";
 }
 
 void VectorGenerator::InlGenerateOperatorsAssignment() {
@@ -306,9 +303,15 @@ void VectorGenerator::InlGenerateOperatorsAssignment() {
 			m_codeInl += "\n";
 		}
 	}
+
+	m_codeInl += "\n";
 }
 
 void VectorGenerator::InlGenerateOperatorsArithmetic() {
+	if ( m_type == GEN_TYPE_BOOL ) {
+		return;
+	}
+
 	for ( uint32_t i = 0; i < _countof( GEN_OPERATORS_ARITHMETIC ); i++ ) {
 		const std::string op = GEN_OPERATORS_ARITHMETIC[i];
 
@@ -368,6 +371,8 @@ void VectorGenerator::InlGenerateOperatorsArray() {
 	m_codeInl += "\tassert( index < " + std::to_string( m_numComponents ) + " );\n";
 	m_codeInl += "\treturn data[index];\n";
 	m_codeInl += "}\n";
+
+	m_codeInl += "\n";
 }
 
 void VectorGenerator::InlGenerateOperatorsEquality() {
@@ -388,9 +393,15 @@ void VectorGenerator::InlGenerateOperatorsEquality() {
 	m_codeInl += "bool operator!=( const " + m_fullTypeName + "& lhs, const " + m_fullTypeName + "& rhs ) {\n";
 	m_codeInl += "\treturn !( operator==( lhs, rhs ) );\n";
 	m_codeInl += "}\n";
+
+	m_codeInl += "\n";
 }
 
 void VectorGenerator::InlGenerateOperatorsRelational() {
+	if ( m_type == GEN_TYPE_BOOL ) {
+		return;
+	}
+
 	uint32_t numOperators = _countof( GEN_OPERATORS_EQUALITY );
 	for ( uint32_t operatorIndex = 0; operatorIndex < numOperators; operatorIndex++ ) {
 		m_codeInl += "bool" + std::to_string( m_numComponents ) + " operator" + GEN_OPERATORS_EQUALITY[operatorIndex] + "( const " + m_fullTypeName + "& lhs, const " + m_fullTypeName + "& rhs ) {\n";
@@ -411,4 +422,6 @@ void VectorGenerator::InlGenerateOperatorsRelational() {
 			m_codeInl += "\n";
 		}
 	}
+
+	m_codeInl += "\n";
 }

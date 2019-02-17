@@ -42,11 +42,13 @@ struct double3 {
 			double z;
 		};
 
+
 		struct {
 			double r;
 			double g;
 			double b;
 		};
+
 
 		double data[3] = { 0 };
 	};

@@ -41,6 +41,7 @@ struct bool4 {
 			bool w;
 		};
 
+
 		bool data[4] = { 0 };
 	};
 

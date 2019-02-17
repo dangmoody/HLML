@@ -39,7 +39,6 @@ struct bool4x4 {
 	inline ~bool4x4() {}
 
 	inline bool4x4 operator=( const bool4x4& other );
-
 	inline bool4& operator[]( const uint32_t index );
 	inline const bool4& operator[]( const uint32_t index ) const;
 };

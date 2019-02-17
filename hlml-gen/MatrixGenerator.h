@@ -7,7 +7,7 @@ public:
 					MatrixGenerator() {}
 					~MatrixGenerator() {}
 
-	void			Generate( const genType_t type, const uint32_t numRows, const uint32_t numCols, const genFlags_t genFlags );
+	void			Generate( const genType_t type, const uint32_t numRows, const uint32_t numCols );
 
 	void			PrintHeader() const;
 	void			PrintInl() const;
@@ -25,8 +25,6 @@ private:
 
 	genType_t		m_type;
 	uint32_t		m_numRows, m_numCols;
-
-	genFlags_t		m_genFlags;
 
 private:
 	void			GenerateHeader();

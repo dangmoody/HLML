@@ -43,12 +43,14 @@ struct double4 {
 			double w;
 		};
 
+
 		struct {
 			double r;
 			double g;
 			double b;
 			double a;
 		};
+
 
 		double data[4] = { 0 };
 	};

@@ -2,15 +2,13 @@
 
 #include "FileIO.h"
 
-void MatrixGenerator::Generate( const genType_t type, const uint32_t numRows, const uint32_t numCols, const genFlags_t genFlags ) {
+void MatrixGenerator::Generate( const genType_t type, const uint32_t numRows, const uint32_t numCols ) {
 	m_type = type;
 
 	m_numRows = numRows;
 	m_numCols = numCols;
 
 	m_numVectors = numRows;
-
-	m_genFlags = genFlags;
 
 	m_typeString = Gen_GetTypeString( type );
 	m_memberTypeString = Gen_GetMemberTypeString( type );
@@ -43,31 +41,20 @@ void MatrixGenerator::GenerateHeader() {
 	m_codeHeader += "#include \"" + m_typeString + std::to_string( m_numCols ) + ".h\"\n";
 	m_codeHeader += "\n";
 	m_codeHeader += "struct " + m_fullTypeName + " {\n";
+
 	HeaderGenerateMembers();
-	m_codeHeader += "\n";
 
 	HeaderGenerateConstructors();
-	m_codeHeader += "\n";
 
 	HeaderGenerateOperatorsAssignment();
-	m_codeHeader += "\n";
 
-	if ( ( m_genFlags & GEN_FLAGS_BIT_ARITHMETIC ) != 0 ) {
-		HeaderGenerateOperatorsArithmetic();
-		m_codeHeader += "\n";
-	}
+	HeaderGenerateOperatorsArithmetic();
 
-	if ( ( m_genFlags & GEN_FLAGS_BIT_ARRAY ) != 0 ) {
-		HeaderGenerateOperatorsArray();
-		m_codeInl += "\n";
-	}
+	HeaderGenerateOperatorsArray();
 
 	m_codeHeader += "};\n\n";
 
-	if ( ( m_genFlags & GEN_FLAGS_BIT_EQUALITY ) != 0 ) {
-		HeaderGenerateOperatorsEquality();
-		m_codeHeader += "\n";
-	}
+	HeaderGenerateOperatorsEquality();
 
 	m_codeHeader += "#include \"" + m_fullTypeName + ".inl\"";
 }
@@ -96,31 +83,22 @@ void MatrixGenerator::GenerateInl() {
 	}
 
 	InlGenerateConstructors();
-	m_codeInl += "\n";
 
 	InlGenerateOperatorsAssignment();
-	m_codeInl += "\n";
 
-	if ( ( m_genFlags & GEN_FLAGS_BIT_ARITHMETIC ) != 0 ) {
-		InlGenerateOperatorsArithmetic();
-		m_codeInl += "\n";
-	}
+	InlGenerateOperatorsArithmetic();
 
-	if ( ( m_genFlags & GEN_FLAGS_BIT_ARRAY ) != 0 ) {
-		InlGenerateOperatorsArray();
-		m_codeInl += "\n";
-	}
+	InlGenerateOperatorsArray();
 
-	if ( ( m_genFlags & GEN_FLAGS_BIT_EQUALITY ) != 0 ) {
-		InlGenerateOperatorsEquality();
-		m_codeInl += "\n";
-	}
+	InlGenerateOperatorsEquality();
 
 	m_codeInl += "\n";
 }
 
 void MatrixGenerator::HeaderGenerateMembers() {
 	m_codeHeader += "\t" + m_vectorMemberTypeString + " rows[" + std::to_string( m_numVectors ) + "];\n";
+
+	m_codeHeader += "\n";
 }
 
 void MatrixGenerator::HeaderGenerateConstructors() {
@@ -172,6 +150,8 @@ void MatrixGenerator::HeaderGenerateConstructors() {
 
 	// dtor
 	m_codeHeader += "\tinline ~" + m_fullTypeName + "() {}\n";
+
+	m_codeHeader += "\n";
 }
 
 void MatrixGenerator::HeaderGenerateOperatorsAssignment() {
@@ -180,6 +160,10 @@ void MatrixGenerator::HeaderGenerateOperatorsAssignment() {
 }
 
 void MatrixGenerator::HeaderGenerateOperatorsArithmetic() {
+	if ( m_type == GEN_TYPE_BOOL ) {
+		return;
+	}
+
 	for ( uint32_t i = 0; i < _countof( GEN_OPERATORS_ARITHMETIC ); i++ ) {
 		const std::string op = GEN_OPERATORS_ARITHMETIC[i];
 
@@ -189,6 +173,8 @@ void MatrixGenerator::HeaderGenerateOperatorsArithmetic() {
 		m_codeHeader += "\tinline " + m_fullTypeName + " operator" + op + "( const " + m_fullTypeName + "& rhs ) const;\n";
 		m_codeHeader += "\tinline " + m_fullTypeName + " operator" + op + "=( const " + m_fullTypeName + "& rhs );\n";
 	}
+
+	m_codeHeader += "\n";
 }
 
 void MatrixGenerator::HeaderGenerateOperatorsArray() {
@@ -199,6 +185,8 @@ void MatrixGenerator::HeaderGenerateOperatorsArray() {
 void MatrixGenerator::HeaderGenerateOperatorsEquality() {
 	m_codeHeader += "inline bool operator==( const " + m_fullTypeName + "& lhs, const " + m_fullTypeName + "& rhs );\n";
 	m_codeHeader += "inline bool operator!=( const " + m_fullTypeName + "& lhs, const " + m_fullTypeName + "& rhs );\n";
+
+	m_codeHeader += "\n";
 }
 
 
@@ -313,6 +301,8 @@ void MatrixGenerator::InlGenerateConstructors() {
 	m_codeInl += m_fullTypeName + "::" + m_fullTypeName + "( const " + m_fullTypeName + "& other ) {\n";
 	m_codeInl += "\tmemcpy( rows, other.rows, sizeof( rows ) );\n";
 	m_codeInl += "};\n";
+
+	m_codeInl += "\n";
 }
 
 void MatrixGenerator::InlGenerateOperatorsAssignment() {
@@ -320,9 +310,15 @@ void MatrixGenerator::InlGenerateOperatorsAssignment() {
 	m_codeInl += "\tmemcpy( rows, other.rows, sizeof( rows ) );\n";
 	m_codeInl += "\treturn *this;\n";
 	m_codeInl += "};\n";
+
+	m_codeInl += "\n";
 }
 
 void MatrixGenerator::InlGenerateOperatorsArithmetic() {
+	if ( m_type == GEN_TYPE_BOOL ) {
+		return;
+	}
+
 	uint32_t numOperators = _countof( GEN_OPERATORS_ARITHMETIC );
 	for ( uint32_t operatorIndex = 0; operatorIndex < numOperators; operatorIndex++ ) {
 		std::string op = GEN_OPERATORS_ARITHMETIC[operatorIndex];
@@ -433,6 +429,8 @@ void MatrixGenerator::InlGenerateOperatorsArithmetic() {
 			m_codeInl += "\n";
 		}
 	}
+
+	m_codeInl += "\n";
 }
 
 void MatrixGenerator::InlGenerateOperatorsArray() {
@@ -447,6 +445,8 @@ void MatrixGenerator::InlGenerateOperatorsArray() {
 	m_codeInl += "\tassert( index < " + std::to_string( m_numRows ) + " );\n";
 	m_codeInl += "\treturn rows[index];\n";
 	m_codeInl += "}\n";
+
+	m_codeInl += "\n";
 }
 
 void MatrixGenerator::InlGenerateOperatorsEquality() {
@@ -467,5 +467,6 @@ void MatrixGenerator::InlGenerateOperatorsEquality() {
 	m_codeInl += "bool operator!=( const " + m_fullTypeName + "& lhs, const " + m_fullTypeName + "& rhs ) {\n";
 	m_codeInl += "\treturn !( operator==( lhs, rhs ) );\n";
 	m_codeInl += "}\n";
-}
 
+	m_codeInl += "\n";
+}

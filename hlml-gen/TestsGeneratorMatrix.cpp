@@ -57,7 +57,9 @@ void TestsGeneratorMatrix::Generate( const genType_t type, const uint32_t numRow
 
 	m_code += "TEMPER_SUITE( " + m_testPrefix + " ) {\n";
 	m_code += "\tTEMPER_SKIP_TEST( TestAssignment_" + m_fullTypeName + ", \"TODO\" );\n";
-	m_code += "\tTEMPER_SKIP_TEST( TestArithmetic_" + m_fullTypeName + ", \"TODO\" );\n";
+	if ( m_type != GEN_TYPE_BOOL ) {
+		m_code += "\tTEMPER_SKIP_TEST( TestArithmetic_" + m_fullTypeName + ", \"TODO\" );\n";
+	}
 	m_code += "\tTEMPER_SKIP_TEST( TestArray_" + m_fullTypeName + ", \"TODO\" );\n";
 	m_code += "\tTEMPER_SKIP_TEST( TestEquality_" + m_fullTypeName + ", \"TODO\" );\n";
 	if ( m_type != GEN_TYPE_BOOL ) {
@@ -67,11 +69,14 @@ void TestsGeneratorMatrix::Generate( const genType_t type, const uint32_t numRow
 	m_code += "\tTEMPER_SKIP_TEST( TestIdentity_" + m_fullTypeName + ", \"TODO\" );\n";
 	m_code += "\tTEMPER_SKIP_TEST( TestTranspose_" + m_fullTypeName + ", \"TODO\" );\n";
 	if ( m_type != GEN_TYPE_BOOL ) {
+		m_code += "\n";
 		m_code += "\tTEMPER_SKIP_TEST( TestInverse_" + m_fullTypeName + ", \"TODO\" );\n";
 		m_code += "\tTEMPER_SKIP_TEST( TestDeterminant_" + m_fullTypeName + ", \"TODO\" );\n";
+		m_code += "\n";
 		m_code += "\tTEMPER_SKIP_TEST( TestTranslate_" + m_fullTypeName + ", \"TODO\" );\n";
 		m_code += "\tTEMPER_SKIP_TEST( TestRotate_" + m_fullTypeName + ", \"TODO\" );\n";
 		m_code += "\tTEMPER_SKIP_TEST( TestScale_" + m_fullTypeName + ", \"TODO\" );\n";
+		m_code += "\n";
 		m_code += "\tTEMPER_SKIP_TEST( TestOrtho_" + m_fullTypeName + ", \"TODO\" );\n";
 		m_code += "\tTEMPER_SKIP_TEST( TestPerspective_" + m_fullTypeName + ", \"TODO\" );\n";
 		m_code += "\tTEMPER_SKIP_TEST( TestLookAt_" + m_fullTypeName + ", \"TODO\" );\n";
@@ -94,6 +99,10 @@ void TestsGeneratorMatrix::GenerateTestAssignment() {
 }
 
 void TestsGeneratorMatrix::GenerateTestArithmetic() {
+	if ( m_type == GEN_TYPE_BOOL ) {
+		return;
+	}
+
 	m_code += "TEMPER_TEST( TestArithmetic_" + m_fullTypeName + " ) {\n";
 	m_code += "\tTEMPER_FAIL();\n";
 	m_code += "}\n";

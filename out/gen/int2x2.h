@@ -39,7 +39,6 @@ struct int2x2 {
 	inline ~int2x2() {}
 
 	inline int2x2 operator=( const int2x2& other );
-
 	inline int2x2 operator+( const int32_t rhs ) const;
 	inline int2x2 operator+=( const int32_t rhs );
 	inline int2x2 operator+( const int2x2& rhs ) const;

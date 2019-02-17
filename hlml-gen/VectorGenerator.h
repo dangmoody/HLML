@@ -7,7 +7,7 @@ public:
 					VectorGenerator() {}
 					~VectorGenerator() {}
 
-	void			Generate( const genType_t type, const uint32_t numComponents, const genFlags_t genFlags );
+	void			Generate( const genType_t type, const uint32_t numComponents );
 
 	void			PrintHeader() const;
 	void			PrintInl() const;
@@ -21,8 +21,6 @@ private:
 
 	genType_t		m_type;
 	uint32_t		m_numComponents;
-
-	genFlags_t		m_genFlags;
 
 private:
 	void			GenerateHeader();

@@ -30,10 +30,6 @@ TEMPER_TEST( TestAssignment_bool3x2 ) {
 	TEMPER_FAIL();
 }
 
-TEMPER_TEST( TestArithmetic_bool3x2 ) {
-	TEMPER_FAIL();
-}
-
 TEMPER_TEST( TestArray_bool3x2 ) {
 	TEMPER_FAIL();
 }
@@ -52,7 +48,6 @@ TEMPER_TEST( TestTranspose_bool3x2 ) {
 
 TEMPER_SUITE( Test_bool3x2 ) {
 	TEMPER_SKIP_TEST( TestAssignment_bool3x2, "TODO" );
-	TEMPER_SKIP_TEST( TestArithmetic_bool3x2, "TODO" );
 	TEMPER_SKIP_TEST( TestArray_bool3x2, "TODO" );
 	TEMPER_SKIP_TEST( TestEquality_bool3x2, "TODO" );
 

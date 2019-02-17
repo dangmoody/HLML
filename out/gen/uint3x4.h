@@ -39,7 +39,6 @@ struct uint3x4 {
 	inline ~uint3x4() {}
 
 	inline uint3x4 operator=( const uint3x4& other );
-
 	inline uint3x4 operator+( const uint32_t rhs ) const;
 	inline uint3x4 operator+=( const uint32_t rhs );
 	inline uint3x4 operator+( const uint3x4& rhs ) const;
