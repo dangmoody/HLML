@@ -40,12 +40,10 @@ struct int2 {
 			int32_t y;
 		};
 
-
 		struct {
 			int32_t r;
 			int32_t g;
 		};
-
 
 		int32_t data[2] = { 0 };
 	};

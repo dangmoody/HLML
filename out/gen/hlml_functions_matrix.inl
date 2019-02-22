@@ -24,6 +24,7 @@ along with hlml.  If not, see <http://www.gnu.org/licenses/>.
 
 // GENERATED FILE.  DO NOT EDIT.
 
+#include "hlml_functions_vector.h"
 
 // bool2x2
 void identity( bool2x2& mat ) {

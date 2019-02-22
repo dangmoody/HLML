@@ -40,7 +40,6 @@ struct bool3 {
 			bool z;
 		};
 
-
 		bool data[3] = { 0 };
 	};
 

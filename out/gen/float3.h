@@ -42,13 +42,11 @@ struct float3 {
 			float z;
 		};
 
-
 		struct {
 			float r;
 			float g;
 			float b;
 		};
-
 
 		float data[3] = { 0 };
 	};

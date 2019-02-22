@@ -24,6 +24,8 @@ along with hlml.  If not, see <http://www.gnu.org/licenses/>.
 
 // GENERATED FILE.  DO NOT EDIT.
 
+#include "../out/gen/hlml_functions_matrix.h"
+
 #include <temper.h>
 
 TEMPER_TEST( TestAssignment_bool3x4 ) {
@@ -34,12 +36,20 @@ TEMPER_TEST( TestArray_bool3x4 ) {
 	TEMPER_FAIL();
 }
 
-TEMPER_TEST( TestEquality_bool3x4 ) {
-	TEMPER_FAIL();
-}
-
 TEMPER_TEST( TestIdentity_bool3x4 ) {
-	TEMPER_FAIL();
+	bool3x4 id = bool3x4(
+		true, false, false, false,
+		false, true, false, false,
+		false, false, true, false
+	);
+
+	bool3x4 mat;
+	TEMPER_EXPECT_TRUE( mat == id );
+
+	identity( mat );
+	TEMPER_EXPECT_TRUE( mat == id );
+
+	TEMPER_PASS();
 }
 
 TEMPER_TEST( TestTranspose_bool3x4 ) {
@@ -49,8 +59,7 @@ TEMPER_TEST( TestTranspose_bool3x4 ) {
 TEMPER_SUITE( Test_bool3x4 ) {
 	TEMPER_SKIP_TEST( TestAssignment_bool3x4, "TODO" );
 	TEMPER_SKIP_TEST( TestArray_bool3x4, "TODO" );
-	TEMPER_SKIP_TEST( TestEquality_bool3x4, "TODO" );
 
-	TEMPER_SKIP_TEST( TestIdentity_bool3x4, "TODO" );
+	TEMPER_RUN_TEST( TestIdentity_bool3x4 );
 	TEMPER_SKIP_TEST( TestTranspose_bool3x4, "TODO" );
 };

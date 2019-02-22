@@ -24,6 +24,8 @@ along with hlml.  If not, see <http://www.gnu.org/licenses/>.
 
 // GENERATED FILE.  DO NOT EDIT.
 
+#pragma once
+
 #include "bool2.h"
 #include "bool3.h"
 #include "bool4.h"
@@ -425,7 +427,7 @@ inline float4x4 scale( const float4x4& mat, const float3& vec );
 
 inline float4x4 ortho( const float left, const float right, const float top, const float bottom, const float znear, const float zfar );
 
-inline float4x4 perspective( const float left, const float right, const float top, const float bottom, const float znear, const float zfar );
+inline float4x4 perspective( const float fovdeg, const float aspect, const float znear, const float zfar );
 
 inline float4x4 lookat( const float4& eye, const float4& target, const float4& up );
 
@@ -532,7 +534,7 @@ inline double4x4 scale( const double4x4& mat, const double3& vec );
 
 inline double4x4 ortho( const double left, const double right, const double top, const double bottom, const double znear, const double zfar );
 
-inline double4x4 perspective( const double left, const double right, const double top, const double bottom, const double znear, const double zfar );
+inline double4x4 perspective( const double fovdeg, const double aspect, const double znear, const double zfar );
 
 inline double4x4 lookat( const double4& eye, const double4& target, const double4& up );
 

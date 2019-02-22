@@ -24,6 +24,8 @@ along with hlml.  If not, see <http://www.gnu.org/licenses/>.
 
 // GENERATED FILE.  DO NOT EDIT.
 
+#include "../out/gen/hlml_functions_matrix.h"
+
 #include <temper.h>
 
 TEMPER_TEST( TestAssignment_uint4x3 ) {
@@ -38,16 +40,25 @@ TEMPER_TEST( TestArray_uint4x3 ) {
 	TEMPER_FAIL();
 }
 
-TEMPER_TEST( TestEquality_uint4x3 ) {
-	TEMPER_FAIL();
-}
-
 TEMPER_TEST( TestRelational_uint4x3 ) {
 	TEMPER_FAIL();
 }
 
 TEMPER_TEST( TestIdentity_uint4x3 ) {
-	TEMPER_FAIL();
+	uint4x3 id = uint4x3(
+		1, 0, 0,
+		0, 1, 0,
+		0, 0, 1,
+		0, 0, 0
+	);
+
+	uint4x3 mat;
+	TEMPER_EXPECT_TRUE( mat == id );
+
+	identity( mat );
+	TEMPER_EXPECT_TRUE( mat == id );
+
+	TEMPER_PASS();
 }
 
 TEMPER_TEST( TestTranspose_uint4x3 ) {
@@ -90,10 +101,9 @@ TEMPER_SUITE( Test_uint4x3 ) {
 	TEMPER_SKIP_TEST( TestAssignment_uint4x3, "TODO" );
 	TEMPER_SKIP_TEST( TestArithmetic_uint4x3, "TODO" );
 	TEMPER_SKIP_TEST( TestArray_uint4x3, "TODO" );
-	TEMPER_SKIP_TEST( TestEquality_uint4x3, "TODO" );
 	TEMPER_SKIP_TEST( TestRelational_uint4x3, "TODO" );
 
-	TEMPER_SKIP_TEST( TestIdentity_uint4x3, "TODO" );
+	TEMPER_RUN_TEST( TestIdentity_uint4x3 );
 	TEMPER_SKIP_TEST( TestTranspose_uint4x3, "TODO" );
 
 	TEMPER_SKIP_TEST( TestInverse_uint4x3, "TODO" );

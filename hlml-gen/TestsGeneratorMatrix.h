@@ -27,7 +27,6 @@ private:
 	void		GenerateTestAssignment();
 	void		GenerateTestArithmetic();
 	void		GenerateTestArray();
-	void		GenerateTestEquality();
 	void		GenerateTestRelational();
 
 	void		GenerateTestIdentity();

@@ -24,6 +24,8 @@ along with hlml.  If not, see <http://www.gnu.org/licenses/>.
 
 // GENERATED FILE.  DO NOT EDIT.
 
+#include "../out/gen/hlml_functions_matrix.h"
+
 #include <temper.h>
 
 TEMPER_TEST( TestAssignment_int2x2 ) {
@@ -38,16 +40,23 @@ TEMPER_TEST( TestArray_int2x2 ) {
 	TEMPER_FAIL();
 }
 
-TEMPER_TEST( TestEquality_int2x2 ) {
-	TEMPER_FAIL();
-}
-
 TEMPER_TEST( TestRelational_int2x2 ) {
 	TEMPER_FAIL();
 }
 
 TEMPER_TEST( TestIdentity_int2x2 ) {
-	TEMPER_FAIL();
+	int2x2 id = int2x2(
+		1, 0,
+		0, 1
+	);
+
+	int2x2 mat;
+	TEMPER_EXPECT_TRUE( mat == id );
+
+	identity( mat );
+	TEMPER_EXPECT_TRUE( mat == id );
+
+	TEMPER_PASS();
 }
 
 TEMPER_TEST( TestTranspose_int2x2 ) {
@@ -90,10 +99,9 @@ TEMPER_SUITE( Test_int2x2 ) {
 	TEMPER_SKIP_TEST( TestAssignment_int2x2, "TODO" );
 	TEMPER_SKIP_TEST( TestArithmetic_int2x2, "TODO" );
 	TEMPER_SKIP_TEST( TestArray_int2x2, "TODO" );
-	TEMPER_SKIP_TEST( TestEquality_int2x2, "TODO" );
 	TEMPER_SKIP_TEST( TestRelational_int2x2, "TODO" );
 
-	TEMPER_SKIP_TEST( TestIdentity_int2x2, "TODO" );
+	TEMPER_RUN_TEST( TestIdentity_int2x2 );
 	TEMPER_SKIP_TEST( TestTranspose_int2x2, "TODO" );
 
 	TEMPER_SKIP_TEST( TestInverse_int2x2, "TODO" );

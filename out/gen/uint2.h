@@ -40,12 +40,10 @@ struct uint2 {
 			uint32_t y;
 		};
 
-
 		struct {
 			uint32_t r;
 			uint32_t g;
 		};
-
 
 		uint32_t data[2] = { 0 };
 	};

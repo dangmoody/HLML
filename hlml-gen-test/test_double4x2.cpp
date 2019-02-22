@@ -24,6 +24,8 @@ along with hlml.  If not, see <http://www.gnu.org/licenses/>.
 
 // GENERATED FILE.  DO NOT EDIT.
 
+#include "../out/gen/hlml_functions_matrix.h"
+
 #include <temper.h>
 
 TEMPER_TEST( TestAssignment_double4x2 ) {
@@ -38,16 +40,25 @@ TEMPER_TEST( TestArray_double4x2 ) {
 	TEMPER_FAIL();
 }
 
-TEMPER_TEST( TestEquality_double4x2 ) {
-	TEMPER_FAIL();
-}
-
 TEMPER_TEST( TestRelational_double4x2 ) {
 	TEMPER_FAIL();
 }
 
 TEMPER_TEST( TestIdentity_double4x2 ) {
-	TEMPER_FAIL();
+	double4x2 id = double4x2(
+		1.0, 0.0,
+		0.0, 1.0,
+		0.0, 0.0,
+		0.0, 0.0
+	);
+
+	double4x2 mat;
+	TEMPER_EXPECT_TRUE( mat == id );
+
+	identity( mat );
+	TEMPER_EXPECT_TRUE( mat == id );
+
+	TEMPER_PASS();
 }
 
 TEMPER_TEST( TestTranspose_double4x2 ) {
@@ -90,10 +101,9 @@ TEMPER_SUITE( Test_double4x2 ) {
 	TEMPER_SKIP_TEST( TestAssignment_double4x2, "TODO" );
 	TEMPER_SKIP_TEST( TestArithmetic_double4x2, "TODO" );
 	TEMPER_SKIP_TEST( TestArray_double4x2, "TODO" );
-	TEMPER_SKIP_TEST( TestEquality_double4x2, "TODO" );
 	TEMPER_SKIP_TEST( TestRelational_double4x2, "TODO" );
 
-	TEMPER_SKIP_TEST( TestIdentity_double4x2, "TODO" );
+	TEMPER_RUN_TEST( TestIdentity_double4x2 );
 	TEMPER_SKIP_TEST( TestTranspose_double4x2, "TODO" );
 
 	TEMPER_SKIP_TEST( TestInverse_double4x2, "TODO" );

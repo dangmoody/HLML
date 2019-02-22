@@ -42,13 +42,11 @@ struct uint3 {
 			uint32_t z;
 		};
 
-
 		struct {
 			uint32_t r;
 			uint32_t g;
 			uint32_t b;
 		};
-
 
 		uint32_t data[3] = { 0 };
 	};

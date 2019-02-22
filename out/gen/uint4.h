@@ -43,14 +43,12 @@ struct uint4 {
 			uint32_t w;
 		};
 
-
 		struct {
 			uint32_t r;
 			uint32_t g;
 			uint32_t b;
 			uint32_t a;
 		};
-
 
 		uint32_t data[4] = { 0 };
 	};

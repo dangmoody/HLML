@@ -43,14 +43,12 @@ struct float4 {
 			float w;
 		};
 
-
 		struct {
 			float r;
 			float g;
 			float b;
 			float a;
 		};
-
 
 		float data[4] = { 0 };
 	};

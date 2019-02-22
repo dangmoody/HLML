@@ -38,7 +38,6 @@ struct bool2 {
 			bool y;
 		};
 
-
 		bool data[2] = { 0 };
 	};
 

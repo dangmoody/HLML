@@ -24,6 +24,8 @@ along with hlml.  If not, see <http://www.gnu.org/licenses/>.
 
 // GENERATED FILE.  DO NOT EDIT.
 
+#pragma once
+
 #include "int2.h"
 #include "int3.h"
 #include "int4.h"
