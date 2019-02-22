@@ -194,6 +194,9 @@ static bool GenerateFunctionsVector( void ) {
 	content += "\n";
 
 	std::string contentHeader = content;
+	contentHeader += "#pragma once\n";
+	contentHeader += "\n";
+
 	std::string contentInl = content;
 
 	for ( uint32_t typeIndex = 0; typeIndex < GEN_TYPE_COUNT; typeIndex++ ) {
@@ -267,7 +270,11 @@ static bool GenerateFunctionsMatrix( void ) {
 	content += "\n";
 
 	std::string contentHeader = content;
+	contentHeader += "#pragma once\n";
+	contentHeader += "\n";
+
 	std::string contentInl = content;
+	contentInl += std::string( "#include \"" ) + GEN_HEADER_FUNCTIONS_VECTOR + ".h\"\n";
 
 	for ( uint32_t typeIndex = 0; typeIndex < GEN_TYPE_COUNT; typeIndex++ ) {
 		genType_t type = static_cast<genType_t>( typeIndex );
