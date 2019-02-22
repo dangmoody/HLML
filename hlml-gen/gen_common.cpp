@@ -753,7 +753,7 @@ void Gen_MatrixPerspective( const hand_t hand, const genType_t type, const uint3
 	std::string zeroStr = Gen_GetNumericLiteral( type, 0 );
 	std::string oneStr = Gen_GetNumericLiteral( type, 1 );
 
-	outHeader += "inline " + fullTypeName + " perspective( const " + typeString + " left, const " + typeString + " right, const " + typeString + " top, const " + typeString + " bottom, const " + typeString + " znear, const " + typeString + " zfar );\n";
+	outHeader += "inline " + fullTypeName + " perspective( const " + typeString + " fovdeg, const " + typeString + " aspect, const " + typeString + " znear, const " + typeString + " zfar );\n";
 
 	outHeader += "\n";
 
