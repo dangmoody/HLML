@@ -244,7 +244,7 @@ static bool GenerateFunctionsVector( void ) {
 		}
 	}
 
-	contentHeader += "#include \"" + std::string( GEN_HEADER_FUNCTIONS_VECTOR ) + ".inl\"";
+	contentHeader += "#include \"" + std::string( GEN_HEADER_FUNCTIONS_VECTOR ) + ".inl\"\n";
 
 	if ( !FS_WriteToFile( filePathHeader, contentHeader.c_str(), contentHeader.size() ) ) {
 		return false;
@@ -338,7 +338,7 @@ static bool GenerateFunctionsMatrix( void ) {
 		}
 	}
 
-	contentHeader += "#include \"" + std::string( GEN_HEADER_FUNCTIONS_MATRIX ) + ".inl\"";
+	contentHeader += "#include \"" + std::string( GEN_HEADER_FUNCTIONS_MATRIX ) + ".inl\"\n";
 
 	if ( !FS_WriteToFile( filePathHeader, contentHeader.c_str(), contentHeader.size() ) ) {
 		return false;
@@ -482,6 +482,7 @@ static bool GenerateTestsMain( void ) {
 	return true;
 }
 
+#if 0
 static bool GenerateTestSuitesHeader( void ) {
 	char filePathHeader[1024] = { 0 };
 	snprintf( filePathHeader, 1024, "%s%s", GEN_TESTS_FOLDER_PATH, GEN_TEST_SUITES_HEADER );
@@ -526,6 +527,7 @@ static bool GenerateTestSuitesHeader( void ) {
 
 	return true;
 }
+#endif
 
 int main( int argc, char** argv ) {
 	if ( !ProcessArgs( argc, argv ) ) {
