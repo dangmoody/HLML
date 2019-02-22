@@ -36,8 +36,12 @@ void MatrixGenerator::GenerateHeader() {
 	// generate code
 	m_codeHeader += GEN_COPYRIGHT_HEADER;
 	m_codeHeader += "\n";
+	m_codeHeader += GEN_GENERATED_WARNING;
+	m_codeHeader += "\n";
+
 	m_codeHeader += "#pragma once\n";
 	m_codeHeader += "\n";
+
 	m_codeHeader += "#include \"" + m_typeString + std::to_string( m_numCols ) + ".h\"\n";
 	m_codeHeader += "\n";
 	m_codeHeader += "struct " + m_fullTypeName + " {\n";
