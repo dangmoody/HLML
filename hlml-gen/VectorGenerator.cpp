@@ -45,6 +45,7 @@ void VectorGenerator::GenerateHeader() {
 	m_codeHeader += "\n";
 	m_codeHeader += GEN_GENERATED_WARNING;
 	m_codeHeader += "\n";
+
 	m_codeHeader += "#pragma once\n";
 	m_codeHeader += "\n";
 
@@ -154,8 +155,6 @@ void VectorGenerator::HeaderGenerateMembersStruct( const std::string& componentN
 		m_codeHeader += "\t\t\t" + m_typeString + " " + componentNames[i] + ";\n";
 	}
 	m_codeHeader += "\t\t};\n";
-
-	m_codeHeader += "\n";
 
 	m_codeHeader += "\n";
 }
