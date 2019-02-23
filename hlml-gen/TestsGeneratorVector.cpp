@@ -161,71 +161,71 @@ void TestsGeneratorVector::GenerateTestArithmetic() {
 
 	// addition
 	{
-		std::string paramListAnswerAddition = "( ";
+		std::string paramList = "( ";
 		for ( uint32_t i = 0; i < m_numComponents; i++ ) {
-			paramListAnswerAddition += Gen_GetNumericLiteral( m_type, baseNumber + ( i + baseNumber ) );
+			paramList += Gen_GetNumericLiteral( m_type, baseNumber + ( i + baseNumber ) );
 
 			if ( i != m_numComponents - 1 ) {
-				paramListAnswerAddition += ", ";
+				paramList += ", ";
 			}
 		}
-		paramListAnswerAddition += " )";
+		paramList += " )";
 
-		paramListAnswers[0] = paramListAnswerAddition;
+		paramListAnswers[0] = paramList;
 	}
 
 	// subtraction
 	{
-		std::string paramListAnswerAddition = "( ";
+		std::string paramList = "( ";
 		for ( uint32_t i = 0; i < m_numComponents; i++ ) {
-			paramListAnswerAddition += Gen_GetNumericLiteral( m_type, baseNumber - ( i + baseNumber ) );
+			paramList += Gen_GetNumericLiteral( m_type, baseNumber - ( i + baseNumber ) );
 
 			if ( i != m_numComponents - 1 ) {
-				paramListAnswerAddition += ", ";
+				paramList += ", ";
 			}
 		}
-		paramListAnswerAddition += " )";
+		paramList += " )";
 
-		paramListAnswers[1] = paramListAnswerAddition;
+		paramListAnswers[1] = paramList;
 	}
 
 	// multiplication
 	{
-		std::string paramListAnswerAddition = "( ";
+		std::string paramList = "( ";
 		for ( uint32_t i = 0; i < m_numComponents; i++ ) {
-			paramListAnswerAddition += Gen_GetNumericLiteral( m_type, baseNumber * ( i + baseNumber ) );
+			paramList += Gen_GetNumericLiteral( m_type, baseNumber * ( i + baseNumber ) );
 
 			if ( i != m_numComponents - 1 ) {
-				paramListAnswerAddition += ", ";
+				paramList += ", ";
 			}
 		}
-		paramListAnswerAddition += " )";
+		paramList += " )";
 
-		paramListAnswers[2] = paramListAnswerAddition;
+		paramListAnswers[2] = paramList;
 	}
 
 	// division
 	{
-		std::string paramListAnswerAddition = "( ";
+		std::string paramList = "( ";
 		for ( uint32_t i = 0; i < m_numComponents; i++ ) {
 			if ( Gen_IsFloatingPointType( m_type ) ) {
 				// TODO(DM): find a better way of representing this
 				if ( m_type == GEN_TYPE_FLOAT ) {
-					paramListAnswerAddition += std::to_string( (float) baseNumber / (float)( i + baseNumber ) );
+					paramList += std::to_string( (float) baseNumber / (float)( i + baseNumber ) );
 				} else {
-					paramListAnswerAddition += std::to_string( (double) baseNumber / (double) ( i + baseNumber ) );
+					paramList += std::to_string( (double) baseNumber / (double) ( i + baseNumber ) );
 				}
 			} else {
-				paramListAnswerAddition += Gen_GetNumericLiteral( m_type, baseNumber / ( i + baseNumber ) );
+				paramList += Gen_GetNumericLiteral( m_type, baseNumber / ( i + baseNumber ) );
 			}
 
 			if ( i != m_numComponents - 1 ) {
-				paramListAnswerAddition += ", ";
+				paramList += ", ";
 			}
 		}
-		paramListAnswerAddition += " )";
+		paramList += " )";
 
-		paramListAnswers[3] = paramListAnswerAddition;
+		paramListAnswers[3] = paramList;
 	}
 
 	std::vector<std::string> testSuffices = {
