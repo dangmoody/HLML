@@ -38,10 +38,12 @@ private:
 	void			HeaderGenerateOperatorsArithmetic();
 	void			HeaderGenerateOperatorsArray();
 	void			HeaderGenerateOperatorsEquality();
+	void			HeaderGenerateOperatorsRelational();
 
 	void			InlGenerateConstructors();
 	void			InlGenerateOperatorsAssignment();
 	void			InlGenerateOperatorsArithmetic();
 	void			InlGenerateOperatorsArray();
 	void			InlGenerateOperatorsEquality();
+	void			InlGenerateOperatorsRelational();
 };

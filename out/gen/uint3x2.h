@@ -65,4 +65,9 @@ struct uint3x2 {
 inline bool operator==( const uint3x2& lhs, const uint3x2& rhs );
 inline bool operator!=( const uint3x2& lhs, const uint3x2& rhs );
 
+inline bool3x2 operator<( const uint3x2& lhs, const uint3x2& rhs );
+inline bool3x2 operator<=( const uint3x2& lhs, const uint3x2& rhs );
+inline bool3x2 operator>( const uint3x2& lhs, const uint3x2& rhs );
+inline bool3x2 operator>=( const uint3x2& lhs, const uint3x2& rhs );
+
 #include "uint3x2.inl"

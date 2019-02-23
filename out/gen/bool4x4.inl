@@ -92,14 +92,13 @@ const bool4& bool4x4::operator[]( const uint32_t index ) const {
 }
 
 bool operator==( const bool4x4& lhs, const bool4x4& rhs ) {
-	return lhs.rows[0] == rhs.rows[0]
-		&& lhs.rows[1] == rhs.rows[1]
-		&& lhs.rows[2] == rhs.rows[2]
-		&& lhs.rows[3] == rhs.rows[3];
+	return lhs[0] == rhs[0]
+		&& lhs[1] == rhs[1]
+		&& lhs[2] == rhs[2]
+		&& lhs[3] == rhs[3];
 }
 
 bool operator!=( const bool4x4& lhs, const bool4x4& rhs ) {
 	return !( operator==( lhs, rhs ) );
 }
-
 

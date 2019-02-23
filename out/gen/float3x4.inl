@@ -92,9 +92,9 @@ float3x4 float3x4::operator+=( const float rhs ) {
 
 float3x4 float3x4::operator+( const float3x4& rhs ) const {
 	return float3x4(
-		rows[0] + rhs.rows[0],
-		rows[1] + rhs.rows[1],
-		rows[2] + rhs.rows[2]
+		rows[0] + rhs[0],
+		rows[1] + rhs[1],
+		rows[2] + rhs[2]
 	);
 }
 
@@ -116,9 +116,9 @@ float3x4 float3x4::operator-=( const float rhs ) {
 
 float3x4 float3x4::operator-( const float3x4& rhs ) const {
 	return float3x4(
-		rows[0] - rhs.rows[0],
-		rows[1] - rhs.rows[1],
-		rows[2] - rhs.rows[2]
+		rows[0] - rhs[0],
+		rows[1] - rhs[1],
+		rows[2] - rhs[2]
 	);
 }
 
@@ -143,10 +143,10 @@ float3x4 float3x4::operator*( const float3x4& rhs ) const {
 	float3 row1 = rows[1];
 	float3 row2 = rows[2];
 
-	float3 col0 = { rhs.rows[0].x, rhs.rows[1].x, rhs.rows[2].x };
-	float3 col1 = { rhs.rows[0].y, rhs.rows[1].y, rhs.rows[2].y };
-	float3 col2 = { rhs.rows[0].z, rhs.rows[1].z, rhs.rows[2].z };
-	float3 col3 = { rhs.rows[0].w, rhs.rows[1].w, rhs.rows[2].w };
+	float3 col0 = { rhs[0].x, rhs[1].x, rhs[2].x };
+	float3 col1 = { rhs[0].y, rhs[1].y, rhs[2].y };
+	float3 col2 = { rhs[0].z, rhs[1].z, rhs[2].z };
+	float3 col3 = { rhs[0].w, rhs[1].w, rhs[2].w };
 
 	return float3x4(
 		row0.x * col0.x + row0.y * col0.y + row0.z * col0.z,
@@ -201,13 +201,44 @@ const float4& float3x4::operator[]( const uint32_t index ) const {
 }
 
 bool operator==( const float3x4& lhs, const float3x4& rhs ) {
-	return lhs.rows[0] == rhs.rows[0]
-		&& lhs.rows[1] == rhs.rows[1]
-		&& lhs.rows[2] == rhs.rows[2];
+	return lhs[0] == rhs[0]
+		&& lhs[1] == rhs[1]
+		&& lhs[2] == rhs[2];
 }
 
 bool operator!=( const float3x4& lhs, const float3x4& rhs ) {
 	return !( operator==( lhs, rhs ) );
 }
 
+bool3x4 operator<( const float3x4& lhs, const float3x4& rhs ) {
+	return bool3x4(
+		lhs[0] < rhs[0],
+		lhs[1] < rhs[1],
+		lhs[2] < rhs[2]
+	);
+}
+
+bool3x4 operator<=( const float3x4& lhs, const float3x4& rhs ) {
+	return bool3x4(
+		lhs[0] <= rhs[0],
+		lhs[1] <= rhs[1],
+		lhs[2] <= rhs[2]
+	);
+}
+
+bool3x4 operator>( const float3x4& lhs, const float3x4& rhs ) {
+	return bool3x4(
+		lhs[0] > rhs[0],
+		lhs[1] > rhs[1],
+		lhs[2] > rhs[2]
+	);
+}
+
+bool3x4 operator>=( const float3x4& lhs, const float3x4& rhs ) {
+	return bool3x4(
+		lhs[0] >= rhs[0],
+		lhs[1] >= rhs[1],
+		lhs[2] >= rhs[2]
+	);
+}
 

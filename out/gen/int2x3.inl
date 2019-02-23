@@ -85,8 +85,8 @@ int2x3 int2x3::operator+=( const int32_t rhs ) {
 
 int2x3 int2x3::operator+( const int2x3& rhs ) const {
 	return int2x3(
-		rows[0] + rhs.rows[0],
-		rows[1] + rhs.rows[1]
+		rows[0] + rhs[0],
+		rows[1] + rhs[1]
 	);
 }
 
@@ -107,8 +107,8 @@ int2x3 int2x3::operator-=( const int32_t rhs ) {
 
 int2x3 int2x3::operator-( const int2x3& rhs ) const {
 	return int2x3(
-		rows[0] - rhs.rows[0],
-		rows[1] - rhs.rows[1]
+		rows[0] - rhs[0],
+		rows[1] - rhs[1]
 	);
 }
 
@@ -131,9 +131,9 @@ int2x3 int2x3::operator*( const int2x3& rhs ) const {
 	int2 row0 = rows[0];
 	int2 row1 = rows[1];
 
-	int2 col0 = { rhs.rows[0].x, rhs.rows[1].x };
-	int2 col1 = { rhs.rows[0].y, rhs.rows[1].y };
-	int2 col2 = { rhs.rows[0].z, rhs.rows[1].z };
+	int2 col0 = { rhs[0].x, rhs[1].x };
+	int2 col1 = { rhs[0].y, rhs[1].y };
+	int2 col2 = { rhs[0].z, rhs[1].z };
 
 	return int2x3(
 		row0.x * col0.x + row0.y * col0.y,
@@ -180,12 +180,39 @@ const int3& int2x3::operator[]( const uint32_t index ) const {
 }
 
 bool operator==( const int2x3& lhs, const int2x3& rhs ) {
-	return lhs.rows[0] == rhs.rows[0]
-		&& lhs.rows[1] == rhs.rows[1];
+	return lhs[0] == rhs[0]
+		&& lhs[1] == rhs[1];
 }
 
 bool operator!=( const int2x3& lhs, const int2x3& rhs ) {
 	return !( operator==( lhs, rhs ) );
 }
 
+bool2x3 operator<( const int2x3& lhs, const int2x3& rhs ) {
+	return bool2x3(
+		lhs[0] < rhs[0],
+		lhs[1] < rhs[1]
+	);
+}
+
+bool2x3 operator<=( const int2x3& lhs, const int2x3& rhs ) {
+	return bool2x3(
+		lhs[0] <= rhs[0],
+		lhs[1] <= rhs[1]
+	);
+}
+
+bool2x3 operator>( const int2x3& lhs, const int2x3& rhs ) {
+	return bool2x3(
+		lhs[0] > rhs[0],
+		lhs[1] > rhs[1]
+	);
+}
+
+bool2x3 operator>=( const int2x3& lhs, const int2x3& rhs ) {
+	return bool2x3(
+		lhs[0] >= rhs[0],
+		lhs[1] >= rhs[1]
+	);
+}
 

@@ -80,12 +80,11 @@ const bool4& bool2x4::operator[]( const uint32_t index ) const {
 }
 
 bool operator==( const bool2x4& lhs, const bool2x4& rhs ) {
-	return lhs.rows[0] == rhs.rows[0]
-		&& lhs.rows[1] == rhs.rows[1];
+	return lhs[0] == rhs[0]
+		&& lhs[1] == rhs[1];
 }
 
 bool operator!=( const bool2x4& lhs, const bool2x4& rhs ) {
 	return !( operator==( lhs, rhs ) );
 }
-
 

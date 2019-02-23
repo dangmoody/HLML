@@ -231,8 +231,10 @@ void VectorGenerator::HeaderGenerateOperatorsRelational() {
 		return;
 	}
 
+	std::string boolReturnType = "bool" + std::to_string( m_numComponents );
+
 	for ( uint32_t i = 0; i < _countof( GEN_OPERATORS_EQUALITY ); i++ ) {
-		m_codeHeader += "inline bool" + std::to_string( m_numComponents ) + " operator" + GEN_OPERATORS_EQUALITY[i] + "( const " + m_fullTypeName + "& lhs, const " + m_fullTypeName + "& rhs );\n";
+		m_codeHeader += "inline " + boolReturnType + " operator" + GEN_OPERATORS_EQUALITY[i] + "( const " + m_fullTypeName + "& lhs, const " + m_fullTypeName + "& rhs );\n";
 	}
 
 	m_codeHeader += "\n";
@@ -401,10 +403,13 @@ void VectorGenerator::InlGenerateOperatorsRelational() {
 		return;
 	}
 
+	std::string boolReturnType = "bool" + std::to_string( m_numComponents );
+
 	uint32_t numOperators = _countof( GEN_OPERATORS_EQUALITY );
+
 	for ( uint32_t operatorIndex = 0; operatorIndex < numOperators; operatorIndex++ ) {
-		m_codeInl += "bool" + std::to_string( m_numComponents ) + " operator" + GEN_OPERATORS_EQUALITY[operatorIndex] + "( const " + m_fullTypeName + "& lhs, const " + m_fullTypeName + "& rhs ) {\n";
-		m_codeInl += "\treturn bool" + std::to_string( m_numComponents ) + "(\n";
+		m_codeInl += boolReturnType + " operator" + GEN_OPERATORS_EQUALITY[operatorIndex] + "( const " + m_fullTypeName + "& lhs, const " + m_fullTypeName + "& rhs ) {\n";
+		m_codeInl += "\treturn " + boolReturnType + "(\n";
 		for ( uint32_t componentIndex = 0; componentIndex < m_numComponents; componentIndex++ ) {
 			m_codeInl += std::string( "\t\tlhs." ) + GEN_COMPONENT_NAMES_VECTOR[componentIndex] + " " + GEN_OPERATORS_EQUALITY[operatorIndex] + " rhs." + GEN_COMPONENT_NAMES_VECTOR[componentIndex];
 

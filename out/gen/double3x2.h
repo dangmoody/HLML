@@ -65,4 +65,9 @@ struct double3x2 {
 inline bool operator==( const double3x2& lhs, const double3x2& rhs );
 inline bool operator!=( const double3x2& lhs, const double3x2& rhs );
 
+inline bool3x2 operator<( const double3x2& lhs, const double3x2& rhs );
+inline bool3x2 operator<=( const double3x2& lhs, const double3x2& rhs );
+inline bool3x2 operator>( const double3x2& lhs, const double3x2& rhs );
+inline bool3x2 operator>=( const double3x2& lhs, const double3x2& rhs );
+
 #include "double3x2.inl"

@@ -85,8 +85,8 @@ float2x4 float2x4::operator+=( const float rhs ) {
 
 float2x4 float2x4::operator+( const float2x4& rhs ) const {
 	return float2x4(
-		rows[0] + rhs.rows[0],
-		rows[1] + rhs.rows[1]
+		rows[0] + rhs[0],
+		rows[1] + rhs[1]
 	);
 }
 
@@ -107,8 +107,8 @@ float2x4 float2x4::operator-=( const float rhs ) {
 
 float2x4 float2x4::operator-( const float2x4& rhs ) const {
 	return float2x4(
-		rows[0] - rhs.rows[0],
-		rows[1] - rhs.rows[1]
+		rows[0] - rhs[0],
+		rows[1] - rhs[1]
 	);
 }
 
@@ -131,10 +131,10 @@ float2x4 float2x4::operator*( const float2x4& rhs ) const {
 	float2 row0 = rows[0];
 	float2 row1 = rows[1];
 
-	float2 col0 = { rhs.rows[0].x, rhs.rows[1].x };
-	float2 col1 = { rhs.rows[0].y, rhs.rows[1].y };
-	float2 col2 = { rhs.rows[0].z, rhs.rows[1].z };
-	float2 col3 = { rhs.rows[0].w, rhs.rows[1].w };
+	float2 col0 = { rhs[0].x, rhs[1].x };
+	float2 col1 = { rhs[0].y, rhs[1].y };
+	float2 col2 = { rhs[0].z, rhs[1].z };
+	float2 col3 = { rhs[0].w, rhs[1].w };
 
 	return float2x4(
 		row0.x * col0.x + row0.y * col0.y,
@@ -183,12 +183,39 @@ const float4& float2x4::operator[]( const uint32_t index ) const {
 }
 
 bool operator==( const float2x4& lhs, const float2x4& rhs ) {
-	return lhs.rows[0] == rhs.rows[0]
-		&& lhs.rows[1] == rhs.rows[1];
+	return lhs[0] == rhs[0]
+		&& lhs[1] == rhs[1];
 }
 
 bool operator!=( const float2x4& lhs, const float2x4& rhs ) {
 	return !( operator==( lhs, rhs ) );
 }
 
+bool2x4 operator<( const float2x4& lhs, const float2x4& rhs ) {
+	return bool2x4(
+		lhs[0] < rhs[0],
+		lhs[1] < rhs[1]
+	);
+}
+
+bool2x4 operator<=( const float2x4& lhs, const float2x4& rhs ) {
+	return bool2x4(
+		lhs[0] <= rhs[0],
+		lhs[1] <= rhs[1]
+	);
+}
+
+bool2x4 operator>( const float2x4& lhs, const float2x4& rhs ) {
+	return bool2x4(
+		lhs[0] > rhs[0],
+		lhs[1] > rhs[1]
+	);
+}
+
+bool2x4 operator>=( const float2x4& lhs, const float2x4& rhs ) {
+	return bool2x4(
+		lhs[0] >= rhs[0],
+		lhs[1] >= rhs[1]
+	);
+}
 

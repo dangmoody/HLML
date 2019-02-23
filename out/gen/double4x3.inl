@@ -99,10 +99,10 @@ double4x3 double4x3::operator+=( const double rhs ) {
 
 double4x3 double4x3::operator+( const double4x3& rhs ) const {
 	return double4x3(
-		rows[0] + rhs.rows[0],
-		rows[1] + rhs.rows[1],
-		rows[2] + rhs.rows[2],
-		rows[3] + rhs.rows[3]
+		rows[0] + rhs[0],
+		rows[1] + rhs[1],
+		rows[2] + rhs[2],
+		rows[3] + rhs[3]
 	);
 }
 
@@ -125,10 +125,10 @@ double4x3 double4x3::operator-=( const double rhs ) {
 
 double4x3 double4x3::operator-( const double4x3& rhs ) const {
 	return double4x3(
-		rows[0] - rhs.rows[0],
-		rows[1] - rhs.rows[1],
-		rows[2] - rhs.rows[2],
-		rows[3] - rhs.rows[3]
+		rows[0] - rhs[0],
+		rows[1] - rhs[1],
+		rows[2] - rhs[2],
+		rows[3] - rhs[3]
 	);
 }
 
@@ -155,9 +155,9 @@ double4x3 double4x3::operator*( const double4x3& rhs ) const {
 	double4 row2 = rows[2];
 	double4 row3 = rows[3];
 
-	double4 col0 = { rhs.rows[0].x, rhs.rows[1].x, rhs.rows[2].x, rhs.rows[3].x };
-	double4 col1 = { rhs.rows[0].y, rhs.rows[1].y, rhs.rows[2].y, rhs.rows[3].y };
-	double4 col2 = { rhs.rows[0].z, rhs.rows[1].z, rhs.rows[2].z, rhs.rows[3].z };
+	double4 col0 = { rhs[0].x, rhs[1].x, rhs[2].x, rhs[3].x };
+	double4 col1 = { rhs[0].y, rhs[1].y, rhs[2].y, rhs[3].y };
+	double4 col2 = { rhs[0].z, rhs[1].z, rhs[2].z, rhs[3].z };
 
 	return double4x3(
 		row0.x * col0.x + row0.y * col0.y + row0.z * col0.z + row0.w * col0.w,
@@ -214,14 +214,49 @@ const double3& double4x3::operator[]( const uint32_t index ) const {
 }
 
 bool operator==( const double4x3& lhs, const double4x3& rhs ) {
-	return lhs.rows[0] == rhs.rows[0]
-		&& lhs.rows[1] == rhs.rows[1]
-		&& lhs.rows[2] == rhs.rows[2]
-		&& lhs.rows[3] == rhs.rows[3];
+	return lhs[0] == rhs[0]
+		&& lhs[1] == rhs[1]
+		&& lhs[2] == rhs[2]
+		&& lhs[3] == rhs[3];
 }
 
 bool operator!=( const double4x3& lhs, const double4x3& rhs ) {
 	return !( operator==( lhs, rhs ) );
 }
 
+bool4x3 operator<( const double4x3& lhs, const double4x3& rhs ) {
+	return bool4x3(
+		lhs[0] < rhs[0],
+		lhs[1] < rhs[1],
+		lhs[2] < rhs[2],
+		lhs[3] < rhs[3]
+	);
+}
+
+bool4x3 operator<=( const double4x3& lhs, const double4x3& rhs ) {
+	return bool4x3(
+		lhs[0] <= rhs[0],
+		lhs[1] <= rhs[1],
+		lhs[2] <= rhs[2],
+		lhs[3] <= rhs[3]
+	);
+}
+
+bool4x3 operator>( const double4x3& lhs, const double4x3& rhs ) {
+	return bool4x3(
+		lhs[0] > rhs[0],
+		lhs[1] > rhs[1],
+		lhs[2] > rhs[2],
+		lhs[3] > rhs[3]
+	);
+}
+
+bool4x3 operator>=( const double4x3& lhs, const double4x3& rhs ) {
+	return bool4x3(
+		lhs[0] >= rhs[0],
+		lhs[1] >= rhs[1],
+		lhs[2] >= rhs[2],
+		lhs[3] >= rhs[3]
+	);
+}
 

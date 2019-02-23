@@ -86,13 +86,12 @@ const bool4& bool3x4::operator[]( const uint32_t index ) const {
 }
 
 bool operator==( const bool3x4& lhs, const bool3x4& rhs ) {
-	return lhs.rows[0] == rhs.rows[0]
-		&& lhs.rows[1] == rhs.rows[1]
-		&& lhs.rows[2] == rhs.rows[2];
+	return lhs[0] == rhs[0]
+		&& lhs[1] == rhs[1]
+		&& lhs[2] == rhs[2];
 }
 
 bool operator!=( const bool3x4& lhs, const bool3x4& rhs ) {
 	return !( operator==( lhs, rhs ) );
 }
-
 

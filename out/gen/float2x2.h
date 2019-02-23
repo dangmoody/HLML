@@ -65,4 +65,9 @@ struct float2x2 {
 inline bool operator==( const float2x2& lhs, const float2x2& rhs );
 inline bool operator!=( const float2x2& lhs, const float2x2& rhs );
 
+inline bool2x2 operator<( const float2x2& lhs, const float2x2& rhs );
+inline bool2x2 operator<=( const float2x2& lhs, const float2x2& rhs );
+inline bool2x2 operator>( const float2x2& lhs, const float2x2& rhs );
+inline bool2x2 operator>=( const float2x2& lhs, const float2x2& rhs );
+
 #include "float2x2.inl"

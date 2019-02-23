@@ -65,4 +65,9 @@ struct uint2x3 {
 inline bool operator==( const uint2x3& lhs, const uint2x3& rhs );
 inline bool operator!=( const uint2x3& lhs, const uint2x3& rhs );
 
+inline bool2x3 operator<( const uint2x3& lhs, const uint2x3& rhs );
+inline bool2x3 operator<=( const uint2x3& lhs, const uint2x3& rhs );
+inline bool2x3 operator>( const uint2x3& lhs, const uint2x3& rhs );
+inline bool2x3 operator>=( const uint2x3& lhs, const uint2x3& rhs );
+
 #include "uint2x3.inl"

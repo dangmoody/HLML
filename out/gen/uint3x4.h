@@ -65,4 +65,9 @@ struct uint3x4 {
 inline bool operator==( const uint3x4& lhs, const uint3x4& rhs );
 inline bool operator!=( const uint3x4& lhs, const uint3x4& rhs );
 
+inline bool3x4 operator<( const uint3x4& lhs, const uint3x4& rhs );
+inline bool3x4 operator<=( const uint3x4& lhs, const uint3x4& rhs );
+inline bool3x4 operator>( const uint3x4& lhs, const uint3x4& rhs );
+inline bool3x4 operator>=( const uint3x4& lhs, const uint3x4& rhs );
+
 #include "uint3x4.inl"

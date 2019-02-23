@@ -65,4 +65,9 @@ struct double2x2 {
 inline bool operator==( const double2x2& lhs, const double2x2& rhs );
 inline bool operator!=( const double2x2& lhs, const double2x2& rhs );
 
+inline bool2x2 operator<( const double2x2& lhs, const double2x2& rhs );
+inline bool2x2 operator<=( const double2x2& lhs, const double2x2& rhs );
+inline bool2x2 operator>( const double2x2& lhs, const double2x2& rhs );
+inline bool2x2 operator>=( const double2x2& lhs, const double2x2& rhs );
+
 #include "double2x2.inl"

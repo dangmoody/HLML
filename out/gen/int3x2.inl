@@ -92,9 +92,9 @@ int3x2 int3x2::operator+=( const int32_t rhs ) {
 
 int3x2 int3x2::operator+( const int3x2& rhs ) const {
 	return int3x2(
-		rows[0] + rhs.rows[0],
-		rows[1] + rhs.rows[1],
-		rows[2] + rhs.rows[2]
+		rows[0] + rhs[0],
+		rows[1] + rhs[1],
+		rows[2] + rhs[2]
 	);
 }
 
@@ -116,9 +116,9 @@ int3x2 int3x2::operator-=( const int32_t rhs ) {
 
 int3x2 int3x2::operator-( const int3x2& rhs ) const {
 	return int3x2(
-		rows[0] - rhs.rows[0],
-		rows[1] - rhs.rows[1],
-		rows[2] - rhs.rows[2]
+		rows[0] - rhs[0],
+		rows[1] - rhs[1],
+		rows[2] - rhs[2]
 	);
 }
 
@@ -143,8 +143,8 @@ int3x2 int3x2::operator*( const int3x2& rhs ) const {
 	int3 row1 = rows[1];
 	int3 row2 = rows[2];
 
-	int3 col0 = { rhs.rows[0].x, rhs.rows[1].x, rhs.rows[2].x };
-	int3 col1 = { rhs.rows[0].y, rhs.rows[1].y, rhs.rows[2].y };
+	int3 col0 = { rhs[0].x, rhs[1].x, rhs[2].x };
+	int3 col1 = { rhs[0].y, rhs[1].y, rhs[2].y };
 
 	return int3x2(
 		row0.x * col0.x + row0.y * col0.y + row0.z * col0.z,
@@ -193,13 +193,44 @@ const int2& int3x2::operator[]( const uint32_t index ) const {
 }
 
 bool operator==( const int3x2& lhs, const int3x2& rhs ) {
-	return lhs.rows[0] == rhs.rows[0]
-		&& lhs.rows[1] == rhs.rows[1]
-		&& lhs.rows[2] == rhs.rows[2];
+	return lhs[0] == rhs[0]
+		&& lhs[1] == rhs[1]
+		&& lhs[2] == rhs[2];
 }
 
 bool operator!=( const int3x2& lhs, const int3x2& rhs ) {
 	return !( operator==( lhs, rhs ) );
 }
 
+bool3x2 operator<( const int3x2& lhs, const int3x2& rhs ) {
+	return bool3x2(
+		lhs[0] < rhs[0],
+		lhs[1] < rhs[1],
+		lhs[2] < rhs[2]
+	);
+}
+
+bool3x2 operator<=( const int3x2& lhs, const int3x2& rhs ) {
+	return bool3x2(
+		lhs[0] <= rhs[0],
+		lhs[1] <= rhs[1],
+		lhs[2] <= rhs[2]
+	);
+}
+
+bool3x2 operator>( const int3x2& lhs, const int3x2& rhs ) {
+	return bool3x2(
+		lhs[0] > rhs[0],
+		lhs[1] > rhs[1],
+		lhs[2] > rhs[2]
+	);
+}
+
+bool3x2 operator>=( const int3x2& lhs, const int3x2& rhs ) {
+	return bool3x2(
+		lhs[0] >= rhs[0],
+		lhs[1] >= rhs[1],
+		lhs[2] >= rhs[2]
+	);
+}
 
