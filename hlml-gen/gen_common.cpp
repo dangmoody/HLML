@@ -98,7 +98,7 @@ void Gen_VectorNormalize( const genType_t type, const uint32_t numComponents, st
 	assert( numComponents >= GEN_COMPONENT_COUNT_MIN );
 	assert( numComponents <= GEN_COMPONENT_COUNT_MAX );
 
-	if ( type != GEN_TYPE_FLOAT && type != GEN_TYPE_DOUBLE ) {
+	if ( !Gen_IsFloatingPointType( type ) ) {
 		return;
 	}
 
@@ -162,7 +162,7 @@ void Gen_VectorCross( const genType_t type, const uint32_t numComponents, std::s
 	assert( numComponents >= GEN_COMPONENT_COUNT_MIN );
 	assert( numComponents <= GEN_COMPONENT_COUNT_MAX );
 
-	if ( type != GEN_TYPE_FLOAT && type != GEN_TYPE_DOUBLE ) {
+	if ( !Gen_IsFloatingPointType( type ) ) {
 		return;
 	}
 
@@ -197,7 +197,7 @@ void Gen_VectorAngle( const genType_t type, const uint32_t numComponents, std::s
 	assert( numComponents >= GEN_COMPONENT_COUNT_MIN );
 	assert( numComponents <= GEN_COMPONENT_COUNT_MAX );
 
-	if ( type != GEN_TYPE_FLOAT && type != GEN_TYPE_DOUBLE ) {
+	if ( !Gen_IsFloatingPointType( type ) ) {
 		return;
 	}
 
@@ -234,7 +234,7 @@ void Gen_MatrixIdentity( const genType_t type, const uint32_t numRows, const uin
 
 	outInl += "void identity( " + fullTypeName + "& mat ) {\n";
 	for ( uint32_t row = 0; row < numRows; row++ ) {
-		outInl += "\tmat.rows[" + std::to_string( row ) + "] = { ";
+		outInl += "\tmat[" + std::to_string( row ) + "] = { ";
 		for ( uint32_t col = 0; col < numCols; col++ ) {
 			outInl += ( row == col ) ? "1" : "0";
 
@@ -255,10 +255,6 @@ void Gen_MatrixTranspose( const genType_t type, const uint32_t numRows, const ui
 	assert( numRows <= GEN_COMPONENT_COUNT_MAX );
 	assert( numCols <= GEN_COMPONENT_COUNT_MAX );
 
-	if ( type == GEN_TYPE_BOOL ) {
-		return;
-	}
-
 	std::string typeString = Gen_GetTypeString( type );
 	std::string fullTypeName = typeString + std::to_string( numRows ) + "x" + std::to_string( numCols );
 	std::string transposeTypeName = typeString + std::to_string( numCols ) + "x" + std::to_string( numRows );
@@ -278,7 +274,7 @@ void Gen_MatrixTranspose( const genType_t type, const uint32_t numRows, const ui
 		for ( uint32_t row = 0; row < numRows; row++ ) {
 			std::string rowStr = std::to_string( row );
 
-			outInl += "mat.rows[" + rowStr + "][" + colStr + "]";
+			outInl += "mat[" + rowStr + "][" + colStr + "]";
 
 			if ( row + col != ( numRows - 1 ) + ( numCols - 1 ) ) {
 				outInl += ",";
@@ -303,7 +299,7 @@ void Gen_MatrixInverse( const genType_t type, const uint32_t numRows, const uint
 	assert( numRows <= GEN_COMPONENT_COUNT_MAX );
 	assert( numCols <= GEN_COMPONENT_COUNT_MAX );
 
-	if ( type == GEN_TYPE_BOOL ) {
+	if ( !Gen_IsFloatingPointType( type ) ) {
 		return;
 	}
 
@@ -323,60 +319,61 @@ void Gen_MatrixInverse( const genType_t type, const uint32_t numRows, const uint
 	outHeader += "\n";
 
 	outInl += fullTypeName + " inverse( const " + fullTypeName + "& mat ) {\n";
+
+	// true inverse can only be done for NxN matrices
 	switch ( numRows ) {
 		case 2: {
 			outInl += "\tconst " + memberTypeString + " invdet = " + literalOneStr + " / determinant( mat );\n";
 			outInl += "\treturn " + fullTypeName + "(\n";
-			outInl += "\t\t mat.rows[1][1] * invdet, -mat.rows[0][1] * invdet,\n";
-			outInl += "\t\t-mat.rows[1][0] * invdet,  mat.rows[0][0] * invdet\n";
+			outInl += "\t\t mat[1][1] * invdet, -mat[0][1] * invdet,\n";
+			outInl += "\t\t-mat[1][0] * invdet,  mat[0][0] * invdet\n";
 			outInl += "\t);\n";
 			break;
 		}
 
 		case 3: {
 			outInl += "\tconst " + memberTypeString + " invdet = " + literalOneStr + " / determinant( mat );\n";
-			outInl += "\t// also transposed here\n";
 			outInl += "\treturn " + fullTypeName + "(\n";
-			outInl += "\t\t ( mat.rows[1][1] * mat.rows[2][2] - mat.rows[1][2] * mat.rows[2][1] ) * invdet,\n";
-			outInl += "\t\t-( mat.rows[0][1] * mat.rows[2][2] - mat.rows[0][2] * mat.rows[2][1] ) * invdet,\n";
-			outInl += "\t\t ( mat.rows[0][1] * mat.rows[1][2] - mat.rows[0][2] * mat.rows[1][1] ) * invdet,\n";
+			outInl += "\t\t ( mat[1][1] * mat[2][2] - mat[1][2] * mat[2][1] ) * invdet,\n";
+			outInl += "\t\t-( mat[0][1] * mat[2][2] - mat[0][2] * mat[2][1] ) * invdet,\n";
+			outInl += "\t\t ( mat[0][1] * mat[1][2] - mat[0][2] * mat[1][1] ) * invdet,\n";
 			outInl += "\n";
-			outInl += "\t\t-( mat.rows[1][0] * mat.rows[2][2] - mat.rows[1][2] * mat.rows[2][0] ) * invdet,\n";
-			outInl += "\t\t ( mat.rows[0][0] * mat.rows[2][2] - mat.rows[0][2] * mat.rows[2][0] ) * invdet,\n";
-			outInl += "\t\t-( mat.rows[0][0] * mat.rows[1][2] - mat.rows[0][2] * mat.rows[1][0] ) * invdet,\n";
+			outInl += "\t\t-( mat[1][0] * mat[2][2] - mat[1][2] * mat[2][0] ) * invdet,\n";
+			outInl += "\t\t ( mat[0][0] * mat[2][2] - mat[0][2] * mat[2][0] ) * invdet,\n";
+			outInl += "\t\t-( mat[0][0] * mat[1][2] - mat[0][2] * mat[1][0] ) * invdet,\n";
 			outInl += "\n";
-			outInl += "\t\t ( mat.rows[1][0] * mat.rows[2][1] - mat.rows[1][1] * mat.rows[2][0] ) * invdet,\n";
-			outInl += "\t\t-( mat.rows[0][0] * mat.rows[2][1] - mat.rows[0][1] * mat.rows[2][0] ) * invdet,\n";
-			outInl += "\t\t ( mat.rows[0][0] * mat.rows[1][1] - mat.rows[0][1] * mat.rows[1][0] ) * invdet\n";
+			outInl += "\t\t ( mat[1][0] * mat[2][1] - mat[1][1] * mat[2][0] ) * invdet,\n";
+			outInl += "\t\t-( mat[0][0] * mat[2][1] - mat[0][1] * mat[2][0] ) * invdet,\n";
+			outInl += "\t\t ( mat[0][0] * mat[1][1] - mat[0][1] * mat[1][0] ) * invdet\n";
 			outInl += "\t);\n";
 			break;
 		}
 
 		case 4: {
 			outInl += "\t// uses the glm version, which is basically just an optimised version of the adjugate formula\n";
-			outInl += "\t" + memberTypeString + " sub00 = mat.rows[2][2] * mat.rows[3][3] - mat.rows[3][2] * mat.rows[2][3];\n";
-			outInl += "\t" + memberTypeString + " sub01 = mat.rows[1][2] * mat.rows[3][3] - mat.rows[1][3] * mat.rows[2][3];\n";
-			outInl += "\t" + memberTypeString + " sub02 = mat.rows[1][2] * mat.rows[2][3] - mat.rows[1][3] * mat.rows[2][2];\n";
+			outInl += "\t" + memberTypeString + " sub00 = mat[2][2] * mat[3][3] - mat[3][2] * mat[2][3];\n";
+			outInl += "\t" + memberTypeString + " sub01 = mat[1][2] * mat[3][3] - mat[1][3] * mat[2][3];\n";
+			outInl += "\t" + memberTypeString + " sub02 = mat[1][2] * mat[2][3] - mat[1][3] * mat[2][2];\n";
 			outInl += "\n";
-			outInl += "\t" + memberTypeString + " sub03 = mat.rows[2][1] * mat.rows[3][3] - mat.rows[2][3] * mat.rows[3][1];\n";
-			outInl += "\t" + memberTypeString + " sub04 = mat.rows[1][1] * mat.rows[3][3] - mat.rows[1][3] * mat.rows[3][1];\n";
-			outInl += "\t" + memberTypeString + " sub05 = mat.rows[1][1] * mat.rows[2][3] - mat.rows[1][3] * mat.rows[2][1];\n";
+			outInl += "\t" + memberTypeString + " sub03 = mat[2][1] * mat[3][3] - mat[2][3] * mat[3][1];\n";
+			outInl += "\t" + memberTypeString + " sub04 = mat[1][1] * mat[3][3] - mat[1][3] * mat[3][1];\n";
+			outInl += "\t" + memberTypeString + " sub05 = mat[1][1] * mat[2][3] - mat[1][3] * mat[2][1];\n";
 			outInl += "\n";
-			outInl += "\t" + memberTypeString + " sub06 = mat.rows[2][1] * mat.rows[3][2] - mat.rows[2][2] * mat.rows[3][1];\n";
-			outInl += "\t" + memberTypeString + " sub07 = mat.rows[1][1] * mat.rows[3][2] - mat.rows[1][2] * mat.rows[3][1];\n";
-			outInl += "\t" + memberTypeString + " sub08 = mat.rows[1][1] * mat.rows[2][2] - mat.rows[1][2] * mat.rows[2][1];\n";
+			outInl += "\t" + memberTypeString + " sub06 = mat[2][1] * mat[3][2] - mat[2][2] * mat[3][1];\n";
+			outInl += "\t" + memberTypeString + " sub07 = mat[1][1] * mat[3][2] - mat[1][2] * mat[3][1];\n";
+			outInl += "\t" + memberTypeString + " sub08 = mat[1][1] * mat[2][2] - mat[1][2] * mat[2][1];\n";
 			outInl += "\n";
-			outInl += "\t" + memberTypeString + " sub09 = mat.rows[2][0] * mat.rows[3][3] - mat.rows[3][0] * mat.rows[2][3];\n";
-			outInl += "\t" + memberTypeString + " sub10 = mat.rows[1][0] * mat.rows[3][3] - mat.rows[3][0] * mat.rows[1][3];\n";
-			outInl += "\t" + memberTypeString + " sub11 = mat.rows[1][0] * mat.rows[2][3] - mat.rows[2][0] * mat.rows[1][3];\n";
+			outInl += "\t" + memberTypeString + " sub09 = mat[2][0] * mat[3][3] - mat[3][0] * mat[2][3];\n";
+			outInl += "\t" + memberTypeString + " sub10 = mat[1][0] * mat[3][3] - mat[3][0] * mat[1][3];\n";
+			outInl += "\t" + memberTypeString + " sub11 = mat[1][0] * mat[2][3] - mat[2][0] * mat[1][3];\n";
 			outInl += "\n";
-			outInl += "\t" + memberTypeString + " sub12 = mat.rows[2][0] * mat.rows[3][2] - mat.rows[2][2] * mat.rows[3][0];\n";
-			outInl += "\t" + memberTypeString + " sub13 = mat.rows[1][0] * mat.rows[3][2] - mat.rows[1][2] * mat.rows[3][0];\n";
-			outInl += "\t" + memberTypeString + " sub14 = mat.rows[1][0] * mat.rows[2][2] - mat.rows[1][2] * mat.rows[2][0];\n";
+			outInl += "\t" + memberTypeString + " sub12 = mat[2][0] * mat[3][2] - mat[2][2] * mat[3][0];\n";
+			outInl += "\t" + memberTypeString + " sub13 = mat[1][0] * mat[3][2] - mat[1][2] * mat[3][0];\n";
+			outInl += "\t" + memberTypeString + " sub14 = mat[1][0] * mat[2][2] - mat[1][2] * mat[2][0];\n";
 			outInl += "\n";
-			outInl += "\t" + memberTypeString + " sub15 = mat.rows[2][0] * mat.rows[3][1] - mat.rows[2][1] * mat.rows[3][0];\n";
-			outInl += "\t" + memberTypeString + " sub16 = mat.rows[1][0] * mat.rows[3][1] - mat.rows[1][1] * mat.rows[3][0];\n";
-			outInl += "\t" + memberTypeString + " sub17 = mat.rows[1][0] * mat.rows[2][1] - mat.rows[1][1] * mat.rows[2][0];\n";
+			outInl += "\t" + memberTypeString + " sub15 = mat[2][0] * mat[3][1] - mat[2][1] * mat[3][0];\n";
+			outInl += "\t" + memberTypeString + " sub16 = mat[1][0] * mat[3][1] - mat[1][1] * mat[3][0];\n";
+			outInl += "\t" + memberTypeString + " sub17 = mat[1][0] * mat[2][1] - mat[1][1] * mat[2][0];\n";
 			outInl += "\n";
 			outInl += "\t" + vectorTypeName + " fac0 = " + vectorTypeName + "( sub00, sub00, sub01, sub02 );\n";
 			outInl += "\t" + vectorTypeName + " fac1 = " + vectorTypeName + "( sub03, sub03, sub04, sub05 );\n";
@@ -385,10 +382,10 @@ void Gen_MatrixInverse( const genType_t type, const uint32_t numRows, const uint
 			outInl += "\t" + vectorTypeName + " fac4 = " + vectorTypeName + "( sub12, sub12, sub13, sub14 );\n";
 			outInl += "\t" + vectorTypeName + " fac5 = " + vectorTypeName + "( sub15, sub15, sub16, sub17 );\n";
 			outInl += "\n";
-			outInl += "\t" + vectorTypeName + " vec0 = " + vectorTypeName + "( mat.rows[1][0], mat.rows[0][0], mat.rows[0][0], mat.rows[0][0] );\n";
-			outInl += "\t" + vectorTypeName + " vec1 = " + vectorTypeName + "( mat.rows[1][1], mat.rows[0][1], mat.rows[0][1], mat.rows[0][1] );\n";
-			outInl += "\t" + vectorTypeName + " vec2 = " + vectorTypeName + "( mat.rows[1][2], mat.rows[0][2], mat.rows[0][2], mat.rows[0][2] );\n";
-			outInl += "\t" + vectorTypeName + " vec3 = " + vectorTypeName + "( mat.rows[1][3], mat.rows[0][3], mat.rows[0][3], mat.rows[0][3] );\n";
+			outInl += "\t" + vectorTypeName + " vec0 = " + vectorTypeName + "( mat[1][0], mat[0][0], mat[0][0], mat[0][0] );\n";
+			outInl += "\t" + vectorTypeName + " vec1 = " + vectorTypeName + "( mat[1][1], mat[0][1], mat[0][1], mat[0][1] );\n";
+			outInl += "\t" + vectorTypeName + " vec2 = " + vectorTypeName + "( mat[1][2], mat[0][2], mat[0][2], mat[0][2] );\n";
+			outInl += "\t" + vectorTypeName + " vec3 = " + vectorTypeName + "( mat[1][3], mat[0][3], mat[0][3], mat[0][3] );\n";
 			outInl += "\n";
 			outInl += "\t" + vectorTypeName + " inv0 = vec1 * fac0 - vec2 * fac1 + vec3 * fac2;\n";
 			outInl += "\t" + vectorTypeName + " inv1 = vec0 * fac0 - vec2 * fac3 + vec3 * fac4;\n";
@@ -405,8 +402,8 @@ void Gen_MatrixInverse( const genType_t type, const uint32_t numRows, const uint
 			outInl += "\t\tinv3 * sign1\n";
 			outInl += "\t);\n";
 			outInl += "\n";
-			outInl += "\t" + vectorTypeName + " col0 = " + vectorTypeName + "( result.rows[0][0], result.rows[1][0], result.rows[2][0], result.rows[3][0] );\n";
-			outInl += "\t" + vectorTypeName + " dot0 = mat.rows[0] * col0;\n";
+			outInl += "\t" + vectorTypeName + " col0 = " + vectorTypeName + "( result[0][0], result[1][0], result[2][0], result[3][0] );\n";
+			outInl += "\t" + vectorTypeName + " dot0 = mat[0] * col0;\n";
 			outInl += "\n";
 			outInl += "\tconst " + memberTypeString + " dot1 = ( dot0.x + dot0.y ) + ( dot0.z + dot0.w );\n";
 			outInl += "\n";
@@ -447,37 +444,37 @@ void Gen_MatrixDeterminant( const genType_t type, const uint32_t numRows, const 
 	outInl += memberTypeString + " determinant( const " + fullTypeName + "& mat ) {\n";
 	switch ( numRows ) {
 		case 2: {
-			outInl += "\treturn mat.rows[0][0] * mat.rows[1][1] - mat.rows[1][0] * mat.rows[0][1];\n";
+			outInl += "\treturn mat[0][0] * mat[1][1] - mat[1][0] * mat[0][1];\n";
 			break;
 		}
 
 		case 3: {
 			outInl += "\treturn\n";
-			outInl += "\t\tmat.rows[0][0] * ( mat.rows[1][1] * mat.rows[2][2] - mat.rows[2][1] * mat.rows[1][2] )\n";
-			outInl += "\t\t- mat.rows[0][1] * ( mat.rows[1][0] * mat.rows[2][2] - mat.rows[2][0] * mat.rows[1][2] )\n";
-			outInl += "\t\t+ mat.rows[0][2] * ( mat.rows[1][0] * mat.rows[2][1] - mat.rows[2][0] * mat.rows[1][1] );\n";
+			outInl += "\t\tmat[0][0] * ( mat[1][1] * mat[2][2] - mat[2][1] * mat[1][2] )\n";
+			outInl += "\t\t- mat[0][1] * ( mat[1][0] * mat[2][2] - mat[2][0] * mat[1][2] )\n";
+			outInl += "\t\t+ mat[0][2] * ( mat[1][0] * mat[2][1] - mat[2][0] * mat[1][1] );\n";
 			break;
 		}
 
 		case 4: {
 			outInl += "\t// using glm's method where you basically take determinants from each sub matrix and cache the repeat occurences\n";
-			outInl += "\t" + memberTypeString + " sub00 = mat.rows[2][2] * mat.rows[3][3] - mat.rows[3][2] * mat.rows[2][3];\n";
-			outInl += "\t" + memberTypeString + " sub01 = mat.rows[2][1] * mat.rows[3][3] - mat.rows[2][3] * mat.rows[3][1];\n";
-			outInl += "\t" + memberTypeString + " sub02 = mat.rows[2][1] * mat.rows[3][2] - mat.rows[3][1] * mat.rows[2][2];\n";
-			outInl += "\t" + memberTypeString + " sub03 = mat.rows[2][0] * mat.rows[3][3] - mat.rows[3][0] * mat.rows[2][3];\n";
-			outInl += "\t" + memberTypeString + " sub04 = mat.rows[2][0] * mat.rows[3][2] - mat.rows[3][0] * mat.rows[2][2];\n";
-			outInl += "\t" + memberTypeString + " sub05 = mat.rows[2][0] * mat.rows[3][1] - mat.rows[3][0] * mat.rows[2][1];\n";
+			outInl += "\t" + memberTypeString + " sub00 = mat[2][2] * mat[3][3] - mat[3][2] * mat[2][3];\n";
+			outInl += "\t" + memberTypeString + " sub01 = mat[2][1] * mat[3][3] - mat[2][3] * mat[3][1];\n";
+			outInl += "\t" + memberTypeString + " sub02 = mat[2][1] * mat[3][2] - mat[3][1] * mat[2][2];\n";
+			outInl += "\t" + memberTypeString + " sub03 = mat[2][0] * mat[3][3] - mat[3][0] * mat[2][3];\n";
+			outInl += "\t" + memberTypeString + " sub04 = mat[2][0] * mat[3][2] - mat[3][0] * mat[2][2];\n";
+			outInl += "\t" + memberTypeString + " sub05 = mat[2][0] * mat[3][1] - mat[3][0] * mat[2][1];\n";
 			outInl += "\n";
 			outInl += "\t" + vectorTypeName + " cofactor = " + vectorTypeName + "(\n";
-			outInl += "\t\t ( mat.rows[1][1] * sub00 - mat.rows[1][2] * sub01 + mat.rows[1][3] * sub02 ),\n";
-			outInl += "\t\t-( mat.rows[1][0] * sub00 - mat.rows[1][2] * sub03 + mat.rows[1][3] * sub04 ),\n";
-			outInl += "\t\t ( mat.rows[1][0] * sub01 - mat.rows[1][1] * sub03 + mat.rows[1][3] * sub05 ),\n";
-			outInl += "\t\t-( mat.rows[1][0] * sub02 - mat.rows[1][1] * sub04 + mat.rows[1][2] * sub05 )\n";
+			outInl += "\t\t ( mat[1][1] * sub00 - mat[1][2] * sub01 + mat[1][3] * sub02 ),\n";
+			outInl += "\t\t-( mat[1][0] * sub00 - mat[1][2] * sub03 + mat[1][3] * sub04 ),\n";
+			outInl += "\t\t ( mat[1][0] * sub01 - mat[1][1] * sub03 + mat[1][3] * sub05 ),\n";
+			outInl += "\t\t-( mat[1][0] * sub02 - mat[1][1] * sub04 + mat[1][2] * sub05 )\n";
 			outInl += "\t);\n";
 			outInl += "\n";
 			outInl += "\treturn\n";
-			outInl += "\t\tmat.rows[0][0] * cofactor.x + mat.rows[0][1] * cofactor.y +\n";
-			outInl += "\t\tmat.rows[0][2] * cofactor.z + mat.rows[0][3] * cofactor.w;\n";
+			outInl += "\t\tmat[0][0] * cofactor.x + mat[0][1] * cofactor.y +\n";
+			outInl += "\t\tmat[0][2] * cofactor.z + mat[0][3] * cofactor.w;\n";
 			break;
 		}
 	}
@@ -538,7 +535,7 @@ void Gen_MatrixRotate( const genType_t type, const uint32_t numRows, const uint3
 	assert( numRows <= GEN_COMPONENT_COUNT_MAX );
 	assert( numCols <= GEN_COMPONENT_COUNT_MAX );
 
-	if ( type != GEN_TYPE_FLOAT || type != GEN_TYPE_DOUBLE ) {
+	if ( !Gen_IsFloatingPointType( type ) ) {
 		return;
 	}
 
@@ -560,17 +557,17 @@ void Gen_MatrixRotate( const genType_t type, const uint32_t numRows, const uint3
 	switch ( numRows ) {
 		case 2: {
 			outInl += "\treturn " + fullTypeName + "(\n";
-			outInl += "\t\tmat.rows[0] * c + mat.rows[1] * -s,\n";
-			outInl += "\t\tmat.rows[0] * s + mat.rows[1] * c,\n";
+			outInl += "\t\tmat[0] * c + mat[1] * -s,\n";
+			outInl += "\t\tmat[0] * s + mat[1] * c\n";
 			outInl += "\t);\n";
 			break;
 		}
 
 		case 3: {
 			outInl += "\treturn " + fullTypeName + "(\n";
-			outInl += "\t\tmat.rows[0] * c + mat.rows[1] * -s,\n";
-			outInl += "\t\tmat.rows[0] * s + mat.rows[1] * c,\n";
-			outInl += "\t\tmat.rows[2]\n";
+			outInl += "\t\tmat[0] * c + mat[1] * -s,\n";
+			outInl += "\t\tmat[0] * s + mat[1] * c,\n";
+			outInl += "\t\tmat[2]\n";
 			outInl += "\t);\n";
 			break;
 		}
@@ -653,7 +650,7 @@ void Gen_MatrixScale( const genType_t type, const uint32_t numRows, const uint32
 		for ( uint32_t col = 0; col < numCols; col++ ) {
 			std::string colStr = std::to_string( col );
 
-			outInl += "\t\tmat.rows[" + rowStr + "][" + colStr + "]";
+			outInl += "\t\tmat[" + rowStr + "][" + colStr + "]";
 
 			if ( row == col && col < scaleCols ) {
 				outInl += std::string( " * vec." ) + GEN_COMPONENT_NAMES_VECTOR[row];
@@ -682,7 +679,7 @@ void Gen_MatrixOrtho( const hand_t hand, const genType_t type, const uint32_t nu
 	assert( numRows <= GEN_COMPONENT_COUNT_MAX );
 	assert( numCols <= GEN_COMPONENT_COUNT_MAX );
 
-	if ( type != GEN_TYPE_FLOAT && type != GEN_TYPE_DOUBLE ) {
+	if ( !Gen_IsFloatingPointType( type ) ) {
 		return;
 	}
 
@@ -739,7 +736,7 @@ void Gen_MatrixPerspective( const hand_t hand, const genType_t type, const uint3
 	assert( numRows <= GEN_COMPONENT_COUNT_MAX );
 	assert( numCols <= GEN_COMPONENT_COUNT_MAX );
 
-	if ( type != GEN_TYPE_FLOAT && type != GEN_TYPE_DOUBLE ) {
+	if ( !Gen_IsFloatingPointType( type ) ) {
 		return;
 	}
 
@@ -792,7 +789,7 @@ void Gen_MatrixLookAt( const hand_t hand, const genType_t type, const uint32_t n
 	assert( numRows <= GEN_COMPONENT_COUNT_MAX );
 	assert( numCols <= GEN_COMPONENT_COUNT_MAX );
 
-	if ( type != GEN_TYPE_FLOAT && type != GEN_TYPE_DOUBLE ) {
+	if ( !Gen_IsFloatingPointType( type ) ) {
 		return;
 	}
 
