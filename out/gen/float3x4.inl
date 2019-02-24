@@ -183,7 +183,11 @@ float3x4 float3x4::operator/=( const float rhs ) {
 }
 
 float3x4 float3x4::operator/( const float3x4& rhs ) const {
-	return *this * inverse( rhs );
+	return float3x4(
+		rows[0] / rhs[0],
+		rows[1] / rhs[1],
+		rows[2] / rhs[2]
+	);
 }
 
 float3x4 float3x4::operator/=( const float3x4& rhs ) {

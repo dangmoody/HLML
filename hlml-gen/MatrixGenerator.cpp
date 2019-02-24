@@ -371,7 +371,10 @@ void MatrixGenerator::InlGenerateOperatorsArithmetic() {
 		if ( op == "+" || op == "-" ) {
 			m_codeInl += "\treturn " + m_fullTypeName + "(\n";
 			for ( uint32_t row = 0; row < m_numRows; row++ ) {
-				m_codeInl += "\t\trows[" + std::to_string( row ) + "] " + op + " rhs[" + std::to_string( row ) + "]";
+				std::string rowStr = std::to_string( row );
+
+				m_codeInl += "\t\trows[" + rowStr + "] " + op + " rhs[" + rowStr + "]";
+
 				if ( row != m_numRows - 1 ) {
 					m_codeInl += ",";
 				}
@@ -433,7 +436,23 @@ void MatrixGenerator::InlGenerateOperatorsArithmetic() {
 			}
 			m_codeInl += "\t);\n";
 		} else if ( op == "/" ) {
-			m_codeInl += "\treturn *this * inverse( rhs );\n";
+			if ( m_numRows == m_numCols && Gen_IsFloatingPointType( m_type ) ) {
+				m_codeInl += "\treturn *this * inverse( rhs );\n";
+			} else {
+				m_codeInl += "\treturn " + m_fullTypeName + "(\n";
+				for ( uint32_t row = 0; row < m_numRows; row++ ) {
+					std::string rowStr = std::to_string( row );
+
+					m_codeInl += "\t\trows[" + rowStr + "] / rhs[" + rowStr + "]";
+
+					if ( row != m_numRows - 1 ) {
+						m_codeInl += ",";
+					}
+
+					m_codeInl += "\n";
+				}
+				m_codeInl += "\t);\n";
+			}
 		}
 
 		m_codeInl += "}\n";

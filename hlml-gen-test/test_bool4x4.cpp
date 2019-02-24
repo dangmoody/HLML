@@ -29,11 +29,51 @@ along with hlml.  If not, see <http://www.gnu.org/licenses/>.
 #include <temper.h>
 
 TEMPER_TEST( TestAssignment_bool4x4 ) {
-	TEMPER_FAIL();
+	bool4x4 mat;
+
+	// fill single value
+	mat = bool4x4( true );
+	TEMPER_EXPECT_TRUE( mat[0] == bool4( true, false, false, false ) );
+	TEMPER_EXPECT_TRUE( mat[1] == bool4( false, true, false, false ) );
+	TEMPER_EXPECT_TRUE( mat[2] == bool4( false, false, true, false ) );
+	TEMPER_EXPECT_TRUE( mat[3] == bool4( false, false, false, true ) );
+
+	// row filling
+	mat = bool4x4(
+		bool4( 0, 1, 2, 3 ),
+		bool4( 4, 5, 6, 7 ),
+		bool4( 8, 9, 10, 11 ),
+		bool4( 12, 13, 14, 15 )
+	);
+	TEMPER_EXPECT_TRUE( mat[0] == bool4( 0, 1, 2, 3 ) );
+	TEMPER_EXPECT_TRUE( mat[1] == bool4( 4, 5, 6, 7 ) );
+	TEMPER_EXPECT_TRUE( mat[2] == bool4( 8, 9, 10, 11 ) );
+	TEMPER_EXPECT_TRUE( mat[3] == bool4( 12, 13, 14, 15 ) );
+
+	// all values filled
+	mat = bool4x4(
+		16, 15, 14, 13, 
+		12, 11, 10, 9, 
+		8, 7, 6, 5, 
+		4, 3, 2, 1
+	);
+	TEMPER_EXPECT_TRUE( mat[0] == bool4( 16, 15, 14, 13 ) );
+	TEMPER_EXPECT_TRUE( mat[1] == bool4( 12, 11, 10, 9 ) );
+	TEMPER_EXPECT_TRUE( mat[2] == bool4( 8, 7, 6, 5 ) );
+	TEMPER_EXPECT_TRUE( mat[3] == bool4( 4, 3, 2, 1 ) );
+
+	TEMPER_PASS();
 }
 
 TEMPER_TEST( TestArray_bool4x4 ) {
-	TEMPER_FAIL();
+	bool4x4 mat;
+
+	TEMPER_EXPECT_TRUE( mat[0] == bool4( true, false, false, false ) );
+	TEMPER_EXPECT_TRUE( mat[1] == bool4( false, true, false, false ) );
+	TEMPER_EXPECT_TRUE( mat[2] == bool4( false, false, true, false ) );
+	TEMPER_EXPECT_TRUE( mat[3] == bool4( false, false, false, true ) );
+
+	TEMPER_PASS();
 }
 
 TEMPER_TEST( TestIdentity_bool4x4 ) {
@@ -54,13 +94,28 @@ TEMPER_TEST( TestIdentity_bool4x4 ) {
 }
 
 TEMPER_TEST( TestTranspose_bool4x4 ) {
-	TEMPER_FAIL();
+	bool4x4 mat = bool4x4(
+		false, true, true, true,
+		true, true, true, true,
+		true, true, true, true,
+		true, true, true, true
+	);
+	bool4x4 trans = transpose( mat );
+
+	TEMPER_EXPECT_TRUE( trans == bool4x4(
+		false, true, true, true,
+		true, true, true, true,
+		true, true, true, true,
+		true, true, true, true
+	) );
+
+	TEMPER_PASS();
 }
 
 TEMPER_SUITE( Test_bool4x4 ) {
-	TEMPER_SKIP_TEST( TestAssignment_bool4x4, "TODO" );
-	TEMPER_SKIP_TEST( TestArray_bool4x4, "TODO" );
+	TEMPER_RUN_TEST( TestAssignment_bool4x4 );
+	TEMPER_RUN_TEST( TestArray_bool4x4 );
 
 	TEMPER_RUN_TEST( TestIdentity_bool4x4 );
-	TEMPER_SKIP_TEST( TestTranspose_bool4x4, "TODO" );
+	TEMPER_RUN_TEST( TestTranspose_bool4x4 );
 };

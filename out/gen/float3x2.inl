@@ -175,7 +175,11 @@ float3x2 float3x2::operator/=( const float rhs ) {
 }
 
 float3x2 float3x2::operator/( const float3x2& rhs ) const {
-	return *this * inverse( rhs );
+	return float3x2(
+		rows[0] / rhs[0],
+		rows[1] / rhs[1],
+		rows[2] / rhs[2]
+	);
 }
 
 float3x2 float3x2::operator/=( const float3x2& rhs ) {

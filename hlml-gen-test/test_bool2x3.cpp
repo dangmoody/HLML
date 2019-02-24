@@ -29,11 +29,39 @@ along with hlml.  If not, see <http://www.gnu.org/licenses/>.
 #include <temper.h>
 
 TEMPER_TEST( TestAssignment_bool2x3 ) {
-	TEMPER_FAIL();
+	bool2x3 mat;
+
+	// fill single value
+	mat = bool2x3( true );
+	TEMPER_EXPECT_TRUE( mat[0] == bool3( true, false, false ) );
+	TEMPER_EXPECT_TRUE( mat[1] == bool3( false, true, false ) );
+
+	// row filling
+	mat = bool2x3(
+		bool3( 0, 1, 2 ),
+		bool3( 3, 4, 5 )
+	);
+	TEMPER_EXPECT_TRUE( mat[0] == bool3( 0, 1, 2 ) );
+	TEMPER_EXPECT_TRUE( mat[1] == bool3( 3, 4, 5 ) );
+
+	// all values filled
+	mat = bool2x3(
+		6, 5, 4, 
+		3, 2, 1
+	);
+	TEMPER_EXPECT_TRUE( mat[0] == bool3( 6, 5, 4 ) );
+	TEMPER_EXPECT_TRUE( mat[1] == bool3( 3, 2, 1 ) );
+
+	TEMPER_PASS();
 }
 
 TEMPER_TEST( TestArray_bool2x3 ) {
-	TEMPER_FAIL();
+	bool2x3 mat;
+
+	TEMPER_EXPECT_TRUE( mat[0] == bool3( true, false, false ) );
+	TEMPER_EXPECT_TRUE( mat[1] == bool3( false, true, false ) );
+
+	TEMPER_PASS();
 }
 
 TEMPER_TEST( TestIdentity_bool2x3 ) {
@@ -52,13 +80,25 @@ TEMPER_TEST( TestIdentity_bool2x3 ) {
 }
 
 TEMPER_TEST( TestTranspose_bool2x3 ) {
-	TEMPER_FAIL();
+	bool2x3 mat = bool2x3(
+		false, true, true,
+		true, true, true
+	);
+	bool3x2 trans = transpose( mat );
+
+	TEMPER_EXPECT_TRUE( trans == bool3x2(
+		false, true,
+		true, true,
+		true, true
+	) );
+
+	TEMPER_PASS();
 }
 
 TEMPER_SUITE( Test_bool2x3 ) {
-	TEMPER_SKIP_TEST( TestAssignment_bool2x3, "TODO" );
-	TEMPER_SKIP_TEST( TestArray_bool2x3, "TODO" );
+	TEMPER_RUN_TEST( TestAssignment_bool2x3 );
+	TEMPER_RUN_TEST( TestArray_bool2x3 );
 
 	TEMPER_RUN_TEST( TestIdentity_bool2x3 );
-	TEMPER_SKIP_TEST( TestTranspose_bool2x3, "TODO" );
+	TEMPER_RUN_TEST( TestTranspose_bool2x3 );
 };

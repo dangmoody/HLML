@@ -29,15 +29,112 @@ along with hlml.  If not, see <http://www.gnu.org/licenses/>.
 #include <temper.h>
 
 TEMPER_TEST( TestAssignment_double2x2 ) {
-	TEMPER_FAIL();
+	double2x2 mat;
+
+	// fill single value
+	mat = double2x2( 999.0 );
+	TEMPER_EXPECT_TRUE( mat[0] == double2( 999.0, 0.0 ) );
+	TEMPER_EXPECT_TRUE( mat[1] == double2( 0.0, 999.0 ) );
+
+	// row filling
+	mat = double2x2(
+		double2( 0, 1 ),
+		double2( 2, 3 )
+	);
+	TEMPER_EXPECT_TRUE( mat[0] == double2( 0, 1 ) );
+	TEMPER_EXPECT_TRUE( mat[1] == double2( 2, 3 ) );
+
+	// all values filled
+	mat = double2x2(
+		4, 3, 
+		2, 1
+	);
+	TEMPER_EXPECT_TRUE( mat[0] == double2( 4, 3 ) );
+	TEMPER_EXPECT_TRUE( mat[1] == double2( 2, 1 ) );
+
+	TEMPER_PASS();
 }
 
-TEMPER_TEST( TestArithmetic_double2x2 ) {
-	TEMPER_FAIL();
+TEMPER_TEST( TestArithmeticAddition_double2x2 ) {
+	double2x2 a = double2x2(
+		6.0, 6.0, 
+		6.0,6.0
+	);
+	double2x2 b = double2x2(
+		2.0, 3.0,
+		6.0, 6.0
+	);
+	double2x2 c = a + b;
+
+	TEMPER_EXPECT_TRUE( c == double2x2(
+		8.0, 9.0,
+		12.0, 12.0
+	) );
+
+	TEMPER_PASS();
+}
+
+TEMPER_TEST( TestArithmeticSubtraction_double2x2 ) {
+	double2x2 a = double2x2(
+		6.0, 6.0, 
+		6.0,6.0
+	);
+	double2x2 b = double2x2(
+		2.0, 3.0,
+		6.0, 6.0
+	);
+	double2x2 c = a - b;
+
+	TEMPER_EXPECT_TRUE( c == double2x2(
+		4.0, 3.0,
+		0.0, 0.0
+	) );
+
+	TEMPER_PASS();
+}
+
+TEMPER_TEST( TestArithmeticMultiplication_double2x2 ) {
+	double2x2 a = double2x2(
+		6.0, 6.0, 
+		6.0,6.0
+	);
+	double2x2 b = double2x2(
+		2.0, 3.0,
+		6.0, 6.0
+	);
+	double2x2 c = a * b;
+
+	TEMPER_EXPECT_TRUE( c == double2x2(
+		0.0, 1.0,
+		1.0, 2.0
+	) );
+
+	TEMPER_PASS();
+}
+
+TEMPER_TEST( TestArithmeticDivision_double2x2 ) {
+	double2x2 a = double2x2(
+		2.0, 3.0,
+		6.0, 6.0
+	);
+	double2x2 b = a / a;
+	double2x2 identity = double2x2(
+		1.0, 0.0,
+		0.0, 1.0
+	);
+
+	TEMPER_EXPECT_TRUE( b == identity );
+
+	TEMPER_PASS();
 }
 
 TEMPER_TEST( TestArray_double2x2 ) {
-	TEMPER_FAIL();
+	double2x2 mat;
+
+	TEMPER_EXPECT_TRUE( mat[0] == double2( 1.0, 0.0 ) );
+	TEMPER_EXPECT_TRUE( mat[1] == double2( 0.0, 1.0 ) );
+
+	TEMPER_PASS();
 }
 
 TEMPER_TEST( TestRelational_double2x2 ) {
@@ -60,7 +157,18 @@ TEMPER_TEST( TestIdentity_double2x2 ) {
 }
 
 TEMPER_TEST( TestTranspose_double2x2 ) {
-	TEMPER_FAIL();
+	double2x2 mat = double2x2(
+		0.0, 1.0,
+		2.0, 3.0
+	);
+	double2x2 trans = transpose( mat );
+
+	TEMPER_EXPECT_TRUE( trans == double2x2(
+		0.0, 2.0,
+		1.0, 3.0
+	) );
+
+	TEMPER_PASS();
 }
 
 TEMPER_TEST( TestInverse_double2x2 ) {
@@ -96,14 +204,18 @@ TEMPER_TEST( TestLookAt_double2x2 ) {
 }
 
 TEMPER_SUITE( Test_double2x2 ) {
-	TEMPER_SKIP_TEST( TestAssignment_double2x2, "TODO" );
-	TEMPER_SKIP_TEST( TestArithmetic_double2x2, "TODO" );
-	TEMPER_SKIP_TEST( TestArray_double2x2, "TODO" );
+	TEMPER_RUN_TEST( TestAssignment_double2x2 );
+
+	TEMPER_RUN_TEST( TestArithmeticAddition_double2x2 );
+	TEMPER_RUN_TEST( TestArithmeticSubtraction_double2x2 );
+	TEMPER_SKIP_TEST( TestArithmeticMultiplication_double2x2, "Give me a minute to think about how to structure this one." );
+	TEMPER_RUN_TEST( TestArithmeticDivision_double2x2 );
+
+	TEMPER_RUN_TEST( TestArray_double2x2 );
 	TEMPER_SKIP_TEST( TestRelational_double2x2, "TODO" );
 
 	TEMPER_RUN_TEST( TestIdentity_double2x2 );
-	TEMPER_SKIP_TEST( TestTranspose_double2x2, "TODO" );
-
+	TEMPER_RUN_TEST( TestTranspose_double2x2 );
 	TEMPER_SKIP_TEST( TestInverse_double2x2, "TODO" );
 	TEMPER_SKIP_TEST( TestDeterminant_double2x2, "TODO" );
 

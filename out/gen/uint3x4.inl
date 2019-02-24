@@ -183,7 +183,11 @@ uint3x4 uint3x4::operator/=( const uint32_t rhs ) {
 }
 
 uint3x4 uint3x4::operator/( const uint3x4& rhs ) const {
-	return *this * inverse( rhs );
+	return uint3x4(
+		rows[0] / rhs[0],
+		rows[1] / rhs[1],
+		rows[2] / rhs[2]
+	);
 }
 
 uint3x4 uint3x4::operator/=( const uint3x4& rhs ) {

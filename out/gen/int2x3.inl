@@ -162,7 +162,10 @@ int2x3 int2x3::operator/=( const int32_t rhs ) {
 }
 
 int2x3 int2x3::operator/( const int2x3& rhs ) const {
-	return *this * inverse( rhs );
+	return int2x3(
+		rows[0] / rhs[0],
+		rows[1] / rhs[1]
+	);
 }
 
 int2x3 int2x3::operator/=( const int2x3& rhs ) {

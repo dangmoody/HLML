@@ -183,7 +183,11 @@ int3x4 int3x4::operator/=( const int32_t rhs ) {
 }
 
 int3x4 int3x4::operator/( const int3x4& rhs ) const {
-	return *this * inverse( rhs );
+	return int3x4(
+		rows[0] / rhs[0],
+		rows[1] / rhs[1],
+		rows[2] / rhs[2]
+	);
 }
 
 int3x4 int3x4::operator/=( const int3x4& rhs ) {

@@ -17,6 +17,7 @@ private:
 	std::string	m_fullTypeName;
 	std::string	m_typeString;
 	std::string	m_memberTypeString;
+	std::string	m_vectorTypeString;
 
 	genType_t	m_type;
 
@@ -39,4 +40,6 @@ private:
 	void		GenerateTestOrtho();
 	void		GenerateTestPerspective();
 	void		GenerateTestLookAt();
+
+	std::string	GetParamListIdentity() const;
 };

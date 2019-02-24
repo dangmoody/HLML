@@ -191,7 +191,12 @@ int4x2 int4x2::operator/=( const int32_t rhs ) {
 }
 
 int4x2 int4x2::operator/( const int4x2& rhs ) const {
-	return *this * inverse( rhs );
+	return int4x2(
+		rows[0] / rhs[0],
+		rows[1] / rhs[1],
+		rows[2] / rhs[2],
+		rows[3] / rhs[3]
+	);
 }
 
 int4x2 int4x2::operator/=( const int4x2& rhs ) {

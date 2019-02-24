@@ -29,11 +29,45 @@ along with hlml.  If not, see <http://www.gnu.org/licenses/>.
 #include <temper.h>
 
 TEMPER_TEST( TestAssignment_bool3x2 ) {
-	TEMPER_FAIL();
+	bool3x2 mat;
+
+	// fill single value
+	mat = bool3x2( true );
+	TEMPER_EXPECT_TRUE( mat[0] == bool2( true, false ) );
+	TEMPER_EXPECT_TRUE( mat[1] == bool2( false, true ) );
+	TEMPER_EXPECT_TRUE( mat[2] == bool2( false, false ) );
+
+	// row filling
+	mat = bool3x2(
+		bool2( 0, 1 ),
+		bool2( 2, 3 ),
+		bool2( 4, 5 )
+	);
+	TEMPER_EXPECT_TRUE( mat[0] == bool2( 0, 1 ) );
+	TEMPER_EXPECT_TRUE( mat[1] == bool2( 2, 3 ) );
+	TEMPER_EXPECT_TRUE( mat[2] == bool2( 4, 5 ) );
+
+	// all values filled
+	mat = bool3x2(
+		6, 5, 
+		4, 3, 
+		2, 1
+	);
+	TEMPER_EXPECT_TRUE( mat[0] == bool2( 6, 5 ) );
+	TEMPER_EXPECT_TRUE( mat[1] == bool2( 4, 3 ) );
+	TEMPER_EXPECT_TRUE( mat[2] == bool2( 2, 1 ) );
+
+	TEMPER_PASS();
 }
 
 TEMPER_TEST( TestArray_bool3x2 ) {
-	TEMPER_FAIL();
+	bool3x2 mat;
+
+	TEMPER_EXPECT_TRUE( mat[0] == bool2( true, false ) );
+	TEMPER_EXPECT_TRUE( mat[1] == bool2( false, true ) );
+	TEMPER_EXPECT_TRUE( mat[2] == bool2( false, false ) );
+
+	TEMPER_PASS();
 }
 
 TEMPER_TEST( TestIdentity_bool3x2 ) {
@@ -53,13 +87,25 @@ TEMPER_TEST( TestIdentity_bool3x2 ) {
 }
 
 TEMPER_TEST( TestTranspose_bool3x2 ) {
-	TEMPER_FAIL();
+	bool3x2 mat = bool3x2(
+		false, true,
+		true, true,
+		true, true
+	);
+	bool2x3 trans = transpose( mat );
+
+	TEMPER_EXPECT_TRUE( trans == bool2x3(
+		false, true, true,
+		true, true, true
+	) );
+
+	TEMPER_PASS();
 }
 
 TEMPER_SUITE( Test_bool3x2 ) {
-	TEMPER_SKIP_TEST( TestAssignment_bool3x2, "TODO" );
-	TEMPER_SKIP_TEST( TestArray_bool3x2, "TODO" );
+	TEMPER_RUN_TEST( TestAssignment_bool3x2 );
+	TEMPER_RUN_TEST( TestArray_bool3x2 );
 
 	TEMPER_RUN_TEST( TestIdentity_bool3x2 );
-	TEMPER_SKIP_TEST( TestTranspose_bool3x2, "TODO" );
+	TEMPER_RUN_TEST( TestTranspose_bool3x2 );
 };

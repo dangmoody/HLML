@@ -183,7 +183,11 @@ double3x4 double3x4::operator/=( const double rhs ) {
 }
 
 double3x4 double3x4::operator/( const double3x4& rhs ) const {
-	return *this * inverse( rhs );
+	return double3x4(
+		rows[0] / rhs[0],
+		rows[1] / rhs[1],
+		rows[2] / rhs[2]
+	);
 }
 
 double3x4 double3x4::operator/=( const double3x4& rhs ) {

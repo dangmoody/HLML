@@ -165,7 +165,10 @@ float2x4 float2x4::operator/=( const float rhs ) {
 }
 
 float2x4 float2x4::operator/( const float2x4& rhs ) const {
-	return *this * inverse( rhs );
+	return float2x4(
+		rows[0] / rhs[0],
+		rows[1] / rhs[1]
+	);
 }
 
 float2x4 float2x4::operator/=( const float2x4& rhs ) {

@@ -29,15 +29,129 @@ along with hlml.  If not, see <http://www.gnu.org/licenses/>.
 #include <temper.h>
 
 TEMPER_TEST( TestAssignment_int3x2 ) {
-	TEMPER_FAIL();
+	int3x2 mat;
+
+	// fill single value
+	mat = int3x2( 999 );
+	TEMPER_EXPECT_TRUE( mat[0] == int2( 999, 0 ) );
+	TEMPER_EXPECT_TRUE( mat[1] == int2( 0, 999 ) );
+	TEMPER_EXPECT_TRUE( mat[2] == int2( 0, 0 ) );
+
+	// row filling
+	mat = int3x2(
+		int2( 0, 1 ),
+		int2( 2, 3 ),
+		int2( 4, 5 )
+	);
+	TEMPER_EXPECT_TRUE( mat[0] == int2( 0, 1 ) );
+	TEMPER_EXPECT_TRUE( mat[1] == int2( 2, 3 ) );
+	TEMPER_EXPECT_TRUE( mat[2] == int2( 4, 5 ) );
+
+	// all values filled
+	mat = int3x2(
+		6, 5, 
+		4, 3, 
+		2, 1
+	);
+	TEMPER_EXPECT_TRUE( mat[0] == int2( 6, 5 ) );
+	TEMPER_EXPECT_TRUE( mat[1] == int2( 4, 3 ) );
+	TEMPER_EXPECT_TRUE( mat[2] == int2( 2, 1 ) );
+
+	TEMPER_PASS();
 }
 
-TEMPER_TEST( TestArithmetic_int3x2 ) {
-	TEMPER_FAIL();
+TEMPER_TEST( TestArithmeticAddition_int3x2 ) {
+	int3x2 a = int3x2(
+		6, 6, 6, 
+		6,6,6
+	);
+	int3x2 b = int3x2(
+		2, 3,
+		6, 6,
+		10, 10
+	);
+	int3x2 c = a + b;
+
+	TEMPER_EXPECT_TRUE( c == int3x2(
+		8, 9,
+		12, 12,
+		16, 16
+	) );
+
+	TEMPER_PASS();
+}
+
+TEMPER_TEST( TestArithmeticSubtraction_int3x2 ) {
+	int3x2 a = int3x2(
+		6, 6, 6, 
+		6,6,6
+	);
+	int3x2 b = int3x2(
+		2, 3,
+		6, 6,
+		10, 10
+	);
+	int3x2 c = a - b;
+
+	TEMPER_EXPECT_TRUE( c == int3x2(
+		4, 3,
+		0, 0,
+		-4, -4
+	) );
+
+	TEMPER_PASS();
+}
+
+TEMPER_TEST( TestArithmeticMultiplication_int3x2 ) {
+	int3x2 a = int3x2(
+		6, 6, 6, 
+		6,6,6
+	);
+	int3x2 b = int3x2(
+		2, 3,
+		6, 6,
+		10, 10
+	);
+	int3x2 c = a * b;
+
+	TEMPER_EXPECT_TRUE( c == int3x2(
+		0, 1,
+		1, 2,
+		2, 3
+	) );
+
+	TEMPER_PASS();
+}
+
+TEMPER_TEST( TestArithmeticDivision_int3x2 ) {
+	int3x2 a = int3x2(
+		2, 3,
+		6, 6,
+		10, 10
+	);
+	int3x2 b = int3x2(
+		6, 6, 6, 
+		6,6,6
+	);
+	int3x2 c = b / a;
+
+	TEMPER_EXPECT_TRUE( c == int3x2(
+		3, 2,
+		1, 1,
+		0, 0
+	) );
+
+	TEMPER_PASS();
 }
 
 TEMPER_TEST( TestArray_int3x2 ) {
-	TEMPER_FAIL();
+	int3x2 mat;
+
+	TEMPER_EXPECT_TRUE( mat[0] == int2( 1, 0 ) );
+	TEMPER_EXPECT_TRUE( mat[1] == int2( 0, 1 ) );
+	TEMPER_EXPECT_TRUE( mat[2] == int2( 0, 0 ) );
+
+	TEMPER_PASS();
 }
 
 TEMPER_TEST( TestRelational_int3x2 ) {
@@ -61,7 +175,19 @@ TEMPER_TEST( TestIdentity_int3x2 ) {
 }
 
 TEMPER_TEST( TestTranspose_int3x2 ) {
-	TEMPER_FAIL();
+	int3x2 mat = int3x2(
+		0, 1,
+		2, 3,
+		4, 5
+	);
+	int2x3 trans = transpose( mat );
+
+	TEMPER_EXPECT_TRUE( trans == int2x3(
+		0, 2, 4,
+		1, 3, 5
+	) );
+
+	TEMPER_PASS();
 }
 
 TEMPER_TEST( TestInverse_int3x2 ) {
@@ -97,15 +223,18 @@ TEMPER_TEST( TestLookAt_int3x2 ) {
 }
 
 TEMPER_SUITE( Test_int3x2 ) {
-	TEMPER_SKIP_TEST( TestAssignment_int3x2, "TODO" );
-	TEMPER_SKIP_TEST( TestArithmetic_int3x2, "TODO" );
-	TEMPER_SKIP_TEST( TestArray_int3x2, "TODO" );
+	TEMPER_RUN_TEST( TestAssignment_int3x2 );
+
+	TEMPER_RUN_TEST( TestArithmeticAddition_int3x2 );
+	TEMPER_RUN_TEST( TestArithmeticSubtraction_int3x2 );
+	TEMPER_SKIP_TEST( TestArithmeticMultiplication_int3x2, "Give me a minute to think about how to structure this one." );
+	TEMPER_RUN_TEST( TestArithmeticDivision_int3x2 );
+
+	TEMPER_RUN_TEST( TestArray_int3x2 );
 	TEMPER_SKIP_TEST( TestRelational_int3x2, "TODO" );
 
 	TEMPER_RUN_TEST( TestIdentity_int3x2 );
-	TEMPER_SKIP_TEST( TestTranspose_int3x2, "TODO" );
-
-	TEMPER_SKIP_TEST( TestInverse_int3x2, "TODO" );
+	TEMPER_RUN_TEST( TestTranspose_int3x2 );
 	TEMPER_SKIP_TEST( TestDeterminant_int3x2, "TODO" );
 
 	TEMPER_SKIP_TEST( TestTranslate_int3x2, "TODO" );

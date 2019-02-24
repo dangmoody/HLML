@@ -5,10 +5,6 @@ VisualStudioVersion = 15.0.28010.2050
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "hlml-gen", "hlml-gen\hlml-gen.vcxproj", "{9A4C1854-9507-43D4-A361-C8A5E95A8773}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "test_generated", "test_generated\test_generated.vcxproj", "{78228A57-4906-4BE9-829F-8A95B675C839}"
-EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "test_template", "test_template\test_template.vcxproj", "{430A25A6-741D-472E-BE61-55EEF335E97A}"
-EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "hlml-gen-test", "hlml-gen-test\hlml-gen-test.vcxproj", "{0F2EA363-0C9E-424B-8279-A4F8751E119E}"
 EndProject
 Global
@@ -27,22 +23,6 @@ Global
 		{9A4C1854-9507-43D4-A361-C8A5E95A8773}.Release|x64.Build.0 = Release|x64
 		{9A4C1854-9507-43D4-A361-C8A5E95A8773}.Release|x86.ActiveCfg = Release|Win32
 		{9A4C1854-9507-43D4-A361-C8A5E95A8773}.Release|x86.Build.0 = Release|Win32
-		{78228A57-4906-4BE9-829F-8A95B675C839}.Debug|x64.ActiveCfg = Debug|x64
-		{78228A57-4906-4BE9-829F-8A95B675C839}.Debug|x64.Build.0 = Debug|x64
-		{78228A57-4906-4BE9-829F-8A95B675C839}.Debug|x86.ActiveCfg = Debug|Win32
-		{78228A57-4906-4BE9-829F-8A95B675C839}.Debug|x86.Build.0 = Debug|Win32
-		{78228A57-4906-4BE9-829F-8A95B675C839}.Release|x64.ActiveCfg = Release|x64
-		{78228A57-4906-4BE9-829F-8A95B675C839}.Release|x64.Build.0 = Release|x64
-		{78228A57-4906-4BE9-829F-8A95B675C839}.Release|x86.ActiveCfg = Release|Win32
-		{78228A57-4906-4BE9-829F-8A95B675C839}.Release|x86.Build.0 = Release|Win32
-		{430A25A6-741D-472E-BE61-55EEF335E97A}.Debug|x64.ActiveCfg = Debug|x64
-		{430A25A6-741D-472E-BE61-55EEF335E97A}.Debug|x64.Build.0 = Debug|x64
-		{430A25A6-741D-472E-BE61-55EEF335E97A}.Debug|x86.ActiveCfg = Debug|Win32
-		{430A25A6-741D-472E-BE61-55EEF335E97A}.Debug|x86.Build.0 = Debug|Win32
-		{430A25A6-741D-472E-BE61-55EEF335E97A}.Release|x64.ActiveCfg = Release|x64
-		{430A25A6-741D-472E-BE61-55EEF335E97A}.Release|x64.Build.0 = Release|x64
-		{430A25A6-741D-472E-BE61-55EEF335E97A}.Release|x86.ActiveCfg = Release|Win32
-		{430A25A6-741D-472E-BE61-55EEF335E97A}.Release|x86.Build.0 = Release|Win32
 		{0F2EA363-0C9E-424B-8279-A4F8751E119E}.Debug|x64.ActiveCfg = Debug|x64
 		{0F2EA363-0C9E-424B-8279-A4F8751E119E}.Debug|x64.Build.0 = Debug|x64
 		{0F2EA363-0C9E-424B-8279-A4F8751E119E}.Debug|x86.ActiveCfg = Debug|Win32

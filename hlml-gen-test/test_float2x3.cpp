@@ -29,15 +29,119 @@ along with hlml.  If not, see <http://www.gnu.org/licenses/>.
 #include <temper.h>
 
 TEMPER_TEST( TestAssignment_float2x3 ) {
-	TEMPER_FAIL();
+	float2x3 mat;
+
+	// fill single value
+	mat = float2x3( 999.0f );
+	TEMPER_EXPECT_TRUE( mat[0] == float3( 999.0f, 0.0f, 0.0f ) );
+	TEMPER_EXPECT_TRUE( mat[1] == float3( 0.0f, 999.0f, 0.0f ) );
+
+	// row filling
+	mat = float2x3(
+		float3( 0, 1, 2 ),
+		float3( 3, 4, 5 )
+	);
+	TEMPER_EXPECT_TRUE( mat[0] == float3( 0, 1, 2 ) );
+	TEMPER_EXPECT_TRUE( mat[1] == float3( 3, 4, 5 ) );
+
+	// all values filled
+	mat = float2x3(
+		6, 5, 4, 
+		3, 2, 1
+	);
+	TEMPER_EXPECT_TRUE( mat[0] == float3( 6, 5, 4 ) );
+	TEMPER_EXPECT_TRUE( mat[1] == float3( 3, 2, 1 ) );
+
+	TEMPER_PASS();
 }
 
-TEMPER_TEST( TestArithmetic_float2x3 ) {
-	TEMPER_FAIL();
+TEMPER_TEST( TestArithmeticAddition_float2x3 ) {
+	float2x3 a = float2x3(
+		6.0f, 6.0f, 
+		6.0f, 6.0f, 
+		6.0f,6.0f
+	);
+	float2x3 b = float2x3(
+		2.0f, 3.0f, 4.0f,
+		6.0f, 6.0f, 8.0f
+	);
+	float2x3 c = a + b;
+
+	TEMPER_EXPECT_TRUE( c == float2x3(
+		8.0f, 9.0f, 10.0f,
+		12.0f, 12.0f, 14.0f
+	) );
+
+	TEMPER_PASS();
+}
+
+TEMPER_TEST( TestArithmeticSubtraction_float2x3 ) {
+	float2x3 a = float2x3(
+		6.0f, 6.0f, 
+		6.0f, 6.0f, 
+		6.0f,6.0f
+	);
+	float2x3 b = float2x3(
+		2.0f, 3.0f, 4.0f,
+		6.0f, 6.0f, 8.0f
+	);
+	float2x3 c = a - b;
+
+	TEMPER_EXPECT_TRUE( c == float2x3(
+		4.0f, 3.0f, 2.0f,
+		0.0f, 0.0f, -2.0f
+	) );
+
+	TEMPER_PASS();
+}
+
+TEMPER_TEST( TestArithmeticMultiplication_float2x3 ) {
+	float2x3 a = float2x3(
+		6.0f, 6.0f, 
+		6.0f, 6.0f, 
+		6.0f,6.0f
+	);
+	float2x3 b = float2x3(
+		2.0f, 3.0f, 4.0f,
+		6.0f, 6.0f, 8.0f
+	);
+	float2x3 c = a * b;
+
+	TEMPER_EXPECT_TRUE( c == float2x3(
+		0.0f, 1.0f, 2.0f,
+		1.0f, 2.0f, 3.0f
+	) );
+
+	TEMPER_PASS();
+}
+
+TEMPER_TEST( TestArithmeticDivision_float2x3 ) {
+	float2x3 a = float2x3(
+		2.0f, 3.0f, 4.0f,
+		6.0f, 6.0f, 8.0f
+	);
+	float2x3 b = float2x3(
+		6.0f, 6.0f, 
+		6.0f, 6.0f, 
+		6.0f,6.0f
+	);
+	float2x3 c = b / a;
+
+	TEMPER_EXPECT_TRUE( c == float2x3(
+		3.000000f, 2.000000f, 1.500000f,
+		1.000000f, 1.000000f, 0.750000f
+	) );
+
+	TEMPER_PASS();
 }
 
 TEMPER_TEST( TestArray_float2x3 ) {
-	TEMPER_FAIL();
+	float2x3 mat;
+
+	TEMPER_EXPECT_TRUE( mat[0] == float3( 1.0f, 0.0f, 0.0f ) );
+	TEMPER_EXPECT_TRUE( mat[1] == float3( 0.0f, 1.0f, 0.0f ) );
+
+	TEMPER_PASS();
 }
 
 TEMPER_TEST( TestRelational_float2x3 ) {
@@ -60,7 +164,19 @@ TEMPER_TEST( TestIdentity_float2x3 ) {
 }
 
 TEMPER_TEST( TestTranspose_float2x3 ) {
-	TEMPER_FAIL();
+	float2x3 mat = float2x3(
+		0.0f, 1.0f, 2.0f,
+		3.0f, 4.0f, 5.0f
+	);
+	float3x2 trans = transpose( mat );
+
+	TEMPER_EXPECT_TRUE( trans == float3x2(
+		0.0f, 3.0f,
+		1.0f, 4.0f,
+		2.0f, 5.0f
+	) );
+
+	TEMPER_PASS();
 }
 
 TEMPER_TEST( TestInverse_float2x3 ) {
@@ -96,14 +212,18 @@ TEMPER_TEST( TestLookAt_float2x3 ) {
 }
 
 TEMPER_SUITE( Test_float2x3 ) {
-	TEMPER_SKIP_TEST( TestAssignment_float2x3, "TODO" );
-	TEMPER_SKIP_TEST( TestArithmetic_float2x3, "TODO" );
-	TEMPER_SKIP_TEST( TestArray_float2x3, "TODO" );
+	TEMPER_RUN_TEST( TestAssignment_float2x3 );
+
+	TEMPER_RUN_TEST( TestArithmeticAddition_float2x3 );
+	TEMPER_RUN_TEST( TestArithmeticSubtraction_float2x3 );
+	TEMPER_SKIP_TEST( TestArithmeticMultiplication_float2x3, "Give me a minute to think about how to structure this one." );
+	TEMPER_RUN_TEST( TestArithmeticDivision_float2x3 );
+
+	TEMPER_RUN_TEST( TestArray_float2x3 );
 	TEMPER_SKIP_TEST( TestRelational_float2x3, "TODO" );
 
 	TEMPER_RUN_TEST( TestIdentity_float2x3 );
-	TEMPER_SKIP_TEST( TestTranspose_float2x3, "TODO" );
-
+	TEMPER_RUN_TEST( TestTranspose_float2x3 );
 	TEMPER_SKIP_TEST( TestInverse_float2x3, "TODO" );
 	TEMPER_SKIP_TEST( TestDeterminant_float2x3, "TODO" );
 
