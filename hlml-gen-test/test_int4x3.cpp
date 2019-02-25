@@ -211,14 +211,6 @@ TEMPER_TEST( TestTranspose_int4x3 ) {
 	TEMPER_PASS();
 }
 
-TEMPER_TEST( TestInverse_int4x3 ) {
-	TEMPER_FAIL();
-}
-
-TEMPER_TEST( TestDeterminant_int4x3 ) {
-	TEMPER_FAIL();
-}
-
 TEMPER_TEST( TestTranslate_int4x3 ) {
 	TEMPER_FAIL();
 }
@@ -256,8 +248,6 @@ TEMPER_SUITE( Test_int4x3 ) {
 
 	TEMPER_RUN_TEST( TestIdentity_int4x3 );
 	TEMPER_RUN_TEST( TestTranspose_int4x3 );
-	TEMPER_SKIP_TEST( TestDeterminant_int4x3, "TODO" );
-
 	TEMPER_SKIP_TEST( TestTranslate_int4x3, "TODO" );
 	TEMPER_SKIP_TEST( TestRotate_int4x3, "TODO" );
 	TEMPER_SKIP_TEST( TestScale_int4x3, "TODO" );

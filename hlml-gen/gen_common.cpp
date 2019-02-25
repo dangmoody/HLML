@@ -450,7 +450,7 @@ void Gen_MatrixDeterminant( const genType_t type, const uint32_t numRows, const 
 
 		case 3: {
 			outInl += "\treturn\n";
-			outInl += "\t\tmat[0][0] * ( mat[1][1] * mat[2][2] - mat[2][1] * mat[1][2] )\n";
+			outInl += "\t\t+ mat[0][0] * ( mat[1][1] * mat[2][2] - mat[2][1] * mat[1][2] )\n";
 			outInl += "\t\t- mat[0][1] * ( mat[1][0] * mat[2][2] - mat[2][0] * mat[1][2] )\n";
 			outInl += "\t\t+ mat[0][2] * ( mat[1][0] * mat[2][1] - mat[2][0] * mat[1][1] );\n";
 			break;

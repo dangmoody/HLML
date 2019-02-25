@@ -174,14 +174,6 @@ TEMPER_TEST( TestTranspose_uint2x2 ) {
 	TEMPER_PASS();
 }
 
-TEMPER_TEST( TestInverse_uint2x2 ) {
-	TEMPER_FAIL();
-}
-
-TEMPER_TEST( TestDeterminant_uint2x2 ) {
-	TEMPER_FAIL();
-}
-
 TEMPER_TEST( TestTranslate_uint2x2 ) {
 	TEMPER_FAIL();
 }
@@ -219,8 +211,6 @@ TEMPER_SUITE( Test_uint2x2 ) {
 
 	TEMPER_RUN_TEST( TestIdentity_uint2x2 );
 	TEMPER_RUN_TEST( TestTranspose_uint2x2 );
-	TEMPER_SKIP_TEST( TestDeterminant_uint2x2, "TODO" );
-
 	TEMPER_SKIP_TEST( TestTranslate_uint2x2, "TODO" );
 	TEMPER_SKIP_TEST( TestRotate_uint2x2, "TODO" );
 	TEMPER_SKIP_TEST( TestScale_uint2x2, "TODO" );

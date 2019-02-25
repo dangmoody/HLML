@@ -241,8 +241,6 @@ inline void identity( uint2x2& mat );
 
 inline uint2x2 transpose( const uint2x2& mat );
 
-inline uint32_t determinant( const uint2x2& mat );
-
 inline uint2x2 scale( const uint2x2& mat, const uint32_t scalar );
 inline uint2x2 scale( const uint2x2& mat, const uint2& vec );
 
@@ -278,8 +276,6 @@ inline uint2x3 scale( const uint2x3& mat, const uint3& vec );
 inline void identity( uint3x3& mat );
 
 inline uint3x3 transpose( const uint3x3& mat );
-
-inline uint32_t determinant( const uint3x3& mat );
 
 inline uint3x3 translate( const uint3x3& mat, const uint2& vec );
 
@@ -322,8 +318,6 @@ inline uint3x4 scale( const uint3x4& mat, const uint3& vec );
 inline void identity( uint4x4& mat );
 
 inline uint4x4 transpose( const uint4x4& mat );
-
-inline uint32_t determinant( const uint4x4& mat );
 
 inline uint4x4 translate( const uint4x4& mat, const uint3& vec );
 

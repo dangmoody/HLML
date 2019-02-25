@@ -318,7 +318,7 @@ int3x3 transpose( const int3x3& mat ) {
 
 int32_t determinant( const int3x3& mat ) {
 	return
-		mat[0][0] * ( mat[1][1] * mat[2][2] - mat[2][1] * mat[1][2] )
+		+ mat[0][0] * ( mat[1][1] * mat[2][2] - mat[2][1] * mat[1][2] )
 		- mat[0][1] * ( mat[1][0] * mat[2][2] - mat[2][0] * mat[1][2] )
 		+ mat[0][2] * ( mat[1][0] * mat[2][1] - mat[2][0] * mat[1][1] );
 }
@@ -573,10 +573,6 @@ uint2x2 transpose( const uint2x2& mat ) {
 	);
 }
 
-uint32_t determinant( const uint2x2& mat ) {
-	return mat[0][0] * mat[1][1] - mat[1][0] * mat[0][1];
-}
-
 uint2x2 scale( const uint2x2& mat, const uint32_t scalar ) {
 	return scale( mat, uint2( scalar, scalar ) );
 }
@@ -704,13 +700,6 @@ uint3x3 transpose( const uint3x3& mat ) {
 		mat[0][1], mat[1][1], mat[2][1],
 		mat[0][2], mat[1][2], mat[2][2]
 	);
-}
-
-uint32_t determinant( const uint3x3& mat ) {
-	return
-		mat[0][0] * ( mat[1][1] * mat[2][2] - mat[2][1] * mat[1][2] )
-		- mat[0][1] * ( mat[1][0] * mat[2][2] - mat[2][0] * mat[1][2] )
-		+ mat[0][2] * ( mat[1][0] * mat[2][1] - mat[2][0] * mat[1][1] );
 }
 
 uint3x3 translate( const uint3x3& mat, const uint2& vec ) {
@@ -889,27 +878,6 @@ uint4x4 transpose( const uint4x4& mat ) {
 		mat[0][2], mat[1][2], mat[2][2], mat[3][2],
 		mat[0][3], mat[1][3], mat[2][3], mat[3][3]
 	);
-}
-
-uint32_t determinant( const uint4x4& mat ) {
-	// using glm's method where you basically take determinants from each sub matrix and cache the repeat occurences
-	uint32_t sub00 = mat[2][2] * mat[3][3] - mat[3][2] * mat[2][3];
-	uint32_t sub01 = mat[2][1] * mat[3][3] - mat[2][3] * mat[3][1];
-	uint32_t sub02 = mat[2][1] * mat[3][2] - mat[3][1] * mat[2][2];
-	uint32_t sub03 = mat[2][0] * mat[3][3] - mat[3][0] * mat[2][3];
-	uint32_t sub04 = mat[2][0] * mat[3][2] - mat[3][0] * mat[2][2];
-	uint32_t sub05 = mat[2][0] * mat[3][1] - mat[3][0] * mat[2][1];
-
-	uint4 cofactor = uint4(
-		 ( mat[1][1] * sub00 - mat[1][2] * sub01 + mat[1][3] * sub02 ),
-		-( mat[1][0] * sub00 - mat[1][2] * sub03 + mat[1][3] * sub04 ),
-		 ( mat[1][0] * sub01 - mat[1][1] * sub03 + mat[1][3] * sub05 ),
-		-( mat[1][0] * sub02 - mat[1][1] * sub04 + mat[1][2] * sub05 )
-	);
-
-	return
-		mat[0][0] * cofactor.x + mat[0][1] * cofactor.y +
-		mat[0][2] * cofactor.z + mat[0][3] * cofactor.w;
 }
 
 uint4x4 translate( const uint4x4& mat, const uint3& vec ) {
@@ -1177,7 +1145,7 @@ float3x3 inverse( const float3x3& mat ) {
 
 float determinant( const float3x3& mat ) {
 	return
-		mat[0][0] * ( mat[1][1] * mat[2][2] - mat[2][1] * mat[1][2] )
+		+ mat[0][0] * ( mat[1][1] * mat[2][2] - mat[2][1] * mat[1][2] )
 		- mat[0][1] * ( mat[1][0] * mat[2][2] - mat[2][0] * mat[1][2] )
 		+ mat[0][2] * ( mat[1][0] * mat[2][1] - mat[2][0] * mat[1][1] );
 }
@@ -1827,7 +1795,7 @@ double3x3 inverse( const double3x3& mat ) {
 
 double determinant( const double3x3& mat ) {
 	return
-		mat[0][0] * ( mat[1][1] * mat[2][2] - mat[2][1] * mat[1][2] )
+		+ mat[0][0] * ( mat[1][1] * mat[2][2] - mat[2][1] * mat[1][2] )
 		- mat[0][1] * ( mat[1][0] * mat[2][2] - mat[2][0] * mat[1][2] )
 		+ mat[0][2] * ( mat[1][0] * mat[2][1] - mat[2][0] * mat[1][1] );
 }

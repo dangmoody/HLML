@@ -192,11 +192,31 @@ TEMPER_TEST( TestTranspose_double3x3 ) {
 }
 
 TEMPER_TEST( TestInverse_double3x3 ) {
-	TEMPER_FAIL();
+	double3x3 identityMatrix;
+
+	double3x3 mat = double3x3(
+		6.0, 2.0, 3.0,
+		2.0, 7.0, 2.0,
+		3.0, 2.0, 6.0
+	);
+	double3x3 matInverse = inverse( mat );
+
+	TEMPER_EXPECT_TRUE( mat * matInverse == identityMatrix );
+
+	TEMPER_PASS();
 }
 
 TEMPER_TEST( TestDeterminant_double3x3 ) {
-	TEMPER_FAIL();
+	double3x3 mat = double3x3(
+		6.0, 2.0, 3.0,
+		2.0, 7.0, 2.0,
+		3.0, 2.0, 6.0
+	);
+	double det = determinant( mat );
+
+	TEMPER_EXPECT_TRUE( floateq( det, 165.0 ) );
+
+	TEMPER_PASS();
 }
 
 TEMPER_TEST( TestTranslate_double3x3 ) {
@@ -236,9 +256,8 @@ TEMPER_SUITE( Test_double3x3 ) {
 
 	TEMPER_RUN_TEST( TestIdentity_double3x3 );
 	TEMPER_RUN_TEST( TestTranspose_double3x3 );
-	TEMPER_SKIP_TEST( TestInverse_double3x3, "TODO" );
-	TEMPER_SKIP_TEST( TestDeterminant_double3x3, "TODO" );
-
+	TEMPER_RUN_TEST( TestDeterminant_double3x3 );
+	TEMPER_RUN_TEST( TestInverse_double3x3 );
 	TEMPER_SKIP_TEST( TestTranslate_double3x3, "TODO" );
 	TEMPER_SKIP_TEST( TestRotate_double3x3, "TODO" );
 	TEMPER_SKIP_TEST( TestScale_double3x3, "TODO" );

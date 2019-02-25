@@ -195,12 +195,17 @@ TEMPER_TEST( TestTranspose_int3x3 ) {
 	TEMPER_PASS();
 }
 
-TEMPER_TEST( TestInverse_int3x3 ) {
-	TEMPER_FAIL();
-}
-
 TEMPER_TEST( TestDeterminant_int3x3 ) {
-	TEMPER_FAIL();
+	int3x3 mat = int3x3(
+		6, 2, 3,
+		2, 7, 2,
+		3, 2, 6
+	);
+	int32_t det = determinant( mat );
+
+	TEMPER_EXPECT_TRUE( det == 165 );
+
+	TEMPER_PASS();
 }
 
 TEMPER_TEST( TestTranslate_int3x3 ) {
@@ -240,8 +245,7 @@ TEMPER_SUITE( Test_int3x3 ) {
 
 	TEMPER_RUN_TEST( TestIdentity_int3x3 );
 	TEMPER_RUN_TEST( TestTranspose_int3x3 );
-	TEMPER_SKIP_TEST( TestDeterminant_int3x3, "TODO" );
-
+	TEMPER_RUN_TEST( TestDeterminant_int3x3 );
 	TEMPER_SKIP_TEST( TestTranslate_int3x3, "TODO" );
 	TEMPER_SKIP_TEST( TestRotate_int3x3, "TODO" );
 	TEMPER_SKIP_TEST( TestScale_int3x3, "TODO" );

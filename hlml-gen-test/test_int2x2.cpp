@@ -174,12 +174,16 @@ TEMPER_TEST( TestTranspose_int2x2 ) {
 	TEMPER_PASS();
 }
 
-TEMPER_TEST( TestInverse_int2x2 ) {
-	TEMPER_FAIL();
-}
-
 TEMPER_TEST( TestDeterminant_int2x2 ) {
-	TEMPER_FAIL();
+	int2x2 mat = int2x2(
+		6, 2,
+		2, 6
+	);
+	int32_t det = determinant( mat );
+
+	TEMPER_EXPECT_TRUE( det == 32 );
+
+	TEMPER_PASS();
 }
 
 TEMPER_TEST( TestTranslate_int2x2 ) {
@@ -219,8 +223,7 @@ TEMPER_SUITE( Test_int2x2 ) {
 
 	TEMPER_RUN_TEST( TestIdentity_int2x2 );
 	TEMPER_RUN_TEST( TestTranspose_int2x2 );
-	TEMPER_SKIP_TEST( TestDeterminant_int2x2, "TODO" );
-
+	TEMPER_RUN_TEST( TestDeterminant_int2x2 );
 	TEMPER_SKIP_TEST( TestTranslate_int2x2, "TODO" );
 	TEMPER_SKIP_TEST( TestRotate_int2x2, "TODO" );
 	TEMPER_SKIP_TEST( TestScale_int2x2, "TODO" );

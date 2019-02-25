@@ -212,11 +212,33 @@ TEMPER_TEST( TestTranspose_double4x4 ) {
 }
 
 TEMPER_TEST( TestInverse_double4x4 ) {
-	TEMPER_FAIL();
+	double4x4 identityMatrix;
+
+	double4x4 mat = double4x4(
+		6.0, 2.0, 3.0, 4.0,
+		2.0, 7.0, 5.0, 3.0,
+		3.0, 5.0, 7.0, 2.0,
+		4.0, 3.0, 2.0, 6.0
+	);
+	double4x4 matInverse = inverse( mat );
+
+	TEMPER_EXPECT_TRUE( mat * matInverse == identityMatrix );
+
+	TEMPER_PASS();
 }
 
 TEMPER_TEST( TestDeterminant_double4x4 ) {
-	TEMPER_FAIL();
+	double4x4 mat = double4x4(
+		6.0, 2.0, 3.0, 4.0,
+		2.0, 7.0, 5.0, 3.0,
+		3.0, 5.0, 7.0, 2.0,
+		4.0, 3.0, 2.0, 6.0
+	);
+	double det = determinant( mat );
+
+	TEMPER_EXPECT_TRUE( floateq( det, 285.0 ) );
+
+	TEMPER_PASS();
 }
 
 TEMPER_TEST( TestTranslate_double4x4 ) {
@@ -256,9 +278,8 @@ TEMPER_SUITE( Test_double4x4 ) {
 
 	TEMPER_RUN_TEST( TestIdentity_double4x4 );
 	TEMPER_RUN_TEST( TestTranspose_double4x4 );
-	TEMPER_SKIP_TEST( TestInverse_double4x4, "TODO" );
-	TEMPER_SKIP_TEST( TestDeterminant_double4x4, "TODO" );
-
+	TEMPER_RUN_TEST( TestDeterminant_double4x4 );
+	TEMPER_RUN_TEST( TestInverse_double4x4 );
 	TEMPER_SKIP_TEST( TestTranslate_double4x4, "TODO" );
 	TEMPER_SKIP_TEST( TestRotate_double4x4, "TODO" );
 	TEMPER_SKIP_TEST( TestScale_double4x4, "TODO" );

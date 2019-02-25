@@ -76,12 +76,13 @@ void TestsGeneratorMatrix::Generate( const genType_t type, const uint32_t numRow
 	m_code += "\n";
 	m_code += "\tTEMPER_RUN_TEST( TestIdentity_" + m_fullTypeName + " );\n";
 	m_code += "\tTEMPER_RUN_TEST( TestTranspose_" + m_fullTypeName + " );\n";
-	if ( Gen_IsFloatingPointType( type ) ) {
-		m_code += "\tTEMPER_SKIP_TEST( TestInverse_" + m_fullTypeName + ", \"TODO\" );\n";
+	if ( ( m_type != GEN_TYPE_BOOL && m_type != GEN_TYPE_UINT ) && m_numRows == m_numCols ) {
+		m_code += "\tTEMPER_RUN_TEST( TestDeterminant_" + m_fullTypeName + " );\n";
+	}
+	if ( Gen_IsFloatingPointType( type ) && m_numRows == m_numCols ) {
+		m_code += "\tTEMPER_RUN_TEST( TestInverse_" + m_fullTypeName + " );\n";
 	}
 	if ( m_type != GEN_TYPE_BOOL ) {
-		m_code += "\tTEMPER_SKIP_TEST( TestDeterminant_" + m_fullTypeName + ", \"TODO\" );\n";
-		m_code += "\n";
 		m_code += "\tTEMPER_SKIP_TEST( TestTranslate_" + m_fullTypeName + ", \"TODO\" );\n";
 		m_code += "\tTEMPER_SKIP_TEST( TestRotate_" + m_fullTypeName + ", \"TODO\" );\n";
 		m_code += "\tTEMPER_SKIP_TEST( TestScale_" + m_fullTypeName + ", \"TODO\" );\n";
@@ -578,23 +579,151 @@ void TestsGeneratorMatrix::GenerateTestTranspose() {
 }
 
 void TestsGeneratorMatrix::GenerateTestInverse() {
-	if ( m_type == GEN_TYPE_BOOL ) {
+	if ( !Gen_IsFloatingPointType( m_type ) ) {
 		return;
 	}
 
+	if ( m_numRows != m_numCols ) {
+		return;
+	}
+
+	// matrices chosen because they gave nice whole numbers for determinants
+	int32_t mat2x2[4] {
+		6, 2,
+		2, 6
+	};
+
+	int32_t mat3x3[9] {
+		6, 2, 3,
+		2, 7, 2,
+		3, 2, 6
+	};
+
+	int32_t mat4x4[16] {
+		6, 2, 3, 4,
+		2, 7, 5, 3,
+		3, 5, 7, 2,
+		4, 3, 2, 6
+	};
+
+	const int32_t* matrix = nullptr;
+	switch ( m_numRows ) {
+		case 2: matrix = mat2x2; break;
+		case 3: matrix = mat3x3; break;
+		case 4: matrix = mat4x4; break;
+	}
+
+	std::string paramList = "(\n";
+	for ( uint32_t row = 0; row < m_numRows; row++ ) {
+		paramList += "\t\t";
+
+		for ( uint32_t col = 0; col < m_numCols; col++ ) {
+			uint32_t index = col + ( row * m_numCols );
+
+			paramList += Gen_GetNumericLiteral( m_type, matrix[index] );
+
+			if ( row + col != ( m_numRows - 1 ) + ( m_numCols - 1 ) ) {
+				paramList += ",";
+			}
+
+			if ( col != m_numCols - 1 ) {
+				paramList += " ";
+			}
+		}
+
+		paramList += "\n";
+	}
+	paramList += "\t)";
+
 	m_code += "TEMPER_TEST( TestInverse_" + m_fullTypeName + " ) {\n";
-	m_code += "\tTEMPER_FAIL();\n";
+	m_code += "\t" + m_fullTypeName + " identityMatrix;\n";
+	m_code += "\n";
+	m_code += "\t" + m_fullTypeName + " mat = " + m_fullTypeName + paramList + ";\n";
+	m_code += "\t" + m_fullTypeName + " matInverse = inverse( mat );\n";
+	m_code += "\n";
+	m_code += "\tTEMPER_EXPECT_TRUE( mat * matInverse == identityMatrix );\n";
+	m_code += "\n";
+	m_code += "\tTEMPER_PASS();\n";
 	m_code += "}\n";
 	m_code += "\n";
 }
 
 void TestsGeneratorMatrix::GenerateTestDeterminant() {
-	if ( m_type == GEN_TYPE_BOOL ) {
+	if ( m_type == GEN_TYPE_BOOL || m_type == GEN_TYPE_UINT ) {
 		return;
 	}
 
+	if ( m_numRows != m_numCols ) {
+		return;
+	}
+
+	// matrices chosen because they gave nice whole numbers for determinants
+	int32_t mat2x2[4] {
+		6, 2,
+		2, 6
+	};
+
+	int32_t mat3x3[9] {
+		6, 2, 3,
+		2, 7, 2,
+		3, 2, 6
+	};
+
+	int32_t mat4x4[16] {
+		6, 2, 3, 4,
+		2, 7, 5, 3,
+		3, 5, 7, 2,
+		4, 3, 2, 6
+	};
+
+	int32_t determinants[3] = {
+		32,		// 2x2
+		165,	// 3x3
+		285		// 4x4
+	};
+
+	const int32_t* matrix = nullptr;
+	switch ( m_numRows ) {
+		case 2: matrix = mat2x2; break;
+		case 3: matrix = mat3x3; break;
+		case 4: matrix = mat4x4; break;
+	}
+
+	std::string paramList = "(\n";
+	for ( uint32_t row = 0; row < m_numRows; row++ ) {
+		paramList += "\t\t";
+
+		for ( uint32_t col = 0; col < m_numCols; col++ ) {
+			uint32_t index = col + ( row * m_numCols );
+
+			paramList += Gen_GetNumericLiteral( m_type, matrix[index] );
+
+			if ( row + col != ( m_numRows - 1 ) + ( m_numCols - 1 ) ) {
+				paramList += ",";
+			}
+
+			if ( col != m_numCols - 1 ) {
+				paramList += " ";
+			}
+		}
+
+		paramList += "\n";
+	}
+	paramList += "\t)";
+
+	std::string answerStr = Gen_GetNumericLiteral( m_type, determinants[m_numRows - 2] );
+
 	m_code += "TEMPER_TEST( TestDeterminant_" + m_fullTypeName + " ) {\n";
-	m_code += "\tTEMPER_FAIL();\n";
+	m_code += "\t" + m_fullTypeName + " mat = " + m_fullTypeName + paramList + ";\n";
+	m_code += "\t" + m_memberTypeString + " det = determinant( mat );\n";
+	m_code += "\n";
+	if ( Gen_IsFloatingPointType( m_type ) ) {
+		m_code += "\tTEMPER_EXPECT_TRUE( floateq( det, " + answerStr + " ) );\n";
+	} else {
+		m_code += "\tTEMPER_EXPECT_TRUE( det == " + answerStr + " );\n";
+	}
+	m_code += "\n";
+	m_code += "\tTEMPER_PASS();\n";
 	m_code += "}\n";
 	m_code += "\n";
 }
