@@ -424,7 +424,7 @@ void Gen_MatrixDeterminant( const genType_t type, const uint32_t numRows, const 
 	assert( numRows <= GEN_COMPONENT_COUNT_MAX );
 	assert( numCols <= GEN_COMPONENT_COUNT_MAX );
 
-	if ( type == GEN_TYPE_BOOL ) {
+	if ( type == GEN_TYPE_BOOL || type == GEN_TYPE_UINT ) {
 		return;
 	}
 
