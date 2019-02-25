@@ -145,7 +145,112 @@ TEMPER_TEST( TestArray_int2x3 ) {
 }
 
 TEMPER_TEST( TestRelational_int2x3 ) {
-	TEMPER_FAIL();
+	int2x3 mat0 = int2x3(
+		1, 1, 1,
+		1, 1, 1
+	);
+	int2x3 mat1 = int2x3(
+		2, 2, 2,
+		2, 2, 2
+	);
+	int2x3 mat2 = int2x3(
+		3, 3, 3,
+		3, 3, 3
+	);
+	int2x3 mat3 = int2x3(
+		4, 4, 4,
+		4, 4, 4
+	);
+
+	bool2x3 test0 = mat0 <= mat0;
+	bool2x3 test1 = mat0 >= mat0;
+	bool2x3 test2 = mat0 < mat1;
+
+	bool2x3 test3 = mat1 <= mat1;
+	bool2x3 test4 = mat1 >= mat1;
+	bool2x3 test5 = mat1 < mat2;
+	bool2x3 test6 = mat1 > mat0;
+
+	bool2x3 test7 = mat2 <= mat2;
+	bool2x3 test8 = mat2 >= mat2;
+	bool2x3 test9 = mat2 < mat3;
+	bool2x3 test10 = mat2 > mat1;
+
+	bool2x3 test11 = mat3 <= mat3;
+	bool2x3 test12 = mat3 >= mat3;
+	bool2x3 test13 = mat3 > mat2;
+
+	TEMPER_EXPECT_TRUE( test0 == bool2x3(
+		true, true, true,
+		true, true, true
+	) );
+
+	TEMPER_EXPECT_TRUE( test1 == bool2x3(
+		true, true, true,
+		true, true, true
+	) );
+
+	TEMPER_EXPECT_TRUE( test2 == bool2x3(
+		true, true, true,
+		true, true, true
+	) );
+
+	TEMPER_EXPECT_TRUE( test3 == bool2x3(
+		true, true, true,
+		true, true, true
+	) );
+
+	TEMPER_EXPECT_TRUE( test4 == bool2x3(
+		true, true, true,
+		true, true, true
+	) );
+
+	TEMPER_EXPECT_TRUE( test5 == bool2x3(
+		true, true, true,
+		true, true, true
+	) );
+
+	TEMPER_EXPECT_TRUE( test6 == bool2x3(
+		true, true, true,
+		true, true, true
+	) );
+
+	TEMPER_EXPECT_TRUE( test7 == bool2x3(
+		true, true, true,
+		true, true, true
+	) );
+
+	TEMPER_EXPECT_TRUE( test8 == bool2x3(
+		true, true, true,
+		true, true, true
+	) );
+
+	TEMPER_EXPECT_TRUE( test9 == bool2x3(
+		true, true, true,
+		true, true, true
+	) );
+
+	TEMPER_EXPECT_TRUE( test10 == bool2x3(
+		true, true, true,
+		true, true, true
+	) );
+
+	TEMPER_EXPECT_TRUE( test11 == bool2x3(
+		true, true, true,
+		true, true, true
+	) );
+
+	TEMPER_EXPECT_TRUE( test12 == bool2x3(
+		true, true, true,
+		true, true, true
+	) );
+
+	TEMPER_EXPECT_TRUE( test13 == bool2x3(
+		true, true, true,
+		true, true, true
+	) );
+
+	TEMPER_PASS();
 }
 
 TEMPER_TEST( TestIdentity_int2x3 ) {
@@ -212,7 +317,7 @@ TEMPER_SUITE( Test_int2x3 ) {
 	TEMPER_RUN_TEST( TestArithmeticDivision_int2x3 );
 
 	TEMPER_RUN_TEST( TestArray_int2x3 );
-	TEMPER_SKIP_TEST( TestRelational_int2x3, "TODO" );
+	TEMPER_RUN_TEST( TestRelational_int2x3 );
 
 	TEMPER_RUN_TEST( TestIdentity_int2x3 );
 	TEMPER_RUN_TEST( TestTranspose_int2x3 );

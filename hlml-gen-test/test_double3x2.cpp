@@ -155,7 +155,130 @@ TEMPER_TEST( TestArray_double3x2 ) {
 }
 
 TEMPER_TEST( TestRelational_double3x2 ) {
-	TEMPER_FAIL();
+	double3x2 mat0 = double3x2(
+		1.0, 1.0,
+		1.0, 1.0,
+		1.0, 1.0
+	);
+	double3x2 mat1 = double3x2(
+		2.0, 2.0,
+		2.0, 2.0,
+		2.0, 2.0
+	);
+	double3x2 mat2 = double3x2(
+		3.0, 3.0,
+		3.0, 3.0,
+		3.0, 3.0
+	);
+	double3x2 mat3 = double3x2(
+		4.0, 4.0,
+		4.0, 4.0,
+		4.0, 4.0
+	);
+
+	bool3x2 test0 = mat0 <= mat0;
+	bool3x2 test1 = mat0 >= mat0;
+	bool3x2 test2 = mat0 < mat1;
+
+	bool3x2 test3 = mat1 <= mat1;
+	bool3x2 test4 = mat1 >= mat1;
+	bool3x2 test5 = mat1 < mat2;
+	bool3x2 test6 = mat1 > mat0;
+
+	bool3x2 test7 = mat2 <= mat2;
+	bool3x2 test8 = mat2 >= mat2;
+	bool3x2 test9 = mat2 < mat3;
+	bool3x2 test10 = mat2 > mat1;
+
+	bool3x2 test11 = mat3 <= mat3;
+	bool3x2 test12 = mat3 >= mat3;
+	bool3x2 test13 = mat3 > mat2;
+
+	TEMPER_EXPECT_TRUE( test0 == bool3x2(
+		true, true,
+		true, true,
+		true, true
+	) );
+
+	TEMPER_EXPECT_TRUE( test1 == bool3x2(
+		true, true,
+		true, true,
+		true, true
+	) );
+
+	TEMPER_EXPECT_TRUE( test2 == bool3x2(
+		true, true,
+		true, true,
+		true, true
+	) );
+
+	TEMPER_EXPECT_TRUE( test3 == bool3x2(
+		true, true,
+		true, true,
+		true, true
+	) );
+
+	TEMPER_EXPECT_TRUE( test4 == bool3x2(
+		true, true,
+		true, true,
+		true, true
+	) );
+
+	TEMPER_EXPECT_TRUE( test5 == bool3x2(
+		true, true,
+		true, true,
+		true, true
+	) );
+
+	TEMPER_EXPECT_TRUE( test6 == bool3x2(
+		true, true,
+		true, true,
+		true, true
+	) );
+
+	TEMPER_EXPECT_TRUE( test7 == bool3x2(
+		true, true,
+		true, true,
+		true, true
+	) );
+
+	TEMPER_EXPECT_TRUE( test8 == bool3x2(
+		true, true,
+		true, true,
+		true, true
+	) );
+
+	TEMPER_EXPECT_TRUE( test9 == bool3x2(
+		true, true,
+		true, true,
+		true, true
+	) );
+
+	TEMPER_EXPECT_TRUE( test10 == bool3x2(
+		true, true,
+		true, true,
+		true, true
+	) );
+
+	TEMPER_EXPECT_TRUE( test11 == bool3x2(
+		true, true,
+		true, true,
+		true, true
+	) );
+
+	TEMPER_EXPECT_TRUE( test12 == bool3x2(
+		true, true,
+		true, true,
+		true, true
+	) );
+
+	TEMPER_EXPECT_TRUE( test13 == bool3x2(
+		true, true,
+		true, true,
+		true, true
+	) );
+
+	TEMPER_PASS();
 }
 
 TEMPER_TEST( TestIdentity_double3x2 ) {
@@ -223,7 +346,7 @@ TEMPER_SUITE( Test_double3x2 ) {
 	TEMPER_RUN_TEST( TestArithmeticDivision_double3x2 );
 
 	TEMPER_RUN_TEST( TestArray_double3x2 );
-	TEMPER_SKIP_TEST( TestRelational_double3x2, "TODO" );
+	TEMPER_RUN_TEST( TestRelational_double3x2 );
 
 	TEMPER_RUN_TEST( TestIdentity_double3x2 );
 	TEMPER_RUN_TEST( TestTranspose_double3x2 );
