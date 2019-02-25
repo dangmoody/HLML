@@ -249,6 +249,7 @@ void TestsGeneratorVector::GenerateTestArithmetic() {
 	}
 }
 
+// TODO(DM): make this one the same as matrix equivalent
 void TestsGeneratorVector::GenerateTestRelational() {
 	if ( m_type == GEN_TYPE_BOOL ) {
 		return;
@@ -300,7 +301,7 @@ void TestsGeneratorVector::GenerateTestRelational() {
 		m_code += "\n";
 	}
 	for ( uint32_t i = 0; i < numTestVectors; i++ ) {
-		m_code += "\tTEMPER_EXPECT_TRUE( test" + std::to_string( i ) + " == " + boolTypeName + "( true )" + " );\n";
+		m_code += "\tTEMPER_EXPECT_TRUE( test" + std::to_string( i ) + " == " + boolTypeName + "( true ) );\n";
 	}
 	m_code += "\n";
 	m_code += "\tTEMPER_PASS();\n";
