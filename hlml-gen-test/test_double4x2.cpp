@@ -347,10 +347,6 @@ TEMPER_TEST( TestTranspose_double4x2 ) {
 	TEMPER_PASS();
 }
 
-TEMPER_TEST( TestTranslate_double4x2 ) {
-	TEMPER_FAIL();
-}
-
 TEMPER_TEST( TestRotate_double4x2 ) {
 	TEMPER_FAIL();
 }
@@ -384,7 +380,7 @@ TEMPER_SUITE( Test_double4x2 ) {
 
 	TEMPER_RUN_TEST( TestIdentity_double4x2 );
 	TEMPER_RUN_TEST( TestTranspose_double4x2 );
-	TEMPER_SKIP_TEST( TestTranslate_double4x2, "TODO" );
+
 	TEMPER_SKIP_TEST( TestRotate_double4x2, "TODO" );
 	TEMPER_SKIP_TEST( TestScale_double4x2, "TODO" );
 

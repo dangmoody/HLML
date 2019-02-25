@@ -491,18 +491,20 @@ void Gen_MatrixTranslate( const genType_t type, const uint32_t numRows, const ui
 		return;
 	}
 
-	if ( numRows < 3 || numCols < 3 ) {
+	if ( numRows < 3 || numCols < numRows ) {
 		return;
 	}
+
+	uint32_t vecComponents = numCols - 1;
 
 	std::string typeString = Gen_GetTypeString( type );
 	std::string fullTypeName = typeString + std::to_string( numRows ) + "x" + std::to_string( numCols );
 
-	outHeader += "inline " + fullTypeName + " translate( const " + fullTypeName + "& mat, const " + typeString + std::to_string( numRows - 1 ) + "& vec );\n";
+	outHeader += "inline " + fullTypeName + " translate( const " + fullTypeName + "& mat, const " + typeString + std::to_string( vecComponents ) + "& vec );\n";
 
 	outHeader += "\n";
 
-	outInl += fullTypeName + " translate( const " + fullTypeName + "& mat, const " + typeString + std::to_string( numRows - 1 ) + "& vec ) {\n";
+	outInl += fullTypeName + " translate( const " + fullTypeName + "& mat, const " + typeString + std::to_string( vecComponents ) + "& vec ) {\n";
 	outInl += "\treturn " + fullTypeName + "(\n";
 	outInl += "\t\t";
 	for ( uint32_t row = 0; row < numRows; row++ ) {
@@ -512,8 +514,12 @@ void Gen_MatrixTranslate( const genType_t type, const uint32_t numRows, const ui
 			if ( col != numCols - 1 ) {
 				outInl += ", ";
 			} else {
+				if ( col == vecComponents && row < vecComponents ) {
+					outInl += std::string( " + vec." ) + GEN_COMPONENT_NAMES_VECTOR[row];
+				}
+
 				if ( row != numRows - 1 ) {
-					outInl += std::string( " + vec." ) + GEN_COMPONENT_NAMES_VECTOR[row] + ",";
+					outInl += ",";
 				}
 			}
 		}

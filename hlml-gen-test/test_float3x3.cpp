@@ -343,7 +343,19 @@ TEMPER_TEST( TestDeterminant_float3x3 ) {
 }
 
 TEMPER_TEST( TestTranslate_float3x3 ) {
-	TEMPER_FAIL();
+	float3x3 mat;
+	float3x3 translated = float3x3(
+		1.0f, 0.0f, 2.0f,
+		0.0f, 1.0f, 3.0f,
+		0.0f, 0.0f, 1.0f
+	);
+
+	float2 translation = float2( 2.0f, 3.0f );
+	mat = translate( mat, translation );
+
+	TEMPER_EXPECT_TRUE( mat == translated );
+
+	TEMPER_PASS();
 }
 
 TEMPER_TEST( TestRotate_float3x3 ) {
@@ -381,7 +393,8 @@ TEMPER_SUITE( Test_float3x3 ) {
 	TEMPER_RUN_TEST( TestTranspose_float3x3 );
 	TEMPER_RUN_TEST( TestDeterminant_float3x3 );
 	TEMPER_RUN_TEST( TestInverse_float3x3 );
-	TEMPER_SKIP_TEST( TestTranslate_float3x3, "TODO" );
+
+	TEMPER_RUN_TEST( TestTranslate_float3x3 );
 	TEMPER_SKIP_TEST( TestRotate_float3x3, "TODO" );
 	TEMPER_SKIP_TEST( TestScale_float3x3, "TODO" );
 

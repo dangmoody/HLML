@@ -368,15 +368,6 @@ int3x4 transpose( const int4x3& mat ) {
 	);
 }
 
-int4x3 translate( const int4x3& mat, const int3& vec ) {
-	return int4x3(
-		mat[0][0], mat[0][1], mat[0][2] + vec.x,
-		mat[1][0], mat[1][1], mat[1][2] + vec.y,
-		mat[2][0], mat[2][1], mat[2][2] + vec.z,
-		mat[3][0], mat[3][1], mat[3][2]
-	);
-}
-
 int4x3 scale( const int4x3& mat, const int32_t scalar ) {
 	return scale( mat, int3( scalar, scalar, scalar ) );
 }
@@ -452,11 +443,11 @@ int4x3 transpose( const int3x4& mat ) {
 	);
 }
 
-int3x4 translate( const int3x4& mat, const int2& vec ) {
+int3x4 translate( const int3x4& mat, const int3& vec ) {
 	return int3x4(
 		mat[0][0], mat[0][1], mat[0][2], mat[0][3] + vec.x,
 		mat[1][0], mat[1][1], mat[1][2], mat[1][3] + vec.y,
-		mat[2][0], mat[2][1], mat[2][2], mat[2][3]
+		mat[2][0], mat[2][1], mat[2][2], mat[2][3] + vec.z
 	);
 }
 
@@ -747,15 +738,6 @@ uint3x4 transpose( const uint4x3& mat ) {
 	);
 }
 
-uint4x3 translate( const uint4x3& mat, const uint3& vec ) {
-	return uint4x3(
-		mat[0][0], mat[0][1], mat[0][2] + vec.x,
-		mat[1][0], mat[1][1], mat[1][2] + vec.y,
-		mat[2][0], mat[2][1], mat[2][2] + vec.z,
-		mat[3][0], mat[3][1], mat[3][2]
-	);
-}
-
 uint4x3 scale( const uint4x3& mat, const uint32_t scalar ) {
 	return scale( mat, uint3( scalar, scalar, scalar ) );
 }
@@ -831,11 +813,11 @@ uint4x3 transpose( const uint3x4& mat ) {
 	);
 }
 
-uint3x4 translate( const uint3x4& mat, const uint2& vec ) {
+uint3x4 translate( const uint3x4& mat, const uint3& vec ) {
 	return uint3x4(
 		mat[0][0], mat[0][1], mat[0][2], mat[0][3] + vec.x,
 		mat[1][0], mat[1][1], mat[1][2], mat[1][3] + vec.y,
-		mat[2][0], mat[2][1], mat[2][2], mat[2][3]
+		mat[2][0], mat[2][1], mat[2][2], mat[2][3] + vec.z
 	);
 }
 
@@ -1206,15 +1188,6 @@ float3x4 transpose( const float4x3& mat ) {
 	);
 }
 
-float4x3 translate( const float4x3& mat, const float3& vec ) {
-	return float4x3(
-		mat[0][0], mat[0][1], mat[0][2] + vec.x,
-		mat[1][0], mat[1][1], mat[1][2] + vec.y,
-		mat[2][0], mat[2][1], mat[2][2] + vec.z,
-		mat[3][0], mat[3][1], mat[3][2]
-	);
-}
-
 float4x3 rotate( const float4x3& mat, const float radians, const float4& axis ) {
 	const float c = static_cast<float>( cos( radians ) );
 	const float s = static_cast<float>( sin( radians ) );
@@ -1323,11 +1296,11 @@ float4x3 transpose( const float3x4& mat ) {
 	);
 }
 
-float3x4 translate( const float3x4& mat, const float2& vec ) {
+float3x4 translate( const float3x4& mat, const float3& vec ) {
 	return float3x4(
 		mat[0][0], mat[0][1], mat[0][2], mat[0][3] + vec.x,
 		mat[1][0], mat[1][1], mat[1][2], mat[1][3] + vec.y,
-		mat[2][0], mat[2][1], mat[2][2], mat[2][3]
+		mat[2][0], mat[2][1], mat[2][2], mat[2][3] + vec.z
 	);
 }
 
@@ -1856,15 +1829,6 @@ double3x4 transpose( const double4x3& mat ) {
 	);
 }
 
-double4x3 translate( const double4x3& mat, const double3& vec ) {
-	return double4x3(
-		mat[0][0], mat[0][1], mat[0][2] + vec.x,
-		mat[1][0], mat[1][1], mat[1][2] + vec.y,
-		mat[2][0], mat[2][1], mat[2][2] + vec.z,
-		mat[3][0], mat[3][1], mat[3][2]
-	);
-}
-
 double4x3 rotate( const double4x3& mat, const double radians, const double4& axis ) {
 	const double c = static_cast<double>( cos( radians ) );
 	const double s = static_cast<double>( sin( radians ) );
@@ -1973,11 +1937,11 @@ double4x3 transpose( const double3x4& mat ) {
 	);
 }
 
-double3x4 translate( const double3x4& mat, const double2& vec ) {
+double3x4 translate( const double3x4& mat, const double3& vec ) {
 	return double3x4(
 		mat[0][0], mat[0][1], mat[0][2], mat[0][3] + vec.x,
 		mat[1][0], mat[1][1], mat[1][2], mat[1][3] + vec.y,
-		mat[2][0], mat[2][1], mat[2][2], mat[2][3]
+		mat[2][0], mat[2][1], mat[2][2], mat[2][3] + vec.z
 	);
 }
 

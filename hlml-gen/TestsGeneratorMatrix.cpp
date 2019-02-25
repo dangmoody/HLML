@@ -83,7 +83,10 @@ void TestsGeneratorMatrix::Generate( const genType_t type, const uint32_t numRow
 		m_code += "\tTEMPER_RUN_TEST( TestInverse_" + m_fullTypeName + " );\n";
 	}
 	if ( m_type != GEN_TYPE_BOOL ) {
-		m_code += "\tTEMPER_SKIP_TEST( TestTranslate_" + m_fullTypeName + ", \"TODO\" );\n";
+		m_code += "\n";
+		if ( m_numRows >= 3 && m_numCols >= numRows ) {
+			m_code += "\tTEMPER_RUN_TEST( TestTranslate_" + m_fullTypeName + " );\n";
+		}
 		m_code += "\tTEMPER_SKIP_TEST( TestRotate_" + m_fullTypeName + ", \"TODO\" );\n";
 		m_code += "\tTEMPER_SKIP_TEST( TestScale_" + m_fullTypeName + ", \"TODO\" );\n";
 		m_code += "\n";
@@ -767,8 +770,65 @@ void TestsGeneratorMatrix::GenerateTestTranslate() {
 		return;
 	}
 
+	if ( m_numRows < 3 || m_numCols < m_numRows ) {
+		return;
+	}
+
+	uint32_t baseNumber = 2;
+
+	std::string translateVectorTypeString = m_typeString + std::to_string( m_numCols - 1 );
+
+	std::string zeroStr = Gen_GetNumericLiteral( m_type, 0 );
+	std::string oneStr = Gen_GetNumericLiteral( m_type, 1 );
+
+	std::string parmListTranslateVector = "( ";
+	for ( uint32_t col = 0; col < m_numCols - 1; col++ ) {
+		parmListTranslateVector += Gen_GetNumericLiteral( m_type, col + baseNumber );
+
+		if ( col != m_numCols - 2 ) {
+			parmListTranslateVector += ", ";
+		}
+	}
+	parmListTranslateVector += " )";
+
+	std::string parmListTranslated = "(\n";
+	for ( uint32_t row = 0; row < m_numRows; row++ ) {
+		parmListTranslated += "\t\t";
+
+		for ( uint32_t col = 0; col < m_numCols; col++ ) {
+			if ( row == col ) {
+				parmListTranslated += oneStr;
+			} else {
+				if ( col == m_numCols - 1 ) {
+					parmListTranslated += Gen_GetNumericLiteral( m_type, row + baseNumber );
+				} else {
+					parmListTranslated += zeroStr;
+				}
+			}
+
+			if ( row + col != ( m_numRows - 1 ) + ( m_numCols - 1 ) ) {
+				parmListTranslated += ",";
+			}
+
+			if ( col != m_numCols - 1 ) {
+				parmListTranslated += " ";
+			}
+		}
+
+		parmListTranslated += "\n";
+	}
+	parmListTranslated += "\t)";
+
 	m_code += "TEMPER_TEST( TestTranslate_" + m_fullTypeName + " ) {\n";
-	m_code += "\tTEMPER_FAIL();\n";
+	m_code += "\t" + m_fullTypeName + " mat;\n";
+	m_code += "\t" + m_fullTypeName + " translated = " + m_fullTypeName + parmListTranslated + ";\n";
+	m_code += "\n";
+	m_code += "\t" + translateVectorTypeString + " translation = " + translateVectorTypeString + parmListTranslateVector + ";\n";
+	m_code += "\tmat = translate( mat, translation );\n";
+	m_code += "\n";
+	m_code += "\tTEMPER_EXPECT_TRUE( mat == translated );\n";
+	m_code += "\n";
+	m_code += "\tTEMPER_PASS();\n";
 	m_code += "}\n";
 	m_code += "\n";
 }

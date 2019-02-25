@@ -197,8 +197,6 @@ inline void identity( int4x3& mat );
 
 inline int3x4 transpose( const int4x3& mat );
 
-inline int4x3 translate( const int4x3& mat, const int3& vec );
-
 inline int4x3 scale( const int4x3& mat, const int32_t scalar );
 inline int4x3 scale( const int4x3& mat, const int3& vec );
 
@@ -217,7 +215,7 @@ inline void identity( int3x4& mat );
 
 inline int4x3 transpose( const int3x4& mat );
 
-inline int3x4 translate( const int3x4& mat, const int2& vec );
+inline int3x4 translate( const int3x4& mat, const int3& vec );
 
 inline int3x4 scale( const int3x4& mat, const int32_t scalar );
 inline int3x4 scale( const int3x4& mat, const int3& vec );
@@ -288,8 +286,6 @@ inline void identity( uint4x3& mat );
 
 inline uint3x4 transpose( const uint4x3& mat );
 
-inline uint4x3 translate( const uint4x3& mat, const uint3& vec );
-
 inline uint4x3 scale( const uint4x3& mat, const uint32_t scalar );
 inline uint4x3 scale( const uint4x3& mat, const uint3& vec );
 
@@ -308,7 +304,7 @@ inline void identity( uint3x4& mat );
 
 inline uint4x3 transpose( const uint3x4& mat );
 
-inline uint3x4 translate( const uint3x4& mat, const uint2& vec );
+inline uint3x4 translate( const uint3x4& mat, const uint3& vec );
 
 inline uint3x4 scale( const uint3x4& mat, const uint32_t scalar );
 inline uint3x4 scale( const uint3x4& mat, const uint3& vec );
@@ -395,8 +391,6 @@ inline void identity( float4x3& mat );
 
 inline float3x4 transpose( const float4x3& mat );
 
-inline float4x3 translate( const float4x3& mat, const float3& vec );
-
 inline float4x3 rotate( const float4x3& mat, const float radians, const float4& axis );
 
 inline float4x3 scale( const float4x3& mat, const float scalar );
@@ -419,7 +413,7 @@ inline void identity( float3x4& mat );
 
 inline float4x3 transpose( const float3x4& mat );
 
-inline float3x4 translate( const float3x4& mat, const float2& vec );
+inline float3x4 translate( const float3x4& mat, const float3& vec );
 
 inline float3x4 rotate( const float3x4& mat, const float radians, const float3& axis );
 
@@ -520,8 +514,6 @@ inline void identity( double4x3& mat );
 
 inline double3x4 transpose( const double4x3& mat );
 
-inline double4x3 translate( const double4x3& mat, const double3& vec );
-
 inline double4x3 rotate( const double4x3& mat, const double radians, const double4& axis );
 
 inline double4x3 scale( const double4x3& mat, const double scalar );
@@ -544,7 +536,7 @@ inline void identity( double3x4& mat );
 
 inline double4x3 transpose( const double3x4& mat );
 
-inline double3x4 translate( const double3x4& mat, const double2& vec );
+inline double3x4 translate( const double3x4& mat, const double3& vec );
 
 inline double3x4 rotate( const double3x4& mat, const double radians, const double3& axis );
 
