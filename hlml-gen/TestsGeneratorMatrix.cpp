@@ -71,7 +71,7 @@ void TestsGeneratorMatrix::Generate( const genType_t type, const uint32_t numRow
 	}
 	m_code += "\tTEMPER_RUN_TEST( TestArray_" + m_fullTypeName + " );\n";
 	if ( m_type != GEN_TYPE_BOOL ) {
-		m_code += "\tTEMPER_SKIP_TEST( TestRelational_" + m_fullTypeName + ", \"TODO\" );\n";
+		m_code += "\tTEMPER_RUN_TEST( TestRelational_" + m_fullTypeName + " );\n";
 	}
 	m_code += "\n";
 	m_code += "\tTEMPER_RUN_TEST( TestIdentity_" + m_fullTypeName + " );\n";
@@ -293,7 +293,7 @@ void TestsGeneratorMatrix::GenerateTestArithmetic() {
 	}
 	paramListVarying += "\t)";
 
-	std::string paramListIdentity = GetParamListIdentity();
+	std::string paramListIdentity = GetParmListIdentity();
 
 	std::vector<std::string> paramListAnswers( GEN_ARITHMETIC_OP_COUNT );
 
@@ -493,8 +493,42 @@ void TestsGeneratorMatrix::GenerateTestRelational() {
 		return;
 	}
 
+	std::string boolTypeName = "bool" + std::to_string( m_numRows ) + "x" + std::to_string( m_numCols );
+
+	std::string paramListTrue = GetParmListSingleValue( GEN_TYPE_BOOL, true );
+
+	std::string parmLists[] = {
+		GetParmListSingleValue( m_type, 1 ),
+		GetParmListSingleValue( m_type, 2 ),
+		GetParmListSingleValue( m_type, 3 ),
+		GetParmListSingleValue( m_type, 4 ),
+	};
+
+	uint32_t numTestMats = 0;
+
 	m_code += "TEMPER_TEST( TestRelational_" + m_fullTypeName + " ) {\n";
-	m_code += "\tTEMPER_FAIL();\n";
+	for ( uint32_t parmListIndex = 0; parmListIndex < _countof( parmLists ); parmListIndex++ ) {
+		m_code += "\t" + m_fullTypeName + " mat" + std::to_string( parmListIndex ) + " = " + m_fullTypeName + parmLists[parmListIndex] + ";\n";
+	}
+	m_code += "\n";
+	for ( uint32_t parmListIndex = 0; parmListIndex < _countof( parmLists ); parmListIndex++ ) {
+		std::string matString = "mat" + std::to_string( parmListIndex );
+
+		m_code += "\t" + boolTypeName + " test" + std::to_string( numTestMats++ ) + " = " + matString + " <= " + matString + ";\n";
+		m_code += "\t" + boolTypeName + " test" + std::to_string( numTestMats++ ) + " = " + matString + " >= " + matString + ";\n";
+		if ( parmListIndex != _countof( parmLists ) - 1 ) {
+			m_code += "\t" + boolTypeName + " test" + std::to_string( numTestMats++ ) + " = " + matString + " < mat" + std::to_string( parmListIndex + 1 ) + ";\n";
+		}
+		if ( parmListIndex > 0 ) {
+			m_code += "\t" + boolTypeName + " test" + std::to_string( numTestMats++ ) + " = " + matString + " > mat" + std::to_string( parmListIndex - 1 ) + ";\n";
+		}
+		m_code += "\n";
+	}
+	for ( uint32_t i = 0; i < numTestMats; i++ ) {
+		m_code += "\tTEMPER_EXPECT_TRUE( test" + std::to_string( i ) + " == " + boolTypeName + paramListTrue + " );\n";
+		m_code += "\n";
+	}
+	m_code += "\tTEMPER_PASS();\n";
 	m_code += "}\n";
 	m_code += "\n";
 }
@@ -503,7 +537,7 @@ void TestsGeneratorMatrix::GenerateTestIdentity() {
 	std::string zeroStr = Gen_GetNumericLiteral( m_type, 0 );
 	std::string oneStr = Gen_GetNumericLiteral( m_type, 1 );
 
-	std::string paramListIdentity = GetParamListIdentity();
+	std::string paramListIdentity = GetParmListIdentity();
 
 	m_code += "TEMPER_TEST( TestIdentity_" + m_fullTypeName + " ) {\n";
 	m_code += "\t" + m_fullTypeName + " id = " + m_fullTypeName + paramListIdentity + ";\n";
@@ -794,16 +828,16 @@ void TestsGeneratorMatrix::GenerateTestLookAt() {
 	m_code += "\n";
 }
 
-std::string TestsGeneratorMatrix::GetParamListIdentity() const {
+std::string TestsGeneratorMatrix::GetParmListIdentity( const int32_t value ) const {
 	std::string zeroStr = Gen_GetNumericLiteral( m_type, 0 );
-	std::string oneStr = Gen_GetNumericLiteral( m_type, 1 );
+	std::string valueStr = Gen_GetNumericLiteral( m_type, value );
 
 	std::string paramListIdentity = "(\n";
 	for ( uint32_t row = 0; row < m_numRows; row++ ) {
 		paramListIdentity += "\t\t";
 
 		for ( uint32_t col = 0; col < m_numCols; col++ ) {
-			paramListIdentity += ( row == col ) ? oneStr : zeroStr;
+			paramListIdentity += ( row == col ) ? valueStr : zeroStr;
 
 			if ( row + col != ( m_numRows - 1 ) + ( m_numCols - 1 ) ) {
 				paramListIdentity += ",";
@@ -819,4 +853,30 @@ std::string TestsGeneratorMatrix::GetParamListIdentity() const {
 	paramListIdentity += "\t)";
 
 	return paramListIdentity;
+}
+
+std::string TestsGeneratorMatrix::GetParmListSingleValue( const genType_t type, const int32_t value ) const {
+	std::string valueStr = Gen_GetNumericLiteral( type, value );
+
+	std::string paramList = "(\n";
+	for ( uint32_t row = 0; row < m_numRows; row++ ) {
+		paramList += "\t\t";
+
+		for ( uint32_t col = 0; col < m_numCols; col++ ) {
+			paramList += valueStr;
+
+			if ( row + col != ( m_numRows - 1 ) + ( m_numCols - 1 ) ) {
+				paramList += ",";
+			}
+
+			if ( col != m_numCols - 1 ) {
+				paramList += " ";
+			}
+		}
+
+		paramList += "\n";
+	}
+	paramList += "\t)";
+
+	return paramList;
 }

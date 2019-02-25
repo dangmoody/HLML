@@ -41,5 +41,6 @@ private:
 	void		GenerateTestPerspective();
 	void		GenerateTestLookAt();
 
-	std::string	GetParamListIdentity() const;
+	std::string	GetParmListIdentity( const int32_t value = 1 ) const;
+	std::string	GetParmListSingleValue( const genType_t type, const int32_t value ) const;
 };
