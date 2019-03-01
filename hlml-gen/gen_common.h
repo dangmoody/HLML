@@ -31,8 +31,6 @@
 #define GEN_HEADER_FUNCTIONS_VECTOR	"hlml_functions_vector"
 #define GEN_HEADER_FUNCTIONS_MATRIX	"hlml_functions_matrix"
 
-#define GEN_TEST_SUITES_HEADER		"suites.h"
-
 enum genType_t {
 	GEN_TYPE_BOOL					= 0,
 	GEN_TYPE_INT,
