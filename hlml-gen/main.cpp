@@ -465,53 +465,6 @@ static bool GenerateTestsMain( void ) {
 	return true;
 }
 
-#if 0
-static bool GenerateTestSuitesHeader( void ) {
-	char filePathHeader[1024] = { 0 };
-	snprintf( filePathHeader, 1024, "%s%s", GEN_TESTS_FOLDER_PATH, GEN_TEST_SUITES_HEADER );
-
-	std::string content = GEN_COPYRIGHT_HEADER;
-	content += "\n";
-	content += GEN_GENERATED_WARNING;
-	content += "\n";
-
-	content += "#pragma once\n";
-	content += "\n";
-
-	content += "#include <temper.h>\n";
-	content += "\n";
-
-	for ( uint32_t typeIndex = 0; typeIndex < GEN_TYPE_COUNT; typeIndex++ ) {
-		genType_t type = static_cast<genType_t>( typeIndex );
-
-		std::string typeString = Gen_GetTypeString( type );
-
-		for ( uint32_t col = GEN_COMPONENT_COUNT_MIN; col <= GEN_COMPONENT_COUNT_MAX; col++ ) {
-			std::string colStr = std::to_string( col );
-
-			for ( uint32_t row = 1; row <= GEN_COMPONENT_COUNT_MAX; row++ ) {
-				std::string rowStr = std::to_string( row );
-
-				std::string fullTypeName = typeString;
-				if ( row > 1 ) {
-					fullTypeName += rowStr + "x";
-				}
-				fullTypeName += colStr;
-
-				content += "TEMPER_SUITE_EXTERN( Test_" + fullTypeName + " );\n";
-			}
-			content += "\n";
-		}
-	}
-
-	if ( !FS_WriteToFile( filePathHeader, content.c_str(), content.size() ) ) {
-		return false;
-	}
-
-	return true;
-}
-#endif
-
 int main( int argc, char** argv ) {
 	if ( !ProcessArgs( argc, argv ) ) {
 		ShowUsage();
