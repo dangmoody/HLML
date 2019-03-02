@@ -7,7 +7,7 @@
 #include <stdio.h>
 #include <assert.h>
 
-const std::string GEN_COPYRIGHT_HEADER = \
+const std::string GEN_FILE_HEADER = \
 "/*\n" \
 "===========================================================================\n" \
 "\n" \
@@ -30,20 +30,16 @@ const std::string GEN_COPYRIGHT_HEADER = \
 "along with hlml.  If not, see <http://www.gnu.org/licenses/>.\n" \
 "\n" \
 "===========================================================================\n" \
-"*/\n";
-
-const std::string GEN_GENERATED_WARNING = "// GENERATED FILE.  DO NOT EDIT.\n";
+"*/\n" \
+"\n" \
+"// GENERATED FILE.  DO NOT EDIT.\n" \
+"\n";
 
 const std::string GEN_COMPONENT_NAMES_VECTOR = "xyzw";
 const std::string GEN_COMPONENT_NAMES_COLOR = "rgba";
-const std::string GEN_OPERATORS_ARITHMETIC[4] = {
-	"+",
-	"-",
-	"*",
-	"/",
-};
+const std::string GEN_OPERATORS_ARITHMETIC = "+-*/";
 
-const std::string GEN_OPERATORS_EQUALITY[4] = {
+const std::string GEN_OPERATORS_EQUALITY[GEN_COMPONENT_COUNT_MAX] = {
 	"<",
 	"<=",
 	">",

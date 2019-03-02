@@ -127,11 +127,7 @@ static bool GenerateMainTypeHeaderVector( void ) {
 	char headerFilePath[1024] = { 0 };
 	sprintf( headerFilePath, "%s%s", GEN_OUT_GEN_FOLDER_PATH, GEN_HEADER_VECTOR );
 
-	// TODO(DM): cache this as "GEN_FILE_HEADER" constant
-	std::string content = GEN_COPYRIGHT_HEADER;
-	content += "\n";
-	content += GEN_GENERATED_WARNING;
-	content += "\n";
+	std::string content = GEN_FILE_HEADER;
 
 	for ( uint32_t typeIndex = 0; typeIndex < GEN_TYPE_COUNT; typeIndex++ ) {
 		genType_t type = static_cast<genType_t>( typeIndex );
@@ -153,11 +149,7 @@ static bool GenerateMainTypeHeaderMatrix( void ) {
 	char headerFilePath[1024] = { 0 };
 	sprintf( headerFilePath, "%s%s", GEN_OUT_GEN_FOLDER_PATH, GEN_HEADER_MATRIX );
 
-	// TODO(DM): cache this as "GEN_FILE_HEADER" constant
-	std::string content = GEN_COPYRIGHT_HEADER;
-	content += "\n";
-	content += GEN_GENERATED_WARNING;
-	content += "\n";
+	std::string content = GEN_FILE_HEADER;
 
 	for ( uint32_t typeIndex = 0; typeIndex < GEN_TYPE_COUNT; typeIndex++ ) {
 		genType_t type = static_cast<genType_t>( typeIndex );
@@ -188,10 +180,7 @@ static bool GenerateFunctionsVector( void ) {
 	char filePathInl[1024] = { 0 };
 	sprintf( filePathInl, "%s%s.inl", GEN_OUT_GEN_FOLDER_PATH, GEN_HEADER_FUNCTIONS_VECTOR );
 
-	std::string content = GEN_COPYRIGHT_HEADER;
-	content += "\n";
-	content += GEN_GENERATED_WARNING;
-	content += "\n";
+	std::string content = GEN_FILE_HEADER;
 
 	std::string contentHeader = content;
 	contentHeader += "#pragma once\n";
@@ -264,10 +253,7 @@ static bool GenerateFunctionsMatrix( void ) {
 	char filePathInl[1024] = { 0 };
 	sprintf( filePathInl, "%s%s.inl", GEN_OUT_GEN_FOLDER_PATH, GEN_HEADER_FUNCTIONS_MATRIX );
 
-	std::string content = GEN_COPYRIGHT_HEADER;
-	content += "\n";
-	content += GEN_GENERATED_WARNING;
-	content += "\n";
+	std::string content = GEN_FILE_HEADER;
 
 	std::string contentHeader = content;
 	contentHeader += "#pragma once\n";
@@ -401,10 +387,7 @@ static bool GenerateTestsMain( void ) {
 	char filePathMain[1024] = { 0 };
 	snprintf( filePathMain, 1024, "%smain.cpp", GEN_TESTS_FOLDER_PATH );
 
-	std::string content = GEN_COPYRIGHT_HEADER;
-	content += "\n";
-	content += GEN_GENERATED_WARNING;
-	content += "\n";
+	std::string content = GEN_FILE_HEADER;
 
 	content += "#include <temper.h>\n";
 	content += "\n";

@@ -22,10 +22,7 @@ void TestsGeneratorMatrix::Generate( const genType_t type, const uint32_t numRow
 
 	m_testPrefix = "Test_" + m_fullTypeName;
 
-	m_code += GEN_COPYRIGHT_HEADER;
-	m_code += "\n";
-	m_code += GEN_GENERATED_WARNING;
-	m_code += "\n";
+	m_code += GEN_FILE_HEADER;
 
 	m_code += std::string( "#include \"../" ) + GEN_OUT_GEN_FOLDER_PATH + GEN_HEADER_FUNCTIONS_MATRIX + ".h\"\n";
 	m_code += "\n";

@@ -34,10 +34,7 @@ void MatrixGenerator::GenerateHeader() {
 	m_codeHeader = std::string();
 
 	// generate code
-	m_codeHeader += GEN_COPYRIGHT_HEADER;
-	m_codeHeader += "\n";
-	m_codeHeader += GEN_GENERATED_WARNING;
-	m_codeHeader += "\n";
+	m_codeHeader += GEN_FILE_HEADER;
 
 	m_codeHeader += "#pragma once\n";
 	m_codeHeader += "\n";
@@ -68,10 +65,7 @@ void MatrixGenerator::GenerateHeader() {
 void MatrixGenerator::GenerateInl() {
 	m_codeInl = std::string();
 
-	m_codeInl += GEN_COPYRIGHT_HEADER;
-	m_codeInl += "\n";
-	m_codeInl += GEN_GENERATED_WARNING;
-	m_codeInl += "\n";
+	m_codeInl += GEN_FILE_HEADER;
 
 	m_codeInl += "// hlml includes\n";
 	m_codeInl += "#include \"../" + std::string( GEN_HEADER_MAIN ) + "\"\n";
@@ -170,8 +164,8 @@ void MatrixGenerator::HeaderGenerateOperatorsArithmetic() {
 		return;
 	}
 
-	for ( uint32_t i = 0; i < _countof( GEN_OPERATORS_ARITHMETIC ); i++ ) {
-		const std::string op = GEN_OPERATORS_ARITHMETIC[i];
+	for ( uint32_t i = 0; i < GEN_ARITHMETIC_OP_COUNT; i++ ) {
+		char op = GEN_OPERATORS_ARITHMETIC[i];
 
 		m_codeHeader += "\tinline " + m_fullTypeName + " operator" + op + "( const " + m_memberTypeString + " rhs ) const;\n";
 		m_codeHeader += "\tinline " + m_fullTypeName + " operator" + op + "=( const " + m_memberTypeString + " rhs );\n";
@@ -339,9 +333,8 @@ void MatrixGenerator::InlGenerateOperatorsArithmetic() {
 		return;
 	}
 
-	uint32_t numOperators = _countof( GEN_OPERATORS_ARITHMETIC );
-	for ( uint32_t operatorIndex = 0; operatorIndex < numOperators; operatorIndex++ ) {
-		std::string op = GEN_OPERATORS_ARITHMETIC[operatorIndex];
+	for ( uint32_t operatorIndex = 0; operatorIndex < GEN_ARITHMETIC_OP_COUNT; operatorIndex++ ) {
+		char op = GEN_OPERATORS_ARITHMETIC[operatorIndex];
 
 		// scalar arithmetic operator
 		m_codeInl += m_fullTypeName + " " + m_fullTypeName + "::operator" + op + "( const " + m_memberTypeString + " rhs ) const {\n";
@@ -360,7 +353,7 @@ void MatrixGenerator::InlGenerateOperatorsArithmetic() {
 
 		// scalar compound arithmetic operator
 		m_codeInl += m_fullTypeName + " " + m_fullTypeName + "::operator" + op + "=( const " + m_memberTypeString + " rhs ) {\n";
-		m_codeInl += "\treturn ( *this = *this " + op + " rhs );\n";
+		m_codeInl += std::string( "\treturn ( *this = *this " ) + op + " rhs );\n";
 		m_codeInl += "}\n";
 
 		m_codeInl += "\n";
@@ -368,103 +361,115 @@ void MatrixGenerator::InlGenerateOperatorsArithmetic() {
 		// rhs type arithmetic operator
 		m_codeInl += m_fullTypeName + " " + m_fullTypeName + "::operator" + op + "( const " + m_fullTypeName + "& rhs ) const {\n";
 
-		if ( op == "+" || op == "-" ) {
-			m_codeInl += "\treturn " + m_fullTypeName + "(\n";
-			for ( uint32_t row = 0; row < m_numRows; row++ ) {
-				std::string rowStr = std::to_string( row );
-
-				m_codeInl += "\t\trows[" + rowStr + "] " + op + " rhs[" + rowStr + "]";
-
-				if ( row != m_numRows - 1 ) {
-					m_codeInl += ",";
-				}
-				m_codeInl += "\n";
-			}
-			m_codeInl += "\t);\n";
-		} else if ( op == "*" ) {
-			for ( uint32_t row = 0; row < m_numRows; row++ ) {
-				std::string rowStr = std::to_string( row );
-				m_codeInl += "\t" + m_typeString + std::to_string( m_numRows ) + " row" + rowStr + " = rows[" + rowStr + "];\n";
-			}
-
-			m_codeInl += "\n";
-
-			for ( uint32_t col = 0; col < m_numCols; col++ ) {
-				std::string colStr = std::to_string( col );
-				m_codeInl += "\t" + m_typeString + std::to_string( m_numRows ) + " col" + colStr + " = { ";
-				for ( uint32_t row = 0; row < m_numRows; row++ ) {
-					m_codeInl += "rhs[" + std::to_string( row ) + "]." + GEN_COMPONENT_NAMES_VECTOR[col];
-
-					if ( row != m_numRows - 1 ) {
-						m_codeInl += ", ";
-					}
-				}
-
-				m_codeInl += " };\n";
-			}
-
-			m_codeInl += "\n";
-
-			m_codeInl += "\treturn " + m_fullTypeName + "(\n";
-
-			for ( uint32_t row = 0; row < m_numRows; row++ ) {
-				std::string rowStr = std::to_string( row );
-
-				for ( uint32_t col = 0; col < m_numCols; col++ ) {
-					std::string colStr = std::to_string( col );
-
-					m_codeInl += "\t\t";
-
-					for ( uint32_t row2 = 0; row2 < m_numRows; row2++ ) {
-						m_codeInl += "row" + rowStr + "." + GEN_COMPONENT_NAMES_VECTOR[row2] + " * " + "col" + colStr + "." + GEN_COMPONENT_NAMES_VECTOR[row2];
-
-						if ( row2 != m_numRows - 1 ) {
-							m_codeInl += " + ";
-						} else {
-							if ( row + col != ( m_numRows - 1 ) + ( m_numCols - 1 ) ) {
-								m_codeInl += ",";
-							}
-
-							m_codeInl += "\n";
-						}
-					}
-				}
-
-				if ( row != m_numRows - 1 ) {
-					m_codeInl += "\n";
-				}
-			}
-			m_codeInl += "\t);\n";
-		} else if ( op == "/" ) {
-			if ( m_numRows == m_numCols && Gen_IsFloatingPointType( m_type ) ) {
-				m_codeInl += "\treturn *this * inverse( rhs );\n";
-			} else {
+		switch ( op ) {
+			case '+':
+			case '-': {
 				m_codeInl += "\treturn " + m_fullTypeName + "(\n";
 				for ( uint32_t row = 0; row < m_numRows; row++ ) {
 					std::string rowStr = std::to_string( row );
 
-					m_codeInl += "\t\trows[" + rowStr + "] / rhs[" + rowStr + "]";
+					m_codeInl += "\t\trows[" + rowStr + "] " + op + " rhs[" + rowStr + "]";
 
 					if ( row != m_numRows - 1 ) {
 						m_codeInl += ",";
 					}
-
 					m_codeInl += "\n";
 				}
 				m_codeInl += "\t);\n";
+
+				break;
+			}
+
+			case '*': {
+				for ( uint32_t row = 0; row < m_numRows; row++ ) {
+					std::string rowStr = std::to_string( row );
+					m_codeInl += "\t" + m_typeString + std::to_string( m_numRows ) + " row" + rowStr + " = rows[" + rowStr + "];\n";
+				}
+
+				m_codeInl += "\n";
+
+				for ( uint32_t col = 0; col < m_numCols; col++ ) {
+					std::string colStr = std::to_string( col );
+					m_codeInl += "\t" + m_typeString + std::to_string( m_numRows ) + " col" + colStr + " = { ";
+					for ( uint32_t row = 0; row < m_numRows; row++ ) {
+						m_codeInl += "rhs[" + std::to_string( row ) + "]." + GEN_COMPONENT_NAMES_VECTOR[col];
+
+						if ( row != m_numRows - 1 ) {
+							m_codeInl += ", ";
+						}
+					}
+
+					m_codeInl += " };\n";
+				}
+
+				m_codeInl += "\n";
+
+				m_codeInl += "\treturn " + m_fullTypeName + "(\n";
+
+				for ( uint32_t row = 0; row < m_numRows; row++ ) {
+					std::string rowStr = std::to_string( row );
+
+					for ( uint32_t col = 0; col < m_numCols; col++ ) {
+						std::string colStr = std::to_string( col );
+
+						m_codeInl += "\t\t";
+
+						for ( uint32_t row2 = 0; row2 < m_numRows; row2++ ) {
+							m_codeInl += "row" + rowStr + "." + GEN_COMPONENT_NAMES_VECTOR[row2] + " * " + "col" + colStr + "." + GEN_COMPONENT_NAMES_VECTOR[row2];
+
+							if ( row2 != m_numRows - 1 ) {
+								m_codeInl += " + ";
+							} else {
+								if ( row + col != ( m_numRows - 1 ) + ( m_numCols - 1 ) ) {
+									m_codeInl += ",";
+								}
+
+								m_codeInl += "\n";
+							}
+						}
+					}
+
+					if ( row != m_numRows - 1 ) {
+						m_codeInl += "\n";
+					}
+				}
+				m_codeInl += "\t);\n";
+
+				break;
+			}
+
+			case '/': {
+				if ( m_numRows == m_numCols && Gen_IsFloatingPointType( m_type ) ) {
+					m_codeInl += "\treturn *this * inverse( rhs );\n";
+				} else {
+					m_codeInl += "\treturn " + m_fullTypeName + "(\n";
+					for ( uint32_t row = 0; row < m_numRows; row++ ) {
+						std::string rowStr = std::to_string( row );
+
+						m_codeInl += "\t\trows[" + rowStr + "] / rhs[" + rowStr + "]";
+
+						if ( row != m_numRows - 1 ) {
+							m_codeInl += ",";
+						}
+
+						m_codeInl += "\n";
+					}
+					m_codeInl += "\t);\n";
+				}
+
+				break;
 			}
 		}
-
 		m_codeInl += "}\n";
 
 		m_codeInl += "\n";
 
 		// rhs type compound arithmetic operator
 		m_codeInl += m_fullTypeName + " " + m_fullTypeName + "::operator" + op + "=( const " + m_fullTypeName + "& rhs ) {\n";
-		m_codeInl += "\treturn ( *this = *this " + op + " rhs );\n";
+		m_codeInl += std::string( "\treturn ( *this = *this " ) + op + " rhs );\n";
 		m_codeInl += "}\n";
 
-		if ( operatorIndex != numOperators - 1 ) {
+		if ( operatorIndex != GEN_ARITHMETIC_OP_COUNT - 1 ) {
 			m_codeInl += "\n";
 		}
 	}

@@ -41,10 +41,7 @@ void VectorGenerator::GenerateHeader() {
 	m_codeHeader = std::string();
 
 	// generate code
-	m_codeHeader += GEN_COPYRIGHT_HEADER;
-	m_codeHeader += "\n";
-	m_codeHeader += GEN_GENERATED_WARNING;
-	m_codeHeader += "\n";
+	m_codeHeader += GEN_FILE_HEADER;
 
 	m_codeHeader += "#pragma once\n";
 	m_codeHeader += "\n";
@@ -82,10 +79,7 @@ void VectorGenerator::GenerateHeader() {
 void VectorGenerator::GenerateInl() {
 	m_codeInl = std::string();
 
-	m_codeInl += GEN_COPYRIGHT_HEADER;
-	m_codeInl += "\n";
-	m_codeInl += GEN_GENERATED_WARNING;
-	m_codeInl += "\n";
+	m_codeInl += GEN_FILE_HEADER;
 
 	m_codeInl += "// hlml includes\n";
 
@@ -201,8 +195,8 @@ void VectorGenerator::HeaderGenerateOperatorsArithmetic() {
 		return;
 	}
 
-	for ( uint32_t i = 0; i < _countof( GEN_OPERATORS_ARITHMETIC ); i++ ) {
-		const std::string op = GEN_OPERATORS_ARITHMETIC[i];
+	for ( uint32_t i = 0; i < GEN_ARITHMETIC_OP_COUNT; i++ ) {
+		char op = GEN_OPERATORS_ARITHMETIC[i];
 
 		m_codeHeader += "\tinline " + m_fullTypeName + " operator" + op + "( const " + m_typeString + " rhs ) const;\n";
 		m_codeHeader += "\tinline " + m_fullTypeName + " operator" + op + "=( const " + m_typeString + " rhs );\n";
@@ -313,8 +307,8 @@ void VectorGenerator::InlGenerateOperatorsArithmetic() {
 		return;
 	}
 
-	for ( uint32_t i = 0; i < _countof( GEN_OPERATORS_ARITHMETIC ); i++ ) {
-		const std::string op = GEN_OPERATORS_ARITHMETIC[i];
+	for ( uint32_t i = 0; i < GEN_ARITHMETIC_OP_COUNT; i++ ) {
+		char op = GEN_OPERATORS_ARITHMETIC[i];
 
 		// single scalar
 		m_codeInl += m_fullTypeName + " " + m_fullTypeName + "::operator" + op + "( const " + m_typeString + " rhs ) const {\n";
@@ -332,7 +326,7 @@ void VectorGenerator::InlGenerateOperatorsArithmetic() {
 		m_codeInl += "\n";
 
 		m_codeInl += m_fullTypeName + " " + m_fullTypeName + "::operator" + op + "=( const " + m_typeString + " rhs ) {\n";
-		m_codeInl += "\treturn ( *this = *this " + op + " rhs );\n";
+		m_codeInl += std::string( "\treturn ( *this = *this " ) + op + " rhs );\n";
 		m_codeInl += "}\n";
 
 		m_codeInl += "\n";
@@ -353,7 +347,7 @@ void VectorGenerator::InlGenerateOperatorsArithmetic() {
 		m_codeInl += "\n";
 
 		m_codeInl += m_fullTypeName + " " + m_fullTypeName + "::operator" + op + "=( const " + m_fullTypeName + "& rhs ) {\n";
-		m_codeInl += "\treturn ( *this = *this " + op + " rhs );\n";
+		m_codeInl += std::string( "\treturn ( *this = *this " ) + op + " rhs );\n";
 		m_codeInl += "}\n";
 
 		m_codeInl += "\n";

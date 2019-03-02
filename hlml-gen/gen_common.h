@@ -58,14 +58,12 @@ enum arithmeticOp_t {
 };
 
 
-extern const std::string			GEN_COPYRIGHT_HEADER;
-
-extern const std::string			GEN_GENERATED_WARNING;
+extern const std::string			GEN_FILE_HEADER;
 
 extern const std::string			GEN_COMPONENT_NAMES_VECTOR;
 extern const std::string			GEN_COMPONENT_NAMES_COLOR;
-extern const std::string			GEN_OPERATORS_ARITHMETIC[4];
-extern const std::string			GEN_OPERATORS_EQUALITY[4];
+extern const std::string			GEN_OPERATORS_ARITHMETIC;
+extern const std::string			GEN_OPERATORS_EQUALITY[GEN_COMPONENT_COUNT_MAX];
 
 inline std::string					Gen_GetTypeString( const genType_t type );
 inline std::string					Gen_GetMemberTypeString( const genType_t type );

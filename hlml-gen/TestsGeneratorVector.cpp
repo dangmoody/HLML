@@ -18,10 +18,7 @@ void TestsGeneratorVector::Generate( const genType_t type, const uint32_t numCom
 
 	m_testPrefix = "Test_" + m_fullTypeName;
 
-	m_code += GEN_COPYRIGHT_HEADER;
-	m_code += "\n";
-	m_code += GEN_GENERATED_WARNING;
-	m_code += "\n";
+	m_code += GEN_FILE_HEADER;
 
 	m_code += std::string( "#include \"../" ) + GEN_OUT_GEN_FOLDER_PATH + GEN_HEADER_FUNCTIONS_VECTOR + ".h\"\n";
 	m_code += "\n";
@@ -157,7 +154,7 @@ void TestsGeneratorVector::GenerateTestArithmetic() {
 	}
 	paramListVarying += " )";
 
-	std::vector<std::string> paramListAnswers( _countof( GEN_OPERATORS_ARITHMETIC ) );
+	std::vector<std::string> paramListAnswers( GEN_ARITHMETIC_OP_COUNT );
 
 	// addition
 	{
@@ -235,7 +232,7 @@ void TestsGeneratorVector::GenerateTestArithmetic() {
 		"Division",
 	};
 
-	for ( uint32_t operatorIndex = 0; operatorIndex < _countof( GEN_OPERATORS_ARITHMETIC ); operatorIndex++ ) {
+	for ( uint32_t operatorIndex = 0; operatorIndex < GEN_ARITHMETIC_OP_COUNT; operatorIndex++ ) {
 		m_code += "TEMPER_TEST( TestArithmetic" + testSuffices[operatorIndex] + "_" + m_fullTypeName + " ) {\n";
 		m_code += "\t" + m_fullTypeName + " a = " + m_fullTypeName + paramListOne + ";\n";
 		m_code += "\t" + m_fullTypeName + " b = " + m_fullTypeName + paramListVarying + ";\n";
