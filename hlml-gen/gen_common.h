@@ -71,7 +71,7 @@ inline std::string					Gen_GetTypeString( const genType_t type );
 inline std::string					Gen_GetMemberTypeString( const genType_t type );
 
 inline std::string					Gen_GetDefaultLiteralValue( const genType_t type );
-inline std::string					Gen_GetNumericLiteral( const genType_t type, const int32_t value );
+inline std::string					Gen_GetNumericLiteral( const genType_t type, const float value );
 
 inline genType_t					Gen_GetSupportedFloatingPointType( const genType_t type );
 inline bool							Gen_IsFloatingPointType( const genType_t type );
@@ -138,13 +138,13 @@ std::string Gen_GetDefaultLiteralValue( const genType_t type ) {
 	}
 }
 
-std::string Gen_GetNumericLiteral( const genType_t type, const int32_t value ) {
+std::string Gen_GetNumericLiteral( const genType_t type, const float value ) {
 	switch ( type ) {
 		case GEN_TYPE_BOOL:		return ( value != 0 ) ? "true" : "false";
-		case GEN_TYPE_INT:		return std::to_string( value );
-		case GEN_TYPE_UINT:		return std::to_string( value );
-		case GEN_TYPE_FLOAT:	return std::to_string( value ) + ".0f";
-		case GEN_TYPE_DOUBLE:	return std::to_string( value ) + ".0";
+		case GEN_TYPE_INT:		return std::to_string( static_cast<int32_t>( value ) );
+		case GEN_TYPE_UINT:		return std::to_string( static_cast<uint32_t>( value ) );
+		case GEN_TYPE_FLOAT:	return std::to_string( static_cast<float>( value ) ) + "f";
+		case GEN_TYPE_DOUBLE:	return std::to_string( static_cast<double>( value ) );
 
 		default:
 			printf( "ERROR: Bad type_t passed through to %s.  Fix it!\n", __FUNCTION__ );

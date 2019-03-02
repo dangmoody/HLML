@@ -2,6 +2,8 @@
 
 #include "FileIO.h"
 
+#include "../out/hlml_main.h"
+
 #include <vector>
 
 void TestsGeneratorMatrix::Generate( const genType_t type, const uint32_t numRows, const uint32_t numCols ) {
@@ -86,8 +88,11 @@ void TestsGeneratorMatrix::Generate( const genType_t type, const uint32_t numRow
 		m_code += "\n";
 		if ( m_numRows >= 3 && m_numCols >= numRows ) {
 			m_code += "\tTEMPER_RUN_TEST( TestTranslate_" + m_fullTypeName + " );\n";
+
+			if ( Gen_IsFloatingPointType( m_type ) ) {
+				m_code += "\tTEMPER_RUN_TEST( TestRotate_" + m_fullTypeName + " );\n";
+			}
 		}
-		m_code += "\tTEMPER_SKIP_TEST( TestRotate_" + m_fullTypeName + ", \"TODO\" );\n";
 		m_code += "\tTEMPER_SKIP_TEST( TestScale_" + m_fullTypeName + ", \"TODO\" );\n";
 		m_code += "\n";
 		m_code += "\tTEMPER_SKIP_TEST( TestOrtho_" + m_fullTypeName + ", \"TODO\" );\n";
@@ -216,14 +221,14 @@ void TestsGeneratorMatrix::GenerateTestArithmetic() {
 		return;
 	}
 
-	uint32_t lhs[4][4] = {
+	int32_t lhs[4][4] = {
 		{ 6, 6, 6, 6 },
 		{ 6, 6, 6, 6 },
 		{ 6, 6, 6, 6 },
 		{ 6, 6, 6, 6 },
 	};
 
-	uint32_t rhs[4][4] = {
+	int32_t rhs[4][4] = {
 		{ 2,  3,  4,  4  },
 		{ 6,  6,  8,  8  },
 		{ 10, 10, 12, 12 },
@@ -834,12 +839,104 @@ void TestsGeneratorMatrix::GenerateTestTranslate() {
 }
 
 void TestsGeneratorMatrix::GenerateTestRotate() {
-	if ( m_type == GEN_TYPE_BOOL ) {
+	if ( !Gen_IsFloatingPointType( m_type ) ) {
 		return;
 	}
 
+	if ( m_numRows < 3 || m_numCols < m_numRows ) {
+		return;
+	}
+
+	float rotRadians = radians( 90.0f );
+
+	float cosR = cosf( rotRadians );
+	float sinR = sinf( rotRadians );
+
+	float angleAxisVecYaw[3] = {
+		0.0f, 1.0f, 0.0f
+	};
+
+	float angleAxisVecPitch[3] = {
+		1.0f, 0.0f, 0.0f
+	};
+
+	float angleAxisVecRoll[3] = {
+		0.0f, 0.0f, 1.0f
+	};
+
+	float rotMatYaw[4 * 4] = {
+		 cosR, 0.0f, sinR, 0.0f,
+		 0.0f, 1.0f, 0.0f, 0.0f,
+		-sinR, 0.0f, cosR, 0.0f,
+		 0.0f, 0.0f, 0.0f, 1.0f,
+	};
+
+	float rotMatPitch[4 * 4] = {
+		1.0f, 0.0f,  0.0f, 0.0f,
+		0.0f, cosR, -sinR, 0.0f,
+		0.0f, sinR,  cosR, 0.0f,
+		0.0f, 0.0f,  0.0f, 1.0f,
+	};
+
+	float rotMatRoll[4 * 4] = {
+		cosR, -sinR, 0.0f, 0.0f,
+		sinR,  cosR, 0.0f, 0.0f,
+		0.0f,  0.0f, 1.0f, 0.0f,
+		0.0f,  0.0f, 0.0f, 1.0f,
+	};
+
+	float rotMat3x3[3 * 3] = {
+		cosR, -sinR, 0.0f,
+		sinR,  cosR, 0.0f,
+		0.0f,  0.0f, 1.0f,
+	};
+
+	float* matAnswerRoll = ( m_numCols > 3 ) ? rotMatRoll : rotMat3x3;
+
+	uint32_t numRotMatRows = __min( m_numRows, 4 );
+	uint32_t numRotMatCols = __min( m_numCols, 4 );
+
+	uint32_t numRotateVectorComponents = m_numCols - 1;
+
+	std::string ninetyStr = Gen_GetNumericLiteral( m_type, 90 );
+
+	std::string rotateVecTypeString = m_typeString + std::to_string( numRotateVectorComponents );
+
+	std::string parmListVecYaw = GetParmListVector( m_type, numRotateVectorComponents, angleAxisVecYaw );
+	std::string parmListVecPitch = GetParmListVector( m_type, numRotateVectorComponents, angleAxisVecPitch );
+	std::string parmListVecRoll = GetParmListVector( m_type, numRotateVectorComponents, angleAxisVecRoll );
+
+	std::string parmListMatYaw = GetParmListMatrix( m_type, numRotMatRows, numRotMatCols, rotMatYaw );
+	std::string parmListMatPitch = GetParmListMatrix( m_type, numRotMatRows, numRotMatCols, rotMatPitch );
+	std::string parmListMatRoll = GetParmListMatrix( m_type, numRotMatRows, numRotMatCols, matAnswerRoll );
+
+	// matrices where cols == 3 only have roll rotation support
+	std::string parmListRotateRoll = "mat, radians( " + ninetyStr + " )";
+	if ( m_numCols > 3 ) {
+		parmListRotateRoll += ", " + rotateVecTypeString + parmListVecRoll;
+	}
+
 	m_code += "TEMPER_TEST( TestRotate_" + m_fullTypeName + " ) {\n";
-	m_code += "\tTEMPER_FAIL();\n";
+	m_code += "\t" + m_fullTypeName + " mat;\n";
+	if ( m_numRows > 3 ) {
+		m_code += "\t" + m_fullTypeName + " yaw = rotate( mat, radians( " + ninetyStr + " ), " + rotateVecTypeString + parmListVecYaw + " );\n";
+		m_code += "\t" + m_fullTypeName + " pitch = rotate( mat, radians( " + ninetyStr + " ), " + rotateVecTypeString + parmListVecPitch + " );\n";
+	}
+	m_code += "\t" + m_fullTypeName + " roll = rotate( " + parmListRotateRoll + " );\n";
+	m_code += "\n";
+	if ( m_numRows > 3 ) {
+		m_code += "\t" + m_fullTypeName + " answerYaw = " + m_fullTypeName + parmListMatYaw + ";\n";
+		m_code += "\t" + m_fullTypeName + " answerPitch = " + m_fullTypeName + parmListMatPitch + ";\n";
+	}
+	m_code += "\t" + m_fullTypeName + " answerRoll = " + m_fullTypeName + parmListMatRoll + ";\n";
+	m_code += "\n";
+	if ( m_numRows > 3 ) {
+		m_code += "\tTEMPER_EXPECT_TRUE( yaw == answerYaw );\n";
+		m_code += "\tTEMPER_EXPECT_TRUE( pitch == answerPitch );\n";
+	}
+	m_code += "\tTEMPER_EXPECT_TRUE( roll == answerRoll );\n";
+	m_code += "\n";
+	m_code += "\tTEMPER_PASS();\n";
 	m_code += "}\n";
 	m_code += "\n";
 }

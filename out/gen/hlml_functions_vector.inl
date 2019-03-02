@@ -111,12 +111,12 @@ float length( const float2& vec ) {
 }
 
 void normalize( float2& vec ) {
-	float invlen = 1.0f / length( vec );
+	float invlen = 1.000000f / length( vec );
 	vec *= invlen;
 }
 
 float2 normalized( const float2& vec ) {
-	float invlen = 1.0f / length( vec );
+	float invlen = 1.000000f / length( vec );
 	return (float2) vec * invlen;
 }
 
@@ -139,12 +139,12 @@ float length( const float3& vec ) {
 }
 
 void normalize( float3& vec ) {
-	float invlen = 1.0f / length( vec );
+	float invlen = 1.000000f / length( vec );
 	vec *= invlen;
 }
 
 float3 normalized( const float3& vec ) {
-	float invlen = 1.0f / length( vec );
+	float invlen = 1.000000f / length( vec );
 	return (float3) vec * invlen;
 }
 
@@ -175,12 +175,12 @@ float length( const float4& vec ) {
 }
 
 void normalize( float4& vec ) {
-	float invlen = 1.0f / length( vec );
+	float invlen = 1.000000f / length( vec );
 	vec *= invlen;
 }
 
 float4 normalized( const float4& vec ) {
-	float invlen = 1.0f / length( vec );
+	float invlen = 1.000000f / length( vec );
 	return (float4) vec * invlen;
 }
 
@@ -212,12 +212,12 @@ double length( const double2& vec ) {
 }
 
 void normalize( double2& vec ) {
-	double invlen = 1.0 / length( vec );
+	double invlen = 1.000000 / length( vec );
 	vec *= invlen;
 }
 
 double2 normalized( const double2& vec ) {
-	double invlen = 1.0 / length( vec );
+	double invlen = 1.000000 / length( vec );
 	return (double2) vec * invlen;
 }
 
@@ -240,12 +240,12 @@ double length( const double3& vec ) {
 }
 
 void normalize( double3& vec ) {
-	double invlen = 1.0 / length( vec );
+	double invlen = 1.000000 / length( vec );
 	vec *= invlen;
 }
 
 double3 normalized( const double3& vec ) {
-	double invlen = 1.0 / length( vec );
+	double invlen = 1.000000 / length( vec );
 	return (double3) vec * invlen;
 }
 
@@ -276,12 +276,12 @@ double length( const double4& vec ) {
 }
 
 void normalize( double4& vec ) {
-	double invlen = 1.0 / length( vec );
+	double invlen = 1.000000 / length( vec );
 	vec *= invlen;
 }
 
 double4 normalized( const double4& vec ) {
-	double invlen = 1.0 / length( vec );
+	double invlen = 1.000000 / length( vec );
 	return (double4) vec * invlen;
 }
 

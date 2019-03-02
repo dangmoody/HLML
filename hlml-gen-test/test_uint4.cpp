@@ -58,7 +58,7 @@ TEMPER_TEST( TestArithmeticSubtraction_uint4 ) {
 	uint4 b = uint4( 2, 3, 4, 5 );
 	uint4 c = a - b;
 
-	TEMPER_EXPECT_TRUE( c == uint4( 0, -1, -2, -3 ) );
+	TEMPER_EXPECT_TRUE( c == uint4( 0, 4294967295, 4294967294, 4294967293 ) );
 
 	TEMPER_PASS();
 }

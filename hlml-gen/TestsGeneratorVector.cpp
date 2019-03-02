@@ -144,7 +144,7 @@ void TestsGeneratorVector::GenerateTestArithmetic() {
 	}
 
 	// number picked at random
-	const uint32_t baseNumber = 2;
+	const int32_t baseNumber = 2;
 
 	std::string paramListOne = "( " + Gen_GetNumericLiteral( m_type, baseNumber ) + " )";
 	std::string paramListVarying = "( ";
@@ -163,7 +163,7 @@ void TestsGeneratorVector::GenerateTestArithmetic() {
 	{
 		std::string paramList = "( ";
 		for ( uint32_t i = 0; i < m_numComponents; i++ ) {
-			paramList += Gen_GetNumericLiteral( m_type, baseNumber + ( i + baseNumber ) );
+			paramList += Gen_GetNumericLiteral( m_type, baseNumber + ( (int32_t) i + baseNumber ) );
 
 			if ( i != m_numComponents - 1 ) {
 				paramList += ", ";
@@ -178,7 +178,7 @@ void TestsGeneratorVector::GenerateTestArithmetic() {
 	{
 		std::string paramList = "( ";
 		for ( uint32_t i = 0; i < m_numComponents; i++ ) {
-			paramList += Gen_GetNumericLiteral( m_type, baseNumber - ( i + baseNumber ) );
+			paramList += Gen_GetNumericLiteral( m_type, baseNumber - ( (int32_t) i + baseNumber ) );
 
 			if ( i != m_numComponents - 1 ) {
 				paramList += ", ";
@@ -193,7 +193,7 @@ void TestsGeneratorVector::GenerateTestArithmetic() {
 	{
 		std::string paramList = "( ";
 		for ( uint32_t i = 0; i < m_numComponents; i++ ) {
-			paramList += Gen_GetNumericLiteral( m_type, baseNumber * ( i + baseNumber ) );
+			paramList += Gen_GetNumericLiteral( m_type, baseNumber * ( (int32_t) i + baseNumber ) );
 
 			if ( i != m_numComponents - 1 ) {
 				paramList += ", ";
@@ -255,16 +255,11 @@ void TestsGeneratorVector::GenerateTestRelational() {
 		return;
 	}
 
-	std::vector<std::string> valueStrings( m_numComponents );
 	std::vector<std::string> paramLists( m_numComponents );
 
 	std::string boolTypeName = "bool" + std::to_string( m_numComponents );
 
 	uint32_t numTestVectors = 0;
-
-	for ( uint32_t i = 0; i < m_numComponents; i++ ) {
-		valueStrings[i] = Gen_GetNumericLiteral( m_type, i );
-	}
 
 	for ( uint32_t componentIndex = 0; componentIndex < m_numComponents; componentIndex++ ) {
 		std::string& paramList = paramLists[componentIndex];

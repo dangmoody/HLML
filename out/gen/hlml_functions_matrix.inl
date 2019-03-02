@@ -914,7 +914,7 @@ float2x2 transpose( const float2x2& mat ) {
 }
 
 float2x2 inverse( const float2x2& mat ) {
-	const float invdet = 1.0f / determinant( mat );
+	const float invdet = 1.000000f / determinant( mat );
 	return float2x2(
 		 mat[1][1] * invdet, -mat[0][1] * invdet,
 		-mat[1][0] * invdet,  mat[0][0] * invdet
@@ -923,16 +923,6 @@ float2x2 inverse( const float2x2& mat ) {
 
 float determinant( const float2x2& mat ) {
 	return mat[0][0] * mat[1][1] - mat[1][0] * mat[0][1];
-}
-
-float2x2 rotate( const float2x2& mat, const float radians, const float2& axis ) {
-	const float c = static_cast<float>( cos( radians ) );
-	const float s = static_cast<float>( sin( radians ) );
-
-	return float2x2(
-		mat[0] * c + mat[1] * -s,
-		mat[0] * s + mat[1] * c
-	);
 }
 
 float2x2 scale( const float2x2& mat, const float scalar ) {
@@ -961,17 +951,6 @@ float2x3 transpose( const float3x2& mat ) {
 	return float2x3(
 		mat[0][0], mat[1][0], mat[2][0],
 		mat[0][1], mat[1][1], mat[2][1]
-	);
-}
-
-float3x2 rotate( const float3x2& mat, const float radians, const float3& axis ) {
-	const float c = static_cast<float>( cos( radians ) );
-	const float s = static_cast<float>( sin( radians ) );
-
-	return float3x2(
-		mat[0] * c + mat[1] * -s,
-		mat[0] * s + mat[1] * c,
-		mat[2]
 	);
 }
 
@@ -1006,29 +985,6 @@ float2x4 transpose( const float4x2& mat ) {
 		mat[0][0], mat[1][0], mat[2][0], mat[3][0],
 		mat[0][1], mat[1][1], mat[2][1], mat[3][1]
 	);
-}
-
-float4x2 rotate( const float4x2& mat, const float radians, const float4& axis ) {
-	const float c = static_cast<float>( cos( radians ) );
-	const float s = static_cast<float>( sin( radians ) );
-
-	float4 u = normalized( axis );
-	float ic = 1.0f - c;
-
-	float4x2 rotation = mat;
-	rotation[0][0] = c + u.x * ic;
-	rotation[0][1] = u.x * u.y * ic - u.z * s;
-	rotation[0][2] = u.x * u.z * ic + u.y * s;
-
-	rotation[1][0] = u.y * u.x * ic + u.z * s;
-	rotation[1][1] = c + u.y * ic;
-	rotation[1][2] = u.y * u.z * ic - u.x * s;
-
-	rotation[2][0] = u.z * u.x * ic - u.y * s;
-	rotation[2][1] = u.z * u.y * ic + u.x * s;
-	rotation[2][2] = c + u.z * ic;
-
-	return mat * rotation;
 }
 
 float4x2 scale( const float4x2& mat, const float scalar ) {
@@ -1066,16 +1022,6 @@ float3x2 transpose( const float2x3& mat ) {
 	);
 }
 
-float2x3 rotate( const float2x3& mat, const float radians, const float2& axis ) {
-	const float c = static_cast<float>( cos( radians ) );
-	const float s = static_cast<float>( sin( radians ) );
-
-	return float2x3(
-		mat[0] * c + mat[1] * -s,
-		mat[0] * s + mat[1] * c
-	);
-}
-
 float2x3 scale( const float2x3& mat, const float scalar ) {
 	return scale( mat, float3( scalar, scalar, scalar ) );
 }
@@ -1109,7 +1055,7 @@ float3x3 transpose( const float3x3& mat ) {
 }
 
 float3x3 inverse( const float3x3& mat ) {
-	const float invdet = 1.0f / determinant( mat );
+	const float invdet = 1.000000f / determinant( mat );
 	return float3x3(
 		 ( mat[1][1] * mat[2][2] - mat[1][2] * mat[2][1] ) * invdet,
 		-( mat[0][1] * mat[2][2] - mat[0][2] * mat[2][1] ) * invdet,
@@ -1140,9 +1086,9 @@ float3x3 translate( const float3x3& mat, const float2& vec ) {
 	);
 }
 
-float3x3 rotate( const float3x3& mat, const float radians, const float3& axis ) {
-	const float c = static_cast<float>( cos( radians ) );
-	const float s = static_cast<float>( sin( radians ) );
+float3x3 rotate( const float3x3& mat, const float radians ) {
+	const float c = cosf( radians );
+	const float s = sinf( radians );
 
 	return float3x3(
 		mat[0] * c + mat[1] * -s,
@@ -1188,29 +1134,6 @@ float3x4 transpose( const float4x3& mat ) {
 	);
 }
 
-float4x3 rotate( const float4x3& mat, const float radians, const float4& axis ) {
-	const float c = static_cast<float>( cos( radians ) );
-	const float s = static_cast<float>( sin( radians ) );
-
-	float4 u = normalized( axis );
-	float ic = 1.0f - c;
-
-	float4x3 rotation = mat;
-	rotation[0][0] = c + u.x * ic;
-	rotation[0][1] = u.x * u.y * ic - u.z * s;
-	rotation[0][2] = u.x * u.z * ic + u.y * s;
-
-	rotation[1][0] = u.y * u.x * ic + u.z * s;
-	rotation[1][1] = c + u.y * ic;
-	rotation[1][2] = u.y * u.z * ic - u.x * s;
-
-	rotation[2][0] = u.z * u.x * ic - u.y * s;
-	rotation[2][1] = u.z * u.y * ic + u.x * s;
-	rotation[2][2] = c + u.z * ic;
-
-	return mat * rotation;
-}
-
 float4x3 scale( const float4x3& mat, const float scalar ) {
 	return scale( mat, float3( scalar, scalar, scalar ) );
 }
@@ -1248,16 +1171,6 @@ float4x2 transpose( const float2x4& mat ) {
 		mat[0][1], mat[1][1],
 		mat[0][2], mat[1][2],
 		mat[0][3], mat[1][3]
-	);
-}
-
-float2x4 rotate( const float2x4& mat, const float radians, const float2& axis ) {
-	const float c = static_cast<float>( cos( radians ) );
-	const float s = static_cast<float>( sin( radians ) );
-
-	return float2x4(
-		mat[0] * c + mat[1] * -s,
-		mat[0] * s + mat[1] * c
 	);
 }
 
@@ -1305,14 +1218,26 @@ float3x4 translate( const float3x4& mat, const float3& vec ) {
 }
 
 float3x4 rotate( const float3x4& mat, const float radians, const float3& axis ) {
-	const float c = static_cast<float>( cos( radians ) );
-	const float s = static_cast<float>( sin( radians ) );
+	const float c = cosf( radians );
+	const float s = sinf( radians );
 
-	return float3x4(
-		mat[0] * c + mat[1] * -s,
-		mat[0] * s + mat[1] * c,
-		mat[2]
-	);
+	float3 u = normalized( axis );
+	float ic = 1.000000f - c;
+
+	float3x4 rotation = mat;
+	rotation[0][0] = c + u.x * ic;
+	rotation[0][1] = u.x * u.y * ic - u.z * s;
+	rotation[0][2] = u.x * u.z * ic + u.y * s;
+
+	rotation[1][0] = u.y * u.x * ic + u.z * s;
+	rotation[1][1] = c + u.y * ic;
+	rotation[1][2] = u.y * u.z * ic - u.x * s;
+
+	rotation[2][0] = u.z * u.x * ic - u.y * s;
+	rotation[2][1] = u.z * u.y * ic + u.x * s;
+	rotation[2][2] = c + u.z * ic;
+
+	return mat * rotation;
 }
 
 float3x4 scale( const float3x4& mat, const float scalar ) {
@@ -1414,7 +1339,7 @@ float4x4 inverse( const float4x4& mat ) {
 
 	const float dot1 = ( dot0.x + dot0.y ) + ( dot0.z + dot0.w );
 
-	const float invdet = 1.0f / dot1;
+	const float invdet = 1.000000f / dot1;
 
 	return result * invdet;
 }
@@ -1449,12 +1374,12 @@ float4x4 translate( const float4x4& mat, const float3& vec ) {
 	);
 }
 
-float4x4 rotate( const float4x4& mat, const float radians, const float4& axis ) {
-	const float c = static_cast<float>( cos( radians ) );
-	const float s = static_cast<float>( sin( radians ) );
+float4x4 rotate( const float4x4& mat, const float radians, const float3& axis ) {
+	const float c = cosf( radians );
+	const float s = sinf( radians );
 
-	float4 u = normalized( axis );
-	float ic = 1.0f - c;
+	float3 u = normalized( axis );
+	float ic = 1.000000f - c;
 
 	float4x4 rotation = mat;
 	rotation[0][0] = c + u.x * ic;
@@ -1508,22 +1433,22 @@ inline float4x4 ortho( const float left, const float right, const float top, con
 	const float far_minus_near = zfar - znear;
 
 	return float4x4(
-		2.0f / right_minus_left, 0.0f, 0.0f, -right_plus_left / right_minus_left,
-		0.0f, 2.0f / top_minus_bottom, 0.0f, -top_plus_bottom / top_minus_bottom,
-		0.0f, 0.0f, 1.0f / far_minus_near, -znear / far_minus_near,
-		0.0f, 0.0f, 0.0f, 1.0f
+		2.000000f / right_minus_left, 0.000000f, 0.000000f, -right_plus_left / right_minus_left,
+		0.000000f, 2.000000f / top_minus_bottom, 0.000000f, -top_plus_bottom / top_minus_bottom,
+		0.000000f, 0.000000f, 1.000000f / far_minus_near, -znear / far_minus_near,
+		0.000000f, 0.000000f, 0.000000f, 1.000000f
 	);
 }
 
 float4x4 perspective( const float fovdeg, const float aspect, const float znear, const float zfar ) {
 	const float far_minus_near = zfar - znear;
-	const float tan_half_fov = static_cast<float>( tan( ( fovdeg / 2.0f ) * radians( fovdeg ) ) );
+	const float tan_half_fov = static_cast<float>( tan( ( fovdeg / 2.000000f ) * radians( fovdeg ) ) );
 
 	return float4x4(
-		1.0f / ( aspect * tan_half_fov ), 0.0f, 0.0f, 0.0f,
-		0.0f, 1.0f / tan_half_fov, 0.0f, 0.0f,
-		0.0f, 0.0f, zfar / far_minus_near, 1.0f,
-		0.0f, 0.0f, -( zfar * znear ) / far_minus_near, 0.0f
+		1.000000f / ( aspect * tan_half_fov ), 0.000000f, 0.000000f, 0.000000f,
+		0.000000f, 1.000000f / tan_half_fov, 0.000000f, 0.000000f,
+		0.000000f, 0.000000f, zfar / far_minus_near, 1.000000f,
+		0.000000f, 0.000000f, -( zfar * znear ) / far_minus_near, 0.000000f
 	);
 }
 
@@ -1536,7 +1461,7 @@ float4x4 lookat( const float4& eye, const float4& target, const float4& up ) {
 		right,
 		up1,
 		forward,
-		float4( -dot( right, eye ), -dot( up1, eye ), -dot( forward, eye ), 1.0f )
+		float4( -dot( right, eye ), -dot( up1, eye ), -dot( forward, eye ), 1.000000f )
 	);
 }
 
@@ -1555,7 +1480,7 @@ double2x2 transpose( const double2x2& mat ) {
 }
 
 double2x2 inverse( const double2x2& mat ) {
-	const double invdet = 1.0 / determinant( mat );
+	const double invdet = 1.000000 / determinant( mat );
 	return double2x2(
 		 mat[1][1] * invdet, -mat[0][1] * invdet,
 		-mat[1][0] * invdet,  mat[0][0] * invdet
@@ -1564,16 +1489,6 @@ double2x2 inverse( const double2x2& mat ) {
 
 double determinant( const double2x2& mat ) {
 	return mat[0][0] * mat[1][1] - mat[1][0] * mat[0][1];
-}
-
-double2x2 rotate( const double2x2& mat, const double radians, const double2& axis ) {
-	const double c = static_cast<double>( cos( radians ) );
-	const double s = static_cast<double>( sin( radians ) );
-
-	return double2x2(
-		mat[0] * c + mat[1] * -s,
-		mat[0] * s + mat[1] * c
-	);
 }
 
 double2x2 scale( const double2x2& mat, const double scalar ) {
@@ -1602,17 +1517,6 @@ double2x3 transpose( const double3x2& mat ) {
 	return double2x3(
 		mat[0][0], mat[1][0], mat[2][0],
 		mat[0][1], mat[1][1], mat[2][1]
-	);
-}
-
-double3x2 rotate( const double3x2& mat, const double radians, const double3& axis ) {
-	const double c = static_cast<double>( cos( radians ) );
-	const double s = static_cast<double>( sin( radians ) );
-
-	return double3x2(
-		mat[0] * c + mat[1] * -s,
-		mat[0] * s + mat[1] * c,
-		mat[2]
 	);
 }
 
@@ -1647,29 +1551,6 @@ double2x4 transpose( const double4x2& mat ) {
 		mat[0][0], mat[1][0], mat[2][0], mat[3][0],
 		mat[0][1], mat[1][1], mat[2][1], mat[3][1]
 	);
-}
-
-double4x2 rotate( const double4x2& mat, const double radians, const double4& axis ) {
-	const double c = static_cast<double>( cos( radians ) );
-	const double s = static_cast<double>( sin( radians ) );
-
-	double4 u = normalized( axis );
-	double ic = 1.0 - c;
-
-	double4x2 rotation = mat;
-	rotation[0][0] = c + u.x * ic;
-	rotation[0][1] = u.x * u.y * ic - u.z * s;
-	rotation[0][2] = u.x * u.z * ic + u.y * s;
-
-	rotation[1][0] = u.y * u.x * ic + u.z * s;
-	rotation[1][1] = c + u.y * ic;
-	rotation[1][2] = u.y * u.z * ic - u.x * s;
-
-	rotation[2][0] = u.z * u.x * ic - u.y * s;
-	rotation[2][1] = u.z * u.y * ic + u.x * s;
-	rotation[2][2] = c + u.z * ic;
-
-	return mat * rotation;
 }
 
 double4x2 scale( const double4x2& mat, const double scalar ) {
@@ -1707,16 +1588,6 @@ double3x2 transpose( const double2x3& mat ) {
 	);
 }
 
-double2x3 rotate( const double2x3& mat, const double radians, const double2& axis ) {
-	const double c = static_cast<double>( cos( radians ) );
-	const double s = static_cast<double>( sin( radians ) );
-
-	return double2x3(
-		mat[0] * c + mat[1] * -s,
-		mat[0] * s + mat[1] * c
-	);
-}
-
 double2x3 scale( const double2x3& mat, const double scalar ) {
 	return scale( mat, double3( scalar, scalar, scalar ) );
 }
@@ -1750,7 +1621,7 @@ double3x3 transpose( const double3x3& mat ) {
 }
 
 double3x3 inverse( const double3x3& mat ) {
-	const double invdet = 1.0 / determinant( mat );
+	const double invdet = 1.000000 / determinant( mat );
 	return double3x3(
 		 ( mat[1][1] * mat[2][2] - mat[1][2] * mat[2][1] ) * invdet,
 		-( mat[0][1] * mat[2][2] - mat[0][2] * mat[2][1] ) * invdet,
@@ -1781,9 +1652,9 @@ double3x3 translate( const double3x3& mat, const double2& vec ) {
 	);
 }
 
-double3x3 rotate( const double3x3& mat, const double radians, const double3& axis ) {
-	const double c = static_cast<double>( cos( radians ) );
-	const double s = static_cast<double>( sin( radians ) );
+double3x3 rotate( const double3x3& mat, const double radians ) {
+	const double c = cos( radians );
+	const double s = sin( radians );
 
 	return double3x3(
 		mat[0] * c + mat[1] * -s,
@@ -1829,29 +1700,6 @@ double3x4 transpose( const double4x3& mat ) {
 	);
 }
 
-double4x3 rotate( const double4x3& mat, const double radians, const double4& axis ) {
-	const double c = static_cast<double>( cos( radians ) );
-	const double s = static_cast<double>( sin( radians ) );
-
-	double4 u = normalized( axis );
-	double ic = 1.0 - c;
-
-	double4x3 rotation = mat;
-	rotation[0][0] = c + u.x * ic;
-	rotation[0][1] = u.x * u.y * ic - u.z * s;
-	rotation[0][2] = u.x * u.z * ic + u.y * s;
-
-	rotation[1][0] = u.y * u.x * ic + u.z * s;
-	rotation[1][1] = c + u.y * ic;
-	rotation[1][2] = u.y * u.z * ic - u.x * s;
-
-	rotation[2][0] = u.z * u.x * ic - u.y * s;
-	rotation[2][1] = u.z * u.y * ic + u.x * s;
-	rotation[2][2] = c + u.z * ic;
-
-	return mat * rotation;
-}
-
 double4x3 scale( const double4x3& mat, const double scalar ) {
 	return scale( mat, double3( scalar, scalar, scalar ) );
 }
@@ -1889,16 +1737,6 @@ double4x2 transpose( const double2x4& mat ) {
 		mat[0][1], mat[1][1],
 		mat[0][2], mat[1][2],
 		mat[0][3], mat[1][3]
-	);
-}
-
-double2x4 rotate( const double2x4& mat, const double radians, const double2& axis ) {
-	const double c = static_cast<double>( cos( radians ) );
-	const double s = static_cast<double>( sin( radians ) );
-
-	return double2x4(
-		mat[0] * c + mat[1] * -s,
-		mat[0] * s + mat[1] * c
 	);
 }
 
@@ -1946,14 +1784,26 @@ double3x4 translate( const double3x4& mat, const double3& vec ) {
 }
 
 double3x4 rotate( const double3x4& mat, const double radians, const double3& axis ) {
-	const double c = static_cast<double>( cos( radians ) );
-	const double s = static_cast<double>( sin( radians ) );
+	const double c = cos( radians );
+	const double s = sin( radians );
 
-	return double3x4(
-		mat[0] * c + mat[1] * -s,
-		mat[0] * s + mat[1] * c,
-		mat[2]
-	);
+	double3 u = normalized( axis );
+	double ic = 1.000000 - c;
+
+	double3x4 rotation = mat;
+	rotation[0][0] = c + u.x * ic;
+	rotation[0][1] = u.x * u.y * ic - u.z * s;
+	rotation[0][2] = u.x * u.z * ic + u.y * s;
+
+	rotation[1][0] = u.y * u.x * ic + u.z * s;
+	rotation[1][1] = c + u.y * ic;
+	rotation[1][2] = u.y * u.z * ic - u.x * s;
+
+	rotation[2][0] = u.z * u.x * ic - u.y * s;
+	rotation[2][1] = u.z * u.y * ic + u.x * s;
+	rotation[2][2] = c + u.z * ic;
+
+	return mat * rotation;
 }
 
 double3x4 scale( const double3x4& mat, const double scalar ) {
@@ -2055,7 +1905,7 @@ double4x4 inverse( const double4x4& mat ) {
 
 	const double dot1 = ( dot0.x + dot0.y ) + ( dot0.z + dot0.w );
 
-	const double invdet = 1.0 / dot1;
+	const double invdet = 1.000000 / dot1;
 
 	return result * invdet;
 }
@@ -2090,12 +1940,12 @@ double4x4 translate( const double4x4& mat, const double3& vec ) {
 	);
 }
 
-double4x4 rotate( const double4x4& mat, const double radians, const double4& axis ) {
-	const double c = static_cast<double>( cos( radians ) );
-	const double s = static_cast<double>( sin( radians ) );
+double4x4 rotate( const double4x4& mat, const double radians, const double3& axis ) {
+	const double c = cos( radians );
+	const double s = sin( radians );
 
-	double4 u = normalized( axis );
-	double ic = 1.0 - c;
+	double3 u = normalized( axis );
+	double ic = 1.000000 - c;
 
 	double4x4 rotation = mat;
 	rotation[0][0] = c + u.x * ic;
@@ -2149,22 +1999,22 @@ inline double4x4 ortho( const double left, const double right, const double top,
 	const double far_minus_near = zfar - znear;
 
 	return double4x4(
-		2.0 / right_minus_left, 0.0, 0.0, -right_plus_left / right_minus_left,
-		0.0, 2.0 / top_minus_bottom, 0.0, -top_plus_bottom / top_minus_bottom,
-		0.0, 0.0, 1.0 / far_minus_near, -znear / far_minus_near,
-		0.0, 0.0, 0.0, 1.0
+		2.000000 / right_minus_left, 0.000000, 0.000000, -right_plus_left / right_minus_left,
+		0.000000, 2.000000 / top_minus_bottom, 0.000000, -top_plus_bottom / top_minus_bottom,
+		0.000000, 0.000000, 1.000000 / far_minus_near, -znear / far_minus_near,
+		0.000000, 0.000000, 0.000000, 1.000000
 	);
 }
 
 double4x4 perspective( const double fovdeg, const double aspect, const double znear, const double zfar ) {
 	const double far_minus_near = zfar - znear;
-	const double tan_half_fov = static_cast<double>( tan( ( fovdeg / 2.0 ) * radians( fovdeg ) ) );
+	const double tan_half_fov = static_cast<double>( tan( ( fovdeg / 2.000000 ) * radians( fovdeg ) ) );
 
 	return double4x4(
-		1.0 / ( aspect * tan_half_fov ), 0.0, 0.0, 0.0,
-		0.0, 1.0 / tan_half_fov, 0.0, 0.0,
-		0.0, 0.0, zfar / far_minus_near, 1.0,
-		0.0, 0.0, -( zfar * znear ) / far_minus_near, 0.0
+		1.000000 / ( aspect * tan_half_fov ), 0.000000, 0.000000, 0.000000,
+		0.000000, 1.000000 / tan_half_fov, 0.000000, 0.000000,
+		0.000000, 0.000000, zfar / far_minus_near, 1.000000,
+		0.000000, 0.000000, -( zfar * znear ) / far_minus_near, 0.000000
 	);
 }
 
@@ -2177,7 +2027,7 @@ double4x4 lookat( const double4& eye, const double4& target, const double4& up )
 		right,
 		up1,
 		forward,
-		double4( -dot( right, eye ), -dot( up1, eye ), -dot( forward, eye ), 1.0 )
+		double4( -dot( right, eye ), -dot( up1, eye ), -dot( forward, eye ), 1.000000 )
 	);
 }
 

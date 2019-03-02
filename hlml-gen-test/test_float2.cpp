@@ -32,50 +32,50 @@ along with hlml.  If not, see <http://www.gnu.org/licenses/>.
 TEMPER_TEST( TestAssignment_float2 ) {
 	float2 a;
 
-	a = float2( 1.0f );
-	TEMPER_EXPECT_TRUE( a == float2( 1.0f ) );
-	TEMPER_EXPECT_TRUE( a != float2( 0.0f, 1.0f ) );
+	a = float2( 1.000000f );
+	TEMPER_EXPECT_TRUE( a == float2( 1.000000f ) );
+	TEMPER_EXPECT_TRUE( a != float2( 0.000000f, 1.000000f ) );
 
-	a = float2( 0.0f, 1.0f );
-	TEMPER_EXPECT_TRUE( a == float2( 0.0f, 1.0f ) );
-	TEMPER_EXPECT_TRUE( a != float2( 1.0f ) );
+	a = float2( 0.000000f, 1.000000f );
+	TEMPER_EXPECT_TRUE( a == float2( 0.000000f, 1.000000f ) );
+	TEMPER_EXPECT_TRUE( a != float2( 1.000000f ) );
 
 	TEMPER_PASS();
 }
 
 TEMPER_TEST( TestArithmeticAddition_float2 ) {
-	float2 a = float2( 2.0f );
-	float2 b = float2( 2.0f, 3.0f );
+	float2 a = float2( 2.000000f );
+	float2 b = float2( 2.000000f, 3.000000f );
 	float2 c = a + b;
 
-	TEMPER_EXPECT_TRUE( c == float2( 4.0f, 5.0f ) );
+	TEMPER_EXPECT_TRUE( c == float2( 4.000000f, 5.000000f ) );
 
 	TEMPER_PASS();
 }
 
 TEMPER_TEST( TestArithmeticSubtraction_float2 ) {
-	float2 a = float2( 2.0f );
-	float2 b = float2( 2.0f, 3.0f );
+	float2 a = float2( 2.000000f );
+	float2 b = float2( 2.000000f, 3.000000f );
 	float2 c = a - b;
 
-	TEMPER_EXPECT_TRUE( c == float2( 0.0f, -1.0f ) );
+	TEMPER_EXPECT_TRUE( c == float2( 0.000000f, -1.000000f ) );
 
 	TEMPER_PASS();
 }
 
 TEMPER_TEST( TestArithmeticMultiplication_float2 ) {
-	float2 a = float2( 2.0f );
-	float2 b = float2( 2.0f, 3.0f );
+	float2 a = float2( 2.000000f );
+	float2 b = float2( 2.000000f, 3.000000f );
 	float2 c = a * b;
 
-	TEMPER_EXPECT_TRUE( c == float2( 4.0f, 6.0f ) );
+	TEMPER_EXPECT_TRUE( c == float2( 4.000000f, 6.000000f ) );
 
 	TEMPER_PASS();
 }
 
 TEMPER_TEST( TestArithmeticDivision_float2 ) {
-	float2 a = float2( 2.0f );
-	float2 b = float2( 2.0f, 3.0f );
+	float2 a = float2( 2.000000f );
+	float2 b = float2( 2.000000f, 3.000000f );
 	float2 c = a / b;
 
 	TEMPER_EXPECT_TRUE( c == float2( 1.000000, 0.666667 ) );
@@ -84,17 +84,17 @@ TEMPER_TEST( TestArithmeticDivision_float2 ) {
 }
 
 TEMPER_TEST( TestArray_float2 ) {
-	float2 a = float2( 0.0f, 1.0f );
+	float2 a = float2( 0.000000f, 1.000000f );
 
-	TEMPER_EXPECT_TRUE( a[0] == 0.0f );
-	TEMPER_EXPECT_TRUE( a[1] == 1.0f );
+	TEMPER_EXPECT_TRUE( a[0] == 0.000000f );
+	TEMPER_EXPECT_TRUE( a[1] == 1.000000f );
 
 	TEMPER_PASS();
 }
 
 TEMPER_TEST( TestRelational_float2 ) {
-	float2 vec0 = float2( 0.0f, 0.0f );
-	float2 vec1 = float2( 1.0f, 1.0f );
+	float2 vec0 = float2( 0.000000f, 0.000000f );
+	float2 vec1 = float2( 1.000000f, 1.000000f );
 
 	bool2 test0 = vec0 <= vec0;
 	bool2 test1 = vec0 >= vec0;
@@ -115,7 +115,7 @@ TEMPER_TEST( TestRelational_float2 ) {
 }
 
 TEMPER_TEST( TestLength_float2 ) {
-	float2 vec = float2( 2.0f );
+	float2 vec = float2( 2.000000f );
 
 	TEMPER_EXPECT_TRUE( floateq( lengthsqr( vec ), 8.0f ) );
 	TEMPER_EXPECT_TRUE( floateq( length( vec ), 2.82842712475f ) );
@@ -124,17 +124,17 @@ TEMPER_TEST( TestLength_float2 ) {
 }
 
 TEMPER_TEST( TestNormalized_float2 ) {
-	float2 vec = float2( 2.0f, 3.0f );
+	float2 vec = float2( 2.000000f, 3.000000f );
 	vec = normalized( vec );
 
-	TEMPER_EXPECT_TRUE( length( vec ) == 1.0f );
+	TEMPER_EXPECT_TRUE( length( vec ) == 1.000000f );
 
 	TEMPER_PASS();
 }
 
 TEMPER_TEST( TestDot_float2 ) {
-	float2 a = float2( 0.0f, 1.0f );
-	float2 b = float2( 0.0f, -1.0f );
+	float2 a = float2( 0.000000f, 1.000000f );
+	float2 b = float2( 0.000000f, -1.000000f );
 
 	TEMPER_EXPECT_TRUE( dot( a, b ) == -1.0f );
 
@@ -142,11 +142,11 @@ TEMPER_TEST( TestDot_float2 ) {
 }
 
 TEMPER_TEST( TestAngle_float2 ) {
-	float2 right = float2( 1.0f, 0.0f );
-	float2 up = float2( 0.0f, 1.0f );
+	float2 right = float2( 1.000000f, 0.000000f );
+	float2 up = float2( 0.000000f, 1.000000f );
 	float answer = angle( up, right );
 
-	TEMPER_EXPECT_TRUE( floateq( answer, 90.0f ) );
+	TEMPER_EXPECT_TRUE( floateq( answer, 90.000000f ) );
 
 	TEMPER_PASS();
 }

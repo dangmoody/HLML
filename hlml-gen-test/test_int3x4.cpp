@@ -339,10 +339,6 @@ TEMPER_TEST( TestTranslate_int3x4 ) {
 	TEMPER_PASS();
 }
 
-TEMPER_TEST( TestRotate_int3x4 ) {
-	TEMPER_FAIL();
-}
-
 TEMPER_TEST( TestScale_int3x4 ) {
 	TEMPER_FAIL();
 }
@@ -374,7 +370,6 @@ TEMPER_SUITE( Test_int3x4 ) {
 	TEMPER_RUN_TEST( TestTranspose_int3x4 );
 
 	TEMPER_RUN_TEST( TestTranslate_int3x4 );
-	TEMPER_SKIP_TEST( TestRotate_int3x4, "TODO" );
 	TEMPER_SKIP_TEST( TestScale_int3x4, "TODO" );
 
 	TEMPER_SKIP_TEST( TestOrtho_int3x4, "TODO" );

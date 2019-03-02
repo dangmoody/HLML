@@ -545,30 +545,36 @@ void Gen_MatrixRotate( const genType_t type, const uint32_t numRows, const uint3
 		return;
 	}
 
+	if ( numRows < 3 || numCols < numRows ) {
+		return;
+	}
+
+	uint32_t numRotateVectorComponents = 3;
+
 	std::string typeString = Gen_GetTypeString( type );
-	std::string vectorTypeString = Gen_GetTypeString( type ) + std::to_string( numRows );
+	std::string vectorTypeString = Gen_GetTypeString( type ) + std::to_string( numRotateVectorComponents );
 	std::string fullTypeName = typeString + std::to_string( numRows ) + "x" + std::to_string( numCols );
 
 	std::string literalOneStr = Gen_GetNumericLiteral( type, 1 );
 
-	outHeader += "inline " + fullTypeName + " rotate( const " + fullTypeName + "& mat, const " + typeString + " radians, const " + vectorTypeString + "& axis );\n";
+	std::string parmListStr = "const " + fullTypeName + "& mat, const " + typeString + " radians";
+	if ( numCols > 3 ) {
+		parmListStr += ", const " + vectorTypeString + "& axis";
+	}
+
+	outHeader += "inline " + fullTypeName + " rotate( " + parmListStr + " );\n";
 
 	outHeader += "\n";
 
-	outInl += fullTypeName + " rotate( const " + fullTypeName + "& mat, const " + typeString + " radians, const " + vectorTypeString + "& axis ) {\n";
-	outInl += "\tconst " + typeString + " c = static_cast<" + typeString + ">( cos( radians ) );\n";
-	outInl += "\tconst " + typeString + " s = static_cast<" + typeString + ">( sin( radians ) );\n";
+	std::string cosFuncStr = ( type == GEN_TYPE_FLOAT ) ? "cosf" : "cos";
+	std::string sinFuncStr = ( type == GEN_TYPE_FLOAT ) ? "sinf" : "sin";
+
+	outInl += fullTypeName + " rotate( " + parmListStr + " ) {\n";
+	outInl += "\tconst " + typeString + " c = " + cosFuncStr + "( radians );\n";
+	outInl += "\tconst " + typeString + " s = " + sinFuncStr + "( radians );\n";
 	outInl += "\n";
 
-	switch ( numRows ) {
-		case 2: {
-			outInl += "\treturn " + fullTypeName + "(\n";
-			outInl += "\t\tmat[0] * c + mat[1] * -s,\n";
-			outInl += "\t\tmat[0] * s + mat[1] * c\n";
-			outInl += "\t);\n";
-			break;
-		}
-
+	switch ( numCols ) {
 		case 3: {
 			outInl += "\treturn " + fullTypeName + "(\n";
 			outInl += "\t\tmat[0] * c + mat[1] * -s,\n";

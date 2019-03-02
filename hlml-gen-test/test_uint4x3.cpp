@@ -105,9 +105,9 @@ TEMPER_TEST( TestArithmeticSubtraction_uint4x3 ) {
 
 	TEMPER_EXPECT_TRUE( c == uint4x3(
 		4, 3, 2,
-		0, 0, -2,
-		-4, -4, -6,
-		-12, -12, -18
+		0, 0, 4294967294,
+		4294967292, 4294967292, 4294967290,
+		4294967284, 4294967284, 4294967278
 	) );
 
 	TEMPER_PASS();
@@ -352,10 +352,6 @@ TEMPER_TEST( TestTranspose_uint4x3 ) {
 	TEMPER_PASS();
 }
 
-TEMPER_TEST( TestRotate_uint4x3 ) {
-	TEMPER_FAIL();
-}
-
 TEMPER_TEST( TestScale_uint4x3 ) {
 	TEMPER_FAIL();
 }
@@ -386,7 +382,6 @@ TEMPER_SUITE( Test_uint4x3 ) {
 	TEMPER_RUN_TEST( TestIdentity_uint4x3 );
 	TEMPER_RUN_TEST( TestTranspose_uint4x3 );
 
-	TEMPER_SKIP_TEST( TestRotate_uint4x3, "TODO" );
 	TEMPER_SKIP_TEST( TestScale_uint4x3, "TODO" );
 
 	TEMPER_SKIP_TEST( TestOrtho_uint4x3, "TODO" );

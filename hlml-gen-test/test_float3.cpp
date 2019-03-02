@@ -32,50 +32,50 @@ along with hlml.  If not, see <http://www.gnu.org/licenses/>.
 TEMPER_TEST( TestAssignment_float3 ) {
 	float3 a;
 
-	a = float3( 1.0f );
-	TEMPER_EXPECT_TRUE( a == float3( 1.0f ) );
-	TEMPER_EXPECT_TRUE( a != float3( 0.0f, 1.0f, 2.0f ) );
+	a = float3( 1.000000f );
+	TEMPER_EXPECT_TRUE( a == float3( 1.000000f ) );
+	TEMPER_EXPECT_TRUE( a != float3( 0.000000f, 1.000000f, 2.000000f ) );
 
-	a = float3( 0.0f, 1.0f, 2.0f );
-	TEMPER_EXPECT_TRUE( a == float3( 0.0f, 1.0f, 2.0f ) );
-	TEMPER_EXPECT_TRUE( a != float3( 1.0f ) );
+	a = float3( 0.000000f, 1.000000f, 2.000000f );
+	TEMPER_EXPECT_TRUE( a == float3( 0.000000f, 1.000000f, 2.000000f ) );
+	TEMPER_EXPECT_TRUE( a != float3( 1.000000f ) );
 
 	TEMPER_PASS();
 }
 
 TEMPER_TEST( TestArithmeticAddition_float3 ) {
-	float3 a = float3( 2.0f );
-	float3 b = float3( 2.0f, 3.0f, 4.0f );
+	float3 a = float3( 2.000000f );
+	float3 b = float3( 2.000000f, 3.000000f, 4.000000f );
 	float3 c = a + b;
 
-	TEMPER_EXPECT_TRUE( c == float3( 4.0f, 5.0f, 6.0f ) );
+	TEMPER_EXPECT_TRUE( c == float3( 4.000000f, 5.000000f, 6.000000f ) );
 
 	TEMPER_PASS();
 }
 
 TEMPER_TEST( TestArithmeticSubtraction_float3 ) {
-	float3 a = float3( 2.0f );
-	float3 b = float3( 2.0f, 3.0f, 4.0f );
+	float3 a = float3( 2.000000f );
+	float3 b = float3( 2.000000f, 3.000000f, 4.000000f );
 	float3 c = a - b;
 
-	TEMPER_EXPECT_TRUE( c == float3( 0.0f, -1.0f, -2.0f ) );
+	TEMPER_EXPECT_TRUE( c == float3( 0.000000f, -1.000000f, -2.000000f ) );
 
 	TEMPER_PASS();
 }
 
 TEMPER_TEST( TestArithmeticMultiplication_float3 ) {
-	float3 a = float3( 2.0f );
-	float3 b = float3( 2.0f, 3.0f, 4.0f );
+	float3 a = float3( 2.000000f );
+	float3 b = float3( 2.000000f, 3.000000f, 4.000000f );
 	float3 c = a * b;
 
-	TEMPER_EXPECT_TRUE( c == float3( 4.0f, 6.0f, 8.0f ) );
+	TEMPER_EXPECT_TRUE( c == float3( 4.000000f, 6.000000f, 8.000000f ) );
 
 	TEMPER_PASS();
 }
 
 TEMPER_TEST( TestArithmeticDivision_float3 ) {
-	float3 a = float3( 2.0f );
-	float3 b = float3( 2.0f, 3.0f, 4.0f );
+	float3 a = float3( 2.000000f );
+	float3 b = float3( 2.000000f, 3.000000f, 4.000000f );
 	float3 c = a / b;
 
 	TEMPER_EXPECT_TRUE( c == float3( 1.000000, 0.666667, 0.500000 ) );
@@ -84,19 +84,19 @@ TEMPER_TEST( TestArithmeticDivision_float3 ) {
 }
 
 TEMPER_TEST( TestArray_float3 ) {
-	float3 a = float3( 0.0f, 1.0f, 2.0f );
+	float3 a = float3( 0.000000f, 1.000000f, 2.000000f );
 
-	TEMPER_EXPECT_TRUE( a[0] == 0.0f );
-	TEMPER_EXPECT_TRUE( a[1] == 1.0f );
-	TEMPER_EXPECT_TRUE( a[2] == 2.0f );
+	TEMPER_EXPECT_TRUE( a[0] == 0.000000f );
+	TEMPER_EXPECT_TRUE( a[1] == 1.000000f );
+	TEMPER_EXPECT_TRUE( a[2] == 2.000000f );
 
 	TEMPER_PASS();
 }
 
 TEMPER_TEST( TestRelational_float3 ) {
-	float3 vec0 = float3( 0.0f, 0.0f, 0.0f );
-	float3 vec1 = float3( 1.0f, 1.0f, 1.0f );
-	float3 vec2 = float3( 2.0f, 2.0f, 2.0f );
+	float3 vec0 = float3( 0.000000f, 0.000000f, 0.000000f );
+	float3 vec1 = float3( 1.000000f, 1.000000f, 1.000000f );
+	float3 vec2 = float3( 2.000000f, 2.000000f, 2.000000f );
 
 	bool3 test0 = vec0 <= vec0;
 	bool3 test1 = vec0 >= vec0;
@@ -126,7 +126,7 @@ TEMPER_TEST( TestRelational_float3 ) {
 }
 
 TEMPER_TEST( TestLength_float3 ) {
-	float3 vec = float3( 2.0f );
+	float3 vec = float3( 2.000000f );
 
 	TEMPER_EXPECT_TRUE( floateq( lengthsqr( vec ), 12.0f ) );
 	TEMPER_EXPECT_TRUE( floateq( length( vec ), 3.46410161514f ) );
@@ -135,17 +135,17 @@ TEMPER_TEST( TestLength_float3 ) {
 }
 
 TEMPER_TEST( TestNormalized_float3 ) {
-	float3 vec = float3( 2.0f, 3.0f, 4.0f );
+	float3 vec = float3( 2.000000f, 3.000000f, 4.000000f );
 	vec = normalized( vec );
 
-	TEMPER_EXPECT_TRUE( length( vec ) == 1.0f );
+	TEMPER_EXPECT_TRUE( length( vec ) == 1.000000f );
 
 	TEMPER_PASS();
 }
 
 TEMPER_TEST( TestDot_float3 ) {
-	float3 a = float3( 0.0f, 0.0f, 1.0f );
-	float3 b = float3( 0.0f, 0.0f, -1.0f );
+	float3 a = float3( 0.000000f, 0.000000f, 1.000000f );
+	float3 b = float3( 0.000000f, 0.000000f, -1.000000f );
 
 	TEMPER_EXPECT_TRUE( dot( a, b ) == -1.0f );
 
@@ -153,9 +153,9 @@ TEMPER_TEST( TestDot_float3 ) {
 }
 
 TEMPER_TEST( TestCross_float3 ) {
-	float3 left = float3( -1.0f, 0.0f, 0.0f );
-	float3 forward = float3( 0.0f, 0.0f, 1.0f );
-	float3 up = float3( 0.0f, 1.0f, 0.0f );
+	float3 left = float3( -1.000000f, 0.000000f, 0.000000f );
+	float3 forward = float3( 0.000000f, 0.000000f, 1.000000f );
+	float3 up = float3( 0.000000f, 1.000000f, 0.000000f );
 
 	TEMPER_EXPECT_TRUE( cross( left, forward ) == up );
 
@@ -163,11 +163,11 @@ TEMPER_TEST( TestCross_float3 ) {
 }
 
 TEMPER_TEST( TestAngle_float3 ) {
-	float3 right = float3( 1.0f, 0.0f, 0.0f );
-	float3 up = float3( 0.0f, 1.0f, 0.0f );
+	float3 right = float3( 1.000000f, 0.000000f, 0.000000f );
+	float3 up = float3( 0.000000f, 1.000000f, 0.000000f );
 	float answer = angle( up, right );
 
-	TEMPER_EXPECT_TRUE( floateq( answer, 90.0f ) );
+	TEMPER_EXPECT_TRUE( floateq( answer, 90.000000f ) );
 
 	TEMPER_PASS();
 }
