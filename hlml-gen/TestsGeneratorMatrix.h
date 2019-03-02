@@ -43,4 +43,7 @@ private:
 
 	std::string	GetParmListIdentity( const int32_t value = 1 ) const;
 	std::string	GetParmListSingleValue( const genType_t type, const int32_t value ) const;
+
+	std::string	GetParmListVector( const genType_t type, const uint32_t numComponents, const float* values ) const;
+	std::string	GetParmListMatrix( const genType_t type, const uint32_t numRows, const uint32_t numCols, const float* values ) const;
 };

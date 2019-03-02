@@ -940,3 +940,43 @@ std::string TestsGeneratorMatrix::GetParmListSingleValue( const genType_t type, 
 
 	return paramList;
 }
+
+std::string TestsGeneratorMatrix::GetParmListVector( const genType_t type, const uint32_t numComponents, const float* values ) const {
+	std::string parmList = "( ";
+	for ( uint32_t i = 0; i < numComponents; i++ ) {
+		parmList += Gen_GetNumericLiteral( type, values[i] );
+
+		if ( i != numComponents - 1 ) {
+			parmList += ", ";
+		}
+	}
+	parmList += " )";
+
+	return parmList;
+}
+
+std::string TestsGeneratorMatrix::GetParmListMatrix( const genType_t type, const uint32_t numRows, const uint32_t numCols, const float* values ) const {
+	std::string parmList = "(\n";
+	for ( uint32_t row = 0; row < numRows; row++ ) {
+		parmList += "\t\t";
+
+		for ( uint32_t col = 0; col < numCols; col++ ) {
+			uint32_t index = col + ( row * numCols );
+
+			parmList += Gen_GetNumericLiteral( type, values[index] );
+
+			if ( row + col != ( numRows - 1 ) + ( numCols - 1 ) ) {
+				parmList += ",";
+			}
+
+			if ( col != numCols - 1 ) {
+				parmList += " ";
+			}
+		}
+
+		parmList += "\n";
+	}
+	parmList += "\t)";
+
+	return parmList;
+}
