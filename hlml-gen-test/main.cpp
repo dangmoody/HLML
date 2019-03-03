@@ -27,6 +27,7 @@ along with hlml.  If not, see <http://www.gnu.org/licenses/>.
 #include <temper.h>
 
 static void OnSuiteEnd( void* userdata ) {
+	( (void) userdata );
 	printf( "\n" );
 }
 

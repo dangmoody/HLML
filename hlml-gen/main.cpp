@@ -393,6 +393,7 @@ static bool GenerateTestsMain( void ) {
 	content += "\n";
 
 	content += "static void OnSuiteEnd( void* userdata ) {\n";
+	content += "\t( (void) userdata );\n";
 	content += "\tprintf( \"\\n\" );\n";
 	content += "}\n";
 
