@@ -105,9 +105,11 @@ void TestsGeneratorMatrix::Generate( const genType_t type, const uint32_t numRow
 		}
 
 		m_code += "\n";
-		m_code += "\tTEMPER_SKIP_TEST( TestOrtho_" + m_fullTypeName + ", \"TODO\" );\n";
-		m_code += "\tTEMPER_SKIP_TEST( TestPerspective_" + m_fullTypeName + ", \"TODO\" );\n";
-		m_code += "\tTEMPER_SKIP_TEST( TestLookAt_" + m_fullTypeName + ", \"TODO\" );\n";
+		if ( Gen_IsFloatingPointType( m_type ) && ( m_numRows >= 4 && m_numCols >= 4 ) ) {
+			m_code += "\tTEMPER_RUN_TEST( TestOrtho_" + m_fullTypeName + " );\n";
+			m_code += "\tTEMPER_SKIP_TEST( TestPerspective_" + m_fullTypeName + ", \"TODO\" );\n";
+			m_code += "\tTEMPER_SKIP_TEST( TestLookAt_" + m_fullTypeName + ", \"TODO\" );\n";
+		}
 	}
 	m_code += "};\n";
 
@@ -989,18 +991,55 @@ void TestsGeneratorMatrix::GenerateTestScale() {
 }
 
 void TestsGeneratorMatrix::GenerateTestOrtho() {
-	if ( m_type == GEN_TYPE_BOOL ) {
+	if ( !Gen_IsFloatingPointType( m_type ) ) {
 		return;
 	}
 
+	if ( m_numRows < 4 || m_numCols < 4 ) {
+		return;
+	}
+
+	// answers for 1280 x 720, ortho size 5
+	float answerOrtho[] = {
+		0.112499997f,  0.0f,         0.0f,           0.0f,
+		0.0f,         -0.200000003f, 0.0f,           0.0f,
+		0.0f,          0.0f,         0.00990098994f, 0.00990098994f,
+		0.0f,          0.0f,         0.0f,           1.0f
+	};
+
+	std::string parmListAnswerOrtho = GetParmListMatrix( m_type, 4, 4, answerOrtho );
+
+	std::string minusOneStr = Gen_GetNumericLiteral( m_type, -1.0f );
+	std::string oneHundredStr = Gen_GetNumericLiteral( m_type, 100.0f );
+
 	m_code += "TEMPER_TEST( TestOrtho_" + m_fullTypeName + " ) {\n";
-	m_code += "\tTEMPER_FAIL();\n";
+	m_code += "\t" + m_fullTypeName + " answerOrtho = " + m_fullTypeName + parmListAnswerOrtho + ";\n";
+	m_code += "\n";
+	m_code += "\t" + m_typeString + " width = " + Gen_GetNumericLiteral( m_type, 1280.0f ) + ";\n";
+	m_code += "\t" + m_typeString + " height = " + Gen_GetNumericLiteral( m_type, 720.0f ) + ";\n";
+	m_code += "\t" + m_typeString + " aspect = width / height;\n";
+	m_code += "\t" + m_typeString + " orthoSize = " + Gen_GetNumericLiteral( m_type, 5.0f ) + ";\n";
+	m_code += "\n";
+	m_code += "\t" + m_typeString + " left = -aspect * orthoSize;\n";
+	m_code += "\t" + m_typeString + " right = aspect * orthoSize;\n";
+	m_code += "\t" + m_typeString + " top = -orthoSize;\n";
+	m_code += "\t" + m_typeString + " bottom = orthoSize;\n";
+	m_code += "\n";
+	m_code += "\t" + m_fullTypeName + " mat = ortho( left, right, top, bottom, " + minusOneStr + ", " + oneHundredStr +" );\n";
+	m_code += "\n";
+	m_code += "\tTEMPER_EXPECT_TRUE( mat == answerOrtho );\n";
+	m_code += "\n";
+	m_code += "\tTEMPER_PASS();\n";
 	m_code += "}\n";
 	m_code += "\n";
 }
 
 void TestsGeneratorMatrix::GenerateTestPerspective() {
-	if ( m_type == GEN_TYPE_BOOL ) {
+	if ( !Gen_IsFloatingPointType( m_type ) ) {
+		return;
+	}
+
+	if ( m_numRows < 4 || m_numCols < 4 ) {
 		return;
 	}
 
@@ -1011,7 +1050,11 @@ void TestsGeneratorMatrix::GenerateTestPerspective() {
 }
 
 void TestsGeneratorMatrix::GenerateTestLookAt() {
-	if ( m_type == GEN_TYPE_BOOL ) {
+	if ( !Gen_IsFloatingPointType( m_type ) ) {
+		return;
+	}
+
+	if ( m_numRows < 4 || m_numCols < 4 ) {
 		return;
 	}
 

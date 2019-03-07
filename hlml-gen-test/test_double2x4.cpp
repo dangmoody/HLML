@@ -217,18 +217,6 @@ TEMPER_TEST( TestScale_double2x4 ) {
 	TEMPER_PASS();
 }
 
-TEMPER_TEST( TestOrtho_double2x4 ) {
-	TEMPER_FAIL();
-}
-
-TEMPER_TEST( TestPerspective_double2x4 ) {
-	TEMPER_FAIL();
-}
-
-TEMPER_TEST( TestLookAt_double2x4 ) {
-	TEMPER_FAIL();
-}
-
 TEMPER_SUITE( Test_double2x4 ) {
 	TEMPER_RUN_TEST( TestAssignment_double2x4 );
 
@@ -240,7 +228,4 @@ TEMPER_SUITE( Test_double2x4 ) {
 	TEMPER_RUN_TEST( TestTranspose_double2x4 );
 
 
-	TEMPER_SKIP_TEST( TestOrtho_double2x4, "TODO" );
-	TEMPER_SKIP_TEST( TestPerspective_double2x4, "TODO" );
-	TEMPER_SKIP_TEST( TestLookAt_double2x4, "TODO" );
 };

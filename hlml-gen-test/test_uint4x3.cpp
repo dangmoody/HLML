@@ -270,18 +270,6 @@ TEMPER_TEST( TestScale_uint4x3 ) {
 	TEMPER_PASS();
 }
 
-TEMPER_TEST( TestOrtho_uint4x3 ) {
-	TEMPER_FAIL();
-}
-
-TEMPER_TEST( TestPerspective_uint4x3 ) {
-	TEMPER_FAIL();
-}
-
-TEMPER_TEST( TestLookAt_uint4x3 ) {
-	TEMPER_FAIL();
-}
-
 TEMPER_SUITE( Test_uint4x3 ) {
 	TEMPER_RUN_TEST( TestAssignment_uint4x3 );
 
@@ -293,7 +281,4 @@ TEMPER_SUITE( Test_uint4x3 ) {
 	TEMPER_RUN_TEST( TestTranspose_uint4x3 );
 
 
-	TEMPER_SKIP_TEST( TestOrtho_uint4x3, "TODO" );
-	TEMPER_SKIP_TEST( TestPerspective_uint4x3, "TODO" );
-	TEMPER_SKIP_TEST( TestLookAt_uint4x3, "TODO" );
 };

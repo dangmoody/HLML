@@ -272,18 +272,6 @@ TEMPER_TEST( TestScale_int3x3 ) {
 	TEMPER_PASS();
 }
 
-TEMPER_TEST( TestOrtho_int3x3 ) {
-	TEMPER_FAIL();
-}
-
-TEMPER_TEST( TestPerspective_int3x3 ) {
-	TEMPER_FAIL();
-}
-
-TEMPER_TEST( TestLookAt_int3x3 ) {
-	TEMPER_FAIL();
-}
-
 TEMPER_SUITE( Test_int3x3 ) {
 	TEMPER_RUN_TEST( TestAssignment_int3x3 );
 
@@ -298,7 +286,4 @@ TEMPER_SUITE( Test_int3x3 ) {
 	TEMPER_RUN_TEST( TestTranslate_int3x3 );
 	TEMPER_RUN_TEST( TestScale_int3x3 );
 
-	TEMPER_SKIP_TEST( TestOrtho_int3x3, "TODO" );
-	TEMPER_SKIP_TEST( TestPerspective_int3x3, "TODO" );
-	TEMPER_SKIP_TEST( TestLookAt_int3x3, "TODO" );
 };

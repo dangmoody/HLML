@@ -217,18 +217,6 @@ TEMPER_TEST( TestScale_float2x4 ) {
 	TEMPER_PASS();
 }
 
-TEMPER_TEST( TestOrtho_float2x4 ) {
-	TEMPER_FAIL();
-}
-
-TEMPER_TEST( TestPerspective_float2x4 ) {
-	TEMPER_FAIL();
-}
-
-TEMPER_TEST( TestLookAt_float2x4 ) {
-	TEMPER_FAIL();
-}
-
 TEMPER_SUITE( Test_float2x4 ) {
 	TEMPER_RUN_TEST( TestAssignment_float2x4 );
 
@@ -240,7 +228,4 @@ TEMPER_SUITE( Test_float2x4 ) {
 	TEMPER_RUN_TEST( TestTranspose_float2x4 );
 
 
-	TEMPER_SKIP_TEST( TestOrtho_float2x4, "TODO" );
-	TEMPER_SKIP_TEST( TestPerspective_float2x4, "TODO" );
-	TEMPER_SKIP_TEST( TestLookAt_float2x4, "TODO" );
 };

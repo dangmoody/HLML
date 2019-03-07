@@ -229,18 +229,6 @@ TEMPER_TEST( TestTranspose_double3x2 ) {
 	TEMPER_PASS();
 }
 
-TEMPER_TEST( TestOrtho_double3x2 ) {
-	TEMPER_FAIL();
-}
-
-TEMPER_TEST( TestPerspective_double3x2 ) {
-	TEMPER_FAIL();
-}
-
-TEMPER_TEST( TestLookAt_double3x2 ) {
-	TEMPER_FAIL();
-}
-
 TEMPER_SUITE( Test_double3x2 ) {
 	TEMPER_RUN_TEST( TestAssignment_double3x2 );
 
@@ -252,7 +240,4 @@ TEMPER_SUITE( Test_double3x2 ) {
 	TEMPER_RUN_TEST( TestTranspose_double3x2 );
 
 
-	TEMPER_SKIP_TEST( TestOrtho_double3x2, "TODO" );
-	TEMPER_SKIP_TEST( TestPerspective_double3x2, "TODO" );
-	TEMPER_SKIP_TEST( TestLookAt_double3x2, "TODO" );
 };
