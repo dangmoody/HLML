@@ -7,29 +7,31 @@
 #include <stdint.h>
 #include <string>
 
-#define BIT( x )					1ULL << x	// TODO(DM): move this somewhere more generic?
+#define BIT( x )						1ULL << x
 
 #ifndef _countof
-#define _countof( x )				( sizeof( (x) ) / sizeof( (x)[0] ) )
+#define _countof( x )					( sizeof( (x) ) / sizeof( (x)[0] ) )
 #endif
 
-#define UNUSED( x )					( (void) (x) )
+#define UNUSED( x )						( (void) (x) )
 
-#define GEN_COMPONENT_COUNT_MIN		2
-#define GEN_COMPONENT_COUNT_MAX		4
+#define GEN_COMPONENT_COUNT_MIN			2
+#define GEN_COMPONENT_COUNT_MAX			4
 
-#define GEN_OUT_FOLDER_PATH			"out/"
-#define GEN_OUT_GEN_FOLDER_PATH		"out/gen/"
-#define GEN_TESTS_FOLDER_PATH		"hlml-gen-test/"
+#define GEN_OUT_FOLDER_PATH				"out/"
+#define GEN_OUT_GEN_FOLDER_PATH			"out/gen/"
+#define GEN_TESTS_FOLDER_PATH			"hlml-gen-test/"
 
-#define GEN_HEADER_MAIN				"hlml_main.h"
-#define GEN_HEADER_USER				"hlml_user.h"
+#define GEN_HEADER_MAIN					"hlml_main.h"
+#define GEN_HEADER_USER					"hlml_user.h"
 
-#define GEN_HEADER_VECTOR			"hlml_vector.h"
-#define GEN_HEADER_MATRIX			"hlml_matrix.h"
+#define GEN_HEADER_VECTOR				"hlml_vector.h"
+#define GEN_HEADER_MATRIX				"hlml_matrix.h"
 
-#define GEN_HEADER_FUNCTIONS_VECTOR	"hlml_functions_vector"
-#define GEN_HEADER_FUNCTIONS_MATRIX	"hlml_functions_matrix"
+#define GEN_FILENAME_OPERATORS_MATRIX	"hlml_operators_matrix"
+
+#define GEN_FILENAME_FUNCTIONS_VECTOR	"hlml_functions_vector"
+#define GEN_FILENAME_FUNCTIONS_MATRIX	"hlml_functions_matrix"
 
 enum genType_t {
 	GEN_TYPE_BOOL					= 0,
@@ -41,29 +43,70 @@ enum genType_t {
 	GEN_TYPE_COUNT,
 };
 
-enum hand_t {
+enum genHand_t {
 	GEN_HAND_LEFT					= 0,
 	GEN_HAND_RIGHT,
 
 	GEN_HAND_COUNT
 };
 
-enum arithmeticOp_t {
-	GEN_ARITHMETIC_OP_ADDITION		= 0,
-	GEN_ARITHMETIC_OP_SUBTRACTION,
-	GEN_ARITHMETIC_OP_MULTIPLICATION,
-	GEN_ARITHMETIC_OP_DIVISION,
+enum genOpArithmetic_t {
+	GEN_OP_ARITHMETIC_ADD			= 0,
+	GEN_OP_ARITHMETIC_SUB,
+	GEN_OP_ARITHMETIC_MUL,
+	GEN_OP_ARITHMETIC_DIV,
 
-	GEN_ARITHMETIC_OP_COUNT
+	GEN_OP_ARITHMETIC_COUNT
+};
+
+enum genOpRelational_t {
+	GEN_OP_RELATIONAL_LESS			= 0,
+	GEN_OP_RELATIONAL_LESS_EQUAL,
+	GEN_OP_RELATIONAL_GREATER,
+	GEN_OP_RELATIONAL_GREATER_EQUAL,
+
+	GEN_OP_RELATIONAL_COUNT
 };
 
 
-extern const std::string			GEN_FILE_HEADER;
+const std::string GEN_FILE_HEADER = \
+"/*\n" \
+"===========================================================================\n" \
+"\n" \
+"hlml.\n" \
+"Copyright (c) Dan Moody 2019 - Present.\n" \
+"\n" \
+"This file is part of hlml.\n" \
+"\n" \
+"hlml is free software: you can redistribute it and/or modify\n" \
+"it under the terms of the GNU General Public License as published by\n" \
+"the Free Software Foundation, either version 3 of the License, or\n" \
+"(at your option) any later version.\n" \
+"\n" \
+"hlml is distributed in the hope that it will be useful,\n" \
+"but WITHOUT ANY WARRANTY; without even the implied warranty of\n" \
+"MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the\n" \
+"GNU General Public License for more details.\n" \
+"\n" \
+"You should have received a copy of the GNU General Public License\n" \
+"along with hlml.  If not, see <http://www.gnu.org/licenses/>.\n" \
+"\n" \
+"===========================================================================\n" \
+"*/\n" \
+"\n" \
+"// GENERATED FILE.  DO NOT EDIT.\n" \
+"\n";
 
-extern const std::string			GEN_COMPONENT_NAMES_VECTOR;
-extern const std::string			GEN_COMPONENT_NAMES_COLOR;
-extern const std::string			GEN_OPERATORS_ARITHMETIC;
-extern const std::string			GEN_OPERATORS_EQUALITY[GEN_COMPONENT_COUNT_MAX];
+const std::string GEN_COMPONENT_NAMES_VECTOR	= "xyzw";
+const std::string GEN_COMPONENT_NAMES_COLOR		= "rgba";
+const std::string GEN_OPERATORS_ARITHMETIC		= "+-*/";
+
+const std::string GEN_OPERATORS_RELATIONAL[4] = {
+	"<",
+	"<=",
+	">",
+	">=",
+};
 
 inline std::string					Gen_GetTypeString( const genType_t type );
 inline std::string					Gen_GetMemberTypeString( const genType_t type );
@@ -74,24 +117,8 @@ inline std::string					Gen_GetNumericLiteral( const genType_t type, const float 
 inline genType_t					Gen_GetSupportedFloatingPointType( const genType_t type );
 inline bool							Gen_IsFloatingPointType( const genType_t type );
 
-extern void							Gen_VectorLength( const genType_t type, const uint32_t numComponents, std::string& outHeader, std::string& outInl );
-extern void							Gen_VectorNormalize( const genType_t type, const uint32_t numComponents, std::string& outHeader, std::string& outInl );
-extern void							Gen_VectorDot( const genType_t type, const uint32_t numComponents, std::string& outHeader, std::string& outInl );
-extern void							Gen_VectorCross( const genType_t type, const uint32_t numComponents, std::string& outHeader, std::string& outInl );
-extern void							Gen_VectorAngle( const genType_t type, const uint32_t numComponents, std::string& outHeader, std::string& outInl );
-
-extern void							Gen_MatrixIdentity( const genType_t type, const uint32_t numRows, const uint32_t numCols, std::string& outHeader, std::string& outInl );
-extern void							Gen_MatrixTranspose( const genType_t type, const uint32_t numRows, const uint32_t numCols, std::string& outHeader, std::string& outInl );
-extern void							Gen_MatrixInverse( const genType_t type, const uint32_t numRows, const uint32_t numCols, std::string& outHeader, std::string& outInl );
-extern void							Gen_MatrixDeterminant( const genType_t type, const uint32_t numRows, const uint32_t numCols, std::string& outHeader, std::string& outInl );
-
-extern void							Gen_MatrixTranslate( const genType_t type, const uint32_t numRows, const uint32_t numCols, std::string& outHeader, std::string& outInl );
-extern void							Gen_MatrixRotate( const genType_t type, const uint32_t numRows, const uint32_t numCols, std::string& outHeader, std::string& outInl );
-extern void							Gen_MatrixScale( const genType_t type, const uint32_t numRows, const uint32_t numCols, std::string& outHeader, std::string& outInl );
-
-extern void							Gen_MatrixOrtho( const hand_t hand, const genType_t type, const uint32_t numRows, const uint32_t numCols, std::string& outHeader, std::string& outInl );
-extern void							Gen_MatrixPerspective( const hand_t hand, const genType_t type, const uint32_t numRows, const uint32_t numCols, std::string& outHeader, std::string& outInl );
-extern void							Gen_MatrixLookAt( const hand_t hand, const genType_t type, const uint32_t numRows, const uint32_t numCols, std::string& outHeader, std::string& outInl );
+inline std::string					Gen_GetFuncNameDegrees( const genType_t type );
+inline std::string					Gen_GetFuncNameRadians( const genType_t type );
 
 
 std::string Gen_GetTypeString( const genType_t type ) {
@@ -156,4 +183,12 @@ genType_t Gen_GetSupportedFloatingPointType( const genType_t type ) {
 
 bool Gen_IsFloatingPointType( const genType_t type ) {
 	return type == GEN_TYPE_FLOAT || type == GEN_TYPE_DOUBLE;
+}
+
+std::string Gen_GetFuncNameDegrees( const genType_t type ) {
+	return ( type == GEN_TYPE_DOUBLE ) ? "degrees" : "degreesf";
+}
+
+std::string Gen_GetFuncNameRadians( const genType_t type ) {
+	return ( type == GEN_TYPE_DOUBLE ) ? "radians" : "radiansf";
 }

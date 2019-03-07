@@ -60,90 +60,6 @@ TEMPER_TEST( TestAssignment_double3x2 ) {
 	TEMPER_PASS();
 }
 
-TEMPER_TEST( TestArithmeticAddition_double3x2 ) {
-	double3x2 a = double3x2(
-		6.000000, 6.000000, 6.000000, 
-		6.000000,6.000000,6.000000
-	);
-	double3x2 b = double3x2(
-		2.000000, 3.000000,
-		6.000000, 6.000000,
-		10.000000, 10.000000
-	);
-	double3x2 c = a + b;
-
-	TEMPER_EXPECT_TRUE( c == double3x2(
-		8.000000, 9.000000,
-		12.000000, 12.000000,
-		16.000000, 16.000000
-	) );
-
-	TEMPER_PASS();
-}
-
-TEMPER_TEST( TestArithmeticSubtraction_double3x2 ) {
-	double3x2 a = double3x2(
-		6.000000, 6.000000, 6.000000, 
-		6.000000,6.000000,6.000000
-	);
-	double3x2 b = double3x2(
-		2.000000, 3.000000,
-		6.000000, 6.000000,
-		10.000000, 10.000000
-	);
-	double3x2 c = a - b;
-
-	TEMPER_EXPECT_TRUE( c == double3x2(
-		4.000000, 3.000000,
-		0.000000, 0.000000,
-		-4.000000, -4.000000
-	) );
-
-	TEMPER_PASS();
-}
-
-TEMPER_TEST( TestArithmeticMultiplication_double3x2 ) {
-	double3x2 a = double3x2(
-		6.000000, 6.000000, 6.000000, 
-		6.000000,6.000000,6.000000
-	);
-	double3x2 b = double3x2(
-		2.000000, 3.000000,
-		6.000000, 6.000000,
-		10.000000, 10.000000
-	);
-	double3x2 c = a * b;
-
-	TEMPER_EXPECT_TRUE( c == double3x2(
-		0.000000, 1.000000,
-		1.000000, 2.000000,
-		2.000000, 3.000000
-	) );
-
-	TEMPER_PASS();
-}
-
-TEMPER_TEST( TestArithmeticDivision_double3x2 ) {
-	double3x2 a = double3x2(
-		2.000000, 3.000000,
-		6.000000, 6.000000,
-		10.000000, 10.000000
-	);
-	double3x2 b = double3x2(
-		6.000000, 6.000000, 6.000000, 
-		6.000000,6.000000,6.000000
-	);
-	double3x2 c = b / a;
-
-	TEMPER_EXPECT_TRUE( c == double3x2(
-		3.000000, 2.000000,
-		1.000000, 1.000000,
-		0.600000, 0.600000
-	) );
-
-	TEMPER_PASS();
-}
-
 TEMPER_TEST( TestArray_double3x2 ) {
 	double3x2 mat;
 
@@ -313,10 +229,6 @@ TEMPER_TEST( TestTranspose_double3x2 ) {
 	TEMPER_PASS();
 }
 
-TEMPER_TEST( TestScale_double3x2 ) {
-	TEMPER_FAIL();
-}
-
 TEMPER_TEST( TestOrtho_double3x2 ) {
 	TEMPER_FAIL();
 }
@@ -332,10 +244,6 @@ TEMPER_TEST( TestLookAt_double3x2 ) {
 TEMPER_SUITE( Test_double3x2 ) {
 	TEMPER_RUN_TEST( TestAssignment_double3x2 );
 
-	TEMPER_RUN_TEST( TestArithmeticAddition_double3x2 );
-	TEMPER_RUN_TEST( TestArithmeticSubtraction_double3x2 );
-	TEMPER_SKIP_TEST( TestArithmeticMultiplication_double3x2, "Give me a minute to think about how to structure this one." );
-	TEMPER_RUN_TEST( TestArithmeticDivision_double3x2 );
 
 	TEMPER_RUN_TEST( TestArray_double3x2 );
 	TEMPER_RUN_TEST( TestRelational_double3x2 );
@@ -343,7 +251,6 @@ TEMPER_SUITE( Test_double3x2 ) {
 	TEMPER_RUN_TEST( TestIdentity_double3x2 );
 	TEMPER_RUN_TEST( TestTranspose_double3x2 );
 
-	TEMPER_SKIP_TEST( TestScale_double3x2, "TODO" );
 
 	TEMPER_SKIP_TEST( TestOrtho_double3x2, "TODO" );
 	TEMPER_SKIP_TEST( TestPerspective_double3x2, "TODO" );

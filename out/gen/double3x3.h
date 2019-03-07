@@ -41,22 +41,6 @@ struct double3x3 {
 	inline ~double3x3() {}
 
 	inline double3x3 operator=( const double3x3& other );
-	inline double3x3 operator+( const double rhs ) const;
-	inline double3x3 operator+=( const double rhs );
-	inline double3x3 operator+( const double3x3& rhs ) const;
-	inline double3x3 operator+=( const double3x3& rhs );
-	inline double3x3 operator-( const double rhs ) const;
-	inline double3x3 operator-=( const double rhs );
-	inline double3x3 operator-( const double3x3& rhs ) const;
-	inline double3x3 operator-=( const double3x3& rhs );
-	inline double3x3 operator*( const double rhs ) const;
-	inline double3x3 operator*=( const double rhs );
-	inline double3x3 operator*( const double3x3& rhs ) const;
-	inline double3x3 operator*=( const double3x3& rhs );
-	inline double3x3 operator/( const double rhs ) const;
-	inline double3x3 operator/=( const double rhs );
-	inline double3x3 operator/( const double3x3& rhs ) const;
-	inline double3x3 operator/=( const double3x3& rhs );
 
 	inline double3& operator[]( const uint32_t index );
 	inline const double3& operator[]( const uint32_t index ) const;
@@ -64,10 +48,5 @@ struct double3x3 {
 
 inline bool operator==( const double3x3& lhs, const double3x3& rhs );
 inline bool operator!=( const double3x3& lhs, const double3x3& rhs );
-
-inline bool3x3 operator<( const double3x3& lhs, const double3x3& rhs );
-inline bool3x3 operator<=( const double3x3& lhs, const double3x3& rhs );
-inline bool3x3 operator>( const double3x3& lhs, const double3x3& rhs );
-inline bool3x3 operator>=( const double3x3& lhs, const double3x3& rhs );
 
 #include "double3x3.inl"

@@ -27,6 +27,9 @@ along with hlml.  If not, see <http://www.gnu.org/licenses/>.
 #include "TestsGeneratorVector.h"
 #include "TestsGeneratorMatrix.h"
 
+#include "gen_funcs_vector.h"
+#include "gen_funcs_matrix.h"
+
 #include "FileIO.h"
 
 #include <stdio.h>
@@ -34,7 +37,7 @@ along with hlml.  If not, see <http://www.gnu.org/licenses/>.
 
 #include <string>
 
-hand_t g_hand = GEN_HAND_COUNT;
+genHand_t g_hand = GEN_HAND_COUNT;
 
 // TODO(DM): tidy me
 static const char* GetNextArg( const int currentArg, const int argc, char** argv ) {
@@ -57,19 +60,19 @@ static bool ProcessArgs( const int argc, char** argv ) {
 
 					if ( strcmp( value, "left" ) == 0 ) {
 						g_hand = GEN_HAND_LEFT;
-
-						foundArg = true;
 						i++;
 					} else if ( strcmp( value, "right" ) == 0 ) {
 						g_hand = GEN_HAND_RIGHT;
-
-						foundArg = true;
 						i++;
 					} else {
 						return false;
 					}
 					break;
 				}
+
+				default:
+					foundArg = false;
+					break;
 			}
 		}
 	}
@@ -111,8 +114,8 @@ static void GenerateImplMatrices( void ) {
 
 		std::string typeString = Gen_GetTypeString( type );
 
-		for ( uint32_t col = GEN_COMPONENT_COUNT_MIN; col <= GEN_COMPONENT_COUNT_MAX; col++ ) {
-			for ( uint32_t row = GEN_COMPONENT_COUNT_MIN; row <= GEN_COMPONENT_COUNT_MAX; row++ ) {
+		for ( uint32_t row = GEN_COMPONENT_COUNT_MIN; row <= GEN_COMPONENT_COUNT_MAX; row++ ) {
+			for ( uint32_t col = GEN_COMPONENT_COUNT_MIN; col <= GEN_COMPONENT_COUNT_MAX; col++ ) {
 				printf( "Generating %s%dx%d...", typeString.c_str(), row, col );
 
 				gen.Generate( type, row, col );
@@ -156,11 +159,11 @@ static bool GenerateMainTypeHeaderMatrix( void ) {
 
 		std::string typeString = Gen_GetTypeString( type );
 
-		for ( uint32_t col = GEN_COMPONENT_COUNT_MIN; col <= GEN_COMPONENT_COUNT_MAX; col++ ) {
-			const std::string colStr = std::to_string( col );
+		for ( uint32_t row = GEN_COMPONENT_COUNT_MIN; row <= GEN_COMPONENT_COUNT_MAX; row++ ) {
+			const std::string rowStr = std::to_string( row );
 
-			for ( uint32_t row = GEN_COMPONENT_COUNT_MIN; row <= GEN_COMPONENT_COUNT_MAX; row++ ) {
-				const std::string rowStr = std::to_string( row );
+			for ( uint32_t col = GEN_COMPONENT_COUNT_MIN; col <= GEN_COMPONENT_COUNT_MAX; col++ ) {
+				const std::string colStr = std::to_string( col );
 
 				content += "#include \"" + typeString + rowStr + "x" + colStr + ".h\"\n";
 			}
@@ -175,10 +178,10 @@ static bool GenerateMainTypeHeaderMatrix( void ) {
 
 static bool GenerateFunctionsVector( void ) {
 	char filePathHeader[1024] = { 0 };
-	sprintf( filePathHeader, "%s%s.h", GEN_OUT_GEN_FOLDER_PATH, GEN_HEADER_FUNCTIONS_VECTOR );
+	sprintf( filePathHeader, "%s%s.h", GEN_OUT_GEN_FOLDER_PATH, GEN_FILENAME_FUNCTIONS_VECTOR );
 
 	char filePathInl[1024] = { 0 };
-	sprintf( filePathInl, "%s%s.inl", GEN_OUT_GEN_FOLDER_PATH, GEN_HEADER_FUNCTIONS_VECTOR );
+	sprintf( filePathInl, "%s%s.inl", GEN_OUT_GEN_FOLDER_PATH, GEN_FILENAME_FUNCTIONS_VECTOR );
 
 	std::string content = GEN_FILE_HEADER;
 
@@ -233,7 +236,92 @@ static bool GenerateFunctionsVector( void ) {
 		}
 	}
 
-	contentHeader += "#include \"" + std::string( GEN_HEADER_FUNCTIONS_VECTOR ) + ".inl\"\n";
+	contentHeader += "#include \"" + std::string( GEN_FILENAME_FUNCTIONS_VECTOR ) + ".inl\"\n";
+
+	if ( !FS_WriteToFile( filePathHeader, contentHeader.c_str(), contentHeader.size() ) ) {
+		return false;
+	}
+
+	if ( !FS_WriteToFile( filePathInl, contentInl.c_str(), contentInl.size() ) ) {
+		return false;
+	}
+
+	return true;
+}
+
+static bool GenerateOperatorsMatrix( void ) {
+	char filePathHeader[1024] = { 0 };
+	sprintf( filePathHeader, "%s%s.h", GEN_OUT_GEN_FOLDER_PATH, GEN_FILENAME_OPERATORS_MATRIX );
+
+	char filePathInl[1024] = { 0 };
+	sprintf( filePathInl, "%s%s.inl", GEN_OUT_GEN_FOLDER_PATH, GEN_FILENAME_OPERATORS_MATRIX );
+
+	std::string content = GEN_FILE_HEADER;
+
+	std::string contentHeader = content;
+	contentHeader += "#pragma once\n";
+	contentHeader += "\n";
+
+	std::string contentInl = content;
+	contentInl += std::string( "#include \"" ) + GEN_FILENAME_OPERATORS_MATRIX + ".h\"\n";
+
+	// includes
+	for ( uint32_t typeIndex = 0; typeIndex < GEN_TYPE_COUNT; typeIndex++ ) {
+		genType_t type = static_cast<genType_t>( typeIndex );
+
+		if ( type == GEN_TYPE_BOOL ) {
+			continue;
+		}
+
+		std::string typeString = Gen_GetTypeString( type );
+
+		for ( uint32_t row = GEN_COMPONENT_COUNT_MIN; row <= GEN_COMPONENT_COUNT_MAX; row++ ) {
+			std::string rowStr = std::to_string( row );
+
+			for ( uint32_t col = GEN_COMPONENT_COUNT_MIN; col <= GEN_COMPONENT_COUNT_MAX; col++ ) {
+				std::string colStr = std::to_string( col );
+
+				contentHeader += "#include \"" + typeString + rowStr + "x" + colStr + ".h\"\n";
+			}
+		}
+	}
+
+	contentHeader += "\n";
+	contentInl += "\n";
+
+	// header and inl code
+	for ( uint32_t typeIndex = 0; typeIndex < GEN_TYPE_COUNT; typeIndex++ ) {
+		genType_t type = static_cast<genType_t>( typeIndex );
+
+		if ( type == GEN_TYPE_BOOL ) {
+			continue;
+		}
+
+		std::string typeString = Gen_GetTypeString( type );
+
+		for ( uint32_t row = GEN_COMPONENT_COUNT_MIN; row <= GEN_COMPONENT_COUNT_MAX; row++ ) {
+			std::string rowStr = std::to_string( row );
+
+			for ( uint32_t col = GEN_COMPONENT_COUNT_MIN; col <= GEN_COMPONENT_COUNT_MAX; col++ ) {
+				std::string colStr = std::to_string( col );
+
+				std::string fullTypeName = typeString + rowStr + "x" + colStr;
+
+				printf( "Matrix operators %s...\n", fullTypeName.c_str() );
+
+				contentHeader += "// " + fullTypeName + "\n";
+				contentInl += "// " + fullTypeName + "\n";
+
+				Gen_MatrixOperatorsArithmetic( type, row, col, contentHeader, contentInl );
+				Gen_MatrixOperatorsRelational( type, row, col, contentHeader, contentInl );
+
+				contentHeader += "\n";
+				contentInl += "\n";
+			}
+		}
+	}
+
+	contentHeader += "#include \"" + std::string( GEN_FILENAME_OPERATORS_MATRIX ) + ".inl\"\n";
 
 	if ( !FS_WriteToFile( filePathHeader, contentHeader.c_str(), contentHeader.size() ) ) {
 		return false;
@@ -248,10 +336,10 @@ static bool GenerateFunctionsVector( void ) {
 
 static bool GenerateFunctionsMatrix( void ) {
 	char filePathHeader[1024] = { 0 };
-	sprintf( filePathHeader, "%s%s.h", GEN_OUT_GEN_FOLDER_PATH, GEN_HEADER_FUNCTIONS_MATRIX );
+	sprintf( filePathHeader, "%s%s.h", GEN_OUT_GEN_FOLDER_PATH, GEN_FILENAME_FUNCTIONS_MATRIX );
 
 	char filePathInl[1024] = { 0 };
-	sprintf( filePathInl, "%s%s.inl", GEN_OUT_GEN_FOLDER_PATH, GEN_HEADER_FUNCTIONS_MATRIX );
+	sprintf( filePathInl, "%s%s.inl", GEN_OUT_GEN_FOLDER_PATH, GEN_FILENAME_FUNCTIONS_MATRIX );
 
 	std::string content = GEN_FILE_HEADER;
 
@@ -260,18 +348,19 @@ static bool GenerateFunctionsMatrix( void ) {
 	contentHeader += "\n";
 
 	std::string contentInl = content;
-	contentInl += std::string( "#include \"" ) + GEN_HEADER_FUNCTIONS_VECTOR + ".h\"\n";
+	contentInl += std::string( "#include \"" ) + GEN_FILENAME_FUNCTIONS_VECTOR + ".h\"\n";
+	contentInl += std::string( "#include \"" ) + GEN_FILENAME_OPERATORS_MATRIX + ".h\"\n";
 
 	for ( uint32_t typeIndex = 0; typeIndex < GEN_TYPE_COUNT; typeIndex++ ) {
 		genType_t type = static_cast<genType_t>( typeIndex );
 
 		std::string typeString = Gen_GetTypeString( type );
 
-		for ( uint32_t col = 1; col <= GEN_COMPONENT_COUNT_MAX; col++ ) {
-			const std::string colStr = std::to_string( col );
+		for ( uint32_t row = GEN_COMPONENT_COUNT_MIN; row <= GEN_COMPONENT_COUNT_MAX; row++ ) {
+			const std::string rowStr = std::to_string( row );
 
-			for ( uint32_t row = GEN_COMPONENT_COUNT_MIN; row <= GEN_COMPONENT_COUNT_MAX; row++ ) {
-				const std::string rowStr = std::to_string( row );
+			for ( uint32_t col = 1; col <= GEN_COMPONENT_COUNT_MAX; col++ ) {
+				const std::string colStr = std::to_string( col );
 
 				// TODO(DM): only include the header files we actually need
 				if ( col == 1 ) {
@@ -291,11 +380,11 @@ static bool GenerateFunctionsMatrix( void ) {
 
 		std::string typeString = Gen_GetTypeString( type );
 
-		for ( uint32_t col = GEN_COMPONENT_COUNT_MIN; col <= GEN_COMPONENT_COUNT_MAX; col++ ) {
-			std::string colStr = std::to_string( col );
+		for ( uint32_t row = GEN_COMPONENT_COUNT_MIN; row <= GEN_COMPONENT_COUNT_MAX; row++ ) {
+			std::string rowStr = std::to_string( row );
 
-			for ( uint32_t row = GEN_COMPONENT_COUNT_MIN; row <= GEN_COMPONENT_COUNT_MAX; row++ ) {
-				std::string rowStr = std::to_string( row );
+			for ( uint32_t col = GEN_COMPONENT_COUNT_MIN; col <= GEN_COMPONENT_COUNT_MAX; col++ ) {
+				std::string colStr = std::to_string( col );
 
 				std::string fullTypeName = typeString + rowStr + "x" + colStr;
 
@@ -324,7 +413,7 @@ static bool GenerateFunctionsMatrix( void ) {
 		}
 	}
 
-	contentHeader += "#include \"" + std::string( GEN_HEADER_FUNCTIONS_MATRIX ) + ".inl\"\n";
+	contentHeader += "#include \"" + std::string( GEN_FILENAME_FUNCTIONS_MATRIX ) + ".inl\"\n";
 
 	if ( !FS_WriteToFile( filePathHeader, contentHeader.c_str(), contentHeader.size() ) ) {
 		return false;
@@ -365,11 +454,11 @@ static void GenerateTestsMatrix( void ) {
 
 		std::string typeString = Gen_GetTypeString( type );
 
-		for ( uint32_t col = GEN_COMPONENT_COUNT_MIN; col <= GEN_COMPONENT_COUNT_MAX; col++ ) {
-			std::string colStr = std::to_string( col );
+		for ( uint32_t row = GEN_COMPONENT_COUNT_MIN; row <= GEN_COMPONENT_COUNT_MAX; row++ ) {
+			std::string rowStr = std::to_string( row );
 
-			for ( uint32_t row = GEN_COMPONENT_COUNT_MIN; row <= GEN_COMPONENT_COUNT_MAX; row++ ) {
-				std::string rowStr = std::to_string( row );
+			for ( uint32_t col = GEN_COMPONENT_COUNT_MIN; col <= GEN_COMPONENT_COUNT_MAX; col++ ) {
+				std::string colStr = std::to_string( col );
 
 				std::string typeName = typeString + rowStr + "x" + colStr;
 
@@ -504,6 +593,13 @@ int main( int argc, char** argv ) {
 	printf( "======= Generating vector functions. =======\n" );
 	if ( !GenerateFunctionsVector() ) {
 		printf( "ERROR: Failed generating main vector functions header!\n" );
+		return EXIT_FAILURE;
+	}
+	printf( "======= Done. =======\n\n" );
+
+	printf( "======= Generating matrix operators. =======\n" );
+	if ( !GenerateOperatorsMatrix() ) {
+		printf( "ERROR: Failed generating matrix operators header!\n" );
 		return EXIT_FAILURE;
 	}
 	printf( "======= Done. =======\n\n" );

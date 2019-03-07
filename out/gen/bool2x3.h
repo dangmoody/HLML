@@ -27,6 +27,8 @@ along with hlml.  If not, see <http://www.gnu.org/licenses/>.
 #pragma once
 
 #include "bool3.h"
+#include "bool2x2.h"
+#include "bool3x2.h"
 
 struct bool2x3 {
 	bool3 rows[2];
@@ -41,6 +43,7 @@ struct bool2x3 {
 	inline ~bool2x3() {}
 
 	inline bool2x3 operator=( const bool2x3& other );
+
 	inline bool3& operator[]( const uint32_t index );
 	inline const bool3& operator[]( const uint32_t index ) const;
 };

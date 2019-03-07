@@ -27,6 +27,8 @@ along with hlml.  If not, see <http://www.gnu.org/licenses/>.
 #pragma once
 
 #include "float3.h"
+#include "float4x4.h"
+#include "float3x4.h"
 
 struct float4x3 {
 	float3 rows[4];
@@ -41,22 +43,6 @@ struct float4x3 {
 	inline ~float4x3() {}
 
 	inline float4x3 operator=( const float4x3& other );
-	inline float4x3 operator+( const float rhs ) const;
-	inline float4x3 operator+=( const float rhs );
-	inline float4x3 operator+( const float4x3& rhs ) const;
-	inline float4x3 operator+=( const float4x3& rhs );
-	inline float4x3 operator-( const float rhs ) const;
-	inline float4x3 operator-=( const float rhs );
-	inline float4x3 operator-( const float4x3& rhs ) const;
-	inline float4x3 operator-=( const float4x3& rhs );
-	inline float4x3 operator*( const float rhs ) const;
-	inline float4x3 operator*=( const float rhs );
-	inline float4x3 operator*( const float4x3& rhs ) const;
-	inline float4x3 operator*=( const float4x3& rhs );
-	inline float4x3 operator/( const float rhs ) const;
-	inline float4x3 operator/=( const float rhs );
-	inline float4x3 operator/( const float4x3& rhs ) const;
-	inline float4x3 operator/=( const float4x3& rhs );
 
 	inline float3& operator[]( const uint32_t index );
 	inline const float3& operator[]( const uint32_t index ) const;
@@ -64,10 +50,5 @@ struct float4x3 {
 
 inline bool operator==( const float4x3& lhs, const float4x3& rhs );
 inline bool operator!=( const float4x3& lhs, const float4x3& rhs );
-
-inline bool4x3 operator<( const float4x3& lhs, const float4x3& rhs );
-inline bool4x3 operator<=( const float4x3& lhs, const float4x3& rhs );
-inline bool4x3 operator>( const float4x3& lhs, const float4x3& rhs );
-inline bool4x3 operator>=( const float4x3& lhs, const float4x3& rhs );
 
 #include "float4x3.inl"

@@ -55,86 +55,6 @@ TEMPER_TEST( TestAssignment_uint2x3 ) {
 	TEMPER_PASS();
 }
 
-TEMPER_TEST( TestArithmeticAddition_uint2x3 ) {
-	uint2x3 a = uint2x3(
-		6, 6, 
-		6, 6, 
-		6,6
-	);
-	uint2x3 b = uint2x3(
-		2, 3, 4,
-		6, 6, 8
-	);
-	uint2x3 c = a + b;
-
-	TEMPER_EXPECT_TRUE( c == uint2x3(
-		8, 9, 10,
-		12, 12, 14
-	) );
-
-	TEMPER_PASS();
-}
-
-TEMPER_TEST( TestArithmeticSubtraction_uint2x3 ) {
-	uint2x3 a = uint2x3(
-		6, 6, 
-		6, 6, 
-		6,6
-	);
-	uint2x3 b = uint2x3(
-		2, 3, 4,
-		6, 6, 8
-	);
-	uint2x3 c = a - b;
-
-	TEMPER_EXPECT_TRUE( c == uint2x3(
-		4, 3, 2,
-		0, 0, 4294967294
-	) );
-
-	TEMPER_PASS();
-}
-
-TEMPER_TEST( TestArithmeticMultiplication_uint2x3 ) {
-	uint2x3 a = uint2x3(
-		6, 6, 
-		6, 6, 
-		6,6
-	);
-	uint2x3 b = uint2x3(
-		2, 3, 4,
-		6, 6, 8
-	);
-	uint2x3 c = a * b;
-
-	TEMPER_EXPECT_TRUE( c == uint2x3(
-		0, 1, 2,
-		1, 2, 3
-	) );
-
-	TEMPER_PASS();
-}
-
-TEMPER_TEST( TestArithmeticDivision_uint2x3 ) {
-	uint2x3 a = uint2x3(
-		2, 3, 4,
-		6, 6, 8
-	);
-	uint2x3 b = uint2x3(
-		6, 6, 
-		6, 6, 
-		6,6
-	);
-	uint2x3 c = b / a;
-
-	TEMPER_EXPECT_TRUE( c == uint2x3(
-		3, 2, 1,
-		1, 1, 0
-	) );
-
-	TEMPER_PASS();
-}
-
 TEMPER_TEST( TestArray_uint2x3 ) {
 	uint2x3 mat;
 
@@ -285,7 +205,15 @@ TEMPER_TEST( TestTranspose_uint2x3 ) {
 }
 
 TEMPER_TEST( TestScale_uint2x3 ) {
-	TEMPER_FAIL();
+	uint2x3 mat;
+	uint2x3 scaled = scale( mat, uint3( 2, 2, 2 ) );
+
+	TEMPER_EXPECT_TRUE( scaled == uint2x3(
+		2, 0, 0,
+		0, 2, 0
+	) );
+
+	TEMPER_PASS();
 }
 
 TEMPER_TEST( TestOrtho_uint2x3 ) {
@@ -303,10 +231,6 @@ TEMPER_TEST( TestLookAt_uint2x3 ) {
 TEMPER_SUITE( Test_uint2x3 ) {
 	TEMPER_RUN_TEST( TestAssignment_uint2x3 );
 
-	TEMPER_RUN_TEST( TestArithmeticAddition_uint2x3 );
-	TEMPER_RUN_TEST( TestArithmeticSubtraction_uint2x3 );
-	TEMPER_SKIP_TEST( TestArithmeticMultiplication_uint2x3, "Give me a minute to think about how to structure this one." );
-	TEMPER_RUN_TEST( TestArithmeticDivision_uint2x3 );
 
 	TEMPER_RUN_TEST( TestArray_uint2x3 );
 	TEMPER_RUN_TEST( TestRelational_uint2x3 );
@@ -314,7 +238,6 @@ TEMPER_SUITE( Test_uint2x3 ) {
 	TEMPER_RUN_TEST( TestIdentity_uint2x3 );
 	TEMPER_RUN_TEST( TestTranspose_uint2x3 );
 
-	TEMPER_SKIP_TEST( TestScale_uint2x3, "TODO" );
 
 	TEMPER_SKIP_TEST( TestOrtho_uint2x3, "TODO" );
 	TEMPER_SKIP_TEST( TestPerspective_uint2x3, "TODO" );

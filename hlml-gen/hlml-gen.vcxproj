@@ -20,7 +20,8 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="FileIO_win32.cpp" />
-    <ClCompile Include="gen_common.cpp" />
+    <ClCompile Include="gen_funcs_matrix.cpp" />
+    <ClCompile Include="gen_funcs_vector.cpp" />
     <ClCompile Include="MatrixGenerator.cpp" />
     <ClCompile Include="TestsGeneratorMatrix.cpp" />
     <ClCompile Include="TestsGeneratorVector.cpp" />
@@ -30,6 +31,8 @@
   <ItemGroup>
     <ClInclude Include="FileIO.h" />
     <ClInclude Include="gen_common.h" />
+    <ClInclude Include="gen_funcs_matrix.h" />
+    <ClInclude Include="gen_funcs_vector.h" />
     <ClInclude Include="MatrixGenerator.h" />
     <ClInclude Include="TestsGeneratorMatrix.h" />
     <ClInclude Include="TestsGeneratorVector.h" />

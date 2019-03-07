@@ -65,101 +65,6 @@ TEMPER_TEST( TestAssignment_double4x4 ) {
 	TEMPER_PASS();
 }
 
-TEMPER_TEST( TestArithmeticAddition_double4x4 ) {
-	double4x4 a = double4x4(
-		6.000000, 6.000000, 6.000000, 6.000000, 
-		6.000000, 6.000000, 6.000000, 6.000000, 
-		6.000000, 6.000000, 6.000000, 6.000000, 
-		6.000000,6.000000,6.000000,6.000000
-	);
-	double4x4 b = double4x4(
-		2.000000, 3.000000, 4.000000, 4.000000,
-		6.000000, 6.000000, 8.000000, 8.000000,
-		10.000000, 10.000000, 12.000000, 12.000000,
-		18.000000, 18.000000, 24.000000, 24.000000
-	);
-	double4x4 c = a + b;
-
-	TEMPER_EXPECT_TRUE( c == double4x4(
-		8.000000, 9.000000, 10.000000, 10.000000,
-		12.000000, 12.000000, 14.000000, 14.000000,
-		16.000000, 16.000000, 18.000000, 18.000000,
-		24.000000, 24.000000, 30.000000, 30.000000
-	) );
-
-	TEMPER_PASS();
-}
-
-TEMPER_TEST( TestArithmeticSubtraction_double4x4 ) {
-	double4x4 a = double4x4(
-		6.000000, 6.000000, 6.000000, 6.000000, 
-		6.000000, 6.000000, 6.000000, 6.000000, 
-		6.000000, 6.000000, 6.000000, 6.000000, 
-		6.000000,6.000000,6.000000,6.000000
-	);
-	double4x4 b = double4x4(
-		2.000000, 3.000000, 4.000000, 4.000000,
-		6.000000, 6.000000, 8.000000, 8.000000,
-		10.000000, 10.000000, 12.000000, 12.000000,
-		18.000000, 18.000000, 24.000000, 24.000000
-	);
-	double4x4 c = a - b;
-
-	TEMPER_EXPECT_TRUE( c == double4x4(
-		4.000000, 3.000000, 2.000000, 2.000000,
-		0.000000, 0.000000, -2.000000, -2.000000,
-		-4.000000, -4.000000, -6.000000, -6.000000,
-		-12.000000, -12.000000, -18.000000, -18.000000
-	) );
-
-	TEMPER_PASS();
-}
-
-TEMPER_TEST( TestArithmeticMultiplication_double4x4 ) {
-	double4x4 a = double4x4(
-		6.000000, 6.000000, 6.000000, 6.000000, 
-		6.000000, 6.000000, 6.000000, 6.000000, 
-		6.000000, 6.000000, 6.000000, 6.000000, 
-		6.000000,6.000000,6.000000,6.000000
-	);
-	double4x4 b = double4x4(
-		2.000000, 3.000000, 4.000000, 4.000000,
-		6.000000, 6.000000, 8.000000, 8.000000,
-		10.000000, 10.000000, 12.000000, 12.000000,
-		18.000000, 18.000000, 24.000000, 24.000000
-	);
-	double4x4 c = a * b;
-
-	TEMPER_EXPECT_TRUE( c == double4x4(
-		0.000000, 1.000000, 2.000000, 3.000000,
-		1.000000, 2.000000, 3.000000, 4.000000,
-		2.000000, 3.000000, 4.000000, 5.000000,
-		3.000000, 4.000000, 5.000000, 6.000000
-	) );
-
-	TEMPER_PASS();
-}
-
-TEMPER_TEST( TestArithmeticDivision_double4x4 ) {
-	double4x4 a = double4x4(
-		2.000000, 3.000000, 4.000000, 4.000000,
-		6.000000, 6.000000, 8.000000, 8.000000,
-		10.000000, 10.000000, 12.000000, 12.000000,
-		18.000000, 18.000000, 24.000000, 24.000000
-	);
-	double4x4 b = a / a;
-	double4x4 identity = double4x4(
-		1.000000, 0.000000, 0.000000, 0.000000,
-		0.000000, 1.000000, 0.000000, 0.000000,
-		0.000000, 0.000000, 1.000000, 0.000000,
-		0.000000, 0.000000, 0.000000, 1.000000
-	);
-
-	TEMPER_EXPECT_TRUE( b == identity );
-
-	TEMPER_PASS();
-}
-
 TEMPER_TEST( TestArray_double4x4 ) {
 	double4x4 mat;
 
@@ -401,25 +306,25 @@ TEMPER_TEST( TestTranslate_double4x4 ) {
 
 TEMPER_TEST( TestRotate_double4x4 ) {
 	double4x4 mat;
-	double4x4 yaw = rotate( mat, radians( 90.000000 ), double3( 0.000000, 1.000000, 0.000000 ) );
-	double4x4 pitch = rotate( mat, radians( 90.000000 ), double3( 1.000000, 0.000000, 0.000000 ) );
-	double4x4 roll = rotate( mat, radians( 90.000000 ), double3( 0.000000, 0.000000, 1.000000 ) );
+	double4x4 yaw = rotate( mat, radians( 45.000000 ), double3( 0.000000, 1.000000, 0.000000 ) );
+	double4x4 pitch = rotate( mat, radians( 45.000000 ), double3( 1.000000, 0.000000, 0.000000 ) );
+	double4x4 roll = rotate( mat, radians( 45.000000 ), double3( 0.000000, 0.000000, 1.000000 ) );
 
 	double4x4 answerYaw = double4x4(
-		-0.000000, 0.000000, 1.000000, 0.000000,
+		0.707107, 0.000000, 0.707107, 0.000000,
 		0.000000, 1.000000, 0.000000, 0.000000,
-		-1.000000, 0.000000, -0.000000, 0.000000,
+		-0.707107, 0.000000, 0.707107, 0.000000,
 		0.000000, 0.000000, 0.000000, 1.000000
 	);
 	double4x4 answerPitch = double4x4(
 		1.000000, 0.000000, 0.000000, 0.000000,
-		0.000000, -0.000000, -1.000000, 0.000000,
-		0.000000, 1.000000, -0.000000, 0.000000,
+		0.000000, 0.707107, -0.707107, 0.000000,
+		0.000000, 0.707107, 0.707107, 0.000000,
 		0.000000, 0.000000, 0.000000, 1.000000
 	);
 	double4x4 answerRoll = double4x4(
-		-0.000000, -1.000000, 0.000000, 0.000000,
-		1.000000, -0.000000, 0.000000, 0.000000,
+		0.707107, -0.707107, 0.000000, 0.000000,
+		0.707107, 0.707107, 0.000000, 0.000000,
 		0.000000, 0.000000, 1.000000, 0.000000,
 		0.000000, 0.000000, 0.000000, 1.000000
 	);
@@ -432,7 +337,17 @@ TEMPER_TEST( TestRotate_double4x4 ) {
 }
 
 TEMPER_TEST( TestScale_double4x4 ) {
-	TEMPER_FAIL();
+	double4x4 mat;
+	double4x4 scaled = scale( mat, double3( 2.000000, 2.000000, 2.000000 ) );
+
+	TEMPER_EXPECT_TRUE( scaled == double4x4(
+		2.000000, 0.000000, 0.000000, 0.000000,
+		0.000000, 2.000000, 0.000000, 0.000000,
+		0.000000, 0.000000, 2.000000, 0.000000,
+		0.000000, 0.000000, 0.000000, 1.000000
+	) );
+
+	TEMPER_PASS();
 }
 
 TEMPER_TEST( TestOrtho_double4x4 ) {
@@ -450,10 +365,6 @@ TEMPER_TEST( TestLookAt_double4x4 ) {
 TEMPER_SUITE( Test_double4x4 ) {
 	TEMPER_RUN_TEST( TestAssignment_double4x4 );
 
-	TEMPER_RUN_TEST( TestArithmeticAddition_double4x4 );
-	TEMPER_RUN_TEST( TestArithmeticSubtraction_double4x4 );
-	TEMPER_SKIP_TEST( TestArithmeticMultiplication_double4x4, "Give me a minute to think about how to structure this one." );
-	TEMPER_RUN_TEST( TestArithmeticDivision_double4x4 );
 
 	TEMPER_RUN_TEST( TestArray_double4x4 );
 	TEMPER_RUN_TEST( TestRelational_double4x4 );
@@ -465,7 +376,7 @@ TEMPER_SUITE( Test_double4x4 ) {
 
 	TEMPER_RUN_TEST( TestTranslate_double4x4 );
 	TEMPER_RUN_TEST( TestRotate_double4x4 );
-	TEMPER_SKIP_TEST( TestScale_double4x4, "TODO" );
+	TEMPER_RUN_TEST( TestScale_double4x4 );
 
 	TEMPER_SKIP_TEST( TestOrtho_double4x4, "TODO" );
 	TEMPER_SKIP_TEST( TestPerspective_double4x4, "TODO" );

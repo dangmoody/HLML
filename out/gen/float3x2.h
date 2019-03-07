@@ -27,6 +27,8 @@ along with hlml.  If not, see <http://www.gnu.org/licenses/>.
 #pragma once
 
 #include "float2.h"
+#include "float3x3.h"
+#include "float2x3.h"
 
 struct float3x2 {
 	float2 rows[3];
@@ -41,22 +43,6 @@ struct float3x2 {
 	inline ~float3x2() {}
 
 	inline float3x2 operator=( const float3x2& other );
-	inline float3x2 operator+( const float rhs ) const;
-	inline float3x2 operator+=( const float rhs );
-	inline float3x2 operator+( const float3x2& rhs ) const;
-	inline float3x2 operator+=( const float3x2& rhs );
-	inline float3x2 operator-( const float rhs ) const;
-	inline float3x2 operator-=( const float rhs );
-	inline float3x2 operator-( const float3x2& rhs ) const;
-	inline float3x2 operator-=( const float3x2& rhs );
-	inline float3x2 operator*( const float rhs ) const;
-	inline float3x2 operator*=( const float rhs );
-	inline float3x2 operator*( const float3x2& rhs ) const;
-	inline float3x2 operator*=( const float3x2& rhs );
-	inline float3x2 operator/( const float rhs ) const;
-	inline float3x2 operator/=( const float rhs );
-	inline float3x2 operator/( const float3x2& rhs ) const;
-	inline float3x2 operator/=( const float3x2& rhs );
 
 	inline float2& operator[]( const uint32_t index );
 	inline const float2& operator[]( const uint32_t index ) const;
@@ -64,10 +50,5 @@ struct float3x2 {
 
 inline bool operator==( const float3x2& lhs, const float3x2& rhs );
 inline bool operator!=( const float3x2& lhs, const float3x2& rhs );
-
-inline bool3x2 operator<( const float3x2& lhs, const float3x2& rhs );
-inline bool3x2 operator<=( const float3x2& lhs, const float3x2& rhs );
-inline bool3x2 operator>( const float3x2& lhs, const float3x2& rhs );
-inline bool3x2 operator>=( const float3x2& lhs, const float3x2& rhs );
 
 #include "float3x2.inl"

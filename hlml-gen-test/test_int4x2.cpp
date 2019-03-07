@@ -65,98 +65,6 @@ TEMPER_TEST( TestAssignment_int4x2 ) {
 	TEMPER_PASS();
 }
 
-TEMPER_TEST( TestArithmeticAddition_int4x2 ) {
-	int4x2 a = int4x2(
-		6, 6, 6, 6, 
-		6,6,6,6
-	);
-	int4x2 b = int4x2(
-		2, 3,
-		6, 6,
-		10, 10,
-		18, 18
-	);
-	int4x2 c = a + b;
-
-	TEMPER_EXPECT_TRUE( c == int4x2(
-		8, 9,
-		12, 12,
-		16, 16,
-		24, 24
-	) );
-
-	TEMPER_PASS();
-}
-
-TEMPER_TEST( TestArithmeticSubtraction_int4x2 ) {
-	int4x2 a = int4x2(
-		6, 6, 6, 6, 
-		6,6,6,6
-	);
-	int4x2 b = int4x2(
-		2, 3,
-		6, 6,
-		10, 10,
-		18, 18
-	);
-	int4x2 c = a - b;
-
-	TEMPER_EXPECT_TRUE( c == int4x2(
-		4, 3,
-		0, 0,
-		-4, -4,
-		-12, -12
-	) );
-
-	TEMPER_PASS();
-}
-
-TEMPER_TEST( TestArithmeticMultiplication_int4x2 ) {
-	int4x2 a = int4x2(
-		6, 6, 6, 6, 
-		6,6,6,6
-	);
-	int4x2 b = int4x2(
-		2, 3,
-		6, 6,
-		10, 10,
-		18, 18
-	);
-	int4x2 c = a * b;
-
-	TEMPER_EXPECT_TRUE( c == int4x2(
-		0, 1,
-		1, 2,
-		2, 3,
-		3, 4
-	) );
-
-	TEMPER_PASS();
-}
-
-TEMPER_TEST( TestArithmeticDivision_int4x2 ) {
-	int4x2 a = int4x2(
-		2, 3,
-		6, 6,
-		10, 10,
-		18, 18
-	);
-	int4x2 b = int4x2(
-		6, 6, 6, 6, 
-		6,6,6,6
-	);
-	int4x2 c = b / a;
-
-	TEMPER_EXPECT_TRUE( c == int4x2(
-		3, 2,
-		1, 1,
-		0, 0,
-		0, 0
-	) );
-
-	TEMPER_PASS();
-}
-
 TEMPER_TEST( TestArray_int4x2 ) {
 	int4x2 mat;
 
@@ -347,10 +255,6 @@ TEMPER_TEST( TestTranspose_int4x2 ) {
 	TEMPER_PASS();
 }
 
-TEMPER_TEST( TestScale_int4x2 ) {
-	TEMPER_FAIL();
-}
-
 TEMPER_TEST( TestOrtho_int4x2 ) {
 	TEMPER_FAIL();
 }
@@ -366,10 +270,6 @@ TEMPER_TEST( TestLookAt_int4x2 ) {
 TEMPER_SUITE( Test_int4x2 ) {
 	TEMPER_RUN_TEST( TestAssignment_int4x2 );
 
-	TEMPER_RUN_TEST( TestArithmeticAddition_int4x2 );
-	TEMPER_RUN_TEST( TestArithmeticSubtraction_int4x2 );
-	TEMPER_SKIP_TEST( TestArithmeticMultiplication_int4x2, "Give me a minute to think about how to structure this one." );
-	TEMPER_RUN_TEST( TestArithmeticDivision_int4x2 );
 
 	TEMPER_RUN_TEST( TestArray_int4x2 );
 	TEMPER_RUN_TEST( TestRelational_int4x2 );
@@ -377,7 +277,6 @@ TEMPER_SUITE( Test_int4x2 ) {
 	TEMPER_RUN_TEST( TestIdentity_int4x2 );
 	TEMPER_RUN_TEST( TestTranspose_int4x2 );
 
-	TEMPER_SKIP_TEST( TestScale_int4x2, "TODO" );
 
 	TEMPER_SKIP_TEST( TestOrtho_int4x2, "TODO" );
 	TEMPER_SKIP_TEST( TestPerspective_int4x2, "TODO" );

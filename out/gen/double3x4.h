@@ -27,6 +27,8 @@ along with hlml.  If not, see <http://www.gnu.org/licenses/>.
 #pragma once
 
 #include "double4.h"
+#include "double3x3.h"
+#include "double4x3.h"
 
 struct double3x4 {
 	double4 rows[3];
@@ -41,22 +43,6 @@ struct double3x4 {
 	inline ~double3x4() {}
 
 	inline double3x4 operator=( const double3x4& other );
-	inline double3x4 operator+( const double rhs ) const;
-	inline double3x4 operator+=( const double rhs );
-	inline double3x4 operator+( const double3x4& rhs ) const;
-	inline double3x4 operator+=( const double3x4& rhs );
-	inline double3x4 operator-( const double rhs ) const;
-	inline double3x4 operator-=( const double rhs );
-	inline double3x4 operator-( const double3x4& rhs ) const;
-	inline double3x4 operator-=( const double3x4& rhs );
-	inline double3x4 operator*( const double rhs ) const;
-	inline double3x4 operator*=( const double rhs );
-	inline double3x4 operator*( const double3x4& rhs ) const;
-	inline double3x4 operator*=( const double3x4& rhs );
-	inline double3x4 operator/( const double rhs ) const;
-	inline double3x4 operator/=( const double rhs );
-	inline double3x4 operator/( const double3x4& rhs ) const;
-	inline double3x4 operator/=( const double3x4& rhs );
 
 	inline double4& operator[]( const uint32_t index );
 	inline const double4& operator[]( const uint32_t index ) const;
@@ -64,10 +50,5 @@ struct double3x4 {
 
 inline bool operator==( const double3x4& lhs, const double3x4& rhs );
 inline bool operator!=( const double3x4& lhs, const double3x4& rhs );
-
-inline bool3x4 operator<( const double3x4& lhs, const double3x4& rhs );
-inline bool3x4 operator<=( const double3x4& lhs, const double3x4& rhs );
-inline bool3x4 operator>( const double3x4& lhs, const double3x4& rhs );
-inline bool3x4 operator>=( const double3x4& lhs, const double3x4& rhs );
 
 #include "double3x4.inl"

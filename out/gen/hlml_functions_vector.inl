@@ -121,7 +121,7 @@ float2 normalized( const float2& vec ) {
 }
 
 float angle( const float2& lhs, const float2& rhs ) {
-	return degrees( acosf( dot( normalized( lhs ), normalized( rhs ) ) ) );
+	return degreesf( acosf( dot( normalized( lhs ), normalized( rhs ) ) ) );
 }
 
 
@@ -157,7 +157,7 @@ float3 cross( const float3& lhs, const float3& rhs ) {
 }
 
 float angle( const float3& lhs, const float3& rhs ) {
-	return degrees( acosf( dot( normalized( lhs ), normalized( rhs ) ) ) );
+	return degreesf( acosf( dot( normalized( lhs ), normalized( rhs ) ) ) );
 }
 
 
@@ -194,7 +194,7 @@ float4 cross( const float4& lhs, const float4& rhs ) {
 }
 
 float angle( const float4& lhs, const float4& rhs ) {
-	return degrees( acosf( dot( normalized( lhs ), normalized( rhs ) ) ) );
+	return degreesf( acosf( dot( normalized( lhs ), normalized( rhs ) ) ) );
 }
 
 

@@ -27,6 +27,8 @@ along with hlml.  If not, see <http://www.gnu.org/licenses/>.
 #pragma once
 
 #include "uint2.h"
+#include "uint4x4.h"
+#include "uint2x4.h"
 
 struct uint4x2 {
 	uint2 rows[4];
@@ -41,22 +43,6 @@ struct uint4x2 {
 	inline ~uint4x2() {}
 
 	inline uint4x2 operator=( const uint4x2& other );
-	inline uint4x2 operator+( const uint32_t rhs ) const;
-	inline uint4x2 operator+=( const uint32_t rhs );
-	inline uint4x2 operator+( const uint4x2& rhs ) const;
-	inline uint4x2 operator+=( const uint4x2& rhs );
-	inline uint4x2 operator-( const uint32_t rhs ) const;
-	inline uint4x2 operator-=( const uint32_t rhs );
-	inline uint4x2 operator-( const uint4x2& rhs ) const;
-	inline uint4x2 operator-=( const uint4x2& rhs );
-	inline uint4x2 operator*( const uint32_t rhs ) const;
-	inline uint4x2 operator*=( const uint32_t rhs );
-	inline uint4x2 operator*( const uint4x2& rhs ) const;
-	inline uint4x2 operator*=( const uint4x2& rhs );
-	inline uint4x2 operator/( const uint32_t rhs ) const;
-	inline uint4x2 operator/=( const uint32_t rhs );
-	inline uint4x2 operator/( const uint4x2& rhs ) const;
-	inline uint4x2 operator/=( const uint4x2& rhs );
 
 	inline uint2& operator[]( const uint32_t index );
 	inline const uint2& operator[]( const uint32_t index ) const;
@@ -64,10 +50,5 @@ struct uint4x2 {
 
 inline bool operator==( const uint4x2& lhs, const uint4x2& rhs );
 inline bool operator!=( const uint4x2& lhs, const uint4x2& rhs );
-
-inline bool4x2 operator<( const uint4x2& lhs, const uint4x2& rhs );
-inline bool4x2 operator<=( const uint4x2& lhs, const uint4x2& rhs );
-inline bool4x2 operator>( const uint4x2& lhs, const uint4x2& rhs );
-inline bool4x2 operator>=( const uint4x2& lhs, const uint4x2& rhs );
 
 #include "uint4x2.inl"

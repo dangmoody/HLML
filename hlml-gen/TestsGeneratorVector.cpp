@@ -11,6 +11,8 @@ void TestsGeneratorVector::Generate( const genType_t type, const uint32_t numCom
 
 	m_numComponents = numComponents;
 
+	m_numComponentsStr = std::to_string( numComponents );
+
 	m_typeString = Gen_GetTypeString( type );
 	m_memberTypeString = Gen_GetMemberTypeString( type );
 
@@ -20,7 +22,7 @@ void TestsGeneratorVector::Generate( const genType_t type, const uint32_t numCom
 
 	m_code += GEN_FILE_HEADER;
 
-	m_code += std::string( "#include \"../" ) + GEN_OUT_GEN_FOLDER_PATH + GEN_HEADER_FUNCTIONS_VECTOR + ".h\"\n";
+	m_code += std::string( "#include \"../" ) + GEN_OUT_GEN_FOLDER_PATH + GEN_FILENAME_FUNCTIONS_VECTOR + ".h\"\n";
 	m_code += "\n";
 
 	m_code += "#include <temper.h>\n";
@@ -154,7 +156,7 @@ void TestsGeneratorVector::GenerateTestArithmetic() {
 	}
 	paramListVarying += " )";
 
-	std::vector<std::string> paramListAnswers( GEN_ARITHMETIC_OP_COUNT );
+	std::vector<std::string> paramListAnswers( GEN_OP_ARITHMETIC_COUNT );
 
 	// addition
 	{
@@ -232,7 +234,7 @@ void TestsGeneratorVector::GenerateTestArithmetic() {
 		"Division",
 	};
 
-	for ( uint32_t operatorIndex = 0; operatorIndex < GEN_ARITHMETIC_OP_COUNT; operatorIndex++ ) {
+	for ( uint32_t operatorIndex = 0; operatorIndex < GEN_OP_ARITHMETIC_COUNT; operatorIndex++ ) {
 		m_code += "TEMPER_TEST( TestArithmetic" + testSuffices[operatorIndex] + "_" + m_fullTypeName + " ) {\n";
 		m_code += "\t" + m_fullTypeName + " a = " + m_fullTypeName + paramListOne + ";\n";
 		m_code += "\t" + m_fullTypeName + " b = " + m_fullTypeName + paramListVarying + ";\n";
@@ -254,7 +256,7 @@ void TestsGeneratorVector::GenerateTestRelational() {
 
 	std::vector<std::string> paramLists( m_numComponents );
 
-	std::string boolTypeName = "bool" + std::to_string( m_numComponents );
+	std::string boolTypeName = "bool" + m_numComponentsStr;
 
 	uint32_t numTestVectors = 0;
 

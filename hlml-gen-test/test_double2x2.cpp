@@ -55,79 +55,6 @@ TEMPER_TEST( TestAssignment_double2x2 ) {
 	TEMPER_PASS();
 }
 
-TEMPER_TEST( TestArithmeticAddition_double2x2 ) {
-	double2x2 a = double2x2(
-		6.000000, 6.000000, 
-		6.000000,6.000000
-	);
-	double2x2 b = double2x2(
-		2.000000, 3.000000,
-		6.000000, 6.000000
-	);
-	double2x2 c = a + b;
-
-	TEMPER_EXPECT_TRUE( c == double2x2(
-		8.000000, 9.000000,
-		12.000000, 12.000000
-	) );
-
-	TEMPER_PASS();
-}
-
-TEMPER_TEST( TestArithmeticSubtraction_double2x2 ) {
-	double2x2 a = double2x2(
-		6.000000, 6.000000, 
-		6.000000,6.000000
-	);
-	double2x2 b = double2x2(
-		2.000000, 3.000000,
-		6.000000, 6.000000
-	);
-	double2x2 c = a - b;
-
-	TEMPER_EXPECT_TRUE( c == double2x2(
-		4.000000, 3.000000,
-		0.000000, 0.000000
-	) );
-
-	TEMPER_PASS();
-}
-
-TEMPER_TEST( TestArithmeticMultiplication_double2x2 ) {
-	double2x2 a = double2x2(
-		6.000000, 6.000000, 
-		6.000000,6.000000
-	);
-	double2x2 b = double2x2(
-		2.000000, 3.000000,
-		6.000000, 6.000000
-	);
-	double2x2 c = a * b;
-
-	TEMPER_EXPECT_TRUE( c == double2x2(
-		0.000000, 1.000000,
-		1.000000, 2.000000
-	) );
-
-	TEMPER_PASS();
-}
-
-TEMPER_TEST( TestArithmeticDivision_double2x2 ) {
-	double2x2 a = double2x2(
-		2.000000, 3.000000,
-		6.000000, 6.000000
-	);
-	double2x2 b = a / a;
-	double2x2 identity = double2x2(
-		1.000000, 0.000000,
-		0.000000, 1.000000
-	);
-
-	TEMPER_EXPECT_TRUE( b == identity );
-
-	TEMPER_PASS();
-}
-
 TEMPER_TEST( TestArray_double2x2 ) {
 	double2x2 mat;
 
@@ -303,7 +230,15 @@ TEMPER_TEST( TestDeterminant_double2x2 ) {
 }
 
 TEMPER_TEST( TestScale_double2x2 ) {
-	TEMPER_FAIL();
+	double2x2 mat;
+	double2x2 scaled = scale( mat, double3( 2.000000, 2.000000, 2.000000 ) );
+
+	TEMPER_EXPECT_TRUE( scaled == double2x2(
+		2.000000, 0.000000,
+		0.000000, 2.000000
+	) );
+
+	TEMPER_PASS();
 }
 
 TEMPER_TEST( TestOrtho_double2x2 ) {
@@ -321,10 +256,6 @@ TEMPER_TEST( TestLookAt_double2x2 ) {
 TEMPER_SUITE( Test_double2x2 ) {
 	TEMPER_RUN_TEST( TestAssignment_double2x2 );
 
-	TEMPER_RUN_TEST( TestArithmeticAddition_double2x2 );
-	TEMPER_RUN_TEST( TestArithmeticSubtraction_double2x2 );
-	TEMPER_SKIP_TEST( TestArithmeticMultiplication_double2x2, "Give me a minute to think about how to structure this one." );
-	TEMPER_RUN_TEST( TestArithmeticDivision_double2x2 );
 
 	TEMPER_RUN_TEST( TestArray_double2x2 );
 	TEMPER_RUN_TEST( TestRelational_double2x2 );
@@ -334,7 +265,6 @@ TEMPER_SUITE( Test_double2x2 ) {
 	TEMPER_RUN_TEST( TestDeterminant_double2x2 );
 	TEMPER_RUN_TEST( TestInverse_double2x2 );
 
-	TEMPER_SKIP_TEST( TestScale_double2x2, "TODO" );
 
 	TEMPER_SKIP_TEST( TestOrtho_double2x2, "TODO" );
 	TEMPER_SKIP_TEST( TestPerspective_double2x2, "TODO" );

@@ -20,6 +20,8 @@ private:
 	std::string	m_typeString;
 	std::string	m_memberTypeString;
 
+	std::string	m_numComponentsStr;
+
 	genType_t	m_type;
 
 	uint32_t	m_numComponents;

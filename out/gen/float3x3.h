@@ -41,22 +41,6 @@ struct float3x3 {
 	inline ~float3x3() {}
 
 	inline float3x3 operator=( const float3x3& other );
-	inline float3x3 operator+( const float rhs ) const;
-	inline float3x3 operator+=( const float rhs );
-	inline float3x3 operator+( const float3x3& rhs ) const;
-	inline float3x3 operator+=( const float3x3& rhs );
-	inline float3x3 operator-( const float rhs ) const;
-	inline float3x3 operator-=( const float rhs );
-	inline float3x3 operator-( const float3x3& rhs ) const;
-	inline float3x3 operator-=( const float3x3& rhs );
-	inline float3x3 operator*( const float rhs ) const;
-	inline float3x3 operator*=( const float rhs );
-	inline float3x3 operator*( const float3x3& rhs ) const;
-	inline float3x3 operator*=( const float3x3& rhs );
-	inline float3x3 operator/( const float rhs ) const;
-	inline float3x3 operator/=( const float rhs );
-	inline float3x3 operator/( const float3x3& rhs ) const;
-	inline float3x3 operator/=( const float3x3& rhs );
 
 	inline float3& operator[]( const uint32_t index );
 	inline const float3& operator[]( const uint32_t index ) const;
@@ -64,10 +48,5 @@ struct float3x3 {
 
 inline bool operator==( const float3x3& lhs, const float3x3& rhs );
 inline bool operator!=( const float3x3& lhs, const float3x3& rhs );
-
-inline bool3x3 operator<( const float3x3& lhs, const float3x3& rhs );
-inline bool3x3 operator<=( const float3x3& lhs, const float3x3& rhs );
-inline bool3x3 operator>( const float3x3& lhs, const float3x3& rhs );
-inline bool3x3 operator>=( const float3x3& lhs, const float3x3& rhs );
 
 #include "float3x3.inl"

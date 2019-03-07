@@ -25,6 +25,7 @@ along with hlml.  If not, see <http://www.gnu.org/licenses/>.
 // GENERATED FILE.  DO NOT EDIT.
 
 #include "hlml_functions_vector.h"
+#include "hlml_operators_matrix.h"
 
 // bool2x2
 void identity( bool2x2& mat ) {
@@ -40,37 +41,6 @@ bool2x2 transpose( const bool2x2& mat ) {
 }
 
 
-// bool3x2
-void identity( bool3x2& mat ) {
-	mat[0] = { 1, 0 };
-	mat[1] = { 0, 1 };
-	mat[2] = { 0, 0 };
-}
-
-bool2x3 transpose( const bool3x2& mat ) {
-	return bool2x3(
-		mat[0][0], mat[1][0], mat[2][0],
-		mat[0][1], mat[1][1], mat[2][1]
-	);
-}
-
-
-// bool4x2
-void identity( bool4x2& mat ) {
-	mat[0] = { 1, 0 };
-	mat[1] = { 0, 1 };
-	mat[2] = { 0, 0 };
-	mat[3] = { 0, 0 };
-}
-
-bool2x4 transpose( const bool4x2& mat ) {
-	return bool2x4(
-		mat[0][0], mat[1][0], mat[2][0], mat[3][0],
-		mat[0][1], mat[1][1], mat[2][1], mat[3][1]
-	);
-}
-
-
 // bool2x3
 void identity( bool2x3& mat ) {
 	mat[0] = { 1, 0, 0 };
@@ -82,39 +52,6 @@ bool3x2 transpose( const bool2x3& mat ) {
 		mat[0][0], mat[1][0],
 		mat[0][1], mat[1][1],
 		mat[0][2], mat[1][2]
-	);
-}
-
-
-// bool3x3
-void identity( bool3x3& mat ) {
-	mat[0] = { 1, 0, 0 };
-	mat[1] = { 0, 1, 0 };
-	mat[2] = { 0, 0, 1 };
-}
-
-bool3x3 transpose( const bool3x3& mat ) {
-	return bool3x3(
-		mat[0][0], mat[1][0], mat[2][0],
-		mat[0][1], mat[1][1], mat[2][1],
-		mat[0][2], mat[1][2], mat[2][2]
-	);
-}
-
-
-// bool4x3
-void identity( bool4x3& mat ) {
-	mat[0] = { 1, 0, 0 };
-	mat[1] = { 0, 1, 0 };
-	mat[2] = { 0, 0, 1 };
-	mat[3] = { 0, 0, 0 };
-}
-
-bool3x4 transpose( const bool4x3& mat ) {
-	return bool3x4(
-		mat[0][0], mat[1][0], mat[2][0], mat[3][0],
-		mat[0][1], mat[1][1], mat[2][1], mat[3][1],
-		mat[0][2], mat[1][2], mat[2][2], mat[3][2]
 	);
 }
 
@@ -135,6 +72,37 @@ bool4x2 transpose( const bool2x4& mat ) {
 }
 
 
+// bool3x2
+void identity( bool3x2& mat ) {
+	mat[0] = { 1, 0 };
+	mat[1] = { 0, 1 };
+	mat[2] = { 0, 0 };
+}
+
+bool2x3 transpose( const bool3x2& mat ) {
+	return bool2x3(
+		mat[0][0], mat[1][0], mat[2][0],
+		mat[0][1], mat[1][1], mat[2][1]
+	);
+}
+
+
+// bool3x3
+void identity( bool3x3& mat ) {
+	mat[0] = { 1, 0, 0 };
+	mat[1] = { 0, 1, 0 };
+	mat[2] = { 0, 0, 1 };
+}
+
+bool3x3 transpose( const bool3x3& mat ) {
+	return bool3x3(
+		mat[0][0], mat[1][0], mat[2][0],
+		mat[0][1], mat[1][1], mat[2][1],
+		mat[0][2], mat[1][2], mat[2][2]
+	);
+}
+
+
 // bool3x4
 void identity( bool3x4& mat ) {
 	mat[0] = { 1, 0, 0, 0 };
@@ -148,6 +116,39 @@ bool4x3 transpose( const bool3x4& mat ) {
 		mat[0][1], mat[1][1], mat[2][1],
 		mat[0][2], mat[1][2], mat[2][2],
 		mat[0][3], mat[1][3], mat[2][3]
+	);
+}
+
+
+// bool4x2
+void identity( bool4x2& mat ) {
+	mat[0] = { 1, 0 };
+	mat[1] = { 0, 1 };
+	mat[2] = { 0, 0 };
+	mat[3] = { 0, 0 };
+}
+
+bool2x4 transpose( const bool4x2& mat ) {
+	return bool2x4(
+		mat[0][0], mat[1][0], mat[2][0], mat[3][0],
+		mat[0][1], mat[1][1], mat[2][1], mat[3][1]
+	);
+}
+
+
+// bool4x3
+void identity( bool4x3& mat ) {
+	mat[0] = { 1, 0, 0 };
+	mat[1] = { 0, 1, 0 };
+	mat[2] = { 0, 0, 1 };
+	mat[3] = { 0, 0, 0 };
+}
+
+bool3x4 transpose( const bool4x3& mat ) {
+	return bool3x4(
+		mat[0][0], mat[1][0], mat[2][0], mat[3][0],
+		mat[0][1], mat[1][1], mat[2][1], mat[3][1],
+		mat[0][2], mat[1][2], mat[2][2], mat[3][2]
 	);
 }
 
@@ -188,84 +189,16 @@ int32_t determinant( const int2x2& mat ) {
 }
 
 int2x2 scale( const int2x2& mat, const int32_t scalar ) {
-	return scale( mat, int2( scalar, scalar ) );
+	return scale( mat, int3( scalar, scalar, scalar ) );
 }
 
-int2x2 scale( const int2x2& mat, const int2& vec ) {
+int2x2 scale( const int2x2& mat, const int3& vec ) {
 	return int2x2(
 		mat[0][0] * vec.x,
 		mat[0][1],
 
 		mat[1][0],
 		mat[1][1] * vec.y
-	);
-}
-
-
-// int3x2
-void identity( int3x2& mat ) {
-	mat[0] = { 1, 0 };
-	mat[1] = { 0, 1 };
-	mat[2] = { 0, 0 };
-}
-
-int2x3 transpose( const int3x2& mat ) {
-	return int2x3(
-		mat[0][0], mat[1][0], mat[2][0],
-		mat[0][1], mat[1][1], mat[2][1]
-	);
-}
-
-int3x2 scale( const int3x2& mat, const int32_t scalar ) {
-	return scale( mat, int2( scalar, scalar ) );
-}
-
-int3x2 scale( const int3x2& mat, const int2& vec ) {
-	return int3x2(
-		mat[0][0] * vec.x,
-		mat[0][1],
-
-		mat[1][0],
-		mat[1][1] * vec.y,
-
-		mat[2][0],
-		mat[2][1]
-	);
-}
-
-
-// int4x2
-void identity( int4x2& mat ) {
-	mat[0] = { 1, 0 };
-	mat[1] = { 0, 1 };
-	mat[2] = { 0, 0 };
-	mat[3] = { 0, 0 };
-}
-
-int2x4 transpose( const int4x2& mat ) {
-	return int2x4(
-		mat[0][0], mat[1][0], mat[2][0], mat[3][0],
-		mat[0][1], mat[1][1], mat[2][1], mat[3][1]
-	);
-}
-
-int4x2 scale( const int4x2& mat, const int32_t scalar ) {
-	return scale( mat, int2( scalar, scalar ) );
-}
-
-int4x2 scale( const int4x2& mat, const int2& vec ) {
-	return int4x2(
-		mat[0][0] * vec.x,
-		mat[0][1],
-
-		mat[1][0],
-		mat[1][1] * vec.y,
-
-		mat[2][0],
-		mat[2][1],
-
-		mat[3][0],
-		mat[3][1]
 	);
 }
 
@@ -297,6 +230,55 @@ int2x3 scale( const int2x3& mat, const int3& vec ) {
 		mat[1][0],
 		mat[1][1] * vec.y,
 		mat[1][2]
+	);
+}
+
+
+// int2x4
+void identity( int2x4& mat ) {
+	mat[0] = { 1, 0, 0, 0 };
+	mat[1] = { 0, 1, 0, 0 };
+}
+
+int4x2 transpose( const int2x4& mat ) {
+	return int4x2(
+		mat[0][0], mat[1][0],
+		mat[0][1], mat[1][1],
+		mat[0][2], mat[1][2],
+		mat[0][3], mat[1][3]
+	);
+}
+
+int2x4 scale( const int2x4& mat, const int32_t scalar ) {
+	return scale( mat, int3( scalar, scalar, scalar ) );
+}
+
+int2x4 scale( const int2x4& mat, const int3& vec ) {
+	return int2x4(
+		mat[0][0] * vec.x,
+		mat[0][1],
+		mat[0][2],
+		mat[0][3],
+
+		mat[1][0],
+		mat[1][1] * vec.y,
+		mat[1][2],
+		mat[1][3]
+	);
+}
+
+
+// int3x2
+void identity( int3x2& mat ) {
+	mat[0] = { 1, 0 };
+	mat[1] = { 0, 1 };
+	mat[2] = { 0, 0 };
+}
+
+int2x3 transpose( const int3x2& mat ) {
+	return int2x3(
+		mat[0][0], mat[1][0], mat[2][0],
+		mat[0][1], mat[1][1], mat[2][1]
 	);
 }
 
@@ -352,81 +334,6 @@ int3x3 scale( const int3x3& mat, const int3& vec ) {
 }
 
 
-// int4x3
-void identity( int4x3& mat ) {
-	mat[0] = { 1, 0, 0 };
-	mat[1] = { 0, 1, 0 };
-	mat[2] = { 0, 0, 1 };
-	mat[3] = { 0, 0, 0 };
-}
-
-int3x4 transpose( const int4x3& mat ) {
-	return int3x4(
-		mat[0][0], mat[1][0], mat[2][0], mat[3][0],
-		mat[0][1], mat[1][1], mat[2][1], mat[3][1],
-		mat[0][2], mat[1][2], mat[2][2], mat[3][2]
-	);
-}
-
-int4x3 scale( const int4x3& mat, const int32_t scalar ) {
-	return scale( mat, int3( scalar, scalar, scalar ) );
-}
-
-int4x3 scale( const int4x3& mat, const int3& vec ) {
-	return int4x3(
-		mat[0][0] * vec.x,
-		mat[0][1],
-		mat[0][2],
-
-		mat[1][0],
-		mat[1][1] * vec.y,
-		mat[1][2],
-
-		mat[2][0],
-		mat[2][1],
-		mat[2][2] * vec.z,
-
-		mat[3][0],
-		mat[3][1],
-		mat[3][2]
-	);
-}
-
-
-// int2x4
-void identity( int2x4& mat ) {
-	mat[0] = { 1, 0, 0, 0 };
-	mat[1] = { 0, 1, 0, 0 };
-}
-
-int4x2 transpose( const int2x4& mat ) {
-	return int4x2(
-		mat[0][0], mat[1][0],
-		mat[0][1], mat[1][1],
-		mat[0][2], mat[1][2],
-		mat[0][3], mat[1][3]
-	);
-}
-
-int2x4 scale( const int2x4& mat, const int32_t scalar ) {
-	return scale( mat, int3( scalar, scalar, scalar ) );
-}
-
-int2x4 scale( const int2x4& mat, const int3& vec ) {
-	return int2x4(
-		mat[0][0] * vec.x,
-		mat[0][1],
-		mat[0][2],
-		mat[0][3],
-
-		mat[1][0],
-		mat[1][1] * vec.y,
-		mat[1][2],
-		mat[1][3]
-	);
-}
-
-
 // int3x4
 void identity( int3x4& mat ) {
 	mat[0] = { 1, 0, 0, 0 };
@@ -471,6 +378,63 @@ int3x4 scale( const int3x4& mat, const int3& vec ) {
 		mat[2][1],
 		mat[2][2] * vec.z,
 		mat[2][3]
+	);
+}
+
+
+// int4x2
+void identity( int4x2& mat ) {
+	mat[0] = { 1, 0 };
+	mat[1] = { 0, 1 };
+	mat[2] = { 0, 0 };
+	mat[3] = { 0, 0 };
+}
+
+int2x4 transpose( const int4x2& mat ) {
+	return int2x4(
+		mat[0][0], mat[1][0], mat[2][0], mat[3][0],
+		mat[0][1], mat[1][1], mat[2][1], mat[3][1]
+	);
+}
+
+
+// int4x3
+void identity( int4x3& mat ) {
+	mat[0] = { 1, 0, 0 };
+	mat[1] = { 0, 1, 0 };
+	mat[2] = { 0, 0, 1 };
+	mat[3] = { 0, 0, 0 };
+}
+
+int3x4 transpose( const int4x3& mat ) {
+	return int3x4(
+		mat[0][0], mat[1][0], mat[2][0], mat[3][0],
+		mat[0][1], mat[1][1], mat[2][1], mat[3][1],
+		mat[0][2], mat[1][2], mat[2][2], mat[3][2]
+	);
+}
+
+int4x3 scale( const int4x3& mat, const int32_t scalar ) {
+	return scale( mat, int3( scalar, scalar, scalar ) );
+}
+
+int4x3 scale( const int4x3& mat, const int3& vec ) {
+	return int4x3(
+		mat[0][0] * vec.x,
+		mat[0][1],
+		mat[0][2],
+
+		mat[1][0],
+		mat[1][1] * vec.y,
+		mat[1][2],
+
+		mat[2][0],
+		mat[2][1],
+		mat[2][2] * vec.z,
+
+		mat[3][0],
+		mat[3][1],
+		mat[3][2]
 	);
 }
 
@@ -565,84 +529,16 @@ uint2x2 transpose( const uint2x2& mat ) {
 }
 
 uint2x2 scale( const uint2x2& mat, const uint32_t scalar ) {
-	return scale( mat, uint2( scalar, scalar ) );
+	return scale( mat, uint3( scalar, scalar, scalar ) );
 }
 
-uint2x2 scale( const uint2x2& mat, const uint2& vec ) {
+uint2x2 scale( const uint2x2& mat, const uint3& vec ) {
 	return uint2x2(
 		mat[0][0] * vec.x,
 		mat[0][1],
 
 		mat[1][0],
 		mat[1][1] * vec.y
-	);
-}
-
-
-// uint3x2
-void identity( uint3x2& mat ) {
-	mat[0] = { 1, 0 };
-	mat[1] = { 0, 1 };
-	mat[2] = { 0, 0 };
-}
-
-uint2x3 transpose( const uint3x2& mat ) {
-	return uint2x3(
-		mat[0][0], mat[1][0], mat[2][0],
-		mat[0][1], mat[1][1], mat[2][1]
-	);
-}
-
-uint3x2 scale( const uint3x2& mat, const uint32_t scalar ) {
-	return scale( mat, uint2( scalar, scalar ) );
-}
-
-uint3x2 scale( const uint3x2& mat, const uint2& vec ) {
-	return uint3x2(
-		mat[0][0] * vec.x,
-		mat[0][1],
-
-		mat[1][0],
-		mat[1][1] * vec.y,
-
-		mat[2][0],
-		mat[2][1]
-	);
-}
-
-
-// uint4x2
-void identity( uint4x2& mat ) {
-	mat[0] = { 1, 0 };
-	mat[1] = { 0, 1 };
-	mat[2] = { 0, 0 };
-	mat[3] = { 0, 0 };
-}
-
-uint2x4 transpose( const uint4x2& mat ) {
-	return uint2x4(
-		mat[0][0], mat[1][0], mat[2][0], mat[3][0],
-		mat[0][1], mat[1][1], mat[2][1], mat[3][1]
-	);
-}
-
-uint4x2 scale( const uint4x2& mat, const uint32_t scalar ) {
-	return scale( mat, uint2( scalar, scalar ) );
-}
-
-uint4x2 scale( const uint4x2& mat, const uint2& vec ) {
-	return uint4x2(
-		mat[0][0] * vec.x,
-		mat[0][1],
-
-		mat[1][0],
-		mat[1][1] * vec.y,
-
-		mat[2][0],
-		mat[2][1],
-
-		mat[3][0],
-		mat[3][1]
 	);
 }
 
@@ -674,6 +570,55 @@ uint2x3 scale( const uint2x3& mat, const uint3& vec ) {
 		mat[1][0],
 		mat[1][1] * vec.y,
 		mat[1][2]
+	);
+}
+
+
+// uint2x4
+void identity( uint2x4& mat ) {
+	mat[0] = { 1, 0, 0, 0 };
+	mat[1] = { 0, 1, 0, 0 };
+}
+
+uint4x2 transpose( const uint2x4& mat ) {
+	return uint4x2(
+		mat[0][0], mat[1][0],
+		mat[0][1], mat[1][1],
+		mat[0][2], mat[1][2],
+		mat[0][3], mat[1][3]
+	);
+}
+
+uint2x4 scale( const uint2x4& mat, const uint32_t scalar ) {
+	return scale( mat, uint3( scalar, scalar, scalar ) );
+}
+
+uint2x4 scale( const uint2x4& mat, const uint3& vec ) {
+	return uint2x4(
+		mat[0][0] * vec.x,
+		mat[0][1],
+		mat[0][2],
+		mat[0][3],
+
+		mat[1][0],
+		mat[1][1] * vec.y,
+		mat[1][2],
+		mat[1][3]
+	);
+}
+
+
+// uint3x2
+void identity( uint3x2& mat ) {
+	mat[0] = { 1, 0 };
+	mat[1] = { 0, 1 };
+	mat[2] = { 0, 0 };
+}
+
+uint2x3 transpose( const uint3x2& mat ) {
+	return uint2x3(
+		mat[0][0], mat[1][0], mat[2][0],
+		mat[0][1], mat[1][1], mat[2][1]
 	);
 }
 
@@ -722,81 +667,6 @@ uint3x3 scale( const uint3x3& mat, const uint3& vec ) {
 }
 
 
-// uint4x3
-void identity( uint4x3& mat ) {
-	mat[0] = { 1, 0, 0 };
-	mat[1] = { 0, 1, 0 };
-	mat[2] = { 0, 0, 1 };
-	mat[3] = { 0, 0, 0 };
-}
-
-uint3x4 transpose( const uint4x3& mat ) {
-	return uint3x4(
-		mat[0][0], mat[1][0], mat[2][0], mat[3][0],
-		mat[0][1], mat[1][1], mat[2][1], mat[3][1],
-		mat[0][2], mat[1][2], mat[2][2], mat[3][2]
-	);
-}
-
-uint4x3 scale( const uint4x3& mat, const uint32_t scalar ) {
-	return scale( mat, uint3( scalar, scalar, scalar ) );
-}
-
-uint4x3 scale( const uint4x3& mat, const uint3& vec ) {
-	return uint4x3(
-		mat[0][0] * vec.x,
-		mat[0][1],
-		mat[0][2],
-
-		mat[1][0],
-		mat[1][1] * vec.y,
-		mat[1][2],
-
-		mat[2][0],
-		mat[2][1],
-		mat[2][2] * vec.z,
-
-		mat[3][0],
-		mat[3][1],
-		mat[3][2]
-	);
-}
-
-
-// uint2x4
-void identity( uint2x4& mat ) {
-	mat[0] = { 1, 0, 0, 0 };
-	mat[1] = { 0, 1, 0, 0 };
-}
-
-uint4x2 transpose( const uint2x4& mat ) {
-	return uint4x2(
-		mat[0][0], mat[1][0],
-		mat[0][1], mat[1][1],
-		mat[0][2], mat[1][2],
-		mat[0][3], mat[1][3]
-	);
-}
-
-uint2x4 scale( const uint2x4& mat, const uint32_t scalar ) {
-	return scale( mat, uint3( scalar, scalar, scalar ) );
-}
-
-uint2x4 scale( const uint2x4& mat, const uint3& vec ) {
-	return uint2x4(
-		mat[0][0] * vec.x,
-		mat[0][1],
-		mat[0][2],
-		mat[0][3],
-
-		mat[1][0],
-		mat[1][1] * vec.y,
-		mat[1][2],
-		mat[1][3]
-	);
-}
-
-
 // uint3x4
 void identity( uint3x4& mat ) {
 	mat[0] = { 1, 0, 0, 0 };
@@ -841,6 +711,63 @@ uint3x4 scale( const uint3x4& mat, const uint3& vec ) {
 		mat[2][1],
 		mat[2][2] * vec.z,
 		mat[2][3]
+	);
+}
+
+
+// uint4x2
+void identity( uint4x2& mat ) {
+	mat[0] = { 1, 0 };
+	mat[1] = { 0, 1 };
+	mat[2] = { 0, 0 };
+	mat[3] = { 0, 0 };
+}
+
+uint2x4 transpose( const uint4x2& mat ) {
+	return uint2x4(
+		mat[0][0], mat[1][0], mat[2][0], mat[3][0],
+		mat[0][1], mat[1][1], mat[2][1], mat[3][1]
+	);
+}
+
+
+// uint4x3
+void identity( uint4x3& mat ) {
+	mat[0] = { 1, 0, 0 };
+	mat[1] = { 0, 1, 0 };
+	mat[2] = { 0, 0, 1 };
+	mat[3] = { 0, 0, 0 };
+}
+
+uint3x4 transpose( const uint4x3& mat ) {
+	return uint3x4(
+		mat[0][0], mat[1][0], mat[2][0], mat[3][0],
+		mat[0][1], mat[1][1], mat[2][1], mat[3][1],
+		mat[0][2], mat[1][2], mat[2][2], mat[3][2]
+	);
+}
+
+uint4x3 scale( const uint4x3& mat, const uint32_t scalar ) {
+	return scale( mat, uint3( scalar, scalar, scalar ) );
+}
+
+uint4x3 scale( const uint4x3& mat, const uint3& vec ) {
+	return uint4x3(
+		mat[0][0] * vec.x,
+		mat[0][1],
+		mat[0][2],
+
+		mat[1][0],
+		mat[1][1] * vec.y,
+		mat[1][2],
+
+		mat[2][0],
+		mat[2][1],
+		mat[2][2] * vec.z,
+
+		mat[3][0],
+		mat[3][1],
+		mat[3][2]
 	);
 }
 
@@ -926,84 +853,16 @@ float determinant( const float2x2& mat ) {
 }
 
 float2x2 scale( const float2x2& mat, const float scalar ) {
-	return scale( mat, float2( scalar, scalar ) );
+	return scale( mat, float3( scalar, scalar, scalar ) );
 }
 
-float2x2 scale( const float2x2& mat, const float2& vec ) {
+float2x2 scale( const float2x2& mat, const float3& vec ) {
 	return float2x2(
 		mat[0][0] * vec.x,
 		mat[0][1],
 
 		mat[1][0],
 		mat[1][1] * vec.y
-	);
-}
-
-
-// float3x2
-void identity( float3x2& mat ) {
-	mat[0] = { 1, 0 };
-	mat[1] = { 0, 1 };
-	mat[2] = { 0, 0 };
-}
-
-float2x3 transpose( const float3x2& mat ) {
-	return float2x3(
-		mat[0][0], mat[1][0], mat[2][0],
-		mat[0][1], mat[1][1], mat[2][1]
-	);
-}
-
-float3x2 scale( const float3x2& mat, const float scalar ) {
-	return scale( mat, float2( scalar, scalar ) );
-}
-
-float3x2 scale( const float3x2& mat, const float2& vec ) {
-	return float3x2(
-		mat[0][0] * vec.x,
-		mat[0][1],
-
-		mat[1][0],
-		mat[1][1] * vec.y,
-
-		mat[2][0],
-		mat[2][1]
-	);
-}
-
-
-// float4x2
-void identity( float4x2& mat ) {
-	mat[0] = { 1, 0 };
-	mat[1] = { 0, 1 };
-	mat[2] = { 0, 0 };
-	mat[3] = { 0, 0 };
-}
-
-float2x4 transpose( const float4x2& mat ) {
-	return float2x4(
-		mat[0][0], mat[1][0], mat[2][0], mat[3][0],
-		mat[0][1], mat[1][1], mat[2][1], mat[3][1]
-	);
-}
-
-float4x2 scale( const float4x2& mat, const float scalar ) {
-	return scale( mat, float2( scalar, scalar ) );
-}
-
-float4x2 scale( const float4x2& mat, const float2& vec ) {
-	return float4x2(
-		mat[0][0] * vec.x,
-		mat[0][1],
-
-		mat[1][0],
-		mat[1][1] * vec.y,
-
-		mat[2][0],
-		mat[2][1],
-
-		mat[3][0],
-		mat[3][1]
 	);
 }
 
@@ -1035,6 +894,55 @@ float2x3 scale( const float2x3& mat, const float3& vec ) {
 		mat[1][0],
 		mat[1][1] * vec.y,
 		mat[1][2]
+	);
+}
+
+
+// float2x4
+void identity( float2x4& mat ) {
+	mat[0] = { 1, 0, 0, 0 };
+	mat[1] = { 0, 1, 0, 0 };
+}
+
+float4x2 transpose( const float2x4& mat ) {
+	return float4x2(
+		mat[0][0], mat[1][0],
+		mat[0][1], mat[1][1],
+		mat[0][2], mat[1][2],
+		mat[0][3], mat[1][3]
+	);
+}
+
+float2x4 scale( const float2x4& mat, const float scalar ) {
+	return scale( mat, float3( scalar, scalar, scalar ) );
+}
+
+float2x4 scale( const float2x4& mat, const float3& vec ) {
+	return float2x4(
+		mat[0][0] * vec.x,
+		mat[0][1],
+		mat[0][2],
+		mat[0][3],
+
+		mat[1][0],
+		mat[1][1] * vec.y,
+		mat[1][2],
+		mat[1][3]
+	);
+}
+
+
+// float3x2
+void identity( float3x2& mat ) {
+	mat[0] = { 1, 0 };
+	mat[1] = { 0, 1 };
+	mat[2] = { 0, 0 };
+}
+
+float2x3 transpose( const float3x2& mat ) {
+	return float2x3(
+		mat[0][0], mat[1][0], mat[2][0],
+		mat[0][1], mat[1][1], mat[2][1]
 	);
 }
 
@@ -1086,9 +994,9 @@ float3x3 translate( const float3x3& mat, const float2& vec ) {
 	);
 }
 
-float3x3 rotate( const float3x3& mat, const float radians ) {
-	const float c = cosf( radians );
-	const float s = sinf( radians );
+float3x3 rotate( const float3x3& mat, const float rad ) {
+	const float c = cosf( rad );
+	const float s = sinf( rad );
 
 	return float3x3(
 		mat[0] * c + mat[1] * -s,
@@ -1114,6 +1022,70 @@ float3x3 scale( const float3x3& mat, const float3& vec ) {
 		mat[2][0],
 		mat[2][1],
 		mat[2][2] * vec.z
+	);
+}
+
+
+// float3x4
+void identity( float3x4& mat ) {
+	mat[0] = { 1, 0, 0, 0 };
+	mat[1] = { 0, 1, 0, 0 };
+	mat[2] = { 0, 0, 1, 0 };
+}
+
+float4x3 transpose( const float3x4& mat ) {
+	return float4x3(
+		mat[0][0], mat[1][0], mat[2][0],
+		mat[0][1], mat[1][1], mat[2][1],
+		mat[0][2], mat[1][2], mat[2][2],
+		mat[0][3], mat[1][3], mat[2][3]
+	);
+}
+
+float3x4 translate( const float3x4& mat, const float3& vec ) {
+	return float3x4(
+		mat[0][0], mat[0][1], mat[0][2], mat[0][3] + vec.x,
+		mat[1][0], mat[1][1], mat[1][2], mat[1][3] + vec.y,
+		mat[2][0], mat[2][1], mat[2][2], mat[2][3] + vec.z
+	);
+}
+
+float3x4 scale( const float3x4& mat, const float scalar ) {
+	return scale( mat, float3( scalar, scalar, scalar ) );
+}
+
+float3x4 scale( const float3x4& mat, const float3& vec ) {
+	return float3x4(
+		mat[0][0] * vec.x,
+		mat[0][1],
+		mat[0][2],
+		mat[0][3],
+
+		mat[1][0],
+		mat[1][1] * vec.y,
+		mat[1][2],
+		mat[1][3],
+
+		mat[2][0],
+		mat[2][1],
+		mat[2][2] * vec.z,
+		mat[2][3]
+	);
+}
+
+
+// float4x2
+void identity( float4x2& mat ) {
+	mat[0] = { 1, 0 };
+	mat[1] = { 0, 1 };
+	mat[2] = { 0, 0 };
+	mat[3] = { 0, 0 };
+}
+
+float2x4 transpose( const float4x2& mat ) {
+	return float2x4(
+		mat[0][0], mat[1][0], mat[2][0], mat[3][0],
+		mat[0][1], mat[1][1], mat[2][1], mat[3][1]
 	);
 }
 
@@ -1155,111 +1127,6 @@ float4x3 scale( const float4x3& mat, const float3& vec ) {
 		mat[3][0],
 		mat[3][1],
 		mat[3][2]
-	);
-}
-
-
-// float2x4
-void identity( float2x4& mat ) {
-	mat[0] = { 1, 0, 0, 0 };
-	mat[1] = { 0, 1, 0, 0 };
-}
-
-float4x2 transpose( const float2x4& mat ) {
-	return float4x2(
-		mat[0][0], mat[1][0],
-		mat[0][1], mat[1][1],
-		mat[0][2], mat[1][2],
-		mat[0][3], mat[1][3]
-	);
-}
-
-float2x4 scale( const float2x4& mat, const float scalar ) {
-	return scale( mat, float3( scalar, scalar, scalar ) );
-}
-
-float2x4 scale( const float2x4& mat, const float3& vec ) {
-	return float2x4(
-		mat[0][0] * vec.x,
-		mat[0][1],
-		mat[0][2],
-		mat[0][3],
-
-		mat[1][0],
-		mat[1][1] * vec.y,
-		mat[1][2],
-		mat[1][3]
-	);
-}
-
-
-// float3x4
-void identity( float3x4& mat ) {
-	mat[0] = { 1, 0, 0, 0 };
-	mat[1] = { 0, 1, 0, 0 };
-	mat[2] = { 0, 0, 1, 0 };
-}
-
-float4x3 transpose( const float3x4& mat ) {
-	return float4x3(
-		mat[0][0], mat[1][0], mat[2][0],
-		mat[0][1], mat[1][1], mat[2][1],
-		mat[0][2], mat[1][2], mat[2][2],
-		mat[0][3], mat[1][3], mat[2][3]
-	);
-}
-
-float3x4 translate( const float3x4& mat, const float3& vec ) {
-	return float3x4(
-		mat[0][0], mat[0][1], mat[0][2], mat[0][3] + vec.x,
-		mat[1][0], mat[1][1], mat[1][2], mat[1][3] + vec.y,
-		mat[2][0], mat[2][1], mat[2][2], mat[2][3] + vec.z
-	);
-}
-
-float3x4 rotate( const float3x4& mat, const float radians, const float3& axis ) {
-	const float c = cosf( radians );
-	const float s = sinf( radians );
-
-	float3 u = normalized( axis );
-	float ic = 1.000000f - c;
-
-	float3x4 rotation = mat;
-	rotation[0][0] = c + u.x * ic;
-	rotation[0][1] = u.x * u.y * ic - u.z * s;
-	rotation[0][2] = u.x * u.z * ic + u.y * s;
-
-	rotation[1][0] = u.y * u.x * ic + u.z * s;
-	rotation[1][1] = c + u.y * ic;
-	rotation[1][2] = u.y * u.z * ic - u.x * s;
-
-	rotation[2][0] = u.z * u.x * ic - u.y * s;
-	rotation[2][1] = u.z * u.y * ic + u.x * s;
-	rotation[2][2] = c + u.z * ic;
-
-	return mat * rotation;
-}
-
-float3x4 scale( const float3x4& mat, const float scalar ) {
-	return scale( mat, float3( scalar, scalar, scalar ) );
-}
-
-float3x4 scale( const float3x4& mat, const float3& vec ) {
-	return float3x4(
-		mat[0][0] * vec.x,
-		mat[0][1],
-		mat[0][2],
-		mat[0][3],
-
-		mat[1][0],
-		mat[1][1] * vec.y,
-		mat[1][2],
-		mat[1][3],
-
-		mat[2][0],
-		mat[2][1],
-		mat[2][2] * vec.z,
-		mat[2][3]
 	);
 }
 
@@ -1374,9 +1241,9 @@ float4x4 translate( const float4x4& mat, const float3& vec ) {
 	);
 }
 
-float4x4 rotate( const float4x4& mat, const float radians, const float3& axis ) {
-	const float c = cosf( radians );
-	const float s = sinf( radians );
+float4x4 rotate( const float4x4& mat, const float rad, const float3& axis ) {
+	const float c = cosf( rad );
+	const float s = sinf( rad );
 
 	float3 u = normalized( axis );
 	float ic = 1.000000f - c;
@@ -1442,7 +1309,7 @@ inline float4x4 ortho( const float left, const float right, const float top, con
 
 float4x4 perspective( const float fovdeg, const float aspect, const float znear, const float zfar ) {
 	const float far_minus_near = zfar - znear;
-	const float tan_half_fov = static_cast<float>( tan( ( fovdeg / 2.000000f ) * radians( fovdeg ) ) );
+	const float tan_half_fov = static_cast<float>( tan( ( fovdeg / 2.000000f ) * radiansf( fovdeg ) ) );
 
 	return float4x4(
 		1.000000f / ( aspect * tan_half_fov ), 0.000000f, 0.000000f, 0.000000f,
@@ -1492,84 +1359,16 @@ double determinant( const double2x2& mat ) {
 }
 
 double2x2 scale( const double2x2& mat, const double scalar ) {
-	return scale( mat, double2( scalar, scalar ) );
+	return scale( mat, double3( scalar, scalar, scalar ) );
 }
 
-double2x2 scale( const double2x2& mat, const double2& vec ) {
+double2x2 scale( const double2x2& mat, const double3& vec ) {
 	return double2x2(
 		mat[0][0] * vec.x,
 		mat[0][1],
 
 		mat[1][0],
 		mat[1][1] * vec.y
-	);
-}
-
-
-// double3x2
-void identity( double3x2& mat ) {
-	mat[0] = { 1, 0 };
-	mat[1] = { 0, 1 };
-	mat[2] = { 0, 0 };
-}
-
-double2x3 transpose( const double3x2& mat ) {
-	return double2x3(
-		mat[0][0], mat[1][0], mat[2][0],
-		mat[0][1], mat[1][1], mat[2][1]
-	);
-}
-
-double3x2 scale( const double3x2& mat, const double scalar ) {
-	return scale( mat, double2( scalar, scalar ) );
-}
-
-double3x2 scale( const double3x2& mat, const double2& vec ) {
-	return double3x2(
-		mat[0][0] * vec.x,
-		mat[0][1],
-
-		mat[1][0],
-		mat[1][1] * vec.y,
-
-		mat[2][0],
-		mat[2][1]
-	);
-}
-
-
-// double4x2
-void identity( double4x2& mat ) {
-	mat[0] = { 1, 0 };
-	mat[1] = { 0, 1 };
-	mat[2] = { 0, 0 };
-	mat[3] = { 0, 0 };
-}
-
-double2x4 transpose( const double4x2& mat ) {
-	return double2x4(
-		mat[0][0], mat[1][0], mat[2][0], mat[3][0],
-		mat[0][1], mat[1][1], mat[2][1], mat[3][1]
-	);
-}
-
-double4x2 scale( const double4x2& mat, const double scalar ) {
-	return scale( mat, double2( scalar, scalar ) );
-}
-
-double4x2 scale( const double4x2& mat, const double2& vec ) {
-	return double4x2(
-		mat[0][0] * vec.x,
-		mat[0][1],
-
-		mat[1][0],
-		mat[1][1] * vec.y,
-
-		mat[2][0],
-		mat[2][1],
-
-		mat[3][0],
-		mat[3][1]
 	);
 }
 
@@ -1601,6 +1400,55 @@ double2x3 scale( const double2x3& mat, const double3& vec ) {
 		mat[1][0],
 		mat[1][1] * vec.y,
 		mat[1][2]
+	);
+}
+
+
+// double2x4
+void identity( double2x4& mat ) {
+	mat[0] = { 1, 0, 0, 0 };
+	mat[1] = { 0, 1, 0, 0 };
+}
+
+double4x2 transpose( const double2x4& mat ) {
+	return double4x2(
+		mat[0][0], mat[1][0],
+		mat[0][1], mat[1][1],
+		mat[0][2], mat[1][2],
+		mat[0][3], mat[1][3]
+	);
+}
+
+double2x4 scale( const double2x4& mat, const double scalar ) {
+	return scale( mat, double3( scalar, scalar, scalar ) );
+}
+
+double2x4 scale( const double2x4& mat, const double3& vec ) {
+	return double2x4(
+		mat[0][0] * vec.x,
+		mat[0][1],
+		mat[0][2],
+		mat[0][3],
+
+		mat[1][0],
+		mat[1][1] * vec.y,
+		mat[1][2],
+		mat[1][3]
+	);
+}
+
+
+// double3x2
+void identity( double3x2& mat ) {
+	mat[0] = { 1, 0 };
+	mat[1] = { 0, 1 };
+	mat[2] = { 0, 0 };
+}
+
+double2x3 transpose( const double3x2& mat ) {
+	return double2x3(
+		mat[0][0], mat[1][0], mat[2][0],
+		mat[0][1], mat[1][1], mat[2][1]
 	);
 }
 
@@ -1652,9 +1500,9 @@ double3x3 translate( const double3x3& mat, const double2& vec ) {
 	);
 }
 
-double3x3 rotate( const double3x3& mat, const double radians ) {
-	const double c = cos( radians );
-	const double s = sin( radians );
+double3x3 rotate( const double3x3& mat, const double rad ) {
+	const double c = cos( rad );
+	const double s = sin( rad );
 
 	return double3x3(
 		mat[0] * c + mat[1] * -s,
@@ -1680,6 +1528,70 @@ double3x3 scale( const double3x3& mat, const double3& vec ) {
 		mat[2][0],
 		mat[2][1],
 		mat[2][2] * vec.z
+	);
+}
+
+
+// double3x4
+void identity( double3x4& mat ) {
+	mat[0] = { 1, 0, 0, 0 };
+	mat[1] = { 0, 1, 0, 0 };
+	mat[2] = { 0, 0, 1, 0 };
+}
+
+double4x3 transpose( const double3x4& mat ) {
+	return double4x3(
+		mat[0][0], mat[1][0], mat[2][0],
+		mat[0][1], mat[1][1], mat[2][1],
+		mat[0][2], mat[1][2], mat[2][2],
+		mat[0][3], mat[1][3], mat[2][3]
+	);
+}
+
+double3x4 translate( const double3x4& mat, const double3& vec ) {
+	return double3x4(
+		mat[0][0], mat[0][1], mat[0][2], mat[0][3] + vec.x,
+		mat[1][0], mat[1][1], mat[1][2], mat[1][3] + vec.y,
+		mat[2][0], mat[2][1], mat[2][2], mat[2][3] + vec.z
+	);
+}
+
+double3x4 scale( const double3x4& mat, const double scalar ) {
+	return scale( mat, double3( scalar, scalar, scalar ) );
+}
+
+double3x4 scale( const double3x4& mat, const double3& vec ) {
+	return double3x4(
+		mat[0][0] * vec.x,
+		mat[0][1],
+		mat[0][2],
+		mat[0][3],
+
+		mat[1][0],
+		mat[1][1] * vec.y,
+		mat[1][2],
+		mat[1][3],
+
+		mat[2][0],
+		mat[2][1],
+		mat[2][2] * vec.z,
+		mat[2][3]
+	);
+}
+
+
+// double4x2
+void identity( double4x2& mat ) {
+	mat[0] = { 1, 0 };
+	mat[1] = { 0, 1 };
+	mat[2] = { 0, 0 };
+	mat[3] = { 0, 0 };
+}
+
+double2x4 transpose( const double4x2& mat ) {
+	return double2x4(
+		mat[0][0], mat[1][0], mat[2][0], mat[3][0],
+		mat[0][1], mat[1][1], mat[2][1], mat[3][1]
 	);
 }
 
@@ -1721,111 +1633,6 @@ double4x3 scale( const double4x3& mat, const double3& vec ) {
 		mat[3][0],
 		mat[3][1],
 		mat[3][2]
-	);
-}
-
-
-// double2x4
-void identity( double2x4& mat ) {
-	mat[0] = { 1, 0, 0, 0 };
-	mat[1] = { 0, 1, 0, 0 };
-}
-
-double4x2 transpose( const double2x4& mat ) {
-	return double4x2(
-		mat[0][0], mat[1][0],
-		mat[0][1], mat[1][1],
-		mat[0][2], mat[1][2],
-		mat[0][3], mat[1][3]
-	);
-}
-
-double2x4 scale( const double2x4& mat, const double scalar ) {
-	return scale( mat, double3( scalar, scalar, scalar ) );
-}
-
-double2x4 scale( const double2x4& mat, const double3& vec ) {
-	return double2x4(
-		mat[0][0] * vec.x,
-		mat[0][1],
-		mat[0][2],
-		mat[0][3],
-
-		mat[1][0],
-		mat[1][1] * vec.y,
-		mat[1][2],
-		mat[1][3]
-	);
-}
-
-
-// double3x4
-void identity( double3x4& mat ) {
-	mat[0] = { 1, 0, 0, 0 };
-	mat[1] = { 0, 1, 0, 0 };
-	mat[2] = { 0, 0, 1, 0 };
-}
-
-double4x3 transpose( const double3x4& mat ) {
-	return double4x3(
-		mat[0][0], mat[1][0], mat[2][0],
-		mat[0][1], mat[1][1], mat[2][1],
-		mat[0][2], mat[1][2], mat[2][2],
-		mat[0][3], mat[1][3], mat[2][3]
-	);
-}
-
-double3x4 translate( const double3x4& mat, const double3& vec ) {
-	return double3x4(
-		mat[0][0], mat[0][1], mat[0][2], mat[0][3] + vec.x,
-		mat[1][0], mat[1][1], mat[1][2], mat[1][3] + vec.y,
-		mat[2][0], mat[2][1], mat[2][2], mat[2][3] + vec.z
-	);
-}
-
-double3x4 rotate( const double3x4& mat, const double radians, const double3& axis ) {
-	const double c = cos( radians );
-	const double s = sin( radians );
-
-	double3 u = normalized( axis );
-	double ic = 1.000000 - c;
-
-	double3x4 rotation = mat;
-	rotation[0][0] = c + u.x * ic;
-	rotation[0][1] = u.x * u.y * ic - u.z * s;
-	rotation[0][2] = u.x * u.z * ic + u.y * s;
-
-	rotation[1][0] = u.y * u.x * ic + u.z * s;
-	rotation[1][1] = c + u.y * ic;
-	rotation[1][2] = u.y * u.z * ic - u.x * s;
-
-	rotation[2][0] = u.z * u.x * ic - u.y * s;
-	rotation[2][1] = u.z * u.y * ic + u.x * s;
-	rotation[2][2] = c + u.z * ic;
-
-	return mat * rotation;
-}
-
-double3x4 scale( const double3x4& mat, const double scalar ) {
-	return scale( mat, double3( scalar, scalar, scalar ) );
-}
-
-double3x4 scale( const double3x4& mat, const double3& vec ) {
-	return double3x4(
-		mat[0][0] * vec.x,
-		mat[0][1],
-		mat[0][2],
-		mat[0][3],
-
-		mat[1][0],
-		mat[1][1] * vec.y,
-		mat[1][2],
-		mat[1][3],
-
-		mat[2][0],
-		mat[2][1],
-		mat[2][2] * vec.z,
-		mat[2][3]
 	);
 }
 
@@ -1940,9 +1747,9 @@ double4x4 translate( const double4x4& mat, const double3& vec ) {
 	);
 }
 
-double4x4 rotate( const double4x4& mat, const double radians, const double3& axis ) {
-	const double c = cos( radians );
-	const double s = sin( radians );
+double4x4 rotate( const double4x4& mat, const double rad, const double3& axis ) {
+	const double c = cos( rad );
+	const double s = sin( rad );
 
 	double3 u = normalized( axis );
 	double ic = 1.000000 - c;

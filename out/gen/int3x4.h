@@ -27,6 +27,8 @@ along with hlml.  If not, see <http://www.gnu.org/licenses/>.
 #pragma once
 
 #include "int4.h"
+#include "int3x3.h"
+#include "int4x3.h"
 
 struct int3x4 {
 	int4 rows[3];
@@ -41,22 +43,6 @@ struct int3x4 {
 	inline ~int3x4() {}
 
 	inline int3x4 operator=( const int3x4& other );
-	inline int3x4 operator+( const int32_t rhs ) const;
-	inline int3x4 operator+=( const int32_t rhs );
-	inline int3x4 operator+( const int3x4& rhs ) const;
-	inline int3x4 operator+=( const int3x4& rhs );
-	inline int3x4 operator-( const int32_t rhs ) const;
-	inline int3x4 operator-=( const int32_t rhs );
-	inline int3x4 operator-( const int3x4& rhs ) const;
-	inline int3x4 operator-=( const int3x4& rhs );
-	inline int3x4 operator*( const int32_t rhs ) const;
-	inline int3x4 operator*=( const int32_t rhs );
-	inline int3x4 operator*( const int3x4& rhs ) const;
-	inline int3x4 operator*=( const int3x4& rhs );
-	inline int3x4 operator/( const int32_t rhs ) const;
-	inline int3x4 operator/=( const int32_t rhs );
-	inline int3x4 operator/( const int3x4& rhs ) const;
-	inline int3x4 operator/=( const int3x4& rhs );
 
 	inline int4& operator[]( const uint32_t index );
 	inline const int4& operator[]( const uint32_t index ) const;
@@ -64,10 +50,5 @@ struct int3x4 {
 
 inline bool operator==( const int3x4& lhs, const int3x4& rhs );
 inline bool operator!=( const int3x4& lhs, const int3x4& rhs );
-
-inline bool3x4 operator<( const int3x4& lhs, const int3x4& rhs );
-inline bool3x4 operator<=( const int3x4& lhs, const int3x4& rhs );
-inline bool3x4 operator>( const int3x4& lhs, const int3x4& rhs );
-inline bool3x4 operator>=( const int3x4& lhs, const int3x4& rhs );
 
 #include "int3x4.inl"

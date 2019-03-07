@@ -41,22 +41,6 @@ struct int2x2 {
 	inline ~int2x2() {}
 
 	inline int2x2 operator=( const int2x2& other );
-	inline int2x2 operator+( const int32_t rhs ) const;
-	inline int2x2 operator+=( const int32_t rhs );
-	inline int2x2 operator+( const int2x2& rhs ) const;
-	inline int2x2 operator+=( const int2x2& rhs );
-	inline int2x2 operator-( const int32_t rhs ) const;
-	inline int2x2 operator-=( const int32_t rhs );
-	inline int2x2 operator-( const int2x2& rhs ) const;
-	inline int2x2 operator-=( const int2x2& rhs );
-	inline int2x2 operator*( const int32_t rhs ) const;
-	inline int2x2 operator*=( const int32_t rhs );
-	inline int2x2 operator*( const int2x2& rhs ) const;
-	inline int2x2 operator*=( const int2x2& rhs );
-	inline int2x2 operator/( const int32_t rhs ) const;
-	inline int2x2 operator/=( const int32_t rhs );
-	inline int2x2 operator/( const int2x2& rhs ) const;
-	inline int2x2 operator/=( const int2x2& rhs );
 
 	inline int2& operator[]( const uint32_t index );
 	inline const int2& operator[]( const uint32_t index ) const;
@@ -64,10 +48,5 @@ struct int2x2 {
 
 inline bool operator==( const int2x2& lhs, const int2x2& rhs );
 inline bool operator!=( const int2x2& lhs, const int2x2& rhs );
-
-inline bool2x2 operator<( const int2x2& lhs, const int2x2& rhs );
-inline bool2x2 operator<=( const int2x2& lhs, const int2x2& rhs );
-inline bool2x2 operator>( const int2x2& lhs, const int2x2& rhs );
-inline bool2x2 operator>=( const int2x2& lhs, const int2x2& rhs );
 
 #include "int2x2.inl"

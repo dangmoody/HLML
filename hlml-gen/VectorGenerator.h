@@ -19,6 +19,8 @@ private:
 	std::string		m_fullTypeName;
 	std::string		m_typeString;
 
+	std::string		m_numComponentsStr;
+
 	genType_t		m_type;
 	uint32_t		m_numComponents;
 

@@ -41,22 +41,6 @@ struct int4x4 {
 	inline ~int4x4() {}
 
 	inline int4x4 operator=( const int4x4& other );
-	inline int4x4 operator+( const int32_t rhs ) const;
-	inline int4x4 operator+=( const int32_t rhs );
-	inline int4x4 operator+( const int4x4& rhs ) const;
-	inline int4x4 operator+=( const int4x4& rhs );
-	inline int4x4 operator-( const int32_t rhs ) const;
-	inline int4x4 operator-=( const int32_t rhs );
-	inline int4x4 operator-( const int4x4& rhs ) const;
-	inline int4x4 operator-=( const int4x4& rhs );
-	inline int4x4 operator*( const int32_t rhs ) const;
-	inline int4x4 operator*=( const int32_t rhs );
-	inline int4x4 operator*( const int4x4& rhs ) const;
-	inline int4x4 operator*=( const int4x4& rhs );
-	inline int4x4 operator/( const int32_t rhs ) const;
-	inline int4x4 operator/=( const int32_t rhs );
-	inline int4x4 operator/( const int4x4& rhs ) const;
-	inline int4x4 operator/=( const int4x4& rhs );
 
 	inline int4& operator[]( const uint32_t index );
 	inline const int4& operator[]( const uint32_t index ) const;
@@ -64,10 +48,5 @@ struct int4x4 {
 
 inline bool operator==( const int4x4& lhs, const int4x4& rhs );
 inline bool operator!=( const int4x4& lhs, const int4x4& rhs );
-
-inline bool4x4 operator<( const int4x4& lhs, const int4x4& rhs );
-inline bool4x4 operator<=( const int4x4& lhs, const int4x4& rhs );
-inline bool4x4 operator>( const int4x4& lhs, const int4x4& rhs );
-inline bool4x4 operator>=( const int4x4& lhs, const int4x4& rhs );
 
 #include "int4x4.inl"

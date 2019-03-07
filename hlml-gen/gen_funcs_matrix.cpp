@@ -1,219 +1,285 @@
-#include "gen_common.h"
+#include "gen_funcs_matrix.h"
 
-#ifdef _WIN32
-#include <Windows.h>
-#endif
-
-#include <stdio.h>
 #include <assert.h>
 
-const std::string GEN_FILE_HEADER = \
-"/*\n" \
-"===========================================================================\n" \
-"\n" \
-"hlml.\n" \
-"Copyright (c) Dan Moody 2019 - Present.\n" \
-"\n" \
-"This file is part of hlml.\n" \
-"\n" \
-"hlml is free software: you can redistribute it and/or modify\n" \
-"it under the terms of the GNU General Public License as published by\n" \
-"the Free Software Foundation, either version 3 of the License, or\n" \
-"(at your option) any later version.\n" \
-"\n" \
-"hlml is distributed in the hope that it will be useful,\n" \
-"but WITHOUT ANY WARRANTY; without even the implied warranty of\n" \
-"MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the\n" \
-"GNU General Public License for more details.\n" \
-"\n" \
-"You should have received a copy of the GNU General Public License\n" \
-"along with hlml.  If not, see <http://www.gnu.org/licenses/>.\n" \
-"\n" \
-"===========================================================================\n" \
-"*/\n" \
-"\n" \
-"// GENERATED FILE.  DO NOT EDIT.\n" \
-"\n";
+static std::string HeaderGetArithmeticFuncScalar( const genType_t type, const uint32_t numRows, const uint32_t numCols, const genOpArithmetic_t op ) {
+	std::string fullTypeName = Gen_GetTypeString( type ) + std::to_string( numRows ) + "x" + std::to_string( numCols );
+	std::string memberTypeString = Gen_GetMemberTypeString( type );
 
-const std::string GEN_COMPONENT_NAMES_VECTOR = "xyzw";
-const std::string GEN_COMPONENT_NAMES_COLOR = "rgba";
-const std::string GEN_OPERATORS_ARITHMETIC = "+-*/";
+	std::string code;
 
-const std::string GEN_OPERATORS_EQUALITY[GEN_COMPONENT_COUNT_MAX] = {
-	"<",
-	"<=",
-	">",
-	">=",
-};
+	code += "inline " + fullTypeName + " operator" + GEN_OPERATORS_ARITHMETIC[op] + "( const " + fullTypeName + "& lhs, const " + memberTypeString + " rhs );\n";
+	code += "inline " + fullTypeName + " operator" + GEN_OPERATORS_ARITHMETIC[op] + "=( " + fullTypeName + "& lhs, const " + memberTypeString + " rhs );\n";
+	code += "\n";
 
-void Gen_VectorLength( const genType_t type, const uint32_t numComponents, std::string& outHeader, std::string& outInl ) {
-	assert( numComponents >= GEN_COMPONENT_COUNT_MIN );
-	assert( numComponents <= GEN_COMPONENT_COUNT_MAX );
+	return code;
+}
 
+static std::string InlGetArithmeticFuncScalar( const genType_t type, const uint32_t numRows, const uint32_t numCols, const genOpArithmetic_t op ) {
+	char opStr = GEN_OPERATORS_ARITHMETIC[op];
+
+	std::string fullTypeName = Gen_GetTypeString( type ) + std::to_string( numRows ) + "x" + std::to_string( numCols );
+	std::string memberTypeString = Gen_GetMemberTypeString( type );
+
+	std::string code;
+
+	// main arithmetic func
+	code += fullTypeName + " " + "operator" + opStr + "( const " + fullTypeName + "& lhs, const " + memberTypeString + " rhs ) {\n";
+	code += "\treturn " + fullTypeName + "(\n";
+	for ( uint32_t row = 0; row < numRows; row++ ) {
+		code += "\t\tlhs[" + std::to_string( row ) + "] " + opStr + " rhs";
+		if ( row != numRows - 1 ) {
+			code += ",";
+		}
+		code += "\n";
+	}
+	code += "\t);\n";
+	code += "}\n";
+	code += "\n";
+
+	// compound arithmetic func
+	code += fullTypeName + " " + "operator" + opStr + "=( " + fullTypeName + "& lhs, const " + memberTypeString + " rhs ) {\n";
+	code += std::string( "\treturn ( lhs = lhs " ) + opStr + " rhs );\n";
+	code += "}\n";
+	code += "\n";
+
+	return code;
+}
+
+static std::string HeaderGetArithmeticFuncRhsType( const genType_t type, const uint32_t numRows, const uint32_t numCols, const genOpArithmetic_t op ) {
+	std::string numRowsStr = std::to_string( numRows );
+	std::string numColsStr = std::to_string( numCols );
+
+	std::string typeString = Gen_GetTypeString( type );
+	std::string fullTypeName = typeString + numRowsStr + "x" + numColsStr;
+	std::string transposedTypeName = typeString + numColsStr + "x" + numRowsStr;
+
+	std::string returnTypeName = typeString + numRowsStr + "x";
+	if ( op == GEN_OP_ARITHMETIC_MUL ) {
+		returnTypeName += numRowsStr;
+	} else {
+		returnTypeName += numColsStr;
+	}
+
+	std::string rhsTypeName = ( op == GEN_OP_ARITHMETIC_MUL ) ? transposedTypeName : fullTypeName;
+
+	std::string code;
+
+	code += "inline " + returnTypeName + " operator" + GEN_OPERATORS_ARITHMETIC[op] + "( const " + fullTypeName + "& lhs, const " + rhsTypeName + "& rhs );\n";
+//	code += "inline " + returnTypeName + " operator" + GEN_OPERATORS_ARITHMETIC[op] + "=( " + fullTypeName + "& lhs, const " + rhsTypeName + "& rhs );\n";
+	code += "\n";
+
+	return code;
+}
+
+static std::string InlGetArithmeticFuncRhsType( const genType_t type, const uint32_t numRows, const uint32_t numCols, const genOpArithmetic_t op ) {
+	std::string numRowsStr = std::to_string( numRows );
+	std::string numColsStr = std::to_string( numCols );
+
+	std::string typeString = Gen_GetTypeString( type );
+	std::string fullTypeName = typeString + numRowsStr + "x" + numColsStr;
+	std::string transposedTypeName = typeString + numColsStr + "x" + numRowsStr;
+
+	std::string returnTypeName = typeString + numRowsStr + "x";
+	if ( op == GEN_OP_ARITHMETIC_MUL ) {
+		returnTypeName += numRowsStr;
+	} else {
+		returnTypeName += numColsStr;
+	}
+
+	std::string rhsTypeName = ( op == GEN_OP_ARITHMETIC_MUL ) ? transposedTypeName : fullTypeName;
+
+	char opStr = GEN_OPERATORS_ARITHMETIC[op];
+
+	// the default arithmetic code, which does a component-wise operation between the lhs/rhs parms
+	std::string defaultArithmeticCode = "\treturn " + fullTypeName + "(\n";
+	for ( uint32_t row = 0; row < numRows; row++ ) {
+		std::string rowStr = std::to_string( row );
+
+		defaultArithmeticCode += "\t\tlhs[" + rowStr + "] " + opStr + " rhs[" + rowStr + "]";
+
+		if ( row != numRows - 1 ) {
+			defaultArithmeticCode += ",";
+		}
+
+		defaultArithmeticCode += "\n";
+	}
+	defaultArithmeticCode += "\t);\n";
+
+	std::string code;
+	code += returnTypeName + " operator" + opStr + "( const " + fullTypeName + "& lhs, const " + rhsTypeName + "& rhs ) {\n";
+
+	// main arithmetic func
+	switch ( op ) {
+		case GEN_OP_ARITHMETIC_ADD:
+		case GEN_OP_ARITHMETIC_SUB: {
+			code += defaultArithmeticCode;
+			break;
+		}
+
+		case GEN_OP_ARITHMETIC_MUL: {
+			uint32_t numRhsRows = numCols;
+			uint32_t numRhsCols = numRows;
+
+			// generate row vars
+			for ( uint32_t row = 0; row < numRows; row++ ) {
+				std::string rowStr = std::to_string( row );
+				code += "\t" + typeString + numColsStr + " row" + rowStr + " = lhs[" + rowStr + "];\n";
+			}
+
+			code += "\n";
+
+			// generate col vars
+			for ( uint32_t col = 0; col < numRhsCols; col++ ) {
+				code += "\t" + typeString + numColsStr + " col" + std::to_string( col ) + " = { ";
+				for ( uint32_t rhsRow = 0; rhsRow < numRhsRows; rhsRow++ ) {
+					code += "rhs[" + std::to_string( rhsRow ) + "]." + GEN_COMPONENT_NAMES_VECTOR[col];
+
+					if ( rhsRow != numCols - 1 ) {
+						code += ", ";
+					}
+				}
+
+				code += " };\n";
+			}
+			code += "\n";
+
+			// now do the row/col dot products
+			code += "\treturn " + returnTypeName + "(\n";
+
+			for ( uint32_t row = 0; row < numRows; row++ ) {
+				std::string rowStr = std::to_string( row );
+
+				for ( uint32_t col = 0; col < numRows; col++ ) {
+					std::string colStr = std::to_string( col );
+
+					code += "\t\t";
+
+					for ( uint32_t rhsRow = 0; rhsRow < numRhsRows; rhsRow++ ) {
+						code += "row" + rowStr + "." + GEN_COMPONENT_NAMES_VECTOR[rhsRow] + " * " + "col" + colStr + "." + GEN_COMPONENT_NAMES_VECTOR[rhsRow];
+
+						if ( rhsRow != numRhsRows - 1 ) {
+							code += " + ";
+						} else {
+							if ( col + ( row * numRows ) != ( numRows * numRows ) - 1 ) {
+								code += ",";
+							}
+
+							code += "\n";
+						}
+					}
+				}
+
+				if ( row != numRows - 1 ) {
+					code += "\n";
+				}
+			}
+			code += "\t);\n";
+
+			break;
+		}
+
+		case GEN_OP_ARITHMETIC_DIV: {
+			if ( numRows == numCols && Gen_IsFloatingPointType( type ) ) {
+				code += "\treturn lhs * inverse( rhs );\n";
+			} else {
+				code += defaultArithmeticCode;
+			}
+
+			break;
+		}
+
+		default:
+			// nothing
+			break;
+	}
+	code += "}\n";
+	code += "\n";
+
+	// compound arithmetic func
+//	code += returnTypeName + " operator" + opStr + "=( " + fullTypeName + "& lhs, const " + fullTypeName + "& rhs ) {\n";
+//	code += std::string( "\treturn ( lhs = lhs " ) + opStr + " rhs );\n";
+//	code += "}\n";
+//	code += "\n";
+
+	return code;
+}
+
+static std::string HeaderGetOperatorRelational( const genType_t type, const uint32_t numRows, const uint32_t numCols, const genOpRelational_t op ) {
+	std::string numRowsStr = std::to_string( numRows );
+	std::string numColsStr = std::to_string( numCols );
+
+	std::string fullTypeName = Gen_GetTypeString( type ) + numRowsStr + "x" + numColsStr;
+	std::string boolTypeName = "bool" + numRowsStr + "x" + numColsStr;
+
+	std::string code;
+
+	code += "inline " + boolTypeName + " operator" + GEN_OPERATORS_RELATIONAL[op] + "( const " + fullTypeName + "& lhs, const " + fullTypeName + "& rhs );\n";
+	code += "\n";
+
+	return code;
+}
+
+static std::string InlGetOperatorRelational( const genType_t type, const uint32_t numRows, const uint32_t numCols, const genOpRelational_t op ) {
+	std::string numRowsStr = std::to_string( numRows );
+	std::string numColsStr = std::to_string( numCols );
+
+	std::string fullTypeName = Gen_GetTypeString( type ) + numRowsStr + "x" + numColsStr;
+	std::string boolTypeName = "bool" + numRowsStr + "x" + numColsStr;
+
+	std::string code;
+
+	code += boolTypeName + " operator" + GEN_OPERATORS_RELATIONAL[op] + "( const " + fullTypeName + "& lhs, const " + fullTypeName + "& rhs ) {\n";
+	code += "\treturn " + boolTypeName + "(\n";
+
+	for ( uint32_t row = 0; row < numRows; row++ ) {
+		std::string rowStr = std::to_string( row );
+
+		code += "\t\tlhs[" + rowStr + "] " + GEN_OPERATORS_RELATIONAL[op] + " rhs[" + rowStr + "]";
+
+		if ( row != numRows - 1 ) {
+			code += ",";
+		}
+
+		code += "\n";
+	}
+	code += "\t);\n";
+	code += "}\n";
+
+	code += "\n";
+
+	return code;
+}
+
+
+void Gen_MatrixOperatorsArithmetic( const genType_t type, const uint32_t numRows, const uint32_t numCols, std::string& outHeader, std::string& outInl ) {
 	if ( type == GEN_TYPE_BOOL ) {
 		return;
 	}
 
-	genType_t floatingPointType = Gen_GetSupportedFloatingPointType( type );
+	for ( uint32_t opIndex = 0; opIndex < GEN_OP_ARITHMETIC_COUNT; opIndex++ ) {
+		genOpArithmetic_t op = static_cast<genOpArithmetic_t>( opIndex );
 
-	std::string typeString = Gen_GetTypeString( type );
-	std::string returnTypeString = Gen_GetTypeString( floatingPointType );
-	std::string fullTypeName = typeString + std::to_string( numComponents );
+		outHeader += HeaderGetArithmeticFuncScalar( type, numRows, numCols, op );
+		outHeader += HeaderGetArithmeticFuncRhsType( type, numRows, numCols, op );
 
-	std::string sqrtString = ( floatingPointType == GEN_TYPE_DOUBLE ) ? "sqrt" : "sqrtf";
-
-	outHeader += "inline " + returnTypeString + " lengthsqr( const " + fullTypeName + "& vec );\n";
-	outHeader += "inline " + returnTypeString + " length( const " + fullTypeName + "& vec );\n";
-
-	outHeader += "\n";
-
-	outInl += returnTypeString + " lengthsqr( const " + fullTypeName + "& vec ) {\n";
-	outInl += "\treturn ";
-	for ( uint32_t i = 0; i < numComponents; i++ ) {
-		char componentName = GEN_COMPONENT_NAMES_VECTOR[i];
-		outInl += std::string( "( vec." ) + componentName + " * vec." + componentName + " )";
-
-		if ( i != numComponents - 1 ) {
-			outInl += " + ";
-		}
+		outInl += InlGetArithmeticFuncScalar( type, numRows, numCols, op );
+		outInl += InlGetArithmeticFuncRhsType( type, numRows, numCols, op );
 	}
-	outInl += ";\n";
-	outInl += "}\n";
-
-	outInl += "\n";
-
-	// TODO(DM): do sqrtf for float, sqrt for double
-	outInl += returnTypeString + " length( const " + fullTypeName + "& vec ) {\n";
-	outInl += "\treturn " + sqrtString + "( lengthsqr( vec ) );\n";
-	outInl += "}\n";
-
-	outInl += "\n";
 }
 
-void Gen_VectorNormalize( const genType_t type, const uint32_t numComponents, std::string& outHeader, std::string& outInl ) {
-	assert( numComponents >= GEN_COMPONENT_COUNT_MIN );
-	assert( numComponents <= GEN_COMPONENT_COUNT_MAX );
-
-	if ( !Gen_IsFloatingPointType( type ) ) {
+void Gen_MatrixOperatorsRelational( const genType_t type, const uint32_t numRows, const uint32_t numCols, std::string& outHeader, std::string& outInl ) {
+	if ( type == GEN_TYPE_BOOL ) {
 		return;
 	}
 
-	std::string typeString = Gen_GetTypeString( type );
-	std::string fullTypeName = typeString + std::to_string( numComponents );
+	for ( uint32_t opIndex = 0; opIndex < GEN_OP_RELATIONAL_COUNT; opIndex++ ) {
+		genOpRelational_t op = static_cast<genOpRelational_t>( opIndex );
 
-	std::string oneStr = Gen_GetNumericLiteral( type, 1 );
+		outHeader += HeaderGetOperatorRelational( type, numRows, numCols, op );
 
-	outHeader += "inline void normalize( " + fullTypeName + "& vec );\n";
-	outHeader += "inline " + fullTypeName + " normalized( const " + fullTypeName + "& vec );\n";
-
-	outHeader += "\n";
-
-	outInl += "void normalize( " + fullTypeName + "& vec ) {\n";
-	outInl += "\t" + typeString + " invlen = " + oneStr + " / length( vec );\n";
-	outInl += "\tvec *= invlen;\n";
-	outInl += "}\n";
-
-	outInl += "\n";
-
-	outInl += fullTypeName + " normalized( const " + fullTypeName + "& vec ) {\n";
-	outInl += "\t" + typeString + " invlen = " + oneStr + " / length( vec );\n";
-	outInl += "\treturn (" + fullTypeName + ") vec * invlen;\n";
-	outInl += "}\n";
-
-	outInl += "\n";
-}
-
-void Gen_VectorDot( const genType_t type, const uint32_t numComponents, std::string& outHeader, std::string& outInl ) {
-	assert( numComponents >= GEN_COMPONENT_COUNT_MIN );
-	assert( numComponents <= GEN_COMPONENT_COUNT_MAX );
-
-	if ( type == GEN_TYPE_BOOL || type == GEN_TYPE_UINT ) {
-		return;
+		outInl += InlGetOperatorRelational( type, numRows, numCols, op );
 	}
-
-	std::string typeString = Gen_GetTypeString( type );
-	std::string returnTypeString = Gen_GetTypeString( Gen_GetSupportedFloatingPointType( type ) );
-	std::string fullTypeName = typeString + std::to_string( numComponents );
-
-	outHeader += "inline " + returnTypeString + " dot( const " + fullTypeName + "& lhs, const " + fullTypeName + "& rhs );\n";
-
-	outHeader += "\n";
-
-	outInl += returnTypeString + " dot( const " + fullTypeName + "& lhs, const " + fullTypeName + "& rhs ) {\n";
-	outInl += "\treturn ";
-	for ( uint32_t i = 0; i < numComponents; i++ ) {
-		outInl += "( " + std::string( "lhs." ) + GEN_COMPONENT_NAMES_VECTOR[i] + std::string( " * " ) + std::string( "rhs." ) + GEN_COMPONENT_NAMES_VECTOR[i] + " )";
-
-		if ( i != numComponents - 1 ) {
-			outInl += " + ";
-		}
-	}
-	outInl += ";\n";
-	outInl += "}\n";
-
-	outInl += "\n";
-}
-
-void Gen_VectorCross( const genType_t type, const uint32_t numComponents, std::string& outHeader, std::string& outInl ) {
-	assert( numComponents >= GEN_COMPONENT_COUNT_MIN );
-	assert( numComponents <= GEN_COMPONENT_COUNT_MAX );
-
-	if ( !Gen_IsFloatingPointType( type ) ) {
-		return;
-	}
-
-	if ( numComponents < 3 ) {
-		return;
-	}
-
-	std::string typeString = Gen_GetTypeString( type );
-	std::string fullTypeName = typeString + std::to_string( numComponents );
-
-	outHeader += "inline " + fullTypeName + " cross( const " + fullTypeName + "& lhs, const " + fullTypeName + "& rhs );\n";
-
-	outHeader += "\n";
-
-	outInl += fullTypeName + " cross( const " + fullTypeName + "& lhs, const " + fullTypeName + "& rhs ) {\n";
-	outInl += "\treturn " + fullTypeName + "(\n";
-	outInl += "\t\t( lhs.y * rhs.z ) - ( lhs.z * rhs.y ),\n";
-	outInl += "\t\t( lhs.z * rhs.x ) - ( lhs.x * rhs.z ),\n";
-	outInl += "\t\t( lhs.x * rhs.y ) - ( lhs.y * rhs.x )";
-	if ( numComponents > 3 ) {
-		outInl += ",\n\t\t" + Gen_GetDefaultLiteralValue( type ) + "\n";
-	} else {
-		outInl += "\n";
-	}
-	outInl += "\t);\n";
-	outInl += "}\n";
-
-	outInl += "\n";
-}
-
-void Gen_VectorAngle( const genType_t type, const uint32_t numComponents, std::string& outHeader, std::string& outInl ) {
-	assert( numComponents >= GEN_COMPONENT_COUNT_MIN );
-	assert( numComponents <= GEN_COMPONENT_COUNT_MAX );
-
-	if ( !Gen_IsFloatingPointType( type ) ) {
-		return;
-	}
-
-	genType_t floatingPointType = Gen_GetSupportedFloatingPointType( type );
-
-	std::string typeString = Gen_GetTypeString( type );
-	std::string returnTypeString = Gen_GetTypeString( floatingPointType );
-	std::string fullTypeName = typeString + std::to_string( numComponents );
-
-	std::string acosString = ( floatingPointType == GEN_TYPE_DOUBLE ) ? "acos" : "acosf";
-
-	outHeader += "inline " + returnTypeString + " angle( const " + fullTypeName + "& lhs, const " + fullTypeName + "& rhs );\n";
-
-	outHeader += "\n";
-
-	outInl += returnTypeString + " angle( const " + fullTypeName + "& lhs, const " + fullTypeName + "& rhs ) {\n";
-	outInl += "\treturn degrees( " + acosString + "( dot( normalized( lhs ), normalized( rhs ) ) ) );\n";
-	outInl += "}\n";
-
-	outInl += "\n";
 }
 
 void Gen_MatrixIdentity( const genType_t type, const uint32_t numRows, const uint32_t numCols, std::string& outHeader, std::string& outInl ) {
@@ -225,7 +291,6 @@ void Gen_MatrixIdentity( const genType_t type, const uint32_t numRows, const uin
 	std::string fullTypeName = Gen_GetTypeString( type ) + std::to_string( numRows ) + "x" + std::to_string( numCols );
 
 	outHeader += "inline void identity( " + fullTypeName + "& mat );\n";
-
 	outHeader += "\n";
 
 	outInl += "void identity( " + fullTypeName + "& mat ) {\n";
@@ -241,7 +306,6 @@ void Gen_MatrixIdentity( const genType_t type, const uint32_t numRows, const uin
 		outInl += " };\n";
 	}
 	outInl += "}\n";
-
 	outInl += "\n";
 }
 
@@ -256,7 +320,6 @@ void Gen_MatrixTranspose( const genType_t type, const uint32_t numRows, const ui
 	std::string transposeTypeName = typeString + std::to_string( numCols ) + "x" + std::to_string( numRows );
 
 	outHeader += "inline " + transposeTypeName + " transpose( const " + fullTypeName + "& mat );\n";
-
 	outHeader += "\n";
 
 	outInl += transposeTypeName + " transpose( const " + fullTypeName + "& mat ) {\n";
@@ -285,7 +348,6 @@ void Gen_MatrixTranspose( const genType_t type, const uint32_t numRows, const ui
 	}
 	outInl += "\t);\n";
 	outInl += "}\n";
-
 	outInl += "\n";
 }
 
@@ -299,6 +361,8 @@ void Gen_MatrixInverse( const genType_t type, const uint32_t numRows, const uint
 		return;
 	}
 
+	// true inverse can only be done for NxN matrices
+	// only pseudo-inverse can be done for NxM matrices where N != M
 	if ( numRows != numCols ) {
 		return;
 	}
@@ -311,12 +375,10 @@ void Gen_MatrixInverse( const genType_t type, const uint32_t numRows, const uint
 	std::string literalOneStr = Gen_GetNumericLiteral( type, 1 );
 
 	outHeader += "inline " + fullTypeName + " inverse( const " + fullTypeName + "& mat );\n";
-
 	outHeader += "\n";
 
 	outInl += fullTypeName + " inverse( const " + fullTypeName + "& mat ) {\n";
 
-	// true inverse can only be done for NxN matrices
 	switch ( numRows ) {
 		case 2: {
 			outInl += "\tconst " + memberTypeString + " invdet = " + literalOneStr + " / determinant( mat );\n";
@@ -410,7 +472,6 @@ void Gen_MatrixInverse( const genType_t type, const uint32_t numRows, const uint
 		}
 	}
 	outInl += "}\n";
-
 	outInl += "\n";
 }
 
@@ -434,7 +495,6 @@ void Gen_MatrixDeterminant( const genType_t type, const uint32_t numRows, const 
 	std::string fullTypeName = typeString + std::to_string( numRows ) + "x" + std::to_string( numCols );
 
 	outHeader += "inline " + memberTypeString + " determinant( const " + fullTypeName + "& mat );\n";
-
 	outHeader += "\n";
 
 	outInl += memberTypeString + " determinant( const " + fullTypeName + "& mat ) {\n";
@@ -475,7 +535,6 @@ void Gen_MatrixDeterminant( const genType_t type, const uint32_t numRows, const 
 		}
 	}
 	outInl += "}\n";
-
 	outInl += "\n";
 }
 
@@ -497,7 +556,6 @@ void Gen_MatrixTranslate( const genType_t type, const uint32_t numRows, const ui
 	std::string fullTypeName = typeString + std::to_string( numRows ) + "x" + std::to_string( numCols );
 
 	outHeader += "inline " + fullTypeName + " translate( const " + fullTypeName + "& mat, const " + typeString + std::to_string( vecComponents ) + "& vec );\n";
-
 	outHeader += "\n";
 
 	outInl += fullTypeName + " translate( const " + fullTypeName + "& mat, const " + typeString + std::to_string( vecComponents ) + "& vec ) {\n";
@@ -527,7 +585,6 @@ void Gen_MatrixTranslate( const genType_t type, const uint32_t numRows, const ui
 	}
 	outInl += "\t);\n";
 	outInl += "}\n";
-
 	outInl += "\n";
 }
 
@@ -541,7 +598,11 @@ void Gen_MatrixRotate( const genType_t type, const uint32_t numRows, const uint3
 		return;
 	}
 
-	if ( numRows < 3 || numCols < numRows ) {
+	if ( numRows < 3 ) {
+		return;
+	}
+
+	if ( numRows != numCols ) {
 		return;
 	}
 
@@ -553,21 +614,22 @@ void Gen_MatrixRotate( const genType_t type, const uint32_t numRows, const uint3
 
 	std::string literalOneStr = Gen_GetNumericLiteral( type, 1 );
 
-	std::string parmListStr = "const " + fullTypeName + "& mat, const " + typeString + " radians";
+	std::string parmListStr = "const " + fullTypeName + "& mat, const " + typeString + " rad";
 	if ( numCols > 3 ) {
 		parmListStr += ", const " + vectorTypeString + "& axis";
 	}
 
 	outHeader += "inline " + fullTypeName + " rotate( " + parmListStr + " );\n";
-
 	outHeader += "\n";
 
 	std::string cosFuncStr = ( type == GEN_TYPE_FLOAT ) ? "cosf" : "cos";
 	std::string sinFuncStr = ( type == GEN_TYPE_FLOAT ) ? "sinf" : "sin";
 
 	outInl += fullTypeName + " rotate( " + parmListStr + " ) {\n";
-	outInl += "\tconst " + typeString + " c = " + cosFuncStr + "( radians );\n";
-	outInl += "\tconst " + typeString + " s = " + sinFuncStr + "( radians );\n";
+	outInl += "\tconst " + typeString + " c = " + cosFuncStr + "( rad );\n";
+	outInl += "\tconst " + typeString + " s = " + sinFuncStr + "( rad );\n";
+//	outInl += "\tconst float c = static_cast<float>( " + cosFuncStr + "( rad ) );\n";
+//	outInl += "\tconst float s = static_cast<float>( " + sinFuncStr + "( rad ) );\n";
 	outInl += "\n";
 
 	switch ( numCols ) {
@@ -583,6 +645,7 @@ void Gen_MatrixRotate( const genType_t type, const uint32_t numRows, const uint3
 		case 4: {
 			outInl += "\t" + vectorTypeString + " u = normalized( axis );\n";
 			outInl += "\t" + typeString + " ic = " + literalOneStr + " - c;\n";
+//			outInl += "\tfloat ic = 1.0f - c;\n";
 			outInl += "\n";
 			outInl += "\t" + fullTypeName + " rotation = mat;\n";
 			outInl += "\trotation[0][0] = c + u.x * ic;\n";
@@ -602,7 +665,6 @@ void Gen_MatrixRotate( const genType_t type, const uint32_t numRows, const uint3
 		}
 	}
 	outInl += "}\n";
-
 	outInl += "\n";
 }
 
@@ -616,23 +678,20 @@ void Gen_MatrixScale( const genType_t type, const uint32_t numRows, const uint32
 		return;
 	}
 
+	if ( numCols < 3 && numCols < numRows ) {
+		return;
+	}
+
 	std::string typeString = Gen_GetTypeString( type );
 	std::string memberTypeString = Gen_GetMemberTypeString( type );
 	std::string fullTypeName = typeString + std::to_string( numRows ) + "x" + std::to_string( numCols );
 
-	// TODO(DM): is this the best way to handle this?
-	uint32_t scaleCols = 0;
-	switch ( numCols ) {
-		case 2: scaleCols = 2; break;
-		case 3: scaleCols = 3; break;
-		case 4: scaleCols = 3; break;
-	}
+	const uint32_t scaleCols = 3;
 
 	std::string scaleVectorString = typeString + std::to_string( scaleCols );
 
 	outHeader += "inline " + fullTypeName + " scale( const " + fullTypeName + "& mat, const " + memberTypeString + " scalar );\n";
 	outHeader += "inline " + fullTypeName + " scale( const " + fullTypeName + "& mat, const " + scaleVectorString + "& vec );\n";
-
 	outHeader += "\n";
 
 	outInl += fullTypeName + " scale( const " + fullTypeName + "& mat, const " + memberTypeString + " scalar ) {\n";
@@ -646,7 +705,6 @@ void Gen_MatrixScale( const genType_t type, const uint32_t numRows, const uint32
 	}
 	outInl += " ) );\n";
 	outInl += "}\n";
-
 	outInl += "\n";
 
 	outInl += fullTypeName + " scale( const " + fullTypeName + "& mat, const " + scaleVectorString + "& vec ) {\n";
@@ -677,11 +735,10 @@ void Gen_MatrixScale( const genType_t type, const uint32_t numRows, const uint32
 	}
 	outInl += "\t);\n";
 	outInl += "}\n";
-
 	outInl += "\n";
 }
 
-void Gen_MatrixOrtho( const hand_t hand, const genType_t type, const uint32_t numRows, const uint32_t numCols, std::string& outHeader, std::string& outInl ) {
+void Gen_MatrixOrtho( const genHand_t hand, const genType_t type, const uint32_t numRows, const uint32_t numCols, std::string& outHeader, std::string& outInl ) {
 	assert( numRows >= GEN_COMPONENT_COUNT_MIN );
 	assert( numCols >= GEN_COMPONENT_COUNT_MIN );
 	assert( numRows <= GEN_COMPONENT_COUNT_MAX );
@@ -703,7 +760,6 @@ void Gen_MatrixOrtho( const hand_t hand, const genType_t type, const uint32_t nu
 	std::string twoStr = Gen_GetNumericLiteral( type, 2 );
 
 	outHeader += "inline " + fullTypeName + " ortho( const " + typeString + " left, const " + typeString + " right, const " + typeString + " top, const " + typeString + " bottom, const " + typeString + " znear, const " + typeString + " zfar );\n";
-
 	outHeader += "\n";
 
 	outInl += "inline " + fullTypeName + " ortho( const " + typeString + " left, const " + typeString + " right, const " + typeString + " top, const " + typeString + " bottom, const " + typeString + " znear, const " + typeString + " zfar ) {\n";
@@ -734,11 +790,10 @@ void Gen_MatrixOrtho( const hand_t hand, const genType_t type, const uint32_t nu
 			break;
 	}
 	outInl += "}\n";
-
 	outInl += "\n";
 }
 
-void Gen_MatrixPerspective( const hand_t hand, const genType_t type, const uint32_t numRows, const uint32_t numCols, std::string& outHeader, std::string& outInl ) {
+void Gen_MatrixPerspective( const genHand_t hand, const genType_t type, const uint32_t numRows, const uint32_t numCols, std::string& outHeader, std::string& outInl ) {
 	assert( numRows >= GEN_COMPONENT_COUNT_MIN );
 	assert( numCols >= GEN_COMPONENT_COUNT_MIN );
 	assert( numRows <= GEN_COMPONENT_COUNT_MAX );
@@ -758,15 +813,16 @@ void Gen_MatrixPerspective( const hand_t hand, const genType_t type, const uint3
 	std::string zeroStr = Gen_GetNumericLiteral( type, 0 );
 	std::string oneStr = Gen_GetNumericLiteral( type, 1 );
 
-	outHeader += "inline " + fullTypeName + " perspective( const " + typeString + " fovdeg, const " + typeString + " aspect, const " + typeString + " znear, const " + typeString + " zfar );\n";
+	std::string radiansFuncStr = Gen_GetFuncNameRadians( type );
 
+	outHeader += "inline " + fullTypeName + " perspective( const " + typeString + " fovdeg, const " + typeString + " aspect, const " + typeString + " znear, const " + typeString + " zfar );\n";
 	outHeader += "\n";
 
 	outInl += fullTypeName + " perspective( const " + typeString + " fovdeg, const " + typeString + " aspect, const " + typeString + " znear, const " + typeString + " zfar ) {\n";
 	switch ( hand ) {
 		case GEN_HAND_LEFT: {
 			outInl += "\tconst " + typeString + " far_minus_near = zfar - znear;\n";
-			outInl += "\tconst " + typeString + " tan_half_fov = static_cast<" + typeString + ">( tan( ( fovdeg / " + Gen_GetNumericLiteral( type, 2 ) + " ) * radians( fovdeg ) ) );\n";
+			outInl += "\tconst " + typeString + " tan_half_fov = static_cast<" + typeString + ">( tan( ( fovdeg / " + Gen_GetNumericLiteral( type, 2 ) + " ) * " + radiansFuncStr + "( fovdeg ) ) );\n";
 			outInl += "\n";
 			outInl += "\treturn " + fullTypeName + "(\n";
 			outInl += "\t\t" + oneStr + " / ( aspect * tan_half_fov ), " + zeroStr + ", " + zeroStr + ", " + zeroStr + ",\n";
@@ -787,11 +843,10 @@ void Gen_MatrixPerspective( const hand_t hand, const genType_t type, const uint3
 			break;
 	}
 	outInl += "}\n";
-
 	outInl += "\n";
 }
 
-void Gen_MatrixLookAt( const hand_t hand, const genType_t type, const uint32_t numRows, const uint32_t numCols, std::string& outHeader, std::string& outInl ) {
+void Gen_MatrixLookAt( const genHand_t hand, const genType_t type, const uint32_t numRows, const uint32_t numCols, std::string& outHeader, std::string& outInl ) {
 	assert( numRows >= GEN_COMPONENT_COUNT_MIN );
 	assert( numCols >= GEN_COMPONENT_COUNT_MIN );
 	assert( numRows <= GEN_COMPONENT_COUNT_MAX );
@@ -810,7 +865,6 @@ void Gen_MatrixLookAt( const hand_t hand, const genType_t type, const uint32_t n
 	std::string fullTypeName = typeString + std::to_string( numRows ) + "x" + std::to_string( numCols );
 
 	outHeader += "inline " + fullTypeName + " lookat( const " + vectorTypeString + "& eye, const " + vectorTypeString + "& target, const " + vectorTypeString + "& up );\n";
-
 	outHeader += "\n";
 
 	outInl += fullTypeName + " lookat( const " + vectorTypeString + "& eye, const " + vectorTypeString + "& target, const " + vectorTypeString + "& up ) {\n";
@@ -839,6 +893,5 @@ void Gen_MatrixLookAt( const hand_t hand, const genType_t type, const uint32_t n
 			break;
 	}
 	outInl += "}\n";
-
 	outInl += "\n";
 }

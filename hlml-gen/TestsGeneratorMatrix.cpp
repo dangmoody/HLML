@@ -4,7 +4,7 @@
 
 #include "../out/hlml_main.h"
 
-#include <vector>
+#include <assert.h>
 
 void TestsGeneratorMatrix::Generate( const genType_t type, const uint32_t numRows, const uint32_t numCols ) {
 	m_code = std::string();
@@ -13,6 +13,9 @@ void TestsGeneratorMatrix::Generate( const genType_t type, const uint32_t numRow
 
 	m_numRows = numRows;
 	m_numCols = numCols;
+
+	m_numRowsStr = std::to_string( numRows );
+	m_numColsStr = std::to_string( numCols );
 
 	m_typeString = Gen_GetTypeString( type );
 	m_memberTypeString = Gen_GetMemberTypeString( type );
@@ -24,7 +27,7 @@ void TestsGeneratorMatrix::Generate( const genType_t type, const uint32_t numRow
 
 	m_code += GEN_FILE_HEADER;
 
-	m_code += std::string( "#include \"../" ) + GEN_OUT_GEN_FOLDER_PATH + GEN_HEADER_FUNCTIONS_MATRIX + ".h\"\n";
+	m_code += std::string( "#include \"../" ) + GEN_OUT_GEN_FOLDER_PATH + GEN_FILENAME_FUNCTIONS_MATRIX + ".h\"\n";
 	m_code += "\n";
 
 	m_code += "#include <temper.h>\n";
@@ -60,37 +63,47 @@ void TestsGeneratorMatrix::Generate( const genType_t type, const uint32_t numRow
 
 	m_code += "TEMPER_SUITE( " + m_testPrefix + " ) {\n";
 	m_code += "\tTEMPER_RUN_TEST( TestAssignment_" + m_fullTypeName + " );\n";
+
 	if ( m_type != GEN_TYPE_BOOL ) {
 		m_code += "\n";
-		m_code += "\tTEMPER_RUN_TEST( TestArithmeticAddition_" + m_fullTypeName + " );\n";
-		m_code += "\tTEMPER_RUN_TEST( TestArithmeticSubtraction_" + m_fullTypeName + " );\n";
-		m_code += "\tTEMPER_SKIP_TEST( TestArithmeticMultiplication_" + m_fullTypeName + ", \"Give me a minute to think about how to structure this one.\" );\n";
-		m_code += "\tTEMPER_RUN_TEST( TestArithmeticDivision_" + m_fullTypeName + " );\n";
+//		m_code += "\tTEMPER_RUN_TEST( TestArithmeticAddition_" + m_fullTypeName + " );\n";
+//		m_code += "\tTEMPER_RUN_TEST( TestArithmeticSubtraction_" + m_fullTypeName + " );\n";
+//		m_code += "\tTEMPER_SKIP_TEST( TestArithmeticMultiplication_" + m_fullTypeName + ", \"Give me a minute to think about how to structure this one.\" );\n";
+//		m_code += "\tTEMPER_RUN_TEST( TestArithmeticDivision_" + m_fullTypeName + " );\n";
 		m_code += "\n";
 	}
+
 	m_code += "\tTEMPER_RUN_TEST( TestArray_" + m_fullTypeName + " );\n";
+
 	if ( m_type != GEN_TYPE_BOOL ) {
 		m_code += "\tTEMPER_RUN_TEST( TestRelational_" + m_fullTypeName + " );\n";
 	}
+
 	m_code += "\n";
 	m_code += "\tTEMPER_RUN_TEST( TestIdentity_" + m_fullTypeName + " );\n";
 	m_code += "\tTEMPER_RUN_TEST( TestTranspose_" + m_fullTypeName + " );\n";
+
 	if ( ( m_type != GEN_TYPE_BOOL && m_type != GEN_TYPE_UINT ) && m_numRows == m_numCols ) {
 		m_code += "\tTEMPER_RUN_TEST( TestDeterminant_" + m_fullTypeName + " );\n";
 	}
+
 	if ( Gen_IsFloatingPointType( type ) && m_numRows == m_numCols ) {
 		m_code += "\tTEMPER_RUN_TEST( TestInverse_" + m_fullTypeName + " );\n";
 	}
+
 	if ( m_type != GEN_TYPE_BOOL ) {
 		m_code += "\n";
-		if ( m_numRows >= 3 && m_numCols >= numRows ) {
+
+		if ( m_numRows >= 3 && m_numCols >= m_numRows ) {
 			m_code += "\tTEMPER_RUN_TEST( TestTranslate_" + m_fullTypeName + " );\n";
 
-			if ( Gen_IsFloatingPointType( m_type ) ) {
+			if ( Gen_IsFloatingPointType( m_type ) && m_numRows == m_numCols ) {
 				m_code += "\tTEMPER_RUN_TEST( TestRotate_" + m_fullTypeName + " );\n";
 			}
+
+			m_code += "\tTEMPER_RUN_TEST( TestScale_" + m_fullTypeName + " );\n";
 		}
-		m_code += "\tTEMPER_SKIP_TEST( TestScale_" + m_fullTypeName + ", \"TODO\" );\n";
+
 		m_code += "\n";
 		m_code += "\tTEMPER_SKIP_TEST( TestOrtho_" + m_fullTypeName + ", \"TODO\" );\n";
 		m_code += "\tTEMPER_SKIP_TEST( TestPerspective_" + m_fullTypeName + ", \"TODO\" );\n";
@@ -300,7 +313,7 @@ void TestsGeneratorMatrix::GenerateTestArithmetic() {
 
 	std::string paramListIdentity = GetParmListIdentity();
 
-	std::vector<std::string> paramListAnswers( GEN_ARITHMETIC_OP_COUNT );
+	std::string paramListAnswers[GEN_OP_ARITHMETIC_COUNT];
 
 	// addition
 	{
@@ -324,7 +337,7 @@ void TestsGeneratorMatrix::GenerateTestArithmetic() {
 		}
 		paramList += "\t)";
 
-		paramListAnswers[GEN_ARITHMETIC_OP_ADDITION] = paramList;
+		paramListAnswers[GEN_OP_ARITHMETIC_ADD] = paramList;
 	}
 
 	// subtraction
@@ -349,7 +362,7 @@ void TestsGeneratorMatrix::GenerateTestArithmetic() {
 		}
 		paramList += "\t)";
 
-		paramListAnswers[GEN_ARITHMETIC_OP_SUBTRACTION] = paramList;
+		paramListAnswers[GEN_OP_ARITHMETIC_SUB] = paramList;
 	}
 
 	// multiplication
@@ -377,7 +390,7 @@ void TestsGeneratorMatrix::GenerateTestArithmetic() {
 		}
 		paramList += "\t)";
 
-		paramListAnswers[GEN_ARITHMETIC_OP_MULTIPLICATION] = paramList;
+		paramListAnswers[GEN_OP_ARITHMETIC_MUL] = paramList;
 	}
 
 	// division
@@ -414,10 +427,10 @@ void TestsGeneratorMatrix::GenerateTestArithmetic() {
 		}
 		paramList += "\t)";
 
-		paramListAnswers[GEN_ARITHMETIC_OP_DIVISION] = paramList;
+		paramListAnswers[GEN_OP_ARITHMETIC_DIV] = paramList;
 	}
 
-	std::vector<std::string> testSuffices = {
+	std::string testSuffices[] = {
 		"Addition",
 		"Subtraction",
 		"Multiplication",
@@ -431,40 +444,41 @@ void TestsGeneratorMatrix::GenerateTestArithmetic() {
 		"*",
 	};
 
-	for ( uint32_t operatorIndex = 0; operatorIndex < _countof( operators ); operatorIndex++ ) {
-		m_code += "TEMPER_TEST( TestArithmetic" + testSuffices[operatorIndex] + "_" + m_fullTypeName + " ) {\n";
-		m_code += "\t" + m_fullTypeName + " a = " + m_fullTypeName + paramListLHS + ";\n";
-		m_code += "\t" + m_fullTypeName + " b = " + m_fullTypeName + paramListVarying + ";\n";
-		m_code += "\t" + m_fullTypeName + " c = a " + GEN_OPERATORS_ARITHMETIC[operatorIndex] + " b;\n";
-		m_code += "\n";
-		m_code += "\tTEMPER_EXPECT_TRUE( c == " + m_fullTypeName + paramListAnswers[operatorIndex] + " );\n";
-		m_code += "\n";
-		m_code += "\tTEMPER_PASS();\n";
-		m_code += "}\n";
-
-		m_code += "\n";
-	}
+	// TODO(DM): I don't know how I want to structure these tests yet given the differences between each test
+//	for ( uint32_t operatorIndex = 0; operatorIndex < _countof( operators ); operatorIndex++ ) {
+//		m_code += "TEMPER_TEST( TestArithmetic" + testSuffices[operatorIndex] + "_" + m_fullTypeName + " ) {\n";
+//		m_code += "\t" + m_fullTypeName + " a = " + m_fullTypeName + paramListLHS + ";\n";
+//		m_code += "\t" + m_fullTypeName + " b = " + m_fullTypeName + paramListVarying + ";\n";
+//		m_code += "\t" + m_fullTypeName + " c = a " + GEN_OPERATORS_ARITHMETIC[operatorIndex] + " b;\n";
+//		m_code += "\n";
+//		m_code += "\tTEMPER_EXPECT_TRUE( c == " + m_fullTypeName + paramListAnswers[operatorIndex] + " );\n";
+//		m_code += "\n";
+//		m_code += "\tTEMPER_PASS();\n";
+//		m_code += "}\n";
+//
+//		m_code += "\n";
+//	}
 
 	// if matrix is square then division is multiplication of inverse, so test that equals identity
 	// if matrix is non-square then division is just component-wise division
-	m_code += "TEMPER_TEST( TestArithmeticDivision_" + m_fullTypeName + " ) {\n";
-	m_code += "\t" + m_fullTypeName + " a = " + m_fullTypeName + paramListVarying + ";\n";
-	if ( m_numRows == m_numCols && Gen_IsFloatingPointType( m_type ) ) {
-		m_code += "\t" + m_fullTypeName + " b = a / a;\n";
-		m_code += "\t" + m_fullTypeName + " identity = " + m_fullTypeName + paramListIdentity + ";\n";
-		m_code += "\n";
-		m_code += "\tTEMPER_EXPECT_TRUE( b == identity );\n";
-	} else {
-		m_code += "\t" + m_fullTypeName + " b = " + m_fullTypeName + paramListLHS + ";\n";
-		m_code += "\t" + m_fullTypeName + " c = b / a;\n";
-		m_code += "\n";
-		m_code += "\tTEMPER_EXPECT_TRUE( c == " + m_fullTypeName + paramListAnswers[GEN_ARITHMETIC_OP_DIVISION] + " );\n";
-	}
-	m_code += "\n";
-	m_code += "\tTEMPER_PASS();\n";
-	m_code += "}\n";
-
-	m_code += "\n";
+//	m_code += "TEMPER_TEST( TestArithmeticDivision_" + m_fullTypeName + " ) {\n";
+//	m_code += "\t" + m_fullTypeName + " a = " + m_fullTypeName + paramListVarying + ";\n";
+//	if ( m_numRows == m_numCols && Gen_IsFloatingPointType( m_type ) ) {
+//		m_code += "\t" + m_fullTypeName + " b = a / a;\n";
+//		m_code += "\t" + m_fullTypeName + " identity = " + m_fullTypeName + paramListIdentity + ";\n";
+//		m_code += "\n";
+//		m_code += "\tTEMPER_EXPECT_TRUE( b == identity );\n";
+//	} else {
+//		m_code += "\t" + m_fullTypeName + " b = " + m_fullTypeName + paramListLHS + ";\n";
+//		m_code += "\t" + m_fullTypeName + " c = b / a;\n";
+//		m_code += "\n";
+//		m_code += "\tTEMPER_EXPECT_TRUE( c == " + m_fullTypeName + paramListAnswers[GEN_OP_ARITHMETIC_DIV] + " );\n";
+//	}
+//	m_code += "\n";
+//	m_code += "\tTEMPER_PASS();\n";
+//	m_code += "}\n";
+//
+//	m_code += "\n";
 }
 
 void TestsGeneratorMatrix::GenerateTestArray() {
@@ -498,7 +512,7 @@ void TestsGeneratorMatrix::GenerateTestRelational() {
 		return;
 	}
 
-	std::string boolTypeName = "bool" + std::to_string( m_numRows ) + "x" + std::to_string( m_numCols );
+	std::string boolTypeName = "bool" + m_numRowsStr + "x" + m_numColsStr;
 
 	std::string paramListTrue = GetParmListSingleValue( GEN_TYPE_BOOL, true );
 
@@ -604,7 +618,7 @@ void TestsGeneratorMatrix::GenerateTestTranspose() {
 	}
 	paramListTransposed += "\t)";
 
-	std::string transposeTypeName = m_typeString + std::to_string( m_numCols ) + "x" + std::to_string( m_numRows );
+	std::string transposeTypeName = m_typeString + m_numColsStr + "x" + m_numRowsStr;
 
 	m_code += "TEMPER_TEST( TestTranspose_" + m_fullTypeName + " ) {\n";
 	m_code += "\t" + m_fullTypeName + " mat = " + m_fullTypeName + paramListNormal + ";\n";
@@ -840,11 +854,16 @@ void TestsGeneratorMatrix::GenerateTestRotate() {
 		return;
 	}
 
-	if ( m_numRows < 3 || m_numCols < m_numRows ) {
+	if ( m_numRows < 3 ) {
 		return;
 	}
 
-	float rotRadians = radians( 90.0f );
+	if ( m_numRows != m_numCols ) {
+		return;
+	}
+
+	float rotDegrees = 45.0f;
+	float rotRadians = radiansf( rotDegrees );
 
 	float cosR = cosf( rotRadians );
 	float sinR = sinf( rotRadians );
@@ -895,7 +914,7 @@ void TestsGeneratorMatrix::GenerateTestRotate() {
 
 	uint32_t numRotateVectorComponents = m_numCols - 1;
 
-	std::string ninetyStr = Gen_GetNumericLiteral( m_type, 90 );
+	std::string rotDegreesStr = Gen_GetNumericLiteral( m_type, rotDegrees );
 
 	std::string rotateVecTypeString = m_typeString + std::to_string( numRotateVectorComponents );
 
@@ -907,8 +926,10 @@ void TestsGeneratorMatrix::GenerateTestRotate() {
 	std::string parmListMatPitch = GetParmListMatrix( m_type, numRotMatRows, numRotMatCols, rotMatPitch );
 	std::string parmListMatRoll = GetParmListMatrix( m_type, numRotMatRows, numRotMatCols, matAnswerRoll );
 
+	std::string radiansFuncStr = Gen_GetFuncNameRadians( m_type );
+
 	// matrices where cols == 3 only have roll rotation support
-	std::string parmListRotateRoll = "mat, radians( " + ninetyStr + " )";
+	std::string parmListRotateRoll = "mat, " + radiansFuncStr + "( " + rotDegreesStr + " )";
 	if ( m_numCols > 3 ) {
 		parmListRotateRoll += ", " + rotateVecTypeString + parmListVecRoll;
 	}
@@ -916,8 +937,8 @@ void TestsGeneratorMatrix::GenerateTestRotate() {
 	m_code += "TEMPER_TEST( TestRotate_" + m_fullTypeName + " ) {\n";
 	m_code += "\t" + m_fullTypeName + " mat;\n";
 	if ( m_numRows > 3 ) {
-		m_code += "\t" + m_fullTypeName + " yaw = rotate( mat, radians( " + ninetyStr + " ), " + rotateVecTypeString + parmListVecYaw + " );\n";
-		m_code += "\t" + m_fullTypeName + " pitch = rotate( mat, radians( " + ninetyStr + " ), " + rotateVecTypeString + parmListVecPitch + " );\n";
+		m_code += "\t" + m_fullTypeName + " yaw = rotate( mat, " + radiansFuncStr + "( " + rotDegreesStr + " ), " + rotateVecTypeString + parmListVecYaw + " );\n";
+		m_code += "\t" + m_fullTypeName + " pitch = rotate( mat, " + radiansFuncStr + "( " + rotDegreesStr + " ), " + rotateVecTypeString + parmListVecPitch + " );\n";
 	}
 	m_code += "\t" + m_fullTypeName + " roll = rotate( " + parmListRotateRoll + " );\n";
 	m_code += "\n";
@@ -943,8 +964,26 @@ void TestsGeneratorMatrix::GenerateTestScale() {
 		return;
 	}
 
+	if ( m_numCols < 3 && m_numCols < m_numRows ) {
+		return;
+	}
+
+	const uint32_t scaleCols = 3;
+
+	float scaleMatDiagonal[] = { 2.0f, 2.0f, 2.0f, 1.0f };
+
+	std::string parmListScaleVec = GetParmListVector( m_type, scaleCols, scaleMatDiagonal );
+	std::string parmListScaleMat = GetParmListDiagonal( m_type, m_numRows, m_numCols, scaleMatDiagonal, _countof( scaleMatDiagonal ) );
+
+	std::string scaleVecTypeString = m_typeString + std::to_string( scaleCols );
+
 	m_code += "TEMPER_TEST( TestScale_" + m_fullTypeName + " ) {\n";
-	m_code += "\tTEMPER_FAIL();\n";
+	m_code += "\t" + m_fullTypeName + " mat;\n";
+	m_code += "\t" + m_fullTypeName + " scaled = scale( mat, " + scaleVecTypeString + parmListScaleVec + " );\n";
+	m_code += "\n";
+	m_code += "\tTEMPER_EXPECT_TRUE( scaled == " + m_fullTypeName + parmListScaleMat + " );\n";
+	m_code += "\n";
+	m_code += "\tTEMPER_PASS();\n";
 	m_code += "}\n";
 	m_code += "\n";
 }
@@ -982,16 +1021,16 @@ void TestsGeneratorMatrix::GenerateTestLookAt() {
 	m_code += "\n";
 }
 
-std::string TestsGeneratorMatrix::GetParmListIdentity( const int32_t value ) const {
-	std::string zeroStr = Gen_GetNumericLiteral( m_type, 0 );
-	std::string valueStr = Gen_GetNumericLiteral( m_type, value );
+std::string TestsGeneratorMatrix::GetParmListIdentity() const {
+	std::string zeroStr = Gen_GetNumericLiteral( m_type, 0.0f );
+	std::string oneStr = Gen_GetNumericLiteral( m_type, 1.0f );
 
 	std::string paramListIdentity = "(\n";
 	for ( uint32_t row = 0; row < m_numRows; row++ ) {
 		paramListIdentity += "\t\t";
 
 		for ( uint32_t col = 0; col < m_numCols; col++ ) {
-			paramListIdentity += ( row == col ) ? valueStr : zeroStr;
+			paramListIdentity += ( row == col ) ? oneStr : zeroStr;
 
 			if ( row + col != ( m_numRows - 1 ) + ( m_numCols - 1 ) ) {
 				paramListIdentity += ",";
@@ -1007,6 +1046,40 @@ std::string TestsGeneratorMatrix::GetParmListIdentity( const int32_t value ) con
 	paramListIdentity += "\t)";
 
 	return paramListIdentity;
+}
+
+std::string TestsGeneratorMatrix::GetParmListDiagonal( const genType_t type, const uint32_t numRows, const uint32_t numCols, const float* values, const uint32_t numValues ) const {
+	assert( numValues <= 4 );
+
+	std::string zeroStr = Gen_GetNumericLiteral( type, 0.0f );
+
+	uint32_t valueIndex = 0;
+
+	std::string paramList = "(\n";
+	for ( uint32_t row = 0; row < numRows; row++ ) {
+		paramList += "\t\t";
+
+		for ( uint32_t col = 0; col < numCols; col++ ) {
+			if ( row == col ) {
+				paramList += Gen_GetNumericLiteral( m_type, values[valueIndex++] );
+			} else {
+				paramList += zeroStr;
+			}
+
+			if ( row + col != ( numRows - 1 ) + ( numCols - 1 ) ) {
+				paramList += ",";
+			}
+
+			if ( col != numCols - 1 ) {
+				paramList += " ";
+			}
+		}
+
+		paramList += "\n";
+	}
+	paramList += "\t)";
+
+	return paramList;
 }
 
 std::string TestsGeneratorMatrix::GetParmListSingleValue( const genType_t type, const int32_t value ) const {

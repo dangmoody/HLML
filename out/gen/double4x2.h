@@ -27,6 +27,8 @@ along with hlml.  If not, see <http://www.gnu.org/licenses/>.
 #pragma once
 
 #include "double2.h"
+#include "double4x4.h"
+#include "double2x4.h"
 
 struct double4x2 {
 	double2 rows[4];
@@ -41,22 +43,6 @@ struct double4x2 {
 	inline ~double4x2() {}
 
 	inline double4x2 operator=( const double4x2& other );
-	inline double4x2 operator+( const double rhs ) const;
-	inline double4x2 operator+=( const double rhs );
-	inline double4x2 operator+( const double4x2& rhs ) const;
-	inline double4x2 operator+=( const double4x2& rhs );
-	inline double4x2 operator-( const double rhs ) const;
-	inline double4x2 operator-=( const double rhs );
-	inline double4x2 operator-( const double4x2& rhs ) const;
-	inline double4x2 operator-=( const double4x2& rhs );
-	inline double4x2 operator*( const double rhs ) const;
-	inline double4x2 operator*=( const double rhs );
-	inline double4x2 operator*( const double4x2& rhs ) const;
-	inline double4x2 operator*=( const double4x2& rhs );
-	inline double4x2 operator/( const double rhs ) const;
-	inline double4x2 operator/=( const double rhs );
-	inline double4x2 operator/( const double4x2& rhs ) const;
-	inline double4x2 operator/=( const double4x2& rhs );
 
 	inline double2& operator[]( const uint32_t index );
 	inline const double2& operator[]( const uint32_t index ) const;
@@ -64,10 +50,5 @@ struct double4x2 {
 
 inline bool operator==( const double4x2& lhs, const double4x2& rhs );
 inline bool operator!=( const double4x2& lhs, const double4x2& rhs );
-
-inline bool4x2 operator<( const double4x2& lhs, const double4x2& rhs );
-inline bool4x2 operator<=( const double4x2& lhs, const double4x2& rhs );
-inline bool4x2 operator>( const double4x2& lhs, const double4x2& rhs );
-inline bool4x2 operator>=( const double4x2& lhs, const double4x2& rhs );
 
 #include "double4x2.inl"

@@ -19,6 +19,8 @@ private:
 	std::string	m_memberTypeString;
 	std::string	m_vectorTypeString;
 
+	std::string	m_numRowsStr, m_numColsStr;
+
 	genType_t	m_type;
 
 	uint32_t	m_numRows;
@@ -41,7 +43,9 @@ private:
 	void		GenerateTestPerspective();
 	void		GenerateTestLookAt();
 
-	std::string	GetParmListIdentity( const int32_t value = 1 ) const;
+	// TODO(DM): move these to gen_common.h as inline functions
+	std::string	GetParmListIdentity() const;
+	std::string	GetParmListDiagonal( const genType_t type, const uint32_t numRows, const uint32_t numCols, const float* values, const uint32_t numValues ) const;
 	std::string	GetParmListSingleValue( const genType_t type, const int32_t value ) const;
 
 	std::string	GetParmListVector( const genType_t type, const uint32_t numComponents, const float* values ) const;

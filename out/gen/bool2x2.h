@@ -41,6 +41,7 @@ struct bool2x2 {
 	inline ~bool2x2() {}
 
 	inline bool2x2 operator=( const bool2x2& other );
+
 	inline bool2& operator[]( const uint32_t index );
 	inline const bool2& operator[]( const uint32_t index ) const;
 };

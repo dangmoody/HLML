@@ -60,98 +60,6 @@ TEMPER_TEST( TestAssignment_double3x4 ) {
 	TEMPER_PASS();
 }
 
-TEMPER_TEST( TestArithmeticAddition_double3x4 ) {
-	double3x4 a = double3x4(
-		6.000000, 6.000000, 6.000000, 
-		6.000000, 6.000000, 6.000000, 
-		6.000000, 6.000000, 6.000000, 
-		6.000000,6.000000,6.000000
-	);
-	double3x4 b = double3x4(
-		2.000000, 3.000000, 4.000000, 4.000000,
-		6.000000, 6.000000, 8.000000, 8.000000,
-		10.000000, 10.000000, 12.000000, 12.000000
-	);
-	double3x4 c = a + b;
-
-	TEMPER_EXPECT_TRUE( c == double3x4(
-		8.000000, 9.000000, 10.000000, 10.000000,
-		12.000000, 12.000000, 14.000000, 14.000000,
-		16.000000, 16.000000, 18.000000, 18.000000
-	) );
-
-	TEMPER_PASS();
-}
-
-TEMPER_TEST( TestArithmeticSubtraction_double3x4 ) {
-	double3x4 a = double3x4(
-		6.000000, 6.000000, 6.000000, 
-		6.000000, 6.000000, 6.000000, 
-		6.000000, 6.000000, 6.000000, 
-		6.000000,6.000000,6.000000
-	);
-	double3x4 b = double3x4(
-		2.000000, 3.000000, 4.000000, 4.000000,
-		6.000000, 6.000000, 8.000000, 8.000000,
-		10.000000, 10.000000, 12.000000, 12.000000
-	);
-	double3x4 c = a - b;
-
-	TEMPER_EXPECT_TRUE( c == double3x4(
-		4.000000, 3.000000, 2.000000, 2.000000,
-		0.000000, 0.000000, -2.000000, -2.000000,
-		-4.000000, -4.000000, -6.000000, -6.000000
-	) );
-
-	TEMPER_PASS();
-}
-
-TEMPER_TEST( TestArithmeticMultiplication_double3x4 ) {
-	double3x4 a = double3x4(
-		6.000000, 6.000000, 6.000000, 
-		6.000000, 6.000000, 6.000000, 
-		6.000000, 6.000000, 6.000000, 
-		6.000000,6.000000,6.000000
-	);
-	double3x4 b = double3x4(
-		2.000000, 3.000000, 4.000000, 4.000000,
-		6.000000, 6.000000, 8.000000, 8.000000,
-		10.000000, 10.000000, 12.000000, 12.000000
-	);
-	double3x4 c = a * b;
-
-	TEMPER_EXPECT_TRUE( c == double3x4(
-		0.000000, 1.000000, 2.000000, 3.000000,
-		1.000000, 2.000000, 3.000000, 4.000000,
-		2.000000, 3.000000, 4.000000, 5.000000
-	) );
-
-	TEMPER_PASS();
-}
-
-TEMPER_TEST( TestArithmeticDivision_double3x4 ) {
-	double3x4 a = double3x4(
-		2.000000, 3.000000, 4.000000, 4.000000,
-		6.000000, 6.000000, 8.000000, 8.000000,
-		10.000000, 10.000000, 12.000000, 12.000000
-	);
-	double3x4 b = double3x4(
-		6.000000, 6.000000, 6.000000, 
-		6.000000, 6.000000, 6.000000, 
-		6.000000, 6.000000, 6.000000, 
-		6.000000,6.000000,6.000000
-	);
-	double3x4 c = b / a;
-
-	TEMPER_EXPECT_TRUE( c == double3x4(
-		3.000000, 2.000000, 1.500000, 1.500000,
-		1.000000, 1.000000, 0.750000, 0.750000,
-		0.600000, 0.600000, 0.500000, 0.500000
-	) );
-
-	TEMPER_PASS();
-}
-
 TEMPER_TEST( TestArray_double3x4 ) {
 	double3x4 mat;
 
@@ -339,23 +247,17 @@ TEMPER_TEST( TestTranslate_double3x4 ) {
 	TEMPER_PASS();
 }
 
-TEMPER_TEST( TestRotate_double3x4 ) {
+TEMPER_TEST( TestScale_double3x4 ) {
 	double3x4 mat;
-	double3x4 roll = rotate( mat, radians( 90.000000 ), double3( 0.000000, 0.000000, 1.000000 ) );
+	double3x4 scaled = scale( mat, double3( 2.000000, 2.000000, 2.000000 ) );
 
-	double3x4 answerRoll = double3x4(
-		-0.000000, -1.000000, 0.000000, 0.000000,
-		1.000000, -0.000000, 0.000000, 0.000000,
-		0.000000, 0.000000, 1.000000, 0.000000
-	);
-
-	TEMPER_EXPECT_TRUE( roll == answerRoll );
+	TEMPER_EXPECT_TRUE( scaled == double3x4(
+		2.000000, 0.000000, 0.000000, 0.000000,
+		0.000000, 2.000000, 0.000000, 0.000000,
+		0.000000, 0.000000, 2.000000, 0.000000
+	) );
 
 	TEMPER_PASS();
-}
-
-TEMPER_TEST( TestScale_double3x4 ) {
-	TEMPER_FAIL();
 }
 
 TEMPER_TEST( TestOrtho_double3x4 ) {
@@ -373,10 +275,6 @@ TEMPER_TEST( TestLookAt_double3x4 ) {
 TEMPER_SUITE( Test_double3x4 ) {
 	TEMPER_RUN_TEST( TestAssignment_double3x4 );
 
-	TEMPER_RUN_TEST( TestArithmeticAddition_double3x4 );
-	TEMPER_RUN_TEST( TestArithmeticSubtraction_double3x4 );
-	TEMPER_SKIP_TEST( TestArithmeticMultiplication_double3x4, "Give me a minute to think about how to structure this one." );
-	TEMPER_RUN_TEST( TestArithmeticDivision_double3x4 );
 
 	TEMPER_RUN_TEST( TestArray_double3x4 );
 	TEMPER_RUN_TEST( TestRelational_double3x4 );
@@ -385,8 +283,7 @@ TEMPER_SUITE( Test_double3x4 ) {
 	TEMPER_RUN_TEST( TestTranspose_double3x4 );
 
 	TEMPER_RUN_TEST( TestTranslate_double3x4 );
-	TEMPER_RUN_TEST( TestRotate_double3x4 );
-	TEMPER_SKIP_TEST( TestScale_double3x4, "TODO" );
+	TEMPER_RUN_TEST( TestScale_double3x4 );
 
 	TEMPER_SKIP_TEST( TestOrtho_double3x4, "TODO" );
 	TEMPER_SKIP_TEST( TestPerspective_double3x4, "TODO" );

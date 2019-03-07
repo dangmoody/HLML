@@ -8,12 +8,16 @@ void MatrixGenerator::Generate( const genType_t type, const uint32_t numRows, co
 	m_numRows = numRows;
 	m_numCols = numCols;
 
-	m_numVectors = numRows;
+	m_numRowsStr = std::to_string( numRows );
+	m_numColsStr = std::to_string( numCols );
 
 	m_typeString = Gen_GetTypeString( type );
 	m_memberTypeString = Gen_GetMemberTypeString( type );
-	m_fullTypeName = Gen_GetTypeString( type ) + std::to_string( numRows ) + "x" + std::to_string( numCols );
-	m_vectorMemberTypeString = m_typeString + std::to_string( numCols );
+
+	m_fullTypeName = m_typeString + m_numRowsStr + "x" + m_numColsStr;
+	m_transposedTypeName = m_typeString + m_numColsStr + "x" + m_numRowsStr;
+
+	m_vectorMemberTypeString = m_typeString + m_numColsStr;
 
 	GenerateHeader();
 	GenerateInl();
@@ -39,7 +43,11 @@ void MatrixGenerator::GenerateHeader() {
 	m_codeHeader += "#pragma once\n";
 	m_codeHeader += "\n";
 
-	m_codeHeader += "#include \"" + m_typeString + std::to_string( m_numCols ) + ".h\"\n";
+	m_codeHeader += "#include \"" + m_typeString + m_numColsStr + ".h\"\n";								// vec type
+	if ( m_numRows != m_numCols ) {
+		m_codeHeader += "#include \"" + m_typeString + m_numRowsStr + "x" + m_numRowsStr + ".h\"\n";	// multiplication return type
+		m_codeHeader += "#include \"" + m_transposedTypeName + ".h\"\n";								// transpose type
+	}
 	m_codeHeader += "\n";
 	m_codeHeader += "struct " + m_fullTypeName + " {\n";
 
@@ -49,15 +57,11 @@ void MatrixGenerator::GenerateHeader() {
 
 	HeaderGenerateOperatorsAssignment();
 
-	HeaderGenerateOperatorsArithmetic();
-
 	HeaderGenerateOperatorsArray();
 
 	m_codeHeader += "};\n\n";
 
 	HeaderGenerateOperatorsEquality();
-
-	HeaderGenerateOperatorsRelational();
 
 	m_codeHeader += "#include \"" + m_fullTypeName + ".inl\"";
 }
@@ -86,18 +90,13 @@ void MatrixGenerator::GenerateInl() {
 
 	InlGenerateOperatorsAssignment();
 
-	InlGenerateOperatorsArithmetic();
-
 	InlGenerateOperatorsArray();
 
 	InlGenerateOperatorsEquality();
-
-	InlGenerateOperatorsRelational();
 }
 
 void MatrixGenerator::HeaderGenerateMembers() {
-	m_codeHeader += "\t" + m_vectorMemberTypeString + " rows[" + std::to_string( m_numVectors ) + "];\n";
-
+	m_codeHeader += "\t" + m_vectorMemberTypeString + " rows[" + m_numRowsStr + "];\n";
 	m_codeHeader += "\n";
 }
 
@@ -113,17 +112,17 @@ void MatrixGenerator::HeaderGenerateConstructors() {
 
 	// row memberwise ctor
 	m_codeHeader += "\tinline " + m_fullTypeName + "( ";
-	for ( uint32_t i = 0; i < m_numVectors; i++ ) {
+	for ( uint32_t i = 0; i < m_numRows; i++ ) {
 		m_codeHeader += "const " + m_vectorMemberTypeString + "& row" + std::to_string( i );
 
-		if ( i != m_numVectors - 1 ) {
+		if ( i != m_numRows - 1 ) {
 			m_codeHeader += ", ";
 		}
 	}
 	m_codeHeader += " );\n";
 
 	// array of rows ctor
-	m_codeHeader += "\tinline " + m_fullTypeName + "( const " + m_vectorMemberTypeString + " rows[" + std::to_string( m_numVectors ) + "] );\n";
+	m_codeHeader += "\tinline " + m_fullTypeName + "( const " + m_vectorMemberTypeString + " rows[" + m_numRowsStr + "] );\n";
 
 	// memberwise rows * cols ctor
 	m_codeHeader += "\tinline " + m_fullTypeName + "( ";
@@ -157,23 +156,6 @@ void MatrixGenerator::HeaderGenerateConstructors() {
 void MatrixGenerator::HeaderGenerateOperatorsAssignment() {
 	// assignment operator
 	m_codeHeader += "\tinline " + m_fullTypeName + " operator=( const " + m_fullTypeName + "& other );\n";
-}
-
-void MatrixGenerator::HeaderGenerateOperatorsArithmetic() {
-	if ( m_type == GEN_TYPE_BOOL ) {
-		return;
-	}
-
-	for ( uint32_t i = 0; i < GEN_ARITHMETIC_OP_COUNT; i++ ) {
-		char op = GEN_OPERATORS_ARITHMETIC[i];
-
-		m_codeHeader += "\tinline " + m_fullTypeName + " operator" + op + "( const " + m_memberTypeString + " rhs ) const;\n";
-		m_codeHeader += "\tinline " + m_fullTypeName + " operator" + op + "=( const " + m_memberTypeString + " rhs );\n";
-
-		m_codeHeader += "\tinline " + m_fullTypeName + " operator" + op + "( const " + m_fullTypeName + "& rhs ) const;\n";
-		m_codeHeader += "\tinline " + m_fullTypeName + " operator" + op + "=( const " + m_fullTypeName + "& rhs );\n";
-	}
-
 	m_codeHeader += "\n";
 }
 
@@ -185,20 +167,6 @@ void MatrixGenerator::HeaderGenerateOperatorsArray() {
 void MatrixGenerator::HeaderGenerateOperatorsEquality() {
 	m_codeHeader += "inline bool operator==( const " + m_fullTypeName + "& lhs, const " + m_fullTypeName + "& rhs );\n";
 	m_codeHeader += "inline bool operator!=( const " + m_fullTypeName + "& lhs, const " + m_fullTypeName + "& rhs );\n";
-
-	m_codeHeader += "\n";
-}
-
-void MatrixGenerator::HeaderGenerateOperatorsRelational() {
-	if ( m_type == GEN_TYPE_BOOL ) {
-		return;
-	}
-
-	std::string boolReturnType = "bool" + std::to_string( m_numRows ) + "x" + std::to_string( m_numCols );
-
-	for ( uint32_t i = 0; i < _countof( GEN_OPERATORS_EQUALITY ); i++ ) {
-		m_codeHeader += "inline " + boolReturnType + " operator" + GEN_OPERATORS_EQUALITY[i] + "( const " + m_fullTypeName + "& lhs, const " + m_fullTypeName + "& rhs );\n";
-	}
 
 	m_codeHeader += "\n";
 }
@@ -222,7 +190,7 @@ void MatrixGenerator::InlGenerateConstructors() {
 
 	// "diagonal" scaled non-uniform identity ctor
 	m_codeInl += m_fullTypeName + "::" + m_fullTypeName + "( const " + m_memberTypeString + " diagonal ) {\n";
-	for ( uint32_t i = 0; i < m_numVectors; i++ ) {
+	for ( uint32_t i = 0; i < m_numRows; i++ ) {
 		m_codeInl += "\trows[" + std::to_string( i ) + "] = { ";
 		for ( uint32_t j = 0; j < m_numCols; j++ ) {
 			m_codeInl += ( i == j ) ? "diagonal" : "0";
@@ -237,7 +205,7 @@ void MatrixGenerator::InlGenerateConstructors() {
 
 	// "diagonal" scaled non-uniform identity ctor
 	m_codeInl += m_fullTypeName + "::" + m_fullTypeName + "( const " + m_vectorMemberTypeString + "& diagonal ) {\n";
-	for ( uint32_t i = 0; i < m_numVectors; i++ ) {
+	for ( uint32_t i = 0; i < m_numRows; i++ ) {
 		m_codeInl += "\trows[" + std::to_string( i ) + "] = { ";
 		for ( uint32_t j = 0; j < m_numCols; j++ ) {
 			m_codeInl += ( i == j ) ? std::string( "diagonal." ) + GEN_COMPONENT_NAMES_VECTOR[j] : "0";
@@ -252,23 +220,23 @@ void MatrixGenerator::InlGenerateConstructors() {
 
 	// row memberwise ctor
 	m_codeInl += m_fullTypeName + "::" + m_fullTypeName + "( ";
-	for ( uint32_t i = 0; i < m_numVectors; i++ ) {
+	for ( uint32_t i = 0; i < m_numRows; i++ ) {
 		m_codeInl += "const " + m_vectorMemberTypeString + "& row" + std::to_string( i );
 
-		if ( i != m_numVectors - 1 ) {
+		if ( i != m_numRows - 1 ) {
 			m_codeInl += ", ";
 		}
 	}
 	m_codeInl += " ) {\n";
-	for ( uint32_t i = 0; i < m_numVectors; i++ ) {
+	for ( uint32_t i = 0; i < m_numRows; i++ ) {
 		const std::string indexstr = std::to_string( i );
 		m_codeInl += "\trows[" + indexstr + "] = row" + indexstr + ";\n";
 	}
 	m_codeInl += "}\n\n";
 
 	// array of rows ctor
-	m_codeInl += m_fullTypeName + "::" + m_fullTypeName + "( const " + m_vectorMemberTypeString + " rows[" + std::to_string( m_numVectors ) + "] ) {\n";
-	for ( uint32_t i = 0; i < m_numVectors; i++ ) {
+	m_codeInl += m_fullTypeName + "::" + m_fullTypeName + "( const " + m_vectorMemberTypeString + " rows[" + m_numRowsStr + "] ) {\n";
+	for ( uint32_t i = 0; i < m_numRows; i++ ) {
 		std::string indexstr = std::to_string( i );
 		m_codeInl += "\tthis->rows[" + indexstr + "] = rows[" + indexstr + "];\n";
 	}
@@ -328,165 +296,16 @@ void MatrixGenerator::InlGenerateOperatorsAssignment() {
 	m_codeInl += "\n";
 }
 
-void MatrixGenerator::InlGenerateOperatorsArithmetic() {
-	if ( m_type == GEN_TYPE_BOOL ) {
-		return;
-	}
-
-	for ( uint32_t operatorIndex = 0; operatorIndex < GEN_ARITHMETIC_OP_COUNT; operatorIndex++ ) {
-		char op = GEN_OPERATORS_ARITHMETIC[operatorIndex];
-
-		// scalar arithmetic operator
-		m_codeInl += m_fullTypeName + " " + m_fullTypeName + "::operator" + op + "( const " + m_memberTypeString + " rhs ) const {\n";
-		m_codeInl += "\treturn " + m_fullTypeName + "(\n";
-		for ( uint32_t row = 0; row < m_numRows; row++ ) {
-			m_codeInl += "\t\trows[" + std::to_string( row ) + "] " + op + " rhs";
-			if ( row != m_numRows - 1 ) {
-				m_codeInl += ",";
-			}
-			m_codeInl += "\n";
-		}
-		m_codeInl += "\t);\n";
-		m_codeInl += "}\n";
-
-		m_codeInl += "\n";
-
-		// scalar compound arithmetic operator
-		m_codeInl += m_fullTypeName + " " + m_fullTypeName + "::operator" + op + "=( const " + m_memberTypeString + " rhs ) {\n";
-		m_codeInl += std::string( "\treturn ( *this = *this " ) + op + " rhs );\n";
-		m_codeInl += "}\n";
-
-		m_codeInl += "\n";
-
-		// rhs type arithmetic operator
-		m_codeInl += m_fullTypeName + " " + m_fullTypeName + "::operator" + op + "( const " + m_fullTypeName + "& rhs ) const {\n";
-
-		switch ( op ) {
-			case '+':
-			case '-': {
-				m_codeInl += "\treturn " + m_fullTypeName + "(\n";
-				for ( uint32_t row = 0; row < m_numRows; row++ ) {
-					std::string rowStr = std::to_string( row );
-
-					m_codeInl += "\t\trows[" + rowStr + "] " + op + " rhs[" + rowStr + "]";
-
-					if ( row != m_numRows - 1 ) {
-						m_codeInl += ",";
-					}
-					m_codeInl += "\n";
-				}
-				m_codeInl += "\t);\n";
-
-				break;
-			}
-
-			case '*': {
-				for ( uint32_t row = 0; row < m_numRows; row++ ) {
-					std::string rowStr = std::to_string( row );
-					m_codeInl += "\t" + m_typeString + std::to_string( m_numRows ) + " row" + rowStr + " = rows[" + rowStr + "];\n";
-				}
-
-				m_codeInl += "\n";
-
-				for ( uint32_t col = 0; col < m_numCols; col++ ) {
-					std::string colStr = std::to_string( col );
-					m_codeInl += "\t" + m_typeString + std::to_string( m_numRows ) + " col" + colStr + " = { ";
-					for ( uint32_t row = 0; row < m_numRows; row++ ) {
-						m_codeInl += "rhs[" + std::to_string( row ) + "]." + GEN_COMPONENT_NAMES_VECTOR[col];
-
-						if ( row != m_numRows - 1 ) {
-							m_codeInl += ", ";
-						}
-					}
-
-					m_codeInl += " };\n";
-				}
-
-				m_codeInl += "\n";
-
-				m_codeInl += "\treturn " + m_fullTypeName + "(\n";
-
-				for ( uint32_t row = 0; row < m_numRows; row++ ) {
-					std::string rowStr = std::to_string( row );
-
-					for ( uint32_t col = 0; col < m_numCols; col++ ) {
-						std::string colStr = std::to_string( col );
-
-						m_codeInl += "\t\t";
-
-						for ( uint32_t row2 = 0; row2 < m_numRows; row2++ ) {
-							m_codeInl += "row" + rowStr + "." + GEN_COMPONENT_NAMES_VECTOR[row2] + " * " + "col" + colStr + "." + GEN_COMPONENT_NAMES_VECTOR[row2];
-
-							if ( row2 != m_numRows - 1 ) {
-								m_codeInl += " + ";
-							} else {
-								if ( row + col != ( m_numRows - 1 ) + ( m_numCols - 1 ) ) {
-									m_codeInl += ",";
-								}
-
-								m_codeInl += "\n";
-							}
-						}
-					}
-
-					if ( row != m_numRows - 1 ) {
-						m_codeInl += "\n";
-					}
-				}
-				m_codeInl += "\t);\n";
-
-				break;
-			}
-
-			case '/': {
-				if ( m_numRows == m_numCols && Gen_IsFloatingPointType( m_type ) ) {
-					m_codeInl += "\treturn *this * inverse( rhs );\n";
-				} else {
-					m_codeInl += "\treturn " + m_fullTypeName + "(\n";
-					for ( uint32_t row = 0; row < m_numRows; row++ ) {
-						std::string rowStr = std::to_string( row );
-
-						m_codeInl += "\t\trows[" + rowStr + "] / rhs[" + rowStr + "]";
-
-						if ( row != m_numRows - 1 ) {
-							m_codeInl += ",";
-						}
-
-						m_codeInl += "\n";
-					}
-					m_codeInl += "\t);\n";
-				}
-
-				break;
-			}
-		}
-		m_codeInl += "}\n";
-
-		m_codeInl += "\n";
-
-		// rhs type compound arithmetic operator
-		m_codeInl += m_fullTypeName + " " + m_fullTypeName + "::operator" + op + "=( const " + m_fullTypeName + "& rhs ) {\n";
-		m_codeInl += std::string( "\treturn ( *this = *this " ) + op + " rhs );\n";
-		m_codeInl += "}\n";
-
-		if ( operatorIndex != GEN_ARITHMETIC_OP_COUNT - 1 ) {
-			m_codeInl += "\n";
-		}
-	}
-
-	m_codeInl += "\n";
-}
-
 void MatrixGenerator::InlGenerateOperatorsArray() {
 	m_codeInl += m_vectorMemberTypeString + "& " + m_fullTypeName + "::operator[]( const uint32_t index ) {\n";
-	m_codeInl += "\tassert( index < " + std::to_string( m_numRows ) + " );\n";
+	m_codeInl += "\tassert( index < " + m_numRowsStr + " );\n";
 	m_codeInl += "\treturn rows[index];\n";
 	m_codeInl += "}\n";
 
 	m_codeInl += "\n";
 
 	m_codeInl += "const " + m_vectorMemberTypeString + "& " + m_fullTypeName + "::operator[]( const uint32_t index ) const {\n";
-	m_codeInl += "\tassert( index < " + std::to_string( m_numRows ) + " );\n";
+	m_codeInl += "\tassert( index < " + m_numRowsStr + " );\n";
 	m_codeInl += "\treturn rows[index];\n";
 	m_codeInl += "}\n";
 
@@ -513,35 +332,4 @@ void MatrixGenerator::InlGenerateOperatorsEquality() {
 	m_codeInl += "}\n";
 
 	m_codeInl += "\n";
-}
-
-void MatrixGenerator::InlGenerateOperatorsRelational() {
-	if ( m_type == GEN_TYPE_BOOL ) {
-		return;
-	}
-
-	std::string boolReturnType = "bool" + std::to_string( m_numRows ) + "x" + std::to_string( m_numCols );
-
-	uint32_t numOperators = _countof( GEN_OPERATORS_EQUALITY );
-
-	for ( uint32_t operatorIndex = 0; operatorIndex < numOperators; operatorIndex++ ) {
-		m_codeInl += boolReturnType + " operator" + GEN_OPERATORS_EQUALITY[operatorIndex] + "( const " + m_fullTypeName + "& lhs, const " + m_fullTypeName + "& rhs ) {\n";
-		m_codeInl += "\treturn " + boolReturnType + "(\n";
-
-		for ( uint32_t row = 0; row < m_numRows; row++ ) {
-			std::string rowStr = std::to_string( row );
-
-			m_codeInl += "\t\tlhs[" + rowStr + "] " + GEN_OPERATORS_EQUALITY[operatorIndex] + " rhs[" + rowStr + "]";
-
-			if ( row != m_numRows - 1 ) {
-				m_codeInl += ",";
-			}
-
-			m_codeInl += "\n";
-		}
-		m_codeInl += "\t);\n";
-		m_codeInl += "}\n";
-
-		m_codeInl += "\n";
-	}
 }

@@ -65,102 +65,6 @@ TEMPER_TEST( TestAssignment_uint4x3 ) {
 	TEMPER_PASS();
 }
 
-TEMPER_TEST( TestArithmeticAddition_uint4x3 ) {
-	uint4x3 a = uint4x3(
-		6, 6, 6, 6, 
-		6, 6, 6, 6, 
-		6,6,6,6
-	);
-	uint4x3 b = uint4x3(
-		2, 3, 4,
-		6, 6, 8,
-		10, 10, 12,
-		18, 18, 24
-	);
-	uint4x3 c = a + b;
-
-	TEMPER_EXPECT_TRUE( c == uint4x3(
-		8, 9, 10,
-		12, 12, 14,
-		16, 16, 18,
-		24, 24, 30
-	) );
-
-	TEMPER_PASS();
-}
-
-TEMPER_TEST( TestArithmeticSubtraction_uint4x3 ) {
-	uint4x3 a = uint4x3(
-		6, 6, 6, 6, 
-		6, 6, 6, 6, 
-		6,6,6,6
-	);
-	uint4x3 b = uint4x3(
-		2, 3, 4,
-		6, 6, 8,
-		10, 10, 12,
-		18, 18, 24
-	);
-	uint4x3 c = a - b;
-
-	TEMPER_EXPECT_TRUE( c == uint4x3(
-		4, 3, 2,
-		0, 0, 4294967294,
-		4294967292, 4294967292, 4294967290,
-		4294967284, 4294967284, 4294967278
-	) );
-
-	TEMPER_PASS();
-}
-
-TEMPER_TEST( TestArithmeticMultiplication_uint4x3 ) {
-	uint4x3 a = uint4x3(
-		6, 6, 6, 6, 
-		6, 6, 6, 6, 
-		6,6,6,6
-	);
-	uint4x3 b = uint4x3(
-		2, 3, 4,
-		6, 6, 8,
-		10, 10, 12,
-		18, 18, 24
-	);
-	uint4x3 c = a * b;
-
-	TEMPER_EXPECT_TRUE( c == uint4x3(
-		0, 1, 2,
-		1, 2, 3,
-		2, 3, 4,
-		3, 4, 5
-	) );
-
-	TEMPER_PASS();
-}
-
-TEMPER_TEST( TestArithmeticDivision_uint4x3 ) {
-	uint4x3 a = uint4x3(
-		2, 3, 4,
-		6, 6, 8,
-		10, 10, 12,
-		18, 18, 24
-	);
-	uint4x3 b = uint4x3(
-		6, 6, 6, 6, 
-		6, 6, 6, 6, 
-		6,6,6,6
-	);
-	uint4x3 c = b / a;
-
-	TEMPER_EXPECT_TRUE( c == uint4x3(
-		3, 2, 1,
-		1, 1, 0,
-		0, 0, 0,
-		0, 0, 0
-	) );
-
-	TEMPER_PASS();
-}
-
 TEMPER_TEST( TestArray_uint4x3 ) {
 	uint4x3 mat;
 
@@ -353,7 +257,17 @@ TEMPER_TEST( TestTranspose_uint4x3 ) {
 }
 
 TEMPER_TEST( TestScale_uint4x3 ) {
-	TEMPER_FAIL();
+	uint4x3 mat;
+	uint4x3 scaled = scale( mat, uint3( 2, 2, 2 ) );
+
+	TEMPER_EXPECT_TRUE( scaled == uint4x3(
+		2, 0, 0,
+		0, 2, 0,
+		0, 0, 2,
+		0, 0, 0
+	) );
+
+	TEMPER_PASS();
 }
 
 TEMPER_TEST( TestOrtho_uint4x3 ) {
@@ -371,10 +285,6 @@ TEMPER_TEST( TestLookAt_uint4x3 ) {
 TEMPER_SUITE( Test_uint4x3 ) {
 	TEMPER_RUN_TEST( TestAssignment_uint4x3 );
 
-	TEMPER_RUN_TEST( TestArithmeticAddition_uint4x3 );
-	TEMPER_RUN_TEST( TestArithmeticSubtraction_uint4x3 );
-	TEMPER_SKIP_TEST( TestArithmeticMultiplication_uint4x3, "Give me a minute to think about how to structure this one." );
-	TEMPER_RUN_TEST( TestArithmeticDivision_uint4x3 );
 
 	TEMPER_RUN_TEST( TestArray_uint4x3 );
 	TEMPER_RUN_TEST( TestRelational_uint4x3 );
@@ -382,7 +292,6 @@ TEMPER_SUITE( Test_uint4x3 ) {
 	TEMPER_RUN_TEST( TestIdentity_uint4x3 );
 	TEMPER_RUN_TEST( TestTranspose_uint4x3 );
 
-	TEMPER_SKIP_TEST( TestScale_uint4x3, "TODO" );
 
 	TEMPER_SKIP_TEST( TestOrtho_uint4x3, "TODO" );
 	TEMPER_SKIP_TEST( TestPerspective_uint4x3, "TODO" );
