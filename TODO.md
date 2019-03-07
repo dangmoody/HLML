@@ -3,9 +3,10 @@
 HIGH:
 * Fix matrices.
 * Test suite.
+* Right-handed functions.
 
-MED:
+MEDIUM:
 * Documentation.
+* SIMD helper functions.
 
 LOW:
-* SIMD helper functions.
