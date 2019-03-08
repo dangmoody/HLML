@@ -34,7 +34,7 @@
 #define GEN_FILENAME_FUNCTIONS_MATRIX	"hlml_functions_matrix"
 
 enum genType_t {
-	GEN_TYPE_BOOL					= 0,
+	GEN_TYPE_BOOL						= 0,
 	GEN_TYPE_INT,
 	GEN_TYPE_UINT,
 	GEN_TYPE_FLOAT,
@@ -44,14 +44,14 @@ enum genType_t {
 };
 
 enum genHand_t {
-	GEN_HAND_LEFT					= 0,
+	GEN_HAND_LEFT						= 0,
 	GEN_HAND_RIGHT,
 
 	GEN_HAND_COUNT
 };
 
 enum genOpArithmetic_t {
-	GEN_OP_ARITHMETIC_ADD			= 0,
+	GEN_OP_ARITHMETIC_ADD				= 0,
 	GEN_OP_ARITHMETIC_SUB,
 	GEN_OP_ARITHMETIC_MUL,
 	GEN_OP_ARITHMETIC_DIV,
@@ -60,7 +60,7 @@ enum genOpArithmetic_t {
 };
 
 enum genOpRelational_t {
-	GEN_OP_RELATIONAL_LESS			= 0,
+	GEN_OP_RELATIONAL_LESS				= 0,
 	GEN_OP_RELATIONAL_LESS_EQUAL,
 	GEN_OP_RELATIONAL_GREATER,
 	GEN_OP_RELATIONAL_GREATER_EQUAL,
@@ -108,17 +108,21 @@ const std::string GEN_OPERATORS_RELATIONAL[4] = {
 	">=",
 };
 
-inline std::string					Gen_GetTypeString( const genType_t type );
-inline std::string					Gen_GetMemberTypeString( const genType_t type );
+inline std::string	Gen_GetTypeString( const genType_t type );
+inline std::string	Gen_GetMemberTypeString( const genType_t type );
 
-inline std::string					Gen_GetDefaultLiteralValue( const genType_t type );
-inline std::string					Gen_GetNumericLiteral( const genType_t type, const float value );
+inline std::string	Gen_GetDefaultLiteralValue( const genType_t type );
+inline std::string	Gen_GetNumericLiteral( const genType_t type, const float value );
 
-inline genType_t					Gen_GetSupportedFloatingPointType( const genType_t type );
-inline bool							Gen_IsFloatingPointType( const genType_t type );
+inline genType_t	Gen_GetSupportedFloatingPointType( const genType_t type ) { return ( type == GEN_TYPE_DOUBLE ) ? GEN_TYPE_DOUBLE : GEN_TYPE_FLOAT; }
+inline bool			Gen_IsFloatingPointType( const genType_t type ) { return type == GEN_TYPE_FLOAT || type == GEN_TYPE_DOUBLE; }
 
-inline std::string					Gen_GetFuncNameDegrees( const genType_t type );
-inline std::string					Gen_GetFuncNameRadians( const genType_t type );
+inline std::string	Gen_GetFuncNameDegrees( const genType_t type ) { return ( type == GEN_TYPE_DOUBLE ) ? "degrees" : "degreesf"; }
+inline std::string	Gen_GetFuncNameRadians( const genType_t type ) { return ( type == GEN_TYPE_DOUBLE ) ? "radians" : "radiansf"; }
+
+inline std::string	Gen_GetFuncNameSin( const genType_t type ) { return ( type == GEN_TYPE_DOUBLE ) ? "sin" : "sinf"; }
+inline std::string	Gen_GetFuncNameCos( const genType_t type ) { return ( type == GEN_TYPE_DOUBLE ) ? "cos" : "cosf"; }
+inline std::string	Gen_GetFuncNameTan( const genType_t type ) { return ( type == GEN_TYPE_DOUBLE ) ? "tan" : "tanf"; }
 
 
 std::string Gen_GetTypeString( const genType_t type ) {
@@ -175,20 +179,4 @@ std::string Gen_GetNumericLiteral( const genType_t type, const float value ) {
 			printf( "ERROR: Bad type_t passed through to %s.  Fix it!\n", __FUNCTION__ );
 			return "?????";
 	}
-}
-
-genType_t Gen_GetSupportedFloatingPointType( const genType_t type ) {
-	return ( type == GEN_TYPE_DOUBLE ) ? GEN_TYPE_DOUBLE : GEN_TYPE_FLOAT;
-}
-
-bool Gen_IsFloatingPointType( const genType_t type ) {
-	return type == GEN_TYPE_FLOAT || type == GEN_TYPE_DOUBLE;
-}
-
-std::string Gen_GetFuncNameDegrees( const genType_t type ) {
-	return ( type == GEN_TYPE_DOUBLE ) ? "degrees" : "degreesf";
-}
-
-std::string Gen_GetFuncNameRadians( const genType_t type ) {
-	return ( type == GEN_TYPE_DOUBLE ) ? "radians" : "radiansf";
 }
