@@ -107,7 +107,7 @@ void TestsGeneratorMatrix::Generate( const genType_t type, const uint32_t numRow
 		m_code += "\n";
 		if ( Gen_IsFloatingPointType( m_type ) && ( m_numRows >= 4 && m_numCols >= 4 ) ) {
 			m_code += "\tTEMPER_RUN_TEST( TestOrtho_" + m_fullTypeName + " );\n";
-			m_code += "\tTEMPER_SKIP_TEST( TestPerspective_" + m_fullTypeName + ", \"TODO\" );\n";
+			m_code += "\tTEMPER_RUN_TEST( TestPerspective_" + m_fullTypeName + " );\n";
 			m_code += "\tTEMPER_SKIP_TEST( TestLookAt_" + m_fullTypeName + ", \"TODO\" );\n";
 		}
 	}
@@ -999,7 +999,7 @@ void TestsGeneratorMatrix::GenerateTestOrtho() {
 		return;
 	}
 
-	// answers for 1280 x 720, ortho size 5
+	// answer for 1280 x 720, ortho size 5, znear: -1, zfar: 100
 	float answerOrtho[] = {
 		0.112499997f,  0.0f,         0.0f,           0.0f,
 		0.0f,         -0.200000003f, 0.0f,           0.0f,
@@ -1043,8 +1043,32 @@ void TestsGeneratorMatrix::GenerateTestPerspective() {
 		return;
 	}
 
+	// answer for 1280 x 720, fov: 90 degrees, znear: 0.1, zfar: 100
+	// clip space: 0 - 1, left handed
+	float answerPerspective[] = {
+		0.347270f, 0.0f,      0.0f,       0.0f,
+		0.0f,      0.617370f, 0.0f,       0.0f,
+		0.0f,      0.0f,      1.001001f, -0.100100f,
+		0.0f,      0.0f,      1.000000f,  0.0f
+	};
+
+	std::string parmListPerspective = GetParmListMatrix( m_type, 4, 4, answerPerspective );
+
+	std::string widthStr = Gen_GetNumericLiteral( m_type, 1280.0f );
+	std::string heightStr = Gen_GetNumericLiteral( m_type, 720.0f );
+	std::string fovStr = Gen_GetNumericLiteral( m_type, 90.0f );
+	std::string znearStr = Gen_GetNumericLiteral( m_type, 0.1f );
+	std::string zfarStr = Gen_GetNumericLiteral( m_type, 100.0f );
+
 	m_code += "TEMPER_TEST( TestPerspective_" + m_fullTypeName + " ) {\n";
-	m_code += "\tTEMPER_FAIL();\n";
+	m_code += "\t" + m_fullTypeName + " answerPerspective = " + m_fullTypeName + parmListPerspective + ";\n";
+	m_code += "\n";
+	m_code += "\t" + m_typeString + " aspect = " + widthStr + " / " + heightStr + ";\n";
+	m_code += "\t" + m_fullTypeName + " mat = perspective( " + fovStr + ", aspect, " + znearStr + ", " + zfarStr + " );\n";
+	m_code += "\n";
+	m_code += "\tTEMPER_EXPECT_TRUE( mat == answerPerspective );\n";
+	m_code += "\n";
+	m_code += "\tTEMPER_PASS();\n";
 	m_code += "}\n";
 	m_code += "\n";
 }

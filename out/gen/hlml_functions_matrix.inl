@@ -1309,13 +1309,13 @@ inline float4x4 ortho( const float left, const float right, const float top, con
 
 float4x4 perspective( const float fovdeg, const float aspect, const float znear, const float zfar ) {
 	const float far_minus_near = zfar - znear;
-	const float tan_half_fov = static_cast<float>( tan( ( fovdeg / 2.000000f ) * radiansf( fovdeg ) ) );
+	const float tan_half_fov = tanf( fovdeg * 0.500000f );
 
 	return float4x4(
 		1.000000f / ( aspect * tan_half_fov ), 0.000000f, 0.000000f, 0.000000f,
 		0.000000f, 1.000000f / tan_half_fov, 0.000000f, 0.000000f,
-		0.000000f, 0.000000f, zfar / far_minus_near, 1.000000f,
-		0.000000f, 0.000000f, -( zfar * znear ) / far_minus_near, 0.000000f
+		0.000000f, 0.000000f, zfar / far_minus_near, -( zfar * znear ) / far_minus_near,
+		0.000000f, 0.000000f, 1.000000f, 0.000000f
 	);
 }
 
@@ -1815,13 +1815,13 @@ inline double4x4 ortho( const double left, const double right, const double top,
 
 double4x4 perspective( const double fovdeg, const double aspect, const double znear, const double zfar ) {
 	const double far_minus_near = zfar - znear;
-	const double tan_half_fov = static_cast<double>( tan( ( fovdeg / 2.000000 ) * radians( fovdeg ) ) );
+	const double tan_half_fov = tan( fovdeg * 0.500000 );
 
 	return double4x4(
 		1.000000 / ( aspect * tan_half_fov ), 0.000000, 0.000000, 0.000000,
 		0.000000, 1.000000 / tan_half_fov, 0.000000, 0.000000,
-		0.000000, 0.000000, zfar / far_minus_near, 1.000000,
-		0.000000, 0.000000, -( zfar * znear ) / far_minus_near, 0.000000
+		0.000000, 0.000000, zfar / far_minus_near, -( zfar * znear ) / far_minus_near,
+		0.000000, 0.000000, 1.000000, 0.000000
 	);
 }
 

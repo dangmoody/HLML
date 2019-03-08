@@ -810,10 +810,12 @@ void Gen_MatrixPerspective( const genHand_t hand, const genType_t type, const ui
 	std::string typeString = Gen_GetTypeString( type );
 	std::string fullTypeName = typeString + std::to_string( numRows ) + "x" + std::to_string( numCols );
 
-	std::string zeroStr = Gen_GetNumericLiteral( type, 0 );
-	std::string oneStr = Gen_GetNumericLiteral( type, 1 );
+	std::string zeroStr = Gen_GetNumericLiteral( type, 0.0f );
+	std::string halfStr = Gen_GetNumericLiteral( type, 0.5f );
+	std::string oneStr = Gen_GetNumericLiteral( type, 1.0f );
 
 	std::string radiansFuncStr = Gen_GetFuncNameRadians( type );
+	std::string tanFuncStr = Gen_GetFuncNameTan( type );
 
 	outHeader += "inline " + fullTypeName + " perspective( const " + typeString + " fovdeg, const " + typeString + " aspect, const " + typeString + " znear, const " + typeString + " zfar );\n";
 	outHeader += "\n";
@@ -822,13 +824,13 @@ void Gen_MatrixPerspective( const genHand_t hand, const genType_t type, const ui
 	switch ( hand ) {
 		case GEN_HAND_LEFT: {
 			outInl += "\tconst " + typeString + " far_minus_near = zfar - znear;\n";
-			outInl += "\tconst " + typeString + " tan_half_fov = static_cast<" + typeString + ">( tan( ( fovdeg / " + Gen_GetNumericLiteral( type, 2 ) + " ) * " + radiansFuncStr + "( fovdeg ) ) );\n";
+			outInl += "\tconst " + typeString + " tan_half_fov = " + tanFuncStr + "( fovdeg * " + halfStr + " );\n";
 			outInl += "\n";
 			outInl += "\treturn " + fullTypeName + "(\n";
 			outInl += "\t\t" + oneStr + " / ( aspect * tan_half_fov ), " + zeroStr + ", " + zeroStr + ", " + zeroStr + ",\n";
 			outInl += "\t\t" + zeroStr + ", " + oneStr + " / tan_half_fov, " + zeroStr + ", " + zeroStr + ",\n";
-			outInl += "\t\t" + zeroStr + ", " + zeroStr + ", zfar / far_minus_near, " + oneStr + ",\n";
-			outInl += "\t\t" + zeroStr + ", " + zeroStr + ", -( zfar * znear ) / far_minus_near, " + zeroStr + "\n";
+			outInl += "\t\t" + zeroStr + ", " + zeroStr + ", zfar / far_minus_near, -( zfar * znear ) / far_minus_near,\n";
+			outInl += "\t\t" + zeroStr + ", " + zeroStr + ", " + oneStr + ", " + zeroStr + "\n";
 			outInl += "\t);\n";
 			break;
 		}

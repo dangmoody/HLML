@@ -376,7 +376,19 @@ TEMPER_TEST( TestOrtho_double4x4 ) {
 }
 
 TEMPER_TEST( TestPerspective_double4x4 ) {
-	TEMPER_FAIL();
+	double4x4 answerPerspective = double4x4(
+		0.347270, 0.000000, 0.000000, 0.000000,
+		0.000000, 0.617370, 0.000000, 0.000000,
+		0.000000, 0.000000, 1.001001, -0.100100,
+		0.000000, 0.000000, 1.000000, 0.000000
+	);
+
+	double aspect = 1280.000000 / 720.000000;
+	double4x4 mat = perspective( 90.000000, aspect, 0.100000, 100.000000 );
+
+	TEMPER_EXPECT_TRUE( mat == answerPerspective );
+
+	TEMPER_PASS();
 }
 
 TEMPER_TEST( TestLookAt_double4x4 ) {
@@ -400,6 +412,6 @@ TEMPER_SUITE( Test_double4x4 ) {
 	TEMPER_RUN_TEST( TestScale_double4x4 );
 
 	TEMPER_RUN_TEST( TestOrtho_double4x4 );
-	TEMPER_SKIP_TEST( TestPerspective_double4x4, "TODO" );
+	TEMPER_RUN_TEST( TestPerspective_double4x4 );
 	TEMPER_SKIP_TEST( TestLookAt_double4x4, "TODO" );
 };
