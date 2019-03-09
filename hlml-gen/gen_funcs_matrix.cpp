@@ -628,8 +628,6 @@ void Gen_MatrixRotate( const genType_t type, const uint32_t numRows, const uint3
 	outInl += fullTypeName + " rotate( " + parmListStr + " ) {\n";
 	outInl += "\tconst " + typeString + " c = " + cosFuncStr + "( rad );\n";
 	outInl += "\tconst " + typeString + " s = " + sinFuncStr + "( rad );\n";
-//	outInl += "\tconst float c = static_cast<float>( " + cosFuncStr + "( rad ) );\n";
-//	outInl += "\tconst float s = static_cast<float>( " + sinFuncStr + "( rad ) );\n";
 	outInl += "\n";
 
 	switch ( numCols ) {
@@ -645,7 +643,6 @@ void Gen_MatrixRotate( const genType_t type, const uint32_t numRows, const uint3
 		case 4: {
 			outInl += "\t" + vectorTypeString + " u = normalized( axis );\n";
 			outInl += "\t" + typeString + " ic = " + literalOneStr + " - c;\n";
-//			outInl += "\tfloat ic = 1.0f - c;\n";
 			outInl += "\n";
 			outInl += "\t" + fullTypeName + " rotation = mat;\n";
 			outInl += "\trotation[0][0] = c + u.x * ic;\n";
@@ -755,9 +752,9 @@ void Gen_MatrixOrtho( const genHand_t hand, const genType_t type, const uint32_t
 	std::string typeString = Gen_GetTypeString( type );
 	std::string fullTypeName = typeString + std::to_string( numRows ) + "x" + std::to_string( numCols );
 
-	std::string zeroStr = Gen_GetNumericLiteral( type, 0 );
-	std::string oneStr = Gen_GetNumericLiteral( type, 1 );
-	std::string twoStr = Gen_GetNumericLiteral( type, 2 );
+	std::string zeroStr	= Gen_GetNumericLiteral( type, 0 );
+	std::string oneStr	= Gen_GetNumericLiteral( type, 1 );
+	std::string twoStr	= Gen_GetNumericLiteral( type, 2 );
 
 	outHeader += "inline " + fullTypeName + " ortho( const " + typeString + " left, const " + typeString + " right, const " + typeString + " top, const " + typeString + " bottom, const " + typeString + " znear, const " + typeString + " zfar );\n";
 	outHeader += "\n";
@@ -810,12 +807,12 @@ void Gen_MatrixPerspective( const genHand_t hand, const genType_t type, const ui
 	std::string typeString = Gen_GetTypeString( type );
 	std::string fullTypeName = typeString + std::to_string( numRows ) + "x" + std::to_string( numCols );
 
-	std::string zeroStr = Gen_GetNumericLiteral( type, 0.0f );
-	std::string halfStr = Gen_GetNumericLiteral( type, 0.5f );
-	std::string oneStr = Gen_GetNumericLiteral( type, 1.0f );
+	std::string zeroStr	= Gen_GetNumericLiteral( type, 0.0f );
+	std::string halfStr	= Gen_GetNumericLiteral( type, 0.5f );
+	std::string oneStr	= Gen_GetNumericLiteral( type, 1.0f );
 
-	std::string radiansFuncStr = Gen_GetFuncNameRadians( type );
-	std::string tanFuncStr = Gen_GetFuncNameTan( type );
+	std::string radiansFuncStr	= Gen_GetFuncNameRadians( type );
+	std::string tanFuncStr		= Gen_GetFuncNameTan( type );
 
 	outHeader += "inline " + fullTypeName + " perspective( const " + typeString + " fovdeg, const " + typeString + " aspect, const " + typeString + " znear, const " + typeString + " zfar );\n";
 	outHeader += "\n";
@@ -868,8 +865,8 @@ void Gen_MatrixLookAt( const genHand_t hand, const genType_t type, const uint32_
 	std::string vectorTypeString = typeString + std::to_string( numVecComponents );
 	std::string fullTypeName = typeString + std::to_string( numRows ) + "x" + std::to_string( numCols );
 
-	std::string zeroStr = Gen_GetNumericLiteral( type, 0.0f );
-	std::string oneStr = Gen_GetNumericLiteral( type, 1.0f );
+	std::string zeroStr	= Gen_GetNumericLiteral( type, 0.0f );
+	std::string oneStr	= Gen_GetNumericLiteral( type, 1.0f );
 
 	outHeader += "inline " + fullTypeName + " lookat( const " + vectorTypeString + "& eye, const " + vectorTypeString + "& target, const " + vectorTypeString + "& up );\n";
 	outHeader += "\n";
