@@ -44,41 +44,45 @@ TEMPER_TEST( TestAssignment_uint4 ) {
 }
 
 TEMPER_TEST( TestArithmeticAddition_uint4 ) {
-	uint4 a = uint4( 2 );
-	uint4 b = uint4( 2, 3, 4, 5 );
+	uint4 a  = uint4( 6 );
+	uint4 b  = uint4( 2, 3, 4, 5 );
+
 	uint4 c = a + b;
 
-	TEMPER_EXPECT_TRUE( c == uint4( 4, 5, 6, 7 ) );
+	TEMPER_EXPECT_TRUE( c == uint4( 8, 9, 10, 11 ) );
 
 	TEMPER_PASS();
 }
 
 TEMPER_TEST( TestArithmeticSubtraction_uint4 ) {
-	uint4 a = uint4( 2 );
-	uint4 b = uint4( 2, 3, 4, 5 );
+	uint4 a  = uint4( 6 );
+	uint4 b  = uint4( 2, 3, 4, 5 );
+
 	uint4 c = a - b;
 
-	TEMPER_EXPECT_TRUE( c == uint4( 0, 4294967295, 4294967294, 4294967293 ) );
+	TEMPER_EXPECT_TRUE( c == uint4( 4, 3, 2, 1 ) );
 
 	TEMPER_PASS();
 }
 
 TEMPER_TEST( TestArithmeticMultiplication_uint4 ) {
-	uint4 a = uint4( 2 );
-	uint4 b = uint4( 2, 3, 4, 5 );
+	uint4 a  = uint4( 6 );
+	uint4 b  = uint4( 2, 3, 4, 5 );
+
 	uint4 c = a * b;
 
-	TEMPER_EXPECT_TRUE( c == uint4( 4, 6, 8, 10 ) );
+	TEMPER_EXPECT_TRUE( c == uint4( 12, 18, 24, 30 ) );
 
 	TEMPER_PASS();
 }
 
 TEMPER_TEST( TestArithmeticDivision_uint4 ) {
-	uint4 a = uint4( 2 );
-	uint4 b = uint4( 2, 3, 4, 5 );
+	uint4 a  = uint4( 6 );
+	uint4 b  = uint4( 2, 2, 3, 6 );
+
 	uint4 c = a / b;
 
-	TEMPER_EXPECT_TRUE( c == uint4( 1, 0, 0, 0 ) );
+	TEMPER_EXPECT_TRUE( c == uint4( 3, 3, 2, 1 ) );
 
 	TEMPER_PASS();
 }

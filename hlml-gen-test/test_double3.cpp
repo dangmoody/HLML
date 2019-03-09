@@ -44,41 +44,45 @@ TEMPER_TEST( TestAssignment_double3 ) {
 }
 
 TEMPER_TEST( TestArithmeticAddition_double3 ) {
-	double3 a = double3( 2.000000 );
-	double3 b = double3( 2.000000, 3.000000, 4.000000 );
+	double3 a  = double3( 6.000000 );
+	double3 b  = double3( 2.000000, 3.000000, 4.000000 );
+
 	double3 c = a + b;
 
-	TEMPER_EXPECT_TRUE( c == double3( 4.000000, 5.000000, 6.000000 ) );
+	TEMPER_EXPECT_TRUE( c == double3( 8.000000, 9.000000, 10.000000 ) );
 
 	TEMPER_PASS();
 }
 
 TEMPER_TEST( TestArithmeticSubtraction_double3 ) {
-	double3 a = double3( 2.000000 );
-	double3 b = double3( 2.000000, 3.000000, 4.000000 );
+	double3 a  = double3( 6.000000 );
+	double3 b  = double3( 2.000000, 3.000000, 4.000000 );
+
 	double3 c = a - b;
 
-	TEMPER_EXPECT_TRUE( c == double3( 0.000000, -1.000000, -2.000000 ) );
+	TEMPER_EXPECT_TRUE( c == double3( 4.000000, 3.000000, 2.000000 ) );
 
 	TEMPER_PASS();
 }
 
 TEMPER_TEST( TestArithmeticMultiplication_double3 ) {
-	double3 a = double3( 2.000000 );
-	double3 b = double3( 2.000000, 3.000000, 4.000000 );
+	double3 a  = double3( 6.000000 );
+	double3 b  = double3( 2.000000, 3.000000, 4.000000 );
+
 	double3 c = a * b;
 
-	TEMPER_EXPECT_TRUE( c == double3( 4.000000, 6.000000, 8.000000 ) );
+	TEMPER_EXPECT_TRUE( c == double3( 12.000000, 18.000000, 24.000000 ) );
 
 	TEMPER_PASS();
 }
 
 TEMPER_TEST( TestArithmeticDivision_double3 ) {
-	double3 a = double3( 2.000000 );
-	double3 b = double3( 2.000000, 3.000000, 4.000000 );
+	double3 a  = double3( 6.000000 );
+	double3 b  = double3( 2.000000, 2.000000, 3.000000 );
+
 	double3 c = a / b;
 
-	TEMPER_EXPECT_TRUE( c == double3( 1.000000, 0.666667, 0.500000 ) );
+	TEMPER_EXPECT_TRUE( c == double3( 3.000000, 3.000000, 2.000000 ) );
 
 	TEMPER_PASS();
 }

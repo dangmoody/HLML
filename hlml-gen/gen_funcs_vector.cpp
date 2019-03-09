@@ -2,6 +2,20 @@
 
 #include <assert.h>
 
+std::string Gen_GetParmListVector( const genType_t type, const uint32_t numComponents, const float* values ) {
+	std::string parmList = "( ";
+	for ( uint32_t i = 0; i < numComponents; i++ ) {
+		parmList += Gen_GetNumericLiteral( type, values[i] );
+
+		if ( i != numComponents - 1 ) {
+			parmList += ", ";
+		}
+	}
+	parmList += " )";
+
+	return parmList;
+}
+
 void Gen_VectorLength( const genType_t type, const uint32_t numComponents, std::string& outHeader, std::string& outInl ) {
 	assert( numComponents >= GEN_COMPONENT_COUNT_MIN );
 	assert( numComponents <= GEN_COMPONENT_COUNT_MAX );

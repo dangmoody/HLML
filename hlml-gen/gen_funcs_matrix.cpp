@@ -2,7 +2,124 @@
 
 #include <assert.h>
 
+std::string Gen_GetParmListMatrix( const genType_t type, const uint32_t numRows, const uint32_t numCols, const float* values ) {
+	assert( numRows >= GEN_COMPONENT_COUNT_MIN );
+	assert( numRows <= GEN_COMPONENT_COUNT_MAX );
+	assert( numCols >= GEN_COMPONENT_COUNT_MIN );
+	assert( numCols <= GEN_COMPONENT_COUNT_MAX );
+
+	std::string parmList = "(\n";
+	for ( uint32_t row = 0; row < numRows; row++ ) {
+		parmList += "\t\t";
+
+		for ( uint32_t col = 0; col < numCols; col++ ) {
+			uint32_t index = col + ( row * numCols );
+
+			parmList += Gen_GetNumericLiteral( type, values[index] );
+
+			if ( row + col != ( numRows - 1 ) + ( numCols - 1 ) ) {
+				parmList += ",";
+			}
+
+			if ( col != numCols - 1 ) {
+				parmList += " ";
+			}
+		}
+
+		parmList += "\n";
+	}
+	parmList += "\t)";
+
+	return parmList;
+}
+
+std::string Gen_GetParmListMatrixIdentity( const genType_t type, const uint32_t numRows, const uint32_t numCols ) {
+	assert( numRows >= GEN_COMPONENT_COUNT_MIN );
+	assert( numRows <= GEN_COMPONENT_COUNT_MAX );
+	assert( numCols >= GEN_COMPONENT_COUNT_MIN );
+	assert( numCols <= GEN_COMPONENT_COUNT_MAX );
+
+	float values[] = { 1.0f, 1.0f, 1.0f, 1.0f };
+
+	return Gen_GetParmListMatrixDiagonal( type, numRows, numCols, values, __min( numRows, numCols ) );
+}
+
+std::string Gen_GetParmListMatrixDiagonal( const genType_t type, const uint32_t numRows, const uint32_t numCols, const float* values, const uint32_t numValues ) {
+	assert( numRows >= GEN_COMPONENT_COUNT_MIN );
+	assert( numRows <= GEN_COMPONENT_COUNT_MAX );
+	assert( numCols >= GEN_COMPONENT_COUNT_MIN );
+	assert( numCols <= GEN_COMPONENT_COUNT_MAX );
+
+	assert( numValues <= 4 );
+
+	std::string zeroStr = Gen_GetNumericLiteral( type, 0.0f );
+
+	uint32_t valueIndex = 0;
+
+	std::string paramList = "(\n";
+	for ( uint32_t row = 0; row < numRows; row++ ) {
+		paramList += "\t\t";
+
+		for ( uint32_t col = 0; col < numCols; col++ ) {
+			if ( row == col ) {
+				paramList += Gen_GetNumericLiteral( type, values[valueIndex++] );
+			} else {
+				paramList += zeroStr;
+			}
+
+			if ( row + col != ( numRows - 1 ) + ( numCols - 1 ) ) {
+				paramList += ",";
+			}
+
+			if ( col != numCols - 1 ) {
+				paramList += " ";
+			}
+		}
+
+		paramList += "\n";
+	}
+	paramList += "\t)";
+
+	return paramList;
+}
+
+std::string Gen_GetParmListMatrixSingleValue( const genType_t type, const uint32_t numRows, const uint32_t numCols, const int32_t value ) {
+	assert( numRows >= GEN_COMPONENT_COUNT_MIN );
+	assert( numRows <= GEN_COMPONENT_COUNT_MAX );
+	assert( numCols >= GEN_COMPONENT_COUNT_MIN );
+	assert( numCols <= GEN_COMPONENT_COUNT_MAX );
+
+	std::string valueStr = Gen_GetNumericLiteral( type, value );
+
+	std::string paramList = "(\n";
+	for ( uint32_t row = 0; row < numRows; row++ ) {
+		paramList += "\t\t";
+
+		for ( uint32_t col = 0; col < numCols; col++ ) {
+			paramList += valueStr;
+
+			if ( row + col != ( numRows - 1 ) + ( numCols - 1 ) ) {
+				paramList += ",";
+			}
+
+			if ( col != numCols - 1 ) {
+				paramList += " ";
+			}
+		}
+
+		paramList += "\n";
+	}
+	paramList += "\t)";
+
+	return paramList;
+}
+
 static std::string HeaderGetArithmeticFuncScalar( const genType_t type, const uint32_t numRows, const uint32_t numCols, const genOpArithmetic_t op ) {
+	assert( numRows >= GEN_COMPONENT_COUNT_MIN );
+	assert( numRows <= GEN_COMPONENT_COUNT_MAX );
+	assert( numCols >= GEN_COMPONENT_COUNT_MIN );
+	assert( numCols <= GEN_COMPONENT_COUNT_MAX );
+
 	std::string fullTypeName = Gen_GetTypeString( type ) + std::to_string( numRows ) + "x" + std::to_string( numCols );
 	std::string memberTypeString = Gen_GetMemberTypeString( type );
 
@@ -16,6 +133,11 @@ static std::string HeaderGetArithmeticFuncScalar( const genType_t type, const ui
 }
 
 static std::string InlGetArithmeticFuncScalar( const genType_t type, const uint32_t numRows, const uint32_t numCols, const genOpArithmetic_t op ) {
+	assert( numRows >= GEN_COMPONENT_COUNT_MIN );
+	assert( numRows <= GEN_COMPONENT_COUNT_MAX );
+	assert( numCols >= GEN_COMPONENT_COUNT_MIN );
+	assert( numCols <= GEN_COMPONENT_COUNT_MAX );
+
 	char opStr = GEN_OPERATORS_ARITHMETIC[op];
 
 	std::string fullTypeName = Gen_GetTypeString( type ) + std::to_string( numRows ) + "x" + std::to_string( numCols );
@@ -47,6 +169,11 @@ static std::string InlGetArithmeticFuncScalar( const genType_t type, const uint3
 }
 
 static std::string HeaderGetArithmeticFuncRhsType( const genType_t type, const uint32_t numRows, const uint32_t numCols, const genOpArithmetic_t op ) {
+	assert( numRows >= GEN_COMPONENT_COUNT_MIN );
+	assert( numRows <= GEN_COMPONENT_COUNT_MAX );
+	assert( numCols >= GEN_COMPONENT_COUNT_MIN );
+	assert( numCols <= GEN_COMPONENT_COUNT_MAX );
+
 	std::string numRowsStr = std::to_string( numRows );
 	std::string numColsStr = std::to_string( numCols );
 
@@ -73,6 +200,11 @@ static std::string HeaderGetArithmeticFuncRhsType( const genType_t type, const u
 }
 
 static std::string InlGetArithmeticFuncRhsType( const genType_t type, const uint32_t numRows, const uint32_t numCols, const genOpArithmetic_t op ) {
+	assert( numRows >= GEN_COMPONENT_COUNT_MIN );
+	assert( numRows <= GEN_COMPONENT_COUNT_MAX );
+	assert( numCols >= GEN_COMPONENT_COUNT_MIN );
+	assert( numCols <= GEN_COMPONENT_COUNT_MAX );
+
 	std::string numRowsStr = std::to_string( numRows );
 	std::string numColsStr = std::to_string( numCols );
 
@@ -206,6 +338,11 @@ static std::string InlGetArithmeticFuncRhsType( const genType_t type, const uint
 }
 
 static std::string HeaderGetOperatorRelational( const genType_t type, const uint32_t numRows, const uint32_t numCols, const genOpRelational_t op ) {
+	assert( numRows >= GEN_COMPONENT_COUNT_MIN );
+	assert( numRows <= GEN_COMPONENT_COUNT_MAX );
+	assert( numCols >= GEN_COMPONENT_COUNT_MIN );
+	assert( numCols <= GEN_COMPONENT_COUNT_MAX );
+
 	std::string numRowsStr = std::to_string( numRows );
 	std::string numColsStr = std::to_string( numCols );
 
@@ -221,6 +358,11 @@ static std::string HeaderGetOperatorRelational( const genType_t type, const uint
 }
 
 static std::string InlGetOperatorRelational( const genType_t type, const uint32_t numRows, const uint32_t numCols, const genOpRelational_t op ) {
+	assert( numRows >= GEN_COMPONENT_COUNT_MIN );
+	assert( numRows <= GEN_COMPONENT_COUNT_MAX );
+	assert( numCols >= GEN_COMPONENT_COUNT_MIN );
+	assert( numCols <= GEN_COMPONENT_COUNT_MAX );
+
 	std::string numRowsStr = std::to_string( numRows );
 	std::string numColsStr = std::to_string( numCols );
 
@@ -253,6 +395,11 @@ static std::string InlGetOperatorRelational( const genType_t type, const uint32_
 
 
 void Gen_MatrixOperatorsArithmetic( const genType_t type, const uint32_t numRows, const uint32_t numCols, std::string& outHeader, std::string& outInl ) {
+	assert( numRows >= GEN_COMPONENT_COUNT_MIN );
+	assert( numRows <= GEN_COMPONENT_COUNT_MAX );
+	assert( numCols >= GEN_COMPONENT_COUNT_MIN );
+	assert( numCols <= GEN_COMPONENT_COUNT_MAX );
+
 	if ( type == GEN_TYPE_BOOL ) {
 		return;
 	}
@@ -269,6 +416,11 @@ void Gen_MatrixOperatorsArithmetic( const genType_t type, const uint32_t numRows
 }
 
 void Gen_MatrixOperatorsRelational( const genType_t type, const uint32_t numRows, const uint32_t numCols, std::string& outHeader, std::string& outInl ) {
+	assert( numRows >= GEN_COMPONENT_COUNT_MIN );
+	assert( numRows <= GEN_COMPONENT_COUNT_MAX );
+	assert( numCols >= GEN_COMPONENT_COUNT_MIN );
+	assert( numCols <= GEN_COMPONENT_COUNT_MAX );
+
 	if ( type == GEN_TYPE_BOOL ) {
 		return;
 	}
@@ -284,8 +436,8 @@ void Gen_MatrixOperatorsRelational( const genType_t type, const uint32_t numRows
 
 void Gen_MatrixIdentity( const genType_t type, const uint32_t numRows, const uint32_t numCols, std::string& outHeader, std::string& outInl ) {
 	assert( numRows >= GEN_COMPONENT_COUNT_MIN );
-	assert( numCols >= GEN_COMPONENT_COUNT_MIN );
 	assert( numRows <= GEN_COMPONENT_COUNT_MAX );
+	assert( numCols >= GEN_COMPONENT_COUNT_MIN );
 	assert( numCols <= GEN_COMPONENT_COUNT_MAX );
 
 	std::string fullTypeName = Gen_GetTypeString( type ) + std::to_string( numRows ) + "x" + std::to_string( numCols );
@@ -311,8 +463,8 @@ void Gen_MatrixIdentity( const genType_t type, const uint32_t numRows, const uin
 
 void Gen_MatrixTranspose( const genType_t type, const uint32_t numRows, const uint32_t numCols, std::string& outHeader, std::string& outInl ) {
 	assert( numRows >= GEN_COMPONENT_COUNT_MIN );
-	assert( numCols >= GEN_COMPONENT_COUNT_MIN );
 	assert( numRows <= GEN_COMPONENT_COUNT_MAX );
+	assert( numCols >= GEN_COMPONENT_COUNT_MIN );
 	assert( numCols <= GEN_COMPONENT_COUNT_MAX );
 
 	std::string typeString = Gen_GetTypeString( type );
@@ -353,8 +505,8 @@ void Gen_MatrixTranspose( const genType_t type, const uint32_t numRows, const ui
 
 void Gen_MatrixInverse( const genType_t type, const uint32_t numRows, const uint32_t numCols, std::string& outHeader, std::string& outInl ) {
 	assert( numRows >= GEN_COMPONENT_COUNT_MIN );
-	assert( numCols >= GEN_COMPONENT_COUNT_MIN );
 	assert( numRows <= GEN_COMPONENT_COUNT_MAX );
+	assert( numCols >= GEN_COMPONENT_COUNT_MIN );
 	assert( numCols <= GEN_COMPONENT_COUNT_MAX );
 
 	if ( !Gen_IsFloatingPointType( type ) ) {
@@ -477,8 +629,8 @@ void Gen_MatrixInverse( const genType_t type, const uint32_t numRows, const uint
 
 void Gen_MatrixDeterminant( const genType_t type, const uint32_t numRows, const uint32_t numCols, std::string& outHeader, std::string& outInl ) {
 	assert( numRows >= GEN_COMPONENT_COUNT_MIN );
-	assert( numCols >= GEN_COMPONENT_COUNT_MIN );
 	assert( numRows <= GEN_COMPONENT_COUNT_MAX );
+	assert( numCols >= GEN_COMPONENT_COUNT_MIN );
 	assert( numCols <= GEN_COMPONENT_COUNT_MAX );
 
 	if ( type == GEN_TYPE_BOOL || type == GEN_TYPE_UINT ) {
@@ -590,8 +742,8 @@ void Gen_MatrixTranslate( const genType_t type, const uint32_t numRows, const ui
 
 void Gen_MatrixRotate( const genType_t type, const uint32_t numRows, const uint32_t numCols, std::string& outHeader, std::string& outInl ) {
 	assert( numRows >= GEN_COMPONENT_COUNT_MIN );
-	assert( numCols >= GEN_COMPONENT_COUNT_MIN );
 	assert( numRows <= GEN_COMPONENT_COUNT_MAX );
+	assert( numCols >= GEN_COMPONENT_COUNT_MIN );
 	assert( numCols <= GEN_COMPONENT_COUNT_MAX );
 
 	if ( !Gen_IsFloatingPointType( type ) ) {
@@ -667,8 +819,8 @@ void Gen_MatrixRotate( const genType_t type, const uint32_t numRows, const uint3
 
 void Gen_MatrixScale( const genType_t type, const uint32_t numRows, const uint32_t numCols, std::string& outHeader, std::string& outInl ) {
 	assert( numRows >= GEN_COMPONENT_COUNT_MIN );
-	assert( numCols >= GEN_COMPONENT_COUNT_MIN );
 	assert( numRows <= GEN_COMPONENT_COUNT_MAX );
+	assert( numCols >= GEN_COMPONENT_COUNT_MIN );
 	assert( numCols <= GEN_COMPONENT_COUNT_MAX );
 
 	if ( type == GEN_TYPE_BOOL ) {
@@ -737,8 +889,8 @@ void Gen_MatrixScale( const genType_t type, const uint32_t numRows, const uint32
 
 void Gen_MatrixOrtho( const genHand_t hand, const genType_t type, const uint32_t numRows, const uint32_t numCols, std::string& outHeader, std::string& outInl ) {
 	assert( numRows >= GEN_COMPONENT_COUNT_MIN );
-	assert( numCols >= GEN_COMPONENT_COUNT_MIN );
 	assert( numRows <= GEN_COMPONENT_COUNT_MAX );
+	assert( numCols >= GEN_COMPONENT_COUNT_MIN );
 	assert( numCols <= GEN_COMPONENT_COUNT_MAX );
 
 	if ( !Gen_IsFloatingPointType( type ) ) {
@@ -792,8 +944,8 @@ void Gen_MatrixOrtho( const genHand_t hand, const genType_t type, const uint32_t
 
 void Gen_MatrixPerspective( const genHand_t hand, const genType_t type, const uint32_t numRows, const uint32_t numCols, std::string& outHeader, std::string& outInl ) {
 	assert( numRows >= GEN_COMPONENT_COUNT_MIN );
-	assert( numCols >= GEN_COMPONENT_COUNT_MIN );
 	assert( numRows <= GEN_COMPONENT_COUNT_MAX );
+	assert( numCols >= GEN_COMPONENT_COUNT_MIN );
 	assert( numCols <= GEN_COMPONENT_COUNT_MAX );
 
 	if ( !Gen_IsFloatingPointType( type ) ) {
@@ -847,8 +999,8 @@ void Gen_MatrixPerspective( const genHand_t hand, const genType_t type, const ui
 
 void Gen_MatrixLookAt( const genHand_t hand, const genType_t type, const uint32_t numRows, const uint32_t numCols, std::string& outHeader, std::string& outInl ) {
 	assert( numRows >= GEN_COMPONENT_COUNT_MIN );
-	assert( numCols >= GEN_COMPONENT_COUNT_MIN );
 	assert( numRows <= GEN_COMPONENT_COUNT_MAX );
+	assert( numCols >= GEN_COMPONENT_COUNT_MIN );
 	assert( numCols <= GEN_COMPONENT_COUNT_MAX );
 
 	if ( !Gen_IsFloatingPointType( type ) ) {

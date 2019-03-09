@@ -2,6 +2,9 @@
 
 #include "FileIO.h"
 
+#include "gen_funcs_vector.h"
+#include "gen_funcs_matrix.h"
+
 #include "../out/hlml_main.h"
 
 #include <assert.h>
@@ -313,7 +316,7 @@ void TestsGeneratorMatrix::GenerateTestArithmetic() {
 	}
 	paramListVarying += "\t)";
 
-	std::string paramListIdentity = GetParmListIdentity();
+	std::string paramListIdentity = Gen_GetParmListMatrixIdentity( m_type, m_numRows, m_numCols );
 
 	std::string paramListAnswers[GEN_OP_ARITHMETIC_COUNT];
 
@@ -516,13 +519,13 @@ void TestsGeneratorMatrix::GenerateTestRelational() {
 
 	std::string boolTypeName = "bool" + m_numRowsStr + "x" + m_numColsStr;
 
-	std::string paramListTrue = GetParmListSingleValue( GEN_TYPE_BOOL, true );
+	std::string paramListTrue = Gen_GetParmListMatrixSingleValue( GEN_TYPE_BOOL, m_numRows, m_numCols, true );
 
 	std::string parmLists[] = {
-		GetParmListSingleValue( m_type, 1 ),
-		GetParmListSingleValue( m_type, 2 ),
-		GetParmListSingleValue( m_type, 3 ),
-		GetParmListSingleValue( m_type, 4 ),
+		Gen_GetParmListMatrixSingleValue( m_type, m_numRows, m_numCols, 1 ),
+		Gen_GetParmListMatrixSingleValue( m_type, m_numRows, m_numCols, 2 ),
+		Gen_GetParmListMatrixSingleValue( m_type, m_numRows, m_numCols, 3 ),
+		Gen_GetParmListMatrixSingleValue( m_type, m_numRows, m_numCols, 4 ),
 	};
 
 	uint32_t numTestMats = 0;
@@ -558,7 +561,7 @@ void TestsGeneratorMatrix::GenerateTestIdentity() {
 	std::string zeroStr = Gen_GetNumericLiteral( m_type, 0 );
 	std::string oneStr = Gen_GetNumericLiteral( m_type, 1 );
 
-	std::string paramListIdentity = GetParmListIdentity();
+	std::string paramListIdentity = Gen_GetParmListMatrixIdentity( m_type, m_numRows, m_numCols );
 
 	m_code += "TEMPER_TEST( TestIdentity_" + m_fullTypeName + " ) {\n";
 	m_code += "\t" + m_fullTypeName + " id = " + m_fullTypeName + paramListIdentity + ";\n";
@@ -920,13 +923,13 @@ void TestsGeneratorMatrix::GenerateTestRotate() {
 
 	std::string rotateVecTypeString = m_typeString + std::to_string( numRotateVectorComponents );
 
-	std::string parmListVecYaw = GetParmListVector( m_type, numRotateVectorComponents, angleAxisVecYaw );
-	std::string parmListVecPitch = GetParmListVector( m_type, numRotateVectorComponents, angleAxisVecPitch );
-	std::string parmListVecRoll = GetParmListVector( m_type, numRotateVectorComponents, angleAxisVecRoll );
+	std::string parmListVecYaw = Gen_GetParmListVector( m_type, numRotateVectorComponents, angleAxisVecYaw );
+	std::string parmListVecPitch = Gen_GetParmListVector( m_type, numRotateVectorComponents, angleAxisVecPitch );
+	std::string parmListVecRoll = Gen_GetParmListVector( m_type, numRotateVectorComponents, angleAxisVecRoll );
 
-	std::string parmListMatYaw = GetParmListMatrix( m_type, numRotMatRows, numRotMatCols, rotMatYaw );
-	std::string parmListMatPitch = GetParmListMatrix( m_type, numRotMatRows, numRotMatCols, rotMatPitch );
-	std::string parmListMatRoll = GetParmListMatrix( m_type, numRotMatRows, numRotMatCols, matAnswerRoll );
+	std::string parmListMatYaw = Gen_GetParmListMatrix( m_type, numRotMatRows, numRotMatCols, rotMatYaw );
+	std::string parmListMatPitch = Gen_GetParmListMatrix( m_type, numRotMatRows, numRotMatCols, rotMatPitch );
+	std::string parmListMatRoll = Gen_GetParmListMatrix( m_type, numRotMatRows, numRotMatCols, matAnswerRoll );
 
 	std::string radiansFuncStr = Gen_GetFuncNameRadians( m_type );
 
@@ -974,8 +977,8 @@ void TestsGeneratorMatrix::GenerateTestScale() {
 
 	float scaleMatDiagonal[] = { 2.0f, 2.0f, 2.0f, 1.0f };
 
-	std::string parmListScaleVec = GetParmListVector( m_type, scaleCols, scaleMatDiagonal );
-	std::string parmListScaleMat = GetParmListDiagonal( m_type, m_numRows, m_numCols, scaleMatDiagonal, _countof( scaleMatDiagonal ) );
+	std::string parmListScaleVec = Gen_GetParmListVector( m_type, scaleCols, scaleMatDiagonal );
+	std::string parmListScaleMat = Gen_GetParmListMatrixDiagonal( m_type, m_numRows, m_numCols, scaleMatDiagonal, _countof( scaleMatDiagonal ) );
 
 	std::string scaleVecTypeString = m_typeString + std::to_string( scaleCols );
 
@@ -1007,7 +1010,7 @@ void TestsGeneratorMatrix::GenerateTestOrtho() {
 		0.0f,          0.0f,         0.0f,           1.0f
 	};
 
-	std::string parmListAnswerOrtho = GetParmListMatrix( m_type, 4, 4, answerOrtho );
+	std::string parmListAnswerOrtho = Gen_GetParmListMatrix( m_type, 4, 4, answerOrtho );
 
 	std::string minusOneStr = Gen_GetNumericLiteral( m_type, -1.0f );
 	std::string oneHundredStr = Gen_GetNumericLiteral( m_type, 100.0f );
@@ -1052,7 +1055,7 @@ void TestsGeneratorMatrix::GenerateTestPerspective() {
 		0.0f,      0.0f,      1.000000f,  0.0f
 	};
 
-	std::string parmListPerspective = GetParmListMatrix( m_type, 4, 4, answerPerspective );
+	std::string parmListPerspective = Gen_GetParmListMatrix( m_type, 4, 4, answerPerspective );
 
 	std::string widthStr = Gen_GetNumericLiteral( m_type, 1280.0f );
 	std::string heightStr = Gen_GetNumericLiteral( m_type, 720.0f );
@@ -1095,11 +1098,11 @@ void TestsGeneratorMatrix::GenerateTestLookAt() {
 
 	std::string posVectorTypeName = m_typeString + std::to_string( 3 );
 
-	std::string parmListCurrentPos = GetParmListVector( m_type, 3, currentPos );
-	std::string parmListTargetPos = GetParmListVector( m_type, 3, targetPos );
-	std::string parmListUp = GetParmListVector( m_type, 3, up );
+	std::string parmListCurrentPos = Gen_GetParmListVector( m_type, 3, currentPos );
+	std::string parmListTargetPos = Gen_GetParmListVector( m_type, 3, targetPos );
+	std::string parmListUp = Gen_GetParmListVector( m_type, 3, up );
 
-	std::string parmListLookAt = GetParmListMatrix( m_type, 4, 4, answerLookAt );
+	std::string parmListLookAt = Gen_GetParmListMatrix( m_type, 4, 4, answerLookAt );
 
 	m_code += "TEMPER_TEST( TestLookAt_" + m_fullTypeName + " ) {\n";
 	m_code += "\t" + m_fullTypeName + " answerLookAt = " + m_fullTypeName + parmListLookAt + ";\n";
@@ -1114,131 +1117,4 @@ void TestsGeneratorMatrix::GenerateTestLookAt() {
 	m_code += "\tTEMPER_PASS();\n";
 	m_code += "}\n";
 	m_code += "\n";
-}
-
-std::string TestsGeneratorMatrix::GetParmListIdentity() const {
-	std::string zeroStr = Gen_GetNumericLiteral( m_type, 0.0f );
-	std::string oneStr = Gen_GetNumericLiteral( m_type, 1.0f );
-
-	std::string paramListIdentity = "(\n";
-	for ( uint32_t row = 0; row < m_numRows; row++ ) {
-		paramListIdentity += "\t\t";
-
-		for ( uint32_t col = 0; col < m_numCols; col++ ) {
-			paramListIdentity += ( row == col ) ? oneStr : zeroStr;
-
-			if ( row + col != ( m_numRows - 1 ) + ( m_numCols - 1 ) ) {
-				paramListIdentity += ",";
-			}
-
-			if ( col != m_numCols - 1 ) {
-				paramListIdentity += " ";
-			}
-		}
-
-		paramListIdentity += "\n";
-	}
-	paramListIdentity += "\t)";
-
-	return paramListIdentity;
-}
-
-std::string TestsGeneratorMatrix::GetParmListDiagonal( const genType_t type, const uint32_t numRows, const uint32_t numCols, const float* values, const uint32_t numValues ) const {
-	assert( numValues <= 4 );
-
-	std::string zeroStr = Gen_GetNumericLiteral( type, 0.0f );
-
-	uint32_t valueIndex = 0;
-
-	std::string paramList = "(\n";
-	for ( uint32_t row = 0; row < numRows; row++ ) {
-		paramList += "\t\t";
-
-		for ( uint32_t col = 0; col < numCols; col++ ) {
-			if ( row == col ) {
-				paramList += Gen_GetNumericLiteral( m_type, values[valueIndex++] );
-			} else {
-				paramList += zeroStr;
-			}
-
-			if ( row + col != ( numRows - 1 ) + ( numCols - 1 ) ) {
-				paramList += ",";
-			}
-
-			if ( col != numCols - 1 ) {
-				paramList += " ";
-			}
-		}
-
-		paramList += "\n";
-	}
-	paramList += "\t)";
-
-	return paramList;
-}
-
-std::string TestsGeneratorMatrix::GetParmListSingleValue( const genType_t type, const int32_t value ) const {
-	std::string valueStr = Gen_GetNumericLiteral( type, value );
-
-	std::string paramList = "(\n";
-	for ( uint32_t row = 0; row < m_numRows; row++ ) {
-		paramList += "\t\t";
-
-		for ( uint32_t col = 0; col < m_numCols; col++ ) {
-			paramList += valueStr;
-
-			if ( row + col != ( m_numRows - 1 ) + ( m_numCols - 1 ) ) {
-				paramList += ",";
-			}
-
-			if ( col != m_numCols - 1 ) {
-				paramList += " ";
-			}
-		}
-
-		paramList += "\n";
-	}
-	paramList += "\t)";
-
-	return paramList;
-}
-
-std::string TestsGeneratorMatrix::GetParmListVector( const genType_t type, const uint32_t numComponents, const float* values ) const {
-	std::string parmList = "( ";
-	for ( uint32_t i = 0; i < numComponents; i++ ) {
-		parmList += Gen_GetNumericLiteral( type, values[i] );
-
-		if ( i != numComponents - 1 ) {
-			parmList += ", ";
-		}
-	}
-	parmList += " )";
-
-	return parmList;
-}
-
-std::string TestsGeneratorMatrix::GetParmListMatrix( const genType_t type, const uint32_t numRows, const uint32_t numCols, const float* values ) const {
-	std::string parmList = "(\n";
-	for ( uint32_t row = 0; row < numRows; row++ ) {
-		parmList += "\t\t";
-
-		for ( uint32_t col = 0; col < numCols; col++ ) {
-			uint32_t index = col + ( row * numCols );
-
-			parmList += Gen_GetNumericLiteral( type, values[index] );
-
-			if ( row + col != ( numRows - 1 ) + ( numCols - 1 ) ) {
-				parmList += ",";
-			}
-
-			if ( col != numCols - 1 ) {
-				parmList += " ";
-			}
-		}
-
-		parmList += "\n";
-	}
-	parmList += "\t)";
-
-	return parmList;
 }

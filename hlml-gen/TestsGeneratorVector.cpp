@@ -2,6 +2,8 @@
 
 #include "FileIO.h"
 
+#include "gen_funcs_vector.h"
+
 #include <vector>
 
 void TestsGeneratorVector::Generate( const genType_t type, const uint32_t numComponents ) {
@@ -87,15 +89,8 @@ void TestsGeneratorVector::GenerateTestAssignment() {
 
 	std::string paramListOne = "( " + oneStr + " )";
 
-	std::string paramListVarying = "( ";
-	for ( uint32_t i = 0; i < m_numComponents; i++ ) {
-		paramListVarying += Gen_GetNumericLiteral( m_type, i );
-
-		if ( i != m_numComponents - 1 ) {
-			paramListVarying += ", ";
-		}
-	}
-	paramListVarying += " )";
+	float values[] = { 0.0f, 1.0f, 2.0f, 3.0f };
+	std::string parmListVarying = Gen_GetParmListVector( m_type, m_numComponents, values );
 
 	m_code += "// also tests equality operators\n";
 	m_code += "TEMPER_TEST( TestAssignment_" + m_fullTypeName + " ) {\n";
@@ -103,10 +98,10 @@ void TestsGeneratorVector::GenerateTestAssignment() {
 	m_code += "\n";
 	m_code += "\ta = " + m_fullTypeName + paramListOne + ";\n";
 	m_code += "\tTEMPER_EXPECT_TRUE( a == " + m_fullTypeName + paramListOne + " );\n";
-	m_code += "\tTEMPER_EXPECT_TRUE( a != " + m_fullTypeName + paramListVarying + " );\n";
+	m_code += "\tTEMPER_EXPECT_TRUE( a != " + m_fullTypeName + parmListVarying + " );\n";
 	m_code += "\n";
-	m_code += "\ta = " + m_fullTypeName + paramListVarying + ";\n";
-	m_code += "\tTEMPER_EXPECT_TRUE( a == " + m_fullTypeName + paramListVarying + " );\n";
+	m_code += "\ta = " + m_fullTypeName + parmListVarying + ";\n";
+	m_code += "\tTEMPER_EXPECT_TRUE( a == " + m_fullTypeName + parmListVarying + " );\n";
 	m_code += "\tTEMPER_EXPECT_TRUE( a != " + m_fullTypeName + paramListOne + " );\n";
 	m_code += "\n";
 	m_code += "\tTEMPER_PASS();\n";
@@ -115,18 +110,11 @@ void TestsGeneratorVector::GenerateTestAssignment() {
 }
 
 void TestsGeneratorVector::GenerateTestArray() {
-	std::string paramList = "( ";
-	for ( uint32_t i = 0; i < m_numComponents; i++ ) {
-		paramList += Gen_GetNumericLiteral( m_type, i );
-
-		if ( i != m_numComponents - 1 ) {
-			paramList += ", ";
-		}
-	}
-	paramList += " )";
+	float values[] = { 0.0f, 1.0f, 2.0f, 3.0f };
+	std::string parmList = Gen_GetParmListVector( m_type, m_numComponents, values );
 
 	m_code += "TEMPER_TEST( TestArray_" + m_fullTypeName + " ) {\n";
-	m_code += "\t" + m_fullTypeName + " a = " + m_fullTypeName + paramList + ";\n";
+	m_code += "\t" + m_fullTypeName + " a = " + m_fullTypeName + parmList + ";\n";
 	m_code += "\n";
 	for ( uint32_t i = 0; i < m_numComponents; i++ ) {
 		m_code += "\tTEMPER_EXPECT_TRUE( a[" + std::to_string( i ) + "] == " + Gen_GetNumericLiteral( m_type, i ) + " );\n";
@@ -143,104 +131,48 @@ void TestsGeneratorVector::GenerateTestArithmetic() {
 	}
 
 	// number picked at random
-	const int32_t baseNumber = 2;
+	const int32_t baseNumber = 6;
+	std::string parmListBase = "( " + Gen_GetNumericLiteral( m_type, baseNumber ) + " )";
 
-	std::string paramListOne = "( " + Gen_GetNumericLiteral( m_type, baseNumber ) + " )";
-	std::string paramListVarying = "( ";
-	for ( uint32_t i = 0; i < m_numComponents; i++ ) {
-		paramListVarying += Gen_GetNumericLiteral( m_type, i + baseNumber );
+	float valuesAdd[]	= { 2.0f,  3.0f,  4.0f,  5.0f  };
+	float valuesSub[]	= { 2.0f,  3.0f,  4.0f,  5.0f  };
+	float valuesMul[]	= { 2.0f,  3.0f,  4.0f,  5.0f  };
+	float valuesDiv[]	= { 2.0f,  2.0f,  3.0f,  6.0f  };
 
-		if ( i != m_numComponents - 1 ) {
-			paramListVarying += ", ";
-		}
-	}
-	paramListVarying += " )";
+	float answersAdd[]	= { 8.0f,  9.0f,  10.0f, 11.0f };
+	float answersSub[]	= { 4.0f,  3.0f,  2.0f,  1.0f  };
+	float answersMul[]	= { 12.0f, 18.0f, 24.0f, 30.0f };
+	float answersDiv[]	= { 3.0f,  3.0f,  2.0f,  1.0f  };
 
-	std::vector<std::string> paramListAnswers( GEN_OP_ARITHMETIC_COUNT );
+	std::string parmListValues[GEN_OP_ARITHMETIC_COUNT] = {
+		Gen_GetParmListVector( m_type, m_numComponents, valuesAdd ),
+		Gen_GetParmListVector( m_type, m_numComponents, valuesSub ),
+		Gen_GetParmListVector( m_type, m_numComponents, valuesMul ),
+		Gen_GetParmListVector( m_type, m_numComponents, valuesDiv ),
+	};
 
-	// addition
-	{
-		std::string paramList = "( ";
-		for ( uint32_t i = 0; i < m_numComponents; i++ ) {
-			paramList += Gen_GetNumericLiteral( m_type, baseNumber + ( (int32_t) i + baseNumber ) );
+	std::string parmListAnswers[GEN_OP_ARITHMETIC_COUNT] = {
+		Gen_GetParmListVector( m_type, m_numComponents, answersAdd ),
+		Gen_GetParmListVector( m_type, m_numComponents, answersSub ),
+		Gen_GetParmListVector( m_type, m_numComponents, answersMul ),
+		Gen_GetParmListVector( m_type, m_numComponents, answersDiv ),
+	};
 
-			if ( i != m_numComponents - 1 ) {
-				paramList += ", ";
-			}
-		}
-		paramList += " )";
-
-		paramListAnswers[0] = paramList;
-	}
-
-	// subtraction
-	{
-		std::string paramList = "( ";
-		for ( uint32_t i = 0; i < m_numComponents; i++ ) {
-			paramList += Gen_GetNumericLiteral( m_type, baseNumber - ( (int32_t) i + baseNumber ) );
-
-			if ( i != m_numComponents - 1 ) {
-				paramList += ", ";
-			}
-		}
-		paramList += " )";
-
-		paramListAnswers[1] = paramList;
-	}
-
-	// multiplication
-	{
-		std::string paramList = "( ";
-		for ( uint32_t i = 0; i < m_numComponents; i++ ) {
-			paramList += Gen_GetNumericLiteral( m_type, baseNumber * ( (int32_t) i + baseNumber ) );
-
-			if ( i != m_numComponents - 1 ) {
-				paramList += ", ";
-			}
-		}
-		paramList += " )";
-
-		paramListAnswers[2] = paramList;
-	}
-
-	// division
-	{
-		std::string paramList = "( ";
-		for ( uint32_t i = 0; i < m_numComponents; i++ ) {
-			if ( Gen_IsFloatingPointType( m_type ) ) {
-				// TODO(DM): find a better way of representing this
-				if ( m_type == GEN_TYPE_FLOAT ) {
-					paramList += std::to_string( (float) baseNumber / (float)( i + baseNumber ) );
-				} else {
-					paramList += std::to_string( (double) baseNumber / (double) ( i + baseNumber ) );
-				}
-			} else {
-				paramList += Gen_GetNumericLiteral( m_type, baseNumber / ( i + baseNumber ) );
-			}
-
-			if ( i != m_numComponents - 1 ) {
-				paramList += ", ";
-			}
-		}
-		paramList += " )";
-
-		paramListAnswers[3] = paramList;
-	}
-
-	std::vector<std::string> testSuffices = {
+	std::string suffices[GEN_OP_ARITHMETIC_COUNT] = {
 		"Addition",
 		"Subtraction",
 		"Multiplication",
 		"Division",
 	};
 
-	for ( uint32_t operatorIndex = 0; operatorIndex < GEN_OP_ARITHMETIC_COUNT; operatorIndex++ ) {
-		m_code += "TEMPER_TEST( TestArithmetic" + testSuffices[operatorIndex] + "_" + m_fullTypeName + " ) {\n";
-		m_code += "\t" + m_fullTypeName + " a = " + m_fullTypeName + paramListOne + ";\n";
-		m_code += "\t" + m_fullTypeName + " b = " + m_fullTypeName + paramListVarying + ";\n";
-		m_code += "\t" + m_fullTypeName + " c = a " + GEN_OPERATORS_ARITHMETIC[operatorIndex] + " b;\n";
+	for ( uint32_t i = 0; i < GEN_OP_ARITHMETIC_COUNT; i++ ) {
+		m_code += "TEMPER_TEST( TestArithmetic" + suffices[i] + "_" + m_fullTypeName + " ) {\n";
+		m_code += "\t" + m_fullTypeName + " a  = " + m_fullTypeName + parmListBase + ";\n";
+		m_code += "\t" + m_fullTypeName + " b  = " + m_fullTypeName + parmListValues[i] + ";\n";
 		m_code += "\n";
-		m_code += "\tTEMPER_EXPECT_TRUE( c == " + m_fullTypeName + paramListAnswers[operatorIndex] + " );\n";
+		m_code += "\t" + m_fullTypeName + " c = a " + GEN_OPERATORS_ARITHMETIC[i] + " b;\n";
+		m_code += "\n";
+		m_code += "\tTEMPER_EXPECT_TRUE( c == " + m_fullTypeName + parmListAnswers[i] + " );\n";
 		m_code += "\n";
 		m_code += "\tTEMPER_PASS();\n";
 		m_code += "}\n";
@@ -344,21 +276,14 @@ void TestsGeneratorVector::GenerateTestNormalized() {
 		return;
 	}
 
-	std::string paramListVarying = "( ";
-	for ( uint32_t i = 0; i < m_numComponents; i++ ) {
-		paramListVarying += Gen_GetNumericLiteral( m_type, i + 2 );
-
-		if ( i != m_numComponents - 1 ) {
-			paramListVarying += ", ";
-		}
-	}
-	paramListVarying += " )";
+	float values[] = { 2.0f, 3.0f, 4.0f, 5.0f };
+	std::string parmList = Gen_GetParmListVector( m_type, m_numComponents, values );
 
 	genType_t floatingPointType = Gen_GetSupportedFloatingPointType( m_type );
 	std::string oneStr = Gen_GetNumericLiteral( floatingPointType, 1 );
 
 	m_code += "TEMPER_TEST( TestNormalized_" + m_fullTypeName + " ) {\n";
-	m_code += "\t" + m_fullTypeName + " vec = " + m_fullTypeName + paramListVarying + ";\n";
+	m_code += "\t" + m_fullTypeName + " vec = " + m_fullTypeName + parmList + ";\n";
 	m_code += "\tvec = normalized( vec );\n";
 	m_code += "\n";
 	m_code += "\tTEMPER_EXPECT_TRUE( length( vec ) == " + oneStr + " );\n";
@@ -420,44 +345,18 @@ void TestsGeneratorVector::GenerateTestCross() {
 		return;
 	}
 
-	std::string zeroStr = Gen_GetNumericLiteral( m_type, 0 );
-	std::string oneStr = Gen_GetNumericLiteral( m_type, 1 );
-	std::string minusOneStr = Gen_GetNumericLiteral( m_type, -1 );
+	float left[]	= { -1.0f, 0.0f, 0.0f, 0.0f };
+	float up[]		= {  0.0f, 1.0f, 0.0f, 0.0f };
+	float forward[]	= {  0.0f, 0.0f, 1.0f, 0.0f };
 
-	std::string paramListLeft = "( ";
-	for ( uint32_t i = 0; i < m_numComponents; i++ ) {
-		paramListLeft += ( i == 0 ) ? minusOneStr : zeroStr;
-
-		if ( i != m_numComponents - 1 ) {
-			paramListLeft += ", ";
-		}
-	}
-	paramListLeft += " )";
-
-	std::string paramListUp = "( ";
-	for ( uint32_t i = 0; i < m_numComponents; i++ ) {
-		paramListUp += ( i == 1 ) ? oneStr : zeroStr;
-
-		if ( i != m_numComponents - 1 ) {
-			paramListUp += ", ";
-		}
-	}
-	paramListUp += " )";
-
-	std::string paramListForward = "( ";
-	for ( uint32_t i = 0; i < m_numComponents; i++ ) {
-		paramListForward += ( i == 2 ) ? oneStr : zeroStr;
-
-		if ( i != m_numComponents - 1 ) {
-			paramListForward += ", ";
-		}
-	}
-	paramListForward += " )";
+	std::string parmListLeft	= Gen_GetParmListVector( m_type, m_numComponents, left );
+	std::string parmListUp		= Gen_GetParmListVector( m_type, m_numComponents, up );
+	std::string parmListForward	= Gen_GetParmListVector( m_type, m_numComponents, forward );
 
 	m_code += "TEMPER_TEST( TestCross_" + m_fullTypeName + " ) {\n";
-	m_code += "\t" + m_fullTypeName + " left = " + m_fullTypeName + paramListLeft + ";\n";
-	m_code += "\t" + m_fullTypeName + " forward = " + m_fullTypeName + paramListForward + ";\n";
-	m_code += "\t" + m_fullTypeName + " up = " + m_fullTypeName + paramListUp + ";\n";
+	m_code += "\t" + m_fullTypeName + " left = " + m_fullTypeName + parmListLeft + ";\n";
+	m_code += "\t" + m_fullTypeName + " forward = " + m_fullTypeName + parmListForward + ";\n";
+	m_code += "\t" + m_fullTypeName + " up = " + m_fullTypeName + parmListUp + ";\n";
 	m_code += "\n";
 	m_code += "\tTEMPER_EXPECT_TRUE( cross( left, forward ) == up );\n";
 	m_code += "\n";
@@ -471,33 +370,17 @@ void TestsGeneratorVector::GenerateTestAngle() {
 		return;
 	}
 
-	std::string zeroStr = Gen_GetNumericLiteral( m_type, 0 );
-	std::string oneStr = Gen_GetNumericLiteral( m_type, 1 );
+	float right[]	= { 1.0f, 0.0f, 0.0f, 0.0f };
+	float up[]		= { 0.0f, 1.0f, 0.0f, 0.0f };
+
+	std::string parmListRight	= Gen_GetParmListVector( m_type, m_numComponents, right );
+	std::string parmListUp		= Gen_GetParmListVector( m_type, m_numComponents, up );
+
 	std::string ninetyStr = Gen_GetNumericLiteral( Gen_GetSupportedFloatingPointType( m_type ), 90 );
 
-	std::string paramListRight = "( ";
-	for ( uint32_t i = 0; i < m_numComponents; i++ ) {
-		paramListRight += ( i == 0 ) ? oneStr : zeroStr;
-
-		if ( i != m_numComponents - 1 ) {
-			paramListRight += ", ";
-		}
-	}
-	paramListRight += " )";
-
-	std::string paramListUp = "( ";
-	for ( uint32_t i = 0; i < m_numComponents; i++ ) {
-		paramListUp += ( i == 1 ) ? oneStr : zeroStr;
-
-		if ( i != m_numComponents - 1 ) {
-			paramListUp += ", ";
-		}
-	}
-	paramListUp += " )";
-
 	m_code += "TEMPER_TEST( TestAngle_" + m_fullTypeName + " ) {\n";
-	m_code += "\t" + m_fullTypeName + " right = " + m_fullTypeName + paramListRight + ";\n";
-	m_code += "\t" + m_fullTypeName + " up = " + m_fullTypeName + paramListUp + ";\n";
+	m_code += "\t" + m_fullTypeName + " right = " + m_fullTypeName + parmListRight + ";\n";
+	m_code += "\t" + m_fullTypeName + " up = " + m_fullTypeName + parmListUp + ";\n";
 	m_code += "\t" + m_typeString + " answer = angle( up, right );\n";
 	m_code += "\n";
 	m_code += "\tTEMPER_EXPECT_TRUE( floateq( answer, " + ninetyStr + " ) );\n";

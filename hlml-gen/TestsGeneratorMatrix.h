@@ -42,12 +42,4 @@ private:
 	void		GenerateTestOrtho();
 	void		GenerateTestPerspective();
 	void		GenerateTestLookAt();
-
-	// TODO(DM): move these to gen_common.h as inline functions
-	std::string	GetParmListIdentity() const;
-	std::string	GetParmListDiagonal( const genType_t type, const uint32_t numRows, const uint32_t numCols, const float* values, const uint32_t numValues ) const;
-	std::string	GetParmListSingleValue( const genType_t type, const int32_t value ) const;
-
-	std::string	GetParmListVector( const genType_t type, const uint32_t numComponents, const float* values ) const;
-	std::string	GetParmListMatrix( const genType_t type, const uint32_t numRows, const uint32_t numCols, const float* values ) const;
 };
