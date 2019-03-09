@@ -2,7 +2,7 @@
 
 #include <assert.h>
 
-std::string Gen_GetParmListMatrix( const genType_t type, const uint32_t numRows, const uint32_t numCols, const float* values ) {
+std::string Gen_GetParmListMatrix( const genType_t type, const uint32_t numRows, const uint32_t numCols, const float values[GEN_COMPONENT_COUNT_MAX][GEN_COMPONENT_COUNT_MAX] ) {
 	assert( numRows >= GEN_COMPONENT_COUNT_MIN );
 	assert( numRows <= GEN_COMPONENT_COUNT_MAX );
 	assert( numCols >= GEN_COMPONENT_COUNT_MIN );
@@ -13,9 +13,7 @@ std::string Gen_GetParmListMatrix( const genType_t type, const uint32_t numRows,
 		parmList += "\t\t";
 
 		for ( uint32_t col = 0; col < numCols; col++ ) {
-			uint32_t index = col + ( row * numCols );
-
-			parmList += Gen_GetNumericLiteral( type, values[index] );
+			parmList += Gen_GetNumericLiteral( type, values[row][col] );
 
 			if ( row + col != ( numRows - 1 ) + ( numCols - 1 ) ) {
 				parmList += ",";
@@ -83,7 +81,7 @@ std::string Gen_GetParmListMatrixDiagonal( const genType_t type, const uint32_t 
 	return paramList;
 }
 
-std::string Gen_GetParmListMatrixSingleValue( const genType_t type, const uint32_t numRows, const uint32_t numCols, const int32_t value ) {
+std::string Gen_GetParmListMatrixSingleValue( const genType_t type, const uint32_t numRows, const uint32_t numCols, const float value ) {
 	assert( numRows >= GEN_COMPONENT_COUNT_MIN );
 	assert( numRows <= GEN_COMPONENT_COUNT_MAX );
 	assert( numCols >= GEN_COMPONENT_COUNT_MIN );

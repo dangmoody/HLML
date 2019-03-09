@@ -60,6 +60,99 @@ TEMPER_TEST( TestAssignment_double3x3 ) {
 	TEMPER_PASS();
 }
 
+TEMPER_TEST( TestArithmeticAddition_double3x3 ) {
+	double3x3 answer = double3x3(
+		7.000000, 7.000000, 7.000000,
+		8.000000, 8.000000, 8.000000,
+		15.000000, 15.000000, 15.000000
+	);
+
+	double3x3 a = double3x3(
+		6.000000, 6.000000, 6.000000,
+		6.000000, 6.000000, 6.000000,
+		12.000000, 12.000000, 12.000000
+	);
+	double3x3 b = double3x3(
+		1.000000, 1.000000, 1.000000,
+		2.000000, 2.000000, 2.000000,
+		3.000000, 3.000000, 3.000000
+	);
+	double3x3 c = a + b;
+
+	TEMPER_EXPECT_TRUE( c == answer );
+
+	TEMPER_PASS();
+}
+
+TEMPER_TEST( TestArithmeticSubtraction_double3x3 ) {
+	double3x3 answer = double3x3(
+		5.000000, 5.000000, 5.000000,
+		4.000000, 4.000000, 4.000000,
+		9.000000, 9.000000, 9.000000
+	);
+
+	double3x3 a = double3x3(
+		6.000000, 6.000000, 6.000000,
+		6.000000, 6.000000, 6.000000,
+		12.000000, 12.000000, 12.000000
+	);
+	double3x3 b = double3x3(
+		1.000000, 1.000000, 1.000000,
+		2.000000, 2.000000, 2.000000,
+		3.000000, 3.000000, 3.000000
+	);
+	double3x3 c = a - b;
+
+	TEMPER_EXPECT_TRUE( c == answer );
+
+	TEMPER_PASS();
+}
+
+TEMPER_TEST( TestArithmeticMultiplication_double3x3 ) {
+	double3x3 answer = double3x3(
+		36.000000, 36.000000, 36.000000,
+		36.000000, 36.000000, 36.000000,
+		72.000000, 72.000000, 72.000000
+	);
+
+	double3x3 a = double3x3(
+		6.000000, 6.000000, 6.000000,
+		6.000000, 6.000000, 6.000000,
+		12.000000, 12.000000, 12.000000
+	);
+	double3x3 b = double3x3(
+		1.000000, 1.000000, 1.000000,
+		2.000000, 2.000000, 2.000000,
+		3.000000, 3.000000, 3.000000
+	);
+	double3x3 c = a * b;
+
+	TEMPER_EXPECT_TRUE( c == answer );
+
+	TEMPER_PASS();
+}
+
+TEMPER_TEST( TestArithmeticDivision_double3x3 ) {
+	double3x3 answer = double3x3(
+	);
+
+	double3x3 a = double3x3(
+		6.000000, 6.000000, 6.000000,
+		6.000000, 6.000000, 6.000000,
+		12.000000, 12.000000, 12.000000
+	);
+	double3x3 b = double3x3(
+		1.000000, 1.000000, 1.000000,
+		2.000000, 2.000000, 2.000000,
+		3.000000, 3.000000, 3.000000
+	);
+	double3x3 c = a / b;
+
+	TEMPER_EXPECT_TRUE( c == answer );
+
+	TEMPER_PASS();
+}
+
 TEMPER_TEST( TestArray_double3x3 ) {
 	double3x3 mat;
 
@@ -305,6 +398,10 @@ TEMPER_TEST( TestScale_double3x3 ) {
 TEMPER_SUITE( Test_double3x3 ) {
 	TEMPER_RUN_TEST( TestAssignment_double3x3 );
 
+	TEMPER_RUN_TEST( TestArithmeticAddition_double3x3 );
+	TEMPER_RUN_TEST( TestArithmeticSubtraction_double3x3 );
+	TEMPER_RUN_TEST( TestArithmeticMultiplication_double3x3 );
+	TEMPER_RUN_TEST( TestArithmeticDivision_double3x3 );
 
 	TEMPER_RUN_TEST( TestArray_double3x3 );
 	TEMPER_RUN_TEST( TestRelational_double3x3 );

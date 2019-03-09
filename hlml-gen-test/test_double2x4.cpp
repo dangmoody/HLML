@@ -55,6 +55,90 @@ TEMPER_TEST( TestAssignment_double2x4 ) {
 	TEMPER_PASS();
 }
 
+TEMPER_TEST( TestArithmeticAddition_double2x4 ) {
+	double2x4 answer = double2x4(
+		7.000000, 7.000000, 7.000000, 7.000000,
+		8.000000, 8.000000, 8.000000, 8.000000
+	);
+
+	double2x4 a = double2x4(
+		6.000000, 6.000000, 6.000000, 6.000000,
+		6.000000, 6.000000, 6.000000, 6.000000
+	);
+	double2x4 b = double2x4(
+		1.000000, 1.000000, 1.000000, 1.000000,
+		2.000000, 2.000000, 2.000000, 2.000000
+	);
+	double2x4 c = a + b;
+
+	TEMPER_EXPECT_TRUE( c == answer );
+
+	TEMPER_PASS();
+}
+
+TEMPER_TEST( TestArithmeticSubtraction_double2x4 ) {
+	double2x4 answer = double2x4(
+		5.000000, 5.000000, 5.000000, 5.000000,
+		4.000000, 4.000000, 4.000000, 4.000000
+	);
+
+	double2x4 a = double2x4(
+		6.000000, 6.000000, 6.000000, 6.000000,
+		6.000000, 6.000000, 6.000000, 6.000000
+	);
+	double2x4 b = double2x4(
+		1.000000, 1.000000, 1.000000, 1.000000,
+		2.000000, 2.000000, 2.000000, 2.000000
+	);
+	double2x4 c = a - b;
+
+	TEMPER_EXPECT_TRUE( c == answer );
+
+	TEMPER_PASS();
+}
+
+TEMPER_TEST( TestArithmeticMultiplication_double2x4 ) {
+	double2x2 answer = double2x2(
+		72.000000, 72.000000,
+		72.000000, 72.000000
+	);
+
+	double2x4 a = double2x4(
+		6.000000, 6.000000, 6.000000, 6.000000,
+		6.000000, 6.000000, 6.000000, 6.000000
+	);
+	double4x2 b = double4x2(
+		1.000000, 1.000000,
+		2.000000, 2.000000,
+		3.000000, 3.000000,
+		6.000000, 6.000000
+	);
+	double2x2 c = a * b;
+
+	TEMPER_EXPECT_TRUE( c == answer );
+
+	TEMPER_PASS();
+}
+
+TEMPER_TEST( TestArithmeticDivision_double2x4 ) {
+	double2x4 answer = double2x4(
+	);
+
+	double2x4 a = double2x4(
+		6.000000, 6.000000, 6.000000, 6.000000,
+		6.000000, 6.000000, 6.000000, 6.000000
+	);
+	double2x4 b = double2x4(
+		1.000000, 1.000000, 1.000000, 1.000000,
+		2.000000, 2.000000, 2.000000, 2.000000
+	);
+	double2x4 c = a / b;
+
+	TEMPER_EXPECT_TRUE( c == answer );
+
+	TEMPER_PASS();
+}
+
 TEMPER_TEST( TestArray_double2x4 ) {
 	double2x4 mat;
 
@@ -220,6 +304,10 @@ TEMPER_TEST( TestScale_double2x4 ) {
 TEMPER_SUITE( Test_double2x4 ) {
 	TEMPER_RUN_TEST( TestAssignment_double2x4 );
 
+	TEMPER_RUN_TEST( TestArithmeticAddition_double2x4 );
+	TEMPER_RUN_TEST( TestArithmeticSubtraction_double2x4 );
+	TEMPER_RUN_TEST( TestArithmeticMultiplication_double2x4 );
+	TEMPER_RUN_TEST( TestArithmeticDivision_double2x4 );
 
 	TEMPER_RUN_TEST( TestArray_double2x4 );
 	TEMPER_RUN_TEST( TestRelational_double2x4 );

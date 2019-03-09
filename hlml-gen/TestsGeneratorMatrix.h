@@ -42,4 +42,11 @@ private:
 	void		GenerateTestOrtho();
 	void		GenerateTestPerspective();
 	void		GenerateTestLookAt();
+
+	std::string	GetTestCodeArithmeticInternal( const genOpArithmetic_t op, const float valuesLhs[GEN_COMPONENT_COUNT_MAX][GEN_COMPONENT_COUNT_MAX],
+		const float valuesRhs[GEN_COMPONENT_COUNT_MAX][GEN_COMPONENT_COUNT_MAX] ) const;
+
+	// DM: does this want to live with the other generic matrix gen functions?
+	std::string	GetParmListArithmeticAnswer( const genOpArithmetic_t op, const uint32_t numRows, const uint32_t numCols,
+		const float valuesLhs[GEN_COMPONENT_COUNT_MAX][GEN_COMPONENT_COUNT_MAX], const float valuesRhs[GEN_COMPONENT_COUNT_MAX][GEN_COMPONENT_COUNT_MAX] ) const;
 };

@@ -55,6 +55,88 @@ TEMPER_TEST( TestAssignment_uint2x2 ) {
 	TEMPER_PASS();
 }
 
+TEMPER_TEST( TestArithmeticAddition_uint2x2 ) {
+	uint2x2 answer = uint2x2(
+		7, 7,
+		8, 8
+	);
+
+	uint2x2 a = uint2x2(
+		6, 6,
+		6, 6
+	);
+	uint2x2 b = uint2x2(
+		1, 1,
+		2, 2
+	);
+	uint2x2 c = a + b;
+
+	TEMPER_EXPECT_TRUE( c == answer );
+
+	TEMPER_PASS();
+}
+
+TEMPER_TEST( TestArithmeticSubtraction_uint2x2 ) {
+	uint2x2 answer = uint2x2(
+		5, 5,
+		4, 4
+	);
+
+	uint2x2 a = uint2x2(
+		6, 6,
+		6, 6
+	);
+	uint2x2 b = uint2x2(
+		1, 1,
+		2, 2
+	);
+	uint2x2 c = a - b;
+
+	TEMPER_EXPECT_TRUE( c == answer );
+
+	TEMPER_PASS();
+}
+
+TEMPER_TEST( TestArithmeticMultiplication_uint2x2 ) {
+	uint2x2 answer = uint2x2(
+		18, 18,
+		18, 18
+	);
+
+	uint2x2 a = uint2x2(
+		6, 6,
+		6, 6
+	);
+	uint2x2 b = uint2x2(
+		1, 1,
+		2, 2
+	);
+	uint2x2 c = a * b;
+
+	TEMPER_EXPECT_TRUE( c == answer );
+
+	TEMPER_PASS();
+}
+
+TEMPER_TEST( TestArithmeticDivision_uint2x2 ) {
+	uint2x2 answer = uint2x2(
+	);
+
+	uint2x2 a = uint2x2(
+		6, 6,
+		6, 6
+	);
+	uint2x2 b = uint2x2(
+		1, 1,
+		2, 2
+	);
+	uint2x2 c = a / b;
+
+	TEMPER_EXPECT_TRUE( c == answer );
+
+	TEMPER_PASS();
+}
+
 TEMPER_TEST( TestArray_uint2x2 ) {
 	uint2x2 mat;
 
@@ -218,6 +300,10 @@ TEMPER_TEST( TestScale_uint2x2 ) {
 TEMPER_SUITE( Test_uint2x2 ) {
 	TEMPER_RUN_TEST( TestAssignment_uint2x2 );
 
+	TEMPER_RUN_TEST( TestArithmeticAddition_uint2x2 );
+	TEMPER_RUN_TEST( TestArithmeticSubtraction_uint2x2 );
+	TEMPER_RUN_TEST( TestArithmeticMultiplication_uint2x2 );
+	TEMPER_RUN_TEST( TestArithmeticDivision_uint2x2 );
 
 	TEMPER_RUN_TEST( TestArray_uint2x2 );
 	TEMPER_RUN_TEST( TestRelational_uint2x2 );

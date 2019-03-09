@@ -65,6 +65,110 @@ TEMPER_TEST( TestAssignment_float4x4 ) {
 	TEMPER_PASS();
 }
 
+TEMPER_TEST( TestArithmeticAddition_float4x4 ) {
+	float4x4 answer = float4x4(
+		7.000000f, 7.000000f, 7.000000f, 7.000000f,
+		8.000000f, 8.000000f, 8.000000f, 8.000000f,
+		15.000000f, 15.000000f, 15.000000f, 15.000000f,
+		24.000000f, 24.000000f, 24.000000f, 24.000000f
+	);
+
+	float4x4 a = float4x4(
+		6.000000f, 6.000000f, 6.000000f, 6.000000f,
+		6.000000f, 6.000000f, 6.000000f, 6.000000f,
+		12.000000f, 12.000000f, 12.000000f, 12.000000f,
+		18.000000f, 18.000000f, 18.000000f, 18.000000f
+	);
+	float4x4 b = float4x4(
+		1.000000f, 1.000000f, 1.000000f, 1.000000f,
+		2.000000f, 2.000000f, 2.000000f, 2.000000f,
+		3.000000f, 3.000000f, 3.000000f, 3.000000f,
+		6.000000f, 6.000000f, 6.000000f, 6.000000f
+	);
+	float4x4 c = a + b;
+
+	TEMPER_EXPECT_TRUE( c == answer );
+
+	TEMPER_PASS();
+}
+
+TEMPER_TEST( TestArithmeticSubtraction_float4x4 ) {
+	float4x4 answer = float4x4(
+		5.000000f, 5.000000f, 5.000000f, 5.000000f,
+		4.000000f, 4.000000f, 4.000000f, 4.000000f,
+		9.000000f, 9.000000f, 9.000000f, 9.000000f,
+		12.000000f, 12.000000f, 12.000000f, 12.000000f
+	);
+
+	float4x4 a = float4x4(
+		6.000000f, 6.000000f, 6.000000f, 6.000000f,
+		6.000000f, 6.000000f, 6.000000f, 6.000000f,
+		12.000000f, 12.000000f, 12.000000f, 12.000000f,
+		18.000000f, 18.000000f, 18.000000f, 18.000000f
+	);
+	float4x4 b = float4x4(
+		1.000000f, 1.000000f, 1.000000f, 1.000000f,
+		2.000000f, 2.000000f, 2.000000f, 2.000000f,
+		3.000000f, 3.000000f, 3.000000f, 3.000000f,
+		6.000000f, 6.000000f, 6.000000f, 6.000000f
+	);
+	float4x4 c = a - b;
+
+	TEMPER_EXPECT_TRUE( c == answer );
+
+	TEMPER_PASS();
+}
+
+TEMPER_TEST( TestArithmeticMultiplication_float4x4 ) {
+	float4x4 answer = float4x4(
+		72.000000f, 72.000000f, 72.000000f, 72.000000f,
+		72.000000f, 72.000000f, 72.000000f, 72.000000f,
+		144.000000f, 144.000000f, 144.000000f, 144.000000f,
+		216.000000f, 216.000000f, 216.000000f, 216.000000f
+	);
+
+	float4x4 a = float4x4(
+		6.000000f, 6.000000f, 6.000000f, 6.000000f,
+		6.000000f, 6.000000f, 6.000000f, 6.000000f,
+		12.000000f, 12.000000f, 12.000000f, 12.000000f,
+		18.000000f, 18.000000f, 18.000000f, 18.000000f
+	);
+	float4x4 b = float4x4(
+		1.000000f, 1.000000f, 1.000000f, 1.000000f,
+		2.000000f, 2.000000f, 2.000000f, 2.000000f,
+		3.000000f, 3.000000f, 3.000000f, 3.000000f,
+		6.000000f, 6.000000f, 6.000000f, 6.000000f
+	);
+	float4x4 c = a * b;
+
+	TEMPER_EXPECT_TRUE( c == answer );
+
+	TEMPER_PASS();
+}
+
+TEMPER_TEST( TestArithmeticDivision_float4x4 ) {
+	float4x4 answer = float4x4(
+	);
+
+	float4x4 a = float4x4(
+		6.000000f, 6.000000f, 6.000000f, 6.000000f,
+		6.000000f, 6.000000f, 6.000000f, 6.000000f,
+		12.000000f, 12.000000f, 12.000000f, 12.000000f,
+		18.000000f, 18.000000f, 18.000000f, 18.000000f
+	);
+	float4x4 b = float4x4(
+		1.000000f, 1.000000f, 1.000000f, 1.000000f,
+		2.000000f, 2.000000f, 2.000000f, 2.000000f,
+		3.000000f, 3.000000f, 3.000000f, 3.000000f,
+		6.000000f, 6.000000f, 6.000000f, 6.000000f
+	);
+	float4x4 c = a / b;
+
+	TEMPER_EXPECT_TRUE( c == answer );
+
+	TEMPER_PASS();
+}
+
 TEMPER_TEST( TestArray_float4x4 ) {
 	float4x4 mat;
 
@@ -412,6 +516,10 @@ TEMPER_TEST( TestLookAt_float4x4 ) {
 TEMPER_SUITE( Test_float4x4 ) {
 	TEMPER_RUN_TEST( TestAssignment_float4x4 );
 
+	TEMPER_RUN_TEST( TestArithmeticAddition_float4x4 );
+	TEMPER_RUN_TEST( TestArithmeticSubtraction_float4x4 );
+	TEMPER_RUN_TEST( TestArithmeticMultiplication_float4x4 );
+	TEMPER_RUN_TEST( TestArithmeticDivision_float4x4 );
 
 	TEMPER_RUN_TEST( TestArray_float4x4 );
 	TEMPER_RUN_TEST( TestRelational_float4x4 );

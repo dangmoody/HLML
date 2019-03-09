@@ -65,6 +65,110 @@ TEMPER_TEST( TestAssignment_uint4x4 ) {
 	TEMPER_PASS();
 }
 
+TEMPER_TEST( TestArithmeticAddition_uint4x4 ) {
+	uint4x4 answer = uint4x4(
+		7, 7, 7, 7,
+		8, 8, 8, 8,
+		15, 15, 15, 15,
+		24, 24, 24, 24
+	);
+
+	uint4x4 a = uint4x4(
+		6, 6, 6, 6,
+		6, 6, 6, 6,
+		12, 12, 12, 12,
+		18, 18, 18, 18
+	);
+	uint4x4 b = uint4x4(
+		1, 1, 1, 1,
+		2, 2, 2, 2,
+		3, 3, 3, 3,
+		6, 6, 6, 6
+	);
+	uint4x4 c = a + b;
+
+	TEMPER_EXPECT_TRUE( c == answer );
+
+	TEMPER_PASS();
+}
+
+TEMPER_TEST( TestArithmeticSubtraction_uint4x4 ) {
+	uint4x4 answer = uint4x4(
+		5, 5, 5, 5,
+		4, 4, 4, 4,
+		9, 9, 9, 9,
+		12, 12, 12, 12
+	);
+
+	uint4x4 a = uint4x4(
+		6, 6, 6, 6,
+		6, 6, 6, 6,
+		12, 12, 12, 12,
+		18, 18, 18, 18
+	);
+	uint4x4 b = uint4x4(
+		1, 1, 1, 1,
+		2, 2, 2, 2,
+		3, 3, 3, 3,
+		6, 6, 6, 6
+	);
+	uint4x4 c = a - b;
+
+	TEMPER_EXPECT_TRUE( c == answer );
+
+	TEMPER_PASS();
+}
+
+TEMPER_TEST( TestArithmeticMultiplication_uint4x4 ) {
+	uint4x4 answer = uint4x4(
+		72, 72, 72, 72,
+		72, 72, 72, 72,
+		144, 144, 144, 144,
+		216, 216, 216, 216
+	);
+
+	uint4x4 a = uint4x4(
+		6, 6, 6, 6,
+		6, 6, 6, 6,
+		12, 12, 12, 12,
+		18, 18, 18, 18
+	);
+	uint4x4 b = uint4x4(
+		1, 1, 1, 1,
+		2, 2, 2, 2,
+		3, 3, 3, 3,
+		6, 6, 6, 6
+	);
+	uint4x4 c = a * b;
+
+	TEMPER_EXPECT_TRUE( c == answer );
+
+	TEMPER_PASS();
+}
+
+TEMPER_TEST( TestArithmeticDivision_uint4x4 ) {
+	uint4x4 answer = uint4x4(
+	);
+
+	uint4x4 a = uint4x4(
+		6, 6, 6, 6,
+		6, 6, 6, 6,
+		12, 12, 12, 12,
+		18, 18, 18, 18
+	);
+	uint4x4 b = uint4x4(
+		1, 1, 1, 1,
+		2, 2, 2, 2,
+		3, 3, 3, 3,
+		6, 6, 6, 6
+	);
+	uint4x4 c = a / b;
+
+	TEMPER_EXPECT_TRUE( c == answer );
+
+	TEMPER_PASS();
+}
+
 TEMPER_TEST( TestArray_uint4x4 ) {
 	uint4x4 mat;
 
@@ -291,6 +395,10 @@ TEMPER_TEST( TestScale_uint4x4 ) {
 TEMPER_SUITE( Test_uint4x4 ) {
 	TEMPER_RUN_TEST( TestAssignment_uint4x4 );
 
+	TEMPER_RUN_TEST( TestArithmeticAddition_uint4x4 );
+	TEMPER_RUN_TEST( TestArithmeticSubtraction_uint4x4 );
+	TEMPER_RUN_TEST( TestArithmeticMultiplication_uint4x4 );
+	TEMPER_RUN_TEST( TestArithmeticDivision_uint4x4 );
 
 	TEMPER_RUN_TEST( TestArray_uint4x4 );
 	TEMPER_RUN_TEST( TestRelational_uint4x4 );

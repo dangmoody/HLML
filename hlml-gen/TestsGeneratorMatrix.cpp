@@ -8,6 +8,7 @@
 #include "../out/hlml_main.h"
 
 #include <assert.h>
+#include <vector>
 
 void TestsGeneratorMatrix::Generate( const genType_t type, const uint32_t numRows, const uint32_t numCols ) {
 	m_code = std::string();
@@ -69,10 +70,10 @@ void TestsGeneratorMatrix::Generate( const genType_t type, const uint32_t numRow
 
 	if ( m_type != GEN_TYPE_BOOL ) {
 		m_code += "\n";
-//		m_code += "\tTEMPER_RUN_TEST( TestArithmeticAddition_" + m_fullTypeName + " );\n";
-//		m_code += "\tTEMPER_RUN_TEST( TestArithmeticSubtraction_" + m_fullTypeName + " );\n";
-//		m_code += "\tTEMPER_SKIP_TEST( TestArithmeticMultiplication_" + m_fullTypeName + ", \"Give me a minute to think about how to structure this one.\" );\n";
-//		m_code += "\tTEMPER_RUN_TEST( TestArithmeticDivision_" + m_fullTypeName + " );\n";
+		m_code += "\tTEMPER_RUN_TEST( TestArithmeticAddition_" + m_fullTypeName + " );\n";
+		m_code += "\tTEMPER_RUN_TEST( TestArithmeticSubtraction_" + m_fullTypeName + " );\n";
+		m_code += "\tTEMPER_RUN_TEST( TestArithmeticMultiplication_" + m_fullTypeName + " );\n";
+		m_code += "\tTEMPER_RUN_TEST( TestArithmeticDivision_" + m_fullTypeName + " );\n";
 		m_code += "\n";
 	}
 
@@ -236,254 +237,35 @@ void TestsGeneratorMatrix::GenerateTestArithmetic() {
 		return;
 	}
 
-	int32_t lhs[4][4] = {
-		{ 6, 6, 6, 6 },
-		{ 6, 6, 6, 6 },
-		{ 6, 6, 6, 6 },
-		{ 6, 6, 6, 6 },
+	float valuesLhs[4][4] = {
+		{ 6.0f,  6.0f,  6.0f,  6.0f  },
+		{ 6.0f,  6.0f,  6.0f,  6.0f  },
+		{ 12.0f, 12.0f, 12.0f, 12.0f },
+		{ 18.0f, 18.0f, 18.0f, 18.0f }
 	};
 
-	int32_t rhs[4][4] = {
-		{ 2,  3,  4,  4  },
-		{ 6,  6,  8,  8  },
-		{ 10, 10, 12, 12 },
-		{ 18, 18, 24, 24 },
+	float valuesRhs[4][4] = {
+		{ 1.0f, 1.0f, 1.0f, 1.0f },
+		{ 2.0f, 2.0f, 2.0f, 2.0f },
+		{ 3.0f, 3.0f, 3.0f, 3.0f },
+		{ 6.0f, 6.0f, 6.0f, 6.0f }
 	};
 
-#if 0
-	uint32_t m2x2[2][2] = {
-
-	};
-
-	uint32_t m2x3[2][3] = {
-
-	};
-
-	uint32_t m3x2[3][2] = {
-
-	};
-
-	uint32_t m3x4[3][4] = {
-
-	};
-
-	uint32_t m4x3[4][3] = {
-
-	};
-
-	uint32_t m4x4[4][4] = {
-
-	};
-#endif
-
-	std::string paramListLHS = "(\n";
-	for ( uint32_t col = 0; col < m_numCols; col++ ) {
-		paramListLHS += "\t\t";
-
-		for ( uint32_t row = 0; row < m_numRows; row++ ) {
-			paramListLHS += Gen_GetNumericLiteral( m_type, lhs[row][col] );
-
-			if ( row + col != ( m_numRows - 1 ) + ( m_numCols - 1 ) ) {
-				paramListLHS += ",";
-			}
-
-			if ( col != m_numCols - 1 ) {
-				paramListLHS += " ";
-			}
-		}
-
-		paramListLHS += "\n";
-	}
-	paramListLHS += "\t)";
-
-	std::string paramListVarying = "(\n";
-	for ( uint32_t row = 0; row < m_numRows; row++ ) {
-		paramListVarying += "\t\t";
-
-		for ( uint32_t col = 0; col < m_numCols; col++ ) {
-			paramListVarying += Gen_GetNumericLiteral( m_type, rhs[row][col] );
-
-			if ( row + col != ( m_numRows - 1 ) + ( m_numCols - 1 ) ) {
-				paramListVarying += ",";
-			}
-
-			if ( col != m_numCols - 1 ) {
-				paramListVarying += " ";
-			}
-		}
-
-		paramListVarying += "\n";
-	}
-	paramListVarying += "\t)";
-
-	std::string paramListIdentity = Gen_GetParmListMatrixIdentity( m_type, m_numRows, m_numCols );
-
-	std::string paramListAnswers[GEN_OP_ARITHMETIC_COUNT];
-
-	// addition
-	{
-		std::string paramList = "(\n";
-		for ( uint32_t row = 0; row < m_numRows; row++ ) {
-			paramList += "\t\t";
-
-			for ( uint32_t col = 0; col < m_numCols; col++ ) {
-				paramList += Gen_GetNumericLiteral( m_type, lhs[row][col] + rhs[row][col] );
-
-				if ( row + col != ( m_numRows - 1 ) + ( m_numCols - 1 ) ) {
-					paramList += ",";
-				}
-
-				if ( col != m_numCols - 1 ) {
-					paramList += " ";
-				}
-			}
-
-			paramList += "\n";
-		}
-		paramList += "\t)";
-
-		paramListAnswers[GEN_OP_ARITHMETIC_ADD] = paramList;
-	}
-
-	// subtraction
-	{
-		std::string paramList = "(\n";
-		for ( uint32_t row = 0; row < m_numRows; row++ ) {
-			paramList += "\t\t";
-
-			for ( uint32_t col = 0; col < m_numCols; col++ ) {
-				paramList += Gen_GetNumericLiteral( m_type, lhs[row][col] - rhs[row][col] );
-
-				if ( row + col != ( m_numRows - 1 ) + ( m_numCols - 1 ) ) {
-					paramList += ",";
-				}
-
-				if ( col != m_numCols - 1 ) {
-					paramList += " ";
-				}
-			}
-
-			paramList += "\n";
-		}
-		paramList += "\t)";
-
-		paramListAnswers[GEN_OP_ARITHMETIC_SUB] = paramList;
-	}
-
-	// multiplication
-	{
-		std::string paramList = "(\n";
-		for ( uint32_t row = 0; row < m_numRows; row++ ) {
-			paramList += "\t\t";
-
-			for ( uint32_t col = 0; col < m_numCols; col++ ) {
-				// DM!!! wrong!
-				int32_t matrixValue = row + col;
-
-				paramList += Gen_GetNumericLiteral( m_type, matrixValue );
-
-				if ( row + col != ( m_numRows - 1 ) + ( m_numCols - 1 ) ) {
-					paramList += ",";
-				}
-
-				if ( col != m_numCols - 1 ) {
-					paramList += " ";
-				}
-			}
-
-			paramList += "\n";
-		}
-		paramList += "\t)";
-
-		paramListAnswers[GEN_OP_ARITHMETIC_MUL] = paramList;
-	}
-
-	// division
-	{
-		std::string paramList = "(\n";
-		
-		for ( uint32_t row = 0; row < m_numRows; row++ ) {
-			paramList += "\t\t";
-
-			for ( uint32_t col = 0; col < m_numCols; col++ ) {
-				// TODO(DM): find a better way of representing this
-				if ( Gen_IsFloatingPointType( m_type ) ) {
-					float value = static_cast<float>( lhs[row][col] ) / static_cast<float>( rhs[row][col] );
-
-					if ( m_type == GEN_TYPE_FLOAT ) {
-						paramList += std::to_string( value ) + "f";
-					} else {
-						paramList += std::to_string( value );
-					}
-				} else {
-					paramList += Gen_GetNumericLiteral( m_type, lhs[row][col] / rhs[row][col] );
-				}
-
-				if ( row + col != ( m_numRows - 1 ) + ( m_numCols - 1 ) ) {
-					paramList += ",";
-				}
-
-				if ( col != m_numCols - 1 ) {
-					paramList += " ";
-				}
-			}
-
-			paramList += "\n";
-		}
-		paramList += "\t)";
-
-		paramListAnswers[GEN_OP_ARITHMETIC_DIV] = paramList;
-	}
-
-	std::string testSuffices[] = {
+	std::string suffices[] = {
 		"Addition",
 		"Subtraction",
 		"Multiplication",
 		"Division",
 	};
 
-	// handle division separately
-	std::string operators[] = {
-		"+",
-		"-",
-		"*",
-	};
+	for ( uint32_t i = 0; i < GEN_OP_ARITHMETIC_COUNT; i++ ) {
+		genOpArithmetic_t op = static_cast<genOpArithmetic_t>( i );
 
-	// TODO(DM): I don't know how I want to structure these tests yet given the differences between each test
-//	for ( uint32_t operatorIndex = 0; operatorIndex < _countof( operators ); operatorIndex++ ) {
-//		m_code += "TEMPER_TEST( TestArithmetic" + testSuffices[operatorIndex] + "_" + m_fullTypeName + " ) {\n";
-//		m_code += "\t" + m_fullTypeName + " a = " + m_fullTypeName + paramListLHS + ";\n";
-//		m_code += "\t" + m_fullTypeName + " b = " + m_fullTypeName + paramListVarying + ";\n";
-//		m_code += "\t" + m_fullTypeName + " c = a " + GEN_OPERATORS_ARITHMETIC[operatorIndex] + " b;\n";
-//		m_code += "\n";
-//		m_code += "\tTEMPER_EXPECT_TRUE( c == " + m_fullTypeName + paramListAnswers[operatorIndex] + " );\n";
-//		m_code += "\n";
-//		m_code += "\tTEMPER_PASS();\n";
-//		m_code += "}\n";
-//
-//		m_code += "\n";
-//	}
-
-	// if matrix is square then division is multiplication of inverse, so test that equals identity
-	// if matrix is non-square then division is just component-wise division
-//	m_code += "TEMPER_TEST( TestArithmeticDivision_" + m_fullTypeName + " ) {\n";
-//	m_code += "\t" + m_fullTypeName + " a = " + m_fullTypeName + paramListVarying + ";\n";
-//	if ( m_numRows == m_numCols && Gen_IsFloatingPointType( m_type ) ) {
-//		m_code += "\t" + m_fullTypeName + " b = a / a;\n";
-//		m_code += "\t" + m_fullTypeName + " identity = " + m_fullTypeName + paramListIdentity + ";\n";
-//		m_code += "\n";
-//		m_code += "\tTEMPER_EXPECT_TRUE( b == identity );\n";
-//	} else {
-//		m_code += "\t" + m_fullTypeName + " b = " + m_fullTypeName + paramListLHS + ";\n";
-//		m_code += "\t" + m_fullTypeName + " c = b / a;\n";
-//		m_code += "\n";
-//		m_code += "\tTEMPER_EXPECT_TRUE( c == " + m_fullTypeName + paramListAnswers[GEN_OP_ARITHMETIC_DIV] + " );\n";
-//	}
-//	m_code += "\n";
-//	m_code += "\tTEMPER_PASS();\n";
-//	m_code += "}\n";
-//
-//	m_code += "\n";
+		m_code += "TEMPER_TEST( TestArithmetic" + suffices[i] + "_" + m_fullTypeName + " ) {\n";
+		m_code += GetTestCodeArithmeticInternal( op, valuesLhs, valuesRhs );
+		m_code += "}\n";
+		m_code += "\n";
+	}
 }
 
 void TestsGeneratorMatrix::GenerateTestArray() {
@@ -605,7 +387,6 @@ void TestsGeneratorMatrix::GenerateTestTranspose() {
 		paramListTransposed += "\t\t";
 
 		for ( uint32_t row = 0; row < m_numRows; row++ ) {
-//			int32_t index = row + ( col * m_numRows );
 			int32_t index = col + ( row * m_numCols );
 
 			paramListTransposed += Gen_GetNumericLiteral( m_type, index );
@@ -885,34 +666,33 @@ void TestsGeneratorMatrix::GenerateTestRotate() {
 		0.0f, 0.0f, 1.0f
 	};
 
-	float rotMatYaw[4 * 4] = {
-		 cosR, 0.0f, sinR, 0.0f,
-		 0.0f, 1.0f, 0.0f, 0.0f,
-		-sinR, 0.0f, cosR, 0.0f,
-		 0.0f, 0.0f, 0.0f, 1.0f,
+	float rotMatYaw[4][4] = {
+		{  cosR, 0.0f, sinR, 0.0f },
+		{  0.0f, 1.0f, 0.0f, 0.0f },
+		{ -sinR, 0.0f, cosR, 0.0f },
+		{  0.0f, 0.0f, 0.0f, 1.0f },
 	};
 
-	float rotMatPitch[4 * 4] = {
-		1.0f, 0.0f,  0.0f, 0.0f,
-		0.0f, cosR, -sinR, 0.0f,
-		0.0f, sinR,  cosR, 0.0f,
-		0.0f, 0.0f,  0.0f, 1.0f,
+	float rotMatPitch[4][4] = {
+		{ 1.0f, 0.0f,  0.0f, 0.0f },
+		{ 0.0f, cosR, -sinR, 0.0f },
+		{ 0.0f, sinR,  cosR, 0.0f },
+		{ 0.0f, 0.0f,  0.0f, 1.0f },
 	};
 
-	float rotMatRoll[4 * 4] = {
-		cosR, -sinR, 0.0f, 0.0f,
-		sinR,  cosR, 0.0f, 0.0f,
-		0.0f,  0.0f, 1.0f, 0.0f,
-		0.0f,  0.0f, 0.0f, 1.0f,
+	float rotMatRoll[4][4] = {
+		{ cosR, -sinR, 0.0f, 0.0f },
+		{ sinR,  cosR, 0.0f, 0.0f },
+		{ 0.0f,  0.0f, 1.0f, 0.0f },
+		{ 0.0f,  0.0f, 0.0f, 1.0f },
 	};
 
-	float rotMat3x3[3 * 3] = {
-		cosR, -sinR, 0.0f,
-		sinR,  cosR, 0.0f,
-		0.0f,  0.0f, 1.0f,
-	};
-
-	float* matAnswerRoll = ( m_numCols > 3 ) ? rotMatRoll : rotMat3x3;
+//	float rotMat3x3[4][4] = {
+//		{ cosR, -sinR, 0.0f, 0.0f },
+//		{ sinR,  cosR, 0.0f, 0.0f },
+//		{ 0.0f,  0.0f, 1.0f, 0.0f },
+//		{ 0.0f,  0.0f, 0.0f, 1.0f },
+//	};
 
 	uint32_t numRotMatRows = __min( m_numRows, 4 );
 	uint32_t numRotMatCols = __min( m_numCols, 4 );
@@ -929,7 +709,7 @@ void TestsGeneratorMatrix::GenerateTestRotate() {
 
 	std::string parmListMatYaw = Gen_GetParmListMatrix( m_type, numRotMatRows, numRotMatCols, rotMatYaw );
 	std::string parmListMatPitch = Gen_GetParmListMatrix( m_type, numRotMatRows, numRotMatCols, rotMatPitch );
-	std::string parmListMatRoll = Gen_GetParmListMatrix( m_type, numRotMatRows, numRotMatCols, matAnswerRoll );
+	std::string parmListMatRoll = Gen_GetParmListMatrix( m_type, numRotMatRows, numRotMatCols, rotMatRoll );
 
 	std::string radiansFuncStr = Gen_GetFuncNameRadians( m_type );
 
@@ -1003,17 +783,17 @@ void TestsGeneratorMatrix::GenerateTestOrtho() {
 	}
 
 	// answer for 1280 x 720, ortho size 5, znear: -1, zfar: 100
-	float answerOrtho[] = {
-		0.112499997f,  0.0f,         0.0f,           0.0f,
-		0.0f,         -0.200000003f, 0.0f,           0.0f,
-		0.0f,          0.0f,         0.00990098994f, 0.00990098994f,
-		0.0f,          0.0f,         0.0f,           1.0f
+	float answerOrtho[4][4] = {
+		{ 0.112499997f,  0.0f,         0.0f,           0.0f           },
+		{ 0.0f,         -0.200000003f, 0.0f,           0.0f           },
+		{ 0.0f,          0.0f,         0.00990098994f, 0.00990098994f },
+		{ 0.0f,          0.0f,         0.0f,           1.0f           }
 	};
 
 	std::string parmListAnswerOrtho = Gen_GetParmListMatrix( m_type, 4, 4, answerOrtho );
 
-	std::string minusOneStr = Gen_GetNumericLiteral( m_type, -1.0f );
-	std::string oneHundredStr = Gen_GetNumericLiteral( m_type, 100.0f );
+	std::string minusOneStr		= Gen_GetNumericLiteral( m_type, -1.0f );
+	std::string oneHundredStr	= Gen_GetNumericLiteral( m_type, 100.0f );
 
 	m_code += "TEMPER_TEST( TestOrtho_" + m_fullTypeName + " ) {\n";
 	m_code += "\t" + m_fullTypeName + " answerOrtho = " + m_fullTypeName + parmListAnswerOrtho + ";\n";
@@ -1048,20 +828,20 @@ void TestsGeneratorMatrix::GenerateTestPerspective() {
 
 	// answer for 1280 x 720, fov: 90 degrees, znear: 0.1, zfar: 100
 	// clip space: 0 - 1, left handed
-	float answerPerspective[] = {
-		0.347270f, 0.0f,      0.0f,       0.0f,
-		0.0f,      0.617370f, 0.0f,       0.0f,
-		0.0f,      0.0f,      1.001001f, -0.100100f,
-		0.0f,      0.0f,      1.000000f,  0.0f
+	float answerPerspective[4][4] = {
+		{ 0.347270f, 0.0f,      0.0f,       0.0f      },
+		{ 0.0f,      0.617370f, 0.0f,       0.0f      },
+		{ 0.0f,      0.0f,      1.001001f, -0.100100f },
+		{ 0.0f,      0.0f,      1.000000f,  0.0f      }
 	};
 
 	std::string parmListPerspective = Gen_GetParmListMatrix( m_type, 4, 4, answerPerspective );
 
-	std::string widthStr = Gen_GetNumericLiteral( m_type, 1280.0f );
-	std::string heightStr = Gen_GetNumericLiteral( m_type, 720.0f );
-	std::string fovStr = Gen_GetNumericLiteral( m_type, 90.0f );
-	std::string znearStr = Gen_GetNumericLiteral( m_type, 0.1f );
-	std::string zfarStr = Gen_GetNumericLiteral( m_type, 100.0f );
+	std::string widthStr	= Gen_GetNumericLiteral( m_type, 1280.0f );
+	std::string heightStr	= Gen_GetNumericLiteral( m_type, 720.0f );
+	std::string fovStr		= Gen_GetNumericLiteral( m_type, 90.0f );
+	std::string znearStr	= Gen_GetNumericLiteral( m_type, 0.1f );
+	std::string zfarStr		= Gen_GetNumericLiteral( m_type, 100.0f );
 
 	m_code += "TEMPER_TEST( TestPerspective_" + m_fullTypeName + " ) {\n";
 	m_code += "\t" + m_fullTypeName + " answerPerspective = " + m_fullTypeName + parmListPerspective + ";\n";
@@ -1089,20 +869,22 @@ void TestsGeneratorMatrix::GenerateTestLookAt() {
 	float targetPos[]	= { 1.0f, 0.0f, 1.0f };
 	float up[]			= { 0.0f, 1.0f, 0.0f };
 
-	float answerLookAt[] = {
-		0.707107f, 0.0f, -0.707107f, 0.0f,
-		0.0f,      1.0f,  0.0f,      0.0f,
-		0.707107f, 0.0f,  0.707107f, 0.0f,
-		0.0f,      0.0f,  0.0f,      1.0f
+	float answerLookAt[4][4] = {
+		{ 0.707107f, 0.0f, -0.707107f, 0.0f },
+		{ 0.0f,      1.0f,  0.0f,      0.0f },
+		{ 0.707107f, 0.0f,  0.707107f, 0.0f },
+		{ 0.0f,      0.0f,  0.0f,      1.0f }
 	};
 
-	std::string posVectorTypeName = m_typeString + std::to_string( 3 );
+	uint32_t numTranslateVecComponents = 3;
 
-	std::string parmListCurrentPos = Gen_GetParmListVector( m_type, 3, currentPos );
-	std::string parmListTargetPos = Gen_GetParmListVector( m_type, 3, targetPos );
-	std::string parmListUp = Gen_GetParmListVector( m_type, 3, up );
+	std::string posVectorTypeName = m_typeString + std::to_string( numTranslateVecComponents );
 
-	std::string parmListLookAt = Gen_GetParmListMatrix( m_type, 4, 4, answerLookAt );
+	std::string parmListCurrentPos	= Gen_GetParmListVector( m_type, numTranslateVecComponents, currentPos );
+	std::string parmListTargetPos	= Gen_GetParmListVector( m_type, numTranslateVecComponents, targetPos );
+	std::string parmListUp			= Gen_GetParmListVector( m_type, numTranslateVecComponents, up );
+
+	std::string parmListLookAt = Gen_GetParmListMatrix( m_type, m_numRows, m_numCols, answerLookAt );
 
 	m_code += "TEMPER_TEST( TestLookAt_" + m_fullTypeName + " ) {\n";
 	m_code += "\t" + m_fullTypeName + " answerLookAt = " + m_fullTypeName + parmListLookAt + ";\n";
@@ -1117,4 +899,175 @@ void TestsGeneratorMatrix::GenerateTestLookAt() {
 	m_code += "\tTEMPER_PASS();\n";
 	m_code += "}\n";
 	m_code += "\n";
+}
+
+std::string TestsGeneratorMatrix::GetTestCodeArithmeticInternal( const genOpArithmetic_t op,
+	const float valuesLhs[GEN_COMPONENT_COUNT_MAX][GEN_COMPONENT_COUNT_MAX], const float valuesRhs[GEN_COMPONENT_COUNT_MAX][GEN_COMPONENT_COUNT_MAX] ) const {
+	assert( op >= 0 );
+	assert( op < GEN_OP_ARITHMETIC_COUNT );
+	assert( valuesLhs );
+	assert( valuesRhs );
+
+	uint32_t rhsRows = m_numRows;
+	uint32_t rhsCols = m_numCols;
+
+	uint32_t returnTypeRows = m_numRows;
+	uint32_t returnTypeCols = m_numCols;
+
+	std::string lhsTypeName = m_fullTypeName;
+	std::string rhsTypeName;
+	std::string returnTypeName;
+
+	// for non-square matrices you can only do proper multiply and divide by the transposed type
+	if ( op == GEN_OP_ARITHMETIC_MUL ) {
+		rhsRows = m_numCols;
+		rhsCols = m_numRows;
+
+		returnTypeRows = m_numRows;
+		returnTypeCols = m_numRows;
+
+		rhsTypeName = m_typeString + m_numColsStr + "x" + m_numRowsStr;
+		returnTypeName = m_typeString + m_numRowsStr + "x" + m_numRowsStr;
+	} else {
+		returnTypeName = rhsTypeName = lhsTypeName;
+	}
+
+	std::string parmListLhs = Gen_GetParmListMatrix( m_type, m_numRows, m_numCols, valuesLhs );
+	std::string parmListRhs = Gen_GetParmListMatrix( m_type, rhsRows, rhsCols, valuesRhs );
+
+	std::string parmListAnswer = GetParmListArithmeticAnswer( op, returnTypeRows, returnTypeCols, valuesLhs, valuesRhs );
+
+	std::string code;
+
+	code += "\t" + returnTypeName + " answer = " + returnTypeName + parmListAnswer + ";\n";
+	code += "\n";
+	code += "\t" + m_fullTypeName + " a = " + m_fullTypeName + parmListLhs + ";\n";
+	code += "\t" + rhsTypeName    + " b = " + rhsTypeName + parmListRhs + ";\n";
+	code += "\t" + returnTypeName + " c = a " + GEN_OPERATORS_ARITHMETIC[op] + " b;\n";
+	code += "\n";
+	code += "\tTEMPER_EXPECT_TRUE( c == answer );\n";
+	code += "\n";
+	code += "\tTEMPER_PASS();\n";
+
+	return code;
+}
+
+std::string TestsGeneratorMatrix::GetParmListArithmeticAnswer( const genOpArithmetic_t op, const uint32_t numRows, const uint32_t numCols,
+	const float valuesLhs[GEN_COMPONENT_COUNT_MAX][GEN_COMPONENT_COUNT_MAX], const float valuesRhs[GEN_COMPONENT_COUNT_MAX][GEN_COMPONENT_COUNT_MAX] ) const {
+	assert( op >= 0 );
+	assert( op < GEN_OP_ARITHMETIC_COUNT );
+
+	assert( numRows >= GEN_COMPONENT_COUNT_MIN );
+	assert( numRows <= GEN_COMPONENT_COUNT_MAX );
+	assert( numCols >= GEN_COMPONENT_COUNT_MIN );
+	assert( numCols <= GEN_COMPONENT_COUNT_MAX );
+
+	assert( valuesLhs );
+	assert( valuesRhs );
+
+	std::string parmList = "(\n";
+
+	switch ( op ) {
+		case GEN_OP_ARITHMETIC_ADD: {
+			for ( uint32_t row = 0; row < numRows; row++ ) {
+				parmList += "\t\t";
+
+				for ( uint32_t col = 0; col < numCols; col++ ) {
+					float lhs = valuesLhs[row][col];
+					float rhs = valuesRhs[row][col];
+
+					parmList += Gen_GetNumericLiteral( m_type, lhs + rhs );
+
+					if ( row + col != ( numRows - 1 ) + ( numCols - 1 ) ) {
+						parmList += ",";
+					}
+
+					if ( col != numCols - 1 ) {
+						parmList += " ";
+					}
+				}
+
+				parmList += "\n";
+			}
+
+			break;
+		}
+
+		case GEN_OP_ARITHMETIC_SUB: {
+			for ( uint32_t row = 0; row < numRows; row++ ) {
+				parmList += "\t\t";
+
+				for ( uint32_t col = 0; col < numCols; col++ ) {
+					float lhs = valuesLhs[row][col];
+					float rhs = valuesRhs[row][col];
+
+					parmList += Gen_GetNumericLiteral( m_type, lhs - rhs );
+
+					if ( row + col != ( numRows - 1 ) + ( numCols - 1 ) ) {
+						parmList += ",";
+					}
+
+					if ( col != numCols - 1 ) {
+						parmList += " ";
+					}
+				}
+
+				parmList += "\n";
+			}
+
+			break;
+		}
+
+		case GEN_OP_ARITHMETIC_MUL: {
+			for ( uint32_t row = 0; row < numRows; row++ ) {
+				parmList += "\t\t";
+
+				for ( uint32_t col = 0; col < numCols; col++ ) {
+					// get the left-hand row
+					std::vector<float> lhsRow( m_numCols );
+					for ( size_t lhsComponent = 0; lhsComponent < lhsRow.size(); lhsComponent++ ) {
+						lhsRow[lhsComponent] = valuesLhs[row][lhsComponent];
+					}
+
+					// get the right-hand column
+					std::vector<float> rhsCol( m_numCols );
+					for ( size_t rhsComponent = 0; rhsComponent < rhsCol.size(); rhsComponent++ ) {
+						rhsCol[rhsComponent] = valuesRhs[rhsComponent][col];
+					}
+
+					// do the dot product procedurally
+					std::vector<float> dots( m_numCols );
+					for ( size_t i = 0; i < dots.size(); i++ ) {
+						dots[i] = lhsRow[i] * rhsCol[i];
+					}
+
+					float dot = 0.0f;
+					for ( size_t i = 0; i < dots.size(); i++ ) {
+						dot += dots[i];
+					}
+
+					parmList += Gen_GetNumericLiteral( m_type, dot );
+
+					if ( row + col != ( numRows - 1 ) + ( numCols - 1 ) ) {
+						parmList += ",";
+					}
+
+					if ( col != numCols - 1 ) {
+						parmList += " ";
+					}
+				}
+
+				parmList += "\n";
+			}
+
+			break;
+		}
+
+		default:
+			break;
+	}
+
+	parmList += "\t)";
+
+	return parmList;
 }

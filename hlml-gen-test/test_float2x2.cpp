@@ -55,6 +55,88 @@ TEMPER_TEST( TestAssignment_float2x2 ) {
 	TEMPER_PASS();
 }
 
+TEMPER_TEST( TestArithmeticAddition_float2x2 ) {
+	float2x2 answer = float2x2(
+		7.000000f, 7.000000f,
+		8.000000f, 8.000000f
+	);
+
+	float2x2 a = float2x2(
+		6.000000f, 6.000000f,
+		6.000000f, 6.000000f
+	);
+	float2x2 b = float2x2(
+		1.000000f, 1.000000f,
+		2.000000f, 2.000000f
+	);
+	float2x2 c = a + b;
+
+	TEMPER_EXPECT_TRUE( c == answer );
+
+	TEMPER_PASS();
+}
+
+TEMPER_TEST( TestArithmeticSubtraction_float2x2 ) {
+	float2x2 answer = float2x2(
+		5.000000f, 5.000000f,
+		4.000000f, 4.000000f
+	);
+
+	float2x2 a = float2x2(
+		6.000000f, 6.000000f,
+		6.000000f, 6.000000f
+	);
+	float2x2 b = float2x2(
+		1.000000f, 1.000000f,
+		2.000000f, 2.000000f
+	);
+	float2x2 c = a - b;
+
+	TEMPER_EXPECT_TRUE( c == answer );
+
+	TEMPER_PASS();
+}
+
+TEMPER_TEST( TestArithmeticMultiplication_float2x2 ) {
+	float2x2 answer = float2x2(
+		18.000000f, 18.000000f,
+		18.000000f, 18.000000f
+	);
+
+	float2x2 a = float2x2(
+		6.000000f, 6.000000f,
+		6.000000f, 6.000000f
+	);
+	float2x2 b = float2x2(
+		1.000000f, 1.000000f,
+		2.000000f, 2.000000f
+	);
+	float2x2 c = a * b;
+
+	TEMPER_EXPECT_TRUE( c == answer );
+
+	TEMPER_PASS();
+}
+
+TEMPER_TEST( TestArithmeticDivision_float2x2 ) {
+	float2x2 answer = float2x2(
+	);
+
+	float2x2 a = float2x2(
+		6.000000f, 6.000000f,
+		6.000000f, 6.000000f
+	);
+	float2x2 b = float2x2(
+		1.000000f, 1.000000f,
+		2.000000f, 2.000000f
+	);
+	float2x2 c = a / b;
+
+	TEMPER_EXPECT_TRUE( c == answer );
+
+	TEMPER_PASS();
+}
+
 TEMPER_TEST( TestArray_float2x2 ) {
 	float2x2 mat;
 
@@ -244,6 +326,10 @@ TEMPER_TEST( TestScale_float2x2 ) {
 TEMPER_SUITE( Test_float2x2 ) {
 	TEMPER_RUN_TEST( TestAssignment_float2x2 );
 
+	TEMPER_RUN_TEST( TestArithmeticAddition_float2x2 );
+	TEMPER_RUN_TEST( TestArithmeticSubtraction_float2x2 );
+	TEMPER_RUN_TEST( TestArithmeticMultiplication_float2x2 );
+	TEMPER_RUN_TEST( TestArithmeticDivision_float2x2 );
 
 	TEMPER_RUN_TEST( TestArray_float2x2 );
 	TEMPER_RUN_TEST( TestRelational_float2x2 );
