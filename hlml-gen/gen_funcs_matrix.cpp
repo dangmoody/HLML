@@ -862,9 +862,14 @@ void Gen_MatrixLookAt( const genHand_t hand, const genType_t type, const uint32_
 		return;
 	}
 
+	uint32_t numVecComponents = 3;
+
 	std::string typeString = Gen_GetTypeString( type );
-	std::string vectorTypeString = typeString + std::to_string( numRows );
+	std::string vectorTypeString = typeString + std::to_string( numVecComponents );
 	std::string fullTypeName = typeString + std::to_string( numRows ) + "x" + std::to_string( numCols );
+
+	std::string zeroStr = Gen_GetNumericLiteral( type, 0.0f );
+	std::string oneStr = Gen_GetNumericLiteral( type, 1.0f );
 
 	outHeader += "inline " + fullTypeName + " lookat( const " + vectorTypeString + "& eye, const " + vectorTypeString + "& target, const " + vectorTypeString + "& up );\n";
 	outHeader += "\n";
@@ -874,13 +879,13 @@ void Gen_MatrixLookAt( const genHand_t hand, const genType_t type, const uint32_
 		case GEN_HAND_LEFT: {
 			outInl += "\tconst " + vectorTypeString + " forward = normalized( target - eye );\n";
 			outInl += "\tconst " + vectorTypeString + " right = normalized( cross( up, forward ) );\n";
-			outInl += "\tconst " + vectorTypeString + " up1 = normalized( cross( forward, right ) );\n";
+			outInl += "\tconst " + vectorTypeString + " up1 = cross( forward, right );\n";
 			outInl += "\n";
 			outInl += "\treturn " + fullTypeName + "(\n";
-			outInl += "\t\tright,\n";
-			outInl += "\t\tup1,\n";
-			outInl += "\t\tforward,\n";
-			outInl += "\t\t" + vectorTypeString + "( -dot( right, eye ), -dot( up1, eye ), -dot( forward, eye ), " + Gen_GetNumericLiteral( type, 1 ) + " )\n";
+			outInl += "\t\tright.x,   right.y,   right.z,   -dot( right, eye ),\n";
+			outInl += "\t\tup1.x,     up1.y,     up1.z,     -dot( up1, eye ),\n";
+			outInl += "\t\tforward.x, forward.y, forward.z, -dot( forward, eye ),\n";
+			outInl += "\t\t" + zeroStr + ", " + zeroStr + ", " + zeroStr + ", " + oneStr + "\n";
 			outInl += "\t);\n";
 			break;
 		}

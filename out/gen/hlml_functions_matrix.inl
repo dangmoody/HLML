@@ -1319,16 +1319,16 @@ float4x4 perspective( const float fovdeg, const float aspect, const float znear,
 	);
 }
 
-float4x4 lookat( const float4& eye, const float4& target, const float4& up ) {
-	const float4 forward = normalized( target - eye );
-	const float4 right = normalized( cross( up, forward ) );
-	const float4 up1 = normalized( cross( forward, right ) );
+float4x4 lookat( const float3& eye, const float3& target, const float3& up ) {
+	const float3 forward = normalized( target - eye );
+	const float3 right = normalized( cross( up, forward ) );
+	const float3 up1 = cross( forward, right );
 
 	return float4x4(
-		right,
-		up1,
-		forward,
-		float4( -dot( right, eye ), -dot( up1, eye ), -dot( forward, eye ), 1.000000f )
+		right.x,   right.y,   right.z,   -dot( right, eye ),
+		up1.x,     up1.y,     up1.z,     -dot( up1, eye ),
+		forward.x, forward.y, forward.z, -dot( forward, eye ),
+		0.000000f, 0.000000f, 0.000000f, 1.000000f
 	);
 }
 
@@ -1825,16 +1825,16 @@ double4x4 perspective( const double fovdeg, const double aspect, const double zn
 	);
 }
 
-double4x4 lookat( const double4& eye, const double4& target, const double4& up ) {
-	const double4 forward = normalized( target - eye );
-	const double4 right = normalized( cross( up, forward ) );
-	const double4 up1 = normalized( cross( forward, right ) );
+double4x4 lookat( const double3& eye, const double3& target, const double3& up ) {
+	const double3 forward = normalized( target - eye );
+	const double3 right = normalized( cross( up, forward ) );
+	const double3 up1 = cross( forward, right );
 
 	return double4x4(
-		right,
-		up1,
-		forward,
-		double4( -dot( right, eye ), -dot( up1, eye ), -dot( forward, eye ), 1.000000 )
+		right.x,   right.y,   right.z,   -dot( right, eye ),
+		up1.x,     up1.y,     up1.z,     -dot( up1, eye ),
+		forward.x, forward.y, forward.z, -dot( forward, eye ),
+		0.000000, 0.000000, 0.000000, 1.000000
 	);
 }
 

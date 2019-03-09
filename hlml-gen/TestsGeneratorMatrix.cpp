@@ -108,7 +108,7 @@ void TestsGeneratorMatrix::Generate( const genType_t type, const uint32_t numRow
 		if ( Gen_IsFloatingPointType( m_type ) && ( m_numRows >= 4 && m_numCols >= 4 ) ) {
 			m_code += "\tTEMPER_RUN_TEST( TestOrtho_" + m_fullTypeName + " );\n";
 			m_code += "\tTEMPER_RUN_TEST( TestPerspective_" + m_fullTypeName + " );\n";
-			m_code += "\tTEMPER_SKIP_TEST( TestLookAt_" + m_fullTypeName + ", \"TODO\" );\n";
+			m_code += "\tTEMPER_RUN_TEST( TestLookAt_" + m_fullTypeName + " );\n";
 		}
 	}
 	m_code += "};\n";
@@ -1082,8 +1082,36 @@ void TestsGeneratorMatrix::GenerateTestLookAt() {
 		return;
 	}
 
+	float currentPos[]	= { 0.0f, 0.0f, 0.0f };
+	float targetPos[]	= { 1.0f, 0.0f, 1.0f };
+	float up[]			= { 0.0f, 1.0f, 0.0f };
+
+	float answerLookAt[] = {
+		0.707107f, 0.0f, -0.707107f, 0.0f,
+		0.0f,      1.0f,  0.0f,      0.0f,
+		0.707107f, 0.0f,  0.707107f, 0.0f,
+		0.0f,      0.0f,  0.0f,      1.0f
+	};
+
+	std::string posVectorTypeName = m_typeString + std::to_string( 3 );
+
+	std::string parmListCurrentPos = GetParmListVector( m_type, 3, currentPos );
+	std::string parmListTargetPos = GetParmListVector( m_type, 3, targetPos );
+	std::string parmListUp = GetParmListVector( m_type, 3, up );
+
+	std::string parmListLookAt = GetParmListMatrix( m_type, 4, 4, answerLookAt );
+
 	m_code += "TEMPER_TEST( TestLookAt_" + m_fullTypeName + " ) {\n";
-	m_code += "\tTEMPER_FAIL();\n";
+	m_code += "\t" + m_fullTypeName + " answerLookAt = " + m_fullTypeName + parmListLookAt + ";\n";
+	m_code += "\n";
+	m_code += "\t" + posVectorTypeName + " currentPos = " + posVectorTypeName + parmListCurrentPos + ";\n";
+	m_code += "\t" + posVectorTypeName + " targetPos = " + posVectorTypeName + parmListTargetPos + ";\n";
+	m_code += "\t" + posVectorTypeName + " up = " + posVectorTypeName + parmListUp + ";\n";
+	m_code += "\t" + m_fullTypeName + " mat = lookat( currentPos, targetPos, up );\n";
+	m_code += "\n";
+	m_code += "\tTEMPER_EXPECT_TRUE( mat == answerLookAt );\n";
+	m_code += "\n";
+	m_code += "\tTEMPER_PASS();\n";
 	m_code += "}\n";
 	m_code += "\n";
 }

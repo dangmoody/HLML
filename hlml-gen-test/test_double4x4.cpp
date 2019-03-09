@@ -392,7 +392,21 @@ TEMPER_TEST( TestPerspective_double4x4 ) {
 }
 
 TEMPER_TEST( TestLookAt_double4x4 ) {
-	TEMPER_FAIL();
+	double4x4 answerLookAt = double4x4(
+		0.707107, 0.000000, -0.707107, 0.000000,
+		0.000000, 1.000000, 0.000000, 0.000000,
+		0.707107, 0.000000, 0.707107, 0.000000,
+		0.000000, 0.000000, 0.000000, 1.000000
+	);
+
+	double3 currentPos = double3( 0.000000, 0.000000, 0.000000 );
+	double3 targetPos = double3( 1.000000, 0.000000, 1.000000 );
+	double3 up = double3( 0.000000, 1.000000, 0.000000 );
+	double4x4 mat = lookat( currentPos, targetPos, up );
+
+	TEMPER_EXPECT_TRUE( mat == answerLookAt );
+
+	TEMPER_PASS();
 }
 
 TEMPER_SUITE( Test_double4x4 ) {
@@ -413,5 +427,5 @@ TEMPER_SUITE( Test_double4x4 ) {
 
 	TEMPER_RUN_TEST( TestOrtho_double4x4 );
 	TEMPER_RUN_TEST( TestPerspective_double4x4 );
-	TEMPER_SKIP_TEST( TestLookAt_double4x4, "TODO" );
+	TEMPER_RUN_TEST( TestLookAt_double4x4 );
 };

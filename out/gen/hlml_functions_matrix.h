@@ -409,7 +409,7 @@ inline float4x4 ortho( const float left, const float right, const float top, con
 
 inline float4x4 perspective( const float fovdeg, const float aspect, const float znear, const float zfar );
 
-inline float4x4 lookat( const float4& eye, const float4& target, const float4& up );
+inline float4x4 lookat( const float3& eye, const float3& target, const float3& up );
 
 
 // double2x2
@@ -512,7 +512,7 @@ inline double4x4 ortho( const double left, const double right, const double top,
 
 inline double4x4 perspective( const double fovdeg, const double aspect, const double znear, const double zfar );
 
-inline double4x4 lookat( const double4& eye, const double4& target, const double4& up );
+inline double4x4 lookat( const double3& eye, const double3& target, const double3& up );
 
 
 #include "hlml_functions_matrix.inl"
