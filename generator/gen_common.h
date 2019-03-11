@@ -20,7 +20,7 @@
 
 #define GEN_OUT_FOLDER_PATH				"out/"
 #define GEN_OUT_GEN_FOLDER_PATH			"out/gen/"
-#define GEN_TESTS_FOLDER_PATH			"hlml-gen-test/"
+#define GEN_TESTS_FOLDER_PATH			"test/"
 
 #define GEN_HEADER_MAIN					"hlml_main.h"
 #define GEN_HEADER_USER					"hlml_user.h"
