@@ -23,6 +23,8 @@ along with hlml.  If not, see <http://www.gnu.org/licenses/>.
 */
 #pragma once
 
+#include "hlml_version.h"
+
 // TODO(DM): remove include in this header
 #include <math.h>
 
