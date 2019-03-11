@@ -117,7 +117,7 @@ void TestsGeneratorVector::GenerateTestArray() {
 	m_code += "\t" + m_fullTypeName + " a = " + m_fullTypeName + parmList + ";\n";
 	m_code += "\n";
 	for ( uint32_t i = 0; i < m_numComponents; i++ ) {
-		m_code += "\tTEMPER_EXPECT_TRUE( a[" + std::to_string( i ) + "] == " + Gen_GetNumericLiteral( m_type, i ) + " );\n";
+		m_code += "\tTEMPER_EXPECT_TRUE( a[" + std::to_string( i ) + "] == " + Gen_GetNumericLiteral( m_type, static_cast<float>( i ) ) + " );\n";
 	}
 	m_code += "\n";
 	m_code += "\tTEMPER_PASS();\n";
@@ -197,7 +197,7 @@ void TestsGeneratorVector::GenerateTestRelational() {
 
 		paramList = "( ";
 		for ( uint32_t paramIndex = 0; paramIndex < m_numComponents; paramIndex++ ) {
-			paramList += Gen_GetNumericLiteral( m_type, componentIndex );
+			paramList += Gen_GetNumericLiteral( m_type, static_cast<float>( componentIndex ) );
 
 			if ( paramIndex != m_numComponents - 1 ) {
 				paramList += ", ";

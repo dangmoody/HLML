@@ -391,7 +391,7 @@ void TestsGeneratorMatrix::GenerateTestTranspose() {
 		for ( uint32_t col = 0; col < m_numCols; col++ ) {
 			int32_t index = col + ( row * m_numCols );
 
-			paramListNormal += Gen_GetNumericLiteral( m_type, index );
+			paramListNormal += Gen_GetNumericLiteral( m_type, static_cast<float>( index ) );
 
 			if ( row + col != ( m_numRows - 1 ) + ( m_numCols - 1 ) ) {
 				paramListNormal += ",";
@@ -413,7 +413,7 @@ void TestsGeneratorMatrix::GenerateTestTranspose() {
 		for ( uint32_t row = 0; row < m_numRows; row++ ) {
 			int32_t index = col + ( row * m_numCols );
 
-			paramListTransposed += Gen_GetNumericLiteral( m_type, index );
+			paramListTransposed += Gen_GetNumericLiteral( m_type, static_cast<float>( index ) );
 
 			if ( row + col != ( m_numRows - 1 ) + ( m_numCols - 1 ) ) {
 				paramListTransposed += ",";
@@ -451,25 +451,25 @@ void TestsGeneratorMatrix::GenerateTestInverse() {
 	}
 
 	// matrices chosen because they gave nice whole numbers for determinants
-	int32_t mat2x2[4] {
-		6, 2,
-		2, 6
+	float mat2x2[4] {
+		6.0f, 2.0f,
+		2.0f, 6.0f
 	};
 
-	int32_t mat3x3[9] {
-		6, 2, 3,
-		2, 7, 2,
-		3, 2, 6
+	float mat3x3[9] {
+		6.0f, 2.0f, 3.0f,
+		2.0f, 7.0f, 2.0f,
+		3.0f, 2.0f, 6.0f
 	};
 
-	int32_t mat4x4[16] {
-		6, 2, 3, 4,
-		2, 7, 5, 3,
-		3, 5, 7, 2,
-		4, 3, 2, 6
+	float mat4x4[16] {
+		6.0f, 2.0f, 3.0f, 4.0f,
+		2.0f, 7.0f, 5.0f, 3.0f,
+		3.0f, 5.0f, 7.0f, 2.0f,
+		4.0f, 3.0f, 2.0f, 6.0f
 	};
 
-	const int32_t* matrix = nullptr;
+	const float* matrix = nullptr;
 	switch ( m_numRows ) {
 		case 2: matrix = mat2x2; break;
 		case 3: matrix = mat3x3; break;
@@ -521,31 +521,31 @@ void TestsGeneratorMatrix::GenerateTestDeterminant() {
 	}
 
 	// matrices chosen because they gave nice whole numbers for determinants
-	int32_t mat2x2[4] {
-		6, 2,
-		2, 6
+	float mat2x2[4] {
+		6.0f, 2.0f,
+		2.0f, 6.0f
 	};
 
-	int32_t mat3x3[9] {
-		6, 2, 3,
-		2, 7, 2,
-		3, 2, 6
+	float mat3x3[9] {
+		6.0f, 2.0f, 3.0f,
+		2.0f, 7.0f, 2.0f,
+		3.0f, 2.0f, 6.0f
 	};
 
-	int32_t mat4x4[16] {
-		6, 2, 3, 4,
-		2, 7, 5, 3,
-		3, 5, 7, 2,
-		4, 3, 2, 6
+	float mat4x4[16] {
+		6.0f, 2.0f, 3.0f, 4.0f,
+		2.0f, 7.0f, 5.0f, 3.0f,
+		3.0f, 5.0f, 7.0f, 2.0f,
+		4.0f, 3.0f, 2.0f, 6.0f
 	};
 
-	int32_t determinants[3] = {
-		32,		// 2x2
-		165,	// 3x3
-		285		// 4x4
+	float determinants[3] = {
+		32.0f,	// 2x2
+		165.0f,	// 3x3
+		285.0f	// 4x4
 	};
 
-	const int32_t* matrix = nullptr;
+	const float* matrix = nullptr;
 	switch ( m_numRows ) {
 		case 2: matrix = mat2x2; break;
 		case 3: matrix = mat3x3; break;
@@ -609,7 +609,9 @@ void TestsGeneratorMatrix::GenerateTestTranslate() {
 
 	std::string parmListTranslateVector = "( ";
 	for ( uint32_t col = 0; col < m_numCols - 1; col++ ) {
-		parmListTranslateVector += Gen_GetNumericLiteral( m_type, col + baseNumber );
+		float number = static_cast<float>( col + baseNumber );
+
+		parmListTranslateVector += Gen_GetNumericLiteral( m_type, number );
 
 		if ( col != m_numCols - 2 ) {
 			parmListTranslateVector += ", ";
@@ -626,7 +628,8 @@ void TestsGeneratorMatrix::GenerateTestTranslate() {
 				parmListTranslated += oneStr;
 			} else {
 				if ( col == m_numCols - 1 ) {
-					parmListTranslated += Gen_GetNumericLiteral( m_type, row + baseNumber );
+					float number = static_cast<float>( row + baseNumber );
+					parmListTranslated += Gen_GetNumericLiteral( m_type, number );
 				} else {
 					parmListTranslated += zeroStr;
 				}
@@ -673,7 +676,7 @@ void TestsGeneratorMatrix::GenerateTestRotate() {
 	}
 
 	float rotDegrees = 45.0f;
-	float rotRadians = rotDegrees * M_PI / 180.0f;
+	float rotRadians = rotDegrees * static_cast<float>( M_PI ) / 180.0f;
 
 	float cosR = cosf( rotRadians );
 	float sinR = sinf( rotRadians );
@@ -954,7 +957,7 @@ std::string TestsGeneratorMatrix::GetTestCodeArithmeticInternal( const genOpArit
 
 	// for division, just divide a matrix by itself and check it equals identity
 	std::string parmListAnswer;
-	if ( op == GEN_OP_ARITHMETIC_DIV && Gen_IsFloatingPointType( m_type ) ) {
+	if ( op == GEN_OP_ARITHMETIC_DIV && ( m_numRows == m_numCols && Gen_IsFloatingPointType( m_type ) ) ) {
 		parmListRhs = Gen_GetParmListMatrix( m_type, m_numRows, m_numCols, valuesLhs );
 
 		parmListAnswer = Gen_GetParmListMatrixIdentity( m_type, m_numRows, m_numCols );
