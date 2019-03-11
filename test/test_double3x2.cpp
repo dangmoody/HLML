@@ -133,9 +133,9 @@ TEMPER_TEST( TestArithmeticMultiplication_double3x2 ) {
 
 TEMPER_TEST( TestArithmeticDivision_double3x2 ) {
 	double3x2 answer = double3x2(
-		1.000000, 0.000000,
-		0.000000, 1.000000,
-		0.000000, 0.000000
+		6.000000, 6.000000,
+		3.000000, 3.000000,
+		4.000000, 4.000000
 	);
 
 	double3x2 a = double3x2(
@@ -144,9 +144,9 @@ TEMPER_TEST( TestArithmeticDivision_double3x2 ) {
 		12.000000, 12.000000
 	);
 	double3x2 b = double3x2(
-		6.000000, 6.000000,
-		6.000000, 6.000000,
-		12.000000, 12.000000
+		1.000000, 1.000000,
+		2.000000, 2.000000,
+		3.000000, 3.000000
 	);
 	double3x2 c = a / b;
 

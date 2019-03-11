@@ -146,10 +146,10 @@ TEMPER_TEST( TestArithmeticMultiplication_float4x2 ) {
 
 TEMPER_TEST( TestArithmeticDivision_float4x2 ) {
 	float4x2 answer = float4x2(
-		1.000000f, 0.000000f,
-		0.000000f, 1.000000f,
-		0.000000f, 0.000000f,
-		0.000000f, 0.000000f
+		6.000000f, 6.000000f,
+		3.000000f, 3.000000f,
+		4.000000f, 4.000000f,
+		3.000000f, 3.000000f
 	);
 
 	float4x2 a = float4x2(
@@ -159,10 +159,10 @@ TEMPER_TEST( TestArithmeticDivision_float4x2 ) {
 		18.000000f, 18.000000f
 	);
 	float4x2 b = float4x2(
-		6.000000f, 6.000000f,
-		6.000000f, 6.000000f,
-		12.000000f, 12.000000f,
-		18.000000f, 18.000000f
+		1.000000f, 1.000000f,
+		2.000000f, 2.000000f,
+		3.000000f, 3.000000f,
+		6.000000f, 6.000000f
 	);
 	float4x2 c = a / b;
 

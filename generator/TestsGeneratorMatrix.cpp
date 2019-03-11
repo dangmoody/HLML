@@ -953,17 +953,13 @@ std::string TestsGeneratorMatrix::GetTestCodeArithmeticInternal( const genOpArit
 	}
 
 	std::string parmListLhs = Gen_GetParmListMatrix( m_type, m_numRows, m_numCols, valuesLhs );
-	std::string parmListRhs;
+	std::string parmListRhs = Gen_GetParmListMatrix( m_type, rhsRows, rhsCols, valuesRhs );
 
 	// for division, just divide a matrix by itself and check it equals identity
 	std::string parmListAnswer;
 	if ( op == GEN_OP_ARITHMETIC_DIV && ( m_numRows == m_numCols && Gen_IsFloatingPointType( m_type ) ) ) {
-		parmListRhs = Gen_GetParmListMatrix( m_type, m_numRows, m_numCols, valuesLhs );
-
 		parmListAnswer = Gen_GetParmListMatrixIdentity( m_type, m_numRows, m_numCols );
 	} else {
-		parmListRhs = Gen_GetParmListMatrix( m_type, rhsRows, rhsCols, valuesRhs );
-
 		parmListAnswer = GetParmListArithmeticAnswer( op, returnTypeRows, returnTypeCols, valuesLhs, valuesRhs );
 	}
 
