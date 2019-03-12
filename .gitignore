@@ -15,3 +15,6 @@
 *.log
 *.tlog
 *.idb
+
+# documentation generated files
+documentation/
