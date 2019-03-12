@@ -91,6 +91,6 @@ inline double saturate( const double x ) {
 	return clamp( x, 0.0, 1.0 );
 }
 
-inline double saturatef( const float x ) {
-	return clampf( x, 0.0, 1.0 );
+inline float saturatef( const float x ) {
+	return clampf( x, 0.0f, 1.0f );
 }
