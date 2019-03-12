@@ -190,7 +190,7 @@ void Gen_VectorSaturate( const genType_t type, const uint32_t numComponents, std
 	std::string oneStr = Gen_GetNumericLiteral( type, 1.0f );
 	std::string saturateFuncStr = Gen_GetFuncNameSaturate( type );
 
-	outHeader += "inline " + fullTypeName + " saturate( const " + fullTypeName + "& vec );";
+	outHeader += "inline " + fullTypeName + " saturate( const " + fullTypeName + "& vec );\n";
 	outHeader += "\n";
 
 	outInl += fullTypeName + " saturate( const " + fullTypeName + "& vec ) {\n";
