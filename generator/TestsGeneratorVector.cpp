@@ -62,17 +62,19 @@ void TestsGeneratorVector::Generate( const genType_t type, const uint32_t numCom
 		m_code += "\n";
 		m_code += "\tTEMPER_RUN_TEST( TestLength_" + m_fullTypeName + " );\n";
 	}
-	if ( m_type == GEN_TYPE_FLOAT || m_type == GEN_TYPE_DOUBLE ) {
+	if ( Gen_IsFloatingPointType( m_type ) ) {
 		m_code += "\tTEMPER_RUN_TEST( TestNormalized_" + m_fullTypeName + " );\n";
 	}
 	if ( m_type != GEN_TYPE_BOOL && m_type != GEN_TYPE_UINT ) {
 		m_code += "\tTEMPER_RUN_TEST( TestDot_" + m_fullTypeName + " );\n";
 	}
-	if ( m_type == GEN_TYPE_FLOAT || m_type == GEN_TYPE_DOUBLE ) {
+	if ( Gen_IsFloatingPointType( m_type ) ) {
 		if ( m_numComponents >= 3 ) {
 			m_code += "\tTEMPER_RUN_TEST( TestCross_" + m_fullTypeName + " );\n";
 		}
 		m_code += "\tTEMPER_RUN_TEST( TestAngle_" + m_fullTypeName + " );\n";
+
+		m_code += "\tTEMPER_RUN_TEST( TestSaturate_" + m_fullTypeName + " );\n";
 	}
 	m_code += "};\n";
 
@@ -366,7 +368,7 @@ void TestsGeneratorVector::GenerateTestCross() {
 }
 
 void TestsGeneratorVector::GenerateTestAngle() {
-	if ( m_type != GEN_TYPE_FLOAT && m_type != GEN_TYPE_DOUBLE ) {
+	if ( !Gen_IsFloatingPointType( m_type ) ) {
 		return;
 	}
 
