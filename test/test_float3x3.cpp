@@ -372,7 +372,7 @@ TEMPER_TEST( TestTranslate_float3x3 ) {
 
 TEMPER_TEST( TestRotate_float3x3 ) {
 	float3x3 mat;
-	float3x3 roll = rotate( mat, radiansf( 45.000000f ) );
+	float3x3 roll = rotate( mat, radians( 45.000000f ) );
 
 	float3x3 answerRoll = float3x3(
 		0.707107f, -0.707107f, 0.000000f,

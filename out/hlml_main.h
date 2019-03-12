@@ -55,11 +55,11 @@ inline double radians( const double degrees ) {
 	return degrees * HLML_PI / 180.0;
 }
 
-inline float degreesf( const float radians ) {
+inline float degrees( const float radians ) {
 	return radians * 180.0f / static_cast<float>( HLML_PI );
 }
 
-inline float radiansf( const float degrees ) {
+inline float radians( const float degrees ) {
 	return degrees * static_cast<float>( HLML_PI ) / 180.0f;
 }
 
@@ -71,11 +71,11 @@ inline double max( const double x, const double y ) {
 	return ( x > y ) ? x : y;
 }
 
-inline float minf( const float x, const float y ) {
+inline float min( const float x, const float y ) {
 	return ( x < y ) ? x : y;
 }
 
-inline float maxf( const float x, const float y ) {
+inline float max( const float x, const float y ) {
 	return ( x > y ) ? x : y;
 }
 
@@ -83,22 +83,22 @@ inline double clamp( const double x, const double low, const double high ) {
 	return min( max( x, low ), high );
 }
 
-inline float clampf( const float x, const float low, const float high ) {
-	return minf( maxf( x, low ), high );
+inline float clamp( const float x, const float low, const float high ) {
+	return min( max( x, low ), high );
 }
 
 inline double saturate( const double x ) {
 	return clamp( x, 0.0, 1.0 );
 }
 
-inline float saturatef( const float x ) {
-	return clampf( x, 0.0f, 1.0f );
+inline float saturate( const float x ) {
+	return clamp( x, 0.0f, 1.0f );
 }
 
 inline double lerp( const double a, const double b, const double t ) {
 	return ( 1.0 - t ) * a + t * b;
 }
 
-inline float lerpf( const float a, const float b, const float t ) {
+inline float lerp( const float a, const float b, const float t ) {
 	return ( 1.0f - t ) * a + t * b;
 }

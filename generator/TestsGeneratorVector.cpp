@@ -263,6 +263,8 @@ void TestsGeneratorVector::GenerateTestLength() {
 	std::string squaredLength = squaredLengths[m_numComponents - 2];
 	std::string length = lengths[m_numComponents - 2];
 
+	std::string floateqStr = Gen_GetFuncNameFloateq( m_type );
+
 	if ( m_type != GEN_TYPE_DOUBLE ) {
 		squaredLength += "f";
 		length += "f";
@@ -271,8 +273,8 @@ void TestsGeneratorVector::GenerateTestLength() {
 	m_code += "TEMPER_TEST( TestLength_" + m_fullTypeName + " ) {\n";
 	m_code += "\t" + m_fullTypeName + " vec = " + m_fullTypeName + "( " + Gen_GetNumericLiteral( m_type, 2 ) + " );\n";
 	m_code += "\n";
-	m_code += "\tTEMPER_EXPECT_TRUE( floateq( lengthsqr( vec ), " + squaredLength + " ) );\n";
-	m_code += "\tTEMPER_EXPECT_TRUE( floateq( length( vec ), " + length + " ) );\n";
+	m_code += "\tTEMPER_EXPECT_TRUE( " + floateqStr + "( lengthsqr( vec ), " + squaredLength + " ) );\n";
+	m_code += "\tTEMPER_EXPECT_TRUE( " + floateqStr + "( length( vec ), " + length + " ) );\n";
 	m_code += "\n";
 	m_code += "\tTEMPER_PASS();\n";
 	m_code += "}\n";
@@ -386,12 +388,14 @@ void TestsGeneratorVector::GenerateTestAngle() {
 
 	std::string ninetyStr = Gen_GetNumericLiteral( Gen_GetSupportedFloatingPointType( m_type ), 90 );
 
+	std::string floateqStr = Gen_GetFuncNameFloateq( m_type );
+
 	m_code += "TEMPER_TEST( TestAngle_" + m_fullTypeName + " ) {\n";
 	m_code += "\t" + m_fullTypeName + " right = " + m_fullTypeName + parmListRight + ";\n";
 	m_code += "\t" + m_fullTypeName + " up = " + m_fullTypeName + parmListUp + ";\n";
 	m_code += "\t" + m_typeString + " answer = angle( up, right );\n";
 	m_code += "\n";
-	m_code += "\tTEMPER_EXPECT_TRUE( floateq( answer, " + ninetyStr + " ) );\n";
+	m_code += "\tTEMPER_EXPECT_TRUE( " + floateqStr + "( answer, " + ninetyStr + " ) );\n";
 	m_code += "\n";
 	m_code += "\tTEMPER_PASS();\n";
 	m_code += "}\n";

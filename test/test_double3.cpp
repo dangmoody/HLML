@@ -132,8 +132,8 @@ TEMPER_TEST( TestRelational_double3 ) {
 TEMPER_TEST( TestLength_double3 ) {
 	double3 vec = double3( 2.000000 );
 
-	TEMPER_EXPECT_TRUE( floateq( lengthsqr( vec ), 12.0 ) );
-	TEMPER_EXPECT_TRUE( floateq( length( vec ), 3.46410161514 ) );
+	TEMPER_EXPECT_TRUE( doubleeq( lengthsqr( vec ), 12.0 ) );
+	TEMPER_EXPECT_TRUE( doubleeq( length( vec ), 3.46410161514 ) );
 
 	TEMPER_PASS();
 }
@@ -171,7 +171,7 @@ TEMPER_TEST( TestAngle_double3 ) {
 	double3 up = double3( 0.000000, 1.000000, 0.000000 );
 	double answer = angle( up, right );
 
-	TEMPER_EXPECT_TRUE( floateq( answer, 90.000000 ) );
+	TEMPER_EXPECT_TRUE( doubleeq( answer, 90.000000 ) );
 
 	TEMPER_PASS();
 }

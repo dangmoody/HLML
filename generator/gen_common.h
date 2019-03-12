@@ -117,20 +117,13 @@ inline std::string	Gen_GetNumericLiteral( const genType_t type, const float valu
 inline genType_t	Gen_GetSupportedFloatingPointType( const genType_t type ) { return ( type == GEN_TYPE_DOUBLE ) ? GEN_TYPE_DOUBLE : GEN_TYPE_FLOAT; }
 inline bool			Gen_IsFloatingPointType( const genType_t type ) { return type == GEN_TYPE_FLOAT || type == GEN_TYPE_DOUBLE; }
 
-inline std::string	Gen_GetFuncNameDegrees( const genType_t type ) { return ( type == GEN_TYPE_DOUBLE ) ? "degrees" : "degreesf"; }
-inline std::string	Gen_GetFuncNameRadians( const genType_t type ) { return ( type == GEN_TYPE_DOUBLE ) ? "radians" : "radiansf"; }
-
+// built in functions
 inline std::string	Gen_GetFuncNameSin( const genType_t type ) { return ( type == GEN_TYPE_DOUBLE ) ? "sin" : "sinf"; }
 inline std::string	Gen_GetFuncNameCos( const genType_t type ) { return ( type == GEN_TYPE_DOUBLE ) ? "cos" : "cosf"; }
 inline std::string	Gen_GetFuncNameTan( const genType_t type ) { return ( type == GEN_TYPE_DOUBLE ) ? "tan" : "tanf"; }
 
-inline std::string	Gen_GetFuncNameMin( const genType_t type ) { return ( type == GEN_TYPE_DOUBLE ) ? "min" : "minf"; }
-inline std::string	Gen_GetFuncNameMax( const genType_t type ) { return ( type == GEN_TYPE_DOUBLE ) ? "max" : "maxf"; }
-
-inline std::string	Gen_GetFuncNameClamp( const genType_t type ) { return ( type == GEN_TYPE_DOUBLE ) ? "clamp" : "clampf"; }
-inline std::string	Gen_GetFuncNameSaturate( const genType_t type ) { return ( type == GEN_TYPE_DOUBLE ) ? "saturate" : "saturatef"; }
-
-inline std::string	Gen_GetFuncNameLerp( const genType_t type ) { return ( type == GEN_TYPE_DOUBLE ) ? "lerp" : "lerpf"; }
+// hlml functions
+inline std::string	Gen_GetFuncNameFloateq( const genType_t type ) { return ( type == GEN_TYPE_DOUBLE ) ? "doubleeq" : "floateq"; }
 
 
 std::string Gen_GetTypeString( const genType_t type ) {
@@ -177,7 +170,7 @@ std::string Gen_GetDefaultLiteralValue( const genType_t type ) {
 
 std::string Gen_GetNumericLiteral( const genType_t type, const float value ) {
 	switch ( type ) {
-		case GEN_TYPE_BOOL:		return ( value != 0 ) ? "true" : "false";
+		case GEN_TYPE_BOOL:		return ( value != 0.0f ) ? "true" : "false";
 		case GEN_TYPE_INT:		return std::to_string( static_cast<int32_t>( value ) );
 		case GEN_TYPE_UINT:		return std::to_string( static_cast<uint32_t>( value ) );
 		case GEN_TYPE_FLOAT:	return std::to_string( static_cast<float>( value ) ) + "f";

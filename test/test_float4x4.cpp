@@ -414,9 +414,9 @@ TEMPER_TEST( TestTranslate_float4x4 ) {
 
 TEMPER_TEST( TestRotate_float4x4 ) {
 	float4x4 mat;
-	float4x4 yaw = rotate( mat, radiansf( 45.000000f ), float3( 0.000000f, 1.000000f, 0.000000f ) );
-	float4x4 pitch = rotate( mat, radiansf( 45.000000f ), float3( 1.000000f, 0.000000f, 0.000000f ) );
-	float4x4 roll = rotate( mat, radiansf( 45.000000f ), float3( 0.000000f, 0.000000f, 1.000000f ) );
+	float4x4 yaw = rotate( mat, radians( 45.000000f ), float3( 0.000000f, 1.000000f, 0.000000f ) );
+	float4x4 pitch = rotate( mat, radians( 45.000000f ), float3( 1.000000f, 0.000000f, 0.000000f ) );
+	float4x4 roll = rotate( mat, radians( 45.000000f ), float3( 0.000000f, 0.000000f, 1.000000f ) );
 
 	float4x4 answerYaw = float4x4(
 		0.707107f, 0.000000f, 0.707107f, 0.000000f,

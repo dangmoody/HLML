@@ -87,7 +87,7 @@ bool& bool3::operator[]( const uint32_t index ) {
 }
 
 bool operator==( const bool3& lhs, const bool3& rhs ) {
-	return floateq( lhs.x, rhs. x ) && floateq( lhs.y, rhs. y ) && floateq( lhs.z, rhs. z );
+	return ( lhs.x == rhs.x ) && ( lhs.y == rhs.y ) && ( lhs.z == rhs.z );
 }
 
 bool operator!=( const bool3& lhs, const bool3& rhs ) {

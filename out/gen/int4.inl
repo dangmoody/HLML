@@ -192,7 +192,7 @@ int32_t& int4::operator[]( const uint32_t index ) {
 }
 
 bool operator==( const int4& lhs, const int4& rhs ) {
-	return floateq( lhs.x, rhs. x ) && floateq( lhs.y, rhs. y ) && floateq( lhs.z, rhs. z ) && floateq( lhs.w, rhs. w );
+	return ( lhs.x == rhs.x ) && ( lhs.y == rhs.y ) && ( lhs.z == rhs.z ) && ( lhs.w == rhs.w );
 }
 
 bool operator!=( const int4& lhs, const int4& rhs ) {

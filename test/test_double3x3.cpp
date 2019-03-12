@@ -349,7 +349,7 @@ TEMPER_TEST( TestDeterminant_double3x3 ) {
 	);
 	double det = determinant( mat );
 
-	TEMPER_EXPECT_TRUE( floateq( det, 165.000000 ) );
+	TEMPER_EXPECT_TRUE( doubleeq( det, 165.000000 ) );
 
 	TEMPER_PASS();
 }

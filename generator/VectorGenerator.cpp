@@ -369,7 +369,15 @@ void VectorGenerator::InlGenerateOperatorsEquality() {
 	m_codeInl += "bool operator==( const " + m_fullTypeName + "& lhs, const " + m_fullTypeName + "& rhs ) {\n";
 	m_codeInl += "\treturn ";
 	for ( uint32_t i = 0; i < m_numComponents; i++ ) {
-		m_codeInl += std::string( "floateq( lhs." ) + GEN_COMPONENT_NAMES_VECTOR[i] + std::string( ", rhs. " ) + GEN_COMPONENT_NAMES_VECTOR[i] + " )";
+		char component = GEN_COMPONENT_NAMES_VECTOR[i];
+
+		if ( Gen_IsFloatingPointType( m_type ) ) {
+			std::string floateqStr = Gen_GetFuncNameFloateq( m_type );
+
+			m_codeInl += floateqStr + "( lhs."+ component + ", rhs. " + component + " )";
+		} else {
+			m_codeInl += std::string( "( " ) + "lhs." + component + " == rhs." + component + " )";
+		}
 
 		if ( i != m_numComponents - 1 ) {
 			m_codeInl += " && ";

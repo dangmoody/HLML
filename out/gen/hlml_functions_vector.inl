@@ -121,20 +121,20 @@ float2 normalized( const float2& vec ) {
 }
 
 float angle( const float2& lhs, const float2& rhs ) {
-	return degreesf( acosf( dot( normalized( lhs ), normalized( rhs ) ) ) );
+	return degrees( acosf( dot( normalized( lhs ), normalized( rhs ) ) ) );
 }
 
 float2 saturate( const float2& vec ) {
 	return float2(
-		saturatef( vec.x ),
-		saturatef( vec.y )
+		saturate( vec.x ),
+		saturate( vec.y )
 	);
 }
 
 float2 lerp( const float2& a, const float2& b, const float t ) {
 	return float2(
-		lerpf( a.x, b.x, t ),
-		lerpf( a.y, b.y, t )
+		lerp( a.x, b.x, t ),
+		lerp( a.y, b.y, t )
 	);
 }
 
@@ -171,22 +171,22 @@ float3 cross( const float3& lhs, const float3& rhs ) {
 }
 
 float angle( const float3& lhs, const float3& rhs ) {
-	return degreesf( acosf( dot( normalized( lhs ), normalized( rhs ) ) ) );
+	return degrees( acosf( dot( normalized( lhs ), normalized( rhs ) ) ) );
 }
 
 float3 saturate( const float3& vec ) {
 	return float3(
-		saturatef( vec.x ),
-		saturatef( vec.y ),
-		saturatef( vec.z )
+		saturate( vec.x ),
+		saturate( vec.y ),
+		saturate( vec.z )
 	);
 }
 
 float3 lerp( const float3& a, const float3& b, const float t ) {
 	return float3(
-		lerpf( a.x, b.x, t ),
-		lerpf( a.y, b.y, t ),
-		lerpf( a.z, b.z, t )
+		lerp( a.x, b.x, t ),
+		lerp( a.y, b.y, t ),
+		lerp( a.z, b.z, t )
 	);
 }
 
@@ -224,24 +224,24 @@ float4 cross( const float4& lhs, const float4& rhs ) {
 }
 
 float angle( const float4& lhs, const float4& rhs ) {
-	return degreesf( acosf( dot( normalized( lhs ), normalized( rhs ) ) ) );
+	return degrees( acosf( dot( normalized( lhs ), normalized( rhs ) ) ) );
 }
 
 float4 saturate( const float4& vec ) {
 	return float4(
-		saturatef( vec.x ),
-		saturatef( vec.y ),
-		saturatef( vec.z ),
-		saturatef( vec.w )
+		saturate( vec.x ),
+		saturate( vec.y ),
+		saturate( vec.z ),
+		saturate( vec.w )
 	);
 }
 
 float4 lerp( const float4& a, const float4& b, const float t ) {
 	return float4(
-		lerpf( a.x, b.x, t ),
-		lerpf( a.y, b.y, t ),
-		lerpf( a.z, b.z, t ),
-		lerpf( a.w, b.w, t )
+		lerp( a.x, b.x, t ),
+		lerp( a.y, b.y, t ),
+		lerp( a.z, b.z, t ),
+		lerp( a.w, b.w, t )
 	);
 }
 

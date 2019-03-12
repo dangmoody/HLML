@@ -174,7 +174,7 @@ uint32_t& uint2::operator[]( const uint32_t index ) {
 }
 
 bool operator==( const uint2& lhs, const uint2& rhs ) {
-	return floateq( lhs.x, rhs. x ) && floateq( lhs.y, rhs. y );
+	return ( lhs.x == rhs.x ) && ( lhs.y == rhs.y );
 }
 
 bool operator!=( const uint2& lhs, const uint2& rhs ) {

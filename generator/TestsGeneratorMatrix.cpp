@@ -581,7 +581,9 @@ void TestsGeneratorMatrix::GenerateTestDeterminant() {
 	m_code += "\t" + m_memberTypeString + " det = determinant( mat );\n";
 	m_code += "\n";
 	if ( Gen_IsFloatingPointType( m_type ) ) {
-		m_code += "\tTEMPER_EXPECT_TRUE( floateq( det, " + answerStr + " ) );\n";
+		std::string floateqStr = Gen_GetFuncNameFloateq( m_type );
+
+		m_code += "\tTEMPER_EXPECT_TRUE( " + floateqStr + "( det, " + answerStr + " ) );\n";
 	} else {
 		m_code += "\tTEMPER_EXPECT_TRUE( det == " + answerStr + " );\n";
 	}

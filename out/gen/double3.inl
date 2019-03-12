@@ -183,7 +183,7 @@ double& double3::operator[]( const uint32_t index ) {
 }
 
 bool operator==( const double3& lhs, const double3& rhs ) {
-	return floateq( lhs.x, rhs. x ) && floateq( lhs.y, rhs. y ) && floateq( lhs.z, rhs. z );
+	return doubleeq( lhs.x, rhs. x ) && doubleeq( lhs.y, rhs. y ) && doubleeq( lhs.z, rhs. z );
 }
 
 bool operator!=( const double3& lhs, const double3& rhs ) {
