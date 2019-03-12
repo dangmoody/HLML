@@ -50,6 +50,8 @@ void TestsGeneratorVector::Generate( const genType_t type, const uint32_t numCom
 
 	GenerateTestSaturate();
 
+	GenerateTestLerp();
+
 	m_code += "TEMPER_SUITE( " + m_testPrefix + " ) {\n";
 	m_code += "\tTEMPER_RUN_TEST( TestAssignment_" + m_fullTypeName + " );\n";
 	m_code += "\tTEMPER_RUN_TEST( TestArray_" + m_fullTypeName + " );\n";
@@ -77,6 +79,8 @@ void TestsGeneratorVector::Generate( const genType_t type, const uint32_t numCom
 		m_code += "\tTEMPER_RUN_TEST( TestAngle_" + m_fullTypeName + " );\n";
 
 		m_code += "\tTEMPER_RUN_TEST( TestSaturate_" + m_fullTypeName + " );\n";
+
+		m_code += "\tTEMPER_RUN_TEST( TestLerp_" + m_fullTypeName + " );\n";
 	}
 	m_code += "};\n";
 
@@ -412,6 +416,35 @@ void TestsGeneratorVector::GenerateTestSaturate() {
 	m_code += "\t" + m_fullTypeName + " clamped = saturate( vec );\n";
 	m_code += "\n";
 	m_code += "\tTEMPER_EXPECT_TRUE( clamped == answer );\n";
+	m_code += "\n";
+	m_code += "\tTEMPER_PASS();\n";
+	m_code += "}\n";
+	m_code += "\n";
+}
+
+void TestsGeneratorVector::GenerateTestLerp() {
+	if ( !Gen_IsFloatingPointType( m_type ) ) {
+		return;
+	}
+
+	float valuesA[]			= { 0.0f, 1.0f, 0.0f, 0.0f };
+	float valuesB[]			= { 1.0f, 0.0f, 0.0f, 0.0f };
+	float valuesAnswer[]	= { 0.5f, 0.5f, 0.0f, 0.0f };
+
+	std::string parmListA		= Gen_GetParmListVector( m_type, m_numComponents, valuesA );
+	std::string parmListB		= Gen_GetParmListVector( m_type, m_numComponents, valuesB );
+	std::string parmListAnswer	= Gen_GetParmListVector( m_type, m_numComponents, valuesAnswer );
+
+	std::string lerpValStr = Gen_GetNumericLiteral( m_type, 0.5f );
+
+	m_code += "TEMPER_TEST( TestLerp_" + m_fullTypeName + " ) {\n";
+	m_code += "\t" + m_fullTypeName + " answer = " + m_fullTypeName + parmListAnswer + ";\n";
+	m_code += "\n";
+	m_code += "\t" + m_fullTypeName + " a = " + m_fullTypeName + parmListA + ";\n";
+	m_code += "\t" + m_fullTypeName + " b = " + m_fullTypeName + parmListB + ";\n";
+	m_code += "\t" + m_fullTypeName + " lerped = lerp( a, b, " + lerpValStr + " );\n";
+	m_code += "\n";
+	m_code += "\tTEMPER_EXPECT_TRUE( lerped == answer );\n";
 	m_code += "\n";
 	m_code += "\tTEMPER_PASS();\n";
 	m_code += "}\n";

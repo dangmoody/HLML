@@ -131,6 +131,13 @@ float2 saturate( const float2& vec ) {
 	);
 }
 
+float2 lerp( const float2& a, const float2& b, const float t ) {
+	return float2(
+		lerpf( a.x, b.x, t ),
+		lerpf( a.y, b.y, t )
+	);
+}
+
 
 // float3
 float dot( const float3& lhs, const float3& rhs ) {
@@ -172,6 +179,14 @@ float3 saturate( const float3& vec ) {
 		saturatef( vec.x ),
 		saturatef( vec.y ),
 		saturatef( vec.z )
+	);
+}
+
+float3 lerp( const float3& a, const float3& b, const float t ) {
+	return float3(
+		lerpf( a.x, b.x, t ),
+		lerpf( a.y, b.y, t ),
+		lerpf( a.z, b.z, t )
 	);
 }
 
@@ -221,6 +236,15 @@ float4 saturate( const float4& vec ) {
 	);
 }
 
+float4 lerp( const float4& a, const float4& b, const float t ) {
+	return float4(
+		lerpf( a.x, b.x, t ),
+		lerpf( a.y, b.y, t ),
+		lerpf( a.z, b.z, t ),
+		lerpf( a.w, b.w, t )
+	);
+}
+
 
 // double2
 double dot( const double2& lhs, const double2& rhs ) {
@@ -253,6 +277,13 @@ double2 saturate( const double2& vec ) {
 	return double2(
 		saturate( vec.x ),
 		saturate( vec.y )
+	);
+}
+
+double2 lerp( const double2& a, const double2& b, const double t ) {
+	return double2(
+		lerp( a.x, b.x, t ),
+		lerp( a.y, b.y, t )
 	);
 }
 
@@ -300,6 +331,14 @@ double3 saturate( const double3& vec ) {
 	);
 }
 
+double3 lerp( const double3& a, const double3& b, const double t ) {
+	return double3(
+		lerp( a.x, b.x, t ),
+		lerp( a.y, b.y, t ),
+		lerp( a.z, b.z, t )
+	);
+}
+
 
 // double4
 double dot( const double4& lhs, const double4& rhs ) {
@@ -343,6 +382,15 @@ double4 saturate( const double4& vec ) {
 		saturate( vec.y ),
 		saturate( vec.z ),
 		saturate( vec.w )
+	);
+}
+
+double4 lerp( const double4& a, const double4& b, const double t ) {
+	return double4(
+		lerp( a.x, b.x, t ),
+		lerp( a.y, b.y, t ),
+		lerp( a.z, b.z, t ),
+		lerp( a.w, b.w, t )
 	);
 }
 

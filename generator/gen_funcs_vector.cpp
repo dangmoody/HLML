@@ -208,3 +208,34 @@ void Gen_VectorSaturate( const genType_t type, const uint32_t numComponents, std
 	outInl += "}\n";
 	outInl += "\n";
 }
+
+void Gen_VectorLerp( const genType_t type, const uint32_t numComponents, std::string& outHeader, std::string& outInl ) {
+	if ( !Gen_IsFloatingPointType( type ) ) {
+		return;
+	}
+
+	std::string typeString = Gen_GetTypeString( type );
+	std::string fullTypeName = typeString + std::to_string( numComponents );
+
+	std::string lerpFuncStr = Gen_GetFuncNameLerp( type );
+
+	outHeader += "inline " + fullTypeName + " lerp( const " + fullTypeName + "& a, const " + fullTypeName + "& b, const " + typeString + " t );\n";
+	outHeader += "\n";
+
+	outInl += fullTypeName + " lerp( const " + fullTypeName + "& a, const " + fullTypeName + "& b, const " + typeString + " t ) {\n";
+	outInl += "\treturn " + fullTypeName + "(\n";
+	for ( uint32_t i = 0; i < numComponents; i++ ) {
+		char component = GEN_COMPONENT_NAMES_VECTOR[i];
+
+		outInl += "\t\t" + lerpFuncStr + "( a." + component + ", b." + component + ", t )";
+
+		if ( i != numComponents - 1 ) {
+			outInl += ",";
+		}
+
+		outInl += "\n";
+	}
+	outInl += "\t);\n";
+	outInl += "}\n";
+	outInl += "\n";
+}

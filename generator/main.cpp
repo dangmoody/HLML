@@ -233,6 +233,8 @@ static bool GenerateFunctionsVector( void ) {
 
 			Gen_VectorSaturate( type, componentIndex, contentHeader, contentInl );
 
+			Gen_VectorLerp( type, componentIndex, contentHeader, contentInl );
+
 			contentHeader += "\n";
 			contentInl += "\n";
 		}

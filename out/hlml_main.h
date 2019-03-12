@@ -94,3 +94,11 @@ inline double saturate( const double x ) {
 inline float saturatef( const float x ) {
 	return clampf( x, 0.0f, 1.0f );
 }
+
+inline double lerp( const double a, const double b, const double t ) {
+	return ( 1.0 - t ) * a + t * b;
+}
+
+inline float lerpf( const float a, const float b, const float t ) {
+	return ( 1.0f - t ) * a + t * b;
+}

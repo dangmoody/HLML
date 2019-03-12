@@ -39,4 +39,6 @@ private:
 	void		GenerateTestAngle();
 
 	void		GenerateTestSaturate();
+
+	void		GenerateTestLerp();
 };

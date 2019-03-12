@@ -198,6 +198,18 @@ TEMPER_TEST( TestSaturate_double4 ) {
 	TEMPER_PASS();
 }
 
+TEMPER_TEST( TestLerp_double4 ) {
+	double4 answer = double4( 0.500000, 0.500000, 0.000000, 0.000000 );
+
+	double4 a = double4( 0.000000, 1.000000, 0.000000, 0.000000 );
+	double4 b = double4( 1.000000, 0.000000, 0.000000, 0.000000 );
+	double4 lerped = lerp( a, b, 0.500000 );
+
+	TEMPER_EXPECT_TRUE( lerped == answer );
+
+	TEMPER_PASS();
+}
+
 TEMPER_SUITE( Test_double4 ) {
 	TEMPER_RUN_TEST( TestAssignment_double4 );
 	TEMPER_RUN_TEST( TestArray_double4 );
@@ -215,4 +227,5 @@ TEMPER_SUITE( Test_double4 ) {
 	TEMPER_RUN_TEST( TestCross_double4 );
 	TEMPER_RUN_TEST( TestAngle_double4 );
 	TEMPER_RUN_TEST( TestSaturate_double4 );
+	TEMPER_RUN_TEST( TestLerp_double4 );
 };

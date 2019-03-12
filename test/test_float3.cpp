@@ -187,6 +187,18 @@ TEMPER_TEST( TestSaturate_float3 ) {
 	TEMPER_PASS();
 }
 
+TEMPER_TEST( TestLerp_float3 ) {
+	float3 answer = float3( 0.500000f, 0.500000f, 0.000000f );
+
+	float3 a = float3( 0.000000f, 1.000000f, 0.000000f );
+	float3 b = float3( 1.000000f, 0.000000f, 0.000000f );
+	float3 lerped = lerp( a, b, 0.500000f );
+
+	TEMPER_EXPECT_TRUE( lerped == answer );
+
+	TEMPER_PASS();
+}
+
 TEMPER_SUITE( Test_float3 ) {
 	TEMPER_RUN_TEST( TestAssignment_float3 );
 	TEMPER_RUN_TEST( TestArray_float3 );
@@ -204,4 +216,5 @@ TEMPER_SUITE( Test_float3 ) {
 	TEMPER_RUN_TEST( TestCross_float3 );
 	TEMPER_RUN_TEST( TestAngle_float3 );
 	TEMPER_RUN_TEST( TestSaturate_float3 );
+	TEMPER_RUN_TEST( TestLerp_float3 );
 };
