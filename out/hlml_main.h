@@ -86,3 +86,11 @@ inline double clamp( const double x, const double low, const double high ) {
 inline float clampf( const float x, const float low, const float high ) {
 	return minf( maxf( x, low ), high );
 }
+
+inline double saturate( const double x ) {
+	return clamp( x, 0.0, 1.0 );
+}
+
+inline double saturatef( const float x ) {
+	return clampf( x, 0.0, 1.0 );
+}
