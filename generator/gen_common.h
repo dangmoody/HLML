@@ -124,6 +124,11 @@ inline std::string	Gen_GetFuncNameSin( const genType_t type ) { return ( type ==
 inline std::string	Gen_GetFuncNameCos( const genType_t type ) { return ( type == GEN_TYPE_DOUBLE ) ? "cos" : "cosf"; }
 inline std::string	Gen_GetFuncNameTan( const genType_t type ) { return ( type == GEN_TYPE_DOUBLE ) ? "tan" : "tanf"; }
 
+inline std::string	Gen_GetFuncNameMin( const genType_t type ) { return ( type == GEN_TYPE_DOUBLE ) ? "min" : "minf"; }
+inline std::string	Gen_GetFuncNameMax( const genType_t type ) { return ( type == GEN_TYPE_DOUBLE ) ? "max" : "maxf"; }
+
+inline std::string	Gen_GetFuncNameClamp( const genType_t type ) { return ( type == GEN_TYPE_DOUBLE ) ? "clamp" : "clampf"; }
+
 
 std::string Gen_GetTypeString( const genType_t type ) {
 	switch ( type ) {

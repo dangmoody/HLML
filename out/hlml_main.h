@@ -62,3 +62,27 @@ inline float degreesf( const float radians ) {
 inline float radiansf( const float degrees ) {
 	return degrees * static_cast<float>( HLML_PI ) / 180.0f;
 }
+
+inline double min( const double x, const double y ) {
+	return ( x < y ) ? x : y;
+}
+
+inline double max( const double x, const double y ) {
+	return ( x > y ) ? x : y;
+}
+
+inline float minf( const float x, const float y ) {
+	return ( x < y ) ? x : y;
+}
+
+inline float maxf( const float x, const float y ) {
+	return ( x > y ) ? x : y;
+}
+
+inline double clamp( const double x, const double low, const double high ) {
+	return min( max( x, low ), high );
+}
+
+inline float clampf( const float x, const float low, const float high ) {
+	return minf( maxf( x, low ), high );
+}
