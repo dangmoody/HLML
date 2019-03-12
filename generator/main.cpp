@@ -231,6 +231,8 @@ static bool GenerateFunctionsVector( void ) {
 			Gen_VectorCross( type, componentIndex, contentHeader, contentInl );
 			Gen_VectorAngle( type, componentIndex, contentHeader, contentInl );
 
+			Gen_VectorSaturate( type, componentIndex, contentHeader, contentInl );
+
 			contentHeader += "\n";
 			contentInl += "\n";
 		}

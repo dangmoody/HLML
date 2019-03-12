@@ -128,6 +128,7 @@ inline std::string	Gen_GetFuncNameMin( const genType_t type ) { return ( type ==
 inline std::string	Gen_GetFuncNameMax( const genType_t type ) { return ( type == GEN_TYPE_DOUBLE ) ? "max" : "maxf"; }
 
 inline std::string	Gen_GetFuncNameClamp( const genType_t type ) { return ( type == GEN_TYPE_DOUBLE ) ? "clamp" : "clampf"; }
+inline std::string	Gen_GetFuncNameSaturate( const genType_t type ) { return ( type == GEN_TYPE_DOUBLE ) ? "saturate" : "saturatef"; }
 
 
 std::string Gen_GetTypeString( const genType_t type ) {

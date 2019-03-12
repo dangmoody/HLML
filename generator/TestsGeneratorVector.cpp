@@ -48,6 +48,8 @@ void TestsGeneratorVector::Generate( const genType_t type, const uint32_t numCom
 
 	GenerateTestAngle();
 
+	GenerateTestSaturate();
+
 	m_code += "TEMPER_SUITE( " + m_testPrefix + " ) {\n";
 	m_code += "\tTEMPER_RUN_TEST( TestAssignment_" + m_fullTypeName + " );\n";
 	m_code += "\tTEMPER_RUN_TEST( TestArray_" + m_fullTypeName + " );\n";
@@ -386,6 +388,30 @@ void TestsGeneratorVector::GenerateTestAngle() {
 	m_code += "\t" + m_typeString + " answer = angle( up, right );\n";
 	m_code += "\n";
 	m_code += "\tTEMPER_EXPECT_TRUE( floateq( answer, " + ninetyStr + " ) );\n";
+	m_code += "\n";
+	m_code += "\tTEMPER_PASS();\n";
+	m_code += "}\n";
+	m_code += "\n";
+}
+
+void TestsGeneratorVector::GenerateTestSaturate() {
+	if ( !Gen_IsFloatingPointType( m_type ) ) {
+		return;
+	}
+
+	float values[]			= { -1.0f, 2.0f, 4.0f, 6.0f };
+	float valuesAnswer[]	= {  0.0f, 1.0f, 1.0f, 1.0f };
+
+	std::string parmList		= Gen_GetParmListVector( m_type, m_numComponents, values );
+	std::string parmListAnswer	= Gen_GetParmListVector( m_type, m_numComponents, valuesAnswer );
+
+	m_code += "TEMPER_TEST( TestSaturate_" + m_fullTypeName + " ) {\n";
+	m_code += "\t" + m_fullTypeName + " answer = " + m_fullTypeName + parmListAnswer + ";\n";
+	m_code += "\n";
+	m_code += "\t" + m_fullTypeName + " vec = " + m_fullTypeName + parmList + ";\n";
+	m_code += "\t" + m_fullTypeName + " clamped = saturate( vec );\n";
+	m_code += "\n";
+	m_code += "\tTEMPER_EXPECT_TRUE( clamped == answer );\n";
 	m_code += "\n";
 	m_code += "\tTEMPER_PASS();\n";
 	m_code += "}\n";

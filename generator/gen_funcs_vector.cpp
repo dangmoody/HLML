@@ -175,26 +175,36 @@ void Gen_VectorAngle( const genType_t type, const uint32_t numComponents, std::s
 	outInl += "\n";
 }
 
-//void Gen_VectorSaturate( const genType_t type, const uint32_t numComponents, std::string& outHeader, std::string& outInl ) {
-//	assert( numComponents >= GEN_COMPONENT_COUNT_MIN );
-//	assert( numComponents <= GEN_COMPONENT_COUNT_MAX );
-//
-//	if ( !Gen_IsFloatingPointType( type ) ) {
-//		return;
-//	}
-//
-//	std::string typeString = Gen_GetTypeString( type );
-//	std::string fullTypeName = typeString + std::to_string( numComponents );
-//
-//	outHeader += "inline " + fullTypeName + " saturate( const " + fullTypeName + "& vec );";
-//	outHeader += "\n";
-//
-//	outInl += fullTypeName + " saturate( const " + fullTypeName + "& vec ) {\n";
-//	outInl += "\treturn " + fullTypeName + "(\n";
-//	for ( uint32_t i = 0; i < numComponents; i++ ) {
-//		outInl += "\t\tclamp(  )";
-//	}
-//	outInl += "\t);\n";
-//	outInl += "}\n";
-//	outInl += "\n";
-//}
+void Gen_VectorSaturate( const genType_t type, const uint32_t numComponents, std::string& outHeader, std::string& outInl ) {
+	assert( numComponents >= GEN_COMPONENT_COUNT_MIN );
+	assert( numComponents <= GEN_COMPONENT_COUNT_MAX );
+
+	if ( !Gen_IsFloatingPointType( type ) ) {
+		return;
+	}
+
+	std::string typeString = Gen_GetTypeString( type );
+	std::string fullTypeName = typeString + std::to_string( numComponents );
+
+	std::string zeroStr = Gen_GetNumericLiteral( type, 0.0f );
+	std::string oneStr = Gen_GetNumericLiteral( type, 1.0f );
+	std::string saturateFuncStr = Gen_GetFuncNameSaturate( type );
+
+	outHeader += "inline " + fullTypeName + " saturate( const " + fullTypeName + "& vec );";
+	outHeader += "\n";
+
+	outInl += fullTypeName + " saturate( const " + fullTypeName + "& vec ) {\n";
+	outInl += "\treturn " + fullTypeName + "(\n";
+	for ( uint32_t i = 0; i < numComponents; i++ ) {
+		outInl += "\t\t" + saturateFuncStr + "( vec." + GEN_COMPONENT_NAMES_VECTOR[i] + " )";
+
+		if ( i != numComponents - 1 ) {
+			outInl += ",";
+		}
+
+		outInl += "\n";
+	}
+	outInl += "\t);\n";
+	outInl += "}\n";
+	outInl += "\n";
+}

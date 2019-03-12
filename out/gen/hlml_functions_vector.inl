@@ -124,6 +124,13 @@ float angle( const float2& lhs, const float2& rhs ) {
 	return degreesf( acosf( dot( normalized( lhs ), normalized( rhs ) ) ) );
 }
 
+float2 saturate( const float2& vec ) {
+	return float2(
+		saturatef( vec.x ),
+		saturatef( vec.y )
+	);
+}
+
 
 // float3
 float dot( const float3& lhs, const float3& rhs ) {
@@ -158,6 +165,14 @@ float3 cross( const float3& lhs, const float3& rhs ) {
 
 float angle( const float3& lhs, const float3& rhs ) {
 	return degreesf( acosf( dot( normalized( lhs ), normalized( rhs ) ) ) );
+}
+
+float3 saturate( const float3& vec ) {
+	return float3(
+		saturatef( vec.x ),
+		saturatef( vec.y ),
+		saturatef( vec.z )
+	);
 }
 
 
@@ -197,6 +212,15 @@ float angle( const float4& lhs, const float4& rhs ) {
 	return degreesf( acosf( dot( normalized( lhs ), normalized( rhs ) ) ) );
 }
 
+float4 saturate( const float4& vec ) {
+	return float4(
+		saturatef( vec.x ),
+		saturatef( vec.y ),
+		saturatef( vec.z ),
+		saturatef( vec.w )
+	);
+}
+
 
 // double2
 double dot( const double2& lhs, const double2& rhs ) {
@@ -223,6 +247,13 @@ double2 normalized( const double2& vec ) {
 
 double angle( const double2& lhs, const double2& rhs ) {
 	return degrees( acos( dot( normalized( lhs ), normalized( rhs ) ) ) );
+}
+
+double2 saturate( const double2& vec ) {
+	return double2(
+		saturate( vec.x ),
+		saturate( vec.y )
+	);
 }
 
 
@@ -261,6 +292,14 @@ double angle( const double3& lhs, const double3& rhs ) {
 	return degrees( acos( dot( normalized( lhs ), normalized( rhs ) ) ) );
 }
 
+double3 saturate( const double3& vec ) {
+	return double3(
+		saturate( vec.x ),
+		saturate( vec.y ),
+		saturate( vec.z )
+	);
+}
+
 
 // double4
 double dot( const double4& lhs, const double4& rhs ) {
@@ -296,6 +335,15 @@ double4 cross( const double4& lhs, const double4& rhs ) {
 
 double angle( const double4& lhs, const double4& rhs ) {
 	return degrees( acos( dot( normalized( lhs ), normalized( rhs ) ) ) );
+}
+
+double4 saturate( const double4& vec ) {
+	return double4(
+		saturate( vec.x ),
+		saturate( vec.y ),
+		saturate( vec.z ),
+		saturate( vec.w )
+	);
 }
 
 

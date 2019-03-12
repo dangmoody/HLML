@@ -176,6 +176,17 @@ TEMPER_TEST( TestAngle_float3 ) {
 	TEMPER_PASS();
 }
 
+TEMPER_TEST( TestSaturate_float3 ) {
+	float3 answer = float3( 0.000000f, 1.000000f, 1.000000f );
+
+	float3 vec = float3( -1.000000f, 2.000000f, 4.000000f );
+	float3 clamped = saturate( vec );
+
+	TEMPER_EXPECT_TRUE( clamped == answer );
+
+	TEMPER_PASS();
+}
+
 TEMPER_SUITE( Test_float3 ) {
 	TEMPER_RUN_TEST( TestAssignment_float3 );
 	TEMPER_RUN_TEST( TestArray_float3 );
@@ -192,4 +203,5 @@ TEMPER_SUITE( Test_float3 ) {
 	TEMPER_RUN_TEST( TestDot_float3 );
 	TEMPER_RUN_TEST( TestCross_float3 );
 	TEMPER_RUN_TEST( TestAngle_float3 );
+	TEMPER_RUN_TEST( TestSaturate_float3 );
 };

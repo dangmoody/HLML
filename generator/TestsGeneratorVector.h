@@ -37,4 +37,6 @@ private:
 	void		GenerateTestDot();
 	void		GenerateTestCross();
 	void		GenerateTestAngle();
+
+	void		GenerateTestSaturate();
 };
