@@ -961,8 +961,7 @@ void Gen_MatrixPerspective( const genHand_t hand, const genType_t type, const ui
 	std::string halfStr	= Gen_GetNumericLiteral( type, 0.5f );
 	std::string oneStr	= Gen_GetNumericLiteral( type, 1.0f );
 
-	std::string radiansFuncStr	= Gen_GetFuncNameRadians( type );
-	std::string tanFuncStr		= Gen_GetFuncNameTan( type );
+	std::string tanFuncStr = Gen_GetFuncNameTan( type );
 
 	outHeader += "inline " + fullTypeName + " perspective( const " + typeString + " fovdeg, const " + typeString + " aspect, const " + typeString + " znear, const " + typeString + " zfar );\n";
 	outHeader += "\n";

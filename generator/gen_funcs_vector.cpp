@@ -162,15 +162,13 @@ void Gen_VectorAngle( const genType_t type, const uint32_t numComponents, std::s
 	std::string returnTypeString = Gen_GetTypeString( floatingPointType );
 	std::string fullTypeName = typeString + std::to_string( numComponents );
 
-	std::string acosString = ( floatingPointType == GEN_TYPE_DOUBLE ) ? "acos" : "acosf";
-
-	std::string degreesFuncStr = Gen_GetFuncNameDegrees( type );
+	std::string acosString = Gen_GetFuncNameAcos( floatingPointType );
 
 	outHeader += "inline " + returnTypeString + " angle( const " + fullTypeName + "& lhs, const " + fullTypeName + "& rhs );\n";
 	outHeader += "\n";
 
 	outInl += returnTypeString + " angle( const " + fullTypeName + "& lhs, const " + fullTypeName + "& rhs ) {\n";
-	outInl += "\treturn " + degreesFuncStr + "( " + acosString + "( dot( normalized( lhs ), normalized( rhs ) ) ) );\n";
+	outInl += "\treturn degrees( " + acosString + "( dot( normalized( lhs ), normalized( rhs ) ) ) );\n";
 	outInl += "}\n";
 	outInl += "\n";
 }
@@ -188,7 +186,6 @@ void Gen_VectorSaturate( const genType_t type, const uint32_t numComponents, std
 
 	std::string zeroStr = Gen_GetNumericLiteral( type, 0.0f );
 	std::string oneStr = Gen_GetNumericLiteral( type, 1.0f );
-	std::string saturateFuncStr = Gen_GetFuncNameSaturate( type );
 
 	outHeader += "inline " + fullTypeName + " saturate( const " + fullTypeName + "& vec );\n";
 	outHeader += "\n";
@@ -196,7 +193,7 @@ void Gen_VectorSaturate( const genType_t type, const uint32_t numComponents, std
 	outInl += fullTypeName + " saturate( const " + fullTypeName + "& vec ) {\n";
 	outInl += "\treturn " + fullTypeName + "(\n";
 	for ( uint32_t i = 0; i < numComponents; i++ ) {
-		outInl += "\t\t" + saturateFuncStr + "( vec." + GEN_COMPONENT_NAMES_VECTOR[i] + " )";
+		outInl += std::string( "\t\tsaturate( vec." ) + GEN_COMPONENT_NAMES_VECTOR[i] + " )";
 
 		if ( i != numComponents - 1 ) {
 			outInl += ",";
@@ -217,8 +214,6 @@ void Gen_VectorLerp( const genType_t type, const uint32_t numComponents, std::st
 	std::string typeString = Gen_GetTypeString( type );
 	std::string fullTypeName = typeString + std::to_string( numComponents );
 
-	std::string lerpFuncStr = Gen_GetFuncNameLerp( type );
-
 	outHeader += "inline " + fullTypeName + " lerp( const " + fullTypeName + "& a, const " + fullTypeName + "& b, const " + typeString + " t );\n";
 	outHeader += "\n";
 
@@ -227,7 +222,7 @@ void Gen_VectorLerp( const genType_t type, const uint32_t numComponents, std::st
 	for ( uint32_t i = 0; i < numComponents; i++ ) {
 		char component = GEN_COMPONENT_NAMES_VECTOR[i];
 
-		outInl += "\t\t" + lerpFuncStr + "( a." + component + ", b." + component + ", t )";
+		outInl += std::string( "\t\tlerp( a." ) + component + ", b." + component + ", t )";
 
 		if ( i != numComponents - 1 ) {
 			outInl += ",";

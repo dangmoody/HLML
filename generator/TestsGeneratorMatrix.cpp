@@ -733,10 +733,8 @@ void TestsGeneratorMatrix::GenerateTestRotate() {
 	std::string parmListMatPitch = Gen_GetParmListMatrix( m_type, numRotMatRows, numRotMatCols, rotMatPitch );
 	std::string parmListMatRoll = Gen_GetParmListMatrix( m_type, numRotMatRows, numRotMatCols, rotMatRoll );
 
-	std::string radiansFuncStr = Gen_GetFuncNameRadians( m_type );
-
 	// matrices where cols == 3 only have roll rotation support
-	std::string parmListRotateRoll = "mat, " + radiansFuncStr + "( " + rotDegreesStr + " )";
+	std::string parmListRotateRoll = "mat, radians( " + rotDegreesStr + " )";
 	if ( m_numCols > 3 ) {
 		parmListRotateRoll += ", " + rotateVecTypeString + parmListVecRoll;
 	}
@@ -744,8 +742,8 @@ void TestsGeneratorMatrix::GenerateTestRotate() {
 	m_code += "TEMPER_TEST( TestRotate_" + m_fullTypeName + " ) {\n";
 	m_code += "\t" + m_fullTypeName + " mat;\n";
 	if ( m_numRows > 3 ) {
-		m_code += "\t" + m_fullTypeName + " yaw = rotate( mat, " + radiansFuncStr + "( " + rotDegreesStr + " ), " + rotateVecTypeString + parmListVecYaw + " );\n";
-		m_code += "\t" + m_fullTypeName + " pitch = rotate( mat, " + radiansFuncStr + "( " + rotDegreesStr + " ), " + rotateVecTypeString + parmListVecPitch + " );\n";
+		m_code += "\t" + m_fullTypeName + " yaw = rotate( mat, radians( " + rotDegreesStr + " ), " + rotateVecTypeString + parmListVecYaw + " );\n";
+		m_code += "\t" + m_fullTypeName + " pitch = rotate( mat, radians( " + rotDegreesStr + " ), " + rotateVecTypeString + parmListVecPitch + " );\n";
 	}
 	m_code += "\t" + m_fullTypeName + " roll = rotate( " + parmListRotateRoll + " );\n";
 	m_code += "\n";
