@@ -153,7 +153,7 @@ void VectorGenerator::HeaderGenerateMembersStruct( const std::string& componentN
 
 void VectorGenerator::HeaderGenerateConstructors() {
 	// default ctor
-	m_codeHeader += Gen_GetDocCtorDefault();
+	m_codeHeader += GetDocCtorDefault();
 	m_codeHeader += "\tinline " + m_fullTypeName + "();\n";
 	m_codeHeader += "\n";
 
@@ -177,7 +177,7 @@ void VectorGenerator::HeaderGenerateConstructors() {
 
 	// copy ctors for all valid vector types
 	for ( uint32_t i = GEN_COMPONENT_COUNT_MIN; i <= GEN_COMPONENT_COUNT_MAX; i++ ) {
-		m_codeHeader += Gen_GetDocCtorCopy();
+		m_codeHeader += GetDocCtorCopy();
 		m_codeHeader += "\tinline " + m_fullTypeName + "( const " + Gen_GetTypeString( m_type ) + std::to_string( i ) + "& other );\n";
 		m_codeHeader += "\n";
 	}
@@ -470,6 +470,10 @@ std::string VectorGenerator::GetDocStruct() const {
 	return doc;
 }
 
+std::string VectorGenerator::GetDocCtorDefault( void ) const {
+	return "\t/// Default constructor.  Initializes all values to zero.\n";
+}
+
 std::string VectorGenerator::GetDocScalar() const {
 	return "\t/// Initializes all components of the vector to the given scalar value.\n";
 }
@@ -481,6 +485,10 @@ std::string VectorGenerator::GetDocCtorMemberwise() const {
 	}
 
 	return std::string( "\t/// Sets the " ) + componentsStr + " members of the vector to the corresponding parameters.\n";
+}
+
+std::string VectorGenerator::GetDocCtorCopy( void ) const {
+	return "\t/// Copy constructor.  Copies the elements of the given vector via memcpy.\n";
 }
 
 std::string VectorGenerator::GetDocOperatorAssignment() const {
@@ -556,9 +564,6 @@ std::string VectorGenerator::GetDocOperatorCompoundArithmeticRhsType( const genO
 }
 
 std::string VectorGenerator::GetDocOperatorArray() const {
-	std::string doc;
-	doc += "\t/// \\brief Returns the vector component at the given index.\n";
-	doc += "\t/// Index CANNOT be lower than 0 or higher than " + std::to_string( m_numComponents - 1 ) + ".\n";
-
-	return doc;
+	return "\t/// \\brief Returns the vector component at the given index.\n" \
+		"\t/// Index CANNOT be lower than 0 or higher than " + std::to_string( m_numComponents - 1 ) + ".\n";
 }

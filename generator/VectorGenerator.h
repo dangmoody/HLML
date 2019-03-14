@@ -49,6 +49,8 @@ private:
 
 	std::string		GetDocStruct() const;
 	std::string		GetDocScalar() const;
+	std::string		GetDocCtorDefault() const;
+	std::string		GetDocCtorCopy() const;
 	std::string		GetDocCtorMemberwise() const;
 	std::string		GetDocOperatorAssignment() const;
 
