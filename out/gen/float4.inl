@@ -82,7 +82,7 @@ float4 float4::operator+( const float rhs ) const {
 		x + rhs,
 		y + rhs,
 		z + rhs,
-		w + rhs
+		w + rhs,
 	);
 }
 
@@ -95,7 +95,7 @@ float4 float4::operator+( const float4& rhs ) const {
 		x + rhs.x,
 		y + rhs.y,
 		z + rhs.z,
-		w + rhs.w
+		w + rhs.w,
 	);
 }
 
@@ -108,7 +108,7 @@ float4 float4::operator-( const float rhs ) const {
 		x - rhs,
 		y - rhs,
 		z - rhs,
-		w - rhs
+		w - rhs,
 	);
 }
 
@@ -121,7 +121,7 @@ float4 float4::operator-( const float4& rhs ) const {
 		x - rhs.x,
 		y - rhs.y,
 		z - rhs.z,
-		w - rhs.w
+		w - rhs.w,
 	);
 }
 
@@ -134,7 +134,7 @@ float4 float4::operator*( const float rhs ) const {
 		x * rhs,
 		y * rhs,
 		z * rhs,
-		w * rhs
+		w * rhs,
 	);
 }
 
@@ -147,7 +147,7 @@ float4 float4::operator*( const float4& rhs ) const {
 		x * rhs.x,
 		y * rhs.y,
 		z * rhs.z,
-		w * rhs.w
+		w * rhs.w,
 	);
 }
 
@@ -157,9 +157,9 @@ float4 float4::operator*=( const float4& rhs ) {
 
 float4 float4::operator/( const float rhs ) const {
 	return float4(
-		x / rhs,
-		y / rhs,
-		z / rhs,
+		x / rhs
+		y / rhs
+		z / rhs
 		w / rhs
 	);
 }
@@ -170,9 +170,9 @@ float4 float4::operator/=( const float rhs ) {
 
 float4 float4::operator/( const float4& rhs ) const {
 	return float4(
-		x / rhs.x,
-		y / rhs.y,
-		z / rhs.z,
+		x / rhs.x
+		y / rhs.y
+		z / rhs.z
 		w / rhs.w
 	);
 }

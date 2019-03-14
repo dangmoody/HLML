@@ -78,7 +78,7 @@ uint2 uint2::operator=( const uint4& rhs ) {
 uint2 uint2::operator+( const uint32_t rhs ) const {
 	return uint2(
 		x + rhs,
-		y + rhs
+		y + rhs,
 	);
 }
 
@@ -89,7 +89,7 @@ uint2 uint2::operator+=( const uint32_t rhs ) {
 uint2 uint2::operator+( const uint2& rhs ) const {
 	return uint2(
 		x + rhs.x,
-		y + rhs.y
+		y + rhs.y,
 	);
 }
 
@@ -99,7 +99,7 @@ uint2 uint2::operator+=( const uint2& rhs ) {
 
 uint2 uint2::operator-( const uint32_t rhs ) const {
 	return uint2(
-		x - rhs,
+		x - rhs
 		y - rhs
 	);
 }
@@ -110,7 +110,7 @@ uint2 uint2::operator-=( const uint32_t rhs ) {
 
 uint2 uint2::operator-( const uint2& rhs ) const {
 	return uint2(
-		x - rhs.x,
+		x - rhs.x
 		y - rhs.y
 	);
 }
@@ -122,7 +122,7 @@ uint2 uint2::operator-=( const uint2& rhs ) {
 uint2 uint2::operator*( const uint32_t rhs ) const {
 	return uint2(
 		x * rhs,
-		y * rhs
+		y * rhs,
 	);
 }
 
@@ -133,7 +133,7 @@ uint2 uint2::operator*=( const uint32_t rhs ) {
 uint2 uint2::operator*( const uint2& rhs ) const {
 	return uint2(
 		x * rhs.x,
-		y * rhs.y
+		y * rhs.y,
 	);
 }
 
@@ -144,7 +144,7 @@ uint2 uint2::operator*=( const uint2& rhs ) {
 uint2 uint2::operator/( const uint32_t rhs ) const {
 	return uint2(
 		x / rhs,
-		y / rhs
+		y / rhs,
 	);
 }
 
@@ -155,7 +155,7 @@ uint2 uint2::operator/=( const uint32_t rhs ) {
 uint2 uint2::operator/( const uint2& rhs ) const {
 	return uint2(
 		x / rhs.x,
-		y / rhs.y
+		y / rhs.y,
 	);
 }
 

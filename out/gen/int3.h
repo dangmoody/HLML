@@ -34,6 +34,8 @@ struct int2;
 struct int4;
 struct float3;
 
+/// \brief A vector of 3 int32_ts with components xyz and/or rgb.
+/// Components are also stored as elements in an array via a union.
 struct int3 {
 	union {
 		struct {
@@ -51,40 +53,84 @@ struct int3 {
 		int32_t data[3] = { 0 };
 	};
 
+	/// Default constructor.  Initializes all values to zero.
 	inline int3();
+
+	/// Initializes all components of the vector to the given scalar value.
 	inline explicit int3( const int32_t x );
+
+	/// Sets the xyz members of the vector to the corresponding parameters.
 	inline int3( const int32_t x, const int32_t y, const int32_t z );
+
+	/// Copy constructor.  Copies the elements of the given vector via memcpy.
 	inline int3( const int2& other );
+
+	/// Copy constructor.  Copies the elements of the given vector via memcpy.
 	inline int3( const int3& other );
+
+	/// Copy constructor.  Copies the elements of the given vector via memcpy.
 	inline int3( const int4& other );
+
 	~int3() {}
 
+	/// Copies the elements of the given vector via memcpy.
 	inline int3 operator=( const int2& rhs );
+
+	/// Copies the elements of the given vector via memcpy.
 	inline int3 operator=( const int3& rhs );
+
+	/// Copies the elements of the given vector via memcpy.
 	inline int3 operator=( const int4& rhs );
 
+	/// Returns a copy of the vector with each value added the given scalar value.
 	inline int3 operator+( const int32_t rhs ) const;
+	/// Adds each component of the vector by the given scalar value.
 	inline int3 operator+=( const int32_t rhs );
+	/// Returns a copy of the vector that has been component-wise added by the other vector.
 	inline int3 operator+( const int3& rhs ) const;
+	/// Component-wise adds each component of the vector by the other vector.
 	inline int3 operator+=( const int3& rhs );
+	/// Returns a copy of the vector with each value subtracted the given scalar value.
 	inline int3 operator-( const int32_t rhs ) const;
+	/// Subtracts each component of the vector by the given scalar value.
 	inline int3 operator-=( const int32_t rhs );
+	/// Returns a copy of the vector that has been component-wise subtracted by the other vector.
 	inline int3 operator-( const int3& rhs ) const;
+	/// Component-wise subtracts each component of the vector by the other vector.
 	inline int3 operator-=( const int3& rhs );
+	/// Returns a copy of the vector with each value multiplied the given scalar value.
 	inline int3 operator*( const int32_t rhs ) const;
+	/// Multiplies each component of the vector by the given scalar value.
 	inline int3 operator*=( const int32_t rhs );
+	/// Returns a copy of the vector that has been component-wise multiplied by the other vector.
 	inline int3 operator*( const int3& rhs ) const;
+	/// Component-wise multiplies each component of the vector by the other vector.
 	inline int3 operator*=( const int3& rhs );
+	/// Returns a copy of the vector with each value divided the given scalar value.
 	inline int3 operator/( const int32_t rhs ) const;
+	/// Divides each component of the vector by the given scalar value.
 	inline int3 operator/=( const int32_t rhs );
+	/// Returns a copy of the vector that has been component-wise divided by the other vector.
 	inline int3 operator/( const int3& rhs ) const;
+	/// Component-wise divides each component of the vector by the other vector.
 	inline int3 operator/=( const int3& rhs );
 
+	/// \brief Returns the vector component at the given index.
+	/// Index CANNOT be lower than 0 or higher than 2.
 	inline const int32_t& operator[]( const uint32_t index ) const;
+
+	/// \brief Returns the vector component at the given index.
+	/// Index CANNOT be lower than 0 or higher than 2.
 	inline int32_t& operator[]( const uint32_t index );
+
 };
 
+/// \relates int3
+/// \brief Returns true if the all the components of the left-hand-side int3 match the other one, otherwise returns false.
 inline bool operator==( const int3& lhs, const int3& rhs );
+
+/// \relates int3
+/// \brief Returns true if not all of the components of the left-hand-side int3 match the other one, otherwise returns false.
 inline bool operator!=( const int3& lhs, const int3& rhs );
 
 inline bool3 operator<( const int3& lhs, const int3& rhs );

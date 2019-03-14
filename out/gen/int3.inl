@@ -80,7 +80,7 @@ int3 int3::operator+( const int32_t rhs ) const {
 	return int3(
 		x + rhs,
 		y + rhs,
-		z + rhs
+		z + rhs,
 	);
 }
 
@@ -92,7 +92,7 @@ int3 int3::operator+( const int3& rhs ) const {
 	return int3(
 		x + rhs.x,
 		y + rhs.y,
-		z + rhs.z
+		z + rhs.z,
 	);
 }
 
@@ -104,7 +104,7 @@ int3 int3::operator-( const int32_t rhs ) const {
 	return int3(
 		x - rhs,
 		y - rhs,
-		z - rhs
+		z - rhs,
 	);
 }
 
@@ -116,7 +116,7 @@ int3 int3::operator-( const int3& rhs ) const {
 	return int3(
 		x - rhs.x,
 		y - rhs.y,
-		z - rhs.z
+		z - rhs.z,
 	);
 }
 
@@ -126,8 +126,8 @@ int3 int3::operator-=( const int3& rhs ) {
 
 int3 int3::operator*( const int32_t rhs ) const {
 	return int3(
-		x * rhs,
-		y * rhs,
+		x * rhs
+		y * rhs
 		z * rhs
 	);
 }
@@ -138,8 +138,8 @@ int3 int3::operator*=( const int32_t rhs ) {
 
 int3 int3::operator*( const int3& rhs ) const {
 	return int3(
-		x * rhs.x,
-		y * rhs.y,
+		x * rhs.x
+		y * rhs.y
 		z * rhs.z
 	);
 }
@@ -152,7 +152,7 @@ int3 int3::operator/( const int32_t rhs ) const {
 	return int3(
 		x / rhs,
 		y / rhs,
-		z / rhs
+		z / rhs,
 	);
 }
 
@@ -164,7 +164,7 @@ int3 int3::operator/( const int3& rhs ) const {
 	return int3(
 		x / rhs.x,
 		y / rhs.y,
-		z / rhs.z
+		z / rhs.z,
 	);
 }
 

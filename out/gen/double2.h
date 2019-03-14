@@ -33,6 +33,8 @@ along with hlml.  If not, see <http://www.gnu.org/licenses/>.
 struct double3;
 struct double4;
 
+/// \brief A vector of 2 doubles with components xy and/or rg.
+/// Components are also stored as elements in an array via a union.
 struct double2 {
 	union {
 		struct {
@@ -48,40 +50,84 @@ struct double2 {
 		double data[2] = { 0 };
 	};
 
+	/// Default constructor.  Initializes all values to zero.
 	inline double2();
+
+	/// Initializes all components of the vector to the given scalar value.
 	inline explicit double2( const double x );
+
+	/// Sets the xy members of the vector to the corresponding parameters.
 	inline double2( const double x, const double y );
+
+	/// Copy constructor.  Copies the elements of the given vector via memcpy.
 	inline double2( const double2& other );
+
+	/// Copy constructor.  Copies the elements of the given vector via memcpy.
 	inline double2( const double3& other );
+
+	/// Copy constructor.  Copies the elements of the given vector via memcpy.
 	inline double2( const double4& other );
+
 	~double2() {}
 
+	/// Copies the elements of the given vector via memcpy.
 	inline double2 operator=( const double2& rhs );
+
+	/// Copies the elements of the given vector via memcpy.
 	inline double2 operator=( const double3& rhs );
+
+	/// Copies the elements of the given vector via memcpy.
 	inline double2 operator=( const double4& rhs );
 
+	/// Returns a copy of the vector with each value added the given scalar value.
 	inline double2 operator+( const double rhs ) const;
+	/// Adds each component of the vector by the given scalar value.
 	inline double2 operator+=( const double rhs );
+	/// Returns a copy of the vector that has been component-wise added by the other vector.
 	inline double2 operator+( const double2& rhs ) const;
+	/// Component-wise adds each component of the vector by the other vector.
 	inline double2 operator+=( const double2& rhs );
+	/// Returns a copy of the vector with each value subtracted the given scalar value.
 	inline double2 operator-( const double rhs ) const;
+	/// Subtracts each component of the vector by the given scalar value.
 	inline double2 operator-=( const double rhs );
+	/// Returns a copy of the vector that has been component-wise subtracted by the other vector.
 	inline double2 operator-( const double2& rhs ) const;
+	/// Component-wise subtracts each component of the vector by the other vector.
 	inline double2 operator-=( const double2& rhs );
+	/// Returns a copy of the vector with each value multiplied the given scalar value.
 	inline double2 operator*( const double rhs ) const;
+	/// Multiplies each component of the vector by the given scalar value.
 	inline double2 operator*=( const double rhs );
+	/// Returns a copy of the vector that has been component-wise multiplied by the other vector.
 	inline double2 operator*( const double2& rhs ) const;
+	/// Component-wise multiplies each component of the vector by the other vector.
 	inline double2 operator*=( const double2& rhs );
+	/// Returns a copy of the vector with each value divided the given scalar value.
 	inline double2 operator/( const double rhs ) const;
+	/// Divides each component of the vector by the given scalar value.
 	inline double2 operator/=( const double rhs );
+	/// Returns a copy of the vector that has been component-wise divided by the other vector.
 	inline double2 operator/( const double2& rhs ) const;
+	/// Component-wise divides each component of the vector by the other vector.
 	inline double2 operator/=( const double2& rhs );
 
+	/// \brief Returns the vector component at the given index.
+	/// Index CANNOT be lower than 0 or higher than 1.
 	inline const double& operator[]( const uint32_t index ) const;
+
+	/// \brief Returns the vector component at the given index.
+	/// Index CANNOT be lower than 0 or higher than 1.
 	inline double& operator[]( const uint32_t index );
+
 };
 
+/// \relates double2
+/// \brief Returns true if the all the components of the left-hand-side double2 match the other one, otherwise returns false.
 inline bool operator==( const double2& lhs, const double2& rhs );
+
+/// \relates double2
+/// \brief Returns true if not all of the components of the left-hand-side double2 match the other one, otherwise returns false.
 inline bool operator!=( const double2& lhs, const double2& rhs );
 
 inline bool2 operator<( const double2& lhs, const double2& rhs );

@@ -78,7 +78,7 @@ double2 double2::operator=( const double4& rhs ) {
 double2 double2::operator+( const double rhs ) const {
 	return double2(
 		x + rhs,
-		y + rhs
+		y + rhs,
 	);
 }
 
@@ -89,7 +89,7 @@ double2 double2::operator+=( const double rhs ) {
 double2 double2::operator+( const double2& rhs ) const {
 	return double2(
 		x + rhs.x,
-		y + rhs.y
+		y + rhs.y,
 	);
 }
 
@@ -99,7 +99,7 @@ double2 double2::operator+=( const double2& rhs ) {
 
 double2 double2::operator-( const double rhs ) const {
 	return double2(
-		x - rhs,
+		x - rhs
 		y - rhs
 	);
 }
@@ -110,7 +110,7 @@ double2 double2::operator-=( const double rhs ) {
 
 double2 double2::operator-( const double2& rhs ) const {
 	return double2(
-		x - rhs.x,
+		x - rhs.x
 		y - rhs.y
 	);
 }
@@ -122,7 +122,7 @@ double2 double2::operator-=( const double2& rhs ) {
 double2 double2::operator*( const double rhs ) const {
 	return double2(
 		x * rhs,
-		y * rhs
+		y * rhs,
 	);
 }
 
@@ -133,7 +133,7 @@ double2 double2::operator*=( const double rhs ) {
 double2 double2::operator*( const double2& rhs ) const {
 	return double2(
 		x * rhs.x,
-		y * rhs.y
+		y * rhs.y,
 	);
 }
 
@@ -144,7 +144,7 @@ double2 double2::operator*=( const double2& rhs ) {
 double2 double2::operator/( const double rhs ) const {
 	return double2(
 		x / rhs,
-		y / rhs
+		y / rhs,
 	);
 }
 
@@ -155,7 +155,7 @@ double2 double2::operator/=( const double rhs ) {
 double2 double2::operator/( const double2& rhs ) const {
 	return double2(
 		x / rhs.x,
-		y / rhs.y
+		y / rhs.y,
 	);
 }
 

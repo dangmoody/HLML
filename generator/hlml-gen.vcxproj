@@ -31,6 +31,7 @@
   <ItemGroup>
     <ClInclude Include="FileIO.h" />
     <ClInclude Include="gen_common.h" />
+    <ClInclude Include="gen_doc_common.h" />
     <ClInclude Include="gen_funcs_matrix.h" />
     <ClInclude Include="gen_funcs_vector.h" />
     <ClInclude Include="MatrixGenerator.h" />
@@ -118,6 +119,10 @@
     <Link>
       <GenerateDebugInformation>DebugFull</GenerateDebugInformation>
     </Link>
+    <PostBuildEvent>
+      <Command>
+      </Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>

@@ -46,4 +46,17 @@ private:
 	void			InlGenerateOperatorsArray();
 	void			InlGenerateOperatorsEquality();
 	void			InlGenerateOperatorsRelational();
+
+	std::string		GetDocStruct() const;
+	std::string		GetDocScalar() const;
+	std::string		GetDocCtorMemberwise() const;
+	std::string		GetDocOperatorAssignment() const;
+
+	std::string		GetDocOperatorArithmeticScalar( const genOpArithmetic_t op ) const;
+	std::string		GetDocOperatorArithmeticRhsType( const genOpArithmetic_t op ) const;
+
+	std::string		GetDocOperatorCompoundArithmeticScalar( const genOpArithmetic_t op ) const;
+	std::string		GetDocOperatorCompoundArithmeticRhsType( const genOpArithmetic_t op ) const;
+
+	std::string		GetDocOperatorArray() const;
 };

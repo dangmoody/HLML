@@ -1,5 +1,7 @@
 #include "VectorGenerator.h"
 
+#include "gen_doc_common.h"
+
 #include "FileIO.h"
 
 #include <assert.h>
@@ -51,6 +53,7 @@ void VectorGenerator::GenerateHeader() {
 
 	HeaderGenerateForwardDeclarations();
 
+	m_codeHeader += GetDocStruct();
 	m_codeHeader += "struct " + m_fullTypeName + " {\n";
 	HeaderGenerateMembers();
 
@@ -150,12 +153,17 @@ void VectorGenerator::HeaderGenerateMembersStruct( const std::string& componentN
 
 void VectorGenerator::HeaderGenerateConstructors() {
 	// default ctor
+	m_codeHeader += Gen_GetDocCtorDefault();
 	m_codeHeader += "\tinline " + m_fullTypeName + "();\n";
+	m_codeHeader += "\n";
 
 	// single scalar ctor
+	m_codeHeader += GetDocScalar();
 	m_codeHeader += "\tinline explicit " + m_fullTypeName + "( const " + m_typeString + " x );\n";
+	m_codeHeader += "\n";
 
 	// member-wise ctors
+	m_codeHeader += GetDocCtorMemberwise();
 	m_codeHeader += "\tinline " + m_fullTypeName + "( ";
 	for ( uint32_t i = 0; i < m_numComponents; i++ ) {
 		m_codeHeader += std::string( "const " ) + m_typeString + std::string( " " ) + GEN_COMPONENT_NAMES_VECTOR[i];
@@ -165,24 +173,26 @@ void VectorGenerator::HeaderGenerateConstructors() {
 		}
 	}
 	m_codeHeader += " );\n";
+	m_codeHeader += "\n";
 
 	// copy ctors for all valid vector types
 	for ( uint32_t i = GEN_COMPONENT_COUNT_MIN; i <= GEN_COMPONENT_COUNT_MAX; i++ ) {
+		m_codeHeader += Gen_GetDocCtorCopy();
 		m_codeHeader += "\tinline " + m_fullTypeName + "( const " + Gen_GetTypeString( m_type ) + std::to_string( i ) + "& other );\n";
+		m_codeHeader += "\n";
 	}
 
 	// dtor
 	m_codeHeader += "\t~" + m_fullTypeName + "() {}\n";
-
 	m_codeHeader += "\n";
 }
 
 void VectorGenerator::HeaderGenerateOperatorsAssignment() {
 	for ( uint32_t i = GEN_COMPONENT_COUNT_MIN; i <= GEN_COMPONENT_COUNT_MAX; i++ ) {
+		m_codeHeader += GetDocOperatorAssignment();
 		m_codeHeader += "\tinline " + m_fullTypeName + " operator=( const " + Gen_GetTypeString( m_type ) + std::to_string( i ) + "& rhs );\n";
+		m_codeHeader += "\n";
 	}
-
-	m_codeHeader += "\n";
 }
 
 void VectorGenerator::HeaderGenerateOperatorsArithmetic() {
@@ -191,27 +201,40 @@ void VectorGenerator::HeaderGenerateOperatorsArithmetic() {
 	}
 
 	for ( uint32_t i = 0; i < GEN_OP_ARITHMETIC_COUNT; i++ ) {
-		char op = GEN_OPERATORS_ARITHMETIC[i];
+		char opChar = GEN_OPERATORS_ARITHMETIC[i];
+		genOpArithmetic_t op = static_cast<genOpArithmetic_t>( i );
 
-		m_codeHeader += "\tinline " + m_fullTypeName + " operator" + op + "( const " + m_typeString + " rhs ) const;\n";
-		m_codeHeader += "\tinline " + m_fullTypeName + " operator" + op + "=( const " + m_typeString + " rhs );\n";
+		m_codeHeader += GetDocOperatorArithmeticScalar( op );
+		m_codeHeader += "\tinline " + m_fullTypeName + " operator" + opChar + "( const " + m_typeString + " rhs ) const;\n";
+		m_codeHeader += GetDocOperatorCompoundArithmeticScalar( op );
+		m_codeHeader += "\tinline " + m_fullTypeName + " operator" + opChar + "=( const " + m_typeString + " rhs );\n";
 
-		m_codeHeader += "\tinline " + m_fullTypeName + " operator" + op + "( const " + m_fullTypeName + "& rhs ) const;\n";
-		m_codeHeader += "\tinline " + m_fullTypeName + " operator" + op + "=( const " + m_fullTypeName + "& rhs );\n";
+		m_codeHeader += GetDocOperatorArithmeticRhsType( op );
+		m_codeHeader += "\tinline " + m_fullTypeName + " operator" + opChar + "( const " + m_fullTypeName + "& rhs ) const;\n";
+		m_codeHeader += GetDocOperatorCompoundArithmeticRhsType( op );
+		m_codeHeader += "\tinline " + m_fullTypeName + " operator" + opChar + "=( const " + m_fullTypeName + "& rhs );\n";
 	}
 
 	m_codeHeader += "\n";
 }
 
 void VectorGenerator::HeaderGenerateOperatorsArray() {
+	m_codeHeader += GetDocOperatorArray();
 	m_codeHeader += "\tinline const " + m_typeString + "& operator[]( const uint32_t index ) const;\n";
+	m_codeHeader += "\n";
+
+	m_codeHeader += GetDocOperatorArray();
 	m_codeHeader += "\tinline " + m_typeString + "& operator[]( const uint32_t index );\n";
+	m_codeHeader += "\n";
 }
 
 void VectorGenerator::HeaderGenerateOperatorsEquality() {
+	m_codeHeader += Gen_GetDocOperatorEquals( m_fullTypeName );
 	m_codeHeader += "inline bool operator==( const " + m_fullTypeName + "& lhs, const " + m_fullTypeName + "& rhs );\n";
-	m_codeHeader += "inline bool operator!=( const " + m_fullTypeName + "& lhs, const " + m_fullTypeName + "& rhs );\n";
+	m_codeHeader += "\n";
 
+	m_codeHeader += Gen_GetDocOperatorNotEquals( m_fullTypeName );
+	m_codeHeader += "inline bool operator!=( const " + m_fullTypeName + "& lhs, const " + m_fullTypeName + "& rhs );\n";
 	m_codeHeader += "\n";
 }
 
@@ -425,4 +448,117 @@ void VectorGenerator::InlGenerateOperatorsRelational() {
 	}
 
 	m_codeInl += "\n";
+}
+
+std::string VectorGenerator::GetDocStruct() const {
+	std::string componentsStr;
+	for ( uint32_t i = 0; i < m_numComponents; i++ ) {
+		componentsStr += GEN_COMPONENT_NAMES_VECTOR[i];
+	}
+
+	if ( m_type != GEN_TYPE_BOOL ) {
+		componentsStr += " and/or ";
+		for ( uint32_t i = 0; i < m_numComponents; i++ ) {
+			componentsStr += GEN_COMPONENT_NAMES_COLOR[i];
+		}
+	}
+
+	std::string doc;
+	doc += "/// \\brief A vector of " + m_numComponentsStr + " " + m_typeString + "s with components " + componentsStr + ".\n";
+	doc += "/// Components are also stored as elements in an array via a union.\n";
+
+	return doc;
+}
+
+std::string VectorGenerator::GetDocScalar() const {
+	return "\t/// Initializes all components of the vector to the given scalar value.\n";
+}
+
+std::string VectorGenerator::GetDocCtorMemberwise() const {
+	std::string componentsStr;
+	for ( uint32_t i = 0; i < m_numComponents; i++ ) {
+		componentsStr += GEN_COMPONENT_NAMES_VECTOR[i];
+	}
+
+	return std::string( "\t/// Sets the " ) + componentsStr + " members of the vector to the corresponding parameters.\n";
+}
+
+std::string VectorGenerator::GetDocOperatorAssignment() const {
+	return "\t/// Copies the elements of the given vector via memcpy.\n";
+}
+
+std::string VectorGenerator::GetDocOperatorArithmeticScalar( const genOpArithmetic_t op ) const {
+	std::string adjective;
+	switch ( op ) {
+		case GEN_OP_ARITHMETIC_ADD: adjective = "added"; break;
+		case GEN_OP_ARITHMETIC_SUB: adjective = "subtracted"; break;
+		case GEN_OP_ARITHMETIC_MUL: adjective = "multiplied"; break;
+		case GEN_OP_ARITHMETIC_DIV: adjective = "divided"; break;
+
+		case GEN_OP_ARITHMETIC_COUNT:
+		default:
+			printf( "ERROR: Bad genOpArithmetic_t enum passed into %s.\n", __FUNCTION__ );
+			break;
+	}
+
+	return "\t/// Returns a copy of the vector with each value " + adjective + " the given scalar value.\n";
+}
+
+std::string VectorGenerator::GetDocOperatorArithmeticRhsType( const genOpArithmetic_t op ) const {
+	std::string adjective;
+	switch ( op ) {
+		case GEN_OP_ARITHMETIC_ADD: adjective = "added"; break;
+		case GEN_OP_ARITHMETIC_SUB: adjective = "subtracted"; break;
+		case GEN_OP_ARITHMETIC_MUL: adjective = "multiplied"; break;
+		case GEN_OP_ARITHMETIC_DIV: adjective = "divided"; break;
+
+		case GEN_OP_ARITHMETIC_COUNT:
+		default:
+			printf( "ERROR: Bad genOpArithmetic_t enum passed into %s.\n", __FUNCTION__ );
+			break;
+	}
+
+	return "\t/// Returns a copy of the vector that has been component-wise " + adjective + " by the other vector.\n";
+}
+
+std::string VectorGenerator::GetDocOperatorCompoundArithmeticScalar( const genOpArithmetic_t op ) const {
+	std::string verb;
+	switch ( op ) {
+		case GEN_OP_ARITHMETIC_ADD: verb = "Adds"; break;
+		case GEN_OP_ARITHMETIC_SUB: verb = "Subtracts"; break;
+		case GEN_OP_ARITHMETIC_MUL: verb = "Multiplies"; break;
+		case GEN_OP_ARITHMETIC_DIV: verb = "Divides"; break;
+
+		case GEN_OP_ARITHMETIC_COUNT:
+		default:
+			printf( "ERROR: Bad genOpArithmetic_t enum passed into %s.\n", __FUNCTION__ );
+			break;
+	}
+
+	return "\t/// " + verb + " each component of the vector by the given scalar value.\n";
+}
+
+std::string VectorGenerator::GetDocOperatorCompoundArithmeticRhsType( const genOpArithmetic_t op ) const {
+	std::string verb;
+	switch ( op ) {
+		case GEN_OP_ARITHMETIC_ADD: verb = "adds"; break;
+		case GEN_OP_ARITHMETIC_SUB: verb = "subtracts"; break;
+		case GEN_OP_ARITHMETIC_MUL: verb = "multiplies"; break;
+		case GEN_OP_ARITHMETIC_DIV: verb = "divides"; break;
+
+		case GEN_OP_ARITHMETIC_COUNT:
+		default:
+			printf( "ERROR: Bad genOpArithmetic_t enum passed into %s.\n", __FUNCTION__ );
+			break;
+	}
+
+	return "\t/// Component-wise " + verb + " each component of the vector by the other vector.\n";
+}
+
+std::string VectorGenerator::GetDocOperatorArray() const {
+	std::string doc;
+	doc += "\t/// \\brief Returns the vector component at the given index.\n";
+	doc += "\t/// Index CANNOT be lower than 0 or higher than " + std::to_string( m_numComponents - 1 ) + ".\n";
+
+	return doc;
 }
