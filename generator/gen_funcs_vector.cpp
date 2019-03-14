@@ -2,6 +2,51 @@
 
 #include <assert.h>
 
+static std::string GetDocLengthSqr( const std::string& fullTypeName ) {
+	return "/// \\relates " + fullTypeName + "\n" + \
+		"/// \\brief Returns the magnitude of the vector squared.\n";
+}
+
+static std::string GetDocLength( const std::string& fullTypeName ) {
+	return "/// \\relates " + fullTypeName + "\n" + \
+		"/// \\brief Returns the magnitude of the vector.\n";
+}
+
+static std::string GetDocNormalize( const std::string& fullTypeName ) {
+	return "/// \\relates " + fullTypeName + "\n" + \
+		"/// \\brief Normalizes the vector.\n";
+}
+
+static std::string GetDocNormalized( const std::string& fullTypeName ) {
+	return "/// \\relates " + fullTypeName + "\n" + \
+		"/// \\brief Returns a normalized copy of the vector.\n";
+}
+
+static std::string GetDocDot( const std::string& fullTypeName ) {
+	return "/// \\relates " + fullTypeName + "\n" + \
+		"/// \\brief Returns the dot product of the two vectors.\n";
+}
+
+static std::string GetDocCross( const std::string& fullTypeName ) {
+	return "/// \\relates " + fullTypeName + "\n" + \
+		"/// \\brief Returns a vector perpendicular (normal) to the two vectors.\n";
+}
+
+static std::string GetDocAngle( const std::string& fullTypeName ) {
+	return "/// \\relates " + fullTypeName + "\n" + \
+		"/// \\brief Returns the angle in degrees between the two vectors.\n";
+}
+
+static std::string GetDocSaturate( const std::string& fullTypeName ) {
+	return "/// \\relates " + fullTypeName + "\n" + \
+		"/// \\brief Returns a copy of the vector with each component clamped between the range 0 and 1.\n";
+}
+
+static std::string GetDocLerp( const std::string& fullTypeName ) {
+	return "/// \\relates " + fullTypeName + "\n" + \
+		"/// \\brief Returns a linearly interpolated vector between vectors \"a\" and \"b\".\n";
+}
+
 std::string Gen_GetParmListVector( const genType_t type, const uint32_t numComponents, const float* values ) {
 	std::string parmList = "( ";
 	for ( uint32_t i = 0; i < numComponents; i++ ) {
@@ -32,7 +77,11 @@ void Gen_VectorLength( const genType_t type, const uint32_t numComponents, std::
 
 	std::string sqrtString = ( floatingPointType == GEN_TYPE_DOUBLE ) ? "sqrt" : "sqrtf";
 
+	outHeader += GetDocLengthSqr( fullTypeName );
 	outHeader += "inline " + returnTypeString + " lengthsqr( const " + fullTypeName + "& vec );\n";
+	outHeader += "\n";
+
+	outHeader += GetDocLength( fullTypeName );
 	outHeader += "inline " + returnTypeString + " length( const " + fullTypeName + "& vec );\n";
 	outHeader += "\n";
 
@@ -69,7 +118,11 @@ void Gen_VectorNormalize( const genType_t type, const uint32_t numComponents, st
 
 	std::string oneStr = Gen_GetNumericLiteral( type, 1 );
 
+	outHeader += GetDocNormalize( fullTypeName );
 	outHeader += "inline void normalize( " + fullTypeName + "& vec );\n";
+	outHeader += "\n";
+
+	outHeader += GetDocNormalized( fullTypeName );
 	outHeader += "inline " + fullTypeName + " normalized( const " + fullTypeName + "& vec );\n";
 	outHeader += "\n";
 
@@ -98,6 +151,7 @@ void Gen_VectorDot( const genType_t type, const uint32_t numComponents, std::str
 	std::string returnTypeString = Gen_GetTypeString( Gen_GetSupportedFloatingPointType( type ) );
 	std::string fullTypeName = typeString + std::to_string( numComponents );
 
+	outHeader += GetDocDot( fullTypeName );
 	outHeader += "inline " + returnTypeString + " dot( const " + fullTypeName + "& lhs, const " + fullTypeName + "& rhs );\n";
 	outHeader += "\n";
 
@@ -130,6 +184,7 @@ void Gen_VectorCross( const genType_t type, const uint32_t numComponents, std::s
 	std::string typeString = Gen_GetTypeString( type );
 	std::string fullTypeName = typeString + std::to_string( numComponents );
 
+	outHeader += GetDocCross( fullTypeName );
 	outHeader += "inline " + fullTypeName + " cross( const " + fullTypeName + "& lhs, const " + fullTypeName + "& rhs );\n";
 	outHeader += "\n";
 
@@ -164,6 +219,7 @@ void Gen_VectorAngle( const genType_t type, const uint32_t numComponents, std::s
 
 	std::string acosString = Gen_GetFuncNameAcos( floatingPointType );
 
+	outHeader += GetDocAngle( fullTypeName );
 	outHeader += "inline " + returnTypeString + " angle( const " + fullTypeName + "& lhs, const " + fullTypeName + "& rhs );\n";
 	outHeader += "\n";
 
@@ -187,6 +243,7 @@ void Gen_VectorSaturate( const genType_t type, const uint32_t numComponents, std
 	std::string zeroStr = Gen_GetNumericLiteral( type, 0.0f );
 	std::string oneStr = Gen_GetNumericLiteral( type, 1.0f );
 
+	outHeader += GetDocSaturate( fullTypeName );
 	outHeader += "inline " + fullTypeName + " saturate( const " + fullTypeName + "& vec );\n";
 	outHeader += "\n";
 
@@ -214,6 +271,7 @@ void Gen_VectorLerp( const genType_t type, const uint32_t numComponents, std::st
 	std::string typeString = Gen_GetTypeString( type );
 	std::string fullTypeName = typeString + std::to_string( numComponents );
 
+	outHeader += GetDocLerp( fullTypeName );
 	outHeader += "inline " + fullTypeName + " lerp( const " + fullTypeName + "& a, const " + fullTypeName + "& b, const " + typeString + " t );\n";
 	outHeader += "\n";
 
