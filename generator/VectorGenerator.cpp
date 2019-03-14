@@ -506,7 +506,7 @@ std::string VectorGenerator::GetDocOperatorArithmeticScalar( const genOpArithmet
 		case GEN_OP_ARITHMETIC_COUNT:
 		default:
 			printf( "ERROR: Bad genOpArithmetic_t enum passed into %s.\n", __FUNCTION__ );
-			break;
+			return std::string();
 	}
 
 	return "\t/// Returns a copy of the vector with each value " + adjective + " the given scalar value.\n";
@@ -523,7 +523,7 @@ std::string VectorGenerator::GetDocOperatorArithmeticRhsType( const genOpArithme
 		case GEN_OP_ARITHMETIC_COUNT:
 		default:
 			printf( "ERROR: Bad genOpArithmetic_t enum passed into %s.\n", __FUNCTION__ );
-			break;
+			return std::string();
 	}
 
 	return "\t/// Returns a copy of the vector that has been component-wise " + adjective + " by the other vector.\n";
@@ -540,7 +540,7 @@ std::string VectorGenerator::GetDocOperatorCompoundArithmeticScalar( const genOp
 		case GEN_OP_ARITHMETIC_COUNT:
 		default:
 			printf( "ERROR: Bad genOpArithmetic_t enum passed into %s.\n", __FUNCTION__ );
-			break;
+			return std::string();
 	}
 
 	return "\t/// " + verb + " each component of the vector by the given scalar value.\n";
@@ -557,7 +557,7 @@ std::string VectorGenerator::GetDocOperatorCompoundArithmeticRhsType( const genO
 		case GEN_OP_ARITHMETIC_COUNT:
 		default:
 			printf( "ERROR: Bad genOpArithmetic_t enum passed into %s.\n", __FUNCTION__ );
-			break;
+			return std::string();
 	}
 
 	return "\t/// Component-wise " + verb + " each component of the vector by the other vector.\n";
