@@ -1,5 +1,7 @@
 #include "MatrixGenerator.h"
 
+#include "gen_doc_common.h"
+
 #include "FileIO.h"
 
 void MatrixGenerator::Generate( const genType_t type, const uint32_t numRows, const uint32_t numCols ) {
@@ -49,6 +51,8 @@ void MatrixGenerator::GenerateHeader() {
 		m_codeHeader += "#include \"" + m_transposedTypeName + ".h\"\n";								// transpose type
 	}
 	m_codeHeader += "\n";
+
+	m_codeHeader += GetDocStruct();
 	m_codeHeader += "struct " + m_fullTypeName + " {\n";
 
 	HeaderGenerateMembers();
@@ -102,15 +106,22 @@ void MatrixGenerator::HeaderGenerateMembers() {
 
 void MatrixGenerator::HeaderGenerateConstructors() {
 	// default ctor
+	m_codeHeader += GetDocCtorDefault();
 	m_codeHeader += "\tinline " + m_fullTypeName + "();\n";
+	m_codeHeader += "\n";
 
 	// "diagonal" scaled uniform identity ctor
+	m_codeHeader += GetDocCtorDiagonalScalar();
 	m_codeHeader += "\tinline " + m_fullTypeName + "( const " + m_memberTypeString + " diagonal );\n";
+	m_codeHeader += "\n";
 
 	// "diagonal" scaled non-uniform identity ctor
+	m_codeHeader += GetDocCtorDiagonalVector();
 	m_codeHeader += "\tinline " + m_fullTypeName + "( const " + m_vectorMemberTypeString + "& diagonal );\n";
+	m_codeHeader += "\n";
 
 	// row memberwise ctor
+	m_codeHeader += GetDocCtorRow();
 	m_codeHeader += "\tinline " + m_fullTypeName + "( ";
 	for ( uint32_t i = 0; i < m_numRows; i++ ) {
 		m_codeHeader += "const " + m_vectorMemberTypeString + "& row" + std::to_string( i );
@@ -120,11 +131,15 @@ void MatrixGenerator::HeaderGenerateConstructors() {
 		}
 	}
 	m_codeHeader += " );\n";
+	m_codeHeader += "\n";
 
 	// array of rows ctor
+	m_codeHeader += GetDocCtorRowArray();
 	m_codeHeader += "\tinline " + m_fullTypeName + "( const " + m_vectorMemberTypeString + " rows[" + m_numRowsStr + "] );\n";
+	m_codeHeader += "\n";
 
 	// memberwise rows * cols ctor
+	m_codeHeader += GetDocCtorRowsAndCols();
 	m_codeHeader += "\tinline " + m_fullTypeName + "( ";
 	for ( uint32_t row = 0; row < m_numRows; row++ ) {
 		for ( uint32_t col = 0; col < m_numCols; col++ ) {
@@ -143,31 +158,41 @@ void MatrixGenerator::HeaderGenerateConstructors() {
 		}
 	}
 	m_codeHeader += " );\n";
+	m_codeHeader += "\n";
 
 	// copy ctor
+	m_codeHeader += GetDocCtorCopy();
 	m_codeHeader += "\tinline " + m_fullTypeName + "( const " + m_fullTypeName + "& other );\n";
+	m_codeHeader += "\n";
 
 	// dtor
 	m_codeHeader += "\tinline ~" + m_fullTypeName + "() {}\n";
-
 	m_codeHeader += "\n";
 }
 
 void MatrixGenerator::HeaderGenerateOperatorsAssignment() {
 	// assignment operator
+	m_codeHeader += GetDocOperatorAssignment();
 	m_codeHeader += "\tinline " + m_fullTypeName + " operator=( const " + m_fullTypeName + "& other );\n";
 	m_codeHeader += "\n";
 }
 
 void MatrixGenerator::HeaderGenerateOperatorsArray() {
+	m_codeHeader += GetDocOperatorArray();
 	m_codeHeader += "\tinline " + m_vectorMemberTypeString + "& operator[]( const uint32_t index );\n";
+	m_codeHeader += "\n";
+
+	m_codeHeader += GetDocOperatorArray();
 	m_codeHeader += "\tinline const " + m_vectorMemberTypeString + "& operator[]( const uint32_t index ) const;\n";
 }
 
 void MatrixGenerator::HeaderGenerateOperatorsEquality() {
+	m_codeHeader += Gen_GetDocOperatorEquals( m_fullTypeName );
 	m_codeHeader += "inline bool operator==( const " + m_fullTypeName + "& lhs, const " + m_fullTypeName + "& rhs );\n";
-	m_codeHeader += "inline bool operator!=( const " + m_fullTypeName + "& lhs, const " + m_fullTypeName + "& rhs );\n";
+	m_codeHeader += "\n";
 
+	m_codeHeader += Gen_GetDocOperatorNotEquals( m_fullTypeName );
+	m_codeHeader += "inline bool operator!=( const " + m_fullTypeName + "& lhs, const " + m_fullTypeName + "& rhs );\n";
 	m_codeHeader += "\n";
 }
 
@@ -283,7 +308,6 @@ void MatrixGenerator::InlGenerateConstructors() {
 	m_codeInl += m_fullTypeName + "::" + m_fullTypeName + "( const " + m_fullTypeName + "& other ) {\n";
 	m_codeInl += "\tmemcpy( rows, other.rows, sizeof( rows ) );\n";
 	m_codeInl += "};\n";
-
 	m_codeInl += "\n";
 }
 
@@ -292,7 +316,6 @@ void MatrixGenerator::InlGenerateOperatorsAssignment() {
 	m_codeInl += "\tmemcpy( rows, other.rows, sizeof( rows ) );\n";
 	m_codeInl += "\treturn *this;\n";
 	m_codeInl += "};\n";
-
 	m_codeInl += "\n";
 }
 
@@ -301,14 +324,12 @@ void MatrixGenerator::InlGenerateOperatorsArray() {
 	m_codeInl += "\tassert( index < " + m_numRowsStr + " );\n";
 	m_codeInl += "\treturn rows[index];\n";
 	m_codeInl += "}\n";
-
 	m_codeInl += "\n";
 
 	m_codeInl += "const " + m_vectorMemberTypeString + "& " + m_fullTypeName + "::operator[]( const uint32_t index ) const {\n";
 	m_codeInl += "\tassert( index < " + m_numRowsStr + " );\n";
 	m_codeInl += "\treturn rows[index];\n";
 	m_codeInl += "}\n";
-
 	m_codeInl += "\n";
 }
 
@@ -324,12 +345,53 @@ void MatrixGenerator::InlGenerateOperatorsEquality() {
 	}
 	m_codeInl += ";\n";
 	m_codeInl += "}\n";
-
 	m_codeInl += "\n";
 
 	m_codeInl += "bool operator!=( const " + m_fullTypeName + "& lhs, const " + m_fullTypeName + "& rhs ) {\n";
 	m_codeInl += "\treturn !( operator==( lhs, rhs ) );\n";
 	m_codeInl += "}\n";
-
 	m_codeInl += "\n";
+}
+
+std::string MatrixGenerator::GetDocStruct() const {
+	return "/// A matrix of " + m_numRowsStr + " " + m_vectorMemberTypeString + "s.\n";
+}
+
+std::string MatrixGenerator::GetDocCtorDefault() const {
+	return "\t/// Default constructor.  Sets the matrix to an identity matrix.\n";
+}
+
+std::string MatrixGenerator::GetDocCtorDiagonalScalar() const {
+	return "\t/// \\brief Sets each of the diagonal values of the matrix to the given scalar value.\n" \
+		"\t/// Setting the scalar to 1 will give an identity matrix.\n";
+}
+
+std::string MatrixGenerator::GetDocCtorDiagonalVector() const {
+	return "\t/// \\brief Sets the diagonal values of the matrix to the corresponding components of the given vector.\n" \
+		"\t/// Setting each component of the vector to 1 will give an identity matrix.\n";
+}
+
+std::string MatrixGenerator::GetDocCtorRow() const {
+	return "\t/// Sets each row of the matrix to the given vectors.\n";
+}
+
+std::string MatrixGenerator::GetDocCtorRowArray() const {
+	return "\t/// Sets each row of the matrix to the corresponding vector in the array.\n";
+}
+
+std::string MatrixGenerator::GetDocCtorRowsAndCols() const {
+	return "\t/// Sets each component of the vector to the corresponding scalar value (row major).\n";
+}
+
+std::string MatrixGenerator::GetDocCtorCopy() const {
+	return "\t/// Copy constructor.  Sets each row of the matrix to the rows in the other matrix.\n";
+}
+
+std::string MatrixGenerator::GetDocOperatorAssignment() const {
+	return "\t/// Copies each row of the given matrix via a single memcpy.\n";
+}
+
+std::string MatrixGenerator::GetDocOperatorArray() const {
+	return "\t/// \\brief Returns the row at the given index of the matrix.\n" \
+		"\t/// Index CANNOT be lower than 0 or higher than " + std::to_string( m_numRows - 1 ) + ".\n";
 }

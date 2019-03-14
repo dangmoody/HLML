@@ -45,4 +45,16 @@ private:
 	void		InlGenerateOperatorsAssignment();
 	void		InlGenerateOperatorsArray();
 	void		InlGenerateOperatorsEquality();
+
+	std::string	GetDocStruct() const;
+	std::string	GetDocCtorDefault() const;
+	std::string	GetDocCtorDiagonalScalar() const;
+	std::string	GetDocCtorDiagonalVector() const;
+	std::string	GetDocCtorRow() const;
+	std::string	GetDocCtorRowArray() const;
+	std::string	GetDocCtorRowsAndCols() const;
+	std::string	GetDocCtorCopy() const;
+
+	std::string	GetDocOperatorAssignment() const;
+	std::string	GetDocOperatorArray() const;
 };
