@@ -2,6 +2,7 @@
 
 #include <assert.h>
 
+// TODO(DM): move these functions into their own file
 static std::string GetDocLengthSqr( const std::string& fullTypeName ) {
 	return "/// \\relates " + fullTypeName + "\n" + \
 		"/// \\brief Returns the magnitude of the vector squared.\n";
