@@ -130,9 +130,17 @@ inline bool operator==( const double2& lhs, const double2& rhs );
 /// \brief Returns true if not all of the components of the left-hand-side double2 match the other one, otherwise returns false.
 inline bool operator!=( const double2& lhs, const double2& rhs );
 
+	/// \relates double2
+	/// \brief Returns a bool2 where each component is true if the component of the left-hand vector is less than than the corresponding rhs-hand vector component.
 inline bool2 operator<( const double2& lhs, const double2& rhs );
+	/// \relates double2
+	/// \brief Returns a bool2 where each component is true if the component of the left-hand vector is less than than the corresponding rhs-hand vector component.
 inline bool2 operator<=( const double2& lhs, const double2& rhs );
+	/// \relates double2
+	/// \brief Returns a bool2 where each component is true if the component of the left-hand vector is less than than the corresponding rhs-hand vector component.
 inline bool2 operator>( const double2& lhs, const double2& rhs );
+	/// \relates double2
+	/// \brief Returns a bool2 where each component is true if the component of the left-hand vector is less than than the corresponding rhs-hand vector component.
 inline bool2 operator>=( const double2& lhs, const double2& rhs );
 
 #include "double2.inl"

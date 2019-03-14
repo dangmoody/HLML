@@ -61,4 +61,6 @@ private:
 	std::string		GetDocOperatorCompoundArithmeticRhsType( const genOpArithmetic_t op ) const;
 
 	std::string		GetDocOperatorArray() const;
+
+	std::string		GetDocOperatorRelational( const genOpRelational_t op ) const;
 };

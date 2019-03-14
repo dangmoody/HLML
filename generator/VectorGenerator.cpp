@@ -246,6 +246,9 @@ void VectorGenerator::HeaderGenerateOperatorsRelational() {
 	std::string boolReturnType = "bool" + m_numComponentsStr;
 
 	for ( uint32_t i = 0; i < GEN_OP_RELATIONAL_COUNT; i++ ) {
+		genOpRelational_t op = static_cast<genOpRelational_t>( i );
+
+		m_codeHeader += GetDocOperatorRelational( op );
 		m_codeHeader += "inline " + boolReturnType + " operator" + GEN_OPERATORS_RELATIONAL[i] + "( const " + m_fullTypeName + "& lhs, const " + m_fullTypeName + "& rhs );\n";
 	}
 
@@ -566,4 +569,23 @@ std::string VectorGenerator::GetDocOperatorCompoundArithmeticRhsType( const genO
 std::string VectorGenerator::GetDocOperatorArray() const {
 	return "\t/// \\brief Returns the vector component at the given index.\n" \
 		"\t/// Index CANNOT be lower than 0 or higher than " + std::to_string( m_numComponents - 1 ) + ".\n";
+}
+
+std::string VectorGenerator::GetDocOperatorRelational( const genOpRelational_t op ) const {
+	std::string noun;
+	switch ( op ) {
+		case GEN_OP_RELATIONAL_LESS: noun = "less than"; break;
+		case GEN_OP_RELATIONAL_LESS_EQUAL: noun = "less than"; break;
+		case GEN_OP_RELATIONAL_GREATER: noun = "less than"; break;
+		case GEN_OP_RELATIONAL_GREATER_EQUAL: noun = "less than"; break;
+
+		case GEN_OP_RELATIONAL_COUNT:
+		default:
+			printf( "ERROR: Bad genOpRelational_t enum passed into %s.\n", __FUNCTION__ );
+			return std::string();
+	}
+
+	return "\t/// \\relates " + m_fullTypeName + "\n" \
+		"\t/// \\brief Returns a bool" + m_numComponentsStr + " where each component is true if the component of the left-hand vector is " \
+		+ noun + " than the corresponding rhs-hand vector component.\n";
 }

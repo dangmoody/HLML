@@ -133,9 +133,17 @@ inline bool operator==( const double3& lhs, const double3& rhs );
 /// \brief Returns true if not all of the components of the left-hand-side double3 match the other one, otherwise returns false.
 inline bool operator!=( const double3& lhs, const double3& rhs );
 
+	/// \relates double3
+	/// \brief Returns a bool3 where each component is true if the component of the left-hand vector is less than than the corresponding rhs-hand vector component.
 inline bool3 operator<( const double3& lhs, const double3& rhs );
+	/// \relates double3
+	/// \brief Returns a bool3 where each component is true if the component of the left-hand vector is less than than the corresponding rhs-hand vector component.
 inline bool3 operator<=( const double3& lhs, const double3& rhs );
+	/// \relates double3
+	/// \brief Returns a bool3 where each component is true if the component of the left-hand vector is less than than the corresponding rhs-hand vector component.
 inline bool3 operator>( const double3& lhs, const double3& rhs );
+	/// \relates double3
+	/// \brief Returns a bool3 where each component is true if the component of the left-hand vector is less than than the corresponding rhs-hand vector component.
 inline bool3 operator>=( const double3& lhs, const double3& rhs );
 
 #include "double3.inl"

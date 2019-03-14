@@ -135,9 +135,17 @@ inline bool operator==( const int4& lhs, const int4& rhs );
 /// \brief Returns true if not all of the components of the left-hand-side int4 match the other one, otherwise returns false.
 inline bool operator!=( const int4& lhs, const int4& rhs );
 
+	/// \relates int4
+	/// \brief Returns a bool4 where each component is true if the component of the left-hand vector is less than than the corresponding rhs-hand vector component.
 inline bool4 operator<( const int4& lhs, const int4& rhs );
+	/// \relates int4
+	/// \brief Returns a bool4 where each component is true if the component of the left-hand vector is less than than the corresponding rhs-hand vector component.
 inline bool4 operator<=( const int4& lhs, const int4& rhs );
+	/// \relates int4
+	/// \brief Returns a bool4 where each component is true if the component of the left-hand vector is less than than the corresponding rhs-hand vector component.
 inline bool4 operator>( const int4& lhs, const int4& rhs );
+	/// \relates int4
+	/// \brief Returns a bool4 where each component is true if the component of the left-hand vector is less than than the corresponding rhs-hand vector component.
 inline bool4 operator>=( const int4& lhs, const int4& rhs );
 
 #include "int4.inl"
