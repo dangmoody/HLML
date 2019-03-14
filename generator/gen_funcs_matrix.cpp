@@ -319,6 +319,10 @@ static std::string InlGetArithmeticFuncRhsType( const genType_t type, const uint
 			break;
 		}
 
+		case GEN_OP_ARITHMETIC_COUNT:
+			printf( "ERROR: Bad arithmetic op passed into %s.\n", __FUNCTION__ );
+			break;
+
 		default:
 			// nothing
 			break;
@@ -932,8 +936,9 @@ void Gen_MatrixOrtho( const genHand_t hand, const genType_t type, const uint32_t
 			break;
 		}
 
+		case GEN_HAND_COUNT:
 		default:
-			// nothing
+			printf( "ERROR: Bad genHand_t enum passed into %s.\n", __FUNCTION__ );
 			break;
 	}
 	outInl += "}\n";
@@ -986,8 +991,9 @@ void Gen_MatrixPerspective( const genHand_t hand, const genType_t type, const ui
 			break;
 		}
 
+		case GEN_HAND_COUNT:
 		default:
-			// nothing
+			printf( "ERROR: Bad genHand_t enum passed into %s.\n", __FUNCTION__ );
 			break;
 	}
 	outInl += "}\n";
@@ -1041,8 +1047,9 @@ void Gen_MatrixLookAt( const genHand_t hand, const genType_t type, const uint32_
 			break;
 		}
 
+		case GEN_HAND_COUNT:
 		default:
-			// nothing
+			printf( "ERROR: Bad genHand_t enum passed into %s.\n", __FUNCTION__ );
 			break;
 	}
 	outInl += "}\n";

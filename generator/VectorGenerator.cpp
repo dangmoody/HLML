@@ -302,15 +302,15 @@ void VectorGenerator::InlGenerateOperatorsArithmetic() {
 		return;
 	}
 
-	for ( uint32_t i = 0; i < GEN_OP_ARITHMETIC_COUNT; i++ ) {
-		char op = GEN_OPERATORS_ARITHMETIC[i];
+	for ( uint32_t opIndex = 0; opIndex < GEN_OP_ARITHMETIC_COUNT; opIndex++ ) {
+		char op = GEN_OPERATORS_ARITHMETIC[opIndex];
 
 		// single scalar
 		m_codeInl += m_fullTypeName + " " + m_fullTypeName + "::operator" + op + "( const " + m_typeString + " rhs ) const {\n";
 		m_codeInl += "\treturn " + m_fullTypeName + "(\n";
-		for ( uint32_t i = 0; i < m_numComponents; i++ ) {
-			m_codeInl += std::string( "\t\t" ) + GEN_COMPONENT_NAMES_VECTOR[i] + " " + op + " rhs";
-			if ( i != m_numComponents - 1 ) {
+		for ( uint32_t componentIndex = 0; componentIndex < m_numComponents; componentIndex++ ) {
+			m_codeInl += std::string( "\t\t" ) + GEN_COMPONENT_NAMES_VECTOR[componentIndex] + " " + op + " rhs";
+			if ( opIndex != m_numComponents - 1 ) {
 				m_codeInl += ",";
 			}
 			m_codeInl += "\n";
@@ -329,9 +329,9 @@ void VectorGenerator::InlGenerateOperatorsArithmetic() {
 		// compound lhs/rhs types
 		m_codeInl += m_fullTypeName + " " + m_fullTypeName + "::operator" + op + "( const " + m_fullTypeName + "& rhs ) const {\n";
 		m_codeInl += "\treturn " + m_fullTypeName + "(\n";
-		for ( uint32_t i = 0; i < m_numComponents; i++ ) {
-			m_codeInl += std::string( "\t\t" ) + GEN_COMPONENT_NAMES_VECTOR[i] + " " + op + " rhs." + GEN_COMPONENT_NAMES_VECTOR[i];
-			if ( i != m_numComponents - 1 ) {
+		for ( uint32_t componentIndex = 0; componentIndex < m_numComponents; componentIndex++ ) {
+			m_codeInl += std::string( "\t\t" ) + GEN_COMPONENT_NAMES_VECTOR[componentIndex] + " " + op + " rhs." + GEN_COMPONENT_NAMES_VECTOR[componentIndex];
+			if ( opIndex != m_numComponents - 1 ) {
 				m_codeInl += ",";
 			}
 			m_codeInl += "\n";

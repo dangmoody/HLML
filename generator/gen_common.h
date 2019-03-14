@@ -135,6 +135,7 @@ std::string Gen_GetTypeString( const genType_t type ) {
 		case GEN_TYPE_FLOAT:	return "float";
 		case GEN_TYPE_DOUBLE:	return "double";
 
+		case GEN_TYPE_COUNT:
 		default:
 			printf( "Bad genType_t specified when calling %s.\n", __FUNCTION__ );
 			return std::string();
@@ -149,6 +150,7 @@ std::string Gen_GetMemberTypeString( const genType_t type ) {
 		case GEN_TYPE_FLOAT:	return "float";
 		case GEN_TYPE_DOUBLE:	return "double";
 
+		case GEN_TYPE_COUNT:
 		default:
 			printf( "Bad genType_t specified when calling %s.\n", __FUNCTION__ );
 			return std::string();
@@ -163,6 +165,7 @@ std::string Gen_GetDefaultLiteralValue( const genType_t type ) {
 		case GEN_TYPE_FLOAT:	return "0.0f";
 		case GEN_TYPE_DOUBLE:	return "0.0";
 
+		case GEN_TYPE_COUNT:
 		default:
 			printf( "ERROR: Bad type_t passed through to %s.  Fix it!\n", __FUNCTION__ );
 			return "?????";
@@ -177,6 +180,7 @@ std::string Gen_GetNumericLiteral( const genType_t type, const float value ) {
 		case GEN_TYPE_FLOAT:	return std::to_string( static_cast<float>( value ) ) + "f";
 		case GEN_TYPE_DOUBLE:	return std::to_string( static_cast<double>( value ) );
 
+		case GEN_TYPE_COUNT:
 		default:
 			printf( "ERROR: Bad type_t passed through to %s.  Fix it!\n", __FUNCTION__ );
 			return "?????";

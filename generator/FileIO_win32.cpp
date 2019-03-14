@@ -1,5 +1,7 @@
+#ifdef _MSC_VER
 #ifndef _CRT_SECURE_NO_WARNINGS
 #define _CRT_SECURE_NO_WARNINGS
+#endif
 #endif
 
 #include "FileIO.h"
@@ -19,7 +21,7 @@ size_t FS_ReadEntireFile( const char* filename, char** outBuffer ) {
 	}
 
 	fseek( file, 0, SEEK_END );
-	size_t length = ftell( file );
+	size_t length = static_cast<size_t>( ftell( file ) );
 	fseek( file, 0, SEEK_SET );
 
 	char* temp = new char[length + 1];

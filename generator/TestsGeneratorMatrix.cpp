@@ -389,7 +389,7 @@ void TestsGeneratorMatrix::GenerateTestTranspose() {
 		paramListNormal += "\t\t";
 
 		for ( uint32_t col = 0; col < m_numCols; col++ ) {
-			int32_t index = col + ( row * m_numCols );
+			int32_t index = static_cast<int32_t>( col + ( row * m_numCols ) );
 
 			paramListNormal += Gen_GetNumericLiteral( m_type, static_cast<float>( index ) );
 
@@ -411,7 +411,7 @@ void TestsGeneratorMatrix::GenerateTestTranspose() {
 		paramListTransposed += "\t\t";
 
 		for ( uint32_t row = 0; row < m_numRows; row++ ) {
-			int32_t index = col + ( row * m_numCols );
+			int32_t index = static_cast<int32_t>( col + ( row * m_numCols ) );
 
 			paramListTransposed += Gen_GetNumericLiteral( m_type, static_cast<float>( index ) );
 
@@ -1115,8 +1115,9 @@ std::string TestsGeneratorMatrix::GetParmListArithmeticAnswer( const genOpArithm
 			break;
 		}
 
+		case GEN_OP_ARITHMETIC_COUNT:
 		default:
-			// nothing
+			printf( "ERROR: Bad genOpArithmetic_t enum passed into %s.\n", __FUNCTION__ );
 			break;
 	}
 
