@@ -1,12 +1,10 @@
 # TODO
 
 HIGH:
-* Fix matrices.
-* Test suite.
-* Right-handed functions.
+* SIMD support.
 
 MEDIUM:
-* Documentation.
-* SIMD helper functions.
+* Documentation via JSON.  (?)
 
 LOW:
+* "half", "fixed", long vector/matrix types.  (?)
