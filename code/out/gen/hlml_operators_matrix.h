@@ -68,8 +68,8 @@ along with hlml.  If not, see <http://www.gnu.org/licenses/>.
 /// \brief Returns a copy of the matrix that has been component-wise added by the given scalar value.
 inline int2x2 operator+( const int2x2& lhs, const int32_t rhs );
 
-/// \relates int2x2
-/// \brief Adds each component of the matrix by the given scalar value.
+	/// \relates int2x2
+	/// \brief Adds each component by the given scalar value.
 inline int2x2 operator+=( int2x2& lhs, const int32_t rhs );
 
 /// \relates int2x2
@@ -80,8 +80,8 @@ inline int2x2 operator+( const int2x2& lhs, const int2x2& rhs );
 /// \brief Returns a copy of the matrix that has been component-wise subtracted by the given scalar value.
 inline int2x2 operator-( const int2x2& lhs, const int32_t rhs );
 
-/// \relates int2x2
-/// \brief Subtracts each component of the matrix by the given scalar value.
+	/// \relates int2x2
+	/// \brief Subtracts each component by the given scalar value.
 inline int2x2 operator-=( int2x2& lhs, const int32_t rhs );
 
 /// \relates int2x2
@@ -92,8 +92,8 @@ inline int2x2 operator-( const int2x2& lhs, const int2x2& rhs );
 /// \brief Returns a copy of the matrix that has been component-wise multiplied by the given scalar value.
 inline int2x2 operator*( const int2x2& lhs, const int32_t rhs );
 
-/// \relates int2x2
-/// \brief Multiplies each component of the matrix by the given scalar value.
+	/// \relates int2x2
+	/// \brief Multiplies each component by the given scalar value.
 inline int2x2 operator*=( int2x2& lhs, const int32_t rhs );
 
 /// \relates int2x2
@@ -104,8 +104,8 @@ inline int2x2 operator*( const int2x2& lhs, const int2x2& rhs );
 /// \brief Returns a copy of the matrix that has been component-wise divided by the given scalar value.
 inline int2x2 operator/( const int2x2& lhs, const int32_t rhs );
 
-/// \relates int2x2
-/// \brief Divides each component of the matrix by the given scalar value.
+	/// \relates int2x2
+	/// \brief Divides each component by the given scalar value.
 inline int2x2 operator/=( int2x2& lhs, const int32_t rhs );
 
 /// \relates int2x2
@@ -113,19 +113,19 @@ inline int2x2 operator/=( int2x2& lhs, const int32_t rhs );
 inline int2x2 operator/( const int2x2& lhs, const int2x2& rhs );
 
 /// \relates int2x2
-/// \brief Returns a bool2x2 where each component is true if the component of the left-hand vector is less than than the corresponding rhs-hand vector component.
+/// \brief Returns a bool2x2 where each component is true if the component of the left-hand type is less than the corresponding right-hand type component.
 inline bool2x2 operator<( const int2x2& lhs, const int2x2& rhs );
 
 /// \relates int2x2
-/// \brief Returns a bool2x2 where each component is true if the component of the left-hand vector is less than than the corresponding rhs-hand vector component.
+/// \brief Returns a bool2x2 where each component is true if the component of the left-hand type is less than or equal to the corresponding right-hand type component.
 inline bool2x2 operator<=( const int2x2& lhs, const int2x2& rhs );
 
 /// \relates int2x2
-/// \brief Returns a bool2x2 where each component is true if the component of the left-hand vector is less than than the corresponding rhs-hand vector component.
+/// \brief Returns a bool2x2 where each component is true if the component of the left-hand type is greater than the corresponding right-hand type component.
 inline bool2x2 operator>( const int2x2& lhs, const int2x2& rhs );
 
 /// \relates int2x2
-/// \brief Returns a bool2x2 where each component is true if the component of the left-hand vector is less than than the corresponding rhs-hand vector component.
+/// \brief Returns a bool2x2 where each component is true if the component of the left-hand type is greater than or equal to the corresponding right-hand type component.
 inline bool2x2 operator>=( const int2x2& lhs, const int2x2& rhs );
 
 
@@ -134,8 +134,8 @@ inline bool2x2 operator>=( const int2x2& lhs, const int2x2& rhs );
 /// \brief Returns a copy of the matrix that has been component-wise added by the given scalar value.
 inline int2x3 operator+( const int2x3& lhs, const int32_t rhs );
 
-/// \relates int2x3
-/// \brief Adds each component of the matrix by the given scalar value.
+	/// \relates int2x3
+	/// \brief Adds each component by the given scalar value.
 inline int2x3 operator+=( int2x3& lhs, const int32_t rhs );
 
 /// \relates int2x3
@@ -146,8 +146,8 @@ inline int2x3 operator+( const int2x3& lhs, const int2x3& rhs );
 /// \brief Returns a copy of the matrix that has been component-wise subtracted by the given scalar value.
 inline int2x3 operator-( const int2x3& lhs, const int32_t rhs );
 
-/// \relates int2x3
-/// \brief Subtracts each component of the matrix by the given scalar value.
+	/// \relates int2x3
+	/// \brief Subtracts each component by the given scalar value.
 inline int2x3 operator-=( int2x3& lhs, const int32_t rhs );
 
 /// \relates int2x3
@@ -158,8 +158,8 @@ inline int2x3 operator-( const int2x3& lhs, const int2x3& rhs );
 /// \brief Returns a copy of the matrix that has been component-wise multiplied by the given scalar value.
 inline int2x3 operator*( const int2x3& lhs, const int32_t rhs );
 
-/// \relates int2x3
-/// \brief Multiplies each component of the matrix by the given scalar value.
+	/// \relates int2x3
+	/// \brief Multiplies each component by the given scalar value.
 inline int2x3 operator*=( int2x3& lhs, const int32_t rhs );
 
 /// \relates int2x3
@@ -170,8 +170,8 @@ inline int2x2 operator*( const int2x3& lhs, const int3x2& rhs );
 /// \brief Returns a copy of the matrix that has been component-wise divided by the given scalar value.
 inline int2x3 operator/( const int2x3& lhs, const int32_t rhs );
 
-/// \relates int2x3
-/// \brief Divides each component of the matrix by the given scalar value.
+	/// \relates int2x3
+	/// \brief Divides each component by the given scalar value.
 inline int2x3 operator/=( int2x3& lhs, const int32_t rhs );
 
 /// \relates int2x3
@@ -179,19 +179,19 @@ inline int2x3 operator/=( int2x3& lhs, const int32_t rhs );
 inline int2x3 operator/( const int2x3& lhs, const int2x3& rhs );
 
 /// \relates int2x3
-/// \brief Returns a bool2x3 where each component is true if the component of the left-hand vector is less than than the corresponding rhs-hand vector component.
+/// \brief Returns a bool2x3 where each component is true if the component of the left-hand type is less than the corresponding right-hand type component.
 inline bool2x3 operator<( const int2x3& lhs, const int2x3& rhs );
 
 /// \relates int2x3
-/// \brief Returns a bool2x3 where each component is true if the component of the left-hand vector is less than than the corresponding rhs-hand vector component.
+/// \brief Returns a bool2x3 where each component is true if the component of the left-hand type is less than or equal to the corresponding right-hand type component.
 inline bool2x3 operator<=( const int2x3& lhs, const int2x3& rhs );
 
 /// \relates int2x3
-/// \brief Returns a bool2x3 where each component is true if the component of the left-hand vector is less than than the corresponding rhs-hand vector component.
+/// \brief Returns a bool2x3 where each component is true if the component of the left-hand type is greater than the corresponding right-hand type component.
 inline bool2x3 operator>( const int2x3& lhs, const int2x3& rhs );
 
 /// \relates int2x3
-/// \brief Returns a bool2x3 where each component is true if the component of the left-hand vector is less than than the corresponding rhs-hand vector component.
+/// \brief Returns a bool2x3 where each component is true if the component of the left-hand type is greater than or equal to the corresponding right-hand type component.
 inline bool2x3 operator>=( const int2x3& lhs, const int2x3& rhs );
 
 
@@ -200,8 +200,8 @@ inline bool2x3 operator>=( const int2x3& lhs, const int2x3& rhs );
 /// \brief Returns a copy of the matrix that has been component-wise added by the given scalar value.
 inline int2x4 operator+( const int2x4& lhs, const int32_t rhs );
 
-/// \relates int2x4
-/// \brief Adds each component of the matrix by the given scalar value.
+	/// \relates int2x4
+	/// \brief Adds each component by the given scalar value.
 inline int2x4 operator+=( int2x4& lhs, const int32_t rhs );
 
 /// \relates int2x4
@@ -212,8 +212,8 @@ inline int2x4 operator+( const int2x4& lhs, const int2x4& rhs );
 /// \brief Returns a copy of the matrix that has been component-wise subtracted by the given scalar value.
 inline int2x4 operator-( const int2x4& lhs, const int32_t rhs );
 
-/// \relates int2x4
-/// \brief Subtracts each component of the matrix by the given scalar value.
+	/// \relates int2x4
+	/// \brief Subtracts each component by the given scalar value.
 inline int2x4 operator-=( int2x4& lhs, const int32_t rhs );
 
 /// \relates int2x4
@@ -224,8 +224,8 @@ inline int2x4 operator-( const int2x4& lhs, const int2x4& rhs );
 /// \brief Returns a copy of the matrix that has been component-wise multiplied by the given scalar value.
 inline int2x4 operator*( const int2x4& lhs, const int32_t rhs );
 
-/// \relates int2x4
-/// \brief Multiplies each component of the matrix by the given scalar value.
+	/// \relates int2x4
+	/// \brief Multiplies each component by the given scalar value.
 inline int2x4 operator*=( int2x4& lhs, const int32_t rhs );
 
 /// \relates int2x4
@@ -236,8 +236,8 @@ inline int2x2 operator*( const int2x4& lhs, const int4x2& rhs );
 /// \brief Returns a copy of the matrix that has been component-wise divided by the given scalar value.
 inline int2x4 operator/( const int2x4& lhs, const int32_t rhs );
 
-/// \relates int2x4
-/// \brief Divides each component of the matrix by the given scalar value.
+	/// \relates int2x4
+	/// \brief Divides each component by the given scalar value.
 inline int2x4 operator/=( int2x4& lhs, const int32_t rhs );
 
 /// \relates int2x4
@@ -245,19 +245,19 @@ inline int2x4 operator/=( int2x4& lhs, const int32_t rhs );
 inline int2x4 operator/( const int2x4& lhs, const int2x4& rhs );
 
 /// \relates int2x4
-/// \brief Returns a bool2x4 where each component is true if the component of the left-hand vector is less than than the corresponding rhs-hand vector component.
+/// \brief Returns a bool2x4 where each component is true if the component of the left-hand type is less than the corresponding right-hand type component.
 inline bool2x4 operator<( const int2x4& lhs, const int2x4& rhs );
 
 /// \relates int2x4
-/// \brief Returns a bool2x4 where each component is true if the component of the left-hand vector is less than than the corresponding rhs-hand vector component.
+/// \brief Returns a bool2x4 where each component is true if the component of the left-hand type is less than or equal to the corresponding right-hand type component.
 inline bool2x4 operator<=( const int2x4& lhs, const int2x4& rhs );
 
 /// \relates int2x4
-/// \brief Returns a bool2x4 where each component is true if the component of the left-hand vector is less than than the corresponding rhs-hand vector component.
+/// \brief Returns a bool2x4 where each component is true if the component of the left-hand type is greater than the corresponding right-hand type component.
 inline bool2x4 operator>( const int2x4& lhs, const int2x4& rhs );
 
 /// \relates int2x4
-/// \brief Returns a bool2x4 where each component is true if the component of the left-hand vector is less than than the corresponding rhs-hand vector component.
+/// \brief Returns a bool2x4 where each component is true if the component of the left-hand type is greater than or equal to the corresponding right-hand type component.
 inline bool2x4 operator>=( const int2x4& lhs, const int2x4& rhs );
 
 
@@ -266,8 +266,8 @@ inline bool2x4 operator>=( const int2x4& lhs, const int2x4& rhs );
 /// \brief Returns a copy of the matrix that has been component-wise added by the given scalar value.
 inline int3x2 operator+( const int3x2& lhs, const int32_t rhs );
 
-/// \relates int3x2
-/// \brief Adds each component of the matrix by the given scalar value.
+	/// \relates int3x2
+	/// \brief Adds each component by the given scalar value.
 inline int3x2 operator+=( int3x2& lhs, const int32_t rhs );
 
 /// \relates int3x2
@@ -278,8 +278,8 @@ inline int3x2 operator+( const int3x2& lhs, const int3x2& rhs );
 /// \brief Returns a copy of the matrix that has been component-wise subtracted by the given scalar value.
 inline int3x2 operator-( const int3x2& lhs, const int32_t rhs );
 
-/// \relates int3x2
-/// \brief Subtracts each component of the matrix by the given scalar value.
+	/// \relates int3x2
+	/// \brief Subtracts each component by the given scalar value.
 inline int3x2 operator-=( int3x2& lhs, const int32_t rhs );
 
 /// \relates int3x2
@@ -290,8 +290,8 @@ inline int3x2 operator-( const int3x2& lhs, const int3x2& rhs );
 /// \brief Returns a copy of the matrix that has been component-wise multiplied by the given scalar value.
 inline int3x2 operator*( const int3x2& lhs, const int32_t rhs );
 
-/// \relates int3x2
-/// \brief Multiplies each component of the matrix by the given scalar value.
+	/// \relates int3x2
+	/// \brief Multiplies each component by the given scalar value.
 inline int3x2 operator*=( int3x2& lhs, const int32_t rhs );
 
 /// \relates int3x2
@@ -302,8 +302,8 @@ inline int3x3 operator*( const int3x2& lhs, const int2x3& rhs );
 /// \brief Returns a copy of the matrix that has been component-wise divided by the given scalar value.
 inline int3x2 operator/( const int3x2& lhs, const int32_t rhs );
 
-/// \relates int3x2
-/// \brief Divides each component of the matrix by the given scalar value.
+	/// \relates int3x2
+	/// \brief Divides each component by the given scalar value.
 inline int3x2 operator/=( int3x2& lhs, const int32_t rhs );
 
 /// \relates int3x2
@@ -311,19 +311,19 @@ inline int3x2 operator/=( int3x2& lhs, const int32_t rhs );
 inline int3x2 operator/( const int3x2& lhs, const int3x2& rhs );
 
 /// \relates int3x2
-/// \brief Returns a bool3x2 where each component is true if the component of the left-hand vector is less than than the corresponding rhs-hand vector component.
+/// \brief Returns a bool3x2 where each component is true if the component of the left-hand type is less than the corresponding right-hand type component.
 inline bool3x2 operator<( const int3x2& lhs, const int3x2& rhs );
 
 /// \relates int3x2
-/// \brief Returns a bool3x2 where each component is true if the component of the left-hand vector is less than than the corresponding rhs-hand vector component.
+/// \brief Returns a bool3x2 where each component is true if the component of the left-hand type is less than or equal to the corresponding right-hand type component.
 inline bool3x2 operator<=( const int3x2& lhs, const int3x2& rhs );
 
 /// \relates int3x2
-/// \brief Returns a bool3x2 where each component is true if the component of the left-hand vector is less than than the corresponding rhs-hand vector component.
+/// \brief Returns a bool3x2 where each component is true if the component of the left-hand type is greater than the corresponding right-hand type component.
 inline bool3x2 operator>( const int3x2& lhs, const int3x2& rhs );
 
 /// \relates int3x2
-/// \brief Returns a bool3x2 where each component is true if the component of the left-hand vector is less than than the corresponding rhs-hand vector component.
+/// \brief Returns a bool3x2 where each component is true if the component of the left-hand type is greater than or equal to the corresponding right-hand type component.
 inline bool3x2 operator>=( const int3x2& lhs, const int3x2& rhs );
 
 
@@ -332,8 +332,8 @@ inline bool3x2 operator>=( const int3x2& lhs, const int3x2& rhs );
 /// \brief Returns a copy of the matrix that has been component-wise added by the given scalar value.
 inline int3x3 operator+( const int3x3& lhs, const int32_t rhs );
 
-/// \relates int3x3
-/// \brief Adds each component of the matrix by the given scalar value.
+	/// \relates int3x3
+	/// \brief Adds each component by the given scalar value.
 inline int3x3 operator+=( int3x3& lhs, const int32_t rhs );
 
 /// \relates int3x3
@@ -344,8 +344,8 @@ inline int3x3 operator+( const int3x3& lhs, const int3x3& rhs );
 /// \brief Returns a copy of the matrix that has been component-wise subtracted by the given scalar value.
 inline int3x3 operator-( const int3x3& lhs, const int32_t rhs );
 
-/// \relates int3x3
-/// \brief Subtracts each component of the matrix by the given scalar value.
+	/// \relates int3x3
+	/// \brief Subtracts each component by the given scalar value.
 inline int3x3 operator-=( int3x3& lhs, const int32_t rhs );
 
 /// \relates int3x3
@@ -356,8 +356,8 @@ inline int3x3 operator-( const int3x3& lhs, const int3x3& rhs );
 /// \brief Returns a copy of the matrix that has been component-wise multiplied by the given scalar value.
 inline int3x3 operator*( const int3x3& lhs, const int32_t rhs );
 
-/// \relates int3x3
-/// \brief Multiplies each component of the matrix by the given scalar value.
+	/// \relates int3x3
+	/// \brief Multiplies each component by the given scalar value.
 inline int3x3 operator*=( int3x3& lhs, const int32_t rhs );
 
 /// \relates int3x3
@@ -368,8 +368,8 @@ inline int3x3 operator*( const int3x3& lhs, const int3x3& rhs );
 /// \brief Returns a copy of the matrix that has been component-wise divided by the given scalar value.
 inline int3x3 operator/( const int3x3& lhs, const int32_t rhs );
 
-/// \relates int3x3
-/// \brief Divides each component of the matrix by the given scalar value.
+	/// \relates int3x3
+	/// \brief Divides each component by the given scalar value.
 inline int3x3 operator/=( int3x3& lhs, const int32_t rhs );
 
 /// \relates int3x3
@@ -377,19 +377,19 @@ inline int3x3 operator/=( int3x3& lhs, const int32_t rhs );
 inline int3x3 operator/( const int3x3& lhs, const int3x3& rhs );
 
 /// \relates int3x3
-/// \brief Returns a bool3x3 where each component is true if the component of the left-hand vector is less than than the corresponding rhs-hand vector component.
+/// \brief Returns a bool3x3 where each component is true if the component of the left-hand type is less than the corresponding right-hand type component.
 inline bool3x3 operator<( const int3x3& lhs, const int3x3& rhs );
 
 /// \relates int3x3
-/// \brief Returns a bool3x3 where each component is true if the component of the left-hand vector is less than than the corresponding rhs-hand vector component.
+/// \brief Returns a bool3x3 where each component is true if the component of the left-hand type is less than or equal to the corresponding right-hand type component.
 inline bool3x3 operator<=( const int3x3& lhs, const int3x3& rhs );
 
 /// \relates int3x3
-/// \brief Returns a bool3x3 where each component is true if the component of the left-hand vector is less than than the corresponding rhs-hand vector component.
+/// \brief Returns a bool3x3 where each component is true if the component of the left-hand type is greater than the corresponding right-hand type component.
 inline bool3x3 operator>( const int3x3& lhs, const int3x3& rhs );
 
 /// \relates int3x3
-/// \brief Returns a bool3x3 where each component is true if the component of the left-hand vector is less than than the corresponding rhs-hand vector component.
+/// \brief Returns a bool3x3 where each component is true if the component of the left-hand type is greater than or equal to the corresponding right-hand type component.
 inline bool3x3 operator>=( const int3x3& lhs, const int3x3& rhs );
 
 
@@ -398,8 +398,8 @@ inline bool3x3 operator>=( const int3x3& lhs, const int3x3& rhs );
 /// \brief Returns a copy of the matrix that has been component-wise added by the given scalar value.
 inline int3x4 operator+( const int3x4& lhs, const int32_t rhs );
 
-/// \relates int3x4
-/// \brief Adds each component of the matrix by the given scalar value.
+	/// \relates int3x4
+	/// \brief Adds each component by the given scalar value.
 inline int3x4 operator+=( int3x4& lhs, const int32_t rhs );
 
 /// \relates int3x4
@@ -410,8 +410,8 @@ inline int3x4 operator+( const int3x4& lhs, const int3x4& rhs );
 /// \brief Returns a copy of the matrix that has been component-wise subtracted by the given scalar value.
 inline int3x4 operator-( const int3x4& lhs, const int32_t rhs );
 
-/// \relates int3x4
-/// \brief Subtracts each component of the matrix by the given scalar value.
+	/// \relates int3x4
+	/// \brief Subtracts each component by the given scalar value.
 inline int3x4 operator-=( int3x4& lhs, const int32_t rhs );
 
 /// \relates int3x4
@@ -422,8 +422,8 @@ inline int3x4 operator-( const int3x4& lhs, const int3x4& rhs );
 /// \brief Returns a copy of the matrix that has been component-wise multiplied by the given scalar value.
 inline int3x4 operator*( const int3x4& lhs, const int32_t rhs );
 
-/// \relates int3x4
-/// \brief Multiplies each component of the matrix by the given scalar value.
+	/// \relates int3x4
+	/// \brief Multiplies each component by the given scalar value.
 inline int3x4 operator*=( int3x4& lhs, const int32_t rhs );
 
 /// \relates int3x4
@@ -434,8 +434,8 @@ inline int3x3 operator*( const int3x4& lhs, const int4x3& rhs );
 /// \brief Returns a copy of the matrix that has been component-wise divided by the given scalar value.
 inline int3x4 operator/( const int3x4& lhs, const int32_t rhs );
 
-/// \relates int3x4
-/// \brief Divides each component of the matrix by the given scalar value.
+	/// \relates int3x4
+	/// \brief Divides each component by the given scalar value.
 inline int3x4 operator/=( int3x4& lhs, const int32_t rhs );
 
 /// \relates int3x4
@@ -443,19 +443,19 @@ inline int3x4 operator/=( int3x4& lhs, const int32_t rhs );
 inline int3x4 operator/( const int3x4& lhs, const int3x4& rhs );
 
 /// \relates int3x4
-/// \brief Returns a bool3x4 where each component is true if the component of the left-hand vector is less than than the corresponding rhs-hand vector component.
+/// \brief Returns a bool3x4 where each component is true if the component of the left-hand type is less than the corresponding right-hand type component.
 inline bool3x4 operator<( const int3x4& lhs, const int3x4& rhs );
 
 /// \relates int3x4
-/// \brief Returns a bool3x4 where each component is true if the component of the left-hand vector is less than than the corresponding rhs-hand vector component.
+/// \brief Returns a bool3x4 where each component is true if the component of the left-hand type is less than or equal to the corresponding right-hand type component.
 inline bool3x4 operator<=( const int3x4& lhs, const int3x4& rhs );
 
 /// \relates int3x4
-/// \brief Returns a bool3x4 where each component is true if the component of the left-hand vector is less than than the corresponding rhs-hand vector component.
+/// \brief Returns a bool3x4 where each component is true if the component of the left-hand type is greater than the corresponding right-hand type component.
 inline bool3x4 operator>( const int3x4& lhs, const int3x4& rhs );
 
 /// \relates int3x4
-/// \brief Returns a bool3x4 where each component is true if the component of the left-hand vector is less than than the corresponding rhs-hand vector component.
+/// \brief Returns a bool3x4 where each component is true if the component of the left-hand type is greater than or equal to the corresponding right-hand type component.
 inline bool3x4 operator>=( const int3x4& lhs, const int3x4& rhs );
 
 
@@ -464,8 +464,8 @@ inline bool3x4 operator>=( const int3x4& lhs, const int3x4& rhs );
 /// \brief Returns a copy of the matrix that has been component-wise added by the given scalar value.
 inline int4x2 operator+( const int4x2& lhs, const int32_t rhs );
 
-/// \relates int4x2
-/// \brief Adds each component of the matrix by the given scalar value.
+	/// \relates int4x2
+	/// \brief Adds each component by the given scalar value.
 inline int4x2 operator+=( int4x2& lhs, const int32_t rhs );
 
 /// \relates int4x2
@@ -476,8 +476,8 @@ inline int4x2 operator+( const int4x2& lhs, const int4x2& rhs );
 /// \brief Returns a copy of the matrix that has been component-wise subtracted by the given scalar value.
 inline int4x2 operator-( const int4x2& lhs, const int32_t rhs );
 
-/// \relates int4x2
-/// \brief Subtracts each component of the matrix by the given scalar value.
+	/// \relates int4x2
+	/// \brief Subtracts each component by the given scalar value.
 inline int4x2 operator-=( int4x2& lhs, const int32_t rhs );
 
 /// \relates int4x2
@@ -488,8 +488,8 @@ inline int4x2 operator-( const int4x2& lhs, const int4x2& rhs );
 /// \brief Returns a copy of the matrix that has been component-wise multiplied by the given scalar value.
 inline int4x2 operator*( const int4x2& lhs, const int32_t rhs );
 
-/// \relates int4x2
-/// \brief Multiplies each component of the matrix by the given scalar value.
+	/// \relates int4x2
+	/// \brief Multiplies each component by the given scalar value.
 inline int4x2 operator*=( int4x2& lhs, const int32_t rhs );
 
 /// \relates int4x2
@@ -500,8 +500,8 @@ inline int4x4 operator*( const int4x2& lhs, const int2x4& rhs );
 /// \brief Returns a copy of the matrix that has been component-wise divided by the given scalar value.
 inline int4x2 operator/( const int4x2& lhs, const int32_t rhs );
 
-/// \relates int4x2
-/// \brief Divides each component of the matrix by the given scalar value.
+	/// \relates int4x2
+	/// \brief Divides each component by the given scalar value.
 inline int4x2 operator/=( int4x2& lhs, const int32_t rhs );
 
 /// \relates int4x2
@@ -509,19 +509,19 @@ inline int4x2 operator/=( int4x2& lhs, const int32_t rhs );
 inline int4x2 operator/( const int4x2& lhs, const int4x2& rhs );
 
 /// \relates int4x2
-/// \brief Returns a bool4x2 where each component is true if the component of the left-hand vector is less than than the corresponding rhs-hand vector component.
+/// \brief Returns a bool4x2 where each component is true if the component of the left-hand type is less than the corresponding right-hand type component.
 inline bool4x2 operator<( const int4x2& lhs, const int4x2& rhs );
 
 /// \relates int4x2
-/// \brief Returns a bool4x2 where each component is true if the component of the left-hand vector is less than than the corresponding rhs-hand vector component.
+/// \brief Returns a bool4x2 where each component is true if the component of the left-hand type is less than or equal to the corresponding right-hand type component.
 inline bool4x2 operator<=( const int4x2& lhs, const int4x2& rhs );
 
 /// \relates int4x2
-/// \brief Returns a bool4x2 where each component is true if the component of the left-hand vector is less than than the corresponding rhs-hand vector component.
+/// \brief Returns a bool4x2 where each component is true if the component of the left-hand type is greater than the corresponding right-hand type component.
 inline bool4x2 operator>( const int4x2& lhs, const int4x2& rhs );
 
 /// \relates int4x2
-/// \brief Returns a bool4x2 where each component is true if the component of the left-hand vector is less than than the corresponding rhs-hand vector component.
+/// \brief Returns a bool4x2 where each component is true if the component of the left-hand type is greater than or equal to the corresponding right-hand type component.
 inline bool4x2 operator>=( const int4x2& lhs, const int4x2& rhs );
 
 
@@ -530,8 +530,8 @@ inline bool4x2 operator>=( const int4x2& lhs, const int4x2& rhs );
 /// \brief Returns a copy of the matrix that has been component-wise added by the given scalar value.
 inline int4x3 operator+( const int4x3& lhs, const int32_t rhs );
 
-/// \relates int4x3
-/// \brief Adds each component of the matrix by the given scalar value.
+	/// \relates int4x3
+	/// \brief Adds each component by the given scalar value.
 inline int4x3 operator+=( int4x3& lhs, const int32_t rhs );
 
 /// \relates int4x3
@@ -542,8 +542,8 @@ inline int4x3 operator+( const int4x3& lhs, const int4x3& rhs );
 /// \brief Returns a copy of the matrix that has been component-wise subtracted by the given scalar value.
 inline int4x3 operator-( const int4x3& lhs, const int32_t rhs );
 
-/// \relates int4x3
-/// \brief Subtracts each component of the matrix by the given scalar value.
+	/// \relates int4x3
+	/// \brief Subtracts each component by the given scalar value.
 inline int4x3 operator-=( int4x3& lhs, const int32_t rhs );
 
 /// \relates int4x3
@@ -554,8 +554,8 @@ inline int4x3 operator-( const int4x3& lhs, const int4x3& rhs );
 /// \brief Returns a copy of the matrix that has been component-wise multiplied by the given scalar value.
 inline int4x3 operator*( const int4x3& lhs, const int32_t rhs );
 
-/// \relates int4x3
-/// \brief Multiplies each component of the matrix by the given scalar value.
+	/// \relates int4x3
+	/// \brief Multiplies each component by the given scalar value.
 inline int4x3 operator*=( int4x3& lhs, const int32_t rhs );
 
 /// \relates int4x3
@@ -566,8 +566,8 @@ inline int4x4 operator*( const int4x3& lhs, const int3x4& rhs );
 /// \brief Returns a copy of the matrix that has been component-wise divided by the given scalar value.
 inline int4x3 operator/( const int4x3& lhs, const int32_t rhs );
 
-/// \relates int4x3
-/// \brief Divides each component of the matrix by the given scalar value.
+	/// \relates int4x3
+	/// \brief Divides each component by the given scalar value.
 inline int4x3 operator/=( int4x3& lhs, const int32_t rhs );
 
 /// \relates int4x3
@@ -575,19 +575,19 @@ inline int4x3 operator/=( int4x3& lhs, const int32_t rhs );
 inline int4x3 operator/( const int4x3& lhs, const int4x3& rhs );
 
 /// \relates int4x3
-/// \brief Returns a bool4x3 where each component is true if the component of the left-hand vector is less than than the corresponding rhs-hand vector component.
+/// \brief Returns a bool4x3 where each component is true if the component of the left-hand type is less than the corresponding right-hand type component.
 inline bool4x3 operator<( const int4x3& lhs, const int4x3& rhs );
 
 /// \relates int4x3
-/// \brief Returns a bool4x3 where each component is true if the component of the left-hand vector is less than than the corresponding rhs-hand vector component.
+/// \brief Returns a bool4x3 where each component is true if the component of the left-hand type is less than or equal to the corresponding right-hand type component.
 inline bool4x3 operator<=( const int4x3& lhs, const int4x3& rhs );
 
 /// \relates int4x3
-/// \brief Returns a bool4x3 where each component is true if the component of the left-hand vector is less than than the corresponding rhs-hand vector component.
+/// \brief Returns a bool4x3 where each component is true if the component of the left-hand type is greater than the corresponding right-hand type component.
 inline bool4x3 operator>( const int4x3& lhs, const int4x3& rhs );
 
 /// \relates int4x3
-/// \brief Returns a bool4x3 where each component is true if the component of the left-hand vector is less than than the corresponding rhs-hand vector component.
+/// \brief Returns a bool4x3 where each component is true if the component of the left-hand type is greater than or equal to the corresponding right-hand type component.
 inline bool4x3 operator>=( const int4x3& lhs, const int4x3& rhs );
 
 
@@ -596,8 +596,8 @@ inline bool4x3 operator>=( const int4x3& lhs, const int4x3& rhs );
 /// \brief Returns a copy of the matrix that has been component-wise added by the given scalar value.
 inline int4x4 operator+( const int4x4& lhs, const int32_t rhs );
 
-/// \relates int4x4
-/// \brief Adds each component of the matrix by the given scalar value.
+	/// \relates int4x4
+	/// \brief Adds each component by the given scalar value.
 inline int4x4 operator+=( int4x4& lhs, const int32_t rhs );
 
 /// \relates int4x4
@@ -608,8 +608,8 @@ inline int4x4 operator+( const int4x4& lhs, const int4x4& rhs );
 /// \brief Returns a copy of the matrix that has been component-wise subtracted by the given scalar value.
 inline int4x4 operator-( const int4x4& lhs, const int32_t rhs );
 
-/// \relates int4x4
-/// \brief Subtracts each component of the matrix by the given scalar value.
+	/// \relates int4x4
+	/// \brief Subtracts each component by the given scalar value.
 inline int4x4 operator-=( int4x4& lhs, const int32_t rhs );
 
 /// \relates int4x4
@@ -620,8 +620,8 @@ inline int4x4 operator-( const int4x4& lhs, const int4x4& rhs );
 /// \brief Returns a copy of the matrix that has been component-wise multiplied by the given scalar value.
 inline int4x4 operator*( const int4x4& lhs, const int32_t rhs );
 
-/// \relates int4x4
-/// \brief Multiplies each component of the matrix by the given scalar value.
+	/// \relates int4x4
+	/// \brief Multiplies each component by the given scalar value.
 inline int4x4 operator*=( int4x4& lhs, const int32_t rhs );
 
 /// \relates int4x4
@@ -632,8 +632,8 @@ inline int4x4 operator*( const int4x4& lhs, const int4x4& rhs );
 /// \brief Returns a copy of the matrix that has been component-wise divided by the given scalar value.
 inline int4x4 operator/( const int4x4& lhs, const int32_t rhs );
 
-/// \relates int4x4
-/// \brief Divides each component of the matrix by the given scalar value.
+	/// \relates int4x4
+	/// \brief Divides each component by the given scalar value.
 inline int4x4 operator/=( int4x4& lhs, const int32_t rhs );
 
 /// \relates int4x4
@@ -641,19 +641,19 @@ inline int4x4 operator/=( int4x4& lhs, const int32_t rhs );
 inline int4x4 operator/( const int4x4& lhs, const int4x4& rhs );
 
 /// \relates int4x4
-/// \brief Returns a bool4x4 where each component is true if the component of the left-hand vector is less than than the corresponding rhs-hand vector component.
+/// \brief Returns a bool4x4 where each component is true if the component of the left-hand type is less than the corresponding right-hand type component.
 inline bool4x4 operator<( const int4x4& lhs, const int4x4& rhs );
 
 /// \relates int4x4
-/// \brief Returns a bool4x4 where each component is true if the component of the left-hand vector is less than than the corresponding rhs-hand vector component.
+/// \brief Returns a bool4x4 where each component is true if the component of the left-hand type is less than or equal to the corresponding right-hand type component.
 inline bool4x4 operator<=( const int4x4& lhs, const int4x4& rhs );
 
 /// \relates int4x4
-/// \brief Returns a bool4x4 where each component is true if the component of the left-hand vector is less than than the corresponding rhs-hand vector component.
+/// \brief Returns a bool4x4 where each component is true if the component of the left-hand type is greater than the corresponding right-hand type component.
 inline bool4x4 operator>( const int4x4& lhs, const int4x4& rhs );
 
 /// \relates int4x4
-/// \brief Returns a bool4x4 where each component is true if the component of the left-hand vector is less than than the corresponding rhs-hand vector component.
+/// \brief Returns a bool4x4 where each component is true if the component of the left-hand type is greater than or equal to the corresponding right-hand type component.
 inline bool4x4 operator>=( const int4x4& lhs, const int4x4& rhs );
 
 
@@ -662,8 +662,8 @@ inline bool4x4 operator>=( const int4x4& lhs, const int4x4& rhs );
 /// \brief Returns a copy of the matrix that has been component-wise added by the given scalar value.
 inline uint2x2 operator+( const uint2x2& lhs, const uint32_t rhs );
 
-/// \relates uint2x2
-/// \brief Adds each component of the matrix by the given scalar value.
+	/// \relates uint2x2
+	/// \brief Adds each component by the given scalar value.
 inline uint2x2 operator+=( uint2x2& lhs, const uint32_t rhs );
 
 /// \relates uint2x2
@@ -674,8 +674,8 @@ inline uint2x2 operator+( const uint2x2& lhs, const uint2x2& rhs );
 /// \brief Returns a copy of the matrix that has been component-wise subtracted by the given scalar value.
 inline uint2x2 operator-( const uint2x2& lhs, const uint32_t rhs );
 
-/// \relates uint2x2
-/// \brief Subtracts each component of the matrix by the given scalar value.
+	/// \relates uint2x2
+	/// \brief Subtracts each component by the given scalar value.
 inline uint2x2 operator-=( uint2x2& lhs, const uint32_t rhs );
 
 /// \relates uint2x2
@@ -686,8 +686,8 @@ inline uint2x2 operator-( const uint2x2& lhs, const uint2x2& rhs );
 /// \brief Returns a copy of the matrix that has been component-wise multiplied by the given scalar value.
 inline uint2x2 operator*( const uint2x2& lhs, const uint32_t rhs );
 
-/// \relates uint2x2
-/// \brief Multiplies each component of the matrix by the given scalar value.
+	/// \relates uint2x2
+	/// \brief Multiplies each component by the given scalar value.
 inline uint2x2 operator*=( uint2x2& lhs, const uint32_t rhs );
 
 /// \relates uint2x2
@@ -698,8 +698,8 @@ inline uint2x2 operator*( const uint2x2& lhs, const uint2x2& rhs );
 /// \brief Returns a copy of the matrix that has been component-wise divided by the given scalar value.
 inline uint2x2 operator/( const uint2x2& lhs, const uint32_t rhs );
 
-/// \relates uint2x2
-/// \brief Divides each component of the matrix by the given scalar value.
+	/// \relates uint2x2
+	/// \brief Divides each component by the given scalar value.
 inline uint2x2 operator/=( uint2x2& lhs, const uint32_t rhs );
 
 /// \relates uint2x2
@@ -707,19 +707,19 @@ inline uint2x2 operator/=( uint2x2& lhs, const uint32_t rhs );
 inline uint2x2 operator/( const uint2x2& lhs, const uint2x2& rhs );
 
 /// \relates uint2x2
-/// \brief Returns a bool2x2 where each component is true if the component of the left-hand vector is less than than the corresponding rhs-hand vector component.
+/// \brief Returns a bool2x2 where each component is true if the component of the left-hand type is less than the corresponding right-hand type component.
 inline bool2x2 operator<( const uint2x2& lhs, const uint2x2& rhs );
 
 /// \relates uint2x2
-/// \brief Returns a bool2x2 where each component is true if the component of the left-hand vector is less than than the corresponding rhs-hand vector component.
+/// \brief Returns a bool2x2 where each component is true if the component of the left-hand type is less than or equal to the corresponding right-hand type component.
 inline bool2x2 operator<=( const uint2x2& lhs, const uint2x2& rhs );
 
 /// \relates uint2x2
-/// \brief Returns a bool2x2 where each component is true if the component of the left-hand vector is less than than the corresponding rhs-hand vector component.
+/// \brief Returns a bool2x2 where each component is true if the component of the left-hand type is greater than the corresponding right-hand type component.
 inline bool2x2 operator>( const uint2x2& lhs, const uint2x2& rhs );
 
 /// \relates uint2x2
-/// \brief Returns a bool2x2 where each component is true if the component of the left-hand vector is less than than the corresponding rhs-hand vector component.
+/// \brief Returns a bool2x2 where each component is true if the component of the left-hand type is greater than or equal to the corresponding right-hand type component.
 inline bool2x2 operator>=( const uint2x2& lhs, const uint2x2& rhs );
 
 
@@ -728,8 +728,8 @@ inline bool2x2 operator>=( const uint2x2& lhs, const uint2x2& rhs );
 /// \brief Returns a copy of the matrix that has been component-wise added by the given scalar value.
 inline uint2x3 operator+( const uint2x3& lhs, const uint32_t rhs );
 
-/// \relates uint2x3
-/// \brief Adds each component of the matrix by the given scalar value.
+	/// \relates uint2x3
+	/// \brief Adds each component by the given scalar value.
 inline uint2x3 operator+=( uint2x3& lhs, const uint32_t rhs );
 
 /// \relates uint2x3
@@ -740,8 +740,8 @@ inline uint2x3 operator+( const uint2x3& lhs, const uint2x3& rhs );
 /// \brief Returns a copy of the matrix that has been component-wise subtracted by the given scalar value.
 inline uint2x3 operator-( const uint2x3& lhs, const uint32_t rhs );
 
-/// \relates uint2x3
-/// \brief Subtracts each component of the matrix by the given scalar value.
+	/// \relates uint2x3
+	/// \brief Subtracts each component by the given scalar value.
 inline uint2x3 operator-=( uint2x3& lhs, const uint32_t rhs );
 
 /// \relates uint2x3
@@ -752,8 +752,8 @@ inline uint2x3 operator-( const uint2x3& lhs, const uint2x3& rhs );
 /// \brief Returns a copy of the matrix that has been component-wise multiplied by the given scalar value.
 inline uint2x3 operator*( const uint2x3& lhs, const uint32_t rhs );
 
-/// \relates uint2x3
-/// \brief Multiplies each component of the matrix by the given scalar value.
+	/// \relates uint2x3
+	/// \brief Multiplies each component by the given scalar value.
 inline uint2x3 operator*=( uint2x3& lhs, const uint32_t rhs );
 
 /// \relates uint2x3
@@ -764,8 +764,8 @@ inline uint2x2 operator*( const uint2x3& lhs, const uint3x2& rhs );
 /// \brief Returns a copy of the matrix that has been component-wise divided by the given scalar value.
 inline uint2x3 operator/( const uint2x3& lhs, const uint32_t rhs );
 
-/// \relates uint2x3
-/// \brief Divides each component of the matrix by the given scalar value.
+	/// \relates uint2x3
+	/// \brief Divides each component by the given scalar value.
 inline uint2x3 operator/=( uint2x3& lhs, const uint32_t rhs );
 
 /// \relates uint2x3
@@ -773,19 +773,19 @@ inline uint2x3 operator/=( uint2x3& lhs, const uint32_t rhs );
 inline uint2x3 operator/( const uint2x3& lhs, const uint2x3& rhs );
 
 /// \relates uint2x3
-/// \brief Returns a bool2x3 where each component is true if the component of the left-hand vector is less than than the corresponding rhs-hand vector component.
+/// \brief Returns a bool2x3 where each component is true if the component of the left-hand type is less than the corresponding right-hand type component.
 inline bool2x3 operator<( const uint2x3& lhs, const uint2x3& rhs );
 
 /// \relates uint2x3
-/// \brief Returns a bool2x3 where each component is true if the component of the left-hand vector is less than than the corresponding rhs-hand vector component.
+/// \brief Returns a bool2x3 where each component is true if the component of the left-hand type is less than or equal to the corresponding right-hand type component.
 inline bool2x3 operator<=( const uint2x3& lhs, const uint2x3& rhs );
 
 /// \relates uint2x3
-/// \brief Returns a bool2x3 where each component is true if the component of the left-hand vector is less than than the corresponding rhs-hand vector component.
+/// \brief Returns a bool2x3 where each component is true if the component of the left-hand type is greater than the corresponding right-hand type component.
 inline bool2x3 operator>( const uint2x3& lhs, const uint2x3& rhs );
 
 /// \relates uint2x3
-/// \brief Returns a bool2x3 where each component is true if the component of the left-hand vector is less than than the corresponding rhs-hand vector component.
+/// \brief Returns a bool2x3 where each component is true if the component of the left-hand type is greater than or equal to the corresponding right-hand type component.
 inline bool2x3 operator>=( const uint2x3& lhs, const uint2x3& rhs );
 
 
@@ -794,8 +794,8 @@ inline bool2x3 operator>=( const uint2x3& lhs, const uint2x3& rhs );
 /// \brief Returns a copy of the matrix that has been component-wise added by the given scalar value.
 inline uint2x4 operator+( const uint2x4& lhs, const uint32_t rhs );
 
-/// \relates uint2x4
-/// \brief Adds each component of the matrix by the given scalar value.
+	/// \relates uint2x4
+	/// \brief Adds each component by the given scalar value.
 inline uint2x4 operator+=( uint2x4& lhs, const uint32_t rhs );
 
 /// \relates uint2x4
@@ -806,8 +806,8 @@ inline uint2x4 operator+( const uint2x4& lhs, const uint2x4& rhs );
 /// \brief Returns a copy of the matrix that has been component-wise subtracted by the given scalar value.
 inline uint2x4 operator-( const uint2x4& lhs, const uint32_t rhs );
 
-/// \relates uint2x4
-/// \brief Subtracts each component of the matrix by the given scalar value.
+	/// \relates uint2x4
+	/// \brief Subtracts each component by the given scalar value.
 inline uint2x4 operator-=( uint2x4& lhs, const uint32_t rhs );
 
 /// \relates uint2x4
@@ -818,8 +818,8 @@ inline uint2x4 operator-( const uint2x4& lhs, const uint2x4& rhs );
 /// \brief Returns a copy of the matrix that has been component-wise multiplied by the given scalar value.
 inline uint2x4 operator*( const uint2x4& lhs, const uint32_t rhs );
 
-/// \relates uint2x4
-/// \brief Multiplies each component of the matrix by the given scalar value.
+	/// \relates uint2x4
+	/// \brief Multiplies each component by the given scalar value.
 inline uint2x4 operator*=( uint2x4& lhs, const uint32_t rhs );
 
 /// \relates uint2x4
@@ -830,8 +830,8 @@ inline uint2x2 operator*( const uint2x4& lhs, const uint4x2& rhs );
 /// \brief Returns a copy of the matrix that has been component-wise divided by the given scalar value.
 inline uint2x4 operator/( const uint2x4& lhs, const uint32_t rhs );
 
-/// \relates uint2x4
-/// \brief Divides each component of the matrix by the given scalar value.
+	/// \relates uint2x4
+	/// \brief Divides each component by the given scalar value.
 inline uint2x4 operator/=( uint2x4& lhs, const uint32_t rhs );
 
 /// \relates uint2x4
@@ -839,19 +839,19 @@ inline uint2x4 operator/=( uint2x4& lhs, const uint32_t rhs );
 inline uint2x4 operator/( const uint2x4& lhs, const uint2x4& rhs );
 
 /// \relates uint2x4
-/// \brief Returns a bool2x4 where each component is true if the component of the left-hand vector is less than than the corresponding rhs-hand vector component.
+/// \brief Returns a bool2x4 where each component is true if the component of the left-hand type is less than the corresponding right-hand type component.
 inline bool2x4 operator<( const uint2x4& lhs, const uint2x4& rhs );
 
 /// \relates uint2x4
-/// \brief Returns a bool2x4 where each component is true if the component of the left-hand vector is less than than the corresponding rhs-hand vector component.
+/// \brief Returns a bool2x4 where each component is true if the component of the left-hand type is less than or equal to the corresponding right-hand type component.
 inline bool2x4 operator<=( const uint2x4& lhs, const uint2x4& rhs );
 
 /// \relates uint2x4
-/// \brief Returns a bool2x4 where each component is true if the component of the left-hand vector is less than than the corresponding rhs-hand vector component.
+/// \brief Returns a bool2x4 where each component is true if the component of the left-hand type is greater than the corresponding right-hand type component.
 inline bool2x4 operator>( const uint2x4& lhs, const uint2x4& rhs );
 
 /// \relates uint2x4
-/// \brief Returns a bool2x4 where each component is true if the component of the left-hand vector is less than than the corresponding rhs-hand vector component.
+/// \brief Returns a bool2x4 where each component is true if the component of the left-hand type is greater than or equal to the corresponding right-hand type component.
 inline bool2x4 operator>=( const uint2x4& lhs, const uint2x4& rhs );
 
 
@@ -860,8 +860,8 @@ inline bool2x4 operator>=( const uint2x4& lhs, const uint2x4& rhs );
 /// \brief Returns a copy of the matrix that has been component-wise added by the given scalar value.
 inline uint3x2 operator+( const uint3x2& lhs, const uint32_t rhs );
 
-/// \relates uint3x2
-/// \brief Adds each component of the matrix by the given scalar value.
+	/// \relates uint3x2
+	/// \brief Adds each component by the given scalar value.
 inline uint3x2 operator+=( uint3x2& lhs, const uint32_t rhs );
 
 /// \relates uint3x2
@@ -872,8 +872,8 @@ inline uint3x2 operator+( const uint3x2& lhs, const uint3x2& rhs );
 /// \brief Returns a copy of the matrix that has been component-wise subtracted by the given scalar value.
 inline uint3x2 operator-( const uint3x2& lhs, const uint32_t rhs );
 
-/// \relates uint3x2
-/// \brief Subtracts each component of the matrix by the given scalar value.
+	/// \relates uint3x2
+	/// \brief Subtracts each component by the given scalar value.
 inline uint3x2 operator-=( uint3x2& lhs, const uint32_t rhs );
 
 /// \relates uint3x2
@@ -884,8 +884,8 @@ inline uint3x2 operator-( const uint3x2& lhs, const uint3x2& rhs );
 /// \brief Returns a copy of the matrix that has been component-wise multiplied by the given scalar value.
 inline uint3x2 operator*( const uint3x2& lhs, const uint32_t rhs );
 
-/// \relates uint3x2
-/// \brief Multiplies each component of the matrix by the given scalar value.
+	/// \relates uint3x2
+	/// \brief Multiplies each component by the given scalar value.
 inline uint3x2 operator*=( uint3x2& lhs, const uint32_t rhs );
 
 /// \relates uint3x2
@@ -896,8 +896,8 @@ inline uint3x3 operator*( const uint3x2& lhs, const uint2x3& rhs );
 /// \brief Returns a copy of the matrix that has been component-wise divided by the given scalar value.
 inline uint3x2 operator/( const uint3x2& lhs, const uint32_t rhs );
 
-/// \relates uint3x2
-/// \brief Divides each component of the matrix by the given scalar value.
+	/// \relates uint3x2
+	/// \brief Divides each component by the given scalar value.
 inline uint3x2 operator/=( uint3x2& lhs, const uint32_t rhs );
 
 /// \relates uint3x2
@@ -905,19 +905,19 @@ inline uint3x2 operator/=( uint3x2& lhs, const uint32_t rhs );
 inline uint3x2 operator/( const uint3x2& lhs, const uint3x2& rhs );
 
 /// \relates uint3x2
-/// \brief Returns a bool3x2 where each component is true if the component of the left-hand vector is less than than the corresponding rhs-hand vector component.
+/// \brief Returns a bool3x2 where each component is true if the component of the left-hand type is less than the corresponding right-hand type component.
 inline bool3x2 operator<( const uint3x2& lhs, const uint3x2& rhs );
 
 /// \relates uint3x2
-/// \brief Returns a bool3x2 where each component is true if the component of the left-hand vector is less than than the corresponding rhs-hand vector component.
+/// \brief Returns a bool3x2 where each component is true if the component of the left-hand type is less than or equal to the corresponding right-hand type component.
 inline bool3x2 operator<=( const uint3x2& lhs, const uint3x2& rhs );
 
 /// \relates uint3x2
-/// \brief Returns a bool3x2 where each component is true if the component of the left-hand vector is less than than the corresponding rhs-hand vector component.
+/// \brief Returns a bool3x2 where each component is true if the component of the left-hand type is greater than the corresponding right-hand type component.
 inline bool3x2 operator>( const uint3x2& lhs, const uint3x2& rhs );
 
 /// \relates uint3x2
-/// \brief Returns a bool3x2 where each component is true if the component of the left-hand vector is less than than the corresponding rhs-hand vector component.
+/// \brief Returns a bool3x2 where each component is true if the component of the left-hand type is greater than or equal to the corresponding right-hand type component.
 inline bool3x2 operator>=( const uint3x2& lhs, const uint3x2& rhs );
 
 
@@ -926,8 +926,8 @@ inline bool3x2 operator>=( const uint3x2& lhs, const uint3x2& rhs );
 /// \brief Returns a copy of the matrix that has been component-wise added by the given scalar value.
 inline uint3x3 operator+( const uint3x3& lhs, const uint32_t rhs );
 
-/// \relates uint3x3
-/// \brief Adds each component of the matrix by the given scalar value.
+	/// \relates uint3x3
+	/// \brief Adds each component by the given scalar value.
 inline uint3x3 operator+=( uint3x3& lhs, const uint32_t rhs );
 
 /// \relates uint3x3
@@ -938,8 +938,8 @@ inline uint3x3 operator+( const uint3x3& lhs, const uint3x3& rhs );
 /// \brief Returns a copy of the matrix that has been component-wise subtracted by the given scalar value.
 inline uint3x3 operator-( const uint3x3& lhs, const uint32_t rhs );
 
-/// \relates uint3x3
-/// \brief Subtracts each component of the matrix by the given scalar value.
+	/// \relates uint3x3
+	/// \brief Subtracts each component by the given scalar value.
 inline uint3x3 operator-=( uint3x3& lhs, const uint32_t rhs );
 
 /// \relates uint3x3
@@ -950,8 +950,8 @@ inline uint3x3 operator-( const uint3x3& lhs, const uint3x3& rhs );
 /// \brief Returns a copy of the matrix that has been component-wise multiplied by the given scalar value.
 inline uint3x3 operator*( const uint3x3& lhs, const uint32_t rhs );
 
-/// \relates uint3x3
-/// \brief Multiplies each component of the matrix by the given scalar value.
+	/// \relates uint3x3
+	/// \brief Multiplies each component by the given scalar value.
 inline uint3x3 operator*=( uint3x3& lhs, const uint32_t rhs );
 
 /// \relates uint3x3
@@ -962,8 +962,8 @@ inline uint3x3 operator*( const uint3x3& lhs, const uint3x3& rhs );
 /// \brief Returns a copy of the matrix that has been component-wise divided by the given scalar value.
 inline uint3x3 operator/( const uint3x3& lhs, const uint32_t rhs );
 
-/// \relates uint3x3
-/// \brief Divides each component of the matrix by the given scalar value.
+	/// \relates uint3x3
+	/// \brief Divides each component by the given scalar value.
 inline uint3x3 operator/=( uint3x3& lhs, const uint32_t rhs );
 
 /// \relates uint3x3
@@ -971,19 +971,19 @@ inline uint3x3 operator/=( uint3x3& lhs, const uint32_t rhs );
 inline uint3x3 operator/( const uint3x3& lhs, const uint3x3& rhs );
 
 /// \relates uint3x3
-/// \brief Returns a bool3x3 where each component is true if the component of the left-hand vector is less than than the corresponding rhs-hand vector component.
+/// \brief Returns a bool3x3 where each component is true if the component of the left-hand type is less than the corresponding right-hand type component.
 inline bool3x3 operator<( const uint3x3& lhs, const uint3x3& rhs );
 
 /// \relates uint3x3
-/// \brief Returns a bool3x3 where each component is true if the component of the left-hand vector is less than than the corresponding rhs-hand vector component.
+/// \brief Returns a bool3x3 where each component is true if the component of the left-hand type is less than or equal to the corresponding right-hand type component.
 inline bool3x3 operator<=( const uint3x3& lhs, const uint3x3& rhs );
 
 /// \relates uint3x3
-/// \brief Returns a bool3x3 where each component is true if the component of the left-hand vector is less than than the corresponding rhs-hand vector component.
+/// \brief Returns a bool3x3 where each component is true if the component of the left-hand type is greater than the corresponding right-hand type component.
 inline bool3x3 operator>( const uint3x3& lhs, const uint3x3& rhs );
 
 /// \relates uint3x3
-/// \brief Returns a bool3x3 where each component is true if the component of the left-hand vector is less than than the corresponding rhs-hand vector component.
+/// \brief Returns a bool3x3 where each component is true if the component of the left-hand type is greater than or equal to the corresponding right-hand type component.
 inline bool3x3 operator>=( const uint3x3& lhs, const uint3x3& rhs );
 
 
@@ -992,8 +992,8 @@ inline bool3x3 operator>=( const uint3x3& lhs, const uint3x3& rhs );
 /// \brief Returns a copy of the matrix that has been component-wise added by the given scalar value.
 inline uint3x4 operator+( const uint3x4& lhs, const uint32_t rhs );
 
-/// \relates uint3x4
-/// \brief Adds each component of the matrix by the given scalar value.
+	/// \relates uint3x4
+	/// \brief Adds each component by the given scalar value.
 inline uint3x4 operator+=( uint3x4& lhs, const uint32_t rhs );
 
 /// \relates uint3x4
@@ -1004,8 +1004,8 @@ inline uint3x4 operator+( const uint3x4& lhs, const uint3x4& rhs );
 /// \brief Returns a copy of the matrix that has been component-wise subtracted by the given scalar value.
 inline uint3x4 operator-( const uint3x4& lhs, const uint32_t rhs );
 
-/// \relates uint3x4
-/// \brief Subtracts each component of the matrix by the given scalar value.
+	/// \relates uint3x4
+	/// \brief Subtracts each component by the given scalar value.
 inline uint3x4 operator-=( uint3x4& lhs, const uint32_t rhs );
 
 /// \relates uint3x4
@@ -1016,8 +1016,8 @@ inline uint3x4 operator-( const uint3x4& lhs, const uint3x4& rhs );
 /// \brief Returns a copy of the matrix that has been component-wise multiplied by the given scalar value.
 inline uint3x4 operator*( const uint3x4& lhs, const uint32_t rhs );
 
-/// \relates uint3x4
-/// \brief Multiplies each component of the matrix by the given scalar value.
+	/// \relates uint3x4
+	/// \brief Multiplies each component by the given scalar value.
 inline uint3x4 operator*=( uint3x4& lhs, const uint32_t rhs );
 
 /// \relates uint3x4
@@ -1028,8 +1028,8 @@ inline uint3x3 operator*( const uint3x4& lhs, const uint4x3& rhs );
 /// \brief Returns a copy of the matrix that has been component-wise divided by the given scalar value.
 inline uint3x4 operator/( const uint3x4& lhs, const uint32_t rhs );
 
-/// \relates uint3x4
-/// \brief Divides each component of the matrix by the given scalar value.
+	/// \relates uint3x4
+	/// \brief Divides each component by the given scalar value.
 inline uint3x4 operator/=( uint3x4& lhs, const uint32_t rhs );
 
 /// \relates uint3x4
@@ -1037,19 +1037,19 @@ inline uint3x4 operator/=( uint3x4& lhs, const uint32_t rhs );
 inline uint3x4 operator/( const uint3x4& lhs, const uint3x4& rhs );
 
 /// \relates uint3x4
-/// \brief Returns a bool3x4 where each component is true if the component of the left-hand vector is less than than the corresponding rhs-hand vector component.
+/// \brief Returns a bool3x4 where each component is true if the component of the left-hand type is less than the corresponding right-hand type component.
 inline bool3x4 operator<( const uint3x4& lhs, const uint3x4& rhs );
 
 /// \relates uint3x4
-/// \brief Returns a bool3x4 where each component is true if the component of the left-hand vector is less than than the corresponding rhs-hand vector component.
+/// \brief Returns a bool3x4 where each component is true if the component of the left-hand type is less than or equal to the corresponding right-hand type component.
 inline bool3x4 operator<=( const uint3x4& lhs, const uint3x4& rhs );
 
 /// \relates uint3x4
-/// \brief Returns a bool3x4 where each component is true if the component of the left-hand vector is less than than the corresponding rhs-hand vector component.
+/// \brief Returns a bool3x4 where each component is true if the component of the left-hand type is greater than the corresponding right-hand type component.
 inline bool3x4 operator>( const uint3x4& lhs, const uint3x4& rhs );
 
 /// \relates uint3x4
-/// \brief Returns a bool3x4 where each component is true if the component of the left-hand vector is less than than the corresponding rhs-hand vector component.
+/// \brief Returns a bool3x4 where each component is true if the component of the left-hand type is greater than or equal to the corresponding right-hand type component.
 inline bool3x4 operator>=( const uint3x4& lhs, const uint3x4& rhs );
 
 
@@ -1058,8 +1058,8 @@ inline bool3x4 operator>=( const uint3x4& lhs, const uint3x4& rhs );
 /// \brief Returns a copy of the matrix that has been component-wise added by the given scalar value.
 inline uint4x2 operator+( const uint4x2& lhs, const uint32_t rhs );
 
-/// \relates uint4x2
-/// \brief Adds each component of the matrix by the given scalar value.
+	/// \relates uint4x2
+	/// \brief Adds each component by the given scalar value.
 inline uint4x2 operator+=( uint4x2& lhs, const uint32_t rhs );
 
 /// \relates uint4x2
@@ -1070,8 +1070,8 @@ inline uint4x2 operator+( const uint4x2& lhs, const uint4x2& rhs );
 /// \brief Returns a copy of the matrix that has been component-wise subtracted by the given scalar value.
 inline uint4x2 operator-( const uint4x2& lhs, const uint32_t rhs );
 
-/// \relates uint4x2
-/// \brief Subtracts each component of the matrix by the given scalar value.
+	/// \relates uint4x2
+	/// \brief Subtracts each component by the given scalar value.
 inline uint4x2 operator-=( uint4x2& lhs, const uint32_t rhs );
 
 /// \relates uint4x2
@@ -1082,8 +1082,8 @@ inline uint4x2 operator-( const uint4x2& lhs, const uint4x2& rhs );
 /// \brief Returns a copy of the matrix that has been component-wise multiplied by the given scalar value.
 inline uint4x2 operator*( const uint4x2& lhs, const uint32_t rhs );
 
-/// \relates uint4x2
-/// \brief Multiplies each component of the matrix by the given scalar value.
+	/// \relates uint4x2
+	/// \brief Multiplies each component by the given scalar value.
 inline uint4x2 operator*=( uint4x2& lhs, const uint32_t rhs );
 
 /// \relates uint4x2
@@ -1094,8 +1094,8 @@ inline uint4x4 operator*( const uint4x2& lhs, const uint2x4& rhs );
 /// \brief Returns a copy of the matrix that has been component-wise divided by the given scalar value.
 inline uint4x2 operator/( const uint4x2& lhs, const uint32_t rhs );
 
-/// \relates uint4x2
-/// \brief Divides each component of the matrix by the given scalar value.
+	/// \relates uint4x2
+	/// \brief Divides each component by the given scalar value.
 inline uint4x2 operator/=( uint4x2& lhs, const uint32_t rhs );
 
 /// \relates uint4x2
@@ -1103,19 +1103,19 @@ inline uint4x2 operator/=( uint4x2& lhs, const uint32_t rhs );
 inline uint4x2 operator/( const uint4x2& lhs, const uint4x2& rhs );
 
 /// \relates uint4x2
-/// \brief Returns a bool4x2 where each component is true if the component of the left-hand vector is less than than the corresponding rhs-hand vector component.
+/// \brief Returns a bool4x2 where each component is true if the component of the left-hand type is less than the corresponding right-hand type component.
 inline bool4x2 operator<( const uint4x2& lhs, const uint4x2& rhs );
 
 /// \relates uint4x2
-/// \brief Returns a bool4x2 where each component is true if the component of the left-hand vector is less than than the corresponding rhs-hand vector component.
+/// \brief Returns a bool4x2 where each component is true if the component of the left-hand type is less than or equal to the corresponding right-hand type component.
 inline bool4x2 operator<=( const uint4x2& lhs, const uint4x2& rhs );
 
 /// \relates uint4x2
-/// \brief Returns a bool4x2 where each component is true if the component of the left-hand vector is less than than the corresponding rhs-hand vector component.
+/// \brief Returns a bool4x2 where each component is true if the component of the left-hand type is greater than the corresponding right-hand type component.
 inline bool4x2 operator>( const uint4x2& lhs, const uint4x2& rhs );
 
 /// \relates uint4x2
-/// \brief Returns a bool4x2 where each component is true if the component of the left-hand vector is less than than the corresponding rhs-hand vector component.
+/// \brief Returns a bool4x2 where each component is true if the component of the left-hand type is greater than or equal to the corresponding right-hand type component.
 inline bool4x2 operator>=( const uint4x2& lhs, const uint4x2& rhs );
 
 
@@ -1124,8 +1124,8 @@ inline bool4x2 operator>=( const uint4x2& lhs, const uint4x2& rhs );
 /// \brief Returns a copy of the matrix that has been component-wise added by the given scalar value.
 inline uint4x3 operator+( const uint4x3& lhs, const uint32_t rhs );
 
-/// \relates uint4x3
-/// \brief Adds each component of the matrix by the given scalar value.
+	/// \relates uint4x3
+	/// \brief Adds each component by the given scalar value.
 inline uint4x3 operator+=( uint4x3& lhs, const uint32_t rhs );
 
 /// \relates uint4x3
@@ -1136,8 +1136,8 @@ inline uint4x3 operator+( const uint4x3& lhs, const uint4x3& rhs );
 /// \brief Returns a copy of the matrix that has been component-wise subtracted by the given scalar value.
 inline uint4x3 operator-( const uint4x3& lhs, const uint32_t rhs );
 
-/// \relates uint4x3
-/// \brief Subtracts each component of the matrix by the given scalar value.
+	/// \relates uint4x3
+	/// \brief Subtracts each component by the given scalar value.
 inline uint4x3 operator-=( uint4x3& lhs, const uint32_t rhs );
 
 /// \relates uint4x3
@@ -1148,8 +1148,8 @@ inline uint4x3 operator-( const uint4x3& lhs, const uint4x3& rhs );
 /// \brief Returns a copy of the matrix that has been component-wise multiplied by the given scalar value.
 inline uint4x3 operator*( const uint4x3& lhs, const uint32_t rhs );
 
-/// \relates uint4x3
-/// \brief Multiplies each component of the matrix by the given scalar value.
+	/// \relates uint4x3
+	/// \brief Multiplies each component by the given scalar value.
 inline uint4x3 operator*=( uint4x3& lhs, const uint32_t rhs );
 
 /// \relates uint4x3
@@ -1160,8 +1160,8 @@ inline uint4x4 operator*( const uint4x3& lhs, const uint3x4& rhs );
 /// \brief Returns a copy of the matrix that has been component-wise divided by the given scalar value.
 inline uint4x3 operator/( const uint4x3& lhs, const uint32_t rhs );
 
-/// \relates uint4x3
-/// \brief Divides each component of the matrix by the given scalar value.
+	/// \relates uint4x3
+	/// \brief Divides each component by the given scalar value.
 inline uint4x3 operator/=( uint4x3& lhs, const uint32_t rhs );
 
 /// \relates uint4x3
@@ -1169,19 +1169,19 @@ inline uint4x3 operator/=( uint4x3& lhs, const uint32_t rhs );
 inline uint4x3 operator/( const uint4x3& lhs, const uint4x3& rhs );
 
 /// \relates uint4x3
-/// \brief Returns a bool4x3 where each component is true if the component of the left-hand vector is less than than the corresponding rhs-hand vector component.
+/// \brief Returns a bool4x3 where each component is true if the component of the left-hand type is less than the corresponding right-hand type component.
 inline bool4x3 operator<( const uint4x3& lhs, const uint4x3& rhs );
 
 /// \relates uint4x3
-/// \brief Returns a bool4x3 where each component is true if the component of the left-hand vector is less than than the corresponding rhs-hand vector component.
+/// \brief Returns a bool4x3 where each component is true if the component of the left-hand type is less than or equal to the corresponding right-hand type component.
 inline bool4x3 operator<=( const uint4x3& lhs, const uint4x3& rhs );
 
 /// \relates uint4x3
-/// \brief Returns a bool4x3 where each component is true if the component of the left-hand vector is less than than the corresponding rhs-hand vector component.
+/// \brief Returns a bool4x3 where each component is true if the component of the left-hand type is greater than the corresponding right-hand type component.
 inline bool4x3 operator>( const uint4x3& lhs, const uint4x3& rhs );
 
 /// \relates uint4x3
-/// \brief Returns a bool4x3 where each component is true if the component of the left-hand vector is less than than the corresponding rhs-hand vector component.
+/// \brief Returns a bool4x3 where each component is true if the component of the left-hand type is greater than or equal to the corresponding right-hand type component.
 inline bool4x3 operator>=( const uint4x3& lhs, const uint4x3& rhs );
 
 
@@ -1190,8 +1190,8 @@ inline bool4x3 operator>=( const uint4x3& lhs, const uint4x3& rhs );
 /// \brief Returns a copy of the matrix that has been component-wise added by the given scalar value.
 inline uint4x4 operator+( const uint4x4& lhs, const uint32_t rhs );
 
-/// \relates uint4x4
-/// \brief Adds each component of the matrix by the given scalar value.
+	/// \relates uint4x4
+	/// \brief Adds each component by the given scalar value.
 inline uint4x4 operator+=( uint4x4& lhs, const uint32_t rhs );
 
 /// \relates uint4x4
@@ -1202,8 +1202,8 @@ inline uint4x4 operator+( const uint4x4& lhs, const uint4x4& rhs );
 /// \brief Returns a copy of the matrix that has been component-wise subtracted by the given scalar value.
 inline uint4x4 operator-( const uint4x4& lhs, const uint32_t rhs );
 
-/// \relates uint4x4
-/// \brief Subtracts each component of the matrix by the given scalar value.
+	/// \relates uint4x4
+	/// \brief Subtracts each component by the given scalar value.
 inline uint4x4 operator-=( uint4x4& lhs, const uint32_t rhs );
 
 /// \relates uint4x4
@@ -1214,8 +1214,8 @@ inline uint4x4 operator-( const uint4x4& lhs, const uint4x4& rhs );
 /// \brief Returns a copy of the matrix that has been component-wise multiplied by the given scalar value.
 inline uint4x4 operator*( const uint4x4& lhs, const uint32_t rhs );
 
-/// \relates uint4x4
-/// \brief Multiplies each component of the matrix by the given scalar value.
+	/// \relates uint4x4
+	/// \brief Multiplies each component by the given scalar value.
 inline uint4x4 operator*=( uint4x4& lhs, const uint32_t rhs );
 
 /// \relates uint4x4
@@ -1226,8 +1226,8 @@ inline uint4x4 operator*( const uint4x4& lhs, const uint4x4& rhs );
 /// \brief Returns a copy of the matrix that has been component-wise divided by the given scalar value.
 inline uint4x4 operator/( const uint4x4& lhs, const uint32_t rhs );
 
-/// \relates uint4x4
-/// \brief Divides each component of the matrix by the given scalar value.
+	/// \relates uint4x4
+	/// \brief Divides each component by the given scalar value.
 inline uint4x4 operator/=( uint4x4& lhs, const uint32_t rhs );
 
 /// \relates uint4x4
@@ -1235,19 +1235,19 @@ inline uint4x4 operator/=( uint4x4& lhs, const uint32_t rhs );
 inline uint4x4 operator/( const uint4x4& lhs, const uint4x4& rhs );
 
 /// \relates uint4x4
-/// \brief Returns a bool4x4 where each component is true if the component of the left-hand vector is less than than the corresponding rhs-hand vector component.
+/// \brief Returns a bool4x4 where each component is true if the component of the left-hand type is less than the corresponding right-hand type component.
 inline bool4x4 operator<( const uint4x4& lhs, const uint4x4& rhs );
 
 /// \relates uint4x4
-/// \brief Returns a bool4x4 where each component is true if the component of the left-hand vector is less than than the corresponding rhs-hand vector component.
+/// \brief Returns a bool4x4 where each component is true if the component of the left-hand type is less than or equal to the corresponding right-hand type component.
 inline bool4x4 operator<=( const uint4x4& lhs, const uint4x4& rhs );
 
 /// \relates uint4x4
-/// \brief Returns a bool4x4 where each component is true if the component of the left-hand vector is less than than the corresponding rhs-hand vector component.
+/// \brief Returns a bool4x4 where each component is true if the component of the left-hand type is greater than the corresponding right-hand type component.
 inline bool4x4 operator>( const uint4x4& lhs, const uint4x4& rhs );
 
 /// \relates uint4x4
-/// \brief Returns a bool4x4 where each component is true if the component of the left-hand vector is less than than the corresponding rhs-hand vector component.
+/// \brief Returns a bool4x4 where each component is true if the component of the left-hand type is greater than or equal to the corresponding right-hand type component.
 inline bool4x4 operator>=( const uint4x4& lhs, const uint4x4& rhs );
 
 
@@ -1256,8 +1256,8 @@ inline bool4x4 operator>=( const uint4x4& lhs, const uint4x4& rhs );
 /// \brief Returns a copy of the matrix that has been component-wise added by the given scalar value.
 inline float2x2 operator+( const float2x2& lhs, const float rhs );
 
-/// \relates float2x2
-/// \brief Adds each component of the matrix by the given scalar value.
+	/// \relates float2x2
+	/// \brief Adds each component by the given scalar value.
 inline float2x2 operator+=( float2x2& lhs, const float rhs );
 
 /// \relates float2x2
@@ -1268,8 +1268,8 @@ inline float2x2 operator+( const float2x2& lhs, const float2x2& rhs );
 /// \brief Returns a copy of the matrix that has been component-wise subtracted by the given scalar value.
 inline float2x2 operator-( const float2x2& lhs, const float rhs );
 
-/// \relates float2x2
-/// \brief Subtracts each component of the matrix by the given scalar value.
+	/// \relates float2x2
+	/// \brief Subtracts each component by the given scalar value.
 inline float2x2 operator-=( float2x2& lhs, const float rhs );
 
 /// \relates float2x2
@@ -1280,8 +1280,8 @@ inline float2x2 operator-( const float2x2& lhs, const float2x2& rhs );
 /// \brief Returns a copy of the matrix that has been component-wise multiplied by the given scalar value.
 inline float2x2 operator*( const float2x2& lhs, const float rhs );
 
-/// \relates float2x2
-/// \brief Multiplies each component of the matrix by the given scalar value.
+	/// \relates float2x2
+	/// \brief Multiplies each component by the given scalar value.
 inline float2x2 operator*=( float2x2& lhs, const float rhs );
 
 /// \relates float2x2
@@ -1292,8 +1292,8 @@ inline float2x2 operator*( const float2x2& lhs, const float2x2& rhs );
 /// \brief Returns a copy of the matrix that has been component-wise divided by the given scalar value.
 inline float2x2 operator/( const float2x2& lhs, const float rhs );
 
-/// \relates float2x2
-/// \brief Divides each component of the matrix by the given scalar value.
+	/// \relates float2x2
+	/// \brief Divides each component by the given scalar value.
 inline float2x2 operator/=( float2x2& lhs, const float rhs );
 
 /// \relates float2x2
@@ -1301,19 +1301,19 @@ inline float2x2 operator/=( float2x2& lhs, const float rhs );
 inline float2x2 operator/( const float2x2& lhs, const float2x2& rhs );
 
 /// \relates float2x2
-/// \brief Returns a bool2x2 where each component is true if the component of the left-hand vector is less than than the corresponding rhs-hand vector component.
+/// \brief Returns a bool2x2 where each component is true if the component of the left-hand type is less than the corresponding right-hand type component.
 inline bool2x2 operator<( const float2x2& lhs, const float2x2& rhs );
 
 /// \relates float2x2
-/// \brief Returns a bool2x2 where each component is true if the component of the left-hand vector is less than than the corresponding rhs-hand vector component.
+/// \brief Returns a bool2x2 where each component is true if the component of the left-hand type is less than or equal to the corresponding right-hand type component.
 inline bool2x2 operator<=( const float2x2& lhs, const float2x2& rhs );
 
 /// \relates float2x2
-/// \brief Returns a bool2x2 where each component is true if the component of the left-hand vector is less than than the corresponding rhs-hand vector component.
+/// \brief Returns a bool2x2 where each component is true if the component of the left-hand type is greater than the corresponding right-hand type component.
 inline bool2x2 operator>( const float2x2& lhs, const float2x2& rhs );
 
 /// \relates float2x2
-/// \brief Returns a bool2x2 where each component is true if the component of the left-hand vector is less than than the corresponding rhs-hand vector component.
+/// \brief Returns a bool2x2 where each component is true if the component of the left-hand type is greater than or equal to the corresponding right-hand type component.
 inline bool2x2 operator>=( const float2x2& lhs, const float2x2& rhs );
 
 
@@ -1322,8 +1322,8 @@ inline bool2x2 operator>=( const float2x2& lhs, const float2x2& rhs );
 /// \brief Returns a copy of the matrix that has been component-wise added by the given scalar value.
 inline float2x3 operator+( const float2x3& lhs, const float rhs );
 
-/// \relates float2x3
-/// \brief Adds each component of the matrix by the given scalar value.
+	/// \relates float2x3
+	/// \brief Adds each component by the given scalar value.
 inline float2x3 operator+=( float2x3& lhs, const float rhs );
 
 /// \relates float2x3
@@ -1334,8 +1334,8 @@ inline float2x3 operator+( const float2x3& lhs, const float2x3& rhs );
 /// \brief Returns a copy of the matrix that has been component-wise subtracted by the given scalar value.
 inline float2x3 operator-( const float2x3& lhs, const float rhs );
 
-/// \relates float2x3
-/// \brief Subtracts each component of the matrix by the given scalar value.
+	/// \relates float2x3
+	/// \brief Subtracts each component by the given scalar value.
 inline float2x3 operator-=( float2x3& lhs, const float rhs );
 
 /// \relates float2x3
@@ -1346,8 +1346,8 @@ inline float2x3 operator-( const float2x3& lhs, const float2x3& rhs );
 /// \brief Returns a copy of the matrix that has been component-wise multiplied by the given scalar value.
 inline float2x3 operator*( const float2x3& lhs, const float rhs );
 
-/// \relates float2x3
-/// \brief Multiplies each component of the matrix by the given scalar value.
+	/// \relates float2x3
+	/// \brief Multiplies each component by the given scalar value.
 inline float2x3 operator*=( float2x3& lhs, const float rhs );
 
 /// \relates float2x3
@@ -1358,8 +1358,8 @@ inline float2x2 operator*( const float2x3& lhs, const float3x2& rhs );
 /// \brief Returns a copy of the matrix that has been component-wise divided by the given scalar value.
 inline float2x3 operator/( const float2x3& lhs, const float rhs );
 
-/// \relates float2x3
-/// \brief Divides each component of the matrix by the given scalar value.
+	/// \relates float2x3
+	/// \brief Divides each component by the given scalar value.
 inline float2x3 operator/=( float2x3& lhs, const float rhs );
 
 /// \relates float2x3
@@ -1367,19 +1367,19 @@ inline float2x3 operator/=( float2x3& lhs, const float rhs );
 inline float2x3 operator/( const float2x3& lhs, const float2x3& rhs );
 
 /// \relates float2x3
-/// \brief Returns a bool2x3 where each component is true if the component of the left-hand vector is less than than the corresponding rhs-hand vector component.
+/// \brief Returns a bool2x3 where each component is true if the component of the left-hand type is less than the corresponding right-hand type component.
 inline bool2x3 operator<( const float2x3& lhs, const float2x3& rhs );
 
 /// \relates float2x3
-/// \brief Returns a bool2x3 where each component is true if the component of the left-hand vector is less than than the corresponding rhs-hand vector component.
+/// \brief Returns a bool2x3 where each component is true if the component of the left-hand type is less than or equal to the corresponding right-hand type component.
 inline bool2x3 operator<=( const float2x3& lhs, const float2x3& rhs );
 
 /// \relates float2x3
-/// \brief Returns a bool2x3 where each component is true if the component of the left-hand vector is less than than the corresponding rhs-hand vector component.
+/// \brief Returns a bool2x3 where each component is true if the component of the left-hand type is greater than the corresponding right-hand type component.
 inline bool2x3 operator>( const float2x3& lhs, const float2x3& rhs );
 
 /// \relates float2x3
-/// \brief Returns a bool2x3 where each component is true if the component of the left-hand vector is less than than the corresponding rhs-hand vector component.
+/// \brief Returns a bool2x3 where each component is true if the component of the left-hand type is greater than or equal to the corresponding right-hand type component.
 inline bool2x3 operator>=( const float2x3& lhs, const float2x3& rhs );
 
 
@@ -1388,8 +1388,8 @@ inline bool2x3 operator>=( const float2x3& lhs, const float2x3& rhs );
 /// \brief Returns a copy of the matrix that has been component-wise added by the given scalar value.
 inline float2x4 operator+( const float2x4& lhs, const float rhs );
 
-/// \relates float2x4
-/// \brief Adds each component of the matrix by the given scalar value.
+	/// \relates float2x4
+	/// \brief Adds each component by the given scalar value.
 inline float2x4 operator+=( float2x4& lhs, const float rhs );
 
 /// \relates float2x4
@@ -1400,8 +1400,8 @@ inline float2x4 operator+( const float2x4& lhs, const float2x4& rhs );
 /// \brief Returns a copy of the matrix that has been component-wise subtracted by the given scalar value.
 inline float2x4 operator-( const float2x4& lhs, const float rhs );
 
-/// \relates float2x4
-/// \brief Subtracts each component of the matrix by the given scalar value.
+	/// \relates float2x4
+	/// \brief Subtracts each component by the given scalar value.
 inline float2x4 operator-=( float2x4& lhs, const float rhs );
 
 /// \relates float2x4
@@ -1412,8 +1412,8 @@ inline float2x4 operator-( const float2x4& lhs, const float2x4& rhs );
 /// \brief Returns a copy of the matrix that has been component-wise multiplied by the given scalar value.
 inline float2x4 operator*( const float2x4& lhs, const float rhs );
 
-/// \relates float2x4
-/// \brief Multiplies each component of the matrix by the given scalar value.
+	/// \relates float2x4
+	/// \brief Multiplies each component by the given scalar value.
 inline float2x4 operator*=( float2x4& lhs, const float rhs );
 
 /// \relates float2x4
@@ -1424,8 +1424,8 @@ inline float2x2 operator*( const float2x4& lhs, const float4x2& rhs );
 /// \brief Returns a copy of the matrix that has been component-wise divided by the given scalar value.
 inline float2x4 operator/( const float2x4& lhs, const float rhs );
 
-/// \relates float2x4
-/// \brief Divides each component of the matrix by the given scalar value.
+	/// \relates float2x4
+	/// \brief Divides each component by the given scalar value.
 inline float2x4 operator/=( float2x4& lhs, const float rhs );
 
 /// \relates float2x4
@@ -1433,19 +1433,19 @@ inline float2x4 operator/=( float2x4& lhs, const float rhs );
 inline float2x4 operator/( const float2x4& lhs, const float2x4& rhs );
 
 /// \relates float2x4
-/// \brief Returns a bool2x4 where each component is true if the component of the left-hand vector is less than than the corresponding rhs-hand vector component.
+/// \brief Returns a bool2x4 where each component is true if the component of the left-hand type is less than the corresponding right-hand type component.
 inline bool2x4 operator<( const float2x4& lhs, const float2x4& rhs );
 
 /// \relates float2x4
-/// \brief Returns a bool2x4 where each component is true if the component of the left-hand vector is less than than the corresponding rhs-hand vector component.
+/// \brief Returns a bool2x4 where each component is true if the component of the left-hand type is less than or equal to the corresponding right-hand type component.
 inline bool2x4 operator<=( const float2x4& lhs, const float2x4& rhs );
 
 /// \relates float2x4
-/// \brief Returns a bool2x4 where each component is true if the component of the left-hand vector is less than than the corresponding rhs-hand vector component.
+/// \brief Returns a bool2x4 where each component is true if the component of the left-hand type is greater than the corresponding right-hand type component.
 inline bool2x4 operator>( const float2x4& lhs, const float2x4& rhs );
 
 /// \relates float2x4
-/// \brief Returns a bool2x4 where each component is true if the component of the left-hand vector is less than than the corresponding rhs-hand vector component.
+/// \brief Returns a bool2x4 where each component is true if the component of the left-hand type is greater than or equal to the corresponding right-hand type component.
 inline bool2x4 operator>=( const float2x4& lhs, const float2x4& rhs );
 
 
@@ -1454,8 +1454,8 @@ inline bool2x4 operator>=( const float2x4& lhs, const float2x4& rhs );
 /// \brief Returns a copy of the matrix that has been component-wise added by the given scalar value.
 inline float3x2 operator+( const float3x2& lhs, const float rhs );
 
-/// \relates float3x2
-/// \brief Adds each component of the matrix by the given scalar value.
+	/// \relates float3x2
+	/// \brief Adds each component by the given scalar value.
 inline float3x2 operator+=( float3x2& lhs, const float rhs );
 
 /// \relates float3x2
@@ -1466,8 +1466,8 @@ inline float3x2 operator+( const float3x2& lhs, const float3x2& rhs );
 /// \brief Returns a copy of the matrix that has been component-wise subtracted by the given scalar value.
 inline float3x2 operator-( const float3x2& lhs, const float rhs );
 
-/// \relates float3x2
-/// \brief Subtracts each component of the matrix by the given scalar value.
+	/// \relates float3x2
+	/// \brief Subtracts each component by the given scalar value.
 inline float3x2 operator-=( float3x2& lhs, const float rhs );
 
 /// \relates float3x2
@@ -1478,8 +1478,8 @@ inline float3x2 operator-( const float3x2& lhs, const float3x2& rhs );
 /// \brief Returns a copy of the matrix that has been component-wise multiplied by the given scalar value.
 inline float3x2 operator*( const float3x2& lhs, const float rhs );
 
-/// \relates float3x2
-/// \brief Multiplies each component of the matrix by the given scalar value.
+	/// \relates float3x2
+	/// \brief Multiplies each component by the given scalar value.
 inline float3x2 operator*=( float3x2& lhs, const float rhs );
 
 /// \relates float3x2
@@ -1490,8 +1490,8 @@ inline float3x3 operator*( const float3x2& lhs, const float2x3& rhs );
 /// \brief Returns a copy of the matrix that has been component-wise divided by the given scalar value.
 inline float3x2 operator/( const float3x2& lhs, const float rhs );
 
-/// \relates float3x2
-/// \brief Divides each component of the matrix by the given scalar value.
+	/// \relates float3x2
+	/// \brief Divides each component by the given scalar value.
 inline float3x2 operator/=( float3x2& lhs, const float rhs );
 
 /// \relates float3x2
@@ -1499,19 +1499,19 @@ inline float3x2 operator/=( float3x2& lhs, const float rhs );
 inline float3x2 operator/( const float3x2& lhs, const float3x2& rhs );
 
 /// \relates float3x2
-/// \brief Returns a bool3x2 where each component is true if the component of the left-hand vector is less than than the corresponding rhs-hand vector component.
+/// \brief Returns a bool3x2 where each component is true if the component of the left-hand type is less than the corresponding right-hand type component.
 inline bool3x2 operator<( const float3x2& lhs, const float3x2& rhs );
 
 /// \relates float3x2
-/// \brief Returns a bool3x2 where each component is true if the component of the left-hand vector is less than than the corresponding rhs-hand vector component.
+/// \brief Returns a bool3x2 where each component is true if the component of the left-hand type is less than or equal to the corresponding right-hand type component.
 inline bool3x2 operator<=( const float3x2& lhs, const float3x2& rhs );
 
 /// \relates float3x2
-/// \brief Returns a bool3x2 where each component is true if the component of the left-hand vector is less than than the corresponding rhs-hand vector component.
+/// \brief Returns a bool3x2 where each component is true if the component of the left-hand type is greater than the corresponding right-hand type component.
 inline bool3x2 operator>( const float3x2& lhs, const float3x2& rhs );
 
 /// \relates float3x2
-/// \brief Returns a bool3x2 where each component is true if the component of the left-hand vector is less than than the corresponding rhs-hand vector component.
+/// \brief Returns a bool3x2 where each component is true if the component of the left-hand type is greater than or equal to the corresponding right-hand type component.
 inline bool3x2 operator>=( const float3x2& lhs, const float3x2& rhs );
 
 
@@ -1520,8 +1520,8 @@ inline bool3x2 operator>=( const float3x2& lhs, const float3x2& rhs );
 /// \brief Returns a copy of the matrix that has been component-wise added by the given scalar value.
 inline float3x3 operator+( const float3x3& lhs, const float rhs );
 
-/// \relates float3x3
-/// \brief Adds each component of the matrix by the given scalar value.
+	/// \relates float3x3
+	/// \brief Adds each component by the given scalar value.
 inline float3x3 operator+=( float3x3& lhs, const float rhs );
 
 /// \relates float3x3
@@ -1532,8 +1532,8 @@ inline float3x3 operator+( const float3x3& lhs, const float3x3& rhs );
 /// \brief Returns a copy of the matrix that has been component-wise subtracted by the given scalar value.
 inline float3x3 operator-( const float3x3& lhs, const float rhs );
 
-/// \relates float3x3
-/// \brief Subtracts each component of the matrix by the given scalar value.
+	/// \relates float3x3
+	/// \brief Subtracts each component by the given scalar value.
 inline float3x3 operator-=( float3x3& lhs, const float rhs );
 
 /// \relates float3x3
@@ -1544,8 +1544,8 @@ inline float3x3 operator-( const float3x3& lhs, const float3x3& rhs );
 /// \brief Returns a copy of the matrix that has been component-wise multiplied by the given scalar value.
 inline float3x3 operator*( const float3x3& lhs, const float rhs );
 
-/// \relates float3x3
-/// \brief Multiplies each component of the matrix by the given scalar value.
+	/// \relates float3x3
+	/// \brief Multiplies each component by the given scalar value.
 inline float3x3 operator*=( float3x3& lhs, const float rhs );
 
 /// \relates float3x3
@@ -1556,8 +1556,8 @@ inline float3x3 operator*( const float3x3& lhs, const float3x3& rhs );
 /// \brief Returns a copy of the matrix that has been component-wise divided by the given scalar value.
 inline float3x3 operator/( const float3x3& lhs, const float rhs );
 
-/// \relates float3x3
-/// \brief Divides each component of the matrix by the given scalar value.
+	/// \relates float3x3
+	/// \brief Divides each component by the given scalar value.
 inline float3x3 operator/=( float3x3& lhs, const float rhs );
 
 /// \relates float3x3
@@ -1565,19 +1565,19 @@ inline float3x3 operator/=( float3x3& lhs, const float rhs );
 inline float3x3 operator/( const float3x3& lhs, const float3x3& rhs );
 
 /// \relates float3x3
-/// \brief Returns a bool3x3 where each component is true if the component of the left-hand vector is less than than the corresponding rhs-hand vector component.
+/// \brief Returns a bool3x3 where each component is true if the component of the left-hand type is less than the corresponding right-hand type component.
 inline bool3x3 operator<( const float3x3& lhs, const float3x3& rhs );
 
 /// \relates float3x3
-/// \brief Returns a bool3x3 where each component is true if the component of the left-hand vector is less than than the corresponding rhs-hand vector component.
+/// \brief Returns a bool3x3 where each component is true if the component of the left-hand type is less than or equal to the corresponding right-hand type component.
 inline bool3x3 operator<=( const float3x3& lhs, const float3x3& rhs );
 
 /// \relates float3x3
-/// \brief Returns a bool3x3 where each component is true if the component of the left-hand vector is less than than the corresponding rhs-hand vector component.
+/// \brief Returns a bool3x3 where each component is true if the component of the left-hand type is greater than the corresponding right-hand type component.
 inline bool3x3 operator>( const float3x3& lhs, const float3x3& rhs );
 
 /// \relates float3x3
-/// \brief Returns a bool3x3 where each component is true if the component of the left-hand vector is less than than the corresponding rhs-hand vector component.
+/// \brief Returns a bool3x3 where each component is true if the component of the left-hand type is greater than or equal to the corresponding right-hand type component.
 inline bool3x3 operator>=( const float3x3& lhs, const float3x3& rhs );
 
 
@@ -1586,8 +1586,8 @@ inline bool3x3 operator>=( const float3x3& lhs, const float3x3& rhs );
 /// \brief Returns a copy of the matrix that has been component-wise added by the given scalar value.
 inline float3x4 operator+( const float3x4& lhs, const float rhs );
 
-/// \relates float3x4
-/// \brief Adds each component of the matrix by the given scalar value.
+	/// \relates float3x4
+	/// \brief Adds each component by the given scalar value.
 inline float3x4 operator+=( float3x4& lhs, const float rhs );
 
 /// \relates float3x4
@@ -1598,8 +1598,8 @@ inline float3x4 operator+( const float3x4& lhs, const float3x4& rhs );
 /// \brief Returns a copy of the matrix that has been component-wise subtracted by the given scalar value.
 inline float3x4 operator-( const float3x4& lhs, const float rhs );
 
-/// \relates float3x4
-/// \brief Subtracts each component of the matrix by the given scalar value.
+	/// \relates float3x4
+	/// \brief Subtracts each component by the given scalar value.
 inline float3x4 operator-=( float3x4& lhs, const float rhs );
 
 /// \relates float3x4
@@ -1610,8 +1610,8 @@ inline float3x4 operator-( const float3x4& lhs, const float3x4& rhs );
 /// \brief Returns a copy of the matrix that has been component-wise multiplied by the given scalar value.
 inline float3x4 operator*( const float3x4& lhs, const float rhs );
 
-/// \relates float3x4
-/// \brief Multiplies each component of the matrix by the given scalar value.
+	/// \relates float3x4
+	/// \brief Multiplies each component by the given scalar value.
 inline float3x4 operator*=( float3x4& lhs, const float rhs );
 
 /// \relates float3x4
@@ -1622,8 +1622,8 @@ inline float3x3 operator*( const float3x4& lhs, const float4x3& rhs );
 /// \brief Returns a copy of the matrix that has been component-wise divided by the given scalar value.
 inline float3x4 operator/( const float3x4& lhs, const float rhs );
 
-/// \relates float3x4
-/// \brief Divides each component of the matrix by the given scalar value.
+	/// \relates float3x4
+	/// \brief Divides each component by the given scalar value.
 inline float3x4 operator/=( float3x4& lhs, const float rhs );
 
 /// \relates float3x4
@@ -1631,19 +1631,19 @@ inline float3x4 operator/=( float3x4& lhs, const float rhs );
 inline float3x4 operator/( const float3x4& lhs, const float3x4& rhs );
 
 /// \relates float3x4
-/// \brief Returns a bool3x4 where each component is true if the component of the left-hand vector is less than than the corresponding rhs-hand vector component.
+/// \brief Returns a bool3x4 where each component is true if the component of the left-hand type is less than the corresponding right-hand type component.
 inline bool3x4 operator<( const float3x4& lhs, const float3x4& rhs );
 
 /// \relates float3x4
-/// \brief Returns a bool3x4 where each component is true if the component of the left-hand vector is less than than the corresponding rhs-hand vector component.
+/// \brief Returns a bool3x4 where each component is true if the component of the left-hand type is less than or equal to the corresponding right-hand type component.
 inline bool3x4 operator<=( const float3x4& lhs, const float3x4& rhs );
 
 /// \relates float3x4
-/// \brief Returns a bool3x4 where each component is true if the component of the left-hand vector is less than than the corresponding rhs-hand vector component.
+/// \brief Returns a bool3x4 where each component is true if the component of the left-hand type is greater than the corresponding right-hand type component.
 inline bool3x4 operator>( const float3x4& lhs, const float3x4& rhs );
 
 /// \relates float3x4
-/// \brief Returns a bool3x4 where each component is true if the component of the left-hand vector is less than than the corresponding rhs-hand vector component.
+/// \brief Returns a bool3x4 where each component is true if the component of the left-hand type is greater than or equal to the corresponding right-hand type component.
 inline bool3x4 operator>=( const float3x4& lhs, const float3x4& rhs );
 
 
@@ -1652,8 +1652,8 @@ inline bool3x4 operator>=( const float3x4& lhs, const float3x4& rhs );
 /// \brief Returns a copy of the matrix that has been component-wise added by the given scalar value.
 inline float4x2 operator+( const float4x2& lhs, const float rhs );
 
-/// \relates float4x2
-/// \brief Adds each component of the matrix by the given scalar value.
+	/// \relates float4x2
+	/// \brief Adds each component by the given scalar value.
 inline float4x2 operator+=( float4x2& lhs, const float rhs );
 
 /// \relates float4x2
@@ -1664,8 +1664,8 @@ inline float4x2 operator+( const float4x2& lhs, const float4x2& rhs );
 /// \brief Returns a copy of the matrix that has been component-wise subtracted by the given scalar value.
 inline float4x2 operator-( const float4x2& lhs, const float rhs );
 
-/// \relates float4x2
-/// \brief Subtracts each component of the matrix by the given scalar value.
+	/// \relates float4x2
+	/// \brief Subtracts each component by the given scalar value.
 inline float4x2 operator-=( float4x2& lhs, const float rhs );
 
 /// \relates float4x2
@@ -1676,8 +1676,8 @@ inline float4x2 operator-( const float4x2& lhs, const float4x2& rhs );
 /// \brief Returns a copy of the matrix that has been component-wise multiplied by the given scalar value.
 inline float4x2 operator*( const float4x2& lhs, const float rhs );
 
-/// \relates float4x2
-/// \brief Multiplies each component of the matrix by the given scalar value.
+	/// \relates float4x2
+	/// \brief Multiplies each component by the given scalar value.
 inline float4x2 operator*=( float4x2& lhs, const float rhs );
 
 /// \relates float4x2
@@ -1688,8 +1688,8 @@ inline float4x4 operator*( const float4x2& lhs, const float2x4& rhs );
 /// \brief Returns a copy of the matrix that has been component-wise divided by the given scalar value.
 inline float4x2 operator/( const float4x2& lhs, const float rhs );
 
-/// \relates float4x2
-/// \brief Divides each component of the matrix by the given scalar value.
+	/// \relates float4x2
+	/// \brief Divides each component by the given scalar value.
 inline float4x2 operator/=( float4x2& lhs, const float rhs );
 
 /// \relates float4x2
@@ -1697,19 +1697,19 @@ inline float4x2 operator/=( float4x2& lhs, const float rhs );
 inline float4x2 operator/( const float4x2& lhs, const float4x2& rhs );
 
 /// \relates float4x2
-/// \brief Returns a bool4x2 where each component is true if the component of the left-hand vector is less than than the corresponding rhs-hand vector component.
+/// \brief Returns a bool4x2 where each component is true if the component of the left-hand type is less than the corresponding right-hand type component.
 inline bool4x2 operator<( const float4x2& lhs, const float4x2& rhs );
 
 /// \relates float4x2
-/// \brief Returns a bool4x2 where each component is true if the component of the left-hand vector is less than than the corresponding rhs-hand vector component.
+/// \brief Returns a bool4x2 where each component is true if the component of the left-hand type is less than or equal to the corresponding right-hand type component.
 inline bool4x2 operator<=( const float4x2& lhs, const float4x2& rhs );
 
 /// \relates float4x2
-/// \brief Returns a bool4x2 where each component is true if the component of the left-hand vector is less than than the corresponding rhs-hand vector component.
+/// \brief Returns a bool4x2 where each component is true if the component of the left-hand type is greater than the corresponding right-hand type component.
 inline bool4x2 operator>( const float4x2& lhs, const float4x2& rhs );
 
 /// \relates float4x2
-/// \brief Returns a bool4x2 where each component is true if the component of the left-hand vector is less than than the corresponding rhs-hand vector component.
+/// \brief Returns a bool4x2 where each component is true if the component of the left-hand type is greater than or equal to the corresponding right-hand type component.
 inline bool4x2 operator>=( const float4x2& lhs, const float4x2& rhs );
 
 
@@ -1718,8 +1718,8 @@ inline bool4x2 operator>=( const float4x2& lhs, const float4x2& rhs );
 /// \brief Returns a copy of the matrix that has been component-wise added by the given scalar value.
 inline float4x3 operator+( const float4x3& lhs, const float rhs );
 
-/// \relates float4x3
-/// \brief Adds each component of the matrix by the given scalar value.
+	/// \relates float4x3
+	/// \brief Adds each component by the given scalar value.
 inline float4x3 operator+=( float4x3& lhs, const float rhs );
 
 /// \relates float4x3
@@ -1730,8 +1730,8 @@ inline float4x3 operator+( const float4x3& lhs, const float4x3& rhs );
 /// \brief Returns a copy of the matrix that has been component-wise subtracted by the given scalar value.
 inline float4x3 operator-( const float4x3& lhs, const float rhs );
 
-/// \relates float4x3
-/// \brief Subtracts each component of the matrix by the given scalar value.
+	/// \relates float4x3
+	/// \brief Subtracts each component by the given scalar value.
 inline float4x3 operator-=( float4x3& lhs, const float rhs );
 
 /// \relates float4x3
@@ -1742,8 +1742,8 @@ inline float4x3 operator-( const float4x3& lhs, const float4x3& rhs );
 /// \brief Returns a copy of the matrix that has been component-wise multiplied by the given scalar value.
 inline float4x3 operator*( const float4x3& lhs, const float rhs );
 
-/// \relates float4x3
-/// \brief Multiplies each component of the matrix by the given scalar value.
+	/// \relates float4x3
+	/// \brief Multiplies each component by the given scalar value.
 inline float4x3 operator*=( float4x3& lhs, const float rhs );
 
 /// \relates float4x3
@@ -1754,8 +1754,8 @@ inline float4x4 operator*( const float4x3& lhs, const float3x4& rhs );
 /// \brief Returns a copy of the matrix that has been component-wise divided by the given scalar value.
 inline float4x3 operator/( const float4x3& lhs, const float rhs );
 
-/// \relates float4x3
-/// \brief Divides each component of the matrix by the given scalar value.
+	/// \relates float4x3
+	/// \brief Divides each component by the given scalar value.
 inline float4x3 operator/=( float4x3& lhs, const float rhs );
 
 /// \relates float4x3
@@ -1763,19 +1763,19 @@ inline float4x3 operator/=( float4x3& lhs, const float rhs );
 inline float4x3 operator/( const float4x3& lhs, const float4x3& rhs );
 
 /// \relates float4x3
-/// \brief Returns a bool4x3 where each component is true if the component of the left-hand vector is less than than the corresponding rhs-hand vector component.
+/// \brief Returns a bool4x3 where each component is true if the component of the left-hand type is less than the corresponding right-hand type component.
 inline bool4x3 operator<( const float4x3& lhs, const float4x3& rhs );
 
 /// \relates float4x3
-/// \brief Returns a bool4x3 where each component is true if the component of the left-hand vector is less than than the corresponding rhs-hand vector component.
+/// \brief Returns a bool4x3 where each component is true if the component of the left-hand type is less than or equal to the corresponding right-hand type component.
 inline bool4x3 operator<=( const float4x3& lhs, const float4x3& rhs );
 
 /// \relates float4x3
-/// \brief Returns a bool4x3 where each component is true if the component of the left-hand vector is less than than the corresponding rhs-hand vector component.
+/// \brief Returns a bool4x3 where each component is true if the component of the left-hand type is greater than the corresponding right-hand type component.
 inline bool4x3 operator>( const float4x3& lhs, const float4x3& rhs );
 
 /// \relates float4x3
-/// \brief Returns a bool4x3 where each component is true if the component of the left-hand vector is less than than the corresponding rhs-hand vector component.
+/// \brief Returns a bool4x3 where each component is true if the component of the left-hand type is greater than or equal to the corresponding right-hand type component.
 inline bool4x3 operator>=( const float4x3& lhs, const float4x3& rhs );
 
 
@@ -1784,8 +1784,8 @@ inline bool4x3 operator>=( const float4x3& lhs, const float4x3& rhs );
 /// \brief Returns a copy of the matrix that has been component-wise added by the given scalar value.
 inline float4x4 operator+( const float4x4& lhs, const float rhs );
 
-/// \relates float4x4
-/// \brief Adds each component of the matrix by the given scalar value.
+	/// \relates float4x4
+	/// \brief Adds each component by the given scalar value.
 inline float4x4 operator+=( float4x4& lhs, const float rhs );
 
 /// \relates float4x4
@@ -1796,8 +1796,8 @@ inline float4x4 operator+( const float4x4& lhs, const float4x4& rhs );
 /// \brief Returns a copy of the matrix that has been component-wise subtracted by the given scalar value.
 inline float4x4 operator-( const float4x4& lhs, const float rhs );
 
-/// \relates float4x4
-/// \brief Subtracts each component of the matrix by the given scalar value.
+	/// \relates float4x4
+	/// \brief Subtracts each component by the given scalar value.
 inline float4x4 operator-=( float4x4& lhs, const float rhs );
 
 /// \relates float4x4
@@ -1808,8 +1808,8 @@ inline float4x4 operator-( const float4x4& lhs, const float4x4& rhs );
 /// \brief Returns a copy of the matrix that has been component-wise multiplied by the given scalar value.
 inline float4x4 operator*( const float4x4& lhs, const float rhs );
 
-/// \relates float4x4
-/// \brief Multiplies each component of the matrix by the given scalar value.
+	/// \relates float4x4
+	/// \brief Multiplies each component by the given scalar value.
 inline float4x4 operator*=( float4x4& lhs, const float rhs );
 
 /// \relates float4x4
@@ -1820,8 +1820,8 @@ inline float4x4 operator*( const float4x4& lhs, const float4x4& rhs );
 /// \brief Returns a copy of the matrix that has been component-wise divided by the given scalar value.
 inline float4x4 operator/( const float4x4& lhs, const float rhs );
 
-/// \relates float4x4
-/// \brief Divides each component of the matrix by the given scalar value.
+	/// \relates float4x4
+	/// \brief Divides each component by the given scalar value.
 inline float4x4 operator/=( float4x4& lhs, const float rhs );
 
 /// \relates float4x4
@@ -1829,19 +1829,19 @@ inline float4x4 operator/=( float4x4& lhs, const float rhs );
 inline float4x4 operator/( const float4x4& lhs, const float4x4& rhs );
 
 /// \relates float4x4
-/// \brief Returns a bool4x4 where each component is true if the component of the left-hand vector is less than than the corresponding rhs-hand vector component.
+/// \brief Returns a bool4x4 where each component is true if the component of the left-hand type is less than the corresponding right-hand type component.
 inline bool4x4 operator<( const float4x4& lhs, const float4x4& rhs );
 
 /// \relates float4x4
-/// \brief Returns a bool4x4 where each component is true if the component of the left-hand vector is less than than the corresponding rhs-hand vector component.
+/// \brief Returns a bool4x4 where each component is true if the component of the left-hand type is less than or equal to the corresponding right-hand type component.
 inline bool4x4 operator<=( const float4x4& lhs, const float4x4& rhs );
 
 /// \relates float4x4
-/// \brief Returns a bool4x4 where each component is true if the component of the left-hand vector is less than than the corresponding rhs-hand vector component.
+/// \brief Returns a bool4x4 where each component is true if the component of the left-hand type is greater than the corresponding right-hand type component.
 inline bool4x4 operator>( const float4x4& lhs, const float4x4& rhs );
 
 /// \relates float4x4
-/// \brief Returns a bool4x4 where each component is true if the component of the left-hand vector is less than than the corresponding rhs-hand vector component.
+/// \brief Returns a bool4x4 where each component is true if the component of the left-hand type is greater than or equal to the corresponding right-hand type component.
 inline bool4x4 operator>=( const float4x4& lhs, const float4x4& rhs );
 
 
@@ -1850,8 +1850,8 @@ inline bool4x4 operator>=( const float4x4& lhs, const float4x4& rhs );
 /// \brief Returns a copy of the matrix that has been component-wise added by the given scalar value.
 inline double2x2 operator+( const double2x2& lhs, const double rhs );
 
-/// \relates double2x2
-/// \brief Adds each component of the matrix by the given scalar value.
+	/// \relates double2x2
+	/// \brief Adds each component by the given scalar value.
 inline double2x2 operator+=( double2x2& lhs, const double rhs );
 
 /// \relates double2x2
@@ -1862,8 +1862,8 @@ inline double2x2 operator+( const double2x2& lhs, const double2x2& rhs );
 /// \brief Returns a copy of the matrix that has been component-wise subtracted by the given scalar value.
 inline double2x2 operator-( const double2x2& lhs, const double rhs );
 
-/// \relates double2x2
-/// \brief Subtracts each component of the matrix by the given scalar value.
+	/// \relates double2x2
+	/// \brief Subtracts each component by the given scalar value.
 inline double2x2 operator-=( double2x2& lhs, const double rhs );
 
 /// \relates double2x2
@@ -1874,8 +1874,8 @@ inline double2x2 operator-( const double2x2& lhs, const double2x2& rhs );
 /// \brief Returns a copy of the matrix that has been component-wise multiplied by the given scalar value.
 inline double2x2 operator*( const double2x2& lhs, const double rhs );
 
-/// \relates double2x2
-/// \brief Multiplies each component of the matrix by the given scalar value.
+	/// \relates double2x2
+	/// \brief Multiplies each component by the given scalar value.
 inline double2x2 operator*=( double2x2& lhs, const double rhs );
 
 /// \relates double2x2
@@ -1886,8 +1886,8 @@ inline double2x2 operator*( const double2x2& lhs, const double2x2& rhs );
 /// \brief Returns a copy of the matrix that has been component-wise divided by the given scalar value.
 inline double2x2 operator/( const double2x2& lhs, const double rhs );
 
-/// \relates double2x2
-/// \brief Divides each component of the matrix by the given scalar value.
+	/// \relates double2x2
+	/// \brief Divides each component by the given scalar value.
 inline double2x2 operator/=( double2x2& lhs, const double rhs );
 
 /// \relates double2x2
@@ -1895,19 +1895,19 @@ inline double2x2 operator/=( double2x2& lhs, const double rhs );
 inline double2x2 operator/( const double2x2& lhs, const double2x2& rhs );
 
 /// \relates double2x2
-/// \brief Returns a bool2x2 where each component is true if the component of the left-hand vector is less than than the corresponding rhs-hand vector component.
+/// \brief Returns a bool2x2 where each component is true if the component of the left-hand type is less than the corresponding right-hand type component.
 inline bool2x2 operator<( const double2x2& lhs, const double2x2& rhs );
 
 /// \relates double2x2
-/// \brief Returns a bool2x2 where each component is true if the component of the left-hand vector is less than than the corresponding rhs-hand vector component.
+/// \brief Returns a bool2x2 where each component is true if the component of the left-hand type is less than or equal to the corresponding right-hand type component.
 inline bool2x2 operator<=( const double2x2& lhs, const double2x2& rhs );
 
 /// \relates double2x2
-/// \brief Returns a bool2x2 where each component is true if the component of the left-hand vector is less than than the corresponding rhs-hand vector component.
+/// \brief Returns a bool2x2 where each component is true if the component of the left-hand type is greater than the corresponding right-hand type component.
 inline bool2x2 operator>( const double2x2& lhs, const double2x2& rhs );
 
 /// \relates double2x2
-/// \brief Returns a bool2x2 where each component is true if the component of the left-hand vector is less than than the corresponding rhs-hand vector component.
+/// \brief Returns a bool2x2 where each component is true if the component of the left-hand type is greater than or equal to the corresponding right-hand type component.
 inline bool2x2 operator>=( const double2x2& lhs, const double2x2& rhs );
 
 
@@ -1916,8 +1916,8 @@ inline bool2x2 operator>=( const double2x2& lhs, const double2x2& rhs );
 /// \brief Returns a copy of the matrix that has been component-wise added by the given scalar value.
 inline double2x3 operator+( const double2x3& lhs, const double rhs );
 
-/// \relates double2x3
-/// \brief Adds each component of the matrix by the given scalar value.
+	/// \relates double2x3
+	/// \brief Adds each component by the given scalar value.
 inline double2x3 operator+=( double2x3& lhs, const double rhs );
 
 /// \relates double2x3
@@ -1928,8 +1928,8 @@ inline double2x3 operator+( const double2x3& lhs, const double2x3& rhs );
 /// \brief Returns a copy of the matrix that has been component-wise subtracted by the given scalar value.
 inline double2x3 operator-( const double2x3& lhs, const double rhs );
 
-/// \relates double2x3
-/// \brief Subtracts each component of the matrix by the given scalar value.
+	/// \relates double2x3
+	/// \brief Subtracts each component by the given scalar value.
 inline double2x3 operator-=( double2x3& lhs, const double rhs );
 
 /// \relates double2x3
@@ -1940,8 +1940,8 @@ inline double2x3 operator-( const double2x3& lhs, const double2x3& rhs );
 /// \brief Returns a copy of the matrix that has been component-wise multiplied by the given scalar value.
 inline double2x3 operator*( const double2x3& lhs, const double rhs );
 
-/// \relates double2x3
-/// \brief Multiplies each component of the matrix by the given scalar value.
+	/// \relates double2x3
+	/// \brief Multiplies each component by the given scalar value.
 inline double2x3 operator*=( double2x3& lhs, const double rhs );
 
 /// \relates double2x3
@@ -1952,8 +1952,8 @@ inline double2x2 operator*( const double2x3& lhs, const double3x2& rhs );
 /// \brief Returns a copy of the matrix that has been component-wise divided by the given scalar value.
 inline double2x3 operator/( const double2x3& lhs, const double rhs );
 
-/// \relates double2x3
-/// \brief Divides each component of the matrix by the given scalar value.
+	/// \relates double2x3
+	/// \brief Divides each component by the given scalar value.
 inline double2x3 operator/=( double2x3& lhs, const double rhs );
 
 /// \relates double2x3
@@ -1961,19 +1961,19 @@ inline double2x3 operator/=( double2x3& lhs, const double rhs );
 inline double2x3 operator/( const double2x3& lhs, const double2x3& rhs );
 
 /// \relates double2x3
-/// \brief Returns a bool2x3 where each component is true if the component of the left-hand vector is less than than the corresponding rhs-hand vector component.
+/// \brief Returns a bool2x3 where each component is true if the component of the left-hand type is less than the corresponding right-hand type component.
 inline bool2x3 operator<( const double2x3& lhs, const double2x3& rhs );
 
 /// \relates double2x3
-/// \brief Returns a bool2x3 where each component is true if the component of the left-hand vector is less than than the corresponding rhs-hand vector component.
+/// \brief Returns a bool2x3 where each component is true if the component of the left-hand type is less than or equal to the corresponding right-hand type component.
 inline bool2x3 operator<=( const double2x3& lhs, const double2x3& rhs );
 
 /// \relates double2x3
-/// \brief Returns a bool2x3 where each component is true if the component of the left-hand vector is less than than the corresponding rhs-hand vector component.
+/// \brief Returns a bool2x3 where each component is true if the component of the left-hand type is greater than the corresponding right-hand type component.
 inline bool2x3 operator>( const double2x3& lhs, const double2x3& rhs );
 
 /// \relates double2x3
-/// \brief Returns a bool2x3 where each component is true if the component of the left-hand vector is less than than the corresponding rhs-hand vector component.
+/// \brief Returns a bool2x3 where each component is true if the component of the left-hand type is greater than or equal to the corresponding right-hand type component.
 inline bool2x3 operator>=( const double2x3& lhs, const double2x3& rhs );
 
 
@@ -1982,8 +1982,8 @@ inline bool2x3 operator>=( const double2x3& lhs, const double2x3& rhs );
 /// \brief Returns a copy of the matrix that has been component-wise added by the given scalar value.
 inline double2x4 operator+( const double2x4& lhs, const double rhs );
 
-/// \relates double2x4
-/// \brief Adds each component of the matrix by the given scalar value.
+	/// \relates double2x4
+	/// \brief Adds each component by the given scalar value.
 inline double2x4 operator+=( double2x4& lhs, const double rhs );
 
 /// \relates double2x4
@@ -1994,8 +1994,8 @@ inline double2x4 operator+( const double2x4& lhs, const double2x4& rhs );
 /// \brief Returns a copy of the matrix that has been component-wise subtracted by the given scalar value.
 inline double2x4 operator-( const double2x4& lhs, const double rhs );
 
-/// \relates double2x4
-/// \brief Subtracts each component of the matrix by the given scalar value.
+	/// \relates double2x4
+	/// \brief Subtracts each component by the given scalar value.
 inline double2x4 operator-=( double2x4& lhs, const double rhs );
 
 /// \relates double2x4
@@ -2006,8 +2006,8 @@ inline double2x4 operator-( const double2x4& lhs, const double2x4& rhs );
 /// \brief Returns a copy of the matrix that has been component-wise multiplied by the given scalar value.
 inline double2x4 operator*( const double2x4& lhs, const double rhs );
 
-/// \relates double2x4
-/// \brief Multiplies each component of the matrix by the given scalar value.
+	/// \relates double2x4
+	/// \brief Multiplies each component by the given scalar value.
 inline double2x4 operator*=( double2x4& lhs, const double rhs );
 
 /// \relates double2x4
@@ -2018,8 +2018,8 @@ inline double2x2 operator*( const double2x4& lhs, const double4x2& rhs );
 /// \brief Returns a copy of the matrix that has been component-wise divided by the given scalar value.
 inline double2x4 operator/( const double2x4& lhs, const double rhs );
 
-/// \relates double2x4
-/// \brief Divides each component of the matrix by the given scalar value.
+	/// \relates double2x4
+	/// \brief Divides each component by the given scalar value.
 inline double2x4 operator/=( double2x4& lhs, const double rhs );
 
 /// \relates double2x4
@@ -2027,19 +2027,19 @@ inline double2x4 operator/=( double2x4& lhs, const double rhs );
 inline double2x4 operator/( const double2x4& lhs, const double2x4& rhs );
 
 /// \relates double2x4
-/// \brief Returns a bool2x4 where each component is true if the component of the left-hand vector is less than than the corresponding rhs-hand vector component.
+/// \brief Returns a bool2x4 where each component is true if the component of the left-hand type is less than the corresponding right-hand type component.
 inline bool2x4 operator<( const double2x4& lhs, const double2x4& rhs );
 
 /// \relates double2x4
-/// \brief Returns a bool2x4 where each component is true if the component of the left-hand vector is less than than the corresponding rhs-hand vector component.
+/// \brief Returns a bool2x4 where each component is true if the component of the left-hand type is less than or equal to the corresponding right-hand type component.
 inline bool2x4 operator<=( const double2x4& lhs, const double2x4& rhs );
 
 /// \relates double2x4
-/// \brief Returns a bool2x4 where each component is true if the component of the left-hand vector is less than than the corresponding rhs-hand vector component.
+/// \brief Returns a bool2x4 where each component is true if the component of the left-hand type is greater than the corresponding right-hand type component.
 inline bool2x4 operator>( const double2x4& lhs, const double2x4& rhs );
 
 /// \relates double2x4
-/// \brief Returns a bool2x4 where each component is true if the component of the left-hand vector is less than than the corresponding rhs-hand vector component.
+/// \brief Returns a bool2x4 where each component is true if the component of the left-hand type is greater than or equal to the corresponding right-hand type component.
 inline bool2x4 operator>=( const double2x4& lhs, const double2x4& rhs );
 
 
@@ -2048,8 +2048,8 @@ inline bool2x4 operator>=( const double2x4& lhs, const double2x4& rhs );
 /// \brief Returns a copy of the matrix that has been component-wise added by the given scalar value.
 inline double3x2 operator+( const double3x2& lhs, const double rhs );
 
-/// \relates double3x2
-/// \brief Adds each component of the matrix by the given scalar value.
+	/// \relates double3x2
+	/// \brief Adds each component by the given scalar value.
 inline double3x2 operator+=( double3x2& lhs, const double rhs );
 
 /// \relates double3x2
@@ -2060,8 +2060,8 @@ inline double3x2 operator+( const double3x2& lhs, const double3x2& rhs );
 /// \brief Returns a copy of the matrix that has been component-wise subtracted by the given scalar value.
 inline double3x2 operator-( const double3x2& lhs, const double rhs );
 
-/// \relates double3x2
-/// \brief Subtracts each component of the matrix by the given scalar value.
+	/// \relates double3x2
+	/// \brief Subtracts each component by the given scalar value.
 inline double3x2 operator-=( double3x2& lhs, const double rhs );
 
 /// \relates double3x2
@@ -2072,8 +2072,8 @@ inline double3x2 operator-( const double3x2& lhs, const double3x2& rhs );
 /// \brief Returns a copy of the matrix that has been component-wise multiplied by the given scalar value.
 inline double3x2 operator*( const double3x2& lhs, const double rhs );
 
-/// \relates double3x2
-/// \brief Multiplies each component of the matrix by the given scalar value.
+	/// \relates double3x2
+	/// \brief Multiplies each component by the given scalar value.
 inline double3x2 operator*=( double3x2& lhs, const double rhs );
 
 /// \relates double3x2
@@ -2084,8 +2084,8 @@ inline double3x3 operator*( const double3x2& lhs, const double2x3& rhs );
 /// \brief Returns a copy of the matrix that has been component-wise divided by the given scalar value.
 inline double3x2 operator/( const double3x2& lhs, const double rhs );
 
-/// \relates double3x2
-/// \brief Divides each component of the matrix by the given scalar value.
+	/// \relates double3x2
+	/// \brief Divides each component by the given scalar value.
 inline double3x2 operator/=( double3x2& lhs, const double rhs );
 
 /// \relates double3x2
@@ -2093,19 +2093,19 @@ inline double3x2 operator/=( double3x2& lhs, const double rhs );
 inline double3x2 operator/( const double3x2& lhs, const double3x2& rhs );
 
 /// \relates double3x2
-/// \brief Returns a bool3x2 where each component is true if the component of the left-hand vector is less than than the corresponding rhs-hand vector component.
+/// \brief Returns a bool3x2 where each component is true if the component of the left-hand type is less than the corresponding right-hand type component.
 inline bool3x2 operator<( const double3x2& lhs, const double3x2& rhs );
 
 /// \relates double3x2
-/// \brief Returns a bool3x2 where each component is true if the component of the left-hand vector is less than than the corresponding rhs-hand vector component.
+/// \brief Returns a bool3x2 where each component is true if the component of the left-hand type is less than or equal to the corresponding right-hand type component.
 inline bool3x2 operator<=( const double3x2& lhs, const double3x2& rhs );
 
 /// \relates double3x2
-/// \brief Returns a bool3x2 where each component is true if the component of the left-hand vector is less than than the corresponding rhs-hand vector component.
+/// \brief Returns a bool3x2 where each component is true if the component of the left-hand type is greater than the corresponding right-hand type component.
 inline bool3x2 operator>( const double3x2& lhs, const double3x2& rhs );
 
 /// \relates double3x2
-/// \brief Returns a bool3x2 where each component is true if the component of the left-hand vector is less than than the corresponding rhs-hand vector component.
+/// \brief Returns a bool3x2 where each component is true if the component of the left-hand type is greater than or equal to the corresponding right-hand type component.
 inline bool3x2 operator>=( const double3x2& lhs, const double3x2& rhs );
 
 
@@ -2114,8 +2114,8 @@ inline bool3x2 operator>=( const double3x2& lhs, const double3x2& rhs );
 /// \brief Returns a copy of the matrix that has been component-wise added by the given scalar value.
 inline double3x3 operator+( const double3x3& lhs, const double rhs );
 
-/// \relates double3x3
-/// \brief Adds each component of the matrix by the given scalar value.
+	/// \relates double3x3
+	/// \brief Adds each component by the given scalar value.
 inline double3x3 operator+=( double3x3& lhs, const double rhs );
 
 /// \relates double3x3
@@ -2126,8 +2126,8 @@ inline double3x3 operator+( const double3x3& lhs, const double3x3& rhs );
 /// \brief Returns a copy of the matrix that has been component-wise subtracted by the given scalar value.
 inline double3x3 operator-( const double3x3& lhs, const double rhs );
 
-/// \relates double3x3
-/// \brief Subtracts each component of the matrix by the given scalar value.
+	/// \relates double3x3
+	/// \brief Subtracts each component by the given scalar value.
 inline double3x3 operator-=( double3x3& lhs, const double rhs );
 
 /// \relates double3x3
@@ -2138,8 +2138,8 @@ inline double3x3 operator-( const double3x3& lhs, const double3x3& rhs );
 /// \brief Returns a copy of the matrix that has been component-wise multiplied by the given scalar value.
 inline double3x3 operator*( const double3x3& lhs, const double rhs );
 
-/// \relates double3x3
-/// \brief Multiplies each component of the matrix by the given scalar value.
+	/// \relates double3x3
+	/// \brief Multiplies each component by the given scalar value.
 inline double3x3 operator*=( double3x3& lhs, const double rhs );
 
 /// \relates double3x3
@@ -2150,8 +2150,8 @@ inline double3x3 operator*( const double3x3& lhs, const double3x3& rhs );
 /// \brief Returns a copy of the matrix that has been component-wise divided by the given scalar value.
 inline double3x3 operator/( const double3x3& lhs, const double rhs );
 
-/// \relates double3x3
-/// \brief Divides each component of the matrix by the given scalar value.
+	/// \relates double3x3
+	/// \brief Divides each component by the given scalar value.
 inline double3x3 operator/=( double3x3& lhs, const double rhs );
 
 /// \relates double3x3
@@ -2159,19 +2159,19 @@ inline double3x3 operator/=( double3x3& lhs, const double rhs );
 inline double3x3 operator/( const double3x3& lhs, const double3x3& rhs );
 
 /// \relates double3x3
-/// \brief Returns a bool3x3 where each component is true if the component of the left-hand vector is less than than the corresponding rhs-hand vector component.
+/// \brief Returns a bool3x3 where each component is true if the component of the left-hand type is less than the corresponding right-hand type component.
 inline bool3x3 operator<( const double3x3& lhs, const double3x3& rhs );
 
 /// \relates double3x3
-/// \brief Returns a bool3x3 where each component is true if the component of the left-hand vector is less than than the corresponding rhs-hand vector component.
+/// \brief Returns a bool3x3 where each component is true if the component of the left-hand type is less than or equal to the corresponding right-hand type component.
 inline bool3x3 operator<=( const double3x3& lhs, const double3x3& rhs );
 
 /// \relates double3x3
-/// \brief Returns a bool3x3 where each component is true if the component of the left-hand vector is less than than the corresponding rhs-hand vector component.
+/// \brief Returns a bool3x3 where each component is true if the component of the left-hand type is greater than the corresponding right-hand type component.
 inline bool3x3 operator>( const double3x3& lhs, const double3x3& rhs );
 
 /// \relates double3x3
-/// \brief Returns a bool3x3 where each component is true if the component of the left-hand vector is less than than the corresponding rhs-hand vector component.
+/// \brief Returns a bool3x3 where each component is true if the component of the left-hand type is greater than or equal to the corresponding right-hand type component.
 inline bool3x3 operator>=( const double3x3& lhs, const double3x3& rhs );
 
 
@@ -2180,8 +2180,8 @@ inline bool3x3 operator>=( const double3x3& lhs, const double3x3& rhs );
 /// \brief Returns a copy of the matrix that has been component-wise added by the given scalar value.
 inline double3x4 operator+( const double3x4& lhs, const double rhs );
 
-/// \relates double3x4
-/// \brief Adds each component of the matrix by the given scalar value.
+	/// \relates double3x4
+	/// \brief Adds each component by the given scalar value.
 inline double3x4 operator+=( double3x4& lhs, const double rhs );
 
 /// \relates double3x4
@@ -2192,8 +2192,8 @@ inline double3x4 operator+( const double3x4& lhs, const double3x4& rhs );
 /// \brief Returns a copy of the matrix that has been component-wise subtracted by the given scalar value.
 inline double3x4 operator-( const double3x4& lhs, const double rhs );
 
-/// \relates double3x4
-/// \brief Subtracts each component of the matrix by the given scalar value.
+	/// \relates double3x4
+	/// \brief Subtracts each component by the given scalar value.
 inline double3x4 operator-=( double3x4& lhs, const double rhs );
 
 /// \relates double3x4
@@ -2204,8 +2204,8 @@ inline double3x4 operator-( const double3x4& lhs, const double3x4& rhs );
 /// \brief Returns a copy of the matrix that has been component-wise multiplied by the given scalar value.
 inline double3x4 operator*( const double3x4& lhs, const double rhs );
 
-/// \relates double3x4
-/// \brief Multiplies each component of the matrix by the given scalar value.
+	/// \relates double3x4
+	/// \brief Multiplies each component by the given scalar value.
 inline double3x4 operator*=( double3x4& lhs, const double rhs );
 
 /// \relates double3x4
@@ -2216,8 +2216,8 @@ inline double3x3 operator*( const double3x4& lhs, const double4x3& rhs );
 /// \brief Returns a copy of the matrix that has been component-wise divided by the given scalar value.
 inline double3x4 operator/( const double3x4& lhs, const double rhs );
 
-/// \relates double3x4
-/// \brief Divides each component of the matrix by the given scalar value.
+	/// \relates double3x4
+	/// \brief Divides each component by the given scalar value.
 inline double3x4 operator/=( double3x4& lhs, const double rhs );
 
 /// \relates double3x4
@@ -2225,19 +2225,19 @@ inline double3x4 operator/=( double3x4& lhs, const double rhs );
 inline double3x4 operator/( const double3x4& lhs, const double3x4& rhs );
 
 /// \relates double3x4
-/// \brief Returns a bool3x4 where each component is true if the component of the left-hand vector is less than than the corresponding rhs-hand vector component.
+/// \brief Returns a bool3x4 where each component is true if the component of the left-hand type is less than the corresponding right-hand type component.
 inline bool3x4 operator<( const double3x4& lhs, const double3x4& rhs );
 
 /// \relates double3x4
-/// \brief Returns a bool3x4 where each component is true if the component of the left-hand vector is less than than the corresponding rhs-hand vector component.
+/// \brief Returns a bool3x4 where each component is true if the component of the left-hand type is less than or equal to the corresponding right-hand type component.
 inline bool3x4 operator<=( const double3x4& lhs, const double3x4& rhs );
 
 /// \relates double3x4
-/// \brief Returns a bool3x4 where each component is true if the component of the left-hand vector is less than than the corresponding rhs-hand vector component.
+/// \brief Returns a bool3x4 where each component is true if the component of the left-hand type is greater than the corresponding right-hand type component.
 inline bool3x4 operator>( const double3x4& lhs, const double3x4& rhs );
 
 /// \relates double3x4
-/// \brief Returns a bool3x4 where each component is true if the component of the left-hand vector is less than than the corresponding rhs-hand vector component.
+/// \brief Returns a bool3x4 where each component is true if the component of the left-hand type is greater than or equal to the corresponding right-hand type component.
 inline bool3x4 operator>=( const double3x4& lhs, const double3x4& rhs );
 
 
@@ -2246,8 +2246,8 @@ inline bool3x4 operator>=( const double3x4& lhs, const double3x4& rhs );
 /// \brief Returns a copy of the matrix that has been component-wise added by the given scalar value.
 inline double4x2 operator+( const double4x2& lhs, const double rhs );
 
-/// \relates double4x2
-/// \brief Adds each component of the matrix by the given scalar value.
+	/// \relates double4x2
+	/// \brief Adds each component by the given scalar value.
 inline double4x2 operator+=( double4x2& lhs, const double rhs );
 
 /// \relates double4x2
@@ -2258,8 +2258,8 @@ inline double4x2 operator+( const double4x2& lhs, const double4x2& rhs );
 /// \brief Returns a copy of the matrix that has been component-wise subtracted by the given scalar value.
 inline double4x2 operator-( const double4x2& lhs, const double rhs );
 
-/// \relates double4x2
-/// \brief Subtracts each component of the matrix by the given scalar value.
+	/// \relates double4x2
+	/// \brief Subtracts each component by the given scalar value.
 inline double4x2 operator-=( double4x2& lhs, const double rhs );
 
 /// \relates double4x2
@@ -2270,8 +2270,8 @@ inline double4x2 operator-( const double4x2& lhs, const double4x2& rhs );
 /// \brief Returns a copy of the matrix that has been component-wise multiplied by the given scalar value.
 inline double4x2 operator*( const double4x2& lhs, const double rhs );
 
-/// \relates double4x2
-/// \brief Multiplies each component of the matrix by the given scalar value.
+	/// \relates double4x2
+	/// \brief Multiplies each component by the given scalar value.
 inline double4x2 operator*=( double4x2& lhs, const double rhs );
 
 /// \relates double4x2
@@ -2282,8 +2282,8 @@ inline double4x4 operator*( const double4x2& lhs, const double2x4& rhs );
 /// \brief Returns a copy of the matrix that has been component-wise divided by the given scalar value.
 inline double4x2 operator/( const double4x2& lhs, const double rhs );
 
-/// \relates double4x2
-/// \brief Divides each component of the matrix by the given scalar value.
+	/// \relates double4x2
+	/// \brief Divides each component by the given scalar value.
 inline double4x2 operator/=( double4x2& lhs, const double rhs );
 
 /// \relates double4x2
@@ -2291,19 +2291,19 @@ inline double4x2 operator/=( double4x2& lhs, const double rhs );
 inline double4x2 operator/( const double4x2& lhs, const double4x2& rhs );
 
 /// \relates double4x2
-/// \brief Returns a bool4x2 where each component is true if the component of the left-hand vector is less than than the corresponding rhs-hand vector component.
+/// \brief Returns a bool4x2 where each component is true if the component of the left-hand type is less than the corresponding right-hand type component.
 inline bool4x2 operator<( const double4x2& lhs, const double4x2& rhs );
 
 /// \relates double4x2
-/// \brief Returns a bool4x2 where each component is true if the component of the left-hand vector is less than than the corresponding rhs-hand vector component.
+/// \brief Returns a bool4x2 where each component is true if the component of the left-hand type is less than or equal to the corresponding right-hand type component.
 inline bool4x2 operator<=( const double4x2& lhs, const double4x2& rhs );
 
 /// \relates double4x2
-/// \brief Returns a bool4x2 where each component is true if the component of the left-hand vector is less than than the corresponding rhs-hand vector component.
+/// \brief Returns a bool4x2 where each component is true if the component of the left-hand type is greater than the corresponding right-hand type component.
 inline bool4x2 operator>( const double4x2& lhs, const double4x2& rhs );
 
 /// \relates double4x2
-/// \brief Returns a bool4x2 where each component is true if the component of the left-hand vector is less than than the corresponding rhs-hand vector component.
+/// \brief Returns a bool4x2 where each component is true if the component of the left-hand type is greater than or equal to the corresponding right-hand type component.
 inline bool4x2 operator>=( const double4x2& lhs, const double4x2& rhs );
 
 
@@ -2312,8 +2312,8 @@ inline bool4x2 operator>=( const double4x2& lhs, const double4x2& rhs );
 /// \brief Returns a copy of the matrix that has been component-wise added by the given scalar value.
 inline double4x3 operator+( const double4x3& lhs, const double rhs );
 
-/// \relates double4x3
-/// \brief Adds each component of the matrix by the given scalar value.
+	/// \relates double4x3
+	/// \brief Adds each component by the given scalar value.
 inline double4x3 operator+=( double4x3& lhs, const double rhs );
 
 /// \relates double4x3
@@ -2324,8 +2324,8 @@ inline double4x3 operator+( const double4x3& lhs, const double4x3& rhs );
 /// \brief Returns a copy of the matrix that has been component-wise subtracted by the given scalar value.
 inline double4x3 operator-( const double4x3& lhs, const double rhs );
 
-/// \relates double4x3
-/// \brief Subtracts each component of the matrix by the given scalar value.
+	/// \relates double4x3
+	/// \brief Subtracts each component by the given scalar value.
 inline double4x3 operator-=( double4x3& lhs, const double rhs );
 
 /// \relates double4x3
@@ -2336,8 +2336,8 @@ inline double4x3 operator-( const double4x3& lhs, const double4x3& rhs );
 /// \brief Returns a copy of the matrix that has been component-wise multiplied by the given scalar value.
 inline double4x3 operator*( const double4x3& lhs, const double rhs );
 
-/// \relates double4x3
-/// \brief Multiplies each component of the matrix by the given scalar value.
+	/// \relates double4x3
+	/// \brief Multiplies each component by the given scalar value.
 inline double4x3 operator*=( double4x3& lhs, const double rhs );
 
 /// \relates double4x3
@@ -2348,8 +2348,8 @@ inline double4x4 operator*( const double4x3& lhs, const double3x4& rhs );
 /// \brief Returns a copy of the matrix that has been component-wise divided by the given scalar value.
 inline double4x3 operator/( const double4x3& lhs, const double rhs );
 
-/// \relates double4x3
-/// \brief Divides each component of the matrix by the given scalar value.
+	/// \relates double4x3
+	/// \brief Divides each component by the given scalar value.
 inline double4x3 operator/=( double4x3& lhs, const double rhs );
 
 /// \relates double4x3
@@ -2357,19 +2357,19 @@ inline double4x3 operator/=( double4x3& lhs, const double rhs );
 inline double4x3 operator/( const double4x3& lhs, const double4x3& rhs );
 
 /// \relates double4x3
-/// \brief Returns a bool4x3 where each component is true if the component of the left-hand vector is less than than the corresponding rhs-hand vector component.
+/// \brief Returns a bool4x3 where each component is true if the component of the left-hand type is less than the corresponding right-hand type component.
 inline bool4x3 operator<( const double4x3& lhs, const double4x3& rhs );
 
 /// \relates double4x3
-/// \brief Returns a bool4x3 where each component is true if the component of the left-hand vector is less than than the corresponding rhs-hand vector component.
+/// \brief Returns a bool4x3 where each component is true if the component of the left-hand type is less than or equal to the corresponding right-hand type component.
 inline bool4x3 operator<=( const double4x3& lhs, const double4x3& rhs );
 
 /// \relates double4x3
-/// \brief Returns a bool4x3 where each component is true if the component of the left-hand vector is less than than the corresponding rhs-hand vector component.
+/// \brief Returns a bool4x3 where each component is true if the component of the left-hand type is greater than the corresponding right-hand type component.
 inline bool4x3 operator>( const double4x3& lhs, const double4x3& rhs );
 
 /// \relates double4x3
-/// \brief Returns a bool4x3 where each component is true if the component of the left-hand vector is less than than the corresponding rhs-hand vector component.
+/// \brief Returns a bool4x3 where each component is true if the component of the left-hand type is greater than or equal to the corresponding right-hand type component.
 inline bool4x3 operator>=( const double4x3& lhs, const double4x3& rhs );
 
 
@@ -2378,8 +2378,8 @@ inline bool4x3 operator>=( const double4x3& lhs, const double4x3& rhs );
 /// \brief Returns a copy of the matrix that has been component-wise added by the given scalar value.
 inline double4x4 operator+( const double4x4& lhs, const double rhs );
 
-/// \relates double4x4
-/// \brief Adds each component of the matrix by the given scalar value.
+	/// \relates double4x4
+	/// \brief Adds each component by the given scalar value.
 inline double4x4 operator+=( double4x4& lhs, const double rhs );
 
 /// \relates double4x4
@@ -2390,8 +2390,8 @@ inline double4x4 operator+( const double4x4& lhs, const double4x4& rhs );
 /// \brief Returns a copy of the matrix that has been component-wise subtracted by the given scalar value.
 inline double4x4 operator-( const double4x4& lhs, const double rhs );
 
-/// \relates double4x4
-/// \brief Subtracts each component of the matrix by the given scalar value.
+	/// \relates double4x4
+	/// \brief Subtracts each component by the given scalar value.
 inline double4x4 operator-=( double4x4& lhs, const double rhs );
 
 /// \relates double4x4
@@ -2402,8 +2402,8 @@ inline double4x4 operator-( const double4x4& lhs, const double4x4& rhs );
 /// \brief Returns a copy of the matrix that has been component-wise multiplied by the given scalar value.
 inline double4x4 operator*( const double4x4& lhs, const double rhs );
 
-/// \relates double4x4
-/// \brief Multiplies each component of the matrix by the given scalar value.
+	/// \relates double4x4
+	/// \brief Multiplies each component by the given scalar value.
 inline double4x4 operator*=( double4x4& lhs, const double rhs );
 
 /// \relates double4x4
@@ -2414,8 +2414,8 @@ inline double4x4 operator*( const double4x4& lhs, const double4x4& rhs );
 /// \brief Returns a copy of the matrix that has been component-wise divided by the given scalar value.
 inline double4x4 operator/( const double4x4& lhs, const double rhs );
 
-/// \relates double4x4
-/// \brief Divides each component of the matrix by the given scalar value.
+	/// \relates double4x4
+	/// \brief Divides each component by the given scalar value.
 inline double4x4 operator/=( double4x4& lhs, const double rhs );
 
 /// \relates double4x4
@@ -2423,19 +2423,19 @@ inline double4x4 operator/=( double4x4& lhs, const double rhs );
 inline double4x4 operator/( const double4x4& lhs, const double4x4& rhs );
 
 /// \relates double4x4
-/// \brief Returns a bool4x4 where each component is true if the component of the left-hand vector is less than than the corresponding rhs-hand vector component.
+/// \brief Returns a bool4x4 where each component is true if the component of the left-hand type is less than the corresponding right-hand type component.
 inline bool4x4 operator<( const double4x4& lhs, const double4x4& rhs );
 
 /// \relates double4x4
-/// \brief Returns a bool4x4 where each component is true if the component of the left-hand vector is less than than the corresponding rhs-hand vector component.
+/// \brief Returns a bool4x4 where each component is true if the component of the left-hand type is less than or equal to the corresponding right-hand type component.
 inline bool4x4 operator<=( const double4x4& lhs, const double4x4& rhs );
 
 /// \relates double4x4
-/// \brief Returns a bool4x4 where each component is true if the component of the left-hand vector is less than than the corresponding rhs-hand vector component.
+/// \brief Returns a bool4x4 where each component is true if the component of the left-hand type is greater than the corresponding right-hand type component.
 inline bool4x4 operator>( const double4x4& lhs, const double4x4& rhs );
 
 /// \relates double4x4
-/// \brief Returns a bool4x4 where each component is true if the component of the left-hand vector is less than than the corresponding rhs-hand vector component.
+/// \brief Returns a bool4x4 where each component is true if the component of the left-hand type is greater than or equal to the corresponding right-hand type component.
 inline bool4x4 operator>=( const double4x4& lhs, const double4x4& rhs );
 
 

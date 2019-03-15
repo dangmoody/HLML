@@ -84,34 +84,53 @@ struct float3 {
 
 	/// Returns a copy of the vector with each value added the given scalar value.
 	inline float3 operator+( const float rhs ) const;
-	/// Adds each component of the vector by the given scalar value.
+
+	/// \relates float3
+	/// \brief Adds each component by the given scalar value.
 	inline float3 operator+=( const float rhs );
+
 	/// Returns a copy of the vector that has been component-wise added by the other vector.
 	inline float3 operator+( const float3& rhs ) const;
+
 	/// Component-wise adds each component of the vector by the other vector.
 	inline float3 operator+=( const float3& rhs );
+
 	/// Returns a copy of the vector with each value subtracted the given scalar value.
 	inline float3 operator-( const float rhs ) const;
-	/// Subtracts each component of the vector by the given scalar value.
+
+	/// \relates float3
+	/// \brief Subtracts each component by the given scalar value.
 	inline float3 operator-=( const float rhs );
+
 	/// Returns a copy of the vector that has been component-wise subtracted by the other vector.
 	inline float3 operator-( const float3& rhs ) const;
+
 	/// Component-wise subtracts each component of the vector by the other vector.
 	inline float3 operator-=( const float3& rhs );
+
 	/// Returns a copy of the vector with each value multiplied the given scalar value.
 	inline float3 operator*( const float rhs ) const;
-	/// Multiplies each component of the vector by the given scalar value.
+
+	/// \relates float3
+	/// \brief Multiplies each component by the given scalar value.
 	inline float3 operator*=( const float rhs );
+
 	/// Returns a copy of the vector that has been component-wise multiplied by the other vector.
 	inline float3 operator*( const float3& rhs ) const;
+
 	/// Component-wise multiplies each component of the vector by the other vector.
 	inline float3 operator*=( const float3& rhs );
+
 	/// Returns a copy of the vector with each value divided the given scalar value.
 	inline float3 operator/( const float rhs ) const;
-	/// Divides each component of the vector by the given scalar value.
+
+	/// \relates float3
+	/// \brief Divides each component by the given scalar value.
 	inline float3 operator/=( const float rhs );
+
 	/// Returns a copy of the vector that has been component-wise divided by the other vector.
 	inline float3 operator/( const float3& rhs ) const;
+
 	/// Component-wise divides each component of the vector by the other vector.
 	inline float3 operator/=( const float3& rhs );
 
@@ -122,7 +141,6 @@ struct float3 {
 	/// \brief Returns the vector component at the given index.
 	/// Index CANNOT be lower than 0 or higher than 2.
 	inline float& operator[]( const uint32_t index );
-
 };
 
 /// \relates float3
@@ -134,16 +152,20 @@ inline bool operator==( const float3& lhs, const float3& rhs );
 inline bool operator!=( const float3& lhs, const float3& rhs );
 
 /// \relates float3
-/// \brief Returns a bool3 where each component is true if the component of the left-hand vector is less than than the corresponding rhs-hand vector component.
+/// \brief Returns a bool3 where each component is true if the component of the left-hand type is less than the corresponding right-hand type component.
 inline bool3 operator<( const float3& lhs, const float3& rhs );
+
 /// \relates float3
-/// \brief Returns a bool3 where each component is true if the component of the left-hand vector is less than than the corresponding rhs-hand vector component.
+/// \brief Returns a bool3 where each component is true if the component of the left-hand type is less than or equal to the corresponding right-hand type component.
 inline bool3 operator<=( const float3& lhs, const float3& rhs );
+
 /// \relates float3
-/// \brief Returns a bool3 where each component is true if the component of the left-hand vector is less than than the corresponding rhs-hand vector component.
+/// \brief Returns a bool3 where each component is true if the component of the left-hand type is greater than the corresponding right-hand type component.
 inline bool3 operator>( const float3& lhs, const float3& rhs );
+
 /// \relates float3
-/// \brief Returns a bool3 where each component is true if the component of the left-hand vector is less than than the corresponding rhs-hand vector component.
+/// \brief Returns a bool3 where each component is true if the component of the left-hand type is greater than or equal to the corresponding right-hand type component.
 inline bool3 operator>=( const float3& lhs, const float3& rhs );
+
 
 #include "float3.inl"

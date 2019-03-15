@@ -81,7 +81,6 @@ struct bool3 {
 	/// \brief Returns the vector component at the given index.
 	/// Index CANNOT be lower than 0 or higher than 2.
 	inline bool& operator[]( const uint32_t index );
-
 };
 
 /// \relates bool3

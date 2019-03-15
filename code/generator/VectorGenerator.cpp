@@ -206,16 +206,20 @@ void VectorGenerator::HeaderGenerateOperatorsArithmetic() {
 
 		m_codeHeader += GetDocOperatorArithmeticScalar( op );
 		m_codeHeader += "\tinline " + m_fullTypeName + " operator" + opChar + "( const " + m_typeString + " rhs ) const;\n";
-		m_codeHeader += GetDocOperatorCompoundArithmeticScalar( op );
+		m_codeHeader += "\n";
+
+		m_codeHeader += Gen_GetDocOperatorCompoundArithmeticScalar( m_fullTypeName, op );
 		m_codeHeader += "\tinline " + m_fullTypeName + " operator" + opChar + "=( const " + m_typeString + " rhs );\n";
+		m_codeHeader += "\n";
 
 		m_codeHeader += GetDocOperatorArithmeticRhsType( op );
 		m_codeHeader += "\tinline " + m_fullTypeName + " operator" + opChar + "( const " + m_fullTypeName + "& rhs ) const;\n";
+		m_codeHeader += "\n";
+
 		m_codeHeader += GetDocOperatorCompoundArithmeticRhsType( op );
 		m_codeHeader += "\tinline " + m_fullTypeName + " operator" + opChar + "=( const " + m_fullTypeName + "& rhs );\n";
+		m_codeHeader += "\n";
 	}
-
-	m_codeHeader += "\n";
 }
 
 void VectorGenerator::HeaderGenerateOperatorsArray() {
@@ -225,7 +229,6 @@ void VectorGenerator::HeaderGenerateOperatorsArray() {
 
 	m_codeHeader += GetDocOperatorArray();
 	m_codeHeader += "\tinline " + m_typeString + "& operator[]( const uint32_t index );\n";
-	m_codeHeader += "\n";
 }
 
 void VectorGenerator::HeaderGenerateOperatorsEquality() {
@@ -248,8 +251,9 @@ void VectorGenerator::HeaderGenerateOperatorsRelational() {
 	for ( uint32_t i = 0; i < GEN_OP_RELATIONAL_COUNT; i++ ) {
 		genOpRelational_t op = static_cast<genOpRelational_t>( i );
 
-		m_codeHeader += GetDocOperatorRelational( op );
+		m_codeHeader += Gen_GetDocOperatorRelational( m_fullTypeName, 1, m_numComponents, op );
 		m_codeHeader += "inline " + boolReturnType + " operator" + GEN_OPERATORS_RELATIONAL[i] + "( const " + m_fullTypeName + "& lhs, const " + m_fullTypeName + "& rhs );\n";
+		m_codeHeader += "\n";
 	}
 
 	m_codeHeader += "\n";
@@ -532,23 +536,6 @@ std::string VectorGenerator::GetDocOperatorArithmeticRhsType( const genOpArithme
 	return "\t/// Returns a copy of the vector that has been component-wise " + adjective + " by the other vector.\n";
 }
 
-std::string VectorGenerator::GetDocOperatorCompoundArithmeticScalar( const genOpArithmetic_t op ) const {
-	std::string verb;
-	switch ( op ) {
-		case GEN_OP_ARITHMETIC_ADD: verb = "Adds"; break;
-		case GEN_OP_ARITHMETIC_SUB: verb = "Subtracts"; break;
-		case GEN_OP_ARITHMETIC_MUL: verb = "Multiplies"; break;
-		case GEN_OP_ARITHMETIC_DIV: verb = "Divides"; break;
-
-		case GEN_OP_ARITHMETIC_COUNT:
-		default:
-			printf( "ERROR: Bad genOpArithmetic_t enum passed into %s.\n", __FUNCTION__ );
-			return std::string();
-	}
-
-	return "\t/// " + verb + " each component of the vector by the given scalar value.\n";
-}
-
 std::string VectorGenerator::GetDocOperatorCompoundArithmeticRhsType( const genOpArithmetic_t op ) const {
 	std::string verb;
 	switch ( op ) {
@@ -569,23 +556,4 @@ std::string VectorGenerator::GetDocOperatorCompoundArithmeticRhsType( const genO
 std::string VectorGenerator::GetDocOperatorArray() const {
 	return "\t/// \\brief Returns the vector component at the given index.\n" \
 		"\t/// Index CANNOT be lower than 0 or higher than " + std::to_string( m_numComponents - 1 ) + ".\n";
-}
-
-std::string VectorGenerator::GetDocOperatorRelational( const genOpRelational_t op ) const {
-	std::string noun;
-	switch ( op ) {
-		case GEN_OP_RELATIONAL_LESS: noun = "less than"; break;
-		case GEN_OP_RELATIONAL_LESS_EQUAL: noun = "less than"; break;
-		case GEN_OP_RELATIONAL_GREATER: noun = "less than"; break;
-		case GEN_OP_RELATIONAL_GREATER_EQUAL: noun = "less than"; break;
-
-		case GEN_OP_RELATIONAL_COUNT:
-		default:
-			printf( "ERROR: Bad genOpRelational_t enum passed into %s.\n", __FUNCTION__ );
-			return std::string();
-	}
-
-	return "/// \\relates " + m_fullTypeName + "\n" \
-		"/// \\brief Returns a bool" + m_numComponentsStr + " where each component is true if the component of the left-hand vector is " \
-		+ noun + " than the corresponding rhs-hand vector component.\n";
 }

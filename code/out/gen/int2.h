@@ -81,34 +81,53 @@ struct int2 {
 
 	/// Returns a copy of the vector with each value added the given scalar value.
 	inline int2 operator+( const int32_t rhs ) const;
-	/// Adds each component of the vector by the given scalar value.
+
+	/// \relates int2
+	/// \brief Adds each component by the given scalar value.
 	inline int2 operator+=( const int32_t rhs );
+
 	/// Returns a copy of the vector that has been component-wise added by the other vector.
 	inline int2 operator+( const int2& rhs ) const;
+
 	/// Component-wise adds each component of the vector by the other vector.
 	inline int2 operator+=( const int2& rhs );
+
 	/// Returns a copy of the vector with each value subtracted the given scalar value.
 	inline int2 operator-( const int32_t rhs ) const;
-	/// Subtracts each component of the vector by the given scalar value.
+
+	/// \relates int2
+	/// \brief Subtracts each component by the given scalar value.
 	inline int2 operator-=( const int32_t rhs );
+
 	/// Returns a copy of the vector that has been component-wise subtracted by the other vector.
 	inline int2 operator-( const int2& rhs ) const;
+
 	/// Component-wise subtracts each component of the vector by the other vector.
 	inline int2 operator-=( const int2& rhs );
+
 	/// Returns a copy of the vector with each value multiplied the given scalar value.
 	inline int2 operator*( const int32_t rhs ) const;
-	/// Multiplies each component of the vector by the given scalar value.
+
+	/// \relates int2
+	/// \brief Multiplies each component by the given scalar value.
 	inline int2 operator*=( const int32_t rhs );
+
 	/// Returns a copy of the vector that has been component-wise multiplied by the other vector.
 	inline int2 operator*( const int2& rhs ) const;
+
 	/// Component-wise multiplies each component of the vector by the other vector.
 	inline int2 operator*=( const int2& rhs );
+
 	/// Returns a copy of the vector with each value divided the given scalar value.
 	inline int2 operator/( const int32_t rhs ) const;
-	/// Divides each component of the vector by the given scalar value.
+
+	/// \relates int2
+	/// \brief Divides each component by the given scalar value.
 	inline int2 operator/=( const int32_t rhs );
+
 	/// Returns a copy of the vector that has been component-wise divided by the other vector.
 	inline int2 operator/( const int2& rhs ) const;
+
 	/// Component-wise divides each component of the vector by the other vector.
 	inline int2 operator/=( const int2& rhs );
 
@@ -119,7 +138,6 @@ struct int2 {
 	/// \brief Returns the vector component at the given index.
 	/// Index CANNOT be lower than 0 or higher than 1.
 	inline int32_t& operator[]( const uint32_t index );
-
 };
 
 /// \relates int2
@@ -131,16 +149,20 @@ inline bool operator==( const int2& lhs, const int2& rhs );
 inline bool operator!=( const int2& lhs, const int2& rhs );
 
 /// \relates int2
-/// \brief Returns a bool2 where each component is true if the component of the left-hand vector is less than than the corresponding rhs-hand vector component.
+/// \brief Returns a bool2 where each component is true if the component of the left-hand type is less than the corresponding right-hand type component.
 inline bool2 operator<( const int2& lhs, const int2& rhs );
+
 /// \relates int2
-/// \brief Returns a bool2 where each component is true if the component of the left-hand vector is less than than the corresponding rhs-hand vector component.
+/// \brief Returns a bool2 where each component is true if the component of the left-hand type is less than or equal to the corresponding right-hand type component.
 inline bool2 operator<=( const int2& lhs, const int2& rhs );
+
 /// \relates int2
-/// \brief Returns a bool2 where each component is true if the component of the left-hand vector is less than than the corresponding rhs-hand vector component.
+/// \brief Returns a bool2 where each component is true if the component of the left-hand type is greater than the corresponding right-hand type component.
 inline bool2 operator>( const int2& lhs, const int2& rhs );
+
 /// \relates int2
-/// \brief Returns a bool2 where each component is true if the component of the left-hand vector is less than than the corresponding rhs-hand vector component.
+/// \brief Returns a bool2 where each component is true if the component of the left-hand type is greater than or equal to the corresponding right-hand type component.
 inline bool2 operator>=( const int2& lhs, const int2& rhs );
+
 
 #include "int2.inl"

@@ -57,10 +57,7 @@ private:
 	std::string		GetDocOperatorArithmeticScalar( const genOpArithmetic_t op ) const;
 	std::string		GetDocOperatorArithmeticRhsType( const genOpArithmetic_t op ) const;
 
-	std::string		GetDocOperatorCompoundArithmeticScalar( const genOpArithmetic_t op ) const;
 	std::string		GetDocOperatorCompoundArithmeticRhsType( const genOpArithmetic_t op ) const;
 
 	std::string		GetDocOperatorArray() const;
-
-	std::string		GetDocOperatorRelational( const genOpRelational_t op ) const;
 };

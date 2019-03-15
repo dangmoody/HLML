@@ -1,5 +1,7 @@
 #include "gen_funcs_matrix.h"
 
+#include "gen_doc_common.h"
+
 #include <assert.h>
 
 // TODO(DM): move these functions into their own file
@@ -19,25 +21,6 @@ static std::string GetDocOperatorArithmeticScalar( const std::string& fullTypeNa
 
 	return "/// \\relates " + fullTypeName + "\n" \
 		"/// \\brief Returns a copy of the matrix that has been component-wise " + adjective + " by the given scalar value.\n";
-}
-
-// TODO(DM): this can go into gen_doc_common.h
-static std::string GetDocOperatorCompoundArithmeticScalar( const std::string& fullTypeName, const genOpArithmetic_t op ) {
-	std::string verb;
-	switch ( op ) {
-		case GEN_OP_ARITHMETIC_ADD: verb = "Adds"; break;
-		case GEN_OP_ARITHMETIC_SUB: verb = "Subtracts"; break;
-		case GEN_OP_ARITHMETIC_MUL: verb = "Multiplies"; break;
-		case GEN_OP_ARITHMETIC_DIV: verb = "Divides"; break;
-
-		case GEN_OP_ARITHMETIC_COUNT:
-		default:
-			printf( "ERROR: Bad genOpArithmetic_t enum passed into %s.\n", __FUNCTION__ );
-			return std::string();
-	}
-
-	return "/// \\relates " + fullTypeName + "\n" \
-		"/// \\brief " + verb + " each component of the matrix by the given scalar value.\n";
 }
 
 static std::string GetDocOperatorArithmeticRhsType( const std::string& fullTypeName, const genType_t type, const uint32_t numRows, const uint32_t numCols, const genOpArithmetic_t op ) {
@@ -79,25 +62,6 @@ static std::string GetDocOperatorArithmeticRhsType( const std::string& fullTypeN
 			printf( "ERROR: Bad genOpArithmetic_t enum passed into %s.\n", __FUNCTION__ );
 			return std::string();
 	}
-}
-
-static std::string GetDocOperatorRelational( const std::string& fullTypeName, const uint32_t numRows, const uint32_t numCols, const genOpRelational_t op ) {
-	std::string noun;
-	switch ( op ) {
-		case GEN_OP_RELATIONAL_LESS: noun = "less than"; break;
-		case GEN_OP_RELATIONAL_LESS_EQUAL: noun = "less than"; break;
-		case GEN_OP_RELATIONAL_GREATER: noun = "less than"; break;
-		case GEN_OP_RELATIONAL_GREATER_EQUAL: noun = "less than"; break;
-
-		case GEN_OP_RELATIONAL_COUNT:
-		default:
-			printf( "ERROR: Bad genOpRelational_t enum passed into %s.\n", __FUNCTION__ );
-			return std::string();
-	}
-
-	return "/// \\relates " + fullTypeName + "\n" \
-		"/// \\brief Returns a bool" + std::to_string( numRows ) + "x" + std::to_string( numCols ) \
-		+ " where each component is true if the component of the left-hand vector is " + noun + " than the corresponding rhs-hand vector component.\n";
 }
 
 static std::string GetDocIdentity( const std::string& fullTypeName ) {
@@ -281,7 +245,7 @@ static std::string HeaderGetArithmeticFuncScalar( const genType_t type, const ui
 	code += "inline " + fullTypeName + " operator" + GEN_OPERATORS_ARITHMETIC[op] + "( const " + fullTypeName + "& lhs, const " + memberTypeString + " rhs );\n";
 	code += "\n";
 
-	code += GetDocOperatorCompoundArithmeticScalar( fullTypeName, op );
+	code += Gen_GetDocOperatorCompoundArithmeticScalar( fullTypeName, op );
 	code += "inline " + fullTypeName + " operator" + GEN_OPERATORS_ARITHMETIC[op] + "=( " + fullTypeName + "& lhs, const " + memberTypeString + " rhs );\n";
 	code += "\n";
 
@@ -517,7 +481,7 @@ static std::string HeaderGetOperatorRelational( const genType_t type, const uint
 
 	std::string code;
 
-	code += GetDocOperatorRelational( fullTypeName, numRows, numCols, op );
+	code += Gen_GetDocOperatorRelational( fullTypeName, numRows, numCols, op );
 	code += "inline " + boolTypeName + " operator" + GEN_OPERATORS_RELATIONAL[op] + "( const " + fullTypeName + "& lhs, const " + fullTypeName + "& rhs );\n";
 	code += "\n";
 
