@@ -2,22 +2,10 @@
 .vs/*
 
 # visual studio files
-*.opendb
-*.vcxproj.user
-*.lastcodeanalysissucceeded
-*.cap
-*.sdf
-*.pdb
-*.ilk
-*.exe
-*.exp
-*.obj
-*.log
-*.tlog
-*.idb
+build/*
 
 # documentation generated files
 documentation/
 
-# add everything inside doxygen folder
-!doxygen/*
+# dont ignore any of the tools
+!tools/*
