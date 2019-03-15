@@ -75,16 +75,17 @@ struct float4 {
 
 	~float4() {}
 
-	/// Copies the elements of the given vector via memcpy.
+	/// Copies the elements of the given vector via a single memcpy.
 	inline float4 operator=( const float2& rhs );
 
-	/// Copies the elements of the given vector via memcpy.
+	/// Copies the elements of the given vector via a single memcpy.
 	inline float4 operator=( const float3& rhs );
 
-	/// Copies the elements of the given vector via memcpy.
+	/// Copies the elements of the given vector via a single memcpy.
 	inline float4 operator=( const float4& rhs );
 
-	/// Returns a copy of the vector with each value added the given scalar value.
+/// \relates float4
+/// \brief Returns a copy that has been component-wise added by the given scalar value.
 	inline float4 operator+( const float rhs ) const;
 
 	/// \relates float4
@@ -97,7 +98,8 @@ struct float4 {
 	/// Component-wise adds each component of the vector by the other vector.
 	inline float4 operator+=( const float4& rhs );
 
-	/// Returns a copy of the vector with each value subtracted the given scalar value.
+/// \relates float4
+/// \brief Returns a copy that has been component-wise subtracted by the given scalar value.
 	inline float4 operator-( const float rhs ) const;
 
 	/// \relates float4
@@ -110,7 +112,8 @@ struct float4 {
 	/// Component-wise subtracts each component of the vector by the other vector.
 	inline float4 operator-=( const float4& rhs );
 
-	/// Returns a copy of the vector with each value multiplied the given scalar value.
+/// \relates float4
+/// \brief Returns a copy that has been component-wise multiplied by the given scalar value.
 	inline float4 operator*( const float rhs ) const;
 
 	/// \relates float4
@@ -123,7 +126,8 @@ struct float4 {
 	/// Component-wise multiplies each component of the vector by the other vector.
 	inline float4 operator*=( const float4& rhs );
 
-	/// Returns a copy of the vector with each value divided the given scalar value.
+/// \relates float4
+/// \brief Returns a copy that has been component-wise divided by the given scalar value.
 	inline float4 operator/( const float rhs ) const;
 
 	/// \relates float4

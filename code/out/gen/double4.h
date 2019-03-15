@@ -75,16 +75,17 @@ struct double4 {
 
 	~double4() {}
 
-	/// Copies the elements of the given vector via memcpy.
+	/// Copies the elements of the given vector via a single memcpy.
 	inline double4 operator=( const double2& rhs );
 
-	/// Copies the elements of the given vector via memcpy.
+	/// Copies the elements of the given vector via a single memcpy.
 	inline double4 operator=( const double3& rhs );
 
-	/// Copies the elements of the given vector via memcpy.
+	/// Copies the elements of the given vector via a single memcpy.
 	inline double4 operator=( const double4& rhs );
 
-	/// Returns a copy of the vector with each value added the given scalar value.
+/// \relates double4
+/// \brief Returns a copy that has been component-wise added by the given scalar value.
 	inline double4 operator+( const double rhs ) const;
 
 	/// \relates double4
@@ -97,7 +98,8 @@ struct double4 {
 	/// Component-wise adds each component of the vector by the other vector.
 	inline double4 operator+=( const double4& rhs );
 
-	/// Returns a copy of the vector with each value subtracted the given scalar value.
+/// \relates double4
+/// \brief Returns a copy that has been component-wise subtracted by the given scalar value.
 	inline double4 operator-( const double rhs ) const;
 
 	/// \relates double4
@@ -110,7 +112,8 @@ struct double4 {
 	/// Component-wise subtracts each component of the vector by the other vector.
 	inline double4 operator-=( const double4& rhs );
 
-	/// Returns a copy of the vector with each value multiplied the given scalar value.
+/// \relates double4
+/// \brief Returns a copy that has been component-wise multiplied by the given scalar value.
 	inline double4 operator*( const double rhs ) const;
 
 	/// \relates double4
@@ -123,7 +126,8 @@ struct double4 {
 	/// Component-wise multiplies each component of the vector by the other vector.
 	inline double4 operator*=( const double4& rhs );
 
-	/// Returns a copy of the vector with each value divided the given scalar value.
+/// \relates double4
+/// \brief Returns a copy that has been component-wise divided by the given scalar value.
 	inline double4 operator/( const double rhs ) const;
 
 	/// \relates double4

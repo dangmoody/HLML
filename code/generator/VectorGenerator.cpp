@@ -204,7 +204,7 @@ void VectorGenerator::HeaderGenerateOperatorsArithmetic() {
 		char opChar = GEN_OPERATORS_ARITHMETIC[i];
 		genOpArithmetic_t op = static_cast<genOpArithmetic_t>( i );
 
-		m_codeHeader += GetDocOperatorArithmeticScalar( op );
+		m_codeHeader += Gen_GetDocOperatorArithmeticScalar( m_fullTypeName, op );
 		m_codeHeader += "\tinline " + m_fullTypeName + " operator" + opChar + "( const " + m_typeString + " rhs ) const;\n";
 		m_codeHeader += "\n";
 
@@ -499,24 +499,7 @@ std::string VectorGenerator::GetDocCtorCopy( void ) const {
 }
 
 std::string VectorGenerator::GetDocOperatorAssignment() const {
-	return "\t/// Copies the elements of the given vector via memcpy.\n";
-}
-
-std::string VectorGenerator::GetDocOperatorArithmeticScalar( const genOpArithmetic_t op ) const {
-	std::string adjective;
-	switch ( op ) {
-		case GEN_OP_ARITHMETIC_ADD: adjective = "added"; break;
-		case GEN_OP_ARITHMETIC_SUB: adjective = "subtracted"; break;
-		case GEN_OP_ARITHMETIC_MUL: adjective = "multiplied"; break;
-		case GEN_OP_ARITHMETIC_DIV: adjective = "divided"; break;
-
-		case GEN_OP_ARITHMETIC_COUNT:
-		default:
-			printf( "ERROR: Bad genOpArithmetic_t enum passed into %s.\n", __FUNCTION__ );
-			return std::string();
-	}
-
-	return "\t/// Returns a copy of the vector with each value " + adjective + " the given scalar value.\n";
+	return "\t/// Copies the elements of the given vector via a single memcpy.\n";
 }
 
 std::string VectorGenerator::GetDocOperatorArithmeticRhsType( const genOpArithmetic_t op ) const {

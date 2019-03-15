@@ -5,24 +5,6 @@
 #include <assert.h>
 
 // TODO(DM): move these functions into their own file
-static std::string GetDocOperatorArithmeticScalar( const std::string& fullTypeName, const genOpArithmetic_t op ) {
-	std::string adjective;
-	switch ( op ) {
-		case GEN_OP_ARITHMETIC_ADD: adjective = "added"; break;
-		case GEN_OP_ARITHMETIC_SUB: adjective = "subtracted"; break;
-		case GEN_OP_ARITHMETIC_MUL: adjective = "multiplied"; break;
-		case GEN_OP_ARITHMETIC_DIV: adjective = "divided"; break;
-
-		case GEN_OP_ARITHMETIC_COUNT:
-		default:
-			printf( "ERROR: Bad genOpArithmetic_t enum passed into %s.\n", __FUNCTION__ );
-			return std::string();
-	}
-
-	return "/// \\relates " + fullTypeName + "\n" \
-		"/// \\brief Returns a copy of the matrix that has been component-wise " + adjective + " by the given scalar value.\n";
-}
-
 static std::string GetDocOperatorArithmeticRhsType( const std::string& fullTypeName, const genType_t type, const uint32_t numRows, const uint32_t numCols, const genOpArithmetic_t op ) {
 	std::string adjective;
 	switch ( op ) {
@@ -241,7 +223,7 @@ static std::string HeaderGetArithmeticFuncScalar( const genType_t type, const ui
 
 	std::string code;
 
-	code += GetDocOperatorArithmeticScalar( fullTypeName, op );
+	code += Gen_GetDocOperatorArithmeticScalar( fullTypeName, op );
 	code += "inline " + fullTypeName + " operator" + GEN_OPERATORS_ARITHMETIC[op] + "( const " + fullTypeName + "& lhs, const " + memberTypeString + " rhs );\n";
 	code += "\n";
 

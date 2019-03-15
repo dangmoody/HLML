@@ -7,6 +7,7 @@
 inline std::string	Gen_GetDocOperatorEquals( const std::string& fullTypeName );
 inline std::string	Gen_GetDocOperatorNotEquals( const std::string& fullTypeName );
 
+inline std::string	Gen_GetDocOperatorArithmeticScalar( const std::string& fullTypeName, const genOpArithmetic_t op );
 inline std::string	Gen_GetDocOperatorCompoundArithmeticScalar( const std::string& fullTypeName, const genOpArithmetic_t op );
 
 inline std::string	Gen_GetDocOperatorRelational( const std::string& fullTypeName, const uint32_t numRows, const uint32_t numCols, const genOpRelational_t op );
@@ -20,6 +21,24 @@ std::string Gen_GetDocOperatorEquals( const std::string& fullTypeName ) {
 std::string Gen_GetDocOperatorNotEquals( const std::string& fullTypeName ) {
 	return "/// \\relates " + fullTypeName + "\n" \
 		"/// \\brief Returns true if not all of the components of the left-hand-side " + fullTypeName + " match the other one, otherwise returns false.\n";
+}
+
+std::string Gen_GetDocOperatorArithmeticScalar( const std::string& fullTypeName, const genOpArithmetic_t op ) {
+	std::string adjective;
+	switch ( op ) {
+		case GEN_OP_ARITHMETIC_ADD: adjective = "added"; break;
+		case GEN_OP_ARITHMETIC_SUB: adjective = "subtracted"; break;
+		case GEN_OP_ARITHMETIC_MUL: adjective = "multiplied"; break;
+		case GEN_OP_ARITHMETIC_DIV: adjective = "divided"; break;
+
+		case GEN_OP_ARITHMETIC_COUNT:
+		default:
+			printf( "ERROR: Bad genOpArithmetic_t enum passed into %s.\n", __FUNCTION__ );
+			return std::string();
+	}
+
+	return "/// \\relates " + fullTypeName + "\n" \
+		"/// \\brief Returns a copy that has been component-wise " + adjective + " by the given scalar value.\n";
 }
 
 std::string Gen_GetDocOperatorCompoundArithmeticScalar( const std::string& fullTypeName, const genOpArithmetic_t op ) {

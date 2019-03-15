@@ -65,13 +65,13 @@ struct bool3 {
 
 	~bool3() {}
 
-	/// Copies the elements of the given vector via memcpy.
+	/// Copies the elements of the given vector via a single memcpy.
 	inline bool3 operator=( const bool2& rhs );
 
-	/// Copies the elements of the given vector via memcpy.
+	/// Copies the elements of the given vector via a single memcpy.
 	inline bool3 operator=( const bool3& rhs );
 
-	/// Copies the elements of the given vector via memcpy.
+	/// Copies the elements of the given vector via a single memcpy.
 	inline bool3 operator=( const bool4& rhs );
 
 	/// \brief Returns the vector component at the given index.

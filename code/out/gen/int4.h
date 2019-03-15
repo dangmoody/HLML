@@ -75,16 +75,17 @@ struct int4 {
 
 	~int4() {}
 
-	/// Copies the elements of the given vector via memcpy.
+	/// Copies the elements of the given vector via a single memcpy.
 	inline int4 operator=( const int2& rhs );
 
-	/// Copies the elements of the given vector via memcpy.
+	/// Copies the elements of the given vector via a single memcpy.
 	inline int4 operator=( const int3& rhs );
 
-	/// Copies the elements of the given vector via memcpy.
+	/// Copies the elements of the given vector via a single memcpy.
 	inline int4 operator=( const int4& rhs );
 
-	/// Returns a copy of the vector with each value added the given scalar value.
+/// \relates int4
+/// \brief Returns a copy that has been component-wise added by the given scalar value.
 	inline int4 operator+( const int32_t rhs ) const;
 
 	/// \relates int4
@@ -97,7 +98,8 @@ struct int4 {
 	/// Component-wise adds each component of the vector by the other vector.
 	inline int4 operator+=( const int4& rhs );
 
-	/// Returns a copy of the vector with each value subtracted the given scalar value.
+/// \relates int4
+/// \brief Returns a copy that has been component-wise subtracted by the given scalar value.
 	inline int4 operator-( const int32_t rhs ) const;
 
 	/// \relates int4
@@ -110,7 +112,8 @@ struct int4 {
 	/// Component-wise subtracts each component of the vector by the other vector.
 	inline int4 operator-=( const int4& rhs );
 
-	/// Returns a copy of the vector with each value multiplied the given scalar value.
+/// \relates int4
+/// \brief Returns a copy that has been component-wise multiplied by the given scalar value.
 	inline int4 operator*( const int32_t rhs ) const;
 
 	/// \relates int4
@@ -123,7 +126,8 @@ struct int4 {
 	/// Component-wise multiplies each component of the vector by the other vector.
 	inline int4 operator*=( const int4& rhs );
 
-	/// Returns a copy of the vector with each value divided the given scalar value.
+/// \relates int4
+/// \brief Returns a copy that has been component-wise divided by the given scalar value.
 	inline int4 operator/( const int32_t rhs ) const;
 
 	/// \relates int4

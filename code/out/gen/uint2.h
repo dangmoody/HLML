@@ -70,16 +70,17 @@ struct uint2 {
 
 	~uint2() {}
 
-	/// Copies the elements of the given vector via memcpy.
+	/// Copies the elements of the given vector via a single memcpy.
 	inline uint2 operator=( const uint2& rhs );
 
-	/// Copies the elements of the given vector via memcpy.
+	/// Copies the elements of the given vector via a single memcpy.
 	inline uint2 operator=( const uint3& rhs );
 
-	/// Copies the elements of the given vector via memcpy.
+	/// Copies the elements of the given vector via a single memcpy.
 	inline uint2 operator=( const uint4& rhs );
 
-	/// Returns a copy of the vector with each value added the given scalar value.
+/// \relates uint2
+/// \brief Returns a copy that has been component-wise added by the given scalar value.
 	inline uint2 operator+( const uint32_t rhs ) const;
 
 	/// \relates uint2
@@ -92,7 +93,8 @@ struct uint2 {
 	/// Component-wise adds each component of the vector by the other vector.
 	inline uint2 operator+=( const uint2& rhs );
 
-	/// Returns a copy of the vector with each value subtracted the given scalar value.
+/// \relates uint2
+/// \brief Returns a copy that has been component-wise subtracted by the given scalar value.
 	inline uint2 operator-( const uint32_t rhs ) const;
 
 	/// \relates uint2
@@ -105,7 +107,8 @@ struct uint2 {
 	/// Component-wise subtracts each component of the vector by the other vector.
 	inline uint2 operator-=( const uint2& rhs );
 
-	/// Returns a copy of the vector with each value multiplied the given scalar value.
+/// \relates uint2
+/// \brief Returns a copy that has been component-wise multiplied by the given scalar value.
 	inline uint2 operator*( const uint32_t rhs ) const;
 
 	/// \relates uint2
@@ -118,7 +121,8 @@ struct uint2 {
 	/// Component-wise multiplies each component of the vector by the other vector.
 	inline uint2 operator*=( const uint2& rhs );
 
-	/// Returns a copy of the vector with each value divided the given scalar value.
+/// \relates uint2
+/// \brief Returns a copy that has been component-wise divided by the given scalar value.
 	inline uint2 operator/( const uint32_t rhs ) const;
 
 	/// \relates uint2
