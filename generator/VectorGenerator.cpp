@@ -585,7 +585,7 @@ std::string VectorGenerator::GetDocOperatorRelational( const genOpRelational_t o
 			return std::string();
 	}
 
-	return "\t/// \\relates " + m_fullTypeName + "\n" \
-		"\t/// \\brief Returns a bool" + m_numComponentsStr + " where each component is true if the component of the left-hand vector is " \
+	return "/// \\relates " + m_fullTypeName + "\n" \
+		"/// \\brief Returns a bool" + m_numComponentsStr + " where each component is true if the component of the left-hand vector is " \
 		+ noun + " than the corresponding rhs-hand vector component.\n";
 }
