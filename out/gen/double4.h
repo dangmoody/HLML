@@ -135,17 +135,17 @@ inline bool operator==( const double4& lhs, const double4& rhs );
 /// \brief Returns true if not all of the components of the left-hand-side double4 match the other one, otherwise returns false.
 inline bool operator!=( const double4& lhs, const double4& rhs );
 
-	/// \relates double4
-	/// \brief Returns a bool4 where each component is true if the component of the left-hand vector is less than than the corresponding rhs-hand vector component.
+/// \relates double4
+/// \brief Returns a bool4 where each component is true if the component of the left-hand vector is less than than the corresponding rhs-hand vector component.
 inline bool4 operator<( const double4& lhs, const double4& rhs );
-	/// \relates double4
-	/// \brief Returns a bool4 where each component is true if the component of the left-hand vector is less than than the corresponding rhs-hand vector component.
+/// \relates double4
+/// \brief Returns a bool4 where each component is true if the component of the left-hand vector is less than than the corresponding rhs-hand vector component.
 inline bool4 operator<=( const double4& lhs, const double4& rhs );
-	/// \relates double4
-	/// \brief Returns a bool4 where each component is true if the component of the left-hand vector is less than than the corresponding rhs-hand vector component.
+/// \relates double4
+/// \brief Returns a bool4 where each component is true if the component of the left-hand vector is less than than the corresponding rhs-hand vector component.
 inline bool4 operator>( const double4& lhs, const double4& rhs );
-	/// \relates double4
-	/// \brief Returns a bool4 where each component is true if the component of the left-hand vector is less than than the corresponding rhs-hand vector component.
+/// \relates double4
+/// \brief Returns a bool4 where each component is true if the component of the left-hand vector is less than than the corresponding rhs-hand vector component.
 inline bool4 operator>=( const double4& lhs, const double4& rhs );
 
 #include "double4.inl"

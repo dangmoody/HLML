@@ -130,17 +130,17 @@ inline bool operator==( const uint2& lhs, const uint2& rhs );
 /// \brief Returns true if not all of the components of the left-hand-side uint2 match the other one, otherwise returns false.
 inline bool operator!=( const uint2& lhs, const uint2& rhs );
 
-	/// \relates uint2
-	/// \brief Returns a bool2 where each component is true if the component of the left-hand vector is less than than the corresponding rhs-hand vector component.
+/// \relates uint2
+/// \brief Returns a bool2 where each component is true if the component of the left-hand vector is less than than the corresponding rhs-hand vector component.
 inline bool2 operator<( const uint2& lhs, const uint2& rhs );
-	/// \relates uint2
-	/// \brief Returns a bool2 where each component is true if the component of the left-hand vector is less than than the corresponding rhs-hand vector component.
+/// \relates uint2
+/// \brief Returns a bool2 where each component is true if the component of the left-hand vector is less than than the corresponding rhs-hand vector component.
 inline bool2 operator<=( const uint2& lhs, const uint2& rhs );
-	/// \relates uint2
-	/// \brief Returns a bool2 where each component is true if the component of the left-hand vector is less than than the corresponding rhs-hand vector component.
+/// \relates uint2
+/// \brief Returns a bool2 where each component is true if the component of the left-hand vector is less than than the corresponding rhs-hand vector component.
 inline bool2 operator>( const uint2& lhs, const uint2& rhs );
-	/// \relates uint2
-	/// \brief Returns a bool2 where each component is true if the component of the left-hand vector is less than than the corresponding rhs-hand vector component.
+/// \relates uint2
+/// \brief Returns a bool2 where each component is true if the component of the left-hand vector is less than than the corresponding rhs-hand vector component.
 inline bool2 operator>=( const uint2& lhs, const uint2& rhs );
 
 #include "uint2.inl"

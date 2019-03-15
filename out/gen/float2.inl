@@ -78,7 +78,7 @@ float2 float2::operator=( const float4& rhs ) {
 float2 float2::operator+( const float rhs ) const {
 	return float2(
 		x + rhs,
-		y + rhs,
+		y + rhs
 	);
 }
 
@@ -89,7 +89,7 @@ float2 float2::operator+=( const float rhs ) {
 float2 float2::operator+( const float2& rhs ) const {
 	return float2(
 		x + rhs.x,
-		y + rhs.y,
+		y + rhs.y
 	);
 }
 
@@ -99,7 +99,7 @@ float2 float2::operator+=( const float2& rhs ) {
 
 float2 float2::operator-( const float rhs ) const {
 	return float2(
-		x - rhs
+		x - rhs,
 		y - rhs
 	);
 }
@@ -110,7 +110,7 @@ float2 float2::operator-=( const float rhs ) {
 
 float2 float2::operator-( const float2& rhs ) const {
 	return float2(
-		x - rhs.x
+		x - rhs.x,
 		y - rhs.y
 	);
 }
@@ -122,7 +122,7 @@ float2 float2::operator-=( const float2& rhs ) {
 float2 float2::operator*( const float rhs ) const {
 	return float2(
 		x * rhs,
-		y * rhs,
+		y * rhs
 	);
 }
 
@@ -133,7 +133,7 @@ float2 float2::operator*=( const float rhs ) {
 float2 float2::operator*( const float2& rhs ) const {
 	return float2(
 		x * rhs.x,
-		y * rhs.y,
+		y * rhs.y
 	);
 }
 
@@ -144,7 +144,7 @@ float2 float2::operator*=( const float2& rhs ) {
 float2 float2::operator/( const float rhs ) const {
 	return float2(
 		x / rhs,
-		y / rhs,
+		y / rhs
 	);
 }
 
@@ -155,7 +155,7 @@ float2 float2::operator/=( const float rhs ) {
 float2 float2::operator/( const float2& rhs ) const {
 	return float2(
 		x / rhs.x,
-		y / rhs.y,
+		y / rhs.y
 	);
 }
 

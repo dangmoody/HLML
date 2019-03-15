@@ -78,7 +78,7 @@ int2 int2::operator=( const int4& rhs ) {
 int2 int2::operator+( const int32_t rhs ) const {
 	return int2(
 		x + rhs,
-		y + rhs,
+		y + rhs
 	);
 }
 
@@ -89,7 +89,7 @@ int2 int2::operator+=( const int32_t rhs ) {
 int2 int2::operator+( const int2& rhs ) const {
 	return int2(
 		x + rhs.x,
-		y + rhs.y,
+		y + rhs.y
 	);
 }
 
@@ -99,7 +99,7 @@ int2 int2::operator+=( const int2& rhs ) {
 
 int2 int2::operator-( const int32_t rhs ) const {
 	return int2(
-		x - rhs
+		x - rhs,
 		y - rhs
 	);
 }
@@ -110,7 +110,7 @@ int2 int2::operator-=( const int32_t rhs ) {
 
 int2 int2::operator-( const int2& rhs ) const {
 	return int2(
-		x - rhs.x
+		x - rhs.x,
 		y - rhs.y
 	);
 }
@@ -122,7 +122,7 @@ int2 int2::operator-=( const int2& rhs ) {
 int2 int2::operator*( const int32_t rhs ) const {
 	return int2(
 		x * rhs,
-		y * rhs,
+		y * rhs
 	);
 }
 
@@ -133,7 +133,7 @@ int2 int2::operator*=( const int32_t rhs ) {
 int2 int2::operator*( const int2& rhs ) const {
 	return int2(
 		x * rhs.x,
-		y * rhs.y,
+		y * rhs.y
 	);
 }
 
@@ -144,7 +144,7 @@ int2 int2::operator*=( const int2& rhs ) {
 int2 int2::operator/( const int32_t rhs ) const {
 	return int2(
 		x / rhs,
-		y / rhs,
+		y / rhs
 	);
 }
 
@@ -155,7 +155,7 @@ int2 int2::operator/=( const int32_t rhs ) {
 int2 int2::operator/( const int2& rhs ) const {
 	return int2(
 		x / rhs.x,
-		y / rhs.y,
+		y / rhs.y
 	);
 }
 

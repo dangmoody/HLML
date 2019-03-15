@@ -2,6 +2,160 @@
 
 #include <assert.h>
 
+// TODO(DM): move these functions into their own file
+static std::string GetDocOperatorArithmeticScalar( const std::string& fullTypeName, const genOpArithmetic_t op ) {
+	std::string adjective;
+	switch ( op ) {
+		case GEN_OP_ARITHMETIC_ADD: adjective = "added"; break;
+		case GEN_OP_ARITHMETIC_SUB: adjective = "subtracted"; break;
+		case GEN_OP_ARITHMETIC_MUL: adjective = "multiplied"; break;
+		case GEN_OP_ARITHMETIC_DIV: adjective = "divided"; break;
+
+		case GEN_OP_ARITHMETIC_COUNT:
+		default:
+			printf( "ERROR: Bad genOpArithmetic_t enum passed into %s.\n", __FUNCTION__ );
+			return std::string();
+	}
+
+	return "/// \\relates " + fullTypeName + "\n" \
+		"/// \\brief Returns a copy of the matrix that has been component-wise " + adjective + " by the given scalar value.\n";
+}
+
+// TODO(DM): this can go into gen_doc_common.h
+static std::string GetDocOperatorCompoundArithmeticScalar( const std::string& fullTypeName, const genOpArithmetic_t op ) {
+	std::string verb;
+	switch ( op ) {
+		case GEN_OP_ARITHMETIC_ADD: verb = "Adds"; break;
+		case GEN_OP_ARITHMETIC_SUB: verb = "Subtracts"; break;
+		case GEN_OP_ARITHMETIC_MUL: verb = "Multiplies"; break;
+		case GEN_OP_ARITHMETIC_DIV: verb = "Divides"; break;
+
+		case GEN_OP_ARITHMETIC_COUNT:
+		default:
+			printf( "ERROR: Bad genOpArithmetic_t enum passed into %s.\n", __FUNCTION__ );
+			return std::string();
+	}
+
+	return "/// \\relates " + fullTypeName + "\n" \
+		"/// \\brief " + verb + " each component of the matrix by the given scalar value.\n";
+}
+
+static std::string GetDocOperatorArithmeticRhsType( const std::string& fullTypeName, const genType_t type, const uint32_t numRows, const uint32_t numCols, const genOpArithmetic_t op ) {
+	std::string adjective;
+	switch ( op ) {
+		case GEN_OP_ARITHMETIC_ADD: adjective = "added"; break;
+		case GEN_OP_ARITHMETIC_SUB: adjective = "subtracted"; break;
+		case GEN_OP_ARITHMETIC_MUL: adjective = "multiplied"; break;
+		case GEN_OP_ARITHMETIC_DIV: adjective = "divided"; break;
+
+		case GEN_OP_ARITHMETIC_COUNT:
+		default:
+			printf( "ERROR: Bad genOpArithmetic_t enum passed into %s.\n", __FUNCTION__ );
+			return std::string();
+	}
+
+	switch ( op ) {
+		case GEN_OP_ARITHMETIC_MUL:
+			return "/// \\relates " + fullTypeName + "\n" \
+				"/// \\brief Returns a copy of the matrix where each has been dot-producted by each column.\n";
+
+		case GEN_OP_ARITHMETIC_DIV: {
+			if ( numRows == numCols && Gen_IsFloatingPointType( type ) ) {
+				return "/// \\relates " + fullTypeName + "\n" \
+					"/// \\brief Returns a copy of the matrix where the left-hand matrix has been mathematically multiplied by the inverse of the right-hand matrix.\n";
+			} else {
+				return "/// \\relates " + fullTypeName + "\n" \
+					"/// \\brief Returns a copy of the matrix that has been component-wise " + adjective + " by the other matrix.\n";
+			}
+		}
+
+		case GEN_OP_ARITHMETIC_ADD:
+		case GEN_OP_ARITHMETIC_SUB:
+			return "/// \\relates " + fullTypeName + "\n" \
+				"/// \\brief Returns a copy of the matrix that has been component-wise " + adjective + " by the other matrix.\n";
+
+		case GEN_OP_ARITHMETIC_COUNT:
+		default:
+			printf( "ERROR: Bad genOpArithmetic_t enum passed into %s.\n", __FUNCTION__ );
+			return std::string();
+	}
+}
+
+static std::string GetDocOperatorRelational( const std::string& fullTypeName, const uint32_t numRows, const uint32_t numCols, const genOpRelational_t op ) {
+	std::string noun;
+	switch ( op ) {
+		case GEN_OP_RELATIONAL_LESS: noun = "less than"; break;
+		case GEN_OP_RELATIONAL_LESS_EQUAL: noun = "less than"; break;
+		case GEN_OP_RELATIONAL_GREATER: noun = "less than"; break;
+		case GEN_OP_RELATIONAL_GREATER_EQUAL: noun = "less than"; break;
+
+		case GEN_OP_RELATIONAL_COUNT:
+		default:
+			printf( "ERROR: Bad genOpRelational_t enum passed into %s.\n", __FUNCTION__ );
+			return std::string();
+	}
+
+	return "/// \\relates " + fullTypeName + "\n" \
+		"/// \\brief Returns a bool" + std::to_string( numRows ) + "x" + std::to_string( numCols ) \
+		+ " where each component is true if the component of the left-hand vector is " + noun + " than the corresponding rhs-hand vector component.\n";
+}
+
+static std::string GetDocIdentity( const std::string& fullTypeName ) {
+	return "/// \\relates " + fullTypeName + "\n" \
+		"/// \\brief Sets the matrix to an identity matrix.\n";
+}
+
+static std::string GetDocTranpose( const std::string& fullTypeName ) {
+	return "/// \\relates " + fullTypeName + "\n" \
+		"/// \\brief Returns a copy of the matrix that is transposed, where the value of each row is set to the value of each column and vice versa.\n";
+}
+
+static std::string GetDocInverse( const std::string& fullTypeName ) {
+	return "/// \\relates " + fullTypeName + "\n" \
+		"/// \\brief Returns a copy of the matrix that is inversed.\n" \
+		"/// Currently this is only applicable for square matrices.  Pseudo-inverse support for non-square matrices is coming soon.\n";
+}
+
+static std::string GetDocDeterminant( const std::string& fullTypeName ) {
+	return "/// \\relates " + fullTypeName + "\n" \
+		"/// \\brief Returns the determinant of the matrix.\n";
+}
+
+static std::string GetDocTranslate( const std::string& fullTypeName ) {
+	return "/// \\relates " + fullTypeName + "\n" \
+		"/// \\brief Returns a copy of the matrix where each component of the 3rd column has been added by the given vector.\n";
+}
+
+static std::string GetDocRotate( const std::string& fullTypeName ) {
+	return "/// \\relates " + fullTypeName + "\n" \
+		"/// \\brief Returns a copy of the matrix that has had a rotation applied to it in radians on one or more of the following axes.\n";
+}
+
+static std::string GetDocScaleUniform( const std::string& fullTypeName ) {
+	return "/// \\relates " + fullTypeName + "\n" \
+		"/// \\brief Returns a copy of the matrix that has had a uniform scale applied to it.\n";
+}
+
+static std::string GetDocScaleNonUniform( const std::string& fullTypeName ) {
+	return "/// \\relates " + fullTypeName + "\n" \
+		"/// \\brief Returns a copy of the matrix that has had a non-uniform scale applied to it.\n";
+}
+
+static std::string GetDocOrtho( const std::string& fullTypeName ) {
+	return "/// \\relates " + fullTypeName + "\n" \
+		"/// \\brief Returns an orthographic projection matrix.\n";
+}
+
+static std::string GetDocPerspective( const std::string& fullTypeName ) {
+	return "/// \\relates " + fullTypeName + "\n" \
+		"/// \\brief Returns a perspective projection matrix based on a vertical field-of-view in degrees and an aspect ratio.\n";
+}
+
+static std::string GetDocLookAt( const std::string& fullTypeName ) {
+	return "/// \\relates " + fullTypeName + "\n" \
+		"/// \\brief Returns a orthonormal matrix that is oriented at position eye to look at position target.\n";
+}
+
 std::string Gen_GetParmListMatrix( const genType_t type, const uint32_t numRows, const uint32_t numCols, const float values[GEN_COMPONENT_COUNT_MAX][GEN_COMPONENT_COUNT_MAX] ) {
 	assert( numRows >= GEN_COMPONENT_COUNT_MIN );
 	assert( numRows <= GEN_COMPONENT_COUNT_MAX );
@@ -123,7 +277,11 @@ static std::string HeaderGetArithmeticFuncScalar( const genType_t type, const ui
 
 	std::string code;
 
+	code += GetDocOperatorArithmeticScalar( fullTypeName, op );
 	code += "inline " + fullTypeName + " operator" + GEN_OPERATORS_ARITHMETIC[op] + "( const " + fullTypeName + "& lhs, const " + memberTypeString + " rhs );\n";
+	code += "\n";
+
+	code += GetDocOperatorCompoundArithmeticScalar( fullTypeName, op );
 	code += "inline " + fullTypeName + " operator" + GEN_OPERATORS_ARITHMETIC[op] + "=( " + fullTypeName + "& lhs, const " + memberTypeString + " rhs );\n";
 	code += "\n";
 
@@ -190,9 +348,13 @@ static std::string HeaderGetArithmeticFuncRhsType( const genType_t type, const u
 
 	std::string code;
 
+	code += GetDocOperatorArithmeticRhsType( fullTypeName, type, numRows, numCols, op );
 	code += "inline " + returnTypeName + " operator" + GEN_OPERATORS_ARITHMETIC[op] + "( const " + fullTypeName + "& lhs, const " + rhsTypeName + "& rhs );\n";
-//	code += "inline " + returnTypeName + " operator" + GEN_OPERATORS_ARITHMETIC[op] + "=( " + fullTypeName + "& lhs, const " + rhsTypeName + "& rhs );\n";
 	code += "\n";
+
+//	code += GetDocOperatorCompoundArithmeticRhsType( type, numRows, numCols, op );
+//	code += "inline " + returnTypeName + " operator" + GEN_OPERATORS_ARITHMETIC[op] + "=( " + fullTypeName + "& lhs, const " + rhsTypeName + "& rhs );\n";
+//	code += "\n";
 
 	return code;
 }
@@ -353,6 +515,7 @@ static std::string HeaderGetOperatorRelational( const genType_t type, const uint
 
 	std::string code;
 
+	code += GetDocOperatorRelational( fullTypeName, numRows, numCols, op );
 	code += "inline " + boolTypeName + " operator" + GEN_OPERATORS_RELATIONAL[op] + "( const " + fullTypeName + "& lhs, const " + fullTypeName + "& rhs );\n";
 	code += "\n";
 
@@ -444,6 +607,7 @@ void Gen_MatrixIdentity( const genType_t type, const uint32_t numRows, const uin
 
 	std::string fullTypeName = Gen_GetTypeString( type ) + std::to_string( numRows ) + "x" + std::to_string( numCols );
 
+	outHeader += GetDocIdentity( fullTypeName );
 	outHeader += "inline void identity( " + fullTypeName + "& mat );\n";
 	outHeader += "\n";
 
@@ -473,6 +637,7 @@ void Gen_MatrixTranspose( const genType_t type, const uint32_t numRows, const ui
 	std::string fullTypeName = typeString + std::to_string( numRows ) + "x" + std::to_string( numCols );
 	std::string transposeTypeName = typeString + std::to_string( numCols ) + "x" + std::to_string( numRows );
 
+	outHeader += GetDocTranpose( fullTypeName );
 	outHeader += "inline " + transposeTypeName + " transpose( const " + fullTypeName + "& mat );\n";
 	outHeader += "\n";
 
@@ -528,6 +693,7 @@ void Gen_MatrixInverse( const genType_t type, const uint32_t numRows, const uint
 
 	std::string literalOneStr = Gen_GetNumericLiteral( type, 1 );
 
+	outHeader += GetDocInverse( fullTypeName );
 	outHeader += "inline " + fullTypeName + " inverse( const " + fullTypeName + "& mat );\n";
 	outHeader += "\n";
 
@@ -648,6 +814,7 @@ void Gen_MatrixDeterminant( const genType_t type, const uint32_t numRows, const 
 	std::string vectorTypeName = typeString + std::to_string( numCols );
 	std::string fullTypeName = typeString + std::to_string( numRows ) + "x" + std::to_string( numCols );
 
+	outHeader += GetDocDeterminant( fullTypeName );
 	outHeader += "inline " + memberTypeString + " determinant( const " + fullTypeName + "& mat );\n";
 	outHeader += "\n";
 
@@ -709,6 +876,7 @@ void Gen_MatrixTranslate( const genType_t type, const uint32_t numRows, const ui
 	std::string typeString = Gen_GetTypeString( type );
 	std::string fullTypeName = typeString + std::to_string( numRows ) + "x" + std::to_string( numCols );
 
+	outHeader += GetDocTranslate( fullTypeName );
 	outHeader += "inline " + fullTypeName + " translate( const " + fullTypeName + "& mat, const " + typeString + std::to_string( vecComponents ) + "& vec );\n";
 	outHeader += "\n";
 
@@ -773,6 +941,7 @@ void Gen_MatrixRotate( const genType_t type, const uint32_t numRows, const uint3
 		parmListStr += ", const " + vectorTypeString + "& axis";
 	}
 
+	outHeader += GetDocRotate( fullTypeName );
 	outHeader += "inline " + fullTypeName + " rotate( " + parmListStr + " );\n";
 	outHeader += "\n";
 
@@ -841,7 +1010,11 @@ void Gen_MatrixScale( const genType_t type, const uint32_t numRows, const uint32
 
 	std::string scaleVectorString = typeString + std::to_string( scaleCols );
 
+	outHeader += GetDocScaleUniform( fullTypeName );
 	outHeader += "inline " + fullTypeName + " scale( const " + fullTypeName + "& mat, const " + memberTypeString + " scalar );\n";
+	outHeader += "\n";
+
+	outHeader += GetDocScaleNonUniform( fullTypeName );
 	outHeader += "inline " + fullTypeName + " scale( const " + fullTypeName + "& mat, const " + scaleVectorString + "& vec );\n";
 	outHeader += "\n";
 
@@ -910,6 +1083,7 @@ void Gen_MatrixOrtho( const genHand_t hand, const genType_t type, const uint32_t
 	std::string oneStr	= Gen_GetNumericLiteral( type, 1 );
 	std::string twoStr	= Gen_GetNumericLiteral( type, 2 );
 
+	outHeader += GetDocOrtho( fullTypeName );
 	outHeader += "inline " + fullTypeName + " ortho( const " + typeString + " left, const " + typeString + " right, const " + typeString + " top, const " + typeString + " bottom, const " + typeString + " znear, const " + typeString + " zfar );\n";
 	outHeader += "\n";
 
@@ -968,6 +1142,7 @@ void Gen_MatrixPerspective( const genHand_t hand, const genType_t type, const ui
 
 	std::string tanFuncStr = Gen_GetFuncNameTan( type );
 
+	outHeader += GetDocPerspective( fullTypeName );
 	outHeader += "inline " + fullTypeName + " perspective( const " + typeString + " fovdeg, const " + typeString + " aspect, const " + typeString + " znear, const " + typeString + " zfar );\n";
 	outHeader += "\n";
 
@@ -1023,6 +1198,7 @@ void Gen_MatrixLookAt( const genHand_t hand, const genType_t type, const uint32_
 	std::string zeroStr	= Gen_GetNumericLiteral( type, 0.0f );
 	std::string oneStr	= Gen_GetNumericLiteral( type, 1.0f );
 
+	outHeader += GetDocLookAt( fullTypeName );
 	outHeader += "inline " + fullTypeName + " lookat( const " + vectorTypeString + "& eye, const " + vectorTypeString + "& target, const " + vectorTypeString + "& up );\n";
 	outHeader += "\n";
 
