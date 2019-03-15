@@ -21,10 +21,12 @@ Usage
 =====
 
 A few quick notes on usage:
-* All matrix types are row-major.  So a ```float3x4``` is a ```float4``` array of size 3.
+* All matrix types are row-major, so a ```float3x4``` is a matrix that holds 3 ```float4```s.
 * All vector types are union of ```struct```/fixed-size array.
 
 To use HLML in your project, simply download the ```out``` folder listed in the project's root directory and drop it in your project.  Then you can begin to include all the headers you need and just start using the library.  HLML is a header-only library, so there's no linking required to make it work.
+
+The header file ```hlml_user.h``` can be used by you to help hook HLML into your engine.
 
 
 Motivation
@@ -42,3 +44,12 @@ One day I stumbled upon the [Unity.Mathematics](https://github.com/Unity-Technol
 * Compile time differences between the "generated" code and a templated equivalent were so minimal they weren't worth worrying about.
 * Being able to "Peek Definition" on a type in Visual Studio and see just the header with that type in it.  No templates to read past, just very simple, minimal, and straightforward code.
 * Maintaining changes across multiple (if not all) types was a lot easier than imagined.  Write the changes into the generator and watch it reflect the change across all the desired generated types automatically.
+
+
+Licenses
+========
+
+HLML is distributed under the GNU GPL v3 license but the following libraries (which HLML uses) are not.  Therefore HLML's license does not apply to them:
+
+* [Temper](https://github.com/floorman/temper) - MIT
+* [Doxygen](http://www.doxygen.nl/) - GNU GPL v2
