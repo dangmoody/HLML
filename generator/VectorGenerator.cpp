@@ -336,7 +336,7 @@ void VectorGenerator::InlGenerateOperatorsArithmetic() {
 		m_codeInl += "\treturn " + m_fullTypeName + "(\n";
 		for ( uint32_t componentIndex = 0; componentIndex < m_numComponents; componentIndex++ ) {
 			m_codeInl += std::string( "\t\t" ) + GEN_COMPONENT_NAMES_VECTOR[componentIndex] + " " + op + " rhs";
-			if ( opIndex != m_numComponents - 1 ) {
+			if ( componentIndex != m_numComponents - 1 ) {
 				m_codeInl += ",";
 			}
 			m_codeInl += "\n";
@@ -357,7 +357,7 @@ void VectorGenerator::InlGenerateOperatorsArithmetic() {
 		m_codeInl += "\treturn " + m_fullTypeName + "(\n";
 		for ( uint32_t componentIndex = 0; componentIndex < m_numComponents; componentIndex++ ) {
 			m_codeInl += std::string( "\t\t" ) + GEN_COMPONENT_NAMES_VECTOR[componentIndex] + " " + op + " rhs." + GEN_COMPONENT_NAMES_VECTOR[componentIndex];
-			if ( opIndex != m_numComponents - 1 ) {
+			if ( componentIndex != m_numComponents - 1 ) {
 				m_codeInl += ",";
 			}
 			m_codeInl += "\n";
