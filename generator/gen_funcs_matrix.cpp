@@ -57,7 +57,7 @@ static std::string GetDocOperatorArithmeticRhsType( const std::string& fullTypeN
 	switch ( op ) {
 		case GEN_OP_ARITHMETIC_MUL:
 			return "/// \\relates " + fullTypeName + "\n" \
-				"/// \\brief Returns a copy of the matrix where each has been dot-producted by each column.\n";
+				"/// \\brief Returns a copy of the matrix where each row of the left-hand matrix has been dot-producted by the corresponding column of the right-hand matrix.\n";
 
 		case GEN_OP_ARITHMETIC_DIV: {
 			if ( numRows == numCols && Gen_IsFloatingPointType( type ) ) {
