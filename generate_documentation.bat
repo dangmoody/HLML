@@ -1,3 +1,3 @@
 @echo off
 
-"doxygen/doxygen" doxygen/config
+"tools/doxygen/doxygen" tools/doxygen/config
