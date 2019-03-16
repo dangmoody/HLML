@@ -273,7 +273,6 @@ void TestsGeneratorVector::GenerateTestBitwise() {
 	float values7[]						= { 7.0f,  7.0f,  7.0f,  7.0f  };	// 0b000111
 	float values21[]					= { 21.0f, 21.0f, 21.0f, 21.0f };	// 0b010101
 	float values16[]					= { 16.0f, 16.0f, 16.0f, 16.0f };	// 0b010000
-//	float values32[]					= { 32.0f, 32.0f, 32.0f, 32.0f };	// 0b100000
 
 	float answersAnd[]					= { 5.0f,  5.0f,  5.0f,  5.0f  };	// 21 & 7
 	float answersOr[]					= { 23.0f, 23.0f, 23.0f, 23.0f };	// 21 | 7
