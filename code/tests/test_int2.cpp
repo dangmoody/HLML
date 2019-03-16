@@ -43,6 +43,15 @@ TEMPER_TEST( TestAssignment_int2 ) {
 	TEMPER_PASS();
 }
 
+TEMPER_TEST( TestArray_int2 ) {
+	int2 a = int2( 0, 1 );
+
+	TEMPER_EXPECT_TRUE( a[0] == 0 );
+	TEMPER_EXPECT_TRUE( a[1] == 1 );
+
+	TEMPER_PASS();
+}
+
 TEMPER_TEST( TestArithmeticAddition_int2 ) {
 	int2 a  = int2( 6 );
 	int2 b  = int2( 2, 3 );
@@ -87,15 +96,6 @@ TEMPER_TEST( TestArithmeticDivision_int2 ) {
 	TEMPER_PASS();
 }
 
-TEMPER_TEST( TestArray_int2 ) {
-	int2 a = int2( 0, 1 );
-
-	TEMPER_EXPECT_TRUE( a[0] == 0 );
-	TEMPER_EXPECT_TRUE( a[1] == 1 );
-
-	TEMPER_PASS();
-}
-
 TEMPER_TEST( TestRelational_int2 ) {
 	int2 vec0 = int2( 0, 0 );
 	int2 vec1 = int2( 1, 1 );
@@ -114,6 +114,71 @@ TEMPER_TEST( TestRelational_int2 ) {
 	TEMPER_EXPECT_TRUE( test3 == bool2( true ) );
 	TEMPER_EXPECT_TRUE( test4 == bool2( true ) );
 	TEMPER_EXPECT_TRUE( test5 == bool2( true ) );
+
+	TEMPER_PASS();
+}
+
+TEMPER_TEST( TestBitwiseAnd_int2 ) {
+	int2 a  = int2( 21, 21 );
+	int2 b  = int2( 7, 7 );
+
+	int2 answer = a & b;
+
+	TEMPER_EXPECT_TRUE( answer == int2( 5, 5 ) );
+
+	TEMPER_PASS();
+}
+
+TEMPER_TEST( TestBitwiseOr_int2 ) {
+	int2 a  = int2( 21, 21 );
+	int2 b  = int2( 7, 7 );
+
+	int2 answer = a | b;
+
+	TEMPER_EXPECT_TRUE( answer == int2( 23, 23 ) );
+
+	TEMPER_PASS();
+}
+
+TEMPER_TEST( TestBitwiseXor_int2 ) {
+	int2 a  = int2( 21, 21 );
+	int2 b  = int2( 7, 7 );
+
+	int2 answer = a ^ b;
+
+	TEMPER_EXPECT_TRUE( answer == int2( 18, 18 ) );
+
+	TEMPER_PASS();
+}
+
+TEMPER_TEST( TestBitwiseShiftLeft_int2 ) {
+	int2 a  = int2( 1, 1 );
+	int2 b  = int2( 2, 2 );
+
+	int2 answer = a << b;
+
+	TEMPER_EXPECT_TRUE( answer == int2( 4, 4 ) );
+
+	TEMPER_PASS();
+}
+
+TEMPER_TEST( TestBitwiseShiftRight_int2 ) {
+	int2 a  = int2( 16, 16 );
+	int2 b  = int2( 4, 4 );
+
+	int2 answer = a >> b;
+
+	TEMPER_EXPECT_TRUE( answer == int2( 1, 1 ) );
+
+	TEMPER_PASS();
+}
+
+TEMPER_TEST( TestBitwiseUnary_int2 ) {
+	int2 a = int2( 0, 0 );
+
+	int2 answer = ~a;
+
+	TEMPER_EXPECT_TRUE( answer == int2( (int32_t) -1, (int32_t) -1 ) );
 
 	TEMPER_PASS();
 }
@@ -146,6 +211,13 @@ TEMPER_SUITE( Test_int2 ) {
 	TEMPER_RUN_TEST( TestArithmeticDivision_int2 );
 
 	TEMPER_RUN_TEST( TestRelational_int2 );
+
+	TEMPER_RUN_TEST( TestBitwiseAnd_int2 );
+	TEMPER_RUN_TEST( TestBitwiseOr_int2 );
+	TEMPER_RUN_TEST( TestBitwiseXor_int2 );
+	TEMPER_RUN_TEST( TestBitwiseUnary_int2 );
+	TEMPER_RUN_TEST( TestBitwiseShiftLeft_int2 );
+	TEMPER_RUN_TEST( TestBitwiseShiftRight_int2 );
 
 	TEMPER_RUN_TEST( TestLength_int2 );
 	TEMPER_RUN_TEST( TestDot_int2 );

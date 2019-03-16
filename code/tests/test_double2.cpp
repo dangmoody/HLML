@@ -43,6 +43,15 @@ TEMPER_TEST( TestAssignment_double2 ) {
 	TEMPER_PASS();
 }
 
+TEMPER_TEST( TestArray_double2 ) {
+	double2 a = double2( 0.000000, 1.000000 );
+
+	TEMPER_EXPECT_TRUE( a[0] == 0.000000 );
+	TEMPER_EXPECT_TRUE( a[1] == 1.000000 );
+
+	TEMPER_PASS();
+}
+
 TEMPER_TEST( TestArithmeticAddition_double2 ) {
 	double2 a  = double2( 6.000000 );
 	double2 b  = double2( 2.000000, 3.000000 );
@@ -83,15 +92,6 @@ TEMPER_TEST( TestArithmeticDivision_double2 ) {
 	double2 c = a / b;
 
 	TEMPER_EXPECT_TRUE( c == double2( 3.000000, 3.000000 ) );
-
-	TEMPER_PASS();
-}
-
-TEMPER_TEST( TestArray_double2 ) {
-	double2 a = double2( 0.000000, 1.000000 );
-
-	TEMPER_EXPECT_TRUE( a[0] == 0.000000 );
-	TEMPER_EXPECT_TRUE( a[1] == 1.000000 );
 
 	TEMPER_PASS();
 }

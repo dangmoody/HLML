@@ -143,6 +143,123 @@ bool2 operator>=( const int2& lhs, const int2& rhs ) {
 	);
 }
 
+int2 operator&( const int2& lhs, const int32_t& rhs ) {
+	return int2(
+		lhs.x & rhs,
+		lhs.y & rhs
+	);
+}
+
+int2 operator&=( int2& lhs, const int32_t& rhs ) {
+	return ( lhs = lhs & rhs );
+}
+
+int2 operator&( const int2& lhs, const int2& rhs ) {
+	return int2(
+		lhs.x & rhs.x,
+		lhs.y & rhs.y
+	);
+}
+
+int2 operator&=( int2& lhs, const int2& rhs ) {
+	return ( lhs = lhs & rhs );
+}
+
+int2 operator|( const int2& lhs, const int32_t& rhs ) {
+	return int2(
+		lhs.x | rhs,
+		lhs.y | rhs
+	);
+}
+
+int2 operator|=( int2& lhs, const int32_t& rhs ) {
+	return ( lhs = lhs | rhs );
+}
+
+int2 operator|( const int2& lhs, const int2& rhs ) {
+	return int2(
+		lhs.x | rhs.x,
+		lhs.y | rhs.y
+	);
+}
+
+int2 operator|=( int2& lhs, const int2& rhs ) {
+	return ( lhs = lhs | rhs );
+}
+
+int2 operator^( const int2& lhs, const int32_t& rhs ) {
+	return int2(
+		lhs.x ^ rhs,
+		lhs.y ^ rhs
+	);
+}
+
+int2 operator^=( int2& lhs, const int32_t& rhs ) {
+	return ( lhs = lhs ^ rhs );
+}
+
+int2 operator^( const int2& lhs, const int2& rhs ) {
+	return int2(
+		lhs.x ^ rhs.x,
+		lhs.y ^ rhs.y
+	);
+}
+
+int2 operator^=( int2& lhs, const int2& rhs ) {
+	return ( lhs = lhs ^ rhs );
+}
+
+int2 operator<<( const int2& lhs, const int32_t& rhs ) {
+	return int2(
+		lhs.x << rhs,
+		lhs.y << rhs
+	);
+}
+
+int2 operator<<=( int2& lhs, const int32_t& rhs ) {
+	return ( lhs = lhs << rhs );
+}
+
+int2 operator<<( const int2& lhs, const int2& rhs ) {
+	return int2(
+		lhs.x << rhs.x,
+		lhs.y << rhs.y
+	);
+}
+
+int2 operator<<=( int2& lhs, const int2& rhs ) {
+	return ( lhs = lhs << rhs );
+}
+
+int2 operator>>( const int2& lhs, const int32_t& rhs ) {
+	return int2(
+		lhs.x >> rhs,
+		lhs.y >> rhs
+	);
+}
+
+int2 operator>>=( int2& lhs, const int32_t& rhs ) {
+	return ( lhs = lhs >> rhs );
+}
+
+int2 operator>>( const int2& lhs, const int2& rhs ) {
+	return int2(
+		lhs.x >> rhs.x,
+		lhs.y >> rhs.y
+	);
+}
+
+int2 operator>>=( int2& lhs, const int2& rhs ) {
+	return ( lhs = lhs >> rhs );
+}
+
+int2 operator~( const int2& lhs ) {
+	return int2(
+		~lhs.x,
+		~lhs.y
+	);
+}
+
 
 // int3
 int3 operator+( const int3& lhs, const int32_t rhs ) {
@@ -270,6 +387,134 @@ bool3 operator>=( const int3& lhs, const int3& rhs ) {
 		lhs.x >= rhs.x,
 		lhs.y >= rhs.y,
 		lhs.z >= rhs.z
+	);
+}
+
+int3 operator&( const int3& lhs, const int32_t& rhs ) {
+	return int3(
+		lhs.x & rhs,
+		lhs.y & rhs,
+		lhs.z & rhs
+	);
+}
+
+int3 operator&=( int3& lhs, const int32_t& rhs ) {
+	return ( lhs = lhs & rhs );
+}
+
+int3 operator&( const int3& lhs, const int3& rhs ) {
+	return int3(
+		lhs.x & rhs.x,
+		lhs.y & rhs.y,
+		lhs.z & rhs.z
+	);
+}
+
+int3 operator&=( int3& lhs, const int3& rhs ) {
+	return ( lhs = lhs & rhs );
+}
+
+int3 operator|( const int3& lhs, const int32_t& rhs ) {
+	return int3(
+		lhs.x | rhs,
+		lhs.y | rhs,
+		lhs.z | rhs
+	);
+}
+
+int3 operator|=( int3& lhs, const int32_t& rhs ) {
+	return ( lhs = lhs | rhs );
+}
+
+int3 operator|( const int3& lhs, const int3& rhs ) {
+	return int3(
+		lhs.x | rhs.x,
+		lhs.y | rhs.y,
+		lhs.z | rhs.z
+	);
+}
+
+int3 operator|=( int3& lhs, const int3& rhs ) {
+	return ( lhs = lhs | rhs );
+}
+
+int3 operator^( const int3& lhs, const int32_t& rhs ) {
+	return int3(
+		lhs.x ^ rhs,
+		lhs.y ^ rhs,
+		lhs.z ^ rhs
+	);
+}
+
+int3 operator^=( int3& lhs, const int32_t& rhs ) {
+	return ( lhs = lhs ^ rhs );
+}
+
+int3 operator^( const int3& lhs, const int3& rhs ) {
+	return int3(
+		lhs.x ^ rhs.x,
+		lhs.y ^ rhs.y,
+		lhs.z ^ rhs.z
+	);
+}
+
+int3 operator^=( int3& lhs, const int3& rhs ) {
+	return ( lhs = lhs ^ rhs );
+}
+
+int3 operator<<( const int3& lhs, const int32_t& rhs ) {
+	return int3(
+		lhs.x << rhs,
+		lhs.y << rhs,
+		lhs.z << rhs
+	);
+}
+
+int3 operator<<=( int3& lhs, const int32_t& rhs ) {
+	return ( lhs = lhs << rhs );
+}
+
+int3 operator<<( const int3& lhs, const int3& rhs ) {
+	return int3(
+		lhs.x << rhs.x,
+		lhs.y << rhs.y,
+		lhs.z << rhs.z
+	);
+}
+
+int3 operator<<=( int3& lhs, const int3& rhs ) {
+	return ( lhs = lhs << rhs );
+}
+
+int3 operator>>( const int3& lhs, const int32_t& rhs ) {
+	return int3(
+		lhs.x >> rhs,
+		lhs.y >> rhs,
+		lhs.z >> rhs
+	);
+}
+
+int3 operator>>=( int3& lhs, const int32_t& rhs ) {
+	return ( lhs = lhs >> rhs );
+}
+
+int3 operator>>( const int3& lhs, const int3& rhs ) {
+	return int3(
+		lhs.x >> rhs.x,
+		lhs.y >> rhs.y,
+		lhs.z >> rhs.z
+	);
+}
+
+int3 operator>>=( int3& lhs, const int3& rhs ) {
+	return ( lhs = lhs >> rhs );
+}
+
+int3 operator~( const int3& lhs ) {
+	return int3(
+		~lhs.x,
+		~lhs.y,
+		~lhs.z
 	);
 }
 
@@ -415,6 +660,145 @@ bool4 operator>=( const int4& lhs, const int4& rhs ) {
 	);
 }
 
+int4 operator&( const int4& lhs, const int32_t& rhs ) {
+	return int4(
+		lhs.x & rhs,
+		lhs.y & rhs,
+		lhs.z & rhs,
+		lhs.w & rhs
+	);
+}
+
+int4 operator&=( int4& lhs, const int32_t& rhs ) {
+	return ( lhs = lhs & rhs );
+}
+
+int4 operator&( const int4& lhs, const int4& rhs ) {
+	return int4(
+		lhs.x & rhs.x,
+		lhs.y & rhs.y,
+		lhs.z & rhs.z,
+		lhs.w & rhs.w
+	);
+}
+
+int4 operator&=( int4& lhs, const int4& rhs ) {
+	return ( lhs = lhs & rhs );
+}
+
+int4 operator|( const int4& lhs, const int32_t& rhs ) {
+	return int4(
+		lhs.x | rhs,
+		lhs.y | rhs,
+		lhs.z | rhs,
+		lhs.w | rhs
+	);
+}
+
+int4 operator|=( int4& lhs, const int32_t& rhs ) {
+	return ( lhs = lhs | rhs );
+}
+
+int4 operator|( const int4& lhs, const int4& rhs ) {
+	return int4(
+		lhs.x | rhs.x,
+		lhs.y | rhs.y,
+		lhs.z | rhs.z,
+		lhs.w | rhs.w
+	);
+}
+
+int4 operator|=( int4& lhs, const int4& rhs ) {
+	return ( lhs = lhs | rhs );
+}
+
+int4 operator^( const int4& lhs, const int32_t& rhs ) {
+	return int4(
+		lhs.x ^ rhs,
+		lhs.y ^ rhs,
+		lhs.z ^ rhs,
+		lhs.w ^ rhs
+	);
+}
+
+int4 operator^=( int4& lhs, const int32_t& rhs ) {
+	return ( lhs = lhs ^ rhs );
+}
+
+int4 operator^( const int4& lhs, const int4& rhs ) {
+	return int4(
+		lhs.x ^ rhs.x,
+		lhs.y ^ rhs.y,
+		lhs.z ^ rhs.z,
+		lhs.w ^ rhs.w
+	);
+}
+
+int4 operator^=( int4& lhs, const int4& rhs ) {
+	return ( lhs = lhs ^ rhs );
+}
+
+int4 operator<<( const int4& lhs, const int32_t& rhs ) {
+	return int4(
+		lhs.x << rhs,
+		lhs.y << rhs,
+		lhs.z << rhs,
+		lhs.w << rhs
+	);
+}
+
+int4 operator<<=( int4& lhs, const int32_t& rhs ) {
+	return ( lhs = lhs << rhs );
+}
+
+int4 operator<<( const int4& lhs, const int4& rhs ) {
+	return int4(
+		lhs.x << rhs.x,
+		lhs.y << rhs.y,
+		lhs.z << rhs.z,
+		lhs.w << rhs.w
+	);
+}
+
+int4 operator<<=( int4& lhs, const int4& rhs ) {
+	return ( lhs = lhs << rhs );
+}
+
+int4 operator>>( const int4& lhs, const int32_t& rhs ) {
+	return int4(
+		lhs.x >> rhs,
+		lhs.y >> rhs,
+		lhs.z >> rhs,
+		lhs.w >> rhs
+	);
+}
+
+int4 operator>>=( int4& lhs, const int32_t& rhs ) {
+	return ( lhs = lhs >> rhs );
+}
+
+int4 operator>>( const int4& lhs, const int4& rhs ) {
+	return int4(
+		lhs.x >> rhs.x,
+		lhs.y >> rhs.y,
+		lhs.z >> rhs.z,
+		lhs.w >> rhs.w
+	);
+}
+
+int4 operator>>=( int4& lhs, const int4& rhs ) {
+	return ( lhs = lhs >> rhs );
+}
+
+int4 operator~( const int4& lhs ) {
+	return int4(
+		~lhs.x,
+		~lhs.y,
+		~lhs.z,
+		~lhs.w
+	);
+}
+
 
 // uint2
 uint2 operator+( const uint2& lhs, const uint32_t rhs ) {
@@ -530,6 +914,123 @@ bool2 operator>=( const uint2& lhs, const uint2& rhs ) {
 	return bool2(
 		lhs.x >= rhs.x,
 		lhs.y >= rhs.y
+	);
+}
+
+uint2 operator&( const uint2& lhs, const uint32_t& rhs ) {
+	return uint2(
+		lhs.x & rhs,
+		lhs.y & rhs
+	);
+}
+
+uint2 operator&=( uint2& lhs, const uint32_t& rhs ) {
+	return ( lhs = lhs & rhs );
+}
+
+uint2 operator&( const uint2& lhs, const uint2& rhs ) {
+	return uint2(
+		lhs.x & rhs.x,
+		lhs.y & rhs.y
+	);
+}
+
+uint2 operator&=( uint2& lhs, const uint2& rhs ) {
+	return ( lhs = lhs & rhs );
+}
+
+uint2 operator|( const uint2& lhs, const uint32_t& rhs ) {
+	return uint2(
+		lhs.x | rhs,
+		lhs.y | rhs
+	);
+}
+
+uint2 operator|=( uint2& lhs, const uint32_t& rhs ) {
+	return ( lhs = lhs | rhs );
+}
+
+uint2 operator|( const uint2& lhs, const uint2& rhs ) {
+	return uint2(
+		lhs.x | rhs.x,
+		lhs.y | rhs.y
+	);
+}
+
+uint2 operator|=( uint2& lhs, const uint2& rhs ) {
+	return ( lhs = lhs | rhs );
+}
+
+uint2 operator^( const uint2& lhs, const uint32_t& rhs ) {
+	return uint2(
+		lhs.x ^ rhs,
+		lhs.y ^ rhs
+	);
+}
+
+uint2 operator^=( uint2& lhs, const uint32_t& rhs ) {
+	return ( lhs = lhs ^ rhs );
+}
+
+uint2 operator^( const uint2& lhs, const uint2& rhs ) {
+	return uint2(
+		lhs.x ^ rhs.x,
+		lhs.y ^ rhs.y
+	);
+}
+
+uint2 operator^=( uint2& lhs, const uint2& rhs ) {
+	return ( lhs = lhs ^ rhs );
+}
+
+uint2 operator<<( const uint2& lhs, const uint32_t& rhs ) {
+	return uint2(
+		lhs.x << rhs,
+		lhs.y << rhs
+	);
+}
+
+uint2 operator<<=( uint2& lhs, const uint32_t& rhs ) {
+	return ( lhs = lhs << rhs );
+}
+
+uint2 operator<<( const uint2& lhs, const uint2& rhs ) {
+	return uint2(
+		lhs.x << rhs.x,
+		lhs.y << rhs.y
+	);
+}
+
+uint2 operator<<=( uint2& lhs, const uint2& rhs ) {
+	return ( lhs = lhs << rhs );
+}
+
+uint2 operator>>( const uint2& lhs, const uint32_t& rhs ) {
+	return uint2(
+		lhs.x >> rhs,
+		lhs.y >> rhs
+	);
+}
+
+uint2 operator>>=( uint2& lhs, const uint32_t& rhs ) {
+	return ( lhs = lhs >> rhs );
+}
+
+uint2 operator>>( const uint2& lhs, const uint2& rhs ) {
+	return uint2(
+		lhs.x >> rhs.x,
+		lhs.y >> rhs.y
+	);
+}
+
+uint2 operator>>=( uint2& lhs, const uint2& rhs ) {
+	return ( lhs = lhs >> rhs );
+}
+
+uint2 operator~( const uint2& lhs ) {
+	return uint2(
+		~lhs.x,
+		~lhs.y
 	);
 }
 
@@ -660,6 +1161,134 @@ bool3 operator>=( const uint3& lhs, const uint3& rhs ) {
 		lhs.x >= rhs.x,
 		lhs.y >= rhs.y,
 		lhs.z >= rhs.z
+	);
+}
+
+uint3 operator&( const uint3& lhs, const uint32_t& rhs ) {
+	return uint3(
+		lhs.x & rhs,
+		lhs.y & rhs,
+		lhs.z & rhs
+	);
+}
+
+uint3 operator&=( uint3& lhs, const uint32_t& rhs ) {
+	return ( lhs = lhs & rhs );
+}
+
+uint3 operator&( const uint3& lhs, const uint3& rhs ) {
+	return uint3(
+		lhs.x & rhs.x,
+		lhs.y & rhs.y,
+		lhs.z & rhs.z
+	);
+}
+
+uint3 operator&=( uint3& lhs, const uint3& rhs ) {
+	return ( lhs = lhs & rhs );
+}
+
+uint3 operator|( const uint3& lhs, const uint32_t& rhs ) {
+	return uint3(
+		lhs.x | rhs,
+		lhs.y | rhs,
+		lhs.z | rhs
+	);
+}
+
+uint3 operator|=( uint3& lhs, const uint32_t& rhs ) {
+	return ( lhs = lhs | rhs );
+}
+
+uint3 operator|( const uint3& lhs, const uint3& rhs ) {
+	return uint3(
+		lhs.x | rhs.x,
+		lhs.y | rhs.y,
+		lhs.z | rhs.z
+	);
+}
+
+uint3 operator|=( uint3& lhs, const uint3& rhs ) {
+	return ( lhs = lhs | rhs );
+}
+
+uint3 operator^( const uint3& lhs, const uint32_t& rhs ) {
+	return uint3(
+		lhs.x ^ rhs,
+		lhs.y ^ rhs,
+		lhs.z ^ rhs
+	);
+}
+
+uint3 operator^=( uint3& lhs, const uint32_t& rhs ) {
+	return ( lhs = lhs ^ rhs );
+}
+
+uint3 operator^( const uint3& lhs, const uint3& rhs ) {
+	return uint3(
+		lhs.x ^ rhs.x,
+		lhs.y ^ rhs.y,
+		lhs.z ^ rhs.z
+	);
+}
+
+uint3 operator^=( uint3& lhs, const uint3& rhs ) {
+	return ( lhs = lhs ^ rhs );
+}
+
+uint3 operator<<( const uint3& lhs, const uint32_t& rhs ) {
+	return uint3(
+		lhs.x << rhs,
+		lhs.y << rhs,
+		lhs.z << rhs
+	);
+}
+
+uint3 operator<<=( uint3& lhs, const uint32_t& rhs ) {
+	return ( lhs = lhs << rhs );
+}
+
+uint3 operator<<( const uint3& lhs, const uint3& rhs ) {
+	return uint3(
+		lhs.x << rhs.x,
+		lhs.y << rhs.y,
+		lhs.z << rhs.z
+	);
+}
+
+uint3 operator<<=( uint3& lhs, const uint3& rhs ) {
+	return ( lhs = lhs << rhs );
+}
+
+uint3 operator>>( const uint3& lhs, const uint32_t& rhs ) {
+	return uint3(
+		lhs.x >> rhs,
+		lhs.y >> rhs,
+		lhs.z >> rhs
+	);
+}
+
+uint3 operator>>=( uint3& lhs, const uint32_t& rhs ) {
+	return ( lhs = lhs >> rhs );
+}
+
+uint3 operator>>( const uint3& lhs, const uint3& rhs ) {
+	return uint3(
+		lhs.x >> rhs.x,
+		lhs.y >> rhs.y,
+		lhs.z >> rhs.z
+	);
+}
+
+uint3 operator>>=( uint3& lhs, const uint3& rhs ) {
+	return ( lhs = lhs >> rhs );
+}
+
+uint3 operator~( const uint3& lhs ) {
+	return uint3(
+		~lhs.x,
+		~lhs.y,
+		~lhs.z
 	);
 }
 
@@ -802,6 +1431,145 @@ bool4 operator>=( const uint4& lhs, const uint4& rhs ) {
 		lhs.y >= rhs.y,
 		lhs.z >= rhs.z,
 		lhs.w >= rhs.w
+	);
+}
+
+uint4 operator&( const uint4& lhs, const uint32_t& rhs ) {
+	return uint4(
+		lhs.x & rhs,
+		lhs.y & rhs,
+		lhs.z & rhs,
+		lhs.w & rhs
+	);
+}
+
+uint4 operator&=( uint4& lhs, const uint32_t& rhs ) {
+	return ( lhs = lhs & rhs );
+}
+
+uint4 operator&( const uint4& lhs, const uint4& rhs ) {
+	return uint4(
+		lhs.x & rhs.x,
+		lhs.y & rhs.y,
+		lhs.z & rhs.z,
+		lhs.w & rhs.w
+	);
+}
+
+uint4 operator&=( uint4& lhs, const uint4& rhs ) {
+	return ( lhs = lhs & rhs );
+}
+
+uint4 operator|( const uint4& lhs, const uint32_t& rhs ) {
+	return uint4(
+		lhs.x | rhs,
+		lhs.y | rhs,
+		lhs.z | rhs,
+		lhs.w | rhs
+	);
+}
+
+uint4 operator|=( uint4& lhs, const uint32_t& rhs ) {
+	return ( lhs = lhs | rhs );
+}
+
+uint4 operator|( const uint4& lhs, const uint4& rhs ) {
+	return uint4(
+		lhs.x | rhs.x,
+		lhs.y | rhs.y,
+		lhs.z | rhs.z,
+		lhs.w | rhs.w
+	);
+}
+
+uint4 operator|=( uint4& lhs, const uint4& rhs ) {
+	return ( lhs = lhs | rhs );
+}
+
+uint4 operator^( const uint4& lhs, const uint32_t& rhs ) {
+	return uint4(
+		lhs.x ^ rhs,
+		lhs.y ^ rhs,
+		lhs.z ^ rhs,
+		lhs.w ^ rhs
+	);
+}
+
+uint4 operator^=( uint4& lhs, const uint32_t& rhs ) {
+	return ( lhs = lhs ^ rhs );
+}
+
+uint4 operator^( const uint4& lhs, const uint4& rhs ) {
+	return uint4(
+		lhs.x ^ rhs.x,
+		lhs.y ^ rhs.y,
+		lhs.z ^ rhs.z,
+		lhs.w ^ rhs.w
+	);
+}
+
+uint4 operator^=( uint4& lhs, const uint4& rhs ) {
+	return ( lhs = lhs ^ rhs );
+}
+
+uint4 operator<<( const uint4& lhs, const uint32_t& rhs ) {
+	return uint4(
+		lhs.x << rhs,
+		lhs.y << rhs,
+		lhs.z << rhs,
+		lhs.w << rhs
+	);
+}
+
+uint4 operator<<=( uint4& lhs, const uint32_t& rhs ) {
+	return ( lhs = lhs << rhs );
+}
+
+uint4 operator<<( const uint4& lhs, const uint4& rhs ) {
+	return uint4(
+		lhs.x << rhs.x,
+		lhs.y << rhs.y,
+		lhs.z << rhs.z,
+		lhs.w << rhs.w
+	);
+}
+
+uint4 operator<<=( uint4& lhs, const uint4& rhs ) {
+	return ( lhs = lhs << rhs );
+}
+
+uint4 operator>>( const uint4& lhs, const uint32_t& rhs ) {
+	return uint4(
+		lhs.x >> rhs,
+		lhs.y >> rhs,
+		lhs.z >> rhs,
+		lhs.w >> rhs
+	);
+}
+
+uint4 operator>>=( uint4& lhs, const uint32_t& rhs ) {
+	return ( lhs = lhs >> rhs );
+}
+
+uint4 operator>>( const uint4& lhs, const uint4& rhs ) {
+	return uint4(
+		lhs.x >> rhs.x,
+		lhs.y >> rhs.y,
+		lhs.z >> rhs.z,
+		lhs.w >> rhs.w
+	);
+}
+
+uint4 operator>>=( uint4& lhs, const uint4& rhs ) {
+	return ( lhs = lhs >> rhs );
+}
+
+uint4 operator~( const uint4& lhs ) {
+	return uint4(
+		~lhs.x,
+		~lhs.y,
+		~lhs.z,
+		~lhs.w
 	);
 }
 

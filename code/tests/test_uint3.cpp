@@ -43,6 +43,16 @@ TEMPER_TEST( TestAssignment_uint3 ) {
 	TEMPER_PASS();
 }
 
+TEMPER_TEST( TestArray_uint3 ) {
+	uint3 a = uint3( 0, 1, 2 );
+
+	TEMPER_EXPECT_TRUE( a[0] == 0 );
+	TEMPER_EXPECT_TRUE( a[1] == 1 );
+	TEMPER_EXPECT_TRUE( a[2] == 2 );
+
+	TEMPER_PASS();
+}
+
 TEMPER_TEST( TestArithmeticAddition_uint3 ) {
 	uint3 a  = uint3( 6 );
 	uint3 b  = uint3( 2, 3, 4 );
@@ -87,16 +97,6 @@ TEMPER_TEST( TestArithmeticDivision_uint3 ) {
 	TEMPER_PASS();
 }
 
-TEMPER_TEST( TestArray_uint3 ) {
-	uint3 a = uint3( 0, 1, 2 );
-
-	TEMPER_EXPECT_TRUE( a[0] == 0 );
-	TEMPER_EXPECT_TRUE( a[1] == 1 );
-	TEMPER_EXPECT_TRUE( a[2] == 2 );
-
-	TEMPER_PASS();
-}
-
 TEMPER_TEST( TestRelational_uint3 ) {
 	uint3 vec0 = uint3( 0, 0, 0 );
 	uint3 vec1 = uint3( 1, 1, 1 );
@@ -129,6 +129,71 @@ TEMPER_TEST( TestRelational_uint3 ) {
 	TEMPER_PASS();
 }
 
+TEMPER_TEST( TestBitwiseAnd_uint3 ) {
+	uint3 a  = uint3( 21, 21, 21 );
+	uint3 b  = uint3( 7, 7, 7 );
+
+	uint3 answer = a & b;
+
+	TEMPER_EXPECT_TRUE( answer == uint3( 5, 5, 5 ) );
+
+	TEMPER_PASS();
+}
+
+TEMPER_TEST( TestBitwiseOr_uint3 ) {
+	uint3 a  = uint3( 21, 21, 21 );
+	uint3 b  = uint3( 7, 7, 7 );
+
+	uint3 answer = a | b;
+
+	TEMPER_EXPECT_TRUE( answer == uint3( 23, 23, 23 ) );
+
+	TEMPER_PASS();
+}
+
+TEMPER_TEST( TestBitwiseXor_uint3 ) {
+	uint3 a  = uint3( 21, 21, 21 );
+	uint3 b  = uint3( 7, 7, 7 );
+
+	uint3 answer = a ^ b;
+
+	TEMPER_EXPECT_TRUE( answer == uint3( 18, 18, 18 ) );
+
+	TEMPER_PASS();
+}
+
+TEMPER_TEST( TestBitwiseShiftLeft_uint3 ) {
+	uint3 a  = uint3( 1, 1, 1 );
+	uint3 b  = uint3( 2, 2, 2 );
+
+	uint3 answer = a << b;
+
+	TEMPER_EXPECT_TRUE( answer == uint3( 4, 4, 4 ) );
+
+	TEMPER_PASS();
+}
+
+TEMPER_TEST( TestBitwiseShiftRight_uint3 ) {
+	uint3 a  = uint3( 16, 16, 16 );
+	uint3 b  = uint3( 4, 4, 4 );
+
+	uint3 answer = a >> b;
+
+	TEMPER_EXPECT_TRUE( answer == uint3( 1, 1, 1 ) );
+
+	TEMPER_PASS();
+}
+
+TEMPER_TEST( TestBitwiseUnary_uint3 ) {
+	uint3 a = uint3( 0, 0, 0 );
+
+	uint3 answer = ~a;
+
+	TEMPER_EXPECT_TRUE( answer == uint3( (uint32_t) -1, (uint32_t) -1, (uint32_t) -1 ) );
+
+	TEMPER_PASS();
+}
+
 TEMPER_TEST( TestLength_uint3 ) {
 	uint3 vec = uint3( 2 );
 
@@ -148,6 +213,13 @@ TEMPER_SUITE( Test_uint3 ) {
 	TEMPER_RUN_TEST( TestArithmeticDivision_uint3 );
 
 	TEMPER_RUN_TEST( TestRelational_uint3 );
+
+	TEMPER_RUN_TEST( TestBitwiseAnd_uint3 );
+	TEMPER_RUN_TEST( TestBitwiseOr_uint3 );
+	TEMPER_RUN_TEST( TestBitwiseXor_uint3 );
+	TEMPER_RUN_TEST( TestBitwiseUnary_uint3 );
+	TEMPER_RUN_TEST( TestBitwiseShiftLeft_uint3 );
+	TEMPER_RUN_TEST( TestBitwiseShiftRight_uint3 );
 
 	TEMPER_RUN_TEST( TestLength_uint3 );
 };

@@ -69,6 +69,17 @@ enum genOpRelational_t {
 	GEN_OP_RELATIONAL_COUNT
 };
 
+enum genOpBitwise_t {
+	GEN_OP_BITWISE_AND					= 0,
+	GEN_OP_BITWISE_OR,
+	GEN_OP_BITWISE_XOR,
+	GEN_OP_BITWISE_UNARY,
+	GEN_OP_BITWISE_SHIFT_LEFT,
+	GEN_OP_BITWISE_SHIFT_RIGHT,
+
+	GEN_OP_BITWISE_COUNT
+};
+
 
 const std::string GEN_FILE_HEADER = \
 "/*\n" \
@@ -102,11 +113,20 @@ const std::string GEN_COMPONENT_NAMES_VECTOR	= "xyzw";
 const std::string GEN_COMPONENT_NAMES_COLOR		= "rgba";
 const std::string GEN_OPERATORS_ARITHMETIC		= "+-*/";
 
-const std::string GEN_OPERATORS_RELATIONAL[4] = {
+const std::string GEN_OPERATORS_RELATIONAL[GEN_OP_RELATIONAL_COUNT] = {
 	"<",
 	"<=",
 	">",
 	">=",
+};
+
+const std::string GEN_OPERATORS_BITWISE[GEN_OP_BITWISE_COUNT] = {
+	"&",
+	"|",
+	"^",
+	"~",
+	"<<",
+	">>"
 };
 
 inline std::string	Gen_GetTypeString( const genType_t type );

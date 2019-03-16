@@ -112,6 +112,89 @@ inline bool2 operator>( const int2& lhs, const int2& rhs );
 /// \brief Returns a bool2 where each component is true if the component of the left-hand type is greater than or equal to the corresponding right-hand type component.
 inline bool2 operator>=( const int2& lhs, const int2& rhs );
 
+/// \relates int2
+/// \brief Returns a copy of the int2 where each component has been bitwise AND'd against the given scalar value.
+inline int2 operator&( const int2& lhs, const int32_t& rhs );
+
+/// \relates int2
+/// \brief Performs a bitwise AND on the given left-hand int2 against the given scalar value.
+inline int2 operator&=( int2& lhs, const int32_t& rhs );
+
+/// \relates int2
+/// \brief Returns a copy of the int2 where each component of the left-hand int2 has been bitwise AND'd against the corresponding component of the right-hand side int2.
+inline int2 operator&( const int2& lhs, const int2& rhs );
+
+/// \relates int2
+/// \brief Performs a bitwise AND on the given left-hand int2 against the corresponding component of the given right-hand int2.
+inline int2 operator&=( int2& lhs, const int2& rhs );
+
+/// \relates int2
+/// \brief Returns a copy of the int2 where each component has been bitwise OR'd against the given scalar value.
+inline int2 operator|( const int2& lhs, const int32_t& rhs );
+
+/// \relates int2
+/// \brief Performs a bitwise OR on the given left-hand int2 against the given scalar value.
+inline int2 operator|=( int2& lhs, const int32_t& rhs );
+
+/// \relates int2
+/// \brief Returns a copy of the int2 where each component of the left-hand int2 has been bitwise OR'd against the corresponding component of the right-hand side int2.
+inline int2 operator|( const int2& lhs, const int2& rhs );
+
+/// \relates int2
+/// \brief Performs a bitwise OR on the given left-hand int2 against the corresponding component of the given right-hand int2.
+inline int2 operator|=( int2& lhs, const int2& rhs );
+
+/// \relates int2
+/// \brief Returns a copy of the int2 where each component has been bitwise XOR'd against the given scalar value.
+inline int2 operator^( const int2& lhs, const int32_t& rhs );
+
+/// \relates int2
+/// \brief Performs a bitwise XOR on the given left-hand int2 against the given scalar value.
+inline int2 operator^=( int2& lhs, const int32_t& rhs );
+
+/// \relates int2
+/// \brief Returns a copy of the int2 where each component of the left-hand int2 has been bitwise XOR'd against the corresponding component of the right-hand side int2.
+inline int2 operator^( const int2& lhs, const int2& rhs );
+
+/// \relates int2
+/// \brief Performs a bitwise XOR on the given left-hand int2 against the corresponding component of the given right-hand int2.
+inline int2 operator^=( int2& lhs, const int2& rhs );
+
+/// \relates int2
+/// \brief Returns a copy of the int2 where each component has been bitwise left-shifted by the given scalar value.
+inline int2 operator<<( const int2& lhs, const int32_t& rhs );
+
+/// \relates int2
+/// \brief Performs a left bitshift on the given left-hand int2 by the given scalar value.
+inline int2 operator<<=( int2& lhs, const int32_t& rhs );
+
+/// \relates int2
+/// \brief Returns a copy of the int2 where each component of the left-hand int2 has been bitwise left-shifted by the corresponding component of the right-hand side int2.
+inline int2 operator<<( const int2& lhs, const int2& rhs );
+
+/// \relates int2
+/// \brief Performs a left bitshift on the given left-hand int2 by the corresponding component of the given right-hand int2.
+inline int2 operator<<=( int2& lhs, const int2& rhs );
+
+/// \relates int2
+/// \brief Returns a copy of the int2 where each component has been bitwise right-shifted by the given scalar value.
+inline int2 operator>>( const int2& lhs, const int32_t& rhs );
+
+/// \relates int2
+/// \brief Performs a right bitshift on the given left-hand int2 by the given scalar value.
+inline int2 operator>>=( int2& lhs, const int32_t& rhs );
+
+/// \relates int2
+/// \brief Returns a copy of the int2 where each component of the left-hand int2 has been bitwise right-shifted by the corresponding component of the right-hand side int2.
+inline int2 operator>>( const int2& lhs, const int2& rhs );
+
+/// \relates int2
+/// \brief Performs a right bitshift on the given left-hand int2 by the corresponding component of the given right-hand int2.
+inline int2 operator>>=( int2& lhs, const int2& rhs );
+
+/// \relates int2
+/// \brief Performs a unary bitwise operation on all components of the given int2.
+inline int2 operator~( const int2& lhs );
 
 // int3
 /// \relates int3
@@ -186,6 +269,89 @@ inline bool3 operator>( const int3& lhs, const int3& rhs );
 /// \brief Returns a bool3 where each component is true if the component of the left-hand type is greater than or equal to the corresponding right-hand type component.
 inline bool3 operator>=( const int3& lhs, const int3& rhs );
 
+/// \relates int3
+/// \brief Returns a copy of the int3 where each component has been bitwise AND'd against the given scalar value.
+inline int3 operator&( const int3& lhs, const int32_t& rhs );
+
+/// \relates int3
+/// \brief Performs a bitwise AND on the given left-hand int3 against the given scalar value.
+inline int3 operator&=( int3& lhs, const int32_t& rhs );
+
+/// \relates int3
+/// \brief Returns a copy of the int3 where each component of the left-hand int3 has been bitwise AND'd against the corresponding component of the right-hand side int3.
+inline int3 operator&( const int3& lhs, const int3& rhs );
+
+/// \relates int3
+/// \brief Performs a bitwise AND on the given left-hand int3 against the corresponding component of the given right-hand int3.
+inline int3 operator&=( int3& lhs, const int3& rhs );
+
+/// \relates int3
+/// \brief Returns a copy of the int3 where each component has been bitwise OR'd against the given scalar value.
+inline int3 operator|( const int3& lhs, const int32_t& rhs );
+
+/// \relates int3
+/// \brief Performs a bitwise OR on the given left-hand int3 against the given scalar value.
+inline int3 operator|=( int3& lhs, const int32_t& rhs );
+
+/// \relates int3
+/// \brief Returns a copy of the int3 where each component of the left-hand int3 has been bitwise OR'd against the corresponding component of the right-hand side int3.
+inline int3 operator|( const int3& lhs, const int3& rhs );
+
+/// \relates int3
+/// \brief Performs a bitwise OR on the given left-hand int3 against the corresponding component of the given right-hand int3.
+inline int3 operator|=( int3& lhs, const int3& rhs );
+
+/// \relates int3
+/// \brief Returns a copy of the int3 where each component has been bitwise XOR'd against the given scalar value.
+inline int3 operator^( const int3& lhs, const int32_t& rhs );
+
+/// \relates int3
+/// \brief Performs a bitwise XOR on the given left-hand int3 against the given scalar value.
+inline int3 operator^=( int3& lhs, const int32_t& rhs );
+
+/// \relates int3
+/// \brief Returns a copy of the int3 where each component of the left-hand int3 has been bitwise XOR'd against the corresponding component of the right-hand side int3.
+inline int3 operator^( const int3& lhs, const int3& rhs );
+
+/// \relates int3
+/// \brief Performs a bitwise XOR on the given left-hand int3 against the corresponding component of the given right-hand int3.
+inline int3 operator^=( int3& lhs, const int3& rhs );
+
+/// \relates int3
+/// \brief Returns a copy of the int3 where each component has been bitwise left-shifted by the given scalar value.
+inline int3 operator<<( const int3& lhs, const int32_t& rhs );
+
+/// \relates int3
+/// \brief Performs a left bitshift on the given left-hand int3 by the given scalar value.
+inline int3 operator<<=( int3& lhs, const int32_t& rhs );
+
+/// \relates int3
+/// \brief Returns a copy of the int3 where each component of the left-hand int3 has been bitwise left-shifted by the corresponding component of the right-hand side int3.
+inline int3 operator<<( const int3& lhs, const int3& rhs );
+
+/// \relates int3
+/// \brief Performs a left bitshift on the given left-hand int3 by the corresponding component of the given right-hand int3.
+inline int3 operator<<=( int3& lhs, const int3& rhs );
+
+/// \relates int3
+/// \brief Returns a copy of the int3 where each component has been bitwise right-shifted by the given scalar value.
+inline int3 operator>>( const int3& lhs, const int32_t& rhs );
+
+/// \relates int3
+/// \brief Performs a right bitshift on the given left-hand int3 by the given scalar value.
+inline int3 operator>>=( int3& lhs, const int32_t& rhs );
+
+/// \relates int3
+/// \brief Returns a copy of the int3 where each component of the left-hand int3 has been bitwise right-shifted by the corresponding component of the right-hand side int3.
+inline int3 operator>>( const int3& lhs, const int3& rhs );
+
+/// \relates int3
+/// \brief Performs a right bitshift on the given left-hand int3 by the corresponding component of the given right-hand int3.
+inline int3 operator>>=( int3& lhs, const int3& rhs );
+
+/// \relates int3
+/// \brief Performs a unary bitwise operation on all components of the given int3.
+inline int3 operator~( const int3& lhs );
 
 // int4
 /// \relates int4
@@ -260,6 +426,89 @@ inline bool4 operator>( const int4& lhs, const int4& rhs );
 /// \brief Returns a bool4 where each component is true if the component of the left-hand type is greater than or equal to the corresponding right-hand type component.
 inline bool4 operator>=( const int4& lhs, const int4& rhs );
 
+/// \relates int4
+/// \brief Returns a copy of the int4 where each component has been bitwise AND'd against the given scalar value.
+inline int4 operator&( const int4& lhs, const int32_t& rhs );
+
+/// \relates int4
+/// \brief Performs a bitwise AND on the given left-hand int4 against the given scalar value.
+inline int4 operator&=( int4& lhs, const int32_t& rhs );
+
+/// \relates int4
+/// \brief Returns a copy of the int4 where each component of the left-hand int4 has been bitwise AND'd against the corresponding component of the right-hand side int4.
+inline int4 operator&( const int4& lhs, const int4& rhs );
+
+/// \relates int4
+/// \brief Performs a bitwise AND on the given left-hand int4 against the corresponding component of the given right-hand int4.
+inline int4 operator&=( int4& lhs, const int4& rhs );
+
+/// \relates int4
+/// \brief Returns a copy of the int4 where each component has been bitwise OR'd against the given scalar value.
+inline int4 operator|( const int4& lhs, const int32_t& rhs );
+
+/// \relates int4
+/// \brief Performs a bitwise OR on the given left-hand int4 against the given scalar value.
+inline int4 operator|=( int4& lhs, const int32_t& rhs );
+
+/// \relates int4
+/// \brief Returns a copy of the int4 where each component of the left-hand int4 has been bitwise OR'd against the corresponding component of the right-hand side int4.
+inline int4 operator|( const int4& lhs, const int4& rhs );
+
+/// \relates int4
+/// \brief Performs a bitwise OR on the given left-hand int4 against the corresponding component of the given right-hand int4.
+inline int4 operator|=( int4& lhs, const int4& rhs );
+
+/// \relates int4
+/// \brief Returns a copy of the int4 where each component has been bitwise XOR'd against the given scalar value.
+inline int4 operator^( const int4& lhs, const int32_t& rhs );
+
+/// \relates int4
+/// \brief Performs a bitwise XOR on the given left-hand int4 against the given scalar value.
+inline int4 operator^=( int4& lhs, const int32_t& rhs );
+
+/// \relates int4
+/// \brief Returns a copy of the int4 where each component of the left-hand int4 has been bitwise XOR'd against the corresponding component of the right-hand side int4.
+inline int4 operator^( const int4& lhs, const int4& rhs );
+
+/// \relates int4
+/// \brief Performs a bitwise XOR on the given left-hand int4 against the corresponding component of the given right-hand int4.
+inline int4 operator^=( int4& lhs, const int4& rhs );
+
+/// \relates int4
+/// \brief Returns a copy of the int4 where each component has been bitwise left-shifted by the given scalar value.
+inline int4 operator<<( const int4& lhs, const int32_t& rhs );
+
+/// \relates int4
+/// \brief Performs a left bitshift on the given left-hand int4 by the given scalar value.
+inline int4 operator<<=( int4& lhs, const int32_t& rhs );
+
+/// \relates int4
+/// \brief Returns a copy of the int4 where each component of the left-hand int4 has been bitwise left-shifted by the corresponding component of the right-hand side int4.
+inline int4 operator<<( const int4& lhs, const int4& rhs );
+
+/// \relates int4
+/// \brief Performs a left bitshift on the given left-hand int4 by the corresponding component of the given right-hand int4.
+inline int4 operator<<=( int4& lhs, const int4& rhs );
+
+/// \relates int4
+/// \brief Returns a copy of the int4 where each component has been bitwise right-shifted by the given scalar value.
+inline int4 operator>>( const int4& lhs, const int32_t& rhs );
+
+/// \relates int4
+/// \brief Performs a right bitshift on the given left-hand int4 by the given scalar value.
+inline int4 operator>>=( int4& lhs, const int32_t& rhs );
+
+/// \relates int4
+/// \brief Returns a copy of the int4 where each component of the left-hand int4 has been bitwise right-shifted by the corresponding component of the right-hand side int4.
+inline int4 operator>>( const int4& lhs, const int4& rhs );
+
+/// \relates int4
+/// \brief Performs a right bitshift on the given left-hand int4 by the corresponding component of the given right-hand int4.
+inline int4 operator>>=( int4& lhs, const int4& rhs );
+
+/// \relates int4
+/// \brief Performs a unary bitwise operation on all components of the given int4.
+inline int4 operator~( const int4& lhs );
 
 // uint2
 /// \relates uint2
@@ -334,6 +583,89 @@ inline bool2 operator>( const uint2& lhs, const uint2& rhs );
 /// \brief Returns a bool2 where each component is true if the component of the left-hand type is greater than or equal to the corresponding right-hand type component.
 inline bool2 operator>=( const uint2& lhs, const uint2& rhs );
 
+/// \relates uint2
+/// \brief Returns a copy of the uint2 where each component has been bitwise AND'd against the given scalar value.
+inline uint2 operator&( const uint2& lhs, const uint32_t& rhs );
+
+/// \relates uint2
+/// \brief Performs a bitwise AND on the given left-hand uint2 against the given scalar value.
+inline uint2 operator&=( uint2& lhs, const uint32_t& rhs );
+
+/// \relates uint2
+/// \brief Returns a copy of the uint2 where each component of the left-hand uint2 has been bitwise AND'd against the corresponding component of the right-hand side uint2.
+inline uint2 operator&( const uint2& lhs, const uint2& rhs );
+
+/// \relates uint2
+/// \brief Performs a bitwise AND on the given left-hand uint2 against the corresponding component of the given right-hand uint2.
+inline uint2 operator&=( uint2& lhs, const uint2& rhs );
+
+/// \relates uint2
+/// \brief Returns a copy of the uint2 where each component has been bitwise OR'd against the given scalar value.
+inline uint2 operator|( const uint2& lhs, const uint32_t& rhs );
+
+/// \relates uint2
+/// \brief Performs a bitwise OR on the given left-hand uint2 against the given scalar value.
+inline uint2 operator|=( uint2& lhs, const uint32_t& rhs );
+
+/// \relates uint2
+/// \brief Returns a copy of the uint2 where each component of the left-hand uint2 has been bitwise OR'd against the corresponding component of the right-hand side uint2.
+inline uint2 operator|( const uint2& lhs, const uint2& rhs );
+
+/// \relates uint2
+/// \brief Performs a bitwise OR on the given left-hand uint2 against the corresponding component of the given right-hand uint2.
+inline uint2 operator|=( uint2& lhs, const uint2& rhs );
+
+/// \relates uint2
+/// \brief Returns a copy of the uint2 where each component has been bitwise XOR'd against the given scalar value.
+inline uint2 operator^( const uint2& lhs, const uint32_t& rhs );
+
+/// \relates uint2
+/// \brief Performs a bitwise XOR on the given left-hand uint2 against the given scalar value.
+inline uint2 operator^=( uint2& lhs, const uint32_t& rhs );
+
+/// \relates uint2
+/// \brief Returns a copy of the uint2 where each component of the left-hand uint2 has been bitwise XOR'd against the corresponding component of the right-hand side uint2.
+inline uint2 operator^( const uint2& lhs, const uint2& rhs );
+
+/// \relates uint2
+/// \brief Performs a bitwise XOR on the given left-hand uint2 against the corresponding component of the given right-hand uint2.
+inline uint2 operator^=( uint2& lhs, const uint2& rhs );
+
+/// \relates uint2
+/// \brief Returns a copy of the uint2 where each component has been bitwise left-shifted by the given scalar value.
+inline uint2 operator<<( const uint2& lhs, const uint32_t& rhs );
+
+/// \relates uint2
+/// \brief Performs a left bitshift on the given left-hand uint2 by the given scalar value.
+inline uint2 operator<<=( uint2& lhs, const uint32_t& rhs );
+
+/// \relates uint2
+/// \brief Returns a copy of the uint2 where each component of the left-hand uint2 has been bitwise left-shifted by the corresponding component of the right-hand side uint2.
+inline uint2 operator<<( const uint2& lhs, const uint2& rhs );
+
+/// \relates uint2
+/// \brief Performs a left bitshift on the given left-hand uint2 by the corresponding component of the given right-hand uint2.
+inline uint2 operator<<=( uint2& lhs, const uint2& rhs );
+
+/// \relates uint2
+/// \brief Returns a copy of the uint2 where each component has been bitwise right-shifted by the given scalar value.
+inline uint2 operator>>( const uint2& lhs, const uint32_t& rhs );
+
+/// \relates uint2
+/// \brief Performs a right bitshift on the given left-hand uint2 by the given scalar value.
+inline uint2 operator>>=( uint2& lhs, const uint32_t& rhs );
+
+/// \relates uint2
+/// \brief Returns a copy of the uint2 where each component of the left-hand uint2 has been bitwise right-shifted by the corresponding component of the right-hand side uint2.
+inline uint2 operator>>( const uint2& lhs, const uint2& rhs );
+
+/// \relates uint2
+/// \brief Performs a right bitshift on the given left-hand uint2 by the corresponding component of the given right-hand uint2.
+inline uint2 operator>>=( uint2& lhs, const uint2& rhs );
+
+/// \relates uint2
+/// \brief Performs a unary bitwise operation on all components of the given uint2.
+inline uint2 operator~( const uint2& lhs );
 
 // uint3
 /// \relates uint3
@@ -408,6 +740,89 @@ inline bool3 operator>( const uint3& lhs, const uint3& rhs );
 /// \brief Returns a bool3 where each component is true if the component of the left-hand type is greater than or equal to the corresponding right-hand type component.
 inline bool3 operator>=( const uint3& lhs, const uint3& rhs );
 
+/// \relates uint3
+/// \brief Returns a copy of the uint3 where each component has been bitwise AND'd against the given scalar value.
+inline uint3 operator&( const uint3& lhs, const uint32_t& rhs );
+
+/// \relates uint3
+/// \brief Performs a bitwise AND on the given left-hand uint3 against the given scalar value.
+inline uint3 operator&=( uint3& lhs, const uint32_t& rhs );
+
+/// \relates uint3
+/// \brief Returns a copy of the uint3 where each component of the left-hand uint3 has been bitwise AND'd against the corresponding component of the right-hand side uint3.
+inline uint3 operator&( const uint3& lhs, const uint3& rhs );
+
+/// \relates uint3
+/// \brief Performs a bitwise AND on the given left-hand uint3 against the corresponding component of the given right-hand uint3.
+inline uint3 operator&=( uint3& lhs, const uint3& rhs );
+
+/// \relates uint3
+/// \brief Returns a copy of the uint3 where each component has been bitwise OR'd against the given scalar value.
+inline uint3 operator|( const uint3& lhs, const uint32_t& rhs );
+
+/// \relates uint3
+/// \brief Performs a bitwise OR on the given left-hand uint3 against the given scalar value.
+inline uint3 operator|=( uint3& lhs, const uint32_t& rhs );
+
+/// \relates uint3
+/// \brief Returns a copy of the uint3 where each component of the left-hand uint3 has been bitwise OR'd against the corresponding component of the right-hand side uint3.
+inline uint3 operator|( const uint3& lhs, const uint3& rhs );
+
+/// \relates uint3
+/// \brief Performs a bitwise OR on the given left-hand uint3 against the corresponding component of the given right-hand uint3.
+inline uint3 operator|=( uint3& lhs, const uint3& rhs );
+
+/// \relates uint3
+/// \brief Returns a copy of the uint3 where each component has been bitwise XOR'd against the given scalar value.
+inline uint3 operator^( const uint3& lhs, const uint32_t& rhs );
+
+/// \relates uint3
+/// \brief Performs a bitwise XOR on the given left-hand uint3 against the given scalar value.
+inline uint3 operator^=( uint3& lhs, const uint32_t& rhs );
+
+/// \relates uint3
+/// \brief Returns a copy of the uint3 where each component of the left-hand uint3 has been bitwise XOR'd against the corresponding component of the right-hand side uint3.
+inline uint3 operator^( const uint3& lhs, const uint3& rhs );
+
+/// \relates uint3
+/// \brief Performs a bitwise XOR on the given left-hand uint3 against the corresponding component of the given right-hand uint3.
+inline uint3 operator^=( uint3& lhs, const uint3& rhs );
+
+/// \relates uint3
+/// \brief Returns a copy of the uint3 where each component has been bitwise left-shifted by the given scalar value.
+inline uint3 operator<<( const uint3& lhs, const uint32_t& rhs );
+
+/// \relates uint3
+/// \brief Performs a left bitshift on the given left-hand uint3 by the given scalar value.
+inline uint3 operator<<=( uint3& lhs, const uint32_t& rhs );
+
+/// \relates uint3
+/// \brief Returns a copy of the uint3 where each component of the left-hand uint3 has been bitwise left-shifted by the corresponding component of the right-hand side uint3.
+inline uint3 operator<<( const uint3& lhs, const uint3& rhs );
+
+/// \relates uint3
+/// \brief Performs a left bitshift on the given left-hand uint3 by the corresponding component of the given right-hand uint3.
+inline uint3 operator<<=( uint3& lhs, const uint3& rhs );
+
+/// \relates uint3
+/// \brief Returns a copy of the uint3 where each component has been bitwise right-shifted by the given scalar value.
+inline uint3 operator>>( const uint3& lhs, const uint32_t& rhs );
+
+/// \relates uint3
+/// \brief Performs a right bitshift on the given left-hand uint3 by the given scalar value.
+inline uint3 operator>>=( uint3& lhs, const uint32_t& rhs );
+
+/// \relates uint3
+/// \brief Returns a copy of the uint3 where each component of the left-hand uint3 has been bitwise right-shifted by the corresponding component of the right-hand side uint3.
+inline uint3 operator>>( const uint3& lhs, const uint3& rhs );
+
+/// \relates uint3
+/// \brief Performs a right bitshift on the given left-hand uint3 by the corresponding component of the given right-hand uint3.
+inline uint3 operator>>=( uint3& lhs, const uint3& rhs );
+
+/// \relates uint3
+/// \brief Performs a unary bitwise operation on all components of the given uint3.
+inline uint3 operator~( const uint3& lhs );
 
 // uint4
 /// \relates uint4
@@ -482,6 +897,89 @@ inline bool4 operator>( const uint4& lhs, const uint4& rhs );
 /// \brief Returns a bool4 where each component is true if the component of the left-hand type is greater than or equal to the corresponding right-hand type component.
 inline bool4 operator>=( const uint4& lhs, const uint4& rhs );
 
+/// \relates uint4
+/// \brief Returns a copy of the uint4 where each component has been bitwise AND'd against the given scalar value.
+inline uint4 operator&( const uint4& lhs, const uint32_t& rhs );
+
+/// \relates uint4
+/// \brief Performs a bitwise AND on the given left-hand uint4 against the given scalar value.
+inline uint4 operator&=( uint4& lhs, const uint32_t& rhs );
+
+/// \relates uint4
+/// \brief Returns a copy of the uint4 where each component of the left-hand uint4 has been bitwise AND'd against the corresponding component of the right-hand side uint4.
+inline uint4 operator&( const uint4& lhs, const uint4& rhs );
+
+/// \relates uint4
+/// \brief Performs a bitwise AND on the given left-hand uint4 against the corresponding component of the given right-hand uint4.
+inline uint4 operator&=( uint4& lhs, const uint4& rhs );
+
+/// \relates uint4
+/// \brief Returns a copy of the uint4 where each component has been bitwise OR'd against the given scalar value.
+inline uint4 operator|( const uint4& lhs, const uint32_t& rhs );
+
+/// \relates uint4
+/// \brief Performs a bitwise OR on the given left-hand uint4 against the given scalar value.
+inline uint4 operator|=( uint4& lhs, const uint32_t& rhs );
+
+/// \relates uint4
+/// \brief Returns a copy of the uint4 where each component of the left-hand uint4 has been bitwise OR'd against the corresponding component of the right-hand side uint4.
+inline uint4 operator|( const uint4& lhs, const uint4& rhs );
+
+/// \relates uint4
+/// \brief Performs a bitwise OR on the given left-hand uint4 against the corresponding component of the given right-hand uint4.
+inline uint4 operator|=( uint4& lhs, const uint4& rhs );
+
+/// \relates uint4
+/// \brief Returns a copy of the uint4 where each component has been bitwise XOR'd against the given scalar value.
+inline uint4 operator^( const uint4& lhs, const uint32_t& rhs );
+
+/// \relates uint4
+/// \brief Performs a bitwise XOR on the given left-hand uint4 against the given scalar value.
+inline uint4 operator^=( uint4& lhs, const uint32_t& rhs );
+
+/// \relates uint4
+/// \brief Returns a copy of the uint4 where each component of the left-hand uint4 has been bitwise XOR'd against the corresponding component of the right-hand side uint4.
+inline uint4 operator^( const uint4& lhs, const uint4& rhs );
+
+/// \relates uint4
+/// \brief Performs a bitwise XOR on the given left-hand uint4 against the corresponding component of the given right-hand uint4.
+inline uint4 operator^=( uint4& lhs, const uint4& rhs );
+
+/// \relates uint4
+/// \brief Returns a copy of the uint4 where each component has been bitwise left-shifted by the given scalar value.
+inline uint4 operator<<( const uint4& lhs, const uint32_t& rhs );
+
+/// \relates uint4
+/// \brief Performs a left bitshift on the given left-hand uint4 by the given scalar value.
+inline uint4 operator<<=( uint4& lhs, const uint32_t& rhs );
+
+/// \relates uint4
+/// \brief Returns a copy of the uint4 where each component of the left-hand uint4 has been bitwise left-shifted by the corresponding component of the right-hand side uint4.
+inline uint4 operator<<( const uint4& lhs, const uint4& rhs );
+
+/// \relates uint4
+/// \brief Performs a left bitshift on the given left-hand uint4 by the corresponding component of the given right-hand uint4.
+inline uint4 operator<<=( uint4& lhs, const uint4& rhs );
+
+/// \relates uint4
+/// \brief Returns a copy of the uint4 where each component has been bitwise right-shifted by the given scalar value.
+inline uint4 operator>>( const uint4& lhs, const uint32_t& rhs );
+
+/// \relates uint4
+/// \brief Performs a right bitshift on the given left-hand uint4 by the given scalar value.
+inline uint4 operator>>=( uint4& lhs, const uint32_t& rhs );
+
+/// \relates uint4
+/// \brief Returns a copy of the uint4 where each component of the left-hand uint4 has been bitwise right-shifted by the corresponding component of the right-hand side uint4.
+inline uint4 operator>>( const uint4& lhs, const uint4& rhs );
+
+/// \relates uint4
+/// \brief Performs a right bitshift on the given left-hand uint4 by the corresponding component of the given right-hand uint4.
+inline uint4 operator>>=( uint4& lhs, const uint4& rhs );
+
+/// \relates uint4
+/// \brief Performs a unary bitwise operation on all components of the given uint4.
+inline uint4 operator~( const uint4& lhs );
 
 // float2
 /// \relates float2

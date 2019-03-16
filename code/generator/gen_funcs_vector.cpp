@@ -8,10 +8,10 @@
 static std::string GetDocOperatorArithmeticRhsType( const std::string& fullTypeName, const genOpArithmetic_t op ) {
 	std::string adjective;
 	switch ( op ) {
-		case GEN_OP_ARITHMETIC_ADD: adjective = "added"; break;
-		case GEN_OP_ARITHMETIC_SUB: adjective = "subtracted"; break;
-		case GEN_OP_ARITHMETIC_MUL: adjective = "multiplied"; break;
-		case GEN_OP_ARITHMETIC_DIV: adjective = "divided"; break;
+		case GEN_OP_ARITHMETIC_ADD:	adjective = "added";		break;
+		case GEN_OP_ARITHMETIC_SUB:	adjective = "subtracted";	break;
+		case GEN_OP_ARITHMETIC_MUL:	adjective = "multiplied";	break;
+		case GEN_OP_ARITHMETIC_DIV:	adjective = "divided";		break;
 
 		case GEN_OP_ARITHMETIC_COUNT:
 		default:
@@ -26,10 +26,10 @@ static std::string GetDocOperatorArithmeticRhsType( const std::string& fullTypeN
 static std::string GetDocOperatorCompoundArithmeticRhsType( const std::string& fullTypeName, const genOpArithmetic_t op ) {
 	std::string verb;
 	switch ( op ) {
-		case GEN_OP_ARITHMETIC_ADD: verb = "adds"; break;
-		case GEN_OP_ARITHMETIC_SUB: verb = "subtracts"; break;
-		case GEN_OP_ARITHMETIC_MUL: verb = "multiplies"; break;
-		case GEN_OP_ARITHMETIC_DIV: verb = "divides"; break;
+		case GEN_OP_ARITHMETIC_ADD:	verb = "adds";			break;
+		case GEN_OP_ARITHMETIC_SUB:	verb = "subtracts";		break;
+		case GEN_OP_ARITHMETIC_MUL:	verb = "multiplies";	break;
+		case GEN_OP_ARITHMETIC_DIV:	verb = "divides";		break;
 
 		case GEN_OP_ARITHMETIC_COUNT:
 		default:
@@ -256,7 +256,165 @@ static std::string InlGetOperatorRelational( const genType_t type, const uint32_
 	return code;
 }
 
+static std::string HeaderGetOperatorBitwiseScalar( const genType_t type, const uint32_t numComponents, const genOpBitwise_t op ) {
+	assert( numComponents >= GEN_COMPONENT_COUNT_MIN );
+	assert( numComponents <= GEN_COMPONENT_COUNT_MAX );
+
+	std::string fullTypeName = Gen_GetTypeString( type ) + std::to_string( numComponents );
+	std::string memberTypeString = Gen_GetMemberTypeString( type );
+
+	std::string opStr = GEN_OPERATORS_BITWISE[op];
+
+	std::string code;
+
+	code += Gen_GetDocOperatorBitwiseScalar( fullTypeName, op );
+	code += "inline " + fullTypeName + " operator" + opStr + "( const " + fullTypeName + "& lhs, const " + memberTypeString + "& rhs );\n";
+	code += "\n";
+
+	code += Gen_GetDocOperatorCompoundBitwiseScalar( fullTypeName, op );
+	code += "inline " + fullTypeName + " operator" + opStr + "=( " + fullTypeName + "& lhs, const " + memberTypeString + "& rhs );\n";
+	code += "\n";
+
+	return code;
+}
+
+static std::string InlGetOperatorBitwiseScalar( const genType_t type, const uint32_t numComponents, const genOpBitwise_t op ) {
+	assert( numComponents >= GEN_COMPONENT_COUNT_MIN );
+	assert( numComponents <= GEN_COMPONENT_COUNT_MAX );
+
+	std::string fullTypeName = Gen_GetTypeString( type ) + std::to_string( numComponents );
+	std::string memberTypeString = Gen_GetMemberTypeString( type );
+
+	std::string opStr = GEN_OPERATORS_BITWISE[op];
+
+	std::string code;
+
+	// main bitwise operator
+	code += fullTypeName + " operator" + opStr + "( const " + fullTypeName + "& lhs, const " + memberTypeString + "& rhs ) {\n";
+	code += "\treturn " + fullTypeName + "(\n";
+	for ( uint32_t i = 0; i < numComponents; i++ ) {
+		code += std::string( "\t\tlhs." ) + GEN_COMPONENT_NAMES_VECTOR[i] + " " + opStr + " rhs";
+
+		if ( i != numComponents - 1 ) {
+			code += ",";
+		}
+
+		code += "\n";
+	}
+	code += "\t);\n";
+	code += "}\n";
+	code += "\n";
+
+	// compound bitwise operator
+	code += fullTypeName + " operator" + opStr + "=( " + fullTypeName + "& lhs, const " + memberTypeString + "& rhs ) {\n";
+	code += "\treturn ( lhs = lhs " + opStr + " rhs );\n";
+	code += "}\n";
+	code += "\n";
+
+	return code;
+}
+
+static std::string HeaderGetOperatorBitwiseRhsType( const genType_t type, const uint32_t numComponents, const genOpBitwise_t op ) {
+	assert( numComponents >= GEN_COMPONENT_COUNT_MIN );
+	assert( numComponents <= GEN_COMPONENT_COUNT_MAX );
+
+	std::string fullTypeName = Gen_GetTypeString( type ) + std::to_string( numComponents );
+	std::string memberTypeString = Gen_GetMemberTypeString( type );
+
+	std::string opStr = GEN_OPERATORS_BITWISE[op];
+
+	std::string code;
+
+	code += Gen_GetDocOperatorBitwiseRhsType( fullTypeName, op );
+	code += "inline " + fullTypeName + " operator" + opStr + "( const " + fullTypeName + "& lhs, const " + fullTypeName + "& rhs );\n";
+	code += "\n";
+
+	code += Gen_GetDocOperatorCompoundBitwiseRhsType( fullTypeName, op );
+	code += "inline " + fullTypeName + " operator" + opStr + "=( " + fullTypeName + "& lhs, const " + fullTypeName + "& rhs );\n";
+	code += "\n";
+
+	return code;
+}
+
+static std::string InlGetOperatorBitwiseRhsType( const genType_t type, const uint32_t numComponents, const genOpBitwise_t op ) {
+	assert( numComponents >= GEN_COMPONENT_COUNT_MIN );
+	assert( numComponents <= GEN_COMPONENT_COUNT_MAX );
+
+	std::string fullTypeName = Gen_GetTypeString( type ) + std::to_string( numComponents );
+
+	std::string opStr = GEN_OPERATORS_BITWISE[op];
+
+	std::string code;
+
+	// main bitwise operator
+	code += fullTypeName + " operator" + opStr + "( const " + fullTypeName + "& lhs, const " + fullTypeName + "& rhs ) {\n";
+	code += "\treturn " + fullTypeName + "(\n";
+	for ( uint32_t i = 0; i < numComponents; i++ ) {
+		char componentName = GEN_COMPONENT_NAMES_VECTOR[i];
+
+		code += std::string( "\t\tlhs." ) + componentName + " " + opStr + " rhs." + componentName;
+
+		if ( i != numComponents - 1 ) {
+			code += ",";
+		}
+
+		code += "\n";
+	}
+	code += "\t);\n";
+	code += "}\n";
+	code += "\n";
+
+	// compound bitwise operator
+	code += fullTypeName + " operator" + opStr + "=( " + fullTypeName + "& lhs, const " + fullTypeName + "& rhs ) {\n";
+	code += "\treturn ( lhs = lhs " + opStr + " rhs );\n";
+	code += "}\n";
+	code += "\n";
+
+	return code;
+}
+
+std::string InlGetOperatorBitwise( const genType_t type, const uint32_t numComponents, const genOpBitwise_t op ) {
+	assert( numComponents >= GEN_COMPONENT_COUNT_MIN );
+	assert( numComponents <= GEN_COMPONENT_COUNT_MAX );
+
+	std::string fullTypeName = Gen_GetTypeString( type ) + std::to_string( numComponents );
+
+	std::string opStr = GEN_OPERATORS_BITWISE[op];
+
+	std::string code;
+
+	// main bitwise operator
+	code += fullTypeName + " operator" + opStr + "( const " + fullTypeName + "& lhs, const " + fullTypeName + "& rhs ) {\n";
+	code += "\treturn " + fullTypeName + "(\n";
+	for ( uint32_t i = 0; i < numComponents; i++ ) {
+		char componentName = GEN_COMPONENT_NAMES_VECTOR[i];
+
+		code += std::string( "\t\tlhs." ) + componentName + " " + opStr + " rhs." + componentName;
+
+		if ( i != numComponents - 1 ) {
+			code += ",";
+		}
+
+		code += "\n";
+	}
+	code += "\t);\n";
+	code += "}\n";
+	code += "\n";
+
+	// compound bitwise operator
+	code += fullTypeName + " operator" + opStr + "=( " + fullTypeName + "& lhs, const " + fullTypeName + "& rhs ) {\n";
+	code += std::string( "\treturn ( lhs = lhs " ) + opStr + " rhs );\n";
+	code += "}\n";
+	code += "\n";
+
+	return code;
+}
+
 std::string Gen_GetParmListVector( const genType_t type, const uint32_t numComponents, const float* values ) {
+	assert( numComponents >= GEN_COMPONENT_COUNT_MIN );
+	assert( numComponents <= GEN_COMPONENT_COUNT_MAX );
+	assert( values );
+
 	std::string parmList = "( ";
 	for ( uint32_t i = 0; i < numComponents; i++ ) {
 		parmList += Gen_GetNumericLiteral( type, values[i] );
@@ -304,6 +462,54 @@ void Gen_VectorOperatorsRelational( const genType_t type, const uint32_t numComp
 
 		outInl += InlGetOperatorRelational( type, numComponents, op );
 	}
+}
+
+void Gen_VectorOperatorsBitwise( const genType_t type, const uint32_t numComponents, std::string& outHeader, std::string& outInl ) {
+	assert( numComponents >= GEN_COMPONENT_COUNT_MIN );
+	assert( numComponents <= GEN_COMPONENT_COUNT_MAX );
+
+	if ( type != GEN_TYPE_INT && type != GEN_TYPE_UINT ) {
+		return;
+	}
+
+	// do all except unary operator
+	// unary doesn't take rhs type, so do that one separately
+	genOpBitwise_t ops[] = {
+		GEN_OP_BITWISE_AND,
+		GEN_OP_BITWISE_OR,
+		GEN_OP_BITWISE_XOR,
+		GEN_OP_BITWISE_SHIFT_LEFT,
+		GEN_OP_BITWISE_SHIFT_RIGHT
+	};
+
+	for ( genOpBitwise_t op : ops ) {
+		outHeader += HeaderGetOperatorBitwiseScalar( type, numComponents, op );
+		outHeader += HeaderGetOperatorBitwiseRhsType( type, numComponents, op );
+
+		outInl += InlGetOperatorBitwiseScalar( type, numComponents, op );
+		outInl += InlGetOperatorBitwiseRhsType( type, numComponents, op );
+	}
+
+	// unary operator
+	std::string fullTypeName = Gen_GetTypeString( type ) + std::to_string( numComponents );
+
+	outHeader += Gen_GetDocOperatorBitwiseUnary( fullTypeName );
+	outHeader += "inline " + fullTypeName + " operator~( const " + fullTypeName + "& lhs );\n";
+
+	outInl += fullTypeName + " operator~( const " + fullTypeName + "& lhs ) {\n";
+	outInl += "\treturn " + fullTypeName + "(\n";
+	for ( uint32_t i = 0; i < numComponents; i++ ) {
+		outInl += std::string( "\t\t~lhs." ) + GEN_COMPONENT_NAMES_VECTOR[i];
+
+		if ( i != numComponents - 1 ) {
+			outInl += ",";
+		}
+
+		outInl += "\n";
+	}
+	outInl += "\t);\n";
+	outInl += "}\n";
+	outInl += "\n";
 }
 
 void Gen_VectorLength( const genType_t type, const uint32_t numComponents, std::string& outHeader, std::string& outInl ) {

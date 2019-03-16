@@ -230,6 +230,7 @@ static bool GenerateOperatorsVector( void ) {
 
 			Gen_VectorOperatorsArithmetic( type, componentIndex, contentHeader, contentInl );
 			Gen_VectorOperatorsRelational( type, componentIndex, contentHeader, contentInl );
+			Gen_VectorOperatorsBitwise( type, componentIndex, contentHeader, contentInl );
 
 			contentHeader += "\n";
 			contentInl += "\n";

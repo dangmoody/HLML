@@ -43,6 +43,17 @@ TEMPER_TEST( TestAssignment_int4 ) {
 	TEMPER_PASS();
 }
 
+TEMPER_TEST( TestArray_int4 ) {
+	int4 a = int4( 0, 1, 2, 3 );
+
+	TEMPER_EXPECT_TRUE( a[0] == 0 );
+	TEMPER_EXPECT_TRUE( a[1] == 1 );
+	TEMPER_EXPECT_TRUE( a[2] == 2 );
+	TEMPER_EXPECT_TRUE( a[3] == 3 );
+
+	TEMPER_PASS();
+}
+
 TEMPER_TEST( TestArithmeticAddition_int4 ) {
 	int4 a  = int4( 6 );
 	int4 b  = int4( 2, 3, 4, 5 );
@@ -87,17 +98,6 @@ TEMPER_TEST( TestArithmeticDivision_int4 ) {
 	TEMPER_PASS();
 }
 
-TEMPER_TEST( TestArray_int4 ) {
-	int4 a = int4( 0, 1, 2, 3 );
-
-	TEMPER_EXPECT_TRUE( a[0] == 0 );
-	TEMPER_EXPECT_TRUE( a[1] == 1 );
-	TEMPER_EXPECT_TRUE( a[2] == 2 );
-	TEMPER_EXPECT_TRUE( a[3] == 3 );
-
-	TEMPER_PASS();
-}
-
 TEMPER_TEST( TestRelational_int4 ) {
 	int4 vec0 = int4( 0, 0, 0, 0 );
 	int4 vec1 = int4( 1, 1, 1, 1 );
@@ -136,6 +136,71 @@ TEMPER_TEST( TestRelational_int4 ) {
 	TEMPER_EXPECT_TRUE( test11 == bool4( true ) );
 	TEMPER_EXPECT_TRUE( test12 == bool4( true ) );
 	TEMPER_EXPECT_TRUE( test13 == bool4( true ) );
+
+	TEMPER_PASS();
+}
+
+TEMPER_TEST( TestBitwiseAnd_int4 ) {
+	int4 a  = int4( 21, 21, 21, 21 );
+	int4 b  = int4( 7, 7, 7, 7 );
+
+	int4 answer = a & b;
+
+	TEMPER_EXPECT_TRUE( answer == int4( 5, 5, 5, 5 ) );
+
+	TEMPER_PASS();
+}
+
+TEMPER_TEST( TestBitwiseOr_int4 ) {
+	int4 a  = int4( 21, 21, 21, 21 );
+	int4 b  = int4( 7, 7, 7, 7 );
+
+	int4 answer = a | b;
+
+	TEMPER_EXPECT_TRUE( answer == int4( 23, 23, 23, 23 ) );
+
+	TEMPER_PASS();
+}
+
+TEMPER_TEST( TestBitwiseXor_int4 ) {
+	int4 a  = int4( 21, 21, 21, 21 );
+	int4 b  = int4( 7, 7, 7, 7 );
+
+	int4 answer = a ^ b;
+
+	TEMPER_EXPECT_TRUE( answer == int4( 18, 18, 18, 18 ) );
+
+	TEMPER_PASS();
+}
+
+TEMPER_TEST( TestBitwiseShiftLeft_int4 ) {
+	int4 a  = int4( 1, 1, 1, 1 );
+	int4 b  = int4( 2, 2, 2, 2 );
+
+	int4 answer = a << b;
+
+	TEMPER_EXPECT_TRUE( answer == int4( 4, 4, 4, 4 ) );
+
+	TEMPER_PASS();
+}
+
+TEMPER_TEST( TestBitwiseShiftRight_int4 ) {
+	int4 a  = int4( 16, 16, 16, 16 );
+	int4 b  = int4( 4, 4, 4, 4 );
+
+	int4 answer = a >> b;
+
+	TEMPER_EXPECT_TRUE( answer == int4( 1, 1, 1, 1 ) );
+
+	TEMPER_PASS();
+}
+
+TEMPER_TEST( TestBitwiseUnary_int4 ) {
+	int4 a = int4( 0, 0, 0, 0 );
+
+	int4 answer = ~a;
+
+	TEMPER_EXPECT_TRUE( answer == int4( (int32_t) -1, (int32_t) -1, (int32_t) -1, (int32_t) -1 ) );
 
 	TEMPER_PASS();
 }
@@ -183,6 +248,13 @@ TEMPER_SUITE( Test_int4 ) {
 	TEMPER_RUN_TEST( TestArithmeticDivision_int4 );
 
 	TEMPER_RUN_TEST( TestRelational_int4 );
+
+	TEMPER_RUN_TEST( TestBitwiseAnd_int4 );
+	TEMPER_RUN_TEST( TestBitwiseOr_int4 );
+	TEMPER_RUN_TEST( TestBitwiseXor_int4 );
+	TEMPER_RUN_TEST( TestBitwiseUnary_int4 );
+	TEMPER_RUN_TEST( TestBitwiseShiftLeft_int4 );
+	TEMPER_RUN_TEST( TestBitwiseShiftRight_int4 );
 
 	TEMPER_RUN_TEST( TestLength_int4 );
 	TEMPER_RUN_TEST( TestDot_int4 );

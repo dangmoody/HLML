@@ -32,11 +32,13 @@ void TestsGeneratorVector::Generate( const genType_t type, const uint32_t numCom
 
 	GenerateTestAssignment();
 
-	GenerateTestArithmetic();
-
 	GenerateTestArray();
 
+	GenerateTestArithmetic();
+
 	GenerateTestRelational();
+
+	GenerateTestBitwise();
 
 	GenerateTestLength();
 
@@ -65,6 +67,15 @@ void TestsGeneratorVector::Generate( const genType_t type, const uint32_t numCom
 		m_code += "\tTEMPER_RUN_TEST( TestArithmeticDivision_" + m_fullTypeName + " );\n";
 		m_code += "\n";
 		m_code += "\tTEMPER_RUN_TEST( TestRelational_" + m_fullTypeName + " );\n";
+		if ( m_type == GEN_TYPE_INT || m_type == GEN_TYPE_UINT ) {
+			m_code += "\n";
+			m_code += "\tTEMPER_RUN_TEST( TestBitwiseAnd_" + m_fullTypeName + " );\n";
+			m_code += "\tTEMPER_RUN_TEST( TestBitwiseOr_" + m_fullTypeName + " );\n";
+			m_code += "\tTEMPER_RUN_TEST( TestBitwiseXor_" + m_fullTypeName + " );\n";
+			m_code += "\tTEMPER_RUN_TEST( TestBitwiseUnary_" + m_fullTypeName + " );\n";
+			m_code += "\tTEMPER_RUN_TEST( TestBitwiseShiftLeft_" + m_fullTypeName + " );\n";
+			m_code += "\tTEMPER_RUN_TEST( TestBitwiseShiftRight_" + m_fullTypeName + " );\n";
+		}
 		m_code += "\n";
 		m_code += "\tTEMPER_RUN_TEST( TestLength_" + m_fullTypeName + " );\n";
 	}
@@ -243,6 +254,105 @@ void TestsGeneratorVector::GenerateTestRelational() {
 	for ( uint32_t i = 0; i < numTestVectors; i++ ) {
 		m_code += "\tTEMPER_EXPECT_TRUE( test" + std::to_string( i ) + " == " + boolTypeName + "( true ) );\n";
 	}
+	m_code += "\n";
+	m_code += "\tTEMPER_PASS();\n";
+	m_code += "}\n";
+	m_code += "\n";
+}
+
+void TestsGeneratorVector::GenerateTestBitwise() {
+	if ( m_type != GEN_TYPE_INT && m_type != GEN_TYPE_UINT ) {
+		return;
+	}
+
+	// values must be integers
+	float values0[]						= { 0.0f,  0.0f,  0.0f,  0.0f };	// 0b000000
+	float values1[]						= { 1.0f,  1.0f,  1.0f,  1.0f  };	// 0b000001
+	float values2[]						= { 2.0f,  2.0f,  2.0f,  2.0f  };	// 0b000010
+	float values4[]						= { 4.0f,  4.0f,  4.0f,  4.0f  };	// 0b000100
+	float values7[]						= { 7.0f,  7.0f,  7.0f,  7.0f  };	// 0b000111
+	float values21[]					= { 21.0f, 21.0f, 21.0f, 21.0f };	// 0b010101
+	float values16[]					= { 16.0f, 16.0f, 16.0f, 16.0f };	// 0b010000
+//	float values32[]					= { 32.0f, 32.0f, 32.0f, 32.0f };	// 0b100000
+
+	float answersAnd[]					= { 5.0f,  5.0f,  5.0f,  5.0f  };	// 21 & 7
+	float answersOr[]					= { 23.0f, 23.0f, 23.0f, 23.0f };	// 21 | 7
+	float answersXor[]					= { 18.0f, 18.0f, 18.0f, 18.0f };	// 21 ^ 7
+	float answersShiftLeft[]			= { 4.0f,  4.0f,  4.0f,  4.0f  };	// 1  << 2
+	float answersShiftRight[]			= { 1.0f,  1.0f,  1.0f,  1.0f  };	// 16 >> 4
+
+	std::string parmListAnswerUnary = "( ";
+	for ( uint32_t i = 0; i < m_numComponents; i++ ) {
+		parmListAnswerUnary += "(" + m_memberTypeString + ") -1";
+
+		if ( i != m_numComponents - 1 ) {
+			parmListAnswerUnary += ", ";
+		}
+	}
+	parmListAnswerUnary += " )";
+
+	std::string parmListLhs[GEN_OP_BITWISE_COUNT] = {
+		Gen_GetParmListVector( m_type, m_numComponents, values21 ),
+		Gen_GetParmListVector( m_type, m_numComponents, values21 ),
+		Gen_GetParmListVector( m_type, m_numComponents, values21 ),
+		Gen_GetParmListVector( m_type, m_numComponents, values1 ),
+		Gen_GetParmListVector( m_type, m_numComponents, values16 ),
+	};
+
+	std::string parmListRhs[GEN_OP_BITWISE_COUNT] = {
+		Gen_GetParmListVector( m_type, m_numComponents, values7 ),
+		Gen_GetParmListVector( m_type, m_numComponents, values7 ),
+		Gen_GetParmListVector( m_type, m_numComponents, values7 ),
+		Gen_GetParmListVector( m_type, m_numComponents, values2 ),
+		Gen_GetParmListVector( m_type, m_numComponents, values4 ),
+	};
+
+	std::string parmListAnswers[GEN_OP_BITWISE_COUNT] = {
+		Gen_GetParmListVector( m_type, m_numComponents, answersAnd ),
+		Gen_GetParmListVector( m_type, m_numComponents, answersOr ),
+		Gen_GetParmListVector( m_type, m_numComponents, answersXor ),
+		Gen_GetParmListVector( m_type, m_numComponents, answersShiftLeft ),
+		Gen_GetParmListVector( m_type, m_numComponents, answersShiftRight ),
+	};
+
+	// do unary separately because it takes no rhs parm
+	std::string suffices[GEN_OP_BITWISE_COUNT] = {
+		"And",
+		"Or",
+		"Xor",
+		"ShiftLeft",
+		"ShiftRight",
+	};
+
+	genOpBitwise_t ops[] = {
+		GEN_OP_BITWISE_AND,
+		GEN_OP_BITWISE_OR,
+		GEN_OP_BITWISE_XOR,
+		GEN_OP_BITWISE_SHIFT_LEFT,
+		GEN_OP_BITWISE_SHIFT_RIGHT,
+	};
+
+	for ( uint32_t i = 0; i < _countof( ops ); i++ ) {
+		m_code += "TEMPER_TEST( TestBitwise" + suffices[i] + "_" + m_fullTypeName + " ) {\n";
+		m_code += "\t" + m_fullTypeName + " a  = " + m_fullTypeName + parmListLhs[i] + ";\n";
+		m_code += "\t" + m_fullTypeName + " b  = " + m_fullTypeName + parmListRhs[i] + ";\n";
+		m_code += "\n";
+		m_code += "\t" + m_fullTypeName + " answer = a " + GEN_OPERATORS_BITWISE[ops[i]] + " b;\n";
+		m_code += "\n";
+		m_code += "\tTEMPER_EXPECT_TRUE( answer == " + m_fullTypeName + parmListAnswers[i] + " );\n";
+		m_code += "\n";
+		m_code += "\tTEMPER_PASS();\n";
+		m_code += "}\n";
+		m_code += "\n";
+	}
+
+	// unary
+	m_code += "TEMPER_TEST( TestBitwiseUnary_" + m_fullTypeName + " ) {\n";
+	m_code += "\t" + m_fullTypeName + " a = " + m_fullTypeName + Gen_GetParmListVector( m_type, m_numComponents, values0 ) + ";\n";
+	m_code += "\n";
+	m_code += "\t" + m_fullTypeName + " answer = " + GEN_OPERATORS_BITWISE[GEN_OP_BITWISE_UNARY] + "a;\n";
+	m_code += "\n";
+	m_code += "\tTEMPER_EXPECT_TRUE( answer == " + m_fullTypeName + parmListAnswerUnary + " );\n";
 	m_code += "\n";
 	m_code += "\tTEMPER_PASS();\n";
 	m_code += "}\n";

@@ -31,6 +31,7 @@ private:
 	void		GenerateTestArray();
 	void		GenerateTestArithmetic();
 	void		GenerateTestRelational();
+	void		GenerateTestBitwise();
 
 	void		GenerateTestLength();
 	void		GenerateTestNormalized();
