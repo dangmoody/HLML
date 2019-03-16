@@ -113,18 +113,18 @@ static std::string InlGetArithmeticFuncScalar( const genType_t type, const uint3
 	assert( numComponents >= GEN_COMPONENT_COUNT_MIN );
 	assert( numComponents <= GEN_COMPONENT_COUNT_MAX );
 
-	std::string typeString = Gen_GetTypeString( type );
-	std::string fullTypeName = typeString + std::to_string( numComponents );
+	std::string fullTypeName = Gen_GetTypeString( type ) + std::to_string( numComponents );
+	std::string memberTypeString = Gen_GetMemberTypeString( type );
 
 	char opStr = GEN_OPERATORS_ARITHMETIC[op];
 
 	std::string code;
 
 	// main arithmetic func
-	code += fullTypeName + " " + fullTypeName + "::operator" + opStr + "( const " + typeString + " rhs ) const {\n";
+	code += fullTypeName + " operator" + opStr + "( const " + fullTypeName + "& lhs, const " + memberTypeString + " rhs ) {\n";
 	code += "\treturn " + fullTypeName + "(\n";
 	for ( uint32_t componentIndex = 0; componentIndex < numComponents; componentIndex++ ) {
-		code += std::string( "\t\t" ) + GEN_COMPONENT_NAMES_VECTOR[componentIndex] + " " + opStr + " rhs";
+		code += std::string( "\t\tlhs." ) + GEN_COMPONENT_NAMES_VECTOR[componentIndex] + " " + opStr + " rhs";
 		if ( componentIndex != numComponents - 1 ) {
 			code += ",";
 		}
@@ -135,8 +135,8 @@ static std::string InlGetArithmeticFuncScalar( const genType_t type, const uint3
 	code += "\n";
 
 	// compound arithmetic func
-	code += fullTypeName + " " + fullTypeName + "::operator" + opStr + "=( const " + typeString + " rhs ) {\n";
-	code += std::string( "\treturn ( *this = *this " ) + opStr + " rhs );\n";
+	code += fullTypeName + " operator" + opStr + "=( " + fullTypeName + "& lhs, const " + memberTypeString + " rhs ) {\n";
+	code += std::string( "\treturn ( lhs = lhs " ) + opStr + " rhs );\n";
 	code += "}\n";
 	code += "\n";
 
@@ -147,7 +147,7 @@ static std::string HeaderGetArithmeticFuncRhsType( const genType_t type, const u
 	assert( numComponents >= GEN_COMPONENT_COUNT_MIN );
 	assert( numComponents <= GEN_COMPONENT_COUNT_MAX );
 
-	std::string fullTypeName = Gen_GetTypeString( type );
+	std::string fullTypeName = Gen_GetTypeString( type ) + std::to_string( numComponents );
 
 	char opStr = GEN_OPERATORS_ARITHMETIC[op];
 
@@ -175,10 +175,10 @@ static std::string InlGetArithmeticFuncRhsType( const genType_t type, const uint
 	std::string code;
 
 	// main arithmetic func
-	code += fullTypeName + " " + fullTypeName + "::operator" + opStr + "( const " + fullTypeName + "& rhs ) const {\n";
+	code += fullTypeName + " operator" + opStr + "( const " + fullTypeName + "& lhs, const " + fullTypeName + "& rhs ) {\n";
 	code += "\treturn " + fullTypeName + "(\n";
 	for ( uint32_t componentIndex = 0; componentIndex < numComponents; componentIndex++ ) {
-		code += std::string( "\t\t" ) + GEN_COMPONENT_NAMES_VECTOR[componentIndex] + " " + opStr + " rhs." + GEN_COMPONENT_NAMES_VECTOR[componentIndex];
+		code += std::string( "\t\tlhs." ) + GEN_COMPONENT_NAMES_VECTOR[componentIndex] + " " + opStr + " rhs." + GEN_COMPONENT_NAMES_VECTOR[componentIndex];
 		if ( componentIndex != numComponents - 1 ) {
 			code += ",";
 		}
@@ -189,8 +189,8 @@ static std::string InlGetArithmeticFuncRhsType( const genType_t type, const uint
 	code += "\n";
 
 	// compound arithmetic func
-	code += fullTypeName + " " + fullTypeName + "::operator" + opStr + "=( const " + fullTypeName + "& rhs ) {\n";
-	code += std::string( "\treturn ( *this = *this " ) + opStr + " rhs );\n";
+	code += fullTypeName + " operator" + opStr + "=( " + fullTypeName + "& lhs, const " + fullTypeName + "& rhs ) {\n";
+	code += std::string( "\treturn ( lhs = lhs " ) + opStr + " rhs );\n";
 	code += "}\n";
 	code += "\n";
 

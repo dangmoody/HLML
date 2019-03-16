@@ -24,6 +24,7 @@ along with hlml.  If not, see <http://www.gnu.org/licenses/>.
 
 // GENERATED FILE.  DO NOT EDIT.
 
+#include "hlml_operators_vector.h"
 
 // int2
 float dot( const int2& lhs, const int2& rhs ) {

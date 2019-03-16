@@ -176,85 +176,6 @@ static bool GenerateMainTypeHeaderMatrix( void ) {
 	return FS_WriteToFile( headerFilePath, content.c_str(), content.size() );
 }
 
-static bool GenerateFunctionsVector( void ) {
-	char filePathHeader[1024] = { 0 };
-	sprintf( filePathHeader, "%s%s.h", GEN_OUT_GEN_FOLDER_PATH, GEN_FILENAME_FUNCTIONS_VECTOR );
-
-	char filePathInl[1024] = { 0 };
-	sprintf( filePathInl, "%s%s.inl", GEN_OUT_GEN_FOLDER_PATH, GEN_FILENAME_FUNCTIONS_VECTOR );
-
-	std::string content = GEN_FILE_HEADER;
-
-	std::string contentHeader = content;
-	contentHeader += "#pragma once\n";
-	contentHeader += "\n";
-
-	std::string contentInl = content;
-
-	for ( uint32_t typeIndex = 0; typeIndex < GEN_TYPE_COUNT; typeIndex++ ) {
-		genType_t type = static_cast<genType_t>( typeIndex );
-
-		if ( type == GEN_TYPE_BOOL ) {
-			continue;
-		}
-
-		std::string typeString = Gen_GetTypeString( type );
-
-		for ( uint32_t componentIndex = GEN_COMPONENT_COUNT_MIN; componentIndex <= GEN_COMPONENT_COUNT_MAX; componentIndex++ ) {
-			contentHeader += "#include \"" + typeString + std::to_string( componentIndex ) + ".h\"\n";
-		}
-	}
-
-	contentHeader += "\n";
-	contentInl += "\n";
-
-	for ( uint32_t typeIndex = 0; typeIndex < GEN_TYPE_COUNT; typeIndex++ ) {
-		genType_t type = static_cast<genType_t>( typeIndex );
-
-		if ( type == GEN_TYPE_BOOL ) {
-			continue;
-		}
-
-		std::string typeString = Gen_GetTypeString( type );
-
-		for ( uint32_t componentIndex = GEN_COMPONENT_COUNT_MIN; componentIndex <= GEN_COMPONENT_COUNT_MAX; componentIndex++ ) {
-			std::string fullTypeName = typeString + std::to_string( componentIndex );
-
-			printf( "Algebra %s...", fullTypeName.c_str() );
-
-			contentHeader += "// " + fullTypeName + "\n";
-			contentInl += "// " + fullTypeName + "\n";
-
-			Gen_VectorDot( type, componentIndex, contentHeader, contentInl );
-			Gen_VectorLength( type, componentIndex, contentHeader, contentInl );
-			Gen_VectorNormalize( type, componentIndex, contentHeader, contentInl );
-			Gen_VectorCross( type, componentIndex, contentHeader, contentInl );
-			Gen_VectorAngle( type, componentIndex, contentHeader, contentInl );
-
-			Gen_VectorSaturate( type, componentIndex, contentHeader, contentInl );
-
-			Gen_VectorLerp( type, componentIndex, contentHeader, contentInl );
-
-			contentHeader += "\n";
-			contentInl += "\n";
-
-			printf( "OK.\n" );
-		}
-	}
-
-	contentHeader += "#include \"" + std::string( GEN_FILENAME_FUNCTIONS_VECTOR ) + ".inl\"\n";
-
-	if ( !FS_WriteToFile( filePathHeader, contentHeader.c_str(), contentHeader.size() ) ) {
-		return false;
-	}
-
-	if ( !FS_WriteToFile( filePathInl, contentInl.c_str(), contentInl.size() ) ) {
-		return false;
-	}
-
-	return true;
-}
-
 static bool GenerateOperatorsVector( void ) {
 	char filePathHeader[1024] = { 0 };
 	sprintf( filePathHeader, "%s%s.h", GEN_OUT_GEN_FOLDER_PATH, GEN_FILENAME_OPERATORS_VECTOR );
@@ -318,6 +239,86 @@ static bool GenerateOperatorsVector( void ) {
 	}
 
 	contentHeader += "#include \"" + std::string( GEN_FILENAME_OPERATORS_VECTOR ) + ".inl\"\n";
+
+	if ( !FS_WriteToFile( filePathHeader, contentHeader.c_str(), contentHeader.size() ) ) {
+		return false;
+	}
+
+	if ( !FS_WriteToFile( filePathInl, contentInl.c_str(), contentInl.size() ) ) {
+		return false;
+	}
+
+	return true;
+}
+
+static bool GenerateFunctionsVector( void ) {
+	char filePathHeader[1024] = { 0 };
+	sprintf( filePathHeader, "%s%s.h", GEN_OUT_GEN_FOLDER_PATH, GEN_FILENAME_FUNCTIONS_VECTOR );
+
+	char filePathInl[1024] = { 0 };
+	sprintf( filePathInl, "%s%s.inl", GEN_OUT_GEN_FOLDER_PATH, GEN_FILENAME_FUNCTIONS_VECTOR );
+
+	std::string content = GEN_FILE_HEADER;
+
+	std::string contentHeader = content;
+	contentHeader += "#pragma once\n";
+	contentHeader += "\n";
+
+	std::string contentInl = content;
+	contentInl += std::string( "#include \"" ) + GEN_FILENAME_OPERATORS_VECTOR + ".h\"\n";
+
+	for ( uint32_t typeIndex = 0; typeIndex < GEN_TYPE_COUNT; typeIndex++ ) {
+		genType_t type = static_cast<genType_t>( typeIndex );
+
+		if ( type == GEN_TYPE_BOOL ) {
+			continue;
+		}
+
+		std::string typeString = Gen_GetTypeString( type );
+
+		for ( uint32_t componentIndex = GEN_COMPONENT_COUNT_MIN; componentIndex <= GEN_COMPONENT_COUNT_MAX; componentIndex++ ) {
+			contentHeader += "#include \"" + typeString + std::to_string( componentIndex ) + ".h\"\n";
+		}
+	}
+
+	contentHeader += "\n";
+	contentInl += "\n";
+
+	for ( uint32_t typeIndex = 0; typeIndex < GEN_TYPE_COUNT; typeIndex++ ) {
+		genType_t type = static_cast<genType_t>( typeIndex );
+
+		if ( type == GEN_TYPE_BOOL ) {
+			continue;
+		}
+
+		std::string typeString = Gen_GetTypeString( type );
+
+		for ( uint32_t componentIndex = GEN_COMPONENT_COUNT_MIN; componentIndex <= GEN_COMPONENT_COUNT_MAX; componentIndex++ ) {
+			std::string fullTypeName = typeString + std::to_string( componentIndex );
+
+			printf( "Algebra %s...", fullTypeName.c_str() );
+
+			contentHeader += "// " + fullTypeName + "\n";
+			contentInl += "// " + fullTypeName + "\n";
+
+			Gen_VectorDot( type, componentIndex, contentHeader, contentInl );
+			Gen_VectorLength( type, componentIndex, contentHeader, contentInl );
+			Gen_VectorNormalize( type, componentIndex, contentHeader, contentInl );
+			Gen_VectorCross( type, componentIndex, contentHeader, contentInl );
+			Gen_VectorAngle( type, componentIndex, contentHeader, contentInl );
+
+			Gen_VectorSaturate( type, componentIndex, contentHeader, contentInl );
+
+			Gen_VectorLerp( type, componentIndex, contentHeader, contentInl );
+
+			contentHeader += "\n";
+			contentInl += "\n";
+
+			printf( "OK.\n" );
+		}
+	}
+
+	contentHeader += "#include \"" + std::string( GEN_FILENAME_FUNCTIONS_VECTOR ) + ".inl\"\n";
 
 	if ( !FS_WriteToFile( filePathHeader, contentHeader.c_str(), contentHeader.size() ) ) {
 		return false;

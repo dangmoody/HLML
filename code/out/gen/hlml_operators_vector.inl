@@ -27,92 +27,92 @@ along with hlml.  If not, see <http://www.gnu.org/licenses/>.
 #include "hlml_operators_vector.h"
 
 // int2
-int2 int2::operator+( const int rhs ) const {
+int2 operator+( const int2& lhs, const int32_t rhs ) {
 	return int2(
-		x + rhs,
-		y + rhs
+		lhs.x + rhs,
+		lhs.y + rhs
 	);
 }
 
-int2 int2::operator+=( const int rhs ) {
-	return ( *this = *this + rhs );
+int2 operator+=( int2& lhs, const int32_t rhs ) {
+	return ( lhs = lhs + rhs );
 }
 
-int2 int2::operator+( const int2& rhs ) const {
+int2 operator+( const int2& lhs, const int2& rhs ) {
 	return int2(
-		x + rhs.x,
-		y + rhs.y
+		lhs.x + rhs.x,
+		lhs.y + rhs.y
 	);
 }
 
-int2 int2::operator+=( const int2& rhs ) {
-	return ( *this = *this + rhs );
+int2 operator+=( int2& lhs, const int2& rhs ) {
+	return ( lhs = lhs + rhs );
 }
 
-int2 int2::operator-( const int rhs ) const {
+int2 operator-( const int2& lhs, const int32_t rhs ) {
 	return int2(
-		x - rhs,
-		y - rhs
+		lhs.x - rhs,
+		lhs.y - rhs
 	);
 }
 
-int2 int2::operator-=( const int rhs ) {
-	return ( *this = *this - rhs );
+int2 operator-=( int2& lhs, const int32_t rhs ) {
+	return ( lhs = lhs - rhs );
 }
 
-int2 int2::operator-( const int2& rhs ) const {
+int2 operator-( const int2& lhs, const int2& rhs ) {
 	return int2(
-		x - rhs.x,
-		y - rhs.y
+		lhs.x - rhs.x,
+		lhs.y - rhs.y
 	);
 }
 
-int2 int2::operator-=( const int2& rhs ) {
-	return ( *this = *this - rhs );
+int2 operator-=( int2& lhs, const int2& rhs ) {
+	return ( lhs = lhs - rhs );
 }
 
-int2 int2::operator*( const int rhs ) const {
+int2 operator*( const int2& lhs, const int32_t rhs ) {
 	return int2(
-		x * rhs,
-		y * rhs
+		lhs.x * rhs,
+		lhs.y * rhs
 	);
 }
 
-int2 int2::operator*=( const int rhs ) {
-	return ( *this = *this * rhs );
+int2 operator*=( int2& lhs, const int32_t rhs ) {
+	return ( lhs = lhs * rhs );
 }
 
-int2 int2::operator*( const int2& rhs ) const {
+int2 operator*( const int2& lhs, const int2& rhs ) {
 	return int2(
-		x * rhs.x,
-		y * rhs.y
+		lhs.x * rhs.x,
+		lhs.y * rhs.y
 	);
 }
 
-int2 int2::operator*=( const int2& rhs ) {
-	return ( *this = *this * rhs );
+int2 operator*=( int2& lhs, const int2& rhs ) {
+	return ( lhs = lhs * rhs );
 }
 
-int2 int2::operator/( const int rhs ) const {
+int2 operator/( const int2& lhs, const int32_t rhs ) {
 	return int2(
-		x / rhs,
-		y / rhs
+		lhs.x / rhs,
+		lhs.y / rhs
 	);
 }
 
-int2 int2::operator/=( const int rhs ) {
-	return ( *this = *this / rhs );
+int2 operator/=( int2& lhs, const int32_t rhs ) {
+	return ( lhs = lhs / rhs );
 }
 
-int2 int2::operator/( const int2& rhs ) const {
+int2 operator/( const int2& lhs, const int2& rhs ) {
 	return int2(
-		x / rhs.x,
-		y / rhs.y
+		lhs.x / rhs.x,
+		lhs.y / rhs.y
 	);
 }
 
-int2 int2::operator/=( const int2& rhs ) {
-	return ( *this = *this / rhs );
+int2 operator/=( int2& lhs, const int2& rhs ) {
+	return ( lhs = lhs / rhs );
 }
 
 bool2 operator<( const int2& lhs, const int2& rhs ) {
@@ -145,100 +145,100 @@ bool2 operator>=( const int2& lhs, const int2& rhs ) {
 
 
 // int3
-int3 int3::operator+( const int rhs ) const {
+int3 operator+( const int3& lhs, const int32_t rhs ) {
 	return int3(
-		x + rhs,
-		y + rhs,
-		z + rhs
+		lhs.x + rhs,
+		lhs.y + rhs,
+		lhs.z + rhs
 	);
 }
 
-int3 int3::operator+=( const int rhs ) {
-	return ( *this = *this + rhs );
+int3 operator+=( int3& lhs, const int32_t rhs ) {
+	return ( lhs = lhs + rhs );
 }
 
-int3 int3::operator+( const int3& rhs ) const {
+int3 operator+( const int3& lhs, const int3& rhs ) {
 	return int3(
-		x + rhs.x,
-		y + rhs.y,
-		z + rhs.z
+		lhs.x + rhs.x,
+		lhs.y + rhs.y,
+		lhs.z + rhs.z
 	);
 }
 
-int3 int3::operator+=( const int3& rhs ) {
-	return ( *this = *this + rhs );
+int3 operator+=( int3& lhs, const int3& rhs ) {
+	return ( lhs = lhs + rhs );
 }
 
-int3 int3::operator-( const int rhs ) const {
+int3 operator-( const int3& lhs, const int32_t rhs ) {
 	return int3(
-		x - rhs,
-		y - rhs,
-		z - rhs
+		lhs.x - rhs,
+		lhs.y - rhs,
+		lhs.z - rhs
 	);
 }
 
-int3 int3::operator-=( const int rhs ) {
-	return ( *this = *this - rhs );
+int3 operator-=( int3& lhs, const int32_t rhs ) {
+	return ( lhs = lhs - rhs );
 }
 
-int3 int3::operator-( const int3& rhs ) const {
+int3 operator-( const int3& lhs, const int3& rhs ) {
 	return int3(
-		x - rhs.x,
-		y - rhs.y,
-		z - rhs.z
+		lhs.x - rhs.x,
+		lhs.y - rhs.y,
+		lhs.z - rhs.z
 	);
 }
 
-int3 int3::operator-=( const int3& rhs ) {
-	return ( *this = *this - rhs );
+int3 operator-=( int3& lhs, const int3& rhs ) {
+	return ( lhs = lhs - rhs );
 }
 
-int3 int3::operator*( const int rhs ) const {
+int3 operator*( const int3& lhs, const int32_t rhs ) {
 	return int3(
-		x * rhs,
-		y * rhs,
-		z * rhs
+		lhs.x * rhs,
+		lhs.y * rhs,
+		lhs.z * rhs
 	);
 }
 
-int3 int3::operator*=( const int rhs ) {
-	return ( *this = *this * rhs );
+int3 operator*=( int3& lhs, const int32_t rhs ) {
+	return ( lhs = lhs * rhs );
 }
 
-int3 int3::operator*( const int3& rhs ) const {
+int3 operator*( const int3& lhs, const int3& rhs ) {
 	return int3(
-		x * rhs.x,
-		y * rhs.y,
-		z * rhs.z
+		lhs.x * rhs.x,
+		lhs.y * rhs.y,
+		lhs.z * rhs.z
 	);
 }
 
-int3 int3::operator*=( const int3& rhs ) {
-	return ( *this = *this * rhs );
+int3 operator*=( int3& lhs, const int3& rhs ) {
+	return ( lhs = lhs * rhs );
 }
 
-int3 int3::operator/( const int rhs ) const {
+int3 operator/( const int3& lhs, const int32_t rhs ) {
 	return int3(
-		x / rhs,
-		y / rhs,
-		z / rhs
+		lhs.x / rhs,
+		lhs.y / rhs,
+		lhs.z / rhs
 	);
 }
 
-int3 int3::operator/=( const int rhs ) {
-	return ( *this = *this / rhs );
+int3 operator/=( int3& lhs, const int32_t rhs ) {
+	return ( lhs = lhs / rhs );
 }
 
-int3 int3::operator/( const int3& rhs ) const {
+int3 operator/( const int3& lhs, const int3& rhs ) {
 	return int3(
-		x / rhs.x,
-		y / rhs.y,
-		z / rhs.z
+		lhs.x / rhs.x,
+		lhs.y / rhs.y,
+		lhs.z / rhs.z
 	);
 }
 
-int3 int3::operator/=( const int3& rhs ) {
-	return ( *this = *this / rhs );
+int3 operator/=( int3& lhs, const int3& rhs ) {
+	return ( lhs = lhs / rhs );
 }
 
 bool3 operator<( const int3& lhs, const int3& rhs ) {
@@ -275,108 +275,108 @@ bool3 operator>=( const int3& lhs, const int3& rhs ) {
 
 
 // int4
-int4 int4::operator+( const int rhs ) const {
+int4 operator+( const int4& lhs, const int32_t rhs ) {
 	return int4(
-		x + rhs,
-		y + rhs,
-		z + rhs,
-		w + rhs
+		lhs.x + rhs,
+		lhs.y + rhs,
+		lhs.z + rhs,
+		lhs.w + rhs
 	);
 }
 
-int4 int4::operator+=( const int rhs ) {
-	return ( *this = *this + rhs );
+int4 operator+=( int4& lhs, const int32_t rhs ) {
+	return ( lhs = lhs + rhs );
 }
 
-int4 int4::operator+( const int4& rhs ) const {
+int4 operator+( const int4& lhs, const int4& rhs ) {
 	return int4(
-		x + rhs.x,
-		y + rhs.y,
-		z + rhs.z,
-		w + rhs.w
+		lhs.x + rhs.x,
+		lhs.y + rhs.y,
+		lhs.z + rhs.z,
+		lhs.w + rhs.w
 	);
 }
 
-int4 int4::operator+=( const int4& rhs ) {
-	return ( *this = *this + rhs );
+int4 operator+=( int4& lhs, const int4& rhs ) {
+	return ( lhs = lhs + rhs );
 }
 
-int4 int4::operator-( const int rhs ) const {
+int4 operator-( const int4& lhs, const int32_t rhs ) {
 	return int4(
-		x - rhs,
-		y - rhs,
-		z - rhs,
-		w - rhs
+		lhs.x - rhs,
+		lhs.y - rhs,
+		lhs.z - rhs,
+		lhs.w - rhs
 	);
 }
 
-int4 int4::operator-=( const int rhs ) {
-	return ( *this = *this - rhs );
+int4 operator-=( int4& lhs, const int32_t rhs ) {
+	return ( lhs = lhs - rhs );
 }
 
-int4 int4::operator-( const int4& rhs ) const {
+int4 operator-( const int4& lhs, const int4& rhs ) {
 	return int4(
-		x - rhs.x,
-		y - rhs.y,
-		z - rhs.z,
-		w - rhs.w
+		lhs.x - rhs.x,
+		lhs.y - rhs.y,
+		lhs.z - rhs.z,
+		lhs.w - rhs.w
 	);
 }
 
-int4 int4::operator-=( const int4& rhs ) {
-	return ( *this = *this - rhs );
+int4 operator-=( int4& lhs, const int4& rhs ) {
+	return ( lhs = lhs - rhs );
 }
 
-int4 int4::operator*( const int rhs ) const {
+int4 operator*( const int4& lhs, const int32_t rhs ) {
 	return int4(
-		x * rhs,
-		y * rhs,
-		z * rhs,
-		w * rhs
+		lhs.x * rhs,
+		lhs.y * rhs,
+		lhs.z * rhs,
+		lhs.w * rhs
 	);
 }
 
-int4 int4::operator*=( const int rhs ) {
-	return ( *this = *this * rhs );
+int4 operator*=( int4& lhs, const int32_t rhs ) {
+	return ( lhs = lhs * rhs );
 }
 
-int4 int4::operator*( const int4& rhs ) const {
+int4 operator*( const int4& lhs, const int4& rhs ) {
 	return int4(
-		x * rhs.x,
-		y * rhs.y,
-		z * rhs.z,
-		w * rhs.w
+		lhs.x * rhs.x,
+		lhs.y * rhs.y,
+		lhs.z * rhs.z,
+		lhs.w * rhs.w
 	);
 }
 
-int4 int4::operator*=( const int4& rhs ) {
-	return ( *this = *this * rhs );
+int4 operator*=( int4& lhs, const int4& rhs ) {
+	return ( lhs = lhs * rhs );
 }
 
-int4 int4::operator/( const int rhs ) const {
+int4 operator/( const int4& lhs, const int32_t rhs ) {
 	return int4(
-		x / rhs,
-		y / rhs,
-		z / rhs,
-		w / rhs
+		lhs.x / rhs,
+		lhs.y / rhs,
+		lhs.z / rhs,
+		lhs.w / rhs
 	);
 }
 
-int4 int4::operator/=( const int rhs ) {
-	return ( *this = *this / rhs );
+int4 operator/=( int4& lhs, const int32_t rhs ) {
+	return ( lhs = lhs / rhs );
 }
 
-int4 int4::operator/( const int4& rhs ) const {
+int4 operator/( const int4& lhs, const int4& rhs ) {
 	return int4(
-		x / rhs.x,
-		y / rhs.y,
-		z / rhs.z,
-		w / rhs.w
+		lhs.x / rhs.x,
+		lhs.y / rhs.y,
+		lhs.z / rhs.z,
+		lhs.w / rhs.w
 	);
 }
 
-int4 int4::operator/=( const int4& rhs ) {
-	return ( *this = *this / rhs );
+int4 operator/=( int4& lhs, const int4& rhs ) {
+	return ( lhs = lhs / rhs );
 }
 
 bool4 operator<( const int4& lhs, const int4& rhs ) {
@@ -417,92 +417,92 @@ bool4 operator>=( const int4& lhs, const int4& rhs ) {
 
 
 // uint2
-uint2 uint2::operator+( const uint rhs ) const {
+uint2 operator+( const uint2& lhs, const uint32_t rhs ) {
 	return uint2(
-		x + rhs,
-		y + rhs
+		lhs.x + rhs,
+		lhs.y + rhs
 	);
 }
 
-uint2 uint2::operator+=( const uint rhs ) {
-	return ( *this = *this + rhs );
+uint2 operator+=( uint2& lhs, const uint32_t rhs ) {
+	return ( lhs = lhs + rhs );
 }
 
-uint2 uint2::operator+( const uint2& rhs ) const {
+uint2 operator+( const uint2& lhs, const uint2& rhs ) {
 	return uint2(
-		x + rhs.x,
-		y + rhs.y
+		lhs.x + rhs.x,
+		lhs.y + rhs.y
 	);
 }
 
-uint2 uint2::operator+=( const uint2& rhs ) {
-	return ( *this = *this + rhs );
+uint2 operator+=( uint2& lhs, const uint2& rhs ) {
+	return ( lhs = lhs + rhs );
 }
 
-uint2 uint2::operator-( const uint rhs ) const {
+uint2 operator-( const uint2& lhs, const uint32_t rhs ) {
 	return uint2(
-		x - rhs,
-		y - rhs
+		lhs.x - rhs,
+		lhs.y - rhs
 	);
 }
 
-uint2 uint2::operator-=( const uint rhs ) {
-	return ( *this = *this - rhs );
+uint2 operator-=( uint2& lhs, const uint32_t rhs ) {
+	return ( lhs = lhs - rhs );
 }
 
-uint2 uint2::operator-( const uint2& rhs ) const {
+uint2 operator-( const uint2& lhs, const uint2& rhs ) {
 	return uint2(
-		x - rhs.x,
-		y - rhs.y
+		lhs.x - rhs.x,
+		lhs.y - rhs.y
 	);
 }
 
-uint2 uint2::operator-=( const uint2& rhs ) {
-	return ( *this = *this - rhs );
+uint2 operator-=( uint2& lhs, const uint2& rhs ) {
+	return ( lhs = lhs - rhs );
 }
 
-uint2 uint2::operator*( const uint rhs ) const {
+uint2 operator*( const uint2& lhs, const uint32_t rhs ) {
 	return uint2(
-		x * rhs,
-		y * rhs
+		lhs.x * rhs,
+		lhs.y * rhs
 	);
 }
 
-uint2 uint2::operator*=( const uint rhs ) {
-	return ( *this = *this * rhs );
+uint2 operator*=( uint2& lhs, const uint32_t rhs ) {
+	return ( lhs = lhs * rhs );
 }
 
-uint2 uint2::operator*( const uint2& rhs ) const {
+uint2 operator*( const uint2& lhs, const uint2& rhs ) {
 	return uint2(
-		x * rhs.x,
-		y * rhs.y
+		lhs.x * rhs.x,
+		lhs.y * rhs.y
 	);
 }
 
-uint2 uint2::operator*=( const uint2& rhs ) {
-	return ( *this = *this * rhs );
+uint2 operator*=( uint2& lhs, const uint2& rhs ) {
+	return ( lhs = lhs * rhs );
 }
 
-uint2 uint2::operator/( const uint rhs ) const {
+uint2 operator/( const uint2& lhs, const uint32_t rhs ) {
 	return uint2(
-		x / rhs,
-		y / rhs
+		lhs.x / rhs,
+		lhs.y / rhs
 	);
 }
 
-uint2 uint2::operator/=( const uint rhs ) {
-	return ( *this = *this / rhs );
+uint2 operator/=( uint2& lhs, const uint32_t rhs ) {
+	return ( lhs = lhs / rhs );
 }
 
-uint2 uint2::operator/( const uint2& rhs ) const {
+uint2 operator/( const uint2& lhs, const uint2& rhs ) {
 	return uint2(
-		x / rhs.x,
-		y / rhs.y
+		lhs.x / rhs.x,
+		lhs.y / rhs.y
 	);
 }
 
-uint2 uint2::operator/=( const uint2& rhs ) {
-	return ( *this = *this / rhs );
+uint2 operator/=( uint2& lhs, const uint2& rhs ) {
+	return ( lhs = lhs / rhs );
 }
 
 bool2 operator<( const uint2& lhs, const uint2& rhs ) {
@@ -535,100 +535,100 @@ bool2 operator>=( const uint2& lhs, const uint2& rhs ) {
 
 
 // uint3
-uint3 uint3::operator+( const uint rhs ) const {
+uint3 operator+( const uint3& lhs, const uint32_t rhs ) {
 	return uint3(
-		x + rhs,
-		y + rhs,
-		z + rhs
+		lhs.x + rhs,
+		lhs.y + rhs,
+		lhs.z + rhs
 	);
 }
 
-uint3 uint3::operator+=( const uint rhs ) {
-	return ( *this = *this + rhs );
+uint3 operator+=( uint3& lhs, const uint32_t rhs ) {
+	return ( lhs = lhs + rhs );
 }
 
-uint3 uint3::operator+( const uint3& rhs ) const {
+uint3 operator+( const uint3& lhs, const uint3& rhs ) {
 	return uint3(
-		x + rhs.x,
-		y + rhs.y,
-		z + rhs.z
+		lhs.x + rhs.x,
+		lhs.y + rhs.y,
+		lhs.z + rhs.z
 	);
 }
 
-uint3 uint3::operator+=( const uint3& rhs ) {
-	return ( *this = *this + rhs );
+uint3 operator+=( uint3& lhs, const uint3& rhs ) {
+	return ( lhs = lhs + rhs );
 }
 
-uint3 uint3::operator-( const uint rhs ) const {
+uint3 operator-( const uint3& lhs, const uint32_t rhs ) {
 	return uint3(
-		x - rhs,
-		y - rhs,
-		z - rhs
+		lhs.x - rhs,
+		lhs.y - rhs,
+		lhs.z - rhs
 	);
 }
 
-uint3 uint3::operator-=( const uint rhs ) {
-	return ( *this = *this - rhs );
+uint3 operator-=( uint3& lhs, const uint32_t rhs ) {
+	return ( lhs = lhs - rhs );
 }
 
-uint3 uint3::operator-( const uint3& rhs ) const {
+uint3 operator-( const uint3& lhs, const uint3& rhs ) {
 	return uint3(
-		x - rhs.x,
-		y - rhs.y,
-		z - rhs.z
+		lhs.x - rhs.x,
+		lhs.y - rhs.y,
+		lhs.z - rhs.z
 	);
 }
 
-uint3 uint3::operator-=( const uint3& rhs ) {
-	return ( *this = *this - rhs );
+uint3 operator-=( uint3& lhs, const uint3& rhs ) {
+	return ( lhs = lhs - rhs );
 }
 
-uint3 uint3::operator*( const uint rhs ) const {
+uint3 operator*( const uint3& lhs, const uint32_t rhs ) {
 	return uint3(
-		x * rhs,
-		y * rhs,
-		z * rhs
+		lhs.x * rhs,
+		lhs.y * rhs,
+		lhs.z * rhs
 	);
 }
 
-uint3 uint3::operator*=( const uint rhs ) {
-	return ( *this = *this * rhs );
+uint3 operator*=( uint3& lhs, const uint32_t rhs ) {
+	return ( lhs = lhs * rhs );
 }
 
-uint3 uint3::operator*( const uint3& rhs ) const {
+uint3 operator*( const uint3& lhs, const uint3& rhs ) {
 	return uint3(
-		x * rhs.x,
-		y * rhs.y,
-		z * rhs.z
+		lhs.x * rhs.x,
+		lhs.y * rhs.y,
+		lhs.z * rhs.z
 	);
 }
 
-uint3 uint3::operator*=( const uint3& rhs ) {
-	return ( *this = *this * rhs );
+uint3 operator*=( uint3& lhs, const uint3& rhs ) {
+	return ( lhs = lhs * rhs );
 }
 
-uint3 uint3::operator/( const uint rhs ) const {
+uint3 operator/( const uint3& lhs, const uint32_t rhs ) {
 	return uint3(
-		x / rhs,
-		y / rhs,
-		z / rhs
+		lhs.x / rhs,
+		lhs.y / rhs,
+		lhs.z / rhs
 	);
 }
 
-uint3 uint3::operator/=( const uint rhs ) {
-	return ( *this = *this / rhs );
+uint3 operator/=( uint3& lhs, const uint32_t rhs ) {
+	return ( lhs = lhs / rhs );
 }
 
-uint3 uint3::operator/( const uint3& rhs ) const {
+uint3 operator/( const uint3& lhs, const uint3& rhs ) {
 	return uint3(
-		x / rhs.x,
-		y / rhs.y,
-		z / rhs.z
+		lhs.x / rhs.x,
+		lhs.y / rhs.y,
+		lhs.z / rhs.z
 	);
 }
 
-uint3 uint3::operator/=( const uint3& rhs ) {
-	return ( *this = *this / rhs );
+uint3 operator/=( uint3& lhs, const uint3& rhs ) {
+	return ( lhs = lhs / rhs );
 }
 
 bool3 operator<( const uint3& lhs, const uint3& rhs ) {
@@ -665,108 +665,108 @@ bool3 operator>=( const uint3& lhs, const uint3& rhs ) {
 
 
 // uint4
-uint4 uint4::operator+( const uint rhs ) const {
+uint4 operator+( const uint4& lhs, const uint32_t rhs ) {
 	return uint4(
-		x + rhs,
-		y + rhs,
-		z + rhs,
-		w + rhs
+		lhs.x + rhs,
+		lhs.y + rhs,
+		lhs.z + rhs,
+		lhs.w + rhs
 	);
 }
 
-uint4 uint4::operator+=( const uint rhs ) {
-	return ( *this = *this + rhs );
+uint4 operator+=( uint4& lhs, const uint32_t rhs ) {
+	return ( lhs = lhs + rhs );
 }
 
-uint4 uint4::operator+( const uint4& rhs ) const {
+uint4 operator+( const uint4& lhs, const uint4& rhs ) {
 	return uint4(
-		x + rhs.x,
-		y + rhs.y,
-		z + rhs.z,
-		w + rhs.w
+		lhs.x + rhs.x,
+		lhs.y + rhs.y,
+		lhs.z + rhs.z,
+		lhs.w + rhs.w
 	);
 }
 
-uint4 uint4::operator+=( const uint4& rhs ) {
-	return ( *this = *this + rhs );
+uint4 operator+=( uint4& lhs, const uint4& rhs ) {
+	return ( lhs = lhs + rhs );
 }
 
-uint4 uint4::operator-( const uint rhs ) const {
+uint4 operator-( const uint4& lhs, const uint32_t rhs ) {
 	return uint4(
-		x - rhs,
-		y - rhs,
-		z - rhs,
-		w - rhs
+		lhs.x - rhs,
+		lhs.y - rhs,
+		lhs.z - rhs,
+		lhs.w - rhs
 	);
 }
 
-uint4 uint4::operator-=( const uint rhs ) {
-	return ( *this = *this - rhs );
+uint4 operator-=( uint4& lhs, const uint32_t rhs ) {
+	return ( lhs = lhs - rhs );
 }
 
-uint4 uint4::operator-( const uint4& rhs ) const {
+uint4 operator-( const uint4& lhs, const uint4& rhs ) {
 	return uint4(
-		x - rhs.x,
-		y - rhs.y,
-		z - rhs.z,
-		w - rhs.w
+		lhs.x - rhs.x,
+		lhs.y - rhs.y,
+		lhs.z - rhs.z,
+		lhs.w - rhs.w
 	);
 }
 
-uint4 uint4::operator-=( const uint4& rhs ) {
-	return ( *this = *this - rhs );
+uint4 operator-=( uint4& lhs, const uint4& rhs ) {
+	return ( lhs = lhs - rhs );
 }
 
-uint4 uint4::operator*( const uint rhs ) const {
+uint4 operator*( const uint4& lhs, const uint32_t rhs ) {
 	return uint4(
-		x * rhs,
-		y * rhs,
-		z * rhs,
-		w * rhs
+		lhs.x * rhs,
+		lhs.y * rhs,
+		lhs.z * rhs,
+		lhs.w * rhs
 	);
 }
 
-uint4 uint4::operator*=( const uint rhs ) {
-	return ( *this = *this * rhs );
+uint4 operator*=( uint4& lhs, const uint32_t rhs ) {
+	return ( lhs = lhs * rhs );
 }
 
-uint4 uint4::operator*( const uint4& rhs ) const {
+uint4 operator*( const uint4& lhs, const uint4& rhs ) {
 	return uint4(
-		x * rhs.x,
-		y * rhs.y,
-		z * rhs.z,
-		w * rhs.w
+		lhs.x * rhs.x,
+		lhs.y * rhs.y,
+		lhs.z * rhs.z,
+		lhs.w * rhs.w
 	);
 }
 
-uint4 uint4::operator*=( const uint4& rhs ) {
-	return ( *this = *this * rhs );
+uint4 operator*=( uint4& lhs, const uint4& rhs ) {
+	return ( lhs = lhs * rhs );
 }
 
-uint4 uint4::operator/( const uint rhs ) const {
+uint4 operator/( const uint4& lhs, const uint32_t rhs ) {
 	return uint4(
-		x / rhs,
-		y / rhs,
-		z / rhs,
-		w / rhs
+		lhs.x / rhs,
+		lhs.y / rhs,
+		lhs.z / rhs,
+		lhs.w / rhs
 	);
 }
 
-uint4 uint4::operator/=( const uint rhs ) {
-	return ( *this = *this / rhs );
+uint4 operator/=( uint4& lhs, const uint32_t rhs ) {
+	return ( lhs = lhs / rhs );
 }
 
-uint4 uint4::operator/( const uint4& rhs ) const {
+uint4 operator/( const uint4& lhs, const uint4& rhs ) {
 	return uint4(
-		x / rhs.x,
-		y / rhs.y,
-		z / rhs.z,
-		w / rhs.w
+		lhs.x / rhs.x,
+		lhs.y / rhs.y,
+		lhs.z / rhs.z,
+		lhs.w / rhs.w
 	);
 }
 
-uint4 uint4::operator/=( const uint4& rhs ) {
-	return ( *this = *this / rhs );
+uint4 operator/=( uint4& lhs, const uint4& rhs ) {
+	return ( lhs = lhs / rhs );
 }
 
 bool4 operator<( const uint4& lhs, const uint4& rhs ) {
@@ -807,92 +807,92 @@ bool4 operator>=( const uint4& lhs, const uint4& rhs ) {
 
 
 // float2
-float2 float2::operator+( const float rhs ) const {
+float2 operator+( const float2& lhs, const float rhs ) {
 	return float2(
-		x + rhs,
-		y + rhs
+		lhs.x + rhs,
+		lhs.y + rhs
 	);
 }
 
-float2 float2::operator+=( const float rhs ) {
-	return ( *this = *this + rhs );
+float2 operator+=( float2& lhs, const float rhs ) {
+	return ( lhs = lhs + rhs );
 }
 
-float2 float2::operator+( const float2& rhs ) const {
+float2 operator+( const float2& lhs, const float2& rhs ) {
 	return float2(
-		x + rhs.x,
-		y + rhs.y
+		lhs.x + rhs.x,
+		lhs.y + rhs.y
 	);
 }
 
-float2 float2::operator+=( const float2& rhs ) {
-	return ( *this = *this + rhs );
+float2 operator+=( float2& lhs, const float2& rhs ) {
+	return ( lhs = lhs + rhs );
 }
 
-float2 float2::operator-( const float rhs ) const {
+float2 operator-( const float2& lhs, const float rhs ) {
 	return float2(
-		x - rhs,
-		y - rhs
+		lhs.x - rhs,
+		lhs.y - rhs
 	);
 }
 
-float2 float2::operator-=( const float rhs ) {
-	return ( *this = *this - rhs );
+float2 operator-=( float2& lhs, const float rhs ) {
+	return ( lhs = lhs - rhs );
 }
 
-float2 float2::operator-( const float2& rhs ) const {
+float2 operator-( const float2& lhs, const float2& rhs ) {
 	return float2(
-		x - rhs.x,
-		y - rhs.y
+		lhs.x - rhs.x,
+		lhs.y - rhs.y
 	);
 }
 
-float2 float2::operator-=( const float2& rhs ) {
-	return ( *this = *this - rhs );
+float2 operator-=( float2& lhs, const float2& rhs ) {
+	return ( lhs = lhs - rhs );
 }
 
-float2 float2::operator*( const float rhs ) const {
+float2 operator*( const float2& lhs, const float rhs ) {
 	return float2(
-		x * rhs,
-		y * rhs
+		lhs.x * rhs,
+		lhs.y * rhs
 	);
 }
 
-float2 float2::operator*=( const float rhs ) {
-	return ( *this = *this * rhs );
+float2 operator*=( float2& lhs, const float rhs ) {
+	return ( lhs = lhs * rhs );
 }
 
-float2 float2::operator*( const float2& rhs ) const {
+float2 operator*( const float2& lhs, const float2& rhs ) {
 	return float2(
-		x * rhs.x,
-		y * rhs.y
+		lhs.x * rhs.x,
+		lhs.y * rhs.y
 	);
 }
 
-float2 float2::operator*=( const float2& rhs ) {
-	return ( *this = *this * rhs );
+float2 operator*=( float2& lhs, const float2& rhs ) {
+	return ( lhs = lhs * rhs );
 }
 
-float2 float2::operator/( const float rhs ) const {
+float2 operator/( const float2& lhs, const float rhs ) {
 	return float2(
-		x / rhs,
-		y / rhs
+		lhs.x / rhs,
+		lhs.y / rhs
 	);
 }
 
-float2 float2::operator/=( const float rhs ) {
-	return ( *this = *this / rhs );
+float2 operator/=( float2& lhs, const float rhs ) {
+	return ( lhs = lhs / rhs );
 }
 
-float2 float2::operator/( const float2& rhs ) const {
+float2 operator/( const float2& lhs, const float2& rhs ) {
 	return float2(
-		x / rhs.x,
-		y / rhs.y
+		lhs.x / rhs.x,
+		lhs.y / rhs.y
 	);
 }
 
-float2 float2::operator/=( const float2& rhs ) {
-	return ( *this = *this / rhs );
+float2 operator/=( float2& lhs, const float2& rhs ) {
+	return ( lhs = lhs / rhs );
 }
 
 bool2 operator<( const float2& lhs, const float2& rhs ) {
@@ -925,100 +925,100 @@ bool2 operator>=( const float2& lhs, const float2& rhs ) {
 
 
 // float3
-float3 float3::operator+( const float rhs ) const {
+float3 operator+( const float3& lhs, const float rhs ) {
 	return float3(
-		x + rhs,
-		y + rhs,
-		z + rhs
+		lhs.x + rhs,
+		lhs.y + rhs,
+		lhs.z + rhs
 	);
 }
 
-float3 float3::operator+=( const float rhs ) {
-	return ( *this = *this + rhs );
+float3 operator+=( float3& lhs, const float rhs ) {
+	return ( lhs = lhs + rhs );
 }
 
-float3 float3::operator+( const float3& rhs ) const {
+float3 operator+( const float3& lhs, const float3& rhs ) {
 	return float3(
-		x + rhs.x,
-		y + rhs.y,
-		z + rhs.z
+		lhs.x + rhs.x,
+		lhs.y + rhs.y,
+		lhs.z + rhs.z
 	);
 }
 
-float3 float3::operator+=( const float3& rhs ) {
-	return ( *this = *this + rhs );
+float3 operator+=( float3& lhs, const float3& rhs ) {
+	return ( lhs = lhs + rhs );
 }
 
-float3 float3::operator-( const float rhs ) const {
+float3 operator-( const float3& lhs, const float rhs ) {
 	return float3(
-		x - rhs,
-		y - rhs,
-		z - rhs
+		lhs.x - rhs,
+		lhs.y - rhs,
+		lhs.z - rhs
 	);
 }
 
-float3 float3::operator-=( const float rhs ) {
-	return ( *this = *this - rhs );
+float3 operator-=( float3& lhs, const float rhs ) {
+	return ( lhs = lhs - rhs );
 }
 
-float3 float3::operator-( const float3& rhs ) const {
+float3 operator-( const float3& lhs, const float3& rhs ) {
 	return float3(
-		x - rhs.x,
-		y - rhs.y,
-		z - rhs.z
+		lhs.x - rhs.x,
+		lhs.y - rhs.y,
+		lhs.z - rhs.z
 	);
 }
 
-float3 float3::operator-=( const float3& rhs ) {
-	return ( *this = *this - rhs );
+float3 operator-=( float3& lhs, const float3& rhs ) {
+	return ( lhs = lhs - rhs );
 }
 
-float3 float3::operator*( const float rhs ) const {
+float3 operator*( const float3& lhs, const float rhs ) {
 	return float3(
-		x * rhs,
-		y * rhs,
-		z * rhs
+		lhs.x * rhs,
+		lhs.y * rhs,
+		lhs.z * rhs
 	);
 }
 
-float3 float3::operator*=( const float rhs ) {
-	return ( *this = *this * rhs );
+float3 operator*=( float3& lhs, const float rhs ) {
+	return ( lhs = lhs * rhs );
 }
 
-float3 float3::operator*( const float3& rhs ) const {
+float3 operator*( const float3& lhs, const float3& rhs ) {
 	return float3(
-		x * rhs.x,
-		y * rhs.y,
-		z * rhs.z
+		lhs.x * rhs.x,
+		lhs.y * rhs.y,
+		lhs.z * rhs.z
 	);
 }
 
-float3 float3::operator*=( const float3& rhs ) {
-	return ( *this = *this * rhs );
+float3 operator*=( float3& lhs, const float3& rhs ) {
+	return ( lhs = lhs * rhs );
 }
 
-float3 float3::operator/( const float rhs ) const {
+float3 operator/( const float3& lhs, const float rhs ) {
 	return float3(
-		x / rhs,
-		y / rhs,
-		z / rhs
+		lhs.x / rhs,
+		lhs.y / rhs,
+		lhs.z / rhs
 	);
 }
 
-float3 float3::operator/=( const float rhs ) {
-	return ( *this = *this / rhs );
+float3 operator/=( float3& lhs, const float rhs ) {
+	return ( lhs = lhs / rhs );
 }
 
-float3 float3::operator/( const float3& rhs ) const {
+float3 operator/( const float3& lhs, const float3& rhs ) {
 	return float3(
-		x / rhs.x,
-		y / rhs.y,
-		z / rhs.z
+		lhs.x / rhs.x,
+		lhs.y / rhs.y,
+		lhs.z / rhs.z
 	);
 }
 
-float3 float3::operator/=( const float3& rhs ) {
-	return ( *this = *this / rhs );
+float3 operator/=( float3& lhs, const float3& rhs ) {
+	return ( lhs = lhs / rhs );
 }
 
 bool3 operator<( const float3& lhs, const float3& rhs ) {
@@ -1055,108 +1055,108 @@ bool3 operator>=( const float3& lhs, const float3& rhs ) {
 
 
 // float4
-float4 float4::operator+( const float rhs ) const {
+float4 operator+( const float4& lhs, const float rhs ) {
 	return float4(
-		x + rhs,
-		y + rhs,
-		z + rhs,
-		w + rhs
+		lhs.x + rhs,
+		lhs.y + rhs,
+		lhs.z + rhs,
+		lhs.w + rhs
 	);
 }
 
-float4 float4::operator+=( const float rhs ) {
-	return ( *this = *this + rhs );
+float4 operator+=( float4& lhs, const float rhs ) {
+	return ( lhs = lhs + rhs );
 }
 
-float4 float4::operator+( const float4& rhs ) const {
+float4 operator+( const float4& lhs, const float4& rhs ) {
 	return float4(
-		x + rhs.x,
-		y + rhs.y,
-		z + rhs.z,
-		w + rhs.w
+		lhs.x + rhs.x,
+		lhs.y + rhs.y,
+		lhs.z + rhs.z,
+		lhs.w + rhs.w
 	);
 }
 
-float4 float4::operator+=( const float4& rhs ) {
-	return ( *this = *this + rhs );
+float4 operator+=( float4& lhs, const float4& rhs ) {
+	return ( lhs = lhs + rhs );
 }
 
-float4 float4::operator-( const float rhs ) const {
+float4 operator-( const float4& lhs, const float rhs ) {
 	return float4(
-		x - rhs,
-		y - rhs,
-		z - rhs,
-		w - rhs
+		lhs.x - rhs,
+		lhs.y - rhs,
+		lhs.z - rhs,
+		lhs.w - rhs
 	);
 }
 
-float4 float4::operator-=( const float rhs ) {
-	return ( *this = *this - rhs );
+float4 operator-=( float4& lhs, const float rhs ) {
+	return ( lhs = lhs - rhs );
 }
 
-float4 float4::operator-( const float4& rhs ) const {
+float4 operator-( const float4& lhs, const float4& rhs ) {
 	return float4(
-		x - rhs.x,
-		y - rhs.y,
-		z - rhs.z,
-		w - rhs.w
+		lhs.x - rhs.x,
+		lhs.y - rhs.y,
+		lhs.z - rhs.z,
+		lhs.w - rhs.w
 	);
 }
 
-float4 float4::operator-=( const float4& rhs ) {
-	return ( *this = *this - rhs );
+float4 operator-=( float4& lhs, const float4& rhs ) {
+	return ( lhs = lhs - rhs );
 }
 
-float4 float4::operator*( const float rhs ) const {
+float4 operator*( const float4& lhs, const float rhs ) {
 	return float4(
-		x * rhs,
-		y * rhs,
-		z * rhs,
-		w * rhs
+		lhs.x * rhs,
+		lhs.y * rhs,
+		lhs.z * rhs,
+		lhs.w * rhs
 	);
 }
 
-float4 float4::operator*=( const float rhs ) {
-	return ( *this = *this * rhs );
+float4 operator*=( float4& lhs, const float rhs ) {
+	return ( lhs = lhs * rhs );
 }
 
-float4 float4::operator*( const float4& rhs ) const {
+float4 operator*( const float4& lhs, const float4& rhs ) {
 	return float4(
-		x * rhs.x,
-		y * rhs.y,
-		z * rhs.z,
-		w * rhs.w
+		lhs.x * rhs.x,
+		lhs.y * rhs.y,
+		lhs.z * rhs.z,
+		lhs.w * rhs.w
 	);
 }
 
-float4 float4::operator*=( const float4& rhs ) {
-	return ( *this = *this * rhs );
+float4 operator*=( float4& lhs, const float4& rhs ) {
+	return ( lhs = lhs * rhs );
 }
 
-float4 float4::operator/( const float rhs ) const {
+float4 operator/( const float4& lhs, const float rhs ) {
 	return float4(
-		x / rhs,
-		y / rhs,
-		z / rhs,
-		w / rhs
+		lhs.x / rhs,
+		lhs.y / rhs,
+		lhs.z / rhs,
+		lhs.w / rhs
 	);
 }
 
-float4 float4::operator/=( const float rhs ) {
-	return ( *this = *this / rhs );
+float4 operator/=( float4& lhs, const float rhs ) {
+	return ( lhs = lhs / rhs );
 }
 
-float4 float4::operator/( const float4& rhs ) const {
+float4 operator/( const float4& lhs, const float4& rhs ) {
 	return float4(
-		x / rhs.x,
-		y / rhs.y,
-		z / rhs.z,
-		w / rhs.w
+		lhs.x / rhs.x,
+		lhs.y / rhs.y,
+		lhs.z / rhs.z,
+		lhs.w / rhs.w
 	);
 }
 
-float4 float4::operator/=( const float4& rhs ) {
-	return ( *this = *this / rhs );
+float4 operator/=( float4& lhs, const float4& rhs ) {
+	return ( lhs = lhs / rhs );
 }
 
 bool4 operator<( const float4& lhs, const float4& rhs ) {
@@ -1197,92 +1197,92 @@ bool4 operator>=( const float4& lhs, const float4& rhs ) {
 
 
 // double2
-double2 double2::operator+( const double rhs ) const {
+double2 operator+( const double2& lhs, const double rhs ) {
 	return double2(
-		x + rhs,
-		y + rhs
+		lhs.x + rhs,
+		lhs.y + rhs
 	);
 }
 
-double2 double2::operator+=( const double rhs ) {
-	return ( *this = *this + rhs );
+double2 operator+=( double2& lhs, const double rhs ) {
+	return ( lhs = lhs + rhs );
 }
 
-double2 double2::operator+( const double2& rhs ) const {
+double2 operator+( const double2& lhs, const double2& rhs ) {
 	return double2(
-		x + rhs.x,
-		y + rhs.y
+		lhs.x + rhs.x,
+		lhs.y + rhs.y
 	);
 }
 
-double2 double2::operator+=( const double2& rhs ) {
-	return ( *this = *this + rhs );
+double2 operator+=( double2& lhs, const double2& rhs ) {
+	return ( lhs = lhs + rhs );
 }
 
-double2 double2::operator-( const double rhs ) const {
+double2 operator-( const double2& lhs, const double rhs ) {
 	return double2(
-		x - rhs,
-		y - rhs
+		lhs.x - rhs,
+		lhs.y - rhs
 	);
 }
 
-double2 double2::operator-=( const double rhs ) {
-	return ( *this = *this - rhs );
+double2 operator-=( double2& lhs, const double rhs ) {
+	return ( lhs = lhs - rhs );
 }
 
-double2 double2::operator-( const double2& rhs ) const {
+double2 operator-( const double2& lhs, const double2& rhs ) {
 	return double2(
-		x - rhs.x,
-		y - rhs.y
+		lhs.x - rhs.x,
+		lhs.y - rhs.y
 	);
 }
 
-double2 double2::operator-=( const double2& rhs ) {
-	return ( *this = *this - rhs );
+double2 operator-=( double2& lhs, const double2& rhs ) {
+	return ( lhs = lhs - rhs );
 }
 
-double2 double2::operator*( const double rhs ) const {
+double2 operator*( const double2& lhs, const double rhs ) {
 	return double2(
-		x * rhs,
-		y * rhs
+		lhs.x * rhs,
+		lhs.y * rhs
 	);
 }
 
-double2 double2::operator*=( const double rhs ) {
-	return ( *this = *this * rhs );
+double2 operator*=( double2& lhs, const double rhs ) {
+	return ( lhs = lhs * rhs );
 }
 
-double2 double2::operator*( const double2& rhs ) const {
+double2 operator*( const double2& lhs, const double2& rhs ) {
 	return double2(
-		x * rhs.x,
-		y * rhs.y
+		lhs.x * rhs.x,
+		lhs.y * rhs.y
 	);
 }
 
-double2 double2::operator*=( const double2& rhs ) {
-	return ( *this = *this * rhs );
+double2 operator*=( double2& lhs, const double2& rhs ) {
+	return ( lhs = lhs * rhs );
 }
 
-double2 double2::operator/( const double rhs ) const {
+double2 operator/( const double2& lhs, const double rhs ) {
 	return double2(
-		x / rhs,
-		y / rhs
+		lhs.x / rhs,
+		lhs.y / rhs
 	);
 }
 
-double2 double2::operator/=( const double rhs ) {
-	return ( *this = *this / rhs );
+double2 operator/=( double2& lhs, const double rhs ) {
+	return ( lhs = lhs / rhs );
 }
 
-double2 double2::operator/( const double2& rhs ) const {
+double2 operator/( const double2& lhs, const double2& rhs ) {
 	return double2(
-		x / rhs.x,
-		y / rhs.y
+		lhs.x / rhs.x,
+		lhs.y / rhs.y
 	);
 }
 
-double2 double2::operator/=( const double2& rhs ) {
-	return ( *this = *this / rhs );
+double2 operator/=( double2& lhs, const double2& rhs ) {
+	return ( lhs = lhs / rhs );
 }
 
 bool2 operator<( const double2& lhs, const double2& rhs ) {
@@ -1315,100 +1315,100 @@ bool2 operator>=( const double2& lhs, const double2& rhs ) {
 
 
 // double3
-double3 double3::operator+( const double rhs ) const {
+double3 operator+( const double3& lhs, const double rhs ) {
 	return double3(
-		x + rhs,
-		y + rhs,
-		z + rhs
+		lhs.x + rhs,
+		lhs.y + rhs,
+		lhs.z + rhs
 	);
 }
 
-double3 double3::operator+=( const double rhs ) {
-	return ( *this = *this + rhs );
+double3 operator+=( double3& lhs, const double rhs ) {
+	return ( lhs = lhs + rhs );
 }
 
-double3 double3::operator+( const double3& rhs ) const {
+double3 operator+( const double3& lhs, const double3& rhs ) {
 	return double3(
-		x + rhs.x,
-		y + rhs.y,
-		z + rhs.z
+		lhs.x + rhs.x,
+		lhs.y + rhs.y,
+		lhs.z + rhs.z
 	);
 }
 
-double3 double3::operator+=( const double3& rhs ) {
-	return ( *this = *this + rhs );
+double3 operator+=( double3& lhs, const double3& rhs ) {
+	return ( lhs = lhs + rhs );
 }
 
-double3 double3::operator-( const double rhs ) const {
+double3 operator-( const double3& lhs, const double rhs ) {
 	return double3(
-		x - rhs,
-		y - rhs,
-		z - rhs
+		lhs.x - rhs,
+		lhs.y - rhs,
+		lhs.z - rhs
 	);
 }
 
-double3 double3::operator-=( const double rhs ) {
-	return ( *this = *this - rhs );
+double3 operator-=( double3& lhs, const double rhs ) {
+	return ( lhs = lhs - rhs );
 }
 
-double3 double3::operator-( const double3& rhs ) const {
+double3 operator-( const double3& lhs, const double3& rhs ) {
 	return double3(
-		x - rhs.x,
-		y - rhs.y,
-		z - rhs.z
+		lhs.x - rhs.x,
+		lhs.y - rhs.y,
+		lhs.z - rhs.z
 	);
 }
 
-double3 double3::operator-=( const double3& rhs ) {
-	return ( *this = *this - rhs );
+double3 operator-=( double3& lhs, const double3& rhs ) {
+	return ( lhs = lhs - rhs );
 }
 
-double3 double3::operator*( const double rhs ) const {
+double3 operator*( const double3& lhs, const double rhs ) {
 	return double3(
-		x * rhs,
-		y * rhs,
-		z * rhs
+		lhs.x * rhs,
+		lhs.y * rhs,
+		lhs.z * rhs
 	);
 }
 
-double3 double3::operator*=( const double rhs ) {
-	return ( *this = *this * rhs );
+double3 operator*=( double3& lhs, const double rhs ) {
+	return ( lhs = lhs * rhs );
 }
 
-double3 double3::operator*( const double3& rhs ) const {
+double3 operator*( const double3& lhs, const double3& rhs ) {
 	return double3(
-		x * rhs.x,
-		y * rhs.y,
-		z * rhs.z
+		lhs.x * rhs.x,
+		lhs.y * rhs.y,
+		lhs.z * rhs.z
 	);
 }
 
-double3 double3::operator*=( const double3& rhs ) {
-	return ( *this = *this * rhs );
+double3 operator*=( double3& lhs, const double3& rhs ) {
+	return ( lhs = lhs * rhs );
 }
 
-double3 double3::operator/( const double rhs ) const {
+double3 operator/( const double3& lhs, const double rhs ) {
 	return double3(
-		x / rhs,
-		y / rhs,
-		z / rhs
+		lhs.x / rhs,
+		lhs.y / rhs,
+		lhs.z / rhs
 	);
 }
 
-double3 double3::operator/=( const double rhs ) {
-	return ( *this = *this / rhs );
+double3 operator/=( double3& lhs, const double rhs ) {
+	return ( lhs = lhs / rhs );
 }
 
-double3 double3::operator/( const double3& rhs ) const {
+double3 operator/( const double3& lhs, const double3& rhs ) {
 	return double3(
-		x / rhs.x,
-		y / rhs.y,
-		z / rhs.z
+		lhs.x / rhs.x,
+		lhs.y / rhs.y,
+		lhs.z / rhs.z
 	);
 }
 
-double3 double3::operator/=( const double3& rhs ) {
-	return ( *this = *this / rhs );
+double3 operator/=( double3& lhs, const double3& rhs ) {
+	return ( lhs = lhs / rhs );
 }
 
 bool3 operator<( const double3& lhs, const double3& rhs ) {
@@ -1445,108 +1445,108 @@ bool3 operator>=( const double3& lhs, const double3& rhs ) {
 
 
 // double4
-double4 double4::operator+( const double rhs ) const {
+double4 operator+( const double4& lhs, const double rhs ) {
 	return double4(
-		x + rhs,
-		y + rhs,
-		z + rhs,
-		w + rhs
+		lhs.x + rhs,
+		lhs.y + rhs,
+		lhs.z + rhs,
+		lhs.w + rhs
 	);
 }
 
-double4 double4::operator+=( const double rhs ) {
-	return ( *this = *this + rhs );
+double4 operator+=( double4& lhs, const double rhs ) {
+	return ( lhs = lhs + rhs );
 }
 
-double4 double4::operator+( const double4& rhs ) const {
+double4 operator+( const double4& lhs, const double4& rhs ) {
 	return double4(
-		x + rhs.x,
-		y + rhs.y,
-		z + rhs.z,
-		w + rhs.w
+		lhs.x + rhs.x,
+		lhs.y + rhs.y,
+		lhs.z + rhs.z,
+		lhs.w + rhs.w
 	);
 }
 
-double4 double4::operator+=( const double4& rhs ) {
-	return ( *this = *this + rhs );
+double4 operator+=( double4& lhs, const double4& rhs ) {
+	return ( lhs = lhs + rhs );
 }
 
-double4 double4::operator-( const double rhs ) const {
+double4 operator-( const double4& lhs, const double rhs ) {
 	return double4(
-		x - rhs,
-		y - rhs,
-		z - rhs,
-		w - rhs
+		lhs.x - rhs,
+		lhs.y - rhs,
+		lhs.z - rhs,
+		lhs.w - rhs
 	);
 }
 
-double4 double4::operator-=( const double rhs ) {
-	return ( *this = *this - rhs );
+double4 operator-=( double4& lhs, const double rhs ) {
+	return ( lhs = lhs - rhs );
 }
 
-double4 double4::operator-( const double4& rhs ) const {
+double4 operator-( const double4& lhs, const double4& rhs ) {
 	return double4(
-		x - rhs.x,
-		y - rhs.y,
-		z - rhs.z,
-		w - rhs.w
+		lhs.x - rhs.x,
+		lhs.y - rhs.y,
+		lhs.z - rhs.z,
+		lhs.w - rhs.w
 	);
 }
 
-double4 double4::operator-=( const double4& rhs ) {
-	return ( *this = *this - rhs );
+double4 operator-=( double4& lhs, const double4& rhs ) {
+	return ( lhs = lhs - rhs );
 }
 
-double4 double4::operator*( const double rhs ) const {
+double4 operator*( const double4& lhs, const double rhs ) {
 	return double4(
-		x * rhs,
-		y * rhs,
-		z * rhs,
-		w * rhs
+		lhs.x * rhs,
+		lhs.y * rhs,
+		lhs.z * rhs,
+		lhs.w * rhs
 	);
 }
 
-double4 double4::operator*=( const double rhs ) {
-	return ( *this = *this * rhs );
+double4 operator*=( double4& lhs, const double rhs ) {
+	return ( lhs = lhs * rhs );
 }
 
-double4 double4::operator*( const double4& rhs ) const {
+double4 operator*( const double4& lhs, const double4& rhs ) {
 	return double4(
-		x * rhs.x,
-		y * rhs.y,
-		z * rhs.z,
-		w * rhs.w
+		lhs.x * rhs.x,
+		lhs.y * rhs.y,
+		lhs.z * rhs.z,
+		lhs.w * rhs.w
 	);
 }
 
-double4 double4::operator*=( const double4& rhs ) {
-	return ( *this = *this * rhs );
+double4 operator*=( double4& lhs, const double4& rhs ) {
+	return ( lhs = lhs * rhs );
 }
 
-double4 double4::operator/( const double rhs ) const {
+double4 operator/( const double4& lhs, const double rhs ) {
 	return double4(
-		x / rhs,
-		y / rhs,
-		z / rhs,
-		w / rhs
+		lhs.x / rhs,
+		lhs.y / rhs,
+		lhs.z / rhs,
+		lhs.w / rhs
 	);
 }
 
-double4 double4::operator/=( const double rhs ) {
-	return ( *this = *this / rhs );
+double4 operator/=( double4& lhs, const double rhs ) {
+	return ( lhs = lhs / rhs );
 }
 
-double4 double4::operator/( const double4& rhs ) const {
+double4 operator/( const double4& lhs, const double4& rhs ) {
 	return double4(
-		x / rhs.x,
-		y / rhs.y,
-		z / rhs.z,
-		w / rhs.w
+		lhs.x / rhs.x,
+		lhs.y / rhs.y,
+		lhs.z / rhs.z,
+		lhs.w / rhs.w
 	);
 }
 
-double4 double4::operator/=( const double4& rhs ) {
-	return ( *this = *this / rhs );
+double4 operator/=( double4& lhs, const double4& rhs ) {
+	return ( lhs = lhs / rhs );
 }
 
 bool4 operator<( const double4& lhs, const double4& rhs ) {

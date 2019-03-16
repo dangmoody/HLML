@@ -48,11 +48,11 @@ inline int2 operator+( const int2& lhs, const int32_t rhs );
 /// \brief Adds each component by the given scalar value.
 inline int2 operator+=( int2& lhs, const int32_t rhs );
 
-/// \relates int.
-inline int operator+( const int& lhs, const int& rhs );
+/// \relates int2.
+inline int2 operator+( const int2& lhs, const int2& rhs );
 
-/// \relates int.
-inline int operator+=( int& lhs, const int& rhs );
+/// \relates int2.
+inline int2 operator+=( int2& lhs, const int2& rhs );
 
 /// \relates int2
 /// \brief Returns a copy that has been component-wise subtracted by the given scalar value.
@@ -62,11 +62,11 @@ inline int2 operator-( const int2& lhs, const int32_t rhs );
 /// \brief Subtracts each component by the given scalar value.
 inline int2 operator-=( int2& lhs, const int32_t rhs );
 
-/// \relates int.
-inline int operator-( const int& lhs, const int& rhs );
+/// \relates int2.
+inline int2 operator-( const int2& lhs, const int2& rhs );
 
-/// \relates int.
-inline int operator-=( int& lhs, const int& rhs );
+/// \relates int2.
+inline int2 operator-=( int2& lhs, const int2& rhs );
 
 /// \relates int2
 /// \brief Returns a copy that has been component-wise multiplied by the given scalar value.
@@ -76,11 +76,11 @@ inline int2 operator*( const int2& lhs, const int32_t rhs );
 /// \brief Multiplies each component by the given scalar value.
 inline int2 operator*=( int2& lhs, const int32_t rhs );
 
-/// \relates int.
-inline int operator*( const int& lhs, const int& rhs );
+/// \relates int2.
+inline int2 operator*( const int2& lhs, const int2& rhs );
 
-/// \relates int.
-inline int operator*=( int& lhs, const int& rhs );
+/// \relates int2.
+inline int2 operator*=( int2& lhs, const int2& rhs );
 
 /// \relates int2
 /// \brief Returns a copy that has been component-wise divided by the given scalar value.
@@ -90,11 +90,11 @@ inline int2 operator/( const int2& lhs, const int32_t rhs );
 /// \brief Divides each component by the given scalar value.
 inline int2 operator/=( int2& lhs, const int32_t rhs );
 
-/// \relates int.
-inline int operator/( const int& lhs, const int& rhs );
+/// \relates int2.
+inline int2 operator/( const int2& lhs, const int2& rhs );
 
-/// \relates int.
-inline int operator/=( int& lhs, const int& rhs );
+/// \relates int2.
+inline int2 operator/=( int2& lhs, const int2& rhs );
 
 /// \relates int2
 /// \brief Returns a bool2 where each component is true if the component of the left-hand type is less than the corresponding right-hand type component.
@@ -122,11 +122,11 @@ inline int3 operator+( const int3& lhs, const int32_t rhs );
 /// \brief Adds each component by the given scalar value.
 inline int3 operator+=( int3& lhs, const int32_t rhs );
 
-/// \relates int.
-inline int operator+( const int& lhs, const int& rhs );
+/// \relates int3.
+inline int3 operator+( const int3& lhs, const int3& rhs );
 
-/// \relates int.
-inline int operator+=( int& lhs, const int& rhs );
+/// \relates int3.
+inline int3 operator+=( int3& lhs, const int3& rhs );
 
 /// \relates int3
 /// \brief Returns a copy that has been component-wise subtracted by the given scalar value.
@@ -136,11 +136,11 @@ inline int3 operator-( const int3& lhs, const int32_t rhs );
 /// \brief Subtracts each component by the given scalar value.
 inline int3 operator-=( int3& lhs, const int32_t rhs );
 
-/// \relates int.
-inline int operator-( const int& lhs, const int& rhs );
+/// \relates int3.
+inline int3 operator-( const int3& lhs, const int3& rhs );
 
-/// \relates int.
-inline int operator-=( int& lhs, const int& rhs );
+/// \relates int3.
+inline int3 operator-=( int3& lhs, const int3& rhs );
 
 /// \relates int3
 /// \brief Returns a copy that has been component-wise multiplied by the given scalar value.
@@ -150,11 +150,11 @@ inline int3 operator*( const int3& lhs, const int32_t rhs );
 /// \brief Multiplies each component by the given scalar value.
 inline int3 operator*=( int3& lhs, const int32_t rhs );
 
-/// \relates int.
-inline int operator*( const int& lhs, const int& rhs );
+/// \relates int3.
+inline int3 operator*( const int3& lhs, const int3& rhs );
 
-/// \relates int.
-inline int operator*=( int& lhs, const int& rhs );
+/// \relates int3.
+inline int3 operator*=( int3& lhs, const int3& rhs );
 
 /// \relates int3
 /// \brief Returns a copy that has been component-wise divided by the given scalar value.
@@ -164,11 +164,11 @@ inline int3 operator/( const int3& lhs, const int32_t rhs );
 /// \brief Divides each component by the given scalar value.
 inline int3 operator/=( int3& lhs, const int32_t rhs );
 
-/// \relates int.
-inline int operator/( const int& lhs, const int& rhs );
+/// \relates int3.
+inline int3 operator/( const int3& lhs, const int3& rhs );
 
-/// \relates int.
-inline int operator/=( int& lhs, const int& rhs );
+/// \relates int3.
+inline int3 operator/=( int3& lhs, const int3& rhs );
 
 /// \relates int3
 /// \brief Returns a bool3 where each component is true if the component of the left-hand type is less than the corresponding right-hand type component.
@@ -196,11 +196,11 @@ inline int4 operator+( const int4& lhs, const int32_t rhs );
 /// \brief Adds each component by the given scalar value.
 inline int4 operator+=( int4& lhs, const int32_t rhs );
 
-/// \relates int.
-inline int operator+( const int& lhs, const int& rhs );
+/// \relates int4.
+inline int4 operator+( const int4& lhs, const int4& rhs );
 
-/// \relates int.
-inline int operator+=( int& lhs, const int& rhs );
+/// \relates int4.
+inline int4 operator+=( int4& lhs, const int4& rhs );
 
 /// \relates int4
 /// \brief Returns a copy that has been component-wise subtracted by the given scalar value.
@@ -210,11 +210,11 @@ inline int4 operator-( const int4& lhs, const int32_t rhs );
 /// \brief Subtracts each component by the given scalar value.
 inline int4 operator-=( int4& lhs, const int32_t rhs );
 
-/// \relates int.
-inline int operator-( const int& lhs, const int& rhs );
+/// \relates int4.
+inline int4 operator-( const int4& lhs, const int4& rhs );
 
-/// \relates int.
-inline int operator-=( int& lhs, const int& rhs );
+/// \relates int4.
+inline int4 operator-=( int4& lhs, const int4& rhs );
 
 /// \relates int4
 /// \brief Returns a copy that has been component-wise multiplied by the given scalar value.
@@ -224,11 +224,11 @@ inline int4 operator*( const int4& lhs, const int32_t rhs );
 /// \brief Multiplies each component by the given scalar value.
 inline int4 operator*=( int4& lhs, const int32_t rhs );
 
-/// \relates int.
-inline int operator*( const int& lhs, const int& rhs );
+/// \relates int4.
+inline int4 operator*( const int4& lhs, const int4& rhs );
 
-/// \relates int.
-inline int operator*=( int& lhs, const int& rhs );
+/// \relates int4.
+inline int4 operator*=( int4& lhs, const int4& rhs );
 
 /// \relates int4
 /// \brief Returns a copy that has been component-wise divided by the given scalar value.
@@ -238,11 +238,11 @@ inline int4 operator/( const int4& lhs, const int32_t rhs );
 /// \brief Divides each component by the given scalar value.
 inline int4 operator/=( int4& lhs, const int32_t rhs );
 
-/// \relates int.
-inline int operator/( const int& lhs, const int& rhs );
+/// \relates int4.
+inline int4 operator/( const int4& lhs, const int4& rhs );
 
-/// \relates int.
-inline int operator/=( int& lhs, const int& rhs );
+/// \relates int4.
+inline int4 operator/=( int4& lhs, const int4& rhs );
 
 /// \relates int4
 /// \brief Returns a bool4 where each component is true if the component of the left-hand type is less than the corresponding right-hand type component.
@@ -270,11 +270,11 @@ inline uint2 operator+( const uint2& lhs, const uint32_t rhs );
 /// \brief Adds each component by the given scalar value.
 inline uint2 operator+=( uint2& lhs, const uint32_t rhs );
 
-/// \relates uint.
-inline uint operator+( const uint& lhs, const uint& rhs );
+/// \relates uint2.
+inline uint2 operator+( const uint2& lhs, const uint2& rhs );
 
-/// \relates uint.
-inline uint operator+=( uint& lhs, const uint& rhs );
+/// \relates uint2.
+inline uint2 operator+=( uint2& lhs, const uint2& rhs );
 
 /// \relates uint2
 /// \brief Returns a copy that has been component-wise subtracted by the given scalar value.
@@ -284,11 +284,11 @@ inline uint2 operator-( const uint2& lhs, const uint32_t rhs );
 /// \brief Subtracts each component by the given scalar value.
 inline uint2 operator-=( uint2& lhs, const uint32_t rhs );
 
-/// \relates uint.
-inline uint operator-( const uint& lhs, const uint& rhs );
+/// \relates uint2.
+inline uint2 operator-( const uint2& lhs, const uint2& rhs );
 
-/// \relates uint.
-inline uint operator-=( uint& lhs, const uint& rhs );
+/// \relates uint2.
+inline uint2 operator-=( uint2& lhs, const uint2& rhs );
 
 /// \relates uint2
 /// \brief Returns a copy that has been component-wise multiplied by the given scalar value.
@@ -298,11 +298,11 @@ inline uint2 operator*( const uint2& lhs, const uint32_t rhs );
 /// \brief Multiplies each component by the given scalar value.
 inline uint2 operator*=( uint2& lhs, const uint32_t rhs );
 
-/// \relates uint.
-inline uint operator*( const uint& lhs, const uint& rhs );
+/// \relates uint2.
+inline uint2 operator*( const uint2& lhs, const uint2& rhs );
 
-/// \relates uint.
-inline uint operator*=( uint& lhs, const uint& rhs );
+/// \relates uint2.
+inline uint2 operator*=( uint2& lhs, const uint2& rhs );
 
 /// \relates uint2
 /// \brief Returns a copy that has been component-wise divided by the given scalar value.
@@ -312,11 +312,11 @@ inline uint2 operator/( const uint2& lhs, const uint32_t rhs );
 /// \brief Divides each component by the given scalar value.
 inline uint2 operator/=( uint2& lhs, const uint32_t rhs );
 
-/// \relates uint.
-inline uint operator/( const uint& lhs, const uint& rhs );
+/// \relates uint2.
+inline uint2 operator/( const uint2& lhs, const uint2& rhs );
 
-/// \relates uint.
-inline uint operator/=( uint& lhs, const uint& rhs );
+/// \relates uint2.
+inline uint2 operator/=( uint2& lhs, const uint2& rhs );
 
 /// \relates uint2
 /// \brief Returns a bool2 where each component is true if the component of the left-hand type is less than the corresponding right-hand type component.
@@ -344,11 +344,11 @@ inline uint3 operator+( const uint3& lhs, const uint32_t rhs );
 /// \brief Adds each component by the given scalar value.
 inline uint3 operator+=( uint3& lhs, const uint32_t rhs );
 
-/// \relates uint.
-inline uint operator+( const uint& lhs, const uint& rhs );
+/// \relates uint3.
+inline uint3 operator+( const uint3& lhs, const uint3& rhs );
 
-/// \relates uint.
-inline uint operator+=( uint& lhs, const uint& rhs );
+/// \relates uint3.
+inline uint3 operator+=( uint3& lhs, const uint3& rhs );
 
 /// \relates uint3
 /// \brief Returns a copy that has been component-wise subtracted by the given scalar value.
@@ -358,11 +358,11 @@ inline uint3 operator-( const uint3& lhs, const uint32_t rhs );
 /// \brief Subtracts each component by the given scalar value.
 inline uint3 operator-=( uint3& lhs, const uint32_t rhs );
 
-/// \relates uint.
-inline uint operator-( const uint& lhs, const uint& rhs );
+/// \relates uint3.
+inline uint3 operator-( const uint3& lhs, const uint3& rhs );
 
-/// \relates uint.
-inline uint operator-=( uint& lhs, const uint& rhs );
+/// \relates uint3.
+inline uint3 operator-=( uint3& lhs, const uint3& rhs );
 
 /// \relates uint3
 /// \brief Returns a copy that has been component-wise multiplied by the given scalar value.
@@ -372,11 +372,11 @@ inline uint3 operator*( const uint3& lhs, const uint32_t rhs );
 /// \brief Multiplies each component by the given scalar value.
 inline uint3 operator*=( uint3& lhs, const uint32_t rhs );
 
-/// \relates uint.
-inline uint operator*( const uint& lhs, const uint& rhs );
+/// \relates uint3.
+inline uint3 operator*( const uint3& lhs, const uint3& rhs );
 
-/// \relates uint.
-inline uint operator*=( uint& lhs, const uint& rhs );
+/// \relates uint3.
+inline uint3 operator*=( uint3& lhs, const uint3& rhs );
 
 /// \relates uint3
 /// \brief Returns a copy that has been component-wise divided by the given scalar value.
@@ -386,11 +386,11 @@ inline uint3 operator/( const uint3& lhs, const uint32_t rhs );
 /// \brief Divides each component by the given scalar value.
 inline uint3 operator/=( uint3& lhs, const uint32_t rhs );
 
-/// \relates uint.
-inline uint operator/( const uint& lhs, const uint& rhs );
+/// \relates uint3.
+inline uint3 operator/( const uint3& lhs, const uint3& rhs );
 
-/// \relates uint.
-inline uint operator/=( uint& lhs, const uint& rhs );
+/// \relates uint3.
+inline uint3 operator/=( uint3& lhs, const uint3& rhs );
 
 /// \relates uint3
 /// \brief Returns a bool3 where each component is true if the component of the left-hand type is less than the corresponding right-hand type component.
@@ -418,11 +418,11 @@ inline uint4 operator+( const uint4& lhs, const uint32_t rhs );
 /// \brief Adds each component by the given scalar value.
 inline uint4 operator+=( uint4& lhs, const uint32_t rhs );
 
-/// \relates uint.
-inline uint operator+( const uint& lhs, const uint& rhs );
+/// \relates uint4.
+inline uint4 operator+( const uint4& lhs, const uint4& rhs );
 
-/// \relates uint.
-inline uint operator+=( uint& lhs, const uint& rhs );
+/// \relates uint4.
+inline uint4 operator+=( uint4& lhs, const uint4& rhs );
 
 /// \relates uint4
 /// \brief Returns a copy that has been component-wise subtracted by the given scalar value.
@@ -432,11 +432,11 @@ inline uint4 operator-( const uint4& lhs, const uint32_t rhs );
 /// \brief Subtracts each component by the given scalar value.
 inline uint4 operator-=( uint4& lhs, const uint32_t rhs );
 
-/// \relates uint.
-inline uint operator-( const uint& lhs, const uint& rhs );
+/// \relates uint4.
+inline uint4 operator-( const uint4& lhs, const uint4& rhs );
 
-/// \relates uint.
-inline uint operator-=( uint& lhs, const uint& rhs );
+/// \relates uint4.
+inline uint4 operator-=( uint4& lhs, const uint4& rhs );
 
 /// \relates uint4
 /// \brief Returns a copy that has been component-wise multiplied by the given scalar value.
@@ -446,11 +446,11 @@ inline uint4 operator*( const uint4& lhs, const uint32_t rhs );
 /// \brief Multiplies each component by the given scalar value.
 inline uint4 operator*=( uint4& lhs, const uint32_t rhs );
 
-/// \relates uint.
-inline uint operator*( const uint& lhs, const uint& rhs );
+/// \relates uint4.
+inline uint4 operator*( const uint4& lhs, const uint4& rhs );
 
-/// \relates uint.
-inline uint operator*=( uint& lhs, const uint& rhs );
+/// \relates uint4.
+inline uint4 operator*=( uint4& lhs, const uint4& rhs );
 
 /// \relates uint4
 /// \brief Returns a copy that has been component-wise divided by the given scalar value.
@@ -460,11 +460,11 @@ inline uint4 operator/( const uint4& lhs, const uint32_t rhs );
 /// \brief Divides each component by the given scalar value.
 inline uint4 operator/=( uint4& lhs, const uint32_t rhs );
 
-/// \relates uint.
-inline uint operator/( const uint& lhs, const uint& rhs );
+/// \relates uint4.
+inline uint4 operator/( const uint4& lhs, const uint4& rhs );
 
-/// \relates uint.
-inline uint operator/=( uint& lhs, const uint& rhs );
+/// \relates uint4.
+inline uint4 operator/=( uint4& lhs, const uint4& rhs );
 
 /// \relates uint4
 /// \brief Returns a bool4 where each component is true if the component of the left-hand type is less than the corresponding right-hand type component.
@@ -492,11 +492,11 @@ inline float2 operator+( const float2& lhs, const float rhs );
 /// \brief Adds each component by the given scalar value.
 inline float2 operator+=( float2& lhs, const float rhs );
 
-/// \relates float.
-inline float operator+( const float& lhs, const float& rhs );
+/// \relates float2.
+inline float2 operator+( const float2& lhs, const float2& rhs );
 
-/// \relates float.
-inline float operator+=( float& lhs, const float& rhs );
+/// \relates float2.
+inline float2 operator+=( float2& lhs, const float2& rhs );
 
 /// \relates float2
 /// \brief Returns a copy that has been component-wise subtracted by the given scalar value.
@@ -506,11 +506,11 @@ inline float2 operator-( const float2& lhs, const float rhs );
 /// \brief Subtracts each component by the given scalar value.
 inline float2 operator-=( float2& lhs, const float rhs );
 
-/// \relates float.
-inline float operator-( const float& lhs, const float& rhs );
+/// \relates float2.
+inline float2 operator-( const float2& lhs, const float2& rhs );
 
-/// \relates float.
-inline float operator-=( float& lhs, const float& rhs );
+/// \relates float2.
+inline float2 operator-=( float2& lhs, const float2& rhs );
 
 /// \relates float2
 /// \brief Returns a copy that has been component-wise multiplied by the given scalar value.
@@ -520,11 +520,11 @@ inline float2 operator*( const float2& lhs, const float rhs );
 /// \brief Multiplies each component by the given scalar value.
 inline float2 operator*=( float2& lhs, const float rhs );
 
-/// \relates float.
-inline float operator*( const float& lhs, const float& rhs );
+/// \relates float2.
+inline float2 operator*( const float2& lhs, const float2& rhs );
 
-/// \relates float.
-inline float operator*=( float& lhs, const float& rhs );
+/// \relates float2.
+inline float2 operator*=( float2& lhs, const float2& rhs );
 
 /// \relates float2
 /// \brief Returns a copy that has been component-wise divided by the given scalar value.
@@ -534,11 +534,11 @@ inline float2 operator/( const float2& lhs, const float rhs );
 /// \brief Divides each component by the given scalar value.
 inline float2 operator/=( float2& lhs, const float rhs );
 
-/// \relates float.
-inline float operator/( const float& lhs, const float& rhs );
+/// \relates float2.
+inline float2 operator/( const float2& lhs, const float2& rhs );
 
-/// \relates float.
-inline float operator/=( float& lhs, const float& rhs );
+/// \relates float2.
+inline float2 operator/=( float2& lhs, const float2& rhs );
 
 /// \relates float2
 /// \brief Returns a bool2 where each component is true if the component of the left-hand type is less than the corresponding right-hand type component.
@@ -566,11 +566,11 @@ inline float3 operator+( const float3& lhs, const float rhs );
 /// \brief Adds each component by the given scalar value.
 inline float3 operator+=( float3& lhs, const float rhs );
 
-/// \relates float.
-inline float operator+( const float& lhs, const float& rhs );
+/// \relates float3.
+inline float3 operator+( const float3& lhs, const float3& rhs );
 
-/// \relates float.
-inline float operator+=( float& lhs, const float& rhs );
+/// \relates float3.
+inline float3 operator+=( float3& lhs, const float3& rhs );
 
 /// \relates float3
 /// \brief Returns a copy that has been component-wise subtracted by the given scalar value.
@@ -580,11 +580,11 @@ inline float3 operator-( const float3& lhs, const float rhs );
 /// \brief Subtracts each component by the given scalar value.
 inline float3 operator-=( float3& lhs, const float rhs );
 
-/// \relates float.
-inline float operator-( const float& lhs, const float& rhs );
+/// \relates float3.
+inline float3 operator-( const float3& lhs, const float3& rhs );
 
-/// \relates float.
-inline float operator-=( float& lhs, const float& rhs );
+/// \relates float3.
+inline float3 operator-=( float3& lhs, const float3& rhs );
 
 /// \relates float3
 /// \brief Returns a copy that has been component-wise multiplied by the given scalar value.
@@ -594,11 +594,11 @@ inline float3 operator*( const float3& lhs, const float rhs );
 /// \brief Multiplies each component by the given scalar value.
 inline float3 operator*=( float3& lhs, const float rhs );
 
-/// \relates float.
-inline float operator*( const float& lhs, const float& rhs );
+/// \relates float3.
+inline float3 operator*( const float3& lhs, const float3& rhs );
 
-/// \relates float.
-inline float operator*=( float& lhs, const float& rhs );
+/// \relates float3.
+inline float3 operator*=( float3& lhs, const float3& rhs );
 
 /// \relates float3
 /// \brief Returns a copy that has been component-wise divided by the given scalar value.
@@ -608,11 +608,11 @@ inline float3 operator/( const float3& lhs, const float rhs );
 /// \brief Divides each component by the given scalar value.
 inline float3 operator/=( float3& lhs, const float rhs );
 
-/// \relates float.
-inline float operator/( const float& lhs, const float& rhs );
+/// \relates float3.
+inline float3 operator/( const float3& lhs, const float3& rhs );
 
-/// \relates float.
-inline float operator/=( float& lhs, const float& rhs );
+/// \relates float3.
+inline float3 operator/=( float3& lhs, const float3& rhs );
 
 /// \relates float3
 /// \brief Returns a bool3 where each component is true if the component of the left-hand type is less than the corresponding right-hand type component.
@@ -640,11 +640,11 @@ inline float4 operator+( const float4& lhs, const float rhs );
 /// \brief Adds each component by the given scalar value.
 inline float4 operator+=( float4& lhs, const float rhs );
 
-/// \relates float.
-inline float operator+( const float& lhs, const float& rhs );
+/// \relates float4.
+inline float4 operator+( const float4& lhs, const float4& rhs );
 
-/// \relates float.
-inline float operator+=( float& lhs, const float& rhs );
+/// \relates float4.
+inline float4 operator+=( float4& lhs, const float4& rhs );
 
 /// \relates float4
 /// \brief Returns a copy that has been component-wise subtracted by the given scalar value.
@@ -654,11 +654,11 @@ inline float4 operator-( const float4& lhs, const float rhs );
 /// \brief Subtracts each component by the given scalar value.
 inline float4 operator-=( float4& lhs, const float rhs );
 
-/// \relates float.
-inline float operator-( const float& lhs, const float& rhs );
+/// \relates float4.
+inline float4 operator-( const float4& lhs, const float4& rhs );
 
-/// \relates float.
-inline float operator-=( float& lhs, const float& rhs );
+/// \relates float4.
+inline float4 operator-=( float4& lhs, const float4& rhs );
 
 /// \relates float4
 /// \brief Returns a copy that has been component-wise multiplied by the given scalar value.
@@ -668,11 +668,11 @@ inline float4 operator*( const float4& lhs, const float rhs );
 /// \brief Multiplies each component by the given scalar value.
 inline float4 operator*=( float4& lhs, const float rhs );
 
-/// \relates float.
-inline float operator*( const float& lhs, const float& rhs );
+/// \relates float4.
+inline float4 operator*( const float4& lhs, const float4& rhs );
 
-/// \relates float.
-inline float operator*=( float& lhs, const float& rhs );
+/// \relates float4.
+inline float4 operator*=( float4& lhs, const float4& rhs );
 
 /// \relates float4
 /// \brief Returns a copy that has been component-wise divided by the given scalar value.
@@ -682,11 +682,11 @@ inline float4 operator/( const float4& lhs, const float rhs );
 /// \brief Divides each component by the given scalar value.
 inline float4 operator/=( float4& lhs, const float rhs );
 
-/// \relates float.
-inline float operator/( const float& lhs, const float& rhs );
+/// \relates float4.
+inline float4 operator/( const float4& lhs, const float4& rhs );
 
-/// \relates float.
-inline float operator/=( float& lhs, const float& rhs );
+/// \relates float4.
+inline float4 operator/=( float4& lhs, const float4& rhs );
 
 /// \relates float4
 /// \brief Returns a bool4 where each component is true if the component of the left-hand type is less than the corresponding right-hand type component.
@@ -714,11 +714,11 @@ inline double2 operator+( const double2& lhs, const double rhs );
 /// \brief Adds each component by the given scalar value.
 inline double2 operator+=( double2& lhs, const double rhs );
 
-/// \relates double.
-inline double operator+( const double& lhs, const double& rhs );
+/// \relates double2.
+inline double2 operator+( const double2& lhs, const double2& rhs );
 
-/// \relates double.
-inline double operator+=( double& lhs, const double& rhs );
+/// \relates double2.
+inline double2 operator+=( double2& lhs, const double2& rhs );
 
 /// \relates double2
 /// \brief Returns a copy that has been component-wise subtracted by the given scalar value.
@@ -728,11 +728,11 @@ inline double2 operator-( const double2& lhs, const double rhs );
 /// \brief Subtracts each component by the given scalar value.
 inline double2 operator-=( double2& lhs, const double rhs );
 
-/// \relates double.
-inline double operator-( const double& lhs, const double& rhs );
+/// \relates double2.
+inline double2 operator-( const double2& lhs, const double2& rhs );
 
-/// \relates double.
-inline double operator-=( double& lhs, const double& rhs );
+/// \relates double2.
+inline double2 operator-=( double2& lhs, const double2& rhs );
 
 /// \relates double2
 /// \brief Returns a copy that has been component-wise multiplied by the given scalar value.
@@ -742,11 +742,11 @@ inline double2 operator*( const double2& lhs, const double rhs );
 /// \brief Multiplies each component by the given scalar value.
 inline double2 operator*=( double2& lhs, const double rhs );
 
-/// \relates double.
-inline double operator*( const double& lhs, const double& rhs );
+/// \relates double2.
+inline double2 operator*( const double2& lhs, const double2& rhs );
 
-/// \relates double.
-inline double operator*=( double& lhs, const double& rhs );
+/// \relates double2.
+inline double2 operator*=( double2& lhs, const double2& rhs );
 
 /// \relates double2
 /// \brief Returns a copy that has been component-wise divided by the given scalar value.
@@ -756,11 +756,11 @@ inline double2 operator/( const double2& lhs, const double rhs );
 /// \brief Divides each component by the given scalar value.
 inline double2 operator/=( double2& lhs, const double rhs );
 
-/// \relates double.
-inline double operator/( const double& lhs, const double& rhs );
+/// \relates double2.
+inline double2 operator/( const double2& lhs, const double2& rhs );
 
-/// \relates double.
-inline double operator/=( double& lhs, const double& rhs );
+/// \relates double2.
+inline double2 operator/=( double2& lhs, const double2& rhs );
 
 /// \relates double2
 /// \brief Returns a bool2 where each component is true if the component of the left-hand type is less than the corresponding right-hand type component.
@@ -788,11 +788,11 @@ inline double3 operator+( const double3& lhs, const double rhs );
 /// \brief Adds each component by the given scalar value.
 inline double3 operator+=( double3& lhs, const double rhs );
 
-/// \relates double.
-inline double operator+( const double& lhs, const double& rhs );
+/// \relates double3.
+inline double3 operator+( const double3& lhs, const double3& rhs );
 
-/// \relates double.
-inline double operator+=( double& lhs, const double& rhs );
+/// \relates double3.
+inline double3 operator+=( double3& lhs, const double3& rhs );
 
 /// \relates double3
 /// \brief Returns a copy that has been component-wise subtracted by the given scalar value.
@@ -802,11 +802,11 @@ inline double3 operator-( const double3& lhs, const double rhs );
 /// \brief Subtracts each component by the given scalar value.
 inline double3 operator-=( double3& lhs, const double rhs );
 
-/// \relates double.
-inline double operator-( const double& lhs, const double& rhs );
+/// \relates double3.
+inline double3 operator-( const double3& lhs, const double3& rhs );
 
-/// \relates double.
-inline double operator-=( double& lhs, const double& rhs );
+/// \relates double3.
+inline double3 operator-=( double3& lhs, const double3& rhs );
 
 /// \relates double3
 /// \brief Returns a copy that has been component-wise multiplied by the given scalar value.
@@ -816,11 +816,11 @@ inline double3 operator*( const double3& lhs, const double rhs );
 /// \brief Multiplies each component by the given scalar value.
 inline double3 operator*=( double3& lhs, const double rhs );
 
-/// \relates double.
-inline double operator*( const double& lhs, const double& rhs );
+/// \relates double3.
+inline double3 operator*( const double3& lhs, const double3& rhs );
 
-/// \relates double.
-inline double operator*=( double& lhs, const double& rhs );
+/// \relates double3.
+inline double3 operator*=( double3& lhs, const double3& rhs );
 
 /// \relates double3
 /// \brief Returns a copy that has been component-wise divided by the given scalar value.
@@ -830,11 +830,11 @@ inline double3 operator/( const double3& lhs, const double rhs );
 /// \brief Divides each component by the given scalar value.
 inline double3 operator/=( double3& lhs, const double rhs );
 
-/// \relates double.
-inline double operator/( const double& lhs, const double& rhs );
+/// \relates double3.
+inline double3 operator/( const double3& lhs, const double3& rhs );
 
-/// \relates double.
-inline double operator/=( double& lhs, const double& rhs );
+/// \relates double3.
+inline double3 operator/=( double3& lhs, const double3& rhs );
 
 /// \relates double3
 /// \brief Returns a bool3 where each component is true if the component of the left-hand type is less than the corresponding right-hand type component.
@@ -862,11 +862,11 @@ inline double4 operator+( const double4& lhs, const double rhs );
 /// \brief Adds each component by the given scalar value.
 inline double4 operator+=( double4& lhs, const double rhs );
 
-/// \relates double.
-inline double operator+( const double& lhs, const double& rhs );
+/// \relates double4.
+inline double4 operator+( const double4& lhs, const double4& rhs );
 
-/// \relates double.
-inline double operator+=( double& lhs, const double& rhs );
+/// \relates double4.
+inline double4 operator+=( double4& lhs, const double4& rhs );
 
 /// \relates double4
 /// \brief Returns a copy that has been component-wise subtracted by the given scalar value.
@@ -876,11 +876,11 @@ inline double4 operator-( const double4& lhs, const double rhs );
 /// \brief Subtracts each component by the given scalar value.
 inline double4 operator-=( double4& lhs, const double rhs );
 
-/// \relates double.
-inline double operator-( const double& lhs, const double& rhs );
+/// \relates double4.
+inline double4 operator-( const double4& lhs, const double4& rhs );
 
-/// \relates double.
-inline double operator-=( double& lhs, const double& rhs );
+/// \relates double4.
+inline double4 operator-=( double4& lhs, const double4& rhs );
 
 /// \relates double4
 /// \brief Returns a copy that has been component-wise multiplied by the given scalar value.
@@ -890,11 +890,11 @@ inline double4 operator*( const double4& lhs, const double rhs );
 /// \brief Multiplies each component by the given scalar value.
 inline double4 operator*=( double4& lhs, const double rhs );
 
-/// \relates double.
-inline double operator*( const double& lhs, const double& rhs );
+/// \relates double4.
+inline double4 operator*( const double4& lhs, const double4& rhs );
 
-/// \relates double.
-inline double operator*=( double& lhs, const double& rhs );
+/// \relates double4.
+inline double4 operator*=( double4& lhs, const double4& rhs );
 
 /// \relates double4
 /// \brief Returns a copy that has been component-wise divided by the given scalar value.
@@ -904,11 +904,11 @@ inline double4 operator/( const double4& lhs, const double rhs );
 /// \brief Divides each component by the given scalar value.
 inline double4 operator/=( double4& lhs, const double rhs );
 
-/// \relates double.
-inline double operator/( const double& lhs, const double& rhs );
+/// \relates double4.
+inline double4 operator/( const double4& lhs, const double4& rhs );
 
-/// \relates double.
-inline double operator/=( double& lhs, const double& rhs );
+/// \relates double4.
+inline double4 operator/=( double4& lhs, const double4& rhs );
 
 /// \relates double4
 /// \brief Returns a bool4 where each component is true if the component of the left-hand type is less than the corresponding right-hand type component.
