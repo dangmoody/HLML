@@ -41,4 +41,6 @@ private:
 	void		GenerateTestSaturate();
 
 	void		GenerateTestLerp();
+
+	void		GenerateTestPacking();
 };

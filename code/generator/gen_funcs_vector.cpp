@@ -86,6 +86,16 @@ static std::string GetDocLerp( const std::string& fullTypeName ) {
 		"/// \\brief Returns a linearly interpolated vector between vectors \"a\" and \"b\".\n";
 }
 
+static std::string GetDocPack( const std::string& fullTypeName ) {
+	return "/// \\relates " + fullTypeName + "\n" + \
+		"/// \\brief Returns a 32 bit integer containing each component of the vector (starting with x) at each byte.\n";
+}
+
+static std::string GetDocUnpack( const std::string& fullTypeName ) {
+	return "/// \\relates " + fullTypeName + "\n" + \
+		"/// \\brief Returns a 4-component integer vector containing each byte of the given integer.\n";
+}
+
 static std::string HeaderGetArithmeticFuncScalar( const genType_t type, const uint32_t numComponents, const genOpArithmetic_t op ) {
 	assert( numComponents >= GEN_COMPONENT_COUNT_MIN );
 	assert( numComponents <= GEN_COMPONENT_COUNT_MAX );
@@ -516,6 +526,86 @@ void Gen_VectorLerp( const genType_t type, const uint32_t numComponents, std::st
 		char component = GEN_COMPONENT_NAMES_VECTOR[i];
 
 		outInl += std::string( "\t\tlerp( a." ) + component + ", b." + component + ", t )";
+
+		if ( i != numComponents - 1 ) {
+			outInl += ",";
+		}
+
+		outInl += "\n";
+	}
+	outInl += "\t);\n";
+	outInl += "}\n";
+	outInl += "\n";
+}
+
+void Gen_VectorPack( const genType_t type, const uint32_t numComponents, std::string& outHeader, std::string& outInl ) {
+	assert( numComponents >= GEN_COMPONENT_COUNT_MIN );
+	assert( numComponents <= GEN_COMPONENT_COUNT_MAX );
+
+	if ( type != GEN_TYPE_INT && type != GEN_TYPE_UINT ) {
+		return;
+	}
+
+	if ( numComponents != 4 ) {
+		return;
+	}
+
+	uint32_t shiftVals[] = {
+		24, 16, 8, 0
+	};
+
+	std::string typeString = Gen_GetTypeString( type );
+	std::string fullTypeName = typeString + std::to_string( numComponents );
+
+	std::string memberTypeString = Gen_GetMemberTypeString( type );
+
+	outHeader += GetDocPack( fullTypeName );
+	outHeader += "inline " + memberTypeString + " pack( const " + fullTypeName + "& vec );\n";
+	outHeader += "\n";
+
+	outInl += memberTypeString + " pack( const " + fullTypeName + "& vec ) {\n";
+	outInl += "\treturn ";
+	for ( uint32_t i = 0; i < numComponents; i++ ) {
+		outInl += std::string( "( vec." ) + GEN_COMPONENT_NAMES_VECTOR[i] + " << " + std::to_string( shiftVals[i] ) + " )";
+
+		if ( i != numComponents - 1 ) {
+			outInl += " | ";
+		}
+	}
+	outInl += ";\n";
+	outInl += "}\n";
+	outInl += "\n";
+}
+
+void Gen_VectorUnpack( const genType_t type, const uint32_t numComponents, std::string& outHeader, std::string& outInl ) {
+	assert( numComponents >= GEN_COMPONENT_COUNT_MIN );
+	assert( numComponents <= GEN_COMPONENT_COUNT_MAX );
+
+	if ( type != GEN_TYPE_INT && type != GEN_TYPE_UINT ) {
+		return;
+	}
+
+	if ( numComponents != 4 ) {
+		return;
+	}
+
+	uint32_t shiftVals[] = {
+		24, 16, 8, 0
+	};
+
+	std::string typeString = Gen_GetTypeString( type );
+	std::string fullTypeName = typeString + std::to_string( numComponents );
+
+	std::string memberTypeString = Gen_GetMemberTypeString( type );
+
+	outHeader += GetDocUnpack( fullTypeName );
+	outHeader += "inline " + fullTypeName + " unpack( const " + memberTypeString + " x );\n";
+	outHeader += "\n";
+
+	outInl += fullTypeName + " unpack( const " + memberTypeString + " x ) {\n";
+	outInl += "\treturn " + fullTypeName + "(\n";
+	for ( uint32_t i = 0; i < numComponents; i++ ) {
+		outInl += "\t\t( x >> " + std::to_string( shiftVals[i] ) + " ) & 0xFF";
 
 		if ( i != numComponents - 1 ) {
 			outInl += ",";

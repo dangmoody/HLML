@@ -67,6 +67,19 @@ float length( const int4& vec ) {
 	return sqrtf( lengthsqr( vec ) );
 }
 
+int32_t pack( const int4& vec ) {
+	return ( vec.x << 24 ) | ( vec.y << 16 ) | ( vec.z << 8 ) | ( vec.w << 0 );
+}
+
+int4 unpack( const int32_t x ) {
+	return int4(
+		( x >> 24 ) & 0xFF,
+		( x >> 16 ) & 0xFF,
+		( x >> 8 ) & 0xFF,
+		( x >> 0 ) & 0xFF
+	);
+}
+
 
 // uint2
 float lengthsqr( const uint2& vec ) {
@@ -95,6 +108,19 @@ float lengthsqr( const uint4& vec ) {
 
 float length( const uint4& vec ) {
 	return sqrtf( lengthsqr( vec ) );
+}
+
+uint32_t pack( const uint4& vec ) {
+	return ( vec.x << 24 ) | ( vec.y << 16 ) | ( vec.z << 8 ) | ( vec.w << 0 );
+}
+
+uint4 unpack( const uint32_t x ) {
+	return uint4(
+		( x >> 24 ) & 0xFF,
+		( x >> 16 ) & 0xFF,
+		( x >> 8 ) & 0xFF,
+		( x >> 0 ) & 0xFF
+	);
 }
 
 

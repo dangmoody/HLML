@@ -52,6 +52,8 @@ void TestsGeneratorVector::Generate( const genType_t type, const uint32_t numCom
 
 	GenerateTestLerp();
 
+	GenerateTestPacking();
+
 	m_code += "TEMPER_SUITE( " + m_testPrefix + " ) {\n";
 	m_code += "\tTEMPER_RUN_TEST( TestAssignment_" + m_fullTypeName + " );\n";
 	m_code += "\tTEMPER_RUN_TEST( TestArray_" + m_fullTypeName + " );\n";
@@ -81,6 +83,10 @@ void TestsGeneratorVector::Generate( const genType_t type, const uint32_t numCom
 		m_code += "\tTEMPER_RUN_TEST( TestSaturate_" + m_fullTypeName + " );\n";
 
 		m_code += "\tTEMPER_RUN_TEST( TestLerp_" + m_fullTypeName + " );\n";
+	}
+	if ( ( m_type == GEN_TYPE_INT || m_type == GEN_TYPE_UINT ) && m_numComponents == 4 ) {
+		m_code += "\n";
+		m_code += "\tTEMPER_RUN_TEST( TestPacking_" + m_fullTypeName + " );\n";
 	}
 	m_code += "};\n";
 
@@ -449,6 +455,38 @@ void TestsGeneratorVector::GenerateTestLerp() {
 	m_code += "\t" + m_fullTypeName + " lerped = lerp( a, b, " + lerpValStr + " );\n";
 	m_code += "\n";
 	m_code += "\tTEMPER_EXPECT_TRUE( lerped == answer );\n";
+	m_code += "\n";
+	m_code += "\tTEMPER_PASS();\n";
+	m_code += "}\n";
+	m_code += "\n";
+}
+
+void TestsGeneratorVector::GenerateTestPacking() {
+	if ( m_type != GEN_TYPE_INT && m_type != GEN_TYPE_UINT ) {
+		return;
+	}
+
+	if ( m_numComponents != 4 ) {
+		return;
+	}
+
+	float values[] = { 255, 255, 0, 255 };	// magenta
+	std::string parmListAnswerUnpacked = Gen_GetParmListVector( m_type, m_numComponents, values );
+
+	std::string answerPacked = "0xFFFF00FF";
+
+	// tests pack and unpack
+	m_code += "TEMPER_TEST( TestPacking_" + m_fullTypeName + " ) {\n";
+	m_code += "\t" + m_memberTypeString + " answerPacked = " + answerPacked + ";\n";
+	m_code += "\t" + m_fullTypeName + " answerUnpacked = " + m_fullTypeName + parmListAnswerUnpacked + ";\n";
+	m_code += "\n";
+	m_code += "\t" + m_fullTypeName + " vec = " + m_fullTypeName + parmListAnswerUnpacked + ";\n";	// we can use the same parm list here, it's fine
+	m_code += "\n";
+	m_code += "\t" + m_memberTypeString + " packed = pack( vec );\n";
+	m_code += "\tTEMPER_EXPECT_TRUE( packed == answerPacked );\n";
+	m_code += "\n";
+	m_code += "\t" + m_fullTypeName + " unpacked = unpack( packed );\n";
+	m_code += "\tTEMPER_EXPECT_TRUE( unpacked == answerUnpacked );\n";
 	m_code += "\n";
 	m_code += "\tTEMPER_PASS();\n";
 	m_code += "}\n";

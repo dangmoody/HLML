@@ -149,6 +149,21 @@ TEMPER_TEST( TestLength_uint4 ) {
 	TEMPER_PASS();
 }
 
+TEMPER_TEST( TestPacking_uint4 ) {
+	uint32_t answerPacked = 0xFFFF00FF;
+	uint4 answerUnpacked = uint4( 255, 255, 0, 255 );
+
+	uint4 vec = uint4( 255, 255, 0, 255 );
+
+	uint32_t packed = pack( vec );
+	TEMPER_EXPECT_TRUE( packed == answerPacked );
+
+	uint4 unpacked = unpack( packed );
+	TEMPER_EXPECT_TRUE( unpacked == answerUnpacked );
+
+	TEMPER_PASS();
+}
+
 TEMPER_SUITE( Test_uint4 ) {
 	TEMPER_RUN_TEST( TestAssignment_uint4 );
 	TEMPER_RUN_TEST( TestArray_uint4 );
@@ -161,4 +176,6 @@ TEMPER_SUITE( Test_uint4 ) {
 	TEMPER_RUN_TEST( TestRelational_uint4 );
 
 	TEMPER_RUN_TEST( TestLength_uint4 );
+
+	TEMPER_RUN_TEST( TestPacking_uint4 );
 };

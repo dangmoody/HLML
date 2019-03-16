@@ -311,6 +311,9 @@ static bool GenerateFunctionsVector( void ) {
 
 			Gen_VectorLerp( type, componentIndex, contentHeader, contentInl );
 
+			Gen_VectorPack( type, componentIndex, contentHeader, contentInl );
+			Gen_VectorUnpack( type, componentIndex, contentHeader, contentInl );
+
 			contentHeader += "\n";
 			contentInl += "\n";
 
