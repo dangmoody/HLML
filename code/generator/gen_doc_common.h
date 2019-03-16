@@ -55,8 +55,8 @@ std::string Gen_GetDocOperatorCompoundArithmeticScalar( const std::string& fullT
 			return std::string();
 	}
 
-	return "\t/// \\relates " + fullTypeName + "\n" \
-		"\t/// \\brief " + verb + " each component by the given scalar value.\n";
+	return "/// \\relates " + fullTypeName + "\n" \
+		"/// \\brief " + verb + " each component by the given scalar value.\n";
 }
 
 std::string Gen_GetDocOperatorRelational( const std::string& fullTypeName, const uint32_t numRows, const uint32_t numCols, const genOpRelational_t op ) {
