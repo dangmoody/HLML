@@ -75,94 +75,6 @@ uint2 uint2::operator=( const uint4& rhs ) {
 	return *this;
 }
 
-uint2 uint2::operator+( const uint32_t rhs ) const {
-	return uint2(
-		x + rhs,
-		y + rhs
-	);
-}
-
-uint2 uint2::operator+=( const uint32_t rhs ) {
-	return ( *this = *this + rhs );
-}
-
-uint2 uint2::operator+( const uint2& rhs ) const {
-	return uint2(
-		x + rhs.x,
-		y + rhs.y
-	);
-}
-
-uint2 uint2::operator+=( const uint2& rhs ) {
-	return ( *this = *this + rhs );
-}
-
-uint2 uint2::operator-( const uint32_t rhs ) const {
-	return uint2(
-		x - rhs,
-		y - rhs
-	);
-}
-
-uint2 uint2::operator-=( const uint32_t rhs ) {
-	return ( *this = *this - rhs );
-}
-
-uint2 uint2::operator-( const uint2& rhs ) const {
-	return uint2(
-		x - rhs.x,
-		y - rhs.y
-	);
-}
-
-uint2 uint2::operator-=( const uint2& rhs ) {
-	return ( *this = *this - rhs );
-}
-
-uint2 uint2::operator*( const uint32_t rhs ) const {
-	return uint2(
-		x * rhs,
-		y * rhs
-	);
-}
-
-uint2 uint2::operator*=( const uint32_t rhs ) {
-	return ( *this = *this * rhs );
-}
-
-uint2 uint2::operator*( const uint2& rhs ) const {
-	return uint2(
-		x * rhs.x,
-		y * rhs.y
-	);
-}
-
-uint2 uint2::operator*=( const uint2& rhs ) {
-	return ( *this = *this * rhs );
-}
-
-uint2 uint2::operator/( const uint32_t rhs ) const {
-	return uint2(
-		x / rhs,
-		y / rhs
-	);
-}
-
-uint2 uint2::operator/=( const uint32_t rhs ) {
-	return ( *this = *this / rhs );
-}
-
-uint2 uint2::operator/( const uint2& rhs ) const {
-	return uint2(
-		x / rhs.x,
-		y / rhs.y
-	);
-}
-
-uint2 uint2::operator/=( const uint2& rhs ) {
-	return ( *this = *this / rhs );
-}
-
 const uint32_t& uint2::operator[]( const uint32_t index ) const {
 	assert( index < 2 );
 	return data[index];
@@ -179,33 +91,5 @@ bool operator==( const uint2& lhs, const uint2& rhs ) {
 
 bool operator!=( const uint2& lhs, const uint2& rhs ) {
 	return !( operator==( lhs, rhs ) );
-}
-
-bool2 operator<( const uint2& lhs, const uint2& rhs ) {
-	return bool2(
-		lhs.x < rhs.x,
-		lhs.y < rhs.y
-	);
-}
-
-bool2 operator<=( const uint2& lhs, const uint2& rhs ) {
-	return bool2(
-		lhs.x <= rhs.x,
-		lhs.y <= rhs.y
-	);
-}
-
-bool2 operator>( const uint2& lhs, const uint2& rhs ) {
-	return bool2(
-		lhs.x > rhs.x,
-		lhs.y > rhs.y
-	);
-}
-
-bool2 operator>=( const uint2& lhs, const uint2& rhs ) {
-	return bool2(
-		lhs.x >= rhs.x,
-		lhs.y >= rhs.y
-	);
 }
 

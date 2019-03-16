@@ -35,17 +35,13 @@ private:
 
 	void			HeaderGenerateConstructors();
 	void			HeaderGenerateOperatorsAssignment();
-	void			HeaderGenerateOperatorsArithmetic();
 	void			HeaderGenerateOperatorsArray();
 	void			HeaderGenerateOperatorsEquality();
-	void			HeaderGenerateOperatorsRelational();
 
 	void			InlGenerateConstructors();
 	void			InlGenerateOperatorsAssignment();
-	void			InlGenerateOperatorsArithmetic();
 	void			InlGenerateOperatorsArray();
 	void			InlGenerateOperatorsEquality();
-	void			InlGenerateOperatorsRelational();
 
 	std::string		GetDocStruct() const;
 	std::string		GetDocScalar() const;
@@ -53,9 +49,6 @@ private:
 	std::string		GetDocCtorCopy() const;
 	std::string		GetDocCtorMemberwise() const;
 	std::string		GetDocOperatorAssignment() const;
-
-	std::string		GetDocOperatorArithmeticRhsType( const genOpArithmetic_t op ) const;
-	std::string		GetDocOperatorCompoundArithmeticRhsType( const genOpArithmetic_t op ) const;
 
 	std::string		GetDocOperatorArray() const;
 };

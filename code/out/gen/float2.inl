@@ -75,94 +75,6 @@ float2 float2::operator=( const float4& rhs ) {
 	return *this;
 }
 
-float2 float2::operator+( const float rhs ) const {
-	return float2(
-		x + rhs,
-		y + rhs
-	);
-}
-
-float2 float2::operator+=( const float rhs ) {
-	return ( *this = *this + rhs );
-}
-
-float2 float2::operator+( const float2& rhs ) const {
-	return float2(
-		x + rhs.x,
-		y + rhs.y
-	);
-}
-
-float2 float2::operator+=( const float2& rhs ) {
-	return ( *this = *this + rhs );
-}
-
-float2 float2::operator-( const float rhs ) const {
-	return float2(
-		x - rhs,
-		y - rhs
-	);
-}
-
-float2 float2::operator-=( const float rhs ) {
-	return ( *this = *this - rhs );
-}
-
-float2 float2::operator-( const float2& rhs ) const {
-	return float2(
-		x - rhs.x,
-		y - rhs.y
-	);
-}
-
-float2 float2::operator-=( const float2& rhs ) {
-	return ( *this = *this - rhs );
-}
-
-float2 float2::operator*( const float rhs ) const {
-	return float2(
-		x * rhs,
-		y * rhs
-	);
-}
-
-float2 float2::operator*=( const float rhs ) {
-	return ( *this = *this * rhs );
-}
-
-float2 float2::operator*( const float2& rhs ) const {
-	return float2(
-		x * rhs.x,
-		y * rhs.y
-	);
-}
-
-float2 float2::operator*=( const float2& rhs ) {
-	return ( *this = *this * rhs );
-}
-
-float2 float2::operator/( const float rhs ) const {
-	return float2(
-		x / rhs,
-		y / rhs
-	);
-}
-
-float2 float2::operator/=( const float rhs ) {
-	return ( *this = *this / rhs );
-}
-
-float2 float2::operator/( const float2& rhs ) const {
-	return float2(
-		x / rhs.x,
-		y / rhs.y
-	);
-}
-
-float2 float2::operator/=( const float2& rhs ) {
-	return ( *this = *this / rhs );
-}
-
 const float& float2::operator[]( const uint32_t index ) const {
 	assert( index < 2 );
 	return data[index];
@@ -179,33 +91,5 @@ bool operator==( const float2& lhs, const float2& rhs ) {
 
 bool operator!=( const float2& lhs, const float2& rhs ) {
 	return !( operator==( lhs, rhs ) );
-}
-
-bool2 operator<( const float2& lhs, const float2& rhs ) {
-	return bool2(
-		lhs.x < rhs.x,
-		lhs.y < rhs.y
-	);
-}
-
-bool2 operator<=( const float2& lhs, const float2& rhs ) {
-	return bool2(
-		lhs.x <= rhs.x,
-		lhs.y <= rhs.y
-	);
-}
-
-bool2 operator>( const float2& lhs, const float2& rhs ) {
-	return bool2(
-		lhs.x > rhs.x,
-		lhs.y > rhs.y
-	);
-}
-
-bool2 operator>=( const float2& lhs, const float2& rhs ) {
-	return bool2(
-		lhs.x >= rhs.x,
-		lhs.y >= rhs.y
-	);
 }
 

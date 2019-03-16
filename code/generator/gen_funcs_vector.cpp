@@ -1,8 +1,46 @@
 #include "gen_funcs_vector.h"
 
+#include "gen_doc_common.h"
+
 #include <assert.h>
 
 // TODO(DM): move these functions into their own file
+static std::string GetDocOperatorArithmeticRhsType( const std::string& fullTypeName, const genOpArithmetic_t op ) {
+	std::string adjective;
+	switch ( op ) {
+		case GEN_OP_ARITHMETIC_ADD: adjective = "added"; break;
+		case GEN_OP_ARITHMETIC_SUB: adjective = "subtracted"; break;
+		case GEN_OP_ARITHMETIC_MUL: adjective = "multiplied"; break;
+		case GEN_OP_ARITHMETIC_DIV: adjective = "divided"; break;
+
+		case GEN_OP_ARITHMETIC_COUNT:
+		default:
+			printf( "ERROR: Bad genOpArithmetic_t enum passed into %s.\n", __FUNCTION__ );
+			return std::string();
+	}
+
+	return "/// \\relates " + fullTypeName + ".\n";
+	"/// Returns a copy of the vector that has been component-wise " + adjective + " by the other vector.\n";
+}
+
+static std::string GetDocOperatorCompoundArithmeticRhsType( const std::string& fullTypeName, const genOpArithmetic_t op ) {
+	std::string verb;
+	switch ( op ) {
+		case GEN_OP_ARITHMETIC_ADD: verb = "adds"; break;
+		case GEN_OP_ARITHMETIC_SUB: verb = "subtracts"; break;
+		case GEN_OP_ARITHMETIC_MUL: verb = "multiplies"; break;
+		case GEN_OP_ARITHMETIC_DIV: verb = "divides"; break;
+
+		case GEN_OP_ARITHMETIC_COUNT:
+		default:
+			printf( "ERROR: Bad genOpArithmetic_t enum passed into %s.\n", __FUNCTION__ );
+			return std::string();
+	}
+
+	return "/// \\relates " + fullTypeName + ".\n";
+		"/// Component-wise " + verb + " the left-hand side vector by the right-hand side vector.\n";
+}
+
 static std::string GetDocLengthSqr( const std::string& fullTypeName ) {
 	return "/// \\relates " + fullTypeName + "\n" + \
 		"/// \\brief Returns the magnitude of the vector squared.\n";
@@ -48,6 +86,166 @@ static std::string GetDocLerp( const std::string& fullTypeName ) {
 		"/// \\brief Returns a linearly interpolated vector between vectors \"a\" and \"b\".\n";
 }
 
+static std::string HeaderGetArithmeticFuncScalar( const genType_t type, const uint32_t numComponents, const genOpArithmetic_t op ) {
+	assert( numComponents >= GEN_COMPONENT_COUNT_MIN );
+	assert( numComponents <= GEN_COMPONENT_COUNT_MAX );
+
+	std::string fullTypeName = Gen_GetTypeString( type ) + std::to_string( numComponents );
+	std::string memberTypeString = Gen_GetMemberTypeString( type );
+
+	char opStr = GEN_OPERATORS_ARITHMETIC[op];
+
+	// TODO(DM): this is repeated here and in gen_funcs_matrix.cpp
+	std::string code;
+
+	code += Gen_GetDocOperatorArithmeticScalar( fullTypeName, op );
+	code += "inline " + fullTypeName + " operator" + opStr + "( const " + fullTypeName + "& lhs, const " + memberTypeString + " rhs );\n";
+	code += "\n";
+
+	code += Gen_GetDocOperatorCompoundArithmeticScalar( fullTypeName, op );
+	code += "inline " + fullTypeName + " operator" + opStr + "=( " + fullTypeName + "& lhs, const " + memberTypeString + " rhs );\n";
+	code += "\n";
+
+	return code;
+}
+
+static std::string InlGetArithmeticFuncScalar( const genType_t type, const uint32_t numComponents, const genOpArithmetic_t op ) {
+	assert( numComponents >= GEN_COMPONENT_COUNT_MIN );
+	assert( numComponents <= GEN_COMPONENT_COUNT_MAX );
+
+	std::string typeString = Gen_GetTypeString( type );
+	std::string fullTypeName = typeString + std::to_string( numComponents );
+
+	char opStr = GEN_OPERATORS_ARITHMETIC[op];
+
+	std::string code;
+
+	// main arithmetic func
+	code += fullTypeName + " " + fullTypeName + "::operator" + opStr + "( const " + typeString + " rhs ) const {\n";
+	code += "\treturn " + fullTypeName + "(\n";
+	for ( uint32_t componentIndex = 0; componentIndex < numComponents; componentIndex++ ) {
+		code += std::string( "\t\t" ) + GEN_COMPONENT_NAMES_VECTOR[componentIndex] + " " + opStr + " rhs";
+		if ( componentIndex != numComponents - 1 ) {
+			code += ",";
+		}
+		code += "\n";
+	}
+	code += "\t);\n";
+	code += "}\n";
+	code += "\n";
+
+	// compound arithmetic func
+	code += fullTypeName + " " + fullTypeName + "::operator" + opStr + "=( const " + typeString + " rhs ) {\n";
+	code += std::string( "\treturn ( *this = *this " ) + opStr + " rhs );\n";
+	code += "}\n";
+	code += "\n";
+
+	return code;
+}
+
+static std::string HeaderGetArithmeticFuncRhsType( const genType_t type, const uint32_t numComponents, const genOpArithmetic_t op ) {
+	assert( numComponents >= GEN_COMPONENT_COUNT_MIN );
+	assert( numComponents <= GEN_COMPONENT_COUNT_MAX );
+
+	std::string fullTypeName = Gen_GetTypeString( type );
+
+	char opStr = GEN_OPERATORS_ARITHMETIC[op];
+
+	std::string code;
+
+	code += GetDocOperatorArithmeticRhsType( fullTypeName, op );
+	code += "inline " + fullTypeName + " operator" + opStr + "( const " + fullTypeName + "& lhs, const " + fullTypeName + "& rhs );\n";
+	code += "\n";
+
+	code += GetDocOperatorCompoundArithmeticRhsType( fullTypeName, op );
+	code += "inline " + fullTypeName + " operator" + opStr + "=( " + fullTypeName + "& lhs, const " + fullTypeName + "& rhs );\n";
+	code += "\n";
+
+	return code;
+}
+
+static std::string InlGetArithmeticFuncRhsType( const genType_t type, const uint32_t numComponents, const genOpArithmetic_t op ) {
+	assert( numComponents >= GEN_COMPONENT_COUNT_MIN );
+	assert( numComponents <= GEN_COMPONENT_COUNT_MAX );
+
+	std::string fullTypeName = Gen_GetTypeString( type ) + std::to_string( numComponents );
+
+	char opStr = GEN_OPERATORS_ARITHMETIC[op];
+
+	std::string code;
+
+	// main arithmetic func
+	code += fullTypeName + " " + fullTypeName + "::operator" + opStr + "( const " + fullTypeName + "& rhs ) const {\n";
+	code += "\treturn " + fullTypeName + "(\n";
+	for ( uint32_t componentIndex = 0; componentIndex < numComponents; componentIndex++ ) {
+		code += std::string( "\t\t" ) + GEN_COMPONENT_NAMES_VECTOR[componentIndex] + " " + opStr + " rhs." + GEN_COMPONENT_NAMES_VECTOR[componentIndex];
+		if ( componentIndex != numComponents - 1 ) {
+			code += ",";
+		}
+		code += "\n";
+	}
+	code += "\t);\n";
+	code += "}\n";
+	code += "\n";
+
+	// compound arithmetic func
+	code += fullTypeName + " " + fullTypeName + "::operator" + opStr + "=( const " + fullTypeName + "& rhs ) {\n";
+	code += std::string( "\treturn ( *this = *this " ) + opStr + " rhs );\n";
+	code += "}\n";
+	code += "\n";
+
+	return code;
+}
+
+static std::string HeaderGetOperatorRelational( const genType_t type, const uint32_t numComponents, const genOpRelational_t op ) {
+	assert( numComponents >= GEN_COMPONENT_COUNT_MIN );
+	assert( numComponents <= GEN_COMPONENT_COUNT_MAX );
+
+	std::string numComponentsStr = std::to_string( numComponents );
+
+	std::string fullTypeName = Gen_GetTypeString( type ) + numComponentsStr;
+	std::string boolReturnType = "bool" + numComponentsStr;
+
+	std::string code;
+
+	code += Gen_GetDocOperatorRelational( fullTypeName, 1, numComponents, op );
+	code += "inline " + boolReturnType + " operator" + GEN_OPERATORS_RELATIONAL[op] + "( const " + fullTypeName + "& lhs, const " + fullTypeName + "& rhs );\n";
+	code += "\n";
+
+	return code;
+}
+
+static std::string InlGetOperatorRelational( const genType_t type, const uint32_t numComponents, const genOpRelational_t op ) {
+	assert( numComponents >= GEN_COMPONENT_COUNT_MIN );
+	assert( numComponents <= GEN_COMPONENT_COUNT_MAX );
+
+	std::string numComponentsStr = std::to_string( numComponents );
+
+	std::string fullTypeName = Gen_GetTypeString( type ) + numComponentsStr;
+	std::string boolReturnType = "bool" + numComponentsStr;
+
+	std::string code;
+
+	code += boolReturnType + " operator" + GEN_OPERATORS_RELATIONAL[op] + "( const " + fullTypeName + "& lhs, const " + fullTypeName + "& rhs ) {\n";
+	code += "\treturn " + boolReturnType + "(\n";
+	for ( uint32_t componentIndex = 0; componentIndex < numComponents; componentIndex++ ) {
+		char componentName = GEN_COMPONENT_NAMES_VECTOR[componentIndex];
+
+		code += std::string( "\t\tlhs." ) + componentName + " " + GEN_OPERATORS_RELATIONAL[op] + " rhs." + componentName;
+
+		if ( componentIndex < numComponents - 1 ) {
+			code += ",\n";
+		} else {
+			code += "\n";
+		}
+	}
+	code += "\t);\n";
+	code += "}\n";
+	code += "\n";
+
+	return code;
+}
+
 std::string Gen_GetParmListVector( const genType_t type, const uint32_t numComponents, const float* values ) {
 	std::string parmList = "( ";
 	for ( uint32_t i = 0; i < numComponents; i++ ) {
@@ -60,6 +258,42 @@ std::string Gen_GetParmListVector( const genType_t type, const uint32_t numCompo
 	parmList += " )";
 
 	return parmList;
+}
+
+void Gen_VectorOperatorsArithmetic( const genType_t type, const uint32_t numComponents, std::string& outHeader, std::string& outInl ) {
+	assert( numComponents >= GEN_COMPONENT_COUNT_MIN );
+	assert( numComponents <= GEN_COMPONENT_COUNT_MAX );
+
+	if ( type == GEN_TYPE_BOOL ) {
+		return;
+	}
+
+	for ( uint32_t opIndex = 0; opIndex < GEN_OP_ARITHMETIC_COUNT; opIndex++ ) {
+		genOpArithmetic_t op = static_cast<genOpArithmetic_t>( opIndex );
+
+		outHeader += HeaderGetArithmeticFuncScalar( type, numComponents, op );
+		outHeader += HeaderGetArithmeticFuncRhsType( type, numComponents, op );
+
+		outInl += InlGetArithmeticFuncScalar( type, numComponents, op );
+		outInl += InlGetArithmeticFuncRhsType( type, numComponents, op );
+	}
+}
+
+void Gen_VectorOperatorsRelational( const genType_t type, const uint32_t numComponents, std::string& outHeader, std::string& outInl ) {
+	assert( numComponents >= GEN_COMPONENT_COUNT_MIN );
+	assert( numComponents <= GEN_COMPONENT_COUNT_MAX );
+
+	if ( type == GEN_TYPE_BOOL ) {
+		return;
+	}
+
+	for ( uint32_t opIndex = 0; opIndex < GEN_OP_RELATIONAL_COUNT; opIndex++ ) {
+		genOpRelational_t op = static_cast<genOpRelational_t>( opIndex );
+
+		outHeader += HeaderGetOperatorRelational( type, numComponents, op );
+
+		outInl += InlGetOperatorRelational( type, numComponents, op );
+	}
 }
 
 void Gen_VectorLength( const genType_t type, const uint32_t numComponents, std::string& outHeader, std::string& outInl ) {

@@ -255,6 +255,81 @@ static bool GenerateFunctionsVector( void ) {
 	return true;
 }
 
+static bool GenerateOperatorsVector( void ) {
+	char filePathHeader[1024] = { 0 };
+	sprintf( filePathHeader, "%s%s.h", GEN_OUT_GEN_FOLDER_PATH, GEN_FILENAME_OPERATORS_VECTOR );
+
+	char filePathInl[1024] = { 0 };
+	sprintf( filePathInl, "%s%s.inl", GEN_OUT_GEN_FOLDER_PATH, GEN_FILENAME_OPERATORS_VECTOR );
+
+	std::string content = GEN_FILE_HEADER;
+
+	std::string contentHeader = content;
+	contentHeader += "#pragma once\n";
+	contentHeader += "\n";
+
+	std::string contentInl = content;
+	contentInl += std::string( "#include \"" ) + GEN_FILENAME_OPERATORS_VECTOR + ".h\"\n";
+
+	// includes
+	for ( uint32_t typeIndex = 0; typeIndex < GEN_TYPE_COUNT; typeIndex++ ) {
+		genType_t type = static_cast<genType_t>( typeIndex );
+
+		if ( type == GEN_TYPE_BOOL ) {
+			continue;
+		}
+
+		std::string typeString = Gen_GetTypeString( type );
+
+		for ( uint32_t componentIndex = GEN_COMPONENT_COUNT_MIN; componentIndex <= GEN_COMPONENT_COUNT_MAX; componentIndex++ ) {
+			contentHeader += "#include \"" + typeString + std::to_string( componentIndex ) + ".h\"\n";
+		}
+	}
+
+	contentHeader += "\n";
+	contentInl += "\n";
+
+	// header and inl code
+	for ( uint32_t typeIndex = 0; typeIndex < GEN_TYPE_COUNT; typeIndex++ ) {
+		genType_t type = static_cast<genType_t>( typeIndex );
+
+		if ( type == GEN_TYPE_BOOL ) {
+			continue;
+		}
+
+		std::string typeString = Gen_GetTypeString( type );
+
+		for ( uint32_t componentIndex = GEN_COMPONENT_COUNT_MIN; componentIndex <= GEN_COMPONENT_COUNT_MAX; componentIndex++ ) {
+			std::string fullTypeName = typeString + std::to_string( componentIndex );
+
+			printf( "Vector operators %s...", fullTypeName.c_str() );
+
+			contentHeader += "// " + fullTypeName + "\n";
+			contentInl += "// " + fullTypeName + "\n";
+
+			Gen_VectorOperatorsArithmetic( type, componentIndex, contentHeader, contentInl );
+			Gen_VectorOperatorsRelational( type, componentIndex, contentHeader, contentInl );
+
+			contentHeader += "\n";
+			contentInl += "\n";
+
+			printf( "OK.\n" );
+		}
+	}
+
+	contentHeader += "#include \"" + std::string( GEN_FILENAME_OPERATORS_VECTOR ) + ".inl\"\n";
+
+	if ( !FS_WriteToFile( filePathHeader, contentHeader.c_str(), contentHeader.size() ) ) {
+		return false;
+	}
+
+	if ( !FS_WriteToFile( filePathInl, contentInl.c_str(), contentInl.size() ) ) {
+		return false;
+	}
+
+	return true;
+}
+
 static bool GenerateOperatorsMatrix( void ) {
 	char filePathHeader[1024] = { 0 };
 	sprintf( filePathHeader, "%s%s.h", GEN_OUT_GEN_FOLDER_PATH, GEN_FILENAME_OPERATORS_MATRIX );
@@ -603,6 +678,13 @@ int main( int argc, char** argv ) {
 	printf( "======= Generating vector functions. =======\n" );
 	if ( !GenerateFunctionsVector() ) {
 		printf( "ERROR: Failed generating main vector functions header!\n" );
+		return EXIT_FAILURE;
+	}
+	printf( "======= Done. =======\n\n" );
+
+	printf( "======= Generating vectors operators. =======\n" );
+	if ( !GenerateOperatorsVector() ) {
+		printf( "ERROR: Failed generating vector operators header!\n" );
 		return EXIT_FAILURE;
 	}
 	printf( "======= Done. =======\n\n" );

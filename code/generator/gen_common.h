@@ -28,6 +28,7 @@
 #define GEN_HEADER_VECTOR				"hlml_vector.h"
 #define GEN_HEADER_MATRIX				"hlml_matrix.h"
 
+#define GEN_FILENAME_OPERATORS_VECTOR	"hlml_operators_vector"
 #define GEN_FILENAME_OPERATORS_MATRIX	"hlml_operators_matrix"
 
 #define GEN_FILENAME_FUNCTIONS_VECTOR	"hlml_functions_vector"

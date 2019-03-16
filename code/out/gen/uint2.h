@@ -79,62 +79,6 @@ struct uint2 {
 	/// Copies the elements of the given vector via a single memcpy.
 	inline uint2 operator=( const uint4& rhs );
 
-/// \relates uint2
-/// \brief Returns a copy that has been component-wise added by the given scalar value.
-	inline uint2 operator+( const uint32_t rhs ) const;
-
-	/// \relates uint2
-	/// \brief Adds each component by the given scalar value.
-	inline uint2 operator+=( const uint32_t rhs );
-
-	/// Returns a copy of the vector that has been component-wise added by the other vector.
-	inline uint2 operator+( const uint2& rhs ) const;
-
-	/// Component-wise adds each component of the vector by the other vector.
-	inline uint2 operator+=( const uint2& rhs );
-
-/// \relates uint2
-/// \brief Returns a copy that has been component-wise subtracted by the given scalar value.
-	inline uint2 operator-( const uint32_t rhs ) const;
-
-	/// \relates uint2
-	/// \brief Subtracts each component by the given scalar value.
-	inline uint2 operator-=( const uint32_t rhs );
-
-	/// Returns a copy of the vector that has been component-wise subtracted by the other vector.
-	inline uint2 operator-( const uint2& rhs ) const;
-
-	/// Component-wise subtracts each component of the vector by the other vector.
-	inline uint2 operator-=( const uint2& rhs );
-
-/// \relates uint2
-/// \brief Returns a copy that has been component-wise multiplied by the given scalar value.
-	inline uint2 operator*( const uint32_t rhs ) const;
-
-	/// \relates uint2
-	/// \brief Multiplies each component by the given scalar value.
-	inline uint2 operator*=( const uint32_t rhs );
-
-	/// Returns a copy of the vector that has been component-wise multiplied by the other vector.
-	inline uint2 operator*( const uint2& rhs ) const;
-
-	/// Component-wise multiplies each component of the vector by the other vector.
-	inline uint2 operator*=( const uint2& rhs );
-
-/// \relates uint2
-/// \brief Returns a copy that has been component-wise divided by the given scalar value.
-	inline uint2 operator/( const uint32_t rhs ) const;
-
-	/// \relates uint2
-	/// \brief Divides each component by the given scalar value.
-	inline uint2 operator/=( const uint32_t rhs );
-
-	/// Returns a copy of the vector that has been component-wise divided by the other vector.
-	inline uint2 operator/( const uint2& rhs ) const;
-
-	/// Component-wise divides each component of the vector by the other vector.
-	inline uint2 operator/=( const uint2& rhs );
-
 	/// \brief Returns the vector component at the given index.
 	/// Index CANNOT be lower than 0 or higher than 1.
 	inline const uint32_t& operator[]( const uint32_t index ) const;
@@ -151,22 +95,5 @@ inline bool operator==( const uint2& lhs, const uint2& rhs );
 /// \relates uint2
 /// \brief Returns true if not all of the components of the left-hand-side uint2 match the other one, otherwise returns false.
 inline bool operator!=( const uint2& lhs, const uint2& rhs );
-
-/// \relates uint2
-/// \brief Returns a bool2 where each component is true if the component of the left-hand type is less than the corresponding right-hand type component.
-inline bool2 operator<( const uint2& lhs, const uint2& rhs );
-
-/// \relates uint2
-/// \brief Returns a bool2 where each component is true if the component of the left-hand type is less than or equal to the corresponding right-hand type component.
-inline bool2 operator<=( const uint2& lhs, const uint2& rhs );
-
-/// \relates uint2
-/// \brief Returns a bool2 where each component is true if the component of the left-hand type is greater than the corresponding right-hand type component.
-inline bool2 operator>( const uint2& lhs, const uint2& rhs );
-
-/// \relates uint2
-/// \brief Returns a bool2 where each component is true if the component of the left-hand type is greater than or equal to the corresponding right-hand type component.
-inline bool2 operator>=( const uint2& lhs, const uint2& rhs );
-
 
 #include "uint2.inl"
