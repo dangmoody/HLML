@@ -65,17 +65,6 @@ TEMPER_TEST( TestAssignment_int4x3 ) {
 	TEMPER_PASS();
 }
 
-TEMPER_TEST( TestArray_int4x3 ) {
-	int4x3 mat;
-
-	TEMPER_EXPECT_TRUE( mat[0] == int3( 1, 0, 0 ) );
-	TEMPER_EXPECT_TRUE( mat[1] == int3( 0, 1, 0 ) );
-	TEMPER_EXPECT_TRUE( mat[2] == int3( 0, 0, 1 ) );
-	TEMPER_EXPECT_TRUE( mat[3] == int3( 0, 0, 0 ) );
-
-	TEMPER_PASS();
-}
-
 TEMPER_TEST( TestArithmeticAddition_int4x3 ) {
 	int4x3 answer = int4x3(
 		7, 7, 7,
@@ -179,6 +168,78 @@ TEMPER_TEST( TestArithmeticDivision_int4x3 ) {
 	int4x3 c = a / b;
 
 	TEMPER_EXPECT_TRUE( c == answer );
+
+	TEMPER_PASS();
+}
+
+TEMPER_TEST( TestIncrement_int4x3 ) {
+	int4x3 mat;
+
+	// prefix
+	mat = int4x3(
+		0, 0, 0,
+		0, 0, 0,
+		0, 0, 0,
+		0, 0, 0
+	);
+	++mat;
+	TEMPER_EXPECT_TRUE( mat == int4x3(
+		1, 1, 1,
+		1, 1, 1,
+		1, 1, 1,
+		1, 1, 1
+	) );
+
+	// postfix
+	mat = int4x3(
+		0, 0, 0,
+		0, 0, 0,
+		0, 0, 0,
+		0, 0, 0
+	);
+	mat++;
+	TEMPER_EXPECT_TRUE( mat == int4x3(
+		1, 1, 1,
+		1, 1, 1,
+		1, 1, 1,
+		1, 1, 1
+	) );
+
+	TEMPER_PASS();
+}
+
+TEMPER_TEST( TestDecrement_int4x3 ) {
+	int4x3 mat;
+
+	// prefix
+	mat = int4x3(
+		1, 1, 1,
+		1, 1, 1,
+		1, 1, 1,
+		1, 1, 1
+	);
+	--mat;
+	TEMPER_EXPECT_TRUE( mat == int4x3(
+		0, 0, 0,
+		0, 0, 0,
+		0, 0, 0,
+		0, 0, 0
+	) );
+
+	// postfix
+	mat = int4x3(
+		1, 1, 1,
+		1, 1, 1,
+		1, 1, 1,
+		1, 1, 1
+	);
+	mat--;
+	TEMPER_EXPECT_TRUE( mat == int4x3(
+		0, 0, 0,
+		0, 0, 0,
+		0, 0, 0,
+		0, 0, 0
+	) );
 
 	TEMPER_PASS();
 }
@@ -324,6 +385,17 @@ TEMPER_TEST( TestRelational_int4x3 ) {
 		true, true, true,
 		true, true, true
 	) );
+
+	TEMPER_PASS();
+}
+
+TEMPER_TEST( TestArray_int4x3 ) {
+	int4x3 mat;
+
+	TEMPER_EXPECT_TRUE( mat[0] == int3( 1, 0, 0 ) );
+	TEMPER_EXPECT_TRUE( mat[1] == int3( 0, 1, 0 ) );
+	TEMPER_EXPECT_TRUE( mat[2] == int3( 0, 0, 1 ) );
+	TEMPER_EXPECT_TRUE( mat[3] == int3( 0, 0, 0 ) );
 
 	TEMPER_PASS();
 }
@@ -533,6 +605,9 @@ TEMPER_SUITE( Test_int4x3 ) {
 	TEMPER_RUN_TEST( TestArithmeticSubtraction_int4x3 );
 	TEMPER_RUN_TEST( TestArithmeticMultiplication_int4x3 );
 	TEMPER_RUN_TEST( TestArithmeticDivision_int4x3 );
+
+	TEMPER_RUN_TEST( TestIncrement_int4x3 );
+	TEMPER_RUN_TEST( TestDecrement_int4x3 );
 
 	TEMPER_RUN_TEST( TestRelational_int4x3 );
 

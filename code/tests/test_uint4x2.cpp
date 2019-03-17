@@ -65,17 +65,6 @@ TEMPER_TEST( TestAssignment_uint4x2 ) {
 	TEMPER_PASS();
 }
 
-TEMPER_TEST( TestArray_uint4x2 ) {
-	uint4x2 mat;
-
-	TEMPER_EXPECT_TRUE( mat[0] == uint2( 1, 0 ) );
-	TEMPER_EXPECT_TRUE( mat[1] == uint2( 0, 1 ) );
-	TEMPER_EXPECT_TRUE( mat[2] == uint2( 0, 0 ) );
-	TEMPER_EXPECT_TRUE( mat[3] == uint2( 0, 0 ) );
-
-	TEMPER_PASS();
-}
-
 TEMPER_TEST( TestArithmeticAddition_uint4x2 ) {
 	uint4x2 answer = uint4x2(
 		7, 7,
@@ -178,6 +167,78 @@ TEMPER_TEST( TestArithmeticDivision_uint4x2 ) {
 	uint4x2 c = a / b;
 
 	TEMPER_EXPECT_TRUE( c == answer );
+
+	TEMPER_PASS();
+}
+
+TEMPER_TEST( TestIncrement_uint4x2 ) {
+	uint4x2 mat;
+
+	// prefix
+	mat = uint4x2(
+		0, 0,
+		0, 0,
+		0, 0,
+		0, 0
+	);
+	++mat;
+	TEMPER_EXPECT_TRUE( mat == uint4x2(
+		1, 1,
+		1, 1,
+		1, 1,
+		1, 1
+	) );
+
+	// postfix
+	mat = uint4x2(
+		0, 0,
+		0, 0,
+		0, 0,
+		0, 0
+	);
+	mat++;
+	TEMPER_EXPECT_TRUE( mat == uint4x2(
+		1, 1,
+		1, 1,
+		1, 1,
+		1, 1
+	) );
+
+	TEMPER_PASS();
+}
+
+TEMPER_TEST( TestDecrement_uint4x2 ) {
+	uint4x2 mat;
+
+	// prefix
+	mat = uint4x2(
+		1, 1,
+		1, 1,
+		1, 1,
+		1, 1
+	);
+	--mat;
+	TEMPER_EXPECT_TRUE( mat == uint4x2(
+		0, 0,
+		0, 0,
+		0, 0,
+		0, 0
+	) );
+
+	// postfix
+	mat = uint4x2(
+		1, 1,
+		1, 1,
+		1, 1,
+		1, 1
+	);
+	mat--;
+	TEMPER_EXPECT_TRUE( mat == uint4x2(
+		0, 0,
+		0, 0,
+		0, 0,
+		0, 0
+	) );
 
 	TEMPER_PASS();
 }
@@ -323,6 +384,17 @@ TEMPER_TEST( TestRelational_uint4x2 ) {
 		true, true,
 		true, true
 	) );
+
+	TEMPER_PASS();
+}
+
+TEMPER_TEST( TestArray_uint4x2 ) {
+	uint4x2 mat;
+
+	TEMPER_EXPECT_TRUE( mat[0] == uint2( 1, 0 ) );
+	TEMPER_EXPECT_TRUE( mat[1] == uint2( 0, 1 ) );
+	TEMPER_EXPECT_TRUE( mat[2] == uint2( 0, 0 ) );
+	TEMPER_EXPECT_TRUE( mat[3] == uint2( 0, 0 ) );
 
 	TEMPER_PASS();
 }
@@ -517,6 +589,9 @@ TEMPER_SUITE( Test_uint4x2 ) {
 	TEMPER_RUN_TEST( TestArithmeticSubtraction_uint4x2 );
 	TEMPER_RUN_TEST( TestArithmeticMultiplication_uint4x2 );
 	TEMPER_RUN_TEST( TestArithmeticDivision_uint4x2 );
+
+	TEMPER_RUN_TEST( TestIncrement_uint4x2 );
+	TEMPER_RUN_TEST( TestDecrement_uint4x2 );
 
 	TEMPER_RUN_TEST( TestRelational_uint4x2 );
 

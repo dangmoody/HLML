@@ -40,11 +40,13 @@ void TestsGeneratorMatrix::Generate( const genType_t type, const uint32_t numRow
 
 	GenerateTestAssignment();
 
-	GenerateTestArray();
-
 	GenerateTestArithmetic();
 
+	GenerateTestIncrement();
+
 	GenerateTestRelational();
+
+	GenerateTestArray();
 
 	GenerateTestBitwise();
 
@@ -77,6 +79,9 @@ void TestsGeneratorMatrix::Generate( const genType_t type, const uint32_t numRow
 		m_code += "\tTEMPER_RUN_TEST( TestArithmeticSubtraction_" + m_fullTypeName + " );\n";
 		m_code += "\tTEMPER_RUN_TEST( TestArithmeticMultiplication_" + m_fullTypeName + " );\n";
 		m_code += "\tTEMPER_RUN_TEST( TestArithmeticDivision_" + m_fullTypeName + " );\n";
+		m_code += "\n";
+		m_code += "\tTEMPER_RUN_TEST( TestIncrement_" + m_fullTypeName + " );\n";
+		m_code += "\tTEMPER_RUN_TEST( TestDecrement_" + m_fullTypeName + " );\n";
 		m_code += "\n";
 		m_code += "\tTEMPER_RUN_TEST( TestRelational_" + m_fullTypeName + " );\n";
 		m_code += "\n";
@@ -301,30 +306,47 @@ void TestsGeneratorMatrix::GenerateTestArithmetic() {
 	m_code += "\n";
 }
 
-void TestsGeneratorMatrix::GenerateTestArray() {
-	std::string zeroStr = Gen_GetNumericLiteral( m_type, 0 );
-	std::string oneStr = Gen_GetNumericLiteral( m_type, 1 );
-
-	m_code += "TEMPER_TEST( TestArray_" + m_fullTypeName + " ) {\n";
-	m_code += "\t" + m_fullTypeName + " mat;\n";
-	m_code += "\n";
-	for ( uint32_t row = 0; row < m_numRows; row++ ) {
-		m_code += "\tTEMPER_EXPECT_TRUE( mat[" + std::to_string( row ) + "] == " + m_vectorTypeString + "( ";
-
-		for ( uint32_t col = 0; col < m_numCols; col++ ) {
-			m_code += ( row == col ) ? oneStr : zeroStr;
-
-			if ( col != m_numCols - 1 ) {
-				m_code += ", ";
-			}
-		}
-
-		m_code += " ) );\n";
+void TestsGeneratorMatrix::GenerateTestIncrement() {
+	if ( m_type == GEN_TYPE_BOOL ) {
+		return;
 	}
-	m_code += "\n";
-	m_code += "\tTEMPER_PASS();\n";
-	m_code += "}\n";
-	m_code += "\n";
+
+	std::string parmList0 = Gen_GetParmListMatrixSingleValue( m_type, m_numRows, m_numCols, 0.0f );
+	std::string parmList1 = Gen_GetParmListMatrixSingleValue( m_type, m_numRows, m_numCols, 1.0f );
+
+	std::string parmListVecs[] = {
+		parmList0,
+		parmList1,
+	};
+
+	std::string parmListAnswers[] = {
+		parmList1,
+		parmList0,
+	};
+
+	std::string suffices[GEN_OP_INCREMENT_COUNT] = {
+		"Increment",
+		"Decrement",
+	};
+
+	for ( uint32_t i = 0; i < GEN_OP_INCREMENT_COUNT; i++ ) {
+		m_code += "TEMPER_TEST( Test" + suffices[i] + "_" + m_fullTypeName + " ) {\n";
+		m_code += "\t" + m_fullTypeName + " mat;\n";
+		m_code += "\n";
+		m_code += "\t// prefix\n";
+		m_code += "\tmat = " + m_fullTypeName + parmListVecs[i] + ";\n";
+		m_code += "\t" + GEN_OPERATORS_INCREMENT[i] + "mat;\n";
+		m_code += "\tTEMPER_EXPECT_TRUE( mat == " + m_fullTypeName + parmListAnswers[i] + " );\n";
+		m_code += "\n";
+		m_code += "\t// postfix\n";
+		m_code += "\tmat = " + m_fullTypeName + parmListVecs[i] + ";\n";
+		m_code += "\tmat" + GEN_OPERATORS_INCREMENT[i] + ";\n";
+		m_code += "\tTEMPER_EXPECT_TRUE( mat == " + m_fullTypeName + parmListAnswers[i] + " );\n";
+		m_code += "\n";
+		m_code += "\tTEMPER_PASS();\n";
+		m_code += "}\n";
+		m_code += "\n";
+	}
 }
 
 void TestsGeneratorMatrix::GenerateTestRelational() {
@@ -458,6 +480,32 @@ void TestsGeneratorMatrix::GenerateTestBitwise() {
 	m_code += "\t" + m_fullTypeName + " answer = " + GEN_OPERATORS_BITWISE[GEN_OP_BITWISE_UNARY] + "a;\n";
 	m_code += "\n";
 	m_code += "\tTEMPER_EXPECT_TRUE( answer == " + m_fullTypeName + parmListAnswerUnary + " );\n";
+	m_code += "\n";
+	m_code += "\tTEMPER_PASS();\n";
+	m_code += "}\n";
+	m_code += "\n";
+}
+
+void TestsGeneratorMatrix::GenerateTestArray() {
+	std::string zeroStr = Gen_GetNumericLiteral( m_type, 0 );
+	std::string oneStr = Gen_GetNumericLiteral( m_type, 1 );
+
+	m_code += "TEMPER_TEST( TestArray_" + m_fullTypeName + " ) {\n";
+	m_code += "\t" + m_fullTypeName + " mat;\n";
+	m_code += "\n";
+	for ( uint32_t row = 0; row < m_numRows; row++ ) {
+		m_code += "\tTEMPER_EXPECT_TRUE( mat[" + std::to_string( row ) + "] == " + m_vectorTypeString + "( ";
+
+		for ( uint32_t col = 0; col < m_numCols; col++ ) {
+			m_code += ( row == col ) ? oneStr : zeroStr;
+
+			if ( col != m_numCols - 1 ) {
+				m_code += ", ";
+			}
+		}
+
+		m_code += " ) );\n";
+	}
 	m_code += "\n";
 	m_code += "\tTEMPER_PASS();\n";
 	m_code += "}\n";

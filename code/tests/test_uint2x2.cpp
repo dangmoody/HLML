@@ -55,15 +55,6 @@ TEMPER_TEST( TestAssignment_uint2x2 ) {
 	TEMPER_PASS();
 }
 
-TEMPER_TEST( TestArray_uint2x2 ) {
-	uint2x2 mat;
-
-	TEMPER_EXPECT_TRUE( mat[0] == uint2( 1, 0 ) );
-	TEMPER_EXPECT_TRUE( mat[1] == uint2( 0, 1 ) );
-
-	TEMPER_PASS();
-}
-
 TEMPER_TEST( TestArithmeticAddition_uint2x2 ) {
 	uint2x2 answer = uint2x2(
 		7, 7,
@@ -144,6 +135,62 @@ TEMPER_TEST( TestArithmeticDivision_uint2x2 ) {
 	uint2x2 c = a / b;
 
 	TEMPER_EXPECT_TRUE( c == answer );
+
+	TEMPER_PASS();
+}
+
+TEMPER_TEST( TestIncrement_uint2x2 ) {
+	uint2x2 mat;
+
+	// prefix
+	mat = uint2x2(
+		0, 0,
+		0, 0
+	);
+	++mat;
+	TEMPER_EXPECT_TRUE( mat == uint2x2(
+		1, 1,
+		1, 1
+	) );
+
+	// postfix
+	mat = uint2x2(
+		0, 0,
+		0, 0
+	);
+	mat++;
+	TEMPER_EXPECT_TRUE( mat == uint2x2(
+		1, 1,
+		1, 1
+	) );
+
+	TEMPER_PASS();
+}
+
+TEMPER_TEST( TestDecrement_uint2x2 ) {
+	uint2x2 mat;
+
+	// prefix
+	mat = uint2x2(
+		1, 1,
+		1, 1
+	);
+	--mat;
+	TEMPER_EXPECT_TRUE( mat == uint2x2(
+		0, 0,
+		0, 0
+	) );
+
+	// postfix
+	mat = uint2x2(
+		1, 1,
+		1, 1
+	);
+	mat--;
+	TEMPER_EXPECT_TRUE( mat == uint2x2(
+		0, 0,
+		0, 0
+	) );
 
 	TEMPER_PASS();
 }
@@ -253,6 +300,15 @@ TEMPER_TEST( TestRelational_uint2x2 ) {
 		true, true,
 		true, true
 	) );
+
+	TEMPER_PASS();
+}
+
+TEMPER_TEST( TestArray_uint2x2 ) {
+	uint2x2 mat;
+
+	TEMPER_EXPECT_TRUE( mat[0] == uint2( 1, 0 ) );
+	TEMPER_EXPECT_TRUE( mat[1] == uint2( 0, 1 ) );
 
 	TEMPER_PASS();
 }
@@ -421,6 +477,9 @@ TEMPER_SUITE( Test_uint2x2 ) {
 	TEMPER_RUN_TEST( TestArithmeticSubtraction_uint2x2 );
 	TEMPER_RUN_TEST( TestArithmeticMultiplication_uint2x2 );
 	TEMPER_RUN_TEST( TestArithmeticDivision_uint2x2 );
+
+	TEMPER_RUN_TEST( TestIncrement_uint2x2 );
+	TEMPER_RUN_TEST( TestDecrement_uint2x2 );
 
 	TEMPER_RUN_TEST( TestRelational_uint2x2 );
 
