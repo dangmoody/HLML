@@ -65,6 +65,17 @@ TEMPER_TEST( TestAssignment_float4x3 ) {
 	TEMPER_PASS();
 }
 
+TEMPER_TEST( TestArray_float4x3 ) {
+	float4x3 mat;
+
+	TEMPER_EXPECT_TRUE( mat[0] == float3( 1.000000f, 0.000000f, 0.000000f ) );
+	TEMPER_EXPECT_TRUE( mat[1] == float3( 0.000000f, 1.000000f, 0.000000f ) );
+	TEMPER_EXPECT_TRUE( mat[2] == float3( 0.000000f, 0.000000f, 1.000000f ) );
+	TEMPER_EXPECT_TRUE( mat[3] == float3( 0.000000f, 0.000000f, 0.000000f ) );
+
+	TEMPER_PASS();
+}
+
 TEMPER_TEST( TestArithmeticAddition_float4x3 ) {
 	float4x3 answer = float4x3(
 		7.000000f, 7.000000f, 7.000000f,
@@ -168,17 +179,6 @@ TEMPER_TEST( TestArithmeticDivision_float4x3 ) {
 	float4x3 c = a / b;
 
 	TEMPER_EXPECT_TRUE( c == answer );
-
-	TEMPER_PASS();
-}
-
-TEMPER_TEST( TestArray_float4x3 ) {
-	float4x3 mat;
-
-	TEMPER_EXPECT_TRUE( mat[0] == float3( 1.000000f, 0.000000f, 0.000000f ) );
-	TEMPER_EXPECT_TRUE( mat[1] == float3( 0.000000f, 1.000000f, 0.000000f ) );
-	TEMPER_EXPECT_TRUE( mat[2] == float3( 0.000000f, 0.000000f, 1.000000f ) );
-	TEMPER_EXPECT_TRUE( mat[3] == float3( 0.000000f, 0.000000f, 0.000000f ) );
 
 	TEMPER_PASS();
 }
@@ -385,8 +385,9 @@ TEMPER_SUITE( Test_float4x3 ) {
 	TEMPER_RUN_TEST( TestArithmeticMultiplication_float4x3 );
 	TEMPER_RUN_TEST( TestArithmeticDivision_float4x3 );
 
-	TEMPER_RUN_TEST( TestArray_float4x3 );
 	TEMPER_RUN_TEST( TestRelational_float4x3 );
+
+	TEMPER_RUN_TEST( TestArray_float4x3 );
 
 	TEMPER_RUN_TEST( TestIdentity_float4x3 );
 	TEMPER_RUN_TEST( TestTranspose_float4x3 );

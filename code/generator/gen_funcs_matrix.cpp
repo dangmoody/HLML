@@ -5,85 +5,24 @@
 #include <assert.h>
 
 // TODO(DM): move these functions into their own file
-static std::string GetDocOperatorArithmeticRhsType( const std::string& fullTypeName, const genType_t type, const uint32_t numRows, const uint32_t numCols, const genOpArithmetic_t op ) {
-	std::string adjective;
-	switch ( op ) {
-		case GEN_OP_ARITHMETIC_ADD: adjective = "added"; break;
-		case GEN_OP_ARITHMETIC_SUB: adjective = "subtracted"; break;
-		case GEN_OP_ARITHMETIC_MUL: adjective = "multiplied"; break;
-		case GEN_OP_ARITHMETIC_DIV: adjective = "divided"; break;
-
-		case GEN_OP_ARITHMETIC_COUNT:
-		default:
-			printf( "ERROR: Bad genOpArithmetic_t enum passed into %s.\n", __FUNCTION__ );
-			return std::string();
-	}
-
-	switch ( op ) {
-		case GEN_OP_ARITHMETIC_MUL:
-			return "/// \\relates " + fullTypeName + "\n" \
-				"/// \\brief Returns a copy of the matrix where each row of the left-hand matrix has been dot-producted by the corresponding column of the right-hand matrix.\n";
-
-		case GEN_OP_ARITHMETIC_DIV: {
-			if ( numRows == numCols && Gen_IsFloatingPointType( type ) ) {
-				return "/// \\relates " + fullTypeName + "\n" \
-					"/// \\brief Returns a copy of the matrix where the left-hand matrix has been mathematically multiplied by the inverse of the right-hand matrix.\n";
-			} else {
-				return "/// \\relates " + fullTypeName + "\n" \
-					"/// \\brief Returns a copy of the matrix that has been component-wise " + adjective + " by the other matrix.\n";
-			}
-		}
-
-		case GEN_OP_ARITHMETIC_ADD:
-		case GEN_OP_ARITHMETIC_SUB:
-			return "/// \\relates " + fullTypeName + "\n" \
-				"/// \\brief Returns a copy of the matrix that has been component-wise " + adjective + " by the other matrix.\n";
-
-		case GEN_OP_ARITHMETIC_COUNT:
-		default:
-			printf( "ERROR: Bad genOpArithmetic_t enum passed into %s.\n", __FUNCTION__ );
-			return std::string();
-	}
+static std::string GetDocMatrixMultiplication( const std::string& fullTypeName ) {
+	return "/// \\relates " + fullTypeName + "\n" \
+		"/// \\brief Returns a copy of the matrix where each row of the left-hand matrix has been dot-producted by the corresponding column of the right-hand matrix.\n";
 }
 
-static std::string GetDocOperatorCompoundArithmeticRhsType( const std::string& fullTypeName, const genType_t type, const uint32_t numRows, const uint32_t numCols, const genOpArithmetic_t op ) {
-	std::string verb;
-	switch ( op ) {
-		case GEN_OP_ARITHMETIC_ADD: verb = "Adds"; break;
-		case GEN_OP_ARITHMETIC_SUB: verb = "Subtracts"; break;
-		case GEN_OP_ARITHMETIC_MUL: verb = "Multiplies"; break;
-		case GEN_OP_ARITHMETIC_DIV: verb = "Divides"; break;
+static std::string GetDocCompoundMatrixMultiplication( const std::string& fullTypeName ) {
+	return "/// \\relates " + fullTypeName + "\n" \
+		"/// \\brief Dot products each row of the left-hand matrix with the corresponding column of the right-hand matrix.\n";
+}
 
-		default:
-			printf( "ERROR: Bad genOpArithmetic_t enum passed into %s.\n", __FUNCTION__ );
-			return std::string();
-	}
+static std::string GetDocMatrixDivision( const std::string& fullTypeName ) {
+	return "/// \\relates " + fullTypeName + "\n" \
+		"/// \\brief Returns a copy of the matrix where the left-hand matrix has been mathematically multiplied by the inverse of the right-hand matrix.\n";
+}
 
-	switch ( op ) {
-		case GEN_OP_ARITHMETIC_MUL:
-			return "/// \\relates " + fullTypeName + "\n" \
-				"/// \\brief Dot products each row of the left-hand matrix with the corresponding column of the right-hand matrix.\n";
-
-		case GEN_OP_ARITHMETIC_DIV: {
-			if ( numRows == numCols && Gen_IsFloatingPointType( type ) ) {
-				return "/// \\relates " + fullTypeName + "\n" \
-					"/// \\brief " + verb + " the left-hand matrix by the right-hand matrix (dot product row/col style).\n";
-			} else {
-				return "/// \\relates " + fullTypeName + "\n" \
-					"/// \\brief Component-wise " + verb + " the left-hand matrix by the right-hand matrix.\n";
-			}
-		}
-
-		case GEN_OP_ARITHMETIC_ADD:
-		case GEN_OP_ARITHMETIC_SUB:
-			return "/// \\relates " + fullTypeName + "\n" \
-				"/// \\brief Component-wise " + verb + " the left-hand matrix by the right-hand matrix.\n";
-
-		case GEN_OP_ARITHMETIC_COUNT:
-		default:
-			printf( "ERROR: Bad genOpArithmetic_t enum passed into %s.\n", __FUNCTION__ );
-			return std::string();
-	}
+static std::string GetDocCompoundMatrixDivision( const std::string& fullTypeName ) {
+	return "/// \\relates " + fullTypeName + "\n" \
+		"/// \\brief Multiplies the left-hand matrix by the right-hand matrix (dot product row/col style).\n";
 }
 
 static std::string GetDocIdentity( const std::string& fullTypeName ) {
@@ -141,6 +80,127 @@ static std::string GetDocLookAt( const std::string& fullTypeName ) {
 	return "/// \\relates " + fullTypeName + "\n" \
 		"/// \\brief Returns a orthonormal matrix that is oriented at position eye to look at position target.\n";
 }
+
+static void MatrixOperatorMul( const genType_t type, const uint32_t numRows, const uint32_t numCols, std::string& outHeader, std::string& outInl ) {
+	uint32_t numRhsRows = numCols;
+	uint32_t numRhsCols = numRows;
+
+	std::string numRowsStr = std::to_string( numRows );
+	std::string numColsStr = std::to_string( numCols );
+
+	std::string typeString = Gen_GetTypeString( type );
+	std::string fullTypeName = Gen_GetFullTypeName( type, numRows, numCols );
+
+	// also the tranposed type name
+	std::string rhsTypeName = typeString + numColsStr + "x" + numRowsStr;
+	std::string returnTypeName = typeString + numRowsStr + "x" + numRowsStr;
+
+	// header
+	{
+		outHeader += GetDocMatrixMultiplication( fullTypeName );
+		outHeader += "inline " + returnTypeName + " operator*( const " + fullTypeName + "& lhs, const " + rhsTypeName + "& rhs );\n";
+		outHeader += "\n";
+
+		outHeader += GetDocCompoundMatrixMultiplication( fullTypeName );
+		outHeader += "inline " + returnTypeName + " operator*=( " + fullTypeName + "& lhs, const " + rhsTypeName + "& rhs );\n";
+		outHeader += "\n";
+	}
+
+	// inl
+	{
+		// main operator
+		outInl += returnTypeName + " operator*( const " + fullTypeName + "& lhs, const " + rhsTypeName + "& rhs ) {\n";
+		// generate row vars
+		for ( uint32_t row = 0; row < numRows; row++ ) {
+			std::string rowStr = std::to_string( row );
+			outInl += "\t" + typeString + numColsStr + " row" + rowStr + " = lhs[" + rowStr + "];\n";
+		}
+
+		outInl += "\n";
+
+		// generate col vars
+		for ( uint32_t col = 0; col < numRhsCols; col++ ) {
+			outInl += "\t" + typeString + numColsStr + " col" + std::to_string( col ) + " = { ";
+			for ( uint32_t rhsRow = 0; rhsRow < numRhsRows; rhsRow++ ) {
+				outInl += "rhs[" + std::to_string( rhsRow ) + "]." + GEN_COMPONENT_NAMES_VECTOR[col];
+
+				if ( rhsRow != numCols - 1 ) {
+					outInl += ", ";
+				}
+			}
+
+			outInl += " };\n";
+		}
+		outInl += "\n";
+
+		// now do the row/col dot products
+		outInl += "\treturn " + returnTypeName + "(\n";
+
+		for ( uint32_t row = 0; row < numRows; row++ ) {
+			std::string rowStr = std::to_string( row );
+
+			for ( uint32_t col = 0; col < numRows; col++ ) {
+				std::string colStr = std::to_string( col );
+
+				outInl += "\t\t";
+
+				for ( uint32_t rhsRow = 0; rhsRow < numRhsRows; rhsRow++ ) {
+					outInl += "row" + rowStr + "." + GEN_COMPONENT_NAMES_VECTOR[rhsRow] + " * " + "col" + colStr + "." + GEN_COMPONENT_NAMES_VECTOR[rhsRow];
+
+					if ( rhsRow != numRhsRows - 1 ) {
+						outInl += " + ";
+					} else {
+						if ( col + ( row * numRows ) != ( numRows * numRows ) - 1 ) {
+							outInl += ",";
+						}
+
+						outInl += "\n";
+					}
+				}
+			}
+
+			if ( row != numRows - 1 ) {
+				outInl += "\n";
+			}
+		}
+		outInl += "\t);\n";
+		outInl += "}\n";
+		outInl += "\n";
+
+		// compound operator
+		if ( numRows == numCols ) {
+			outInl += returnTypeName + " operator*=( " + fullTypeName + "& lhs, const " + rhsTypeName + "& rhs ) {\n";
+			outInl += "\treturn ( lhs = lhs * rhs );\n";
+			outInl += "}\n";
+			outInl += "\n";
+		}
+	}
+}
+
+static void MatrixOperatorDiv( const genType_t type, const uint32_t numRows, const uint32_t numCols, std::string& outHeader, std::string& outInl ) {
+	std::string fullTypeName = Gen_GetFullTypeName( type, numRows, numCols );
+
+	outHeader += GetDocMatrixDivision( fullTypeName );
+	outHeader += "inline " + fullTypeName + " operator/( const " + fullTypeName + "& lhs, const " + fullTypeName + "& rhs );\n";
+	outHeader += "\n";
+
+	outHeader += GetDocCompoundMatrixDivision( fullTypeName );
+	outHeader += "inline " + fullTypeName + " operator/=( " + fullTypeName + "& lhs, const " + fullTypeName + "& rhs );\n";
+	outHeader += "\n";
+
+	// main operator
+	outInl += fullTypeName + " operator/( const " + fullTypeName + "& lhs, const " + fullTypeName + "& rhs ) {\n";
+	outInl += "\treturn lhs * inverse( rhs );\n";
+	outInl += "}\n";
+	outInl += "\n";
+
+	// compound operator
+	outInl += fullTypeName + " operator/=( " + fullTypeName + "& lhs, const " + fullTypeName + "& rhs ) {\n";
+	outInl += "\treturn ( lhs = lhs / rhs );\n";
+	outInl += "}\n";
+	outInl += "\n";
+}
+
 
 std::string Gen_GetParmListMatrix( const genType_t type, const uint32_t numRows, const uint32_t numCols, const float values[GEN_COMPONENT_COUNT_MAX][GEN_COMPONENT_COUNT_MAX] ) {
 	assert( numRows >= GEN_COMPONENT_COUNT_MIN );
@@ -252,305 +312,6 @@ std::string Gen_GetParmListMatrixSingleValue( const genType_t type, const uint32
 	return paramList;
 }
 
-static std::string HeaderGetArithmeticFuncScalar( const genType_t type, const uint32_t numRows, const uint32_t numCols, const genOpArithmetic_t op ) {
-	assert( numRows >= GEN_COMPONENT_COUNT_MIN );
-	assert( numRows <= GEN_COMPONENT_COUNT_MAX );
-	assert( numCols >= GEN_COMPONENT_COUNT_MIN );
-	assert( numCols <= GEN_COMPONENT_COUNT_MAX );
-
-	std::string fullTypeName = Gen_GetTypeString( type ) + std::to_string( numRows ) + "x" + std::to_string( numCols );
-	std::string memberTypeString = Gen_GetMemberTypeString( type );
-
-	char opStr = GEN_OPERATORS_ARITHMETIC[op];
-
-	// TODO(DM): this is repeated here and in gen_funcs_vector.cpp
-	std::string code;
-
-	code += Gen_GetDocOperatorArithmeticScalar( fullTypeName, op );
-	code += "inline " + fullTypeName + " operator" + opStr + "( const " + fullTypeName + "& lhs, const " + memberTypeString + " rhs );\n";
-	code += "\n";
-
-	code += Gen_GetDocOperatorCompoundArithmeticScalar( fullTypeName, op );
-	code += "inline " + fullTypeName + " operator" + opStr + "=( " + fullTypeName + "& lhs, const " + memberTypeString + " rhs );\n";
-	code += "\n";
-
-	return code;
-}
-
-static std::string InlGetArithmeticFuncScalar( const genType_t type, const uint32_t numRows, const uint32_t numCols, const genOpArithmetic_t op ) {
-	assert( numRows >= GEN_COMPONENT_COUNT_MIN );
-	assert( numRows <= GEN_COMPONENT_COUNT_MAX );
-	assert( numCols >= GEN_COMPONENT_COUNT_MIN );
-	assert( numCols <= GEN_COMPONENT_COUNT_MAX );
-
-	char opStr = GEN_OPERATORS_ARITHMETIC[op];
-
-	std::string fullTypeName = Gen_GetTypeString( type ) + std::to_string( numRows ) + "x" + std::to_string( numCols );
-	std::string memberTypeString = Gen_GetMemberTypeString( type );
-
-	std::string code;
-
-	// main arithmetic func
-	code += fullTypeName + " " + "operator" + opStr + "( const " + fullTypeName + "& lhs, const " + memberTypeString + " rhs ) {\n";
-	code += "\treturn " + fullTypeName + "(\n";
-	for ( uint32_t row = 0; row < numRows; row++ ) {
-		code += "\t\tlhs[" + std::to_string( row ) + "] " + opStr + " rhs";
-		if ( row != numRows - 1 ) {
-			code += ",";
-		}
-		code += "\n";
-	}
-	code += "\t);\n";
-	code += "}\n";
-	code += "\n";
-
-	// compound arithmetic func
-	code += fullTypeName + " " + "operator" + opStr + "=( " + fullTypeName + "& lhs, const " + memberTypeString + " rhs ) {\n";
-	code += std::string( "\treturn ( lhs = lhs " ) + opStr + " rhs );\n";
-	code += "}\n";
-	code += "\n";
-
-	return code;
-}
-
-static std::string HeaderGetArithmeticFuncRhsType( const genType_t type, const uint32_t numRows, const uint32_t numCols, const genOpArithmetic_t op ) {
-	assert( numRows >= GEN_COMPONENT_COUNT_MIN );
-	assert( numRows <= GEN_COMPONENT_COUNT_MAX );
-	assert( numCols >= GEN_COMPONENT_COUNT_MIN );
-	assert( numCols <= GEN_COMPONENT_COUNT_MAX );
-
-	std::string numRowsStr = std::to_string( numRows );
-	std::string numColsStr = std::to_string( numCols );
-
-	std::string typeString = Gen_GetTypeString( type );
-	std::string fullTypeName = typeString + numRowsStr + "x" + numColsStr;
-	std::string transposedTypeName = typeString + numColsStr + "x" + numRowsStr;
-
-	std::string returnTypeName = typeString + numRowsStr + "x";
-	if ( op == GEN_OP_ARITHMETIC_MUL ) {
-		returnTypeName += numRowsStr;
-	} else {
-		returnTypeName += numColsStr;
-	}
-
-	std::string rhsTypeName = ( op == GEN_OP_ARITHMETIC_MUL ) ? transposedTypeName : fullTypeName;
-
-	std::string code;
-
-	code += GetDocOperatorArithmeticRhsType( fullTypeName, type, numRows, numCols, op );
-	code += "inline " + returnTypeName + " operator" + GEN_OPERATORS_ARITHMETIC[op] + "( const " + fullTypeName + "& lhs, const " + rhsTypeName + "& rhs );\n";
-	code += "\n";
-
-	if ( numRows == numCols ) {
-		code += GetDocOperatorCompoundArithmeticRhsType( fullTypeName, type, numRows, numCols, op );
-		code += "inline " + returnTypeName + " operator" + GEN_OPERATORS_ARITHMETIC[op] + "=( " + fullTypeName + "& lhs, const " + rhsTypeName + "& rhs );\n";
-		code += "\n";
-	}
-
-	return code;
-}
-
-static std::string InlGetArithmeticFuncRhsType( const genType_t type, const uint32_t numRows, const uint32_t numCols, const genOpArithmetic_t op ) {
-	assert( numRows >= GEN_COMPONENT_COUNT_MIN );
-	assert( numRows <= GEN_COMPONENT_COUNT_MAX );
-	assert( numCols >= GEN_COMPONENT_COUNT_MIN );
-	assert( numCols <= GEN_COMPONENT_COUNT_MAX );
-
-	std::string numRowsStr = std::to_string( numRows );
-	std::string numColsStr = std::to_string( numCols );
-
-	std::string typeString = Gen_GetTypeString( type );
-	std::string fullTypeName = typeString + numRowsStr + "x" + numColsStr;
-	std::string transposedTypeName = typeString + numColsStr + "x" + numRowsStr;
-
-	std::string returnTypeName = typeString + numRowsStr + "x";
-	if ( op == GEN_OP_ARITHMETIC_MUL ) {
-		returnTypeName += numRowsStr;
-	} else {
-		returnTypeName += numColsStr;
-	}
-
-	std::string rhsTypeName = ( op == GEN_OP_ARITHMETIC_MUL ) ? transposedTypeName : fullTypeName;
-
-	char opStr = GEN_OPERATORS_ARITHMETIC[op];
-
-	// the default arithmetic code, which does a component-wise operation between the lhs/rhs parms
-	std::string defaultArithmeticCode = "\treturn " + fullTypeName + "(\n";
-	for ( uint32_t row = 0; row < numRows; row++ ) {
-		std::string rowStr = std::to_string( row );
-
-		defaultArithmeticCode += "\t\tlhs[" + rowStr + "] " + opStr + " rhs[" + rowStr + "]";
-
-		if ( row != numRows - 1 ) {
-			defaultArithmeticCode += ",";
-		}
-
-		defaultArithmeticCode += "\n";
-	}
-	defaultArithmeticCode += "\t);\n";
-
-	std::string code;
-	code += returnTypeName + " operator" + opStr + "( const " + fullTypeName + "& lhs, const " + rhsTypeName + "& rhs ) {\n";
-
-	// main arithmetic func
-	switch ( op ) {
-		case GEN_OP_ARITHMETIC_ADD:
-		case GEN_OP_ARITHMETIC_SUB: {
-			code += defaultArithmeticCode;
-			break;
-		}
-
-		case GEN_OP_ARITHMETIC_MUL: {
-			uint32_t numRhsRows = numCols;
-			uint32_t numRhsCols = numRows;
-
-			// generate row vars
-			for ( uint32_t row = 0; row < numRows; row++ ) {
-				std::string rowStr = std::to_string( row );
-				code += "\t" + typeString + numColsStr + " row" + rowStr + " = lhs[" + rowStr + "];\n";
-			}
-
-			code += "\n";
-
-			// generate col vars
-			for ( uint32_t col = 0; col < numRhsCols; col++ ) {
-				code += "\t" + typeString + numColsStr + " col" + std::to_string( col ) + " = { ";
-				for ( uint32_t rhsRow = 0; rhsRow < numRhsRows; rhsRow++ ) {
-					code += "rhs[" + std::to_string( rhsRow ) + "]." + GEN_COMPONENT_NAMES_VECTOR[col];
-
-					if ( rhsRow != numCols - 1 ) {
-						code += ", ";
-					}
-				}
-
-				code += " };\n";
-			}
-			code += "\n";
-
-			// now do the row/col dot products
-			code += "\treturn " + returnTypeName + "(\n";
-
-			for ( uint32_t row = 0; row < numRows; row++ ) {
-				std::string rowStr = std::to_string( row );
-
-				for ( uint32_t col = 0; col < numRows; col++ ) {
-					std::string colStr = std::to_string( col );
-
-					code += "\t\t";
-
-					for ( uint32_t rhsRow = 0; rhsRow < numRhsRows; rhsRow++ ) {
-						code += "row" + rowStr + "." + GEN_COMPONENT_NAMES_VECTOR[rhsRow] + " * " + "col" + colStr + "." + GEN_COMPONENT_NAMES_VECTOR[rhsRow];
-
-						if ( rhsRow != numRhsRows - 1 ) {
-							code += " + ";
-						} else {
-							if ( col + ( row * numRows ) != ( numRows * numRows ) - 1 ) {
-								code += ",";
-							}
-
-							code += "\n";
-						}
-					}
-				}
-
-				if ( row != numRows - 1 ) {
-					code += "\n";
-				}
-			}
-			code += "\t);\n";
-
-			break;
-		}
-
-		case GEN_OP_ARITHMETIC_DIV: {
-			if ( numRows == numCols && Gen_IsFloatingPointType( type ) ) {
-				code += "\treturn lhs * inverse( rhs );\n";
-			} else {
-				code += defaultArithmeticCode;
-			}
-
-			break;
-		}
-
-		case GEN_OP_ARITHMETIC_COUNT:
-			printf( "ERROR: Bad arithmetic op passed into %s.\n", __FUNCTION__ );
-			break;
-
-		default:
-			// nothing
-			break;
-	}
-	code += "}\n";
-	code += "\n";
-
-	// compound arithmetic func
-	if ( numRows == numCols ) {
-		code += returnTypeName + " operator" + opStr + "=( " + fullTypeName + "& lhs, const " + rhsTypeName + "& rhs ) {\n";
-		code += std::string( "\treturn ( lhs = lhs " ) + opStr + " rhs );\n";
-		code += "}\n";
-		code += "\n";
-	}
-
-	return code;
-}
-
-static std::string HeaderGetOperatorRelational( const genType_t type, const uint32_t numRows, const uint32_t numCols, const genOpRelational_t op ) {
-	assert( numRows >= GEN_COMPONENT_COUNT_MIN );
-	assert( numRows <= GEN_COMPONENT_COUNT_MAX );
-	assert( numCols >= GEN_COMPONENT_COUNT_MIN );
-	assert( numCols <= GEN_COMPONENT_COUNT_MAX );
-
-	std::string numRowsStr = std::to_string( numRows );
-	std::string numColsStr = std::to_string( numCols );
-
-	std::string fullTypeName = Gen_GetTypeString( type ) + numRowsStr + "x" + numColsStr;
-	std::string boolTypeName = "bool" + numRowsStr + "x" + numColsStr;
-
-	std::string code;
-
-	code += Gen_GetDocOperatorRelational( fullTypeName, numRows, numCols, op );
-	code += "inline " + boolTypeName + " operator" + GEN_OPERATORS_RELATIONAL[op] + "( const " + fullTypeName + "& lhs, const " + fullTypeName + "& rhs );\n";
-	code += "\n";
-
-	return code;
-}
-
-static std::string InlGetOperatorRelational( const genType_t type, const uint32_t numRows, const uint32_t numCols, const genOpRelational_t op ) {
-	assert( numRows >= GEN_COMPONENT_COUNT_MIN );
-	assert( numRows <= GEN_COMPONENT_COUNT_MAX );
-	assert( numCols >= GEN_COMPONENT_COUNT_MIN );
-	assert( numCols <= GEN_COMPONENT_COUNT_MAX );
-
-	std::string numRowsStr = std::to_string( numRows );
-	std::string numColsStr = std::to_string( numCols );
-
-	std::string fullTypeName = Gen_GetTypeString( type ) + numRowsStr + "x" + numColsStr;
-	std::string boolTypeName = "bool" + numRowsStr + "x" + numColsStr;
-
-	std::string code;
-
-	code += boolTypeName + " operator" + GEN_OPERATORS_RELATIONAL[op] + "( const " + fullTypeName + "& lhs, const " + fullTypeName + "& rhs ) {\n";
-	code += "\treturn " + boolTypeName + "(\n";
-
-	for ( uint32_t row = 0; row < numRows; row++ ) {
-		std::string rowStr = std::to_string( row );
-
-		code += "\t\tlhs[" + rowStr + "] " + GEN_OPERATORS_RELATIONAL[op] + " rhs[" + rowStr + "]";
-
-		if ( row != numRows - 1 ) {
-			code += ",";
-		}
-
-		code += "\n";
-	}
-	code += "\t);\n";
-	code += "}\n";
-	code += "\n";
-
-	return code;
-}
-
-
 void Gen_MatrixOperatorsArithmetic( const genType_t type, const uint32_t numRows, const uint32_t numCols, std::string& outHeader, std::string& outInl ) {
 	assert( numRows >= GEN_COMPONENT_COUNT_MIN );
 	assert( numRows <= GEN_COMPONENT_COUNT_MAX );
@@ -561,33 +322,21 @@ void Gen_MatrixOperatorsArithmetic( const genType_t type, const uint32_t numRows
 		return;
 	}
 
-	for ( uint32_t opIndex = 0; opIndex < GEN_OP_ARITHMETIC_COUNT; opIndex++ ) {
-		genOpArithmetic_t op = static_cast<genOpArithmetic_t>( opIndex );
+	Gen_OperatorComponentWiseArithmeticScalar( type, numRows, numCols, GEN_OP_ARITHMETIC_ADD, outHeader, outInl );
+	Gen_OperatorComponentWiseArithmeticRhsType( type, numRows, numCols, GEN_OP_ARITHMETIC_ADD, outHeader, outInl );
 
-		outHeader += HeaderGetArithmeticFuncScalar( type, numRows, numCols, op );
-		outHeader += HeaderGetArithmeticFuncRhsType( type, numRows, numCols, op );
+	Gen_OperatorComponentWiseArithmeticScalar( type, numRows, numCols, GEN_OP_ARITHMETIC_SUB, outHeader, outInl );
+	Gen_OperatorComponentWiseArithmeticRhsType( type, numRows, numCols, GEN_OP_ARITHMETIC_SUB, outHeader, outInl );
 
-		outInl += InlGetArithmeticFuncScalar( type, numRows, numCols, op );
-		outInl += InlGetArithmeticFuncRhsType( type, numRows, numCols, op );
-	}
-}
+	Gen_OperatorComponentWiseArithmeticScalar( type, numRows, numCols, GEN_OP_ARITHMETIC_MUL, outHeader, outInl );
+	MatrixOperatorMul( type, numRows, numCols, outHeader, outInl );
 
-void Gen_MatrixOperatorsRelational( const genType_t type, const uint32_t numRows, const uint32_t numCols, std::string& outHeader, std::string& outInl ) {
-	assert( numRows >= GEN_COMPONENT_COUNT_MIN );
-	assert( numRows <= GEN_COMPONENT_COUNT_MAX );
-	assert( numCols >= GEN_COMPONENT_COUNT_MIN );
-	assert( numCols <= GEN_COMPONENT_COUNT_MAX );
-
-	if ( type == GEN_TYPE_BOOL ) {
-		return;
-	}
-
-	for ( uint32_t opIndex = 0; opIndex < GEN_OP_RELATIONAL_COUNT; opIndex++ ) {
-		genOpRelational_t op = static_cast<genOpRelational_t>( opIndex );
-
-		outHeader += HeaderGetOperatorRelational( type, numRows, numCols, op );
-
-		outInl += InlGetOperatorRelational( type, numRows, numCols, op );
+	Gen_OperatorComponentWiseArithmeticScalar( type, numRows, numCols, GEN_OP_ARITHMETIC_DIV, outHeader, outInl );
+	// TODO(DM): pseudo-inverse
+	if ( numRows == numCols && Gen_IsFloatingPointType( type ) ) {
+		MatrixOperatorDiv( type, numRows, numCols, outHeader, outInl );
+	} else {
+		Gen_OperatorComponentWiseArithmeticRhsType( type, numRows, numCols, GEN_OP_ARITHMETIC_DIV, outHeader, outInl );
 	}
 }
 

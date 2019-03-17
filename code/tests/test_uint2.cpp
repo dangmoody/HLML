@@ -96,6 +96,38 @@ TEMPER_TEST( TestArithmeticDivision_uint2 ) {
 	TEMPER_PASS();
 }
 
+TEMPER_TEST( TestIncrement_uint2 ) {
+	uint2 vec;
+
+	// prefix
+	vec = uint2( 0, 0 );
+	++vec;
+	TEMPER_EXPECT_TRUE( vec == uint2( 1, 1 ) );
+
+	// postfix
+	vec = uint2( 0, 0 );
+	vec++;
+	TEMPER_EXPECT_TRUE( vec == uint2( 1, 1 ) );
+
+	TEMPER_PASS();
+}
+
+TEMPER_TEST( TestDecrement_uint2 ) {
+	uint2 vec;
+
+	// prefix
+	vec = uint2( 1, 1 );
+	--vec;
+	TEMPER_EXPECT_TRUE( vec == uint2( 0, 0 ) );
+
+	// postfix
+	vec = uint2( 1, 1 );
+	vec--;
+	TEMPER_EXPECT_TRUE( vec == uint2( 0, 0 ) );
+
+	TEMPER_PASS();
+}
+
 TEMPER_TEST( TestRelational_uint2 ) {
 	uint2 vec0 = uint2( 0, 0 );
 	uint2 vec1 = uint2( 1, 1 );
@@ -200,6 +232,9 @@ TEMPER_SUITE( Test_uint2 ) {
 	TEMPER_RUN_TEST( TestArithmeticSubtraction_uint2 );
 	TEMPER_RUN_TEST( TestArithmeticMultiplication_uint2 );
 	TEMPER_RUN_TEST( TestArithmeticDivision_uint2 );
+
+	TEMPER_RUN_TEST( TestIncrement_uint2 );
+	TEMPER_RUN_TEST( TestDecrement_uint2 );
 
 	TEMPER_RUN_TEST( TestRelational_uint2 );
 

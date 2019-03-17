@@ -124,6 +124,34 @@ int2x2 operator/=( int2x2& lhs, const int2x2& rhs ) {
 	return ( lhs = lhs / rhs );
 }
 
+// prefix
+int2x2& operator++( int2x2& lhs ) {
+	++lhs[0];
+	++lhs[1];
+	return lhs;
+}
+
+// postfix
+int2x2& operator++( int2x2& lhs, const int ) {
+	lhs[0]++;
+	lhs[1]++;
+	return lhs;
+}
+
+// prefix
+int2x2& operator--( int2x2& lhs ) {
+	--lhs[0];
+	--lhs[1];
+	return lhs;
+}
+
+// postfix
+int2x2& operator--( int2x2& lhs, const int ) {
+	lhs[0]--;
+	lhs[1]--;
+	return lhs;
+}
+
 bool2x2 operator<( const int2x2& lhs, const int2x2& rhs ) {
 	return bool2x2(
 		lhs[0] < rhs[0],
@@ -152,6 +180,123 @@ bool2x2 operator>=( const int2x2& lhs, const int2x2& rhs ) {
 	);
 }
 
+int2x2 operator&( const int2x2& lhs, const int32_t& rhs ) {
+	return int2x2(
+		lhs[0] & rhs,
+		lhs[1] & rhs
+	);
+}
+
+int2x2 operator&=( int2x2& lhs, const int32_t& rhs ) {
+	return ( lhs = lhs & rhs );
+}
+
+int2x2 operator&( const int2x2& lhs, const int2x2& rhs ) {
+	return int2x2(
+		lhs[0] & rhs[0],
+		lhs[1] & rhs[1]
+	);
+}
+
+int2x2 operator&=( int2x2& lhs, const int2x2& rhs ) {
+	return ( lhs = lhs & rhs );
+}
+
+int2x2 operator|( const int2x2& lhs, const int32_t& rhs ) {
+	return int2x2(
+		lhs[0] | rhs,
+		lhs[1] | rhs
+	);
+}
+
+int2x2 operator|=( int2x2& lhs, const int32_t& rhs ) {
+	return ( lhs = lhs | rhs );
+}
+
+int2x2 operator|( const int2x2& lhs, const int2x2& rhs ) {
+	return int2x2(
+		lhs[0] | rhs[0],
+		lhs[1] | rhs[1]
+	);
+}
+
+int2x2 operator|=( int2x2& lhs, const int2x2& rhs ) {
+	return ( lhs = lhs | rhs );
+}
+
+int2x2 operator^( const int2x2& lhs, const int32_t& rhs ) {
+	return int2x2(
+		lhs[0] ^ rhs,
+		lhs[1] ^ rhs
+	);
+}
+
+int2x2 operator^=( int2x2& lhs, const int32_t& rhs ) {
+	return ( lhs = lhs ^ rhs );
+}
+
+int2x2 operator^( const int2x2& lhs, const int2x2& rhs ) {
+	return int2x2(
+		lhs[0] ^ rhs[0],
+		lhs[1] ^ rhs[1]
+	);
+}
+
+int2x2 operator^=( int2x2& lhs, const int2x2& rhs ) {
+	return ( lhs = lhs ^ rhs );
+}
+
+int2x2 operator<<( const int2x2& lhs, const int32_t& rhs ) {
+	return int2x2(
+		lhs[0] << rhs,
+		lhs[1] << rhs
+	);
+}
+
+int2x2 operator<<=( int2x2& lhs, const int32_t& rhs ) {
+	return ( lhs = lhs << rhs );
+}
+
+int2x2 operator<<( const int2x2& lhs, const int2x2& rhs ) {
+	return int2x2(
+		lhs[0] << rhs[0],
+		lhs[1] << rhs[1]
+	);
+}
+
+int2x2 operator<<=( int2x2& lhs, const int2x2& rhs ) {
+	return ( lhs = lhs << rhs );
+}
+
+int2x2 operator>>( const int2x2& lhs, const int32_t& rhs ) {
+	return int2x2(
+		lhs[0] >> rhs,
+		lhs[1] >> rhs
+	);
+}
+
+int2x2 operator>>=( int2x2& lhs, const int32_t& rhs ) {
+	return ( lhs = lhs >> rhs );
+}
+
+int2x2 operator>>( const int2x2& lhs, const int2x2& rhs ) {
+	return int2x2(
+		lhs[0] >> rhs[0],
+		lhs[1] >> rhs[1]
+	);
+}
+
+int2x2 operator>>=( int2x2& lhs, const int2x2& rhs ) {
+	return ( lhs = lhs >> rhs );
+}
+
+int2x2 operator~( const int2x2& lhs ) {
+	return int2x2(
+		~lhs[0],
+		~lhs[1]
+	);
+}
+
 
 // int2x3
 int2x3 operator+( const int2x3& lhs, const int32_t rhs ) {
@@ -172,6 +317,10 @@ int2x3 operator+( const int2x3& lhs, const int2x3& rhs ) {
 	);
 }
 
+int2x3 operator+=( int2x3& lhs, const int2x3& rhs ) {
+	return ( lhs = lhs + rhs );
+}
+
 int2x3 operator-( const int2x3& lhs, const int32_t rhs ) {
 	return int2x3(
 		lhs[0] - rhs,
@@ -188,6 +337,10 @@ int2x3 operator-( const int2x3& lhs, const int2x3& rhs ) {
 		lhs[0] - rhs[0],
 		lhs[1] - rhs[1]
 	);
+}
+
+int2x3 operator-=( int2x3& lhs, const int2x3& rhs ) {
+	return ( lhs = lhs - rhs );
 }
 
 int2x3 operator*( const int2x3& lhs, const int32_t rhs ) {
@@ -235,6 +388,34 @@ int2x3 operator/( const int2x3& lhs, const int2x3& rhs ) {
 	);
 }
 
+// prefix
+int2x3& operator++( int2x3& lhs ) {
+	++lhs[0];
+	++lhs[1];
+	return lhs;
+}
+
+// postfix
+int2x3& operator++( int2x3& lhs, const int ) {
+	lhs[0]++;
+	lhs[1]++;
+	return lhs;
+}
+
+// prefix
+int2x3& operator--( int2x3& lhs ) {
+	--lhs[0];
+	--lhs[1];
+	return lhs;
+}
+
+// postfix
+int2x3& operator--( int2x3& lhs, const int ) {
+	lhs[0]--;
+	lhs[1]--;
+	return lhs;
+}
+
 bool2x3 operator<( const int2x3& lhs, const int2x3& rhs ) {
 	return bool2x3(
 		lhs[0] < rhs[0],
@@ -263,6 +444,123 @@ bool2x3 operator>=( const int2x3& lhs, const int2x3& rhs ) {
 	);
 }
 
+int2x3 operator&( const int2x3& lhs, const int32_t& rhs ) {
+	return int2x3(
+		lhs[0] & rhs,
+		lhs[1] & rhs
+	);
+}
+
+int2x3 operator&=( int2x3& lhs, const int32_t& rhs ) {
+	return ( lhs = lhs & rhs );
+}
+
+int2x3 operator&( const int2x3& lhs, const int2x3& rhs ) {
+	return int2x3(
+		lhs[0] & rhs[0],
+		lhs[1] & rhs[1]
+	);
+}
+
+int2x3 operator&=( int2x3& lhs, const int2x3& rhs ) {
+	return ( lhs = lhs & rhs );
+}
+
+int2x3 operator|( const int2x3& lhs, const int32_t& rhs ) {
+	return int2x3(
+		lhs[0] | rhs,
+		lhs[1] | rhs
+	);
+}
+
+int2x3 operator|=( int2x3& lhs, const int32_t& rhs ) {
+	return ( lhs = lhs | rhs );
+}
+
+int2x3 operator|( const int2x3& lhs, const int2x3& rhs ) {
+	return int2x3(
+		lhs[0] | rhs[0],
+		lhs[1] | rhs[1]
+	);
+}
+
+int2x3 operator|=( int2x3& lhs, const int2x3& rhs ) {
+	return ( lhs = lhs | rhs );
+}
+
+int2x3 operator^( const int2x3& lhs, const int32_t& rhs ) {
+	return int2x3(
+		lhs[0] ^ rhs,
+		lhs[1] ^ rhs
+	);
+}
+
+int2x3 operator^=( int2x3& lhs, const int32_t& rhs ) {
+	return ( lhs = lhs ^ rhs );
+}
+
+int2x3 operator^( const int2x3& lhs, const int2x3& rhs ) {
+	return int2x3(
+		lhs[0] ^ rhs[0],
+		lhs[1] ^ rhs[1]
+	);
+}
+
+int2x3 operator^=( int2x3& lhs, const int2x3& rhs ) {
+	return ( lhs = lhs ^ rhs );
+}
+
+int2x3 operator<<( const int2x3& lhs, const int32_t& rhs ) {
+	return int2x3(
+		lhs[0] << rhs,
+		lhs[1] << rhs
+	);
+}
+
+int2x3 operator<<=( int2x3& lhs, const int32_t& rhs ) {
+	return ( lhs = lhs << rhs );
+}
+
+int2x3 operator<<( const int2x3& lhs, const int2x3& rhs ) {
+	return int2x3(
+		lhs[0] << rhs[0],
+		lhs[1] << rhs[1]
+	);
+}
+
+int2x3 operator<<=( int2x3& lhs, const int2x3& rhs ) {
+	return ( lhs = lhs << rhs );
+}
+
+int2x3 operator>>( const int2x3& lhs, const int32_t& rhs ) {
+	return int2x3(
+		lhs[0] >> rhs,
+		lhs[1] >> rhs
+	);
+}
+
+int2x3 operator>>=( int2x3& lhs, const int32_t& rhs ) {
+	return ( lhs = lhs >> rhs );
+}
+
+int2x3 operator>>( const int2x3& lhs, const int2x3& rhs ) {
+	return int2x3(
+		lhs[0] >> rhs[0],
+		lhs[1] >> rhs[1]
+	);
+}
+
+int2x3 operator>>=( int2x3& lhs, const int2x3& rhs ) {
+	return ( lhs = lhs >> rhs );
+}
+
+int2x3 operator~( const int2x3& lhs ) {
+	return int2x3(
+		~lhs[0],
+		~lhs[1]
+	);
+}
+
 
 // int2x4
 int2x4 operator+( const int2x4& lhs, const int32_t rhs ) {
@@ -283,6 +581,10 @@ int2x4 operator+( const int2x4& lhs, const int2x4& rhs ) {
 	);
 }
 
+int2x4 operator+=( int2x4& lhs, const int2x4& rhs ) {
+	return ( lhs = lhs + rhs );
+}
+
 int2x4 operator-( const int2x4& lhs, const int32_t rhs ) {
 	return int2x4(
 		lhs[0] - rhs,
@@ -299,6 +601,10 @@ int2x4 operator-( const int2x4& lhs, const int2x4& rhs ) {
 		lhs[0] - rhs[0],
 		lhs[1] - rhs[1]
 	);
+}
+
+int2x4 operator-=( int2x4& lhs, const int2x4& rhs ) {
+	return ( lhs = lhs - rhs );
 }
 
 int2x4 operator*( const int2x4& lhs, const int32_t rhs ) {
@@ -346,6 +652,34 @@ int2x4 operator/( const int2x4& lhs, const int2x4& rhs ) {
 	);
 }
 
+// prefix
+int2x4& operator++( int2x4& lhs ) {
+	++lhs[0];
+	++lhs[1];
+	return lhs;
+}
+
+// postfix
+int2x4& operator++( int2x4& lhs, const int ) {
+	lhs[0]++;
+	lhs[1]++;
+	return lhs;
+}
+
+// prefix
+int2x4& operator--( int2x4& lhs ) {
+	--lhs[0];
+	--lhs[1];
+	return lhs;
+}
+
+// postfix
+int2x4& operator--( int2x4& lhs, const int ) {
+	lhs[0]--;
+	lhs[1]--;
+	return lhs;
+}
+
 bool2x4 operator<( const int2x4& lhs, const int2x4& rhs ) {
 	return bool2x4(
 		lhs[0] < rhs[0],
@@ -374,6 +708,123 @@ bool2x4 operator>=( const int2x4& lhs, const int2x4& rhs ) {
 	);
 }
 
+int2x4 operator&( const int2x4& lhs, const int32_t& rhs ) {
+	return int2x4(
+		lhs[0] & rhs,
+		lhs[1] & rhs
+	);
+}
+
+int2x4 operator&=( int2x4& lhs, const int32_t& rhs ) {
+	return ( lhs = lhs & rhs );
+}
+
+int2x4 operator&( const int2x4& lhs, const int2x4& rhs ) {
+	return int2x4(
+		lhs[0] & rhs[0],
+		lhs[1] & rhs[1]
+	);
+}
+
+int2x4 operator&=( int2x4& lhs, const int2x4& rhs ) {
+	return ( lhs = lhs & rhs );
+}
+
+int2x4 operator|( const int2x4& lhs, const int32_t& rhs ) {
+	return int2x4(
+		lhs[0] | rhs,
+		lhs[1] | rhs
+	);
+}
+
+int2x4 operator|=( int2x4& lhs, const int32_t& rhs ) {
+	return ( lhs = lhs | rhs );
+}
+
+int2x4 operator|( const int2x4& lhs, const int2x4& rhs ) {
+	return int2x4(
+		lhs[0] | rhs[0],
+		lhs[1] | rhs[1]
+	);
+}
+
+int2x4 operator|=( int2x4& lhs, const int2x4& rhs ) {
+	return ( lhs = lhs | rhs );
+}
+
+int2x4 operator^( const int2x4& lhs, const int32_t& rhs ) {
+	return int2x4(
+		lhs[0] ^ rhs,
+		lhs[1] ^ rhs
+	);
+}
+
+int2x4 operator^=( int2x4& lhs, const int32_t& rhs ) {
+	return ( lhs = lhs ^ rhs );
+}
+
+int2x4 operator^( const int2x4& lhs, const int2x4& rhs ) {
+	return int2x4(
+		lhs[0] ^ rhs[0],
+		lhs[1] ^ rhs[1]
+	);
+}
+
+int2x4 operator^=( int2x4& lhs, const int2x4& rhs ) {
+	return ( lhs = lhs ^ rhs );
+}
+
+int2x4 operator<<( const int2x4& lhs, const int32_t& rhs ) {
+	return int2x4(
+		lhs[0] << rhs,
+		lhs[1] << rhs
+	);
+}
+
+int2x4 operator<<=( int2x4& lhs, const int32_t& rhs ) {
+	return ( lhs = lhs << rhs );
+}
+
+int2x4 operator<<( const int2x4& lhs, const int2x4& rhs ) {
+	return int2x4(
+		lhs[0] << rhs[0],
+		lhs[1] << rhs[1]
+	);
+}
+
+int2x4 operator<<=( int2x4& lhs, const int2x4& rhs ) {
+	return ( lhs = lhs << rhs );
+}
+
+int2x4 operator>>( const int2x4& lhs, const int32_t& rhs ) {
+	return int2x4(
+		lhs[0] >> rhs,
+		lhs[1] >> rhs
+	);
+}
+
+int2x4 operator>>=( int2x4& lhs, const int32_t& rhs ) {
+	return ( lhs = lhs >> rhs );
+}
+
+int2x4 operator>>( const int2x4& lhs, const int2x4& rhs ) {
+	return int2x4(
+		lhs[0] >> rhs[0],
+		lhs[1] >> rhs[1]
+	);
+}
+
+int2x4 operator>>=( int2x4& lhs, const int2x4& rhs ) {
+	return ( lhs = lhs >> rhs );
+}
+
+int2x4 operator~( const int2x4& lhs ) {
+	return int2x4(
+		~lhs[0],
+		~lhs[1]
+	);
+}
+
 
 // int3x2
 int3x2 operator+( const int3x2& lhs, const int32_t rhs ) {
@@ -396,6 +847,10 @@ int3x2 operator+( const int3x2& lhs, const int3x2& rhs ) {
 	);
 }
 
+int3x2 operator+=( int3x2& lhs, const int3x2& rhs ) {
+	return ( lhs = lhs + rhs );
+}
+
 int3x2 operator-( const int3x2& lhs, const int32_t rhs ) {
 	return int3x2(
 		lhs[0] - rhs,
@@ -414,6 +869,10 @@ int3x2 operator-( const int3x2& lhs, const int3x2& rhs ) {
 		lhs[1] - rhs[1],
 		lhs[2] - rhs[2]
 	);
+}
+
+int3x2 operator-=( int3x2& lhs, const int3x2& rhs ) {
+	return ( lhs = lhs - rhs );
 }
 
 int3x2 operator*( const int3x2& lhs, const int32_t rhs ) {
@@ -472,6 +931,38 @@ int3x2 operator/( const int3x2& lhs, const int3x2& rhs ) {
 	);
 }
 
+// prefix
+int3x2& operator++( int3x2& lhs ) {
+	++lhs[0];
+	++lhs[1];
+	++lhs[2];
+	return lhs;
+}
+
+// postfix
+int3x2& operator++( int3x2& lhs, const int ) {
+	lhs[0]++;
+	lhs[1]++;
+	lhs[2]++;
+	return lhs;
+}
+
+// prefix
+int3x2& operator--( int3x2& lhs ) {
+	--lhs[0];
+	--lhs[1];
+	--lhs[2];
+	return lhs;
+}
+
+// postfix
+int3x2& operator--( int3x2& lhs, const int ) {
+	lhs[0]--;
+	lhs[1]--;
+	lhs[2]--;
+	return lhs;
+}
+
 bool3x2 operator<( const int3x2& lhs, const int3x2& rhs ) {
 	return bool3x2(
 		lhs[0] < rhs[0],
@@ -501,6 +992,134 @@ bool3x2 operator>=( const int3x2& lhs, const int3x2& rhs ) {
 		lhs[0] >= rhs[0],
 		lhs[1] >= rhs[1],
 		lhs[2] >= rhs[2]
+	);
+}
+
+int3x2 operator&( const int3x2& lhs, const int32_t& rhs ) {
+	return int3x2(
+		lhs[0] & rhs,
+		lhs[1] & rhs,
+		lhs[2] & rhs
+	);
+}
+
+int3x2 operator&=( int3x2& lhs, const int32_t& rhs ) {
+	return ( lhs = lhs & rhs );
+}
+
+int3x2 operator&( const int3x2& lhs, const int3x2& rhs ) {
+	return int3x2(
+		lhs[0] & rhs[0],
+		lhs[1] & rhs[1],
+		lhs[2] & rhs[2]
+	);
+}
+
+int3x2 operator&=( int3x2& lhs, const int3x2& rhs ) {
+	return ( lhs = lhs & rhs );
+}
+
+int3x2 operator|( const int3x2& lhs, const int32_t& rhs ) {
+	return int3x2(
+		lhs[0] | rhs,
+		lhs[1] | rhs,
+		lhs[2] | rhs
+	);
+}
+
+int3x2 operator|=( int3x2& lhs, const int32_t& rhs ) {
+	return ( lhs = lhs | rhs );
+}
+
+int3x2 operator|( const int3x2& lhs, const int3x2& rhs ) {
+	return int3x2(
+		lhs[0] | rhs[0],
+		lhs[1] | rhs[1],
+		lhs[2] | rhs[2]
+	);
+}
+
+int3x2 operator|=( int3x2& lhs, const int3x2& rhs ) {
+	return ( lhs = lhs | rhs );
+}
+
+int3x2 operator^( const int3x2& lhs, const int32_t& rhs ) {
+	return int3x2(
+		lhs[0] ^ rhs,
+		lhs[1] ^ rhs,
+		lhs[2] ^ rhs
+	);
+}
+
+int3x2 operator^=( int3x2& lhs, const int32_t& rhs ) {
+	return ( lhs = lhs ^ rhs );
+}
+
+int3x2 operator^( const int3x2& lhs, const int3x2& rhs ) {
+	return int3x2(
+		lhs[0] ^ rhs[0],
+		lhs[1] ^ rhs[1],
+		lhs[2] ^ rhs[2]
+	);
+}
+
+int3x2 operator^=( int3x2& lhs, const int3x2& rhs ) {
+	return ( lhs = lhs ^ rhs );
+}
+
+int3x2 operator<<( const int3x2& lhs, const int32_t& rhs ) {
+	return int3x2(
+		lhs[0] << rhs,
+		lhs[1] << rhs,
+		lhs[2] << rhs
+	);
+}
+
+int3x2 operator<<=( int3x2& lhs, const int32_t& rhs ) {
+	return ( lhs = lhs << rhs );
+}
+
+int3x2 operator<<( const int3x2& lhs, const int3x2& rhs ) {
+	return int3x2(
+		lhs[0] << rhs[0],
+		lhs[1] << rhs[1],
+		lhs[2] << rhs[2]
+	);
+}
+
+int3x2 operator<<=( int3x2& lhs, const int3x2& rhs ) {
+	return ( lhs = lhs << rhs );
+}
+
+int3x2 operator>>( const int3x2& lhs, const int32_t& rhs ) {
+	return int3x2(
+		lhs[0] >> rhs,
+		lhs[1] >> rhs,
+		lhs[2] >> rhs
+	);
+}
+
+int3x2 operator>>=( int3x2& lhs, const int32_t& rhs ) {
+	return ( lhs = lhs >> rhs );
+}
+
+int3x2 operator>>( const int3x2& lhs, const int3x2& rhs ) {
+	return int3x2(
+		lhs[0] >> rhs[0],
+		lhs[1] >> rhs[1],
+		lhs[2] >> rhs[2]
+	);
+}
+
+int3x2 operator>>=( int3x2& lhs, const int3x2& rhs ) {
+	return ( lhs = lhs >> rhs );
+}
+
+int3x2 operator~( const int3x2& lhs ) {
+	return int3x2(
+		~lhs[0],
+		~lhs[1],
+		~lhs[2]
 	);
 }
 
@@ -618,6 +1237,38 @@ int3x3 operator/=( int3x3& lhs, const int3x3& rhs ) {
 	return ( lhs = lhs / rhs );
 }
 
+// prefix
+int3x3& operator++( int3x3& lhs ) {
+	++lhs[0];
+	++lhs[1];
+	++lhs[2];
+	return lhs;
+}
+
+// postfix
+int3x3& operator++( int3x3& lhs, const int ) {
+	lhs[0]++;
+	lhs[1]++;
+	lhs[2]++;
+	return lhs;
+}
+
+// prefix
+int3x3& operator--( int3x3& lhs ) {
+	--lhs[0];
+	--lhs[1];
+	--lhs[2];
+	return lhs;
+}
+
+// postfix
+int3x3& operator--( int3x3& lhs, const int ) {
+	lhs[0]--;
+	lhs[1]--;
+	lhs[2]--;
+	return lhs;
+}
+
 bool3x3 operator<( const int3x3& lhs, const int3x3& rhs ) {
 	return bool3x3(
 		lhs[0] < rhs[0],
@@ -650,6 +1301,134 @@ bool3x3 operator>=( const int3x3& lhs, const int3x3& rhs ) {
 	);
 }
 
+int3x3 operator&( const int3x3& lhs, const int32_t& rhs ) {
+	return int3x3(
+		lhs[0] & rhs,
+		lhs[1] & rhs,
+		lhs[2] & rhs
+	);
+}
+
+int3x3 operator&=( int3x3& lhs, const int32_t& rhs ) {
+	return ( lhs = lhs & rhs );
+}
+
+int3x3 operator&( const int3x3& lhs, const int3x3& rhs ) {
+	return int3x3(
+		lhs[0] & rhs[0],
+		lhs[1] & rhs[1],
+		lhs[2] & rhs[2]
+	);
+}
+
+int3x3 operator&=( int3x3& lhs, const int3x3& rhs ) {
+	return ( lhs = lhs & rhs );
+}
+
+int3x3 operator|( const int3x3& lhs, const int32_t& rhs ) {
+	return int3x3(
+		lhs[0] | rhs,
+		lhs[1] | rhs,
+		lhs[2] | rhs
+	);
+}
+
+int3x3 operator|=( int3x3& lhs, const int32_t& rhs ) {
+	return ( lhs = lhs | rhs );
+}
+
+int3x3 operator|( const int3x3& lhs, const int3x3& rhs ) {
+	return int3x3(
+		lhs[0] | rhs[0],
+		lhs[1] | rhs[1],
+		lhs[2] | rhs[2]
+	);
+}
+
+int3x3 operator|=( int3x3& lhs, const int3x3& rhs ) {
+	return ( lhs = lhs | rhs );
+}
+
+int3x3 operator^( const int3x3& lhs, const int32_t& rhs ) {
+	return int3x3(
+		lhs[0] ^ rhs,
+		lhs[1] ^ rhs,
+		lhs[2] ^ rhs
+	);
+}
+
+int3x3 operator^=( int3x3& lhs, const int32_t& rhs ) {
+	return ( lhs = lhs ^ rhs );
+}
+
+int3x3 operator^( const int3x3& lhs, const int3x3& rhs ) {
+	return int3x3(
+		lhs[0] ^ rhs[0],
+		lhs[1] ^ rhs[1],
+		lhs[2] ^ rhs[2]
+	);
+}
+
+int3x3 operator^=( int3x3& lhs, const int3x3& rhs ) {
+	return ( lhs = lhs ^ rhs );
+}
+
+int3x3 operator<<( const int3x3& lhs, const int32_t& rhs ) {
+	return int3x3(
+		lhs[0] << rhs,
+		lhs[1] << rhs,
+		lhs[2] << rhs
+	);
+}
+
+int3x3 operator<<=( int3x3& lhs, const int32_t& rhs ) {
+	return ( lhs = lhs << rhs );
+}
+
+int3x3 operator<<( const int3x3& lhs, const int3x3& rhs ) {
+	return int3x3(
+		lhs[0] << rhs[0],
+		lhs[1] << rhs[1],
+		lhs[2] << rhs[2]
+	);
+}
+
+int3x3 operator<<=( int3x3& lhs, const int3x3& rhs ) {
+	return ( lhs = lhs << rhs );
+}
+
+int3x3 operator>>( const int3x3& lhs, const int32_t& rhs ) {
+	return int3x3(
+		lhs[0] >> rhs,
+		lhs[1] >> rhs,
+		lhs[2] >> rhs
+	);
+}
+
+int3x3 operator>>=( int3x3& lhs, const int32_t& rhs ) {
+	return ( lhs = lhs >> rhs );
+}
+
+int3x3 operator>>( const int3x3& lhs, const int3x3& rhs ) {
+	return int3x3(
+		lhs[0] >> rhs[0],
+		lhs[1] >> rhs[1],
+		lhs[2] >> rhs[2]
+	);
+}
+
+int3x3 operator>>=( int3x3& lhs, const int3x3& rhs ) {
+	return ( lhs = lhs >> rhs );
+}
+
+int3x3 operator~( const int3x3& lhs ) {
+	return int3x3(
+		~lhs[0],
+		~lhs[1],
+		~lhs[2]
+	);
+}
+
 
 // int3x4
 int3x4 operator+( const int3x4& lhs, const int32_t rhs ) {
@@ -672,6 +1451,10 @@ int3x4 operator+( const int3x4& lhs, const int3x4& rhs ) {
 	);
 }
 
+int3x4 operator+=( int3x4& lhs, const int3x4& rhs ) {
+	return ( lhs = lhs + rhs );
+}
+
 int3x4 operator-( const int3x4& lhs, const int32_t rhs ) {
 	return int3x4(
 		lhs[0] - rhs,
@@ -690,6 +1473,10 @@ int3x4 operator-( const int3x4& lhs, const int3x4& rhs ) {
 		lhs[1] - rhs[1],
 		lhs[2] - rhs[2]
 	);
+}
+
+int3x4 operator-=( int3x4& lhs, const int3x4& rhs ) {
+	return ( lhs = lhs - rhs );
 }
 
 int3x4 operator*( const int3x4& lhs, const int32_t rhs ) {
@@ -748,6 +1535,38 @@ int3x4 operator/( const int3x4& lhs, const int3x4& rhs ) {
 	);
 }
 
+// prefix
+int3x4& operator++( int3x4& lhs ) {
+	++lhs[0];
+	++lhs[1];
+	++lhs[2];
+	return lhs;
+}
+
+// postfix
+int3x4& operator++( int3x4& lhs, const int ) {
+	lhs[0]++;
+	lhs[1]++;
+	lhs[2]++;
+	return lhs;
+}
+
+// prefix
+int3x4& operator--( int3x4& lhs ) {
+	--lhs[0];
+	--lhs[1];
+	--lhs[2];
+	return lhs;
+}
+
+// postfix
+int3x4& operator--( int3x4& lhs, const int ) {
+	lhs[0]--;
+	lhs[1]--;
+	lhs[2]--;
+	return lhs;
+}
+
 bool3x4 operator<( const int3x4& lhs, const int3x4& rhs ) {
 	return bool3x4(
 		lhs[0] < rhs[0],
@@ -780,6 +1599,134 @@ bool3x4 operator>=( const int3x4& lhs, const int3x4& rhs ) {
 	);
 }
 
+int3x4 operator&( const int3x4& lhs, const int32_t& rhs ) {
+	return int3x4(
+		lhs[0] & rhs,
+		lhs[1] & rhs,
+		lhs[2] & rhs
+	);
+}
+
+int3x4 operator&=( int3x4& lhs, const int32_t& rhs ) {
+	return ( lhs = lhs & rhs );
+}
+
+int3x4 operator&( const int3x4& lhs, const int3x4& rhs ) {
+	return int3x4(
+		lhs[0] & rhs[0],
+		lhs[1] & rhs[1],
+		lhs[2] & rhs[2]
+	);
+}
+
+int3x4 operator&=( int3x4& lhs, const int3x4& rhs ) {
+	return ( lhs = lhs & rhs );
+}
+
+int3x4 operator|( const int3x4& lhs, const int32_t& rhs ) {
+	return int3x4(
+		lhs[0] | rhs,
+		lhs[1] | rhs,
+		lhs[2] | rhs
+	);
+}
+
+int3x4 operator|=( int3x4& lhs, const int32_t& rhs ) {
+	return ( lhs = lhs | rhs );
+}
+
+int3x4 operator|( const int3x4& lhs, const int3x4& rhs ) {
+	return int3x4(
+		lhs[0] | rhs[0],
+		lhs[1] | rhs[1],
+		lhs[2] | rhs[2]
+	);
+}
+
+int3x4 operator|=( int3x4& lhs, const int3x4& rhs ) {
+	return ( lhs = lhs | rhs );
+}
+
+int3x4 operator^( const int3x4& lhs, const int32_t& rhs ) {
+	return int3x4(
+		lhs[0] ^ rhs,
+		lhs[1] ^ rhs,
+		lhs[2] ^ rhs
+	);
+}
+
+int3x4 operator^=( int3x4& lhs, const int32_t& rhs ) {
+	return ( lhs = lhs ^ rhs );
+}
+
+int3x4 operator^( const int3x4& lhs, const int3x4& rhs ) {
+	return int3x4(
+		lhs[0] ^ rhs[0],
+		lhs[1] ^ rhs[1],
+		lhs[2] ^ rhs[2]
+	);
+}
+
+int3x4 operator^=( int3x4& lhs, const int3x4& rhs ) {
+	return ( lhs = lhs ^ rhs );
+}
+
+int3x4 operator<<( const int3x4& lhs, const int32_t& rhs ) {
+	return int3x4(
+		lhs[0] << rhs,
+		lhs[1] << rhs,
+		lhs[2] << rhs
+	);
+}
+
+int3x4 operator<<=( int3x4& lhs, const int32_t& rhs ) {
+	return ( lhs = lhs << rhs );
+}
+
+int3x4 operator<<( const int3x4& lhs, const int3x4& rhs ) {
+	return int3x4(
+		lhs[0] << rhs[0],
+		lhs[1] << rhs[1],
+		lhs[2] << rhs[2]
+	);
+}
+
+int3x4 operator<<=( int3x4& lhs, const int3x4& rhs ) {
+	return ( lhs = lhs << rhs );
+}
+
+int3x4 operator>>( const int3x4& lhs, const int32_t& rhs ) {
+	return int3x4(
+		lhs[0] >> rhs,
+		lhs[1] >> rhs,
+		lhs[2] >> rhs
+	);
+}
+
+int3x4 operator>>=( int3x4& lhs, const int32_t& rhs ) {
+	return ( lhs = lhs >> rhs );
+}
+
+int3x4 operator>>( const int3x4& lhs, const int3x4& rhs ) {
+	return int3x4(
+		lhs[0] >> rhs[0],
+		lhs[1] >> rhs[1],
+		lhs[2] >> rhs[2]
+	);
+}
+
+int3x4 operator>>=( int3x4& lhs, const int3x4& rhs ) {
+	return ( lhs = lhs >> rhs );
+}
+
+int3x4 operator~( const int3x4& lhs ) {
+	return int3x4(
+		~lhs[0],
+		~lhs[1],
+		~lhs[2]
+	);
+}
+
 
 // int4x2
 int4x2 operator+( const int4x2& lhs, const int32_t rhs ) {
@@ -804,6 +1751,10 @@ int4x2 operator+( const int4x2& lhs, const int4x2& rhs ) {
 	);
 }
 
+int4x2 operator+=( int4x2& lhs, const int4x2& rhs ) {
+	return ( lhs = lhs + rhs );
+}
+
 int4x2 operator-( const int4x2& lhs, const int32_t rhs ) {
 	return int4x2(
 		lhs[0] - rhs,
@@ -824,6 +1775,10 @@ int4x2 operator-( const int4x2& lhs, const int4x2& rhs ) {
 		lhs[2] - rhs[2],
 		lhs[3] - rhs[3]
 	);
+}
+
+int4x2 operator-=( int4x2& lhs, const int4x2& rhs ) {
+	return ( lhs = lhs - rhs );
 }
 
 int4x2 operator*( const int4x2& lhs, const int32_t rhs ) {
@@ -895,6 +1850,42 @@ int4x2 operator/( const int4x2& lhs, const int4x2& rhs ) {
 	);
 }
 
+// prefix
+int4x2& operator++( int4x2& lhs ) {
+	++lhs[0];
+	++lhs[1];
+	++lhs[2];
+	++lhs[3];
+	return lhs;
+}
+
+// postfix
+int4x2& operator++( int4x2& lhs, const int ) {
+	lhs[0]++;
+	lhs[1]++;
+	lhs[2]++;
+	lhs[3]++;
+	return lhs;
+}
+
+// prefix
+int4x2& operator--( int4x2& lhs ) {
+	--lhs[0];
+	--lhs[1];
+	--lhs[2];
+	--lhs[3];
+	return lhs;
+}
+
+// postfix
+int4x2& operator--( int4x2& lhs, const int ) {
+	lhs[0]--;
+	lhs[1]--;
+	lhs[2]--;
+	lhs[3]--;
+	return lhs;
+}
+
 bool4x2 operator<( const int4x2& lhs, const int4x2& rhs ) {
 	return bool4x2(
 		lhs[0] < rhs[0],
@@ -931,6 +1922,145 @@ bool4x2 operator>=( const int4x2& lhs, const int4x2& rhs ) {
 	);
 }
 
+int4x2 operator&( const int4x2& lhs, const int32_t& rhs ) {
+	return int4x2(
+		lhs[0] & rhs,
+		lhs[1] & rhs,
+		lhs[2] & rhs,
+		lhs[3] & rhs
+	);
+}
+
+int4x2 operator&=( int4x2& lhs, const int32_t& rhs ) {
+	return ( lhs = lhs & rhs );
+}
+
+int4x2 operator&( const int4x2& lhs, const int4x2& rhs ) {
+	return int4x2(
+		lhs[0] & rhs[0],
+		lhs[1] & rhs[1],
+		lhs[2] & rhs[2],
+		lhs[3] & rhs[3]
+	);
+}
+
+int4x2 operator&=( int4x2& lhs, const int4x2& rhs ) {
+	return ( lhs = lhs & rhs );
+}
+
+int4x2 operator|( const int4x2& lhs, const int32_t& rhs ) {
+	return int4x2(
+		lhs[0] | rhs,
+		lhs[1] | rhs,
+		lhs[2] | rhs,
+		lhs[3] | rhs
+	);
+}
+
+int4x2 operator|=( int4x2& lhs, const int32_t& rhs ) {
+	return ( lhs = lhs | rhs );
+}
+
+int4x2 operator|( const int4x2& lhs, const int4x2& rhs ) {
+	return int4x2(
+		lhs[0] | rhs[0],
+		lhs[1] | rhs[1],
+		lhs[2] | rhs[2],
+		lhs[3] | rhs[3]
+	);
+}
+
+int4x2 operator|=( int4x2& lhs, const int4x2& rhs ) {
+	return ( lhs = lhs | rhs );
+}
+
+int4x2 operator^( const int4x2& lhs, const int32_t& rhs ) {
+	return int4x2(
+		lhs[0] ^ rhs,
+		lhs[1] ^ rhs,
+		lhs[2] ^ rhs,
+		lhs[3] ^ rhs
+	);
+}
+
+int4x2 operator^=( int4x2& lhs, const int32_t& rhs ) {
+	return ( lhs = lhs ^ rhs );
+}
+
+int4x2 operator^( const int4x2& lhs, const int4x2& rhs ) {
+	return int4x2(
+		lhs[0] ^ rhs[0],
+		lhs[1] ^ rhs[1],
+		lhs[2] ^ rhs[2],
+		lhs[3] ^ rhs[3]
+	);
+}
+
+int4x2 operator^=( int4x2& lhs, const int4x2& rhs ) {
+	return ( lhs = lhs ^ rhs );
+}
+
+int4x2 operator<<( const int4x2& lhs, const int32_t& rhs ) {
+	return int4x2(
+		lhs[0] << rhs,
+		lhs[1] << rhs,
+		lhs[2] << rhs,
+		lhs[3] << rhs
+	);
+}
+
+int4x2 operator<<=( int4x2& lhs, const int32_t& rhs ) {
+	return ( lhs = lhs << rhs );
+}
+
+int4x2 operator<<( const int4x2& lhs, const int4x2& rhs ) {
+	return int4x2(
+		lhs[0] << rhs[0],
+		lhs[1] << rhs[1],
+		lhs[2] << rhs[2],
+		lhs[3] << rhs[3]
+	);
+}
+
+int4x2 operator<<=( int4x2& lhs, const int4x2& rhs ) {
+	return ( lhs = lhs << rhs );
+}
+
+int4x2 operator>>( const int4x2& lhs, const int32_t& rhs ) {
+	return int4x2(
+		lhs[0] >> rhs,
+		lhs[1] >> rhs,
+		lhs[2] >> rhs,
+		lhs[3] >> rhs
+	);
+}
+
+int4x2 operator>>=( int4x2& lhs, const int32_t& rhs ) {
+	return ( lhs = lhs >> rhs );
+}
+
+int4x2 operator>>( const int4x2& lhs, const int4x2& rhs ) {
+	return int4x2(
+		lhs[0] >> rhs[0],
+		lhs[1] >> rhs[1],
+		lhs[2] >> rhs[2],
+		lhs[3] >> rhs[3]
+	);
+}
+
+int4x2 operator>>=( int4x2& lhs, const int4x2& rhs ) {
+	return ( lhs = lhs >> rhs );
+}
+
+int4x2 operator~( const int4x2& lhs ) {
+	return int4x2(
+		~lhs[0],
+		~lhs[1],
+		~lhs[2],
+		~lhs[3]
+	);
+}
+
 
 // int4x3
 int4x3 operator+( const int4x3& lhs, const int32_t rhs ) {
@@ -955,6 +2085,10 @@ int4x3 operator+( const int4x3& lhs, const int4x3& rhs ) {
 	);
 }
 
+int4x3 operator+=( int4x3& lhs, const int4x3& rhs ) {
+	return ( lhs = lhs + rhs );
+}
+
 int4x3 operator-( const int4x3& lhs, const int32_t rhs ) {
 	return int4x3(
 		lhs[0] - rhs,
@@ -975,6 +2109,10 @@ int4x3 operator-( const int4x3& lhs, const int4x3& rhs ) {
 		lhs[2] - rhs[2],
 		lhs[3] - rhs[3]
 	);
+}
+
+int4x3 operator-=( int4x3& lhs, const int4x3& rhs ) {
+	return ( lhs = lhs - rhs );
 }
 
 int4x3 operator*( const int4x3& lhs, const int32_t rhs ) {
@@ -1046,6 +2184,42 @@ int4x3 operator/( const int4x3& lhs, const int4x3& rhs ) {
 	);
 }
 
+// prefix
+int4x3& operator++( int4x3& lhs ) {
+	++lhs[0];
+	++lhs[1];
+	++lhs[2];
+	++lhs[3];
+	return lhs;
+}
+
+// postfix
+int4x3& operator++( int4x3& lhs, const int ) {
+	lhs[0]++;
+	lhs[1]++;
+	lhs[2]++;
+	lhs[3]++;
+	return lhs;
+}
+
+// prefix
+int4x3& operator--( int4x3& lhs ) {
+	--lhs[0];
+	--lhs[1];
+	--lhs[2];
+	--lhs[3];
+	return lhs;
+}
+
+// postfix
+int4x3& operator--( int4x3& lhs, const int ) {
+	lhs[0]--;
+	lhs[1]--;
+	lhs[2]--;
+	lhs[3]--;
+	return lhs;
+}
+
 bool4x3 operator<( const int4x3& lhs, const int4x3& rhs ) {
 	return bool4x3(
 		lhs[0] < rhs[0],
@@ -1079,6 +2253,145 @@ bool4x3 operator>=( const int4x3& lhs, const int4x3& rhs ) {
 		lhs[1] >= rhs[1],
 		lhs[2] >= rhs[2],
 		lhs[3] >= rhs[3]
+	);
+}
+
+int4x3 operator&( const int4x3& lhs, const int32_t& rhs ) {
+	return int4x3(
+		lhs[0] & rhs,
+		lhs[1] & rhs,
+		lhs[2] & rhs,
+		lhs[3] & rhs
+	);
+}
+
+int4x3 operator&=( int4x3& lhs, const int32_t& rhs ) {
+	return ( lhs = lhs & rhs );
+}
+
+int4x3 operator&( const int4x3& lhs, const int4x3& rhs ) {
+	return int4x3(
+		lhs[0] & rhs[0],
+		lhs[1] & rhs[1],
+		lhs[2] & rhs[2],
+		lhs[3] & rhs[3]
+	);
+}
+
+int4x3 operator&=( int4x3& lhs, const int4x3& rhs ) {
+	return ( lhs = lhs & rhs );
+}
+
+int4x3 operator|( const int4x3& lhs, const int32_t& rhs ) {
+	return int4x3(
+		lhs[0] | rhs,
+		lhs[1] | rhs,
+		lhs[2] | rhs,
+		lhs[3] | rhs
+	);
+}
+
+int4x3 operator|=( int4x3& lhs, const int32_t& rhs ) {
+	return ( lhs = lhs | rhs );
+}
+
+int4x3 operator|( const int4x3& lhs, const int4x3& rhs ) {
+	return int4x3(
+		lhs[0] | rhs[0],
+		lhs[1] | rhs[1],
+		lhs[2] | rhs[2],
+		lhs[3] | rhs[3]
+	);
+}
+
+int4x3 operator|=( int4x3& lhs, const int4x3& rhs ) {
+	return ( lhs = lhs | rhs );
+}
+
+int4x3 operator^( const int4x3& lhs, const int32_t& rhs ) {
+	return int4x3(
+		lhs[0] ^ rhs,
+		lhs[1] ^ rhs,
+		lhs[2] ^ rhs,
+		lhs[3] ^ rhs
+	);
+}
+
+int4x3 operator^=( int4x3& lhs, const int32_t& rhs ) {
+	return ( lhs = lhs ^ rhs );
+}
+
+int4x3 operator^( const int4x3& lhs, const int4x3& rhs ) {
+	return int4x3(
+		lhs[0] ^ rhs[0],
+		lhs[1] ^ rhs[1],
+		lhs[2] ^ rhs[2],
+		lhs[3] ^ rhs[3]
+	);
+}
+
+int4x3 operator^=( int4x3& lhs, const int4x3& rhs ) {
+	return ( lhs = lhs ^ rhs );
+}
+
+int4x3 operator<<( const int4x3& lhs, const int32_t& rhs ) {
+	return int4x3(
+		lhs[0] << rhs,
+		lhs[1] << rhs,
+		lhs[2] << rhs,
+		lhs[3] << rhs
+	);
+}
+
+int4x3 operator<<=( int4x3& lhs, const int32_t& rhs ) {
+	return ( lhs = lhs << rhs );
+}
+
+int4x3 operator<<( const int4x3& lhs, const int4x3& rhs ) {
+	return int4x3(
+		lhs[0] << rhs[0],
+		lhs[1] << rhs[1],
+		lhs[2] << rhs[2],
+		lhs[3] << rhs[3]
+	);
+}
+
+int4x3 operator<<=( int4x3& lhs, const int4x3& rhs ) {
+	return ( lhs = lhs << rhs );
+}
+
+int4x3 operator>>( const int4x3& lhs, const int32_t& rhs ) {
+	return int4x3(
+		lhs[0] >> rhs,
+		lhs[1] >> rhs,
+		lhs[2] >> rhs,
+		lhs[3] >> rhs
+	);
+}
+
+int4x3 operator>>=( int4x3& lhs, const int32_t& rhs ) {
+	return ( lhs = lhs >> rhs );
+}
+
+int4x3 operator>>( const int4x3& lhs, const int4x3& rhs ) {
+	return int4x3(
+		lhs[0] >> rhs[0],
+		lhs[1] >> rhs[1],
+		lhs[2] >> rhs[2],
+		lhs[3] >> rhs[3]
+	);
+}
+
+int4x3 operator>>=( int4x3& lhs, const int4x3& rhs ) {
+	return ( lhs = lhs >> rhs );
+}
+
+int4x3 operator~( const int4x3& lhs ) {
+	return int4x3(
+		~lhs[0],
+		~lhs[1],
+		~lhs[2],
+		~lhs[3]
 	);
 }
 
@@ -1213,6 +2526,42 @@ int4x4 operator/=( int4x4& lhs, const int4x4& rhs ) {
 	return ( lhs = lhs / rhs );
 }
 
+// prefix
+int4x4& operator++( int4x4& lhs ) {
+	++lhs[0];
+	++lhs[1];
+	++lhs[2];
+	++lhs[3];
+	return lhs;
+}
+
+// postfix
+int4x4& operator++( int4x4& lhs, const int ) {
+	lhs[0]++;
+	lhs[1]++;
+	lhs[2]++;
+	lhs[3]++;
+	return lhs;
+}
+
+// prefix
+int4x4& operator--( int4x4& lhs ) {
+	--lhs[0];
+	--lhs[1];
+	--lhs[2];
+	--lhs[3];
+	return lhs;
+}
+
+// postfix
+int4x4& operator--( int4x4& lhs, const int ) {
+	lhs[0]--;
+	lhs[1]--;
+	lhs[2]--;
+	lhs[3]--;
+	return lhs;
+}
+
 bool4x4 operator<( const int4x4& lhs, const int4x4& rhs ) {
 	return bool4x4(
 		lhs[0] < rhs[0],
@@ -1246,6 +2595,145 @@ bool4x4 operator>=( const int4x4& lhs, const int4x4& rhs ) {
 		lhs[1] >= rhs[1],
 		lhs[2] >= rhs[2],
 		lhs[3] >= rhs[3]
+	);
+}
+
+int4x4 operator&( const int4x4& lhs, const int32_t& rhs ) {
+	return int4x4(
+		lhs[0] & rhs,
+		lhs[1] & rhs,
+		lhs[2] & rhs,
+		lhs[3] & rhs
+	);
+}
+
+int4x4 operator&=( int4x4& lhs, const int32_t& rhs ) {
+	return ( lhs = lhs & rhs );
+}
+
+int4x4 operator&( const int4x4& lhs, const int4x4& rhs ) {
+	return int4x4(
+		lhs[0] & rhs[0],
+		lhs[1] & rhs[1],
+		lhs[2] & rhs[2],
+		lhs[3] & rhs[3]
+	);
+}
+
+int4x4 operator&=( int4x4& lhs, const int4x4& rhs ) {
+	return ( lhs = lhs & rhs );
+}
+
+int4x4 operator|( const int4x4& lhs, const int32_t& rhs ) {
+	return int4x4(
+		lhs[0] | rhs,
+		lhs[1] | rhs,
+		lhs[2] | rhs,
+		lhs[3] | rhs
+	);
+}
+
+int4x4 operator|=( int4x4& lhs, const int32_t& rhs ) {
+	return ( lhs = lhs | rhs );
+}
+
+int4x4 operator|( const int4x4& lhs, const int4x4& rhs ) {
+	return int4x4(
+		lhs[0] | rhs[0],
+		lhs[1] | rhs[1],
+		lhs[2] | rhs[2],
+		lhs[3] | rhs[3]
+	);
+}
+
+int4x4 operator|=( int4x4& lhs, const int4x4& rhs ) {
+	return ( lhs = lhs | rhs );
+}
+
+int4x4 operator^( const int4x4& lhs, const int32_t& rhs ) {
+	return int4x4(
+		lhs[0] ^ rhs,
+		lhs[1] ^ rhs,
+		lhs[2] ^ rhs,
+		lhs[3] ^ rhs
+	);
+}
+
+int4x4 operator^=( int4x4& lhs, const int32_t& rhs ) {
+	return ( lhs = lhs ^ rhs );
+}
+
+int4x4 operator^( const int4x4& lhs, const int4x4& rhs ) {
+	return int4x4(
+		lhs[0] ^ rhs[0],
+		lhs[1] ^ rhs[1],
+		lhs[2] ^ rhs[2],
+		lhs[3] ^ rhs[3]
+	);
+}
+
+int4x4 operator^=( int4x4& lhs, const int4x4& rhs ) {
+	return ( lhs = lhs ^ rhs );
+}
+
+int4x4 operator<<( const int4x4& lhs, const int32_t& rhs ) {
+	return int4x4(
+		lhs[0] << rhs,
+		lhs[1] << rhs,
+		lhs[2] << rhs,
+		lhs[3] << rhs
+	);
+}
+
+int4x4 operator<<=( int4x4& lhs, const int32_t& rhs ) {
+	return ( lhs = lhs << rhs );
+}
+
+int4x4 operator<<( const int4x4& lhs, const int4x4& rhs ) {
+	return int4x4(
+		lhs[0] << rhs[0],
+		lhs[1] << rhs[1],
+		lhs[2] << rhs[2],
+		lhs[3] << rhs[3]
+	);
+}
+
+int4x4 operator<<=( int4x4& lhs, const int4x4& rhs ) {
+	return ( lhs = lhs << rhs );
+}
+
+int4x4 operator>>( const int4x4& lhs, const int32_t& rhs ) {
+	return int4x4(
+		lhs[0] >> rhs,
+		lhs[1] >> rhs,
+		lhs[2] >> rhs,
+		lhs[3] >> rhs
+	);
+}
+
+int4x4 operator>>=( int4x4& lhs, const int32_t& rhs ) {
+	return ( lhs = lhs >> rhs );
+}
+
+int4x4 operator>>( const int4x4& lhs, const int4x4& rhs ) {
+	return int4x4(
+		lhs[0] >> rhs[0],
+		lhs[1] >> rhs[1],
+		lhs[2] >> rhs[2],
+		lhs[3] >> rhs[3]
+	);
+}
+
+int4x4 operator>>=( int4x4& lhs, const int4x4& rhs ) {
+	return ( lhs = lhs >> rhs );
+}
+
+int4x4 operator~( const int4x4& lhs ) {
+	return int4x4(
+		~lhs[0],
+		~lhs[1],
+		~lhs[2],
+		~lhs[3]
 	);
 }
 
@@ -1348,6 +2836,34 @@ uint2x2 operator/=( uint2x2& lhs, const uint2x2& rhs ) {
 	return ( lhs = lhs / rhs );
 }
 
+// prefix
+uint2x2& operator++( uint2x2& lhs ) {
+	++lhs[0];
+	++lhs[1];
+	return lhs;
+}
+
+// postfix
+uint2x2& operator++( uint2x2& lhs, const int ) {
+	lhs[0]++;
+	lhs[1]++;
+	return lhs;
+}
+
+// prefix
+uint2x2& operator--( uint2x2& lhs ) {
+	--lhs[0];
+	--lhs[1];
+	return lhs;
+}
+
+// postfix
+uint2x2& operator--( uint2x2& lhs, const int ) {
+	lhs[0]--;
+	lhs[1]--;
+	return lhs;
+}
+
 bool2x2 operator<( const uint2x2& lhs, const uint2x2& rhs ) {
 	return bool2x2(
 		lhs[0] < rhs[0],
@@ -1376,6 +2892,123 @@ bool2x2 operator>=( const uint2x2& lhs, const uint2x2& rhs ) {
 	);
 }
 
+uint2x2 operator&( const uint2x2& lhs, const uint32_t& rhs ) {
+	return uint2x2(
+		lhs[0] & rhs,
+		lhs[1] & rhs
+	);
+}
+
+uint2x2 operator&=( uint2x2& lhs, const uint32_t& rhs ) {
+	return ( lhs = lhs & rhs );
+}
+
+uint2x2 operator&( const uint2x2& lhs, const uint2x2& rhs ) {
+	return uint2x2(
+		lhs[0] & rhs[0],
+		lhs[1] & rhs[1]
+	);
+}
+
+uint2x2 operator&=( uint2x2& lhs, const uint2x2& rhs ) {
+	return ( lhs = lhs & rhs );
+}
+
+uint2x2 operator|( const uint2x2& lhs, const uint32_t& rhs ) {
+	return uint2x2(
+		lhs[0] | rhs,
+		lhs[1] | rhs
+	);
+}
+
+uint2x2 operator|=( uint2x2& lhs, const uint32_t& rhs ) {
+	return ( lhs = lhs | rhs );
+}
+
+uint2x2 operator|( const uint2x2& lhs, const uint2x2& rhs ) {
+	return uint2x2(
+		lhs[0] | rhs[0],
+		lhs[1] | rhs[1]
+	);
+}
+
+uint2x2 operator|=( uint2x2& lhs, const uint2x2& rhs ) {
+	return ( lhs = lhs | rhs );
+}
+
+uint2x2 operator^( const uint2x2& lhs, const uint32_t& rhs ) {
+	return uint2x2(
+		lhs[0] ^ rhs,
+		lhs[1] ^ rhs
+	);
+}
+
+uint2x2 operator^=( uint2x2& lhs, const uint32_t& rhs ) {
+	return ( lhs = lhs ^ rhs );
+}
+
+uint2x2 operator^( const uint2x2& lhs, const uint2x2& rhs ) {
+	return uint2x2(
+		lhs[0] ^ rhs[0],
+		lhs[1] ^ rhs[1]
+	);
+}
+
+uint2x2 operator^=( uint2x2& lhs, const uint2x2& rhs ) {
+	return ( lhs = lhs ^ rhs );
+}
+
+uint2x2 operator<<( const uint2x2& lhs, const uint32_t& rhs ) {
+	return uint2x2(
+		lhs[0] << rhs,
+		lhs[1] << rhs
+	);
+}
+
+uint2x2 operator<<=( uint2x2& lhs, const uint32_t& rhs ) {
+	return ( lhs = lhs << rhs );
+}
+
+uint2x2 operator<<( const uint2x2& lhs, const uint2x2& rhs ) {
+	return uint2x2(
+		lhs[0] << rhs[0],
+		lhs[1] << rhs[1]
+	);
+}
+
+uint2x2 operator<<=( uint2x2& lhs, const uint2x2& rhs ) {
+	return ( lhs = lhs << rhs );
+}
+
+uint2x2 operator>>( const uint2x2& lhs, const uint32_t& rhs ) {
+	return uint2x2(
+		lhs[0] >> rhs,
+		lhs[1] >> rhs
+	);
+}
+
+uint2x2 operator>>=( uint2x2& lhs, const uint32_t& rhs ) {
+	return ( lhs = lhs >> rhs );
+}
+
+uint2x2 operator>>( const uint2x2& lhs, const uint2x2& rhs ) {
+	return uint2x2(
+		lhs[0] >> rhs[0],
+		lhs[1] >> rhs[1]
+	);
+}
+
+uint2x2 operator>>=( uint2x2& lhs, const uint2x2& rhs ) {
+	return ( lhs = lhs >> rhs );
+}
+
+uint2x2 operator~( const uint2x2& lhs ) {
+	return uint2x2(
+		~lhs[0],
+		~lhs[1]
+	);
+}
+
 
 // uint2x3
 uint2x3 operator+( const uint2x3& lhs, const uint32_t rhs ) {
@@ -1396,6 +3029,10 @@ uint2x3 operator+( const uint2x3& lhs, const uint2x3& rhs ) {
 	);
 }
 
+uint2x3 operator+=( uint2x3& lhs, const uint2x3& rhs ) {
+	return ( lhs = lhs + rhs );
+}
+
 uint2x3 operator-( const uint2x3& lhs, const uint32_t rhs ) {
 	return uint2x3(
 		lhs[0] - rhs,
@@ -1412,6 +3049,10 @@ uint2x3 operator-( const uint2x3& lhs, const uint2x3& rhs ) {
 		lhs[0] - rhs[0],
 		lhs[1] - rhs[1]
 	);
+}
+
+uint2x3 operator-=( uint2x3& lhs, const uint2x3& rhs ) {
+	return ( lhs = lhs - rhs );
 }
 
 uint2x3 operator*( const uint2x3& lhs, const uint32_t rhs ) {
@@ -1459,6 +3100,34 @@ uint2x3 operator/( const uint2x3& lhs, const uint2x3& rhs ) {
 	);
 }
 
+// prefix
+uint2x3& operator++( uint2x3& lhs ) {
+	++lhs[0];
+	++lhs[1];
+	return lhs;
+}
+
+// postfix
+uint2x3& operator++( uint2x3& lhs, const int ) {
+	lhs[0]++;
+	lhs[1]++;
+	return lhs;
+}
+
+// prefix
+uint2x3& operator--( uint2x3& lhs ) {
+	--lhs[0];
+	--lhs[1];
+	return lhs;
+}
+
+// postfix
+uint2x3& operator--( uint2x3& lhs, const int ) {
+	lhs[0]--;
+	lhs[1]--;
+	return lhs;
+}
+
 bool2x3 operator<( const uint2x3& lhs, const uint2x3& rhs ) {
 	return bool2x3(
 		lhs[0] < rhs[0],
@@ -1487,6 +3156,123 @@ bool2x3 operator>=( const uint2x3& lhs, const uint2x3& rhs ) {
 	);
 }
 
+uint2x3 operator&( const uint2x3& lhs, const uint32_t& rhs ) {
+	return uint2x3(
+		lhs[0] & rhs,
+		lhs[1] & rhs
+	);
+}
+
+uint2x3 operator&=( uint2x3& lhs, const uint32_t& rhs ) {
+	return ( lhs = lhs & rhs );
+}
+
+uint2x3 operator&( const uint2x3& lhs, const uint2x3& rhs ) {
+	return uint2x3(
+		lhs[0] & rhs[0],
+		lhs[1] & rhs[1]
+	);
+}
+
+uint2x3 operator&=( uint2x3& lhs, const uint2x3& rhs ) {
+	return ( lhs = lhs & rhs );
+}
+
+uint2x3 operator|( const uint2x3& lhs, const uint32_t& rhs ) {
+	return uint2x3(
+		lhs[0] | rhs,
+		lhs[1] | rhs
+	);
+}
+
+uint2x3 operator|=( uint2x3& lhs, const uint32_t& rhs ) {
+	return ( lhs = lhs | rhs );
+}
+
+uint2x3 operator|( const uint2x3& lhs, const uint2x3& rhs ) {
+	return uint2x3(
+		lhs[0] | rhs[0],
+		lhs[1] | rhs[1]
+	);
+}
+
+uint2x3 operator|=( uint2x3& lhs, const uint2x3& rhs ) {
+	return ( lhs = lhs | rhs );
+}
+
+uint2x3 operator^( const uint2x3& lhs, const uint32_t& rhs ) {
+	return uint2x3(
+		lhs[0] ^ rhs,
+		lhs[1] ^ rhs
+	);
+}
+
+uint2x3 operator^=( uint2x3& lhs, const uint32_t& rhs ) {
+	return ( lhs = lhs ^ rhs );
+}
+
+uint2x3 operator^( const uint2x3& lhs, const uint2x3& rhs ) {
+	return uint2x3(
+		lhs[0] ^ rhs[0],
+		lhs[1] ^ rhs[1]
+	);
+}
+
+uint2x3 operator^=( uint2x3& lhs, const uint2x3& rhs ) {
+	return ( lhs = lhs ^ rhs );
+}
+
+uint2x3 operator<<( const uint2x3& lhs, const uint32_t& rhs ) {
+	return uint2x3(
+		lhs[0] << rhs,
+		lhs[1] << rhs
+	);
+}
+
+uint2x3 operator<<=( uint2x3& lhs, const uint32_t& rhs ) {
+	return ( lhs = lhs << rhs );
+}
+
+uint2x3 operator<<( const uint2x3& lhs, const uint2x3& rhs ) {
+	return uint2x3(
+		lhs[0] << rhs[0],
+		lhs[1] << rhs[1]
+	);
+}
+
+uint2x3 operator<<=( uint2x3& lhs, const uint2x3& rhs ) {
+	return ( lhs = lhs << rhs );
+}
+
+uint2x3 operator>>( const uint2x3& lhs, const uint32_t& rhs ) {
+	return uint2x3(
+		lhs[0] >> rhs,
+		lhs[1] >> rhs
+	);
+}
+
+uint2x3 operator>>=( uint2x3& lhs, const uint32_t& rhs ) {
+	return ( lhs = lhs >> rhs );
+}
+
+uint2x3 operator>>( const uint2x3& lhs, const uint2x3& rhs ) {
+	return uint2x3(
+		lhs[0] >> rhs[0],
+		lhs[1] >> rhs[1]
+	);
+}
+
+uint2x3 operator>>=( uint2x3& lhs, const uint2x3& rhs ) {
+	return ( lhs = lhs >> rhs );
+}
+
+uint2x3 operator~( const uint2x3& lhs ) {
+	return uint2x3(
+		~lhs[0],
+		~lhs[1]
+	);
+}
+
 
 // uint2x4
 uint2x4 operator+( const uint2x4& lhs, const uint32_t rhs ) {
@@ -1507,6 +3293,10 @@ uint2x4 operator+( const uint2x4& lhs, const uint2x4& rhs ) {
 	);
 }
 
+uint2x4 operator+=( uint2x4& lhs, const uint2x4& rhs ) {
+	return ( lhs = lhs + rhs );
+}
+
 uint2x4 operator-( const uint2x4& lhs, const uint32_t rhs ) {
 	return uint2x4(
 		lhs[0] - rhs,
@@ -1523,6 +3313,10 @@ uint2x4 operator-( const uint2x4& lhs, const uint2x4& rhs ) {
 		lhs[0] - rhs[0],
 		lhs[1] - rhs[1]
 	);
+}
+
+uint2x4 operator-=( uint2x4& lhs, const uint2x4& rhs ) {
+	return ( lhs = lhs - rhs );
 }
 
 uint2x4 operator*( const uint2x4& lhs, const uint32_t rhs ) {
@@ -1570,6 +3364,34 @@ uint2x4 operator/( const uint2x4& lhs, const uint2x4& rhs ) {
 	);
 }
 
+// prefix
+uint2x4& operator++( uint2x4& lhs ) {
+	++lhs[0];
+	++lhs[1];
+	return lhs;
+}
+
+// postfix
+uint2x4& operator++( uint2x4& lhs, const int ) {
+	lhs[0]++;
+	lhs[1]++;
+	return lhs;
+}
+
+// prefix
+uint2x4& operator--( uint2x4& lhs ) {
+	--lhs[0];
+	--lhs[1];
+	return lhs;
+}
+
+// postfix
+uint2x4& operator--( uint2x4& lhs, const int ) {
+	lhs[0]--;
+	lhs[1]--;
+	return lhs;
+}
+
 bool2x4 operator<( const uint2x4& lhs, const uint2x4& rhs ) {
 	return bool2x4(
 		lhs[0] < rhs[0],
@@ -1598,6 +3420,123 @@ bool2x4 operator>=( const uint2x4& lhs, const uint2x4& rhs ) {
 	);
 }
 
+uint2x4 operator&( const uint2x4& lhs, const uint32_t& rhs ) {
+	return uint2x4(
+		lhs[0] & rhs,
+		lhs[1] & rhs
+	);
+}
+
+uint2x4 operator&=( uint2x4& lhs, const uint32_t& rhs ) {
+	return ( lhs = lhs & rhs );
+}
+
+uint2x4 operator&( const uint2x4& lhs, const uint2x4& rhs ) {
+	return uint2x4(
+		lhs[0] & rhs[0],
+		lhs[1] & rhs[1]
+	);
+}
+
+uint2x4 operator&=( uint2x4& lhs, const uint2x4& rhs ) {
+	return ( lhs = lhs & rhs );
+}
+
+uint2x4 operator|( const uint2x4& lhs, const uint32_t& rhs ) {
+	return uint2x4(
+		lhs[0] | rhs,
+		lhs[1] | rhs
+	);
+}
+
+uint2x4 operator|=( uint2x4& lhs, const uint32_t& rhs ) {
+	return ( lhs = lhs | rhs );
+}
+
+uint2x4 operator|( const uint2x4& lhs, const uint2x4& rhs ) {
+	return uint2x4(
+		lhs[0] | rhs[0],
+		lhs[1] | rhs[1]
+	);
+}
+
+uint2x4 operator|=( uint2x4& lhs, const uint2x4& rhs ) {
+	return ( lhs = lhs | rhs );
+}
+
+uint2x4 operator^( const uint2x4& lhs, const uint32_t& rhs ) {
+	return uint2x4(
+		lhs[0] ^ rhs,
+		lhs[1] ^ rhs
+	);
+}
+
+uint2x4 operator^=( uint2x4& lhs, const uint32_t& rhs ) {
+	return ( lhs = lhs ^ rhs );
+}
+
+uint2x4 operator^( const uint2x4& lhs, const uint2x4& rhs ) {
+	return uint2x4(
+		lhs[0] ^ rhs[0],
+		lhs[1] ^ rhs[1]
+	);
+}
+
+uint2x4 operator^=( uint2x4& lhs, const uint2x4& rhs ) {
+	return ( lhs = lhs ^ rhs );
+}
+
+uint2x4 operator<<( const uint2x4& lhs, const uint32_t& rhs ) {
+	return uint2x4(
+		lhs[0] << rhs,
+		lhs[1] << rhs
+	);
+}
+
+uint2x4 operator<<=( uint2x4& lhs, const uint32_t& rhs ) {
+	return ( lhs = lhs << rhs );
+}
+
+uint2x4 operator<<( const uint2x4& lhs, const uint2x4& rhs ) {
+	return uint2x4(
+		lhs[0] << rhs[0],
+		lhs[1] << rhs[1]
+	);
+}
+
+uint2x4 operator<<=( uint2x4& lhs, const uint2x4& rhs ) {
+	return ( lhs = lhs << rhs );
+}
+
+uint2x4 operator>>( const uint2x4& lhs, const uint32_t& rhs ) {
+	return uint2x4(
+		lhs[0] >> rhs,
+		lhs[1] >> rhs
+	);
+}
+
+uint2x4 operator>>=( uint2x4& lhs, const uint32_t& rhs ) {
+	return ( lhs = lhs >> rhs );
+}
+
+uint2x4 operator>>( const uint2x4& lhs, const uint2x4& rhs ) {
+	return uint2x4(
+		lhs[0] >> rhs[0],
+		lhs[1] >> rhs[1]
+	);
+}
+
+uint2x4 operator>>=( uint2x4& lhs, const uint2x4& rhs ) {
+	return ( lhs = lhs >> rhs );
+}
+
+uint2x4 operator~( const uint2x4& lhs ) {
+	return uint2x4(
+		~lhs[0],
+		~lhs[1]
+	);
+}
+
 
 // uint3x2
 uint3x2 operator+( const uint3x2& lhs, const uint32_t rhs ) {
@@ -1620,6 +3559,10 @@ uint3x2 operator+( const uint3x2& lhs, const uint3x2& rhs ) {
 	);
 }
 
+uint3x2 operator+=( uint3x2& lhs, const uint3x2& rhs ) {
+	return ( lhs = lhs + rhs );
+}
+
 uint3x2 operator-( const uint3x2& lhs, const uint32_t rhs ) {
 	return uint3x2(
 		lhs[0] - rhs,
@@ -1638,6 +3581,10 @@ uint3x2 operator-( const uint3x2& lhs, const uint3x2& rhs ) {
 		lhs[1] - rhs[1],
 		lhs[2] - rhs[2]
 	);
+}
+
+uint3x2 operator-=( uint3x2& lhs, const uint3x2& rhs ) {
+	return ( lhs = lhs - rhs );
 }
 
 uint3x2 operator*( const uint3x2& lhs, const uint32_t rhs ) {
@@ -1696,6 +3643,38 @@ uint3x2 operator/( const uint3x2& lhs, const uint3x2& rhs ) {
 	);
 }
 
+// prefix
+uint3x2& operator++( uint3x2& lhs ) {
+	++lhs[0];
+	++lhs[1];
+	++lhs[2];
+	return lhs;
+}
+
+// postfix
+uint3x2& operator++( uint3x2& lhs, const int ) {
+	lhs[0]++;
+	lhs[1]++;
+	lhs[2]++;
+	return lhs;
+}
+
+// prefix
+uint3x2& operator--( uint3x2& lhs ) {
+	--lhs[0];
+	--lhs[1];
+	--lhs[2];
+	return lhs;
+}
+
+// postfix
+uint3x2& operator--( uint3x2& lhs, const int ) {
+	lhs[0]--;
+	lhs[1]--;
+	lhs[2]--;
+	return lhs;
+}
+
 bool3x2 operator<( const uint3x2& lhs, const uint3x2& rhs ) {
 	return bool3x2(
 		lhs[0] < rhs[0],
@@ -1725,6 +3704,134 @@ bool3x2 operator>=( const uint3x2& lhs, const uint3x2& rhs ) {
 		lhs[0] >= rhs[0],
 		lhs[1] >= rhs[1],
 		lhs[2] >= rhs[2]
+	);
+}
+
+uint3x2 operator&( const uint3x2& lhs, const uint32_t& rhs ) {
+	return uint3x2(
+		lhs[0] & rhs,
+		lhs[1] & rhs,
+		lhs[2] & rhs
+	);
+}
+
+uint3x2 operator&=( uint3x2& lhs, const uint32_t& rhs ) {
+	return ( lhs = lhs & rhs );
+}
+
+uint3x2 operator&( const uint3x2& lhs, const uint3x2& rhs ) {
+	return uint3x2(
+		lhs[0] & rhs[0],
+		lhs[1] & rhs[1],
+		lhs[2] & rhs[2]
+	);
+}
+
+uint3x2 operator&=( uint3x2& lhs, const uint3x2& rhs ) {
+	return ( lhs = lhs & rhs );
+}
+
+uint3x2 operator|( const uint3x2& lhs, const uint32_t& rhs ) {
+	return uint3x2(
+		lhs[0] | rhs,
+		lhs[1] | rhs,
+		lhs[2] | rhs
+	);
+}
+
+uint3x2 operator|=( uint3x2& lhs, const uint32_t& rhs ) {
+	return ( lhs = lhs | rhs );
+}
+
+uint3x2 operator|( const uint3x2& lhs, const uint3x2& rhs ) {
+	return uint3x2(
+		lhs[0] | rhs[0],
+		lhs[1] | rhs[1],
+		lhs[2] | rhs[2]
+	);
+}
+
+uint3x2 operator|=( uint3x2& lhs, const uint3x2& rhs ) {
+	return ( lhs = lhs | rhs );
+}
+
+uint3x2 operator^( const uint3x2& lhs, const uint32_t& rhs ) {
+	return uint3x2(
+		lhs[0] ^ rhs,
+		lhs[1] ^ rhs,
+		lhs[2] ^ rhs
+	);
+}
+
+uint3x2 operator^=( uint3x2& lhs, const uint32_t& rhs ) {
+	return ( lhs = lhs ^ rhs );
+}
+
+uint3x2 operator^( const uint3x2& lhs, const uint3x2& rhs ) {
+	return uint3x2(
+		lhs[0] ^ rhs[0],
+		lhs[1] ^ rhs[1],
+		lhs[2] ^ rhs[2]
+	);
+}
+
+uint3x2 operator^=( uint3x2& lhs, const uint3x2& rhs ) {
+	return ( lhs = lhs ^ rhs );
+}
+
+uint3x2 operator<<( const uint3x2& lhs, const uint32_t& rhs ) {
+	return uint3x2(
+		lhs[0] << rhs,
+		lhs[1] << rhs,
+		lhs[2] << rhs
+	);
+}
+
+uint3x2 operator<<=( uint3x2& lhs, const uint32_t& rhs ) {
+	return ( lhs = lhs << rhs );
+}
+
+uint3x2 operator<<( const uint3x2& lhs, const uint3x2& rhs ) {
+	return uint3x2(
+		lhs[0] << rhs[0],
+		lhs[1] << rhs[1],
+		lhs[2] << rhs[2]
+	);
+}
+
+uint3x2 operator<<=( uint3x2& lhs, const uint3x2& rhs ) {
+	return ( lhs = lhs << rhs );
+}
+
+uint3x2 operator>>( const uint3x2& lhs, const uint32_t& rhs ) {
+	return uint3x2(
+		lhs[0] >> rhs,
+		lhs[1] >> rhs,
+		lhs[2] >> rhs
+	);
+}
+
+uint3x2 operator>>=( uint3x2& lhs, const uint32_t& rhs ) {
+	return ( lhs = lhs >> rhs );
+}
+
+uint3x2 operator>>( const uint3x2& lhs, const uint3x2& rhs ) {
+	return uint3x2(
+		lhs[0] >> rhs[0],
+		lhs[1] >> rhs[1],
+		lhs[2] >> rhs[2]
+	);
+}
+
+uint3x2 operator>>=( uint3x2& lhs, const uint3x2& rhs ) {
+	return ( lhs = lhs >> rhs );
+}
+
+uint3x2 operator~( const uint3x2& lhs ) {
+	return uint3x2(
+		~lhs[0],
+		~lhs[1],
+		~lhs[2]
 	);
 }
 
@@ -1842,6 +3949,38 @@ uint3x3 operator/=( uint3x3& lhs, const uint3x3& rhs ) {
 	return ( lhs = lhs / rhs );
 }
 
+// prefix
+uint3x3& operator++( uint3x3& lhs ) {
+	++lhs[0];
+	++lhs[1];
+	++lhs[2];
+	return lhs;
+}
+
+// postfix
+uint3x3& operator++( uint3x3& lhs, const int ) {
+	lhs[0]++;
+	lhs[1]++;
+	lhs[2]++;
+	return lhs;
+}
+
+// prefix
+uint3x3& operator--( uint3x3& lhs ) {
+	--lhs[0];
+	--lhs[1];
+	--lhs[2];
+	return lhs;
+}
+
+// postfix
+uint3x3& operator--( uint3x3& lhs, const int ) {
+	lhs[0]--;
+	lhs[1]--;
+	lhs[2]--;
+	return lhs;
+}
+
 bool3x3 operator<( const uint3x3& lhs, const uint3x3& rhs ) {
 	return bool3x3(
 		lhs[0] < rhs[0],
@@ -1874,6 +4013,134 @@ bool3x3 operator>=( const uint3x3& lhs, const uint3x3& rhs ) {
 	);
 }
 
+uint3x3 operator&( const uint3x3& lhs, const uint32_t& rhs ) {
+	return uint3x3(
+		lhs[0] & rhs,
+		lhs[1] & rhs,
+		lhs[2] & rhs
+	);
+}
+
+uint3x3 operator&=( uint3x3& lhs, const uint32_t& rhs ) {
+	return ( lhs = lhs & rhs );
+}
+
+uint3x3 operator&( const uint3x3& lhs, const uint3x3& rhs ) {
+	return uint3x3(
+		lhs[0] & rhs[0],
+		lhs[1] & rhs[1],
+		lhs[2] & rhs[2]
+	);
+}
+
+uint3x3 operator&=( uint3x3& lhs, const uint3x3& rhs ) {
+	return ( lhs = lhs & rhs );
+}
+
+uint3x3 operator|( const uint3x3& lhs, const uint32_t& rhs ) {
+	return uint3x3(
+		lhs[0] | rhs,
+		lhs[1] | rhs,
+		lhs[2] | rhs
+	);
+}
+
+uint3x3 operator|=( uint3x3& lhs, const uint32_t& rhs ) {
+	return ( lhs = lhs | rhs );
+}
+
+uint3x3 operator|( const uint3x3& lhs, const uint3x3& rhs ) {
+	return uint3x3(
+		lhs[0] | rhs[0],
+		lhs[1] | rhs[1],
+		lhs[2] | rhs[2]
+	);
+}
+
+uint3x3 operator|=( uint3x3& lhs, const uint3x3& rhs ) {
+	return ( lhs = lhs | rhs );
+}
+
+uint3x3 operator^( const uint3x3& lhs, const uint32_t& rhs ) {
+	return uint3x3(
+		lhs[0] ^ rhs,
+		lhs[1] ^ rhs,
+		lhs[2] ^ rhs
+	);
+}
+
+uint3x3 operator^=( uint3x3& lhs, const uint32_t& rhs ) {
+	return ( lhs = lhs ^ rhs );
+}
+
+uint3x3 operator^( const uint3x3& lhs, const uint3x3& rhs ) {
+	return uint3x3(
+		lhs[0] ^ rhs[0],
+		lhs[1] ^ rhs[1],
+		lhs[2] ^ rhs[2]
+	);
+}
+
+uint3x3 operator^=( uint3x3& lhs, const uint3x3& rhs ) {
+	return ( lhs = lhs ^ rhs );
+}
+
+uint3x3 operator<<( const uint3x3& lhs, const uint32_t& rhs ) {
+	return uint3x3(
+		lhs[0] << rhs,
+		lhs[1] << rhs,
+		lhs[2] << rhs
+	);
+}
+
+uint3x3 operator<<=( uint3x3& lhs, const uint32_t& rhs ) {
+	return ( lhs = lhs << rhs );
+}
+
+uint3x3 operator<<( const uint3x3& lhs, const uint3x3& rhs ) {
+	return uint3x3(
+		lhs[0] << rhs[0],
+		lhs[1] << rhs[1],
+		lhs[2] << rhs[2]
+	);
+}
+
+uint3x3 operator<<=( uint3x3& lhs, const uint3x3& rhs ) {
+	return ( lhs = lhs << rhs );
+}
+
+uint3x3 operator>>( const uint3x3& lhs, const uint32_t& rhs ) {
+	return uint3x3(
+		lhs[0] >> rhs,
+		lhs[1] >> rhs,
+		lhs[2] >> rhs
+	);
+}
+
+uint3x3 operator>>=( uint3x3& lhs, const uint32_t& rhs ) {
+	return ( lhs = lhs >> rhs );
+}
+
+uint3x3 operator>>( const uint3x3& lhs, const uint3x3& rhs ) {
+	return uint3x3(
+		lhs[0] >> rhs[0],
+		lhs[1] >> rhs[1],
+		lhs[2] >> rhs[2]
+	);
+}
+
+uint3x3 operator>>=( uint3x3& lhs, const uint3x3& rhs ) {
+	return ( lhs = lhs >> rhs );
+}
+
+uint3x3 operator~( const uint3x3& lhs ) {
+	return uint3x3(
+		~lhs[0],
+		~lhs[1],
+		~lhs[2]
+	);
+}
+
 
 // uint3x4
 uint3x4 operator+( const uint3x4& lhs, const uint32_t rhs ) {
@@ -1896,6 +4163,10 @@ uint3x4 operator+( const uint3x4& lhs, const uint3x4& rhs ) {
 	);
 }
 
+uint3x4 operator+=( uint3x4& lhs, const uint3x4& rhs ) {
+	return ( lhs = lhs + rhs );
+}
+
 uint3x4 operator-( const uint3x4& lhs, const uint32_t rhs ) {
 	return uint3x4(
 		lhs[0] - rhs,
@@ -1914,6 +4185,10 @@ uint3x4 operator-( const uint3x4& lhs, const uint3x4& rhs ) {
 		lhs[1] - rhs[1],
 		lhs[2] - rhs[2]
 	);
+}
+
+uint3x4 operator-=( uint3x4& lhs, const uint3x4& rhs ) {
+	return ( lhs = lhs - rhs );
 }
 
 uint3x4 operator*( const uint3x4& lhs, const uint32_t rhs ) {
@@ -1972,6 +4247,38 @@ uint3x4 operator/( const uint3x4& lhs, const uint3x4& rhs ) {
 	);
 }
 
+// prefix
+uint3x4& operator++( uint3x4& lhs ) {
+	++lhs[0];
+	++lhs[1];
+	++lhs[2];
+	return lhs;
+}
+
+// postfix
+uint3x4& operator++( uint3x4& lhs, const int ) {
+	lhs[0]++;
+	lhs[1]++;
+	lhs[2]++;
+	return lhs;
+}
+
+// prefix
+uint3x4& operator--( uint3x4& lhs ) {
+	--lhs[0];
+	--lhs[1];
+	--lhs[2];
+	return lhs;
+}
+
+// postfix
+uint3x4& operator--( uint3x4& lhs, const int ) {
+	lhs[0]--;
+	lhs[1]--;
+	lhs[2]--;
+	return lhs;
+}
+
 bool3x4 operator<( const uint3x4& lhs, const uint3x4& rhs ) {
 	return bool3x4(
 		lhs[0] < rhs[0],
@@ -2004,6 +4311,134 @@ bool3x4 operator>=( const uint3x4& lhs, const uint3x4& rhs ) {
 	);
 }
 
+uint3x4 operator&( const uint3x4& lhs, const uint32_t& rhs ) {
+	return uint3x4(
+		lhs[0] & rhs,
+		lhs[1] & rhs,
+		lhs[2] & rhs
+	);
+}
+
+uint3x4 operator&=( uint3x4& lhs, const uint32_t& rhs ) {
+	return ( lhs = lhs & rhs );
+}
+
+uint3x4 operator&( const uint3x4& lhs, const uint3x4& rhs ) {
+	return uint3x4(
+		lhs[0] & rhs[0],
+		lhs[1] & rhs[1],
+		lhs[2] & rhs[2]
+	);
+}
+
+uint3x4 operator&=( uint3x4& lhs, const uint3x4& rhs ) {
+	return ( lhs = lhs & rhs );
+}
+
+uint3x4 operator|( const uint3x4& lhs, const uint32_t& rhs ) {
+	return uint3x4(
+		lhs[0] | rhs,
+		lhs[1] | rhs,
+		lhs[2] | rhs
+	);
+}
+
+uint3x4 operator|=( uint3x4& lhs, const uint32_t& rhs ) {
+	return ( lhs = lhs | rhs );
+}
+
+uint3x4 operator|( const uint3x4& lhs, const uint3x4& rhs ) {
+	return uint3x4(
+		lhs[0] | rhs[0],
+		lhs[1] | rhs[1],
+		lhs[2] | rhs[2]
+	);
+}
+
+uint3x4 operator|=( uint3x4& lhs, const uint3x4& rhs ) {
+	return ( lhs = lhs | rhs );
+}
+
+uint3x4 operator^( const uint3x4& lhs, const uint32_t& rhs ) {
+	return uint3x4(
+		lhs[0] ^ rhs,
+		lhs[1] ^ rhs,
+		lhs[2] ^ rhs
+	);
+}
+
+uint3x4 operator^=( uint3x4& lhs, const uint32_t& rhs ) {
+	return ( lhs = lhs ^ rhs );
+}
+
+uint3x4 operator^( const uint3x4& lhs, const uint3x4& rhs ) {
+	return uint3x4(
+		lhs[0] ^ rhs[0],
+		lhs[1] ^ rhs[1],
+		lhs[2] ^ rhs[2]
+	);
+}
+
+uint3x4 operator^=( uint3x4& lhs, const uint3x4& rhs ) {
+	return ( lhs = lhs ^ rhs );
+}
+
+uint3x4 operator<<( const uint3x4& lhs, const uint32_t& rhs ) {
+	return uint3x4(
+		lhs[0] << rhs,
+		lhs[1] << rhs,
+		lhs[2] << rhs
+	);
+}
+
+uint3x4 operator<<=( uint3x4& lhs, const uint32_t& rhs ) {
+	return ( lhs = lhs << rhs );
+}
+
+uint3x4 operator<<( const uint3x4& lhs, const uint3x4& rhs ) {
+	return uint3x4(
+		lhs[0] << rhs[0],
+		lhs[1] << rhs[1],
+		lhs[2] << rhs[2]
+	);
+}
+
+uint3x4 operator<<=( uint3x4& lhs, const uint3x4& rhs ) {
+	return ( lhs = lhs << rhs );
+}
+
+uint3x4 operator>>( const uint3x4& lhs, const uint32_t& rhs ) {
+	return uint3x4(
+		lhs[0] >> rhs,
+		lhs[1] >> rhs,
+		lhs[2] >> rhs
+	);
+}
+
+uint3x4 operator>>=( uint3x4& lhs, const uint32_t& rhs ) {
+	return ( lhs = lhs >> rhs );
+}
+
+uint3x4 operator>>( const uint3x4& lhs, const uint3x4& rhs ) {
+	return uint3x4(
+		lhs[0] >> rhs[0],
+		lhs[1] >> rhs[1],
+		lhs[2] >> rhs[2]
+	);
+}
+
+uint3x4 operator>>=( uint3x4& lhs, const uint3x4& rhs ) {
+	return ( lhs = lhs >> rhs );
+}
+
+uint3x4 operator~( const uint3x4& lhs ) {
+	return uint3x4(
+		~lhs[0],
+		~lhs[1],
+		~lhs[2]
+	);
+}
+
 
 // uint4x2
 uint4x2 operator+( const uint4x2& lhs, const uint32_t rhs ) {
@@ -2028,6 +4463,10 @@ uint4x2 operator+( const uint4x2& lhs, const uint4x2& rhs ) {
 	);
 }
 
+uint4x2 operator+=( uint4x2& lhs, const uint4x2& rhs ) {
+	return ( lhs = lhs + rhs );
+}
+
 uint4x2 operator-( const uint4x2& lhs, const uint32_t rhs ) {
 	return uint4x2(
 		lhs[0] - rhs,
@@ -2048,6 +4487,10 @@ uint4x2 operator-( const uint4x2& lhs, const uint4x2& rhs ) {
 		lhs[2] - rhs[2],
 		lhs[3] - rhs[3]
 	);
+}
+
+uint4x2 operator-=( uint4x2& lhs, const uint4x2& rhs ) {
+	return ( lhs = lhs - rhs );
 }
 
 uint4x2 operator*( const uint4x2& lhs, const uint32_t rhs ) {
@@ -2119,6 +4562,42 @@ uint4x2 operator/( const uint4x2& lhs, const uint4x2& rhs ) {
 	);
 }
 
+// prefix
+uint4x2& operator++( uint4x2& lhs ) {
+	++lhs[0];
+	++lhs[1];
+	++lhs[2];
+	++lhs[3];
+	return lhs;
+}
+
+// postfix
+uint4x2& operator++( uint4x2& lhs, const int ) {
+	lhs[0]++;
+	lhs[1]++;
+	lhs[2]++;
+	lhs[3]++;
+	return lhs;
+}
+
+// prefix
+uint4x2& operator--( uint4x2& lhs ) {
+	--lhs[0];
+	--lhs[1];
+	--lhs[2];
+	--lhs[3];
+	return lhs;
+}
+
+// postfix
+uint4x2& operator--( uint4x2& lhs, const int ) {
+	lhs[0]--;
+	lhs[1]--;
+	lhs[2]--;
+	lhs[3]--;
+	return lhs;
+}
+
 bool4x2 operator<( const uint4x2& lhs, const uint4x2& rhs ) {
 	return bool4x2(
 		lhs[0] < rhs[0],
@@ -2155,6 +4634,145 @@ bool4x2 operator>=( const uint4x2& lhs, const uint4x2& rhs ) {
 	);
 }
 
+uint4x2 operator&( const uint4x2& lhs, const uint32_t& rhs ) {
+	return uint4x2(
+		lhs[0] & rhs,
+		lhs[1] & rhs,
+		lhs[2] & rhs,
+		lhs[3] & rhs
+	);
+}
+
+uint4x2 operator&=( uint4x2& lhs, const uint32_t& rhs ) {
+	return ( lhs = lhs & rhs );
+}
+
+uint4x2 operator&( const uint4x2& lhs, const uint4x2& rhs ) {
+	return uint4x2(
+		lhs[0] & rhs[0],
+		lhs[1] & rhs[1],
+		lhs[2] & rhs[2],
+		lhs[3] & rhs[3]
+	);
+}
+
+uint4x2 operator&=( uint4x2& lhs, const uint4x2& rhs ) {
+	return ( lhs = lhs & rhs );
+}
+
+uint4x2 operator|( const uint4x2& lhs, const uint32_t& rhs ) {
+	return uint4x2(
+		lhs[0] | rhs,
+		lhs[1] | rhs,
+		lhs[2] | rhs,
+		lhs[3] | rhs
+	);
+}
+
+uint4x2 operator|=( uint4x2& lhs, const uint32_t& rhs ) {
+	return ( lhs = lhs | rhs );
+}
+
+uint4x2 operator|( const uint4x2& lhs, const uint4x2& rhs ) {
+	return uint4x2(
+		lhs[0] | rhs[0],
+		lhs[1] | rhs[1],
+		lhs[2] | rhs[2],
+		lhs[3] | rhs[3]
+	);
+}
+
+uint4x2 operator|=( uint4x2& lhs, const uint4x2& rhs ) {
+	return ( lhs = lhs | rhs );
+}
+
+uint4x2 operator^( const uint4x2& lhs, const uint32_t& rhs ) {
+	return uint4x2(
+		lhs[0] ^ rhs,
+		lhs[1] ^ rhs,
+		lhs[2] ^ rhs,
+		lhs[3] ^ rhs
+	);
+}
+
+uint4x2 operator^=( uint4x2& lhs, const uint32_t& rhs ) {
+	return ( lhs = lhs ^ rhs );
+}
+
+uint4x2 operator^( const uint4x2& lhs, const uint4x2& rhs ) {
+	return uint4x2(
+		lhs[0] ^ rhs[0],
+		lhs[1] ^ rhs[1],
+		lhs[2] ^ rhs[2],
+		lhs[3] ^ rhs[3]
+	);
+}
+
+uint4x2 operator^=( uint4x2& lhs, const uint4x2& rhs ) {
+	return ( lhs = lhs ^ rhs );
+}
+
+uint4x2 operator<<( const uint4x2& lhs, const uint32_t& rhs ) {
+	return uint4x2(
+		lhs[0] << rhs,
+		lhs[1] << rhs,
+		lhs[2] << rhs,
+		lhs[3] << rhs
+	);
+}
+
+uint4x2 operator<<=( uint4x2& lhs, const uint32_t& rhs ) {
+	return ( lhs = lhs << rhs );
+}
+
+uint4x2 operator<<( const uint4x2& lhs, const uint4x2& rhs ) {
+	return uint4x2(
+		lhs[0] << rhs[0],
+		lhs[1] << rhs[1],
+		lhs[2] << rhs[2],
+		lhs[3] << rhs[3]
+	);
+}
+
+uint4x2 operator<<=( uint4x2& lhs, const uint4x2& rhs ) {
+	return ( lhs = lhs << rhs );
+}
+
+uint4x2 operator>>( const uint4x2& lhs, const uint32_t& rhs ) {
+	return uint4x2(
+		lhs[0] >> rhs,
+		lhs[1] >> rhs,
+		lhs[2] >> rhs,
+		lhs[3] >> rhs
+	);
+}
+
+uint4x2 operator>>=( uint4x2& lhs, const uint32_t& rhs ) {
+	return ( lhs = lhs >> rhs );
+}
+
+uint4x2 operator>>( const uint4x2& lhs, const uint4x2& rhs ) {
+	return uint4x2(
+		lhs[0] >> rhs[0],
+		lhs[1] >> rhs[1],
+		lhs[2] >> rhs[2],
+		lhs[3] >> rhs[3]
+	);
+}
+
+uint4x2 operator>>=( uint4x2& lhs, const uint4x2& rhs ) {
+	return ( lhs = lhs >> rhs );
+}
+
+uint4x2 operator~( const uint4x2& lhs ) {
+	return uint4x2(
+		~lhs[0],
+		~lhs[1],
+		~lhs[2],
+		~lhs[3]
+	);
+}
+
 
 // uint4x3
 uint4x3 operator+( const uint4x3& lhs, const uint32_t rhs ) {
@@ -2179,6 +4797,10 @@ uint4x3 operator+( const uint4x3& lhs, const uint4x3& rhs ) {
 	);
 }
 
+uint4x3 operator+=( uint4x3& lhs, const uint4x3& rhs ) {
+	return ( lhs = lhs + rhs );
+}
+
 uint4x3 operator-( const uint4x3& lhs, const uint32_t rhs ) {
 	return uint4x3(
 		lhs[0] - rhs,
@@ -2199,6 +4821,10 @@ uint4x3 operator-( const uint4x3& lhs, const uint4x3& rhs ) {
 		lhs[2] - rhs[2],
 		lhs[3] - rhs[3]
 	);
+}
+
+uint4x3 operator-=( uint4x3& lhs, const uint4x3& rhs ) {
+	return ( lhs = lhs - rhs );
 }
 
 uint4x3 operator*( const uint4x3& lhs, const uint32_t rhs ) {
@@ -2270,6 +4896,42 @@ uint4x3 operator/( const uint4x3& lhs, const uint4x3& rhs ) {
 	);
 }
 
+// prefix
+uint4x3& operator++( uint4x3& lhs ) {
+	++lhs[0];
+	++lhs[1];
+	++lhs[2];
+	++lhs[3];
+	return lhs;
+}
+
+// postfix
+uint4x3& operator++( uint4x3& lhs, const int ) {
+	lhs[0]++;
+	lhs[1]++;
+	lhs[2]++;
+	lhs[3]++;
+	return lhs;
+}
+
+// prefix
+uint4x3& operator--( uint4x3& lhs ) {
+	--lhs[0];
+	--lhs[1];
+	--lhs[2];
+	--lhs[3];
+	return lhs;
+}
+
+// postfix
+uint4x3& operator--( uint4x3& lhs, const int ) {
+	lhs[0]--;
+	lhs[1]--;
+	lhs[2]--;
+	lhs[3]--;
+	return lhs;
+}
+
 bool4x3 operator<( const uint4x3& lhs, const uint4x3& rhs ) {
 	return bool4x3(
 		lhs[0] < rhs[0],
@@ -2303,6 +4965,145 @@ bool4x3 operator>=( const uint4x3& lhs, const uint4x3& rhs ) {
 		lhs[1] >= rhs[1],
 		lhs[2] >= rhs[2],
 		lhs[3] >= rhs[3]
+	);
+}
+
+uint4x3 operator&( const uint4x3& lhs, const uint32_t& rhs ) {
+	return uint4x3(
+		lhs[0] & rhs,
+		lhs[1] & rhs,
+		lhs[2] & rhs,
+		lhs[3] & rhs
+	);
+}
+
+uint4x3 operator&=( uint4x3& lhs, const uint32_t& rhs ) {
+	return ( lhs = lhs & rhs );
+}
+
+uint4x3 operator&( const uint4x3& lhs, const uint4x3& rhs ) {
+	return uint4x3(
+		lhs[0] & rhs[0],
+		lhs[1] & rhs[1],
+		lhs[2] & rhs[2],
+		lhs[3] & rhs[3]
+	);
+}
+
+uint4x3 operator&=( uint4x3& lhs, const uint4x3& rhs ) {
+	return ( lhs = lhs & rhs );
+}
+
+uint4x3 operator|( const uint4x3& lhs, const uint32_t& rhs ) {
+	return uint4x3(
+		lhs[0] | rhs,
+		lhs[1] | rhs,
+		lhs[2] | rhs,
+		lhs[3] | rhs
+	);
+}
+
+uint4x3 operator|=( uint4x3& lhs, const uint32_t& rhs ) {
+	return ( lhs = lhs | rhs );
+}
+
+uint4x3 operator|( const uint4x3& lhs, const uint4x3& rhs ) {
+	return uint4x3(
+		lhs[0] | rhs[0],
+		lhs[1] | rhs[1],
+		lhs[2] | rhs[2],
+		lhs[3] | rhs[3]
+	);
+}
+
+uint4x3 operator|=( uint4x3& lhs, const uint4x3& rhs ) {
+	return ( lhs = lhs | rhs );
+}
+
+uint4x3 operator^( const uint4x3& lhs, const uint32_t& rhs ) {
+	return uint4x3(
+		lhs[0] ^ rhs,
+		lhs[1] ^ rhs,
+		lhs[2] ^ rhs,
+		lhs[3] ^ rhs
+	);
+}
+
+uint4x3 operator^=( uint4x3& lhs, const uint32_t& rhs ) {
+	return ( lhs = lhs ^ rhs );
+}
+
+uint4x3 operator^( const uint4x3& lhs, const uint4x3& rhs ) {
+	return uint4x3(
+		lhs[0] ^ rhs[0],
+		lhs[1] ^ rhs[1],
+		lhs[2] ^ rhs[2],
+		lhs[3] ^ rhs[3]
+	);
+}
+
+uint4x3 operator^=( uint4x3& lhs, const uint4x3& rhs ) {
+	return ( lhs = lhs ^ rhs );
+}
+
+uint4x3 operator<<( const uint4x3& lhs, const uint32_t& rhs ) {
+	return uint4x3(
+		lhs[0] << rhs,
+		lhs[1] << rhs,
+		lhs[2] << rhs,
+		lhs[3] << rhs
+	);
+}
+
+uint4x3 operator<<=( uint4x3& lhs, const uint32_t& rhs ) {
+	return ( lhs = lhs << rhs );
+}
+
+uint4x3 operator<<( const uint4x3& lhs, const uint4x3& rhs ) {
+	return uint4x3(
+		lhs[0] << rhs[0],
+		lhs[1] << rhs[1],
+		lhs[2] << rhs[2],
+		lhs[3] << rhs[3]
+	);
+}
+
+uint4x3 operator<<=( uint4x3& lhs, const uint4x3& rhs ) {
+	return ( lhs = lhs << rhs );
+}
+
+uint4x3 operator>>( const uint4x3& lhs, const uint32_t& rhs ) {
+	return uint4x3(
+		lhs[0] >> rhs,
+		lhs[1] >> rhs,
+		lhs[2] >> rhs,
+		lhs[3] >> rhs
+	);
+}
+
+uint4x3 operator>>=( uint4x3& lhs, const uint32_t& rhs ) {
+	return ( lhs = lhs >> rhs );
+}
+
+uint4x3 operator>>( const uint4x3& lhs, const uint4x3& rhs ) {
+	return uint4x3(
+		lhs[0] >> rhs[0],
+		lhs[1] >> rhs[1],
+		lhs[2] >> rhs[2],
+		lhs[3] >> rhs[3]
+	);
+}
+
+uint4x3 operator>>=( uint4x3& lhs, const uint4x3& rhs ) {
+	return ( lhs = lhs >> rhs );
+}
+
+uint4x3 operator~( const uint4x3& lhs ) {
+	return uint4x3(
+		~lhs[0],
+		~lhs[1],
+		~lhs[2],
+		~lhs[3]
 	);
 }
 
@@ -2437,6 +5238,42 @@ uint4x4 operator/=( uint4x4& lhs, const uint4x4& rhs ) {
 	return ( lhs = lhs / rhs );
 }
 
+// prefix
+uint4x4& operator++( uint4x4& lhs ) {
+	++lhs[0];
+	++lhs[1];
+	++lhs[2];
+	++lhs[3];
+	return lhs;
+}
+
+// postfix
+uint4x4& operator++( uint4x4& lhs, const int ) {
+	lhs[0]++;
+	lhs[1]++;
+	lhs[2]++;
+	lhs[3]++;
+	return lhs;
+}
+
+// prefix
+uint4x4& operator--( uint4x4& lhs ) {
+	--lhs[0];
+	--lhs[1];
+	--lhs[2];
+	--lhs[3];
+	return lhs;
+}
+
+// postfix
+uint4x4& operator--( uint4x4& lhs, const int ) {
+	lhs[0]--;
+	lhs[1]--;
+	lhs[2]--;
+	lhs[3]--;
+	return lhs;
+}
+
 bool4x4 operator<( const uint4x4& lhs, const uint4x4& rhs ) {
 	return bool4x4(
 		lhs[0] < rhs[0],
@@ -2470,6 +5307,145 @@ bool4x4 operator>=( const uint4x4& lhs, const uint4x4& rhs ) {
 		lhs[1] >= rhs[1],
 		lhs[2] >= rhs[2],
 		lhs[3] >= rhs[3]
+	);
+}
+
+uint4x4 operator&( const uint4x4& lhs, const uint32_t& rhs ) {
+	return uint4x4(
+		lhs[0] & rhs,
+		lhs[1] & rhs,
+		lhs[2] & rhs,
+		lhs[3] & rhs
+	);
+}
+
+uint4x4 operator&=( uint4x4& lhs, const uint32_t& rhs ) {
+	return ( lhs = lhs & rhs );
+}
+
+uint4x4 operator&( const uint4x4& lhs, const uint4x4& rhs ) {
+	return uint4x4(
+		lhs[0] & rhs[0],
+		lhs[1] & rhs[1],
+		lhs[2] & rhs[2],
+		lhs[3] & rhs[3]
+	);
+}
+
+uint4x4 operator&=( uint4x4& lhs, const uint4x4& rhs ) {
+	return ( lhs = lhs & rhs );
+}
+
+uint4x4 operator|( const uint4x4& lhs, const uint32_t& rhs ) {
+	return uint4x4(
+		lhs[0] | rhs,
+		lhs[1] | rhs,
+		lhs[2] | rhs,
+		lhs[3] | rhs
+	);
+}
+
+uint4x4 operator|=( uint4x4& lhs, const uint32_t& rhs ) {
+	return ( lhs = lhs | rhs );
+}
+
+uint4x4 operator|( const uint4x4& lhs, const uint4x4& rhs ) {
+	return uint4x4(
+		lhs[0] | rhs[0],
+		lhs[1] | rhs[1],
+		lhs[2] | rhs[2],
+		lhs[3] | rhs[3]
+	);
+}
+
+uint4x4 operator|=( uint4x4& lhs, const uint4x4& rhs ) {
+	return ( lhs = lhs | rhs );
+}
+
+uint4x4 operator^( const uint4x4& lhs, const uint32_t& rhs ) {
+	return uint4x4(
+		lhs[0] ^ rhs,
+		lhs[1] ^ rhs,
+		lhs[2] ^ rhs,
+		lhs[3] ^ rhs
+	);
+}
+
+uint4x4 operator^=( uint4x4& lhs, const uint32_t& rhs ) {
+	return ( lhs = lhs ^ rhs );
+}
+
+uint4x4 operator^( const uint4x4& lhs, const uint4x4& rhs ) {
+	return uint4x4(
+		lhs[0] ^ rhs[0],
+		lhs[1] ^ rhs[1],
+		lhs[2] ^ rhs[2],
+		lhs[3] ^ rhs[3]
+	);
+}
+
+uint4x4 operator^=( uint4x4& lhs, const uint4x4& rhs ) {
+	return ( lhs = lhs ^ rhs );
+}
+
+uint4x4 operator<<( const uint4x4& lhs, const uint32_t& rhs ) {
+	return uint4x4(
+		lhs[0] << rhs,
+		lhs[1] << rhs,
+		lhs[2] << rhs,
+		lhs[3] << rhs
+	);
+}
+
+uint4x4 operator<<=( uint4x4& lhs, const uint32_t& rhs ) {
+	return ( lhs = lhs << rhs );
+}
+
+uint4x4 operator<<( const uint4x4& lhs, const uint4x4& rhs ) {
+	return uint4x4(
+		lhs[0] << rhs[0],
+		lhs[1] << rhs[1],
+		lhs[2] << rhs[2],
+		lhs[3] << rhs[3]
+	);
+}
+
+uint4x4 operator<<=( uint4x4& lhs, const uint4x4& rhs ) {
+	return ( lhs = lhs << rhs );
+}
+
+uint4x4 operator>>( const uint4x4& lhs, const uint32_t& rhs ) {
+	return uint4x4(
+		lhs[0] >> rhs,
+		lhs[1] >> rhs,
+		lhs[2] >> rhs,
+		lhs[3] >> rhs
+	);
+}
+
+uint4x4 operator>>=( uint4x4& lhs, const uint32_t& rhs ) {
+	return ( lhs = lhs >> rhs );
+}
+
+uint4x4 operator>>( const uint4x4& lhs, const uint4x4& rhs ) {
+	return uint4x4(
+		lhs[0] >> rhs[0],
+		lhs[1] >> rhs[1],
+		lhs[2] >> rhs[2],
+		lhs[3] >> rhs[3]
+	);
+}
+
+uint4x4 operator>>=( uint4x4& lhs, const uint4x4& rhs ) {
+	return ( lhs = lhs >> rhs );
+}
+
+uint4x4 operator~( const uint4x4& lhs ) {
+	return uint4x4(
+		~lhs[0],
+		~lhs[1],
+		~lhs[2],
+		~lhs[3]
 	);
 }
 
@@ -2569,6 +5545,34 @@ float2x2 operator/=( float2x2& lhs, const float2x2& rhs ) {
 	return ( lhs = lhs / rhs );
 }
 
+// prefix
+float2x2& operator++( float2x2& lhs ) {
+	++lhs[0];
+	++lhs[1];
+	return lhs;
+}
+
+// postfix
+float2x2& operator++( float2x2& lhs, const int ) {
+	lhs[0]++;
+	lhs[1]++;
+	return lhs;
+}
+
+// prefix
+float2x2& operator--( float2x2& lhs ) {
+	--lhs[0];
+	--lhs[1];
+	return lhs;
+}
+
+// postfix
+float2x2& operator--( float2x2& lhs, const int ) {
+	lhs[0]--;
+	lhs[1]--;
+	return lhs;
+}
+
 bool2x2 operator<( const float2x2& lhs, const float2x2& rhs ) {
 	return bool2x2(
 		lhs[0] < rhs[0],
@@ -2617,6 +5621,10 @@ float2x3 operator+( const float2x3& lhs, const float2x3& rhs ) {
 	);
 }
 
+float2x3 operator+=( float2x3& lhs, const float2x3& rhs ) {
+	return ( lhs = lhs + rhs );
+}
+
 float2x3 operator-( const float2x3& lhs, const float rhs ) {
 	return float2x3(
 		lhs[0] - rhs,
@@ -2633,6 +5641,10 @@ float2x3 operator-( const float2x3& lhs, const float2x3& rhs ) {
 		lhs[0] - rhs[0],
 		lhs[1] - rhs[1]
 	);
+}
+
+float2x3 operator-=( float2x3& lhs, const float2x3& rhs ) {
+	return ( lhs = lhs - rhs );
 }
 
 float2x3 operator*( const float2x3& lhs, const float rhs ) {
@@ -2678,6 +5690,34 @@ float2x3 operator/( const float2x3& lhs, const float2x3& rhs ) {
 		lhs[0] / rhs[0],
 		lhs[1] / rhs[1]
 	);
+}
+
+// prefix
+float2x3& operator++( float2x3& lhs ) {
+	++lhs[0];
+	++lhs[1];
+	return lhs;
+}
+
+// postfix
+float2x3& operator++( float2x3& lhs, const int ) {
+	lhs[0]++;
+	lhs[1]++;
+	return lhs;
+}
+
+// prefix
+float2x3& operator--( float2x3& lhs ) {
+	--lhs[0];
+	--lhs[1];
+	return lhs;
+}
+
+// postfix
+float2x3& operator--( float2x3& lhs, const int ) {
+	lhs[0]--;
+	lhs[1]--;
+	return lhs;
 }
 
 bool2x3 operator<( const float2x3& lhs, const float2x3& rhs ) {
@@ -2728,6 +5768,10 @@ float2x4 operator+( const float2x4& lhs, const float2x4& rhs ) {
 	);
 }
 
+float2x4 operator+=( float2x4& lhs, const float2x4& rhs ) {
+	return ( lhs = lhs + rhs );
+}
+
 float2x4 operator-( const float2x4& lhs, const float rhs ) {
 	return float2x4(
 		lhs[0] - rhs,
@@ -2744,6 +5788,10 @@ float2x4 operator-( const float2x4& lhs, const float2x4& rhs ) {
 		lhs[0] - rhs[0],
 		lhs[1] - rhs[1]
 	);
+}
+
+float2x4 operator-=( float2x4& lhs, const float2x4& rhs ) {
+	return ( lhs = lhs - rhs );
 }
 
 float2x4 operator*( const float2x4& lhs, const float rhs ) {
@@ -2789,6 +5837,34 @@ float2x4 operator/( const float2x4& lhs, const float2x4& rhs ) {
 		lhs[0] / rhs[0],
 		lhs[1] / rhs[1]
 	);
+}
+
+// prefix
+float2x4& operator++( float2x4& lhs ) {
+	++lhs[0];
+	++lhs[1];
+	return lhs;
+}
+
+// postfix
+float2x4& operator++( float2x4& lhs, const int ) {
+	lhs[0]++;
+	lhs[1]++;
+	return lhs;
+}
+
+// prefix
+float2x4& operator--( float2x4& lhs ) {
+	--lhs[0];
+	--lhs[1];
+	return lhs;
+}
+
+// postfix
+float2x4& operator--( float2x4& lhs, const int ) {
+	lhs[0]--;
+	lhs[1]--;
+	return lhs;
 }
 
 bool2x4 operator<( const float2x4& lhs, const float2x4& rhs ) {
@@ -2841,6 +5917,10 @@ float3x2 operator+( const float3x2& lhs, const float3x2& rhs ) {
 	);
 }
 
+float3x2 operator+=( float3x2& lhs, const float3x2& rhs ) {
+	return ( lhs = lhs + rhs );
+}
+
 float3x2 operator-( const float3x2& lhs, const float rhs ) {
 	return float3x2(
 		lhs[0] - rhs,
@@ -2859,6 +5939,10 @@ float3x2 operator-( const float3x2& lhs, const float3x2& rhs ) {
 		lhs[1] - rhs[1],
 		lhs[2] - rhs[2]
 	);
+}
+
+float3x2 operator-=( float3x2& lhs, const float3x2& rhs ) {
+	return ( lhs = lhs - rhs );
 }
 
 float3x2 operator*( const float3x2& lhs, const float rhs ) {
@@ -2915,6 +5999,38 @@ float3x2 operator/( const float3x2& lhs, const float3x2& rhs ) {
 		lhs[1] / rhs[1],
 		lhs[2] / rhs[2]
 	);
+}
+
+// prefix
+float3x2& operator++( float3x2& lhs ) {
+	++lhs[0];
+	++lhs[1];
+	++lhs[2];
+	return lhs;
+}
+
+// postfix
+float3x2& operator++( float3x2& lhs, const int ) {
+	lhs[0]++;
+	lhs[1]++;
+	lhs[2]++;
+	return lhs;
+}
+
+// prefix
+float3x2& operator--( float3x2& lhs ) {
+	--lhs[0];
+	--lhs[1];
+	--lhs[2];
+	return lhs;
+}
+
+// postfix
+float3x2& operator--( float3x2& lhs, const int ) {
+	lhs[0]--;
+	lhs[1]--;
+	lhs[2]--;
+	return lhs;
 }
 
 bool3x2 operator<( const float3x2& lhs, const float3x2& rhs ) {
@@ -3059,6 +6175,38 @@ float3x3 operator/=( float3x3& lhs, const float3x3& rhs ) {
 	return ( lhs = lhs / rhs );
 }
 
+// prefix
+float3x3& operator++( float3x3& lhs ) {
+	++lhs[0];
+	++lhs[1];
+	++lhs[2];
+	return lhs;
+}
+
+// postfix
+float3x3& operator++( float3x3& lhs, const int ) {
+	lhs[0]++;
+	lhs[1]++;
+	lhs[2]++;
+	return lhs;
+}
+
+// prefix
+float3x3& operator--( float3x3& lhs ) {
+	--lhs[0];
+	--lhs[1];
+	--lhs[2];
+	return lhs;
+}
+
+// postfix
+float3x3& operator--( float3x3& lhs, const int ) {
+	lhs[0]--;
+	lhs[1]--;
+	lhs[2]--;
+	return lhs;
+}
+
 bool3x3 operator<( const float3x3& lhs, const float3x3& rhs ) {
 	return bool3x3(
 		lhs[0] < rhs[0],
@@ -3113,6 +6261,10 @@ float3x4 operator+( const float3x4& lhs, const float3x4& rhs ) {
 	);
 }
 
+float3x4 operator+=( float3x4& lhs, const float3x4& rhs ) {
+	return ( lhs = lhs + rhs );
+}
+
 float3x4 operator-( const float3x4& lhs, const float rhs ) {
 	return float3x4(
 		lhs[0] - rhs,
@@ -3131,6 +6283,10 @@ float3x4 operator-( const float3x4& lhs, const float3x4& rhs ) {
 		lhs[1] - rhs[1],
 		lhs[2] - rhs[2]
 	);
+}
+
+float3x4 operator-=( float3x4& lhs, const float3x4& rhs ) {
+	return ( lhs = lhs - rhs );
 }
 
 float3x4 operator*( const float3x4& lhs, const float rhs ) {
@@ -3189,6 +6345,38 @@ float3x4 operator/( const float3x4& lhs, const float3x4& rhs ) {
 	);
 }
 
+// prefix
+float3x4& operator++( float3x4& lhs ) {
+	++lhs[0];
+	++lhs[1];
+	++lhs[2];
+	return lhs;
+}
+
+// postfix
+float3x4& operator++( float3x4& lhs, const int ) {
+	lhs[0]++;
+	lhs[1]++;
+	lhs[2]++;
+	return lhs;
+}
+
+// prefix
+float3x4& operator--( float3x4& lhs ) {
+	--lhs[0];
+	--lhs[1];
+	--lhs[2];
+	return lhs;
+}
+
+// postfix
+float3x4& operator--( float3x4& lhs, const int ) {
+	lhs[0]--;
+	lhs[1]--;
+	lhs[2]--;
+	return lhs;
+}
+
 bool3x4 operator<( const float3x4& lhs, const float3x4& rhs ) {
 	return bool3x4(
 		lhs[0] < rhs[0],
@@ -3245,6 +6433,10 @@ float4x2 operator+( const float4x2& lhs, const float4x2& rhs ) {
 	);
 }
 
+float4x2 operator+=( float4x2& lhs, const float4x2& rhs ) {
+	return ( lhs = lhs + rhs );
+}
+
 float4x2 operator-( const float4x2& lhs, const float rhs ) {
 	return float4x2(
 		lhs[0] - rhs,
@@ -3265,6 +6457,10 @@ float4x2 operator-( const float4x2& lhs, const float4x2& rhs ) {
 		lhs[2] - rhs[2],
 		lhs[3] - rhs[3]
 	);
+}
+
+float4x2 operator-=( float4x2& lhs, const float4x2& rhs ) {
+	return ( lhs = lhs - rhs );
 }
 
 float4x2 operator*( const float4x2& lhs, const float rhs ) {
@@ -3336,6 +6532,42 @@ float4x2 operator/( const float4x2& lhs, const float4x2& rhs ) {
 	);
 }
 
+// prefix
+float4x2& operator++( float4x2& lhs ) {
+	++lhs[0];
+	++lhs[1];
+	++lhs[2];
+	++lhs[3];
+	return lhs;
+}
+
+// postfix
+float4x2& operator++( float4x2& lhs, const int ) {
+	lhs[0]++;
+	lhs[1]++;
+	lhs[2]++;
+	lhs[3]++;
+	return lhs;
+}
+
+// prefix
+float4x2& operator--( float4x2& lhs ) {
+	--lhs[0];
+	--lhs[1];
+	--lhs[2];
+	--lhs[3];
+	return lhs;
+}
+
+// postfix
+float4x2& operator--( float4x2& lhs, const int ) {
+	lhs[0]--;
+	lhs[1]--;
+	lhs[2]--;
+	lhs[3]--;
+	return lhs;
+}
+
 bool4x2 operator<( const float4x2& lhs, const float4x2& rhs ) {
 	return bool4x2(
 		lhs[0] < rhs[0],
@@ -3396,6 +6628,10 @@ float4x3 operator+( const float4x3& lhs, const float4x3& rhs ) {
 	);
 }
 
+float4x3 operator+=( float4x3& lhs, const float4x3& rhs ) {
+	return ( lhs = lhs + rhs );
+}
+
 float4x3 operator-( const float4x3& lhs, const float rhs ) {
 	return float4x3(
 		lhs[0] - rhs,
@@ -3416,6 +6652,10 @@ float4x3 operator-( const float4x3& lhs, const float4x3& rhs ) {
 		lhs[2] - rhs[2],
 		lhs[3] - rhs[3]
 	);
+}
+
+float4x3 operator-=( float4x3& lhs, const float4x3& rhs ) {
+	return ( lhs = lhs - rhs );
 }
 
 float4x3 operator*( const float4x3& lhs, const float rhs ) {
@@ -3485,6 +6725,42 @@ float4x3 operator/( const float4x3& lhs, const float4x3& rhs ) {
 		lhs[2] / rhs[2],
 		lhs[3] / rhs[3]
 	);
+}
+
+// prefix
+float4x3& operator++( float4x3& lhs ) {
+	++lhs[0];
+	++lhs[1];
+	++lhs[2];
+	++lhs[3];
+	return lhs;
+}
+
+// postfix
+float4x3& operator++( float4x3& lhs, const int ) {
+	lhs[0]++;
+	lhs[1]++;
+	lhs[2]++;
+	lhs[3]++;
+	return lhs;
+}
+
+// prefix
+float4x3& operator--( float4x3& lhs ) {
+	--lhs[0];
+	--lhs[1];
+	--lhs[2];
+	--lhs[3];
+	return lhs;
+}
+
+// postfix
+float4x3& operator--( float4x3& lhs, const int ) {
+	lhs[0]--;
+	lhs[1]--;
+	lhs[2]--;
+	lhs[3]--;
+	return lhs;
 }
 
 bool4x3 operator<( const float4x3& lhs, const float4x3& rhs ) {
@@ -3649,6 +6925,42 @@ float4x4 operator/=( float4x4& lhs, const float4x4& rhs ) {
 	return ( lhs = lhs / rhs );
 }
 
+// prefix
+float4x4& operator++( float4x4& lhs ) {
+	++lhs[0];
+	++lhs[1];
+	++lhs[2];
+	++lhs[3];
+	return lhs;
+}
+
+// postfix
+float4x4& operator++( float4x4& lhs, const int ) {
+	lhs[0]++;
+	lhs[1]++;
+	lhs[2]++;
+	lhs[3]++;
+	return lhs;
+}
+
+// prefix
+float4x4& operator--( float4x4& lhs ) {
+	--lhs[0];
+	--lhs[1];
+	--lhs[2];
+	--lhs[3];
+	return lhs;
+}
+
+// postfix
+float4x4& operator--( float4x4& lhs, const int ) {
+	lhs[0]--;
+	lhs[1]--;
+	lhs[2]--;
+	lhs[3]--;
+	return lhs;
+}
+
 bool4x4 operator<( const float4x4& lhs, const float4x4& rhs ) {
 	return bool4x4(
 		lhs[0] < rhs[0],
@@ -3781,6 +7093,34 @@ double2x2 operator/=( double2x2& lhs, const double2x2& rhs ) {
 	return ( lhs = lhs / rhs );
 }
 
+// prefix
+double2x2& operator++( double2x2& lhs ) {
+	++lhs[0];
+	++lhs[1];
+	return lhs;
+}
+
+// postfix
+double2x2& operator++( double2x2& lhs, const int ) {
+	lhs[0]++;
+	lhs[1]++;
+	return lhs;
+}
+
+// prefix
+double2x2& operator--( double2x2& lhs ) {
+	--lhs[0];
+	--lhs[1];
+	return lhs;
+}
+
+// postfix
+double2x2& operator--( double2x2& lhs, const int ) {
+	lhs[0]--;
+	lhs[1]--;
+	return lhs;
+}
+
 bool2x2 operator<( const double2x2& lhs, const double2x2& rhs ) {
 	return bool2x2(
 		lhs[0] < rhs[0],
@@ -3829,6 +7169,10 @@ double2x3 operator+( const double2x3& lhs, const double2x3& rhs ) {
 	);
 }
 
+double2x3 operator+=( double2x3& lhs, const double2x3& rhs ) {
+	return ( lhs = lhs + rhs );
+}
+
 double2x3 operator-( const double2x3& lhs, const double rhs ) {
 	return double2x3(
 		lhs[0] - rhs,
@@ -3845,6 +7189,10 @@ double2x3 operator-( const double2x3& lhs, const double2x3& rhs ) {
 		lhs[0] - rhs[0],
 		lhs[1] - rhs[1]
 	);
+}
+
+double2x3 operator-=( double2x3& lhs, const double2x3& rhs ) {
+	return ( lhs = lhs - rhs );
 }
 
 double2x3 operator*( const double2x3& lhs, const double rhs ) {
@@ -3890,6 +7238,34 @@ double2x3 operator/( const double2x3& lhs, const double2x3& rhs ) {
 		lhs[0] / rhs[0],
 		lhs[1] / rhs[1]
 	);
+}
+
+// prefix
+double2x3& operator++( double2x3& lhs ) {
+	++lhs[0];
+	++lhs[1];
+	return lhs;
+}
+
+// postfix
+double2x3& operator++( double2x3& lhs, const int ) {
+	lhs[0]++;
+	lhs[1]++;
+	return lhs;
+}
+
+// prefix
+double2x3& operator--( double2x3& lhs ) {
+	--lhs[0];
+	--lhs[1];
+	return lhs;
+}
+
+// postfix
+double2x3& operator--( double2x3& lhs, const int ) {
+	lhs[0]--;
+	lhs[1]--;
+	return lhs;
 }
 
 bool2x3 operator<( const double2x3& lhs, const double2x3& rhs ) {
@@ -3940,6 +7316,10 @@ double2x4 operator+( const double2x4& lhs, const double2x4& rhs ) {
 	);
 }
 
+double2x4 operator+=( double2x4& lhs, const double2x4& rhs ) {
+	return ( lhs = lhs + rhs );
+}
+
 double2x4 operator-( const double2x4& lhs, const double rhs ) {
 	return double2x4(
 		lhs[0] - rhs,
@@ -3956,6 +7336,10 @@ double2x4 operator-( const double2x4& lhs, const double2x4& rhs ) {
 		lhs[0] - rhs[0],
 		lhs[1] - rhs[1]
 	);
+}
+
+double2x4 operator-=( double2x4& lhs, const double2x4& rhs ) {
+	return ( lhs = lhs - rhs );
 }
 
 double2x4 operator*( const double2x4& lhs, const double rhs ) {
@@ -4001,6 +7385,34 @@ double2x4 operator/( const double2x4& lhs, const double2x4& rhs ) {
 		lhs[0] / rhs[0],
 		lhs[1] / rhs[1]
 	);
+}
+
+// prefix
+double2x4& operator++( double2x4& lhs ) {
+	++lhs[0];
+	++lhs[1];
+	return lhs;
+}
+
+// postfix
+double2x4& operator++( double2x4& lhs, const int ) {
+	lhs[0]++;
+	lhs[1]++;
+	return lhs;
+}
+
+// prefix
+double2x4& operator--( double2x4& lhs ) {
+	--lhs[0];
+	--lhs[1];
+	return lhs;
+}
+
+// postfix
+double2x4& operator--( double2x4& lhs, const int ) {
+	lhs[0]--;
+	lhs[1]--;
+	return lhs;
 }
 
 bool2x4 operator<( const double2x4& lhs, const double2x4& rhs ) {
@@ -4053,6 +7465,10 @@ double3x2 operator+( const double3x2& lhs, const double3x2& rhs ) {
 	);
 }
 
+double3x2 operator+=( double3x2& lhs, const double3x2& rhs ) {
+	return ( lhs = lhs + rhs );
+}
+
 double3x2 operator-( const double3x2& lhs, const double rhs ) {
 	return double3x2(
 		lhs[0] - rhs,
@@ -4071,6 +7487,10 @@ double3x2 operator-( const double3x2& lhs, const double3x2& rhs ) {
 		lhs[1] - rhs[1],
 		lhs[2] - rhs[2]
 	);
+}
+
+double3x2 operator-=( double3x2& lhs, const double3x2& rhs ) {
+	return ( lhs = lhs - rhs );
 }
 
 double3x2 operator*( const double3x2& lhs, const double rhs ) {
@@ -4127,6 +7547,38 @@ double3x2 operator/( const double3x2& lhs, const double3x2& rhs ) {
 		lhs[1] / rhs[1],
 		lhs[2] / rhs[2]
 	);
+}
+
+// prefix
+double3x2& operator++( double3x2& lhs ) {
+	++lhs[0];
+	++lhs[1];
+	++lhs[2];
+	return lhs;
+}
+
+// postfix
+double3x2& operator++( double3x2& lhs, const int ) {
+	lhs[0]++;
+	lhs[1]++;
+	lhs[2]++;
+	return lhs;
+}
+
+// prefix
+double3x2& operator--( double3x2& lhs ) {
+	--lhs[0];
+	--lhs[1];
+	--lhs[2];
+	return lhs;
+}
+
+// postfix
+double3x2& operator--( double3x2& lhs, const int ) {
+	lhs[0]--;
+	lhs[1]--;
+	lhs[2]--;
+	return lhs;
 }
 
 bool3x2 operator<( const double3x2& lhs, const double3x2& rhs ) {
@@ -4271,6 +7723,38 @@ double3x3 operator/=( double3x3& lhs, const double3x3& rhs ) {
 	return ( lhs = lhs / rhs );
 }
 
+// prefix
+double3x3& operator++( double3x3& lhs ) {
+	++lhs[0];
+	++lhs[1];
+	++lhs[2];
+	return lhs;
+}
+
+// postfix
+double3x3& operator++( double3x3& lhs, const int ) {
+	lhs[0]++;
+	lhs[1]++;
+	lhs[2]++;
+	return lhs;
+}
+
+// prefix
+double3x3& operator--( double3x3& lhs ) {
+	--lhs[0];
+	--lhs[1];
+	--lhs[2];
+	return lhs;
+}
+
+// postfix
+double3x3& operator--( double3x3& lhs, const int ) {
+	lhs[0]--;
+	lhs[1]--;
+	lhs[2]--;
+	return lhs;
+}
+
 bool3x3 operator<( const double3x3& lhs, const double3x3& rhs ) {
 	return bool3x3(
 		lhs[0] < rhs[0],
@@ -4325,6 +7809,10 @@ double3x4 operator+( const double3x4& lhs, const double3x4& rhs ) {
 	);
 }
 
+double3x4 operator+=( double3x4& lhs, const double3x4& rhs ) {
+	return ( lhs = lhs + rhs );
+}
+
 double3x4 operator-( const double3x4& lhs, const double rhs ) {
 	return double3x4(
 		lhs[0] - rhs,
@@ -4343,6 +7831,10 @@ double3x4 operator-( const double3x4& lhs, const double3x4& rhs ) {
 		lhs[1] - rhs[1],
 		lhs[2] - rhs[2]
 	);
+}
+
+double3x4 operator-=( double3x4& lhs, const double3x4& rhs ) {
+	return ( lhs = lhs - rhs );
 }
 
 double3x4 operator*( const double3x4& lhs, const double rhs ) {
@@ -4401,6 +7893,38 @@ double3x4 operator/( const double3x4& lhs, const double3x4& rhs ) {
 	);
 }
 
+// prefix
+double3x4& operator++( double3x4& lhs ) {
+	++lhs[0];
+	++lhs[1];
+	++lhs[2];
+	return lhs;
+}
+
+// postfix
+double3x4& operator++( double3x4& lhs, const int ) {
+	lhs[0]++;
+	lhs[1]++;
+	lhs[2]++;
+	return lhs;
+}
+
+// prefix
+double3x4& operator--( double3x4& lhs ) {
+	--lhs[0];
+	--lhs[1];
+	--lhs[2];
+	return lhs;
+}
+
+// postfix
+double3x4& operator--( double3x4& lhs, const int ) {
+	lhs[0]--;
+	lhs[1]--;
+	lhs[2]--;
+	return lhs;
+}
+
 bool3x4 operator<( const double3x4& lhs, const double3x4& rhs ) {
 	return bool3x4(
 		lhs[0] < rhs[0],
@@ -4457,6 +7981,10 @@ double4x2 operator+( const double4x2& lhs, const double4x2& rhs ) {
 	);
 }
 
+double4x2 operator+=( double4x2& lhs, const double4x2& rhs ) {
+	return ( lhs = lhs + rhs );
+}
+
 double4x2 operator-( const double4x2& lhs, const double rhs ) {
 	return double4x2(
 		lhs[0] - rhs,
@@ -4477,6 +8005,10 @@ double4x2 operator-( const double4x2& lhs, const double4x2& rhs ) {
 		lhs[2] - rhs[2],
 		lhs[3] - rhs[3]
 	);
+}
+
+double4x2 operator-=( double4x2& lhs, const double4x2& rhs ) {
+	return ( lhs = lhs - rhs );
 }
 
 double4x2 operator*( const double4x2& lhs, const double rhs ) {
@@ -4548,6 +8080,42 @@ double4x2 operator/( const double4x2& lhs, const double4x2& rhs ) {
 	);
 }
 
+// prefix
+double4x2& operator++( double4x2& lhs ) {
+	++lhs[0];
+	++lhs[1];
+	++lhs[2];
+	++lhs[3];
+	return lhs;
+}
+
+// postfix
+double4x2& operator++( double4x2& lhs, const int ) {
+	lhs[0]++;
+	lhs[1]++;
+	lhs[2]++;
+	lhs[3]++;
+	return lhs;
+}
+
+// prefix
+double4x2& operator--( double4x2& lhs ) {
+	--lhs[0];
+	--lhs[1];
+	--lhs[2];
+	--lhs[3];
+	return lhs;
+}
+
+// postfix
+double4x2& operator--( double4x2& lhs, const int ) {
+	lhs[0]--;
+	lhs[1]--;
+	lhs[2]--;
+	lhs[3]--;
+	return lhs;
+}
+
 bool4x2 operator<( const double4x2& lhs, const double4x2& rhs ) {
 	return bool4x2(
 		lhs[0] < rhs[0],
@@ -4608,6 +8176,10 @@ double4x3 operator+( const double4x3& lhs, const double4x3& rhs ) {
 	);
 }
 
+double4x3 operator+=( double4x3& lhs, const double4x3& rhs ) {
+	return ( lhs = lhs + rhs );
+}
+
 double4x3 operator-( const double4x3& lhs, const double rhs ) {
 	return double4x3(
 		lhs[0] - rhs,
@@ -4628,6 +8200,10 @@ double4x3 operator-( const double4x3& lhs, const double4x3& rhs ) {
 		lhs[2] - rhs[2],
 		lhs[3] - rhs[3]
 	);
+}
+
+double4x3 operator-=( double4x3& lhs, const double4x3& rhs ) {
+	return ( lhs = lhs - rhs );
 }
 
 double4x3 operator*( const double4x3& lhs, const double rhs ) {
@@ -4697,6 +8273,42 @@ double4x3 operator/( const double4x3& lhs, const double4x3& rhs ) {
 		lhs[2] / rhs[2],
 		lhs[3] / rhs[3]
 	);
+}
+
+// prefix
+double4x3& operator++( double4x3& lhs ) {
+	++lhs[0];
+	++lhs[1];
+	++lhs[2];
+	++lhs[3];
+	return lhs;
+}
+
+// postfix
+double4x3& operator++( double4x3& lhs, const int ) {
+	lhs[0]++;
+	lhs[1]++;
+	lhs[2]++;
+	lhs[3]++;
+	return lhs;
+}
+
+// prefix
+double4x3& operator--( double4x3& lhs ) {
+	--lhs[0];
+	--lhs[1];
+	--lhs[2];
+	--lhs[3];
+	return lhs;
+}
+
+// postfix
+double4x3& operator--( double4x3& lhs, const int ) {
+	lhs[0]--;
+	lhs[1]--;
+	lhs[2]--;
+	lhs[3]--;
+	return lhs;
 }
 
 bool4x3 operator<( const double4x3& lhs, const double4x3& rhs ) {
@@ -4859,6 +8471,42 @@ double4x4 operator/( const double4x4& lhs, const double4x4& rhs ) {
 
 double4x4 operator/=( double4x4& lhs, const double4x4& rhs ) {
 	return ( lhs = lhs / rhs );
+}
+
+// prefix
+double4x4& operator++( double4x4& lhs ) {
+	++lhs[0];
+	++lhs[1];
+	++lhs[2];
+	++lhs[3];
+	return lhs;
+}
+
+// postfix
+double4x4& operator++( double4x4& lhs, const int ) {
+	lhs[0]++;
+	lhs[1]++;
+	lhs[2]++;
+	lhs[3]++;
+	return lhs;
+}
+
+// prefix
+double4x4& operator--( double4x4& lhs ) {
+	--lhs[0];
+	--lhs[1];
+	--lhs[2];
+	--lhs[3];
+	return lhs;
+}
+
+// postfix
+double4x4& operator--( double4x4& lhs, const int ) {
+	lhs[0]--;
+	lhs[1]--;
+	lhs[2]--;
+	lhs[3]--;
+	return lhs;
 }
 
 bool4x4 operator<( const double4x4& lhs, const double4x4& rhs ) {

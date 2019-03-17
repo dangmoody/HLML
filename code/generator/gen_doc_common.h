@@ -10,6 +10,12 @@ inline std::string	Gen_GetDocOperatorNotEquals( const std::string& fullTypeName 
 inline std::string	Gen_GetDocOperatorArithmeticScalar( const std::string& fullTypeName, const genOpArithmetic_t op );
 inline std::string	Gen_GetDocOperatorCompoundArithmeticScalar( const std::string& fullTypeName, const genOpArithmetic_t op );
 
+inline std::string	Gen_GetDocOperatorComponentWiseArithmeticRhsType( const std::string& fullTypeName, const genOpArithmetic_t op );
+inline std::string	Gen_GetDocOperatorCompoundComponentWiseArithmeticRhsType( const std::string& fullTypeName, const genOpArithmetic_t op );
+
+inline std::string	Gen_GetDocOperatorIncrementPrefix( const std::string& fullTypeName, const genOpIncrement_t op );
+inline std::string	Gen_GetDocOperatorIncrementPostfix( const std::string& fullTypeName, const genOpIncrement_t op );
+
 inline std::string	Gen_GetDocOperatorRelational( const std::string& fullTypeName, const uint32_t numRows, const uint32_t numCols, const genOpRelational_t op );
 
 inline std::string	Gen_GetDocOperatorBitwiseScalar( const std::string& fullTypeName, const genOpBitwise_t op );
@@ -45,7 +51,7 @@ std::string Gen_GetDocOperatorArithmeticScalar( const std::string& fullTypeName,
 	}
 
 	return "/// \\relates " + fullTypeName + "\n" \
-		"/// \\brief Returns a copy that has been component-wise " + adjective + " by the given scalar value.\n";
+		"/// \\brief Returns a copy of the " + fullTypeName + " that has been component-wise " + adjective + " by the given scalar value.\n";
 }
 
 std::string Gen_GetDocOperatorCompoundArithmeticScalar( const std::string& fullTypeName, const genOpArithmetic_t op ) {
@@ -64,6 +70,91 @@ std::string Gen_GetDocOperatorCompoundArithmeticScalar( const std::string& fullT
 
 	return "/// \\relates " + fullTypeName + "\n" \
 		"/// \\brief " + verb + " each component by the given scalar value.\n";
+}
+
+std::string Gen_GetDocOperatorComponentWiseArithmeticRhsType( const std::string& fullTypeName, const genOpArithmetic_t op ) {
+	std::string adjective;
+	switch ( op ) {
+		case GEN_OP_ARITHMETIC_ADD:	adjective = "added";		break;
+		case GEN_OP_ARITHMETIC_SUB:	adjective = "subtracted";	break;
+		case GEN_OP_ARITHMETIC_MUL:	adjective = "multiplied";	break;
+		case GEN_OP_ARITHMETIC_DIV:	adjective = "divided";		break;
+
+		case GEN_OP_ARITHMETIC_COUNT:
+		default:
+			printf( "ERROR: Bad genOpArithmetic_t enum passed into %s.\n", __FUNCTION__ );
+			return std::string();
+	}
+
+	return "/// \\relates " + fullTypeName + "\n" \
+		+ "/// \\brief Returns a copy of the " + fullTypeName + " that has been component-wise " + adjective + " by the corresponding component of the right-hand " \
+		+ fullTypeName + ".\n";
+}
+
+std::string Gen_GetDocOperatorCompoundComponentWiseArithmeticRhsType( const std::string& fullTypeName, const genOpArithmetic_t op ) {
+	std::string verb;
+	switch ( op ) {
+		case GEN_OP_ARITHMETIC_ADD:	verb = "Adds";			break;
+		case GEN_OP_ARITHMETIC_SUB:	verb = "Subtracts";		break;
+		case GEN_OP_ARITHMETIC_MUL:	verb = "Multiplies";	break;
+		case GEN_OP_ARITHMETIC_DIV:	verb = "Divides";		break;
+
+		case GEN_OP_ARITHMETIC_COUNT:
+		default:
+			printf( "ERROR: Bad genOpArithmetic_t enum passed into %s.\n", __FUNCTION__ );
+			return std::string();
+	}
+
+	return "/// \\relates " + fullTypeName + "\n" \
+		"/// \\brief " + verb + " each component of the " + fullTypeName + " by the corresponding component of the right-hand " + fullTypeName + ".\n";
+}
+
+std::string Gen_GetDocOperatorIncrementPrefix( const std::string& fullTypeName, const genOpIncrement_t op ) {
+	std::string verb;
+	std::string noun;
+	switch ( op ) {
+		case GEN_OP_INCREMENT_INCREMENT:
+			noun = "increment";
+			verb = "Adds one to";
+			break;
+
+		case GEN_OP_INCREMENT_DECREMENT:
+			noun = "decrement";
+			verb = "Subtracts one from";
+			break;
+
+		case GEN_OP_INCREMENT_COUNT:
+		default:
+			printf( "ERROR: Bad genOpIncrement_t enum passed into %s.\n", __FUNCTION__ );
+			break;
+	}
+
+	return "/// \\relates " + fullTypeName + "\n" \
+		"/// \\brief Prefix " + noun + " operator.  " + verb + " each component of the given " + fullTypeName + " before evaluation.\n";
+}
+
+std::string Gen_GetDocOperatorIncrementPostfix( const std::string& fullTypeName, const genOpIncrement_t op ) {
+	std::string verb;
+	std::string noun;
+	switch ( op ) {
+		case GEN_OP_INCREMENT_INCREMENT:
+			noun = "increment";
+			verb = "Adds one to";
+			break;
+
+		case GEN_OP_INCREMENT_DECREMENT:
+			noun = "decrement";
+			verb = "Subtracts one from";
+			break;
+
+		case GEN_OP_INCREMENT_COUNT:
+		default:
+			printf( "ERROR: Bad genOpIncrement_t enum passed into %s.\n", __FUNCTION__ );
+			break;
+	}
+
+	return "/// \\relates " + fullTypeName + "\n" \
+		"/// \\brief Postfix " + noun + " operator.  " + verb + " each component of the given " + fullTypeName + " after evaluation.\n";
 }
 
 std::string Gen_GetDocOperatorRelational( const std::string& fullTypeName, const uint32_t numRows, const uint32_t numCols, const genOpRelational_t op ) {

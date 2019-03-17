@@ -65,6 +65,17 @@ TEMPER_TEST( TestAssignment_double4x2 ) {
 	TEMPER_PASS();
 }
 
+TEMPER_TEST( TestArray_double4x2 ) {
+	double4x2 mat;
+
+	TEMPER_EXPECT_TRUE( mat[0] == double2( 1.000000, 0.000000 ) );
+	TEMPER_EXPECT_TRUE( mat[1] == double2( 0.000000, 1.000000 ) );
+	TEMPER_EXPECT_TRUE( mat[2] == double2( 0.000000, 0.000000 ) );
+	TEMPER_EXPECT_TRUE( mat[3] == double2( 0.000000, 0.000000 ) );
+
+	TEMPER_PASS();
+}
+
 TEMPER_TEST( TestArithmeticAddition_double4x2 ) {
 	double4x2 answer = double4x2(
 		7.000000, 7.000000,
@@ -167,17 +178,6 @@ TEMPER_TEST( TestArithmeticDivision_double4x2 ) {
 	double4x2 c = a / b;
 
 	TEMPER_EXPECT_TRUE( c == answer );
-
-	TEMPER_PASS();
-}
-
-TEMPER_TEST( TestArray_double4x2 ) {
-	double4x2 mat;
-
-	TEMPER_EXPECT_TRUE( mat[0] == double2( 1.000000, 0.000000 ) );
-	TEMPER_EXPECT_TRUE( mat[1] == double2( 0.000000, 1.000000 ) );
-	TEMPER_EXPECT_TRUE( mat[2] == double2( 0.000000, 0.000000 ) );
-	TEMPER_EXPECT_TRUE( mat[3] == double2( 0.000000, 0.000000 ) );
 
 	TEMPER_PASS();
 }
@@ -369,8 +369,9 @@ TEMPER_SUITE( Test_double4x2 ) {
 	TEMPER_RUN_TEST( TestArithmeticMultiplication_double4x2 );
 	TEMPER_RUN_TEST( TestArithmeticDivision_double4x2 );
 
-	TEMPER_RUN_TEST( TestArray_double4x2 );
 	TEMPER_RUN_TEST( TestRelational_double4x2 );
+
+	TEMPER_RUN_TEST( TestArray_double4x2 );
 
 	TEMPER_RUN_TEST( TestIdentity_double4x2 );
 	TEMPER_RUN_TEST( TestTranspose_double4x2 );

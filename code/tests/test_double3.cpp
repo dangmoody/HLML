@@ -97,6 +97,38 @@ TEMPER_TEST( TestArithmeticDivision_double3 ) {
 	TEMPER_PASS();
 }
 
+TEMPER_TEST( TestIncrement_double3 ) {
+	double3 vec;
+
+	// prefix
+	vec = double3( 0.000000, 0.000000, 0.000000 );
+	++vec;
+	TEMPER_EXPECT_TRUE( vec == double3( 1.000000, 1.000000, 1.000000 ) );
+
+	// postfix
+	vec = double3( 0.000000, 0.000000, 0.000000 );
+	vec++;
+	TEMPER_EXPECT_TRUE( vec == double3( 1.000000, 1.000000, 1.000000 ) );
+
+	TEMPER_PASS();
+}
+
+TEMPER_TEST( TestDecrement_double3 ) {
+	double3 vec;
+
+	// prefix
+	vec = double3( 1.000000, 1.000000, 1.000000 );
+	--vec;
+	TEMPER_EXPECT_TRUE( vec == double3( 0.000000, 0.000000, 0.000000 ) );
+
+	// postfix
+	vec = double3( 1.000000, 1.000000, 1.000000 );
+	vec--;
+	TEMPER_EXPECT_TRUE( vec == double3( 0.000000, 0.000000, 0.000000 ) );
+
+	TEMPER_PASS();
+}
+
 TEMPER_TEST( TestRelational_double3 ) {
 	double3 vec0 = double3( 0.000000, 0.000000, 0.000000 );
 	double3 vec1 = double3( 1.000000, 1.000000, 1.000000 );
@@ -207,6 +239,9 @@ TEMPER_SUITE( Test_double3 ) {
 	TEMPER_RUN_TEST( TestArithmeticSubtraction_double3 );
 	TEMPER_RUN_TEST( TestArithmeticMultiplication_double3 );
 	TEMPER_RUN_TEST( TestArithmeticDivision_double3 );
+
+	TEMPER_RUN_TEST( TestIncrement_double3 );
+	TEMPER_RUN_TEST( TestDecrement_double3 );
 
 	TEMPER_RUN_TEST( TestRelational_double3 );
 

@@ -36,6 +36,8 @@ void TestsGeneratorVector::Generate( const genType_t type, const uint32_t numCom
 
 	GenerateTestArithmetic();
 
+	GenerateTestIncrement();
+
 	GenerateTestRelational();
 
 	GenerateTestBitwise();
@@ -65,6 +67,9 @@ void TestsGeneratorVector::Generate( const genType_t type, const uint32_t numCom
 		m_code += "\tTEMPER_RUN_TEST( TestArithmeticSubtraction_" + m_fullTypeName + " );\n";
 		m_code += "\tTEMPER_RUN_TEST( TestArithmeticMultiplication_" + m_fullTypeName + " );\n";
 		m_code += "\tTEMPER_RUN_TEST( TestArithmeticDivision_" + m_fullTypeName + " );\n";
+		m_code += "\n";
+		m_code += "\tTEMPER_RUN_TEST( TestIncrement_" + m_fullTypeName + " );\n";
+		m_code += "\tTEMPER_RUN_TEST( TestDecrement_" + m_fullTypeName + " );\n";
 		m_code += "\n";
 		m_code += "\tTEMPER_RUN_TEST( TestRelational_" + m_fullTypeName + " );\n";
 		if ( m_type == GEN_TYPE_INT || m_type == GEN_TYPE_UINT ) {
@@ -198,6 +203,49 @@ void TestsGeneratorVector::GenerateTestArithmetic() {
 		m_code += "\t" + m_fullTypeName + " c = a " + GEN_OPERATORS_ARITHMETIC[i] + " b;\n";
 		m_code += "\n";
 		m_code += "\tTEMPER_EXPECT_TRUE( c == " + m_fullTypeName + parmListAnswers[i] + " );\n";
+		m_code += "\n";
+		m_code += "\tTEMPER_PASS();\n";
+		m_code += "}\n";
+		m_code += "\n";
+	}
+}
+
+void TestsGeneratorVector::GenerateTestIncrement() {
+	if ( m_type == GEN_TYPE_BOOL ) {
+		return;
+	}
+
+	float values0[] = { 0.0f, 0.0f, 0.0f, 0.0f };
+	float values1[] = { 1.0f, 1.0f, 1.0f, 1.0f };
+
+	std::string parmListVecs[] = {
+		Gen_GetParmListVector( m_type, m_numComponents, values0 ),
+		Gen_GetParmListVector( m_type, m_numComponents, values1 ),
+	};
+
+	std::string parmListAnswers[] = {
+		Gen_GetParmListVector( m_type, m_numComponents, values1 ),
+		Gen_GetParmListVector( m_type, m_numComponents, values0 ),
+	};
+
+	std::string suffices[GEN_OP_INCREMENT_COUNT] = {
+		"Increment",
+		"Decrement",
+	};
+
+	for ( uint32_t i = 0; i < GEN_OP_INCREMENT_COUNT; i++ ) {
+		m_code += "TEMPER_TEST( Test" + suffices[i] + "_" + m_fullTypeName + " ) {\n";
+		m_code += "\t" + m_fullTypeName + " vec;\n";
+		m_code += "\n";
+		m_code += "\t// prefix\n";
+		m_code += "\tvec = " + m_fullTypeName + parmListVecs[i] + ";\n";
+		m_code += "\t" + GEN_OPERATORS_INCREMENT[i] + "vec;\n";
+		m_code += "\tTEMPER_EXPECT_TRUE( vec == " + m_fullTypeName + parmListAnswers[i] + " );\n";
+		m_code += "\n";
+		m_code += "\t// postfix\n";
+		m_code += "\tvec = " + m_fullTypeName + parmListVecs[i] + ";\n";
+		m_code += "\tvec" + GEN_OPERATORS_INCREMENT[i] + ";\n";
+		m_code += "\tTEMPER_EXPECT_TRUE( vec == " + m_fullTypeName + parmListAnswers[i] + " );\n";
 		m_code += "\n";
 		m_code += "\tTEMPER_PASS();\n";
 		m_code += "}\n";

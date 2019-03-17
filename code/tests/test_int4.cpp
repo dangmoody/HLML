@@ -98,6 +98,38 @@ TEMPER_TEST( TestArithmeticDivision_int4 ) {
 	TEMPER_PASS();
 }
 
+TEMPER_TEST( TestIncrement_int4 ) {
+	int4 vec;
+
+	// prefix
+	vec = int4( 0, 0, 0, 0 );
+	++vec;
+	TEMPER_EXPECT_TRUE( vec == int4( 1, 1, 1, 1 ) );
+
+	// postfix
+	vec = int4( 0, 0, 0, 0 );
+	vec++;
+	TEMPER_EXPECT_TRUE( vec == int4( 1, 1, 1, 1 ) );
+
+	TEMPER_PASS();
+}
+
+TEMPER_TEST( TestDecrement_int4 ) {
+	int4 vec;
+
+	// prefix
+	vec = int4( 1, 1, 1, 1 );
+	--vec;
+	TEMPER_EXPECT_TRUE( vec == int4( 0, 0, 0, 0 ) );
+
+	// postfix
+	vec = int4( 1, 1, 1, 1 );
+	vec--;
+	TEMPER_EXPECT_TRUE( vec == int4( 0, 0, 0, 0 ) );
+
+	TEMPER_PASS();
+}
+
 TEMPER_TEST( TestRelational_int4 ) {
 	int4 vec0 = int4( 0, 0, 0, 0 );
 	int4 vec1 = int4( 1, 1, 1, 1 );
@@ -246,6 +278,9 @@ TEMPER_SUITE( Test_int4 ) {
 	TEMPER_RUN_TEST( TestArithmeticSubtraction_int4 );
 	TEMPER_RUN_TEST( TestArithmeticMultiplication_int4 );
 	TEMPER_RUN_TEST( TestArithmeticDivision_int4 );
+
+	TEMPER_RUN_TEST( TestIncrement_int4 );
+	TEMPER_RUN_TEST( TestDecrement_int4 );
 
 	TEMPER_RUN_TEST( TestRelational_int4 );
 

@@ -98,6 +98,38 @@ TEMPER_TEST( TestArithmeticDivision_double4 ) {
 	TEMPER_PASS();
 }
 
+TEMPER_TEST( TestIncrement_double4 ) {
+	double4 vec;
+
+	// prefix
+	vec = double4( 0.000000, 0.000000, 0.000000, 0.000000 );
+	++vec;
+	TEMPER_EXPECT_TRUE( vec == double4( 1.000000, 1.000000, 1.000000, 1.000000 ) );
+
+	// postfix
+	vec = double4( 0.000000, 0.000000, 0.000000, 0.000000 );
+	vec++;
+	TEMPER_EXPECT_TRUE( vec == double4( 1.000000, 1.000000, 1.000000, 1.000000 ) );
+
+	TEMPER_PASS();
+}
+
+TEMPER_TEST( TestDecrement_double4 ) {
+	double4 vec;
+
+	// prefix
+	vec = double4( 1.000000, 1.000000, 1.000000, 1.000000 );
+	--vec;
+	TEMPER_EXPECT_TRUE( vec == double4( 0.000000, 0.000000, 0.000000, 0.000000 ) );
+
+	// postfix
+	vec = double4( 1.000000, 1.000000, 1.000000, 1.000000 );
+	vec--;
+	TEMPER_EXPECT_TRUE( vec == double4( 0.000000, 0.000000, 0.000000, 0.000000 ) );
+
+	TEMPER_PASS();
+}
+
 TEMPER_TEST( TestRelational_double4 ) {
 	double4 vec0 = double4( 0.000000, 0.000000, 0.000000, 0.000000 );
 	double4 vec1 = double4( 1.000000, 1.000000, 1.000000, 1.000000 );
@@ -218,6 +250,9 @@ TEMPER_SUITE( Test_double4 ) {
 	TEMPER_RUN_TEST( TestArithmeticSubtraction_double4 );
 	TEMPER_RUN_TEST( TestArithmeticMultiplication_double4 );
 	TEMPER_RUN_TEST( TestArithmeticDivision_double4 );
+
+	TEMPER_RUN_TEST( TestIncrement_double4 );
+	TEMPER_RUN_TEST( TestDecrement_double4 );
 
 	TEMPER_RUN_TEST( TestRelational_double4 );
 

@@ -40,11 +40,13 @@ void TestsGeneratorMatrix::Generate( const genType_t type, const uint32_t numRow
 
 	GenerateTestAssignment();
 
-	GenerateTestArithmetic();
-
 	GenerateTestArray();
 
+	GenerateTestArithmetic();
+
 	GenerateTestRelational();
+
+	GenerateTestBitwise();
 
 	GenerateTestIdentity();
 
@@ -76,13 +78,20 @@ void TestsGeneratorMatrix::Generate( const genType_t type, const uint32_t numRow
 		m_code += "\tTEMPER_RUN_TEST( TestArithmeticMultiplication_" + m_fullTypeName + " );\n";
 		m_code += "\tTEMPER_RUN_TEST( TestArithmeticDivision_" + m_fullTypeName + " );\n";
 		m_code += "\n";
+		m_code += "\tTEMPER_RUN_TEST( TestRelational_" + m_fullTypeName + " );\n";
+		m_code += "\n";
+
+		if ( m_type == GEN_TYPE_INT || m_type == GEN_TYPE_UINT ) {
+			m_code += "\tTEMPER_RUN_TEST( TestBitwiseAnd_" + m_fullTypeName + " );\n";
+			m_code += "\tTEMPER_RUN_TEST( TestBitwiseOr_" + m_fullTypeName + " );\n";
+			m_code += "\tTEMPER_RUN_TEST( TestBitwiseXor_" + m_fullTypeName + " );\n";
+			m_code += "\tTEMPER_RUN_TEST( TestBitwiseUnary_" + m_fullTypeName + " );\n";
+			m_code += "\tTEMPER_RUN_TEST( TestBitwiseShiftLeft_" + m_fullTypeName + " );\n";
+			m_code += "\tTEMPER_RUN_TEST( TestBitwiseShiftRight_" + m_fullTypeName + " );\n";
+		}
 	}
 
 	m_code += "\tTEMPER_RUN_TEST( TestArray_" + m_fullTypeName + " );\n";
-
-	if ( m_type != GEN_TYPE_BOOL ) {
-		m_code += "\tTEMPER_RUN_TEST( TestRelational_" + m_fullTypeName + " );\n";
-	}
 
 	m_code += "\n";
 	m_code += "\tTEMPER_RUN_TEST( TestIdentity_" + m_fullTypeName + " );\n";
@@ -358,6 +367,98 @@ void TestsGeneratorMatrix::GenerateTestRelational() {
 		m_code += "\tTEMPER_EXPECT_TRUE( test" + std::to_string( i ) + " == " + boolTypeName + paramListTrue + " );\n";
 		m_code += "\n";
 	}
+	m_code += "\tTEMPER_PASS();\n";
+	m_code += "}\n";
+	m_code += "\n";
+}
+
+void TestsGeneratorMatrix::GenerateTestBitwise() {
+	if ( m_type != GEN_TYPE_INT && m_type != GEN_TYPE_UINT ) {
+		return;
+	}
+
+	std::string parmListAnswerUnary = "( ";
+	for ( uint32_t row = 0; row < m_numRows; row++ ) {
+		for ( uint32_t col = 0; col < m_numCols; col++ ) {
+			parmListAnswerUnary += "(" + m_memberTypeString + ") -1";
+
+			if ( row + col != ( m_numRows - 1 ) + ( m_numCols - 1 ) ) {
+				parmListAnswerUnary += ",";
+			}
+
+			if ( col != m_numCols - 1 ) {
+				parmListAnswerUnary += " ";
+			}
+		}
+
+		parmListAnswerUnary += "\n";
+	}
+	parmListAnswerUnary += " )";
+
+	// values must be integers
+	std::string parmListLhs[GEN_OP_BITWISE_COUNT] = {
+		Gen_GetParmListMatrixSingleValue( m_type, m_numRows, m_numCols, 21.0f ),
+		Gen_GetParmListMatrixSingleValue( m_type, m_numRows, m_numCols, 21.0f ),
+		Gen_GetParmListMatrixSingleValue( m_type, m_numRows, m_numCols, 21.0f ),
+		Gen_GetParmListMatrixSingleValue( m_type, m_numRows, m_numCols, 1.0f  ),
+		Gen_GetParmListMatrixSingleValue( m_type, m_numRows, m_numCols, 16.0f ),
+	};
+
+	std::string parmListRhs[GEN_OP_BITWISE_COUNT] = {
+		Gen_GetParmListMatrixSingleValue( m_type, m_numRows, m_numCols, 7.0f ),
+		Gen_GetParmListMatrixSingleValue( m_type, m_numRows, m_numCols, 7.0f ),
+		Gen_GetParmListMatrixSingleValue( m_type, m_numRows, m_numCols, 7.0f ),
+		Gen_GetParmListMatrixSingleValue( m_type, m_numRows, m_numCols, 2.0f ),
+		Gen_GetParmListMatrixSingleValue( m_type, m_numRows, m_numCols, 4.0f ),
+	};
+
+	std::string parmListAnswers[GEN_OP_BITWISE_COUNT] = {
+		Gen_GetParmListMatrixSingleValue( m_type, m_numRows, m_numCols, 5.0f  ),	// 21 & 7
+		Gen_GetParmListMatrixSingleValue( m_type, m_numRows, m_numCols, 23.0f ),	// 21 | 7
+		Gen_GetParmListMatrixSingleValue( m_type, m_numRows, m_numCols, 18.0f ),	// 21 ^ 7
+		Gen_GetParmListMatrixSingleValue( m_type, m_numRows, m_numCols, 4.0f  ),	// 1  << 2
+		Gen_GetParmListMatrixSingleValue( m_type, m_numRows, m_numCols, 1.0f  ),	// 16 >> 4
+	};
+
+	// do unary separately because it takes no rhs parm
+	std::string suffices[GEN_OP_BITWISE_COUNT] = {
+		"And",
+		"Or",
+		"Xor",
+		"ShiftLeft",
+		"ShiftRight",
+	};
+
+	genOpBitwise_t ops[] = {
+		GEN_OP_BITWISE_AND,
+		GEN_OP_BITWISE_OR,
+		GEN_OP_BITWISE_XOR,
+		GEN_OP_BITWISE_SHIFT_LEFT,
+		GEN_OP_BITWISE_SHIFT_RIGHT,
+	};
+
+	for ( uint32_t i = 0; i < _countof( ops ); i++ ) {
+		m_code += "TEMPER_TEST( TestBitwise" + suffices[i] + "_" + m_fullTypeName + " ) {\n";
+		m_code += "\t" + m_fullTypeName + " a  = " + m_fullTypeName + parmListLhs[i] + ";\n";
+		m_code += "\t" + m_fullTypeName + " b  = " + m_fullTypeName + parmListRhs[i] + ";\n";
+		m_code += "\n";
+		m_code += "\t" + m_fullTypeName + " answer = a " + GEN_OPERATORS_BITWISE[ops[i]] + " b;\n";
+		m_code += "\n";
+		m_code += "\tTEMPER_EXPECT_TRUE( answer == " + m_fullTypeName + parmListAnswers[i] + " );\n";
+		m_code += "\n";
+		m_code += "\tTEMPER_PASS();\n";
+		m_code += "}\n";
+		m_code += "\n";
+	}
+
+	// unary
+	m_code += "TEMPER_TEST( TestBitwiseUnary_" + m_fullTypeName + " ) {\n";
+	m_code += "\t" + m_fullTypeName + " a = " + m_fullTypeName + Gen_GetParmListMatrixSingleValue( m_type, m_numRows, m_numCols, 0.0f ) + ";\n";
+	m_code += "\n";
+	m_code += "\t" + m_fullTypeName + " answer = " + GEN_OPERATORS_BITWISE[GEN_OP_BITWISE_UNARY] + "a;\n";
+	m_code += "\n";
+	m_code += "\tTEMPER_EXPECT_TRUE( answer == " + m_fullTypeName + parmListAnswerUnary + " );\n";
+	m_code += "\n";
 	m_code += "\tTEMPER_PASS();\n";
 	m_code += "}\n";
 	m_code += "\n";

@@ -30,6 +30,7 @@ private:
 	void		GenerateTestAssignment();
 	void		GenerateTestArray();
 	void		GenerateTestArithmetic();
+	void		GenerateTestIncrement();
 	void		GenerateTestRelational();
 	void		GenerateTestBitwise();
 

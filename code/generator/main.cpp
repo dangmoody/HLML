@@ -229,8 +229,9 @@ static bool GenerateOperatorsVector( void ) {
 			contentInl += "// " + fullTypeName + "\n";
 
 			Gen_VectorOperatorsArithmetic( type, componentIndex, contentHeader, contentInl );
-			Gen_VectorOperatorsRelational( type, componentIndex, contentHeader, contentInl );
-			Gen_VectorOperatorsBitwise( type, componentIndex, contentHeader, contentInl );
+			Gen_OperatorsIncrement( type, 1, componentIndex, contentHeader, contentInl );
+			Gen_OperatorsRelational( type, 1, componentIndex, contentHeader, contentInl );
+			Gen_OperatorsBitwise( type, 1, componentIndex, contentHeader, contentInl );
 
 			contentHeader += "\n";
 			contentInl += "\n";
@@ -399,7 +400,9 @@ static bool GenerateOperatorsMatrix( void ) {
 				contentInl += "// " + fullTypeName + "\n";
 
 				Gen_MatrixOperatorsArithmetic( type, row, col, contentHeader, contentInl );
-				Gen_MatrixOperatorsRelational( type, row, col, contentHeader, contentInl );
+				Gen_OperatorsIncrement( type, row, col, contentHeader, contentInl );
+				Gen_OperatorsRelational( type, row, col, contentHeader, contentInl );
+				Gen_OperatorsBitwise( type, row, col, contentHeader, contentInl );
 
 				contentHeader += "\n";
 				contentInl += "\n";

@@ -20,6 +20,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="FileIO_win32.cpp" />
+    <ClCompile Include="gen_common.cpp" />
     <ClCompile Include="gen_funcs_matrix.cpp" />
     <ClCompile Include="gen_funcs_vector.cpp" />
     <ClCompile Include="MatrixGenerator.cpp" />

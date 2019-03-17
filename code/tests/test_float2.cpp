@@ -96,6 +96,38 @@ TEMPER_TEST( TestArithmeticDivision_float2 ) {
 	TEMPER_PASS();
 }
 
+TEMPER_TEST( TestIncrement_float2 ) {
+	float2 vec;
+
+	// prefix
+	vec = float2( 0.000000f, 0.000000f );
+	++vec;
+	TEMPER_EXPECT_TRUE( vec == float2( 1.000000f, 1.000000f ) );
+
+	// postfix
+	vec = float2( 0.000000f, 0.000000f );
+	vec++;
+	TEMPER_EXPECT_TRUE( vec == float2( 1.000000f, 1.000000f ) );
+
+	TEMPER_PASS();
+}
+
+TEMPER_TEST( TestDecrement_float2 ) {
+	float2 vec;
+
+	// prefix
+	vec = float2( 1.000000f, 1.000000f );
+	--vec;
+	TEMPER_EXPECT_TRUE( vec == float2( 0.000000f, 0.000000f ) );
+
+	// postfix
+	vec = float2( 1.000000f, 1.000000f );
+	vec--;
+	TEMPER_EXPECT_TRUE( vec == float2( 0.000000f, 0.000000f ) );
+
+	TEMPER_PASS();
+}
+
 TEMPER_TEST( TestRelational_float2 ) {
 	float2 vec0 = float2( 0.000000f, 0.000000f );
 	float2 vec1 = float2( 1.000000f, 1.000000f );
@@ -186,6 +218,9 @@ TEMPER_SUITE( Test_float2 ) {
 	TEMPER_RUN_TEST( TestArithmeticSubtraction_float2 );
 	TEMPER_RUN_TEST( TestArithmeticMultiplication_float2 );
 	TEMPER_RUN_TEST( TestArithmeticDivision_float2 );
+
+	TEMPER_RUN_TEST( TestIncrement_float2 );
+	TEMPER_RUN_TEST( TestDecrement_float2 );
 
 	TEMPER_RUN_TEST( TestRelational_float2 );
 
