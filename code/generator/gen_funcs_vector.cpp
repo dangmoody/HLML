@@ -165,7 +165,7 @@ void Gen_VectorLength( const genType_t type, const uint32_t numComponents, std::
 	std::string returnTypeString = Gen_GetTypeString( floatingPointType );
 	std::string fullTypeName = typeString + std::to_string( numComponents );
 
-	std::string sqrtString = ( floatingPointType == GEN_TYPE_DOUBLE ) ? "sqrt" : "sqrtf";
+	std::string sqrtFuncStr = Gen_GetFuncNameSqrt( type );
 
 	outHeader += GetDocLengthSqr( fullTypeName );
 	outHeader += "inline " + returnTypeString + " lengthsqr( const " + fullTypeName + "& vec );\n";
@@ -192,7 +192,7 @@ void Gen_VectorLength( const genType_t type, const uint32_t numComponents, std::
 
 	outInl += returnTypeString + " length( const " + fullTypeName + "& vec )\n";
 	outInl += "{\n";
-	outInl += "\treturn " + sqrtString + "( lengthsqr( vec ) );\n";
+	outInl += "\treturn " + sqrtFuncStr + "( lengthsqr( vec ) );\n";
 	outInl += "}\n";
 	outInl += "\n";
 }
