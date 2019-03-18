@@ -31,7 +31,8 @@ along with hlml.  If not, see <http://www.gnu.org/licenses/>.
 #include "double4x2.h"
 
 /// A matrix of 2 double4s.
-struct double2x4 {
+struct double2x4
+{
 	double4 rows[2];
 
 	/// Default constructor.  Sets the matrix to an identity matrix.

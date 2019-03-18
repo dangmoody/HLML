@@ -33,61 +33,73 @@ along with hlml.  If not, see <http://www.gnu.org/licenses/>.
 // forward declares
 int2x4 inverse( const int2x4& mat );
 
-int2x4::int2x4() {
+int2x4::int2x4()
+{
 	rows[0] = { 1, 0, 0, 0 };
 	rows[1] = { 0, 1, 0, 0 };
 }
 
-int2x4::int2x4( const int32_t diagonal ) {
+int2x4::int2x4( const int32_t diagonal )
+{
 	rows[0] = { diagonal, 0, 0, 0 };
 	rows[1] = { 0, diagonal, 0, 0 };
 }
 
-int2x4::int2x4( const int4& diagonal ) {
+int2x4::int2x4( const int4& diagonal )
+{
 	rows[0] = { diagonal.x, 0, 0, 0 };
 	rows[1] = { 0, diagonal.y, 0, 0 };
 }
 
-int2x4::int2x4( const int4& row0, const int4& row1 ) {
+int2x4::int2x4( const int4& row0, const int4& row1 )
+{
 	rows[0] = row0;
 	rows[1] = row1;
 }
 
-int2x4::int2x4( const int4 rows[2] ) {
+int2x4::int2x4( const int4 rows[2] )
+{
 	this->rows[0] = rows[0];
 	this->rows[1] = rows[1];
 }
 
-int2x4::int2x4( const int32_t m00, const int32_t m01, const int32_t m02, const int32_t m03, const int32_t m10, const int32_t m11, const int32_t m12, const int32_t m13 ) {
+int2x4::int2x4( const int32_t m00, const int32_t m01, const int32_t m02, const int32_t m03, const int32_t m10, const int32_t m11, const int32_t m12, const int32_t m13 )
+{
 	rows[0] = { m00, m01, m02, m03 };
 	rows[1] = { m10, m11, m12, m13 };
 }
 
-int2x4::int2x4( const int2x4& other ) {
+int2x4::int2x4( const int2x4& other )
+{
 	memcpy( rows, other.rows, sizeof( rows ) );
 };
 
-int2x4 int2x4::operator=( const int2x4& other ) {
+int2x4 int2x4::operator=( const int2x4& other )
+{
 	memcpy( rows, other.rows, sizeof( rows ) );
 	return *this;
 };
 
-int4& int2x4::operator[]( const uint32_t index ) {
+int4& int2x4::operator[]( const uint32_t index )
+{
 	assert( index < 2 );
 	return rows[index];
 }
 
-const int4& int2x4::operator[]( const uint32_t index ) const {
+const int4& int2x4::operator[]( const uint32_t index ) const
+{
 	assert( index < 2 );
 	return rows[index];
 }
 
-bool operator==( const int2x4& lhs, const int2x4& rhs ) {
+bool operator==( const int2x4& lhs, const int2x4& rhs )
+{
 	return lhs[0] == rhs[0]
 		&& lhs[1] == rhs[1];
 }
 
-bool operator!=( const int2x4& lhs, const int2x4& rhs ) {
+bool operator!=( const int2x4& lhs, const int2x4& rhs )
+{
 	return !( operator==( lhs, rhs ) );
 }
 

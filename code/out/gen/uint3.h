@@ -36,15 +36,19 @@ struct float3;
 
 /// \brief A vector of 3 uint32_ts with components xyz and/or rgb.
 /// Components are also stored as elements in an array via a union.
-struct uint3 {
-	union {
-		struct {
+struct uint3
+{
+	union
+	{
+		struct
+		{
 			uint32_t x;
 			uint32_t y;
 			uint32_t z;
 		};
 
-		struct {
+		struct
+		{
 			uint32_t r;
 			uint32_t g;
 			uint32_t b;

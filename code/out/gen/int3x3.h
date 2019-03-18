@@ -29,7 +29,8 @@ along with hlml.  If not, see <http://www.gnu.org/licenses/>.
 #include "int3.h"
 
 /// A matrix of 3 int3s.
-struct int3x3 {
+struct int3x3
+{
 	int3 rows[3];
 
 	/// Default constructor.  Sets the matrix to an identity matrix.

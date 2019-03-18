@@ -70,7 +70,8 @@ void TestsGeneratorMatrix::Generate( const genType_t type, const uint32_t numRow
 
 	GenerateTestLookAt();
 
-	m_code += "TEMPER_SUITE( " + m_testPrefix + " ) {\n";
+	m_code += "TEMPER_SUITE( " + m_testPrefix + " )\n";
+	m_code += "{\n";
 	m_code += "\tTEMPER_RUN_TEST( TestAssignment_" + m_fullTypeName + " );\n";
 
 	if ( m_type != GEN_TYPE_BOOL ) {
@@ -186,7 +187,8 @@ void TestsGeneratorMatrix::GenerateTestAssignment() {
 	}
 	paramListReversed += "\t)";
 
-	m_code += "TEMPER_TEST( TestAssignment_" + m_fullTypeName + " ) {\n";
+	m_code += "TEMPER_TEST( TestAssignment_" + m_fullTypeName + " )\n";
+	m_code += "{\n";
 	m_code += "\t" + m_fullTypeName + " mat;\n";
 	m_code += "\n";
 
@@ -280,23 +282,27 @@ void TestsGeneratorMatrix::GenerateTestArithmetic() {
 		"Division",
 	};
 
-	m_code += "TEMPER_TEST( TestArithmetic" + suffices[GEN_OP_ARITHMETIC_ADD] + "_" + m_fullTypeName + " ) {\n";
+	m_code += "TEMPER_TEST( TestArithmetic" + suffices[GEN_OP_ARITHMETIC_ADD] + "_" + m_fullTypeName + " )\n";
+	m_code += "{\n";
 	m_code += GetTestCodeArithmeticInternal( GEN_OP_ARITHMETIC_ADD, valuesLhs, valuesRhs );
 	m_code += "}\n";
 	m_code += "\n";
 
-	m_code += "TEMPER_TEST( TestArithmetic" + suffices[GEN_OP_ARITHMETIC_SUB] + "_" + m_fullTypeName + " ) {\n";
+	m_code += "TEMPER_TEST( TestArithmetic" + suffices[GEN_OP_ARITHMETIC_SUB] + "_" + m_fullTypeName + " )\n";
+	m_code += "{\n";
 	m_code += GetTestCodeArithmeticInternal( GEN_OP_ARITHMETIC_SUB, valuesLhs, valuesRhs );
 	m_code += "}\n";
 	m_code += "\n";
 
-	m_code += "TEMPER_TEST( TestArithmetic" + suffices[GEN_OP_ARITHMETIC_MUL] + "_" + m_fullTypeName + " ) {\n";
+	m_code += "TEMPER_TEST( TestArithmetic" + suffices[GEN_OP_ARITHMETIC_MUL] + "_" + m_fullTypeName + " )\n";
+	m_code += "{\n";
 	m_code += GetTestCodeArithmeticInternal( GEN_OP_ARITHMETIC_MUL, valuesLhs, valuesRhs );
 	m_code += "}\n";
 	m_code += "\n";
 
 	// for division use different matrices that are invertible
-	m_code += "TEMPER_TEST( TestArithmetic" + suffices[GEN_OP_ARITHMETIC_DIV] + "_" + m_fullTypeName + " ) {\n";
+	m_code += "TEMPER_TEST( TestArithmetic" + suffices[GEN_OP_ARITHMETIC_DIV] + "_" + m_fullTypeName + " )\n";
+	m_code += "{\n";
 	if ( m_numRows == m_numCols && Gen_IsFloatingPointType( m_type ) ) {
 		m_code += GetTestCodeArithmeticInternal( GEN_OP_ARITHMETIC_DIV, valuesDiv, valuesDiv );
 	} else {
@@ -330,7 +336,8 @@ void TestsGeneratorMatrix::GenerateTestIncrement() {
 	};
 
 	for ( uint32_t i = 0; i < GEN_OP_INCREMENT_COUNT; i++ ) {
-		m_code += "TEMPER_TEST( Test" + suffices[i] + "_" + m_fullTypeName + " ) {\n";
+		m_code += "TEMPER_TEST( Test" + suffices[i] + "_" + m_fullTypeName + " )\n";
+		m_code += "{\n";
 		m_code += "\t" + m_fullTypeName + " mat;\n";
 		m_code += "\n";
 		m_code += "\t// prefix\n";
@@ -367,7 +374,8 @@ void TestsGeneratorMatrix::GenerateTestRelational() {
 
 	uint32_t numTestMats = 0;
 
-	m_code += "TEMPER_TEST( TestRelational_" + m_fullTypeName + " ) {\n";
+	m_code += "TEMPER_TEST( TestRelational_" + m_fullTypeName + " )\n";
+	m_code += "{\n";
 	for ( uint32_t parmListIndex = 0; parmListIndex < _countof( parmLists ); parmListIndex++ ) {
 		m_code += "\t" + m_fullTypeName + " mat" + std::to_string( parmListIndex ) + " = " + m_fullTypeName + parmLists[parmListIndex] + ";\n";
 	}
@@ -460,7 +468,8 @@ void TestsGeneratorMatrix::GenerateTestBitwise() {
 	};
 
 	for ( uint32_t i = 0; i < _countof( ops ); i++ ) {
-		m_code += "TEMPER_TEST( TestBitwise" + suffices[i] + "_" + m_fullTypeName + " ) {\n";
+		m_code += "TEMPER_TEST( TestBitwise" + suffices[i] + "_" + m_fullTypeName + " )\n";
+		m_code += "{\n";
 		m_code += "\t" + m_fullTypeName + " a  = " + m_fullTypeName + parmListLhs[i] + ";\n";
 		m_code += "\t" + m_fullTypeName + " b  = " + m_fullTypeName + parmListRhs[i] + ";\n";
 		m_code += "\n";
@@ -474,7 +483,8 @@ void TestsGeneratorMatrix::GenerateTestBitwise() {
 	}
 
 	// unary
-	m_code += "TEMPER_TEST( TestBitwiseUnary_" + m_fullTypeName + " ) {\n";
+	m_code += "TEMPER_TEST( TestBitwiseUnary_" + m_fullTypeName + " )\n";
+	m_code += "{\n";
 	m_code += "\t" + m_fullTypeName + " a = " + m_fullTypeName + Gen_GetParmListMatrixSingleValue( m_type, m_numRows, m_numCols, 0.0f ) + ";\n";
 	m_code += "\n";
 	m_code += "\t" + m_fullTypeName + " answer = " + GEN_OPERATORS_BITWISE[GEN_OP_BITWISE_UNARY] + "a;\n";
@@ -490,7 +500,8 @@ void TestsGeneratorMatrix::GenerateTestArray() {
 	std::string zeroStr = Gen_GetNumericLiteral( m_type, 0 );
 	std::string oneStr = Gen_GetNumericLiteral( m_type, 1 );
 
-	m_code += "TEMPER_TEST( TestArray_" + m_fullTypeName + " ) {\n";
+	m_code += "TEMPER_TEST( TestArray_" + m_fullTypeName + " )\n";
+	m_code += "{\n";
 	m_code += "\t" + m_fullTypeName + " mat;\n";
 	m_code += "\n";
 	for ( uint32_t row = 0; row < m_numRows; row++ ) {
@@ -518,7 +529,8 @@ void TestsGeneratorMatrix::GenerateTestIdentity() {
 
 	std::string paramListIdentity = Gen_GetParmListMatrixIdentity( m_type, m_numRows, m_numCols );
 
-	m_code += "TEMPER_TEST( TestIdentity_" + m_fullTypeName + " ) {\n";
+	m_code += "TEMPER_TEST( TestIdentity_" + m_fullTypeName + " )\n";
+	m_code += "{\n";
 	m_code += "\t" + m_fullTypeName + " id = " + m_fullTypeName + paramListIdentity + ";\n";
 	m_code += "\n";
 	m_code += "\t" + m_fullTypeName + " mat;\n";
@@ -579,7 +591,8 @@ void TestsGeneratorMatrix::GenerateTestTranspose() {
 
 	std::string transposeTypeName = m_typeString + m_numColsStr + "x" + m_numRowsStr;
 
-	m_code += "TEMPER_TEST( TestTranspose_" + m_fullTypeName + " ) {\n";
+	m_code += "TEMPER_TEST( TestTranspose_" + m_fullTypeName + " )\n";
+	m_code += "{\n";
 	m_code += "\t" + m_fullTypeName + " mat = " + m_fullTypeName + paramListNormal + ";\n";
 	m_code += "\t" + transposeTypeName + " trans = transpose( mat );\n";
 	m_code += "\n";
@@ -647,7 +660,8 @@ void TestsGeneratorMatrix::GenerateTestInverse() {
 	}
 	paramList += "\t)";
 
-	m_code += "TEMPER_TEST( TestInverse_" + m_fullTypeName + " ) {\n";
+	m_code += "TEMPER_TEST( TestInverse_" + m_fullTypeName + " )\n";
+	m_code += "{\n";
 	m_code += "\t" + m_fullTypeName + " identityMatrix;\n";
 	m_code += "\n";
 	m_code += "\t" + m_fullTypeName + " mat = " + m_fullTypeName + paramList + ";\n";
@@ -725,7 +739,8 @@ void TestsGeneratorMatrix::GenerateTestDeterminant() {
 
 	std::string answerStr = Gen_GetNumericLiteral( m_type, determinants[m_numRows - 2] );
 
-	m_code += "TEMPER_TEST( TestDeterminant_" + m_fullTypeName + " ) {\n";
+	m_code += "TEMPER_TEST( TestDeterminant_" + m_fullTypeName + " )\n";
+	m_code += "{\n";
 	m_code += "\t" + m_fullTypeName + " mat = " + m_fullTypeName + paramList + ";\n";
 	m_code += "\t" + m_memberTypeString + " det = determinant( mat );\n";
 	m_code += "\n";
@@ -799,7 +814,8 @@ void TestsGeneratorMatrix::GenerateTestTranslate() {
 	}
 	parmListTranslated += "\t)";
 
-	m_code += "TEMPER_TEST( TestTranslate_" + m_fullTypeName + " ) {\n";
+	m_code += "TEMPER_TEST( TestTranslate_" + m_fullTypeName + " )\n";
+	m_code += "{\n";
 	m_code += "\t" + m_fullTypeName + " mat;\n";
 	m_code += "\t" + m_fullTypeName + " translated = " + m_fullTypeName + parmListTranslated + ";\n";
 	m_code += "\n";
@@ -888,7 +904,8 @@ void TestsGeneratorMatrix::GenerateTestRotate() {
 		parmListRotateRoll += ", " + rotateVecTypeString + parmListVecRoll;
 	}
 
-	m_code += "TEMPER_TEST( TestRotate_" + m_fullTypeName + " ) {\n";
+	m_code += "TEMPER_TEST( TestRotate_" + m_fullTypeName + " )\n";
+	m_code += "{\n";
 	m_code += "\t" + m_fullTypeName + " mat;\n";
 	if ( m_numRows > 3 ) {
 		m_code += "\t" + m_fullTypeName + " yaw = rotate( mat, radians( " + rotDegreesStr + " ), " + rotateVecTypeString + parmListVecYaw + " );\n";
@@ -931,7 +948,8 @@ void TestsGeneratorMatrix::GenerateTestScale() {
 
 	std::string scaleVecTypeString = m_typeString + std::to_string( scaleCols );
 
-	m_code += "TEMPER_TEST( TestScale_" + m_fullTypeName + " ) {\n";
+	m_code += "TEMPER_TEST( TestScale_" + m_fullTypeName + " )\n";
+	m_code += "{\n";
 	m_code += "\t" + m_fullTypeName + " mat;\n";
 	m_code += "\t" + m_fullTypeName + " scaled = scale( mat, " + scaleVecTypeString + parmListScaleVec + " );\n";
 	m_code += "\n";
@@ -964,7 +982,8 @@ void TestsGeneratorMatrix::GenerateTestOrtho() {
 	std::string minusOneStr		= Gen_GetNumericLiteral( m_type, -1.0f );
 	std::string oneHundredStr	= Gen_GetNumericLiteral( m_type, 100.0f );
 
-	m_code += "TEMPER_TEST( TestOrtho_" + m_fullTypeName + " ) {\n";
+	m_code += "TEMPER_TEST( TestOrtho_" + m_fullTypeName + " )\n";
+	m_code += "{\n";
 	m_code += "\t" + m_fullTypeName + " answerOrtho = " + m_fullTypeName + parmListAnswerOrtho + ";\n";
 	m_code += "\n";
 	m_code += "\t" + m_typeString + " width = " + Gen_GetNumericLiteral( m_type, 1280.0f ) + ";\n";
@@ -1012,7 +1031,8 @@ void TestsGeneratorMatrix::GenerateTestPerspective() {
 	std::string znearStr	= Gen_GetNumericLiteral( m_type, 0.1f );
 	std::string zfarStr		= Gen_GetNumericLiteral( m_type, 100.0f );
 
-	m_code += "TEMPER_TEST( TestPerspective_" + m_fullTypeName + " ) {\n";
+	m_code += "TEMPER_TEST( TestPerspective_" + m_fullTypeName + " )\n";
+	m_code += "{\n";
 	m_code += "\t" + m_fullTypeName + " answerPerspective = " + m_fullTypeName + parmListPerspective + ";\n";
 	m_code += "\n";
 	m_code += "\t" + m_typeString + " aspect = " + widthStr + " / " + heightStr + ";\n";
@@ -1055,7 +1075,8 @@ void TestsGeneratorMatrix::GenerateTestLookAt() {
 
 	std::string parmListLookAt = Gen_GetParmListMatrix( m_type, m_numRows, m_numCols, answerLookAt );
 
-	m_code += "TEMPER_TEST( TestLookAt_" + m_fullTypeName + " ) {\n";
+	m_code += "TEMPER_TEST( TestLookAt_" + m_fullTypeName + " )\n";
+	m_code += "{\n";
 	m_code += "\t" + m_fullTypeName + " answerLookAt = " + m_fullTypeName + parmListLookAt + ";\n";
 	m_code += "\n";
 	m_code += "\t" + posVectorTypeName + " currentPos = " + posVectorTypeName + parmListCurrentPos + ";\n";

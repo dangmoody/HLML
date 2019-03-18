@@ -29,7 +29,8 @@ along with hlml.  If not, see <http://www.gnu.org/licenses/>.
 #include "double2.h"
 
 /// A matrix of 2 double2s.
-struct double2x2 {
+struct double2x2
+{
 	double2 rows[2];
 
 	/// Default constructor.  Sets the matrix to an identity matrix.

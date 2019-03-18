@@ -29,7 +29,8 @@ along with hlml.  If not, see <http://www.gnu.org/licenses/>.
 #include <temper/temper.h>
 
 // also tests equality operators
-TEMPER_TEST( TestAssignment_uint3 ) {
+TEMPER_TEST( TestAssignment_uint3 )
+{
 	uint3 a;
 
 	a = uint3( 1 );
@@ -43,7 +44,8 @@ TEMPER_TEST( TestAssignment_uint3 ) {
 	TEMPER_PASS();
 }
 
-TEMPER_TEST( TestArray_uint3 ) {
+TEMPER_TEST( TestArray_uint3 )
+{
 	uint3 a = uint3( 0, 1, 2 );
 
 	TEMPER_EXPECT_TRUE( a[0] == 0 );
@@ -53,7 +55,8 @@ TEMPER_TEST( TestArray_uint3 ) {
 	TEMPER_PASS();
 }
 
-TEMPER_TEST( TestArithmeticAddition_uint3 ) {
+TEMPER_TEST( TestArithmeticAddition_uint3 )
+{
 	uint3 a  = uint3( 6 );
 	uint3 b  = uint3( 2, 3, 4 );
 
@@ -64,7 +67,8 @@ TEMPER_TEST( TestArithmeticAddition_uint3 ) {
 	TEMPER_PASS();
 }
 
-TEMPER_TEST( TestArithmeticSubtraction_uint3 ) {
+TEMPER_TEST( TestArithmeticSubtraction_uint3 )
+{
 	uint3 a  = uint3( 6 );
 	uint3 b  = uint3( 2, 3, 4 );
 
@@ -75,7 +79,8 @@ TEMPER_TEST( TestArithmeticSubtraction_uint3 ) {
 	TEMPER_PASS();
 }
 
-TEMPER_TEST( TestArithmeticMultiplication_uint3 ) {
+TEMPER_TEST( TestArithmeticMultiplication_uint3 )
+{
 	uint3 a  = uint3( 6 );
 	uint3 b  = uint3( 2, 3, 4 );
 
@@ -86,7 +91,8 @@ TEMPER_TEST( TestArithmeticMultiplication_uint3 ) {
 	TEMPER_PASS();
 }
 
-TEMPER_TEST( TestArithmeticDivision_uint3 ) {
+TEMPER_TEST( TestArithmeticDivision_uint3 )
+{
 	uint3 a  = uint3( 6 );
 	uint3 b  = uint3( 2, 2, 3 );
 
@@ -97,7 +103,8 @@ TEMPER_TEST( TestArithmeticDivision_uint3 ) {
 	TEMPER_PASS();
 }
 
-TEMPER_TEST( TestIncrement_uint3 ) {
+TEMPER_TEST( TestIncrement_uint3 )
+{
 	uint3 vec;
 
 	// prefix
@@ -113,7 +120,8 @@ TEMPER_TEST( TestIncrement_uint3 ) {
 	TEMPER_PASS();
 }
 
-TEMPER_TEST( TestDecrement_uint3 ) {
+TEMPER_TEST( TestDecrement_uint3 )
+{
 	uint3 vec;
 
 	// prefix
@@ -129,7 +137,8 @@ TEMPER_TEST( TestDecrement_uint3 ) {
 	TEMPER_PASS();
 }
 
-TEMPER_TEST( TestRelational_uint3 ) {
+TEMPER_TEST( TestRelational_uint3 )
+{
 	uint3 vec0 = uint3( 0, 0, 0 );
 	uint3 vec1 = uint3( 1, 1, 1 );
 	uint3 vec2 = uint3( 2, 2, 2 );
@@ -161,7 +170,8 @@ TEMPER_TEST( TestRelational_uint3 ) {
 	TEMPER_PASS();
 }
 
-TEMPER_TEST( TestBitwiseAnd_uint3 ) {
+TEMPER_TEST( TestBitwiseAnd_uint3 )
+{
 	uint3 a  = uint3( 21, 21, 21 );
 	uint3 b  = uint3( 7, 7, 7 );
 
@@ -172,7 +182,8 @@ TEMPER_TEST( TestBitwiseAnd_uint3 ) {
 	TEMPER_PASS();
 }
 
-TEMPER_TEST( TestBitwiseOr_uint3 ) {
+TEMPER_TEST( TestBitwiseOr_uint3 )
+{
 	uint3 a  = uint3( 21, 21, 21 );
 	uint3 b  = uint3( 7, 7, 7 );
 
@@ -183,7 +194,8 @@ TEMPER_TEST( TestBitwiseOr_uint3 ) {
 	TEMPER_PASS();
 }
 
-TEMPER_TEST( TestBitwiseXor_uint3 ) {
+TEMPER_TEST( TestBitwiseXor_uint3 )
+{
 	uint3 a  = uint3( 21, 21, 21 );
 	uint3 b  = uint3( 7, 7, 7 );
 
@@ -194,7 +206,8 @@ TEMPER_TEST( TestBitwiseXor_uint3 ) {
 	TEMPER_PASS();
 }
 
-TEMPER_TEST( TestBitwiseShiftLeft_uint3 ) {
+TEMPER_TEST( TestBitwiseShiftLeft_uint3 )
+{
 	uint3 a  = uint3( 1, 1, 1 );
 	uint3 b  = uint3( 2, 2, 2 );
 
@@ -205,7 +218,8 @@ TEMPER_TEST( TestBitwiseShiftLeft_uint3 ) {
 	TEMPER_PASS();
 }
 
-TEMPER_TEST( TestBitwiseShiftRight_uint3 ) {
+TEMPER_TEST( TestBitwiseShiftRight_uint3 )
+{
 	uint3 a  = uint3( 16, 16, 16 );
 	uint3 b  = uint3( 4, 4, 4 );
 
@@ -216,7 +230,8 @@ TEMPER_TEST( TestBitwiseShiftRight_uint3 ) {
 	TEMPER_PASS();
 }
 
-TEMPER_TEST( TestBitwiseUnary_uint3 ) {
+TEMPER_TEST( TestBitwiseUnary_uint3 )
+{
 	uint3 a = uint3( 0, 0, 0 );
 
 	uint3 answer = ~a;
@@ -226,7 +241,8 @@ TEMPER_TEST( TestBitwiseUnary_uint3 ) {
 	TEMPER_PASS();
 }
 
-TEMPER_TEST( TestLength_uint3 ) {
+TEMPER_TEST( TestLength_uint3 )
+{
 	uint3 vec = uint3( 2 );
 
 	TEMPER_EXPECT_TRUE( floateq( lengthsqr( vec ), 12.0f ) );
@@ -235,7 +251,8 @@ TEMPER_TEST( TestLength_uint3 ) {
 	TEMPER_PASS();
 }
 
-TEMPER_SUITE( Test_uint3 ) {
+TEMPER_SUITE( Test_uint3 )
+{
 	TEMPER_RUN_TEST( TestAssignment_uint3 );
 	TEMPER_RUN_TEST( TestArray_uint3 );
 

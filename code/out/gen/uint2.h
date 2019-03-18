@@ -35,14 +35,18 @@ struct uint4;
 
 /// \brief A vector of 2 uint32_ts with components xy and/or rg.
 /// Components are also stored as elements in an array via a union.
-struct uint2 {
-	union {
-		struct {
+struct uint2
+{
+	union
+	{
+		struct
+		{
 			uint32_t x;
 			uint32_t y;
 		};
 
-		struct {
+		struct
+		{
 			uint32_t r;
 			uint32_t g;
 		};

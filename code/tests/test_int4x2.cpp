@@ -28,7 +28,8 @@ along with hlml.  If not, see <http://www.gnu.org/licenses/>.
 
 #include <temper/temper.h>
 
-TEMPER_TEST( TestAssignment_int4x2 ) {
+TEMPER_TEST( TestAssignment_int4x2 )
+{
 	int4x2 mat;
 
 	// fill single value
@@ -65,7 +66,8 @@ TEMPER_TEST( TestAssignment_int4x2 ) {
 	TEMPER_PASS();
 }
 
-TEMPER_TEST( TestArithmeticAddition_int4x2 ) {
+TEMPER_TEST( TestArithmeticAddition_int4x2 )
+{
 	int4x2 answer = int4x2(
 		7, 7,
 		8, 8,
@@ -92,7 +94,8 @@ TEMPER_TEST( TestArithmeticAddition_int4x2 ) {
 	TEMPER_PASS();
 }
 
-TEMPER_TEST( TestArithmeticSubtraction_int4x2 ) {
+TEMPER_TEST( TestArithmeticSubtraction_int4x2 )
+{
 	int4x2 answer = int4x2(
 		5, 5,
 		4, 4,
@@ -119,7 +122,8 @@ TEMPER_TEST( TestArithmeticSubtraction_int4x2 ) {
 	TEMPER_PASS();
 }
 
-TEMPER_TEST( TestArithmeticMultiplication_int4x2 ) {
+TEMPER_TEST( TestArithmeticMultiplication_int4x2 )
+{
 	int4x4 answer = int4x4(
 		18, 18, 18, 18,
 		18, 18, 18, 18,
@@ -144,7 +148,8 @@ TEMPER_TEST( TestArithmeticMultiplication_int4x2 ) {
 	TEMPER_PASS();
 }
 
-TEMPER_TEST( TestArithmeticDivision_int4x2 ) {
+TEMPER_TEST( TestArithmeticDivision_int4x2 )
+{
 	int4x2 answer = int4x2(
 		6, 6,
 		3, 3,
@@ -171,7 +176,8 @@ TEMPER_TEST( TestArithmeticDivision_int4x2 ) {
 	TEMPER_PASS();
 }
 
-TEMPER_TEST( TestIncrement_int4x2 ) {
+TEMPER_TEST( TestIncrement_int4x2 )
+{
 	int4x2 mat;
 
 	// prefix
@@ -207,7 +213,8 @@ TEMPER_TEST( TestIncrement_int4x2 ) {
 	TEMPER_PASS();
 }
 
-TEMPER_TEST( TestDecrement_int4x2 ) {
+TEMPER_TEST( TestDecrement_int4x2 )
+{
 	int4x2 mat;
 
 	// prefix
@@ -243,7 +250,8 @@ TEMPER_TEST( TestDecrement_int4x2 ) {
 	TEMPER_PASS();
 }
 
-TEMPER_TEST( TestRelational_int4x2 ) {
+TEMPER_TEST( TestRelational_int4x2 )
+{
 	int4x2 mat0 = int4x2(
 		1, 1,
 		1, 1,
@@ -388,7 +396,8 @@ TEMPER_TEST( TestRelational_int4x2 ) {
 	TEMPER_PASS();
 }
 
-TEMPER_TEST( TestArray_int4x2 ) {
+TEMPER_TEST( TestArray_int4x2 )
+{
 	int4x2 mat;
 
 	TEMPER_EXPECT_TRUE( mat[0] == int2( 1, 0 ) );
@@ -399,7 +408,8 @@ TEMPER_TEST( TestArray_int4x2 ) {
 	TEMPER_PASS();
 }
 
-TEMPER_TEST( TestBitwiseAnd_int4x2 ) {
+TEMPER_TEST( TestBitwiseAnd_int4x2 )
+{
 	int4x2 a  = int4x2(
 		21, 21,
 		21, 21,
@@ -425,7 +435,8 @@ TEMPER_TEST( TestBitwiseAnd_int4x2 ) {
 	TEMPER_PASS();
 }
 
-TEMPER_TEST( TestBitwiseOr_int4x2 ) {
+TEMPER_TEST( TestBitwiseOr_int4x2 )
+{
 	int4x2 a  = int4x2(
 		21, 21,
 		21, 21,
@@ -451,7 +462,8 @@ TEMPER_TEST( TestBitwiseOr_int4x2 ) {
 	TEMPER_PASS();
 }
 
-TEMPER_TEST( TestBitwiseXor_int4x2 ) {
+TEMPER_TEST( TestBitwiseXor_int4x2 )
+{
 	int4x2 a  = int4x2(
 		21, 21,
 		21, 21,
@@ -477,7 +489,8 @@ TEMPER_TEST( TestBitwiseXor_int4x2 ) {
 	TEMPER_PASS();
 }
 
-TEMPER_TEST( TestBitwiseShiftLeft_int4x2 ) {
+TEMPER_TEST( TestBitwiseShiftLeft_int4x2 )
+{
 	int4x2 a  = int4x2(
 		1, 1,
 		1, 1,
@@ -503,7 +516,8 @@ TEMPER_TEST( TestBitwiseShiftLeft_int4x2 ) {
 	TEMPER_PASS();
 }
 
-TEMPER_TEST( TestBitwiseShiftRight_int4x2 ) {
+TEMPER_TEST( TestBitwiseShiftRight_int4x2 )
+{
 	int4x2 a  = int4x2(
 		16, 16,
 		16, 16,
@@ -529,7 +543,8 @@ TEMPER_TEST( TestBitwiseShiftRight_int4x2 ) {
 	TEMPER_PASS();
 }
 
-TEMPER_TEST( TestBitwiseUnary_int4x2 ) {
+TEMPER_TEST( TestBitwiseUnary_int4x2 )
+{
 	int4x2 a = int4x2(
 		0, 0,
 		0, 0,
@@ -548,7 +563,8 @@ TEMPER_TEST( TestBitwiseUnary_int4x2 ) {
 	TEMPER_PASS();
 }
 
-TEMPER_TEST( TestIdentity_int4x2 ) {
+TEMPER_TEST( TestIdentity_int4x2 )
+{
 	int4x2 id = int4x2(
 		1, 0,
 		0, 1,
@@ -565,7 +581,8 @@ TEMPER_TEST( TestIdentity_int4x2 ) {
 	TEMPER_PASS();
 }
 
-TEMPER_TEST( TestTranspose_int4x2 ) {
+TEMPER_TEST( TestTranspose_int4x2 )
+{
 	int4x2 mat = int4x2(
 		0, 1,
 		2, 3,
@@ -582,7 +599,8 @@ TEMPER_TEST( TestTranspose_int4x2 ) {
 	TEMPER_PASS();
 }
 
-TEMPER_SUITE( Test_int4x2 ) {
+TEMPER_SUITE( Test_int4x2 )
+{
 	TEMPER_RUN_TEST( TestAssignment_int4x2 );
 
 	TEMPER_RUN_TEST( TestArithmeticAddition_int4x2 );

@@ -31,7 +31,8 @@ along with hlml.  If not, see <http://www.gnu.org/licenses/>.
 #include "bool3x4.h"
 
 /// A matrix of 4 bool3s.
-struct bool4x3 {
+struct bool4x3
+{
 	bool3 rows[4];
 
 	/// Default constructor.  Sets the matrix to an identity matrix.

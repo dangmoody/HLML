@@ -28,7 +28,8 @@ along with hlml.  If not, see <http://www.gnu.org/licenses/>.
 
 #include <temper/temper.h>
 
-TEMPER_TEST( TestAssignment_int2x3 ) {
+TEMPER_TEST( TestAssignment_int2x3 )
+{
 	int2x3 mat;
 
 	// fill single value
@@ -55,7 +56,8 @@ TEMPER_TEST( TestAssignment_int2x3 ) {
 	TEMPER_PASS();
 }
 
-TEMPER_TEST( TestArithmeticAddition_int2x3 ) {
+TEMPER_TEST( TestArithmeticAddition_int2x3 )
+{
 	int2x3 answer = int2x3(
 		7, 7, 7,
 		8, 8, 8
@@ -76,7 +78,8 @@ TEMPER_TEST( TestArithmeticAddition_int2x3 ) {
 	TEMPER_PASS();
 }
 
-TEMPER_TEST( TestArithmeticSubtraction_int2x3 ) {
+TEMPER_TEST( TestArithmeticSubtraction_int2x3 )
+{
 	int2x3 answer = int2x3(
 		5, 5, 5,
 		4, 4, 4
@@ -97,7 +100,8 @@ TEMPER_TEST( TestArithmeticSubtraction_int2x3 ) {
 	TEMPER_PASS();
 }
 
-TEMPER_TEST( TestArithmeticMultiplication_int2x3 ) {
+TEMPER_TEST( TestArithmeticMultiplication_int2x3 )
+{
 	int2x2 answer = int2x2(
 		36, 36,
 		36, 36
@@ -119,7 +123,8 @@ TEMPER_TEST( TestArithmeticMultiplication_int2x3 ) {
 	TEMPER_PASS();
 }
 
-TEMPER_TEST( TestArithmeticDivision_int2x3 ) {
+TEMPER_TEST( TestArithmeticDivision_int2x3 )
+{
 	int2x3 answer = int2x3(
 		6, 6, 6,
 		3, 3, 3
@@ -140,7 +145,8 @@ TEMPER_TEST( TestArithmeticDivision_int2x3 ) {
 	TEMPER_PASS();
 }
 
-TEMPER_TEST( TestIncrement_int2x3 ) {
+TEMPER_TEST( TestIncrement_int2x3 )
+{
 	int2x3 mat;
 
 	// prefix
@@ -168,7 +174,8 @@ TEMPER_TEST( TestIncrement_int2x3 ) {
 	TEMPER_PASS();
 }
 
-TEMPER_TEST( TestDecrement_int2x3 ) {
+TEMPER_TEST( TestDecrement_int2x3 )
+{
 	int2x3 mat;
 
 	// prefix
@@ -196,7 +203,8 @@ TEMPER_TEST( TestDecrement_int2x3 ) {
 	TEMPER_PASS();
 }
 
-TEMPER_TEST( TestRelational_int2x3 ) {
+TEMPER_TEST( TestRelational_int2x3 )
+{
 	int2x3 mat0 = int2x3(
 		1, 1, 1,
 		1, 1, 1
@@ -305,7 +313,8 @@ TEMPER_TEST( TestRelational_int2x3 ) {
 	TEMPER_PASS();
 }
 
-TEMPER_TEST( TestArray_int2x3 ) {
+TEMPER_TEST( TestArray_int2x3 )
+{
 	int2x3 mat;
 
 	TEMPER_EXPECT_TRUE( mat[0] == int3( 1, 0, 0 ) );
@@ -314,7 +323,8 @@ TEMPER_TEST( TestArray_int2x3 ) {
 	TEMPER_PASS();
 }
 
-TEMPER_TEST( TestBitwiseAnd_int2x3 ) {
+TEMPER_TEST( TestBitwiseAnd_int2x3 )
+{
 	int2x3 a  = int2x3(
 		21, 21, 21,
 		21, 21, 21
@@ -334,7 +344,8 @@ TEMPER_TEST( TestBitwiseAnd_int2x3 ) {
 	TEMPER_PASS();
 }
 
-TEMPER_TEST( TestBitwiseOr_int2x3 ) {
+TEMPER_TEST( TestBitwiseOr_int2x3 )
+{
 	int2x3 a  = int2x3(
 		21, 21, 21,
 		21, 21, 21
@@ -354,7 +365,8 @@ TEMPER_TEST( TestBitwiseOr_int2x3 ) {
 	TEMPER_PASS();
 }
 
-TEMPER_TEST( TestBitwiseXor_int2x3 ) {
+TEMPER_TEST( TestBitwiseXor_int2x3 )
+{
 	int2x3 a  = int2x3(
 		21, 21, 21,
 		21, 21, 21
@@ -374,7 +386,8 @@ TEMPER_TEST( TestBitwiseXor_int2x3 ) {
 	TEMPER_PASS();
 }
 
-TEMPER_TEST( TestBitwiseShiftLeft_int2x3 ) {
+TEMPER_TEST( TestBitwiseShiftLeft_int2x3 )
+{
 	int2x3 a  = int2x3(
 		1, 1, 1,
 		1, 1, 1
@@ -394,7 +407,8 @@ TEMPER_TEST( TestBitwiseShiftLeft_int2x3 ) {
 	TEMPER_PASS();
 }
 
-TEMPER_TEST( TestBitwiseShiftRight_int2x3 ) {
+TEMPER_TEST( TestBitwiseShiftRight_int2x3 )
+{
 	int2x3 a  = int2x3(
 		16, 16, 16,
 		16, 16, 16
@@ -414,7 +428,8 @@ TEMPER_TEST( TestBitwiseShiftRight_int2x3 ) {
 	TEMPER_PASS();
 }
 
-TEMPER_TEST( TestBitwiseUnary_int2x3 ) {
+TEMPER_TEST( TestBitwiseUnary_int2x3 )
+{
 	int2x3 a = int2x3(
 		0, 0, 0,
 		0, 0, 0
@@ -429,7 +444,8 @@ TEMPER_TEST( TestBitwiseUnary_int2x3 ) {
 	TEMPER_PASS();
 }
 
-TEMPER_TEST( TestIdentity_int2x3 ) {
+TEMPER_TEST( TestIdentity_int2x3 )
+{
 	int2x3 id = int2x3(
 		1, 0, 0,
 		0, 1, 0
@@ -444,7 +460,8 @@ TEMPER_TEST( TestIdentity_int2x3 ) {
 	TEMPER_PASS();
 }
 
-TEMPER_TEST( TestTranspose_int2x3 ) {
+TEMPER_TEST( TestTranspose_int2x3 )
+{
 	int2x3 mat = int2x3(
 		0, 1, 2,
 		3, 4, 5
@@ -460,7 +477,8 @@ TEMPER_TEST( TestTranspose_int2x3 ) {
 	TEMPER_PASS();
 }
 
-TEMPER_TEST( TestScale_int2x3 ) {
+TEMPER_TEST( TestScale_int2x3 )
+{
 	int2x3 mat;
 	int2x3 scaled = scale( mat, int3( 2, 2, 2 ) );
 
@@ -472,7 +490,8 @@ TEMPER_TEST( TestScale_int2x3 ) {
 	TEMPER_PASS();
 }
 
-TEMPER_SUITE( Test_int2x3 ) {
+TEMPER_SUITE( Test_int2x3 )
+{
 	TEMPER_RUN_TEST( TestAssignment_int2x3 );
 
 	TEMPER_RUN_TEST( TestArithmeticAddition_int2x3 );

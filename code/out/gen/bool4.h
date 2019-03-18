@@ -34,9 +34,12 @@ struct float3;
 
 /// \brief A vector of 4 bools with components xyzw.
 /// Components are also stored as elements in an array via a union.
-struct bool4 {
-	union {
-		struct {
+struct bool4
+{
+	union
+	{
+		struct
+		{
 			bool x;
 			bool y;
 			bool z;

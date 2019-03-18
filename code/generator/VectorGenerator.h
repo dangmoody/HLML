@@ -9,15 +9,18 @@ public:
 
 	void			Generate( const genType_t type, const uint32_t numComponents );
 
+#ifdef _DEBUG
 	void			PrintHeader() const;
 	void			PrintInl() const;
+#endif
 
 private:
 	std::string		m_codeHeader;
 	std::string		m_codeInl;
 
-	std::string		m_fullTypeName;
 	std::string		m_typeString;
+	std::string		m_fullTypeName;
+	std::string		m_memberTypeString;
 
 	std::string		m_numComponentsStr;
 
@@ -25,23 +28,12 @@ private:
 	uint32_t		m_numComponents;
 
 private:
-	void			GenerateHeader();
-	void			GenerateInl();
-
-private:
-	void			HeaderGenerateForwardDeclarations();
-	void			HeaderGenerateMembers();
 	void			HeaderGenerateMembersStruct( const std::string& componentNames );
 
-	void			HeaderGenerateConstructors();
-	void			HeaderGenerateOperatorsAssignment();
-	void			HeaderGenerateOperatorsArray();
-	void			HeaderGenerateOperatorsEquality();
-
-	void			InlGenerateConstructors();
-	void			InlGenerateOperatorsAssignment();
-	void			InlGenerateOperatorsArray();
-	void			InlGenerateOperatorsEquality();
+	void			GenerateConstructors();
+	void			GenerateOperatorsAssignment();
+	void			GenerateOperatorsArray();
+	void			GenerateOperatorsEquality();
 
 	std::string		GetDocStruct() const;
 	std::string		GetDocScalar() const;

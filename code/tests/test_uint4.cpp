@@ -29,7 +29,8 @@ along with hlml.  If not, see <http://www.gnu.org/licenses/>.
 #include <temper/temper.h>
 
 // also tests equality operators
-TEMPER_TEST( TestAssignment_uint4 ) {
+TEMPER_TEST( TestAssignment_uint4 )
+{
 	uint4 a;
 
 	a = uint4( 1 );
@@ -43,7 +44,8 @@ TEMPER_TEST( TestAssignment_uint4 ) {
 	TEMPER_PASS();
 }
 
-TEMPER_TEST( TestArray_uint4 ) {
+TEMPER_TEST( TestArray_uint4 )
+{
 	uint4 a = uint4( 0, 1, 2, 3 );
 
 	TEMPER_EXPECT_TRUE( a[0] == 0 );
@@ -54,7 +56,8 @@ TEMPER_TEST( TestArray_uint4 ) {
 	TEMPER_PASS();
 }
 
-TEMPER_TEST( TestArithmeticAddition_uint4 ) {
+TEMPER_TEST( TestArithmeticAddition_uint4 )
+{
 	uint4 a  = uint4( 6 );
 	uint4 b  = uint4( 2, 3, 4, 5 );
 
@@ -65,7 +68,8 @@ TEMPER_TEST( TestArithmeticAddition_uint4 ) {
 	TEMPER_PASS();
 }
 
-TEMPER_TEST( TestArithmeticSubtraction_uint4 ) {
+TEMPER_TEST( TestArithmeticSubtraction_uint4 )
+{
 	uint4 a  = uint4( 6 );
 	uint4 b  = uint4( 2, 3, 4, 5 );
 
@@ -76,7 +80,8 @@ TEMPER_TEST( TestArithmeticSubtraction_uint4 ) {
 	TEMPER_PASS();
 }
 
-TEMPER_TEST( TestArithmeticMultiplication_uint4 ) {
+TEMPER_TEST( TestArithmeticMultiplication_uint4 )
+{
 	uint4 a  = uint4( 6 );
 	uint4 b  = uint4( 2, 3, 4, 5 );
 
@@ -87,7 +92,8 @@ TEMPER_TEST( TestArithmeticMultiplication_uint4 ) {
 	TEMPER_PASS();
 }
 
-TEMPER_TEST( TestArithmeticDivision_uint4 ) {
+TEMPER_TEST( TestArithmeticDivision_uint4 )
+{
 	uint4 a  = uint4( 6 );
 	uint4 b  = uint4( 2, 2, 3, 6 );
 
@@ -98,7 +104,8 @@ TEMPER_TEST( TestArithmeticDivision_uint4 ) {
 	TEMPER_PASS();
 }
 
-TEMPER_TEST( TestIncrement_uint4 ) {
+TEMPER_TEST( TestIncrement_uint4 )
+{
 	uint4 vec;
 
 	// prefix
@@ -114,7 +121,8 @@ TEMPER_TEST( TestIncrement_uint4 ) {
 	TEMPER_PASS();
 }
 
-TEMPER_TEST( TestDecrement_uint4 ) {
+TEMPER_TEST( TestDecrement_uint4 )
+{
 	uint4 vec;
 
 	// prefix
@@ -130,7 +138,8 @@ TEMPER_TEST( TestDecrement_uint4 ) {
 	TEMPER_PASS();
 }
 
-TEMPER_TEST( TestRelational_uint4 ) {
+TEMPER_TEST( TestRelational_uint4 )
+{
 	uint4 vec0 = uint4( 0, 0, 0, 0 );
 	uint4 vec1 = uint4( 1, 1, 1, 1 );
 	uint4 vec2 = uint4( 2, 2, 2, 2 );
@@ -172,7 +181,8 @@ TEMPER_TEST( TestRelational_uint4 ) {
 	TEMPER_PASS();
 }
 
-TEMPER_TEST( TestBitwiseAnd_uint4 ) {
+TEMPER_TEST( TestBitwiseAnd_uint4 )
+{
 	uint4 a  = uint4( 21, 21, 21, 21 );
 	uint4 b  = uint4( 7, 7, 7, 7 );
 
@@ -183,7 +193,8 @@ TEMPER_TEST( TestBitwiseAnd_uint4 ) {
 	TEMPER_PASS();
 }
 
-TEMPER_TEST( TestBitwiseOr_uint4 ) {
+TEMPER_TEST( TestBitwiseOr_uint4 )
+{
 	uint4 a  = uint4( 21, 21, 21, 21 );
 	uint4 b  = uint4( 7, 7, 7, 7 );
 
@@ -194,7 +205,8 @@ TEMPER_TEST( TestBitwiseOr_uint4 ) {
 	TEMPER_PASS();
 }
 
-TEMPER_TEST( TestBitwiseXor_uint4 ) {
+TEMPER_TEST( TestBitwiseXor_uint4 )
+{
 	uint4 a  = uint4( 21, 21, 21, 21 );
 	uint4 b  = uint4( 7, 7, 7, 7 );
 
@@ -205,7 +217,8 @@ TEMPER_TEST( TestBitwiseXor_uint4 ) {
 	TEMPER_PASS();
 }
 
-TEMPER_TEST( TestBitwiseShiftLeft_uint4 ) {
+TEMPER_TEST( TestBitwiseShiftLeft_uint4 )
+{
 	uint4 a  = uint4( 1, 1, 1, 1 );
 	uint4 b  = uint4( 2, 2, 2, 2 );
 
@@ -216,7 +229,8 @@ TEMPER_TEST( TestBitwiseShiftLeft_uint4 ) {
 	TEMPER_PASS();
 }
 
-TEMPER_TEST( TestBitwiseShiftRight_uint4 ) {
+TEMPER_TEST( TestBitwiseShiftRight_uint4 )
+{
 	uint4 a  = uint4( 16, 16, 16, 16 );
 	uint4 b  = uint4( 4, 4, 4, 4 );
 
@@ -227,7 +241,8 @@ TEMPER_TEST( TestBitwiseShiftRight_uint4 ) {
 	TEMPER_PASS();
 }
 
-TEMPER_TEST( TestBitwiseUnary_uint4 ) {
+TEMPER_TEST( TestBitwiseUnary_uint4 )
+{
 	uint4 a = uint4( 0, 0, 0, 0 );
 
 	uint4 answer = ~a;
@@ -237,7 +252,8 @@ TEMPER_TEST( TestBitwiseUnary_uint4 ) {
 	TEMPER_PASS();
 }
 
-TEMPER_TEST( TestLength_uint4 ) {
+TEMPER_TEST( TestLength_uint4 )
+{
 	uint4 vec = uint4( 2 );
 
 	TEMPER_EXPECT_TRUE( floateq( lengthsqr( vec ), 16.0f ) );
@@ -246,7 +262,8 @@ TEMPER_TEST( TestLength_uint4 ) {
 	TEMPER_PASS();
 }
 
-TEMPER_TEST( TestPacking_uint4 ) {
+TEMPER_TEST( TestPacking_uint4 )
+{
 	uint32_t answerPacked = 0xFFFF00FF;
 	uint4 answerUnpacked = uint4( 255, 255, 0, 255 );
 
@@ -261,7 +278,8 @@ TEMPER_TEST( TestPacking_uint4 ) {
 	TEMPER_PASS();
 }
 
-TEMPER_SUITE( Test_uint4 ) {
+TEMPER_SUITE( Test_uint4 )
+{
 	TEMPER_RUN_TEST( TestAssignment_uint4 );
 	TEMPER_RUN_TEST( TestArray_uint4 );
 

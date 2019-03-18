@@ -109,7 +109,8 @@ static void MatrixOperatorMul( const genType_t type, const uint32_t numRows, con
 	// inl
 	{
 		// main operator
-		outInl += returnTypeName + " operator*( const " + fullTypeName + "& lhs, const " + rhsTypeName + "& rhs ) {\n";
+		outInl += returnTypeName + " operator*( const " + fullTypeName + "& lhs, const " + rhsTypeName + "& rhs )\n";
+		outInl += "{\n";
 		// generate row vars
 		for ( uint32_t row = 0; row < numRows; row++ ) {
 			std::string rowStr = std::to_string( row );
@@ -169,7 +170,8 @@ static void MatrixOperatorMul( const genType_t type, const uint32_t numRows, con
 
 		// compound operator
 		if ( numRows == numCols ) {
-			outInl += returnTypeName + " operator*=( " + fullTypeName + "& lhs, const " + rhsTypeName + "& rhs ) {\n";
+			outInl += returnTypeName + " operator*=( " + fullTypeName + "& lhs, const " + rhsTypeName + "& rhs )\n";
+			outInl += "{\n";
 			outInl += "\treturn ( lhs = lhs * rhs );\n";
 			outInl += "}\n";
 			outInl += "\n";
@@ -180,22 +182,24 @@ static void MatrixOperatorMul( const genType_t type, const uint32_t numRows, con
 static void MatrixOperatorDiv( const genType_t type, const uint32_t numRows, const uint32_t numCols, std::string& outHeader, std::string& outInl ) {
 	std::string fullTypeName = Gen_GetFullTypeName( type, numRows, numCols );
 
+	// main operator
 	outHeader += GetDocMatrixDivision( fullTypeName );
 	outHeader += "inline " + fullTypeName + " operator/( const " + fullTypeName + "& lhs, const " + fullTypeName + "& rhs );\n";
 	outHeader += "\n";
 
-	outHeader += GetDocCompoundMatrixDivision( fullTypeName );
-	outHeader += "inline " + fullTypeName + " operator/=( " + fullTypeName + "& lhs, const " + fullTypeName + "& rhs );\n";
-	outHeader += "\n";
-
-	// main operator
-	outInl += fullTypeName + " operator/( const " + fullTypeName + "& lhs, const " + fullTypeName + "& rhs ) {\n";
+	outInl += fullTypeName + " operator/( const " + fullTypeName + "& lhs, const " + fullTypeName + "& rhs )\n";
+	outInl += "{\n";
 	outInl += "\treturn lhs * inverse( rhs );\n";
 	outInl += "}\n";
 	outInl += "\n";
 
 	// compound operator
-	outInl += fullTypeName + " operator/=( " + fullTypeName + "& lhs, const " + fullTypeName + "& rhs ) {\n";
+	outHeader += GetDocCompoundMatrixDivision( fullTypeName );
+	outHeader += "inline " + fullTypeName + " operator/=( " + fullTypeName + "& lhs, const " + fullTypeName + "& rhs );\n";
+	outHeader += "\n";
+
+	outInl += fullTypeName + " operator/=( " + fullTypeName + "& lhs, const " + fullTypeName + "& rhs )\n";
+	outInl += "{\n";
 	outInl += "\treturn ( lhs = lhs / rhs );\n";
 	outInl += "}\n";
 	outInl += "\n";
@@ -348,15 +352,19 @@ void Gen_MatrixIdentity( const genType_t type, const uint32_t numRows, const uin
 
 	std::string fullTypeName = Gen_GetTypeString( type ) + std::to_string( numRows ) + "x" + std::to_string( numCols );
 
+	std::string zeroStr = Gen_GetNumericLiteral( type, 0.0f );
+	std::string oneStr = Gen_GetNumericLiteral( type, 1.0f );
+
 	outHeader += GetDocIdentity( fullTypeName );
 	outHeader += "inline void identity( " + fullTypeName + "& mat );\n";
 	outHeader += "\n";
 
-	outInl += "void identity( " + fullTypeName + "& mat ) {\n";
+	outInl += "void identity( " + fullTypeName + "& mat )\n";
+	outInl += "{\n";
 	for ( uint32_t row = 0; row < numRows; row++ ) {
 		outInl += "\tmat[" + std::to_string( row ) + "] = { ";
 		for ( uint32_t col = 0; col < numCols; col++ ) {
-			outInl += ( row == col ) ? "1" : "0";
+			outInl += ( row == col ) ? oneStr : zeroStr;
 
 			if ( col != numCols - 1 ) {
 				outInl += ", ";
@@ -382,7 +390,8 @@ void Gen_MatrixTranspose( const genType_t type, const uint32_t numRows, const ui
 	outHeader += "inline " + transposeTypeName + " transpose( const " + fullTypeName + "& mat );\n";
 	outHeader += "\n";
 
-	outInl += transposeTypeName + " transpose( const " + fullTypeName + "& mat ) {\n";
+	outInl += transposeTypeName + " transpose( const " + fullTypeName + "& mat )\n";
+	outInl += "{\n";
 	outInl += "\treturn " + transposeTypeName + "(\n";
 
 	for ( uint32_t col = 0; col < numCols; col++ ) {
@@ -438,7 +447,8 @@ void Gen_MatrixInverse( const genType_t type, const uint32_t numRows, const uint
 	outHeader += "inline " + fullTypeName + " inverse( const " + fullTypeName + "& mat );\n";
 	outHeader += "\n";
 
-	outInl += fullTypeName + " inverse( const " + fullTypeName + "& mat ) {\n";
+	outInl += fullTypeName + " inverse( const " + fullTypeName + "& mat )\n";
+	outInl += "{\n";
 
 	switch ( numRows ) {
 		case 2: {
@@ -559,7 +569,8 @@ void Gen_MatrixDeterminant( const genType_t type, const uint32_t numRows, const 
 	outHeader += "inline " + memberTypeString + " determinant( const " + fullTypeName + "& mat );\n";
 	outHeader += "\n";
 
-	outInl += memberTypeString + " determinant( const " + fullTypeName + "& mat ) {\n";
+	outInl += memberTypeString + " determinant( const " + fullTypeName + "& mat )\n";
+	outInl += "{\n";
 	switch ( numRows ) {
 		case 2: {
 			outInl += "\treturn mat[0][0] * mat[1][1] - mat[1][0] * mat[0][1];\n";
@@ -621,7 +632,8 @@ void Gen_MatrixTranslate( const genType_t type, const uint32_t numRows, const ui
 	outHeader += "inline " + fullTypeName + " translate( const " + fullTypeName + "& mat, const " + typeString + std::to_string( vecComponents ) + "& vec );\n";
 	outHeader += "\n";
 
-	outInl += fullTypeName + " translate( const " + fullTypeName + "& mat, const " + typeString + std::to_string( vecComponents ) + "& vec ) {\n";
+	outInl += fullTypeName + " translate( const " + fullTypeName + "& mat, const " + typeString + std::to_string( vecComponents ) + "& vec )\n";
+	outInl += "{\n";
 	outInl += "\treturn " + fullTypeName + "(\n";
 	outInl += "\t\t";
 	for ( uint32_t row = 0; row < numRows; row++ ) {
@@ -682,14 +694,15 @@ void Gen_MatrixRotate( const genType_t type, const uint32_t numRows, const uint3
 		parmListStr += ", const " + vectorTypeString + "& axis";
 	}
 
+	std::string cosFuncStr = Gen_GetFuncNameCos( type );
+	std::string sinFuncStr = Gen_GetFuncNameSin( type );
+
 	outHeader += GetDocRotate( fullTypeName );
 	outHeader += "inline " + fullTypeName + " rotate( " + parmListStr + " );\n";
 	outHeader += "\n";
 
-	std::string cosFuncStr = ( type == GEN_TYPE_FLOAT ) ? "cosf" : "cos";
-	std::string sinFuncStr = ( type == GEN_TYPE_FLOAT ) ? "sinf" : "sin";
-
-	outInl += fullTypeName + " rotate( " + parmListStr + " ) {\n";
+	outInl += fullTypeName + " rotate( " + parmListStr + " )\n";
+	outInl += "{\n";
 	outInl += "\tconst " + typeString + " c = " + cosFuncStr + "( rad );\n";
 	outInl += "\tconst " + typeString + " s = " + sinFuncStr + "( rad );\n";
 	outInl += "\n";
@@ -759,7 +772,8 @@ void Gen_MatrixScale( const genType_t type, const uint32_t numRows, const uint32
 	outHeader += "inline " + fullTypeName + " scale( const " + fullTypeName + "& mat, const " + scaleVectorString + "& vec );\n";
 	outHeader += "\n";
 
-	outInl += fullTypeName + " scale( const " + fullTypeName + "& mat, const " + memberTypeString + " scalar ) {\n";
+	outInl += fullTypeName + " scale( const " + fullTypeName + "& mat, const " + memberTypeString + " scalar )\n";
+	outInl += "{\n";
 	outInl += "\treturn scale( mat, " + scaleVectorString + "( ";
 	for ( uint32_t col = 0; col < scaleCols; col++ ) {
 		outInl += "scalar";
@@ -772,7 +786,8 @@ void Gen_MatrixScale( const genType_t type, const uint32_t numRows, const uint32
 	outInl += "}\n";
 	outInl += "\n";
 
-	outInl += fullTypeName + " scale( const " + fullTypeName + "& mat, const " + scaleVectorString + "& vec ) {\n";
+	outInl += fullTypeName + " scale( const " + fullTypeName + "& mat, const " + scaleVectorString + "& vec )\n";
+	outInl += "{\n";
 	outInl += "\treturn " + fullTypeName + "(\n";
 
 	for ( uint32_t row = 0; row < numRows; row++ ) {
@@ -828,7 +843,8 @@ void Gen_MatrixOrtho( const genHand_t hand, const genType_t type, const uint32_t
 	outHeader += "inline " + fullTypeName + " ortho( const " + typeString + " left, const " + typeString + " right, const " + typeString + " top, const " + typeString + " bottom, const " + typeString + " znear, const " + typeString + " zfar );\n";
 	outHeader += "\n";
 
-	outInl += "inline " + fullTypeName + " ortho( const " + typeString + " left, const " + typeString + " right, const " + typeString + " top, const " + typeString + " bottom, const " + typeString + " znear, const " + typeString + " zfar ) {\n";
+	outInl += "inline " + fullTypeName + " ortho( const " + typeString + " left, const " + typeString + " right, const " + typeString + " top, const " + typeString + " bottom, const " + typeString + " znear, const " + typeString + " zfar )\n";
+	outInl += "{\n";
 	switch ( hand ) {
 		case GEN_HAND_LEFT: {
 			outInl += "\tconst " + typeString + " right_plus_left = right + left;\n";
@@ -887,7 +903,8 @@ void Gen_MatrixPerspective( const genHand_t hand, const genType_t type, const ui
 	outHeader += "inline " + fullTypeName + " perspective( const " + typeString + " fovdeg, const " + typeString + " aspect, const " + typeString + " znear, const " + typeString + " zfar );\n";
 	outHeader += "\n";
 
-	outInl += fullTypeName + " perspective( const " + typeString + " fovdeg, const " + typeString + " aspect, const " + typeString + " znear, const " + typeString + " zfar ) {\n";
+	outInl += fullTypeName + " perspective( const " + typeString + " fovdeg, const " + typeString + " aspect, const " + typeString + " znear, const " + typeString + " zfar )\n";
+	outInl += "{\n";
 	switch ( hand ) {
 		case GEN_HAND_LEFT: {
 			outInl += "\tconst " + typeString + " far_minus_near = zfar - znear;\n";
@@ -943,7 +960,8 @@ void Gen_MatrixLookAt( const genHand_t hand, const genType_t type, const uint32_
 	outHeader += "inline " + fullTypeName + " lookat( const " + vectorTypeString + "& eye, const " + vectorTypeString + "& target, const " + vectorTypeString + "& up );\n";
 	outHeader += "\n";
 
-	outInl += fullTypeName + " lookat( const " + vectorTypeString + "& eye, const " + vectorTypeString + "& target, const " + vectorTypeString + "& up ) {\n";
+	outInl += fullTypeName + " lookat( const " + vectorTypeString + "& eye, const " + vectorTypeString + "& target, const " + vectorTypeString + "& up )\n";
+	outInl += "{\n";
 	switch ( hand ) {
 		case GEN_HAND_LEFT: {
 			outInl += "\tconst " + vectorTypeString + " forward = normalized( target - eye );\n";

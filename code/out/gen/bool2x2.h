@@ -29,7 +29,8 @@ along with hlml.  If not, see <http://www.gnu.org/licenses/>.
 #include "bool2.h"
 
 /// A matrix of 2 bool2s.
-struct bool2x2 {
+struct bool2x2
+{
 	bool2 rows[2];
 
 	/// Default constructor.  Sets the matrix to an identity matrix.

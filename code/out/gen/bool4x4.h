@@ -29,7 +29,8 @@ along with hlml.  If not, see <http://www.gnu.org/licenses/>.
 #include "bool4.h"
 
 /// A matrix of 4 bool4s.
-struct bool4x4 {
+struct bool4x4
+{
 	bool4 rows[4];
 
 	/// Default constructor.  Sets the matrix to an identity matrix.

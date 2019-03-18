@@ -29,7 +29,8 @@ along with hlml.  If not, see <http://www.gnu.org/licenses/>.
 #include <temper/temper.h>
 
 // also tests equality operators
-TEMPER_TEST( TestAssignment_bool2 ) {
+TEMPER_TEST( TestAssignment_bool2 )
+{
 	bool2 a;
 
 	a = bool2( true );
@@ -43,7 +44,8 @@ TEMPER_TEST( TestAssignment_bool2 ) {
 	TEMPER_PASS();
 }
 
-TEMPER_TEST( TestArray_bool2 ) {
+TEMPER_TEST( TestArray_bool2 )
+{
 	bool2 a = bool2( false, true );
 
 	TEMPER_EXPECT_TRUE( a[0] == false );
@@ -52,7 +54,8 @@ TEMPER_TEST( TestArray_bool2 ) {
 	TEMPER_PASS();
 }
 
-TEMPER_SUITE( Test_bool2 ) {
+TEMPER_SUITE( Test_bool2 )
+{
 	TEMPER_RUN_TEST( TestAssignment_bool2 );
 	TEMPER_RUN_TEST( TestArray_bool2 );
 };

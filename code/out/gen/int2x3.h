@@ -31,7 +31,8 @@ along with hlml.  If not, see <http://www.gnu.org/licenses/>.
 #include "int3x2.h"
 
 /// A matrix of 2 int3s.
-struct int2x3 {
+struct int2x3
+{
 	int3 rows[2];
 
 	/// Default constructor.  Sets the matrix to an identity matrix.

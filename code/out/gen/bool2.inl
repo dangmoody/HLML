@@ -35,61 +35,74 @@ along with hlml.  If not, see <http://www.gnu.org/licenses/>.
 #include <memory.h>
 #include <assert.h>
 
-bool2::bool2() {
+bool2::bool2()
+{
 	memset( data, 0, 2 * sizeof( bool ) );
 }
 
-bool2::bool2( const bool x ) {
+bool2::bool2( const bool x )
+{
 	this->x = this->y = x;
 }
 
-bool2::bool2( const bool x, const bool y ) {
+bool2::bool2( const bool x, const bool y )
+{
 	this->x = x;
 	this->y = y;
 }
 
-bool2::bool2( const bool2& other ) {
+bool2::bool2( const bool2& other )
+{
 	memcpy( data, other.data, sizeof( other.data ) );
 }
 
-bool2::bool2( const bool3& other ) {
+bool2::bool2( const bool3& other )
+{
 	memcpy( data, other.data, sizeof( other.data ) );
 }
 
-bool2::bool2( const bool4& other ) {
+bool2::bool2( const bool4& other )
+{
 	memcpy( data, other.data, sizeof( other.data ) );
 }
 
-bool2 bool2::operator=( const bool2& rhs ) {
+bool2 bool2::operator=( const bool2& rhs )
+{
 	memcpy( data, rhs.data, sizeof( rhs.data ) );
 	return *this;
 }
 
-bool2 bool2::operator=( const bool3& rhs ) {
+bool2 bool2::operator=( const bool3& rhs )
+{
 	memcpy( data, rhs.data, sizeof( rhs.data ) );
 	return *this;
 }
 
-bool2 bool2::operator=( const bool4& rhs ) {
+bool2 bool2::operator=( const bool4& rhs )
+{
 	memcpy( data, rhs.data, sizeof( rhs.data ) );
 	return *this;
 }
 
-const bool& bool2::operator[]( const uint32_t index ) const {
+const bool& bool2::operator[]( const uint32_t index ) const
+{
 	assert( index < 2 );
 	return data[index];
 }
 
-bool& bool2::operator[]( const uint32_t index ) {
+bool& bool2::operator[]( const uint32_t index )
+{
 	assert( index < 2 );
 	return data[index];
 }
 
-bool operator==( const bool2& lhs, const bool2& rhs ) {
+bool operator==( const bool2& lhs, const bool2& rhs )
+{
 	return ( lhs.x == rhs.x ) && ( lhs.y == rhs.y );
 }
 
-bool operator!=( const bool2& lhs, const bool2& rhs ) {
+bool operator!=( const bool2& lhs, const bool2& rhs )
+{
 	return !( operator==( lhs, rhs ) );
 }
 

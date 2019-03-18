@@ -33,61 +33,73 @@ along with hlml.  If not, see <http://www.gnu.org/licenses/>.
 // forward declares
 int2x2 inverse( const int2x2& mat );
 
-int2x2::int2x2() {
+int2x2::int2x2()
+{
 	rows[0] = { 1, 0 };
 	rows[1] = { 0, 1 };
 }
 
-int2x2::int2x2( const int32_t diagonal ) {
+int2x2::int2x2( const int32_t diagonal )
+{
 	rows[0] = { diagonal, 0 };
 	rows[1] = { 0, diagonal };
 }
 
-int2x2::int2x2( const int2& diagonal ) {
+int2x2::int2x2( const int2& diagonal )
+{
 	rows[0] = { diagonal.x, 0 };
 	rows[1] = { 0, diagonal.y };
 }
 
-int2x2::int2x2( const int2& row0, const int2& row1 ) {
+int2x2::int2x2( const int2& row0, const int2& row1 )
+{
 	rows[0] = row0;
 	rows[1] = row1;
 }
 
-int2x2::int2x2( const int2 rows[2] ) {
+int2x2::int2x2( const int2 rows[2] )
+{
 	this->rows[0] = rows[0];
 	this->rows[1] = rows[1];
 }
 
-int2x2::int2x2( const int32_t m00, const int32_t m01, const int32_t m10, const int32_t m11 ) {
+int2x2::int2x2( const int32_t m00, const int32_t m01, const int32_t m10, const int32_t m11 )
+{
 	rows[0] = { m00, m01 };
 	rows[1] = { m10, m11 };
 }
 
-int2x2::int2x2( const int2x2& other ) {
+int2x2::int2x2( const int2x2& other )
+{
 	memcpy( rows, other.rows, sizeof( rows ) );
 };
 
-int2x2 int2x2::operator=( const int2x2& other ) {
+int2x2 int2x2::operator=( const int2x2& other )
+{
 	memcpy( rows, other.rows, sizeof( rows ) );
 	return *this;
 };
 
-int2& int2x2::operator[]( const uint32_t index ) {
+int2& int2x2::operator[]( const uint32_t index )
+{
 	assert( index < 2 );
 	return rows[index];
 }
 
-const int2& int2x2::operator[]( const uint32_t index ) const {
+const int2& int2x2::operator[]( const uint32_t index ) const
+{
 	assert( index < 2 );
 	return rows[index];
 }
 
-bool operator==( const int2x2& lhs, const int2x2& rhs ) {
+bool operator==( const int2x2& lhs, const int2x2& rhs )
+{
 	return lhs[0] == rhs[0]
 		&& lhs[1] == rhs[1];
 }
 
-bool operator!=( const int2x2& lhs, const int2x2& rhs ) {
+bool operator!=( const int2x2& lhs, const int2x2& rhs )
+{
 	return !( operator==( lhs, rhs ) );
 }
 

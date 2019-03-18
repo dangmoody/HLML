@@ -28,7 +28,8 @@ along with hlml.  If not, see <http://www.gnu.org/licenses/>.
 
 #include <temper/temper.h>
 
-TEMPER_TEST( TestAssignment_double2x2 ) {
+TEMPER_TEST( TestAssignment_double2x2 )
+{
 	double2x2 mat;
 
 	// fill single value
@@ -55,7 +56,8 @@ TEMPER_TEST( TestAssignment_double2x2 ) {
 	TEMPER_PASS();
 }
 
-TEMPER_TEST( TestArithmeticAddition_double2x2 ) {
+TEMPER_TEST( TestArithmeticAddition_double2x2 )
+{
 	double2x2 answer = double2x2(
 		7.000000, 7.000000,
 		8.000000, 8.000000
@@ -76,7 +78,8 @@ TEMPER_TEST( TestArithmeticAddition_double2x2 ) {
 	TEMPER_PASS();
 }
 
-TEMPER_TEST( TestArithmeticSubtraction_double2x2 ) {
+TEMPER_TEST( TestArithmeticSubtraction_double2x2 )
+{
 	double2x2 answer = double2x2(
 		5.000000, 5.000000,
 		4.000000, 4.000000
@@ -97,7 +100,8 @@ TEMPER_TEST( TestArithmeticSubtraction_double2x2 ) {
 	TEMPER_PASS();
 }
 
-TEMPER_TEST( TestArithmeticMultiplication_double2x2 ) {
+TEMPER_TEST( TestArithmeticMultiplication_double2x2 )
+{
 	double2x2 answer = double2x2(
 		18.000000, 18.000000,
 		18.000000, 18.000000
@@ -118,7 +122,8 @@ TEMPER_TEST( TestArithmeticMultiplication_double2x2 ) {
 	TEMPER_PASS();
 }
 
-TEMPER_TEST( TestArithmeticDivision_double2x2 ) {
+TEMPER_TEST( TestArithmeticDivision_double2x2 )
+{
 	double2x2 answer = double2x2(
 		1.000000, 0.000000,
 		0.000000, 1.000000
@@ -139,7 +144,8 @@ TEMPER_TEST( TestArithmeticDivision_double2x2 ) {
 	TEMPER_PASS();
 }
 
-TEMPER_TEST( TestIncrement_double2x2 ) {
+TEMPER_TEST( TestIncrement_double2x2 )
+{
 	double2x2 mat;
 
 	// prefix
@@ -167,7 +173,8 @@ TEMPER_TEST( TestIncrement_double2x2 ) {
 	TEMPER_PASS();
 }
 
-TEMPER_TEST( TestDecrement_double2x2 ) {
+TEMPER_TEST( TestDecrement_double2x2 )
+{
 	double2x2 mat;
 
 	// prefix
@@ -195,7 +202,8 @@ TEMPER_TEST( TestDecrement_double2x2 ) {
 	TEMPER_PASS();
 }
 
-TEMPER_TEST( TestRelational_double2x2 ) {
+TEMPER_TEST( TestRelational_double2x2 )
+{
 	double2x2 mat0 = double2x2(
 		1.000000, 1.000000,
 		1.000000, 1.000000
@@ -304,7 +312,8 @@ TEMPER_TEST( TestRelational_double2x2 ) {
 	TEMPER_PASS();
 }
 
-TEMPER_TEST( TestArray_double2x2 ) {
+TEMPER_TEST( TestArray_double2x2 )
+{
 	double2x2 mat;
 
 	TEMPER_EXPECT_TRUE( mat[0] == double2( 1.000000, 0.000000 ) );
@@ -313,7 +322,8 @@ TEMPER_TEST( TestArray_double2x2 ) {
 	TEMPER_PASS();
 }
 
-TEMPER_TEST( TestIdentity_double2x2 ) {
+TEMPER_TEST( TestIdentity_double2x2 )
+{
 	double2x2 id = double2x2(
 		1.000000, 0.000000,
 		0.000000, 1.000000
@@ -328,7 +338,8 @@ TEMPER_TEST( TestIdentity_double2x2 ) {
 	TEMPER_PASS();
 }
 
-TEMPER_TEST( TestTranspose_double2x2 ) {
+TEMPER_TEST( TestTranspose_double2x2 )
+{
 	double2x2 mat = double2x2(
 		0.000000, 1.000000,
 		2.000000, 3.000000
@@ -343,7 +354,8 @@ TEMPER_TEST( TestTranspose_double2x2 ) {
 	TEMPER_PASS();
 }
 
-TEMPER_TEST( TestInverse_double2x2 ) {
+TEMPER_TEST( TestInverse_double2x2 )
+{
 	double2x2 identityMatrix;
 
 	double2x2 mat = double2x2(
@@ -357,7 +369,8 @@ TEMPER_TEST( TestInverse_double2x2 ) {
 	TEMPER_PASS();
 }
 
-TEMPER_TEST( TestDeterminant_double2x2 ) {
+TEMPER_TEST( TestDeterminant_double2x2 )
+{
 	double2x2 mat = double2x2(
 		6.000000, 2.000000,
 		2.000000, 6.000000
@@ -369,7 +382,8 @@ TEMPER_TEST( TestDeterminant_double2x2 ) {
 	TEMPER_PASS();
 }
 
-TEMPER_TEST( TestScale_double2x2 ) {
+TEMPER_TEST( TestScale_double2x2 )
+{
 	double2x2 mat;
 	double2x2 scaled = scale( mat, double3( 2.000000, 2.000000, 2.000000 ) );
 
@@ -381,7 +395,8 @@ TEMPER_TEST( TestScale_double2x2 ) {
 	TEMPER_PASS();
 }
 
-TEMPER_SUITE( Test_double2x2 ) {
+TEMPER_SUITE( Test_double2x2 )
+{
 	TEMPER_RUN_TEST( TestAssignment_double2x2 );
 
 	TEMPER_RUN_TEST( TestArithmeticAddition_double2x2 );

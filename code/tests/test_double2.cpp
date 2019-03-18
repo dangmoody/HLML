@@ -29,7 +29,8 @@ along with hlml.  If not, see <http://www.gnu.org/licenses/>.
 #include <temper/temper.h>
 
 // also tests equality operators
-TEMPER_TEST( TestAssignment_double2 ) {
+TEMPER_TEST( TestAssignment_double2 )
+{
 	double2 a;
 
 	a = double2( 1.000000 );
@@ -43,7 +44,8 @@ TEMPER_TEST( TestAssignment_double2 ) {
 	TEMPER_PASS();
 }
 
-TEMPER_TEST( TestArray_double2 ) {
+TEMPER_TEST( TestArray_double2 )
+{
 	double2 a = double2( 0.000000, 1.000000 );
 
 	TEMPER_EXPECT_TRUE( a[0] == 0.000000 );
@@ -52,7 +54,8 @@ TEMPER_TEST( TestArray_double2 ) {
 	TEMPER_PASS();
 }
 
-TEMPER_TEST( TestArithmeticAddition_double2 ) {
+TEMPER_TEST( TestArithmeticAddition_double2 )
+{
 	double2 a  = double2( 6.000000 );
 	double2 b  = double2( 2.000000, 3.000000 );
 
@@ -63,7 +66,8 @@ TEMPER_TEST( TestArithmeticAddition_double2 ) {
 	TEMPER_PASS();
 }
 
-TEMPER_TEST( TestArithmeticSubtraction_double2 ) {
+TEMPER_TEST( TestArithmeticSubtraction_double2 )
+{
 	double2 a  = double2( 6.000000 );
 	double2 b  = double2( 2.000000, 3.000000 );
 
@@ -74,7 +78,8 @@ TEMPER_TEST( TestArithmeticSubtraction_double2 ) {
 	TEMPER_PASS();
 }
 
-TEMPER_TEST( TestArithmeticMultiplication_double2 ) {
+TEMPER_TEST( TestArithmeticMultiplication_double2 )
+{
 	double2 a  = double2( 6.000000 );
 	double2 b  = double2( 2.000000, 3.000000 );
 
@@ -85,7 +90,8 @@ TEMPER_TEST( TestArithmeticMultiplication_double2 ) {
 	TEMPER_PASS();
 }
 
-TEMPER_TEST( TestArithmeticDivision_double2 ) {
+TEMPER_TEST( TestArithmeticDivision_double2 )
+{
 	double2 a  = double2( 6.000000 );
 	double2 b  = double2( 2.000000, 2.000000 );
 
@@ -96,7 +102,8 @@ TEMPER_TEST( TestArithmeticDivision_double2 ) {
 	TEMPER_PASS();
 }
 
-TEMPER_TEST( TestIncrement_double2 ) {
+TEMPER_TEST( TestIncrement_double2 )
+{
 	double2 vec;
 
 	// prefix
@@ -112,7 +119,8 @@ TEMPER_TEST( TestIncrement_double2 ) {
 	TEMPER_PASS();
 }
 
-TEMPER_TEST( TestDecrement_double2 ) {
+TEMPER_TEST( TestDecrement_double2 )
+{
 	double2 vec;
 
 	// prefix
@@ -128,7 +136,8 @@ TEMPER_TEST( TestDecrement_double2 ) {
 	TEMPER_PASS();
 }
 
-TEMPER_TEST( TestRelational_double2 ) {
+TEMPER_TEST( TestRelational_double2 )
+{
 	double2 vec0 = double2( 0.000000, 0.000000 );
 	double2 vec1 = double2( 1.000000, 1.000000 );
 
@@ -150,7 +159,8 @@ TEMPER_TEST( TestRelational_double2 ) {
 	TEMPER_PASS();
 }
 
-TEMPER_TEST( TestLength_double2 ) {
+TEMPER_TEST( TestLength_double2 )
+{
 	double2 vec = double2( 2.000000 );
 
 	TEMPER_EXPECT_TRUE( doubleeq( lengthsqr( vec ), 8.0 ) );
@@ -159,7 +169,8 @@ TEMPER_TEST( TestLength_double2 ) {
 	TEMPER_PASS();
 }
 
-TEMPER_TEST( TestNormalized_double2 ) {
+TEMPER_TEST( TestNormalized_double2 )
+{
 	double2 vec = double2( 2.000000, 3.000000 );
 	vec = normalized( vec );
 
@@ -168,7 +179,8 @@ TEMPER_TEST( TestNormalized_double2 ) {
 	TEMPER_PASS();
 }
 
-TEMPER_TEST( TestDot_double2 ) {
+TEMPER_TEST( TestDot_double2 )
+{
 	double2 a = double2( 0.000000, 1.000000 );
 	double2 b = double2( 0.000000, -1.000000 );
 
@@ -177,7 +189,8 @@ TEMPER_TEST( TestDot_double2 ) {
 	TEMPER_PASS();
 }
 
-TEMPER_TEST( TestAngle_double2 ) {
+TEMPER_TEST( TestAngle_double2 )
+{
 	double2 right = double2( 1.000000, 0.000000 );
 	double2 up = double2( 0.000000, 1.000000 );
 	double answer = angle( up, right );
@@ -187,7 +200,8 @@ TEMPER_TEST( TestAngle_double2 ) {
 	TEMPER_PASS();
 }
 
-TEMPER_TEST( TestSaturate_double2 ) {
+TEMPER_TEST( TestSaturate_double2 )
+{
 	double2 answer = double2( 0.000000, 1.000000 );
 
 	double2 vec = double2( -1.000000, 2.000000 );
@@ -198,7 +212,8 @@ TEMPER_TEST( TestSaturate_double2 ) {
 	TEMPER_PASS();
 }
 
-TEMPER_TEST( TestLerp_double2 ) {
+TEMPER_TEST( TestLerp_double2 )
+{
 	double2 answer = double2( 0.500000, 0.500000 );
 
 	double2 a = double2( 0.000000, 1.000000 );
@@ -210,7 +225,8 @@ TEMPER_TEST( TestLerp_double2 ) {
 	TEMPER_PASS();
 }
 
-TEMPER_SUITE( Test_double2 ) {
+TEMPER_SUITE( Test_double2 )
+{
 	TEMPER_RUN_TEST( TestAssignment_double2 );
 	TEMPER_RUN_TEST( TestArray_double2 );
 

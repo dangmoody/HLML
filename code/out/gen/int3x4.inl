@@ -33,68 +33,80 @@ along with hlml.  If not, see <http://www.gnu.org/licenses/>.
 // forward declares
 int3x4 inverse( const int3x4& mat );
 
-int3x4::int3x4() {
+int3x4::int3x4()
+{
 	rows[0] = { 1, 0, 0, 0 };
 	rows[1] = { 0, 1, 0, 0 };
 	rows[2] = { 0, 0, 1, 0 };
 }
 
-int3x4::int3x4( const int32_t diagonal ) {
+int3x4::int3x4( const int32_t diagonal )
+{
 	rows[0] = { diagonal, 0, 0, 0 };
 	rows[1] = { 0, diagonal, 0, 0 };
 	rows[2] = { 0, 0, diagonal, 0 };
 }
 
-int3x4::int3x4( const int4& diagonal ) {
+int3x4::int3x4( const int4& diagonal )
+{
 	rows[0] = { diagonal.x, 0, 0, 0 };
 	rows[1] = { 0, diagonal.y, 0, 0 };
 	rows[2] = { 0, 0, diagonal.z, 0 };
 }
 
-int3x4::int3x4( const int4& row0, const int4& row1, const int4& row2 ) {
+int3x4::int3x4( const int4& row0, const int4& row1, const int4& row2 )
+{
 	rows[0] = row0;
 	rows[1] = row1;
 	rows[2] = row2;
 }
 
-int3x4::int3x4( const int4 rows[3] ) {
+int3x4::int3x4( const int4 rows[3] )
+{
 	this->rows[0] = rows[0];
 	this->rows[1] = rows[1];
 	this->rows[2] = rows[2];
 }
 
-int3x4::int3x4( const int32_t m00, const int32_t m01, const int32_t m02, const int32_t m03, const int32_t m10, const int32_t m11, const int32_t m12, const int32_t m13, const int32_t m20, const int32_t m21, const int32_t m22, const int32_t m23 ) {
+int3x4::int3x4( const int32_t m00, const int32_t m01, const int32_t m02, const int32_t m03, const int32_t m10, const int32_t m11, const int32_t m12, const int32_t m13, const int32_t m20, const int32_t m21, const int32_t m22, const int32_t m23 )
+{
 	rows[0] = { m00, m01, m02, m03 };
 	rows[1] = { m10, m11, m12, m13 };
 	rows[2] = { m20, m21, m22, m23 };
 }
 
-int3x4::int3x4( const int3x4& other ) {
+int3x4::int3x4( const int3x4& other )
+{
 	memcpy( rows, other.rows, sizeof( rows ) );
 };
 
-int3x4 int3x4::operator=( const int3x4& other ) {
+int3x4 int3x4::operator=( const int3x4& other )
+{
 	memcpy( rows, other.rows, sizeof( rows ) );
 	return *this;
 };
 
-int4& int3x4::operator[]( const uint32_t index ) {
+int4& int3x4::operator[]( const uint32_t index )
+{
 	assert( index < 3 );
 	return rows[index];
 }
 
-const int4& int3x4::operator[]( const uint32_t index ) const {
+const int4& int3x4::operator[]( const uint32_t index ) const
+{
 	assert( index < 3 );
 	return rows[index];
 }
 
-bool operator==( const int3x4& lhs, const int3x4& rhs ) {
+bool operator==( const int3x4& lhs, const int3x4& rhs )
+{
 	return lhs[0] == rhs[0]
 		&& lhs[1] == rhs[1]
 		&& lhs[2] == rhs[2];
 }
 
-bool operator!=( const int3x4& lhs, const int3x4& rhs ) {
+bool operator!=( const int3x4& lhs, const int3x4& rhs )
+{
 	return !( operator==( lhs, rhs ) );
 }
 

@@ -35,14 +35,18 @@ struct int4;
 
 /// \brief A vector of 2 int32_ts with components xy and/or rg.
 /// Components are also stored as elements in an array via a union.
-struct int2 {
-	union {
-		struct {
+struct int2
+{
+	union
+	{
+		struct
+		{
 			int32_t x;
 			int32_t y;
 		};
 
-		struct {
+		struct
+		{
 			int32_t r;
 			int32_t g;
 		};

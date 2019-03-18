@@ -35,62 +35,75 @@ along with hlml.  If not, see <http://www.gnu.org/licenses/>.
 #include <memory.h>
 #include <assert.h>
 
-double3::double3() {
+double3::double3()
+{
 	memset( data, 0, 3 * sizeof( double ) );
 }
 
-double3::double3( const double x ) {
+double3::double3( const double x )
+{
 	this->x = this->y = this->z = x;
 }
 
-double3::double3( const double x, const double y, const double z ) {
+double3::double3( const double x, const double y, const double z )
+{
 	this->x = x;
 	this->y = y;
 	this->z = z;
 }
 
-double3::double3( const double2& other ) {
+double3::double3( const double2& other )
+{
 	memcpy( data, other.data, sizeof( other.data ) );
 }
 
-double3::double3( const double3& other ) {
+double3::double3( const double3& other )
+{
 	memcpy( data, other.data, sizeof( other.data ) );
 }
 
-double3::double3( const double4& other ) {
+double3::double3( const double4& other )
+{
 	memcpy( data, other.data, sizeof( other.data ) );
 }
 
-double3 double3::operator=( const double2& rhs ) {
+double3 double3::operator=( const double2& rhs )
+{
 	memcpy( data, rhs.data, sizeof( rhs.data ) );
 	return *this;
 }
 
-double3 double3::operator=( const double3& rhs ) {
+double3 double3::operator=( const double3& rhs )
+{
 	memcpy( data, rhs.data, sizeof( rhs.data ) );
 	return *this;
 }
 
-double3 double3::operator=( const double4& rhs ) {
+double3 double3::operator=( const double4& rhs )
+{
 	memcpy( data, rhs.data, sizeof( rhs.data ) );
 	return *this;
 }
 
-const double& double3::operator[]( const uint32_t index ) const {
+const double& double3::operator[]( const uint32_t index ) const
+{
 	assert( index < 3 );
 	return data[index];
 }
 
-double& double3::operator[]( const uint32_t index ) {
+double& double3::operator[]( const uint32_t index )
+{
 	assert( index < 3 );
 	return data[index];
 }
 
-bool operator==( const double3& lhs, const double3& rhs ) {
+bool operator==( const double3& lhs, const double3& rhs )
+{
 	return doubleeq( lhs.x, rhs. x ) && doubleeq( lhs.y, rhs. y ) && doubleeq( lhs.z, rhs. z );
 }
 
-bool operator!=( const double3& lhs, const double3& rhs ) {
+bool operator!=( const double3& lhs, const double3& rhs )
+{
 	return !( operator==( lhs, rhs ) );
 }
 

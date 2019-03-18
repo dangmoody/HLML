@@ -28,7 +28,8 @@ along with hlml.  If not, see <http://www.gnu.org/licenses/>.
 
 #include <temper/temper.h>
 
-TEMPER_TEST( TestAssignment_float4x3 ) {
+TEMPER_TEST( TestAssignment_float4x3 )
+{
 	float4x3 mat;
 
 	// fill single value
@@ -65,7 +66,8 @@ TEMPER_TEST( TestAssignment_float4x3 ) {
 	TEMPER_PASS();
 }
 
-TEMPER_TEST( TestArithmeticAddition_float4x3 ) {
+TEMPER_TEST( TestArithmeticAddition_float4x3 )
+{
 	float4x3 answer = float4x3(
 		7.000000f, 7.000000f, 7.000000f,
 		8.000000f, 8.000000f, 8.000000f,
@@ -92,7 +94,8 @@ TEMPER_TEST( TestArithmeticAddition_float4x3 ) {
 	TEMPER_PASS();
 }
 
-TEMPER_TEST( TestArithmeticSubtraction_float4x3 ) {
+TEMPER_TEST( TestArithmeticSubtraction_float4x3 )
+{
 	float4x3 answer = float4x3(
 		5.000000f, 5.000000f, 5.000000f,
 		4.000000f, 4.000000f, 4.000000f,
@@ -119,7 +122,8 @@ TEMPER_TEST( TestArithmeticSubtraction_float4x3 ) {
 	TEMPER_PASS();
 }
 
-TEMPER_TEST( TestArithmeticMultiplication_float4x3 ) {
+TEMPER_TEST( TestArithmeticMultiplication_float4x3 )
+{
 	float4x4 answer = float4x4(
 		36.000000f, 36.000000f, 36.000000f, 36.000000f,
 		36.000000f, 36.000000f, 36.000000f, 36.000000f,
@@ -145,7 +149,8 @@ TEMPER_TEST( TestArithmeticMultiplication_float4x3 ) {
 	TEMPER_PASS();
 }
 
-TEMPER_TEST( TestArithmeticDivision_float4x3 ) {
+TEMPER_TEST( TestArithmeticDivision_float4x3 )
+{
 	float4x3 answer = float4x3(
 		6.000000f, 6.000000f, 6.000000f,
 		3.000000f, 3.000000f, 3.000000f,
@@ -172,7 +177,8 @@ TEMPER_TEST( TestArithmeticDivision_float4x3 ) {
 	TEMPER_PASS();
 }
 
-TEMPER_TEST( TestIncrement_float4x3 ) {
+TEMPER_TEST( TestIncrement_float4x3 )
+{
 	float4x3 mat;
 
 	// prefix
@@ -208,7 +214,8 @@ TEMPER_TEST( TestIncrement_float4x3 ) {
 	TEMPER_PASS();
 }
 
-TEMPER_TEST( TestDecrement_float4x3 ) {
+TEMPER_TEST( TestDecrement_float4x3 )
+{
 	float4x3 mat;
 
 	// prefix
@@ -244,7 +251,8 @@ TEMPER_TEST( TestDecrement_float4x3 ) {
 	TEMPER_PASS();
 }
 
-TEMPER_TEST( TestRelational_float4x3 ) {
+TEMPER_TEST( TestRelational_float4x3 )
+{
 	float4x3 mat0 = float4x3(
 		1.000000f, 1.000000f, 1.000000f,
 		1.000000f, 1.000000f, 1.000000f,
@@ -389,7 +397,8 @@ TEMPER_TEST( TestRelational_float4x3 ) {
 	TEMPER_PASS();
 }
 
-TEMPER_TEST( TestArray_float4x3 ) {
+TEMPER_TEST( TestArray_float4x3 )
+{
 	float4x3 mat;
 
 	TEMPER_EXPECT_TRUE( mat[0] == float3( 1.000000f, 0.000000f, 0.000000f ) );
@@ -400,7 +409,8 @@ TEMPER_TEST( TestArray_float4x3 ) {
 	TEMPER_PASS();
 }
 
-TEMPER_TEST( TestIdentity_float4x3 ) {
+TEMPER_TEST( TestIdentity_float4x3 )
+{
 	float4x3 id = float4x3(
 		1.000000f, 0.000000f, 0.000000f,
 		0.000000f, 1.000000f, 0.000000f,
@@ -417,7 +427,8 @@ TEMPER_TEST( TestIdentity_float4x3 ) {
 	TEMPER_PASS();
 }
 
-TEMPER_TEST( TestTranspose_float4x3 ) {
+TEMPER_TEST( TestTranspose_float4x3 )
+{
 	float4x3 mat = float4x3(
 		0.000000f, 1.000000f, 2.000000f,
 		3.000000f, 4.000000f, 5.000000f,
@@ -435,7 +446,8 @@ TEMPER_TEST( TestTranspose_float4x3 ) {
 	TEMPER_PASS();
 }
 
-TEMPER_TEST( TestScale_float4x3 ) {
+TEMPER_TEST( TestScale_float4x3 )
+{
 	float4x3 mat;
 	float4x3 scaled = scale( mat, float3( 2.000000f, 2.000000f, 2.000000f ) );
 
@@ -449,7 +461,8 @@ TEMPER_TEST( TestScale_float4x3 ) {
 	TEMPER_PASS();
 }
 
-TEMPER_SUITE( Test_float4x3 ) {
+TEMPER_SUITE( Test_float4x3 )
+{
 	TEMPER_RUN_TEST( TestAssignment_float4x3 );
 
 	TEMPER_RUN_TEST( TestArithmeticAddition_float4x3 );

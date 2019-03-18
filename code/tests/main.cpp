@@ -26,7 +26,8 @@ along with hlml.  If not, see <http://www.gnu.org/licenses/>.
 
 #include <temper/temper.h>
 
-static void OnSuiteEnd( void* userdata ) {
+static void OnSuiteEnd( void* userdata )
+{
 	( (void) userdata );
 	printf( "\n" );
 }
@@ -108,7 +109,8 @@ TEMPER_SUITE_EXTERN( Test_double4x4 );
 
 TEMPER_DEFS();
 
-int main( int argc, char** argv ) {
+int main( int argc, char** argv )
+{
 	TEMPER_SET_COMMAND_LINE_ARGS( argc, argv );
 
 	TEMPER_SET_SUITE_END_CALLBACK( OnSuiteEnd, nullptr );

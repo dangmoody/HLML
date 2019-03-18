@@ -28,7 +28,8 @@ along with hlml.  If not, see <http://www.gnu.org/licenses/>.
 
 #include <temper/temper.h>
 
-TEMPER_TEST( TestAssignment_double4x4 ) {
+TEMPER_TEST( TestAssignment_double4x4 )
+{
 	double4x4 mat;
 
 	// fill single value
@@ -65,7 +66,8 @@ TEMPER_TEST( TestAssignment_double4x4 ) {
 	TEMPER_PASS();
 }
 
-TEMPER_TEST( TestArithmeticAddition_double4x4 ) {
+TEMPER_TEST( TestArithmeticAddition_double4x4 )
+{
 	double4x4 answer = double4x4(
 		7.000000, 7.000000, 7.000000, 7.000000,
 		8.000000, 8.000000, 8.000000, 8.000000,
@@ -92,7 +94,8 @@ TEMPER_TEST( TestArithmeticAddition_double4x4 ) {
 	TEMPER_PASS();
 }
 
-TEMPER_TEST( TestArithmeticSubtraction_double4x4 ) {
+TEMPER_TEST( TestArithmeticSubtraction_double4x4 )
+{
 	double4x4 answer = double4x4(
 		5.000000, 5.000000, 5.000000, 5.000000,
 		4.000000, 4.000000, 4.000000, 4.000000,
@@ -119,7 +122,8 @@ TEMPER_TEST( TestArithmeticSubtraction_double4x4 ) {
 	TEMPER_PASS();
 }
 
-TEMPER_TEST( TestArithmeticMultiplication_double4x4 ) {
+TEMPER_TEST( TestArithmeticMultiplication_double4x4 )
+{
 	double4x4 answer = double4x4(
 		72.000000, 72.000000, 72.000000, 72.000000,
 		72.000000, 72.000000, 72.000000, 72.000000,
@@ -146,7 +150,8 @@ TEMPER_TEST( TestArithmeticMultiplication_double4x4 ) {
 	TEMPER_PASS();
 }
 
-TEMPER_TEST( TestArithmeticDivision_double4x4 ) {
+TEMPER_TEST( TestArithmeticDivision_double4x4 )
+{
 	double4x4 answer = double4x4(
 		1.000000, 0.000000, 0.000000, 0.000000,
 		0.000000, 1.000000, 0.000000, 0.000000,
@@ -173,7 +178,8 @@ TEMPER_TEST( TestArithmeticDivision_double4x4 ) {
 	TEMPER_PASS();
 }
 
-TEMPER_TEST( TestIncrement_double4x4 ) {
+TEMPER_TEST( TestIncrement_double4x4 )
+{
 	double4x4 mat;
 
 	// prefix
@@ -209,7 +215,8 @@ TEMPER_TEST( TestIncrement_double4x4 ) {
 	TEMPER_PASS();
 }
 
-TEMPER_TEST( TestDecrement_double4x4 ) {
+TEMPER_TEST( TestDecrement_double4x4 )
+{
 	double4x4 mat;
 
 	// prefix
@@ -245,7 +252,8 @@ TEMPER_TEST( TestDecrement_double4x4 ) {
 	TEMPER_PASS();
 }
 
-TEMPER_TEST( TestRelational_double4x4 ) {
+TEMPER_TEST( TestRelational_double4x4 )
+{
 	double4x4 mat0 = double4x4(
 		1.000000, 1.000000, 1.000000, 1.000000,
 		1.000000, 1.000000, 1.000000, 1.000000,
@@ -390,7 +398,8 @@ TEMPER_TEST( TestRelational_double4x4 ) {
 	TEMPER_PASS();
 }
 
-TEMPER_TEST( TestArray_double4x4 ) {
+TEMPER_TEST( TestArray_double4x4 )
+{
 	double4x4 mat;
 
 	TEMPER_EXPECT_TRUE( mat[0] == double4( 1.000000, 0.000000, 0.000000, 0.000000 ) );
@@ -401,7 +410,8 @@ TEMPER_TEST( TestArray_double4x4 ) {
 	TEMPER_PASS();
 }
 
-TEMPER_TEST( TestIdentity_double4x4 ) {
+TEMPER_TEST( TestIdentity_double4x4 )
+{
 	double4x4 id = double4x4(
 		1.000000, 0.000000, 0.000000, 0.000000,
 		0.000000, 1.000000, 0.000000, 0.000000,
@@ -418,7 +428,8 @@ TEMPER_TEST( TestIdentity_double4x4 ) {
 	TEMPER_PASS();
 }
 
-TEMPER_TEST( TestTranspose_double4x4 ) {
+TEMPER_TEST( TestTranspose_double4x4 )
+{
 	double4x4 mat = double4x4(
 		0.000000, 1.000000, 2.000000, 3.000000,
 		4.000000, 5.000000, 6.000000, 7.000000,
@@ -437,7 +448,8 @@ TEMPER_TEST( TestTranspose_double4x4 ) {
 	TEMPER_PASS();
 }
 
-TEMPER_TEST( TestInverse_double4x4 ) {
+TEMPER_TEST( TestInverse_double4x4 )
+{
 	double4x4 identityMatrix;
 
 	double4x4 mat = double4x4(
@@ -453,7 +465,8 @@ TEMPER_TEST( TestInverse_double4x4 ) {
 	TEMPER_PASS();
 }
 
-TEMPER_TEST( TestDeterminant_double4x4 ) {
+TEMPER_TEST( TestDeterminant_double4x4 )
+{
 	double4x4 mat = double4x4(
 		6.000000, 2.000000, 3.000000, 4.000000,
 		2.000000, 7.000000, 5.000000, 3.000000,
@@ -467,7 +480,8 @@ TEMPER_TEST( TestDeterminant_double4x4 ) {
 	TEMPER_PASS();
 }
 
-TEMPER_TEST( TestTranslate_double4x4 ) {
+TEMPER_TEST( TestTranslate_double4x4 )
+{
 	double4x4 mat;
 	double4x4 translated = double4x4(
 		1.000000, 0.000000, 0.000000, 2.000000,
@@ -484,7 +498,8 @@ TEMPER_TEST( TestTranslate_double4x4 ) {
 	TEMPER_PASS();
 }
 
-TEMPER_TEST( TestRotate_double4x4 ) {
+TEMPER_TEST( TestRotate_double4x4 )
+{
 	double4x4 mat;
 	double4x4 yaw = rotate( mat, radians( 45.000000 ), double3( 0.000000, 1.000000, 0.000000 ) );
 	double4x4 pitch = rotate( mat, radians( 45.000000 ), double3( 1.000000, 0.000000, 0.000000 ) );
@@ -516,7 +531,8 @@ TEMPER_TEST( TestRotate_double4x4 ) {
 	TEMPER_PASS();
 }
 
-TEMPER_TEST( TestScale_double4x4 ) {
+TEMPER_TEST( TestScale_double4x4 )
+{
 	double4x4 mat;
 	double4x4 scaled = scale( mat, double3( 2.000000, 2.000000, 2.000000 ) );
 
@@ -530,7 +546,8 @@ TEMPER_TEST( TestScale_double4x4 ) {
 	TEMPER_PASS();
 }
 
-TEMPER_TEST( TestOrtho_double4x4 ) {
+TEMPER_TEST( TestOrtho_double4x4 )
+{
 	double4x4 answerOrtho = double4x4(
 		0.112500, 0.000000, 0.000000, 0.000000,
 		0.000000, -0.200000, 0.000000, 0.000000,
@@ -555,7 +572,8 @@ TEMPER_TEST( TestOrtho_double4x4 ) {
 	TEMPER_PASS();
 }
 
-TEMPER_TEST( TestPerspective_double4x4 ) {
+TEMPER_TEST( TestPerspective_double4x4 )
+{
 	double4x4 answerPerspective = double4x4(
 		0.347270, 0.000000, 0.000000, 0.000000,
 		0.000000, 0.617370, 0.000000, 0.000000,
@@ -571,7 +589,8 @@ TEMPER_TEST( TestPerspective_double4x4 ) {
 	TEMPER_PASS();
 }
 
-TEMPER_TEST( TestLookAt_double4x4 ) {
+TEMPER_TEST( TestLookAt_double4x4 )
+{
 	double4x4 answerLookAt = double4x4(
 		0.707107, 0.000000, -0.707107, 0.000000,
 		0.000000, 1.000000, 0.000000, 0.000000,
@@ -589,7 +608,8 @@ TEMPER_TEST( TestLookAt_double4x4 ) {
 	TEMPER_PASS();
 }
 
-TEMPER_SUITE( Test_double4x4 ) {
+TEMPER_SUITE( Test_double4x4 )
+{
 	TEMPER_RUN_TEST( TestAssignment_double4x4 );
 
 	TEMPER_RUN_TEST( TestArithmeticAddition_double4x4 );

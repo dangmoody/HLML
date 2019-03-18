@@ -33,61 +33,73 @@ along with hlml.  If not, see <http://www.gnu.org/licenses/>.
 // forward declares
 uint2x2 inverse( const uint2x2& mat );
 
-uint2x2::uint2x2() {
+uint2x2::uint2x2()
+{
 	rows[0] = { 1, 0 };
 	rows[1] = { 0, 1 };
 }
 
-uint2x2::uint2x2( const uint32_t diagonal ) {
+uint2x2::uint2x2( const uint32_t diagonal )
+{
 	rows[0] = { diagonal, 0 };
 	rows[1] = { 0, diagonal };
 }
 
-uint2x2::uint2x2( const uint2& diagonal ) {
+uint2x2::uint2x2( const uint2& diagonal )
+{
 	rows[0] = { diagonal.x, 0 };
 	rows[1] = { 0, diagonal.y };
 }
 
-uint2x2::uint2x2( const uint2& row0, const uint2& row1 ) {
+uint2x2::uint2x2( const uint2& row0, const uint2& row1 )
+{
 	rows[0] = row0;
 	rows[1] = row1;
 }
 
-uint2x2::uint2x2( const uint2 rows[2] ) {
+uint2x2::uint2x2( const uint2 rows[2] )
+{
 	this->rows[0] = rows[0];
 	this->rows[1] = rows[1];
 }
 
-uint2x2::uint2x2( const uint32_t m00, const uint32_t m01, const uint32_t m10, const uint32_t m11 ) {
+uint2x2::uint2x2( const uint32_t m00, const uint32_t m01, const uint32_t m10, const uint32_t m11 )
+{
 	rows[0] = { m00, m01 };
 	rows[1] = { m10, m11 };
 }
 
-uint2x2::uint2x2( const uint2x2& other ) {
+uint2x2::uint2x2( const uint2x2& other )
+{
 	memcpy( rows, other.rows, sizeof( rows ) );
 };
 
-uint2x2 uint2x2::operator=( const uint2x2& other ) {
+uint2x2 uint2x2::operator=( const uint2x2& other )
+{
 	memcpy( rows, other.rows, sizeof( rows ) );
 	return *this;
 };
 
-uint2& uint2x2::operator[]( const uint32_t index ) {
+uint2& uint2x2::operator[]( const uint32_t index )
+{
 	assert( index < 2 );
 	return rows[index];
 }
 
-const uint2& uint2x2::operator[]( const uint32_t index ) const {
+const uint2& uint2x2::operator[]( const uint32_t index ) const
+{
 	assert( index < 2 );
 	return rows[index];
 }
 
-bool operator==( const uint2x2& lhs, const uint2x2& rhs ) {
+bool operator==( const uint2x2& lhs, const uint2x2& rhs )
+{
 	return lhs[0] == rhs[0]
 		&& lhs[1] == rhs[1];
 }
 
-bool operator!=( const uint2x2& lhs, const uint2x2& rhs ) {
+bool operator!=( const uint2x2& lhs, const uint2x2& rhs )
+{
 	return !( operator==( lhs, rhs ) );
 }
 

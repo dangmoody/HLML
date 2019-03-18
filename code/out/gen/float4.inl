@@ -35,63 +35,76 @@ along with hlml.  If not, see <http://www.gnu.org/licenses/>.
 #include <memory.h>
 #include <assert.h>
 
-float4::float4() {
+float4::float4()
+{
 	memset( data, 0, 4 * sizeof( float ) );
 }
 
-float4::float4( const float x ) {
+float4::float4( const float x )
+{
 	this->x = this->y = this->z = this->w = x;
 }
 
-float4::float4( const float x, const float y, const float z, const float w ) {
+float4::float4( const float x, const float y, const float z, const float w )
+{
 	this->x = x;
 	this->y = y;
 	this->z = z;
 	this->w = w;
 }
 
-float4::float4( const float2& other ) {
+float4::float4( const float2& other )
+{
 	memcpy( data, other.data, sizeof( other.data ) );
 }
 
-float4::float4( const float3& other ) {
+float4::float4( const float3& other )
+{
 	memcpy( data, other.data, sizeof( other.data ) );
 }
 
-float4::float4( const float4& other ) {
+float4::float4( const float4& other )
+{
 	memcpy( data, other.data, sizeof( other.data ) );
 }
 
-float4 float4::operator=( const float2& rhs ) {
+float4 float4::operator=( const float2& rhs )
+{
 	memcpy( data, rhs.data, sizeof( rhs.data ) );
 	return *this;
 }
 
-float4 float4::operator=( const float3& rhs ) {
+float4 float4::operator=( const float3& rhs )
+{
 	memcpy( data, rhs.data, sizeof( rhs.data ) );
 	return *this;
 }
 
-float4 float4::operator=( const float4& rhs ) {
+float4 float4::operator=( const float4& rhs )
+{
 	memcpy( data, rhs.data, sizeof( rhs.data ) );
 	return *this;
 }
 
-const float& float4::operator[]( const uint32_t index ) const {
+const float& float4::operator[]( const uint32_t index ) const
+{
 	assert( index < 4 );
 	return data[index];
 }
 
-float& float4::operator[]( const uint32_t index ) {
+float& float4::operator[]( const uint32_t index )
+{
 	assert( index < 4 );
 	return data[index];
 }
 
-bool operator==( const float4& lhs, const float4& rhs ) {
+bool operator==( const float4& lhs, const float4& rhs )
+{
 	return floateq( lhs.x, rhs. x ) && floateq( lhs.y, rhs. y ) && floateq( lhs.z, rhs. z ) && floateq( lhs.w, rhs. w );
 }
 
-bool operator!=( const float4& lhs, const float4& rhs ) {
+bool operator!=( const float4& lhs, const float4& rhs )
+{
 	return !( operator==( lhs, rhs ) );
 }
 

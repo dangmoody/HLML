@@ -58,7 +58,8 @@ void TestsGeneratorVector::Generate( const genType_t type, const uint32_t numCom
 
 	GenerateTestPacking();
 
-	m_code += "TEMPER_SUITE( " + m_testPrefix + " ) {\n";
+	m_code += "TEMPER_SUITE( " + m_testPrefix + " )\n";
+	m_code += "{\n";
 	m_code += "\tTEMPER_RUN_TEST( TestAssignment_" + m_fullTypeName + " );\n";
 	m_code += "\tTEMPER_RUN_TEST( TestArray_" + m_fullTypeName + " );\n";
 	if ( m_type != GEN_TYPE_BOOL ) {
@@ -123,7 +124,8 @@ void TestsGeneratorVector::GenerateTestAssignment() {
 	std::string parmListVarying = Gen_GetParmListVector( m_type, m_numComponents, values );
 
 	m_code += "// also tests equality operators\n";
-	m_code += "TEMPER_TEST( TestAssignment_" + m_fullTypeName + " ) {\n";
+	m_code += "TEMPER_TEST( TestAssignment_" + m_fullTypeName + " )\n";
+	m_code += "{\n";
 	m_code += "\t" + m_fullTypeName + " a;\n";
 	m_code += "\n";
 	m_code += "\ta = " + m_fullTypeName + paramListOne + ";\n";
@@ -143,7 +145,8 @@ void TestsGeneratorVector::GenerateTestArray() {
 	float values[] = { 0.0f, 1.0f, 2.0f, 3.0f };
 	std::string parmList = Gen_GetParmListVector( m_type, m_numComponents, values );
 
-	m_code += "TEMPER_TEST( TestArray_" + m_fullTypeName + " ) {\n";
+	m_code += "TEMPER_TEST( TestArray_" + m_fullTypeName + " )\n";
+	m_code += "{\n";
 	m_code += "\t" + m_fullTypeName + " a = " + m_fullTypeName + parmList + ";\n";
 	m_code += "\n";
 	for ( uint32_t i = 0; i < m_numComponents; i++ ) {
@@ -196,7 +199,8 @@ void TestsGeneratorVector::GenerateTestArithmetic() {
 	};
 
 	for ( uint32_t i = 0; i < GEN_OP_ARITHMETIC_COUNT; i++ ) {
-		m_code += "TEMPER_TEST( TestArithmetic" + suffices[i] + "_" + m_fullTypeName + " ) {\n";
+		m_code += "TEMPER_TEST( TestArithmetic" + suffices[i] + "_" + m_fullTypeName + " )\n";
+		m_code += "{\n";
 		m_code += "\t" + m_fullTypeName + " a  = " + m_fullTypeName + parmListBase + ";\n";
 		m_code += "\t" + m_fullTypeName + " b  = " + m_fullTypeName + parmListValues[i] + ";\n";
 		m_code += "\n";
@@ -234,7 +238,8 @@ void TestsGeneratorVector::GenerateTestIncrement() {
 	};
 
 	for ( uint32_t i = 0; i < GEN_OP_INCREMENT_COUNT; i++ ) {
-		m_code += "TEMPER_TEST( Test" + suffices[i] + "_" + m_fullTypeName + " ) {\n";
+		m_code += "TEMPER_TEST( Test" + suffices[i] + "_" + m_fullTypeName + " )\n";
+		m_code += "{\n";
 		m_code += "\t" + m_fullTypeName + " vec;\n";
 		m_code += "\n";
 		m_code += "\t// prefix\n";
@@ -279,7 +284,8 @@ void TestsGeneratorVector::GenerateTestRelational() {
 		paramList += " )";
 	}
 
-	m_code += "TEMPER_TEST( TestRelational_" + m_fullTypeName + " ) {\n";
+	m_code += "TEMPER_TEST( TestRelational_" + m_fullTypeName + " )\n";
+	m_code += "{\n";
 	for ( uint32_t i = 0; i < m_numComponents; i++ ) {
 		m_code += "\t" + m_fullTypeName + " vec" + std::to_string( i ) + " = " + m_fullTypeName + paramLists[i] + ";\n";
 	}
@@ -380,7 +386,8 @@ void TestsGeneratorVector::GenerateTestBitwise() {
 	};
 
 	for ( uint32_t i = 0; i < _countof( ops ); i++ ) {
-		m_code += "TEMPER_TEST( TestBitwise" + suffices[i] + "_" + m_fullTypeName + " ) {\n";
+		m_code += "TEMPER_TEST( TestBitwise" + suffices[i] + "_" + m_fullTypeName + " )\n";
+		m_code += "{\n";
 		m_code += "\t" + m_fullTypeName + " a  = " + m_fullTypeName + parmListLhs[i] + ";\n";
 		m_code += "\t" + m_fullTypeName + " b  = " + m_fullTypeName + parmListRhs[i] + ";\n";
 		m_code += "\n";
@@ -394,7 +401,8 @@ void TestsGeneratorVector::GenerateTestBitwise() {
 	}
 
 	// unary
-	m_code += "TEMPER_TEST( TestBitwiseUnary_" + m_fullTypeName + " ) {\n";
+	m_code += "TEMPER_TEST( TestBitwiseUnary_" + m_fullTypeName + " )\n";
+	m_code += "{\n";
 	m_code += "\t" + m_fullTypeName + " a = " + m_fullTypeName + Gen_GetParmListVector( m_type, m_numComponents, values0 ) + ";\n";
 	m_code += "\n";
 	m_code += "\t" + m_fullTypeName + " answer = " + GEN_OPERATORS_BITWISE[GEN_OP_BITWISE_UNARY] + "a;\n";
@@ -433,7 +441,8 @@ void TestsGeneratorVector::GenerateTestLength() {
 		length += "f";
 	}
 
-	m_code += "TEMPER_TEST( TestLength_" + m_fullTypeName + " ) {\n";
+	m_code += "TEMPER_TEST( TestLength_" + m_fullTypeName + " )\n";
+	m_code += "{\n";
 	m_code += "\t" + m_fullTypeName + " vec = " + m_fullTypeName + "( " + Gen_GetNumericLiteral( m_type, 2 ) + " );\n";
 	m_code += "\n";
 	m_code += "\tTEMPER_EXPECT_TRUE( " + floateqStr + "( lengthsqr( vec ), " + squaredLength + " ) );\n";
@@ -455,7 +464,8 @@ void TestsGeneratorVector::GenerateTestNormalized() {
 	genType_t floatingPointType = Gen_GetSupportedFloatingPointType( m_type );
 	std::string oneStr = Gen_GetNumericLiteral( floatingPointType, 1 );
 
-	m_code += "TEMPER_TEST( TestNormalized_" + m_fullTypeName + " ) {\n";
+	m_code += "TEMPER_TEST( TestNormalized_" + m_fullTypeName + " )\n";
+	m_code += "{\n";
 	m_code += "\t" + m_fullTypeName + " vec = " + m_fullTypeName + parmList + ";\n";
 	m_code += "\tvec = normalized( vec );\n";
 	m_code += "\n";
@@ -498,7 +508,8 @@ void TestsGeneratorVector::GenerateTestDot() {
 	}
 	paramListB += " )";
 
-	m_code += "TEMPER_TEST( TestDot_" + m_fullTypeName + " ) {\n";
+	m_code += "TEMPER_TEST( TestDot_" + m_fullTypeName + " )\n";
+	m_code += "{\n";
 	m_code += "\t" + m_fullTypeName + " a = " + m_fullTypeName + paramListA + ";\n";
 	m_code += "\t" + m_fullTypeName + " b = " + m_fullTypeName + paramListB + ";\n";
 	m_code += "\n";
@@ -526,7 +537,8 @@ void TestsGeneratorVector::GenerateTestCross() {
 	std::string parmListUp		= Gen_GetParmListVector( m_type, m_numComponents, up );
 	std::string parmListForward	= Gen_GetParmListVector( m_type, m_numComponents, forward );
 
-	m_code += "TEMPER_TEST( TestCross_" + m_fullTypeName + " ) {\n";
+	m_code += "TEMPER_TEST( TestCross_" + m_fullTypeName + " )\n";
+	m_code += "{\n";
 	m_code += "\t" + m_fullTypeName + " left = " + m_fullTypeName + parmListLeft + ";\n";
 	m_code += "\t" + m_fullTypeName + " forward = " + m_fullTypeName + parmListForward + ";\n";
 	m_code += "\t" + m_fullTypeName + " up = " + m_fullTypeName + parmListUp + ";\n";
@@ -553,7 +565,8 @@ void TestsGeneratorVector::GenerateTestAngle() {
 
 	std::string floateqStr = Gen_GetFuncNameFloateq( m_type );
 
-	m_code += "TEMPER_TEST( TestAngle_" + m_fullTypeName + " ) {\n";
+	m_code += "TEMPER_TEST( TestAngle_" + m_fullTypeName + " )\n";
+	m_code += "{\n";
 	m_code += "\t" + m_fullTypeName + " right = " + m_fullTypeName + parmListRight + ";\n";
 	m_code += "\t" + m_fullTypeName + " up = " + m_fullTypeName + parmListUp + ";\n";
 	m_code += "\t" + m_typeString + " answer = angle( up, right );\n";
@@ -576,7 +589,8 @@ void TestsGeneratorVector::GenerateTestSaturate() {
 	std::string parmList		= Gen_GetParmListVector( m_type, m_numComponents, values );
 	std::string parmListAnswer	= Gen_GetParmListVector( m_type, m_numComponents, valuesAnswer );
 
-	m_code += "TEMPER_TEST( TestSaturate_" + m_fullTypeName + " ) {\n";
+	m_code += "TEMPER_TEST( TestSaturate_" + m_fullTypeName + " )\n";
+	m_code += "{\n";
 	m_code += "\t" + m_fullTypeName + " answer = " + m_fullTypeName + parmListAnswer + ";\n";
 	m_code += "\n";
 	m_code += "\t" + m_fullTypeName + " vec = " + m_fullTypeName + parmList + ";\n";
@@ -604,7 +618,8 @@ void TestsGeneratorVector::GenerateTestLerp() {
 
 	std::string lerpValStr = Gen_GetNumericLiteral( m_type, 0.5f );
 
-	m_code += "TEMPER_TEST( TestLerp_" + m_fullTypeName + " ) {\n";
+	m_code += "TEMPER_TEST( TestLerp_" + m_fullTypeName + " )\n";
+	m_code += "{\n";
 	m_code += "\t" + m_fullTypeName + " answer = " + m_fullTypeName + parmListAnswer + ";\n";
 	m_code += "\n";
 	m_code += "\t" + m_fullTypeName + " a = " + m_fullTypeName + parmListA + ";\n";
@@ -633,7 +648,8 @@ void TestsGeneratorVector::GenerateTestPacking() {
 	std::string answerPacked = "0xFFFF00FF";
 
 	// tests pack and unpack
-	m_code += "TEMPER_TEST( TestPacking_" + m_fullTypeName + " ) {\n";
+	m_code += "TEMPER_TEST( TestPacking_" + m_fullTypeName + " )\n";
+	m_code += "{\n";
 	m_code += "\t" + m_memberTypeString + " answerPacked = " + answerPacked + ";\n";
 	m_code += "\t" + m_fullTypeName + " answerUnpacked = " + m_fullTypeName + parmListAnswerUnpacked + ";\n";
 	m_code += "\n";

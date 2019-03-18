@@ -35,62 +35,75 @@ along with hlml.  If not, see <http://www.gnu.org/licenses/>.
 #include <memory.h>
 #include <assert.h>
 
-bool3::bool3() {
+bool3::bool3()
+{
 	memset( data, 0, 3 * sizeof( bool ) );
 }
 
-bool3::bool3( const bool x ) {
+bool3::bool3( const bool x )
+{
 	this->x = this->y = this->z = x;
 }
 
-bool3::bool3( const bool x, const bool y, const bool z ) {
+bool3::bool3( const bool x, const bool y, const bool z )
+{
 	this->x = x;
 	this->y = y;
 	this->z = z;
 }
 
-bool3::bool3( const bool2& other ) {
+bool3::bool3( const bool2& other )
+{
 	memcpy( data, other.data, sizeof( other.data ) );
 }
 
-bool3::bool3( const bool3& other ) {
+bool3::bool3( const bool3& other )
+{
 	memcpy( data, other.data, sizeof( other.data ) );
 }
 
-bool3::bool3( const bool4& other ) {
+bool3::bool3( const bool4& other )
+{
 	memcpy( data, other.data, sizeof( other.data ) );
 }
 
-bool3 bool3::operator=( const bool2& rhs ) {
+bool3 bool3::operator=( const bool2& rhs )
+{
 	memcpy( data, rhs.data, sizeof( rhs.data ) );
 	return *this;
 }
 
-bool3 bool3::operator=( const bool3& rhs ) {
+bool3 bool3::operator=( const bool3& rhs )
+{
 	memcpy( data, rhs.data, sizeof( rhs.data ) );
 	return *this;
 }
 
-bool3 bool3::operator=( const bool4& rhs ) {
+bool3 bool3::operator=( const bool4& rhs )
+{
 	memcpy( data, rhs.data, sizeof( rhs.data ) );
 	return *this;
 }
 
-const bool& bool3::operator[]( const uint32_t index ) const {
+const bool& bool3::operator[]( const uint32_t index ) const
+{
 	assert( index < 3 );
 	return data[index];
 }
 
-bool& bool3::operator[]( const uint32_t index ) {
+bool& bool3::operator[]( const uint32_t index )
+{
 	assert( index < 3 );
 	return data[index];
 }
 
-bool operator==( const bool3& lhs, const bool3& rhs ) {
+bool operator==( const bool3& lhs, const bool3& rhs )
+{
 	return ( lhs.x == rhs.x ) && ( lhs.y == rhs.y ) && ( lhs.z == rhs.z );
 }
 
-bool operator!=( const bool3& lhs, const bool3& rhs ) {
+bool operator!=( const bool3& lhs, const bool3& rhs )
+{
 	return !( operator==( lhs, rhs ) );
 }
 

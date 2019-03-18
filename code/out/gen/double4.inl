@@ -35,63 +35,76 @@ along with hlml.  If not, see <http://www.gnu.org/licenses/>.
 #include <memory.h>
 #include <assert.h>
 
-double4::double4() {
+double4::double4()
+{
 	memset( data, 0, 4 * sizeof( double ) );
 }
 
-double4::double4( const double x ) {
+double4::double4( const double x )
+{
 	this->x = this->y = this->z = this->w = x;
 }
 
-double4::double4( const double x, const double y, const double z, const double w ) {
+double4::double4( const double x, const double y, const double z, const double w )
+{
 	this->x = x;
 	this->y = y;
 	this->z = z;
 	this->w = w;
 }
 
-double4::double4( const double2& other ) {
+double4::double4( const double2& other )
+{
 	memcpy( data, other.data, sizeof( other.data ) );
 }
 
-double4::double4( const double3& other ) {
+double4::double4( const double3& other )
+{
 	memcpy( data, other.data, sizeof( other.data ) );
 }
 
-double4::double4( const double4& other ) {
+double4::double4( const double4& other )
+{
 	memcpy( data, other.data, sizeof( other.data ) );
 }
 
-double4 double4::operator=( const double2& rhs ) {
+double4 double4::operator=( const double2& rhs )
+{
 	memcpy( data, rhs.data, sizeof( rhs.data ) );
 	return *this;
 }
 
-double4 double4::operator=( const double3& rhs ) {
+double4 double4::operator=( const double3& rhs )
+{
 	memcpy( data, rhs.data, sizeof( rhs.data ) );
 	return *this;
 }
 
-double4 double4::operator=( const double4& rhs ) {
+double4 double4::operator=( const double4& rhs )
+{
 	memcpy( data, rhs.data, sizeof( rhs.data ) );
 	return *this;
 }
 
-const double& double4::operator[]( const uint32_t index ) const {
+const double& double4::operator[]( const uint32_t index ) const
+{
 	assert( index < 4 );
 	return data[index];
 }
 
-double& double4::operator[]( const uint32_t index ) {
+double& double4::operator[]( const uint32_t index )
+{
 	assert( index < 4 );
 	return data[index];
 }
 
-bool operator==( const double4& lhs, const double4& rhs ) {
+bool operator==( const double4& lhs, const double4& rhs )
+{
 	return doubleeq( lhs.x, rhs. x ) && doubleeq( lhs.y, rhs. y ) && doubleeq( lhs.z, rhs. z ) && doubleeq( lhs.w, rhs. w );
 }
 
-bool operator!=( const double4& lhs, const double4& rhs ) {
+bool operator!=( const double4& lhs, const double4& rhs )
+{
 	return !( operator==( lhs, rhs ) );
 }
 

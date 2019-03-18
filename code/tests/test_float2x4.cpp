@@ -28,7 +28,8 @@ along with hlml.  If not, see <http://www.gnu.org/licenses/>.
 
 #include <temper/temper.h>
 
-TEMPER_TEST( TestAssignment_float2x4 ) {
+TEMPER_TEST( TestAssignment_float2x4 )
+{
 	float2x4 mat;
 
 	// fill single value
@@ -55,7 +56,8 @@ TEMPER_TEST( TestAssignment_float2x4 ) {
 	TEMPER_PASS();
 }
 
-TEMPER_TEST( TestArithmeticAddition_float2x4 ) {
+TEMPER_TEST( TestArithmeticAddition_float2x4 )
+{
 	float2x4 answer = float2x4(
 		7.000000f, 7.000000f, 7.000000f, 7.000000f,
 		8.000000f, 8.000000f, 8.000000f, 8.000000f
@@ -76,7 +78,8 @@ TEMPER_TEST( TestArithmeticAddition_float2x4 ) {
 	TEMPER_PASS();
 }
 
-TEMPER_TEST( TestArithmeticSubtraction_float2x4 ) {
+TEMPER_TEST( TestArithmeticSubtraction_float2x4 )
+{
 	float2x4 answer = float2x4(
 		5.000000f, 5.000000f, 5.000000f, 5.000000f,
 		4.000000f, 4.000000f, 4.000000f, 4.000000f
@@ -97,7 +100,8 @@ TEMPER_TEST( TestArithmeticSubtraction_float2x4 ) {
 	TEMPER_PASS();
 }
 
-TEMPER_TEST( TestArithmeticMultiplication_float2x4 ) {
+TEMPER_TEST( TestArithmeticMultiplication_float2x4 )
+{
 	float2x2 answer = float2x2(
 		72.000000f, 72.000000f,
 		72.000000f, 72.000000f
@@ -120,7 +124,8 @@ TEMPER_TEST( TestArithmeticMultiplication_float2x4 ) {
 	TEMPER_PASS();
 }
 
-TEMPER_TEST( TestArithmeticDivision_float2x4 ) {
+TEMPER_TEST( TestArithmeticDivision_float2x4 )
+{
 	float2x4 answer = float2x4(
 		6.000000f, 6.000000f, 6.000000f, 6.000000f,
 		3.000000f, 3.000000f, 3.000000f, 3.000000f
@@ -141,7 +146,8 @@ TEMPER_TEST( TestArithmeticDivision_float2x4 ) {
 	TEMPER_PASS();
 }
 
-TEMPER_TEST( TestIncrement_float2x4 ) {
+TEMPER_TEST( TestIncrement_float2x4 )
+{
 	float2x4 mat;
 
 	// prefix
@@ -169,7 +175,8 @@ TEMPER_TEST( TestIncrement_float2x4 ) {
 	TEMPER_PASS();
 }
 
-TEMPER_TEST( TestDecrement_float2x4 ) {
+TEMPER_TEST( TestDecrement_float2x4 )
+{
 	float2x4 mat;
 
 	// prefix
@@ -197,7 +204,8 @@ TEMPER_TEST( TestDecrement_float2x4 ) {
 	TEMPER_PASS();
 }
 
-TEMPER_TEST( TestRelational_float2x4 ) {
+TEMPER_TEST( TestRelational_float2x4 )
+{
 	float2x4 mat0 = float2x4(
 		1.000000f, 1.000000f, 1.000000f, 1.000000f,
 		1.000000f, 1.000000f, 1.000000f, 1.000000f
@@ -306,7 +314,8 @@ TEMPER_TEST( TestRelational_float2x4 ) {
 	TEMPER_PASS();
 }
 
-TEMPER_TEST( TestArray_float2x4 ) {
+TEMPER_TEST( TestArray_float2x4 )
+{
 	float2x4 mat;
 
 	TEMPER_EXPECT_TRUE( mat[0] == float4( 1.000000f, 0.000000f, 0.000000f, 0.000000f ) );
@@ -315,7 +324,8 @@ TEMPER_TEST( TestArray_float2x4 ) {
 	TEMPER_PASS();
 }
 
-TEMPER_TEST( TestIdentity_float2x4 ) {
+TEMPER_TEST( TestIdentity_float2x4 )
+{
 	float2x4 id = float2x4(
 		1.000000f, 0.000000f, 0.000000f, 0.000000f,
 		0.000000f, 1.000000f, 0.000000f, 0.000000f
@@ -330,7 +340,8 @@ TEMPER_TEST( TestIdentity_float2x4 ) {
 	TEMPER_PASS();
 }
 
-TEMPER_TEST( TestTranspose_float2x4 ) {
+TEMPER_TEST( TestTranspose_float2x4 )
+{
 	float2x4 mat = float2x4(
 		0.000000f, 1.000000f, 2.000000f, 3.000000f,
 		4.000000f, 5.000000f, 6.000000f, 7.000000f
@@ -347,7 +358,8 @@ TEMPER_TEST( TestTranspose_float2x4 ) {
 	TEMPER_PASS();
 }
 
-TEMPER_TEST( TestScale_float2x4 ) {
+TEMPER_TEST( TestScale_float2x4 )
+{
 	float2x4 mat;
 	float2x4 scaled = scale( mat, float3( 2.000000f, 2.000000f, 2.000000f ) );
 
@@ -359,7 +371,8 @@ TEMPER_TEST( TestScale_float2x4 ) {
 	TEMPER_PASS();
 }
 
-TEMPER_SUITE( Test_float2x4 ) {
+TEMPER_SUITE( Test_float2x4 )
+{
 	TEMPER_RUN_TEST( TestAssignment_float2x4 );
 
 	TEMPER_RUN_TEST( TestArithmeticAddition_float2x4 );

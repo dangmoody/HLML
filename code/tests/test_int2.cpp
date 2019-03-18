@@ -29,7 +29,8 @@ along with hlml.  If not, see <http://www.gnu.org/licenses/>.
 #include <temper/temper.h>
 
 // also tests equality operators
-TEMPER_TEST( TestAssignment_int2 ) {
+TEMPER_TEST( TestAssignment_int2 )
+{
 	int2 a;
 
 	a = int2( 1 );
@@ -43,7 +44,8 @@ TEMPER_TEST( TestAssignment_int2 ) {
 	TEMPER_PASS();
 }
 
-TEMPER_TEST( TestArray_int2 ) {
+TEMPER_TEST( TestArray_int2 )
+{
 	int2 a = int2( 0, 1 );
 
 	TEMPER_EXPECT_TRUE( a[0] == 0 );
@@ -52,7 +54,8 @@ TEMPER_TEST( TestArray_int2 ) {
 	TEMPER_PASS();
 }
 
-TEMPER_TEST( TestArithmeticAddition_int2 ) {
+TEMPER_TEST( TestArithmeticAddition_int2 )
+{
 	int2 a  = int2( 6 );
 	int2 b  = int2( 2, 3 );
 
@@ -63,7 +66,8 @@ TEMPER_TEST( TestArithmeticAddition_int2 ) {
 	TEMPER_PASS();
 }
 
-TEMPER_TEST( TestArithmeticSubtraction_int2 ) {
+TEMPER_TEST( TestArithmeticSubtraction_int2 )
+{
 	int2 a  = int2( 6 );
 	int2 b  = int2( 2, 3 );
 
@@ -74,7 +78,8 @@ TEMPER_TEST( TestArithmeticSubtraction_int2 ) {
 	TEMPER_PASS();
 }
 
-TEMPER_TEST( TestArithmeticMultiplication_int2 ) {
+TEMPER_TEST( TestArithmeticMultiplication_int2 )
+{
 	int2 a  = int2( 6 );
 	int2 b  = int2( 2, 3 );
 
@@ -85,7 +90,8 @@ TEMPER_TEST( TestArithmeticMultiplication_int2 ) {
 	TEMPER_PASS();
 }
 
-TEMPER_TEST( TestArithmeticDivision_int2 ) {
+TEMPER_TEST( TestArithmeticDivision_int2 )
+{
 	int2 a  = int2( 6 );
 	int2 b  = int2( 2, 2 );
 
@@ -96,7 +102,8 @@ TEMPER_TEST( TestArithmeticDivision_int2 ) {
 	TEMPER_PASS();
 }
 
-TEMPER_TEST( TestIncrement_int2 ) {
+TEMPER_TEST( TestIncrement_int2 )
+{
 	int2 vec;
 
 	// prefix
@@ -112,7 +119,8 @@ TEMPER_TEST( TestIncrement_int2 ) {
 	TEMPER_PASS();
 }
 
-TEMPER_TEST( TestDecrement_int2 ) {
+TEMPER_TEST( TestDecrement_int2 )
+{
 	int2 vec;
 
 	// prefix
@@ -128,7 +136,8 @@ TEMPER_TEST( TestDecrement_int2 ) {
 	TEMPER_PASS();
 }
 
-TEMPER_TEST( TestRelational_int2 ) {
+TEMPER_TEST( TestRelational_int2 )
+{
 	int2 vec0 = int2( 0, 0 );
 	int2 vec1 = int2( 1, 1 );
 
@@ -150,7 +159,8 @@ TEMPER_TEST( TestRelational_int2 ) {
 	TEMPER_PASS();
 }
 
-TEMPER_TEST( TestBitwiseAnd_int2 ) {
+TEMPER_TEST( TestBitwiseAnd_int2 )
+{
 	int2 a  = int2( 21, 21 );
 	int2 b  = int2( 7, 7 );
 
@@ -161,7 +171,8 @@ TEMPER_TEST( TestBitwiseAnd_int2 ) {
 	TEMPER_PASS();
 }
 
-TEMPER_TEST( TestBitwiseOr_int2 ) {
+TEMPER_TEST( TestBitwiseOr_int2 )
+{
 	int2 a  = int2( 21, 21 );
 	int2 b  = int2( 7, 7 );
 
@@ -172,7 +183,8 @@ TEMPER_TEST( TestBitwiseOr_int2 ) {
 	TEMPER_PASS();
 }
 
-TEMPER_TEST( TestBitwiseXor_int2 ) {
+TEMPER_TEST( TestBitwiseXor_int2 )
+{
 	int2 a  = int2( 21, 21 );
 	int2 b  = int2( 7, 7 );
 
@@ -183,7 +195,8 @@ TEMPER_TEST( TestBitwiseXor_int2 ) {
 	TEMPER_PASS();
 }
 
-TEMPER_TEST( TestBitwiseShiftLeft_int2 ) {
+TEMPER_TEST( TestBitwiseShiftLeft_int2 )
+{
 	int2 a  = int2( 1, 1 );
 	int2 b  = int2( 2, 2 );
 
@@ -194,7 +207,8 @@ TEMPER_TEST( TestBitwiseShiftLeft_int2 ) {
 	TEMPER_PASS();
 }
 
-TEMPER_TEST( TestBitwiseShiftRight_int2 ) {
+TEMPER_TEST( TestBitwiseShiftRight_int2 )
+{
 	int2 a  = int2( 16, 16 );
 	int2 b  = int2( 4, 4 );
 
@@ -205,7 +219,8 @@ TEMPER_TEST( TestBitwiseShiftRight_int2 ) {
 	TEMPER_PASS();
 }
 
-TEMPER_TEST( TestBitwiseUnary_int2 ) {
+TEMPER_TEST( TestBitwiseUnary_int2 )
+{
 	int2 a = int2( 0, 0 );
 
 	int2 answer = ~a;
@@ -215,7 +230,8 @@ TEMPER_TEST( TestBitwiseUnary_int2 ) {
 	TEMPER_PASS();
 }
 
-TEMPER_TEST( TestLength_int2 ) {
+TEMPER_TEST( TestLength_int2 )
+{
 	int2 vec = int2( 2 );
 
 	TEMPER_EXPECT_TRUE( floateq( lengthsqr( vec ), 8.0f ) );
@@ -224,7 +240,8 @@ TEMPER_TEST( TestLength_int2 ) {
 	TEMPER_PASS();
 }
 
-TEMPER_TEST( TestDot_int2 ) {
+TEMPER_TEST( TestDot_int2 )
+{
 	int2 a = int2( 0, 1 );
 	int2 b = int2( 0, -1 );
 
@@ -233,7 +250,8 @@ TEMPER_TEST( TestDot_int2 ) {
 	TEMPER_PASS();
 }
 
-TEMPER_SUITE( Test_int2 ) {
+TEMPER_SUITE( Test_int2 )
+{
 	TEMPER_RUN_TEST( TestAssignment_int2 );
 	TEMPER_RUN_TEST( TestArray_int2 );
 

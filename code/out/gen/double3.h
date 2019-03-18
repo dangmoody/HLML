@@ -36,15 +36,19 @@ struct float3;
 
 /// \brief A vector of 3 doubles with components xyz and/or rgb.
 /// Components are also stored as elements in an array via a union.
-struct double3 {
-	union {
-		struct {
+struct double3
+{
+	union
+	{
+		struct
+		{
 			double x;
 			double y;
 			double z;
 		};
 
-		struct {
+		struct
+		{
 			double r;
 			double g;
 			double b;

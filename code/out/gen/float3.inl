@@ -35,62 +35,75 @@ along with hlml.  If not, see <http://www.gnu.org/licenses/>.
 #include <memory.h>
 #include <assert.h>
 
-float3::float3() {
+float3::float3()
+{
 	memset( data, 0, 3 * sizeof( float ) );
 }
 
-float3::float3( const float x ) {
+float3::float3( const float x )
+{
 	this->x = this->y = this->z = x;
 }
 
-float3::float3( const float x, const float y, const float z ) {
+float3::float3( const float x, const float y, const float z )
+{
 	this->x = x;
 	this->y = y;
 	this->z = z;
 }
 
-float3::float3( const float2& other ) {
+float3::float3( const float2& other )
+{
 	memcpy( data, other.data, sizeof( other.data ) );
 }
 
-float3::float3( const float3& other ) {
+float3::float3( const float3& other )
+{
 	memcpy( data, other.data, sizeof( other.data ) );
 }
 
-float3::float3( const float4& other ) {
+float3::float3( const float4& other )
+{
 	memcpy( data, other.data, sizeof( other.data ) );
 }
 
-float3 float3::operator=( const float2& rhs ) {
+float3 float3::operator=( const float2& rhs )
+{
 	memcpy( data, rhs.data, sizeof( rhs.data ) );
 	return *this;
 }
 
-float3 float3::operator=( const float3& rhs ) {
+float3 float3::operator=( const float3& rhs )
+{
 	memcpy( data, rhs.data, sizeof( rhs.data ) );
 	return *this;
 }
 
-float3 float3::operator=( const float4& rhs ) {
+float3 float3::operator=( const float4& rhs )
+{
 	memcpy( data, rhs.data, sizeof( rhs.data ) );
 	return *this;
 }
 
-const float& float3::operator[]( const uint32_t index ) const {
+const float& float3::operator[]( const uint32_t index ) const
+{
 	assert( index < 3 );
 	return data[index];
 }
 
-float& float3::operator[]( const uint32_t index ) {
+float& float3::operator[]( const uint32_t index )
+{
 	assert( index < 3 );
 	return data[index];
 }
 
-bool operator==( const float3& lhs, const float3& rhs ) {
+bool operator==( const float3& lhs, const float3& rhs )
+{
 	return floateq( lhs.x, rhs. x ) && floateq( lhs.y, rhs. y ) && floateq( lhs.z, rhs. z );
 }
 
-bool operator!=( const float3& lhs, const float3& rhs ) {
+bool operator!=( const float3& lhs, const float3& rhs )
+{
 	return !( operator==( lhs, rhs ) );
 }
 

@@ -28,7 +28,8 @@ along with hlml.  If not, see <http://www.gnu.org/licenses/>.
 
 #include <temper/temper.h>
 
-TEMPER_TEST( TestAssignment_bool4x3 ) {
+TEMPER_TEST( TestAssignment_bool4x3 )
+{
 	bool4x3 mat;
 
 	// fill single value
@@ -65,7 +66,8 @@ TEMPER_TEST( TestAssignment_bool4x3 ) {
 	TEMPER_PASS();
 }
 
-TEMPER_TEST( TestArray_bool4x3 ) {
+TEMPER_TEST( TestArray_bool4x3 )
+{
 	bool4x3 mat;
 
 	TEMPER_EXPECT_TRUE( mat[0] == bool3( true, false, false ) );
@@ -76,7 +78,8 @@ TEMPER_TEST( TestArray_bool4x3 ) {
 	TEMPER_PASS();
 }
 
-TEMPER_TEST( TestIdentity_bool4x3 ) {
+TEMPER_TEST( TestIdentity_bool4x3 )
+{
 	bool4x3 id = bool4x3(
 		true, false, false,
 		false, true, false,
@@ -93,7 +96,8 @@ TEMPER_TEST( TestIdentity_bool4x3 ) {
 	TEMPER_PASS();
 }
 
-TEMPER_TEST( TestTranspose_bool4x3 ) {
+TEMPER_TEST( TestTranspose_bool4x3 )
+{
 	bool4x3 mat = bool4x3(
 		false, true, true,
 		true, true, true,
@@ -111,7 +115,8 @@ TEMPER_TEST( TestTranspose_bool4x3 ) {
 	TEMPER_PASS();
 }
 
-TEMPER_SUITE( Test_bool4x3 ) {
+TEMPER_SUITE( Test_bool4x3 )
+{
 	TEMPER_RUN_TEST( TestAssignment_bool4x3 );
 	TEMPER_RUN_TEST( TestArray_bool4x3 );
 

@@ -35,14 +35,18 @@ struct float4;
 
 /// \brief A vector of 2 floats with components xy and/or rg.
 /// Components are also stored as elements in an array via a union.
-struct float2 {
-	union {
-		struct {
+struct float2
+{
+	union
+	{
+		struct
+		{
 			float x;
 			float y;
 		};
 
-		struct {
+		struct
+		{
 			float r;
 			float g;
 		};

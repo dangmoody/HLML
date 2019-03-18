@@ -35,63 +35,76 @@ along with hlml.  If not, see <http://www.gnu.org/licenses/>.
 #include <memory.h>
 #include <assert.h>
 
-uint4::uint4() {
+uint4::uint4()
+{
 	memset( data, 0, 4 * sizeof( uint32_t ) );
 }
 
-uint4::uint4( const uint32_t x ) {
+uint4::uint4( const uint32_t x )
+{
 	this->x = this->y = this->z = this->w = x;
 }
 
-uint4::uint4( const uint32_t x, const uint32_t y, const uint32_t z, const uint32_t w ) {
+uint4::uint4( const uint32_t x, const uint32_t y, const uint32_t z, const uint32_t w )
+{
 	this->x = x;
 	this->y = y;
 	this->z = z;
 	this->w = w;
 }
 
-uint4::uint4( const uint2& other ) {
+uint4::uint4( const uint2& other )
+{
 	memcpy( data, other.data, sizeof( other.data ) );
 }
 
-uint4::uint4( const uint3& other ) {
+uint4::uint4( const uint3& other )
+{
 	memcpy( data, other.data, sizeof( other.data ) );
 }
 
-uint4::uint4( const uint4& other ) {
+uint4::uint4( const uint4& other )
+{
 	memcpy( data, other.data, sizeof( other.data ) );
 }
 
-uint4 uint4::operator=( const uint2& rhs ) {
+uint4 uint4::operator=( const uint2& rhs )
+{
 	memcpy( data, rhs.data, sizeof( rhs.data ) );
 	return *this;
 }
 
-uint4 uint4::operator=( const uint3& rhs ) {
+uint4 uint4::operator=( const uint3& rhs )
+{
 	memcpy( data, rhs.data, sizeof( rhs.data ) );
 	return *this;
 }
 
-uint4 uint4::operator=( const uint4& rhs ) {
+uint4 uint4::operator=( const uint4& rhs )
+{
 	memcpy( data, rhs.data, sizeof( rhs.data ) );
 	return *this;
 }
 
-const uint32_t& uint4::operator[]( const uint32_t index ) const {
+const uint32_t& uint4::operator[]( const uint32_t index ) const
+{
 	assert( index < 4 );
 	return data[index];
 }
 
-uint32_t& uint4::operator[]( const uint32_t index ) {
+uint32_t& uint4::operator[]( const uint32_t index )
+{
 	assert( index < 4 );
 	return data[index];
 }
 
-bool operator==( const uint4& lhs, const uint4& rhs ) {
+bool operator==( const uint4& lhs, const uint4& rhs )
+{
 	return ( lhs.x == rhs.x ) && ( lhs.y == rhs.y ) && ( lhs.z == rhs.z ) && ( lhs.w == rhs.w );
 }
 
-bool operator!=( const uint4& lhs, const uint4& rhs ) {
+bool operator!=( const uint4& lhs, const uint4& rhs )
+{
 	return !( operator==( lhs, rhs ) );
 }
 

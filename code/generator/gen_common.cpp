@@ -33,7 +33,8 @@ static std::string InlGetOperatorIncrement( const genType_t type, const uint32_t
 
 	// prefix
 	code += "// prefix\n";
-	code += fullTypeName + "& operator" + GEN_OPERATORS_INCREMENT[op] + "( " + fullTypeName + "& lhs ) {\n";
+	code += fullTypeName + "& operator" + GEN_OPERATORS_INCREMENT[op] + "( " + fullTypeName + "& lhs )\n";
+	code += "{\n";
 	for ( uint32_t i = 0; i < numComponents; i++ ) {
 		code += "\t" + GEN_OPERATORS_INCREMENT[op] + "lhs[" + std::to_string( i ) + "];\n";
 	}
@@ -43,7 +44,8 @@ static std::string InlGetOperatorIncrement( const genType_t type, const uint32_t
 
 	// postfix
 	code += "// postfix\n";
-	code += fullTypeName + "& operator" + GEN_OPERATORS_INCREMENT[op] + "( " + fullTypeName + "& lhs, const int ) {\n";
+	code += fullTypeName + "& operator" + GEN_OPERATORS_INCREMENT[op] + "( " + fullTypeName + "& lhs, const int )\n";
+	code += "{\n";
 	for ( uint32_t i = 0; i < numComponents; i++ ) {
 		code += std::string( "\tlhs[" ) + std::to_string( i ) + "]" + GEN_OPERATORS_INCREMENT[op] + ";\n";
 	}
@@ -77,7 +79,8 @@ static std::string InlGetOperatorRelational( const genType_t type, const uint32_
 
 	std::string code;
 
-	code += boolReturnType + " operator" + opStr + "( const " + fullTypeName + "& lhs, const " + fullTypeName + "& rhs ) {\n";
+	code += boolReturnType + " operator" + opStr + "( const " + fullTypeName + "& lhs, const " + fullTypeName + "& rhs )\n";
+	code += "{\n";
 	code += "\treturn " + boolReturnType + "(\n";
 
 	for ( uint32_t i = 0; i < numComponents; i++ ) {
@@ -128,7 +131,8 @@ static std::string InlGetOperatorBitwiseScalar( const genType_t type, const uint
 	std::string code;
 
 	// main bitwise operator
-	code += fullTypeName + " operator" + opStr + "( const " + fullTypeName + "& lhs, const " + memberTypeString + "& rhs ) {\n";
+	code += fullTypeName + " operator" + opStr + "( const " + fullTypeName + "& lhs, const " + memberTypeString + "& rhs )\n";
+	code += "{\n";
 	code += "\treturn " + fullTypeName + "(\n";
 	for ( uint32_t i = 0; i < numComponents; i++ ) {
 		code += std::string( "\t\tlhs[" ) + std::to_string( i ) + "] " + opStr + " rhs";
@@ -144,7 +148,8 @@ static std::string InlGetOperatorBitwiseScalar( const genType_t type, const uint
 	code += "\n";
 
 	// compound bitwise operator
-	code += fullTypeName + " operator" + opStr + "=( " + fullTypeName + "& lhs, const " + memberTypeString + "& rhs ) {\n";
+	code += fullTypeName + " operator" + opStr + "=( " + fullTypeName + "& lhs, const " + memberTypeString + "& rhs )\n";
+	code += "{\n";
 	code += "\treturn ( lhs = lhs " + opStr + " rhs );\n";
 	code += "}\n";
 	code += "\n";
@@ -181,7 +186,8 @@ static std::string InlGetOperatorBitwiseRhsType( const genType_t type, const uin
 	std::string code;
 
 	// main bitwise operator
-	code += fullTypeName + " operator" + opStr + "( const " + fullTypeName + "& lhs, const " + fullTypeName + "& rhs ) {\n";
+	code += fullTypeName + " operator" + opStr + "( const " + fullTypeName + "& lhs, const " + fullTypeName + "& rhs )\n";
+	code += "{\n";
 	code += "\treturn " + fullTypeName + "(\n";
 	for ( uint32_t i = 0; i < numComponents; i++ ) {
 		std::string componentStr = std::to_string( i );
@@ -199,7 +205,8 @@ static std::string InlGetOperatorBitwiseRhsType( const genType_t type, const uin
 	code += "\n";
 
 	// compound bitwise operator
-	code += fullTypeName + " operator" + opStr + "=( " + fullTypeName + "& lhs, const " + fullTypeName + "& rhs ) {\n";
+	code += fullTypeName + " operator" + opStr + "=( " + fullTypeName + "& lhs, const " + fullTypeName + "& rhs )\n";
+	code += "{\n";
 	code += "\treturn ( lhs = lhs " + opStr + " rhs );\n";
 	code += "}\n";
 	code += "\n";
@@ -282,7 +289,8 @@ void Gen_OperatorsBitwise( const genType_t type, const uint32_t numRows, const u
 	outHeader += "inline " + fullTypeName + " operator~( const " + fullTypeName + "& lhs );\n";
 	outHeader += "\n";
 
-	outInl += fullTypeName + " operator~( const " + fullTypeName + "& lhs ) {\n";
+	outInl += fullTypeName + " operator~( const " + fullTypeName + "& lhs )\n";
+	outInl += "{\n";
 	outInl += "\treturn " + fullTypeName + "(\n";
 	for ( uint32_t i = 0; i < numComponents; i++ ) {
 		outInl += std::string( "\t\t~lhs[" ) + std::to_string( i ) + "]";
@@ -324,7 +332,8 @@ void Gen_OperatorComponentWiseArithmeticScalar( const genType_t type, const uint
 	outHeader += "\n";
 
 	// main arithmetic func
-	outInl += fullTypeName + " " + "operator" + opStr + "( const " + fullTypeName + "& lhs, const " + memberTypeString + " rhs ) {\n";
+	outInl += fullTypeName + " " + "operator" + opStr + "( const " + fullTypeName + "& lhs, const " + memberTypeString + " rhs )\n";
+	outInl += "{\n";
 	outInl += "\treturn " + fullTypeName + "(\n";
 	for ( uint32_t i = 0; i < numComponents; i++ ) {
 		outInl += "\t\tlhs[" + std::to_string( i ) + "] " + opStr + " rhs";
@@ -340,7 +349,8 @@ void Gen_OperatorComponentWiseArithmeticScalar( const genType_t type, const uint
 	outInl += "\n";
 
 	// compound arithmetic func
-	outInl += fullTypeName + " " + "operator" + opStr + "=( " + fullTypeName + "& lhs, const " + memberTypeString + " rhs ) {\n";
+	outInl += fullTypeName + " " + "operator" + opStr + "=( " + fullTypeName + "& lhs, const " + memberTypeString + " rhs )\n";
+	outInl += "{\n";
 	outInl += std::string( "\treturn ( lhs = lhs " ) + opStr + " rhs );\n";
 	outInl += "}\n";
 	outInl += "\n";
@@ -381,7 +391,8 @@ void Gen_OperatorComponentWiseArithmeticRhsType( const genType_t type, const uin
 	}
 
 	// main arithmetic func
-	outInl += fullTypeName + " " + "operator" + opStr + "( const " + fullTypeName + "& lhs, const " + fullTypeName + "& rhs ) {\n";
+	outInl += fullTypeName + " " + "operator" + opStr + "( const " + fullTypeName + "& lhs, const " + fullTypeName + "& rhs )\n";
+	outInl += "{\n";
 	outInl += "\treturn " + fullTypeName + "(\n";
 	for ( uint32_t i = 0; i < numComponents; i++ ) {
 		std::string componentStr = std::to_string( i );
@@ -400,7 +411,8 @@ void Gen_OperatorComponentWiseArithmeticRhsType( const genType_t type, const uin
 
 	// compound arithmetic func
 	if ( canGenerateCompound ) {
-		outInl += fullTypeName + " " + "operator" + opStr + "=( " + fullTypeName + "& lhs, const " + fullTypeName + "& rhs ) {\n";
+		outInl += fullTypeName + " " + "operator" + opStr + "=( " + fullTypeName + "& lhs, const " + fullTypeName + "& rhs )\n";
+		outInl += "{\n";
 		outInl += std::string( "\treturn ( lhs = lhs " ) + opStr + " rhs );\n";
 		outInl += "}\n";
 		outInl += "\n";

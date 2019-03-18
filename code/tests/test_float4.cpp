@@ -29,7 +29,8 @@ along with hlml.  If not, see <http://www.gnu.org/licenses/>.
 #include <temper/temper.h>
 
 // also tests equality operators
-TEMPER_TEST( TestAssignment_float4 ) {
+TEMPER_TEST( TestAssignment_float4 )
+{
 	float4 a;
 
 	a = float4( 1.000000f );
@@ -43,7 +44,8 @@ TEMPER_TEST( TestAssignment_float4 ) {
 	TEMPER_PASS();
 }
 
-TEMPER_TEST( TestArray_float4 ) {
+TEMPER_TEST( TestArray_float4 )
+{
 	float4 a = float4( 0.000000f, 1.000000f, 2.000000f, 3.000000f );
 
 	TEMPER_EXPECT_TRUE( a[0] == 0.000000f );
@@ -54,7 +56,8 @@ TEMPER_TEST( TestArray_float4 ) {
 	TEMPER_PASS();
 }
 
-TEMPER_TEST( TestArithmeticAddition_float4 ) {
+TEMPER_TEST( TestArithmeticAddition_float4 )
+{
 	float4 a  = float4( 6.000000f );
 	float4 b  = float4( 2.000000f, 3.000000f, 4.000000f, 5.000000f );
 
@@ -65,7 +68,8 @@ TEMPER_TEST( TestArithmeticAddition_float4 ) {
 	TEMPER_PASS();
 }
 
-TEMPER_TEST( TestArithmeticSubtraction_float4 ) {
+TEMPER_TEST( TestArithmeticSubtraction_float4 )
+{
 	float4 a  = float4( 6.000000f );
 	float4 b  = float4( 2.000000f, 3.000000f, 4.000000f, 5.000000f );
 
@@ -76,7 +80,8 @@ TEMPER_TEST( TestArithmeticSubtraction_float4 ) {
 	TEMPER_PASS();
 }
 
-TEMPER_TEST( TestArithmeticMultiplication_float4 ) {
+TEMPER_TEST( TestArithmeticMultiplication_float4 )
+{
 	float4 a  = float4( 6.000000f );
 	float4 b  = float4( 2.000000f, 3.000000f, 4.000000f, 5.000000f );
 
@@ -87,7 +92,8 @@ TEMPER_TEST( TestArithmeticMultiplication_float4 ) {
 	TEMPER_PASS();
 }
 
-TEMPER_TEST( TestArithmeticDivision_float4 ) {
+TEMPER_TEST( TestArithmeticDivision_float4 )
+{
 	float4 a  = float4( 6.000000f );
 	float4 b  = float4( 2.000000f, 2.000000f, 3.000000f, 6.000000f );
 
@@ -98,7 +104,8 @@ TEMPER_TEST( TestArithmeticDivision_float4 ) {
 	TEMPER_PASS();
 }
 
-TEMPER_TEST( TestIncrement_float4 ) {
+TEMPER_TEST( TestIncrement_float4 )
+{
 	float4 vec;
 
 	// prefix
@@ -114,7 +121,8 @@ TEMPER_TEST( TestIncrement_float4 ) {
 	TEMPER_PASS();
 }
 
-TEMPER_TEST( TestDecrement_float4 ) {
+TEMPER_TEST( TestDecrement_float4 )
+{
 	float4 vec;
 
 	// prefix
@@ -130,7 +138,8 @@ TEMPER_TEST( TestDecrement_float4 ) {
 	TEMPER_PASS();
 }
 
-TEMPER_TEST( TestRelational_float4 ) {
+TEMPER_TEST( TestRelational_float4 )
+{
 	float4 vec0 = float4( 0.000000f, 0.000000f, 0.000000f, 0.000000f );
 	float4 vec1 = float4( 1.000000f, 1.000000f, 1.000000f, 1.000000f );
 	float4 vec2 = float4( 2.000000f, 2.000000f, 2.000000f, 2.000000f );
@@ -172,7 +181,8 @@ TEMPER_TEST( TestRelational_float4 ) {
 	TEMPER_PASS();
 }
 
-TEMPER_TEST( TestLength_float4 ) {
+TEMPER_TEST( TestLength_float4 )
+{
 	float4 vec = float4( 2.000000f );
 
 	TEMPER_EXPECT_TRUE( floateq( lengthsqr( vec ), 16.0f ) );
@@ -181,7 +191,8 @@ TEMPER_TEST( TestLength_float4 ) {
 	TEMPER_PASS();
 }
 
-TEMPER_TEST( TestNormalized_float4 ) {
+TEMPER_TEST( TestNormalized_float4 )
+{
 	float4 vec = float4( 2.000000f, 3.000000f, 4.000000f, 5.000000f );
 	vec = normalized( vec );
 
@@ -190,7 +201,8 @@ TEMPER_TEST( TestNormalized_float4 ) {
 	TEMPER_PASS();
 }
 
-TEMPER_TEST( TestDot_float4 ) {
+TEMPER_TEST( TestDot_float4 )
+{
 	float4 a = float4( 0.000000f, 0.000000f, 0.000000f, 1.000000f );
 	float4 b = float4( 0.000000f, 0.000000f, 0.000000f, -1.000000f );
 
@@ -199,7 +211,8 @@ TEMPER_TEST( TestDot_float4 ) {
 	TEMPER_PASS();
 }
 
-TEMPER_TEST( TestCross_float4 ) {
+TEMPER_TEST( TestCross_float4 )
+{
 	float4 left = float4( -1.000000f, 0.000000f, 0.000000f, 0.000000f );
 	float4 forward = float4( 0.000000f, 0.000000f, 1.000000f, 0.000000f );
 	float4 up = float4( 0.000000f, 1.000000f, 0.000000f, 0.000000f );
@@ -209,7 +222,8 @@ TEMPER_TEST( TestCross_float4 ) {
 	TEMPER_PASS();
 }
 
-TEMPER_TEST( TestAngle_float4 ) {
+TEMPER_TEST( TestAngle_float4 )
+{
 	float4 right = float4( 1.000000f, 0.000000f, 0.000000f, 0.000000f );
 	float4 up = float4( 0.000000f, 1.000000f, 0.000000f, 0.000000f );
 	float answer = angle( up, right );
@@ -219,7 +233,8 @@ TEMPER_TEST( TestAngle_float4 ) {
 	TEMPER_PASS();
 }
 
-TEMPER_TEST( TestSaturate_float4 ) {
+TEMPER_TEST( TestSaturate_float4 )
+{
 	float4 answer = float4( 0.000000f, 1.000000f, 1.000000f, 1.000000f );
 
 	float4 vec = float4( -1.000000f, 2.000000f, 4.000000f, 6.000000f );
@@ -230,7 +245,8 @@ TEMPER_TEST( TestSaturate_float4 ) {
 	TEMPER_PASS();
 }
 
-TEMPER_TEST( TestLerp_float4 ) {
+TEMPER_TEST( TestLerp_float4 )
+{
 	float4 answer = float4( 0.500000f, 0.500000f, 0.000000f, 0.000000f );
 
 	float4 a = float4( 0.000000f, 1.000000f, 0.000000f, 0.000000f );
@@ -242,7 +258,8 @@ TEMPER_TEST( TestLerp_float4 ) {
 	TEMPER_PASS();
 }
 
-TEMPER_SUITE( Test_float4 ) {
+TEMPER_SUITE( Test_float4 )
+{
 	TEMPER_RUN_TEST( TestAssignment_float4 );
 	TEMPER_RUN_TEST( TestArray_float4 );
 

@@ -35,14 +35,18 @@ struct double4;
 
 /// \brief A vector of 2 doubles with components xy and/or rg.
 /// Components are also stored as elements in an array via a union.
-struct double2 {
-	union {
-		struct {
+struct double2
+{
+	union
+	{
+		struct
+		{
 			double x;
 			double y;
 		};
 
-		struct {
+		struct
+		{
 			double r;
 			double g;
 		};

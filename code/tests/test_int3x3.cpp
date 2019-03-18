@@ -28,7 +28,8 @@ along with hlml.  If not, see <http://www.gnu.org/licenses/>.
 
 #include <temper/temper.h>
 
-TEMPER_TEST( TestAssignment_int3x3 ) {
+TEMPER_TEST( TestAssignment_int3x3 )
+{
 	int3x3 mat;
 
 	// fill single value
@@ -60,7 +61,8 @@ TEMPER_TEST( TestAssignment_int3x3 ) {
 	TEMPER_PASS();
 }
 
-TEMPER_TEST( TestArithmeticAddition_int3x3 ) {
+TEMPER_TEST( TestArithmeticAddition_int3x3 )
+{
 	int3x3 answer = int3x3(
 		7, 7, 7,
 		8, 8, 8,
@@ -84,7 +86,8 @@ TEMPER_TEST( TestArithmeticAddition_int3x3 ) {
 	TEMPER_PASS();
 }
 
-TEMPER_TEST( TestArithmeticSubtraction_int3x3 ) {
+TEMPER_TEST( TestArithmeticSubtraction_int3x3 )
+{
 	int3x3 answer = int3x3(
 		5, 5, 5,
 		4, 4, 4,
@@ -108,7 +111,8 @@ TEMPER_TEST( TestArithmeticSubtraction_int3x3 ) {
 	TEMPER_PASS();
 }
 
-TEMPER_TEST( TestArithmeticMultiplication_int3x3 ) {
+TEMPER_TEST( TestArithmeticMultiplication_int3x3 )
+{
 	int3x3 answer = int3x3(
 		36, 36, 36,
 		36, 36, 36,
@@ -132,7 +136,8 @@ TEMPER_TEST( TestArithmeticMultiplication_int3x3 ) {
 	TEMPER_PASS();
 }
 
-TEMPER_TEST( TestArithmeticDivision_int3x3 ) {
+TEMPER_TEST( TestArithmeticDivision_int3x3 )
+{
 	int3x3 answer = int3x3(
 		6, 6, 6,
 		3, 3, 3,
@@ -156,7 +161,8 @@ TEMPER_TEST( TestArithmeticDivision_int3x3 ) {
 	TEMPER_PASS();
 }
 
-TEMPER_TEST( TestIncrement_int3x3 ) {
+TEMPER_TEST( TestIncrement_int3x3 )
+{
 	int3x3 mat;
 
 	// prefix
@@ -188,7 +194,8 @@ TEMPER_TEST( TestIncrement_int3x3 ) {
 	TEMPER_PASS();
 }
 
-TEMPER_TEST( TestDecrement_int3x3 ) {
+TEMPER_TEST( TestDecrement_int3x3 )
+{
 	int3x3 mat;
 
 	// prefix
@@ -220,7 +227,8 @@ TEMPER_TEST( TestDecrement_int3x3 ) {
 	TEMPER_PASS();
 }
 
-TEMPER_TEST( TestRelational_int3x3 ) {
+TEMPER_TEST( TestRelational_int3x3 )
+{
 	int3x3 mat0 = int3x3(
 		1, 1, 1,
 		1, 1, 1,
@@ -347,7 +355,8 @@ TEMPER_TEST( TestRelational_int3x3 ) {
 	TEMPER_PASS();
 }
 
-TEMPER_TEST( TestArray_int3x3 ) {
+TEMPER_TEST( TestArray_int3x3 )
+{
 	int3x3 mat;
 
 	TEMPER_EXPECT_TRUE( mat[0] == int3( 1, 0, 0 ) );
@@ -357,7 +366,8 @@ TEMPER_TEST( TestArray_int3x3 ) {
 	TEMPER_PASS();
 }
 
-TEMPER_TEST( TestBitwiseAnd_int3x3 ) {
+TEMPER_TEST( TestBitwiseAnd_int3x3 )
+{
 	int3x3 a  = int3x3(
 		21, 21, 21,
 		21, 21, 21,
@@ -380,7 +390,8 @@ TEMPER_TEST( TestBitwiseAnd_int3x3 ) {
 	TEMPER_PASS();
 }
 
-TEMPER_TEST( TestBitwiseOr_int3x3 ) {
+TEMPER_TEST( TestBitwiseOr_int3x3 )
+{
 	int3x3 a  = int3x3(
 		21, 21, 21,
 		21, 21, 21,
@@ -403,7 +414,8 @@ TEMPER_TEST( TestBitwiseOr_int3x3 ) {
 	TEMPER_PASS();
 }
 
-TEMPER_TEST( TestBitwiseXor_int3x3 ) {
+TEMPER_TEST( TestBitwiseXor_int3x3 )
+{
 	int3x3 a  = int3x3(
 		21, 21, 21,
 		21, 21, 21,
@@ -426,7 +438,8 @@ TEMPER_TEST( TestBitwiseXor_int3x3 ) {
 	TEMPER_PASS();
 }
 
-TEMPER_TEST( TestBitwiseShiftLeft_int3x3 ) {
+TEMPER_TEST( TestBitwiseShiftLeft_int3x3 )
+{
 	int3x3 a  = int3x3(
 		1, 1, 1,
 		1, 1, 1,
@@ -449,7 +462,8 @@ TEMPER_TEST( TestBitwiseShiftLeft_int3x3 ) {
 	TEMPER_PASS();
 }
 
-TEMPER_TEST( TestBitwiseShiftRight_int3x3 ) {
+TEMPER_TEST( TestBitwiseShiftRight_int3x3 )
+{
 	int3x3 a  = int3x3(
 		16, 16, 16,
 		16, 16, 16,
@@ -472,7 +486,8 @@ TEMPER_TEST( TestBitwiseShiftRight_int3x3 ) {
 	TEMPER_PASS();
 }
 
-TEMPER_TEST( TestBitwiseUnary_int3x3 ) {
+TEMPER_TEST( TestBitwiseUnary_int3x3 )
+{
 	int3x3 a = int3x3(
 		0, 0, 0,
 		0, 0, 0,
@@ -489,7 +504,8 @@ TEMPER_TEST( TestBitwiseUnary_int3x3 ) {
 	TEMPER_PASS();
 }
 
-TEMPER_TEST( TestIdentity_int3x3 ) {
+TEMPER_TEST( TestIdentity_int3x3 )
+{
 	int3x3 id = int3x3(
 		1, 0, 0,
 		0, 1, 0,
@@ -505,7 +521,8 @@ TEMPER_TEST( TestIdentity_int3x3 ) {
 	TEMPER_PASS();
 }
 
-TEMPER_TEST( TestTranspose_int3x3 ) {
+TEMPER_TEST( TestTranspose_int3x3 )
+{
 	int3x3 mat = int3x3(
 		0, 1, 2,
 		3, 4, 5,
@@ -522,7 +539,8 @@ TEMPER_TEST( TestTranspose_int3x3 ) {
 	TEMPER_PASS();
 }
 
-TEMPER_TEST( TestDeterminant_int3x3 ) {
+TEMPER_TEST( TestDeterminant_int3x3 )
+{
 	int3x3 mat = int3x3(
 		6, 2, 3,
 		2, 7, 2,
@@ -535,7 +553,8 @@ TEMPER_TEST( TestDeterminant_int3x3 ) {
 	TEMPER_PASS();
 }
 
-TEMPER_TEST( TestTranslate_int3x3 ) {
+TEMPER_TEST( TestTranslate_int3x3 )
+{
 	int3x3 mat;
 	int3x3 translated = int3x3(
 		1, 0, 2,
@@ -551,7 +570,8 @@ TEMPER_TEST( TestTranslate_int3x3 ) {
 	TEMPER_PASS();
 }
 
-TEMPER_TEST( TestScale_int3x3 ) {
+TEMPER_TEST( TestScale_int3x3 )
+{
 	int3x3 mat;
 	int3x3 scaled = scale( mat, int3( 2, 2, 2 ) );
 
@@ -564,7 +584,8 @@ TEMPER_TEST( TestScale_int3x3 ) {
 	TEMPER_PASS();
 }
 
-TEMPER_SUITE( Test_int3x3 ) {
+TEMPER_SUITE( Test_int3x3 )
+{
 	TEMPER_RUN_TEST( TestAssignment_int3x3 );
 
 	TEMPER_RUN_TEST( TestArithmeticAddition_int3x3 );

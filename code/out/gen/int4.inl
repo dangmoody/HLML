@@ -35,63 +35,76 @@ along with hlml.  If not, see <http://www.gnu.org/licenses/>.
 #include <memory.h>
 #include <assert.h>
 
-int4::int4() {
+int4::int4()
+{
 	memset( data, 0, 4 * sizeof( int32_t ) );
 }
 
-int4::int4( const int32_t x ) {
+int4::int4( const int32_t x )
+{
 	this->x = this->y = this->z = this->w = x;
 }
 
-int4::int4( const int32_t x, const int32_t y, const int32_t z, const int32_t w ) {
+int4::int4( const int32_t x, const int32_t y, const int32_t z, const int32_t w )
+{
 	this->x = x;
 	this->y = y;
 	this->z = z;
 	this->w = w;
 }
 
-int4::int4( const int2& other ) {
+int4::int4( const int2& other )
+{
 	memcpy( data, other.data, sizeof( other.data ) );
 }
 
-int4::int4( const int3& other ) {
+int4::int4( const int3& other )
+{
 	memcpy( data, other.data, sizeof( other.data ) );
 }
 
-int4::int4( const int4& other ) {
+int4::int4( const int4& other )
+{
 	memcpy( data, other.data, sizeof( other.data ) );
 }
 
-int4 int4::operator=( const int2& rhs ) {
+int4 int4::operator=( const int2& rhs )
+{
 	memcpy( data, rhs.data, sizeof( rhs.data ) );
 	return *this;
 }
 
-int4 int4::operator=( const int3& rhs ) {
+int4 int4::operator=( const int3& rhs )
+{
 	memcpy( data, rhs.data, sizeof( rhs.data ) );
 	return *this;
 }
 
-int4 int4::operator=( const int4& rhs ) {
+int4 int4::operator=( const int4& rhs )
+{
 	memcpy( data, rhs.data, sizeof( rhs.data ) );
 	return *this;
 }
 
-const int32_t& int4::operator[]( const uint32_t index ) const {
+const int32_t& int4::operator[]( const uint32_t index ) const
+{
 	assert( index < 4 );
 	return data[index];
 }
 
-int32_t& int4::operator[]( const uint32_t index ) {
+int32_t& int4::operator[]( const uint32_t index )
+{
 	assert( index < 4 );
 	return data[index];
 }
 
-bool operator==( const int4& lhs, const int4& rhs ) {
+bool operator==( const int4& lhs, const int4& rhs )
+{
 	return ( lhs.x == rhs.x ) && ( lhs.y == rhs.y ) && ( lhs.z == rhs.z ) && ( lhs.w == rhs.w );
 }
 
-bool operator!=( const int4& lhs, const int4& rhs ) {
+bool operator!=( const int4& lhs, const int4& rhs )
+{
 	return !( operator==( lhs, rhs ) );
 }
 

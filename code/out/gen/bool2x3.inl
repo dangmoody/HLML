@@ -30,61 +30,73 @@ along with hlml.  If not, see <http://www.gnu.org/licenses/>.
 // others
 #include <math.h>
 
-bool2x3::bool2x3() {
+bool2x3::bool2x3()
+{
 	rows[0] = { 1, 0, 0 };
 	rows[1] = { 0, 1, 0 };
 }
 
-bool2x3::bool2x3( const bool diagonal ) {
+bool2x3::bool2x3( const bool diagonal )
+{
 	rows[0] = { diagonal, 0, 0 };
 	rows[1] = { 0, diagonal, 0 };
 }
 
-bool2x3::bool2x3( const bool3& diagonal ) {
+bool2x3::bool2x3( const bool3& diagonal )
+{
 	rows[0] = { diagonal.x, 0, 0 };
 	rows[1] = { 0, diagonal.y, 0 };
 }
 
-bool2x3::bool2x3( const bool3& row0, const bool3& row1 ) {
+bool2x3::bool2x3( const bool3& row0, const bool3& row1 )
+{
 	rows[0] = row0;
 	rows[1] = row1;
 }
 
-bool2x3::bool2x3( const bool3 rows[2] ) {
+bool2x3::bool2x3( const bool3 rows[2] )
+{
 	this->rows[0] = rows[0];
 	this->rows[1] = rows[1];
 }
 
-bool2x3::bool2x3( const bool m00, const bool m01, const bool m02, const bool m10, const bool m11, const bool m12 ) {
+bool2x3::bool2x3( const bool m00, const bool m01, const bool m02, const bool m10, const bool m11, const bool m12 )
+{
 	rows[0] = { m00, m01, m02 };
 	rows[1] = { m10, m11, m12 };
 }
 
-bool2x3::bool2x3( const bool2x3& other ) {
+bool2x3::bool2x3( const bool2x3& other )
+{
 	memcpy( rows, other.rows, sizeof( rows ) );
 };
 
-bool2x3 bool2x3::operator=( const bool2x3& other ) {
+bool2x3 bool2x3::operator=( const bool2x3& other )
+{
 	memcpy( rows, other.rows, sizeof( rows ) );
 	return *this;
 };
 
-bool3& bool2x3::operator[]( const uint32_t index ) {
+bool3& bool2x3::operator[]( const uint32_t index )
+{
 	assert( index < 2 );
 	return rows[index];
 }
 
-const bool3& bool2x3::operator[]( const uint32_t index ) const {
+const bool3& bool2x3::operator[]( const uint32_t index ) const
+{
 	assert( index < 2 );
 	return rows[index];
 }
 
-bool operator==( const bool2x3& lhs, const bool2x3& rhs ) {
+bool operator==( const bool2x3& lhs, const bool2x3& rhs )
+{
 	return lhs[0] == rhs[0]
 		&& lhs[1] == rhs[1];
 }
 
-bool operator!=( const bool2x3& lhs, const bool2x3& rhs ) {
+bool operator!=( const bool2x3& lhs, const bool2x3& rhs )
+{
 	return !( operator==( lhs, rhs ) );
 }
 

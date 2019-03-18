@@ -574,7 +574,8 @@ static bool GenerateTestsMain( void ) {
 	content += "#include <temper/temper.h>\n";
 	content += "\n";
 
-	content += "static void OnSuiteEnd( void* userdata ) {\n";
+	content += "static void OnSuiteEnd( void* userdata )\n";
+	content += "{\n";
 	content += "\t( (void) userdata );\n";
 	content += "\tprintf( \"\\n\" );\n";
 	content += "}\n";
@@ -607,7 +608,8 @@ static bool GenerateTestsMain( void ) {
 	content += "TEMPER_DEFS();\n";
 	content += "\n";
 
-	content += "int main( int argc, char** argv ) {\n";
+	content += "int main( int argc, char** argv )\n";
+	content += "{\n";
 	content += "\tTEMPER_SET_COMMAND_LINE_ARGS( argc, argv );\n";
 	content += "\n";
 

@@ -27,51 +27,62 @@ along with hlml.  If not, see <http://www.gnu.org/licenses/>.
 #include "hlml_operators_vector.h"
 
 // int2
-float dot( const int2& lhs, const int2& rhs ) {
+float dot( const int2& lhs, const int2& rhs )
+{
 	return ( lhs.x * rhs.x ) + ( lhs.y * rhs.y );
 }
 
-float lengthsqr( const int2& vec ) {
+float lengthsqr( const int2& vec )
+{
 	return ( vec.x * vec.x ) + ( vec.y * vec.y );
 }
 
-float length( const int2& vec ) {
+float length( const int2& vec )
+{
 	return sqrtf( lengthsqr( vec ) );
 }
 
 
 // int3
-float dot( const int3& lhs, const int3& rhs ) {
+float dot( const int3& lhs, const int3& rhs )
+{
 	return ( lhs.x * rhs.x ) + ( lhs.y * rhs.y ) + ( lhs.z * rhs.z );
 }
 
-float lengthsqr( const int3& vec ) {
+float lengthsqr( const int3& vec )
+{
 	return ( vec.x * vec.x ) + ( vec.y * vec.y ) + ( vec.z * vec.z );
 }
 
-float length( const int3& vec ) {
+float length( const int3& vec )
+{
 	return sqrtf( lengthsqr( vec ) );
 }
 
 
 // int4
-float dot( const int4& lhs, const int4& rhs ) {
+float dot( const int4& lhs, const int4& rhs )
+{
 	return ( lhs.x * rhs.x ) + ( lhs.y * rhs.y ) + ( lhs.z * rhs.z ) + ( lhs.w * rhs.w );
 }
 
-float lengthsqr( const int4& vec ) {
+float lengthsqr( const int4& vec )
+{
 	return ( vec.x * vec.x ) + ( vec.y * vec.y ) + ( vec.z * vec.z ) + ( vec.w * vec.w );
 }
 
-float length( const int4& vec ) {
+float length( const int4& vec )
+{
 	return sqrtf( lengthsqr( vec ) );
 }
 
-int32_t pack( const int4& vec ) {
+int32_t pack( const int4& vec )
+{
 	return ( vec.x << 24 ) | ( vec.y << 16 ) | ( vec.z << 8 ) | ( vec.w << 0 );
 }
 
-int4 unpack( const int32_t x ) {
+int4 unpack( const int32_t x )
+{
 	return int4(
 		( x >> 24 ) & 0xFF,
 		( x >> 16 ) & 0xFF,
@@ -82,39 +93,47 @@ int4 unpack( const int32_t x ) {
 
 
 // uint2
-float lengthsqr( const uint2& vec ) {
+float lengthsqr( const uint2& vec )
+{
 	return ( vec.x * vec.x ) + ( vec.y * vec.y );
 }
 
-float length( const uint2& vec ) {
+float length( const uint2& vec )
+{
 	return sqrtf( lengthsqr( vec ) );
 }
 
 
 // uint3
-float lengthsqr( const uint3& vec ) {
+float lengthsqr( const uint3& vec )
+{
 	return ( vec.x * vec.x ) + ( vec.y * vec.y ) + ( vec.z * vec.z );
 }
 
-float length( const uint3& vec ) {
+float length( const uint3& vec )
+{
 	return sqrtf( lengthsqr( vec ) );
 }
 
 
 // uint4
-float lengthsqr( const uint4& vec ) {
+float lengthsqr( const uint4& vec )
+{
 	return ( vec.x * vec.x ) + ( vec.y * vec.y ) + ( vec.z * vec.z ) + ( vec.w * vec.w );
 }
 
-float length( const uint4& vec ) {
+float length( const uint4& vec )
+{
 	return sqrtf( lengthsqr( vec ) );
 }
 
-uint32_t pack( const uint4& vec ) {
+uint32_t pack( const uint4& vec )
+{
 	return ( vec.x << 24 ) | ( vec.y << 16 ) | ( vec.z << 8 ) | ( vec.w << 0 );
 }
 
-uint4 unpack( const uint32_t x ) {
+uint4 unpack( const uint32_t x )
+{
 	return uint4(
 		( x >> 24 ) & 0xFF,
 		( x >> 16 ) & 0xFF,
@@ -125,40 +144,48 @@ uint4 unpack( const uint32_t x ) {
 
 
 // float2
-float dot( const float2& lhs, const float2& rhs ) {
+float dot( const float2& lhs, const float2& rhs )
+{
 	return ( lhs.x * rhs.x ) + ( lhs.y * rhs.y );
 }
 
-float lengthsqr( const float2& vec ) {
+float lengthsqr( const float2& vec )
+{
 	return ( vec.x * vec.x ) + ( vec.y * vec.y );
 }
 
-float length( const float2& vec ) {
+float length( const float2& vec )
+{
 	return sqrtf( lengthsqr( vec ) );
 }
 
-void normalize( float2& vec ) {
+void normalize( float2& vec )
+{
 	float invlen = 1.000000f / length( vec );
 	vec *= invlen;
 }
 
-float2 normalized( const float2& vec ) {
+float2 normalized( const float2& vec )
+{
 	float invlen = 1.000000f / length( vec );
 	return (float2) vec * invlen;
 }
 
-float angle( const float2& lhs, const float2& rhs ) {
+float angle( const float2& lhs, const float2& rhs )
+{
 	return degrees( acosf( dot( normalized( lhs ), normalized( rhs ) ) ) );
 }
 
-float2 saturate( const float2& vec ) {
+float2 saturate( const float2& vec )
+{
 	return float2(
 		saturate( vec.x ),
 		saturate( vec.y )
 	);
 }
 
-float2 lerp( const float2& a, const float2& b, const float t ) {
+float2 lerp( const float2& a, const float2& b, const float t )
+{
 	return float2(
 		lerp( a.x, b.x, t ),
 		lerp( a.y, b.y, t )
@@ -167,29 +194,35 @@ float2 lerp( const float2& a, const float2& b, const float t ) {
 
 
 // float3
-float dot( const float3& lhs, const float3& rhs ) {
+float dot( const float3& lhs, const float3& rhs )
+{
 	return ( lhs.x * rhs.x ) + ( lhs.y * rhs.y ) + ( lhs.z * rhs.z );
 }
 
-float lengthsqr( const float3& vec ) {
+float lengthsqr( const float3& vec )
+{
 	return ( vec.x * vec.x ) + ( vec.y * vec.y ) + ( vec.z * vec.z );
 }
 
-float length( const float3& vec ) {
+float length( const float3& vec )
+{
 	return sqrtf( lengthsqr( vec ) );
 }
 
-void normalize( float3& vec ) {
+void normalize( float3& vec )
+{
 	float invlen = 1.000000f / length( vec );
 	vec *= invlen;
 }
 
-float3 normalized( const float3& vec ) {
+float3 normalized( const float3& vec )
+{
 	float invlen = 1.000000f / length( vec );
 	return (float3) vec * invlen;
 }
 
-float3 cross( const float3& lhs, const float3& rhs ) {
+float3 cross( const float3& lhs, const float3& rhs )
+{
 	return float3(
 		( lhs.y * rhs.z ) - ( lhs.z * rhs.y ),
 		( lhs.z * rhs.x ) - ( lhs.x * rhs.z ),
@@ -197,11 +230,13 @@ float3 cross( const float3& lhs, const float3& rhs ) {
 	);
 }
 
-float angle( const float3& lhs, const float3& rhs ) {
+float angle( const float3& lhs, const float3& rhs )
+{
 	return degrees( acosf( dot( normalized( lhs ), normalized( rhs ) ) ) );
 }
 
-float3 saturate( const float3& vec ) {
+float3 saturate( const float3& vec )
+{
 	return float3(
 		saturate( vec.x ),
 		saturate( vec.y ),
@@ -209,7 +244,8 @@ float3 saturate( const float3& vec ) {
 	);
 }
 
-float3 lerp( const float3& a, const float3& b, const float t ) {
+float3 lerp( const float3& a, const float3& b, const float t )
+{
 	return float3(
 		lerp( a.x, b.x, t ),
 		lerp( a.y, b.y, t ),
@@ -219,29 +255,35 @@ float3 lerp( const float3& a, const float3& b, const float t ) {
 
 
 // float4
-float dot( const float4& lhs, const float4& rhs ) {
+float dot( const float4& lhs, const float4& rhs )
+{
 	return ( lhs.x * rhs.x ) + ( lhs.y * rhs.y ) + ( lhs.z * rhs.z ) + ( lhs.w * rhs.w );
 }
 
-float lengthsqr( const float4& vec ) {
+float lengthsqr( const float4& vec )
+{
 	return ( vec.x * vec.x ) + ( vec.y * vec.y ) + ( vec.z * vec.z ) + ( vec.w * vec.w );
 }
 
-float length( const float4& vec ) {
+float length( const float4& vec )
+{
 	return sqrtf( lengthsqr( vec ) );
 }
 
-void normalize( float4& vec ) {
+void normalize( float4& vec )
+{
 	float invlen = 1.000000f / length( vec );
 	vec *= invlen;
 }
 
-float4 normalized( const float4& vec ) {
+float4 normalized( const float4& vec )
+{
 	float invlen = 1.000000f / length( vec );
 	return (float4) vec * invlen;
 }
 
-float4 cross( const float4& lhs, const float4& rhs ) {
+float4 cross( const float4& lhs, const float4& rhs )
+{
 	return float4(
 		( lhs.y * rhs.z ) - ( lhs.z * rhs.y ),
 		( lhs.z * rhs.x ) - ( lhs.x * rhs.z ),
@@ -250,11 +292,13 @@ float4 cross( const float4& lhs, const float4& rhs ) {
 	);
 }
 
-float angle( const float4& lhs, const float4& rhs ) {
+float angle( const float4& lhs, const float4& rhs )
+{
 	return degrees( acosf( dot( normalized( lhs ), normalized( rhs ) ) ) );
 }
 
-float4 saturate( const float4& vec ) {
+float4 saturate( const float4& vec )
+{
 	return float4(
 		saturate( vec.x ),
 		saturate( vec.y ),
@@ -263,7 +307,8 @@ float4 saturate( const float4& vec ) {
 	);
 }
 
-float4 lerp( const float4& a, const float4& b, const float t ) {
+float4 lerp( const float4& a, const float4& b, const float t )
+{
 	return float4(
 		lerp( a.x, b.x, t ),
 		lerp( a.y, b.y, t ),
@@ -274,40 +319,48 @@ float4 lerp( const float4& a, const float4& b, const float t ) {
 
 
 // double2
-double dot( const double2& lhs, const double2& rhs ) {
+double dot( const double2& lhs, const double2& rhs )
+{
 	return ( lhs.x * rhs.x ) + ( lhs.y * rhs.y );
 }
 
-double lengthsqr( const double2& vec ) {
+double lengthsqr( const double2& vec )
+{
 	return ( vec.x * vec.x ) + ( vec.y * vec.y );
 }
 
-double length( const double2& vec ) {
+double length( const double2& vec )
+{
 	return sqrt( lengthsqr( vec ) );
 }
 
-void normalize( double2& vec ) {
+void normalize( double2& vec )
+{
 	double invlen = 1.000000 / length( vec );
 	vec *= invlen;
 }
 
-double2 normalized( const double2& vec ) {
+double2 normalized( const double2& vec )
+{
 	double invlen = 1.000000 / length( vec );
 	return (double2) vec * invlen;
 }
 
-double angle( const double2& lhs, const double2& rhs ) {
+double angle( const double2& lhs, const double2& rhs )
+{
 	return degrees( acos( dot( normalized( lhs ), normalized( rhs ) ) ) );
 }
 
-double2 saturate( const double2& vec ) {
+double2 saturate( const double2& vec )
+{
 	return double2(
 		saturate( vec.x ),
 		saturate( vec.y )
 	);
 }
 
-double2 lerp( const double2& a, const double2& b, const double t ) {
+double2 lerp( const double2& a, const double2& b, const double t )
+{
 	return double2(
 		lerp( a.x, b.x, t ),
 		lerp( a.y, b.y, t )
@@ -316,29 +369,35 @@ double2 lerp( const double2& a, const double2& b, const double t ) {
 
 
 // double3
-double dot( const double3& lhs, const double3& rhs ) {
+double dot( const double3& lhs, const double3& rhs )
+{
 	return ( lhs.x * rhs.x ) + ( lhs.y * rhs.y ) + ( lhs.z * rhs.z );
 }
 
-double lengthsqr( const double3& vec ) {
+double lengthsqr( const double3& vec )
+{
 	return ( vec.x * vec.x ) + ( vec.y * vec.y ) + ( vec.z * vec.z );
 }
 
-double length( const double3& vec ) {
+double length( const double3& vec )
+{
 	return sqrt( lengthsqr( vec ) );
 }
 
-void normalize( double3& vec ) {
+void normalize( double3& vec )
+{
 	double invlen = 1.000000 / length( vec );
 	vec *= invlen;
 }
 
-double3 normalized( const double3& vec ) {
+double3 normalized( const double3& vec )
+{
 	double invlen = 1.000000 / length( vec );
 	return (double3) vec * invlen;
 }
 
-double3 cross( const double3& lhs, const double3& rhs ) {
+double3 cross( const double3& lhs, const double3& rhs )
+{
 	return double3(
 		( lhs.y * rhs.z ) - ( lhs.z * rhs.y ),
 		( lhs.z * rhs.x ) - ( lhs.x * rhs.z ),
@@ -346,11 +405,13 @@ double3 cross( const double3& lhs, const double3& rhs ) {
 	);
 }
 
-double angle( const double3& lhs, const double3& rhs ) {
+double angle( const double3& lhs, const double3& rhs )
+{
 	return degrees( acos( dot( normalized( lhs ), normalized( rhs ) ) ) );
 }
 
-double3 saturate( const double3& vec ) {
+double3 saturate( const double3& vec )
+{
 	return double3(
 		saturate( vec.x ),
 		saturate( vec.y ),
@@ -358,7 +419,8 @@ double3 saturate( const double3& vec ) {
 	);
 }
 
-double3 lerp( const double3& a, const double3& b, const double t ) {
+double3 lerp( const double3& a, const double3& b, const double t )
+{
 	return double3(
 		lerp( a.x, b.x, t ),
 		lerp( a.y, b.y, t ),
@@ -368,29 +430,35 @@ double3 lerp( const double3& a, const double3& b, const double t ) {
 
 
 // double4
-double dot( const double4& lhs, const double4& rhs ) {
+double dot( const double4& lhs, const double4& rhs )
+{
 	return ( lhs.x * rhs.x ) + ( lhs.y * rhs.y ) + ( lhs.z * rhs.z ) + ( lhs.w * rhs.w );
 }
 
-double lengthsqr( const double4& vec ) {
+double lengthsqr( const double4& vec )
+{
 	return ( vec.x * vec.x ) + ( vec.y * vec.y ) + ( vec.z * vec.z ) + ( vec.w * vec.w );
 }
 
-double length( const double4& vec ) {
+double length( const double4& vec )
+{
 	return sqrt( lengthsqr( vec ) );
 }
 
-void normalize( double4& vec ) {
+void normalize( double4& vec )
+{
 	double invlen = 1.000000 / length( vec );
 	vec *= invlen;
 }
 
-double4 normalized( const double4& vec ) {
+double4 normalized( const double4& vec )
+{
 	double invlen = 1.000000 / length( vec );
 	return (double4) vec * invlen;
 }
 
-double4 cross( const double4& lhs, const double4& rhs ) {
+double4 cross( const double4& lhs, const double4& rhs )
+{
 	return double4(
 		( lhs.y * rhs.z ) - ( lhs.z * rhs.y ),
 		( lhs.z * rhs.x ) - ( lhs.x * rhs.z ),
@@ -399,11 +467,13 @@ double4 cross( const double4& lhs, const double4& rhs ) {
 	);
 }
 
-double angle( const double4& lhs, const double4& rhs ) {
+double angle( const double4& lhs, const double4& rhs )
+{
 	return degrees( acos( dot( normalized( lhs ), normalized( rhs ) ) ) );
 }
 
-double4 saturate( const double4& vec ) {
+double4 saturate( const double4& vec )
+{
 	return double4(
 		saturate( vec.x ),
 		saturate( vec.y ),
@@ -412,7 +482,8 @@ double4 saturate( const double4& vec ) {
 	);
 }
 
-double4 lerp( const double4& a, const double4& b, const double t ) {
+double4 lerp( const double4& a, const double4& b, const double t )
+{
 	return double4(
 		lerp( a.x, b.x, t ),
 		lerp( a.y, b.y, t ),

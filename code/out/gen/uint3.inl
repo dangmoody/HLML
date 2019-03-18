@@ -35,62 +35,75 @@ along with hlml.  If not, see <http://www.gnu.org/licenses/>.
 #include <memory.h>
 #include <assert.h>
 
-uint3::uint3() {
+uint3::uint3()
+{
 	memset( data, 0, 3 * sizeof( uint32_t ) );
 }
 
-uint3::uint3( const uint32_t x ) {
+uint3::uint3( const uint32_t x )
+{
 	this->x = this->y = this->z = x;
 }
 
-uint3::uint3( const uint32_t x, const uint32_t y, const uint32_t z ) {
+uint3::uint3( const uint32_t x, const uint32_t y, const uint32_t z )
+{
 	this->x = x;
 	this->y = y;
 	this->z = z;
 }
 
-uint3::uint3( const uint2& other ) {
+uint3::uint3( const uint2& other )
+{
 	memcpy( data, other.data, sizeof( other.data ) );
 }
 
-uint3::uint3( const uint3& other ) {
+uint3::uint3( const uint3& other )
+{
 	memcpy( data, other.data, sizeof( other.data ) );
 }
 
-uint3::uint3( const uint4& other ) {
+uint3::uint3( const uint4& other )
+{
 	memcpy( data, other.data, sizeof( other.data ) );
 }
 
-uint3 uint3::operator=( const uint2& rhs ) {
+uint3 uint3::operator=( const uint2& rhs )
+{
 	memcpy( data, rhs.data, sizeof( rhs.data ) );
 	return *this;
 }
 
-uint3 uint3::operator=( const uint3& rhs ) {
+uint3 uint3::operator=( const uint3& rhs )
+{
 	memcpy( data, rhs.data, sizeof( rhs.data ) );
 	return *this;
 }
 
-uint3 uint3::operator=( const uint4& rhs ) {
+uint3 uint3::operator=( const uint4& rhs )
+{
 	memcpy( data, rhs.data, sizeof( rhs.data ) );
 	return *this;
 }
 
-const uint32_t& uint3::operator[]( const uint32_t index ) const {
+const uint32_t& uint3::operator[]( const uint32_t index ) const
+{
 	assert( index < 3 );
 	return data[index];
 }
 
-uint32_t& uint3::operator[]( const uint32_t index ) {
+uint32_t& uint3::operator[]( const uint32_t index )
+{
 	assert( index < 3 );
 	return data[index];
 }
 
-bool operator==( const uint3& lhs, const uint3& rhs ) {
+bool operator==( const uint3& lhs, const uint3& rhs )
+{
 	return ( lhs.x == rhs.x ) && ( lhs.y == rhs.y ) && ( lhs.z == rhs.z );
 }
 
-bool operator!=( const uint3& lhs, const uint3& rhs ) {
+bool operator!=( const uint3& lhs, const uint3& rhs )
+{
 	return !( operator==( lhs, rhs ) );
 }
 

@@ -31,7 +31,8 @@ along with hlml.  If not, see <http://www.gnu.org/licenses/>.
 #include "float3x4.h"
 
 /// A matrix of 4 float3s.
-struct float4x3 {
+struct float4x3
+{
 	float3 rows[4];
 
 	/// Default constructor.  Sets the matrix to an identity matrix.

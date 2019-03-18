@@ -28,7 +28,8 @@ along with hlml.  If not, see <http://www.gnu.org/licenses/>.
 
 #include <temper/temper.h>
 
-TEMPER_TEST( TestAssignment_uint2x4 ) {
+TEMPER_TEST( TestAssignment_uint2x4 )
+{
 	uint2x4 mat;
 
 	// fill single value
@@ -55,7 +56,8 @@ TEMPER_TEST( TestAssignment_uint2x4 ) {
 	TEMPER_PASS();
 }
 
-TEMPER_TEST( TestArithmeticAddition_uint2x4 ) {
+TEMPER_TEST( TestArithmeticAddition_uint2x4 )
+{
 	uint2x4 answer = uint2x4(
 		7, 7, 7, 7,
 		8, 8, 8, 8
@@ -76,7 +78,8 @@ TEMPER_TEST( TestArithmeticAddition_uint2x4 ) {
 	TEMPER_PASS();
 }
 
-TEMPER_TEST( TestArithmeticSubtraction_uint2x4 ) {
+TEMPER_TEST( TestArithmeticSubtraction_uint2x4 )
+{
 	uint2x4 answer = uint2x4(
 		5, 5, 5, 5,
 		4, 4, 4, 4
@@ -97,7 +100,8 @@ TEMPER_TEST( TestArithmeticSubtraction_uint2x4 ) {
 	TEMPER_PASS();
 }
 
-TEMPER_TEST( TestArithmeticMultiplication_uint2x4 ) {
+TEMPER_TEST( TestArithmeticMultiplication_uint2x4 )
+{
 	uint2x2 answer = uint2x2(
 		72, 72,
 		72, 72
@@ -120,7 +124,8 @@ TEMPER_TEST( TestArithmeticMultiplication_uint2x4 ) {
 	TEMPER_PASS();
 }
 
-TEMPER_TEST( TestArithmeticDivision_uint2x4 ) {
+TEMPER_TEST( TestArithmeticDivision_uint2x4 )
+{
 	uint2x4 answer = uint2x4(
 		6, 6, 6, 6,
 		3, 3, 3, 3
@@ -141,7 +146,8 @@ TEMPER_TEST( TestArithmeticDivision_uint2x4 ) {
 	TEMPER_PASS();
 }
 
-TEMPER_TEST( TestIncrement_uint2x4 ) {
+TEMPER_TEST( TestIncrement_uint2x4 )
+{
 	uint2x4 mat;
 
 	// prefix
@@ -169,7 +175,8 @@ TEMPER_TEST( TestIncrement_uint2x4 ) {
 	TEMPER_PASS();
 }
 
-TEMPER_TEST( TestDecrement_uint2x4 ) {
+TEMPER_TEST( TestDecrement_uint2x4 )
+{
 	uint2x4 mat;
 
 	// prefix
@@ -197,7 +204,8 @@ TEMPER_TEST( TestDecrement_uint2x4 ) {
 	TEMPER_PASS();
 }
 
-TEMPER_TEST( TestRelational_uint2x4 ) {
+TEMPER_TEST( TestRelational_uint2x4 )
+{
 	uint2x4 mat0 = uint2x4(
 		1, 1, 1, 1,
 		1, 1, 1, 1
@@ -306,7 +314,8 @@ TEMPER_TEST( TestRelational_uint2x4 ) {
 	TEMPER_PASS();
 }
 
-TEMPER_TEST( TestArray_uint2x4 ) {
+TEMPER_TEST( TestArray_uint2x4 )
+{
 	uint2x4 mat;
 
 	TEMPER_EXPECT_TRUE( mat[0] == uint4( 1, 0, 0, 0 ) );
@@ -315,7 +324,8 @@ TEMPER_TEST( TestArray_uint2x4 ) {
 	TEMPER_PASS();
 }
 
-TEMPER_TEST( TestBitwiseAnd_uint2x4 ) {
+TEMPER_TEST( TestBitwiseAnd_uint2x4 )
+{
 	uint2x4 a  = uint2x4(
 		21, 21, 21, 21,
 		21, 21, 21, 21
@@ -335,7 +345,8 @@ TEMPER_TEST( TestBitwiseAnd_uint2x4 ) {
 	TEMPER_PASS();
 }
 
-TEMPER_TEST( TestBitwiseOr_uint2x4 ) {
+TEMPER_TEST( TestBitwiseOr_uint2x4 )
+{
 	uint2x4 a  = uint2x4(
 		21, 21, 21, 21,
 		21, 21, 21, 21
@@ -355,7 +366,8 @@ TEMPER_TEST( TestBitwiseOr_uint2x4 ) {
 	TEMPER_PASS();
 }
 
-TEMPER_TEST( TestBitwiseXor_uint2x4 ) {
+TEMPER_TEST( TestBitwiseXor_uint2x4 )
+{
 	uint2x4 a  = uint2x4(
 		21, 21, 21, 21,
 		21, 21, 21, 21
@@ -375,7 +387,8 @@ TEMPER_TEST( TestBitwiseXor_uint2x4 ) {
 	TEMPER_PASS();
 }
 
-TEMPER_TEST( TestBitwiseShiftLeft_uint2x4 ) {
+TEMPER_TEST( TestBitwiseShiftLeft_uint2x4 )
+{
 	uint2x4 a  = uint2x4(
 		1, 1, 1, 1,
 		1, 1, 1, 1
@@ -395,7 +408,8 @@ TEMPER_TEST( TestBitwiseShiftLeft_uint2x4 ) {
 	TEMPER_PASS();
 }
 
-TEMPER_TEST( TestBitwiseShiftRight_uint2x4 ) {
+TEMPER_TEST( TestBitwiseShiftRight_uint2x4 )
+{
 	uint2x4 a  = uint2x4(
 		16, 16, 16, 16,
 		16, 16, 16, 16
@@ -415,7 +429,8 @@ TEMPER_TEST( TestBitwiseShiftRight_uint2x4 ) {
 	TEMPER_PASS();
 }
 
-TEMPER_TEST( TestBitwiseUnary_uint2x4 ) {
+TEMPER_TEST( TestBitwiseUnary_uint2x4 )
+{
 	uint2x4 a = uint2x4(
 		0, 0, 0, 0,
 		0, 0, 0, 0
@@ -430,7 +445,8 @@ TEMPER_TEST( TestBitwiseUnary_uint2x4 ) {
 	TEMPER_PASS();
 }
 
-TEMPER_TEST( TestIdentity_uint2x4 ) {
+TEMPER_TEST( TestIdentity_uint2x4 )
+{
 	uint2x4 id = uint2x4(
 		1, 0, 0, 0,
 		0, 1, 0, 0
@@ -445,7 +461,8 @@ TEMPER_TEST( TestIdentity_uint2x4 ) {
 	TEMPER_PASS();
 }
 
-TEMPER_TEST( TestTranspose_uint2x4 ) {
+TEMPER_TEST( TestTranspose_uint2x4 )
+{
 	uint2x4 mat = uint2x4(
 		0, 1, 2, 3,
 		4, 5, 6, 7
@@ -462,7 +479,8 @@ TEMPER_TEST( TestTranspose_uint2x4 ) {
 	TEMPER_PASS();
 }
 
-TEMPER_TEST( TestScale_uint2x4 ) {
+TEMPER_TEST( TestScale_uint2x4 )
+{
 	uint2x4 mat;
 	uint2x4 scaled = scale( mat, uint3( 2, 2, 2 ) );
 
@@ -474,7 +492,8 @@ TEMPER_TEST( TestScale_uint2x4 ) {
 	TEMPER_PASS();
 }
 
-TEMPER_SUITE( Test_uint2x4 ) {
+TEMPER_SUITE( Test_uint2x4 )
+{
 	TEMPER_RUN_TEST( TestAssignment_uint2x4 );
 
 	TEMPER_RUN_TEST( TestArithmeticAddition_uint2x4 );

@@ -33,9 +33,12 @@ struct bool4;
 
 /// \brief A vector of 2 bools with components xy.
 /// Components are also stored as elements in an array via a union.
-struct bool2 {
-	union {
-		struct {
+struct bool2
+{
+	union
+	{
+		struct
+		{
 			bool x;
 			bool y;
 		};

@@ -95,7 +95,7 @@ static std::string InlGetArithmeticFuncScalar( const genType_t type, const uint3
 	std::string code;
 
 	// main arithmetic func
-	code += fullTypeName + " operator" + opStr + "( const " + fullTypeName + "& lhs, const " + memberTypeString + " rhs ) {\n";
+	code += fullTypeName + " operator" + opStr + "( const " + fullTypeName + "& lhs, const " + memberTypeString + " rhs )\n";
 	code += "\treturn " + fullTypeName + "(\n";
 	for ( uint32_t componentIndex = 0; componentIndex < numComponents; componentIndex++ ) {
 		code += std::string( "\t\tlhs." ) + GEN_COMPONENT_NAMES_VECTOR[componentIndex] + " " + opStr + " rhs";
@@ -109,7 +109,7 @@ static std::string InlGetArithmeticFuncScalar( const genType_t type, const uint3
 	code += "\n";
 
 	// compound arithmetic func
-	code += fullTypeName + " operator" + opStr + "=( " + fullTypeName + "& lhs, const " + memberTypeString + " rhs ) {\n";
+	code += fullTypeName + " operator" + opStr + "=( " + fullTypeName + "& lhs, const " + memberTypeString + " rhs )\n";
 	code += std::string( "\treturn ( lhs = lhs " ) + opStr + " rhs );\n";
 	code += "}\n";
 	code += "\n";
@@ -175,7 +175,8 @@ void Gen_VectorLength( const genType_t type, const uint32_t numComponents, std::
 	outHeader += "inline " + returnTypeString + " length( const " + fullTypeName + "& vec );\n";
 	outHeader += "\n";
 
-	outInl += returnTypeString + " lengthsqr( const " + fullTypeName + "& vec ) {\n";
+	outInl += returnTypeString + " lengthsqr( const " + fullTypeName + "& vec )\n";
+	outInl += "{\n";
 	outInl += "\treturn ";
 	for ( uint32_t i = 0; i < numComponents; i++ ) {
 		char componentName = GEN_COMPONENT_NAMES_VECTOR[i];
@@ -189,7 +190,8 @@ void Gen_VectorLength( const genType_t type, const uint32_t numComponents, std::
 	outInl += "}\n";
 	outInl += "\n";
 
-	outInl += returnTypeString + " length( const " + fullTypeName + "& vec ) {\n";
+	outInl += returnTypeString + " length( const " + fullTypeName + "& vec )\n";
+	outInl += "{\n";
 	outInl += "\treturn " + sqrtString + "( lengthsqr( vec ) );\n";
 	outInl += "}\n";
 	outInl += "\n";
@@ -216,13 +218,15 @@ void Gen_VectorNormalize( const genType_t type, const uint32_t numComponents, st
 	outHeader += "inline " + fullTypeName + " normalized( const " + fullTypeName + "& vec );\n";
 	outHeader += "\n";
 
-	outInl += "void normalize( " + fullTypeName + "& vec ) {\n";
+	outInl += "void normalize( " + fullTypeName + "& vec )\n";
+	outInl += "{\n";
 	outInl += "\t" + typeString + " invlen = " + oneStr + " / length( vec );\n";
 	outInl += "\tvec *= invlen;\n";
 	outInl += "}\n";
 	outInl += "\n";
 
-	outInl += fullTypeName + " normalized( const " + fullTypeName + "& vec ) {\n";
+	outInl += fullTypeName + " normalized( const " + fullTypeName + "& vec )\n";
+	outInl += "{\n";
 	outInl += "\t" + typeString + " invlen = " + oneStr + " / length( vec );\n";
 	outInl += "\treturn (" + fullTypeName + ") vec * invlen;\n";
 	outInl += "}\n";
@@ -245,7 +249,8 @@ void Gen_VectorDot( const genType_t type, const uint32_t numComponents, std::str
 	outHeader += "inline " + returnTypeString + " dot( const " + fullTypeName + "& lhs, const " + fullTypeName + "& rhs );\n";
 	outHeader += "\n";
 
-	outInl += returnTypeString + " dot( const " + fullTypeName + "& lhs, const " + fullTypeName + "& rhs ) {\n";
+	outInl += returnTypeString + " dot( const " + fullTypeName + "& lhs, const " + fullTypeName + "& rhs )\n";
+	outInl += "{\n";
 	outInl += "\treturn ";
 	for ( uint32_t i = 0; i < numComponents; i++ ) {
 		outInl += "( " + std::string( "lhs." ) + GEN_COMPONENT_NAMES_VECTOR[i] + std::string( " * " ) + std::string( "rhs." ) + GEN_COMPONENT_NAMES_VECTOR[i] + " )";
@@ -278,7 +283,8 @@ void Gen_VectorCross( const genType_t type, const uint32_t numComponents, std::s
 	outHeader += "inline " + fullTypeName + " cross( const " + fullTypeName + "& lhs, const " + fullTypeName + "& rhs );\n";
 	outHeader += "\n";
 
-	outInl += fullTypeName + " cross( const " + fullTypeName + "& lhs, const " + fullTypeName + "& rhs ) {\n";
+	outInl += fullTypeName + " cross( const " + fullTypeName + "& lhs, const " + fullTypeName + "& rhs )\n";
+	outInl += "{\n";
 	outInl += "\treturn " + fullTypeName + "(\n";
 	outInl += "\t\t( lhs.y * rhs.z ) - ( lhs.z * rhs.y ),\n";
 	outInl += "\t\t( lhs.z * rhs.x ) - ( lhs.x * rhs.z ),\n";
@@ -313,7 +319,8 @@ void Gen_VectorAngle( const genType_t type, const uint32_t numComponents, std::s
 	outHeader += "inline " + returnTypeString + " angle( const " + fullTypeName + "& lhs, const " + fullTypeName + "& rhs );\n";
 	outHeader += "\n";
 
-	outInl += returnTypeString + " angle( const " + fullTypeName + "& lhs, const " + fullTypeName + "& rhs ) {\n";
+	outInl += returnTypeString + " angle( const " + fullTypeName + "& lhs, const " + fullTypeName + "& rhs )\n";
+	outInl += "{\n";
 	outInl += "\treturn degrees( " + acosString + "( dot( normalized( lhs ), normalized( rhs ) ) ) );\n";
 	outInl += "}\n";
 	outInl += "\n";
@@ -337,7 +344,8 @@ void Gen_VectorSaturate( const genType_t type, const uint32_t numComponents, std
 	outHeader += "inline " + fullTypeName + " saturate( const " + fullTypeName + "& vec );\n";
 	outHeader += "\n";
 
-	outInl += fullTypeName + " saturate( const " + fullTypeName + "& vec ) {\n";
+	outInl += fullTypeName + " saturate( const " + fullTypeName + "& vec )\n";
+	outInl += "{\n";
 	outInl += "\treturn " + fullTypeName + "(\n";
 	for ( uint32_t i = 0; i < numComponents; i++ ) {
 		outInl += std::string( "\t\tsaturate( vec." ) + GEN_COMPONENT_NAMES_VECTOR[i] + " )";
@@ -365,7 +373,8 @@ void Gen_VectorLerp( const genType_t type, const uint32_t numComponents, std::st
 	outHeader += "inline " + fullTypeName + " lerp( const " + fullTypeName + "& a, const " + fullTypeName + "& b, const " + typeString + " t );\n";
 	outHeader += "\n";
 
-	outInl += fullTypeName + " lerp( const " + fullTypeName + "& a, const " + fullTypeName + "& b, const " + typeString + " t ) {\n";
+	outInl += fullTypeName + " lerp( const " + fullTypeName + "& a, const " + fullTypeName + "& b, const " + typeString + " t )\n";
+	outInl += "{\n";
 	outInl += "\treturn " + fullTypeName + "(\n";
 	for ( uint32_t i = 0; i < numComponents; i++ ) {
 		char component = GEN_COMPONENT_NAMES_VECTOR[i];
@@ -408,7 +417,8 @@ void Gen_VectorPack( const genType_t type, const uint32_t numComponents, std::st
 	outHeader += "inline " + memberTypeString + " pack( const " + fullTypeName + "& vec );\n";
 	outHeader += "\n";
 
-	outInl += memberTypeString + " pack( const " + fullTypeName + "& vec ) {\n";
+	outInl += memberTypeString + " pack( const " + fullTypeName + "& vec )\n";
+	outInl += "{\n";
 	outInl += "\treturn ";
 	for ( uint32_t i = 0; i < numComponents; i++ ) {
 		outInl += std::string( "( vec." ) + GEN_COMPONENT_NAMES_VECTOR[i] + " << " + std::to_string( shiftVals[i] ) + " )";
@@ -447,7 +457,8 @@ void Gen_VectorUnpack( const genType_t type, const uint32_t numComponents, std::
 	outHeader += "inline " + fullTypeName + " unpack( const " + memberTypeString + " x );\n";
 	outHeader += "\n";
 
-	outInl += fullTypeName + " unpack( const " + memberTypeString + " x ) {\n";
+	outInl += fullTypeName + " unpack( const " + memberTypeString + " x )\n";
+	outInl += "{\n";
 	outInl += "\treturn " + fullTypeName + "(\n";
 	for ( uint32_t i = 0; i < numComponents; i++ ) {
 		outInl += "\t\t( x >> " + std::to_string( shiftVals[i] ) + " ) & 0xFF";

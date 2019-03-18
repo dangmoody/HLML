@@ -29,7 +29,8 @@ along with hlml.  If not, see <http://www.gnu.org/licenses/>.
 #include "float3.h"
 
 /// A matrix of 3 float3s.
-struct float3x3 {
+struct float3x3
+{
 	float3 rows[3];
 
 	/// Default constructor.  Sets the matrix to an identity matrix.

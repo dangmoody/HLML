@@ -28,7 +28,8 @@ along with hlml.  If not, see <http://www.gnu.org/licenses/>.
 
 #include <temper/temper.h>
 
-TEMPER_TEST( TestAssignment_uint3x2 ) {
+TEMPER_TEST( TestAssignment_uint3x2 )
+{
 	uint3x2 mat;
 
 	// fill single value
@@ -60,7 +61,8 @@ TEMPER_TEST( TestAssignment_uint3x2 ) {
 	TEMPER_PASS();
 }
 
-TEMPER_TEST( TestArithmeticAddition_uint3x2 ) {
+TEMPER_TEST( TestArithmeticAddition_uint3x2 )
+{
 	uint3x2 answer = uint3x2(
 		7, 7,
 		8, 8,
@@ -84,7 +86,8 @@ TEMPER_TEST( TestArithmeticAddition_uint3x2 ) {
 	TEMPER_PASS();
 }
 
-TEMPER_TEST( TestArithmeticSubtraction_uint3x2 ) {
+TEMPER_TEST( TestArithmeticSubtraction_uint3x2 )
+{
 	uint3x2 answer = uint3x2(
 		5, 5,
 		4, 4,
@@ -108,7 +111,8 @@ TEMPER_TEST( TestArithmeticSubtraction_uint3x2 ) {
 	TEMPER_PASS();
 }
 
-TEMPER_TEST( TestArithmeticMultiplication_uint3x2 ) {
+TEMPER_TEST( TestArithmeticMultiplication_uint3x2 )
+{
 	uint3x3 answer = uint3x3(
 		18, 18, 18,
 		18, 18, 18,
@@ -131,7 +135,8 @@ TEMPER_TEST( TestArithmeticMultiplication_uint3x2 ) {
 	TEMPER_PASS();
 }
 
-TEMPER_TEST( TestArithmeticDivision_uint3x2 ) {
+TEMPER_TEST( TestArithmeticDivision_uint3x2 )
+{
 	uint3x2 answer = uint3x2(
 		6, 6,
 		3, 3,
@@ -155,7 +160,8 @@ TEMPER_TEST( TestArithmeticDivision_uint3x2 ) {
 	TEMPER_PASS();
 }
 
-TEMPER_TEST( TestIncrement_uint3x2 ) {
+TEMPER_TEST( TestIncrement_uint3x2 )
+{
 	uint3x2 mat;
 
 	// prefix
@@ -187,7 +193,8 @@ TEMPER_TEST( TestIncrement_uint3x2 ) {
 	TEMPER_PASS();
 }
 
-TEMPER_TEST( TestDecrement_uint3x2 ) {
+TEMPER_TEST( TestDecrement_uint3x2 )
+{
 	uint3x2 mat;
 
 	// prefix
@@ -219,7 +226,8 @@ TEMPER_TEST( TestDecrement_uint3x2 ) {
 	TEMPER_PASS();
 }
 
-TEMPER_TEST( TestRelational_uint3x2 ) {
+TEMPER_TEST( TestRelational_uint3x2 )
+{
 	uint3x2 mat0 = uint3x2(
 		1, 1,
 		1, 1,
@@ -346,7 +354,8 @@ TEMPER_TEST( TestRelational_uint3x2 ) {
 	TEMPER_PASS();
 }
 
-TEMPER_TEST( TestArray_uint3x2 ) {
+TEMPER_TEST( TestArray_uint3x2 )
+{
 	uint3x2 mat;
 
 	TEMPER_EXPECT_TRUE( mat[0] == uint2( 1, 0 ) );
@@ -356,7 +365,8 @@ TEMPER_TEST( TestArray_uint3x2 ) {
 	TEMPER_PASS();
 }
 
-TEMPER_TEST( TestBitwiseAnd_uint3x2 ) {
+TEMPER_TEST( TestBitwiseAnd_uint3x2 )
+{
 	uint3x2 a  = uint3x2(
 		21, 21,
 		21, 21,
@@ -379,7 +389,8 @@ TEMPER_TEST( TestBitwiseAnd_uint3x2 ) {
 	TEMPER_PASS();
 }
 
-TEMPER_TEST( TestBitwiseOr_uint3x2 ) {
+TEMPER_TEST( TestBitwiseOr_uint3x2 )
+{
 	uint3x2 a  = uint3x2(
 		21, 21,
 		21, 21,
@@ -402,7 +413,8 @@ TEMPER_TEST( TestBitwiseOr_uint3x2 ) {
 	TEMPER_PASS();
 }
 
-TEMPER_TEST( TestBitwiseXor_uint3x2 ) {
+TEMPER_TEST( TestBitwiseXor_uint3x2 )
+{
 	uint3x2 a  = uint3x2(
 		21, 21,
 		21, 21,
@@ -425,7 +437,8 @@ TEMPER_TEST( TestBitwiseXor_uint3x2 ) {
 	TEMPER_PASS();
 }
 
-TEMPER_TEST( TestBitwiseShiftLeft_uint3x2 ) {
+TEMPER_TEST( TestBitwiseShiftLeft_uint3x2 )
+{
 	uint3x2 a  = uint3x2(
 		1, 1,
 		1, 1,
@@ -448,7 +461,8 @@ TEMPER_TEST( TestBitwiseShiftLeft_uint3x2 ) {
 	TEMPER_PASS();
 }
 
-TEMPER_TEST( TestBitwiseShiftRight_uint3x2 ) {
+TEMPER_TEST( TestBitwiseShiftRight_uint3x2 )
+{
 	uint3x2 a  = uint3x2(
 		16, 16,
 		16, 16,
@@ -471,7 +485,8 @@ TEMPER_TEST( TestBitwiseShiftRight_uint3x2 ) {
 	TEMPER_PASS();
 }
 
-TEMPER_TEST( TestBitwiseUnary_uint3x2 ) {
+TEMPER_TEST( TestBitwiseUnary_uint3x2 )
+{
 	uint3x2 a = uint3x2(
 		0, 0,
 		0, 0,
@@ -488,7 +503,8 @@ TEMPER_TEST( TestBitwiseUnary_uint3x2 ) {
 	TEMPER_PASS();
 }
 
-TEMPER_TEST( TestIdentity_uint3x2 ) {
+TEMPER_TEST( TestIdentity_uint3x2 )
+{
 	uint3x2 id = uint3x2(
 		1, 0,
 		0, 1,
@@ -504,7 +520,8 @@ TEMPER_TEST( TestIdentity_uint3x2 ) {
 	TEMPER_PASS();
 }
 
-TEMPER_TEST( TestTranspose_uint3x2 ) {
+TEMPER_TEST( TestTranspose_uint3x2 )
+{
 	uint3x2 mat = uint3x2(
 		0, 1,
 		2, 3,
@@ -520,7 +537,8 @@ TEMPER_TEST( TestTranspose_uint3x2 ) {
 	TEMPER_PASS();
 }
 
-TEMPER_SUITE( Test_uint3x2 ) {
+TEMPER_SUITE( Test_uint3x2 )
+{
 	TEMPER_RUN_TEST( TestAssignment_uint3x2 );
 
 	TEMPER_RUN_TEST( TestArithmeticAddition_uint3x2 );

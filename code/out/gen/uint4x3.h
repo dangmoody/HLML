@@ -31,7 +31,8 @@ along with hlml.  If not, see <http://www.gnu.org/licenses/>.
 #include "uint3x4.h"
 
 /// A matrix of 4 uint3s.
-struct uint4x3 {
+struct uint4x3
+{
 	uint3 rows[4];
 
 	/// Default constructor.  Sets the matrix to an identity matrix.

@@ -35,61 +35,74 @@ along with hlml.  If not, see <http://www.gnu.org/licenses/>.
 #include <memory.h>
 #include <assert.h>
 
-uint2::uint2() {
+uint2::uint2()
+{
 	memset( data, 0, 2 * sizeof( uint32_t ) );
 }
 
-uint2::uint2( const uint32_t x ) {
+uint2::uint2( const uint32_t x )
+{
 	this->x = this->y = x;
 }
 
-uint2::uint2( const uint32_t x, const uint32_t y ) {
+uint2::uint2( const uint32_t x, const uint32_t y )
+{
 	this->x = x;
 	this->y = y;
 }
 
-uint2::uint2( const uint2& other ) {
+uint2::uint2( const uint2& other )
+{
 	memcpy( data, other.data, sizeof( other.data ) );
 }
 
-uint2::uint2( const uint3& other ) {
+uint2::uint2( const uint3& other )
+{
 	memcpy( data, other.data, sizeof( other.data ) );
 }
 
-uint2::uint2( const uint4& other ) {
+uint2::uint2( const uint4& other )
+{
 	memcpy( data, other.data, sizeof( other.data ) );
 }
 
-uint2 uint2::operator=( const uint2& rhs ) {
+uint2 uint2::operator=( const uint2& rhs )
+{
 	memcpy( data, rhs.data, sizeof( rhs.data ) );
 	return *this;
 }
 
-uint2 uint2::operator=( const uint3& rhs ) {
+uint2 uint2::operator=( const uint3& rhs )
+{
 	memcpy( data, rhs.data, sizeof( rhs.data ) );
 	return *this;
 }
 
-uint2 uint2::operator=( const uint4& rhs ) {
+uint2 uint2::operator=( const uint4& rhs )
+{
 	memcpy( data, rhs.data, sizeof( rhs.data ) );
 	return *this;
 }
 
-const uint32_t& uint2::operator[]( const uint32_t index ) const {
+const uint32_t& uint2::operator[]( const uint32_t index ) const
+{
 	assert( index < 2 );
 	return data[index];
 }
 
-uint32_t& uint2::operator[]( const uint32_t index ) {
+uint32_t& uint2::operator[]( const uint32_t index )
+{
 	assert( index < 2 );
 	return data[index];
 }
 
-bool operator==( const uint2& lhs, const uint2& rhs ) {
+bool operator==( const uint2& lhs, const uint2& rhs )
+{
 	return ( lhs.x == rhs.x ) && ( lhs.y == rhs.y );
 }
 
-bool operator!=( const uint2& lhs, const uint2& rhs ) {
+bool operator!=( const uint2& lhs, const uint2& rhs )
+{
 	return !( operator==( lhs, rhs ) );
 }
 

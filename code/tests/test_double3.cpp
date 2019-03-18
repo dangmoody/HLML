@@ -29,7 +29,8 @@ along with hlml.  If not, see <http://www.gnu.org/licenses/>.
 #include <temper/temper.h>
 
 // also tests equality operators
-TEMPER_TEST( TestAssignment_double3 ) {
+TEMPER_TEST( TestAssignment_double3 )
+{
 	double3 a;
 
 	a = double3( 1.000000 );
@@ -43,7 +44,8 @@ TEMPER_TEST( TestAssignment_double3 ) {
 	TEMPER_PASS();
 }
 
-TEMPER_TEST( TestArray_double3 ) {
+TEMPER_TEST( TestArray_double3 )
+{
 	double3 a = double3( 0.000000, 1.000000, 2.000000 );
 
 	TEMPER_EXPECT_TRUE( a[0] == 0.000000 );
@@ -53,7 +55,8 @@ TEMPER_TEST( TestArray_double3 ) {
 	TEMPER_PASS();
 }
 
-TEMPER_TEST( TestArithmeticAddition_double3 ) {
+TEMPER_TEST( TestArithmeticAddition_double3 )
+{
 	double3 a  = double3( 6.000000 );
 	double3 b  = double3( 2.000000, 3.000000, 4.000000 );
 
@@ -64,7 +67,8 @@ TEMPER_TEST( TestArithmeticAddition_double3 ) {
 	TEMPER_PASS();
 }
 
-TEMPER_TEST( TestArithmeticSubtraction_double3 ) {
+TEMPER_TEST( TestArithmeticSubtraction_double3 )
+{
 	double3 a  = double3( 6.000000 );
 	double3 b  = double3( 2.000000, 3.000000, 4.000000 );
 
@@ -75,7 +79,8 @@ TEMPER_TEST( TestArithmeticSubtraction_double3 ) {
 	TEMPER_PASS();
 }
 
-TEMPER_TEST( TestArithmeticMultiplication_double3 ) {
+TEMPER_TEST( TestArithmeticMultiplication_double3 )
+{
 	double3 a  = double3( 6.000000 );
 	double3 b  = double3( 2.000000, 3.000000, 4.000000 );
 
@@ -86,7 +91,8 @@ TEMPER_TEST( TestArithmeticMultiplication_double3 ) {
 	TEMPER_PASS();
 }
 
-TEMPER_TEST( TestArithmeticDivision_double3 ) {
+TEMPER_TEST( TestArithmeticDivision_double3 )
+{
 	double3 a  = double3( 6.000000 );
 	double3 b  = double3( 2.000000, 2.000000, 3.000000 );
 
@@ -97,7 +103,8 @@ TEMPER_TEST( TestArithmeticDivision_double3 ) {
 	TEMPER_PASS();
 }
 
-TEMPER_TEST( TestIncrement_double3 ) {
+TEMPER_TEST( TestIncrement_double3 )
+{
 	double3 vec;
 
 	// prefix
@@ -113,7 +120,8 @@ TEMPER_TEST( TestIncrement_double3 ) {
 	TEMPER_PASS();
 }
 
-TEMPER_TEST( TestDecrement_double3 ) {
+TEMPER_TEST( TestDecrement_double3 )
+{
 	double3 vec;
 
 	// prefix
@@ -129,7 +137,8 @@ TEMPER_TEST( TestDecrement_double3 ) {
 	TEMPER_PASS();
 }
 
-TEMPER_TEST( TestRelational_double3 ) {
+TEMPER_TEST( TestRelational_double3 )
+{
 	double3 vec0 = double3( 0.000000, 0.000000, 0.000000 );
 	double3 vec1 = double3( 1.000000, 1.000000, 1.000000 );
 	double3 vec2 = double3( 2.000000, 2.000000, 2.000000 );
@@ -161,7 +170,8 @@ TEMPER_TEST( TestRelational_double3 ) {
 	TEMPER_PASS();
 }
 
-TEMPER_TEST( TestLength_double3 ) {
+TEMPER_TEST( TestLength_double3 )
+{
 	double3 vec = double3( 2.000000 );
 
 	TEMPER_EXPECT_TRUE( doubleeq( lengthsqr( vec ), 12.0 ) );
@@ -170,7 +180,8 @@ TEMPER_TEST( TestLength_double3 ) {
 	TEMPER_PASS();
 }
 
-TEMPER_TEST( TestNormalized_double3 ) {
+TEMPER_TEST( TestNormalized_double3 )
+{
 	double3 vec = double3( 2.000000, 3.000000, 4.000000 );
 	vec = normalized( vec );
 
@@ -179,7 +190,8 @@ TEMPER_TEST( TestNormalized_double3 ) {
 	TEMPER_PASS();
 }
 
-TEMPER_TEST( TestDot_double3 ) {
+TEMPER_TEST( TestDot_double3 )
+{
 	double3 a = double3( 0.000000, 0.000000, 1.000000 );
 	double3 b = double3( 0.000000, 0.000000, -1.000000 );
 
@@ -188,7 +200,8 @@ TEMPER_TEST( TestDot_double3 ) {
 	TEMPER_PASS();
 }
 
-TEMPER_TEST( TestCross_double3 ) {
+TEMPER_TEST( TestCross_double3 )
+{
 	double3 left = double3( -1.000000, 0.000000, 0.000000 );
 	double3 forward = double3( 0.000000, 0.000000, 1.000000 );
 	double3 up = double3( 0.000000, 1.000000, 0.000000 );
@@ -198,7 +211,8 @@ TEMPER_TEST( TestCross_double3 ) {
 	TEMPER_PASS();
 }
 
-TEMPER_TEST( TestAngle_double3 ) {
+TEMPER_TEST( TestAngle_double3 )
+{
 	double3 right = double3( 1.000000, 0.000000, 0.000000 );
 	double3 up = double3( 0.000000, 1.000000, 0.000000 );
 	double answer = angle( up, right );
@@ -208,7 +222,8 @@ TEMPER_TEST( TestAngle_double3 ) {
 	TEMPER_PASS();
 }
 
-TEMPER_TEST( TestSaturate_double3 ) {
+TEMPER_TEST( TestSaturate_double3 )
+{
 	double3 answer = double3( 0.000000, 1.000000, 1.000000 );
 
 	double3 vec = double3( -1.000000, 2.000000, 4.000000 );
@@ -219,7 +234,8 @@ TEMPER_TEST( TestSaturate_double3 ) {
 	TEMPER_PASS();
 }
 
-TEMPER_TEST( TestLerp_double3 ) {
+TEMPER_TEST( TestLerp_double3 )
+{
 	double3 answer = double3( 0.500000, 0.500000, 0.000000 );
 
 	double3 a = double3( 0.000000, 1.000000, 0.000000 );
@@ -231,7 +247,8 @@ TEMPER_TEST( TestLerp_double3 ) {
 	TEMPER_PASS();
 }
 
-TEMPER_SUITE( Test_double3 ) {
+TEMPER_SUITE( Test_double3 )
+{
 	TEMPER_RUN_TEST( TestAssignment_double3 );
 	TEMPER_RUN_TEST( TestArray_double3 );
 

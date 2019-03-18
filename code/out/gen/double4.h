@@ -36,16 +36,20 @@ struct float3;
 
 /// \brief A vector of 4 doubles with components xyzw and/or rgba.
 /// Components are also stored as elements in an array via a union.
-struct double4 {
-	union {
-		struct {
+struct double4
+{
+	union
+	{
+		struct
+		{
 			double x;
 			double y;
 			double z;
 			double w;
 		};
 
-		struct {
+		struct
+		{
 			double r;
 			double g;
 			double b;
