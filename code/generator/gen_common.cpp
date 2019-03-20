@@ -418,3 +418,21 @@ void Gen_OperatorComponentWiseArithmeticRhsType( const genType_t type, const uin
 		outInl += "\n";
 	}
 }
+
+void Gen_OperatorNotEquals( const genType_t type, const uint32_t numRows, const uint32_t numCols, std::string& outHeader, std::string& outInl ) {
+	assert( numRows >= 1 );	// pass through 1 for vectors
+	assert( numRows <= GEN_COMPONENT_COUNT_MAX );
+	assert( numCols >= GEN_COMPONENT_COUNT_MIN );
+	assert( numCols <= GEN_COMPONENT_COUNT_MAX );
+
+	std::string fullTypeName = Gen_GetFullTypeName( type, numRows, numCols );
+
+	outHeader += Gen_GetDocOperatorNotEquals( fullTypeName );
+	outHeader += "inline bool operator!=( const " + fullTypeName + "& lhs, const " + fullTypeName + "& rhs );\n";
+	outHeader += "\n";
+
+	outInl += "bool operator!=( const " + fullTypeName + "& lhs, const " + fullTypeName + "& rhs ) {\n";
+	outInl += "\treturn !( operator==( lhs, rhs ) );\n";
+	outInl += "}\n";
+	outInl += "\n";
+}

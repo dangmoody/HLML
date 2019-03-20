@@ -286,18 +286,7 @@ void VectorGenerator::GenerateOperatorsEquality() {
 		m_codeInl += "\n";
 	}
 
-	// operator!=
-	{
-		m_codeHeader += Gen_GetDocOperatorNotEquals( m_fullTypeName );
-		m_codeHeader += "inline bool operator!=( const " + m_fullTypeName + "& lhs, const " + m_fullTypeName + "& rhs );\n";
-		m_codeHeader += "\n";
-
-		m_codeInl += "bool operator!=( const " + m_fullTypeName + "& lhs, const " + m_fullTypeName + "& rhs )\n";
-		m_codeInl += "{\n";
-		m_codeInl += "\treturn !( operator==( lhs, rhs ) );\n";
-		m_codeInl += "}\n";
-		m_codeInl += "\n";
-	}
+	Gen_OperatorNotEquals( m_type, 1, m_numComponents, m_codeHeader, m_codeInl );
 }
 
 std::string VectorGenerator::GetDocStruct() const {

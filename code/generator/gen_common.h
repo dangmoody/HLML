@@ -173,6 +173,8 @@ extern void			Gen_OperatorComponentWiseArithmeticScalar( const genType_t type, c
 extern void			Gen_OperatorComponentWiseArithmeticRhsType( const genType_t type, const uint32_t numRows, const uint32_t numCols, const genOpArithmetic_t op,
 						std::string& outHeader, std::string& outInl );
 
+extern void			Gen_OperatorNotEquals( const genType_t type, const uint32_t numRows, const uint32_t numCols, std::string& outHeader, std::string& outInl );
+
 std::string Gen_GetTypeString( const genType_t type ) {
 	switch ( type ) {
 		case GEN_TYPE_BOOL:		return "bool";
