@@ -178,6 +178,24 @@ TEMPER_TEST( TestArithmeticDivision_int4x4 )
 	TEMPER_PASS();
 }
 
+TEMPER_TEST( TestMultiplyVector_int4x4 )
+{
+	int4 answerVec = int4( 28, 68, 108, 148 );
+
+	int4x4 a = int4x4(
+		1, 2, 3, 4,
+		5, 6, 7, 8,
+		9, 10, 11, 12,
+		13, 14, 15, 16
+	);
+	int4 b = int4( 2, 1, 4, 3 );
+	int4 c = a * b;
+
+	TEMPER_EXPECT_TRUE( c == answerVec );
+
+	TEMPER_PASS();
+}
+
 TEMPER_TEST( TestIncrement_int4x4 )
 {
 	int4x4 mat;
@@ -254,6 +272,13 @@ TEMPER_TEST( TestDecrement_int4x4 )
 
 TEMPER_TEST( TestRelational_int4x4 )
 {
+	bool4x4 allTrue = bool4x4(
+		true, true, true, true,
+		true, true, true, true,
+		true, true, true, true,
+		true, true, true, true
+	);
+
 	int4x4 mat0 = int4x4(
 		1, 1, 1, 1,
 		1, 1, 1, 1,
@@ -297,103 +322,20 @@ TEMPER_TEST( TestRelational_int4x4 )
 	bool4x4 test12 = mat3 >= mat3;
 	bool4x4 test13 = mat3 > mat2;
 
-	TEMPER_EXPECT_TRUE( test0 == bool4x4(
-		true, true, true, true,
-		true, true, true, true,
-		true, true, true, true,
-		true, true, true, true
-	) );
-
-	TEMPER_EXPECT_TRUE( test1 == bool4x4(
-		true, true, true, true,
-		true, true, true, true,
-		true, true, true, true,
-		true, true, true, true
-	) );
-
-	TEMPER_EXPECT_TRUE( test2 == bool4x4(
-		true, true, true, true,
-		true, true, true, true,
-		true, true, true, true,
-		true, true, true, true
-	) );
-
-	TEMPER_EXPECT_TRUE( test3 == bool4x4(
-		true, true, true, true,
-		true, true, true, true,
-		true, true, true, true,
-		true, true, true, true
-	) );
-
-	TEMPER_EXPECT_TRUE( test4 == bool4x4(
-		true, true, true, true,
-		true, true, true, true,
-		true, true, true, true,
-		true, true, true, true
-	) );
-
-	TEMPER_EXPECT_TRUE( test5 == bool4x4(
-		true, true, true, true,
-		true, true, true, true,
-		true, true, true, true,
-		true, true, true, true
-	) );
-
-	TEMPER_EXPECT_TRUE( test6 == bool4x4(
-		true, true, true, true,
-		true, true, true, true,
-		true, true, true, true,
-		true, true, true, true
-	) );
-
-	TEMPER_EXPECT_TRUE( test7 == bool4x4(
-		true, true, true, true,
-		true, true, true, true,
-		true, true, true, true,
-		true, true, true, true
-	) );
-
-	TEMPER_EXPECT_TRUE( test8 == bool4x4(
-		true, true, true, true,
-		true, true, true, true,
-		true, true, true, true,
-		true, true, true, true
-	) );
-
-	TEMPER_EXPECT_TRUE( test9 == bool4x4(
-		true, true, true, true,
-		true, true, true, true,
-		true, true, true, true,
-		true, true, true, true
-	) );
-
-	TEMPER_EXPECT_TRUE( test10 == bool4x4(
-		true, true, true, true,
-		true, true, true, true,
-		true, true, true, true,
-		true, true, true, true
-	) );
-
-	TEMPER_EXPECT_TRUE( test11 == bool4x4(
-		true, true, true, true,
-		true, true, true, true,
-		true, true, true, true,
-		true, true, true, true
-	) );
-
-	TEMPER_EXPECT_TRUE( test12 == bool4x4(
-		true, true, true, true,
-		true, true, true, true,
-		true, true, true, true,
-		true, true, true, true
-	) );
-
-	TEMPER_EXPECT_TRUE( test13 == bool4x4(
-		true, true, true, true,
-		true, true, true, true,
-		true, true, true, true,
-		true, true, true, true
-	) );
+	TEMPER_EXPECT_TRUE( test0 == allTrue );
+	TEMPER_EXPECT_TRUE( test1 == allTrue );
+	TEMPER_EXPECT_TRUE( test2 == allTrue );
+	TEMPER_EXPECT_TRUE( test3 == allTrue );
+	TEMPER_EXPECT_TRUE( test4 == allTrue );
+	TEMPER_EXPECT_TRUE( test5 == allTrue );
+	TEMPER_EXPECT_TRUE( test6 == allTrue );
+	TEMPER_EXPECT_TRUE( test7 == allTrue );
+	TEMPER_EXPECT_TRUE( test8 == allTrue );
+	TEMPER_EXPECT_TRUE( test9 == allTrue );
+	TEMPER_EXPECT_TRUE( test10 == allTrue );
+	TEMPER_EXPECT_TRUE( test11 == allTrue );
+	TEMPER_EXPECT_TRUE( test12 == allTrue );
+	TEMPER_EXPECT_TRUE( test13 == allTrue );
 
 	TEMPER_PASS();
 }
@@ -659,6 +601,8 @@ TEMPER_SUITE( Test_int4x4 )
 	TEMPER_RUN_TEST( TestArithmeticSubtraction_int4x4 );
 	TEMPER_RUN_TEST( TestArithmeticMultiplication_int4x4 );
 	TEMPER_RUN_TEST( TestArithmeticDivision_int4x4 );
+
+	TEMPER_RUN_TEST( TestMultiplyVector_int4x4 );
 
 	TEMPER_RUN_TEST( TestIncrement_int4x4 );
 	TEMPER_RUN_TEST( TestDecrement_int4x4 );

@@ -33,73 +33,73 @@ TEMPER_TEST( TestAssignment_uint4 )
 {
 	uint4 a;
 
-	a = uint4( 1 );
-	TEMPER_EXPECT_TRUE( a == uint4( 1 ) );
-	TEMPER_EXPECT_TRUE( a != uint4( 0, 1, 2, 3 ) );
+	a = uint4( 1U );
+	TEMPER_EXPECT_TRUE( a == uint4( 1U ) );
+	TEMPER_EXPECT_TRUE( a != uint4( 0U, 1U, 2U, 3U ) );
 
-	a = uint4( 0, 1, 2, 3 );
-	TEMPER_EXPECT_TRUE( a == uint4( 0, 1, 2, 3 ) );
-	TEMPER_EXPECT_TRUE( a != uint4( 1 ) );
+	a = uint4( 0U, 1U, 2U, 3U );
+	TEMPER_EXPECT_TRUE( a == uint4( 0U, 1U, 2U, 3U ) );
+	TEMPER_EXPECT_TRUE( a != uint4( 1U ) );
 
 	TEMPER_PASS();
 }
 
 TEMPER_TEST( TestArray_uint4 )
 {
-	uint4 a = uint4( 0, 1, 2, 3 );
+	uint4 a = uint4( 0U, 1U, 2U, 3U );
 
-	TEMPER_EXPECT_TRUE( a[0] == 0 );
-	TEMPER_EXPECT_TRUE( a[1] == 1 );
-	TEMPER_EXPECT_TRUE( a[2] == 2 );
-	TEMPER_EXPECT_TRUE( a[3] == 3 );
+	TEMPER_EXPECT_TRUE( a[0] == 0U );
+	TEMPER_EXPECT_TRUE( a[1] == 1U );
+	TEMPER_EXPECT_TRUE( a[2] == 2U );
+	TEMPER_EXPECT_TRUE( a[3] == 3U );
 
 	TEMPER_PASS();
 }
 
 TEMPER_TEST( TestArithmeticAddition_uint4 )
 {
-	uint4 a  = uint4( 6 );
-	uint4 b  = uint4( 2, 3, 4, 5 );
+	uint4 a  = uint4( 6U );
+	uint4 b  = uint4( 2U, 3U, 4U, 5U );
 
 	uint4 c = a + b;
 
-	TEMPER_EXPECT_TRUE( c == uint4( 8, 9, 10, 11 ) );
+	TEMPER_EXPECT_TRUE( c == uint4( 8U, 9U, 10U, 11U ) );
 
 	TEMPER_PASS();
 }
 
 TEMPER_TEST( TestArithmeticSubtraction_uint4 )
 {
-	uint4 a  = uint4( 6 );
-	uint4 b  = uint4( 2, 3, 4, 5 );
+	uint4 a  = uint4( 6U );
+	uint4 b  = uint4( 2U, 3U, 4U, 5U );
 
 	uint4 c = a - b;
 
-	TEMPER_EXPECT_TRUE( c == uint4( 4, 3, 2, 1 ) );
+	TEMPER_EXPECT_TRUE( c == uint4( 4U, 3U, 2U, 1U ) );
 
 	TEMPER_PASS();
 }
 
 TEMPER_TEST( TestArithmeticMultiplication_uint4 )
 {
-	uint4 a  = uint4( 6 );
-	uint4 b  = uint4( 2, 3, 4, 5 );
+	uint4 a  = uint4( 6U );
+	uint4 b  = uint4( 2U, 3U, 4U, 5U );
 
 	uint4 c = a * b;
 
-	TEMPER_EXPECT_TRUE( c == uint4( 12, 18, 24, 30 ) );
+	TEMPER_EXPECT_TRUE( c == uint4( 12U, 18U, 24U, 30U ) );
 
 	TEMPER_PASS();
 }
 
 TEMPER_TEST( TestArithmeticDivision_uint4 )
 {
-	uint4 a  = uint4( 6 );
-	uint4 b  = uint4( 2, 2, 3, 6 );
+	uint4 a  = uint4( 6U );
+	uint4 b  = uint4( 2U, 2U, 3U, 6U );
 
 	uint4 c = a / b;
 
-	TEMPER_EXPECT_TRUE( c == uint4( 3, 3, 2, 1 ) );
+	TEMPER_EXPECT_TRUE( c == uint4( 3U, 3U, 2U, 1U ) );
 
 	TEMPER_PASS();
 }
@@ -109,14 +109,14 @@ TEMPER_TEST( TestIncrement_uint4 )
 	uint4 vec;
 
 	// prefix
-	vec = uint4( 0, 0, 0, 0 );
+	vec = uint4( 0U, 0U, 0U, 0U );
 	++vec;
-	TEMPER_EXPECT_TRUE( vec == uint4( 1, 1, 1, 1 ) );
+	TEMPER_EXPECT_TRUE( vec == uint4( 1U, 1U, 1U, 1U ) );
 
 	// postfix
-	vec = uint4( 0, 0, 0, 0 );
+	vec = uint4( 0U, 0U, 0U, 0U );
 	vec++;
-	TEMPER_EXPECT_TRUE( vec == uint4( 1, 1, 1, 1 ) );
+	TEMPER_EXPECT_TRUE( vec == uint4( 1U, 1U, 1U, 1U ) );
 
 	TEMPER_PASS();
 }
@@ -126,24 +126,24 @@ TEMPER_TEST( TestDecrement_uint4 )
 	uint4 vec;
 
 	// prefix
-	vec = uint4( 1, 1, 1, 1 );
+	vec = uint4( 1U, 1U, 1U, 1U );
 	--vec;
-	TEMPER_EXPECT_TRUE( vec == uint4( 0, 0, 0, 0 ) );
+	TEMPER_EXPECT_TRUE( vec == uint4( 0U, 0U, 0U, 0U ) );
 
 	// postfix
-	vec = uint4( 1, 1, 1, 1 );
+	vec = uint4( 1U, 1U, 1U, 1U );
 	vec--;
-	TEMPER_EXPECT_TRUE( vec == uint4( 0, 0, 0, 0 ) );
+	TEMPER_EXPECT_TRUE( vec == uint4( 0U, 0U, 0U, 0U ) );
 
 	TEMPER_PASS();
 }
 
 TEMPER_TEST( TestRelational_uint4 )
 {
-	uint4 vec0 = uint4( 0, 0, 0, 0 );
-	uint4 vec1 = uint4( 1, 1, 1, 1 );
-	uint4 vec2 = uint4( 2, 2, 2, 2 );
-	uint4 vec3 = uint4( 3, 3, 3, 3 );
+	uint4 vec0 = uint4( 0U, 0U, 0U, 0U );
+	uint4 vec1 = uint4( 1U, 1U, 1U, 1U );
+	uint4 vec2 = uint4( 2U, 2U, 2U, 2U );
+	uint4 vec3 = uint4( 3U, 3U, 3U, 3U );
 
 	bool4 test0 = vec0 <= vec0;
 	bool4 test1 = vec0 >= vec0;
@@ -183,67 +183,67 @@ TEMPER_TEST( TestRelational_uint4 )
 
 TEMPER_TEST( TestBitwiseAnd_uint4 )
 {
-	uint4 a  = uint4( 21, 21, 21, 21 );
-	uint4 b  = uint4( 7, 7, 7, 7 );
+	uint4 a  = uint4( 21U, 21U, 21U, 21U );
+	uint4 b  = uint4( 7U, 7U, 7U, 7U );
 
 	uint4 answer = a & b;
 
-	TEMPER_EXPECT_TRUE( answer == uint4( 5, 5, 5, 5 ) );
+	TEMPER_EXPECT_TRUE( answer == uint4( 5U, 5U, 5U, 5U ) );
 
 	TEMPER_PASS();
 }
 
 TEMPER_TEST( TestBitwiseOr_uint4 )
 {
-	uint4 a  = uint4( 21, 21, 21, 21 );
-	uint4 b  = uint4( 7, 7, 7, 7 );
+	uint4 a  = uint4( 21U, 21U, 21U, 21U );
+	uint4 b  = uint4( 7U, 7U, 7U, 7U );
 
 	uint4 answer = a | b;
 
-	TEMPER_EXPECT_TRUE( answer == uint4( 23, 23, 23, 23 ) );
+	TEMPER_EXPECT_TRUE( answer == uint4( 23U, 23U, 23U, 23U ) );
 
 	TEMPER_PASS();
 }
 
 TEMPER_TEST( TestBitwiseXor_uint4 )
 {
-	uint4 a  = uint4( 21, 21, 21, 21 );
-	uint4 b  = uint4( 7, 7, 7, 7 );
+	uint4 a  = uint4( 21U, 21U, 21U, 21U );
+	uint4 b  = uint4( 7U, 7U, 7U, 7U );
 
 	uint4 answer = a ^ b;
 
-	TEMPER_EXPECT_TRUE( answer == uint4( 18, 18, 18, 18 ) );
+	TEMPER_EXPECT_TRUE( answer == uint4( 18U, 18U, 18U, 18U ) );
 
 	TEMPER_PASS();
 }
 
 TEMPER_TEST( TestBitwiseShiftLeft_uint4 )
 {
-	uint4 a  = uint4( 1, 1, 1, 1 );
-	uint4 b  = uint4( 2, 2, 2, 2 );
+	uint4 a  = uint4( 1U, 1U, 1U, 1U );
+	uint4 b  = uint4( 2U, 2U, 2U, 2U );
 
 	uint4 answer = a << b;
 
-	TEMPER_EXPECT_TRUE( answer == uint4( 4, 4, 4, 4 ) );
+	TEMPER_EXPECT_TRUE( answer == uint4( 4U, 4U, 4U, 4U ) );
 
 	TEMPER_PASS();
 }
 
 TEMPER_TEST( TestBitwiseShiftRight_uint4 )
 {
-	uint4 a  = uint4( 16, 16, 16, 16 );
-	uint4 b  = uint4( 4, 4, 4, 4 );
+	uint4 a  = uint4( 16U, 16U, 16U, 16U );
+	uint4 b  = uint4( 4U, 4U, 4U, 4U );
 
 	uint4 answer = a >> b;
 
-	TEMPER_EXPECT_TRUE( answer == uint4( 1, 1, 1, 1 ) );
+	TEMPER_EXPECT_TRUE( answer == uint4( 1U, 1U, 1U, 1U ) );
 
 	TEMPER_PASS();
 }
 
 TEMPER_TEST( TestBitwiseUnary_uint4 )
 {
-	uint4 a = uint4( 0, 0, 0, 0 );
+	uint4 a = uint4( 0U, 0U, 0U, 0U );
 
 	uint4 answer = ~a;
 
@@ -254,7 +254,7 @@ TEMPER_TEST( TestBitwiseUnary_uint4 )
 
 TEMPER_TEST( TestLength_uint4 )
 {
-	uint4 vec = uint4( 2 );
+	uint4 vec = uint4( 2U );
 
 	TEMPER_EXPECT_TRUE( floateq( lengthsqr( vec ), 16.0f ) );
 	TEMPER_EXPECT_TRUE( floateq( length( vec ), 4.0f ) );
@@ -265,9 +265,9 @@ TEMPER_TEST( TestLength_uint4 )
 TEMPER_TEST( TestPacking_uint4 )
 {
 	uint32_t answerPacked = 0xFFFF00FF;
-	uint4 answerUnpacked = uint4( 255, 255, 0, 255 );
+	uint4 answerUnpacked = uint4( 255U, 255U, 0U, 255U );
 
-	uint4 vec = uint4( 255, 255, 0, 255 );
+	uint4 vec = uint4( 255U, 255U, 0U, 255U );
 
 	uint32_t packed = pack( vec );
 	TEMPER_EXPECT_TRUE( packed == answerPacked );

@@ -574,8 +574,8 @@ int4x4 scale( const int4x4& mat, const int3& vec )
 // uint2x2
 void identity( uint2x2& mat )
 {
-	mat[0] = { 1, 0 };
-	mat[1] = { 0, 1 };
+	mat[0] = { 1U, 0U };
+	mat[1] = { 0U, 1U };
 }
 
 uint2x2 transpose( const uint2x2& mat )
@@ -606,8 +606,8 @@ uint2x2 scale( const uint2x2& mat, const uint3& vec )
 // uint2x3
 void identity( uint2x3& mat )
 {
-	mat[0] = { 1, 0, 0 };
-	mat[1] = { 0, 1, 0 };
+	mat[0] = { 1U, 0U, 0U };
+	mat[1] = { 0U, 1U, 0U };
 }
 
 uint3x2 transpose( const uint2x3& mat )
@@ -641,8 +641,8 @@ uint2x3 scale( const uint2x3& mat, const uint3& vec )
 // uint2x4
 void identity( uint2x4& mat )
 {
-	mat[0] = { 1, 0, 0, 0 };
-	mat[1] = { 0, 1, 0, 0 };
+	mat[0] = { 1U, 0U, 0U, 0U };
+	mat[1] = { 0U, 1U, 0U, 0U };
 }
 
 uint4x2 transpose( const uint2x4& mat )
@@ -679,9 +679,9 @@ uint2x4 scale( const uint2x4& mat, const uint3& vec )
 // uint3x2
 void identity( uint3x2& mat )
 {
-	mat[0] = { 1, 0 };
-	mat[1] = { 0, 1 };
-	mat[2] = { 0, 0 };
+	mat[0] = { 1U, 0U };
+	mat[1] = { 0U, 1U };
+	mat[2] = { 0U, 0U };
 }
 
 uint2x3 transpose( const uint3x2& mat )
@@ -696,9 +696,9 @@ uint2x3 transpose( const uint3x2& mat )
 // uint3x3
 void identity( uint3x3& mat )
 {
-	mat[0] = { 1, 0, 0 };
-	mat[1] = { 0, 1, 0 };
-	mat[2] = { 0, 0, 1 };
+	mat[0] = { 1U, 0U, 0U };
+	mat[1] = { 0U, 1U, 0U };
+	mat[2] = { 0U, 0U, 1U };
 }
 
 uint3x3 transpose( const uint3x3& mat )
@@ -745,9 +745,9 @@ uint3x3 scale( const uint3x3& mat, const uint3& vec )
 // uint3x4
 void identity( uint3x4& mat )
 {
-	mat[0] = { 1, 0, 0, 0 };
-	mat[1] = { 0, 1, 0, 0 };
-	mat[2] = { 0, 0, 1, 0 };
+	mat[0] = { 1U, 0U, 0U, 0U };
+	mat[1] = { 0U, 1U, 0U, 0U };
+	mat[2] = { 0U, 0U, 1U, 0U };
 }
 
 uint4x3 transpose( const uint3x4& mat )
@@ -798,10 +798,10 @@ uint3x4 scale( const uint3x4& mat, const uint3& vec )
 // uint4x2
 void identity( uint4x2& mat )
 {
-	mat[0] = { 1, 0 };
-	mat[1] = { 0, 1 };
-	mat[2] = { 0, 0 };
-	mat[3] = { 0, 0 };
+	mat[0] = { 1U, 0U };
+	mat[1] = { 0U, 1U };
+	mat[2] = { 0U, 0U };
+	mat[3] = { 0U, 0U };
 }
 
 uint2x4 transpose( const uint4x2& mat )
@@ -816,10 +816,10 @@ uint2x4 transpose( const uint4x2& mat )
 // uint4x3
 void identity( uint4x3& mat )
 {
-	mat[0] = { 1, 0, 0 };
-	mat[1] = { 0, 1, 0 };
-	mat[2] = { 0, 0, 1 };
-	mat[3] = { 0, 0, 0 };
+	mat[0] = { 1U, 0U, 0U };
+	mat[1] = { 0U, 1U, 0U };
+	mat[2] = { 0U, 0U, 1U };
+	mat[3] = { 0U, 0U, 0U };
 }
 
 uint3x4 transpose( const uint4x3& mat )
@@ -861,10 +861,10 @@ uint4x3 scale( const uint4x3& mat, const uint3& vec )
 // uint4x4
 void identity( uint4x4& mat )
 {
-	mat[0] = { 1, 0, 0, 0 };
-	mat[1] = { 0, 1, 0, 0 };
-	mat[2] = { 0, 0, 1, 0 };
-	mat[3] = { 0, 0, 0, 1 };
+	mat[0] = { 1U, 0U, 0U, 0U };
+	mat[1] = { 0U, 1U, 0U, 0U };
+	mat[2] = { 0U, 0U, 1U, 0U };
+	mat[3] = { 0U, 0U, 0U, 1U };
 }
 
 uint4x4 transpose( const uint4x4& mat )

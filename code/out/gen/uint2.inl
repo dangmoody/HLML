@@ -101,8 +101,7 @@ bool operator==( const uint2& lhs, const uint2& rhs )
 	return ( lhs.x == rhs.x ) && ( lhs.y == rhs.y );
 }
 
-bool operator!=( const uint2& lhs, const uint2& rhs )
-{
+bool operator!=( const uint2& lhs, const uint2& rhs ) {
 	return !( operator==( lhs, rhs ) );
 }
 

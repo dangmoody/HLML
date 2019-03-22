@@ -205,6 +205,53 @@ static void MatrixOperatorDiv( const genType_t type, const uint32_t numRows, con
 	outInl += "\n";
 }
 
+static void MatrixMulVector( const genType_t type, const uint32_t numRows, const uint32_t numCols, std::string& outHeader, std::string& outInl ) {
+	assert( numRows >= GEN_COMPONENT_COUNT_MIN );
+	assert( numRows <= GEN_COMPONENT_COUNT_MAX );
+	assert( numCols >= GEN_COMPONENT_COUNT_MIN );
+	assert( numCols <= GEN_COMPONENT_COUNT_MAX );
+
+	std::string memberTypeString = Gen_GetMemberTypeString( type );
+	std::string vectorTypeName = Gen_GetTypeString( type ) + std::to_string( numCols );
+	std::string fullTypeName = Gen_GetFullTypeName( type, numRows, numCols );
+
+	// main operator
+	{
+		outHeader += Gen_GetDocOperatorComponentWiseArithmeticRhsType( vectorTypeName, fullTypeName, GEN_OP_ARITHMETIC_MUL );
+		outHeader += "inline " + vectorTypeName + " operator*( const " + fullTypeName + "& lhs, const " + vectorTypeName + "& rhs );\n";
+		outHeader += "\n";
+
+		outInl += vectorTypeName + " operator*( const " + fullTypeName + "& lhs, const " + vectorTypeName + "& rhs )\n";
+		outInl += "{\n";
+		outInl += "\treturn " + vectorTypeName + "(\n";
+		for ( uint32_t row = 0; row < numRows; row++ ) {
+			outInl += "\t\t(" + memberTypeString + ") dot( lhs[" + std::to_string( row ) + "], rhs )";
+
+			if ( row != numRows - 1 ) {
+				outInl += ",";
+			}
+
+			outInl += "\n";
+		}
+		outInl += "\t);\n";
+		outInl += "}\n";
+		outInl += "\n";
+	}
+
+	// compound operator
+	{
+		outHeader += Gen_GetDocOperatorCompoundComponentWiseArithmeticRhsType( vectorTypeName, fullTypeName, GEN_OP_ARITHMETIC_MUL );
+		outHeader += "inline " + vectorTypeName + " operator*=( " + vectorTypeName + "& lhs, const " + fullTypeName + "& rhs );\n";
+		outHeader += "\n";
+
+		outInl += vectorTypeName + " operator*=( " + vectorTypeName + "& lhs, const " + fullTypeName + "& rhs )\n";
+		outInl += "{\n";
+		outInl += "\treturn ( lhs = rhs * lhs );\n";
+		outInl += "}\n";
+		outInl += "\n";
+	}
+}
+
 
 std::string Gen_GetParmListMatrix( const genType_t type, const uint32_t numRows, const uint32_t numCols, const float values[GEN_COMPONENT_COUNT_MAX][GEN_COMPONENT_COUNT_MAX] ) {
 	assert( numRows >= GEN_COMPONENT_COUNT_MIN );
@@ -341,6 +388,10 @@ void Gen_MatrixOperatorsArithmetic( const genType_t type, const uint32_t numRows
 		MatrixOperatorDiv( type, numRows, numCols, outHeader, outInl );
 	} else {
 		Gen_OperatorComponentWiseArithmeticRhsType( type, numRows, numCols, GEN_OP_ARITHMETIC_DIV, outHeader, outInl );
+	}
+
+	if ( numRows == numCols ) {
+		MatrixMulVector( type, numRows, numCols, outHeader, outInl );
 	}
 }
 

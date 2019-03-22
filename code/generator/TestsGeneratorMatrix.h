@@ -29,6 +29,7 @@ private:
 private:
 	void		GenerateTestAssignment();
 	void		GenerateTestArithmetic();
+	void		GenerateTestMultiplyVector();
 	void		GenerateTestIncrement();
 	void		GenerateTestRelational();
 	void		GenerateTestBitwise();

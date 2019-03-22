@@ -178,6 +178,24 @@ TEMPER_TEST( TestArithmeticDivision_float4x4 )
 	TEMPER_PASS();
 }
 
+TEMPER_TEST( TestMultiplyVector_float4x4 )
+{
+	float4 answerVec = float4( 28.000000f, 68.000000f, 108.000000f, 148.000000f );
+
+	float4x4 a = float4x4(
+		1.000000f, 2.000000f, 3.000000f, 4.000000f,
+		5.000000f, 6.000000f, 7.000000f, 8.000000f,
+		9.000000f, 10.000000f, 11.000000f, 12.000000f,
+		13.000000f, 14.000000f, 15.000000f, 16.000000f
+	);
+	float4 b = float4( 2.000000f, 1.000000f, 4.000000f, 3.000000f );
+	float4 c = a * b;
+
+	TEMPER_EXPECT_TRUE( c == answerVec );
+
+	TEMPER_PASS();
+}
+
 TEMPER_TEST( TestIncrement_float4x4 )
 {
 	float4x4 mat;
@@ -254,6 +272,13 @@ TEMPER_TEST( TestDecrement_float4x4 )
 
 TEMPER_TEST( TestRelational_float4x4 )
 {
+	bool4x4 allTrue = bool4x4(
+		true, true, true, true,
+		true, true, true, true,
+		true, true, true, true,
+		true, true, true, true
+	);
+
 	float4x4 mat0 = float4x4(
 		1.000000f, 1.000000f, 1.000000f, 1.000000f,
 		1.000000f, 1.000000f, 1.000000f, 1.000000f,
@@ -297,103 +322,20 @@ TEMPER_TEST( TestRelational_float4x4 )
 	bool4x4 test12 = mat3 >= mat3;
 	bool4x4 test13 = mat3 > mat2;
 
-	TEMPER_EXPECT_TRUE( test0 == bool4x4(
-		true, true, true, true,
-		true, true, true, true,
-		true, true, true, true,
-		true, true, true, true
-	) );
-
-	TEMPER_EXPECT_TRUE( test1 == bool4x4(
-		true, true, true, true,
-		true, true, true, true,
-		true, true, true, true,
-		true, true, true, true
-	) );
-
-	TEMPER_EXPECT_TRUE( test2 == bool4x4(
-		true, true, true, true,
-		true, true, true, true,
-		true, true, true, true,
-		true, true, true, true
-	) );
-
-	TEMPER_EXPECT_TRUE( test3 == bool4x4(
-		true, true, true, true,
-		true, true, true, true,
-		true, true, true, true,
-		true, true, true, true
-	) );
-
-	TEMPER_EXPECT_TRUE( test4 == bool4x4(
-		true, true, true, true,
-		true, true, true, true,
-		true, true, true, true,
-		true, true, true, true
-	) );
-
-	TEMPER_EXPECT_TRUE( test5 == bool4x4(
-		true, true, true, true,
-		true, true, true, true,
-		true, true, true, true,
-		true, true, true, true
-	) );
-
-	TEMPER_EXPECT_TRUE( test6 == bool4x4(
-		true, true, true, true,
-		true, true, true, true,
-		true, true, true, true,
-		true, true, true, true
-	) );
-
-	TEMPER_EXPECT_TRUE( test7 == bool4x4(
-		true, true, true, true,
-		true, true, true, true,
-		true, true, true, true,
-		true, true, true, true
-	) );
-
-	TEMPER_EXPECT_TRUE( test8 == bool4x4(
-		true, true, true, true,
-		true, true, true, true,
-		true, true, true, true,
-		true, true, true, true
-	) );
-
-	TEMPER_EXPECT_TRUE( test9 == bool4x4(
-		true, true, true, true,
-		true, true, true, true,
-		true, true, true, true,
-		true, true, true, true
-	) );
-
-	TEMPER_EXPECT_TRUE( test10 == bool4x4(
-		true, true, true, true,
-		true, true, true, true,
-		true, true, true, true,
-		true, true, true, true
-	) );
-
-	TEMPER_EXPECT_TRUE( test11 == bool4x4(
-		true, true, true, true,
-		true, true, true, true,
-		true, true, true, true,
-		true, true, true, true
-	) );
-
-	TEMPER_EXPECT_TRUE( test12 == bool4x4(
-		true, true, true, true,
-		true, true, true, true,
-		true, true, true, true,
-		true, true, true, true
-	) );
-
-	TEMPER_EXPECT_TRUE( test13 == bool4x4(
-		true, true, true, true,
-		true, true, true, true,
-		true, true, true, true,
-		true, true, true, true
-	) );
+	TEMPER_EXPECT_TRUE( test0 == allTrue );
+	TEMPER_EXPECT_TRUE( test1 == allTrue );
+	TEMPER_EXPECT_TRUE( test2 == allTrue );
+	TEMPER_EXPECT_TRUE( test3 == allTrue );
+	TEMPER_EXPECT_TRUE( test4 == allTrue );
+	TEMPER_EXPECT_TRUE( test5 == allTrue );
+	TEMPER_EXPECT_TRUE( test6 == allTrue );
+	TEMPER_EXPECT_TRUE( test7 == allTrue );
+	TEMPER_EXPECT_TRUE( test8 == allTrue );
+	TEMPER_EXPECT_TRUE( test9 == allTrue );
+	TEMPER_EXPECT_TRUE( test10 == allTrue );
+	TEMPER_EXPECT_TRUE( test11 == allTrue );
+	TEMPER_EXPECT_TRUE( test12 == allTrue );
+	TEMPER_EXPECT_TRUE( test13 == allTrue );
 
 	TEMPER_PASS();
 }
@@ -616,6 +558,8 @@ TEMPER_SUITE( Test_float4x4 )
 	TEMPER_RUN_TEST( TestArithmeticSubtraction_float4x4 );
 	TEMPER_RUN_TEST( TestArithmeticMultiplication_float4x4 );
 	TEMPER_RUN_TEST( TestArithmeticDivision_float4x4 );
+
+	TEMPER_RUN_TEST( TestMultiplyVector_float4x4 );
 
 	TEMPER_RUN_TEST( TestIncrement_float4x4 );
 	TEMPER_RUN_TEST( TestDecrement_float4x4 );

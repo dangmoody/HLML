@@ -101,8 +101,7 @@ bool operator==( const double2& lhs, const double2& rhs )
 	return doubleeq( lhs.x, rhs. x ) && doubleeq( lhs.y, rhs. y );
 }
 
-bool operator!=( const double2& lhs, const double2& rhs )
-{
+bool operator!=( const double2& lhs, const double2& rhs ) {
 	return !( operator==( lhs, rhs ) );
 }
 

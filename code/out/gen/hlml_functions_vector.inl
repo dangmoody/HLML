@@ -93,6 +93,11 @@ int4 unpack( const int32_t x )
 
 
 // uint2
+float dot( const uint2& lhs, const uint2& rhs )
+{
+	return ( lhs.x * rhs.x ) + ( lhs.y * rhs.y );
+}
+
 float lengthsqr( const uint2& vec )
 {
 	return ( vec.x * vec.x ) + ( vec.y * vec.y );
@@ -105,6 +110,11 @@ float length( const uint2& vec )
 
 
 // uint3
+float dot( const uint3& lhs, const uint3& rhs )
+{
+	return ( lhs.x * rhs.x ) + ( lhs.y * rhs.y ) + ( lhs.z * rhs.z );
+}
+
 float lengthsqr( const uint3& vec )
 {
 	return ( vec.x * vec.x ) + ( vec.y * vec.y ) + ( vec.z * vec.z );
@@ -117,6 +127,11 @@ float length( const uint3& vec )
 
 
 // uint4
+float dot( const uint4& lhs, const uint4& rhs )
+{
+	return ( lhs.x * rhs.x ) + ( lhs.y * rhs.y ) + ( lhs.z * rhs.z ) + ( lhs.w * rhs.w );
+}
+
 float lengthsqr( const uint4& vec )
 {
 	return ( vec.x * vec.x ) + ( vec.y * vec.y ) + ( vec.z * vec.z ) + ( vec.w * vec.w );

@@ -24,6 +24,7 @@ along with hlml.  If not, see <http://www.gnu.org/licenses/>.
 
 // GENERATED FILE.  DO NOT EDIT.
 
+#include "../hlml_main.h"
 #include "hlml_operators_matrix.h"
 
 // int2x2
@@ -138,6 +139,19 @@ int2x2 operator/( const int2x2& lhs, const int2x2& rhs )
 int2x2 operator/=( int2x2& lhs, const int2x2& rhs )
 {
 	return ( lhs = lhs / rhs );
+}
+
+int2 operator*( const int2x2& lhs, const int2& rhs )
+{
+	return int2(
+		(int32_t) dot( lhs[0], rhs ),
+		(int32_t) dot( lhs[1], rhs )
+	);
+}
+
+int2 operator*=( int2& lhs, const int2x2& rhs )
+{
+	return ( lhs = rhs * lhs );
 }
 
 // prefix
@@ -1425,6 +1439,20 @@ int3x3 operator/( const int3x3& lhs, const int3x3& rhs )
 int3x3 operator/=( int3x3& lhs, const int3x3& rhs )
 {
 	return ( lhs = lhs / rhs );
+}
+
+int3 operator*( const int3x3& lhs, const int3& rhs )
+{
+	return int3(
+		(int32_t) dot( lhs[0], rhs ),
+		(int32_t) dot( lhs[1], rhs ),
+		(int32_t) dot( lhs[2], rhs )
+	);
+}
+
+int3 operator*=( int3& lhs, const int3x3& rhs )
+{
+	return ( lhs = rhs * lhs );
 }
 
 // prefix
@@ -2890,6 +2918,21 @@ int4x4 operator/=( int4x4& lhs, const int4x4& rhs )
 	return ( lhs = lhs / rhs );
 }
 
+int4 operator*( const int4x4& lhs, const int4& rhs )
+{
+	return int4(
+		(int32_t) dot( lhs[0], rhs ),
+		(int32_t) dot( lhs[1], rhs ),
+		(int32_t) dot( lhs[2], rhs ),
+		(int32_t) dot( lhs[3], rhs )
+	);
+}
+
+int4 operator*=( int4& lhs, const int4x4& rhs )
+{
+	return ( lhs = rhs * lhs );
+}
+
 // prefix
 int4x4& operator++( int4x4& lhs )
 {
@@ -3243,6 +3286,19 @@ uint2x2 operator/( const uint2x2& lhs, const uint2x2& rhs )
 uint2x2 operator/=( uint2x2& lhs, const uint2x2& rhs )
 {
 	return ( lhs = lhs / rhs );
+}
+
+uint2 operator*( const uint2x2& lhs, const uint2& rhs )
+{
+	return uint2(
+		(uint32_t) dot( lhs[0], rhs ),
+		(uint32_t) dot( lhs[1], rhs )
+	);
+}
+
+uint2 operator*=( uint2& lhs, const uint2x2& rhs )
+{
+	return ( lhs = rhs * lhs );
 }
 
 // prefix
@@ -4530,6 +4586,20 @@ uint3x3 operator/( const uint3x3& lhs, const uint3x3& rhs )
 uint3x3 operator/=( uint3x3& lhs, const uint3x3& rhs )
 {
 	return ( lhs = lhs / rhs );
+}
+
+uint3 operator*( const uint3x3& lhs, const uint3& rhs )
+{
+	return uint3(
+		(uint32_t) dot( lhs[0], rhs ),
+		(uint32_t) dot( lhs[1], rhs ),
+		(uint32_t) dot( lhs[2], rhs )
+	);
+}
+
+uint3 operator*=( uint3& lhs, const uint3x3& rhs )
+{
+	return ( lhs = rhs * lhs );
 }
 
 // prefix
@@ -5995,6 +6065,21 @@ uint4x4 operator/=( uint4x4& lhs, const uint4x4& rhs )
 	return ( lhs = lhs / rhs );
 }
 
+uint4 operator*( const uint4x4& lhs, const uint4& rhs )
+{
+	return uint4(
+		(uint32_t) dot( lhs[0], rhs ),
+		(uint32_t) dot( lhs[1], rhs ),
+		(uint32_t) dot( lhs[2], rhs ),
+		(uint32_t) dot( lhs[3], rhs )
+	);
+}
+
+uint4 operator*=( uint4& lhs, const uint4x4& rhs )
+{
+	return ( lhs = rhs * lhs );
+}
+
 // prefix
 uint4x4& operator++( uint4x4& lhs )
 {
@@ -6345,6 +6430,19 @@ float2x2 operator/( const float2x2& lhs, const float2x2& rhs )
 float2x2 operator/=( float2x2& lhs, const float2x2& rhs )
 {
 	return ( lhs = lhs / rhs );
+}
+
+float2 operator*( const float2x2& lhs, const float2& rhs )
+{
+	return float2(
+		(float) dot( lhs[0], rhs ),
+		(float) dot( lhs[1], rhs )
+	);
+}
+
+float2 operator*=( float2& lhs, const float2x2& rhs )
+{
+	return ( lhs = rhs * lhs );
 }
 
 // prefix
@@ -7065,6 +7163,20 @@ float3x3 operator/( const float3x3& lhs, const float3x3& rhs )
 float3x3 operator/=( float3x3& lhs, const float3x3& rhs )
 {
 	return ( lhs = lhs / rhs );
+}
+
+float3 operator*( const float3x3& lhs, const float3& rhs )
+{
+	return float3(
+		(float) dot( lhs[0], rhs ),
+		(float) dot( lhs[1], rhs ),
+		(float) dot( lhs[2], rhs )
+	);
+}
+
+float3 operator*=( float3& lhs, const float3x3& rhs )
+{
+	return ( lhs = rhs * lhs );
 }
 
 // prefix
@@ -7907,6 +8019,21 @@ float4x4 operator/=( float4x4& lhs, const float4x4& rhs )
 	return ( lhs = lhs / rhs );
 }
 
+float4 operator*( const float4x4& lhs, const float4& rhs )
+{
+	return float4(
+		(float) dot( lhs[0], rhs ),
+		(float) dot( lhs[1], rhs ),
+		(float) dot( lhs[2], rhs ),
+		(float) dot( lhs[3], rhs )
+	);
+}
+
+float4 operator*=( float4& lhs, const float4x4& rhs )
+{
+	return ( lhs = rhs * lhs );
+}
+
 // prefix
 float4x4& operator++( float4x4& lhs )
 {
@@ -8097,6 +8224,19 @@ double2x2 operator/( const double2x2& lhs, const double2x2& rhs )
 double2x2 operator/=( double2x2& lhs, const double2x2& rhs )
 {
 	return ( lhs = lhs / rhs );
+}
+
+double2 operator*( const double2x2& lhs, const double2& rhs )
+{
+	return double2(
+		(double) dot( lhs[0], rhs ),
+		(double) dot( lhs[1], rhs )
+	);
+}
+
+double2 operator*=( double2& lhs, const double2x2& rhs )
+{
+	return ( lhs = rhs * lhs );
 }
 
 // prefix
@@ -8817,6 +8957,20 @@ double3x3 operator/( const double3x3& lhs, const double3x3& rhs )
 double3x3 operator/=( double3x3& lhs, const double3x3& rhs )
 {
 	return ( lhs = lhs / rhs );
+}
+
+double3 operator*( const double3x3& lhs, const double3& rhs )
+{
+	return double3(
+		(double) dot( lhs[0], rhs ),
+		(double) dot( lhs[1], rhs ),
+		(double) dot( lhs[2], rhs )
+	);
+}
+
+double3 operator*=( double3& lhs, const double3x3& rhs )
+{
+	return ( lhs = rhs * lhs );
 }
 
 // prefix
@@ -9657,6 +9811,21 @@ double4x4 operator/( const double4x4& lhs, const double4x4& rhs )
 double4x4 operator/=( double4x4& lhs, const double4x4& rhs )
 {
 	return ( lhs = lhs / rhs );
+}
+
+double4 operator*( const double4x4& lhs, const double4& rhs )
+{
+	return double4(
+		(double) dot( lhs[0], rhs ),
+		(double) dot( lhs[1], rhs ),
+		(double) dot( lhs[2], rhs ),
+		(double) dot( lhs[3], rhs )
+	);
+}
+
+double4 operator*=( double4& lhs, const double4x4& rhs )
+{
+	return ( lhs = rhs * lhs );
 }
 
 // prefix

@@ -205,6 +205,11 @@ TEMPER_TEST( TestDecrement_int2x3 )
 
 TEMPER_TEST( TestRelational_int2x3 )
 {
+	bool2x3 allTrue = bool2x3(
+		true, true, true,
+		true, true, true
+	);
+
 	int2x3 mat0 = int2x3(
 		1, 1, 1,
 		1, 1, 1
@@ -240,75 +245,20 @@ TEMPER_TEST( TestRelational_int2x3 )
 	bool2x3 test12 = mat3 >= mat3;
 	bool2x3 test13 = mat3 > mat2;
 
-	TEMPER_EXPECT_TRUE( test0 == bool2x3(
-		true, true, true,
-		true, true, true
-	) );
-
-	TEMPER_EXPECT_TRUE( test1 == bool2x3(
-		true, true, true,
-		true, true, true
-	) );
-
-	TEMPER_EXPECT_TRUE( test2 == bool2x3(
-		true, true, true,
-		true, true, true
-	) );
-
-	TEMPER_EXPECT_TRUE( test3 == bool2x3(
-		true, true, true,
-		true, true, true
-	) );
-
-	TEMPER_EXPECT_TRUE( test4 == bool2x3(
-		true, true, true,
-		true, true, true
-	) );
-
-	TEMPER_EXPECT_TRUE( test5 == bool2x3(
-		true, true, true,
-		true, true, true
-	) );
-
-	TEMPER_EXPECT_TRUE( test6 == bool2x3(
-		true, true, true,
-		true, true, true
-	) );
-
-	TEMPER_EXPECT_TRUE( test7 == bool2x3(
-		true, true, true,
-		true, true, true
-	) );
-
-	TEMPER_EXPECT_TRUE( test8 == bool2x3(
-		true, true, true,
-		true, true, true
-	) );
-
-	TEMPER_EXPECT_TRUE( test9 == bool2x3(
-		true, true, true,
-		true, true, true
-	) );
-
-	TEMPER_EXPECT_TRUE( test10 == bool2x3(
-		true, true, true,
-		true, true, true
-	) );
-
-	TEMPER_EXPECT_TRUE( test11 == bool2x3(
-		true, true, true,
-		true, true, true
-	) );
-
-	TEMPER_EXPECT_TRUE( test12 == bool2x3(
-		true, true, true,
-		true, true, true
-	) );
-
-	TEMPER_EXPECT_TRUE( test13 == bool2x3(
-		true, true, true,
-		true, true, true
-	) );
+	TEMPER_EXPECT_TRUE( test0 == allTrue );
+	TEMPER_EXPECT_TRUE( test1 == allTrue );
+	TEMPER_EXPECT_TRUE( test2 == allTrue );
+	TEMPER_EXPECT_TRUE( test3 == allTrue );
+	TEMPER_EXPECT_TRUE( test4 == allTrue );
+	TEMPER_EXPECT_TRUE( test5 == allTrue );
+	TEMPER_EXPECT_TRUE( test6 == allTrue );
+	TEMPER_EXPECT_TRUE( test7 == allTrue );
+	TEMPER_EXPECT_TRUE( test8 == allTrue );
+	TEMPER_EXPECT_TRUE( test9 == allTrue );
+	TEMPER_EXPECT_TRUE( test10 == allTrue );
+	TEMPER_EXPECT_TRUE( test11 == allTrue );
+	TEMPER_EXPECT_TRUE( test12 == allTrue );
+	TEMPER_EXPECT_TRUE( test13 == allTrue );
 
 	TEMPER_PASS();
 }

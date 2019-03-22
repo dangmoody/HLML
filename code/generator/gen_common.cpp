@@ -259,7 +259,7 @@ void Gen_OperatorsBitwise( const genType_t type, const uint32_t numRows, const u
 	assert( numCols >= GEN_COMPONENT_COUNT_MIN );
 	assert( numCols <= GEN_COMPONENT_COUNT_MAX );
 
-	if ( type != GEN_TYPE_BOOL && type != GEN_TYPE_INT && type != GEN_TYPE_UINT ) {
+	if ( type != GEN_TYPE_BOOL && !Gen_IsIntegerType( type ) ) {
 		return;
 	}
 
@@ -380,12 +380,12 @@ void Gen_OperatorComponentWiseArithmeticRhsType( const genType_t type, const uin
 
 	char opStr = GEN_OPERATORS_ARITHMETIC[op];
 
-	outHeader += Gen_GetDocOperatorComponentWiseArithmeticRhsType( fullTypeName, op );
+	outHeader += Gen_GetDocOperatorComponentWiseArithmeticRhsType( fullTypeName, fullTypeName, op );
 	outHeader += "inline " + fullTypeName + " operator" + opStr + "( const " + fullTypeName + "& lhs, const " + fullTypeName + "& rhs );\n";
 	outHeader += "\n";
 
 	if ( canGenerateCompound ) {
-		outHeader += Gen_GetDocOperatorCompoundComponentWiseArithmeticRhsType( fullTypeName, op );
+		outHeader += Gen_GetDocOperatorCompoundComponentWiseArithmeticRhsType( fullTypeName, fullTypeName, op );
 		outHeader += "inline " + fullTypeName + " operator" + opStr + "=( " + fullTypeName + "& lhs, const " + fullTypeName + "& rhs );\n";
 		outHeader += "\n";
 	}

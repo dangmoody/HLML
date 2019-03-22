@@ -33,10 +33,10 @@ TEMPER_TEST( TestAssignment_uint3x4 )
 	uint3x4 mat;
 
 	// fill single value
-	mat = uint3x4( 999 );
-	TEMPER_EXPECT_TRUE( mat[0] == uint4( 999, 0, 0, 0 ) );
-	TEMPER_EXPECT_TRUE( mat[1] == uint4( 0, 999, 0, 0 ) );
-	TEMPER_EXPECT_TRUE( mat[2] == uint4( 0, 0, 999, 0 ) );
+	mat = uint3x4( 999U );
+	TEMPER_EXPECT_TRUE( mat[0] == uint4( 999U, 0U, 0U, 0U ) );
+	TEMPER_EXPECT_TRUE( mat[1] == uint4( 0U, 999U, 0U, 0U ) );
+	TEMPER_EXPECT_TRUE( mat[2] == uint4( 0U, 0U, 999U, 0U ) );
 
 	// row filling
 	mat = uint3x4(
@@ -64,20 +64,20 @@ TEMPER_TEST( TestAssignment_uint3x4 )
 TEMPER_TEST( TestArithmeticAddition_uint3x4 )
 {
 	uint3x4 answer = uint3x4(
-		7, 7, 7, 7,
-		8, 8, 8, 8,
-		15, 15, 15, 15
+		7U, 7U, 7U, 7U,
+		8U, 8U, 8U, 8U,
+		15U, 15U, 15U, 15U
 	);
 
 	uint3x4 a = uint3x4(
-		6, 6, 6, 6,
-		6, 6, 6, 6,
-		12, 12, 12, 12
+		6U, 6U, 6U, 6U,
+		6U, 6U, 6U, 6U,
+		12U, 12U, 12U, 12U
 	);
 	uint3x4 b = uint3x4(
-		1, 1, 1, 1,
-		2, 2, 2, 2,
-		3, 3, 3, 3
+		1U, 1U, 1U, 1U,
+		2U, 2U, 2U, 2U,
+		3U, 3U, 3U, 3U
 	);
 	uint3x4 c = a + b;
 
@@ -89,20 +89,20 @@ TEMPER_TEST( TestArithmeticAddition_uint3x4 )
 TEMPER_TEST( TestArithmeticSubtraction_uint3x4 )
 {
 	uint3x4 answer = uint3x4(
-		5, 5, 5, 5,
-		4, 4, 4, 4,
-		9, 9, 9, 9
+		5U, 5U, 5U, 5U,
+		4U, 4U, 4U, 4U,
+		9U, 9U, 9U, 9U
 	);
 
 	uint3x4 a = uint3x4(
-		6, 6, 6, 6,
-		6, 6, 6, 6,
-		12, 12, 12, 12
+		6U, 6U, 6U, 6U,
+		6U, 6U, 6U, 6U,
+		12U, 12U, 12U, 12U
 	);
 	uint3x4 b = uint3x4(
-		1, 1, 1, 1,
-		2, 2, 2, 2,
-		3, 3, 3, 3
+		1U, 1U, 1U, 1U,
+		2U, 2U, 2U, 2U,
+		3U, 3U, 3U, 3U
 	);
 	uint3x4 c = a - b;
 
@@ -114,21 +114,21 @@ TEMPER_TEST( TestArithmeticSubtraction_uint3x4 )
 TEMPER_TEST( TestArithmeticMultiplication_uint3x4 )
 {
 	uint3x3 answer = uint3x3(
-		72, 72, 72,
-		72, 72, 72,
-		144, 144, 144
+		72U, 72U, 72U,
+		72U, 72U, 72U,
+		144U, 144U, 144U
 	);
 
 	uint3x4 a = uint3x4(
-		6, 6, 6, 6,
-		6, 6, 6, 6,
-		12, 12, 12, 12
+		6U, 6U, 6U, 6U,
+		6U, 6U, 6U, 6U,
+		12U, 12U, 12U, 12U
 	);
 	uint4x3 b = uint4x3(
-		1, 1, 1,
-		2, 2, 2,
-		3, 3, 3,
-		6, 6, 6
+		1U, 1U, 1U,
+		2U, 2U, 2U,
+		3U, 3U, 3U,
+		6U, 6U, 6U
 	);
 	uint3x3 c = a * b;
 
@@ -140,20 +140,20 @@ TEMPER_TEST( TestArithmeticMultiplication_uint3x4 )
 TEMPER_TEST( TestArithmeticDivision_uint3x4 )
 {
 	uint3x4 answer = uint3x4(
-		6, 6, 6, 6,
-		3, 3, 3, 3,
-		4, 4, 4, 4
+		6U, 6U, 6U, 6U,
+		3U, 3U, 3U, 3U,
+		4U, 4U, 4U, 4U
 	);
 
 	uint3x4 a = uint3x4(
-		6, 6, 6, 6,
-		6, 6, 6, 6,
-		12, 12, 12, 12
+		6U, 6U, 6U, 6U,
+		6U, 6U, 6U, 6U,
+		12U, 12U, 12U, 12U
 	);
 	uint3x4 b = uint3x4(
-		1, 1, 1, 1,
-		2, 2, 2, 2,
-		3, 3, 3, 3
+		1U, 1U, 1U, 1U,
+		2U, 2U, 2U, 2U,
+		3U, 3U, 3U, 3U
 	);
 	uint3x4 c = a / b;
 
@@ -168,28 +168,28 @@ TEMPER_TEST( TestIncrement_uint3x4 )
 
 	// prefix
 	mat = uint3x4(
-		0, 0, 0, 0,
-		0, 0, 0, 0,
-		0, 0, 0, 0
+		0U, 0U, 0U, 0U,
+		0U, 0U, 0U, 0U,
+		0U, 0U, 0U, 0U
 	);
 	++mat;
 	TEMPER_EXPECT_TRUE( mat == uint3x4(
-		1, 1, 1, 1,
-		1, 1, 1, 1,
-		1, 1, 1, 1
+		1U, 1U, 1U, 1U,
+		1U, 1U, 1U, 1U,
+		1U, 1U, 1U, 1U
 	) );
 
 	// postfix
 	mat = uint3x4(
-		0, 0, 0, 0,
-		0, 0, 0, 0,
-		0, 0, 0, 0
+		0U, 0U, 0U, 0U,
+		0U, 0U, 0U, 0U,
+		0U, 0U, 0U, 0U
 	);
 	mat++;
 	TEMPER_EXPECT_TRUE( mat == uint3x4(
-		1, 1, 1, 1,
-		1, 1, 1, 1,
-		1, 1, 1, 1
+		1U, 1U, 1U, 1U,
+		1U, 1U, 1U, 1U,
+		1U, 1U, 1U, 1U
 	) );
 
 	TEMPER_PASS();
@@ -201,28 +201,28 @@ TEMPER_TEST( TestDecrement_uint3x4 )
 
 	// prefix
 	mat = uint3x4(
-		1, 1, 1, 1,
-		1, 1, 1, 1,
-		1, 1, 1, 1
+		1U, 1U, 1U, 1U,
+		1U, 1U, 1U, 1U,
+		1U, 1U, 1U, 1U
 	);
 	--mat;
 	TEMPER_EXPECT_TRUE( mat == uint3x4(
-		0, 0, 0, 0,
-		0, 0, 0, 0,
-		0, 0, 0, 0
+		0U, 0U, 0U, 0U,
+		0U, 0U, 0U, 0U,
+		0U, 0U, 0U, 0U
 	) );
 
 	// postfix
 	mat = uint3x4(
-		1, 1, 1, 1,
-		1, 1, 1, 1,
-		1, 1, 1, 1
+		1U, 1U, 1U, 1U,
+		1U, 1U, 1U, 1U,
+		1U, 1U, 1U, 1U
 	);
 	mat--;
 	TEMPER_EXPECT_TRUE( mat == uint3x4(
-		0, 0, 0, 0,
-		0, 0, 0, 0,
-		0, 0, 0, 0
+		0U, 0U, 0U, 0U,
+		0U, 0U, 0U, 0U,
+		0U, 0U, 0U, 0U
 	) );
 
 	TEMPER_PASS();
@@ -230,25 +230,31 @@ TEMPER_TEST( TestDecrement_uint3x4 )
 
 TEMPER_TEST( TestRelational_uint3x4 )
 {
+	bool3x4 allTrue = bool3x4(
+		true, true, true, true,
+		true, true, true, true,
+		true, true, true, true
+	);
+
 	uint3x4 mat0 = uint3x4(
-		1, 1, 1, 1,
-		1, 1, 1, 1,
-		1, 1, 1, 1
+		1U, 1U, 1U, 1U,
+		1U, 1U, 1U, 1U,
+		1U, 1U, 1U, 1U
 	);
 	uint3x4 mat1 = uint3x4(
-		2, 2, 2, 2,
-		2, 2, 2, 2,
-		2, 2, 2, 2
+		2U, 2U, 2U, 2U,
+		2U, 2U, 2U, 2U,
+		2U, 2U, 2U, 2U
 	);
 	uint3x4 mat2 = uint3x4(
-		3, 3, 3, 3,
-		3, 3, 3, 3,
-		3, 3, 3, 3
+		3U, 3U, 3U, 3U,
+		3U, 3U, 3U, 3U,
+		3U, 3U, 3U, 3U
 	);
 	uint3x4 mat3 = uint3x4(
-		4, 4, 4, 4,
-		4, 4, 4, 4,
-		4, 4, 4, 4
+		4U, 4U, 4U, 4U,
+		4U, 4U, 4U, 4U,
+		4U, 4U, 4U, 4U
 	);
 
 	bool3x4 test0 = mat0 <= mat0;
@@ -269,89 +275,20 @@ TEMPER_TEST( TestRelational_uint3x4 )
 	bool3x4 test12 = mat3 >= mat3;
 	bool3x4 test13 = mat3 > mat2;
 
-	TEMPER_EXPECT_TRUE( test0 == bool3x4(
-		true, true, true, true,
-		true, true, true, true,
-		true, true, true, true
-	) );
-
-	TEMPER_EXPECT_TRUE( test1 == bool3x4(
-		true, true, true, true,
-		true, true, true, true,
-		true, true, true, true
-	) );
-
-	TEMPER_EXPECT_TRUE( test2 == bool3x4(
-		true, true, true, true,
-		true, true, true, true,
-		true, true, true, true
-	) );
-
-	TEMPER_EXPECT_TRUE( test3 == bool3x4(
-		true, true, true, true,
-		true, true, true, true,
-		true, true, true, true
-	) );
-
-	TEMPER_EXPECT_TRUE( test4 == bool3x4(
-		true, true, true, true,
-		true, true, true, true,
-		true, true, true, true
-	) );
-
-	TEMPER_EXPECT_TRUE( test5 == bool3x4(
-		true, true, true, true,
-		true, true, true, true,
-		true, true, true, true
-	) );
-
-	TEMPER_EXPECT_TRUE( test6 == bool3x4(
-		true, true, true, true,
-		true, true, true, true,
-		true, true, true, true
-	) );
-
-	TEMPER_EXPECT_TRUE( test7 == bool3x4(
-		true, true, true, true,
-		true, true, true, true,
-		true, true, true, true
-	) );
-
-	TEMPER_EXPECT_TRUE( test8 == bool3x4(
-		true, true, true, true,
-		true, true, true, true,
-		true, true, true, true
-	) );
-
-	TEMPER_EXPECT_TRUE( test9 == bool3x4(
-		true, true, true, true,
-		true, true, true, true,
-		true, true, true, true
-	) );
-
-	TEMPER_EXPECT_TRUE( test10 == bool3x4(
-		true, true, true, true,
-		true, true, true, true,
-		true, true, true, true
-	) );
-
-	TEMPER_EXPECT_TRUE( test11 == bool3x4(
-		true, true, true, true,
-		true, true, true, true,
-		true, true, true, true
-	) );
-
-	TEMPER_EXPECT_TRUE( test12 == bool3x4(
-		true, true, true, true,
-		true, true, true, true,
-		true, true, true, true
-	) );
-
-	TEMPER_EXPECT_TRUE( test13 == bool3x4(
-		true, true, true, true,
-		true, true, true, true,
-		true, true, true, true
-	) );
+	TEMPER_EXPECT_TRUE( test0 == allTrue );
+	TEMPER_EXPECT_TRUE( test1 == allTrue );
+	TEMPER_EXPECT_TRUE( test2 == allTrue );
+	TEMPER_EXPECT_TRUE( test3 == allTrue );
+	TEMPER_EXPECT_TRUE( test4 == allTrue );
+	TEMPER_EXPECT_TRUE( test5 == allTrue );
+	TEMPER_EXPECT_TRUE( test6 == allTrue );
+	TEMPER_EXPECT_TRUE( test7 == allTrue );
+	TEMPER_EXPECT_TRUE( test8 == allTrue );
+	TEMPER_EXPECT_TRUE( test9 == allTrue );
+	TEMPER_EXPECT_TRUE( test10 == allTrue );
+	TEMPER_EXPECT_TRUE( test11 == allTrue );
+	TEMPER_EXPECT_TRUE( test12 == allTrue );
+	TEMPER_EXPECT_TRUE( test13 == allTrue );
 
 	TEMPER_PASS();
 }
@@ -360,9 +297,9 @@ TEMPER_TEST( TestArray_uint3x4 )
 {
 	uint3x4 mat;
 
-	TEMPER_EXPECT_TRUE( mat[0] == uint4( 1, 0, 0, 0 ) );
-	TEMPER_EXPECT_TRUE( mat[1] == uint4( 0, 1, 0, 0 ) );
-	TEMPER_EXPECT_TRUE( mat[2] == uint4( 0, 0, 1, 0 ) );
+	TEMPER_EXPECT_TRUE( mat[0] == uint4( 1U, 0U, 0U, 0U ) );
+	TEMPER_EXPECT_TRUE( mat[1] == uint4( 0U, 1U, 0U, 0U ) );
+	TEMPER_EXPECT_TRUE( mat[2] == uint4( 0U, 0U, 1U, 0U ) );
 
 	TEMPER_PASS();
 }
@@ -370,22 +307,22 @@ TEMPER_TEST( TestArray_uint3x4 )
 TEMPER_TEST( TestBitwiseAnd_uint3x4 )
 {
 	uint3x4 a  = uint3x4(
-		21, 21, 21, 21,
-		21, 21, 21, 21,
-		21, 21, 21, 21
+		21U, 21U, 21U, 21U,
+		21U, 21U, 21U, 21U,
+		21U, 21U, 21U, 21U
 	);
 	uint3x4 b  = uint3x4(
-		7, 7, 7, 7,
-		7, 7, 7, 7,
-		7, 7, 7, 7
+		7U, 7U, 7U, 7U,
+		7U, 7U, 7U, 7U,
+		7U, 7U, 7U, 7U
 	);
 
 	uint3x4 answer = a & b;
 
 	TEMPER_EXPECT_TRUE( answer == uint3x4(
-		5, 5, 5, 5,
-		5, 5, 5, 5,
-		5, 5, 5, 5
+		5U, 5U, 5U, 5U,
+		5U, 5U, 5U, 5U,
+		5U, 5U, 5U, 5U
 	) );
 
 	TEMPER_PASS();
@@ -394,22 +331,22 @@ TEMPER_TEST( TestBitwiseAnd_uint3x4 )
 TEMPER_TEST( TestBitwiseOr_uint3x4 )
 {
 	uint3x4 a  = uint3x4(
-		21, 21, 21, 21,
-		21, 21, 21, 21,
-		21, 21, 21, 21
+		21U, 21U, 21U, 21U,
+		21U, 21U, 21U, 21U,
+		21U, 21U, 21U, 21U
 	);
 	uint3x4 b  = uint3x4(
-		7, 7, 7, 7,
-		7, 7, 7, 7,
-		7, 7, 7, 7
+		7U, 7U, 7U, 7U,
+		7U, 7U, 7U, 7U,
+		7U, 7U, 7U, 7U
 	);
 
 	uint3x4 answer = a | b;
 
 	TEMPER_EXPECT_TRUE( answer == uint3x4(
-		23, 23, 23, 23,
-		23, 23, 23, 23,
-		23, 23, 23, 23
+		23U, 23U, 23U, 23U,
+		23U, 23U, 23U, 23U,
+		23U, 23U, 23U, 23U
 	) );
 
 	TEMPER_PASS();
@@ -418,22 +355,22 @@ TEMPER_TEST( TestBitwiseOr_uint3x4 )
 TEMPER_TEST( TestBitwiseXor_uint3x4 )
 {
 	uint3x4 a  = uint3x4(
-		21, 21, 21, 21,
-		21, 21, 21, 21,
-		21, 21, 21, 21
+		21U, 21U, 21U, 21U,
+		21U, 21U, 21U, 21U,
+		21U, 21U, 21U, 21U
 	);
 	uint3x4 b  = uint3x4(
-		7, 7, 7, 7,
-		7, 7, 7, 7,
-		7, 7, 7, 7
+		7U, 7U, 7U, 7U,
+		7U, 7U, 7U, 7U,
+		7U, 7U, 7U, 7U
 	);
 
 	uint3x4 answer = a ^ b;
 
 	TEMPER_EXPECT_TRUE( answer == uint3x4(
-		18, 18, 18, 18,
-		18, 18, 18, 18,
-		18, 18, 18, 18
+		18U, 18U, 18U, 18U,
+		18U, 18U, 18U, 18U,
+		18U, 18U, 18U, 18U
 	) );
 
 	TEMPER_PASS();
@@ -442,22 +379,22 @@ TEMPER_TEST( TestBitwiseXor_uint3x4 )
 TEMPER_TEST( TestBitwiseShiftLeft_uint3x4 )
 {
 	uint3x4 a  = uint3x4(
-		1, 1, 1, 1,
-		1, 1, 1, 1,
-		1, 1, 1, 1
+		1U, 1U, 1U, 1U,
+		1U, 1U, 1U, 1U,
+		1U, 1U, 1U, 1U
 	);
 	uint3x4 b  = uint3x4(
-		2, 2, 2, 2,
-		2, 2, 2, 2,
-		2, 2, 2, 2
+		2U, 2U, 2U, 2U,
+		2U, 2U, 2U, 2U,
+		2U, 2U, 2U, 2U
 	);
 
 	uint3x4 answer = a << b;
 
 	TEMPER_EXPECT_TRUE( answer == uint3x4(
-		4, 4, 4, 4,
-		4, 4, 4, 4,
-		4, 4, 4, 4
+		4U, 4U, 4U, 4U,
+		4U, 4U, 4U, 4U,
+		4U, 4U, 4U, 4U
 	) );
 
 	TEMPER_PASS();
@@ -466,22 +403,22 @@ TEMPER_TEST( TestBitwiseShiftLeft_uint3x4 )
 TEMPER_TEST( TestBitwiseShiftRight_uint3x4 )
 {
 	uint3x4 a  = uint3x4(
-		16, 16, 16, 16,
-		16, 16, 16, 16,
-		16, 16, 16, 16
+		16U, 16U, 16U, 16U,
+		16U, 16U, 16U, 16U,
+		16U, 16U, 16U, 16U
 	);
 	uint3x4 b  = uint3x4(
-		4, 4, 4, 4,
-		4, 4, 4, 4,
-		4, 4, 4, 4
+		4U, 4U, 4U, 4U,
+		4U, 4U, 4U, 4U,
+		4U, 4U, 4U, 4U
 	);
 
 	uint3x4 answer = a >> b;
 
 	TEMPER_EXPECT_TRUE( answer == uint3x4(
-		1, 1, 1, 1,
-		1, 1, 1, 1,
-		1, 1, 1, 1
+		1U, 1U, 1U, 1U,
+		1U, 1U, 1U, 1U,
+		1U, 1U, 1U, 1U
 	) );
 
 	TEMPER_PASS();
@@ -490,9 +427,9 @@ TEMPER_TEST( TestBitwiseShiftRight_uint3x4 )
 TEMPER_TEST( TestBitwiseUnary_uint3x4 )
 {
 	uint3x4 a = uint3x4(
-		0, 0, 0, 0,
-		0, 0, 0, 0,
-		0, 0, 0, 0
+		0U, 0U, 0U, 0U,
+		0U, 0U, 0U, 0U,
+		0U, 0U, 0U, 0U
 	);
 
 	uint3x4 answer = ~a;
@@ -508,9 +445,9 @@ TEMPER_TEST( TestBitwiseUnary_uint3x4 )
 TEMPER_TEST( TestIdentity_uint3x4 )
 {
 	uint3x4 id = uint3x4(
-		1, 0, 0, 0,
-		0, 1, 0, 0,
-		0, 0, 1, 0
+		1U, 0U, 0U, 0U,
+		0U, 1U, 0U, 0U,
+		0U, 0U, 1U, 0U
 	);
 
 	uint3x4 mat;
@@ -525,17 +462,17 @@ TEMPER_TEST( TestIdentity_uint3x4 )
 TEMPER_TEST( TestTranspose_uint3x4 )
 {
 	uint3x4 mat = uint3x4(
-		0, 1, 2, 3,
-		4, 5, 6, 7,
-		8, 9, 10, 11
+		0U, 1U, 2U, 3U,
+		4U, 5U, 6U, 7U,
+		8U, 9U, 10U, 11U
 	);
 	uint4x3 trans = transpose( mat );
 
 	TEMPER_EXPECT_TRUE( trans == uint4x3(
-		0, 4, 8,
-		1, 5, 9,
-		2, 6, 10,
-		3, 7, 11
+		0U, 4U, 8U,
+		1U, 5U, 9U,
+		2U, 6U, 10U,
+		3U, 7U, 11U
 	) );
 
 	TEMPER_PASS();
@@ -545,12 +482,12 @@ TEMPER_TEST( TestTranslate_uint3x4 )
 {
 	uint3x4 mat;
 	uint3x4 translated = uint3x4(
-		1, 0, 0, 2,
-		0, 1, 0, 3,
-		0, 0, 1, 4
+		1U, 0U, 0U, 2U,
+		0U, 1U, 0U, 3U,
+		0U, 0U, 1U, 4U
 	);
 
-	uint3 translation = uint3( 2, 3, 4 );
+	uint3 translation = uint3( 2U, 3U, 4U );
 	mat = translate( mat, translation );
 
 	TEMPER_EXPECT_TRUE( mat == translated );
@@ -561,12 +498,12 @@ TEMPER_TEST( TestTranslate_uint3x4 )
 TEMPER_TEST( TestScale_uint3x4 )
 {
 	uint3x4 mat;
-	uint3x4 scaled = scale( mat, uint3( 2, 2, 2 ) );
+	uint3x4 scaled = scale( mat, uint3( 2U, 2U, 2U ) );
 
 	TEMPER_EXPECT_TRUE( scaled == uint3x4(
-		2, 0, 0, 0,
-		0, 2, 0, 0,
-		0, 0, 2, 0
+		2U, 0U, 0U, 0U,
+		0U, 2U, 0U, 0U,
+		0U, 0U, 2U, 0U
 	) );
 
 	TEMPER_PASS();

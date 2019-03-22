@@ -102,8 +102,7 @@ bool operator==( const int3& lhs, const int3& rhs )
 	return ( lhs.x == rhs.x ) && ( lhs.y == rhs.y ) && ( lhs.z == rhs.z );
 }
 
-bool operator!=( const int3& lhs, const int3& rhs )
-{
+bool operator!=( const int3& lhs, const int3& rhs ) {
 	return !( operator==( lhs, rhs ) );
 }
 

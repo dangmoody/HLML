@@ -33,71 +33,71 @@ TEMPER_TEST( TestAssignment_uint2 )
 {
 	uint2 a;
 
-	a = uint2( 1 );
-	TEMPER_EXPECT_TRUE( a == uint2( 1 ) );
-	TEMPER_EXPECT_TRUE( a != uint2( 0, 1 ) );
+	a = uint2( 1U );
+	TEMPER_EXPECT_TRUE( a == uint2( 1U ) );
+	TEMPER_EXPECT_TRUE( a != uint2( 0U, 1U ) );
 
-	a = uint2( 0, 1 );
-	TEMPER_EXPECT_TRUE( a == uint2( 0, 1 ) );
-	TEMPER_EXPECT_TRUE( a != uint2( 1 ) );
+	a = uint2( 0U, 1U );
+	TEMPER_EXPECT_TRUE( a == uint2( 0U, 1U ) );
+	TEMPER_EXPECT_TRUE( a != uint2( 1U ) );
 
 	TEMPER_PASS();
 }
 
 TEMPER_TEST( TestArray_uint2 )
 {
-	uint2 a = uint2( 0, 1 );
+	uint2 a = uint2( 0U, 1U );
 
-	TEMPER_EXPECT_TRUE( a[0] == 0 );
-	TEMPER_EXPECT_TRUE( a[1] == 1 );
+	TEMPER_EXPECT_TRUE( a[0] == 0U );
+	TEMPER_EXPECT_TRUE( a[1] == 1U );
 
 	TEMPER_PASS();
 }
 
 TEMPER_TEST( TestArithmeticAddition_uint2 )
 {
-	uint2 a  = uint2( 6 );
-	uint2 b  = uint2( 2, 3 );
+	uint2 a  = uint2( 6U );
+	uint2 b  = uint2( 2U, 3U );
 
 	uint2 c = a + b;
 
-	TEMPER_EXPECT_TRUE( c == uint2( 8, 9 ) );
+	TEMPER_EXPECT_TRUE( c == uint2( 8U, 9U ) );
 
 	TEMPER_PASS();
 }
 
 TEMPER_TEST( TestArithmeticSubtraction_uint2 )
 {
-	uint2 a  = uint2( 6 );
-	uint2 b  = uint2( 2, 3 );
+	uint2 a  = uint2( 6U );
+	uint2 b  = uint2( 2U, 3U );
 
 	uint2 c = a - b;
 
-	TEMPER_EXPECT_TRUE( c == uint2( 4, 3 ) );
+	TEMPER_EXPECT_TRUE( c == uint2( 4U, 3U ) );
 
 	TEMPER_PASS();
 }
 
 TEMPER_TEST( TestArithmeticMultiplication_uint2 )
 {
-	uint2 a  = uint2( 6 );
-	uint2 b  = uint2( 2, 3 );
+	uint2 a  = uint2( 6U );
+	uint2 b  = uint2( 2U, 3U );
 
 	uint2 c = a * b;
 
-	TEMPER_EXPECT_TRUE( c == uint2( 12, 18 ) );
+	TEMPER_EXPECT_TRUE( c == uint2( 12U, 18U ) );
 
 	TEMPER_PASS();
 }
 
 TEMPER_TEST( TestArithmeticDivision_uint2 )
 {
-	uint2 a  = uint2( 6 );
-	uint2 b  = uint2( 2, 2 );
+	uint2 a  = uint2( 6U );
+	uint2 b  = uint2( 2U, 2U );
 
 	uint2 c = a / b;
 
-	TEMPER_EXPECT_TRUE( c == uint2( 3, 3 ) );
+	TEMPER_EXPECT_TRUE( c == uint2( 3U, 3U ) );
 
 	TEMPER_PASS();
 }
@@ -107,14 +107,14 @@ TEMPER_TEST( TestIncrement_uint2 )
 	uint2 vec;
 
 	// prefix
-	vec = uint2( 0, 0 );
+	vec = uint2( 0U, 0U );
 	++vec;
-	TEMPER_EXPECT_TRUE( vec == uint2( 1, 1 ) );
+	TEMPER_EXPECT_TRUE( vec == uint2( 1U, 1U ) );
 
 	// postfix
-	vec = uint2( 0, 0 );
+	vec = uint2( 0U, 0U );
 	vec++;
-	TEMPER_EXPECT_TRUE( vec == uint2( 1, 1 ) );
+	TEMPER_EXPECT_TRUE( vec == uint2( 1U, 1U ) );
 
 	TEMPER_PASS();
 }
@@ -124,22 +124,22 @@ TEMPER_TEST( TestDecrement_uint2 )
 	uint2 vec;
 
 	// prefix
-	vec = uint2( 1, 1 );
+	vec = uint2( 1U, 1U );
 	--vec;
-	TEMPER_EXPECT_TRUE( vec == uint2( 0, 0 ) );
+	TEMPER_EXPECT_TRUE( vec == uint2( 0U, 0U ) );
 
 	// postfix
-	vec = uint2( 1, 1 );
+	vec = uint2( 1U, 1U );
 	vec--;
-	TEMPER_EXPECT_TRUE( vec == uint2( 0, 0 ) );
+	TEMPER_EXPECT_TRUE( vec == uint2( 0U, 0U ) );
 
 	TEMPER_PASS();
 }
 
 TEMPER_TEST( TestRelational_uint2 )
 {
-	uint2 vec0 = uint2( 0, 0 );
-	uint2 vec1 = uint2( 1, 1 );
+	uint2 vec0 = uint2( 0U, 0U );
+	uint2 vec1 = uint2( 1U, 1U );
 
 	bool2 test0 = vec0 <= vec0;
 	bool2 test1 = vec0 >= vec0;
@@ -161,67 +161,67 @@ TEMPER_TEST( TestRelational_uint2 )
 
 TEMPER_TEST( TestBitwiseAnd_uint2 )
 {
-	uint2 a  = uint2( 21, 21 );
-	uint2 b  = uint2( 7, 7 );
+	uint2 a  = uint2( 21U, 21U );
+	uint2 b  = uint2( 7U, 7U );
 
 	uint2 answer = a & b;
 
-	TEMPER_EXPECT_TRUE( answer == uint2( 5, 5 ) );
+	TEMPER_EXPECT_TRUE( answer == uint2( 5U, 5U ) );
 
 	TEMPER_PASS();
 }
 
 TEMPER_TEST( TestBitwiseOr_uint2 )
 {
-	uint2 a  = uint2( 21, 21 );
-	uint2 b  = uint2( 7, 7 );
+	uint2 a  = uint2( 21U, 21U );
+	uint2 b  = uint2( 7U, 7U );
 
 	uint2 answer = a | b;
 
-	TEMPER_EXPECT_TRUE( answer == uint2( 23, 23 ) );
+	TEMPER_EXPECT_TRUE( answer == uint2( 23U, 23U ) );
 
 	TEMPER_PASS();
 }
 
 TEMPER_TEST( TestBitwiseXor_uint2 )
 {
-	uint2 a  = uint2( 21, 21 );
-	uint2 b  = uint2( 7, 7 );
+	uint2 a  = uint2( 21U, 21U );
+	uint2 b  = uint2( 7U, 7U );
 
 	uint2 answer = a ^ b;
 
-	TEMPER_EXPECT_TRUE( answer == uint2( 18, 18 ) );
+	TEMPER_EXPECT_TRUE( answer == uint2( 18U, 18U ) );
 
 	TEMPER_PASS();
 }
 
 TEMPER_TEST( TestBitwiseShiftLeft_uint2 )
 {
-	uint2 a  = uint2( 1, 1 );
-	uint2 b  = uint2( 2, 2 );
+	uint2 a  = uint2( 1U, 1U );
+	uint2 b  = uint2( 2U, 2U );
 
 	uint2 answer = a << b;
 
-	TEMPER_EXPECT_TRUE( answer == uint2( 4, 4 ) );
+	TEMPER_EXPECT_TRUE( answer == uint2( 4U, 4U ) );
 
 	TEMPER_PASS();
 }
 
 TEMPER_TEST( TestBitwiseShiftRight_uint2 )
 {
-	uint2 a  = uint2( 16, 16 );
-	uint2 b  = uint2( 4, 4 );
+	uint2 a  = uint2( 16U, 16U );
+	uint2 b  = uint2( 4U, 4U );
 
 	uint2 answer = a >> b;
 
-	TEMPER_EXPECT_TRUE( answer == uint2( 1, 1 ) );
+	TEMPER_EXPECT_TRUE( answer == uint2( 1U, 1U ) );
 
 	TEMPER_PASS();
 }
 
 TEMPER_TEST( TestBitwiseUnary_uint2 )
 {
-	uint2 a = uint2( 0, 0 );
+	uint2 a = uint2( 0U, 0U );
 
 	uint2 answer = ~a;
 
@@ -232,7 +232,7 @@ TEMPER_TEST( TestBitwiseUnary_uint2 )
 
 TEMPER_TEST( TestLength_uint2 )
 {
-	uint2 vec = uint2( 2 );
+	uint2 vec = uint2( 2U );
 
 	TEMPER_EXPECT_TRUE( floateq( lengthsqr( vec ), 8.0f ) );
 	TEMPER_EXPECT_TRUE( floateq( length( vec ), 2.82842712475f ) );

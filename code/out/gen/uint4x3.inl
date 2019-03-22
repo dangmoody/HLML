@@ -112,8 +112,7 @@ bool operator==( const uint4x3& lhs, const uint4x3& rhs )
 		&& lhs[3] == rhs[3];
 }
 
-bool operator!=( const uint4x3& lhs, const uint4x3& rhs )
-{
+bool operator!=( const uint4x3& lhs, const uint4x3& rhs ) {
 	return !( operator==( lhs, rhs ) );
 }
 

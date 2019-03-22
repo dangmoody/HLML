@@ -144,6 +144,22 @@ TEMPER_TEST( TestArithmeticDivision_float2x2 )
 	TEMPER_PASS();
 }
 
+TEMPER_TEST( TestMultiplyVector_float2x2 )
+{
+	float2 answerVec = float2( 4.000000f, 16.000000f );
+
+	float2x2 a = float2x2(
+		1.000000f, 2.000000f,
+		5.000000f, 6.000000f
+	);
+	float2 b = float2( 2.000000f, 1.000000f );
+	float2 c = a * b;
+
+	TEMPER_EXPECT_TRUE( c == answerVec );
+
+	TEMPER_PASS();
+}
+
 TEMPER_TEST( TestIncrement_float2x2 )
 {
 	float2x2 mat;
@@ -204,6 +220,11 @@ TEMPER_TEST( TestDecrement_float2x2 )
 
 TEMPER_TEST( TestRelational_float2x2 )
 {
+	bool2x2 allTrue = bool2x2(
+		true, true,
+		true, true
+	);
+
 	float2x2 mat0 = float2x2(
 		1.000000f, 1.000000f,
 		1.000000f, 1.000000f
@@ -239,75 +260,20 @@ TEMPER_TEST( TestRelational_float2x2 )
 	bool2x2 test12 = mat3 >= mat3;
 	bool2x2 test13 = mat3 > mat2;
 
-	TEMPER_EXPECT_TRUE( test0 == bool2x2(
-		true, true,
-		true, true
-	) );
-
-	TEMPER_EXPECT_TRUE( test1 == bool2x2(
-		true, true,
-		true, true
-	) );
-
-	TEMPER_EXPECT_TRUE( test2 == bool2x2(
-		true, true,
-		true, true
-	) );
-
-	TEMPER_EXPECT_TRUE( test3 == bool2x2(
-		true, true,
-		true, true
-	) );
-
-	TEMPER_EXPECT_TRUE( test4 == bool2x2(
-		true, true,
-		true, true
-	) );
-
-	TEMPER_EXPECT_TRUE( test5 == bool2x2(
-		true, true,
-		true, true
-	) );
-
-	TEMPER_EXPECT_TRUE( test6 == bool2x2(
-		true, true,
-		true, true
-	) );
-
-	TEMPER_EXPECT_TRUE( test7 == bool2x2(
-		true, true,
-		true, true
-	) );
-
-	TEMPER_EXPECT_TRUE( test8 == bool2x2(
-		true, true,
-		true, true
-	) );
-
-	TEMPER_EXPECT_TRUE( test9 == bool2x2(
-		true, true,
-		true, true
-	) );
-
-	TEMPER_EXPECT_TRUE( test10 == bool2x2(
-		true, true,
-		true, true
-	) );
-
-	TEMPER_EXPECT_TRUE( test11 == bool2x2(
-		true, true,
-		true, true
-	) );
-
-	TEMPER_EXPECT_TRUE( test12 == bool2x2(
-		true, true,
-		true, true
-	) );
-
-	TEMPER_EXPECT_TRUE( test13 == bool2x2(
-		true, true,
-		true, true
-	) );
+	TEMPER_EXPECT_TRUE( test0 == allTrue );
+	TEMPER_EXPECT_TRUE( test1 == allTrue );
+	TEMPER_EXPECT_TRUE( test2 == allTrue );
+	TEMPER_EXPECT_TRUE( test3 == allTrue );
+	TEMPER_EXPECT_TRUE( test4 == allTrue );
+	TEMPER_EXPECT_TRUE( test5 == allTrue );
+	TEMPER_EXPECT_TRUE( test6 == allTrue );
+	TEMPER_EXPECT_TRUE( test7 == allTrue );
+	TEMPER_EXPECT_TRUE( test8 == allTrue );
+	TEMPER_EXPECT_TRUE( test9 == allTrue );
+	TEMPER_EXPECT_TRUE( test10 == allTrue );
+	TEMPER_EXPECT_TRUE( test11 == allTrue );
+	TEMPER_EXPECT_TRUE( test12 == allTrue );
+	TEMPER_EXPECT_TRUE( test13 == allTrue );
 
 	TEMPER_PASS();
 }
@@ -403,6 +369,8 @@ TEMPER_SUITE( Test_float2x2 )
 	TEMPER_RUN_TEST( TestArithmeticSubtraction_float2x2 );
 	TEMPER_RUN_TEST( TestArithmeticMultiplication_float2x2 );
 	TEMPER_RUN_TEST( TestArithmeticDivision_float2x2 );
+
+	TEMPER_RUN_TEST( TestMultiplyVector_float2x2 );
 
 	TEMPER_RUN_TEST( TestIncrement_float2x2 );
 	TEMPER_RUN_TEST( TestDecrement_float2x2 );

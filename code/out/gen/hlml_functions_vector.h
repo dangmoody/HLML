@@ -91,6 +91,10 @@ inline int4 unpack( const int32_t x );
 
 // uint2
 /// \relates uint2
+/// \brief Returns the dot product of the two vectors.
+inline float dot( const uint2& lhs, const uint2& rhs );
+
+/// \relates uint2
 /// \brief Returns the magnitude of the vector squared.
 inline float lengthsqr( const uint2& vec );
 
@@ -101,6 +105,10 @@ inline float length( const uint2& vec );
 
 // uint3
 /// \relates uint3
+/// \brief Returns the dot product of the two vectors.
+inline float dot( const uint3& lhs, const uint3& rhs );
+
+/// \relates uint3
 /// \brief Returns the magnitude of the vector squared.
 inline float lengthsqr( const uint3& vec );
 
@@ -110,6 +118,10 @@ inline float length( const uint3& vec );
 
 
 // uint4
+/// \relates uint4
+/// \brief Returns the dot product of the two vectors.
+inline float dot( const uint4& lhs, const uint4& rhs );
+
 /// \relates uint4
 /// \brief Returns the magnitude of the vector squared.
 inline float lengthsqr( const uint4& vec );

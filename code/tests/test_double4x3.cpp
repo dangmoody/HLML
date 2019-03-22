@@ -253,6 +253,13 @@ TEMPER_TEST( TestDecrement_double4x3 )
 
 TEMPER_TEST( TestRelational_double4x3 )
 {
+	bool4x3 allTrue = bool4x3(
+		true, true, true,
+		true, true, true,
+		true, true, true,
+		true, true, true
+	);
+
 	double4x3 mat0 = double4x3(
 		1.000000, 1.000000, 1.000000,
 		1.000000, 1.000000, 1.000000,
@@ -296,103 +303,20 @@ TEMPER_TEST( TestRelational_double4x3 )
 	bool4x3 test12 = mat3 >= mat3;
 	bool4x3 test13 = mat3 > mat2;
 
-	TEMPER_EXPECT_TRUE( test0 == bool4x3(
-		true, true, true,
-		true, true, true,
-		true, true, true,
-		true, true, true
-	) );
-
-	TEMPER_EXPECT_TRUE( test1 == bool4x3(
-		true, true, true,
-		true, true, true,
-		true, true, true,
-		true, true, true
-	) );
-
-	TEMPER_EXPECT_TRUE( test2 == bool4x3(
-		true, true, true,
-		true, true, true,
-		true, true, true,
-		true, true, true
-	) );
-
-	TEMPER_EXPECT_TRUE( test3 == bool4x3(
-		true, true, true,
-		true, true, true,
-		true, true, true,
-		true, true, true
-	) );
-
-	TEMPER_EXPECT_TRUE( test4 == bool4x3(
-		true, true, true,
-		true, true, true,
-		true, true, true,
-		true, true, true
-	) );
-
-	TEMPER_EXPECT_TRUE( test5 == bool4x3(
-		true, true, true,
-		true, true, true,
-		true, true, true,
-		true, true, true
-	) );
-
-	TEMPER_EXPECT_TRUE( test6 == bool4x3(
-		true, true, true,
-		true, true, true,
-		true, true, true,
-		true, true, true
-	) );
-
-	TEMPER_EXPECT_TRUE( test7 == bool4x3(
-		true, true, true,
-		true, true, true,
-		true, true, true,
-		true, true, true
-	) );
-
-	TEMPER_EXPECT_TRUE( test8 == bool4x3(
-		true, true, true,
-		true, true, true,
-		true, true, true,
-		true, true, true
-	) );
-
-	TEMPER_EXPECT_TRUE( test9 == bool4x3(
-		true, true, true,
-		true, true, true,
-		true, true, true,
-		true, true, true
-	) );
-
-	TEMPER_EXPECT_TRUE( test10 == bool4x3(
-		true, true, true,
-		true, true, true,
-		true, true, true,
-		true, true, true
-	) );
-
-	TEMPER_EXPECT_TRUE( test11 == bool4x3(
-		true, true, true,
-		true, true, true,
-		true, true, true,
-		true, true, true
-	) );
-
-	TEMPER_EXPECT_TRUE( test12 == bool4x3(
-		true, true, true,
-		true, true, true,
-		true, true, true,
-		true, true, true
-	) );
-
-	TEMPER_EXPECT_TRUE( test13 == bool4x3(
-		true, true, true,
-		true, true, true,
-		true, true, true,
-		true, true, true
-	) );
+	TEMPER_EXPECT_TRUE( test0 == allTrue );
+	TEMPER_EXPECT_TRUE( test1 == allTrue );
+	TEMPER_EXPECT_TRUE( test2 == allTrue );
+	TEMPER_EXPECT_TRUE( test3 == allTrue );
+	TEMPER_EXPECT_TRUE( test4 == allTrue );
+	TEMPER_EXPECT_TRUE( test5 == allTrue );
+	TEMPER_EXPECT_TRUE( test6 == allTrue );
+	TEMPER_EXPECT_TRUE( test7 == allTrue );
+	TEMPER_EXPECT_TRUE( test8 == allTrue );
+	TEMPER_EXPECT_TRUE( test9 == allTrue );
+	TEMPER_EXPECT_TRUE( test10 == allTrue );
+	TEMPER_EXPECT_TRUE( test11 == allTrue );
+	TEMPER_EXPECT_TRUE( test12 == allTrue );
+	TEMPER_EXPECT_TRUE( test13 == allTrue );
 
 	TEMPER_PASS();
 }

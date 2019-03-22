@@ -10,8 +10,8 @@ inline std::string	Gen_GetDocOperatorNotEquals( const std::string& fullTypeName 
 inline std::string	Gen_GetDocOperatorArithmeticScalar( const std::string& fullTypeName, const genOpArithmetic_t op );
 inline std::string	Gen_GetDocOperatorCompoundArithmeticScalar( const std::string& fullTypeName, const genOpArithmetic_t op );
 
-inline std::string	Gen_GetDocOperatorComponentWiseArithmeticRhsType( const std::string& fullTypeName, const genOpArithmetic_t op );
-inline std::string	Gen_GetDocOperatorCompoundComponentWiseArithmeticRhsType( const std::string& fullTypeName, const genOpArithmetic_t op );
+inline std::string	Gen_GetDocOperatorComponentWiseArithmeticRhsType( const std::string& lhsTypeName, const std::string& rhsTypeName, const genOpArithmetic_t op );
+inline std::string	Gen_GetDocOperatorCompoundComponentWiseArithmeticRhsType( const std::string& lhsTypeName, const std::string& rhsTypeName, const genOpArithmetic_t op );
 
 inline std::string	Gen_GetDocOperatorIncrementPrefix( const std::string& fullTypeName, const genOpIncrement_t op );
 inline std::string	Gen_GetDocOperatorIncrementPostfix( const std::string& fullTypeName, const genOpIncrement_t op );
@@ -72,7 +72,7 @@ std::string Gen_GetDocOperatorCompoundArithmeticScalar( const std::string& fullT
 		"/// \\brief " + verb + " each component by the given scalar value.\n";
 }
 
-std::string Gen_GetDocOperatorComponentWiseArithmeticRhsType( const std::string& fullTypeName, const genOpArithmetic_t op ) {
+std::string Gen_GetDocOperatorComponentWiseArithmeticRhsType( const std::string& lhsTypeName, const std::string& rhsTypeName, const genOpArithmetic_t op ) {
 	std::string adjective;
 	switch ( op ) {
 		case GEN_OP_ARITHMETIC_ADD:	adjective = "added";		break;
@@ -86,12 +86,12 @@ std::string Gen_GetDocOperatorComponentWiseArithmeticRhsType( const std::string&
 			return std::string();
 	}
 
-	return "/// \\relates " + fullTypeName + "\n" \
-		+ "/// \\brief Returns a copy of the " + fullTypeName + " that has been component-wise " + adjective + " by the corresponding component of the right-hand " \
-		+ fullTypeName + ".\n";
+	return "/// \\relates " + lhsTypeName + "\n" \
+		+ "/// \\brief Returns a copy of the " + lhsTypeName + " that has been component-wise " + adjective + " by the corresponding component of the right-hand " \
+		+ rhsTypeName + ".\n";
 }
 
-std::string Gen_GetDocOperatorCompoundComponentWiseArithmeticRhsType( const std::string& fullTypeName, const genOpArithmetic_t op ) {
+std::string Gen_GetDocOperatorCompoundComponentWiseArithmeticRhsType( const std::string& lhsTypeName, const std::string& rhsTypeName, const genOpArithmetic_t op ) {
 	std::string verb;
 	switch ( op ) {
 		case GEN_OP_ARITHMETIC_ADD:	verb = "Adds";			break;
@@ -105,8 +105,8 @@ std::string Gen_GetDocOperatorCompoundComponentWiseArithmeticRhsType( const std:
 			return std::string();
 	}
 
-	return "/// \\relates " + fullTypeName + "\n" \
-		"/// \\brief " + verb + " each component of the " + fullTypeName + " by the corresponding component of the right-hand " + fullTypeName + ".\n";
+	return "/// \\relates " + lhsTypeName + "\n" \
+		"/// \\brief " + verb + " each component of the " + lhsTypeName + " by the corresponding component of the right-hand " + rhsTypeName + ".\n";
 }
 
 std::string Gen_GetDocOperatorIncrementPrefix( const std::string& fullTypeName, const genOpIncrement_t op ) {

@@ -95,8 +95,7 @@ bool operator==( const bool2x3& lhs, const bool2x3& rhs )
 		&& lhs[1] == rhs[1];
 }
 
-bool operator!=( const bool2x3& lhs, const bool2x3& rhs )
-{
+bool operator!=( const bool2x3& lhs, const bool2x3& rhs ) {
 	return !( operator==( lhs, rhs ) );
 }
 

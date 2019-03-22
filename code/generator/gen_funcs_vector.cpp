@@ -237,7 +237,7 @@ void Gen_VectorDot( const genType_t type, const uint32_t numComponents, std::str
 	assert( numComponents >= GEN_COMPONENT_COUNT_MIN );
 	assert( numComponents <= GEN_COMPONENT_COUNT_MAX );
 
-	if ( type == GEN_TYPE_BOOL || type == GEN_TYPE_UINT ) {
+	if ( type == GEN_TYPE_BOOL ) {
 		return;
 	}
 
@@ -396,7 +396,7 @@ void Gen_VectorPack( const genType_t type, const uint32_t numComponents, std::st
 	assert( numComponents >= GEN_COMPONENT_COUNT_MIN );
 	assert( numComponents <= GEN_COMPONENT_COUNT_MAX );
 
-	if ( type != GEN_TYPE_INT && type != GEN_TYPE_UINT ) {
+	if ( !Gen_IsIntegerType( type ) ) {
 		return;
 	}
 
@@ -436,7 +436,7 @@ void Gen_VectorUnpack( const genType_t type, const uint32_t numComponents, std::
 	assert( numComponents >= GEN_COMPONENT_COUNT_MIN );
 	assert( numComponents <= GEN_COMPONENT_COUNT_MAX );
 
-	if ( type != GEN_TYPE_INT && type != GEN_TYPE_UINT ) {
+	if ( !Gen_IsIntegerType( type ) ) {
 		return;
 	}
 

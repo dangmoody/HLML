@@ -152,6 +152,7 @@ inline std::string	Gen_GetNumericLiteral( const genType_t type, const float valu
 
 inline genType_t	Gen_GetSupportedFloatingPointType( const genType_t type ) { return ( type == GEN_TYPE_DOUBLE ) ? GEN_TYPE_DOUBLE : GEN_TYPE_FLOAT; }
 inline bool			Gen_IsFloatingPointType( const genType_t type ) { return type == GEN_TYPE_FLOAT || type == GEN_TYPE_DOUBLE; }
+inline bool			Gen_IsIntegerType( const genType_t type ) { return type == GEN_TYPE_INT || type == GEN_TYPE_UINT; }
 
 // built in functions
 inline std::string	Gen_GetFuncNameSin( const genType_t type ) { return ( type == GEN_TYPE_DOUBLE ) ? "sin" : "sinf"; }
@@ -237,7 +238,7 @@ std::string Gen_GetNumericLiteral( const genType_t type, const float value ) {
 	switch ( type ) {
 		case GEN_TYPE_BOOL:		return ( value != 0.0f ) ? "true" : "false";
 		case GEN_TYPE_INT:		return std::to_string( static_cast<int32_t>( value ) );
-		case GEN_TYPE_UINT:		return std::to_string( static_cast<uint32_t>( value ) );
+		case GEN_TYPE_UINT:		return std::to_string( static_cast<uint32_t>( value ) ) + "U";
 		case GEN_TYPE_FLOAT:	return std::to_string( static_cast<float>( value ) ) + "f";
 		case GEN_TYPE_DOUBLE:	return std::to_string( static_cast<double>( value ) );
 

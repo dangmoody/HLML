@@ -350,6 +350,7 @@ static bool GenerateOperatorsMatrix( void ) {
 	contentHeader += "\n";
 
 	std::string contentInl = content;
+	contentInl += "#include \"../" GEN_HEADER_MAIN "\"\n";
 	contentInl += std::string( "#include \"" ) + GEN_FILENAME_OPERATORS_MATRIX + ".h\"\n";
 
 	// includes

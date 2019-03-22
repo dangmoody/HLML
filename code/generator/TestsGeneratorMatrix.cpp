@@ -42,6 +42,8 @@ void TestsGeneratorMatrix::Generate( const genType_t type, const uint32_t numRow
 
 	GenerateTestArithmetic();
 
+	GenerateTestMultiplyVector();
+
 	GenerateTestIncrement();
 
 	GenerateTestRelational();
@@ -81,13 +83,17 @@ void TestsGeneratorMatrix::Generate( const genType_t type, const uint32_t numRow
 		m_code += "\tTEMPER_RUN_TEST( TestArithmeticMultiplication_" + m_fullTypeName + " );\n";
 		m_code += "\tTEMPER_RUN_TEST( TestArithmeticDivision_" + m_fullTypeName + " );\n";
 		m_code += "\n";
+		if ( m_numRows == m_numCols ) {
+			m_code += "\tTEMPER_RUN_TEST( TestMultiplyVector_" + m_fullTypeName + " );\n";
+			m_code += "\n";
+		}
 		m_code += "\tTEMPER_RUN_TEST( TestIncrement_" + m_fullTypeName + " );\n";
 		m_code += "\tTEMPER_RUN_TEST( TestDecrement_" + m_fullTypeName + " );\n";
 		m_code += "\n";
 		m_code += "\tTEMPER_RUN_TEST( TestRelational_" + m_fullTypeName + " );\n";
 		m_code += "\n";
 
-		if ( m_type == GEN_TYPE_INT || m_type == GEN_TYPE_UINT ) {
+		if ( Gen_IsIntegerType( m_type ) ) {
 			m_code += "\tTEMPER_RUN_TEST( TestBitwiseAnd_" + m_fullTypeName + " );\n";
 			m_code += "\tTEMPER_RUN_TEST( TestBitwiseOr_" + m_fullTypeName + " );\n";
 			m_code += "\tTEMPER_RUN_TEST( TestBitwiseXor_" + m_fullTypeName + " );\n";
@@ -312,6 +318,73 @@ void TestsGeneratorMatrix::GenerateTestArithmetic() {
 	m_code += "\n";
 }
 
+void TestsGeneratorMatrix::GenerateTestMultiplyVector() {
+	if ( m_type == GEN_TYPE_BOOL ) {
+		return;
+	}
+
+	if ( m_numRows != m_numCols ) {
+		return;
+	}
+
+	float valuesMat[4][4] = {
+		{ 1.0f,  2.0f,  3.0f,  4.0f  },
+		{ 5.0f,  6.0f,  7.0f,  8.0f  },
+		{ 9.0f,  10.0f, 11.0f, 12.0f },
+		{ 13.0f, 14.0f, 15.0f, 16.0f }
+	};
+
+	float valuesVec[4] = {
+		2.0f, 1.0f, 4.0f, 3.0f
+	};
+
+	std::string vectorTypeName = m_typeString + m_numColsStr;
+
+	std::string parmListMat = Gen_GetParmListMatrix( m_type, m_numRows, m_numCols, valuesMat );
+	std::string parmListVec = Gen_GetParmListVector( m_type, m_numCols, valuesVec );
+
+	std::string parmListVecAnswer = "( ";
+	for ( uint32_t col = 0; col < m_numCols; col++ ) {
+		// get the left-hand row
+		std::vector<float> matRow( m_numCols );
+		for ( size_t lhsComponent = 0; lhsComponent < matRow.size(); lhsComponent++ ) {
+			matRow[lhsComponent] = valuesMat[col][lhsComponent];
+		}
+
+		// do the dot product procedurally
+		std::vector<float> dots( m_numCols );
+		for ( size_t i = 0; i < dots.size(); i++ ) {
+			dots[i] = matRow[i] * valuesVec[i];
+		}
+
+		float dot = 0.0f;
+		for ( size_t i = 0; i < dots.size(); i++ ) {
+			dot += dots[i];
+		}
+
+		parmListVecAnswer += Gen_GetNumericLiteral( m_type, dot );
+
+		if ( col != ( m_numCols - 1 ) ) {
+			parmListVecAnswer += ", ";
+		}
+	}
+	parmListVecAnswer += " )";
+
+	m_code += "TEMPER_TEST( TestMultiplyVector_" + m_fullTypeName + " )\n";
+	m_code += "{\n";
+	m_code += "\t" + vectorTypeName + " answerVec = " + vectorTypeName + parmListVecAnswer + ";\n";
+	m_code += "\n";
+	m_code += "\t" + m_fullTypeName + " a = " + m_fullTypeName + parmListMat + ";\n";
+	m_code += "\t" + vectorTypeName + " b = " + vectorTypeName + parmListVec + ";\n";
+	m_code += "\t" + vectorTypeName + " c = a " + GEN_OPERATORS_ARITHMETIC[GEN_OP_ARITHMETIC_MUL] + " b;\n";
+	m_code += "\n";
+	m_code += "\tTEMPER_EXPECT_TRUE( c == answerVec );\n";
+	m_code += "\n";
+	m_code += "\tTEMPER_PASS();\n";
+	m_code += "}\n";
+	m_code += "\n";
+}
+
 void TestsGeneratorMatrix::GenerateTestIncrement() {
 	if ( m_type == GEN_TYPE_BOOL ) {
 		return;
@@ -362,8 +435,7 @@ void TestsGeneratorMatrix::GenerateTestRelational() {
 	}
 
 	std::string boolTypeName = "bool" + m_numRowsStr + "x" + m_numColsStr;
-
-	std::string paramListTrue = Gen_GetParmListMatrixSingleValue( GEN_TYPE_BOOL, m_numRows, m_numCols, true );
+	std::string parmListTrue = Gen_GetParmListMatrixSingleValue( GEN_TYPE_BOOL, m_numRows, m_numCols, true );
 
 	std::string parmLists[] = {
 		Gen_GetParmListMatrixSingleValue( m_type, m_numRows, m_numCols, 1 ),
@@ -376,6 +448,8 @@ void TestsGeneratorMatrix::GenerateTestRelational() {
 
 	m_code += "TEMPER_TEST( TestRelational_" + m_fullTypeName + " )\n";
 	m_code += "{\n";
+	m_code += "\t" + boolTypeName + " allTrue = " + boolTypeName + parmListTrue + ";\n";
+	m_code += "\n";
 	for ( uint32_t parmListIndex = 0; parmListIndex < _countof( parmLists ); parmListIndex++ ) {
 		m_code += "\t" + m_fullTypeName + " mat" + std::to_string( parmListIndex ) + " = " + m_fullTypeName + parmLists[parmListIndex] + ";\n";
 	}
@@ -394,16 +468,16 @@ void TestsGeneratorMatrix::GenerateTestRelational() {
 		m_code += "\n";
 	}
 	for ( uint32_t i = 0; i < numTestMats; i++ ) {
-		m_code += "\tTEMPER_EXPECT_TRUE( test" + std::to_string( i ) + " == " + boolTypeName + paramListTrue + " );\n";
-		m_code += "\n";
+		m_code += "\tTEMPER_EXPECT_TRUE( test" + std::to_string( i ) + " == allTrue );\n";
 	}
+	m_code += "\n";
 	m_code += "\tTEMPER_PASS();\n";
 	m_code += "}\n";
 	m_code += "\n";
 }
 
 void TestsGeneratorMatrix::GenerateTestBitwise() {
-	if ( m_type != GEN_TYPE_INT && m_type != GEN_TYPE_UINT ) {
+	if ( !Gen_IsIntegerType( m_type ) ) {
 		return;
 	}
 

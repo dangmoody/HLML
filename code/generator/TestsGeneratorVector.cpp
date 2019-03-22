@@ -73,7 +73,7 @@ void TestsGeneratorVector::Generate( const genType_t type, const uint32_t numCom
 		m_code += "\tTEMPER_RUN_TEST( TestDecrement_" + m_fullTypeName + " );\n";
 		m_code += "\n";
 		m_code += "\tTEMPER_RUN_TEST( TestRelational_" + m_fullTypeName + " );\n";
-		if ( m_type == GEN_TYPE_INT || m_type == GEN_TYPE_UINT ) {
+		if ( Gen_IsIntegerType( m_type ) ) {
 			m_code += "\n";
 			m_code += "\tTEMPER_RUN_TEST( TestBitwiseAnd_" + m_fullTypeName + " );\n";
 			m_code += "\tTEMPER_RUN_TEST( TestBitwiseOr_" + m_fullTypeName + " );\n";
@@ -101,7 +101,7 @@ void TestsGeneratorVector::Generate( const genType_t type, const uint32_t numCom
 
 		m_code += "\tTEMPER_RUN_TEST( TestLerp_" + m_fullTypeName + " );\n";
 	}
-	if ( ( m_type == GEN_TYPE_INT || m_type == GEN_TYPE_UINT ) && m_numComponents == 4 ) {
+	if ( Gen_IsIntegerType( m_type ) && m_numComponents == 4 ) {
 		m_code += "\n";
 		m_code += "\tTEMPER_RUN_TEST( TestPacking_" + m_fullTypeName + " );\n";
 	}
@@ -315,7 +315,7 @@ void TestsGeneratorVector::GenerateTestRelational() {
 }
 
 void TestsGeneratorVector::GenerateTestBitwise() {
-	if ( m_type != GEN_TYPE_INT && m_type != GEN_TYPE_UINT ) {
+	if ( !Gen_IsIntegerType( m_type ) ) {
 		return;
 	}
 
@@ -634,7 +634,7 @@ void TestsGeneratorVector::GenerateTestLerp() {
 }
 
 void TestsGeneratorVector::GenerateTestPacking() {
-	if ( m_type != GEN_TYPE_INT && m_type != GEN_TYPE_UINT ) {
+	if ( !Gen_IsIntegerType( m_type ) ) {
 		return;
 	}
 

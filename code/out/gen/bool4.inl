@@ -103,8 +103,7 @@ bool operator==( const bool4& lhs, const bool4& rhs )
 	return ( lhs.x == rhs.x ) && ( lhs.y == rhs.y ) && ( lhs.z == rhs.z ) && ( lhs.w == rhs.w );
 }
 
-bool operator!=( const bool4& lhs, const bool4& rhs )
-{
+bool operator!=( const bool4& lhs, const bool4& rhs ) {
 	return !( operator==( lhs, rhs ) );
 }
 

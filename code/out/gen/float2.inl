@@ -101,8 +101,7 @@ bool operator==( const float2& lhs, const float2& rhs )
 	return floateq( lhs.x, rhs. x ) && floateq( lhs.y, rhs. y );
 }
 
-bool operator!=( const float2& lhs, const float2& rhs )
-{
+bool operator!=( const float2& lhs, const float2& rhs ) {
 	return !( operator==( lhs, rhs ) );
 }
 
