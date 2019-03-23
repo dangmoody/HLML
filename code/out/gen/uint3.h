@@ -93,6 +93,41 @@ struct uint3
 	/// \brief Returns the vector component at the given index.
 	/// Index CANNOT be lower than 0 or higher than 2.
 	inline uint32_t& operator[]( const uint32_t index );
+
+	// swizzle funcs
+	inline uint2 xx() const { return uint2( x, x ); }
+	inline uint2 yx() const { return uint2( y, x ); }
+	inline uint2 xy() const { return uint2( x, y ); }
+	inline uint2 yy() const { return uint2( y, y ); }
+
+	inline uint3 xxx() const { return uint3( x, x, x ); }
+	inline uint3 yxx() const { return uint3( y, x, x ); }
+	inline uint3 zxx() const { return uint3( z, x, x ); }
+	inline uint3 xyx() const { return uint3( x, y, x ); }
+	inline uint3 yyx() const { return uint3( y, y, x ); }
+	inline uint3 zyx() const { return uint3( z, y, x ); }
+	inline uint3 xzx() const { return uint3( x, z, x ); }
+	inline uint3 yzx() const { return uint3( y, z, x ); }
+	inline uint3 zzx() const { return uint3( z, z, x ); }
+	inline uint3 xxy() const { return uint3( x, x, y ); }
+	inline uint3 yxy() const { return uint3( y, x, y ); }
+	inline uint3 zxy() const { return uint3( z, x, y ); }
+	inline uint3 xyy() const { return uint3( x, y, y ); }
+	inline uint3 yyy() const { return uint3( y, y, y ); }
+	inline uint3 zyy() const { return uint3( z, y, y ); }
+	inline uint3 xzy() const { return uint3( x, z, y ); }
+	inline uint3 yzy() const { return uint3( y, z, y ); }
+	inline uint3 zzy() const { return uint3( z, z, y ); }
+	inline uint3 xxz() const { return uint3( x, x, z ); }
+	inline uint3 yxz() const { return uint3( y, x, z ); }
+	inline uint3 zxz() const { return uint3( z, x, z ); }
+	inline uint3 xyz() const { return uint3( x, y, z ); }
+	inline uint3 yyz() const { return uint3( y, y, z ); }
+	inline uint3 zyz() const { return uint3( z, y, z ); }
+	inline uint3 xzz() const { return uint3( x, z, z ); }
+	inline uint3 yzz() const { return uint3( y, z, z ); }
+	inline uint3 zzz() const { return uint3( z, z, z ); }
+
 };
 
 /// \relates uint3

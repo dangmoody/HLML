@@ -34,6 +34,7 @@ private:
 	void			GenerateOperatorsAssignment();
 	void			GenerateOperatorsArray();
 	void			GenerateOperatorsEquality();
+	void			GenerateSwizzleFuncs();
 
 	std::string		GetDocStruct() const;
 	std::string		GetDocScalar() const;

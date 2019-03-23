@@ -90,6 +90,13 @@ struct double2
 	/// \brief Returns the vector component at the given index.
 	/// Index CANNOT be lower than 0 or higher than 1.
 	inline double& operator[]( const uint32_t index );
+
+	// swizzle funcs
+	inline double2 xx() const { return double2( x, x ); }
+	inline double2 yx() const { return double2( y, x ); }
+	inline double2 xy() const { return double2( x, y ); }
+	inline double2 yy() const { return double2( y, y ); }
+
 };
 
 /// \relates double2

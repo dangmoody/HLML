@@ -99,6 +99,8 @@ void VectorGenerator::Generate( const genType_t type, const uint32_t numComponen
 
 	GenerateOperatorsArray();
 
+	GenerateSwizzleFuncs();
+
 	m_codeHeader += "};\n\n";
 
 	GenerateOperatorsEquality();
@@ -246,6 +248,7 @@ void VectorGenerator::GenerateOperatorsArray() {
 
 	m_codeHeader += GetDocOperatorArray();
 	m_codeHeader += "\tinline " + m_memberTypeString + "& operator[]( const uint32_t index );\n";
+	m_codeHeader += "\n";
 
 	m_codeInl += m_memberTypeString + "& " + m_fullTypeName + "::operator[]( const uint32_t index )\n";
 	m_codeInl += "{\n";
@@ -287,6 +290,47 @@ void VectorGenerator::GenerateOperatorsEquality() {
 	}
 
 	Gen_OperatorNotEquals( m_type, 1, m_numComponents, m_codeHeader, m_codeInl );
+}
+
+void VectorGenerator::GenerateSwizzleFuncs() {
+	m_codeHeader += "\t// swizzle funcs\n";
+
+	char funcName[GEN_COMPONENT_COUNT_MAX + 1];
+	memset( funcName, 0, sizeof( funcName ) );
+
+	// for every vector type compatible with this one (that is: for each vector type with less components than this one)
+	for ( uint32_t vecComponents = GEN_COMPONENT_COUNT_MIN; vecComponents <= m_numComponents; vecComponents++ ) {
+		std::string vecTypeName = m_typeString + std::to_string( vecComponents );
+
+		// generate every possible function combination ("xxxx" -> "xwzx" (etc.) -> "wwww")
+		uint32_t numFuncs = pow( vecComponents, vecComponents );
+		for ( uint32_t funcIndex = 0; funcIndex < numFuncs; funcIndex++ ) {
+			// convert 1d index into 4d
+			// follows the general formula: xn = ( ( Index - Index( x1, ..., x{n-1} ) ) / Product( D1, ..., D{N-1} ) ) % Dn
+			// taken from: https://stackoverflow.com/questions/29142417/4d-position-from-1d-index
+			const int32_t x = funcIndex % vecComponents;
+			const int32_t y = ( ( funcIndex - x ) / vecComponents ) % vecComponents;
+			const int32_t z = ( ( funcIndex - y * vecComponents - x ) / ( vecComponents * vecComponents ) ) % vecComponents;
+			const int32_t w = ( ( funcIndex - z * vecComponents * vecComponents - x ) / ( vecComponents * vecComponents * vecComponents ) ) % vecComponents;
+
+			sprintf( funcName, "%c%c%c%c", GEN_COMPONENT_NAMES_VECTOR[x], GEN_COMPONENT_NAMES_VECTOR[y], GEN_COMPONENT_NAMES_VECTOR[z], GEN_COMPONENT_NAMES_VECTOR[w] );
+			funcName[vecComponents] = 0;
+
+			m_codeHeader += "\tinline " + vecTypeName + " " + funcName + "() const { ";
+			m_codeHeader += "return " + vecTypeName + "( ";
+			for ( uint32_t componentIndex = 0; componentIndex < vecComponents; componentIndex++ ) {
+				m_codeHeader += funcName[componentIndex];
+
+				if ( componentIndex != vecComponents - 1 ) {
+					m_codeHeader += ", ";
+				}
+			}
+			m_codeHeader += " );";
+			m_codeHeader += " }\n";
+		}
+
+		m_codeHeader += "\n";
+	}
 }
 
 std::string VectorGenerator::GetDocStruct() const {

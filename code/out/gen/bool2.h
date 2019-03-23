@@ -82,6 +82,13 @@ struct bool2
 	/// \brief Returns the vector component at the given index.
 	/// Index CANNOT be lower than 0 or higher than 1.
 	inline bool& operator[]( const uint32_t index );
+
+	// swizzle funcs
+	inline bool2 xx() const { return bool2( x, x ); }
+	inline bool2 yx() const { return bool2( y, x ); }
+	inline bool2 xy() const { return bool2( x, y ); }
+	inline bool2 yy() const { return bool2( y, y ); }
+
 };
 
 /// \relates bool2

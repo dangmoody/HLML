@@ -90,6 +90,13 @@ struct int2
 	/// \brief Returns the vector component at the given index.
 	/// Index CANNOT be lower than 0 or higher than 1.
 	inline int32_t& operator[]( const uint32_t index );
+
+	// swizzle funcs
+	inline int2 xx() const { return int2( x, x ); }
+	inline int2 yx() const { return int2( y, x ); }
+	inline int2 xy() const { return int2( x, y ); }
+	inline int2 yy() const { return int2( y, y ); }
+
 };
 
 /// \relates int2

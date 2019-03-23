@@ -93,6 +93,41 @@ struct double3
 	/// \brief Returns the vector component at the given index.
 	/// Index CANNOT be lower than 0 or higher than 2.
 	inline double& operator[]( const uint32_t index );
+
+	// swizzle funcs
+	inline double2 xx() const { return double2( x, x ); }
+	inline double2 yx() const { return double2( y, x ); }
+	inline double2 xy() const { return double2( x, y ); }
+	inline double2 yy() const { return double2( y, y ); }
+
+	inline double3 xxx() const { return double3( x, x, x ); }
+	inline double3 yxx() const { return double3( y, x, x ); }
+	inline double3 zxx() const { return double3( z, x, x ); }
+	inline double3 xyx() const { return double3( x, y, x ); }
+	inline double3 yyx() const { return double3( y, y, x ); }
+	inline double3 zyx() const { return double3( z, y, x ); }
+	inline double3 xzx() const { return double3( x, z, x ); }
+	inline double3 yzx() const { return double3( y, z, x ); }
+	inline double3 zzx() const { return double3( z, z, x ); }
+	inline double3 xxy() const { return double3( x, x, y ); }
+	inline double3 yxy() const { return double3( y, x, y ); }
+	inline double3 zxy() const { return double3( z, x, y ); }
+	inline double3 xyy() const { return double3( x, y, y ); }
+	inline double3 yyy() const { return double3( y, y, y ); }
+	inline double3 zyy() const { return double3( z, y, y ); }
+	inline double3 xzy() const { return double3( x, z, y ); }
+	inline double3 yzy() const { return double3( y, z, y ); }
+	inline double3 zzy() const { return double3( z, z, y ); }
+	inline double3 xxz() const { return double3( x, x, z ); }
+	inline double3 yxz() const { return double3( y, x, z ); }
+	inline double3 zxz() const { return double3( z, x, z ); }
+	inline double3 xyz() const { return double3( x, y, z ); }
+	inline double3 yyz() const { return double3( y, y, z ); }
+	inline double3 zyz() const { return double3( z, y, z ); }
+	inline double3 xzz() const { return double3( x, z, z ); }
+	inline double3 yzz() const { return double3( y, z, z ); }
+	inline double3 zzz() const { return double3( z, z, z ); }
+
 };
 
 /// \relates double3

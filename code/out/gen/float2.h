@@ -90,6 +90,13 @@ struct float2
 	/// \brief Returns the vector component at the given index.
 	/// Index CANNOT be lower than 0 or higher than 1.
 	inline float& operator[]( const uint32_t index );
+
+	// swizzle funcs
+	inline float2 xx() const { return float2( x, x ); }
+	inline float2 yx() const { return float2( y, x ); }
+	inline float2 xy() const { return float2( x, y ); }
+	inline float2 yy() const { return float2( y, y ); }
+
 };
 
 /// \relates float2

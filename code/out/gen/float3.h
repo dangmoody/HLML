@@ -93,6 +93,41 @@ struct float3
 	/// \brief Returns the vector component at the given index.
 	/// Index CANNOT be lower than 0 or higher than 2.
 	inline float& operator[]( const uint32_t index );
+
+	// swizzle funcs
+	inline float2 xx() const { return float2( x, x ); }
+	inline float2 yx() const { return float2( y, x ); }
+	inline float2 xy() const { return float2( x, y ); }
+	inline float2 yy() const { return float2( y, y ); }
+
+	inline float3 xxx() const { return float3( x, x, x ); }
+	inline float3 yxx() const { return float3( y, x, x ); }
+	inline float3 zxx() const { return float3( z, x, x ); }
+	inline float3 xyx() const { return float3( x, y, x ); }
+	inline float3 yyx() const { return float3( y, y, x ); }
+	inline float3 zyx() const { return float3( z, y, x ); }
+	inline float3 xzx() const { return float3( x, z, x ); }
+	inline float3 yzx() const { return float3( y, z, x ); }
+	inline float3 zzx() const { return float3( z, z, x ); }
+	inline float3 xxy() const { return float3( x, x, y ); }
+	inline float3 yxy() const { return float3( y, x, y ); }
+	inline float3 zxy() const { return float3( z, x, y ); }
+	inline float3 xyy() const { return float3( x, y, y ); }
+	inline float3 yyy() const { return float3( y, y, y ); }
+	inline float3 zyy() const { return float3( z, y, y ); }
+	inline float3 xzy() const { return float3( x, z, y ); }
+	inline float3 yzy() const { return float3( y, z, y ); }
+	inline float3 zzy() const { return float3( z, z, y ); }
+	inline float3 xxz() const { return float3( x, x, z ); }
+	inline float3 yxz() const { return float3( y, x, z ); }
+	inline float3 zxz() const { return float3( z, x, z ); }
+	inline float3 xyz() const { return float3( x, y, z ); }
+	inline float3 yyz() const { return float3( y, y, z ); }
+	inline float3 zyz() const { return float3( z, y, z ); }
+	inline float3 xzz() const { return float3( x, z, z ); }
+	inline float3 yzz() const { return float3( y, z, z ); }
+	inline float3 zzz() const { return float3( z, z, z ); }
+
 };
 
 /// \relates float3
