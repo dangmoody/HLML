@@ -26,6 +26,9 @@ along with hlml.  If not, see <http://www.gnu.org/licenses/>.
 
 #pragma once
 
+#include "bool2.h"
+#include "bool3.h"
+#include "bool4.h"
 #include "int2.h"
 #include "int3.h"
 #include "int4.h"

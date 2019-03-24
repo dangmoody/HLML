@@ -1426,12 +1426,13 @@ float4x4 scale( const float4x4& mat, const float3& vec )
 	);
 }
 
-inline float4x4 ortho( const float left, const float right, const float top, const float bottom, const float znear, const float zfar )
+inline float4x4 ortho_lh_zo( const float left, const float right, const float top, const float bottom, const float znear, const float zfar )
 {
-	const float right_plus_left = right + left;
+	// left-handed, clip-space range: zero to one
 	const float right_minus_left = right - left;
-	const float top_plus_bottom = top + bottom;
+	const float right_plus_left = right + left;
 	const float top_minus_bottom = top - bottom;
+	const float top_plus_bottom = top + bottom;
 	const float far_minus_near = zfar - znear;
 
 	return float4x4(
@@ -1442,8 +1443,62 @@ inline float4x4 ortho( const float left, const float right, const float top, con
 	);
 }
 
-float4x4 perspective( const float fovdeg, const float aspect, const float znear, const float zfar )
+inline float4x4 ortho_lh_no( const float left, const float right, const float top, const float bottom, const float znear, const float zfar )
 {
+	// left-handed, clip-space range: minus-one to one
+	const float right_minus_left = right - left;
+	const float right_plus_left = right + left;
+	const float top_minus_bottom = top - bottom;
+	const float top_plus_bottom = top + bottom;
+	const float far_minus_near = zfar - znear;
+	const float far_plus_near = zfar + znear;
+
+	return float4x4(
+		2.000000f / right_minus_left, 0.000000f, 0.000000f, -right_plus_left / right_minus_left,
+		0.000000f, 2.000000f / top_minus_bottom, 0.000000f, -top_plus_bottom / top_minus_bottom,
+		0.000000f, 0.000000f, 2.000000f / far_minus_near, -far_plus_near / far_minus_near,
+		0.000000f, 0.000000f, 0.000000f, 1.000000f
+	);
+}
+
+inline float4x4 ortho_rh_zo( const float left, const float right, const float top, const float bottom, const float znear, const float zfar )
+{
+	// right-handed, clip-space range: zero to one
+	const float right_minus_left = right - left;
+	const float right_plus_left = right + left;
+	const float top_minus_bottom = top - bottom;
+	const float top_plus_bottom = top + bottom;
+	const float far_minus_near = zfar - znear;
+
+	return float4x4(
+		2.000000f / right_minus_left, 0.000000f, 0.000000f, -right_plus_left / right_minus_left,
+		0.000000f, 2.000000f / top_minus_bottom, 0.000000f, -top_plus_bottom / top_minus_bottom,
+		0.000000f, 0.000000f, -1.000000f / far_minus_near, -znear / far_minus_near,
+		0.000000f, 0.000000f, 0.000000f, 1.000000f
+	);
+}
+
+inline float4x4 ortho_rh_no( const float left, const float right, const float top, const float bottom, const float znear, const float zfar )
+{
+	// right-handed, clip-space range: minus-one to one
+	const float right_minus_left = right - left;
+	const float right_plus_left = right + left;
+	const float top_minus_bottom = top - bottom;
+	const float top_plus_bottom = top + bottom;
+	const float far_minus_near = zfar - znear;
+	const float far_plus_near = zfar + znear;
+
+	return float4x4(
+		2.000000f / right_minus_left, 0.000000f, 0.000000f, -right_plus_left / right_minus_left,
+		0.000000f, 2.000000f / top_minus_bottom, 0.000000f, -top_plus_bottom / top_minus_bottom,
+		0.000000f, 0.000000f, -2.000000f / far_minus_near, -far_plus_near / far_minus_near,
+		0.000000f, 0.000000f, 0.000000f, 1.000000f
+	);
+}
+
+float4x4 perspective_lh_zo( const float fovdeg, const float aspect, const float znear, const float zfar )
+{
+	// left-handed, clip space range: zero to one
 	const float far_minus_near = zfar - znear;
 	const float tan_half_fov = tanf( fovdeg * 0.500000f );
 
@@ -1455,8 +1510,52 @@ float4x4 perspective( const float fovdeg, const float aspect, const float znear,
 	);
 }
 
-float4x4 lookat( const float3& eye, const float3& target, const float3& up )
+float4x4 perspective_lh_no( const float fovdeg, const float aspect, const float znear, const float zfar )
 {
+	// left-handed, clip space range: minus-one to one
+	const float far_minus_near = zfar - znear;
+	const float far_plus_near = zfar + znear;
+	const float tan_half_fov = tanf( fovdeg * 0.500000f );
+
+	return float4x4(
+		1.000000f / ( aspect * tan_half_fov ), 0.000000f, 0.000000f, 0.000000f,
+		0.000000f, 1.000000f / tan_half_fov, 0.000000f, 0.000000f,
+		0.000000f, 0.000000f, far_plus_near / far_minus_near, -( 2.000000f * zfar * znear ) / far_minus_near,
+		0.000000f, 0.000000f, 1.000000f, 0.000000f
+	);
+}
+
+float4x4 perspective_rh_zo( const float fovdeg, const float aspect, const float znear, const float zfar )
+{
+	// right-handed, clip space range: zero to one
+	const float tan_half_fov = tanf( fovdeg * 0.500000f );
+
+	return float4x4(
+		1.000000f / ( aspect * tan_half_fov ), 0.000000f, 0.000000f, 0.000000f,
+		0.000000f, 1.000000f / tan_half_fov, 0.000000f, 0.000000f,
+		0.000000f, 0.000000f, zfar / ( znear - zfar ), -( zfar * znear ) / ( zfar - znear ),
+		0.000000f, 0.000000f, -1.000000f, 0.000000f
+	);
+}
+
+float4x4 perspective_rh_no( const float fovdeg, const float aspect, const float znear, const float zfar )
+{
+	// right-handed, clip space range: minus-one to one
+	const float far_minus_near = zfar - znear;
+	const float far_plus_near = zfar + znear;
+	const float tan_half_fov = tanf( fovdeg * 0.500000f );
+
+	return float4x4(
+		1.000000f / ( aspect * tan_half_fov ), 0.000000f, 0.000000f, 0.000000f,
+		0.000000f, 1.000000f / tan_half_fov, 0.000000f, 0.000000f,
+		0.000000f, 0.000000f, -far_plus_near / far_minus_near, -( 2.000000f * zfar * znear ) / far_minus_near,
+		0.000000f, 0.000000f, -1.000000f, 0.000000f
+	);
+}
+
+float4x4 lookat_lh( const float3& eye, const float3& target, const float3& up )
+{
+	// left handed
 	const float3 forward = normalized( target - eye );
 	const float3 right = normalized( cross( up, forward ) );
 	const float3 up1 = cross( forward, right );
@@ -1465,6 +1564,21 @@ float4x4 lookat( const float3& eye, const float3& target, const float3& up )
 		right.x,   right.y,   right.z,   -dot( right, eye ),
 		up1.x,     up1.y,     up1.z,     -dot( up1, eye ),
 		forward.x, forward.y, forward.z, -dot( forward, eye ),
+		0.000000f, 0.000000f, 0.000000f, 1.000000f
+	);
+}
+
+float4x4 lookat_rh( const float3& eye, const float3& target, const float3& up )
+{
+	// right handed
+	const float3 forward = normalized( target - eye );
+	const float3 right = normalized( cross( forward, up ) );
+	const float3 up1 = cross( right, forward );
+
+	return float4x4(
+		 right.x,    right.y,    right.z,   -dot( right, eye ),
+		 up1.x,      up1.y,      up1.z,     -dot( up1, eye ),
+		-forward.x, -forward.y, -forward.z,  dot( forward, eye ),
 		0.000000f, 0.000000f, 0.000000f, 1.000000f
 	);
 }
@@ -1978,12 +2092,13 @@ double4x4 scale( const double4x4& mat, const double3& vec )
 	);
 }
 
-inline double4x4 ortho( const double left, const double right, const double top, const double bottom, const double znear, const double zfar )
+inline double4x4 ortho_lh_zo( const double left, const double right, const double top, const double bottom, const double znear, const double zfar )
 {
-	const double right_plus_left = right + left;
+	// left-handed, clip-space range: zero to one
 	const double right_minus_left = right - left;
-	const double top_plus_bottom = top + bottom;
+	const double right_plus_left = right + left;
 	const double top_minus_bottom = top - bottom;
+	const double top_plus_bottom = top + bottom;
 	const double far_minus_near = zfar - znear;
 
 	return double4x4(
@@ -1994,8 +2109,62 @@ inline double4x4 ortho( const double left, const double right, const double top,
 	);
 }
 
-double4x4 perspective( const double fovdeg, const double aspect, const double znear, const double zfar )
+inline double4x4 ortho_lh_no( const double left, const double right, const double top, const double bottom, const double znear, const double zfar )
 {
+	// left-handed, clip-space range: minus-one to one
+	const double right_minus_left = right - left;
+	const double right_plus_left = right + left;
+	const double top_minus_bottom = top - bottom;
+	const double top_plus_bottom = top + bottom;
+	const double far_minus_near = zfar - znear;
+	const double far_plus_near = zfar + znear;
+
+	return double4x4(
+		2.000000 / right_minus_left, 0.000000, 0.000000, -right_plus_left / right_minus_left,
+		0.000000, 2.000000 / top_minus_bottom, 0.000000, -top_plus_bottom / top_minus_bottom,
+		0.000000, 0.000000, 2.000000 / far_minus_near, -far_plus_near / far_minus_near,
+		0.000000, 0.000000, 0.000000, 1.000000
+	);
+}
+
+inline double4x4 ortho_rh_zo( const double left, const double right, const double top, const double bottom, const double znear, const double zfar )
+{
+	// right-handed, clip-space range: zero to one
+	const double right_minus_left = right - left;
+	const double right_plus_left = right + left;
+	const double top_minus_bottom = top - bottom;
+	const double top_plus_bottom = top + bottom;
+	const double far_minus_near = zfar - znear;
+
+	return double4x4(
+		2.000000 / right_minus_left, 0.000000, 0.000000, -right_plus_left / right_minus_left,
+		0.000000, 2.000000 / top_minus_bottom, 0.000000, -top_plus_bottom / top_minus_bottom,
+		0.000000, 0.000000, -1.000000 / far_minus_near, -znear / far_minus_near,
+		0.000000, 0.000000, 0.000000, 1.000000
+	);
+}
+
+inline double4x4 ortho_rh_no( const double left, const double right, const double top, const double bottom, const double znear, const double zfar )
+{
+	// right-handed, clip-space range: minus-one to one
+	const double right_minus_left = right - left;
+	const double right_plus_left = right + left;
+	const double top_minus_bottom = top - bottom;
+	const double top_plus_bottom = top + bottom;
+	const double far_minus_near = zfar - znear;
+	const double far_plus_near = zfar + znear;
+
+	return double4x4(
+		2.000000 / right_minus_left, 0.000000, 0.000000, -right_plus_left / right_minus_left,
+		0.000000, 2.000000 / top_minus_bottom, 0.000000, -top_plus_bottom / top_minus_bottom,
+		0.000000, 0.000000, -2.000000 / far_minus_near, -far_plus_near / far_minus_near,
+		0.000000, 0.000000, 0.000000, 1.000000
+	);
+}
+
+double4x4 perspective_lh_zo( const double fovdeg, const double aspect, const double znear, const double zfar )
+{
+	// left-handed, clip space range: zero to one
 	const double far_minus_near = zfar - znear;
 	const double tan_half_fov = tan( fovdeg * 0.500000 );
 
@@ -2007,8 +2176,52 @@ double4x4 perspective( const double fovdeg, const double aspect, const double zn
 	);
 }
 
-double4x4 lookat( const double3& eye, const double3& target, const double3& up )
+double4x4 perspective_lh_no( const double fovdeg, const double aspect, const double znear, const double zfar )
 {
+	// left-handed, clip space range: minus-one to one
+	const double far_minus_near = zfar - znear;
+	const double far_plus_near = zfar + znear;
+	const double tan_half_fov = tan( fovdeg * 0.500000 );
+
+	return double4x4(
+		1.000000 / ( aspect * tan_half_fov ), 0.000000, 0.000000, 0.000000,
+		0.000000, 1.000000 / tan_half_fov, 0.000000, 0.000000,
+		0.000000, 0.000000, far_plus_near / far_minus_near, -( 2.000000 * zfar * znear ) / far_minus_near,
+		0.000000, 0.000000, 1.000000, 0.000000
+	);
+}
+
+double4x4 perspective_rh_zo( const double fovdeg, const double aspect, const double znear, const double zfar )
+{
+	// right-handed, clip space range: zero to one
+	const double tan_half_fov = tan( fovdeg * 0.500000 );
+
+	return double4x4(
+		1.000000 / ( aspect * tan_half_fov ), 0.000000, 0.000000, 0.000000,
+		0.000000, 1.000000 / tan_half_fov, 0.000000, 0.000000,
+		0.000000, 0.000000, zfar / ( znear - zfar ), -( zfar * znear ) / ( zfar - znear ),
+		0.000000, 0.000000, -1.000000, 0.000000
+	);
+}
+
+double4x4 perspective_rh_no( const double fovdeg, const double aspect, const double znear, const double zfar )
+{
+	// right-handed, clip space range: minus-one to one
+	const double far_minus_near = zfar - znear;
+	const double far_plus_near = zfar + znear;
+	const double tan_half_fov = tan( fovdeg * 0.500000 );
+
+	return double4x4(
+		1.000000 / ( aspect * tan_half_fov ), 0.000000, 0.000000, 0.000000,
+		0.000000, 1.000000 / tan_half_fov, 0.000000, 0.000000,
+		0.000000, 0.000000, -far_plus_near / far_minus_near, -( 2.000000 * zfar * znear ) / far_minus_near,
+		0.000000, 0.000000, -1.000000, 0.000000
+	);
+}
+
+double4x4 lookat_lh( const double3& eye, const double3& target, const double3& up )
+{
+	// left handed
 	const double3 forward = normalized( target - eye );
 	const double3 right = normalized( cross( up, forward ) );
 	const double3 up1 = cross( forward, right );
@@ -2017,6 +2230,21 @@ double4x4 lookat( const double3& eye, const double3& target, const double3& up )
 		right.x,   right.y,   right.z,   -dot( right, eye ),
 		up1.x,     up1.y,     up1.z,     -dot( up1, eye ),
 		forward.x, forward.y, forward.z, -dot( forward, eye ),
+		0.000000, 0.000000, 0.000000, 1.000000
+	);
+}
+
+double4x4 lookat_rh( const double3& eye, const double3& target, const double3& up )
+{
+	// right handed
+	const double3 forward = normalized( target - eye );
+	const double3 right = normalized( cross( forward, up ) );
+	const double3 up1 = cross( right, forward );
+
+	return double4x4(
+		 right.x,    right.y,    right.z,   -dot( right, eye ),
+		 up1.x,      up1.y,      up1.z,     -dot( up1, eye ),
+		-forward.x, -forward.y, -forward.z,  dot( forward, eye ),
 		0.000000, 0.000000, 0.000000, 1.000000
 	);
 }

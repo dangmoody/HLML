@@ -1043,40 +1043,81 @@ void TestsGeneratorMatrix::GenerateTestOrtho() {
 		return;
 	}
 
-	// answer for 1280 x 720, ortho size 5, znear: -1, zfar: 100
-	float answerOrtho[4][4] = {
+	// all answers for 1280 x 720, ortho size 5, znear: -1, zfar: 100
+
+	// left-handed (0 - 1)
+	float answerOrtho_LH_ZO[4][4] = {
 		{ 0.112499997f,  0.0f,         0.0f,           0.0f           },
 		{ 0.0f,         -0.200000003f, 0.0f,           0.0f           },
 		{ 0.0f,          0.0f,         0.00990098994f, 0.00990098994f },
 		{ 0.0f,          0.0f,         0.0f,           1.0f           }
 	};
 
-	std::string parmListAnswerOrtho = Gen_GetParmListMatrix( m_type, 4, 4, answerOrtho );
+	// left-handed (-1 - 1)
+	float answerOrtho_LH_NO[4][4] = {
+		{ 0.11250f,  0.0f, 0.0f,      -0.0f      },
+		{ 0.0f,     -0.2f, 0.0f,       0.0f      },
+		{ 0.0f,      0.0f, 0.019802f, -0.980198f },
+		{ 0.0f,      0.0f, 0.0f,       1.0f      }
+	};
+
+	// right-handed (0 - 1)
+	float answerOrtho_RH_ZO[4][4] = {
+		{ 0.1125f,  0.0f,  0.0f,      -0.0f      },
+		{ 0.0f,    -0.2f,  0.0f,       0.0f      },
+		{ 0.0f,     0.0f, -0.009901f,  0.009901f },
+		{ 0.0f,     0.0f,  0.0f,       1.0f      }
+	};
+
+	// right-handed (-1 - 1)
+	float answerOrtho_RH_NO[4][4] = {
+		{ 0.112500f,  0.0f,  0.0f,      -0.0f      },
+		{ 0.0f,      -0.2f,  0.0f,       0.0f      },
+		{ 0.0f,       0.0f, -0.019802f, -0.980198f },
+		{ 0.0f,       0.0f,  0.0f,       1.0f      }
+	};
+
+	std::string parmListAnswerOrtho_LH_ZO = Gen_GetParmListMatrix( m_type, 4, 4, answerOrtho_LH_ZO );
+	std::string parmListAnswerOrtho_LH_NO = Gen_GetParmListMatrix( m_type, 4, 4, answerOrtho_LH_NO );
+	std::string parmListAnswerOrtho_RH_ZO = Gen_GetParmListMatrix( m_type, 4, 4, answerOrtho_RH_ZO );
+	std::string parmListAnswerOrtho_RH_NO = Gen_GetParmListMatrix( m_type, 4, 4, answerOrtho_RH_NO );
 
 	std::string minusOneStr		= Gen_GetNumericLiteral( m_type, -1.0f );
 	std::string oneHundredStr	= Gen_GetNumericLiteral( m_type, 100.0f );
 
-	m_code += "TEMPER_TEST( TestOrtho_" + m_fullTypeName + " )\n";
-	m_code += "{\n";
-	m_code += "\t" + m_fullTypeName + " answerOrtho = " + m_fullTypeName + parmListAnswerOrtho + ";\n";
-	m_code += "\n";
-	m_code += "\t" + m_typeString + " width = " + Gen_GetNumericLiteral( m_type, 1280.0f ) + ";\n";
-	m_code += "\t" + m_typeString + " height = " + Gen_GetNumericLiteral( m_type, 720.0f ) + ";\n";
-	m_code += "\t" + m_typeString + " aspect = width / height;\n";
-	m_code += "\t" + m_typeString + " orthoSize = " + Gen_GetNumericLiteral( m_type, 5.0f ) + ";\n";
-	m_code += "\n";
-	m_code += "\t" + m_typeString + " left = -aspect * orthoSize;\n";
-	m_code += "\t" + m_typeString + " right = aspect * orthoSize;\n";
-	m_code += "\t" + m_typeString + " top = -orthoSize;\n";
-	m_code += "\t" + m_typeString + " bottom = orthoSize;\n";
-	m_code += "\n";
-	m_code += "\t" + m_fullTypeName + " mat = ortho( left, right, top, bottom, " + minusOneStr + ", " + oneHundredStr +" );\n";
-	m_code += "\n";
-	m_code += "\tTEMPER_EXPECT_TRUE( mat == answerOrtho );\n";
-	m_code += "\n";
-	m_code += "\tTEMPER_PASS();\n";
-	m_code += "}\n";
-	m_code += "\n";
+	// left-handed, zero to one
+	{
+		m_code += "TEMPER_TEST( TestOrtho_" + m_fullTypeName + " )\n";
+		m_code += "{\n";
+		m_code += "\t" + m_fullTypeName + " answerOrtho_LH_ZO = " + m_fullTypeName + parmListAnswerOrtho_LH_ZO + ";\n";
+		m_code += "\t" + m_fullTypeName + " answerOrtho_LH_NO = " + m_fullTypeName + parmListAnswerOrtho_LH_NO + ";\n";
+		m_code += "\t" + m_fullTypeName + " answerOrtho_RH_ZO = " + m_fullTypeName + parmListAnswerOrtho_RH_ZO + ";\n";
+		m_code += "\t" + m_fullTypeName + " answerOrtho_RH_NO = " + m_fullTypeName + parmListAnswerOrtho_RH_NO + ";\n";
+		m_code += "\n";
+		m_code += "\t" + m_typeString + " width = " + Gen_GetNumericLiteral( m_type, 1280.0f ) + ";\n";
+		m_code += "\t" + m_typeString + " height = " + Gen_GetNumericLiteral( m_type, 720.0f ) + ";\n";
+		m_code += "\t" + m_typeString + " aspect = width / height;\n";
+		m_code += "\t" + m_typeString + " orthoSize = " + Gen_GetNumericLiteral( m_type, 5.0f ) + ";\n";
+		m_code += "\n";
+		m_code += "\t" + m_typeString + " left = -aspect * orthoSize;\n";
+		m_code += "\t" + m_typeString + " right = aspect * orthoSize;\n";
+		m_code += "\t" + m_typeString + " top = -orthoSize;\n";
+		m_code += "\t" + m_typeString + " bottom = orthoSize;\n";
+		m_code += "\n";
+		m_code += "\t" + m_fullTypeName + " mat_LH_ZO = ortho_lh_zo( left, right, top, bottom, " + minusOneStr + ", " + oneHundredStr + " );\n";
+		m_code += "\t" + m_fullTypeName + " mat_LH_NO = ortho_lh_no( left, right, top, bottom, " + minusOneStr + ", " + oneHundredStr + " );\n";
+		m_code += "\t" + m_fullTypeName + " mat_RH_ZO = ortho_rh_zo( left, right, top, bottom, " + minusOneStr + ", " + oneHundredStr + " );\n";
+		m_code += "\t" + m_fullTypeName + " mat_RH_NO = ortho_rh_no( left, right, top, bottom, " + minusOneStr + ", " + oneHundredStr + " );\n";
+		m_code += "\n";
+		m_code += "\tTEMPER_EXPECT_TRUE( mat_LH_ZO == answerOrtho_LH_ZO );\n";
+		m_code += "\tTEMPER_EXPECT_TRUE( mat_LH_NO == answerOrtho_LH_NO );\n";
+		m_code += "\tTEMPER_EXPECT_TRUE( mat_RH_ZO == answerOrtho_RH_ZO );\n";
+		m_code += "\tTEMPER_EXPECT_TRUE( mat_RH_NO == answerOrtho_RH_NO );\n";
+		m_code += "\n";
+		m_code += "\tTEMPER_PASS();\n";
+		m_code += "}\n";
+		m_code += "\n";
+	}
 }
 
 void TestsGeneratorMatrix::GenerateTestPerspective() {
@@ -1088,16 +1129,44 @@ void TestsGeneratorMatrix::GenerateTestPerspective() {
 		return;
 	}
 
-	// answer for 1280 x 720, fov: 90 degrees, znear: 0.1, zfar: 100
-	// clip space: 0 - 1, left handed
-	float answerPerspective[4][4] = {
+	// all answers for 1280 x 720, fov: 90 degrees, znear: 0.1, zfar: 100
+
+	// left-handed (0 - 1)
+	float answerPerspective_LH_ZO[4][4] = {
 		{ 0.347270f, 0.0f,      0.0f,       0.0f      },
 		{ 0.0f,      0.617370f, 0.0f,       0.0f      },
 		{ 0.0f,      0.0f,      1.001001f, -0.100100f },
 		{ 0.0f,      0.0f,      1.000000f,  0.0f      }
 	};
 
-	std::string parmListPerspective = Gen_GetParmListMatrix( m_type, 4, 4, answerPerspective );
+	// left handed (-1 - 1)
+	float answerPerspective_LH_NO[4][4] = {
+		{ 0.347270f, 0.0f,      0.0f,       0.0f      },
+		{ 0.0f,      0.617370f, 0.0f,       0.0f      },
+		{ 0.0f,      0.0f,      1.002002f, -0.200200f },
+		{ 0.0f,      0.0f,      1.0f,       0.0f      }
+	};
+
+	// right handed (0 - 1)
+	float answerPerspective_RH_ZO[4][4] = {
+		{ 0.347270f, 0.0f,       0.0f,      0.0f       },
+		{ 0.0f,      0.617370f,  0.0f,      0.0f       },
+		{ 0.0f,      0.0f,      -1.001001f, -0.100100f },
+		{ 0.0f,      0.0f,      -1.0f,      0.0f       }
+	};
+
+	// right handed (-1 - 1)
+	float answerPerspective_RH_NO[4][4] = {
+		{ 0.347270f, 0.0f,       0.0f,       0.0f      },
+		{ 0.0f,      0.617370f,  0.0f,       0.0f      },
+		{ 0.0f,      0.0f,      -1.002002f, -0.200200f },
+		{ 0.0f,      0.0f,      -1.0f,       0.0f      }
+	};
+
+	std::string parmListPerspective_LH_ZO = Gen_GetParmListMatrix( m_type, 4, 4, answerPerspective_LH_ZO );
+	std::string parmListPerspective_LH_NO = Gen_GetParmListMatrix( m_type, 4, 4, answerPerspective_LH_NO );
+	std::string parmListPerspective_RH_ZO = Gen_GetParmListMatrix( m_type, 4, 4, answerPerspective_RH_ZO );
+	std::string parmListPerspective_RH_NO = Gen_GetParmListMatrix( m_type, 4, 4, answerPerspective_RH_NO );
 
 	std::string widthStr	= Gen_GetNumericLiteral( m_type, 1280.0f );
 	std::string heightStr	= Gen_GetNumericLiteral( m_type, 720.0f );
@@ -1107,12 +1176,21 @@ void TestsGeneratorMatrix::GenerateTestPerspective() {
 
 	m_code += "TEMPER_TEST( TestPerspective_" + m_fullTypeName + " )\n";
 	m_code += "{\n";
-	m_code += "\t" + m_fullTypeName + " answerPerspective = " + m_fullTypeName + parmListPerspective + ";\n";
+	m_code += "\t" + m_fullTypeName + " answerPerspective_LH_ZO = " + m_fullTypeName + parmListPerspective_LH_ZO + ";\n";
+	m_code += "\t" + m_fullTypeName + " answerPerspective_LH_NO = " + m_fullTypeName + parmListPerspective_LH_NO + ";\n";
+	m_code += "\t" + m_fullTypeName + " answerPerspective_RH_ZO = " + m_fullTypeName + parmListPerspective_RH_ZO + ";\n";
+	m_code += "\t" + m_fullTypeName + " answerPerspective_RH_NO = " + m_fullTypeName + parmListPerspective_RH_NO + ";\n";
 	m_code += "\n";
 	m_code += "\t" + m_typeString + " aspect = " + widthStr + " / " + heightStr + ";\n";
-	m_code += "\t" + m_fullTypeName + " mat = perspective( " + fovStr + ", aspect, " + znearStr + ", " + zfarStr + " );\n";
+	m_code += "\t" + m_fullTypeName + " mat_LH_ZO = perspective_lh_zo( " + fovStr + ", aspect, " + znearStr + ", " + zfarStr + " );\n";
+	m_code += "\t" + m_fullTypeName + " mat_LH_NO = perspective_lh_no( " + fovStr + ", aspect, " + znearStr + ", " + zfarStr + " );\n";
+	m_code += "\t" + m_fullTypeName + " mat_RH_ZO = perspective_rh_zo( " + fovStr + ", aspect, " + znearStr + ", " + zfarStr + " );\n";
+	m_code += "\t" + m_fullTypeName + " mat_RH_NO = perspective_rh_no( " + fovStr + ", aspect, " + znearStr + ", " + zfarStr + " );\n";
 	m_code += "\n";
-	m_code += "\tTEMPER_EXPECT_TRUE( mat == answerPerspective );\n";
+	m_code += "\tTEMPER_EXPECT_TRUE( mat_LH_ZO == answerPerspective_LH_ZO );\n";
+	m_code += "\tTEMPER_EXPECT_TRUE( mat_LH_NO == answerPerspective_LH_NO );\n";
+	m_code += "\tTEMPER_EXPECT_TRUE( mat_RH_ZO == answerPerspective_RH_ZO );\n";
+	m_code += "\tTEMPER_EXPECT_TRUE( mat_RH_NO == answerPerspective_RH_NO );\n";
 	m_code += "\n";
 	m_code += "\tTEMPER_PASS();\n";
 	m_code += "}\n";
@@ -1132,11 +1210,18 @@ void TestsGeneratorMatrix::GenerateTestLookAt() {
 	float targetPos[]	= { 1.0f, 0.0f, 1.0f };
 	float up[]			= { 0.0f, 1.0f, 0.0f };
 
-	float answerLookAt[4][4] = {
+	float answerLookAt_LH[4][4] = {
 		{ 0.707107f, 0.0f, -0.707107f, 0.0f },
 		{ 0.0f,      1.0f,  0.0f,      0.0f },
 		{ 0.707107f, 0.0f,  0.707107f, 0.0f },
 		{ 0.0f,      0.0f,  0.0f,      1.0f }
+	};
+
+	float answerLookAt_RH[4][4] = {
+		{ -0.707107f, 0.0f,  0.707107f, 0.0f },
+		{  0.0f,      1.0f,  0.0f,      0.0f },
+		{ -0.707107f, 0.0f, -0.707107f, 0.0f },
+		{  0.0f,      0.0f,  0.0f,      1.0f }
 	};
 
 	uint32_t numTranslateVecComponents = 3;
@@ -1147,18 +1232,23 @@ void TestsGeneratorMatrix::GenerateTestLookAt() {
 	std::string parmListTargetPos	= Gen_GetParmListVector( m_type, numTranslateVecComponents, targetPos );
 	std::string parmListUp			= Gen_GetParmListVector( m_type, numTranslateVecComponents, up );
 
-	std::string parmListLookAt = Gen_GetParmListMatrix( m_type, m_numRows, m_numCols, answerLookAt );
+	std::string parmListLookAt_LH	= Gen_GetParmListMatrix( m_type, m_numRows, m_numCols, answerLookAt_LH );
+	std::string parmListLookAt_RH	= Gen_GetParmListMatrix( m_type, m_numRows, m_numCols, answerLookAt_RH );
 
 	m_code += "TEMPER_TEST( TestLookAt_" + m_fullTypeName + " )\n";
 	m_code += "{\n";
-	m_code += "\t" + m_fullTypeName + " answerLookAt = " + m_fullTypeName + parmListLookAt + ";\n";
+	m_code += "\t" + m_fullTypeName + " answerLookAt_LH = " + m_fullTypeName + parmListLookAt_LH + ";\n";
+	m_code += "\t" + m_fullTypeName + " answerLookAt_RH = " + m_fullTypeName + parmListLookAt_RH + ";\n";
 	m_code += "\n";
 	m_code += "\t" + posVectorTypeName + " currentPos = " + posVectorTypeName + parmListCurrentPos + ";\n";
 	m_code += "\t" + posVectorTypeName + " targetPos = " + posVectorTypeName + parmListTargetPos + ";\n";
 	m_code += "\t" + posVectorTypeName + " up = " + posVectorTypeName + parmListUp + ";\n";
-	m_code += "\t" + m_fullTypeName + " mat = lookat( currentPos, targetPos, up );\n";
 	m_code += "\n";
-	m_code += "\tTEMPER_EXPECT_TRUE( mat == answerLookAt );\n";
+	m_code += "\t" + m_fullTypeName + " mat_LH = lookat_lh( currentPos, targetPos, up );\n";
+	m_code += "\t" + m_fullTypeName + " mat_RH = lookat_rh( currentPos, targetPos, up );\n";
+	m_code += "\n";
+	m_code += "\tTEMPER_EXPECT_TRUE( mat_LH == answerLookAt_LH );\n";
+	m_code += "\tTEMPER_EXPECT_TRUE( mat_RH == answerLookAt_RH );\n";
 	m_code += "\n";
 	m_code += "\tTEMPER_PASS();\n";
 	m_code += "}\n";

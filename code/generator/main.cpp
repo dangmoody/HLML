@@ -37,56 +37,6 @@ along with hlml.  If not, see <http://www.gnu.org/licenses/>.
 
 #include <string>
 
-static genHand_t g_hand = GEN_HAND_COUNT;
-
-static const char* GetNextArg( const int currentArg, const int argc, char** argv ) {
-	return ( currentArg + 1 < argc ) ? argv[currentArg + 1] : nullptr;
-}
-
-static bool ProcessArgs( const int argc, char** argv ) {
-	bool foundArg = true;
-
-	for ( int i = 0; i < argc; i++ ) {
-		const char* arg = argv[i];
-
-		if ( arg[0] == '-' ) {
-			switch ( arg[1] ) {
-				case 'h': {
-					const char* value = GetNextArg( i, argc, argv );
-					if ( !value ) {
-						return false;
-					}
-
-					if ( strcmp( value, "left" ) == 0 ) {
-						g_hand = GEN_HAND_LEFT;
-						i++;
-					} else if ( strcmp( value, "right" ) == 0 ) {
-						g_hand = GEN_HAND_RIGHT;
-						i++;
-					} else {
-						return false;
-					}
-					break;
-				}
-
-				default:
-					foundArg = false;
-					break;
-			}
-		}
-	}
-
-	return foundArg;
-}
-
-static void ShowUsage( void ) {
-	printf(
-		"HLML Code :\n"
-		"Usage:\n"
-		"	-h <hand>: Which 'handedness' you want to generate maths functions like \"ortho\" for.  Options: left, right.  Must be set.\n"
-	);
-}
-
 static void GenerateImplVectors( void ) {
 	VectorGenerator gen;
 
@@ -186,10 +136,6 @@ static bool GenerateOperatorsVector( void ) {
 	// includes
 	for ( uint32_t typeIndex = 0; typeIndex < GEN_TYPE_COUNT; typeIndex++ ) {
 		genType_t type = static_cast<genType_t>( typeIndex );
-
-		if ( type == GEN_TYPE_BOOL ) {
-			continue;
-		}
 
 		for ( uint32_t componentIndex = GEN_COMPONENT_COUNT_MIN; componentIndex <= GEN_COMPONENT_COUNT_MAX; componentIndex++ ) {
 			contentHeader += "#include \"" + Gen_GetFullTypeName( type, 1, componentIndex ) + ".h\"\n";
@@ -464,9 +410,9 @@ static bool GenerateFunctionsMatrix( void ) {
 				Gen_MatrixRotate( type, row, col, contentHeader, contentInl );
 				Gen_MatrixScale( type, row, col, contentHeader, contentInl );
 
-				Gen_MatrixOrtho( g_hand, type, row, col, contentHeader, contentInl );
-				Gen_MatrixPerspective( g_hand, type, row, col, contentHeader, contentInl );
-				Gen_MatrixLookAt( g_hand, type, row, col, contentHeader, contentInl );
+				Gen_MatrixOrtho( type, row, col, contentHeader, contentInl );
+				Gen_MatrixPerspective( type, row, col, contentHeader, contentInl );
+				Gen_MatrixLookAt( type, row, col, contentHeader, contentInl );
 
 				contentHeader += "\n";
 				contentInl += "\n";
@@ -595,13 +541,8 @@ static bool GenerateTestsMain( void ) {
 }
 
 int main( int argc, char** argv ) {
-	if ( !ProcessArgs( argc, argv ) ) {
-		ShowUsage();
-		return 0;
-	}
-
-	printf( "Generating %s hand linear algebra functions.\n", ( g_hand == GEN_HAND_LEFT ) ? "left" : "right" );
-	printf( "\n" );
+	UNUSED( argc );
+	UNUSED( argv );
 
 	FS_CreateFolder( GEN_OUT_GEN_FOLDER_PATH );
 	FS_CreateFolder( GEN_TESTS_FOLDER_PATH );
@@ -616,7 +557,7 @@ int main( int argc, char** argv ) {
 	GenerateTestsMatrix();
 	printf( "======= Done. =======\n\n" );
 
-	// TODO(DM): tidy this
+	// TODO(DM): tidy this somehow?
 	printf( "======= Generating main headers. =======\n" );
 	if ( !GenerateMainTypeHeaderVector() ) {
 		printf( "ERROR: Failed generating main vector header!\n" );

@@ -66,19 +66,28 @@ static std::string GetDocScaleNonUniform( const std::string& fullTypeName ) {
 		"/// \\brief Returns a copy of the matrix that has had a non-uniform scale applied to it.\n";
 }
 
-static std::string GetDocOrtho( const std::string& fullTypeName ) {
+static std::string GetDocOrtho( const std::string& fullTypeName, const genHand_t hand, const genClipSpace_t range ) {
+	std::string handStr = Gen_GetHandString( hand );
+	std::string rangeStr = Gen_GetClipSpaceRangeString( range );
+
 	return "/// \\relates " + fullTypeName + "\n" \
-		"/// \\brief Returns an orthographic projection matrix.\n";
+		"/// \\brief Returns an " + handStr + "-handed orthographic projection matrix with the clip-space range " + rangeStr + ".\n";
 }
 
-static std::string GetDocPerspective( const std::string& fullTypeName ) {
+static std::string GetDocPerspective( const std::string& fullTypeName, const genHand_t hand, const genClipSpace_t range ) {
+	std::string handStr = Gen_GetHandString( hand );
+	std::string rangeStr = Gen_GetClipSpaceRangeString( range );
+
 	return "/// \\relates " + fullTypeName + "\n" \
-		"/// \\brief Returns a perspective projection matrix based on a vertical field-of-view in degrees and an aspect ratio.\n";
+		+  "/// \\brief Returns a "+ handStr + "-handed perspective projection matrix based on a vertical field-of-view in degrees and an aspect ratio " \
+		+  "in the clip-space range of " + rangeStr + ".\n";
 }
 
-static std::string GetDocLookAt( const std::string& fullTypeName ) {
+static std::string GetDocLookAt( const std::string& fullTypeName, const genHand_t hand ) {
+	std::string handStr = Gen_GetHandString( hand );
+
 	return "/// \\relates " + fullTypeName + "\n" \
-		"/// \\brief Returns a orthonormal matrix that is oriented at position eye to look at position target.\n";
+		"/// \\brief Returns a " + handStr + "-handed orthonormal matrix that is oriented at position eye to look at position target.\n";
 }
 
 static void MatrixOperatorMul( const genType_t type, const uint32_t numRows, const uint32_t numCols, std::string& outHeader, std::string& outInl ) {
@@ -869,7 +878,7 @@ void Gen_MatrixScale( const genType_t type, const uint32_t numRows, const uint32
 	outInl += "\n";
 }
 
-void Gen_MatrixOrtho( const genHand_t hand, const genType_t type, const uint32_t numRows, const uint32_t numCols, std::string& outHeader, std::string& outInl ) {
+void Gen_MatrixOrtho( const genType_t type, const uint32_t numRows, const uint32_t numCols, std::string& outHeader, std::string& outInl ) {
 	assert( numRows >= GEN_COMPONENT_COUNT_MIN );
 	assert( numRows <= GEN_COMPONENT_COUNT_MAX );
 	assert( numCols >= GEN_COMPONENT_COUNT_MIN );
@@ -886,48 +895,148 @@ void Gen_MatrixOrtho( const genHand_t hand, const genType_t type, const uint32_t
 	std::string typeString = Gen_GetTypeString( type );
 	std::string fullTypeName = typeString + std::to_string( numRows ) + "x" + std::to_string( numCols );
 
-	std::string zeroStr	= Gen_GetNumericLiteral( type, 0 );
-	std::string oneStr	= Gen_GetNumericLiteral( type, 1 );
-	std::string twoStr	= Gen_GetNumericLiteral( type, 2 );
+	std::string minusTwoStr	= Gen_GetNumericLiteral( type, -2.0f );
+	std::string minusOneStr	= Gen_GetNumericLiteral( type, -1.0f );
+	std::string zeroStr		= Gen_GetNumericLiteral( type, 0.0f );
+	std::string oneStr		= Gen_GetNumericLiteral( type, 1.0f );
+	std::string twoStr		= Gen_GetNumericLiteral( type, 2.0f );
 
-	outHeader += GetDocOrtho( fullTypeName );
-	outHeader += "inline " + fullTypeName + " ortho( const " + typeString + " left, const " + typeString + " right, const " + typeString + " top, const " + typeString + " bottom, const " + typeString + " znear, const " + typeString + " zfar );\n";
-	outHeader += "\n";
+	genHand_t hand;
+	genClipSpace_t range;
 
-	outInl += "inline " + fullTypeName + " ortho( const " + typeString + " left, const " + typeString + " right, const " + typeString + " top, const " + typeString + " bottom, const " + typeString + " znear, const " + typeString + " zfar )\n";
-	outInl += "{\n";
-	switch ( hand ) {
-		case GEN_HAND_LEFT: {
-			outInl += "\tconst " + typeString + " right_plus_left = right + left;\n";
-			outInl += "\tconst " + typeString + " right_minus_left = right - left;\n";
-			outInl += "\tconst " + typeString + " top_plus_bottom = top + bottom;\n";
-			outInl += "\tconst " + typeString + " top_minus_bottom = top - bottom;\n";
-			outInl += "\tconst " + typeString + " far_minus_near = zfar - znear;\n";
-			outInl += "\n";
-			outInl += "\treturn " + fullTypeName + "(\n";
-			outInl += "\t\t" + twoStr + " / right_minus_left, " + zeroStr + ", " + zeroStr + ", -right_plus_left / right_minus_left,\n";
-			outInl += "\t\t" + zeroStr + ", " + twoStr + " / top_minus_bottom, " + zeroStr + ", -top_plus_bottom / top_minus_bottom,\n";
-			outInl += "\t\t" + zeroStr + ", " + zeroStr + ", " + oneStr + " / far_minus_near, " + "-znear / far_minus_near";
-			outInl += ",\n\t\t" + zeroStr + ", " + zeroStr + ", " + zeroStr + ", " + oneStr + "\n";
-			outInl += "\t);\n";
-			break;
-		}
+	std::string handStr, rangeStr;
 
-		case GEN_HAND_RIGHT: {
-			// TODO(DM):
-			break;
-		}
+	// TODO(DM): do we need to generate each one?
+	// what if had handedness and clip-space range as cmd args?
 
-		case GEN_HAND_COUNT:
-		default:
-			printf( "ERROR: Bad genHand_t enum passed into %s.\n", __FUNCTION__ );
-			break;
+	// left-hand, zero to one
+	{
+		hand = GEN_HAND_LEFT;
+		range = GEN_CLIP_SPACE_ZERO_TO_ONE;
+
+		handStr = Gen_GetHandString( hand );
+		rangeStr = Gen_GetClipSpaceRangeString( range );
+
+		outHeader += GetDocOrtho( fullTypeName, hand, range );
+		outHeader += "inline " + fullTypeName + " ortho_lh_zo( const " + typeString + " left, const " + typeString + " right, const " + typeString + " top, const " + typeString + " bottom, const " + typeString + " znear, const " + typeString + " zfar );\n";
+		outHeader += "\n";
+
+		outInl += "inline " + fullTypeName + " ortho_lh_zo( const " + typeString + " left, const " + typeString + " right, const " + typeString + " top, const " + typeString + " bottom, const " + typeString + " znear, const " + typeString + " zfar )\n";
+		outInl += "{\n";
+		outInl += "\t// " + handStr + "-handed, clip-space range: " + rangeStr + "\n";
+		outInl += "\tconst " + typeString + " right_minus_left = right - left;\n";
+		outInl += "\tconst " + typeString + " right_plus_left = right + left;\n";
+		outInl += "\tconst " + typeString + " top_minus_bottom = top - bottom;\n";
+		outInl += "\tconst " + typeString + " top_plus_bottom = top + bottom;\n";
+		outInl += "\tconst " + typeString + " far_minus_near = zfar - znear;\n";
+		outInl += "\n";
+		outInl += "\treturn " + fullTypeName + "(\n";
+		outInl += "\t\t" + twoStr + " / right_minus_left, " + zeroStr + ", " + zeroStr + ", -right_plus_left / right_minus_left,\n";
+		outInl += "\t\t" + zeroStr + ", " + twoStr + " / top_minus_bottom, " + zeroStr + ", -top_plus_bottom / top_minus_bottom,\n";
+		outInl += "\t\t" + zeroStr + ", " + zeroStr + ", " + oneStr + " / far_minus_near, -znear / far_minus_near";
+		outInl += ",\n\t\t" + zeroStr + ", " + zeroStr + ", " + zeroStr + ", " + oneStr + "\n";
+		outInl += "\t);\n";
+		outInl += "}\n";
+		outInl += "\n";
 	}
-	outInl += "}\n";
-	outInl += "\n";
+
+	// left-hand, minus-one to one
+	{
+		hand = GEN_HAND_LEFT;
+		range = GEN_CLIP_SPACE_MINUS_ONE_TO_ONE;
+
+		handStr = Gen_GetHandString( hand );
+		rangeStr = Gen_GetClipSpaceRangeString( range );
+
+		outHeader += GetDocOrtho( fullTypeName, hand, range );
+		outHeader += "inline " + fullTypeName + " ortho_lh_no( const " + typeString + " left, const " + typeString + " right, const " + typeString + " top, const " + typeString + " bottom, const " + typeString + " znear, const " + typeString + " zfar );\n";
+		outHeader += "\n";
+
+		outInl += "inline " + fullTypeName + " ortho_lh_no( const " + typeString + " left, const " + typeString + " right, const " + typeString + " top, const " + typeString + " bottom, const " + typeString + " znear, const " + typeString + " zfar )\n";
+		outInl += "{\n";
+		outInl += "\t// " + handStr + "-handed, clip-space range: " + rangeStr + "\n";
+		outInl += "\tconst " + typeString + " right_minus_left = right - left;\n";
+		outInl += "\tconst " + typeString + " right_plus_left = right + left;\n";
+		outInl += "\tconst " + typeString + " top_minus_bottom = top - bottom;\n";
+		outInl += "\tconst " + typeString + " top_plus_bottom = top + bottom;\n";
+		outInl += "\tconst " + typeString + " far_minus_near = zfar - znear;\n";
+		outInl += "\tconst " + typeString + " far_plus_near = zfar + znear;\n";
+		outInl += "\n";
+		outInl += "\treturn " + fullTypeName + "(\n";
+		outInl += "\t\t" + twoStr + " / right_minus_left, " + zeroStr + ", " + zeroStr + ", -right_plus_left / right_minus_left,\n";
+		outInl += "\t\t" + zeroStr + ", " + twoStr + " / top_minus_bottom, " + zeroStr + ", -top_plus_bottom / top_minus_bottom,\n";
+		outInl += "\t\t" + zeroStr + ", " + zeroStr + ", " + twoStr + " / far_minus_near, -far_plus_near / far_minus_near";
+		outInl += ",\n\t\t" + zeroStr + ", " + zeroStr + ", " + zeroStr + ", " + oneStr + "\n";
+		outInl += "\t);\n";
+		outInl += "}\n";
+		outInl += "\n";
+	}
+	
+	// right-hand, zero to one
+	{
+		hand = GEN_HAND_RIGHT;
+		range = GEN_CLIP_SPACE_ZERO_TO_ONE;
+
+		handStr = Gen_GetHandString( hand );
+		rangeStr = Gen_GetClipSpaceRangeString( range );
+
+		outHeader += GetDocOrtho( fullTypeName, hand, range );
+		outHeader += "inline " + fullTypeName + " ortho_rh_zo( const " + typeString + " left, const " + typeString + " right, const " + typeString + " top, const " + typeString + " bottom, const " + typeString + " znear, const " + typeString + " zfar );\n";
+		outHeader += "\n";
+
+		outInl += "inline " + fullTypeName + " ortho_rh_zo( const " + typeString + " left, const " + typeString + " right, const " + typeString + " top, const " + typeString + " bottom, const " + typeString + " znear, const " + typeString + " zfar )\n";
+		outInl += "{\n";
+		outInl += "\t// " + handStr + "-handed, clip-space range: " + rangeStr + "\n";
+		outInl += "\tconst " + typeString + " right_minus_left = right - left;\n";
+		outInl += "\tconst " + typeString + " right_plus_left = right + left;\n";
+		outInl += "\tconst " + typeString + " top_minus_bottom = top - bottom;\n";
+		outInl += "\tconst " + typeString + " top_plus_bottom = top + bottom;\n";
+		outInl += "\tconst " + typeString + " far_minus_near = zfar - znear;\n";
+		outInl += "\n";
+		outInl += "\treturn " + fullTypeName + "(\n";
+		outInl += "\t\t" + twoStr + " / right_minus_left, " + zeroStr + ", " + zeroStr + ", -right_plus_left / right_minus_left,\n";
+		outInl += "\t\t" + zeroStr + ", " + twoStr + " / top_minus_bottom, " + zeroStr + ", -top_plus_bottom / top_minus_bottom,\n";
+		outInl += "\t\t" + zeroStr + ", " + zeroStr + ", " + minusOneStr + " / far_minus_near, -znear / far_minus_near";
+		outInl += ",\n\t\t" + zeroStr + ", " + zeroStr + ", " + zeroStr + ", " + oneStr + "\n";
+		outInl += "\t);\n";
+		outInl += "}\n";
+		outInl += "\n";
+	}
+
+	// right-hand, minus-one to one
+	{
+		hand = GEN_HAND_RIGHT;
+		range = GEN_CLIP_SPACE_MINUS_ONE_TO_ONE;
+
+		handStr = Gen_GetHandString( hand );
+		rangeStr = Gen_GetClipSpaceRangeString( range );
+
+		outHeader += GetDocOrtho( fullTypeName, hand, range );
+		outHeader += "inline " + fullTypeName + " ortho_rh_no( const " + typeString + " left, const " + typeString + " right, const " + typeString + " top, const " + typeString + " bottom, const " + typeString + " znear, const " + typeString + " zfar );\n";
+		outHeader += "\n";
+
+		outInl += "inline " + fullTypeName + " ortho_rh_no( const " + typeString + " left, const " + typeString + " right, const " + typeString + " top, const " + typeString + " bottom, const " + typeString + " znear, const " + typeString + " zfar )\n";
+		outInl += "{\n";
+		outInl += "\t// " + handStr + "-handed, clip-space range: " + rangeStr + "\n";
+		outInl += "\tconst " + typeString + " right_minus_left = right - left;\n";
+		outInl += "\tconst " + typeString + " right_plus_left = right + left;\n";
+		outInl += "\tconst " + typeString + " top_minus_bottom = top - bottom;\n";
+		outInl += "\tconst " + typeString + " top_plus_bottom = top + bottom;\n";
+		outInl += "\tconst " + typeString + " far_minus_near = zfar - znear;\n";
+		outInl += "\tconst " + typeString + " far_plus_near = zfar + znear;\n";
+		outInl += "\n";
+		outInl += "\treturn " + fullTypeName + "(\n";
+		outInl += "\t\t" + twoStr + " / right_minus_left, " + zeroStr + ", " + zeroStr + ", -right_plus_left / right_minus_left,\n";
+		outInl += "\t\t" + zeroStr + ", " + twoStr + " / top_minus_bottom, " + zeroStr + ", -top_plus_bottom / top_minus_bottom,\n";
+		outInl += "\t\t" + zeroStr + ", " + zeroStr + ", " + minusTwoStr + " / far_minus_near, -far_plus_near / far_minus_near";
+		outInl += ",\n\t\t" + zeroStr + ", " + zeroStr + ", " + zeroStr + ", " + oneStr + "\n";
+		outInl += "\t);\n";
+		outInl += "}\n";
+		outInl += "\n";
+	}
 }
 
-void Gen_MatrixPerspective( const genHand_t hand, const genType_t type, const uint32_t numRows, const uint32_t numCols, std::string& outHeader, std::string& outInl ) {
+void Gen_MatrixPerspective( const genType_t type, const uint32_t numRows, const uint32_t numCols, std::string& outHeader, std::string& outInl ) {
 	assert( numRows >= GEN_COMPONENT_COUNT_MIN );
 	assert( numRows <= GEN_COMPONENT_COUNT_MAX );
 	assert( numCols >= GEN_COMPONENT_COUNT_MIN );
@@ -944,47 +1053,134 @@ void Gen_MatrixPerspective( const genHand_t hand, const genType_t type, const ui
 	std::string typeString = Gen_GetTypeString( type );
 	std::string fullTypeName = typeString + std::to_string( numRows ) + "x" + std::to_string( numCols );
 
-	std::string zeroStr	= Gen_GetNumericLiteral( type, 0.0f );
-	std::string halfStr	= Gen_GetNumericLiteral( type, 0.5f );
-	std::string oneStr	= Gen_GetNumericLiteral( type, 1.0f );
+	std::string minusOneStr	= Gen_GetNumericLiteral( type, -1.0f );
+	std::string zeroStr		= Gen_GetNumericLiteral( type,  0.0f );
+	std::string halfStr		= Gen_GetNumericLiteral( type,  0.5f );
+	std::string oneStr		= Gen_GetNumericLiteral( type,  1.0f );
+	std::string twoStr		= Gen_GetNumericLiteral( type,  2.0f );
 
 	std::string tanFuncStr = Gen_GetFuncNameTan( type );
 
-	outHeader += GetDocPerspective( fullTypeName );
-	outHeader += "inline " + fullTypeName + " perspective( const " + typeString + " fovdeg, const " + typeString + " aspect, const " + typeString + " znear, const " + typeString + " zfar );\n";
-	outHeader += "\n";
+	genHand_t hand;
+	genClipSpace_t range;
 
-	outInl += fullTypeName + " perspective( const " + typeString + " fovdeg, const " + typeString + " aspect, const " + typeString + " znear, const " + typeString + " zfar )\n";
-	outInl += "{\n";
-	switch ( hand ) {
-		case GEN_HAND_LEFT: {
-			outInl += "\tconst " + typeString + " far_minus_near = zfar - znear;\n";
-			outInl += "\tconst " + typeString + " tan_half_fov = " + tanFuncStr + "( fovdeg * " + halfStr + " );\n";
-			outInl += "\n";
-			outInl += "\treturn " + fullTypeName + "(\n";
-			outInl += "\t\t" + oneStr + " / ( aspect * tan_half_fov ), " + zeroStr + ", " + zeroStr + ", " + zeroStr + ",\n";
-			outInl += "\t\t" + zeroStr + ", " + oneStr + " / tan_half_fov, " + zeroStr + ", " + zeroStr + ",\n";
-			outInl += "\t\t" + zeroStr + ", " + zeroStr + ", zfar / far_minus_near, -( zfar * znear ) / far_minus_near,\n";
-			outInl += "\t\t" + zeroStr + ", " + zeroStr + ", " + oneStr + ", " + zeroStr + "\n";
-			outInl += "\t);\n";
-			break;
-		}
+	std::string handStr, rangeStr;
 
-		case GEN_HAND_RIGHT: {
-			// TODO(DM):
-			break;
-		}
+	// left-handed, zero to one
+	{
+		hand = GEN_HAND_LEFT;
+		range = GEN_CLIP_SPACE_ZERO_TO_ONE;
 
-		case GEN_HAND_COUNT:
-		default:
-			printf( "ERROR: Bad genHand_t enum passed into %s.\n", __FUNCTION__ );
-			break;
+		handStr = Gen_GetHandString( hand );
+		rangeStr = Gen_GetClipSpaceRangeString( range );
+
+		outHeader += GetDocPerspective( fullTypeName, hand, range );
+		outHeader += "inline " + fullTypeName + " perspective_lh_zo( const " + typeString + " fovdeg, const " + typeString + " aspect, const " + typeString + " znear, const " + typeString + " zfar );\n";
+		outHeader += "\n";
+
+		outInl += fullTypeName + " perspective_lh_zo( const " + typeString + " fovdeg, const " + typeString + " aspect, const " + typeString + " znear, const " + typeString + " zfar )\n";
+		outInl += "{\n";
+		outInl += "\t// " + handStr + "-handed, clip space range: " + rangeStr + "\n";
+		outInl += "\tconst " + typeString + " far_minus_near = zfar - znear;\n";
+		outInl += "\tconst " + typeString + " tan_half_fov = " + tanFuncStr + "( fovdeg * " + halfStr + " );\n";
+		outInl += "\n";
+		outInl += "\treturn " + fullTypeName + "(\n";
+		outInl += "\t\t" + oneStr + " / ( aspect * tan_half_fov ), " + zeroStr + ", " + zeroStr + ", " + zeroStr + ",\n";
+		outInl += "\t\t" + zeroStr + ", " + oneStr + " / tan_half_fov, " + zeroStr + ", " + zeroStr + ",\n";
+		outInl += "\t\t" + zeroStr + ", " + zeroStr + ", zfar / far_minus_near, -( zfar * znear ) / far_minus_near,\n";
+		outInl += "\t\t" + zeroStr + ", " + zeroStr + ", " + oneStr + ", " + zeroStr + "\n";
+		outInl += "\t);\n";
+		outInl += "}\n";
+		outInl += "\n";
 	}
-	outInl += "}\n";
-	outInl += "\n";
+
+	// left-handed, minus-one to one
+	{
+		hand = GEN_HAND_LEFT;
+		range = GEN_CLIP_SPACE_MINUS_ONE_TO_ONE;
+
+		handStr = Gen_GetHandString( hand );
+		rangeStr = Gen_GetClipSpaceRangeString( range );
+
+		outHeader += GetDocPerspective( fullTypeName, hand, range );
+		outHeader += "inline " + fullTypeName + " perspective_lh_no( const " + typeString + " fovdeg, const " + typeString + " aspect, const " + typeString + " znear, const " + typeString + " zfar );\n";
+		outHeader += "\n";
+
+		outInl += fullTypeName + " perspective_lh_no( const " + typeString + " fovdeg, const " + typeString + " aspect, const " + typeString + " znear, const " + typeString + " zfar )\n";
+		outInl += "{\n";
+		outInl += "\t// " + handStr + "-handed, clip space range: " + rangeStr + "\n";
+		outInl += "\tconst " + typeString + " far_minus_near = zfar - znear;\n";
+		outInl += "\tconst " + typeString + " far_plus_near = zfar + znear;\n";
+		outInl += "\tconst " + typeString + " tan_half_fov = " + tanFuncStr + "( fovdeg * " + halfStr + " );\n";
+		outInl += "\n";
+		outInl += "\treturn " + fullTypeName + "(\n";
+		outInl += "\t\t" + oneStr + " / ( aspect * tan_half_fov ), " + zeroStr + ", " + zeroStr + ", " + zeroStr + ",\n";
+		outInl += "\t\t" + zeroStr + ", " + oneStr + " / tan_half_fov, " + zeroStr + ", " + zeroStr + ",\n";
+		outInl += "\t\t" + zeroStr + ", " + zeroStr + ", far_plus_near / far_minus_near, -( " + twoStr + " * zfar * znear ) / far_minus_near,\n";
+		outInl += "\t\t" + zeroStr + ", " + zeroStr + ", " + oneStr + ", " + zeroStr + "\n";
+		outInl += "\t);\n";
+		outInl += "}\n";
+		outInl += "\n";
+	}
+
+	// right-handed, zero to one
+	{
+		hand = GEN_HAND_RIGHT;
+		range = GEN_CLIP_SPACE_ZERO_TO_ONE;
+
+		handStr = Gen_GetHandString( hand );
+		rangeStr = Gen_GetClipSpaceRangeString( range );
+
+		outHeader += GetDocPerspective( fullTypeName, hand, range );
+		outHeader += "inline " + fullTypeName + " perspective_rh_zo( const " + typeString + " fovdeg, const " + typeString + " aspect, const " + typeString + " znear, const " + typeString + " zfar );\n";
+		outHeader += "\n";
+
+		outInl += fullTypeName + " perspective_rh_zo( const " + typeString + " fovdeg, const " + typeString + " aspect, const " + typeString + " znear, const " + typeString + " zfar )\n";
+		outInl += "{\n";
+		outInl += "\t// " + handStr + "-handed, clip space range: " + rangeStr + "\n";
+		outInl += "\tconst " + typeString + " tan_half_fov = " + tanFuncStr + "( fovdeg * " + halfStr + " );\n";
+		outInl += "\n";
+		outInl += "\treturn " + fullTypeName + "(\n";
+		outInl += "\t\t" + oneStr + " / ( aspect * tan_half_fov ), " + zeroStr + ", " + zeroStr + ", " + zeroStr + ",\n";
+		outInl += "\t\t" + zeroStr + ", " + oneStr + " / tan_half_fov, " + zeroStr + ", " + zeroStr + ",\n";
+		outInl += "\t\t" + zeroStr + ", " + zeroStr + ", zfar / ( znear - zfar ), -( zfar * znear ) / ( zfar - znear ),\n";
+		outInl += "\t\t" + zeroStr + ", " + zeroStr + ", " + minusOneStr + ", " + zeroStr + "\n";
+		outInl += "\t);\n";
+		outInl += "}\n";
+		outInl += "\n";
+	}
+
+	// right-handed, minus-one to one
+	{
+		hand = GEN_HAND_RIGHT;
+		range = GEN_CLIP_SPACE_MINUS_ONE_TO_ONE;
+
+		handStr = Gen_GetHandString( hand );
+		rangeStr = Gen_GetClipSpaceRangeString( range );
+
+		outHeader += GetDocPerspective( fullTypeName, hand, range );
+		outHeader += "inline " + fullTypeName + " perspective_rh_no( const " + typeString + " fovdeg, const " + typeString + " aspect, const " + typeString + " znear, const " + typeString + " zfar );\n";
+		outHeader += "\n";
+
+		outInl += fullTypeName + " perspective_rh_no( const " + typeString + " fovdeg, const " + typeString + " aspect, const " + typeString + " znear, const " + typeString + " zfar )\n";
+		outInl += "{\n";
+		outInl += "\t// " + handStr + "-handed, clip space range: " + rangeStr + "\n";
+		outInl += "\tconst " + typeString + " far_minus_near = zfar - znear;\n";
+		outInl += "\tconst " + typeString + " far_plus_near = zfar + znear;\n";
+		outInl += "\tconst " + typeString + " tan_half_fov = " + tanFuncStr + "( fovdeg * " + halfStr + " );\n";
+		outInl += "\n";
+		outInl += "\treturn " + fullTypeName + "(\n";
+		outInl += "\t\t" + oneStr + " / ( aspect * tan_half_fov ), " + zeroStr + ", " + zeroStr + ", " + zeroStr + ",\n";
+		outInl += "\t\t" + zeroStr + ", " + oneStr + " / tan_half_fov, " + zeroStr + ", " + zeroStr + ",\n";
+		outInl += "\t\t" + zeroStr + ", " + zeroStr + ", -far_plus_near / far_minus_near, -( " + twoStr + " * zfar * znear ) / far_minus_near,\n";
+		outInl += "\t\t" + zeroStr + ", " + zeroStr + ", " + minusOneStr + ", " + zeroStr + "\n";
+		outInl += "\t);\n";
+		outInl += "}\n";
+		outInl += "\n";
+	}
 }
 
-void Gen_MatrixLookAt( const genHand_t hand, const genType_t type, const uint32_t numRows, const uint32_t numCols, std::string& outHeader, std::string& outInl ) {
+void Gen_MatrixLookAt( const genType_t type, const uint32_t numRows, const uint32_t numCols, std::string& outHeader, std::string& outInl ) {
 	assert( numRows >= GEN_COMPONENT_COUNT_MIN );
 	assert( numRows <= GEN_COMPONENT_COUNT_MAX );
 	assert( numCols >= GEN_COMPONENT_COUNT_MIN );
@@ -1007,37 +1203,49 @@ void Gen_MatrixLookAt( const genHand_t hand, const genType_t type, const uint32_
 	std::string zeroStr	= Gen_GetNumericLiteral( type, 0.0f );
 	std::string oneStr	= Gen_GetNumericLiteral( type, 1.0f );
 
-	outHeader += GetDocLookAt( fullTypeName );
-	outHeader += "inline " + fullTypeName + " lookat( const " + vectorTypeString + "& eye, const " + vectorTypeString + "& target, const " + vectorTypeString + "& up );\n";
-	outHeader += "\n";
+	// left-handed
+	{
+		outHeader += GetDocLookAt( fullTypeName, GEN_HAND_LEFT );
+		outHeader += "inline " + fullTypeName + " lookat_lh( const " + vectorTypeString + "& eye, const " + vectorTypeString + "& target, const " + vectorTypeString + "& up );\n";
+		outHeader += "\n";
 
-	outInl += fullTypeName + " lookat( const " + vectorTypeString + "& eye, const " + vectorTypeString + "& target, const " + vectorTypeString + "& up )\n";
-	outInl += "{\n";
-	switch ( hand ) {
-		case GEN_HAND_LEFT: {
-			outInl += "\tconst " + vectorTypeString + " forward = normalized( target - eye );\n";
-			outInl += "\tconst " + vectorTypeString + " right = normalized( cross( up, forward ) );\n";
-			outInl += "\tconst " + vectorTypeString + " up1 = cross( forward, right );\n";
-			outInl += "\n";
-			outInl += "\treturn " + fullTypeName + "(\n";
-			outInl += "\t\tright.x,   right.y,   right.z,   -dot( right, eye ),\n";
-			outInl += "\t\tup1.x,     up1.y,     up1.z,     -dot( up1, eye ),\n";
-			outInl += "\t\tforward.x, forward.y, forward.z, -dot( forward, eye ),\n";
-			outInl += "\t\t" + zeroStr + ", " + zeroStr + ", " + zeroStr + ", " + oneStr + "\n";
-			outInl += "\t);\n";
-			break;
-		}
-
-		case GEN_HAND_RIGHT: {
-			// TODO(DM):
-			break;
-		}
-
-		case GEN_HAND_COUNT:
-		default:
-			printf( "ERROR: Bad genHand_t enum passed into %s.\n", __FUNCTION__ );
-			break;
+		outInl += fullTypeName + " lookat_lh( const " + vectorTypeString + "& eye, const " + vectorTypeString + "& target, const " + vectorTypeString + "& up )\n";
+		outInl += "{\n";
+		outInl += "\t// left handed\n";
+		outInl += "\tconst " + vectorTypeString + " forward = normalized( target - eye );\n";
+		outInl += "\tconst " + vectorTypeString + " right = normalized( cross( up, forward ) );\n";
+		outInl += "\tconst " + vectorTypeString + " up1 = cross( forward, right );\n";
+		outInl += "\n";
+		outInl += "\treturn " + fullTypeName + "(\n";
+		outInl += "\t\tright.x,   right.y,   right.z,   -dot( right, eye ),\n";
+		outInl += "\t\tup1.x,     up1.y,     up1.z,     -dot( up1, eye ),\n";
+		outInl += "\t\tforward.x, forward.y, forward.z, -dot( forward, eye ),\n";
+		outInl += "\t\t" + zeroStr + ", " + zeroStr + ", " + zeroStr + ", " + oneStr + "\n";
+		outInl += "\t);\n";
+		outInl += "}\n";
+		outInl += "\n";
 	}
-	outInl += "}\n";
-	outInl += "\n";
+
+	// right-handed
+	{
+		outHeader += GetDocLookAt( fullTypeName, GEN_HAND_RIGHT );
+		outHeader += "inline " + fullTypeName + " lookat_rh( const " + vectorTypeString + "& eye, const " + vectorTypeString + "& target, const " + vectorTypeString + "& up );\n";
+		outHeader += "\n";
+
+		outInl += fullTypeName + " lookat_rh( const " + vectorTypeString + "& eye, const " + vectorTypeString + "& target, const " + vectorTypeString + "& up )\n";
+		outInl += "{\n";
+		outInl += "\t// right handed\n";
+		outInl += "\tconst " + vectorTypeString + " forward = normalized( target - eye );\n";
+		outInl += "\tconst " + vectorTypeString + " right = normalized( cross( forward, up ) );\n";
+		outInl += "\tconst " + vectorTypeString + " up1 = cross( right, forward );\n";
+		outInl += "\n";
+		outInl += "\treturn " + fullTypeName + "(\n";
+		outInl += "\t\t right.x,    right.y,    right.z,   -dot( right, eye ),\n";
+		outInl += "\t\t up1.x,      up1.y,      up1.z,     -dot( up1, eye ),\n";
+		outInl += "\t\t-forward.x, -forward.y, -forward.z,  dot( forward, eye ),\n";
+		outInl += "\t\t" + zeroStr + ", " + zeroStr + ", " + zeroStr + ", " + oneStr + "\n";
+		outInl += "\t);\n";
+		outInl += "}\n";
+		outInl += "\n";
+	}
 }

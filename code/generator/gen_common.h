@@ -53,6 +53,13 @@ enum genHand_t {
 	GEN_HAND_COUNT
 };
 
+enum genClipSpace_t {
+	GEN_CLIP_SPACE_ZERO_TO_ONE			= 0,
+	GEN_CLIP_SPACE_MINUS_ONE_TO_ONE,
+
+	GEN_CLIP_SPACE_COUNT
+};
+
 enum genOpArithmetic_t {
 	GEN_OP_ARITHMETIC_ADD				= 0,
 	GEN_OP_ARITHMETIC_SUB,
@@ -150,6 +157,9 @@ inline std::string	Gen_GetFullTypeName( const genType_t type, const uint32_t num
 inline std::string	Gen_GetDefaultLiteralValue( const genType_t type );
 inline std::string	Gen_GetNumericLiteral( const genType_t type, const float value );
 
+inline std::string	Gen_GetHandString( const genHand_t hand );
+inline std::string	Gen_GetClipSpaceRangeString( const genClipSpace_t range );
+
 inline genType_t	Gen_GetSupportedFloatingPointType( const genType_t type ) { return ( type == GEN_TYPE_DOUBLE ) ? GEN_TYPE_DOUBLE : GEN_TYPE_FLOAT; }
 inline bool			Gen_IsFloatingPointType( const genType_t type ) { return type == GEN_TYPE_FLOAT || type == GEN_TYPE_DOUBLE; }
 inline bool			Gen_IsIntegerType( const genType_t type ) { return type == GEN_TYPE_INT || type == GEN_TYPE_UINT; }
@@ -245,6 +255,40 @@ std::string Gen_GetNumericLiteral( const genType_t type, const float value ) {
 		case GEN_TYPE_COUNT:
 		default:
 			printf( "ERROR: Bad type_t passed through to %s.  Fix it!\n", __FUNCTION__ );
+			return "ERROR";
+	}
+}
+
+std::string Gen_GetHandString( const genHand_t hand ) {
+	switch ( hand ) {
+		case GEN_HAND_LEFT:
+			return "left";
+			break;
+
+		case GEN_HAND_RIGHT:
+			return "right";
+			break;
+
+		case GEN_HAND_COUNT:
+		default:
+			printf( "ERROR: Bad genHand_t enum passed into %s.\n", __FUNCTION__ );
+			return "ERROR";
+	}
+}
+
+std::string Gen_GetClipSpaceRangeString( const genClipSpace_t range ) {
+	switch ( range ) {
+		case GEN_CLIP_SPACE_ZERO_TO_ONE:
+			return "zero to one";
+			break;
+
+		case GEN_CLIP_SPACE_MINUS_ONE_TO_ONE:
+			return "minus-one to one";
+			break;
+
+		case GEN_CLIP_SPACE_COUNT:
+		default:
+			printf( "ERROR: Bad genClipSpace_t enum passed into %s.\n", __FUNCTION__ );
 			return "ERROR";
 	}
 }

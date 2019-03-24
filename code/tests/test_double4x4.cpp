@@ -490,10 +490,28 @@ TEMPER_TEST( TestScale_double4x4 )
 
 TEMPER_TEST( TestOrtho_double4x4 )
 {
-	double4x4 answerOrtho = double4x4(
+	double4x4 answerOrtho_LH_ZO = double4x4(
 		0.112500, 0.000000, 0.000000, 0.000000,
 		0.000000, -0.200000, 0.000000, 0.000000,
 		0.000000, 0.000000, 0.009901, 0.009901,
+		0.000000, 0.000000, 0.000000, 1.000000
+	);
+	double4x4 answerOrtho_LH_NO = double4x4(
+		0.112500, 0.000000, 0.000000, -0.000000,
+		0.000000, -0.200000, 0.000000, 0.000000,
+		0.000000, 0.000000, 0.019802, -0.980198,
+		0.000000, 0.000000, 0.000000, 1.000000
+	);
+	double4x4 answerOrtho_RH_ZO = double4x4(
+		0.112500, 0.000000, 0.000000, -0.000000,
+		0.000000, -0.200000, 0.000000, 0.000000,
+		0.000000, 0.000000, -0.009901, 0.009901,
+		0.000000, 0.000000, 0.000000, 1.000000
+	);
+	double4x4 answerOrtho_RH_NO = double4x4(
+		0.112500, 0.000000, 0.000000, -0.000000,
+		0.000000, -0.200000, 0.000000, 0.000000,
+		0.000000, 0.000000, -0.019802, -0.980198,
 		0.000000, 0.000000, 0.000000, 1.000000
 	);
 
@@ -507,45 +525,84 @@ TEMPER_TEST( TestOrtho_double4x4 )
 	double top = -orthoSize;
 	double bottom = orthoSize;
 
-	double4x4 mat = ortho( left, right, top, bottom, -1.000000, 100.000000 );
+	double4x4 mat_LH_ZO = ortho_lh_zo( left, right, top, bottom, -1.000000, 100.000000 );
+	double4x4 mat_LH_NO = ortho_lh_no( left, right, top, bottom, -1.000000, 100.000000 );
+	double4x4 mat_RH_ZO = ortho_rh_zo( left, right, top, bottom, -1.000000, 100.000000 );
+	double4x4 mat_RH_NO = ortho_rh_no( left, right, top, bottom, -1.000000, 100.000000 );
 
-	TEMPER_EXPECT_TRUE( mat == answerOrtho );
+	TEMPER_EXPECT_TRUE( mat_LH_ZO == answerOrtho_LH_ZO );
+	TEMPER_EXPECT_TRUE( mat_LH_NO == answerOrtho_LH_NO );
+	TEMPER_EXPECT_TRUE( mat_RH_ZO == answerOrtho_RH_ZO );
+	TEMPER_EXPECT_TRUE( mat_RH_NO == answerOrtho_RH_NO );
 
 	TEMPER_PASS();
 }
 
 TEMPER_TEST( TestPerspective_double4x4 )
 {
-	double4x4 answerPerspective = double4x4(
+	double4x4 answerPerspective_LH_ZO = double4x4(
 		0.347270, 0.000000, 0.000000, 0.000000,
 		0.000000, 0.617370, 0.000000, 0.000000,
 		0.000000, 0.000000, 1.001001, -0.100100,
 		0.000000, 0.000000, 1.000000, 0.000000
 	);
+	double4x4 answerPerspective_LH_NO = double4x4(
+		0.347270, 0.000000, 0.000000, 0.000000,
+		0.000000, 0.617370, 0.000000, 0.000000,
+		0.000000, 0.000000, 1.002002, -0.200200,
+		0.000000, 0.000000, 1.000000, 0.000000
+	);
+	double4x4 answerPerspective_RH_ZO = double4x4(
+		0.347270, 0.000000, 0.000000, 0.000000,
+		0.000000, 0.617370, 0.000000, 0.000000,
+		0.000000, 0.000000, -1.001001, -0.100100,
+		0.000000, 0.000000, -1.000000, 0.000000
+	);
+	double4x4 answerPerspective_RH_NO = double4x4(
+		0.347270, 0.000000, 0.000000, 0.000000,
+		0.000000, 0.617370, 0.000000, 0.000000,
+		0.000000, 0.000000, -1.002002, -0.200200,
+		0.000000, 0.000000, -1.000000, 0.000000
+	);
 
 	double aspect = 1280.000000 / 720.000000;
-	double4x4 mat = perspective( 90.000000, aspect, 0.100000, 100.000000 );
+	double4x4 mat_LH_ZO = perspective_lh_zo( 90.000000, aspect, 0.100000, 100.000000 );
+	double4x4 mat_LH_NO = perspective_lh_no( 90.000000, aspect, 0.100000, 100.000000 );
+	double4x4 mat_RH_ZO = perspective_rh_zo( 90.000000, aspect, 0.100000, 100.000000 );
+	double4x4 mat_RH_NO = perspective_rh_no( 90.000000, aspect, 0.100000, 100.000000 );
 
-	TEMPER_EXPECT_TRUE( mat == answerPerspective );
+	TEMPER_EXPECT_TRUE( mat_LH_ZO == answerPerspective_LH_ZO );
+	TEMPER_EXPECT_TRUE( mat_LH_NO == answerPerspective_LH_NO );
+	TEMPER_EXPECT_TRUE( mat_RH_ZO == answerPerspective_RH_ZO );
+	TEMPER_EXPECT_TRUE( mat_RH_NO == answerPerspective_RH_NO );
 
 	TEMPER_PASS();
 }
 
 TEMPER_TEST( TestLookAt_double4x4 )
 {
-	double4x4 answerLookAt = double4x4(
+	double4x4 answerLookAt_LH = double4x4(
 		0.707107, 0.000000, -0.707107, 0.000000,
 		0.000000, 1.000000, 0.000000, 0.000000,
 		0.707107, 0.000000, 0.707107, 0.000000,
+		0.000000, 0.000000, 0.000000, 1.000000
+	);
+	double4x4 answerLookAt_RH = double4x4(
+		-0.707107, 0.000000, 0.707107, 0.000000,
+		0.000000, 1.000000, 0.000000, 0.000000,
+		-0.707107, 0.000000, -0.707107, 0.000000,
 		0.000000, 0.000000, 0.000000, 1.000000
 	);
 
 	double3 currentPos = double3( 0.000000, 0.000000, 0.000000 );
 	double3 targetPos = double3( 1.000000, 0.000000, 1.000000 );
 	double3 up = double3( 0.000000, 1.000000, 0.000000 );
-	double4x4 mat = lookat( currentPos, targetPos, up );
 
-	TEMPER_EXPECT_TRUE( mat == answerLookAt );
+	double4x4 mat_LH = lookat_lh( currentPos, targetPos, up );
+	double4x4 mat_RH = lookat_rh( currentPos, targetPos, up );
+
+	TEMPER_EXPECT_TRUE( mat_LH == answerLookAt_LH );
+	TEMPER_EXPECT_TRUE( mat_RH == answerLookAt_RH );
 
 	TEMPER_PASS();
 }

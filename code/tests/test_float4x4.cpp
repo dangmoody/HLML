@@ -490,10 +490,28 @@ TEMPER_TEST( TestScale_float4x4 )
 
 TEMPER_TEST( TestOrtho_float4x4 )
 {
-	float4x4 answerOrtho = float4x4(
+	float4x4 answerOrtho_LH_ZO = float4x4(
 		0.112500f, 0.000000f, 0.000000f, 0.000000f,
 		0.000000f, -0.200000f, 0.000000f, 0.000000f,
 		0.000000f, 0.000000f, 0.009901f, 0.009901f,
+		0.000000f, 0.000000f, 0.000000f, 1.000000f
+	);
+	float4x4 answerOrtho_LH_NO = float4x4(
+		0.112500f, 0.000000f, 0.000000f, -0.000000f,
+		0.000000f, -0.200000f, 0.000000f, 0.000000f,
+		0.000000f, 0.000000f, 0.019802f, -0.980198f,
+		0.000000f, 0.000000f, 0.000000f, 1.000000f
+	);
+	float4x4 answerOrtho_RH_ZO = float4x4(
+		0.112500f, 0.000000f, 0.000000f, -0.000000f,
+		0.000000f, -0.200000f, 0.000000f, 0.000000f,
+		0.000000f, 0.000000f, -0.009901f, 0.009901f,
+		0.000000f, 0.000000f, 0.000000f, 1.000000f
+	);
+	float4x4 answerOrtho_RH_NO = float4x4(
+		0.112500f, 0.000000f, 0.000000f, -0.000000f,
+		0.000000f, -0.200000f, 0.000000f, 0.000000f,
+		0.000000f, 0.000000f, -0.019802f, -0.980198f,
 		0.000000f, 0.000000f, 0.000000f, 1.000000f
 	);
 
@@ -507,45 +525,84 @@ TEMPER_TEST( TestOrtho_float4x4 )
 	float top = -orthoSize;
 	float bottom = orthoSize;
 
-	float4x4 mat = ortho( left, right, top, bottom, -1.000000f, 100.000000f );
+	float4x4 mat_LH_ZO = ortho_lh_zo( left, right, top, bottom, -1.000000f, 100.000000f );
+	float4x4 mat_LH_NO = ortho_lh_no( left, right, top, bottom, -1.000000f, 100.000000f );
+	float4x4 mat_RH_ZO = ortho_rh_zo( left, right, top, bottom, -1.000000f, 100.000000f );
+	float4x4 mat_RH_NO = ortho_rh_no( left, right, top, bottom, -1.000000f, 100.000000f );
 
-	TEMPER_EXPECT_TRUE( mat == answerOrtho );
+	TEMPER_EXPECT_TRUE( mat_LH_ZO == answerOrtho_LH_ZO );
+	TEMPER_EXPECT_TRUE( mat_LH_NO == answerOrtho_LH_NO );
+	TEMPER_EXPECT_TRUE( mat_RH_ZO == answerOrtho_RH_ZO );
+	TEMPER_EXPECT_TRUE( mat_RH_NO == answerOrtho_RH_NO );
 
 	TEMPER_PASS();
 }
 
 TEMPER_TEST( TestPerspective_float4x4 )
 {
-	float4x4 answerPerspective = float4x4(
+	float4x4 answerPerspective_LH_ZO = float4x4(
 		0.347270f, 0.000000f, 0.000000f, 0.000000f,
 		0.000000f, 0.617370f, 0.000000f, 0.000000f,
 		0.000000f, 0.000000f, 1.001001f, -0.100100f,
 		0.000000f, 0.000000f, 1.000000f, 0.000000f
 	);
+	float4x4 answerPerspective_LH_NO = float4x4(
+		0.347270f, 0.000000f, 0.000000f, 0.000000f,
+		0.000000f, 0.617370f, 0.000000f, 0.000000f,
+		0.000000f, 0.000000f, 1.002002f, -0.200200f,
+		0.000000f, 0.000000f, 1.000000f, 0.000000f
+	);
+	float4x4 answerPerspective_RH_ZO = float4x4(
+		0.347270f, 0.000000f, 0.000000f, 0.000000f,
+		0.000000f, 0.617370f, 0.000000f, 0.000000f,
+		0.000000f, 0.000000f, -1.001001f, -0.100100f,
+		0.000000f, 0.000000f, -1.000000f, 0.000000f
+	);
+	float4x4 answerPerspective_RH_NO = float4x4(
+		0.347270f, 0.000000f, 0.000000f, 0.000000f,
+		0.000000f, 0.617370f, 0.000000f, 0.000000f,
+		0.000000f, 0.000000f, -1.002002f, -0.200200f,
+		0.000000f, 0.000000f, -1.000000f, 0.000000f
+	);
 
 	float aspect = 1280.000000f / 720.000000f;
-	float4x4 mat = perspective( 90.000000f, aspect, 0.100000f, 100.000000f );
+	float4x4 mat_LH_ZO = perspective_lh_zo( 90.000000f, aspect, 0.100000f, 100.000000f );
+	float4x4 mat_LH_NO = perspective_lh_no( 90.000000f, aspect, 0.100000f, 100.000000f );
+	float4x4 mat_RH_ZO = perspective_rh_zo( 90.000000f, aspect, 0.100000f, 100.000000f );
+	float4x4 mat_RH_NO = perspective_rh_no( 90.000000f, aspect, 0.100000f, 100.000000f );
 
-	TEMPER_EXPECT_TRUE( mat == answerPerspective );
+	TEMPER_EXPECT_TRUE( mat_LH_ZO == answerPerspective_LH_ZO );
+	TEMPER_EXPECT_TRUE( mat_LH_NO == answerPerspective_LH_NO );
+	TEMPER_EXPECT_TRUE( mat_RH_ZO == answerPerspective_RH_ZO );
+	TEMPER_EXPECT_TRUE( mat_RH_NO == answerPerspective_RH_NO );
 
 	TEMPER_PASS();
 }
 
 TEMPER_TEST( TestLookAt_float4x4 )
 {
-	float4x4 answerLookAt = float4x4(
+	float4x4 answerLookAt_LH = float4x4(
 		0.707107f, 0.000000f, -0.707107f, 0.000000f,
 		0.000000f, 1.000000f, 0.000000f, 0.000000f,
 		0.707107f, 0.000000f, 0.707107f, 0.000000f,
+		0.000000f, 0.000000f, 0.000000f, 1.000000f
+	);
+	float4x4 answerLookAt_RH = float4x4(
+		-0.707107f, 0.000000f, 0.707107f, 0.000000f,
+		0.000000f, 1.000000f, 0.000000f, 0.000000f,
+		-0.707107f, 0.000000f, -0.707107f, 0.000000f,
 		0.000000f, 0.000000f, 0.000000f, 1.000000f
 	);
 
 	float3 currentPos = float3( 0.000000f, 0.000000f, 0.000000f );
 	float3 targetPos = float3( 1.000000f, 0.000000f, 1.000000f );
 	float3 up = float3( 0.000000f, 1.000000f, 0.000000f );
-	float4x4 mat = lookat( currentPos, targetPos, up );
 
-	TEMPER_EXPECT_TRUE( mat == answerLookAt );
+	float4x4 mat_LH = lookat_lh( currentPos, targetPos, up );
+	float4x4 mat_RH = lookat_rh( currentPos, targetPos, up );
+
+	TEMPER_EXPECT_TRUE( mat_LH == answerLookAt_LH );
+	TEMPER_EXPECT_TRUE( mat_RH == answerLookAt_RH );
 
 	TEMPER_PASS();
 }

@@ -688,16 +688,44 @@ inline float4x4 scale( const float4x4& mat, const float scalar );
 inline float4x4 scale( const float4x4& mat, const float3& vec );
 
 /// \relates float4x4
-/// \brief Returns an orthographic projection matrix.
-inline float4x4 ortho( const float left, const float right, const float top, const float bottom, const float znear, const float zfar );
+/// \brief Returns an left-handed orthographic projection matrix with the clip-space range zero to one.
+inline float4x4 ortho_lh_zo( const float left, const float right, const float top, const float bottom, const float znear, const float zfar );
 
 /// \relates float4x4
-/// \brief Returns a perspective projection matrix based on a vertical field-of-view in degrees and an aspect ratio.
-inline float4x4 perspective( const float fovdeg, const float aspect, const float znear, const float zfar );
+/// \brief Returns an left-handed orthographic projection matrix with the clip-space range minus-one to one.
+inline float4x4 ortho_lh_no( const float left, const float right, const float top, const float bottom, const float znear, const float zfar );
 
 /// \relates float4x4
-/// \brief Returns a orthonormal matrix that is oriented at position eye to look at position target.
-inline float4x4 lookat( const float3& eye, const float3& target, const float3& up );
+/// \brief Returns an right-handed orthographic projection matrix with the clip-space range zero to one.
+inline float4x4 ortho_rh_zo( const float left, const float right, const float top, const float bottom, const float znear, const float zfar );
+
+/// \relates float4x4
+/// \brief Returns an right-handed orthographic projection matrix with the clip-space range minus-one to one.
+inline float4x4 ortho_rh_no( const float left, const float right, const float top, const float bottom, const float znear, const float zfar );
+
+/// \relates float4x4
+/// \brief Returns a left-handed perspective projection matrix based on a vertical field-of-view in degrees and an aspect ratio in the clip-space range of zero to one.
+inline float4x4 perspective_lh_zo( const float fovdeg, const float aspect, const float znear, const float zfar );
+
+/// \relates float4x4
+/// \brief Returns a left-handed perspective projection matrix based on a vertical field-of-view in degrees and an aspect ratio in the clip-space range of minus-one to one.
+inline float4x4 perspective_lh_no( const float fovdeg, const float aspect, const float znear, const float zfar );
+
+/// \relates float4x4
+/// \brief Returns a right-handed perspective projection matrix based on a vertical field-of-view in degrees and an aspect ratio in the clip-space range of zero to one.
+inline float4x4 perspective_rh_zo( const float fovdeg, const float aspect, const float znear, const float zfar );
+
+/// \relates float4x4
+/// \brief Returns a right-handed perspective projection matrix based on a vertical field-of-view in degrees and an aspect ratio in the clip-space range of minus-one to one.
+inline float4x4 perspective_rh_no( const float fovdeg, const float aspect, const float znear, const float zfar );
+
+/// \relates float4x4
+/// \brief Returns a left-handed orthonormal matrix that is oriented at position eye to look at position target.
+inline float4x4 lookat_lh( const float3& eye, const float3& target, const float3& up );
+
+/// \relates float4x4
+/// \brief Returns a right-handed orthonormal matrix that is oriented at position eye to look at position target.
+inline float4x4 lookat_rh( const float3& eye, const float3& target, const float3& up );
 
 
 // double2x2
@@ -893,16 +921,44 @@ inline double4x4 scale( const double4x4& mat, const double scalar );
 inline double4x4 scale( const double4x4& mat, const double3& vec );
 
 /// \relates double4x4
-/// \brief Returns an orthographic projection matrix.
-inline double4x4 ortho( const double left, const double right, const double top, const double bottom, const double znear, const double zfar );
+/// \brief Returns an left-handed orthographic projection matrix with the clip-space range zero to one.
+inline double4x4 ortho_lh_zo( const double left, const double right, const double top, const double bottom, const double znear, const double zfar );
 
 /// \relates double4x4
-/// \brief Returns a perspective projection matrix based on a vertical field-of-view in degrees and an aspect ratio.
-inline double4x4 perspective( const double fovdeg, const double aspect, const double znear, const double zfar );
+/// \brief Returns an left-handed orthographic projection matrix with the clip-space range minus-one to one.
+inline double4x4 ortho_lh_no( const double left, const double right, const double top, const double bottom, const double znear, const double zfar );
 
 /// \relates double4x4
-/// \brief Returns a orthonormal matrix that is oriented at position eye to look at position target.
-inline double4x4 lookat( const double3& eye, const double3& target, const double3& up );
+/// \brief Returns an right-handed orthographic projection matrix with the clip-space range zero to one.
+inline double4x4 ortho_rh_zo( const double left, const double right, const double top, const double bottom, const double znear, const double zfar );
+
+/// \relates double4x4
+/// \brief Returns an right-handed orthographic projection matrix with the clip-space range minus-one to one.
+inline double4x4 ortho_rh_no( const double left, const double right, const double top, const double bottom, const double znear, const double zfar );
+
+/// \relates double4x4
+/// \brief Returns a left-handed perspective projection matrix based on a vertical field-of-view in degrees and an aspect ratio in the clip-space range of zero to one.
+inline double4x4 perspective_lh_zo( const double fovdeg, const double aspect, const double znear, const double zfar );
+
+/// \relates double4x4
+/// \brief Returns a left-handed perspective projection matrix based on a vertical field-of-view in degrees and an aspect ratio in the clip-space range of minus-one to one.
+inline double4x4 perspective_lh_no( const double fovdeg, const double aspect, const double znear, const double zfar );
+
+/// \relates double4x4
+/// \brief Returns a right-handed perspective projection matrix based on a vertical field-of-view in degrees and an aspect ratio in the clip-space range of zero to one.
+inline double4x4 perspective_rh_zo( const double fovdeg, const double aspect, const double znear, const double zfar );
+
+/// \relates double4x4
+/// \brief Returns a right-handed perspective projection matrix based on a vertical field-of-view in degrees and an aspect ratio in the clip-space range of minus-one to one.
+inline double4x4 perspective_rh_no( const double fovdeg, const double aspect, const double znear, const double zfar );
+
+/// \relates double4x4
+/// \brief Returns a left-handed orthonormal matrix that is oriented at position eye to look at position target.
+inline double4x4 lookat_lh( const double3& eye, const double3& target, const double3& up );
+
+/// \relates double4x4
+/// \brief Returns a right-handed orthonormal matrix that is oriented at position eye to look at position target.
+inline double4x4 lookat_rh( const double3& eye, const double3& target, const double3& up );
 
 
 #include "hlml_functions_matrix.inl"
