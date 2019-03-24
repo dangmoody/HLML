@@ -135,10 +135,8 @@ static bool GenerateMainTypeHeaderVector( void ) {
 	for ( uint32_t typeIndex = 0; typeIndex < GEN_TYPE_COUNT; typeIndex++ ) {
 		genType_t type = static_cast<genType_t>( typeIndex );
 
-		std::string typeString = Gen_GetTypeString( type );
-
 		for ( uint32_t componentIndex = GEN_COMPONENT_COUNT_MIN; componentIndex <= GEN_COMPONENT_COUNT_MAX; componentIndex++ ) {
-			content += "#include \"" + typeString + std::to_string( componentIndex ) + ".h\"\n";
+			content += "#include \"" + Gen_GetFullTypeName( type, 1, componentIndex ) + ".h\"\n";
 		}
 		content += "\n";
 	}
@@ -157,15 +155,9 @@ static bool GenerateMainTypeHeaderMatrix( void ) {
 	for ( uint32_t typeIndex = 0; typeIndex < GEN_TYPE_COUNT; typeIndex++ ) {
 		genType_t type = static_cast<genType_t>( typeIndex );
 
-		std::string typeString = Gen_GetTypeString( type );
-
 		for ( uint32_t row = GEN_COMPONENT_COUNT_MIN; row <= GEN_COMPONENT_COUNT_MAX; row++ ) {
-			const std::string rowStr = std::to_string( row );
-
 			for ( uint32_t col = GEN_COMPONENT_COUNT_MIN; col <= GEN_COMPONENT_COUNT_MAX; col++ ) {
-				const std::string colStr = std::to_string( col );
-
-				content += "#include \"" + typeString + rowStr + "x" + colStr + ".h\"\n";
+				content += "#include \"" + Gen_GetFullTypeName( type, row, col ) + ".h\"\n";
 			}
 			content += "\n";
 		}
@@ -200,10 +192,8 @@ static bool GenerateOperatorsVector( void ) {
 			continue;
 		}
 
-		std::string typeString = Gen_GetTypeString( type );
-
 		for ( uint32_t componentIndex = GEN_COMPONENT_COUNT_MIN; componentIndex <= GEN_COMPONENT_COUNT_MAX; componentIndex++ ) {
-			contentHeader += "#include \"" + typeString + std::to_string( componentIndex ) + ".h\"\n";
+			contentHeader += "#include \"" + Gen_GetFullTypeName( type, 1, componentIndex ) + ".h\"\n";
 		}
 	}
 
@@ -218,10 +208,8 @@ static bool GenerateOperatorsVector( void ) {
 			continue;
 		}
 
-		std::string typeString = Gen_GetTypeString( type );
-
 		for ( uint32_t componentIndex = GEN_COMPONENT_COUNT_MIN; componentIndex <= GEN_COMPONENT_COUNT_MAX; componentIndex++ ) {
-			std::string fullTypeName = typeString + std::to_string( componentIndex );
+			std::string fullTypeName = Gen_GetFullTypeName( type, 1, componentIndex );
 
 			printf( "Vector operators %s...", fullTypeName.c_str() );
 
@@ -276,10 +264,8 @@ static bool GenerateFunctionsVector( void ) {
 			continue;
 		}
 
-		std::string typeString = Gen_GetTypeString( type );
-
 		for ( uint32_t componentIndex = GEN_COMPONENT_COUNT_MIN; componentIndex <= GEN_COMPONENT_COUNT_MAX; componentIndex++ ) {
-			contentHeader += "#include \"" + typeString + std::to_string( componentIndex ) + ".h\"\n";
+			contentHeader += "#include \"" + Gen_GetFullTypeName( type, 1, componentIndex ) + ".h\"\n";
 		}
 	}
 
@@ -293,10 +279,8 @@ static bool GenerateFunctionsVector( void ) {
 			continue;
 		}
 
-		std::string typeString = Gen_GetTypeString( type );
-
 		for ( uint32_t componentIndex = GEN_COMPONENT_COUNT_MIN; componentIndex <= GEN_COMPONENT_COUNT_MAX; componentIndex++ ) {
-			std::string fullTypeName = typeString + std::to_string( componentIndex );
+			std::string fullTypeName = Gen_GetFullTypeName( type, 1, componentIndex );
 
 			printf( "Algebra %s...", fullTypeName.c_str() );
 
@@ -385,15 +369,9 @@ static bool GenerateOperatorsMatrix( void ) {
 			continue;
 		}
 
-		std::string typeString = Gen_GetTypeString( type );
-
 		for ( uint32_t row = GEN_COMPONENT_COUNT_MIN; row <= GEN_COMPONENT_COUNT_MAX; row++ ) {
-			std::string rowStr = std::to_string( row );
-
 			for ( uint32_t col = GEN_COMPONENT_COUNT_MIN; col <= GEN_COMPONENT_COUNT_MAX; col++ ) {
-				std::string colStr = std::to_string( col );
-
-				std::string fullTypeName = typeString + rowStr + "x" + colStr;
+				std::string fullTypeName = Gen_GetFullTypeName( type, row, col );
 
 				printf( "Matrix operators %s...", fullTypeName.c_str() );
 
@@ -448,10 +426,10 @@ static bool GenerateFunctionsMatrix( void ) {
 
 		std::string typeString = Gen_GetTypeString( type );
 
-		for ( uint32_t row = GEN_COMPONENT_COUNT_MIN; row <= GEN_COMPONENT_COUNT_MAX; row++ ) {
+		for ( uint32_t row = 1; row <= GEN_COMPONENT_COUNT_MAX; row++ ) {
 			const std::string rowStr = std::to_string( row );
 
-			for ( uint32_t col = 1; col <= GEN_COMPONENT_COUNT_MAX; col++ ) {
+			for ( uint32_t col = GEN_COMPONENT_COUNT_MIN; col <= GEN_COMPONENT_COUNT_MAX; col++ ) {
 				const std::string colStr = std::to_string( col );
 
 				// TODO(DM): only include the header files we actually need
@@ -470,15 +448,9 @@ static bool GenerateFunctionsMatrix( void ) {
 	for ( uint32_t typeIndex = 0; typeIndex < GEN_TYPE_COUNT; typeIndex++ ) {
 		genType_t type = static_cast<genType_t>( typeIndex );
 
-		std::string typeString = Gen_GetTypeString( type );
-
 		for ( uint32_t row = GEN_COMPONENT_COUNT_MIN; row <= GEN_COMPONENT_COUNT_MAX; row++ ) {
-			std::string rowStr = std::to_string( row );
-
 			for ( uint32_t col = GEN_COMPONENT_COUNT_MIN; col <= GEN_COMPONENT_COUNT_MAX; col++ ) {
-				std::string colStr = std::to_string( col );
-
-				std::string fullTypeName = typeString + rowStr + "x" + colStr;
+				std::string fullTypeName = Gen_GetFullTypeName( type, row, col );
 
 				printf( "Basic functions %s...", fullTypeName.c_str() );
 
@@ -546,15 +518,9 @@ static void GenerateTestsMatrix( void ) {
 	for ( uint32_t typeIndex = 0; typeIndex < GEN_TYPE_COUNT; typeIndex++ ) {
 		genType_t type = static_cast<genType_t>( typeIndex );
 
-		std::string typeString = Gen_GetTypeString( type );
-
 		for ( uint32_t row = GEN_COMPONENT_COUNT_MIN; row <= GEN_COMPONENT_COUNT_MAX; row++ ) {
-			std::string rowStr = std::to_string( row );
-
 			for ( uint32_t col = GEN_COMPONENT_COUNT_MIN; col <= GEN_COMPONENT_COUNT_MAX; col++ ) {
-				std::string colStr = std::to_string( col );
-
-				std::string typeName = typeString + rowStr + "x" + colStr;
+				std::string typeName = Gen_GetFullTypeName( type, row, col );
 
 				printf( "Generating test_%s.cpp...", typeName.c_str() );
 
@@ -586,19 +552,9 @@ static bool GenerateTestsMain( void ) {
 	for ( uint32_t typeIndex = 0; typeIndex < GEN_TYPE_COUNT; typeIndex++ ) {
 		genType_t type = static_cast<genType_t>( typeIndex );
 
-		std::string typeString = Gen_GetTypeString( type );
-
-		for ( uint32_t col = GEN_COMPONENT_COUNT_MIN; col <= GEN_COMPONENT_COUNT_MAX; col++ ) {
-			std::string colStr = std::to_string( col );
-
-			for ( uint32_t row = 1; row <= GEN_COMPONENT_COUNT_MAX; row++ ) {
-				std::string rowStr = std::to_string( row );
-
-				std::string fullTypeName = typeString;
-				if ( row > 1 ) {
-					fullTypeName += rowStr + "x";
-				}
-				fullTypeName += colStr;
+		for ( uint32_t row = 1; row <= GEN_COMPONENT_COUNT_MAX; row++ ) {
+			for ( uint32_t col = GEN_COMPONENT_COUNT_MIN; col <= GEN_COMPONENT_COUNT_MAX; col++ ) {
+				std::string fullTypeName = Gen_GetFullTypeName( type, row, col );
 
 				content += "TEMPER_SUITE_EXTERN( Test_" + fullTypeName + " );\n";
 			}
@@ -620,19 +576,9 @@ static bool GenerateTestsMain( void ) {
 	for ( uint32_t typeIndex = 0; typeIndex < GEN_TYPE_COUNT; typeIndex++ ) {
 		genType_t type = static_cast<genType_t>( typeIndex );
 
-		std::string typeString = Gen_GetTypeString( type );
-
-		for ( uint32_t col = GEN_COMPONENT_COUNT_MIN; col <= GEN_COMPONENT_COUNT_MAX; col++ ) {
-			std::string colStr = std::to_string( col );
-
-			for ( uint32_t row = 1; row <= GEN_COMPONENT_COUNT_MAX; row++ ) {
-				std::string rowStr = std::to_string( row );
-
-				std::string fullTypeName = typeString;
-				if ( row > 1 ) {
-					fullTypeName += rowStr + "x";
-				}
-				fullTypeName += colStr;
+		for ( uint32_t row = 1; row <= GEN_COMPONENT_COUNT_MAX; row++ ) {
+			for ( uint32_t col = GEN_COMPONENT_COUNT_MIN; col <= GEN_COMPONENT_COUNT_MAX; col++ ) {
+				std::string fullTypeName = Gen_GetFullTypeName( type, row, col );
 
 				content += "\tTEMPER_RUN_SUITE( Test_" + fullTypeName + " );\n";
 			}
