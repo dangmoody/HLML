@@ -39,7 +39,6 @@ along with hlml.  If not, see <http://www.gnu.org/licenses/>.
 
 static genHand_t g_hand = GEN_HAND_COUNT;
 
-// TODO(DM): tidy me
 static const char* GetNextArg( const int currentArg, const int argc, char** argv ) {
 	return ( currentArg + 1 < argc ) ? argv[currentArg + 1] : nullptr;
 }
