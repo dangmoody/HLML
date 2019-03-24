@@ -426,20 +426,18 @@ static bool GenerateFunctionsMatrix( void ) {
 
 		std::string typeString = Gen_GetTypeString( type );
 
-		for ( uint32_t row = 1; row <= GEN_COMPONENT_COUNT_MAX; row++ ) {
+		for ( uint32_t row = GEN_COMPONENT_COUNT_MIN; row <= GEN_COMPONENT_COUNT_MAX; row++ ) {
 			const std::string rowStr = std::to_string( row );
 
 			for ( uint32_t col = GEN_COMPONENT_COUNT_MIN; col <= GEN_COMPONENT_COUNT_MAX; col++ ) {
 				const std::string colStr = std::to_string( col );
 
 				// TODO(DM): only include the header files we actually need
-				if ( col == 1 ) {
-					contentHeader += "#include \"" + typeString + rowStr + ".h\"\n";
-				} else {
-					contentHeader += "#include \"" + typeString + rowStr + "x" + colStr + ".h\"\n";
-				}
+				contentHeader += "#include \"" + typeString + rowStr + "x" + colStr + ".h\"\n";
 			}
 		}
+
+		contentHeader += "\n";
 	}
 
 	contentHeader += "\n";
