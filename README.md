@@ -32,12 +32,12 @@ If you want to, you can run ```hlml-gen-test.exe``` which will very quickly run 
 Usage
 =====
 
-*READ THIS BEFORE USING THE LIBRARY:*
+**READ THIS BEFORE USING THE LIBRARY:**
 
 * All matrix types are row-major, so a ```float3x4``` is a matrix that holds 3 ```float4```s (or, in other words: a ```float4``` array of size 3).
 * All vector types are union of ```struct```/fixed-size array.
 * HLML is focused on mathemetical expressive power where possible, therefore:
-	* All matrices have the ```*``` operator overloaded to do matrix multiplication, *NOT* a component-wise multiplication.
+	* All matrices have the ```*``` operator overloaded to do matrix multiplication, **NOT** a component-wise multiplication.
 	* All square matrices with floating point types have the ```/``` operator overloaded to multiply the light-hand matrix by the inverse of the right-hand matrix, it does *NOT* do a component-wise divide.
 
 
