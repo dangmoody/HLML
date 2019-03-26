@@ -302,15 +302,15 @@ void VectorGenerator::GenerateSwizzleFuncs() {
 		std::string vecTypeName = m_typeString + std::to_string( vecComponents );
 
 		// generate every possible function combination ("xxxx" -> "xwzx" (etc.) -> "wwww")
-		uint32_t numFuncs = pow( vecComponents, vecComponents );
+		uint32_t numFuncs = static_cast<uint32_t>( pow( vecComponents, vecComponents ) );
 		for ( uint32_t funcIndex = 0; funcIndex < numFuncs; funcIndex++ ) {
 			// convert 1d index into 4d
 			// follows the general formula: xn = ( ( Index - Index( x1, ..., x{n-1} ) ) / Product( D1, ..., D{N-1} ) ) % Dn
 			// taken from: https://stackoverflow.com/questions/29142417/4d-position-from-1d-index
-			const int32_t x = funcIndex % vecComponents;
-			const int32_t y = ( ( funcIndex - x ) / vecComponents ) % vecComponents;
-			const int32_t z = ( ( funcIndex - y * vecComponents - x ) / ( vecComponents * vecComponents ) ) % vecComponents;
-			const int32_t w = ( ( funcIndex - z * vecComponents * vecComponents - x ) / ( vecComponents * vecComponents * vecComponents ) ) % vecComponents;
+			const uint32_t x = funcIndex % vecComponents;
+			const uint32_t y = ( ( funcIndex - x ) / vecComponents ) % vecComponents;
+			const uint32_t z = ( ( funcIndex - y * vecComponents - x ) / ( vecComponents * vecComponents ) ) % vecComponents;
+			const uint32_t w = ( ( funcIndex - z * vecComponents * vecComponents - x ) / ( vecComponents * vecComponents * vecComponents ) ) % vecComponents;
 
 			sprintf( funcName, "%c%c%c%c", GEN_COMPONENT_NAMES_VECTOR[x], GEN_COMPONENT_NAMES_VECTOR[y], GEN_COMPONENT_NAMES_VECTOR[z], GEN_COMPONENT_NAMES_VECTOR[w] );
 			funcName[vecComponents] = 0;
