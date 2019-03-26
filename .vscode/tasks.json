@@ -4,11 +4,13 @@
 	"version": "2.0.0",
 	"tasks": [
 		{
-			"label": "build - debug",
+			"label": "build generator - debug",
 			"type": "process",
 			"command": "build.bat",
 			"args": [
-				"debug"
+				"hlml-gen",
+				"debug",
+				"code\\generator"
 			],
 			"group": {
 				"kind": "build",
@@ -17,9 +19,14 @@
 		},
 
 		{
-			"label": "build tests",
+			"label": "build tests - debug",
 			"type": "process",
 			"command": "build.bat",
+			"args": [
+				"hlml-gen-test",
+				"debug",
+				"code\\tests"
+			],
 			"group": {
 				"kind": "build",
 				"isDefault": true
