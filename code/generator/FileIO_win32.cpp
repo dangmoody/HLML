@@ -17,7 +17,7 @@ size_t FS_ReadEntireFile( const char* filename, char** outBuffer ) {
 	FILE* file = fopen( filename, "rb" );
 	if ( !file ) {
 		printf( "ERROR: Unable to open %s.  That's rough man...\n", filename );
-		return false;
+		return 0;
 	}
 
 	fseek( file, 0, SEEK_END );
