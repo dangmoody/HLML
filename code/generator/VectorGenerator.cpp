@@ -258,7 +258,6 @@ void VectorGenerator::GenerateOperatorsArray() {
 	m_codeInl += "\n";
 }
 
-// TODO(DM): move to commong
 void VectorGenerator::GenerateOperatorsEquality() {
 	// operator==
 	{
