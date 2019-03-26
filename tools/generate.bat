@@ -1,7 +1,7 @@
 @echo off
 
 echo Generating code...
-debug\hlml-gen_debug.exe -h left
+..\build\release\hlml-gen_debug.exe
 
 echo Generating documentation...
 generate_documentation.bat
