@@ -22,7 +22,8 @@ Installation
 
 1. Go to the [releases](https://github.com/floorman/HLML/releases) page and download the latest version.
 2. Unzip the header files into your project.
-3. Done!
+3. Run ```generate_documentation.bat``` to generate the documentation.
+4. Done!
 
 The header file ```hlml_user.h``` can be used by you to help hook HLML into your engine.
 
@@ -38,7 +39,7 @@ Usage
 * All vector types are union of ```struct```/fixed-size array.
 * HLML is focused on mathemetical expressive power where possible, therefore:
 	* All matrices have the ```*``` operator overloaded to do matrix multiplication, **NOT** a component-wise multiplication.
-	* All square matrices with floating point types have the ```/``` operator overloaded to multiply the light-hand matrix by the inverse of the right-hand matrix, it does *NOT* do a component-wise divide.
+	* All square matrices with floating point types have the ```/``` operator overloaded to multiply the light-hand matrix by the inverse of the right-hand matrix, it does **NOT** do a component-wise divide.
 
 
 Contributing
