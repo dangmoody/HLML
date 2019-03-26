@@ -60,63 +60,6 @@ static std::string GetDocUnpack( const std::string& fullTypeName ) {
 		"/// \\brief Returns a 4-component integer vector containing each byte of the given integer.\n";
 }
 
-static std::string HeaderGetArithmeticFuncScalar( const genType_t type, const uint32_t numComponents, const genOpArithmetic_t op ) {
-	assert( numComponents >= GEN_COMPONENT_COUNT_MIN );
-	assert( numComponents <= GEN_COMPONENT_COUNT_MAX );
-
-	std::string fullTypeName = Gen_GetTypeString( type ) + std::to_string( numComponents );
-	std::string memberTypeString = Gen_GetMemberTypeString( type );
-
-	char opStr = GEN_OPERATORS_ARITHMETIC[op];
-
-	// TODO(DM): this is repeated here and in gen_funcs_matrix.cpp
-	std::string code;
-
-	code += Gen_GetDocOperatorArithmeticScalar( fullTypeName, op );
-	code += "inline " + fullTypeName + " operator" + opStr + "( const " + fullTypeName + "& lhs, const " + memberTypeString + " rhs );\n";
-	code += "\n";
-
-	code += Gen_GetDocOperatorCompoundArithmeticScalar( fullTypeName, op );
-	code += "inline " + fullTypeName + " operator" + opStr + "=( " + fullTypeName + "& lhs, const " + memberTypeString + " rhs );\n";
-	code += "\n";
-
-	return code;
-}
-
-static std::string InlGetArithmeticFuncScalar( const genType_t type, const uint32_t numComponents, const genOpArithmetic_t op ) {
-	assert( numComponents >= GEN_COMPONENT_COUNT_MIN );
-	assert( numComponents <= GEN_COMPONENT_COUNT_MAX );
-
-	std::string fullTypeName = Gen_GetTypeString( type ) + std::to_string( numComponents );
-	std::string memberTypeString = Gen_GetMemberTypeString( type );
-
-	char opStr = GEN_OPERATORS_ARITHMETIC[op];
-
-	std::string code;
-
-	// main arithmetic func
-	code += fullTypeName + " operator" + opStr + "( const " + fullTypeName + "& lhs, const " + memberTypeString + " rhs )\n";
-	code += "\treturn " + fullTypeName + "(\n";
-	for ( uint32_t componentIndex = 0; componentIndex < numComponents; componentIndex++ ) {
-		code += std::string( "\t\tlhs." ) + GEN_COMPONENT_NAMES_VECTOR[componentIndex] + " " + opStr + " rhs";
-		if ( componentIndex != numComponents - 1 ) {
-			code += ",";
-		}
-		code += "\n";
-	}
-	code += "\t);\n";
-	code += "}\n";
-	code += "\n";
-
-	// compound arithmetic func
-	code += fullTypeName + " operator" + opStr + "=( " + fullTypeName + "& lhs, const " + memberTypeString + " rhs )\n";
-	code += std::string( "\treturn ( lhs = lhs " ) + opStr + " rhs );\n";
-	code += "}\n";
-	code += "\n";
-
-	return code;
-}
-
 std::string Gen_GetParmListVector( const genType_t type, const uint32_t numComponents, const float* values ) {
 	assert( numComponents >= GEN_COMPONENT_COUNT_MIN );
 	assert( numComponents <= GEN_COMPONENT_COUNT_MAX );
