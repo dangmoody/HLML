@@ -431,7 +431,8 @@ void Gen_OperatorNotEquals( const genType_t type, const uint32_t numRows, const 
 	outHeader += "inline bool operator!=( const " + fullTypeName + "& lhs, const " + fullTypeName + "& rhs );\n";
 	outHeader += "\n";
 
-	outInl += "bool operator!=( const " + fullTypeName + "& lhs, const " + fullTypeName + "& rhs ) {\n";
+	outInl += "bool operator!=( const " + fullTypeName + "& lhs, const " + fullTypeName + "& rhs )\n";
+	outInl += "{\n";
 	outInl += "\treturn !( operator==( lhs, rhs ) );\n";
 	outInl += "}\n";
 	outInl += "\n";
