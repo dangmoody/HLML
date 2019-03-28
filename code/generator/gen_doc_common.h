@@ -4,6 +4,15 @@
 
 #include <assert.h>
 
+inline std::string	Gen_GetDocFloateq( void );
+inline std::string	Gen_GetDocRadians( void );
+inline std::string	Gen_GetDocDegrees( void );
+inline std::string	Gen_GetDocMin( void );
+inline std::string	Gen_GetDocMax( void );
+inline std::string	Gen_GetDocClamp( void );
+inline std::string	Gen_GetDocSaturate( const std::string& fullTypeName );
+inline std::string	Gen_GetDocLerp( const std::string& fullTypeName );
+
 inline std::string	Gen_GetDocOperatorEquals( const std::string& fullTypeName );
 inline std::string	Gen_GetDocOperatorNotEquals( const std::string& fullTypeName );
 
@@ -25,6 +34,40 @@ inline std::string	Gen_GetDocOperatorCompoundBitwiseRhsType( const std::string& 
 
 inline std::string	Gen_GetDocOperatorBitwiseUnary( const std::string& fullTypeName );
 
+
+std::string Gen_GetDocFloateq( void ) {
+	return "/// \\brief Returns true if the two given floating-point numbers are within a small enough epsilon range of each other that takes into account floating-point inaccuracy.\n";
+}
+
+std::string Gen_GetDocRadians( void ) {
+	return "/// \\brief Returns the given degrees to radians.\n";
+}
+
+std::string Gen_GetDocDegrees( void ) {
+	return "/// \\brief Returns the given radians to degrees.\n";
+}
+
+std::string Gen_GetDocMin( void ) {
+	return "/// \\brief Returns x if its smaller than y, otherwise returns y.\n";
+}
+
+std::string Gen_GetDocMax( void ) {
+	return "/// \\brief Returns x if its bigger than y, otherwise returns y.\n";
+}
+
+std::string Gen_GetDocClamp( void ) {
+	return "/// \\brief If x is lower than low or higher than high then returns low or high respectively, otherwise returns x.\n";
+}
+
+std::string Gen_GetDocSaturate( const std::string& fullTypeName ) {
+	return "/// \\relates " + fullTypeName + "\n" + \
+		"/// \\brief Returns a copy of the " + fullTypeName + " with each component clamped between the range 0 and 1.\n";
+}
+
+std::string Gen_GetDocLerp( const std::string& fullTypeName ) {
+	return "/// \\relates " + fullTypeName + "\n" + \
+		"/// \\brief Returns a linearly interpolated " + fullTypeName + " between types \"a\" and \"b\".\n";
+}
 
 std::string Gen_GetDocOperatorEquals( const std::string& fullTypeName ) {
 	return "/// \\relates " + fullTypeName + "\n" \

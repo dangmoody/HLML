@@ -37,6 +37,65 @@ along with hlml.  If not, see <http://www.gnu.org/licenses/>.
 
 #include <string>
 
+static bool GenerateMainHeaderFuncs( void ) {
+	char fileNameHeader[1024];
+	sprintf( fileNameHeader, "%s%s.h", GEN_OUT_GEN_FOLDER_PATH, GEN_FILENAME_FUNCTIONS_SCALAR );
+
+	char fileNameInl[1024];
+	sprintf( fileNameInl, "%s%s.inl", GEN_OUT_GEN_FOLDER_PATH, GEN_FILENAME_FUNCTIONS_SCALAR );
+
+	std::string contentHeader = GEN_FILE_HEADER;
+	contentHeader += "#pragma once\n";
+	contentHeader += "\n";
+	contentHeader += "#include \"../" + std::string( GEN_HEADER_CONSTANTS ) + "\"\n";
+	contentHeader += "\n";
+	contentHeader += "#include <math.h>\n";
+	contentHeader += "\n";
+
+	std::string contentInl = GEN_FILE_HEADER;
+
+	for ( uint32_t typeIndex = 0; typeIndex < GEN_TYPE_COUNT; typeIndex++ ) {
+		genType_t type = static_cast<genType_t>( typeIndex );
+
+		if ( type == GEN_TYPE_BOOL ) {
+			continue;
+		}
+
+		std::string memberTypeString = Gen_GetMemberTypeString( type );
+
+		printf( "Generating %s...", memberTypeString.c_str() );
+
+		contentHeader += "// " + memberTypeString + "\n";
+		contentInl += "// " + memberTypeString + "\n";
+
+		Gen_Floateq( type, contentHeader );
+		Gen_Radians( type, contentHeader );
+		Gen_Degrees( type, contentHeader );
+
+		Gen_MinMax( type, contentHeader );
+		Gen_Clamp( type, contentHeader );
+		Gen_Saturate( type, 1, contentHeader, contentInl );
+		Gen_Lerp( type, 1, contentHeader, contentInl );
+
+		contentHeader += "\n";
+		contentInl += "\n";
+
+		printf( "OK.\n" );
+	}
+
+//	contentHeader += "#include \"" + std::string( GEN_FILENAME_FUNCTIONS_SCALAR ) + ".inl\"\n";
+
+	if ( !FS_WriteToFile( fileNameHeader, contentHeader.c_str(), contentHeader.size() ) ) {
+		return false;
+	}
+
+//	if ( !FS_WriteToFile( fileNameInl, contentInl.c_str(), contentInl.size() ) ) {
+//		return false;
+//	}
+
+	return true;
+}
+
 static void GenerateImplVectors( void ) {
 	VectorGenerator gen;
 
@@ -238,9 +297,8 @@ static bool GenerateFunctionsVector( void ) {
 			Gen_VectorCross( type, componentIndex, contentHeader, contentInl );
 			Gen_VectorAngle( type, componentIndex, contentHeader, contentInl );
 
-			Gen_VectorSaturate( type, componentIndex, contentHeader, contentInl );
-
-			Gen_VectorLerp( type, componentIndex, contentHeader, contentInl );
+			Gen_Saturate( type, componentIndex, contentHeader, contentInl );
+			Gen_Lerp( type, componentIndex, contentHeader, contentInl );
 
 			Gen_VectorPack( type, componentIndex, contentHeader, contentInl );
 			Gen_VectorUnpack( type, componentIndex, contentHeader, contentInl );
@@ -279,7 +337,7 @@ static bool GenerateOperatorsMatrix( void ) {
 	contentHeader += "\n";
 
 	std::string contentInl = content;
-	contentInl += "#include \"../" GEN_HEADER_MAIN "\"\n";
+//	contentInl += "#include \"../" GEN_FILENAME_FUNCTIONS_SCALAR "\"\n";
 	contentInl += std::string( "#include \"" ) + GEN_FILENAME_OPERATORS_MATRIX + ".h\"\n";
 
 	// includes
@@ -559,6 +617,11 @@ int main( int argc, char** argv ) {
 
 	// TODO(DM): tidy this somehow?
 	printf( "======= Generating main headers. =======\n" );
+	if ( !GenerateMainHeaderFuncs() ) {
+		printf( "ERROR: Failed generating %s!\n", GEN_FILENAME_FUNCTIONS_SCALAR );
+		return EXIT_FAILURE;
+	}
+
 	if ( !GenerateMainTypeHeaderVector() ) {
 		printf( "ERROR: Failed generating main vector header!\n" );
 		return EXIT_FAILURE;

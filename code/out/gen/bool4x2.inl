@@ -24,9 +24,6 @@ along with hlml.  If not, see <http://www.gnu.org/licenses/>.
 
 // GENERATED FILE.  DO NOT EDIT.
 
-// hlml includes
-#include "../hlml_main.h"
-
 // others
 #include <math.h>
 
@@ -109,7 +106,8 @@ bool operator==( const bool4x2& lhs, const bool4x2& rhs )
 		&& lhs[3] == rhs[3];
 }
 
-bool operator!=( const bool4x2& lhs, const bool4x2& rhs ) {
+bool operator!=( const bool4x2& lhs, const bool4x2& rhs )
+{
 	return !( operator==( lhs, rhs ) );
 }
 

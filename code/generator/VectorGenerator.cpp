@@ -83,8 +83,10 @@ void VectorGenerator::Generate( const genType_t type, const uint32_t numComponen
 		}
 		m_codeInl += "\n";
 
-		m_codeInl += "#include \"../" + std::string( GEN_HEADER_MAIN ) + "\"\n";
-		m_codeInl += "\n";
+//		if ( Gen_IsFloatingPointType( m_type ) ) {
+			m_codeInl += "#include \"" + std::string( GEN_FILENAME_FUNCTIONS_SCALAR ) + ".h\"\n";
+			m_codeInl += "\n";
+//		}
 
 		m_codeInl += "// others\n";
 		m_codeInl += "#include <math.h>\n";

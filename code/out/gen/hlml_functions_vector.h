@@ -165,11 +165,11 @@ inline float2 normalized( const float2& vec );
 inline float angle( const float2& lhs, const float2& rhs );
 
 /// \relates float2
-/// \brief Returns a copy of the vector with each component clamped between the range 0 and 1.
-inline float2 saturate( const float2& vec );
+/// \brief Returns a copy of the float2 with each component clamped between the range 0 and 1.
+inline float2 saturate( const float2& x );
 
 /// \relates float2
-/// \brief Returns a linearly interpolated vector between vectors "a" and "b".
+/// \brief Returns a linearly interpolated float2 between types "a" and "b".
 inline float2 lerp( const float2& a, const float2& b, const float t );
 
 
@@ -203,11 +203,11 @@ inline float3 cross( const float3& lhs, const float3& rhs );
 inline float angle( const float3& lhs, const float3& rhs );
 
 /// \relates float3
-/// \brief Returns a copy of the vector with each component clamped between the range 0 and 1.
-inline float3 saturate( const float3& vec );
+/// \brief Returns a copy of the float3 with each component clamped between the range 0 and 1.
+inline float3 saturate( const float3& x );
 
 /// \relates float3
-/// \brief Returns a linearly interpolated vector between vectors "a" and "b".
+/// \brief Returns a linearly interpolated float3 between types "a" and "b".
 inline float3 lerp( const float3& a, const float3& b, const float t );
 
 
@@ -241,11 +241,11 @@ inline float4 cross( const float4& lhs, const float4& rhs );
 inline float angle( const float4& lhs, const float4& rhs );
 
 /// \relates float4
-/// \brief Returns a copy of the vector with each component clamped between the range 0 and 1.
-inline float4 saturate( const float4& vec );
+/// \brief Returns a copy of the float4 with each component clamped between the range 0 and 1.
+inline float4 saturate( const float4& x );
 
 /// \relates float4
-/// \brief Returns a linearly interpolated vector between vectors "a" and "b".
+/// \brief Returns a linearly interpolated float4 between types "a" and "b".
 inline float4 lerp( const float4& a, const float4& b, const float t );
 
 
@@ -275,11 +275,11 @@ inline double2 normalized( const double2& vec );
 inline double angle( const double2& lhs, const double2& rhs );
 
 /// \relates double2
-/// \brief Returns a copy of the vector with each component clamped between the range 0 and 1.
-inline double2 saturate( const double2& vec );
+/// \brief Returns a copy of the double2 with each component clamped between the range 0 and 1.
+inline double2 saturate( const double2& x );
 
 /// \relates double2
-/// \brief Returns a linearly interpolated vector between vectors "a" and "b".
+/// \brief Returns a linearly interpolated double2 between types "a" and "b".
 inline double2 lerp( const double2& a, const double2& b, const double t );
 
 
@@ -313,11 +313,11 @@ inline double3 cross( const double3& lhs, const double3& rhs );
 inline double angle( const double3& lhs, const double3& rhs );
 
 /// \relates double3
-/// \brief Returns a copy of the vector with each component clamped between the range 0 and 1.
-inline double3 saturate( const double3& vec );
+/// \brief Returns a copy of the double3 with each component clamped between the range 0 and 1.
+inline double3 saturate( const double3& x );
 
 /// \relates double3
-/// \brief Returns a linearly interpolated vector between vectors "a" and "b".
+/// \brief Returns a linearly interpolated double3 between types "a" and "b".
 inline double3 lerp( const double3& a, const double3& b, const double t );
 
 
@@ -351,11 +351,11 @@ inline double4 cross( const double4& lhs, const double4& rhs );
 inline double angle( const double4& lhs, const double4& rhs );
 
 /// \relates double4
-/// \brief Returns a copy of the vector with each component clamped between the range 0 and 1.
-inline double4 saturate( const double4& vec );
+/// \brief Returns a copy of the double4 with each component clamped between the range 0 and 1.
+inline double4 saturate( const double4& x );
 
 /// \relates double4
-/// \brief Returns a linearly interpolated vector between vectors "a" and "b".
+/// \brief Returns a linearly interpolated double4 between types "a" and "b".
 inline double4 lerp( const double4& a, const double4& b, const double t );
 
 

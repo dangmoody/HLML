@@ -28,7 +28,7 @@ along with hlml.  If not, see <http://www.gnu.org/licenses/>.
 #include "int3.h"
 #include "int4.h"
 
-#include "../hlml_main.h"
+#include "hlml_functions_scalar.h"
 
 // others
 #include <math.h>
@@ -101,7 +101,8 @@ bool operator==( const int2& lhs, const int2& rhs )
 	return ( lhs.x == rhs.x ) && ( lhs.y == rhs.y );
 }
 
-bool operator!=( const int2& lhs, const int2& rhs ) {
+bool operator!=( const int2& lhs, const int2& rhs )
+{
 	return !( operator==( lhs, rhs ) );
 }
 

@@ -215,6 +215,184 @@ static std::string InlGetOperatorBitwiseRhsType( const genType_t type, const uin
 }
 
 
+void Gen_Floateq( const genType_t type, std::string& outHeader ) {
+	if ( !Gen_IsFloatingPointType( type ) ) {
+		return;
+	}
+
+	std::string typeString = Gen_GetTypeString( type );
+
+	std::string floateqStr = Gen_GetFuncNameFloateq( type );
+
+	outHeader += Gen_GetDocFloateq();
+	outHeader += "inline bool " + floateqStr + "( const " + typeString + " lhs, const " + typeString + " rhs, const " + typeString + " epsilon = HLML_EPSILON )\n";
+	outHeader += "{\n";
+	outHeader += "\treturn " + Gen_GetFuncNameFabs( type ) + "( lhs - rhs ) < epsilon;\n";
+	outHeader += "}\n";
+	outHeader += "\n";
+}
+
+void Gen_Radians( const genType_t type, std::string& outHeader ) {
+	if ( !Gen_IsFloatingPointType( type ) ) {
+		return;
+	}
+
+	std::string typeString = Gen_GetTypeString( type );
+	std::string oneHundredEightyStr = Gen_GetNumericLiteral( type, 180.0f );
+
+	outHeader += Gen_GetDocRadians();
+	outHeader += "inline " + typeString + " radians( const " + typeString + " deg )\n";
+	outHeader += "{\n";
+	outHeader += "\treturn deg * HLML_PI / " + oneHundredEightyStr + ";\n";
+	outHeader += "}\n";
+	outHeader += "\n";
+}
+
+void Gen_Degrees( const genType_t type, std::string& outHeader ) {
+	if ( !Gen_IsFloatingPointType( type ) ) {
+		return;
+	}
+
+	std::string typeString = Gen_GetTypeString( type );
+	std::string oneHundredEightyStr = Gen_GetNumericLiteral( type, 180.0f );
+
+	outHeader += Gen_GetDocDegrees();
+	outHeader += "inline " + typeString + " degrees( const " + typeString + " rad )\n";
+	outHeader += "{\n";
+	outHeader += "\treturn rad * " + oneHundredEightyStr + " / HLML_PI;\n";
+	outHeader += "}\n";
+	outHeader += "\n";
+}
+
+void Gen_MinMax( const genType_t type, std::string& outHeader ) {
+	if ( type == GEN_TYPE_BOOL ) {
+		return;
+	}
+
+	std::string memberTypeString = Gen_GetMemberTypeString( type );
+
+	// min
+	outHeader += Gen_GetDocMin();
+	outHeader += "inline " + memberTypeString + " min( const " + memberTypeString + "& x, const " + memberTypeString + "& y )\n";
+	outHeader += "{\n";
+	outHeader += "\treturn ( x < y ) ? x : y;\n";
+	outHeader += "}\n";
+	outHeader += "\n";
+
+	// max
+	outHeader += Gen_GetDocMax();
+	outHeader += "inline " + memberTypeString + " max( const " + memberTypeString + "& x, const " + memberTypeString + "& y )\n";
+	outHeader += "{\n";
+	outHeader += "\treturn ( x > y ) ? x : y; \n";
+	outHeader += "}\n";
+	outHeader += "\n";
+}
+
+void Gen_Clamp( const genType_t type, std::string& outHeader ) {
+	if ( type == GEN_TYPE_BOOL ) {
+		return;
+	}
+
+	std::string memberTypeString = Gen_GetMemberTypeString( type );
+
+	outHeader += Gen_GetDocClamp();
+	outHeader += "inline " + memberTypeString + " clamp( const " + memberTypeString + "& x, const " + memberTypeString + "& low, const " + memberTypeString + "& high )\n";
+	outHeader += "{\n";
+	outHeader += "\treturn min( max( x, low ), high );\n";
+	outHeader += "}\n";
+	outHeader += "\n";
+}
+
+void Gen_Saturate( const genType_t type, const uint32_t numComponents, std::string& outHeader, std::string& outInl ) {
+	assert( numComponents >= 1 );	// we allow scalar types for this function
+	assert( numComponents <= GEN_COMPONENT_COUNT_MAX );
+
+	if ( !Gen_IsFloatingPointType( type ) ) {
+		return;
+	}
+
+	std::string fullTypeName = Gen_GetFullTypeName( type, 1, numComponents );
+
+	std::string zeroStr	= Gen_GetNumericLiteral( type, 0.0f );
+	std::string oneStr	= Gen_GetNumericLiteral( type, 1.0f );
+
+	outHeader += Gen_GetDocSaturate( fullTypeName );
+	outHeader += "inline " + fullTypeName + " saturate( const " + fullTypeName + "& x )";
+	if ( numComponents > 1 ) {
+		outHeader += ";\n";
+		outHeader += "\n";
+
+		outInl += fullTypeName + " saturate( const " + fullTypeName + "& x )\n";
+		outInl += "{\n";
+		outInl += "\treturn " + fullTypeName + "(\n";
+		for ( uint32_t i = 0; i < numComponents; i++ ) {
+			outInl += "\t\tclamp( x[" + std::to_string( i ) + "], " + zeroStr + ", " + oneStr + " )";
+
+			if ( i != numComponents - 1 ) {
+				outInl += ",";
+			}
+
+			outInl += "\n";
+		}
+
+		outInl += "\t);\n";
+		outInl += "}\n";
+		outInl += "\n";
+	} else {
+		outHeader += "\n";
+		outHeader += "{\n";
+		outHeader += "\treturn clamp( x, " + zeroStr + ", " + oneStr + " );\n";
+		outHeader += "}\n";
+		outHeader += "\n";
+	}
+}
+
+void Gen_Lerp( const genType_t type, const uint32_t numComponents, std::string& outHeader, std::string& outInl ) {
+	assert( numComponents >= 1 );	// we allow scalar types for this function
+	assert( numComponents <= GEN_COMPONENT_COUNT_MAX );
+
+	if ( !Gen_IsFloatingPointType( type ) ) {
+		return;
+	}
+
+	std::string typeString = Gen_GetTypeString( type );
+	std::string fullTypeName = Gen_GetFullTypeName( type, 1, numComponents );
+
+	std::string oneStr = Gen_GetNumericLiteral( type, 1.0f );
+
+	outHeader += Gen_GetDocLerp( fullTypeName );
+	outHeader += "inline " + fullTypeName + " lerp( const " + fullTypeName + "& a, const " + fullTypeName + "& b, const " + typeString + " t )";
+	if ( numComponents > 1 ) {
+		outHeader += ";\n";
+		outHeader += "\n";
+
+		outInl += fullTypeName + " lerp( const " + fullTypeName + "& a, const " + fullTypeName + "& b, const " + typeString + " t )\n";
+		outInl += "{\n";
+		outInl += "\treturn " + fullTypeName + "(\n";
+		for ( uint32_t i = 0; i < numComponents; i++ ) {
+			std::string componentStr = std::to_string( i );
+
+			outInl += "\t\tlerp( a[" + componentStr + "], b[" + componentStr + "], t )";
+
+			if ( i != numComponents - 1 ) {
+				outInl += ",";
+			}
+
+			outInl += "\n";
+		}
+
+		outInl += "\t);\n";
+		outInl += "}\n";
+		outInl += "\n";
+	} else {
+		outHeader += "\n";
+		outHeader += "{\n";
+		outHeader += "\treturn ( " + oneStr + " - t ) * a + t * b;\n";
+		outHeader += "}\n";
+		outHeader += "\n";
+	}
+}
+
 void Gen_OperatorsIncrement( const genType_t type, const uint32_t numRows, const uint32_t numCols, std::string& outHeader, std::string& outInl ) {
 	assert( numRows >= 1 );	// pass through 1 for vectors
 	assert( numRows <= GEN_COMPONENT_COUNT_MAX );

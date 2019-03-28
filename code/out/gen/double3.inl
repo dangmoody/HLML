@@ -28,7 +28,7 @@ along with hlml.  If not, see <http://www.gnu.org/licenses/>.
 #include "double2.h"
 #include "double4.h"
 
-#include "../hlml_main.h"
+#include "hlml_functions_scalar.h"
 
 // others
 #include <math.h>
@@ -102,7 +102,8 @@ bool operator==( const double3& lhs, const double3& rhs )
 	return doubleeq( lhs.x, rhs. x ) && doubleeq( lhs.y, rhs. y ) && doubleeq( lhs.z, rhs. z );
 }
 
-bool operator!=( const double3& lhs, const double3& rhs ) {
+bool operator!=( const double3& lhs, const double3& rhs )
+{
 	return !( operator==( lhs, rhs ) );
 }
 

@@ -40,16 +40,6 @@ static std::string GetDocAngle( const std::string& fullTypeName ) {
 		"/// \\brief Returns the angle in degrees between the two vectors.\n";
 }
 
-static std::string GetDocSaturate( const std::string& fullTypeName ) {
-	return "/// \\relates " + fullTypeName + "\n" + \
-		"/// \\brief Returns a copy of the vector with each component clamped between the range 0 and 1.\n";
-}
-
-static std::string GetDocLerp( const std::string& fullTypeName ) {
-	return "/// \\relates " + fullTypeName + "\n" + \
-		"/// \\brief Returns a linearly interpolated vector between vectors \"a\" and \"b\".\n";
-}
-
 static std::string GetDocPack( const std::string& fullTypeName ) {
 	return "/// \\relates " + fullTypeName + "\n" + \
 		"/// \\brief Returns a 32 bit integer containing each component of the vector (starting with x) at each byte.\n";
@@ -265,72 +255,6 @@ void Gen_VectorAngle( const genType_t type, const uint32_t numComponents, std::s
 	outInl += returnTypeString + " angle( const " + fullTypeName + "& lhs, const " + fullTypeName + "& rhs )\n";
 	outInl += "{\n";
 	outInl += "\treturn degrees( " + acosString + "( dot( normalized( lhs ), normalized( rhs ) ) ) );\n";
-	outInl += "}\n";
-	outInl += "\n";
-}
-
-void Gen_VectorSaturate( const genType_t type, const uint32_t numComponents, std::string& outHeader, std::string& outInl ) {
-	assert( numComponents >= GEN_COMPONENT_COUNT_MIN );
-	assert( numComponents <= GEN_COMPONENT_COUNT_MAX );
-
-	if ( !Gen_IsFloatingPointType( type ) ) {
-		return;
-	}
-
-	std::string typeString = Gen_GetTypeString( type );
-	std::string fullTypeName = typeString + std::to_string( numComponents );
-
-	std::string zeroStr = Gen_GetNumericLiteral( type, 0.0f );
-	std::string oneStr = Gen_GetNumericLiteral( type, 1.0f );
-
-	outHeader += GetDocSaturate( fullTypeName );
-	outHeader += "inline " + fullTypeName + " saturate( const " + fullTypeName + "& vec );\n";
-	outHeader += "\n";
-
-	outInl += fullTypeName + " saturate( const " + fullTypeName + "& vec )\n";
-	outInl += "{\n";
-	outInl += "\treturn " + fullTypeName + "(\n";
-	for ( uint32_t i = 0; i < numComponents; i++ ) {
-		outInl += std::string( "\t\tsaturate( vec." ) + GEN_COMPONENT_NAMES_VECTOR[i] + " )";
-
-		if ( i != numComponents - 1 ) {
-			outInl += ",";
-		}
-
-		outInl += "\n";
-	}
-	outInl += "\t);\n";
-	outInl += "}\n";
-	outInl += "\n";
-}
-
-void Gen_VectorLerp( const genType_t type, const uint32_t numComponents, std::string& outHeader, std::string& outInl ) {
-	if ( !Gen_IsFloatingPointType( type ) ) {
-		return;
-	}
-
-	std::string typeString = Gen_GetTypeString( type );
-	std::string fullTypeName = typeString + std::to_string( numComponents );
-
-	outHeader += GetDocLerp( fullTypeName );
-	outHeader += "inline " + fullTypeName + " lerp( const " + fullTypeName + "& a, const " + fullTypeName + "& b, const " + typeString + " t );\n";
-	outHeader += "\n";
-
-	outInl += fullTypeName + " lerp( const " + fullTypeName + "& a, const " + fullTypeName + "& b, const " + typeString + " t )\n";
-	outInl += "{\n";
-	outInl += "\treturn " + fullTypeName + "(\n";
-	for ( uint32_t i = 0; i < numComponents; i++ ) {
-		char component = GEN_COMPONENT_NAMES_VECTOR[i];
-
-		outInl += std::string( "\t\tlerp( a." ) + component + ", b." + component + ", t )";
-
-		if ( i != numComponents - 1 ) {
-			outInl += ",";
-		}
-
-		outInl += "\n";
-	}
-	outInl += "\t);\n";
 	outInl += "}\n";
 	outInl += "\n";
 }

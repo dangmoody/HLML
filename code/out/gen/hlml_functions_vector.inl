@@ -191,19 +191,19 @@ float angle( const float2& lhs, const float2& rhs )
 	return degrees( acosf( dot( normalized( lhs ), normalized( rhs ) ) ) );
 }
 
-float2 saturate( const float2& vec )
+float2 saturate( const float2& x )
 {
 	return float2(
-		saturate( vec.x ),
-		saturate( vec.y )
+		clamp( x[0], 0.000000f, 1.000000f ),
+		clamp( x[1], 0.000000f, 1.000000f )
 	);
 }
 
 float2 lerp( const float2& a, const float2& b, const float t )
 {
 	return float2(
-		lerp( a.x, b.x, t ),
-		lerp( a.y, b.y, t )
+		lerp( a[0], b[0], t ),
+		lerp( a[1], b[1], t )
 	);
 }
 
@@ -250,21 +250,21 @@ float angle( const float3& lhs, const float3& rhs )
 	return degrees( acosf( dot( normalized( lhs ), normalized( rhs ) ) ) );
 }
 
-float3 saturate( const float3& vec )
+float3 saturate( const float3& x )
 {
 	return float3(
-		saturate( vec.x ),
-		saturate( vec.y ),
-		saturate( vec.z )
+		clamp( x[0], 0.000000f, 1.000000f ),
+		clamp( x[1], 0.000000f, 1.000000f ),
+		clamp( x[2], 0.000000f, 1.000000f )
 	);
 }
 
 float3 lerp( const float3& a, const float3& b, const float t )
 {
 	return float3(
-		lerp( a.x, b.x, t ),
-		lerp( a.y, b.y, t ),
-		lerp( a.z, b.z, t )
+		lerp( a[0], b[0], t ),
+		lerp( a[1], b[1], t ),
+		lerp( a[2], b[2], t )
 	);
 }
 
@@ -312,23 +312,23 @@ float angle( const float4& lhs, const float4& rhs )
 	return degrees( acosf( dot( normalized( lhs ), normalized( rhs ) ) ) );
 }
 
-float4 saturate( const float4& vec )
+float4 saturate( const float4& x )
 {
 	return float4(
-		saturate( vec.x ),
-		saturate( vec.y ),
-		saturate( vec.z ),
-		saturate( vec.w )
+		clamp( x[0], 0.000000f, 1.000000f ),
+		clamp( x[1], 0.000000f, 1.000000f ),
+		clamp( x[2], 0.000000f, 1.000000f ),
+		clamp( x[3], 0.000000f, 1.000000f )
 	);
 }
 
 float4 lerp( const float4& a, const float4& b, const float t )
 {
 	return float4(
-		lerp( a.x, b.x, t ),
-		lerp( a.y, b.y, t ),
-		lerp( a.z, b.z, t ),
-		lerp( a.w, b.w, t )
+		lerp( a[0], b[0], t ),
+		lerp( a[1], b[1], t ),
+		lerp( a[2], b[2], t ),
+		lerp( a[3], b[3], t )
 	);
 }
 
@@ -366,19 +366,19 @@ double angle( const double2& lhs, const double2& rhs )
 	return degrees( acos( dot( normalized( lhs ), normalized( rhs ) ) ) );
 }
 
-double2 saturate( const double2& vec )
+double2 saturate( const double2& x )
 {
 	return double2(
-		saturate( vec.x ),
-		saturate( vec.y )
+		clamp( x[0], 0.000000, 1.000000 ),
+		clamp( x[1], 0.000000, 1.000000 )
 	);
 }
 
 double2 lerp( const double2& a, const double2& b, const double t )
 {
 	return double2(
-		lerp( a.x, b.x, t ),
-		lerp( a.y, b.y, t )
+		lerp( a[0], b[0], t ),
+		lerp( a[1], b[1], t )
 	);
 }
 
@@ -425,21 +425,21 @@ double angle( const double3& lhs, const double3& rhs )
 	return degrees( acos( dot( normalized( lhs ), normalized( rhs ) ) ) );
 }
 
-double3 saturate( const double3& vec )
+double3 saturate( const double3& x )
 {
 	return double3(
-		saturate( vec.x ),
-		saturate( vec.y ),
-		saturate( vec.z )
+		clamp( x[0], 0.000000, 1.000000 ),
+		clamp( x[1], 0.000000, 1.000000 ),
+		clamp( x[2], 0.000000, 1.000000 )
 	);
 }
 
 double3 lerp( const double3& a, const double3& b, const double t )
 {
 	return double3(
-		lerp( a.x, b.x, t ),
-		lerp( a.y, b.y, t ),
-		lerp( a.z, b.z, t )
+		lerp( a[0], b[0], t ),
+		lerp( a[1], b[1], t ),
+		lerp( a[2], b[2], t )
 	);
 }
 
@@ -487,23 +487,23 @@ double angle( const double4& lhs, const double4& rhs )
 	return degrees( acos( dot( normalized( lhs ), normalized( rhs ) ) ) );
 }
 
-double4 saturate( const double4& vec )
+double4 saturate( const double4& x )
 {
 	return double4(
-		saturate( vec.x ),
-		saturate( vec.y ),
-		saturate( vec.z ),
-		saturate( vec.w )
+		clamp( x[0], 0.000000, 1.000000 ),
+		clamp( x[1], 0.000000, 1.000000 ),
+		clamp( x[2], 0.000000, 1.000000 ),
+		clamp( x[3], 0.000000, 1.000000 )
 	);
 }
 
 double4 lerp( const double4& a, const double4& b, const double t )
 {
 	return double4(
-		lerp( a.x, b.x, t ),
-		lerp( a.y, b.y, t ),
-		lerp( a.z, b.z, t ),
-		lerp( a.w, b.w, t )
+		lerp( a[0], b[0], t ),
+		lerp( a[1], b[1], t ),
+		lerp( a[2], b[2], t ),
+		lerp( a[3], b[3], t )
 	);
 }
 

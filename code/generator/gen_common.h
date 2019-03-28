@@ -24,7 +24,7 @@
 #define GEN_OUT_GEN_FOLDER_PATH			"code/out/gen/"
 #define GEN_TESTS_FOLDER_PATH			"code/tests/"
 
-#define GEN_HEADER_MAIN					"hlml_main.h"
+#define GEN_HEADER_CONSTANTS			"hlml_constants.h"
 #define GEN_HEADER_USER					"hlml_user.h"
 
 #define GEN_HEADER_VECTOR				"hlml_vector.h"
@@ -33,6 +33,7 @@
 #define GEN_FILENAME_OPERATORS_VECTOR	"hlml_operators_vector"
 #define GEN_FILENAME_OPERATORS_MATRIX	"hlml_operators_matrix"
 
+#define GEN_FILENAME_FUNCTIONS_SCALAR	"hlml_functions_scalar"
 #define GEN_FILENAME_FUNCTIONS_VECTOR	"hlml_functions_vector"
 #define GEN_FILENAME_FUNCTIONS_MATRIX	"hlml_functions_matrix"
 
@@ -170,9 +171,19 @@ inline std::string	Gen_GetFuncNameCos( const genType_t type ) { return ( type ==
 inline std::string	Gen_GetFuncNameAcos( const genType_t type ) { return ( type == GEN_TYPE_DOUBLE ) ? "acos" : "acosf"; }
 inline std::string	Gen_GetFuncNameTan( const genType_t type ) { return ( type == GEN_TYPE_DOUBLE ) ? "tan" : "tanf"; }
 inline std::string	Gen_GetFuncNameSqrt( const genType_t type ) { return ( type == GEN_TYPE_DOUBLE ) ? "sqrt" : "sqrtf"; }
+inline std::string	Gen_GetFuncNameFabs( const genType_t type ) { return ( type == GEN_TYPE_DOUBLE ) ? "fabs" : "fabsf"; }
 
 // hlml functions
 inline std::string	Gen_GetFuncNameFloateq( const genType_t type ) { return ( type == GEN_TYPE_DOUBLE ) ? "doubleeq" : "floateq"; }
+
+// generic helper functions that are typical of maths libraries
+extern void			Gen_Floateq( const genType_t type, std::string& outHeader );
+extern void			Gen_Radians( const genType_t type, std::string& outHeader );
+extern void			Gen_Degrees( const genType_t type, std::string& outHeader );
+extern void			Gen_MinMax( const genType_t type, std::string& outHeader );
+extern void			Gen_Clamp( const genType_t type, std::string& outHeader );
+extern void			Gen_Saturate( const genType_t type, const uint32_t numComponents, std::string& outHeader, std::string& outInl );
+extern void			Gen_Lerp( const genType_t type, const uint32_t numComponents, std::string& outHeader, std::string& outInl );
 
 // functions that are guaranteed to be the same across vectors and matrices
 extern void			Gen_OperatorsIncrement( const genType_t type, const uint32_t numRows, const uint32_t numCols, std::string& outHeader, std::string& outInl );
@@ -217,15 +228,17 @@ std::string Gen_GetMemberTypeString( const genType_t type ) {
 }
 
 std::string Gen_GetFullTypeName( const genType_t type, const uint32_t numRows, const uint32_t numCols ) {
-	assert( numRows >= 1 );	// pass through 1 for vectors
+	assert( numRows >= 1 );	// 1 for vectors
 	assert( numRows <= GEN_COMPONENT_COUNT_MAX );
-	assert( numCols >= GEN_COMPONENT_COUNT_MIN );
+	assert( numCols >= 1 );	// 1 for straight scalar types
 	assert( numCols <= GEN_COMPONENT_COUNT_MAX );
 
+	std::string typeString = Gen_GetTypeString( type );
+
 	if ( numRows == 1 ) {
-		return Gen_GetTypeString( type ) + std::to_string( numCols );
+		return ( numCols > 1 ) ? typeString + std::to_string( numCols ) : Gen_GetMemberTypeString( type );
 	} else {
-		return Gen_GetTypeString( type ) + std::to_string( numRows ) + "x" + std::to_string( numCols );
+		return typeString + std::to_string( numRows ) + "x" + std::to_string( numCols );
 	}
 }
 

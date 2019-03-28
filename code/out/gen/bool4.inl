@@ -28,7 +28,7 @@ along with hlml.  If not, see <http://www.gnu.org/licenses/>.
 #include "bool2.h"
 #include "bool3.h"
 
-#include "../hlml_main.h"
+#include "hlml_functions_scalar.h"
 
 // others
 #include <math.h>
@@ -103,7 +103,8 @@ bool operator==( const bool4& lhs, const bool4& rhs )
 	return ( lhs.x == rhs.x ) && ( lhs.y == rhs.y ) && ( lhs.z == rhs.z ) && ( lhs.w == rhs.w );
 }
 
-bool operator!=( const bool4& lhs, const bool4& rhs ) {
+bool operator!=( const bool4& lhs, const bool4& rhs )
+{
 	return !( operator==( lhs, rhs ) );
 }
 

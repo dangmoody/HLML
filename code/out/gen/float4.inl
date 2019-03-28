@@ -28,7 +28,7 @@ along with hlml.  If not, see <http://www.gnu.org/licenses/>.
 #include "float2.h"
 #include "float3.h"
 
-#include "../hlml_main.h"
+#include "hlml_functions_scalar.h"
 
 // others
 #include <math.h>
@@ -103,7 +103,8 @@ bool operator==( const float4& lhs, const float4& rhs )
 	return floateq( lhs.x, rhs. x ) && floateq( lhs.y, rhs. y ) && floateq( lhs.z, rhs. z ) && floateq( lhs.w, rhs. w );
 }
 
-bool operator!=( const float4& lhs, const float4& rhs ) {
+bool operator!=( const float4& lhs, const float4& rhs )
+{
 	return !( operator==( lhs, rhs ) );
 }
 

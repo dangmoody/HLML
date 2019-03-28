@@ -55,9 +55,9 @@ void MatrixGenerator::Generate( const genType_t type, const uint32_t numRows, co
 	{
 		m_codeInl += GEN_FILE_HEADER;
 
-		m_codeInl += "// hlml includes\n";
-		m_codeInl += "#include \"../" + std::string( GEN_HEADER_MAIN ) + "\"\n";
-		m_codeInl += "\n";
+//		m_codeInl += "// hlml includes\n";
+//		m_codeInl += "#include \"../" + std::string( GEN_HEADER_CONSTANTS ) + "\"\n";
+//		m_codeInl += "\n";
 
 		m_codeInl += "// others\n";
 		m_codeInl += "#include <math.h>\n";
