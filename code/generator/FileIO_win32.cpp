@@ -66,8 +66,18 @@ bool FS_WriteToFile( const char* filename, const char* data, const size_t length
 }
 
 bool FS_CreateFolder( const char* name ) {
+	if ( FS_FolderExists( name ) ) {
+		return true;
+	}
+
 	SECURITY_ATTRIBUTES secattr = {};
-	return CreateDirectory( name, &secattr );
+	bool result = CreateDirectory( name, &secattr );
+
+	if ( !result ) {
+		printf( "WIN32: Failed creating folder: %lu\n", GetLastError() );
+	}
+
+	return result;
 }
 
 bool FS_DeleteFolder( const char* name ) {
@@ -89,7 +99,9 @@ bool FS_DeleteFolder( const char* name ) {
 }
 
 bool FS_FolderExists( const char* name ) {
-	return GetFileAttributes( name ) & FILE_ATTRIBUTE_DIRECTORY;
+	DWORD attribs = GetFileAttributes( name );
+
+	return ( attribs != INVALID_FILE_ATTRIBUTES ) && ( ( attribs & FILE_ATTRIBUTE_DIRECTORY ) != 0 );
 }
 
 bool FS_CleanFolder( const char* name ) {
