@@ -35,6 +35,7 @@ Usage
 
 **READ THIS BEFORE USING THE LIBRARY:**
 
+* All library functions and tests using floating point were written to be as respective to the IEEE-754 standard as possible.
 * All matrix types are row-major, so a ```float3x4``` is a matrix that holds 3 ```float4```s (or, in other words: a ```float4``` array of size 3).
 * All vector types are union of ```struct```/fixed-size array.
 * HLML is focused on mathemetical expressive power where possible, therefore:
