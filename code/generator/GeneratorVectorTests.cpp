@@ -609,6 +609,7 @@ void GeneratorVectorTests::GenerateTestDistance() {
 	genType_t floatingPointType = Gen_GetSupportedFloatingPointType( m_type );
 	std::string floatingPointStr = Gen_GetTypeString( floatingPointType );
 
+	// numbers picked at random
 	// default w to 0 because distance isn't allowed for 4d vectors
 	float values0[] = { 7.0f,  4.0f, 3.0f, 0.0f };
 	float values1[] = { 17.0f, 6.0f, 2.0f, 0.0f };
