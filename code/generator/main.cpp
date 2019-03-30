@@ -672,9 +672,8 @@ int main( int argc, char** argv ) {
 	UNUSED( argc );
 	UNUSED( argv );
 
-	// TODO(DM): handle errors for these
-	FS_CreateFolder( GEN_OUT_GEN_FOLDER_PATH );
-	FS_CreateFolder( GEN_TESTS_FOLDER_PATH );
+	FAIL_IF( !FS_CreateFolder( GEN_OUT_GEN_FOLDER_PATH ), "Failed to create folder \"" GEN_OUT_GEN_FOLDER_PATH "\".\n" );
+	FAIL_IF( !FS_CreateFolder( GEN_TESTS_FOLDER_PATH ),   "Failed to create folder \"" GEN_TESTS_FOLDER_PATH "\".\n" );
 
 	printf( "======= Generating type implementations. =======\n" );
 	FAIL_IF( !GenerateImplVectors(),  "Failed generating a vector implementation.\n" );
@@ -682,26 +681,26 @@ int main( int argc, char** argv ) {
 	printf( "======= Done. =======\n\n" );
 
 	printf( "======= Generating main headers. =======\n" );
-	FAIL_IF( !GenerateMainHeaderFuncs(),      "Failed generating " GEN_FILENAME_FUNCTIONS_SCALAR "!\n" );
-	FAIL_IF( !GenerateMainTypeHeaderVector(), "Failed generating main vector header!\n" );
-	FAIL_IF( !GenerateMainTypeHeaderMatrix(), "Failed generating main matrix header!\n" );
+	FAIL_IF( !GenerateMainHeaderFuncs(),      "Failed generating \"" GEN_FILENAME_FUNCTIONS_SCALAR "\".\n" );
+	FAIL_IF( !GenerateMainTypeHeaderVector(), "Failed generating main vector header.\n" );
+	FAIL_IF( !GenerateMainTypeHeaderMatrix(), "Failed generating main matrix header.\n" );
 	printf( "======= Done. =======\n\n" );
 
 	printf( "======= Generating functions. =======\n" );
-	FAIL_IF( !GenerateFunctionsVector(), "Failed generating main vector functions header!\n" );
-	FAIL_IF( !GenerateFunctionsMatrix(), "Failed generating main matrix functions header!\n" );
+	FAIL_IF( !GenerateFunctionsVector(), "Failed generating main vector functions header.\n" );
+	FAIL_IF( !GenerateFunctionsMatrix(), "Failed generating main matrix functions header.\n" );
 	printf( "======= Done. =======\n\n" );
 
 	printf( "======= Generating operators. =======\n" );
-	FAIL_IF( !GenerateOperatorsVector(), "Failed generating vector operators header!\n" );
-	FAIL_IF( !GenerateOperatorsMatrix(), "Failed generating matrix operators header!\n" );
+	FAIL_IF( !GenerateOperatorsVector(), "Failed generating vector operators header.\n" );
+	FAIL_IF( !GenerateOperatorsMatrix(), "Failed generating matrix operators header.\n" );
 	printf( "======= Done. =======\n\n" );
 
 	printf( "======= Generating tests. =======\n" );
 	FAIL_IF( !GenerateTestsScalar(), "Failed generating scalar tests.\n" );
 	FAIL_IF( !GenerateTestsVector(), "Failed generating vector tests.\n" );
 	FAIL_IF( !GenerateTestsMatrix(), "Failed generating matrix tests.\n" );
-	FAIL_IF( !GenerateTestsMain(),   "Failed generating " GEN_TESTS_FOLDER_PATH "/main.cpp.\n" );
+	FAIL_IF( !GenerateTestsMain(),   "Failed generating \"" GEN_TESTS_FOLDER_PATH "/main.cpp\".\n" );
 	printf( "======= Done. =======\n\n" );
 
 	printf( "Finished.\n" );
