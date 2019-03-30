@@ -366,9 +366,14 @@ void Gen_Saturate( const genType_t type, const uint32_t numComponents, std::stri
 	std::string zeroStr	= Gen_GetNumericLiteral( type, 0.0f );
 	std::string oneStr	= Gen_GetNumericLiteral( type, 1.0f );
 
+	bool isVector = numComponents > 1;
+	if ( isVector ) {
+		assert( outInl );	// only don't output to an .inl file for scalar impls
+	}
+
 	outHeader += Gen_GetDocSaturate( fullTypeName );
 	outHeader += "inline " + fullTypeName + " saturate( const " + fullTypeName + "& x )";
-	if ( numComponents > 1 ) {
+	if ( isVector ) {
 		outHeader += ";\n";
 		outHeader += "\n";
 
