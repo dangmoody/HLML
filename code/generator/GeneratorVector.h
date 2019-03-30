@@ -2,12 +2,12 @@
 
 #include "gen_common.h"
 
-class VectorGenerator {
+class GeneratorVector {
 public:
-					VectorGenerator() {}
-					~VectorGenerator() {}
+					GeneratorVector() {}
+					~GeneratorVector() {}
 
-	void			Generate( const genType_t type, const uint32_t numComponents );
+	bool			Generate( const genType_t type, const uint32_t numComponents );
 
 #ifdef _DEBUG
 	void			PrintHeader() const;

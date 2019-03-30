@@ -11,6 +11,7 @@ extern void			Gen_VectorNormalize( const genType_t type, const uint32_t numCompo
 extern void			Gen_VectorDot( const genType_t type, const uint32_t numComponents, std::string& outHeader, std::string& outInl );
 extern void			Gen_VectorCross( const genType_t type, const uint32_t numComponents, std::string& outHeader, std::string& outInl );
 extern void			Gen_VectorAngle( const genType_t type, const uint32_t numComponents, std::string& outHeader, std::string& outInl );
+extern void			Gen_VectorDistance( const genType_t type, const uint32_t numComponents, std::string& outHeader, std::string& outInl );
 
 extern void			Gen_VectorPack( const genType_t type, const uint32_t numComponents, std::string& outHeader, std::string& outInl );
 extern void			Gen_VectorUnpack( const genType_t type, const uint32_t numComponents, std::string& outHeader, std::string& outInl );

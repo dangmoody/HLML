@@ -29,8 +29,16 @@ along with hlml.  If not, see <http://www.gnu.org/licenses/>.
 #include "../hlml_constants.h"
 
 #include <math.h>
+#include <stdint.h>
 
 // int32_t
+/// \brief Returns -1 if x is < 0, 0 if x == 0, or 1 if x > 1.
+/// This function does no branching.
+inline int32_t sign( const int32_t x )
+{
+	return ( 0 < x ) - ( x < 0 );
+}
+
 /// \brief Returns x if its smaller than y, otherwise returns y.
 inline int32_t min( const int32_t& x, const int32_t& y )
 {
@@ -40,7 +48,7 @@ inline int32_t min( const int32_t& x, const int32_t& y )
 /// \brief Returns x if its bigger than y, otherwise returns y.
 inline int32_t max( const int32_t& x, const int32_t& y )
 {
-	return ( x > y ) ? x : y; 
+	return ( x > y ) ? x : y;
 }
 
 /// \brief If x is lower than low or higher than high then returns low or high respectively, otherwise returns x.
@@ -60,7 +68,7 @@ inline uint32_t min( const uint32_t& x, const uint32_t& y )
 /// \brief Returns x if its bigger than y, otherwise returns y.
 inline uint32_t max( const uint32_t& x, const uint32_t& y )
 {
-	return ( x > y ) ? x : y; 
+	return ( x > y ) ? x : y;
 }
 
 /// \brief If x is lower than low or higher than high then returns low or high respectively, otherwise returns x.
@@ -75,6 +83,25 @@ inline uint32_t clamp( const uint32_t& x, const uint32_t& low, const uint32_t& h
 inline bool floateq( const float lhs, const float rhs, const float epsilon = HLML_EPSILON )
 {
 	return fabsf( lhs - rhs ) < epsilon;
+}
+
+/// \brief Returns true if the given floating-point number is considered to be infinity.
+inline bool isinf( const float x )
+{
+	return x == x && x * 0.000000f != x * 0.000000f;
+}
+
+/// \brief Returns true if the given floating-point number is considered to be not-a-number.
+inline bool isnan( const float x )
+{
+	return x != x;
+}
+
+/// \brief Returns -1 if x is < 0, 0 if x == 0, or 1 if x > 1.
+/// This function does no branching.
+inline int32_t sign( const float x )
+{
+	return ( 0.000000f < x ) - ( x < 0.000000f );
 }
 
 /// \brief Returns the given degrees to radians.
@@ -98,7 +125,7 @@ inline float min( const float& x, const float& y )
 /// \brief Returns x if its bigger than y, otherwise returns y.
 inline float max( const float& x, const float& y )
 {
-	return ( x > y ) ? x : y; 
+	return ( x > y ) ? x : y;
 }
 
 /// \brief If x is lower than low or higher than high then returns low or high respectively, otherwise returns x.
@@ -121,12 +148,48 @@ inline float lerp( const float& a, const float& b, const float t )
 	return ( 1.000000f - t ) * a + t * b;
 }
 
+/// \relates float
+/// \brief Performs a sigmoid-like interpolation and clamp.
+inline float smoothstep( const float& low, const float& high, const float& x )
+{
+	float t = saturate( ( x - low ) / ( high - low ) );
+	return t * t * ( 3.000000f - 2.000000f * t );
+}
+
+/// \relates float
+/// \brief Performs a 'smoother' version of smoothstep, as design by Ken Perlin.
+/// https://en.wikipedia.org/wiki/Smoothstep#Variations 
+inline float smootherstep( const float& low, const float& high, const float& x )
+{
+	float t = saturate( ( x - low ) / ( high - low ) );
+	return t * t * t * ( t * ( t * 6.000000f - 15.000000f ) + 10.000000f );
+}
+
 
 // double
 /// \brief Returns true if the two given floating-point numbers are within a small enough epsilon range of each other that takes into account floating-point inaccuracy.
 inline bool doubleeq( const double lhs, const double rhs, const double epsilon = HLML_EPSILON )
 {
 	return fabs( lhs - rhs ) < epsilon;
+}
+
+/// \brief Returns true if the given floating-point number is considered to be infinity.
+inline bool isinf( const double x )
+{
+	return x == x && x * 0.000000 != x * 0.000000;
+}
+
+/// \brief Returns true if the given floating-point number is considered to be not-a-number.
+inline bool isnan( const double x )
+{
+	return x != x;
+}
+
+/// \brief Returns -1 if x is < 0, 0 if x == 0, or 1 if x > 1.
+/// This function does no branching.
+inline int32_t sign( const double x )
+{
+	return ( 0.000000 < x ) - ( x < 0.000000 );
 }
 
 /// \brief Returns the given degrees to radians.
@@ -150,7 +213,7 @@ inline double min( const double& x, const double& y )
 /// \brief Returns x if its bigger than y, otherwise returns y.
 inline double max( const double& x, const double& y )
 {
-	return ( x > y ) ? x : y; 
+	return ( x > y ) ? x : y;
 }
 
 /// \brief If x is lower than low or higher than high then returns low or high respectively, otherwise returns x.
@@ -171,6 +234,23 @@ inline double saturate( const double& x )
 inline double lerp( const double& a, const double& b, const double t )
 {
 	return ( 1.000000 - t ) * a + t * b;
+}
+
+/// \relates double
+/// \brief Performs a sigmoid-like interpolation and clamp.
+inline double smoothstep( const double& low, const double& high, const double& x )
+{
+	double t = saturate( ( x - low ) / ( high - low ) );
+	return t * t * ( 3.000000 - 2.000000 * t );
+}
+
+/// \relates double
+/// \brief Performs a 'smoother' version of smoothstep, as design by Ken Perlin.
+/// https://en.wikipedia.org/wiki/Smoothstep#Variations 
+inline double smootherstep( const double& low, const double& high, const double& x )
+{
+	double t = saturate( ( x - low ) / ( high - low ) );
+	return t * t * t * ( t * ( t * 6.000000 - 15.000000 ) + 10.000000 );
 }
 
 

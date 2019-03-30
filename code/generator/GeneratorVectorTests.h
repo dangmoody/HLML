@@ -4,17 +4,16 @@
 
 #include <string>
 
-class TestsGeneratorVector {
+class GeneratorVectorTests {
 public:
-				TestsGeneratorVector() {}
-				~TestsGeneratorVector() {}
+				GeneratorVectorTests() {}
+				~GeneratorVectorTests() {}
 
-	void		Generate( const genType_t type, const uint32_t numComponents );
+	bool		Generate( const genType_t type, const uint32_t numComponents );
 
 private:
-	std::string	m_code;
-
-	std::string	m_testPrefix;
+	std::string	m_codeTests;
+	std::string	m_codeSuite;
 
 	std::string	m_fullTypeName;
 	std::string	m_typeString;
@@ -39,10 +38,10 @@ private:
 	void		GenerateTestDot();
 	void		GenerateTestCross();
 	void		GenerateTestAngle();
+	void		GenerateTestDistance();
+	void		GenerateTestPacking();
 
 	void		GenerateTestSaturate();
-
 	void		GenerateTestLerp();
-
-	void		GenerateTestPacking();
+	void		GenerateTestSmoothstep();
 };

@@ -258,21 +258,43 @@ TEMPER_TEST( TestLerp_float4 )
 	TEMPER_PASS();
 }
 
+TEMPER_TEST( TestSmoothstep_float4 )
+{
+	float4 answerInRangeSmoothstep   = float4( 0.104000f, 0.104000f, 0.104000f, 0.104000f );
+	float4 answerClampedSmoothstep   = float4( 1.000000f, 1.000000f, 1.000000f, 1.000000f );
+	float4 answerInRangeSmootherstep = float4( 0.057920f, 0.057920f, 0.057920f, 0.057920f );
+	float4 answerClampedSmootherstep = float4( 1.000000f, 1.000000f, 1.000000f, 1.000000f );
+	float4 answer;
+
+	float4 low  = float4( 0.000000f, 0.000000f, 0.000000f, 0.000000f );
+	float4 high = float4( 1.000000f, 1.000000f, 1.000000f, 1.000000f );
+
+	answer = smoothstep( low, high, float4( 0.200000f, 0.200000f, 0.200000f, 0.200000f ) );
+	TEMPER_EXPECT_TRUE( answer == answerInRangeSmoothstep );
+
+	answer = smoothstep( low, high, float4( 1.200000f, 1.200000f, 1.200000f, 1.200000f ) );
+	TEMPER_EXPECT_TRUE( answer == answerClampedSmoothstep );
+
+	answer = smootherstep( low, high, float4( 0.200000f, 0.200000f, 0.200000f, 0.200000f ) );
+	TEMPER_EXPECT_TRUE( answer == answerInRangeSmootherstep );
+
+	answer = smootherstep( low, high, float4( 1.200000f, 1.200000f, 1.200000f, 1.200000f ) );
+	TEMPER_EXPECT_TRUE( answer == answerClampedSmootherstep );
+
+	TEMPER_PASS();
+}
+
 TEMPER_SUITE( Test_float4 )
 {
 	TEMPER_RUN_TEST( TestAssignment_float4 );
 	TEMPER_RUN_TEST( TestArray_float4 );
-
 	TEMPER_RUN_TEST( TestArithmeticAddition_float4 );
 	TEMPER_RUN_TEST( TestArithmeticSubtraction_float4 );
 	TEMPER_RUN_TEST( TestArithmeticMultiplication_float4 );
 	TEMPER_RUN_TEST( TestArithmeticDivision_float4 );
-
 	TEMPER_RUN_TEST( TestIncrement_float4 );
 	TEMPER_RUN_TEST( TestDecrement_float4 );
-
 	TEMPER_RUN_TEST( TestRelational_float4 );
-
 	TEMPER_RUN_TEST( TestLength_float4 );
 	TEMPER_RUN_TEST( TestNormalized_float4 );
 	TEMPER_RUN_TEST( TestDot_float4 );
@@ -280,4 +302,5 @@ TEMPER_SUITE( Test_float4 )
 	TEMPER_RUN_TEST( TestAngle_float4 );
 	TEMPER_RUN_TEST( TestSaturate_float4 );
 	TEMPER_RUN_TEST( TestLerp_float4 );
+	TEMPER_RUN_TEST( TestSmoothstep_float4 );
 };

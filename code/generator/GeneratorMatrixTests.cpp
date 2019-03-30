@@ -1,4 +1,4 @@
-#include "TestsGeneratorMatrix.h"
+#include "GeneratorMatrixTests.h"
 
 #include "FileIO.h"
 
@@ -11,7 +11,7 @@
 #define _USE_MATH_DEFINES
 #include <math.h>
 
-void TestsGeneratorMatrix::Generate( const genType_t type, const uint32_t numRows, const uint32_t numCols ) {
+bool GeneratorMatrixTests::Generate( const genType_t type, const uint32_t numRows, const uint32_t numCols ) {
 	m_code = std::string();
 
 	m_type = type;
@@ -144,10 +144,13 @@ void TestsGeneratorMatrix::Generate( const genType_t type, const uint32_t numRow
 
 	if ( !FS_WriteToFile( filename, m_code.c_str(), m_code.size() ) ) {
 		printf( "Can't generate test suite for %s.  That's rough man.\n", m_fullTypeName.c_str() );
+		return false;
 	}
+
+	return true;
 }
 
-void TestsGeneratorMatrix::GenerateTestAssignment() {
+void GeneratorMatrixTests::GenerateTestAssignment() {
 	std::string zeroStr = Gen_GetNumericLiteral( m_type, 0 );
 	std::string fillValue = Gen_GetNumericLiteral( m_type, 999 );
 
@@ -255,7 +258,7 @@ void TestsGeneratorMatrix::GenerateTestAssignment() {
 	m_code += "\n";
 }
 
-void TestsGeneratorMatrix::GenerateTestArithmetic() {
+void GeneratorMatrixTests::GenerateTestArithmetic() {
 	if ( m_type == GEN_TYPE_BOOL ) {
 		return;
 	}
@@ -318,7 +321,7 @@ void TestsGeneratorMatrix::GenerateTestArithmetic() {
 	m_code += "\n";
 }
 
-void TestsGeneratorMatrix::GenerateTestMultiplyVector() {
+void GeneratorMatrixTests::GenerateTestMultiplyVector() {
 	if ( m_type == GEN_TYPE_BOOL ) {
 		return;
 	}
@@ -385,7 +388,7 @@ void TestsGeneratorMatrix::GenerateTestMultiplyVector() {
 	m_code += "\n";
 }
 
-void TestsGeneratorMatrix::GenerateTestIncrement() {
+void GeneratorMatrixTests::GenerateTestIncrement() {
 	if ( m_type == GEN_TYPE_BOOL ) {
 		return;
 	}
@@ -429,7 +432,7 @@ void TestsGeneratorMatrix::GenerateTestIncrement() {
 	}
 }
 
-void TestsGeneratorMatrix::GenerateTestRelational() {
+void GeneratorMatrixTests::GenerateTestRelational() {
 	if ( m_type == GEN_TYPE_BOOL ) {
 		return;
 	}
@@ -476,7 +479,7 @@ void TestsGeneratorMatrix::GenerateTestRelational() {
 	m_code += "\n";
 }
 
-void TestsGeneratorMatrix::GenerateTestBitwise() {
+void GeneratorMatrixTests::GenerateTestBitwise() {
 	if ( !Gen_IsIntegerType( m_type ) ) {
 		return;
 	}
@@ -570,7 +573,7 @@ void TestsGeneratorMatrix::GenerateTestBitwise() {
 	m_code += "\n";
 }
 
-void TestsGeneratorMatrix::GenerateTestArray() {
+void GeneratorMatrixTests::GenerateTestArray() {
 	std::string zeroStr = Gen_GetNumericLiteral( m_type, 0 );
 	std::string oneStr = Gen_GetNumericLiteral( m_type, 1 );
 
@@ -597,7 +600,7 @@ void TestsGeneratorMatrix::GenerateTestArray() {
 	m_code += "\n";
 }
 
-void TestsGeneratorMatrix::GenerateTestIdentity() {
+void GeneratorMatrixTests::GenerateTestIdentity() {
 	std::string zeroStr = Gen_GetNumericLiteral( m_type, 0 );
 	std::string oneStr = Gen_GetNumericLiteral( m_type, 1 );
 
@@ -618,7 +621,7 @@ void TestsGeneratorMatrix::GenerateTestIdentity() {
 	m_code += "\n";
 }
 
-void TestsGeneratorMatrix::GenerateTestTranspose() {
+void GeneratorMatrixTests::GenerateTestTranspose() {
 	std::string paramListNormal = "(\n";
 	for ( uint32_t row = 0; row < m_numRows; row++ ) {
 		paramListNormal += "\t\t";
@@ -677,7 +680,7 @@ void TestsGeneratorMatrix::GenerateTestTranspose() {
 	m_code += "\n";
 }
 
-void TestsGeneratorMatrix::GenerateTestInverse() {
+void GeneratorMatrixTests::GenerateTestInverse() {
 	if ( !Gen_IsFloatingPointType( m_type ) ) {
 		return;
 	}
@@ -748,7 +751,7 @@ void TestsGeneratorMatrix::GenerateTestInverse() {
 	m_code += "\n";
 }
 
-void TestsGeneratorMatrix::GenerateTestDeterminant() {
+void GeneratorMatrixTests::GenerateTestDeterminant() {
 	if ( m_type == GEN_TYPE_BOOL || m_type == GEN_TYPE_UINT ) {
 		return;
 	}
@@ -831,7 +834,7 @@ void TestsGeneratorMatrix::GenerateTestDeterminant() {
 	m_code += "\n";
 }
 
-void TestsGeneratorMatrix::GenerateTestTranslate() {
+void GeneratorMatrixTests::GenerateTestTranslate() {
 	if ( m_type == GEN_TYPE_BOOL ) {
 		return;
 	}
@@ -903,7 +906,7 @@ void TestsGeneratorMatrix::GenerateTestTranslate() {
 	m_code += "\n";
 }
 
-void TestsGeneratorMatrix::GenerateTestRotate() {
+void GeneratorMatrixTests::GenerateTestRotate() {
 	if ( !Gen_IsFloatingPointType( m_type ) ) {
 		return;
 	}
@@ -1004,7 +1007,7 @@ void TestsGeneratorMatrix::GenerateTestRotate() {
 	m_code += "\n";
 }
 
-void TestsGeneratorMatrix::GenerateTestScale() {
+void GeneratorMatrixTests::GenerateTestScale() {
 	if ( m_type == GEN_TYPE_BOOL ) {
 		return;
 	}
@@ -1034,7 +1037,7 @@ void TestsGeneratorMatrix::GenerateTestScale() {
 	m_code += "\n";
 }
 
-void TestsGeneratorMatrix::GenerateTestOrtho() {
+void GeneratorMatrixTests::GenerateTestOrtho() {
 	if ( !Gen_IsFloatingPointType( m_type ) ) {
 		return;
 	}
@@ -1120,7 +1123,7 @@ void TestsGeneratorMatrix::GenerateTestOrtho() {
 	}
 }
 
-void TestsGeneratorMatrix::GenerateTestPerspective() {
+void GeneratorMatrixTests::GenerateTestPerspective() {
 	if ( !Gen_IsFloatingPointType( m_type ) ) {
 		return;
 	}
@@ -1197,7 +1200,7 @@ void TestsGeneratorMatrix::GenerateTestPerspective() {
 	m_code += "\n";
 }
 
-void TestsGeneratorMatrix::GenerateTestLookAt() {
+void GeneratorMatrixTests::GenerateTestLookAt() {
 	if ( !Gen_IsFloatingPointType( m_type ) ) {
 		return;
 	}
@@ -1255,7 +1258,7 @@ void TestsGeneratorMatrix::GenerateTestLookAt() {
 	m_code += "\n";
 }
 
-std::string TestsGeneratorMatrix::GetTestCodeArithmeticInternal( const genOpArithmetic_t op,
+std::string GeneratorMatrixTests::GetTestCodeArithmeticInternal( const genOpArithmetic_t op,
 	const float valuesLhs[GEN_COMPONENT_COUNT_MAX][GEN_COMPONENT_COUNT_MAX], const float valuesRhs[GEN_COMPONENT_COUNT_MAX][GEN_COMPONENT_COUNT_MAX] ) const {
 	assert( op >= 0 );
 	assert( op < GEN_OP_ARITHMETIC_COUNT );
@@ -1312,7 +1315,7 @@ std::string TestsGeneratorMatrix::GetTestCodeArithmeticInternal( const genOpArit
 	return code;
 }
 
-std::string TestsGeneratorMatrix::GetParmListArithmeticAnswer( const genOpArithmetic_t op, const uint32_t numRows, const uint32_t numCols,
+std::string GeneratorMatrixTests::GetParmListArithmeticAnswer( const genOpArithmetic_t op, const uint32_t numRows, const uint32_t numCols,
 	const float valuesLhs[GEN_COMPONENT_COUNT_MAX][GEN_COMPONENT_COUNT_MAX], const float valuesRhs[GEN_COMPONENT_COUNT_MAX][GEN_COMPONENT_COUNT_MAX] ) const {
 	assert( op >= 0 );
 	assert( op < GEN_OP_ARITHMETIC_COUNT );

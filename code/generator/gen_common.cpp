@@ -232,6 +232,56 @@ void Gen_Floateq( const genType_t type, std::string& outHeader ) {
 	outHeader += "\n";
 }
 
+void Gen_IsInf( const genType_t type, std::string& outHeader ) {
+	if ( !Gen_IsFloatingPointType( type ) ) {
+		return;
+	}
+
+	std::string typeString = Gen_GetTypeString( type );
+
+	std::string zeroStr = Gen_GetNumericLiteral( type, 0.0f );
+
+	outHeader += Gen_GetDocIsInf();
+	outHeader += "inline bool isinf( const " + typeString + " x )\n";
+	outHeader += "{\n";
+	outHeader += "\treturn x == x && x * " + zeroStr + " != x * " + zeroStr + ";\n";
+	outHeader += "}\n";
+	outHeader += "\n";
+}
+
+void Gen_IsNaN( const genType_t type, std::string& outHeader ) {
+	if ( !Gen_IsFloatingPointType( type ) ) {
+		return;
+	}
+
+	std::string typeString = Gen_GetTypeString( type );
+
+	outHeader += Gen_GetDocIsNaN();
+	outHeader += "inline bool isnan( const " + typeString + " x )\n";
+	outHeader += "{\n";
+	outHeader += "\treturn x != x;\n";
+	outHeader += "}\n";
+	outHeader += "\n";
+}
+
+void Gen_Sign( const genType_t type, std::string& outHeader ) {
+	if ( type == GEN_TYPE_BOOL || type == GEN_TYPE_UINT ) {
+		return;
+	}
+
+	std::string memberTypeString = Gen_GetMemberTypeString( type );
+	std::string intTypeString = Gen_GetMemberTypeString( GEN_TYPE_INT );
+
+	std::string zeroStr = Gen_GetNumericLiteral( type, 0.0f );
+
+	outHeader += Gen_GetDocSign();
+	outHeader += "inline " + intTypeString + " sign( const " + memberTypeString + " x )\n";
+	outHeader += "{\n";
+	outHeader += "\treturn ( " + zeroStr + " < x ) - ( x < " + zeroStr + " );\n";
+	outHeader += "}\n";
+	outHeader += "\n";
+}
+
 void Gen_Radians( const genType_t type, std::string& outHeader ) {
 	if ( !Gen_IsFloatingPointType( type ) ) {
 		return;
@@ -283,7 +333,7 @@ void Gen_MinMax( const genType_t type, std::string& outHeader ) {
 	outHeader += Gen_GetDocMax();
 	outHeader += "inline " + memberTypeString + " max( const " + memberTypeString + "& x, const " + memberTypeString + "& y )\n";
 	outHeader += "{\n";
-	outHeader += "\treturn ( x > y ) ? x : y; \n";
+	outHeader += "\treturn ( x > y ) ? x : y;\n";
 	outHeader += "}\n";
 	outHeader += "\n";
 }
@@ -303,7 +353,7 @@ void Gen_Clamp( const genType_t type, std::string& outHeader ) {
 	outHeader += "\n";
 }
 
-void Gen_Saturate( const genType_t type, const uint32_t numComponents, std::string& outHeader, std::string& outInl ) {
+void Gen_Saturate( const genType_t type, const uint32_t numComponents, std::string& outHeader, std::string* outInl ) {
 	assert( numComponents >= 1 );	// we allow scalar types for this function
 	assert( numComponents <= GEN_COMPONENT_COUNT_MAX );
 
@@ -322,22 +372,22 @@ void Gen_Saturate( const genType_t type, const uint32_t numComponents, std::stri
 		outHeader += ";\n";
 		outHeader += "\n";
 
-		outInl += fullTypeName + " saturate( const " + fullTypeName + "& x )\n";
-		outInl += "{\n";
-		outInl += "\treturn " + fullTypeName + "(\n";
+		*outInl += fullTypeName + " saturate( const " + fullTypeName + "& x )\n";
+		*outInl += "{\n";
+		*outInl += "\treturn " + fullTypeName + "(\n";
 		for ( uint32_t i = 0; i < numComponents; i++ ) {
-			outInl += "\t\tclamp( x[" + std::to_string( i ) + "], " + zeroStr + ", " + oneStr + " )";
+			*outInl += "\t\tclamp( x[" + std::to_string( i ) + "], " + zeroStr + ", " + oneStr + " )";
 
 			if ( i != numComponents - 1 ) {
-				outInl += ",";
+				*outInl += ",";
 			}
 
-			outInl += "\n";
+			*outInl += "\n";
 		}
 
-		outInl += "\t);\n";
-		outInl += "}\n";
-		outInl += "\n";
+		*outInl += "\t);\n";
+		*outInl += "}\n";
+		*outInl += "\n";
 	} else {
 		outHeader += "\n";
 		outHeader += "{\n";
@@ -347,7 +397,7 @@ void Gen_Saturate( const genType_t type, const uint32_t numComponents, std::stri
 	}
 }
 
-void Gen_Lerp( const genType_t type, const uint32_t numComponents, std::string& outHeader, std::string& outInl ) {
+void Gen_Lerp( const genType_t type, const uint32_t numComponents, std::string& outHeader, std::string* outInl ) {
 	assert( numComponents >= 1 );	// we allow scalar types for this function
 	assert( numComponents <= GEN_COMPONENT_COUNT_MAX );
 
@@ -360,36 +410,140 @@ void Gen_Lerp( const genType_t type, const uint32_t numComponents, std::string& 
 
 	std::string oneStr = Gen_GetNumericLiteral( type, 1.0f );
 
+	bool isVector = numComponents > 1;
+	if ( isVector ) {
+		assert( outInl );	// only don't output to an .inl file for scalar impls
+	}
+
 	outHeader += Gen_GetDocLerp( fullTypeName );
 	outHeader += "inline " + fullTypeName + " lerp( const " + fullTypeName + "& a, const " + fullTypeName + "& b, const " + typeString + " t )";
-	if ( numComponents > 1 ) {
+	if ( isVector ) {
 		outHeader += ";\n";
 		outHeader += "\n";
 
-		outInl += fullTypeName + " lerp( const " + fullTypeName + "& a, const " + fullTypeName + "& b, const " + typeString + " t )\n";
-		outInl += "{\n";
-		outInl += "\treturn " + fullTypeName + "(\n";
+		*outInl += fullTypeName + " lerp( const " + fullTypeName + "& a, const " + fullTypeName + "& b, const " + typeString + " t )\n";
+		*outInl += "{\n";
+		*outInl += "\treturn " + fullTypeName + "(\n";
 		for ( uint32_t i = 0; i < numComponents; i++ ) {
 			std::string componentStr = std::to_string( i );
 
-			outInl += "\t\tlerp( a[" + componentStr + "], b[" + componentStr + "], t )";
+			*outInl += "\t\tlerp( a[" + componentStr + "], b[" + componentStr + "], t )";
 
 			if ( i != numComponents - 1 ) {
-				outInl += ",";
+				*outInl += ",";
 			}
 
-			outInl += "\n";
+			*outInl += "\n";
 		}
 
-		outInl += "\t);\n";
-		outInl += "}\n";
-		outInl += "\n";
+		*outInl += "\t);\n";
+		*outInl += "}\n";
+		*outInl += "\n";
 	} else {
 		outHeader += "\n";
 		outHeader += "{\n";
 		outHeader += "\treturn ( " + oneStr + " - t ) * a + t * b;\n";
 		outHeader += "}\n";
 		outHeader += "\n";
+	}
+}
+
+void Gen_Smoothstep( const genType_t type, const uint32_t numComponents, std::string& outHeader, std::string* outInl ) {
+	assert( numComponents >= 1 );	// we allow scalar types for this function
+	assert( numComponents <= GEN_COMPONENT_COUNT_MAX );
+
+	if ( !Gen_IsFloatingPointType( type ) ) {
+		return;
+	}
+
+	std::string typeString		= Gen_GetTypeString( type );
+	std::string fullTypeName	= Gen_GetFullTypeName( type, 1, numComponents );
+
+	std::string twoStr		= Gen_GetNumericLiteral( type, 2.0f );
+	std::string threeStr	= Gen_GetNumericLiteral( type, 3.0f );
+	std::string sixStr		= Gen_GetNumericLiteral( type, 6.0f );
+	std::string tenStr		= Gen_GetNumericLiteral( type, 10.0f );
+	std::string fifteenStr	= Gen_GetNumericLiteral( type, 15.0f );
+
+	std::string twoVec		= fullTypeName + "( " + twoStr + " )";
+	std::string threeVec	= fullTypeName + "( " + threeStr + " )";
+	std::string sixVec		= fullTypeName + "( " + sixStr + " )";
+	std::string tenVec		= fullTypeName + "( " + tenStr + " )";
+	std::string fifteenVec	= fullTypeName + "( " + fifteenStr + " )";
+
+	bool isVector = numComponents > 1;
+	if ( isVector ) {
+		assert( outInl );	// only don't output to an .inl file for scalar impls
+	}
+
+	// smoothstep
+	{
+		outHeader += Gen_GetDocSmoothstep( fullTypeName );
+		outHeader += "inline " + fullTypeName + " smoothstep( const " + fullTypeName + "& low, const " + fullTypeName + "& high, const " + fullTypeName + "& x )";
+		if ( isVector ) {
+			outHeader += ";\n";
+			outHeader += "\n";
+
+			*outInl += fullTypeName + " smoothstep( const " + fullTypeName + "& low, const " + fullTypeName + "& high, const " + fullTypeName + "& x )\n";
+			*outInl += "{\n";
+			*outInl += "\treturn " + fullTypeName + "(\n";
+			for ( uint32_t i = 0; i < numComponents; i++ ) {
+				std::string componentStr = std::to_string( i );
+
+				*outInl += "\t\tsmoothstep( low[" + componentStr + "], high[" + componentStr + "], x[" + componentStr + "] )";
+
+				if ( i != numComponents - 1 ) {
+					*outInl += ",";
+				}
+
+				*outInl += "\n";
+			}
+			*outInl += "\t);\n";
+			*outInl += "}\n";
+			*outInl += "\n";
+		} else {
+			outHeader += "\n";
+			outHeader += "{\n";
+			outHeader += "\t" + fullTypeName + " t = saturate( ( x - low ) / ( high - low ) );\n";
+			outHeader += "\treturn t * t * ( " + threeStr + " - " + twoStr + " * t );\n";
+			outHeader += "}\n";
+			outHeader += "\n";
+		}
+	}
+
+	// smootherstep
+	{
+		outHeader += Gen_GetDocSmootherstep( fullTypeName );
+		outHeader += "inline " + fullTypeName + " smootherstep( const " + fullTypeName + "& low, const " + fullTypeName + "& high, const " + fullTypeName + "& x )";
+		if ( isVector ) {
+			outHeader += ";\n";
+			outHeader += "\n";
+
+			*outInl += fullTypeName + " smootherstep( const " + fullTypeName + "& low, const " + fullTypeName + "& high, const " + fullTypeName + "& x )\n";
+			*outInl += "{\n";
+			*outInl += "\treturn " + fullTypeName + "(\n";
+			for ( uint32_t i = 0; i < numComponents; i++ ) {
+				std::string componentStr = std::to_string( i );
+
+				*outInl += "\t\tsmootherstep( low[" + componentStr + "], high[" + componentStr + "], x[" + componentStr + "] )";
+
+				if ( i != numComponents - 1 ) {
+					*outInl += ",";
+				}
+
+				*outInl += "\n";
+			}
+			*outInl += "\t);\n";
+			*outInl += "}\n";
+			*outInl += "\n";
+		} else {
+			outHeader += "\n";
+			outHeader += "{\n";
+			outHeader += "\t" + fullTypeName + " t = saturate( ( x - low ) / ( high - low ) );\n";
+			outHeader += "\treturn t * t * t * ( t * ( t * " + sixStr + " - " + fifteenStr + " ) + " + tenStr + " );\n";
+			outHeader += "}\n";
+			outHeader += "\n";
+		}
 	}
 }
 

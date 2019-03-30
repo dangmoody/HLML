@@ -200,6 +200,23 @@ TEMPER_TEST( TestAngle_double2 )
 	TEMPER_PASS();
 }
 
+TEMPER_TEST( TestDistance_double2 )
+{
+	double answerDistanceSqr = 104.000000;
+	double answerDistance    = 10.198039;
+
+	double2 a = double2( 7.000000, 4.000000 );
+	double2 b = double2( 17.000000, 6.000000 );
+
+	double distSqr = distancesqr( a, b );
+	double dist    = distance( a, b );
+
+	TEMPER_EXPECT_TRUE( doubleeq( distSqr, answerDistanceSqr ) );
+	TEMPER_EXPECT_TRUE( doubleeq( dist, answerDistance ) );
+
+	TEMPER_PASS();
+}
+
 TEMPER_TEST( TestSaturate_double2 )
 {
 	double2 answer = double2( 0.000000, 1.000000 );
@@ -225,25 +242,49 @@ TEMPER_TEST( TestLerp_double2 )
 	TEMPER_PASS();
 }
 
+TEMPER_TEST( TestSmoothstep_double2 )
+{
+	double2 answerInRangeSmoothstep   = double2( 0.104000, 0.104000 );
+	double2 answerClampedSmoothstep   = double2( 1.000000, 1.000000 );
+	double2 answerInRangeSmootherstep = double2( 0.057920, 0.057920 );
+	double2 answerClampedSmootherstep = double2( 1.000000, 1.000000 );
+	double2 answer;
+
+	double2 low  = double2( 0.000000, 0.000000 );
+	double2 high = double2( 1.000000, 1.000000 );
+
+	answer = smoothstep( low, high, double2( 0.200000, 0.200000 ) );
+	TEMPER_EXPECT_TRUE( answer == answerInRangeSmoothstep );
+
+	answer = smoothstep( low, high, double2( 1.200000, 1.200000 ) );
+	TEMPER_EXPECT_TRUE( answer == answerClampedSmoothstep );
+
+	answer = smootherstep( low, high, double2( 0.200000, 0.200000 ) );
+	TEMPER_EXPECT_TRUE( answer == answerInRangeSmootherstep );
+
+	answer = smootherstep( low, high, double2( 1.200000, 1.200000 ) );
+	TEMPER_EXPECT_TRUE( answer == answerClampedSmootherstep );
+
+	TEMPER_PASS();
+}
+
 TEMPER_SUITE( Test_double2 )
 {
 	TEMPER_RUN_TEST( TestAssignment_double2 );
 	TEMPER_RUN_TEST( TestArray_double2 );
-
 	TEMPER_RUN_TEST( TestArithmeticAddition_double2 );
 	TEMPER_RUN_TEST( TestArithmeticSubtraction_double2 );
 	TEMPER_RUN_TEST( TestArithmeticMultiplication_double2 );
 	TEMPER_RUN_TEST( TestArithmeticDivision_double2 );
-
 	TEMPER_RUN_TEST( TestIncrement_double2 );
 	TEMPER_RUN_TEST( TestDecrement_double2 );
-
 	TEMPER_RUN_TEST( TestRelational_double2 );
-
 	TEMPER_RUN_TEST( TestLength_double2 );
 	TEMPER_RUN_TEST( TestNormalized_double2 );
 	TEMPER_RUN_TEST( TestDot_double2 );
 	TEMPER_RUN_TEST( TestAngle_double2 );
+	TEMPER_RUN_TEST( TestDistance_double2 );
 	TEMPER_RUN_TEST( TestSaturate_double2 );
 	TEMPER_RUN_TEST( TestLerp_double2 );
+	TEMPER_RUN_TEST( TestSmoothstep_double2 );
 };

@@ -181,7 +181,7 @@ TEMPER_TEST( TestRelational_int4 )
 	TEMPER_PASS();
 }
 
-TEMPER_TEST( TestBitwiseAnd_int4 )
+TEMPER_TEST( TestBitwise_And_int4 )
 {
 	int4 a  = int4( 21, 21, 21, 21 );
 	int4 b  = int4( 7, 7, 7, 7 );
@@ -193,7 +193,7 @@ TEMPER_TEST( TestBitwiseAnd_int4 )
 	TEMPER_PASS();
 }
 
-TEMPER_TEST( TestBitwiseOr_int4 )
+TEMPER_TEST( TestBitwise_Or_int4 )
 {
 	int4 a  = int4( 21, 21, 21, 21 );
 	int4 b  = int4( 7, 7, 7, 7 );
@@ -205,7 +205,7 @@ TEMPER_TEST( TestBitwiseOr_int4 )
 	TEMPER_PASS();
 }
 
-TEMPER_TEST( TestBitwiseXor_int4 )
+TEMPER_TEST( TestBitwise_Xor_int4 )
 {
 	int4 a  = int4( 21, 21, 21, 21 );
 	int4 b  = int4( 7, 7, 7, 7 );
@@ -217,7 +217,7 @@ TEMPER_TEST( TestBitwiseXor_int4 )
 	TEMPER_PASS();
 }
 
-TEMPER_TEST( TestBitwiseShiftLeft_int4 )
+TEMPER_TEST( TestBitwise_ShiftLeft_int4 )
 {
 	int4 a  = int4( 1, 1, 1, 1 );
 	int4 b  = int4( 2, 2, 2, 2 );
@@ -229,7 +229,7 @@ TEMPER_TEST( TestBitwiseShiftLeft_int4 )
 	TEMPER_PASS();
 }
 
-TEMPER_TEST( TestBitwiseShiftRight_int4 )
+TEMPER_TEST( TestBitwise_ShiftRight_int4 )
 {
 	int4 a  = int4( 16, 16, 16, 16 );
 	int4 b  = int4( 4, 4, 4, 4 );
@@ -292,26 +292,20 @@ TEMPER_SUITE( Test_int4 )
 {
 	TEMPER_RUN_TEST( TestAssignment_int4 );
 	TEMPER_RUN_TEST( TestArray_int4 );
-
 	TEMPER_RUN_TEST( TestArithmeticAddition_int4 );
 	TEMPER_RUN_TEST( TestArithmeticSubtraction_int4 );
 	TEMPER_RUN_TEST( TestArithmeticMultiplication_int4 );
 	TEMPER_RUN_TEST( TestArithmeticDivision_int4 );
-
 	TEMPER_RUN_TEST( TestIncrement_int4 );
 	TEMPER_RUN_TEST( TestDecrement_int4 );
-
 	TEMPER_RUN_TEST( TestRelational_int4 );
-
-	TEMPER_RUN_TEST( TestBitwiseAnd_int4 );
-	TEMPER_RUN_TEST( TestBitwiseOr_int4 );
-	TEMPER_RUN_TEST( TestBitwiseXor_int4 );
+	TEMPER_RUN_TEST( TestBitwise_And_int4 );
+	TEMPER_RUN_TEST( TestBitwise_Or_int4 );
+	TEMPER_RUN_TEST( TestBitwise_Xor_int4 );
+	TEMPER_RUN_TEST( TestBitwise_ShiftLeft_int4 );
+	TEMPER_RUN_TEST( TestBitwise_ShiftRight_int4 );
 	TEMPER_RUN_TEST( TestBitwiseUnary_int4 );
-	TEMPER_RUN_TEST( TestBitwiseShiftLeft_int4 );
-	TEMPER_RUN_TEST( TestBitwiseShiftRight_int4 );
-
 	TEMPER_RUN_TEST( TestLength_int4 );
 	TEMPER_RUN_TEST( TestDot_int4 );
-
 	TEMPER_RUN_TEST( TestPacking_int4 );
 };

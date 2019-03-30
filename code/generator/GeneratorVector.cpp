@@ -1,4 +1,4 @@
-#include "VectorGenerator.h"
+#include "GeneratorVector.h"
 
 #include "gen_doc_common.h"
 
@@ -7,7 +7,7 @@
 #include <assert.h>
 #include <string>
 
-void VectorGenerator::Generate( const genType_t type, const uint32_t numComponents ) {
+bool GeneratorVector::Generate( const genType_t type, const uint32_t numComponents ) {
 	assert( numComponents >= GEN_COMPONENT_COUNT_MIN );
 	assert( numComponents <= GEN_COMPONENT_COUNT_MAX );
 
@@ -109,21 +109,28 @@ void VectorGenerator::Generate( const genType_t type, const uint32_t numComponen
 
 	m_codeHeader += "#include \"" + m_fullTypeName + ".inl\"";
 
-	FS_WriteToFile( ( GEN_OUT_GEN_FOLDER_PATH + m_fullTypeName + ".h" ).c_str(), m_codeHeader.c_str(), m_codeHeader.size() );
-	FS_WriteToFile( ( GEN_OUT_GEN_FOLDER_PATH + m_fullTypeName + ".inl" ).c_str(), m_codeInl.c_str(), m_codeInl.size() );
+	if ( !FS_WriteToFile( ( GEN_OUT_GEN_FOLDER_PATH + m_fullTypeName + ".h" ).c_str(), m_codeHeader.c_str(), m_codeHeader.size() ) ) {
+		return false;
+	}
+
+	if ( !FS_WriteToFile( ( GEN_OUT_GEN_FOLDER_PATH + m_fullTypeName + ".inl" ).c_str(), m_codeInl.c_str(), m_codeInl.size() ) ) {
+		return false;
+	}
+
+	return true;
 }
 
 #ifdef _DEBUG
-void VectorGenerator::PrintHeader() const {
+void GeneratorVector::PrintHeader() const {
 	printf( "%s\n", m_codeHeader.c_str() );
 }
 
-void VectorGenerator::PrintInl() const {
+void GeneratorVector::PrintInl() const {
 	printf( "%s\n", m_codeInl.c_str() );
 }
 #endif
 
-void VectorGenerator::HeaderGenerateMembersStruct( const std::string& componentNames ) {
+void GeneratorVector::HeaderGenerateMembersStruct( const std::string& componentNames ) {
 	m_codeHeader += "\t\tstruct\n";
 	m_codeHeader += "\t\t{\n";
 
@@ -135,7 +142,7 @@ void VectorGenerator::HeaderGenerateMembersStruct( const std::string& componentN
 	m_codeHeader += "\n";
 }
 
-void VectorGenerator::GenerateConstructors() {
+void GeneratorVector::GenerateConstructors() {
 	// default ctor
 	{
 		m_codeHeader += GetDocCtorDefault();
@@ -219,7 +226,7 @@ void VectorGenerator::GenerateConstructors() {
 	m_codeHeader += "\n";
 }
 
-void VectorGenerator::GenerateOperatorsAssignment() {
+void GeneratorVector::GenerateOperatorsAssignment() {
 	for ( uint32_t i = GEN_COMPONENT_COUNT_MIN; i <= GEN_COMPONENT_COUNT_MAX; i++ ) {
 		std::string componentStr = std::to_string( i );
 
@@ -236,7 +243,7 @@ void VectorGenerator::GenerateOperatorsAssignment() {
 	}
 }
 
-void VectorGenerator::GenerateOperatorsArray() {
+void GeneratorVector::GenerateOperatorsArray() {
 	m_codeHeader += GetDocOperatorArray();
 	m_codeHeader += "\tinline const " + m_memberTypeString + "& operator[]( const uint32_t index ) const;\n";
 	m_codeHeader += "\n";
@@ -260,7 +267,7 @@ void VectorGenerator::GenerateOperatorsArray() {
 	m_codeInl += "\n";
 }
 
-void VectorGenerator::GenerateOperatorsEquality() {
+void GeneratorVector::GenerateOperatorsEquality() {
 	// operator==
 	{
 		m_codeHeader += Gen_GetDocOperatorEquals( m_fullTypeName );
@@ -293,7 +300,7 @@ void VectorGenerator::GenerateOperatorsEquality() {
 	Gen_OperatorNotEquals( m_type, 1, m_numComponents, m_codeHeader, m_codeInl );
 }
 
-void VectorGenerator::GenerateSwizzleFuncs() {
+void GeneratorVector::GenerateSwizzleFuncs() {
 	m_codeHeader += "\t// swizzle funcs\n";
 
 	char funcName[GEN_COMPONENT_COUNT_MAX + 1];
@@ -334,7 +341,7 @@ void VectorGenerator::GenerateSwizzleFuncs() {
 	}
 }
 
-std::string VectorGenerator::GetDocStruct() const {
+std::string GeneratorVector::GetDocStruct() const {
 	std::string componentsStr;
 	for ( uint32_t i = 0; i < m_numComponents; i++ ) {
 		componentsStr += GEN_COMPONENT_NAMES_VECTOR[i];
@@ -351,15 +358,15 @@ std::string VectorGenerator::GetDocStruct() const {
 		"/// Components are also stored as elements in an array via a union.\n";
 }
 
-std::string VectorGenerator::GetDocCtorDefault( void ) const {
+std::string GeneratorVector::GetDocCtorDefault( void ) const {
 	return "\t/// Default constructor.  Initializes all values to zero.\n";
 }
 
-std::string VectorGenerator::GetDocScalar() const {
+std::string GeneratorVector::GetDocScalar() const {
 	return "\t/// Initializes all components of the vector to the given scalar value.\n";
 }
 
-std::string VectorGenerator::GetDocCtorMemberwise() const {
+std::string GeneratorVector::GetDocCtorMemberwise() const {
 	std::string componentsStr;
 	for ( uint32_t i = 0; i < m_numComponents; i++ ) {
 		componentsStr += GEN_COMPONENT_NAMES_VECTOR[i];
@@ -368,15 +375,15 @@ std::string VectorGenerator::GetDocCtorMemberwise() const {
 	return std::string( "\t/// Sets the " ) + componentsStr + " members of the vector to the corresponding parameters.\n";
 }
 
-std::string VectorGenerator::GetDocCtorCopy( void ) const {
+std::string GeneratorVector::GetDocCtorCopy( void ) const {
 	return "\t/// Copy constructor.  Copies the elements of the given vector via memcpy.\n";
 }
 
-std::string VectorGenerator::GetDocOperatorAssignment() const {
+std::string GeneratorVector::GetDocOperatorAssignment() const {
 	return "\t/// Copies the elements of the given vector via a single memcpy.\n";
 }
 
-std::string VectorGenerator::GetDocOperatorArray() const {
+std::string GeneratorVector::GetDocOperatorArray() const {
 	return "\t/// \\brief Returns the vector component at the given index.\n" \
 		"\t/// Index CANNOT be lower than 0 or higher than " + std::to_string( m_numComponents - 1 ) + ".\n";
 }

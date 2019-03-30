@@ -258,21 +258,43 @@ TEMPER_TEST( TestLerp_double4 )
 	TEMPER_PASS();
 }
 
+TEMPER_TEST( TestSmoothstep_double4 )
+{
+	double4 answerInRangeSmoothstep   = double4( 0.104000, 0.104000, 0.104000, 0.104000 );
+	double4 answerClampedSmoothstep   = double4( 1.000000, 1.000000, 1.000000, 1.000000 );
+	double4 answerInRangeSmootherstep = double4( 0.057920, 0.057920, 0.057920, 0.057920 );
+	double4 answerClampedSmootherstep = double4( 1.000000, 1.000000, 1.000000, 1.000000 );
+	double4 answer;
+
+	double4 low  = double4( 0.000000, 0.000000, 0.000000, 0.000000 );
+	double4 high = double4( 1.000000, 1.000000, 1.000000, 1.000000 );
+
+	answer = smoothstep( low, high, double4( 0.200000, 0.200000, 0.200000, 0.200000 ) );
+	TEMPER_EXPECT_TRUE( answer == answerInRangeSmoothstep );
+
+	answer = smoothstep( low, high, double4( 1.200000, 1.200000, 1.200000, 1.200000 ) );
+	TEMPER_EXPECT_TRUE( answer == answerClampedSmoothstep );
+
+	answer = smootherstep( low, high, double4( 0.200000, 0.200000, 0.200000, 0.200000 ) );
+	TEMPER_EXPECT_TRUE( answer == answerInRangeSmootherstep );
+
+	answer = smootherstep( low, high, double4( 1.200000, 1.200000, 1.200000, 1.200000 ) );
+	TEMPER_EXPECT_TRUE( answer == answerClampedSmootherstep );
+
+	TEMPER_PASS();
+}
+
 TEMPER_SUITE( Test_double4 )
 {
 	TEMPER_RUN_TEST( TestAssignment_double4 );
 	TEMPER_RUN_TEST( TestArray_double4 );
-
 	TEMPER_RUN_TEST( TestArithmeticAddition_double4 );
 	TEMPER_RUN_TEST( TestArithmeticSubtraction_double4 );
 	TEMPER_RUN_TEST( TestArithmeticMultiplication_double4 );
 	TEMPER_RUN_TEST( TestArithmeticDivision_double4 );
-
 	TEMPER_RUN_TEST( TestIncrement_double4 );
 	TEMPER_RUN_TEST( TestDecrement_double4 );
-
 	TEMPER_RUN_TEST( TestRelational_double4 );
-
 	TEMPER_RUN_TEST( TestLength_double4 );
 	TEMPER_RUN_TEST( TestNormalized_double4 );
 	TEMPER_RUN_TEST( TestDot_double4 );
@@ -280,4 +302,5 @@ TEMPER_SUITE( Test_double4 )
 	TEMPER_RUN_TEST( TestAngle_double4 );
 	TEMPER_RUN_TEST( TestSaturate_double4 );
 	TEMPER_RUN_TEST( TestLerp_double4 );
+	TEMPER_RUN_TEST( TestSmoothstep_double4 );
 };

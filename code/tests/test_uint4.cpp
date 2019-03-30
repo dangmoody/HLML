@@ -181,7 +181,7 @@ TEMPER_TEST( TestRelational_uint4 )
 	TEMPER_PASS();
 }
 
-TEMPER_TEST( TestBitwiseAnd_uint4 )
+TEMPER_TEST( TestBitwise_And_uint4 )
 {
 	uint4 a  = uint4( 21U, 21U, 21U, 21U );
 	uint4 b  = uint4( 7U, 7U, 7U, 7U );
@@ -193,7 +193,7 @@ TEMPER_TEST( TestBitwiseAnd_uint4 )
 	TEMPER_PASS();
 }
 
-TEMPER_TEST( TestBitwiseOr_uint4 )
+TEMPER_TEST( TestBitwise_Or_uint4 )
 {
 	uint4 a  = uint4( 21U, 21U, 21U, 21U );
 	uint4 b  = uint4( 7U, 7U, 7U, 7U );
@@ -205,7 +205,7 @@ TEMPER_TEST( TestBitwiseOr_uint4 )
 	TEMPER_PASS();
 }
 
-TEMPER_TEST( TestBitwiseXor_uint4 )
+TEMPER_TEST( TestBitwise_Xor_uint4 )
 {
 	uint4 a  = uint4( 21U, 21U, 21U, 21U );
 	uint4 b  = uint4( 7U, 7U, 7U, 7U );
@@ -217,7 +217,7 @@ TEMPER_TEST( TestBitwiseXor_uint4 )
 	TEMPER_PASS();
 }
 
-TEMPER_TEST( TestBitwiseShiftLeft_uint4 )
+TEMPER_TEST( TestBitwise_ShiftLeft_uint4 )
 {
 	uint4 a  = uint4( 1U, 1U, 1U, 1U );
 	uint4 b  = uint4( 2U, 2U, 2U, 2U );
@@ -229,7 +229,7 @@ TEMPER_TEST( TestBitwiseShiftLeft_uint4 )
 	TEMPER_PASS();
 }
 
-TEMPER_TEST( TestBitwiseShiftRight_uint4 )
+TEMPER_TEST( TestBitwise_ShiftRight_uint4 )
 {
 	uint4 a  = uint4( 16U, 16U, 16U, 16U );
 	uint4 b  = uint4( 4U, 4U, 4U, 4U );
@@ -282,25 +282,19 @@ TEMPER_SUITE( Test_uint4 )
 {
 	TEMPER_RUN_TEST( TestAssignment_uint4 );
 	TEMPER_RUN_TEST( TestArray_uint4 );
-
 	TEMPER_RUN_TEST( TestArithmeticAddition_uint4 );
 	TEMPER_RUN_TEST( TestArithmeticSubtraction_uint4 );
 	TEMPER_RUN_TEST( TestArithmeticMultiplication_uint4 );
 	TEMPER_RUN_TEST( TestArithmeticDivision_uint4 );
-
 	TEMPER_RUN_TEST( TestIncrement_uint4 );
 	TEMPER_RUN_TEST( TestDecrement_uint4 );
-
 	TEMPER_RUN_TEST( TestRelational_uint4 );
-
-	TEMPER_RUN_TEST( TestBitwiseAnd_uint4 );
-	TEMPER_RUN_TEST( TestBitwiseOr_uint4 );
-	TEMPER_RUN_TEST( TestBitwiseXor_uint4 );
+	TEMPER_RUN_TEST( TestBitwise_And_uint4 );
+	TEMPER_RUN_TEST( TestBitwise_Or_uint4 );
+	TEMPER_RUN_TEST( TestBitwise_Xor_uint4 );
+	TEMPER_RUN_TEST( TestBitwise_ShiftLeft_uint4 );
+	TEMPER_RUN_TEST( TestBitwise_ShiftRight_uint4 );
 	TEMPER_RUN_TEST( TestBitwiseUnary_uint4 );
-	TEMPER_RUN_TEST( TestBitwiseShiftLeft_uint4 );
-	TEMPER_RUN_TEST( TestBitwiseShiftRight_uint4 );
-
 	TEMPER_RUN_TEST( TestLength_uint4 );
-
 	TEMPER_RUN_TEST( TestPacking_uint4 );
 };

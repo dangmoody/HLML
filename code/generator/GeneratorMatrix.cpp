@@ -1,10 +1,10 @@
-#include "MatrixGenerator.h"
+#include "GeneratorMatrix.h"
 
 #include "gen_doc_common.h"
 
 #include "FileIO.h"
 
-void MatrixGenerator::Generate( const genType_t type, const uint32_t numRows, const uint32_t numCols ) {
+bool GeneratorMatrix::Generate( const genType_t type, const uint32_t numRows, const uint32_t numCols ) {
 	assert( numRows >= GEN_COMPONENT_COUNT_MIN );
 	assert( numRows <= GEN_COMPONENT_COUNT_MAX );
 	assert( numCols >= GEN_COMPONENT_COUNT_MIN );
@@ -83,21 +83,28 @@ void MatrixGenerator::Generate( const genType_t type, const uint32_t numRows, co
 
 	m_codeHeader += "#include \"" + m_fullTypeName + ".inl\"";
 
-	FS_WriteToFile( ( GEN_OUT_GEN_FOLDER_PATH + m_fullTypeName + ".h" ).c_str(), m_codeHeader.c_str(), m_codeHeader.size() );
-	FS_WriteToFile( ( GEN_OUT_GEN_FOLDER_PATH + m_fullTypeName + ".inl" ).c_str(), m_codeInl.c_str(), m_codeInl.size() );
+	if ( !FS_WriteToFile( ( GEN_OUT_GEN_FOLDER_PATH + m_fullTypeName + ".h" ).c_str(), m_codeHeader.c_str(), m_codeHeader.size() ) ) {
+		return false;
+	}
+
+	if ( !FS_WriteToFile( ( GEN_OUT_GEN_FOLDER_PATH + m_fullTypeName + ".inl" ).c_str(), m_codeInl.c_str(), m_codeInl.size() ) ) {
+		return false;
+	}
+
+	return true;
 }
 
 #ifdef _DEBUG
-void MatrixGenerator::PrintHeader() const {
+void GeneratorMatrix::PrintHeader() const {
 	printf( "%s\n", m_codeHeader.c_str() );
 }
 
-void MatrixGenerator::PrintInl() const {
+void GeneratorMatrix::PrintInl() const {
 	printf( "%s\n", m_codeInl.c_str() );
 }
 #endif
 
-void MatrixGenerator::GenerateConstructors() {
+void GeneratorMatrix::GenerateConstructors() {
 	// default ctor
 	{
 		m_codeHeader += GetDocCtorDefault();
@@ -289,7 +296,7 @@ void MatrixGenerator::GenerateConstructors() {
 	m_codeHeader += "\n";
 }
 
-void MatrixGenerator::GenerateOperatorsAssignment() {
+void GeneratorMatrix::GenerateOperatorsAssignment() {
 	// assignment operator
 	m_codeHeader += GetDocOperatorAssignment();
 	m_codeHeader += "\tinline " + m_fullTypeName + " operator=( const " + m_fullTypeName + "& other );\n";
@@ -303,7 +310,7 @@ void MatrixGenerator::GenerateOperatorsAssignment() {
 	m_codeInl += "\n";
 }
 
-void MatrixGenerator::GenerateOperatorsArray() {
+void GeneratorMatrix::GenerateOperatorsArray() {
 	m_codeHeader += GetDocOperatorArray();
 	m_codeHeader += "\tinline " + m_vectorMemberTypeString + "& operator[]( const uint32_t index );\n";
 	m_codeHeader += "\n";
@@ -326,7 +333,7 @@ void MatrixGenerator::GenerateOperatorsArray() {
 	m_codeInl += "\n";
 }
 
-void MatrixGenerator::GenerateOperatorsEquality() {
+void GeneratorMatrix::GenerateOperatorsEquality() {
 	// operator==
 	{
 		m_codeHeader += Gen_GetDocOperatorEquals( m_fullTypeName );
@@ -351,45 +358,45 @@ void MatrixGenerator::GenerateOperatorsEquality() {
 	Gen_OperatorNotEquals( m_type, m_numRows, m_numCols, m_codeHeader, m_codeInl );
 }
 
-std::string MatrixGenerator::GetDocStruct() const {
+std::string GeneratorMatrix::GetDocStruct() const {
 	return "/// A matrix of " + m_numRowsStr + " " + m_vectorMemberTypeString + "s.\n";
 }
 
-std::string MatrixGenerator::GetDocCtorDefault() const {
+std::string GeneratorMatrix::GetDocCtorDefault() const {
 	return "\t/// Default constructor.  Sets the matrix to an identity matrix.\n";
 }
 
-std::string MatrixGenerator::GetDocCtorDiagonalScalar() const {
+std::string GeneratorMatrix::GetDocCtorDiagonalScalar() const {
 	return "\t/// \\brief Sets each of the diagonal values of the matrix to the given scalar value.\n" \
 		"\t/// Setting the scalar to 1 will give an identity matrix.\n";
 }
 
-std::string MatrixGenerator::GetDocCtorDiagonalVector() const {
+std::string GeneratorMatrix::GetDocCtorDiagonalVector() const {
 	return "\t/// \\brief Sets the diagonal values of the matrix to the corresponding components of the given vector.\n" \
 		"\t/// Setting each component of the vector to 1 will give an identity matrix.\n";
 }
 
-std::string MatrixGenerator::GetDocCtorRow() const {
+std::string GeneratorMatrix::GetDocCtorRow() const {
 	return "\t/// Sets each row of the matrix to the given vectors.\n";
 }
 
-std::string MatrixGenerator::GetDocCtorRowArray() const {
+std::string GeneratorMatrix::GetDocCtorRowArray() const {
 	return "\t/// Sets each row of the matrix to the corresponding vector in the array.\n";
 }
 
-std::string MatrixGenerator::GetDocCtorRowsAndCols() const {
+std::string GeneratorMatrix::GetDocCtorRowsAndCols() const {
 	return "\t/// Sets each component of the vector to the corresponding scalar value (row major).\n";
 }
 
-std::string MatrixGenerator::GetDocCtorCopy() const {
+std::string GeneratorMatrix::GetDocCtorCopy() const {
 	return "\t/// Copy constructor.  Sets each row of the matrix to the rows in the other matrix.\n";
 }
 
-std::string MatrixGenerator::GetDocOperatorAssignment() const {
+std::string GeneratorMatrix::GetDocOperatorAssignment() const {
 	return "\t/// Copies each row of the given matrix via a single memcpy.\n";
 }
 
-std::string MatrixGenerator::GetDocOperatorArray() const {
+std::string GeneratorMatrix::GetDocOperatorArray() const {
 	return "\t/// \\brief Returns the row at the given index of the matrix.\n" \
 		"\t/// Index CANNOT be lower than 0 or higher than " + std::to_string( m_numRows - 1 ) + ".\n";
 }

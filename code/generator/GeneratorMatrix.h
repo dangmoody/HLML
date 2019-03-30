@@ -2,12 +2,12 @@
 
 #include "gen_common.h"
 
-class MatrixGenerator {
+class GeneratorMatrix {
 public:
-					MatrixGenerator() {}
-					~MatrixGenerator() {}
+					GeneratorMatrix() {}
+					~GeneratorMatrix() {}
 
-	void			Generate( const genType_t type, const uint32_t numRows, const uint32_t numCols );
+	bool			Generate( const genType_t type, const uint32_t numRows, const uint32_t numCols );
 
 #ifdef _DEBUG
 	void			PrintHeader() const;

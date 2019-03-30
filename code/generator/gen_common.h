@@ -178,12 +178,18 @@ inline std::string	Gen_GetFuncNameFloateq( const genType_t type ) { return ( typ
 
 // generic helper functions that are typical of maths libraries
 extern void			Gen_Floateq( const genType_t type, std::string& outHeader );
+extern void			Gen_IsInf( const genType_t type, std::string& outHeader );
+extern void			Gen_IsNaN( const genType_t type, std::string& outHeader );
+extern void			Gen_Sign( const genType_t type, std::string& outHeader );
+
 extern void			Gen_Radians( const genType_t type, std::string& outHeader );
 extern void			Gen_Degrees( const genType_t type, std::string& outHeader );
 extern void			Gen_MinMax( const genType_t type, std::string& outHeader );
 extern void			Gen_Clamp( const genType_t type, std::string& outHeader );
-extern void			Gen_Saturate( const genType_t type, const uint32_t numComponents, std::string& outHeader, std::string& outInl );
-extern void			Gen_Lerp( const genType_t type, const uint32_t numComponents, std::string& outHeader, std::string& outInl );
+
+extern void			Gen_Saturate( const genType_t type, const uint32_t numComponents, std::string& outHeader, std::string* outInl );
+extern void			Gen_Lerp( const genType_t type, const uint32_t numComponents, std::string& outHeader, std::string* outInl );
+extern void			Gen_Smoothstep( const genType_t type, const uint32_t numComponents, std::string& outHeader, std::string* outInl );
 
 // functions that are guaranteed to be the same across vectors and matrices
 extern void			Gen_OperatorsIncrement( const genType_t type, const uint32_t numRows, const uint32_t numCols, std::string& outHeader, std::string& outInl );

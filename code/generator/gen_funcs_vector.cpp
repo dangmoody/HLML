@@ -40,6 +40,16 @@ static std::string GetDocAngle( const std::string& fullTypeName ) {
 		"/// \\brief Returns the angle in degrees between the two vectors.\n";
 }
 
+static std::string GetDocDistanceSq( const std::string& fullTypeName ) {
+	return "/// \\relates " + fullTypeName + "\n" + \
+		"/// \\brief Returns the squared distance between the two vectors.\n";
+}
+
+static std::string GetDocDistance( const std::string& fullTypeName ) {
+	return "/// \\relates " + fullTypeName + "\n" + \
+		"/// \\brief Returns the distance between the two vectors.\n";
+}
+
 static std::string GetDocPack( const std::string& fullTypeName ) {
 	return "/// \\relates " + fullTypeName + "\n" + \
 		"/// \\brief Returns a 32 bit integer containing each component of the vector (starting with x) at each byte.\n";
@@ -257,6 +267,48 @@ void Gen_VectorAngle( const genType_t type, const uint32_t numComponents, std::s
 	outInl += "\treturn degrees( " + acosString + "( dot( normalized( lhs ), normalized( rhs ) ) ) );\n";
 	outInl += "}\n";
 	outInl += "\n";
+}
+
+void Gen_VectorDistance( const genType_t type, const uint32_t numComponents, std::string& outHeader, std::string& outInl ) {
+	assert( numComponents >= GEN_COMPONENT_COUNT_MIN );
+	assert( numComponents <= GEN_COMPONENT_COUNT_MAX );
+
+	if ( type == GEN_TYPE_BOOL ) {
+		return;
+	}
+
+	if ( numComponents > 3 ) {
+		return;
+	}
+
+	std::string fullTypeName = Gen_GetFullTypeName( type, 1, numComponents );
+	std::string returnTypeString = Gen_GetTypeString( Gen_GetSupportedFloatingPointType( type ) );
+
+	// distancesq
+	{
+		outHeader += GetDocDistanceSq( fullTypeName );
+		outHeader += "inline " + returnTypeString + " distancesqr( const " + fullTypeName + "& lhs, const " + fullTypeName + "& rhs );\n";
+		outHeader += "\n";
+
+		outInl += returnTypeString + " distancesqr( const " + fullTypeName + "& lhs, const " + fullTypeName + "& rhs )\n";
+		outInl += "{\n";
+		outInl += "\treturn lengthsqr( lhs - rhs );\n";
+		outInl += "}\n";
+		outInl += "\n";
+	}
+
+	// distance
+	{
+		outHeader += GetDocDistance( fullTypeName );
+		outHeader += "inline " + returnTypeString + " distance( const " + fullTypeName + "& lhs, const " + fullTypeName + "& rhs );\n";
+		outHeader += "\n";
+
+		outInl += returnTypeString + " distance( const " + fullTypeName + "& lhs, const " + fullTypeName + "& rhs )\n";
+		outInl += "{\n";
+		outInl += "\treturn length( lhs - rhs );\n";
+		outInl += "}\n";
+		outInl += "\n";
+	}
 }
 
 void Gen_VectorPack( const genType_t type, const uint32_t numComponents, std::string& outHeader, std::string& outInl ) {

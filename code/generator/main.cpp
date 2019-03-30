@@ -22,10 +22,12 @@ along with hlml.  If not, see <http://www.gnu.org/licenses/>.
 ===========================================================================
 */
 
-#include "VectorGenerator.h"
-#include "MatrixGenerator.h"
-#include "TestsGeneratorVector.h"
-#include "TestsGeneratorMatrix.h"
+#include "GeneratorVector.h"
+#include "GeneratorMatrix.h"
+
+#include "GeneratorScalarTests.h"
+#include "GeneratorVectorTests.h"
+#include "GeneratorMatrixTests.h"
 
 #include "gen_funcs_vector.h"
 #include "gen_funcs_matrix.h"
@@ -41,18 +43,14 @@ static bool GenerateMainHeaderFuncs( void ) {
 	char fileNameHeader[1024];
 	sprintf( fileNameHeader, "%s%s.h", GEN_OUT_GEN_FOLDER_PATH, GEN_FILENAME_FUNCTIONS_SCALAR );
 
-	char fileNameInl[1024];
-	sprintf( fileNameInl, "%s%s.inl", GEN_OUT_GEN_FOLDER_PATH, GEN_FILENAME_FUNCTIONS_SCALAR );
-
 	std::string contentHeader = GEN_FILE_HEADER;
 	contentHeader += "#pragma once\n";
 	contentHeader += "\n";
 	contentHeader += "#include \"../" + std::string( GEN_HEADER_CONSTANTS ) + "\"\n";
 	contentHeader += "\n";
 	contentHeader += "#include <math.h>\n";
+	contentHeader += "#include <stdint.h>\n";
 	contentHeader += "\n";
-
-	std::string contentInl = GEN_FILE_HEADER;
 
 	for ( uint32_t typeIndex = 0; typeIndex < GEN_TYPE_COUNT; typeIndex++ ) {
 		genType_t type = static_cast<genType_t>( typeIndex );
@@ -66,38 +64,41 @@ static bool GenerateMainHeaderFuncs( void ) {
 		printf( "Generating %s...", memberTypeString.c_str() );
 
 		contentHeader += "// " + memberTypeString + "\n";
-		contentInl += "// " + memberTypeString + "\n";
 
+		// scalar only funcs
 		Gen_Floateq( type, contentHeader );
+
+		Gen_IsInf( type, contentHeader );
+		Gen_IsNaN( type, contentHeader );
+
+		Gen_Sign( type, contentHeader );
+
 		Gen_Radians( type, contentHeader );
 		Gen_Degrees( type, contentHeader );
 
 		Gen_MinMax( type, contentHeader );
 		Gen_Clamp( type, contentHeader );
-		Gen_Saturate( type, 1, contentHeader, contentInl );
-		Gen_Lerp( type, 1, contentHeader, contentInl );
+
+		// generic/scalar/vector funcs
+		Gen_Saturate( type, 1, contentHeader, nullptr );
+
+		Gen_Lerp( type, 1, contentHeader, nullptr );
+		Gen_Smoothstep( type, 1, contentHeader, nullptr );
 
 		contentHeader += "\n";
-		contentInl += "\n";
 
 		printf( "OK.\n" );
 	}
-
-//	contentHeader += "#include \"" + std::string( GEN_FILENAME_FUNCTIONS_SCALAR ) + ".inl\"\n";
 
 	if ( !FS_WriteToFile( fileNameHeader, contentHeader.c_str(), contentHeader.size() ) ) {
 		return false;
 	}
 
-//	if ( !FS_WriteToFile( fileNameInl, contentInl.c_str(), contentInl.size() ) ) {
-//		return false;
-//	}
-
 	return true;
 }
 
-static void GenerateImplVectors( void ) {
-	VectorGenerator gen;
+static bool GenerateImplVectors( void ) {
+	GeneratorVector gen;
 
 	for ( uint32_t typeIndex = 0; typeIndex < GEN_TYPE_COUNT; typeIndex++ ) {
 		genType_t type = static_cast<genType_t>( typeIndex );
@@ -107,15 +108,19 @@ static void GenerateImplVectors( void ) {
 		for ( uint32_t componentIndex = GEN_COMPONENT_COUNT_MIN; componentIndex <= GEN_COMPONENT_COUNT_MAX; componentIndex++ ) {
 			printf( "Generating %s%d...", typeString.c_str(), componentIndex );
 
-			gen.Generate( type, componentIndex );
+			if ( !gen.Generate( type, componentIndex ) ) {
+				return false;
+			}
 
 			printf( "OK.\n" );
 		}
 	}
+
+	return true;
 }
 
-static void GenerateImplMatrices( void ) {
-	MatrixGenerator gen;
+static bool GenerateImplMatrices( void ) {
+	GeneratorMatrix gen;
 
 	for ( uint32_t typeIndex = 0; typeIndex < GEN_TYPE_COUNT; typeIndex++ ) {
 		genType_t type = static_cast<genType_t>( typeIndex );
@@ -126,12 +131,16 @@ static void GenerateImplMatrices( void ) {
 			for ( uint32_t col = GEN_COMPONENT_COUNT_MIN; col <= GEN_COMPONENT_COUNT_MAX; col++ ) {
 				printf( "Generating %s%dx%d...", typeString.c_str(), row, col );
 
-				gen.Generate( type, row, col );
+				if ( !gen.Generate( type, row, col ) ) {
+					return false;
+				}
 
 				printf( "OK.\n" );
 			}
 		}
 	}
+
+	return true;
 }
 
 static bool GenerateMainTypeHeaderVector( void ) {
@@ -291,15 +300,18 @@ static bool GenerateFunctionsVector( void ) {
 			contentHeader += "// " + fullTypeName + "\n";
 			contentInl += "// " + fullTypeName + "\n";
 
+			// generic/scalar funcs
+			Gen_Saturate( type, componentIndex, contentHeader, &contentInl );
+			Gen_Lerp( type, componentIndex, contentHeader, &contentInl );
+			Gen_Smoothstep( type, componentIndex, contentHeader, &contentInl );
+
+			// generic/scalar/vector funcs
 			Gen_VectorDot( type, componentIndex, contentHeader, contentInl );
 			Gen_VectorLength( type, componentIndex, contentHeader, contentInl );
 			Gen_VectorNormalize( type, componentIndex, contentHeader, contentInl );
 			Gen_VectorCross( type, componentIndex, contentHeader, contentInl );
 			Gen_VectorAngle( type, componentIndex, contentHeader, contentInl );
-
-			Gen_Saturate( type, componentIndex, contentHeader, contentInl );
-			Gen_Lerp( type, componentIndex, contentHeader, contentInl );
-
+			Gen_VectorDistance( type, componentIndex, contentHeader, contentInl );
 			Gen_VectorPack( type, componentIndex, contentHeader, contentInl );
 			Gen_VectorUnpack( type, componentIndex, contentHeader, contentInl );
 
@@ -493,8 +505,32 @@ static bool GenerateFunctionsMatrix( void ) {
 	return true;
 }
 
-static void GenerateTestsVector( void ) {
-	TestsGeneratorVector gen;
+static bool GenerateTestsScalar( void ) {
+	GeneratorScalarTest gen;
+
+	for ( uint32_t typeIndex = 0; typeIndex < GEN_TYPE_COUNT; typeIndex++ ) {
+		genType_t type = static_cast<genType_t>( typeIndex );
+
+		if ( type == GEN_TYPE_BOOL ) {
+			continue;
+		}
+
+		std::string typeString = Gen_GetTypeString( type );
+
+		printf( "Generating test_scalar_%s.cpp...", typeString.c_str() );
+
+		if ( !gen.Generate( type ) ) {
+			return false;
+		}
+
+		printf( "OK.\n" );
+	}
+
+	return true;
+}
+
+static bool GenerateTestsVector( void ) {
+	GeneratorVectorTests gen;
 
 	for ( uint32_t typeIndex = 0; typeIndex < GEN_TYPE_COUNT; typeIndex++ ) {
 		genType_t type = static_cast<genType_t>( typeIndex );
@@ -506,15 +542,19 @@ static void GenerateTestsVector( void ) {
 
 			printf( "Generating test_%s.cpp...", typeName.c_str() );
 
-			gen.Generate( type, componentIndex );
+			if ( !gen.Generate( type, componentIndex ) ) {
+				return false;
+			}
 
 			printf( "OK.\n" );
 		}
 	}
+
+	return true;
 }
 
-static void GenerateTestsMatrix( void ) {
-	TestsGeneratorMatrix gen;
+static bool GenerateTestsMatrix( void ) {
+	GeneratorMatrixTests gen;
 
 	for ( uint32_t typeIndex = 0; typeIndex < GEN_TYPE_COUNT; typeIndex++ ) {
 		genType_t type = static_cast<genType_t>( typeIndex );
@@ -525,12 +565,16 @@ static void GenerateTestsMatrix( void ) {
 
 				printf( "Generating test_%s.cpp...", typeName.c_str() );
 
-				gen.Generate( type, row, col );
+				if ( !gen.Generate( type, row, col ) ) {
+					return false;
+				}
 
 				printf( "OK.\n" );
 			}
 		}
 	}
+
+	return true;
 }
 
 static bool GenerateTestsMain( void ) {
@@ -554,7 +598,7 @@ static bool GenerateTestsMain( void ) {
 		genType_t type = static_cast<genType_t>( typeIndex );
 
 		for ( uint32_t row = 1; row <= GEN_COMPONENT_COUNT_MAX; row++ ) {
-			for ( uint32_t col = GEN_COMPONENT_COUNT_MIN; col <= GEN_COMPONENT_COUNT_MAX; col++ ) {
+			for ( uint32_t col = 1; col <= GEN_COMPONENT_COUNT_MAX; col++ ) {
 				std::string fullTypeName = Gen_GetFullTypeName( type, row, col );
 
 				content += "TEMPER_SUITE_EXTERN( Test_" + fullTypeName + " );\n";
@@ -574,6 +618,24 @@ static bool GenerateTestsMain( void ) {
 	content += "\tTEMPER_SET_SUITE_END_CALLBACK( OnSuiteEnd, nullptr );\n";
 	content += "\n";
 
+	// run the scalar tests first
+	// the vector/matrix functions make heavy use of these per-component
+	// so if these fail, the problem might be easier to diagnose
+	content += "\t// scalar tests\n";
+	for ( uint32_t typeIndex = 0; typeIndex < GEN_TYPE_COUNT; typeIndex++ ) {
+		genType_t type = static_cast<genType_t>( typeIndex );
+
+		if ( type == GEN_TYPE_BOOL ) {
+			continue;
+		}
+
+		content += "\tTEMPER_RUN_SUITE( Test_" + Gen_GetMemberTypeString( type ) + " );\n";
+	}
+
+	content += "\n";
+
+	// now do vector and matrix types
+	content += "\t// vector/matrix tests\n";
 	for ( uint32_t typeIndex = 0; typeIndex < GEN_TYPE_COUNT; typeIndex++ ) {
 		genType_t type = static_cast<genType_t>( typeIndex );
 
@@ -598,74 +660,49 @@ static bool GenerateTestsMain( void ) {
 	return true;
 }
 
+#define FAIL_IF( x, msg ) \
+	do { \
+		if ( x ) { \
+			printf( "ERROR: " ); \
+			printf( msg ); \
+			return EXIT_FAILURE; \
+		} \
+	} while ( 0 )
+
 int main( int argc, char** argv ) {
 	UNUSED( argc );
 	UNUSED( argv );
 
+	// TODO(DM): handle errors for these
 	FS_CreateFolder( GEN_OUT_GEN_FOLDER_PATH );
 	FS_CreateFolder( GEN_TESTS_FOLDER_PATH );
 
 	printf( "======= Generating type implementations. =======\n" );
-	GenerateImplVectors();
-	GenerateImplMatrices();
+	FAIL_IF( !GenerateImplVectors(),  "Failed generating a vector implementation.\n" );
+	FAIL_IF( !GenerateImplMatrices(), "Failed generating a vector implementation.\n" );
 	printf( "======= Done. =======\n\n" );
 
-	printf( "======= Generating tests. =======\n" );
-	GenerateTestsVector();
-	GenerateTestsMatrix();
-	printf( "======= Done. =======\n\n" );
-
-	// TODO(DM): tidy this somehow?
 	printf( "======= Generating main headers. =======\n" );
-	if ( !GenerateMainHeaderFuncs() ) {
-		printf( "ERROR: Failed generating %s!\n", GEN_FILENAME_FUNCTIONS_SCALAR );
-		return EXIT_FAILURE;
-	}
-
-	if ( !GenerateMainTypeHeaderVector() ) {
-		printf( "ERROR: Failed generating main vector header!\n" );
-		return EXIT_FAILURE;
-	}
-
-	if ( !GenerateMainTypeHeaderMatrix() ) {
-		printf( "ERROR: Failed generating main matrix header!\n" );
-		return EXIT_FAILURE;
-	}
+	FAIL_IF( !GenerateMainHeaderFuncs(),      "Failed generating " GEN_FILENAME_FUNCTIONS_SCALAR "!\n" );
+	FAIL_IF( !GenerateMainTypeHeaderVector(), "Failed generating main vector header!\n" );
+	FAIL_IF( !GenerateMainTypeHeaderMatrix(), "Failed generating main matrix header!\n" );
 	printf( "======= Done. =======\n\n" );
 
-	printf( "======= Generating vector functions. =======\n" );
-	if ( !GenerateFunctionsVector() ) {
-		printf( "ERROR: Failed generating main vector functions header!\n" );
-		return EXIT_FAILURE;
-	}
+	printf( "======= Generating functions. =======\n" );
+	FAIL_IF( !GenerateFunctionsVector(), "Failed generating main vector functions header!\n" );
+	FAIL_IF( !GenerateFunctionsMatrix(), "Failed generating main matrix functions header!\n" );
 	printf( "======= Done. =======\n\n" );
 
-	printf( "======= Generating vectors operators. =======\n" );
-	if ( !GenerateOperatorsVector() ) {
-		printf( "ERROR: Failed generating vector operators header!\n" );
-		return EXIT_FAILURE;
-	}
-	printf( "======= Done. =======\n\n" );
-
-	printf( "======= Generating matrix operators. =======\n" );
-	if ( !GenerateOperatorsMatrix() ) {
-		printf( "ERROR: Failed generating matrix operators header!\n" );
-		return EXIT_FAILURE;
-	}
-	printf( "======= Done. =======\n\n" );
-
-	printf( "======= Generating matrix functions. =======\n" );
-	if ( !GenerateFunctionsMatrix() ) {
-		printf( "ERROR: Failed generating main matrix functions header!\n" );
-		return EXIT_FAILURE;
-	}
+	printf( "======= Generating operators. =======\n" );
+	FAIL_IF( !GenerateOperatorsVector(), "Failed generating vector operators header!\n" );
+	FAIL_IF( !GenerateOperatorsMatrix(), "Failed generating matrix operators header!\n" );
 	printf( "======= Done. =======\n\n" );
 
 	printf( "======= Generating tests. =======\n" );
-	if ( !GenerateTestsMain() ) {
-		printf( "ERROR: Failed generating %s/main.cpp.\n", GEN_TESTS_FOLDER_PATH );
-		return EXIT_FAILURE;
-	}
+	FAIL_IF( !GenerateTestsScalar(), "Failed generating scalar tests.\n" );
+	FAIL_IF( !GenerateTestsVector(), "Failed generating vector tests.\n" );
+	FAIL_IF( !GenerateTestsMatrix(), "Failed generating matrix tests.\n" );
+	FAIL_IF( !GenerateTestsMain(),   "Failed generating " GEN_TESTS_FOLDER_PATH "/main.cpp.\n" );
 	printf( "======= Done. =======\n\n" );
 
 	printf( "Finished.\n" );

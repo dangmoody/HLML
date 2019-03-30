@@ -5,13 +5,19 @@
 #include <assert.h>
 
 inline std::string	Gen_GetDocFloateq( void );
+inline std::string	Gen_GetDocIsInf( void );
+inline std::string	Gen_GetDocIsNaN( void );
+inline std::string	Gen_GetDocSign( void );
 inline std::string	Gen_GetDocRadians( void );
 inline std::string	Gen_GetDocDegrees( void );
 inline std::string	Gen_GetDocMin( void );
 inline std::string	Gen_GetDocMax( void );
 inline std::string	Gen_GetDocClamp( void );
+
 inline std::string	Gen_GetDocSaturate( const std::string& fullTypeName );
 inline std::string	Gen_GetDocLerp( const std::string& fullTypeName );
+inline std::string	Gen_GetDocSmoothstep( const std::string& fullTypeName );
+inline std::string	Gen_GetDocSmootherstep( const std::string& fullTypeName );
 
 inline std::string	Gen_GetDocOperatorEquals( const std::string& fullTypeName );
 inline std::string	Gen_GetDocOperatorNotEquals( const std::string& fullTypeName );
@@ -37,6 +43,19 @@ inline std::string	Gen_GetDocOperatorBitwiseUnary( const std::string& fullTypeNa
 
 std::string Gen_GetDocFloateq( void ) {
 	return "/// \\brief Returns true if the two given floating-point numbers are within a small enough epsilon range of each other that takes into account floating-point inaccuracy.\n";
+}
+
+std::string Gen_GetDocIsInf( void ) {
+	return "/// \\brief Returns true if the given floating-point number is considered to be infinity.\n";
+}
+
+std::string Gen_GetDocIsNaN( void ) {
+	return "/// \\brief Returns true if the given floating-point number is considered to be not-a-number.\n";
+}
+
+std::string Gen_GetDocSign( void ) {
+	return "/// \\brief Returns -1 if x is < 0, 0 if x == 0, or 1 if x > 1.\n" \
+		"/// This function does no branching.\n";
 }
 
 std::string Gen_GetDocRadians( void ) {
@@ -67,6 +86,17 @@ std::string Gen_GetDocSaturate( const std::string& fullTypeName ) {
 std::string Gen_GetDocLerp( const std::string& fullTypeName ) {
 	return "/// \\relates " + fullTypeName + "\n" + \
 		"/// \\brief Returns a linearly interpolated " + fullTypeName + " between types \"a\" and \"b\".\n";
+}
+
+std::string Gen_GetDocSmoothstep( const std::string& fullTypeName ) {
+	return "/// \\relates " + fullTypeName + "\n" \
+		"/// \\brief Performs a sigmoid-like interpolation and clamp.\n";
+}
+
+std::string Gen_GetDocSmootherstep( const std::string& fullTypeName ) {
+	return "/// \\relates " + fullTypeName + "\n" \
+		"/// \\brief Performs a 'smoother' version of smoothstep, as design by Ken Perlin.\n" \
+		"/// https://en.wikipedia.org/wiki/Smoothstep#Variations \n";
 }
 
 std::string Gen_GetDocOperatorEquals( const std::string& fullTypeName ) {

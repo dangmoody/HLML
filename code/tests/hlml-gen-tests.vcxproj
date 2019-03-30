@@ -181,6 +181,10 @@
     <ClCompile Include="test_int4x2.cpp" />
     <ClCompile Include="test_int4x3.cpp" />
     <ClCompile Include="test_int4x4.cpp" />
+    <ClCompile Include="test_scalar_double.cpp" />
+    <ClCompile Include="test_scalar_float.cpp" />
+    <ClCompile Include="test_scalar_int32_t.cpp" />
+    <ClCompile Include="test_scalar_uint32_t.cpp" />
     <ClCompile Include="test_uint2.cpp" />
     <ClCompile Include="test_uint2x2.cpp" />
     <ClCompile Include="test_uint2x3.cpp" />

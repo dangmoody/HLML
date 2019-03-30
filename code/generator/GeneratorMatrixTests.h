@@ -2,12 +2,12 @@
 
 #include "gen_common.h"
 
-class TestsGeneratorMatrix {
+class GeneratorMatrixTests {
 public:
-				TestsGeneratorMatrix() {}
-				~TestsGeneratorMatrix() {}
+				GeneratorMatrixTests() {}
+				~GeneratorMatrixTests() {}
 
-	void		Generate( const genType_t type, const uint32_t numRows, const uint32_t numCols );
+	bool		Generate( const genType_t type, const uint32_t numRows, const uint32_t numCols );
 
 private:
 	std::string	m_code;

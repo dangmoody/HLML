@@ -170,7 +170,7 @@ TEMPER_TEST( TestRelational_int3 )
 	TEMPER_PASS();
 }
 
-TEMPER_TEST( TestBitwiseAnd_int3 )
+TEMPER_TEST( TestBitwise_And_int3 )
 {
 	int3 a  = int3( 21, 21, 21 );
 	int3 b  = int3( 7, 7, 7 );
@@ -182,7 +182,7 @@ TEMPER_TEST( TestBitwiseAnd_int3 )
 	TEMPER_PASS();
 }
 
-TEMPER_TEST( TestBitwiseOr_int3 )
+TEMPER_TEST( TestBitwise_Or_int3 )
 {
 	int3 a  = int3( 21, 21, 21 );
 	int3 b  = int3( 7, 7, 7 );
@@ -194,7 +194,7 @@ TEMPER_TEST( TestBitwiseOr_int3 )
 	TEMPER_PASS();
 }
 
-TEMPER_TEST( TestBitwiseXor_int3 )
+TEMPER_TEST( TestBitwise_Xor_int3 )
 {
 	int3 a  = int3( 21, 21, 21 );
 	int3 b  = int3( 7, 7, 7 );
@@ -206,7 +206,7 @@ TEMPER_TEST( TestBitwiseXor_int3 )
 	TEMPER_PASS();
 }
 
-TEMPER_TEST( TestBitwiseShiftLeft_int3 )
+TEMPER_TEST( TestBitwise_ShiftLeft_int3 )
 {
 	int3 a  = int3( 1, 1, 1 );
 	int3 b  = int3( 2, 2, 2 );
@@ -218,7 +218,7 @@ TEMPER_TEST( TestBitwiseShiftLeft_int3 )
 	TEMPER_PASS();
 }
 
-TEMPER_TEST( TestBitwiseShiftRight_int3 )
+TEMPER_TEST( TestBitwise_ShiftRight_int3 )
 {
 	int3 a  = int3( 16, 16, 16 );
 	int3 b  = int3( 4, 4, 4 );
@@ -261,28 +261,41 @@ TEMPER_TEST( TestDot_int3 )
 	TEMPER_PASS();
 }
 
+TEMPER_TEST( TestDistance_int3 )
+{
+	float answerDistanceSqr = 105.000000f;
+	float answerDistance    = 10.246951f;
+
+	int3 a = int3( 7, 4, 3 );
+	int3 b = int3( 17, 6, 2 );
+
+	float distSqr = distancesqr( a, b );
+	float dist    = distance( a, b );
+
+	TEMPER_EXPECT_TRUE( floateq( distSqr, answerDistanceSqr ) );
+	TEMPER_EXPECT_TRUE( floateq( dist, answerDistance ) );
+
+	TEMPER_PASS();
+}
+
 TEMPER_SUITE( Test_int3 )
 {
 	TEMPER_RUN_TEST( TestAssignment_int3 );
 	TEMPER_RUN_TEST( TestArray_int3 );
-
 	TEMPER_RUN_TEST( TestArithmeticAddition_int3 );
 	TEMPER_RUN_TEST( TestArithmeticSubtraction_int3 );
 	TEMPER_RUN_TEST( TestArithmeticMultiplication_int3 );
 	TEMPER_RUN_TEST( TestArithmeticDivision_int3 );
-
 	TEMPER_RUN_TEST( TestIncrement_int3 );
 	TEMPER_RUN_TEST( TestDecrement_int3 );
-
 	TEMPER_RUN_TEST( TestRelational_int3 );
-
-	TEMPER_RUN_TEST( TestBitwiseAnd_int3 );
-	TEMPER_RUN_TEST( TestBitwiseOr_int3 );
-	TEMPER_RUN_TEST( TestBitwiseXor_int3 );
+	TEMPER_RUN_TEST( TestBitwise_And_int3 );
+	TEMPER_RUN_TEST( TestBitwise_Or_int3 );
+	TEMPER_RUN_TEST( TestBitwise_Xor_int3 );
+	TEMPER_RUN_TEST( TestBitwise_ShiftLeft_int3 );
+	TEMPER_RUN_TEST( TestBitwise_ShiftRight_int3 );
 	TEMPER_RUN_TEST( TestBitwiseUnary_int3 );
-	TEMPER_RUN_TEST( TestBitwiseShiftLeft_int3 );
-	TEMPER_RUN_TEST( TestBitwiseShiftRight_int3 );
-
 	TEMPER_RUN_TEST( TestLength_int3 );
 	TEMPER_RUN_TEST( TestDot_int3 );
+	TEMPER_RUN_TEST( TestDistance_int3 );
 };
