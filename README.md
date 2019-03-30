@@ -71,7 +71,8 @@ One day I stumbled upon the [Unity.Mathematics](https://github.com/Unity-Technol
 Licenses
 ========
 
-HLML is distributed under the GNU GPL v3 license but the following libraries (which HLML uses) are not.  Therefore HLML's license does not apply to them:
+HLML is distributed under the GNU GPL v3 license but the following software (which HLML uses) are not.  Therefore HLML's license does not apply to them:
 
 * [Temper](https://github.com/floorman/temper) - MIT
 * [Doxygen](http://www.doxygen.nl/) - GNU GPL v2
+* [7-Zip](https://www.7-zip.org/download.html) - GNU LGPLv2.1+ with unRAR restriction / LZMA SDK in the public domain
