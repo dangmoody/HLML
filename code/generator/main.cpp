@@ -672,6 +672,12 @@ int main( int argc, char** argv ) {
 	UNUSED( argc );
 	UNUSED( argv );
 
+	printf( "HLML Generator.\n" );
+	printf( "(c) Dan Moody 2019 - Present.\n" );
+	printf( "\n" );
+	printf( "Generating...\n" );
+	printf( "\n" );
+
 	FAIL_IF( !FS_CreateFolder( GEN_OUT_GEN_FOLDER_PATH ), "Failed to create folder \"" GEN_OUT_GEN_FOLDER_PATH "\".\n" );
 	FAIL_IF( !FS_CreateFolder( GEN_TESTS_FOLDER_PATH ),   "Failed to create folder \"" GEN_TESTS_FOLDER_PATH "\".\n" );
 
