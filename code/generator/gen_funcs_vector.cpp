@@ -171,7 +171,7 @@ void Gen_VectorNormalize( const genType_t type, const uint32_t numComponents, st
 	outInl += fullTypeName + " normalized( const " + fullTypeName + "& vec )\n";
 	outInl += "{\n";
 	outInl += "\t" + typeString + " invlen = " + oneStr + " / length( vec );\n";
-	outInl += "\treturn (" + fullTypeName + ") vec * invlen;\n";
+	outInl += "\treturn (" + fullTypeName + ")( vec * invlen );\n";
 	outInl += "}\n";
 	outInl += "\n";
 }
