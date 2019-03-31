@@ -11,11 +11,13 @@ echo Packing build...
 REM copy the relevant files over
 REM these will be deleted later
 robocopy /s /e doxygen\ ..\releases\doxygen\
+robocopy /s /e ..\code\out\ ..\releases\code\
 
-7z a -t7z ..\releases\hlml_%version%.zip ..\releases\doxygen\ generate_documentation.bat ..\build\Release\hlml-gen.exe ..\build\Release\hlml-gen-tests.exe
+7z a -t7z ..\releases\hlml_%version%.zip ..\releases\code\ ..\releases\doxygen\ generate_documentation.bat ..\build\Release\hlml-gen-tests.exe
 
 REM delete temp folders
 rd /s /Q ..\releases\doxygen\
+rd /s /Q ..\releases\code\
 
 echo.
 echo Done.
