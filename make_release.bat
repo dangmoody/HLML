@@ -8,14 +8,14 @@ set version=%1
 
 echo Packing build...
 
-REM copy the relevant files over
+REM copy the relevant files over into temp destinations
 REM these will be deleted later
 robocopy /s /e doxygen\ releases\doxygen\
 robocopy /s /e code\out\ releases\code\
 
-7z a -t7z releases\hlml_%version%.zip releases\code\ releases\doxygen\ generate_documentation.bat build\Release\hlml-gen-tests.exe
+7z a -t7z releases\hlml_%version%.zip .\releases\code\ .\releases\doxygen\ generate_documentation.bat .\build\Release\hlml-gen-tests.exe
 
-REM delete temp folders
+REM delete temp destinations
 rd /s /Q releases\doxygen\
 rd /s /Q releases\code\
 
