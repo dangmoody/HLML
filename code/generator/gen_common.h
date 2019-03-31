@@ -20,6 +20,7 @@
 #define GEN_COMPONENT_COUNT_MIN			2
 #define GEN_COMPONENT_COUNT_MAX			4
 
+// filenames
 #define GEN_OUT_FOLDER_PATH				"code/out/"
 #define GEN_OUT_GEN_FOLDER_PATH			"code/out/gen/"
 #define GEN_TESTS_FOLDER_PATH			"code/tests/"
@@ -36,6 +37,9 @@
 #define GEN_FILENAME_FUNCTIONS_SCALAR	"hlml_functions_scalar"
 #define GEN_FILENAME_FUNCTIONS_VECTOR	"hlml_functions_vector"
 #define GEN_FILENAME_FUNCTIONS_MATRIX	"hlml_functions_matrix"
+
+// defines
+#define GEN_DEFINE_UNDEF_SYSTEM_MIN_MAX	"HLML_UNDEF_SYSTEM_MIN_MAX"
 
 enum genType_t {
 	GEN_TYPE_BOOL						= 0,

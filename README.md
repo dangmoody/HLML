@@ -26,15 +26,20 @@ Installation
 4. Run ```generate_documentation.bat``` to generate the documentation.  This will put it into a folder called ```documentation``` and you can freely put it whereever you want.
 5. Done!
 
-The header file ```hlml_user.h``` can be used by you to help hook HLML into your engine.
+HLML supports the following pre-include defines to help you hook HLML into your application:
+
+|             Define              |                                                                       Description                                                                        |
+| ------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| ```HLML_UNDEF_SYSTEM_MIN_MAX``` | Particularly useful for Windows.  Calls ```#undef``` on ```min``` and ```max```.  All calls to ```min``` and ```max``` will now go through HLML instead. |
+|                                 |                                                                                                                                                          |
 
 If you want to, you can run ```hlml-gen-test.exe``` which will very quickly run through the test suite for good measure.
 
 
-Usage
-=====
+Usage/Common Pitfalls
+=====================
 
-**READ THIS BEFORE USING THE LIBRARY:**
+**READ THIS BEFORE USING HLML:**
 
 * All library functions and tests using floating point were written to be as respective to the IEEE-754 standard as possible.
 * All matrix types are row-major, so a ```float3x4``` is a matrix that holds 3 ```float4```s (or, in other words: a ```float4``` array of size 3).
@@ -56,7 +61,7 @@ Motivation
 ==========
 
 I've always primarily used GLM as my maths library of choice, but there were a few things that always bugged me about it:
-* No default initialization of types.
+* Types don't get initialised to default values by design.
 * Sometimes had trouble reading past all of the templates.
 * Often have trouble debugging templates.
 * Typing the namespace all the time got annoying.

@@ -52,6 +52,14 @@ static bool GenerateMainHeaderFuncs( void ) {
 	contentHeader += "#include <stdint.h>\n";
 	contentHeader += "\n";
 
+	// we have our own min/max functions, so remove the references windows ones
+	contentHeader += "// replace windows defines with our own min/max functions\n";
+	contentHeader += "#ifdef HLML_UNDEF_SYSTEM_MIN_MAX\n";
+	contentHeader += "#undef min\n";
+	contentHeader += "#undef max\n";
+	contentHeader += "#endif\n";
+	contentHeader += "\n\n";
+
 	for ( uint32_t typeIndex = 0; typeIndex < GEN_TYPE_COUNT; typeIndex++ ) {
 		genType_t type = static_cast<genType_t>( typeIndex );
 
