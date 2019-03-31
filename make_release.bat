@@ -1,5 +1,10 @@
 @echo off
 
+REM TODO(DM): before doing any of this:
+REM 1. do a release build of the generator
+REM 2. run the generator
+REM then build the tests
+
 if [%1]==[] (
 	goto :bad_arg
 )
