@@ -10,8 +10,5 @@ build/*
 # documentation generated files
 documentation/
 
-# dont ignore any of the tools
-!tools/*
-
 # locally packaged releases
 releases/
