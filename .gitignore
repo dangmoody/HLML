@@ -12,3 +12,6 @@ documentation/
 
 # locally packaged releases
 releases/
+
+# shortcut to the root of the documentation
+html_docs.html
