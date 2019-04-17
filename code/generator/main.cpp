@@ -98,7 +98,7 @@ static bool GenerateMainHeaderFuncs( void ) {
 		printf( "OK.\n" );
 	}
 
-	if ( !FS_WriteToFile( fileNameHeader, contentHeader.c_str(), contentHeader.size() ) ) {
+	if ( !FS_WriteEntireFile( fileNameHeader, contentHeader.c_str(), contentHeader.size() ) ) {
 		return false;
 	}
 
@@ -168,7 +168,7 @@ static bool GenerateMainTypeHeaderVector( void ) {
 
 	content += "#include \"hlml_functions_vector.h\"\n";
 
-	return FS_WriteToFile( headerFilePath, content.c_str(), content.size() );
+	return FS_WriteEntireFile( headerFilePath, content.c_str(), content.size() );
 }
 
 static bool GenerateMainTypeHeaderMatrix( void ) {
@@ -190,7 +190,7 @@ static bool GenerateMainTypeHeaderMatrix( void ) {
 
 	content += "#include \"hlml_functions_matrix.h\"\n";
 
-	return FS_WriteToFile( headerFilePath, content.c_str(), content.size() );
+	return FS_WriteEntireFile( headerFilePath, content.c_str(), content.size() );
 }
 
 static bool GenerateOperatorsVector( void ) {
@@ -251,11 +251,11 @@ static bool GenerateOperatorsVector( void ) {
 
 	contentHeader += "#include \"" + std::string( GEN_FILENAME_OPERATORS_VECTOR ) + ".inl\"\n";
 
-	if ( !FS_WriteToFile( filePathHeader, contentHeader.c_str(), contentHeader.size() ) ) {
+	if ( !FS_WriteEntireFile( filePathHeader, contentHeader.c_str(), contentHeader.size() ) ) {
 		return false;
 	}
 
-	if ( !FS_WriteToFile( filePathInl, contentInl.c_str(), contentInl.size() ) ) {
+	if ( !FS_WriteEntireFile( filePathInl, contentInl.c_str(), contentInl.size() ) ) {
 		return false;
 	}
 
@@ -332,11 +332,11 @@ static bool GenerateFunctionsVector( void ) {
 
 	contentHeader += "#include \"" + std::string( GEN_FILENAME_FUNCTIONS_VECTOR ) + ".inl\"\n";
 
-	if ( !FS_WriteToFile( filePathHeader, contentHeader.c_str(), contentHeader.size() ) ) {
+	if ( !FS_WriteEntireFile( filePathHeader, contentHeader.c_str(), contentHeader.size() ) ) {
 		return false;
 	}
 
-	if ( !FS_WriteToFile( filePathInl, contentInl.c_str(), contentInl.size() ) ) {
+	if ( !FS_WriteEntireFile( filePathInl, contentInl.c_str(), contentInl.size() ) ) {
 		return false;
 	}
 
@@ -415,11 +415,11 @@ static bool GenerateOperatorsMatrix( void ) {
 
 	contentHeader += "#include \"" + std::string( GEN_FILENAME_OPERATORS_MATRIX ) + ".inl\"\n";
 
-	if ( !FS_WriteToFile( filePathHeader, contentHeader.c_str(), contentHeader.size() ) ) {
+	if ( !FS_WriteEntireFile( filePathHeader, contentHeader.c_str(), contentHeader.size() ) ) {
 		return false;
 	}
 
-	if ( !FS_WriteToFile( filePathInl, contentInl.c_str(), contentInl.size() ) ) {
+	if ( !FS_WriteEntireFile( filePathInl, contentInl.c_str(), contentInl.size() ) ) {
 		return false;
 	}
 
@@ -501,11 +501,11 @@ static bool GenerateFunctionsMatrix( void ) {
 
 	contentHeader += "#include \"" + std::string( GEN_FILENAME_FUNCTIONS_MATRIX ) + ".inl\"\n";
 
-	if ( !FS_WriteToFile( filePathHeader, contentHeader.c_str(), contentHeader.size() ) ) {
+	if ( !FS_WriteEntireFile( filePathHeader, contentHeader.c_str(), contentHeader.size() ) ) {
 		return false;
 	}
 
-	if ( !FS_WriteToFile( filePathInl, contentInl.c_str(), contentInl.size() ) ) {
+	if ( !FS_WriteEntireFile( filePathInl, contentInl.c_str(), contentInl.size() ) ) {
 		return false;
 	}
 
@@ -660,7 +660,7 @@ static bool GenerateTestsMain( void ) {
 	content += "\treturn TEMPER_EXIT_CODE();\n";
 	content += "}";
 
-	if ( !FS_WriteToFile( filePathMain, content.c_str(), content.size() ) ) {
+	if ( !FS_WriteEntireFile( filePathMain, content.c_str(), content.size() ) ) {
 		return false;
 	}
 

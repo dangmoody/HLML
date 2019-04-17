@@ -142,7 +142,7 @@ bool GeneratorMatrixTests::Generate( const genType_t type, const uint32_t numRow
 	char filename[1024] = { 0 };
 	snprintf( filename, 1024, "%stest_%s.cpp", GEN_TESTS_FOLDER_PATH, m_fullTypeName.c_str() );
 
-	if ( !FS_WriteToFile( filename, m_code.c_str(), m_code.size() ) ) {
+	if ( !FS_WriteEntireFile( filename, m_code.c_str(), m_code.size() ) ) {
 		printf( "Can't generate test suite for %s.  That's rough man.\n", m_fullTypeName.c_str() );
 		return false;
 	}
