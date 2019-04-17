@@ -6,6 +6,8 @@
 
 #include <assert.h>
 #include <string>
+#include <memory.h>
+#include <math.h>
 
 bool GeneratorVector::Generate( const genType_t type, const uint32_t numComponents ) {
 	assert( numComponents >= GEN_COMPONENT_COUNT_MIN );

@@ -8,7 +8,6 @@
 #include <assert.h>
 #include <vector>
 
-#define _USE_MATH_DEFINES
 #include <math.h>
 
 bool GeneratorMatrixTests::Generate( const genType_t type, const uint32_t numRows, const uint32_t numCols ) {
@@ -958,8 +957,8 @@ void GeneratorMatrixTests::GenerateTestRotate() {
 		{ 0.0f,  0.0f, 0.0f, 1.0f },
 	};
 
-	uint32_t numRotMatRows = __min( m_numRows, 4 );
-	uint32_t numRotMatCols = __min( m_numCols, 4 );
+	uint32_t numRotMatRows = GEN_MIN( m_numRows, 4 );
+	uint32_t numRotMatCols = GEN_MIN( m_numCols, 4 );
 
 	uint32_t numRotateVectorComponents = m_numCols - 1;
 
