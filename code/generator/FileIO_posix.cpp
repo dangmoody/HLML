@@ -72,15 +72,15 @@ bool FS_DeleteFolder( const char* name ) {
 		return false;
 	}
 
-	struct dirent64* dirEntry = nullptr;
+	struct dirent* dirEntry = nullptr;
 
-	while ( ( dirEntry = readdir64( dir ) ) != nullptr ) {
+	while ( ( dirEntry = readdir( dir ) ) != nullptr ) {
 		// TODO(DM): move strcmp to StringEquals(a, b)
 		if ( strcmp( dirEntry->d_name, "." ) == 0 || strcmp( dirEntry->d_name, ".." ) == 0 ) {
 			continue;
 		}
 
-		char buffer[1024] = { 0 };
+		char buffer[PATH_MAX] = { 0 };
 		snprintf( buffer, 1024, "%s/%s", name, dirEntry->d_name );
 
 		struct stat info;
