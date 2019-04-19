@@ -34,6 +34,9 @@ matrix:
         - CXX=clang++-7
       install:
         - ${CC} --version
+      before_script: chmod +x build_linux_clang_gcc.sh
+      script: ./build_linux_clang_gcc.sh ${CXX} debug
+      after_success: ./build/debug/hlml-gen.exe
 
     # linux gcc
     - name: "Linux / GCC"
@@ -50,13 +53,15 @@ matrix:
         - CXX=g++-8
       install:
         - ${CC} --version
+      before_script: chmod +x build_linux_clang_gcc.sh
+      script: ./build_linux_clang_gcc.sh ${CXX} debug
+      after_success: ./build/debug/hlml-gen.exe
 
     # macOS
     - name: "macOS"
       os: osx
       osx_image: xcode10.1
       compiler: clang
-
-before_script: chmod +x build_linux_clang_gcc.sh
-script: ./build_linux_clang_gcc.sh ${CXX} debug
-after_success: ./build/debug/hlml-gen.exe
+      before_script: chmod +x build_linux_clang_gcc.sh
+      script: ./build_linux_clang_gcc.sh ${CXX} debug
+      after_success: ./build/debug/hlml-gen.exe
