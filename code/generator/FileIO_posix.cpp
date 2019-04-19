@@ -13,15 +13,46 @@
 
 #include <errno.h>
 
-// TODO(DM): make folders recursively
 bool FS_CreateFolder( const char* name ) {
 	assert( name );
 
-	int result = mkdir( name, ACCESSPERMS );
+	int result = 0;
 
+	size_t length = strlen( name );
+
+	char path[PATH_MAX] = { 0 };
+	snprintf( path, sizeof( path ), "%s", name );
+
+	if ( path[length - 1] == '/' ) {
+		path[length - 1] = 0;
+	}
+
+	char* p = nullptr;
+
+	for ( p = path + 1; *p; p++ ) {
+		if ( *p == '/' ) {
+			*p = 0;
+
+			result = mkdir( path, ACCESSPERMS );
+			if ( result != 0 ) {
+				int err = errno;
+				if ( err != EEXIST ) {
+					printf( "ERROR: Failed to create directory \"%s\".\n", path );
+					return false;
+				}
+			}
+
+			*p = '/';
+		}
+	}
+
+	result = mkdir( path, ACCESSPERMS );
 	if ( result != 0 ) {
-		printf( "ERROR: Failed to create folder \"%s\".  Errno: %d\n", name, errno );
-		return false;
+		int err = errno;
+		if ( err != EEXIST ) {
+			printf( "ERROR: Failed to create directory \"%s\".\n", path );
+			return false;
+		}
 	}
 
 	return true;
