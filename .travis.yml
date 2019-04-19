@@ -28,11 +28,11 @@ matrix:
             - ubuntu-toolchain-r-test
           packages:
             - clang-7
-        before_install:
-          - CC=clang-7
-          - CXX=clang++-7
-        install:
-          - ${CC} --version
+      before_install:
+        - CC=clang-7
+        - CXX=clang++-7
+      install:
+        - ${CC} --version
 
     # linux gcc
     - name: "Linux / GCC"
@@ -44,11 +44,11 @@ matrix:
             - ubuntu-toolchain-r-test
           packages:
             - gcc-8
-        before_install:
-          - CC=gcc-8
-          - CXX=g++-8
-        install:
-          - ${CC} --version
+      before_install:
+        - CC=gcc-8
+        - CXX=g++-8
+      install:
+        - ${CC} --version
 
     # macOS
     - name: "macOS"
