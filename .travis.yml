@@ -59,4 +59,4 @@ matrix:
 
 before_script: chmod +x build_linux_clang_gcc.sh
 script: ./build_linux_clang_gcc.sh ${CXX} debug
-after_success: build/debug/hlml-gen.exe
+after_success: ./build/debug/hlml-gen.exe

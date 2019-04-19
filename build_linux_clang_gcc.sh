@@ -8,8 +8,6 @@ config=$2	# can be either "debug" or "release"
 
 source_files=code/generator/*.cpp
 
-# TODO(DM): add release compiler options (-O3, -ffast-math, etc.)
-
 if [[ $compiler == clang* ]]; then
 	options_std="-Xclang -flto-visibility-public-std"
 else
