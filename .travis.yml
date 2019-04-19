@@ -3,56 +3,56 @@ language: cpp
 matrix:
   include:
     # windows msvc
-    # name: "Win64 / MSVC"
-    # os: windows
+    # - name: "Win64 / MSVC"
+    #   os: windows
 
     # windows clang
-    name: "Win64 / Clang"
-    os: windows
-    compiler: clang
+    - name: "Win64 / Clang"
+      os: windows
+      compiler: clang
 
     # windows gcc
-    name: "Win64 / GCC"
-    os: windows
-    compiler: gcc
+    - name: "Win64 / GCC"
+      os: windows
+      compiler: gcc
 
     # linux clang
-    name: "Linux / Clang"
-    os: linux
-    compiler: clang
-    addons:
-        apt:
-          sources:
-            - ubuntu-toolchain-r-test
-          packages:
-            - clang-7
-      before_install:
-        - CC=clang-7
-        - CXX=clang++-7
-      install:
-        - ${CC} --version
+    - name: "Linux / Clang"
+      os: linux
+      compiler: clang
+      addons:
+          apt:
+            sources:
+              - ubuntu-toolchain-r-test
+            packages:
+              - clang-7
+        before_install:
+          - CC=clang-7
+          - CXX=clang++-7
+        install:
+          - ${CC} --version
 
     # linux gcc
-    name: "Linux / GCC"
-    os: linux
-    compiler: gcc
-    addons:
-        apt:
-          sources:
-            - ubuntu-toolchain-r-test
-          packages:
-            - gcc-8
-      before_install:
-        - CC=gcc-8
-        - CXX=g++-8
-      install:
-        - ${CC} --version
+    - name: "Linux / GCC"
+      os: linux
+      compiler: gcc
+      addons:
+          apt:
+            sources:
+              - ubuntu-toolchain-r-test
+            packages:
+              - gcc-8
+        before_install:
+          - CC=gcc-8
+          - CXX=g++-8
+        install:
+          - ${CC} --version
 
     # macOS
-    name: "macOS"
-    os: osx
-    osx_image: xcode10.1
-    compiler: clang
+    - name: "macOS"
+      os: osx
+      osx_image: xcode10.1
+      compiler: clang
 
 before_script: chmod +x build_linux_clang_gcc.sh
 script: ./build_posix.sh ${CXX} debug
