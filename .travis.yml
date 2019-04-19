@@ -36,7 +36,7 @@ matrix:
         - ${CC} --version
       before_script: chmod +x build_linux_clang_gcc.sh
       script: ./build_linux_clang_gcc.sh ${CXX} debug
-      after_success: ./build/debug/hlml-gen.exe
+      after_success: build/debug/hlml-gen.exe
 
     # linux gcc
     - name: "Linux / GCC"
@@ -47,7 +47,7 @@ matrix:
           sources:
             - ubuntu-toolchain-r-test
           packages:
-            - gcc-8
+            - g++-8
       before_install:
         - CC=gcc-8
         - CXX=g++-8
@@ -55,7 +55,7 @@ matrix:
         - ${CC} --version
       before_script: chmod +x build_linux_clang_gcc.sh
       script: ./build_linux_clang_gcc.sh ${CXX} debug
-      after_success: ./build/debug/hlml-gen.exe
+      after_success: build/debug/hlml-gen.exe
 
     # macOS
     - name: "macOS"
@@ -64,4 +64,4 @@ matrix:
       compiler: clang
       before_script: chmod +x build_linux_clang_gcc.sh
       script: ./build_linux_clang_gcc.sh ${CXX} debug
-      after_success: ./build/debug/hlml-gen.exe
+      after_success: build/debug/hlml-gen.exe
