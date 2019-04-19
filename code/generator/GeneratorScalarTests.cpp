@@ -51,7 +51,7 @@ bool GeneratorScalarTest::Generate( const genType_t type ) {
 	char filename[1024] = { 0 };
 	sprintf( filename, "%stest_scalar_%s.cpp", GEN_TESTS_FOLDER_PATH, m_memberTypeString.c_str() );
 
-	if ( !FS_WriteToFile( filename, code.c_str(), code.size() ) ) {
+	if ( !FS_WriteEntireFile( filename, code.c_str(), code.size() ) ) {
 		printf( "Can't generate scalar test suite for %s.  That's rough man.\n", m_memberTypeString.c_str() );
 		return false;
 	}

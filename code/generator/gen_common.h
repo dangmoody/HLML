@@ -17,6 +17,9 @@
 
 #define UNUSED( x )						( (void) (x) )
 
+#define GEN_MIN( x, y )					( (x) < (y) ? (x) : (y) )
+#define GEN_MAX( x, y )					( (x) > (y) ? (x) : (y) )
+
 #define GEN_COMPONENT_COUNT_MIN			2
 #define GEN_COMPONENT_COUNT_MAX			4
 

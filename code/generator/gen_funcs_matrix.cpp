@@ -299,7 +299,7 @@ std::string Gen_GetParmListMatrixIdentity( const genType_t type, const uint32_t 
 
 	float values[] = { 1.0f, 1.0f, 1.0f, 1.0f };
 
-	return Gen_GetParmListMatrixDiagonal( type, numRows, numCols, values, __min( numRows, numCols ) );
+	return Gen_GetParmListMatrixDiagonal( type, numRows, numCols, values, GEN_MIN( numRows, numCols ) );
 }
 
 std::string Gen_GetParmListMatrixDiagonal( const genType_t type, const uint32_t numRows, const uint32_t numCols, const float* values, const uint32_t numValues ) {

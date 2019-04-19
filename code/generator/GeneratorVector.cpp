@@ -6,6 +6,8 @@
 
 #include <assert.h>
 #include <string>
+#include <memory.h>
+#include <math.h>
 
 bool GeneratorVector::Generate( const genType_t type, const uint32_t numComponents ) {
 	assert( numComponents >= GEN_COMPONENT_COUNT_MIN );
@@ -109,11 +111,11 @@ bool GeneratorVector::Generate( const genType_t type, const uint32_t numComponen
 
 	m_codeHeader += "#include \"" + m_fullTypeName + ".inl\"";
 
-	if ( !FS_WriteToFile( ( GEN_OUT_GEN_FOLDER_PATH + m_fullTypeName + ".h" ).c_str(), m_codeHeader.c_str(), m_codeHeader.size() ) ) {
+	if ( !FS_WriteEntireFile( ( GEN_OUT_GEN_FOLDER_PATH + m_fullTypeName + ".h" ).c_str(), m_codeHeader.c_str(), m_codeHeader.size() ) ) {
 		return false;
 	}
 
-	if ( !FS_WriteToFile( ( GEN_OUT_GEN_FOLDER_PATH + m_fullTypeName + ".inl" ).c_str(), m_codeInl.c_str(), m_codeInl.size() ) ) {
+	if ( !FS_WriteEntireFile( ( GEN_OUT_GEN_FOLDER_PATH + m_fullTypeName + ".inl" ).c_str(), m_codeInl.c_str(), m_codeInl.size() ) ) {
 		return false;
 	}
 

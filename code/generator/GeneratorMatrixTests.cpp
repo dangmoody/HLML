@@ -8,7 +8,7 @@
 #include <assert.h>
 #include <vector>
 
-#define _USE_MATH_DEFINES
+#define _USE_MATH_DEFINES	// for M_PI
 #include <math.h>
 
 bool GeneratorMatrixTests::Generate( const genType_t type, const uint32_t numRows, const uint32_t numCols ) {
@@ -142,7 +142,7 @@ bool GeneratorMatrixTests::Generate( const genType_t type, const uint32_t numRow
 	char filename[1024] = { 0 };
 	snprintf( filename, 1024, "%stest_%s.cpp", GEN_TESTS_FOLDER_PATH, m_fullTypeName.c_str() );
 
-	if ( !FS_WriteToFile( filename, m_code.c_str(), m_code.size() ) ) {
+	if ( !FS_WriteEntireFile( filename, m_code.c_str(), m_code.size() ) ) {
 		printf( "Can't generate test suite for %s.  That's rough man.\n", m_fullTypeName.c_str() );
 		return false;
 	}
@@ -958,8 +958,8 @@ void GeneratorMatrixTests::GenerateTestRotate() {
 		{ 0.0f,  0.0f, 0.0f, 1.0f },
 	};
 
-	uint32_t numRotMatRows = __min( m_numRows, 4 );
-	uint32_t numRotMatCols = __min( m_numCols, 4 );
+	uint32_t numRotMatRows = GEN_MIN( m_numRows, 4 );
+	uint32_t numRotMatCols = GEN_MIN( m_numCols, 4 );
 
 	uint32_t numRotateVectorComponents = m_numCols - 1;
 
