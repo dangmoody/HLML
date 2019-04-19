@@ -13,7 +13,7 @@ fi
 
 source_files=code/generator/*.cpp
 
-options_std="-std=c++11"
+options_std="-std=c++14"
 
 # clang requires extra weird c++ settings
 if [[ $compiler == clang* ]]; then
