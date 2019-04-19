@@ -6,11 +6,17 @@ matrix:
     - name: "Win64 / Clang"
       os: windows
       compiler: clang
+      env:
+        - CC=clang
+        - CXX=clang++
 
     # windows gcc
     - name: "Win64 / GCC"
       os: windows
       compiler: gcc
+      env:
+        - CC=gcc
+        - CXX=g++
 
     # linux clang
     - name: "Linux / Clang"
