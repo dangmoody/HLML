@@ -13,14 +13,12 @@ fi
 
 source_files=code/generator/*.cpp
 
+options_std="-std=c++11"
+
 # clang requires extra weird c++ settings
 if [[ $compiler == clang* ]]; then
-	options_std="-Xclang -flto-visibility-public-std"
-else
-	options_std=""
+	options_compiler="-Xclang -flto-visibility-public-std"
 fi
-
-options_compiler=${options_std}
 
 # enable optimisations for release
 if [[ $config = release ]]; then
@@ -42,6 +40,6 @@ echo Enabled errors        : ${options_error}
 echo Ignoring options      : ${ignore_warnings}
 echo ""
 
-${compiler} ${options_compiler} -o build/${config}/hlml-gen.exe ${source_files} ${options_error} ${ignore_warnings}
+${compiler} ${options_std} ${options_compiler} -o build/${config}/hlml-gen.exe ${source_files} ${options_error} ${ignore_warnings}
 
 echo ------- Done. -------

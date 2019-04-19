@@ -690,18 +690,18 @@ void GeneratorMatrixTests::GenerateTestInverse() {
 	}
 
 	// matrices chosen because they gave nice whole numbers for determinants
-	float mat2x2[4] {
+	float mat2x2[4] = {
 		6.0f, 2.0f,
 		2.0f, 6.0f
 	};
 
-	float mat3x3[9] {
+	float mat3x3[9] = {
 		6.0f, 2.0f, 3.0f,
 		2.0f, 7.0f, 2.0f,
 		3.0f, 2.0f, 6.0f
 	};
 
-	float mat4x4[16] {
+	float mat4x4[16] = {
 		6.0f, 2.0f, 3.0f, 4.0f,
 		2.0f, 7.0f, 5.0f, 3.0f,
 		3.0f, 5.0f, 7.0f, 2.0f,
@@ -761,18 +761,18 @@ void GeneratorMatrixTests::GenerateTestDeterminant() {
 	}
 
 	// matrices chosen because they gave nice whole numbers for determinants
-	float mat2x2[4] {
+	float mat2x2[4] = {
 		6.0f, 2.0f,
 		2.0f, 6.0f
 	};
 
-	float mat3x3[9] {
+	float mat3x3[9] = {
 		6.0f, 2.0f, 3.0f,
 		2.0f, 7.0f, 2.0f,
 		3.0f, 2.0f, 6.0f
 	};
 
-	float mat4x4[16] {
+	float mat4x4[16] = {
 		6.0f, 2.0f, 3.0f, 4.0f,
 		2.0f, 7.0f, 5.0f, 3.0f,
 		3.0f, 5.0f, 7.0f, 2.0f,
