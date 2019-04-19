@@ -1,4 +1,10 @@
+#ifndef _CRT_SECURE_NO_WARNINGS
+#define _CRT_SECURE_NO_WARNINGS
+#endif
+
 #include "FileIO.h"
+
+#include <stdio.h>
 
 size_t FS_ReadEntireFile( const char* filename, char** outBuffer ) {
 	FILE* file = fopen( filename, "rb" );

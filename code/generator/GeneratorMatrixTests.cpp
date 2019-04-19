@@ -8,6 +8,7 @@
 #include <assert.h>
 #include <vector>
 
+#define _USE_MATH_DEFINES	// for M_PI
 #include <math.h>
 
 bool GeneratorMatrixTests::Generate( const genType_t type, const uint32_t numRows, const uint32_t numCols ) {
