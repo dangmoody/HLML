@@ -2,10 +2,6 @@ language: cpp
 
 matrix:
   include:
-    # windows msvc
-    # - name: "Win64 / MSVC"
-    #   os: windows
-
     # windows clang
     - name: "Win64 / Clang"
       os: windows
@@ -21,11 +17,11 @@ matrix:
       os: linux
       compiler: clang
       addons:
-          apt:
-            sources:
-              - ubuntu-toolchain-r-test
-            packages:
-              - clang-7
+        apt:
+          sources:
+            - ubuntu-toolchain-r-test
+          packages:
+            - clang-7
         before_install:
           - CC=clang-7
           - CXX=clang++-7
@@ -37,11 +33,11 @@ matrix:
       os: linux
       compiler: gcc
       addons:
-          apt:
-            sources:
-              - ubuntu-toolchain-r-test
-            packages:
-              - gcc-8
+        apt:
+          sources:
+            - ubuntu-toolchain-r-test
+          packages:
+            - gcc-8
         before_install:
           - CC=gcc-8
           - CXX=g++-8
@@ -55,5 +51,5 @@ matrix:
       compiler: clang
 
 before_script: chmod +x build_linux_clang_gcc.sh
-script: ./build_posix.sh ${CXX} debug
+script: ./build_linux_clang_gcc.sh ${CXX} debug
 after_success: build/debug/hlml-gen.exe
