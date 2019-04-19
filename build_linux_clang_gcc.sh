@@ -6,8 +6,14 @@ set -e
 compiler=$1	# can be either "clang++" or "g++"
 config=$2	# can be either "debug" or "release"
 
+# make build folder if it doesn't already exist
+if [ ! -d "build" ]; then
+	mkdir -p build/${config}
+fi
+
 source_files=code/generator/*.cpp
 
+# clang requires extra weird c++ settings
 if [[ $compiler == clang* ]]; then
 	options_std="-Xclang -flto-visibility-public-std"
 else
@@ -16,10 +22,12 @@ fi
 
 options_compiler=${options_std}
 
+# enable optimisations for release
 if [[ $config = release ]]; then
 	options_compiler="${options_compiler} -O3 -ffast-math"
 fi
 
+# add -Weverything for clang
 options_error="-Wall -Wextra -Wpedantic"
 if [[ $compiler == clang* ]]; then
 	options_error="${options_error} -Weverything"
