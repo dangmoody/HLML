@@ -9,7 +9,9 @@
 			"command": "./build_linux_clang_gcc.sh",
 			"args": [
 				"clang++",
-				"debug"
+				"debug",
+				"hlml-gen.exe",
+				"code/generator"
 			],
 			"group": {
 				"kind": "build",
