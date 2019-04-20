@@ -287,7 +287,7 @@ void GeneratorMatrix::GenerateConstructors() {
 		m_codeInl += m_fullTypeName + "::" + m_fullTypeName + "( const " + m_fullTypeName + "& other )\n";
 		m_codeInl += "{\n";
 		m_codeInl += "\tmemcpy( rows, other.rows, sizeof( rows ) );\n";
-		m_codeInl += "};\n";
+		m_codeInl += "}\n";
 		m_codeInl += "\n";
 	}
 
@@ -306,7 +306,7 @@ void GeneratorMatrix::GenerateOperatorsAssignment() {
 	m_codeInl += "{\n";
 	m_codeInl += "\tmemcpy( rows, other.rows, sizeof( rows ) );\n";
 	m_codeInl += "\treturn *this;\n";
-	m_codeInl += "};\n";
+	m_codeInl += "}\n";
 	m_codeInl += "\n";
 }
 
