@@ -34,6 +34,12 @@ struct int2;
 struct int4;
 struct float3;
 
+// ignore prohibition of anymous structs for GCC
+#if defined( __clang__ ) || defined( __GNUC__ )
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wpedantic"
+#endif
+
 /// \brief A vector of 3 int32_ts with components xyz and/or rgb.
 /// Components are also stored as elements in an array via a union.
 struct int3
@@ -129,6 +135,10 @@ struct int3
 	inline int3 zzz() const { return int3( z, z, z ); }
 
 };
+
+#if defined( __clang__ ) || defined( __GNUC__ )
+#pragma GCC diagnostic pop
+#endif
 
 /// \relates int3
 /// \brief Returns true if the all the components of the left-hand-side int3 match the other one, otherwise returns false.

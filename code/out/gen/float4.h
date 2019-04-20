@@ -34,6 +34,12 @@ struct float2;
 struct float3;
 struct float3;
 
+// ignore prohibition of anymous structs for GCC
+#if defined( __clang__ ) || defined( __GNUC__ )
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wpedantic"
+#endif
+
 /// \brief A vector of 4 floats with components xyzw and/or rgba.
 /// Components are also stored as elements in an array via a union.
 struct float4
@@ -388,6 +394,10 @@ struct float4
 	inline float4 wwww() const { return float4( w, w, w, w ); }
 
 };
+
+#if defined( __clang__ ) || defined( __GNUC__ )
+#pragma GCC diagnostic pop
+#endif
 
 /// \relates float4
 /// \brief Returns true if the all the components of the left-hand-side float4 match the other one, otherwise returns false.

@@ -54,6 +54,15 @@ bool GeneratorVector::Generate( const genType_t type, const uint32_t numComponen
 
 		m_codeHeader += "\n";
 
+		// unfortunately, the only way around this is to turn off pedantic/
+		// if anyone has a better suggestion, while still keeping structs anonymous, I'm all ears
+		m_codeHeader += "// ignore prohibition of anymous structs for GCC\n";
+		m_codeHeader += "#if defined( __clang__ ) || defined( __GNUC__ )\n";
+		m_codeHeader += "#pragma GCC diagnostic push\n";
+		m_codeHeader += "#pragma GCC diagnostic ignored \"-Wpedantic\"\n";
+		m_codeHeader += "#endif\n";
+		m_codeHeader += "\n";
+
 		m_codeHeader += GetDocStruct();
 		m_codeHeader += "struct " + m_fullTypeName + "\n";
 		m_codeHeader += "{\n";
@@ -71,7 +80,7 @@ bool GeneratorVector::Generate( const genType_t type, const uint32_t numComponen
 		m_codeHeader += "\n";
 	}
 
-	// inl pre-functions
+	// inl before functions
 	{
 		m_codeInl += GEN_FILE_HEADER;
 
@@ -85,10 +94,8 @@ bool GeneratorVector::Generate( const genType_t type, const uint32_t numComponen
 		}
 		m_codeInl += "\n";
 
-//		if ( Gen_IsFloatingPointType( m_type ) ) {
-			m_codeInl += "#include \"" + std::string( GEN_FILENAME_FUNCTIONS_SCALAR ) + ".h\"\n";
-			m_codeInl += "\n";
-//		}
+		m_codeInl += "#include \"" + std::string( GEN_FILENAME_FUNCTIONS_SCALAR ) + ".h\"\n";
+		m_codeInl += "\n";
 
 		m_codeInl += "// others\n";
 		m_codeInl += "#include <math.h>\n";
@@ -106,6 +113,11 @@ bool GeneratorVector::Generate( const genType_t type, const uint32_t numComponen
 	GenerateSwizzleFuncs();
 
 	m_codeHeader += "};\n\n";
+
+	m_codeHeader += "#if defined( __clang__ ) || defined( __GNUC__ )\n";
+	m_codeHeader += "#pragma GCC diagnostic pop\n";
+	m_codeHeader += "#endif\n";
+	m_codeHeader += "\n";
 
 	GenerateOperatorsEquality();
 

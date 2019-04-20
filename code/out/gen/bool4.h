@@ -32,6 +32,12 @@ struct bool2;
 struct bool3;
 struct float3;
 
+// ignore prohibition of anymous structs for GCC
+#if defined( __clang__ ) || defined( __GNUC__ )
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wpedantic"
+#endif
+
 /// \brief A vector of 4 bools with components xyzw.
 /// Components are also stored as elements in an array via a union.
 struct bool4
@@ -378,6 +384,10 @@ struct bool4
 	inline bool4 wwww() const { return bool4( w, w, w, w ); }
 
 };
+
+#if defined( __clang__ ) || defined( __GNUC__ )
+#pragma GCC diagnostic pop
+#endif
 
 /// \relates bool4
 /// \brief Returns true if the all the components of the left-hand-side bool4 match the other one, otherwise returns false.

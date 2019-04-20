@@ -34,6 +34,12 @@ struct double2;
 struct double4;
 struct float3;
 
+// ignore prohibition of anymous structs for GCC
+#if defined( __clang__ ) || defined( __GNUC__ )
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wpedantic"
+#endif
+
 /// \brief A vector of 3 doubles with components xyz and/or rgb.
 /// Components are also stored as elements in an array via a union.
 struct double3
@@ -129,6 +135,10 @@ struct double3
 	inline double3 zzz() const { return double3( z, z, z ); }
 
 };
+
+#if defined( __clang__ ) || defined( __GNUC__ )
+#pragma GCC diagnostic pop
+#endif
 
 /// \relates double3
 /// \brief Returns true if the all the components of the left-hand-side double3 match the other one, otherwise returns false.

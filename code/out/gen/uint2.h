@@ -33,6 +33,12 @@ along with hlml.  If not, see <http://www.gnu.org/licenses/>.
 struct uint3;
 struct uint4;
 
+// ignore prohibition of anymous structs for GCC
+#if defined( __clang__ ) || defined( __GNUC__ )
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wpedantic"
+#endif
+
 /// \brief A vector of 2 uint32_ts with components xy and/or rg.
 /// Components are also stored as elements in an array via a union.
 struct uint2
@@ -98,6 +104,10 @@ struct uint2
 	inline uint2 yy() const { return uint2( y, y ); }
 
 };
+
+#if defined( __clang__ ) || defined( __GNUC__ )
+#pragma GCC diagnostic pop
+#endif
 
 /// \relates uint2
 /// \brief Returns true if the all the components of the left-hand-side uint2 match the other one, otherwise returns false.

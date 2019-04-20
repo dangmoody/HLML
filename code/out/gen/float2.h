@@ -33,6 +33,12 @@ along with hlml.  If not, see <http://www.gnu.org/licenses/>.
 struct float3;
 struct float4;
 
+// ignore prohibition of anymous structs for GCC
+#if defined( __clang__ ) || defined( __GNUC__ )
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wpedantic"
+#endif
+
 /// \brief A vector of 2 floats with components xy and/or rg.
 /// Components are also stored as elements in an array via a union.
 struct float2
@@ -98,6 +104,10 @@ struct float2
 	inline float2 yy() const { return float2( y, y ); }
 
 };
+
+#if defined( __clang__ ) || defined( __GNUC__ )
+#pragma GCC diagnostic pop
+#endif
 
 /// \relates float2
 /// \brief Returns true if the all the components of the left-hand-side float2 match the other one, otherwise returns false.

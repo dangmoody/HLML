@@ -96,16 +96,6 @@ float length( const int4& vec )
 	return sqrtf( lengthsqr( vec ) );
 }
 
-int4 unpack( const int32_t x )
-{
-	return int4(
-		( x >> 24 ) & 0xFF,
-		( x >> 16 ) & 0xFF,
-		( x >> 8 ) & 0xFF,
-		( x >> 0 ) & 0xFF
-	);
-}
-
 
 // uint2
 float dot( const uint2& lhs, const uint2& rhs )

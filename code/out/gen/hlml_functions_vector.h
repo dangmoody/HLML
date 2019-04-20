@@ -96,10 +96,6 @@ inline float lengthsqr( const int4& vec );
 /// \brief Returns the magnitude of the vector.
 inline float length( const int4& vec );
 
-/// \relates int4
-/// \brief Returns a 4-component integer vector containing each byte of the given integer.
-inline int4 unpack( const int32_t x );
-
 
 // uint2
 /// \relates uint2
