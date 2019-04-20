@@ -287,4 +287,4 @@ TEMPER_SUITE( Test_uint3 )
 	TEMPER_RUN_TEST( TestBitwiseUnary_uint3 );
 	TEMPER_RUN_TEST( TestLength_uint3 );
 	TEMPER_RUN_TEST( TestDistance_uint3 );
-};
+}

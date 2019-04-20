@@ -482,4 +482,4 @@ TEMPER_SUITE( Test_uint2x2 )
 	TEMPER_RUN_TEST( TestTranspose_uint2x2 );
 
 
-};
+}

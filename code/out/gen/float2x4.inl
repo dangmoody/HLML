@@ -69,13 +69,13 @@ float2x4::float2x4( const float m00, const float m01, const float m02, const flo
 float2x4::float2x4( const float2x4& other )
 {
 	memcpy( rows, other.rows, sizeof( rows ) );
-};
+}
 
 float2x4 float2x4::operator=( const float2x4& other )
 {
 	memcpy( rows, other.rows, sizeof( rows ) );
 	return *this;
-};
+}
 
 float4& float2x4::operator[]( const uint32_t index )
 {

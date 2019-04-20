@@ -637,4 +637,4 @@ TEMPER_SUITE( Test_double4x4 )
 	TEMPER_RUN_TEST( TestOrtho_double4x4 );
 	TEMPER_RUN_TEST( TestPerspective_double4x4 );
 	TEMPER_RUN_TEST( TestLookAt_double4x4 );
-};
+}

@@ -496,4 +496,4 @@ TEMPER_SUITE( Test_int2x2 )
 	TEMPER_RUN_TEST( TestDeterminant_int2x2 );
 
 
-};
+}

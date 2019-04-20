@@ -69,13 +69,13 @@ double2x3::double2x3( const double m00, const double m01, const double m02, cons
 double2x3::double2x3( const double2x3& other )
 {
 	memcpy( rows, other.rows, sizeof( rows ) );
-};
+}
 
 double2x3 double2x3::operator=( const double2x3& other )
 {
 	memcpy( rows, other.rows, sizeof( rows ) );
 	return *this;
-};
+}
 
 double3& double2x3::operator[]( const uint32_t index )
 {

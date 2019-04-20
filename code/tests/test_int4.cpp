@@ -291,4 +291,4 @@ TEMPER_SUITE( Test_int4 )
 	TEMPER_RUN_TEST( TestBitwiseUnary_int4 );
 	TEMPER_RUN_TEST( TestLength_int4 );
 	TEMPER_RUN_TEST( TestDot_int4 );
-};
+}

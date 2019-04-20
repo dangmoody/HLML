@@ -81,13 +81,13 @@ uint4x2::uint4x2( const uint32_t m00, const uint32_t m01, const uint32_t m10, co
 uint4x2::uint4x2( const uint4x2& other )
 {
 	memcpy( rows, other.rows, sizeof( rows ) );
-};
+}
 
 uint4x2 uint4x2::operator=( const uint4x2& other )
 {
 	memcpy( rows, other.rows, sizeof( rows ) );
 	return *this;
-};
+}
 
 uint2& uint4x2::operator[]( const uint32_t index )
 {

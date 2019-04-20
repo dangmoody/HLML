@@ -385,4 +385,4 @@ TEMPER_SUITE( Test_double2x2 )
 	TEMPER_RUN_TEST( TestInverse_double2x2 );
 
 
-};
+}

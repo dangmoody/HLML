@@ -298,4 +298,4 @@ TEMPER_SUITE( Test_int3 )
 	TEMPER_RUN_TEST( TestLength_int3 );
 	TEMPER_RUN_TEST( TestDot_int3 );
 	TEMPER_RUN_TEST( TestDistance_int3 );
-};
+}

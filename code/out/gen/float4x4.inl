@@ -81,13 +81,13 @@ float4x4::float4x4( const float m00, const float m01, const float m02, const flo
 float4x4::float4x4( const float4x4& other )
 {
 	memcpy( rows, other.rows, sizeof( rows ) );
-};
+}
 
 float4x4 float4x4::operator=( const float4x4& other )
 {
 	memcpy( rows, other.rows, sizeof( rows ) );
 	return *this;
-};
+}
 
 float4& float4x4::operator[]( const uint32_t index )
 {

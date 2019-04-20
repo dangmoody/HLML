@@ -66,13 +66,13 @@ bool2x2::bool2x2( const bool m00, const bool m01, const bool m10, const bool m11
 bool2x2::bool2x2( const bool2x2& other )
 {
 	memcpy( rows, other.rows, sizeof( rows ) );
-};
+}
 
 bool2x2 bool2x2::operator=( const bool2x2& other )
 {
 	memcpy( rows, other.rows, sizeof( rows ) );
 	return *this;
-};
+}
 
 bool2& bool2x2::operator[]( const uint32_t index )
 {

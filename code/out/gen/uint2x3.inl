@@ -69,13 +69,13 @@ uint2x3::uint2x3( const uint32_t m00, const uint32_t m01, const uint32_t m02, co
 uint2x3::uint2x3( const uint2x3& other )
 {
 	memcpy( rows, other.rows, sizeof( rows ) );
-};
+}
 
 uint2x3 uint2x3::operator=( const uint2x3& other )
 {
 	memcpy( rows, other.rows, sizeof( rows ) );
 	return *this;
-};
+}
 
 uint3& uint2x3::operator[]( const uint32_t index )
 {

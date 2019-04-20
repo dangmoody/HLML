@@ -75,13 +75,13 @@ float3x2::float3x2( const float m00, const float m01, const float m10, const flo
 float3x2::float3x2( const float3x2& other )
 {
 	memcpy( rows, other.rows, sizeof( rows ) );
-};
+}
 
 float3x2 float3x2::operator=( const float3x2& other )
 {
 	memcpy( rows, other.rows, sizeof( rows ) );
 	return *this;
-};
+}
 
 float2& float3x2::operator[]( const uint32_t index )
 {

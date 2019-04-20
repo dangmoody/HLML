@@ -310,4 +310,4 @@ TEMPER_SUITE( Test_double3 )
 	TEMPER_RUN_TEST( TestSaturate_double3 );
 	TEMPER_RUN_TEST( TestLerp_double3 );
 	TEMPER_RUN_TEST( TestSmoothstep_double3 );
-};
+}

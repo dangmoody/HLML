@@ -60,4 +60,4 @@ TEMPER_SUITE( Test_bool4 )
 {
 	TEMPER_RUN_TEST( TestAssignment_bool4 );
 	TEMPER_RUN_TEST( TestArray_bool4 );
-};
+}

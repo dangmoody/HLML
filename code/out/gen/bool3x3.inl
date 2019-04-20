@@ -72,13 +72,13 @@ bool3x3::bool3x3( const bool m00, const bool m01, const bool m02, const bool m10
 bool3x3::bool3x3( const bool3x3& other )
 {
 	memcpy( rows, other.rows, sizeof( rows ) );
-};
+}
 
 bool3x3 bool3x3::operator=( const bool3x3& other )
 {
 	memcpy( rows, other.rows, sizeof( rows ) );
 	return *this;
-};
+}
 
 bool3& bool3x3::operator[]( const uint32_t index )
 {

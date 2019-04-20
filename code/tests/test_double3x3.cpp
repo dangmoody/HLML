@@ -459,4 +459,4 @@ TEMPER_SUITE( Test_double3x3 )
 	TEMPER_RUN_TEST( TestRotate_double3x3 );
 	TEMPER_RUN_TEST( TestScale_double3x3 );
 
-};
+}

@@ -122,4 +122,4 @@ TEMPER_SUITE( Test_bool4x3 )
 
 	TEMPER_RUN_TEST( TestIdentity_bool4x3 );
 	TEMPER_RUN_TEST( TestTranspose_bool4x3 );
-};
+}

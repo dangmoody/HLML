@@ -287,4 +287,4 @@ TEMPER_SUITE( Test_float2 )
 	TEMPER_RUN_TEST( TestSaturate_float2 );
 	TEMPER_RUN_TEST( TestLerp_float2 );
 	TEMPER_RUN_TEST( TestSmoothstep_float2 );
-};
+}

@@ -81,13 +81,13 @@ double4x4::double4x4( const double m00, const double m01, const double m02, cons
 double4x4::double4x4( const double4x4& other )
 {
 	memcpy( rows, other.rows, sizeof( rows ) );
-};
+}
 
 double4x4 double4x4::operator=( const double4x4& other )
 {
 	memcpy( rows, other.rows, sizeof( rows ) );
 	return *this;
-};
+}
 
 double4& double4x4::operator[]( const uint32_t index )
 {

@@ -356,4 +356,4 @@ TEMPER_SUITE( Test_float3x2 )
 	TEMPER_RUN_TEST( TestTranspose_float3x2 );
 
 
-};
+}

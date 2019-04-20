@@ -537,4 +537,4 @@ TEMPER_SUITE( Test_int3x4 )
 	TEMPER_RUN_TEST( TestTranslate_int3x4 );
 	TEMPER_RUN_TEST( TestScale_int3x4 );
 
-};
+}

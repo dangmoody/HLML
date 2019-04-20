@@ -466,4 +466,4 @@ TEMPER_SUITE( Test_uint2x3 )
 	TEMPER_RUN_TEST( TestTranspose_uint2x3 );
 
 
-};
+}

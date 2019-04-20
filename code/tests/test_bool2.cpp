@@ -58,4 +58,4 @@ TEMPER_SUITE( Test_bool2 )
 {
 	TEMPER_RUN_TEST( TestAssignment_bool2 );
 	TEMPER_RUN_TEST( TestArray_bool2 );
-};
+}

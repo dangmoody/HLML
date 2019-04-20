@@ -78,13 +78,13 @@ bool4x2::bool4x2( const bool m00, const bool m01, const bool m10, const bool m11
 bool4x2::bool4x2( const bool4x2& other )
 {
 	memcpy( rows, other.rows, sizeof( rows ) );
-};
+}
 
 bool4x2 bool4x2::operator=( const bool4x2& other )
 {
 	memcpy( rows, other.rows, sizeof( rows ) );
 	return *this;
-};
+}
 
 bool2& bool4x2::operator[]( const uint32_t index )
 {

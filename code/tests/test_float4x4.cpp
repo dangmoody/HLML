@@ -637,4 +637,4 @@ TEMPER_SUITE( Test_float4x4 )
 	TEMPER_RUN_TEST( TestOrtho_float4x4 );
 	TEMPER_RUN_TEST( TestPerspective_float4x4 );
 	TEMPER_RUN_TEST( TestLookAt_float4x4 );
-};
+}

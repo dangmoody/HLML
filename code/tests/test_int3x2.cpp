@@ -500,4 +500,4 @@ TEMPER_SUITE( Test_int3x2 )
 	TEMPER_RUN_TEST( TestTranspose_int3x2 );
 
 
-};
+}

@@ -339,4 +339,4 @@ TEMPER_SUITE( Test_double2x3 )
 	TEMPER_RUN_TEST( TestTranspose_double2x3 );
 
 
-};
+}
