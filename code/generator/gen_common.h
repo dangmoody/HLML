@@ -338,6 +338,7 @@ std::string Gen_GetConstantNamePi( const genType_t type ) {
 			return "HLML_PI";
 
 		case GEN_TYPE_COUNT:
+		default:
 			printf( "ERROR: Bad genType_t enum passed into %s.\n", __FUNCTION__ );
 			return "?????";
 	}
@@ -355,6 +356,7 @@ std::string Gen_GetConstantNameEpsilon( const genType_t type ) {
 			return "HLML_EPSILON";
 
 		case GEN_TYPE_COUNT:
+		default:
 			printf( "ERROR: Bad genType_t enum passed into %s.\n", __FUNCTION__ );
 			return "?????";
 	}

@@ -66,7 +66,7 @@ bool GeneratorVectorTests::Generate( const genType_t type, const uint32_t numCom
 
 	GenerateTestPacking();
 
-	m_codeSuite += "};\n";
+	m_codeSuite += "}\n";
 
 	code += m_codeTests;
 	code += m_codeSuite;
