@@ -15,6 +15,13 @@
 
 #include <errno.h>
 
+/*
+File IO for Linux/MacOS
+
+DM: we can't use functions like opendir64 because the MacOS VMs on Travis complain
+I don't have a Mac so I can only test so much, but I'll assume it's legit unless I find out otherwise
+*/
+
 bool FS_CreateFolder( const char* name ) {
 	assert( name );
 
