@@ -4,6 +4,7 @@
 ===========================================================================
 
 Temper.
+v1.0.1
 
 Distributed under MIT License:
 Copyright (c) 2019 Dan Moody (daniel.guy.moody@gmail.com)
@@ -170,6 +171,7 @@ And to filter tests without command line args:
 #endif
 
 #include <stdio.h>
+#include <stdlib.h>
 #include <memory.h>
 
 #include <stdint.h>
@@ -188,11 +190,13 @@ extern "C" {
 
 #if defined( __clang__ )
 #pragma clang diagnostic ignored "-Wunused-function"
+#pragma clang diagnostic ignored "-Wmissing-field-initializers"
 #pragma clang diagnostic ignored "-Wzero-as-null-pointer-constant"
 #pragma clang diagnostic ignored "-Wold-style-cast"
 #pragma clang diagnostic ignored "-Wc++98-compat-pedantic"
 #elif defined( __GNUC__ )
 #pragma GCC diagnostic ignored "-Wunused-function"
+#pragma GCC diagnostic ignored "-Wmissing-field-initializers"
 #ifdef __cplusplus
 #pragma GCC diagnostic ignored "-Wzero-as-null-pointer-constant"
 #pragma GCC diagnostic ignored "-Wold-style-cast"
@@ -209,7 +213,7 @@ extern "C" {
 #define TEMPER_COLOR_YELLOW			0x0E
 
 typedef uint32_t					temperTestConsoleColor_t;
-#elif defined( __linux__ )
+#elif defined( __linux__ ) || defined( __APPLE__ )
 #define TEMPER_COLOR_DEFAULT		"\x1B[0m"
 #define TEMPER_COLOR_RED			"\x1B[31m"
 #define TEMPER_COLOR_GREEN			"\x1B[32m"
@@ -219,15 +223,15 @@ typedef const char*					temperTestConsoleColor_t;
 #endif
 
 typedef enum temperFlagBits_t {
-	TEMPER_FLAG_ABORT_ON_FAIL		= 1ULL << 1,	// stop testing immediately after a test fails
-	TEMPER_FLAG_COLORED_OUTPUT		= 1ULL << 2,	// output to console with colors
+	TEMPER_FLAG_ABORT_ON_FAIL		= 1 << 1,	// stop testing immediately after a test fails
+	TEMPER_FLAG_COLORED_OUTPUT		= 1 << 2	// output to console with colors
 } temperFlagBits_t;
 typedef uint32_t temperFlags_t;
 
 typedef enum temperTestResult_t {
 	TEMPER_RESULT_PASSED			= 0,
 	TEMPER_RESULT_FAILED,
-	TEMPER_RESULT_SKIPPED,
+	TEMPER_RESULT_SKIPPED
 } temperTestResult_t;
 
 typedef void( *temperTestCallback_t )( void* userdata );
@@ -245,11 +249,12 @@ typedef struct temperTestContext_t {
 	temperTestCallback_t			testFuncStart;
 	temperTestCallback_t			testFuncEnd;
 
+	temperFlags_t					flags;
+	uint32_t						padding0;	// unused
+
 	uint32_t						numPassed;
 	uint32_t						numFailed;
 	uint32_t						numSkipped;
-
-	temperFlags_t					flags;
 
 	uint32_t						line;
 	const char*						file;
@@ -293,8 +298,8 @@ static void TemperSetTextColorInternal( const temperTestConsoleColor_t color ) {
 
 #if defined( _WIN32 )
 	SetConsoleTextAttribute( GetStdHandle( STD_OUTPUT_HANDLE ), (WORD) color );
-#elif defined( __linux__ )
-	printf( color );
+#elif defined( __linux__ ) || defined( __APPLE__ )
+	printf( "%s", color );
 #endif
 }
 
