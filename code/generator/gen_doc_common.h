@@ -46,11 +46,13 @@ std::string Gen_GetDocFloateq( void ) {
 }
 
 std::string Gen_GetDocIsInf( void ) {
-	return "/// \\brief Returns true if the given floating-point number is considered to be infinity.\n";
+	return "/// \\brief Returns true if the given floating-point number is considered to be infinity.\n"
+		"/// This function includes an underscore between both words to avoid conflict with std::isinf().\n";
 }
 
 std::string Gen_GetDocIsNaN( void ) {
-	return "/// \\brief Returns true if the given floating-point number is considered to be not-a-number.\n";
+	return "/// \\brief Returns true if the given floating-point number is considered to be not-a-number.\n" \
+		"/// This function includes an underscore between both words to avoid conflict with std::isnan().\n";
 }
 
 std::string Gen_GetDocSign( void ) {

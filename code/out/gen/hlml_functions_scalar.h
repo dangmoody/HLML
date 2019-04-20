@@ -93,13 +93,15 @@ inline bool floateq( const float lhs, const float rhs, const float epsilon = sta
 }
 
 /// \brief Returns true if the given floating-point number is considered to be infinity.
-inline bool isinf( const float x )
+/// This function includes an underscore between both words to avoid conflict with std::isinf().
+inline bool is_inf( const float x )
 {
 	return ( x == x ) && !floateq( x * 0.000000f, x * 0.000000f );
 }
 
 /// \brief Returns true if the given floating-point number is considered to be not-a-number.
-inline bool isnan( const float x )
+/// This function includes an underscore between both words to avoid conflict with std::isnan().
+inline bool is_nan( const float x )
 {
 	return x != x;
 }
@@ -181,13 +183,15 @@ inline bool doubleeq( const double lhs, const double rhs, const double epsilon =
 }
 
 /// \brief Returns true if the given floating-point number is considered to be infinity.
-inline bool isinf( const double x )
+/// This function includes an underscore between both words to avoid conflict with std::isinf().
+inline bool is_inf( const double x )
 {
 	return ( x == x ) && !doubleeq( x * 0.000000, x * 0.000000 );
 }
 
 /// \brief Returns true if the given floating-point number is considered to be not-a-number.
-inline bool isnan( const double x )
+/// This function includes an underscore between both words to avoid conflict with std::isnan().
+inline bool is_nan( const double x )
 {
 	return x != x;
 }
