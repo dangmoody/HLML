@@ -195,7 +195,7 @@ TEMPER_TEST( TestDot_float3 )
 	float3 a = float3( 0.000000f, 0.000000f, 1.000000f );
 	float3 b = float3( 0.000000f, 0.000000f, -1.000000f );
 
-	TEMPER_EXPECT_TRUE( dot( a, b ) == -1.0f );
+	TEMPER_EXPECT_TRUE( floateq( dot( a, b ), -1.0f ) );
 
 	TEMPER_PASS();
 }

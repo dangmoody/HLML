@@ -31,10 +31,10 @@ along with hlml.  If not, see <http://www.gnu.org/licenses/>.
 
 TEMPER_TEST( TestFloateq_float )
 {
-	float a =  5.000000;
-	float b =  5.000000;
-	float c =  5.000020;
-	float d =  5.000100;
+	float a =  5.000000f;
+	float b =  5.000000f;
+	float c =  5.000020f;
+	float d =  5.000100f;
 
 	TEMPER_EXPECT_TRUE( floateq( a, b ) );
 	TEMPER_EXPECT_TRUE( !floateq( a, c ) );
@@ -88,8 +88,8 @@ TEMPER_TEST( TestMinMax_float )
 	float a = 5.000000f;
 	float b = 9.000000f;
 
-	TEMPER_EXPECT_TRUE( min( a, b ) == a );
-	TEMPER_EXPECT_TRUE( max( a, b ) == b );
+	TEMPER_EXPECT_TRUE( floateq( min( a, b ), a ) );
+	TEMPER_EXPECT_TRUE( floateq( max( a, b ), b ) );
 
 	TEMPER_PASS();
 }
@@ -101,10 +101,10 @@ TEMPER_TEST( TestClamp_float )
 	float high = 10.000000f;
 
 	a = clamp( 0.000000f, low, high );
-	TEMPER_EXPECT_TRUE( a == low );
+	TEMPER_EXPECT_TRUE( floateq( a, low ) );
 
 	a = clamp( 11.000000f, low, high );
-	TEMPER_EXPECT_TRUE( a == high );
+	TEMPER_EXPECT_TRUE( floateq( a, high ) );
 
 	TEMPER_PASS();
 }

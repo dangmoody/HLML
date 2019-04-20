@@ -315,7 +315,7 @@ void Gen_VectorPack( const genType_t type, const uint32_t numComponents, std::st
 	assert( numComponents >= GEN_COMPONENT_COUNT_MIN );
 	assert( numComponents <= GEN_COMPONENT_COUNT_MAX );
 
-	if ( !Gen_IsIntegerType( type ) ) {
+	if ( type != GEN_TYPE_UINT ) {
 		return;
 	}
 

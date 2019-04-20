@@ -515,12 +515,14 @@ void GeneratorVectorTests::GenerateTestDot() {
 	}
 	paramListB += " )";
 
+	std::string floateqStr = Gen_GetFuncNameFloateq( m_type );
+
 	m_codeTests += "TEMPER_TEST( TestDot_" + m_fullTypeName + " )\n";
 	m_codeTests += "{\n";
 	m_codeTests += "\t" + m_fullTypeName + " a = " + m_fullTypeName + paramListA + ";\n";
 	m_codeTests += "\t" + m_fullTypeName + " b = " + m_fullTypeName + paramListB + ";\n";
 	m_codeTests += "\n";
-	m_codeTests += "\tTEMPER_EXPECT_TRUE( dot( a, b ) == " + minusOneFloatStr + " );\n";
+	m_codeTests += "\tTEMPER_EXPECT_TRUE( " + floateqStr + "( dot( a, b ), " + minusOneFloatStr + " ) );\n";
 	m_codeTests += "\n";
 	m_codeTests += "\tTEMPER_PASS();\n";
 	m_codeTests += "}\n";
@@ -654,7 +656,7 @@ void GeneratorVectorTests::GenerateTestDistance() {
 }
 
 void GeneratorVectorTests::GenerateTestPacking() {
-	if ( !Gen_IsIntegerType( m_type ) ) {
+	if ( m_type != GEN_TYPE_UINT ) {
 		return;
 	}
 
@@ -667,12 +669,12 @@ void GeneratorVectorTests::GenerateTestPacking() {
 	float values[] = { 255, 255, 0, 255 };	// magenta
 	std::string parmListAnswerUnpacked = Gen_GetParmListVector( m_type, m_numComponents, values );
 
-	std::string answerPacked = "0xFFFF00FF";
+	std::string answerPackedStr = "0xFFFF00FF";
 
 	// tests pack and unpack
 	m_codeTests += "TEMPER_TEST( " + testName + " )\n";
 	m_codeTests += "{\n";
-	m_codeTests += "\t" + m_memberTypeString + " answerPacked = " + answerPacked + ";\n";
+	m_codeTests += "\t" + m_memberTypeString + " answerPacked = " + answerPackedStr + ";\n";
 	m_codeTests += "\t" + m_fullTypeName + " answerUnpacked = " + m_fullTypeName + parmListAnswerUnpacked + ";\n";
 	m_codeTests += "\n";
 	m_codeTests += "\t" + m_fullTypeName + " vec = " + m_fullTypeName + parmListAnswerUnpacked + ";\n";	// we can use the same parm list here, it's fine

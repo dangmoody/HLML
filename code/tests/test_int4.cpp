@@ -267,23 +267,7 @@ TEMPER_TEST( TestDot_int4 )
 	int4 a = int4( 0, 0, 0, 1 );
 	int4 b = int4( 0, 0, 0, -1 );
 
-	TEMPER_EXPECT_TRUE( dot( a, b ) == -1.0f );
-
-	TEMPER_PASS();
-}
-
-TEMPER_TEST( TestPacking_int4 )
-{
-	int32_t answerPacked = 0xFFFF00FF;
-	int4 answerUnpacked = int4( 255, 255, 0, 255 );
-
-	int4 vec = int4( 255, 255, 0, 255 );
-
-	int32_t packed = pack( vec );
-	TEMPER_EXPECT_TRUE( packed == answerPacked );
-
-	int4 unpacked = unpack( packed );
-	TEMPER_EXPECT_TRUE( unpacked == answerUnpacked );
+	TEMPER_EXPECT_TRUE( floateq( dot( a, b ), -1.0f ) );
 
 	TEMPER_PASS();
 }
@@ -307,5 +291,4 @@ TEMPER_SUITE( Test_int4 )
 	TEMPER_RUN_TEST( TestBitwiseUnary_int4 );
 	TEMPER_RUN_TEST( TestLength_int4 );
 	TEMPER_RUN_TEST( TestDot_int4 );
-	TEMPER_RUN_TEST( TestPacking_int4 );
 };

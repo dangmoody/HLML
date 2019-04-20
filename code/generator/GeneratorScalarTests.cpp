@@ -80,10 +80,10 @@ void GeneratorScalarTest::GenerateTestFloateq() {
 
 	m_codeTests += "TEMPER_TEST( " + testName + " )\n";
 	m_codeTests += "{\n";
-	m_codeTests += "\t" + m_memberTypeString + " a =  " + std::to_string( a ) + ";\n";
-	m_codeTests += "\t" + m_memberTypeString + " b =  " + std::to_string( b ) + ";\n";
-	m_codeTests += "\t" + m_memberTypeString + " c =  " + std::to_string( c ) + ";\n";
-	m_codeTests += "\t" + m_memberTypeString + " d =  " + std::to_string( d ) + ";\n";
+	m_codeTests += "\t" + m_memberTypeString + " a =  " + Gen_GetNumericLiteral( m_type, a ) + ";\n";
+	m_codeTests += "\t" + m_memberTypeString + " b =  " + Gen_GetNumericLiteral( m_type, b ) + ";\n";
+	m_codeTests += "\t" + m_memberTypeString + " c =  " + Gen_GetNumericLiteral( m_type, c ) + ";\n";
+	m_codeTests += "\t" + m_memberTypeString + " d =  " + Gen_GetNumericLiteral( m_type, d ) + ";\n";
 	m_codeTests += "\n";
 	m_codeTests += "\tTEMPER_EXPECT_TRUE( " + floateqStr + "( a, b ) );\n";
 	m_codeTests += "\tTEMPER_EXPECT_TRUE( !" + floateqStr + "( a, c ) );\n";
@@ -238,13 +238,15 @@ void GeneratorScalarTest::GenerateTestMinMax() {
 	std::string aStr = Gen_GetNumericLiteral( m_type, 5 );
 	std::string bStr = Gen_GetNumericLiteral( m_type, 9 );
 
+	std::string floateqStr = Gen_GetFuncNameFloateq( m_type );
+
 	m_codeTests += "TEMPER_TEST( " + testName + " )\n";
 	m_codeTests += "{\n";
 	m_codeTests += "\t" + m_memberTypeString + " a = " + aStr + ";\n";
 	m_codeTests += "\t" + m_memberTypeString + " b = " + bStr + ";\n";
 	m_codeTests += "\n";
-	m_codeTests += "\tTEMPER_EXPECT_TRUE( min( a, b ) == a );\n";
-	m_codeTests += "\tTEMPER_EXPECT_TRUE( max( a, b ) == b );\n";
+	m_codeTests += "\tTEMPER_EXPECT_TRUE( " + floateqStr + "( min( a, b ), a ) );\n";
+	m_codeTests += "\tTEMPER_EXPECT_TRUE( " + floateqStr + "( max( a, b ), b ) );\n";
 	m_codeTests += "\n";
 	m_codeTests += "\tTEMPER_PASS();\n";
 	m_codeTests += "}\n";
@@ -271,6 +273,10 @@ void GeneratorScalarTest::GenerateTestClamp() {
 	std::string lowStr		= Gen_GetNumericLiteral( m_type, 1 );
 	std::string highStr		= Gen_GetNumericLiteral( m_type, 10 );
 
+	std::string floateqStr = Gen_GetFuncNameFloateq( m_type );
+
+	bool isFloatingPointType = Gen_IsFloatingPointType( m_type );
+
 	m_codeTests += "TEMPER_TEST( " + testName + " )\n";
 	m_codeTests += "{\n";
 	m_codeTests += "\t" + m_memberTypeString + " a;\n";
@@ -278,10 +284,18 @@ void GeneratorScalarTest::GenerateTestClamp() {
 	m_codeTests += "\t" + m_memberTypeString + " high = " + highStr + ";\n";
 	m_codeTests += "\n";
 	m_codeTests += "\ta = clamp( " + zeroStr + ", low, high );\n";
-	m_codeTests += "\tTEMPER_EXPECT_TRUE( a == low );\n";
+	if ( isFloatingPointType ) {
+		m_codeTests += "\tTEMPER_EXPECT_TRUE( " + floateqStr + "( a, low ) );\n";
+	} else {
+		m_codeTests += "\tTEMPER_EXPECT_TRUE( a == low );\n";
+	}
 	m_codeTests += "\n";
 	m_codeTests += "\ta = clamp( " + elevenStr + ", low, high );\n";
-	m_codeTests += "\tTEMPER_EXPECT_TRUE( a == high );\n";
+		if ( isFloatingPointType ) {
+		m_codeTests += "\tTEMPER_EXPECT_TRUE( " + floateqStr + "( a, high ) );\n";
+	} else {
+		m_codeTests += "\tTEMPER_EXPECT_TRUE( a == high );\n";
+	}
 	m_codeTests += "\n";
 	m_codeTests += "\tTEMPER_PASS();\n";
 	m_codeTests += "}\n";

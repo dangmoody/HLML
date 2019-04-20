@@ -88,8 +88,8 @@ TEMPER_TEST( TestMinMax_double )
 	double a = 5.000000;
 	double b = 9.000000;
 
-	TEMPER_EXPECT_TRUE( min( a, b ) == a );
-	TEMPER_EXPECT_TRUE( max( a, b ) == b );
+	TEMPER_EXPECT_TRUE( doubleeq( min( a, b ), a ) );
+	TEMPER_EXPECT_TRUE( doubleeq( max( a, b ), b ) );
 
 	TEMPER_PASS();
 }
@@ -101,10 +101,10 @@ TEMPER_TEST( TestClamp_double )
 	double high = 10.000000;
 
 	a = clamp( 0.000000, low, high );
-	TEMPER_EXPECT_TRUE( a == low );
+	TEMPER_EXPECT_TRUE( doubleeq( a, low ) );
 
 	a = clamp( 11.000000, low, high );
-	TEMPER_EXPECT_TRUE( a == high );
+	TEMPER_EXPECT_TRUE( doubleeq( a, high ) );
 
 	TEMPER_PASS();
 }

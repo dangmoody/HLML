@@ -97,10 +97,6 @@ inline float lengthsqr( const int4& vec );
 inline float length( const int4& vec );
 
 /// \relates int4
-/// \brief Returns a 32 bit integer containing each component of the vector (starting with x) at each byte.
-inline int32_t pack( const int4& vec );
-
-/// \relates int4
 /// \brief Returns a 4-component integer vector containing each byte of the given integer.
 inline int4 unpack( const int32_t x );
 

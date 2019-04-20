@@ -87,7 +87,7 @@ inline uint32_t clamp( const uint32_t& x, const uint32_t& low, const uint32_t& h
 
 // float
 /// \brief Returns true if the two given floating-point numbers are within a small enough epsilon range of each other that takes into account floating-point inaccuracy.
-inline bool floateq( const float lhs, const float rhs, const float epsilon = HLML_EPSILON )
+inline bool floateq( const float lhs, const float rhs, const float epsilon = static_cast<float>( HLML_EPSILON ) )
 {
 	return fabsf( lhs - rhs ) < epsilon;
 }
@@ -95,7 +95,7 @@ inline bool floateq( const float lhs, const float rhs, const float epsilon = HLM
 /// \brief Returns true if the given floating-point number is considered to be infinity.
 inline bool isinf( const float x )
 {
-	return x == x && x * 0.000000f != x * 0.000000f;
+	return ( x == x ) && !floateq( x * 0.000000f, x * 0.000000f );
 }
 
 /// \brief Returns true if the given floating-point number is considered to be not-a-number.
@@ -114,13 +114,13 @@ inline int32_t sign( const float x )
 /// \brief Returns the given degrees to radians.
 inline float radians( const float deg )
 {
-	return deg * HLML_PI / 180.000000f;
+	return deg * static_cast<float>( HLML_PI ) / 180.000000f;
 }
 
 /// \brief Returns the given radians to degrees.
 inline float degrees( const float rad )
 {
-	return rad * 180.000000f / HLML_PI;
+	return rad * 180.000000f / static_cast<float>( HLML_PI );
 }
 
 /// \brief Returns x if its smaller than y, otherwise returns y.
@@ -183,7 +183,7 @@ inline bool doubleeq( const double lhs, const double rhs, const double epsilon =
 /// \brief Returns true if the given floating-point number is considered to be infinity.
 inline bool isinf( const double x )
 {
-	return x == x && x * 0.000000 != x * 0.000000;
+	return ( x == x ) && !doubleeq( x * 0.000000, x * 0.000000 );
 }
 
 /// \brief Returns true if the given floating-point number is considered to be not-a-number.

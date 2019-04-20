@@ -224,8 +224,10 @@ void Gen_Floateq( const genType_t type, std::string& outHeader ) {
 
 	std::string floateqStr = Gen_GetFuncNameFloateq( type );
 
+	std::string parmEpsilonStr = Gen_GetConstantNameEpsilon( type );
+
 	outHeader += Gen_GetDocFloateq();
-	outHeader += "inline bool " + floateqStr + "( const " + typeString + " lhs, const " + typeString + " rhs, const " + typeString + " epsilon = HLML_EPSILON )\n";
+	outHeader += "inline bool " + floateqStr + "( const " + typeString + " lhs, const " + typeString + " rhs, const " + typeString + " epsilon = " + parmEpsilonStr + " )\n";
 	outHeader += "{\n";
 	outHeader += "\treturn " + Gen_GetFuncNameFabs( type ) + "( lhs - rhs ) < epsilon;\n";
 	outHeader += "}\n";
@@ -241,10 +243,12 @@ void Gen_IsInf( const genType_t type, std::string& outHeader ) {
 
 	std::string zeroStr = Gen_GetNumericLiteral( type, 0.0f );
 
+	std::string floateqStr = Gen_GetFuncNameFloateq( type );
+
 	outHeader += Gen_GetDocIsInf();
 	outHeader += "inline bool isinf( const " + typeString + " x )\n";
 	outHeader += "{\n";
-	outHeader += "\treturn x == x && x * " + zeroStr + " != x * " + zeroStr + ";\n";
+	outHeader += "\treturn ( x == x ) && !" + floateqStr + "( x * " + zeroStr + ", x * " + zeroStr + " );\n";
 	outHeader += "}\n";
 	outHeader += "\n";
 }
@@ -290,10 +294,12 @@ void Gen_Radians( const genType_t type, std::string& outHeader ) {
 	std::string typeString = Gen_GetTypeString( type );
 	std::string oneHundredEightyStr = Gen_GetNumericLiteral( type, 180.0f );
 
+	std::string piStr = Gen_GetConstantNamePi( type );
+
 	outHeader += Gen_GetDocRadians();
 	outHeader += "inline " + typeString + " radians( const " + typeString + " deg )\n";
 	outHeader += "{\n";
-	outHeader += "\treturn deg * HLML_PI / " + oneHundredEightyStr + ";\n";
+	outHeader += "\treturn deg * " + piStr + " / " + oneHundredEightyStr + ";\n";
 	outHeader += "}\n";
 	outHeader += "\n";
 }
@@ -306,10 +312,12 @@ void Gen_Degrees( const genType_t type, std::string& outHeader ) {
 	std::string typeString = Gen_GetTypeString( type );
 	std::string oneHundredEightyStr = Gen_GetNumericLiteral( type, 180.0f );
 
+	std::string piStr = Gen_GetConstantNamePi( type );
+
 	outHeader += Gen_GetDocDegrees();
 	outHeader += "inline " + typeString + " degrees( const " + typeString + " rad )\n";
 	outHeader += "{\n";
-	outHeader += "\treturn rad * " + oneHundredEightyStr + " / HLML_PI;\n";
+	outHeader += "\treturn rad * " + oneHundredEightyStr + " / " + piStr + ";\n";
 	outHeader += "}\n";
 	outHeader += "\n";
 }

@@ -96,11 +96,6 @@ float length( const int4& vec )
 	return sqrtf( lengthsqr( vec ) );
 }
 
-int32_t pack( const int4& vec )
-{
-	return ( vec.x << 24 ) | ( vec.y << 16 ) | ( vec.z << 8 ) | ( vec.w << 0 );
-}
-
 int4 unpack( const int32_t x )
 {
 	return int4(
