@@ -34,7 +34,13 @@ if [[ $compiler == clang* ]]; then
 	options_error="${options_error} -Weverything"
 fi
 
-ignore_warnings="-Wno-c++98-compat-pedantic -Wno-covered-switch-default -Wno-newline-eof -Wno-reserved-id-macro -Wno-global-constructors -Wno-exit-time-destructors -Wno-padded -Wno-unused-macros -Wno-gnu-anonymous-struct -Wno-nested-anon-types -Wno-old-style-cast -Wno-shadow-field-in-constructor"
+# warnings to ignore
+ignore_warnings="-Wno-global-constructors -Wno-padded -Wno-unused-macros -Wno-old-style-cast"
+
+# clang-specific warnings to ignore
+if [[ $compiler == clang* ]]; then
+	ignore_warnings="${ignore_warnings} -Wno-c++98-compat-pedantic -Wno-covered-switch-default -Wno-shadow-field-in-constructor -Wno-nested-anon-types -Wno-gnu-anonymous-struct -Wno-exit-time-destructors -Wno-reserved-id-macro -Wno-newline-eof"
+fi
 
 echo Building for $compiler
 
