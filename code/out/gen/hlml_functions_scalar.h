@@ -31,13 +31,6 @@ along with hlml.  If not, see <http://www.gnu.org/licenses/>.
 #include <math.h>
 #include <stdint.h>
 
-// replace windows defines with our own min/max functions
-#ifdef HLML_UNDEF_SYSTEM_MIN_MAX
-#undef min
-#undef max
-#endif
-
-
 // int32_t
 /// \brief Returns -1 if x is < 0, 0 if x == 0, or 1 if x > 1.
 /// This function does no branching.
