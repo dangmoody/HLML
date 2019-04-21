@@ -9,7 +9,7 @@ output_file=$3			# name of the exe to build, should include ".exe"
 source_files_path=$4	# path to source files to build, shouldn't include "*.cpp"
 
 # make build folder if it doesn't already exist
-if [ ! -d "build" ]; then
+if [ ! -d "build/${config}" ]; then
 	mkdir -p build/${config}
 fi
 
