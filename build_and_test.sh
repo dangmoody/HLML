@@ -3,7 +3,7 @@
 # exit on first failure
 set -e
 
-compiler=$1	# can be either "clang++" or "gcc"
+compiler=$1	# can be either "clang++" or "g++"
 config=$2	# can be either "debug" or "release"
 
 echo ------- Building generator -------
