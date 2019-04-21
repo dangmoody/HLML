@@ -67,10 +67,7 @@ static bool GenerateMainHeaderFuncs( void ) {
 
 		// scalar only funcs
 		Gen_Floateq( type, contentHeader );
-
-		Gen_IsInf( type, contentHeader );
-		Gen_IsNaN( type, contentHeader );
-
+		
 		Gen_Sign( type, contentHeader );
 
 		Gen_Radians( type, contentHeader );

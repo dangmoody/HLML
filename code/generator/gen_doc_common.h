@@ -5,8 +5,6 @@
 #include <assert.h>
 
 inline std::string	Gen_GetDocFloateq( void );
-inline std::string	Gen_GetDocIsInf( void );
-inline std::string	Gen_GetDocIsNaN( void );
 inline std::string	Gen_GetDocSign( void );
 inline std::string	Gen_GetDocRadians( void );
 inline std::string	Gen_GetDocDegrees( void );
@@ -43,16 +41,6 @@ inline std::string	Gen_GetDocOperatorBitwiseUnary( const std::string& fullTypeNa
 
 std::string Gen_GetDocFloateq( void ) {
 	return "/// \\brief Returns true if the two given floating-point numbers are within a small enough epsilon range of each other that takes into account floating-point inaccuracy.\n";
-}
-
-std::string Gen_GetDocIsInf( void ) {
-	return "/// \\brief Returns true if the given floating-point number is considered to be infinity.\n"
-		"/// This function includes an underscore between both words to avoid conflict with std::isinf().\n";
-}
-
-std::string Gen_GetDocIsNaN( void ) {
-	return "/// \\brief Returns true if the given floating-point number is considered to be not-a-number.\n" \
-		"/// This function includes an underscore between both words to avoid conflict with std::isnan().\n";
 }
 
 std::string Gen_GetDocSign( void ) {

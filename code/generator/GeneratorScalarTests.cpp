@@ -29,10 +29,6 @@ bool GeneratorScalarTest::Generate( const genType_t type ) {
 
 	GenerateTestFloateq();
 
-	GenerateTestIsInf();
-
-	GenerateTestIsNaN();
-
 	GenerateTestSign();
 
 	GenerateTestDegreesRadians();
@@ -88,63 +84,6 @@ void GeneratorScalarTest::GenerateTestFloateq() {
 	m_codeTests += "\tTEMPER_EXPECT_TRUE( " + floateqStr + "( a, b ) );\n";
 	m_codeTests += "\tTEMPER_EXPECT_TRUE( !" + floateqStr + "( a, c ) );\n";
 	m_codeTests += "\tTEMPER_EXPECT_TRUE( !" + floateqStr + "( a, d ) );\n";
-	m_codeTests += "\n";
-	m_codeTests += "\tTEMPER_PASS();\n";
-	m_codeTests += "}\n";
-	m_codeTests += "\n";
-
-	m_codeSuite += "\tTEMPER_RUN_TEST( " + testName + " );\n";
-}
-
-/*
-========================
-GeneratorTestsScalar::GenerateTestIsInf
-========================
-*/
-void GeneratorScalarTest::GenerateTestIsInf() {
-	if ( !Gen_IsFloatingPointType( m_type ) ) {
-		return;
-	}
-
-	std::string testName = "TestIsInf_" + m_memberTypeString;
-
-	std::string zeroStr	= Gen_GetNumericLiteral( m_type, 0.0f );
-	std::string oneStr	= Gen_GetNumericLiteral( m_type, 1.0f );
-
-	m_codeTests += "TEMPER_TEST( " + testName + " )\n";
-	m_codeTests += "{\n";
-	m_codeTests += "\t" + m_memberTypeString + " x = " + oneStr + " / " + zeroStr + ";\n";
-	m_codeTests += "\n";
-	m_codeTests += "\tTEMPER_EXPECT_TRUE( isinf( x ) );\n";
-	m_codeTests += "\n";
-	m_codeTests += "\tTEMPER_PASS();\n";
-	m_codeTests += "}\n";
-	m_codeTests += "\n";
-
-	m_codeSuite += "\tTEMPER_RUN_TEST( " + testName + " );\n";
-}
-
-/*
-========================
-GeneratorTestsScalar::GenerateTestIsNaN
-========================
-*/
-void GeneratorScalarTest::GenerateTestIsNaN() {
-	if ( !Gen_IsFloatingPointType( m_type ) ) {
-		return;
-	}
-
-	std::string testName = "TestIsNaN_" + m_memberTypeString;
-
-	std::string minusOneStr = Gen_GetNumericLiteral( m_type, -1.0f );
-
-	std::string sqrtFuncStr = Gen_GetFuncNameSqrt( m_type );
-
-	m_codeTests += "TEMPER_TEST( " + testName + " )\n";
-	m_codeTests += "{\n";
-	m_codeTests += "\t" + m_memberTypeString + " minusOne = " + minusOneStr + ";\n";
-	m_codeTests += "\n";
-	m_codeTests += "\tTEMPER_EXPECT_TRUE( isnan( " + sqrtFuncStr + "( minusOne ) ) );\n";
 	m_codeTests += "\n";
 	m_codeTests += "\tTEMPER_PASS();\n";
 	m_codeTests += "}\n";

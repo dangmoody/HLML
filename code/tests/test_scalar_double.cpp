@@ -43,24 +43,6 @@ TEMPER_TEST( TestFloateq_double )
 	TEMPER_PASS();
 }
 
-TEMPER_TEST( TestIsInf_double )
-{
-	double x = 1.000000 / 0.000000;
-
-	TEMPER_EXPECT_TRUE( isinf( x ) );
-
-	TEMPER_PASS();
-}
-
-TEMPER_TEST( TestIsNaN_double )
-{
-	double minusOne = -1.000000;
-
-	TEMPER_EXPECT_TRUE( isnan( sqrt( minusOne ) ) );
-
-	TEMPER_PASS();
-}
-
 TEMPER_TEST( TestSign_double )
 {
 	TEMPER_EXPECT_TRUE( sign( -5.000000 ) == -1 );
@@ -125,8 +107,6 @@ TEMPER_TEST( TestSaturate_double )
 TEMPER_SUITE( Test_double )
 {
 	TEMPER_RUN_TEST( TestFloateq_double );
-	TEMPER_RUN_TEST( TestIsInf_double );
-	TEMPER_RUN_TEST( TestIsNaN_double );
 	TEMPER_RUN_TEST( TestSign_double );
 	TEMPER_RUN_TEST( TestDegreesRadians_double );
 	TEMPER_RUN_TEST( TestMinMax_double );

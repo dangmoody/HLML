@@ -19,8 +19,6 @@ private:
 
 private:
 	void		GenerateTestFloateq();
-	void		GenerateTestIsInf();
-	void		GenerateTestIsNaN();
 	void		GenerateTestSign();
 	void		GenerateTestDegreesRadians();
 	void		GenerateTestMinMax();

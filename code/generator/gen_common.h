@@ -174,7 +174,7 @@ inline genType_t	Gen_GetSupportedFloatingPointType( const genType_t type ) { ret
 inline bool			Gen_IsFloatingPointType( const genType_t type ) { return type == GEN_TYPE_FLOAT || type == GEN_TYPE_DOUBLE; }
 inline bool			Gen_IsIntegerType( const genType_t type ) { return type == GEN_TYPE_INT || type == GEN_TYPE_UINT; }
 
-// built in functions
+// built-in functions
 inline std::string	Gen_GetFuncNameSin( const genType_t type ) { return ( type == GEN_TYPE_DOUBLE ) ? "sin" : "sinf"; }
 inline std::string	Gen_GetFuncNameCos( const genType_t type ) { return ( type == GEN_TYPE_DOUBLE ) ? "cos" : "cosf"; }
 inline std::string	Gen_GetFuncNameAcos( const genType_t type ) { return ( type == GEN_TYPE_DOUBLE ) ? "acos" : "acosf"; }
@@ -185,14 +185,16 @@ inline std::string	Gen_GetFuncNameFabs( const genType_t type ) { return ( type =
 // hlml functions
 inline std::string	Gen_GetFuncNameFloateq( const genType_t type ) { return ( type == GEN_TYPE_DOUBLE ) ? "doubleeq" : "floateq"; }
 
+// built-in constants
+inline std::string	Gen_GetConstantNameInfinity( const genType_t type );
+inline std::string	Gen_GetConstantNameNaN( const genType_t type );
+
 // hlml constants
-inline std::string	Gen_GetConstantNamePi( const genType_t type );
-inline std::string	Gen_GetConstantNameEpsilon( const genType_t type );
+inline std::string	Gen_GetConstantNamePi( const genType_t type ) { return ( type == GEN_TYPE_DOUBLE ) ? "HLML_PI" : "static_cast<float>( HLML_PI )"; }
+inline std::string	Gen_GetConstantNameEpsilon( const genType_t type ) { return ( type == GEN_TYPE_DOUBLE ) ? "HLML_EPSILON" : "static_cast<float>( HLML_EPSILON )"; }
 
 // generic helper functions that are typical of maths libraries
 extern void			Gen_Floateq( const genType_t type, std::string& outHeader );
-extern void			Gen_IsInf( const genType_t type, std::string& outHeader );
-extern void			Gen_IsNaN( const genType_t type, std::string& outHeader );
 extern void			Gen_Sign( const genType_t type, std::string& outHeader );
 
 extern void			Gen_Radians( const genType_t type, std::string& outHeader );
@@ -323,41 +325,5 @@ std::string Gen_GetClipSpaceRangeString( const genClipSpace_t range ) {
 		default:
 			printf( "ERROR: Bad genClipSpace_t enum passed into %s.\n", __FUNCTION__ );
 			return "ERROR";
-	}
-}
-
-std::string Gen_GetConstantNamePi( const genType_t type ) {
-	switch ( type ) {
-		case GEN_TYPE_FLOAT:
-			return "static_cast<float>( HLML_PI )";
-
-		case GEN_TYPE_BOOL:
-		case GEN_TYPE_INT:
-		case GEN_TYPE_UINT:
-		case GEN_TYPE_DOUBLE:
-			return "HLML_PI";
-
-		case GEN_TYPE_COUNT:
-		default:
-			printf( "ERROR: Bad genType_t enum passed into %s.\n", __FUNCTION__ );
-			return "?????";
-	}
-}
-
-std::string Gen_GetConstantNameEpsilon( const genType_t type ) {
-	switch ( type ) {
-		case GEN_TYPE_FLOAT:
-			return "static_cast<float>( HLML_EPSILON )";
-
-		case GEN_TYPE_BOOL:
-		case GEN_TYPE_INT:
-		case GEN_TYPE_UINT:
-		case GEN_TYPE_DOUBLE:
-			return "HLML_EPSILON";
-
-		case GEN_TYPE_COUNT:
-		default:
-			printf( "ERROR: Bad genType_t enum passed into %s.\n", __FUNCTION__ );
-			return "?????";
 	}
 }

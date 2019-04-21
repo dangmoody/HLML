@@ -234,40 +234,6 @@ void Gen_Floateq( const genType_t type, std::string& outHeader ) {
 	outHeader += "\n";
 }
 
-void Gen_IsInf( const genType_t type, std::string& outHeader ) {
-	if ( !Gen_IsFloatingPointType( type ) ) {
-		return;
-	}
-
-	std::string typeString = Gen_GetTypeString( type );
-
-	std::string zeroStr = Gen_GetNumericLiteral( type, 0.0f );
-
-	std::string floateqStr = Gen_GetFuncNameFloateq( type );
-
-	outHeader += Gen_GetDocIsInf();
-	outHeader += "inline bool is_inf( const " + typeString + " x )\n";
-	outHeader += "{\n";
-	outHeader += "\treturn ( x == x ) && !" + floateqStr + "( x * " + zeroStr + ", x * " + zeroStr + " );\n";
-	outHeader += "}\n";
-	outHeader += "\n";
-}
-
-void Gen_IsNaN( const genType_t type, std::string& outHeader ) {
-	if ( !Gen_IsFloatingPointType( type ) ) {
-		return;
-	}
-
-	std::string typeString = Gen_GetTypeString( type );
-
-	outHeader += Gen_GetDocIsNaN();
-	outHeader += "inline bool is_nan( const " + typeString + " x )\n";
-	outHeader += "{\n";
-	outHeader += "\treturn x != x;\n";
-	outHeader += "}\n";
-	outHeader += "\n";
-}
-
 void Gen_Sign( const genType_t type, std::string& outHeader ) {
 	if ( type == GEN_TYPE_BOOL || type == GEN_TYPE_UINT ) {
 		return;
