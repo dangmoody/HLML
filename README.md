@@ -28,8 +28,6 @@ Installation
 4. Run ```generate_documentation.bat``` to generate the documentation.  This will put it into a folder called ```documentation``` and you can freely put it whereever you want.
 5. Done!
 
-If you want to, you can run ```hlml-gen-test.exe``` which will very quickly run through the test suite for good measure.
-
 
 Usage/Common Pitfalls
 =====================
