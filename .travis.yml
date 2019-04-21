@@ -12,7 +12,7 @@ matrix:
       before_script:
         - chmod +x build_linux_clang_gcc.sh
         - chmod +x build_and_test.sh
-      script: ./build_and_test.sh ${CXX} debug
+      script: ./build_and_test.sh ${CXX} release
 
     # windows gcc
     - name: "Win64 / GCC"
@@ -24,7 +24,7 @@ matrix:
       before_script:
         - chmod +x build_linux_clang_gcc.sh
         - chmod +x build_and_test.sh
-      script: ./build_and_test.sh ${CXX} debug
+      script: ./build_and_test.sh ${CXX} release
 
     # linux clang
     - name: "Linux / Clang"
@@ -45,7 +45,7 @@ matrix:
       before_script:
         - chmod +x build_linux_clang_gcc.sh
         - chmod +x build_and_test.sh
-      script: ./build_and_test.sh ${CXX} debug
+      script: ./build_and_test.sh ${CXX} release
 
     # linux gcc
     - name: "Linux / GCC"
@@ -65,7 +65,7 @@ matrix:
       before_script:
         - chmod +x build_linux_clang_gcc.sh
         - chmod +x build_and_test.sh
-      script: ./build_and_test.sh ${CXX} debug
+      script: ./build_and_test.sh ${CXX} release
 
     # macOS
     - name: "macOS"
@@ -75,4 +75,4 @@ matrix:
       before_script:
         - chmod +x build_linux_clang_gcc.sh
         - chmod +x build_and_test.sh
-      script: ./build_and_test.sh ${CXX} debug
+      script: ./build_and_test.sh ${CXX} release
