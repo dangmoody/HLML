@@ -24,5 +24,5 @@ along with hlml.  If not, see <http://www.gnu.org/licenses/>.
 #pragma once
 
 #define HLML_VERSION_MAJOR	0
-#define HLML_VERSION_MINOR	1
+#define HLML_VERSION_MINOR	2
 #define HLML_VERSION_PATCH	0
