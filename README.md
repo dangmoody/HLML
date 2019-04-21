@@ -28,13 +28,6 @@ Installation
 4. Run ```generate_documentation.bat``` to generate the documentation.  This will put it into a folder called ```documentation``` and you can freely put it whereever you want.
 5. Done!
 
-HLML supports the following pre-include defines to help you hook HLML into your application:
-
-|             Define              |                                                                       Description                                                                        |
-| ------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| ```HLML_UNDEF_SYSTEM_MIN_MAX``` | Particularly useful for Windows.  Calls ```#undef``` on ```min``` and ```max```.  All calls to ```min``` and ```max``` will now go through HLML instead. |
-|                                 |                                                                                                                                                          |
-
 If you want to, you can run ```hlml-gen-test.exe``` which will very quickly run through the test suite for good measure.
 
 
@@ -49,6 +42,7 @@ Usage/Common Pitfalls
 * HLML is focused on mathemetical expressive power where possible, therefore:
 	* All matrices have the ```*``` operator overloaded to do matrix multiplication, **NOT** a component-wise multiplication.
 	* All square matrices with floating point types have the ```/``` operator overloaded to multiply the light-hand matrix by the inverse of the right-hand matrix, it does **NOT** do a component-wise divide.
+* To avoid conflicts with Windows ```min```/```max``` macros, you can define ```NOMINMAX``` before including HLML.
 
 
 Contributing
