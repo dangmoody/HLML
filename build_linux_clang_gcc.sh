@@ -39,7 +39,7 @@ ignore_warnings="-Wno-global-constructors -Wno-padded -Wno-unused-macros -Wno-ol
 
 # clang-specific warnings to ignore
 if [[ $compiler == clang* ]]; then
-	ignore_warnings="${ignore_warnings} -Wno-c++98-compat-pedantic -Wno-covered-switch-default -Wno-shadow-field-in-constructor -Wno-nested-anon-types -Wno-gnu-anonymous-struct -Wno-exit-time-destructors -Wno-reserved-id-macro -Wno-newline-eof"
+	ignore_warnings="${ignore_warnings} -Wno-c++98-compat-pedantic -Wno-covered-switch-default -Wno-shadow-field-in-constructor -Wno-nested-anon-types -Wno-gnu-anonymous-struct -Wno-exit-time-destructors -Wno-reserved-id-macro"
 fi
 
 echo Building for $compiler
