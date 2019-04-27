@@ -648,6 +648,7 @@ static bool GenerateTestsMain( void ) {
 	content += "\n";
 	content += "\treturn TEMPER_EXIT_CODE();\n";
 	content += "}";
+	content += "\n";
 
 	if ( !FS_WriteEntireFile( filePathMain, content.c_str(), content.size() ) ) {
 		return false;
