@@ -82,6 +82,7 @@ bool GeneratorMatrix::Generate( const genType_t type, const uint32_t numRows, co
 	GenerateOperatorsEquality();
 
 	m_codeHeader += "#include \"" + m_fullTypeName + ".inl\"";
+	m_codeHeader += "\n";
 
 	if ( !FS_WriteEntireFile( ( GEN_OUT_GEN_FOLDER_PATH + m_fullTypeName + ".h" ).c_str(), m_codeHeader.c_str(), m_codeHeader.size() ) ) {
 		return false;
