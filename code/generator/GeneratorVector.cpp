@@ -60,6 +60,9 @@ bool GeneratorVector::Generate( const genType_t type, const uint32_t numComponen
 		m_codeHeader += "#if defined( __clang__ ) || defined( __GNUC__ )\n";
 		m_codeHeader += "#pragma GCC diagnostic push\n";
 		m_codeHeader += "#pragma GCC diagnostic ignored \"-Wpedantic\"\n";
+		m_codeHeader += "#elif defined( _MSC_VER )\n";
+		m_codeHeader += "#pragma warning( push )\n";
+		m_codeHeader += "#pragma warning( disable : 4201 ) // C4201 - nonstandard extension used : nameless struct/union\n";
 		m_codeHeader += "#endif\n";
 		m_codeHeader += "\n";
 
@@ -116,6 +119,8 @@ bool GeneratorVector::Generate( const genType_t type, const uint32_t numComponen
 
 	m_codeHeader += "#if defined( __clang__ ) || defined( __GNUC__ )\n";
 	m_codeHeader += "#pragma GCC diagnostic pop\n";
+	m_codeHeader += "#elif defined( _MSC_VER )\n";
+	m_codeHeader += "#pragma warning( pop )\n";
 	m_codeHeader += "#endif\n";
 	m_codeHeader += "\n";
 
