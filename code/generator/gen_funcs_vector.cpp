@@ -120,7 +120,12 @@ void Gen_VectorLength( const genType_t type, const uint32_t numComponents, std::
 
 	outInl += returnTypeString + " lengthsqr( const " + fullTypeName + "& vec )\n";
 	outInl += "{\n";
-	outInl += "\treturn ";
+	outInl += "\treturn";
+
+	if ( !Gen_IsFloatingPointType( type ) ) {
+		outInl += "(" + returnTypeString + ") ( ";
+	}
+
 	for ( uint32_t i = 0; i < numComponents; i++ ) {
 		char componentName = GEN_COMPONENT_NAMES_VECTOR[i];
 		outInl += std::string( "( vec." ) + componentName + " * vec." + componentName + " )";
@@ -129,6 +134,11 @@ void Gen_VectorLength( const genType_t type, const uint32_t numComponents, std::
 			outInl += " + ";
 		}
 	}
+
+	if ( !Gen_IsFloatingPointType( type ) ) {
+		outInl += " )";
+	}
+
 	outInl += ";\n";
 	outInl += "}\n";
 	outInl += "\n";
