@@ -25,7 +25,7 @@ Installation
 1. Go to the [releases](https://github.com/floorman/HLML/releases) page and download the latest version.
 2. Unzip the header files into your project.
 3. **OPTIONAL:** Run ```hlm-gen-tests.exe``` (you shouldn't need to have a reason to run this and everything will more than likely 'just work', but you never know...).
-4. Run ```generate_documentation.bat``` to generate the documentation.  This will put it into a folder called ```documentation``` and you can freely put it whereever you want.
+4. **OPTIONAL:** Run ```generate_documentation.bat``` to generate the documentation.  This will put it into a folder called ```documentation``` and you can freely put it whereever you want.
 5. Done!
 
 
@@ -41,6 +41,7 @@ Usage/Common Pitfalls
 	* All matrices have the ```*``` operator overloaded to do matrix multiplication, **NOT** a component-wise multiplication.
 	* All square matrices with floating point types have the ```/``` operator overloaded to multiply the light-hand matrix by the inverse of the right-hand matrix, it does **NOT** do a component-wise divide.
 * To avoid conflicts with Windows ```min```/```max``` macros, you can define ```NOMINMAX``` before including HLML.
+* HLML doesn't override any maths functions that are a part of C99.
 
 
 Contributing
