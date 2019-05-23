@@ -27,7 +27,7 @@ along with hlml.  If not, see <http://www.gnu.org/licenses/>.
 #include "hlml_operators_vector.h"
 
 // int2
-float dot( const int2& lhs, const int2& rhs )
+int32_t dot( const int2& lhs, const int2& rhs )
 {
 	return ( lhs.x * rhs.x ) + ( lhs.y * rhs.y );
 }
@@ -54,7 +54,7 @@ float distance( const int2& lhs, const int2& rhs )
 
 
 // int3
-float dot( const int3& lhs, const int3& rhs )
+int32_t dot( const int3& lhs, const int3& rhs )
 {
 	return ( lhs.x * rhs.x ) + ( lhs.y * rhs.y ) + ( lhs.z * rhs.z );
 }
@@ -81,7 +81,7 @@ float distance( const int3& lhs, const int3& rhs )
 
 
 // int4
-float dot( const int4& lhs, const int4& rhs )
+int32_t dot( const int4& lhs, const int4& rhs )
 {
 	return ( lhs.x * rhs.x ) + ( lhs.y * rhs.y ) + ( lhs.z * rhs.z ) + ( lhs.w * rhs.w );
 }
@@ -98,7 +98,7 @@ float length( const int4& vec )
 
 
 // uint2
-float dot( const uint2& lhs, const uint2& rhs )
+int32_t dot( const uint2& lhs, const uint2& rhs )
 {
 	return ( lhs.x * rhs.x ) + ( lhs.y * rhs.y );
 }
@@ -125,7 +125,7 @@ float distance( const uint2& lhs, const uint2& rhs )
 
 
 // uint3
-float dot( const uint3& lhs, const uint3& rhs )
+int32_t dot( const uint3& lhs, const uint3& rhs )
 {
 	return ( lhs.x * rhs.x ) + ( lhs.y * rhs.y ) + ( lhs.z * rhs.z );
 }
@@ -152,7 +152,7 @@ float distance( const uint3& lhs, const uint3& rhs )
 
 
 // uint4
-float dot( const uint4& lhs, const uint4& rhs )
+int32_t dot( const uint4& lhs, const uint4& rhs )
 {
 	return ( lhs.x * rhs.x ) + ( lhs.y * rhs.y ) + ( lhs.z * rhs.z ) + ( lhs.w * rhs.w );
 }

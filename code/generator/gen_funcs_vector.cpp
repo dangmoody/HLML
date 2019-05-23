@@ -184,8 +184,11 @@ void Gen_VectorDot( const genType_t type, const uint32_t numComponents, std::str
 		return;
 	}
 
+	// dot can return negative values, so uint vectors have to return signed int
+	genType_t returnType = ( type == GEN_TYPE_UINT ) ? GEN_TYPE_INT : type;
+	std::string returnTypeString = Gen_GetMemberTypeString( returnType );
+
 	std::string typeString = Gen_GetTypeString( type );
-	std::string returnTypeString = Gen_GetTypeString( Gen_GetSupportedFloatingPointType( type ) );
 	std::string fullTypeName = typeString + std::to_string( numComponents );
 
 	outHeader += GetDocDot( fullTypeName );
@@ -196,7 +199,7 @@ void Gen_VectorDot( const genType_t type, const uint32_t numComponents, std::str
 	outInl += "{\n";
 	outInl += "\treturn ";
 	for ( uint32_t i = 0; i < numComponents; i++ ) {
-		outInl += "( " + std::string( "lhs." ) + GEN_COMPONENT_NAMES_VECTOR[i] + std::string( " * " ) + std::string( "rhs." ) + GEN_COMPONENT_NAMES_VECTOR[i] + " )";
+		outInl += std::string( "( lhs." ) + GEN_COMPONENT_NAMES_VECTOR[i] + " * rhs." + GEN_COMPONENT_NAMES_VECTOR[i] + " )";
 
 		if ( i != numComponents - 1 ) {
 			outInl += " + ";
