@@ -123,7 +123,7 @@ void Gen_VectorLength( const genType_t type, const uint32_t numComponents, std::
 	outInl += "\treturn ";
 
 	if ( !Gen_IsFloatingPointType( type ) ) {
-		outInl += "(" + returnTypeString + ") ( ";
+		outInl += "(" + returnTypeString + ")( ";
 	}
 
 	for ( uint32_t i = 0; i < numComponents; i++ ) {
