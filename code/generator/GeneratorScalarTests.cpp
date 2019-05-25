@@ -184,8 +184,13 @@ void GeneratorScalarTest::GenerateTestMinMax() {
 	m_codeTests += "\t" + m_memberTypeString + " a = " + aStr + ";\n";
 	m_codeTests += "\t" + m_memberTypeString + " b = " + bStr + ";\n";
 	m_codeTests += "\n";
-	m_codeTests += "\tTEMPER_EXPECT_TRUE( " + floateqStr + "( min( a, b ), a ) );\n";
-	m_codeTests += "\tTEMPER_EXPECT_TRUE( " + floateqStr + "( max( a, b ), b ) );\n";
+	if ( Gen_IsFloatingPointType( m_type ) ) {
+		m_codeTests += "\tTEMPER_EXPECT_TRUE( " + floateqStr + "( min( a, b ), a ) );\n";
+		m_codeTests += "\tTEMPER_EXPECT_TRUE( " + floateqStr + "( max( a, b ), b ) );\n";
+	} else {
+		m_codeTests += "\tTEMPER_EXPECT_TRUE( min( a, b ) == a );\n";
+		m_codeTests += "\tTEMPER_EXPECT_TRUE( max( a, b ) == b );\n";
+	}
 	m_codeTests += "\n";
 	m_codeTests += "\tTEMPER_PASS();\n";
 	m_codeTests += "}\n";
