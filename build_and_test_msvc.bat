@@ -8,23 +8,23 @@ rem set vcvars64_path="C:\Program Files (x86)\Microsoft Visual Studio\2017\Commu
 REM call %vcvars64_path%
 
 echo ------- Building generator -------
-set source_files=code\\generator\\*.cpp
+set source_files=code\generator\*.cpp
 call build_msvc.bat %msvc_path% %config% hlml-gen %source_files%
 echo ------- Done -------
 echo.
 
 echo ------- Running generator -------
-build\\msvc\\%config%\\hlml-gen.exe
+build\msvc\%config%\hlml-gen.exe
 echo ------- Done -------
 echo.
 
 echo ------- Building tests -------
-set source_files=code\\tests\\*.cpp
+set source_files=code\tests\*.cpp
 call build_msvc.bat %msvc_path% %config% hlml-gen-tests %source_files%
 echo ------- Done -------
 echo.
 
 echo ------- Running tests -------
-build\\msvc\\%config%\\hlml-gen-tests.exe -c
+build\msvc\%config%\hlml-gen-tests.exe -c
 echo ------- Done -------
 echo.
