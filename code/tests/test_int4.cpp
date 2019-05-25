@@ -267,7 +267,7 @@ TEMPER_TEST( TestDot_int4 )
 	int4 a = int4( 0, 0, 0, 1 );
 	int4 b = int4( 0, 0, 0, -1 );
 
-	TEMPER_EXPECT_TRUE( floateq( dot( a, b ), -1.0f ) );
+	TEMPER_EXPECT_TRUE( dot( a, b ) == -1 );
 
 	TEMPER_PASS();
 }

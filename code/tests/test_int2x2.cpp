@@ -40,18 +40,18 @@ TEMPER_TEST( TestAssignment_int2x2 )
 	// row filling
 	mat = int2x2(
 		int2( 0, 1 ),
-		int2( 2, 3 )
+		int2( 4, 5 )
 	);
 	TEMPER_EXPECT_TRUE( mat[0] == int2( 0, 1 ) );
-	TEMPER_EXPECT_TRUE( mat[1] == int2( 2, 3 ) );
+	TEMPER_EXPECT_TRUE( mat[1] == int2( 4, 5 ) );
 
 	// all values filled
 	mat = int2x2(
-		4, 3, 
-		2, 1
+		16, 15,
+		12, 11
 	);
-	TEMPER_EXPECT_TRUE( mat[0] == int2( 4, 3 ) );
-	TEMPER_EXPECT_TRUE( mat[1] == int2( 2, 1 ) );
+	TEMPER_EXPECT_TRUE( mat[0] == int2( 16, 15 ) );
+	TEMPER_EXPECT_TRUE( mat[1] == int2( 12, 11 ) );
 
 	TEMPER_PASS();
 }

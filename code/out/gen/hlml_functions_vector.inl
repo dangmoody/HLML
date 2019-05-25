@@ -100,7 +100,7 @@ float length( const int4& vec )
 // uint2
 int32_t dot( const uint2& lhs, const uint2& rhs )
 {
-	return ( lhs.x * rhs.x ) + ( lhs.y * rhs.y );
+	return (int32_t)( ( lhs.x * rhs.x ) + ( lhs.y * rhs.y ) );
 }
 
 float lengthsqr( const uint2& vec )
@@ -127,7 +127,7 @@ float distance( const uint2& lhs, const uint2& rhs )
 // uint3
 int32_t dot( const uint3& lhs, const uint3& rhs )
 {
-	return ( lhs.x * rhs.x ) + ( lhs.y * rhs.y ) + ( lhs.z * rhs.z );
+	return (int32_t)( ( lhs.x * rhs.x ) + ( lhs.y * rhs.y ) + ( lhs.z * rhs.z ) );
 }
 
 float lengthsqr( const uint3& vec )
@@ -154,7 +154,7 @@ float distance( const uint3& lhs, const uint3& rhs )
 // uint4
 int32_t dot( const uint4& lhs, const uint4& rhs )
 {
-	return ( lhs.x * rhs.x ) + ( lhs.y * rhs.y ) + ( lhs.z * rhs.z ) + ( lhs.w * rhs.w );
+	return (int32_t)( ( lhs.x * rhs.x ) + ( lhs.y * rhs.y ) + ( lhs.z * rhs.z ) + ( lhs.w * rhs.w ) );
 }
 
 float lengthsqr( const uint4& vec )

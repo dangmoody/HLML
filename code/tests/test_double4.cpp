@@ -206,7 +206,7 @@ TEMPER_TEST( TestDot_double4 )
 	double4 a = double4( 0.000000, 0.000000, 0.000000, 1.000000 );
 	double4 b = double4( 0.000000, 0.000000, 0.000000, -1.000000 );
 
-	TEMPER_EXPECT_TRUE( doubleeq( dot( a, b ), -1.0 ) );
+	TEMPER_EXPECT_TRUE( doubleeq( dot( a, b ), -1.000000 ) );
 
 	TEMPER_PASS();
 }

@@ -34,8 +34,8 @@ TEMPER_TEST( TestMinMax_uint32_t )
 	uint32_t a = 5U;
 	uint32_t b = 9U;
 
-	TEMPER_EXPECT_TRUE( floateq( min( a, b ), a ) );
-	TEMPER_EXPECT_TRUE( floateq( max( a, b ), b ) );
+	TEMPER_EXPECT_TRUE( min( a, b ) == a );
+	TEMPER_EXPECT_TRUE( max( a, b ) == b );
 
 	TEMPER_PASS();
 }

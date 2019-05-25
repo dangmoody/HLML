@@ -39,19 +39,19 @@ TEMPER_TEST( TestAssignment_uint2x3 )
 
 	// row filling
 	mat = uint2x3(
-		uint3( 0, 1, 2 ),
-		uint3( 3, 4, 5 )
+		uint3( 0U, 1U, 2U ),
+		uint3( 4U, 5U, 6U )
 	);
-	TEMPER_EXPECT_TRUE( mat[0] == uint3( 0, 1, 2 ) );
-	TEMPER_EXPECT_TRUE( mat[1] == uint3( 3, 4, 5 ) );
+	TEMPER_EXPECT_TRUE( mat[0] == uint3( 0U, 1U, 2U ) );
+	TEMPER_EXPECT_TRUE( mat[1] == uint3( 4U, 5U, 6U ) );
 
 	// all values filled
 	mat = uint2x3(
-		6, 5, 4, 
-		3, 2, 1
+		16U, 15U, 14U,
+		12U, 11U, 10U
 	);
-	TEMPER_EXPECT_TRUE( mat[0] == uint3( 6, 5, 4 ) );
-	TEMPER_EXPECT_TRUE( mat[1] == uint3( 3, 2, 1 ) );
+	TEMPER_EXPECT_TRUE( mat[0] == uint3( 16U, 15U, 14U ) );
+	TEMPER_EXPECT_TRUE( mat[1] == uint3( 12U, 11U, 10U ) );
 
 	TEMPER_PASS();
 }

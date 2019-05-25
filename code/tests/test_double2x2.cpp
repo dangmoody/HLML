@@ -39,19 +39,19 @@ TEMPER_TEST( TestAssignment_double2x2 )
 
 	// row filling
 	mat = double2x2(
-		double2( 0, 1 ),
-		double2( 2, 3 )
+		double2( 0.000000, 1.000000 ),
+		double2( 4.000000, 5.000000 )
 	);
-	TEMPER_EXPECT_TRUE( mat[0] == double2( 0, 1 ) );
-	TEMPER_EXPECT_TRUE( mat[1] == double2( 2, 3 ) );
+	TEMPER_EXPECT_TRUE( mat[0] == double2( 0.000000, 1.000000 ) );
+	TEMPER_EXPECT_TRUE( mat[1] == double2( 4.000000, 5.000000 ) );
 
 	// all values filled
 	mat = double2x2(
-		4, 3, 
-		2, 1
+		16.000000, 15.000000,
+		12.000000, 11.000000
 	);
-	TEMPER_EXPECT_TRUE( mat[0] == double2( 4, 3 ) );
-	TEMPER_EXPECT_TRUE( mat[1] == double2( 2, 1 ) );
+	TEMPER_EXPECT_TRUE( mat[0] == double2( 16.000000, 15.000000 ) );
+	TEMPER_EXPECT_TRUE( mat[1] == double2( 12.000000, 11.000000 ) );
 
 	TEMPER_PASS();
 }

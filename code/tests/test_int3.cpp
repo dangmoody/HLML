@@ -256,7 +256,7 @@ TEMPER_TEST( TestDot_int3 )
 	int3 a = int3( 0, 0, 1 );
 	int3 b = int3( 0, 0, -1 );
 
-	TEMPER_EXPECT_TRUE( floateq( dot( a, b ), -1.0f ) );
+	TEMPER_EXPECT_TRUE( dot( a, b ) == -1 );
 
 	TEMPER_PASS();
 }

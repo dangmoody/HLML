@@ -39,19 +39,19 @@ TEMPER_TEST( TestAssignment_bool2x2 )
 
 	// row filling
 	mat = bool2x2(
-		bool2( 0, 1 ),
-		bool2( 2, 3 )
+		bool2( false, true ),
+		bool2( true, true )
 	);
-	TEMPER_EXPECT_TRUE( mat[0] == bool2( 0, 1 ) );
-	TEMPER_EXPECT_TRUE( mat[1] == bool2( 2, 3 ) );
+	TEMPER_EXPECT_TRUE( mat[0] == bool2( false, true ) );
+	TEMPER_EXPECT_TRUE( mat[1] == bool2( true, true ) );
 
 	// all values filled
 	mat = bool2x2(
-		4, 3, 
-		2, 1
+		true, true,
+		true, true
 	);
-	TEMPER_EXPECT_TRUE( mat[0] == bool2( 4, 3 ) );
-	TEMPER_EXPECT_TRUE( mat[1] == bool2( 2, 1 ) );
+	TEMPER_EXPECT_TRUE( mat[0] == bool2( true, true ) );
+	TEMPER_EXPECT_TRUE( mat[1] == bool2( true, true ) );
 
 	TEMPER_PASS();
 }
