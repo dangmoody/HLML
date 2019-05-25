@@ -6,6 +6,9 @@ set config=%1
 REM path to vcvars64.bat, MUST include file name
 set vcvars64_path=%2
 
+if [%config%] == [] GOTO bail
+if [%vcvars64_path%] == [] GOTO bail
+
 call %vcvars64_path%
 
 echo ------- Building generator -------
@@ -29,3 +32,14 @@ echo ------- Running tests -------
 build\msvc\%config%\hlml-gen-tests.exe -c
 echo ------- Done -------
 echo.
+
+goto exit
+
+:bail
+echo ERROR: Not all arguments are set.  Please check the arguments you are passing.
+echo Usage:
+echo "build_and_test_msvc.bat <config> <vcvars64 path>"
+goto exit
+
+:exit
+
