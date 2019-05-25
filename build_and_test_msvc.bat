@@ -4,7 +4,7 @@ REM can be "debug" or "release"
 set config=%1
 
 REM path to vcvars64.bat, MUST include file name
-set vcvars64_path=%3
+set vcvars64_path=%2
 
 call %vcvars64_path%
 
