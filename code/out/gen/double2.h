@@ -37,6 +37,9 @@ struct double4;
 #if defined( __clang__ ) || defined( __GNUC__ )
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Wpedantic"
+#elif defined( _MSC_VER )
+#pragma warning( push )
+#pragma warning( disable : 4201 ) // C4201 - nonstandard extension used : nameless struct/union
 #endif
 
 /// \brief A vector of 2 doubles with components xy and/or rg.
@@ -107,6 +110,8 @@ struct double2
 
 #if defined( __clang__ ) || defined( __GNUC__ )
 #pragma GCC diagnostic pop
+#elif defined( _MSC_VER )
+#pragma warning( pop )
 #endif
 
 /// \relates double2

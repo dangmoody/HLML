@@ -42,8 +42,8 @@ TEMPER_TEST( TestMinMax_int32_t )
 	int32_t a = 5;
 	int32_t b = 9;
 
-	TEMPER_EXPECT_TRUE( floateq( min( a, b ), a ) );
-	TEMPER_EXPECT_TRUE( floateq( max( a, b ), b ) );
+	TEMPER_EXPECT_TRUE( min( a, b ) == a );
+	TEMPER_EXPECT_TRUE( max( a, b ) == b );
 
 	TEMPER_PASS();
 }

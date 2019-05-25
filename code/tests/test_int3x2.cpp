@@ -41,22 +41,22 @@ TEMPER_TEST( TestAssignment_int3x2 )
 	// row filling
 	mat = int3x2(
 		int2( 0, 1 ),
-		int2( 2, 3 ),
-		int2( 4, 5 )
+		int2( 4, 5 ),
+		int2( 8, 9 )
 	);
 	TEMPER_EXPECT_TRUE( mat[0] == int2( 0, 1 ) );
-	TEMPER_EXPECT_TRUE( mat[1] == int2( 2, 3 ) );
-	TEMPER_EXPECT_TRUE( mat[2] == int2( 4, 5 ) );
+	TEMPER_EXPECT_TRUE( mat[1] == int2( 4, 5 ) );
+	TEMPER_EXPECT_TRUE( mat[2] == int2( 8, 9 ) );
 
 	// all values filled
 	mat = int3x2(
-		6, 5, 
-		4, 3, 
-		2, 1
+		16, 15,
+		12, 11,
+		8, 7
 	);
-	TEMPER_EXPECT_TRUE( mat[0] == int2( 6, 5 ) );
-	TEMPER_EXPECT_TRUE( mat[1] == int2( 4, 3 ) );
-	TEMPER_EXPECT_TRUE( mat[2] == int2( 2, 1 ) );
+	TEMPER_EXPECT_TRUE( mat[0] == int2( 16, 15 ) );
+	TEMPER_EXPECT_TRUE( mat[1] == int2( 12, 11 ) );
+	TEMPER_EXPECT_TRUE( mat[2] == int2( 8, 7 ) );
 
 	TEMPER_PASS();
 }

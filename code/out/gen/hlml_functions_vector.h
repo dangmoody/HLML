@@ -42,7 +42,7 @@ along with hlml.  If not, see <http://www.gnu.org/licenses/>.
 // int2
 /// \relates int2
 /// \brief Returns the dot product of the two vectors.
-inline float dot( const int2& lhs, const int2& rhs );
+inline int32_t dot( const int2& lhs, const int2& rhs );
 
 /// \relates int2
 /// \brief Returns the magnitude of the vector squared.
@@ -64,7 +64,7 @@ inline float distance( const int2& lhs, const int2& rhs );
 // int3
 /// \relates int3
 /// \brief Returns the dot product of the two vectors.
-inline float dot( const int3& lhs, const int3& rhs );
+inline int32_t dot( const int3& lhs, const int3& rhs );
 
 /// \relates int3
 /// \brief Returns the magnitude of the vector squared.
@@ -86,7 +86,7 @@ inline float distance( const int3& lhs, const int3& rhs );
 // int4
 /// \relates int4
 /// \brief Returns the dot product of the two vectors.
-inline float dot( const int4& lhs, const int4& rhs );
+inline int32_t dot( const int4& lhs, const int4& rhs );
 
 /// \relates int4
 /// \brief Returns the magnitude of the vector squared.
@@ -100,7 +100,7 @@ inline float length( const int4& vec );
 // uint2
 /// \relates uint2
 /// \brief Returns the dot product of the two vectors.
-inline float dot( const uint2& lhs, const uint2& rhs );
+inline int32_t dot( const uint2& lhs, const uint2& rhs );
 
 /// \relates uint2
 /// \brief Returns the magnitude of the vector squared.
@@ -122,7 +122,7 @@ inline float distance( const uint2& lhs, const uint2& rhs );
 // uint3
 /// \relates uint3
 /// \brief Returns the dot product of the two vectors.
-inline float dot( const uint3& lhs, const uint3& rhs );
+inline int32_t dot( const uint3& lhs, const uint3& rhs );
 
 /// \relates uint3
 /// \brief Returns the magnitude of the vector squared.
@@ -144,7 +144,7 @@ inline float distance( const uint3& lhs, const uint3& rhs );
 // uint4
 /// \relates uint4
 /// \brief Returns the dot product of the two vectors.
-inline float dot( const uint4& lhs, const uint4& rhs );
+inline int32_t dot( const uint4& lhs, const uint4& rhs );
 
 /// \relates uint4
 /// \brief Returns the magnitude of the vector squared.

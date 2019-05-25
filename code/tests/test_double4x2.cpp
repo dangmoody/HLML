@@ -41,27 +41,27 @@ TEMPER_TEST( TestAssignment_double4x2 )
 
 	// row filling
 	mat = double4x2(
-		double2( 0, 1 ),
-		double2( 2, 3 ),
-		double2( 4, 5 ),
-		double2( 6, 7 )
+		double2( 0.000000, 1.000000 ),
+		double2( 4.000000, 5.000000 ),
+		double2( 8.000000, 9.000000 ),
+		double2( 12.000000, 13.000000 )
 	);
-	TEMPER_EXPECT_TRUE( mat[0] == double2( 0, 1 ) );
-	TEMPER_EXPECT_TRUE( mat[1] == double2( 2, 3 ) );
-	TEMPER_EXPECT_TRUE( mat[2] == double2( 4, 5 ) );
-	TEMPER_EXPECT_TRUE( mat[3] == double2( 6, 7 ) );
+	TEMPER_EXPECT_TRUE( mat[0] == double2( 0.000000, 1.000000 ) );
+	TEMPER_EXPECT_TRUE( mat[1] == double2( 4.000000, 5.000000 ) );
+	TEMPER_EXPECT_TRUE( mat[2] == double2( 8.000000, 9.000000 ) );
+	TEMPER_EXPECT_TRUE( mat[3] == double2( 12.000000, 13.000000 ) );
 
 	// all values filled
 	mat = double4x2(
-		8, 7, 
-		6, 5, 
-		4, 3, 
-		2, 1
+		16.000000, 15.000000,
+		12.000000, 11.000000,
+		8.000000, 7.000000,
+		4.000000, 3.000000
 	);
-	TEMPER_EXPECT_TRUE( mat[0] == double2( 8, 7 ) );
-	TEMPER_EXPECT_TRUE( mat[1] == double2( 6, 5 ) );
-	TEMPER_EXPECT_TRUE( mat[2] == double2( 4, 3 ) );
-	TEMPER_EXPECT_TRUE( mat[3] == double2( 2, 1 ) );
+	TEMPER_EXPECT_TRUE( mat[0] == double2( 16.000000, 15.000000 ) );
+	TEMPER_EXPECT_TRUE( mat[1] == double2( 12.000000, 11.000000 ) );
+	TEMPER_EXPECT_TRUE( mat[2] == double2( 8.000000, 7.000000 ) );
+	TEMPER_EXPECT_TRUE( mat[3] == double2( 4.000000, 3.000000 ) );
 
 	TEMPER_PASS();
 }

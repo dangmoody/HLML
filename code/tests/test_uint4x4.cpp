@@ -41,27 +41,27 @@ TEMPER_TEST( TestAssignment_uint4x4 )
 
 	// row filling
 	mat = uint4x4(
-		uint4( 0, 1, 2, 3 ),
-		uint4( 4, 5, 6, 7 ),
-		uint4( 8, 9, 10, 11 ),
-		uint4( 12, 13, 14, 15 )
+		uint4( 0U, 1U, 2U, 3U ),
+		uint4( 4U, 5U, 6U, 7U ),
+		uint4( 8U, 9U, 10U, 11U ),
+		uint4( 12U, 13U, 14U, 15U )
 	);
-	TEMPER_EXPECT_TRUE( mat[0] == uint4( 0, 1, 2, 3 ) );
-	TEMPER_EXPECT_TRUE( mat[1] == uint4( 4, 5, 6, 7 ) );
-	TEMPER_EXPECT_TRUE( mat[2] == uint4( 8, 9, 10, 11 ) );
-	TEMPER_EXPECT_TRUE( mat[3] == uint4( 12, 13, 14, 15 ) );
+	TEMPER_EXPECT_TRUE( mat[0] == uint4( 0U, 1U, 2U, 3U ) );
+	TEMPER_EXPECT_TRUE( mat[1] == uint4( 4U, 5U, 6U, 7U ) );
+	TEMPER_EXPECT_TRUE( mat[2] == uint4( 8U, 9U, 10U, 11U ) );
+	TEMPER_EXPECT_TRUE( mat[3] == uint4( 12U, 13U, 14U, 15U ) );
 
 	// all values filled
 	mat = uint4x4(
-		16, 15, 14, 13, 
-		12, 11, 10, 9, 
-		8, 7, 6, 5, 
-		4, 3, 2, 1
+		16U, 15U, 14U, 13U,
+		12U, 11U, 10U, 9U,
+		8U, 7U, 6U, 5U,
+		4U, 3U, 2U, 1U
 	);
-	TEMPER_EXPECT_TRUE( mat[0] == uint4( 16, 15, 14, 13 ) );
-	TEMPER_EXPECT_TRUE( mat[1] == uint4( 12, 11, 10, 9 ) );
-	TEMPER_EXPECT_TRUE( mat[2] == uint4( 8, 7, 6, 5 ) );
-	TEMPER_EXPECT_TRUE( mat[3] == uint4( 4, 3, 2, 1 ) );
+	TEMPER_EXPECT_TRUE( mat[0] == uint4( 16U, 15U, 14U, 13U ) );
+	TEMPER_EXPECT_TRUE( mat[1] == uint4( 12U, 11U, 10U, 9U ) );
+	TEMPER_EXPECT_TRUE( mat[2] == uint4( 8U, 7U, 6U, 5U ) );
+	TEMPER_EXPECT_TRUE( mat[3] == uint4( 4U, 3U, 2U, 1U ) );
 
 	TEMPER_PASS();
 }

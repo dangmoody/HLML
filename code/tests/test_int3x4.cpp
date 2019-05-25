@@ -50,13 +50,13 @@ TEMPER_TEST( TestAssignment_int3x4 )
 
 	// all values filled
 	mat = int3x4(
-		12, 11, 10, 9, 
-		8, 7, 6, 5, 
-		4, 3, 2, 1
+		16, 15, 14, 13,
+		12, 11, 10, 9,
+		8, 7, 6, 5
 	);
-	TEMPER_EXPECT_TRUE( mat[0] == int4( 12, 11, 10, 9 ) );
-	TEMPER_EXPECT_TRUE( mat[1] == int4( 8, 7, 6, 5 ) );
-	TEMPER_EXPECT_TRUE( mat[2] == int4( 4, 3, 2, 1 ) );
+	TEMPER_EXPECT_TRUE( mat[0] == int4( 16, 15, 14, 13 ) );
+	TEMPER_EXPECT_TRUE( mat[1] == int4( 12, 11, 10, 9 ) );
+	TEMPER_EXPECT_TRUE( mat[2] == int4( 8, 7, 6, 5 ) );
 
 	TEMPER_PASS();
 }

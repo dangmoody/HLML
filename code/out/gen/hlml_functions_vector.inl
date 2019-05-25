@@ -27,14 +27,14 @@ along with hlml.  If not, see <http://www.gnu.org/licenses/>.
 #include "hlml_operators_vector.h"
 
 // int2
-float dot( const int2& lhs, const int2& rhs )
+int32_t dot( const int2& lhs, const int2& rhs )
 {
 	return ( lhs.x * rhs.x ) + ( lhs.y * rhs.y );
 }
 
 float lengthsqr( const int2& vec )
 {
-	return ( vec.x * vec.x ) + ( vec.y * vec.y );
+	return (float)( ( vec.x * vec.x ) + ( vec.y * vec.y ) );
 }
 
 float length( const int2& vec )
@@ -54,14 +54,14 @@ float distance( const int2& lhs, const int2& rhs )
 
 
 // int3
-float dot( const int3& lhs, const int3& rhs )
+int32_t dot( const int3& lhs, const int3& rhs )
 {
 	return ( lhs.x * rhs.x ) + ( lhs.y * rhs.y ) + ( lhs.z * rhs.z );
 }
 
 float lengthsqr( const int3& vec )
 {
-	return ( vec.x * vec.x ) + ( vec.y * vec.y ) + ( vec.z * vec.z );
+	return (float)( ( vec.x * vec.x ) + ( vec.y * vec.y ) + ( vec.z * vec.z ) );
 }
 
 float length( const int3& vec )
@@ -81,14 +81,14 @@ float distance( const int3& lhs, const int3& rhs )
 
 
 // int4
-float dot( const int4& lhs, const int4& rhs )
+int32_t dot( const int4& lhs, const int4& rhs )
 {
 	return ( lhs.x * rhs.x ) + ( lhs.y * rhs.y ) + ( lhs.z * rhs.z ) + ( lhs.w * rhs.w );
 }
 
 float lengthsqr( const int4& vec )
 {
-	return ( vec.x * vec.x ) + ( vec.y * vec.y ) + ( vec.z * vec.z ) + ( vec.w * vec.w );
+	return (float)( ( vec.x * vec.x ) + ( vec.y * vec.y ) + ( vec.z * vec.z ) + ( vec.w * vec.w ) );
 }
 
 float length( const int4& vec )
@@ -98,14 +98,14 @@ float length( const int4& vec )
 
 
 // uint2
-float dot( const uint2& lhs, const uint2& rhs )
+int32_t dot( const uint2& lhs, const uint2& rhs )
 {
-	return ( lhs.x * rhs.x ) + ( lhs.y * rhs.y );
+	return (int32_t)( ( lhs.x * rhs.x ) + ( lhs.y * rhs.y ) );
 }
 
 float lengthsqr( const uint2& vec )
 {
-	return ( vec.x * vec.x ) + ( vec.y * vec.y );
+	return (float)( ( vec.x * vec.x ) + ( vec.y * vec.y ) );
 }
 
 float length( const uint2& vec )
@@ -125,14 +125,14 @@ float distance( const uint2& lhs, const uint2& rhs )
 
 
 // uint3
-float dot( const uint3& lhs, const uint3& rhs )
+int32_t dot( const uint3& lhs, const uint3& rhs )
 {
-	return ( lhs.x * rhs.x ) + ( lhs.y * rhs.y ) + ( lhs.z * rhs.z );
+	return (int32_t)( ( lhs.x * rhs.x ) + ( lhs.y * rhs.y ) + ( lhs.z * rhs.z ) );
 }
 
 float lengthsqr( const uint3& vec )
 {
-	return ( vec.x * vec.x ) + ( vec.y * vec.y ) + ( vec.z * vec.z );
+	return (float)( ( vec.x * vec.x ) + ( vec.y * vec.y ) + ( vec.z * vec.z ) );
 }
 
 float length( const uint3& vec )
@@ -152,14 +152,14 @@ float distance( const uint3& lhs, const uint3& rhs )
 
 
 // uint4
-float dot( const uint4& lhs, const uint4& rhs )
+int32_t dot( const uint4& lhs, const uint4& rhs )
 {
-	return ( lhs.x * rhs.x ) + ( lhs.y * rhs.y ) + ( lhs.z * rhs.z ) + ( lhs.w * rhs.w );
+	return (int32_t)( ( lhs.x * rhs.x ) + ( lhs.y * rhs.y ) + ( lhs.z * rhs.z ) + ( lhs.w * rhs.w ) );
 }
 
 float lengthsqr( const uint4& vec )
 {
-	return ( vec.x * vec.x ) + ( vec.y * vec.y ) + ( vec.z * vec.z ) + ( vec.w * vec.w );
+	return (float)( ( vec.x * vec.x ) + ( vec.y * vec.y ) + ( vec.z * vec.z ) + ( vec.w * vec.w ) );
 }
 
 float length( const uint4& vec )

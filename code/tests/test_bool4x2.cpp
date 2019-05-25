@@ -41,27 +41,27 @@ TEMPER_TEST( TestAssignment_bool4x2 )
 
 	// row filling
 	mat = bool4x2(
-		bool2( 0, 1 ),
-		bool2( 2, 3 ),
-		bool2( 4, 5 ),
-		bool2( 6, 7 )
+		bool2( false, true ),
+		bool2( true, true ),
+		bool2( true, true ),
+		bool2( true, true )
 	);
-	TEMPER_EXPECT_TRUE( mat[0] == bool2( 0, 1 ) );
-	TEMPER_EXPECT_TRUE( mat[1] == bool2( 2, 3 ) );
-	TEMPER_EXPECT_TRUE( mat[2] == bool2( 4, 5 ) );
-	TEMPER_EXPECT_TRUE( mat[3] == bool2( 6, 7 ) );
+	TEMPER_EXPECT_TRUE( mat[0] == bool2( false, true ) );
+	TEMPER_EXPECT_TRUE( mat[1] == bool2( true, true ) );
+	TEMPER_EXPECT_TRUE( mat[2] == bool2( true, true ) );
+	TEMPER_EXPECT_TRUE( mat[3] == bool2( true, true ) );
 
 	// all values filled
 	mat = bool4x2(
-		8, 7, 
-		6, 5, 
-		4, 3, 
-		2, 1
+		true, true,
+		true, true,
+		true, true,
+		true, true
 	);
-	TEMPER_EXPECT_TRUE( mat[0] == bool2( 8, 7 ) );
-	TEMPER_EXPECT_TRUE( mat[1] == bool2( 6, 5 ) );
-	TEMPER_EXPECT_TRUE( mat[2] == bool2( 4, 3 ) );
-	TEMPER_EXPECT_TRUE( mat[3] == bool2( 2, 1 ) );
+	TEMPER_EXPECT_TRUE( mat[0] == bool2( true, true ) );
+	TEMPER_EXPECT_TRUE( mat[1] == bool2( true, true ) );
+	TEMPER_EXPECT_TRUE( mat[2] == bool2( true, true ) );
+	TEMPER_EXPECT_TRUE( mat[3] == bool2( true, true ) );
 
 	TEMPER_PASS();
 }

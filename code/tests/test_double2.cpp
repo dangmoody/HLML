@@ -184,7 +184,7 @@ TEMPER_TEST( TestDot_double2 )
 	double2 a = double2( 0.000000, 1.000000 );
 	double2 b = double2( 0.000000, -1.000000 );
 
-	TEMPER_EXPECT_TRUE( doubleeq( dot( a, b ), -1.0 ) );
+	TEMPER_EXPECT_TRUE( doubleeq( dot( a, b ), -1.000000 ) );
 
 	TEMPER_PASS();
 }

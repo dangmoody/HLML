@@ -2,6 +2,12 @@ language: cpp
 
 matrix:
   include:
+    # windows msvc
+    - name: "Windows / MSVC"
+      os: windows
+      script:
+        - cmd.exe /C 'build_and_test_msvc.bat release "C:\Program Files (x86)\Microsoft Visual Studio\2017\BuildTools\VC\Auxiliary\Build\vcvars64.bat"'
+
     # windows clang
     - name: "Win64 / Clang"
       os: windows

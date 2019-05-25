@@ -38,6 +38,9 @@ struct float3;
 #if defined( __clang__ ) || defined( __GNUC__ )
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Wpedantic"
+#elif defined( _MSC_VER )
+#pragma warning( push )
+#pragma warning( disable : 4201 ) // C4201 - nonstandard extension used : nameless struct/union
 #endif
 
 /// \brief A vector of 3 uint32_ts with components xyz and/or rgb.
@@ -138,6 +141,8 @@ struct uint3
 
 #if defined( __clang__ ) || defined( __GNUC__ )
 #pragma GCC diagnostic pop
+#elif defined( _MSC_VER )
+#pragma warning( pop )
 #endif
 
 /// \relates uint3

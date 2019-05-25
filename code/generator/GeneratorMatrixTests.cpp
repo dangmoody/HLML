@@ -151,105 +151,70 @@ bool GeneratorMatrixTests::Generate( const genType_t type, const uint32_t numRow
 }
 
 void GeneratorMatrixTests::GenerateTestAssignment() {
-	std::string zeroStr = Gen_GetNumericLiteral( m_type, 0 );
-	std::string fillValue = Gen_GetNumericLiteral( m_type, 999 );
+	float fillValue = 999.0f;
 
-	std::string paramListRows = "(\n";
-	for ( uint32_t row = 0; row < m_numRows; row++ ) {
-		paramListRows += "\t\t" + m_vectorTypeString + "( ";
+	float valuesIdentity[4][4] = {
+		{ fillValue, 0.0f,      0.0f,      0.0f      },
+		{ 0.0f,      fillValue, 0.0f,      0.0f      },
+		{ 0.0f,      0.0f,      fillValue, 0.0f      },
+		{ 0.0f,      0.0f,      0.0f,      fillValue }
+	};
 
-		for ( uint32_t col = 0; col < m_numCols; col++ ) {
-			uint32_t index = col + ( row * m_numCols );
+	float values[4][4] = {
+		{ 0.0f,  1.0f,  2.0f,  3.0f  },
+		{ 4.0f,  5.0f,  6.0f,  7.0f  },
+		{ 8.0f,  9.0f,  10.0f, 11.0f },
+		{ 12.0f, 13.0f, 14.0f, 15.0f }
+	};
 
-			paramListRows += std::to_string( index );
+	float valuesReversed[4][4] = {
+		{ 16.0f, 15.0f, 14.0f, 13.0f },
+		{ 12.0f, 11.0f, 10.0f, 9.0f  },
+		{ 8.0f,  7.0f,  6.0f,  5.0f  },
+		{ 4.0f,  3.0f,  2.0f,  1.0f  }
+	};
 
-			if ( col != m_numCols - 1 ) {
-				paramListRows += ", ";
-			}
-		}
+	std::string fillValueStr = Gen_GetNumericLiteral( m_type, fillValue );
 
-		paramListRows += " )";
-
-		if ( row != m_numRows - 1 ) {
-			paramListRows += ",";
-		}
-
-		paramListRows += "\n";
-	}
-	paramListRows += "\t)";
-
-	std::string paramListReversed = "(\n";
-	for ( uint32_t row = 0; row < m_numRows; row++ ) {
-		paramListReversed += "\t\t";
-
-		for ( uint32_t col = 0; col < m_numCols; col++ ) {
-			uint32_t index = col + ( row * m_numCols );
-
-			paramListReversed += std::to_string( ( m_numRows * m_numCols ) - index );
-
-			if ( row + col != ( m_numRows - 1 ) + ( m_numCols - 1 ) ) {
-				paramListReversed += ", ";
-			}
-		}
-
-		paramListReversed += "\n";
-	}
-	paramListReversed += "\t)";
+	std::string parmListValues			= Gen_GetParmListMatrix( m_type, m_numRows, m_numCols, values );
+	std::string parmListValuesReversed	= Gen_GetParmListMatrix( m_type, m_numRows, m_numCols, valuesReversed );
 
 	m_code += "TEMPER_TEST( TestAssignment_" + m_fullTypeName + " )\n";
 	m_code += "{\n";
 	m_code += "\t" + m_fullTypeName + " mat;\n";
 	m_code += "\n";
-
 	m_code += "\t// fill single value\n";
-	m_code += "\tmat = " + m_fullTypeName + "( " + fillValue + " );\n";
+	m_code += "\tmat = " + m_fullTypeName + "( " + fillValueStr + " );\n";
 	for ( uint32_t row = 0; row < m_numRows; row++ ) {
-		m_code += "\tTEMPER_EXPECT_TRUE( mat[" + std::to_string( row ) + "] == " + m_vectorTypeString + "( ";
-
-		for ( uint32_t col = 0; col < m_numCols; col++ ) {
-			m_code += ( row == col ) ? fillValue : zeroStr;
-
-			if ( col != m_numCols - 1 ) {
-				m_code += ", ";
-			}
-		}
-		m_code += " ) );\n";
+		std::string parmList = Gen_GetParmListVector( m_type, m_numCols, valuesIdentity[row] );
+		m_code += "\tTEMPER_EXPECT_TRUE( mat[" + std::to_string( row ) + "] == " + m_vectorTypeString + parmList + " );\n";
 	}
 	m_code += "\n";
 
 	m_code += "\t// row filling\n";
-	m_code += "\tmat = " + m_fullTypeName + paramListRows + ";\n";
+	m_code += "\tmat = " + m_fullTypeName + "(\n";
 	for ( uint32_t row = 0; row < m_numRows; row++ ) {
-		m_code += "\tTEMPER_EXPECT_TRUE( mat[" + std::to_string( row ) + "] == " + m_vectorTypeString + "( ";
+		std::string parmList = Gen_GetParmListVector( m_type, m_numCols, values[row] );
+		m_code += "\t\t" + m_vectorTypeString + parmList;
 
-		for ( uint32_t col = 0; col < m_numCols; col++ ) {
-			uint32_t index = col + ( row * m_numCols );
-
-			m_code += std::to_string( index );
-
-			if ( col != m_numCols - 1 ) {
-				m_code += ", ";
-			}
+		if ( row != m_numRows - 1 ) {
+			m_code += ",";
 		}
-		m_code += " ) );\n";
+
+		m_code += "\n";
+	}
+	m_code += "\t);\n";
+	for ( uint32_t row = 0; row < m_numRows; row++ ) {
+		std::string parmList = Gen_GetParmListVector( m_type, m_numCols, values[row] );
+		m_code += "\tTEMPER_EXPECT_TRUE( mat[" + std::to_string( row ) + "] == " + m_vectorTypeString + parmList + " );\n";
 	}
 	m_code += "\n";
 
 	m_code += "\t// all values filled\n";
-	m_code += "\tmat = " + m_fullTypeName + paramListReversed + ";\n";
+	m_code += "\tmat = " + m_fullTypeName + parmListValuesReversed + ";\n";
 	for ( uint32_t row = 0; row < m_numRows; row++ ) {
-		m_code += "\tTEMPER_EXPECT_TRUE( mat[" + std::to_string( row ) + "] == " + m_vectorTypeString + "( ";
-
-		for ( uint32_t col = 0; col < m_numCols; col++ ) {
-			uint32_t index = col + ( row * m_numCols );
-
-			m_code += std::to_string( ( m_numRows * m_numCols ) - index );
-
-			if ( col != m_numCols - 1 ) {
-				m_code += ", ";
-			}
-		}
-		m_code += " ) );\n";
+		std::string parmList = Gen_GetParmListVector( m_type, m_numCols, valuesReversed[row] );
+		m_code += "\tTEMPER_EXPECT_TRUE( mat[" + std::to_string( row ) + "] == " + m_vectorTypeString + parmList + " );\n";
 	}
 	m_code += "\n";
 

@@ -185,10 +185,6 @@ inline std::string	Gen_GetFuncNameFabs( const genType_t type ) { return ( type =
 // hlml functions
 inline std::string	Gen_GetFuncNameFloateq( const genType_t type ) { return ( type == GEN_TYPE_DOUBLE ) ? "doubleeq" : "floateq"; }
 
-// built-in constants
-inline std::string	Gen_GetConstantNameInfinity( const genType_t type );
-inline std::string	Gen_GetConstantNameNaN( const genType_t type );
-
 // hlml constants
 inline std::string	Gen_GetConstantNamePi( const genType_t type ) { return ( type == GEN_TYPE_DOUBLE ) ? "HLML_PI" : "static_cast<float>( HLML_PI )"; }
 inline std::string	Gen_GetConstantNameEpsilon( const genType_t type ) { return ( type == GEN_TYPE_DOUBLE ) ? "HLML_EPSILON" : "static_cast<float>( HLML_EPSILON )"; }

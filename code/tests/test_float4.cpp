@@ -206,7 +206,7 @@ TEMPER_TEST( TestDot_float4 )
 	float4 a = float4( 0.000000f, 0.000000f, 0.000000f, 1.000000f );
 	float4 b = float4( 0.000000f, 0.000000f, 0.000000f, -1.000000f );
 
-	TEMPER_EXPECT_TRUE( floateq( dot( a, b ), -1.0f ) );
+	TEMPER_EXPECT_TRUE( floateq( dot( a, b ), -1.000000f ) );
 
 	TEMPER_PASS();
 }

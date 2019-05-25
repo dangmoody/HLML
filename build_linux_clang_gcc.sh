@@ -8,9 +8,16 @@ config=$2				# can be either "debug" or "release"
 output_file=$3			# name of the exe to build, should include ".exe"
 source_files_path=$4	# path to source files to build, shouldn't include "*.cpp"
 
+#determine the folder name to use
+if [[ $compiler == clang* ]]; then
+	compiler_folder_name="clang"
+else
+	compiler_folder_name="gcc"
+fi
+
 # make build folder if it doesn't already exist
 if [ ! -d "build/${config}" ]; then
-	mkdir -p build/${config}
+	mkdir -p build/${compiler_folder_name}/${config}
 fi
 
 options_std="-std=c++14"
@@ -49,4 +56,4 @@ echo Enabled errors        : ${options_error}
 echo Ignoring options      : ${ignore_warnings}
 echo ""
 
-${compiler} ${options_std} ${options_compiler} -o build/${config}/${output_file} ${source_files_path}/*.cpp ${options_error} ${ignore_warnings}
+${compiler} ${options_std} ${options_compiler} -o build/${compiler_folder_name}/${config}/${output_file} ${source_files_path}/*.cpp ${options_error} ${ignore_warnings}

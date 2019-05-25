@@ -121,6 +121,11 @@ void Gen_VectorLength( const genType_t type, const uint32_t numComponents, std::
 	outInl += returnTypeString + " lengthsqr( const " + fullTypeName + "& vec )\n";
 	outInl += "{\n";
 	outInl += "\treturn ";
+
+	if ( !Gen_IsFloatingPointType( type ) ) {
+		outInl += "(" + returnTypeString + ")( ";
+	}
+
 	for ( uint32_t i = 0; i < numComponents; i++ ) {
 		char componentName = GEN_COMPONENT_NAMES_VECTOR[i];
 		outInl += std::string( "( vec." ) + componentName + " * vec." + componentName + " )";
@@ -129,6 +134,11 @@ void Gen_VectorLength( const genType_t type, const uint32_t numComponents, std::
 			outInl += " + ";
 		}
 	}
+
+	if ( !Gen_IsFloatingPointType( type ) ) {
+		outInl += " )";
+	}
+
 	outInl += ";\n";
 	outInl += "}\n";
 	outInl += "\n";
@@ -184,8 +194,13 @@ void Gen_VectorDot( const genType_t type, const uint32_t numComponents, std::str
 		return;
 	}
 
+	// dot can return negative values, so uint vectors have to return signed int
+	bool shouldTypeCast = type == GEN_TYPE_UINT;
+
+	genType_t returnType = shouldTypeCast ? GEN_TYPE_INT : type;
+	std::string returnTypeString = Gen_GetMemberTypeString( returnType );
+
 	std::string typeString = Gen_GetTypeString( type );
-	std::string returnTypeString = Gen_GetTypeString( Gen_GetSupportedFloatingPointType( type ) );
 	std::string fullTypeName = typeString + std::to_string( numComponents );
 
 	outHeader += GetDocDot( fullTypeName );
@@ -195,13 +210,23 @@ void Gen_VectorDot( const genType_t type, const uint32_t numComponents, std::str
 	outInl += returnTypeString + " dot( const " + fullTypeName + "& lhs, const " + fullTypeName + "& rhs )\n";
 	outInl += "{\n";
 	outInl += "\treturn ";
+
+	if ( shouldTypeCast ) {
+		outInl += "(" + returnTypeString + ")( ";
+	}
+
 	for ( uint32_t i = 0; i < numComponents; i++ ) {
-		outInl += "( " + std::string( "lhs." ) + GEN_COMPONENT_NAMES_VECTOR[i] + std::string( " * " ) + std::string( "rhs." ) + GEN_COMPONENT_NAMES_VECTOR[i] + " )";
+		outInl += std::string( "( lhs." ) + GEN_COMPONENT_NAMES_VECTOR[i] + " * rhs." + GEN_COMPONENT_NAMES_VECTOR[i] + " )";
 
 		if ( i != numComponents - 1 ) {
 			outInl += " + ";
 		}
 	}
+
+	if ( shouldTypeCast ) {
+		outInl += " )";
+	}
+
 	outInl += ";\n";
 	outInl += "}\n";
 	outInl += "\n";

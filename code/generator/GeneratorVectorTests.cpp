@@ -488,12 +488,8 @@ void GeneratorVectorTests::GenerateTestDot() {
 
 	std::string testName = "TestDot_" + m_fullTypeName;
 
-	std::string minusOneFloatStr;
-	if ( m_type == GEN_TYPE_DOUBLE ) {
-		minusOneFloatStr = "-1.0";
-	} else {
-		minusOneFloatStr = "-1.0f";
-	}
+	genType_t dotReturnType = ( m_type == GEN_TYPE_UINT ) ? GEN_TYPE_INT : m_type;
+	std::string minusOneStr = Gen_GetNumericLiteral( dotReturnType, -1.0f );
 
 	std::string paramListA = "( ";
 	for ( uint32_t i = 0; i < m_numComponents; i++ ) {
@@ -522,7 +518,11 @@ void GeneratorVectorTests::GenerateTestDot() {
 	m_codeTests += "\t" + m_fullTypeName + " a = " + m_fullTypeName + paramListA + ";\n";
 	m_codeTests += "\t" + m_fullTypeName + " b = " + m_fullTypeName + paramListB + ";\n";
 	m_codeTests += "\n";
-	m_codeTests += "\tTEMPER_EXPECT_TRUE( " + floateqStr + "( dot( a, b ), " + minusOneFloatStr + " ) );\n";
+	if ( Gen_IsFloatingPointType( m_type ) ) {
+		m_codeTests += "\tTEMPER_EXPECT_TRUE( " + floateqStr + "( dot( a, b ), " + minusOneStr + " ) );\n";
+	} else {
+		m_codeTests += "\tTEMPER_EXPECT_TRUE( dot( a, b ) == " + minusOneStr + " );\n";
+	}
 	m_codeTests += "\n";
 	m_codeTests += "\tTEMPER_PASS();\n";
 	m_codeTests += "}\n";
