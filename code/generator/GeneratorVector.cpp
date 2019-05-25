@@ -38,6 +38,7 @@ bool GeneratorVector::Generate( const genType_t type, const uint32_t numComponen
 		}
 
 		m_codeHeader += "#include <stdint.h>\n";
+		m_codeHeader += "#include \"../" GEN_HEADER_TYPES "\"\n";
 		m_codeHeader += "\n";
 
 		// forward declarations

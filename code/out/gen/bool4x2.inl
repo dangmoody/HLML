@@ -35,7 +35,7 @@ bool4x2::bool4x2()
 	rows[3] = { 0, 0 };
 }
 
-bool4x2::bool4x2( const bool diagonal )
+bool4x2::bool4x2( const bool32_t diagonal )
 {
 	rows[0] = { diagonal, 0 };
 	rows[1] = { 0, diagonal };
@@ -67,7 +67,7 @@ bool4x2::bool4x2( const bool2 rows[4] )
 	this->rows[3] = rows[3];
 }
 
-bool4x2::bool4x2( const bool m00, const bool m01, const bool m10, const bool m11, const bool m20, const bool m21, const bool m30, const bool m31 )
+bool4x2::bool4x2( const bool32_t m00, const bool32_t m01, const bool32_t m10, const bool32_t m11, const bool32_t m20, const bool32_t m21, const bool32_t m30, const bool32_t m31 )
 {
 	rows[0] = { m00, m01 };
 	rows[1] = { m10, m11 };

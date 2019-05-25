@@ -34,7 +34,7 @@ bool3x4::bool3x4()
 	rows[2] = { 0, 0, 1, 0 };
 }
 
-bool3x4::bool3x4( const bool diagonal )
+bool3x4::bool3x4( const bool32_t diagonal )
 {
 	rows[0] = { diagonal, 0, 0, 0 };
 	rows[1] = { 0, diagonal, 0, 0 };
@@ -62,7 +62,7 @@ bool3x4::bool3x4( const bool4 rows[3] )
 	this->rows[2] = rows[2];
 }
 
-bool3x4::bool3x4( const bool m00, const bool m01, const bool m02, const bool m03, const bool m10, const bool m11, const bool m12, const bool m13, const bool m20, const bool m21, const bool m22, const bool m23 )
+bool3x4::bool3x4( const bool32_t m00, const bool32_t m01, const bool32_t m02, const bool32_t m03, const bool32_t m10, const bool32_t m11, const bool32_t m12, const bool32_t m13, const bool32_t m20, const bool32_t m21, const bool32_t m22, const bool32_t m23 )
 {
 	rows[0] = { m00, m01, m02, m03 };
 	rows[1] = { m10, m11, m12, m13 };

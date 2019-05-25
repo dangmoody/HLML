@@ -140,6 +140,21 @@ static bool GenerateImplMatrices( void ) {
 	return true;
 }
 
+static bool GenerateTypeHeader( void ) {
+	char headerFilePath[1024] = { 0 };
+	sprintf( headerFilePath, "%s%s", GEN_OUT_FOLDER_PATH, GEN_HEADER_TYPES );
+
+	std::string content = GEN_FILE_HEADER;
+
+	content += "#include <stdint.h>\n";
+	content += "\n";
+
+	content += "// ensure that a bool is 4 bytes\n";
+	content += "typedef uint32_t bool32_t;\n";
+
+	return FS_WriteEntireFile( headerFilePath, content.data(), content.size() );
+}
+
 static bool GenerateMainTypeHeaderVector( void ) {
 	char headerFilePath[1024] = { 0 };
 	sprintf( headerFilePath, "%s%s", GEN_OUT_GEN_FOLDER_PATH, GEN_HEADER_VECTOR );
@@ -685,6 +700,7 @@ int main( int argc, char** argv ) {
 	printf( "======= Done. =======\n\n" );
 
 	printf( "======= Generating main headers. =======\n" );
+	FAIL_IF( !GenerateTypeHeader(),           "Failed generating \"" GEN_HEADER_TYPES "\".\n" );
 	FAIL_IF( !GenerateMainHeaderFuncs(),      "Failed generating \"" GEN_FILENAME_FUNCTIONS_SCALAR "\".\n" );
 	FAIL_IF( !GenerateMainTypeHeaderVector(), "Failed generating main vector header.\n" );
 	FAIL_IF( !GenerateMainTypeHeaderMatrix(), "Failed generating main matrix header.\n" );

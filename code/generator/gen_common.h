@@ -28,6 +28,7 @@
 #define GEN_OUT_GEN_FOLDER_PATH			"code/out/gen/"
 #define GEN_TESTS_FOLDER_PATH			"code/tests/"
 
+#define GEN_HEADER_TYPES				"hlml_types.h"
 #define GEN_HEADER_CONSTANTS			"hlml_constants.h"
 #define GEN_HEADER_USER					"hlml_user.h"
 
@@ -232,7 +233,7 @@ std::string Gen_GetTypeString( const genType_t type ) {
 
 std::string Gen_GetMemberTypeString( const genType_t type ) {
 	switch ( type ) {
-		case GEN_TYPE_BOOL:		return "bool";
+		case GEN_TYPE_BOOL:		return "bool32_t";
 		case GEN_TYPE_INT:		return "int32_t";
 		case GEN_TYPE_UINT:		return "uint32_t";
 		case GEN_TYPE_FLOAT:	return "float";

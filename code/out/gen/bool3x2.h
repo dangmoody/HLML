@@ -40,7 +40,7 @@ struct bool3x2
 
 	/// \brief Sets each of the diagonal values of the matrix to the given scalar value.
 	/// Setting the scalar to 1 will give an identity matrix.
-	inline bool3x2( const bool diagonal );
+	inline bool3x2( const bool32_t diagonal );
 
 	/// \brief Sets the diagonal values of the matrix to the corresponding components of the given vector.
 	/// Setting each component of the vector to 1 will give an identity matrix.
@@ -53,7 +53,7 @@ struct bool3x2
 	inline bool3x2( const bool2 rows[3] );
 
 	/// Sets each component of the vector to the corresponding scalar value (row major).
-	inline bool3x2( const bool m00, const bool m01, const bool m10, const bool m11, const bool m20, const bool m21 );
+	inline bool3x2( const bool32_t m00, const bool32_t m01, const bool32_t m10, const bool32_t m11, const bool32_t m20, const bool32_t m21 );
 
 	/// Copy constructor.  Sets each row of the matrix to the rows in the other matrix.
 	inline bool3x2( const bool3x2& other );
