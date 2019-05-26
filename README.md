@@ -29,8 +29,16 @@ Installation
 5. Done!
 
 
-Usage/Common Pitfalls
-=====================
+Usage
+=====
+The main header files to include are:
+* ```hlml_functions_scalar.h```
+* ```hlml_functions_vector.h```
+* ```hlml_functions_matrix.h```
+
+
+Common Pitfalls
+===============
 
 **READ THIS BEFORE USING HLML:**
 
