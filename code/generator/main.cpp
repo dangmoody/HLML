@@ -39,7 +39,7 @@ along with hlml.  If not, see <http://www.gnu.org/licenses/>.
 
 #include <string>
 
-static bool GenerateMainHeaderFuncs( void ) {
+static bool GenerateHeaderScalar( void ) {
 	char fileNameHeader[1024];
 	sprintf( fileNameHeader, "%s%s.h", GEN_OUT_GEN_FOLDER_PATH, GEN_FILENAME_FUNCTIONS_SCALAR );
 
@@ -153,48 +153,6 @@ static bool GenerateTypeHeader( void ) {
 	content += "typedef uint32_t bool32_t;\n";
 
 	return FS_WriteEntireFile( headerFilePath, content.data(), content.size() );
-}
-
-static bool GenerateMainTypeHeaderVector( void ) {
-	char headerFilePath[1024] = { 0 };
-	sprintf( headerFilePath, "%s%s", GEN_OUT_GEN_FOLDER_PATH, GEN_HEADER_VECTOR );
-
-	std::string content = GEN_FILE_HEADER;
-
-	for ( uint32_t typeIndex = 0; typeIndex < GEN_TYPE_COUNT; typeIndex++ ) {
-		genType_t type = static_cast<genType_t>( typeIndex );
-
-		for ( uint32_t componentIndex = GEN_COMPONENT_COUNT_MIN; componentIndex <= GEN_COMPONENT_COUNT_MAX; componentIndex++ ) {
-			content += "#include \"" + Gen_GetFullTypeName( type, 1, componentIndex ) + ".h\"\n";
-		}
-		content += "\n";
-	}
-
-	content += "#include \"hlml_functions_vector.h\"\n";
-
-	return FS_WriteEntireFile( headerFilePath, content.c_str(), content.size() );
-}
-
-static bool GenerateMainTypeHeaderMatrix( void ) {
-	char headerFilePath[1024] = { 0 };
-	sprintf( headerFilePath, "%s%s", GEN_OUT_GEN_FOLDER_PATH, GEN_HEADER_MATRIX );
-
-	std::string content = GEN_FILE_HEADER;
-
-	for ( uint32_t typeIndex = 0; typeIndex < GEN_TYPE_COUNT; typeIndex++ ) {
-		genType_t type = static_cast<genType_t>( typeIndex );
-
-		for ( uint32_t row = GEN_COMPONENT_COUNT_MIN; row <= GEN_COMPONENT_COUNT_MAX; row++ ) {
-			for ( uint32_t col = GEN_COMPONENT_COUNT_MIN; col <= GEN_COMPONENT_COUNT_MAX; col++ ) {
-				content += "#include \"" + Gen_GetFullTypeName( type, row, col ) + ".h\"\n";
-			}
-			content += "\n";
-		}
-	}
-
-	content += "#include \"hlml_functions_matrix.h\"\n";
-
-	return FS_WriteEntireFile( headerFilePath, content.c_str(), content.size() );
 }
 
 static bool GenerateOperatorsVector( void ) {
@@ -700,10 +658,8 @@ int main( int argc, char** argv ) {
 	printf( "======= Done. =======\n\n" );
 
 	printf( "======= Generating main headers. =======\n" );
-	FAIL_IF( !GenerateTypeHeader(),           "Failed generating \"" GEN_HEADER_TYPES "\".\n" );
-	FAIL_IF( !GenerateMainHeaderFuncs(),      "Failed generating \"" GEN_FILENAME_FUNCTIONS_SCALAR "\".\n" );
-	FAIL_IF( !GenerateMainTypeHeaderVector(), "Failed generating main vector header.\n" );
-	FAIL_IF( !GenerateMainTypeHeaderMatrix(), "Failed generating main matrix header.\n" );
+	FAIL_IF( !GenerateTypeHeader(),   "Failed generating \"" GEN_HEADER_TYPES "\".\n" );
+	FAIL_IF( !GenerateHeaderScalar(), "Failed generating \"" GEN_FILENAME_FUNCTIONS_SCALAR "\".\n" );
 	printf( "======= Done. =======\n\n" );
 
 	printf( "======= Generating functions. =======\n" );

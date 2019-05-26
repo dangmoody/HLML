@@ -32,18 +32,12 @@
 #define GEN_HEADER_CONSTANTS			"hlml_constants.h"
 #define GEN_HEADER_USER					"hlml_user.h"
 
-#define GEN_HEADER_VECTOR				"hlml_vector.h"
-#define GEN_HEADER_MATRIX				"hlml_matrix.h"
-
 #define GEN_FILENAME_OPERATORS_VECTOR	"hlml_operators_vector"
 #define GEN_FILENAME_OPERATORS_MATRIX	"hlml_operators_matrix"
 
 #define GEN_FILENAME_FUNCTIONS_SCALAR	"hlml_functions_scalar"
 #define GEN_FILENAME_FUNCTIONS_VECTOR	"hlml_functions_vector"
 #define GEN_FILENAME_FUNCTIONS_MATRIX	"hlml_functions_matrix"
-
-// defines
-#define GEN_DEFINE_UNDEF_SYSTEM_MIN_MAX	"HLML_UNDEF_SYSTEM_MIN_MAX"
 
 enum genType_t {
 	GEN_TYPE_BOOL						= 0,

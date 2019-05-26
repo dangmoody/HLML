@@ -17,7 +17,6 @@ bool GeneratorScalarTest::Generate( const genType_t type ) {
 
 	std::string code = GEN_FILE_HEADER;
 
-	code += "#define " GEN_DEFINE_UNDEF_SYSTEM_MIN_MAX "\n";
 	code += std::string( "#include \"../../" ) + GEN_OUT_GEN_FOLDER_PATH + GEN_FILENAME_FUNCTIONS_SCALAR + ".h\"\n";
 	code += "\n";
 
