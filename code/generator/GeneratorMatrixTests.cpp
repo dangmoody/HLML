@@ -11,7 +11,7 @@
 #define _USE_MATH_DEFINES	// for M_PI
 #include <math.h>
 
-bool GeneratorMatrixTests::Generate( const genType_t type, const uint32_t numRows, const uint32_t numCols ) {
+bool GeneratorMatrixTests::Generate( const genType_t type, const u32 numRows, const u32 numCols ) {
 	m_code = std::string();
 
 	m_type = type;
@@ -185,7 +185,7 @@ void GeneratorMatrixTests::GenerateTestAssignment() {
 	m_code += "\n";
 	m_code += "\t// fill single value\n";
 	m_code += "\tmat = " + m_fullTypeName + "( " + fillValueStr + " );\n";
-	for ( uint32_t row = 0; row < m_numRows; row++ ) {
+	for ( u32 row = 0; row < m_numRows; row++ ) {
 		std::string parmList = Gen_GetParmListVector( m_type, m_numCols, valuesIdentity[row] );
 		m_code += "\tTEMPER_EXPECT_TRUE( mat[" + std::to_string( row ) + "] == " + m_vectorTypeString + parmList + " );\n";
 	}
@@ -193,7 +193,7 @@ void GeneratorMatrixTests::GenerateTestAssignment() {
 
 	m_code += "\t// row filling\n";
 	m_code += "\tmat = " + m_fullTypeName + "(\n";
-	for ( uint32_t row = 0; row < m_numRows; row++ ) {
+	for ( u32 row = 0; row < m_numRows; row++ ) {
 		std::string parmList = Gen_GetParmListVector( m_type, m_numCols, values[row] );
 		m_code += "\t\t" + m_vectorTypeString + parmList;
 
@@ -204,7 +204,7 @@ void GeneratorMatrixTests::GenerateTestAssignment() {
 		m_code += "\n";
 	}
 	m_code += "\t);\n";
-	for ( uint32_t row = 0; row < m_numRows; row++ ) {
+	for ( u32 row = 0; row < m_numRows; row++ ) {
 		std::string parmList = Gen_GetParmListVector( m_type, m_numCols, values[row] );
 		m_code += "\tTEMPER_EXPECT_TRUE( mat[" + std::to_string( row ) + "] == " + m_vectorTypeString + parmList + " );\n";
 	}
@@ -212,7 +212,7 @@ void GeneratorMatrixTests::GenerateTestAssignment() {
 
 	m_code += "\t// all values filled\n";
 	m_code += "\tmat = " + m_fullTypeName + parmListValuesReversed + ";\n";
-	for ( uint32_t row = 0; row < m_numRows; row++ ) {
+	for ( u32 row = 0; row < m_numRows; row++ ) {
 		std::string parmList = Gen_GetParmListVector( m_type, m_numCols, valuesReversed[row] );
 		m_code += "\tTEMPER_EXPECT_TRUE( mat[" + std::to_string( row ) + "] == " + m_vectorTypeString + parmList + " );\n";
 	}
@@ -312,7 +312,7 @@ void GeneratorMatrixTests::GenerateTestMultiplyVector() {
 	std::string parmListVec = Gen_GetParmListVector( m_type, m_numCols, valuesVec );
 
 	std::string parmListVecAnswer = "( ";
-	for ( uint32_t col = 0; col < m_numCols; col++ ) {
+	for ( u32 col = 0; col < m_numCols; col++ ) {
 		// get the left-hand row
 		std::vector<float> matRow( m_numCols );
 		for ( size_t lhsComponent = 0; lhsComponent < matRow.size(); lhsComponent++ ) {
@@ -376,7 +376,7 @@ void GeneratorMatrixTests::GenerateTestIncrement() {
 		"Decrement",
 	};
 
-	for ( uint32_t i = 0; i < GEN_OP_INCREMENT_COUNT; i++ ) {
+	for ( u32 i = 0; i < GEN_OP_INCREMENT_COUNT; i++ ) {
 		m_code += "TEMPER_TEST( Test" + suffices[i] + "_" + m_fullTypeName + " )\n";
 		m_code += "{\n";
 		m_code += "\t" + m_fullTypeName + " mat;\n";
@@ -412,17 +412,17 @@ void GeneratorMatrixTests::GenerateTestRelational() {
 		Gen_GetParmListMatrixSingleValue( m_type, m_numRows, m_numCols, 4 ),
 	};
 
-	uint32_t numTestMats = 0;
+	u32 numTestMats = 0;
 
 	m_code += "TEMPER_TEST( TestRelational_" + m_fullTypeName + " )\n";
 	m_code += "{\n";
 	m_code += "\t" + boolTypeName + " allTrue = " + boolTypeName + parmListTrue + ";\n";
 	m_code += "\n";
-	for ( uint32_t parmListIndex = 0; parmListIndex < _countof( parmLists ); parmListIndex++ ) {
+	for ( u32 parmListIndex = 0; parmListIndex < _countof( parmLists ); parmListIndex++ ) {
 		m_code += "\t" + m_fullTypeName + " mat" + std::to_string( parmListIndex ) + " = " + m_fullTypeName + parmLists[parmListIndex] + ";\n";
 	}
 	m_code += "\n";
-	for ( uint32_t parmListIndex = 0; parmListIndex < _countof( parmLists ); parmListIndex++ ) {
+	for ( u32 parmListIndex = 0; parmListIndex < _countof( parmLists ); parmListIndex++ ) {
 		std::string matString = "mat" + std::to_string( parmListIndex );
 
 		m_code += "\t" + boolTypeName + " test" + std::to_string( numTestMats++ ) + " = " + matString + " <= " + matString + ";\n";
@@ -435,7 +435,7 @@ void GeneratorMatrixTests::GenerateTestRelational() {
 		}
 		m_code += "\n";
 	}
-	for ( uint32_t i = 0; i < numTestMats; i++ ) {
+	for ( u32 i = 0; i < numTestMats; i++ ) {
 		m_code += "\tTEMPER_EXPECT_TRUE( test" + std::to_string( i ) + " == allTrue );\n";
 	}
 	m_code += "\n";
@@ -450,8 +450,8 @@ void GeneratorMatrixTests::GenerateTestBitwise() {
 	}
 
 	std::string parmListAnswerUnary = "( ";
-	for ( uint32_t row = 0; row < m_numRows; row++ ) {
-		for ( uint32_t col = 0; col < m_numCols; col++ ) {
+	for ( u32 row = 0; row < m_numRows; row++ ) {
+		for ( u32 col = 0; col < m_numCols; col++ ) {
 			parmListAnswerUnary += "(" + m_memberTypeString + ") -1";
 
 			if ( row + col != ( m_numRows - 1 ) + ( m_numCols - 1 ) ) {
@@ -509,7 +509,7 @@ void GeneratorMatrixTests::GenerateTestBitwise() {
 		GEN_OP_BITWISE_SHIFT_RIGHT,
 	};
 
-	for ( uint32_t i = 0; i < _countof( ops ); i++ ) {
+	for ( u32 i = 0; i < _countof( ops ); i++ ) {
 		m_code += "TEMPER_TEST( TestBitwise" + suffices[i] + "_" + m_fullTypeName + " )\n";
 		m_code += "{\n";
 		m_code += "\t" + m_fullTypeName + " a  = " + m_fullTypeName + parmListLhs[i] + ";\n";
@@ -546,10 +546,10 @@ void GeneratorMatrixTests::GenerateTestArray() {
 	m_code += "{\n";
 	m_code += "\t" + m_fullTypeName + " mat;\n";
 	m_code += "\n";
-	for ( uint32_t row = 0; row < m_numRows; row++ ) {
+	for ( u32 row = 0; row < m_numRows; row++ ) {
 		m_code += "\tTEMPER_EXPECT_TRUE( mat[" + std::to_string( row ) + "] == " + m_vectorTypeString + "( ";
 
-		for ( uint32_t col = 0; col < m_numCols; col++ ) {
+		for ( u32 col = 0; col < m_numCols; col++ ) {
 			m_code += ( row == col ) ? oneStr : zeroStr;
 
 			if ( col != m_numCols - 1 ) {
@@ -588,10 +588,10 @@ void GeneratorMatrixTests::GenerateTestIdentity() {
 
 void GeneratorMatrixTests::GenerateTestTranspose() {
 	std::string paramListNormal = "(\n";
-	for ( uint32_t row = 0; row < m_numRows; row++ ) {
+	for ( u32 row = 0; row < m_numRows; row++ ) {
 		paramListNormal += "\t\t";
 
-		for ( uint32_t col = 0; col < m_numCols; col++ ) {
+		for ( u32 col = 0; col < m_numCols; col++ ) {
 			int32_t index = static_cast<int32_t>( col + ( row * m_numCols ) );
 
 			paramListNormal += Gen_GetNumericLiteral( m_type, static_cast<float>( index ) );
@@ -610,10 +610,10 @@ void GeneratorMatrixTests::GenerateTestTranspose() {
 	paramListNormal += "\t)";
 
 	std::string paramListTransposed = "(\n";
-	for ( uint32_t col = 0; col < m_numCols; col++ ) {
+	for ( u32 col = 0; col < m_numCols; col++ ) {
 		paramListTransposed += "\t\t";
 
-		for ( uint32_t row = 0; row < m_numRows; row++ ) {
+		for ( u32 row = 0; row < m_numRows; row++ ) {
 			int32_t index = static_cast<int32_t>( col + ( row * m_numCols ) );
 
 			paramListTransposed += Gen_GetNumericLiteral( m_type, static_cast<float>( index ) );
@@ -681,11 +681,11 @@ void GeneratorMatrixTests::GenerateTestInverse() {
 	}
 
 	std::string paramList = "(\n";
-	for ( uint32_t row = 0; row < m_numRows; row++ ) {
+	for ( u32 row = 0; row < m_numRows; row++ ) {
 		paramList += "\t\t";
 
-		for ( uint32_t col = 0; col < m_numCols; col++ ) {
-			uint32_t index = col + ( row * m_numCols );
+		for ( u32 col = 0; col < m_numCols; col++ ) {
+			u32 index = col + ( row * m_numCols );
 
 			paramList += Gen_GetNumericLiteral( m_type, matrix[index] );
 
@@ -758,11 +758,11 @@ void GeneratorMatrixTests::GenerateTestDeterminant() {
 	}
 
 	std::string paramList = "(\n";
-	for ( uint32_t row = 0; row < m_numRows; row++ ) {
+	for ( u32 row = 0; row < m_numRows; row++ ) {
 		paramList += "\t\t";
 
-		for ( uint32_t col = 0; col < m_numCols; col++ ) {
-			uint32_t index = col + ( row * m_numCols );
+		for ( u32 col = 0; col < m_numCols; col++ ) {
+			u32 index = col + ( row * m_numCols );
 
 			paramList += Gen_GetNumericLiteral( m_type, matrix[index] );
 
@@ -808,7 +808,7 @@ void GeneratorMatrixTests::GenerateTestTranslate() {
 		return;
 	}
 
-	uint32_t baseNumber = 2;
+	u32 baseNumber = 2;
 
 	std::string translateVectorTypeString = m_typeString + std::to_string( m_numCols - 1 );
 
@@ -816,7 +816,7 @@ void GeneratorMatrixTests::GenerateTestTranslate() {
 	std::string oneStr = Gen_GetNumericLiteral( m_type, 1 );
 
 	std::string parmListTranslateVector = "( ";
-	for ( uint32_t col = 0; col < m_numCols - 1; col++ ) {
+	for ( u32 col = 0; col < m_numCols - 1; col++ ) {
 		float number = static_cast<float>( col + baseNumber );
 
 		parmListTranslateVector += Gen_GetNumericLiteral( m_type, number );
@@ -828,10 +828,10 @@ void GeneratorMatrixTests::GenerateTestTranslate() {
 	parmListTranslateVector += " )";
 
 	std::string parmListTranslated = "(\n";
-	for ( uint32_t row = 0; row < m_numRows; row++ ) {
+	for ( u32 row = 0; row < m_numRows; row++ ) {
 		parmListTranslated += "\t\t";
 
-		for ( uint32_t col = 0; col < m_numCols; col++ ) {
+		for ( u32 col = 0; col < m_numCols; col++ ) {
 			if ( row == col ) {
 				parmListTranslated += oneStr;
 			} else {
@@ -923,10 +923,10 @@ void GeneratorMatrixTests::GenerateTestRotate() {
 		{ 0.0f,  0.0f, 0.0f, 1.0f },
 	};
 
-	uint32_t numRotMatRows = GEN_MIN( m_numRows, 4 );
-	uint32_t numRotMatCols = GEN_MIN( m_numCols, 4 );
+	u32 numRotMatRows = GEN_MIN( m_numRows, 4 );
+	u32 numRotMatCols = GEN_MIN( m_numCols, 4 );
 
-	uint32_t numRotateVectorComponents = m_numCols - 1;
+	u32 numRotateVectorComponents = m_numCols - 1;
 
 	std::string rotDegreesStr = Gen_GetNumericLiteral( m_type, rotDegrees );
 
@@ -981,7 +981,7 @@ void GeneratorMatrixTests::GenerateTestScale() {
 		return;
 	}
 
-	const uint32_t scaleCols = 3;
+	const u32 scaleCols = 3;
 
 	float scaleMatDiagonal[] = { 2.0f, 2.0f, 2.0f, 1.0f };
 
@@ -1192,7 +1192,7 @@ void GeneratorMatrixTests::GenerateTestLookAt() {
 		{  0.0f,      0.0f,  0.0f,      1.0f }
 	};
 
-	uint32_t numTranslateVecComponents = 3;
+	u32 numTranslateVecComponents = 3;
 
 	std::string posVectorTypeName = m_typeString + std::to_string( numTranslateVecComponents );
 
@@ -1230,11 +1230,11 @@ std::string GeneratorMatrixTests::GetTestCodeArithmeticInternal( const genOpArit
 	assert( valuesLhs );
 	assert( valuesRhs );
 
-	uint32_t rhsRows = m_numRows;
-	uint32_t rhsCols = m_numCols;
+	u32 rhsRows = m_numRows;
+	u32 rhsCols = m_numCols;
 
-	uint32_t returnTypeRows = m_numRows;
-	uint32_t returnTypeCols = m_numCols;
+	u32 returnTypeRows = m_numRows;
+	u32 returnTypeCols = m_numCols;
 
 	std::string lhsTypeName = m_fullTypeName;
 	std::string rhsTypeName;
@@ -1280,7 +1280,7 @@ std::string GeneratorMatrixTests::GetTestCodeArithmeticInternal( const genOpArit
 	return code;
 }
 
-std::string GeneratorMatrixTests::GetParmListArithmeticAnswer( const genOpArithmetic_t op, const uint32_t numRows, const uint32_t numCols,
+std::string GeneratorMatrixTests::GetParmListArithmeticAnswer( const genOpArithmetic_t op, const u32 numRows, const u32 numCols,
 	const float valuesLhs[GEN_COMPONENT_COUNT_MAX][GEN_COMPONENT_COUNT_MAX], const float valuesRhs[GEN_COMPONENT_COUNT_MAX][GEN_COMPONENT_COUNT_MAX] ) const {
 	assert( op >= 0 );
 	assert( op < GEN_OP_ARITHMETIC_COUNT );
@@ -1297,10 +1297,10 @@ std::string GeneratorMatrixTests::GetParmListArithmeticAnswer( const genOpArithm
 
 	switch ( op ) {
 		case GEN_OP_ARITHMETIC_ADD: {
-			for ( uint32_t row = 0; row < numRows; row++ ) {
+			for ( u32 row = 0; row < numRows; row++ ) {
 				parmList += "\t\t";
 
-				for ( uint32_t col = 0; col < numCols; col++ ) {
+				for ( u32 col = 0; col < numCols; col++ ) {
 					float lhs = valuesLhs[row][col];
 					float rhs = valuesRhs[row][col];
 
@@ -1322,10 +1322,10 @@ std::string GeneratorMatrixTests::GetParmListArithmeticAnswer( const genOpArithm
 		}
 
 		case GEN_OP_ARITHMETIC_SUB: {
-			for ( uint32_t row = 0; row < numRows; row++ ) {
+			for ( u32 row = 0; row < numRows; row++ ) {
 				parmList += "\t\t";
 
-				for ( uint32_t col = 0; col < numCols; col++ ) {
+				for ( u32 col = 0; col < numCols; col++ ) {
 					float lhs = valuesLhs[row][col];
 					float rhs = valuesRhs[row][col];
 
@@ -1347,10 +1347,10 @@ std::string GeneratorMatrixTests::GetParmListArithmeticAnswer( const genOpArithm
 		}
 
 		case GEN_OP_ARITHMETIC_MUL: {
-			for ( uint32_t row = 0; row < numRows; row++ ) {
+			for ( u32 row = 0; row < numRows; row++ ) {
 				parmList += "\t\t";
 
-				for ( uint32_t col = 0; col < numCols; col++ ) {
+				for ( u32 col = 0; col < numCols; col++ ) {
 					// get the left-hand row
 					std::vector<float> lhsRow( m_numCols );
 					for ( size_t lhsComponent = 0; lhsComponent < lhsRow.size(); lhsComponent++ ) {
@@ -1393,10 +1393,10 @@ std::string GeneratorMatrixTests::GetParmListArithmeticAnswer( const genOpArithm
 
 		case GEN_OP_ARITHMETIC_DIV: {
 			// otherwise just do component-wise division
-			for ( uint32_t row = 0; row < numRows; row++ ) {
+			for ( u32 row = 0; row < numRows; row++ ) {
 				parmList += "\t\t";
 
-				for ( uint32_t col = 0; col < numCols; col++ ) {
+				for ( u32 col = 0; col < numCols; col++ ) {
 					float lhs = valuesLhs[row][col];
 					float rhs = valuesRhs[row][col];
 

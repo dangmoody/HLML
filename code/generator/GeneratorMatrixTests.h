@@ -7,7 +7,7 @@ public:
 				GeneratorMatrixTests() {}
 				~GeneratorMatrixTests() {}
 
-	bool		Generate( const genType_t type, const uint32_t numRows, const uint32_t numCols );
+	bool		Generate( const genType_t type, const u32 numRows, const u32 numCols );
 
 private:
 	std::string	m_code;
@@ -23,8 +23,8 @@ private:
 
 	genType_t	m_type;
 
-	uint32_t	m_numRows;
-	uint32_t	m_numCols;
+	u32	m_numRows;
+	u32	m_numCols;
 
 private:
 	void		GenerateTestAssignment();
@@ -50,6 +50,6 @@ private:
 					const float valuesRhs[GEN_COMPONENT_COUNT_MAX][GEN_COMPONENT_COUNT_MAX] ) const;
 
 	// DM: does this want to live with the other generic matrix gen functions?
-	std::string	GetParmListArithmeticAnswer( const genOpArithmetic_t op, const uint32_t numRows, const uint32_t numCols,
+	std::string	GetParmListArithmeticAnswer( const genOpArithmetic_t op, const u32 numRows, const u32 numCols,
 					const float valuesLhs[GEN_COMPONENT_COUNT_MAX][GEN_COMPONENT_COUNT_MAX], const float valuesRhs[GEN_COMPONENT_COUNT_MAX][GEN_COMPONENT_COUNT_MAX] ) const;
 };

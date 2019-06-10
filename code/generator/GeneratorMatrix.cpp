@@ -4,7 +4,7 @@
 
 #include "FileIO.h"
 
-bool GeneratorMatrix::Generate( const genType_t type, const uint32_t numRows, const uint32_t numCols ) {
+bool GeneratorMatrix::Generate( const genType_t type, const u32 numRows, const u32 numCols ) {
 	assert( numRows >= GEN_COMPONENT_COUNT_MIN );
 	assert( numRows <= GEN_COMPONENT_COUNT_MAX );
 	assert( numCols >= GEN_COMPONENT_COUNT_MIN );
@@ -114,9 +114,9 @@ void GeneratorMatrix::GenerateConstructors() {
 
 		m_codeInl += m_fullTypeName + "::" + m_fullTypeName + "()\n";
 		m_codeInl += "{\n";
-		for ( uint32_t row = 0; row < m_numRows; row++ ) {
+		for ( u32 row = 0; row < m_numRows; row++ ) {
 			m_codeInl += "\trows[" + std::to_string( row ) + "] = { ";
-			for ( uint32_t col = 0; col < m_numCols; col++ ) {
+			for ( u32 col = 0; col < m_numCols; col++ ) {
 				m_codeInl += ( row == col ) ? "1" : "0";
 
 				if ( col != m_numCols - 1 ) {
@@ -136,9 +136,9 @@ void GeneratorMatrix::GenerateConstructors() {
 
 		m_codeInl += m_fullTypeName + "::" + m_fullTypeName + "( const " + m_memberTypeString + " diagonal )\n";
 		m_codeInl += "{\n";
-		for ( uint32_t i = 0; i < m_numRows; i++ ) {
+		for ( u32 i = 0; i < m_numRows; i++ ) {
 			m_codeInl += "\trows[" + std::to_string( i ) + "] = { ";
-			for ( uint32_t j = 0; j < m_numCols; j++ ) {
+			for ( u32 j = 0; j < m_numCols; j++ ) {
 				m_codeInl += ( i == j ) ? "diagonal" : "0";
 
 				if ( j != m_numCols - 1 ) {
@@ -158,9 +158,9 @@ void GeneratorMatrix::GenerateConstructors() {
 
 		m_codeInl += m_fullTypeName + "::" + m_fullTypeName + "( const " + m_vectorMemberTypeString + "& diagonal )\n";
 		m_codeInl += "{\n";
-		for ( uint32_t i = 0; i < m_numRows; i++ ) {
+		for ( u32 i = 0; i < m_numRows; i++ ) {
 			m_codeInl += "\trows[" + std::to_string( i ) + "] = { ";
-			for ( uint32_t j = 0; j < m_numCols; j++ ) {
+			for ( u32 j = 0; j < m_numCols; j++ ) {
 				m_codeInl += ( i == j ) ? std::string( "diagonal." ) + GEN_COMPONENT_NAMES_VECTOR[j] : "0";
 
 				if ( j != m_numCols - 1 ) {
@@ -176,7 +176,7 @@ void GeneratorMatrix::GenerateConstructors() {
 	{
 		m_codeHeader += GetDocCtorRow();
 		m_codeHeader += "\tinline " + m_fullTypeName + "( ";
-		for ( uint32_t i = 0; i < m_numRows; i++ ) {
+		for ( u32 i = 0; i < m_numRows; i++ ) {
 			m_codeHeader += "const " + m_vectorMemberTypeString + "& row" + std::to_string( i );
 
 			if ( i != m_numRows - 1 ) {
@@ -187,7 +187,7 @@ void GeneratorMatrix::GenerateConstructors() {
 		m_codeHeader += "\n";
 
 		m_codeInl += m_fullTypeName + "::" + m_fullTypeName + "( ";
-		for ( uint32_t i = 0; i < m_numRows; i++ ) {
+		for ( u32 i = 0; i < m_numRows; i++ ) {
 			m_codeInl += "const " + m_vectorMemberTypeString + "& row" + std::to_string( i );
 
 			if ( i != m_numRows - 1 ) {
@@ -196,7 +196,7 @@ void GeneratorMatrix::GenerateConstructors() {
 		}
 		m_codeInl += " )\n";
 		m_codeInl += "{\n";
-		for ( uint32_t i = 0; i < m_numRows; i++ ) {
+		for ( u32 i = 0; i < m_numRows; i++ ) {
 			const std::string indexstr = std::to_string( i );
 			m_codeInl += "\trows[" + indexstr + "] = row" + indexstr + ";\n";
 		}
@@ -211,7 +211,7 @@ void GeneratorMatrix::GenerateConstructors() {
 
 		m_codeInl += m_fullTypeName + "::" + m_fullTypeName + "( const " + m_vectorMemberTypeString + " rows[" + m_numRowsStr + "] )\n";
 		m_codeInl += "{\n";
-		for ( uint32_t i = 0; i < m_numRows; i++ ) {
+		for ( u32 i = 0; i < m_numRows; i++ ) {
 			std::string indexstr = std::to_string( i );
 			m_codeInl += "\tthis->rows[" + indexstr + "] = rows[" + indexstr + "];\n";
 		}
@@ -222,8 +222,8 @@ void GeneratorMatrix::GenerateConstructors() {
 	{
 		m_codeHeader += GetDocCtorRowsAndCols();
 		m_codeHeader += "\tinline " + m_fullTypeName + "( ";
-		for ( uint32_t row = 0; row < m_numRows; row++ ) {
-			for ( uint32_t col = 0; col < m_numCols; col++ ) {
+		for ( u32 row = 0; row < m_numRows; row++ ) {
+			for ( u32 col = 0; col < m_numCols; col++ ) {
 				std::string rowStr = std::to_string( row );
 				std::string colStr = std::to_string( col );
 
@@ -242,8 +242,8 @@ void GeneratorMatrix::GenerateConstructors() {
 		m_codeHeader += "\n";
 
 		m_codeInl += m_fullTypeName + "::" + m_fullTypeName + "( ";
-		for ( uint32_t row = 0; row < m_numRows; row++ ) {
-			for ( uint32_t col = 0; col < m_numCols; col++ ) {
+		for ( u32 row = 0; row < m_numRows; row++ ) {
+			for ( u32 col = 0; col < m_numCols; col++ ) {
 				std::string rowStr = std::to_string( row );
 				std::string colStr = std::to_string( col );
 
@@ -260,12 +260,12 @@ void GeneratorMatrix::GenerateConstructors() {
 		}
 		m_codeInl += " )\n";
 		m_codeInl += "{\n";
-		for ( uint32_t row = 0; row < m_numRows; row++ ) {
+		for ( u32 row = 0; row < m_numRows; row++ ) {
 			std::string rowstr = std::to_string( row );
 
 			m_codeInl += "\trows[" + rowstr + "] = { ";
 
-			for ( uint32_t col = 0; col < m_numCols; col++ ) {
+			for ( u32 col = 0; col < m_numCols; col++ ) {
 				std::string colstr = std::to_string( col );
 
 				m_codeInl += "m" + rowstr + colstr;
@@ -344,7 +344,7 @@ void GeneratorMatrix::GenerateOperatorsEquality() {
 		m_codeInl += "bool operator==( const " + m_fullTypeName + "& lhs, const " + m_fullTypeName + "& rhs )\n";
 		m_codeInl += "{\n";
 		m_codeInl += "\treturn ";
-		for ( uint32_t i = 0; i < m_numRows; i++ ) {
+		for ( u32 i = 0; i < m_numRows; i++ ) {
 			m_codeInl += "lhs[" + std::to_string( i ) + "] == rhs[" + std::to_string( i ) + "]";
 
 			if ( i != m_numRows - 1 ) {

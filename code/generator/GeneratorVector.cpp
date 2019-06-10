@@ -9,7 +9,7 @@
 #include <memory.h>
 #include <math.h>
 
-bool GeneratorVector::Generate( const genType_t type, const uint32_t numComponents ) {
+bool GeneratorVector::Generate( const genType_t type, const u32 numComponents ) {
 	assert( numComponents >= GEN_COMPONENT_COUNT_MIN );
 	assert( numComponents <= GEN_COMPONENT_COUNT_MAX );
 
@@ -42,7 +42,7 @@ bool GeneratorVector::Generate( const genType_t type, const uint32_t numComponen
 		m_codeHeader += "\n";
 
 		// forward declarations
-		for ( uint32_t i = GEN_COMPONENT_COUNT_MIN; i <= GEN_COMPONENT_COUNT_MAX; i++ ) {
+		for ( u32 i = GEN_COMPONENT_COUNT_MIN; i <= GEN_COMPONENT_COUNT_MAX; i++ ) {
 			// dont forward declare ourself
 			if ( i != m_numComponents ) {
 				m_codeHeader += "struct " + m_typeString + std::to_string( i ) + ";\n";
@@ -90,7 +90,7 @@ bool GeneratorVector::Generate( const genType_t type, const uint32_t numComponen
 
 		m_codeInl += "// hlml includes\n";
 
-		for ( uint32_t i = GEN_COMPONENT_COUNT_MIN; i <= GEN_COMPONENT_COUNT_MAX; i++ ) {
+		for ( u32 i = GEN_COMPONENT_COUNT_MIN; i <= GEN_COMPONENT_COUNT_MAX; i++ ) {
 			// don't include ourself
 			if ( m_numComponents != i ) {
 				m_codeInl += "#include \"" + m_typeString + std::to_string( i ) + ".h\"\n";
@@ -155,7 +155,7 @@ void GeneratorVector::HeaderGenerateMembersStruct( const std::string& componentN
 	m_codeHeader += "\t\tstruct\n";
 	m_codeHeader += "\t\t{\n";
 
-	for ( uint32_t i = 0; i < m_numComponents; i++ ) {
+	for ( u32 i = 0; i < m_numComponents; i++ ) {
 		m_codeHeader += "\t\t\t" + m_memberTypeString + " " + componentNames[i] + ";\n";
 	}
 	m_codeHeader += "\t\t};\n";
@@ -186,7 +186,7 @@ void GeneratorVector::GenerateConstructors() {
 		m_codeInl += m_fullTypeName + "::" + m_fullTypeName + "( const " + m_memberTypeString + " x )\n";
 		m_codeInl += "{\n";
 		m_codeInl += "\t";
-		for ( uint32_t i = 0; i < m_numComponents; i++ ) {
+		for ( u32 i = 0; i < m_numComponents; i++ ) {
 			m_codeInl += std::string( "this->" ) + GEN_COMPONENT_NAMES_VECTOR[i] + std::string( " = " );
 		}
 		m_codeInl += "x;\n";
@@ -198,7 +198,7 @@ void GeneratorVector::GenerateConstructors() {
 	{
 		m_codeHeader += GetDocCtorMemberwise();
 		m_codeHeader += "\tinline " + m_fullTypeName + "( ";
-		for ( uint32_t i = 0; i < m_numComponents; i++ ) {
+		for ( u32 i = 0; i < m_numComponents; i++ ) {
 			m_codeHeader += std::string( "const " ) + m_memberTypeString + std::string( " " ) + GEN_COMPONENT_NAMES_VECTOR[i];
 
 			if ( i != m_numComponents - 1 ) {
@@ -209,7 +209,7 @@ void GeneratorVector::GenerateConstructors() {
 		m_codeHeader += "\n";
 
 		m_codeInl += m_fullTypeName + "::" + m_fullTypeName + "( ";
-		for ( uint32_t i = 0; i < m_numComponents; i++ ) {
+		for ( u32 i = 0; i < m_numComponents; i++ ) {
 			m_codeInl += std::string( "const " ) + m_memberTypeString + std::string( " " ) + GEN_COMPONENT_NAMES_VECTOR[i];
 
 			if ( i != m_numComponents - 1 ) {
@@ -218,7 +218,7 @@ void GeneratorVector::GenerateConstructors() {
 		}
 		m_codeInl += " )\n";
 		m_codeInl += "{\n";
-		for ( uint32_t i = 0; i < m_numComponents; i++ ) {
+		for ( u32 i = 0; i < m_numComponents; i++ ) {
 			m_codeInl += "\t";
 			m_codeInl += std::string( "this->" ) + GEN_COMPONENT_NAMES_VECTOR[i] + std::string( " = " ) + GEN_COMPONENT_NAMES_VECTOR[i];
 			m_codeInl += ";\n";
@@ -229,7 +229,7 @@ void GeneratorVector::GenerateConstructors() {
 
 	// copy ctors for all valid vector types
 	{
-		for ( uint32_t i = GEN_COMPONENT_COUNT_MIN; i <= GEN_COMPONENT_COUNT_MAX; i++ ) {
+		for ( u32 i = GEN_COMPONENT_COUNT_MIN; i <= GEN_COMPONENT_COUNT_MAX; i++ ) {
 			m_codeHeader += GetDocCtorCopy();
 			m_codeHeader += "\tinline " + m_fullTypeName + "( const " + m_typeString + std::to_string( i ) + "& other );\n";
 			m_codeHeader += "\n";
@@ -248,7 +248,7 @@ void GeneratorVector::GenerateConstructors() {
 }
 
 void GeneratorVector::GenerateOperatorsAssignment() {
-	for ( uint32_t i = GEN_COMPONENT_COUNT_MIN; i <= GEN_COMPONENT_COUNT_MAX; i++ ) {
+	for ( u32 i = GEN_COMPONENT_COUNT_MIN; i <= GEN_COMPONENT_COUNT_MAX; i++ ) {
 		std::string componentStr = std::to_string( i );
 
 		m_codeHeader += GetDocOperatorAssignment();
@@ -298,7 +298,7 @@ void GeneratorVector::GenerateOperatorsEquality() {
 		m_codeInl += "bool operator==( const " + m_fullTypeName + "& lhs, const " + m_fullTypeName + "& rhs )\n";
 		m_codeInl += "{\n";
 		m_codeInl += "\treturn ";
-		for ( uint32_t i = 0; i < m_numComponents; i++ ) {
+		for ( u32 i = 0; i < m_numComponents; i++ ) {
 			char component = GEN_COMPONENT_NAMES_VECTOR[i];
 
 			if ( Gen_IsFloatingPointType( m_type ) ) {
@@ -328,26 +328,26 @@ void GeneratorVector::GenerateSwizzleFuncs() {
 	memset( funcName, 0, sizeof( funcName ) );
 
 	// for every vector type compatible with this one (that is: for each vector type with less components than this one)
-	for ( uint32_t vecComponents = GEN_COMPONENT_COUNT_MIN; vecComponents <= m_numComponents; vecComponents++ ) {
+	for ( u32 vecComponents = GEN_COMPONENT_COUNT_MIN; vecComponents <= m_numComponents; vecComponents++ ) {
 		std::string vecTypeName = m_typeString + std::to_string( vecComponents );
 
 		// generate every possible function combination ("xxxx" -> "xwzx" (etc.) -> "wwww")
-		uint32_t numFuncs = static_cast<uint32_t>( pow( vecComponents, vecComponents ) );
-		for ( uint32_t funcIndex = 0; funcIndex < numFuncs; funcIndex++ ) {
+		u32 numFuncs = static_cast<u32>( pow( vecComponents, vecComponents ) );
+		for ( u32 funcIndex = 0; funcIndex < numFuncs; funcIndex++ ) {
 			// convert 1d index into 4d
 			// follows the general formula: xn = ( ( Index - Index( x1, ..., x{n-1} ) ) / Product( D1, ..., D{N-1} ) ) % Dn
 			// taken from: https://stackoverflow.com/questions/29142417/4d-position-from-1d-index
-			const uint32_t x = funcIndex % vecComponents;
-			const uint32_t y = ( ( funcIndex - x ) / vecComponents ) % vecComponents;
-			const uint32_t z = ( ( funcIndex - y * vecComponents - x ) / ( vecComponents * vecComponents ) ) % vecComponents;
-			const uint32_t w = ( ( funcIndex - z * vecComponents * vecComponents - x ) / ( vecComponents * vecComponents * vecComponents ) ) % vecComponents;
+			const u32 x = funcIndex % vecComponents;
+			const u32 y = ( ( funcIndex - x ) / vecComponents ) % vecComponents;
+			const u32 z = ( ( funcIndex - y * vecComponents - x ) / ( vecComponents * vecComponents ) ) % vecComponents;
+			const u32 w = ( ( funcIndex - z * vecComponents * vecComponents - x ) / ( vecComponents * vecComponents * vecComponents ) ) % vecComponents;
 
 			sprintf( funcName, "%c%c%c%c", GEN_COMPONENT_NAMES_VECTOR[x], GEN_COMPONENT_NAMES_VECTOR[y], GEN_COMPONENT_NAMES_VECTOR[z], GEN_COMPONENT_NAMES_VECTOR[w] );
 			funcName[vecComponents] = 0;
 
 			m_codeHeader += "\tinline " + vecTypeName + " " + funcName + "() const { ";
 			m_codeHeader += "return " + vecTypeName + "( ";
-			for ( uint32_t componentIndex = 0; componentIndex < vecComponents; componentIndex++ ) {
+			for ( u32 componentIndex = 0; componentIndex < vecComponents; componentIndex++ ) {
 				m_codeHeader += funcName[componentIndex];
 
 				if ( componentIndex != vecComponents - 1 ) {
@@ -364,13 +364,13 @@ void GeneratorVector::GenerateSwizzleFuncs() {
 
 std::string GeneratorVector::GetDocStruct() const {
 	std::string componentsStr;
-	for ( uint32_t i = 0; i < m_numComponents; i++ ) {
+	for ( u32 i = 0; i < m_numComponents; i++ ) {
 		componentsStr += GEN_COMPONENT_NAMES_VECTOR[i];
 	}
 
 	if ( m_type != GEN_TYPE_BOOL ) {
 		componentsStr += " and/or ";
-		for ( uint32_t i = 0; i < m_numComponents; i++ ) {
+		for ( u32 i = 0; i < m_numComponents; i++ ) {
 			componentsStr += GEN_COMPONENT_NAMES_COLOR[i];
 		}
 	}
@@ -389,7 +389,7 @@ std::string GeneratorVector::GetDocScalar() const {
 
 std::string GeneratorVector::GetDocCtorMemberwise() const {
 	std::string componentsStr;
-	for ( uint32_t i = 0; i < m_numComponents; i++ ) {
+	for ( u32 i = 0; i < m_numComponents; i++ ) {
 		componentsStr += GEN_COMPONENT_NAMES_VECTOR[i];
 	}
 

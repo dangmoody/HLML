@@ -7,7 +7,7 @@ public:
 					GeneratorMatrix() {}
 					~GeneratorMatrix() {}
 
-	bool			Generate( const genType_t type, const uint32_t numRows, const uint32_t numCols );
+	bool			Generate( const genType_t type, const u32 numRows, const u32 numCols );
 
 #ifdef _DEBUG
 	void			PrintHeader() const;
@@ -29,7 +29,7 @@ private:
 	std::string		m_numRowsStr, m_numColsStr;
 
 	genType_t		m_type;
-	uint32_t		m_numRows, m_numCols;
+	u32		m_numRows, m_numCols;
 
 private:
 	void			GenerateConstructors();

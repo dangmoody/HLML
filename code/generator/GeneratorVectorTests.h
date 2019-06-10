@@ -9,7 +9,7 @@ public:
 				GeneratorVectorTests() {}
 				~GeneratorVectorTests() {}
 
-	bool		Generate( const genType_t type, const uint32_t numComponents );
+	bool		Generate( const genType_t type, const u32 numComponents );
 
 private:
 	std::string	m_codeTests;
@@ -23,7 +23,7 @@ private:
 
 	genType_t	m_type;
 
-	uint32_t	m_numComponents;
+	u32	m_numComponents;
 
 private:
 	void		GenerateTestAssignment();

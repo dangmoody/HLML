@@ -29,7 +29,7 @@ inline std::string	Gen_GetDocOperatorCompoundComponentWiseArithmeticRhsType( con
 inline std::string	Gen_GetDocOperatorIncrementPrefix( const std::string& fullTypeName, const genOpIncrement_t op );
 inline std::string	Gen_GetDocOperatorIncrementPostfix( const std::string& fullTypeName, const genOpIncrement_t op );
 
-inline std::string	Gen_GetDocOperatorRelational( const std::string& fullTypeName, const uint32_t numRows, const uint32_t numCols, const genOpRelational_t op );
+inline std::string	Gen_GetDocOperatorRelational( const std::string& fullTypeName, const u32 numRows, const u32 numCols, const genOpRelational_t op );
 
 inline std::string	Gen_GetDocOperatorBitwiseScalar( const std::string& fullTypeName, const genOpBitwise_t op );
 inline std::string	Gen_GetDocOperatorBitwiseRhsType( const std::string& fullTypeName, const genOpBitwise_t op );
@@ -220,7 +220,7 @@ std::string Gen_GetDocOperatorIncrementPostfix( const std::string& fullTypeName,
 		"/// \\brief Postfix " + noun + " operator.  " + verb + " each component of the given " + fullTypeName + " after evaluation.\n";
 }
 
-std::string Gen_GetDocOperatorRelational( const std::string& fullTypeName, const uint32_t numRows, const uint32_t numCols, const genOpRelational_t op ) {
+std::string Gen_GetDocOperatorRelational( const std::string& fullTypeName, const u32 numRows, const u32 numCols, const genOpRelational_t op ) {
 	assert( numRows >= 1 );	// pass through 1 for vectors
 	assert( numRows <= GEN_COMPONENT_COUNT_MAX );
 	assert( numCols >= GEN_COMPONENT_COUNT_MIN );
