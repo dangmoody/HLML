@@ -33,6 +33,7 @@ along with hlml.  If not, see <http://www.gnu.org/licenses/>.
 #include "gen_funcs_matrix.h"
 
 #include "FileIO.h"
+#include "time.h"
 
 #include <stdio.h>
 #include <assert.h>
@@ -649,6 +650,10 @@ int main( int argc, char** argv ) {
 	printf( "Generating...\n" );
 	printf( "\n" );
 
+	Time_Init();
+
+	float64 start = Time_NowMS();
+
 	FAIL_IF( !FS_CreateFolder( GEN_OUT_GEN_FOLDER_PATH ), "Failed to create folder \"" GEN_OUT_GEN_FOLDER_PATH "\".\n" );
 	FAIL_IF( !FS_CreateFolder( GEN_TESTS_FOLDER_PATH ),   "Failed to create folder \"" GEN_TESTS_FOLDER_PATH "\".\n" );
 
@@ -679,7 +684,9 @@ int main( int argc, char** argv ) {
 	FAIL_IF( !GenerateTestsMain(),   "Failed generating \"" GEN_TESTS_FOLDER_PATH "/main.cpp\".\n" );
 	printf( "======= Done. =======\n\n" );
 
-	printf( "Finished.\n" );
+	float64 end = Time_NowMS();
+
+	printf( "Finished.  Time taken: %f ms\n", end - start );
 
 	return 0;
 }
