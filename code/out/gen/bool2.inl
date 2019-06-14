@@ -37,15 +37,15 @@ along with hlml.  If not, see <http://www.gnu.org/licenses/>.
 
 bool2::bool2()
 {
-	memset( data, 0, 2 * sizeof( bool ) );
+	memset( data, 0, 2 * sizeof( bool32_t ) );
 }
 
-bool2::bool2( const bool x )
+bool2::bool2( const bool32_t x )
 {
 	this->x = this->y = x;
 }
 
-bool2::bool2( const bool x, const bool y )
+bool2::bool2( const bool32_t x, const bool32_t y )
 {
 	this->x = x;
 	this->y = y;
@@ -84,13 +84,13 @@ bool2 bool2::operator=( const bool4& rhs )
 	return *this;
 }
 
-const bool& bool2::operator[]( const uint32_t index ) const
+const bool32_t& bool2::operator[]( const uint32_t index ) const
 {
 	assert( index < 2 );
 	return data[index];
 }
 
-bool& bool2::operator[]( const uint32_t index )
+bool32_t& bool2::operator[]( const uint32_t index )
 {
 	assert( index < 2 );
 	return data[index];

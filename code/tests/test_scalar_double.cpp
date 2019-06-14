@@ -24,7 +24,6 @@ along with hlml.  If not, see <http://www.gnu.org/licenses/>.
 
 // GENERATED FILE.  DO NOT EDIT.
 
-#define HLML_UNDEF_SYSTEM_MIN_MAX
 #include "../../code/out/gen/hlml_functions_scalar.h"
 
 #include <temper/temper.h>

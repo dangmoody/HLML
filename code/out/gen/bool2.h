@@ -27,6 +27,7 @@ along with hlml.  If not, see <http://www.gnu.org/licenses/>.
 #pragma once
 
 #include <stdint.h>
+#include "../hlml_types.h"
 
 struct bool3;
 struct bool4;
@@ -40,7 +41,7 @@ struct bool4;
 #pragma warning( disable : 4201 ) // C4201 - nonstandard extension used : nameless struct/union
 #endif
 
-/// \brief A vector of 2 bools with components xy.
+/// \brief A vector of 2 bool32_ts with components xy.
 /// Components are also stored as elements in an array via a union.
 struct bool2
 {
@@ -48,21 +49,21 @@ struct bool2
 	{
 		struct
 		{
-			bool x;
-			bool y;
+			bool32_t x;
+			bool32_t y;
 		};
 
-		bool data[2] = { 0 };
+		bool32_t data[2] = { 0 };
 	};
 
 	/// Default constructor.  Initializes all values to zero.
 	inline bool2();
 
 	/// Initializes all components of the vector to the given scalar value.
-	inline explicit bool2( const bool x );
+	inline explicit bool2( const bool32_t x );
 
 	/// Sets the xy members of the vector to the corresponding parameters.
-	inline bool2( const bool x, const bool y );
+	inline bool2( const bool32_t x, const bool32_t y );
 
 	/// Copy constructor.  Copies the elements of the given vector via memcpy.
 	inline bool2( const bool2& other );
@@ -86,11 +87,11 @@ struct bool2
 
 	/// \brief Returns the vector component at the given index.
 	/// Index CANNOT be lower than 0 or higher than 1.
-	inline const bool& operator[]( const uint32_t index ) const;
+	inline const bool32_t& operator[]( const uint32_t index ) const;
 
 	/// \brief Returns the vector component at the given index.
 	/// Index CANNOT be lower than 0 or higher than 1.
-	inline bool& operator[]( const uint32_t index );
+	inline bool32_t& operator[]( const uint32_t index );
 
 	// swizzle funcs
 	inline bool2 xx() const { return bool2( x, x ); }

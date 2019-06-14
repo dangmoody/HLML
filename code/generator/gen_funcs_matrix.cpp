@@ -90,9 +90,9 @@ static std::string GetDocLookAt( const std::string& fullTypeName, const genHand_
 		"/// \\brief Returns a " + handStr + "-handed orthonormal matrix that is oriented at position eye to look at position target.\n";
 }
 
-static void MatrixOperatorMul( const genType_t type, const uint32_t numRows, const uint32_t numCols, std::string& outHeader, std::string& outInl ) {
-	uint32_t numRhsRows = numCols;
-	uint32_t numRhsCols = numRows;
+static void MatrixOperatorMul( const genType_t type, const u32 numRows, const u32 numCols, std::string& outHeader, std::string& outInl ) {
+	u32 numRhsRows = numCols;
+	u32 numRhsCols = numRows;
 
 	std::string numRowsStr = std::to_string( numRows );
 	std::string numColsStr = std::to_string( numCols );
@@ -121,7 +121,7 @@ static void MatrixOperatorMul( const genType_t type, const uint32_t numRows, con
 		outInl += returnTypeName + " operator*( const " + fullTypeName + "& lhs, const " + rhsTypeName + "& rhs )\n";
 		outInl += "{\n";
 		// generate row vars
-		for ( uint32_t row = 0; row < numRows; row++ ) {
+		for ( u32 row = 0; row < numRows; row++ ) {
 			std::string rowStr = std::to_string( row );
 			outInl += "\t" + typeString + numColsStr + " row" + rowStr + " = lhs[" + rowStr + "];\n";
 		}
@@ -129,9 +129,9 @@ static void MatrixOperatorMul( const genType_t type, const uint32_t numRows, con
 		outInl += "\n";
 
 		// generate col vars
-		for ( uint32_t col = 0; col < numRhsCols; col++ ) {
+		for ( u32 col = 0; col < numRhsCols; col++ ) {
 			outInl += "\t" + typeString + numColsStr + " col" + std::to_string( col ) + " = { ";
-			for ( uint32_t rhsRow = 0; rhsRow < numRhsRows; rhsRow++ ) {
+			for ( u32 rhsRow = 0; rhsRow < numRhsRows; rhsRow++ ) {
 				outInl += "rhs[" + std::to_string( rhsRow ) + "]." + GEN_COMPONENT_NAMES_VECTOR[col];
 
 				if ( rhsRow != numCols - 1 ) {
@@ -146,15 +146,15 @@ static void MatrixOperatorMul( const genType_t type, const uint32_t numRows, con
 		// now do the row/col dot products
 		outInl += "\treturn " + returnTypeName + "(\n";
 
-		for ( uint32_t row = 0; row < numRows; row++ ) {
+		for ( u32 row = 0; row < numRows; row++ ) {
 			std::string rowStr = std::to_string( row );
 
-			for ( uint32_t col = 0; col < numRows; col++ ) {
+			for ( u32 col = 0; col < numRows; col++ ) {
 				std::string colStr = std::to_string( col );
 
 				outInl += "\t\t";
 
-				for ( uint32_t rhsRow = 0; rhsRow < numRhsRows; rhsRow++ ) {
+				for ( u32 rhsRow = 0; rhsRow < numRhsRows; rhsRow++ ) {
 					outInl += "row" + rowStr + "." + GEN_COMPONENT_NAMES_VECTOR[rhsRow] + " * " + "col" + colStr + "." + GEN_COMPONENT_NAMES_VECTOR[rhsRow];
 
 					if ( rhsRow != numRhsRows - 1 ) {
@@ -188,7 +188,7 @@ static void MatrixOperatorMul( const genType_t type, const uint32_t numRows, con
 	}
 }
 
-static void MatrixOperatorDiv( const genType_t type, const uint32_t numRows, const uint32_t numCols, std::string& outHeader, std::string& outInl ) {
+static void MatrixOperatorDiv( const genType_t type, const u32 numRows, const u32 numCols, std::string& outHeader, std::string& outInl ) {
 	std::string fullTypeName = Gen_GetFullTypeName( type, numRows, numCols );
 
 	// main operator
@@ -214,7 +214,7 @@ static void MatrixOperatorDiv( const genType_t type, const uint32_t numRows, con
 	outInl += "\n";
 }
 
-static void MatrixMulVector( const genType_t type, const uint32_t numRows, const uint32_t numCols, std::string& outHeader, std::string& outInl ) {
+static void MatrixMulVector( const genType_t type, const u32 numRows, const u32 numCols, std::string& outHeader, std::string& outInl ) {
 	assert( numRows >= GEN_COMPONENT_COUNT_MIN );
 	assert( numRows <= GEN_COMPONENT_COUNT_MAX );
 	assert( numCols >= GEN_COMPONENT_COUNT_MIN );
@@ -233,7 +233,7 @@ static void MatrixMulVector( const genType_t type, const uint32_t numRows, const
 		outInl += vectorTypeName + " operator*( const " + fullTypeName + "& lhs, const " + vectorTypeName + "& rhs )\n";
 		outInl += "{\n";
 		outInl += "\treturn " + vectorTypeName + "(\n";
-		for ( uint32_t row = 0; row < numRows; row++ ) {
+		for ( u32 row = 0; row < numRows; row++ ) {
 			outInl += "\t\t(" + memberTypeString + ") dot( lhs[" + std::to_string( row ) + "], rhs )";
 
 			if ( row != numRows - 1 ) {
@@ -262,17 +262,17 @@ static void MatrixMulVector( const genType_t type, const uint32_t numRows, const
 }
 
 
-std::string Gen_GetParmListMatrix( const genType_t type, const uint32_t numRows, const uint32_t numCols, const float values[GEN_COMPONENT_COUNT_MAX][GEN_COMPONENT_COUNT_MAX] ) {
+std::string Gen_GetParmListMatrix( const genType_t type, const u32 numRows, const u32 numCols, const float values[GEN_COMPONENT_COUNT_MAX][GEN_COMPONENT_COUNT_MAX] ) {
 	assert( numRows >= GEN_COMPONENT_COUNT_MIN );
 	assert( numRows <= GEN_COMPONENT_COUNT_MAX );
 	assert( numCols >= GEN_COMPONENT_COUNT_MIN );
 	assert( numCols <= GEN_COMPONENT_COUNT_MAX );
 
 	std::string parmList = "(\n";
-	for ( uint32_t row = 0; row < numRows; row++ ) {
+	for ( u32 row = 0; row < numRows; row++ ) {
 		parmList += "\t\t";
 
-		for ( uint32_t col = 0; col < numCols; col++ ) {
+		for ( u32 col = 0; col < numCols; col++ ) {
 			parmList += Gen_GetNumericLiteral( type, values[row][col] );
 
 			if ( row + col != ( numRows - 1 ) + ( numCols - 1 ) ) {
@@ -291,7 +291,7 @@ std::string Gen_GetParmListMatrix( const genType_t type, const uint32_t numRows,
 	return parmList;
 }
 
-std::string Gen_GetParmListMatrixIdentity( const genType_t type, const uint32_t numRows, const uint32_t numCols ) {
+std::string Gen_GetParmListMatrixIdentity( const genType_t type, const u32 numRows, const u32 numCols ) {
 	assert( numRows >= GEN_COMPONENT_COUNT_MIN );
 	assert( numRows <= GEN_COMPONENT_COUNT_MAX );
 	assert( numCols >= GEN_COMPONENT_COUNT_MIN );
@@ -302,7 +302,7 @@ std::string Gen_GetParmListMatrixIdentity( const genType_t type, const uint32_t 
 	return Gen_GetParmListMatrixDiagonal( type, numRows, numCols, values, GEN_MIN( numRows, numCols ) );
 }
 
-std::string Gen_GetParmListMatrixDiagonal( const genType_t type, const uint32_t numRows, const uint32_t numCols, const float* values, const uint32_t numValues ) {
+std::string Gen_GetParmListMatrixDiagonal( const genType_t type, const u32 numRows, const u32 numCols, const float* values, const u32 numValues ) {
 	assert( numRows >= GEN_COMPONENT_COUNT_MIN );
 	assert( numRows <= GEN_COMPONENT_COUNT_MAX );
 	assert( numCols >= GEN_COMPONENT_COUNT_MIN );
@@ -312,13 +312,13 @@ std::string Gen_GetParmListMatrixDiagonal( const genType_t type, const uint32_t 
 
 	std::string zeroStr = Gen_GetNumericLiteral( type, 0.0f );
 
-	uint32_t valueIndex = 0;
+	u32 valueIndex = 0;
 
 	std::string paramList = "(\n";
-	for ( uint32_t row = 0; row < numRows; row++ ) {
+	for ( u32 row = 0; row < numRows; row++ ) {
 		paramList += "\t\t";
 
-		for ( uint32_t col = 0; col < numCols; col++ ) {
+		for ( u32 col = 0; col < numCols; col++ ) {
 			if ( row == col ) {
 				paramList += Gen_GetNumericLiteral( type, values[valueIndex++] );
 			} else {
@@ -341,7 +341,7 @@ std::string Gen_GetParmListMatrixDiagonal( const genType_t type, const uint32_t 
 	return paramList;
 }
 
-std::string Gen_GetParmListMatrixSingleValue( const genType_t type, const uint32_t numRows, const uint32_t numCols, const float value ) {
+std::string Gen_GetParmListMatrixSingleValue( const genType_t type, const u32 numRows, const u32 numCols, const float value ) {
 	assert( numRows >= GEN_COMPONENT_COUNT_MIN );
 	assert( numRows <= GEN_COMPONENT_COUNT_MAX );
 	assert( numCols >= GEN_COMPONENT_COUNT_MIN );
@@ -350,10 +350,10 @@ std::string Gen_GetParmListMatrixSingleValue( const genType_t type, const uint32
 	std::string valueStr = Gen_GetNumericLiteral( type, value );
 
 	std::string paramList = "(\n";
-	for ( uint32_t row = 0; row < numRows; row++ ) {
+	for ( u32 row = 0; row < numRows; row++ ) {
 		paramList += "\t\t";
 
-		for ( uint32_t col = 0; col < numCols; col++ ) {
+		for ( u32 col = 0; col < numCols; col++ ) {
 			paramList += valueStr;
 
 			if ( row + col != ( numRows - 1 ) + ( numCols - 1 ) ) {
@@ -372,7 +372,7 @@ std::string Gen_GetParmListMatrixSingleValue( const genType_t type, const uint32
 	return paramList;
 }
 
-void Gen_MatrixOperatorsArithmetic( const genType_t type, const uint32_t numRows, const uint32_t numCols, std::string& outHeader, std::string& outInl ) {
+void Gen_MatrixOperatorsArithmetic( const genType_t type, const u32 numRows, const u32 numCols, std::string& outHeader, std::string& outInl ) {
 	assert( numRows >= GEN_COMPONENT_COUNT_MIN );
 	assert( numRows <= GEN_COMPONENT_COUNT_MAX );
 	assert( numCols >= GEN_COMPONENT_COUNT_MIN );
@@ -404,7 +404,7 @@ void Gen_MatrixOperatorsArithmetic( const genType_t type, const uint32_t numRows
 	}
 }
 
-void Gen_MatrixIdentity( const genType_t type, const uint32_t numRows, const uint32_t numCols, std::string& outHeader, std::string& outInl ) {
+void Gen_MatrixIdentity( const genType_t type, const u32 numRows, const u32 numCols, std::string& outHeader, std::string& outInl ) {
 	assert( numRows >= GEN_COMPONENT_COUNT_MIN );
 	assert( numRows <= GEN_COMPONENT_COUNT_MAX );
 	assert( numCols >= GEN_COMPONENT_COUNT_MIN );
@@ -421,9 +421,9 @@ void Gen_MatrixIdentity( const genType_t type, const uint32_t numRows, const uin
 
 	outInl += "void identity( " + fullTypeName + "& mat )\n";
 	outInl += "{\n";
-	for ( uint32_t row = 0; row < numRows; row++ ) {
+	for ( u32 row = 0; row < numRows; row++ ) {
 		outInl += "\tmat[" + std::to_string( row ) + "] = { ";
-		for ( uint32_t col = 0; col < numCols; col++ ) {
+		for ( u32 col = 0; col < numCols; col++ ) {
 			outInl += ( row == col ) ? oneStr : zeroStr;
 
 			if ( col != numCols - 1 ) {
@@ -436,7 +436,7 @@ void Gen_MatrixIdentity( const genType_t type, const uint32_t numRows, const uin
 	outInl += "\n";
 }
 
-void Gen_MatrixTranspose( const genType_t type, const uint32_t numRows, const uint32_t numCols, std::string& outHeader, std::string& outInl ) {
+void Gen_MatrixTranspose( const genType_t type, const u32 numRows, const u32 numCols, std::string& outHeader, std::string& outInl ) {
 	assert( numRows >= GEN_COMPONENT_COUNT_MIN );
 	assert( numRows <= GEN_COMPONENT_COUNT_MAX );
 	assert( numCols >= GEN_COMPONENT_COUNT_MIN );
@@ -454,12 +454,12 @@ void Gen_MatrixTranspose( const genType_t type, const uint32_t numRows, const ui
 	outInl += "{\n";
 	outInl += "\treturn " + transposeTypeName + "(\n";
 
-	for ( uint32_t col = 0; col < numCols; col++ ) {
+	for ( u32 col = 0; col < numCols; col++ ) {
 		std::string colStr = std::to_string( col );
 
 		outInl += "\t\t";
 
-		for ( uint32_t row = 0; row < numRows; row++ ) {
+		for ( u32 row = 0; row < numRows; row++ ) {
 			std::string rowStr = std::to_string( row );
 
 			outInl += "mat[" + rowStr + "][" + colStr + "]";
@@ -480,7 +480,7 @@ void Gen_MatrixTranspose( const genType_t type, const uint32_t numRows, const ui
 	outInl += "\n";
 }
 
-void Gen_MatrixInverse( const genType_t type, const uint32_t numRows, const uint32_t numCols, std::string& outHeader, std::string& outInl ) {
+void Gen_MatrixInverse( const genType_t type, const u32 numRows, const u32 numCols, std::string& outHeader, std::string& outInl ) {
 	assert( numRows >= GEN_COMPONENT_COUNT_MIN );
 	assert( numRows <= GEN_COMPONENT_COUNT_MAX );
 	assert( numCols >= GEN_COMPONENT_COUNT_MIN );
@@ -606,7 +606,7 @@ void Gen_MatrixInverse( const genType_t type, const uint32_t numRows, const uint
 	outInl += "\n";
 }
 
-void Gen_MatrixDeterminant( const genType_t type, const uint32_t numRows, const uint32_t numCols, std::string& outHeader, std::string& outInl ) {
+void Gen_MatrixDeterminant( const genType_t type, const u32 numRows, const u32 numCols, std::string& outHeader, std::string& outInl ) {
 	assert( numRows >= GEN_COMPONENT_COUNT_MIN );
 	assert( numRows <= GEN_COMPONENT_COUNT_MAX );
 	assert( numCols >= GEN_COMPONENT_COUNT_MIN );
@@ -671,7 +671,7 @@ void Gen_MatrixDeterminant( const genType_t type, const uint32_t numRows, const 
 	outInl += "\n";
 }
 
-void Gen_MatrixTranslate( const genType_t type, const uint32_t numRows, const uint32_t numCols, std::string& outHeader, std::string& outInl ) {
+void Gen_MatrixTranslate( const genType_t type, const u32 numRows, const u32 numCols, std::string& outHeader, std::string& outInl ) {
 	assert( numRows <= GEN_COMPONENT_COUNT_MAX );
 	assert( numCols <= GEN_COMPONENT_COUNT_MAX );
 
@@ -683,7 +683,7 @@ void Gen_MatrixTranslate( const genType_t type, const uint32_t numRows, const ui
 		return;
 	}
 
-	uint32_t vecComponents = numCols - 1;
+	u32 vecComponents = numCols - 1;
 
 	std::string typeString = Gen_GetTypeString( type );
 	std::string fullTypeName = typeString + std::to_string( numRows ) + "x" + std::to_string( numCols );
@@ -696,8 +696,8 @@ void Gen_MatrixTranslate( const genType_t type, const uint32_t numRows, const ui
 	outInl += "{\n";
 	outInl += "\treturn " + fullTypeName + "(\n";
 	outInl += "\t\t";
-	for ( uint32_t row = 0; row < numRows; row++ ) {
-		for ( uint32_t col = 0; col < numCols; col++ ) {
+	for ( u32 row = 0; row < numRows; row++ ) {
+		for ( u32 col = 0; col < numCols; col++ ) {
 			outInl += "mat[" + std::to_string( row ) + "][" + std::to_string( col ) + "]";
 
 			if ( col != numCols - 1 ) {
@@ -723,7 +723,7 @@ void Gen_MatrixTranslate( const genType_t type, const uint32_t numRows, const ui
 	outInl += "\n";
 }
 
-void Gen_MatrixRotate( const genType_t type, const uint32_t numRows, const uint32_t numCols, std::string& outHeader, std::string& outInl ) {
+void Gen_MatrixRotate( const genType_t type, const u32 numRows, const u32 numCols, std::string& outHeader, std::string& outInl ) {
 	assert( numRows >= GEN_COMPONENT_COUNT_MIN );
 	assert( numRows <= GEN_COMPONENT_COUNT_MAX );
 	assert( numCols >= GEN_COMPONENT_COUNT_MIN );
@@ -741,7 +741,7 @@ void Gen_MatrixRotate( const genType_t type, const uint32_t numRows, const uint3
 		return;
 	}
 
-	uint32_t numRotateVectorComponents = 3;
+	u32 numRotateVectorComponents = 3;
 
 	std::string typeString = Gen_GetTypeString( type );
 	std::string vectorTypeString = Gen_GetTypeString( type ) + std::to_string( numRotateVectorComponents );
@@ -802,7 +802,7 @@ void Gen_MatrixRotate( const genType_t type, const uint32_t numRows, const uint3
 	outInl += "\n";
 }
 
-void Gen_MatrixScale( const genType_t type, const uint32_t numRows, const uint32_t numCols, std::string& outHeader, std::string& outInl ) {
+void Gen_MatrixScale( const genType_t type, const u32 numRows, const u32 numCols, std::string& outHeader, std::string& outInl ) {
 	assert( numRows >= GEN_COMPONENT_COUNT_MIN );
 	assert( numRows <= GEN_COMPONENT_COUNT_MAX );
 	assert( numCols >= GEN_COMPONENT_COUNT_MIN );
@@ -820,7 +820,7 @@ void Gen_MatrixScale( const genType_t type, const uint32_t numRows, const uint32
 	std::string memberTypeString = Gen_GetMemberTypeString( type );
 	std::string fullTypeName = typeString + std::to_string( numRows ) + "x" + std::to_string( numCols );
 
-	const uint32_t scaleCols = 3;
+	const u32 scaleCols = 3;
 
 	std::string scaleVectorString = typeString + std::to_string( scaleCols );
 
@@ -835,7 +835,7 @@ void Gen_MatrixScale( const genType_t type, const uint32_t numRows, const uint32
 	outInl += fullTypeName + " scale( const " + fullTypeName + "& mat, const " + memberTypeString + " scalar )\n";
 	outInl += "{\n";
 	outInl += "\treturn scale( mat, " + scaleVectorString + "( ";
-	for ( uint32_t col = 0; col < scaleCols; col++ ) {
+	for ( u32 col = 0; col < scaleCols; col++ ) {
 		outInl += "scalar";
 
 		if ( col != scaleCols - 1 ) {
@@ -850,10 +850,10 @@ void Gen_MatrixScale( const genType_t type, const uint32_t numRows, const uint32
 	outInl += "{\n";
 	outInl += "\treturn " + fullTypeName + "(\n";
 
-	for ( uint32_t row = 0; row < numRows; row++ ) {
+	for ( u32 row = 0; row < numRows; row++ ) {
 		std::string rowStr = std::to_string( row );
 
-		for ( uint32_t col = 0; col < numCols; col++ ) {
+		for ( u32 col = 0; col < numCols; col++ ) {
 			std::string colStr = std::to_string( col );
 
 			outInl += "\t\tmat[" + rowStr + "][" + colStr + "]";
@@ -878,7 +878,7 @@ void Gen_MatrixScale( const genType_t type, const uint32_t numRows, const uint32
 	outInl += "\n";
 }
 
-void Gen_MatrixOrtho( const genType_t type, const uint32_t numRows, const uint32_t numCols, std::string& outHeader, std::string& outInl ) {
+void Gen_MatrixOrtho( const genType_t type, const u32 numRows, const u32 numCols, std::string& outHeader, std::string& outInl ) {
 	assert( numRows >= GEN_COMPONENT_COUNT_MIN );
 	assert( numRows <= GEN_COMPONENT_COUNT_MAX );
 	assert( numCols >= GEN_COMPONENT_COUNT_MIN );
@@ -1036,7 +1036,7 @@ void Gen_MatrixOrtho( const genType_t type, const uint32_t numRows, const uint32
 	}
 }
 
-void Gen_MatrixPerspective( const genType_t type, const uint32_t numRows, const uint32_t numCols, std::string& outHeader, std::string& outInl ) {
+void Gen_MatrixPerspective( const genType_t type, const u32 numRows, const u32 numCols, std::string& outHeader, std::string& outInl ) {
 	assert( numRows >= GEN_COMPONENT_COUNT_MIN );
 	assert( numRows <= GEN_COMPONENT_COUNT_MAX );
 	assert( numCols >= GEN_COMPONENT_COUNT_MIN );
@@ -1180,7 +1180,7 @@ void Gen_MatrixPerspective( const genType_t type, const uint32_t numRows, const 
 	}
 }
 
-void Gen_MatrixLookAt( const genType_t type, const uint32_t numRows, const uint32_t numCols, std::string& outHeader, std::string& outInl ) {
+void Gen_MatrixLookAt( const genType_t type, const u32 numRows, const u32 numCols, std::string& outHeader, std::string& outInl ) {
 	assert( numRows >= GEN_COMPONENT_COUNT_MIN );
 	assert( numRows <= GEN_COMPONENT_COUNT_MAX );
 	assert( numCols >= GEN_COMPONENT_COUNT_MIN );
@@ -1194,7 +1194,7 @@ void Gen_MatrixLookAt( const genType_t type, const uint32_t numRows, const uint3
 		return;
 	}
 
-	uint32_t numVecComponents = 3;
+	u32 numVecComponents = 3;
 
 	std::string typeString = Gen_GetTypeString( type );
 	std::string vectorTypeString = typeString + std::to_string( numVecComponents );

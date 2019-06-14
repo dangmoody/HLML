@@ -37,15 +37,15 @@ along with hlml.  If not, see <http://www.gnu.org/licenses/>.
 
 bool4::bool4()
 {
-	memset( data, 0, 4 * sizeof( bool ) );
+	memset( data, 0, 4 * sizeof( bool32_t ) );
 }
 
-bool4::bool4( const bool x )
+bool4::bool4( const bool32_t x )
 {
 	this->x = this->y = this->z = this->w = x;
 }
 
-bool4::bool4( const bool x, const bool y, const bool z, const bool w )
+bool4::bool4( const bool32_t x, const bool32_t y, const bool32_t z, const bool32_t w )
 {
 	this->x = x;
 	this->y = y;
@@ -86,13 +86,13 @@ bool4 bool4::operator=( const bool4& rhs )
 	return *this;
 }
 
-const bool& bool4::operator[]( const uint32_t index ) const
+const bool32_t& bool4::operator[]( const uint32_t index ) const
 {
 	assert( index < 4 );
 	return data[index];
 }
 
-bool& bool4::operator[]( const uint32_t index )
+bool32_t& bool4::operator[]( const uint32_t index )
 {
 	assert( index < 4 );
 	return data[index];

@@ -2,11 +2,6 @@
 
 #include "FileIO.h"
 
-/*
-========================
-GeneratorTestsScalar::Generate
-========================
-*/
 bool GeneratorScalarTest::Generate( const genType_t type ) {
 	m_codeTests = std::string();
 	m_codeSuite = std::string();
@@ -17,7 +12,6 @@ bool GeneratorScalarTest::Generate( const genType_t type ) {
 
 	std::string code = GEN_FILE_HEADER;
 
-	code += "#define " GEN_DEFINE_UNDEF_SYSTEM_MIN_MAX "\n";
 	code += std::string( "#include \"../../" ) + GEN_OUT_GEN_FOLDER_PATH + GEN_FILENAME_FUNCTIONS_SCALAR + ".h\"\n";
 	code += "\n";
 
@@ -55,11 +49,6 @@ bool GeneratorScalarTest::Generate( const genType_t type ) {
 	return true;
 }
 
-/*
-========================
-GeneratorTestsScalar::GenerateTestFloateq
-========================
-*/
 void GeneratorScalarTest::GenerateTestFloateq() {
 	if ( !Gen_IsFloatingPointType( m_type ) ) {
 		return;
@@ -92,11 +81,6 @@ void GeneratorScalarTest::GenerateTestFloateq() {
 	m_codeSuite += "\tTEMPER_RUN_TEST( " + testName + " );\n";
 }
 
-/*
-========================
-GeneratorTestsScalar::GenerateTestSign
-========================
-*/
 void GeneratorScalarTest::GenerateTestSign() {
 	if ( m_type == GEN_TYPE_BOOL || m_type == GEN_TYPE_UINT ) {
 		return;
@@ -119,11 +103,6 @@ void GeneratorScalarTest::GenerateTestSign() {
 	m_codeSuite += "\tTEMPER_RUN_TEST( " + testName + " );\n";
 }
 
-/*
-========================
-GeneratorTestsScalar::GenerateTestRadians
-========================
-*/
 void GeneratorScalarTest::GenerateTestDegreesRadians() {
 	if ( !Gen_IsFloatingPointType( m_type ) ) {
 		return;
@@ -161,11 +140,6 @@ void GeneratorScalarTest::GenerateTestDegreesRadians() {
 	m_codeSuite += "\tTEMPER_RUN_TEST( " + testName + " );\n";
 }
 
-/*
-========================
-GeneratorTestsScalar::GenerateTestTestMin
-========================
-*/
 void GeneratorScalarTest::GenerateTestMinMax() {
 	if ( m_type == GEN_TYPE_BOOL ) {
 		return;
@@ -199,11 +173,6 @@ void GeneratorScalarTest::GenerateTestMinMax() {
 	m_codeSuite += "\tTEMPER_RUN_TEST( " + testName + " );\n";
 }
 
-/*
-========================
-GeneratorTestsScalar::GenerateTestClamp
-========================
-*/
 void GeneratorScalarTest::GenerateTestClamp() {
 	if ( m_type == GEN_TYPE_BOOL ) {
 		return;
@@ -248,11 +217,6 @@ void GeneratorScalarTest::GenerateTestClamp() {
 	m_codeSuite += "\tTEMPER_RUN_TEST( " + testName + " );\n";
 }
 
-/*
-========================
-GeneratorTestsScalar::GenerateTestSaturate
-========================
-*/
 void GeneratorScalarTest::GenerateTestSaturate() {
 	if ( !Gen_IsFloatingPointType( m_type ) ) {
 		return;

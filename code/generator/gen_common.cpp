@@ -4,7 +4,7 @@
 
 #include <assert.h>
 
-static std::string HeaderGetOperatorIncrement( const genType_t type, const uint32_t numRows, const uint32_t numCols, const genOpIncrement_t op ) {
+static std::string HeaderGetOperatorIncrement( const genType_t type, const u32 numRows, const u32 numCols, const genOpIncrement_t op ) {
 	std::string fullTypeName = Gen_GetFullTypeName( type, numRows, numCols );
 	std::string memberTypeString = Gen_GetMemberTypeString( type );
 
@@ -23,8 +23,8 @@ static std::string HeaderGetOperatorIncrement( const genType_t type, const uint3
 	return code;
 }
 
-static std::string InlGetOperatorIncrement( const genType_t type, const uint32_t numRows, const uint32_t numCols, const genOpIncrement_t op ) {
-	uint32_t numComponents = ( numRows == 1 ) ? numCols : numRows;
+static std::string InlGetOperatorIncrement( const genType_t type, const u32 numRows, const u32 numCols, const genOpIncrement_t op ) {
+	u32 numComponents = ( numRows == 1 ) ? numCols : numRows;
 
 	std::string fullTypeName = Gen_GetFullTypeName( type, numRows, numCols );
 	std::string memberTypeString = Gen_GetMemberTypeString( type );
@@ -35,7 +35,7 @@ static std::string InlGetOperatorIncrement( const genType_t type, const uint32_t
 	code += "// prefix\n";
 	code += fullTypeName + "& operator" + GEN_OPERATORS_INCREMENT[op] + "( " + fullTypeName + "& lhs )\n";
 	code += "{\n";
-	for ( uint32_t i = 0; i < numComponents; i++ ) {
+	for ( u32 i = 0; i < numComponents; i++ ) {
 		code += "\t" + GEN_OPERATORS_INCREMENT[op] + "lhs[" + std::to_string( i ) + "];\n";
 	}
 	code += "\treturn lhs;\n";
@@ -46,7 +46,7 @@ static std::string InlGetOperatorIncrement( const genType_t type, const uint32_t
 	code += "// postfix\n";
 	code += fullTypeName + "& operator" + GEN_OPERATORS_INCREMENT[op] + "( " + fullTypeName + "& lhs, const int )\n";
 	code += "{\n";
-	for ( uint32_t i = 0; i < numComponents; i++ ) {
+	for ( u32 i = 0; i < numComponents; i++ ) {
 		code += std::string( "\tlhs[" ) + std::to_string( i ) + "]" + GEN_OPERATORS_INCREMENT[op] + ";\n";
 	}
 	code += "\treturn lhs;\n";
@@ -56,7 +56,7 @@ static std::string InlGetOperatorIncrement( const genType_t type, const uint32_t
 	return code;
 }
 
-static std::string HeaderGetOperatorRelational( const genType_t type, const uint32_t numRows, const uint32_t numCols, const genOpRelational_t op ) {
+static std::string HeaderGetOperatorRelational( const genType_t type, const u32 numRows, const u32 numCols, const genOpRelational_t op ) {
 	std::string fullTypeName = Gen_GetFullTypeName( type, numRows, numCols );
 	std::string boolReturnType = Gen_GetFullTypeName( GEN_TYPE_BOOL, numRows, numCols );
 
@@ -69,8 +69,8 @@ static std::string HeaderGetOperatorRelational( const genType_t type, const uint
 	return code;
 }
 
-static std::string InlGetOperatorRelational( const genType_t type, const uint32_t numRows, const uint32_t numCols, const genOpRelational_t op ) {
-	uint32_t numComponents = ( numRows == 1 ) ? numCols : numRows;
+static std::string InlGetOperatorRelational( const genType_t type, const u32 numRows, const u32 numCols, const genOpRelational_t op ) {
+	u32 numComponents = ( numRows == 1 ) ? numCols : numRows;
 
 	std::string fullTypeName = Gen_GetFullTypeName( type, numRows, numCols );
 	std::string boolReturnType = Gen_GetFullTypeName( GEN_TYPE_BOOL, numRows, numCols );
@@ -83,7 +83,7 @@ static std::string InlGetOperatorRelational( const genType_t type, const uint32_
 	code += "{\n";
 	code += "\treturn " + boolReturnType + "(\n";
 
-	for ( uint32_t i = 0; i < numComponents; i++ ) {
+	for ( u32 i = 0; i < numComponents; i++ ) {
 		std::string componentStr = std::to_string( i );
 
 		code += "\t\tlhs[" + componentStr + "] " + opStr + " rhs[" + componentStr + "]";
@@ -101,7 +101,7 @@ static std::string InlGetOperatorRelational( const genType_t type, const uint32_
 	return code;
 }
 
-static std::string HeaderGetOperatorBitwiseScalar( const genType_t type, const uint32_t numRows, const uint32_t numCols, const genOpBitwise_t op ) {
+static std::string HeaderGetOperatorBitwiseScalar( const genType_t type, const u32 numRows, const u32 numCols, const genOpBitwise_t op ) {
 	std::string fullTypeName = Gen_GetFullTypeName( type, numRows, numCols );
 	std::string memberTypeString = Gen_GetMemberTypeString( type );
 
@@ -120,8 +120,8 @@ static std::string HeaderGetOperatorBitwiseScalar( const genType_t type, const u
 	return code;
 }
 
-static std::string InlGetOperatorBitwiseScalar( const genType_t type, const uint32_t numRows, const uint32_t numCols, const genOpBitwise_t op ) {
-	uint32_t numComponents = ( numRows == 1 ) ? numCols : numRows;
+static std::string InlGetOperatorBitwiseScalar( const genType_t type, const u32 numRows, const u32 numCols, const genOpBitwise_t op ) {
+	u32 numComponents = ( numRows == 1 ) ? numCols : numRows;
 
 	std::string fullTypeName = Gen_GetFullTypeName( type, numRows, numCols );
 	std::string memberTypeString = Gen_GetMemberTypeString( type );
@@ -134,7 +134,7 @@ static std::string InlGetOperatorBitwiseScalar( const genType_t type, const uint
 	code += fullTypeName + " operator" + opStr + "( const " + fullTypeName + "& lhs, const " + memberTypeString + "& rhs )\n";
 	code += "{\n";
 	code += "\treturn " + fullTypeName + "(\n";
-	for ( uint32_t i = 0; i < numComponents; i++ ) {
+	for ( u32 i = 0; i < numComponents; i++ ) {
 		code += std::string( "\t\tlhs[" ) + std::to_string( i ) + "] " + opStr + " rhs";
 
 		if ( i != numComponents - 1 ) {
@@ -157,7 +157,7 @@ static std::string InlGetOperatorBitwiseScalar( const genType_t type, const uint
 	return code;
 }
 
-static std::string HeaderGetOperatorBitwiseRhsType( const genType_t type, const uint32_t numRows, const uint32_t numCols, const genOpBitwise_t op ) {
+static std::string HeaderGetOperatorBitwiseRhsType( const genType_t type, const u32 numRows, const u32 numCols, const genOpBitwise_t op ) {
 	std::string fullTypeName = Gen_GetFullTypeName( type, numRows, numCols );
 	std::string memberTypeString = Gen_GetMemberTypeString( type );
 
@@ -176,8 +176,8 @@ static std::string HeaderGetOperatorBitwiseRhsType( const genType_t type, const 
 	return code;
 }
 
-static std::string InlGetOperatorBitwiseRhsType( const genType_t type, const uint32_t numRows, const uint32_t numCols, const genOpBitwise_t op ) {
-	uint32_t numComponents = ( numRows == 1 ) ? numCols : numRows;
+static std::string InlGetOperatorBitwiseRhsType( const genType_t type, const u32 numRows, const u32 numCols, const genOpBitwise_t op ) {
+	u32 numComponents = ( numRows == 1 ) ? numCols : numRows;
 
 	std::string fullTypeName = Gen_GetFullTypeName( type, numRows, numCols );
 
@@ -189,7 +189,7 @@ static std::string InlGetOperatorBitwiseRhsType( const genType_t type, const uin
 	code += fullTypeName + " operator" + opStr + "( const " + fullTypeName + "& lhs, const " + fullTypeName + "& rhs )\n";
 	code += "{\n";
 	code += "\treturn " + fullTypeName + "(\n";
-	for ( uint32_t i = 0; i < numComponents; i++ ) {
+	for ( u32 i = 0; i < numComponents; i++ ) {
 		std::string componentStr = std::to_string( i );
 
 		code += "\t\tlhs[" + componentStr + "] " + opStr + " rhs[" + componentStr + "]";
@@ -327,7 +327,7 @@ void Gen_Clamp( const genType_t type, std::string& outHeader ) {
 	outHeader += "\n";
 }
 
-void Gen_Saturate( const genType_t type, const uint32_t numComponents, std::string& outHeader, std::string* outInl ) {
+void Gen_Saturate( const genType_t type, const u32 numComponents, std::string& outHeader, std::string* outInl ) {
 	assert( numComponents >= 1 );	// we allow scalar types for this function
 	assert( numComponents <= GEN_COMPONENT_COUNT_MAX );
 
@@ -354,7 +354,7 @@ void Gen_Saturate( const genType_t type, const uint32_t numComponents, std::stri
 		*outInl += fullTypeName + " saturate( const " + fullTypeName + "& x )\n";
 		*outInl += "{\n";
 		*outInl += "\treturn " + fullTypeName + "(\n";
-		for ( uint32_t i = 0; i < numComponents; i++ ) {
+		for ( u32 i = 0; i < numComponents; i++ ) {
 			*outInl += "\t\tclamp( x[" + std::to_string( i ) + "], " + zeroStr + ", " + oneStr + " )";
 
 			if ( i != numComponents - 1 ) {
@@ -376,7 +376,7 @@ void Gen_Saturate( const genType_t type, const uint32_t numComponents, std::stri
 	}
 }
 
-void Gen_Lerp( const genType_t type, const uint32_t numComponents, std::string& outHeader, std::string* outInl ) {
+void Gen_Lerp( const genType_t type, const u32 numComponents, std::string& outHeader, std::string* outInl ) {
 	assert( numComponents >= 1 );	// we allow scalar types for this function
 	assert( numComponents <= GEN_COMPONENT_COUNT_MAX );
 
@@ -403,7 +403,7 @@ void Gen_Lerp( const genType_t type, const uint32_t numComponents, std::string& 
 		*outInl += fullTypeName + " lerp( const " + fullTypeName + "& a, const " + fullTypeName + "& b, const " + typeString + " t )\n";
 		*outInl += "{\n";
 		*outInl += "\treturn " + fullTypeName + "(\n";
-		for ( uint32_t i = 0; i < numComponents; i++ ) {
+		for ( u32 i = 0; i < numComponents; i++ ) {
 			std::string componentStr = std::to_string( i );
 
 			*outInl += "\t\tlerp( a[" + componentStr + "], b[" + componentStr + "], t )";
@@ -427,7 +427,7 @@ void Gen_Lerp( const genType_t type, const uint32_t numComponents, std::string& 
 	}
 }
 
-void Gen_Smoothstep( const genType_t type, const uint32_t numComponents, std::string& outHeader, std::string* outInl ) {
+void Gen_Smoothstep( const genType_t type, const u32 numComponents, std::string& outHeader, std::string* outInl ) {
 	assert( numComponents >= 1 );	// we allow scalar types for this function
 	assert( numComponents <= GEN_COMPONENT_COUNT_MAX );
 
@@ -466,7 +466,7 @@ void Gen_Smoothstep( const genType_t type, const uint32_t numComponents, std::st
 			*outInl += fullTypeName + " smoothstep( const " + fullTypeName + "& low, const " + fullTypeName + "& high, const " + fullTypeName + "& x )\n";
 			*outInl += "{\n";
 			*outInl += "\treturn " + fullTypeName + "(\n";
-			for ( uint32_t i = 0; i < numComponents; i++ ) {
+			for ( u32 i = 0; i < numComponents; i++ ) {
 				std::string componentStr = std::to_string( i );
 
 				*outInl += "\t\tsmoothstep( low[" + componentStr + "], high[" + componentStr + "], x[" + componentStr + "] )";
@@ -501,7 +501,7 @@ void Gen_Smoothstep( const genType_t type, const uint32_t numComponents, std::st
 			*outInl += fullTypeName + " smootherstep( const " + fullTypeName + "& low, const " + fullTypeName + "& high, const " + fullTypeName + "& x )\n";
 			*outInl += "{\n";
 			*outInl += "\treturn " + fullTypeName + "(\n";
-			for ( uint32_t i = 0; i < numComponents; i++ ) {
+			for ( u32 i = 0; i < numComponents; i++ ) {
 				std::string componentStr = std::to_string( i );
 
 				*outInl += "\t\tsmootherstep( low[" + componentStr + "], high[" + componentStr + "], x[" + componentStr + "] )";
@@ -526,7 +526,7 @@ void Gen_Smoothstep( const genType_t type, const uint32_t numComponents, std::st
 	}
 }
 
-void Gen_OperatorsIncrement( const genType_t type, const uint32_t numRows, const uint32_t numCols, std::string& outHeader, std::string& outInl ) {
+void Gen_OperatorsIncrement( const genType_t type, const u32 numRows, const u32 numCols, std::string& outHeader, std::string& outInl ) {
 	assert( numRows >= 1 );	// pass through 1 for vectors
 	assert( numRows <= GEN_COMPONENT_COUNT_MAX );
 	assert( numCols >= GEN_COMPONENT_COUNT_MIN );
@@ -536,7 +536,7 @@ void Gen_OperatorsIncrement( const genType_t type, const uint32_t numRows, const
 		return;
 	}
 
-	for ( uint32_t opIndex = 0; opIndex < GEN_OP_INCREMENT_COUNT; opIndex++ ) {
+	for ( u32 opIndex = 0; opIndex < GEN_OP_INCREMENT_COUNT; opIndex++ ) {
 		genOpIncrement_t op = static_cast<genOpIncrement_t>( opIndex );
 
 		outHeader += HeaderGetOperatorIncrement( type, numRows, numCols, op );
@@ -545,7 +545,7 @@ void Gen_OperatorsIncrement( const genType_t type, const uint32_t numRows, const
 	}
 }
 
-void Gen_OperatorsRelational( const genType_t type, const uint32_t numRows, const uint32_t numCols, std::string& outHeader, std::string& outInl ) {
+void Gen_OperatorsRelational( const genType_t type, const u32 numRows, const u32 numCols, std::string& outHeader, std::string& outInl ) {
 	assert( numRows >= 1 );	// pass through 1 for vectors
 	assert( numRows <= GEN_COMPONENT_COUNT_MAX );
 	assert( numCols >= GEN_COMPONENT_COUNT_MIN );
@@ -555,7 +555,7 @@ void Gen_OperatorsRelational( const genType_t type, const uint32_t numRows, cons
 		return;
 	}
 
-	for ( uint32_t opIndex = 0; opIndex < GEN_OP_RELATIONAL_COUNT; opIndex++ ) {
+	for ( u32 opIndex = 0; opIndex < GEN_OP_RELATIONAL_COUNT; opIndex++ ) {
 		genOpRelational_t op = static_cast<genOpRelational_t>( opIndex );
 
 		outHeader += HeaderGetOperatorRelational( type, numRows, numCols, op );
@@ -564,7 +564,7 @@ void Gen_OperatorsRelational( const genType_t type, const uint32_t numRows, cons
 	}
 }
 
-void Gen_OperatorsBitwise( const genType_t type, const uint32_t numRows, const uint32_t numCols, std::string& outHeader, std::string& outInl ) {
+void Gen_OperatorsBitwise( const genType_t type, const u32 numRows, const u32 numCols, std::string& outHeader, std::string& outInl ) {
 	assert( numRows >= 1 );	// pass through 1 for vectors
 	assert( numRows <= GEN_COMPONENT_COUNT_MAX );
 	assert( numCols >= GEN_COMPONENT_COUNT_MIN );
@@ -593,7 +593,7 @@ void Gen_OperatorsBitwise( const genType_t type, const uint32_t numRows, const u
 	}
 
 	// unary operator
-	uint32_t numComponents = ( numRows == 1 ) ? numCols : numRows;
+	u32 numComponents = ( numRows == 1 ) ? numCols : numRows;
 	std::string fullTypeName = Gen_GetFullTypeName( type, numRows, numCols );
 
 	outHeader += Gen_GetDocOperatorBitwiseUnary( fullTypeName );
@@ -603,7 +603,7 @@ void Gen_OperatorsBitwise( const genType_t type, const uint32_t numRows, const u
 	outInl += fullTypeName + " operator~( const " + fullTypeName + "& lhs )\n";
 	outInl += "{\n";
 	outInl += "\treturn " + fullTypeName + "(\n";
-	for ( uint32_t i = 0; i < numComponents; i++ ) {
+	for ( u32 i = 0; i < numComponents; i++ ) {
 		outInl += std::string( "\t\t~lhs[" ) + std::to_string( i ) + "]";
 
 		if ( i != numComponents - 1 ) {
@@ -617,7 +617,7 @@ void Gen_OperatorsBitwise( const genType_t type, const uint32_t numRows, const u
 	outInl += "\n";
 }
 
-void Gen_OperatorComponentWiseArithmeticScalar( const genType_t type, const uint32_t numRows, const uint32_t numCols, const genOpArithmetic_t op, std::string& outHeader, std::string& outInl ) {
+void Gen_OperatorComponentWiseArithmeticScalar( const genType_t type, const u32 numRows, const u32 numCols, const genOpArithmetic_t op, std::string& outHeader, std::string& outInl ) {
 	assert( numRows >= 1 );	// pass through 1 for vectors
 	assert( numRows <= GEN_COMPONENT_COUNT_MAX );
 	assert( numCols >= GEN_COMPONENT_COUNT_MIN );
@@ -627,7 +627,7 @@ void Gen_OperatorComponentWiseArithmeticScalar( const genType_t type, const uint
 		return;
 	}
 
-	uint32_t numComponents = ( numRows == 1 ) ? numCols : numRows;
+	u32 numComponents = ( numRows == 1 ) ? numCols : numRows;
 
 	std::string fullTypeName = Gen_GetFullTypeName( type, numRows, numCols );
 	std::string memberTypeString = Gen_GetMemberTypeString( type );
@@ -646,7 +646,7 @@ void Gen_OperatorComponentWiseArithmeticScalar( const genType_t type, const uint
 	outInl += fullTypeName + " " + "operator" + opStr + "( const " + fullTypeName + "& lhs, const " + memberTypeString + " rhs )\n";
 	outInl += "{\n";
 	outInl += "\treturn " + fullTypeName + "(\n";
-	for ( uint32_t i = 0; i < numComponents; i++ ) {
+	for ( u32 i = 0; i < numComponents; i++ ) {
 		outInl += "\t\tlhs[" + std::to_string( i ) + "] " + opStr + " rhs";
 
 		if ( i != numComponents - 1 ) {
@@ -667,7 +667,7 @@ void Gen_OperatorComponentWiseArithmeticScalar( const genType_t type, const uint
 	outInl += "\n";
 }
 
-void Gen_OperatorComponentWiseArithmeticRhsType( const genType_t type, const uint32_t numRows, const uint32_t numCols, const genOpArithmetic_t op, std::string& outHeader, std::string& outInl ) {
+void Gen_OperatorComponentWiseArithmeticRhsType( const genType_t type, const u32 numRows, const u32 numCols, const genOpArithmetic_t op, std::string& outHeader, std::string& outInl ) {
 	assert( numRows >= 1 );	// pass through 1 for vectors
 	assert( numRows <= GEN_COMPONENT_COUNT_MAX );
 	assert( numCols >= GEN_COMPONENT_COUNT_MIN );
@@ -685,7 +685,7 @@ void Gen_OperatorComponentWiseArithmeticRhsType( const genType_t type, const uin
 		}
 	}
 
-	uint32_t numComponents = ( numRows == 1 ) ? numCols : numRows;
+	u32 numComponents = ( numRows == 1 ) ? numCols : numRows;
 
 	std::string fullTypeName = Gen_GetFullTypeName( type, numRows, numCols );
 
@@ -705,7 +705,7 @@ void Gen_OperatorComponentWiseArithmeticRhsType( const genType_t type, const uin
 	outInl += fullTypeName + " " + "operator" + opStr + "( const " + fullTypeName + "& lhs, const " + fullTypeName + "& rhs )\n";
 	outInl += "{\n";
 	outInl += "\treturn " + fullTypeName + "(\n";
-	for ( uint32_t i = 0; i < numComponents; i++ ) {
+	for ( u32 i = 0; i < numComponents; i++ ) {
 		std::string componentStr = std::to_string( i );
 
 		outInl += "\t\tlhs[" + componentStr + "] " + opStr + " rhs[" + componentStr + "]";
@@ -730,7 +730,7 @@ void Gen_OperatorComponentWiseArithmeticRhsType( const genType_t type, const uin
 	}
 }
 
-void Gen_OperatorNotEquals( const genType_t type, const uint32_t numRows, const uint32_t numCols, std::string& outHeader, std::string& outInl ) {
+void Gen_OperatorNotEquals( const genType_t type, const u32 numRows, const u32 numCols, std::string& outHeader, std::string& outInl ) {
 	assert( numRows >= 1 );	// pass through 1 for vectors
 	assert( numRows <= GEN_COMPONENT_COUNT_MAX );
 	assert( numCols >= GEN_COMPONENT_COUNT_MIN );

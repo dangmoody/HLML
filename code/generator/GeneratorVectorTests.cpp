@@ -6,7 +6,7 @@
 
 #include <vector>
 
-bool GeneratorVectorTests::Generate( const genType_t type, const uint32_t numComponents ) {
+bool GeneratorVectorTests::Generate( const genType_t type, const u32 numComponents ) {
 	m_codeTests = std::string();
 	m_codeSuite = std::string();
 
@@ -120,7 +120,7 @@ void GeneratorVectorTests::GenerateTestArray() {
 	m_codeTests += "{\n";
 	m_codeTests += "\t" + m_fullTypeName + " a = " + m_fullTypeName + parmList + ";\n";
 	m_codeTests += "\n";
-	for ( uint32_t i = 0; i < m_numComponents; i++ ) {
+	for ( u32 i = 0; i < m_numComponents; i++ ) {
 		m_codeTests += "\tTEMPER_EXPECT_TRUE( a[" + std::to_string( i ) + "] == " + Gen_GetNumericLiteral( m_type, static_cast<float>( i ) ) + " );\n";
 	}
 	m_codeTests += "\n";
@@ -171,7 +171,7 @@ void GeneratorVectorTests::GenerateTestArithmetic() {
 		"Division",
 	};
 
-	for ( uint32_t i = 0; i < GEN_OP_ARITHMETIC_COUNT; i++ ) {
+	for ( u32 i = 0; i < GEN_OP_ARITHMETIC_COUNT; i++ ) {
 		std::string testName = "TestArithmetic" + suffices[i] + "_" + m_fullTypeName;
 
 		m_codeTests += "TEMPER_TEST( " + testName + " )\n";
@@ -214,7 +214,7 @@ void GeneratorVectorTests::GenerateTestIncrement() {
 		"Decrement",
 	};
 
-	for ( uint32_t i = 0; i < GEN_OP_INCREMENT_COUNT; i++ ) {
+	for ( u32 i = 0; i < GEN_OP_INCREMENT_COUNT; i++ ) {
 		std::string testName = "Test" + suffices[i] + "_" + m_fullTypeName;
 
 		m_codeTests += "TEMPER_TEST( " + testName + " )\n";
@@ -253,13 +253,13 @@ void GeneratorVectorTests::GenerateTestRelational() {
 
 	std::string boolTypeName = "bool" + m_numComponentsStr;
 
-	uint32_t numTestVectors = 0;
+	u32 numTestVectors = 0;
 
-	for ( uint32_t componentIndex = 0; componentIndex < m_numComponents; componentIndex++ ) {
+	for ( u32 componentIndex = 0; componentIndex < m_numComponents; componentIndex++ ) {
 		std::string& paramList = paramLists[componentIndex];
 
 		paramList = "( ";
-		for ( uint32_t paramIndex = 0; paramIndex < m_numComponents; paramIndex++ ) {
+		for ( u32 paramIndex = 0; paramIndex < m_numComponents; paramIndex++ ) {
 			paramList += Gen_GetNumericLiteral( m_type, static_cast<float>( componentIndex ) );
 
 			if ( paramIndex != m_numComponents - 1 ) {
@@ -271,11 +271,11 @@ void GeneratorVectorTests::GenerateTestRelational() {
 
 	m_codeTests += "TEMPER_TEST( " + testName + " )\n";
 	m_codeTests += "{\n";
-	for ( uint32_t i = 0; i < m_numComponents; i++ ) {
+	for ( u32 i = 0; i < m_numComponents; i++ ) {
 		m_codeTests += "\t" + m_fullTypeName + " vec" + std::to_string( i ) + " = " + m_fullTypeName + paramLists[i] + ";\n";
 	}
 	m_codeTests += "\n";
-	for ( uint32_t i = 0; i < m_numComponents; i++ ) {
+	for ( u32 i = 0; i < m_numComponents; i++ ) {
 		std::string indexStr = std::to_string( i );
 
 		std::string vecString = "vec" + indexStr;
@@ -290,7 +290,7 @@ void GeneratorVectorTests::GenerateTestRelational() {
 		}
 		m_codeTests += "\n";
 	}
-	for ( uint32_t i = 0; i < numTestVectors; i++ ) {
+	for ( u32 i = 0; i < numTestVectors; i++ ) {
 		m_codeTests += "\tTEMPER_EXPECT_TRUE( test" + std::to_string( i ) + " == " + boolTypeName + "( true ) );\n";
 	}
 	m_codeTests += "\n";
@@ -320,7 +320,7 @@ void GeneratorVectorTests::GenerateTestBitwise() {
 	float answersShiftRight[]	= { 1.0f,  1.0f,  1.0f,  1.0f  };	// 16 >> 4
 
 	std::string parmListAnswerUnary = "( ";
-	for ( uint32_t i = 0; i < m_numComponents; i++ ) {
+	for ( u32 i = 0; i < m_numComponents; i++ ) {
 		parmListAnswerUnary += "(" + m_memberTypeString + ") -1";
 
 		if ( i != m_numComponents - 1 ) {
@@ -372,7 +372,7 @@ void GeneratorVectorTests::GenerateTestBitwise() {
 
 	std::string testName;
 
-	for ( uint32_t i = 0; i < _countof( ops ); i++ ) {
+	for ( u32 i = 0; i < _countof( ops ); i++ ) {
 		testName = "TestBitwise_" + suffices[i] + "_" + m_fullTypeName;
 
 		m_codeTests += "TEMPER_TEST( " + testName + " )\n";
@@ -492,7 +492,7 @@ void GeneratorVectorTests::GenerateTestDot() {
 	std::string minusOneStr = Gen_GetNumericLiteral( dotReturnType, -1.0f );
 
 	std::string paramListA = "( ";
-	for ( uint32_t i = 0; i < m_numComponents; i++ ) {
+	for ( u32 i = 0; i < m_numComponents; i++ ) {
 		paramListA += ( i == m_numComponents - 1 ) ? Gen_GetNumericLiteral( m_type, 1 ) : Gen_GetNumericLiteral( m_type, 0 );
 
 		if ( i != m_numComponents - 1 ) {
@@ -502,7 +502,7 @@ void GeneratorVectorTests::GenerateTestDot() {
 	paramListA += " )";
 
 	std::string paramListB = "( ";
-	for ( uint32_t i = 0; i < m_numComponents; i++ ) {
+	for ( u32 i = 0; i < m_numComponents; i++ ) {
 		paramListB += ( i == m_numComponents - 1 ) ? Gen_GetNumericLiteral( m_type, -1 ) : Gen_GetNumericLiteral( m_type, 0 );
 
 		if ( i != m_numComponents - 1 ) {

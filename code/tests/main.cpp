@@ -32,7 +32,7 @@ static void OnSuiteEnd( void* userdata )
 	printf( "\n" );
 }
 
-TEMPER_SUITE_EXTERN( Test_bool );
+TEMPER_SUITE_EXTERN( Test_bool32_t );
 TEMPER_SUITE_EXTERN( Test_bool2 );
 TEMPER_SUITE_EXTERN( Test_bool3 );
 TEMPER_SUITE_EXTERN( Test_bool4 );

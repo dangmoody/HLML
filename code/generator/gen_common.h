@@ -4,6 +4,8 @@
 #define _CRT_SECURE_NO_WARNINGS
 #endif
 
+#include "int_types.h"
+
 #include <stdint.h>
 #include <assert.h>
 
@@ -28,11 +30,9 @@
 #define GEN_OUT_GEN_FOLDER_PATH			"code/out/gen/"
 #define GEN_TESTS_FOLDER_PATH			"code/tests/"
 
+#define GEN_HEADER_TYPES				"hlml_types.h"
 #define GEN_HEADER_CONSTANTS			"hlml_constants.h"
 #define GEN_HEADER_USER					"hlml_user.h"
-
-#define GEN_HEADER_VECTOR				"hlml_vector.h"
-#define GEN_HEADER_MATRIX				"hlml_matrix.h"
 
 #define GEN_FILENAME_OPERATORS_VECTOR	"hlml_operators_vector"
 #define GEN_FILENAME_OPERATORS_MATRIX	"hlml_operators_matrix"
@@ -40,9 +40,6 @@
 #define GEN_FILENAME_FUNCTIONS_SCALAR	"hlml_functions_scalar"
 #define GEN_FILENAME_FUNCTIONS_VECTOR	"hlml_functions_vector"
 #define GEN_FILENAME_FUNCTIONS_MATRIX	"hlml_functions_matrix"
-
-// defines
-#define GEN_DEFINE_UNDEF_SYSTEM_MIN_MAX	"HLML_UNDEF_SYSTEM_MIN_MAX"
 
 enum genType_t {
 	GEN_TYPE_BOOL						= 0,
@@ -161,7 +158,7 @@ const std::string GEN_OPERATORS_BITWISE[GEN_OP_BITWISE_COUNT] = {
 // type-to-string functions
 inline std::string	Gen_GetTypeString( const genType_t type );
 inline std::string	Gen_GetMemberTypeString( const genType_t type );
-inline std::string	Gen_GetFullTypeName( const genType_t type, const uint32_t numRows, const uint32_t numCols );
+inline std::string	Gen_GetFullTypeName( const genType_t type, const u32 numRows, const u32 numCols );
 
 inline std::string	Gen_GetDefaultLiteralValue( const genType_t type );
 inline std::string	Gen_GetNumericLiteral( const genType_t type, const float value );
@@ -198,21 +195,21 @@ extern void			Gen_Degrees( const genType_t type, std::string& outHeader );
 extern void			Gen_MinMax( const genType_t type, std::string& outHeader );
 extern void			Gen_Clamp( const genType_t type, std::string& outHeader );
 
-extern void			Gen_Saturate( const genType_t type, const uint32_t numComponents, std::string& outHeader, std::string* outInl );
-extern void			Gen_Lerp( const genType_t type, const uint32_t numComponents, std::string& outHeader, std::string* outInl );
-extern void			Gen_Smoothstep( const genType_t type, const uint32_t numComponents, std::string& outHeader, std::string* outInl );
+extern void			Gen_Saturate( const genType_t type, const u32 numComponents, std::string& outHeader, std::string* outInl );
+extern void			Gen_Lerp( const genType_t type, const u32 numComponents, std::string& outHeader, std::string* outInl );
+extern void			Gen_Smoothstep( const genType_t type, const u32 numComponents, std::string& outHeader, std::string* outInl );
 
 // functions that are guaranteed to be the same across vectors and matrices
-extern void			Gen_OperatorsIncrement( const genType_t type, const uint32_t numRows, const uint32_t numCols, std::string& outHeader, std::string& outInl );
-extern void			Gen_OperatorsRelational( const genType_t type, const uint32_t numRows, const uint32_t numCols, std::string& outHeader, std::string& outInl );
-extern void			Gen_OperatorsBitwise( const genType_t type, const uint32_t numRows, const uint32_t numCols, std::string& outHeader, std::string& outInl );
+extern void			Gen_OperatorsIncrement( const genType_t type, const u32 numRows, const u32 numCols, std::string& outHeader, std::string& outInl );
+extern void			Gen_OperatorsRelational( const genType_t type, const u32 numRows, const u32 numCols, std::string& outHeader, std::string& outInl );
+extern void			Gen_OperatorsBitwise( const genType_t type, const u32 numRows, const u32 numCols, std::string& outHeader, std::string& outInl );
 
-extern void			Gen_OperatorComponentWiseArithmeticScalar( const genType_t type, const uint32_t numRows, const uint32_t numCols, const genOpArithmetic_t op,
+extern void			Gen_OperatorComponentWiseArithmeticScalar( const genType_t type, const u32 numRows, const u32 numCols, const genOpArithmetic_t op,
 						std::string& outHeader, std::string& outInl );
-extern void			Gen_OperatorComponentWiseArithmeticRhsType( const genType_t type, const uint32_t numRows, const uint32_t numCols, const genOpArithmetic_t op,
+extern void			Gen_OperatorComponentWiseArithmeticRhsType( const genType_t type, const u32 numRows, const u32 numCols, const genOpArithmetic_t op,
 						std::string& outHeader, std::string& outInl );
 
-extern void			Gen_OperatorNotEquals( const genType_t type, const uint32_t numRows, const uint32_t numCols, std::string& outHeader, std::string& outInl );
+extern void			Gen_OperatorNotEquals( const genType_t type, const u32 numRows, const u32 numCols, std::string& outHeader, std::string& outInl );
 
 
 std::string Gen_GetTypeString( const genType_t type ) {
@@ -232,7 +229,7 @@ std::string Gen_GetTypeString( const genType_t type ) {
 
 std::string Gen_GetMemberTypeString( const genType_t type ) {
 	switch ( type ) {
-		case GEN_TYPE_BOOL:		return "bool";
+		case GEN_TYPE_BOOL:		return "bool32_t";
 		case GEN_TYPE_INT:		return "int32_t";
 		case GEN_TYPE_UINT:		return "uint32_t";
 		case GEN_TYPE_FLOAT:	return "float";
@@ -245,7 +242,7 @@ std::string Gen_GetMemberTypeString( const genType_t type ) {
 	}
 }
 
-std::string Gen_GetFullTypeName( const genType_t type, const uint32_t numRows, const uint32_t numCols ) {
+std::string Gen_GetFullTypeName( const genType_t type, const u32 numRows, const u32 numCols ) {
 	assert( numRows >= 1 );	// 1 for vectors
 	assert( numRows <= GEN_COMPONENT_COUNT_MAX );
 	assert( numCols >= 1 );	// 1 for straight scalar types
@@ -279,7 +276,7 @@ std::string Gen_GetNumericLiteral( const genType_t type, const float value ) {
 	switch ( type ) {
 		case GEN_TYPE_BOOL:		return ( value != 0.0f ) ? "true" : "false";
 		case GEN_TYPE_INT:		return std::to_string( static_cast<int32_t>( value ) );
-		case GEN_TYPE_UINT:		return std::to_string( static_cast<uint32_t>( value ) ) + "U";
+		case GEN_TYPE_UINT:		return std::to_string( static_cast<u32>( value ) ) + "U";
 		case GEN_TYPE_FLOAT:	return std::to_string( static_cast<float>( value ) ) + "f";
 		case GEN_TYPE_DOUBLE:	return std::to_string( static_cast<double>( value ) );
 

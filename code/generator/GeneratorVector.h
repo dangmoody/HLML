@@ -7,7 +7,7 @@ public:
 					GeneratorVector() {}
 					~GeneratorVector() {}
 
-	bool			Generate( const genType_t type, const uint32_t numComponents );
+	bool			Generate( const genType_t type, const u32 numComponents );
 
 #ifdef _DEBUG
 	void			PrintHeader() const;
@@ -25,7 +25,7 @@ private:
 	std::string		m_numComponentsStr;
 
 	genType_t		m_type;
-	uint32_t		m_numComponents;
+	u32		m_numComponents;
 
 private:
 	void			HeaderGenerateMembersStruct( const std::string& componentNames );

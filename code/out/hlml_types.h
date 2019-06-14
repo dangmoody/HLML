@@ -24,24 +24,7 @@ along with hlml.  If not, see <http://www.gnu.org/licenses/>.
 
 // GENERATED FILE.  DO NOT EDIT.
 
-#include "bool2.h"
-#include "bool3.h"
-#include "bool4.h"
+#include <stdint.h>
 
-#include "int2.h"
-#include "int3.h"
-#include "int4.h"
-
-#include "uint2.h"
-#include "uint3.h"
-#include "uint4.h"
-
-#include "float2.h"
-#include "float3.h"
-#include "float4.h"
-
-#include "double2.h"
-#include "double3.h"
-#include "double4.h"
-
-#include "hlml_functions_vector.h"
+// ensure that a bool is 4 bytes
+typedef uint32_t bool32_t;

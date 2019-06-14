@@ -60,13 +60,13 @@ static std::string GetDocUnpack( const std::string& fullTypeName ) {
 		"/// \\brief Returns a 4-component integer vector containing each byte of the given integer.\n";
 }
 
-std::string Gen_GetParmListVector( const genType_t type, const uint32_t numComponents, const float* values ) {
+std::string Gen_GetParmListVector( const genType_t type, const u32 numComponents, const float* values ) {
 	assert( numComponents >= GEN_COMPONENT_COUNT_MIN );
 	assert( numComponents <= GEN_COMPONENT_COUNT_MAX );
 	assert( values );
 
 	std::string parmList = "( ";
-	for ( uint32_t i = 0; i < numComponents; i++ ) {
+	for ( u32 i = 0; i < numComponents; i++ ) {
 		parmList += Gen_GetNumericLiteral( type, values[i] );
 
 		if ( i != numComponents - 1 ) {
@@ -78,7 +78,7 @@ std::string Gen_GetParmListVector( const genType_t type, const uint32_t numCompo
 	return parmList;
 }
 
-void Gen_VectorOperatorsArithmetic( const genType_t type, const uint32_t numComponents, std::string& outHeader, std::string& outInl ) {
+void Gen_VectorOperatorsArithmetic( const genType_t type, const u32 numComponents, std::string& outHeader, std::string& outInl ) {
 	assert( numComponents >= GEN_COMPONENT_COUNT_MIN );
 	assert( numComponents <= GEN_COMPONENT_COUNT_MAX );
 
@@ -86,7 +86,7 @@ void Gen_VectorOperatorsArithmetic( const genType_t type, const uint32_t numComp
 		return;
 	}
 
-	for ( uint32_t opIndex = 0; opIndex < GEN_OP_ARITHMETIC_COUNT; opIndex++ ) {
+	for ( u32 opIndex = 0; opIndex < GEN_OP_ARITHMETIC_COUNT; opIndex++ ) {
 		genOpArithmetic_t op = static_cast<genOpArithmetic_t>( opIndex );
 
 		Gen_OperatorComponentWiseArithmeticScalar( type, 1, numComponents, op, outHeader, outInl );
@@ -94,7 +94,7 @@ void Gen_VectorOperatorsArithmetic( const genType_t type, const uint32_t numComp
 	}
 }
 
-void Gen_VectorLength( const genType_t type, const uint32_t numComponents, std::string& outHeader, std::string& outInl ) {
+void Gen_VectorLength( const genType_t type, const u32 numComponents, std::string& outHeader, std::string& outInl ) {
 	assert( numComponents >= GEN_COMPONENT_COUNT_MIN );
 	assert( numComponents <= GEN_COMPONENT_COUNT_MAX );
 
@@ -126,7 +126,7 @@ void Gen_VectorLength( const genType_t type, const uint32_t numComponents, std::
 		outInl += "(" + returnTypeString + ")( ";
 	}
 
-	for ( uint32_t i = 0; i < numComponents; i++ ) {
+	for ( u32 i = 0; i < numComponents; i++ ) {
 		char componentName = GEN_COMPONENT_NAMES_VECTOR[i];
 		outInl += std::string( "( vec." ) + componentName + " * vec." + componentName + " )";
 
@@ -150,7 +150,7 @@ void Gen_VectorLength( const genType_t type, const uint32_t numComponents, std::
 	outInl += "\n";
 }
 
-void Gen_VectorNormalize( const genType_t type, const uint32_t numComponents, std::string& outHeader, std::string& outInl ) {
+void Gen_VectorNormalize( const genType_t type, const u32 numComponents, std::string& outHeader, std::string& outInl ) {
 	assert( numComponents >= GEN_COMPONENT_COUNT_MIN );
 	assert( numComponents <= GEN_COMPONENT_COUNT_MAX );
 
@@ -186,7 +186,7 @@ void Gen_VectorNormalize( const genType_t type, const uint32_t numComponents, st
 	outInl += "\n";
 }
 
-void Gen_VectorDot( const genType_t type, const uint32_t numComponents, std::string& outHeader, std::string& outInl ) {
+void Gen_VectorDot( const genType_t type, const u32 numComponents, std::string& outHeader, std::string& outInl ) {
 	assert( numComponents >= GEN_COMPONENT_COUNT_MIN );
 	assert( numComponents <= GEN_COMPONENT_COUNT_MAX );
 
@@ -215,7 +215,7 @@ void Gen_VectorDot( const genType_t type, const uint32_t numComponents, std::str
 		outInl += "(" + returnTypeString + ")( ";
 	}
 
-	for ( uint32_t i = 0; i < numComponents; i++ ) {
+	for ( u32 i = 0; i < numComponents; i++ ) {
 		outInl += std::string( "( lhs." ) + GEN_COMPONENT_NAMES_VECTOR[i] + " * rhs." + GEN_COMPONENT_NAMES_VECTOR[i] + " )";
 
 		if ( i != numComponents - 1 ) {
@@ -232,7 +232,7 @@ void Gen_VectorDot( const genType_t type, const uint32_t numComponents, std::str
 	outInl += "\n";
 }
 
-void Gen_VectorCross( const genType_t type, const uint32_t numComponents, std::string& outHeader, std::string& outInl ) {
+void Gen_VectorCross( const genType_t type, const u32 numComponents, std::string& outHeader, std::string& outInl ) {
 	assert( numComponents >= GEN_COMPONENT_COUNT_MIN );
 	assert( numComponents <= GEN_COMPONENT_COUNT_MAX );
 
@@ -267,7 +267,7 @@ void Gen_VectorCross( const genType_t type, const uint32_t numComponents, std::s
 	outInl += "\n";
 }
 
-void Gen_VectorAngle( const genType_t type, const uint32_t numComponents, std::string& outHeader, std::string& outInl ) {
+void Gen_VectorAngle( const genType_t type, const u32 numComponents, std::string& outHeader, std::string& outInl ) {
 	assert( numComponents >= GEN_COMPONENT_COUNT_MIN );
 	assert( numComponents <= GEN_COMPONENT_COUNT_MAX );
 
@@ -294,7 +294,7 @@ void Gen_VectorAngle( const genType_t type, const uint32_t numComponents, std::s
 	outInl += "\n";
 }
 
-void Gen_VectorDistance( const genType_t type, const uint32_t numComponents, std::string& outHeader, std::string& outInl ) {
+void Gen_VectorDistance( const genType_t type, const u32 numComponents, std::string& outHeader, std::string& outInl ) {
 	assert( numComponents >= GEN_COMPONENT_COUNT_MIN );
 	assert( numComponents <= GEN_COMPONENT_COUNT_MAX );
 
@@ -336,7 +336,7 @@ void Gen_VectorDistance( const genType_t type, const uint32_t numComponents, std
 	}
 }
 
-void Gen_VectorPack( const genType_t type, const uint32_t numComponents, std::string& outHeader, std::string& outInl ) {
+void Gen_VectorPack( const genType_t type, const u32 numComponents, std::string& outHeader, std::string& outInl ) {
 	assert( numComponents >= GEN_COMPONENT_COUNT_MIN );
 	assert( numComponents <= GEN_COMPONENT_COUNT_MAX );
 
@@ -348,7 +348,7 @@ void Gen_VectorPack( const genType_t type, const uint32_t numComponents, std::st
 		return;
 	}
 
-	uint32_t shiftVals[] = {
+	u32 shiftVals[] = {
 		24, 16, 8, 0
 	};
 
@@ -364,7 +364,7 @@ void Gen_VectorPack( const genType_t type, const uint32_t numComponents, std::st
 	outInl += memberTypeString + " pack( const " + fullTypeName + "& vec )\n";
 	outInl += "{\n";
 	outInl += "\treturn ";
-	for ( uint32_t i = 0; i < numComponents; i++ ) {
+	for ( u32 i = 0; i < numComponents; i++ ) {
 		outInl += std::string( "( vec." ) + GEN_COMPONENT_NAMES_VECTOR[i] + " << " + std::to_string( shiftVals[i] ) + " )";
 
 		if ( i != numComponents - 1 ) {
@@ -376,7 +376,7 @@ void Gen_VectorPack( const genType_t type, const uint32_t numComponents, std::st
 	outInl += "\n";
 }
 
-void Gen_VectorUnpack( const genType_t type, const uint32_t numComponents, std::string& outHeader, std::string& outInl ) {
+void Gen_VectorUnpack( const genType_t type, const u32 numComponents, std::string& outHeader, std::string& outInl ) {
 	assert( numComponents >= GEN_COMPONENT_COUNT_MIN );
 	assert( numComponents <= GEN_COMPONENT_COUNT_MAX );
 
@@ -388,7 +388,7 @@ void Gen_VectorUnpack( const genType_t type, const uint32_t numComponents, std::
 		return;
 	}
 
-	uint32_t shiftVals[] = {
+	u32 shiftVals[] = {
 		24, 16, 8, 0
 	};
 
@@ -404,7 +404,7 @@ void Gen_VectorUnpack( const genType_t type, const uint32_t numComponents, std::
 	outInl += fullTypeName + " unpack( const " + memberTypeString + " x )\n";
 	outInl += "{\n";
 	outInl += "\treturn " + fullTypeName + "(\n";
-	for ( uint32_t i = 0; i < numComponents; i++ ) {
+	for ( u32 i = 0; i < numComponents; i++ ) {
 		outInl += "\t\t( x >> " + std::to_string( shiftVals[i] ) + " ) & 0xFF";
 
 		if ( i != numComponents - 1 ) {

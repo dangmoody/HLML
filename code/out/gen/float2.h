@@ -29,6 +29,7 @@ along with hlml.  If not, see <http://www.gnu.org/licenses/>.
 #include "bool2.h"
 
 #include <stdint.h>
+#include "../hlml_types.h"
 
 struct float3;
 struct float4;

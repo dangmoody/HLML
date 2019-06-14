@@ -37,15 +37,15 @@ along with hlml.  If not, see <http://www.gnu.org/licenses/>.
 
 bool3::bool3()
 {
-	memset( data, 0, 3 * sizeof( bool ) );
+	memset( data, 0, 3 * sizeof( bool32_t ) );
 }
 
-bool3::bool3( const bool x )
+bool3::bool3( const bool32_t x )
 {
 	this->x = this->y = this->z = x;
 }
 
-bool3::bool3( const bool x, const bool y, const bool z )
+bool3::bool3( const bool32_t x, const bool32_t y, const bool32_t z )
 {
 	this->x = x;
 	this->y = y;
@@ -85,13 +85,13 @@ bool3 bool3::operator=( const bool4& rhs )
 	return *this;
 }
 
-const bool& bool3::operator[]( const uint32_t index ) const
+const bool32_t& bool3::operator[]( const uint32_t index ) const
 {
 	assert( index < 3 );
 	return data[index];
 }
 
-bool& bool3::operator[]( const uint32_t index )
+bool32_t& bool3::operator[]( const uint32_t index )
 {
 	assert( index < 3 );
 	return data[index];
