@@ -2,6 +2,8 @@
 
 #include "gen_common.h"
 
+#include "string_builder.h"
+
 class GeneratorMatrix {
 public:
 					GeneratorMatrix() {}
@@ -15,21 +17,19 @@ public:
 #endif
 
 private:
-	std::string		m_codeHeader;
-	std::string		m_codeInl;
-
-	std::string		m_fullTypeName;
-	std::string		m_transposedTypeName;
-
-	std::string		m_typeString;
-	std::string		m_memberTypeString;
-
-	std::string		m_vectorMemberTypeString;
-
-	std::string		m_numRowsStr, m_numColsStr;
+	stringBuilder_t	m_codeHeader;
+	stringBuilder_t	m_codeInl;
 
 	genType_t		m_type;
-	u32		m_numRows, m_numCols;
+	u32				m_numRows, m_numCols;
+
+	char			m_fullTypeName[16];
+	char			m_transposedTypeName[16];
+
+	char			m_vectorMemberTypeString[16];
+
+	const char*		m_typeString;
+	const char*		m_memberTypeString;
 
 private:
 	void			GenerateConstructors();
@@ -37,15 +37,15 @@ private:
 	void			GenerateOperatorsArray();
 	void			GenerateOperatorsEquality();
 
-	std::string		GetDocStruct() const;
-	std::string		GetDocCtorDefault() const;
-	std::string		GetDocCtorDiagonalScalar() const;
-	std::string		GetDocCtorDiagonalVector() const;
-	std::string		GetDocCtorRow() const;
-	std::string		GetDocCtorRowArray() const;
-	std::string		GetDocCtorRowsAndCols() const;
-	std::string		GetDocCtorCopy() const;
+	void			GenerateDocStruct();
+	void			GenerateDocCtorDefault();
+	void			GenerateDocCtorDiagonalScalar();
+	void			GenerateDocCtorDiagonalVector();
+	void			GenerateDocCtorRow();
+	void			GenerateDocCtorRowArray();
+	void			GenerateDocCtorRowsAndCols();
+	void			GenerateDocCtorCopy();
 
-	std::string		GetDocOperatorAssignment() const;
-	std::string		GetDocOperatorArray() const;
+	void			GenerateDocOperatorAssignment();
+	void			GenerateDocOperatorArray();
 };

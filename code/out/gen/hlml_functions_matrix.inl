@@ -25,13 +25,13 @@ along with hlml.  If not, see <http://www.gnu.org/licenses/>.
 // GENERATED FILE.  DO NOT EDIT.
 
 #include "hlml_functions_vector.h"
-#include "hlml_operators_matrix.h"
+#include "hlml_functions_matrix.h"
 
 // bool2x2
 void identity( bool2x2& mat )
 {
-	mat[0] = { true, false };
-	mat[1] = { false, true };
+	mat[row] = { true, false };
+	mat[row] = { false, true };
 }
 
 bool2x2 transpose( const bool2x2& mat )
@@ -46,8 +46,8 @@ bool2x2 transpose( const bool2x2& mat )
 // bool2x3
 void identity( bool2x3& mat )
 {
-	mat[0] = { true, false, false };
-	mat[1] = { false, true, false };
+	mat[row] = { true, false, false };
+	mat[row] = { false, true, false };
 }
 
 bool3x2 transpose( const bool2x3& mat )
@@ -63,8 +63,8 @@ bool3x2 transpose( const bool2x3& mat )
 // bool2x4
 void identity( bool2x4& mat )
 {
-	mat[0] = { true, false, false, false };
-	mat[1] = { false, true, false, false };
+	mat[row] = { true, false, false, false };
+	mat[row] = { false, true, false, false };
 }
 
 bool4x2 transpose( const bool2x4& mat )
@@ -81,9 +81,9 @@ bool4x2 transpose( const bool2x4& mat )
 // bool3x2
 void identity( bool3x2& mat )
 {
-	mat[0] = { true, false };
-	mat[1] = { false, true };
-	mat[2] = { false, false };
+	mat[row] = { true, false };
+	mat[row] = { false, true };
+	mat[row] = { false, false };
 }
 
 bool2x3 transpose( const bool3x2& mat )
@@ -98,9 +98,9 @@ bool2x3 transpose( const bool3x2& mat )
 // bool3x3
 void identity( bool3x3& mat )
 {
-	mat[0] = { true, false, false };
-	mat[1] = { false, true, false };
-	mat[2] = { false, false, true };
+	mat[row] = { true, false, false };
+	mat[row] = { false, true, false };
+	mat[row] = { false, false, true };
 }
 
 bool3x3 transpose( const bool3x3& mat )
@@ -116,9 +116,9 @@ bool3x3 transpose( const bool3x3& mat )
 // bool3x4
 void identity( bool3x4& mat )
 {
-	mat[0] = { true, false, false, false };
-	mat[1] = { false, true, false, false };
-	mat[2] = { false, false, true, false };
+	mat[row] = { true, false, false, false };
+	mat[row] = { false, true, false, false };
+	mat[row] = { false, false, true, false };
 }
 
 bool4x3 transpose( const bool3x4& mat )
@@ -135,10 +135,10 @@ bool4x3 transpose( const bool3x4& mat )
 // bool4x2
 void identity( bool4x2& mat )
 {
-	mat[0] = { true, false };
-	mat[1] = { false, true };
-	mat[2] = { false, false };
-	mat[3] = { false, false };
+	mat[row] = { true, false };
+	mat[row] = { false, true };
+	mat[row] = { false, false };
+	mat[row] = { false, false };
 }
 
 bool2x4 transpose( const bool4x2& mat )
@@ -153,10 +153,10 @@ bool2x4 transpose( const bool4x2& mat )
 // bool4x3
 void identity( bool4x3& mat )
 {
-	mat[0] = { true, false, false };
-	mat[1] = { false, true, false };
-	mat[2] = { false, false, true };
-	mat[3] = { false, false, false };
+	mat[row] = { true, false, false };
+	mat[row] = { false, true, false };
+	mat[row] = { false, false, true };
+	mat[row] = { false, false, false };
 }
 
 bool3x4 transpose( const bool4x3& mat )
@@ -172,10 +172,10 @@ bool3x4 transpose( const bool4x3& mat )
 // bool4x4
 void identity( bool4x4& mat )
 {
-	mat[0] = { true, false, false, false };
-	mat[1] = { false, true, false, false };
-	mat[2] = { false, false, true, false };
-	mat[3] = { false, false, false, true };
+	mat[row] = { true, false, false, false };
+	mat[row] = { false, true, false, false };
+	mat[row] = { false, false, true, false };
+	mat[row] = { false, false, false, true };
 }
 
 bool4x4 transpose( const bool4x4& mat )
@@ -192,8 +192,8 @@ bool4x4 transpose( const bool4x4& mat )
 // int2x2
 void identity( int2x2& mat )
 {
-	mat[0] = { 1, 0 };
-	mat[1] = { 0, 1 };
+	mat[row] = { 1, 0 };
+	mat[row] = { 0, 1 };
 }
 
 int2x2 transpose( const int2x2& mat )
@@ -229,8 +229,8 @@ int2x2 scale( const int2x2& mat, const int3& vec )
 // int2x3
 void identity( int2x3& mat )
 {
-	mat[0] = { 1, 0, 0 };
-	mat[1] = { 0, 1, 0 };
+	mat[row] = { 1, 0, 0 };
+	mat[row] = { 0, 1, 0 };
 }
 
 int3x2 transpose( const int2x3& mat )
@@ -264,8 +264,8 @@ int2x3 scale( const int2x3& mat, const int3& vec )
 // int2x4
 void identity( int2x4& mat )
 {
-	mat[0] = { 1, 0, 0, 0 };
-	mat[1] = { 0, 1, 0, 0 };
+	mat[row] = { 1, 0, 0, 0 };
+	mat[row] = { 0, 1, 0, 0 };
 }
 
 int4x2 transpose( const int2x4& mat )
@@ -302,9 +302,9 @@ int2x4 scale( const int2x4& mat, const int3& vec )
 // int3x2
 void identity( int3x2& mat )
 {
-	mat[0] = { 1, 0 };
-	mat[1] = { 0, 1 };
-	mat[2] = { 0, 0 };
+	mat[row] = { 1, 0 };
+	mat[row] = { 0, 1 };
+	mat[row] = { 0, 0 };
 }
 
 int2x3 transpose( const int3x2& mat )
@@ -319,9 +319,9 @@ int2x3 transpose( const int3x2& mat )
 // int3x3
 void identity( int3x3& mat )
 {
-	mat[0] = { 1, 0, 0 };
-	mat[1] = { 0, 1, 0 };
-	mat[2] = { 0, 0, 1 };
+	mat[row] = { 1, 0, 0 };
+	mat[row] = { 0, 1, 0 };
+	mat[row] = { 0, 0, 1 };
 }
 
 int3x3 transpose( const int3x3& mat )
@@ -376,9 +376,9 @@ int3x3 scale( const int3x3& mat, const int3& vec )
 // int3x4
 void identity( int3x4& mat )
 {
-	mat[0] = { 1, 0, 0, 0 };
-	mat[1] = { 0, 1, 0, 0 };
-	mat[2] = { 0, 0, 1, 0 };
+	mat[row] = { 1, 0, 0, 0 };
+	mat[row] = { 0, 1, 0, 0 };
+	mat[row] = { 0, 0, 1, 0 };
 }
 
 int4x3 transpose( const int3x4& mat )
@@ -429,10 +429,10 @@ int3x4 scale( const int3x4& mat, const int3& vec )
 // int4x2
 void identity( int4x2& mat )
 {
-	mat[0] = { 1, 0 };
-	mat[1] = { 0, 1 };
-	mat[2] = { 0, 0 };
-	mat[3] = { 0, 0 };
+	mat[row] = { 1, 0 };
+	mat[row] = { 0, 1 };
+	mat[row] = { 0, 0 };
+	mat[row] = { 0, 0 };
 }
 
 int2x4 transpose( const int4x2& mat )
@@ -447,10 +447,10 @@ int2x4 transpose( const int4x2& mat )
 // int4x3
 void identity( int4x3& mat )
 {
-	mat[0] = { 1, 0, 0 };
-	mat[1] = { 0, 1, 0 };
-	mat[2] = { 0, 0, 1 };
-	mat[3] = { 0, 0, 0 };
+	mat[row] = { 1, 0, 0 };
+	mat[row] = { 0, 1, 0 };
+	mat[row] = { 0, 0, 1 };
+	mat[row] = { 0, 0, 0 };
 }
 
 int3x4 transpose( const int4x3& mat )
@@ -492,10 +492,10 @@ int4x3 scale( const int4x3& mat, const int3& vec )
 // int4x4
 void identity( int4x4& mat )
 {
-	mat[0] = { 1, 0, 0, 0 };
-	mat[1] = { 0, 1, 0, 0 };
-	mat[2] = { 0, 0, 1, 0 };
-	mat[3] = { 0, 0, 0, 1 };
+	mat[row] = { 1, 0, 0, 0 };
+	mat[row] = { 0, 1, 0, 0 };
+	mat[row] = { 0, 0, 1, 0 };
+	mat[row] = { 0, 0, 0, 1 };
 }
 
 int4x4 transpose( const int4x4& mat )
@@ -574,8 +574,8 @@ int4x4 scale( const int4x4& mat, const int3& vec )
 // uint2x2
 void identity( uint2x2& mat )
 {
-	mat[0] = { 1U, 0U };
-	mat[1] = { 0U, 1U };
+	mat[row] = { 1, 0 };
+	mat[row] = { 0, 1 };
 }
 
 uint2x2 transpose( const uint2x2& mat )
@@ -606,8 +606,8 @@ uint2x2 scale( const uint2x2& mat, const uint3& vec )
 // uint2x3
 void identity( uint2x3& mat )
 {
-	mat[0] = { 1U, 0U, 0U };
-	mat[1] = { 0U, 1U, 0U };
+	mat[row] = { 1, 0, 0 };
+	mat[row] = { 0, 1, 0 };
 }
 
 uint3x2 transpose( const uint2x3& mat )
@@ -641,8 +641,8 @@ uint2x3 scale( const uint2x3& mat, const uint3& vec )
 // uint2x4
 void identity( uint2x4& mat )
 {
-	mat[0] = { 1U, 0U, 0U, 0U };
-	mat[1] = { 0U, 1U, 0U, 0U };
+	mat[row] = { 1, 0, 0, 0 };
+	mat[row] = { 0, 1, 0, 0 };
 }
 
 uint4x2 transpose( const uint2x4& mat )
@@ -679,9 +679,9 @@ uint2x4 scale( const uint2x4& mat, const uint3& vec )
 // uint3x2
 void identity( uint3x2& mat )
 {
-	mat[0] = { 1U, 0U };
-	mat[1] = { 0U, 1U };
-	mat[2] = { 0U, 0U };
+	mat[row] = { 1, 0 };
+	mat[row] = { 0, 1 };
+	mat[row] = { 0, 0 };
 }
 
 uint2x3 transpose( const uint3x2& mat )
@@ -696,9 +696,9 @@ uint2x3 transpose( const uint3x2& mat )
 // uint3x3
 void identity( uint3x3& mat )
 {
-	mat[0] = { 1U, 0U, 0U };
-	mat[1] = { 0U, 1U, 0U };
-	mat[2] = { 0U, 0U, 1U };
+	mat[row] = { 1, 0, 0 };
+	mat[row] = { 0, 1, 0 };
+	mat[row] = { 0, 0, 1 };
 }
 
 uint3x3 transpose( const uint3x3& mat )
@@ -745,9 +745,9 @@ uint3x3 scale( const uint3x3& mat, const uint3& vec )
 // uint3x4
 void identity( uint3x4& mat )
 {
-	mat[0] = { 1U, 0U, 0U, 0U };
-	mat[1] = { 0U, 1U, 0U, 0U };
-	mat[2] = { 0U, 0U, 1U, 0U };
+	mat[row] = { 1, 0, 0, 0 };
+	mat[row] = { 0, 1, 0, 0 };
+	mat[row] = { 0, 0, 1, 0 };
 }
 
 uint4x3 transpose( const uint3x4& mat )
@@ -798,10 +798,10 @@ uint3x4 scale( const uint3x4& mat, const uint3& vec )
 // uint4x2
 void identity( uint4x2& mat )
 {
-	mat[0] = { 1U, 0U };
-	mat[1] = { 0U, 1U };
-	mat[2] = { 0U, 0U };
-	mat[3] = { 0U, 0U };
+	mat[row] = { 1, 0 };
+	mat[row] = { 0, 1 };
+	mat[row] = { 0, 0 };
+	mat[row] = { 0, 0 };
 }
 
 uint2x4 transpose( const uint4x2& mat )
@@ -816,10 +816,10 @@ uint2x4 transpose( const uint4x2& mat )
 // uint4x3
 void identity( uint4x3& mat )
 {
-	mat[0] = { 1U, 0U, 0U };
-	mat[1] = { 0U, 1U, 0U };
-	mat[2] = { 0U, 0U, 1U };
-	mat[3] = { 0U, 0U, 0U };
+	mat[row] = { 1, 0, 0 };
+	mat[row] = { 0, 1, 0 };
+	mat[row] = { 0, 0, 1 };
+	mat[row] = { 0, 0, 0 };
 }
 
 uint3x4 transpose( const uint4x3& mat )
@@ -861,10 +861,10 @@ uint4x3 scale( const uint4x3& mat, const uint3& vec )
 // uint4x4
 void identity( uint4x4& mat )
 {
-	mat[0] = { 1U, 0U, 0U, 0U };
-	mat[1] = { 0U, 1U, 0U, 0U };
-	mat[2] = { 0U, 0U, 1U, 0U };
-	mat[3] = { 0U, 0U, 0U, 1U };
+	mat[row] = { 1, 0, 0, 0 };
+	mat[row] = { 0, 1, 0, 0 };
+	mat[row] = { 0, 0, 1, 0 };
+	mat[row] = { 0, 0, 0, 1 };
 }
 
 uint4x4 transpose( const uint4x4& mat )
@@ -921,8 +921,8 @@ uint4x4 scale( const uint4x4& mat, const uint3& vec )
 // float2x2
 void identity( float2x2& mat )
 {
-	mat[0] = { 1.000000f, 0.000000f };
-	mat[1] = { 0.000000f, 1.000000f };
+	mat[row] = { 1.0f, 0.0f };
+	mat[row] = { 0.0f, 1.0f };
 }
 
 float2x2 transpose( const float2x2& mat )
@@ -935,7 +935,7 @@ float2x2 transpose( const float2x2& mat )
 
 float2x2 inverse( const float2x2& mat )
 {
-	const float invdet = 1.000000f / determinant( mat );
+	const float invdet = 1.000000 / determinant( mat );
 	return float2x2(
 		 mat[1][1] * invdet, -mat[0][1] * invdet,
 		-mat[1][0] * invdet,  mat[0][0] * invdet
@@ -967,8 +967,8 @@ float2x2 scale( const float2x2& mat, const float3& vec )
 // float2x3
 void identity( float2x3& mat )
 {
-	mat[0] = { 1.000000f, 0.000000f, 0.000000f };
-	mat[1] = { 0.000000f, 1.000000f, 0.000000f };
+	mat[row] = { 1.0f, 0.0f, 0.0f };
+	mat[row] = { 0.0f, 1.0f, 0.0f };
 }
 
 float3x2 transpose( const float2x3& mat )
@@ -1002,8 +1002,8 @@ float2x3 scale( const float2x3& mat, const float3& vec )
 // float2x4
 void identity( float2x4& mat )
 {
-	mat[0] = { 1.000000f, 0.000000f, 0.000000f, 0.000000f };
-	mat[1] = { 0.000000f, 1.000000f, 0.000000f, 0.000000f };
+	mat[row] = { 1.0f, 0.0f, 0.0f, 0.0f };
+	mat[row] = { 0.0f, 1.0f, 0.0f, 0.0f };
 }
 
 float4x2 transpose( const float2x4& mat )
@@ -1040,9 +1040,9 @@ float2x4 scale( const float2x4& mat, const float3& vec )
 // float3x2
 void identity( float3x2& mat )
 {
-	mat[0] = { 1.000000f, 0.000000f };
-	mat[1] = { 0.000000f, 1.000000f };
-	mat[2] = { 0.000000f, 0.000000f };
+	mat[row] = { 1.0f, 0.0f };
+	mat[row] = { 0.0f, 1.0f };
+	mat[row] = { 0.0f, 0.0f };
 }
 
 float2x3 transpose( const float3x2& mat )
@@ -1057,9 +1057,9 @@ float2x3 transpose( const float3x2& mat )
 // float3x3
 void identity( float3x3& mat )
 {
-	mat[0] = { 1.000000f, 0.000000f, 0.000000f };
-	mat[1] = { 0.000000f, 1.000000f, 0.000000f };
-	mat[2] = { 0.000000f, 0.000000f, 1.000000f };
+	mat[row] = { 1.0f, 0.0f, 0.0f };
+	mat[row] = { 0.0f, 1.0f, 0.0f };
+	mat[row] = { 0.0f, 0.0f, 1.0f };
 }
 
 float3x3 transpose( const float3x3& mat )
@@ -1073,7 +1073,7 @@ float3x3 transpose( const float3x3& mat )
 
 float3x3 inverse( const float3x3& mat )
 {
-	const float invdet = 1.000000f / determinant( mat );
+	const float invdet = 1.000000 / determinant( mat );
 	return float3x3(
 		 ( mat[1][1] * mat[2][2] - mat[1][2] * mat[2][1] ) * invdet,
 		-( mat[0][1] * mat[2][2] - mat[0][2] * mat[2][1] ) * invdet,
@@ -1144,9 +1144,9 @@ float3x3 scale( const float3x3& mat, const float3& vec )
 // float3x4
 void identity( float3x4& mat )
 {
-	mat[0] = { 1.000000f, 0.000000f, 0.000000f, 0.000000f };
-	mat[1] = { 0.000000f, 1.000000f, 0.000000f, 0.000000f };
-	mat[2] = { 0.000000f, 0.000000f, 1.000000f, 0.000000f };
+	mat[row] = { 1.0f, 0.0f, 0.0f, 0.0f };
+	mat[row] = { 0.0f, 1.0f, 0.0f, 0.0f };
+	mat[row] = { 0.0f, 0.0f, 1.0f, 0.0f };
 }
 
 float4x3 transpose( const float3x4& mat )
@@ -1197,10 +1197,10 @@ float3x4 scale( const float3x4& mat, const float3& vec )
 // float4x2
 void identity( float4x2& mat )
 {
-	mat[0] = { 1.000000f, 0.000000f };
-	mat[1] = { 0.000000f, 1.000000f };
-	mat[2] = { 0.000000f, 0.000000f };
-	mat[3] = { 0.000000f, 0.000000f };
+	mat[row] = { 1.0f, 0.0f };
+	mat[row] = { 0.0f, 1.0f };
+	mat[row] = { 0.0f, 0.0f };
+	mat[row] = { 0.0f, 0.0f };
 }
 
 float2x4 transpose( const float4x2& mat )
@@ -1215,10 +1215,10 @@ float2x4 transpose( const float4x2& mat )
 // float4x3
 void identity( float4x3& mat )
 {
-	mat[0] = { 1.000000f, 0.000000f, 0.000000f };
-	mat[1] = { 0.000000f, 1.000000f, 0.000000f };
-	mat[2] = { 0.000000f, 0.000000f, 1.000000f };
-	mat[3] = { 0.000000f, 0.000000f, 0.000000f };
+	mat[row] = { 1.0f, 0.0f, 0.0f };
+	mat[row] = { 0.0f, 1.0f, 0.0f };
+	mat[row] = { 0.0f, 0.0f, 1.0f };
+	mat[row] = { 0.0f, 0.0f, 0.0f };
 }
 
 float3x4 transpose( const float4x3& mat )
@@ -1260,10 +1260,10 @@ float4x3 scale( const float4x3& mat, const float3& vec )
 // float4x4
 void identity( float4x4& mat )
 {
-	mat[0] = { 1.000000f, 0.000000f, 0.000000f, 0.000000f };
-	mat[1] = { 0.000000f, 1.000000f, 0.000000f, 0.000000f };
-	mat[2] = { 0.000000f, 0.000000f, 1.000000f, 0.000000f };
-	mat[3] = { 0.000000f, 0.000000f, 0.000000f, 1.000000f };
+	mat[row] = { 1.0f, 0.0f, 0.0f, 0.0f };
+	mat[row] = { 0.0f, 1.0f, 0.0f, 0.0f };
+	mat[row] = { 0.0f, 0.0f, 1.0f, 0.0f };
+	mat[row] = { 0.0f, 0.0f, 0.0f, 1.0f };
 }
 
 float4x4 transpose( const float4x4& mat )
@@ -1335,7 +1335,7 @@ float4x4 inverse( const float4x4& mat )
 
 	const float dot1 = ( dot0.x + dot0.y ) + ( dot0.z + dot0.w );
 
-	const float invdet = 1.000000f / dot1;
+	const float invdet = 1.000000 / dot1;
 
 	return result * invdet;
 }
@@ -1378,7 +1378,7 @@ float4x4 rotate( const float4x4& mat, const float rad, const float3& axis )
 	const float s = sinf( rad );
 
 	float3 u = normalized( axis );
-	float ic = 1.000000f - c;
+	float ic = 1.000000 - c;
 
 	float4x4 rotation = mat;
 	rotation[0][0] = c + u.x * ic;
@@ -1436,10 +1436,10 @@ inline float4x4 ortho_lh_zo( const float left, const float right, const float to
 	const float far_minus_near = zfar - znear;
 
 	return float4x4(
-		2.000000f / right_minus_left, 0.000000f, 0.000000f, -right_plus_left / right_minus_left,
-		0.000000f, 2.000000f / top_minus_bottom, 0.000000f, -top_plus_bottom / top_minus_bottom,
-		0.000000f, 0.000000f, 1.000000f / far_minus_near, -znear / far_minus_near,
-		0.000000f, 0.000000f, 0.000000f, 1.000000f
+		2.0f / right_minus_left, 0.0f, 0.0f, -right_plus_left / right_minus_left,
+		0.0f, 2.0f / top_minus_bottom, 0.0f, -top_plus_bottom / top_minus_bottom,
+		0.0f, 0.0f, 1.0f / far_minus_near, -znear / far_minus_near,
+		0.0f, 0.0f, 0.0f, 1.0f
 	);
 }
 
@@ -1454,10 +1454,10 @@ inline float4x4 ortho_lh_no( const float left, const float right, const float to
 	const float far_plus_near = zfar + znear;
 
 	return float4x4(
-		2.000000f / right_minus_left, 0.000000f, 0.000000f, -right_plus_left / right_minus_left,
-		0.000000f, 2.000000f / top_minus_bottom, 0.000000f, -top_plus_bottom / top_minus_bottom,
-		0.000000f, 0.000000f, 2.000000f / far_minus_near, -far_plus_near / far_minus_near,
-		0.000000f, 0.000000f, 0.000000f, 1.000000f
+		0.000000 / right_minus_left, 0.000000, 0.000000, -right_plus_left / right_minus_left,
+		0.0f, 2.0f / top_minus_bottom, 0.0f, -top_plus_bottom / top_minus_bottom,
+		0.0f, 0.0f, 2.0f / far_minus_near, -far_plus_near / far_minus_near,
+		0.0f, 0.0f, 0.0f, 1.0f
 	);
 }
 
@@ -1471,10 +1471,10 @@ inline float4x4 ortho_rh_zo( const float left, const float right, const float to
 	const float far_minus_near = zfar - znear;
 
 	return float4x4(
-		2.000000f / right_minus_left, 0.000000f, 0.000000f, -right_plus_left / right_minus_left,
-		0.000000f, 2.000000f / top_minus_bottom, 0.000000f, -top_plus_bottom / top_minus_bottom,
-		0.000000f, 0.000000f, -1.000000f / far_minus_near, -znear / far_minus_near,
-		0.000000f, 0.000000f, 0.000000f, 1.000000f
+		2.0f / right_minus_left, 0.0f, 0.0f, -right_plus_left / right_minus_left,
+		0.0f, 2.0f / top_minus_bottom, 0.0f, -top_plus_bottom / top_minus_bottom,
+		0.0f, 0.0f, -1.0f / far_minus_near, -znear / far_minus_near,
+		0.0f, 0.0f, 0.0f, 1.0f
 	);
 }
 
@@ -1489,10 +1489,10 @@ inline float4x4 ortho_rh_no( const float left, const float right, const float to
 	const float far_plus_near = zfar + znear;
 
 	return float4x4(
-		2.000000f / right_minus_left, 0.000000f, 0.000000f, -right_plus_left / right_minus_left,
-		0.000000f, 2.000000f / top_minus_bottom, 0.000000f, -top_plus_bottom / top_minus_bottom,
-		0.000000f, 0.000000f, -2.000000f / far_minus_near, -far_plus_near / far_minus_near,
-		0.000000f, 0.000000f, 0.000000f, 1.000000f
+		2.0f / right_minus_left, 0.0f, 0.0f, -right_plus_left / right_minus_left,
+		0.0f, 2.0f / top_minus_bottom, 0.0f, -top_plus_bottom / top_minus_bottom,
+		0.0f, 0.0f, -2.0f / far_minus_near, -far_plus_near / far_minus_near,
+		0.0f, 0.0f, 0.0f, 0.0f
 	);
 }
 
@@ -1500,13 +1500,13 @@ float4x4 perspective_lh_zo( const float fovdeg, const float aspect, const float 
 {
 	// left-handed, clip space range: zero to one
 	const float far_minus_near = zfar - znear;
-	const float tan_half_fov = tanf( fovdeg * 0.500000f );
+	const float tan_half_fov = tanf( fovdeg * 0.5f );
 
 	return float4x4(
-		1.000000f / ( aspect * tan_half_fov ), 0.000000f, 0.000000f, 0.000000f,
-		0.000000f, 1.000000f / tan_half_fov, 0.000000f, 0.000000f,
-		0.000000f, 0.000000f, zfar / far_minus_near, -( zfar * znear ) / far_minus_near,
-		0.000000f, 0.000000f, 1.000000f, 0.000000f
+		1.0f / ( aspect * tan_half_fov ), 0.0f, 0.0f, 0.0f,
+		0.0f, 1.0f / tan_half_fov, 0.0f, 0.0f,
+		0.0f, 0.0f, zfar / far_minus_near, -( zfar * znear ) / far_minus_near,
+		0.0f, 0.0f, 1.0f, 0.0f
 	);
 }
 
@@ -1515,26 +1515,26 @@ float4x4 perspective_lh_no( const float fovdeg, const float aspect, const float 
 	// left-handed, clip space range: minus-one to one
 	const float far_minus_near = zfar - znear;
 	const float far_plus_near = zfar + znear;
-	const float tan_half_fov = tanf( fovdeg * 0.500000f );
+	const float tan_half_fov = tanf( fovdeg * 0.5f );
 
 	return float4x4(
-		1.000000f / ( aspect * tan_half_fov ), 0.000000f, 0.000000f, 0.000000f,
-		0.000000f, 1.000000f / tan_half_fov, 0.000000f, 0.000000f,
-		0.000000f, 0.000000f, far_plus_near / far_minus_near, -( 2.000000f * zfar * znear ) / far_minus_near,
-		0.000000f, 0.000000f, 1.000000f, 0.000000f
+		1.0f / ( aspect * tan_half_fov ), 0.0f, 0.0f, 0.0f,
+		0.0f, 1.0f / tan_half_fov, 0.0f, 0.0f,
+		0.0f, 0.0f, far_plus_near / far_minus_near, -( 2.0f * zfar * znear ) / far_minus_near,
+		0.0f, 0.0f, 1.0f, 0.0f
 	);
 }
 
 float4x4 perspective_rh_zo( const float fovdeg, const float aspect, const float znear, const float zfar )
 {
 	// right-handed, clip space range: zero to one
-	const float tan_half_fov = tanf( fovdeg * 0.500000f );
+	const float tan_half_fov = tanf( fovdeg * 0.5f );
 
 	return float4x4(
-		1.000000f / ( aspect * tan_half_fov ), 0.000000f, 0.000000f, 0.000000f,
-		0.000000f, 1.000000f / tan_half_fov, 0.000000f, 0.000000f,
-		0.000000f, 0.000000f, zfar / ( znear - zfar ), -( zfar * znear ) / ( zfar - znear ),
-		0.000000f, 0.000000f, -1.000000f, 0.000000f
+		1.0f / ( aspect * tan_half_fov ), 0.0f, 0.0f, 0.0f,
+		0.0f, 1.0f / tan_half_fov, 0.0f, 0.0f,
+		0.0f, 0.0f, zfar / ( znear - zfar ), -( zfar * znear ) / ( zfar - znear ),
+		0.0f, 0.0f, -1.0f, 0.0f
 	);
 }
 
@@ -1543,13 +1543,13 @@ float4x4 perspective_rh_no( const float fovdeg, const float aspect, const float 
 	// right-handed, clip space range: minus-one to one
 	const float far_minus_near = zfar - znear;
 	const float far_plus_near = zfar + znear;
-	const float tan_half_fov = tanf( fovdeg * 0.500000f );
+	const float tan_half_fov = tanf( fovdeg * 0.5f );
 
 	return float4x4(
-		1.000000f / ( aspect * tan_half_fov ), 0.000000f, 0.000000f, 0.000000f,
-		0.000000f, 1.000000f / tan_half_fov, 0.000000f, 0.000000f,
-		0.000000f, 0.000000f, -far_plus_near / far_minus_near, -( 2.000000f * zfar * znear ) / far_minus_near,
-		0.000000f, 0.000000f, -1.000000f, 0.000000f
+		1.0f / ( aspect * tan_half_fov ), 0.0f, 0.0f, 0.0f,
+		0.0f, 1.0f / tan_half_fov, 0.0f, 0.0f,
+		0.0f, 0.0f, -far_plus_near / far_minus_near, -( 2.0f * zfar * znear ) / far_minus_near,
+		0.0f, 0.0f, -1.0f, 0.0f
 	);
 }
 
@@ -1564,7 +1564,7 @@ float4x4 lookat_lh( const float3& eye, const float3& target, const float3& up )
 		right.x,   right.y,   right.z,   -dot( right, eye ),
 		up1.x,     up1.y,     up1.z,     -dot( up1, eye ),
 		forward.x, forward.y, forward.z, -dot( forward, eye ),
-		0.000000f, 0.000000f, 0.000000f, 1.000000f
+		0.0f, 0.0f, 0.0f, 1.0f
 	);
 }
 
@@ -1579,7 +1579,7 @@ float4x4 lookat_rh( const float3& eye, const float3& target, const float3& up )
 		 right.x,    right.y,    right.z,   -dot( right, eye ),
 		 up1.x,      up1.y,      up1.z,     -dot( up1, eye ),
 		-forward.x, -forward.y, -forward.z,  dot( forward, eye ),
-		0.000000f, 0.000000f, 0.000000f, 1.000000f
+		0.0f, 0.0f, 0.0f, 1.0f
 	);
 }
 
@@ -1587,8 +1587,8 @@ float4x4 lookat_rh( const float3& eye, const float3& target, const float3& up )
 // double2x2
 void identity( double2x2& mat )
 {
-	mat[0] = { 1.000000, 0.000000 };
-	mat[1] = { 0.000000, 1.000000 };
+	mat[row] = { 1.0, 0.0 };
+	mat[row] = { 0.0, 1.0 };
 }
 
 double2x2 transpose( const double2x2& mat )
@@ -1633,8 +1633,8 @@ double2x2 scale( const double2x2& mat, const double3& vec )
 // double2x3
 void identity( double2x3& mat )
 {
-	mat[0] = { 1.000000, 0.000000, 0.000000 };
-	mat[1] = { 0.000000, 1.000000, 0.000000 };
+	mat[row] = { 1.0, 0.0, 0.0 };
+	mat[row] = { 0.0, 1.0, 0.0 };
 }
 
 double3x2 transpose( const double2x3& mat )
@@ -1668,8 +1668,8 @@ double2x3 scale( const double2x3& mat, const double3& vec )
 // double2x4
 void identity( double2x4& mat )
 {
-	mat[0] = { 1.000000, 0.000000, 0.000000, 0.000000 };
-	mat[1] = { 0.000000, 1.000000, 0.000000, 0.000000 };
+	mat[row] = { 1.0, 0.0, 0.0, 0.0 };
+	mat[row] = { 0.0, 1.0, 0.0, 0.0 };
 }
 
 double4x2 transpose( const double2x4& mat )
@@ -1706,9 +1706,9 @@ double2x4 scale( const double2x4& mat, const double3& vec )
 // double3x2
 void identity( double3x2& mat )
 {
-	mat[0] = { 1.000000, 0.000000 };
-	mat[1] = { 0.000000, 1.000000 };
-	mat[2] = { 0.000000, 0.000000 };
+	mat[row] = { 1.0, 0.0 };
+	mat[row] = { 0.0, 1.0 };
+	mat[row] = { 0.0, 0.0 };
 }
 
 double2x3 transpose( const double3x2& mat )
@@ -1723,9 +1723,9 @@ double2x3 transpose( const double3x2& mat )
 // double3x3
 void identity( double3x3& mat )
 {
-	mat[0] = { 1.000000, 0.000000, 0.000000 };
-	mat[1] = { 0.000000, 1.000000, 0.000000 };
-	mat[2] = { 0.000000, 0.000000, 1.000000 };
+	mat[row] = { 1.0, 0.0, 0.0 };
+	mat[row] = { 0.0, 1.0, 0.0 };
+	mat[row] = { 0.0, 0.0, 1.0 };
 }
 
 double3x3 transpose( const double3x3& mat )
@@ -1810,9 +1810,9 @@ double3x3 scale( const double3x3& mat, const double3& vec )
 // double3x4
 void identity( double3x4& mat )
 {
-	mat[0] = { 1.000000, 0.000000, 0.000000, 0.000000 };
-	mat[1] = { 0.000000, 1.000000, 0.000000, 0.000000 };
-	mat[2] = { 0.000000, 0.000000, 1.000000, 0.000000 };
+	mat[row] = { 1.0, 0.0, 0.0, 0.0 };
+	mat[row] = { 0.0, 1.0, 0.0, 0.0 };
+	mat[row] = { 0.0, 0.0, 1.0, 0.0 };
 }
 
 double4x3 transpose( const double3x4& mat )
@@ -1863,10 +1863,10 @@ double3x4 scale( const double3x4& mat, const double3& vec )
 // double4x2
 void identity( double4x2& mat )
 {
-	mat[0] = { 1.000000, 0.000000 };
-	mat[1] = { 0.000000, 1.000000 };
-	mat[2] = { 0.000000, 0.000000 };
-	mat[3] = { 0.000000, 0.000000 };
+	mat[row] = { 1.0, 0.0 };
+	mat[row] = { 0.0, 1.0 };
+	mat[row] = { 0.0, 0.0 };
+	mat[row] = { 0.0, 0.0 };
 }
 
 double2x4 transpose( const double4x2& mat )
@@ -1881,10 +1881,10 @@ double2x4 transpose( const double4x2& mat )
 // double4x3
 void identity( double4x3& mat )
 {
-	mat[0] = { 1.000000, 0.000000, 0.000000 };
-	mat[1] = { 0.000000, 1.000000, 0.000000 };
-	mat[2] = { 0.000000, 0.000000, 1.000000 };
-	mat[3] = { 0.000000, 0.000000, 0.000000 };
+	mat[row] = { 1.0, 0.0, 0.0 };
+	mat[row] = { 0.0, 1.0, 0.0 };
+	mat[row] = { 0.0, 0.0, 1.0 };
+	mat[row] = { 0.0, 0.0, 0.0 };
 }
 
 double3x4 transpose( const double4x3& mat )
@@ -1926,10 +1926,10 @@ double4x3 scale( const double4x3& mat, const double3& vec )
 // double4x4
 void identity( double4x4& mat )
 {
-	mat[0] = { 1.000000, 0.000000, 0.000000, 0.000000 };
-	mat[1] = { 0.000000, 1.000000, 0.000000, 0.000000 };
-	mat[2] = { 0.000000, 0.000000, 1.000000, 0.000000 };
-	mat[3] = { 0.000000, 0.000000, 0.000000, 1.000000 };
+	mat[row] = { 1.0, 0.0, 0.0, 0.0 };
+	mat[row] = { 0.0, 1.0, 0.0, 0.0 };
+	mat[row] = { 0.0, 0.0, 1.0, 0.0 };
+	mat[row] = { 0.0, 0.0, 0.0, 1.0 };
 }
 
 double4x4 transpose( const double4x4& mat )
@@ -2102,10 +2102,10 @@ inline double4x4 ortho_lh_zo( const double left, const double right, const doubl
 	const double far_minus_near = zfar - znear;
 
 	return double4x4(
-		2.000000 / right_minus_left, 0.000000, 0.000000, -right_plus_left / right_minus_left,
-		0.000000, 2.000000 / top_minus_bottom, 0.000000, -top_plus_bottom / top_minus_bottom,
-		0.000000, 0.000000, 1.000000 / far_minus_near, -znear / far_minus_near,
-		0.000000, 0.000000, 0.000000, 1.000000
+		2.0f / right_minus_left, 0.0f, 0.0f, -right_plus_left / right_minus_left,
+		0.0f, 2.0f / top_minus_bottom, 0.0f, -top_plus_bottom / top_minus_bottom,
+		0.0f, 0.0f, 1.0f / far_minus_near, -znear / far_minus_near,
+		0.0f, 0.0f, 0.0f, 1.0f
 	);
 }
 
@@ -2120,10 +2120,10 @@ inline double4x4 ortho_lh_no( const double left, const double right, const doubl
 	const double far_plus_near = zfar + znear;
 
 	return double4x4(
-		2.000000 / right_minus_left, 0.000000, 0.000000, -right_plus_left / right_minus_left,
-		0.000000, 2.000000 / top_minus_bottom, 0.000000, -top_plus_bottom / top_minus_bottom,
-		0.000000, 0.000000, 2.000000 / far_minus_near, -far_plus_near / far_minus_near,
-		0.000000, 0.000000, 0.000000, 1.000000
+		0.000000 / right_minus_left, 0.000000, 0.000000, -right_plus_left / right_minus_left,
+		0.0f, 2.0f / top_minus_bottom, 0.0f, -top_plus_bottom / top_minus_bottom,
+		0.0f, 0.0f, 2.0f / far_minus_near, -far_plus_near / far_minus_near,
+		0.0f, 0.0f, 0.0f, 1.0f
 	);
 }
 
@@ -2137,10 +2137,10 @@ inline double4x4 ortho_rh_zo( const double left, const double right, const doubl
 	const double far_minus_near = zfar - znear;
 
 	return double4x4(
-		2.000000 / right_minus_left, 0.000000, 0.000000, -right_plus_left / right_minus_left,
-		0.000000, 2.000000 / top_minus_bottom, 0.000000, -top_plus_bottom / top_minus_bottom,
-		0.000000, 0.000000, -1.000000 / far_minus_near, -znear / far_minus_near,
-		0.000000, 0.000000, 0.000000, 1.000000
+		2.0f / right_minus_left, 0.0f, 0.0f, -right_plus_left / right_minus_left,
+		0.0f, 2.0f / top_minus_bottom, 0.0f, -top_plus_bottom / top_minus_bottom,
+		0.0f, 0.0f, -1.0f / far_minus_near, -znear / far_minus_near,
+		0.0f, 0.0f, 0.0f, 1.0f
 	);
 }
 
@@ -2155,10 +2155,10 @@ inline double4x4 ortho_rh_no( const double left, const double right, const doubl
 	const double far_plus_near = zfar + znear;
 
 	return double4x4(
-		2.000000 / right_minus_left, 0.000000, 0.000000, -right_plus_left / right_minus_left,
-		0.000000, 2.000000 / top_minus_bottom, 0.000000, -top_plus_bottom / top_minus_bottom,
-		0.000000, 0.000000, -2.000000 / far_minus_near, -far_plus_near / far_minus_near,
-		0.000000, 0.000000, 0.000000, 1.000000
+		2.0f / right_minus_left, 0.0f, 0.0f, -right_plus_left / right_minus_left,
+		0.0f, 2.0f / top_minus_bottom, 0.0f, -top_plus_bottom / top_minus_bottom,
+		0.0f, 0.0f, -2.0f / far_minus_near, -far_plus_near / far_minus_near,
+		0.0f, 0.0f, 0.0f, 0.0f
 	);
 }
 
@@ -2166,13 +2166,13 @@ double4x4 perspective_lh_zo( const double fovdeg, const double aspect, const dou
 {
 	// left-handed, clip space range: zero to one
 	const double far_minus_near = zfar - znear;
-	const double tan_half_fov = tan( fovdeg * 0.500000 );
+	const double tan_half_fov = tan( fovdeg * 0.5f );
 
 	return double4x4(
-		1.000000 / ( aspect * tan_half_fov ), 0.000000, 0.000000, 0.000000,
-		0.000000, 1.000000 / tan_half_fov, 0.000000, 0.000000,
-		0.000000, 0.000000, zfar / far_minus_near, -( zfar * znear ) / far_minus_near,
-		0.000000, 0.000000, 1.000000, 0.000000
+		1.0f / ( aspect * tan_half_fov ), 0.0f, 0.0f, 0.0f,
+		0.0f, 1.0f / tan_half_fov, 0.0f, 0.0f,
+		0.0f, 0.0f, zfar / far_minus_near, -( zfar * znear ) / far_minus_near,
+		0.0f, 0.0f, 1.0f, 0.0f
 	);
 }
 
@@ -2181,26 +2181,26 @@ double4x4 perspective_lh_no( const double fovdeg, const double aspect, const dou
 	// left-handed, clip space range: minus-one to one
 	const double far_minus_near = zfar - znear;
 	const double far_plus_near = zfar + znear;
-	const double tan_half_fov = tan( fovdeg * 0.500000 );
+	const double tan_half_fov = tan( fovdeg * 0.5f );
 
 	return double4x4(
-		1.000000 / ( aspect * tan_half_fov ), 0.000000, 0.000000, 0.000000,
-		0.000000, 1.000000 / tan_half_fov, 0.000000, 0.000000,
-		0.000000, 0.000000, far_plus_near / far_minus_near, -( 2.000000 * zfar * znear ) / far_minus_near,
-		0.000000, 0.000000, 1.000000, 0.000000
+		1.0f / ( aspect * tan_half_fov ), 0.0f, 0.0f, 0.0f,
+		0.0f, 1.0f / tan_half_fov, 0.0f, 0.0f,
+		0.0f, 0.0f, far_plus_near / far_minus_near, -( 2.0f * zfar * znear ) / far_minus_near,
+		0.0f, 0.0f, 1.0f, 0.0f
 	);
 }
 
 double4x4 perspective_rh_zo( const double fovdeg, const double aspect, const double znear, const double zfar )
 {
 	// right-handed, clip space range: zero to one
-	const double tan_half_fov = tan( fovdeg * 0.500000 );
+	const double tan_half_fov = tan( fovdeg * 0.5f );
 
 	return double4x4(
-		1.000000 / ( aspect * tan_half_fov ), 0.000000, 0.000000, 0.000000,
-		0.000000, 1.000000 / tan_half_fov, 0.000000, 0.000000,
-		0.000000, 0.000000, zfar / ( znear - zfar ), -( zfar * znear ) / ( zfar - znear ),
-		0.000000, 0.000000, -1.000000, 0.000000
+		1.0f / ( aspect * tan_half_fov ), 0.0f, 0.0f, 0.0f,
+		0.0f, 1.0f / tan_half_fov, 0.0f, 0.0f,
+		0.0f, 0.0f, zfar / ( znear - zfar ), -( zfar * znear ) / ( zfar - znear ),
+		0.0f, 0.0f, -1.0f, 0.0f
 	);
 }
 
@@ -2209,13 +2209,13 @@ double4x4 perspective_rh_no( const double fovdeg, const double aspect, const dou
 	// right-handed, clip space range: minus-one to one
 	const double far_minus_near = zfar - znear;
 	const double far_plus_near = zfar + znear;
-	const double tan_half_fov = tan( fovdeg * 0.500000 );
+	const double tan_half_fov = tan( fovdeg * 0.5f );
 
 	return double4x4(
-		1.000000 / ( aspect * tan_half_fov ), 0.000000, 0.000000, 0.000000,
-		0.000000, 1.000000 / tan_half_fov, 0.000000, 0.000000,
-		0.000000, 0.000000, -far_plus_near / far_minus_near, -( 2.000000 * zfar * znear ) / far_minus_near,
-		0.000000, 0.000000, -1.000000, 0.000000
+		1.0f / ( aspect * tan_half_fov ), 0.0f, 0.0f, 0.0f,
+		0.0f, 1.0f / tan_half_fov, 0.0f, 0.0f,
+		0.0f, 0.0f, -far_plus_near / far_minus_near, -( 2.0f * zfar * znear ) / far_minus_near,
+		0.0f, 0.0f, -1.0f, 0.0f
 	);
 }
 
@@ -2230,7 +2230,7 @@ double4x4 lookat_lh( const double3& eye, const double3& target, const double3& u
 		right.x,   right.y,   right.z,   -dot( right, eye ),
 		up1.x,     up1.y,     up1.z,     -dot( up1, eye ),
 		forward.x, forward.y, forward.z, -dot( forward, eye ),
-		0.000000, 0.000000, 0.000000, 1.000000
+		0.0f, 0.0f, 0.0f, 1.0f
 	);
 }
 
@@ -2245,7 +2245,7 @@ double4x4 lookat_rh( const double3& eye, const double3& target, const double3& u
 		 right.x,    right.y,    right.z,   -dot( right, eye ),
 		 up1.x,      up1.y,      up1.z,     -dot( up1, eye ),
 		-forward.x, -forward.y, -forward.z,  dot( forward, eye ),
-		0.000000, 0.000000, 0.000000, 1.000000
+		0.0f, 0.0f, 0.0f, 1.0f
 	);
 }
 

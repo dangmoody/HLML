@@ -1,29 +1,3 @@
-/*
-===========================================================================
-
-hlml.
-Copyright (c) Dan Moody 2019 - Present.
-
-This file is part of hlml.
-
-hlml is free software: you can redistribute it and/or modify
-it under the terms of the GNU General Public License as published by
-the Free Software Foundation, either version 3 of the License, or
-(at your option) any later version.
-
-hlml is distributed in the hope that it will be useful,
-but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-GNU General Public License for more details.
-
-You should have received a copy of the GNU General Public License
-along with hlml.  If not, see <http://www.gnu.org/licenses/>.
-
-===========================================================================
-*/
-
-// GENERATED FILE.  DO NOT EDIT.
-
 #include "hlml_operators_vector.h"
 
 // int2
@@ -165,7 +139,7 @@ int2& operator--( int2& lhs, const int )
 
 bool2 operator<( const int2& lhs, const int2& rhs )
 {
-	return bool2(
+	return int2(
 		lhs[0] < rhs[0],
 		lhs[1] < rhs[1]
 	);
@@ -173,7 +147,7 @@ bool2 operator<( const int2& lhs, const int2& rhs )
 
 bool2 operator<=( const int2& lhs, const int2& rhs )
 {
-	return bool2(
+	return int2(
 		lhs[0] <= rhs[0],
 		lhs[1] <= rhs[1]
 	);
@@ -181,7 +155,7 @@ bool2 operator<=( const int2& lhs, const int2& rhs )
 
 bool2 operator>( const int2& lhs, const int2& rhs )
 {
-	return bool2(
+	return int2(
 		lhs[0] > rhs[0],
 		lhs[1] > rhs[1]
 	);
@@ -189,7 +163,7 @@ bool2 operator>( const int2& lhs, const int2& rhs )
 
 bool2 operator>=( const int2& lhs, const int2& rhs )
 {
-	return bool2(
+	return int2(
 		lhs[0] >= rhs[0],
 		lhs[1] >= rhs[1]
 	);
@@ -485,7 +459,7 @@ int3& operator--( int3& lhs, const int )
 
 bool3 operator<( const int3& lhs, const int3& rhs )
 {
-	return bool3(
+	return int3(
 		lhs[0] < rhs[0],
 		lhs[1] < rhs[1],
 		lhs[2] < rhs[2]
@@ -494,7 +468,7 @@ bool3 operator<( const int3& lhs, const int3& rhs )
 
 bool3 operator<=( const int3& lhs, const int3& rhs )
 {
-	return bool3(
+	return int3(
 		lhs[0] <= rhs[0],
 		lhs[1] <= rhs[1],
 		lhs[2] <= rhs[2]
@@ -503,7 +477,7 @@ bool3 operator<=( const int3& lhs, const int3& rhs )
 
 bool3 operator>( const int3& lhs, const int3& rhs )
 {
-	return bool3(
+	return int3(
 		lhs[0] > rhs[0],
 		lhs[1] > rhs[1],
 		lhs[2] > rhs[2]
@@ -512,7 +486,7 @@ bool3 operator>( const int3& lhs, const int3& rhs )
 
 bool3 operator>=( const int3& lhs, const int3& rhs )
 {
-	return bool3(
+	return int3(
 		lhs[0] >= rhs[0],
 		lhs[1] >= rhs[1],
 		lhs[2] >= rhs[2]
@@ -832,7 +806,7 @@ int4& operator--( int4& lhs, const int )
 
 bool4 operator<( const int4& lhs, const int4& rhs )
 {
-	return bool4(
+	return int4(
 		lhs[0] < rhs[0],
 		lhs[1] < rhs[1],
 		lhs[2] < rhs[2],
@@ -842,7 +816,7 @@ bool4 operator<( const int4& lhs, const int4& rhs )
 
 bool4 operator<=( const int4& lhs, const int4& rhs )
 {
-	return bool4(
+	return int4(
 		lhs[0] <= rhs[0],
 		lhs[1] <= rhs[1],
 		lhs[2] <= rhs[2],
@@ -852,7 +826,7 @@ bool4 operator<=( const int4& lhs, const int4& rhs )
 
 bool4 operator>( const int4& lhs, const int4& rhs )
 {
-	return bool4(
+	return int4(
 		lhs[0] > rhs[0],
 		lhs[1] > rhs[1],
 		lhs[2] > rhs[2],
@@ -862,7 +836,7 @@ bool4 operator>( const int4& lhs, const int4& rhs )
 
 bool4 operator>=( const int4& lhs, const int4& rhs )
 {
-	return bool4(
+	return int4(
 		lhs[0] >= rhs[0],
 		lhs[1] >= rhs[1],
 		lhs[2] >= rhs[2],
@@ -1170,7 +1144,7 @@ uint2& operator--( uint2& lhs, const int )
 
 bool2 operator<( const uint2& lhs, const uint2& rhs )
 {
-	return bool2(
+	return uint2(
 		lhs[0] < rhs[0],
 		lhs[1] < rhs[1]
 	);
@@ -1178,7 +1152,7 @@ bool2 operator<( const uint2& lhs, const uint2& rhs )
 
 bool2 operator<=( const uint2& lhs, const uint2& rhs )
 {
-	return bool2(
+	return uint2(
 		lhs[0] <= rhs[0],
 		lhs[1] <= rhs[1]
 	);
@@ -1186,7 +1160,7 @@ bool2 operator<=( const uint2& lhs, const uint2& rhs )
 
 bool2 operator>( const uint2& lhs, const uint2& rhs )
 {
-	return bool2(
+	return uint2(
 		lhs[0] > rhs[0],
 		lhs[1] > rhs[1]
 	);
@@ -1194,7 +1168,7 @@ bool2 operator>( const uint2& lhs, const uint2& rhs )
 
 bool2 operator>=( const uint2& lhs, const uint2& rhs )
 {
-	return bool2(
+	return uint2(
 		lhs[0] >= rhs[0],
 		lhs[1] >= rhs[1]
 	);
@@ -1490,7 +1464,7 @@ uint3& operator--( uint3& lhs, const int )
 
 bool3 operator<( const uint3& lhs, const uint3& rhs )
 {
-	return bool3(
+	return uint3(
 		lhs[0] < rhs[0],
 		lhs[1] < rhs[1],
 		lhs[2] < rhs[2]
@@ -1499,7 +1473,7 @@ bool3 operator<( const uint3& lhs, const uint3& rhs )
 
 bool3 operator<=( const uint3& lhs, const uint3& rhs )
 {
-	return bool3(
+	return uint3(
 		lhs[0] <= rhs[0],
 		lhs[1] <= rhs[1],
 		lhs[2] <= rhs[2]
@@ -1508,7 +1482,7 @@ bool3 operator<=( const uint3& lhs, const uint3& rhs )
 
 bool3 operator>( const uint3& lhs, const uint3& rhs )
 {
-	return bool3(
+	return uint3(
 		lhs[0] > rhs[0],
 		lhs[1] > rhs[1],
 		lhs[2] > rhs[2]
@@ -1517,7 +1491,7 @@ bool3 operator>( const uint3& lhs, const uint3& rhs )
 
 bool3 operator>=( const uint3& lhs, const uint3& rhs )
 {
-	return bool3(
+	return uint3(
 		lhs[0] >= rhs[0],
 		lhs[1] >= rhs[1],
 		lhs[2] >= rhs[2]
@@ -1837,7 +1811,7 @@ uint4& operator--( uint4& lhs, const int )
 
 bool4 operator<( const uint4& lhs, const uint4& rhs )
 {
-	return bool4(
+	return uint4(
 		lhs[0] < rhs[0],
 		lhs[1] < rhs[1],
 		lhs[2] < rhs[2],
@@ -1847,7 +1821,7 @@ bool4 operator<( const uint4& lhs, const uint4& rhs )
 
 bool4 operator<=( const uint4& lhs, const uint4& rhs )
 {
-	return bool4(
+	return uint4(
 		lhs[0] <= rhs[0],
 		lhs[1] <= rhs[1],
 		lhs[2] <= rhs[2],
@@ -1857,7 +1831,7 @@ bool4 operator<=( const uint4& lhs, const uint4& rhs )
 
 bool4 operator>( const uint4& lhs, const uint4& rhs )
 {
-	return bool4(
+	return uint4(
 		lhs[0] > rhs[0],
 		lhs[1] > rhs[1],
 		lhs[2] > rhs[2],
@@ -1867,7 +1841,7 @@ bool4 operator>( const uint4& lhs, const uint4& rhs )
 
 bool4 operator>=( const uint4& lhs, const uint4& rhs )
 {
-	return bool4(
+	return uint4(
 		lhs[0] >= rhs[0],
 		lhs[1] >= rhs[1],
 		lhs[2] >= rhs[2],
@@ -2175,7 +2149,7 @@ float2& operator--( float2& lhs, const int )
 
 bool2 operator<( const float2& lhs, const float2& rhs )
 {
-	return bool2(
+	return float2(
 		lhs[0] < rhs[0],
 		lhs[1] < rhs[1]
 	);
@@ -2183,7 +2157,7 @@ bool2 operator<( const float2& lhs, const float2& rhs )
 
 bool2 operator<=( const float2& lhs, const float2& rhs )
 {
-	return bool2(
+	return float2(
 		lhs[0] <= rhs[0],
 		lhs[1] <= rhs[1]
 	);
@@ -2191,7 +2165,7 @@ bool2 operator<=( const float2& lhs, const float2& rhs )
 
 bool2 operator>( const float2& lhs, const float2& rhs )
 {
-	return bool2(
+	return float2(
 		lhs[0] > rhs[0],
 		lhs[1] > rhs[1]
 	);
@@ -2199,7 +2173,7 @@ bool2 operator>( const float2& lhs, const float2& rhs )
 
 bool2 operator>=( const float2& lhs, const float2& rhs )
 {
-	return bool2(
+	return float2(
 		lhs[0] >= rhs[0],
 		lhs[1] >= rhs[1]
 	);
@@ -2357,7 +2331,7 @@ float3& operator--( float3& lhs, const int )
 
 bool3 operator<( const float3& lhs, const float3& rhs )
 {
-	return bool3(
+	return float3(
 		lhs[0] < rhs[0],
 		lhs[1] < rhs[1],
 		lhs[2] < rhs[2]
@@ -2366,7 +2340,7 @@ bool3 operator<( const float3& lhs, const float3& rhs )
 
 bool3 operator<=( const float3& lhs, const float3& rhs )
 {
-	return bool3(
+	return float3(
 		lhs[0] <= rhs[0],
 		lhs[1] <= rhs[1],
 		lhs[2] <= rhs[2]
@@ -2375,7 +2349,7 @@ bool3 operator<=( const float3& lhs, const float3& rhs )
 
 bool3 operator>( const float3& lhs, const float3& rhs )
 {
-	return bool3(
+	return float3(
 		lhs[0] > rhs[0],
 		lhs[1] > rhs[1],
 		lhs[2] > rhs[2]
@@ -2384,7 +2358,7 @@ bool3 operator>( const float3& lhs, const float3& rhs )
 
 bool3 operator>=( const float3& lhs, const float3& rhs )
 {
-	return bool3(
+	return float3(
 		lhs[0] >= rhs[0],
 		lhs[1] >= rhs[1],
 		lhs[2] >= rhs[2]
@@ -2555,7 +2529,7 @@ float4& operator--( float4& lhs, const int )
 
 bool4 operator<( const float4& lhs, const float4& rhs )
 {
-	return bool4(
+	return float4(
 		lhs[0] < rhs[0],
 		lhs[1] < rhs[1],
 		lhs[2] < rhs[2],
@@ -2565,7 +2539,7 @@ bool4 operator<( const float4& lhs, const float4& rhs )
 
 bool4 operator<=( const float4& lhs, const float4& rhs )
 {
-	return bool4(
+	return float4(
 		lhs[0] <= rhs[0],
 		lhs[1] <= rhs[1],
 		lhs[2] <= rhs[2],
@@ -2575,7 +2549,7 @@ bool4 operator<=( const float4& lhs, const float4& rhs )
 
 bool4 operator>( const float4& lhs, const float4& rhs )
 {
-	return bool4(
+	return float4(
 		lhs[0] > rhs[0],
 		lhs[1] > rhs[1],
 		lhs[2] > rhs[2],
@@ -2585,7 +2559,7 @@ bool4 operator>( const float4& lhs, const float4& rhs )
 
 bool4 operator>=( const float4& lhs, const float4& rhs )
 {
-	return bool4(
+	return float4(
 		lhs[0] >= rhs[0],
 		lhs[1] >= rhs[1],
 		lhs[2] >= rhs[2],
@@ -2733,7 +2707,7 @@ double2& operator--( double2& lhs, const int )
 
 bool2 operator<( const double2& lhs, const double2& rhs )
 {
-	return bool2(
+	return double2(
 		lhs[0] < rhs[0],
 		lhs[1] < rhs[1]
 	);
@@ -2741,7 +2715,7 @@ bool2 operator<( const double2& lhs, const double2& rhs )
 
 bool2 operator<=( const double2& lhs, const double2& rhs )
 {
-	return bool2(
+	return double2(
 		lhs[0] <= rhs[0],
 		lhs[1] <= rhs[1]
 	);
@@ -2749,7 +2723,7 @@ bool2 operator<=( const double2& lhs, const double2& rhs )
 
 bool2 operator>( const double2& lhs, const double2& rhs )
 {
-	return bool2(
+	return double2(
 		lhs[0] > rhs[0],
 		lhs[1] > rhs[1]
 	);
@@ -2757,7 +2731,7 @@ bool2 operator>( const double2& lhs, const double2& rhs )
 
 bool2 operator>=( const double2& lhs, const double2& rhs )
 {
-	return bool2(
+	return double2(
 		lhs[0] >= rhs[0],
 		lhs[1] >= rhs[1]
 	);
@@ -2915,7 +2889,7 @@ double3& operator--( double3& lhs, const int )
 
 bool3 operator<( const double3& lhs, const double3& rhs )
 {
-	return bool3(
+	return double3(
 		lhs[0] < rhs[0],
 		lhs[1] < rhs[1],
 		lhs[2] < rhs[2]
@@ -2924,7 +2898,7 @@ bool3 operator<( const double3& lhs, const double3& rhs )
 
 bool3 operator<=( const double3& lhs, const double3& rhs )
 {
-	return bool3(
+	return double3(
 		lhs[0] <= rhs[0],
 		lhs[1] <= rhs[1],
 		lhs[2] <= rhs[2]
@@ -2933,7 +2907,7 @@ bool3 operator<=( const double3& lhs, const double3& rhs )
 
 bool3 operator>( const double3& lhs, const double3& rhs )
 {
-	return bool3(
+	return double3(
 		lhs[0] > rhs[0],
 		lhs[1] > rhs[1],
 		lhs[2] > rhs[2]
@@ -2942,7 +2916,7 @@ bool3 operator>( const double3& lhs, const double3& rhs )
 
 bool3 operator>=( const double3& lhs, const double3& rhs )
 {
-	return bool3(
+	return double3(
 		lhs[0] >= rhs[0],
 		lhs[1] >= rhs[1],
 		lhs[2] >= rhs[2]
@@ -3113,7 +3087,7 @@ double4& operator--( double4& lhs, const int )
 
 bool4 operator<( const double4& lhs, const double4& rhs )
 {
-	return bool4(
+	return double4(
 		lhs[0] < rhs[0],
 		lhs[1] < rhs[1],
 		lhs[2] < rhs[2],
@@ -3123,7 +3097,7 @@ bool4 operator<( const double4& lhs, const double4& rhs )
 
 bool4 operator<=( const double4& lhs, const double4& rhs )
 {
-	return bool4(
+	return double4(
 		lhs[0] <= rhs[0],
 		lhs[1] <= rhs[1],
 		lhs[2] <= rhs[2],
@@ -3133,7 +3107,7 @@ bool4 operator<=( const double4& lhs, const double4& rhs )
 
 bool4 operator>( const double4& lhs, const double4& rhs )
 {
-	return bool4(
+	return double4(
 		lhs[0] > rhs[0],
 		lhs[1] > rhs[1],
 		lhs[2] > rhs[2],
@@ -3143,7 +3117,7 @@ bool4 operator>( const double4& lhs, const double4& rhs )
 
 bool4 operator>=( const double4& lhs, const double4& rhs )
 {
-	return bool4(
+	return double4(
 		lhs[0] >= rhs[0],
 		lhs[1] >= rhs[1],
 		lhs[2] >= rhs[2],

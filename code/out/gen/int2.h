@@ -43,7 +43,7 @@ struct int4;
 #pragma warning( disable : 4201 ) // C4201 - nonstandard extension used : nameless struct/union
 #endif
 
-/// \brief A vector of 2 int32_ts with components xy and/or rg.
+/// \brief A vector of 2 int32_ts with components xy.
 /// Components are also stored as elements in an array via a union.
 struct int2
 {

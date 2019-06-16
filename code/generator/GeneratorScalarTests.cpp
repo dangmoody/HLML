@@ -2,6 +2,7 @@
 
 #include "FileIO.h"
 
+#if 0
 bool GeneratorScalarTest::Generate( const genType_t type ) {
 	m_codeTests = std::string();
 	m_codeSuite = std::string();
@@ -247,3 +248,4 @@ void GeneratorScalarTest::GenerateTestSaturate() {
 
 	m_codeSuite += "\tTEMPER_RUN_TEST( " + testName + " );\n";
 }
+#endif

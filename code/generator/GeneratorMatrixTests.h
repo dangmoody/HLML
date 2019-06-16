@@ -2,6 +2,7 @@
 
 #include "gen_common.h"
 
+#if 0
 class GeneratorMatrixTests {
 public:
 				GeneratorMatrixTests() {}
@@ -53,3 +54,4 @@ private:
 	std::string	GetParmListArithmeticAnswer( const genOpArithmetic_t op, const u32 numRows, const u32 numCols,
 					const float valuesLhs[GEN_COMPONENT_COUNT_MAX][GEN_COMPONENT_COUNT_MAX], const float valuesRhs[GEN_COMPONENT_COUNT_MAX][GEN_COMPONENT_COUNT_MAX] ) const;
 };
+#endif

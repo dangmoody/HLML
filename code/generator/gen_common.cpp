@@ -2,332 +2,349 @@
 
 #include "gen_doc_common.h"
 
+#include "string_builder.h"
+
 #include <assert.h>
 
-static std::string HeaderGetOperatorIncrement( const genType_t type, const u32 numRows, const u32 numCols, const genOpIncrement_t op ) {
-	std::string fullTypeName = Gen_GetFullTypeName( type, numRows, numCols );
-	std::string memberTypeString = Gen_GetMemberTypeString( type );
+static void GenerateOperatorIncrementHeader( const genType_t type, const u32 numRows, const u32 numCols, const genOpIncrement_t op, stringBuilder_t* sb ) {
+	assert( sb );
 
-	std::string code;
+	char fullTypeName[32];
+	Gen_GetFullTypeName( type, numRows, numCols, fullTypeName );
 
-	// prefix
-	code += Gen_GetDocOperatorIncrementPrefix( fullTypeName, op );
-	code += "inline " + fullTypeName + "& operator" + GEN_OPERATORS_INCREMENT[op] + "( " + fullTypeName + "& lhs );\n";
-	code += "\n";
-
-	// postfix
-	code += Gen_GetDocOperatorIncrementPostfix( fullTypeName, op );
-	code += "inline " + fullTypeName + "& operator" + GEN_OPERATORS_INCREMENT[op] + "( " + fullTypeName + "& lhs, const int );\n";
-	code += "\n";
-
-	return code;
-}
-
-static std::string InlGetOperatorIncrement( const genType_t type, const u32 numRows, const u32 numCols, const genOpIncrement_t op ) {
-	u32 numComponents = ( numRows == 1 ) ? numCols : numRows;
-
-	std::string fullTypeName = Gen_GetFullTypeName( type, numRows, numCols );
-	std::string memberTypeString = Gen_GetMemberTypeString( type );
-
-	std::string code;
+	const char* opStr = GEN_OPERATORS_INCREMENT[op];
 
 	// prefix
-	code += "// prefix\n";
-	code += fullTypeName + "& operator" + GEN_OPERATORS_INCREMENT[op] + "( " + fullTypeName + "& lhs )\n";
-	code += "{\n";
-	for ( u32 i = 0; i < numComponents; i++ ) {
-		code += "\t" + GEN_OPERATORS_INCREMENT[op] + "lhs[" + std::to_string( i ) + "];\n";
-	}
-	code += "\treturn lhs;\n";
-	code += "}\n";
-	code += "\n";
+	String_Appendf( sb, "%s", Gen_GetDocOperatorIncrementPrefix( fullTypeName, op ).c_str() );
+	String_Appendf( sb, "inline %s& operator%s( %s& lhs );\n", fullTypeName, opStr, fullTypeName );
+	String_Append(  sb, "\n" );
 
 	// postfix
-	code += "// postfix\n";
-	code += fullTypeName + "& operator" + GEN_OPERATORS_INCREMENT[op] + "( " + fullTypeName + "& lhs, const int )\n";
-	code += "{\n";
-	for ( u32 i = 0; i < numComponents; i++ ) {
-		code += std::string( "\tlhs[" ) + std::to_string( i ) + "]" + GEN_OPERATORS_INCREMENT[op] + ";\n";
-	}
-	code += "\treturn lhs;\n";
-	code += "}\n";
-	code += "\n";
-
-	return code;
+	String_Appendf( sb, "%s", Gen_GetDocOperatorIncrementPostfix( fullTypeName, op ).c_str() );
+	String_Appendf( sb, "inline %s& operator%s( %s& lhs, const int );\n", fullTypeName, opStr, fullTypeName );
+	String_Append(  sb, "\n" );
 }
 
-static std::string HeaderGetOperatorRelational( const genType_t type, const u32 numRows, const u32 numCols, const genOpRelational_t op ) {
-	std::string fullTypeName = Gen_GetFullTypeName( type, numRows, numCols );
-	std::string boolReturnType = Gen_GetFullTypeName( GEN_TYPE_BOOL, numRows, numCols );
+static void GenerateOperatorIncrementInl( const genType_t type, const u32 numRows, const u32 numCols, const genOpIncrement_t op, stringBuilder_t* sb ) {
+	assert( sb );
 
-	std::string code;
-
-	code += Gen_GetDocOperatorRelational( fullTypeName, numRows, numCols, op );
-	code += "inline " + boolReturnType + " operator" + GEN_OPERATORS_RELATIONAL[op] + "( const " + fullTypeName + "& lhs, const " + fullTypeName + "& rhs );\n";
-	code += "\n";
-
-	return code;
-}
-
-static std::string InlGetOperatorRelational( const genType_t type, const u32 numRows, const u32 numCols, const genOpRelational_t op ) {
 	u32 numComponents = ( numRows == 1 ) ? numCols : numRows;
 
-	std::string fullTypeName = Gen_GetFullTypeName( type, numRows, numCols );
-	std::string boolReturnType = Gen_GetFullTypeName( GEN_TYPE_BOOL, numRows, numCols );
+	char fullTypeName[32];
+	Gen_GetFullTypeName( type, numRows, numCols, fullTypeName );
 
-	std::string opStr = GEN_OPERATORS_RELATIONAL[op];
+	const char* opStr = GEN_OPERATORS_INCREMENT[op];
 
-	std::string code;
+	// prefix
+	String_Append(  sb, "// prefix\n" );
+	String_Appendf( sb, "%s& operator%s( %s& lhs )\n", fullTypeName, opStr, fullTypeName );
+	String_Append(  sb, "{\n" );
+	for ( u32 i = 0; i < numComponents; i++ ) {
+		String_Appendf( sb, "\t%slhs[%d];\n", opStr, i );
+	}
+	String_Append( sb, "\treturn lhs;\n" );
+	String_Append( sb, "}\n" );
+	String_Append( sb, "\n" );
 
-	code += boolReturnType + " operator" + opStr + "( const " + fullTypeName + "& lhs, const " + fullTypeName + "& rhs )\n";
-	code += "{\n";
-	code += "\treturn " + boolReturnType + "(\n";
+	// postfix
+	String_Append(  sb, "// postfix\n" );
+	String_Appendf( sb, "%s& operator%s( %s& lhs, const int )\n", fullTypeName, opStr, fullTypeName );
+	String_Append(  sb, "{\n" );
+	for ( u32 i = 0; i < numComponents; i++ ) {
+		String_Appendf( sb, "\tlhs[%d]%s;\n", i, opStr );
+	}
+	String_Append( sb, "\treturn lhs;\n" );
+	String_Append( sb, "}\n" );
+	String_Append( sb, "\n" );
+}
+
+static void HeaderGenerateOperatorRelational( const genType_t type, const u32 numRows, const u32 numCols, const genOpRelational_t op, stringBuilder_t* sb ) {
+	assert( sb );
+
+	char fullTypeName[32];
+	Gen_GetFullTypeName( type, numRows, numCols, fullTypeName );
+
+	char boolReturnTypeName[32];
+	Gen_GetFullTypeName( GEN_TYPE_BOOL, numRows, numCols, boolReturnTypeName );
+
+	String_Appendf( sb, "%s", Gen_GetDocOperatorRelational( fullTypeName, numRows, numCols, op ).c_str() );
+	String_Appendf( sb, "inline %s operator%s( const %s& lhs, const %s& rhs );\n", boolReturnTypeName, GEN_OPERATORS_RELATIONAL[op], fullTypeName, fullTypeName );
+	String_Append(  sb, "\n" );
+}
+
+static void InlGenerateOperatorRelational( const genType_t type, const u32 numRows, const u32 numCols, const genOpRelational_t op, stringBuilder_t* sb ) {
+	assert( sb );
+
+	u32 numComponents = ( numRows == 1 ) ? numCols : numRows;
+
+	char fullTypeName[32];
+	Gen_GetFullTypeName( type, numRows, numCols, fullTypeName );
+
+	char boolReturnTypeName[32];
+	Gen_GetFullTypeName( GEN_TYPE_BOOL, numRows, numCols, boolReturnTypeName );
+
+	const char* opStr = GEN_OPERATORS_RELATIONAL[op];
+
+	String_Appendf( sb, "%s operator%s( const %s& lhs, const %s& rhs )\n", boolReturnTypeName, opStr, fullTypeName, fullTypeName );
+	String_Append(  sb, "{\n" );
+	String_Appendf( sb, "\treturn %s(\n", fullTypeName );
 
 	for ( u32 i = 0; i < numComponents; i++ ) {
-		std::string componentStr = std::to_string( i );
-
-		code += "\t\tlhs[" + componentStr + "] " + opStr + " rhs[" + componentStr + "]";
+		String_Appendf( sb, "\t\tlhs[%d] %s rhs[%d]", i, opStr, i );
 
 		if ( i != numComponents - 1 ) {
-			code += ",";
+			String_Append( sb, "," );
 		}
 
-		code += "\n";
+		String_Append( sb, "\n" );
 	}
-	code += "\t);\n";
-	code += "}\n";
-	code += "\n";
-
-	return code;
+	String_Append( sb, "\t);\n" );
+	String_Append( sb, "}\n" );
+	String_Append( sb, "\n" );
 }
 
-static std::string HeaderGetOperatorBitwiseScalar( const genType_t type, const u32 numRows, const u32 numCols, const genOpBitwise_t op ) {
-	std::string fullTypeName = Gen_GetFullTypeName( type, numRows, numCols );
-	std::string memberTypeString = Gen_GetMemberTypeString( type );
+static void HeaderGenerateOperatorBitwiseScalar( const genType_t type, const u32 numRows, const u32 numCols, const genOpBitwise_t op, stringBuilder_t* sb ) {
+	assert( sb );
 
-	std::string opStr = GEN_OPERATORS_BITWISE[op];
+	char fullTypeName[32];
+	Gen_GetFullTypeName( type, numRows, numCols, fullTypeName );
 
-	std::string code;
+	const char* memberTypeString = Gen_GetMemberTypeString( type );
 
-	code += Gen_GetDocOperatorBitwiseScalar( fullTypeName, op );
-	code += "inline " + fullTypeName + " operator" + opStr + "( const " + fullTypeName + "& lhs, const " + memberTypeString + "& rhs );\n";
-	code += "\n";
+	const char* opStr = GEN_OPERATORS_BITWISE[op];
 
-	code += Gen_GetDocOperatorCompoundBitwiseScalar( fullTypeName, op );
-	code += "inline " + fullTypeName + " operator" + opStr + "=( " + fullTypeName + "& lhs, const " + memberTypeString + "& rhs );\n";
-	code += "\n";
+	String_Appendf( sb, "%s", Gen_GetDocOperatorBitwiseScalar( fullTypeName, op ).c_str() );
+	String_Appendf( sb, "inline %s operator%s( const %s& lhs, const %s& rhs );\n", fullTypeName, opStr, fullTypeName, memberTypeString );
+	String_Append(  sb, "\n" );
 
-	return code;
+	String_Appendf( sb, "%s", Gen_GetDocOperatorCompoundBitwiseScalar( fullTypeName, op ).c_str() );
+	String_Appendf( sb, "inline %s operator%s=( %s& lhs, const %s& rhs );\n", fullTypeName, opStr, fullTypeName, memberTypeString );
+	String_Append(  sb, "\n" );
 }
 
-static std::string InlGetOperatorBitwiseScalar( const genType_t type, const u32 numRows, const u32 numCols, const genOpBitwise_t op ) {
+static void InlGenerateOperatorBitwiseScalar( const genType_t type, const u32 numRows, const u32 numCols, const genOpBitwise_t op, stringBuilder_t* sb ) {
+	assert( sb );
+
 	u32 numComponents = ( numRows == 1 ) ? numCols : numRows;
 
-	std::string fullTypeName = Gen_GetFullTypeName( type, numRows, numCols );
-	std::string memberTypeString = Gen_GetMemberTypeString( type );
+	char fullTypeName[32];
+	Gen_GetFullTypeName( type, numRows, numCols, fullTypeName );
 
-	std::string opStr = GEN_OPERATORS_BITWISE[op];
+	const char* memberTypeString = Gen_GetMemberTypeString( type );
 
-	std::string code;
+	const char* opStr = GEN_OPERATORS_BITWISE[op];
 
 	// main bitwise operator
-	code += fullTypeName + " operator" + opStr + "( const " + fullTypeName + "& lhs, const " + memberTypeString + "& rhs )\n";
-	code += "{\n";
-	code += "\treturn " + fullTypeName + "(\n";
+	String_Appendf( sb, "%s operator%s( const %s& lhs, const %s& rhs )\n", fullTypeName, opStr, fullTypeName, memberTypeString );
+	String_Append(  sb, "{\n" );
+	String_Appendf( sb, "\treturn %s(\n", fullTypeName );
 	for ( u32 i = 0; i < numComponents; i++ ) {
-		code += std::string( "\t\tlhs[" ) + std::to_string( i ) + "] " + opStr + " rhs";
+		String_Appendf( sb, "\t\tlhs[%d] %s rhs", i, opStr );
 
 		if ( i != numComponents - 1 ) {
-			code += ",";
+			String_Append( sb, "," );
 		}
 
-		code += "\n";
+		String_Append( sb, "\n" );
 	}
-	code += "\t);\n";
-	code += "}\n";
-	code += "\n";
+	String_Append( sb, "\t);\n" );
+	String_Append( sb, "}\n" );
+	String_Append( sb, "\n" );
 
 	// compound bitwise operator
-	code += fullTypeName + " operator" + opStr + "=( " + fullTypeName + "& lhs, const " + memberTypeString + "& rhs )\n";
-	code += "{\n";
-	code += "\treturn ( lhs = lhs " + opStr + " rhs );\n";
-	code += "}\n";
-	code += "\n";
-
-	return code;
+	String_Appendf( sb, "%s operator%s=( %s& lhs, const %s& rhs )\n", fullTypeName, opStr, fullTypeName, memberTypeString );
+	String_Append(  sb, "{\n" );
+	String_Appendf( sb, "\treturn ( lhs = lhs %s rhs );\n", opStr );
+	String_Append(  sb, "}\n" );
+	String_Append(  sb, "\n" );
 }
 
-static std::string HeaderGetOperatorBitwiseRhsType( const genType_t type, const u32 numRows, const u32 numCols, const genOpBitwise_t op ) {
-	std::string fullTypeName = Gen_GetFullTypeName( type, numRows, numCols );
-	std::string memberTypeString = Gen_GetMemberTypeString( type );
+static void HeaderGenerateOperatorBitwiseRhsType( const genType_t type, const u32 numRows, const u32 numCols, const genOpBitwise_t op, stringBuilder_t* sb ) {
+	assert( sb );
 
-	std::string opStr = GEN_OPERATORS_BITWISE[op];
+	char fullTypeName[32];
+	Gen_GetFullTypeName( type, numRows, numCols, fullTypeName );
 
-	std::string code;
+	const char* opStr = GEN_OPERATORS_BITWISE[op];
 
-	code += Gen_GetDocOperatorBitwiseRhsType( fullTypeName, op );
-	code += "inline " + fullTypeName + " operator" + opStr + "( const " + fullTypeName + "& lhs, const " + fullTypeName + "& rhs );\n";
-	code += "\n";
+	String_Appendf( sb, "%s", Gen_GetDocOperatorBitwiseRhsType( fullTypeName, op ).c_str() );
+	String_Appendf( sb, "inline %s operator%s( const %s& lhs, const %s& rhs );\n", fullTypeName, opStr, fullTypeName, fullTypeName );
+	String_Append(  sb, "\n" );
 
-	code += Gen_GetDocOperatorCompoundBitwiseRhsType( fullTypeName, op );
-	code += "inline " + fullTypeName + " operator" + opStr + "=( " + fullTypeName + "& lhs, const " + fullTypeName + "& rhs );\n";
-	code += "\n";
-
-	return code;
+	String_Appendf( sb, "%s", Gen_GetDocOperatorCompoundBitwiseRhsType( fullTypeName, op ).c_str() );
+	String_Appendf( sb, "inline %s operator%s=( %s& lhs, const %s& rhs );\n", fullTypeName, opStr, fullTypeName, fullTypeName );
+	String_Append(  sb, "\n" );
 }
 
-static std::string InlGetOperatorBitwiseRhsType( const genType_t type, const u32 numRows, const u32 numCols, const genOpBitwise_t op ) {
+static void InlGenerateOperatorBitwiseRhsType( const genType_t type, const u32 numRows, const u32 numCols, const genOpBitwise_t op, stringBuilder_t* sb ) {
+	assert( sb );
+
 	u32 numComponents = ( numRows == 1 ) ? numCols : numRows;
 
-	std::string fullTypeName = Gen_GetFullTypeName( type, numRows, numCols );
+	char fullTypeName[32];
+	Gen_GetFullTypeName( type, numRows, numCols, fullTypeName );
 
-	std::string opStr = GEN_OPERATORS_BITWISE[op];
-
-	std::string code;
+	const char* opStr = GEN_OPERATORS_BITWISE[op];
 
 	// main bitwise operator
-	code += fullTypeName + " operator" + opStr + "( const " + fullTypeName + "& lhs, const " + fullTypeName + "& rhs )\n";
-	code += "{\n";
-	code += "\treturn " + fullTypeName + "(\n";
+	String_Appendf( sb, "%s operator%s( const %s& lhs, const %s& rhs )\n", fullTypeName, opStr, fullTypeName, fullTypeName );
+	String_Append(  sb, "{\n" );
+	String_Appendf( sb, "\treturn %s(\n", fullTypeName );
 	for ( u32 i = 0; i < numComponents; i++ ) {
-		std::string componentStr = std::to_string( i );
-
-		code += "\t\tlhs[" + componentStr + "] " + opStr + " rhs[" + componentStr + "]";
+		String_Appendf( sb, "\t\tlhs[%d] %s rhs[%d]", i, opStr, i );
 
 		if ( i != numComponents - 1 ) {
-			code += ",";
+			String_Append( sb, "," );
 		}
 
-		code += "\n";
+		String_Append( sb, "\n" );
 	}
-	code += "\t);\n";
-	code += "}\n";
-	code += "\n";
+	String_Append( sb, "\t);\n" );
+	String_Append( sb, "}\n" );
+	String_Append( sb, "\n" );
 
 	// compound bitwise operator
-	code += fullTypeName + " operator" + opStr + "=( " + fullTypeName + "& lhs, const " + fullTypeName + "& rhs )\n";
-	code += "{\n";
-	code += "\treturn ( lhs = lhs " + opStr + " rhs );\n";
-	code += "}\n";
-	code += "\n";
-
-	return code;
+	String_Appendf( sb, "%s operator%s=( %s& lhs, const %s& rhs )\n", fullTypeName, opStr, fullTypeName, fullTypeName );
+	String_Append(  sb, "{\n" );
+	String_Appendf( sb, "\treturn ( lhs = lhs %s rhs );\n", opStr );
+	String_Append(  sb, "}\n" );
+	String_Append(  sb, "\n" );
 }
 
 
-void Gen_Floateq( const genType_t type, std::string& outHeader ) {
+void Gen_Floateq( const genType_t type, stringBuilder_t* sb ) {
+	assert( sb );
+
 	if ( !Gen_IsFloatingPointType( type ) ) {
 		return;
 	}
 
-	std::string typeString = Gen_GetTypeString( type );
+	const char* typeString = Gen_GetTypeString( type );
 
-	std::string floateqStr = Gen_GetFuncNameFloateq( type );
+	const char* floateqStr = Gen_GetFuncNameFloateq( type );
 
-	std::string parmEpsilonStr = Gen_GetConstantNameEpsilon( type );
+	const char* parmEpsilonStr = Gen_GetConstantNameEpsilon( type );
 
-	outHeader += Gen_GetDocFloateq();
-	outHeader += "inline bool " + floateqStr + "( const " + typeString + " lhs, const " + typeString + " rhs, const " + typeString + " epsilon = " + parmEpsilonStr + " )\n";
-	outHeader += "{\n";
-	outHeader += "\treturn " + Gen_GetFuncNameFabs( type ) + "( lhs - rhs ) < epsilon;\n";
-	outHeader += "}\n";
-	outHeader += "\n";
+	Gen_DocFloateq( sb );
+	String_Appendf( sb, "inline bool %s( const %s lhs, const %s rhs, const %s epsilon = %s )\n", floateqStr, typeString, typeString, typeString, parmEpsilonStr );
+	String_Append(  sb, "{\n" );
+	String_Appendf( sb, "\treturn %s( lhs - rhs ) < epsilon;\n", Gen_GetFuncNameFabs( type ) );
+	String_Append(  sb, "}\n" );
+	String_Append(  sb, "\n" );
 }
 
-void Gen_Sign( const genType_t type, std::string& outHeader ) {
+void Gen_Sign( const genType_t type, stringBuilder_t* sb ) {
+	assert( sb );
+
 	if ( type == GEN_TYPE_BOOL || type == GEN_TYPE_UINT ) {
 		return;
 	}
 
-	std::string memberTypeString = Gen_GetMemberTypeString( type );
-	std::string intTypeString = Gen_GetMemberTypeString( GEN_TYPE_INT );
+	const char* memberTypeString = Gen_GetMemberTypeString( type );
+	const char* intTypeString = Gen_GetMemberTypeString( GEN_TYPE_INT );
 
-	std::string zeroStr = Gen_GetNumericLiteral( type, 0.0f );
+	const char* zeroStr;
+	GET_TYPE_VALUE( type, 0, zeroStr );
 
-	outHeader += Gen_GetDocSign();
-	outHeader += "inline " + intTypeString + " sign( const " + memberTypeString + " x )\n";
-	outHeader += "{\n";
-	outHeader += "\treturn ( " + zeroStr + " < x ) - ( x < " + zeroStr + " );\n";
-	outHeader += "}\n";
-	outHeader += "\n";
+	Gen_DocSign( sb );
+	String_Appendf( sb, "inline %s sign( const %s x )\n", intTypeString, memberTypeString );
+	String_Append(  sb, "{\n" );
+	String_Appendf( sb, "\treturn ( %s < x ) - ( x < %s );\n", zeroStr, zeroStr );
+	String_Append(  sb, "}\n" );
+	String_Append(  sb, "\n" );
 }
 
-void Gen_Radians( const genType_t type, std::string& outHeader ) {
+void Gen_Radians( const genType_t type, stringBuilder_t* sb ) {
+	assert( sb );
+
 	if ( !Gen_IsFloatingPointType( type ) ) {
 		return;
 	}
 
-	std::string typeString = Gen_GetTypeString( type );
-	std::string oneHundredEightyStr = Gen_GetNumericLiteral( type, 180.0f );
+	const char* typeString = Gen_GetTypeString( type );
 
-	std::string piStr = Gen_GetConstantNamePi( type );
+//	std::string oneHundredEightyStr = Gen_GetNumericLiteral( type, 180.0f );
+	const char* oneHundredEightyStr;
+	GET_TYPE_VALUE( type, 180, oneHundredEightyStr );
 
-	outHeader += Gen_GetDocRadians();
-	outHeader += "inline " + typeString + " radians( const " + typeString + " deg )\n";
-	outHeader += "{\n";
-	outHeader += "\treturn deg * " + piStr + " / " + oneHundredEightyStr + ";\n";
-	outHeader += "}\n";
-	outHeader += "\n";
+	const char* piStr = Gen_GetConstantNamePi( type );
+
+	Gen_DocRadians( sb );
+	String_Appendf( sb, "inline %s radians( const %s deg )\n", typeString, typeString );
+	String_Append(  sb, "{\n" );
+	String_Appendf( sb, "\treturn deg * %s / %s;\n", piStr, oneHundredEightyStr );
+	String_Append(  sb, "}\n" );
+	String_Append(  sb, "\n" );
 }
 
-void Gen_Degrees( const genType_t type, std::string& outHeader ) {
+void Gen_Degrees( const genType_t type, stringBuilder_t* sb ) {
+	assert( sb );
+
 	if ( !Gen_IsFloatingPointType( type ) ) {
 		return;
 	}
 
-	std::string typeString = Gen_GetTypeString( type );
-	std::string oneHundredEightyStr = Gen_GetNumericLiteral( type, 180.0f );
+	const char* typeString = Gen_GetTypeString( type );
 
-	std::string piStr = Gen_GetConstantNamePi( type );
+	const char* oneHundredEightyStr;
+	GET_TYPE_VALUE( type, 180, oneHundredEightyStr );
 
-	outHeader += Gen_GetDocDegrees();
-	outHeader += "inline " + typeString + " degrees( const " + typeString + " rad )\n";
-	outHeader += "{\n";
-	outHeader += "\treturn rad * " + oneHundredEightyStr + " / " + piStr + ";\n";
-	outHeader += "}\n";
-	outHeader += "\n";
+	const char* piStr = Gen_GetConstantNamePi( type );
+
+	Gen_DocDegrees( sb );
+	String_Appendf( sb, "inline %s degrees( const %s rad )\n", typeString, typeString );
+	String_Append(  sb, "{\n" );
+	String_Appendf( sb, "\treturn rad * %s / %s;\n", oneHundredEightyStr, piStr );
+	String_Append(  sb, "}\n" );
+	String_Append(  sb, "\n" );
 }
 
-void Gen_MinMax( const genType_t type, std::string& outHeader ) {
+void Gen_MinMax( const genType_t type, stringBuilder_t* sb ) {
+	assert( sb );
+
 	if ( type == GEN_TYPE_BOOL ) {
 		return;
 	}
 
-	std::string memberTypeString = Gen_GetMemberTypeString( type );
+	const char* memberTypeString = Gen_GetMemberTypeString( type );
 
 	// min
-	outHeader += Gen_GetDocMin();
-	outHeader += "inline " + memberTypeString + " min( const " + memberTypeString + "& x, const " + memberTypeString + "& y )\n";
-	outHeader += "{\n";
-	outHeader += "\treturn ( x < y ) ? x : y;\n";
-	outHeader += "}\n";
-	outHeader += "\n";
+	Gen_DocMin( sb );
+	String_Appendf( sb, "inline %s min( const %s& x, const %s& y )\n", memberTypeString, memberTypeString, memberTypeString );
+	String_Append(  sb, "{\n" );
+	String_Append(  sb, "\treturn ( x < y ) ? x : y;\n" );
+	String_Append(  sb, "}\n" );
+	String_Append(  sb, "\n" );
 
 	// max
-	outHeader += Gen_GetDocMax();
-	outHeader += "inline " + memberTypeString + " max( const " + memberTypeString + "& x, const " + memberTypeString + "& y )\n";
-	outHeader += "{\n";
-	outHeader += "\treturn ( x > y ) ? x : y;\n";
-	outHeader += "}\n";
-	outHeader += "\n";
+	Gen_DocMax( sb );
+	String_Appendf( sb, "inline %s max( const %s& x, const %s& y )\n", memberTypeString, memberTypeString, memberTypeString );
+	String_Append(  sb, "{\n" );
+	String_Append(  sb, "\treturn ( x > y ) ? x : y;\n" );
+	String_Append(  sb, "}\n" );
+	String_Append(  sb, "\n" );
 }
 
-void Gen_Clamp( const genType_t type, std::string& outHeader ) {
+void Gen_Clamp( const genType_t type, stringBuilder_t* sb ) {
+	assert( sb );
+
 	if ( type == GEN_TYPE_BOOL ) {
 		return;
 	}
 
-	std::string memberTypeString = Gen_GetMemberTypeString( type );
+	const char* memberTypeString = Gen_GetMemberTypeString( type );
 
-	outHeader += Gen_GetDocClamp();
-	outHeader += "inline " + memberTypeString + " clamp( const " + memberTypeString + "& x, const " + memberTypeString + "& low, const " + memberTypeString + "& high )\n";
-	outHeader += "{\n";
-	outHeader += "\treturn min( max( x, low ), high );\n";
-	outHeader += "}\n";
-	outHeader += "\n";
+	Gen_DocClamp( sb );
+	String_Appendf( sb, "inline %s clamp( const %s& x, const %s& low, const %s& high )\n", memberTypeString, memberTypeString, memberTypeString, memberTypeString );
+	String_Append(  sb, "{\n" );
+	String_Append(  sb, "\treturn min( max( x, low ), high );\n" );
+	String_Append(  sb, "}\n" );
+	String_Append(  sb, "\n" );
 }
 
-void Gen_Saturate( const genType_t type, const u32 numComponents, std::string& outHeader, std::string* outInl ) {
+void Gen_Saturate( const genType_t type, const u32 numComponents, stringBuilder_t* sbHeader, stringBuilder_t* sbInl ) {
+	assert( sbHeader );
+
 	assert( numComponents >= 1 );	// we allow scalar types for this function
 	assert( numComponents <= GEN_COMPONENT_COUNT_MAX );
 
@@ -335,48 +352,48 @@ void Gen_Saturate( const genType_t type, const u32 numComponents, std::string& o
 		return;
 	}
 
-	std::string fullTypeName = Gen_GetFullTypeName( type, 1, numComponents );
-
-	std::string zeroStr	= Gen_GetNumericLiteral( type, 0.0f );
-	std::string oneStr	= Gen_GetNumericLiteral( type, 1.0f );
+	char fullTypeName[32];
+	Gen_GetFullTypeName( type, 1, numComponents, fullTypeName );
 
 	bool isVector = numComponents > 1;
 	if ( isVector ) {
-		assert( outInl );	// only don't output to an .inl file for scalar impls
+		assert( sbInl );	// only don't output to an .inl file for scalar impls
 	}
 
-	outHeader += Gen_GetDocSaturate( fullTypeName );
-	outHeader += "inline " + fullTypeName + " saturate( const " + fullTypeName + "& x )";
+	Gen_DocSaturate( sbHeader, fullTypeName );
+	String_Appendf( sbHeader, "inline %s saturate( const %s& x )", fullTypeName, fullTypeName );
 	if ( isVector ) {
-		outHeader += ";\n";
-		outHeader += "\n";
+		String_Append( sbHeader, ";\n" );
+		String_Append( sbHeader, "\n" );
 
-		*outInl += fullTypeName + " saturate( const " + fullTypeName + "& x )\n";
-		*outInl += "{\n";
-		*outInl += "\treturn " + fullTypeName + "(\n";
+		String_Appendf( sbInl, "%s saturate( const %s& x )\n", fullTypeName, fullTypeName );
+		String_Append(  sbInl, "{\n" );
+		String_Appendf( sbInl, "\treturn %s(\n", fullTypeName );
 		for ( u32 i = 0; i < numComponents; i++ ) {
-			*outInl += "\t\tclamp( x[" + std::to_string( i ) + "], " + zeroStr + ", " + oneStr + " )";
+			String_Appendf( sbInl, "\t\tclamp( x[%d], %.1f, %.1f )", i, 0.0f, 1.0f );
 
 			if ( i != numComponents - 1 ) {
-				*outInl += ",";
+				String_Append( sbInl, "," );
 			}
 
-			*outInl += "\n";
+			String_Append( sbInl, "\n" );
 		}
 
-		*outInl += "\t);\n";
-		*outInl += "}\n";
-		*outInl += "\n";
+		String_Append( sbInl, "\t);\n" );
+		String_Append( sbInl, "}\n" );
+		String_Append( sbInl, "\n" );
 	} else {
-		outHeader += "\n";
-		outHeader += "{\n";
-		outHeader += "\treturn clamp( x, " + zeroStr + ", " + oneStr + " );\n";
-		outHeader += "}\n";
-		outHeader += "\n";
+		String_Append(  sbHeader, "\n" );
+		String_Append(  sbHeader, "{\n" );
+		String_Appendf( sbHeader, "\treturn clamp( x, %.1f, %.1f );\n", 0.0f, 1.0f );
+		String_Append(  sbHeader, "}\n" );
+		String_Append(  sbHeader, "\n" );
 	}
 }
 
-void Gen_Lerp( const genType_t type, const u32 numComponents, std::string& outHeader, std::string* outInl ) {
+void Gen_Lerp( const genType_t type, const u32 numComponents, stringBuilder_t* sbHeader, stringBuilder_t* sbInl ) {
+	assert( sbHeader );
+
 	assert( numComponents >= 1 );	// we allow scalar types for this function
 	assert( numComponents <= GEN_COMPONENT_COUNT_MAX );
 
@@ -384,50 +401,50 @@ void Gen_Lerp( const genType_t type, const u32 numComponents, std::string& outHe
 		return;
 	}
 
-	std::string typeString = Gen_GetTypeString( type );
-	std::string fullTypeName = Gen_GetFullTypeName( type, 1, numComponents );
+	const char* typeString = Gen_GetTypeString( type );
 
-	std::string oneStr = Gen_GetNumericLiteral( type, 1.0f );
+	char fullTypeName[32];
+	Gen_GetFullTypeName( type, 1, numComponents, fullTypeName );
 
 	bool isVector = numComponents > 1;
 	if ( isVector ) {
-		assert( outInl );	// only don't output to an .inl file for scalar impls
+		assert( sbInl );	// only don't output to an .inl file for scalar impls
 	}
 
-	outHeader += Gen_GetDocLerp( fullTypeName );
-	outHeader += "inline " + fullTypeName + " lerp( const " + fullTypeName + "& a, const " + fullTypeName + "& b, const " + typeString + " t )";
+	String_Appendf( sbHeader, "%s", Gen_GetDocLerp( fullTypeName ).c_str() );
+	String_Appendf( sbHeader, "inline %s lerp( const %s& a, const %s& b, const %s t )", fullTypeName, fullTypeName, fullTypeName, typeString );
 	if ( isVector ) {
-		outHeader += ";\n";
-		outHeader += "\n";
+		String_Append( sbHeader, ";\n" );
+		String_Append( sbHeader, "\n" );
 
-		*outInl += fullTypeName + " lerp( const " + fullTypeName + "& a, const " + fullTypeName + "& b, const " + typeString + " t )\n";
-		*outInl += "{\n";
-		*outInl += "\treturn " + fullTypeName + "(\n";
+		String_Appendf( sbInl, "%s lerp( const %s& a, const %s& b, const %s t )\n", fullTypeName, fullTypeName, fullTypeName, typeString );
+		String_Append(  sbInl, "{\n" );
+		String_Appendf( sbInl, "\treturn %s(\n", fullTypeName );
 		for ( u32 i = 0; i < numComponents; i++ ) {
-			std::string componentStr = std::to_string( i );
-
-			*outInl += "\t\tlerp( a[" + componentStr + "], b[" + componentStr + "], t )";
+			String_Appendf( sbInl, "\t\tlerp( a[%d], b[%d], t )", i, i );
 
 			if ( i != numComponents - 1 ) {
-				*outInl += ",";
+				String_Append( sbInl, "," );
 			}
 
-			*outInl += "\n";
+			String_Append( sbInl, "\n" );
 		}
 
-		*outInl += "\t);\n";
-		*outInl += "}\n";
-		*outInl += "\n";
+		String_Append( sbInl, "\t);\n" );
+		String_Append( sbInl, "}\n" );
+		String_Append( sbInl, "\n" );
 	} else {
-		outHeader += "\n";
-		outHeader += "{\n";
-		outHeader += "\treturn ( " + oneStr + " - t ) * a + t * b;\n";
-		outHeader += "}\n";
-		outHeader += "\n";
+		String_Append(  sbHeader, "\n" );
+		String_Append(  sbHeader, "{\n" );
+		String_Appendf( sbHeader, "\treturn ( %.1f - t ) * a + t * b;\n", 1.0f );
+		String_Append(  sbHeader, "}\n" );
+		String_Append(  sbHeader, "\n" );
 	}
 }
 
-void Gen_Smoothstep( const genType_t type, const u32 numComponents, std::string& outHeader, std::string* outInl ) {
+void Gen_Smoothstep( const genType_t type, const u32 numComponents, stringBuilder_t* sbHeader, stringBuilder_t* sbInl ) {
+	assert( sbHeader );
+
 	assert( numComponents >= 1 );	// we allow scalar types for this function
 	assert( numComponents <= GEN_COMPONENT_COUNT_MAX );
 
@@ -435,98 +452,85 @@ void Gen_Smoothstep( const genType_t type, const u32 numComponents, std::string&
 		return;
 	}
 
-	std::string typeString		= Gen_GetTypeString( type );
-	std::string fullTypeName	= Gen_GetFullTypeName( type, 1, numComponents );
-
-	std::string twoStr		= Gen_GetNumericLiteral( type, 2.0f );
-	std::string threeStr	= Gen_GetNumericLiteral( type, 3.0f );
-	std::string sixStr		= Gen_GetNumericLiteral( type, 6.0f );
-	std::string tenStr		= Gen_GetNumericLiteral( type, 10.0f );
-	std::string fifteenStr	= Gen_GetNumericLiteral( type, 15.0f );
-
-	std::string twoVec		= fullTypeName + "( " + twoStr + " )";
-	std::string threeVec	= fullTypeName + "( " + threeStr + " )";
-	std::string sixVec		= fullTypeName + "( " + sixStr + " )";
-	std::string tenVec		= fullTypeName + "( " + tenStr + " )";
-	std::string fifteenVec	= fullTypeName + "( " + fifteenStr + " )";
+	char fullTypeName[32];
+	Gen_GetFullTypeName( type, 1, numComponents, fullTypeName );
 
 	bool isVector = numComponents > 1;
 	if ( isVector ) {
-		assert( outInl );	// only don't output to an .inl file for scalar impls
+		assert( sbInl );	// only don't output to an .inl file for scalar impls
 	}
 
 	// smoothstep
 	{
-		outHeader += Gen_GetDocSmoothstep( fullTypeName );
-		outHeader += "inline " + fullTypeName + " smoothstep( const " + fullTypeName + "& low, const " + fullTypeName + "& high, const " + fullTypeName + "& x )";
+		String_Appendf( sbHeader, "%s", Gen_GetDocSmoothstep( fullTypeName ).c_str() );
+		String_Appendf( sbHeader, "inline %s smoothstep( const %s& low, const %s& high, const %s& x )", fullTypeName, fullTypeName, fullTypeName, fullTypeName );
 		if ( isVector ) {
-			outHeader += ";\n";
-			outHeader += "\n";
+			String_Append( sbHeader, ";\n" );
+			String_Append( sbHeader, "\n" );
 
-			*outInl += fullTypeName + " smoothstep( const " + fullTypeName + "& low, const " + fullTypeName + "& high, const " + fullTypeName + "& x )\n";
-			*outInl += "{\n";
-			*outInl += "\treturn " + fullTypeName + "(\n";
+			String_Appendf( sbInl, "%s smoothstep( const %s& low, const %s& high, const %s& x )\n", fullTypeName, fullTypeName, fullTypeName, fullTypeName );
+			String_Append(  sbInl, "{\n" );
+			String_Appendf( sbInl, "\treturn %s(\n", fullTypeName );
 			for ( u32 i = 0; i < numComponents; i++ ) {
-				std::string componentStr = std::to_string( i );
-
-				*outInl += "\t\tsmoothstep( low[" + componentStr + "], high[" + componentStr + "], x[" + componentStr + "] )";
+				String_Appendf( sbInl, "\t\tsmoothstep( low[%d], high[%d], x[%d] )", i, i, i );
 
 				if ( i != numComponents - 1 ) {
-					*outInl += ",";
+					String_Append( sbInl, "," );
 				}
 
-				*outInl += "\n";
+				String_Append( sbInl, "\n" );
 			}
-			*outInl += "\t);\n";
-			*outInl += "}\n";
-			*outInl += "\n";
+			String_Append( sbInl, "\t);\n" );
+			String_Append( sbInl, "}\n" );
+			String_Append( sbInl, "\n" );
 		} else {
-			outHeader += "\n";
-			outHeader += "{\n";
-			outHeader += "\t" + fullTypeName + " t = saturate( ( x - low ) / ( high - low ) );\n";
-			outHeader += "\treturn t * t * ( " + threeStr + " - " + twoStr + " * t );\n";
-			outHeader += "}\n";
-			outHeader += "\n";
+			String_Append(  sbHeader, "\n" );
+			String_Append(  sbHeader, "{\n" );
+			String_Appendf( sbHeader, "\t%s t = saturate( ( x - low ) / ( high - low ) );\n", fullTypeName );
+			String_Appendf( sbHeader, "\treturn t * t * ( %.1f - %.1f * t );\n", 3.0f, 2.0f );
+			String_Append(  sbHeader, "}\n" );
+			String_Append(  sbHeader, "\n" );
 		}
 	}
 
 	// smootherstep
 	{
-		outHeader += Gen_GetDocSmootherstep( fullTypeName );
-		outHeader += "inline " + fullTypeName + " smootherstep( const " + fullTypeName + "& low, const " + fullTypeName + "& high, const " + fullTypeName + "& x )";
+		String_Appendf( sbHeader, "%s", Gen_GetDocSmootherstep( fullTypeName ).c_str() );
+		String_Appendf( sbHeader, "inline %s smootherstep( const %s& low, const %s& high, const %s& x )", fullTypeName, fullTypeName, fullTypeName, fullTypeName );
 		if ( isVector ) {
-			outHeader += ";\n";
-			outHeader += "\n";
+			String_Append( sbHeader, ";\n" );
+			String_Append( sbHeader, "\n" );
 
-			*outInl += fullTypeName + " smootherstep( const " + fullTypeName + "& low, const " + fullTypeName + "& high, const " + fullTypeName + "& x )\n";
-			*outInl += "{\n";
-			*outInl += "\treturn " + fullTypeName + "(\n";
+			String_Appendf( sbInl, "%s smootherstep( const %s& low, const %s& high, const %s& x )\n", fullTypeName, fullTypeName, fullTypeName, fullTypeName );
+			String_Append(  sbInl, "{\n" );
+			String_Appendf( sbInl, "\treturn %s(\n", fullTypeName );
 			for ( u32 i = 0; i < numComponents; i++ ) {
-				std::string componentStr = std::to_string( i );
-
-				*outInl += "\t\tsmootherstep( low[" + componentStr + "], high[" + componentStr + "], x[" + componentStr + "] )";
+				String_Appendf( sbInl, "\t\tsmootherstep( low[%d], high[%d], x[%d] )", i, i, i );
 
 				if ( i != numComponents - 1 ) {
-					*outInl += ",";
+					String_Append( sbInl, "," );
 				}
 
-				*outInl += "\n";
+				String_Append( sbInl, "\n" );
 			}
-			*outInl += "\t);\n";
-			*outInl += "}\n";
-			*outInl += "\n";
+			String_Append( sbInl, "\t);\n" );
+			String_Append( sbInl, "}\n" );
+			String_Append( sbInl, "\n" );
 		} else {
-			outHeader += "\n";
-			outHeader += "{\n";
-			outHeader += "\t" + fullTypeName + " t = saturate( ( x - low ) / ( high - low ) );\n";
-			outHeader += "\treturn t * t * t * ( t * ( t * " + sixStr + " - " + fifteenStr + " ) + " + tenStr + " );\n";
-			outHeader += "}\n";
-			outHeader += "\n";
+			String_Append(  sbHeader, "\n" );
+			String_Append(  sbHeader, "{\n" );
+			String_Appendf( sbHeader, "\t%s t = saturate( ( x - low ) / ( high - low ) );\n", fullTypeName );
+			String_Appendf( sbHeader, "\treturn t * t * t * ( t * ( t * %.1f - %.1f ) + %.1f );\n", 6.0f, 15.0f, 10.0f );
+			String_Append(  sbHeader, "}\n" );
+			String_Append(  sbHeader, "\n" );
 		}
 	}
 }
 
-void Gen_OperatorsIncrement( const genType_t type, const u32 numRows, const u32 numCols, std::string& outHeader, std::string& outInl ) {
+void Gen_OperatorsIncrement( const genType_t type, const u32 numRows, const u32 numCols, stringBuilder_t* sbHeader, stringBuilder_t* sbInl ) {
+	assert( sbHeader );
+	assert( sbInl );
+
 	assert( numRows >= 1 );	// pass through 1 for vectors
 	assert( numRows <= GEN_COMPONENT_COUNT_MAX );
 	assert( numCols >= GEN_COMPONENT_COUNT_MIN );
@@ -539,13 +543,15 @@ void Gen_OperatorsIncrement( const genType_t type, const u32 numRows, const u32 
 	for ( u32 opIndex = 0; opIndex < GEN_OP_INCREMENT_COUNT; opIndex++ ) {
 		genOpIncrement_t op = static_cast<genOpIncrement_t>( opIndex );
 
-		outHeader += HeaderGetOperatorIncrement( type, numRows, numCols, op );
-
-		outInl += InlGetOperatorIncrement( type, numRows, numCols, op );
+		GenerateOperatorIncrementHeader( type, numRows, numCols, op, sbHeader );
+		GenerateOperatorIncrementInl( type, numRows, numCols, op, sbInl );
 	}
 }
 
-void Gen_OperatorsRelational( const genType_t type, const u32 numRows, const u32 numCols, std::string& outHeader, std::string& outInl ) {
+void Gen_OperatorsRelational( const genType_t type, const u32 numRows, const u32 numCols, stringBuilder_t* sbHeader, stringBuilder_t* sbInl ) {
+	assert( sbHeader );
+	assert( sbInl );
+
 	assert( numRows >= 1 );	// pass through 1 for vectors
 	assert( numRows <= GEN_COMPONENT_COUNT_MAX );
 	assert( numCols >= GEN_COMPONENT_COUNT_MIN );
@@ -558,13 +564,15 @@ void Gen_OperatorsRelational( const genType_t type, const u32 numRows, const u32
 	for ( u32 opIndex = 0; opIndex < GEN_OP_RELATIONAL_COUNT; opIndex++ ) {
 		genOpRelational_t op = static_cast<genOpRelational_t>( opIndex );
 
-		outHeader += HeaderGetOperatorRelational( type, numRows, numCols, op );
-
-		outInl += InlGetOperatorRelational( type, numRows, numCols, op );
+		HeaderGenerateOperatorRelational( type, numRows, numCols, op, sbHeader );
+		InlGenerateOperatorRelational( type, numRows, numCols, op, sbInl );
 	}
 }
 
-void Gen_OperatorsBitwise( const genType_t type, const u32 numRows, const u32 numCols, std::string& outHeader, std::string& outInl ) {
+void Gen_OperatorsBitwise( const genType_t type, const u32 numRows, const u32 numCols, stringBuilder_t* sbHeader, stringBuilder_t* sbInl ) {
+	assert( sbHeader );
+	assert( sbInl );
+
 	assert( numRows >= 1 );	// pass through 1 for vectors
 	assert( numRows <= GEN_COMPONENT_COUNT_MAX );
 	assert( numCols >= GEN_COMPONENT_COUNT_MIN );
@@ -585,39 +593,43 @@ void Gen_OperatorsBitwise( const genType_t type, const u32 numRows, const u32 nu
 	};
 
 	for ( genOpBitwise_t op : ops ) {
-		outHeader += HeaderGetOperatorBitwiseScalar( type, numRows, numCols, op );
-		outHeader += HeaderGetOperatorBitwiseRhsType( type, numRows, numCols, op );
+		HeaderGenerateOperatorBitwiseScalar( type, numRows, numCols, op, sbHeader );
+		HeaderGenerateOperatorBitwiseRhsType( type, numRows, numCols, op, sbHeader );
 
-		outInl += InlGetOperatorBitwiseScalar( type, numRows, numCols, op );
-		outInl += InlGetOperatorBitwiseRhsType( type, numRows, numCols, op );
+		InlGenerateOperatorBitwiseScalar( type, numRows, numCols, op, sbInl );
+		InlGenerateOperatorBitwiseRhsType( type, numRows, numCols, op, sbInl );
 	}
 
 	// unary operator
 	u32 numComponents = ( numRows == 1 ) ? numCols : numRows;
-	std::string fullTypeName = Gen_GetFullTypeName( type, numRows, numCols );
+	char fullTypeName[32];
+	Gen_GetFullTypeName( type, numRows, numCols, fullTypeName );
 
-	outHeader += Gen_GetDocOperatorBitwiseUnary( fullTypeName );
-	outHeader += "inline " + fullTypeName + " operator~( const " + fullTypeName + "& lhs );\n";
-	outHeader += "\n";
+	String_Appendf( sbHeader, "%s", Gen_GetDocOperatorBitwiseUnary( fullTypeName ).c_str() );
+	String_Appendf( sbHeader, "inline %s operator~( const %s& lhs );\n", fullTypeName, fullTypeName );
+	String_Append( sbHeader, "\n" );
 
-	outInl += fullTypeName + " operator~( const " + fullTypeName + "& lhs )\n";
-	outInl += "{\n";
-	outInl += "\treturn " + fullTypeName + "(\n";
+	String_Appendf( sbInl, "%s operator~( const %s& lhs )\n", fullTypeName, fullTypeName );
+	String_Append( sbInl, "{\n" );
+	String_Appendf( sbInl, "\treturn %s(\n", fullTypeName );
 	for ( u32 i = 0; i < numComponents; i++ ) {
-		outInl += std::string( "\t\t~lhs[" ) + std::to_string( i ) + "]";
+		String_Appendf( sbInl, "\t\t~lhs[%d]", i );
 
 		if ( i != numComponents - 1 ) {
-			outInl += ",";
+			String_Append( sbInl, "," );
 		}
 
-		outInl += "\n";
+		String_Append( sbInl, "\n" );
 	}
-	outInl += "\t);\n";
-	outInl += "}\n";
-	outInl += "\n";
+	String_Append( sbInl, "\t);\n" );
+	String_Append( sbInl, "}\n" );
+	String_Append( sbInl, "\n" );
 }
 
-void Gen_OperatorComponentWiseArithmeticScalar( const genType_t type, const u32 numRows, const u32 numCols, const genOpArithmetic_t op, std::string& outHeader, std::string& outInl ) {
+void Gen_OperatorComponentWiseArithmeticScalar( const genType_t type, const u32 numRows, const u32 numCols, const genOpArithmetic_t op, stringBuilder_t* sbHeader, stringBuilder_t* sbInl ) {
+	assert( sbHeader );
+	assert( sbInl );
+
 	assert( numRows >= 1 );	// pass through 1 for vectors
 	assert( numRows <= GEN_COMPONENT_COUNT_MAX );
 	assert( numCols >= GEN_COMPONENT_COUNT_MIN );
@@ -629,45 +641,50 @@ void Gen_OperatorComponentWiseArithmeticScalar( const genType_t type, const u32 
 
 	u32 numComponents = ( numRows == 1 ) ? numCols : numRows;
 
-	std::string fullTypeName = Gen_GetFullTypeName( type, numRows, numCols );
-	std::string memberTypeString = Gen_GetMemberTypeString( type );
+	char fullTypeName[32];
+	Gen_GetFullTypeName( type, numRows, numCols, fullTypeName );
+
+	const char* memberTypeString = Gen_GetMemberTypeString( type );
 
 	char opStr = GEN_OPERATORS_ARITHMETIC[op];
 
-	outHeader += Gen_GetDocOperatorArithmeticScalar( fullTypeName, op );
-	outHeader += "inline " + fullTypeName + " operator" + opStr + "( const " + fullTypeName + "& lhs, const " + memberTypeString + " rhs );\n";
-	outHeader += "\n";
+	String_Appendf( sbHeader, "%s", Gen_GetDocOperatorArithmeticScalar( fullTypeName, op ).c_str() );
+	String_Appendf( sbHeader, "inline %s operator%c( const %s& lhs, const %s rhs );\n", fullTypeName, opStr, fullTypeName, memberTypeString );
+	String_Append(  sbHeader, "\n" );
 
-	outHeader += Gen_GetDocOperatorCompoundArithmeticScalar( fullTypeName, op );
-	outHeader += "inline " + fullTypeName + " operator" + opStr + "=( " + fullTypeName + "& lhs, const " + memberTypeString + " rhs );\n";
-	outHeader += "\n";
+	String_Appendf( sbHeader, "%s", Gen_GetDocOperatorCompoundArithmeticScalar( fullTypeName, op ).c_str() );
+	String_Appendf( sbHeader, "inline %s operator%c=( %s& lhs, const %s rhs );\n", fullTypeName, opStr, fullTypeName, memberTypeString );
+	String_Append(  sbHeader, "\n" );
 
 	// main arithmetic func
-	outInl += fullTypeName + " " + "operator" + opStr + "( const " + fullTypeName + "& lhs, const " + memberTypeString + " rhs )\n";
-	outInl += "{\n";
-	outInl += "\treturn " + fullTypeName + "(\n";
+	String_Appendf( sbInl, "%s operator%c( const %s& lhs, const %s rhs )\n", fullTypeName, opStr, fullTypeName, memberTypeString );
+	String_Append(  sbInl, "{\n" );
+	String_Appendf( sbInl, "\treturn %s(\n", fullTypeName );
 	for ( u32 i = 0; i < numComponents; i++ ) {
-		outInl += "\t\tlhs[" + std::to_string( i ) + "] " + opStr + " rhs";
+		String_Appendf( sbInl, "\t\tlhs[%d] %c rhs", i, opStr );
 
 		if ( i != numComponents - 1 ) {
-			outInl += ",";
+			String_Append( sbInl, "," );
 		}
 
-		outInl += "\n";
+		String_Append( sbInl, "\n" );
 	}
-	outInl += "\t);\n";
-	outInl += "}\n";
-	outInl += "\n";
+	String_Append( sbInl, "\t);\n" );
+	String_Append( sbInl, "}\n" );
+	String_Append( sbInl, "\n" );
 
 	// compound arithmetic func
-	outInl += fullTypeName + " " + "operator" + opStr + "=( " + fullTypeName + "& lhs, const " + memberTypeString + " rhs )\n";
-	outInl += "{\n";
-	outInl += std::string( "\treturn ( lhs = lhs " ) + opStr + " rhs );\n";
-	outInl += "}\n";
-	outInl += "\n";
+	String_Appendf( sbInl, "%s operator%c=( %s& lhs, const %s rhs )\n", fullTypeName, opStr, fullTypeName, memberTypeString );
+	String_Append(  sbInl, "{\n" );
+	String_Appendf( sbInl, "\treturn ( lhs = lhs %c rhs );\n", opStr );
+	String_Append(  sbInl, "}\n" );
+	String_Append(  sbInl, "\n" );
 }
 
-void Gen_OperatorComponentWiseArithmeticRhsType( const genType_t type, const u32 numRows, const u32 numCols, const genOpArithmetic_t op, std::string& outHeader, std::string& outInl ) {
+void Gen_OperatorComponentWiseArithmeticRhsType( const genType_t type, const u32 numRows, const u32 numCols, const genOpArithmetic_t op, stringBuilder_t* sbHeader, stringBuilder_t* sbInl ) {
+	assert( sbHeader );
+	assert( sbInl );
+
 	assert( numRows >= 1 );	// pass through 1 for vectors
 	assert( numRows <= GEN_COMPONENT_COUNT_MAX );
 	assert( numCols >= GEN_COMPONENT_COUNT_MIN );
@@ -687,64 +704,67 @@ void Gen_OperatorComponentWiseArithmeticRhsType( const genType_t type, const u32
 
 	u32 numComponents = ( numRows == 1 ) ? numCols : numRows;
 
-	std::string fullTypeName = Gen_GetFullTypeName( type, numRows, numCols );
+	char fullTypeName[32];
+	Gen_GetFullTypeName( type, numRows, numCols, fullTypeName );
 
 	char opStr = GEN_OPERATORS_ARITHMETIC[op];
 
-	outHeader += Gen_GetDocOperatorComponentWiseArithmeticRhsType( fullTypeName, fullTypeName, op );
-	outHeader += "inline " + fullTypeName + " operator" + opStr + "( const " + fullTypeName + "& lhs, const " + fullTypeName + "& rhs );\n";
-	outHeader += "\n";
+	Gen_DocOperatorComponentWiseArithmeticRhsType( sbHeader, fullTypeName, fullTypeName, op );
+	String_Appendf( sbHeader, "inline %s operator%c( const %s& lhs, const %s& rhs );\n", fullTypeName, opStr, fullTypeName, fullTypeName );
+	String_Append(  sbHeader, "\n" );
 
 	if ( canGenerateCompound ) {
-		outHeader += Gen_GetDocOperatorCompoundComponentWiseArithmeticRhsType( fullTypeName, fullTypeName, op );
-		outHeader += "inline " + fullTypeName + " operator" + opStr + "=( " + fullTypeName + "& lhs, const " + fullTypeName + "& rhs );\n";
-		outHeader += "\n";
+		Gen_DocOperatorCompoundComponentWiseArithmeticRhsType( sbHeader, fullTypeName, fullTypeName, op );
+		String_Appendf( sbHeader, "inline %s operator%c=( %s& lhs, const %s& rhs );\n", fullTypeName, opStr, fullTypeName, fullTypeName );
+		String_Append(  sbHeader, "\n" );
 	}
 
 	// main arithmetic func
-	outInl += fullTypeName + " " + "operator" + opStr + "( const " + fullTypeName + "& lhs, const " + fullTypeName + "& rhs )\n";
-	outInl += "{\n";
-	outInl += "\treturn " + fullTypeName + "(\n";
+	String_Appendf( sbInl, "%s operator%c( const %s& lhs, const %s& rhs )\n", fullTypeName, opStr, fullTypeName, fullTypeName );
+	String_Append(  sbInl, "{\n" );
+	String_Appendf( sbInl, "\treturn %s(\n", fullTypeName );
 	for ( u32 i = 0; i < numComponents; i++ ) {
-		std::string componentStr = std::to_string( i );
-
-		outInl += "\t\tlhs[" + componentStr + "] " + opStr + " rhs[" + componentStr + "]";
+		String_Appendf( sbInl, "\t\tlhs[%d] %c rhs[%d]", i, opStr, i );
 
 		if ( i != numComponents - 1 ) {
-			outInl += ",";
+			String_Append( sbInl, "," );
 		}
 
-		outInl += "\n";
+		String_Append( sbInl, "\n" );
 	}
-	outInl += "\t);\n";
-	outInl += "}\n";
-	outInl += "\n";
+	String_Append( sbInl, "\t);\n" );
+	String_Append( sbInl, "}\n" );
+	String_Append( sbInl, "\n" );
 
 	// compound arithmetic func
 	if ( canGenerateCompound ) {
-		outInl += fullTypeName + " " + "operator" + opStr + "=( " + fullTypeName + "& lhs, const " + fullTypeName + "& rhs )\n";
-		outInl += "{\n";
-		outInl += std::string( "\treturn ( lhs = lhs " ) + opStr + " rhs );\n";
-		outInl += "}\n";
-		outInl += "\n";
+		String_Appendf( sbInl, "%s operator%c=( %s& lhs, const %s& rhs )\n", fullTypeName, opStr, fullTypeName, fullTypeName );
+		String_Append(  sbInl, "{\n" );
+		String_Appendf( sbInl, "\treturn ( lhs = lhs %c rhs );\n", opStr );
+		String_Append(  sbInl, "}\n" );
+		String_Append(  sbInl, "\n" );
 	}
 }
 
-void Gen_OperatorNotEquals( const genType_t type, const u32 numRows, const u32 numCols, std::string& outHeader, std::string& outInl ) {
+void Gen_OperatorNotEquals( const genType_t type, const u32 numRows, const u32 numCols, stringBuilder_t* sbHeader, stringBuilder_t* sbInl ) {
+	assert( sbHeader );
+	assert( sbInl );
+
 	assert( numRows >= 1 );	// pass through 1 for vectors
 	assert( numRows <= GEN_COMPONENT_COUNT_MAX );
 	assert( numCols >= GEN_COMPONENT_COUNT_MIN );
 	assert( numCols <= GEN_COMPONENT_COUNT_MAX );
 
-	std::string fullTypeName = Gen_GetFullTypeName( type, numRows, numCols );
+	char fullTypeName[32];
+	Gen_GetFullTypeName( type, numRows, numCols, fullTypeName );
 
-	outHeader += Gen_GetDocOperatorNotEquals( fullTypeName );
-	outHeader += "inline bool operator!=( const " + fullTypeName + "& lhs, const " + fullTypeName + "& rhs );\n";
-	outHeader += "\n";
+	Gen_DocOperatorNotEquals( sbHeader, fullTypeName );
+	String_Appendf( sbHeader, "inline bool operator!=( const %s& lhs, const %s& rhs );\n", fullTypeName, fullTypeName );
+	String_Append(  sbHeader, "\n" );
 
-	outInl += "bool operator!=( const " + fullTypeName + "& lhs, const " + fullTypeName + "& rhs )\n";
-	outInl += "{\n";
-	outInl += "\treturn !( operator==( lhs, rhs ) );\n";
-	outInl += "}\n";
-	outInl += "\n";
+	String_Appendf( sbInl, "bool operator!=( const %s& lhs, const %s& rhs )\n", fullTypeName, fullTypeName );
+	String_Append(  sbInl, "{\n" );
+	String_Append(  sbInl, "\treturn !( operator==( lhs, rhs ) );\n" );
+	String_Append(  sbInl, "}\n" );
+	String_Append(  sbInl, "\n" );
 }

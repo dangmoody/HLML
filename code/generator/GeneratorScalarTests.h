@@ -2,6 +2,7 @@
 
 #include "gen_common.h"
 
+#if 0
 class GeneratorScalarTest {
 public:
 				GeneratorScalarTest() {}
@@ -25,3 +26,4 @@ private:
 	void		GenerateTestClamp();
 	void		GenerateTestSaturate();
 };
+#endif

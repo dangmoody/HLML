@@ -1,5 +1,8 @@
 #include "GeneratorMatrix.h"
 
+#include "allocator.h"
+#include "string_builder.h"
+
 #include "gen_doc_common.h"
 
 #include "FileIO.h"
@@ -15,59 +18,56 @@ bool GeneratorMatrix::Generate( const genType_t type, const u32 numRows, const u
 	m_numRows = numRows;
 	m_numCols = numCols;
 
-	m_numRowsStr = std::to_string( numRows );
-	m_numColsStr = std::to_string( numCols );
-
 	m_typeString = Gen_GetTypeString( type );
 	m_memberTypeString = Gen_GetMemberTypeString( type );
 
-	m_fullTypeName = m_typeString + m_numRowsStr + "x" + m_numColsStr;
-	m_transposedTypeName = m_typeString + m_numColsStr + "x" + m_numRowsStr;
+	sprintf( m_fullTypeName, "%s%dx%d", m_typeString, m_numRows, m_numCols );
+	sprintf( m_transposedTypeName, "%s%dx%d", m_typeString, m_numCols, m_numRows );
 
-	m_vectorMemberTypeString = m_typeString + m_numColsStr;
+	sprintf( m_vectorMemberTypeString, "%s%d", m_typeString, m_numCols );
 
-	m_codeHeader = std::string();
-	m_codeInl = std::string();
+	m_codeHeader = String_Create( 8 * KB_TO_BYTES );
+	m_codeInl = String_Create( 8 * KB_TO_BYTES );
 
 	// header pre-functions
 	{
-		m_codeHeader += GEN_FILE_HEADER;
+		String_Append( &m_codeHeader, GEN_FILE_HEADER );
 
-		m_codeHeader += "#pragma once\n";
-		m_codeHeader += "\n";
+		String_Append( &m_codeHeader, "#pragma once\n" );
+		String_Append( &m_codeHeader, "\n" );
 
-		m_codeHeader += "#include \"" + m_typeString + m_numColsStr + ".h\"\n";								// vec type
+		String_Appendf( &m_codeHeader, "#include \"%s%d.h\"\n", m_typeString, m_numCols );						// vec type
 		if ( m_numRows != m_numCols ) {
-			m_codeHeader += "#include \"" + m_typeString + m_numRowsStr + "x" + m_numRowsStr + ".h\"\n";	// multiplication return type
-			m_codeHeader += "#include \"" + m_transposedTypeName + ".h\"\n";								// transpose type
+			String_Appendf( &m_codeHeader, "#include \"%s%dx%d.h\"\n", m_typeString, m_numRows, m_numRows );	// multiplication return type
+			String_Appendf( &m_codeHeader, "#include \"%s.h\"\n", m_transposedTypeName );						// transpose type
 		}
-		m_codeHeader += "\n";
+		String_Append( &m_codeHeader, "\n" );
 
-		m_codeHeader += GetDocStruct();
-		m_codeHeader += "struct " + m_fullTypeName + "\n";
-		m_codeHeader += "{\n";
+		GenerateDocStruct();
+		String_Appendf( &m_codeHeader, "struct %s\n", m_fullTypeName );
+		String_Append(  &m_codeHeader, "{\n" );
 
-		m_codeHeader += "\t" + m_vectorMemberTypeString + " rows[" + m_numRowsStr + "];\n";
-		m_codeHeader += "\n";
+		String_Appendf( &m_codeHeader, "\t%s rows[%d];\n", m_vectorMemberTypeString, m_numRows );
+		String_Append(  &m_codeHeader, "\n" );
 	}
 
 	// inl pre-functions
 	{
-		m_codeInl += GEN_FILE_HEADER;
+		String_Append( &m_codeInl, GEN_FILE_HEADER );
 
-//		m_codeInl += "// hlml includes\n";
-//		m_codeInl += "#include \"../" + std::string( GEN_HEADER_CONSTANTS ) + "\"\n";
-//		m_codeInl += "\n";
+//		String_Append( &m_codeInl, "// hlml includes\n" );
+//		String_Append( &m_codeInl, "#include \"../" GEN_HEADER_CONSTANTS "\"\n" );
+//		String_Append( &m_codeInl, "\n" );
 
-		m_codeInl += "// others\n";
-		m_codeInl += "#include <math.h>\n";
-		m_codeInl += "\n";
+		String_Append( &m_codeInl, "// others\n" );
+		String_Append( &m_codeInl, "#include <math.h>\n" );
+		String_Append( &m_codeInl, "\n" );
 
 		if ( m_type != GEN_TYPE_BOOL ) {
-			m_codeInl += "// forward declares\n";
-			m_codeInl += m_fullTypeName + " inverse( const " + m_fullTypeName + "& mat );\n";
+			String_Append(  &m_codeInl, "// forward declares\n" );
+			String_Appendf( &m_codeInl, "%s inverse( const %s& mat );\n", m_fullTypeName, m_fullTypeName );
 
-			m_codeInl += "\n";
+			String_Append( &m_codeInl, "\n" );
 		}
 	}
 
@@ -77,327 +77,327 @@ bool GeneratorMatrix::Generate( const genType_t type, const u32 numRows, const u
 
 	GenerateOperatorsArray();
 
-	m_codeHeader += "};\n\n";
+	String_Append( &m_codeHeader, "};\n\n" );
 
 	GenerateOperatorsEquality();
 
-	m_codeHeader += "#include \"" + m_fullTypeName + ".inl\"";
-	m_codeHeader += "\n";
+	String_Appendf( &m_codeHeader, "#include \"%s.inl\"", m_fullTypeName );
+	String_Append(  &m_codeHeader, "\n" );
 
-	if ( !FS_WriteEntireFile( ( GEN_OUT_GEN_FOLDER_PATH + m_fullTypeName + ".h" ).c_str(), m_codeHeader.c_str(), m_codeHeader.size() ) ) {
-		return false;
-	}
+	char fileNameHeader[64];
+	sprintf( fileNameHeader, "%s%s.h", GEN_OUT_GEN_FOLDER_PATH, m_fullTypeName );
 
-	if ( !FS_WriteEntireFile( ( GEN_OUT_GEN_FOLDER_PATH + m_fullTypeName + ".inl" ).c_str(), m_codeInl.c_str(), m_codeInl.size() ) ) {
-		return false;
-	}
+	char fileNameInl[64];
+	sprintf( fileNameInl, "%s%s.inl", GEN_OUT_GEN_FOLDER_PATH, m_fullTypeName );
 
-	return true;
+	bool32 wroteHeader	= FS_WriteEntireFile( fileNameHeader, m_codeHeader.str, m_codeHeader.length );
+	bool32 wroteInl		= FS_WriteEntireFile( fileNameInl, m_codeInl.str, m_codeInl.length );
+
+	Mem_Reset();
+
+	return wroteHeader && wroteInl;
 }
 
 #ifdef _DEBUG
 void GeneratorMatrix::PrintHeader() const {
-	printf( "%s\n", m_codeHeader.c_str() );
+	printf( "%s\n", m_codeHeader.str );
 }
 
 void GeneratorMatrix::PrintInl() const {
-	printf( "%s\n", m_codeInl.c_str() );
+	printf( "%s\n", m_codeInl.str );
 }
 #endif
 
 void GeneratorMatrix::GenerateConstructors() {
 	// default ctor
 	{
-		m_codeHeader += GetDocCtorDefault();
-		m_codeHeader += "\tinline " + m_fullTypeName + "();\n";
-		m_codeHeader += "\n";
+		GenerateDocCtorDefault();
+		String_Appendf( &m_codeHeader, "\tinline %s();\n", m_fullTypeName );
+		String_Append(  &m_codeHeader, "\n" );
 
-		m_codeInl += m_fullTypeName + "::" + m_fullTypeName + "()\n";
-		m_codeInl += "{\n";
+		String_Appendf( &m_codeInl, "%s::%s()\n", m_fullTypeName, m_fullTypeName );
+		String_Append(  &m_codeInl, "{\n" );
 		for ( u32 row = 0; row < m_numRows; row++ ) {
-			m_codeInl += "\trows[" + std::to_string( row ) + "] = { ";
+			String_Appendf( &m_codeInl, "\trows[%d] = { ", row );
 			for ( u32 col = 0; col < m_numCols; col++ ) {
-				m_codeInl += ( row == col ) ? "1" : "0";
+				String_Append( &m_codeInl, ( row == col ) ? "1" : "0" );
 
 				if ( col != m_numCols - 1 ) {
-					m_codeInl += ", ";
+					String_Append( &m_codeInl, ", " );
 				}
 			}
-			m_codeInl += " };\n";
+			String_Append( &m_codeInl, " };\n" );
 		}
-		m_codeInl += "}\n\n";
+		String_Append( &m_codeInl, "}\n\n" );
 	}
 
 	// "diagonal" scaled uniform identity ctor
 	{
-		m_codeHeader += GetDocCtorDiagonalScalar();
-		m_codeHeader += "\tinline " + m_fullTypeName + "( const " + m_memberTypeString + " diagonal );\n";
-		m_codeHeader += "\n";
+		GenerateDocCtorDiagonalScalar();
+		String_Appendf( &m_codeHeader, "\tinline %s( const %s diagonal );\n", m_fullTypeName, m_memberTypeString );
+		String_Append(  &m_codeHeader, "\n" );
 
-		m_codeInl += m_fullTypeName + "::" + m_fullTypeName + "( const " + m_memberTypeString + " diagonal )\n";
-		m_codeInl += "{\n";
+		String_Appendf( &m_codeInl, "%s::%s( const %s diagonal )\n", m_fullTypeName, m_fullTypeName, m_memberTypeString );
+		String_Append(  &m_codeInl, "{\n" );
 		for ( u32 i = 0; i < m_numRows; i++ ) {
-			m_codeInl += "\trows[" + std::to_string( i ) + "] = { ";
+			String_Appendf( &m_codeInl, "\trows[%d] = { ", i );
 			for ( u32 j = 0; j < m_numCols; j++ ) {
-				m_codeInl += ( i == j ) ? "diagonal" : "0";
+				String_Append( &m_codeInl, ( i == j ) ? "diagonal" : "0" );
 
 				if ( j != m_numCols - 1 ) {
-					m_codeInl += ", ";
+					String_Append( &m_codeInl, ", " );
 				}
 			}
-			m_codeInl += " };\n";
+			String_Append( &m_codeInl, " };\n" );
 		}
-		m_codeInl += "}\n\n";
+		String_Append( &m_codeInl, "}\n\n" );
 	}
 
 	// "diagonal" scaled non-uniform identity ctor
 	{
-		m_codeHeader += GetDocCtorDiagonalVector();
-		m_codeHeader += "\tinline " + m_fullTypeName + "( const " + m_vectorMemberTypeString + "& diagonal );\n";
-		m_codeHeader += "\n";
+		GenerateDocCtorDiagonalVector();
+		String_Appendf( &m_codeHeader, "\tinline %s( const %s& diagonal );\n", m_fullTypeName, m_vectorMemberTypeString );
+		String_Append(  &m_codeHeader, "\n" );
 
-		m_codeInl += m_fullTypeName + "::" + m_fullTypeName + "( const " + m_vectorMemberTypeString + "& diagonal )\n";
-		m_codeInl += "{\n";
+		String_Appendf( &m_codeInl, "%s::%s( const %s& diagonal )\n", m_fullTypeName, m_fullTypeName, m_vectorMemberTypeString );
+		String_Append(  &m_codeInl, "{\n" );
 		for ( u32 i = 0; i < m_numRows; i++ ) {
-			m_codeInl += "\trows[" + std::to_string( i ) + "] = { ";
+			String_Appendf( &m_codeInl, "\trows[%d] = { ", i );
 			for ( u32 j = 0; j < m_numCols; j++ ) {
-				m_codeInl += ( i == j ) ? std::string( "diagonal." ) + GEN_COMPONENT_NAMES_VECTOR[j] : "0";
+//				String_Appendf( &m_codeInl, ( i == j ) ? std::string( "diagonal." ) + GEN_COMPONENT_NAMES_VECTOR[j] : "0" );
+				if ( i == j ) {
+					String_Appendf( &m_codeInl, "diagonal.%c", GEN_COMPONENT_NAMES_VECTOR[j] );
+				} else {
+					String_Append( &m_codeInl, "0" );
+				}
 
 				if ( j != m_numCols - 1 ) {
-					m_codeInl += ", ";
+					String_Append( &m_codeInl, ", " );
 				}
 			}
-			m_codeInl += " };\n";
+			String_Append( &m_codeInl, " };\n" );
 		}
-		m_codeInl += "}\n\n";
+		String_Append( &m_codeInl, "}\n\n" );
 	}
 
 	// row memberwise ctor
 	{
-		m_codeHeader += GetDocCtorRow();
-		m_codeHeader += "\tinline " + m_fullTypeName + "( ";
+		GenerateDocCtorRow();
+		String_Appendf( &m_codeHeader, "\tinline %s( ", m_fullTypeName );
 		for ( u32 i = 0; i < m_numRows; i++ ) {
-			m_codeHeader += "const " + m_vectorMemberTypeString + "& row" + std::to_string( i );
+			String_Appendf( &m_codeHeader, "const %s& row%d", m_vectorMemberTypeString, i );
 
 			if ( i != m_numRows - 1 ) {
-				m_codeHeader += ", ";
+				String_Append( &m_codeHeader, ", " );
 			}
 		}
-		m_codeHeader += " );\n";
-		m_codeHeader += "\n";
+		String_Append( &m_codeHeader, " );\n" );
+		String_Append( &m_codeHeader, "\n" );
 
-		m_codeInl += m_fullTypeName + "::" + m_fullTypeName + "( ";
+		String_Appendf( &m_codeInl, "%s::%s( ", m_fullTypeName, m_fullTypeName );
 		for ( u32 i = 0; i < m_numRows; i++ ) {
-			m_codeInl += "const " + m_vectorMemberTypeString + "& row" + std::to_string( i );
+			String_Appendf( &m_codeInl, "const %s& row%d", m_vectorMemberTypeString, i );
 
 			if ( i != m_numRows - 1 ) {
-				m_codeInl += ", ";
+				String_Append( &m_codeInl, ", " );
 			}
 		}
-		m_codeInl += " )\n";
-		m_codeInl += "{\n";
+		String_Append( &m_codeInl, " )\n" );
+		String_Append( &m_codeInl, "{\n" );
 		for ( u32 i = 0; i < m_numRows; i++ ) {
-			const std::string indexstr = std::to_string( i );
-			m_codeInl += "\trows[" + indexstr + "] = row" + indexstr + ";\n";
+			String_Appendf( &m_codeInl, "\trows[%d] = row%d;\n", i, i );
 		}
-		m_codeInl += "}\n\n";
+		String_Append( &m_codeInl, "}\n\n" );
 	}
 
 	// array of rows ctor
 	{
-		m_codeHeader += GetDocCtorRowArray();
-		m_codeHeader += "\tinline " + m_fullTypeName + "( const " + m_vectorMemberTypeString + " rows[" + m_numRowsStr + "] );\n";
-		m_codeHeader += "\n";
+		GenerateDocCtorRowArray();
+		String_Appendf( &m_codeHeader, "\tinline %s( const %s rows[%d] );\n", m_fullTypeName, m_vectorMemberTypeString, m_numRows );
+		String_Append(  &m_codeHeader, "\n" );
 
-		m_codeInl += m_fullTypeName + "::" + m_fullTypeName + "( const " + m_vectorMemberTypeString + " rows[" + m_numRowsStr + "] )\n";
-		m_codeInl += "{\n";
+		String_Appendf( &m_codeInl, "%s::%s( const %s rows[%d] )\n", m_fullTypeName, m_fullTypeName, m_vectorMemberTypeString, m_numRows );
+		String_Append(  &m_codeInl, "{\n" );
 		for ( u32 i = 0; i < m_numRows; i++ ) {
 			std::string indexstr = std::to_string( i );
-			m_codeInl += "\tthis->rows[" + indexstr + "] = rows[" + indexstr + "];\n";
+			String_Appendf( &m_codeInl, "\tthis->rows[%d] = rows[%d];\n", i, i );
 		}
-		m_codeInl += "}\n\n";
+		String_Append( &m_codeInl, "}\n\n" );
 	}
 
 	// memberwise rows * cols ctor
 	{
-		m_codeHeader += GetDocCtorRowsAndCols();
-		m_codeHeader += "\tinline " + m_fullTypeName + "( ";
+		GenerateDocCtorRowsAndCols();
+		String_Appendf( &m_codeHeader, "\tinline %s( ", m_fullTypeName );
 		for ( u32 row = 0; row < m_numRows; row++ ) {
 			for ( u32 col = 0; col < m_numCols; col++ ) {
-				std::string rowStr = std::to_string( row );
-				std::string colStr = std::to_string( col );
-
-				m_codeHeader += "const " + m_memberTypeString + " m" + rowStr + colStr;
+				String_Appendf( &m_codeHeader, "const %s m%d%d", m_memberTypeString, row, col );
 
 				if ( col != m_numCols - 1 ) {
-					m_codeHeader += ", ";
+					String_Append( &m_codeHeader, ", " );
 				}
 			}
 
 			if ( row != m_numRows - 1 ) {
-				m_codeHeader += ", ";
+				String_Append( &m_codeHeader, ", " );
 			}
 		}
-		m_codeHeader += " );\n";
-		m_codeHeader += "\n";
+		String_Append( &m_codeHeader, " );\n" );
+		String_Append( &m_codeHeader, "\n" );
 
-		m_codeInl += m_fullTypeName + "::" + m_fullTypeName + "( ";
+		String_Appendf( &m_codeInl, "%s::%s( ", m_fullTypeName, m_fullTypeName );
 		for ( u32 row = 0; row < m_numRows; row++ ) {
 			for ( u32 col = 0; col < m_numCols; col++ ) {
-				std::string rowStr = std::to_string( row );
-				std::string colStr = std::to_string( col );
-
-				m_codeInl += "const " + m_memberTypeString + " m" + rowStr + colStr;
+				String_Appendf( &m_codeInl, "const %s m%d%d", m_memberTypeString, row, col );
 
 				if ( col != m_numCols - 1 ) {
-					m_codeInl += ", ";
+					String_Append( &m_codeInl, ", " );
 				}
 			}
 
 			if ( row != m_numRows - 1 ) {
-				m_codeInl += ", ";
+				String_Append( &m_codeInl, ", " );
 			}
 		}
-		m_codeInl += " )\n";
-		m_codeInl += "{\n";
+		String_Append( &m_codeInl, " )\n" );
+		String_Append( &m_codeInl, "{\n" );
 		for ( u32 row = 0; row < m_numRows; row++ ) {
-			std::string rowstr = std::to_string( row );
-
-			m_codeInl += "\trows[" + rowstr + "] = { ";
+			String_Appendf( &m_codeInl, "\trows[%d] = { ", row );
 
 			for ( u32 col = 0; col < m_numCols; col++ ) {
-				std::string colstr = std::to_string( col );
-
-				m_codeInl += "m" + rowstr + colstr;
+				String_Appendf( &m_codeInl, "m%d%d", row, col );
 
 				if ( col != m_numCols - 1 ) {
-					m_codeInl += ", ";
+					String_Append( &m_codeInl, ", " );
 				}
 			}
-			m_codeInl += " };\n";
+			String_Append( &m_codeInl, " };\n" );
 		}
-		m_codeInl += "}\n\n";
+		String_Append( &m_codeInl, "}\n\n" );
 	}
 
 	// copy ctor
 	{
-		m_codeHeader += GetDocCtorCopy();
-		m_codeHeader += "\tinline " + m_fullTypeName + "( const " + m_fullTypeName + "& other );\n";
-		m_codeHeader += "\n";
+		GenerateDocCtorCopy();
+		String_Appendf( &m_codeHeader, "\tinline %s( const %s& other );\n", m_fullTypeName, m_fullTypeName );
+		String_Append(  &m_codeHeader, "\n" );
 
-		m_codeInl += m_fullTypeName + "::" + m_fullTypeName + "( const " + m_fullTypeName + "& other )\n";
-		m_codeInl += "{\n";
-		m_codeInl += "\tmemcpy( rows, other.rows, sizeof( rows ) );\n";
-		m_codeInl += "}\n";
-		m_codeInl += "\n";
+		String_Appendf( &m_codeInl, "%s::%s( const %s& other )\n", m_fullTypeName, m_fullTypeName, m_fullTypeName );
+		String_Append(  &m_codeInl, "{\n" );
+		String_Appendf( &m_codeInl, "\tmemcpy( rows, other.rows, sizeof( rows ) );\n" );
+		String_Append(  &m_codeInl, "}\n" );
+		String_Append(  &m_codeInl, "\n" );
 	}
 
 	// dtor
-	m_codeHeader += "\tinline ~" + m_fullTypeName + "() {}\n";
-	m_codeHeader += "\n";
+	String_Appendf( &m_codeHeader, "\tinline ~%s() {}\n", m_fullTypeName );
+	String_Append(  &m_codeHeader, "\n" );
 }
 
 void GeneratorMatrix::GenerateOperatorsAssignment() {
 	// assignment operator
-	m_codeHeader += GetDocOperatorAssignment();
-	m_codeHeader += "\tinline " + m_fullTypeName + " operator=( const " + m_fullTypeName + "& other );\n";
-	m_codeHeader += "\n";
+	GenerateDocOperatorAssignment();
+	String_Appendf( &m_codeHeader, "\tinline %s operator=( const %s& other );\n", m_fullTypeName, m_fullTypeName );
+	String_Append(  &m_codeHeader, "\n" );
 
-	m_codeInl += m_fullTypeName + " " + m_fullTypeName + "::operator=( const " + m_fullTypeName + "& other )\n";
-	m_codeInl += "{\n";
-	m_codeInl += "\tmemcpy( rows, other.rows, sizeof( rows ) );\n";
-	m_codeInl += "\treturn *this;\n";
-	m_codeInl += "}\n";
-	m_codeInl += "\n";
+	String_Appendf( &m_codeInl, "%s %s::operator=( const %s& other )\n", m_fullTypeName, m_fullTypeName, m_fullTypeName );
+	String_Append(  &m_codeInl, "{\n" );
+	String_Append(  &m_codeInl, "\tmemcpy( rows, other.rows, sizeof( rows ) );\n" );
+	String_Append(  &m_codeInl, "\treturn *this;\n" );
+	String_Append(  &m_codeInl, "}\n" );
+	String_Append(  &m_codeInl, "\n" );
 }
 
 void GeneratorMatrix::GenerateOperatorsArray() {
-	m_codeHeader += GetDocOperatorArray();
-	m_codeHeader += "\tinline " + m_vectorMemberTypeString + "& operator[]( const uint32_t index );\n";
-	m_codeHeader += "\n";
+	GenerateDocOperatorArray();
+	String_Appendf( &m_codeHeader, "\tinline %s& operator[]( const uint32_t index );\n", m_vectorMemberTypeString );
+	String_Append(  &m_codeHeader, "\n" );
 
-	m_codeInl += m_vectorMemberTypeString + "& " + m_fullTypeName + "::operator[]( const uint32_t index )\n";
-	m_codeInl += "{\n";
-	m_codeInl += "\tassert( index < " + m_numRowsStr + " );\n";
-	m_codeInl += "\treturn rows[index];\n";
-	m_codeInl += "}\n";
-	m_codeInl += "\n";
+	String_Appendf( &m_codeInl, "%s& %s::operator[]( const uint32_t index )\n", m_vectorMemberTypeString, m_fullTypeName );
+	String_Append(  &m_codeInl, "{\n" );
+	String_Appendf( &m_codeInl, "\tassert( index < %d );\n", m_numRows );
+	String_Append(  &m_codeInl, "\treturn rows[index];\n" );
+	String_Append(  &m_codeInl, "}\n" );
+	String_Append(  &m_codeInl, "\n" );
 
-	m_codeHeader += GetDocOperatorArray();
-	m_codeHeader += "\tinline const " + m_vectorMemberTypeString + "& operator[]( const uint32_t index ) const;\n";
+	GenerateDocOperatorArray();
+	String_Appendf( &m_codeHeader, "\tinline const %s& operator[]( const uint32_t index ) const;\n", m_vectorMemberTypeString );
 
-	m_codeInl += "const " + m_vectorMemberTypeString + "& " + m_fullTypeName + "::operator[]( const uint32_t index ) const\n";
-	m_codeInl += "{\n";
-	m_codeInl += "\tassert( index < " + m_numRowsStr + " );\n";
-	m_codeInl += "\treturn rows[index];\n";
-	m_codeInl += "}\n";
-	m_codeInl += "\n";
+	String_Appendf( &m_codeInl, "const %s& %s::operator[]( const uint32_t index ) const\n", m_vectorMemberTypeString, m_fullTypeName );
+	String_Append(  &m_codeInl, "{\n" );
+	String_Appendf( &m_codeInl, "\tassert( index < %d );\n", m_numRows );
+	String_Append(  &m_codeInl, "\treturn rows[index];\n" );
+	String_Append(  &m_codeInl, "}\n" );
+	String_Append(  &m_codeInl, "\n" );
 }
 
 void GeneratorMatrix::GenerateOperatorsEquality() {
 	// operator==
 	{
-		m_codeHeader += Gen_GetDocOperatorEquals( m_fullTypeName );
-		m_codeHeader += "inline bool operator==( const " + m_fullTypeName + "& lhs, const " + m_fullTypeName + "& rhs );\n";
-		m_codeHeader += "\n";
+		Gen_DocOperatorEquals( &m_codeHeader, m_fullTypeName );
+		String_Appendf( &m_codeHeader, "inline bool operator==( const %s& lhs, const %s& rhs );\n", m_fullTypeName, m_fullTypeName );
+		String_Append(  &m_codeHeader, "\n" );
 
-		m_codeInl += "bool operator==( const " + m_fullTypeName + "& lhs, const " + m_fullTypeName + "& rhs )\n";
-		m_codeInl += "{\n";
-		m_codeInl += "\treturn ";
+		String_Appendf( &m_codeInl, "bool operator==( const %s& lhs, const %s& rhs )\n", m_fullTypeName, m_fullTypeName );
+		String_Append(  &m_codeInl, "{\n" );
+		String_Append(  &m_codeInl, "\treturn " );
 		for ( u32 i = 0; i < m_numRows; i++ ) {
-			m_codeInl += "lhs[" + std::to_string( i ) + "] == rhs[" + std::to_string( i ) + "]";
+			String_Appendf( &m_codeInl, "lhs[%d] == rhs[%d]", i, i );
 
 			if ( i != m_numRows - 1 ) {
-				m_codeInl += "\n\t\t&& ";
+				String_Append( &m_codeInl, "\n\t\t&& " );
 			}
 		}
-		m_codeInl += ";\n";
-		m_codeInl += "}\n";
-		m_codeInl += "\n";
+		String_Append( &m_codeInl, ";\n" );
+		String_Append( &m_codeInl, "}\n" );
+		String_Append( &m_codeInl, "\n" );
 	}
 
-	Gen_OperatorNotEquals( m_type, m_numRows, m_numCols, m_codeHeader, m_codeInl );
+	Gen_OperatorNotEquals( m_type, m_numRows, m_numCols, &m_codeHeader, &m_codeInl );
 }
 
-std::string GeneratorMatrix::GetDocStruct() const {
-	return "/// A matrix of " + m_numRowsStr + " " + m_vectorMemberTypeString + "s.\n";
+void GeneratorMatrix::GenerateDocStruct() {
+	String_Appendf( &m_codeHeader, "/// A matrix of %d %ss.\n", m_numRows, m_vectorMemberTypeString );
 }
 
-std::string GeneratorMatrix::GetDocCtorDefault() const {
-	return "\t/// Default constructor.  Sets the matrix to an identity matrix.\n";
+void GeneratorMatrix::GenerateDocCtorDefault() {
+	String_Append( &m_codeHeader, "\t/// Default constructor.  Sets the matrix to an identity matrix.\n" );
 }
 
-std::string GeneratorMatrix::GetDocCtorDiagonalScalar() const {
-	return "\t/// \\brief Sets each of the diagonal values of the matrix to the given scalar value.\n" \
-		"\t/// Setting the scalar to 1 will give an identity matrix.\n";
+void GeneratorMatrix::GenerateDocCtorDiagonalScalar() {
+	String_Append( &m_codeHeader,
+		"\t/// \\brief Sets each of the diagonal values of the matrix to the given scalar value.\n" \
+		"\t/// Setting the scalar to 1 will give an identity matrix.\n" );
 }
 
-std::string GeneratorMatrix::GetDocCtorDiagonalVector() const {
-	return "\t/// \\brief Sets the diagonal values of the matrix to the corresponding components of the given vector.\n" \
-		"\t/// Setting each component of the vector to 1 will give an identity matrix.\n";
+void GeneratorMatrix::GenerateDocCtorDiagonalVector() {
+	String_Append( &m_codeHeader, 
+		"\t/// \\brief Sets the diagonal values of the matrix to the corresponding components of the given vector.\n" \
+		"\t/// Setting each component of the vector to 1 will give an identity matrix.\n" );
 }
 
-std::string GeneratorMatrix::GetDocCtorRow() const {
-	return "\t/// Sets each row of the matrix to the given vectors.\n";
+void GeneratorMatrix::GenerateDocCtorRow() {
+	String_Append( &m_codeHeader, "\t/// Sets each row of the matrix to the given vectors.\n" );
 }
 
-std::string GeneratorMatrix::GetDocCtorRowArray() const {
-	return "\t/// Sets each row of the matrix to the corresponding vector in the array.\n";
+void GeneratorMatrix::GenerateDocCtorRowArray() {
+	String_Append( &m_codeHeader, "\t/// Sets each row of the matrix to the corresponding vector in the array.\n" );
 }
 
-std::string GeneratorMatrix::GetDocCtorRowsAndCols() const {
-	return "\t/// Sets each component of the vector to the corresponding scalar value (row major).\n";
+void GeneratorMatrix::GenerateDocCtorRowsAndCols() {
+	String_Append( &m_codeHeader, "\t/// Sets each component of the vector to the corresponding scalar value (row major).\n" );
 }
 
-std::string GeneratorMatrix::GetDocCtorCopy() const {
-	return "\t/// Copy constructor.  Sets each row of the matrix to the rows in the other matrix.\n";
+void GeneratorMatrix::GenerateDocCtorCopy() {
+	String_Append( &m_codeHeader, "\t/// Copy constructor.  Sets each row of the matrix to the rows in the other matrix.\n" );
 }
 
-std::string GeneratorMatrix::GetDocOperatorAssignment() const {
-	return "\t/// Copies each row of the given matrix via a single memcpy.\n";
+void GeneratorMatrix::GenerateDocOperatorAssignment() {
+	String_Append( &m_codeHeader, "\t/// Copies each row of the given matrix via a single memcpy.\n" );
 }
 
-std::string GeneratorMatrix::GetDocOperatorArray() const {
-	return "\t/// \\brief Returns the row at the given index of the matrix.\n" \
-		"\t/// Index CANNOT be lower than 0 or higher than " + std::to_string( m_numRows - 1 ) + ".\n";
+void GeneratorMatrix::GenerateDocOperatorArray() {
+	String_Appendf( &m_codeHeader,
+		"\t/// \\brief Returns the row at the given index of the matrix.\n" \
+		"\t/// Index CANNOT be lower than 0 or higher than %d.\n", m_numRows - 1 );
 }

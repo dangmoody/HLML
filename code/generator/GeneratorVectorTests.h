@@ -4,6 +4,7 @@
 
 #include <string>
 
+#if 0
 class GeneratorVectorTests {
 public:
 				GeneratorVectorTests() {}
@@ -45,3 +46,4 @@ private:
 	void		GenerateTestLerp();
 	void		GenerateTestSmoothstep();
 };
+#endif

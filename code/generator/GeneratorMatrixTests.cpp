@@ -11,6 +11,7 @@
 #define _USE_MATH_DEFINES	// for M_PI
 #include <math.h>
 
+#if 0
 bool GeneratorMatrixTests::Generate( const genType_t type, const u32 numRows, const u32 numCols ) {
 	m_code = std::string();
 
@@ -1427,3 +1428,4 @@ std::string GeneratorMatrixTests::GetParmListArithmeticAnswer( const genOpArithm
 
 	return parmList;
 }
+#endif

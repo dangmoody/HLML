@@ -6,6 +6,7 @@
 
 #include <vector>
 
+#if 0
 bool GeneratorVectorTests::Generate( const genType_t type, const u32 numComponents ) {
 	m_codeTests = std::string();
 	m_codeSuite = std::string();
@@ -815,3 +816,4 @@ void GeneratorVectorTests::GenerateTestSmoothstep() {
 
 	m_codeSuite += "\tTEMPER_RUN_TEST( " + testName + " );\n";
 }
+#endif

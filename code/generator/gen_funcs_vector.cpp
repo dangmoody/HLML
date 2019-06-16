@@ -5,80 +5,89 @@
 #include <assert.h>
 
 // TODO(DM): move these functions into their own file
-static std::string GetDocLengthSqr( const std::string& fullTypeName ) {
-	return "/// \\relates " + fullTypeName + "\n" + \
-		"/// \\brief Returns the magnitude of the vector squared.\n";
+static void DocLengthSqr( stringBuilder_t* sb, const char* fullTypeName ) {
+	String_Appendf( sb,
+		"/// \\relates %s\n" \
+		"/// \\brief Returns the magnitude of the vector squared.\n", fullTypeName );
 }
 
-static std::string GetDocLength( const std::string& fullTypeName ) {
-	return "/// \\relates " + fullTypeName + "\n" + \
-		"/// \\brief Returns the magnitude of the vector.\n";
+static void DocLength( stringBuilder_t* sb, const char* fullTypeName ) {
+	String_Appendf( sb,
+		"/// \\relates %s\n" \
+		"/// \\brief Returns the magnitude of the vector.\n", fullTypeName );
 }
 
-static std::string GetDocNormalize( const std::string& fullTypeName ) {
-	return "/// \\relates " + fullTypeName + "\n" + \
-		"/// \\brief Normalizes the vector.\n";
+static void DocNormalize( stringBuilder_t* sb, const char* fullTypeName ) {
+	String_Appendf( sb,
+		"/// \\relates %s\n" \
+		"/// \\brief Normalizes the vector.\n", fullTypeName );
 }
 
-static std::string GetDocNormalized( const std::string& fullTypeName ) {
-	return "/// \\relates " + fullTypeName + "\n" + \
-		"/// \\brief Returns a normalized copy of the vector.\n";
+static void DocNormalized( stringBuilder_t* sb, const char* fullTypeName ) {
+	String_Appendf( sb,
+		"/// \\relates %s\n" \
+		"/// \\brief Returns a normalized copy of the vector.\n", fullTypeName );
 }
 
-static std::string GetDocDot( const std::string& fullTypeName ) {
-	return "/// \\relates " + fullTypeName + "\n" + \
-		"/// \\brief Returns the dot product of the two vectors.\n";
+static void DocDot( stringBuilder_t* sb, const char* fullTypeName ) {
+	String_Appendf( sb,
+		"/// \\relates %s\n" \
+		"/// \\brief Returns the dot product of the two vectors.\n", fullTypeName );
 }
 
-static std::string GetDocCross( const std::string& fullTypeName ) {
-	return "/// \\relates " + fullTypeName + "\n" + \
-		"/// \\brief Returns a vector perpendicular (normal) to the two vectors.\n";
+static void DocCross( stringBuilder_t* sb, const char* fullTypeName ) {
+	String_Appendf( sb,
+		"/// \\relates %s\n" \
+		"/// \\brief Returns a vector perpendicular (normal) to the two vectors.\n", fullTypeName );
 }
 
-static std::string GetDocAngle( const std::string& fullTypeName ) {
-	return "/// \\relates " + fullTypeName + "\n" + \
-		"/// \\brief Returns the angle in degrees between the two vectors.\n";
+static void DocAngle( stringBuilder_t* sb, const char* fullTypeName ) {
+	String_Appendf( sb,
+		"/// \\relates %s\n" \
+		"/// \\brief Returns the angle in degrees between the two vectors.\n", fullTypeName );
 }
 
-static std::string GetDocDistanceSq( const std::string& fullTypeName ) {
-	return "/// \\relates " + fullTypeName + "\n" + \
-		"/// \\brief Returns the squared distance between the two vectors.\n";
+static void DocDistanceSq( stringBuilder_t* sb, const char* fullTypeName ) {
+	String_Appendf( sb,
+		"/// \\relates %s\n" \
+		"/// \\brief Returns the squared distance between the two vectors.\n", fullTypeName );
 }
 
-static std::string GetDocDistance( const std::string& fullTypeName ) {
-	return "/// \\relates " + fullTypeName + "\n" + \
-		"/// \\brief Returns the distance between the two vectors.\n";
+static void DocDistance( stringBuilder_t* sb, const char* fullTypeName ) {
+	String_Appendf( sb,
+		"/// \\relates %s\n" \
+		"/// \\brief Returns the distance between the two vectors.\n", fullTypeName );
 }
 
-static std::string GetDocPack( const std::string& fullTypeName ) {
-	return "/// \\relates " + fullTypeName + "\n" + \
-		"/// \\brief Returns a 32 bit integer containing each component of the vector (starting with x) at each byte.\n";
+static void DocPack( stringBuilder_t* sb, const char* fullTypeName ) {
+	String_Appendf( sb,
+		"/// \\relates %s\n" \
+		"/// \\brief Returns a 32 bit integer containing each component of the vector (starting with x) at each byte.\n", fullTypeName );
 }
 
-static std::string GetDocUnpack( const std::string& fullTypeName ) {
-	return "/// \\relates " + fullTypeName + "\n" + \
-		"/// \\brief Returns a 4-component integer vector containing each byte of the given integer.\n";
+static void DocUnpack( stringBuilder_t* sb, const char* fullTypeName ) {
+	String_Appendf( sb,
+		"/// \\relates %s\n" \
+		"/// \\brief Returns a 4-component integer vector containing each byte of the given integer.\n", fullTypeName );
 }
 
-std::string Gen_GetParmListVector( const genType_t type, const u32 numComponents, const float* values ) {
-	assert( numComponents >= GEN_COMPONENT_COUNT_MIN );
-	assert( numComponents <= GEN_COMPONENT_COUNT_MAX );
-	assert( values );
+//void Gen_GetParmListVector( const genType_t type, const u32 numComponents, const float* values, stringBuilder_t* sb ) {
+//	assert( numComponents >= GEN_COMPONENT_COUNT_MIN );
+//	assert( numComponents <= GEN_COMPONENT_COUNT_MAX );
+//	assert( values );
+//
+//	String_Append( sb, "( " );
+//	for ( u32 i = 0; i < numComponents; i++ ) {
+//		String_Appendf( sb, "%s", Gen_GetNumericLiteral( type, values[i] ).c_str() );
+//
+//		if ( i != numComponents - 1 ) {
+//			String_Append( sb, ", " );
+//		}
+//	}
+//	String_Append( sb, " )" );
+//}
 
-	std::string parmList = "( ";
-	for ( u32 i = 0; i < numComponents; i++ ) {
-		parmList += Gen_GetNumericLiteral( type, values[i] );
-
-		if ( i != numComponents - 1 ) {
-			parmList += ", ";
-		}
-	}
-	parmList += " )";
-
-	return parmList;
-}
-
-void Gen_VectorOperatorsArithmetic( const genType_t type, const u32 numComponents, std::string& outHeader, std::string& outInl ) {
+void Gen_VectorOperatorsArithmetic( const genType_t type, const u32 numComponents, stringBuilder_t* sbHeader, stringBuilder_t* sbInl ) {
 	assert( numComponents >= GEN_COMPONENT_COUNT_MIN );
 	assert( numComponents <= GEN_COMPONENT_COUNT_MAX );
 
@@ -89,12 +98,12 @@ void Gen_VectorOperatorsArithmetic( const genType_t type, const u32 numComponent
 	for ( u32 opIndex = 0; opIndex < GEN_OP_ARITHMETIC_COUNT; opIndex++ ) {
 		genOpArithmetic_t op = static_cast<genOpArithmetic_t>( opIndex );
 
-		Gen_OperatorComponentWiseArithmeticScalar( type, 1, numComponents, op, outHeader, outInl );
-		Gen_OperatorComponentWiseArithmeticRhsType( type, 1, numComponents, op, outHeader, outInl );
+		Gen_OperatorComponentWiseArithmeticScalar( type, 1, numComponents, op, sbHeader, sbInl );
+		Gen_OperatorComponentWiseArithmeticRhsType( type, 1, numComponents, op, sbHeader, sbInl );
 	}
 }
 
-void Gen_VectorLength( const genType_t type, const u32 numComponents, std::string& outHeader, std::string& outInl ) {
+void Gen_VectorLength( const genType_t type, const u32 numComponents, stringBuilder_t* sbHeader, stringBuilder_t* sbInl ) {
 	assert( numComponents >= GEN_COMPONENT_COUNT_MIN );
 	assert( numComponents <= GEN_COMPONENT_COUNT_MAX );
 
@@ -104,53 +113,55 @@ void Gen_VectorLength( const genType_t type, const u32 numComponents, std::strin
 
 	genType_t floatingPointType = Gen_GetSupportedFloatingPointType( type );
 
-	std::string typeString = Gen_GetTypeString( type );
-	std::string returnTypeString = Gen_GetTypeString( floatingPointType );
-	std::string fullTypeName = typeString + std::to_string( numComponents );
+	const char* returnTypeString = Gen_GetTypeString( floatingPointType );
 
-	std::string sqrtFuncStr = Gen_GetFuncNameSqrt( type );
+	char fullTypeName[32];
+	Gen_GetFullTypeName( type, 1, numComponents, fullTypeName );
 
-	outHeader += GetDocLengthSqr( fullTypeName );
-	outHeader += "inline " + returnTypeString + " lengthsqr( const " + fullTypeName + "& vec );\n";
-	outHeader += "\n";
+	const char* sqrtFuncStr = Gen_GetFuncNameSqrt( type );
 
-	outHeader += GetDocLength( fullTypeName );
-	outHeader += "inline " + returnTypeString + " length( const " + fullTypeName + "& vec );\n";
-	outHeader += "\n";
+	DocLengthSqr( sbHeader, fullTypeName );
+	String_Appendf( sbHeader, "inline %s lengthsqr( const %s& vec );\n", returnTypeString, fullTypeName );
+	String_Append(  sbHeader, "\n" );
 
-	outInl += returnTypeString + " lengthsqr( const " + fullTypeName + "& vec )\n";
-	outInl += "{\n";
-	outInl += "\treturn ";
+	DocLength( sbHeader, fullTypeName );
+	String_Appendf( sbHeader, "inline %s length( const %s& vec );\n", returnTypeString, fullTypeName );
+	String_Append(  sbHeader, "\n" );
+
+	String_Appendf( sbInl, "%s lengthsqr( const %s& vec )\n", returnTypeString, fullTypeName );
+	String_Append(  sbInl, "{\n" );
+	String_Append(  sbInl, "\treturn " );
 
 	if ( !Gen_IsFloatingPointType( type ) ) {
-		outInl += "(" + returnTypeString + ")( ";
+		String_Appendf( sbInl, "(%s)( ", returnTypeString );
 	}
 
 	for ( u32 i = 0; i < numComponents; i++ ) {
 		char componentName = GEN_COMPONENT_NAMES_VECTOR[i];
-		outInl += std::string( "( vec." ) + componentName + " * vec." + componentName + " )";
+
+		String_Appendf( sbInl, "( vec.%c * vec.%c )", componentName, componentName );
 
 		if ( i != numComponents - 1 ) {
-			outInl += " + ";
+			String_Append( sbInl, " + " );
 		}
 	}
 
 	if ( !Gen_IsFloatingPointType( type ) ) {
-		outInl += " )";
+		String_Append( sbInl, " )" );
 	}
 
-	outInl += ";\n";
-	outInl += "}\n";
-	outInl += "\n";
+	String_Append( sbInl, ";\n" );
+	String_Append( sbInl, "}\n" );
+	String_Append( sbInl, "\n" );
 
-	outInl += returnTypeString + " length( const " + fullTypeName + "& vec )\n";
-	outInl += "{\n";
-	outInl += "\treturn " + sqrtFuncStr + "( lengthsqr( vec ) );\n";
-	outInl += "}\n";
-	outInl += "\n";
+	String_Appendf( sbInl, "%s length( const %s& vec )\n", returnTypeString, fullTypeName );
+	String_Append(  sbInl, "{\n" );
+	String_Appendf( sbInl, "\treturn %s( lengthsqr( vec ) );\n", sqrtFuncStr );
+	String_Append(  sbInl, "}\n" );
+	String_Append(  sbInl, "\n" );
 }
 
-void Gen_VectorNormalize( const genType_t type, const u32 numComponents, std::string& outHeader, std::string& outInl ) {
+void Gen_VectorNormalize( const genType_t type, const u32 numComponents, stringBuilder_t* sbHeader, stringBuilder_t* sbInl ) {
 	assert( numComponents >= GEN_COMPONENT_COUNT_MIN );
 	assert( numComponents <= GEN_COMPONENT_COUNT_MAX );
 
@@ -158,35 +169,35 @@ void Gen_VectorNormalize( const genType_t type, const u32 numComponents, std::st
 		return;
 	}
 
-	std::string typeString = Gen_GetTypeString( type );
-	std::string fullTypeName = typeString + std::to_string( numComponents );
+	const char* typeString = Gen_GetTypeString( type );
 
-	std::string oneStr = Gen_GetNumericLiteral( type, 1 );
+	char fullTypeName[32];
+	Gen_GetFullTypeName( type, 1, numComponents, fullTypeName );
 
-	outHeader += GetDocNormalize( fullTypeName );
-	outHeader += "inline void normalize( " + fullTypeName + "& vec );\n";
-	outHeader += "\n";
+	DocNormalize( sbHeader, fullTypeName );
+	String_Appendf( sbHeader, "inline void normalize( %s& vec );\n", fullTypeName );
+	String_Append(  sbHeader, "\n" );
 
-	outHeader += GetDocNormalized( fullTypeName );
-	outHeader += "inline " + fullTypeName + " normalized( const " + fullTypeName + "& vec );\n";
-	outHeader += "\n";
+	DocNormalized( sbHeader, fullTypeName );
+	String_Appendf( sbHeader, "inline %s normalized( const %s& vec );\n", fullTypeName, fullTypeName );
+	String_Append(  sbHeader, "\n" );
 
-	outInl += "void normalize( " + fullTypeName + "& vec )\n";
-	outInl += "{\n";
-	outInl += "\t" + typeString + " invlen = " + oneStr + " / length( vec );\n";
-	outInl += "\tvec *= invlen;\n";
-	outInl += "}\n";
-	outInl += "\n";
+	String_Appendf( sbInl, "void normalize( %s& vec )\n", fullTypeName );
+	String_Append(  sbInl, "{\n" );
+	String_Appendf( sbInl, "\t%s invlen = %f / length( vec );\n", typeString, 1.0f );
+	String_Append(  sbInl, "\tvec *= invlen;\n" );
+	String_Append(  sbInl, "}\n" );
+	String_Append(  sbInl, "\n" );
 
-	outInl += fullTypeName + " normalized( const " + fullTypeName + "& vec )\n";
-	outInl += "{\n";
-	outInl += "\t" + typeString + " invlen = " + oneStr + " / length( vec );\n";
-	outInl += "\treturn (" + fullTypeName + ")( vec * invlen );\n";
-	outInl += "}\n";
-	outInl += "\n";
+	String_Appendf( sbInl, "%s normalized( const %s& vec )\n", fullTypeName, fullTypeName );
+	String_Append(  sbInl, "{\n" );
+	String_Appendf( sbInl, "\t%s invlen = %f / length( vec );\n", typeString, 1.0f );
+	String_Appendf( sbInl, "\treturn (%s)( vec * invlen );\n", fullTypeName );
+	String_Append(  sbInl, "}\n" );
+	String_Append(  sbInl, "\n" );
 }
 
-void Gen_VectorDot( const genType_t type, const u32 numComponents, std::string& outHeader, std::string& outInl ) {
+void Gen_VectorDot( const genType_t type, const u32 numComponents, stringBuilder_t* sbHeader, stringBuilder_t* sbInl ) {
 	assert( numComponents >= GEN_COMPONENT_COUNT_MIN );
 	assert( numComponents <= GEN_COMPONENT_COUNT_MAX );
 
@@ -198,41 +209,43 @@ void Gen_VectorDot( const genType_t type, const u32 numComponents, std::string& 
 	bool shouldTypeCast = type == GEN_TYPE_UINT;
 
 	genType_t returnType = shouldTypeCast ? GEN_TYPE_INT : type;
-	std::string returnTypeString = Gen_GetMemberTypeString( returnType );
+	const char* returnTypeString = Gen_GetMemberTypeString( returnType );
 
-	std::string typeString = Gen_GetTypeString( type );
-	std::string fullTypeName = typeString + std::to_string( numComponents );
+	char fullTypeName[32];
+	Gen_GetFullTypeName( type, 1, numComponents, fullTypeName );
 
-	outHeader += GetDocDot( fullTypeName );
-	outHeader += "inline " + returnTypeString + " dot( const " + fullTypeName + "& lhs, const " + fullTypeName + "& rhs );\n";
-	outHeader += "\n";
+	DocDot( sbHeader, fullTypeName );
+	String_Appendf( sbHeader, "inline %s dot( const %s& lhs, const %s& rhs );\n", returnTypeString, fullTypeName, fullTypeName );
+	String_Append(  sbHeader, "\n" );
 
-	outInl += returnTypeString + " dot( const " + fullTypeName + "& lhs, const " + fullTypeName + "& rhs )\n";
-	outInl += "{\n";
-	outInl += "\treturn ";
+	String_Appendf( sbInl, "%s dot( const %s& lhs, const %s& rhs )\n", returnTypeString, fullTypeName, fullTypeName );
+	String_Append(  sbInl, "{\n" );
+	String_Append(  sbInl, "\treturn " );
 
 	if ( shouldTypeCast ) {
-		outInl += "(" + returnTypeString + ")( ";
+		String_Appendf( sbInl, "(%s)( ", returnTypeString );
 	}
 
 	for ( u32 i = 0; i < numComponents; i++ ) {
-		outInl += std::string( "( lhs." ) + GEN_COMPONENT_NAMES_VECTOR[i] + " * rhs." + GEN_COMPONENT_NAMES_VECTOR[i] + " )";
+		char componentName = GEN_COMPONENT_NAMES_VECTOR[i];
+
+		String_Appendf( sbInl, "( lhs.%c * rhs.%c )", componentName, componentName );
 
 		if ( i != numComponents - 1 ) {
-			outInl += " + ";
+			String_Append( sbInl, " + " );
 		}
 	}
 
 	if ( shouldTypeCast ) {
-		outInl += " )";
+		String_Append( sbInl, " )" );
 	}
 
-	outInl += ";\n";
-	outInl += "}\n";
-	outInl += "\n";
+	String_Append( sbInl, ";\n" );
+	String_Append( sbInl, "}\n" );
+	String_Append( sbInl, "\n" );
 }
 
-void Gen_VectorCross( const genType_t type, const u32 numComponents, std::string& outHeader, std::string& outInl ) {
+void Gen_VectorCross( const genType_t type, const u32 numComponents, stringBuilder_t* sbHeader, stringBuilder_t* sbInl ) {
 	assert( numComponents >= GEN_COMPONENT_COUNT_MIN );
 	assert( numComponents <= GEN_COMPONENT_COUNT_MAX );
 
@@ -244,30 +257,30 @@ void Gen_VectorCross( const genType_t type, const u32 numComponents, std::string
 		return;
 	}
 
-	std::string typeString = Gen_GetTypeString( type );
-	std::string fullTypeName = typeString + std::to_string( numComponents );
+	char fullTypeName[32];
+	Gen_GetFullTypeName( type, 1, numComponents, fullTypeName );
 
-	outHeader += GetDocCross( fullTypeName );
-	outHeader += "inline " + fullTypeName + " cross( const " + fullTypeName + "& lhs, const " + fullTypeName + "& rhs );\n";
-	outHeader += "\n";
+	DocCross( sbHeader, fullTypeName );
+	String_Appendf( sbHeader, "inline %s cross( const %s& lhs, const %s& rhs );\n", fullTypeName, fullTypeName, fullTypeName );
+	String_Append(  sbHeader, "\n" );
 
-	outInl += fullTypeName + " cross( const " + fullTypeName + "& lhs, const " + fullTypeName + "& rhs )\n";
-	outInl += "{\n";
-	outInl += "\treturn " + fullTypeName + "(\n";
-	outInl += "\t\t( lhs.y * rhs.z ) - ( lhs.z * rhs.y ),\n";
-	outInl += "\t\t( lhs.z * rhs.x ) - ( lhs.x * rhs.z ),\n";
-	outInl += "\t\t( lhs.x * rhs.y ) - ( lhs.y * rhs.x )";
+	String_Appendf( sbInl, "%s cross( const %s& lhs, const %s& rhs )\n", fullTypeName, fullTypeName, fullTypeName );
+	String_Append(  sbInl, "{\n" );
+	String_Appendf( sbInl, "\treturn %s(\n", fullTypeName );
+	String_Append(  sbInl, "\t\t( lhs.y * rhs.z ) - ( lhs.z * rhs.y ),\n" );
+	String_Append(  sbInl, "\t\t( lhs.z * rhs.x ) - ( lhs.x * rhs.z ),\n" );
+	String_Append(  sbInl, "\t\t( lhs.x * rhs.y ) - ( lhs.y * rhs.x )" );
 	if ( numComponents > 3 ) {
-		outInl += ",\n\t\t" + Gen_GetDefaultLiteralValue( type ) + "\n";
+		String_Appendf( sbInl, ",\n\t\t%s\n", Gen_GetDefaultLiteralValue( type ) );
 	} else {
-		outInl += "\n";
+		String_Append( sbInl, "\n" );
 	}
-	outInl += "\t);\n";
-	outInl += "}\n";
-	outInl += "\n";
+	String_Append( sbInl, "\t);\n" );
+	String_Append( sbInl, "}\n" );
+	String_Append( sbInl, "\n" );
 }
 
-void Gen_VectorAngle( const genType_t type, const u32 numComponents, std::string& outHeader, std::string& outInl ) {
+void Gen_VectorAngle( const genType_t type, const u32 numComponents, stringBuilder_t* sbHeader, stringBuilder_t* sbInl ) {
 	assert( numComponents >= GEN_COMPONENT_COUNT_MIN );
 	assert( numComponents <= GEN_COMPONENT_COUNT_MAX );
 
@@ -277,24 +290,25 @@ void Gen_VectorAngle( const genType_t type, const u32 numComponents, std::string
 
 	genType_t floatingPointType = Gen_GetSupportedFloatingPointType( type );
 
-	std::string typeString = Gen_GetTypeString( type );
-	std::string returnTypeString = Gen_GetTypeString( floatingPointType );
-	std::string fullTypeName = typeString + std::to_string( numComponents );
+	const char* returnTypeString = Gen_GetTypeString( floatingPointType );
 
-	std::string acosString = Gen_GetFuncNameAcos( floatingPointType );
+	char fullTypeName[32];
+	Gen_GetFullTypeName( type, 1, numComponents, fullTypeName );
 
-	outHeader += GetDocAngle( fullTypeName );
-	outHeader += "inline " + returnTypeString + " angle( const " + fullTypeName + "& lhs, const " + fullTypeName + "& rhs );\n";
-	outHeader += "\n";
+	const char* acosString = Gen_GetFuncNameAcos( floatingPointType );
 
-	outInl += returnTypeString + " angle( const " + fullTypeName + "& lhs, const " + fullTypeName + "& rhs )\n";
-	outInl += "{\n";
-	outInl += "\treturn degrees( " + acosString + "( dot( normalized( lhs ), normalized( rhs ) ) ) );\n";
-	outInl += "}\n";
-	outInl += "\n";
+	DocAngle( sbHeader, fullTypeName );
+	String_Appendf( sbHeader, "inline %s angle( const %s& lhs, const %s& rhs );\n", returnTypeString, fullTypeName, fullTypeName );
+	String_Append(  sbHeader, "\n" );
+
+	String_Appendf( sbInl, "%s angle( const %s& lhs, const %s& rhs )\n", returnTypeString, fullTypeName, fullTypeName );
+	String_Append(  sbInl, "{\n" );
+	String_Appendf( sbInl, "\treturn degrees( %s( dot( normalized( lhs ), normalized( rhs ) ) ) );\n", acosString );
+	String_Append(  sbInl, "}\n" );
+	String_Append(  sbInl, "\n" );
 }
 
-void Gen_VectorDistance( const genType_t type, const u32 numComponents, std::string& outHeader, std::string& outInl ) {
+void Gen_VectorDistance( const genType_t type, const u32 numComponents, stringBuilder_t* sbHeader, stringBuilder_t* sbInl ) {
 	assert( numComponents >= GEN_COMPONENT_COUNT_MIN );
 	assert( numComponents <= GEN_COMPONENT_COUNT_MAX );
 
@@ -306,37 +320,39 @@ void Gen_VectorDistance( const genType_t type, const u32 numComponents, std::str
 		return;
 	}
 
-	std::string fullTypeName = Gen_GetFullTypeName( type, 1, numComponents );
-	std::string returnTypeString = Gen_GetTypeString( Gen_GetSupportedFloatingPointType( type ) );
+	char fullTypeName[32];
+	Gen_GetFullTypeName( type, 1, numComponents, fullTypeName );
+
+	const char* returnTypeString = Gen_GetTypeString( Gen_GetSupportedFloatingPointType( type ) );
 
 	// distancesq
 	{
-		outHeader += GetDocDistanceSq( fullTypeName );
-		outHeader += "inline " + returnTypeString + " distancesqr( const " + fullTypeName + "& lhs, const " + fullTypeName + "& rhs );\n";
-		outHeader += "\n";
+		DocDistanceSq( sbHeader, fullTypeName );
+		String_Appendf( sbHeader, "inline %s distancesqr( const %s& lhs, const %s& rhs );\n", returnTypeString, fullTypeName, fullTypeName );
+		String_Append(  sbHeader, "\n" );
 
-		outInl += returnTypeString + " distancesqr( const " + fullTypeName + "& lhs, const " + fullTypeName + "& rhs )\n";
-		outInl += "{\n";
-		outInl += "\treturn lengthsqr( lhs - rhs );\n";
-		outInl += "}\n";
-		outInl += "\n";
+		String_Appendf( sbInl, "%s distancesqr( const %s& lhs, const %s& rhs )\n", returnTypeString, fullTypeName, fullTypeName );
+		String_Append(  sbInl, "{\n" );
+		String_Append(  sbInl, "\treturn lengthsqr( lhs - rhs );\n" );
+		String_Append(  sbInl, "}\n" );
+		String_Append(  sbInl, "\n" );
 	}
 
 	// distance
 	{
-		outHeader += GetDocDistance( fullTypeName );
-		outHeader += "inline " + returnTypeString + " distance( const " + fullTypeName + "& lhs, const " + fullTypeName + "& rhs );\n";
-		outHeader += "\n";
+		DocDistance( sbHeader, fullTypeName );
+		String_Appendf( sbHeader, "inline %s distance( const %s& lhs, const %s& rhs );\n", returnTypeString, fullTypeName, fullTypeName );
+		String_Append(  sbHeader, "\n" );
 
-		outInl += returnTypeString + " distance( const " + fullTypeName + "& lhs, const " + fullTypeName + "& rhs )\n";
-		outInl += "{\n";
-		outInl += "\treturn length( lhs - rhs );\n";
-		outInl += "}\n";
-		outInl += "\n";
+		String_Appendf( sbHeader, "%s distance( const %s& lhs, const %s& rhs )\n", returnTypeString, fullTypeName, fullTypeName );
+		String_Append(  sbHeader, "{\n" );
+		String_Append(  sbHeader, "\treturn length( lhs - rhs );\n" );
+		String_Append(  sbHeader, "}\n" );
+		String_Append(  sbHeader, "\n" );
 	}
 }
 
-void Gen_VectorPack( const genType_t type, const u32 numComponents, std::string& outHeader, std::string& outInl ) {
+void Gen_VectorPack( const genType_t type, const u32 numComponents, stringBuilder_t* sbHeader, stringBuilder_t* sbInl ) {
 	assert( numComponents >= GEN_COMPONENT_COUNT_MIN );
 	assert( numComponents <= GEN_COMPONENT_COUNT_MAX );
 
@@ -352,31 +368,32 @@ void Gen_VectorPack( const genType_t type, const u32 numComponents, std::string&
 		24, 16, 8, 0
 	};
 
-	std::string typeString = Gen_GetTypeString( type );
-	std::string fullTypeName = typeString + std::to_string( numComponents );
+//	std::string fullTypeName = typeString + std::to_string( numComponents );
+	char fullTypeName[32];
+	Gen_GetFullTypeName( type, 1, numComponents, fullTypeName );
 
-	std::string memberTypeString = Gen_GetMemberTypeString( type );
+	const char* memberTypeString = Gen_GetMemberTypeString( type );
 
-	outHeader += GetDocPack( fullTypeName );
-	outHeader += "inline " + memberTypeString + " pack( const " + fullTypeName + "& vec );\n";
-	outHeader += "\n";
+	DocPack( sbHeader, fullTypeName );
+	String_Appendf( sbHeader, "inline %s pack( const %s& vec );\n", memberTypeString, fullTypeName );
+	String_Append(  sbHeader, "\n" );
 
-	outInl += memberTypeString + " pack( const " + fullTypeName + "& vec )\n";
-	outInl += "{\n";
-	outInl += "\treturn ";
+	String_Appendf( sbInl, "%s pack( const %s& vec )\n", memberTypeString, fullTypeName );
+	String_Append(  sbInl, "{\n" );
+	String_Append(  sbInl, "\treturn " );
 	for ( u32 i = 0; i < numComponents; i++ ) {
-		outInl += std::string( "( vec." ) + GEN_COMPONENT_NAMES_VECTOR[i] + " << " + std::to_string( shiftVals[i] ) + " )";
+		String_Appendf( sbInl, "( vec.%c << %d )", GEN_COMPONENT_NAMES_VECTOR[i], shiftVals[i] );
 
 		if ( i != numComponents - 1 ) {
-			outInl += " | ";
+			String_Append( sbInl, " | " );
 		}
 	}
-	outInl += ";\n";
-	outInl += "}\n";
-	outInl += "\n";
+	String_Append( sbInl, ";\n" );
+	String_Append( sbInl, "}\n" );
+	String_Append( sbInl, "\n" );
 }
 
-void Gen_VectorUnpack( const genType_t type, const u32 numComponents, std::string& outHeader, std::string& outInl ) {
+void Gen_VectorUnpack( const genType_t type, const u32 numComponents, stringBuilder_t* sbHeader, stringBuilder_t* sbInl ) {
 	assert( numComponents >= GEN_COMPONENT_COUNT_MIN );
 	assert( numComponents <= GEN_COMPONENT_COUNT_MAX );
 
@@ -392,28 +409,28 @@ void Gen_VectorUnpack( const genType_t type, const u32 numComponents, std::strin
 		24, 16, 8, 0
 	};
 
-	std::string typeString = Gen_GetTypeString( type );
-	std::string fullTypeName = typeString + std::to_string( numComponents );
+	char fullTypeName[32];
+	Gen_GetFullTypeName( type, 1, numComponents, fullTypeName );
 
-	std::string memberTypeString = Gen_GetMemberTypeString( type );
+	const char* memberTypeString = Gen_GetMemberTypeString( type );
 
-	outHeader += GetDocUnpack( fullTypeName );
-	outHeader += "inline " + fullTypeName + " unpack( const " + memberTypeString + " x );\n";
-	outHeader += "\n";
+	DocUnpack( sbHeader, fullTypeName );
+	String_Appendf( sbHeader, "inline %s unpack( const %s x );\n", fullTypeName, memberTypeString );
+	String_Append(  sbHeader, "\n" );
 
-	outInl += fullTypeName + " unpack( const " + memberTypeString + " x )\n";
-	outInl += "{\n";
-	outInl += "\treturn " + fullTypeName + "(\n";
+	String_Appendf( sbInl, "%s unpack( const %s x )\n", fullTypeName, memberTypeString );
+	String_Append(  sbInl, "{\n" );
+	String_Appendf( sbInl, "\treturn %s(\n", fullTypeName );
 	for ( u32 i = 0; i < numComponents; i++ ) {
-		outInl += "\t\t( x >> " + std::to_string( shiftVals[i] ) + " ) & 0xFF";
+		String_Append( sbInl, "\t\t( x >> %d ) & 0xFF", shiftVals[i] );
 
 		if ( i != numComponents - 1 ) {
-			outInl += ",";
+			String_Append( sbInl, "," );
 		}
 
-		outInl += "\n";
+		String_Append( sbInl, "\n" );
 	}
-	outInl += "\t);\n";
-	outInl += "}\n";
-	outInl += "\n";
+	String_Append( sbInl, "\t);\n" );
+	String_Append( sbInl, "}\n" );
+	String_Append( sbInl, "\n" );
 }

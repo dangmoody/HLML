@@ -41,6 +41,8 @@
 #define GEN_FILENAME_FUNCTIONS_VECTOR	"hlml_functions_vector"
 #define GEN_FILENAME_FUNCTIONS_MATRIX	"hlml_functions_matrix"
 
+struct stringBuilder_t;
+
 enum genType_t {
 	GEN_TYPE_BOOL						= 0,
 	GEN_TYPE_INT,
@@ -101,8 +103,24 @@ enum genOpBitwise_t {
 	GEN_OP_BITWISE_COUNT
 };
 
+#define GET_TYPE_VALUE( type, x, outStr ) \
+	do { \
+		switch ( type ) { \
+			case GEN_TYPE_BOOL:		outStr = ( x != 0 ) ? "true" : "false"; break; \
+			case GEN_TYPE_INT:		outStr = #x; break; \
+			case GEN_TYPE_UINT:		outStr = #x; break; \
+			case GEN_TYPE_FLOAT:	outStr = #x ".0f"; break; \
+			case GEN_TYPE_DOUBLE:	outStr = #x ".0"; break; \
+\
+			case GEN_TYPE_COUNT: \
+			default: \
+				assert( false && "Bad genType_t given." ); \
+				break; \
+		} \
+	} while ( 0 )
 
-const std::string GEN_FILE_HEADER = \
+
+static const char* GEN_FILE_HEADER = \
 "/*\n" \
 "===========================================================================\n" \
 "\n" \
@@ -130,23 +148,23 @@ const std::string GEN_FILE_HEADER = \
 "// GENERATED FILE.  DO NOT EDIT.\n" \
 "\n";
 
-const std::string GEN_COMPONENT_NAMES_VECTOR	= "xyzw";
-const std::string GEN_COMPONENT_NAMES_COLOR		= "rgba";
-const std::string GEN_OPERATORS_ARITHMETIC		= "+-*/";
+static const char* GEN_COMPONENT_NAMES_VECTOR	= "xyzw";
+static const char* GEN_COMPONENT_NAMES_COLOR	= "rgba";
+static const char* GEN_OPERATORS_ARITHMETIC		= "+-*/";
 
-const std::string GEN_OPERATORS_INCREMENT[GEN_OP_INCREMENT_COUNT] = {
+static const char* GEN_OPERATORS_INCREMENT[GEN_OP_INCREMENT_COUNT] = {
 	"++",
 	"--",
 };
 
-const std::string GEN_OPERATORS_RELATIONAL[GEN_OP_RELATIONAL_COUNT] = {
+static const char* GEN_OPERATORS_RELATIONAL[GEN_OP_RELATIONAL_COUNT] = {
 	"<",
 	"<=",
 	">",
 	">=",
 };
 
-const std::string GEN_OPERATORS_BITWISE[GEN_OP_BITWISE_COUNT] = {
+static const char* GEN_OPERATORS_BITWISE[GEN_OP_BITWISE_COUNT] = {
 	"&",
 	"|",
 	"^",
@@ -156,15 +174,15 @@ const std::string GEN_OPERATORS_BITWISE[GEN_OP_BITWISE_COUNT] = {
 };
 
 // type-to-string functions
-inline std::string	Gen_GetTypeString( const genType_t type );
-inline std::string	Gen_GetMemberTypeString( const genType_t type );
-inline std::string	Gen_GetFullTypeName( const genType_t type, const u32 numRows, const u32 numCols );
+inline const char*	Gen_GetTypeString( const genType_t type );
+inline const char*	Gen_GetMemberTypeString( const genType_t type );
+inline void			Gen_GetFullTypeName( const genType_t type, const u32 numRows, const u32 numCols, char* outString );
 
-inline std::string	Gen_GetDefaultLiteralValue( const genType_t type );
-inline std::string	Gen_GetNumericLiteral( const genType_t type, const float value );
+inline const char*	Gen_GetDefaultLiteralValue( const genType_t type );
+//inline std::string	Gen_GetNumericLiteral( const genType_t type, const float value );
 
-inline std::string	Gen_GetHandString( const genHand_t hand );
-inline std::string	Gen_GetClipSpaceRangeString( const genClipSpace_t range );
+inline const char*	Gen_GetHandString( const genHand_t hand );
+inline const char*	Gen_GetClipSpaceRangeString( const genClipSpace_t range );
 
 // type helper functions
 inline genType_t	Gen_GetSupportedFloatingPointType( const genType_t type ) { return ( type == GEN_TYPE_DOUBLE ) ? GEN_TYPE_DOUBLE : GEN_TYPE_FLOAT; }
@@ -172,47 +190,47 @@ inline bool			Gen_IsFloatingPointType( const genType_t type ) { return type == G
 inline bool			Gen_IsIntegerType( const genType_t type ) { return type == GEN_TYPE_INT || type == GEN_TYPE_UINT; }
 
 // built-in functions
-inline std::string	Gen_GetFuncNameSin( const genType_t type ) { return ( type == GEN_TYPE_DOUBLE ) ? "sin" : "sinf"; }
-inline std::string	Gen_GetFuncNameCos( const genType_t type ) { return ( type == GEN_TYPE_DOUBLE ) ? "cos" : "cosf"; }
-inline std::string	Gen_GetFuncNameAcos( const genType_t type ) { return ( type == GEN_TYPE_DOUBLE ) ? "acos" : "acosf"; }
-inline std::string	Gen_GetFuncNameTan( const genType_t type ) { return ( type == GEN_TYPE_DOUBLE ) ? "tan" : "tanf"; }
-inline std::string	Gen_GetFuncNameSqrt( const genType_t type ) { return ( type == GEN_TYPE_DOUBLE ) ? "sqrt" : "sqrtf"; }
-inline std::string	Gen_GetFuncNameFabs( const genType_t type ) { return ( type == GEN_TYPE_DOUBLE ) ? "fabs" : "fabsf"; }
+inline const char*	Gen_GetFuncNameSin( const genType_t type ) { return ( type == GEN_TYPE_DOUBLE ) ? "sin" : "sinf"; }
+inline const char*	Gen_GetFuncNameCos( const genType_t type ) { return ( type == GEN_TYPE_DOUBLE ) ? "cos" : "cosf"; }
+inline const char*	Gen_GetFuncNameAcos( const genType_t type ) { return ( type == GEN_TYPE_DOUBLE ) ? "acos" : "acosf"; }
+inline const char*	Gen_GetFuncNameTan( const genType_t type ) { return ( type == GEN_TYPE_DOUBLE ) ? "tan" : "tanf"; }
+inline const char*	Gen_GetFuncNameSqrt( const genType_t type ) { return ( type == GEN_TYPE_DOUBLE ) ? "sqrt" : "sqrtf"; }
+inline const char*	Gen_GetFuncNameFabs( const genType_t type ) { return ( type == GEN_TYPE_DOUBLE ) ? "fabs" : "fabsf"; }
 
 // hlml functions
-inline std::string	Gen_GetFuncNameFloateq( const genType_t type ) { return ( type == GEN_TYPE_DOUBLE ) ? "doubleeq" : "floateq"; }
+inline const char*	Gen_GetFuncNameFloateq( const genType_t type ) { return ( type == GEN_TYPE_DOUBLE ) ? "doubleeq" : "floateq"; }
 
 // hlml constants
-inline std::string	Gen_GetConstantNamePi( const genType_t type ) { return ( type == GEN_TYPE_DOUBLE ) ? "HLML_PI" : "static_cast<float>( HLML_PI )"; }
-inline std::string	Gen_GetConstantNameEpsilon( const genType_t type ) { return ( type == GEN_TYPE_DOUBLE ) ? "HLML_EPSILON" : "static_cast<float>( HLML_EPSILON )"; }
+inline const char*	Gen_GetConstantNamePi( const genType_t type ) { return ( type == GEN_TYPE_DOUBLE ) ? "HLML_PI" : "static_cast<float>( HLML_PI )"; }
+inline const char*	Gen_GetConstantNameEpsilon( const genType_t type ) { return ( type == GEN_TYPE_DOUBLE ) ? "HLML_EPSILON" : "static_cast<float>( HLML_EPSILON )"; }
 
 // generic helper functions that are typical of maths libraries
-extern void			Gen_Floateq( const genType_t type, std::string& outHeader );
-extern void			Gen_Sign( const genType_t type, std::string& outHeader );
+extern void			Gen_Floateq( const genType_t type, stringBuilder_t* sb );
+extern void			Gen_Sign( const genType_t type, stringBuilder_t* sb );
 
-extern void			Gen_Radians( const genType_t type, std::string& outHeader );
-extern void			Gen_Degrees( const genType_t type, std::string& outHeader );
-extern void			Gen_MinMax( const genType_t type, std::string& outHeader );
-extern void			Gen_Clamp( const genType_t type, std::string& outHeader );
+extern void			Gen_Radians( const genType_t type, stringBuilder_t* sb );
+extern void			Gen_Degrees( const genType_t type, stringBuilder_t* sb );
+extern void			Gen_MinMax( const genType_t type, stringBuilder_t* sb );
+extern void			Gen_Clamp( const genType_t type, stringBuilder_t* sb );
 
-extern void			Gen_Saturate( const genType_t type, const u32 numComponents, std::string& outHeader, std::string* outInl );
-extern void			Gen_Lerp( const genType_t type, const u32 numComponents, std::string& outHeader, std::string* outInl );
-extern void			Gen_Smoothstep( const genType_t type, const u32 numComponents, std::string& outHeader, std::string* outInl );
+extern void			Gen_Saturate( const genType_t type, const u32 numComponents, stringBuilder_t* sbHeader, stringBuilder_t* sbInl );
+extern void			Gen_Lerp( const genType_t type, const u32 numComponents, stringBuilder_t* sbHeader, stringBuilder_t* sbInl );
+extern void			Gen_Smoothstep( const genType_t type, const u32 numComponents, stringBuilder_t* sbHeader, stringBuilder_t* sbInl );
 
 // functions that are guaranteed to be the same across vectors and matrices
-extern void			Gen_OperatorsIncrement( const genType_t type, const u32 numRows, const u32 numCols, std::string& outHeader, std::string& outInl );
-extern void			Gen_OperatorsRelational( const genType_t type, const u32 numRows, const u32 numCols, std::string& outHeader, std::string& outInl );
-extern void			Gen_OperatorsBitwise( const genType_t type, const u32 numRows, const u32 numCols, std::string& outHeader, std::string& outInl );
+extern void			Gen_OperatorsIncrement( const genType_t type, const u32 numRows, const u32 numCols, stringBuilder_t* sbHeader, stringBuilder_t* sbInl );
+extern void			Gen_OperatorsRelational( const genType_t type, const u32 numRows, const u32 numCols, stringBuilder_t* sbHeader, stringBuilder_t* sbInl );
+extern void			Gen_OperatorsBitwise( const genType_t type, const u32 numRows, const u32 numCols, stringBuilder_t* sbHeader, stringBuilder_t* sbInl );
 
 extern void			Gen_OperatorComponentWiseArithmeticScalar( const genType_t type, const u32 numRows, const u32 numCols, const genOpArithmetic_t op,
-						std::string& outHeader, std::string& outInl );
+						stringBuilder_t* sbHeader, stringBuilder_t* sbInl );
 extern void			Gen_OperatorComponentWiseArithmeticRhsType( const genType_t type, const u32 numRows, const u32 numCols, const genOpArithmetic_t op,
-						std::string& outHeader, std::string& outInl );
+						stringBuilder_t* sbHeader, stringBuilder_t* sbInl );
 
-extern void			Gen_OperatorNotEquals( const genType_t type, const u32 numRows, const u32 numCols, std::string& outHeader, std::string& outInl );
+extern void			Gen_OperatorNotEquals( const genType_t type, const u32 numRows, const u32 numCols, stringBuilder_t* sbHeader, stringBuilder_t* sbInl );
 
 
-std::string Gen_GetTypeString( const genType_t type ) {
+const char* Gen_GetTypeString( const genType_t type ) {
 	switch ( type ) {
 		case GEN_TYPE_BOOL:		return "bool";
 		case GEN_TYPE_INT:		return "int";
@@ -227,7 +245,7 @@ std::string Gen_GetTypeString( const genType_t type ) {
 	}
 }
 
-std::string Gen_GetMemberTypeString( const genType_t type ) {
+const char* Gen_GetMemberTypeString( const genType_t type ) {
 	switch ( type ) {
 		case GEN_TYPE_BOOL:		return "bool32_t";
 		case GEN_TYPE_INT:		return "int32_t";
@@ -242,22 +260,28 @@ std::string Gen_GetMemberTypeString( const genType_t type ) {
 	}
 }
 
-std::string Gen_GetFullTypeName( const genType_t type, const u32 numRows, const u32 numCols ) {
+void Gen_GetFullTypeName( const genType_t type, const u32 numRows, const u32 numCols, char* outString ) {
 	assert( numRows >= 1 );	// 1 for vectors
 	assert( numRows <= GEN_COMPONENT_COUNT_MAX );
 	assert( numCols >= 1 );	// 1 for straight scalar types
 	assert( numCols <= GEN_COMPONENT_COUNT_MAX );
+	assert( outString );
 
-	std::string typeString = Gen_GetTypeString( type );
+	const char* typeString = Gen_GetTypeString( type );
 
 	if ( numRows == 1 ) {
-		return ( numCols > 1 ) ? typeString + std::to_string( numCols ) : Gen_GetMemberTypeString( type );
+		if ( numCols > 1 ) {
+			sprintf( outString, "%s%d", typeString, numCols );
+		} else {
+			// here if passed something like "float1", so really just a "float"
+			sprintf( outString, "%s", Gen_GetMemberTypeString( type ) );
+		}
 	} else {
-		return typeString + std::to_string( numRows ) + "x" + std::to_string( numCols );
+		sprintf( outString, "%s%dx%d", typeString, numRows, numCols );
 	}
 }
 
-std::string Gen_GetDefaultLiteralValue( const genType_t type ) {
+const char* Gen_GetDefaultLiteralValue( const genType_t type ) {
 	switch ( type ) {
 		case GEN_TYPE_BOOL:		return "false";
 		case GEN_TYPE_INT:		return "0";
@@ -272,22 +296,22 @@ std::string Gen_GetDefaultLiteralValue( const genType_t type ) {
 	}
 }
 
-std::string Gen_GetNumericLiteral( const genType_t type, const float value ) {
-	switch ( type ) {
-		case GEN_TYPE_BOOL:		return ( value != 0.0f ) ? "true" : "false";
-		case GEN_TYPE_INT:		return std::to_string( static_cast<int32_t>( value ) );
-		case GEN_TYPE_UINT:		return std::to_string( static_cast<u32>( value ) ) + "U";
-		case GEN_TYPE_FLOAT:	return std::to_string( static_cast<float>( value ) ) + "f";
-		case GEN_TYPE_DOUBLE:	return std::to_string( static_cast<double>( value ) );
+//std::string Gen_GetNumericLiteral( const genType_t type, const float value ) {
+//	switch ( type ) {
+//		case GEN_TYPE_BOOL:		return ( value != 0.0f ) ? "true" : "false";
+//		case GEN_TYPE_INT:		return std::to_string( static_cast<int32_t>( value ) );
+//		case GEN_TYPE_UINT:		return std::to_string( static_cast<u32>( value ) ) + "U";
+//		case GEN_TYPE_FLOAT:	return std::to_string( static_cast<float>( value ) ) + "f";
+//		case GEN_TYPE_DOUBLE:	return std::to_string( static_cast<double>( value ) );
+//
+//		case GEN_TYPE_COUNT:
+//		default:
+//			printf( "ERROR: Bad genType_t passed through to %s.  Fix it!\n", __FUNCTION__ );
+//			return "ERROR";
+//	}
+//}
 
-		case GEN_TYPE_COUNT:
-		default:
-			printf( "ERROR: Bad type_t passed through to %s.  Fix it!\n", __FUNCTION__ );
-			return "ERROR";
-	}
-}
-
-std::string Gen_GetHandString( const genHand_t hand ) {
+const char* Gen_GetHandString( const genHand_t hand ) {
 	switch ( hand ) {
 		case GEN_HAND_LEFT:
 			return "left";
@@ -304,7 +328,7 @@ std::string Gen_GetHandString( const genHand_t hand ) {
 	}
 }
 
-std::string Gen_GetClipSpaceRangeString( const genClipSpace_t range ) {
+const char* Gen_GetClipSpaceRangeString( const genClipSpace_t range ) {
 	switch ( range ) {
 		case GEN_CLIP_SPACE_ZERO_TO_ONE:
 			return "zero to one";

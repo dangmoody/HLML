@@ -1,46 +1,20 @@
-/*
-===========================================================================
-
-hlml.
-Copyright (c) Dan Moody 2019 - Present.
-
-This file is part of hlml.
-
-hlml is free software: you can redistribute it and/or modify
-it under the terms of the GNU General Public License as published by
-the Free Software Foundation, either version 3 of the License, or
-(at your option) any later version.
-
-hlml is distributed in the hope that it will be useful,
-but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-GNU General Public License for more details.
-
-You should have received a copy of the GNU General Public License
-along with hlml.  If not, see <http://www.gnu.org/licenses/>.
-
-===========================================================================
-*/
-
-// GENERATED FILE.  DO NOT EDIT.
-
 #pragma once
 
-#include "bool2.h"
-#include "bool3.h"
-#include "bool4.h"
-#include "int2.h"
-#include "int3.h"
-#include "int4.h"
-#include "uint2.h"
-#include "uint3.h"
-#include "uint4.h"
-#include "float2.h"
-#include "float3.h"
-#include "float4.h"
-#include "double2.h"
-#include "double3.h"
-#include "double4.h"
+#include "bool2.
+#include "bool3.
+#include "bool4.
+#include "int2.
+#include "int3.
+#include "int4.
+#include "uint2.
+#include "uint3.
+#include "uint4.
+#include "float2.
+#include "float3.
+#include "float4.
+#include "double2.
+#include "double3.
+#include "double4.
 
 // int2
 /// \relates int2

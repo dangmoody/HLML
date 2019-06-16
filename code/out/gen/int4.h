@@ -44,7 +44,7 @@ struct float3;
 #pragma warning( disable : 4201 ) // C4201 - nonstandard extension used : nameless struct/union
 #endif
 
-/// \brief A vector of 4 int32_ts with components xyzw and/or rgba.
+/// \brief A vector of 4 int32_ts with components xyzw.
 /// Components are also stored as elements in an array via a union.
 struct int4
 {

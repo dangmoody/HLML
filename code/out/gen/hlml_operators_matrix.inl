@@ -187,7 +187,7 @@ int2x2& operator--( int2x2& lhs, const int )
 
 bool2x2 operator<( const int2x2& lhs, const int2x2& rhs )
 {
-	return bool2x2(
+	return int2x2(
 		lhs[0] < rhs[0],
 		lhs[1] < rhs[1]
 	);
@@ -195,7 +195,7 @@ bool2x2 operator<( const int2x2& lhs, const int2x2& rhs )
 
 bool2x2 operator<=( const int2x2& lhs, const int2x2& rhs )
 {
-	return bool2x2(
+	return int2x2(
 		lhs[0] <= rhs[0],
 		lhs[1] <= rhs[1]
 	);
@@ -203,7 +203,7 @@ bool2x2 operator<=( const int2x2& lhs, const int2x2& rhs )
 
 bool2x2 operator>( const int2x2& lhs, const int2x2& rhs )
 {
-	return bool2x2(
+	return int2x2(
 		lhs[0] > rhs[0],
 		lhs[1] > rhs[1]
 	);
@@ -211,7 +211,7 @@ bool2x2 operator>( const int2x2& lhs, const int2x2& rhs )
 
 bool2x2 operator>=( const int2x2& lhs, const int2x2& rhs )
 {
-	return bool2x2(
+	return int2x2(
 		lhs[0] >= rhs[0],
 		lhs[1] >= rhs[1]
 	);
@@ -430,7 +430,7 @@ int2x2 operator*( const int2x3& lhs, const int3x2& rhs )
 	int3 col0 = { rhs[0].x, rhs[1].x, rhs[2].x };
 	int3 col1 = { rhs[0].y, rhs[1].y, rhs[2].y };
 
-	return int2x2(
+	return int3x2(
 		row0.x * col0.x + row0.y * col0.y + row0.z * col0.z,
 		row0.x * col1.x + row0.y * col1.y + row0.z * col1.z,
 
@@ -494,7 +494,7 @@ int2x3& operator--( int2x3& lhs, const int )
 
 bool2x3 operator<( const int2x3& lhs, const int2x3& rhs )
 {
-	return bool2x3(
+	return int2x3(
 		lhs[0] < rhs[0],
 		lhs[1] < rhs[1]
 	);
@@ -502,7 +502,7 @@ bool2x3 operator<( const int2x3& lhs, const int2x3& rhs )
 
 bool2x3 operator<=( const int2x3& lhs, const int2x3& rhs )
 {
-	return bool2x3(
+	return int2x3(
 		lhs[0] <= rhs[0],
 		lhs[1] <= rhs[1]
 	);
@@ -510,7 +510,7 @@ bool2x3 operator<=( const int2x3& lhs, const int2x3& rhs )
 
 bool2x3 operator>( const int2x3& lhs, const int2x3& rhs )
 {
-	return bool2x3(
+	return int2x3(
 		lhs[0] > rhs[0],
 		lhs[1] > rhs[1]
 	);
@@ -518,7 +518,7 @@ bool2x3 operator>( const int2x3& lhs, const int2x3& rhs )
 
 bool2x3 operator>=( const int2x3& lhs, const int2x3& rhs )
 {
-	return bool2x3(
+	return int2x3(
 		lhs[0] >= rhs[0],
 		lhs[1] >= rhs[1]
 	);
@@ -737,7 +737,7 @@ int2x2 operator*( const int2x4& lhs, const int4x2& rhs )
 	int4 col0 = { rhs[0].x, rhs[1].x, rhs[2].x, rhs[3].x };
 	int4 col1 = { rhs[0].y, rhs[1].y, rhs[2].y, rhs[3].y };
 
-	return int2x2(
+	return int4x2(
 		row0.x * col0.x + row0.y * col0.y + row0.z * col0.z + row0.w * col0.w,
 		row0.x * col1.x + row0.y * col1.y + row0.z * col1.z + row0.w * col1.w,
 
@@ -801,7 +801,7 @@ int2x4& operator--( int2x4& lhs, const int )
 
 bool2x4 operator<( const int2x4& lhs, const int2x4& rhs )
 {
-	return bool2x4(
+	return int2x4(
 		lhs[0] < rhs[0],
 		lhs[1] < rhs[1]
 	);
@@ -809,7 +809,7 @@ bool2x4 operator<( const int2x4& lhs, const int2x4& rhs )
 
 bool2x4 operator<=( const int2x4& lhs, const int2x4& rhs )
 {
-	return bool2x4(
+	return int2x4(
 		lhs[0] <= rhs[0],
 		lhs[1] <= rhs[1]
 	);
@@ -817,7 +817,7 @@ bool2x4 operator<=( const int2x4& lhs, const int2x4& rhs )
 
 bool2x4 operator>( const int2x4& lhs, const int2x4& rhs )
 {
-	return bool2x4(
+	return int2x4(
 		lhs[0] > rhs[0],
 		lhs[1] > rhs[1]
 	);
@@ -825,7 +825,7 @@ bool2x4 operator>( const int2x4& lhs, const int2x4& rhs )
 
 bool2x4 operator>=( const int2x4& lhs, const int2x4& rhs )
 {
-	return bool2x4(
+	return int2x4(
 		lhs[0] >= rhs[0],
 		lhs[1] >= rhs[1]
 	);
@@ -1051,7 +1051,7 @@ int3x3 operator*( const int3x2& lhs, const int2x3& rhs )
 	int2 col1 = { rhs[0].y, rhs[1].y };
 	int2 col2 = { rhs[0].z, rhs[1].z };
 
-	return int3x3(
+	return int2x3(
 		row0.x * col0.x + row0.y * col0.y,
 		row0.x * col1.x + row0.y * col1.y,
 		row0.x * col2.x + row0.y * col2.y,
@@ -1127,7 +1127,7 @@ int3x2& operator--( int3x2& lhs, const int )
 
 bool3x2 operator<( const int3x2& lhs, const int3x2& rhs )
 {
-	return bool3x2(
+	return int3x2(
 		lhs[0] < rhs[0],
 		lhs[1] < rhs[1],
 		lhs[2] < rhs[2]
@@ -1136,7 +1136,7 @@ bool3x2 operator<( const int3x2& lhs, const int3x2& rhs )
 
 bool3x2 operator<=( const int3x2& lhs, const int3x2& rhs )
 {
-	return bool3x2(
+	return int3x2(
 		lhs[0] <= rhs[0],
 		lhs[1] <= rhs[1],
 		lhs[2] <= rhs[2]
@@ -1145,7 +1145,7 @@ bool3x2 operator<=( const int3x2& lhs, const int3x2& rhs )
 
 bool3x2 operator>( const int3x2& lhs, const int3x2& rhs )
 {
-	return bool3x2(
+	return int3x2(
 		lhs[0] > rhs[0],
 		lhs[1] > rhs[1],
 		lhs[2] > rhs[2]
@@ -1154,7 +1154,7 @@ bool3x2 operator>( const int3x2& lhs, const int3x2& rhs )
 
 bool3x2 operator>=( const int3x2& lhs, const int3x2& rhs )
 {
-	return bool3x2(
+	return int3x2(
 		lhs[0] >= rhs[0],
 		lhs[1] >= rhs[1],
 		lhs[2] >= rhs[2]
@@ -1492,7 +1492,7 @@ int3x3& operator--( int3x3& lhs, const int )
 
 bool3x3 operator<( const int3x3& lhs, const int3x3& rhs )
 {
-	return bool3x3(
+	return int3x3(
 		lhs[0] < rhs[0],
 		lhs[1] < rhs[1],
 		lhs[2] < rhs[2]
@@ -1501,7 +1501,7 @@ bool3x3 operator<( const int3x3& lhs, const int3x3& rhs )
 
 bool3x3 operator<=( const int3x3& lhs, const int3x3& rhs )
 {
-	return bool3x3(
+	return int3x3(
 		lhs[0] <= rhs[0],
 		lhs[1] <= rhs[1],
 		lhs[2] <= rhs[2]
@@ -1510,7 +1510,7 @@ bool3x3 operator<=( const int3x3& lhs, const int3x3& rhs )
 
 bool3x3 operator>( const int3x3& lhs, const int3x3& rhs )
 {
-	return bool3x3(
+	return int3x3(
 		lhs[0] > rhs[0],
 		lhs[1] > rhs[1],
 		lhs[2] > rhs[2]
@@ -1519,7 +1519,7 @@ bool3x3 operator>( const int3x3& lhs, const int3x3& rhs )
 
 bool3x3 operator>=( const int3x3& lhs, const int3x3& rhs )
 {
-	return bool3x3(
+	return int3x3(
 		lhs[0] >= rhs[0],
 		lhs[1] >= rhs[1],
 		lhs[2] >= rhs[2]
@@ -1757,7 +1757,7 @@ int3x3 operator*( const int3x4& lhs, const int4x3& rhs )
 	int4 col1 = { rhs[0].y, rhs[1].y, rhs[2].y, rhs[3].y };
 	int4 col2 = { rhs[0].z, rhs[1].z, rhs[2].z, rhs[3].z };
 
-	return int3x3(
+	return int4x3(
 		row0.x * col0.x + row0.y * col0.y + row0.z * col0.z + row0.w * col0.w,
 		row0.x * col1.x + row0.y * col1.y + row0.z * col1.z + row0.w * col1.w,
 		row0.x * col2.x + row0.y * col2.y + row0.z * col2.z + row0.w * col2.w,
@@ -1833,7 +1833,7 @@ int3x4& operator--( int3x4& lhs, const int )
 
 bool3x4 operator<( const int3x4& lhs, const int3x4& rhs )
 {
-	return bool3x4(
+	return int3x4(
 		lhs[0] < rhs[0],
 		lhs[1] < rhs[1],
 		lhs[2] < rhs[2]
@@ -1842,7 +1842,7 @@ bool3x4 operator<( const int3x4& lhs, const int3x4& rhs )
 
 bool3x4 operator<=( const int3x4& lhs, const int3x4& rhs )
 {
-	return bool3x4(
+	return int3x4(
 		lhs[0] <= rhs[0],
 		lhs[1] <= rhs[1],
 		lhs[2] <= rhs[2]
@@ -1851,7 +1851,7 @@ bool3x4 operator<=( const int3x4& lhs, const int3x4& rhs )
 
 bool3x4 operator>( const int3x4& lhs, const int3x4& rhs )
 {
-	return bool3x4(
+	return int3x4(
 		lhs[0] > rhs[0],
 		lhs[1] > rhs[1],
 		lhs[2] > rhs[2]
@@ -1860,7 +1860,7 @@ bool3x4 operator>( const int3x4& lhs, const int3x4& rhs )
 
 bool3x4 operator>=( const int3x4& lhs, const int3x4& rhs )
 {
-	return bool3x4(
+	return int3x4(
 		lhs[0] >= rhs[0],
 		lhs[1] >= rhs[1],
 		lhs[2] >= rhs[2]
@@ -2105,7 +2105,7 @@ int4x4 operator*( const int4x2& lhs, const int2x4& rhs )
 	int2 col2 = { rhs[0].z, rhs[1].z };
 	int2 col3 = { rhs[0].w, rhs[1].w };
 
-	return int4x4(
+	return int2x4(
 		row0.x * col0.x + row0.y * col0.y,
 		row0.x * col1.x + row0.y * col1.y,
 		row0.x * col2.x + row0.y * col2.y,
@@ -2195,7 +2195,7 @@ int4x2& operator--( int4x2& lhs, const int )
 
 bool4x2 operator<( const int4x2& lhs, const int4x2& rhs )
 {
-	return bool4x2(
+	return int4x2(
 		lhs[0] < rhs[0],
 		lhs[1] < rhs[1],
 		lhs[2] < rhs[2],
@@ -2205,7 +2205,7 @@ bool4x2 operator<( const int4x2& lhs, const int4x2& rhs )
 
 bool4x2 operator<=( const int4x2& lhs, const int4x2& rhs )
 {
-	return bool4x2(
+	return int4x2(
 		lhs[0] <= rhs[0],
 		lhs[1] <= rhs[1],
 		lhs[2] <= rhs[2],
@@ -2215,7 +2215,7 @@ bool4x2 operator<=( const int4x2& lhs, const int4x2& rhs )
 
 bool4x2 operator>( const int4x2& lhs, const int4x2& rhs )
 {
-	return bool4x2(
+	return int4x2(
 		lhs[0] > rhs[0],
 		lhs[1] > rhs[1],
 		lhs[2] > rhs[2],
@@ -2225,7 +2225,7 @@ bool4x2 operator>( const int4x2& lhs, const int4x2& rhs )
 
 bool4x2 operator>=( const int4x2& lhs, const int4x2& rhs )
 {
-	return bool4x2(
+	return int4x2(
 		lhs[0] >= rhs[0],
 		lhs[1] >= rhs[1],
 		lhs[2] >= rhs[2],
@@ -2482,7 +2482,7 @@ int4x4 operator*( const int4x3& lhs, const int3x4& rhs )
 	int3 col2 = { rhs[0].z, rhs[1].z, rhs[2].z };
 	int3 col3 = { rhs[0].w, rhs[1].w, rhs[2].w };
 
-	return int4x4(
+	return int3x4(
 		row0.x * col0.x + row0.y * col0.y + row0.z * col0.z,
 		row0.x * col1.x + row0.y * col1.y + row0.z * col1.z,
 		row0.x * col2.x + row0.y * col2.y + row0.z * col2.z,
@@ -2572,7 +2572,7 @@ int4x3& operator--( int4x3& lhs, const int )
 
 bool4x3 operator<( const int4x3& lhs, const int4x3& rhs )
 {
-	return bool4x3(
+	return int4x3(
 		lhs[0] < rhs[0],
 		lhs[1] < rhs[1],
 		lhs[2] < rhs[2],
@@ -2582,7 +2582,7 @@ bool4x3 operator<( const int4x3& lhs, const int4x3& rhs )
 
 bool4x3 operator<=( const int4x3& lhs, const int4x3& rhs )
 {
-	return bool4x3(
+	return int4x3(
 		lhs[0] <= rhs[0],
 		lhs[1] <= rhs[1],
 		lhs[2] <= rhs[2],
@@ -2592,7 +2592,7 @@ bool4x3 operator<=( const int4x3& lhs, const int4x3& rhs )
 
 bool4x3 operator>( const int4x3& lhs, const int4x3& rhs )
 {
-	return bool4x3(
+	return int4x3(
 		lhs[0] > rhs[0],
 		lhs[1] > rhs[1],
 		lhs[2] > rhs[2],
@@ -2602,7 +2602,7 @@ bool4x3 operator>( const int4x3& lhs, const int4x3& rhs )
 
 bool4x3 operator>=( const int4x3& lhs, const int4x3& rhs )
 {
-	return bool4x3(
+	return int4x3(
 		lhs[0] >= rhs[0],
 		lhs[1] >= rhs[1],
 		lhs[2] >= rhs[2],
@@ -2974,7 +2974,7 @@ int4x4& operator--( int4x4& lhs, const int )
 
 bool4x4 operator<( const int4x4& lhs, const int4x4& rhs )
 {
-	return bool4x4(
+	return int4x4(
 		lhs[0] < rhs[0],
 		lhs[1] < rhs[1],
 		lhs[2] < rhs[2],
@@ -2984,7 +2984,7 @@ bool4x4 operator<( const int4x4& lhs, const int4x4& rhs )
 
 bool4x4 operator<=( const int4x4& lhs, const int4x4& rhs )
 {
-	return bool4x4(
+	return int4x4(
 		lhs[0] <= rhs[0],
 		lhs[1] <= rhs[1],
 		lhs[2] <= rhs[2],
@@ -2994,7 +2994,7 @@ bool4x4 operator<=( const int4x4& lhs, const int4x4& rhs )
 
 bool4x4 operator>( const int4x4& lhs, const int4x4& rhs )
 {
-	return bool4x4(
+	return int4x4(
 		lhs[0] > rhs[0],
 		lhs[1] > rhs[1],
 		lhs[2] > rhs[2],
@@ -3004,7 +3004,7 @@ bool4x4 operator>( const int4x4& lhs, const int4x4& rhs )
 
 bool4x4 operator>=( const int4x4& lhs, const int4x4& rhs )
 {
-	return bool4x4(
+	return int4x4(
 		lhs[0] >= rhs[0],
 		lhs[1] >= rhs[1],
 		lhs[2] >= rhs[2],
@@ -3334,7 +3334,7 @@ uint2x2& operator--( uint2x2& lhs, const int )
 
 bool2x2 operator<( const uint2x2& lhs, const uint2x2& rhs )
 {
-	return bool2x2(
+	return uint2x2(
 		lhs[0] < rhs[0],
 		lhs[1] < rhs[1]
 	);
@@ -3342,7 +3342,7 @@ bool2x2 operator<( const uint2x2& lhs, const uint2x2& rhs )
 
 bool2x2 operator<=( const uint2x2& lhs, const uint2x2& rhs )
 {
-	return bool2x2(
+	return uint2x2(
 		lhs[0] <= rhs[0],
 		lhs[1] <= rhs[1]
 	);
@@ -3350,7 +3350,7 @@ bool2x2 operator<=( const uint2x2& lhs, const uint2x2& rhs )
 
 bool2x2 operator>( const uint2x2& lhs, const uint2x2& rhs )
 {
-	return bool2x2(
+	return uint2x2(
 		lhs[0] > rhs[0],
 		lhs[1] > rhs[1]
 	);
@@ -3358,7 +3358,7 @@ bool2x2 operator>( const uint2x2& lhs, const uint2x2& rhs )
 
 bool2x2 operator>=( const uint2x2& lhs, const uint2x2& rhs )
 {
-	return bool2x2(
+	return uint2x2(
 		lhs[0] >= rhs[0],
 		lhs[1] >= rhs[1]
 	);
@@ -3577,7 +3577,7 @@ uint2x2 operator*( const uint2x3& lhs, const uint3x2& rhs )
 	uint3 col0 = { rhs[0].x, rhs[1].x, rhs[2].x };
 	uint3 col1 = { rhs[0].y, rhs[1].y, rhs[2].y };
 
-	return uint2x2(
+	return uint3x2(
 		row0.x * col0.x + row0.y * col0.y + row0.z * col0.z,
 		row0.x * col1.x + row0.y * col1.y + row0.z * col1.z,
 
@@ -3641,7 +3641,7 @@ uint2x3& operator--( uint2x3& lhs, const int )
 
 bool2x3 operator<( const uint2x3& lhs, const uint2x3& rhs )
 {
-	return bool2x3(
+	return uint2x3(
 		lhs[0] < rhs[0],
 		lhs[1] < rhs[1]
 	);
@@ -3649,7 +3649,7 @@ bool2x3 operator<( const uint2x3& lhs, const uint2x3& rhs )
 
 bool2x3 operator<=( const uint2x3& lhs, const uint2x3& rhs )
 {
-	return bool2x3(
+	return uint2x3(
 		lhs[0] <= rhs[0],
 		lhs[1] <= rhs[1]
 	);
@@ -3657,7 +3657,7 @@ bool2x3 operator<=( const uint2x3& lhs, const uint2x3& rhs )
 
 bool2x3 operator>( const uint2x3& lhs, const uint2x3& rhs )
 {
-	return bool2x3(
+	return uint2x3(
 		lhs[0] > rhs[0],
 		lhs[1] > rhs[1]
 	);
@@ -3665,7 +3665,7 @@ bool2x3 operator>( const uint2x3& lhs, const uint2x3& rhs )
 
 bool2x3 operator>=( const uint2x3& lhs, const uint2x3& rhs )
 {
-	return bool2x3(
+	return uint2x3(
 		lhs[0] >= rhs[0],
 		lhs[1] >= rhs[1]
 	);
@@ -3884,7 +3884,7 @@ uint2x2 operator*( const uint2x4& lhs, const uint4x2& rhs )
 	uint4 col0 = { rhs[0].x, rhs[1].x, rhs[2].x, rhs[3].x };
 	uint4 col1 = { rhs[0].y, rhs[1].y, rhs[2].y, rhs[3].y };
 
-	return uint2x2(
+	return uint4x2(
 		row0.x * col0.x + row0.y * col0.y + row0.z * col0.z + row0.w * col0.w,
 		row0.x * col1.x + row0.y * col1.y + row0.z * col1.z + row0.w * col1.w,
 
@@ -3948,7 +3948,7 @@ uint2x4& operator--( uint2x4& lhs, const int )
 
 bool2x4 operator<( const uint2x4& lhs, const uint2x4& rhs )
 {
-	return bool2x4(
+	return uint2x4(
 		lhs[0] < rhs[0],
 		lhs[1] < rhs[1]
 	);
@@ -3956,7 +3956,7 @@ bool2x4 operator<( const uint2x4& lhs, const uint2x4& rhs )
 
 bool2x4 operator<=( const uint2x4& lhs, const uint2x4& rhs )
 {
-	return bool2x4(
+	return uint2x4(
 		lhs[0] <= rhs[0],
 		lhs[1] <= rhs[1]
 	);
@@ -3964,7 +3964,7 @@ bool2x4 operator<=( const uint2x4& lhs, const uint2x4& rhs )
 
 bool2x4 operator>( const uint2x4& lhs, const uint2x4& rhs )
 {
-	return bool2x4(
+	return uint2x4(
 		lhs[0] > rhs[0],
 		lhs[1] > rhs[1]
 	);
@@ -3972,7 +3972,7 @@ bool2x4 operator>( const uint2x4& lhs, const uint2x4& rhs )
 
 bool2x4 operator>=( const uint2x4& lhs, const uint2x4& rhs )
 {
-	return bool2x4(
+	return uint2x4(
 		lhs[0] >= rhs[0],
 		lhs[1] >= rhs[1]
 	);
@@ -4198,7 +4198,7 @@ uint3x3 operator*( const uint3x2& lhs, const uint2x3& rhs )
 	uint2 col1 = { rhs[0].y, rhs[1].y };
 	uint2 col2 = { rhs[0].z, rhs[1].z };
 
-	return uint3x3(
+	return uint2x3(
 		row0.x * col0.x + row0.y * col0.y,
 		row0.x * col1.x + row0.y * col1.y,
 		row0.x * col2.x + row0.y * col2.y,
@@ -4274,7 +4274,7 @@ uint3x2& operator--( uint3x2& lhs, const int )
 
 bool3x2 operator<( const uint3x2& lhs, const uint3x2& rhs )
 {
-	return bool3x2(
+	return uint3x2(
 		lhs[0] < rhs[0],
 		lhs[1] < rhs[1],
 		lhs[2] < rhs[2]
@@ -4283,7 +4283,7 @@ bool3x2 operator<( const uint3x2& lhs, const uint3x2& rhs )
 
 bool3x2 operator<=( const uint3x2& lhs, const uint3x2& rhs )
 {
-	return bool3x2(
+	return uint3x2(
 		lhs[0] <= rhs[0],
 		lhs[1] <= rhs[1],
 		lhs[2] <= rhs[2]
@@ -4292,7 +4292,7 @@ bool3x2 operator<=( const uint3x2& lhs, const uint3x2& rhs )
 
 bool3x2 operator>( const uint3x2& lhs, const uint3x2& rhs )
 {
-	return bool3x2(
+	return uint3x2(
 		lhs[0] > rhs[0],
 		lhs[1] > rhs[1],
 		lhs[2] > rhs[2]
@@ -4301,7 +4301,7 @@ bool3x2 operator>( const uint3x2& lhs, const uint3x2& rhs )
 
 bool3x2 operator>=( const uint3x2& lhs, const uint3x2& rhs )
 {
-	return bool3x2(
+	return uint3x2(
 		lhs[0] >= rhs[0],
 		lhs[1] >= rhs[1],
 		lhs[2] >= rhs[2]
@@ -4639,7 +4639,7 @@ uint3x3& operator--( uint3x3& lhs, const int )
 
 bool3x3 operator<( const uint3x3& lhs, const uint3x3& rhs )
 {
-	return bool3x3(
+	return uint3x3(
 		lhs[0] < rhs[0],
 		lhs[1] < rhs[1],
 		lhs[2] < rhs[2]
@@ -4648,7 +4648,7 @@ bool3x3 operator<( const uint3x3& lhs, const uint3x3& rhs )
 
 bool3x3 operator<=( const uint3x3& lhs, const uint3x3& rhs )
 {
-	return bool3x3(
+	return uint3x3(
 		lhs[0] <= rhs[0],
 		lhs[1] <= rhs[1],
 		lhs[2] <= rhs[2]
@@ -4657,7 +4657,7 @@ bool3x3 operator<=( const uint3x3& lhs, const uint3x3& rhs )
 
 bool3x3 operator>( const uint3x3& lhs, const uint3x3& rhs )
 {
-	return bool3x3(
+	return uint3x3(
 		lhs[0] > rhs[0],
 		lhs[1] > rhs[1],
 		lhs[2] > rhs[2]
@@ -4666,7 +4666,7 @@ bool3x3 operator>( const uint3x3& lhs, const uint3x3& rhs )
 
 bool3x3 operator>=( const uint3x3& lhs, const uint3x3& rhs )
 {
-	return bool3x3(
+	return uint3x3(
 		lhs[0] >= rhs[0],
 		lhs[1] >= rhs[1],
 		lhs[2] >= rhs[2]
@@ -4904,7 +4904,7 @@ uint3x3 operator*( const uint3x4& lhs, const uint4x3& rhs )
 	uint4 col1 = { rhs[0].y, rhs[1].y, rhs[2].y, rhs[3].y };
 	uint4 col2 = { rhs[0].z, rhs[1].z, rhs[2].z, rhs[3].z };
 
-	return uint3x3(
+	return uint4x3(
 		row0.x * col0.x + row0.y * col0.y + row0.z * col0.z + row0.w * col0.w,
 		row0.x * col1.x + row0.y * col1.y + row0.z * col1.z + row0.w * col1.w,
 		row0.x * col2.x + row0.y * col2.y + row0.z * col2.z + row0.w * col2.w,
@@ -4980,7 +4980,7 @@ uint3x4& operator--( uint3x4& lhs, const int )
 
 bool3x4 operator<( const uint3x4& lhs, const uint3x4& rhs )
 {
-	return bool3x4(
+	return uint3x4(
 		lhs[0] < rhs[0],
 		lhs[1] < rhs[1],
 		lhs[2] < rhs[2]
@@ -4989,7 +4989,7 @@ bool3x4 operator<( const uint3x4& lhs, const uint3x4& rhs )
 
 bool3x4 operator<=( const uint3x4& lhs, const uint3x4& rhs )
 {
-	return bool3x4(
+	return uint3x4(
 		lhs[0] <= rhs[0],
 		lhs[1] <= rhs[1],
 		lhs[2] <= rhs[2]
@@ -4998,7 +4998,7 @@ bool3x4 operator<=( const uint3x4& lhs, const uint3x4& rhs )
 
 bool3x4 operator>( const uint3x4& lhs, const uint3x4& rhs )
 {
-	return bool3x4(
+	return uint3x4(
 		lhs[0] > rhs[0],
 		lhs[1] > rhs[1],
 		lhs[2] > rhs[2]
@@ -5007,7 +5007,7 @@ bool3x4 operator>( const uint3x4& lhs, const uint3x4& rhs )
 
 bool3x4 operator>=( const uint3x4& lhs, const uint3x4& rhs )
 {
-	return bool3x4(
+	return uint3x4(
 		lhs[0] >= rhs[0],
 		lhs[1] >= rhs[1],
 		lhs[2] >= rhs[2]
@@ -5252,7 +5252,7 @@ uint4x4 operator*( const uint4x2& lhs, const uint2x4& rhs )
 	uint2 col2 = { rhs[0].z, rhs[1].z };
 	uint2 col3 = { rhs[0].w, rhs[1].w };
 
-	return uint4x4(
+	return uint2x4(
 		row0.x * col0.x + row0.y * col0.y,
 		row0.x * col1.x + row0.y * col1.y,
 		row0.x * col2.x + row0.y * col2.y,
@@ -5342,7 +5342,7 @@ uint4x2& operator--( uint4x2& lhs, const int )
 
 bool4x2 operator<( const uint4x2& lhs, const uint4x2& rhs )
 {
-	return bool4x2(
+	return uint4x2(
 		lhs[0] < rhs[0],
 		lhs[1] < rhs[1],
 		lhs[2] < rhs[2],
@@ -5352,7 +5352,7 @@ bool4x2 operator<( const uint4x2& lhs, const uint4x2& rhs )
 
 bool4x2 operator<=( const uint4x2& lhs, const uint4x2& rhs )
 {
-	return bool4x2(
+	return uint4x2(
 		lhs[0] <= rhs[0],
 		lhs[1] <= rhs[1],
 		lhs[2] <= rhs[2],
@@ -5362,7 +5362,7 @@ bool4x2 operator<=( const uint4x2& lhs, const uint4x2& rhs )
 
 bool4x2 operator>( const uint4x2& lhs, const uint4x2& rhs )
 {
-	return bool4x2(
+	return uint4x2(
 		lhs[0] > rhs[0],
 		lhs[1] > rhs[1],
 		lhs[2] > rhs[2],
@@ -5372,7 +5372,7 @@ bool4x2 operator>( const uint4x2& lhs, const uint4x2& rhs )
 
 bool4x2 operator>=( const uint4x2& lhs, const uint4x2& rhs )
 {
-	return bool4x2(
+	return uint4x2(
 		lhs[0] >= rhs[0],
 		lhs[1] >= rhs[1],
 		lhs[2] >= rhs[2],
@@ -5629,7 +5629,7 @@ uint4x4 operator*( const uint4x3& lhs, const uint3x4& rhs )
 	uint3 col2 = { rhs[0].z, rhs[1].z, rhs[2].z };
 	uint3 col3 = { rhs[0].w, rhs[1].w, rhs[2].w };
 
-	return uint4x4(
+	return uint3x4(
 		row0.x * col0.x + row0.y * col0.y + row0.z * col0.z,
 		row0.x * col1.x + row0.y * col1.y + row0.z * col1.z,
 		row0.x * col2.x + row0.y * col2.y + row0.z * col2.z,
@@ -5719,7 +5719,7 @@ uint4x3& operator--( uint4x3& lhs, const int )
 
 bool4x3 operator<( const uint4x3& lhs, const uint4x3& rhs )
 {
-	return bool4x3(
+	return uint4x3(
 		lhs[0] < rhs[0],
 		lhs[1] < rhs[1],
 		lhs[2] < rhs[2],
@@ -5729,7 +5729,7 @@ bool4x3 operator<( const uint4x3& lhs, const uint4x3& rhs )
 
 bool4x3 operator<=( const uint4x3& lhs, const uint4x3& rhs )
 {
-	return bool4x3(
+	return uint4x3(
 		lhs[0] <= rhs[0],
 		lhs[1] <= rhs[1],
 		lhs[2] <= rhs[2],
@@ -5739,7 +5739,7 @@ bool4x3 operator<=( const uint4x3& lhs, const uint4x3& rhs )
 
 bool4x3 operator>( const uint4x3& lhs, const uint4x3& rhs )
 {
-	return bool4x3(
+	return uint4x3(
 		lhs[0] > rhs[0],
 		lhs[1] > rhs[1],
 		lhs[2] > rhs[2],
@@ -5749,7 +5749,7 @@ bool4x3 operator>( const uint4x3& lhs, const uint4x3& rhs )
 
 bool4x3 operator>=( const uint4x3& lhs, const uint4x3& rhs )
 {
-	return bool4x3(
+	return uint4x3(
 		lhs[0] >= rhs[0],
 		lhs[1] >= rhs[1],
 		lhs[2] >= rhs[2],
@@ -6121,7 +6121,7 @@ uint4x4& operator--( uint4x4& lhs, const int )
 
 bool4x4 operator<( const uint4x4& lhs, const uint4x4& rhs )
 {
-	return bool4x4(
+	return uint4x4(
 		lhs[0] < rhs[0],
 		lhs[1] < rhs[1],
 		lhs[2] < rhs[2],
@@ -6131,7 +6131,7 @@ bool4x4 operator<( const uint4x4& lhs, const uint4x4& rhs )
 
 bool4x4 operator<=( const uint4x4& lhs, const uint4x4& rhs )
 {
-	return bool4x4(
+	return uint4x4(
 		lhs[0] <= rhs[0],
 		lhs[1] <= rhs[1],
 		lhs[2] <= rhs[2],
@@ -6141,7 +6141,7 @@ bool4x4 operator<=( const uint4x4& lhs, const uint4x4& rhs )
 
 bool4x4 operator>( const uint4x4& lhs, const uint4x4& rhs )
 {
-	return bool4x4(
+	return uint4x4(
 		lhs[0] > rhs[0],
 		lhs[1] > rhs[1],
 		lhs[2] > rhs[2],
@@ -6151,7 +6151,7 @@ bool4x4 operator>( const uint4x4& lhs, const uint4x4& rhs )
 
 bool4x4 operator>=( const uint4x4& lhs, const uint4x4& rhs )
 {
-	return bool4x4(
+	return uint4x4(
 		lhs[0] >= rhs[0],
 		lhs[1] >= rhs[1],
 		lhs[2] >= rhs[2],
@@ -6478,7 +6478,7 @@ float2x2& operator--( float2x2& lhs, const int )
 
 bool2x2 operator<( const float2x2& lhs, const float2x2& rhs )
 {
-	return bool2x2(
+	return float2x2(
 		lhs[0] < rhs[0],
 		lhs[1] < rhs[1]
 	);
@@ -6486,7 +6486,7 @@ bool2x2 operator<( const float2x2& lhs, const float2x2& rhs )
 
 bool2x2 operator<=( const float2x2& lhs, const float2x2& rhs )
 {
-	return bool2x2(
+	return float2x2(
 		lhs[0] <= rhs[0],
 		lhs[1] <= rhs[1]
 	);
@@ -6494,7 +6494,7 @@ bool2x2 operator<=( const float2x2& lhs, const float2x2& rhs )
 
 bool2x2 operator>( const float2x2& lhs, const float2x2& rhs )
 {
-	return bool2x2(
+	return float2x2(
 		lhs[0] > rhs[0],
 		lhs[1] > rhs[1]
 	);
@@ -6502,7 +6502,7 @@ bool2x2 operator>( const float2x2& lhs, const float2x2& rhs )
 
 bool2x2 operator>=( const float2x2& lhs, const float2x2& rhs )
 {
-	return bool2x2(
+	return float2x2(
 		lhs[0] >= rhs[0],
 		lhs[1] >= rhs[1]
 	);
@@ -6583,7 +6583,7 @@ float2x2 operator*( const float2x3& lhs, const float3x2& rhs )
 	float3 col0 = { rhs[0].x, rhs[1].x, rhs[2].x };
 	float3 col1 = { rhs[0].y, rhs[1].y, rhs[2].y };
 
-	return float2x2(
+	return float3x2(
 		row0.x * col0.x + row0.y * col0.y + row0.z * col0.z,
 		row0.x * col1.x + row0.y * col1.y + row0.z * col1.z,
 
@@ -6647,7 +6647,7 @@ float2x3& operator--( float2x3& lhs, const int )
 
 bool2x3 operator<( const float2x3& lhs, const float2x3& rhs )
 {
-	return bool2x3(
+	return float2x3(
 		lhs[0] < rhs[0],
 		lhs[1] < rhs[1]
 	);
@@ -6655,7 +6655,7 @@ bool2x3 operator<( const float2x3& lhs, const float2x3& rhs )
 
 bool2x3 operator<=( const float2x3& lhs, const float2x3& rhs )
 {
-	return bool2x3(
+	return float2x3(
 		lhs[0] <= rhs[0],
 		lhs[1] <= rhs[1]
 	);
@@ -6663,7 +6663,7 @@ bool2x3 operator<=( const float2x3& lhs, const float2x3& rhs )
 
 bool2x3 operator>( const float2x3& lhs, const float2x3& rhs )
 {
-	return bool2x3(
+	return float2x3(
 		lhs[0] > rhs[0],
 		lhs[1] > rhs[1]
 	);
@@ -6671,7 +6671,7 @@ bool2x3 operator>( const float2x3& lhs, const float2x3& rhs )
 
 bool2x3 operator>=( const float2x3& lhs, const float2x3& rhs )
 {
-	return bool2x3(
+	return float2x3(
 		lhs[0] >= rhs[0],
 		lhs[1] >= rhs[1]
 	);
@@ -6752,7 +6752,7 @@ float2x2 operator*( const float2x4& lhs, const float4x2& rhs )
 	float4 col0 = { rhs[0].x, rhs[1].x, rhs[2].x, rhs[3].x };
 	float4 col1 = { rhs[0].y, rhs[1].y, rhs[2].y, rhs[3].y };
 
-	return float2x2(
+	return float4x2(
 		row0.x * col0.x + row0.y * col0.y + row0.z * col0.z + row0.w * col0.w,
 		row0.x * col1.x + row0.y * col1.y + row0.z * col1.z + row0.w * col1.w,
 
@@ -6816,7 +6816,7 @@ float2x4& operator--( float2x4& lhs, const int )
 
 bool2x4 operator<( const float2x4& lhs, const float2x4& rhs )
 {
-	return bool2x4(
+	return float2x4(
 		lhs[0] < rhs[0],
 		lhs[1] < rhs[1]
 	);
@@ -6824,7 +6824,7 @@ bool2x4 operator<( const float2x4& lhs, const float2x4& rhs )
 
 bool2x4 operator<=( const float2x4& lhs, const float2x4& rhs )
 {
-	return bool2x4(
+	return float2x4(
 		lhs[0] <= rhs[0],
 		lhs[1] <= rhs[1]
 	);
@@ -6832,7 +6832,7 @@ bool2x4 operator<=( const float2x4& lhs, const float2x4& rhs )
 
 bool2x4 operator>( const float2x4& lhs, const float2x4& rhs )
 {
-	return bool2x4(
+	return float2x4(
 		lhs[0] > rhs[0],
 		lhs[1] > rhs[1]
 	);
@@ -6840,7 +6840,7 @@ bool2x4 operator>( const float2x4& lhs, const float2x4& rhs )
 
 bool2x4 operator>=( const float2x4& lhs, const float2x4& rhs )
 {
-	return bool2x4(
+	return float2x4(
 		lhs[0] >= rhs[0],
 		lhs[1] >= rhs[1]
 	);
@@ -6928,7 +6928,7 @@ float3x3 operator*( const float3x2& lhs, const float2x3& rhs )
 	float2 col1 = { rhs[0].y, rhs[1].y };
 	float2 col2 = { rhs[0].z, rhs[1].z };
 
-	return float3x3(
+	return float2x3(
 		row0.x * col0.x + row0.y * col0.y,
 		row0.x * col1.x + row0.y * col1.y,
 		row0.x * col2.x + row0.y * col2.y,
@@ -7004,7 +7004,7 @@ float3x2& operator--( float3x2& lhs, const int )
 
 bool3x2 operator<( const float3x2& lhs, const float3x2& rhs )
 {
-	return bool3x2(
+	return float3x2(
 		lhs[0] < rhs[0],
 		lhs[1] < rhs[1],
 		lhs[2] < rhs[2]
@@ -7013,7 +7013,7 @@ bool3x2 operator<( const float3x2& lhs, const float3x2& rhs )
 
 bool3x2 operator<=( const float3x2& lhs, const float3x2& rhs )
 {
-	return bool3x2(
+	return float3x2(
 		lhs[0] <= rhs[0],
 		lhs[1] <= rhs[1],
 		lhs[2] <= rhs[2]
@@ -7022,7 +7022,7 @@ bool3x2 operator<=( const float3x2& lhs, const float3x2& rhs )
 
 bool3x2 operator>( const float3x2& lhs, const float3x2& rhs )
 {
-	return bool3x2(
+	return float3x2(
 		lhs[0] > rhs[0],
 		lhs[1] > rhs[1],
 		lhs[2] > rhs[2]
@@ -7031,7 +7031,7 @@ bool3x2 operator>( const float3x2& lhs, const float3x2& rhs )
 
 bool3x2 operator>=( const float3x2& lhs, const float3x2& rhs )
 {
-	return bool3x2(
+	return float3x2(
 		lhs[0] >= rhs[0],
 		lhs[1] >= rhs[1],
 		lhs[2] >= rhs[2]
@@ -7216,7 +7216,7 @@ float3x3& operator--( float3x3& lhs, const int )
 
 bool3x3 operator<( const float3x3& lhs, const float3x3& rhs )
 {
-	return bool3x3(
+	return float3x3(
 		lhs[0] < rhs[0],
 		lhs[1] < rhs[1],
 		lhs[2] < rhs[2]
@@ -7225,7 +7225,7 @@ bool3x3 operator<( const float3x3& lhs, const float3x3& rhs )
 
 bool3x3 operator<=( const float3x3& lhs, const float3x3& rhs )
 {
-	return bool3x3(
+	return float3x3(
 		lhs[0] <= rhs[0],
 		lhs[1] <= rhs[1],
 		lhs[2] <= rhs[2]
@@ -7234,7 +7234,7 @@ bool3x3 operator<=( const float3x3& lhs, const float3x3& rhs )
 
 bool3x3 operator>( const float3x3& lhs, const float3x3& rhs )
 {
-	return bool3x3(
+	return float3x3(
 		lhs[0] > rhs[0],
 		lhs[1] > rhs[1],
 		lhs[2] > rhs[2]
@@ -7243,7 +7243,7 @@ bool3x3 operator>( const float3x3& lhs, const float3x3& rhs )
 
 bool3x3 operator>=( const float3x3& lhs, const float3x3& rhs )
 {
-	return bool3x3(
+	return float3x3(
 		lhs[0] >= rhs[0],
 		lhs[1] >= rhs[1],
 		lhs[2] >= rhs[2]
@@ -7332,7 +7332,7 @@ float3x3 operator*( const float3x4& lhs, const float4x3& rhs )
 	float4 col1 = { rhs[0].y, rhs[1].y, rhs[2].y, rhs[3].y };
 	float4 col2 = { rhs[0].z, rhs[1].z, rhs[2].z, rhs[3].z };
 
-	return float3x3(
+	return float4x3(
 		row0.x * col0.x + row0.y * col0.y + row0.z * col0.z + row0.w * col0.w,
 		row0.x * col1.x + row0.y * col1.y + row0.z * col1.z + row0.w * col1.w,
 		row0.x * col2.x + row0.y * col2.y + row0.z * col2.z + row0.w * col2.w,
@@ -7408,7 +7408,7 @@ float3x4& operator--( float3x4& lhs, const int )
 
 bool3x4 operator<( const float3x4& lhs, const float3x4& rhs )
 {
-	return bool3x4(
+	return float3x4(
 		lhs[0] < rhs[0],
 		lhs[1] < rhs[1],
 		lhs[2] < rhs[2]
@@ -7417,7 +7417,7 @@ bool3x4 operator<( const float3x4& lhs, const float3x4& rhs )
 
 bool3x4 operator<=( const float3x4& lhs, const float3x4& rhs )
 {
-	return bool3x4(
+	return float3x4(
 		lhs[0] <= rhs[0],
 		lhs[1] <= rhs[1],
 		lhs[2] <= rhs[2]
@@ -7426,7 +7426,7 @@ bool3x4 operator<=( const float3x4& lhs, const float3x4& rhs )
 
 bool3x4 operator>( const float3x4& lhs, const float3x4& rhs )
 {
-	return bool3x4(
+	return float3x4(
 		lhs[0] > rhs[0],
 		lhs[1] > rhs[1],
 		lhs[2] > rhs[2]
@@ -7435,7 +7435,7 @@ bool3x4 operator>( const float3x4& lhs, const float3x4& rhs )
 
 bool3x4 operator>=( const float3x4& lhs, const float3x4& rhs )
 {
-	return bool3x4(
+	return float3x4(
 		lhs[0] >= rhs[0],
 		lhs[1] >= rhs[1],
 		lhs[2] >= rhs[2]
@@ -7531,7 +7531,7 @@ float4x4 operator*( const float4x2& lhs, const float2x4& rhs )
 	float2 col2 = { rhs[0].z, rhs[1].z };
 	float2 col3 = { rhs[0].w, rhs[1].w };
 
-	return float4x4(
+	return float2x4(
 		row0.x * col0.x + row0.y * col0.y,
 		row0.x * col1.x + row0.y * col1.y,
 		row0.x * col2.x + row0.y * col2.y,
@@ -7621,7 +7621,7 @@ float4x2& operator--( float4x2& lhs, const int )
 
 bool4x2 operator<( const float4x2& lhs, const float4x2& rhs )
 {
-	return bool4x2(
+	return float4x2(
 		lhs[0] < rhs[0],
 		lhs[1] < rhs[1],
 		lhs[2] < rhs[2],
@@ -7631,7 +7631,7 @@ bool4x2 operator<( const float4x2& lhs, const float4x2& rhs )
 
 bool4x2 operator<=( const float4x2& lhs, const float4x2& rhs )
 {
-	return bool4x2(
+	return float4x2(
 		lhs[0] <= rhs[0],
 		lhs[1] <= rhs[1],
 		lhs[2] <= rhs[2],
@@ -7641,7 +7641,7 @@ bool4x2 operator<=( const float4x2& lhs, const float4x2& rhs )
 
 bool4x2 operator>( const float4x2& lhs, const float4x2& rhs )
 {
-	return bool4x2(
+	return float4x2(
 		lhs[0] > rhs[0],
 		lhs[1] > rhs[1],
 		lhs[2] > rhs[2],
@@ -7651,7 +7651,7 @@ bool4x2 operator>( const float4x2& lhs, const float4x2& rhs )
 
 bool4x2 operator>=( const float4x2& lhs, const float4x2& rhs )
 {
-	return bool4x2(
+	return float4x2(
 		lhs[0] >= rhs[0],
 		lhs[1] >= rhs[1],
 		lhs[2] >= rhs[2],
@@ -7748,7 +7748,7 @@ float4x4 operator*( const float4x3& lhs, const float3x4& rhs )
 	float3 col2 = { rhs[0].z, rhs[1].z, rhs[2].z };
 	float3 col3 = { rhs[0].w, rhs[1].w, rhs[2].w };
 
-	return float4x4(
+	return float3x4(
 		row0.x * col0.x + row0.y * col0.y + row0.z * col0.z,
 		row0.x * col1.x + row0.y * col1.y + row0.z * col1.z,
 		row0.x * col2.x + row0.y * col2.y + row0.z * col2.z,
@@ -7838,7 +7838,7 @@ float4x3& operator--( float4x3& lhs, const int )
 
 bool4x3 operator<( const float4x3& lhs, const float4x3& rhs )
 {
-	return bool4x3(
+	return float4x3(
 		lhs[0] < rhs[0],
 		lhs[1] < rhs[1],
 		lhs[2] < rhs[2],
@@ -7848,7 +7848,7 @@ bool4x3 operator<( const float4x3& lhs, const float4x3& rhs )
 
 bool4x3 operator<=( const float4x3& lhs, const float4x3& rhs )
 {
-	return bool4x3(
+	return float4x3(
 		lhs[0] <= rhs[0],
 		lhs[1] <= rhs[1],
 		lhs[2] <= rhs[2],
@@ -7858,7 +7858,7 @@ bool4x3 operator<=( const float4x3& lhs, const float4x3& rhs )
 
 bool4x3 operator>( const float4x3& lhs, const float4x3& rhs )
 {
-	return bool4x3(
+	return float4x3(
 		lhs[0] > rhs[0],
 		lhs[1] > rhs[1],
 		lhs[2] > rhs[2],
@@ -7868,7 +7868,7 @@ bool4x3 operator>( const float4x3& lhs, const float4x3& rhs )
 
 bool4x3 operator>=( const float4x3& lhs, const float4x3& rhs )
 {
-	return bool4x3(
+	return float4x3(
 		lhs[0] >= rhs[0],
 		lhs[1] >= rhs[1],
 		lhs[2] >= rhs[2],
@@ -8075,7 +8075,7 @@ float4x4& operator--( float4x4& lhs, const int )
 
 bool4x4 operator<( const float4x4& lhs, const float4x4& rhs )
 {
-	return bool4x4(
+	return float4x4(
 		lhs[0] < rhs[0],
 		lhs[1] < rhs[1],
 		lhs[2] < rhs[2],
@@ -8085,7 +8085,7 @@ bool4x4 operator<( const float4x4& lhs, const float4x4& rhs )
 
 bool4x4 operator<=( const float4x4& lhs, const float4x4& rhs )
 {
-	return bool4x4(
+	return float4x4(
 		lhs[0] <= rhs[0],
 		lhs[1] <= rhs[1],
 		lhs[2] <= rhs[2],
@@ -8095,7 +8095,7 @@ bool4x4 operator<=( const float4x4& lhs, const float4x4& rhs )
 
 bool4x4 operator>( const float4x4& lhs, const float4x4& rhs )
 {
-	return bool4x4(
+	return float4x4(
 		lhs[0] > rhs[0],
 		lhs[1] > rhs[1],
 		lhs[2] > rhs[2],
@@ -8105,7 +8105,7 @@ bool4x4 operator>( const float4x4& lhs, const float4x4& rhs )
 
 bool4x4 operator>=( const float4x4& lhs, const float4x4& rhs )
 {
-	return bool4x4(
+	return float4x4(
 		lhs[0] >= rhs[0],
 		lhs[1] >= rhs[1],
 		lhs[2] >= rhs[2],
@@ -8272,7 +8272,7 @@ double2x2& operator--( double2x2& lhs, const int )
 
 bool2x2 operator<( const double2x2& lhs, const double2x2& rhs )
 {
-	return bool2x2(
+	return double2x2(
 		lhs[0] < rhs[0],
 		lhs[1] < rhs[1]
 	);
@@ -8280,7 +8280,7 @@ bool2x2 operator<( const double2x2& lhs, const double2x2& rhs )
 
 bool2x2 operator<=( const double2x2& lhs, const double2x2& rhs )
 {
-	return bool2x2(
+	return double2x2(
 		lhs[0] <= rhs[0],
 		lhs[1] <= rhs[1]
 	);
@@ -8288,7 +8288,7 @@ bool2x2 operator<=( const double2x2& lhs, const double2x2& rhs )
 
 bool2x2 operator>( const double2x2& lhs, const double2x2& rhs )
 {
-	return bool2x2(
+	return double2x2(
 		lhs[0] > rhs[0],
 		lhs[1] > rhs[1]
 	);
@@ -8296,7 +8296,7 @@ bool2x2 operator>( const double2x2& lhs, const double2x2& rhs )
 
 bool2x2 operator>=( const double2x2& lhs, const double2x2& rhs )
 {
-	return bool2x2(
+	return double2x2(
 		lhs[0] >= rhs[0],
 		lhs[1] >= rhs[1]
 	);
@@ -8377,7 +8377,7 @@ double2x2 operator*( const double2x3& lhs, const double3x2& rhs )
 	double3 col0 = { rhs[0].x, rhs[1].x, rhs[2].x };
 	double3 col1 = { rhs[0].y, rhs[1].y, rhs[2].y };
 
-	return double2x2(
+	return double3x2(
 		row0.x * col0.x + row0.y * col0.y + row0.z * col0.z,
 		row0.x * col1.x + row0.y * col1.y + row0.z * col1.z,
 
@@ -8441,7 +8441,7 @@ double2x3& operator--( double2x3& lhs, const int )
 
 bool2x3 operator<( const double2x3& lhs, const double2x3& rhs )
 {
-	return bool2x3(
+	return double2x3(
 		lhs[0] < rhs[0],
 		lhs[1] < rhs[1]
 	);
@@ -8449,7 +8449,7 @@ bool2x3 operator<( const double2x3& lhs, const double2x3& rhs )
 
 bool2x3 operator<=( const double2x3& lhs, const double2x3& rhs )
 {
-	return bool2x3(
+	return double2x3(
 		lhs[0] <= rhs[0],
 		lhs[1] <= rhs[1]
 	);
@@ -8457,7 +8457,7 @@ bool2x3 operator<=( const double2x3& lhs, const double2x3& rhs )
 
 bool2x3 operator>( const double2x3& lhs, const double2x3& rhs )
 {
-	return bool2x3(
+	return double2x3(
 		lhs[0] > rhs[0],
 		lhs[1] > rhs[1]
 	);
@@ -8465,7 +8465,7 @@ bool2x3 operator>( const double2x3& lhs, const double2x3& rhs )
 
 bool2x3 operator>=( const double2x3& lhs, const double2x3& rhs )
 {
-	return bool2x3(
+	return double2x3(
 		lhs[0] >= rhs[0],
 		lhs[1] >= rhs[1]
 	);
@@ -8546,7 +8546,7 @@ double2x2 operator*( const double2x4& lhs, const double4x2& rhs )
 	double4 col0 = { rhs[0].x, rhs[1].x, rhs[2].x, rhs[3].x };
 	double4 col1 = { rhs[0].y, rhs[1].y, rhs[2].y, rhs[3].y };
 
-	return double2x2(
+	return double4x2(
 		row0.x * col0.x + row0.y * col0.y + row0.z * col0.z + row0.w * col0.w,
 		row0.x * col1.x + row0.y * col1.y + row0.z * col1.z + row0.w * col1.w,
 
@@ -8610,7 +8610,7 @@ double2x4& operator--( double2x4& lhs, const int )
 
 bool2x4 operator<( const double2x4& lhs, const double2x4& rhs )
 {
-	return bool2x4(
+	return double2x4(
 		lhs[0] < rhs[0],
 		lhs[1] < rhs[1]
 	);
@@ -8618,7 +8618,7 @@ bool2x4 operator<( const double2x4& lhs, const double2x4& rhs )
 
 bool2x4 operator<=( const double2x4& lhs, const double2x4& rhs )
 {
-	return bool2x4(
+	return double2x4(
 		lhs[0] <= rhs[0],
 		lhs[1] <= rhs[1]
 	);
@@ -8626,7 +8626,7 @@ bool2x4 operator<=( const double2x4& lhs, const double2x4& rhs )
 
 bool2x4 operator>( const double2x4& lhs, const double2x4& rhs )
 {
-	return bool2x4(
+	return double2x4(
 		lhs[0] > rhs[0],
 		lhs[1] > rhs[1]
 	);
@@ -8634,7 +8634,7 @@ bool2x4 operator>( const double2x4& lhs, const double2x4& rhs )
 
 bool2x4 operator>=( const double2x4& lhs, const double2x4& rhs )
 {
-	return bool2x4(
+	return double2x4(
 		lhs[0] >= rhs[0],
 		lhs[1] >= rhs[1]
 	);
@@ -8722,7 +8722,7 @@ double3x3 operator*( const double3x2& lhs, const double2x3& rhs )
 	double2 col1 = { rhs[0].y, rhs[1].y };
 	double2 col2 = { rhs[0].z, rhs[1].z };
 
-	return double3x3(
+	return double2x3(
 		row0.x * col0.x + row0.y * col0.y,
 		row0.x * col1.x + row0.y * col1.y,
 		row0.x * col2.x + row0.y * col2.y,
@@ -8798,7 +8798,7 @@ double3x2& operator--( double3x2& lhs, const int )
 
 bool3x2 operator<( const double3x2& lhs, const double3x2& rhs )
 {
-	return bool3x2(
+	return double3x2(
 		lhs[0] < rhs[0],
 		lhs[1] < rhs[1],
 		lhs[2] < rhs[2]
@@ -8807,7 +8807,7 @@ bool3x2 operator<( const double3x2& lhs, const double3x2& rhs )
 
 bool3x2 operator<=( const double3x2& lhs, const double3x2& rhs )
 {
-	return bool3x2(
+	return double3x2(
 		lhs[0] <= rhs[0],
 		lhs[1] <= rhs[1],
 		lhs[2] <= rhs[2]
@@ -8816,7 +8816,7 @@ bool3x2 operator<=( const double3x2& lhs, const double3x2& rhs )
 
 bool3x2 operator>( const double3x2& lhs, const double3x2& rhs )
 {
-	return bool3x2(
+	return double3x2(
 		lhs[0] > rhs[0],
 		lhs[1] > rhs[1],
 		lhs[2] > rhs[2]
@@ -8825,7 +8825,7 @@ bool3x2 operator>( const double3x2& lhs, const double3x2& rhs )
 
 bool3x2 operator>=( const double3x2& lhs, const double3x2& rhs )
 {
-	return bool3x2(
+	return double3x2(
 		lhs[0] >= rhs[0],
 		lhs[1] >= rhs[1],
 		lhs[2] >= rhs[2]
@@ -9010,7 +9010,7 @@ double3x3& operator--( double3x3& lhs, const int )
 
 bool3x3 operator<( const double3x3& lhs, const double3x3& rhs )
 {
-	return bool3x3(
+	return double3x3(
 		lhs[0] < rhs[0],
 		lhs[1] < rhs[1],
 		lhs[2] < rhs[2]
@@ -9019,7 +9019,7 @@ bool3x3 operator<( const double3x3& lhs, const double3x3& rhs )
 
 bool3x3 operator<=( const double3x3& lhs, const double3x3& rhs )
 {
-	return bool3x3(
+	return double3x3(
 		lhs[0] <= rhs[0],
 		lhs[1] <= rhs[1],
 		lhs[2] <= rhs[2]
@@ -9028,7 +9028,7 @@ bool3x3 operator<=( const double3x3& lhs, const double3x3& rhs )
 
 bool3x3 operator>( const double3x3& lhs, const double3x3& rhs )
 {
-	return bool3x3(
+	return double3x3(
 		lhs[0] > rhs[0],
 		lhs[1] > rhs[1],
 		lhs[2] > rhs[2]
@@ -9037,7 +9037,7 @@ bool3x3 operator>( const double3x3& lhs, const double3x3& rhs )
 
 bool3x3 operator>=( const double3x3& lhs, const double3x3& rhs )
 {
-	return bool3x3(
+	return double3x3(
 		lhs[0] >= rhs[0],
 		lhs[1] >= rhs[1],
 		lhs[2] >= rhs[2]
@@ -9126,7 +9126,7 @@ double3x3 operator*( const double3x4& lhs, const double4x3& rhs )
 	double4 col1 = { rhs[0].y, rhs[1].y, rhs[2].y, rhs[3].y };
 	double4 col2 = { rhs[0].z, rhs[1].z, rhs[2].z, rhs[3].z };
 
-	return double3x3(
+	return double4x3(
 		row0.x * col0.x + row0.y * col0.y + row0.z * col0.z + row0.w * col0.w,
 		row0.x * col1.x + row0.y * col1.y + row0.z * col1.z + row0.w * col1.w,
 		row0.x * col2.x + row0.y * col2.y + row0.z * col2.z + row0.w * col2.w,
@@ -9202,7 +9202,7 @@ double3x4& operator--( double3x4& lhs, const int )
 
 bool3x4 operator<( const double3x4& lhs, const double3x4& rhs )
 {
-	return bool3x4(
+	return double3x4(
 		lhs[0] < rhs[0],
 		lhs[1] < rhs[1],
 		lhs[2] < rhs[2]
@@ -9211,7 +9211,7 @@ bool3x4 operator<( const double3x4& lhs, const double3x4& rhs )
 
 bool3x4 operator<=( const double3x4& lhs, const double3x4& rhs )
 {
-	return bool3x4(
+	return double3x4(
 		lhs[0] <= rhs[0],
 		lhs[1] <= rhs[1],
 		lhs[2] <= rhs[2]
@@ -9220,7 +9220,7 @@ bool3x4 operator<=( const double3x4& lhs, const double3x4& rhs )
 
 bool3x4 operator>( const double3x4& lhs, const double3x4& rhs )
 {
-	return bool3x4(
+	return double3x4(
 		lhs[0] > rhs[0],
 		lhs[1] > rhs[1],
 		lhs[2] > rhs[2]
@@ -9229,7 +9229,7 @@ bool3x4 operator>( const double3x4& lhs, const double3x4& rhs )
 
 bool3x4 operator>=( const double3x4& lhs, const double3x4& rhs )
 {
-	return bool3x4(
+	return double3x4(
 		lhs[0] >= rhs[0],
 		lhs[1] >= rhs[1],
 		lhs[2] >= rhs[2]
@@ -9325,7 +9325,7 @@ double4x4 operator*( const double4x2& lhs, const double2x4& rhs )
 	double2 col2 = { rhs[0].z, rhs[1].z };
 	double2 col3 = { rhs[0].w, rhs[1].w };
 
-	return double4x4(
+	return double2x4(
 		row0.x * col0.x + row0.y * col0.y,
 		row0.x * col1.x + row0.y * col1.y,
 		row0.x * col2.x + row0.y * col2.y,
@@ -9415,7 +9415,7 @@ double4x2& operator--( double4x2& lhs, const int )
 
 bool4x2 operator<( const double4x2& lhs, const double4x2& rhs )
 {
-	return bool4x2(
+	return double4x2(
 		lhs[0] < rhs[0],
 		lhs[1] < rhs[1],
 		lhs[2] < rhs[2],
@@ -9425,7 +9425,7 @@ bool4x2 operator<( const double4x2& lhs, const double4x2& rhs )
 
 bool4x2 operator<=( const double4x2& lhs, const double4x2& rhs )
 {
-	return bool4x2(
+	return double4x2(
 		lhs[0] <= rhs[0],
 		lhs[1] <= rhs[1],
 		lhs[2] <= rhs[2],
@@ -9435,7 +9435,7 @@ bool4x2 operator<=( const double4x2& lhs, const double4x2& rhs )
 
 bool4x2 operator>( const double4x2& lhs, const double4x2& rhs )
 {
-	return bool4x2(
+	return double4x2(
 		lhs[0] > rhs[0],
 		lhs[1] > rhs[1],
 		lhs[2] > rhs[2],
@@ -9445,7 +9445,7 @@ bool4x2 operator>( const double4x2& lhs, const double4x2& rhs )
 
 bool4x2 operator>=( const double4x2& lhs, const double4x2& rhs )
 {
-	return bool4x2(
+	return double4x2(
 		lhs[0] >= rhs[0],
 		lhs[1] >= rhs[1],
 		lhs[2] >= rhs[2],
@@ -9542,7 +9542,7 @@ double4x4 operator*( const double4x3& lhs, const double3x4& rhs )
 	double3 col2 = { rhs[0].z, rhs[1].z, rhs[2].z };
 	double3 col3 = { rhs[0].w, rhs[1].w, rhs[2].w };
 
-	return double4x4(
+	return double3x4(
 		row0.x * col0.x + row0.y * col0.y + row0.z * col0.z,
 		row0.x * col1.x + row0.y * col1.y + row0.z * col1.z,
 		row0.x * col2.x + row0.y * col2.y + row0.z * col2.z,
@@ -9632,7 +9632,7 @@ double4x3& operator--( double4x3& lhs, const int )
 
 bool4x3 operator<( const double4x3& lhs, const double4x3& rhs )
 {
-	return bool4x3(
+	return double4x3(
 		lhs[0] < rhs[0],
 		lhs[1] < rhs[1],
 		lhs[2] < rhs[2],
@@ -9642,7 +9642,7 @@ bool4x3 operator<( const double4x3& lhs, const double4x3& rhs )
 
 bool4x3 operator<=( const double4x3& lhs, const double4x3& rhs )
 {
-	return bool4x3(
+	return double4x3(
 		lhs[0] <= rhs[0],
 		lhs[1] <= rhs[1],
 		lhs[2] <= rhs[2],
@@ -9652,7 +9652,7 @@ bool4x3 operator<=( const double4x3& lhs, const double4x3& rhs )
 
 bool4x3 operator>( const double4x3& lhs, const double4x3& rhs )
 {
-	return bool4x3(
+	return double4x3(
 		lhs[0] > rhs[0],
 		lhs[1] > rhs[1],
 		lhs[2] > rhs[2],
@@ -9662,7 +9662,7 @@ bool4x3 operator>( const double4x3& lhs, const double4x3& rhs )
 
 bool4x3 operator>=( const double4x3& lhs, const double4x3& rhs )
 {
-	return bool4x3(
+	return double4x3(
 		lhs[0] >= rhs[0],
 		lhs[1] >= rhs[1],
 		lhs[2] >= rhs[2],
@@ -9869,7 +9869,7 @@ double4x4& operator--( double4x4& lhs, const int )
 
 bool4x4 operator<( const double4x4& lhs, const double4x4& rhs )
 {
-	return bool4x4(
+	return double4x4(
 		lhs[0] < rhs[0],
 		lhs[1] < rhs[1],
 		lhs[2] < rhs[2],
@@ -9879,7 +9879,7 @@ bool4x4 operator<( const double4x4& lhs, const double4x4& rhs )
 
 bool4x4 operator<=( const double4x4& lhs, const double4x4& rhs )
 {
-	return bool4x4(
+	return double4x4(
 		lhs[0] <= rhs[0],
 		lhs[1] <= rhs[1],
 		lhs[2] <= rhs[2],
@@ -9889,7 +9889,7 @@ bool4x4 operator<=( const double4x4& lhs, const double4x4& rhs )
 
 bool4x4 operator>( const double4x4& lhs, const double4x4& rhs )
 {
-	return bool4x4(
+	return double4x4(
 		lhs[0] > rhs[0],
 		lhs[1] > rhs[1],
 		lhs[2] > rhs[2],
@@ -9899,7 +9899,7 @@ bool4x4 operator>( const double4x4& lhs, const double4x4& rhs )
 
 bool4x4 operator>=( const double4x4& lhs, const double4x4& rhs )
 {
-	return bool4x4(
+	return double4x4(
 		lhs[0] >= rhs[0],
 		lhs[1] >= rhs[1],
 		lhs[2] >= rhs[2],
@@ -9908,3 +9908,4 @@ bool4x4 operator>=( const double4x4& lhs, const double4x4& rhs )
 }
 
 
+#include "hlml_operators_matrix.inl"
