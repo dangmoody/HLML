@@ -9,7 +9,7 @@
 #include <stdint.h>
 #include <assert.h>
 
-#include <string>
+#include <stdio.h>
 
 #define BIT( x )						1ULL << x
 
@@ -42,6 +42,9 @@
 #define GEN_FILENAME_FUNCTIONS_MATRIX	"hlml_functions_matrix"
 
 struct stringBuilder_t;
+
+typedef char parmListVector_t[64];
+typedef char parmListMatrix_t[256];
 
 enum genType_t {
 	GEN_TYPE_BOOL						= 0,
@@ -103,22 +106,6 @@ enum genOpBitwise_t {
 	GEN_OP_BITWISE_COUNT
 };
 
-#define GET_TYPE_VALUE( type, x, outStr ) \
-	do { \
-		switch ( type ) { \
-			case GEN_TYPE_BOOL:		outStr = ( x != 0 ) ? "true" : "false"; break; \
-			case GEN_TYPE_INT:		outStr = #x; break; \
-			case GEN_TYPE_UINT:		outStr = #x; break; \
-			case GEN_TYPE_FLOAT:	outStr = #x ".0f"; break; \
-			case GEN_TYPE_DOUBLE:	outStr = #x ".0"; break; \
-\
-			case GEN_TYPE_COUNT: \
-			default: \
-				assert( false && "Bad genType_t given." ); \
-				break; \
-		} \
-	} while ( 0 )
-
 
 static const char* GEN_FILE_HEADER = \
 "/*\n" \
@@ -179,7 +166,7 @@ inline const char*	Gen_GetMemberTypeString( const genType_t type );
 inline void			Gen_GetFullTypeName( const genType_t type, const u32 numRows, const u32 numCols, char* outString );
 
 inline const char*	Gen_GetDefaultLiteralValue( const genType_t type );
-//inline std::string	Gen_GetNumericLiteral( const genType_t type, const float value );
+inline void			Gen_GetNumericLiteral( const genType_t type, const float value, char* outString );
 
 inline const char*	Gen_GetHandString( const genHand_t hand );
 inline const char*	Gen_GetClipSpaceRangeString( const genClipSpace_t range );
@@ -296,20 +283,35 @@ const char* Gen_GetDefaultLiteralValue( const genType_t type ) {
 	}
 }
 
-//std::string Gen_GetNumericLiteral( const genType_t type, const float value ) {
-//	switch ( type ) {
-//		case GEN_TYPE_BOOL:		return ( value != 0.0f ) ? "true" : "false";
-//		case GEN_TYPE_INT:		return std::to_string( static_cast<int32_t>( value ) );
-//		case GEN_TYPE_UINT:		return std::to_string( static_cast<u32>( value ) ) + "U";
-//		case GEN_TYPE_FLOAT:	return std::to_string( static_cast<float>( value ) ) + "f";
-//		case GEN_TYPE_DOUBLE:	return std::to_string( static_cast<double>( value ) );
-//
-//		case GEN_TYPE_COUNT:
-//		default:
-//			printf( "ERROR: Bad genType_t passed through to %s.  Fix it!\n", __FUNCTION__ );
-//			return "ERROR";
-//	}
-//}
+void Gen_GetNumericLiteral( const genType_t type, const float x, char* outStr ) {
+	switch ( type ) {
+		case GEN_TYPE_BOOL:
+			sprintf( outStr, "%s", ( x != 0 ) ? "true" : "false" );
+			break;
+
+		case GEN_TYPE_INT:
+			sprintf( outStr, "%d", (s32) x );
+			break;
+
+		case GEN_TYPE_UINT:
+			sprintf( outStr, "%uU", (u32) x );
+			break;
+
+		case GEN_TYPE_FLOAT:
+			sprintf( outStr, "%ff", (float) x );
+			break;
+
+		case GEN_TYPE_DOUBLE:
+			sprintf( outStr, "%f", (double) x );
+			break;
+
+		case GEN_TYPE_COUNT:
+		default:
+			printf( "ERROR: Bad genType_t enum passed through to: %s.\n", __FUNCTION__ );
+			sprintf( outStr, "ERROR" );
+			break;
+	}
+}
 
 const char* Gen_GetHandString( const genHand_t hand ) {
 	switch ( hand ) {

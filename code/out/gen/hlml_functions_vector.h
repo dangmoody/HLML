@@ -26,7 +26,19 @@ along with hlml.  If not, see <http://www.gnu.org/licenses/>.
 
 #pragma once
 
-#include "int2.h"#include "int3.h"#include "int4.h"#include "uint2.h"#include "uint3.h"#include "uint4.h"#include "float2.h"#include "float3.h"#include "float4.h"#include "double2.h"#include "double3.h"#include "double4.h"
+#include "int2.h"
+#include "int3.h"
+#include "int4.h"
+#include "uint2.h"
+#include "uint3.h"
+#include "uint4.h"
+#include "float2.h"
+#include "float3.h"
+#include "float4.h"
+#include "double2.h"
+#include "double3.h"
+#include "double4.h"
+
 // int2
 /// \relates int2
 /// \brief Returns the magnitude of the vector squared.
@@ -47,11 +59,6 @@ inline float distancesqr( const int2& lhs, const int2& rhs );
 /// \relates int2
 /// \brief Returns the distance between the two vectors.
 inline float distance( const int2& lhs, const int2& rhs );
-
-float distance( const int2& lhs, const int2& rhs )
-{
-	return length( lhs - rhs );
-}
 
 
 // int3
@@ -74,11 +81,6 @@ inline float distancesqr( const int3& lhs, const int3& rhs );
 /// \relates int3
 /// \brief Returns the distance between the two vectors.
 inline float distance( const int3& lhs, const int3& rhs );
-
-float distance( const int3& lhs, const int3& rhs )
-{
-	return length( lhs - rhs );
-}
 
 
 // int4
@@ -116,11 +118,6 @@ inline float distancesqr( const uint2& lhs, const uint2& rhs );
 /// \brief Returns the distance between the two vectors.
 inline float distance( const uint2& lhs, const uint2& rhs );
 
-float distance( const uint2& lhs, const uint2& rhs )
-{
-	return length( lhs - rhs );
-}
-
 
 // uint3
 /// \relates uint3
@@ -142,11 +139,6 @@ inline float distancesqr( const uint3& lhs, const uint3& rhs );
 /// \relates uint3
 /// \brief Returns the distance between the two vectors.
 inline float distance( const uint3& lhs, const uint3& rhs );
-
-float distance( const uint3& lhs, const uint3& rhs )
-{
-	return length( lhs - rhs );
-}
 
 
 // uint4
@@ -221,11 +213,6 @@ inline float distancesqr( const float2& lhs, const float2& rhs );
 /// \brief Returns the distance between the two vectors.
 inline float distance( const float2& lhs, const float2& rhs );
 
-float distance( const float2& lhs, const float2& rhs )
-{
-	return length( lhs - rhs );
-}
-
 
 // float3
 /// \relates float3
@@ -280,11 +267,6 @@ inline float distancesqr( const float3& lhs, const float3& rhs );
 /// \relates float3
 /// \brief Returns the distance between the two vectors.
 inline float distance( const float3& lhs, const float3& rhs );
-
-float distance( const float3& lhs, const float3& rhs )
-{
-	return length( lhs - rhs );
-}
 
 
 // float4
@@ -384,11 +366,6 @@ inline double distancesqr( const double2& lhs, const double2& rhs );
 /// \brief Returns the distance between the two vectors.
 inline double distance( const double2& lhs, const double2& rhs );
 
-double distance( const double2& lhs, const double2& rhs )
-{
-	return length( lhs - rhs );
-}
-
 
 // double3
 /// \relates double3
@@ -443,11 +420,6 @@ inline double distancesqr( const double3& lhs, const double3& rhs );
 /// \relates double3
 /// \brief Returns the distance between the two vectors.
 inline double distance( const double3& lhs, const double3& rhs );
-
-double distance( const double3& lhs, const double3& rhs )
-{
-	return length( lhs - rhs );
-}
 
 
 // double4

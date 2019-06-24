@@ -159,7 +159,7 @@ static void MatrixOperatorMul( const genType_t type, const u32 numRows, const u3
 		String_Append( sbInl, "\n" );
 
 		// now do the row/col dot products
-		String_Appendf( sbInl, "\treturn %s(\n", rhsTypeName );
+		String_Appendf( sbInl, "\treturn %s(\n", returnTypeName );
 
 		for ( u32 row = 0; row < numRows; row++ ) {
 			for ( u32 col = 0; col < numRows; col++ ) {
@@ -279,48 +279,56 @@ static void MatrixMulVector( const genType_t type, const u32 numRows, const u32 
 	}
 }
 
-#if 0
-std::string Gen_GetParmListMatrix( const genType_t type, const u32 numRows, const u32 numCols, const float values[GEN_COMPONENT_COUNT_MAX][GEN_COMPONENT_COUNT_MAX] ) {
+
+void Gen_GetParmListMatrix( const genType_t type, const u32 numRows, const u32 numCols, const float values[GEN_COMPONENT_COUNT_MAX][GEN_COMPONENT_COUNT_MAX], char* outString ) {
 	assert( numRows >= GEN_COMPONENT_COUNT_MIN );
 	assert( numRows <= GEN_COMPONENT_COUNT_MAX );
 	assert( numCols >= GEN_COMPONENT_COUNT_MIN );
 	assert( numCols <= GEN_COMPONENT_COUNT_MAX );
 
-	std::string parmList = "(\n";
+	char valueStr[16];
+
+	int pos = 0;
+
+	pos += sprintf( outString + pos, "(\n" );
+
 	for ( u32 row = 0; row < numRows; row++ ) {
-		parmList += "\t\t";
+		pos += sprintf( outString + pos, "\t\t" );
 
 		for ( u32 col = 0; col < numCols; col++ ) {
-			parmList += Gen_GetNumericLiteral( type, values[row][col] );
+			const float value = values[row][col];
+
+			Gen_GetNumericLiteral( type, value, valueStr );
+
+			pos += sprintf( outString + pos, "%s", valueStr );
 
 			if ( row + col != ( numRows - 1 ) + ( numCols - 1 ) ) {
-				parmList += ",";
+				pos += sprintf( outString + pos, "," );
 			}
 
 			if ( col != numCols - 1 ) {
-				parmList += " ";
+				pos += sprintf( outString + pos, " " );
 			}
 		}
 
-		parmList += "\n";
+		pos += sprintf( outString + pos, "\n" );
 	}
-	parmList += "\t)";
 
-	return parmList;
+	pos += sprintf( outString + pos, "\t)" );
 }
 
-std::string Gen_GetParmListMatrixIdentity( const genType_t type, const u32 numRows, const u32 numCols ) {
+void Gen_GetParmListMatrixIdentity( const genType_t type, const u32 numRows, const u32 numCols, char* outString ) {
 	assert( numRows >= GEN_COMPONENT_COUNT_MIN );
 	assert( numRows <= GEN_COMPONENT_COUNT_MAX );
 	assert( numCols >= GEN_COMPONENT_COUNT_MIN );
 	assert( numCols <= GEN_COMPONENT_COUNT_MAX );
 
-	float values[] = { 1.0f, 1.0f, 1.0f, 1.0f };
+	const float values[] = { 1.0f, 1.0f, 1.0f, 1.0f };
 
-	return Gen_GetParmListMatrixDiagonal( type, numRows, numCols, values, GEN_MIN( numRows, numCols ) );
+	Gen_GetParmListMatrixDiagonal( type, numRows, numCols, values, GEN_MIN( numRows, numCols ), outString );
 }
 
-std::string Gen_GetParmListMatrixDiagonal( const genType_t type, const u32 numRows, const u32 numCols, const float* values, const u32 numValues ) {
+void Gen_GetParmListMatrixDiagonal( const genType_t type, const u32 numRows, const u32 numCols, const float* values, const u32 numValues, char* outString ) {
 	assert( numRows >= GEN_COMPONENT_COUNT_MIN );
 	assert( numRows <= GEN_COMPONENT_COUNT_MAX );
 	assert( numCols >= GEN_COMPONENT_COUNT_MIN );
@@ -328,68 +336,100 @@ std::string Gen_GetParmListMatrixDiagonal( const genType_t type, const u32 numRo
 
 	assert( numValues <= 4 );
 
-	std::string zeroStr = Gen_GetNumericLiteral( type, 0.0f );
+	char valueStr[16];
+
+	int pos = 0;
 
 	u32 valueIndex = 0;
 
-	std::string paramList = "(\n";
+	pos += sprintf( outString + pos, "(\n" );
 	for ( u32 row = 0; row < numRows; row++ ) {
-		paramList += "\t\t";
+		pos += sprintf( outString + pos, "\t\t" );
 
 		for ( u32 col = 0; col < numCols; col++ ) {
 			if ( row == col ) {
-				paramList += Gen_GetNumericLiteral( type, values[valueIndex++] );
+				Gen_GetNumericLiteral( type, values[valueIndex++], valueStr );
+
+				pos += sprintf( outString + pos, "%s", valueStr );
 			} else {
-				paramList += zeroStr;
+				pos += sprintf( outString + pos, "%s", Gen_GetDefaultLiteralValue( type ) );
 			}
 
 			if ( row + col != ( numRows - 1 ) + ( numCols - 1 ) ) {
-				paramList += ",";
+				pos += sprintf( outString + pos, "," );
 			}
 
 			if ( col != numCols - 1 ) {
-				paramList += " ";
+				pos += sprintf( outString + pos, " " );
 			}
 		}
 
-		paramList += "\n";
+		pos += sprintf( outString + pos, "\n" );
 	}
-	paramList += "\t)";
-
-	return paramList;
+	pos += sprintf( outString + pos, "\t)" );
 }
 
-std::string Gen_GetParmListMatrixSingleValue( const genType_t type, const u32 numRows, const u32 numCols, const float value ) {
+void Gen_GetParmListMatrixSingleValue( const genType_t type, const u32 numRows, const u32 numCols, const float value, char* outString ) {
 	assert( numRows >= GEN_COMPONENT_COUNT_MIN );
 	assert( numRows <= GEN_COMPONENT_COUNT_MAX );
 	assert( numCols >= GEN_COMPONENT_COUNT_MIN );
 	assert( numCols <= GEN_COMPONENT_COUNT_MAX );
 
-	std::string valueStr = Gen_GetNumericLiteral( type, value );
+	char valueStr[16];
+	Gen_GetNumericLiteral( type, value, valueStr );
 
-	std::string paramList = "(\n";
+	int pos = 0;
+
+	pos += sprintf( outString + pos, "(\n" );
 	for ( u32 row = 0; row < numRows; row++ ) {
-		paramList += "\t\t";
+		pos += sprintf( outString + pos, "\t\t" );
 
 		for ( u32 col = 0; col < numCols; col++ ) {
-			paramList += valueStr;
+			pos += sprintf( outString + pos, "%s", valueStr );
 
 			if ( row + col != ( numRows - 1 ) + ( numCols - 1 ) ) {
-				paramList += ",";
+				pos += sprintf( outString + pos, "," );
 			}
 
 			if ( col != numCols - 1 ) {
-				paramList += " ";
+				pos += sprintf( outString + pos, " " );
 			}
 		}
 
-		paramList += "\n";
+		pos += sprintf( outString + pos, "\n" );
 	}
-	paramList += "\t)";
-
-	return paramList;
+	pos += sprintf( outString + pos, "\t)" );
 }
-#endif
+
+void Gen_GetParmListMatrixSingleValueStr( const u32 numRows, const u32 numCols, const char* valueStr, char* outString ) {
+	assert( numRows >= GEN_COMPONENT_COUNT_MIN );
+	assert( numRows <= GEN_COMPONENT_COUNT_MAX );
+	assert( numCols >= GEN_COMPONENT_COUNT_MIN );
+	assert( numCols <= GEN_COMPONENT_COUNT_MAX );
+
+	int pos = 0;
+
+	pos += sprintf( outString + pos, "(\n" );
+	for ( u32 row = 0; row < numRows; row++ ) {
+		pos += sprintf( outString + pos, "\t\t" );
+
+		for ( u32 col = 0; col < numCols; col++ ) {
+			pos += sprintf( outString + pos, "%s", valueStr );
+
+			if ( row + col != ( numRows - 1 ) + ( numCols - 1 ) ) {
+				pos += sprintf( outString + pos, "," );
+			}
+
+			if ( col != numCols - 1 ) {
+				pos += sprintf( outString + pos, " " );
+			}
+		}
+
+		pos += sprintf( outString + pos, "\n" );
+	}
+	pos += sprintf( outString + pos, "\t)" );
+}
+
 
 void Gen_MatrixOperatorsArithmetic( const genType_t type, const u32 numRows, const u32 numCols, stringBuilder_t* sbHeader, stringBuilder_t* sbInl ) {
 	assert( numRows >= GEN_COMPONENT_COUNT_MIN );
@@ -430,13 +470,13 @@ void Gen_MatrixIdentity( const genType_t type, const u32 numRows, const u32 numC
 	assert( numCols <= GEN_COMPONENT_COUNT_MAX );
 
 	char fullTypeName[32];
-	sprintf( fullTypeName, "%s%dx%d", Gen_GetTypeString( type ), numRows, numCols );
+	snprintf( fullTypeName, 32, "%s%dx%d", Gen_GetTypeString( type ), numRows, numCols );
 
-	const char* zeroStr;
-	GET_TYPE_VALUE( type, 0, zeroStr );
+	char zeroStr[16];
+	char oneStr[16];
 
-	const char* oneStr;
-	GET_TYPE_VALUE( type, 1, oneStr );
+	Gen_GetNumericLiteral( type, 0, zeroStr );
+	Gen_GetNumericLiteral( type, 1, oneStr );
 
 	DocIdentity( sbHeader, fullTypeName );
 	String_Appendf( sbHeader, "inline void identity( %s& mat );\n", fullTypeName );
@@ -445,7 +485,7 @@ void Gen_MatrixIdentity( const genType_t type, const u32 numRows, const u32 numC
 	String_Appendf( sbInl, "void identity( %s& mat )\n", fullTypeName );
 	String_Append(  sbInl, "{\n" );
 	for ( u32 row = 0; row < numRows; row++ ) {
-		String_Appendf( sbInl, "\tmat[row] = { ", row );
+		String_Appendf( sbInl, "\tmat[%d] = { ", row );
 		for ( u32 col = 0; col < numCols; col++ ) {
 			String_Appendf( sbInl, "%s", ( row == col ) ? oneStr : zeroStr );
 
@@ -519,6 +559,9 @@ void Gen_MatrixInverse( const genType_t type, const u32 numRows, const u32 numCo
 		return;
 	}
 
+	char oneStr[16];
+	Gen_GetNumericLiteral( type, 1, oneStr );
+
 	const char* typeString = Gen_GetTypeString( type );
 	const char* memberTypeString = Gen_GetMemberTypeString( type );
 
@@ -537,7 +580,7 @@ void Gen_MatrixInverse( const genType_t type, const u32 numRows, const u32 numCo
 
 	switch ( numRows ) {
 		case 2: {
-			String_Appendf( sbInl, "\tconst %s invdet = %f / determinant( mat );\n", memberTypeString, 1.0f );
+			String_Appendf( sbInl, "\tconst %s invdet = %s / determinant( mat );\n", memberTypeString, oneStr );
 			String_Appendf( sbInl, "\treturn %s(\n", fullTypeName );
 			String_Append(  sbInl, "\t\t mat[1][1] * invdet, -mat[0][1] * invdet,\n" );
 			String_Append(  sbInl, "\t\t-mat[1][0] * invdet,  mat[0][0] * invdet\n" );
@@ -546,7 +589,7 @@ void Gen_MatrixInverse( const genType_t type, const u32 numRows, const u32 numCo
 		}
 
 		case 3: {
-			String_Appendf( sbInl, "\tconst %s invdet = %f / determinant( mat );\n", memberTypeString, 1.0f );
+			String_Appendf( sbInl, "\tconst %s invdet = %s / determinant( mat );\n", memberTypeString, oneStr );
 			String_Appendf( sbInl, "\treturn %s(\n", fullTypeName );
 			String_Append(  sbInl, "\t\t ( mat[1][1] * mat[2][2] - mat[1][2] * mat[2][1] ) * invdet,\n" );
 			String_Append(  sbInl, "\t\t-( mat[0][1] * mat[2][2] - mat[0][2] * mat[2][1] ) * invdet,\n" );
@@ -621,7 +664,7 @@ void Gen_MatrixInverse( const genType_t type, const u32 numRows, const u32 numCo
 			String_Append(  sbInl, "\n" );
 			String_Appendf( sbInl, "\tconst %s dot1 = ( dot0.x + dot0.y ) + ( dot0.z + dot0.w );\n", memberTypeString );
 			String_Append(  sbInl, "\n" );
-			String_Appendf( sbInl, "\tconst %s invdet = %f / dot1;\n", memberTypeString, 1.0f );
+			String_Appendf( sbInl, "\tconst %s invdet = %s / dot1;\n", memberTypeString, oneStr );
 			String_Append(  sbInl, "\n" );
 			String_Append(  sbInl, "\treturn result * invdet;\n" );
 			break;
@@ -782,6 +825,9 @@ void Gen_MatrixRotate( const genType_t type, const u32 numRows, const u32 numCol
 	char fullTypeName[32];
 	sprintf( fullTypeName, "%s%dx%d", typeString, numRows, numCols );
 
+	char oneStr[16];
+	Gen_GetNumericLiteral( type, 1, oneStr );
+
 	stringBuilder_t parmListStr = String_Create( 64 );
 	String_Appendf( &parmListStr, "const %s& mat, const %s rad", fullTypeName, typeString );
 	if ( numCols > 3 ) {
@@ -813,7 +859,7 @@ void Gen_MatrixRotate( const genType_t type, const u32 numRows, const u32 numCol
 
 		case 4: {
 			String_Appendf( sbInl, "\t%s u = normalized( axis );\n", vectorTypeName );
-			String_Appendf( sbInl, "\t%s ic = %f - c;\n", typeString, 1.0f );
+			String_Appendf( sbInl, "\t%s ic = %s - c;\n", typeString, oneStr );
 			String_Append(  sbInl, "\n" );
 			String_Appendf( sbInl, "\t%s rotation = mat;\n", fullTypeName );
 			String_Append(  sbInl, "\trotation[0][0] = c + u.x * ic;\n" );
@@ -930,6 +976,18 @@ void Gen_MatrixOrtho( const genType_t type, const u32 numRows, const u32 numCols
 	char fullTypeName[32];
 	sprintf( fullTypeName, "%s%dx%d", typeString, numRows, numCols );
 
+	char minusTwoStr[16];
+	char minusOneStr[16];
+	char zeroStr[16];
+	char oneStr[16];
+	char twoStr[16];
+
+	Gen_GetNumericLiteral( type, -2, minusTwoStr );
+	Gen_GetNumericLiteral( type, -1, minusOneStr );
+	Gen_GetNumericLiteral( type,  0, zeroStr );
+	Gen_GetNumericLiteral( type,  1, oneStr );
+	Gen_GetNumericLiteral( type,  2, twoStr );
+
 	genHand_t hand;
 	genClipSpace_t range;
 
@@ -963,10 +1021,10 @@ void Gen_MatrixOrtho( const genType_t type, const u32 numRows, const u32 numCols
 		String_Appendf( sbInl, "\tconst %s far_minus_near = zfar - znear;\n", typeString );
 		String_Append(  sbInl, "\n" );
 		String_Appendf( sbInl, "\treturn %s(\n", fullTypeName );
-		String_Append(  sbInl, "\t\t2.0f / right_minus_left, 0.0f, 0.0f, -right_plus_left / right_minus_left,\n" );
-		String_Append(  sbInl, "\t\t0.0f, 2.0f / top_minus_bottom, 0.0f, -top_plus_bottom / top_minus_bottom,\n" );
-		String_Append(  sbInl, "\t\t0.0f, 0.0f, 1.0f / far_minus_near, -znear / far_minus_near,\n" );
-		String_Append(  sbInl, "\t\t0.0f, 0.0f, 0.0f, 1.0f\n" );
+		String_Appendf( sbInl, "\t\t%s / right_minus_left, %s, %s, -right_plus_left / right_minus_left,\n", twoStr, zeroStr, zeroStr );
+		String_Appendf( sbInl, "\t\t%s, %s / top_minus_bottom, %s, -top_plus_bottom / top_minus_bottom,\n", zeroStr, twoStr, zeroStr );
+		String_Appendf( sbInl, "\t\t%s, %s, %s / far_minus_near, -znear / far_minus_near,\n", zeroStr, zeroStr, oneStr );
+		String_Appendf( sbInl, "\t\t%s, %s, %s, %s\n", zeroStr, zeroStr, zeroStr, oneStr );
 		String_Append(  sbInl, "\t);\n" );
 		String_Append(  sbInl, "}\n" );
 		String_Append(  sbInl, "\n" );
@@ -997,10 +1055,10 @@ void Gen_MatrixOrtho( const genType_t type, const u32 numRows, const u32 numCols
 		String_Appendf( sbInl, "\tconst %s far_plus_near = zfar + znear;\n", typeString );
 		String_Append(  sbInl, "\n" );
 		String_Appendf( sbInl, "\treturn %s(\n", fullTypeName );
-		String_Append(  sbInl, "\t\t%f / right_minus_left, %f, %f, -right_plus_left / right_minus_left,\n" );
-		String_Append(  sbInl, "\t\t0.0f, 2.0f / top_minus_bottom, 0.0f, -top_plus_bottom / top_minus_bottom,\n" );
-		String_Append(  sbInl, "\t\t0.0f, 0.0f, 2.0f / far_minus_near, -far_plus_near / far_minus_near,\n" );
-		String_Append(  sbInl, "\t\t0.0f, 0.0f, 0.0f, 1.0f\n" );
+		String_Appendf( sbInl, "\t\t%s / right_minus_left, %s, %s, -right_plus_left / right_minus_left,\n", twoStr, zeroStr, zeroStr );
+		String_Appendf( sbInl, "\t\t%s, %s / top_minus_bottom, %s, -top_plus_bottom / top_minus_bottom,\n", zeroStr, twoStr, zeroStr );
+		String_Appendf( sbInl, "\t\t%s, %s, %s / far_minus_near, -far_plus_near / far_minus_near,\n", zeroStr, zeroStr, twoStr );
+		String_Appendf( sbInl, "\t\t%s, %s, %s, %s\n", zeroStr, zeroStr, zeroStr, oneStr );
 		String_Append(  sbInl, "\t);\n" );
 		String_Append(  sbInl, "}\n" );
 		String_Append(  sbInl, "\n" );
@@ -1030,10 +1088,10 @@ void Gen_MatrixOrtho( const genType_t type, const u32 numRows, const u32 numCols
 		String_Appendf( sbInl, "\tconst %s far_minus_near = zfar - znear;\n", typeString );
 		String_Append(  sbInl, "\n" );
 		String_Appendf( sbInl, "\treturn %s(\n", fullTypeName );
-		String_Append(  sbInl, "\t\t2.0f / right_minus_left, 0.0f, 0.0f, -right_plus_left / right_minus_left,\n" );
-		String_Append(  sbInl, "\t\t0.0f, 2.0f / top_minus_bottom, 0.0f, -top_plus_bottom / top_minus_bottom,\n" );
-		String_Append(  sbInl, "\t\t0.0f, 0.0f, -1.0f / far_minus_near, -znear / far_minus_near,\n" );
-		String_Append(  sbInl, "\t\t0.0f, 0.0f, 0.0f, 1.0f\n" );
+		String_Appendf( sbInl, "\t\t%s / right_minus_left, %s, %s, -right_plus_left / right_minus_left,\n", twoStr, zeroStr, zeroStr );
+		String_Appendf( sbInl, "\t\t%s, %s / top_minus_bottom, %s, -top_plus_bottom / top_minus_bottom,\n", zeroStr, twoStr, zeroStr );
+		String_Appendf( sbInl, "\t\t%s, %s, %s / far_minus_near, -znear / far_minus_near,\n", zeroStr, zeroStr, minusOneStr );
+		String_Appendf( sbInl, "\t\t%s, %s, %s, %s\n", zeroStr, zeroStr, zeroStr, oneStr );
 		String_Append(  sbInl, "\t);\n" );
 		String_Append(  sbInl, "}\n" );
 		String_Append(  sbInl, "\n" );
@@ -1064,10 +1122,10 @@ void Gen_MatrixOrtho( const genType_t type, const u32 numRows, const u32 numCols
 		String_Appendf( sbInl, "\tconst %s far_plus_near = zfar + znear;\n", typeString );
 		String_Append(  sbInl, "\n" );
 		String_Appendf( sbInl, "\treturn %s(\n", fullTypeName );
-		String_Append(  sbInl, "\t\t2.0f / right_minus_left, 0.0f, 0.0f, -right_plus_left / right_minus_left,\n" );
-		String_Append(  sbInl, "\t\t0.0f, 2.0f / top_minus_bottom, 0.0f, -top_plus_bottom / top_minus_bottom,\n" );
-		String_Append(  sbInl, "\t\t0.0f, 0.0f, -2.0f / far_minus_near, -far_plus_near / far_minus_near,\n" );
-		String_Append(  sbInl, "\t\t0.0f, 0.0f, 0.0f, 0.0f\n" );
+		String_Appendf( sbInl, "\t\t%s / right_minus_left, %s, %s, -right_plus_left / right_minus_left,\n", twoStr, zeroStr, zeroStr );
+		String_Appendf( sbInl, "\t\t%s, %s / top_minus_bottom, %s, -top_plus_bottom / top_minus_bottom,\n", zeroStr, twoStr, zeroStr );
+		String_Appendf( sbInl, "\t\t%s, %s, %s / far_minus_near, -far_plus_near / far_minus_near,\n", zeroStr, zeroStr, minusTwoStr );
+		String_Appendf( sbInl, "\t\t%s, %s, %s, %s\n", zeroStr, zeroStr, zeroStr, oneStr );
 		String_Append(  sbInl, "\t);\n" );
 		String_Append(  sbInl, "}\n" );
 		String_Append(  sbInl, "\n" );
@@ -1092,6 +1150,18 @@ void Gen_MatrixPerspective( const genType_t type, const u32 numRows, const u32 n
 
 	char fullTypeName[32];
 	sprintf( fullTypeName, "%s%dx%d", typeString, numRows, numCols );
+
+	char minusOneStr[16];
+	char zeroStr[16];
+	char halfStr[16];
+	char oneStr[16];
+	char twoStr[16];
+
+	Gen_GetNumericLiteral( type, -1.0f, minusOneStr );
+	Gen_GetNumericLiteral( type,  0.0f, zeroStr );
+	Gen_GetNumericLiteral( type,  0.5f, halfStr );
+	Gen_GetNumericLiteral( type,  1.0f, oneStr );
+	Gen_GetNumericLiteral( type,  2.0f, twoStr );
 
 	const char* tanFuncStr = Gen_GetFuncNameTan( type );
 
@@ -1119,13 +1189,13 @@ void Gen_MatrixPerspective( const genType_t type, const u32 numRows, const u32 n
 		String_Appendf( sbInl, "{\n" );
 		String_Appendf( sbInl, "\t// %s-handed, clip space range: %s\n", handStr, rangeStr );
 		String_Appendf( sbInl, "\tconst %s far_minus_near = zfar - znear;\n", typeString );
-		String_Appendf( sbInl, "\tconst %s tan_half_fov = %s( fovdeg * 0.5f );\n", typeString, tanFuncStr );
+		String_Appendf( sbInl, "\tconst %s tan_half_fov = %s( fovdeg * %s );\n", typeString, tanFuncStr, halfStr );
 		String_Append(  sbInl, "\n" );
 		String_Appendf( sbInl, "\treturn %s(\n", fullTypeName );
-		String_Append(  sbInl, "\t\t1.0f / ( aspect * tan_half_fov ), 0.0f, 0.0f, 0.0f,\n" );
-		String_Append(  sbInl, "\t\t0.0f, 1.0f / tan_half_fov, 0.0f, 0.0f,\n" );
-		String_Append(  sbInl, "\t\t0.0f, 0.0f, zfar / far_minus_near, -( zfar * znear ) / far_minus_near,\n" );
-		String_Append(  sbInl, "\t\t0.0f, 0.0f, 1.0f, 0.0f\n" );
+		String_Appendf( sbInl, "\t\t%s / ( aspect * tan_half_fov ), %s, %s, %s,\n", oneStr, zeroStr, zeroStr, zeroStr );
+		String_Appendf( sbInl, "\t\t%s, %s / tan_half_fov, %s, %s,\n", zeroStr, oneStr, zeroStr, zeroStr );
+		String_Appendf( sbInl, "\t\t%s, %s, zfar / far_minus_near, -( zfar * znear ) / far_minus_near,\n", zeroStr, zeroStr );
+		String_Appendf( sbInl, "\t\t%s, %s, %s, %s\n", zeroStr, zeroStr, oneStr, zeroStr );
 		String_Append(  sbInl, "\t);\n" );
 		String_Append(  sbInl, "}\n" );
 		String_Append(  sbInl, "\n" );
@@ -1150,13 +1220,13 @@ void Gen_MatrixPerspective( const genType_t type, const u32 numRows, const u32 n
 		String_Appendf( sbInl, "\t// %s-handed, clip space range: %s\n", handStr, rangeStr );
 		String_Appendf( sbInl, "\tconst %s far_minus_near = zfar - znear;\n", typeString );
 		String_Appendf( sbInl, "\tconst %s far_plus_near = zfar + znear;\n", typeString );
-		String_Appendf( sbInl, "\tconst %s tan_half_fov = %s( fovdeg * 0.5f );\n", typeString, tanFuncStr );
+		String_Appendf( sbInl, "\tconst %s tan_half_fov = %s( fovdeg * %s );\n", typeString, tanFuncStr, halfStr );
 		String_Append(  sbInl, "\n" );
 		String_Appendf( sbInl, "\treturn %s(\n", fullTypeName );
-		String_Append(  sbInl, "\t\t1.0f / ( aspect * tan_half_fov ), 0.0f, 0.0f, 0.0f,\n" );
-		String_Append(  sbInl, "\t\t0.0f, 1.0f / tan_half_fov, 0.0f, 0.0f,\n" );
-		String_Append(  sbInl, "\t\t0.0f, 0.0f, far_plus_near / far_minus_near, -( 2.0f * zfar * znear ) / far_minus_near,\n" );
-		String_Append(  sbInl, "\t\t0.0f, 0.0f, 1.0f, 0.0f\n" );
+		String_Appendf( sbInl, "\t\t%s / ( aspect * tan_half_fov ), %s, %s, %s,\n", oneStr, zeroStr, zeroStr, zeroStr );
+		String_Appendf( sbInl, "\t\t%s, %s / tan_half_fov, %s, %s,\n", zeroStr, oneStr, zeroStr, zeroStr );
+		String_Appendf( sbInl, "\t\t%s, %s, far_plus_near / far_minus_near, -( %s * zfar * znear ) / far_minus_near,\n", zeroStr, zeroStr, twoStr );
+		String_Appendf( sbInl, "\t\t%s, %s, %s, %s\n", zeroStr, zeroStr, oneStr, zeroStr );
 		String_Append(  sbInl, "\t);\n" );
 		String_Append(  sbInl, "}\n" );
 		String_Append(  sbInl, "\n" );
@@ -1179,13 +1249,13 @@ void Gen_MatrixPerspective( const genType_t type, const u32 numRows, const u32 n
 			fullTypeName, typeString, typeString, typeString, typeString );
 		String_Append(  sbInl, "{\n" );
 		String_Appendf( sbInl, "\t// %s-handed, clip space range: %s\n", handStr, rangeStr );
-		String_Appendf( sbInl, "\tconst %s tan_half_fov = %s( fovdeg * 0.5f );\n", typeString, tanFuncStr );
+		String_Appendf( sbInl, "\tconst %s tan_half_fov = %s( fovdeg * %s );\n", typeString, tanFuncStr, halfStr );
 		String_Append(  sbInl, "\n" );
 		String_Appendf( sbInl, "\treturn %s(\n", fullTypeName );
-		String_Append(  sbInl, "\t\t1.0f / ( aspect * tan_half_fov ), 0.0f, 0.0f, 0.0f,\n" );
-		String_Append(  sbInl, "\t\t0.0f, 1.0f / tan_half_fov, 0.0f, 0.0f,\n" );
-		String_Append(  sbInl, "\t\t0.0f, 0.0f, zfar / ( znear - zfar ), -( zfar * znear ) / ( zfar - znear ),\n" );
-		String_Append(  sbInl, "\t\t0.0f, 0.0f, -1.0f, 0.0f\n" );
+		String_Appendf( sbInl, "\t\t%s / ( aspect * tan_half_fov ), %s, %s, %s,\n", oneStr, zeroStr, zeroStr, zeroStr );
+		String_Appendf( sbInl, "\t\t%s, %s / tan_half_fov, %s, %s,\n", zeroStr, oneStr, zeroStr, zeroStr );
+		String_Appendf( sbInl, "\t\t%s, %s, zfar / ( znear - zfar ), -( zfar * znear ) / ( zfar - znear ),\n", zeroStr, zeroStr );
+		String_Appendf( sbInl, "\t\t%s, %s, %s, %s\n", zeroStr, zeroStr, minusOneStr, zeroStr );
 		String_Append(  sbInl, "\t);\n" );
 		String_Append(  sbInl, "}\n" );
 		String_Append(  sbInl, "\n" );
@@ -1210,13 +1280,13 @@ void Gen_MatrixPerspective( const genType_t type, const u32 numRows, const u32 n
 		String_Appendf( sbInl, "\t// %s-handed, clip space range: %s\n", handStr, rangeStr );
 		String_Appendf( sbInl, "\tconst %s far_minus_near = zfar - znear;\n", typeString );
 		String_Appendf( sbInl, "\tconst %s far_plus_near = zfar + znear;\n", typeString );
-		String_Appendf( sbInl, "\tconst %s tan_half_fov = %s( fovdeg * 0.5f );\n", typeString, tanFuncStr );
+		String_Appendf( sbInl, "\tconst %s tan_half_fov = %s( fovdeg * %s );\n", typeString, tanFuncStr, halfStr );
 		String_Append(  sbInl, "\n" );
 		String_Appendf( sbInl, "\treturn %s(\n", fullTypeName );
-		String_Append(  sbInl, "\t\t1.0f / ( aspect * tan_half_fov ), 0.0f, 0.0f, 0.0f,\n" );
-		String_Append(  sbInl, "\t\t0.0f, 1.0f / tan_half_fov, 0.0f, 0.0f,\n" );
-		String_Append(  sbInl, "\t\t0.0f, 0.0f, -far_plus_near / far_minus_near, -( 2.0f * zfar * znear ) / far_minus_near,\n" );
-		String_Append(  sbInl, "\t\t0.0f, 0.0f, -1.0f, 0.0f\n" );
+		String_Appendf( sbInl, "\t\t%s / ( aspect * tan_half_fov ), %s, %s, %s,\n", oneStr, zeroStr, zeroStr, zeroStr );
+		String_Appendf( sbInl, "\t\t%s, %s / tan_half_fov, %s, %s,\n", zeroStr, oneStr, zeroStr, zeroStr );
+		String_Appendf( sbInl, "\t\t%s, %s, -far_plus_near / far_minus_near, -( %s * zfar * znear ) / far_minus_near,\n", zeroStr, zeroStr, twoStr );
+		String_Appendf( sbInl, "\t\t%s, %s, %s, %s\n", zeroStr, zeroStr, minusOneStr, zeroStr );
 		String_Append(  sbInl, "\t);\n" );
 		String_Append(  sbInl, "}\n" );
 		String_Append(  sbInl, "\n" );
@@ -1240,6 +1310,12 @@ void Gen_MatrixLookAt( const genType_t type, const u32 numRows, const u32 numCol
 	u32 numVecComponents = 3;
 
 	const char* typeString = Gen_GetTypeString( type );
+
+	char zeroStr[16];
+	char oneStr[16];
+
+	Gen_GetNumericLiteral( type, 0.0f, zeroStr );
+	Gen_GetNumericLiteral( type, 1.0f, oneStr );
 
 	char vectorTypeString[32];
 	sprintf( vectorTypeString, "%s%d", typeString, numVecComponents );
@@ -1266,7 +1342,7 @@ void Gen_MatrixLookAt( const genType_t type, const u32 numRows, const u32 numCol
 		String_Append(  sbInl, "\t\tright.x,   right.y,   right.z,   -dot( right, eye ),\n" );
 		String_Append(  sbInl, "\t\tup1.x,     up1.y,     up1.z,     -dot( up1, eye ),\n" );
 		String_Append(  sbInl, "\t\tforward.x, forward.y, forward.z, -dot( forward, eye ),\n" );
-		String_Append(  sbInl, "\t\t0.0f, 0.0f, 0.0f, 1.0f\n" );
+		String_Append(  sbInl, "\t\t%s, %s, %s, %s\n", zeroStr, zeroStr, zeroStr, oneStr );
 		String_Append(  sbInl, "\t);\n" );
 		String_Append(  sbInl, "}\n" );
 		String_Append(  sbInl, "\n" );
@@ -1291,7 +1367,7 @@ void Gen_MatrixLookAt( const genType_t type, const u32 numRows, const u32 numCol
 		String_Append(  sbInl, "\t\t right.x,    right.y,    right.z,   -dot( right, eye ),\n" );
 		String_Append(  sbInl, "\t\t up1.x,      up1.y,      up1.z,     -dot( up1, eye ),\n" );
 		String_Append(  sbInl, "\t\t-forward.x, -forward.y, -forward.z,  dot( forward, eye ),\n" );
-		String_Append(  sbInl, "\t\t0.0f, 0.0f, 0.0f, 1.0f\n" );
+		String_Append(  sbInl, "\t\t%s, %s, %s, %s\n", zeroStr, zeroStr, zeroStr, oneStr );
 		String_Append(  sbInl, "\t);\n" );
 		String_Append(  sbInl, "}\n" );
 		String_Append(  sbInl, "\n" );

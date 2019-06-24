@@ -312,7 +312,7 @@ void GeneratorVector::GenerateOperatorsEquality() {
 			if ( Gen_IsFloatingPointType( m_type ) ) {
 				const char* floateqStr = Gen_GetFuncNameFloateq( m_type );
 
-				String_Appendf( &m_codeInl, "%s( lhs.%c, rhs.%c )", floateqStr, component );
+				String_Appendf( &m_codeInl, "%s( lhs.%c, rhs.%c )", floateqStr, component, component );
 			} else {
 				String_Appendf( &m_codeInl, "( lhs.%c == rhs.%c )", component, component );
 			}

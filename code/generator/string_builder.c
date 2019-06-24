@@ -4,6 +4,7 @@
 
 #include <stdio.h>
 #include <stdarg.h>
+#include <assert.h>
 
 #if ALLOW_BASIC_CONCAT
 static u32 Concat( char* dst, char* src ) {
@@ -20,7 +21,8 @@ static u32 Concat( char* dst, char* src ) {
 stringBuilder_t String_Create( const u32 size ) {
 	return (stringBuilder_t) {
 		.str = (char*) Mem_Alloc( size ),
-		.length = 0
+		.length = 0,
+		.alloc = size
 	};
 }
 
@@ -39,9 +41,13 @@ void String_Appendf( stringBuilder_t* sb, const char* fmt, ... ) {
 	va_list args;
 	va_start( args, fmt );
 
-	int length = vsprintf( sb->str + sb->length, fmt, args );
+	int len = vsprintf( sb->str + sb->length, fmt, args );
 
-	sb->length += (u32) length;
+	u32 length = (u32) len;
+
+	assert( sb->length + length <= sb->alloc );
+
+	sb->length += length;
 
 	va_end( args );
 }

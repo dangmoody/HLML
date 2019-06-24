@@ -2,48 +2,44 @@
 
 #include "gen_common.h"
 
-#include <string>
+#include "string_builder.h"
 
-#if 0
 class GeneratorVectorTests {
 public:
-				GeneratorVectorTests() {}
-				~GeneratorVectorTests() {}
+					GeneratorVectorTests() {}
+					~GeneratorVectorTests() {}
 
-	bool		Generate( const genType_t type, const u32 numComponents );
-
-private:
-	std::string	m_codeTests;
-	std::string	m_codeSuite;
-
-	std::string	m_fullTypeName;
-	std::string	m_typeString;
-	std::string	m_memberTypeString;
-
-	std::string	m_numComponentsStr;
-
-	genType_t	m_type;
-
-	u32	m_numComponents;
+	bool			Generate( const genType_t type, const u32 numComponents );
 
 private:
-	void		GenerateTestAssignment();
-	void		GenerateTestArray();
-	void		GenerateTestArithmetic();
-	void		GenerateTestIncrement();
-	void		GenerateTestRelational();
-	void		GenerateTestBitwise();
+	stringBuilder_t	m_codeTests;
+	stringBuilder_t	m_codeSuite;
 
-	void		GenerateTestLength();
-	void		GenerateTestNormalized();
-	void		GenerateTestDot();
-	void		GenerateTestCross();
-	void		GenerateTestAngle();
-	void		GenerateTestDistance();
-	void		GenerateTestPacking();
+	genType_t		m_type;
 
-	void		GenerateTestSaturate();
-	void		GenerateTestLerp();
-	void		GenerateTestSmoothstep();
+	u32				m_numComponents;
+
+	char			m_fullTypeName[16];
+	const char*		m_typeString;
+	const char*		m_memberTypeString;
+
+private:
+	void			GenerateTestAssignment();
+	void			GenerateTestArray();
+	void			GenerateTestArithmetic();
+	void			GenerateTestIncrement();
+	void			GenerateTestRelational();
+	void			GenerateTestBitwise();
+
+	void			GenerateTestLength();
+	void			GenerateTestNormalized();
+	void			GenerateTestDot();
+	void			GenerateTestCross();
+	void			GenerateTestAngle();
+	void			GenerateTestDistance();
+	void			GenerateTestPacking();
+
+	void			GenerateTestSaturate();
+	void			GenerateTestLerp();
+	void			GenerateTestSmoothstep();
 };
-#endif

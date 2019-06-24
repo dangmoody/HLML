@@ -5103,3 +5103,4 @@ inline bool4x4 operator>( const double4x4& lhs, const double4x4& rhs );
 inline bool4x4 operator>=( const double4x4& lhs, const double4x4& rhs );
 
 
+#include "hlml_operators_matrix.inl"

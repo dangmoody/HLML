@@ -4,32 +4,36 @@
 #include <malloc.h>
 #include <memory.h>
 
-static u8*	g_ptr = NULL;
-static u32	g_size = 0;
-static u32	g_offset = 0;
+typedef struct allocatorInfo_t {
+	u32	size;
+	u32	offset;
+	u8*	ptr;
+} allocatorInfo_t;
+
+static allocatorInfo_t g_allocatorInfo = { 0 };
 
 void Mem_Init( const u32 size ) {
 	assert( size > 0 );
 
-	g_ptr = (u8*) calloc( size, sizeof( u8 ) );
-	g_size = size;
+	g_allocatorInfo.ptr = (u8*) calloc( size + sizeof( allocatorInfo_t ), sizeof( u8 ) );
+	g_allocatorInfo.size = size;
 }
 
 void Mem_Shutdown( void ) {
-	free( g_ptr );
-	g_ptr = NULL;
+	free( g_allocatorInfo.ptr );
+	g_allocatorInfo.ptr = NULL;
 }
 
 u8* Mem_Alloc( const u32 size ) {
-	assert( g_offset + size <= g_size );
+	assert( g_allocatorInfo.offset + size <= g_allocatorInfo.size );
 
-	u8* ptr = g_ptr + g_offset;
+	u8* ptr = g_allocatorInfo.ptr + g_allocatorInfo.offset;
 
-	g_offset += size;
+	g_allocatorInfo.offset += size;
 
 	return ptr;
 }
 
 void Mem_Reset( void ) {
-	g_offset = 0;
+	g_allocatorInfo.offset = sizeof( allocatorInfo_t );
 }

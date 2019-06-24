@@ -111,7 +111,6 @@ TEMPER_SUITE( Test_bool3x3 )
 {
 	TEMPER_RUN_TEST( TestAssignment_bool3x3 );
 	TEMPER_RUN_TEST( TestArray_bool3x3 );
-
 	TEMPER_RUN_TEST( TestIdentity_bool3x3 );
 	TEMPER_RUN_TEST( TestTranspose_bool3x3 );
 }

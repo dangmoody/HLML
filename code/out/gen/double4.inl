@@ -100,7 +100,7 @@ double& double4::operator[]( const uint32_t index )
 
 bool operator==( const double4& lhs, const double4& rhs )
 {
-	return doubleeq( lhs.x, rhs. ) && doubleeq( lhs.y, rhs. ) && doubleeq( lhs.z, rhs. ) && doubleeq( lhs.w, rhs. );
+	return doubleeq( lhs.x, rhs.x ) && doubleeq( lhs.y, rhs.y ) && doubleeq( lhs.z, rhs.z ) && doubleeq( lhs.w, rhs.w );
 }
 
 bool operator!=( const double4& lhs, const double4& rhs )

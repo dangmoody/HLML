@@ -227,38 +227,53 @@ TEMPER_TEST( TestRelational_double2x3 )
 		4.000000, 4.000000, 4.000000
 	);
 
-	bool2x3 test0 = mat0 <= mat0;
-	bool2x3 test1 = mat0 >= mat0;
-	bool2x3 test2 = mat0 < mat1;
+	bool2x3 test0  = mat0 <= mat0;
+	bool2x3 test1  = mat0 >= mat0;
+	bool2x3 test2  = mat0 <  mat1;
+	bool2x3 test3  = mat0 <  mat2;
+	bool2x3 test4  = mat0 <  mat3;
 
-	bool2x3 test3 = mat1 <= mat1;
-	bool2x3 test4 = mat1 >= mat1;
-	bool2x3 test5 = mat1 < mat2;
-	bool2x3 test6 = mat1 > mat0;
+	bool2x3 test5  = mat1 >  mat0;
+	bool2x3 test6  = mat1 <= mat1;
+	bool2x3 test7  = mat1 >= mat1;
+	bool2x3 test8  = mat1 <  mat2;
+	bool2x3 test9  = mat1 <  mat3;
 
-	bool2x3 test7 = mat2 <= mat2;
-	bool2x3 test8 = mat2 >= mat2;
-	bool2x3 test9 = mat2 < mat3;
-	bool2x3 test10 = mat2 > mat1;
+	bool2x3 test10 = mat2 >  mat0;
+	bool2x3 test11 = mat2 >  mat1;
+	bool2x3 test12 = mat2 <= mat2;
+	bool2x3 test13 = mat2 >= mat2;
+	bool2x3 test14 = mat2 <  mat3;
 
-	bool2x3 test11 = mat3 <= mat3;
-	bool2x3 test12 = mat3 >= mat3;
-	bool2x3 test13 = mat3 > mat2;
+	bool2x3 test15 = mat3 >  mat0;
+	bool2x3 test16 = mat3 >  mat1;
+	bool2x3 test17 = mat3 >  mat2;
+	bool2x3 test18 = mat3 <= mat3;
+	bool2x3 test19 = mat3 >= mat3;
 
-	TEMPER_EXPECT_TRUE( test0 == allTrue );
-	TEMPER_EXPECT_TRUE( test1 == allTrue );
-	TEMPER_EXPECT_TRUE( test2 == allTrue );
-	TEMPER_EXPECT_TRUE( test3 == allTrue );
-	TEMPER_EXPECT_TRUE( test4 == allTrue );
-	TEMPER_EXPECT_TRUE( test5 == allTrue );
-	TEMPER_EXPECT_TRUE( test6 == allTrue );
-	TEMPER_EXPECT_TRUE( test7 == allTrue );
-	TEMPER_EXPECT_TRUE( test8 == allTrue );
-	TEMPER_EXPECT_TRUE( test9 == allTrue );
+	TEMPER_EXPECT_TRUE( test0  == allTrue );
+	TEMPER_EXPECT_TRUE( test1  == allTrue );
+	TEMPER_EXPECT_TRUE( test2  == allTrue );
+	TEMPER_EXPECT_TRUE( test3  == allTrue );
+	TEMPER_EXPECT_TRUE( test4  == allTrue );
+
+	TEMPER_EXPECT_TRUE( test5  == allTrue );
+	TEMPER_EXPECT_TRUE( test6  == allTrue );
+	TEMPER_EXPECT_TRUE( test7  == allTrue );
+	TEMPER_EXPECT_TRUE( test8  == allTrue );
+	TEMPER_EXPECT_TRUE( test9  == allTrue );
+
 	TEMPER_EXPECT_TRUE( test10 == allTrue );
 	TEMPER_EXPECT_TRUE( test11 == allTrue );
 	TEMPER_EXPECT_TRUE( test12 == allTrue );
 	TEMPER_EXPECT_TRUE( test13 == allTrue );
+	TEMPER_EXPECT_TRUE( test14 == allTrue );
+
+	TEMPER_EXPECT_TRUE( test15 == allTrue );
+	TEMPER_EXPECT_TRUE( test16 == allTrue );
+	TEMPER_EXPECT_TRUE( test17 == allTrue );
+	TEMPER_EXPECT_TRUE( test18 == allTrue );
+	TEMPER_EXPECT_TRUE( test19 == allTrue );
 
 	TEMPER_PASS();
 }
@@ -276,8 +291,8 @@ TEMPER_TEST( TestArray_double2x3 )
 TEMPER_TEST( TestIdentity_double2x3 )
 {
 	double2x3 id = double2x3(
-		1.000000, 0.000000, 0.000000,
-		0.000000, 1.000000, 0.000000
+		1.000000, 0.0, 0.0,
+		0.0, 1.000000, 0.0
 	);
 
 	double2x3 mat;
@@ -293,14 +308,14 @@ TEMPER_TEST( TestTranspose_double2x3 )
 {
 	double2x3 mat = double2x3(
 		0.000000, 1.000000, 2.000000,
-		3.000000, 4.000000, 5.000000
+		4.000000, 5.000000, 6.000000
 	);
 	double3x2 trans = transpose( mat );
 
 	TEMPER_EXPECT_TRUE( trans == double3x2(
-		0.000000, 3.000000,
-		1.000000, 4.000000,
-		2.000000, 5.000000
+		0.000000, 4.000000,
+		1.000000, 5.000000,
+		2.000000, 6.000000
 	) );
 
 	TEMPER_PASS();
@@ -312,8 +327,8 @@ TEMPER_TEST( TestScale_double2x3 )
 	double2x3 scaled = scale( mat, double3( 2.000000, 2.000000, 2.000000 ) );
 
 	TEMPER_EXPECT_TRUE( scaled == double2x3(
-		2.000000, 0.000000, 0.000000,
-		0.000000, 2.000000, 0.000000
+		2.000000, 0.0, 0.0,
+		0.0, 2.000000, 0.0
 	) );
 
 	TEMPER_PASS();
@@ -322,21 +337,15 @@ TEMPER_TEST( TestScale_double2x3 )
 TEMPER_SUITE( Test_double2x3 )
 {
 	TEMPER_RUN_TEST( TestAssignment_double2x3 );
-
 	TEMPER_RUN_TEST( TestArithmeticAddition_double2x3 );
 	TEMPER_RUN_TEST( TestArithmeticSubtraction_double2x3 );
 	TEMPER_RUN_TEST( TestArithmeticMultiplication_double2x3 );
 	TEMPER_RUN_TEST( TestArithmeticDivision_double2x3 );
-
 	TEMPER_RUN_TEST( TestIncrement_double2x3 );
 	TEMPER_RUN_TEST( TestDecrement_double2x3 );
-
 	TEMPER_RUN_TEST( TestRelational_double2x3 );
-
 	TEMPER_RUN_TEST( TestArray_double2x3 );
-
 	TEMPER_RUN_TEST( TestIdentity_double2x3 );
 	TEMPER_RUN_TEST( TestTranspose_double2x3 );
-
-
+	TEMPER_RUN_TEST( TestScale_double2x3 );
 }

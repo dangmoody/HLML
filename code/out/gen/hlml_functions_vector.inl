@@ -46,6 +46,11 @@ float distancesqr( const int2& lhs, const int2& rhs )
 	return lengthsqr( lhs - rhs );
 }
 
+float distance( const int2& lhs, const int2& rhs )
+{
+	return length( lhs - rhs );
+}
+
 
 // int3
 float lengthsqr( const int3& vec )
@@ -66,6 +71,11 @@ int32_t dot( const int3& lhs, const int3& rhs )
 float distancesqr( const int3& lhs, const int3& rhs )
 {
 	return lengthsqr( lhs - rhs );
+}
+
+float distance( const int3& lhs, const int3& rhs )
+{
+	return length( lhs - rhs );
 }
 
 
@@ -107,6 +117,11 @@ float distancesqr( const uint2& lhs, const uint2& rhs )
 	return lengthsqr( lhs - rhs );
 }
 
+float distance( const uint2& lhs, const uint2& rhs )
+{
+	return length( lhs - rhs );
+}
+
 
 // uint3
 float lengthsqr( const uint3& vec )
@@ -127,6 +142,11 @@ int32_t dot( const uint3& lhs, const uint3& rhs )
 float distancesqr( const uint3& lhs, const uint3& rhs )
 {
 	return lengthsqr( lhs - rhs );
+}
+
+float distance( const uint3& lhs, const uint3& rhs )
+{
+	return length( lhs - rhs );
 }
 
 
@@ -166,8 +186,8 @@ uint4 unpack( const uint32_t x )
 float2 saturate( const float2& x )
 {
 	return float2(
-		clamp( x[0], 0.0, 1.0 ),
-		clamp( x[1], 0.0, 1.0 )
+		clamp( x[0], 0.000000f, 1.000000f ),
+		clamp( x[1], 0.000000f, 1.000000f )
 	);
 }
 
@@ -207,13 +227,13 @@ float length( const float2& vec )
 
 void normalize( float2& vec )
 {
-	float invlen = 1.000000 / length( vec );
+	float invlen = 1.000000f / length( vec );
 	vec *= invlen;
 }
 
 float2 normalized( const float2& vec )
 {
-	float invlen = 1.000000 / length( vec );
+	float invlen = 1.000000f / length( vec );
 	return (float2)( vec * invlen );
 }
 
@@ -232,14 +252,19 @@ float distancesqr( const float2& lhs, const float2& rhs )
 	return lengthsqr( lhs - rhs );
 }
 
+float distance( const float2& lhs, const float2& rhs )
+{
+	return length( lhs - rhs );
+}
+
 
 // float3
 float3 saturate( const float3& x )
 {
 	return float3(
-		clamp( x[0], 0.0, 1.0 ),
-		clamp( x[1], 0.0, 1.0 ),
-		clamp( x[2], 0.0, 1.0 )
+		clamp( x[0], 0.000000f, 1.000000f ),
+		clamp( x[1], 0.000000f, 1.000000f ),
+		clamp( x[2], 0.000000f, 1.000000f )
 	);
 }
 
@@ -282,13 +307,13 @@ float length( const float3& vec )
 
 void normalize( float3& vec )
 {
-	float invlen = 1.000000 / length( vec );
+	float invlen = 1.000000f / length( vec );
 	vec *= invlen;
 }
 
 float3 normalized( const float3& vec )
 {
-	float invlen = 1.000000 / length( vec );
+	float invlen = 1.000000f / length( vec );
 	return (float3)( vec * invlen );
 }
 
@@ -316,15 +341,20 @@ float distancesqr( const float3& lhs, const float3& rhs )
 	return lengthsqr( lhs - rhs );
 }
 
+float distance( const float3& lhs, const float3& rhs )
+{
+	return length( lhs - rhs );
+}
+
 
 // float4
 float4 saturate( const float4& x )
 {
 	return float4(
-		clamp( x[0], 0.0, 1.0 ),
-		clamp( x[1], 0.0, 1.0 ),
-		clamp( x[2], 0.0, 1.0 ),
-		clamp( x[3], 0.0, 1.0 )
+		clamp( x[0], 0.000000f, 1.000000f ),
+		clamp( x[1], 0.000000f, 1.000000f ),
+		clamp( x[2], 0.000000f, 1.000000f ),
+		clamp( x[3], 0.000000f, 1.000000f )
 	);
 }
 
@@ -370,13 +400,13 @@ float length( const float4& vec )
 
 void normalize( float4& vec )
 {
-	float invlen = 1.000000 / length( vec );
+	float invlen = 1.000000f / length( vec );
 	vec *= invlen;
 }
 
 float4 normalized( const float4& vec )
 {
-	float invlen = 1.000000 / length( vec );
+	float invlen = 1.000000f / length( vec );
 	return (float4)( vec * invlen );
 }
 
@@ -405,8 +435,8 @@ float angle( const float4& lhs, const float4& rhs )
 double2 saturate( const double2& x )
 {
 	return double2(
-		clamp( x[0], 0.0, 1.0 ),
-		clamp( x[1], 0.0, 1.0 )
+		clamp( x[0], 0.000000, 1.000000 ),
+		clamp( x[1], 0.000000, 1.000000 )
 	);
 }
 
@@ -471,14 +501,19 @@ double distancesqr( const double2& lhs, const double2& rhs )
 	return lengthsqr( lhs - rhs );
 }
 
+double distance( const double2& lhs, const double2& rhs )
+{
+	return length( lhs - rhs );
+}
+
 
 // double3
 double3 saturate( const double3& x )
 {
 	return double3(
-		clamp( x[0], 0.0, 1.0 ),
-		clamp( x[1], 0.0, 1.0 ),
-		clamp( x[2], 0.0, 1.0 )
+		clamp( x[0], 0.000000, 1.000000 ),
+		clamp( x[1], 0.000000, 1.000000 ),
+		clamp( x[2], 0.000000, 1.000000 )
 	);
 }
 
@@ -555,15 +590,20 @@ double distancesqr( const double3& lhs, const double3& rhs )
 	return lengthsqr( lhs - rhs );
 }
 
+double distance( const double3& lhs, const double3& rhs )
+{
+	return length( lhs - rhs );
+}
+
 
 // double4
 double4 saturate( const double4& x )
 {
 	return double4(
-		clamp( x[0], 0.0, 1.0 ),
-		clamp( x[1], 0.0, 1.0 ),
-		clamp( x[2], 0.0, 1.0 ),
-		clamp( x[3], 0.0, 1.0 )
+		clamp( x[0], 0.000000, 1.000000 ),
+		clamp( x[1], 0.000000, 1.000000 ),
+		clamp( x[2], 0.000000, 1.000000 ),
+		clamp( x[3], 0.000000, 1.000000 )
 	);
 }
 

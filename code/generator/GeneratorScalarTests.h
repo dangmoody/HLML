@@ -2,28 +2,28 @@
 
 #include "gen_common.h"
 
-#if 0
+#include "string_builder.h"
+
 class GeneratorScalarTest {
 public:
-				GeneratorScalarTest() {}
-				~GeneratorScalarTest() {}
+					GeneratorScalarTest() {}
+					~GeneratorScalarTest() {}
 
-	bool		Generate( const genType_t type );
-
-private:
-	std::string	m_codeTests;
-	std::string	m_codeSuite;
-
-	std::string	m_memberTypeString;
-
-	genType_t	m_type;
+	bool			Generate( const genType_t type );
 
 private:
-	void		GenerateTestFloateq();
-	void		GenerateTestSign();
-	void		GenerateTestDegreesRadians();
-	void		GenerateTestMinMax();
-	void		GenerateTestClamp();
-	void		GenerateTestSaturate();
+	stringBuilder_t	m_codeTests;
+	stringBuilder_t	m_codeSuite;
+
+	const char*		m_memberTypeString;
+
+	genType_t		m_type;
+
+private:
+	void			GenerateTestFloateq();
+	void			GenerateTestSign();
+	void			GenerateTestDegreesRadians();
+	void			GenerateTestMinMax();
+	void			GenerateTestClamp();
+	void			GenerateTestSaturate();
 };
-#endif

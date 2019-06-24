@@ -164,7 +164,6 @@ void GeneratorMatrix::GenerateConstructors() {
 		for ( u32 i = 0; i < m_numRows; i++ ) {
 			String_Appendf( &m_codeInl, "\trows[%d] = { ", i );
 			for ( u32 j = 0; j < m_numCols; j++ ) {
-//				String_Appendf( &m_codeInl, ( i == j ) ? std::string( "diagonal." ) + GEN_COMPONENT_NAMES_VECTOR[j] : "0" );
 				if ( i == j ) {
 					String_Appendf( &m_codeInl, "diagonal.%c", GEN_COMPONENT_NAMES_VECTOR[j] );
 				} else {
@@ -219,7 +218,6 @@ void GeneratorMatrix::GenerateConstructors() {
 		String_Appendf( &m_codeInl, "%s::%s( const %s rows[%d] )\n", m_fullTypeName, m_fullTypeName, m_vectorMemberTypeString, m_numRows );
 		String_Append(  &m_codeInl, "{\n" );
 		for ( u32 i = 0; i < m_numRows; i++ ) {
-			std::string indexstr = std::to_string( i );
 			String_Appendf( &m_codeInl, "\tthis->rows[%d] = rows[%d];\n", i, i );
 		}
 		String_Append( &m_codeInl, "}\n\n" );

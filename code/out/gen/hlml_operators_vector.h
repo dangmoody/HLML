@@ -1,20 +1,20 @@
 #pragma once
 
-#include "bool2.
-#include "bool3.
-#include "bool4.
-#include "int2.
-#include "int3.
-#include "int4.
-#include "uint2.
-#include "uint3.
-#include "uint4.
-#include "float2.
-#include "float3.
-#include "float4.
-#include "double2.
-#include "double3.
-#include "double4.
+#include "bool2.h"
+#include "bool3.h"
+#include "bool4.h"
+#include "int2.h"
+#include "int3.h"
+#include "int4.h"
+#include "uint2.h"
+#include "uint3.h"
+#include "uint4.h"
+#include "float2.h"
+#include "float3.h"
+#include "float4.h"
+#include "double2.h"
+#include "double3.h"
+#include "double4.h"
 
 // int2
 /// \relates int2

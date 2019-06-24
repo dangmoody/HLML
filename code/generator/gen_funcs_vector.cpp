@@ -71,21 +71,32 @@ static void DocUnpack( stringBuilder_t* sb, const char* fullTypeName ) {
 		"/// \\brief Returns a 4-component integer vector containing each byte of the given integer.\n", fullTypeName );
 }
 
-//void Gen_GetParmListVector( const genType_t type, const u32 numComponents, const float* values, stringBuilder_t* sb ) {
-//	assert( numComponents >= GEN_COMPONENT_COUNT_MIN );
-//	assert( numComponents <= GEN_COMPONENT_COUNT_MAX );
-//	assert( values );
-//
-//	String_Append( sb, "( " );
-//	for ( u32 i = 0; i < numComponents; i++ ) {
-//		String_Appendf( sb, "%s", Gen_GetNumericLiteral( type, values[i] ).c_str() );
-//
-//		if ( i != numComponents - 1 ) {
-//			String_Append( sb, ", " );
-//		}
-//	}
-//	String_Append( sb, " )" );
-//}
+void Gen_GetParmListVector( const genType_t type, const u32 numComponents, const float* values, char* outParmListStr ) {
+	assert( numComponents >= GEN_COMPONENT_COUNT_MIN );
+	assert( numComponents <= GEN_COMPONENT_COUNT_MAX );
+	assert( values );
+	assert( outParmListStr );
+
+	char valueStr[32];
+
+	int pos = 0;
+
+	pos += sprintf( outParmListStr + pos, "( " );
+
+	for ( u32 i = 0; i < numComponents; i++ ) {
+		const float value = values[i];
+
+		Gen_GetNumericLiteral( type, value, valueStr );
+
+		pos += sprintf( outParmListStr + pos, "%s", valueStr );
+
+		if ( i != numComponents - 1 ) {
+			pos += sprintf( outParmListStr + pos, ", " );
+		}
+	}
+
+	pos += sprintf( outParmListStr + pos, " )" );
+}
 
 void Gen_VectorOperatorsArithmetic( const genType_t type, const u32 numComponents, stringBuilder_t* sbHeader, stringBuilder_t* sbInl ) {
 	assert( numComponents >= GEN_COMPONENT_COUNT_MIN );
@@ -171,6 +182,9 @@ void Gen_VectorNormalize( const genType_t type, const u32 numComponents, stringB
 
 	const char* typeString = Gen_GetTypeString( type );
 
+	char oneStr[16];
+	Gen_GetNumericLiteral( type, 1, oneStr );
+
 	char fullTypeName[32];
 	Gen_GetFullTypeName( type, 1, numComponents, fullTypeName );
 
@@ -184,14 +198,14 @@ void Gen_VectorNormalize( const genType_t type, const u32 numComponents, stringB
 
 	String_Appendf( sbInl, "void normalize( %s& vec )\n", fullTypeName );
 	String_Append(  sbInl, "{\n" );
-	String_Appendf( sbInl, "\t%s invlen = %f / length( vec );\n", typeString, 1.0f );
+	String_Appendf( sbInl, "\t%s invlen = %s / length( vec );\n", typeString, oneStr );
 	String_Append(  sbInl, "\tvec *= invlen;\n" );
 	String_Append(  sbInl, "}\n" );
 	String_Append(  sbInl, "\n" );
 
 	String_Appendf( sbInl, "%s normalized( const %s& vec )\n", fullTypeName, fullTypeName );
 	String_Append(  sbInl, "{\n" );
-	String_Appendf( sbInl, "\t%s invlen = %f / length( vec );\n", typeString, 1.0f );
+	String_Appendf( sbInl, "\t%s invlen = %s / length( vec );\n", typeString, oneStr );
 	String_Appendf( sbInl, "\treturn (%s)( vec * invlen );\n", fullTypeName );
 	String_Append(  sbInl, "}\n" );
 	String_Append(  sbInl, "\n" );
@@ -344,11 +358,11 @@ void Gen_VectorDistance( const genType_t type, const u32 numComponents, stringBu
 		String_Appendf( sbHeader, "inline %s distance( const %s& lhs, const %s& rhs );\n", returnTypeString, fullTypeName, fullTypeName );
 		String_Append(  sbHeader, "\n" );
 
-		String_Appendf( sbHeader, "%s distance( const %s& lhs, const %s& rhs )\n", returnTypeString, fullTypeName, fullTypeName );
-		String_Append(  sbHeader, "{\n" );
-		String_Append(  sbHeader, "\treturn length( lhs - rhs );\n" );
-		String_Append(  sbHeader, "}\n" );
-		String_Append(  sbHeader, "\n" );
+		String_Appendf( sbInl, "%s distance( const %s& lhs, const %s& rhs )\n", returnTypeString, fullTypeName, fullTypeName );
+		String_Append(  sbInl, "{\n" );
+		String_Append(  sbInl, "\treturn length( lhs - rhs );\n" );
+		String_Append(  sbInl, "}\n" );
+		String_Append(  sbInl, "\n" );
 	}
 }
 
@@ -368,7 +382,6 @@ void Gen_VectorPack( const genType_t type, const u32 numComponents, stringBuilde
 		24, 16, 8, 0
 	};
 
-//	std::string fullTypeName = typeString + std::to_string( numComponents );
 	char fullTypeName[32];
 	Gen_GetFullTypeName( type, 1, numComponents, fullTypeName );
 

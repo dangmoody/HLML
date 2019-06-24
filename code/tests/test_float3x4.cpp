@@ -257,38 +257,53 @@ TEMPER_TEST( TestRelational_float3x4 )
 		4.000000f, 4.000000f, 4.000000f, 4.000000f
 	);
 
-	bool3x4 test0 = mat0 <= mat0;
-	bool3x4 test1 = mat0 >= mat0;
-	bool3x4 test2 = mat0 < mat1;
+	bool3x4 test0  = mat0 <= mat0;
+	bool3x4 test1  = mat0 >= mat0;
+	bool3x4 test2  = mat0 <  mat1;
+	bool3x4 test3  = mat0 <  mat2;
+	bool3x4 test4  = mat0 <  mat3;
 
-	bool3x4 test3 = mat1 <= mat1;
-	bool3x4 test4 = mat1 >= mat1;
-	bool3x4 test5 = mat1 < mat2;
-	bool3x4 test6 = mat1 > mat0;
+	bool3x4 test5  = mat1 >  mat0;
+	bool3x4 test6  = mat1 <= mat1;
+	bool3x4 test7  = mat1 >= mat1;
+	bool3x4 test8  = mat1 <  mat2;
+	bool3x4 test9  = mat1 <  mat3;
 
-	bool3x4 test7 = mat2 <= mat2;
-	bool3x4 test8 = mat2 >= mat2;
-	bool3x4 test9 = mat2 < mat3;
-	bool3x4 test10 = mat2 > mat1;
+	bool3x4 test10 = mat2 >  mat0;
+	bool3x4 test11 = mat2 >  mat1;
+	bool3x4 test12 = mat2 <= mat2;
+	bool3x4 test13 = mat2 >= mat2;
+	bool3x4 test14 = mat2 <  mat3;
 
-	bool3x4 test11 = mat3 <= mat3;
-	bool3x4 test12 = mat3 >= mat3;
-	bool3x4 test13 = mat3 > mat2;
+	bool3x4 test15 = mat3 >  mat0;
+	bool3x4 test16 = mat3 >  mat1;
+	bool3x4 test17 = mat3 >  mat2;
+	bool3x4 test18 = mat3 <= mat3;
+	bool3x4 test19 = mat3 >= mat3;
 
-	TEMPER_EXPECT_TRUE( test0 == allTrue );
-	TEMPER_EXPECT_TRUE( test1 == allTrue );
-	TEMPER_EXPECT_TRUE( test2 == allTrue );
-	TEMPER_EXPECT_TRUE( test3 == allTrue );
-	TEMPER_EXPECT_TRUE( test4 == allTrue );
-	TEMPER_EXPECT_TRUE( test5 == allTrue );
-	TEMPER_EXPECT_TRUE( test6 == allTrue );
-	TEMPER_EXPECT_TRUE( test7 == allTrue );
-	TEMPER_EXPECT_TRUE( test8 == allTrue );
-	TEMPER_EXPECT_TRUE( test9 == allTrue );
+	TEMPER_EXPECT_TRUE( test0  == allTrue );
+	TEMPER_EXPECT_TRUE( test1  == allTrue );
+	TEMPER_EXPECT_TRUE( test2  == allTrue );
+	TEMPER_EXPECT_TRUE( test3  == allTrue );
+	TEMPER_EXPECT_TRUE( test4  == allTrue );
+
+	TEMPER_EXPECT_TRUE( test5  == allTrue );
+	TEMPER_EXPECT_TRUE( test6  == allTrue );
+	TEMPER_EXPECT_TRUE( test7  == allTrue );
+	TEMPER_EXPECT_TRUE( test8  == allTrue );
+	TEMPER_EXPECT_TRUE( test9  == allTrue );
+
 	TEMPER_EXPECT_TRUE( test10 == allTrue );
 	TEMPER_EXPECT_TRUE( test11 == allTrue );
 	TEMPER_EXPECT_TRUE( test12 == allTrue );
 	TEMPER_EXPECT_TRUE( test13 == allTrue );
+	TEMPER_EXPECT_TRUE( test14 == allTrue );
+
+	TEMPER_EXPECT_TRUE( test15 == allTrue );
+	TEMPER_EXPECT_TRUE( test16 == allTrue );
+	TEMPER_EXPECT_TRUE( test17 == allTrue );
+	TEMPER_EXPECT_TRUE( test18 == allTrue );
+	TEMPER_EXPECT_TRUE( test19 == allTrue );
 
 	TEMPER_PASS();
 }
@@ -307,9 +322,9 @@ TEMPER_TEST( TestArray_float3x4 )
 TEMPER_TEST( TestIdentity_float3x4 )
 {
 	float3x4 id = float3x4(
-		1.000000f, 0.000000f, 0.000000f, 0.000000f,
-		0.000000f, 1.000000f, 0.000000f, 0.000000f,
-		0.000000f, 0.000000f, 1.000000f, 0.000000f
+		1.000000f, 0.0f, 0.0f, 0.0f,
+		0.0f, 1.000000f, 0.0f, 0.0f,
+		0.0f, 0.0f, 1.000000f, 0.0f
 	);
 
 	float3x4 mat;
@@ -363,9 +378,9 @@ TEMPER_TEST( TestScale_float3x4 )
 	float3x4 scaled = scale( mat, float3( 2.000000f, 2.000000f, 2.000000f ) );
 
 	TEMPER_EXPECT_TRUE( scaled == float3x4(
-		2.000000f, 0.000000f, 0.000000f, 0.000000f,
-		0.000000f, 2.000000f, 0.000000f, 0.000000f,
-		0.000000f, 0.000000f, 2.000000f, 0.000000f
+		2.000000f, 0.0f, 0.0f, 0.0f,
+		0.0f, 2.000000f, 0.0f, 0.0f,
+		0.0f, 0.0f, 2.000000f, 0.0f
 	) );
 
 	TEMPER_PASS();
@@ -374,23 +389,16 @@ TEMPER_TEST( TestScale_float3x4 )
 TEMPER_SUITE( Test_float3x4 )
 {
 	TEMPER_RUN_TEST( TestAssignment_float3x4 );
-
 	TEMPER_RUN_TEST( TestArithmeticAddition_float3x4 );
 	TEMPER_RUN_TEST( TestArithmeticSubtraction_float3x4 );
 	TEMPER_RUN_TEST( TestArithmeticMultiplication_float3x4 );
 	TEMPER_RUN_TEST( TestArithmeticDivision_float3x4 );
-
 	TEMPER_RUN_TEST( TestIncrement_float3x4 );
 	TEMPER_RUN_TEST( TestDecrement_float3x4 );
-
 	TEMPER_RUN_TEST( TestRelational_float3x4 );
-
 	TEMPER_RUN_TEST( TestArray_float3x4 );
-
 	TEMPER_RUN_TEST( TestIdentity_float3x4 );
 	TEMPER_RUN_TEST( TestTranspose_float3x4 );
-
 	TEMPER_RUN_TEST( TestTranslate_float3x4 );
 	TEMPER_RUN_TEST( TestScale_float3x4 );
-
 }

@@ -2,7 +2,7 @@
 
 #include "gen_common.h"
 
-//extern std::string	Gen_GetParmListVector( const genType_t type, const u32 numComponents, const float* values );
+extern void		Gen_GetParmListVector( const genType_t type, const u32 numComponents, const float* values, char* outParmListStr );
 
 extern void		Gen_VectorOperatorsArithmetic( const genType_t type, const u32 numComponents, stringBuilder_t* sbHeader, stringBuilder_t* sbInl );
 

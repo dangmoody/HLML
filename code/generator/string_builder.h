@@ -11,6 +11,7 @@ extern "C" {
 typedef struct stringBuilder_t {
 	char*	str;
 	u32		length;
+	u32		alloc;
 } stringBuilder_t;
 
 extern stringBuilder_t	String_Create( const u32 size );
