@@ -51,13 +51,13 @@
     <ClCompile Include="FileIO_unix.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="allocator.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="time_win64.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="string_builder.c">
+    <ClCompile Include="allocator.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="string_builder.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

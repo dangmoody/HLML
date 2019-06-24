@@ -19,10 +19,10 @@ static u32 Concat( char* dst, char* src ) {
 #endif
 
 stringBuilder_t String_Create( const u32 size ) {
-	return (stringBuilder_t) {
-		.str = (char*) Mem_Alloc( size ),
-		.length = 0,
-		.alloc = size
+	return {
+		(char*) Mem_Alloc( size ),
+		0,
+		size
 	};
 }
 

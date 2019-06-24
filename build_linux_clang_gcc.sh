@@ -33,7 +33,7 @@ if [[ $config = release ]]; then
 fi
 
 # additional includes
-options_compiler="${options_compiler} -Icode/3rdparty/include/"
+options_compiler="${options_compiler} -Icode/3rdparty/include/ -D_CRT_SECURE_NO_WARNINGS"
 
 # add -Weverything for clang
 options_error="-Wall -Wextra -Wpedantic"
@@ -42,7 +42,7 @@ if [[ $compiler == clang* ]]; then
 fi
 
 # warnings to ignore
-ignore_warnings="-Wno-global-constructors -Wno-padded -Wno-unused-macros -Wno-old-style-cast"
+ignore_warnings="-Wno-global-constructors -Wno-padded -Wno-unused-macros -Wno-format-nonliteral -Wno-old-style-cast -Wno-double-promotion -Wno-float-equal -Wno-zero-as-null-pointer-constant"
 
 # clang-specific warnings to ignore
 if [[ $compiler == clang* ]]; then

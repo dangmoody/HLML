@@ -540,6 +540,12 @@ static bool GenerateTestsMatrix( void ) {
 				}
 
 				printf( "OK.\n" );
+
+//				if ( type == GEN_TYPE_DOUBLE && row == 2 && col == 2 ) {
+//					printf( "\n" );
+//					gen.Print();
+//					printf( "\n" );
+//				}
 			}
 		}
 	}

@@ -10,13 +10,14 @@ typedef struct allocatorInfo_t {
 	u8*	ptr;
 } allocatorInfo_t;
 
-static allocatorInfo_t g_allocatorInfo = { 0 };
+static allocatorInfo_t g_allocatorInfo;
 
 void Mem_Init( const u32 size ) {
 	assert( size > 0 );
 
-	g_allocatorInfo.ptr = (u8*) calloc( size + sizeof( allocatorInfo_t ), sizeof( u8 ) );
 	g_allocatorInfo.size = size;
+	g_allocatorInfo.offset = 0;
+	g_allocatorInfo.ptr = (u8*) calloc( size + sizeof( allocatorInfo_t ), sizeof( u8 ) );
 }
 
 void Mem_Shutdown( void ) {
@@ -35,5 +36,5 @@ u8* Mem_Alloc( const u32 size ) {
 }
 
 void Mem_Reset( void ) {
-	g_allocatorInfo.offset = sizeof( allocatorInfo_t );
+	g_allocatorInfo.offset = 0;
 }

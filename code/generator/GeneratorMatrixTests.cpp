@@ -83,7 +83,7 @@ bool GeneratorMatrixTests::Generate( const genType_t type, const u32 numRows, co
 	String_Append( &code, m_codeSuite.str );
 
 	char filename[64] = { 0 };
-	snprintf( filename, 64, "%stest_%s.cpp", GEN_TESTS_FOLDER_PATH, m_fullTypeName );
+	snprintf( filename, 64, GEN_TESTS_FOLDER_PATH "test_%s.cpp", m_fullTypeName );
 
 	bool32 result = FS_WriteEntireFile( filename, code.str, code.length );
 
@@ -97,12 +97,12 @@ bool GeneratorMatrixTests::Generate( const genType_t type, const u32 numRows, co
 }
 
 void GeneratorMatrixTests::GenerateTestAssignment() {
-	char testName[32] = { 0 };
-	snprintf( testName, 32, "TestAssignment_%s", m_fullTypeName );
+	char testName[64] = { 0 };
+	snprintf( testName, 64, "TestAssignment_%s", m_fullTypeName );
 
 	// HACK(DM): this is not ideal for obvious reasons
 	float fillValue = 999.0f;
-	char fillValueStr[6];
+	char fillValueStr[16];
 	Gen_GetNumericLiteral( m_type, 999, fillValueStr );
 
 	float valuesIdentity[4][4] = {

@@ -11,7 +11,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="allocator.c" />
+    <ClCompile Include="allocator.cpp" />
     <ClCompile Include="FileIO_common.cpp" />
     <ClCompile Include="FileIO_unix.cpp" />
     <ClCompile Include="FileIO_win64.cpp" />
@@ -24,7 +24,7 @@
     <ClCompile Include="GeneratorVectorTests.cpp" />
     <ClCompile Include="GeneratorVector.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="string_builder.c" />
+    <ClCompile Include="string_builder.cpp" />
     <ClCompile Include="time_win64.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -85,10 +85,10 @@
     <IntDir>$(SolutionDir)build\clang\$(Configuration)\intermediate\$(ProjectName)\</IntDir>
   </PropertyGroup>
   <PropertyGroup Label="LLVM" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <ClangClAdditionalOptions>-Weverything -Wall -Wextra -Wpedantic -Wno-c++98-compat-pedantic -Wno-covered-switch-default -Wno-newline-eof -Wno-reserved-id-macro -Wno-global-constructors -Wno-exit-time-destructors -Wno-format-nonliteral -Wno-old-style-cast -Wno-double-promotion -Wno-float-equal</ClangClAdditionalOptions>
+    <ClangClAdditionalOptions>-Weverything -Wall -Wextra -Wpedantic -Wno-c++98-compat-pedantic -Wno-covered-switch-default -Wno-newline-eof -Wno-reserved-id-macro -Wno-global-constructors -Wno-exit-time-destructors -Wno-format-nonliteral -Wno-old-style-cast -Wno-double-promotion -Wno-float-equal -Wno-zero-as-null-pointer-constant</ClangClAdditionalOptions>
   </PropertyGroup>
   <PropertyGroup Label="LLVM" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-    <ClangClAdditionalOptions>-Weverything -Wall -Wextra -Wpedantic -Wno-c++98-compat-pedantic -Wno-covered-switch-default -Wno-newline-eof -Wno-reserved-id-macro -Wno-global-constructors -Wno-exit-time-destructors -Wno-format-nonliteral -Wno-old-style-cast -Wno-double-promotion -Wno-float-equal</ClangClAdditionalOptions>
+    <ClangClAdditionalOptions>-Weverything -Wall -Wextra -Wpedantic -Wno-c++98-compat-pedantic -Wno-covered-switch-default -Wno-newline-eof -Wno-reserved-id-macro -Wno-global-constructors -Wno-exit-time-destructors -Wno-format-nonliteral -Wno-old-style-cast -Wno-double-promotion -Wno-float-equal -Wno-zero-as-null-pointer-constant</ClangClAdditionalOptions>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
