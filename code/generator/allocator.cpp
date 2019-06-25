@@ -1,7 +1,7 @@
 #include "allocator.h"
 
+#include <stdlib.h>
 #include <assert.h>
-#include <malloc.h>
 #include <memory.h>
 
 typedef struct allocatorInfo_t {
