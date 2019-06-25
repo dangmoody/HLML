@@ -8,6 +8,7 @@
 #include "allocator.h"
 
 #include <assert.h>
+#include <string.h>
 
 #define _USE_MATH_DEFINES	// for M_PI
 #include <math.h>
