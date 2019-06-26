@@ -1317,11 +1317,11 @@ void Gen_MatrixLookAt( const genType_t type, const u32 numRows, const u32 numCol
 	Gen_GetNumericLiteral( type, 0.0f, zeroStr );
 	Gen_GetNumericLiteral( type, 1.0f, oneStr );
 
-	char vectorTypeString[32];
-	sprintf( vectorTypeString, "%s%d", typeString, numVecComponents );
+	char vectorTypeString[64];
+	snprintf( vectorTypeString, 64, "%s%d", typeString, numVecComponents );
 
-	char fullTypeName[32];
-	sprintf( fullTypeName, "%s%dx%d", typeString, numRows, numCols );
+	char fullTypeName[64];
+	snprintf( fullTypeName, 64, "%s%dx%d", typeString, numRows, numCols );
 
 	// left-handed
 	{
