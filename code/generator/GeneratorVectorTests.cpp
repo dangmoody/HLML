@@ -7,7 +7,7 @@
 #include "gen_funcs_vector.h"
 
 bool GeneratorVectorTests::Generate( const genType_t type, const u32 numComponents ) {
-	const u32 testsCodeBytes = 10 * KB_TO_BYTES;
+	const u32 testsCodeBytes = 12 * KB_TO_BYTES;
 	const u32 suiteCodeBytes = 4 * KB_TO_BYTES;
 
 	m_codeTests = String_Create( testsCodeBytes );
@@ -532,8 +532,8 @@ void GeneratorVectorTests::GenerateTestDot() {
 		return;
 	}
 
-	char testName[16];
-	snprintf( testName, 16, "TestDot_%s", m_fullTypeName );
+	char testName[64];
+	snprintf( testName, 64, "TestDot_%s", m_fullTypeName );
 
 	genType_t dotReturnType = ( m_type == GEN_TYPE_UINT ) ? GEN_TYPE_INT : m_type;
 
@@ -728,8 +728,8 @@ void GeneratorVectorTests::GenerateTestPacking() {
 		return;
 	}
 
-	char testName[16] = { 0 };
-	snprintf( testName, 16, "TestPacking_%s", m_fullTypeName );
+	char testName[64] = { 0 };
+	snprintf( testName, 64, "TestPacking_%s", m_fullTypeName );
 
 	float values[] = { 255, 255, 0, 255 };	// magenta
 
