@@ -268,8 +268,8 @@ void GeneratorMatrixTests::GenerateTestMultiplyVector() {
 		return;
 	}
 
-	char testName[32] = { 0 };
-	snprintf( testName, 32, "TestMultiplyVector_%s", m_fullTypeName );
+	char testName[64] = { 0 };
+	snprintf( testName, 64, "TestMultiplyVector_%s", m_fullTypeName );
 
 	float valuesMat[4][4] = {
 		{ 1.0f,  2.0f,  3.0f,  4.0f  },
@@ -365,8 +365,8 @@ void GeneratorMatrixTests::GenerateTestIncrement() {
 	};
 
 	for ( u32 i = 0; i < GEN_OP_INCREMENT_COUNT; i++ ) {
-		char testName[32] = { 0 };
-		snprintf( testName, 32, "Test%s_%s", suffices[i], m_fullTypeName );
+		char testName[64] = { 0 };
+		snprintf( testName, 64, "Test%s_%s", suffices[i], m_fullTypeName );
 
 		String_Appendf( &m_codeTests, "TEMPER_TEST( %s )\n", testName );
 		String_Append(  &m_codeTests, "{\n" );
@@ -395,8 +395,8 @@ void GeneratorMatrixTests::GenerateTestRelational() {
 		return;
 	}
 
-	char testName[32] = { 0 };
-	snprintf( testName, 32, "TestRelational_%s", m_fullTypeName );
+	char testName[64] = { 0 };
+	snprintf( testName, 64, "TestRelational_%s", m_fullTypeName );
 
 	char boolTypeName[16] = { 0 };
 	snprintf( boolTypeName, 16, "bool%dx%d", m_numRows, m_numCols );
@@ -526,10 +526,10 @@ void GeneratorMatrixTests::GenerateTestBitwise() {
 		GEN_OP_BITWISE_SHIFT_RIGHT,
 	};
 
-	char testName[32] = { 0 };
+	char testName[64] = { 0 };
 
 	for ( u32 i = 0; i < _countof( ops ); i++ ) {
-		snprintf( testName, 32, "TestBitwise_%s_%s", suffices[i], m_fullTypeName );
+		snprintf( testName, 64, "TestBitwise_%s_%s", suffices[i], m_fullTypeName );
 
 		String_Appendf( &m_codeTests, "TEMPER_TEST( %s )\n", testName );
 		String_Append(  &m_codeTests, "{\n" );
@@ -549,7 +549,7 @@ void GeneratorMatrixTests::GenerateTestBitwise() {
 
 	// unary
 	{
-		snprintf( testName, 32, "TestBitwise_Unary_%s", m_fullTypeName );
+		snprintf( testName, 64, "TestBitwise_Unary_%s", m_fullTypeName );
 
 		char parmList[256];
 		Gen_GetParmListMatrixSingleValue( m_type, m_numRows, m_numCols, 0.0f, parmList );
@@ -577,8 +577,8 @@ void GeneratorMatrixTests::GenerateTestArray() {
 	Gen_GetNumericLiteral( m_type, 0, zeroStr );
 	Gen_GetNumericLiteral( m_type, 1, oneStr );
 
-	char testName[32] = { 0 };
-	snprintf( testName, 32, "TestArray_%s", m_fullTypeName );
+	char testName[64] = { 0 };
+	snprintf( testName, 64, "TestArray_%s", m_fullTypeName );
 
 	String_Appendf( &m_codeTests, "TEMPER_TEST( %s )\n", testName );
 	String_Appendf( &m_codeTests, "{\n" );
@@ -606,8 +606,8 @@ void GeneratorMatrixTests::GenerateTestArray() {
 }
 
 void GeneratorMatrixTests::GenerateTestIdentity() {
-	char testName[32] = { 0 };
-	snprintf( testName, 32, "TestIdentity_%s", m_fullTypeName );
+	char testName[64] = { 0 };
+	snprintf( testName, 64, "TestIdentity_%s", m_fullTypeName );
 
 	char zeroStr[16];
 	char oneStr[16];
@@ -636,8 +636,8 @@ void GeneratorMatrixTests::GenerateTestIdentity() {
 }
 
 void GeneratorMatrixTests::GenerateTestTranspose() {
-	char testName[32] = { 0 };
-	snprintf( testName, 32, "TestTranspose_%s", m_fullTypeName );
+	char testName[64] = { 0 };
+	snprintf( testName, 64, "TestTranspose_%s", m_fullTypeName );
 
 	float valuesNormal[GEN_COMPONENT_COUNT_MAX][GEN_COMPONENT_COUNT_MAX] = {
 		{ 0.0f,  1.0f,  2.0f,  3.0f  },
@@ -685,8 +685,8 @@ void GeneratorMatrixTests::GenerateTestInverse() {
 		return;
 	}
 
-	char testName[32] = { 0 };
-	snprintf( testName, 32, "TestInverse_%s", m_fullTypeName );
+	char testName[64] = { 0 };
+	snprintf( testName, 64, "TestInverse_%s", m_fullTypeName );
 
 	// matrices chosen because they gave nice whole numbers for determinants
 	float mat2x2[4][4] = {
@@ -751,8 +751,8 @@ void GeneratorMatrixTests::GenerateTestDeterminant() {
 		return;
 	}
 
-	char testName[32] = { 0 };
-	snprintf( testName, 32, "TestDeterminant_%s", m_fullTypeName );
+	char testName[64] = { 0 };
+	snprintf( testName, 64, "TestDeterminant_%s", m_fullTypeName );
 
 	// matrices chosen because they gave nice whole numbers for determinants
 	float mat2x2[4][4] = {
@@ -830,8 +830,8 @@ void GeneratorMatrixTests::GenerateTestTranslate() {
 		return;
 	}
 
-	char testName[32] = { 0 };
-	snprintf( testName, 32, "TestTranslate_%s", m_fullTypeName );
+	char testName[64] = { 0 };
+	snprintf( testName, 64, "TestTranslate_%s", m_fullTypeName );
 
 	char valueStr[16];
 
@@ -925,8 +925,8 @@ void GeneratorMatrixTests::GenerateTestRotate() {
 		return;
 	}
 
-	char testName[32] = { 0 };
-	snprintf( testName, 32, "TestRotate_%s", m_fullTypeName );
+	char testName[64] = { 0 };
+	snprintf( testName, 64, "TestRotate_%s", m_fullTypeName );
 
 	float rotDegrees = 45.0f;
 	float rotRadians = rotDegrees * static_cast<float>( M_PI ) / 180.0f;
@@ -1039,8 +1039,8 @@ void GeneratorMatrixTests::GenerateTestScale() {
 		return;
 	}
 
-	char testName[32] = { 0 };
-	snprintf( testName, 32, "TestScale_%s", m_fullTypeName );
+	char testName[64] = { 0 };
+	snprintf( testName, 64, "TestScale_%s", m_fullTypeName );
 
 	const u32 scaleCols = 3;
 
@@ -1078,8 +1078,8 @@ void GeneratorMatrixTests::GenerateTestOrtho() {
 		return;
 	}
 
-	char testName[32] = { 0 };
-	snprintf( testName, 32, "TestOrtho_%s", m_fullTypeName );
+	char testName[64] = { 0 };
+	snprintf( testName, 64, "TestOrtho_%s", m_fullTypeName );
 
 	// all answers for 1280 x 720, ortho size 5, znear: -1, zfar: 100
 
@@ -1182,8 +1182,8 @@ void GeneratorMatrixTests::GenerateTestPerspective() {
 		return;
 	}
 
-	char testName[32] = { 0 };
-	snprintf( testName, 32, "TestPerspective_%s", m_fullTypeName );
+	char testName[64] = { 0 };
+	snprintf( testName, 64, "TestPerspective_%s", m_fullTypeName );
 
 	// all answers for 1280 x 720, fov: 90 degrees, znear: 0.1, zfar: 100
 
@@ -1277,8 +1277,8 @@ void GeneratorMatrixTests::GenerateTestLookAt() {
 		return;
 	}
 
-	char testName[32] = { 0 };
-	snprintf( testName, 32, "TestLookAt_%s", m_fullTypeName );
+	char testName[64] = { 0 };
+	snprintf( testName, 64, "TestLookAt_%s", m_fullTypeName );
 
 	float currentPos[]	= { 0.0f, 0.0f, 0.0f };
 	float targetPos[]	= { 1.0f, 0.0f, 1.0f };
