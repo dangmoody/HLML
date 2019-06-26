@@ -8,7 +8,7 @@
 
 bool GeneratorVectorTests::Generate( const genType_t type, const u32 numComponents ) {
 	const u32 testsCodeBytes = 10 * KB_TO_BYTES;
-	const u32 suiteCodeBytes = 1 * KB_TO_BYTES;
+	const u32 suiteCodeBytes = 4 * KB_TO_BYTES;
 
 	m_codeTests = String_Create( testsCodeBytes );
 	m_codeSuite = String_Create( suiteCodeBytes );
