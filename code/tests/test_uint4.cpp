@@ -279,7 +279,7 @@ TEMPER_TEST( TestLength_uint4 )
 	TEMPER_PASS();
 }
 
-TEMPER_TEST( TestPacking_uin )
+TEMPER_TEST( TestPacking_uint4 )
 {
 	uint32_t answerPacked = 0xFFFF00FF;
 	uint4 answerUnpacked = uint4( 255U, 255U, 0U, 255U );
@@ -314,5 +314,5 @@ TEMPER_SUITE( Test_uint4 )
 	TEMPER_RUN_TEST( TestBitwise_ShiftRight_uint4 );
 	TEMPER_RUN_TEST( TestBitwiseUnary_uint4 );
 	TEMPER_RUN_TEST( TestLength_uint4 );
-	TEMPER_RUN_TEST( TestPacking_uin );
+	TEMPER_RUN_TEST( TestPacking_uint4 );
 }

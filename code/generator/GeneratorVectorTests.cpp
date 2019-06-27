@@ -733,7 +733,7 @@ void GeneratorVectorTests::GenerateTestPacking() {
 
 	float values[] = { 255, 255, 0, 255 };	// magenta
 
-	char parmListAnswerUnpacked[16] = { 0 };
+	char parmListAnswerUnpacked[64] = { 0 };
 	Gen_GetParmListVector( m_type, m_numComponents, values, parmListAnswerUnpacked );
 
 	const char* answerPackedStr = "0xFFFF00FF";
