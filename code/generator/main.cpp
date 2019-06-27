@@ -401,10 +401,10 @@ static bool GenerateOperatorsVector( void ) {
 }
 
 static bool GenerateOperatorsMatrix( void ) {
-	char filePathHeader[64] = { 0 };
+	char filePathHeader[64];
 	sprintf( filePathHeader, "%s%s.h", GEN_OUT_GEN_FOLDER_PATH, GEN_FILENAME_OPERATORS_MATRIX );
 
-	char filePathInl[64] = { 0 };
+	char filePathInl[64];
 	sprintf( filePathInl, "%s%s.inl", GEN_OUT_GEN_FOLDER_PATH, GEN_FILENAME_OPERATORS_MATRIX );
 
 	stringBuilder_t contentHeader = String_Create( 512 * KB_TO_BYTES );
@@ -446,7 +446,7 @@ static bool GenerateOperatorsMatrix( void ) {
 
 		for ( u32 row = GEN_COMPONENT_COUNT_MIN; row <= GEN_COMPONENT_COUNT_MAX; row++ ) {
 			for ( u32 col = GEN_COMPONENT_COUNT_MIN; col <= GEN_COMPONENT_COUNT_MAX; col++ ) {
-				char fullTypeName[32];
+				char fullTypeName[64];
 				Gen_GetFullTypeName( type, row, col, fullTypeName );
 
 				printf( "Matrix operators %s...", fullTypeName );
@@ -540,12 +540,6 @@ static bool GenerateTestsMatrix( void ) {
 				}
 
 				printf( "OK.\n" );
-
-//				if ( type == GEN_TYPE_DOUBLE && row == 2 && col == 2 ) {
-//					printf( "\n" );
-//					gen.Print();
-//					printf( "\n" );
-//				}
 			}
 		}
 	}

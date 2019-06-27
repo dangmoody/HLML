@@ -87,8 +87,8 @@ bool GeneratorVectorTests::Generate( const genType_t type, const u32 numComponen
 }
 
 void GeneratorVectorTests::GenerateTestAssignment() {
-	char testName[32] = { 0 };
-	snprintf( testName, 32, "TestAssignment_%s", m_fullTypeName );
+	char testName[64] = { 0 };
+	snprintf( testName, 64, "TestAssignment_%s", m_fullTypeName );
 
 	char oneStr[16];
 	Gen_GetNumericLiteral( m_type, 1, oneStr );
@@ -119,8 +119,8 @@ void GeneratorVectorTests::GenerateTestAssignment() {
 }
 
 void GeneratorVectorTests::GenerateTestArray() {
-	char testName[32] = { 0 };
-	snprintf( testName, 32, "TestArray_%s", m_fullTypeName );
+	char testName[64] = { 0 };
+	snprintf( testName, 64, "TestArray_%s", m_fullTypeName );
 
 	float values[] = { 0.0f, 1.0f, 2.0f, 3.0f };
 
@@ -259,13 +259,13 @@ void GeneratorVectorTests::GenerateTestRelational() {
 		return;
 	}
 
-	char testName[32] = { 0 };
-	snprintf( testName, 32, "TestRelational_%s", m_fullTypeName );
+	char testName[64] = { 0 };
+	snprintf( testName, 64, "TestRelational_%s", m_fullTypeName );
 
 	String_Appendf( &m_codeSuite, "\tTEMPER_RUN_TEST( %s );\n", testName );
 
-	char boolTypeName[6];
-	snprintf( boolTypeName, 6, "bool%d", m_numComponents );
+	char boolTypeName[16];
+	snprintf( boolTypeName, 16, "bool%d", m_numComponents );
 
 	char zeroStr[16];
 	char oneStr[16];
@@ -500,12 +500,12 @@ void GeneratorVectorTests::GenerateTestNormalized() {
 		return;
 	}
 
-	char testName[32] = { 0 };
-	snprintf( testName, 32, "TestNormalized_%s", m_fullTypeName );
+	char testName[64] = { 0 };
+	snprintf( testName, 64, "TestNormalized_%s", m_fullTypeName );
 
 	float values[] = { 2.0f, 3.0f, 4.0f, 5.0f };
 
-	char parmList[32] = { 0 };
+	char parmList[64] = { 0 };
 	Gen_GetParmListVector( m_type, m_numComponents, values, parmList );
 
 	genType_t floatingPointType = Gen_GetSupportedFloatingPointType( m_type );
