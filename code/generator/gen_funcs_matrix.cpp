@@ -1313,8 +1313,8 @@ void Gen_MatrixLookAt( const genType_t type, const u32 numRows, const u32 numCol
 
 	const char* typeString = Gen_GetTypeString( type );
 
-	char zeroStr[GEN_STRING_LENGTH_NUMERIC_LITERAL];
-	char oneStr[GEN_STRING_LENGTH_NUMERIC_LITERAL];
+	char zeroStr[GEN_STRING_LENGTH_NUMERIC_LITERAL] = { 0 };
+	char oneStr[GEN_STRING_LENGTH_NUMERIC_LITERAL] = { 0 };
 
 	Gen_GetNumericLiteral( type, 0.0f, zeroStr );
 	Gen_GetNumericLiteral( type, 1.0f, oneStr );
