@@ -19,7 +19,7 @@ private:
 
 	u32				m_numComponents;
 
-	char			m_fullTypeName[16];
+	char			m_fullTypeName[GEN_STRING_LENGTH_TYPE_NAME];
 	const char*		m_typeString;
 	const char*		m_memberTypeString;
 

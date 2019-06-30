@@ -20,8 +20,8 @@ private:
 	u32				m_numRows;
 	u32				m_numCols;
 
-	char			m_vectorTypeString[32];
-	char			m_fullTypeName[32];
+	char			m_vectorTypeString[GEN_STRING_LENGTH_TYPE_NAME];
+	char			m_fullTypeName[GEN_STRING_LENGTH_TYPE_NAME];
 	const char*		m_typeString;
 	const char*		m_memberTypeString;
 

@@ -111,14 +111,13 @@ static void MatrixOperatorMul( const genType_t type, const u32 numRows, const u3
 
 	const char* typeString = Gen_GetTypeString( type );
 
-	char fullTypeName[32];
-	sprintf( fullTypeName, "%s%dx%d", typeString, numRows, numCols );
+	char fullTypeName[GEN_STRING_LENGTH_TYPE_NAME];
+	char rhsTypeName[GEN_STRING_LENGTH_TYPE_NAME];
+	char returnTypeName[GEN_STRING_LENGTH_TYPE_NAME];
 
-	char rhsTypeName[32];
-	sprintf( rhsTypeName, "%s%dx%d", typeString, numCols, numRows );
-
-	char returnTypeName[32];
-	sprintf( returnTypeName, "%s%dx%d", typeString, numRows, numRows );
+	snprintf( fullTypeName, GEN_STRING_LENGTH_TYPE_NAME, "%s%dx%d", typeString, numRows, numCols );
+	snprintf( rhsTypeName, GEN_STRING_LENGTH_TYPE_NAME, "%s%dx%d", typeString, numCols, numRows );
+	snprintf( returnTypeName, GEN_STRING_LENGTH_TYPE_NAME, "%s%dx%d", typeString, numRows, numRows );
 
 	// header
 	{
@@ -202,8 +201,10 @@ static void MatrixOperatorMul( const genType_t type, const u32 numRows, const u3
 }
 
 static void MatrixOperatorDiv( const genType_t type, const u32 numRows, const u32 numCols, stringBuilder_t* sbHeader, stringBuilder_t* sbInl ) {
-	char fullTypeName[32];
-	Gen_GetFullTypeName( type, numRows, numCols, fullTypeName );
+	const char* typeString = Gen_GetTypeString( type );
+
+	char fullTypeName[GEN_STRING_LENGTH_TYPE_NAME];
+	snprintf( fullTypeName, GEN_STRING_LENGTH_TYPE_NAME, "%s%dx%d", typeString, numRows, numCols );
 
 	// main operator
 	DocMatrixDivision( sbHeader, fullTypeName );
@@ -234,13 +235,14 @@ static void MatrixMulVector( const genType_t type, const u32 numRows, const u32 
 	assert( numCols >= GEN_COMPONENT_COUNT_MIN );
 	assert( numCols <= GEN_COMPONENT_COUNT_MAX );
 
+	const char* typeString = Gen_GetTypeString( type );
 	const char* memberTypeString = Gen_GetMemberTypeString( type );
 
-	char vectorTypeName[32];
-	sprintf( vectorTypeName, "%s%d", Gen_GetTypeString( type ), numCols );
+	char vectorTypeName[GEN_STRING_LENGTH_TYPE_NAME];
+	snprintf( vectorTypeName, GEN_STRING_LENGTH_TYPE_NAME, "%s%d", typeString, numCols );
 
-	char fullTypeName[32];
-	Gen_GetFullTypeName( type, numRows, numCols, fullTypeName );
+	char fullTypeName[GEN_STRING_LENGTH_TYPE_NAME];
+	snprintf( fullTypeName, GEN_STRING_LENGTH_TYPE_NAME, "%s%dx%d", typeString, numRows, numCols );
 
 	// main operator
 	{
@@ -286,7 +288,7 @@ void Gen_GetParmListMatrix( const genType_t type, const u32 numRows, const u32 n
 	assert( numCols >= GEN_COMPONENT_COUNT_MIN );
 	assert( numCols <= GEN_COMPONENT_COUNT_MAX );
 
-	char valueStr[16];
+	char valueStr[GEN_STRING_LENGTH_NUMERIC_LITERAL];
 
 	int pos = 0;
 
@@ -336,7 +338,7 @@ void Gen_GetParmListMatrixDiagonal( const genType_t type, const u32 numRows, con
 
 	assert( numValues <= 4 );
 
-	char valueStr[16];
+	char valueStr[GEN_STRING_LENGTH_NUMERIC_LITERAL];
 
 	int pos = 0;
 
@@ -375,7 +377,7 @@ void Gen_GetParmListMatrixSingleValue( const genType_t type, const u32 numRows, 
 	assert( numCols >= GEN_COMPONENT_COUNT_MIN );
 	assert( numCols <= GEN_COMPONENT_COUNT_MAX );
 
-	char valueStr[16];
+	char valueStr[GEN_STRING_LENGTH_NUMERIC_LITERAL];
 	Gen_GetNumericLiteral( type, value, valueStr );
 
 	int pos = 0;
@@ -469,11 +471,11 @@ void Gen_MatrixIdentity( const genType_t type, const u32 numRows, const u32 numC
 	assert( numCols >= GEN_COMPONENT_COUNT_MIN );
 	assert( numCols <= GEN_COMPONENT_COUNT_MAX );
 
-	char fullTypeName[32];
-	snprintf( fullTypeName, 32, "%s%dx%d", Gen_GetTypeString( type ), numRows, numCols );
+	char fullTypeName[GEN_STRING_LENGTH_TYPE_NAME];
+	snprintf( fullTypeName, GEN_STRING_LENGTH_TYPE_NAME, "%s%dx%d", Gen_GetTypeString( type ), numRows, numCols );
 
-	char zeroStr[16];
-	char oneStr[16];
+	char zeroStr[GEN_STRING_LENGTH_NUMERIC_LITERAL];
+	char oneStr[GEN_STRING_LENGTH_NUMERIC_LITERAL];
 
 	Gen_GetNumericLiteral( type, 0, zeroStr );
 	Gen_GetNumericLiteral( type, 1, oneStr );
@@ -507,11 +509,11 @@ void Gen_MatrixTranspose( const genType_t type, const u32 numRows, const u32 num
 
 	const char* typeString = Gen_GetTypeString( type );
 
-	char fullTypeName[32];
-	sprintf( fullTypeName, "%s%dx%d", typeString, numRows, numCols );
+	char fullTypeName[GEN_STRING_LENGTH_TYPE_NAME];
+	snprintf( fullTypeName, GEN_STRING_LENGTH_TYPE_NAME, "%s%dx%d", typeString, numRows, numCols );
 
-	char transposeTypeName[32];
-	sprintf( transposeTypeName, "%s%dx%d", typeString, numCols, numRows );
+	char transposeTypeName[GEN_STRING_LENGTH_TYPE_NAME];
+	snprintf( transposeTypeName, GEN_STRING_LENGTH_TYPE_NAME, "%s%dx%d", typeString, numCols, numRows );
 
 	DocTranpose( sbHeader, fullTypeName );
 	String_Appendf( sbHeader, "inline %s transpose( const %s& mat );\n", transposeTypeName, fullTypeName );
@@ -559,17 +561,17 @@ void Gen_MatrixInverse( const genType_t type, const u32 numRows, const u32 numCo
 		return;
 	}
 
-	char oneStr[16];
+	char oneStr[GEN_STRING_LENGTH_NUMERIC_LITERAL];
 	Gen_GetNumericLiteral( type, 1, oneStr );
 
 	const char* typeString = Gen_GetTypeString( type );
 	const char* memberTypeString = Gen_GetMemberTypeString( type );
 
-	char vectorTypeName[32];
-	sprintf( vectorTypeName, "%s%d", typeString, numCols );
+	char vectorTypeName[GEN_STRING_LENGTH_TYPE_NAME];
+	snprintf( vectorTypeName, GEN_STRING_LENGTH_TYPE_NAME, "%s%d", typeString, numCols );
 
-	char fullTypeName[32];
-	sprintf( fullTypeName, "%s%dx%d", typeString, numRows, numCols );
+	char fullTypeName[GEN_STRING_LENGTH_TYPE_NAME];
+	snprintf( fullTypeName, GEN_STRING_LENGTH_TYPE_NAME, "%s%dx%d", typeString, numRows, numCols );
 
 	DocInverse( sbHeader, fullTypeName );
 	String_Appendf( sbHeader, "inline %s inverse( const %s& mat );\n", fullTypeName, fullTypeName );
@@ -691,11 +693,11 @@ void Gen_MatrixDeterminant( const genType_t type, const u32 numRows, const u32 n
 	const char* typeString = Gen_GetTypeString( type );
 	const char* memberTypeString = Gen_GetMemberTypeString( type );
 
-	char vectorTypeName[32];
-	sprintf( vectorTypeName, "%s%d", typeString, numCols );
+	char vectorTypeName[GEN_STRING_LENGTH_TYPE_NAME];
+	snprintf( vectorTypeName, GEN_STRING_LENGTH_TYPE_NAME, "%s%d", typeString, numCols );
 
-	char fullTypeName[32];
-	sprintf( fullTypeName, "%s%dx%d", typeString, numRows, numCols );
+	char fullTypeName[GEN_STRING_LENGTH_TYPE_NAME];
+	snprintf( fullTypeName, GEN_STRING_LENGTH_TYPE_NAME, "%s%dx%d", typeString, numRows, numCols );
 
 	DocDeterminant( sbHeader, fullTypeName );
 	String_Appendf( sbHeader, "inline %s determinant( const %s& mat );\n", memberTypeString, fullTypeName );
@@ -759,8 +761,8 @@ void Gen_MatrixTranslate( const genType_t type, const u32 numRows, const u32 num
 
 	const char* typeString = Gen_GetTypeString( type );
 
-	char fullTypeName[32];
-	sprintf( fullTypeName, "%s%dx%d", typeString, numRows, numCols );
+	char fullTypeName[GEN_STRING_LENGTH_TYPE_NAME];
+	Gen_GetFullTypeName( type, numRows, numCols, fullTypeName );
 
 	DocTranslate( sbHeader, fullTypeName );
 	String_Appendf( sbHeader, "inline %s translate( const %s& mat, const %s%d& vec );\n", fullTypeName, fullTypeName, typeString, vecComponents );
@@ -819,13 +821,13 @@ void Gen_MatrixRotate( const genType_t type, const u32 numRows, const u32 numCol
 
 	const char* typeString = Gen_GetTypeString( type );
 
-	char vectorTypeName[32];
-	sprintf( vectorTypeName, "%s%d", typeString, numRotateVectorComponents );
+	char vectorTypeName[GEN_STRING_LENGTH_TYPE_NAME];
+	snprintf( vectorTypeName, GEN_STRING_LENGTH_TYPE_NAME, "%s%d", typeString, numRotateVectorComponents );
 
-	char fullTypeName[32];
-	sprintf( fullTypeName, "%s%dx%d", typeString, numRows, numCols );
+	char fullTypeName[GEN_STRING_LENGTH_TYPE_NAME];
+	snprintf( fullTypeName, GEN_STRING_LENGTH_TYPE_NAME, "%s%dx%d", typeString, numRows, numCols );
 
-	char oneStr[16];
+	char oneStr[GEN_STRING_LENGTH_NUMERIC_LITERAL];
 	Gen_GetNumericLiteral( type, 1, oneStr );
 
 	stringBuilder_t parmListStr = String_Create( 64 );
@@ -899,13 +901,13 @@ void Gen_MatrixScale( const genType_t type, const u32 numRows, const u32 numCols
 	const char* typeString = Gen_GetTypeString( type );
 	const char* memberTypeString = Gen_GetMemberTypeString( type );
 
-	char fullTypeName[32];
-	sprintf( fullTypeName, "%s%dx%d", typeString, numRows, numCols );
+	char fullTypeName[GEN_STRING_LENGTH_TYPE_NAME];
+	snprintf( fullTypeName, GEN_STRING_LENGTH_TYPE_NAME, "%s%dx%d", typeString, numRows, numCols );
 
 	const u32 scaleCols = 3;
 
-	char scaleVectorString[32];
-	sprintf( scaleVectorString, "%s%d", typeString, scaleCols );
+	char scaleVectorString[GEN_STRING_LENGTH_TYPE_NAME];
+	snprintf( scaleVectorString, GEN_STRING_LENGTH_TYPE_NAME, "%s%d", typeString, scaleCols );
 
 	DocScaleUniform( sbHeader, fullTypeName );
 	String_Appendf( sbHeader, "inline %s scale( const %s& mat, const %s scalar );\n", fullTypeName, fullTypeName, memberTypeString );
@@ -973,14 +975,14 @@ void Gen_MatrixOrtho( const genType_t type, const u32 numRows, const u32 numCols
 
 	const char* typeString = Gen_GetTypeString( type );
 
-	char fullTypeName[32];
-	sprintf( fullTypeName, "%s%dx%d", typeString, numRows, numCols );
+	char fullTypeName[GEN_STRING_LENGTH_TYPE_NAME];
+	snprintf( fullTypeName, GEN_STRING_LENGTH_TYPE_NAME, "%s%dx%d", typeString, numRows, numCols );
 
-	char minusTwoStr[16];
-	char minusOneStr[16];
-	char zeroStr[16];
-	char oneStr[16];
-	char twoStr[16];
+	char minusTwoStr[GEN_STRING_LENGTH_NUMERIC_LITERAL];
+	char minusOneStr[GEN_STRING_LENGTH_NUMERIC_LITERAL];
+	char zeroStr[GEN_STRING_LENGTH_NUMERIC_LITERAL];
+	char oneStr[GEN_STRING_LENGTH_NUMERIC_LITERAL];
+	char twoStr[GEN_STRING_LENGTH_NUMERIC_LITERAL];
 
 	Gen_GetNumericLiteral( type, -2, minusTwoStr );
 	Gen_GetNumericLiteral( type, -1, minusOneStr );
@@ -1148,14 +1150,14 @@ void Gen_MatrixPerspective( const genType_t type, const u32 numRows, const u32 n
 
 	const char* typeString = Gen_GetTypeString( type );
 
-	char fullTypeName[32];
-	sprintf( fullTypeName, "%s%dx%d", typeString, numRows, numCols );
+	char fullTypeName[GEN_STRING_LENGTH_TYPE_NAME];
+	snprintf( fullTypeName, GEN_STRING_LENGTH_TYPE_NAME, "%s%dx%d", typeString, numRows, numCols );
 
-	char minusOneStr[16];
-	char zeroStr[16];
-	char halfStr[16];
-	char oneStr[16];
-	char twoStr[16];
+	char minusOneStr[GEN_STRING_LENGTH_NUMERIC_LITERAL];
+	char zeroStr[GEN_STRING_LENGTH_NUMERIC_LITERAL];
+	char halfStr[GEN_STRING_LENGTH_NUMERIC_LITERAL];
+	char oneStr[GEN_STRING_LENGTH_NUMERIC_LITERAL];
+	char twoStr[GEN_STRING_LENGTH_NUMERIC_LITERAL];
 
 	Gen_GetNumericLiteral( type, -1.0f, minusOneStr );
 	Gen_GetNumericLiteral( type,  0.0f, zeroStr );
@@ -1311,17 +1313,17 @@ void Gen_MatrixLookAt( const genType_t type, const u32 numRows, const u32 numCol
 
 	const char* typeString = Gen_GetTypeString( type );
 
-	char zeroStr[16];
-	char oneStr[16];
+	char zeroStr[GEN_STRING_LENGTH_NUMERIC_LITERAL];
+	char oneStr[GEN_STRING_LENGTH_NUMERIC_LITERAL];
 
 	Gen_GetNumericLiteral( type, 0.0f, zeroStr );
 	Gen_GetNumericLiteral( type, 1.0f, oneStr );
 
-	char vectorTypeString[64];
-	snprintf( vectorTypeString, 64, "%s%d", typeString, numVecComponents );
+	char vectorTypeString[GEN_STRING_LENGTH_TYPE_NAME];
+	snprintf( vectorTypeString, GEN_STRING_LENGTH_TYPE_NAME, "%s%d", typeString, numVecComponents );
 
-	char fullTypeName[64];
-	snprintf( fullTypeName, 64, "%s%dx%d", typeString, numRows, numCols );
+	char fullTypeName[GEN_STRING_LENGTH_TYPE_NAME];
+	snprintf( fullTypeName, GEN_STRING_LENGTH_TYPE_NAME, "%s%dx%d", typeString, numRows, numCols );
 
 	// left-handed
 	{

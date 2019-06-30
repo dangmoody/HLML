@@ -21,10 +21,10 @@ bool GeneratorMatrix::Generate( const genType_t type, const u32 numRows, const u
 	m_typeString = Gen_GetTypeString( type );
 	m_memberTypeString = Gen_GetMemberTypeString( type );
 
-	sprintf( m_fullTypeName, "%s%dx%d", m_typeString, m_numRows, m_numCols );
-	sprintf( m_transposedTypeName, "%s%dx%d", m_typeString, m_numCols, m_numRows );
+	snprintf( m_fullTypeName, GEN_STRING_LENGTH_TYPE_NAME, "%s%dx%d", m_typeString, m_numRows, m_numCols );
+	snprintf( m_transposedTypeName, GEN_STRING_LENGTH_TYPE_NAME, "%s%dx%d", m_typeString, m_numCols, m_numRows );
 
-	sprintf( m_vectorMemberTypeString, "%s%d", m_typeString, m_numCols );
+	snprintf( m_vectorMemberTypeString, GEN_STRING_LENGTH_TYPE_NAME, "%s%d", m_typeString, m_numCols );
 
 	m_codeHeader = String_Create( 8 * KB_TO_BYTES );
 	m_codeInl = String_Create( 8 * KB_TO_BYTES );
@@ -85,10 +85,10 @@ bool GeneratorMatrix::Generate( const genType_t type, const u32 numRows, const u
 	String_Append(  &m_codeHeader, "\n" );
 
 	char fileNameHeader[64];
-	sprintf( fileNameHeader, "%s%s.h", GEN_OUT_GEN_FOLDER_PATH, m_fullTypeName );
+	snprintf( fileNameHeader, 64, "%s%s.h", GEN_OUT_GEN_FOLDER_PATH, m_fullTypeName );
 
 	char fileNameInl[64];
-	sprintf( fileNameInl, "%s%s.inl", GEN_OUT_GEN_FOLDER_PATH, m_fullTypeName );
+	snprintf( fileNameInl, 64, "%s%s.inl", GEN_OUT_GEN_FOLDER_PATH, m_fullTypeName );
 
 	bool32 wroteHeader	= FS_WriteEntireFile( fileNameHeader, m_codeHeader.str, m_codeHeader.length );
 	bool32 wroteInl		= FS_WriteEntireFile( fileNameInl, m_codeInl.str, m_codeInl.length );

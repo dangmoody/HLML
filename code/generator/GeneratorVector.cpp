@@ -22,10 +22,10 @@ bool GeneratorVector::Generate( const genType_t type, const u32 numComponents ) 
 	m_typeString = Gen_GetTypeString( m_type );
 	m_memberTypeString = Gen_GetMemberTypeString( m_type );
 
-	Gen_GetFullTypeName( type, 1, numComponents, m_fullTypeName );
+	snprintf( m_fullTypeName, GEN_STRING_LENGTH_TYPE_NAME, "%s%d", m_typeString, numComponents );
 
 	m_codeHeader = String_Create( 32 * KB_TO_BYTES );
-	m_codeInl = String_Create( 32 * KB_TO_BYTES );
+	m_codeInl = String_Create( 4 * KB_TO_BYTES );
 
 	// header pre-functions
 	{
@@ -136,10 +136,10 @@ bool GeneratorVector::Generate( const genType_t type, const u32 numComponents ) 
 	String_Append(  &m_codeHeader, "\n" );
 
 	char fileNameHeader[64] = {};
-	sprintf( fileNameHeader, "%s%s.h", GEN_OUT_GEN_FOLDER_PATH, m_fullTypeName );
+	snprintf( fileNameHeader, 64, "%s%s.h", GEN_OUT_GEN_FOLDER_PATH, m_fullTypeName );
 
 	char fileNameInl[64] = {};
-	sprintf( fileNameInl, "%s%s.inl", GEN_OUT_GEN_FOLDER_PATH, m_fullTypeName );
+	snprintf( fileNameInl, 64, "%s%s.inl", GEN_OUT_GEN_FOLDER_PATH, m_fullTypeName );
 
 	bool32 wroteHeader	= FS_WriteEntireFile( fileNameHeader, m_codeHeader.str, m_codeHeader.length );
 	bool32 wroteInl		= FS_WriteEntireFile( fileNameInl, m_codeInl.str, m_codeInl.length );
@@ -348,7 +348,8 @@ void GeneratorVector::GenerateSwizzleFuncs() {
 			const u32 z = ( ( funcIndex - y * vecComponents - x ) / ( vecComponents * vecComponents ) ) % vecComponents;
 			const u32 w = ( ( funcIndex - z * vecComponents * vecComponents - x ) / ( vecComponents * vecComponents * vecComponents ) ) % vecComponents;
 
-			sprintf( funcName, "%c%c%c%c", GEN_COMPONENT_NAMES_VECTOR[x], GEN_COMPONENT_NAMES_VECTOR[y], GEN_COMPONENT_NAMES_VECTOR[z], GEN_COMPONENT_NAMES_VECTOR[w] );
+			snprintf( funcName, GEN_COMPONENT_COUNT_MAX + 1, "%c%c%c%c",
+				GEN_COMPONENT_NAMES_VECTOR[x], GEN_COMPONENT_NAMES_VECTOR[y], GEN_COMPONENT_NAMES_VECTOR[z], GEN_COMPONENT_NAMES_VECTOR[w] );
 			funcName[vecComponents] = 0;
 
 			String_Appendf( &m_codeHeader, "\tinline %s%d %s() const { ", m_typeString, vecComponents, funcName );

@@ -255,12 +255,8 @@ void Gen_GetDocOperatorRelational( stringBuilder_t* sb, const char* fullTypeName
 			return;
 	}
 
-	char boolTypeName[16];
-	if ( numRows > 1 ) {
-		sprintf( boolTypeName, "bool%dx%d", numRows, numCols );
-	} else {
-		sprintf( boolTypeName, "bool%d", numCols );
-	}
+	char boolTypeName[GEN_STRING_LENGTH_TYPE_NAME];
+	Gen_GetFullTypeName( GEN_TYPE_BOOL, numRows, numCols, boolTypeName );
 
 	String_Appendf( sb,
 		"/// \\relates %s\n" \

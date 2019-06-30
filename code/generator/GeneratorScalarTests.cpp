@@ -43,7 +43,7 @@ bool GeneratorScalarTest::Generate( const genType_t type ) {
 	String_Appendf( &code, m_codeSuite.str );
 
 	char filename[1024] = { 0 };
-	sprintf( filename, GEN_TESTS_FOLDER_PATH "test_scalar_%s.cpp", m_memberTypeString );
+	snprintf( filename, 1024, GEN_TESTS_FOLDER_PATH "test_scalar_%s.cpp", m_memberTypeString );
 
 	bool32 result = FS_WriteEntireFile( filename, code.str, code.length );
 
@@ -65,10 +65,10 @@ void GeneratorScalarTest::GenerateTestFloateq() {
 	snprintf( testName, 64, "TestFloateq_%s", m_memberTypeString );
 
 	// numbers chosen at random
-	char aStr[16];
-	char bStr[16];
-	char cStr[16];
-	char dStr[16];
+	char aStr[GEN_STRING_LENGTH_NUMERIC_LITERAL];
+	char bStr[GEN_STRING_LENGTH_NUMERIC_LITERAL];
+	char cStr[GEN_STRING_LENGTH_NUMERIC_LITERAL];
+	char dStr[GEN_STRING_LENGTH_NUMERIC_LITERAL];
 
 	Gen_GetNumericLiteral( m_type, 5.0f, aStr );
 	Gen_GetNumericLiteral( m_type, 5.0f, bStr );
@@ -103,8 +103,8 @@ void GeneratorScalarTest::GenerateTestSign() {
 	char testName[64] = { 0 };
 	snprintf( testName, 64, "TestSign_%s", m_memberTypeString );
 
-	char valueSignedStr[16];
-	char valueUnsignedStr[16];
+	char valueSignedStr[GEN_STRING_LENGTH_NUMERIC_LITERAL];
+	char valueUnsignedStr[GEN_STRING_LENGTH_NUMERIC_LITERAL];
 
 	Gen_GetNumericLiteral( m_type, -5, valueSignedStr );
 	Gen_GetNumericLiteral( m_type, 9, valueUnsignedStr );
@@ -129,7 +129,7 @@ void GeneratorScalarTest::GenerateTestDegreesRadians() {
 	char testName[64] = { 0 };
 	snprintf( testName, 64, "TestDegreesRadians_%s", m_memberTypeString );
 
-	char degreesStr[16];
+	char degreesStr[GEN_STRING_LENGTH_NUMERIC_LITERAL];
 	Gen_GetNumericLiteral( m_type, 90.0f, degreesStr );
 
 	// DM: must be done this way to avoid floating-point imprecision
@@ -167,8 +167,8 @@ void GeneratorScalarTest::GenerateTestMinMax() {
 	snprintf( testName, 64, "TestMinMax_%s", m_memberTypeString );
 
 	// numbers picked at random
-	char aStr[16];
-	char bStr[16];
+	char aStr[GEN_STRING_LENGTH_NUMERIC_LITERAL];
+	char bStr[GEN_STRING_LENGTH_NUMERIC_LITERAL];
 
 	Gen_GetNumericLiteral( m_type, 5, aStr );
 	Gen_GetNumericLiteral( m_type, 9, bStr );
@@ -204,10 +204,10 @@ void GeneratorScalarTest::GenerateTestClamp() {
 	snprintf( testName, 64, "TestClamp_%s", m_memberTypeString );
 
 	// numbers picked at random
-	char zeroStr[16];
-	char elevenStr[16];
-	char lowStr[16];
-	char highStr[16];
+	char zeroStr[GEN_STRING_LENGTH_NUMERIC_LITERAL];
+	char elevenStr[GEN_STRING_LENGTH_NUMERIC_LITERAL];
+	char lowStr[GEN_STRING_LENGTH_NUMERIC_LITERAL];
+	char highStr[GEN_STRING_LENGTH_NUMERIC_LITERAL];
 
 	Gen_GetNumericLiteral( m_type, 0,  zeroStr );
 	Gen_GetNumericLiteral( m_type, 11, elevenStr );
@@ -253,10 +253,10 @@ void GeneratorScalarTest::GenerateTestSaturate() {
 	char testName[64] = { 0 };
 	snprintf( testName, 64, "TestSaturate_%s", m_memberTypeString );
 
-	char minusOneStr[16];
-	char zeroStr[16];
-	char oneStr[16];
-	char twoStr[16];
+	char minusOneStr[GEN_STRING_LENGTH_NUMERIC_LITERAL];
+	char zeroStr[GEN_STRING_LENGTH_NUMERIC_LITERAL];
+	char oneStr[GEN_STRING_LENGTH_NUMERIC_LITERAL];
+	char twoStr[GEN_STRING_LENGTH_NUMERIC_LITERAL];
 
 	Gen_GetNumericLiteral( m_type, -1, minusOneStr );
 	Gen_GetNumericLiteral( m_type,  0, zeroStr );

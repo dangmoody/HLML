@@ -46,7 +46,7 @@ along with hlml.  If not, see <http://www.gnu.org/licenses/>.
 
 static bool GenerateTypeHeader( void ) {
 	char headerFilePath[1024] = { 0 };
-	sprintf( headerFilePath, "%s%s", GEN_OUT_FOLDER_PATH, GEN_HEADER_TYPES );
+	snprintf( headerFilePath, 1024, "%s%s", GEN_OUT_FOLDER_PATH, GEN_HEADER_TYPES );
 
 	stringBuilder_t sb = String_Create( 1 * KB_TO_BYTES );
 
@@ -66,7 +66,7 @@ static bool GenerateTypeHeader( void ) {
 
 static bool GenerateHeaderScalar( void ) {
 	char fileNameHeader[1024];
-	sprintf( fileNameHeader, "%s%s.h", GEN_OUT_GEN_FOLDER_PATH, GEN_FILENAME_FUNCTIONS_SCALAR );
+	snprintf( fileNameHeader, 1024, "%s%s.h", GEN_OUT_GEN_FOLDER_PATH, GEN_FILENAME_FUNCTIONS_SCALAR );
 
 	stringBuilder_t sb = String_Create( 8 * KB_TO_BYTES );
 
@@ -173,10 +173,10 @@ static bool GenerateMatrices( void ) {
 
 static bool GenerateFunctionsVector( void ) {
 	char filePathHeader[64] = { 0 };
-	sprintf( filePathHeader, "%s%s.h", GEN_OUT_GEN_FOLDER_PATH, GEN_FILENAME_FUNCTIONS_VECTOR );
+	snprintf( filePathHeader, 64, "%s%s.h", GEN_OUT_GEN_FOLDER_PATH, GEN_FILENAME_FUNCTIONS_VECTOR );
 
 	char filePathInl[64] = { 0 };
-	sprintf( filePathInl, "%s%s.inl", GEN_OUT_GEN_FOLDER_PATH, GEN_FILENAME_FUNCTIONS_VECTOR );
+	snprintf( filePathInl, 64, "%s%s.inl", GEN_OUT_GEN_FOLDER_PATH, GEN_FILENAME_FUNCTIONS_VECTOR );
 
 	stringBuilder_t contentHeader = String_Create( 16 * KB_TO_BYTES );
 
@@ -255,10 +255,10 @@ static bool GenerateFunctionsVector( void ) {
 
 static bool GenerateFunctionsMatrix( void ) {
 	char filePathHeader[64] = { 0 };
-	sprintf( filePathHeader, "%s%s.h", GEN_OUT_GEN_FOLDER_PATH, GEN_FILENAME_FUNCTIONS_MATRIX );
+	snprintf( filePathHeader, 64, "%s%s.h", GEN_OUT_GEN_FOLDER_PATH, GEN_FILENAME_FUNCTIONS_MATRIX );
 
 	char filePathInl[64] = { 0 };
-	sprintf( filePathInl, "%s%s.inl", GEN_OUT_GEN_FOLDER_PATH, GEN_FILENAME_FUNCTIONS_MATRIX );
+	snprintf( filePathInl, 64, "%s%s.inl", GEN_OUT_GEN_FOLDER_PATH, GEN_FILENAME_FUNCTIONS_MATRIX );
 
 	stringBuilder_t contentHeader = String_Create( 64 * KB_TO_BYTES );
 	String_Append( &contentHeader, GEN_FILE_HEADER );
@@ -293,7 +293,7 @@ static bool GenerateFunctionsMatrix( void ) {
 
 		for ( u32 row = GEN_COMPONENT_COUNT_MIN; row <= GEN_COMPONENT_COUNT_MAX; row++ ) {
 			for ( u32 col = GEN_COMPONENT_COUNT_MIN; col <= GEN_COMPONENT_COUNT_MAX; col++ ) {
-				char fullTypeName[32];
+				char fullTypeName[GEN_STRING_LENGTH_TYPE_NAME];
 				Gen_GetFullTypeName( type, row, col, fullTypeName );
 
 				printf( "Basic functions %s...", fullTypeName );
@@ -335,10 +335,10 @@ static bool GenerateFunctionsMatrix( void ) {
 
 static bool GenerateOperatorsVector( void ) {
 	char filePathHeader[64] = { 0 };
-	sprintf( filePathHeader, "%s%s.h", GEN_OUT_GEN_FOLDER_PATH, GEN_FILENAME_OPERATORS_VECTOR );
+	snprintf( filePathHeader, 64, "%s%s.h", GEN_OUT_GEN_FOLDER_PATH, GEN_FILENAME_OPERATORS_VECTOR );
 
 	char filePathInl[64] = { 0 };
-	sprintf( filePathInl, "%s%s.inl", GEN_OUT_GEN_FOLDER_PATH, GEN_FILENAME_OPERATORS_VECTOR );
+	snprintf( filePathInl, 64, "%s%s.inl", GEN_OUT_GEN_FOLDER_PATH, GEN_FILENAME_OPERATORS_VECTOR );
 
 	stringBuilder_t contentHeader = String_Create( 128 * KB_TO_BYTES );
 	String_Append( &contentHeader, "#pragma once\n" );
@@ -370,7 +370,7 @@ static bool GenerateOperatorsVector( void ) {
 		}
 
 		for ( u32 componentIndex = GEN_COMPONENT_COUNT_MIN; componentIndex <= GEN_COMPONENT_COUNT_MAX; componentIndex++ ) {
-			char fullTypeName[32];
+			char fullTypeName[GEN_STRING_LENGTH_TYPE_NAME];
 			Gen_GetFullTypeName( type, 1, componentIndex, fullTypeName );
 
 			printf( "Vector operators %s...", fullTypeName );
@@ -571,7 +571,7 @@ static bool GenerateTestsMain( void ) {
 
 		for ( u32 row = 1; row <= GEN_COMPONENT_COUNT_MAX; row++ ) {
 			for ( u32 col = 1; col <= GEN_COMPONENT_COUNT_MAX; col++ ) {
-				char fullTypeName[16] = { 0 };
+				char fullTypeName[GEN_STRING_LENGTH_TYPE_NAME] = { 0 };
 				Gen_GetFullTypeName( type, row, col, fullTypeName );
 
 				String_Appendf( &sb, "TEMPER_SUITE_EXTERN( Test_%s );\n", fullTypeName );
@@ -614,7 +614,7 @@ static bool GenerateTestsMain( void ) {
 
 		for ( u32 row = 1; row <= GEN_COMPONENT_COUNT_MAX; row++ ) {
 			for ( u32 col = GEN_COMPONENT_COUNT_MIN; col <= GEN_COMPONENT_COUNT_MAX; col++ ) {
-				char fullTypeName[16] = { 0 };
+				char fullTypeName[GEN_STRING_LENGTH_TYPE_NAME] = { 0 };
 				Gen_GetFullTypeName( type, row, col, fullTypeName );
 
 				String_Appendf( &sb, "\tTEMPER_RUN_SUITE( Test_%s );\n", fullTypeName );

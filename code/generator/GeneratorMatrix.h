@@ -23,10 +23,10 @@ private:
 	genType_t		m_type;
 	u32				m_numRows, m_numCols;
 
-	char			m_fullTypeName[16];
-	char			m_transposedTypeName[16];
+	char			m_fullTypeName[GEN_STRING_LENGTH_TYPE_NAME];
+	char			m_transposedTypeName[GEN_STRING_LENGTH_TYPE_NAME];
 
-	char			m_vectorMemberTypeString[16];
+	char			m_vectorMemberTypeString[GEN_STRING_LENGTH_TYPE_NAME];
 
 	const char*		m_typeString;
 	const char*		m_memberTypeString;

@@ -20,7 +20,7 @@ bool GeneratorVectorTests::Generate( const genType_t type, const u32 numComponen
 	m_typeString = Gen_GetTypeString( type );
 	m_memberTypeString = Gen_GetMemberTypeString( type );
 
-	sprintf( m_fullTypeName, "%s%d", m_typeString, numComponents );
+	snprintf( m_fullTypeName, GEN_STRING_LENGTH_TYPE_NAME, "%s%d", m_typeString, numComponents );
 
 	stringBuilder_t code = String_Create( 10 * KB_TO_BYTES );
 
@@ -90,7 +90,7 @@ void GeneratorVectorTests::GenerateTestAssignment() {
 	char testName[64] = { 0 };
 	snprintf( testName, 64, "TestAssignment_%s", m_fullTypeName );
 
-	char oneStr[16];
+	char oneStr[GEN_STRING_LENGTH_NUMERIC_LITERAL];
 	Gen_GetNumericLiteral( m_type, 1, oneStr );
 
 	float values[] = { 0.0f, 1.0f, 2.0f, 3.0f };
@@ -124,10 +124,10 @@ void GeneratorVectorTests::GenerateTestArray() {
 
 	float values[] = { 0.0f, 1.0f, 2.0f, 3.0f };
 
-	char parmList[64];
+	char parmList[GEN_STRING_LENGTH_PARM_LIST_VECTOR];
 	Gen_GetParmListVector( m_type, m_numComponents, values, parmList );
 
-	char valuesStr[4][16];
+	char valuesStr[4][GEN_STRING_LENGTH_NUMERIC_LITERAL];
 	Gen_GetNumericLiteral( m_type, 0, valuesStr[0] );
 	Gen_GetNumericLiteral( m_type, 1, valuesStr[1] );
 	Gen_GetNumericLiteral( m_type, 2, valuesStr[2] );
@@ -154,7 +154,7 @@ void GeneratorVectorTests::GenerateTestArithmetic() {
 	}
 
 	// number picked at random
-	char baseNumberStr[16];
+	char baseNumberStr[GEN_STRING_LENGTH_NUMERIC_LITERAL];
 	Gen_GetNumericLiteral( m_type, 6, baseNumberStr );
 
 	float valuesAdd[]	= { 2.0f,  3.0f,  4.0f,  5.0f  };
@@ -167,13 +167,13 @@ void GeneratorVectorTests::GenerateTestArithmetic() {
 	float answersMul[]	= { 12.0f, 18.0f, 24.0f, 30.0f };
 	float answersDiv[]	= { 3.0f,  3.0f,  2.0f,  1.0f  };
 
-	char parmListValues[4][256];
+	char parmListValues[4][GEN_STRING_LENGTH_PARM_LIST_MATRIX];
 	Gen_GetParmListVector( m_type, m_numComponents, valuesAdd, parmListValues[0] );
 	Gen_GetParmListVector( m_type, m_numComponents, valuesSub, parmListValues[1] );
 	Gen_GetParmListVector( m_type, m_numComponents, valuesMul, parmListValues[2] );
 	Gen_GetParmListVector( m_type, m_numComponents, valuesDiv, parmListValues[3] );
 
-	char parmListAnswers[4][256];
+	char parmListAnswers[4][GEN_STRING_LENGTH_PARM_LIST_MATRIX];
 	Gen_GetParmListVector( m_type, m_numComponents, answersAdd, parmListAnswers[0] );
 	Gen_GetParmListVector( m_type, m_numComponents, answersSub, parmListAnswers[1] );
 	Gen_GetParmListVector( m_type, m_numComponents, answersMul, parmListAnswers[2] );
@@ -215,11 +215,11 @@ void GeneratorVectorTests::GenerateTestIncrement() {
 	float values0[] = { 0.0f, 0.0f, 0.0f, 0.0f };
 	float values1[] = { 1.0f, 1.0f, 1.0f, 1.0f };
 
-	char parmListVecs[2][256];
+	char parmListVecs[2][GEN_STRING_LENGTH_PARM_LIST_MATRIX];
 	Gen_GetParmListVector( m_type, m_numComponents, values0, parmListVecs[0] );
 	Gen_GetParmListVector( m_type, m_numComponents, values1, parmListVecs[1] );
 
-	char parmListAnswers[2][256];
+	char parmListAnswers[2][GEN_STRING_LENGTH_PARM_LIST_MATRIX];
 	Gen_GetParmListVector( m_type, m_numComponents, values1, parmListAnswers[0] );
 	Gen_GetParmListVector( m_type, m_numComponents, values0, parmListAnswers[1] );
 
@@ -264,20 +264,20 @@ void GeneratorVectorTests::GenerateTestRelational() {
 
 	String_Appendf( &m_codeSuite, "\tTEMPER_RUN_TEST( %s );\n", testName );
 
-	char boolTypeName[16];
-	snprintf( boolTypeName, 16, "bool%d", m_numComponents );
+	char boolTypeName[GEN_STRING_LENGTH_NUMERIC_LITERAL];
+	snprintf( boolTypeName, GEN_STRING_LENGTH_NUMERIC_LITERAL, "bool%d", m_numComponents );
 
-	char zeroStr[16];
-	char oneStr[16];
-	char twoStr[16];
-	char threeStr[16];
+	char zeroStr[GEN_STRING_LENGTH_NUMERIC_LITERAL];
+	char oneStr[GEN_STRING_LENGTH_NUMERIC_LITERAL];
+	char twoStr[GEN_STRING_LENGTH_NUMERIC_LITERAL];
+	char threeStr[GEN_STRING_LENGTH_NUMERIC_LITERAL];
 
 	Gen_GetNumericLiteral( m_type, 0, zeroStr );
 	Gen_GetNumericLiteral( m_type, 1, oneStr );
 	Gen_GetNumericLiteral( m_type, 2, twoStr );
 	Gen_GetNumericLiteral( m_type, 3, threeStr );
 
-	char parmLists[4][64];
+	char parmLists[4][GEN_STRING_LENGTH_PARM_LIST_VECTOR];
 	snprintf( parmLists[0], 64, "( %s )", zeroStr );
 	snprintf( parmLists[1], 64, "( %s )", oneStr );
 	snprintf( parmLists[2], 64, "( %s )", twoStr );
@@ -370,21 +370,21 @@ void GeneratorVectorTests::GenerateTestBitwise() {
 	snprintf( parmListAnswerUnary, 32, "(%s) -1", m_memberTypeString );
 
 	// -1 to exclude unary, which is done separately because it takes no rhs parm
-	char parmListLhs[GEN_OP_BITWISE_COUNT - 1][64];
+	char parmListLhs[GEN_OP_BITWISE_COUNT - 1][GEN_STRING_LENGTH_PARM_LIST_VECTOR];
 	Gen_GetParmListVector( m_type, m_numComponents, values21, parmListLhs[0] );
 	Gen_GetParmListVector( m_type, m_numComponents, values21, parmListLhs[1] );
 	Gen_GetParmListVector( m_type, m_numComponents, values21, parmListLhs[2] );
 	Gen_GetParmListVector( m_type, m_numComponents, values1 , parmListLhs[3] );
 	Gen_GetParmListVector( m_type, m_numComponents, values16, parmListLhs[4] );
 
-	char parmListRhs[GEN_OP_BITWISE_COUNT - 1][64];
+	char parmListRhs[GEN_OP_BITWISE_COUNT - 1][GEN_STRING_LENGTH_PARM_LIST_VECTOR];
 	Gen_GetParmListVector( m_type, m_numComponents, values7, parmListRhs[0] );
 	Gen_GetParmListVector( m_type, m_numComponents, values7, parmListRhs[1] );
 	Gen_GetParmListVector( m_type, m_numComponents, values7, parmListRhs[2] );
 	Gen_GetParmListVector( m_type, m_numComponents, values2, parmListRhs[3] );
 	Gen_GetParmListVector( m_type, m_numComponents, values4, parmListRhs[4] );
 
-	char parmListAnswers[GEN_OP_BITWISE_COUNT - 1][64];
+	char parmListAnswers[GEN_OP_BITWISE_COUNT - 1][GEN_STRING_LENGTH_PARM_LIST_VECTOR];
 	Gen_GetParmListVector( m_type, m_numComponents, answersAnd, parmListAnswers[0] );
 	Gen_GetParmListVector( m_type, m_numComponents, answersOr, parmListAnswers[1] );
 	Gen_GetParmListVector( m_type, m_numComponents, answersXor, parmListAnswers[2] );
@@ -432,7 +432,7 @@ void GeneratorVectorTests::GenerateTestBitwise() {
 	{
 		snprintf( testName, 64, "TestBitwiseUnary_%s", m_fullTypeName );
 
-		char parmList[128];
+		char parmList[GEN_STRING_LENGTH_PARM_LIST_VECTOR];
 		Gen_GetParmListVector( m_type, m_numComponents, values0, parmList );
 
 		String_Appendf( &m_codeTests, "TEMPER_TEST( %s )\n", testName );
@@ -459,7 +459,7 @@ void GeneratorVectorTests::GenerateTestLength() {
 	char testName[32] = { 0 };
 	snprintf( testName, 32, "TestLength_%s", m_fullTypeName );
 
-	char twoStr[16];
+	char twoStr[GEN_STRING_LENGTH_NUMERIC_LITERAL];
 	Gen_GetNumericLiteral( m_type, 2, twoStr );
 
 	// values are strings otherwise compiler truncates floating point bits and screws with the test
@@ -505,12 +505,12 @@ void GeneratorVectorTests::GenerateTestNormalized() {
 
 	float values[] = { 2.0f, 3.0f, 4.0f, 5.0f };
 
-	char parmList[64] = { 0 };
+	char parmList[GEN_STRING_LENGTH_PARM_LIST_VECTOR] = { 0 };
 	Gen_GetParmListVector( m_type, m_numComponents, values, parmList );
 
 	genType_t floatingPointType = Gen_GetSupportedFloatingPointType( m_type );
 
-	char oneStr[16];
+	char oneStr[GEN_STRING_LENGTH_NUMERIC_LITERAL];
 	Gen_GetNumericLiteral( floatingPointType, 1, oneStr );
 
 	String_Appendf( &m_codeTests, "TEMPER_TEST( %s )\n", testName );
@@ -537,12 +537,12 @@ void GeneratorVectorTests::GenerateTestDot() {
 
 	genType_t dotReturnType = ( m_type == GEN_TYPE_UINT ) ? GEN_TYPE_INT : m_type;
 
-	char minusOneStrDotAnswer[16];
+	char minusOneStrDotAnswer[GEN_STRING_LENGTH_NUMERIC_LITERAL];
 	Gen_GetNumericLiteral( dotReturnType, -1, minusOneStrDotAnswer );
 
-	char minusOneStr[16];
-	char zeroStr[16];
-	char oneStr[16];
+	char minusOneStr[GEN_STRING_LENGTH_NUMERIC_LITERAL];
+	char zeroStr[GEN_STRING_LENGTH_NUMERIC_LITERAL];
+	char oneStr[GEN_STRING_LENGTH_NUMERIC_LITERAL];
 
 	Gen_GetNumericLiteral( m_type, -1, minusOneStr );
 	Gen_GetNumericLiteral( m_type,  0, zeroStr );
@@ -551,8 +551,8 @@ void GeneratorVectorTests::GenerateTestDot() {
 	float valuesA[4] = { 0.0f,  1.0f, 0.0f, 0.0f };
 	float valuesB[4] = { 0.0f, -1.0f, 0.0f, 0.0f };
 
-	char parmListA[64] = { 0 };
-	char parmListB[64] = { 0 };
+	char parmListA[GEN_STRING_LENGTH_PARM_LIST_VECTOR] = { 0 };
+	char parmListB[GEN_STRING_LENGTH_PARM_LIST_VECTOR] = { 0 };
 
 	Gen_GetParmListVector( m_type, m_numComponents, valuesA, parmListA );
 	Gen_GetParmListVector( m_type, m_numComponents, valuesB, parmListB );
@@ -593,9 +593,9 @@ void GeneratorVectorTests::GenerateTestCross() {
 	float up[]		= {  0.0f, 1.0f, 0.0f, 0.0f };
 	float forward[]	= {  0.0f, 0.0f, 1.0f, 0.0f };
 
-	char parmListLeft[64]		= { 0 };
-	char parmListUp[64]			= { 0 };
-	char parmListForward[64]	= { 0 };
+	char parmListLeft[GEN_STRING_LENGTH_PARM_LIST_VECTOR]		= { 0 };
+	char parmListUp[GEN_STRING_LENGTH_PARM_LIST_VECTOR]			= { 0 };
+	char parmListForward[GEN_STRING_LENGTH_PARM_LIST_VECTOR]	= { 0 };
 
 	Gen_GetParmListVector( m_type, m_numComponents, left, parmListLeft );
 	Gen_GetParmListVector( m_type, m_numComponents, up, parmListUp );
@@ -627,15 +627,15 @@ void GeneratorVectorTests::GenerateTestAngle() {
 	float right[]	= { 1.0f, 0.0f, 0.0f, 0.0f };
 	float up[]		= { 0.0f, 1.0f, 0.0f, 0.0f };
 
-	char parmListRight[128]	= { 0 };
-	char parmListUp[128]	= { 0 };
+	char parmListRight[GEN_STRING_LENGTH_PARM_LIST_VECTOR]	= { 0 };
+	char parmListUp[GEN_STRING_LENGTH_PARM_LIST_VECTOR]		= { 0 };
 
 	Gen_GetParmListVector( m_type, m_numComponents, right, parmListRight );
 	Gen_GetParmListVector( m_type, m_numComponents, up, parmListUp );
 
 	const genType_t floatingPointType = Gen_GetSupportedFloatingPointType( m_type );
 
-	char ninetyStr[16];
+	char ninetyStr[GEN_STRING_LENGTH_NUMERIC_LITERAL];
 	Gen_GetNumericLiteral( floatingPointType, 90, ninetyStr );
 
 	const char* floateqStr = Gen_GetFuncNameFloateq( m_type );
@@ -675,8 +675,8 @@ void GeneratorVectorTests::GenerateTestDistance() {
 	float values0[] = { 7.0f,  4.0f, 3.0f, 0.0f };
 	float values1[] = { 17.0f, 6.0f, 2.0f, 0.0f };
 
-	char answerDistanceSqrStr[16];
-	char answerDistanceStr[16];
+	char answerDistanceSqrStr[GEN_STRING_LENGTH_NUMERIC_LITERAL];
+	char answerDistanceStr[GEN_STRING_LENGTH_NUMERIC_LITERAL];
 
 	switch ( m_numComponents ) {
 		case 2:
@@ -690,8 +690,8 @@ void GeneratorVectorTests::GenerateTestDistance() {
 			break;
 	}
 
-	char parmList0[64];
-	char parmList1[64];
+	char parmList0[GEN_STRING_LENGTH_PARM_LIST_VECTOR];
+	char parmList1[GEN_STRING_LENGTH_PARM_LIST_VECTOR];
 
 	Gen_GetParmListVector( m_type, m_numComponents, values0, parmList0 );
 	Gen_GetParmListVector( m_type, m_numComponents, values1, parmList1 );
@@ -770,8 +770,8 @@ void GeneratorVectorTests::GenerateTestSaturate() {
 	float values[]			= { -1.0f, 2.0f, 4.0f, 6.0f };
 	float valuesAnswer[]	= {  0.0f, 1.0f, 1.0f, 1.0f };
 
-	char parmList[64]		= { 0 };
-	char parmListAnswer[64]	= { 0 };
+	char parmList[GEN_STRING_LENGTH_PARM_LIST_VECTOR]		= { 0 };
+	char parmListAnswer[GEN_STRING_LENGTH_PARM_LIST_VECTOR]	= { 0 };
 
 	Gen_GetParmListVector( m_type, m_numComponents, values, parmList );
 	Gen_GetParmListVector( m_type, m_numComponents, valuesAnswer, parmListAnswer );
@@ -804,15 +804,15 @@ void GeneratorVectorTests::GenerateTestLerp() {
 	float valuesB[]			= { 1.0f, 0.0f, 0.0f, 0.0f };
 	float valuesAnswer[]	= { 0.5f, 0.5f, 0.0f, 0.0f };
 
-	char parmListA[128]			= { 0 };
-	char parmListB[128]			= { 0 };
-	char parmListAnswer[128]	= { 0 };
+	char parmListA[GEN_STRING_LENGTH_PARM_LIST_VECTOR]		= { 0 };
+	char parmListB[GEN_STRING_LENGTH_PARM_LIST_VECTOR]		= { 0 };
+	char parmListAnswer[GEN_STRING_LENGTH_PARM_LIST_VECTOR]	= { 0 };
 
 	Gen_GetParmListVector( m_type, m_numComponents, valuesA, parmListA );
 	Gen_GetParmListVector( m_type, m_numComponents, valuesB, parmListB );
 	Gen_GetParmListVector( m_type, m_numComponents, valuesAnswer, parmListAnswer );
 
-	char lerpValStr[16];
+	char lerpValStr[GEN_STRING_LENGTH_NUMERIC_LITERAL];
 	Gen_GetNumericLiteral( m_type, 0.5, lerpValStr );
 
 	String_Appendf( &m_codeTests, "TEMPER_TEST( %s )\n", testName );
@@ -852,17 +852,17 @@ void GeneratorVectorTests::GenerateTestSmoothstep() {
 	float valuesAnswerInRangeSmootherstep[]	= { 0.057920f, 0.057920f, 0.057920f, 0.057920f };
 	float valuesAnswerClampedSmootherstep[]	= { 1.0f,      1.0f,      1.0f,      1.0f      };
 
-	char parmListLow[128]						= { 0 };
-	char parmListHigh[128]						= { 0 };
+	char parmListLow[GEN_STRING_LENGTH_PARM_LIST_VECTOR]						= { 0 };
+	char parmListHigh[GEN_STRING_LENGTH_PARM_LIST_VECTOR]						= { 0 };
 
-	char parmListInput0[128]					= { 0 };
-	char parmListInput1[128]					= { 0 };
+	char parmListInput0[GEN_STRING_LENGTH_PARM_LIST_VECTOR]						= { 0 };
+	char parmListInput1[GEN_STRING_LENGTH_PARM_LIST_VECTOR]						= { 0 };
 
-	char parmListAnswerInRangeSmoothstep[128]	= { 0 };
-	char parmListAnswerClampedSmoothstep[128]	= { 0 };
+	char parmListAnswerInRangeSmoothstep[GEN_STRING_LENGTH_PARM_LIST_VECTOR]	= { 0 };
+	char parmListAnswerClampedSmoothstep[GEN_STRING_LENGTH_PARM_LIST_VECTOR]	= { 0 };
 
-	char parmListAnswerInRangeSmootherstep[128]	= { 0 };
-	char parmListAnswerClampedSmootherstep[128]	= { 0 };
+	char parmListAnswerInRangeSmootherstep[GEN_STRING_LENGTH_PARM_LIST_VECTOR]	= { 0 };
+	char parmListAnswerClampedSmootherstep[GEN_STRING_LENGTH_PARM_LIST_VECTOR]	= { 0 };
 
 	Gen_GetParmListVector( m_type, m_numComponents, valuesLow, parmListLow );
 	Gen_GetParmListVector( m_type, m_numComponents, valuesHigh, parmListHigh );

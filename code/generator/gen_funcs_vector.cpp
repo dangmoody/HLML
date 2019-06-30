@@ -77,7 +77,7 @@ void Gen_GetParmListVector( const genType_t type, const u32 numComponents, const
 	assert( values );
 	assert( outParmListStr );
 
-	char valueStr[32];
+	char valueStr[GEN_STRING_LENGTH_NUMERIC_LITERAL];
 
 	int pos = 0;
 
@@ -126,7 +126,7 @@ void Gen_VectorLength( const genType_t type, const u32 numComponents, stringBuil
 
 	const char* returnTypeString = Gen_GetTypeString( floatingPointType );
 
-	char fullTypeName[32];
+	char fullTypeName[GEN_STRING_LENGTH_TYPE_NAME];
 	Gen_GetFullTypeName( type, 1, numComponents, fullTypeName );
 
 	const char* sqrtFuncStr = Gen_GetFuncNameSqrt( type );
@@ -182,10 +182,10 @@ void Gen_VectorNormalize( const genType_t type, const u32 numComponents, stringB
 
 	const char* typeString = Gen_GetTypeString( type );
 
-	char oneStr[16];
+	char oneStr[GEN_STRING_LENGTH_NUMERIC_LITERAL];
 	Gen_GetNumericLiteral( type, 1, oneStr );
 
-	char fullTypeName[32];
+	char fullTypeName[GEN_STRING_LENGTH_TYPE_NAME];
 	Gen_GetFullTypeName( type, 1, numComponents, fullTypeName );
 
 	DocNormalize( sbHeader, fullTypeName );
@@ -225,7 +225,7 @@ void Gen_VectorDot( const genType_t type, const u32 numComponents, stringBuilder
 	genType_t returnType = shouldTypeCast ? GEN_TYPE_INT : type;
 	const char* returnTypeString = Gen_GetMemberTypeString( returnType );
 
-	char fullTypeName[32];
+	char fullTypeName[GEN_STRING_LENGTH_TYPE_NAME];
 	Gen_GetFullTypeName( type, 1, numComponents, fullTypeName );
 
 	DocDot( sbHeader, fullTypeName );
@@ -271,7 +271,7 @@ void Gen_VectorCross( const genType_t type, const u32 numComponents, stringBuild
 		return;
 	}
 
-	char fullTypeName[32];
+	char fullTypeName[GEN_STRING_LENGTH_TYPE_NAME];
 	Gen_GetFullTypeName( type, 1, numComponents, fullTypeName );
 
 	DocCross( sbHeader, fullTypeName );
@@ -306,7 +306,7 @@ void Gen_VectorAngle( const genType_t type, const u32 numComponents, stringBuild
 
 	const char* returnTypeString = Gen_GetTypeString( floatingPointType );
 
-	char fullTypeName[32];
+	char fullTypeName[GEN_STRING_LENGTH_TYPE_NAME];
 	Gen_GetFullTypeName( type, 1, numComponents, fullTypeName );
 
 	const char* acosString = Gen_GetFuncNameAcos( floatingPointType );
@@ -334,7 +334,7 @@ void Gen_VectorDistance( const genType_t type, const u32 numComponents, stringBu
 		return;
 	}
 
-	char fullTypeName[32];
+	char fullTypeName[GEN_STRING_LENGTH_TYPE_NAME];
 	Gen_GetFullTypeName( type, 1, numComponents, fullTypeName );
 
 	const char* returnTypeString = Gen_GetTypeString( Gen_GetSupportedFloatingPointType( type ) );
@@ -382,7 +382,7 @@ void Gen_VectorPack( const genType_t type, const u32 numComponents, stringBuilde
 		24, 16, 8, 0
 	};
 
-	char fullTypeName[32];
+	char fullTypeName[GEN_STRING_LENGTH_TYPE_NAME];
 	Gen_GetFullTypeName( type, 1, numComponents, fullTypeName );
 
 	const char* memberTypeString = Gen_GetMemberTypeString( type );
@@ -422,7 +422,7 @@ void Gen_VectorUnpack( const genType_t type, const u32 numComponents, stringBuil
 		24, 16, 8, 0
 	};
 
-	char fullTypeName[32];
+	char fullTypeName[GEN_STRING_LENGTH_TYPE_NAME];
 	Gen_GetFullTypeName( type, 1, numComponents, fullTypeName );
 
 	const char* memberTypeString = Gen_GetMemberTypeString( type );

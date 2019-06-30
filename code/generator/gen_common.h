@@ -11,43 +11,46 @@
 
 #include <stdio.h>
 
-#define BIT( x )						1ULL << x
+#define BIT( x )							1ULL << x
 
 #ifndef _countof
-#define _countof( x )					( sizeof( (x) ) / sizeof( (x)[0] ) )
+#define _countof( x )						( sizeof( (x) ) / sizeof( (x)[0] ) )
 #endif
 
-#define UNUSED( x )						( (void) (x) )
+#define UNUSED( x )							( (void) (x) )
 
-#define GEN_MIN( x, y )					( (x) < (y) ? (x) : (y) )
-#define GEN_MAX( x, y )					( (x) > (y) ? (x) : (y) )
+#define GEN_MIN( x, y )						( (x) < (y) ? (x) : (y) )
+#define GEN_MAX( x, y )						( (x) > (y) ? (x) : (y) )
 
-#define GEN_COMPONENT_COUNT_MIN			2
-#define GEN_COMPONENT_COUNT_MAX			4
+#define GEN_COMPONENT_COUNT_MIN				2
+#define GEN_COMPONENT_COUNT_MAX				4
 
 // filenames
-#define GEN_OUT_FOLDER_PATH				"code/out/"
-#define GEN_OUT_GEN_FOLDER_PATH			"code/out/gen/"
-#define GEN_TESTS_FOLDER_PATH			"code/tests/"
+#define GEN_OUT_FOLDER_PATH					"code/out/"
+#define GEN_OUT_GEN_FOLDER_PATH				"code/out/gen/"
+#define GEN_TESTS_FOLDER_PATH				"code/tests/"
 
-#define GEN_HEADER_TYPES				"hlml_types.h"
-#define GEN_HEADER_CONSTANTS			"hlml_constants.h"
-#define GEN_HEADER_USER					"hlml_user.h"
+#define GEN_HEADER_TYPES					"hlml_types.h"
+#define GEN_HEADER_CONSTANTS				"hlml_constants.h"
+#define GEN_HEADER_USER						"hlml_user.h"
 
-#define GEN_FILENAME_OPERATORS_VECTOR	"hlml_operators_vector"
-#define GEN_FILENAME_OPERATORS_MATRIX	"hlml_operators_matrix"
+#define GEN_FILENAME_OPERATORS_VECTOR		"hlml_operators_vector"
+#define GEN_FILENAME_OPERATORS_MATRIX		"hlml_operators_matrix"
 
-#define GEN_FILENAME_FUNCTIONS_SCALAR	"hlml_functions_scalar"
-#define GEN_FILENAME_FUNCTIONS_VECTOR	"hlml_functions_vector"
-#define GEN_FILENAME_FUNCTIONS_MATRIX	"hlml_functions_matrix"
+#define GEN_FILENAME_FUNCTIONS_SCALAR		"hlml_functions_scalar"
+#define GEN_FILENAME_FUNCTIONS_VECTOR		"hlml_functions_vector"
+#define GEN_FILENAME_FUNCTIONS_MATRIX		"hlml_functions_matrix"
+
+#define GEN_STRING_LENGTH_NUMERIC_LITERAL	16
+#define GEN_STRING_LENGTH_TYPE_NAME			16
+
+#define GEN_STRING_LENGTH_PARM_LIST_VECTOR	64
+#define GEN_STRING_LENGTH_PARM_LIST_MATRIX	256
 
 struct stringBuilder_t;
 
-typedef char parmListVector_t[64];
-typedef char parmListMatrix_t[256];
-
 enum genType_t {
-	GEN_TYPE_BOOL						= 0,
+	GEN_TYPE_BOOL							= 0,
 	GEN_TYPE_INT,
 	GEN_TYPE_UINT,
 	GEN_TYPE_FLOAT,
@@ -57,21 +60,21 @@ enum genType_t {
 };
 
 enum genHand_t {
-	GEN_HAND_LEFT						= 0,
+	GEN_HAND_LEFT							= 0,
 	GEN_HAND_RIGHT,
 
 	GEN_HAND_COUNT
 };
 
 enum genClipSpace_t {
-	GEN_CLIP_SPACE_ZERO_TO_ONE			= 0,
+	GEN_CLIP_SPACE_ZERO_TO_ONE				= 0,
 	GEN_CLIP_SPACE_MINUS_ONE_TO_ONE,
 
 	GEN_CLIP_SPACE_COUNT
 };
 
 enum genOpArithmetic_t {
-	GEN_OP_ARITHMETIC_ADD				= 0,
+	GEN_OP_ARITHMETIC_ADD					= 0,
 	GEN_OP_ARITHMETIC_SUB,
 	GEN_OP_ARITHMETIC_MUL,
 	GEN_OP_ARITHMETIC_DIV,
@@ -80,14 +83,14 @@ enum genOpArithmetic_t {
 };
 
 enum genOpIncrement_t {
-	GEN_OP_INCREMENT_INCREMENT			= 0,
+	GEN_OP_INCREMENT_INCREMENT				= 0,
 	GEN_OP_INCREMENT_DECREMENT,
 
 	GEN_OP_INCREMENT_COUNT
 };
 
 enum genOpRelational_t {
-	GEN_OP_RELATIONAL_LESS				= 0,
+	GEN_OP_RELATIONAL_LESS					= 0,
 	GEN_OP_RELATIONAL_LESS_EQUAL,
 	GEN_OP_RELATIONAL_GREATER,
 	GEN_OP_RELATIONAL_GREATER_EQUAL,
@@ -96,7 +99,7 @@ enum genOpRelational_t {
 };
 
 enum genOpBitwise_t {
-	GEN_OP_BITWISE_AND					= 0,
+	GEN_OP_BITWISE_AND						= 0,
 	GEN_OP_BITWISE_OR,
 	GEN_OP_BITWISE_XOR,
 	GEN_OP_BITWISE_UNARY,
@@ -256,15 +259,22 @@ void Gen_GetFullTypeName( const genType_t type, const u32 numRows, const u32 num
 
 	const char* typeString = Gen_GetTypeString( type );
 
+	int len = 0;
+
 	if ( numRows == 1 ) {
 		if ( numCols > 1 ) {
-			sprintf( outString, "%s%d", typeString, numCols );
+			len = snprintf( outString, GEN_STRING_LENGTH_TYPE_NAME, "%s%d", typeString, numCols );
 		} else {
 			// here if passed something like "float1", so really just a "float"
-			sprintf( outString, "%s", Gen_GetMemberTypeString( type ) );
+			len = snprintf( outString, GEN_STRING_LENGTH_TYPE_NAME, "%s", Gen_GetMemberTypeString( type ) );
 		}
 	} else {
-		sprintf( outString, "%s%dx%d", typeString, numRows, numCols );
+		len = snprintf( outString, GEN_STRING_LENGTH_TYPE_NAME, "%s%dx%d", typeString, numRows, numCols );
+	}
+
+	if ( len >= GEN_STRING_LENGTH_TYPE_NAME ) {
+		printf( "ERROR: Attempted to write a typename greater than %d characters.\n", GEN_STRING_LENGTH_TYPE_NAME );
+		assert( false );
 	}
 }
 
@@ -284,25 +294,27 @@ const char* Gen_GetDefaultLiteralValue( const genType_t type ) {
 }
 
 void Gen_GetNumericLiteral( const genType_t type, const float x, char* outStr ) {
+	int len = 0;
+
 	switch ( type ) {
 		case GEN_TYPE_BOOL:
-			sprintf( outStr, "%s", ( x != 0 ) ? "true" : "false" );
+			len = snprintf( outStr, GEN_STRING_LENGTH_NUMERIC_LITERAL, "%s", ( x != 0 ) ? "true" : "false" );
 			break;
 
 		case GEN_TYPE_INT:
-			sprintf( outStr, "%d", (s32) x );
+			len = snprintf( outStr, GEN_STRING_LENGTH_NUMERIC_LITERAL, "%d", (s32) x );
 			break;
 
 		case GEN_TYPE_UINT:
-			sprintf( outStr, "%uU", (u32) x );
+			len = snprintf( outStr, GEN_STRING_LENGTH_NUMERIC_LITERAL, "%uU", (u32) x );
 			break;
 
 		case GEN_TYPE_FLOAT:
-			sprintf( outStr, "%ff", (float) x );
+			len = snprintf( outStr, GEN_STRING_LENGTH_NUMERIC_LITERAL, "%ff", (float) x );
 			break;
 
 		case GEN_TYPE_DOUBLE:
-			sprintf( outStr, "%f", (double) x );
+			len = snprintf( outStr, GEN_STRING_LENGTH_NUMERIC_LITERAL, "%f", (double) x );
 			break;
 
 		case GEN_TYPE_COUNT:
@@ -310,6 +322,11 @@ void Gen_GetNumericLiteral( const genType_t type, const float x, char* outStr ) 
 			printf( "ERROR: Bad genType_t enum passed through to: %s.\n", __FUNCTION__ );
 			sprintf( outStr, "ERROR" );
 			break;
+	}
+
+	if ( len >= GEN_STRING_LENGTH_NUMERIC_LITERAL ) {
+		printf( "ERROR: Attempted to write a numeric literal greater than %d characters.\n", GEN_STRING_LENGTH_NUMERIC_LITERAL );
+		assert( false );
 	}
 }
 

@@ -9,7 +9,7 @@
 static void GenerateOperatorIncrementHeader( const genType_t type, const u32 numRows, const u32 numCols, const genOpIncrement_t op, stringBuilder_t* sb ) {
 	assert( sb );
 
-	char fullTypeName[32];
+	char fullTypeName[GEN_STRING_LENGTH_TYPE_NAME];
 	Gen_GetFullTypeName( type, numRows, numCols, fullTypeName );
 
 	const char* opStr = GEN_OPERATORS_INCREMENT[op];
@@ -30,7 +30,7 @@ static void GenerateOperatorIncrementInl( const genType_t type, const u32 numRow
 
 	u32 numComponents = ( numRows == 1 ) ? numCols : numRows;
 
-	char fullTypeName[32];
+	char fullTypeName[GEN_STRING_LENGTH_TYPE_NAME];
 	Gen_GetFullTypeName( type, numRows, numCols, fullTypeName );
 
 	const char* opStr = GEN_OPERATORS_INCREMENT[op];
@@ -61,10 +61,10 @@ static void GenerateOperatorIncrementInl( const genType_t type, const u32 numRow
 static void HeaderGenerateOperatorRelational( const genType_t type, const u32 numRows, const u32 numCols, const genOpRelational_t op, stringBuilder_t* sb ) {
 	assert( sb );
 
-	char fullTypeName[32];
+	char fullTypeName[GEN_STRING_LENGTH_TYPE_NAME];
 	Gen_GetFullTypeName( type, numRows, numCols, fullTypeName );
 
-	char boolReturnTypeName[32];
+	char boolReturnTypeName[GEN_STRING_LENGTH_TYPE_NAME];
 	Gen_GetFullTypeName( GEN_TYPE_BOOL, numRows, numCols, boolReturnTypeName );
 
 	Gen_GetDocOperatorRelational( sb, fullTypeName, numRows, numCols, op );
@@ -77,10 +77,10 @@ static void InlGenerateOperatorRelational( const genType_t type, const u32 numRo
 
 	u32 numComponents = ( numRows == 1 ) ? numCols : numRows;
 
-	char fullTypeName[32];
+	char fullTypeName[GEN_STRING_LENGTH_TYPE_NAME];
 	Gen_GetFullTypeName( type, numRows, numCols, fullTypeName );
 
-	char boolReturnTypeName[32];
+	char boolReturnTypeName[GEN_STRING_LENGTH_TYPE_NAME];
 	Gen_GetFullTypeName( GEN_TYPE_BOOL, numRows, numCols, boolReturnTypeName );
 
 	const char* opStr = GEN_OPERATORS_RELATIONAL[op];
@@ -106,7 +106,7 @@ static void InlGenerateOperatorRelational( const genType_t type, const u32 numRo
 static void HeaderGenerateOperatorBitwiseScalar( const genType_t type, const u32 numRows, const u32 numCols, const genOpBitwise_t op, stringBuilder_t* sb ) {
 	assert( sb );
 
-	char fullTypeName[32];
+	char fullTypeName[GEN_STRING_LENGTH_TYPE_NAME];
 	Gen_GetFullTypeName( type, numRows, numCols, fullTypeName );
 
 	const char* memberTypeString = Gen_GetMemberTypeString( type );
@@ -127,7 +127,7 @@ static void InlGenerateOperatorBitwiseScalar( const genType_t type, const u32 nu
 
 	u32 numComponents = ( numRows == 1 ) ? numCols : numRows;
 
-	char fullTypeName[32];
+	char fullTypeName[GEN_STRING_LENGTH_TYPE_NAME];
 	Gen_GetFullTypeName( type, numRows, numCols, fullTypeName );
 
 	const char* memberTypeString = Gen_GetMemberTypeString( type );
@@ -162,7 +162,7 @@ static void InlGenerateOperatorBitwiseScalar( const genType_t type, const u32 nu
 static void HeaderGenerateOperatorBitwiseRhsType( const genType_t type, const u32 numRows, const u32 numCols, const genOpBitwise_t op, stringBuilder_t* sb ) {
 	assert( sb );
 
-	char fullTypeName[32];
+	char fullTypeName[GEN_STRING_LENGTH_TYPE_NAME];
 	Gen_GetFullTypeName( type, numRows, numCols, fullTypeName );
 
 	const char* opStr = GEN_OPERATORS_BITWISE[op];
@@ -181,7 +181,7 @@ static void InlGenerateOperatorBitwiseRhsType( const genType_t type, const u32 n
 
 	u32 numComponents = ( numRows == 1 ) ? numCols : numRows;
 
-	char fullTypeName[32];
+	char fullTypeName[GEN_STRING_LENGTH_TYPE_NAME];
 	Gen_GetFullTypeName( type, numRows, numCols, fullTypeName );
 
 	const char* opStr = GEN_OPERATORS_BITWISE[op];
@@ -243,7 +243,7 @@ void Gen_Sign( const genType_t type, stringBuilder_t* sb ) {
 	const char* memberTypeString = Gen_GetMemberTypeString( type );
 	const char* intTypeString = Gen_GetMemberTypeString( GEN_TYPE_INT );
 
-	char zeroStr[16];
+	char zeroStr[GEN_STRING_LENGTH_NUMERIC_LITERAL];
 	Gen_GetNumericLiteral( type, 0, zeroStr );
 
 	Gen_DocSign( sb );
@@ -263,7 +263,7 @@ void Gen_Radians( const genType_t type, stringBuilder_t* sb ) {
 
 	const char* typeString = Gen_GetTypeString( type );
 
-	char oneHundredEightyStr[16];
+	char oneHundredEightyStr[GEN_STRING_LENGTH_NUMERIC_LITERAL];
 	Gen_GetNumericLiteral( type, 180, oneHundredEightyStr );
 
 	const char* piStr = Gen_GetConstantNamePi( type );
@@ -285,7 +285,7 @@ void Gen_Degrees( const genType_t type, stringBuilder_t* sb ) {
 
 	const char* typeString = Gen_GetTypeString( type );
 
-	char oneHundredEightyStr[16];
+	char oneHundredEightyStr[GEN_STRING_LENGTH_NUMERIC_LITERAL];
 	Gen_GetNumericLiteral( type, 180, oneHundredEightyStr );
 
 	const char* piStr = Gen_GetConstantNamePi( type );
@@ -351,11 +351,11 @@ void Gen_Saturate( const genType_t type, const u32 numComponents, stringBuilder_
 		return;
 	}
 
-	char fullTypeName[32];
+	char fullTypeName[GEN_STRING_LENGTH_TYPE_NAME];
 	Gen_GetFullTypeName( type, 1, numComponents, fullTypeName );
 
-	char zeroStr[16];
-	char oneStr[16];
+	char zeroStr[GEN_STRING_LENGTH_NUMERIC_LITERAL];
+	char oneStr[GEN_STRING_LENGTH_NUMERIC_LITERAL];
 
 	Gen_GetNumericLiteral( type, 0.0f, zeroStr );
 	Gen_GetNumericLiteral( type, 1.0f, oneStr );
@@ -408,10 +408,10 @@ void Gen_Lerp( const genType_t type, const u32 numComponents, stringBuilder_t* s
 
 	const char* typeString = Gen_GetTypeString( type );
 
-	char fullTypeName[32];
+	char fullTypeName[GEN_STRING_LENGTH_TYPE_NAME];
 	Gen_GetFullTypeName( type, 1, numComponents, fullTypeName );
 
-	char oneStr[16];
+	char oneStr[GEN_STRING_LENGTH_NUMERIC_LITERAL];
 	Gen_GetNumericLiteral( type, 1.0f, oneStr );
 
 	bool isVector = numComponents > 1;
@@ -460,14 +460,14 @@ void Gen_Smoothstep( const genType_t type, const u32 numComponents, stringBuilde
 		return;
 	}
 
-	char fullTypeName[32];
+	char fullTypeName[GEN_STRING_LENGTH_TYPE_NAME];
 	Gen_GetFullTypeName( type, 1, numComponents, fullTypeName );
 
-	char twoStr[16];
-	char threeStr[16];
-	char sixStr[16];
-	char tenStr[16];
-	char fifteenStr[16];
+	char twoStr[GEN_STRING_LENGTH_NUMERIC_LITERAL];
+	char threeStr[GEN_STRING_LENGTH_NUMERIC_LITERAL];
+	char sixStr[GEN_STRING_LENGTH_NUMERIC_LITERAL];
+	char tenStr[GEN_STRING_LENGTH_NUMERIC_LITERAL];
+	char fifteenStr[GEN_STRING_LENGTH_NUMERIC_LITERAL];
 
 	Gen_GetNumericLiteral( type, 2.0f,  twoStr );
 	Gen_GetNumericLiteral( type, 3.0f,  threeStr );
@@ -622,7 +622,7 @@ void Gen_OperatorsBitwise( const genType_t type, const u32 numRows, const u32 nu
 
 	// unary operator
 	u32 numComponents = ( numRows == 1 ) ? numCols : numRows;
-	char fullTypeName[32];
+	char fullTypeName[GEN_STRING_LENGTH_TYPE_NAME];
 	Gen_GetFullTypeName( type, numRows, numCols, fullTypeName );
 
 	Gen_GetDocOperatorBitwiseUnary( sbHeader, fullTypeName );
@@ -661,7 +661,7 @@ void Gen_OperatorComponentWiseArithmeticScalar( const genType_t type, const u32 
 
 	u32 numComponents = ( numRows == 1 ) ? numCols : numRows;
 
-	char fullTypeName[32];
+	char fullTypeName[GEN_STRING_LENGTH_TYPE_NAME];
 	Gen_GetFullTypeName( type, numRows, numCols, fullTypeName );
 
 	const char* memberTypeString = Gen_GetMemberTypeString( type );
@@ -724,7 +724,7 @@ void Gen_OperatorComponentWiseArithmeticRhsType( const genType_t type, const u32
 
 	u32 numComponents = ( numRows == 1 ) ? numCols : numRows;
 
-	char fullTypeName[32];
+	char fullTypeName[GEN_STRING_LENGTH_TYPE_NAME];
 	Gen_GetFullTypeName( type, numRows, numCols, fullTypeName );
 
 	char opStr = GEN_OPERATORS_ARITHMETIC[op];
@@ -775,7 +775,7 @@ void Gen_OperatorNotEquals( const genType_t type, const u32 numRows, const u32 n
 	assert( numCols >= GEN_COMPONENT_COUNT_MIN );
 	assert( numCols <= GEN_COMPONENT_COUNT_MAX );
 
-	char fullTypeName[32];
+	char fullTypeName[GEN_STRING_LENGTH_TYPE_NAME];
 	Gen_GetFullTypeName( type, numRows, numCols, fullTypeName );
 
 	Gen_DocOperatorNotEquals( sbHeader, fullTypeName );

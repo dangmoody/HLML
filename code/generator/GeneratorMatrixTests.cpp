@@ -28,8 +28,8 @@ bool GeneratorMatrixTests::Generate( const genType_t type, const u32 numRows, co
 	m_typeString = Gen_GetTypeString( type );
 	m_memberTypeString = Gen_GetMemberTypeString( type );
 
-	snprintf( m_vectorTypeString, 32, "%s%d", m_typeString, numCols );
-	snprintf( m_fullTypeName, 32, "%s%dx%d", m_typeString, numRows, numCols );
+	snprintf( m_vectorTypeString, GEN_STRING_LENGTH_TYPE_NAME, "%s%d", m_typeString, numCols );
+	snprintf( m_fullTypeName, GEN_STRING_LENGTH_TYPE_NAME, "%s%dx%d", m_typeString, numRows, numCols );
 
 	stringBuilder_t code = String_Create( testsCodeBytes + suiteCodeBytes );
 
@@ -103,7 +103,7 @@ void GeneratorMatrixTests::GenerateTestAssignment() {
 
 	// HACK(DM): this is not ideal for obvious reasons
 	float fillValue = 999.0f;
-	char fillValueStr[16];
+	char fillValueStr[GEN_STRING_LENGTH_NUMERIC_LITERAL];
 	Gen_GetNumericLiteral( m_type, 999, fillValueStr );
 
 	float valuesIdentity[4][4] = {
@@ -127,8 +127,8 @@ void GeneratorMatrixTests::GenerateTestAssignment() {
 		{ 4.0f,  3.0f,  2.0f,  1.0f  }
 	};
 
-	char parmListValues[256]			= { 0 };
-	char parmListValuesReversed[256]	= { 0 };
+	char parmListValues[GEN_STRING_LENGTH_PARM_LIST_MATRIX]			= { 0 };
+	char parmListValuesReversed[GEN_STRING_LENGTH_PARM_LIST_MATRIX]	= { 0 };
 
 	Gen_GetParmListMatrix( m_type, m_numRows, m_numCols, values, parmListValues );
 	Gen_GetParmListMatrix( m_type, m_numRows, m_numCols, valuesReversed, parmListValuesReversed );
@@ -140,7 +140,7 @@ void GeneratorMatrixTests::GenerateTestAssignment() {
 	String_Append(  &m_codeTests, "\t// fill single value\n" );
 	String_Appendf( &m_codeTests, "\tmat = %s( %s );\n", m_fullTypeName, fillValueStr );
 	for ( u32 row = 0; row < m_numRows; row++ ) {
-		char parmList[128] = { 0 };
+		char parmList[GEN_STRING_LENGTH_PARM_LIST_VECTOR] = { 0 };
 		Gen_GetParmListVector( m_type, m_numCols, valuesIdentity[row], parmList );
 
 		String_Appendf( &m_codeTests, "\tTEMPER_EXPECT_TRUE( mat[%d] == %s%s );\n", row, m_vectorTypeString, parmList );
@@ -150,7 +150,7 @@ void GeneratorMatrixTests::GenerateTestAssignment() {
 	String_Append(  &m_codeTests, "\t// row filling\n" );
 	String_Appendf( &m_codeTests, "\tmat = %s(\n", m_fullTypeName );
 	for ( u32 row = 0; row < m_numRows; row++ ) {
-		char parmList[128] = { 0 };
+		char parmList[GEN_STRING_LENGTH_PARM_LIST_VECTOR] = { 0 };
 		Gen_GetParmListVector( m_type, m_numCols, values[row], parmList );
 
 		String_Appendf( &m_codeTests, "\t\t%s%s", m_vectorTypeString, parmList );
@@ -163,7 +163,7 @@ void GeneratorMatrixTests::GenerateTestAssignment() {
 	}
 	String_Append( &m_codeTests, "\t);\n" );
 	for ( u32 row = 0; row < m_numRows; row++ ) {
-		char parmList[128] = { 0 };
+		char parmList[GEN_STRING_LENGTH_PARM_LIST_VECTOR] = { 0 };
 		Gen_GetParmListVector( m_type, m_numCols, values[row], parmList );
 
 		String_Appendf( &m_codeTests, "\tTEMPER_EXPECT_TRUE( mat[%d] == %s%s );\n", row, m_vectorTypeString, parmList );
@@ -173,7 +173,7 @@ void GeneratorMatrixTests::GenerateTestAssignment() {
 	String_Append(  &m_codeTests, "\t// all values filled\n" );
 	String_Appendf( &m_codeTests, "\tmat = %s%s;\n", m_fullTypeName, parmListValuesReversed );
 	for ( u32 row = 0; row < m_numRows; row++ ) {
-		char parmList[128] = { 0 };
+		char parmList[GEN_STRING_LENGTH_PARM_LIST_VECTOR] = { 0 };
 		Gen_GetParmListVector( m_type, m_numCols, valuesReversed[row], parmList );
 
 		String_Appendf( &m_codeTests, "\tTEMPER_EXPECT_TRUE( mat[%d] == %s%s );\n", row, m_vectorTypeString, parmList );
@@ -282,13 +282,14 @@ void GeneratorMatrixTests::GenerateTestMultiplyVector() {
 		2.0f, 1.0f, 4.0f, 3.0f
 	};
 
-	char parmListMat[256]	= { 0 };
-	char parmListVec[64]	= { 0 };
+	char parmListMat[GEN_STRING_LENGTH_PARM_LIST_MATRIX]		= { 0 };
+	char parmListVec[GEN_STRING_LENGTH_PARM_LIST_VECTOR]		= { 0 };
+
+	char parmListVecAnswer[GEN_STRING_LENGTH_PARM_LIST_VECTOR]	= { 0 };
 
 	Gen_GetParmListMatrix( m_type, m_numRows, m_numCols, valuesMat, parmListMat );
 	Gen_GetParmListVector( m_type, m_numCols, valuesVec, parmListVec );
 
-	char parmListVecAnswer[64] = { 0 };
 	int pos = 0;
 
 	pos += sprintf( parmListVecAnswer + pos, "( " );
@@ -310,7 +311,7 @@ void GeneratorMatrixTests::GenerateTestMultiplyVector() {
 			dot += dots[i];
 		}
 
-		char dotStr[16];
+		char dotStr[GEN_STRING_LENGTH_NUMERIC_LITERAL];
 		Gen_GetNumericLiteral( m_type, dot, dotStr );
 
 		pos += sprintf( parmListVecAnswer + pos, "%s", dotStr );
@@ -343,8 +344,8 @@ void GeneratorMatrixTests::GenerateTestIncrement() {
 		return;
 	}
 
-	char parmList0[256] = { 0 };
-	char parmList1[256] = { 0 };
+	char parmList0[GEN_STRING_LENGTH_PARM_LIST_MATRIX] = { 0 };
+	char parmList1[GEN_STRING_LENGTH_PARM_LIST_MATRIX] = { 0 };
 
 	Gen_GetParmListMatrixSingleValue( m_type, m_numRows, m_numCols, 0.0f, parmList0 );
 	Gen_GetParmListMatrixSingleValue( m_type, m_numRows, m_numCols, 1.0f, parmList1 );
@@ -398,13 +399,13 @@ void GeneratorMatrixTests::GenerateTestRelational() {
 	char testName[64] = { 0 };
 	snprintf( testName, 64, "TestRelational_%s", m_fullTypeName );
 
-	char boolTypeName[16] = { 0 };
-	snprintf( boolTypeName, 16, "bool%dx%d", m_numRows, m_numCols );
+	char boolTypeName[GEN_STRING_LENGTH_TYPE_NAME] = { 0 };
+	snprintf( boolTypeName, GEN_STRING_LENGTH_TYPE_NAME, "bool%dx%d", m_numRows, m_numCols );
 
-	char parmListTrue[256] = { 0 };
+	char parmListTrue[GEN_STRING_LENGTH_PARM_LIST_MATRIX] = { 0 };
 	Gen_GetParmListMatrixSingleValue( GEN_TYPE_BOOL, m_numRows, m_numCols, true, parmListTrue );
 
-	char parmLists[4][256];
+	char parmLists[4][GEN_STRING_LENGTH_PARM_LIST_MATRIX];
 	Gen_GetParmListMatrixSingleValue( m_type, m_numRows, m_numCols, 1, parmLists[0] );
 	Gen_GetParmListMatrixSingleValue( m_type, m_numRows, m_numCols, 2, parmLists[1] );
 	Gen_GetParmListMatrixSingleValue( m_type, m_numRows, m_numCols, 3, parmLists[2] );
@@ -478,31 +479,31 @@ void GeneratorMatrixTests::GenerateTestBitwise() {
 		return;
 	}
 
-	char unaryValueStr[32] = { 0 };
-	snprintf( unaryValueStr, 32, "(%s) -1", m_memberTypeString );
+	char unaryValueStr[GEN_STRING_LENGTH_NUMERIC_LITERAL] = { 0 };
+	snprintf( unaryValueStr, GEN_STRING_LENGTH_NUMERIC_LITERAL, "(%s) -1", m_memberTypeString );
 
-	char parmStr[16];
-	snprintf( parmStr, 16, "(%s) -1", m_memberTypeString );
+	char parmStr[32];
+	snprintf( parmStr, 32, "(%s) -1", m_memberTypeString );
 
-	char parmListAnswerUnary[256];
+	char parmListAnswerUnary[GEN_STRING_LENGTH_PARM_LIST_MATRIX];
 	Gen_GetParmListMatrixSingleValueStr( m_numRows, m_numCols, parmStr, parmListAnswerUnary );
 
 	// values must be integers
-	char parmListLhs[GEN_OP_BITWISE_COUNT - 1][256];
+	char parmListLhs[GEN_OP_BITWISE_COUNT - 1][GEN_STRING_LENGTH_PARM_LIST_MATRIX];
 	Gen_GetParmListMatrixSingleValue( m_type, m_numRows, m_numCols, 21.0f, parmListLhs[0] );
 	Gen_GetParmListMatrixSingleValue( m_type, m_numRows, m_numCols, 21.0f, parmListLhs[1] );
 	Gen_GetParmListMatrixSingleValue( m_type, m_numRows, m_numCols, 21.0f, parmListLhs[2] );
 	Gen_GetParmListMatrixSingleValue( m_type, m_numRows, m_numCols, 1.0f , parmListLhs[3] );
 	Gen_GetParmListMatrixSingleValue( m_type, m_numRows, m_numCols, 16.0f, parmListLhs[4] );
 
-	char parmListRhs[GEN_OP_BITWISE_COUNT - 1][256];
+	char parmListRhs[GEN_OP_BITWISE_COUNT - 1][GEN_STRING_LENGTH_PARM_LIST_MATRIX];
 	Gen_GetParmListMatrixSingleValue( m_type, m_numRows, m_numCols, 7.0f, parmListRhs[0] );
 	Gen_GetParmListMatrixSingleValue( m_type, m_numRows, m_numCols, 7.0f, parmListRhs[1] );
 	Gen_GetParmListMatrixSingleValue( m_type, m_numRows, m_numCols, 7.0f, parmListRhs[2] );
 	Gen_GetParmListMatrixSingleValue( m_type, m_numRows, m_numCols, 2.0f, parmListRhs[3] );
 	Gen_GetParmListMatrixSingleValue( m_type, m_numRows, m_numCols, 4.0f, parmListRhs[4] );
 
-	char parmListAnswers[GEN_OP_BITWISE_COUNT - 1][256];
+	char parmListAnswers[GEN_OP_BITWISE_COUNT - 1][GEN_STRING_LENGTH_PARM_LIST_MATRIX];
 	Gen_GetParmListMatrixSingleValue( m_type, m_numRows, m_numCols, 5.0f,  parmListAnswers[0] );	// 21 & 7
 	Gen_GetParmListMatrixSingleValue( m_type, m_numRows, m_numCols, 23.0f, parmListAnswers[1] );	// 21 | 7
 	Gen_GetParmListMatrixSingleValue( m_type, m_numRows, m_numCols, 18.0f, parmListAnswers[2] );	// 21 ^ 7
@@ -551,7 +552,7 @@ void GeneratorMatrixTests::GenerateTestBitwise() {
 	{
 		snprintf( testName, 64, "TestBitwise_Unary_%s", m_fullTypeName );
 
-		char parmList[256];
+		char parmList[GEN_STRING_LENGTH_PARM_LIST_MATRIX];
 		Gen_GetParmListMatrixSingleValue( m_type, m_numRows, m_numCols, 0.0f, parmList );
 
 		String_Appendf( &m_codeTests, "TEMPER_TEST( %s )\n", testName );
@@ -571,8 +572,8 @@ void GeneratorMatrixTests::GenerateTestBitwise() {
 }
 
 void GeneratorMatrixTests::GenerateTestArray() {
-	char zeroStr[16];
-	char oneStr[16];
+	char zeroStr[GEN_STRING_LENGTH_NUMERIC_LITERAL];
+	char oneStr[GEN_STRING_LENGTH_NUMERIC_LITERAL];
 
 	Gen_GetNumericLiteral( m_type, 0, zeroStr );
 	Gen_GetNumericLiteral( m_type, 1, oneStr );
@@ -609,13 +610,13 @@ void GeneratorMatrixTests::GenerateTestIdentity() {
 	char testName[64] = { 0 };
 	snprintf( testName, 64, "TestIdentity_%s", m_fullTypeName );
 
-	char zeroStr[16];
-	char oneStr[16];
+	char zeroStr[GEN_STRING_LENGTH_NUMERIC_LITERAL];
+	char oneStr[GEN_STRING_LENGTH_NUMERIC_LITERAL];
 
 	Gen_GetNumericLiteral( m_type, 0, zeroStr );
 	Gen_GetNumericLiteral( m_type, 1, oneStr );
 
-	char parmListIdentity[256] = { 0 };
+	char parmListIdentity[GEN_STRING_LENGTH_PARM_LIST_MATRIX] = { 0 };
 	Gen_GetParmListMatrixIdentity( m_type, m_numRows, m_numCols, parmListIdentity );
 
 	String_Appendf( &m_codeTests, "TEMPER_TEST( %s )\n", testName );
@@ -653,14 +654,14 @@ void GeneratorMatrixTests::GenerateTestTranspose() {
 		{ 3.0f, 7.0f, 11.0f, 15.0f }
 	};
 
-	char parmListNormal[256]		= { 0 };
-	char parmListTransposed[256]	= { 0 };
+	char parmListNormal[GEN_STRING_LENGTH_PARM_LIST_MATRIX]		= { 0 };
+	char parmListTransposed[GEN_STRING_LENGTH_PARM_LIST_MATRIX]	= { 0 };
 
 	Gen_GetParmListMatrix( m_type, m_numRows, m_numCols, valuesNormal, parmListNormal );
 	Gen_GetParmListMatrix( m_type, m_numCols, m_numRows, valuesTransposed, parmListTransposed );
 
-	char transposeTypeName[32] = { 0 };
-	snprintf( transposeTypeName, 32, "%s%dx%d", m_typeString, m_numCols, m_numRows );
+	char transposeTypeName[GEN_STRING_LENGTH_TYPE_NAME] = { 0 };
+	snprintf( transposeTypeName, GEN_STRING_LENGTH_TYPE_NAME, "%s%dx%d", m_typeString, m_numCols, m_numRows );
 
 	String_Appendf( &m_codeTests, "TEMPER_TEST( %s )\n", testName );
 	String_Append(  &m_codeTests, "{\n" );
@@ -710,7 +711,7 @@ void GeneratorMatrixTests::GenerateTestInverse() {
 		{ 4.0f, 3.0f, 2.0f, 6.0f }
 	};
 
-	char parmList[256] = { 0 };
+	char parmList[GEN_STRING_LENGTH_PARM_LIST_MATRIX] = { 0 };
 
 	switch ( m_numRows ) {
 		case 2:
@@ -782,10 +783,10 @@ void GeneratorMatrixTests::GenerateTestDeterminant() {
 		285.0f	// 4x4
 	};
 
-	char answerStr[16];
+	char answerStr[GEN_STRING_LENGTH_NUMERIC_LITERAL];
 	Gen_GetNumericLiteral( m_type, determinants[m_numRows - 2], answerStr );
 
-	char parmList[256];
+	char parmList[GEN_STRING_LENGTH_PARM_LIST_MATRIX];
 
 	switch ( m_numRows ) {
 		case 2:
@@ -833,67 +834,67 @@ void GeneratorMatrixTests::GenerateTestTranslate() {
 	char testName[64] = { 0 };
 	snprintf( testName, 64, "TestTranslate_%s", m_fullTypeName );
 
-	char valueStr[16];
+	char valueStr[GEN_STRING_LENGTH_NUMERIC_LITERAL];
 
 	u32 baseNumber = 2;
 
-	char translateVectorTypeString[16];
-	snprintf( translateVectorTypeString, 16, "%s%d", m_typeString, m_numCols - 1 );
+	char translateVectorTypeString[GEN_STRING_LENGTH_TYPE_NAME];
+	snprintf( translateVectorTypeString, GEN_STRING_LENGTH_TYPE_NAME, "%s%d", m_typeString, m_numCols - 1 );
 
-	char parmListTranslateVector[64] = { 0 };
+	char parmListTranslateVector[GEN_STRING_LENGTH_PARM_LIST_VECTOR] = { 0 };
 	int pos = 0;
 
-	pos += sprintf( parmListTranslateVector + pos, "( " );
+	pos += snprintf( parmListTranslateVector + pos, GEN_STRING_LENGTH_PARM_LIST_VECTOR, "( " );
 	for ( u32 col = 0; col < m_numCols - 1; col++ ) {
 		float number = static_cast<float>( col + baseNumber );
 
 		Gen_GetNumericLiteral( m_type, number, valueStr );
 
-		pos += sprintf( parmListTranslateVector + pos, "%s", valueStr );
+		pos += snprintf( parmListTranslateVector + pos, GEN_STRING_LENGTH_PARM_LIST_VECTOR, "%s", valueStr );
 
 		if ( col != m_numCols - 2 ) {
-			pos += sprintf( parmListTranslateVector + pos, ", " );
+			pos += snprintf( parmListTranslateVector + pos, GEN_STRING_LENGTH_PARM_LIST_VECTOR, ", " );
 		}
 	}
-	pos += sprintf( parmListTranslateVector + pos, " )" );
+	pos += snprintf( parmListTranslateVector + pos, GEN_STRING_LENGTH_PARM_LIST_VECTOR, " )" );
 
-	char parmListTranslated[256] = { 0 };
+	char parmListTranslated[GEN_STRING_LENGTH_PARM_LIST_MATRIX] = { 0 };
 	pos = 0;
 
 	pos += sprintf( parmListTranslated + pos, "(\n" );
 	for ( u32 row = 0; row < m_numRows; row++ ) {
-		pos += sprintf( parmListTranslated + pos, "\t\t" );
+		pos += snprintf( parmListTranslated + pos, GEN_STRING_LENGTH_PARM_LIST_MATRIX, "\t\t" );
 
 		for ( u32 col = 0; col < m_numCols; col++ ) {
 			if ( row == col ) {
 				Gen_GetNumericLiteral( m_type, 1, valueStr );
 
-				pos += sprintf( parmListTranslated + pos, "%s", valueStr );
+				pos += snprintf( parmListTranslated + pos, GEN_STRING_LENGTH_PARM_LIST_MATRIX, "%s", valueStr );
 			} else {
 				if ( col == m_numCols - 1 ) {
 					float number = static_cast<float>( row + baseNumber );
 
 					Gen_GetNumericLiteral( m_type, number, valueStr );
 
-					pos += sprintf( parmListTranslated + pos, "%s", valueStr );
+					pos += snprintf( parmListTranslated + pos, GEN_STRING_LENGTH_PARM_LIST_MATRIX, "%s", valueStr );
 				} else {
 					Gen_GetNumericLiteral( m_type, 0.0f, valueStr );
-					pos += sprintf( parmListTranslated + pos, "%s", valueStr );
+					pos += snprintf( parmListTranslated + pos, GEN_STRING_LENGTH_PARM_LIST_MATRIX, "%s", valueStr );
 				}
 			}
 
 			if ( row + col != ( m_numRows - 1 ) + ( m_numCols - 1 ) ) {
-				pos += sprintf( parmListTranslated + pos, "," );
+				pos += snprintf( parmListTranslated + pos, GEN_STRING_LENGTH_PARM_LIST_MATRIX, "," );
 			}
 
 			if ( col != m_numCols - 1 ) {
-				pos += sprintf( parmListTranslated + pos, " " );
+				pos += snprintf( parmListTranslated + pos, GEN_STRING_LENGTH_PARM_LIST_MATRIX, " " );
 			}
 		}
 
-		pos += sprintf( parmListTranslated + pos, "\n" );
+		pos += snprintf( parmListTranslated + pos, GEN_STRING_LENGTH_PARM_LIST_MATRIX, "\n" );
 	}
-	pos += sprintf( parmListTranslated + pos, "\t)" );
+	pos += snprintf( parmListTranslated + pos, GEN_STRING_LENGTH_PARM_LIST_MATRIX, "\t)" );
 
 	String_Appendf( &m_codeTests, "TEMPER_TEST( %s )\n", testName );
 	String_Append(  &m_codeTests, "{\n" );
@@ -972,19 +973,19 @@ void GeneratorMatrixTests::GenerateTestRotate() {
 
 	u32 numRotateVectorComponents = m_numCols - 1;
 
-	char rotDegreesStr[16];
+	char rotDegreesStr[GEN_STRING_LENGTH_NUMERIC_LITERAL];
 	Gen_GetNumericLiteral( m_type, rotDegrees, rotDegreesStr );
 
-	char rotateVecTypeString[16];
-	snprintf( rotateVecTypeString, 16, "%s%d", m_typeString, numRotateVectorComponents );
+	char rotateVecTypeString[GEN_STRING_LENGTH_TYPE_NAME];
+	snprintf( rotateVecTypeString, GEN_STRING_LENGTH_TYPE_NAME, "%s%d", m_typeString, numRotateVectorComponents );
 
-	char parmListVecYaw[64];
-	char parmListVecPitch[64];
-	char parmListVecRoll[64];
+	char parmListVecYaw[GEN_STRING_LENGTH_PARM_LIST_VECTOR];
+	char parmListVecPitch[GEN_STRING_LENGTH_PARM_LIST_VECTOR];
+	char parmListVecRoll[GEN_STRING_LENGTH_PARM_LIST_VECTOR];
 
-	char parmListMatYaw[256];
-	char parmListMatPitch[256];
-	char parmListMatRoll[256];
+	char parmListMatYaw[GEN_STRING_LENGTH_PARM_LIST_MATRIX];
+	char parmListMatPitch[GEN_STRING_LENGTH_PARM_LIST_MATRIX];
+	char parmListMatRoll[GEN_STRING_LENGTH_PARM_LIST_MATRIX];
 
 	Gen_GetParmListVector( m_type, numRotateVectorComponents, angleAxisVecYaw, parmListVecYaw );
 	Gen_GetParmListVector( m_type, numRotateVectorComponents, angleAxisVecPitch, parmListVecPitch );
@@ -995,7 +996,7 @@ void GeneratorMatrixTests::GenerateTestRotate() {
 	Gen_GetParmListMatrix( m_type, numRotMatRows, numRotMatCols, rotMatRoll, parmListMatRoll );
 
 	// matrices where cols == 3 only have roll rotation support
-	char parmListRotateRoll[256] = { 0 };
+	char parmListRotateRoll[GEN_STRING_LENGTH_PARM_LIST_MATRIX] = { 0 };
 	int pos = 0;
 	pos += sprintf( parmListRotateRoll + pos, "mat, radians( %s )", rotDegreesStr );
 	if ( m_numCols > 3 ) {
@@ -1046,14 +1047,14 @@ void GeneratorMatrixTests::GenerateTestScale() {
 
 	float scaleMatDiagonal[] = { 2.0f, 2.0f, 2.0f, 1.0f };
 
-	char parmListScaleVec[64]	= { 0 };
-	char parmListscaleMat[256]	= { 0 };
+	char parmListScaleVec[GEN_STRING_LENGTH_PARM_LIST_VECTOR]	= { 0 };
+	char parmListscaleMat[GEN_STRING_LENGTH_PARM_LIST_MATRIX]	= { 0 };
 
 	Gen_GetParmListVector( m_type, scaleCols, scaleMatDiagonal, parmListScaleVec );
 	Gen_GetParmListMatrixDiagonal( m_type, m_numRows, m_numCols, scaleMatDiagonal, _countof( scaleMatDiagonal ), parmListscaleMat );
 
-	char scaleVecTypeString[32] = { 0 };
-	snprintf( scaleVecTypeString, 32, "%s%d", m_typeString, scaleCols );
+	char scaleVecTypeString[GEN_STRING_LENGTH_TYPE_NAME] = { 0 };
+	snprintf( scaleVecTypeString, GEN_STRING_LENGTH_TYPE_NAME, "%s%d", m_typeString, scaleCols );
 
 	String_Appendf( &m_codeTests, "TEMPER_TEST( %s )\n", testName );
 	String_Append(  &m_codeTests, "{\n" );
@@ -1115,22 +1116,22 @@ void GeneratorMatrixTests::GenerateTestOrtho() {
 		{ 0.0f,       0.0f,  0.0f,       1.0f      }
 	};
 
-	char parmListAnswerOrtho_LH_ZO[256] = { 0 };
-	char parmListAnswerOrtho_LH_NO[256] = { 0 };
-	char parmListAnswerOrtho_RH_ZO[256] = { 0 };
-	char parmListAnswerOrtho_RH_NO[256] = { 0 };
+	char parmListAnswerOrtho_LH_ZO[GEN_STRING_LENGTH_PARM_LIST_MATRIX] = { 0 };
+	char parmListAnswerOrtho_LH_NO[GEN_STRING_LENGTH_PARM_LIST_MATRIX] = { 0 };
+	char parmListAnswerOrtho_RH_ZO[GEN_STRING_LENGTH_PARM_LIST_MATRIX] = { 0 };
+	char parmListAnswerOrtho_RH_NO[GEN_STRING_LENGTH_PARM_LIST_MATRIX] = { 0 };
 
 	Gen_GetParmListMatrix( m_type, 4, 4, answerOrtho_LH_ZO, parmListAnswerOrtho_LH_ZO );
 	Gen_GetParmListMatrix( m_type, 4, 4, answerOrtho_LH_NO, parmListAnswerOrtho_LH_NO );
 	Gen_GetParmListMatrix( m_type, 4, 4, answerOrtho_RH_ZO, parmListAnswerOrtho_RH_ZO );
 	Gen_GetParmListMatrix( m_type, 4, 4, answerOrtho_RH_NO, parmListAnswerOrtho_RH_NO );
 
-	char minusOneStr[16];
-	char fiveStr[16];
-	char oneHundredStr[16];
+	char minusOneStr[GEN_STRING_LENGTH_NUMERIC_LITERAL];
+	char fiveStr[GEN_STRING_LENGTH_NUMERIC_LITERAL];
+	char oneHundredStr[GEN_STRING_LENGTH_NUMERIC_LITERAL];
 
-	char widthStr[16];
-	char heightStr[16];
+	char widthStr[GEN_STRING_LENGTH_NUMERIC_LITERAL];
+	char heightStr[GEN_STRING_LENGTH_NUMERIC_LITERAL];
 
 	Gen_GetNumericLiteral( m_type, -1.0f,   minusOneStr );
 	Gen_GetNumericLiteral( m_type,  5.0f,   fiveStr );
@@ -1219,22 +1220,22 @@ void GeneratorMatrixTests::GenerateTestPerspective() {
 		{ 0.0f,      0.0f,      -1.0f,       0.0f      }
 	};
 
-	char parmListPerspective_LH_ZO[256] = { 0 };
-	char parmListPerspective_LH_NO[256] = { 0 };
-	char parmListPerspective_RH_ZO[256] = { 0 };
-	char parmListPerspective_RH_NO[256] = { 0 };
+	char parmListPerspective_LH_ZO[GEN_STRING_LENGTH_PARM_LIST_MATRIX]	= { 0 };
+	char parmListPerspective_LH_NO[GEN_STRING_LENGTH_PARM_LIST_MATRIX]	= { 0 };
+	char parmListPerspective_RH_ZO[GEN_STRING_LENGTH_PARM_LIST_MATRIX]	= { 0 };
+	char parmListPerspective_RH_NO[GEN_STRING_LENGTH_PARM_LIST_MATRIX]	= { 0 };
 
 	Gen_GetParmListMatrix( m_type, 4, 4, answerPerspective_LH_ZO, parmListPerspective_LH_ZO );
 	Gen_GetParmListMatrix( m_type, 4, 4, answerPerspective_LH_NO, parmListPerspective_LH_NO );
 	Gen_GetParmListMatrix( m_type, 4, 4, answerPerspective_RH_ZO, parmListPerspective_RH_ZO );
 	Gen_GetParmListMatrix( m_type, 4, 4, answerPerspective_RH_NO, parmListPerspective_RH_NO );
 
-	char widthStr[16];
-	char heightStr[16];
+	char widthStr[GEN_STRING_LENGTH_NUMERIC_LITERAL];
+	char heightStr[GEN_STRING_LENGTH_NUMERIC_LITERAL];
 
-	char fovStr[16];
-	char znearStr[16];
-	char zfarStr[16];
+	char fovStr[GEN_STRING_LENGTH_NUMERIC_LITERAL];
+	char znearStr[GEN_STRING_LENGTH_NUMERIC_LITERAL];
+	char zfarStr[GEN_STRING_LENGTH_NUMERIC_LITERAL];
 
 	Gen_GetNumericLiteral( m_type, 1280.0f, widthStr );
 	Gen_GetNumericLiteral( m_type, 720.0f, heightStr );
@@ -1300,19 +1301,19 @@ void GeneratorMatrixTests::GenerateTestLookAt() {
 
 	u32 numTranslateVecComponents = 3;
 
-	char posVectorTypeName[32] = { 0 };
-	snprintf( posVectorTypeName, 32, "%s%d", m_typeString, numTranslateVecComponents );
+	char posVectorTypeName[GEN_STRING_LENGTH_TYPE_NAME] = { 0 };
+	snprintf( posVectorTypeName, GEN_STRING_LENGTH_TYPE_NAME, "%s%d", m_typeString, numTranslateVecComponents );
 
-	char parmListCurrentPos[64]		= { 0 };
-	char parmListTargetPos[64]		= { 0 };
-	char parmListUp[64]				= { 0 };
+	char parmListCurrentPos[GEN_STRING_LENGTH_PARM_LIST_VECTOR]	= { 0 };
+	char parmListTargetPos[GEN_STRING_LENGTH_PARM_LIST_VECTOR]	= { 0 };
+	char parmListUp[GEN_STRING_LENGTH_PARM_LIST_VECTOR]			= { 0 };
 
 	Gen_GetParmListVector( m_type, numTranslateVecComponents, currentPos, parmListCurrentPos );
 	Gen_GetParmListVector( m_type, numTranslateVecComponents, targetPos, parmListTargetPos );
 	Gen_GetParmListVector( m_type, numTranslateVecComponents, up, parmListUp );
 
-	char parmListLookAt_LH[256] = { 0 };
-	char parmListLookAt_RH[256] = { 0 };
+	char parmListLookAt_LH[GEN_STRING_LENGTH_PARM_LIST_MATRIX] = { 0 };
+	char parmListLookAt_RH[GEN_STRING_LENGTH_PARM_LIST_MATRIX] = { 0 };
 
 	Gen_GetParmListMatrix( m_type, m_numRows, m_numCols, answerLookAt_LH, parmListLookAt_LH );
 	Gen_GetParmListMatrix( m_type, m_numRows, m_numCols, answerLookAt_RH, parmListLookAt_RH );
@@ -1353,8 +1354,8 @@ void GeneratorMatrixTests::GetTestCodeArithmeticInternal( const genOpArithmetic_
 	u32 returnTypeCols = m_numCols;
 
 	const char* lhsTypeName = m_fullTypeName;
-	char rhsTypeName[16] = { 0 };
-	char returnTypeName[16] = { 0 };
+	char rhsTypeName[GEN_STRING_LENGTH_TYPE_NAME] = { 0 };
+	char returnTypeName[GEN_STRING_LENGTH_TYPE_NAME] = { 0 };
 
 	// for non-square matrices you can only do proper multiply and divide by the transposed type
 	if ( op == GEN_OP_ARITHMETIC_MUL ) {
@@ -1364,8 +1365,8 @@ void GeneratorMatrixTests::GetTestCodeArithmeticInternal( const genOpArithmetic_
 		returnTypeRows = m_numRows;
 		returnTypeCols = m_numRows;
 
-		snprintf( rhsTypeName, 16, "%s%dx%d", m_typeString, m_numCols, m_numRows );
-		snprintf( returnTypeName, 16, "%s%dx%d", m_typeString, m_numRows, m_numRows );
+		snprintf( rhsTypeName, GEN_STRING_LENGTH_TYPE_NAME, "%s%dx%d", m_typeString, m_numCols, m_numRows );
+		snprintf( returnTypeName, GEN_STRING_LENGTH_TYPE_NAME, "%s%dx%d", m_typeString, m_numRows, m_numRows );
 	} else {
 		size_t len = strlen( lhsTypeName );
 
@@ -1373,14 +1374,14 @@ void GeneratorMatrixTests::GetTestCodeArithmeticInternal( const genOpArithmetic_
 		strncpy( rhsTypeName, lhsTypeName, len );
 	}
 
-	char parmListLhs[256]	= { 0 };
-	char parmListRhs[256]	= { 0 };
+	char parmListLhs[GEN_STRING_LENGTH_PARM_LIST_MATRIX]	= { 0 };
+	char parmListRhs[GEN_STRING_LENGTH_PARM_LIST_MATRIX]	= { 0 };
 
 	Gen_GetParmListMatrix( m_type, m_numRows, m_numCols, valuesLhs, parmListLhs );
 	Gen_GetParmListMatrix( m_type, rhsRows, rhsCols, valuesRhs, parmListRhs );
 
 	// for division, just divide a matrix by itself and check it equals identity
-	char parmListAnswer[256] = { 0 };
+	char parmListAnswer[GEN_STRING_LENGTH_PARM_LIST_MATRIX] = { 0 };
 	if ( op == GEN_OP_ARITHMETIC_DIV && ( m_numRows == m_numCols && Gen_IsFloatingPointType( m_type ) ) ) {
 		Gen_GetParmListMatrixIdentity( m_type, m_numRows, m_numCols, parmListAnswer );
 	} else {
@@ -1411,7 +1412,7 @@ void GeneratorMatrixTests::GetParmListArithmeticAnswer( const genOpArithmetic_t 
 	assert( valuesLhs );
 	assert( valuesRhs );
 
-	char valueStr[16];
+	char valueStr[GEN_STRING_LENGTH_NUMERIC_LITERAL];
 
 	int pos = 0;
 
