@@ -1320,10 +1320,10 @@ void Gen_MatrixLookAt( const genType_t type, const u32 numRows, const u32 numCol
 	Gen_GetNumericLiteral( type, 1.0f, oneStr );
 
 	char vectorTypeString[GEN_STRING_LENGTH_TYPE_NAME] = { 0 };
-	snprintf( vectorTypeString, GEN_STRING_LENGTH_TYPE_NAME, "%s%u", typeString, numVecComponents );
+	snprintf( vectorTypeString, GEN_STRING_LENGTH_TYPE_NAME, "%s%d", typeString, numVecComponents );
 
 	char fullTypeName[GEN_STRING_LENGTH_TYPE_NAME] = { 0 };
-	snprintf( fullTypeName, GEN_STRING_LENGTH_TYPE_NAME, "%s%ux%u", typeString, numRows, numCols );
+	snprintf( fullTypeName, GEN_STRING_LENGTH_TYPE_NAME, "%s%dx%d", typeString, numRows, numCols );
 
 	// left-handed
 	{
@@ -1333,7 +1333,7 @@ void Gen_MatrixLookAt( const genType_t type, const u32 numRows, const u32 numCol
 		String_Append( sbHeader, "\n" );
 
 		String_Appendf( sbInl, "%s lookat_lh( const %s& eye, const %s& target, const %s& up )\n",
-			fullTypeName, vectorTypeString, vectorTypeString );
+			fullTypeName, vectorTypeString, vectorTypeString, vectorTypeString );
 		String_Append(  sbInl, "{\n" );
 		String_Append(  sbInl, "\t// left handed\n" );
 		String_Appendf( sbInl, "\tconst %s forward = normalized( target - eye );\n", vectorTypeString );
