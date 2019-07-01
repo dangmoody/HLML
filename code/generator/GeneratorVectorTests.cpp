@@ -87,8 +87,8 @@ bool GeneratorVectorTests::Generate( const genType_t type, const u32 numComponen
 }
 
 void GeneratorVectorTests::GenerateTestAssignment() {
-	char testName[64] = { 0 };
-	snprintf( testName, 64, "TestAssignment_%s", m_fullTypeName );
+	char testName[GEN_STRING_LENGTH_TEST_NAME] = { 0 };
+	snprintf( testName, GEN_STRING_LENGTH_TEST_NAME, "TestAssignment_%s", m_fullTypeName );
 
 	char oneStr[GEN_STRING_LENGTH_NUMERIC_LITERAL];
 	Gen_GetNumericLiteral( m_type, 1, oneStr );
@@ -119,8 +119,8 @@ void GeneratorVectorTests::GenerateTestAssignment() {
 }
 
 void GeneratorVectorTests::GenerateTestArray() {
-	char testName[64] = { 0 };
-	snprintf( testName, 64, "TestArray_%s", m_fullTypeName );
+	char testName[GEN_STRING_LENGTH_TEST_NAME] = { 0 };
+	snprintf( testName, GEN_STRING_LENGTH_TEST_NAME, "TestArray_%s", m_fullTypeName );
 
 	float values[] = { 0.0f, 1.0f, 2.0f, 3.0f };
 
@@ -187,8 +187,8 @@ void GeneratorVectorTests::GenerateTestArithmetic() {
 	};
 
 	for ( u32 i = 0; i < GEN_OP_ARITHMETIC_COUNT; i++ ) {
-		char testName[64] = { 0 };
-		snprintf( testName, 64, "TestArithmetic%s_%s", suffices[i], m_fullTypeName );
+		char testName[GEN_STRING_LENGTH_TEST_NAME] = { 0 };
+		snprintf( testName, GEN_STRING_LENGTH_TEST_NAME, "TestArithmetic%s_%s", suffices[i], m_fullTypeName );
 
 		String_Appendf( &m_codeTests, "TEMPER_TEST( %s )\n", testName );
 		String_Append(  &m_codeTests, "{\n" );
@@ -229,7 +229,7 @@ void GeneratorVectorTests::GenerateTestIncrement() {
 	};
 
 	for ( u32 i = 0; i < GEN_OP_INCREMENT_COUNT; i++ ) {
-		char testName[32] = { 0 };
+		char testName[GEN_STRING_LENGTH_TEST_NAME] = { 0 };
 		snprintf( testName, 32, "Test%s_%s", suffices[i], m_fullTypeName );
 
 		String_Appendf( &m_codeTests, "TEMPER_TEST( %s )\n", testName );
@@ -259,8 +259,8 @@ void GeneratorVectorTests::GenerateTestRelational() {
 		return;
 	}
 
-	char testName[64] = { 0 };
-	snprintf( testName, 64, "TestRelational_%s", m_fullTypeName );
+	char testName[GEN_STRING_LENGTH_TEST_NAME] = { 0 };
+	snprintf( testName, GEN_STRING_LENGTH_TEST_NAME, "TestRelational_%s", m_fullTypeName );
 
 	String_Appendf( &m_codeSuite, "\tTEMPER_RUN_TEST( %s );\n", testName );
 
@@ -407,10 +407,10 @@ void GeneratorVectorTests::GenerateTestBitwise() {
 		GEN_OP_BITWISE_SHIFT_RIGHT,
 	};
 
-	char testName[64] = { 0 };
+	char testName[GEN_STRING_LENGTH_TEST_NAME] = { 0 };
 
 	for ( u32 i = 0; i < _countof( ops ); i++ ) {
-		snprintf( testName, 64, "TestBitwise_%s_%s", suffices[i], m_fullTypeName );
+		snprintf( testName, GEN_STRING_LENGTH_TEST_NAME, "TestBitwise_%s_%s", suffices[i], m_fullTypeName );
 
 		String_Appendf( &m_codeTests, "TEMPER_TEST( %s )\n", testName );
 		String_Append(  &m_codeTests, "{\n" );
@@ -430,7 +430,7 @@ void GeneratorVectorTests::GenerateTestBitwise() {
 
 	// unary
 	{
-		snprintf( testName, 64, "TestBitwiseUnary_%s", m_fullTypeName );
+		snprintf( testName, GEN_STRING_LENGTH_TEST_NAME, "TestBitwiseUnary_%s", m_fullTypeName );
 
 		char parmList[GEN_STRING_LENGTH_PARM_LIST_VECTOR];
 		Gen_GetParmListVector( m_type, m_numComponents, values0, parmList );
@@ -456,7 +456,7 @@ void GeneratorVectorTests::GenerateTestLength() {
 		return;
 	}
 
-	char testName[32] = { 0 };
+	char testName[GEN_STRING_LENGTH_TEST_NAME] = { 0 };
 	snprintf( testName, 32, "TestLength_%s", m_fullTypeName );
 
 	char twoStr[GEN_STRING_LENGTH_NUMERIC_LITERAL];
@@ -500,8 +500,8 @@ void GeneratorVectorTests::GenerateTestNormalized() {
 		return;
 	}
 
-	char testName[64] = { 0 };
-	snprintf( testName, 64, "TestNormalized_%s", m_fullTypeName );
+	char testName[GEN_STRING_LENGTH_TEST_NAME] = { 0 };
+	snprintf( testName, GEN_STRING_LENGTH_TEST_NAME, "TestNormalized_%s", m_fullTypeName );
 
 	float values[] = { 2.0f, 3.0f, 4.0f, 5.0f };
 
@@ -532,8 +532,8 @@ void GeneratorVectorTests::GenerateTestDot() {
 		return;
 	}
 
-	char testName[64];
-	snprintf( testName, 64, "TestDot_%s", m_fullTypeName );
+	char testName[GEN_STRING_LENGTH_TEST_NAME];
+	snprintf( testName, GEN_STRING_LENGTH_TEST_NAME, "TestDot_%s", m_fullTypeName );
 
 	genType_t dotReturnType = ( m_type == GEN_TYPE_UINT ) ? GEN_TYPE_INT : m_type;
 
@@ -582,7 +582,7 @@ void GeneratorVectorTests::GenerateTestCross() {
 		return;
 	}
 
-	char testName[32] = { 0 };
+	char testName[GEN_STRING_LENGTH_TEST_NAME] = { 0 };
 	snprintf( testName, 32, "TestCross_%s", m_fullTypeName );
 
 	if ( m_numComponents < 3 ) {
@@ -621,7 +621,7 @@ void GeneratorVectorTests::GenerateTestAngle() {
 		return;
 	}
 
-	char testName[32] = { 0 };
+	char testName[GEN_STRING_LENGTH_TEST_NAME] = { 0 };
 	snprintf( testName, 32, "TestAngle_%s", m_fullTypeName );
 
 	float right[]	= { 1.0f, 0.0f, 0.0f, 0.0f };
@@ -664,7 +664,7 @@ void GeneratorVectorTests::GenerateTestDistance() {
 		return;
 	}
 
-	char testName[32] = { 0 };
+	char testName[GEN_STRING_LENGTH_TEST_NAME] = { 0 };
 	snprintf( testName, 32, "TestDistance_%s", m_fullTypeName );
 
 	genType_t floatingPointType = Gen_GetSupportedFloatingPointType( m_type );
@@ -728,8 +728,8 @@ void GeneratorVectorTests::GenerateTestPacking() {
 		return;
 	}
 
-	char testName[64] = { 0 };
-	snprintf( testName, 64, "TestPacking_%s", m_fullTypeName );
+	char testName[GEN_STRING_LENGTH_TEST_NAME] = { 0 };
+	snprintf( testName, GEN_STRING_LENGTH_TEST_NAME, "TestPacking_%s", m_fullTypeName );
 
 	float values[] = { 255, 255, 0, 255 };	// magenta
 
@@ -764,7 +764,7 @@ void GeneratorVectorTests::GenerateTestSaturate() {
 		return;
 	}
 
-	char testName[32] = { 0 };
+	char testName[GEN_STRING_LENGTH_TEST_NAME] = { 0 };
 	snprintf( testName, 32, "TestSaturate_%s", m_fullTypeName );
 
 	float values[]			= { -1.0f, 2.0f, 4.0f, 6.0f };
@@ -797,7 +797,7 @@ void GeneratorVectorTests::GenerateTestLerp() {
 		return;
 	}
 
-	char testName[32] = { 0 };
+	char testName[GEN_STRING_LENGTH_TEST_NAME] = { 0 };
 	snprintf( testName, 32, "TestLerp_%s", m_fullTypeName );
 
 	float valuesA[]			= { 0.0f, 1.0f, 0.0f, 0.0f };
@@ -837,7 +837,7 @@ void GeneratorVectorTests::GenerateTestSmoothstep() {
 		return;
 	}
 
-	char testName[32] = { 0 };
+	char testName[GEN_STRING_LENGTH_TEST_NAME] = { 0 };
 	snprintf( testName, 32, "TestSmoothstep_%s", m_fullTypeName );
 
 	float valuesLow[]						= { 0.0f, 0.0f, 0.0f, 0.0f };

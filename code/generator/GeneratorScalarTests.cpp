@@ -61,8 +61,8 @@ void GeneratorScalarTest::GenerateTestFloateq() {
 		return;
 	}
 
-	char testName[64] = { 0 };
-	snprintf( testName, 64, "TestFloateq_%s", m_memberTypeString );
+	char testName[GEN_STRING_LENGTH_TEST_NAME] = { 0 };
+	snprintf( testName, GEN_STRING_LENGTH_TEST_NAME, "TestFloateq_%s", m_memberTypeString );
 
 	// numbers chosen at random
 	char aStr[GEN_STRING_LENGTH_NUMERIC_LITERAL];
@@ -100,8 +100,8 @@ void GeneratorScalarTest::GenerateTestSign() {
 		return;
 	}
 
-	char testName[64] = { 0 };
-	snprintf( testName, 64, "TestSign_%s", m_memberTypeString );
+	char testName[GEN_STRING_LENGTH_TEST_NAME] = { 0 };
+	snprintf( testName, GEN_STRING_LENGTH_TEST_NAME, "TestSign_%s", m_memberTypeString );
 
 	char valueSignedStr[GEN_STRING_LENGTH_NUMERIC_LITERAL];
 	char valueUnsignedStr[GEN_STRING_LENGTH_NUMERIC_LITERAL];
@@ -126,8 +126,8 @@ void GeneratorScalarTest::GenerateTestDegreesRadians() {
 		return;
 	}
 
-	char testName[64] = { 0 };
-	snprintf( testName, 64, "TestDegreesRadians_%s", m_memberTypeString );
+	char testName[GEN_STRING_LENGTH_TEST_NAME] = { 0 };
+	snprintf( testName, GEN_STRING_LENGTH_TEST_NAME, "TestDegreesRadians_%s", m_memberTypeString );
 
 	char degreesStr[GEN_STRING_LENGTH_NUMERIC_LITERAL];
 	Gen_GetNumericLiteral( m_type, 90.0f, degreesStr );
@@ -163,8 +163,8 @@ void GeneratorScalarTest::GenerateTestMinMax() {
 		return;
 	}
 
-	char testName[64] = { 0 };
-	snprintf( testName, 64, "TestMinMax_%s", m_memberTypeString );
+	char testName[GEN_STRING_LENGTH_TEST_NAME] = { 0 };
+	snprintf( testName, GEN_STRING_LENGTH_TEST_NAME, "TestMinMax_%s", m_memberTypeString );
 
 	// numbers picked at random
 	char aStr[GEN_STRING_LENGTH_NUMERIC_LITERAL];
@@ -200,8 +200,8 @@ void GeneratorScalarTest::GenerateTestClamp() {
 		return;
 	}
 
-	char testName[64] = { 0 };
-	snprintf( testName, 64, "TestClamp_%s", m_memberTypeString );
+	char testName[GEN_STRING_LENGTH_TEST_NAME] = { 0 };
+	snprintf( testName, GEN_STRING_LENGTH_TEST_NAME, "TestClamp_%s", m_memberTypeString );
 
 	// numbers picked at random
 	char zeroStr[GEN_STRING_LENGTH_NUMERIC_LITERAL];
@@ -250,8 +250,8 @@ void GeneratorScalarTest::GenerateTestSaturate() {
 		return;
 	}
 
-	char testName[64] = { 0 };
-	snprintf( testName, 64, "TestSaturate_%s", m_memberTypeString );
+	char testName[GEN_STRING_LENGTH_TEST_NAME] = { 0 };
+	snprintf( testName, GEN_STRING_LENGTH_TEST_NAME, "TestSaturate_%s", m_memberTypeString );
 
 	char minusOneStr[GEN_STRING_LENGTH_NUMERIC_LITERAL];
 	char zeroStr[GEN_STRING_LENGTH_NUMERIC_LITERAL];

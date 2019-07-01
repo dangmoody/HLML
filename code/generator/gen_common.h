@@ -47,6 +47,8 @@
 #define GEN_STRING_LENGTH_PARM_LIST_VECTOR	64
 #define GEN_STRING_LENGTH_PARM_LIST_MATRIX	256
 
+#define GEN_STRING_LENGTH_TEST_NAME			64
+
 struct stringBuilder_t;
 
 enum genType_t {
