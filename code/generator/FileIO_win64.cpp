@@ -27,12 +27,12 @@ bool FS_CreateFolder( const char* name ) {
 bool FS_DeleteFolder( const char* name ) {
 	// delete all folder contents
 	char filename[128] = {};
-	sprintf( filename, "%s\\*.*", name );
+	snprintf( filename, 128, "%s\\*.*", name );
 
 	WIN32_FIND_DATA info = {};
 	HANDLE handle = FindFirstFile( filename, &info );
 	do {
-		sprintf( filename, "%s\\%s", name, info.cFileName );
+		snprintf( filename, 128, "%s\\%s", name, info.cFileName );
 		DeleteFile( filename );
 	} while ( FindNextFile( handle, &info ) );
 

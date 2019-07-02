@@ -402,10 +402,10 @@ static bool GenerateOperatorsVector( void ) {
 
 static bool GenerateOperatorsMatrix( void ) {
 	char filePathHeader[64];
-	sprintf( filePathHeader, "%s%s.h", GEN_OUT_GEN_FOLDER_PATH, GEN_FILENAME_OPERATORS_MATRIX );
+	snprintf( filePathHeader, 64, "%s%s.h", GEN_OUT_GEN_FOLDER_PATH, GEN_FILENAME_OPERATORS_MATRIX );
 
 	char filePathInl[64];
-	sprintf( filePathInl, "%s%s.inl", GEN_OUT_GEN_FOLDER_PATH, GEN_FILENAME_OPERATORS_MATRIX );
+	snprintf( filePathInl, 64, "%s%s.inl", GEN_OUT_GEN_FOLDER_PATH, GEN_FILENAME_OPERATORS_MATRIX );
 
 	stringBuilder_t contentHeader = String_Create( 512 * KB_TO_BYTES );
 	String_Append( &contentHeader, GEN_FILE_HEADER );

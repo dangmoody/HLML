@@ -296,39 +296,32 @@ const char* Gen_GetDefaultLiteralValue( const genType_t type ) {
 }
 
 void Gen_GetNumericLiteral( const genType_t type, const float x, char* outStr ) {
-	int len = 0;
-
 	switch ( type ) {
 		case GEN_TYPE_BOOL:
-			len = snprintf( outStr, GEN_STRING_LENGTH_NUMERIC_LITERAL, "%s", ( x != 0 ) ? "true" : "false" );
+			snprintf( outStr, GEN_STRING_LENGTH_NUMERIC_LITERAL, "%s", ( x != 0 ) ? "true" : "false" );
 			break;
 
 		case GEN_TYPE_INT:
-			len = snprintf( outStr, GEN_STRING_LENGTH_NUMERIC_LITERAL, "%d", (s32) x );
+			snprintf( outStr, GEN_STRING_LENGTH_NUMERIC_LITERAL, "%d", (s32) x );
 			break;
 
 		case GEN_TYPE_UINT:
-			len = snprintf( outStr, GEN_STRING_LENGTH_NUMERIC_LITERAL, "%uU", (u32) x );
+			snprintf( outStr, GEN_STRING_LENGTH_NUMERIC_LITERAL, "%uU", (u32) x );
 			break;
 
 		case GEN_TYPE_FLOAT:
-			len = snprintf( outStr, GEN_STRING_LENGTH_NUMERIC_LITERAL, "%ff", (float) x );
+			snprintf( outStr, GEN_STRING_LENGTH_NUMERIC_LITERAL, "%ff", (float) x );
 			break;
 
 		case GEN_TYPE_DOUBLE:
-			len = snprintf( outStr, GEN_STRING_LENGTH_NUMERIC_LITERAL, "%f", (double) x );
+			snprintf( outStr, GEN_STRING_LENGTH_NUMERIC_LITERAL, "%f", (double) x );
 			break;
 
 		case GEN_TYPE_COUNT:
 		default:
 			printf( "ERROR: Bad genType_t enum passed through to: %s.\n", __FUNCTION__ );
-			sprintf( outStr, "ERROR" );
+			snprintf( outStr, GEN_STRING_LENGTH_NUMERIC_LITERAL, "ERROR" );
 			break;
-	}
-
-	if ( len >= GEN_STRING_LENGTH_NUMERIC_LITERAL ) {
-		printf( "ERROR: Attempted to write a numeric literal greater than %d characters.\n", GEN_STRING_LENGTH_NUMERIC_LITERAL );
-		assert( false );
 	}
 }
 

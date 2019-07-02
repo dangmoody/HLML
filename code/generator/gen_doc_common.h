@@ -96,14 +96,14 @@ void Gen_GetDocSmootherstep( stringBuilder_t* sb, const char* fullTypeName ) {
 }
 
 void Gen_DocOperatorEquals( stringBuilder_t* sb, const char* fullTypeName ) {
-	String_Append( sb,
+	String_Appendf( sb,
 		"/// \\relates %s\n" \
 		"/// \\brief Returns true if the all the components of the left-hand-side %s match the other one, " \
 		"otherwise returns false.\n", fullTypeName, fullTypeName );
 }
 
 void Gen_DocOperatorNotEquals( stringBuilder_t* sb, const char* fullTypeName ) {
-	String_Append( sb,
+	String_Appendf( sb,
 		"/// \\relates %s\n" \
 		"/// \\brief Returns true if not all of the components of the left-hand-side %s match the other one, " \
 		"otherwise returns false.\n", fullTypeName, fullTypeName );

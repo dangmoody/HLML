@@ -81,21 +81,21 @@ void Gen_GetParmListVector( const genType_t type, const u32 numComponents, const
 
 	int pos = 0;
 
-	pos += sprintf( outParmListStr + pos, "( " );
+	pos += snprintf( outParmListStr + pos, GEN_STRING_LENGTH_PARM_LIST_VECTOR, "( " );
 
 	for ( u32 i = 0; i < numComponents; i++ ) {
 		const float value = values[i];
 
 		Gen_GetNumericLiteral( type, value, valueStr );
 
-		pos += sprintf( outParmListStr + pos, "%s", valueStr );
+		pos += snprintf( outParmListStr + pos, GEN_STRING_LENGTH_PARM_LIST_VECTOR, "%s", valueStr );
 
 		if ( i != numComponents - 1 ) {
-			pos += sprintf( outParmListStr + pos, ", " );
+			pos += snprintf( outParmListStr + pos, GEN_STRING_LENGTH_PARM_LIST_VECTOR, ", " );
 		}
 	}
 
-	pos += sprintf( outParmListStr + pos, " )" );
+	pos += snprintf( outParmListStr + pos, GEN_STRING_LENGTH_PARM_LIST_VECTOR, " )" );
 }
 
 void Gen_VectorOperatorsArithmetic( const genType_t type, const u32 numComponents, stringBuilder_t* sbHeader, stringBuilder_t* sbInl ) {
@@ -435,7 +435,7 @@ void Gen_VectorUnpack( const genType_t type, const u32 numComponents, stringBuil
 	String_Append(  sbInl, "{\n" );
 	String_Appendf( sbInl, "\treturn %s(\n", fullTypeName );
 	for ( u32 i = 0; i < numComponents; i++ ) {
-		String_Append( sbInl, "\t\t( x >> %d ) & 0xFF", shiftVals[i] );
+		String_Appendf( sbInl, "\t\t( x >> %d ) & 0xFF", shiftVals[i] );
 
 		if ( i != numComponents - 1 ) {
 			String_Append( sbInl, "," );

@@ -292,31 +292,31 @@ void Gen_GetParmListMatrix( const genType_t type, const u32 numRows, const u32 n
 
 	int pos = 0;
 
-	pos += sprintf( outString + pos, "(\n" );
+	pos += snprintf( outString + pos, GEN_STRING_LENGTH_PARM_LIST_MATRIX, "(\n" );
 
 	for ( u32 row = 0; row < numRows; row++ ) {
-		pos += sprintf( outString + pos, "\t\t" );
+		pos += snprintf( outString + pos, GEN_STRING_LENGTH_PARM_LIST_MATRIX, "\t\t" );
 
 		for ( u32 col = 0; col < numCols; col++ ) {
 			const float value = values[row][col];
 
 			Gen_GetNumericLiteral( type, value, valueStr );
 
-			pos += sprintf( outString + pos, "%s", valueStr );
+			pos += snprintf( outString + pos, GEN_STRING_LENGTH_PARM_LIST_MATRIX, "%s", valueStr );
 
 			if ( row + col != ( numRows - 1 ) + ( numCols - 1 ) ) {
-				pos += sprintf( outString + pos, "," );
+				pos += snprintf( outString + pos, GEN_STRING_LENGTH_PARM_LIST_MATRIX, "," );
 			}
 
 			if ( col != numCols - 1 ) {
-				pos += sprintf( outString + pos, " " );
+				pos += snprintf( outString + pos, GEN_STRING_LENGTH_PARM_LIST_MATRIX, " " );
 			}
 		}
 
-		pos += sprintf( outString + pos, "\n" );
+		pos += snprintf( outString + pos, GEN_STRING_LENGTH_PARM_LIST_MATRIX, "\n" );
 	}
 
-	pos += sprintf( outString + pos, "\t)" );
+	pos += snprintf( outString + pos, GEN_STRING_LENGTH_PARM_LIST_MATRIX, "\t)" );
 }
 
 void Gen_GetParmListMatrixIdentity( const genType_t type, const u32 numRows, const u32 numCols, char* outString ) {
@@ -344,31 +344,31 @@ void Gen_GetParmListMatrixDiagonal( const genType_t type, const u32 numRows, con
 
 	u32 valueIndex = 0;
 
-	pos += sprintf( outString + pos, "(\n" );
+	pos += snprintf( outString + pos, GEN_STRING_LENGTH_PARM_LIST_MATRIX, "(\n" );
 	for ( u32 row = 0; row < numRows; row++ ) {
-		pos += sprintf( outString + pos, "\t\t" );
+		pos += snprintf( outString + pos, GEN_STRING_LENGTH_PARM_LIST_MATRIX, "\t\t" );
 
 		for ( u32 col = 0; col < numCols; col++ ) {
 			if ( row == col ) {
 				Gen_GetNumericLiteral( type, values[valueIndex++], valueStr );
 
-				pos += sprintf( outString + pos, "%s", valueStr );
+				pos += snprintf( outString + pos, GEN_STRING_LENGTH_PARM_LIST_MATRIX, "%s", valueStr );
 			} else {
-				pos += sprintf( outString + pos, "%s", Gen_GetDefaultLiteralValue( type ) );
+				pos += snprintf( outString + pos, GEN_STRING_LENGTH_PARM_LIST_MATRIX, "%s", Gen_GetDefaultLiteralValue( type ) );
 			}
 
 			if ( row + col != ( numRows - 1 ) + ( numCols - 1 ) ) {
-				pos += sprintf( outString + pos, "," );
+				pos += snprintf( outString + pos, GEN_STRING_LENGTH_PARM_LIST_MATRIX, "," );
 			}
 
 			if ( col != numCols - 1 ) {
-				pos += sprintf( outString + pos, " " );
+				pos += snprintf( outString + pos, GEN_STRING_LENGTH_PARM_LIST_MATRIX, " " );
 			}
 		}
 
-		pos += sprintf( outString + pos, "\n" );
+		pos += snprintf( outString + pos, GEN_STRING_LENGTH_PARM_LIST_MATRIX, "\n" );
 	}
-	pos += sprintf( outString + pos, "\t)" );
+	pos += snprintf( outString + pos, GEN_STRING_LENGTH_PARM_LIST_MATRIX, "\t)" );
 }
 
 void Gen_GetParmListMatrixSingleValue( const genType_t type, const u32 numRows, const u32 numCols, const float value, char* outString ) {
@@ -382,25 +382,25 @@ void Gen_GetParmListMatrixSingleValue( const genType_t type, const u32 numRows, 
 
 	int pos = 0;
 
-	pos += sprintf( outString + pos, "(\n" );
+	pos += snprintf( outString + pos, GEN_STRING_LENGTH_PARM_LIST_MATRIX, "(\n" );
 	for ( u32 row = 0; row < numRows; row++ ) {
-		pos += sprintf( outString + pos, "\t\t" );
+		pos += snprintf( outString + pos, GEN_STRING_LENGTH_PARM_LIST_MATRIX, "\t\t" );
 
 		for ( u32 col = 0; col < numCols; col++ ) {
-			pos += sprintf( outString + pos, "%s", valueStr );
+			pos += snprintf( outString + pos, GEN_STRING_LENGTH_PARM_LIST_MATRIX, "%s", valueStr );
 
 			if ( row + col != ( numRows - 1 ) + ( numCols - 1 ) ) {
-				pos += sprintf( outString + pos, "," );
+				pos += snprintf( outString + pos, GEN_STRING_LENGTH_PARM_LIST_MATRIX, "," );
 			}
 
 			if ( col != numCols - 1 ) {
-				pos += sprintf( outString + pos, " " );
+				pos += snprintf( outString + pos, GEN_STRING_LENGTH_PARM_LIST_MATRIX, " " );
 			}
 		}
 
-		pos += sprintf( outString + pos, "\n" );
+		pos += snprintf( outString + pos, GEN_STRING_LENGTH_PARM_LIST_MATRIX, "\n" );
 	}
-	pos += sprintf( outString + pos, "\t)" );
+	pos += snprintf( outString + pos, GEN_STRING_LENGTH_PARM_LIST_MATRIX, "\t)" );
 }
 
 void Gen_GetParmListMatrixSingleValueStr( const u32 numRows, const u32 numCols, const char* valueStr, char* outString ) {
@@ -411,25 +411,25 @@ void Gen_GetParmListMatrixSingleValueStr( const u32 numRows, const u32 numCols, 
 
 	int pos = 0;
 
-	pos += sprintf( outString + pos, "(\n" );
+	pos += snprintf( outString + pos, GEN_STRING_LENGTH_PARM_LIST_MATRIX, "(\n" );
 	for ( u32 row = 0; row < numRows; row++ ) {
-		pos += sprintf( outString + pos, "\t\t" );
+		pos += snprintf( outString + pos, GEN_STRING_LENGTH_PARM_LIST_MATRIX, "\t\t" );
 
 		for ( u32 col = 0; col < numCols; col++ ) {
-			pos += sprintf( outString + pos, "%s", valueStr );
+			pos += snprintf( outString + pos, GEN_STRING_LENGTH_PARM_LIST_MATRIX, "%s", valueStr );
 
 			if ( row + col != ( numRows - 1 ) + ( numCols - 1 ) ) {
-				pos += sprintf( outString + pos, "," );
+				pos += snprintf( outString + pos, GEN_STRING_LENGTH_PARM_LIST_MATRIX, "," );
 			}
 
 			if ( col != numCols - 1 ) {
-				pos += sprintf( outString + pos, " " );
+				pos += snprintf( outString + pos, GEN_STRING_LENGTH_PARM_LIST_MATRIX, " " );
 			}
 		}
 
-		pos += sprintf( outString + pos, "\n" );
+		pos += snprintf( outString + pos, GEN_STRING_LENGTH_PARM_LIST_MATRIX, "\n" );
 	}
-	pos += sprintf( outString + pos, "\t)" );
+	pos += snprintf( outString + pos, GEN_STRING_LENGTH_PARM_LIST_MATRIX, "\t)" );
 }
 
 
@@ -1344,7 +1344,7 @@ void Gen_MatrixLookAt( const genType_t type, const u32 numRows, const u32 numCol
 		String_Append(  sbInl, "\t\tright.x,   right.y,   right.z,   -dot( right, eye ),\n" );
 		String_Append(  sbInl, "\t\tup1.x,     up1.y,     up1.z,     -dot( up1, eye ),\n" );
 		String_Append(  sbInl, "\t\tforward.x, forward.y, forward.z, -dot( forward, eye ),\n" );
-		String_Append(  sbInl, "\t\t%s, %s, %s, %s\n", zeroStr, zeroStr, zeroStr, oneStr );
+		String_Appendf( sbInl, "\t\t%s, %s, %s, %s\n", zeroStr, zeroStr, zeroStr, oneStr );
 		String_Append(  sbInl, "\t);\n" );
 		String_Append(  sbInl, "}\n" );
 		String_Append(  sbInl, "\n" );
@@ -1369,7 +1369,7 @@ void Gen_MatrixLookAt( const genType_t type, const u32 numRows, const u32 numCol
 		String_Append(  sbInl, "\t\t right.x,    right.y,    right.z,   -dot( right, eye ),\n" );
 		String_Append(  sbInl, "\t\t up1.x,      up1.y,      up1.z,     -dot( up1, eye ),\n" );
 		String_Append(  sbInl, "\t\t-forward.x, -forward.y, -forward.z,  dot( forward, eye ),\n" );
-		String_Append(  sbInl, "\t\t%s, %s, %s, %s\n", zeroStr, zeroStr, zeroStr, oneStr );
+		String_Appendf( sbInl, "\t\t%s, %s, %s, %s\n", zeroStr, zeroStr, zeroStr, oneStr );
 		String_Append(  sbInl, "\t);\n" );
 		String_Append(  sbInl, "}\n" );
 		String_Append(  sbInl, "\n" );
