@@ -1,6 +1,8 @@
+#if defined( __linux__ ) || defined( __APPLE__ )
 #include "FileIO.h"
 
-#if defined( __linux__ ) || defined( __APPLE__ )
+#include "string_helpers.h"
+
 #include <sys/types.h>
 #include <sys/stat.h>
 
@@ -84,8 +86,7 @@ bool FS_DeleteFolder( const char* name ) {
 	struct dirent* dirEntry = nullptr;
 
 	while ( ( dirEntry = readdir( dir ) ) != nullptr ) {
-		// TODO(DM): move strcmp to StringEquals(a, b)
-		if ( strcmp( dirEntry->d_name, "." ) == 0 || strcmp( dirEntry->d_name, ".." ) == 0 ) {
+		if ( StringEquals( dirEntry->d_name, "." ) || StringEquals( dirEntry->d_name, ".." ) ) {
 			continue;
 		}
 
