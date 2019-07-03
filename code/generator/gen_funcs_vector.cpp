@@ -4,7 +4,6 @@
 
 #include <assert.h>
 
-// TODO(DM): move these functions into their own file
 static void DocLengthSqr( stringBuilder_t* sb, const char* fullTypeName ) {
 	String_Appendf( sb,
 		"/// \\relates %s\n" \

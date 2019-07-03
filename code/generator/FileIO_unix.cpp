@@ -110,7 +110,6 @@ bool FS_DeleteFolder( const char* name ) {
 		} else {
 //			printf( "Deleting file %s...\n", dirEntry->d_name );
 
-			// TODO(DM): write "FS_DeleteFileIfExists()"
 			osResult = remove( buffer );
 
 			if ( osResult != 0 ) {
@@ -130,7 +129,6 @@ bool FS_DeleteFolder( const char* name ) {
 	return result;
 }
 
-// TODO(DM): rename to "FS_IsFolder"
 bool FS_FolderExists( const char* name ) {
 	assert( name );
 

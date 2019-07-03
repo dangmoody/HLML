@@ -281,7 +281,6 @@ static bool GenerateFunctionsMatrix( void ) {
 
 		for ( u32 row = GEN_COMPONENT_COUNT_MIN; row <= GEN_COMPONENT_COUNT_MAX; row++ ) {
 			for ( u32 col = GEN_COMPONENT_COUNT_MIN; col <= GEN_COMPONENT_COUNT_MAX; col++ ) {
-				// TODO(DM): only include the header files we actually need
 				String_Appendf( &contentHeader, "#include \"%s%dx%d.h\"\n", typeString, row, col );
 			}
 		}

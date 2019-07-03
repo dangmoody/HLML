@@ -4,7 +4,6 @@
 
 #include <assert.h>
 
-// TODO(DM): move these functions into their own file
 static void DocMatrixMultiplication( stringBuilder_t* sb, const char* fullTypeName ) {
 	String_Appendf( sb,
 		"/// \\relates %s\n" \
@@ -995,9 +994,6 @@ void Gen_MatrixOrtho( const genType_t type, const u32 numRows, const u32 numCols
 
 	const char* handStr;
 	const char* rangeStr;
-
-	// TODO(DM): do we need to generate each one?
-	// what if had handedness and clip-space range as cmd args?
 
 	// left-hand, zero to one
 	{
