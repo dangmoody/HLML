@@ -450,6 +450,56 @@ void Gen_Lerp( const genType_t type, const u32 numComponents, stringBuilder_t* s
 	}
 }
 
+void Gen_Step( const genType_t type, const u32 numComponents, stringBuilder_t* sbHeader, stringBuilder_t* sbInl ) {
+	assert( sbHeader );
+
+	assert( numComponents >= 1 );
+	assert( numComponents <= GEN_COMPONENT_COUNT_MAX );
+
+	if ( type == GEN_TYPE_BOOL ) {
+		return;
+	}
+
+	char fullTypeName[GEN_STRING_LENGTH_TYPE_NAME];
+	Gen_GetFullTypeName( type, 1, numComponents, fullTypeName );
+
+	char zeroStr[GEN_STRING_LENGTH_NUMERIC_LITERAL];
+	char oneStr[GEN_STRING_LENGTH_NUMERIC_LITERAL];
+
+	Gen_GetNumericLiteral( type, 0.0f, zeroStr );
+	Gen_GetNumericLiteral( type, 1.0f, oneStr );
+
+	String_Appendf( sbHeader, "inline %s step( const %s& x, const %s& y )", fullTypeName, fullTypeName, fullTypeName );
+	if ( numComponents > 1 ) {
+		assert( sbInl );
+
+		String_Append( sbHeader, ";\n" );
+		String_Append( sbHeader, "\n" );
+
+		String_Appendf( sbInl, "%s step( const %s& x, const %s& y )\n", fullTypeName, fullTypeName, fullTypeName );
+		String_Append(  sbInl, "{\n" );
+		String_Appendf( sbInl, "\treturn %s(\n", fullTypeName );
+		for ( u32 i = 0; i < numComponents; i++ ) {
+				String_Appendf( sbInl, "\t\tstep( x[%d], y[%d] )", i, i );
+
+				if ( i != numComponents - 1 ) {
+					String_Append( sbInl, "," );
+				}
+
+				String_Append( sbInl, "\n" );
+		}
+		String_Appendf( sbInl, "\t);\n" );
+		String_Append(  sbInl, "}\n" );
+		String_Append(  sbInl, "\n" );
+	} else {
+		String_Append(  sbHeader, "\n" );
+		String_Append(  sbHeader, "{\n" );
+		String_Appendf( sbHeader, "\treturn ( y > x ? %s : %s );\n", oneStr, zeroStr );
+		String_Append(  sbHeader, "}\n" );
+		String_Append(  sbHeader, "\n" );
+	}
+}
+
 void Gen_Smoothstep( const genType_t type, const u32 numComponents, stringBuilder_t* sbHeader, stringBuilder_t* sbInl ) {
 	assert( sbHeader );
 

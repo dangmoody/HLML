@@ -25,7 +25,16 @@ along with hlml.  If not, see <http://www.gnu.org/licenses/>.
 // GENERATED FILE.  DO NOT EDIT.
 
 #include "hlml_operators_vector.h"
+
 // int2
+int2 step( const int2& x, const int2& y )
+{
+	return int2(
+		step( x[0], y[0] ),
+		step( x[1], y[1] )
+	);
+}
+
 float lengthsqr( const int2& vec )
 {
 	return (float)( ( vec.x * vec.x ) + ( vec.y * vec.y ) );
@@ -53,6 +62,15 @@ float distance( const int2& lhs, const int2& rhs )
 
 
 // int3
+int3 step( const int3& x, const int3& y )
+{
+	return int3(
+		step( x[0], y[0] ),
+		step( x[1], y[1] ),
+		step( x[2], y[2] )
+	);
+}
+
 float lengthsqr( const int3& vec )
 {
 	return (float)( ( vec.x * vec.x ) + ( vec.y * vec.y ) + ( vec.z * vec.z ) );
@@ -80,6 +98,16 @@ float distance( const int3& lhs, const int3& rhs )
 
 
 // int4
+int4 step( const int4& x, const int4& y )
+{
+	return int4(
+		step( x[0], y[0] ),
+		step( x[1], y[1] ),
+		step( x[2], y[2] ),
+		step( x[3], y[3] )
+	);
+}
+
 float lengthsqr( const int4& vec )
 {
 	return (float)( ( vec.x * vec.x ) + ( vec.y * vec.y ) + ( vec.z * vec.z ) + ( vec.w * vec.w ) );
@@ -97,6 +125,14 @@ int32_t dot( const int4& lhs, const int4& rhs )
 
 
 // uint2
+uint2 step( const uint2& x, const uint2& y )
+{
+	return uint2(
+		step( x[0], y[0] ),
+		step( x[1], y[1] )
+	);
+}
+
 float lengthsqr( const uint2& vec )
 {
 	return (float)( ( vec.x * vec.x ) + ( vec.y * vec.y ) );
@@ -124,6 +160,15 @@ float distance( const uint2& lhs, const uint2& rhs )
 
 
 // uint3
+uint3 step( const uint3& x, const uint3& y )
+{
+	return uint3(
+		step( x[0], y[0] ),
+		step( x[1], y[1] ),
+		step( x[2], y[2] )
+	);
+}
+
 float lengthsqr( const uint3& vec )
 {
 	return (float)( ( vec.x * vec.x ) + ( vec.y * vec.y ) + ( vec.z * vec.z ) );
@@ -151,6 +196,16 @@ float distance( const uint3& lhs, const uint3& rhs )
 
 
 // uint4
+uint4 step( const uint4& x, const uint4& y )
+{
+	return uint4(
+		step( x[0], y[0] ),
+		step( x[1], y[1] ),
+		step( x[2], y[2] ),
+		step( x[3], y[3] )
+	);
+}
+
 float lengthsqr( const uint4& vec )
 {
 	return (float)( ( vec.x * vec.x ) + ( vec.y * vec.y ) + ( vec.z * vec.z ) + ( vec.w * vec.w ) );
@@ -196,6 +251,14 @@ float2 lerp( const float2& a, const float2& b, const float t )
 	return float2(
 		lerp( a[0], b[0], t ),
 		lerp( a[1], b[1], t )
+	);
+}
+
+float2 step( const float2& x, const float2& y )
+{
+	return float2(
+		step( x[0], y[0] ),
+		step( x[1], y[1] )
 	);
 }
 
@@ -274,6 +337,15 @@ float3 lerp( const float3& a, const float3& b, const float t )
 		lerp( a[0], b[0], t ),
 		lerp( a[1], b[1], t ),
 		lerp( a[2], b[2], t )
+	);
+}
+
+float3 step( const float3& x, const float3& y )
+{
+	return float3(
+		step( x[0], y[0] ),
+		step( x[1], y[1] ),
+		step( x[2], y[2] )
 	);
 }
 
@@ -368,6 +440,16 @@ float4 lerp( const float4& a, const float4& b, const float t )
 	);
 }
 
+float4 step( const float4& x, const float4& y )
+{
+	return float4(
+		step( x[0], y[0] ),
+		step( x[1], y[1] ),
+		step( x[2], y[2] ),
+		step( x[3], y[3] )
+	);
+}
+
 float4 smoothstep( const float4& low, const float4& high, const float4& x )
 {
 	return float4(
@@ -448,6 +530,14 @@ double2 lerp( const double2& a, const double2& b, const double t )
 	);
 }
 
+double2 step( const double2& x, const double2& y )
+{
+	return double2(
+		step( x[0], y[0] ),
+		step( x[1], y[1] )
+	);
+}
+
 double2 smoothstep( const double2& low, const double2& high, const double2& x )
 {
 	return double2(
@@ -523,6 +613,15 @@ double3 lerp( const double3& a, const double3& b, const double t )
 		lerp( a[0], b[0], t ),
 		lerp( a[1], b[1], t ),
 		lerp( a[2], b[2], t )
+	);
+}
+
+double3 step( const double3& x, const double3& y )
+{
+	return double3(
+		step( x[0], y[0] ),
+		step( x[1], y[1] ),
+		step( x[2], y[2] )
 	);
 }
 
@@ -614,6 +713,16 @@ double4 lerp( const double4& a, const double4& b, const double t )
 		lerp( a[1], b[1], t ),
 		lerp( a[2], b[2], t ),
 		lerp( a[3], b[3], t )
+	);
+}
+
+double4 step( const double4& x, const double4& y )
+{
+	return double4(
+		step( x[0], y[0] ),
+		step( x[1], y[1] ),
+		step( x[2], y[2] ),
+		step( x[3], y[3] )
 	);
 }
 

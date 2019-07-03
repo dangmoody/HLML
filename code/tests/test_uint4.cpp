@@ -279,6 +279,18 @@ TEMPER_TEST( TestLength_uint4 )
 	TEMPER_PASS();
 }
 
+TEMPER_TEST( TestStep_uint4 )
+{
+	uint4 answer = uint4( 1U, 1U, 0U, 0U );
+
+	uint4 a = uint4( 1U, 2U, 3U, 4U );
+	uint4 b = uint4( 4U, 3U, 2U, 1U );
+
+	TEMPER_EXPECT_TRUE( step( a, b ) == answer );
+
+	TEMPER_PASS();
+}
+
 TEMPER_TEST( TestPacking_uint4 )
 {
 	uint32_t answerPacked = 0xFFFF00FF;
@@ -314,5 +326,6 @@ TEMPER_SUITE( Test_uint4 )
 	TEMPER_RUN_TEST( TestBitwise_ShiftRight_uint4 );
 	TEMPER_RUN_TEST( TestBitwiseUnary_uint4 );
 	TEMPER_RUN_TEST( TestLength_uint4 );
+	TEMPER_RUN_TEST( TestStep_uint4 );
 	TEMPER_RUN_TEST( TestPacking_uint4 );
 }

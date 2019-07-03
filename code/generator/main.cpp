@@ -111,6 +111,8 @@ static bool GenerateHeaderScalar( void ) {
 		Gen_Saturate( type, 1, &sb, nullptr );
 
 		Gen_Lerp( type, 1, &sb, nullptr );
+
+		Gen_Step( type, 1, &sb, nullptr );
 		Gen_Smoothstep( type, 1, &sb, nullptr );
 
 		String_Append( &sb, "\n" );
@@ -187,7 +189,7 @@ static bool GenerateFunctionsVector( void ) {
 	stringBuilder_t contentInl = String_Create( 16 * KB_TO_BYTES );
 
 	String_Append( &contentInl, GEN_FILE_HEADER );
-	String_Append( &contentInl, "#include \"" GEN_FILENAME_OPERATORS_VECTOR ".h\"" );
+	String_Append( &contentInl, "#include \"" GEN_FILENAME_OPERATORS_VECTOR ".h\"\n" );
 
 	for ( u32 typeIndex = 0; typeIndex < GEN_TYPE_COUNT; typeIndex++ ) {
 		genType_t type = static_cast<genType_t>( typeIndex );
@@ -224,6 +226,8 @@ static bool GenerateFunctionsVector( void ) {
 			// generic/scalar funcs
 			Gen_Saturate( type, componentIndex, &contentHeader, &contentInl );
 			Gen_Lerp( type, componentIndex, &contentHeader, &contentInl );
+
+			Gen_Step( type, componentIndex, &contentHeader, &contentInl );
 			Gen_Smoothstep( type, componentIndex, &contentHeader, &contentInl );
 
 			// generic/scalar/vector funcs

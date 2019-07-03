@@ -41,5 +41,7 @@ private:
 
 	void			GenerateTestSaturate();
 	void			GenerateTestLerp();
+
+	void			GenerateTestStep();
 	void			GenerateTestSmoothstep();
 };

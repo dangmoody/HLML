@@ -58,6 +58,11 @@ inline int32_t clamp( const int32_t& x, const int32_t& low, const int32_t& high 
 	return min( max( x, low ), high );
 }
 
+inline int32_t step( const int32_t& x, const int32_t& y )
+{
+	return ( y > x ? 1 : 0 );
+}
+
 
 // uint32_t
 /// \brief Returns x if its smaller than y, otherwise returns y.
@@ -76,6 +81,11 @@ inline uint32_t max( const uint32_t& x, const uint32_t& y )
 inline uint32_t clamp( const uint32_t& x, const uint32_t& low, const uint32_t& high )
 {
 	return min( max( x, low ), high );
+}
+
+inline uint32_t step( const uint32_t& x, const uint32_t& y )
+{
+	return ( y > x ? 1U : 0U );
 }
 
 
@@ -137,6 +147,11 @@ inline float lerp( const float& a, const float& b, const float t )
 	return ( 1.000000f - t ) * a + t * b;
 }
 
+inline float step( const float& x, const float& y )
+{
+	return ( y > x ? 1.000000f : 0.000000f );
+}
+
 /// \relates float
 /// \brief Performs a sigmoid-like interpolation and clamp.
 inline float smoothstep( const float& low, const float& high, const float& x )
@@ -147,7 +162,7 @@ inline float smoothstep( const float& low, const float& high, const float& x )
 
 /// \relates float
 /// \brief Performs a 'smoother' version of smoothstep, as design by Ken Perlin.
-/// https://en.wikipedia.org/wiki/Smoothstep#Variations 
+/// https://en.wikipedia.org/wiki/Smoothstep#Variations
 inline float smootherstep( const float& low, const float& high, const float& x )
 {
 	float t = saturate( ( x - low ) / ( high - low ) );
@@ -213,6 +228,11 @@ inline double lerp( const double& a, const double& b, const double t )
 	return ( 1.000000 - t ) * a + t * b;
 }
 
+inline double step( const double& x, const double& y )
+{
+	return ( y > x ? 1.000000 : 0.000000 );
+}
+
 /// \relates double
 /// \brief Performs a sigmoid-like interpolation and clamp.
 inline double smoothstep( const double& low, const double& high, const double& x )
@@ -223,7 +243,7 @@ inline double smoothstep( const double& low, const double& high, const double& x
 
 /// \relates double
 /// \brief Performs a 'smoother' version of smoothstep, as design by Ken Perlin.
-/// https://en.wikipedia.org/wiki/Smoothstep#Variations 
+/// https://en.wikipedia.org/wiki/Smoothstep#Variations
 inline double smootherstep( const double& low, const double& high, const double& x )
 {
 	double t = saturate( ( x - low ) / ( high - low ) );

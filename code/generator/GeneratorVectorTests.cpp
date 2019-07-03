@@ -63,6 +63,8 @@ bool GeneratorVectorTests::Generate( const genType_t type, const u32 numComponen
 
 	GenerateTestLerp();
 
+	GenerateTestStep();
+
 	GenerateTestSmoothstep();
 
 	GenerateTestPacking();
@@ -824,6 +826,43 @@ void GeneratorVectorTests::GenerateTestLerp() {
 	String_Appendf( &m_codeTests, "\t%s lerped = lerp( a, b, %s );\n", m_fullTypeName, lerpValStr );
 	String_Append(  &m_codeTests, "\n" );
 	String_Append(  &m_codeTests, "\tTEMPER_EXPECT_TRUE( lerped == answer );\n" );
+	String_Append(  &m_codeTests, "\n" );
+	String_Append(  &m_codeTests, "\tTEMPER_PASS();\n" );
+	String_Append(  &m_codeTests, "}\n" );
+	String_Append(  &m_codeTests, "\n" );
+
+	String_Appendf( &m_codeSuite, "\tTEMPER_RUN_TEST( %s );\n", testName );
+}
+
+void GeneratorVectorTests::GenerateTestStep() {
+	if ( m_type == GEN_TYPE_BOOL ) {
+		return;
+	}
+
+	char testName[GEN_STRING_LENGTH_TEST_NAME] = { 0 };
+	snprintf( testName, 32, "TestStep_%s", m_fullTypeName );
+
+	// numbers chosen at random
+	float valuesA[]			= { 1.0f, 2.0f, 3.0f, 4.0f };
+	float valuesB[]			= { 4.0f, 3.0f, 2.0f, 1.0f };
+	float valuesAnswer[]	= { 1.0f, 1.0f, 0.0f, 0.0f };
+
+	char parmListA[GEN_STRING_LENGTH_PARM_LIST_VECTOR];
+	char parmListB[GEN_STRING_LENGTH_PARM_LIST_VECTOR];
+	char parmListAnswer[GEN_STRING_LENGTH_PARM_LIST_VECTOR];
+
+	Gen_GetParmListVector( m_type, m_numComponents, valuesA, parmListA );
+	Gen_GetParmListVector( m_type, m_numComponents, valuesB, parmListB );
+	Gen_GetParmListVector( m_type, m_numComponents, valuesAnswer, parmListAnswer );
+
+	String_Appendf( &m_codeTests, "TEMPER_TEST( %s )\n", testName );
+	String_Append(  &m_codeTests, "{\n" );
+	String_Appendf( &m_codeTests, "\t%s answer = %s%s;\n", m_fullTypeName, m_fullTypeName, parmListAnswer );
+	String_Append(  &m_codeTests, "\n" );
+	String_Appendf( &m_codeTests, "\t%s a = %s%s;\n", m_fullTypeName, m_fullTypeName, parmListA );
+	String_Appendf( &m_codeTests, "\t%s b = %s%s;\n", m_fullTypeName, m_fullTypeName, parmListB );
+	String_Append(  &m_codeTests, "\n" );
+	String_Append(  &m_codeTests, "\tTEMPER_EXPECT_TRUE( step( a, b ) == answer );\n" );
 	String_Append(  &m_codeTests, "\n" );
 	String_Append(  &m_codeTests, "\tTEMPER_PASS();\n" );
 	String_Append(  &m_codeTests, "}\n" );

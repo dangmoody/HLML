@@ -279,6 +279,18 @@ TEMPER_TEST( TestLerp_double2 )
 	TEMPER_PASS();
 }
 
+TEMPER_TEST( TestStep_double2 )
+{
+	double2 answer = double2( 1.000000, 1.000000 );
+
+	double2 a = double2( 1.000000, 2.000000 );
+	double2 b = double2( 4.000000, 3.000000 );
+
+	TEMPER_EXPECT_TRUE( step( a, b ) == answer );
+
+	TEMPER_PASS();
+}
+
 TEMPER_TEST( TestSmoothstep_double2 )
 {
 	double2 answerInRangeSmoothstep   = double2( 0.104000, 0.104000 );
@@ -324,5 +336,6 @@ TEMPER_SUITE( Test_double2 )
 	TEMPER_RUN_TEST( TestDistance_double2 );
 	TEMPER_RUN_TEST( TestSaturate_double2 );
 	TEMPER_RUN_TEST( TestLerp_double2 );
+	TEMPER_RUN_TEST( TestStep_double2 );
 	TEMPER_RUN_TEST( TestSmoothstep_double2 );
 }

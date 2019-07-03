@@ -295,6 +295,18 @@ TEMPER_TEST( TestDistance_uint3 )
 	TEMPER_PASS();
 }
 
+TEMPER_TEST( TestStep_uint3 )
+{
+	uint3 answer = uint3( 1U, 1U, 0U );
+
+	uint3 a = uint3( 1U, 2U, 3U );
+	uint3 b = uint3( 4U, 3U, 2U );
+
+	TEMPER_EXPECT_TRUE( step( a, b ) == answer );
+
+	TEMPER_PASS();
+}
+
 TEMPER_SUITE( Test_uint3 )
 {
 	TEMPER_RUN_TEST( TestAssignment_uint3 );
@@ -315,4 +327,5 @@ TEMPER_SUITE( Test_uint3 )
 	TEMPER_RUN_TEST( TestBitwiseUnary_uint3 );
 	TEMPER_RUN_TEST( TestLength_uint3 );
 	TEMPER_RUN_TEST( TestDistance_uint3 );
+	TEMPER_RUN_TEST( TestStep_uint3 );
 }

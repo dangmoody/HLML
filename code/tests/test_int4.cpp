@@ -289,6 +289,18 @@ TEMPER_TEST( TestDot_int4 )
 	TEMPER_PASS();
 }
 
+TEMPER_TEST( TestStep_int4 )
+{
+	int4 answer = int4( 1, 1, 0, 0 );
+
+	int4 a = int4( 1, 2, 3, 4 );
+	int4 b = int4( 4, 3, 2, 1 );
+
+	TEMPER_EXPECT_TRUE( step( a, b ) == answer );
+
+	TEMPER_PASS();
+}
+
 TEMPER_SUITE( Test_int4 )
 {
 	TEMPER_RUN_TEST( TestAssignment_int4 );
@@ -309,4 +321,5 @@ TEMPER_SUITE( Test_int4 )
 	TEMPER_RUN_TEST( TestBitwiseUnary_int4 );
 	TEMPER_RUN_TEST( TestLength_int4 );
 	TEMPER_RUN_TEST( TestDot_int4 );
+	TEMPER_RUN_TEST( TestStep_int4 );
 }

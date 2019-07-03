@@ -275,6 +275,18 @@ TEMPER_TEST( TestLerp_float4 )
 	TEMPER_PASS();
 }
 
+TEMPER_TEST( TestStep_float4 )
+{
+	float4 answer = float4( 1.000000f, 1.000000f, 0.000000f, 0.000000f );
+
+	float4 a = float4( 1.000000f, 2.000000f, 3.000000f, 4.000000f );
+	float4 b = float4( 4.000000f, 3.000000f, 2.000000f, 1.000000f );
+
+	TEMPER_EXPECT_TRUE( step( a, b ) == answer );
+
+	TEMPER_PASS();
+}
+
 TEMPER_TEST( TestSmoothstep_float4 )
 {
 	float4 answerInRangeSmoothstep   = float4( 0.104000f, 0.104000f, 0.104000f, 0.104000f );
@@ -320,5 +332,6 @@ TEMPER_SUITE( Test_float4 )
 	TEMPER_RUN_TEST( TestAngle_float4 );
 	TEMPER_RUN_TEST( TestSaturate_float4 );
 	TEMPER_RUN_TEST( TestLerp_float4 );
+	TEMPER_RUN_TEST( TestStep_float4 );
 	TEMPER_RUN_TEST( TestSmoothstep_float4 );
 }

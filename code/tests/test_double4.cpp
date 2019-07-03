@@ -275,6 +275,18 @@ TEMPER_TEST( TestLerp_double4 )
 	TEMPER_PASS();
 }
 
+TEMPER_TEST( TestStep_double4 )
+{
+	double4 answer = double4( 1.000000, 1.000000, 0.000000, 0.000000 );
+
+	double4 a = double4( 1.000000, 2.000000, 3.000000, 4.000000 );
+	double4 b = double4( 4.000000, 3.000000, 2.000000, 1.000000 );
+
+	TEMPER_EXPECT_TRUE( step( a, b ) == answer );
+
+	TEMPER_PASS();
+}
+
 TEMPER_TEST( TestSmoothstep_double4 )
 {
 	double4 answerInRangeSmoothstep   = double4( 0.104000, 0.104000, 0.104000, 0.104000 );
@@ -320,5 +332,6 @@ TEMPER_SUITE( Test_double4 )
 	TEMPER_RUN_TEST( TestAngle_double4 );
 	TEMPER_RUN_TEST( TestSaturate_double4 );
 	TEMPER_RUN_TEST( TestLerp_double4 );
+	TEMPER_RUN_TEST( TestStep_double4 );
 	TEMPER_RUN_TEST( TestSmoothstep_double4 );
 }

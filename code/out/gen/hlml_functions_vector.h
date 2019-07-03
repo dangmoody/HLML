@@ -40,6 +40,8 @@ along with hlml.  If not, see <http://www.gnu.org/licenses/>.
 #include "double4.h"
 
 // int2
+inline int2 step( const int2& x, const int2& y );
+
 /// \relates int2
 /// \brief Returns the magnitude of the vector squared.
 inline float lengthsqr( const int2& vec );
@@ -62,6 +64,8 @@ inline float distance( const int2& lhs, const int2& rhs );
 
 
 // int3
+inline int3 step( const int3& x, const int3& y );
+
 /// \relates int3
 /// \brief Returns the magnitude of the vector squared.
 inline float lengthsqr( const int3& vec );
@@ -84,6 +88,8 @@ inline float distance( const int3& lhs, const int3& rhs );
 
 
 // int4
+inline int4 step( const int4& x, const int4& y );
+
 /// \relates int4
 /// \brief Returns the magnitude of the vector squared.
 inline float lengthsqr( const int4& vec );
@@ -98,6 +104,8 @@ inline int32_t dot( const int4& lhs, const int4& rhs );
 
 
 // uint2
+inline uint2 step( const uint2& x, const uint2& y );
+
 /// \relates uint2
 /// \brief Returns the magnitude of the vector squared.
 inline float lengthsqr( const uint2& vec );
@@ -120,6 +128,8 @@ inline float distance( const uint2& lhs, const uint2& rhs );
 
 
 // uint3
+inline uint3 step( const uint3& x, const uint3& y );
+
 /// \relates uint3
 /// \brief Returns the magnitude of the vector squared.
 inline float lengthsqr( const uint3& vec );
@@ -142,6 +152,8 @@ inline float distance( const uint3& lhs, const uint3& rhs );
 
 
 // uint4
+inline uint4 step( const uint4& x, const uint4& y );
+
 /// \relates uint4
 /// \brief Returns the magnitude of the vector squared.
 inline float lengthsqr( const uint4& vec );
@@ -172,13 +184,15 @@ inline float2 saturate( const float2& x );
 /// \brief Returns a linearly interpolated float2 between types "a" and "b".
 inline float2 lerp( const float2& a, const float2& b, const float t );
 
+inline float2 step( const float2& x, const float2& y );
+
 /// \relates float2
 /// \brief Performs a sigmoid-like interpolation and clamp.
 inline float2 smoothstep( const float2& low, const float2& high, const float2& x );
 
 /// \relates float2
 /// \brief Performs a 'smoother' version of smoothstep, as design by Ken Perlin.
-/// https://en.wikipedia.org/wiki/Smoothstep#Variations 
+/// https://en.wikipedia.org/wiki/Smoothstep#Variations
 inline float2 smootherstep( const float2& low, const float2& high, const float2& x );
 
 /// \relates float2
@@ -223,13 +237,15 @@ inline float3 saturate( const float3& x );
 /// \brief Returns a linearly interpolated float3 between types "a" and "b".
 inline float3 lerp( const float3& a, const float3& b, const float t );
 
+inline float3 step( const float3& x, const float3& y );
+
 /// \relates float3
 /// \brief Performs a sigmoid-like interpolation and clamp.
 inline float3 smoothstep( const float3& low, const float3& high, const float3& x );
 
 /// \relates float3
 /// \brief Performs a 'smoother' version of smoothstep, as design by Ken Perlin.
-/// https://en.wikipedia.org/wiki/Smoothstep#Variations 
+/// https://en.wikipedia.org/wiki/Smoothstep#Variations
 inline float3 smootherstep( const float3& low, const float3& high, const float3& x );
 
 /// \relates float3
@@ -278,13 +294,15 @@ inline float4 saturate( const float4& x );
 /// \brief Returns a linearly interpolated float4 between types "a" and "b".
 inline float4 lerp( const float4& a, const float4& b, const float t );
 
+inline float4 step( const float4& x, const float4& y );
+
 /// \relates float4
 /// \brief Performs a sigmoid-like interpolation and clamp.
 inline float4 smoothstep( const float4& low, const float4& high, const float4& x );
 
 /// \relates float4
 /// \brief Performs a 'smoother' version of smoothstep, as design by Ken Perlin.
-/// https://en.wikipedia.org/wiki/Smoothstep#Variations 
+/// https://en.wikipedia.org/wiki/Smoothstep#Variations
 inline float4 smootherstep( const float4& low, const float4& high, const float4& x );
 
 /// \relates float4
@@ -325,13 +343,15 @@ inline double2 saturate( const double2& x );
 /// \brief Returns a linearly interpolated double2 between types "a" and "b".
 inline double2 lerp( const double2& a, const double2& b, const double t );
 
+inline double2 step( const double2& x, const double2& y );
+
 /// \relates double2
 /// \brief Performs a sigmoid-like interpolation and clamp.
 inline double2 smoothstep( const double2& low, const double2& high, const double2& x );
 
 /// \relates double2
 /// \brief Performs a 'smoother' version of smoothstep, as design by Ken Perlin.
-/// https://en.wikipedia.org/wiki/Smoothstep#Variations 
+/// https://en.wikipedia.org/wiki/Smoothstep#Variations
 inline double2 smootherstep( const double2& low, const double2& high, const double2& x );
 
 /// \relates double2
@@ -376,13 +396,15 @@ inline double3 saturate( const double3& x );
 /// \brief Returns a linearly interpolated double3 between types "a" and "b".
 inline double3 lerp( const double3& a, const double3& b, const double t );
 
+inline double3 step( const double3& x, const double3& y );
+
 /// \relates double3
 /// \brief Performs a sigmoid-like interpolation and clamp.
 inline double3 smoothstep( const double3& low, const double3& high, const double3& x );
 
 /// \relates double3
 /// \brief Performs a 'smoother' version of smoothstep, as design by Ken Perlin.
-/// https://en.wikipedia.org/wiki/Smoothstep#Variations 
+/// https://en.wikipedia.org/wiki/Smoothstep#Variations
 inline double3 smootherstep( const double3& low, const double3& high, const double3& x );
 
 /// \relates double3
@@ -431,13 +453,15 @@ inline double4 saturate( const double4& x );
 /// \brief Returns a linearly interpolated double4 between types "a" and "b".
 inline double4 lerp( const double4& a, const double4& b, const double t );
 
+inline double4 step( const double4& x, const double4& y );
+
 /// \relates double4
 /// \brief Performs a sigmoid-like interpolation and clamp.
 inline double4 smoothstep( const double4& low, const double4& high, const double4& x );
 
 /// \relates double4
 /// \brief Performs a 'smoother' version of smoothstep, as design by Ken Perlin.
-/// https://en.wikipedia.org/wiki/Smoothstep#Variations 
+/// https://en.wikipedia.org/wiki/Smoothstep#Variations
 inline double4 smootherstep( const double4& low, const double4& high, const double4& x );
 
 /// \relates double4

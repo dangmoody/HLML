@@ -305,6 +305,18 @@ TEMPER_TEST( TestDistance_int3 )
 	TEMPER_PASS();
 }
 
+TEMPER_TEST( TestStep_int3 )
+{
+	int3 answer = int3( 1, 1, 0 );
+
+	int3 a = int3( 1, 2, 3 );
+	int3 b = int3( 4, 3, 2 );
+
+	TEMPER_EXPECT_TRUE( step( a, b ) == answer );
+
+	TEMPER_PASS();
+}
+
 TEMPER_SUITE( Test_int3 )
 {
 	TEMPER_RUN_TEST( TestAssignment_int3 );
@@ -326,4 +338,5 @@ TEMPER_SUITE( Test_int3 )
 	TEMPER_RUN_TEST( TestLength_int3 );
 	TEMPER_RUN_TEST( TestDot_int3 );
 	TEMPER_RUN_TEST( TestDistance_int3 );
+	TEMPER_RUN_TEST( TestStep_int3 );
 }
