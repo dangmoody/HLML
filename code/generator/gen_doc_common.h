@@ -92,7 +92,7 @@ void Gen_GetDocSmootherstep( stringBuilder_t* sb, const char* fullTypeName ) {
 	String_Appendf( sb,
 		"/// \\relates %s\n" \
 		"/// \\brief Performs a 'smoother' version of smoothstep, as design by Ken Perlin.\n" \
-		"/// https://en.wikipedia.org/wiki/Smoothstep#Variations \n", fullTypeName );
+		"/// https://en.wikipedia.org/wiki/Smoothstep#Variations\n", fullTypeName );
 }
 
 void Gen_DocOperatorEquals( stringBuilder_t* sb, const char* fullTypeName ) {
