@@ -2,12 +2,14 @@
 
 #include "gen_common.h"
 
+#include "string_builder.h"
+
 class GeneratorMatrix {
 public:
 					GeneratorMatrix() {}
 					~GeneratorMatrix() {}
 
-	bool			Generate( const genType_t type, const uint32_t numRows, const uint32_t numCols );
+	bool			Generate( const genType_t type, const u32 numRows, const u32 numCols );
 
 #ifdef _DEBUG
 	void			PrintHeader() const;
@@ -15,21 +17,19 @@ public:
 #endif
 
 private:
-	std::string		m_codeHeader;
-	std::string		m_codeInl;
-
-	std::string		m_fullTypeName;
-	std::string		m_transposedTypeName;
-
-	std::string		m_typeString;
-	std::string		m_memberTypeString;
-
-	std::string		m_vectorMemberTypeString;
-
-	std::string		m_numRowsStr, m_numColsStr;
+	stringBuilder_t	m_codeHeader;
+	stringBuilder_t	m_codeInl;
 
 	genType_t		m_type;
-	uint32_t		m_numRows, m_numCols;
+	u32				m_numRows, m_numCols;
+
+	char			m_fullTypeName[GEN_STRING_LENGTH_TYPE_NAME];
+	char			m_transposedTypeName[GEN_STRING_LENGTH_TYPE_NAME];
+
+	char			m_vectorMemberTypeString[GEN_STRING_LENGTH_TYPE_NAME];
+
+	const char*		m_typeString;
+	const char*		m_memberTypeString;
 
 private:
 	void			GenerateConstructors();
@@ -37,15 +37,15 @@ private:
 	void			GenerateOperatorsArray();
 	void			GenerateOperatorsEquality();
 
-	std::string		GetDocStruct() const;
-	std::string		GetDocCtorDefault() const;
-	std::string		GetDocCtorDiagonalScalar() const;
-	std::string		GetDocCtorDiagonalVector() const;
-	std::string		GetDocCtorRow() const;
-	std::string		GetDocCtorRowArray() const;
-	std::string		GetDocCtorRowsAndCols() const;
-	std::string		GetDocCtorCopy() const;
+	void			GenerateDocStruct();
+	void			GenerateDocCtorDefault();
+	void			GenerateDocCtorDiagonalScalar();
+	void			GenerateDocCtorDiagonalVector();
+	void			GenerateDocCtorRow();
+	void			GenerateDocCtorRowArray();
+	void			GenerateDocCtorRowsAndCols();
+	void			GenerateDocCtorCopy();
 
-	std::string		GetDocOperatorAssignment() const;
-	std::string		GetDocOperatorArray() const;
+	void			GenerateDocOperatorAssignment();
+	void			GenerateDocOperatorArray();
 };

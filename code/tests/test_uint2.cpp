@@ -56,8 +56,8 @@ TEMPER_TEST( TestArray_uint2 )
 
 TEMPER_TEST( TestArithmeticAddition_uint2 )
 {
-	uint2 a  = uint2( 6U );
-	uint2 b  = uint2( 2U, 3U );
+	uint2 a = uint2( 6U );
+	uint2 b = uint2( 2U, 3U );
 
 	uint2 c = a + b;
 
@@ -68,8 +68,8 @@ TEMPER_TEST( TestArithmeticAddition_uint2 )
 
 TEMPER_TEST( TestArithmeticSubtraction_uint2 )
 {
-	uint2 a  = uint2( 6U );
-	uint2 b  = uint2( 2U, 3U );
+	uint2 a = uint2( 6U );
+	uint2 b = uint2( 2U, 3U );
 
 	uint2 c = a - b;
 
@@ -80,8 +80,8 @@ TEMPER_TEST( TestArithmeticSubtraction_uint2 )
 
 TEMPER_TEST( TestArithmeticMultiplication_uint2 )
 {
-	uint2 a  = uint2( 6U );
-	uint2 b  = uint2( 2U, 3U );
+	uint2 a = uint2( 6U );
+	uint2 b = uint2( 2U, 3U );
 
 	uint2 c = a * b;
 
@@ -92,8 +92,8 @@ TEMPER_TEST( TestArithmeticMultiplication_uint2 )
 
 TEMPER_TEST( TestArithmeticDivision_uint2 )
 {
-	uint2 a  = uint2( 6U );
-	uint2 b  = uint2( 2U, 2U );
+	uint2 a = uint2( 6U );
+	uint2 b = uint2( 2U, 2U );
 
 	uint2 c = a / b;
 
@@ -138,23 +138,60 @@ TEMPER_TEST( TestDecrement_uint2 )
 
 TEMPER_TEST( TestRelational_uint2 )
 {
-	uint2 vec0 = uint2( 0U, 0U );
-	uint2 vec1 = uint2( 1U, 1U );
+	bool2 allTrue = bool2( true );
 
-	bool2 test0 = vec0 <= vec0;
-	bool2 test1 = vec0 >= vec0;
-	bool2 test2 = vec0 < vec1;
+	uint2 vec0 = uint2( 0U );
+	uint2 vec1 = uint2( 1U );
+	uint2 vec2 = uint2( 2U );
+	uint2 vec3 = uint2( 3U );
 
-	bool2 test3 = vec1 <= vec1;
-	bool2 test4 = vec1 >= vec1;
-	bool2 test5 = vec1 > vec0;
+	bool2 test0  = vec0 <= vec0;
+	bool2 test1  = vec0 >= vec0;
+	bool2 test2  = vec0 <  vec1;
+	bool2 test3  = vec0 <  vec2;
+	bool2 test4  = vec0 <  vec3;
 
-	TEMPER_EXPECT_TRUE( test0 == bool2( true ) );
-	TEMPER_EXPECT_TRUE( test1 == bool2( true ) );
-	TEMPER_EXPECT_TRUE( test2 == bool2( true ) );
-	TEMPER_EXPECT_TRUE( test3 == bool2( true ) );
-	TEMPER_EXPECT_TRUE( test4 == bool2( true ) );
-	TEMPER_EXPECT_TRUE( test5 == bool2( true ) );
+	bool2 test5  = vec1 >  vec0;
+	bool2 test6  = vec1 <= vec1;
+	bool2 test7  = vec1 >= vec1;
+	bool2 test8  = vec1 <  vec2;
+	bool2 test9  = vec1 <  vec3;
+
+	bool2 test10 = vec2 >  vec0;
+	bool2 test11 = vec2 >  vec1;
+	bool2 test12 = vec2 <= vec2;
+	bool2 test13 = vec2 >= vec2;
+	bool2 test14 = vec2 <  vec3;
+
+	bool2 test15 = vec3 >  vec0;
+	bool2 test16 = vec3 >  vec1;
+	bool2 test17 = vec3 >  vec2;
+	bool2 test18 = vec3 <= vec3;
+	bool2 test19 = vec3 >= vec3;
+
+	TEMPER_EXPECT_TRUE( test0  == allTrue );
+	TEMPER_EXPECT_TRUE( test1  == allTrue );
+	TEMPER_EXPECT_TRUE( test2  == allTrue );
+	TEMPER_EXPECT_TRUE( test3  == allTrue );
+	TEMPER_EXPECT_TRUE( test4  == allTrue );
+
+	TEMPER_EXPECT_TRUE( test5  == allTrue );
+	TEMPER_EXPECT_TRUE( test6  == allTrue );
+	TEMPER_EXPECT_TRUE( test7  == allTrue );
+	TEMPER_EXPECT_TRUE( test8  == allTrue );
+	TEMPER_EXPECT_TRUE( test9  == allTrue );
+
+	TEMPER_EXPECT_TRUE( test10 == allTrue );
+	TEMPER_EXPECT_TRUE( test11 == allTrue );
+	TEMPER_EXPECT_TRUE( test12 == allTrue );
+	TEMPER_EXPECT_TRUE( test13 == allTrue );
+	TEMPER_EXPECT_TRUE( test14 == allTrue );
+
+	TEMPER_EXPECT_TRUE( test15 == allTrue );
+	TEMPER_EXPECT_TRUE( test16 == allTrue );
+	TEMPER_EXPECT_TRUE( test17 == allTrue );
+	TEMPER_EXPECT_TRUE( test18 == allTrue );
+	TEMPER_EXPECT_TRUE( test19 == allTrue );
 
 	TEMPER_PASS();
 }
@@ -225,7 +262,7 @@ TEMPER_TEST( TestBitwiseUnary_uint2 )
 
 	uint2 answer = ~a;
 
-	TEMPER_EXPECT_TRUE( answer == uint2( (uint32_t) -1, (uint32_t) -1 ) );
+	TEMPER_EXPECT_TRUE( answer == uint2( (uint32_t) -1 ) );
 
 	TEMPER_PASS();
 }
@@ -267,6 +304,7 @@ TEMPER_SUITE( Test_uint2 )
 	TEMPER_RUN_TEST( TestArithmeticDivision_uint2 );
 	TEMPER_RUN_TEST( TestIncrement_uint2 );
 	TEMPER_RUN_TEST( TestDecrement_uint2 );
+	TEMPER_RUN_TEST( TestRelational_uint2 );
 	TEMPER_RUN_TEST( TestRelational_uint2 );
 	TEMPER_RUN_TEST( TestBitwise_And_uint2 );
 	TEMPER_RUN_TEST( TestBitwise_Or_uint2 );

@@ -1,29 +1,3 @@
-/*
-===========================================================================
-
-hlml.
-Copyright (c) Dan Moody 2019 - Present.
-
-This file is part of hlml.
-
-hlml is free software: you can redistribute it and/or modify
-it under the terms of the GNU General Public License as published by
-the Free Software Foundation, either version 3 of the License, or
-(at your option) any later version.
-
-hlml is distributed in the hope that it will be useful,
-but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-GNU General Public License for more details.
-
-You should have received a copy of the GNU General Public License
-along with hlml.  If not, see <http://www.gnu.org/licenses/>.
-
-===========================================================================
-*/
-
-// GENERATED FILE.  DO NOT EDIT.
-
 #include "../../code/out/gen/hlml_functions_scalar.h"
 
 #include <temper/temper.h>
@@ -35,7 +9,7 @@ TEMPER_TEST( TestFloateq_float )
 	float c =  5.000020f;
 	float d =  5.000100f;
 
-	TEMPER_EXPECT_TRUE( floateq( a, b ) );
+	TEMPER_EXPECT_TRUE(  floateq( a, b ) );
 	TEMPER_EXPECT_TRUE( !floateq( a, c ) );
 	TEMPER_EXPECT_TRUE( !floateq( a, d ) );
 
@@ -45,7 +19,7 @@ TEMPER_TEST( TestFloateq_float )
 TEMPER_TEST( TestSign_float )
 {
 	TEMPER_EXPECT_TRUE( sign( -5.000000f ) == -1 );
-	TEMPER_EXPECT_TRUE( sign( 9.000000f ) == 1 );
+	TEMPER_EXPECT_TRUE( sign( 9.000000f ) ==  1 );
 
 	TEMPER_PASS();
 }

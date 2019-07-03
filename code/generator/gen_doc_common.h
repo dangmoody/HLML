@@ -1,106 +1,116 @@
 #pragma once
 
-#include <string>
+#include "string_builder.h"
 
 #include <assert.h>
 
-inline std::string	Gen_GetDocFloateq( void );
-inline std::string	Gen_GetDocSign( void );
-inline std::string	Gen_GetDocRadians( void );
-inline std::string	Gen_GetDocDegrees( void );
-inline std::string	Gen_GetDocMin( void );
-inline std::string	Gen_GetDocMax( void );
-inline std::string	Gen_GetDocClamp( void );
+inline void			Gen_DocFloateq( stringBuilder_t* sb );
+inline void			Gen_DocSign( stringBuilder_t* sb );
+inline void			Gen_DocRadians( stringBuilder_t* sb );
+inline void			Gen_DocDegrees( stringBuilder_t* sb );
+inline void			Gen_DocMin( stringBuilder_t* sb );
+inline void			Gen_DocMax( stringBuilder_t* sb );
+inline void			Gen_DocClamp( stringBuilder_t* sb );
 
-inline std::string	Gen_GetDocSaturate( const std::string& fullTypeName );
-inline std::string	Gen_GetDocLerp( const std::string& fullTypeName );
-inline std::string	Gen_GetDocSmoothstep( const std::string& fullTypeName );
-inline std::string	Gen_GetDocSmootherstep( const std::string& fullTypeName );
+inline void			Gen_DocSaturate( stringBuilder_t* sb, const char* fullTypeName );
+inline void			Gen_GetDocLerp( stringBuilder_t* sb, const char* fullTypeName );
+inline void			Gen_GetDocSmoothstep( stringBuilder_t* sb, const char* fullTypeName );
+inline void			Gen_GetDocSmootherstep( stringBuilder_t* sb, const char* fullTypeName );
 
-inline std::string	Gen_GetDocOperatorEquals( const std::string& fullTypeName );
-inline std::string	Gen_GetDocOperatorNotEquals( const std::string& fullTypeName );
+inline void			Gen_DocOperatorEquals( stringBuilder_t* sb, const char* fullTypeName );
+inline void			Gen_DocOperatorNotEquals( stringBuilder_t* sb, const char* fullTypeName );
 
-inline std::string	Gen_GetDocOperatorArithmeticScalar( const std::string& fullTypeName, const genOpArithmetic_t op );
-inline std::string	Gen_GetDocOperatorCompoundArithmeticScalar( const std::string& fullTypeName, const genOpArithmetic_t op );
+inline void			Gen_GetDocOperatorArithmeticScalar( stringBuilder_t* sb, const char* fullTypeName, const genOpArithmetic_t op );
+inline void			Gen_GetDocOperatorCompoundArithmeticScalar( stringBuilder_t* sb, const char* fullTypeName, const genOpArithmetic_t op );
 
-inline std::string	Gen_GetDocOperatorComponentWiseArithmeticRhsType( const std::string& lhsTypeName, const std::string& rhsTypeName, const genOpArithmetic_t op );
-inline std::string	Gen_GetDocOperatorCompoundComponentWiseArithmeticRhsType( const std::string& lhsTypeName, const std::string& rhsTypeName, const genOpArithmetic_t op );
+inline void			Gen_DocOperatorComponentWiseArithmeticRhsType( stringBuilder_t* sb, const char* lhsTypeName, const char* rhsTypeName, const genOpArithmetic_t op );
+inline void			Gen_DocOperatorCompoundComponentWiseArithmeticRhsType( stringBuilder_t* sb, const char* lhsTypeName, const char* rhsTypeName, const genOpArithmetic_t op );
 
-inline std::string	Gen_GetDocOperatorIncrementPrefix( const std::string& fullTypeName, const genOpIncrement_t op );
-inline std::string	Gen_GetDocOperatorIncrementPostfix( const std::string& fullTypeName, const genOpIncrement_t op );
+inline void			Gen_GetDocOperatorIncrementPrefix( stringBuilder_t* sb, const char* fullTypeName, const genOpIncrement_t op );
+inline void			Gen_GetDocOperatorIncrementPostfix( stringBuilder_t* sb, const char* fullTypeName, const genOpIncrement_t op );
 
-inline std::string	Gen_GetDocOperatorRelational( const std::string& fullTypeName, const uint32_t numRows, const uint32_t numCols, const genOpRelational_t op );
+inline void			Gen_GetDocOperatorRelational( stringBuilder_t* sb, const char* fullTypeName, const u32 numRows, const u32 numCols, const genOpRelational_t op );
 
-inline std::string	Gen_GetDocOperatorBitwiseScalar( const std::string& fullTypeName, const genOpBitwise_t op );
-inline std::string	Gen_GetDocOperatorBitwiseRhsType( const std::string& fullTypeName, const genOpBitwise_t op );
-inline std::string	Gen_GetDocOperatorCompoundBitwiseScalar( const std::string& fullTypeName, const genOpBitwise_t op );
-inline std::string	Gen_GetDocOperatorCompoundBitwiseRhsType( const std::string& fullTypeName, const genOpBitwise_t op );
+inline void			Gen_GetDocOperatorBitwiseScalar( stringBuilder_t* sb, const char* fullTypeName, const genOpBitwise_t op );
+inline void			Gen_GetDocOperatorBitwiseRhsType( stringBuilder_t* sb, const char* fullTypeName, const genOpBitwise_t op );
+inline void			Gen_GetDocOperatorCompoundBitwiseScalar( stringBuilder_t* sb, const char* fullTypeName, const genOpBitwise_t op );
+inline void			Gen_GetDocOperatorCompoundBitwiseRhsType( stringBuilder_t* sb, const char* fullTypeName, const genOpBitwise_t op );
 
-inline std::string	Gen_GetDocOperatorBitwiseUnary( const std::string& fullTypeName );
+inline void			Gen_GetDocOperatorBitwiseUnary( stringBuilder_t* sb, const char* fullTypeName );
 
 
-std::string Gen_GetDocFloateq( void ) {
-	return "/// \\brief Returns true if the two given floating-point numbers are within a small enough epsilon range of each other that takes into account floating-point inaccuracy.\n";
+void Gen_DocFloateq( stringBuilder_t* sb ) {
+	String_Append( sb,
+		"/// \\brief Returns true if the two given floating-point numbers are within a small enough epsilon range of each other that takes into account floating-point inaccuracy.\n" );
 }
 
-std::string Gen_GetDocSign( void ) {
-	return "/// \\brief Returns -1 if x is < 0, 0 if x == 0, or 1 if x > 1.\n" \
-		"/// This function does no branching.\n";
+void Gen_DocSign( stringBuilder_t* sb ) {
+	String_Append( sb,
+		"/// \\brief Returns -1 if x is < 0, 0 if x == 0, or 1 if x > 1.\n" \
+		"/// This function does no branching.\n" );
 }
 
-std::string Gen_GetDocRadians( void ) {
-	return "/// \\brief Returns the given degrees to radians.\n";
+void Gen_DocRadians( stringBuilder_t* sb ) {
+	String_Append( sb, "/// \\brief Returns the given degrees to radians.\n" );
 }
 
-std::string Gen_GetDocDegrees( void ) {
-	return "/// \\brief Returns the given radians to degrees.\n";
+void Gen_DocDegrees( stringBuilder_t* sb ) {
+	String_Append( sb, "/// \\brief Returns the given radians to degrees.\n" );
 }
 
-std::string Gen_GetDocMin( void ) {
-	return "/// \\brief Returns x if its smaller than y, otherwise returns y.\n";
+void Gen_DocMin( stringBuilder_t* sb ) {
+	String_Append( sb, "/// \\brief Returns x if its smaller than y, otherwise returns y.\n" );
 }
 
-std::string Gen_GetDocMax( void ) {
-	return "/// \\brief Returns x if its bigger than y, otherwise returns y.\n";
+void Gen_DocMax( stringBuilder_t* sb ) {
+	String_Append( sb, "/// \\brief Returns x if its bigger than y, otherwise returns y.\n" );
 }
 
-std::string Gen_GetDocClamp( void ) {
-	return "/// \\brief If x is lower than low or higher than high then returns low or high respectively, otherwise returns x.\n";
+void Gen_DocClamp( stringBuilder_t* sb ) {
+	String_Append( sb, "/// \\brief If x is lower than low or higher than high then returns low or high respectively, otherwise returns x.\n" );
 }
 
-std::string Gen_GetDocSaturate( const std::string& fullTypeName ) {
-	return "/// \\relates " + fullTypeName + "\n" + \
-		"/// \\brief Returns a copy of the " + fullTypeName + " with each component clamped between the range 0 and 1.\n";
+void Gen_DocSaturate( stringBuilder_t* sb, const char* fullTypeName ) {
+	String_Appendf( sb,
+		"/// \\relates %s\n" \
+		"/// \\brief Returns a copy of the %s with each component clamped between the range 0 and 1.\n", fullTypeName, fullTypeName );
 }
 
-std::string Gen_GetDocLerp( const std::string& fullTypeName ) {
-	return "/// \\relates " + fullTypeName + "\n" + \
-		"/// \\brief Returns a linearly interpolated " + fullTypeName + " between types \"a\" and \"b\".\n";
+void Gen_GetDocLerp( stringBuilder_t* sb, const char* fullTypeName ) {
+	String_Appendf( sb,
+		"/// \\relates %s\n" \
+		"/// \\brief Returns a linearly interpolated %s between types \"a\" and \"b\".\n", fullTypeName, fullTypeName );
 }
 
-std::string Gen_GetDocSmoothstep( const std::string& fullTypeName ) {
-	return "/// \\relates " + fullTypeName + "\n" \
-		"/// \\brief Performs a sigmoid-like interpolation and clamp.\n";
+void Gen_GetDocSmoothstep( stringBuilder_t* sb, const char* fullTypeName ) {
+	String_Appendf( sb,
+		"/// \\relates %s\n" \
+		"/// \\brief Performs a sigmoid-like interpolation and clamp.\n", fullTypeName );
 }
 
-std::string Gen_GetDocSmootherstep( const std::string& fullTypeName ) {
-	return "/// \\relates " + fullTypeName + "\n" \
+void Gen_GetDocSmootherstep( stringBuilder_t* sb, const char* fullTypeName ) {
+	String_Appendf( sb,
+		"/// \\relates %s\n" \
 		"/// \\brief Performs a 'smoother' version of smoothstep, as design by Ken Perlin.\n" \
-		"/// https://en.wikipedia.org/wiki/Smoothstep#Variations \n";
+		"/// https://en.wikipedia.org/wiki/Smoothstep#Variations \n", fullTypeName );
 }
 
-std::string Gen_GetDocOperatorEquals( const std::string& fullTypeName ) {
-	return "/// \\relates " + fullTypeName + "\n" \
-		"/// \\brief Returns true if the all the components of the left-hand-side " + fullTypeName + " match the other one, otherwise returns false.\n";
+void Gen_DocOperatorEquals( stringBuilder_t* sb, const char* fullTypeName ) {
+	String_Appendf( sb,
+		"/// \\relates %s\n" \
+		"/// \\brief Returns true if the all the components of the left-hand-side %s match the other one, " \
+		"otherwise returns false.\n", fullTypeName, fullTypeName );
 }
 
-std::string Gen_GetDocOperatorNotEquals( const std::string& fullTypeName ) {
-	return "/// \\relates " + fullTypeName + "\n" \
-		"/// \\brief Returns true if not all of the components of the left-hand-side " + fullTypeName + " match the other one, otherwise returns false.\n";
+void Gen_DocOperatorNotEquals( stringBuilder_t* sb, const char* fullTypeName ) {
+	String_Appendf( sb,
+		"/// \\relates %s\n" \
+		"/// \\brief Returns true if not all of the components of the left-hand-side %s match the other one, " \
+		"otherwise returns false.\n", fullTypeName, fullTypeName );
 }
 
-std::string Gen_GetDocOperatorArithmeticScalar( const std::string& fullTypeName, const genOpArithmetic_t op ) {
-	std::string adjective;
+void Gen_GetDocOperatorArithmeticScalar( stringBuilder_t* sb, const char* fullTypeName, const genOpArithmetic_t op ) {
+	const char* adjective;
 	switch ( op ) {
 		case GEN_OP_ARITHMETIC_ADD:	adjective = "added";		break;
 		case GEN_OP_ARITHMETIC_SUB:	adjective = "subtracted";	break;
@@ -110,15 +120,16 @@ std::string Gen_GetDocOperatorArithmeticScalar( const std::string& fullTypeName,
 		case GEN_OP_ARITHMETIC_COUNT:
 		default:
 			printf( "ERROR: Bad genOpArithmetic_t enum passed into %s.\n", __FUNCTION__ );
-			return std::string();
+			return;
 	}
 
-	return "/// \\relates " + fullTypeName + "\n" \
-		"/// \\brief Returns a copy of the " + fullTypeName + " that has been component-wise " + adjective + " by the given scalar value.\n";
+	String_Appendf( sb,
+		"/// \\relates %s\n" \
+		"/// \\brief Returns a copy of the %s that has been component-wise %s by the given scalar value.\n", fullTypeName, fullTypeName, adjective );
 }
 
-std::string Gen_GetDocOperatorCompoundArithmeticScalar( const std::string& fullTypeName, const genOpArithmetic_t op ) {
-	std::string verb;
+void Gen_GetDocOperatorCompoundArithmeticScalar( stringBuilder_t* sb, const char* fullTypeName, const genOpArithmetic_t op ) {
+	const char* verb;
 	switch ( op ) {
 		case GEN_OP_ARITHMETIC_ADD:	verb = "Adds";			break;
 		case GEN_OP_ARITHMETIC_SUB:	verb = "Subtracts";		break;
@@ -128,15 +139,16 @@ std::string Gen_GetDocOperatorCompoundArithmeticScalar( const std::string& fullT
 		case GEN_OP_ARITHMETIC_COUNT:
 		default:
 			printf( "ERROR: Bad genOpArithmetic_t enum passed into %s.\n", __FUNCTION__ );
-			return std::string();
+			return;
 	}
 
-	return "/// \\relates " + fullTypeName + "\n" \
-		"/// \\brief " + verb + " each component by the given scalar value.\n";
+	String_Appendf( sb,
+		"/// \\relates %s\n" \
+		"/// \\brief %s each component by the given scalar value.\n", fullTypeName, verb );
 }
 
-std::string Gen_GetDocOperatorComponentWiseArithmeticRhsType( const std::string& lhsTypeName, const std::string& rhsTypeName, const genOpArithmetic_t op ) {
-	std::string adjective;
+void Gen_DocOperatorComponentWiseArithmeticRhsType( stringBuilder_t* sb, const char* lhsTypeName, const char* rhsTypeName, const genOpArithmetic_t op ) {
+	const char* adjective;
 	switch ( op ) {
 		case GEN_OP_ARITHMETIC_ADD:	adjective = "added";		break;
 		case GEN_OP_ARITHMETIC_SUB:	adjective = "subtracted";	break;
@@ -146,16 +158,17 @@ std::string Gen_GetDocOperatorComponentWiseArithmeticRhsType( const std::string&
 		case GEN_OP_ARITHMETIC_COUNT:
 		default:
 			printf( "ERROR: Bad genOpArithmetic_t enum passed into %s.\n", __FUNCTION__ );
-			return std::string();
+			return;
 	}
 
-	return "/// \\relates " + lhsTypeName + "\n" \
-		+ "/// \\brief Returns a copy of the " + lhsTypeName + " that has been component-wise " + adjective + " by the corresponding component of the right-hand " \
-		+ rhsTypeName + ".\n";
+	String_Appendf( sb,
+		"/// \\relates %s\n" \
+		"/// \\brief Returns a copy of the %s that has been component-wise %s by the corresponding component of the right-hand %s.\n",
+		lhsTypeName, lhsTypeName, adjective, rhsTypeName );
 }
 
-std::string Gen_GetDocOperatorCompoundComponentWiseArithmeticRhsType( const std::string& lhsTypeName, const std::string& rhsTypeName, const genOpArithmetic_t op ) {
-	std::string verb;
+void Gen_DocOperatorCompoundComponentWiseArithmeticRhsType( stringBuilder_t* sb, const char* lhsTypeName, const char* rhsTypeName, const genOpArithmetic_t op ) {
+	const char* verb;
 	switch ( op ) {
 		case GEN_OP_ARITHMETIC_ADD:	verb = "Adds";			break;
 		case GEN_OP_ARITHMETIC_SUB:	verb = "Subtracts";		break;
@@ -165,16 +178,17 @@ std::string Gen_GetDocOperatorCompoundComponentWiseArithmeticRhsType( const std:
 		case GEN_OP_ARITHMETIC_COUNT:
 		default:
 			printf( "ERROR: Bad genOpArithmetic_t enum passed into %s.\n", __FUNCTION__ );
-			return std::string();
+			return;
 	}
 
-	return "/// \\relates " + lhsTypeName + "\n" \
-		"/// \\brief " + verb + " each component of the " + lhsTypeName + " by the corresponding component of the right-hand " + rhsTypeName + ".\n";
+	String_Appendf( sb,
+		"/// \\relates %s\n" \
+		"/// \\brief %s each component of the %s by the corresponding component of the right-hand %s.\n", lhsTypeName, verb, lhsTypeName, rhsTypeName );
 }
 
-std::string Gen_GetDocOperatorIncrementPrefix( const std::string& fullTypeName, const genOpIncrement_t op ) {
-	std::string verb;
-	std::string noun;
+void Gen_GetDocOperatorIncrementPrefix( stringBuilder_t* sb, const char* fullTypeName, const genOpIncrement_t op ) {
+	const char* verb;
+	const char* noun;
 	switch ( op ) {
 		case GEN_OP_INCREMENT_INCREMENT:
 			noun = "increment";
@@ -189,16 +203,17 @@ std::string Gen_GetDocOperatorIncrementPrefix( const std::string& fullTypeName, 
 		case GEN_OP_INCREMENT_COUNT:
 		default:
 			printf( "ERROR: Bad genOpIncrement_t enum passed into %s.\n", __FUNCTION__ );
-			break;
+			return;
 	}
 
-	return "/// \\relates " + fullTypeName + "\n" \
-		"/// \\brief Prefix " + noun + " operator.  " + verb + " each component of the given " + fullTypeName + " before evaluation.\n";
+	String_Appendf( sb,
+		"/// \\relates %s\n" \
+		"/// \\brief Prefix %s operator.  %s each component of the given %s before evaluation.\n", fullTypeName, noun, verb, fullTypeName );
 }
 
-std::string Gen_GetDocOperatorIncrementPostfix( const std::string& fullTypeName, const genOpIncrement_t op ) {
-	std::string verb;
-	std::string noun;
+void Gen_GetDocOperatorIncrementPostfix( stringBuilder_t* sb, const char* fullTypeName, const genOpIncrement_t op ) {
+	const char* verb;
+	const char* noun;
 	switch ( op ) {
 		case GEN_OP_INCREMENT_INCREMENT:
 			noun = "increment";
@@ -213,20 +228,21 @@ std::string Gen_GetDocOperatorIncrementPostfix( const std::string& fullTypeName,
 		case GEN_OP_INCREMENT_COUNT:
 		default:
 			printf( "ERROR: Bad genOpIncrement_t enum passed into %s.\n", __FUNCTION__ );
-			break;
+			return;
 	}
 
-	return "/// \\relates " + fullTypeName + "\n" \
-		"/// \\brief Postfix " + noun + " operator.  " + verb + " each component of the given " + fullTypeName + " after evaluation.\n";
+	String_Appendf( sb,
+		"/// \\relates %s\n" \
+		"/// \\brief Postfix %s operator.  %s each component of the given %s after evaluation.\n", fullTypeName, noun, verb, fullTypeName );
 }
 
-std::string Gen_GetDocOperatorRelational( const std::string& fullTypeName, const uint32_t numRows, const uint32_t numCols, const genOpRelational_t op ) {
+void Gen_GetDocOperatorRelational( stringBuilder_t* sb, const char* fullTypeName, const u32 numRows, const u32 numCols, const genOpRelational_t op ) {
 	assert( numRows >= 1 );	// pass through 1 for vectors
 	assert( numRows <= GEN_COMPONENT_COUNT_MAX );
 	assert( numCols >= GEN_COMPONENT_COUNT_MIN );
 	assert( numCols <= GEN_COMPONENT_COUNT_MAX );
 
-	std::string noun;
+	const char* noun;
 	switch ( op ) {
 		case GEN_OP_RELATIONAL_LESS:			noun = "less than";					break;
 		case GEN_OP_RELATIONAL_LESS_EQUAL:		noun = "less than or equal to";		break;
@@ -236,24 +252,21 @@ std::string Gen_GetDocOperatorRelational( const std::string& fullTypeName, const
 		case GEN_OP_RELATIONAL_COUNT:
 		default:
 			printf( "ERROR: Bad genOpRelational_t enum passed into %s.\n", __FUNCTION__ );
-			return std::string();
+			return;
 	}
 
-	std::string boolTypeName;
-	if ( numRows > 1 ) {
-		boolTypeName = "bool" + std::to_string( numRows ) + "x" + std::to_string( numCols );
-	} else {
-		boolTypeName = "bool" + std::to_string( numCols );
-	}
+	char boolTypeName[GEN_STRING_LENGTH_TYPE_NAME];
+	Gen_GetFullTypeName( GEN_TYPE_BOOL, numRows, numCols, boolTypeName );
 
-	return "/// \\relates " + fullTypeName + "\n" \
-		+ "/// \\brief Returns a " + boolTypeName \
-		+ " where each component is true if the component of the left-hand type is " + noun + " the corresponding right-hand type component.\n";
+	String_Appendf( sb,
+		"/// \\relates %s\n" \
+		"/// \\brief Returns a %s " \
+		"where each component is true if the component of the left-hand type is %s the corresponding right-hand type component.\n", fullTypeName, boolTypeName, noun );
 }
 
-std::string Gen_GetDocOperatorBitwiseScalar( const std::string& fullTypeName, const genOpBitwise_t op ) {
-	std::string adjective;
-	std::string preposition;
+void Gen_GetDocOperatorBitwiseScalar( stringBuilder_t* sb, const char* fullTypeName, const genOpBitwise_t op ) {
+	const char* adjective;
+	const char* preposition;
 	switch ( op ) {
 		case GEN_OP_BITWISE_AND:
 			adjective = "bitwise AND'd";
@@ -272,7 +285,7 @@ std::string Gen_GetDocOperatorBitwiseScalar( const std::string& fullTypeName, co
 
 		case GEN_OP_BITWISE_UNARY:
 			printf( "ERROR: For bitwise unary documentation, call Gen_GetDocOperatorBitwiseUnary().\n" );
-			return std::string();
+			return;
 
 		case GEN_OP_BITWISE_SHIFT_LEFT:
 			adjective = "bitwise left-shifted";
@@ -287,16 +300,17 @@ std::string Gen_GetDocOperatorBitwiseScalar( const std::string& fullTypeName, co
 		case GEN_OP_BITWISE_COUNT:
 		default:
 			printf( "ERROR: Bad genOpArithmetic_t enum passed into %s.\n", __FUNCTION__ );
-			return std::string();
+			return;
 	}
 
-	return "/// \\relates " + fullTypeName + "\n" \
-		 + "/// \\brief Returns a copy of the " + fullTypeName + " where each component has been " + adjective + " " + preposition + " the given scalar value.\n";
+	String_Appendf( sb,
+		"/// \\relates %s\n" \
+		"/// \\brief Returns a copy of the %s where each component has been %s %s the given scalar value.\n", fullTypeName, fullTypeName, adjective, preposition );
 }
 
-std::string Gen_GetDocOperatorBitwiseRhsType( const std::string& fullTypeName, const genOpBitwise_t op ) {
-	std::string adjective;
-	std::string preposition;
+void Gen_GetDocOperatorBitwiseRhsType( stringBuilder_t* sb, const char* fullTypeName, const genOpBitwise_t op ) {
+	const char* adjective;
+	const char* preposition;
 	switch ( op ) {
 		case GEN_OP_BITWISE_AND:
 			adjective = "bitwise AND'd";
@@ -315,7 +329,7 @@ std::string Gen_GetDocOperatorBitwiseRhsType( const std::string& fullTypeName, c
 
 		case GEN_OP_BITWISE_UNARY:
 			printf( "ERROR: For bitwise unary documentation, call Gen_GetDocOperatorBitwiseUnary().\n" );
-			return std::string();
+			return;
 
 		case GEN_OP_BITWISE_SHIFT_LEFT:
 			adjective = "bitwise left-shifted";
@@ -330,17 +344,18 @@ std::string Gen_GetDocOperatorBitwiseRhsType( const std::string& fullTypeName, c
 		case GEN_OP_BITWISE_COUNT:
 		default:
 			printf( "ERROR: Bad genOpArithmetic_t enum passed into %s.\n", __FUNCTION__ );
-			return std::string();
+			return;
 	}
 
-	return "/// \\relates " + fullTypeName + "\n" \
-		+ "/// \\brief Returns a copy of the " + fullTypeName + " where each component of the left-hand " + fullTypeName + \
-		+ " has been " + adjective + " " + preposition + " the corresponding component of the right-hand side " + fullTypeName + ".\n";
+	String_Appendf( sb,
+		"/// \\relates %s\n" \
+		"/// \\brief Returns a copy of the %s where each component of the left-hand %s" \
+		" has been %s %s the corresponding component of the right-hand side %s.\n", fullTypeName, fullTypeName, fullTypeName, adjective, preposition, fullTypeName );
 }
 
-std::string Gen_GetDocOperatorCompoundBitwiseScalar( const std::string& fullTypeName, const genOpBitwise_t op ) {
-	std::string opDesc;
-	std::string preposition;
+void Gen_GetDocOperatorCompoundBitwiseScalar( stringBuilder_t* sb, const char* fullTypeName, const genOpBitwise_t op ) {
+	const char* opDesc;
+	const char* preposition;
 	switch ( op ) {
 		case GEN_OP_BITWISE_AND:
 			opDesc = "bitwise AND";
@@ -359,7 +374,7 @@ std::string Gen_GetDocOperatorCompoundBitwiseScalar( const std::string& fullType
 
 		case GEN_OP_BITWISE_UNARY:
 			printf( "ERROR: For bitwise unary documentation, call Gen_GetDocOperatorBitwiseUnary().\n" );
-			return std::string();
+			return;
 
 		case GEN_OP_BITWISE_SHIFT_LEFT:
 			opDesc = "left bitshift";
@@ -374,16 +389,17 @@ std::string Gen_GetDocOperatorCompoundBitwiseScalar( const std::string& fullType
 		case GEN_OP_BITWISE_COUNT:
 		default:
 			printf( "ERROR: Bad genOpArithmetic_t enum passed into %s.\n", __FUNCTION__ );
-			return std::string();
+			return;
 	}
 
-	return "/// \\relates " + fullTypeName + "\n" \
-		"/// \\brief Performs a " + opDesc + " on the given left-hand " + fullTypeName + " " + preposition + " the given scalar value.\n";
+	String_Appendf( sb,
+		"/// \\relates %s\n" \
+		"/// \\brief Performs a %s on the given left-hand %s %s the given scalar value.\n", fullTypeName, opDesc, fullTypeName, preposition );
 }
 
-std::string Gen_GetDocOperatorCompoundBitwiseRhsType( const std::string& fullTypeName, const genOpBitwise_t op ) {
-	std::string opDesc;
-	std::string preposition;
+void Gen_GetDocOperatorCompoundBitwiseRhsType( stringBuilder_t* sb, const char* fullTypeName, const genOpBitwise_t op ) {
+	const char* opDesc;
+	const char* preposition;
 	switch ( op ) {
 		case GEN_OP_BITWISE_AND:
 			opDesc = "bitwise AND";
@@ -402,7 +418,7 @@ std::string Gen_GetDocOperatorCompoundBitwiseRhsType( const std::string& fullTyp
 
 		case GEN_OP_BITWISE_UNARY:
 			printf( "ERROR: For bitwise unary documentation, call Gen_GetDocOperatorBitwiseUnary().\n" );
-			return std::string();
+			return;
 
 		case GEN_OP_BITWISE_SHIFT_LEFT:
 			opDesc = "left bitshift";
@@ -417,15 +433,17 @@ std::string Gen_GetDocOperatorCompoundBitwiseRhsType( const std::string& fullTyp
 		case GEN_OP_BITWISE_COUNT:
 		default:
 			printf( "ERROR: Bad genOpArithmetic_t enum passed into %s.\n", __FUNCTION__ );
-			return std::string();
+			return;
 	}
 
-	return "/// \\relates " + fullTypeName + "\n" \
-		"/// \\brief Performs a " + opDesc + " on the given left-hand " + fullTypeName + " " + preposition + \
-		" the corresponding component of the given right-hand " + fullTypeName + ".\n";
+	String_Appendf( sb,
+		"/// \\relates %s\n" \
+		"/// \\brief Performs a %s on the given left-hand %s %s " \
+		"the corresponding component of the given right-hand %s.\n", fullTypeName, opDesc, fullTypeName, preposition, fullTypeName );
 }
 
-std::string Gen_GetDocOperatorBitwiseUnary( const std::string& fullTypeName ) {
-	return "/// \\relates " + fullTypeName + "\n" \
-		"/// \\brief Performs a unary bitwise operation on all components of the given " + fullTypeName + ".\n";
+void Gen_GetDocOperatorBitwiseUnary( stringBuilder_t* sb, const char* fullTypeName ) {
+	String_Appendf( sb,
+		"/// \\relates %s\n" \
+		"/// \\brief Performs a unary bitwise operation on all components of the given %s.\n", fullTypeName, fullTypeName );
 }

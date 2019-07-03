@@ -2,54 +2,54 @@
 
 #include "gen_common.h"
 
+#include "string_builder.h"
+
 class GeneratorMatrixTests {
 public:
-				GeneratorMatrixTests() {}
-				~GeneratorMatrixTests() {}
+					GeneratorMatrixTests() {}
+					~GeneratorMatrixTests() {}
 
-	bool		Generate( const genType_t type, const uint32_t numRows, const uint32_t numCols );
-
-private:
-	std::string	m_code;
-
-	std::string	m_testPrefix;
-
-	std::string	m_fullTypeName;
-	std::string	m_typeString;
-	std::string	m_memberTypeString;
-	std::string	m_vectorTypeString;
-
-	std::string	m_numRowsStr, m_numColsStr;
-
-	genType_t	m_type;
-
-	uint32_t	m_numRows;
-	uint32_t	m_numCols;
+	bool			Generate( const genType_t type, const u32 numRows, const u32 numCols );
 
 private:
-	void		GenerateTestAssignment();
-	void		GenerateTestArithmetic();
-	void		GenerateTestMultiplyVector();
-	void		GenerateTestIncrement();
-	void		GenerateTestRelational();
-	void		GenerateTestBitwise();
-	void		GenerateTestArray();
+	stringBuilder_t	m_codeTests;
+	stringBuilder_t	m_codeSuite;
 
-	void		GenerateTestIdentity();
-	void		GenerateTestTranspose();
-	void		GenerateTestInverse();
-	void		GenerateTestDeterminant();
-	void		GenerateTestTranslate();
-	void		GenerateTestRotate();
-	void		GenerateTestScale();
-	void		GenerateTestOrtho();
-	void		GenerateTestPerspective();
-	void		GenerateTestLookAt();
+	genType_t		m_type;
 
-	std::string	GetTestCodeArithmeticInternal( const genOpArithmetic_t op, const float valuesLhs[GEN_COMPONENT_COUNT_MAX][GEN_COMPONENT_COUNT_MAX],
-					const float valuesRhs[GEN_COMPONENT_COUNT_MAX][GEN_COMPONENT_COUNT_MAX] ) const;
+	u32				m_numRows;
+	u32				m_numCols;
+
+	char			m_vectorTypeString[GEN_STRING_LENGTH_TYPE_NAME];
+	char			m_fullTypeName[GEN_STRING_LENGTH_TYPE_NAME];
+	const char*		m_typeString;
+	const char*		m_memberTypeString;
+
+private:
+	void			GenerateTestAssignment();
+	void			GenerateTestArithmetic();
+	void			GenerateTestMultiplyVector();
+	void			GenerateTestIncrement();
+	void			GenerateTestRelational();
+	void			GenerateTestBitwise();
+	void			GenerateTestArray();
+
+	void			GenerateTestIdentity();
+	void			GenerateTestTranspose();
+	void			GenerateTestInverse();
+	void			GenerateTestDeterminant();
+	void			GenerateTestTranslate();
+	void			GenerateTestRotate();
+	void			GenerateTestScale();
+	void			GenerateTestOrtho();
+	void			GenerateTestPerspective();
+	void			GenerateTestLookAt();
+
+	void			GetTestCodeArithmeticInternal( const genOpArithmetic_t op, const float valuesLhs[GEN_COMPONENT_COUNT_MAX][GEN_COMPONENT_COUNT_MAX],
+						const float valuesRhs[GEN_COMPONENT_COUNT_MAX][GEN_COMPONENT_COUNT_MAX], stringBuilder_t* sb ) const;
 
 	// DM: does this want to live with the other generic matrix gen functions?
-	std::string	GetParmListArithmeticAnswer( const genOpArithmetic_t op, const uint32_t numRows, const uint32_t numCols,
-					const float valuesLhs[GEN_COMPONENT_COUNT_MAX][GEN_COMPONENT_COUNT_MAX], const float valuesRhs[GEN_COMPONENT_COUNT_MAX][GEN_COMPONENT_COUNT_MAX] ) const;
+	void			GetParmListArithmeticAnswer( const genOpArithmetic_t op, const u32 numRows, const u32 numCols,
+						const float valuesLhs[GEN_COMPONENT_COUNT_MAX][GEN_COMPONENT_COUNT_MAX], const float valuesRhs[GEN_COMPONENT_COUNT_MAX][GEN_COMPONENT_COUNT_MAX],
+						char* outString ) const;
 };

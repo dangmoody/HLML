@@ -57,8 +57,8 @@ TEMPER_TEST( TestArray_float3 )
 
 TEMPER_TEST( TestArithmeticAddition_float3 )
 {
-	float3 a  = float3( 6.000000f );
-	float3 b  = float3( 2.000000f, 3.000000f, 4.000000f );
+	float3 a = float3( 6.000000f );
+	float3 b = float3( 2.000000f, 3.000000f, 4.000000f );
 
 	float3 c = a + b;
 
@@ -69,8 +69,8 @@ TEMPER_TEST( TestArithmeticAddition_float3 )
 
 TEMPER_TEST( TestArithmeticSubtraction_float3 )
 {
-	float3 a  = float3( 6.000000f );
-	float3 b  = float3( 2.000000f, 3.000000f, 4.000000f );
+	float3 a = float3( 6.000000f );
+	float3 b = float3( 2.000000f, 3.000000f, 4.000000f );
 
 	float3 c = a - b;
 
@@ -81,8 +81,8 @@ TEMPER_TEST( TestArithmeticSubtraction_float3 )
 
 TEMPER_TEST( TestArithmeticMultiplication_float3 )
 {
-	float3 a  = float3( 6.000000f );
-	float3 b  = float3( 2.000000f, 3.000000f, 4.000000f );
+	float3 a = float3( 6.000000f );
+	float3 b = float3( 2.000000f, 3.000000f, 4.000000f );
 
 	float3 c = a * b;
 
@@ -93,8 +93,8 @@ TEMPER_TEST( TestArithmeticMultiplication_float3 )
 
 TEMPER_TEST( TestArithmeticDivision_float3 )
 {
-	float3 a  = float3( 6.000000f );
-	float3 b  = float3( 2.000000f, 2.000000f, 3.000000f );
+	float3 a = float3( 6.000000f );
+	float3 b = float3( 2.000000f, 2.000000f, 3.000000f );
 
 	float3 c = a / b;
 
@@ -139,33 +139,60 @@ TEMPER_TEST( TestDecrement_float3 )
 
 TEMPER_TEST( TestRelational_float3 )
 {
-	float3 vec0 = float3( 0.000000f, 0.000000f, 0.000000f );
-	float3 vec1 = float3( 1.000000f, 1.000000f, 1.000000f );
-	float3 vec2 = float3( 2.000000f, 2.000000f, 2.000000f );
+	bool3 allTrue = bool3( true );
 
-	bool3 test0 = vec0 <= vec0;
-	bool3 test1 = vec0 >= vec0;
-	bool3 test2 = vec0 < vec1;
+	float3 vec0 = float3( 0.000000f );
+	float3 vec1 = float3( 1.000000f );
+	float3 vec2 = float3( 2.000000f );
+	float3 vec3 = float3( 3.000000f );
 
-	bool3 test3 = vec1 <= vec1;
-	bool3 test4 = vec1 >= vec1;
-	bool3 test5 = vec1 < vec2;
-	bool3 test6 = vec1 > vec0;
+	bool3 test0  = vec0 <= vec0;
+	bool3 test1  = vec0 >= vec0;
+	bool3 test2  = vec0 <  vec1;
+	bool3 test3  = vec0 <  vec2;
+	bool3 test4  = vec0 <  vec3;
 
-	bool3 test7 = vec2 <= vec2;
-	bool3 test8 = vec2 >= vec2;
-	bool3 test9 = vec2 > vec1;
+	bool3 test5  = vec1 >  vec0;
+	bool3 test6  = vec1 <= vec1;
+	bool3 test7  = vec1 >= vec1;
+	bool3 test8  = vec1 <  vec2;
+	bool3 test9  = vec1 <  vec3;
 
-	TEMPER_EXPECT_TRUE( test0 == bool3( true ) );
-	TEMPER_EXPECT_TRUE( test1 == bool3( true ) );
-	TEMPER_EXPECT_TRUE( test2 == bool3( true ) );
-	TEMPER_EXPECT_TRUE( test3 == bool3( true ) );
-	TEMPER_EXPECT_TRUE( test4 == bool3( true ) );
-	TEMPER_EXPECT_TRUE( test5 == bool3( true ) );
-	TEMPER_EXPECT_TRUE( test6 == bool3( true ) );
-	TEMPER_EXPECT_TRUE( test7 == bool3( true ) );
-	TEMPER_EXPECT_TRUE( test8 == bool3( true ) );
-	TEMPER_EXPECT_TRUE( test9 == bool3( true ) );
+	bool3 test10 = vec2 >  vec0;
+	bool3 test11 = vec2 >  vec1;
+	bool3 test12 = vec2 <= vec2;
+	bool3 test13 = vec2 >= vec2;
+	bool3 test14 = vec2 <  vec3;
+
+	bool3 test15 = vec3 >  vec0;
+	bool3 test16 = vec3 >  vec1;
+	bool3 test17 = vec3 >  vec2;
+	bool3 test18 = vec3 <= vec3;
+	bool3 test19 = vec3 >= vec3;
+
+	TEMPER_EXPECT_TRUE( test0  == allTrue );
+	TEMPER_EXPECT_TRUE( test1  == allTrue );
+	TEMPER_EXPECT_TRUE( test2  == allTrue );
+	TEMPER_EXPECT_TRUE( test3  == allTrue );
+	TEMPER_EXPECT_TRUE( test4  == allTrue );
+
+	TEMPER_EXPECT_TRUE( test5  == allTrue );
+	TEMPER_EXPECT_TRUE( test6  == allTrue );
+	TEMPER_EXPECT_TRUE( test7  == allTrue );
+	TEMPER_EXPECT_TRUE( test8  == allTrue );
+	TEMPER_EXPECT_TRUE( test9  == allTrue );
+
+	TEMPER_EXPECT_TRUE( test10 == allTrue );
+	TEMPER_EXPECT_TRUE( test11 == allTrue );
+	TEMPER_EXPECT_TRUE( test12 == allTrue );
+	TEMPER_EXPECT_TRUE( test13 == allTrue );
+	TEMPER_EXPECT_TRUE( test14 == allTrue );
+
+	TEMPER_EXPECT_TRUE( test15 == allTrue );
+	TEMPER_EXPECT_TRUE( test16 == allTrue );
+	TEMPER_EXPECT_TRUE( test17 == allTrue );
+	TEMPER_EXPECT_TRUE( test18 == allTrue );
+	TEMPER_EXPECT_TRUE( test19 == allTrue );
 
 	TEMPER_PASS();
 }
@@ -192,8 +219,8 @@ TEMPER_TEST( TestNormalized_float3 )
 
 TEMPER_TEST( TestDot_float3 )
 {
-	float3 a = float3( 0.000000f, 0.000000f, 1.000000f );
-	float3 b = float3( 0.000000f, 0.000000f, -1.000000f );
+	float3 a = float3( 0.000000f, 1.000000f, 0.000000f );
+	float3 b = float3( 0.000000f, -1.000000f, 0.000000f );
 
 	TEMPER_EXPECT_TRUE( floateq( dot( a, b ), -1.000000f ) );
 
@@ -214,7 +241,7 @@ TEMPER_TEST( TestCross_float3 )
 TEMPER_TEST( TestAngle_float3 )
 {
 	float3 right = float3( 1.000000f, 0.000000f, 0.000000f );
-	float3 up = float3( 0.000000f, 1.000000f, 0.000000f );
+	float3 up =    float3( 0.000000f, 1.000000f, 0.000000f );
 	float answer = angle( up, right );
 
 	TEMPER_EXPECT_TRUE( floateq( answer, 90.000000f ) );
@@ -300,6 +327,7 @@ TEMPER_SUITE( Test_float3 )
 	TEMPER_RUN_TEST( TestArithmeticDivision_float3 );
 	TEMPER_RUN_TEST( TestIncrement_float3 );
 	TEMPER_RUN_TEST( TestDecrement_float3 );
+	TEMPER_RUN_TEST( TestRelational_float3 );
 	TEMPER_RUN_TEST( TestRelational_float3 );
 	TEMPER_RUN_TEST( TestLength_float3 );
 	TEMPER_RUN_TEST( TestNormalized_float3 );

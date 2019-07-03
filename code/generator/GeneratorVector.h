@@ -2,12 +2,14 @@
 
 #include "gen_common.h"
 
+#include "string_builder.h"
+
 class GeneratorVector {
 public:
 					GeneratorVector() {}
 					~GeneratorVector() {}
 
-	bool			Generate( const genType_t type, const uint32_t numComponents );
+	bool			Generate( const genType_t type, const u32 numComponents );
 
 #ifdef _DEBUG
 	void			PrintHeader() const;
@@ -15,20 +17,19 @@ public:
 #endif
 
 private:
-	std::string		m_codeHeader;
-	std::string		m_codeInl;
-
-	std::string		m_typeString;
-	std::string		m_fullTypeName;
-	std::string		m_memberTypeString;
-
-	std::string		m_numComponentsStr;
+	stringBuilder_t	m_codeHeader;
+	stringBuilder_t	m_codeInl;
 
 	genType_t		m_type;
-	uint32_t		m_numComponents;
+	u32				m_numComponents;
+
+	char			m_fullTypeName[GEN_STRING_LENGTH_TYPE_NAME];
+
+	const char*		m_typeString;
+	const char*		m_memberTypeString;
 
 private:
-	void			HeaderGenerateMembersStruct( const std::string& componentNames );
+	void			HeaderGenerateMembersStruct( const char componentNames[GEN_COMPONENT_COUNT_MAX] );
 
 	void			GenerateConstructors();
 	void			GenerateOperatorsAssignment();
@@ -36,12 +37,11 @@ private:
 	void			GenerateOperatorsEquality();
 	void			GenerateSwizzleFuncs();
 
-	std::string		GetDocStruct() const;
-	std::string		GetDocScalar() const;
-	std::string		GetDocCtorDefault() const;
-	std::string		GetDocCtorCopy() const;
-	std::string		GetDocCtorMemberwise() const;
-	std::string		GetDocOperatorAssignment() const;
-
-	std::string		GetDocOperatorArray() const;
+	void			GenerateDocStruct();
+	void			GenerateDocCtorScalar();
+	void			GenerateDocCtorDefault();
+	void			GenerateDocCtorCopy();
+	void			GenerateDocCtorMemberwise();
+	void			GenerateDocOperatorAssignment();
+	void			GenerateDocOperatorArray();
 };

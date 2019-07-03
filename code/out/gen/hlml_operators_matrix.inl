@@ -24,7 +24,7 @@ along with hlml.  If not, see <http://www.gnu.org/licenses/>.
 
 // GENERATED FILE.  DO NOT EDIT.
 
-#include "hlml_operators_matrix.h"
+#include "hlml_operators_vector.h"
 
 // int2x2
 int2x2 operator+( const int2x2& lhs, const int32_t rhs )

@@ -22,6 +22,9 @@ along with hlml.  If not, see <http://www.gnu.org/licenses/>.
 ===========================================================================
 */
 
+#include "allocator.h"
+#include "string_builder.h"
+
 #include "GeneratorVector.h"
 #include "GeneratorMatrix.h"
 
@@ -34,76 +37,104 @@ along with hlml.  If not, see <http://www.gnu.org/licenses/>.
 
 #include "FileIO.h"
 
+#ifdef _WIN32
+#include "time.h"
+#endif
+
 #include <stdio.h>
 #include <assert.h>
 
-#include <string>
+static bool GenerateTypeHeader( void ) {
+	char headerFilePath[1024] = { 0 };
+	snprintf( headerFilePath, 1024, "%s%s", GEN_OUT_FOLDER_PATH, GEN_HEADER_TYPES );
+
+	stringBuilder_t sb = String_Create( 1 * KB_TO_BYTES );
+
+	String_Append( &sb, GEN_FILE_HEADER );
+	String_Append( &sb,
+		"#include <stdint.h>\n" \
+		"\n" \
+		"// ensure that a bool is 4 bytes\n" \
+		"typedef uint32_t bool32_t;\n" );
+
+	bool32 result = FS_WriteEntireFile( headerFilePath, sb.str, sb.length );
+
+	Mem_Reset();
+
+	return result;
+}
 
 static bool GenerateHeaderScalar( void ) {
 	char fileNameHeader[1024];
-	sprintf( fileNameHeader, "%s%s.h", GEN_OUT_GEN_FOLDER_PATH, GEN_FILENAME_FUNCTIONS_SCALAR );
+	snprintf( fileNameHeader, 1024, "%s%s.h", GEN_OUT_GEN_FOLDER_PATH, GEN_FILENAME_FUNCTIONS_SCALAR );
 
-	std::string contentHeader = GEN_FILE_HEADER;
-	contentHeader += "#pragma once\n";
-	contentHeader += "\n";
-	contentHeader += "#include \"../" + std::string( GEN_HEADER_CONSTANTS ) + "\"\n";
-	contentHeader += "\n";
-	contentHeader += "#include <math.h>\n";
-	contentHeader += "#include <stdint.h>\n";
-	contentHeader += "\n";
+	stringBuilder_t sb = String_Create( 8 * KB_TO_BYTES );
 
-	for ( uint32_t typeIndex = 0; typeIndex < GEN_TYPE_COUNT; typeIndex++ ) {
+	String_Append( &sb, GEN_FILE_HEADER );
+	String_Append( &sb,
+		"#pragma once\n" \
+		"#pragma once\n" \
+		"\n" \
+		"#include \"../" GEN_HEADER_CONSTANTS "\"\n" \
+		"\n" \
+		"#include <math.h>\n" \
+		"#include <stdint.h>\n" \
+		"\n" );
+
+	for ( u32 typeIndex = 0; typeIndex < GEN_TYPE_COUNT; typeIndex++ ) {
 		genType_t type = static_cast<genType_t>( typeIndex );
 
 		if ( type == GEN_TYPE_BOOL ) {
 			continue;
 		}
 
-		std::string memberTypeString = Gen_GetMemberTypeString( type );
+		const char* memberTypeString = Gen_GetMemberTypeString( type );
 
-		printf( "Generating %s...", memberTypeString.c_str() );
+		printf( "Generating %s...", memberTypeString );
 
-		contentHeader += "// " + memberTypeString + "\n";
+		String_Append( &sb, "// " );
+		String_Append( &sb, memberTypeString );
+		String_Append( &sb, "\n" );
 
 		// scalar only funcs
-		Gen_Floateq( type, contentHeader );
+		Gen_Floateq( type, &sb );
 		
-		Gen_Sign( type, contentHeader );
+		Gen_Sign( type, &sb );
 
-		Gen_Radians( type, contentHeader );
-		Gen_Degrees( type, contentHeader );
+		Gen_Radians( type, &sb );
+		Gen_Degrees( type, &sb );
 
-		Gen_MinMax( type, contentHeader );
-		Gen_Clamp( type, contentHeader );
+		Gen_MinMax( type, &sb );
+		Gen_Clamp( type, &sb );
 
 		// generic/scalar/vector funcs
-		Gen_Saturate( type, 1, contentHeader, nullptr );
+		Gen_Saturate( type, 1, &sb, nullptr );
 
-		Gen_Lerp( type, 1, contentHeader, nullptr );
-		Gen_Smoothstep( type, 1, contentHeader, nullptr );
+		Gen_Lerp( type, 1, &sb, nullptr );
+		Gen_Smoothstep( type, 1, &sb, nullptr );
 
-		contentHeader += "\n";
+		String_Append( &sb, "\n" );
 
 		printf( "OK.\n" );
 	}
 
-	if ( !FS_WriteEntireFile( fileNameHeader, contentHeader.c_str(), contentHeader.size() ) ) {
-		return false;
-	}
+	bool32 result = FS_WriteEntireFile( fileNameHeader, sb.str, sb.length );
 
-	return true;
+	Mem_Reset();
+
+	return result;
 }
 
-static bool GenerateImplVectors( void ) {
+static bool GenerateVectors( void ) {
 	GeneratorVector gen;
 
-	for ( uint32_t typeIndex = 0; typeIndex < GEN_TYPE_COUNT; typeIndex++ ) {
+	for ( u32 typeIndex = 0; typeIndex < GEN_TYPE_COUNT; typeIndex++ ) {
 		genType_t type = static_cast<genType_t>( typeIndex );
 
-		std::string typeString = Gen_GetTypeString( type );
+		const char* typeString = Gen_GetTypeString( type );
 
-		for ( uint32_t componentIndex = GEN_COMPONENT_COUNT_MIN; componentIndex <= GEN_COMPONENT_COUNT_MAX; componentIndex++ ) {
-			printf( "Generating %s%d...", typeString.c_str(), componentIndex );
+		for ( u32 componentIndex = GEN_COMPONENT_COUNT_MIN; componentIndex <= GEN_COMPONENT_COUNT_MAX; componentIndex++ ) {
+			printf( "Generating %s%d...", typeString, componentIndex );
 
 			if ( !gen.Generate( type, componentIndex ) ) {
 				return false;
@@ -116,17 +147,17 @@ static bool GenerateImplVectors( void ) {
 	return true;
 }
 
-static bool GenerateImplMatrices( void ) {
+static bool GenerateMatrices( void ) {
 	GeneratorMatrix gen;
 
-	for ( uint32_t typeIndex = 0; typeIndex < GEN_TYPE_COUNT; typeIndex++ ) {
+	for ( u32 typeIndex = 0; typeIndex < GEN_TYPE_COUNT; typeIndex++ ) {
 		genType_t type = static_cast<genType_t>( typeIndex );
 
-		std::string typeString = Gen_GetTypeString( type );
+		const char* typeString = Gen_GetTypeString( type );
 
-		for ( uint32_t row = GEN_COMPONENT_COUNT_MIN; row <= GEN_COMPONENT_COUNT_MAX; row++ ) {
-			for ( uint32_t col = GEN_COMPONENT_COUNT_MIN; col <= GEN_COMPONENT_COUNT_MAX; col++ ) {
-				printf( "Generating %s%dx%d...", typeString.c_str(), row, col );
+		for ( u32 row = GEN_COMPONENT_COUNT_MIN; row <= GEN_COMPONENT_COUNT_MAX; row++ ) {
+			for ( u32 col = GEN_COMPONENT_COUNT_MIN; col <= GEN_COMPONENT_COUNT_MAX; col++ ) {
+				printf( "Generating %s%dx%d...", typeString, row, col );
 
 				if ( !gen.Generate( type, row, col ) ) {
 					return false;
@@ -140,353 +171,325 @@ static bool GenerateImplMatrices( void ) {
 	return true;
 }
 
-static bool GenerateTypeHeader( void ) {
-	char headerFilePath[1024] = { 0 };
-	sprintf( headerFilePath, "%s%s", GEN_OUT_FOLDER_PATH, GEN_HEADER_TYPES );
-
-	std::string content = GEN_FILE_HEADER;
-
-	content += "#include <stdint.h>\n";
-	content += "\n";
-
-	content += "// ensure that a bool is 4 bytes\n";
-	content += "typedef uint32_t bool32_t;\n";
-
-	return FS_WriteEntireFile( headerFilePath, content.data(), content.size() );
-}
-
-static bool GenerateOperatorsVector( void ) {
-	char filePathHeader[1024] = { 0 };
-	sprintf( filePathHeader, "%s%s.h", GEN_OUT_GEN_FOLDER_PATH, GEN_FILENAME_OPERATORS_VECTOR );
-
-	char filePathInl[1024] = { 0 };
-	sprintf( filePathInl, "%s%s.inl", GEN_OUT_GEN_FOLDER_PATH, GEN_FILENAME_OPERATORS_VECTOR );
-
-	std::string content = GEN_FILE_HEADER;
-
-	std::string contentHeader = content;
-	contentHeader += "#pragma once\n";
-	contentHeader += "\n";
-
-	std::string contentInl = content;
-	contentInl += std::string( "#include \"" ) + GEN_FILENAME_OPERATORS_VECTOR + ".h\"\n";
-
-	// includes
-	for ( uint32_t typeIndex = 0; typeIndex < GEN_TYPE_COUNT; typeIndex++ ) {
-		genType_t type = static_cast<genType_t>( typeIndex );
-
-		for ( uint32_t componentIndex = GEN_COMPONENT_COUNT_MIN; componentIndex <= GEN_COMPONENT_COUNT_MAX; componentIndex++ ) {
-			contentHeader += "#include \"" + Gen_GetFullTypeName( type, 1, componentIndex ) + ".h\"\n";
-		}
-	}
-
-	contentHeader += "\n";
-	contentInl += "\n";
-
-	// header and inl code
-	for ( uint32_t typeIndex = 0; typeIndex < GEN_TYPE_COUNT; typeIndex++ ) {
-		genType_t type = static_cast<genType_t>( typeIndex );
-
-		if ( type == GEN_TYPE_BOOL ) {
-			continue;
-		}
-
-		for ( uint32_t componentIndex = GEN_COMPONENT_COUNT_MIN; componentIndex <= GEN_COMPONENT_COUNT_MAX; componentIndex++ ) {
-			std::string fullTypeName = Gen_GetFullTypeName( type, 1, componentIndex );
-
-			printf( "Vector operators %s...", fullTypeName.c_str() );
-
-			contentHeader += "// " + fullTypeName + "\n";
-			contentInl += "// " + fullTypeName + "\n";
-
-			Gen_VectorOperatorsArithmetic( type, componentIndex, contentHeader, contentInl );
-			Gen_OperatorsIncrement( type, 1, componentIndex, contentHeader, contentInl );
-			Gen_OperatorsRelational( type, 1, componentIndex, contentHeader, contentInl );
-			Gen_OperatorsBitwise( type, 1, componentIndex, contentHeader, contentInl );
-
-			contentHeader += "\n";
-			contentInl += "\n";
-
-			printf( "OK.\n" );
-		}
-	}
-
-	contentHeader += "#include \"" + std::string( GEN_FILENAME_OPERATORS_VECTOR ) + ".inl\"\n";
-
-	if ( !FS_WriteEntireFile( filePathHeader, contentHeader.c_str(), contentHeader.size() ) ) {
-		return false;
-	}
-
-	if ( !FS_WriteEntireFile( filePathInl, contentInl.c_str(), contentInl.size() ) ) {
-		return false;
-	}
-
-	return true;
-}
-
 static bool GenerateFunctionsVector( void ) {
-	char filePathHeader[1024] = { 0 };
-	sprintf( filePathHeader, "%s%s.h", GEN_OUT_GEN_FOLDER_PATH, GEN_FILENAME_FUNCTIONS_VECTOR );
+	char filePathHeader[64] = { 0 };
+	snprintf( filePathHeader, 64, "%s%s.h", GEN_OUT_GEN_FOLDER_PATH, GEN_FILENAME_FUNCTIONS_VECTOR );
 
-	char filePathInl[1024] = { 0 };
-	sprintf( filePathInl, "%s%s.inl", GEN_OUT_GEN_FOLDER_PATH, GEN_FILENAME_FUNCTIONS_VECTOR );
+	char filePathInl[64] = { 0 };
+	snprintf( filePathInl, 64, "%s%s.inl", GEN_OUT_GEN_FOLDER_PATH, GEN_FILENAME_FUNCTIONS_VECTOR );
 
-	std::string content = GEN_FILE_HEADER;
+	stringBuilder_t contentHeader = String_Create( 16 * KB_TO_BYTES );
 
-	std::string contentHeader = content;
-	contentHeader += "#pragma once\n";
-	contentHeader += "\n";
+	String_Append( &contentHeader, GEN_FILE_HEADER );
+	String_Append( &contentHeader, "#pragma once\n" );
+	String_Append( &contentHeader, "\n" );
 
-	std::string contentInl = content;
-	contentInl += std::string( "#include \"" ) + GEN_FILENAME_OPERATORS_VECTOR + ".h\"\n";
+	stringBuilder_t contentInl = String_Create( 16 * KB_TO_BYTES );
 
-	for ( uint32_t typeIndex = 0; typeIndex < GEN_TYPE_COUNT; typeIndex++ ) {
+	String_Append( &contentInl, GEN_FILE_HEADER );
+	String_Append( &contentInl, "#include \"" GEN_FILENAME_OPERATORS_VECTOR ".h\"" );
+
+	for ( u32 typeIndex = 0; typeIndex < GEN_TYPE_COUNT; typeIndex++ ) {
 		genType_t type = static_cast<genType_t>( typeIndex );
 
 		if ( type == GEN_TYPE_BOOL ) {
 			continue;
 		}
 
-		for ( uint32_t componentIndex = GEN_COMPONENT_COUNT_MIN; componentIndex <= GEN_COMPONENT_COUNT_MAX; componentIndex++ ) {
-			contentHeader += "#include \"" + Gen_GetFullTypeName( type, 1, componentIndex ) + ".h\"\n";
+		const char* typeString = Gen_GetTypeString( type );
+
+		for ( u32 componentIndex = GEN_COMPONENT_COUNT_MIN; componentIndex <= GEN_COMPONENT_COUNT_MAX; componentIndex++ ) {
+			String_Appendf( &contentHeader, "#include \"%s%d.h\"\n", typeString, componentIndex );
 		}
 	}
 
-	contentHeader += "\n";
-	contentInl += "\n";
+	String_Append( &contentHeader, "\n" );
+	String_Append( &contentInl, "\n" );
 
-	for ( uint32_t typeIndex = 0; typeIndex < GEN_TYPE_COUNT; typeIndex++ ) {
+	for ( u32 typeIndex = 0; typeIndex < GEN_TYPE_COUNT; typeIndex++ ) {
 		genType_t type = static_cast<genType_t>( typeIndex );
 
 		if ( type == GEN_TYPE_BOOL ) {
 			continue;
 		}
 
-		for ( uint32_t componentIndex = GEN_COMPONENT_COUNT_MIN; componentIndex <= GEN_COMPONENT_COUNT_MAX; componentIndex++ ) {
-			std::string fullTypeName = Gen_GetFullTypeName( type, 1, componentIndex );
+		const char* typeString = Gen_GetTypeString( type );
 
-			printf( "Algebra %s...", fullTypeName.c_str() );
+		for ( u32 componentIndex = GEN_COMPONENT_COUNT_MIN; componentIndex <= GEN_COMPONENT_COUNT_MAX; componentIndex++ ) {
+			printf( "Algebra %s%d...", typeString, componentIndex );
 
-			contentHeader += "// " + fullTypeName + "\n";
-			contentInl += "// " + fullTypeName + "\n";
+			String_Appendf( &contentHeader, "// %s%d\n", typeString, componentIndex );
+			String_Appendf( &contentInl, "// %s%d\n", typeString, componentIndex );
 
 			// generic/scalar funcs
-			Gen_Saturate( type, componentIndex, contentHeader, &contentInl );
-			Gen_Lerp( type, componentIndex, contentHeader, &contentInl );
-			Gen_Smoothstep( type, componentIndex, contentHeader, &contentInl );
+			Gen_Saturate( type, componentIndex, &contentHeader, &contentInl );
+			Gen_Lerp( type, componentIndex, &contentHeader, &contentInl );
+			Gen_Smoothstep( type, componentIndex, &contentHeader, &contentInl );
 
 			// generic/scalar/vector funcs
-			Gen_VectorDot( type, componentIndex, contentHeader, contentInl );
-			Gen_VectorLength( type, componentIndex, contentHeader, contentInl );
-			Gen_VectorNormalize( type, componentIndex, contentHeader, contentInl );
-			Gen_VectorCross( type, componentIndex, contentHeader, contentInl );
-			Gen_VectorAngle( type, componentIndex, contentHeader, contentInl );
-			Gen_VectorDistance( type, componentIndex, contentHeader, contentInl );
-			Gen_VectorPack( type, componentIndex, contentHeader, contentInl );
-			Gen_VectorUnpack( type, componentIndex, contentHeader, contentInl );
+			Gen_VectorLength( type, componentIndex, &contentHeader, &contentInl );
+			Gen_VectorNormalize( type, componentIndex, &contentHeader, &contentInl );
+			Gen_VectorDot( type, componentIndex, &contentHeader, &contentInl );
+			Gen_VectorCross( type, componentIndex, &contentHeader, &contentInl );
+			Gen_VectorAngle( type, componentIndex, &contentHeader, &contentInl );
+			Gen_VectorDistance( type, componentIndex, &contentHeader, &contentInl );
+			Gen_VectorPack( type, componentIndex, &contentHeader, &contentInl );
+			Gen_VectorUnpack( type, componentIndex, &contentHeader, &contentInl );
 
-			contentHeader += "\n";
-			contentInl += "\n";
+			String_Append( &contentHeader, "\n" );
+			String_Append( &contentInl, "\n" );
 
 			printf( "OK.\n" );
 		}
 	}
 
-	contentHeader += "#include \"" + std::string( GEN_FILENAME_FUNCTIONS_VECTOR ) + ".inl\"\n";
+	String_Append( &contentHeader, "#include \"" GEN_FILENAME_FUNCTIONS_VECTOR ".inl\"\n" );
 
-	if ( !FS_WriteEntireFile( filePathHeader, contentHeader.c_str(), contentHeader.size() ) ) {
-		return false;
-	}
+	bool32 wroteHeader	= FS_WriteEntireFile( filePathHeader, contentHeader.str, contentHeader.length );
+	bool32 wroteInl		= FS_WriteEntireFile( filePathInl, contentInl.str, contentInl.length );
 
-	if ( !FS_WriteEntireFile( filePathInl, contentInl.c_str(), contentInl.size() ) ) {
-		return false;
-	}
+	Mem_Reset();
 
-	return true;
-}
-
-static bool GenerateOperatorsMatrix( void ) {
-	char filePathHeader[1024] = { 0 };
-	sprintf( filePathHeader, "%s%s.h", GEN_OUT_GEN_FOLDER_PATH, GEN_FILENAME_OPERATORS_MATRIX );
-
-	char filePathInl[1024] = { 0 };
-	sprintf( filePathInl, "%s%s.inl", GEN_OUT_GEN_FOLDER_PATH, GEN_FILENAME_OPERATORS_MATRIX );
-
-	std::string content = GEN_FILE_HEADER;
-
-	std::string contentHeader = content;
-	contentHeader += "#pragma once\n";
-	contentHeader += "\n";
-
-	std::string contentInl = content;
-	contentInl += std::string( "#include \"" ) + GEN_FILENAME_OPERATORS_MATRIX + ".h\"\n";
-
-	// includes
-	for ( uint32_t typeIndex = 0; typeIndex < GEN_TYPE_COUNT; typeIndex++ ) {
-		genType_t type = static_cast<genType_t>( typeIndex );
-
-		if ( type == GEN_TYPE_BOOL ) {
-			continue;
-		}
-
-		std::string typeString = Gen_GetTypeString( type );
-
-		for ( uint32_t row = GEN_COMPONENT_COUNT_MIN; row <= GEN_COMPONENT_COUNT_MAX; row++ ) {
-			std::string rowStr = std::to_string( row );
-
-			for ( uint32_t col = GEN_COMPONENT_COUNT_MIN; col <= GEN_COMPONENT_COUNT_MAX; col++ ) {
-				std::string colStr = std::to_string( col );
-
-				contentHeader += "#include \"" + typeString + rowStr + "x" + colStr + ".h\"\n";
-			}
-		}
-	}
-
-	contentHeader += "\n";
-	contentInl += "\n";
-
-	// header and inl code
-	for ( uint32_t typeIndex = 0; typeIndex < GEN_TYPE_COUNT; typeIndex++ ) {
-		genType_t type = static_cast<genType_t>( typeIndex );
-
-		if ( type == GEN_TYPE_BOOL ) {
-			continue;
-		}
-
-		for ( uint32_t row = GEN_COMPONENT_COUNT_MIN; row <= GEN_COMPONENT_COUNT_MAX; row++ ) {
-			for ( uint32_t col = GEN_COMPONENT_COUNT_MIN; col <= GEN_COMPONENT_COUNT_MAX; col++ ) {
-				std::string fullTypeName = Gen_GetFullTypeName( type, row, col );
-
-				printf( "Matrix operators %s...", fullTypeName.c_str() );
-
-				contentHeader += "// " + fullTypeName + "\n";
-				contentInl += "// " + fullTypeName + "\n";
-
-				Gen_MatrixOperatorsArithmetic( type, row, col, contentHeader, contentInl );
-				Gen_OperatorsIncrement( type, row, col, contentHeader, contentInl );
-				Gen_OperatorsRelational( type, row, col, contentHeader, contentInl );
-				Gen_OperatorsBitwise( type, row, col, contentHeader, contentInl );
-
-				contentHeader += "\n";
-				contentInl += "\n";
-
-				printf( "OK.\n" );
-			}
-		}
-	}
-
-	contentHeader += "#include \"" + std::string( GEN_FILENAME_OPERATORS_MATRIX ) + ".inl\"\n";
-
-	if ( !FS_WriteEntireFile( filePathHeader, contentHeader.c_str(), contentHeader.size() ) ) {
-		return false;
-	}
-
-	if ( !FS_WriteEntireFile( filePathInl, contentInl.c_str(), contentInl.size() ) ) {
-		return false;
-	}
-
-	return true;
+	return wroteHeader && wroteInl;
 }
 
 static bool GenerateFunctionsMatrix( void ) {
-	char filePathHeader[1024] = { 0 };
-	sprintf( filePathHeader, "%s%s.h", GEN_OUT_GEN_FOLDER_PATH, GEN_FILENAME_FUNCTIONS_MATRIX );
+	char filePathHeader[64] = { 0 };
+	snprintf( filePathHeader, 64, "%s%s.h", GEN_OUT_GEN_FOLDER_PATH, GEN_FILENAME_FUNCTIONS_MATRIX );
 
-	char filePathInl[1024] = { 0 };
-	sprintf( filePathInl, "%s%s.inl", GEN_OUT_GEN_FOLDER_PATH, GEN_FILENAME_FUNCTIONS_MATRIX );
+	char filePathInl[64] = { 0 };
+	snprintf( filePathInl, 64, "%s%s.inl", GEN_OUT_GEN_FOLDER_PATH, GEN_FILENAME_FUNCTIONS_MATRIX );
 
-	std::string content = GEN_FILE_HEADER;
+	stringBuilder_t contentHeader = String_Create( 64 * KB_TO_BYTES );
+	String_Append( &contentHeader, GEN_FILE_HEADER );
+	String_Append( &contentHeader, "#pragma once\n" );
+	String_Append( &contentHeader, "\n" );
 
-	std::string contentHeader = content;
-	contentHeader += "#pragma once\n";
-	contentHeader += "\n";
+	stringBuilder_t contentInl = String_Create( 64 * KB_TO_BYTES );
+	String_Append( &contentInl, GEN_FILE_HEADER );
+	String_Append( &contentInl, "#include \"" GEN_FILENAME_FUNCTIONS_VECTOR ".h\"\n" );
+	String_Append( &contentInl, "#include \"" GEN_FILENAME_OPERATORS_MATRIX ".h\"\n" );
 
-	std::string contentInl = content;
-	contentInl += std::string( "#include \"" ) + GEN_FILENAME_FUNCTIONS_VECTOR + ".h\"\n";
-	contentInl += std::string( "#include \"" ) + GEN_FILENAME_OPERATORS_MATRIX + ".h\"\n";
-
-	for ( uint32_t typeIndex = 0; typeIndex < GEN_TYPE_COUNT; typeIndex++ ) {
+	for ( u32 typeIndex = 0; typeIndex < GEN_TYPE_COUNT; typeIndex++ ) {
 		genType_t type = static_cast<genType_t>( typeIndex );
 
-		std::string typeString = Gen_GetTypeString( type );
+		const char* typeString = Gen_GetTypeString( type );
 
-		for ( uint32_t row = GEN_COMPONENT_COUNT_MIN; row <= GEN_COMPONENT_COUNT_MAX; row++ ) {
-			const std::string rowStr = std::to_string( row );
-
-			for ( uint32_t col = GEN_COMPONENT_COUNT_MIN; col <= GEN_COMPONENT_COUNT_MAX; col++ ) {
-				const std::string colStr = std::to_string( col );
-
+		for ( u32 row = GEN_COMPONENT_COUNT_MIN; row <= GEN_COMPONENT_COUNT_MAX; row++ ) {
+			for ( u32 col = GEN_COMPONENT_COUNT_MIN; col <= GEN_COMPONENT_COUNT_MAX; col++ ) {
 				// TODO(DM): only include the header files we actually need
-				contentHeader += "#include \"" + typeString + rowStr + "x" + colStr + ".h\"\n";
+				String_Appendf( &contentHeader, "#include \"%s%dx%d.h\"\n", typeString, row, col );
 			}
 		}
 
-		contentHeader += "\n";
+		String_Appendf( &contentHeader, "\n" );
 	}
 
-	contentHeader += "\n";
-	contentInl += "\n";
+	String_Appendf( &contentHeader, "\n" );
+	String_Appendf( &contentInl, "\n" );
 
-	for ( uint32_t typeIndex = 0; typeIndex < GEN_TYPE_COUNT; typeIndex++ ) {
+	for ( u32 typeIndex = 0; typeIndex < GEN_TYPE_COUNT; typeIndex++ ) {
 		genType_t type = static_cast<genType_t>( typeIndex );
 
-		for ( uint32_t row = GEN_COMPONENT_COUNT_MIN; row <= GEN_COMPONENT_COUNT_MAX; row++ ) {
-			for ( uint32_t col = GEN_COMPONENT_COUNT_MIN; col <= GEN_COMPONENT_COUNT_MAX; col++ ) {
-				std::string fullTypeName = Gen_GetFullTypeName( type, row, col );
+		for ( u32 row = GEN_COMPONENT_COUNT_MIN; row <= GEN_COMPONENT_COUNT_MAX; row++ ) {
+			for ( u32 col = GEN_COMPONENT_COUNT_MIN; col <= GEN_COMPONENT_COUNT_MAX; col++ ) {
+				char fullTypeName[GEN_STRING_LENGTH_TYPE_NAME];
+				Gen_GetFullTypeName( type, row, col, fullTypeName );
 
-				printf( "Basic functions %s...", fullTypeName.c_str() );
+				printf( "Basic functions %s...", fullTypeName );
 
-				contentHeader += "// " + fullTypeName + "\n";
-				contentInl += "// " + fullTypeName + "\n";
+				String_Appendf( &contentHeader, "// %s\n", fullTypeName );
+				String_Appendf( &contentInl, "// %s\n", fullTypeName );
 
-				Gen_MatrixIdentity( type, row, col, contentHeader, contentInl );
-				Gen_MatrixTranspose( type, row, col, contentHeader, contentInl );
+				Gen_MatrixIdentity( type, row, col, &contentHeader, &contentInl );
+				Gen_MatrixTranspose( type, row, col, &contentHeader, &contentInl );
 
-				Gen_MatrixInverse( type, row, col, contentHeader, contentInl );
-				Gen_MatrixDeterminant( type, row, col, contentHeader, contentInl );
+				Gen_MatrixInverse( type, row, col, &contentHeader, &contentInl );
+				Gen_MatrixDeterminant( type, row, col, &contentHeader, &contentInl );
 
-				Gen_MatrixTranslate( type, row, col, contentHeader, contentInl );
-				Gen_MatrixRotate( type, row, col, contentHeader, contentInl );
-				Gen_MatrixScale( type, row, col, contentHeader, contentInl );
+				Gen_MatrixTranslate( type, row, col, &contentHeader, &contentInl );
+				Gen_MatrixRotate( type, row, col, &contentHeader, &contentInl );
+				Gen_MatrixScale( type, row, col, &contentHeader, &contentInl );
 
-				Gen_MatrixOrtho( type, row, col, contentHeader, contentInl );
-				Gen_MatrixPerspective( type, row, col, contentHeader, contentInl );
-				Gen_MatrixLookAt( type, row, col, contentHeader, contentInl );
+				Gen_MatrixOrtho( type, row, col, &contentHeader, &contentInl );
+				Gen_MatrixPerspective( type, row, col, &contentHeader, &contentInl );
+				Gen_MatrixLookAt( type, row, col, &contentHeader, &contentInl );
 
-				contentHeader += "\n";
-				contentInl += "\n";
+				String_Append( &contentHeader, "\n" );
+				String_Append( &contentInl, "\n" );
 
 				printf( "OK.\n" );
 			}
 		}
 	}
 
-	contentHeader += "#include \"" + std::string( GEN_FILENAME_FUNCTIONS_MATRIX ) + ".inl\"\n";
+	String_Appendf( &contentHeader, "#include \"" GEN_FILENAME_FUNCTIONS_MATRIX ".inl\"\n" );
 
-	if ( !FS_WriteEntireFile( filePathHeader, contentHeader.c_str(), contentHeader.size() ) ) {
-		return false;
+	bool32 wroteHeader	= FS_WriteEntireFile( filePathHeader, contentHeader.str, contentHeader.length );
+	bool32 wroteInl		= FS_WriteEntireFile( filePathInl, contentInl.str, contentInl.length );
+
+	Mem_Reset();
+
+	return wroteHeader && wroteInl;
+}
+
+static bool GenerateOperatorsVector( void ) {
+	char filePathHeader[64] = { 0 };
+	snprintf( filePathHeader, 64, "%s%s.h", GEN_OUT_GEN_FOLDER_PATH, GEN_FILENAME_OPERATORS_VECTOR );
+
+	char filePathInl[64] = { 0 };
+	snprintf( filePathInl, 64, "%s%s.inl", GEN_OUT_GEN_FOLDER_PATH, GEN_FILENAME_OPERATORS_VECTOR );
+
+	stringBuilder_t contentHeader = String_Create( 128 * KB_TO_BYTES );
+	String_Append( &contentHeader, "#pragma once\n" );
+	String_Append( &contentHeader, "\n" );
+
+	stringBuilder_t contentInl = String_Create( 128 * KB_TO_BYTES );
+	String_Append( &contentInl, "#include \"" GEN_FILENAME_OPERATORS_VECTOR ".h\"\n" );
+
+	// includes
+	for ( u32 typeIndex = 0; typeIndex < GEN_TYPE_COUNT; typeIndex++ ) {
+		genType_t type = static_cast<genType_t>( typeIndex );
+
+		const char* typeString = Gen_GetTypeString( type );
+
+		for ( u32 componentIndex = GEN_COMPONENT_COUNT_MIN; componentIndex <= GEN_COMPONENT_COUNT_MAX; componentIndex++ ) {
+			String_Appendf( &contentHeader, "#include \"%s%d.h\"\n", typeString, componentIndex );
+		}
 	}
 
-	if ( !FS_WriteEntireFile( filePathInl, contentInl.c_str(), contentInl.size() ) ) {
-		return false;
+	String_Append( &contentHeader, "\n" );
+	String_Append( &contentInl, "\n" );
+
+	// header and inl code
+	for ( u32 typeIndex = 0; typeIndex < GEN_TYPE_COUNT; typeIndex++ ) {
+		genType_t type = static_cast<genType_t>( typeIndex );
+
+		if ( type == GEN_TYPE_BOOL ) {
+			continue;
+		}
+
+		for ( u32 componentIndex = GEN_COMPONENT_COUNT_MIN; componentIndex <= GEN_COMPONENT_COUNT_MAX; componentIndex++ ) {
+			char fullTypeName[GEN_STRING_LENGTH_TYPE_NAME];
+			Gen_GetFullTypeName( type, 1, componentIndex, fullTypeName );
+
+			printf( "Vector operators %s...", fullTypeName );
+
+			String_Appendf( &contentHeader, "// %s\n", fullTypeName );
+			String_Appendf( &contentInl, "// %s\n", fullTypeName );
+
+			Gen_VectorOperatorsArithmetic( type, componentIndex, &contentHeader, &contentInl );
+			Gen_OperatorsIncrement( type, 1, componentIndex, &contentHeader, &contentInl );
+			Gen_OperatorsRelational( type, 1, componentIndex, &contentHeader, &contentInl );
+			Gen_OperatorsBitwise( type, 1, componentIndex, &contentHeader, &contentInl );
+
+			String_Append( &contentHeader, "\n" );
+			String_Append( &contentInl, "\n" );
+
+			printf( "OK.\n" );
+		}
 	}
 
-	return true;
+	String_Appendf( &contentHeader, "#include \"" GEN_FILENAME_OPERATORS_VECTOR ".inl\"\n" );
+
+	bool32 wroteHeader	= FS_WriteEntireFile( filePathHeader, contentHeader.str, contentHeader.length );
+	bool32 wroteInl		= FS_WriteEntireFile( filePathInl, contentInl.str, contentInl.length );
+
+	Mem_Reset();
+
+	return wroteHeader && wroteInl;
+}
+
+static bool GenerateOperatorsMatrix( void ) {
+	char filePathHeader[64];
+	snprintf( filePathHeader, 64, "%s%s.h", GEN_OUT_GEN_FOLDER_PATH, GEN_FILENAME_OPERATORS_MATRIX );
+
+	char filePathInl[64];
+	snprintf( filePathInl, 64, "%s%s.inl", GEN_OUT_GEN_FOLDER_PATH, GEN_FILENAME_OPERATORS_MATRIX );
+
+	stringBuilder_t contentHeader = String_Create( 512 * KB_TO_BYTES );
+	String_Append( &contentHeader, GEN_FILE_HEADER );
+	String_Append( &contentHeader, "#pragma once\n" );
+	String_Append( &contentHeader, "\n" );
+
+	stringBuilder_t contentInl = String_Create( 512 * KB_TO_BYTES );
+	String_Append( &contentInl, GEN_FILE_HEADER );
+	String_Append( &contentInl, "#include \"" GEN_FILENAME_OPERATORS_VECTOR ".h\"\n" );
+
+	// includes
+	for ( u32 typeIndex = 0; typeIndex < GEN_TYPE_COUNT; typeIndex++ ) {
+		genType_t type = static_cast<genType_t>( typeIndex );
+
+		if ( type == GEN_TYPE_BOOL ) {
+			continue;
+		}
+
+		const char* typeString = Gen_GetTypeString( type );
+
+		for ( u32 row = GEN_COMPONENT_COUNT_MIN; row <= GEN_COMPONENT_COUNT_MAX; row++ ) {
+			for ( u32 col = GEN_COMPONENT_COUNT_MIN; col <= GEN_COMPONENT_COUNT_MAX; col++ ) {
+				String_Appendf( &contentHeader, "#include \"%s%dx%d.h\"\n", typeString, row, col );
+			}
+		}
+	}
+
+	String_Append( &contentHeader, "\n" );
+	String_Append( &contentInl, "\n" );
+
+	// header and inl code
+	for ( u32 typeIndex = 0; typeIndex < GEN_TYPE_COUNT; typeIndex++ ) {
+		genType_t type = static_cast<genType_t>( typeIndex );
+
+		if ( type == GEN_TYPE_BOOL ) {
+			continue;
+		}
+
+		for ( u32 row = GEN_COMPONENT_COUNT_MIN; row <= GEN_COMPONENT_COUNT_MAX; row++ ) {
+			for ( u32 col = GEN_COMPONENT_COUNT_MIN; col <= GEN_COMPONENT_COUNT_MAX; col++ ) {
+				char fullTypeName[64];
+				Gen_GetFullTypeName( type, row, col, fullTypeName );
+
+				printf( "Matrix operators %s...", fullTypeName );
+
+				String_Appendf( &contentHeader, "// %s\n", fullTypeName );
+				String_Appendf( &contentInl, "// %s\n", fullTypeName );
+
+				Gen_MatrixOperatorsArithmetic( type, row, col, &contentHeader, &contentInl );
+				Gen_OperatorsIncrement( type, row, col, &contentHeader, &contentInl );
+				Gen_OperatorsRelational( type, row, col, &contentHeader, &contentInl );
+				Gen_OperatorsBitwise( type, row, col, &contentHeader, &contentInl );
+
+				String_Append( &contentHeader, "\n" );
+				String_Append( &contentInl, "\n" );
+
+				printf( "OK.\n" );
+			}
+		}
+	}
+
+	String_Append( &contentHeader, "#include \"" GEN_FILENAME_OPERATORS_MATRIX ".inl\"\n" );
+
+	bool32 wroteHeader	= FS_WriteEntireFile( filePathHeader, contentHeader.str, contentHeader.length );
+	bool32 wroteInl		= FS_WriteEntireFile( filePathInl, contentInl.str, contentInl.length );
+
+	Mem_Reset();
+
+	return wroteHeader && wroteInl;
 }
 
 static bool GenerateTestsScalar( void ) {
 	GeneratorScalarTest gen;
 
-	for ( uint32_t typeIndex = 0; typeIndex < GEN_TYPE_COUNT; typeIndex++ ) {
+	for ( u32 typeIndex = 0; typeIndex < GEN_TYPE_COUNT; typeIndex++ ) {
 		genType_t type = static_cast<genType_t>( typeIndex );
 
 		if ( type == GEN_TYPE_BOOL ) {
 			continue;
 		}
 
-		std::string typeString = Gen_GetTypeString( type );
+		const char* typeString = Gen_GetTypeString( type );
 
-		printf( "Generating test_scalar_%s.cpp...", typeString.c_str() );
+		printf( "Generating test_scalar_%s.cpp...", typeString );
 
 		if ( !gen.Generate( type ) ) {
 			return false;
@@ -501,15 +504,13 @@ static bool GenerateTestsScalar( void ) {
 static bool GenerateTestsVector( void ) {
 	GeneratorVectorTests gen;
 
-	for ( uint32_t typeIndex = 0; typeIndex < GEN_TYPE_COUNT; typeIndex++ ) {
+	for ( u32 typeIndex = 0; typeIndex < GEN_TYPE_COUNT; typeIndex++ ) {
 		genType_t type = static_cast<genType_t>( typeIndex );
 
-		std::string typeString = Gen_GetTypeString( type );
+		const char* typeString = Gen_GetTypeString( type );
 
-		for ( uint32_t componentIndex = GEN_COMPONENT_COUNT_MIN; componentIndex <= GEN_COMPONENT_COUNT_MAX; componentIndex++ ) {
-			std::string typeName = typeString + std::to_string( componentIndex );
-
-			printf( "Generating test_%s.cpp...", typeName.c_str() );
+		for ( u32 componentIndex = GEN_COMPONENT_COUNT_MIN; componentIndex <= GEN_COMPONENT_COUNT_MAX; componentIndex++ ) {
+			printf( "Generating test_%s%d.cpp...", typeString, componentIndex );
 
 			if ( !gen.Generate( type, componentIndex ) ) {
 				return false;
@@ -525,14 +526,14 @@ static bool GenerateTestsVector( void ) {
 static bool GenerateTestsMatrix( void ) {
 	GeneratorMatrixTests gen;
 
-	for ( uint32_t typeIndex = 0; typeIndex < GEN_TYPE_COUNT; typeIndex++ ) {
+	for ( u32 typeIndex = 0; typeIndex < GEN_TYPE_COUNT; typeIndex++ ) {
 		genType_t type = static_cast<genType_t>( typeIndex );
 
-		for ( uint32_t row = GEN_COMPONENT_COUNT_MIN; row <= GEN_COMPONENT_COUNT_MAX; row++ ) {
-			for ( uint32_t col = GEN_COMPONENT_COUNT_MIN; col <= GEN_COMPONENT_COUNT_MAX; col++ ) {
-				std::string typeName = Gen_GetFullTypeName( type, row, col );
+		const char* typeString = Gen_GetTypeString( type );
 
-				printf( "Generating test_%s.cpp...", typeName.c_str() );
+		for ( u32 row = GEN_COMPONENT_COUNT_MIN; row <= GEN_COMPONENT_COUNT_MAX; row++ ) {
+			for ( u32 col = GEN_COMPONENT_COUNT_MIN; col <= GEN_COMPONENT_COUNT_MAX; col++ ) {
+				printf( "Generating test_%s%dx%d.cpp...", typeString, row, col );
 
 				if ( !gen.Generate( type, row, col ) ) {
 					return false;
@@ -550,84 +551,88 @@ static bool GenerateTestsMain( void ) {
 	char filePathMain[1024] = { 0 };
 	snprintf( filePathMain, 1024, "%smain.cpp", GEN_TESTS_FOLDER_PATH );
 
-	std::string content = GEN_FILE_HEADER;
+	stringBuilder_t sb = String_Create( 8 * KB_TO_BYTES );
 
-	content += "#include <temper/temper.h>\n";
-	content += "\n";
+	String_Append( &sb, GEN_FILE_HEADER );
 
-	content += "static void OnSuiteEnd( void* userdata )\n";
-	content += "{\n";
-	content += "\t( (void) userdata );\n";
-	content += "\tprintf( \"\\n\" );\n";
-	content += "}\n";
+	String_Append( &sb, "#include <temper/temper.h>\n" );
+	String_Append( &sb, "\n" );
 
-	content += "\n";
+	String_Append( &sb, "static void OnSuiteEnd( void* userdata )\n" );
+	String_Append( &sb, "{\n" );
+	String_Append( &sb, "\t( (void) userdata );\n" );
+	String_Append( &sb, "\tprintf( \"\\n\" );\n" );
+	String_Append( &sb, "}\n" );
 
-	for ( uint32_t typeIndex = 0; typeIndex < GEN_TYPE_COUNT; typeIndex++ ) {
+	String_Append( &sb, "\n" );
+
+	for ( u32 typeIndex = 0; typeIndex < GEN_TYPE_COUNT; typeIndex++ ) {
 		genType_t type = static_cast<genType_t>( typeIndex );
 
-		for ( uint32_t row = 1; row <= GEN_COMPONENT_COUNT_MAX; row++ ) {
-			for ( uint32_t col = 1; col <= GEN_COMPONENT_COUNT_MAX; col++ ) {
-				std::string fullTypeName = Gen_GetFullTypeName( type, row, col );
+		for ( u32 row = 1; row <= GEN_COMPONENT_COUNT_MAX; row++ ) {
+			for ( u32 col = 1; col <= GEN_COMPONENT_COUNT_MAX; col++ ) {
+				char fullTypeName[GEN_STRING_LENGTH_TYPE_NAME] = { 0 };
+				Gen_GetFullTypeName( type, row, col, fullTypeName );
 
-				content += "TEMPER_SUITE_EXTERN( Test_" + fullTypeName + " );\n";
+				String_Appendf( &sb, "TEMPER_SUITE_EXTERN( Test_%s );\n", fullTypeName );
 			}
-			content += "\n";
+			String_Append( &sb, "\n" );
 		}
 	}
 
-	content += "TEMPER_DEFS();\n";
-	content += "\n";
+	String_Append( &sb, "TEMPER_DEFS();\n" );
+	String_Append( &sb, "\n" );
 
-	content += "int main( int argc, char** argv )\n";
-	content += "{\n";
-	content += "\tTEMPER_SET_COMMAND_LINE_ARGS( argc, argv );\n";
-	content += "\n";
+	String_Append( &sb, "int main( int argc, char** argv )\n" );
+	String_Append( &sb, "{\n" );
+	String_Append( &sb, "\tTEMPER_SET_COMMAND_LINE_ARGS( argc, argv );\n" );
+	String_Append( &sb, "\n" );
 
-	content += "\tTEMPER_SET_SUITE_END_CALLBACK( OnSuiteEnd, nullptr );\n";
-	content += "\n";
+	String_Append( &sb, "\tTEMPER_SET_SUITE_END_CALLBACK( OnSuiteEnd, nullptr );\n" );
+	String_Append( &sb, "\n" );
 
 	// run the scalar tests first
 	// the vector/matrix functions make heavy use of these per-component
 	// so if these fail, the problem might be easier to diagnose
-	content += "\t// scalar tests\n";
-	for ( uint32_t typeIndex = 0; typeIndex < GEN_TYPE_COUNT; typeIndex++ ) {
+	String_Append( &sb, "\t// scalar tests\n" );
+	for ( u32 typeIndex = 0; typeIndex < GEN_TYPE_COUNT; typeIndex++ ) {
 		genType_t type = static_cast<genType_t>( typeIndex );
 
 		if ( type == GEN_TYPE_BOOL ) {
 			continue;
 		}
 
-		content += "\tTEMPER_RUN_SUITE( Test_" + Gen_GetMemberTypeString( type ) + " );\n";
+		String_Appendf( &sb, "\tTEMPER_RUN_SUITE( Test_%s );\n", Gen_GetMemberTypeString( type ) );
 	}
 
-	content += "\n";
+	String_Append( &sb, "\n" );
 
 	// now do vector and matrix types
-	content += "\t// vector/matrix tests\n";
-	for ( uint32_t typeIndex = 0; typeIndex < GEN_TYPE_COUNT; typeIndex++ ) {
+	String_Appendf( &sb, "\t// vector/matrix tests\n" );
+	for ( u32 typeIndex = 0; typeIndex < GEN_TYPE_COUNT; typeIndex++ ) {
 		genType_t type = static_cast<genType_t>( typeIndex );
 
-		for ( uint32_t row = 1; row <= GEN_COMPONENT_COUNT_MAX; row++ ) {
-			for ( uint32_t col = GEN_COMPONENT_COUNT_MIN; col <= GEN_COMPONENT_COUNT_MAX; col++ ) {
-				std::string fullTypeName = Gen_GetFullTypeName( type, row, col );
+		for ( u32 row = 1; row <= GEN_COMPONENT_COUNT_MAX; row++ ) {
+			for ( u32 col = GEN_COMPONENT_COUNT_MIN; col <= GEN_COMPONENT_COUNT_MAX; col++ ) {
+				char fullTypeName[GEN_STRING_LENGTH_TYPE_NAME] = { 0 };
+				Gen_GetFullTypeName( type, row, col, fullTypeName );
 
-				content += "\tTEMPER_RUN_SUITE( Test_" + fullTypeName + " );\n";
+				String_Appendf( &sb, "\tTEMPER_RUN_SUITE( Test_%s );\n", fullTypeName );
 			}
-			content += "\n";
+			String_Appendf( &sb, "\n" );
 		}
 	}
-	content += "\tTEMPER_SHOW_STATS();\n";
-	content += "\n";
-	content += "\treturn TEMPER_EXIT_CODE();\n";
-	content += "}";
-	content += "\n";
+	String_Append( &sb, "\tTEMPER_SHOW_STATS();\n" );
+	String_Append( &sb, "\n" );
+	String_Append( &sb, "\treturn TEMPER_EXIT_CODE();\n" );
+	String_Append( &sb, "}" );
+	String_Append( &sb, "\n" );
 
-	if ( !FS_WriteEntireFile( filePathMain, content.c_str(), content.size() ) ) {
-		return false;
-	}
+	bool32 result = FS_WriteEntireFile( filePathMain, sb.str, sb.length );
 
-	return true;
+	Mem_Reset();
+
+	return result;
 }
 
 #define FAIL_IF( x, msg ) \
@@ -649,17 +654,25 @@ int main( int argc, char** argv ) {
 	printf( "Generating...\n" );
 	printf( "\n" );
 
+	Mem_Init( 2 * MB_TO_BYTES );
+
+#ifdef _WIN32
+	Time_Init();
+
+	float64 start = Time_NowMS();
+#endif
+
 	FAIL_IF( !FS_CreateFolder( GEN_OUT_GEN_FOLDER_PATH ), "Failed to create folder \"" GEN_OUT_GEN_FOLDER_PATH "\".\n" );
 	FAIL_IF( !FS_CreateFolder( GEN_TESTS_FOLDER_PATH ),   "Failed to create folder \"" GEN_TESTS_FOLDER_PATH "\".\n" );
 
-	printf( "======= Generating type implementations. =======\n" );
-	FAIL_IF( !GenerateImplVectors(),  "Failed generating a vector implementation.\n" );
-	FAIL_IF( !GenerateImplMatrices(), "Failed generating a vector implementation.\n" );
-	printf( "======= Done. =======\n\n" );
-
-	printf( "======= Generating main headers. =======\n" );
+	printf( "======= Generating core headers. =======\n" );
 	FAIL_IF( !GenerateTypeHeader(),   "Failed generating \"" GEN_HEADER_TYPES "\".\n" );
 	FAIL_IF( !GenerateHeaderScalar(), "Failed generating \"" GEN_FILENAME_FUNCTIONS_SCALAR "\".\n" );
+	printf( "======= Done. =======\n\n" );
+
+	printf( "======= Generating types. =======\n" );
+	FAIL_IF( !GenerateVectors(),  "Failed generating a vector implementation.\n" );
+	FAIL_IF( !GenerateMatrices(), "Failed generating a vector implementation.\n" );
 	printf( "======= Done. =======\n\n" );
 
 	printf( "======= Generating functions. =======\n" );
@@ -679,7 +692,16 @@ int main( int argc, char** argv ) {
 	FAIL_IF( !GenerateTestsMain(),   "Failed generating \"" GEN_TESTS_FOLDER_PATH "/main.cpp\".\n" );
 	printf( "======= Done. =======\n\n" );
 
+#ifdef _WIN32
+	float64 end = Time_NowMS();
+#endif
+
 	printf( "Finished.\n" );
+#ifdef _WIN32
+	printf( "Time taken : %f ms\n", end - start );
+#endif
+
+	Mem_Shutdown();
 
 	return 0;
 }

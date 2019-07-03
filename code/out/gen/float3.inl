@@ -99,7 +99,7 @@ float& float3::operator[]( const uint32_t index )
 
 bool operator==( const float3& lhs, const float3& rhs )
 {
-	return floateq( lhs.x, rhs. x ) && floateq( lhs.y, rhs. y ) && floateq( lhs.z, rhs. z );
+	return floateq( lhs.x, rhs.x ) && floateq( lhs.y, rhs.y ) && floateq( lhs.z, rhs.z );
 }
 
 bool operator!=( const float3& lhs, const float3& rhs )

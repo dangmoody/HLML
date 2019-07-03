@@ -41,16 +41,16 @@ along with hlml.  If not, see <http://www.gnu.org/licenses/>.
 
 // int2
 /// \relates int2
-/// \brief Returns the dot product of the two vectors.
-inline int32_t dot( const int2& lhs, const int2& rhs );
-
-/// \relates int2
 /// \brief Returns the magnitude of the vector squared.
 inline float lengthsqr( const int2& vec );
 
 /// \relates int2
 /// \brief Returns the magnitude of the vector.
 inline float length( const int2& vec );
+
+/// \relates int2
+/// \brief Returns the dot product of the two vectors.
+inline int32_t dot( const int2& lhs, const int2& rhs );
 
 /// \relates int2
 /// \brief Returns the squared distance between the two vectors.
@@ -63,16 +63,16 @@ inline float distance( const int2& lhs, const int2& rhs );
 
 // int3
 /// \relates int3
-/// \brief Returns the dot product of the two vectors.
-inline int32_t dot( const int3& lhs, const int3& rhs );
-
-/// \relates int3
 /// \brief Returns the magnitude of the vector squared.
 inline float lengthsqr( const int3& vec );
 
 /// \relates int3
 /// \brief Returns the magnitude of the vector.
 inline float length( const int3& vec );
+
+/// \relates int3
+/// \brief Returns the dot product of the two vectors.
+inline int32_t dot( const int3& lhs, const int3& rhs );
 
 /// \relates int3
 /// \brief Returns the squared distance between the two vectors.
@@ -85,10 +85,6 @@ inline float distance( const int3& lhs, const int3& rhs );
 
 // int4
 /// \relates int4
-/// \brief Returns the dot product of the two vectors.
-inline int32_t dot( const int4& lhs, const int4& rhs );
-
-/// \relates int4
 /// \brief Returns the magnitude of the vector squared.
 inline float lengthsqr( const int4& vec );
 
@@ -96,12 +92,12 @@ inline float lengthsqr( const int4& vec );
 /// \brief Returns the magnitude of the vector.
 inline float length( const int4& vec );
 
+/// \relates int4
+/// \brief Returns the dot product of the two vectors.
+inline int32_t dot( const int4& lhs, const int4& rhs );
+
 
 // uint2
-/// \relates uint2
-/// \brief Returns the dot product of the two vectors.
-inline int32_t dot( const uint2& lhs, const uint2& rhs );
-
 /// \relates uint2
 /// \brief Returns the magnitude of the vector squared.
 inline float lengthsqr( const uint2& vec );
@@ -109,6 +105,10 @@ inline float lengthsqr( const uint2& vec );
 /// \relates uint2
 /// \brief Returns the magnitude of the vector.
 inline float length( const uint2& vec );
+
+/// \relates uint2
+/// \brief Returns the dot product of the two vectors.
+inline int32_t dot( const uint2& lhs, const uint2& rhs );
 
 /// \relates uint2
 /// \brief Returns the squared distance between the two vectors.
@@ -121,16 +121,16 @@ inline float distance( const uint2& lhs, const uint2& rhs );
 
 // uint3
 /// \relates uint3
-/// \brief Returns the dot product of the two vectors.
-inline int32_t dot( const uint3& lhs, const uint3& rhs );
-
-/// \relates uint3
 /// \brief Returns the magnitude of the vector squared.
 inline float lengthsqr( const uint3& vec );
 
 /// \relates uint3
 /// \brief Returns the magnitude of the vector.
 inline float length( const uint3& vec );
+
+/// \relates uint3
+/// \brief Returns the dot product of the two vectors.
+inline int32_t dot( const uint3& lhs, const uint3& rhs );
 
 /// \relates uint3
 /// \brief Returns the squared distance between the two vectors.
@@ -143,16 +143,16 @@ inline float distance( const uint3& lhs, const uint3& rhs );
 
 // uint4
 /// \relates uint4
-/// \brief Returns the dot product of the two vectors.
-inline int32_t dot( const uint4& lhs, const uint4& rhs );
-
-/// \relates uint4
 /// \brief Returns the magnitude of the vector squared.
 inline float lengthsqr( const uint4& vec );
 
 /// \relates uint4
 /// \brief Returns the magnitude of the vector.
 inline float length( const uint4& vec );
+
+/// \relates uint4
+/// \brief Returns the dot product of the two vectors.
+inline int32_t dot( const uint4& lhs, const uint4& rhs );
 
 /// \relates uint4
 /// \brief Returns a 32 bit integer containing each component of the vector (starting with x) at each byte.
@@ -182,10 +182,6 @@ inline float2 smoothstep( const float2& low, const float2& high, const float2& x
 inline float2 smootherstep( const float2& low, const float2& high, const float2& x );
 
 /// \relates float2
-/// \brief Returns the dot product of the two vectors.
-inline float dot( const float2& lhs, const float2& rhs );
-
-/// \relates float2
 /// \brief Returns the magnitude of the vector squared.
 inline float lengthsqr( const float2& vec );
 
@@ -200,6 +196,10 @@ inline void normalize( float2& vec );
 /// \relates float2
 /// \brief Returns a normalized copy of the vector.
 inline float2 normalized( const float2& vec );
+
+/// \relates float2
+/// \brief Returns the dot product of the two vectors.
+inline float dot( const float2& lhs, const float2& rhs );
 
 /// \relates float2
 /// \brief Returns the angle in degrees between the two vectors.
@@ -233,10 +233,6 @@ inline float3 smoothstep( const float3& low, const float3& high, const float3& x
 inline float3 smootherstep( const float3& low, const float3& high, const float3& x );
 
 /// \relates float3
-/// \brief Returns the dot product of the two vectors.
-inline float dot( const float3& lhs, const float3& rhs );
-
-/// \relates float3
 /// \brief Returns the magnitude of the vector squared.
 inline float lengthsqr( const float3& vec );
 
@@ -251,6 +247,10 @@ inline void normalize( float3& vec );
 /// \relates float3
 /// \brief Returns a normalized copy of the vector.
 inline float3 normalized( const float3& vec );
+
+/// \relates float3
+/// \brief Returns the dot product of the two vectors.
+inline float dot( const float3& lhs, const float3& rhs );
 
 /// \relates float3
 /// \brief Returns a vector perpendicular (normal) to the two vectors.
@@ -288,10 +288,6 @@ inline float4 smoothstep( const float4& low, const float4& high, const float4& x
 inline float4 smootherstep( const float4& low, const float4& high, const float4& x );
 
 /// \relates float4
-/// \brief Returns the dot product of the two vectors.
-inline float dot( const float4& lhs, const float4& rhs );
-
-/// \relates float4
 /// \brief Returns the magnitude of the vector squared.
 inline float lengthsqr( const float4& vec );
 
@@ -306,6 +302,10 @@ inline void normalize( float4& vec );
 /// \relates float4
 /// \brief Returns a normalized copy of the vector.
 inline float4 normalized( const float4& vec );
+
+/// \relates float4
+/// \brief Returns the dot product of the two vectors.
+inline float dot( const float4& lhs, const float4& rhs );
 
 /// \relates float4
 /// \brief Returns a vector perpendicular (normal) to the two vectors.
@@ -335,10 +335,6 @@ inline double2 smoothstep( const double2& low, const double2& high, const double
 inline double2 smootherstep( const double2& low, const double2& high, const double2& x );
 
 /// \relates double2
-/// \brief Returns the dot product of the two vectors.
-inline double dot( const double2& lhs, const double2& rhs );
-
-/// \relates double2
 /// \brief Returns the magnitude of the vector squared.
 inline double lengthsqr( const double2& vec );
 
@@ -353,6 +349,10 @@ inline void normalize( double2& vec );
 /// \relates double2
 /// \brief Returns a normalized copy of the vector.
 inline double2 normalized( const double2& vec );
+
+/// \relates double2
+/// \brief Returns the dot product of the two vectors.
+inline double dot( const double2& lhs, const double2& rhs );
 
 /// \relates double2
 /// \brief Returns the angle in degrees between the two vectors.
@@ -386,10 +386,6 @@ inline double3 smoothstep( const double3& low, const double3& high, const double
 inline double3 smootherstep( const double3& low, const double3& high, const double3& x );
 
 /// \relates double3
-/// \brief Returns the dot product of the two vectors.
-inline double dot( const double3& lhs, const double3& rhs );
-
-/// \relates double3
 /// \brief Returns the magnitude of the vector squared.
 inline double lengthsqr( const double3& vec );
 
@@ -404,6 +400,10 @@ inline void normalize( double3& vec );
 /// \relates double3
 /// \brief Returns a normalized copy of the vector.
 inline double3 normalized( const double3& vec );
+
+/// \relates double3
+/// \brief Returns the dot product of the two vectors.
+inline double dot( const double3& lhs, const double3& rhs );
 
 /// \relates double3
 /// \brief Returns a vector perpendicular (normal) to the two vectors.
@@ -441,10 +441,6 @@ inline double4 smoothstep( const double4& low, const double4& high, const double
 inline double4 smootherstep( const double4& low, const double4& high, const double4& x );
 
 /// \relates double4
-/// \brief Returns the dot product of the two vectors.
-inline double dot( const double4& lhs, const double4& rhs );
-
-/// \relates double4
 /// \brief Returns the magnitude of the vector squared.
 inline double lengthsqr( const double4& vec );
 
@@ -459,6 +455,10 @@ inline void normalize( double4& vec );
 /// \relates double4
 /// \brief Returns a normalized copy of the vector.
 inline double4 normalized( const double4& vec );
+
+/// \relates double4
+/// \brief Returns the dot product of the two vectors.
+inline double dot( const double4& lhs, const double4& rhs );
 
 /// \relates double4
 /// \brief Returns a vector perpendicular (normal) to the two vectors.

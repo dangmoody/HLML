@@ -98,7 +98,7 @@ float& float2::operator[]( const uint32_t index )
 
 bool operator==( const float2& lhs, const float2& rhs )
 {
-	return floateq( lhs.x, rhs. x ) && floateq( lhs.y, rhs. y );
+	return floateq( lhs.x, rhs.x ) && floateq( lhs.y, rhs.y );
 }
 
 bool operator!=( const float2& lhs, const float2& rhs )

@@ -33,7 +33,7 @@ if [[ $config = release ]]; then
 fi
 
 # additional includes
-options_compiler="${options_compiler} -Icode/3rdparty/include/"
+options_compiler="${options_compiler} -Icode/3rdparty/include/ -D_CRT_SECURE_NO_WARNINGS"
 
 # add -Weverything for clang
 options_error="-Wall -Wextra -Wpedantic"
@@ -42,11 +42,14 @@ if [[ $compiler == clang* ]]; then
 fi
 
 # warnings to ignore
-ignore_warnings="-Wno-global-constructors -Wno-padded -Wno-unused-macros -Wno-old-style-cast"
+ignore_warnings="-Wno-padded -Wno-unused-macros -Wno-format-nonliteral -Wno-old-style-cast -Wno-double-promotion -Wno-float-equal -Wno-zero-as-null-pointer-constant"
 
-# clang-specific warnings to ignore
 if [[ $compiler == clang* ]]; then
-	ignore_warnings="${ignore_warnings} -Wno-c++98-compat-pedantic -Wno-covered-switch-default -Wno-shadow-field-in-constructor -Wno-nested-anon-types -Wno-gnu-anonymous-struct -Wno-exit-time-destructors -Wno-reserved-id-macro"
+	# clang-specific warnings to ignore
+	ignore_warnings="${ignore_warnings} -Wno-global-constructors -Wno-c++98-compat-pedantic -Wno-covered-switch-default -Wno-shadow-field-in-constructor -Wno-nested-anon-types -Wno-gnu-anonymous-struct -Wno-exit-time-destructors -Wno-reserved-id-macro"
+else
+	# GCC-specific warnings to ignore
+	ignore_warnings="${ignore_warnings} -Wno-unused-variable -Wno-stringop-truncation -Wno-stringop-overflow"
 fi
 
 echo Building for $compiler
