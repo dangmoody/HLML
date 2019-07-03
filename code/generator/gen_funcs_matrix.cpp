@@ -452,14 +452,17 @@ void Gen_MatrixOperatorsArithmetic( const genType_t type, const u32 numRows, con
 	MatrixOperatorMul( type, numRows, numCols, sbHeader, sbInl );
 
 	Gen_OperatorComponentWiseArithmeticScalar( type, numRows, numCols, GEN_OP_ARITHMETIC_DIV, sbHeader, sbInl );
+
+	const bool32 isSquare = numRows == numCols;
+
 	// TODO(DM): pseudo-inverse
-	if ( numRows == numCols && Gen_IsFloatingPointType( type ) ) {
+	if ( isSquare && Gen_IsFloatingPointType( type ) ) {
 		MatrixOperatorDiv( type, numRows, numCols, sbHeader, sbInl );
 	} else {
 		Gen_OperatorComponentWiseArithmeticRhsType( type, numRows, numCols, GEN_OP_ARITHMETIC_DIV, sbHeader, sbInl );
 	}
 
-	if ( numRows == numCols ) {
+	if ( isSquare ) {
 		MatrixMulVector( type, numRows, numCols, sbHeader, sbInl );
 	}
 }
