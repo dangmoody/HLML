@@ -2,7 +2,6 @@
 
 #include <string>
 
-//extern size_t	FS_ReadEntireFile( const char* filename, char** outBuffer );
 extern bool		FS_WriteEntireFile( const char* filename, const char* data, const size_t length );
 
 extern bool		FS_CreateFolder( const char* name );

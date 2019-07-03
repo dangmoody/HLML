@@ -6,35 +6,6 @@
 
 #include <stdio.h>
 
-//size_t FS_ReadEntireFile( const char* filename, char** outBuffer ) {
-//	FILE* file = fopen( filename, "rb" );
-//	if ( !file ) {
-//		printf( "ERROR: Unable to open %s.  That's rough man...\n", filename );
-//		return 0;
-//	}
-//
-//	fseek( file, 0, SEEK_END );
-//	size_t length = static_cast<size_t>( ftell( file ) );
-//	fseek( file, 0, SEEK_SET );
-//
-//	char* temp = new char[length + 1];
-//	*outBuffer = temp;
-//
-//	size_t result = fread( temp, length, 1, file );
-//	if ( result == 0 ) {
-//		printf( "ERROR: Unable to read from file %s.  That's rough man...\n", filename );
-//
-//		fclose( file );
-//		return 0;
-//	}
-//	temp[length] = 0;
-//
-//	fclose( file );
-//	file = nullptr;
-//
-//	return length;
-//}
-
 bool FS_WriteEntireFile( const char* filename, const char* data, const size_t length ) {
 	FILE* file = fopen( filename, "w" );
 	if ( !file ) {
