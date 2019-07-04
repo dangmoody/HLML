@@ -181,6 +181,14 @@ inline int2x2 transpose( const int2x2& mat );
 inline int32_t determinant( const int2x2& mat );
 
 /// \relates int2x2
+/// \brief Returns a copy of the int2x2 that has been component-wise multiplied by the corresponding component of the right-hand int2x2.
+inline int2x2 comp_mul( const int2x2& lhs, const int2x2& rhs );
+
+/// \relates int2x2
+/// \brief Returns a copy of the int2x2 that has been component-wise divided by the corresponding component of the right-hand int2x2.
+inline int2x2 comp_div( const int2x2& lhs, const int2x2& rhs );
+
+/// \relates int2x2
 /// \brief Returns a copy of the matrix that has had a uniform scale applied to it.
 inline int2x2 scale( const int2x2& mat, const int32_t scalar );
 
@@ -197,6 +205,14 @@ inline void identity( int2x3& mat );
 /// \relates int2x3
 /// \brief Returns a copy of the matrix that is transposed, where the value of each row is set to the value of each column and vice versa.
 inline int3x2 transpose( const int2x3& mat );
+
+/// \relates int2x3
+/// \brief Returns a copy of the int2x3 that has been component-wise multiplied by the corresponding component of the right-hand int2x3.
+inline int2x3 comp_mul( const int2x3& lhs, const int2x3& rhs );
+
+/// \relates int2x3
+/// \brief Returns a copy of the int2x3 that has been component-wise divided by the corresponding component of the right-hand int2x3.
+inline int2x3 comp_div( const int2x3& lhs, const int2x3& rhs );
 
 /// \relates int2x3
 /// \brief Returns a copy of the matrix that has had a uniform scale applied to it.
@@ -217,6 +233,14 @@ inline void identity( int2x4& mat );
 inline int4x2 transpose( const int2x4& mat );
 
 /// \relates int2x4
+/// \brief Returns a copy of the int2x4 that has been component-wise multiplied by the corresponding component of the right-hand int2x4.
+inline int2x4 comp_mul( const int2x4& lhs, const int2x4& rhs );
+
+/// \relates int2x4
+/// \brief Returns a copy of the int2x4 that has been component-wise divided by the corresponding component of the right-hand int2x4.
+inline int2x4 comp_div( const int2x4& lhs, const int2x4& rhs );
+
+/// \relates int2x4
 /// \brief Returns a copy of the matrix that has had a uniform scale applied to it.
 inline int2x4 scale( const int2x4& mat, const int32_t scalar );
 
@@ -234,6 +258,14 @@ inline void identity( int3x2& mat );
 /// \brief Returns a copy of the matrix that is transposed, where the value of each row is set to the value of each column and vice versa.
 inline int2x3 transpose( const int3x2& mat );
 
+/// \relates int3x2
+/// \brief Returns a copy of the int3x2 that has been component-wise multiplied by the corresponding component of the right-hand int3x2.
+inline int3x2 comp_mul( const int3x2& lhs, const int3x2& rhs );
+
+/// \relates int3x2
+/// \brief Returns a copy of the int3x2 that has been component-wise divided by the corresponding component of the right-hand int3x2.
+inline int3x2 comp_div( const int3x2& lhs, const int3x2& rhs );
+
 
 // int3x3
 /// \relates int3x3
@@ -247,6 +279,14 @@ inline int3x3 transpose( const int3x3& mat );
 /// \relates int3x3
 /// \brief Returns the determinant of the matrix.
 inline int32_t determinant( const int3x3& mat );
+
+/// \relates int3x3
+/// \brief Returns a copy of the int3x3 that has been component-wise multiplied by the corresponding component of the right-hand int3x3.
+inline int3x3 comp_mul( const int3x3& lhs, const int3x3& rhs );
+
+/// \relates int3x3
+/// \brief Returns a copy of the int3x3 that has been component-wise divided by the corresponding component of the right-hand int3x3.
+inline int3x3 comp_div( const int3x3& lhs, const int3x3& rhs );
 
 /// \relates int3x3
 /// \brief Returns a copy of the matrix where each component of the 3rd column has been added by the given vector.
@@ -271,6 +311,14 @@ inline void identity( int3x4& mat );
 inline int4x3 transpose( const int3x4& mat );
 
 /// \relates int3x4
+/// \brief Returns a copy of the int3x4 that has been component-wise multiplied by the corresponding component of the right-hand int3x4.
+inline int3x4 comp_mul( const int3x4& lhs, const int3x4& rhs );
+
+/// \relates int3x4
+/// \brief Returns a copy of the int3x4 that has been component-wise divided by the corresponding component of the right-hand int3x4.
+inline int3x4 comp_div( const int3x4& lhs, const int3x4& rhs );
+
+/// \relates int3x4
 /// \brief Returns a copy of the matrix where each component of the 3rd column has been added by the given vector.
 inline int3x4 translate( const int3x4& mat, const int3& vec );
 
@@ -292,6 +340,14 @@ inline void identity( int4x2& mat );
 /// \brief Returns a copy of the matrix that is transposed, where the value of each row is set to the value of each column and vice versa.
 inline int2x4 transpose( const int4x2& mat );
 
+/// \relates int4x2
+/// \brief Returns a copy of the int4x2 that has been component-wise multiplied by the corresponding component of the right-hand int4x2.
+inline int4x2 comp_mul( const int4x2& lhs, const int4x2& rhs );
+
+/// \relates int4x2
+/// \brief Returns a copy of the int4x2 that has been component-wise divided by the corresponding component of the right-hand int4x2.
+inline int4x2 comp_div( const int4x2& lhs, const int4x2& rhs );
+
 
 // int4x3
 /// \relates int4x3
@@ -301,6 +357,14 @@ inline void identity( int4x3& mat );
 /// \relates int4x3
 /// \brief Returns a copy of the matrix that is transposed, where the value of each row is set to the value of each column and vice versa.
 inline int3x4 transpose( const int4x3& mat );
+
+/// \relates int4x3
+/// \brief Returns a copy of the int4x3 that has been component-wise multiplied by the corresponding component of the right-hand int4x3.
+inline int4x3 comp_mul( const int4x3& lhs, const int4x3& rhs );
+
+/// \relates int4x3
+/// \brief Returns a copy of the int4x3 that has been component-wise divided by the corresponding component of the right-hand int4x3.
+inline int4x3 comp_div( const int4x3& lhs, const int4x3& rhs );
 
 /// \relates int4x3
 /// \brief Returns a copy of the matrix that has had a uniform scale applied to it.
@@ -325,6 +389,14 @@ inline int4x4 transpose( const int4x4& mat );
 inline int32_t determinant( const int4x4& mat );
 
 /// \relates int4x4
+/// \brief Returns a copy of the int4x4 that has been component-wise multiplied by the corresponding component of the right-hand int4x4.
+inline int4x4 comp_mul( const int4x4& lhs, const int4x4& rhs );
+
+/// \relates int4x4
+/// \brief Returns a copy of the int4x4 that has been component-wise divided by the corresponding component of the right-hand int4x4.
+inline int4x4 comp_div( const int4x4& lhs, const int4x4& rhs );
+
+/// \relates int4x4
 /// \brief Returns a copy of the matrix where each component of the 3rd column has been added by the given vector.
 inline int4x4 translate( const int4x4& mat, const int3& vec );
 
@@ -347,6 +419,14 @@ inline void identity( uint2x2& mat );
 inline uint2x2 transpose( const uint2x2& mat );
 
 /// \relates uint2x2
+/// \brief Returns a copy of the uint2x2 that has been component-wise multiplied by the corresponding component of the right-hand uint2x2.
+inline uint2x2 comp_mul( const uint2x2& lhs, const uint2x2& rhs );
+
+/// \relates uint2x2
+/// \brief Returns a copy of the uint2x2 that has been component-wise divided by the corresponding component of the right-hand uint2x2.
+inline uint2x2 comp_div( const uint2x2& lhs, const uint2x2& rhs );
+
+/// \relates uint2x2
 /// \brief Returns a copy of the matrix that has had a uniform scale applied to it.
 inline uint2x2 scale( const uint2x2& mat, const uint32_t scalar );
 
@@ -363,6 +443,14 @@ inline void identity( uint2x3& mat );
 /// \relates uint2x3
 /// \brief Returns a copy of the matrix that is transposed, where the value of each row is set to the value of each column and vice versa.
 inline uint3x2 transpose( const uint2x3& mat );
+
+/// \relates uint2x3
+/// \brief Returns a copy of the uint2x3 that has been component-wise multiplied by the corresponding component of the right-hand uint2x3.
+inline uint2x3 comp_mul( const uint2x3& lhs, const uint2x3& rhs );
+
+/// \relates uint2x3
+/// \brief Returns a copy of the uint2x3 that has been component-wise divided by the corresponding component of the right-hand uint2x3.
+inline uint2x3 comp_div( const uint2x3& lhs, const uint2x3& rhs );
 
 /// \relates uint2x3
 /// \brief Returns a copy of the matrix that has had a uniform scale applied to it.
@@ -383,6 +471,14 @@ inline void identity( uint2x4& mat );
 inline uint4x2 transpose( const uint2x4& mat );
 
 /// \relates uint2x4
+/// \brief Returns a copy of the uint2x4 that has been component-wise multiplied by the corresponding component of the right-hand uint2x4.
+inline uint2x4 comp_mul( const uint2x4& lhs, const uint2x4& rhs );
+
+/// \relates uint2x4
+/// \brief Returns a copy of the uint2x4 that has been component-wise divided by the corresponding component of the right-hand uint2x4.
+inline uint2x4 comp_div( const uint2x4& lhs, const uint2x4& rhs );
+
+/// \relates uint2x4
 /// \brief Returns a copy of the matrix that has had a uniform scale applied to it.
 inline uint2x4 scale( const uint2x4& mat, const uint32_t scalar );
 
@@ -400,6 +496,14 @@ inline void identity( uint3x2& mat );
 /// \brief Returns a copy of the matrix that is transposed, where the value of each row is set to the value of each column and vice versa.
 inline uint2x3 transpose( const uint3x2& mat );
 
+/// \relates uint3x2
+/// \brief Returns a copy of the uint3x2 that has been component-wise multiplied by the corresponding component of the right-hand uint3x2.
+inline uint3x2 comp_mul( const uint3x2& lhs, const uint3x2& rhs );
+
+/// \relates uint3x2
+/// \brief Returns a copy of the uint3x2 that has been component-wise divided by the corresponding component of the right-hand uint3x2.
+inline uint3x2 comp_div( const uint3x2& lhs, const uint3x2& rhs );
+
 
 // uint3x3
 /// \relates uint3x3
@@ -409,6 +513,14 @@ inline void identity( uint3x3& mat );
 /// \relates uint3x3
 /// \brief Returns a copy of the matrix that is transposed, where the value of each row is set to the value of each column and vice versa.
 inline uint3x3 transpose( const uint3x3& mat );
+
+/// \relates uint3x3
+/// \brief Returns a copy of the uint3x3 that has been component-wise multiplied by the corresponding component of the right-hand uint3x3.
+inline uint3x3 comp_mul( const uint3x3& lhs, const uint3x3& rhs );
+
+/// \relates uint3x3
+/// \brief Returns a copy of the uint3x3 that has been component-wise divided by the corresponding component of the right-hand uint3x3.
+inline uint3x3 comp_div( const uint3x3& lhs, const uint3x3& rhs );
 
 /// \relates uint3x3
 /// \brief Returns a copy of the matrix where each component of the 3rd column has been added by the given vector.
@@ -433,6 +545,14 @@ inline void identity( uint3x4& mat );
 inline uint4x3 transpose( const uint3x4& mat );
 
 /// \relates uint3x4
+/// \brief Returns a copy of the uint3x4 that has been component-wise multiplied by the corresponding component of the right-hand uint3x4.
+inline uint3x4 comp_mul( const uint3x4& lhs, const uint3x4& rhs );
+
+/// \relates uint3x4
+/// \brief Returns a copy of the uint3x4 that has been component-wise divided by the corresponding component of the right-hand uint3x4.
+inline uint3x4 comp_div( const uint3x4& lhs, const uint3x4& rhs );
+
+/// \relates uint3x4
 /// \brief Returns a copy of the matrix where each component of the 3rd column has been added by the given vector.
 inline uint3x4 translate( const uint3x4& mat, const uint3& vec );
 
@@ -454,6 +574,14 @@ inline void identity( uint4x2& mat );
 /// \brief Returns a copy of the matrix that is transposed, where the value of each row is set to the value of each column and vice versa.
 inline uint2x4 transpose( const uint4x2& mat );
 
+/// \relates uint4x2
+/// \brief Returns a copy of the uint4x2 that has been component-wise multiplied by the corresponding component of the right-hand uint4x2.
+inline uint4x2 comp_mul( const uint4x2& lhs, const uint4x2& rhs );
+
+/// \relates uint4x2
+/// \brief Returns a copy of the uint4x2 that has been component-wise divided by the corresponding component of the right-hand uint4x2.
+inline uint4x2 comp_div( const uint4x2& lhs, const uint4x2& rhs );
+
 
 // uint4x3
 /// \relates uint4x3
@@ -463,6 +591,14 @@ inline void identity( uint4x3& mat );
 /// \relates uint4x3
 /// \brief Returns a copy of the matrix that is transposed, where the value of each row is set to the value of each column and vice versa.
 inline uint3x4 transpose( const uint4x3& mat );
+
+/// \relates uint4x3
+/// \brief Returns a copy of the uint4x3 that has been component-wise multiplied by the corresponding component of the right-hand uint4x3.
+inline uint4x3 comp_mul( const uint4x3& lhs, const uint4x3& rhs );
+
+/// \relates uint4x3
+/// \brief Returns a copy of the uint4x3 that has been component-wise divided by the corresponding component of the right-hand uint4x3.
+inline uint4x3 comp_div( const uint4x3& lhs, const uint4x3& rhs );
 
 /// \relates uint4x3
 /// \brief Returns a copy of the matrix that has had a uniform scale applied to it.
@@ -481,6 +617,14 @@ inline void identity( uint4x4& mat );
 /// \relates uint4x4
 /// \brief Returns a copy of the matrix that is transposed, where the value of each row is set to the value of each column and vice versa.
 inline uint4x4 transpose( const uint4x4& mat );
+
+/// \relates uint4x4
+/// \brief Returns a copy of the uint4x4 that has been component-wise multiplied by the corresponding component of the right-hand uint4x4.
+inline uint4x4 comp_mul( const uint4x4& lhs, const uint4x4& rhs );
+
+/// \relates uint4x4
+/// \brief Returns a copy of the uint4x4 that has been component-wise divided by the corresponding component of the right-hand uint4x4.
+inline uint4x4 comp_div( const uint4x4& lhs, const uint4x4& rhs );
 
 /// \relates uint4x4
 /// \brief Returns a copy of the matrix where each component of the 3rd column has been added by the given vector.
@@ -514,6 +658,14 @@ inline float2x2 inverse( const float2x2& mat );
 inline float determinant( const float2x2& mat );
 
 /// \relates float2x2
+/// \brief Returns a copy of the float2x2 that has been component-wise multiplied by the corresponding component of the right-hand float2x2.
+inline float2x2 comp_mul( const float2x2& lhs, const float2x2& rhs );
+
+/// \relates float2x2
+/// \brief Returns a copy of the float2x2 that has been component-wise divided by the corresponding component of the right-hand float2x2.
+inline float2x2 comp_div( const float2x2& lhs, const float2x2& rhs );
+
+/// \relates float2x2
 /// \brief Returns a copy of the matrix that has had a uniform scale applied to it.
 inline float2x2 scale( const float2x2& mat, const float scalar );
 
@@ -530,6 +682,14 @@ inline void identity( float2x3& mat );
 /// \relates float2x3
 /// \brief Returns a copy of the matrix that is transposed, where the value of each row is set to the value of each column and vice versa.
 inline float3x2 transpose( const float2x3& mat );
+
+/// \relates float2x3
+/// \brief Returns a copy of the float2x3 that has been component-wise multiplied by the corresponding component of the right-hand float2x3.
+inline float2x3 comp_mul( const float2x3& lhs, const float2x3& rhs );
+
+/// \relates float2x3
+/// \brief Returns a copy of the float2x3 that has been component-wise divided by the corresponding component of the right-hand float2x3.
+inline float2x3 comp_div( const float2x3& lhs, const float2x3& rhs );
 
 /// \relates float2x3
 /// \brief Returns a copy of the matrix that has had a uniform scale applied to it.
@@ -550,6 +710,14 @@ inline void identity( float2x4& mat );
 inline float4x2 transpose( const float2x4& mat );
 
 /// \relates float2x4
+/// \brief Returns a copy of the float2x4 that has been component-wise multiplied by the corresponding component of the right-hand float2x4.
+inline float2x4 comp_mul( const float2x4& lhs, const float2x4& rhs );
+
+/// \relates float2x4
+/// \brief Returns a copy of the float2x4 that has been component-wise divided by the corresponding component of the right-hand float2x4.
+inline float2x4 comp_div( const float2x4& lhs, const float2x4& rhs );
+
+/// \relates float2x4
 /// \brief Returns a copy of the matrix that has had a uniform scale applied to it.
 inline float2x4 scale( const float2x4& mat, const float scalar );
 
@@ -566,6 +734,14 @@ inline void identity( float3x2& mat );
 /// \relates float3x2
 /// \brief Returns a copy of the matrix that is transposed, where the value of each row is set to the value of each column and vice versa.
 inline float2x3 transpose( const float3x2& mat );
+
+/// \relates float3x2
+/// \brief Returns a copy of the float3x2 that has been component-wise multiplied by the corresponding component of the right-hand float3x2.
+inline float3x2 comp_mul( const float3x2& lhs, const float3x2& rhs );
+
+/// \relates float3x2
+/// \brief Returns a copy of the float3x2 that has been component-wise divided by the corresponding component of the right-hand float3x2.
+inline float3x2 comp_div( const float3x2& lhs, const float3x2& rhs );
 
 
 // float3x3
@@ -585,6 +761,14 @@ inline float3x3 inverse( const float3x3& mat );
 /// \relates float3x3
 /// \brief Returns the determinant of the matrix.
 inline float determinant( const float3x3& mat );
+
+/// \relates float3x3
+/// \brief Returns a copy of the float3x3 that has been component-wise multiplied by the corresponding component of the right-hand float3x3.
+inline float3x3 comp_mul( const float3x3& lhs, const float3x3& rhs );
+
+/// \relates float3x3
+/// \brief Returns a copy of the float3x3 that has been component-wise divided by the corresponding component of the right-hand float3x3.
+inline float3x3 comp_div( const float3x3& lhs, const float3x3& rhs );
 
 /// \relates float3x3
 /// \brief Returns a copy of the matrix where each component of the 3rd column has been added by the given vector.
@@ -613,6 +797,14 @@ inline void identity( float3x4& mat );
 inline float4x3 transpose( const float3x4& mat );
 
 /// \relates float3x4
+/// \brief Returns a copy of the float3x4 that has been component-wise multiplied by the corresponding component of the right-hand float3x4.
+inline float3x4 comp_mul( const float3x4& lhs, const float3x4& rhs );
+
+/// \relates float3x4
+/// \brief Returns a copy of the float3x4 that has been component-wise divided by the corresponding component of the right-hand float3x4.
+inline float3x4 comp_div( const float3x4& lhs, const float3x4& rhs );
+
+/// \relates float3x4
 /// \brief Returns a copy of the matrix where each component of the 3rd column has been added by the given vector.
 inline float3x4 translate( const float3x4& mat, const float3& vec );
 
@@ -634,6 +826,14 @@ inline void identity( float4x2& mat );
 /// \brief Returns a copy of the matrix that is transposed, where the value of each row is set to the value of each column and vice versa.
 inline float2x4 transpose( const float4x2& mat );
 
+/// \relates float4x2
+/// \brief Returns a copy of the float4x2 that has been component-wise multiplied by the corresponding component of the right-hand float4x2.
+inline float4x2 comp_mul( const float4x2& lhs, const float4x2& rhs );
+
+/// \relates float4x2
+/// \brief Returns a copy of the float4x2 that has been component-wise divided by the corresponding component of the right-hand float4x2.
+inline float4x2 comp_div( const float4x2& lhs, const float4x2& rhs );
+
 
 // float4x3
 /// \relates float4x3
@@ -643,6 +843,14 @@ inline void identity( float4x3& mat );
 /// \relates float4x3
 /// \brief Returns a copy of the matrix that is transposed, where the value of each row is set to the value of each column and vice versa.
 inline float3x4 transpose( const float4x3& mat );
+
+/// \relates float4x3
+/// \brief Returns a copy of the float4x3 that has been component-wise multiplied by the corresponding component of the right-hand float4x3.
+inline float4x3 comp_mul( const float4x3& lhs, const float4x3& rhs );
+
+/// \relates float4x3
+/// \brief Returns a copy of the float4x3 that has been component-wise divided by the corresponding component of the right-hand float4x3.
+inline float4x3 comp_div( const float4x3& lhs, const float4x3& rhs );
 
 /// \relates float4x3
 /// \brief Returns a copy of the matrix that has had a uniform scale applied to it.
@@ -670,6 +878,14 @@ inline float4x4 inverse( const float4x4& mat );
 /// \relates float4x4
 /// \brief Returns the determinant of the matrix.
 inline float determinant( const float4x4& mat );
+
+/// \relates float4x4
+/// \brief Returns a copy of the float4x4 that has been component-wise multiplied by the corresponding component of the right-hand float4x4.
+inline float4x4 comp_mul( const float4x4& lhs, const float4x4& rhs );
+
+/// \relates float4x4
+/// \brief Returns a copy of the float4x4 that has been component-wise divided by the corresponding component of the right-hand float4x4.
+inline float4x4 comp_div( const float4x4& lhs, const float4x4& rhs );
 
 /// \relates float4x4
 /// \brief Returns a copy of the matrix where each component of the 3rd column has been added by the given vector.
@@ -747,6 +963,14 @@ inline double2x2 inverse( const double2x2& mat );
 inline double determinant( const double2x2& mat );
 
 /// \relates double2x2
+/// \brief Returns a copy of the double2x2 that has been component-wise multiplied by the corresponding component of the right-hand double2x2.
+inline double2x2 comp_mul( const double2x2& lhs, const double2x2& rhs );
+
+/// \relates double2x2
+/// \brief Returns a copy of the double2x2 that has been component-wise divided by the corresponding component of the right-hand double2x2.
+inline double2x2 comp_div( const double2x2& lhs, const double2x2& rhs );
+
+/// \relates double2x2
 /// \brief Returns a copy of the matrix that has had a uniform scale applied to it.
 inline double2x2 scale( const double2x2& mat, const double scalar );
 
@@ -763,6 +987,14 @@ inline void identity( double2x3& mat );
 /// \relates double2x3
 /// \brief Returns a copy of the matrix that is transposed, where the value of each row is set to the value of each column and vice versa.
 inline double3x2 transpose( const double2x3& mat );
+
+/// \relates double2x3
+/// \brief Returns a copy of the double2x3 that has been component-wise multiplied by the corresponding component of the right-hand double2x3.
+inline double2x3 comp_mul( const double2x3& lhs, const double2x3& rhs );
+
+/// \relates double2x3
+/// \brief Returns a copy of the double2x3 that has been component-wise divided by the corresponding component of the right-hand double2x3.
+inline double2x3 comp_div( const double2x3& lhs, const double2x3& rhs );
 
 /// \relates double2x3
 /// \brief Returns a copy of the matrix that has had a uniform scale applied to it.
@@ -783,6 +1015,14 @@ inline void identity( double2x4& mat );
 inline double4x2 transpose( const double2x4& mat );
 
 /// \relates double2x4
+/// \brief Returns a copy of the double2x4 that has been component-wise multiplied by the corresponding component of the right-hand double2x4.
+inline double2x4 comp_mul( const double2x4& lhs, const double2x4& rhs );
+
+/// \relates double2x4
+/// \brief Returns a copy of the double2x4 that has been component-wise divided by the corresponding component of the right-hand double2x4.
+inline double2x4 comp_div( const double2x4& lhs, const double2x4& rhs );
+
+/// \relates double2x4
 /// \brief Returns a copy of the matrix that has had a uniform scale applied to it.
 inline double2x4 scale( const double2x4& mat, const double scalar );
 
@@ -799,6 +1039,14 @@ inline void identity( double3x2& mat );
 /// \relates double3x2
 /// \brief Returns a copy of the matrix that is transposed, where the value of each row is set to the value of each column and vice versa.
 inline double2x3 transpose( const double3x2& mat );
+
+/// \relates double3x2
+/// \brief Returns a copy of the double3x2 that has been component-wise multiplied by the corresponding component of the right-hand double3x2.
+inline double3x2 comp_mul( const double3x2& lhs, const double3x2& rhs );
+
+/// \relates double3x2
+/// \brief Returns a copy of the double3x2 that has been component-wise divided by the corresponding component of the right-hand double3x2.
+inline double3x2 comp_div( const double3x2& lhs, const double3x2& rhs );
 
 
 // double3x3
@@ -818,6 +1066,14 @@ inline double3x3 inverse( const double3x3& mat );
 /// \relates double3x3
 /// \brief Returns the determinant of the matrix.
 inline double determinant( const double3x3& mat );
+
+/// \relates double3x3
+/// \brief Returns a copy of the double3x3 that has been component-wise multiplied by the corresponding component of the right-hand double3x3.
+inline double3x3 comp_mul( const double3x3& lhs, const double3x3& rhs );
+
+/// \relates double3x3
+/// \brief Returns a copy of the double3x3 that has been component-wise divided by the corresponding component of the right-hand double3x3.
+inline double3x3 comp_div( const double3x3& lhs, const double3x3& rhs );
 
 /// \relates double3x3
 /// \brief Returns a copy of the matrix where each component of the 3rd column has been added by the given vector.
@@ -846,6 +1102,14 @@ inline void identity( double3x4& mat );
 inline double4x3 transpose( const double3x4& mat );
 
 /// \relates double3x4
+/// \brief Returns a copy of the double3x4 that has been component-wise multiplied by the corresponding component of the right-hand double3x4.
+inline double3x4 comp_mul( const double3x4& lhs, const double3x4& rhs );
+
+/// \relates double3x4
+/// \brief Returns a copy of the double3x4 that has been component-wise divided by the corresponding component of the right-hand double3x4.
+inline double3x4 comp_div( const double3x4& lhs, const double3x4& rhs );
+
+/// \relates double3x4
 /// \brief Returns a copy of the matrix where each component of the 3rd column has been added by the given vector.
 inline double3x4 translate( const double3x4& mat, const double3& vec );
 
@@ -867,6 +1131,14 @@ inline void identity( double4x2& mat );
 /// \brief Returns a copy of the matrix that is transposed, where the value of each row is set to the value of each column and vice versa.
 inline double2x4 transpose( const double4x2& mat );
 
+/// \relates double4x2
+/// \brief Returns a copy of the double4x2 that has been component-wise multiplied by the corresponding component of the right-hand double4x2.
+inline double4x2 comp_mul( const double4x2& lhs, const double4x2& rhs );
+
+/// \relates double4x2
+/// \brief Returns a copy of the double4x2 that has been component-wise divided by the corresponding component of the right-hand double4x2.
+inline double4x2 comp_div( const double4x2& lhs, const double4x2& rhs );
+
 
 // double4x3
 /// \relates double4x3
@@ -876,6 +1148,14 @@ inline void identity( double4x3& mat );
 /// \relates double4x3
 /// \brief Returns a copy of the matrix that is transposed, where the value of each row is set to the value of each column and vice versa.
 inline double3x4 transpose( const double4x3& mat );
+
+/// \relates double4x3
+/// \brief Returns a copy of the double4x3 that has been component-wise multiplied by the corresponding component of the right-hand double4x3.
+inline double4x3 comp_mul( const double4x3& lhs, const double4x3& rhs );
+
+/// \relates double4x3
+/// \brief Returns a copy of the double4x3 that has been component-wise divided by the corresponding component of the right-hand double4x3.
+inline double4x3 comp_div( const double4x3& lhs, const double4x3& rhs );
 
 /// \relates double4x3
 /// \brief Returns a copy of the matrix that has had a uniform scale applied to it.
@@ -903,6 +1183,14 @@ inline double4x4 inverse( const double4x4& mat );
 /// \relates double4x4
 /// \brief Returns the determinant of the matrix.
 inline double determinant( const double4x4& mat );
+
+/// \relates double4x4
+/// \brief Returns a copy of the double4x4 that has been component-wise multiplied by the corresponding component of the right-hand double4x4.
+inline double4x4 comp_mul( const double4x4& lhs, const double4x4& rhs );
+
+/// \relates double4x4
+/// \brief Returns a copy of the double4x4 that has been component-wise divided by the corresponding component of the right-hand double4x4.
+inline double4x4 comp_div( const double4x4& lhs, const double4x4& rhs );
 
 /// \relates double4x4
 /// \brief Returns a copy of the matrix where each component of the 3rd column has been added by the given vector.

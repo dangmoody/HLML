@@ -264,12 +264,12 @@ static bool GenerateFunctionsMatrix( void ) {
 	char filePathInl[64] = { 0 };
 	snprintf( filePathInl, 64, "%s%s.inl", GEN_OUT_GEN_FOLDER_PATH, GEN_FILENAME_FUNCTIONS_MATRIX );
 
-	stringBuilder_t contentHeader = String_Create( 64 * KB_TO_BYTES );
+	stringBuilder_t contentHeader = String_Create( 128 * KB_TO_BYTES );
 	String_Append( &contentHeader, GEN_FILE_HEADER );
 	String_Append( &contentHeader, "#pragma once\n" );
 	String_Append( &contentHeader, "\n" );
 
-	stringBuilder_t contentInl = String_Create( 64 * KB_TO_BYTES );
+	stringBuilder_t contentInl = String_Create( 128 * KB_TO_BYTES );
 	String_Append( &contentInl, GEN_FILE_HEADER );
 	String_Append( &contentInl, "#include \"" GEN_FILENAME_FUNCTIONS_VECTOR ".h\"\n" );
 	String_Append( &contentInl, "#include \"" GEN_FILENAME_OPERATORS_MATRIX ".h\"\n" );
@@ -309,6 +309,8 @@ static bool GenerateFunctionsMatrix( void ) {
 
 				Gen_MatrixInverse( type, row, col, &contentHeader, &contentInl );
 				Gen_MatrixDeterminant( type, row, col, &contentHeader, &contentInl );
+
+				Gen_MatrixCompMulDiv( type, row, col, &contentHeader, &contentInl );
 
 				Gen_MatrixTranslate( type, row, col, &contentHeader, &contentInl );
 				Gen_MatrixRotate( type, row, col, &contentHeader, &contentInl );

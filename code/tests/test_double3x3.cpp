@@ -386,6 +386,36 @@ TEMPER_TEST( TestInverse_double3x3 )
 	TEMPER_PASS();
 }
 
+TEMPER_TEST( TestCompMulDiv_double3x3 )
+{
+	double3x3 answer_mul = double3x3(
+		8.000000, 8.000000, 8.000000,
+		32.000000, 32.000000, 32.000000,
+		192.000000, 192.000000, 192.000000
+	);
+	double3x3 answer_div = double3x3(
+		2.000000, 2.000000, 2.000000,
+		2.000000, 2.000000, 2.000000,
+		3.000000, 3.000000, 3.000000
+	);
+
+	double3x3 a = double3x3(
+		4.000000, 4.000000, 4.000000,
+		8.000000, 8.000000, 8.000000,
+		24.000000, 24.000000, 24.000000
+	);
+	double3x3 b = double3x3(
+		2.000000, 2.000000, 2.000000,
+		4.000000, 4.000000, 4.000000,
+		8.000000, 8.000000, 8.000000
+	);
+
+	TEMPER_EXPECT_TRUE( comp_mul( a, b ) == answer_mul );
+	TEMPER_EXPECT_TRUE( comp_div( a, b ) == answer_div );
+
+	TEMPER_PASS();
+}
+
 TEMPER_TEST( TestDeterminant_double3x3 )
 {
 	double3x3 mat = double3x3(
@@ -462,6 +492,7 @@ TEMPER_SUITE( Test_double3x3 )
 	TEMPER_RUN_TEST( TestIdentity_double3x3 );
 	TEMPER_RUN_TEST( TestTranspose_double3x3 );
 	TEMPER_RUN_TEST( TestInverse_double3x3 );
+	TEMPER_RUN_TEST( TestCompMulDiv_double3x3 );
 	TEMPER_RUN_TEST( TestDeterminant_double3x3 );
 	TEMPER_RUN_TEST( TestTranslate_double3x3 );
 	TEMPER_RUN_TEST( TestRotate_double3x3 );

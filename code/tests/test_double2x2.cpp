@@ -350,6 +350,32 @@ TEMPER_TEST( TestInverse_double2x2 )
 	TEMPER_PASS();
 }
 
+TEMPER_TEST( TestCompMulDiv_double2x2 )
+{
+	double2x2 answer_mul = double2x2(
+		8.000000, 8.000000,
+		32.000000, 32.000000
+	);
+	double2x2 answer_div = double2x2(
+		2.000000, 2.000000,
+		2.000000, 2.000000
+	);
+
+	double2x2 a = double2x2(
+		4.000000, 4.000000,
+		8.000000, 8.000000
+	);
+	double2x2 b = double2x2(
+		2.000000, 2.000000,
+		4.000000, 4.000000
+	);
+
+	TEMPER_EXPECT_TRUE( comp_mul( a, b ) == answer_mul );
+	TEMPER_EXPECT_TRUE( comp_div( a, b ) == answer_div );
+
+	TEMPER_PASS();
+}
+
 TEMPER_TEST( TestDeterminant_double2x2 )
 {
 	double2x2 mat = double2x2(
@@ -391,6 +417,7 @@ TEMPER_SUITE( Test_double2x2 )
 	TEMPER_RUN_TEST( TestIdentity_double2x2 );
 	TEMPER_RUN_TEST( TestTranspose_double2x2 );
 	TEMPER_RUN_TEST( TestInverse_double2x2 );
+	TEMPER_RUN_TEST( TestCompMulDiv_double2x2 );
 	TEMPER_RUN_TEST( TestDeterminant_double2x2 );
 	TEMPER_RUN_TEST( TestScale_double2x2 );
 }

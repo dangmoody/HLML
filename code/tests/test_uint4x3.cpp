@@ -541,6 +541,40 @@ TEMPER_TEST( TestTranspose_uint4x3 )
 	TEMPER_PASS();
 }
 
+TEMPER_TEST( TestCompMulDiv_uint4x3 )
+{
+	uint4x3 answer_mul = uint4x3(
+		8U, 8U, 8U,
+		32U, 32U, 32U,
+		192U, 192U, 192U,
+		300U, 300U, 300U
+	);
+	uint4x3 answer_div = uint4x3(
+		2U, 2U, 2U,
+		2U, 2U, 2U,
+		3U, 3U, 3U,
+		3U, 3U, 3U
+	);
+
+	uint4x3 a = uint4x3(
+		4U, 4U, 4U,
+		8U, 8U, 8U,
+		24U, 24U, 24U,
+		30U, 30U, 30U
+	);
+	uint4x3 b = uint4x3(
+		2U, 2U, 2U,
+		4U, 4U, 4U,
+		8U, 8U, 8U,
+		10U, 10U, 10U
+	);
+
+	TEMPER_EXPECT_TRUE( comp_mul( a, b ) == answer_mul );
+	TEMPER_EXPECT_TRUE( comp_div( a, b ) == answer_div );
+
+	TEMPER_PASS();
+}
+
 TEMPER_TEST( TestScale_uint4x3 )
 {
 	uint4x3 mat;
@@ -575,5 +609,6 @@ TEMPER_SUITE( Test_uint4x3 )
 	TEMPER_RUN_TEST( TestBitwise_Unary_uint4x3 );
 	TEMPER_RUN_TEST( TestIdentity_uint4x3 );
 	TEMPER_RUN_TEST( TestTranspose_uint4x3 );
+	TEMPER_RUN_TEST( TestCompMulDiv_uint4x3 );
 	TEMPER_RUN_TEST( TestScale_uint4x3 );
 }

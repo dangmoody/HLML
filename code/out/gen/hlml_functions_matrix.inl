@@ -209,6 +209,22 @@ int32_t determinant( const int2x2& mat )
 	return mat[0][0] * mat[1][1] - mat[1][0] * mat[0][1];
 }
 
+int2x2 comp_mul( const int2x2& lhs, const int2x2& rhs )
+{
+	return int2x2(
+		lhs[0] * rhs[0],
+		lhs[1] * rhs[1]
+	);
+}
+
+int2x2 comp_div( const int2x2& lhs, const int2x2& rhs )
+{
+	return int2x2(
+		lhs[0] / rhs[0],
+		lhs[1] / rhs[1]
+	);
+}
+
 int2x2 scale( const int2x2& mat, const int32_t scalar )
 {
 	return scale( mat, int3( scalar, scalar, scalar ) );
@@ -239,6 +255,22 @@ int3x2 transpose( const int2x3& mat )
 		mat[0][0], mat[1][0],
 		mat[0][1], mat[1][1],
 		mat[0][2], mat[1][2]
+	);
+}
+
+int2x3 comp_mul( const int2x3& lhs, const int2x3& rhs )
+{
+	return int2x3(
+		lhs[0] * rhs[0],
+		lhs[1] * rhs[1]
+	);
+}
+
+int2x3 comp_div( const int2x3& lhs, const int2x3& rhs )
+{
+	return int2x3(
+		lhs[0] / rhs[0],
+		lhs[1] / rhs[1]
 	);
 }
 
@@ -275,6 +307,22 @@ int4x2 transpose( const int2x4& mat )
 		mat[0][1], mat[1][1],
 		mat[0][2], mat[1][2],
 		mat[0][3], mat[1][3]
+	);
+}
+
+int2x4 comp_mul( const int2x4& lhs, const int2x4& rhs )
+{
+	return int2x4(
+		lhs[0] * rhs[0],
+		lhs[1] * rhs[1]
+	);
+}
+
+int2x4 comp_div( const int2x4& lhs, const int2x4& rhs )
+{
+	return int2x4(
+		lhs[0] / rhs[0],
+		lhs[1] / rhs[1]
 	);
 }
 
@@ -315,6 +363,24 @@ int2x3 transpose( const int3x2& mat )
 	);
 }
 
+int3x2 comp_mul( const int3x2& lhs, const int3x2& rhs )
+{
+	return int3x2(
+		lhs[0] * rhs[0],
+		lhs[1] * rhs[1],
+		lhs[2] * rhs[2]
+	);
+}
+
+int3x2 comp_div( const int3x2& lhs, const int3x2& rhs )
+{
+	return int3x2(
+		lhs[0] / rhs[0],
+		lhs[1] / rhs[1],
+		lhs[2] / rhs[2]
+	);
+}
+
 
 // int3x3
 void identity( int3x3& mat )
@@ -339,6 +405,24 @@ int32_t determinant( const int3x3& mat )
 		+ mat[0][0] * ( mat[1][1] * mat[2][2] - mat[2][1] * mat[1][2] )
 		- mat[0][1] * ( mat[1][0] * mat[2][2] - mat[2][0] * mat[1][2] )
 		+ mat[0][2] * ( mat[1][0] * mat[2][1] - mat[2][0] * mat[1][1] );
+}
+
+int3x3 comp_mul( const int3x3& lhs, const int3x3& rhs )
+{
+	return int3x3(
+		lhs[0] * rhs[0],
+		lhs[1] * rhs[1],
+		lhs[2] * rhs[2]
+	);
+}
+
+int3x3 comp_div( const int3x3& lhs, const int3x3& rhs )
+{
+	return int3x3(
+		lhs[0] / rhs[0],
+		lhs[1] / rhs[1],
+		lhs[2] / rhs[2]
+	);
 }
 
 int3x3 translate( const int3x3& mat, const int2& vec )
@@ -388,6 +472,24 @@ int4x3 transpose( const int3x4& mat )
 		mat[0][1], mat[1][1], mat[2][1],
 		mat[0][2], mat[1][2], mat[2][2],
 		mat[0][3], mat[1][3], mat[2][3]
+	);
+}
+
+int3x4 comp_mul( const int3x4& lhs, const int3x4& rhs )
+{
+	return int3x4(
+		lhs[0] * rhs[0],
+		lhs[1] * rhs[1],
+		lhs[2] * rhs[2]
+	);
+}
+
+int3x4 comp_div( const int3x4& lhs, const int3x4& rhs )
+{
+	return int3x4(
+		lhs[0] / rhs[0],
+		lhs[1] / rhs[1],
+		lhs[2] / rhs[2]
 	);
 }
 
@@ -443,6 +545,26 @@ int2x4 transpose( const int4x2& mat )
 	);
 }
 
+int4x2 comp_mul( const int4x2& lhs, const int4x2& rhs )
+{
+	return int4x2(
+		lhs[0] * rhs[0],
+		lhs[1] * rhs[1],
+		lhs[2] * rhs[2],
+		lhs[3] * rhs[3]
+	);
+}
+
+int4x2 comp_div( const int4x2& lhs, const int4x2& rhs )
+{
+	return int4x2(
+		lhs[0] / rhs[0],
+		lhs[1] / rhs[1],
+		lhs[2] / rhs[2],
+		lhs[3] / rhs[3]
+	);
+}
+
 
 // int4x3
 void identity( int4x3& mat )
@@ -459,6 +581,26 @@ int3x4 transpose( const int4x3& mat )
 		mat[0][0], mat[1][0], mat[2][0], mat[3][0],
 		mat[0][1], mat[1][1], mat[2][1], mat[3][1],
 		mat[0][2], mat[1][2], mat[2][2], mat[3][2]
+	);
+}
+
+int4x3 comp_mul( const int4x3& lhs, const int4x3& rhs )
+{
+	return int4x3(
+		lhs[0] * rhs[0],
+		lhs[1] * rhs[1],
+		lhs[2] * rhs[2],
+		lhs[3] * rhs[3]
+	);
+}
+
+int4x3 comp_div( const int4x3& lhs, const int4x3& rhs )
+{
+	return int4x3(
+		lhs[0] / rhs[0],
+		lhs[1] / rhs[1],
+		lhs[2] / rhs[2],
+		lhs[3] / rhs[3]
 	);
 }
 
@@ -530,6 +672,26 @@ int32_t determinant( const int4x4& mat )
 		mat[0][2] * cofactor.z + mat[0][3] * cofactor.w;
 }
 
+int4x4 comp_mul( const int4x4& lhs, const int4x4& rhs )
+{
+	return int4x4(
+		lhs[0] * rhs[0],
+		lhs[1] * rhs[1],
+		lhs[2] * rhs[2],
+		lhs[3] * rhs[3]
+	);
+}
+
+int4x4 comp_div( const int4x4& lhs, const int4x4& rhs )
+{
+	return int4x4(
+		lhs[0] / rhs[0],
+		lhs[1] / rhs[1],
+		lhs[2] / rhs[2],
+		lhs[3] / rhs[3]
+	);
+}
+
 int4x4 translate( const int4x4& mat, const int3& vec )
 {
 	return int4x4(
@@ -586,6 +748,22 @@ uint2x2 transpose( const uint2x2& mat )
 	);
 }
 
+uint2x2 comp_mul( const uint2x2& lhs, const uint2x2& rhs )
+{
+	return uint2x2(
+		lhs[0] * rhs[0],
+		lhs[1] * rhs[1]
+	);
+}
+
+uint2x2 comp_div( const uint2x2& lhs, const uint2x2& rhs )
+{
+	return uint2x2(
+		lhs[0] / rhs[0],
+		lhs[1] / rhs[1]
+	);
+}
+
 uint2x2 scale( const uint2x2& mat, const uint32_t scalar )
 {
 	return scale( mat, uint3( scalar, scalar, scalar ) );
@@ -616,6 +794,22 @@ uint3x2 transpose( const uint2x3& mat )
 		mat[0][0], mat[1][0],
 		mat[0][1], mat[1][1],
 		mat[0][2], mat[1][2]
+	);
+}
+
+uint2x3 comp_mul( const uint2x3& lhs, const uint2x3& rhs )
+{
+	return uint2x3(
+		lhs[0] * rhs[0],
+		lhs[1] * rhs[1]
+	);
+}
+
+uint2x3 comp_div( const uint2x3& lhs, const uint2x3& rhs )
+{
+	return uint2x3(
+		lhs[0] / rhs[0],
+		lhs[1] / rhs[1]
 	);
 }
 
@@ -652,6 +846,22 @@ uint4x2 transpose( const uint2x4& mat )
 		mat[0][1], mat[1][1],
 		mat[0][2], mat[1][2],
 		mat[0][3], mat[1][3]
+	);
+}
+
+uint2x4 comp_mul( const uint2x4& lhs, const uint2x4& rhs )
+{
+	return uint2x4(
+		lhs[0] * rhs[0],
+		lhs[1] * rhs[1]
+	);
+}
+
+uint2x4 comp_div( const uint2x4& lhs, const uint2x4& rhs )
+{
+	return uint2x4(
+		lhs[0] / rhs[0],
+		lhs[1] / rhs[1]
 	);
 }
 
@@ -692,6 +902,24 @@ uint2x3 transpose( const uint3x2& mat )
 	);
 }
 
+uint3x2 comp_mul( const uint3x2& lhs, const uint3x2& rhs )
+{
+	return uint3x2(
+		lhs[0] * rhs[0],
+		lhs[1] * rhs[1],
+		lhs[2] * rhs[2]
+	);
+}
+
+uint3x2 comp_div( const uint3x2& lhs, const uint3x2& rhs )
+{
+	return uint3x2(
+		lhs[0] / rhs[0],
+		lhs[1] / rhs[1],
+		lhs[2] / rhs[2]
+	);
+}
+
 
 // uint3x3
 void identity( uint3x3& mat )
@@ -707,6 +935,24 @@ uint3x3 transpose( const uint3x3& mat )
 		mat[0][0], mat[1][0], mat[2][0],
 		mat[0][1], mat[1][1], mat[2][1],
 		mat[0][2], mat[1][2], mat[2][2]
+	);
+}
+
+uint3x3 comp_mul( const uint3x3& lhs, const uint3x3& rhs )
+{
+	return uint3x3(
+		lhs[0] * rhs[0],
+		lhs[1] * rhs[1],
+		lhs[2] * rhs[2]
+	);
+}
+
+uint3x3 comp_div( const uint3x3& lhs, const uint3x3& rhs )
+{
+	return uint3x3(
+		lhs[0] / rhs[0],
+		lhs[1] / rhs[1],
+		lhs[2] / rhs[2]
 	);
 }
 
@@ -757,6 +1003,24 @@ uint4x3 transpose( const uint3x4& mat )
 		mat[0][1], mat[1][1], mat[2][1],
 		mat[0][2], mat[1][2], mat[2][2],
 		mat[0][3], mat[1][3], mat[2][3]
+	);
+}
+
+uint3x4 comp_mul( const uint3x4& lhs, const uint3x4& rhs )
+{
+	return uint3x4(
+		lhs[0] * rhs[0],
+		lhs[1] * rhs[1],
+		lhs[2] * rhs[2]
+	);
+}
+
+uint3x4 comp_div( const uint3x4& lhs, const uint3x4& rhs )
+{
+	return uint3x4(
+		lhs[0] / rhs[0],
+		lhs[1] / rhs[1],
+		lhs[2] / rhs[2]
 	);
 }
 
@@ -812,6 +1076,26 @@ uint2x4 transpose( const uint4x2& mat )
 	);
 }
 
+uint4x2 comp_mul( const uint4x2& lhs, const uint4x2& rhs )
+{
+	return uint4x2(
+		lhs[0] * rhs[0],
+		lhs[1] * rhs[1],
+		lhs[2] * rhs[2],
+		lhs[3] * rhs[3]
+	);
+}
+
+uint4x2 comp_div( const uint4x2& lhs, const uint4x2& rhs )
+{
+	return uint4x2(
+		lhs[0] / rhs[0],
+		lhs[1] / rhs[1],
+		lhs[2] / rhs[2],
+		lhs[3] / rhs[3]
+	);
+}
+
 
 // uint4x3
 void identity( uint4x3& mat )
@@ -828,6 +1112,26 @@ uint3x4 transpose( const uint4x3& mat )
 		mat[0][0], mat[1][0], mat[2][0], mat[3][0],
 		mat[0][1], mat[1][1], mat[2][1], mat[3][1],
 		mat[0][2], mat[1][2], mat[2][2], mat[3][2]
+	);
+}
+
+uint4x3 comp_mul( const uint4x3& lhs, const uint4x3& rhs )
+{
+	return uint4x3(
+		lhs[0] * rhs[0],
+		lhs[1] * rhs[1],
+		lhs[2] * rhs[2],
+		lhs[3] * rhs[3]
+	);
+}
+
+uint4x3 comp_div( const uint4x3& lhs, const uint4x3& rhs )
+{
+	return uint4x3(
+		lhs[0] / rhs[0],
+		lhs[1] / rhs[1],
+		lhs[2] / rhs[2],
+		lhs[3] / rhs[3]
 	);
 }
 
@@ -874,6 +1178,26 @@ uint4x4 transpose( const uint4x4& mat )
 		mat[0][1], mat[1][1], mat[2][1], mat[3][1],
 		mat[0][2], mat[1][2], mat[2][2], mat[3][2],
 		mat[0][3], mat[1][3], mat[2][3], mat[3][3]
+	);
+}
+
+uint4x4 comp_mul( const uint4x4& lhs, const uint4x4& rhs )
+{
+	return uint4x4(
+		lhs[0] * rhs[0],
+		lhs[1] * rhs[1],
+		lhs[2] * rhs[2],
+		lhs[3] * rhs[3]
+	);
+}
+
+uint4x4 comp_div( const uint4x4& lhs, const uint4x4& rhs )
+{
+	return uint4x4(
+		lhs[0] / rhs[0],
+		lhs[1] / rhs[1],
+		lhs[2] / rhs[2],
+		lhs[3] / rhs[3]
 	);
 }
 
@@ -947,6 +1271,22 @@ float determinant( const float2x2& mat )
 	return mat[0][0] * mat[1][1] - mat[1][0] * mat[0][1];
 }
 
+float2x2 comp_mul( const float2x2& lhs, const float2x2& rhs )
+{
+	return float2x2(
+		lhs[0] * rhs[0],
+		lhs[1] * rhs[1]
+	);
+}
+
+float2x2 comp_div( const float2x2& lhs, const float2x2& rhs )
+{
+	return float2x2(
+		lhs[0] / rhs[0],
+		lhs[1] / rhs[1]
+	);
+}
+
 float2x2 scale( const float2x2& mat, const float scalar )
 {
 	return scale( mat, float3( scalar, scalar, scalar ) );
@@ -977,6 +1317,22 @@ float3x2 transpose( const float2x3& mat )
 		mat[0][0], mat[1][0],
 		mat[0][1], mat[1][1],
 		mat[0][2], mat[1][2]
+	);
+}
+
+float2x3 comp_mul( const float2x3& lhs, const float2x3& rhs )
+{
+	return float2x3(
+		lhs[0] * rhs[0],
+		lhs[1] * rhs[1]
+	);
+}
+
+float2x3 comp_div( const float2x3& lhs, const float2x3& rhs )
+{
+	return float2x3(
+		lhs[0] / rhs[0],
+		lhs[1] / rhs[1]
 	);
 }
 
@@ -1016,6 +1372,22 @@ float4x2 transpose( const float2x4& mat )
 	);
 }
 
+float2x4 comp_mul( const float2x4& lhs, const float2x4& rhs )
+{
+	return float2x4(
+		lhs[0] * rhs[0],
+		lhs[1] * rhs[1]
+	);
+}
+
+float2x4 comp_div( const float2x4& lhs, const float2x4& rhs )
+{
+	return float2x4(
+		lhs[0] / rhs[0],
+		lhs[1] / rhs[1]
+	);
+}
+
 float2x4 scale( const float2x4& mat, const float scalar )
 {
 	return scale( mat, float3( scalar, scalar, scalar ) );
@@ -1050,6 +1422,24 @@ float2x3 transpose( const float3x2& mat )
 	return float2x3(
 		mat[0][0], mat[1][0], mat[2][0],
 		mat[0][1], mat[1][1], mat[2][1]
+	);
+}
+
+float3x2 comp_mul( const float3x2& lhs, const float3x2& rhs )
+{
+	return float3x2(
+		lhs[0] * rhs[0],
+		lhs[1] * rhs[1],
+		lhs[2] * rhs[2]
+	);
+}
+
+float3x2 comp_div( const float3x2& lhs, const float3x2& rhs )
+{
+	return float3x2(
+		lhs[0] / rhs[0],
+		lhs[1] / rhs[1],
+		lhs[2] / rhs[2]
 	);
 }
 
@@ -1095,6 +1485,24 @@ float determinant( const float3x3& mat )
 		+ mat[0][0] * ( mat[1][1] * mat[2][2] - mat[2][1] * mat[1][2] )
 		- mat[0][1] * ( mat[1][0] * mat[2][2] - mat[2][0] * mat[1][2] )
 		+ mat[0][2] * ( mat[1][0] * mat[2][1] - mat[2][0] * mat[1][1] );
+}
+
+float3x3 comp_mul( const float3x3& lhs, const float3x3& rhs )
+{
+	return float3x3(
+		lhs[0] * rhs[0],
+		lhs[1] * rhs[1],
+		lhs[2] * rhs[2]
+	);
+}
+
+float3x3 comp_div( const float3x3& lhs, const float3x3& rhs )
+{
+	return float3x3(
+		lhs[0] / rhs[0],
+		lhs[1] / rhs[1],
+		lhs[2] / rhs[2]
+	);
 }
 
 float3x3 translate( const float3x3& mat, const float2& vec )
@@ -1159,6 +1567,24 @@ float4x3 transpose( const float3x4& mat )
 	);
 }
 
+float3x4 comp_mul( const float3x4& lhs, const float3x4& rhs )
+{
+	return float3x4(
+		lhs[0] * rhs[0],
+		lhs[1] * rhs[1],
+		lhs[2] * rhs[2]
+	);
+}
+
+float3x4 comp_div( const float3x4& lhs, const float3x4& rhs )
+{
+	return float3x4(
+		lhs[0] / rhs[0],
+		lhs[1] / rhs[1],
+		lhs[2] / rhs[2]
+	);
+}
+
 float3x4 translate( const float3x4& mat, const float3& vec )
 {
 	return float3x4(
@@ -1211,6 +1637,26 @@ float2x4 transpose( const float4x2& mat )
 	);
 }
 
+float4x2 comp_mul( const float4x2& lhs, const float4x2& rhs )
+{
+	return float4x2(
+		lhs[0] * rhs[0],
+		lhs[1] * rhs[1],
+		lhs[2] * rhs[2],
+		lhs[3] * rhs[3]
+	);
+}
+
+float4x2 comp_div( const float4x2& lhs, const float4x2& rhs )
+{
+	return float4x2(
+		lhs[0] / rhs[0],
+		lhs[1] / rhs[1],
+		lhs[2] / rhs[2],
+		lhs[3] / rhs[3]
+	);
+}
+
 
 // float4x3
 void identity( float4x3& mat )
@@ -1227,6 +1673,26 @@ float3x4 transpose( const float4x3& mat )
 		mat[0][0], mat[1][0], mat[2][0], mat[3][0],
 		mat[0][1], mat[1][1], mat[2][1], mat[3][1],
 		mat[0][2], mat[1][2], mat[2][2], mat[3][2]
+	);
+}
+
+float4x3 comp_mul( const float4x3& lhs, const float4x3& rhs )
+{
+	return float4x3(
+		lhs[0] * rhs[0],
+		lhs[1] * rhs[1],
+		lhs[2] * rhs[2],
+		lhs[3] * rhs[3]
+	);
+}
+
+float4x3 comp_div( const float4x3& lhs, const float4x3& rhs )
+{
+	return float4x3(
+		lhs[0] / rhs[0],
+		lhs[1] / rhs[1],
+		lhs[2] / rhs[2],
+		lhs[3] / rhs[3]
 	);
 }
 
@@ -1360,6 +1826,26 @@ float determinant( const float4x4& mat )
 	return
 		mat[0][0] * cofactor.x + mat[0][1] * cofactor.y +
 		mat[0][2] * cofactor.z + mat[0][3] * cofactor.w;
+}
+
+float4x4 comp_mul( const float4x4& lhs, const float4x4& rhs )
+{
+	return float4x4(
+		lhs[0] * rhs[0],
+		lhs[1] * rhs[1],
+		lhs[2] * rhs[2],
+		lhs[3] * rhs[3]
+	);
+}
+
+float4x4 comp_div( const float4x4& lhs, const float4x4& rhs )
+{
+	return float4x4(
+		lhs[0] / rhs[0],
+		lhs[1] / rhs[1],
+		lhs[2] / rhs[2],
+		lhs[3] / rhs[3]
+	);
 }
 
 float4x4 translate( const float4x4& mat, const float3& vec )
@@ -1613,6 +2099,22 @@ double determinant( const double2x2& mat )
 	return mat[0][0] * mat[1][1] - mat[1][0] * mat[0][1];
 }
 
+double2x2 comp_mul( const double2x2& lhs, const double2x2& rhs )
+{
+	return double2x2(
+		lhs[0] * rhs[0],
+		lhs[1] * rhs[1]
+	);
+}
+
+double2x2 comp_div( const double2x2& lhs, const double2x2& rhs )
+{
+	return double2x2(
+		lhs[0] / rhs[0],
+		lhs[1] / rhs[1]
+	);
+}
+
 double2x2 scale( const double2x2& mat, const double scalar )
 {
 	return scale( mat, double3( scalar, scalar, scalar ) );
@@ -1643,6 +2145,22 @@ double3x2 transpose( const double2x3& mat )
 		mat[0][0], mat[1][0],
 		mat[0][1], mat[1][1],
 		mat[0][2], mat[1][2]
+	);
+}
+
+double2x3 comp_mul( const double2x3& lhs, const double2x3& rhs )
+{
+	return double2x3(
+		lhs[0] * rhs[0],
+		lhs[1] * rhs[1]
+	);
+}
+
+double2x3 comp_div( const double2x3& lhs, const double2x3& rhs )
+{
+	return double2x3(
+		lhs[0] / rhs[0],
+		lhs[1] / rhs[1]
 	);
 }
 
@@ -1682,6 +2200,22 @@ double4x2 transpose( const double2x4& mat )
 	);
 }
 
+double2x4 comp_mul( const double2x4& lhs, const double2x4& rhs )
+{
+	return double2x4(
+		lhs[0] * rhs[0],
+		lhs[1] * rhs[1]
+	);
+}
+
+double2x4 comp_div( const double2x4& lhs, const double2x4& rhs )
+{
+	return double2x4(
+		lhs[0] / rhs[0],
+		lhs[1] / rhs[1]
+	);
+}
+
 double2x4 scale( const double2x4& mat, const double scalar )
 {
 	return scale( mat, double3( scalar, scalar, scalar ) );
@@ -1716,6 +2250,24 @@ double2x3 transpose( const double3x2& mat )
 	return double2x3(
 		mat[0][0], mat[1][0], mat[2][0],
 		mat[0][1], mat[1][1], mat[2][1]
+	);
+}
+
+double3x2 comp_mul( const double3x2& lhs, const double3x2& rhs )
+{
+	return double3x2(
+		lhs[0] * rhs[0],
+		lhs[1] * rhs[1],
+		lhs[2] * rhs[2]
+	);
+}
+
+double3x2 comp_div( const double3x2& lhs, const double3x2& rhs )
+{
+	return double3x2(
+		lhs[0] / rhs[0],
+		lhs[1] / rhs[1],
+		lhs[2] / rhs[2]
 	);
 }
 
@@ -1761,6 +2313,24 @@ double determinant( const double3x3& mat )
 		+ mat[0][0] * ( mat[1][1] * mat[2][2] - mat[2][1] * mat[1][2] )
 		- mat[0][1] * ( mat[1][0] * mat[2][2] - mat[2][0] * mat[1][2] )
 		+ mat[0][2] * ( mat[1][0] * mat[2][1] - mat[2][0] * mat[1][1] );
+}
+
+double3x3 comp_mul( const double3x3& lhs, const double3x3& rhs )
+{
+	return double3x3(
+		lhs[0] * rhs[0],
+		lhs[1] * rhs[1],
+		lhs[2] * rhs[2]
+	);
+}
+
+double3x3 comp_div( const double3x3& lhs, const double3x3& rhs )
+{
+	return double3x3(
+		lhs[0] / rhs[0],
+		lhs[1] / rhs[1],
+		lhs[2] / rhs[2]
+	);
 }
 
 double3x3 translate( const double3x3& mat, const double2& vec )
@@ -1825,6 +2395,24 @@ double4x3 transpose( const double3x4& mat )
 	);
 }
 
+double3x4 comp_mul( const double3x4& lhs, const double3x4& rhs )
+{
+	return double3x4(
+		lhs[0] * rhs[0],
+		lhs[1] * rhs[1],
+		lhs[2] * rhs[2]
+	);
+}
+
+double3x4 comp_div( const double3x4& lhs, const double3x4& rhs )
+{
+	return double3x4(
+		lhs[0] / rhs[0],
+		lhs[1] / rhs[1],
+		lhs[2] / rhs[2]
+	);
+}
+
 double3x4 translate( const double3x4& mat, const double3& vec )
 {
 	return double3x4(
@@ -1877,6 +2465,26 @@ double2x4 transpose( const double4x2& mat )
 	);
 }
 
+double4x2 comp_mul( const double4x2& lhs, const double4x2& rhs )
+{
+	return double4x2(
+		lhs[0] * rhs[0],
+		lhs[1] * rhs[1],
+		lhs[2] * rhs[2],
+		lhs[3] * rhs[3]
+	);
+}
+
+double4x2 comp_div( const double4x2& lhs, const double4x2& rhs )
+{
+	return double4x2(
+		lhs[0] / rhs[0],
+		lhs[1] / rhs[1],
+		lhs[2] / rhs[2],
+		lhs[3] / rhs[3]
+	);
+}
+
 
 // double4x3
 void identity( double4x3& mat )
@@ -1893,6 +2501,26 @@ double3x4 transpose( const double4x3& mat )
 		mat[0][0], mat[1][0], mat[2][0], mat[3][0],
 		mat[0][1], mat[1][1], mat[2][1], mat[3][1],
 		mat[0][2], mat[1][2], mat[2][2], mat[3][2]
+	);
+}
+
+double4x3 comp_mul( const double4x3& lhs, const double4x3& rhs )
+{
+	return double4x3(
+		lhs[0] * rhs[0],
+		lhs[1] * rhs[1],
+		lhs[2] * rhs[2],
+		lhs[3] * rhs[3]
+	);
+}
+
+double4x3 comp_div( const double4x3& lhs, const double4x3& rhs )
+{
+	return double4x3(
+		lhs[0] / rhs[0],
+		lhs[1] / rhs[1],
+		lhs[2] / rhs[2],
+		lhs[3] / rhs[3]
 	);
 }
 
@@ -2026,6 +2654,26 @@ double determinant( const double4x4& mat )
 	return
 		mat[0][0] * cofactor.x + mat[0][1] * cofactor.y +
 		mat[0][2] * cofactor.z + mat[0][3] * cofactor.w;
+}
+
+double4x4 comp_mul( const double4x4& lhs, const double4x4& rhs )
+{
+	return double4x4(
+		lhs[0] * rhs[0],
+		lhs[1] * rhs[1],
+		lhs[2] * rhs[2],
+		lhs[3] * rhs[3]
+	);
+}
+
+double4x4 comp_div( const double4x4& lhs, const double4x4& rhs )
+{
+	return double4x4(
+		lhs[0] / rhs[0],
+		lhs[1] / rhs[1],
+		lhs[2] / rhs[2],
+		lhs[3] / rhs[3]
+	);
 }
 
 double4x4 translate( const double4x4& mat, const double3& vec )

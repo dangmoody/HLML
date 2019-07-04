@@ -383,6 +383,40 @@ TEMPER_TEST( TestTranspose_float4x2 )
 	TEMPER_PASS();
 }
 
+TEMPER_TEST( TestCompMulDiv_float4x2 )
+{
+	float4x2 answer_mul = float4x2(
+		8.000000f, 8.000000f,
+		32.000000f, 32.000000f,
+		192.000000f, 192.000000f,
+		300.000000f, 300.000000f
+	);
+	float4x2 answer_div = float4x2(
+		2.000000f, 2.000000f,
+		2.000000f, 2.000000f,
+		3.000000f, 3.000000f,
+		3.000000f, 3.000000f
+	);
+
+	float4x2 a = float4x2(
+		4.000000f, 4.000000f,
+		8.000000f, 8.000000f,
+		24.000000f, 24.000000f,
+		30.000000f, 30.000000f
+	);
+	float4x2 b = float4x2(
+		2.000000f, 2.000000f,
+		4.000000f, 4.000000f,
+		8.000000f, 8.000000f,
+		10.000000f, 10.000000f
+	);
+
+	TEMPER_EXPECT_TRUE( comp_mul( a, b ) == answer_mul );
+	TEMPER_EXPECT_TRUE( comp_div( a, b ) == answer_div );
+
+	TEMPER_PASS();
+}
+
 TEMPER_SUITE( Test_float4x2 )
 {
 	TEMPER_RUN_TEST( TestAssignment_float4x2 );
@@ -396,4 +430,5 @@ TEMPER_SUITE( Test_float4x2 )
 	TEMPER_RUN_TEST( TestArray_float4x2 );
 	TEMPER_RUN_TEST( TestIdentity_float4x2 );
 	TEMPER_RUN_TEST( TestTranspose_float4x2 );
+	TEMPER_RUN_TEST( TestCompMulDiv_float4x2 );
 }

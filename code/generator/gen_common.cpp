@@ -718,7 +718,7 @@ void Gen_OperatorComponentWiseArithmeticScalar( const genType_t type, const u32 
 
 	char opStr = GEN_OPERATORS_ARITHMETIC[op];
 
-	Gen_GetDocOperatorArithmeticScalar( sbHeader, fullTypeName, op );
+	Gen_DocComponentWiseArithmeticScalar( sbHeader, fullTypeName, op );
 	String_Appendf( sbHeader, "inline %s operator%c( const %s& lhs, const %s rhs );\n", fullTypeName, opStr, fullTypeName, memberTypeString );
 	String_Append(  sbHeader, "\n" );
 
@@ -779,7 +779,7 @@ void Gen_OperatorComponentWiseArithmeticRhsType( const genType_t type, const u32
 
 	char opStr = GEN_OPERATORS_ARITHMETIC[op];
 
-	Gen_DocOperatorComponentWiseArithmeticRhsType( sbHeader, fullTypeName, fullTypeName, op );
+	Gen_DocComponentWiseArithmeticRhsType( sbHeader, fullTypeName, fullTypeName, op );
 	String_Appendf( sbHeader, "inline %s operator%c( const %s& lhs, const %s& rhs );\n", fullTypeName, opStr, fullTypeName, fullTypeName );
 	String_Append(  sbHeader, "\n" );
 

@@ -38,6 +38,7 @@ private:
 	void			GenerateTestTranspose();
 	void			GenerateTestInverse();
 	void			GenerateTestDeterminant();
+	void			GenerateTestCompMulDiv();
 	void			GenerateTestTranslate();
 	void			GenerateTestRotate();
 	void			GenerateTestScale();
@@ -45,7 +46,7 @@ private:
 	void			GenerateTestPerspective();
 	void			GenerateTestLookAt();
 
-	void			GetTestCodeArithmeticInternal( const genOpArithmetic_t op, const float valuesLhs[GEN_COMPONENT_COUNT_MAX][GEN_COMPONENT_COUNT_MAX],
+	void			GetTestCodeOperatorArithmeticInternal( const genOpArithmetic_t op, const float valuesLhs[GEN_COMPONENT_COUNT_MAX][GEN_COMPONENT_COUNT_MAX],
 						const float valuesRhs[GEN_COMPONENT_COUNT_MAX][GEN_COMPONENT_COUNT_MAX], stringBuilder_t* sb ) const;
 
 	// DM: does this want to live with the other generic matrix gen functions?

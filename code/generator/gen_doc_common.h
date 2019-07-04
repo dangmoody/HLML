@@ -20,10 +20,10 @@ inline void			Gen_GetDocSmootherstep( stringBuilder_t* sb, const char* fullTypeN
 inline void			Gen_DocOperatorEquals( stringBuilder_t* sb, const char* fullTypeName );
 inline void			Gen_DocOperatorNotEquals( stringBuilder_t* sb, const char* fullTypeName );
 
-inline void			Gen_GetDocOperatorArithmeticScalar( stringBuilder_t* sb, const char* fullTypeName, const genOpArithmetic_t op );
+inline void			Gen_DocComponentWiseArithmeticScalar( stringBuilder_t* sb, const char* fullTypeName, const genOpArithmetic_t op );
 inline void			Gen_GetDocOperatorCompoundArithmeticScalar( stringBuilder_t* sb, const char* fullTypeName, const genOpArithmetic_t op );
 
-inline void			Gen_DocOperatorComponentWiseArithmeticRhsType( stringBuilder_t* sb, const char* lhsTypeName, const char* rhsTypeName, const genOpArithmetic_t op );
+inline void			Gen_DocComponentWiseArithmeticRhsType( stringBuilder_t* sb, const char* lhsTypeName, const char* rhsTypeName, const genOpArithmetic_t op );
 inline void			Gen_DocOperatorCompoundComponentWiseArithmeticRhsType( stringBuilder_t* sb, const char* lhsTypeName, const char* rhsTypeName, const genOpArithmetic_t op );
 
 inline void			Gen_GetDocOperatorIncrementPrefix( stringBuilder_t* sb, const char* fullTypeName, const genOpIncrement_t op );
@@ -109,7 +109,7 @@ void Gen_DocOperatorNotEquals( stringBuilder_t* sb, const char* fullTypeName ) {
 		"otherwise returns false.\n", fullTypeName, fullTypeName );
 }
 
-void Gen_GetDocOperatorArithmeticScalar( stringBuilder_t* sb, const char* fullTypeName, const genOpArithmetic_t op ) {
+void Gen_DocComponentWiseArithmeticScalar( stringBuilder_t* sb, const char* fullTypeName, const genOpArithmetic_t op ) {
 	const char* adjective;
 	switch ( op ) {
 		case GEN_OP_ARITHMETIC_ADD:	adjective = "added";		break;
@@ -147,7 +147,7 @@ void Gen_GetDocOperatorCompoundArithmeticScalar( stringBuilder_t* sb, const char
 		"/// \\brief %s each component by the given scalar value.\n", fullTypeName, verb );
 }
 
-void Gen_DocOperatorComponentWiseArithmeticRhsType( stringBuilder_t* sb, const char* lhsTypeName, const char* rhsTypeName, const genOpArithmetic_t op ) {
+void Gen_DocComponentWiseArithmeticRhsType( stringBuilder_t* sb, const char* lhsTypeName, const char* rhsTypeName, const genOpArithmetic_t op ) {
 	const char* adjective;
 	switch ( op ) {
 		case GEN_OP_ARITHMETIC_ADD:	adjective = "added";		break;
