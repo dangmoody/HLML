@@ -490,6 +490,36 @@ TEMPER_TEST( TestTranspose_int3x2 )
 	TEMPER_PASS();
 }
 
+TEMPER_TEST( TestCompMulDiv_int3x2 )
+{
+	int3x2 answer_mul = int3x2(
+		8, 8,
+		32, 32,
+		192, 192
+	);
+	int3x2 answer_div = int3x2(
+		2, 2,
+		2, 2,
+		3, 3
+	);
+
+	int3x2 a = int3x2(
+		4, 4,
+		8, 8,
+		24, 24
+	);
+	int3x2 b = int3x2(
+		2, 2,
+		4, 4,
+		8, 8
+	);
+
+	TEMPER_EXPECT_TRUE( comp_mul( a, b ) == answer_mul );
+	TEMPER_EXPECT_TRUE( comp_div( a, b ) == answer_div );
+
+	TEMPER_PASS();
+}
+
 TEMPER_SUITE( Test_int3x2 )
 {
 	TEMPER_RUN_TEST( TestAssignment_int3x2 );
@@ -509,4 +539,5 @@ TEMPER_SUITE( Test_int3x2 )
 	TEMPER_RUN_TEST( TestBitwise_Unary_int3x2 );
 	TEMPER_RUN_TEST( TestIdentity_int3x2 );
 	TEMPER_RUN_TEST( TestTranspose_int3x2 );
+	TEMPER_RUN_TEST( TestCompMulDiv_int3x2 );
 }

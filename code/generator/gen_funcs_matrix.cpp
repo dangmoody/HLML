@@ -245,7 +245,7 @@ static void MatrixMulVector( const genType_t type, const u32 numRows, const u32 
 
 	// main operator
 	{
-		Gen_DocOperatorComponentWiseArithmeticRhsType( sbHeader, vectorTypeName, fullTypeName, GEN_OP_ARITHMETIC_MUL );
+		Gen_DocComponentWiseArithmeticRhsType( sbHeader, vectorTypeName, fullTypeName, GEN_OP_ARITHMETIC_MUL );
 		String_Appendf( sbHeader, "inline %s operator*( const %s& lhs, const %s& rhs );\n", vectorTypeName, fullTypeName, vectorTypeName );
 		String_Append(  sbHeader, "\n" );
 
@@ -745,6 +745,70 @@ void Gen_MatrixDeterminant( const genType_t type, const u32 numRows, const u32 n
 	}
 	String_Append( sbInl, "}\n" );
 	String_Append( sbInl, "\n" );
+}
+
+void Gen_MatrixCompMulDiv( const genType_t type, const u32 numRows, const u32 numCols, stringBuilder_t* sbHeader, stringBuilder_t* sbInl ) {
+	assert( numRows >= GEN_COMPONENT_COUNT_MIN );
+	assert( numRows <= GEN_COMPONENT_COUNT_MAX );
+	assert( numCols >= GEN_COMPONENT_COUNT_MIN );
+	assert( numCols <= GEN_COMPONENT_COUNT_MAX );
+
+	if ( type == GEN_TYPE_BOOL ) {
+		return;
+	}
+
+	char fullTypeName[GEN_STRING_LENGTH_TYPE_NAME];
+	Gen_GetFullTypeName( type, numRows, numCols, fullTypeName );
+
+	// comp_mul
+	{
+		char opStr = GEN_OPERATORS_ARITHMETIC[GEN_OP_ARITHMETIC_MUL];
+
+		Gen_DocComponentWiseArithmeticRhsType( sbHeader, fullTypeName, fullTypeName, GEN_OP_ARITHMETIC_MUL );
+		String_Appendf( sbHeader, "inline %s comp_mul( const %s& lhs, const %s& rhs );\n", fullTypeName, fullTypeName, fullTypeName );
+		String_Append(  sbHeader, "\n" );
+
+		String_Appendf( sbInl, "%s comp_mul( const %s& lhs, const %s& rhs )\n", fullTypeName, fullTypeName, fullTypeName );
+		String_Append(  sbInl, "{\n" );
+		String_Appendf( sbInl, "\treturn %s(\n", fullTypeName );
+		for ( u32 i = 0; i < numRows; i++ ) {
+			String_Appendf( sbInl, "\t\tlhs[%d] %c rhs[%d]", i, opStr, i );
+
+			if ( i != numRows - 1 ) {
+				String_Append( sbInl, "," );
+			}
+
+			String_Append( sbInl, "\n" );
+		}
+		String_Append( sbInl, "\t);\n" );
+		String_Append(  sbInl, "}\n" );
+		String_Append(  sbInl, "\n" );
+	}
+
+	// comp_div
+	{
+		char opStr = GEN_OPERATORS_ARITHMETIC[GEN_OP_ARITHMETIC_DIV];
+		
+		Gen_DocComponentWiseArithmeticRhsType( sbHeader, fullTypeName, fullTypeName, GEN_OP_ARITHMETIC_DIV );
+		String_Appendf( sbHeader, "inline %s comp_div( const %s& lhs, const %s& rhs );\n", fullTypeName, fullTypeName, fullTypeName );
+		String_Append(  sbHeader, "\n" );
+
+		String_Appendf( sbInl, "%s comp_div( const %s& lhs, const %s& rhs )\n", fullTypeName, fullTypeName, fullTypeName );
+		String_Append(  sbInl, "{\n" );
+		String_Appendf( sbInl, "\treturn %s(\n", fullTypeName );
+		for ( u32 i = 0; i < numRows; i++ ) {
+			String_Appendf( sbInl, "\t\tlhs[%d] %c rhs[%d]", i, opStr, i );
+
+			if ( i != numRows - 1 ) {
+				String_Append( sbInl, "," );
+			}
+
+			String_Append( sbInl, "\n" );
+		}
+		String_Append( sbInl, "\t);\n" );
+		String_Append(  sbInl, "}\n" );
+		String_Append(  sbInl, "\n" );
+	}
 }
 
 void Gen_MatrixTranslate( const genType_t type, const u32 numRows, const u32 numCols, stringBuilder_t* sbHeader, stringBuilder_t* sbInl ) {

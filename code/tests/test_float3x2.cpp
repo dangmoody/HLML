@@ -351,6 +351,36 @@ TEMPER_TEST( TestTranspose_float3x2 )
 	TEMPER_PASS();
 }
 
+TEMPER_TEST( TestCompMulDiv_float3x2 )
+{
+	float3x2 answer_mul = float3x2(
+		8.000000f, 8.000000f,
+		32.000000f, 32.000000f,
+		192.000000f, 192.000000f
+	);
+	float3x2 answer_div = float3x2(
+		2.000000f, 2.000000f,
+		2.000000f, 2.000000f,
+		3.000000f, 3.000000f
+	);
+
+	float3x2 a = float3x2(
+		4.000000f, 4.000000f,
+		8.000000f, 8.000000f,
+		24.000000f, 24.000000f
+	);
+	float3x2 b = float3x2(
+		2.000000f, 2.000000f,
+		4.000000f, 4.000000f,
+		8.000000f, 8.000000f
+	);
+
+	TEMPER_EXPECT_TRUE( comp_mul( a, b ) == answer_mul );
+	TEMPER_EXPECT_TRUE( comp_div( a, b ) == answer_div );
+
+	TEMPER_PASS();
+}
+
 TEMPER_SUITE( Test_float3x2 )
 {
 	TEMPER_RUN_TEST( TestAssignment_float3x2 );
@@ -364,4 +394,5 @@ TEMPER_SUITE( Test_float3x2 )
 	TEMPER_RUN_TEST( TestArray_float3x2 );
 	TEMPER_RUN_TEST( TestIdentity_float3x2 );
 	TEMPER_RUN_TEST( TestTranspose_float3x2 );
+	TEMPER_RUN_TEST( TestCompMulDiv_float3x2 );
 }

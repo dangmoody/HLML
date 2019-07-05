@@ -422,6 +422,40 @@ TEMPER_TEST( TestInverse_float4x4 )
 	TEMPER_PASS();
 }
 
+TEMPER_TEST( TestCompMulDiv_float4x4 )
+{
+	float4x4 answer_mul = float4x4(
+		8.000000f, 8.000000f, 8.000000f, 8.000000f,
+		32.000000f, 32.000000f, 32.000000f, 32.000000f,
+		192.000000f, 192.000000f, 192.000000f, 192.000000f,
+		300.000000f, 300.000000f, 300.000000f, 300.000000f
+	);
+	float4x4 answer_div = float4x4(
+		2.000000f, 2.000000f, 2.000000f, 2.000000f,
+		2.000000f, 2.000000f, 2.000000f, 2.000000f,
+		3.000000f, 3.000000f, 3.000000f, 3.000000f,
+		3.000000f, 3.000000f, 3.000000f, 3.000000f
+	);
+
+	float4x4 a = float4x4(
+		4.000000f, 4.000000f, 4.000000f, 4.000000f,
+		8.000000f, 8.000000f, 8.000000f, 8.000000f,
+		24.000000f, 24.000000f, 24.000000f, 24.000000f,
+		30.000000f, 30.000000f, 30.000000f, 30.000000f
+	);
+	float4x4 b = float4x4(
+		2.000000f, 2.000000f, 2.000000f, 2.000000f,
+		4.000000f, 4.000000f, 4.000000f, 4.000000f,
+		8.000000f, 8.000000f, 8.000000f, 8.000000f,
+		10.000000f, 10.000000f, 10.000000f, 10.000000f
+	);
+
+	TEMPER_EXPECT_TRUE( comp_mul( a, b ) == answer_mul );
+	TEMPER_EXPECT_TRUE( comp_div( a, b ) == answer_div );
+
+	TEMPER_PASS();
+}
+
 TEMPER_TEST( TestDeterminant_float4x4 )
 {
 	float4x4 mat = float4x4(
@@ -637,6 +671,7 @@ TEMPER_SUITE( Test_float4x4 )
 	TEMPER_RUN_TEST( TestIdentity_float4x4 );
 	TEMPER_RUN_TEST( TestTranspose_float4x4 );
 	TEMPER_RUN_TEST( TestInverse_float4x4 );
+	TEMPER_RUN_TEST( TestCompMulDiv_float4x4 );
 	TEMPER_RUN_TEST( TestDeterminant_float4x4 );
 	TEMPER_RUN_TEST( TestTranslate_float4x4 );
 	TEMPER_RUN_TEST( TestRotate_float4x4 );

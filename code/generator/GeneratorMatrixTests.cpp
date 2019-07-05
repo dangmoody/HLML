@@ -64,6 +64,8 @@ bool GeneratorMatrixTests::Generate( const genType_t type, const u32 numRows, co
 
 	GenerateTestInverse();
 
+	GenerateTestCompMulDiv();
+
 	GenerateTestDeterminant();
 
 	GenerateTestTranslate();
@@ -227,19 +229,19 @@ void GeneratorMatrixTests::GenerateTestArithmetic() {
 
 	String_Appendf( &m_codeTests, "TEMPER_TEST( %s )\n", testNames[GEN_OP_ARITHMETIC_ADD] );
 	String_Append(  &m_codeTests, "{\n" );
-	GetTestCodeArithmeticInternal( GEN_OP_ARITHMETIC_ADD, valuesLhs, valuesRhs, &m_codeTests );
+	GetTestCodeOperatorArithmeticInternal( GEN_OP_ARITHMETIC_ADD, valuesLhs, valuesRhs, &m_codeTests );
 	String_Append(  &m_codeTests, "}\n" );
 	String_Append(  &m_codeTests, "\n" );
 
 	String_Appendf( &m_codeTests, "TEMPER_TEST( %s )\n", testNames[GEN_OP_ARITHMETIC_SUB] );
 	String_Append(  &m_codeTests, "{\n" );
-	GetTestCodeArithmeticInternal( GEN_OP_ARITHMETIC_SUB, valuesLhs, valuesRhs, &m_codeTests );
+	GetTestCodeOperatorArithmeticInternal( GEN_OP_ARITHMETIC_SUB, valuesLhs, valuesRhs, &m_codeTests );
 	String_Append(  &m_codeTests, "}\n" );
 	String_Append(  &m_codeTests, "\n" );
 
 	String_Appendf( &m_codeTests, "TEMPER_TEST( %s )\n", testNames[GEN_OP_ARITHMETIC_MUL] );
 	String_Append(  &m_codeTests, "{\n" );
-	GetTestCodeArithmeticInternal( GEN_OP_ARITHMETIC_MUL, valuesLhs, valuesRhs, &m_codeTests );
+	GetTestCodeOperatorArithmeticInternal( GEN_OP_ARITHMETIC_MUL, valuesLhs, valuesRhs, &m_codeTests );
 	String_Append(  &m_codeTests, "}\n" );
 	String_Append(  &m_codeTests, "\n" );
 
@@ -247,9 +249,9 @@ void GeneratorMatrixTests::GenerateTestArithmetic() {
 	String_Appendf( &m_codeTests, "TEMPER_TEST( %s )\n", testNames[GEN_OP_ARITHMETIC_DIV] );
 	String_Append(  &m_codeTests, "{\n" );
 	if ( m_numRows == m_numCols && Gen_IsFloatingPointType( m_type ) ) {
-		GetTestCodeArithmeticInternal( GEN_OP_ARITHMETIC_DIV, valuesDiv, valuesDiv, &m_codeTests );
+		GetTestCodeOperatorArithmeticInternal( GEN_OP_ARITHMETIC_DIV, valuesDiv, valuesDiv, &m_codeTests );
 	} else {
-		GetTestCodeArithmeticInternal( GEN_OP_ARITHMETIC_DIV, valuesLhs, valuesRhs, &m_codeTests );
+		GetTestCodeOperatorArithmeticInternal( GEN_OP_ARITHMETIC_DIV, valuesLhs, valuesRhs, &m_codeTests );
 	}
 	String_Append( &m_codeTests, "}\n" );
 	String_Append( &m_codeTests, "\n" );
@@ -743,6 +745,72 @@ void GeneratorMatrixTests::GenerateTestInverse() {
 	String_Appendf( &m_codeSuite, "\tTEMPER_RUN_TEST( %s );\n", testName );
 }
 
+void GeneratorMatrixTests::GenerateTestCompMulDiv() {
+	if ( m_type == GEN_TYPE_BOOL ) {
+		return;
+	}
+
+	char testName[GEN_STRING_LENGTH_TEST_NAME];
+	snprintf( testName, GEN_STRING_LENGTH_TEST_NAME, "TestCompMulDiv_%s", m_fullTypeName );
+
+	float matA[4][4] = {
+		{ 4.0f,  4.0f,  4.0f,  4.0f  },
+		{ 8.0f,  8.0f,  8.0f,  8.0f  },
+		{ 24.0f, 24.0f, 24.0f, 24.0f },
+		{ 30.0f, 30.0f, 30.0f, 30.0f }
+	};
+
+	float matB[4][4] = {
+		{ 2.0f,  2.0f,  2.0f,  2.0f  },
+		{ 4.0f,  4.0f,  4.0f,  4.0f  },
+		{ 8.0f,  8.0f,  8.0f,  8.0f  },
+		{ 10.0f, 10.0f, 10.0f, 10.0f }
+	};
+
+	float matAnswerMul[4][4] = {
+		{ 8.0f,   8.0f,   8.0f,   8.0f   },
+		{ 32.0f,  32.0f,  32.0f,  32.0f  },
+		{ 192.0f, 192.0f, 192.0f, 192.0f },
+		{ 300.0f, 300.0f, 300.0f, 300.0f }
+	};
+
+	float matAnswerDiv[4][4] = {
+		{ 2.0f, 2.0f, 2.0f, 2.0f },
+		{ 2.0f, 2.0f, 2.0f, 2.0f },
+		{ 3.0f, 3.0f, 3.0f, 3.0f },
+		{ 3.0f, 3.0f, 3.0f, 3.0f }
+	};
+
+	char parmListA[GEN_STRING_LENGTH_PARM_LIST_MATRIX];
+	char parmListB[GEN_STRING_LENGTH_PARM_LIST_MATRIX];
+
+	char parmListAnswerMul[GEN_STRING_LENGTH_PARM_LIST_MATRIX];
+	char parmListAnswerDiv[GEN_STRING_LENGTH_PARM_LIST_MATRIX];
+
+	Gen_GetParmListMatrix( m_type, m_numRows, m_numCols, matA, parmListA );
+	Gen_GetParmListMatrix( m_type, m_numRows, m_numCols, matB, parmListB );
+
+	Gen_GetParmListMatrix( m_type, m_numRows, m_numCols, matAnswerMul, parmListAnswerMul );
+	Gen_GetParmListMatrix( m_type, m_numRows, m_numCols, matAnswerDiv, parmListAnswerDiv );
+
+	String_Appendf( &m_codeTests, "TEMPER_TEST( %s )\n", testName );
+	String_Append(  &m_codeTests, "{\n" );
+	String_Appendf( &m_codeTests, "\t%s answer_mul = %s%s;\n", m_fullTypeName, m_fullTypeName, parmListAnswerMul );
+	String_Appendf( &m_codeTests, "\t%s answer_div = %s%s;\n", m_fullTypeName, m_fullTypeName, parmListAnswerDiv );
+	String_Append(  &m_codeTests, "\n" );
+	String_Appendf( &m_codeTests, "\t%s a = %s%s;\n", m_fullTypeName, m_fullTypeName, parmListA );
+	String_Appendf( &m_codeTests, "\t%s b = %s%s;\n", m_fullTypeName, m_fullTypeName, parmListB );
+	String_Append(  &m_codeTests, "\n" );
+	String_Append(  &m_codeTests, "\tTEMPER_EXPECT_TRUE( comp_mul( a, b ) == answer_mul );\n" );
+	String_Append(  &m_codeTests, "\tTEMPER_EXPECT_TRUE( comp_div( a, b ) == answer_div );\n" );
+	String_Append(  &m_codeTests, "\n" );
+	String_Append(  &m_codeTests, "\tTEMPER_PASS();\n" );
+	String_Append(  &m_codeTests, "}\n" );
+	String_Append(  &m_codeTests, "\n" );
+
+	String_Appendf( &m_codeSuite, "\tTEMPER_RUN_TEST( %s );\n", testName );
+}
+
 void GeneratorMatrixTests::GenerateTestDeterminant() {
 	if ( m_type == GEN_TYPE_BOOL || m_type == GEN_TYPE_UINT ) {
 		return;
@@ -803,10 +871,10 @@ void GeneratorMatrixTests::GenerateTestDeterminant() {
 	}
 
 	String_Appendf( &m_codeTests, "TEMPER_TEST( %s )\n", testName );
-	String_Appendf( &m_codeTests, "{\n" );
+	String_Append(  &m_codeTests, "{\n" );
 	String_Appendf( &m_codeTests, "\t%s mat = %s%s;\n", m_fullTypeName, m_fullTypeName, parmList );
 	String_Appendf( &m_codeTests, "\t%s det = determinant( mat );\n", m_memberTypeString );
-	String_Appendf( &m_codeTests, "\n" );
+	String_Append(  &m_codeTests, "\n" );
 	if ( Gen_IsFloatingPointType( m_type ) ) {
 		const char* floateqStr = Gen_GetFuncNameFloateq( m_type );
 
@@ -1340,7 +1408,7 @@ void GeneratorMatrixTests::GenerateTestLookAt() {
 	String_Appendf( &m_codeSuite, "\tTEMPER_RUN_TEST( %s );\n", testName );
 }
 
-void GeneratorMatrixTests::GetTestCodeArithmeticInternal( const genOpArithmetic_t op,
+void GeneratorMatrixTests::GetTestCodeOperatorArithmeticInternal( const genOpArithmetic_t op,
 	const float valuesLhs[GEN_COMPONENT_COUNT_MAX][GEN_COMPONENT_COUNT_MAX], const float valuesRhs[GEN_COMPONENT_COUNT_MAX][GEN_COMPONENT_COUNT_MAX], stringBuilder_t* sb ) const {
 	assert( op >= 0 );
 	assert( op < GEN_OP_ARITHMETIC_COUNT );
