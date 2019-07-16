@@ -23,6 +23,7 @@
     <ClCompile Include="GeneratorMatrixTests.cpp" />
     <ClCompile Include="GeneratorVectorTests.cpp" />
     <ClCompile Include="GeneratorVector.cpp" />
+    <ClCompile Include="gen_funcs_vector_sse.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="string_builder.cpp" />
     <ClCompile Include="time_win64.cpp" />
@@ -39,8 +40,10 @@
     <ClInclude Include="GeneratorMatrixTests.h" />
     <ClInclude Include="GeneratorVectorTests.h" />
     <ClInclude Include="GeneratorVector.h" />
+    <ClInclude Include="gen_funcs_vector_sse.h" />
     <ClInclude Include="int_types.h" />
     <ClInclude Include="string_builder.h" />
+    <ClInclude Include="string_helpers.h" />
     <ClInclude Include="time.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">

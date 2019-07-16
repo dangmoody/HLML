@@ -25,8 +25,11 @@ along with hlml.  If not, see <http://www.gnu.org/licenses/>.
 // GENERATED FILE.  DO NOT EDIT.
 
 #include "../../code/out/gen/hlml_functions_vector.h"
+#include "../../code/out/gen/hlml_functions_vector_sse.h"
 
 #include <temper/temper.h>
+
+#include <xmmintrin.h>
 
 // also tests equality operators
 TEMPER_TEST( TestAssignment_float2 )
@@ -218,10 +221,43 @@ TEMPER_TEST( TestNormalized_float2 )
 
 TEMPER_TEST( TestDot_float2 )
 {
+	// scalar
 	float2 a = float2( 0.000000f, 1.000000f );
 	float2 b = float2( 0.000000f, -1.000000f );
 
 	TEMPER_EXPECT_TRUE( floateq( dot( a, b ), -1.000000f ) );
+
+	// SIMD
+	float componentsLHS[2][4] =
+	{
+		/* x */ { 0.000000f, 0.000000f, 0.000000f, 0.000000f },
+		/* y */ { 1.000000f, 1.000000f, 1.000000f, 1.000000f }
+	};
+
+	float componentsRHS[2][4] =
+	{
+		/* x */ { 0.000000f, 0.000000f, 0.000000f, 0.000000f },
+		/* y */ { -1.000000f, -1.000000f, -1.000000f, -1.000000f }
+	};
+
+	sse_input_dot_float2_t in;
+
+	in.lhs[0] = _mm_load_ps( componentsLHS[0] );
+	in.lhs[1] = _mm_load_ps( componentsLHS[1] );
+
+	in.rhs[0] = _mm_load_ps( componentsRHS[0] );
+	in.rhs[1] = _mm_load_ps( componentsRHS[1] );
+
+	__m128 results;
+	dot_sse( in, &results );
+
+	float dotResults[4];
+	_mm_store_ps( dotResults, results );
+
+	TEMPER_EXPECT_TRUE( floateq( dotResults[0], -1.000000f ) );
+	TEMPER_EXPECT_TRUE( floateq( dotResults[1], -1.000000f ) );
+	TEMPER_EXPECT_TRUE( floateq( dotResults[2], -1.000000f ) );
+	TEMPER_EXPECT_TRUE( floateq( dotResults[3], -1.000000f ) );
 
 	TEMPER_PASS();
 }

@@ -281,6 +281,7 @@ TEMPER_TEST( TestLength_int4 )
 
 TEMPER_TEST( TestDot_int4 )
 {
+	// scalar
 	int4 a = int4( 0, 1, 0, 0 );
 	int4 b = int4( 0, -1, 0, 0 );
 

@@ -220,6 +220,7 @@ TEMPER_TEST( TestNormalized_double4 )
 
 TEMPER_TEST( TestDot_double4 )
 {
+	// scalar
 	double4 a = double4( 0.000000, 1.000000, 0.000000, 0.000000 );
 	double4 b = double4( 0.000000, -1.000000, 0.000000, 0.000000 );
 

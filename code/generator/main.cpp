@@ -33,6 +33,7 @@ along with hlml.  If not, see <http://www.gnu.org/licenses/>.
 #include "GeneratorMatrixTests.h"
 
 #include "gen_funcs_vector.h"
+#include "gen_funcs_vector_sse.h"
 #include "gen_funcs_matrix.h"
 
 #include "FileIO.h"
@@ -329,6 +330,57 @@ static bool GenerateFunctionsMatrix( void ) {
 	}
 
 	String_Appendf( &contentHeader, "#include \"" GEN_FILENAME_FUNCTIONS_MATRIX ".inl\"\n" );
+
+	bool32 wroteHeader	= FS_WriteEntireFile( filePathHeader, contentHeader.str, contentHeader.length );
+	bool32 wroteInl		= FS_WriteEntireFile( filePathInl, contentInl.str, contentInl.length );
+
+	Mem_Reset();
+
+	return wroteHeader && wroteInl;
+}
+
+static bool GenerateFunctionsVectorSSE( void ) {
+	char filePathHeader[64] = { 0 };
+	snprintf( filePathHeader, 64, "%s%s.h", GEN_OUT_GEN_FOLDER_PATH, GEN_FILENAME_FUNCTIONS_VECTOR_SSE );
+
+	char filePathInl[64] = { 0 };
+	snprintf( filePathInl, 64, "%s%s.inl", GEN_OUT_GEN_FOLDER_PATH, GEN_FILENAME_FUNCTIONS_VECTOR_SSE );
+
+	stringBuilder_t contentHeader = String_Create( 8 * KB_TO_BYTES );
+	stringBuilder_t contentInl = String_Create( 16 * KB_TO_BYTES );
+
+	String_Append( &contentHeader, GEN_FILE_HEADER );
+	String_Append( &contentInl, GEN_FILE_HEADER );
+
+	String_Append( &contentHeader, "#include <xmmintrin.h>\n" );
+
+	for ( u32 typeIndex = 0; typeIndex < GEN_TYPE_COUNT; typeIndex++ ) {
+		genType_t type = static_cast<genType_t>( typeIndex );
+
+		if ( type != GEN_TYPE_FLOAT ) {
+			continue;
+		}
+
+		for ( u32 componentIndex = GEN_COMPONENT_COUNT_MIN; componentIndex <= GEN_COMPONENT_COUNT_MAX; componentIndex++ ) {
+			char fullTypeName[GEN_STRING_LENGTH_TYPE_NAME];
+			Gen_GetFullTypeName( type, 1, componentIndex, fullTypeName );
+
+			printf( "SIMD functions %s...", fullTypeName );
+
+			String_Appendf( &contentHeader, "// %s\n", fullTypeName );
+			String_Appendf( &contentInl, "// %s\n", fullTypeName );
+
+			Gen_SSE_VectorDot( type, componentIndex, &contentHeader, &contentInl );
+			Gen_SSE_VectorLength( type, componentIndex, &contentHeader, &contentInl );
+
+			String_Append( &contentHeader, "\n" );
+			String_Append( &contentInl, "\n" );
+
+			printf( "OK.\n" );
+		}
+	}
+
+	String_Append( &contentHeader, "#include \"" GEN_FILENAME_FUNCTIONS_VECTOR_SSE ".inl\"\n" );
 
 	bool32 wroteHeader	= FS_WriteEntireFile( filePathHeader, contentHeader.str, contentHeader.length );
 	bool32 wroteInl		= FS_WriteEntireFile( filePathInl, contentInl.str, contentInl.length );
@@ -659,6 +711,10 @@ int main( int argc, char** argv ) {
 	printf( "Generating...\n" );
 	printf( "\n" );
 
+	FS_CleanFolder( GEN_OUT_GEN_FOLDER_PATH );
+
+	printf( "\n" );
+
 	Mem_Init( 2 * MB_TO_BYTES );
 
 #ifdef _WIN32
@@ -681,13 +737,14 @@ int main( int argc, char** argv ) {
 	printf( "======= Done. =======\n\n" );
 
 	printf( "======= Generating functions. =======\n" );
-	FAIL_IF( !GenerateFunctionsVector(), "Failed generating main vector functions header.\n" );
-	FAIL_IF( !GenerateFunctionsMatrix(), "Failed generating main matrix functions header.\n" );
+	FAIL_IF( !GenerateFunctionsVector(),    "Failed generating main vector functions.\n" );
+	FAIL_IF( !GenerateFunctionsMatrix(),    "Failed generating main matrix functions.\n" );
+	FAIL_IF( !GenerateFunctionsVectorSSE(), "Failed generating main SIMD functions.\n" );
 	printf( "======= Done. =======\n\n" );
 
 	printf( "======= Generating operators. =======\n" );
-	FAIL_IF( !GenerateOperatorsVector(), "Failed generating vector operators header.\n" );
-	FAIL_IF( !GenerateOperatorsMatrix(), "Failed generating matrix operators header.\n" );
+	FAIL_IF( !GenerateOperatorsVector(), "Failed generating vector operators.\n" );
+	FAIL_IF( !GenerateOperatorsMatrix(), "Failed generating matrix operators.\n" );
 	printf( "======= Done. =======\n\n" );
 
 	printf( "======= Generating tests. =======\n" );

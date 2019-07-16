@@ -218,6 +218,7 @@ TEMPER_TEST( TestNormalized_double2 )
 
 TEMPER_TEST( TestDot_double2 )
 {
+	// scalar
 	double2 a = double2( 0.000000, 1.000000 );
 	double2 b = double2( 0.000000, -1.000000 );
 

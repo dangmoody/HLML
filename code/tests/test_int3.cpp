@@ -280,6 +280,7 @@ TEMPER_TEST( TestLength_int3 )
 
 TEMPER_TEST( TestDot_int3 )
 {
+	// scalar
 	int3 a = int3( 0, 1, 0 );
 	int3 b = int3( 0, -1, 0 );
 

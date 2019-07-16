@@ -23,6 +23,8 @@ private:
 	const char*		m_typeString;
 	const char*		m_memberTypeString;
 
+	const char*		m_registerName;
+
 private:
 	void			GenerateTestAssignment();
 	void			GenerateTestArray();
