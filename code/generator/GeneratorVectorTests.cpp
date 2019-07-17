@@ -276,8 +276,6 @@ void GeneratorVectorTests::GenerateTestRelational() {
 	char testName[GEN_STRING_LENGTH_TEST_NAME] = { 0 };
 	snprintf( testName, GEN_STRING_LENGTH_TEST_NAME, "TestRelational_%s", m_fullTypeName );
 
-	String_Appendf( &m_codeSuite, "\tTEMPER_RUN_TEST( %s );\n", testName );
-
 	char boolTypeName[GEN_STRING_LENGTH_NUMERIC_LITERAL];
 	snprintf( boolTypeName, GEN_STRING_LENGTH_NUMERIC_LITERAL, "bool%d", m_numComponents );
 
