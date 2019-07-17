@@ -199,6 +199,7 @@ TEMPER_TEST( TestRelational_double3 )
 
 TEMPER_TEST( TestLength_double3 )
 {
+	// scalar
 	double3 vec = double3( 2.000000 );
 
 	TEMPER_EXPECT_TRUE( doubleeq( lengthsqr( vec ), 12.0 ) );

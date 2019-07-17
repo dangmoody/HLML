@@ -202,10 +202,13 @@ TEMPER_TEST( TestRelational_float3 )
 
 TEMPER_TEST( TestLength_float3 )
 {
+	// scalar
 	float3 vec = float3( 2.000000f );
 
 	TEMPER_EXPECT_TRUE( floateq( lengthsqr( vec ), 12.0f ) );
 	TEMPER_EXPECT_TRUE( floateq( length( vec ), 3.46410161514f ) );
+
+	// SSE
 
 	TEMPER_PASS();
 }
@@ -231,16 +234,16 @@ TEMPER_TEST( TestDot_float3 )
 	// SIMD
 	float componentsLHS[3][4] =
 	{
-		/* x */ { 0.000000f, 0.000000f, 0.000000f, 0.000000f },
-		/* y */ { 1.000000f, 1.000000f, 1.000000f, 1.000000f },
-		/* z */ { 0.000000f, 0.000000f, 0.000000f, 0.000000f }
+		{ 0.000000f, 0.000000f, 0.000000f, 0.000000f },
+		{ 1.000000f, 1.000000f, 1.000000f, 1.000000f },
+		{ 0.000000f, 0.000000f, 0.000000f, 0.000000f }
 	};
 
 	float componentsRHS[3][4] =
 	{
-		/* x */ { 0.000000f, 0.000000f, 0.000000f, 0.000000f },
-		/* y */ { -1.000000f, -1.000000f, -1.000000f, -1.000000f },
-		/* z */ { 0.000000f, 0.000000f, 0.000000f, 0.000000f }
+		{ 0.000000f, 0.000000f, 0.000000f, 0.000000f },
+		{ -1.000000f, -1.000000f, -1.000000f, -1.000000f },
+		{ 0.000000f, 0.000000f, 0.000000f, 0.000000f }
 	};
 
 	sse_input_dot_float3_t in;

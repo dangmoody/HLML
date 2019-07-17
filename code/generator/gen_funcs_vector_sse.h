@@ -2,6 +2,10 @@
 
 #include "gen_common.h"
 
+					// DM: not sure this is the best place for these to live
+extern void			Gen_GetValuesArray1D( const genType_t type, const u32 numValues, const float* values, stringBuilder_t* sb );
+extern void			Gen_GetValuesArray2D( const genType_t type, const u32 rows, const u32 cols, const float* values, stringBuilder_t* sb );
+
 inline const char*	Gen_SSE_GetRegisterName( const genType_t type );
 
 inline const char*	Gen_SSE_GetFuncStrLoad( const genType_t type );

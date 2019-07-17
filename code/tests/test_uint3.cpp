@@ -270,6 +270,7 @@ TEMPER_TEST( TestBitwiseUnary_uint3 )
 
 TEMPER_TEST( TestLength_uint3 )
 {
+	// scalar
 	uint3 vec = uint3( 2U );
 
 	TEMPER_EXPECT_TRUE( floateq( lengthsqr( vec ), 12.0f ) );

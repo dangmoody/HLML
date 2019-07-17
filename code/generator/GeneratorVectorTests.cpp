@@ -497,10 +497,17 @@ void GeneratorVectorTests::GenerateTestLength() {
 
 	String_Appendf( &m_codeTests, "TEMPER_TEST( %s )\n", testName );
 	String_Append(  &m_codeTests, "{\n" );
+	String_Append(  &m_codeTests, "\t// scalar\n" );
 	String_Appendf( &m_codeTests, "\t%s vec = %s( %s );\n", m_fullTypeName, m_fullTypeName, twoStr );
 	String_Append(  &m_codeTests, "\n" );
 	String_Appendf( &m_codeTests, "\tTEMPER_EXPECT_TRUE( %s( lengthsqr( vec ), %s%s ) );\n", floateqStr, squaredLengthStr, fSpecifier );
 	String_Appendf( &m_codeTests, "\tTEMPER_EXPECT_TRUE( %s( length( vec ), %s%s ) );\n", floateqStr, lengthStr, fSpecifier );
+
+	if ( m_type == GEN_TYPE_FLOAT ) {
+		String_Append(  &m_codeTests, "\n" );
+		String_Append(  &m_codeTests, "\t// SSE\n" );
+	}
+
 	String_Append(  &m_codeTests, "\n" );
 	String_Append(  &m_codeTests, "\tTEMPER_PASS();\n" );
 	String_Append(  &m_codeTests, "}\n" );
@@ -592,56 +599,30 @@ void GeneratorVectorTests::GenerateTestDot() {
 		const char* sseLoadStr = Gen_SSE_GetFuncStrLoad( m_type );
 		const char* sseStoreStr = Gen_SSE_GetFuncStrStore( m_type );
 
+		float valuesLHS[4][4] = {
+			{ 0.0f, 0.0f, 0.0f, 0.0f },	// x
+			{ 1.0f, 1.0f, 1.0f, 1.0f },	// y
+			{ 0.0f, 0.0f, 0.0f, 0.0f },	// z
+			{ 0.0f, 0.0f, 0.0f, 0.0f }	// w
+		};
+
+		float valuesRHS[4][4] = {
+			{  0.0f,  0.0f,  0.0f,  0.0f },	// x
+			{ -1.0f, -1.0f, -1.0f, -1.0f },	// y
+			{  0.0f,  0.0f,  0.0f,  0.0f },	// z
+			{  0.0f,  0.0f,  0.0f,  0.0f }	// w
+		};
+
 		String_Append(  &m_codeTests, "\n" );
 		String_Append(  &m_codeTests, "\t// SIMD\n" );
 		String_Appendf( &m_codeTests, "\t%s componentsLHS[%d][4] =\n", m_memberTypeString, m_numComponents );
-		String_Append(  &m_codeTests, "\t{\n" );
-		for ( u32 componentIndex = 0; componentIndex < m_numComponents; componentIndex++ ) {
-			String_Appendf(  &m_codeTests, "\t\t/* %c */ { ", GEN_COMPONENT_NAMES_VECTOR[componentIndex] );
-			for ( u32 i = 0; i < 4; i++ ) {
-				char componentStr[GEN_STRING_LENGTH_NUMERIC_LITERAL];
-				Gen_GetNumericLiteral( m_type, valuesA[componentIndex], componentStr );
-				
-				String_Appendf( &m_codeTests, "%s", componentStr );
-
-				if ( i != 3 ) {
-					String_Append( &m_codeTests, ", " );
-				}
-			}
-			String_Append( &m_codeTests, " }" );
-
-			if ( componentIndex != m_numComponents - 1 ) {
-				String_Append( &m_codeTests, "," );
-			}
-
-			String_Append( &m_codeTests, "\n" );
-		}
-		String_Append(  &m_codeTests, "\t};\n" );
+		Gen_GetValuesArray2D( m_type, m_numComponents, 4, *valuesLHS, &m_codeTests );
 		String_Append(  &m_codeTests, "\n" );
+
 		String_Appendf( &m_codeTests, "\t%s componentsRHS[%d][4] =\n", m_memberTypeString, m_numComponents );
-		String_Append(  &m_codeTests, "\t{\n" );
-		for ( u32 componentIndex = 0; componentIndex < m_numComponents; componentIndex++ ) {
-			String_Appendf(  &m_codeTests, "\t\t/* %c */ { ", GEN_COMPONENT_NAMES_VECTOR[componentIndex] );
-			for ( u32 i = 0; i < 4; i++ ) {
-				char componentStr[GEN_STRING_LENGTH_NUMERIC_LITERAL];
-				Gen_GetNumericLiteral( m_type, valuesB[componentIndex], componentStr );
-				
-				String_Appendf( &m_codeTests, "%s", componentStr );
-
-				if ( i != 3 ) {
-					String_Append( &m_codeTests, ", " );
-				}
-			}
-			String_Append( &m_codeTests, " }" );
-
-			if ( componentIndex != m_numComponents - 1 ) {
-				String_Append( &m_codeTests, "," );
-			}
-
-			String_Append( &m_codeTests, "\n" );
-		}
-		String_Append(  &m_codeTests, "\t};\n" );
+		Gen_GetValuesArray2D( m_type, m_numComponents, 4, *valuesRHS, &m_codeTests );
 		String_Append(  &m_codeTests, "\n" );
+		
 		String_Appendf( &m_codeTests, "\t%s in;\n", inputDataName );
 		String_Append(  &m_codeTests, "\n" );
 		for ( u32 i = 0; i < m_numComponents; i++ ) {
@@ -666,6 +647,7 @@ void GeneratorVectorTests::GenerateTestDot() {
 			}
 		}
 	}
+
 	String_Append(  &m_codeTests, "\n" );
 	String_Append(  &m_codeTests, "\tTEMPER_PASS();\n" );
 	String_Append(  &m_codeTests, "}\n" );

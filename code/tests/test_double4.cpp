@@ -200,6 +200,7 @@ TEMPER_TEST( TestRelational_double4 )
 
 TEMPER_TEST( TestLength_double4 )
 {
+	// scalar
 	double4 vec = double4( 2.000000 );
 
 	TEMPER_EXPECT_TRUE( doubleeq( lengthsqr( vec ), 16.0 ) );
