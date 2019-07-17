@@ -52,6 +52,26 @@ void length_sse( const sse_input_length_float2_t& in, __m128* out_results )
 	*out_results = _mm_sqrt_ps( *out_results );
 }
 
+void distancesq_sse( const sse_input_distance_float2_t& in, __m128* out_results )
+{
+	sse_input_length_float2_t data;
+
+	data.comp[0] = _mm_sub_ps( in.lhs[0], in.rhs[0] );
+	data.comp[1] = _mm_sub_ps( in.lhs[1], in.rhs[1] );
+
+	lengthsq_sse( data, out_results );
+}
+
+void distance_sse( const sse_input_distance_float2_t& in, __m128* out_results )
+{
+	sse_input_length_float2_t data;
+
+	data.comp[0] = _mm_sub_ps( in.lhs[0], in.rhs[0] );
+	data.comp[1] = _mm_sub_ps( in.lhs[1], in.rhs[1] );
+
+	length_sse( data, out_results );
+}
+
 
 // float3
 void dot_sse( const sse_input_dot_float3_t& in, __m128* out_results )
@@ -84,6 +104,28 @@ void length_sse( const sse_input_length_float3_t& in, __m128* out_results )
 {
 	lengthsq_sse( in, out_results );
 	*out_results = _mm_sqrt_ps( *out_results );
+}
+
+void distancesq_sse( const sse_input_distance_float3_t& in, __m128* out_results )
+{
+	sse_input_length_float3_t data;
+
+	data.comp[0] = _mm_sub_ps( in.lhs[0], in.rhs[0] );
+	data.comp[1] = _mm_sub_ps( in.lhs[1], in.rhs[1] );
+	data.comp[2] = _mm_sub_ps( in.lhs[2], in.rhs[2] );
+
+	lengthsq_sse( data, out_results );
+}
+
+void distance_sse( const sse_input_distance_float3_t& in, __m128* out_results )
+{
+	sse_input_length_float3_t data;
+
+	data.comp[0] = _mm_sub_ps( in.lhs[0], in.rhs[0] );
+	data.comp[1] = _mm_sub_ps( in.lhs[1], in.rhs[1] );
+	data.comp[2] = _mm_sub_ps( in.lhs[2], in.rhs[2] );
+
+	length_sse( data, out_results );
 }
 
 
@@ -122,6 +164,30 @@ void length_sse( const sse_input_length_float4_t& in, __m128* out_results )
 {
 	lengthsq_sse( in, out_results );
 	*out_results = _mm_sqrt_ps( *out_results );
+}
+
+void distancesq_sse( const sse_input_distance_float4_t& in, __m128* out_results )
+{
+	sse_input_length_float4_t data;
+
+	data.comp[0] = _mm_sub_ps( in.lhs[0], in.rhs[0] );
+	data.comp[1] = _mm_sub_ps( in.lhs[1], in.rhs[1] );
+	data.comp[2] = _mm_sub_ps( in.lhs[2], in.rhs[2] );
+	data.comp[3] = _mm_sub_ps( in.lhs[3], in.rhs[3] );
+
+	lengthsq_sse( data, out_results );
+}
+
+void distance_sse( const sse_input_distance_float4_t& in, __m128* out_results )
+{
+	sse_input_length_float4_t data;
+
+	data.comp[0] = _mm_sub_ps( in.lhs[0], in.rhs[0] );
+	data.comp[1] = _mm_sub_ps( in.lhs[1], in.rhs[1] );
+	data.comp[2] = _mm_sub_ps( in.lhs[2], in.rhs[2] );
+	data.comp[3] = _mm_sub_ps( in.lhs[3], in.rhs[3] );
+
+	length_sse( data, out_results );
 }
 
 

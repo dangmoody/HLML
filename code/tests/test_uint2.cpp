@@ -286,6 +286,7 @@ TEMPER_TEST( TestDistance_uint2 )
 	uint2 a = uint2( 7U, 4U );
 	uint2 b = uint2( 17U, 6U );
 
+	// scalar
 	float distSqr = distancesqr( a, b );
 	float dist    = distance( a, b );
 

@@ -11,8 +11,9 @@ inline const char*	Gen_SSE_GetRegisterName( const genType_t type );
 inline const char*	Gen_SSE_GetFuncStrLoad( const genType_t type );
 inline const char*	Gen_SSE_GetFuncStrStore( const genType_t type );
 
-inline const char*	Gen_SSE_GetFuncStrMul( const genType_t type );
 inline const char*	Gen_SSE_GetFuncStrAdd( const genType_t type );
+inline const char*	Gen_SSE_GetFuncStrSub( const genType_t type );
+inline const char*	Gen_SSE_GetFuncStrMul( const genType_t type );
 
 inline const char*	Gen_SSE_GetFuncStrSqrt( const genType_t type );
 
@@ -21,6 +22,9 @@ extern void			Gen_SSE_VectorDot( const genType_t type, const u32 numComponents, 
 
 extern void			Gen_SSE_GetInputDataNameLength( const genType_t type, const u32 numComponents, char* outString );
 extern void			Gen_SSE_VectorLength( const genType_t type, const u32 numComponents, stringBuilder_t* sbHeader, stringBuilder_t* sbInl );
+
+extern void			Gen_SSE_GetInputDataNameDistance( const genType_t type, const u32 numComponents, char* outString );
+extern void			Gen_SSE_VectorDistance( const genType_t type, const u32 numComponents, stringBuilder_t* sbHeader, stringBuilder_t* sbInl );
 
 
 const char* Gen_SSE_GetRegisterName( const genType_t type ) {
@@ -79,24 +83,6 @@ const char* Gen_SSE_GetFuncStrStore( const genType_t type ) {
 	}
 }
 
-const char* Gen_SSE_GetFuncStrMul( const genType_t type ) {
-		switch ( type ) {
-		case GEN_TYPE_INT:
-		case GEN_TYPE_UINT:
-		case GEN_TYPE_FLOAT:
-			return "_mm_mul_ps";
-
-		case GEN_TYPE_DOUBLE:
-			return "_mm_mul_pd";
-
-		case GEN_TYPE_BOOL:
-		case GEN_TYPE_COUNT:
-		default:
-			printf( "ERROR: Bad genType_t passed into %s.\n", __FUNCTION__ );
-			return "ERROR";
-	}
-}
-
 const char* Gen_SSE_GetFuncStrAdd( const genType_t type ) {
 		switch ( type ) {
 		case GEN_TYPE_INT:
@@ -106,6 +92,42 @@ const char* Gen_SSE_GetFuncStrAdd( const genType_t type ) {
 
 		case GEN_TYPE_DOUBLE:
 			return "_mm_add_pd";
+
+		case GEN_TYPE_BOOL:
+		case GEN_TYPE_COUNT:
+		default:
+			printf( "ERROR: Bad genType_t passed into %s.\n", __FUNCTION__ );
+			return "ERROR";
+	}
+}
+
+const char* Gen_SSE_GetFuncStrSub( const genType_t type ) {
+		switch ( type ) {
+		case GEN_TYPE_INT:
+		case GEN_TYPE_UINT:
+		case GEN_TYPE_FLOAT:
+			return "_mm_sub_ps";
+
+		case GEN_TYPE_DOUBLE:
+			return "_mm_sub_pd";
+
+		case GEN_TYPE_BOOL:
+		case GEN_TYPE_COUNT:
+		default:
+			printf( "ERROR: Bad genType_t passed into %s.\n", __FUNCTION__ );
+			return "ERROR";
+	}
+}
+
+const char* Gen_SSE_GetFuncStrMul( const genType_t type ) {
+		switch ( type ) {
+		case GEN_TYPE_INT:
+		case GEN_TYPE_UINT:
+		case GEN_TYPE_FLOAT:
+			return "_mm_mul_ps";
+
+		case GEN_TYPE_DOUBLE:
+			return "_mm_mul_pd";
 
 		case GEN_TYPE_BOOL:
 		case GEN_TYPE_COUNT:

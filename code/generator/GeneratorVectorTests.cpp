@@ -827,11 +827,77 @@ void GeneratorVectorTests::GenerateTestDistance() {
 	String_Appendf( &m_codeTests, "\t%s a = %s%s;\n", m_fullTypeName, m_fullTypeName, parmList0 );
 	String_Appendf( &m_codeTests, "\t%s b = %s%s;\n", m_fullTypeName, m_fullTypeName, parmList1 );
 	String_Append(  &m_codeTests, "\n" );
+	String_Append(  &m_codeTests, "\t// scalar\n" );
 	String_Appendf( &m_codeTests, "\t%s distSqr = distancesqr( a, b );\n", floatingPointStr );
 	String_Appendf( &m_codeTests, "\t%s dist    = distance( a, b );\n", floatingPointStr );
 	String_Append(  &m_codeTests, "\n" );
 	String_Appendf( &m_codeTests, "\tTEMPER_EXPECT_TRUE( %s( distSqr, answerDistanceSqr ) );\n", floateqStr );
 	String_Appendf( &m_codeTests, "\tTEMPER_EXPECT_TRUE( %s( dist, answerDistance ) );\n", floateqStr );
+
+	if ( m_type == GEN_TYPE_FLOAT ) {
+		char inputDataName[GEN_STRING_LENGTH_SSE_INPUT_NAME];
+		Gen_SSE_GetInputDataNameDistance( m_type, m_numComponents, inputDataName );
+
+		const char* sseLoadStr = Gen_SSE_GetFuncStrLoad( m_type );
+		const char* sseStoreStr = Gen_SSE_GetFuncStrStore( m_type );
+
+		float valuesLHS[4][4] = {
+			{ 7.0f, 7.0f, 7.0f, 7.0f },	// x
+			{ 4.0f, 4.0f, 4.0f, 4.0f },	// y
+			{ 3.0f, 3.0f, 3.0f, 3.0f },	// z
+			{ 0.0f, 0.0f, 0.0f, 0.0f },	// w
+		};
+
+		float valuesRHS[4][4] = {
+			{ 17.0f, 17.0f, 17.0f, 17.0f },	// x
+			{ 6.0f,  6.0f,  6.0f,  6.0f  },	// y
+			{ 2.0f,  2.0f,  2.0f,  2.0f  },	// z
+			{ 0.0f,  0.0f,  0.0f,  0.0f  },	// w
+		};
+
+		String_Append(  &m_codeTests, "\n" );
+		String_Append(  &m_codeTests, "\t// SSE\n" );
+		String_Appendf( &m_codeTests, "\t%s componentsLHS[%d][4] =\n", m_memberTypeString, m_numComponents );
+		Gen_GetValuesArray2D( m_type, m_numComponents, 4, *valuesLHS, &m_codeTests );
+		String_Append(  &m_codeTests, "\n" );
+
+		String_Appendf( &m_codeTests, "\t%s componentsRHS[%d][4] =\n", m_memberTypeString, m_numComponents );
+		Gen_GetValuesArray2D( m_type, m_numComponents, 4, *valuesRHS, &m_codeTests );
+		String_Append(  &m_codeTests, "\n" );
+		
+		String_Appendf( &m_codeTests, "\t%s in;\n", inputDataName );
+		String_Append(  &m_codeTests, "\n" );
+		for ( u32 i = 0; i < m_numComponents; i++ ) {
+			String_Appendf( &m_codeTests, "\tin.lhs[%d] = %s( componentsLHS[%d] );\n", i, sseLoadStr, i );
+		}
+		String_Append(  &m_codeTests, "\n" );
+		for ( u32 i = 0; i < m_numComponents; i++ ) {
+			String_Appendf( &m_codeTests, "\tin.rhs[%d] = %s( componentsRHS[%d] );\n", i, sseLoadStr, i );
+		}
+		String_Append(  &m_codeTests, "\n" );
+		String_Appendf( &m_codeTests, "\t%s results;\n", m_registerName );
+		String_Append(  &m_codeTests, "\n" );
+		String_Append(  &m_codeTests, "\t// distancesq\n" );
+		String_Appendf( &m_codeTests, "\tdistancesq_sse( in, &results );\n" );
+		String_Append(  &m_codeTests, "\n" );
+		String_Appendf( &m_codeTests, "\t%s squaredDistanceResults[4];\n", m_memberTypeString );
+		String_Appendf( &m_codeTests, "\t%s( squaredDistanceResults, results );\n", sseStoreStr );
+		String_Append(  &m_codeTests, "\n" );
+		for ( u32 i = 0; i < 4; i++ ) {
+			String_Appendf( &m_codeTests, "\tTEMPER_EXPECT_TRUE( %s( squaredDistanceResults[%d], %s ) );\n", floateqStr, i, answerDistanceSqrStr );
+		}
+		String_Append(  &m_codeTests, "\n" );
+		String_Append(  &m_codeTests, "\t// distance\n" );
+		String_Appendf( &m_codeTests, "\tdistance_sse( in, &results );\n" );
+		String_Append(  &m_codeTests, "\n" );
+		String_Appendf( &m_codeTests, "\t%s distanceResults[4];\n", m_memberTypeString );
+		String_Appendf( &m_codeTests, "\t%s( distanceResults, results );\n", sseStoreStr );
+		String_Append(  &m_codeTests, "\n" );
+		for ( u32 i = 0; i < 4; i++ ) {
+			String_Appendf( &m_codeTests, "\tTEMPER_EXPECT_TRUE( %s( distanceResults[%d], %s ) );\n", floateqStr, i, answerDistanceStr );
+		}
+	}
+
 	String_Append(  &m_codeTests, "\n" );
 	String_Append(  &m_codeTests, "\tTEMPER_PASS();\n" );
 	String_Append(  &m_codeTests, "}\n" );

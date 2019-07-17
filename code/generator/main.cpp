@@ -372,6 +372,7 @@ static bool GenerateFunctionsVectorSSE( void ) {
 
 			Gen_SSE_VectorDot( type, componentIndex, &contentHeader, &contentInl );
 			Gen_SSE_VectorLength( type, componentIndex, &contentHeader, &contentInl );
+			Gen_SSE_VectorDistance( type, componentIndex, &contentHeader, &contentInl );
 
 			String_Append( &contentHeader, "\n" );
 			String_Append( &contentInl, "\n" );

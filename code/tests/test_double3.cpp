@@ -259,6 +259,7 @@ TEMPER_TEST( TestDistance_double3 )
 	double3 a = double3( 7.000000, 4.000000, 3.000000 );
 	double3 b = double3( 17.000000, 6.000000, 2.000000 );
 
+	// scalar
 	double distSqr = distancesqr( a, b );
 	double dist    = distance( a, b );
 

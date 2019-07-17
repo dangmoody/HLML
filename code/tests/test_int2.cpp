@@ -297,6 +297,7 @@ TEMPER_TEST( TestDistance_int2 )
 	int2 a = int2( 7, 4 );
 	int2 b = int2( 17, 6 );
 
+	// scalar
 	float distSqr = distancesqr( a, b );
 	float dist    = distance( a, b );
 

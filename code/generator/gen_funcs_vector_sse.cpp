@@ -176,3 +176,67 @@ void Gen_SSE_VectorLength( const genType_t type, const u32 numComponents, string
 		String_Append(  sbInl, "\n" );
 	}
 }
+
+void Gen_SSE_GetInputDataNameDistance( const genType_t type, const u32 numComponents, char* outString ) {
+	const char* typeString = Gen_GetTypeString( type );
+
+	snprintf( outString, GEN_STRING_LENGTH_SSE_INPUT_NAME, "sse_input_distance_%s%d_t", typeString, numComponents );
+}
+
+void Gen_SSE_VectorDistance( const genType_t type, const u32 numComponents, stringBuilder_t* sbHeader, stringBuilder_t* sbInl ) {
+	assert( numComponents >= GEN_COMPONENT_COUNT_MIN );
+	assert( numComponents <= GEN_COMPONENT_COUNT_MAX );
+
+	char inputDataName[GEN_STRING_LENGTH_SSE_INPUT_NAME];
+	Gen_SSE_GetInputDataNameDistance( type, numComponents, inputDataName );
+
+	char lengthDataName[GEN_STRING_LENGTH_SSE_INPUT_NAME];
+	Gen_SSE_GetInputDataNameLength( type, numComponents, lengthDataName );
+
+	const char* registerName = Gen_SSE_GetRegisterName( type );
+
+	const char* subFuncStr = Gen_SSE_GetFuncStrSub( type );
+
+	String_Appendf( sbHeader, "struct %s\n", inputDataName );
+	String_Append(  sbHeader, "{\n" );
+	String_Appendf( sbHeader, "\t%s lhs[%d];\n", registerName, numComponents );
+	String_Appendf( sbHeader, "\t%s rhs[%d];\n", registerName, numComponents );
+	String_Append(  sbHeader, "};\n" );
+	String_Append(  sbHeader, "\n" );
+
+	// distancesq
+	{
+		String_Appendf( sbHeader, "inline void distancesq_sse( const %s& in, %s* out_results );\n", inputDataName, registerName );
+		String_Append(  sbHeader, "\n" );
+
+		String_Appendf( sbInl, "void distancesq_sse( const %s& in, %s* out_results )\n", inputDataName, registerName );
+		String_Append(  sbInl, "{\n" );
+		String_Appendf( sbInl, "\t%s data;\n", lengthDataName );
+		String_Append(  sbInl, "\n" );
+		for ( u32 i = 0; i < numComponents; i++ ) {
+			String_Appendf( sbInl, "\tdata.comp[%d] = %s( in.lhs[%d], in.rhs[%d] );\n", i, subFuncStr, i, i );
+		}
+		String_Append(  sbInl, "\n" );
+		String_Append(  sbInl, "\tlengthsq_sse( data, out_results );\n" );
+		String_Append(  sbInl, "}\n" );
+		String_Append(  sbInl, "\n" );
+	}
+
+	// distance
+	{
+		String_Appendf( sbHeader, "inline void distance_sse( const %s& in, %s* out_results );\n", inputDataName, registerName );
+		String_Append(  sbHeader, "\n" );
+
+		String_Appendf( sbInl, "void distance_sse( const %s& in, %s* out_results )\n", inputDataName, registerName );
+		String_Append(  sbInl, "{\n" );
+		String_Appendf( sbInl, "\t%s data;\n", lengthDataName );
+		String_Append(  sbInl, "\n" );
+		for ( u32 i = 0; i < numComponents; i++ ) {
+			String_Appendf( sbInl, "\tdata.comp[%d] = %s( in.lhs[%d], in.rhs[%d] );\n", i, subFuncStr, i, i );
+		}
+		String_Append(  sbInl, "\n" );
+		String_Append(  sbInl, "\tlength_sse( data, out_results );\n" );
+		String_Append(  sbInl, "}\n" );
+		String_Append(  sbInl, "\n" );
+	}
+}

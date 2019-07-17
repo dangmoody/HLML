@@ -336,11 +336,61 @@ TEMPER_TEST( TestDistance_float3 )
 	float3 a = float3( 7.000000f, 4.000000f, 3.000000f );
 	float3 b = float3( 17.000000f, 6.000000f, 2.000000f );
 
+	// scalar
 	float distSqr = distancesqr( a, b );
 	float dist    = distance( a, b );
 
 	TEMPER_EXPECT_TRUE( floateq( distSqr, answerDistanceSqr ) );
 	TEMPER_EXPECT_TRUE( floateq( dist, answerDistance ) );
+
+	// SSE
+	float componentsLHS[3][4] =
+	{
+		{ 7.000000f, 7.000000f, 7.000000f, 7.000000f },
+		{ 4.000000f, 4.000000f, 4.000000f, 4.000000f },
+		{ 3.000000f, 3.000000f, 3.000000f, 3.000000f }
+	};
+
+	float componentsRHS[3][4] =
+	{
+		{ 17.000000f, 17.000000f, 17.000000f, 17.000000f },
+		{ 6.000000f, 6.000000f, 6.000000f, 6.000000f },
+		{ 2.000000f, 2.000000f, 2.000000f, 2.000000f }
+	};
+
+	sse_input_distance_float3_t in;
+
+	in.lhs[0] = _mm_load_ps( componentsLHS[0] );
+	in.lhs[1] = _mm_load_ps( componentsLHS[1] );
+	in.lhs[2] = _mm_load_ps( componentsLHS[2] );
+
+	in.rhs[0] = _mm_load_ps( componentsRHS[0] );
+	in.rhs[1] = _mm_load_ps( componentsRHS[1] );
+	in.rhs[2] = _mm_load_ps( componentsRHS[2] );
+
+	__m128 results;
+
+	// distancesq
+	distancesq_sse( in, &results );
+
+	float squaredDistanceResults[4];
+	_mm_store_ps( squaredDistanceResults, results );
+
+	TEMPER_EXPECT_TRUE( floateq( squaredDistanceResults[0], 105.000000f ) );
+	TEMPER_EXPECT_TRUE( floateq( squaredDistanceResults[1], 105.000000f ) );
+	TEMPER_EXPECT_TRUE( floateq( squaredDistanceResults[2], 105.000000f ) );
+	TEMPER_EXPECT_TRUE( floateq( squaredDistanceResults[3], 105.000000f ) );
+
+	// distance
+	distance_sse( in, &results );
+
+	float distanceResults[4];
+	_mm_store_ps( distanceResults, results );
+
+	TEMPER_EXPECT_TRUE( floateq( distanceResults[0], 10.246951f ) );
+	TEMPER_EXPECT_TRUE( floateq( distanceResults[1], 10.246951f ) );
+	TEMPER_EXPECT_TRUE( floateq( distanceResults[2], 10.246951f ) );
+	TEMPER_EXPECT_TRUE( floateq( distanceResults[3], 10.246951f ) );
 
 	TEMPER_PASS();
 }
