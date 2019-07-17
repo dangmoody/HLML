@@ -502,8 +502,52 @@ void GeneratorVectorTests::GenerateTestLength() {
 	String_Appendf( &m_codeTests, "\tTEMPER_EXPECT_TRUE( %s( length( vec ), %s%s ) );\n", floateqStr, lengthStr, fSpecifier );
 
 	if ( m_type == GEN_TYPE_FLOAT ) {
+		char inputDataName[GEN_STRING_LENGTH_SSE_INPUT_NAME];
+		Gen_SSE_GetInputDataNameLength( m_type, m_numComponents, inputDataName );
+
+		const char* sseLoadStr = Gen_SSE_GetFuncStrLoad( m_type );
+		const char* sseStoreStr = Gen_SSE_GetFuncStrStore( m_type );
+
+		float values[4][4] = {
+			{ 2.0f, 2.0f, 2.0f, 2.0f },	// x
+			{ 2.0f, 2.0f, 2.0f, 2.0f },	// y
+			{ 2.0f, 2.0f, 2.0f, 2.0f },	// z
+			{ 2.0f, 2.0f, 2.0f, 2.0f }	// w
+		};
+
 		String_Append(  &m_codeTests, "\n" );
 		String_Append(  &m_codeTests, "\t// SSE\n" );
+		String_Appendf( &m_codeTests, "\t%s components[%d][4] =\n", m_memberTypeString, m_numComponents );
+		Gen_GetValuesArray2D( m_type, m_numComponents, 4, *values, &m_codeTests );
+		String_Append(  &m_codeTests, "\n" );
+		
+		String_Appendf( &m_codeTests, "\t%s in;\n", inputDataName );
+		String_Append(  &m_codeTests, "\n" );
+		for ( u32 i = 0; i < m_numComponents; i++ ) {
+			String_Appendf( &m_codeTests, "\tin.comp[%d] = %s( components[%d] );\n", i, sseLoadStr, i );
+		}
+		String_Append(  &m_codeTests, "\n" );
+		String_Appendf( &m_codeTests, "\t%s results;\n", m_registerName );
+		String_Append(  &m_codeTests, "\n" );
+		String_Append(  &m_codeTests, "\t// lengthsq\n" );
+		String_Appendf( &m_codeTests, "\tlengthsq_sse( in, &results );\n" );
+		String_Append(  &m_codeTests, "\n" );
+		String_Appendf( &m_codeTests, "\t%s squaredLengthResults[4];\n", m_memberTypeString );
+		String_Appendf( &m_codeTests, "\t%s( squaredLengthResults, results );\n", sseStoreStr );
+		String_Append(  &m_codeTests, "\n" );
+		for ( u32 i = 0; i < 4; i++ ) {
+			String_Appendf( &m_codeTests, "\tTEMPER_EXPECT_TRUE( %s( squaredLengthResults[%d], %sf ) );\n", floateqStr, i, squaredLengthStr );
+		}
+		String_Append(  &m_codeTests, "\n" );
+		String_Append(  &m_codeTests, "\t// length\n" );
+		String_Appendf( &m_codeTests, "\tlength_sse( in, &results );\n" );
+		String_Append(  &m_codeTests, "\n" );
+		String_Appendf( &m_codeTests, "\t%s lengthResults[4];\n", m_memberTypeString );
+		String_Appendf( &m_codeTests, "\t%s( lengthResults, results );\n", sseStoreStr );
+		String_Append(  &m_codeTests, "\n" );
+		for ( u32 i = 0; i < 4; i++ ) {
+			String_Appendf( &m_codeTests, "\tTEMPER_EXPECT_TRUE( %s( lengthResults[%d], %sf ) );\n", floateqStr, i, lengthStr );
+		}
 	}
 
 	String_Append(  &m_codeTests, "\n" );

@@ -330,7 +330,6 @@ TEMPER_SUITE( Test_double2 )
 	TEMPER_RUN_TEST( TestIncrement_double2 );
 	TEMPER_RUN_TEST( TestDecrement_double2 );
 	TEMPER_RUN_TEST( TestRelational_double2 );
-	TEMPER_RUN_TEST( TestRelational_double2 );
 	TEMPER_RUN_TEST( TestLength_double2 );
 	TEMPER_RUN_TEST( TestNormalized_double2 );
 	TEMPER_RUN_TEST( TestDot_double2 );

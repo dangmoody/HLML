@@ -319,7 +319,6 @@ TEMPER_SUITE( Test_uint4 )
 	TEMPER_RUN_TEST( TestIncrement_uint4 );
 	TEMPER_RUN_TEST( TestDecrement_uint4 );
 	TEMPER_RUN_TEST( TestRelational_uint4 );
-	TEMPER_RUN_TEST( TestRelational_uint4 );
 	TEMPER_RUN_TEST( TestBitwise_And_uint4 );
 	TEMPER_RUN_TEST( TestBitwise_Or_uint4 );
 	TEMPER_RUN_TEST( TestBitwise_Xor_uint4 );

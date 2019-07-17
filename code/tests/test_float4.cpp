@@ -210,6 +210,44 @@ TEMPER_TEST( TestLength_float4 )
 	TEMPER_EXPECT_TRUE( floateq( length( vec ), 4.0f ) );
 
 	// SSE
+	float components[4][4] =
+	{
+		{ 2.000000f, 2.000000f, 2.000000f, 2.000000f },
+		{ 2.000000f, 2.000000f, 2.000000f, 2.000000f },
+		{ 2.000000f, 2.000000f, 2.000000f, 2.000000f },
+		{ 2.000000f, 2.000000f, 2.000000f, 2.000000f }
+	};
+
+	sse_input_length_float4_t in;
+
+	in.comp[0] = _mm_load_ps( components[0] );
+	in.comp[1] = _mm_load_ps( components[1] );
+	in.comp[2] = _mm_load_ps( components[2] );
+	in.comp[3] = _mm_load_ps( components[3] );
+
+	__m128 results;
+
+	// lengthsq
+	lengthsq_sse( in, &results );
+
+	float squaredLengthResults[4];
+	_mm_store_ps( squaredLengthResults, results );
+
+	TEMPER_EXPECT_TRUE( floateq( squaredLengthResults[0], 16.0f ) );
+	TEMPER_EXPECT_TRUE( floateq( squaredLengthResults[1], 16.0f ) );
+	TEMPER_EXPECT_TRUE( floateq( squaredLengthResults[2], 16.0f ) );
+	TEMPER_EXPECT_TRUE( floateq( squaredLengthResults[3], 16.0f ) );
+
+	// length
+	length_sse( in, &results );
+
+	float lengthResults[4];
+	_mm_store_ps( lengthResults, results );
+
+	TEMPER_EXPECT_TRUE( floateq( lengthResults[0], 4.0f ) );
+	TEMPER_EXPECT_TRUE( floateq( lengthResults[1], 4.0f ) );
+	TEMPER_EXPECT_TRUE( floateq( lengthResults[2], 4.0f ) );
+	TEMPER_EXPECT_TRUE( floateq( lengthResults[3], 4.0f ) );
 
 	TEMPER_PASS();
 }
@@ -370,7 +408,6 @@ TEMPER_SUITE( Test_float4 )
 	TEMPER_RUN_TEST( TestArithmeticDivision_float4 );
 	TEMPER_RUN_TEST( TestIncrement_float4 );
 	TEMPER_RUN_TEST( TestDecrement_float4 );
-	TEMPER_RUN_TEST( TestRelational_float4 );
 	TEMPER_RUN_TEST( TestRelational_float4 );
 	TEMPER_RUN_TEST( TestLength_float4 );
 	TEMPER_RUN_TEST( TestNormalized_float4 );

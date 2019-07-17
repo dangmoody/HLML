@@ -326,7 +326,6 @@ TEMPER_SUITE( Test_double4 )
 	TEMPER_RUN_TEST( TestIncrement_double4 );
 	TEMPER_RUN_TEST( TestDecrement_double4 );
 	TEMPER_RUN_TEST( TestRelational_double4 );
-	TEMPER_RUN_TEST( TestRelational_double4 );
 	TEMPER_RUN_TEST( TestLength_double4 );
 	TEMPER_RUN_TEST( TestNormalized_double4 );
 	TEMPER_RUN_TEST( TestDot_double4 );

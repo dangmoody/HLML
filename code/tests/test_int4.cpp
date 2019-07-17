@@ -314,7 +314,6 @@ TEMPER_SUITE( Test_int4 )
 	TEMPER_RUN_TEST( TestIncrement_int4 );
 	TEMPER_RUN_TEST( TestDecrement_int4 );
 	TEMPER_RUN_TEST( TestRelational_int4 );
-	TEMPER_RUN_TEST( TestRelational_int4 );
 	TEMPER_RUN_TEST( TestBitwise_And_int4 );
 	TEMPER_RUN_TEST( TestBitwise_Or_int4 );
 	TEMPER_RUN_TEST( TestBitwise_Xor_int4 );
