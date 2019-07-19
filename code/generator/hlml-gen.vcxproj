@@ -17,6 +17,7 @@
     <ClCompile Include="FileIO_win64.cpp" />
     <ClCompile Include="GeneratorScalarTests.cpp" />
     <ClCompile Include="gen_common.cpp" />
+    <ClCompile Include="gen_common_sse.cpp" />
     <ClCompile Include="gen_funcs_matrix.cpp" />
     <ClCompile Include="gen_funcs_vector.cpp" />
     <ClCompile Include="GeneratorMatrix.cpp" />
@@ -33,6 +34,7 @@
     <ClInclude Include="FileIO.h" />
     <ClInclude Include="GeneratorScalarTests.h" />
     <ClInclude Include="gen_common.h" />
+    <ClInclude Include="gen_common_sse.h" />
     <ClInclude Include="gen_doc_common.h" />
     <ClInclude Include="gen_funcs_matrix.h" />
     <ClInclude Include="gen_funcs_vector.h" />

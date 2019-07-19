@@ -4,8 +4,10 @@
 
 #include "FileIO.h"
 
+#include "gen_common_sse.h"
+
 bool GeneratorScalarTest::Generate( const genType_t type ) {
-	const u32 testsCodeBytes = 2 * KB_TO_BYTES;
+	const u32 testsCodeBytes = 4 * KB_TO_BYTES;
 	const u32 suiteCodeBytes = 2 * KB_TO_BYTES;
 
 	m_codeTests = String_Create( testsCodeBytes );
@@ -15,12 +17,22 @@ bool GeneratorScalarTest::Generate( const genType_t type ) {
 
 	m_memberTypeString = Gen_GetMemberTypeString( type );
 
+	m_registerName = Gen_SSE_GetRegisterName( type );
+
 	stringBuilder_t code = String_Create( testsCodeBytes + suiteCodeBytes );
 	String_Append( &code, "#include \"../../" GEN_OUT_GEN_FOLDER_PATH GEN_FILENAME_FUNCTIONS_SCALAR ".h\"\n" );
 	String_Append( &code, "\n" );
 
 	String_Append( &code, "#include <temper/temper.h>\n" );
 	String_Append( &code, "\n" );
+
+	if ( m_type == GEN_TYPE_FLOAT ) {
+		String_Append( &code, "#include \"../../" GEN_OUT_GEN_FOLDER_PATH GEN_FILENAME_FUNCTIONS_SCALAR_SSE ".h\"\n" );
+		String_Append( &code, "\n" );
+
+		String_Append( &code, "#include <xmmintrin.h>\n" );
+		String_Append( &code, "\n" );
+	}
 
 	String_Appendf( &m_codeSuite, "TEMPER_SUITE( Test_%s )\n", m_memberTypeString );
 	String_Append(  &m_codeSuite, "{\n" );
@@ -36,6 +48,8 @@ bool GeneratorScalarTest::Generate( const genType_t type ) {
 	GenerateTestClamp();
 
 	GenerateTestSaturate();
+
+	GenerateTestLerp();
 
 	String_Appendf( &m_codeSuite, "}\n" );
 
@@ -79,10 +93,10 @@ void GeneratorScalarTest::GenerateTestFloateq() {
 
 	String_Appendf( &m_codeTests, "TEMPER_TEST( %s )\n", testName );
 	String_Append(  &m_codeTests, "{\n" );
-	String_Appendf( &m_codeTests, "\t%s a =  %s;\n", m_memberTypeString, aStr );
-	String_Appendf( &m_codeTests, "\t%s b =  %s;\n", m_memberTypeString, bStr );
-	String_Appendf( &m_codeTests, "\t%s c =  %s;\n", m_memberTypeString, cStr );
-	String_Appendf( &m_codeTests, "\t%s d =  %s;\n", m_memberTypeString, dStr );
+	String_Appendf( &m_codeTests, "\t%s a = %s;\n", m_memberTypeString, aStr );
+	String_Appendf( &m_codeTests, "\t%s b = %s;\n", m_memberTypeString, bStr );
+	String_Appendf( &m_codeTests, "\t%s c = %s;\n", m_memberTypeString, cStr );
+	String_Appendf( &m_codeTests, "\t%s d = %s;\n", m_memberTypeString, dStr );
 	String_Append(  &m_codeTests, "\n" );
 	String_Appendf( &m_codeTests, "\tTEMPER_EXPECT_TRUE(  %s( a, b ) );\n", floateqStr );
 	String_Appendf( &m_codeTests, "\tTEMPER_EXPECT_TRUE( !%s( a, c ) );\n", floateqStr );
@@ -274,6 +288,76 @@ void GeneratorScalarTest::GenerateTestSaturate() {
 	String_Append(  &m_codeTests, "\n" );
 	String_Appendf( &m_codeTests, "\ta = saturate( %s );\n", twoStr );
 	String_Appendf( &m_codeTests, "\tTEMPER_EXPECT_TRUE( %s( a, %s ) );\n", floateqStr, oneStr );
+	String_Append(  &m_codeTests, "\n" );
+	String_Append(  &m_codeTests, "\tTEMPER_PASS();\n" );
+	String_Append(  &m_codeTests, "}\n" );
+	String_Append(  &m_codeTests, "\n" );
+
+	String_Appendf( &m_codeSuite, "\tTEMPER_RUN_TEST( %s );\n", testName );
+}
+
+void GeneratorScalarTest::GenerateTestLerp() {
+	if ( !Gen_IsFloatingPointType( m_type ) ) {
+		return;
+	}
+
+	char testName[GEN_STRING_LENGTH_TEST_NAME] = { 0 };
+	snprintf( testName, 32, "TestLerp_%s", m_memberTypeString );
+
+	// numbers chosen arbitrarily
+	char aStr[GEN_STRING_LENGTH_NUMERIC_LITERAL];
+	char bStr[GEN_STRING_LENGTH_NUMERIC_LITERAL];
+	char halfStr[GEN_STRING_LENGTH_NUMERIC_LITERAL];
+	char answerStr[GEN_STRING_LENGTH_NUMERIC_LITERAL];
+
+	Gen_GetNumericLiteral( m_type, 1.0f, aStr );
+	Gen_GetNumericLiteral( m_type, 3.0f, bStr );
+	Gen_GetNumericLiteral( m_type, 0.5f, halfStr );
+	Gen_GetNumericLiteral( m_type, 2.0f, answerStr );
+
+	const char* floateqStr = Gen_GetFuncNameFloateq( m_type );
+
+	String_Appendf( &m_codeTests, "TEMPER_TEST( %s )\n", testName );
+	String_Append(  &m_codeTests, "{\n" );
+	String_Append(  &m_codeTests, "\t// scalar\n" );
+	String_Appendf( &m_codeTests, "\t%s a = %s;\n", m_memberTypeString, aStr );
+	String_Appendf( &m_codeTests, "\t%s b = %s;\n", m_memberTypeString, bStr );
+	String_Append(  &m_codeTests, "\n" );
+	String_Appendf( &m_codeTests, "\t%s answer = lerp( a, b, %s );\n", m_memberTypeString, halfStr );
+	String_Append(  &m_codeTests, "\n" );
+	String_Appendf( &m_codeTests, "\tTEMPER_EXPECT_TRUE( %s( answer, %s ) );\n", floateqStr, answerStr );
+
+	if ( m_type == GEN_TYPE_FLOAT ) {
+		char inputDataName[GEN_STRING_LENGTH_SSE_INPUT_NAME];
+		Gen_SSE_GetInputDataNameLerp( m_type, 1, inputDataName );
+
+		const char* loadFuncStr		= Gen_SSE_GetFuncStrLoad( m_type );
+		const char* storeFuncStr	= Gen_SSE_GetFuncStrStore( m_type );
+
+		String_Append(  &m_codeTests, "\n" );
+		String_Append(  &m_codeTests, "\t// SSE\n" );
+		String_Appendf( &m_codeTests, "\t%s ones[4]   = { %s, %s, %s, %s };\n", m_memberTypeString, aStr, aStr, aStr, aStr );
+		String_Appendf( &m_codeTests, "\t%s threes[4] = { %s, %s, %s, %s };\n", m_memberTypeString, bStr, bStr, bStr, bStr );
+		String_Appendf( &m_codeTests, "\t%s halves[4] = { %s, %s, %s, %s };\n", m_memberTypeString, halfStr, halfStr, halfStr, halfStr );
+		String_Append(  &m_codeTests, "\n" );
+		String_Appendf( &m_codeTests, "\t%s in;\n", inputDataName );
+		String_Append(  &m_codeTests, "\n" );
+		String_Appendf( &m_codeTests, "\tin.lhs = %s( ones );\n", loadFuncStr );
+		String_Appendf( &m_codeTests, "\tin.rhs = %s( threes );\n", loadFuncStr );
+		String_Appendf( &m_codeTests, "\tin.t   = %s( halves );\n", loadFuncStr );
+		String_Append(  &m_codeTests, "\n" );
+		String_Appendf( &m_codeTests, "\t%s results;\n", m_registerName );
+		String_Append(  &m_codeTests, "\tlerp_sse( in, &results );\n" );
+		String_Append(  &m_codeTests, "\n" );
+		String_Appendf( &m_codeTests, "\t%s lerpResults[4];\n", m_memberTypeString );
+		String_Appendf( &m_codeTests, "\t%s( lerpResults, results );\n", storeFuncStr );
+		String_Append(  &m_codeTests, "\n" );
+		String_Appendf( &m_codeTests, "\tTEMPER_EXPECT_TRUE( %s( lerpResults[0], %s ) );\n", floateqStr, answerStr );
+		String_Appendf( &m_codeTests, "\tTEMPER_EXPECT_TRUE( %s( lerpResults[1], %s ) );\n", floateqStr, answerStr );
+		String_Appendf( &m_codeTests, "\tTEMPER_EXPECT_TRUE( %s( lerpResults[2], %s ) );\n", floateqStr, answerStr );
+		String_Appendf( &m_codeTests, "\tTEMPER_EXPECT_TRUE( %s( lerpResults[3], %s ) );\n", floateqStr, answerStr );
+	}
+
 	String_Append(  &m_codeTests, "\n" );
 	String_Append(  &m_codeTests, "\tTEMPER_PASS();\n" );
 	String_Append(  &m_codeTests, "}\n" );

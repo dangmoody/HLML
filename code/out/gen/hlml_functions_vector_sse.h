@@ -25,6 +25,7 @@ along with hlml.  If not, see <http://www.gnu.org/licenses/>.
 // GENERATED FILE.  DO NOT EDIT.
 
 #include <xmmintrin.h>
+
 // float2
 struct sse_input_dot_float2_t
 {

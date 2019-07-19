@@ -4,10 +4,10 @@
 
 TEMPER_TEST( TestFloateq_double )
 {
-	double a =  5.000000;
-	double b =  5.000000;
-	double c =  5.000020;
-	double d =  5.000100;
+	double a = 5.000000;
+	double b = 5.000000;
+	double c = 5.000020;
+	double d = 5.000100;
 
 	TEMPER_EXPECT_TRUE(  doubleeq( a, b ) );
 	TEMPER_EXPECT_TRUE( !doubleeq( a, c ) );
@@ -77,6 +77,19 @@ TEMPER_TEST( TestSaturate_double )
 	TEMPER_PASS();
 }
 
+TEMPER_TEST( TestLerp_double )
+{
+	// scalar
+	double a = 1.000000;
+	double b = 3.000000;
+
+	double answer = lerp( a, b, 0.500000 );
+
+	TEMPER_EXPECT_TRUE( doubleeq( answer, 2.000000 ) );
+
+	TEMPER_PASS();
+}
+
 TEMPER_SUITE( Test_double )
 {
 	TEMPER_RUN_TEST( TestFloateq_double );
@@ -85,4 +98,5 @@ TEMPER_SUITE( Test_double )
 	TEMPER_RUN_TEST( TestMinMax_double );
 	TEMPER_RUN_TEST( TestClamp_double );
 	TEMPER_RUN_TEST( TestSaturate_double );
+	TEMPER_RUN_TEST( TestLerp_double );
 }

@@ -4,6 +4,8 @@
 
 #include "FileIO.h"
 
+#include "gen_common_sse.h"
+
 #include "gen_funcs_vector.h"
 #include "gen_funcs_vector_sse.h"
 
@@ -501,7 +503,7 @@ void GeneratorVectorTests::GenerateTestLength() {
 	String_Appendf( &m_codeTests, "\tTEMPER_EXPECT_TRUE( %s( lengthsqr( vec ), %s%s ) );\n", floateqStr, squaredLengthStr, fSpecifier );
 	String_Appendf( &m_codeTests, "\tTEMPER_EXPECT_TRUE( %s( length( vec ), %s%s ) );\n", floateqStr, lengthStr, fSpecifier );
 
-	if ( m_type == GEN_TYPE_FLOAT ) {
+	if ( Gen_TypeSupportsSSE( m_type ) ) {
 		char inputDataName[GEN_STRING_LENGTH_SSE_INPUT_NAME];
 		Gen_SSE_GetInputDataNameLength( m_type, m_numComponents, inputDataName );
 
@@ -559,7 +561,7 @@ void GeneratorVectorTests::GenerateTestLength() {
 }
 
 void GeneratorVectorTests::GenerateTestNormalized() {
-	if ( m_type != GEN_TYPE_FLOAT && m_type != GEN_TYPE_DOUBLE ) {
+	if ( !Gen_IsFloatingPointType( m_type ) ) {
 		return;
 	}
 
@@ -634,7 +636,7 @@ void GeneratorVectorTests::GenerateTestDot() {
 		String_Appendf( &m_codeTests, "\tTEMPER_EXPECT_TRUE( dot( a, b ) == %s );\n", minusOneStrDotAnswer );
 	}
 
-	if ( m_type == GEN_TYPE_FLOAT ) {
+	if ( Gen_TypeSupportsSSE( m_type ) ) {
 		char inputDataName[GEN_STRING_LENGTH_SSE_INPUT_NAME];
 		Gen_SSE_GetInputDataNameDot( m_type, m_numComponents, inputDataName );
 
@@ -699,7 +701,7 @@ void GeneratorVectorTests::GenerateTestDot() {
 }
 
 void GeneratorVectorTests::GenerateTestCross() {
-	if ( m_type != GEN_TYPE_FLOAT && m_type != GEN_TYPE_DOUBLE ) {
+	if ( !Gen_IsFloatingPointType( m_type ) ) {
 		return;
 	}
 
@@ -834,7 +836,7 @@ void GeneratorVectorTests::GenerateTestDistance() {
 	String_Appendf( &m_codeTests, "\tTEMPER_EXPECT_TRUE( %s( distSqr, answerDistanceSqr ) );\n", floateqStr );
 	String_Appendf( &m_codeTests, "\tTEMPER_EXPECT_TRUE( %s( dist, answerDistance ) );\n", floateqStr );
 
-	if ( m_type == GEN_TYPE_FLOAT ) {
+	if ( Gen_TypeSupportsSSE( m_type ) ) {
 		char inputDataName[GEN_STRING_LENGTH_SSE_INPUT_NAME];
 		Gen_SSE_GetInputDataNameDistance( m_type, m_numComponents, inputDataName );
 

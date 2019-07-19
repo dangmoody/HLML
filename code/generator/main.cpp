@@ -32,6 +32,9 @@ along with hlml.  If not, see <http://www.gnu.org/licenses/>.
 #include "GeneratorVectorTests.h"
 #include "GeneratorMatrixTests.h"
 
+#include "gen_common.h"
+#include "gen_common_sse.h"
+
 #include "gen_funcs_vector.h"
 #include "gen_funcs_vector_sse.h"
 #include "gen_funcs_matrix.h"
@@ -65,7 +68,53 @@ static bool GenerateTypeHeader( void ) {
 	return result;
 }
 
-static bool GenerateHeaderScalar( void ) {
+static bool GenerateVectors( void ) {
+	GeneratorVector gen;
+
+	for ( u32 typeIndex = 0; typeIndex < GEN_TYPE_COUNT; typeIndex++ ) {
+		genType_t type = static_cast<genType_t>( typeIndex );
+
+		const char* typeString = Gen_GetTypeString( type );
+
+		for ( u32 componentIndex = GEN_COMPONENT_COUNT_MIN; componentIndex <= GEN_COMPONENT_COUNT_MAX; componentIndex++ ) {
+			printf( "Generating %s%d...", typeString, componentIndex );
+
+			if ( !gen.Generate( type, componentIndex ) ) {
+				return false;
+			}
+
+			printf( "OK.\n" );
+		}
+	}
+
+	return true;
+}
+
+static bool GenerateMatrices( void ) {
+	GeneratorMatrix gen;
+
+	for ( u32 typeIndex = 0; typeIndex < GEN_TYPE_COUNT; typeIndex++ ) {
+		genType_t type = static_cast<genType_t>( typeIndex );
+
+		const char* typeString = Gen_GetTypeString( type );
+
+		for ( u32 row = GEN_COMPONENT_COUNT_MIN; row <= GEN_COMPONENT_COUNT_MAX; row++ ) {
+			for ( u32 col = GEN_COMPONENT_COUNT_MIN; col <= GEN_COMPONENT_COUNT_MAX; col++ ) {
+				printf( "Generating %s%dx%d...", typeString, row, col );
+
+				if ( !gen.Generate( type, row, col ) ) {
+					return false;
+				}
+
+				printf( "OK.\n" );
+			}
+		}
+	}
+
+	return true;
+}
+
+static bool GenerateFunctionsScalar( void ) {
 	char fileNameHeader[1024];
 	snprintf( fileNameHeader, 1024, "%s%s.h", GEN_OUT_GEN_FOLDER_PATH, GEN_FILENAME_FUNCTIONS_SCALAR );
 
@@ -126,52 +175,6 @@ static bool GenerateHeaderScalar( void ) {
 	Mem_Reset();
 
 	return result;
-}
-
-static bool GenerateVectors( void ) {
-	GeneratorVector gen;
-
-	for ( u32 typeIndex = 0; typeIndex < GEN_TYPE_COUNT; typeIndex++ ) {
-		genType_t type = static_cast<genType_t>( typeIndex );
-
-		const char* typeString = Gen_GetTypeString( type );
-
-		for ( u32 componentIndex = GEN_COMPONENT_COUNT_MIN; componentIndex <= GEN_COMPONENT_COUNT_MAX; componentIndex++ ) {
-			printf( "Generating %s%d...", typeString, componentIndex );
-
-			if ( !gen.Generate( type, componentIndex ) ) {
-				return false;
-			}
-
-			printf( "OK.\n" );
-		}
-	}
-
-	return true;
-}
-
-static bool GenerateMatrices( void ) {
-	GeneratorMatrix gen;
-
-	for ( u32 typeIndex = 0; typeIndex < GEN_TYPE_COUNT; typeIndex++ ) {
-		genType_t type = static_cast<genType_t>( typeIndex );
-
-		const char* typeString = Gen_GetTypeString( type );
-
-		for ( u32 row = GEN_COMPONENT_COUNT_MIN; row <= GEN_COMPONENT_COUNT_MAX; row++ ) {
-			for ( u32 col = GEN_COMPONENT_COUNT_MIN; col <= GEN_COMPONENT_COUNT_MAX; col++ ) {
-				printf( "Generating %s%dx%d...", typeString, row, col );
-
-				if ( !gen.Generate( type, row, col ) ) {
-					return false;
-				}
-
-				printf( "OK.\n" );
-			}
-		}
-	}
-
-	return true;
 }
 
 static bool GenerateFunctionsVector( void ) {
@@ -339,6 +342,41 @@ static bool GenerateFunctionsMatrix( void ) {
 	return wroteHeader && wroteInl;
 }
 
+static bool GenerateFunctionsScalarSSE( void ) {
+	char filePathHeader[64] = { 0 };
+	snprintf( filePathHeader, 64, "%s%s.h", GEN_OUT_GEN_FOLDER_PATH, GEN_FILENAME_FUNCTIONS_SCALAR_SSE );
+
+	char filePathInl[64] = { 0 };
+	snprintf( filePathInl, 64, "%s%s.inl", GEN_OUT_GEN_FOLDER_PATH, GEN_FILENAME_FUNCTIONS_SCALAR_SSE );
+
+	stringBuilder_t contentHeader = String_Create( 2 * KB_TO_BYTES );
+	String_Append( &contentHeader, GEN_FILE_HEADER );
+	String_Append( &contentHeader, "#include <xmmintrin.h>\n" \
+		"\n" );
+
+	stringBuilder_t contentInl = String_Create( 2 * KB_TO_BYTES );
+	String_Append( &contentInl, GEN_FILE_HEADER );
+
+	for ( u32 typeIndex = 0; typeIndex < GEN_TYPE_COUNT; typeIndex++ ) {
+		genType_t type = static_cast<genType_t>( typeIndex );
+
+		if ( type != GEN_TYPE_FLOAT ) {
+			continue;
+		}
+
+		Gen_SSE_Lerp( type, 1, &contentHeader, &contentInl );
+	}
+
+	String_Append( &contentHeader, "#include \"" GEN_FILENAME_FUNCTIONS_SCALAR_SSE ".inl\"\n" );
+
+	bool32 wroteHeader	= FS_WriteEntireFile( filePathHeader, contentHeader.str, contentHeader.length );
+	bool32 wroteInl		= FS_WriteEntireFile( filePathInl, contentInl.str, contentInl.length );
+
+	Mem_Reset();
+
+	return wroteHeader && wroteInl;
+}
+
 static bool GenerateFunctionsVectorSSE( void ) {
 	char filePathHeader[64] = { 0 };
 	snprintf( filePathHeader, 64, "%s%s.h", GEN_OUT_GEN_FOLDER_PATH, GEN_FILENAME_FUNCTIONS_VECTOR_SSE );
@@ -352,7 +390,8 @@ static bool GenerateFunctionsVectorSSE( void ) {
 	String_Append( &contentHeader, GEN_FILE_HEADER );
 	String_Append( &contentInl, GEN_FILE_HEADER );
 
-	String_Append( &contentHeader, "#include <xmmintrin.h>\n" );
+	String_Append( &contentHeader, "#include <xmmintrin.h>\n" \
+		"\n" );
 
 	for ( u32 typeIndex = 0; typeIndex < GEN_TYPE_COUNT; typeIndex++ ) {
 		genType_t type = static_cast<genType_t>( typeIndex );
@@ -729,7 +768,6 @@ int main( int argc, char** argv ) {
 
 	printf( "======= Generating core headers. =======\n" );
 	FAIL_IF( !GenerateTypeHeader(),   "Failed generating \"" GEN_HEADER_TYPES "\".\n" );
-	FAIL_IF( !GenerateHeaderScalar(), "Failed generating \"" GEN_FILENAME_FUNCTIONS_SCALAR "\".\n" );
 	printf( "======= Done. =======\n\n" );
 
 	printf( "======= Generating types. =======\n" );
@@ -738,9 +776,11 @@ int main( int argc, char** argv ) {
 	printf( "======= Done. =======\n\n" );
 
 	printf( "======= Generating functions. =======\n" );
+	FAIL_IF( !GenerateFunctionsScalar(),    "Failed generating main scalar functions.\n" );
 	FAIL_IF( !GenerateFunctionsVector(),    "Failed generating main vector functions.\n" );
-	FAIL_IF( !GenerateFunctionsMatrix(),    "Failed generating main matrix functions.\n" );
-	FAIL_IF( !GenerateFunctionsVectorSSE(), "Failed generating main SIMD functions.\n" );
+	FAIL_IF( !GenerateFunctionsMatrix(),    "Failed generating main matrix functions.\n" );	
+	FAIL_IF( !GenerateFunctionsScalarSSE(), "Failed generating main scalar SSE functions.\n" );
+	FAIL_IF( !GenerateFunctionsVectorSSE(), "Failed generating main vector SSE functions.\n" );
 	printf( "======= Done. =======\n\n" );
 
 	printf( "======= Generating operators. =======\n" );

@@ -2,12 +2,16 @@
 
 #include <temper/temper.h>
 
+#include "../../code/out/gen/hlml_functions_scalar_sse.h"
+
+#include <xmmintrin.h>
+
 TEMPER_TEST( TestFloateq_float )
 {
-	float a =  5.000000f;
-	float b =  5.000000f;
-	float c =  5.000020f;
-	float d =  5.000100f;
+	float a = 5.000000f;
+	float b = 5.000000f;
+	float c = 5.000020f;
+	float d = 5.000100f;
 
 	TEMPER_EXPECT_TRUE(  floateq( a, b ) );
 	TEMPER_EXPECT_TRUE( !floateq( a, c ) );
@@ -77,6 +81,41 @@ TEMPER_TEST( TestSaturate_float )
 	TEMPER_PASS();
 }
 
+TEMPER_TEST( TestLerp_float )
+{
+	// scalar
+	float a = 1.000000f;
+	float b = 3.000000f;
+
+	float answer = lerp( a, b, 0.500000f );
+
+	TEMPER_EXPECT_TRUE( floateq( answer, 2.000000f ) );
+
+	// SSE
+	float ones[4]   = { 1.000000f, 1.000000f, 1.000000f, 1.000000f };
+	float threes[4] = { 3.000000f, 3.000000f, 3.000000f, 3.000000f };
+	float halves[4] = { 0.500000f, 0.500000f, 0.500000f, 0.500000f };
+
+	sse_input_lerp_float_t in;
+
+	in.lhs = _mm_load_ps( ones );
+	in.rhs = _mm_load_ps( threes );
+	in.t   = _mm_load_ps( halves );
+
+	__m128 results;
+	lerp_sse( in, &results );
+
+	float lerpResults[4];
+	_mm_store_ps( lerpResults, results );
+
+	TEMPER_EXPECT_TRUE( floateq( lerpResults[0], 2.000000f ) );
+	TEMPER_EXPECT_TRUE( floateq( lerpResults[1], 2.000000f ) );
+	TEMPER_EXPECT_TRUE( floateq( lerpResults[2], 2.000000f ) );
+	TEMPER_EXPECT_TRUE( floateq( lerpResults[3], 2.000000f ) );
+
+	TEMPER_PASS();
+}
+
 TEMPER_SUITE( Test_float )
 {
 	TEMPER_RUN_TEST( TestFloateq_float );
@@ -85,4 +124,5 @@ TEMPER_SUITE( Test_float )
 	TEMPER_RUN_TEST( TestMinMax_float );
 	TEMPER_RUN_TEST( TestClamp_float );
 	TEMPER_RUN_TEST( TestSaturate_float );
+	TEMPER_RUN_TEST( TestLerp_float );
 }

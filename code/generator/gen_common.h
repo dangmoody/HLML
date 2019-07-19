@@ -38,6 +38,7 @@
 #define GEN_FILENAME_OPERATORS_MATRIX		"hlml_operators_matrix"
 
 #define GEN_FILENAME_FUNCTIONS_SCALAR		"hlml_functions_scalar"
+#define GEN_FILENAME_FUNCTIONS_SCALAR_SSE	"hlml_functions_scalar_sse"
 #define GEN_FILENAME_FUNCTIONS_VECTOR		"hlml_functions_vector"
 #define GEN_FILENAME_FUNCTIONS_VECTOR_SSE	"hlml_functions_vector_sse"
 #define GEN_FILENAME_FUNCTIONS_MATRIX		"hlml_functions_matrix"

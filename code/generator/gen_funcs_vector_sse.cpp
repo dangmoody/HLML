@@ -1,48 +1,8 @@
 #include "gen_funcs_vector_sse.h"
 
+#include "gen_common_sse.h"
+
 #include "string_builder.h"
-
-void Gen_GetValuesArray1D( const genType_t type, const u32 numValues, const float* values, stringBuilder_t* sb ) {
-	String_Append(  sb, "\t{ " );
-	for ( u32 componentIndex = 0; componentIndex < numValues; componentIndex++ ) {
-		char componentStr[GEN_STRING_LENGTH_NUMERIC_LITERAL];
-		Gen_GetNumericLiteral( type, values[componentIndex], componentStr );
-
-		String_Appendf( sb, "%s", componentStr );
-
-		if ( componentIndex != numValues - 1 ) {
-			String_Append( sb, ", " );
-		}
-	}
-	String_Append(  sb, " }" );
-}
-
-void Gen_GetValuesArray2D( const genType_t type, const u32 rows, const u32 cols, const float* values, stringBuilder_t* sb ) {
-	String_Append( sb, "\t{\n" );
-	for ( u32 row = 0; row < rows; row++ ) {
-		String_Append( sb, "\t\t{ " );
-		for ( u32 col = 0; col < cols; col++ ) {
-			const float* value = values + ( row * cols );
-
-			char componentStr[GEN_STRING_LENGTH_NUMERIC_LITERAL];
-			Gen_GetNumericLiteral( type, *value, componentStr );
-			
-			String_Appendf( sb, "%s", componentStr );
-
-			if ( col != cols - 1 ) {
-				String_Append( sb, ", " );
-			}
-		}
-		String_Append( sb, " }" );
-
-		if ( row != rows - 1 ) {
-			String_Append( sb, "," );
-		}
-
-		String_Append( sb, "\n" );
-	}
-	String_Append( sb, "\t};\n" );
-}
 
 void Gen_SSE_GetInputDataNameDot( const genType_t type, const u32 numComponents, char* outString ) {
 	const char* typeString = Gen_GetTypeString( type );

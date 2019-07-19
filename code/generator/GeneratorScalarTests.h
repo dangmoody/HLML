@@ -16,6 +16,7 @@ private:
 	stringBuilder_t	m_codeSuite;
 
 	const char*		m_memberTypeString;
+	const char*		m_registerName;
 
 	genType_t		m_type;
 
@@ -26,4 +27,5 @@ private:
 	void			GenerateTestMinMax();
 	void			GenerateTestClamp();
 	void			GenerateTestSaturate();
+	void			GenerateTestLerp();
 };

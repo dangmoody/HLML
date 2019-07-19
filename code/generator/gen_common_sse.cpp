@@ -1,0 +1,112 @@
+#include "gen_common_sse.h"
+
+#include "string_builder.h"
+
+void Gen_GetValuesArray1D( const genType_t type, const u32 numValues, const float* values, stringBuilder_t* sb ) {
+	String_Append(  sb, "\t{ " );
+	for ( u32 componentIndex = 0; componentIndex < numValues; componentIndex++ ) {
+		char componentStr[GEN_STRING_LENGTH_NUMERIC_LITERAL];
+		Gen_GetNumericLiteral( type, values[componentIndex], componentStr );
+
+		String_Appendf( sb, "%s", componentStr );
+
+		if ( componentIndex != numValues - 1 ) {
+			String_Append( sb, ", " );
+		}
+	}
+	String_Append(  sb, " }" );
+}
+
+void Gen_GetValuesArray2D( const genType_t type, const u32 rows, const u32 cols, const float* values, stringBuilder_t* sb ) {
+	String_Append( sb, "\t{\n" );
+	for ( u32 row = 0; row < rows; row++ ) {
+		String_Append( sb, "\t\t{ " );
+		for ( u32 col = 0; col < cols; col++ ) {
+			const float* value = values + ( row * cols );
+
+			char componentStr[GEN_STRING_LENGTH_NUMERIC_LITERAL];
+			Gen_GetNumericLiteral( type, *value, componentStr );
+			
+			String_Appendf( sb, "%s", componentStr );
+
+			if ( col != cols - 1 ) {
+				String_Append( sb, ", " );
+			}
+		}
+		String_Append( sb, " }" );
+
+		if ( row != rows - 1 ) {
+			String_Append( sb, "," );
+		}
+
+		String_Append( sb, "\n" );
+	}
+	String_Append( sb, "\t};\n" );
+}
+
+void Gen_SSE_GetInputDataNameLerp( const genType_t type, const u32 numComponents, char* outString ) {
+	if ( !Gen_TypeSupportsSSE( type ) ) {
+		return;
+	}
+
+	if ( numComponents == 1 ) {
+		const char* memberTypeString = Gen_GetMemberTypeString( type );
+
+		snprintf( outString, GEN_STRING_LENGTH_SSE_INPUT_NAME, "sse_input_lerp_%s_t", memberTypeString );
+	} else {
+		const char* typeString = Gen_GetTypeString( type );
+
+		snprintf( outString, GEN_STRING_LENGTH_SSE_INPUT_NAME, "sse_input_lerp_%s%d_t", typeString, numComponents );
+	}
+}
+
+void Gen_SSE_Lerp( const genType_t type, const u32 numComponents, stringBuilder_t* sbHeader, stringBuilder_t* sbInl ) {
+	assert( numComponents >= 1 );	// 1 for non-vector types
+	assert( numComponents <= GEN_COMPONENT_COUNT_MAX );
+
+	if ( !Gen_TypeSupportsSSE( type ) ) {
+		return;
+	}
+
+	const char* memberTypeString = Gen_GetMemberTypeString( type );
+
+	char oneStr[GEN_STRING_LENGTH_NUMERIC_LITERAL];
+	Gen_GetNumericLiteral( type, 1.0f, oneStr );
+
+	const char* registerName = Gen_SSE_GetRegisterName( type );
+
+	const char* addFuncStr = Gen_SSE_GetFuncStrAdd( type );
+	const char* subFuncStr = Gen_SSE_GetFuncStrSub( type );
+	const char* mulFuncStr = Gen_SSE_GetFuncStrMul( type );
+
+	const char* loadFuncStr = Gen_SSE_GetFuncStrLoad( type );
+
+	char inputDataName[GEN_STRING_LENGTH_SSE_INPUT_NAME];
+	Gen_SSE_GetInputDataNameLerp( type, numComponents, inputDataName );
+
+	String_Appendf( sbHeader, "struct %s\n", inputDataName );
+	String_Append(  sbHeader, "{\n" );
+	String_Appendf( sbHeader, "\t%s lhs;\n", registerName );
+	String_Appendf( sbHeader, "\t%s rhs;\n", registerName );
+	String_Appendf( sbHeader, "\t%s t;\n", registerName );
+	String_Append(  sbHeader, "};\n" );
+	String_Append(  sbHeader, "\n" );
+
+	String_Appendf( sbHeader, "inline void lerp_sse( const %s& in, %s* out_results );\n", inputDataName, registerName );
+	String_Append(  sbHeader, "\n" );
+
+	String_Appendf( sbInl, "inline void lerp_sse( const %s& in, %s* out_results )\n", inputDataName, registerName );
+	String_Append(  sbInl, "{\n" );
+	String_Appendf( sbInl, "\t%s ones[4] = { %s, %s, %s, %s };\n", memberTypeString, oneStr, oneStr, oneStr, oneStr );
+	String_Append(  sbInl, "\n" );
+	String_Appendf( sbInl, "\t%s one = %s( ones );\n", registerName, loadFuncStr );
+	String_Append(  sbInl, "\n" );
+	String_Appendf( sbInl, "\t%s sub0 = %s( one, in.t );\n", registerName, subFuncStr );
+	String_Append(  sbInl, "\n" );
+	String_Appendf( sbInl, "\t%s mul0 = %s( sub0, in.lhs );\n", registerName, mulFuncStr );
+	String_Appendf( sbInl, "\t%s mul1 = %s( in.t, in.rhs );\n", registerName, mulFuncStr );
+	String_Append(  sbInl, "\n" );
+	String_Appendf( sbInl, "\t*out_results = %s( mul0, mul1 );\n", addFuncStr );
+	String_Append(  sbInl, "}\n" );
+	String_Append(  sbInl, "\n" );
+}

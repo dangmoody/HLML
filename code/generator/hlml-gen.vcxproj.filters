@@ -63,6 +63,9 @@
     <ClCompile Include="gen_funcs_vector_sse.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="gen_common_sse.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="gen_common.h">
@@ -111,6 +114,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="gen_funcs_vector_sse.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="gen_common_sse.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
