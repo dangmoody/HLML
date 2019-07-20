@@ -41,24 +41,24 @@ inline int32_t sign( const int32_t x )
 }
 
 /// \brief Returns x if its smaller than y, otherwise returns y.
-inline int32_t min( const int32_t& x, const int32_t& y )
+inline int32_t min( const int32_t x, const int32_t y )
 {
 	return ( x < y ) ? x : y;
 }
 
 /// \brief Returns x if its bigger than y, otherwise returns y.
-inline int32_t max( const int32_t& x, const int32_t& y )
+inline int32_t max( const int32_t x, const int32_t y )
 {
 	return ( x > y ) ? x : y;
 }
 
 /// \brief If x is lower than low or higher than high then returns low or high respectively, otherwise returns x.
-inline int32_t clamp( const int32_t& x, const int32_t& low, const int32_t& high )
+inline int32_t clamp( const int32_t x, const int32_t low, const int32_t high )
 {
 	return min( max( x, low ), high );
 }
 
-inline int32_t step( const int32_t& x, const int32_t& y )
+inline int32_t step( const int32_t x, const int32_t y )
 {
 	return ( y > x ? 1 : 0 );
 }
@@ -66,24 +66,24 @@ inline int32_t step( const int32_t& x, const int32_t& y )
 
 // uint32_t
 /// \brief Returns x if its smaller than y, otherwise returns y.
-inline uint32_t min( const uint32_t& x, const uint32_t& y )
+inline uint32_t min( const uint32_t x, const uint32_t y )
 {
 	return ( x < y ) ? x : y;
 }
 
 /// \brief Returns x if its bigger than y, otherwise returns y.
-inline uint32_t max( const uint32_t& x, const uint32_t& y )
+inline uint32_t max( const uint32_t x, const uint32_t y )
 {
 	return ( x > y ) ? x : y;
 }
 
 /// \brief If x is lower than low or higher than high then returns low or high respectively, otherwise returns x.
-inline uint32_t clamp( const uint32_t& x, const uint32_t& low, const uint32_t& high )
+inline uint32_t clamp( const uint32_t x, const uint32_t low, const uint32_t high )
 {
 	return min( max( x, low ), high );
 }
 
-inline uint32_t step( const uint32_t& x, const uint32_t& y )
+inline uint32_t step( const uint32_t x, const uint32_t y )
 {
 	return ( y > x ? 1U : 0U );
 }
@@ -116,45 +116,45 @@ inline float degrees( const float rad )
 }
 
 /// \brief Returns x if its smaller than y, otherwise returns y.
-inline float min( const float& x, const float& y )
+inline float min( const float x, const float y )
 {
 	return ( x < y ) ? x : y;
 }
 
 /// \brief Returns x if its bigger than y, otherwise returns y.
-inline float max( const float& x, const float& y )
+inline float max( const float x, const float y )
 {
 	return ( x > y ) ? x : y;
 }
 
 /// \brief If x is lower than low or higher than high then returns low or high respectively, otherwise returns x.
-inline float clamp( const float& x, const float& low, const float& high )
+inline float clamp( const float x, const float low, const float high )
 {
 	return min( max( x, low ), high );
 }
 
 /// \relates float
 /// \brief Returns a copy of the float with each component clamped between the range 0 and 1.
-inline float saturate( const float& x )
+inline float saturate( const float x )
 {
 	return clamp( x, 0.000000f, 1.000000f );
 }
 
 /// \relates float
 /// \brief Returns a linearly interpolated float between types "a" and "b".
-inline float lerp( const float& a, const float& b, const float t )
+inline float lerp( const float a, const float b, const float t )
 {
 	return ( 1.000000f - t ) * a + t * b;
 }
 
-inline float step( const float& x, const float& y )
+inline float step( const float x, const float y )
 {
 	return ( y > x ? 1.000000f : 0.000000f );
 }
 
 /// \relates float
 /// \brief Performs a sigmoid-like interpolation and clamp.
-inline float smoothstep( const float& low, const float& high, const float& x )
+inline float smoothstep( const float low, const float high, const float x )
 {
 	float t = saturate( ( x - low ) / ( high - low ) );
 	return t * t * ( 3.000000f - 2.000000f * t );
@@ -163,7 +163,7 @@ inline float smoothstep( const float& low, const float& high, const float& x )
 /// \relates float
 /// \brief Performs a 'smoother' version of smoothstep, as design by Ken Perlin.
 /// https://en.wikipedia.org/wiki/Smoothstep#Variations
-inline float smootherstep( const float& low, const float& high, const float& x )
+inline float smootherstep( const float low, const float high, const float x )
 {
 	float t = saturate( ( x - low ) / ( high - low ) );
 	return t * t * t * ( t * ( t * 6.000000f - 15.000000f ) + 10.000000f );
@@ -197,45 +197,45 @@ inline double degrees( const double rad )
 }
 
 /// \brief Returns x if its smaller than y, otherwise returns y.
-inline double min( const double& x, const double& y )
+inline double min( const double x, const double y )
 {
 	return ( x < y ) ? x : y;
 }
 
 /// \brief Returns x if its bigger than y, otherwise returns y.
-inline double max( const double& x, const double& y )
+inline double max( const double x, const double y )
 {
 	return ( x > y ) ? x : y;
 }
 
 /// \brief If x is lower than low or higher than high then returns low or high respectively, otherwise returns x.
-inline double clamp( const double& x, const double& low, const double& high )
+inline double clamp( const double x, const double low, const double high )
 {
 	return min( max( x, low ), high );
 }
 
 /// \relates double
 /// \brief Returns a copy of the double with each component clamped between the range 0 and 1.
-inline double saturate( const double& x )
+inline double saturate( const double x )
 {
 	return clamp( x, 0.000000, 1.000000 );
 }
 
 /// \relates double
 /// \brief Returns a linearly interpolated double between types "a" and "b".
-inline double lerp( const double& a, const double& b, const double t )
+inline double lerp( const double a, const double b, const double t )
 {
 	return ( 1.000000 - t ) * a + t * b;
 }
 
-inline double step( const double& x, const double& y )
+inline double step( const double x, const double y )
 {
 	return ( y > x ? 1.000000 : 0.000000 );
 }
 
 /// \relates double
 /// \brief Performs a sigmoid-like interpolation and clamp.
-inline double smoothstep( const double& low, const double& high, const double& x )
+inline double smoothstep( const double low, const double high, const double x )
 {
 	double t = saturate( ( x - low ) / ( high - low ) );
 	return t * t * ( 3.000000 - 2.000000 * t );
@@ -244,7 +244,7 @@ inline double smoothstep( const double& low, const double& high, const double& x
 /// \relates double
 /// \brief Performs a 'smoother' version of smoothstep, as design by Ken Perlin.
 /// https://en.wikipedia.org/wiki/Smoothstep#Variations
-inline double smootherstep( const double& low, const double& high, const double& x )
+inline double smootherstep( const double low, const double high, const double x )
 {
 	double t = saturate( ( x - low ) / ( high - low ) );
 	return t * t * t * ( t * ( t * 6.000000 - 15.000000 ) + 10.000000 );

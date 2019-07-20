@@ -11,6 +11,8 @@
 
 #include <stdio.h>
 
+#include <string.h>
+
 #define BIT( x )							1ULL << x
 
 #ifndef _countof
@@ -172,6 +174,7 @@ static const char* GEN_OPERATORS_BITWISE[GEN_OP_BITWISE_COUNT] = {
 inline const char*	Gen_GetTypeString( const genType_t type );
 inline const char*	Gen_GetMemberTypeString( const genType_t type );
 inline void			Gen_GetFullTypeName( const genType_t type, const u32 numRows, const u32 numCols, char* outString );
+inline void			Gen_GetParmTypeName( const genType_t type, const u32 numComponents, char* outString );
 
 inline const char*	Gen_GetDefaultLiteralValue( const genType_t type );
 inline void			Gen_GetNumericLiteral( const genType_t type, const float value, char* outString );
@@ -281,6 +284,18 @@ void Gen_GetFullTypeName( const genType_t type, const u32 numRows, const u32 num
 	if ( len >= GEN_STRING_LENGTH_TYPE_NAME ) {
 		printf( "ERROR: Attempted to write a typename greater than %d characters.\n", GEN_STRING_LENGTH_TYPE_NAME );
 		assert( false );
+	}
+}
+
+void Gen_GetParmTypeName( const genType_t type, const u32 numComponents, char* outString ) {
+	if ( numComponents == 1 ) {
+		const char* memberTypeString = Gen_GetMemberTypeString( type );
+
+		strncpy( outString, memberTypeString, GEN_STRING_LENGTH_TYPE_NAME );
+	} else {
+		const char* typeString = Gen_GetTypeString( type );
+
+		snprintf( outString, GEN_STRING_LENGTH_TYPE_NAME, "%s%d&", typeString, numComponents );
 	}
 }
 

@@ -309,7 +309,7 @@ void Gen_MinMax( const genType_t type, stringBuilder_t* sb ) {
 
 	// min
 	Gen_DocMin( sb );
-	String_Appendf( sb, "inline %s min( const %s& x, const %s& y )\n", memberTypeString, memberTypeString, memberTypeString );
+	String_Appendf( sb, "inline %s min( const %s x, const %s y )\n", memberTypeString, memberTypeString, memberTypeString );
 	String_Append(  sb, "{\n" );
 	String_Append(  sb, "\treturn ( x < y ) ? x : y;\n" );
 	String_Append(  sb, "}\n" );
@@ -317,7 +317,7 @@ void Gen_MinMax( const genType_t type, stringBuilder_t* sb ) {
 
 	// max
 	Gen_DocMax( sb );
-	String_Appendf( sb, "inline %s max( const %s& x, const %s& y )\n", memberTypeString, memberTypeString, memberTypeString );
+	String_Appendf( sb, "inline %s max( const %s x, const %s y )\n", memberTypeString, memberTypeString, memberTypeString );
 	String_Append(  sb, "{\n" );
 	String_Append(  sb, "\treturn ( x > y ) ? x : y;\n" );
 	String_Append(  sb, "}\n" );
@@ -334,7 +334,7 @@ void Gen_Clamp( const genType_t type, stringBuilder_t* sb ) {
 	const char* memberTypeString = Gen_GetMemberTypeString( type );
 
 	Gen_DocClamp( sb );
-	String_Appendf( sb, "inline %s clamp( const %s& x, const %s& low, const %s& high )\n", memberTypeString, memberTypeString, memberTypeString, memberTypeString );
+	String_Appendf( sb, "inline %s clamp( const %s x, const %s low, const %s high )\n", memberTypeString, memberTypeString, memberTypeString, memberTypeString );
 	String_Append(  sb, "{\n" );
 	String_Append(  sb, "\treturn min( max( x, low ), high );\n" );
 	String_Append(  sb, "}\n" );
@@ -360,18 +360,21 @@ void Gen_Saturate( const genType_t type, const u32 numComponents, stringBuilder_
 	Gen_GetNumericLiteral( type, 0.0f, zeroStr );
 	Gen_GetNumericLiteral( type, 1.0f, oneStr );
 
+	char parmTypeName[GEN_STRING_LENGTH_TYPE_NAME];
+	Gen_GetParmTypeName( type, numComponents, parmTypeName );
+
 	bool isVector = numComponents > 1;
 	if ( isVector ) {
 		assert( sbInl );	// only don't output to an .inl file for scalar impls
 	}
 
 	Gen_DocSaturate( sbHeader, fullTypeName );
-	String_Appendf( sbHeader, "inline %s saturate( const %s& x )", fullTypeName, fullTypeName );
+	String_Appendf( sbHeader, "inline %s saturate( const %s x )", fullTypeName, parmTypeName );
 	if ( isVector ) {
 		String_Append( sbHeader, ";\n" );
 		String_Append( sbHeader, "\n" );
 
-		String_Appendf( sbInl, "%s saturate( const %s& x )\n", fullTypeName, fullTypeName );
+		String_Appendf( sbInl, "%s saturate( const %s x )\n", fullTypeName, parmTypeName );
 		String_Append(  sbInl, "{\n" );
 		String_Appendf( sbInl, "\treturn %s(\n", fullTypeName );
 		for ( u32 i = 0; i < numComponents; i++ ) {
@@ -414,18 +417,21 @@ void Gen_Lerp( const genType_t type, const u32 numComponents, stringBuilder_t* s
 	char oneStr[GEN_STRING_LENGTH_NUMERIC_LITERAL];
 	Gen_GetNumericLiteral( type, 1.0f, oneStr );
 
+	char parmTypeName[GEN_STRING_LENGTH_TYPE_NAME];
+	Gen_GetParmTypeName( type, numComponents, parmTypeName );
+
 	bool isVector = numComponents > 1;
 	if ( isVector ) {
 		assert( sbInl );	// only don't output to an .inl file for scalar impls
 	}
 
 	Gen_GetDocLerp( sbHeader, fullTypeName );
-	String_Appendf( sbHeader, "inline %s lerp( const %s& a, const %s& b, const %s t )", fullTypeName, fullTypeName, fullTypeName, typeString );
+	String_Appendf( sbHeader, "inline %s lerp( const %s a, const %s b, const %s t )", fullTypeName, parmTypeName, parmTypeName, typeString );
 	if ( isVector ) {
 		String_Append( sbHeader, ";\n" );
 		String_Append( sbHeader, "\n" );
 
-		String_Appendf( sbInl, "%s lerp( const %s& a, const %s& b, const %s t )\n", fullTypeName, fullTypeName, fullTypeName, typeString );
+		String_Appendf( sbInl, "%s lerp( const %s a, const %s b, const %s t )\n", fullTypeName, parmTypeName, parmTypeName, typeString );
 		String_Append(  sbInl, "{\n" );
 		String_Appendf( sbInl, "\treturn %s(\n", fullTypeName );
 		for ( u32 i = 0; i < numComponents; i++ ) {
@@ -469,14 +475,17 @@ void Gen_Step( const genType_t type, const u32 numComponents, stringBuilder_t* s
 	Gen_GetNumericLiteral( type, 0.0f, zeroStr );
 	Gen_GetNumericLiteral( type, 1.0f, oneStr );
 
-	String_Appendf( sbHeader, "inline %s step( const %s& x, const %s& y )", fullTypeName, fullTypeName, fullTypeName );
+	char parmTypeName[GEN_STRING_LENGTH_TYPE_NAME];
+	Gen_GetParmTypeName( type, numComponents, parmTypeName );
+
+	String_Appendf( sbHeader, "inline %s step( const %s x, const %s y )", fullTypeName, parmTypeName, parmTypeName );
 	if ( numComponents > 1 ) {
 		assert( sbInl );
 
 		String_Append( sbHeader, ";\n" );
 		String_Append( sbHeader, "\n" );
 
-		String_Appendf( sbInl, "%s step( const %s& x, const %s& y )\n", fullTypeName, fullTypeName, fullTypeName );
+		String_Appendf( sbInl, "%s step( const %s x, const %s y )\n", fullTypeName, parmTypeName, parmTypeName );
 		String_Append(  sbInl, "{\n" );
 		String_Appendf( sbInl, "\treturn %s(\n", fullTypeName );
 		for ( u32 i = 0; i < numComponents; i++ ) {
@@ -525,6 +534,9 @@ void Gen_Smoothstep( const genType_t type, const u32 numComponents, stringBuilde
 	Gen_GetNumericLiteral( type, 10.0f, tenStr );
 	Gen_GetNumericLiteral( type, 15.0f, fifteenStr );
 
+	char parmTypeName[GEN_STRING_LENGTH_TYPE_NAME];
+	Gen_GetParmTypeName( type, numComponents, parmTypeName );
+
 	bool isVector = numComponents > 1;
 	if ( isVector ) {
 		assert( sbInl );	// only don't output to an .inl file for scalar impls
@@ -533,12 +545,12 @@ void Gen_Smoothstep( const genType_t type, const u32 numComponents, stringBuilde
 	// smoothstep
 	{
 		Gen_GetDocSmoothstep( sbHeader, fullTypeName );
-		String_Appendf( sbHeader, "inline %s smoothstep( const %s& low, const %s& high, const %s& x )", fullTypeName, fullTypeName, fullTypeName, fullTypeName );
+		String_Appendf( sbHeader, "inline %s smoothstep( const %s low, const %s high, const %s x )", fullTypeName, parmTypeName, parmTypeName, parmTypeName );
 		if ( isVector ) {
 			String_Append( sbHeader, ";\n" );
 			String_Append( sbHeader, "\n" );
 
-			String_Appendf( sbInl, "%s smoothstep( const %s& low, const %s& high, const %s& x )\n", fullTypeName, fullTypeName, fullTypeName, fullTypeName );
+			String_Appendf( sbInl, "%s smoothstep( const %s low, const %s high, const %s x )\n", fullTypeName, parmTypeName, parmTypeName, parmTypeName );
 			String_Append(  sbInl, "{\n" );
 			String_Appendf( sbInl, "\treturn %s(\n", fullTypeName );
 			for ( u32 i = 0; i < numComponents; i++ ) {
@@ -566,12 +578,12 @@ void Gen_Smoothstep( const genType_t type, const u32 numComponents, stringBuilde
 	// smootherstep
 	{
 		Gen_GetDocSmootherstep( sbHeader, fullTypeName );
-		String_Appendf( sbHeader, "inline %s smootherstep( const %s& low, const %s& high, const %s& x )", fullTypeName, fullTypeName, fullTypeName, fullTypeName );
+		String_Appendf( sbHeader, "inline %s smootherstep( const %s low, const %s high, const %s x )", fullTypeName, parmTypeName, parmTypeName, parmTypeName );
 		if ( isVector ) {
 			String_Append( sbHeader, ";\n" );
 			String_Append( sbHeader, "\n" );
 
-			String_Appendf( sbInl, "%s smootherstep( const %s& low, const %s& high, const %s& x )\n", fullTypeName, fullTypeName, fullTypeName, fullTypeName );
+			String_Appendf( sbInl, "%s smootherstep( const %s low, const %s high, const %s x )\n", fullTypeName, parmTypeName, parmTypeName, parmTypeName );
 			String_Append(  sbInl, "{\n" );
 			String_Appendf( sbInl, "\treturn %s(\n", fullTypeName );
 			for ( u32 i = 0; i < numComponents; i++ ) {
