@@ -156,14 +156,55 @@ void GeneratorScalarTest::GenerateTestDegreesRadians() {
 
 	String_Appendf( &m_codeTests, "TEMPER_TEST( %s )\n", testName );
 	String_Append(  &m_codeTests, "{\n" );
+	String_Append( &m_codeTests, "\t// scalar\n" );
 	String_Appendf( &m_codeTests, "\t%s deg = %s;\n", m_memberTypeString, degreesStr );
 	String_Appendf( &m_codeTests, "\t%s rad = %s;\n", m_memberTypeString, radiansStr );
 	String_Append(  &m_codeTests, "\n" );
-	String_Appendf( &m_codeTests, "\t%s answerRadians = radians( deg );\n", m_memberTypeString );
-	String_Appendf( &m_codeTests, "\t%s answerDegrees = degrees( rad );\n", m_memberTypeString );
-	String_Append(  &m_codeTests, "\n" );
-	String_Appendf( &m_codeTests, "\tTEMPER_EXPECT_TRUE( %s( answerRadians, %s ) );\n", floateqStr, radiansStr );
-	String_Appendf( &m_codeTests, "\tTEMPER_EXPECT_TRUE( %s( answerDegrees, %s ) );\n", floateqStr, degreesStr );
+	String_Appendf( &m_codeTests, "\tTEMPER_EXPECT_TRUE( %s( radians( deg ), %s ) );\n", floateqStr, radiansStr );
+	String_Appendf( &m_codeTests, "\tTEMPER_EXPECT_TRUE( %s( degrees( rad ), %s ) );\n", floateqStr, degreesStr );
+
+	if ( Gen_TypeSupportsSSE( m_type ) ) {
+		const char* loadFuncStr		= Gen_SSE_GetFuncStrLoad( m_type );
+		const char* storeFuncStr	= Gen_SSE_GetFuncStrStore( m_type );
+
+		char inputDataNameRadians[GEN_STRING_LENGTH_SSE_INPUT_NAME];
+		Gen_SSE_GetInputDataNameRadians( m_type, inputDataNameRadians );
+
+		char inputDataNameDegrees[GEN_STRING_LENGTH_SSE_INPUT_NAME];
+		Gen_SSE_GetInputDataNameDegrees( m_type, inputDataNameDegrees );
+
+		String_Append(  &m_codeTests, "\n" );
+		String_Append(  &m_codeTests, "\t// SSE\n" );
+		String_Appendf( &m_codeTests, "\t%s degs[4] = { deg, deg, deg, deg };\n", m_memberTypeString );
+		String_Appendf( &m_codeTests, "\t%s rads[4] = { rad, rad, rad, rad };\n", m_memberTypeString );
+		String_Append(  &m_codeTests, "\n" );
+		String_Appendf( &m_codeTests, "\t%s results;\n", m_registerName );
+		String_Append(  &m_codeTests, "\n" );
+		String_Append(  &m_codeTests, "\t// radians\n" );
+		String_Appendf( &m_codeTests, "\t%s inRadians;\n", inputDataNameRadians );
+		String_Appendf( &m_codeTests, "\tinRadians.deg = %s( degs );\n", loadFuncStr );
+		String_Appendf( &m_codeTests, "\tradians_sse( inRadians, &results );\n" );
+		String_Append(  &m_codeTests, "\n" );
+		String_Appendf( &m_codeTests, "\t%s radiansResults[4];\n", m_memberTypeString );
+		String_Appendf( &m_codeTests, "\t%s( radiansResults, results );\n", storeFuncStr );
+		String_Append(  &m_codeTests, "\n" );
+		for ( u32 i = 0; i < 4; i++ ) {
+			String_Appendf( &m_codeTests, "\tTEMPER_EXPECT_TRUE( %s( radiansResults[%d], %s ) );\n", floateqStr, i, radiansStr );
+		}
+		String_Append(  &m_codeTests, "\n" );
+		String_Append(  &m_codeTests, "\t// degrees\n" );
+		String_Appendf( &m_codeTests, "\t%s inDegrees;\n", inputDataNameDegrees );
+		String_Appendf( &m_codeTests, "\tinDegrees.rad = %s( rads );\n", loadFuncStr );
+		String_Appendf( &m_codeTests, "\tdegrees_sse( inDegrees, &results );\n" );
+		String_Append(  &m_codeTests, "\n" );
+		String_Appendf( &m_codeTests, "\t%s degreesResults[4];\n", m_memberTypeString );
+		String_Appendf( &m_codeTests, "\t%s( degreesResults, results );\n", storeFuncStr );
+		String_Append(  &m_codeTests, "\n" );
+		for ( u32 i = 0; i < 4; i++ ) {
+			String_Appendf( &m_codeTests, "\tTEMPER_EXPECT_TRUE( %s( degreesResults[%d], %s ) );\n", floateqStr, i, degreesStr );
+		}
+	}
+
 	String_Append(  &m_codeTests, "\n" );
 	String_Append(  &m_codeTests, "\tTEMPER_PASS();\n" );
 	String_Append(  &m_codeTests, "}\n" );

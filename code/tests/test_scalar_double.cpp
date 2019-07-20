@@ -26,14 +26,12 @@ TEMPER_TEST( TestSign_double )
 
 TEMPER_TEST( TestDegreesRadians_double )
 {
+	// scalar
 	double deg = 90.0;
 	double rad = 1.57079637;
 
-	double answerRadians = radians( deg );
-	double answerDegrees = degrees( rad );
-
-	TEMPER_EXPECT_TRUE( doubleeq( answerRadians, 1.57079637 ) );
-	TEMPER_EXPECT_TRUE( doubleeq( answerDegrees, 90.0 ) );
+	TEMPER_EXPECT_TRUE( doubleeq( radians( deg ), 1.57079637 ) );
+	TEMPER_EXPECT_TRUE( doubleeq( degrees( rad ), 90.0 ) );
 
 	TEMPER_PASS();
 }

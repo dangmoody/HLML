@@ -24,7 +24,28 @@ along with hlml.  If not, see <http://www.gnu.org/licenses/>.
 
 // GENERATED FILE.  DO NOT EDIT.
 
-inline void lerp_sse( const sse_input_lerp_float_t& in, __m128* out_results )
+// float
+void radians_sse( const sse_input_radians_float_t& in, __m128* out_results )
+{
+	float constant = 0.01745329251994329577f;
+	float constants[4] = { constant, constant, constant, constant };
+
+	__m128 radToDeg = _mm_load_ps( constants );
+
+	*out_results = _mm_mul_ps( in.deg, radToDeg );
+}
+
+void degrees_sse( const sse_input_degrees_float_t& in, __m128* out_results )
+{
+	float constant = 57.2957795130823208768f;
+	float constants[4] = { constant, constant, constant, constant };
+
+	__m128 radToDeg = _mm_load_ps( constants );
+
+	*out_results = _mm_mul_ps( in.rad, radToDeg );
+}
+
+void lerp_sse( const sse_input_lerp_float_t& in, __m128* out_results )
 {
 	float ones[4] = { 1.0f, 1.0f, 1.0f, 1.0f };
 
@@ -37,4 +58,5 @@ inline void lerp_sse( const sse_input_lerp_float_t& in, __m128* out_results )
 
 	*out_results = _mm_add_ps( mul0, mul1 );
 }
+
 

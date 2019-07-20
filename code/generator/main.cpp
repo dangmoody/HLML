@@ -364,7 +364,18 @@ static bool GenerateFunctionsScalarSSE( void ) {
 			continue;
 		}
 
+		const char* memberTypeString = Gen_GetMemberTypeString( type );
+
+		String_Appendf( &contentHeader, "// %s\n", memberTypeString );
+		String_Appendf( &contentInl, "// %s\n", memberTypeString );
+
+		Gen_SSE_Radians( type, &contentHeader, &contentInl );
+		Gen_SSE_Degrees( type, &contentHeader, &contentInl );
+
 		Gen_SSE_Lerp( type, 1, &contentHeader, &contentInl );
+
+		String_Append( &contentHeader, "\n" );
+		String_Append( &contentInl, "\n" );
 	}
 
 	String_Append( &contentHeader, "#include \"" GEN_FILENAME_FUNCTIONS_SCALAR_SSE ".inl\"\n" );

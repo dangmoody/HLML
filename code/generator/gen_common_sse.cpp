@@ -44,6 +44,92 @@ void Gen_GetValuesArray2D( const genType_t type, const u32 rows, const u32 cols,
 	String_Append( sb, "\t};\n" );
 }
 
+void Gen_SSE_GetInputDataNameRadians( const genType_t type, char* outString ) {
+	if ( !Gen_TypeSupportsSSE( type ) ) {
+		return;
+	}
+
+	const char* memberTypeString = Gen_GetMemberTypeString( type );
+
+	snprintf( outString, GEN_STRING_LENGTH_SSE_INPUT_NAME, "sse_input_radians_%s_t", memberTypeString );
+}
+
+void Gen_SSE_Radians( const genType_t type, stringBuilder_t* sbHeader, stringBuilder_t* sbInl ) {
+	const char* memberTypeString = Gen_GetMemberTypeString( type );
+
+	char inputDataName[GEN_STRING_LENGTH_SSE_INPUT_NAME];
+	Gen_SSE_GetInputDataNameRadians( type, inputDataName );
+
+	const char* registerName = Gen_SSE_GetRegisterName( type );
+
+	const char* mulFuncStr = Gen_SSE_GetFuncStrMul( type );
+
+	const char* loadFuncStr = Gen_SSE_GetFuncStrLoad( type );
+
+	String_Appendf( sbHeader, "struct %s\n", inputDataName );
+	String_Append(  sbHeader, "{\n" );
+	String_Appendf( sbHeader, "\t%s deg;\n", registerName );
+	String_Append(  sbHeader, "};\n" );
+	String_Append(  sbHeader, "\n" );
+
+	String_Appendf( sbHeader, "inline void radians_sse( const %s& in, %s* out_results );\n", inputDataName, registerName );
+	String_Append(  sbHeader, "\n" );
+
+	String_Appendf( sbInl, "void radians_sse( const %s& in, %s* out_results )\n", inputDataName, registerName );
+	String_Append(  sbInl, "{\n" );
+	String_Appendf( sbInl, "\t%s constant = 0.01745329251994329577f;\n", memberTypeString );
+	String_Appendf( sbInl, "\t%s constants[4] = { constant, constant, constant, constant };\n", memberTypeString );
+	String_Append(  sbInl, "\n" );
+	String_Appendf( sbInl, "\t%s radToDeg = %s( constants );\n", registerName, loadFuncStr );
+	String_Append(  sbInl, "\n" );
+	String_Appendf( sbInl, "\t*out_results = %s( in.deg, radToDeg );\n", mulFuncStr );
+	String_Append(  sbInl, "}\n" );
+	String_Append(  sbInl, "\n" );
+}
+
+void Gen_SSE_GetInputDataNameDegrees( const genType_t type, char* outString ) {
+	if ( !Gen_TypeSupportsSSE( type ) ) {
+		return;
+	}
+
+	const char* memberTypeString = Gen_GetMemberTypeString( type );
+
+	snprintf( outString, GEN_STRING_LENGTH_SSE_INPUT_NAME, "sse_input_degrees_%s_t", memberTypeString );
+}
+
+void Gen_SSE_Degrees( const genType_t type, stringBuilder_t* sbHeader, stringBuilder_t* sbInl ) {
+	const char* memberTypeString = Gen_GetMemberTypeString( type );
+
+	char inputDataName[GEN_STRING_LENGTH_SSE_INPUT_NAME];
+	Gen_SSE_GetInputDataNameDegrees( type, inputDataName );
+
+	const char* registerName = Gen_SSE_GetRegisterName( type );
+
+	const char* mulFuncStr = Gen_SSE_GetFuncStrMul( type );
+
+	const char* loadFuncStr = Gen_SSE_GetFuncStrLoad( type );
+
+	String_Appendf( sbHeader, "struct %s\n", inputDataName );
+	String_Append(  sbHeader, "{\n" );
+	String_Appendf( sbHeader, "\t%s rad;\n", registerName );
+	String_Append(  sbHeader, "};\n" );
+	String_Append(  sbHeader, "\n" );
+
+	String_Appendf( sbHeader, "inline void degrees_sse( const %s& in, %s* out_results );\n", inputDataName, registerName );
+	String_Append(  sbHeader, "\n" );
+
+	String_Appendf( sbInl, "void degrees_sse( const %s& in, %s* out_results )\n", inputDataName, registerName );
+	String_Append(  sbInl, "{\n" );
+	String_Appendf( sbInl, "\t%s constant = 57.2957795130823208768f;\n", memberTypeString );
+	String_Appendf( sbInl, "\t%s constants[4] = { constant, constant, constant, constant };\n", memberTypeString );
+	String_Append(  sbInl, "\n" );
+	String_Appendf( sbInl, "\t%s radToDeg = %s( constants );\n", registerName, loadFuncStr );
+	String_Append(  sbInl, "\n" );
+	String_Appendf( sbInl, "\t*out_results = %s( in.rad, radToDeg );\n", mulFuncStr );
+	String_Append(  sbInl, "}\n" );
+	String_Append(  sbInl, "\n" );
+}
+
 void Gen_SSE_GetInputDataNameLerp( const genType_t type, const u32 numComponents, char* outString ) {
 	if ( !Gen_TypeSupportsSSE( type ) ) {
 		return;
@@ -95,7 +181,7 @@ void Gen_SSE_Lerp( const genType_t type, const u32 numComponents, stringBuilder_
 	String_Appendf( sbHeader, "inline void lerp_sse( const %s& in, %s* out_results );\n", inputDataName, registerName );
 	String_Append(  sbHeader, "\n" );
 
-	String_Appendf( sbInl, "inline void lerp_sse( const %s& in, %s* out_results )\n", inputDataName, registerName );
+	String_Appendf( sbInl, "void lerp_sse( const %s& in, %s* out_results )\n", inputDataName, registerName );
 	String_Append(  sbInl, "{\n" );
 	String_Appendf( sbInl, "\t%s ones[4] = { %s, %s, %s, %s };\n", memberTypeString, oneStr, oneStr, oneStr, oneStr );
 	String_Append(  sbInl, "\n" );

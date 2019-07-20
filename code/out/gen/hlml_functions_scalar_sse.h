@@ -26,6 +26,21 @@ along with hlml.  If not, see <http://www.gnu.org/licenses/>.
 
 #include <xmmintrin.h>
 
+// float
+struct sse_input_radians_float_t
+{
+	__m128 deg;
+};
+
+inline void radians_sse( const sse_input_radians_float_t& in, __m128* out_results );
+
+struct sse_input_degrees_float_t
+{
+	__m128 rad;
+};
+
+inline void degrees_sse( const sse_input_degrees_float_t& in, __m128* out_results );
+
 struct sse_input_lerp_float_t
 {
 	__m128 lhs;
@@ -34,5 +49,6 @@ struct sse_input_lerp_float_t
 };
 
 inline void lerp_sse( const sse_input_lerp_float_t& in, __m128* out_results );
+
 
 #include "hlml_functions_scalar_sse.inl"

@@ -6,6 +6,12 @@
 extern void			Gen_GetValuesArray1D( const genType_t type, const u32 numValues, const float* values, stringBuilder_t* sb );
 extern void			Gen_GetValuesArray2D( const genType_t type, const u32 rows, const u32 cols, const float* values, stringBuilder_t* sb );
 
+extern void			Gen_SSE_GetInputDataNameRadians( const genType_t type, char* outString );
+extern void			Gen_SSE_Radians( const genType_t type, stringBuilder_t* sbHeader, stringBuilder_t* sbInl );
+
+extern void			Gen_SSE_GetInputDataNameDegrees( const genType_t type, char* outString );
+extern void			Gen_SSE_Degrees( const genType_t type, stringBuilder_t* sbHeader, stringBuilder_t* sbInl );
+
 extern void			Gen_SSE_GetInputDataNameLerp( const genType_t type, const u32 numComponents, char* outString );
 extern void			Gen_SSE_Lerp( const genType_t type, const u32 numComponents, stringBuilder_t* sbHeader, stringBuilder_t* sbInl );
 

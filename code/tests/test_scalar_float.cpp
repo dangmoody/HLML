@@ -30,14 +30,44 @@ TEMPER_TEST( TestSign_float )
 
 TEMPER_TEST( TestDegreesRadians_float )
 {
+	// scalar
 	float deg = 90.0f;
 	float rad = 1.57079637f;
 
-	float answerRadians = radians( deg );
-	float answerDegrees = degrees( rad );
+	TEMPER_EXPECT_TRUE( floateq( radians( deg ), 1.57079637f ) );
+	TEMPER_EXPECT_TRUE( floateq( degrees( rad ), 90.0f ) );
 
-	TEMPER_EXPECT_TRUE( floateq( answerRadians, 1.57079637f ) );
-	TEMPER_EXPECT_TRUE( floateq( answerDegrees, 90.0f ) );
+	// SSE
+	float degs[4] = { deg, deg, deg, deg };
+	float rads[4] = { rad, rad, rad, rad };
+
+	__m128 results;
+
+	// radians
+	sse_input_radians_float_t inRadians;
+	inRadians.deg = _mm_load_ps( degs );
+	radians_sse( inRadians, &results );
+
+	float radiansResults[4];
+	_mm_store_ps( radiansResults, results );
+
+	TEMPER_EXPECT_TRUE( floateq( radiansResults[0], 1.57079637f ) );
+	TEMPER_EXPECT_TRUE( floateq( radiansResults[1], 1.57079637f ) );
+	TEMPER_EXPECT_TRUE( floateq( radiansResults[2], 1.57079637f ) );
+	TEMPER_EXPECT_TRUE( floateq( radiansResults[3], 1.57079637f ) );
+
+	// degrees
+	sse_input_degrees_float_t inDegrees;
+	inDegrees.rad = _mm_load_ps( rads );
+	degrees_sse( inDegrees, &results );
+
+	float degreesResults[4];
+	_mm_store_ps( degreesResults, results );
+
+	TEMPER_EXPECT_TRUE( floateq( degreesResults[0], 90.0f ) );
+	TEMPER_EXPECT_TRUE( floateq( degreesResults[1], 90.0f ) );
+	TEMPER_EXPECT_TRUE( floateq( degreesResults[2], 90.0f ) );
+	TEMPER_EXPECT_TRUE( floateq( degreesResults[3], 90.0f ) );
 
 	TEMPER_PASS();
 }
