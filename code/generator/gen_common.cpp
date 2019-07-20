@@ -244,7 +244,7 @@ void Gen_Sign( const genType_t type, stringBuilder_t* sb ) {
 	const char* intTypeString = Gen_GetMemberTypeString( GEN_TYPE_INT );
 
 	char zeroStr[GEN_STRING_LENGTH_NUMERIC_LITERAL];
-	Gen_GetNumericLiteral( type, 0, zeroStr );
+	Gen_GetNumericLiteral( type, 0, zeroStr, 1 );
 
 	Gen_DocSign( sb );
 	String_Appendf( sb, "inline %s sign( const %s x )\n", intTypeString, memberTypeString );
@@ -264,7 +264,7 @@ void Gen_Radians( const genType_t type, stringBuilder_t* sb ) {
 	const char* typeString = Gen_GetTypeString( type );
 
 	char oneHundredEightyStr[GEN_STRING_LENGTH_NUMERIC_LITERAL];
-	Gen_GetNumericLiteral( type, 180, oneHundredEightyStr );
+	Gen_GetNumericLiteral( type, 180, oneHundredEightyStr, 1 );
 
 	const char* piStr = Gen_GetConstantNamePi( type );
 
@@ -286,7 +286,7 @@ void Gen_Degrees( const genType_t type, stringBuilder_t* sb ) {
 	const char* typeString = Gen_GetTypeString( type );
 
 	char oneHundredEightyStr[GEN_STRING_LENGTH_NUMERIC_LITERAL];
-	Gen_GetNumericLiteral( type, 180, oneHundredEightyStr );
+	Gen_GetNumericLiteral( type, 180, oneHundredEightyStr, 1 );
 
 	const char* piStr = Gen_GetConstantNamePi( type );
 
@@ -357,8 +357,8 @@ void Gen_Saturate( const genType_t type, const u32 numComponents, stringBuilder_
 	char zeroStr[GEN_STRING_LENGTH_NUMERIC_LITERAL];
 	char oneStr[GEN_STRING_LENGTH_NUMERIC_LITERAL];
 
-	Gen_GetNumericLiteral( type, 0.0f, zeroStr );
-	Gen_GetNumericLiteral( type, 1.0f, oneStr );
+	Gen_GetNumericLiteral( type, 0.0f, zeroStr, 1 );
+	Gen_GetNumericLiteral( type, 1.0f, oneStr, 1 );
 
 	char parmTypeName[GEN_STRING_LENGTH_TYPE_NAME];
 	Gen_GetParmTypeName( type, numComponents, parmTypeName );
@@ -415,7 +415,7 @@ void Gen_Lerp( const genType_t type, const u32 numComponents, stringBuilder_t* s
 	Gen_GetFullTypeName( type, 1, numComponents, fullTypeName );
 
 	char oneStr[GEN_STRING_LENGTH_NUMERIC_LITERAL];
-	Gen_GetNumericLiteral( type, 1.0f, oneStr );
+	Gen_GetNumericLiteral( type, 1.0f, oneStr, 1 );
 
 	char parmTypeName[GEN_STRING_LENGTH_TYPE_NAME];
 	Gen_GetParmTypeName( type, numComponents, parmTypeName );
@@ -472,8 +472,8 @@ void Gen_Step( const genType_t type, const u32 numComponents, stringBuilder_t* s
 	char zeroStr[GEN_STRING_LENGTH_NUMERIC_LITERAL];
 	char oneStr[GEN_STRING_LENGTH_NUMERIC_LITERAL];
 
-	Gen_GetNumericLiteral( type, 0.0f, zeroStr );
-	Gen_GetNumericLiteral( type, 1.0f, oneStr );
+	Gen_GetNumericLiteral( type, 0.0f, zeroStr, 1 );
+	Gen_GetNumericLiteral( type, 1.0f, oneStr, 1 );
 
 	char parmTypeName[GEN_STRING_LENGTH_TYPE_NAME];
 	Gen_GetParmTypeName( type, numComponents, parmTypeName );
@@ -528,11 +528,11 @@ void Gen_Smoothstep( const genType_t type, const u32 numComponents, stringBuilde
 	char tenStr[GEN_STRING_LENGTH_NUMERIC_LITERAL];
 	char fifteenStr[GEN_STRING_LENGTH_NUMERIC_LITERAL];
 
-	Gen_GetNumericLiteral( type, 2.0f,  twoStr );
-	Gen_GetNumericLiteral( type, 3.0f,  threeStr );
-	Gen_GetNumericLiteral( type, 6.0f,  sixStr );
-	Gen_GetNumericLiteral( type, 10.0f, tenStr );
-	Gen_GetNumericLiteral( type, 15.0f, fifteenStr );
+	Gen_GetNumericLiteral( type, 2.0f,  twoStr, 1 );
+	Gen_GetNumericLiteral( type, 3.0f,  threeStr, 1 );
+	Gen_GetNumericLiteral( type, 6.0f,  sixStr, 1 );
+	Gen_GetNumericLiteral( type, 10.0f, tenStr, 1 );
+	Gen_GetNumericLiteral( type, 15.0f, fifteenStr, 1 );
 
 	char parmTypeName[GEN_STRING_LENGTH_TYPE_NAME];
 	Gen_GetParmTypeName( type, numComponents, parmTypeName );

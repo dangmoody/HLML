@@ -8,8 +8,8 @@
 
 TEMPER_TEST( TestFloateq_float )
 {
-	float a = 5.000000f;
-	float b = 5.000000f;
+	float a = 5.0f;
+	float b = 5.0f;
 	float c = 5.000020f;
 	float d = 5.000100f;
 
@@ -22,30 +22,30 @@ TEMPER_TEST( TestFloateq_float )
 
 TEMPER_TEST( TestSign_float )
 {
-	TEMPER_EXPECT_TRUE( sign( -5.000000f ) == -1 );
-	TEMPER_EXPECT_TRUE( sign( 9.000000f ) ==  1 );
+	TEMPER_EXPECT_TRUE( sign( -5.0f ) == -1 );
+	TEMPER_EXPECT_TRUE( sign( 9.0f ) ==  1 );
 
 	TEMPER_PASS();
 }
 
 TEMPER_TEST( TestDegreesRadians_float )
 {
-	float deg = 90.000000f;
+	float deg = 90.0f;
 	float rad = 1.57079637f;
 
 	float answerRadians = radians( deg );
 	float answerDegrees = degrees( rad );
 
 	TEMPER_EXPECT_TRUE( floateq( answerRadians, 1.57079637f ) );
-	TEMPER_EXPECT_TRUE( floateq( answerDegrees, 90.000000f ) );
+	TEMPER_EXPECT_TRUE( floateq( answerDegrees, 90.0f ) );
 
 	TEMPER_PASS();
 }
 
 TEMPER_TEST( TestMinMax_float )
 {
-	float a = 5.000000f;
-	float b = 9.000000f;
+	float a = 5.0f;
+	float b = 9.0f;
 
 	TEMPER_EXPECT_TRUE( floateq( min( a, b ), a ) );
 	TEMPER_EXPECT_TRUE( floateq( max( a, b ), b ) );
@@ -56,13 +56,13 @@ TEMPER_TEST( TestMinMax_float )
 TEMPER_TEST( TestClamp_float )
 {
 	float a;
-	float low  = 1.000000f;
-	float high = 10.000000f;
+	float low  = 1.0f;
+	float high = 10.0f;
 
-	a = clamp( 0.000000f, low, high );
+	a = clamp( 0.0f, low, high );
 	TEMPER_EXPECT_TRUE( floateq( a, low ) );
 
-	a = clamp( 11.000000f, low, high );
+	a = clamp( 11.0f, low, high );
 	TEMPER_EXPECT_TRUE( floateq( a, high ) );
 
 	TEMPER_PASS();
@@ -84,17 +84,17 @@ TEMPER_TEST( TestSaturate_float )
 TEMPER_TEST( TestLerp_float )
 {
 	// scalar
-	float a = 1.000000f;
-	float b = 3.000000f;
+	float a = 1.0f;
+	float b = 3.0f;
 
-	float answer = lerp( a, b, 0.500000f );
+	float answer = lerp( a, b, 0.5f );
 
-	TEMPER_EXPECT_TRUE( floateq( answer, 2.000000f ) );
+	TEMPER_EXPECT_TRUE( floateq( answer, 2.0f ) );
 
 	// SSE
-	float ones[4]   = { 1.000000f, 1.000000f, 1.000000f, 1.000000f };
-	float threes[4] = { 3.000000f, 3.000000f, 3.000000f, 3.000000f };
-	float halves[4] = { 0.500000f, 0.500000f, 0.500000f, 0.500000f };
+	float ones[4]   = { 1.0f, 1.0f, 1.0f, 1.0f };
+	float threes[4] = { 3.0f, 3.0f, 3.0f, 3.0f };
+	float halves[4] = { 0.5f, 0.5f, 0.5f, 0.5f };
 
 	sse_input_lerp_float_t in;
 
@@ -108,10 +108,10 @@ TEMPER_TEST( TestLerp_float )
 	float lerpResults[4];
 	_mm_store_ps( lerpResults, results );
 
-	TEMPER_EXPECT_TRUE( floateq( lerpResults[0], 2.000000f ) );
-	TEMPER_EXPECT_TRUE( floateq( lerpResults[1], 2.000000f ) );
-	TEMPER_EXPECT_TRUE( floateq( lerpResults[2], 2.000000f ) );
-	TEMPER_EXPECT_TRUE( floateq( lerpResults[3], 2.000000f ) );
+	TEMPER_EXPECT_TRUE( floateq( lerpResults[0], 2.0f ) );
+	TEMPER_EXPECT_TRUE( floateq( lerpResults[1], 2.0f ) );
+	TEMPER_EXPECT_TRUE( floateq( lerpResults[2], 2.0f ) );
+	TEMPER_EXPECT_TRUE( floateq( lerpResults[3], 2.0f ) );
 
 	TEMPER_PASS();
 }

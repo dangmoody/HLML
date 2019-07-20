@@ -182,7 +182,7 @@ void Gen_VectorNormalize( const genType_t type, const u32 numComponents, stringB
 	const char* typeString = Gen_GetTypeString( type );
 
 	char oneStr[GEN_STRING_LENGTH_NUMERIC_LITERAL];
-	Gen_GetNumericLiteral( type, 1, oneStr );
+	Gen_GetNumericLiteral( type, 1, oneStr, 1 );
 
 	char fullTypeName[GEN_STRING_LENGTH_TYPE_NAME];
 	Gen_GetFullTypeName( type, 1, numComponents, fullTypeName );

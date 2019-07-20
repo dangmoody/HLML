@@ -84,8 +84,8 @@ void GeneratorScalarTest::GenerateTestFloateq() {
 	char cStr[GEN_STRING_LENGTH_NUMERIC_LITERAL];
 	char dStr[GEN_STRING_LENGTH_NUMERIC_LITERAL];
 
-	Gen_GetNumericLiteral( m_type, 5.0f, aStr );
-	Gen_GetNumericLiteral( m_type, 5.0f, bStr );
+	Gen_GetNumericLiteral( m_type, 5.0f, aStr, 1 );
+	Gen_GetNumericLiteral( m_type, 5.0f, bStr, 1 );
 	Gen_GetNumericLiteral( m_type, 5.00002f, cStr );
 	Gen_GetNumericLiteral( m_type, 5.0001f, dStr );
 
@@ -120,8 +120,8 @@ void GeneratorScalarTest::GenerateTestSign() {
 	char valueSignedStr[GEN_STRING_LENGTH_NUMERIC_LITERAL];
 	char valueUnsignedStr[GEN_STRING_LENGTH_NUMERIC_LITERAL];
 
-	Gen_GetNumericLiteral( m_type, -5, valueSignedStr );
-	Gen_GetNumericLiteral( m_type, 9, valueUnsignedStr );
+	Gen_GetNumericLiteral( m_type, -5, valueSignedStr, 1 );
+	Gen_GetNumericLiteral( m_type, 9, valueUnsignedStr, 1 );
 
 	String_Appendf( &m_codeTests, "TEMPER_TEST( %s )\n", testName );
 	String_Append(  &m_codeTests, "{\n" );
@@ -144,7 +144,7 @@ void GeneratorScalarTest::GenerateTestDegreesRadians() {
 	snprintf( testName, GEN_STRING_LENGTH_TEST_NAME, "TestDegreesRadians_%s", m_memberTypeString );
 
 	char degreesStr[GEN_STRING_LENGTH_NUMERIC_LITERAL];
-	Gen_GetNumericLiteral( m_type, 90.0f, degreesStr );
+	Gen_GetNumericLiteral( m_type, 90.0f, degreesStr, 1 );
 
 	// DM: must be done this way to avoid floating-point imprecision
 	const char* radiansStr = "1.57079637";
@@ -184,8 +184,8 @@ void GeneratorScalarTest::GenerateTestMinMax() {
 	char aStr[GEN_STRING_LENGTH_NUMERIC_LITERAL];
 	char bStr[GEN_STRING_LENGTH_NUMERIC_LITERAL];
 
-	Gen_GetNumericLiteral( m_type, 5, aStr );
-	Gen_GetNumericLiteral( m_type, 9, bStr );
+	Gen_GetNumericLiteral( m_type, 5, aStr, 1 );
+	Gen_GetNumericLiteral( m_type, 9, bStr, 1 );
 
 	const char* floateqStr = Gen_GetFuncNameFloateq( m_type );
 
@@ -223,10 +223,10 @@ void GeneratorScalarTest::GenerateTestClamp() {
 	char lowStr[GEN_STRING_LENGTH_NUMERIC_LITERAL];
 	char highStr[GEN_STRING_LENGTH_NUMERIC_LITERAL];
 
-	Gen_GetNumericLiteral( m_type, 0,  zeroStr );
-	Gen_GetNumericLiteral( m_type, 11, elevenStr );
-	Gen_GetNumericLiteral( m_type, 1,  lowStr );
-	Gen_GetNumericLiteral( m_type, 10, highStr );
+	Gen_GetNumericLiteral( m_type, 0,  zeroStr, 1 );
+	Gen_GetNumericLiteral( m_type, 11, elevenStr, 1 );
+	Gen_GetNumericLiteral( m_type, 1,  lowStr, 1 );
+	Gen_GetNumericLiteral( m_type, 10, highStr, 1 );
 
 	const char* floateqStr = Gen_GetFuncNameFloateq( m_type );
 
@@ -310,10 +310,10 @@ void GeneratorScalarTest::GenerateTestLerp() {
 	char halfStr[GEN_STRING_LENGTH_NUMERIC_LITERAL];
 	char answerStr[GEN_STRING_LENGTH_NUMERIC_LITERAL];
 
-	Gen_GetNumericLiteral( m_type, 1.0f, aStr );
-	Gen_GetNumericLiteral( m_type, 3.0f, bStr );
-	Gen_GetNumericLiteral( m_type, 0.5f, halfStr );
-	Gen_GetNumericLiteral( m_type, 2.0f, answerStr );
+	Gen_GetNumericLiteral( m_type, 1.0f, aStr, 1 );
+	Gen_GetNumericLiteral( m_type, 3.0f, bStr, 1 );
+	Gen_GetNumericLiteral( m_type, 0.5f, halfStr, 1 );
+	Gen_GetNumericLiteral( m_type, 2.0f, answerStr, 1 );
 
 	const char* floateqStr = Gen_GetFuncNameFloateq( m_type );
 

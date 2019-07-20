@@ -36,13 +36,13 @@ TEMPER_TEST( TestAssignment_float4 )
 {
 	float4 a;
 
-	a = float4( 1.000000f );
-	TEMPER_EXPECT_TRUE( a == float4( 1.000000f ) );
+	a = float4( 1.0f );
+	TEMPER_EXPECT_TRUE( a == float4( 1.0f ) );
 	TEMPER_EXPECT_TRUE( a != float4( 0.000000f, 1.000000f, 2.000000f, 3.000000f ) );
 
 	a = float4( 0.000000f, 1.000000f, 2.000000f, 3.000000f );
 	TEMPER_EXPECT_TRUE( a == float4( 0.000000f, 1.000000f, 2.000000f, 3.000000f ) );
-	TEMPER_EXPECT_TRUE( a != float4( 1.000000f ) );
+	TEMPER_EXPECT_TRUE( a != float4( 1.0f ) );
 
 	TEMPER_PASS();
 }
@@ -51,17 +51,17 @@ TEMPER_TEST( TestArray_float4 )
 {
 	float4 a = float4( 0.000000f, 1.000000f, 2.000000f, 3.000000f );
 
-	TEMPER_EXPECT_TRUE( a[0] == 0.000000f );
-	TEMPER_EXPECT_TRUE( a[1] == 1.000000f );
-	TEMPER_EXPECT_TRUE( a[2] == 2.000000f );
-	TEMPER_EXPECT_TRUE( a[3] == 3.000000f );
+	TEMPER_EXPECT_TRUE( a[0] == 0.0f );
+	TEMPER_EXPECT_TRUE( a[1] == 1.0f );
+	TEMPER_EXPECT_TRUE( a[2] == 2.0f );
+	TEMPER_EXPECT_TRUE( a[3] == 3.0f );
 
 	TEMPER_PASS();
 }
 
 TEMPER_TEST( TestArithmeticAddition_float4 )
 {
-	float4 a = float4( 6.000000f );
+	float4 a = float4( 6.0f );
 	float4 b = float4( 2.000000f, 3.000000f, 4.000000f, 5.000000f );
 
 	float4 c = a + b;
@@ -73,7 +73,7 @@ TEMPER_TEST( TestArithmeticAddition_float4 )
 
 TEMPER_TEST( TestArithmeticSubtraction_float4 )
 {
-	float4 a = float4( 6.000000f );
+	float4 a = float4( 6.0f );
 	float4 b = float4( 2.000000f, 3.000000f, 4.000000f, 5.000000f );
 
 	float4 c = a - b;
@@ -85,7 +85,7 @@ TEMPER_TEST( TestArithmeticSubtraction_float4 )
 
 TEMPER_TEST( TestArithmeticMultiplication_float4 )
 {
-	float4 a = float4( 6.000000f );
+	float4 a = float4( 6.0f );
 	float4 b = float4( 2.000000f, 3.000000f, 4.000000f, 5.000000f );
 
 	float4 c = a * b;
@@ -97,7 +97,7 @@ TEMPER_TEST( TestArithmeticMultiplication_float4 )
 
 TEMPER_TEST( TestArithmeticDivision_float4 )
 {
-	float4 a = float4( 6.000000f );
+	float4 a = float4( 6.0f );
 	float4 b = float4( 2.000000f, 2.000000f, 3.000000f, 6.000000f );
 
 	float4 c = a / b;
@@ -145,10 +145,10 @@ TEMPER_TEST( TestRelational_float4 )
 {
 	bool4 allTrue = bool4( true );
 
-	float4 vec0 = float4( 0.000000f );
-	float4 vec1 = float4( 1.000000f );
-	float4 vec2 = float4( 2.000000f );
-	float4 vec3 = float4( 3.000000f );
+	float4 vec0 = float4( 0.0f );
+	float4 vec1 = float4( 1.0f );
+	float4 vec2 = float4( 2.0f );
+	float4 vec3 = float4( 3.0f );
 
 	bool4 test0  = vec0 <= vec0;
 	bool4 test1  = vec0 >= vec0;
@@ -204,7 +204,7 @@ TEMPER_TEST( TestRelational_float4 )
 TEMPER_TEST( TestLength_float4 )
 {
 	// scalar
-	float4 vec = float4( 2.000000f );
+	float4 vec = float4( 2.0f );
 
 	TEMPER_EXPECT_TRUE( floateq( lengthsqr( vec ), 16.0f ) );
 	TEMPER_EXPECT_TRUE( floateq( length( vec ), 4.0f ) );
@@ -257,7 +257,7 @@ TEMPER_TEST( TestNormalized_float4 )
 	float4 vec = float4( 2.000000f, 3.000000f, 4.000000f, 5.000000f );
 	vec = normalized( vec );
 
-	TEMPER_EXPECT_TRUE( length( vec ) == 1.000000f );
+	TEMPER_EXPECT_TRUE( length( vec ) == 1.0f );
 
 	TEMPER_PASS();
 }
@@ -268,7 +268,7 @@ TEMPER_TEST( TestDot_float4 )
 	float4 a = float4( 0.000000f, 1.000000f, 0.000000f, 0.000000f );
 	float4 b = float4( 0.000000f, -1.000000f, 0.000000f, 0.000000f );
 
-	TEMPER_EXPECT_TRUE( floateq( dot( a, b ), -1.000000f ) );
+	TEMPER_EXPECT_TRUE( floateq( dot( a, b ), -1.0f ) );
 
 	// SIMD
 	float componentsLHS[4][4] =
@@ -305,10 +305,10 @@ TEMPER_TEST( TestDot_float4 )
 	float dotResults[4];
 	_mm_store_ps( dotResults, results );
 
-	TEMPER_EXPECT_TRUE( floateq( dotResults[0], -1.000000f ) );
-	TEMPER_EXPECT_TRUE( floateq( dotResults[1], -1.000000f ) );
-	TEMPER_EXPECT_TRUE( floateq( dotResults[2], -1.000000f ) );
-	TEMPER_EXPECT_TRUE( floateq( dotResults[3], -1.000000f ) );
+	TEMPER_EXPECT_TRUE( floateq( dotResults[0], -1.0f ) );
+	TEMPER_EXPECT_TRUE( floateq( dotResults[1], -1.0f ) );
+	TEMPER_EXPECT_TRUE( floateq( dotResults[2], -1.0f ) );
+	TEMPER_EXPECT_TRUE( floateq( dotResults[3], -1.0f ) );
 
 	TEMPER_PASS();
 }
@@ -330,7 +330,7 @@ TEMPER_TEST( TestAngle_float4 )
 	float4 up =    float4( 0.000000f, 1.000000f, 0.000000f, 0.000000f );
 	float answer = angle( up, right );
 
-	TEMPER_EXPECT_TRUE( floateq( answer, 90.000000f ) );
+	TEMPER_EXPECT_TRUE( floateq( answer, 90.0f ) );
 
 	TEMPER_PASS();
 }
@@ -353,7 +353,7 @@ TEMPER_TEST( TestLerp_float4 )
 
 	float4 a = float4( 0.000000f, 1.000000f, 0.000000f, 0.000000f );
 	float4 b = float4( 1.000000f, 0.000000f, 0.000000f, 0.000000f );
-	float4 lerped = lerp( a, b, 0.500000f );
+	float4 lerped = lerp( a, b, 0.5f );
 
 	TEMPER_EXPECT_TRUE( lerped == answer );
 

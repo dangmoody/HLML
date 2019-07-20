@@ -107,7 +107,7 @@ void GeneratorVectorTests::GenerateTestAssignment() {
 	snprintf( testName, GEN_STRING_LENGTH_TEST_NAME, "TestAssignment_%s", m_fullTypeName );
 
 	char oneStr[GEN_STRING_LENGTH_NUMERIC_LITERAL];
-	Gen_GetNumericLiteral( m_type, 1, oneStr );
+	Gen_GetNumericLiteral( m_type, 1, oneStr, 1 );
 
 	float values[] = { 0.0f, 1.0f, 2.0f, 3.0f };
 
@@ -144,10 +144,10 @@ void GeneratorVectorTests::GenerateTestArray() {
 	Gen_GetParmListVector( m_type, m_numComponents, values, parmList );
 
 	char valuesStr[4][GEN_STRING_LENGTH_NUMERIC_LITERAL];
-	Gen_GetNumericLiteral( m_type, 0, valuesStr[0] );
-	Gen_GetNumericLiteral( m_type, 1, valuesStr[1] );
-	Gen_GetNumericLiteral( m_type, 2, valuesStr[2] );
-	Gen_GetNumericLiteral( m_type, 3, valuesStr[3] );
+	Gen_GetNumericLiteral( m_type, 0, valuesStr[0], 1 );
+	Gen_GetNumericLiteral( m_type, 1, valuesStr[1], 1 );
+	Gen_GetNumericLiteral( m_type, 2, valuesStr[2], 1 );
+	Gen_GetNumericLiteral( m_type, 3, valuesStr[3], 1 );
 
 	String_Appendf( &m_codeTests, "TEMPER_TEST( %s )\n", testName );
 	String_Append(  &m_codeTests, "{\n" );
@@ -171,7 +171,7 @@ void GeneratorVectorTests::GenerateTestArithmetic() {
 
 	// number picked at random
 	char baseNumberStr[GEN_STRING_LENGTH_NUMERIC_LITERAL];
-	Gen_GetNumericLiteral( m_type, 6, baseNumberStr );
+	Gen_GetNumericLiteral( m_type, 6, baseNumberStr, 1 );
 
 	float valuesAdd[]	= { 2.0f,  3.0f,  4.0f,  5.0f  };
 	float valuesSub[]	= { 2.0f,  3.0f,  4.0f,  5.0f  };
@@ -286,10 +286,10 @@ void GeneratorVectorTests::GenerateTestRelational() {
 	char twoStr[GEN_STRING_LENGTH_NUMERIC_LITERAL];
 	char threeStr[GEN_STRING_LENGTH_NUMERIC_LITERAL];
 
-	Gen_GetNumericLiteral( m_type, 0, zeroStr );
-	Gen_GetNumericLiteral( m_type, 1, oneStr );
-	Gen_GetNumericLiteral( m_type, 2, twoStr );
-	Gen_GetNumericLiteral( m_type, 3, threeStr );
+	Gen_GetNumericLiteral( m_type, 0, zeroStr, 1 );
+	Gen_GetNumericLiteral( m_type, 1, oneStr, 1 );
+	Gen_GetNumericLiteral( m_type, 2, twoStr, 1 );
+	Gen_GetNumericLiteral( m_type, 3, threeStr, 1 );
 
 	char parmLists[4][GEN_STRING_LENGTH_PARM_LIST_VECTOR];
 	snprintf( parmLists[0], 64, "( %s )", zeroStr );
@@ -474,7 +474,7 @@ void GeneratorVectorTests::GenerateTestLength() {
 	snprintf( testName, 32, "TestLength_%s", m_fullTypeName );
 
 	char twoStr[GEN_STRING_LENGTH_NUMERIC_LITERAL];
-	Gen_GetNumericLiteral( m_type, 2, twoStr );
+	Gen_GetNumericLiteral( m_type, 2, twoStr, 1 );
 
 	// values are strings otherwise compiler truncates floating point bits and screws with the test
 	const char* squaredLengths[] = {
@@ -576,7 +576,7 @@ void GeneratorVectorTests::GenerateTestNormalized() {
 	genType_t floatingPointType = Gen_GetSupportedFloatingPointType( m_type );
 
 	char oneStr[GEN_STRING_LENGTH_NUMERIC_LITERAL];
-	Gen_GetNumericLiteral( floatingPointType, 1, oneStr );
+	Gen_GetNumericLiteral( floatingPointType, 1, oneStr, 1 );
 
 	String_Appendf( &m_codeTests, "TEMPER_TEST( %s )\n", testName );
 	String_Append(  &m_codeTests, "{\n" );
@@ -603,15 +603,15 @@ void GeneratorVectorTests::GenerateTestDot() {
 	genType_t dotReturnType = ( m_type == GEN_TYPE_UINT ) ? GEN_TYPE_INT : m_type;
 
 	char minusOneStrDotAnswer[GEN_STRING_LENGTH_NUMERIC_LITERAL];
-	Gen_GetNumericLiteral( dotReturnType, -1, minusOneStrDotAnswer );
+	Gen_GetNumericLiteral( dotReturnType, -1, minusOneStrDotAnswer, 1 );
 
 	char minusOneStr[GEN_STRING_LENGTH_NUMERIC_LITERAL];
 	char zeroStr[GEN_STRING_LENGTH_NUMERIC_LITERAL];
 	char oneStr[GEN_STRING_LENGTH_NUMERIC_LITERAL];
 
-	Gen_GetNumericLiteral( m_type, -1, minusOneStr );
-	Gen_GetNumericLiteral( m_type,  0, zeroStr );
-	Gen_GetNumericLiteral( m_type,  1, oneStr );
+	Gen_GetNumericLiteral( m_type, -1.0f, minusOneStr, 1 );
+	Gen_GetNumericLiteral( m_type,  0.0f, zeroStr, 1 );
+	Gen_GetNumericLiteral( m_type,  1.0f, oneStr, 1 );
 
 	float valuesA[4] = { 0.0f,  1.0f, 0.0f, 0.0f };
 	float valuesB[4] = { 0.0f, -1.0f, 0.0f, 0.0f };
@@ -759,7 +759,7 @@ void GeneratorVectorTests::GenerateTestAngle() {
 	const genType_t floatingPointType = Gen_GetSupportedFloatingPointType( m_type );
 
 	char ninetyStr[GEN_STRING_LENGTH_NUMERIC_LITERAL];
-	Gen_GetNumericLiteral( floatingPointType, 90, ninetyStr );
+	Gen_GetNumericLiteral( floatingPointType, 90.0f, ninetyStr, 1 );
 
 	const char* floateqStr = Gen_GetFuncNameFloateq( m_type );
 
@@ -803,12 +803,12 @@ void GeneratorVectorTests::GenerateTestDistance() {
 
 	switch ( m_numComponents ) {
 		case 2:
-			Gen_GetNumericLiteral( floatingPointType, 104.0f, answerDistanceSqrStr );
+			Gen_GetNumericLiteral( floatingPointType, 104.0f, answerDistanceSqrStr, 1 );
 			Gen_GetNumericLiteral( floatingPointType, 10.198039f, answerDistanceStr );
 			break;
 
 		case 3:
-			Gen_GetNumericLiteral( floatingPointType, 105.0f, answerDistanceSqrStr );
+			Gen_GetNumericLiteral( floatingPointType, 105.0f, answerDistanceSqrStr, 1 );
 			Gen_GetNumericLiteral( floatingPointType, 10.246951f, answerDistanceStr );
 			break;
 	}
@@ -1002,7 +1002,7 @@ void GeneratorVectorTests::GenerateTestLerp() {
 	Gen_GetParmListVector( m_type, m_numComponents, valuesAnswer, parmListAnswer );
 
 	char lerpValStr[GEN_STRING_LENGTH_NUMERIC_LITERAL];
-	Gen_GetNumericLiteral( m_type, 0.5, lerpValStr );
+	Gen_GetNumericLiteral( m_type, 0.5f, lerpValStr, 1 );
 
 	String_Appendf( &m_codeTests, "TEMPER_TEST( %s )\n", testName );
 	String_Append(  &m_codeTests, "{\n" );

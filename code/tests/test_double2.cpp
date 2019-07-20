@@ -33,13 +33,13 @@ TEMPER_TEST( TestAssignment_double2 )
 {
 	double2 a;
 
-	a = double2( 1.000000 );
-	TEMPER_EXPECT_TRUE( a == double2( 1.000000 ) );
+	a = double2( 1.0 );
+	TEMPER_EXPECT_TRUE( a == double2( 1.0 ) );
 	TEMPER_EXPECT_TRUE( a != double2( 0.000000, 1.000000 ) );
 
 	a = double2( 0.000000, 1.000000 );
 	TEMPER_EXPECT_TRUE( a == double2( 0.000000, 1.000000 ) );
-	TEMPER_EXPECT_TRUE( a != double2( 1.000000 ) );
+	TEMPER_EXPECT_TRUE( a != double2( 1.0 ) );
 
 	TEMPER_PASS();
 }
@@ -48,15 +48,15 @@ TEMPER_TEST( TestArray_double2 )
 {
 	double2 a = double2( 0.000000, 1.000000 );
 
-	TEMPER_EXPECT_TRUE( a[0] == 0.000000 );
-	TEMPER_EXPECT_TRUE( a[1] == 1.000000 );
+	TEMPER_EXPECT_TRUE( a[0] == 0.0 );
+	TEMPER_EXPECT_TRUE( a[1] == 1.0 );
 
 	TEMPER_PASS();
 }
 
 TEMPER_TEST( TestArithmeticAddition_double2 )
 {
-	double2 a = double2( 6.000000 );
+	double2 a = double2( 6.0 );
 	double2 b = double2( 2.000000, 3.000000 );
 
 	double2 c = a + b;
@@ -68,7 +68,7 @@ TEMPER_TEST( TestArithmeticAddition_double2 )
 
 TEMPER_TEST( TestArithmeticSubtraction_double2 )
 {
-	double2 a = double2( 6.000000 );
+	double2 a = double2( 6.0 );
 	double2 b = double2( 2.000000, 3.000000 );
 
 	double2 c = a - b;
@@ -80,7 +80,7 @@ TEMPER_TEST( TestArithmeticSubtraction_double2 )
 
 TEMPER_TEST( TestArithmeticMultiplication_double2 )
 {
-	double2 a = double2( 6.000000 );
+	double2 a = double2( 6.0 );
 	double2 b = double2( 2.000000, 3.000000 );
 
 	double2 c = a * b;
@@ -92,7 +92,7 @@ TEMPER_TEST( TestArithmeticMultiplication_double2 )
 
 TEMPER_TEST( TestArithmeticDivision_double2 )
 {
-	double2 a = double2( 6.000000 );
+	double2 a = double2( 6.0 );
 	double2 b = double2( 2.000000, 2.000000 );
 
 	double2 c = a / b;
@@ -140,10 +140,10 @@ TEMPER_TEST( TestRelational_double2 )
 {
 	bool2 allTrue = bool2( true );
 
-	double2 vec0 = double2( 0.000000 );
-	double2 vec1 = double2( 1.000000 );
-	double2 vec2 = double2( 2.000000 );
-	double2 vec3 = double2( 3.000000 );
+	double2 vec0 = double2( 0.0 );
+	double2 vec1 = double2( 1.0 );
+	double2 vec2 = double2( 2.0 );
+	double2 vec3 = double2( 3.0 );
 
 	bool2 test0  = vec0 <= vec0;
 	bool2 test1  = vec0 >= vec0;
@@ -199,7 +199,7 @@ TEMPER_TEST( TestRelational_double2 )
 TEMPER_TEST( TestLength_double2 )
 {
 	// scalar
-	double2 vec = double2( 2.000000 );
+	double2 vec = double2( 2.0 );
 
 	TEMPER_EXPECT_TRUE( doubleeq( lengthsqr( vec ), 8.0 ) );
 	TEMPER_EXPECT_TRUE( doubleeq( length( vec ), 2.82842712475 ) );
@@ -212,7 +212,7 @@ TEMPER_TEST( TestNormalized_double2 )
 	double2 vec = double2( 2.000000, 3.000000 );
 	vec = normalized( vec );
 
-	TEMPER_EXPECT_TRUE( length( vec ) == 1.000000 );
+	TEMPER_EXPECT_TRUE( length( vec ) == 1.0 );
 
 	TEMPER_PASS();
 }
@@ -223,7 +223,7 @@ TEMPER_TEST( TestDot_double2 )
 	double2 a = double2( 0.000000, 1.000000 );
 	double2 b = double2( 0.000000, -1.000000 );
 
-	TEMPER_EXPECT_TRUE( doubleeq( dot( a, b ), -1.000000 ) );
+	TEMPER_EXPECT_TRUE( doubleeq( dot( a, b ), -1.0 ) );
 
 	TEMPER_PASS();
 }
@@ -234,14 +234,14 @@ TEMPER_TEST( TestAngle_double2 )
 	double2 up =    double2( 0.000000, 1.000000 );
 	double answer = angle( up, right );
 
-	TEMPER_EXPECT_TRUE( doubleeq( answer, 90.000000 ) );
+	TEMPER_EXPECT_TRUE( doubleeq( answer, 90.0 ) );
 
 	TEMPER_PASS();
 }
 
 TEMPER_TEST( TestDistance_double2 )
 {
-	double answerDistanceSqr = 104.000000;
+	double answerDistanceSqr = 104.0;
 	double answerDistance    = 10.198039;
 
 	double2 a = double2( 7.000000, 4.000000 );
@@ -275,7 +275,7 @@ TEMPER_TEST( TestLerp_double2 )
 
 	double2 a = double2( 0.000000, 1.000000 );
 	double2 b = double2( 1.000000, 0.000000 );
-	double2 lerped = lerp( a, b, 0.500000 );
+	double2 lerped = lerp( a, b, 0.5 );
 
 	TEMPER_EXPECT_TRUE( lerped == answer );
 

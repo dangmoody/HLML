@@ -100,19 +100,19 @@ inline bool floateq( const float lhs, const float rhs, const float epsilon = sta
 /// This function does no branching.
 inline int32_t sign( const float x )
 {
-	return ( 0.000000f < x ) - ( x < 0.000000f );
+	return ( 0.0f < x ) - ( x < 0.0f );
 }
 
 /// \brief Returns the given degrees to radians.
 inline float radians( const float deg )
 {
-	return deg * static_cast<float>( HLML_PI ) / 180.000000f;
+	return deg * static_cast<float>( HLML_PI ) / 180.0f;
 }
 
 /// \brief Returns the given radians to degrees.
 inline float degrees( const float rad )
 {
-	return rad * 180.000000f / static_cast<float>( HLML_PI );
+	return rad * 180.0f / static_cast<float>( HLML_PI );
 }
 
 /// \brief Returns x if its smaller than y, otherwise returns y.
@@ -137,19 +137,19 @@ inline float clamp( const float x, const float low, const float high )
 /// \brief Returns a copy of the float with each component clamped between the range 0 and 1.
 inline float saturate( const float x )
 {
-	return clamp( x, 0.000000f, 1.000000f );
+	return clamp( x, 0.0f, 1.0f );
 }
 
 /// \relates float
 /// \brief Returns a linearly interpolated float between types "a" and "b".
 inline float lerp( const float a, const float b, const float t )
 {
-	return ( 1.000000f - t ) * a + t * b;
+	return ( 1.0f - t ) * a + t * b;
 }
 
 inline float step( const float x, const float y )
 {
-	return ( y > x ? 1.000000f : 0.000000f );
+	return ( y > x ? 1.0f : 0.0f );
 }
 
 /// \relates float
@@ -157,7 +157,7 @@ inline float step( const float x, const float y )
 inline float smoothstep( const float low, const float high, const float x )
 {
 	float t = saturate( ( x - low ) / ( high - low ) );
-	return t * t * ( 3.000000f - 2.000000f * t );
+	return t * t * ( 3.0f - 2.0f * t );
 }
 
 /// \relates float
@@ -166,7 +166,7 @@ inline float smoothstep( const float low, const float high, const float x )
 inline float smootherstep( const float low, const float high, const float x )
 {
 	float t = saturate( ( x - low ) / ( high - low ) );
-	return t * t * t * ( t * ( t * 6.000000f - 15.000000f ) + 10.000000f );
+	return t * t * t * ( t * ( t * 6.0f - 15.0f ) + 10.0f );
 }
 
 
@@ -181,19 +181,19 @@ inline bool doubleeq( const double lhs, const double rhs, const double epsilon =
 /// This function does no branching.
 inline int32_t sign( const double x )
 {
-	return ( 0.000000 < x ) - ( x < 0.000000 );
+	return ( 0.0 < x ) - ( x < 0.0 );
 }
 
 /// \brief Returns the given degrees to radians.
 inline double radians( const double deg )
 {
-	return deg * HLML_PI / 180.000000;
+	return deg * HLML_PI / 180.0;
 }
 
 /// \brief Returns the given radians to degrees.
 inline double degrees( const double rad )
 {
-	return rad * 180.000000 / HLML_PI;
+	return rad * 180.0 / HLML_PI;
 }
 
 /// \brief Returns x if its smaller than y, otherwise returns y.
@@ -218,19 +218,19 @@ inline double clamp( const double x, const double low, const double high )
 /// \brief Returns a copy of the double with each component clamped between the range 0 and 1.
 inline double saturate( const double x )
 {
-	return clamp( x, 0.000000, 1.000000 );
+	return clamp( x, 0.0, 1.0 );
 }
 
 /// \relates double
 /// \brief Returns a linearly interpolated double between types "a" and "b".
 inline double lerp( const double a, const double b, const double t )
 {
-	return ( 1.000000 - t ) * a + t * b;
+	return ( 1.0 - t ) * a + t * b;
 }
 
 inline double step( const double x, const double y )
 {
-	return ( y > x ? 1.000000 : 0.000000 );
+	return ( y > x ? 1.0 : 0.0 );
 }
 
 /// \relates double
@@ -238,7 +238,7 @@ inline double step( const double x, const double y )
 inline double smoothstep( const double low, const double high, const double x )
 {
 	double t = saturate( ( x - low ) / ( high - low ) );
-	return t * t * ( 3.000000 - 2.000000 * t );
+	return t * t * ( 3.0 - 2.0 * t );
 }
 
 /// \relates double
@@ -247,7 +247,7 @@ inline double smoothstep( const double low, const double high, const double x )
 inline double smootherstep( const double low, const double high, const double x )
 {
 	double t = saturate( ( x - low ) / ( high - low ) );
-	return t * t * t * ( t * ( t * 6.000000 - 15.000000 ) + 10.000000 );
+	return t * t * t * ( t * ( t * 6.0 - 15.0 ) + 10.0 );
 }
 
 

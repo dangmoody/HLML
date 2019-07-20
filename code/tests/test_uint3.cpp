@@ -281,7 +281,7 @@ TEMPER_TEST( TestLength_uint3 )
 
 TEMPER_TEST( TestDistance_uint3 )
 {
-	float answerDistanceSqr = 105.000000f;
+	float answerDistanceSqr = 105.0f;
 	float answerDistance    = 10.246951f;
 
 	uint3 a = uint3( 7U, 4U, 3U );

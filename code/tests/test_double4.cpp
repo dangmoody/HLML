@@ -33,13 +33,13 @@ TEMPER_TEST( TestAssignment_double4 )
 {
 	double4 a;
 
-	a = double4( 1.000000 );
-	TEMPER_EXPECT_TRUE( a == double4( 1.000000 ) );
+	a = double4( 1.0 );
+	TEMPER_EXPECT_TRUE( a == double4( 1.0 ) );
 	TEMPER_EXPECT_TRUE( a != double4( 0.000000, 1.000000, 2.000000, 3.000000 ) );
 
 	a = double4( 0.000000, 1.000000, 2.000000, 3.000000 );
 	TEMPER_EXPECT_TRUE( a == double4( 0.000000, 1.000000, 2.000000, 3.000000 ) );
-	TEMPER_EXPECT_TRUE( a != double4( 1.000000 ) );
+	TEMPER_EXPECT_TRUE( a != double4( 1.0 ) );
 
 	TEMPER_PASS();
 }
@@ -48,17 +48,17 @@ TEMPER_TEST( TestArray_double4 )
 {
 	double4 a = double4( 0.000000, 1.000000, 2.000000, 3.000000 );
 
-	TEMPER_EXPECT_TRUE( a[0] == 0.000000 );
-	TEMPER_EXPECT_TRUE( a[1] == 1.000000 );
-	TEMPER_EXPECT_TRUE( a[2] == 2.000000 );
-	TEMPER_EXPECT_TRUE( a[3] == 3.000000 );
+	TEMPER_EXPECT_TRUE( a[0] == 0.0 );
+	TEMPER_EXPECT_TRUE( a[1] == 1.0 );
+	TEMPER_EXPECT_TRUE( a[2] == 2.0 );
+	TEMPER_EXPECT_TRUE( a[3] == 3.0 );
 
 	TEMPER_PASS();
 }
 
 TEMPER_TEST( TestArithmeticAddition_double4 )
 {
-	double4 a = double4( 6.000000 );
+	double4 a = double4( 6.0 );
 	double4 b = double4( 2.000000, 3.000000, 4.000000, 5.000000 );
 
 	double4 c = a + b;
@@ -70,7 +70,7 @@ TEMPER_TEST( TestArithmeticAddition_double4 )
 
 TEMPER_TEST( TestArithmeticSubtraction_double4 )
 {
-	double4 a = double4( 6.000000 );
+	double4 a = double4( 6.0 );
 	double4 b = double4( 2.000000, 3.000000, 4.000000, 5.000000 );
 
 	double4 c = a - b;
@@ -82,7 +82,7 @@ TEMPER_TEST( TestArithmeticSubtraction_double4 )
 
 TEMPER_TEST( TestArithmeticMultiplication_double4 )
 {
-	double4 a = double4( 6.000000 );
+	double4 a = double4( 6.0 );
 	double4 b = double4( 2.000000, 3.000000, 4.000000, 5.000000 );
 
 	double4 c = a * b;
@@ -94,7 +94,7 @@ TEMPER_TEST( TestArithmeticMultiplication_double4 )
 
 TEMPER_TEST( TestArithmeticDivision_double4 )
 {
-	double4 a = double4( 6.000000 );
+	double4 a = double4( 6.0 );
 	double4 b = double4( 2.000000, 2.000000, 3.000000, 6.000000 );
 
 	double4 c = a / b;
@@ -142,10 +142,10 @@ TEMPER_TEST( TestRelational_double4 )
 {
 	bool4 allTrue = bool4( true );
 
-	double4 vec0 = double4( 0.000000 );
-	double4 vec1 = double4( 1.000000 );
-	double4 vec2 = double4( 2.000000 );
-	double4 vec3 = double4( 3.000000 );
+	double4 vec0 = double4( 0.0 );
+	double4 vec1 = double4( 1.0 );
+	double4 vec2 = double4( 2.0 );
+	double4 vec3 = double4( 3.0 );
 
 	bool4 test0  = vec0 <= vec0;
 	bool4 test1  = vec0 >= vec0;
@@ -201,7 +201,7 @@ TEMPER_TEST( TestRelational_double4 )
 TEMPER_TEST( TestLength_double4 )
 {
 	// scalar
-	double4 vec = double4( 2.000000 );
+	double4 vec = double4( 2.0 );
 
 	TEMPER_EXPECT_TRUE( doubleeq( lengthsqr( vec ), 16.0 ) );
 	TEMPER_EXPECT_TRUE( doubleeq( length( vec ), 4.0 ) );
@@ -214,7 +214,7 @@ TEMPER_TEST( TestNormalized_double4 )
 	double4 vec = double4( 2.000000, 3.000000, 4.000000, 5.000000 );
 	vec = normalized( vec );
 
-	TEMPER_EXPECT_TRUE( length( vec ) == 1.000000 );
+	TEMPER_EXPECT_TRUE( length( vec ) == 1.0 );
 
 	TEMPER_PASS();
 }
@@ -225,7 +225,7 @@ TEMPER_TEST( TestDot_double4 )
 	double4 a = double4( 0.000000, 1.000000, 0.000000, 0.000000 );
 	double4 b = double4( 0.000000, -1.000000, 0.000000, 0.000000 );
 
-	TEMPER_EXPECT_TRUE( doubleeq( dot( a, b ), -1.000000 ) );
+	TEMPER_EXPECT_TRUE( doubleeq( dot( a, b ), -1.0 ) );
 
 	TEMPER_PASS();
 }
@@ -247,7 +247,7 @@ TEMPER_TEST( TestAngle_double4 )
 	double4 up =    double4( 0.000000, 1.000000, 0.000000, 0.000000 );
 	double answer = angle( up, right );
 
-	TEMPER_EXPECT_TRUE( doubleeq( answer, 90.000000 ) );
+	TEMPER_EXPECT_TRUE( doubleeq( answer, 90.0 ) );
 
 	TEMPER_PASS();
 }
@@ -270,7 +270,7 @@ TEMPER_TEST( TestLerp_double4 )
 
 	double4 a = double4( 0.000000, 1.000000, 0.000000, 0.000000 );
 	double4 b = double4( 1.000000, 0.000000, 0.000000, 0.000000 );
-	double4 lerped = lerp( a, b, 0.500000 );
+	double4 lerped = lerp( a, b, 0.5 );
 
 	TEMPER_EXPECT_TRUE( lerped == answer );
 

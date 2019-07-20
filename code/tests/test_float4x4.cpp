@@ -33,7 +33,7 @@ TEMPER_TEST( TestAssignment_float4x4 )
 	float4x4 mat;
 
 	// fill single value
-	mat = float4x4( 999.000000f );
+	mat = float4x4( 999.0f );
 	TEMPER_EXPECT_TRUE( mat[0] == float4( 999.000000f, 0.000000f, 0.000000f, 0.000000f ) );
 	TEMPER_EXPECT_TRUE( mat[1] == float4( 0.000000f, 999.000000f, 0.000000f, 0.000000f ) );
 	TEMPER_EXPECT_TRUE( mat[2] == float4( 0.000000f, 0.000000f, 999.000000f, 0.000000f ) );
@@ -359,10 +359,10 @@ TEMPER_TEST( TestArray_float4x4 )
 {
 	float4x4 mat;
 
-	TEMPER_EXPECT_TRUE( mat[0] == float4( 1.000000f, 0.000000f, 0.000000f, 0.000000f ) );
-	TEMPER_EXPECT_TRUE( mat[1] == float4( 0.000000f, 1.000000f, 0.000000f, 0.000000f ) );
-	TEMPER_EXPECT_TRUE( mat[2] == float4( 0.000000f, 0.000000f, 1.000000f, 0.000000f ) );
-	TEMPER_EXPECT_TRUE( mat[3] == float4( 0.000000f, 0.000000f, 0.000000f, 1.000000f ) );
+	TEMPER_EXPECT_TRUE( mat[0] == float4( 1.0f, 0.0f, 0.0f, 0.0f ) );
+	TEMPER_EXPECT_TRUE( mat[1] == float4( 0.0f, 1.0f, 0.0f, 0.0f ) );
+	TEMPER_EXPECT_TRUE( mat[2] == float4( 0.0f, 0.0f, 1.0f, 0.0f ) );
+	TEMPER_EXPECT_TRUE( mat[3] == float4( 0.0f, 0.0f, 0.0f, 1.0f ) );
 
 	TEMPER_PASS();
 }
@@ -466,7 +466,7 @@ TEMPER_TEST( TestDeterminant_float4x4 )
 	);
 	float det = determinant( mat );
 
-	TEMPER_EXPECT_TRUE( floateq( det, 285.000000f ) );
+	TEMPER_EXPECT_TRUE( floateq( det, 285.0f ) );
 
 	TEMPER_PASS();
 }
@@ -475,13 +475,13 @@ TEMPER_TEST( TestTranslate_float4x4 )
 {
 	float4x4 mat;
 	float4x4 translated = float4x4(
-		1.000000f, 0.000000f, 0.000000f, 2.000000f,
-		0.000000f, 1.000000f, 0.000000f, 3.000000f,
-		0.000000f, 0.000000f, 1.000000f, 4.000000f,
-		0.000000f, 0.000000f, 0.000000f, 1.000000f
+		1.0f, 0.0f, 0.0f, 2.0f,
+		0.0f, 1.0f, 0.0f, 3.0f,
+		0.0f, 0.0f, 1.0f, 4.0f,
+		0.0f, 0.0f, 0.0f, 1.0f
 	);
 
-	float3 translation = float3( 2.000000f, 3.000000f, 4.000000f );
+	float3 translation = float3( 2.0f, 3.0f, 4.0f );
 	mat = translate( mat, translation );
 
 	TEMPER_EXPECT_TRUE( mat == translated );
@@ -492,9 +492,9 @@ TEMPER_TEST( TestTranslate_float4x4 )
 TEMPER_TEST( TestRotate_float4x4 )
 {
 	float4x4 mat;
-	float4x4 yaw = rotate( mat, radians( 45.000000f ), float3( 0.000000f, 1.000000f, 0.000000f ) );
-	float4x4 pitch = rotate( mat, radians( 45.000000f ), float3( 1.000000f, 0.000000f, 0.000000f ) );
-	float4x4 roll = rotate( mat, radians( 45.000000f ), float3( 0.000000f, 0.000000f, 1.000000f ) );
+	float4x4 yaw = rotate( mat, radians( 45.0f ), float3( 0.000000f, 1.000000f, 0.000000f ) );
+	float4x4 pitch = rotate( mat, radians( 45.0f ), float3( 1.000000f, 0.000000f, 0.000000f ) );
+	float4x4 roll = rotate( mat, radians( 45.0f ), float3( 0.000000f, 0.000000f, 1.000000f ) );
 
 	float4x4 answerYaw = float4x4(
 		0.707107f, 0.000000f, 0.707107f, 0.000000f,
@@ -564,20 +564,20 @@ TEMPER_TEST( TestOrtho_float4x4 )
 		0.000000f, 0.000000f, 0.000000f, 1.000000f
 	);
 
-	float width     = 1280.000000f;
-	float height    = 720.000000f;
+	float width     = 1280.0f;
+	float height    = 720.0f;
 	float aspect    = width / height;
-	float orthoSize = 5.000000f;
+	float orthoSize = 5.0f;
 
 	float left   = -aspect * orthoSize;
 	float right  =  aspect * orthoSize;
 	float top    = -orthoSize;
 	float bottom =  orthoSize;
 
-	float4x4 mat_LH_ZO = ortho_lh_zo( left, right, top, bottom, -1.000000f, 100.000000f );
-	float4x4 mat_LH_NO = ortho_lh_no( left, right, top, bottom, -1.000000f, 100.000000f );
-	float4x4 mat_RH_ZO = ortho_rh_zo( left, right, top, bottom, -1.000000f, 100.000000f );
-	float4x4 mat_RH_NO = ortho_rh_no( left, right, top, bottom, -1.000000f, 100.000000f );
+	float4x4 mat_LH_ZO = ortho_lh_zo( left, right, top, bottom, -1.0f, 100.0f );
+	float4x4 mat_LH_NO = ortho_lh_no( left, right, top, bottom, -1.0f, 100.0f );
+	float4x4 mat_RH_ZO = ortho_rh_zo( left, right, top, bottom, -1.0f, 100.0f );
+	float4x4 mat_RH_NO = ortho_rh_no( left, right, top, bottom, -1.0f, 100.0f );
 
 	TEMPER_EXPECT_TRUE( mat_LH_ZO == answerOrtho_LH_ZO );
 	TEMPER_EXPECT_TRUE( mat_LH_NO == answerOrtho_LH_NO );
@@ -614,11 +614,11 @@ TEMPER_TEST( TestPerspective_float4x4 )
 		0.000000f, 0.000000f, -1.000000f, 0.000000f
 	);
 
-	float aspect = 1280.000000f / 720.000000f;
-	float4x4 mat_LH_ZO = perspective_lh_zo( 90.000000f, aspect, 0.100000f, 100.000000f );
-	float4x4 mat_LH_NO = perspective_lh_no( 90.000000f, aspect, 0.100000f, 100.000000f );
-	float4x4 mat_RH_ZO = perspective_rh_zo( 90.000000f, aspect, 0.100000f, 100.000000f );
-	float4x4 mat_RH_NO = perspective_rh_no( 90.000000f, aspect, 0.100000f, 100.000000f );
+	float aspect = 1280.0f / 720.0f;
+	float4x4 mat_LH_ZO = perspective_lh_zo( 90.0f, aspect, 0.1f, 100.0f );
+	float4x4 mat_LH_NO = perspective_lh_no( 90.0f, aspect, 0.1f, 100.0f );
+	float4x4 mat_RH_ZO = perspective_rh_zo( 90.0f, aspect, 0.1f, 100.0f );
+	float4x4 mat_RH_NO = perspective_rh_no( 90.0f, aspect, 0.1f, 100.0f );
 
 	TEMPER_EXPECT_TRUE( mat_LH_ZO == answerPerspective_LH_ZO );
 	TEMPER_EXPECT_TRUE( mat_LH_NO == answerPerspective_LH_NO );

@@ -106,7 +106,7 @@ void GeneratorMatrixTests::GenerateTestAssignment() {
 	// HACK(DM): this is not ideal for obvious reasons
 	float fillValue = 999.0f;
 	char fillValueStr[GEN_STRING_LENGTH_NUMERIC_LITERAL];
-	Gen_GetNumericLiteral( m_type, 999, fillValueStr );
+	Gen_GetNumericLiteral( m_type, 999, fillValueStr, 1 );
 
 	float valuesIdentity[4][4] = {
 		{ fillValue, 0.0f,      0.0f,      0.0f      },
@@ -577,8 +577,8 @@ void GeneratorMatrixTests::GenerateTestArray() {
 	char zeroStr[GEN_STRING_LENGTH_NUMERIC_LITERAL];
 	char oneStr[GEN_STRING_LENGTH_NUMERIC_LITERAL];
 
-	Gen_GetNumericLiteral( m_type, 0, zeroStr );
-	Gen_GetNumericLiteral( m_type, 1, oneStr );
+	Gen_GetNumericLiteral( m_type, 0, zeroStr, 1 );
+	Gen_GetNumericLiteral( m_type, 1, oneStr, 1 );
 
 	char testName[GEN_STRING_LENGTH_TEST_NAME] = { 0 };
 	snprintf( testName, GEN_STRING_LENGTH_TEST_NAME, "TestArray_%s", m_fullTypeName );
@@ -615,8 +615,8 @@ void GeneratorMatrixTests::GenerateTestIdentity() {
 	char zeroStr[GEN_STRING_LENGTH_NUMERIC_LITERAL];
 	char oneStr[GEN_STRING_LENGTH_NUMERIC_LITERAL];
 
-	Gen_GetNumericLiteral( m_type, 0, zeroStr );
-	Gen_GetNumericLiteral( m_type, 1, oneStr );
+	Gen_GetNumericLiteral( m_type, 0, zeroStr, 1 );
+	Gen_GetNumericLiteral( m_type, 1, oneStr, 1 );
 
 	char parmListIdentity[GEN_STRING_LENGTH_PARM_LIST_MATRIX] = { 0 };
 	Gen_GetParmListMatrixIdentity( m_type, m_numRows, m_numCols, parmListIdentity );
@@ -852,7 +852,7 @@ void GeneratorMatrixTests::GenerateTestDeterminant() {
 	};
 
 	char answerStr[GEN_STRING_LENGTH_NUMERIC_LITERAL];
-	Gen_GetNumericLiteral( m_type, determinants[m_numRows - 2], answerStr );
+	Gen_GetNumericLiteral( m_type, determinants[m_numRows - 2], answerStr, 1 );
 
 	char parmList[GEN_STRING_LENGTH_PARM_LIST_MATRIX];
 
@@ -916,7 +916,7 @@ void GeneratorMatrixTests::GenerateTestTranslate() {
 	for ( u32 col = 0; col < m_numCols - 1; col++ ) {
 		float number = static_cast<float>( col + baseNumber );
 
-		Gen_GetNumericLiteral( m_type, number, valueStr );
+		Gen_GetNumericLiteral( m_type, number, valueStr, 1 );
 
 		pos += snprintf( parmListTranslateVector + pos, GEN_STRING_LENGTH_PARM_LIST_VECTOR, "%s", valueStr );
 
@@ -935,18 +935,18 @@ void GeneratorMatrixTests::GenerateTestTranslate() {
 
 		for ( u32 col = 0; col < m_numCols; col++ ) {
 			if ( row == col ) {
-				Gen_GetNumericLiteral( m_type, 1, valueStr );
+				Gen_GetNumericLiteral( m_type, 1, valueStr, 1 );
 
 				pos += snprintf( parmListTranslated + pos, GEN_STRING_LENGTH_PARM_LIST_MATRIX, "%s", valueStr );
 			} else {
 				if ( col == m_numCols - 1 ) {
 					float number = static_cast<float>( row + baseNumber );
 
-					Gen_GetNumericLiteral( m_type, number, valueStr );
+					Gen_GetNumericLiteral( m_type, number, valueStr, 1 );
 
 					pos += snprintf( parmListTranslated + pos, GEN_STRING_LENGTH_PARM_LIST_MATRIX, "%s", valueStr );
 				} else {
-					Gen_GetNumericLiteral( m_type, 0.0f, valueStr );
+					Gen_GetNumericLiteral( m_type, 0.0f, valueStr, 1 );
 					pos += snprintf( parmListTranslated + pos, GEN_STRING_LENGTH_PARM_LIST_MATRIX, "%s", valueStr );
 				}
 			}
@@ -1042,7 +1042,7 @@ void GeneratorMatrixTests::GenerateTestRotate() {
 	u32 numRotateVectorComponents = m_numCols - 1;
 
 	char rotDegreesStr[GEN_STRING_LENGTH_NUMERIC_LITERAL];
-	Gen_GetNumericLiteral( m_type, rotDegrees, rotDegreesStr );
+	Gen_GetNumericLiteral( m_type, rotDegrees, rotDegreesStr, 1 );
 
 	char rotateVecTypeString[GEN_STRING_LENGTH_TYPE_NAME];
 	snprintf( rotateVecTypeString, GEN_STRING_LENGTH_TYPE_NAME, "%s%d", m_typeString, numRotateVectorComponents );
@@ -1201,12 +1201,12 @@ void GeneratorMatrixTests::GenerateTestOrtho() {
 	char widthStr[GEN_STRING_LENGTH_NUMERIC_LITERAL];
 	char heightStr[GEN_STRING_LENGTH_NUMERIC_LITERAL];
 
-	Gen_GetNumericLiteral( m_type, -1.0f,   minusOneStr );
-	Gen_GetNumericLiteral( m_type,  5.0f,   fiveStr );
-	Gen_GetNumericLiteral( m_type,  100.0f, oneHundredStr );
+	Gen_GetNumericLiteral( m_type, -1.0f,   minusOneStr, 1 );
+	Gen_GetNumericLiteral( m_type,  5.0f,   fiveStr, 1 );
+	Gen_GetNumericLiteral( m_type,  100.0f, oneHundredStr, 1 );
 
-	Gen_GetNumericLiteral( m_type, 1280.0f, widthStr );
-	Gen_GetNumericLiteral( m_type, 720.0f,  heightStr );
+	Gen_GetNumericLiteral( m_type, 1280.0f, widthStr, 1 );
+	Gen_GetNumericLiteral( m_type, 720.0f,  heightStr, 1 );
 
 	String_Appendf( &m_codeTests, "TEMPER_TEST( %s )\n", testName );
 	String_Append(  &m_codeTests, "{\n" );
@@ -1305,12 +1305,12 @@ void GeneratorMatrixTests::GenerateTestPerspective() {
 	char znearStr[GEN_STRING_LENGTH_NUMERIC_LITERAL];
 	char zfarStr[GEN_STRING_LENGTH_NUMERIC_LITERAL];
 
-	Gen_GetNumericLiteral( m_type, 1280.0f, widthStr );
-	Gen_GetNumericLiteral( m_type, 720.0f, heightStr );
+	Gen_GetNumericLiteral( m_type, 1280.0f, widthStr, 1 );
+	Gen_GetNumericLiteral( m_type, 720.0f, heightStr, 1 );
 
-	Gen_GetNumericLiteral( m_type, 90.0f, fovStr );
-	Gen_GetNumericLiteral( m_type, 0.1f, znearStr );
-	Gen_GetNumericLiteral( m_type, 100.0f, zfarStr );
+	Gen_GetNumericLiteral( m_type, 90.0f, fovStr, 1 );
+	Gen_GetNumericLiteral( m_type, 0.1f, znearStr, 1 );
+	Gen_GetNumericLiteral( m_type, 100.0f, zfarStr, 1 );
 
 	String_Appendf( &m_codeTests, "TEMPER_TEST( %s )\n", testName );
 	String_Append(  &m_codeTests, "{\n" );

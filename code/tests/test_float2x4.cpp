@@ -33,7 +33,7 @@ TEMPER_TEST( TestAssignment_float2x4 )
 	float2x4 mat;
 
 	// fill single value
-	mat = float2x4( 999.000000f );
+	mat = float2x4( 999.0f );
 	TEMPER_EXPECT_TRUE( mat[0] == float4( 999.000000f, 0.000000f, 0.000000f, 0.000000f ) );
 	TEMPER_EXPECT_TRUE( mat[1] == float4( 0.000000f, 999.000000f, 0.000000f, 0.000000f ) );
 
@@ -283,8 +283,8 @@ TEMPER_TEST( TestArray_float2x4 )
 {
 	float2x4 mat;
 
-	TEMPER_EXPECT_TRUE( mat[0] == float4( 1.000000f, 0.000000f, 0.000000f, 0.000000f ) );
-	TEMPER_EXPECT_TRUE( mat[1] == float4( 0.000000f, 1.000000f, 0.000000f, 0.000000f ) );
+	TEMPER_EXPECT_TRUE( mat[0] == float4( 1.0f, 0.0f, 0.0f, 0.0f ) );
+	TEMPER_EXPECT_TRUE( mat[1] == float4( 0.0f, 1.0f, 0.0f, 0.0f ) );
 
 	TEMPER_PASS();
 }

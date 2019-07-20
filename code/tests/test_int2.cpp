@@ -291,7 +291,7 @@ TEMPER_TEST( TestDot_int2 )
 
 TEMPER_TEST( TestDistance_int2 )
 {
-	float answerDistanceSqr = 104.000000f;
+	float answerDistanceSqr = 104.0f;
 	float answerDistance    = 10.198039f;
 
 	int2 a = int2( 7, 4 );

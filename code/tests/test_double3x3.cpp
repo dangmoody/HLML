@@ -33,7 +33,7 @@ TEMPER_TEST( TestAssignment_double3x3 )
 	double3x3 mat;
 
 	// fill single value
-	mat = double3x3( 999.000000 );
+	mat = double3x3( 999.0 );
 	TEMPER_EXPECT_TRUE( mat[0] == double3( 999.000000, 0.000000, 0.000000 ) );
 	TEMPER_EXPECT_TRUE( mat[1] == double3( 0.000000, 999.000000, 0.000000 ) );
 	TEMPER_EXPECT_TRUE( mat[2] == double3( 0.000000, 0.000000, 999.000000 ) );
@@ -328,9 +328,9 @@ TEMPER_TEST( TestArray_double3x3 )
 {
 	double3x3 mat;
 
-	TEMPER_EXPECT_TRUE( mat[0] == double3( 1.000000, 0.000000, 0.000000 ) );
-	TEMPER_EXPECT_TRUE( mat[1] == double3( 0.000000, 1.000000, 0.000000 ) );
-	TEMPER_EXPECT_TRUE( mat[2] == double3( 0.000000, 0.000000, 1.000000 ) );
+	TEMPER_EXPECT_TRUE( mat[0] == double3( 1.0, 0.0, 0.0 ) );
+	TEMPER_EXPECT_TRUE( mat[1] == double3( 0.0, 1.0, 0.0 ) );
+	TEMPER_EXPECT_TRUE( mat[2] == double3( 0.0, 0.0, 1.0 ) );
 
 	TEMPER_PASS();
 }
@@ -425,7 +425,7 @@ TEMPER_TEST( TestDeterminant_double3x3 )
 	);
 	double det = determinant( mat );
 
-	TEMPER_EXPECT_TRUE( doubleeq( det, 165.000000 ) );
+	TEMPER_EXPECT_TRUE( doubleeq( det, 165.0 ) );
 
 	TEMPER_PASS();
 }
@@ -434,12 +434,12 @@ TEMPER_TEST( TestTranslate_double3x3 )
 {
 	double3x3 mat;
 	double3x3 translated = double3x3(
-		1.000000, 0.000000, 2.000000,
-		0.000000, 1.000000, 3.000000,
-		0.000000, 0.000000, 1.000000
+		1.0, 0.0, 2.0,
+		0.0, 1.0, 3.0,
+		0.0, 0.0, 1.0
 	);
 
-	double2 translation = double2( 2.000000, 3.000000 );
+	double2 translation = double2( 2.0, 3.0 );
 	mat = translate( mat, translation );
 
 	TEMPER_EXPECT_TRUE( mat == translated );
@@ -450,7 +450,7 @@ TEMPER_TEST( TestTranslate_double3x3 )
 TEMPER_TEST( TestRotate_double3x3 )
 {
 	double3x3 mat;
-	double3x3 roll = rotate( mat, radians( 45.000000 ) );
+	double3x3 roll = rotate( mat, radians( 45.0 ) );
 
 	double3x3 answerRoll = double3x3(
 		0.707107, -0.707107, 0.000000,

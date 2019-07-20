@@ -71,7 +71,7 @@ void Gen_SSE_Lerp( const genType_t type, const u32 numComponents, stringBuilder_
 	const char* memberTypeString = Gen_GetMemberTypeString( type );
 
 	char oneStr[GEN_STRING_LENGTH_NUMERIC_LITERAL];
-	Gen_GetNumericLiteral( type, 1.0f, oneStr );
+	Gen_GetNumericLiteral( type, 1.0f, oneStr, 1 );
 
 	const char* registerName = Gen_SSE_GetRegisterName( type );
 

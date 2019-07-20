@@ -33,7 +33,7 @@ TEMPER_TEST( TestAssignment_double4x4 )
 	double4x4 mat;
 
 	// fill single value
-	mat = double4x4( 999.000000 );
+	mat = double4x4( 999.0 );
 	TEMPER_EXPECT_TRUE( mat[0] == double4( 999.000000, 0.000000, 0.000000, 0.000000 ) );
 	TEMPER_EXPECT_TRUE( mat[1] == double4( 0.000000, 999.000000, 0.000000, 0.000000 ) );
 	TEMPER_EXPECT_TRUE( mat[2] == double4( 0.000000, 0.000000, 999.000000, 0.000000 ) );
@@ -359,10 +359,10 @@ TEMPER_TEST( TestArray_double4x4 )
 {
 	double4x4 mat;
 
-	TEMPER_EXPECT_TRUE( mat[0] == double4( 1.000000, 0.000000, 0.000000, 0.000000 ) );
-	TEMPER_EXPECT_TRUE( mat[1] == double4( 0.000000, 1.000000, 0.000000, 0.000000 ) );
-	TEMPER_EXPECT_TRUE( mat[2] == double4( 0.000000, 0.000000, 1.000000, 0.000000 ) );
-	TEMPER_EXPECT_TRUE( mat[3] == double4( 0.000000, 0.000000, 0.000000, 1.000000 ) );
+	TEMPER_EXPECT_TRUE( mat[0] == double4( 1.0, 0.0, 0.0, 0.0 ) );
+	TEMPER_EXPECT_TRUE( mat[1] == double4( 0.0, 1.0, 0.0, 0.0 ) );
+	TEMPER_EXPECT_TRUE( mat[2] == double4( 0.0, 0.0, 1.0, 0.0 ) );
+	TEMPER_EXPECT_TRUE( mat[3] == double4( 0.0, 0.0, 0.0, 1.0 ) );
 
 	TEMPER_PASS();
 }
@@ -466,7 +466,7 @@ TEMPER_TEST( TestDeterminant_double4x4 )
 	);
 	double det = determinant( mat );
 
-	TEMPER_EXPECT_TRUE( doubleeq( det, 285.000000 ) );
+	TEMPER_EXPECT_TRUE( doubleeq( det, 285.0 ) );
 
 	TEMPER_PASS();
 }
@@ -475,13 +475,13 @@ TEMPER_TEST( TestTranslate_double4x4 )
 {
 	double4x4 mat;
 	double4x4 translated = double4x4(
-		1.000000, 0.000000, 0.000000, 2.000000,
-		0.000000, 1.000000, 0.000000, 3.000000,
-		0.000000, 0.000000, 1.000000, 4.000000,
-		0.000000, 0.000000, 0.000000, 1.000000
+		1.0, 0.0, 0.0, 2.0,
+		0.0, 1.0, 0.0, 3.0,
+		0.0, 0.0, 1.0, 4.0,
+		0.0, 0.0, 0.0, 1.0
 	);
 
-	double3 translation = double3( 2.000000, 3.000000, 4.000000 );
+	double3 translation = double3( 2.0, 3.0, 4.0 );
 	mat = translate( mat, translation );
 
 	TEMPER_EXPECT_TRUE( mat == translated );
@@ -492,9 +492,9 @@ TEMPER_TEST( TestTranslate_double4x4 )
 TEMPER_TEST( TestRotate_double4x4 )
 {
 	double4x4 mat;
-	double4x4 yaw = rotate( mat, radians( 45.000000 ), double3( 0.000000, 1.000000, 0.000000 ) );
-	double4x4 pitch = rotate( mat, radians( 45.000000 ), double3( 1.000000, 0.000000, 0.000000 ) );
-	double4x4 roll = rotate( mat, radians( 45.000000 ), double3( 0.000000, 0.000000, 1.000000 ) );
+	double4x4 yaw = rotate( mat, radians( 45.0 ), double3( 0.000000, 1.000000, 0.000000 ) );
+	double4x4 pitch = rotate( mat, radians( 45.0 ), double3( 1.000000, 0.000000, 0.000000 ) );
+	double4x4 roll = rotate( mat, radians( 45.0 ), double3( 0.000000, 0.000000, 1.000000 ) );
 
 	double4x4 answerYaw = double4x4(
 		0.707107, 0.000000, 0.707107, 0.000000,
@@ -564,20 +564,20 @@ TEMPER_TEST( TestOrtho_double4x4 )
 		0.000000, 0.000000, 0.000000, 1.000000
 	);
 
-	double width     = 1280.000000;
-	double height    = 720.000000;
+	double width     = 1280.0;
+	double height    = 720.0;
 	double aspect    = width / height;
-	double orthoSize = 5.000000;
+	double orthoSize = 5.0;
 
 	double left   = -aspect * orthoSize;
 	double right  =  aspect * orthoSize;
 	double top    = -orthoSize;
 	double bottom =  orthoSize;
 
-	double4x4 mat_LH_ZO = ortho_lh_zo( left, right, top, bottom, -1.000000, 100.000000 );
-	double4x4 mat_LH_NO = ortho_lh_no( left, right, top, bottom, -1.000000, 100.000000 );
-	double4x4 mat_RH_ZO = ortho_rh_zo( left, right, top, bottom, -1.000000, 100.000000 );
-	double4x4 mat_RH_NO = ortho_rh_no( left, right, top, bottom, -1.000000, 100.000000 );
+	double4x4 mat_LH_ZO = ortho_lh_zo( left, right, top, bottom, -1.0, 100.0 );
+	double4x4 mat_LH_NO = ortho_lh_no( left, right, top, bottom, -1.0, 100.0 );
+	double4x4 mat_RH_ZO = ortho_rh_zo( left, right, top, bottom, -1.0, 100.0 );
+	double4x4 mat_RH_NO = ortho_rh_no( left, right, top, bottom, -1.0, 100.0 );
 
 	TEMPER_EXPECT_TRUE( mat_LH_ZO == answerOrtho_LH_ZO );
 	TEMPER_EXPECT_TRUE( mat_LH_NO == answerOrtho_LH_NO );
@@ -614,11 +614,11 @@ TEMPER_TEST( TestPerspective_double4x4 )
 		0.000000, 0.000000, -1.000000, 0.000000
 	);
 
-	double aspect = 1280.000000 / 720.000000;
-	double4x4 mat_LH_ZO = perspective_lh_zo( 90.000000, aspect, 0.100000, 100.000000 );
-	double4x4 mat_LH_NO = perspective_lh_no( 90.000000, aspect, 0.100000, 100.000000 );
-	double4x4 mat_RH_ZO = perspective_rh_zo( 90.000000, aspect, 0.100000, 100.000000 );
-	double4x4 mat_RH_NO = perspective_rh_no( 90.000000, aspect, 0.100000, 100.000000 );
+	double aspect = 1280.0 / 720.0;
+	double4x4 mat_LH_ZO = perspective_lh_zo( 90.0, aspect, 0.1, 100.0 );
+	double4x4 mat_LH_NO = perspective_lh_no( 90.0, aspect, 0.1, 100.0 );
+	double4x4 mat_RH_ZO = perspective_rh_zo( 90.0, aspect, 0.1, 100.0 );
+	double4x4 mat_RH_NO = perspective_rh_no( 90.0, aspect, 0.1, 100.0 );
 
 	TEMPER_EXPECT_TRUE( mat_LH_ZO == answerPerspective_LH_ZO );
 	TEMPER_EXPECT_TRUE( mat_LH_NO == answerPerspective_LH_NO );

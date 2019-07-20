@@ -33,7 +33,7 @@ TEMPER_TEST( TestAssignment_double3x2 )
 	double3x2 mat;
 
 	// fill single value
-	mat = double3x2( 999.000000 );
+	mat = double3x2( 999.0 );
 	TEMPER_EXPECT_TRUE( mat[0] == double2( 999.000000, 0.000000 ) );
 	TEMPER_EXPECT_TRUE( mat[1] == double2( 0.000000, 999.000000 ) );
 	TEMPER_EXPECT_TRUE( mat[2] == double2( 0.000000, 0.000000 ) );
@@ -310,9 +310,9 @@ TEMPER_TEST( TestArray_double3x2 )
 {
 	double3x2 mat;
 
-	TEMPER_EXPECT_TRUE( mat[0] == double2( 1.000000, 0.000000 ) );
-	TEMPER_EXPECT_TRUE( mat[1] == double2( 0.000000, 1.000000 ) );
-	TEMPER_EXPECT_TRUE( mat[2] == double2( 0.000000, 0.000000 ) );
+	TEMPER_EXPECT_TRUE( mat[0] == double2( 1.0, 0.0 ) );
+	TEMPER_EXPECT_TRUE( mat[1] == double2( 0.0, 1.0 ) );
+	TEMPER_EXPECT_TRUE( mat[2] == double2( 0.0, 0.0 ) );
 
 	TEMPER_PASS();
 }

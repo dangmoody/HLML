@@ -33,7 +33,7 @@ TEMPER_TEST( TestAssignment_float3x4 )
 	float3x4 mat;
 
 	// fill single value
-	mat = float3x4( 999.000000f );
+	mat = float3x4( 999.0f );
 	TEMPER_EXPECT_TRUE( mat[0] == float4( 999.000000f, 0.000000f, 0.000000f, 0.000000f ) );
 	TEMPER_EXPECT_TRUE( mat[1] == float4( 0.000000f, 999.000000f, 0.000000f, 0.000000f ) );
 	TEMPER_EXPECT_TRUE( mat[2] == float4( 0.000000f, 0.000000f, 999.000000f, 0.000000f ) );
@@ -312,9 +312,9 @@ TEMPER_TEST( TestArray_float3x4 )
 {
 	float3x4 mat;
 
-	TEMPER_EXPECT_TRUE( mat[0] == float4( 1.000000f, 0.000000f, 0.000000f, 0.000000f ) );
-	TEMPER_EXPECT_TRUE( mat[1] == float4( 0.000000f, 1.000000f, 0.000000f, 0.000000f ) );
-	TEMPER_EXPECT_TRUE( mat[2] == float4( 0.000000f, 0.000000f, 1.000000f, 0.000000f ) );
+	TEMPER_EXPECT_TRUE( mat[0] == float4( 1.0f, 0.0f, 0.0f, 0.0f ) );
+	TEMPER_EXPECT_TRUE( mat[1] == float4( 0.0f, 1.0f, 0.0f, 0.0f ) );
+	TEMPER_EXPECT_TRUE( mat[2] == float4( 0.0f, 0.0f, 1.0f, 0.0f ) );
 
 	TEMPER_PASS();
 }
@@ -389,12 +389,12 @@ TEMPER_TEST( TestTranslate_float3x4 )
 {
 	float3x4 mat;
 	float3x4 translated = float3x4(
-		1.000000f, 0.000000f, 0.000000f, 2.000000f,
-		0.000000f, 1.000000f, 0.000000f, 3.000000f,
-		0.000000f, 0.000000f, 1.000000f, 4.000000f
+		1.0f, 0.0f, 0.0f, 2.0f,
+		0.0f, 1.0f, 0.0f, 3.0f,
+		0.0f, 0.0f, 1.0f, 4.0f
 	);
 
-	float3 translation = float3( 2.000000f, 3.000000f, 4.000000f );
+	float3 translation = float3( 2.0f, 3.0f, 4.0f );
 	mat = translate( mat, translation );
 
 	TEMPER_EXPECT_TRUE( mat == translated );

@@ -177,7 +177,7 @@ inline void			Gen_GetFullTypeName( const genType_t type, const u32 numRows, cons
 inline void			Gen_GetParmTypeName( const genType_t type, const u32 numComponents, char* outString );
 
 inline const char*	Gen_GetDefaultLiteralValue( const genType_t type );
-inline void			Gen_GetNumericLiteral( const genType_t type, const float value, char* outString );
+inline void			Gen_GetNumericLiteral( const genType_t type, const float value, char* outString, const u32 decimalPlaces = 0 );
 
 inline const char*	Gen_GetHandString( const genHand_t hand );
 inline const char*	Gen_GetClipSpaceRangeString( const genClipSpace_t range );
@@ -314,7 +314,7 @@ const char* Gen_GetDefaultLiteralValue( const genType_t type ) {
 	}
 }
 
-void Gen_GetNumericLiteral( const genType_t type, const float x, char* outStr ) {
+void Gen_GetNumericLiteral( const genType_t type, const float x, char* outStr, const u32 decimalPlaces ) {
 	switch ( type ) {
 		case GEN_TYPE_BOOL:
 			snprintf( outStr, GEN_STRING_LENGTH_NUMERIC_LITERAL, "%s", ( x != 0 ) ? "true" : "false" );
@@ -329,11 +329,19 @@ void Gen_GetNumericLiteral( const genType_t type, const float x, char* outStr ) 
 			break;
 
 		case GEN_TYPE_FLOAT:
-			snprintf( outStr, GEN_STRING_LENGTH_NUMERIC_LITERAL, "%ff", (float) x );
+			if ( decimalPlaces == 0 ) {
+				snprintf( outStr, GEN_STRING_LENGTH_NUMERIC_LITERAL, "%ff", (float) x );
+			} else {
+				snprintf( outStr, GEN_STRING_LENGTH_NUMERIC_LITERAL, "%.*ff", decimalPlaces, (float) x );
+			}
 			break;
 
 		case GEN_TYPE_DOUBLE:
-			snprintf( outStr, GEN_STRING_LENGTH_NUMERIC_LITERAL, "%f", (double) x );
+			if ( decimalPlaces == 0 ) {
+				snprintf( outStr, GEN_STRING_LENGTH_NUMERIC_LITERAL, "%f", (double) x );
+			} else {
+				snprintf( outStr, GEN_STRING_LENGTH_NUMERIC_LITERAL, "%.*f", decimalPlaces, (double) x );
+			}
 			break;
 
 		case GEN_TYPE_COUNT:

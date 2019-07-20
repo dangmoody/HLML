@@ -33,7 +33,7 @@ TEMPER_TEST( TestAssignment_float2x2 )
 	float2x2 mat;
 
 	// fill single value
-	mat = float2x2( 999.000000f );
+	mat = float2x2( 999.0f );
 	TEMPER_EXPECT_TRUE( mat[0] == float2( 999.000000f, 0.000000f ) );
 	TEMPER_EXPECT_TRUE( mat[1] == float2( 0.000000f, 999.000000f ) );
 
@@ -297,8 +297,8 @@ TEMPER_TEST( TestArray_float2x2 )
 {
 	float2x2 mat;
 
-	TEMPER_EXPECT_TRUE( mat[0] == float2( 1.000000f, 0.000000f ) );
-	TEMPER_EXPECT_TRUE( mat[1] == float2( 0.000000f, 1.000000f ) );
+	TEMPER_EXPECT_TRUE( mat[0] == float2( 1.0f, 0.0f ) );
+	TEMPER_EXPECT_TRUE( mat[1] == float2( 0.0f, 1.0f ) );
 
 	TEMPER_PASS();
 }
@@ -384,7 +384,7 @@ TEMPER_TEST( TestDeterminant_float2x2 )
 	);
 	float det = determinant( mat );
 
-	TEMPER_EXPECT_TRUE( floateq( det, 32.000000f ) );
+	TEMPER_EXPECT_TRUE( floateq( det, 32.0f ) );
 
 	TEMPER_PASS();
 }
