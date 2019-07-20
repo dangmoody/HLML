@@ -55,16 +55,13 @@ void Gen_SSE_GetInputDataNameRadians( const genType_t type, char* outString ) {
 }
 
 void Gen_SSE_Radians( const genType_t type, stringBuilder_t* sbHeader, stringBuilder_t* sbInl ) {
-	const char* memberTypeString = Gen_GetMemberTypeString( type );
-
 	char inputDataName[GEN_STRING_LENGTH_SSE_INPUT_NAME];
 	Gen_SSE_GetInputDataNameRadians( type, inputDataName );
 
-	const char* registerName = Gen_SSE_GetRegisterName( type );
+	const char* registerName	= Gen_SSE_GetRegisterName( type );
 
-	const char* mulFuncStr = Gen_SSE_GetFuncStrMul( type );
-
-	const char* loadFuncStr = Gen_SSE_GetFuncStrLoad( type );
+	const char* mulFuncStr		= Gen_SSE_GetFuncStrMul( type );
+	const char* set1FuncStr		= Gen_SSE_GetFuncStrSet1( type );
 
 	String_Appendf( sbHeader, "struct %s\n", inputDataName );
 	String_Append(  sbHeader, "{\n" );
@@ -77,10 +74,7 @@ void Gen_SSE_Radians( const genType_t type, stringBuilder_t* sbHeader, stringBui
 
 	String_Appendf( sbInl, "void radians_sse( const %s& in, %s* out_results )\n", inputDataName, registerName );
 	String_Append(  sbInl, "{\n" );
-	String_Appendf( sbInl, "\t%s constant = 0.01745329251994329577f;\n", memberTypeString );
-	String_Appendf( sbInl, "\t%s constants[4] = { constant, constant, constant, constant };\n", memberTypeString );
-	String_Append(  sbInl, "\n" );
-	String_Appendf( sbInl, "\t%s radToDeg = %s( constants );\n", registerName, loadFuncStr );
+	String_Appendf( sbInl, "\t%s radToDeg = %s( 0.01745329251994329577f );\n", registerName, set1FuncStr );
 	String_Append(  sbInl, "\n" );
 	String_Appendf( sbInl, "\t*out_results = %s( in.deg, radToDeg );\n", mulFuncStr );
 	String_Append(  sbInl, "}\n" );
@@ -98,16 +92,13 @@ void Gen_SSE_GetInputDataNameDegrees( const genType_t type, char* outString ) {
 }
 
 void Gen_SSE_Degrees( const genType_t type, stringBuilder_t* sbHeader, stringBuilder_t* sbInl ) {
-	const char* memberTypeString = Gen_GetMemberTypeString( type );
-
 	char inputDataName[GEN_STRING_LENGTH_SSE_INPUT_NAME];
 	Gen_SSE_GetInputDataNameDegrees( type, inputDataName );
 
-	const char* registerName = Gen_SSE_GetRegisterName( type );
+	const char* registerName	= Gen_SSE_GetRegisterName( type );
 
-	const char* mulFuncStr = Gen_SSE_GetFuncStrMul( type );
-
-	const char* loadFuncStr = Gen_SSE_GetFuncStrLoad( type );
+	const char* mulFuncStr		= Gen_SSE_GetFuncStrMul( type );
+	const char* set1FuncStr		= Gen_SSE_GetFuncStrSet1( type );
 
 	String_Appendf( sbHeader, "struct %s\n", inputDataName );
 	String_Append(  sbHeader, "{\n" );
@@ -120,10 +111,7 @@ void Gen_SSE_Degrees( const genType_t type, stringBuilder_t* sbHeader, stringBui
 
 	String_Appendf( sbInl, "void degrees_sse( const %s& in, %s* out_results )\n", inputDataName, registerName );
 	String_Append(  sbInl, "{\n" );
-	String_Appendf( sbInl, "\t%s constant = 57.2957795130823208768f;\n", memberTypeString );
-	String_Appendf( sbInl, "\t%s constants[4] = { constant, constant, constant, constant };\n", memberTypeString );
-	String_Append(  sbInl, "\n" );
-	String_Appendf( sbInl, "\t%s radToDeg = %s( constants );\n", registerName, loadFuncStr );
+	String_Appendf( sbInl, "\t%s radToDeg = %s( 57.2957795130823208768f );\n", registerName, set1FuncStr );
 	String_Append(  sbInl, "\n" );
 	String_Appendf( sbInl, "\t*out_results = %s( in.rad, radToDeg );\n", mulFuncStr );
 	String_Append(  sbInl, "}\n" );
@@ -154,18 +142,15 @@ void Gen_SSE_Lerp( const genType_t type, const u32 numComponents, stringBuilder_
 		return;
 	}
 
-	const char* memberTypeString = Gen_GetMemberTypeString( type );
-
 	char oneStr[GEN_STRING_LENGTH_NUMERIC_LITERAL];
 	Gen_GetNumericLiteral( type, 1.0f, oneStr, 1 );
 
-	const char* registerName = Gen_SSE_GetRegisterName( type );
+	const char* registerName	= Gen_SSE_GetRegisterName( type );
 
-	const char* addFuncStr = Gen_SSE_GetFuncStrAdd( type );
-	const char* subFuncStr = Gen_SSE_GetFuncStrSub( type );
-	const char* mulFuncStr = Gen_SSE_GetFuncStrMul( type );
-
-	const char* loadFuncStr = Gen_SSE_GetFuncStrLoad( type );
+	const char* addFuncStr		= Gen_SSE_GetFuncStrAdd( type );
+	const char* subFuncStr		= Gen_SSE_GetFuncStrSub( type );
+	const char* mulFuncStr		= Gen_SSE_GetFuncStrMul( type );
+	const char* set1FuncStr		= Gen_SSE_GetFuncStrSet1( type );
 
 	char inputDataName[GEN_STRING_LENGTH_SSE_INPUT_NAME];
 	Gen_SSE_GetInputDataNameLerp( type, numComponents, inputDataName );
@@ -183,9 +168,7 @@ void Gen_SSE_Lerp( const genType_t type, const u32 numComponents, stringBuilder_
 
 	String_Appendf( sbInl, "void lerp_sse( const %s& in, %s* out_results )\n", inputDataName, registerName );
 	String_Append(  sbInl, "{\n" );
-	String_Appendf( sbInl, "\t%s ones[4] = { %s, %s, %s, %s };\n", memberTypeString, oneStr, oneStr, oneStr, oneStr );
-	String_Append(  sbInl, "\n" );
-	String_Appendf( sbInl, "\t%s one = %s( ones );\n", registerName, loadFuncStr );
+	String_Appendf( sbInl, "\t%s one = %s( %s );\n", registerName, set1FuncStr, oneStr );
 	String_Append(  sbInl, "\n" );
 	String_Appendf( sbInl, "\t%s sub0 = %s( one, in.t );\n", registerName, subFuncStr );
 	String_Append(  sbInl, "\n" );

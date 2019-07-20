@@ -210,6 +210,7 @@ TEMPER_TEST( TestLength_double3 )
 
 TEMPER_TEST( TestNormalized_double3 )
 {
+	// scalar
 	double3 vec = double3( 2.000000, 3.000000, 4.000000 );
 	vec = normalized( vec );
 

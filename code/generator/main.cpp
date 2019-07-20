@@ -420,8 +420,9 @@ static bool GenerateFunctionsVectorSSE( void ) {
 			String_Appendf( &contentHeader, "// %s\n", fullTypeName );
 			String_Appendf( &contentInl, "// %s\n", fullTypeName );
 
-			Gen_SSE_VectorDot( type, componentIndex, &contentHeader, &contentInl );
 			Gen_SSE_VectorLength( type, componentIndex, &contentHeader, &contentInl );
+			Gen_SSE_VectorNormalize( type, componentIndex, &contentHeader, &contentInl );
+			Gen_SSE_VectorDot( type, componentIndex, &contentHeader, &contentInl );
 			Gen_SSE_VectorDistance( type, componentIndex, &contentHeader, &contentInl );
 
 			String_Append( &contentHeader, "\n" );

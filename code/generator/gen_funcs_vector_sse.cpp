@@ -4,6 +4,64 @@
 
 #include "string_builder.h"
 
+void Gen_SSE_GetInputDataNameNormalize( const genType_t type, const u32 numComponents, char* outString ) {
+	const char* typeString = Gen_GetTypeString( type );
+
+	snprintf( outString, GEN_STRING_LENGTH_SSE_INPUT_NAME, "sse_input_normalize_%s%d_t", typeString, numComponents );
+}
+
+void Gen_SSE_VectorNormalize( const genType_t type, const u32 numComponents, stringBuilder_t* sbHeader, stringBuilder_t* sbInl ) {
+	assert( numComponents >= GEN_COMPONENT_COUNT_MIN );
+	assert( numComponents <= GEN_COMPONENT_COUNT_MAX );
+
+	if ( !Gen_TypeSupportsSSE( type ) ) {
+		return;
+	}
+
+	char oneStr[GEN_STRING_LENGTH_NUMERIC_LITERAL];
+	Gen_GetNumericLiteral( type, 1.0f, oneStr, 1 );
+
+	const char* registerName = Gen_SSE_GetRegisterName( type );
+
+	const char* set1FuncStr = Gen_SSE_GetFuncStrSet1( type );
+
+	const char* mulFuncStr = Gen_SSE_GetFuncStrMul( type );
+	const char* divFuncStr = Gen_SSE_GetFuncStrDiv( type );
+
+	char inputDataNameNormalize[GEN_STRING_LENGTH_SSE_INPUT_NAME];
+	Gen_SSE_GetInputDataNameNormalize( type, numComponents, inputDataNameNormalize );
+
+	char inputDataNameLength[GEN_STRING_LENGTH_SSE_INPUT_NAME];
+	Gen_SSE_GetInputDataNameLength( type, numComponents, inputDataNameLength );
+
+	String_Appendf( sbHeader, "struct %s\n", inputDataNameNormalize );
+	String_Append(  sbHeader, "{\n" );
+	String_Appendf( sbHeader, "\t%s comp[%d];\n", registerName, numComponents );
+	String_Append(  sbHeader, "};\n" );
+	String_Append(  sbHeader, "\n" );
+	
+	String_Appendf( sbHeader, "inline void normalize_sse( const %s& in, %s out_results[%d] );\n", inputDataNameNormalize, registerName, numComponents );
+	String_Append(  sbHeader, "\n" );
+
+	String_Appendf( sbInl, "void normalize_sse( const %s& in, %s out_results[%d] )\n", inputDataNameNormalize, registerName, numComponents );
+	String_Append(  sbInl, "{\n" );
+	String_Appendf( sbInl, "\t%s one = %s( %s );\n", registerName, set1FuncStr, oneStr );
+	String_Append(  sbInl, "\n" );
+	String_Appendf( sbInl, "\t%s len;\n", registerName );
+	String_Append(  sbInl, "\n" );
+	String_Appendf( sbInl, "\t%s inLength;\n", inputDataNameLength );
+	String_Appendf( sbInl, "\tmemcpy( inLength.comp, in.comp, %d * sizeof( __m128 ) );\n", numComponents );
+	String_Append(  sbInl, "\tlength_sse( inLength, &len );\n" );
+	String_Append(  sbInl, "\n" );
+	String_Appendf( sbInl, "\t%s invlen = %s( one, len );\n", registerName, divFuncStr );
+	String_Append(  sbInl, "\n" );
+	for ( u32 i = 0; i < numComponents; i++ ) {
+		String_Appendf( sbInl, "\tout_results[%d] = %s( in.comp[%d], invlen );\n", i, mulFuncStr, i );
+	}
+	String_Append(  sbInl, "}\n" );
+	String_Append(  sbInl, "\n" );
+}
+
 void Gen_SSE_GetInputDataNameDot( const genType_t type, const u32 numComponents, char* outString ) {
 	const char* typeString = Gen_GetTypeString( type );
 
@@ -14,7 +72,7 @@ void Gen_SSE_VectorDot( const genType_t type, const u32 numComponents, stringBui
 	assert( numComponents >= GEN_COMPONENT_COUNT_MIN );
 	assert( numComponents <= GEN_COMPONENT_COUNT_MAX );
 
-	if ( type != GEN_TYPE_FLOAT ) {
+	if ( !Gen_TypeSupportsSSE( type ) ) {
 		return;
 	}
 
@@ -32,6 +90,7 @@ void Gen_SSE_VectorDot( const genType_t type, const u32 numComponents, stringBui
 	String_Appendf( sbHeader, "\t%s rhs[%d];\n", registerName, numComponents );
 	String_Append(  sbHeader, "};\n" );
 	String_Append(  sbHeader, "\n" );
+	
 	String_Appendf( sbHeader, "inline void dot_sse( const %s& in, %s* out_results );\n", inputDataName, registerName );
 	String_Append(  sbHeader, "\n" );
 
@@ -81,7 +140,7 @@ void Gen_SSE_VectorLength( const genType_t type, const u32 numComponents, string
 	assert( numComponents >= GEN_COMPONENT_COUNT_MIN );
 	assert( numComponents <= GEN_COMPONENT_COUNT_MAX );
 
-	if ( type != GEN_TYPE_FLOAT ) {
+	if ( !Gen_TypeSupportsSSE( type ) ) {
 		return;
 	}
 
@@ -146,6 +205,10 @@ void Gen_SSE_GetInputDataNameDistance( const genType_t type, const u32 numCompon
 void Gen_SSE_VectorDistance( const genType_t type, const u32 numComponents, stringBuilder_t* sbHeader, stringBuilder_t* sbInl ) {
 	assert( numComponents >= GEN_COMPONENT_COUNT_MIN );
 	assert( numComponents <= GEN_COMPONENT_COUNT_MAX );
+
+	if ( !Gen_TypeSupportsSSE( type ) ) {
+		return;
+	}
 
 	char inputDataName[GEN_STRING_LENGTH_SSE_INPUT_NAME];
 	Gen_SSE_GetInputDataNameDistance( type, numComponents, inputDataName );

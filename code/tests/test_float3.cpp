@@ -251,10 +251,37 @@ TEMPER_TEST( TestLength_float3 )
 
 TEMPER_TEST( TestNormalized_float3 )
 {
+	// scalar
 	float3 vec = float3( 2.000000f, 3.000000f, 4.000000f );
 	vec = normalized( vec );
 
 	TEMPER_EXPECT_TRUE( length( vec ) == 1.0f );
+
+	// SSE
+	sse_input_normalize_float3_t in;
+
+	in.comp[0] = _mm_set1_ps( 2.0f );
+	in.comp[1] = _mm_set1_ps( 3.0f );
+	in.comp[2] = _mm_set1_ps( 4.0f );
+
+	__m128 results[3];
+	normalize_sse( in, results );
+
+	sse_input_length_float3_t inLength;
+	inLength.comp[0] = results[0];
+	inLength.comp[1] = results[1];
+	inLength.comp[2] = results[2];
+
+	__m128 results2;
+	length_sse( inLength, &results2 );
+
+	float normalizeResults[4];
+	_mm_store_ps( normalizeResults, results2 );
+
+	TEMPER_EXPECT_TRUE( floateq( normalizeResults[0], 1.0f ) );
+	TEMPER_EXPECT_TRUE( floateq( normalizeResults[1], 1.0f ) );
+	TEMPER_EXPECT_TRUE( floateq( normalizeResults[2], 1.0f ) );
+	TEMPER_EXPECT_TRUE( floateq( normalizeResults[3], 1.0f ) );
 
 	TEMPER_PASS();
 }
