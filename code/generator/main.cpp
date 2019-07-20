@@ -360,7 +360,7 @@ static bool GenerateFunctionsScalarSSE( void ) {
 	for ( u32 typeIndex = 0; typeIndex < GEN_TYPE_COUNT; typeIndex++ ) {
 		genType_t type = static_cast<genType_t>( typeIndex );
 
-		if ( type != GEN_TYPE_FLOAT ) {
+		if ( !Gen_TypeSupportsSSE( type ) ) {
 			continue;
 		}
 
@@ -396,7 +396,7 @@ static bool GenerateFunctionsVectorSSE( void ) {
 	for ( u32 typeIndex = 0; typeIndex < GEN_TYPE_COUNT; typeIndex++ ) {
 		genType_t type = static_cast<genType_t>( typeIndex );
 
-		if ( type != GEN_TYPE_FLOAT ) {
+		if ( !Gen_TypeSupportsSSE( type ) ) {
 			continue;
 		}
 
