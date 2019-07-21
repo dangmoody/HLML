@@ -366,6 +366,8 @@ static bool GenerateFunctionsScalarSSE( void ) {
 
 		const char* memberTypeString = Gen_GetMemberTypeString( type );
 
+		printf( "SIMD vector functions %s...", memberTypeString );
+
 		String_Appendf( &contentHeader, "// %s\n", memberTypeString );
 		String_Appendf( &contentInl, "// %s\n", memberTypeString );
 
@@ -376,6 +378,8 @@ static bool GenerateFunctionsScalarSSE( void ) {
 
 		String_Append( &contentHeader, "\n" );
 		String_Append( &contentInl, "\n" );
+
+		printf( "OK.\n" );
 	}
 
 	String_Append( &contentHeader, "#include \"" GEN_FILENAME_FUNCTIONS_SCALAR_SSE ".inl\"\n" );
@@ -401,7 +405,8 @@ static bool GenerateFunctionsVectorSSE( void ) {
 	String_Append( &contentHeader, GEN_FILE_HEADER );
 	String_Append( &contentInl, GEN_FILE_HEADER );
 
-	String_Append( &contentHeader, "#include <xmmintrin.h>\n" \
+	String_Append( &contentHeader,
+		"#include <immintrin.h>\n" \
 		"\n" );
 
 	for ( u32 typeIndex = 0; typeIndex < GEN_TYPE_COUNT; typeIndex++ ) {
@@ -415,7 +420,7 @@ static bool GenerateFunctionsVectorSSE( void ) {
 			char fullTypeName[GEN_STRING_LENGTH_TYPE_NAME];
 			Gen_GetFullTypeName( type, 1, componentIndex, fullTypeName );
 
-			printf( "SIMD functions %s...", fullTypeName );
+			printf( "SIMD vector functions %s...", fullTypeName );
 
 			String_Appendf( &contentHeader, "// %s\n", fullTypeName );
 			String_Appendf( &contentInl, "// %s\n", fullTypeName );
@@ -424,6 +429,7 @@ static bool GenerateFunctionsVectorSSE( void ) {
 			Gen_SSE_VectorNormalize( type, componentIndex, &contentHeader, &contentInl );
 			Gen_SSE_VectorDot( type, componentIndex, &contentHeader, &contentInl );
 			Gen_SSE_VectorDistance( type, componentIndex, &contentHeader, &contentInl );
+			// Gen_SSE_VectorAngle( type, componentIndex, &contentHeader, &contentInl );
 
 			String_Append( &contentHeader, "\n" );
 			String_Append( &contentInl, "\n" );

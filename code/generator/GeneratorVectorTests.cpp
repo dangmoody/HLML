@@ -10,8 +10,8 @@
 #include "gen_funcs_vector_sse.h"
 
 bool GeneratorVectorTests::Generate( const genType_t type, const u32 numComponents ) {
-	const u32 testsCodeBytes = 12 * KB_TO_BYTES;
-	const u32 suiteCodeBytes = 4 * KB_TO_BYTES;
+	const u32 testsCodeBytes = 14 * KB_TO_BYTES;
+	const u32 suiteCodeBytes = 2 * KB_TO_BYTES;
 
 	m_codeTests = String_Create( testsCodeBytes );
 	m_codeSuite = String_Create( suiteCodeBytes );
@@ -33,6 +33,7 @@ bool GeneratorVectorTests::Generate( const genType_t type, const u32 numComponen
 
 	String_Append( &code, "#include \"../../" GEN_OUT_GEN_FOLDER_PATH GEN_FILENAME_FUNCTIONS_VECTOR ".h\"\n" );
 	if ( type == GEN_TYPE_FLOAT ) {
+		String_Append( &code, "#include \"../../" GEN_OUT_GEN_FOLDER_PATH GEN_FILENAME_FUNCTIONS_SCALAR_SSE ".h\"\n" );
 		String_Append( &code, "#include \"../../" GEN_OUT_GEN_FOLDER_PATH GEN_FILENAME_FUNCTIONS_VECTOR_SSE ".h\"\n" );
 	}
 
@@ -40,11 +41,6 @@ bool GeneratorVectorTests::Generate( const genType_t type, const u32 numComponen
 
 	String_Append( &code, "#include <temper/temper.h>\n" );
 	String_Append( &code, "\n" );
-
-	if ( type == GEN_TYPE_FLOAT ) {
-		String_Append( &code, "#include <xmmintrin.h>\n" );
-		String_Append( &code, "\n" );
-	}
 
 	String_Appendf( &m_codeSuite, "TEMPER_SUITE( Test_%s )\n", m_fullTypeName );
 	String_Append(  &m_codeSuite, "{\n" );
@@ -809,15 +805,54 @@ void GeneratorVectorTests::GenerateTestAngle() {
 
 	String_Appendf( &m_codeTests, "TEMPER_TEST( %s )\n", testName );
 	String_Append(  &m_codeTests, "{\n" );
+	String_Append(  &m_codeTests, "\t// scalar\n" );
 	String_Appendf( &m_codeTests, "\t%s right = %s%s;\n", m_fullTypeName, m_fullTypeName, parmListRight );
-	String_Appendf( &m_codeTests, "\t%s up =    %s%s;\n", m_fullTypeName, m_fullTypeName, parmListUp );
-	String_Appendf( &m_codeTests, "\t%s answer = angle( up, right );\n", m_typeString );
+	String_Appendf( &m_codeTests, "\t%s up    = %s%s;\n", m_fullTypeName, m_fullTypeName, parmListUp );
 	String_Append(  &m_codeTests, "\n" );
-	String_Appendf( &m_codeTests, "\tTEMPER_EXPECT_TRUE( %s( answer, %s ) );\n", floateqStr, ninetyStr );
-	String_Append(  &m_codeTests, "\n" );
-	String_Append(  &m_codeTests, "\tTEMPER_PASS();\n" );
-	String_Append(  &m_codeTests, "}\n" );
-	String_Append(  &m_codeTests, "\n" );
+	String_Appendf( &m_codeTests, "\tTEMPER_EXPECT_TRUE( %s( angle( up, right ), %s ) );\n", floateqStr, ninetyStr );
+
+#if 0
+	if ( Gen_TypeSupportsSSE( m_type ) ) {
+		const char* set1FuncStr		= Gen_SSE_GetFuncStrSet1( m_type );
+		const char* storeFuncStr	= Gen_SSE_GetFuncStrStore( m_type );
+
+		char inputDataName[GEN_STRING_LENGTH_SSE_INPUT_NAME];
+		Gen_SSE_GetInputDataNameAngle( m_type, m_numComponents, inputDataName );
+
+		String_Append(  &m_codeTests, "\n" );
+		String_Append(  &m_codeTests, "\t// SSE\n" );
+		String_Appendf( &m_codeTests, "\t%s in;\n", inputDataName );
+		String_Append(  &m_codeTests, "\n" );
+		for ( u32 i = 0; i < m_numComponents; i++ ) {
+			char valueStr[GEN_STRING_LENGTH_NUMERIC_LITERAL];
+			Gen_GetNumericLiteral( m_type, right[i], valueStr, 1 );
+
+			String_Appendf( &m_codeTests, "\tin.lhs[%d] = %s( %s );\n", i, set1FuncStr, valueStr );
+		}
+		String_Append( &m_codeTests, "\n" );
+		for ( u32 i = 0; i < m_numComponents; i++ ) {
+			char valueStr[GEN_STRING_LENGTH_NUMERIC_LITERAL];
+			Gen_GetNumericLiteral( m_type, up[i], valueStr, 1 );
+
+			String_Appendf( &m_codeTests, "\tin.rhs[%d] = %s( %s );\n", i, set1FuncStr, valueStr );
+		}
+		String_Append(  &m_codeTests, "\n" );
+		String_Appendf( &m_codeTests, "\t%s results;\n", m_registerName );
+		String_Append(  &m_codeTests, "\tangle_sse( angleResults, &results );\n" );
+		String_Append(  &m_codeTests, "\n" );
+		String_Appendf( &m_codeTests, "\t%s angleResults[4];\n", m_memberTypeString );
+		String_Appendf( &m_codeTests, "\t%s( angleResults, results );\n", storeFuncStr );
+		String_Append(  &m_codeTests, "\n" );
+		for ( u32 i = 0; i < m_numComponents; i++ ) {
+			String_Appendf( &m_codeTests, "\tTEMPER_EXPECT_TRUE( %s( angleResults[%d], %s ) );\n", floateqStr, i, ninetyStr );
+		}
+	}
+#endif
+
+	String_Append( &m_codeTests, "\n" );
+	String_Append( &m_codeTests, "\tTEMPER_PASS();\n" );
+	String_Append( &m_codeTests, "}\n" );
+	String_Append( &m_codeTests, "\n" );
 
 	String_Appendf( &m_codeSuite, "\tTEMPER_RUN_TEST( %s );\n", testName );
 }

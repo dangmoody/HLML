@@ -4,8 +4,6 @@
 
 #include "../../code/out/gen/hlml_functions_scalar_sse.h"
 
-#include <xmmintrin.h>
-
 TEMPER_TEST( TestFloateq_float )
 {
 	float a = 5.0f;

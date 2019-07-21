@@ -263,3 +263,82 @@ void Gen_SSE_VectorDistance( const genType_t type, const u32 numComponents, stri
 		String_Append(  sbInl, "\n" );
 	}
 }
+
+#if 0
+void Gen_SSE_GetInputDataNameAngle( const genType_t type, const u32 numComponents, char* outString ) {
+	const char* typeString = Gen_GetTypeString( type );
+
+	snprintf( outString, GEN_STRING_LENGTH_SSE_INPUT_NAME, "sse_input_angle_%s%d_t", typeString, numComponents );
+}
+
+void Gen_SSE_VectorAngle( const genType_t type, const u32 numComponents, stringBuilder_t* sbHeader, stringBuilder_t* sbInl ) {
+	assert( numComponents >= GEN_COMPONENT_COUNT_MIN );
+	assert( numComponents <= GEN_COMPONENT_COUNT_MAX );
+
+	if ( !Gen_TypeSupportsSSE( type ) ) {
+		return;
+	}
+
+	char inputDataNameAngle[GEN_STRING_LENGTH_SSE_INPUT_NAME];
+	Gen_SSE_GetInputDataNameAngle( type, numComponents, inputDataNameAngle );
+
+	char inputDataNameNormalize[GEN_STRING_LENGTH_SSE_INPUT_NAME];
+	Gen_SSE_GetInputDataNameNormalize( type, numComponents, inputDataNameNormalize );
+
+	char inputDataNameDot[GEN_STRING_LENGTH_SSE_INPUT_NAME];
+	Gen_SSE_GetInputDataNameDot( type, numComponents, inputDataNameDot );
+
+	char inputDataNameDegrees[GEN_STRING_LENGTH_SSE_INPUT_NAME];
+	Gen_SSE_GetInputDataNameDegrees( type, inputDataNameDegrees );
+
+	const char* registerName	= Gen_SSE_GetRegisterName( type );
+	const char* acosFuncStr		= Gen_SSE_GetFuncStrAcos( type );
+
+	String_Appendf( sbHeader, "struct %s\n", inputDataNameAngle );
+	String_Append(  sbHeader, "{\n" );
+	String_Appendf( sbHeader, "\t%s lhs[%d];\n", registerName, numComponents );
+	String_Appendf( sbHeader, "\t%s rhs[%d];\n", registerName, numComponents );
+	String_Append(  sbHeader, "};\n" );
+	String_Append(  sbHeader, "\n" );
+
+	String_Appendf( sbHeader, "inline void angle_sse( const %s& in, %s* out_results );\n", inputDataNameAngle, registerName );
+	String_Append(  sbHeader, "\n" );
+
+	String_Appendf( sbInl, "void angle_sse( const %s& in, %s* out_results )\n", inputDataNameAngle, registerName );
+	String_Append(  sbInl, "{\n" );
+	String_Appendf( sbInl, "\t%s resultsLHS[%d];\n", registerName, numComponents );
+	String_Appendf( sbInl, "\t%s resultsRHS[%d];\n", registerName, numComponents );
+	String_Appendf( sbInl, "\t%s resultsDot;\n", registerName );
+	String_Append(  sbInl, "\n" );
+	String_Appendf( sbInl, "\t%s inNormalize;\n", inputDataNameNormalize );
+	String_Append(  sbInl, "\n" );
+	for ( u32 i = 0; i < numComponents; i++ ) {
+		String_Appendf( sbInl, "\tinNormalize.comp[%d] = in.lhs[%d];\n", i, i );
+	}
+	String_Appendf( sbInl, "\tnormalize_sse( inNormalize, resultsLHS );\n" );
+	String_Append(  sbInl, "\n" );
+	for ( u32 i = 0; i < numComponents; i++ ) {
+		String_Appendf( sbInl, "\tinNormalize.comp[%d] = in.rhs[%d];\n", i, i );
+	}
+	String_Append(  sbInl, "\tnormalize_sse( inNormalize, resultsRHS );\n" );
+	String_Append(  sbInl, "\n" );
+	String_Appendf( sbInl, "\t%s inDot;\n", inputDataNameDot );
+	String_Append(  sbInl, "\n" );
+	for ( u32 i = 0; i < numComponents; i++ ) {
+		String_Appendf( sbInl, "\tinDot.lhs[%d] = resultsLHS[%d];\n", i, i );
+	}
+	String_Append(  sbInl, "\n" );
+	for ( u32 i = 0; i < numComponents; i++ ) {
+		String_Appendf( sbInl, "\tinDot.rhs[%d] = resultsRHS[%d];\n", i, i );
+	}
+	String_Append(  sbInl, "\n" );
+	String_Appendf( sbInl, "\tdot_sse( inDot, &resultsDot );\n" );
+	String_Append(  sbInl, "\n" );
+	String_Appendf( sbInl, "\t%s resultsAcos = %s( resultsDot );\n", registerName, acosFuncStr );
+	String_Append(  sbInl, "\n" );
+	String_Appendf( sbInl, "\t%s inDegrees = { resultsAcos };\n", inputDataNameDegrees );
+	String_Appendf( sbInl, "\tdegrees_sse( inDegrees, out_results );\n", inputDataNameDegrees );
+	String_Append(  sbInl, "}\n" );
+	String_Append(  sbInl, "\n" );
+}
+#endif

@@ -25,11 +25,10 @@ along with hlml.  If not, see <http://www.gnu.org/licenses/>.
 // GENERATED FILE.  DO NOT EDIT.
 
 #include "../../code/out/gen/hlml_functions_vector.h"
+#include "../../code/out/gen/hlml_functions_scalar_sse.h"
 #include "../../code/out/gen/hlml_functions_vector_sse.h"
 
 #include <temper/temper.h>
-
-#include <xmmintrin.h>
 
 // also tests equality operators
 TEMPER_TEST( TestAssignment_float4 )
@@ -355,11 +354,11 @@ TEMPER_TEST( TestCross_float4 )
 
 TEMPER_TEST( TestAngle_float4 )
 {
+	// scalar
 	float4 right = float4( 1.000000f, 0.000000f, 0.000000f, 0.000000f );
-	float4 up =    float4( 0.000000f, 1.000000f, 0.000000f, 0.000000f );
-	float answer = angle( up, right );
+	float4 up    = float4( 0.000000f, 1.000000f, 0.000000f, 0.000000f );
 
-	TEMPER_EXPECT_TRUE( floateq( answer, 90.0f ) );
+	TEMPER_EXPECT_TRUE( floateq( angle( up, right ), 90.0f ) );
 
 	TEMPER_PASS();
 }

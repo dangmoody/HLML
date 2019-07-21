@@ -243,11 +243,11 @@ TEMPER_TEST( TestCross_double3 )
 
 TEMPER_TEST( TestAngle_double3 )
 {
+	// scalar
 	double3 right = double3( 1.000000, 0.000000, 0.000000 );
-	double3 up =    double3( 0.000000, 1.000000, 0.000000 );
-	double answer = angle( up, right );
+	double3 up    = double3( 0.000000, 1.000000, 0.000000 );
 
-	TEMPER_EXPECT_TRUE( doubleeq( answer, 90.0 ) );
+	TEMPER_EXPECT_TRUE( doubleeq( angle( up, right ), 90.0 ) );
 
 	TEMPER_PASS();
 }

@@ -29,6 +29,8 @@ inline const char*	Gen_SSE_GetFuncStrSub( const genType_t type );
 inline const char*	Gen_SSE_GetFuncStrMul( const genType_t type );
 inline const char*	Gen_SSE_GetFuncStrDiv( const genType_t type );
 
+// inline const char*	Gen_SSE_GetFuncStrAcos( const genType_t type );
+
 inline const char*	Gen_SSE_GetFuncStrSqrt( const genType_t type );
 
 const char* Gen_SSE_GetRegisterName( const genType_t type ) {
@@ -176,6 +178,24 @@ const char* Gen_SSE_GetFuncStrDiv( const genType_t type ) {
 			return "ERROR";
 	}
 }
+
+// const char* Gen_SSE_GetFuncStrAcos( const genType_t type ) {
+// 	switch ( type ) {
+// 		case GEN_TYPE_INT:
+// 		case GEN_TYPE_UINT:
+// 		case GEN_TYPE_FLOAT:
+// 			return "_mm_acos_ps";
+
+// 		case GEN_TYPE_DOUBLE:
+// 			return "_mm_acos_pd";
+
+// 		case GEN_TYPE_BOOL:
+// 		case GEN_TYPE_COUNT:
+// 		default:
+// 			printf( "ERROR: Bad genType_t passed into %s.\n", __FUNCTION__ );
+// 			return "ERROR";
+// 	}
+// }
 
 const char* Gen_SSE_GetFuncStrSqrt( const genType_t type ) {
 	switch ( type ) {

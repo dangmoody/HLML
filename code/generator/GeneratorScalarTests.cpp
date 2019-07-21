@@ -29,9 +29,6 @@ bool GeneratorScalarTest::Generate( const genType_t type ) {
 	if ( m_type == GEN_TYPE_FLOAT ) {
 		String_Append( &code, "#include \"../../" GEN_OUT_GEN_FOLDER_PATH GEN_FILENAME_FUNCTIONS_SCALAR_SSE ".h\"\n" );
 		String_Append( &code, "\n" );
-
-		String_Append( &code, "#include <xmmintrin.h>\n" );
-		String_Append( &code, "\n" );
 	}
 
 	String_Appendf( &m_codeSuite, "TEMPER_SUITE( Test_%s )\n", m_memberTypeString );
