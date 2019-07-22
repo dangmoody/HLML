@@ -91,7 +91,7 @@ inline uint32_t step( const uint32_t x, const uint32_t y )
 
 // float
 /// \brief Returns true if the two given floating-point numbers are within a small enough epsilon range of each other that takes into account floating-point inaccuracy.
-inline bool floateq( const float lhs, const float rhs, const float epsilon = static_cast<float>( HLML_EPSILON ) )
+inline bool floateq( const float lhs, const float rhs, const float epsilon = (float)( HLML_EPSILON ) )
 {
 	return fabsf( lhs - rhs ) < epsilon;
 }
@@ -106,13 +106,13 @@ inline int32_t sign( const float x )
 /// \brief Returns the given degrees to radians.
 inline float radians( const float deg )
 {
-	return deg * static_cast<float>( HLML_PI ) / 180.0f;
+	return deg * (float)( HLML_PI ) / 180.0f;
 }
 
 /// \brief Returns the given radians to degrees.
 inline float degrees( const float rad )
 {
-	return rad * 180.0f / static_cast<float>( HLML_PI );
+	return rad * 180.0f / (float)( HLML_PI );
 }
 
 /// \brief Returns x if its smaller than y, otherwise returns y.

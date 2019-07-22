@@ -199,8 +199,8 @@ inline const char*	Gen_GetFuncNameFabs( const genType_t type ) { return ( type =
 inline const char*	Gen_GetFuncNameFloateq( const genType_t type ) { return ( type == GEN_TYPE_DOUBLE ) ? "doubleeq" : "floateq"; }
 
 // hlml constants
-inline const char*	Gen_GetConstantNamePi( const genType_t type ) { return ( type == GEN_TYPE_DOUBLE ) ? "HLML_PI" : "static_cast<float>( HLML_PI )"; }
-inline const char*	Gen_GetConstantNameEpsilon( const genType_t type ) { return ( type == GEN_TYPE_DOUBLE ) ? "HLML_EPSILON" : "static_cast<float>( HLML_EPSILON )"; }
+inline const char*	Gen_GetConstantNamePi( const genType_t type ) { return ( type == GEN_TYPE_DOUBLE ) ? "HLML_PI" : "(float)( HLML_PI )"; }
+inline const char*	Gen_GetConstantNameEpsilon( const genType_t type ) { return ( type == GEN_TYPE_DOUBLE ) ? "HLML_EPSILON" : "(float)( HLML_EPSILON )"; }
 
 // generic helper functions that are typical of maths libraries
 extern void			Gen_Floateq( const genType_t type, stringBuilder_t* sb );
