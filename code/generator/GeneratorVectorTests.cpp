@@ -23,7 +23,9 @@ bool GeneratorVectorTests::Generate( const genType_t type, const u32 numComponen
 	m_typeString = Gen_GetTypeString( type );
 	m_memberTypeString = Gen_GetMemberTypeString( type );
 
-	m_registerName = Gen_SSE_GetRegisterName( m_type );
+	if ( Gen_TypeSupportsSSE( m_type ) ) {
+		m_registerName = Gen_SSE_GetRegisterName( m_type );
+	}
 
 	snprintf( m_fullTypeName, GEN_STRING_LENGTH_TYPE_NAME, "%s%d", m_typeString, numComponents );
 

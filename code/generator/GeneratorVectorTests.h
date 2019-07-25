@@ -23,7 +23,7 @@ private:
 	const char*		m_typeString;
 	const char*		m_memberTypeString;
 
-	const char*		m_registerName;
+	const char*		m_registerName;	// null for types that don't support SIMD
 
 private:
 	void			GenerateTestAssignment();
