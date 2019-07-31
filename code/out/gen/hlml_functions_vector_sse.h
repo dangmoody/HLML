@@ -32,16 +32,16 @@ struct sse_input_length_float2_t
 	__m128 comp[2];
 };
 
-inline void lengthsq_sse( const sse_input_length_float2_t& in, __m128* out_results );
+inline void lengthsq_sse( const sse_input_length_float2_t* in, __m128* out_results );
 
-inline void length_sse( const sse_input_length_float2_t& in, __m128* out_results );
+inline void length_sse( const sse_input_length_float2_t* in, __m128* out_results );
 
 struct sse_input_normalize_float2_t
 {
 	__m128 comp[2];
 };
 
-inline void normalize_sse( const sse_input_normalize_float2_t& in, __m128 out_results[2] );
+inline void normalize_sse( const sse_input_normalize_float2_t* in, __m128 out_results[2] );
 
 struct sse_input_dot_float2_t
 {
@@ -49,7 +49,7 @@ struct sse_input_dot_float2_t
 	__m128 rhs[2];
 };
 
-inline void dot_sse( const sse_input_dot_float2_t& in, __m128* out_results );
+inline void dot_sse( const sse_input_dot_float2_t* in, __m128* out_results );
 
 struct sse_input_distance_float2_t
 {
@@ -57,9 +57,9 @@ struct sse_input_distance_float2_t
 	__m128 rhs[2];
 };
 
-inline void distancesq_sse( const sse_input_distance_float2_t& in, __m128* out_results );
+inline void distancesq_sse( const sse_input_distance_float2_t* in, __m128* out_results );
 
-inline void distance_sse( const sse_input_distance_float2_t& in, __m128* out_results );
+inline void distance_sse( const sse_input_distance_float2_t* in, __m128* out_results );
 
 
 // float3
@@ -68,16 +68,16 @@ struct sse_input_length_float3_t
 	__m128 comp[3];
 };
 
-inline void lengthsq_sse( const sse_input_length_float3_t& in, __m128* out_results );
+inline void lengthsq_sse( const sse_input_length_float3_t* in, __m128* out_results );
 
-inline void length_sse( const sse_input_length_float3_t& in, __m128* out_results );
+inline void length_sse( const sse_input_length_float3_t* in, __m128* out_results );
 
 struct sse_input_normalize_float3_t
 {
 	__m128 comp[3];
 };
 
-inline void normalize_sse( const sse_input_normalize_float3_t& in, __m128 out_results[3] );
+inline void normalize_sse( const sse_input_normalize_float3_t* in, __m128 out_results[3] );
 
 struct sse_input_dot_float3_t
 {
@@ -85,7 +85,7 @@ struct sse_input_dot_float3_t
 	__m128 rhs[3];
 };
 
-inline void dot_sse( const sse_input_dot_float3_t& in, __m128* out_results );
+inline void dot_sse( const sse_input_dot_float3_t* in, __m128* out_results );
 
 struct sse_input_distance_float3_t
 {
@@ -93,9 +93,9 @@ struct sse_input_distance_float3_t
 	__m128 rhs[3];
 };
 
-inline void distancesq_sse( const sse_input_distance_float3_t& in, __m128* out_results );
+inline void distancesq_sse( const sse_input_distance_float3_t* in, __m128* out_results );
 
-inline void distance_sse( const sse_input_distance_float3_t& in, __m128* out_results );
+inline void distance_sse( const sse_input_distance_float3_t* in, __m128* out_results );
 
 
 // float4
@@ -104,16 +104,16 @@ struct sse_input_length_float4_t
 	__m128 comp[4];
 };
 
-inline void lengthsq_sse( const sse_input_length_float4_t& in, __m128* out_results );
+inline void lengthsq_sse( const sse_input_length_float4_t* in, __m128* out_results );
 
-inline void length_sse( const sse_input_length_float4_t& in, __m128* out_results );
+inline void length_sse( const sse_input_length_float4_t* in, __m128* out_results );
 
 struct sse_input_normalize_float4_t
 {
 	__m128 comp[4];
 };
 
-inline void normalize_sse( const sse_input_normalize_float4_t& in, __m128 out_results[4] );
+inline void normalize_sse( const sse_input_normalize_float4_t* in, __m128 out_results[4] );
 
 struct sse_input_dot_float4_t
 {
@@ -121,7 +121,7 @@ struct sse_input_dot_float4_t
 	__m128 rhs[4];
 };
 
-inline void dot_sse( const sse_input_dot_float4_t& in, __m128* out_results );
+inline void dot_sse( const sse_input_dot_float4_t* in, __m128* out_results );
 
 struct sse_input_distance_float4_t
 {
@@ -129,9 +129,9 @@ struct sse_input_distance_float4_t
 	__m128 rhs[4];
 };
 
-inline void distancesq_sse( const sse_input_distance_float4_t& in, __m128* out_results );
+inline void distancesq_sse( const sse_input_distance_float4_t* in, __m128* out_results );
 
-inline void distance_sse( const sse_input_distance_float4_t& in, __m128* out_results );
+inline void distance_sse( const sse_input_distance_float4_t* in, __m128* out_results );
 
 
 #include "hlml_functions_vector_sse.inl"

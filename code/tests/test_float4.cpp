@@ -227,7 +227,7 @@ TEMPER_TEST( TestLength_float4 )
 	__m128 results;
 
 	// lengthsq
-	lengthsq_sse( in, &results );
+	lengthsq_sse( &in, &results );
 
 	float squaredLengthResults[4];
 	_mm_store_ps( squaredLengthResults, results );
@@ -238,7 +238,7 @@ TEMPER_TEST( TestLength_float4 )
 	TEMPER_EXPECT_TRUE( floateq( squaredLengthResults[3], 16.0f ) );
 
 	// length
-	length_sse( in, &results );
+	length_sse( &in, &results );
 
 	float lengthResults[4];
 	_mm_store_ps( lengthResults, results );
@@ -268,7 +268,7 @@ TEMPER_TEST( TestNormalized_float4 )
 	in.comp[3] = _mm_set1_ps( 5.0f );
 
 	__m128 results[4];
-	normalize_sse( in, results );
+	normalize_sse( &in, results );
 
 	sse_input_length_float4_t inLength;
 	inLength.comp[0] = results[0];
@@ -277,7 +277,7 @@ TEMPER_TEST( TestNormalized_float4 )
 	inLength.comp[3] = results[3];
 
 	__m128 results2;
-	length_sse( inLength, &results2 );
+	length_sse( &inLength, &results2 );
 
 	float normalizeResults[4];
 	_mm_store_ps( normalizeResults, results2 );
@@ -328,7 +328,7 @@ TEMPER_TEST( TestDot_float4 )
 	in.rhs[3] = _mm_load_ps( componentsRHS[3] );
 
 	__m128 results;
-	dot_sse( in, &results );
+	dot_sse( &in, &results );
 
 	float dotResults[4];
 	_mm_store_ps( dotResults, results );

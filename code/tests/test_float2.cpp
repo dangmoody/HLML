@@ -221,7 +221,7 @@ TEMPER_TEST( TestLength_float2 )
 	__m128 results;
 
 	// lengthsq
-	lengthsq_sse( in, &results );
+	lengthsq_sse( &in, &results );
 
 	float squaredLengthResults[4];
 	_mm_store_ps( squaredLengthResults, results );
@@ -232,7 +232,7 @@ TEMPER_TEST( TestLength_float2 )
 	TEMPER_EXPECT_TRUE( floateq( squaredLengthResults[3], 8.0f ) );
 
 	// length
-	length_sse( in, &results );
+	length_sse( &in, &results );
 
 	float lengthResults[4];
 	_mm_store_ps( lengthResults, results );
@@ -260,14 +260,14 @@ TEMPER_TEST( TestNormalized_float2 )
 	in.comp[1] = _mm_set1_ps( 3.0f );
 
 	__m128 results[2];
-	normalize_sse( in, results );
+	normalize_sse( &in, results );
 
 	sse_input_length_float2_t inLength;
 	inLength.comp[0] = results[0];
 	inLength.comp[1] = results[1];
 
 	__m128 results2;
-	length_sse( inLength, &results2 );
+	length_sse( &inLength, &results2 );
 
 	float normalizeResults[4];
 	_mm_store_ps( normalizeResults, results2 );
@@ -310,7 +310,7 @@ TEMPER_TEST( TestDot_float2 )
 	in.rhs[1] = _mm_load_ps( componentsRHS[1] );
 
 	__m128 results;
-	dot_sse( in, &results );
+	dot_sse( &in, &results );
 
 	float dotResults[4];
 	_mm_store_ps( dotResults, results );
@@ -373,7 +373,7 @@ TEMPER_TEST( TestDistance_float2 )
 	__m128 results;
 
 	// distancesq
-	distancesq_sse( in, &results );
+	distancesq_sse( &in, &results );
 
 	float squaredDistanceResults[4];
 	_mm_store_ps( squaredDistanceResults, results );
@@ -384,7 +384,7 @@ TEMPER_TEST( TestDistance_float2 )
 	TEMPER_EXPECT_TRUE( floateq( squaredDistanceResults[3], 104.0f ) );
 
 	// distance
-	distance_sse( in, &results );
+	distance_sse( &in, &results );
 
 	float distanceResults[4];
 	_mm_store_ps( distanceResults, results );

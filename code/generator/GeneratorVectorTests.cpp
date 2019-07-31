@@ -530,7 +530,7 @@ void GeneratorVectorTests::GenerateTestLength() {
 		String_Appendf( &m_codeTests, "\t%s results;\n", m_registerName );
 		String_Append(  &m_codeTests, "\n" );
 		String_Append(  &m_codeTests, "\t// lengthsq\n" );
-		String_Appendf( &m_codeTests, "\tlengthsq_sse( in, &results );\n" );
+		String_Appendf( &m_codeTests, "\tlengthsq_sse( &in, &results );\n" );
 		String_Append(  &m_codeTests, "\n" );
 		String_Appendf( &m_codeTests, "\t%s squaredLengthResults[4];\n", m_memberTypeString );
 		String_Appendf( &m_codeTests, "\t%s( squaredLengthResults, results );\n", sseStoreStr );
@@ -540,7 +540,7 @@ void GeneratorVectorTests::GenerateTestLength() {
 		}
 		String_Append(  &m_codeTests, "\n" );
 		String_Append(  &m_codeTests, "\t// length\n" );
-		String_Appendf( &m_codeTests, "\tlength_sse( in, &results );\n" );
+		String_Appendf( &m_codeTests, "\tlength_sse( &in, &results );\n" );
 		String_Append(  &m_codeTests, "\n" );
 		String_Appendf( &m_codeTests, "\t%s lengthResults[4];\n", m_memberTypeString );
 		String_Appendf( &m_codeTests, "\t%s( lengthResults, results );\n", sseStoreStr );
@@ -608,7 +608,7 @@ void GeneratorVectorTests::GenerateTestNormalized() {
 		}
 		String_Append(  &m_codeTests, "\n" );
 		String_Appendf( &m_codeTests, "\t%s results[%d];\n", m_registerName, m_numComponents );
-		String_Appendf( &m_codeTests, "\tnormalize_sse( in, results );\n" );
+		String_Appendf( &m_codeTests, "\tnormalize_sse( &in, results );\n" );
 		String_Append(  &m_codeTests, "\n" );
 		String_Appendf( &m_codeTests, "\t%s inLength;\n", inputDataNameLength );
 		for ( u32 i = 0; i < m_numComponents; i++ ) {
@@ -616,7 +616,7 @@ void GeneratorVectorTests::GenerateTestNormalized() {
 		}
 		String_Append(  &m_codeTests, "\n" );
 		String_Appendf( &m_codeTests, "\t%s results2;\n", m_registerName );
-		String_Appendf( &m_codeTests, "\tlength_sse( inLength, &results2 );\n" );
+		String_Appendf( &m_codeTests, "\tlength_sse( &inLength, &results2 );\n" );
 		String_Append(  &m_codeTests, "\n" );
 		String_Appendf( &m_codeTests, "\t%s normalizeResults[4];\n", m_memberTypeString, m_numComponents );
 		String_Appendf( &m_codeTests, "\t%s( normalizeResults, results2 );\n", storeFuncStr );
@@ -720,7 +720,7 @@ void GeneratorVectorTests::GenerateTestDot() {
 		}
 		String_Append(  &m_codeTests, "\n" );
 		String_Appendf( &m_codeTests, "\t%s results;\n", m_registerName );
-		String_Appendf( &m_codeTests, "\tdot_sse( in, &results );\n" );
+		String_Appendf( &m_codeTests, "\tdot_sse( &in, &results );\n" );
 		String_Append(  &m_codeTests, "\n" );
 		String_Appendf( &m_codeTests, "\t%s dotResults[4];\n", m_memberTypeString );
 		String_Appendf( &m_codeTests, "\t%s( dotResults, results );\n", sseStoreStr );
@@ -840,7 +840,7 @@ void GeneratorVectorTests::GenerateTestAngle() {
 		}
 		String_Append(  &m_codeTests, "\n" );
 		String_Appendf( &m_codeTests, "\t%s results;\n", m_registerName );
-		String_Append(  &m_codeTests, "\tangle_sse( angleResults, &results );\n" );
+		String_Append(  &m_codeTests, "\tangle_sse( &angleResults, &results );\n" );
 		String_Append(  &m_codeTests, "\n" );
 		String_Appendf( &m_codeTests, "\t%s angleResults[4];\n", m_memberTypeString );
 		String_Appendf( &m_codeTests, "\t%s( angleResults, results );\n", storeFuncStr );
@@ -961,7 +961,7 @@ void GeneratorVectorTests::GenerateTestDistance() {
 		String_Appendf( &m_codeTests, "\t%s results;\n", m_registerName );
 		String_Append(  &m_codeTests, "\n" );
 		String_Append(  &m_codeTests, "\t// distancesq\n" );
-		String_Appendf( &m_codeTests, "\tdistancesq_sse( in, &results );\n" );
+		String_Appendf( &m_codeTests, "\tdistancesq_sse( &in, &results );\n" );
 		String_Append(  &m_codeTests, "\n" );
 		String_Appendf( &m_codeTests, "\t%s squaredDistanceResults[4];\n", m_memberTypeString );
 		String_Appendf( &m_codeTests, "\t%s( squaredDistanceResults, results );\n", sseStoreStr );
@@ -971,7 +971,7 @@ void GeneratorVectorTests::GenerateTestDistance() {
 		}
 		String_Append(  &m_codeTests, "\n" );
 		String_Append(  &m_codeTests, "\t// distance\n" );
-		String_Appendf( &m_codeTests, "\tdistance_sse( in, &results );\n" );
+		String_Appendf( &m_codeTests, "\tdistance_sse( &in, &results );\n" );
 		String_Append(  &m_codeTests, "\n" );
 		String_Appendf( &m_codeTests, "\t%s distanceResults[4];\n", m_memberTypeString );
 		String_Appendf( &m_codeTests, "\t%s( distanceResults, results );\n", sseStoreStr );
