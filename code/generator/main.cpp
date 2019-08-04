@@ -356,6 +356,10 @@ static bool GenerateFunctionsScalarSSE( void ) {
 
 	stringBuilder_t contentInl = String_Create( 2 * KB_TO_BYTES );
 	String_Append( &contentInl, GEN_FILE_HEADER );
+	String_Append( &contentInl, "#include <assert.h>\n"
+		"\n" \
+		"#include \"../hlml_constants_sse.h\"\n" \
+		"\n" );
 
 	for ( u32 typeIndex = 0; typeIndex < GEN_TYPE_COUNT; typeIndex++ ) {
 		genType_t type = static_cast<genType_t>( typeIndex );

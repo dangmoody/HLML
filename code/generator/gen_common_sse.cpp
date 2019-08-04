@@ -61,7 +61,6 @@ void Gen_SSE_Radians( const genType_t type, stringBuilder_t* sbHeader, stringBui
 	const char* registerName	= Gen_SSE_GetRegisterName( type );
 
 	const char* mulFuncStr		= Gen_SSE_GetFuncStrMul( type );
-	const char* set1FuncStr		= Gen_SSE_GetFuncStrSet1( type );
 
 	String_Appendf( sbHeader, "struct %s\n", inputDataName );
 	String_Append(  sbHeader, "{\n" );
@@ -69,14 +68,15 @@ void Gen_SSE_Radians( const genType_t type, stringBuilder_t* sbHeader, stringBui
 	String_Append(  sbHeader, "};\n" );
 	String_Append(  sbHeader, "\n" );
 
-	String_Appendf( sbHeader, "inline void radians_sse( const %s& in, %s* out_results );\n", inputDataName, registerName );
+	String_Appendf( sbHeader, "inline void radians_sse( const %s* in, %s* out_results );\n", inputDataName, registerName );
 	String_Append(  sbHeader, "\n" );
 
-	String_Appendf( sbInl, "void radians_sse( const %s& in, %s* out_results )\n", inputDataName, registerName );
+	String_Appendf( sbInl, "void radians_sse( const %s* in, %s* out_results )\n", inputDataName, registerName );
 	String_Append(  sbInl, "{\n" );
-	String_Appendf( sbInl, "\t%s radToDeg = %s( 0.01745329251994329577f );\n", registerName, set1FuncStr );
+	String_Append(  sbInl, "\tassert( in );\n" );
+	String_Append(  sbInl, "\tassert( out_results );\n" );
 	String_Append(  sbInl, "\n" );
-	String_Appendf( sbInl, "\t*out_results = %s( in.deg, radToDeg );\n", mulFuncStr );
+	String_Appendf( sbInl, "\t*out_results = %s( in->deg, HLML_DEG_TO_RAD_SSE );\n", mulFuncStr );
 	String_Append(  sbInl, "}\n" );
 	String_Append(  sbInl, "\n" );
 }
@@ -98,7 +98,6 @@ void Gen_SSE_Degrees( const genType_t type, stringBuilder_t* sbHeader, stringBui
 	const char* registerName	= Gen_SSE_GetRegisterName( type );
 
 	const char* mulFuncStr		= Gen_SSE_GetFuncStrMul( type );
-	const char* set1FuncStr		= Gen_SSE_GetFuncStrSet1( type );
 
 	String_Appendf( sbHeader, "struct %s\n", inputDataName );
 	String_Append(  sbHeader, "{\n" );
@@ -106,14 +105,15 @@ void Gen_SSE_Degrees( const genType_t type, stringBuilder_t* sbHeader, stringBui
 	String_Append(  sbHeader, "};\n" );
 	String_Append(  sbHeader, "\n" );
 
-	String_Appendf( sbHeader, "inline void degrees_sse( const %s& in, %s* out_results );\n", inputDataName, registerName );
+	String_Appendf( sbHeader, "inline void degrees_sse( const %s* in, %s* out_results );\n", inputDataName, registerName );
 	String_Append(  sbHeader, "\n" );
 
-	String_Appendf( sbInl, "void degrees_sse( const %s& in, %s* out_results )\n", inputDataName, registerName );
+	String_Appendf( sbInl, "void degrees_sse( const %s* in, %s* out_results )\n", inputDataName, registerName );
 	String_Append(  sbInl, "{\n" );
-	String_Appendf( sbInl, "\t%s radToDeg = %s( 57.2957795130823208768f );\n", registerName, set1FuncStr );
+	String_Append(  sbInl, "\tassert( in );\n" );
+	String_Append(  sbInl, "\tassert( out_results );\n" );
 	String_Append(  sbInl, "\n" );
-	String_Appendf( sbInl, "\t*out_results = %s( in.rad, radToDeg );\n", mulFuncStr );
+	String_Appendf( sbInl, "\t*out_results = %s( in->rad, HLML_RAD_TO_DEG_SSE );\n", mulFuncStr );
 	String_Append(  sbInl, "}\n" );
 	String_Append(  sbInl, "\n" );
 }
@@ -163,17 +163,20 @@ void Gen_SSE_Lerp( const genType_t type, const u32 numComponents, stringBuilder_
 	String_Append(  sbHeader, "};\n" );
 	String_Append(  sbHeader, "\n" );
 
-	String_Appendf( sbHeader, "inline void lerp_sse( const %s& in, %s* out_results );\n", inputDataName, registerName );
+	String_Appendf( sbHeader, "inline void lerp_sse( const %s* in, %s* out_results );\n", inputDataName, registerName );
 	String_Append(  sbHeader, "\n" );
 
-	String_Appendf( sbInl, "void lerp_sse( const %s& in, %s* out_results )\n", inputDataName, registerName );
+	String_Appendf( sbInl, "void lerp_sse( const %s* in, %s* out_results )\n", inputDataName, registerName );
 	String_Append(  sbInl, "{\n" );
+	String_Append(  sbInl, "\tassert( in );\n" );
+	String_Append(  sbInl, "\tassert( out_results );\n" );
+	String_Append(  sbInl, "\n" );
 	String_Appendf( sbInl, "\t%s one = %s( %s );\n", registerName, set1FuncStr, oneStr );
 	String_Append(  sbInl, "\n" );
-	String_Appendf( sbInl, "\t%s sub0 = %s( one, in.t );\n", registerName, subFuncStr );
+	String_Appendf( sbInl, "\t%s sub0 = %s( one, in->t );\n", registerName, subFuncStr );
 	String_Append(  sbInl, "\n" );
-	String_Appendf( sbInl, "\t%s mul0 = %s( sub0, in.lhs );\n", registerName, mulFuncStr );
-	String_Appendf( sbInl, "\t%s mul1 = %s( in.t, in.rhs );\n", registerName, mulFuncStr );
+	String_Appendf( sbInl, "\t%s mul0 = %s( sub0, in->lhs );\n", registerName, mulFuncStr );
+	String_Appendf( sbInl, "\t%s mul1 = %s( in->t, in->rhs );\n", registerName, mulFuncStr );
 	String_Append(  sbInl, "\n" );
 	String_Appendf( sbInl, "\t*out_results = %s( mul0, mul1 );\n", addFuncStr );
 	String_Append(  sbInl, "}\n" );

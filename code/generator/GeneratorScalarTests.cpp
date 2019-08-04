@@ -180,7 +180,7 @@ void GeneratorScalarTest::GenerateTestDegreesRadians() {
 		String_Append(  &m_codeTests, "\t// radians\n" );
 		String_Appendf( &m_codeTests, "\t%s inRadians;\n", inputDataNameRadians );
 		String_Appendf( &m_codeTests, "\tinRadians.deg = %s( degs );\n", loadFuncStr );
-		String_Appendf( &m_codeTests, "\tradians_sse( inRadians, &results );\n" );
+		String_Appendf( &m_codeTests, "\tradians_sse( &inRadians, &results );\n" );
 		String_Append(  &m_codeTests, "\n" );
 		String_Appendf( &m_codeTests, "\t%s radiansResults[4];\n", m_memberTypeString );
 		String_Appendf( &m_codeTests, "\t%s( radiansResults, results );\n", storeFuncStr );
@@ -192,7 +192,7 @@ void GeneratorScalarTest::GenerateTestDegreesRadians() {
 		String_Append(  &m_codeTests, "\t// degrees\n" );
 		String_Appendf( &m_codeTests, "\t%s inDegrees;\n", inputDataNameDegrees );
 		String_Appendf( &m_codeTests, "\tinDegrees.rad = %s( rads );\n", loadFuncStr );
-		String_Appendf( &m_codeTests, "\tdegrees_sse( inDegrees, &results );\n" );
+		String_Appendf( &m_codeTests, "\tdegrees_sse( &inDegrees, &results );\n" );
 		String_Append(  &m_codeTests, "\n" );
 		String_Appendf( &m_codeTests, "\t%s degreesResults[4];\n", m_memberTypeString );
 		String_Appendf( &m_codeTests, "\t%s( degreesResults, results );\n", storeFuncStr );
@@ -385,7 +385,7 @@ void GeneratorScalarTest::GenerateTestLerp() {
 		String_Appendf( &m_codeTests, "\tin.t   = %s( halves );\n", loadFuncStr );
 		String_Append(  &m_codeTests, "\n" );
 		String_Appendf( &m_codeTests, "\t%s results;\n", m_registerName );
-		String_Append(  &m_codeTests, "\tlerp_sse( in, &results );\n" );
+		String_Append(  &m_codeTests, "\tlerp_sse( &in, &results );\n" );
 		String_Append(  &m_codeTests, "\n" );
 		String_Appendf( &m_codeTests, "\t%s lerpResults[4];\n", m_memberTypeString );
 		String_Appendf( &m_codeTests, "\t%s( lerpResults, results );\n", storeFuncStr );

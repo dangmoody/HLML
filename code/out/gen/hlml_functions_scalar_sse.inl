@@ -24,29 +24,38 @@ along with hlml.  If not, see <http://www.gnu.org/licenses/>.
 
 // GENERATED FILE.  DO NOT EDIT.
 
+#include <assert.h>
+
+#include "../hlml_constants_sse.h"
+
 // float
-void radians_sse( const sse_input_radians_float_t& in, __m128* out_results )
+void radians_sse( const sse_input_radians_float_t* in, __m128* out_results )
 {
-	__m128 radToDeg = _mm_set1_ps( 0.01745329251994329577f );
+	assert( in );
+	assert( out_results );
 
-	*out_results = _mm_mul_ps( in.deg, radToDeg );
+	*out_results = _mm_mul_ps( in->deg, HLML_DEG_TO_RAD_SSE );
 }
 
-void degrees_sse( const sse_input_degrees_float_t& in, __m128* out_results )
+void degrees_sse( const sse_input_degrees_float_t* in, __m128* out_results )
 {
-	__m128 radToDeg = _mm_set1_ps( 57.2957795130823208768f );
+	assert( in );
+	assert( out_results );
 
-	*out_results = _mm_mul_ps( in.rad, radToDeg );
+	*out_results = _mm_mul_ps( in->rad, HLML_RAD_TO_DEG_SSE );
 }
 
-void lerp_sse( const sse_input_lerp_float_t& in, __m128* out_results )
+void lerp_sse( const sse_input_lerp_float_t* in, __m128* out_results )
 {
+	assert( in );
+	assert( out_results );
+
 	__m128 one = _mm_set1_ps( 1.0f );
 
-	__m128 sub0 = _mm_sub_ps( one, in.t );
+	__m128 sub0 = _mm_sub_ps( one, in->t );
 
-	__m128 mul0 = _mm_mul_ps( sub0, in.lhs );
-	__m128 mul1 = _mm_mul_ps( in.t, in.rhs );
+	__m128 mul0 = _mm_mul_ps( sub0, in->lhs );
+	__m128 mul1 = _mm_mul_ps( in->t, in->rhs );
 
 	*out_results = _mm_add_ps( mul0, mul1 );
 }
