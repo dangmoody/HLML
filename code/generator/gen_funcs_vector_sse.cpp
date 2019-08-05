@@ -4,6 +4,8 @@
 
 #include "string_builder.h"
 
+#include "gen_doc_vector_sse.cpp"
+
 void Gen_SSE_GetInputDataNameNormalize( const genType_t type, const u32 numComponents, char* outString ) {
 	const char* typeString = Gen_GetTypeString( type );
 
@@ -17,6 +19,9 @@ void Gen_SSE_VectorNormalize( const genType_t type, const u32 numComponents, str
 	if ( !Gen_TypeSupportsSSE( type ) ) {
 		return;
 	}
+
+	char fullTypeName[GEN_STRING_LENGTH_TYPE_NAME];
+	Gen_GetFullTypeName( type, 1, numComponents, fullTypeName );
 
 	char oneStr[GEN_STRING_LENGTH_NUMERIC_LITERAL];
 	Gen_GetNumericLiteral( type, 1.0f, oneStr, 1 );
@@ -40,6 +45,7 @@ void Gen_SSE_VectorNormalize( const genType_t type, const u32 numComponents, str
 	String_Append(  sbHeader, "};\n" );
 	String_Append(  sbHeader, "\n" );
 	
+	Doc_SSE_Normalize( sbHeader, fullTypeName );
 	String_Appendf( sbHeader, "inline void normalize_sse( const %s* in, %s out_results[%d] );\n", inputDataNameNormalize, registerName, numComponents );
 	String_Append(  sbHeader, "\n" );
 
@@ -78,6 +84,9 @@ void Gen_SSE_VectorDot( const genType_t type, const u32 numComponents, stringBui
 		return;
 	}
 
+	char fullTypeName[GEN_STRING_LENGTH_TYPE_NAME];
+	Gen_GetFullTypeName( type, 1, numComponents, fullTypeName );
+
 	char inputDataName[GEN_STRING_LENGTH_SSE_INPUT_NAME];
 	Gen_SSE_GetInputDataNameDot( type, numComponents, inputDataName );
 
@@ -92,7 +101,8 @@ void Gen_SSE_VectorDot( const genType_t type, const u32 numComponents, stringBui
 	String_Appendf( sbHeader, "\t%s rhs[%d];\n", registerName, numComponents );
 	String_Append(  sbHeader, "};\n" );
 	String_Append(  sbHeader, "\n" );
-	
+
+	Doc_SSE_Dot( sbHeader, fullTypeName );
 	String_Appendf( sbHeader, "inline void dot_sse( const %s* in, %s* out_results );\n", inputDataName, registerName );
 	String_Append(  sbHeader, "\n" );
 
@@ -149,6 +159,9 @@ void Gen_SSE_VectorLength( const genType_t type, const u32 numComponents, string
 		return;
 	}
 
+	char fullTypeName[GEN_STRING_LENGTH_TYPE_NAME];
+	Gen_GetFullTypeName( type, 1, numComponents, fullTypeName );
+
 	char inputDataName[GEN_STRING_LENGTH_SSE_INPUT_NAME];
 	Gen_SSE_GetInputDataNameLength( type, numComponents, inputDataName );
 
@@ -167,6 +180,7 @@ void Gen_SSE_VectorLength( const genType_t type, const u32 numComponents, string
 
 	// lengthsq
 	{
+		Doc_SSE_Lengthsq( sbHeader, fullTypeName );
 		String_Appendf( sbHeader, "inline void lengthsq_sse( const %s* in, %s* out_results );\n", inputDataName, registerName );
 		String_Append(  sbHeader, "\n" );
 
@@ -192,6 +206,7 @@ void Gen_SSE_VectorLength( const genType_t type, const u32 numComponents, string
 
 	// length
 	{
+		Doc_SSE_Length( sbHeader, fullTypeName );
 		String_Appendf( sbHeader, "inline void length_sse( const %s* in, %s* out_results );\n", inputDataName, registerName );
 		String_Append(  sbHeader, "\n" );
 
@@ -221,6 +236,9 @@ void Gen_SSE_VectorDistance( const genType_t type, const u32 numComponents, stri
 		return;
 	}
 
+	char fullTypeName[GEN_STRING_LENGTH_TYPE_NAME];
+	Gen_GetFullTypeName( type, 1, numComponents, fullTypeName );
+
 	char inputDataName[GEN_STRING_LENGTH_SSE_INPUT_NAME];
 	Gen_SSE_GetInputDataNameDistance( type, numComponents, inputDataName );
 
@@ -240,6 +258,7 @@ void Gen_SSE_VectorDistance( const genType_t type, const u32 numComponents, stri
 
 	// distancesq
 	{
+		Doc_SSE_Distancesq( sbHeader, fullTypeName );
 		String_Appendf( sbHeader, "inline void distancesq_sse( const %s* in, %s* out_results );\n", inputDataName, registerName );
 		String_Append(  sbHeader, "\n" );
 
@@ -261,6 +280,7 @@ void Gen_SSE_VectorDistance( const genType_t type, const u32 numComponents, stri
 
 	// distance
 	{
+		Doc_SSE_Distance( sbHeader, fullTypeName );
 		String_Appendf( sbHeader, "inline void distance_sse( const %s* in, %s* out_results );\n", inputDataName, registerName );
 		String_Append(  sbHeader, "\n" );
 
