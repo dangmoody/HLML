@@ -42,7 +42,7 @@ For SSE functionality, include the following files:
 
 (Matrix SSE functionality is currently in-progress, stay tuned...)
 
-For more detailed documentation on how to use HLML's SSE functionality, please refer to [the SSE document](https://github.com/floorman/HLML/doc/SSE.md).
+For more detailed documentation on how to use HLML's SSE functionality, please refer to [the SSE document](https://github.com/floorman/HLML/blob/simd/doc/SSE.md).
 
 
 Common Pitfalls
