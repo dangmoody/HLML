@@ -1,3 +1,5 @@
+#include "string_builder.h"
+
 static void Doc_SSE_Normalize( stringBuilder_t* sbHeader, const char* fullTypeName ) {
 	String_Appendf( sbHeader,
 		"/// \\relates %s\n" \

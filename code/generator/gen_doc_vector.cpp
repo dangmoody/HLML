@@ -1,3 +1,5 @@
+#include "string_builder.h"
+
 static void DocLengthSqr( stringBuilder_t* sb, const char* fullTypeName ) {
 	String_Appendf( sb,
 		"/// \\relates %s\n" \
