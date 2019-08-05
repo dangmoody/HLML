@@ -18,6 +18,8 @@
     <ClCompile Include="GeneratorScalarTests.cpp" />
     <ClCompile Include="gen_common.cpp" />
     <ClCompile Include="gen_common_sse.cpp" />
+    <ClCompile Include="gen_doc_vector.cpp" />
+    <ClCompile Include="gen_doc_vector_sse.cpp" />
     <ClCompile Include="gen_funcs_matrix.cpp" />
     <ClCompile Include="gen_funcs_vector.cpp" />
     <ClCompile Include="GeneratorMatrix.cpp" />

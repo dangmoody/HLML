@@ -66,6 +66,12 @@
     <ClCompile Include="gen_common_sse.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="gen_doc_vector.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="gen_doc_vector_sse.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="gen_common.h">
