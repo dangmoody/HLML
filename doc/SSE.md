@@ -70,4 +70,4 @@ If you wanted to do the same for, say, just X and Y components, then all you'd n
 
 This naming convention repeats across all SSE functions in HLML.  It is written this way so that programmers can figure out the names of the input struct and function they need, without having to look it up constantly (however, you can always find everything in your locally generated documentation).
 
-For a `float4` components HLML's `dot_sse` function does 4 multiplications and 3 additions and puts through 32 floats, which is 7 operations total on 128 bytes at a time - compared to the scalar version, which does 7 arithmetic operations on 8 floats (or 32 bytes) at a time.
+For a `float4` HLML's `dot_sse` function does 4 multiplications and 3 additions and puts through 32 floats, which is 7 operations total on 128 bytes at a time - compared to the scalar version, which does 7 arithmetic operations on 8 floats (or 32 bytes) at a time.
