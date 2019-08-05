@@ -13,11 +13,12 @@ float c = dot( a, b );
 
 In the above example, each vector holds an X, Y, Z, and W component.
 
-To do the same thing in SIMD, you'll need to do the following things:
+To call the SSE version of a HLML function, you'll need to do the following things:
 
 1. Create and fill all data of the required input struct.
 	* The struct follows the naming convention: `sse_input_<function>_<vector>_t` (where `<function>` is something like `dot` and `<vector>` is something like `float4`).
 2. Create, or have ready, an SSE register to store the output.
+	* Some functions, like `normalize_sse`, output to an array of registers.
 2. Call the function of the same name with "`_sse`" appended on the end (For example: The SSE version `dot` in HLML would be `dot_sse`).
 
 Therefore, an example of doing the dot product via SSE in HLML looks like this (for X, Y, Z, and W components):
@@ -43,8 +44,8 @@ float componentsRHS[4][4] =
 	{  0.000000f,  0.000000f,  0.000000f,  0.000000f }  // 4 w components
 };
 
-// here, you fill the registers, each index corresponds to a component
-// so index 0 corresponds to X, index 1 corresponds to Y, etc.
+// here you fill the registers
+// index 0 corresponds to X, index 1 corresponds to Y, etc.
 sse_input_dot_float4_t in;
 
 in.lhs[0] = _mm_load_ps( componentsLHS[0] );
@@ -62,3 +63,5 @@ dot_sse( &in, &results );
 ```
 
 HLML's `dot_sse` function does 4 multiplications and 3 additions (for a `float4`) and puts through 32 floats.  This means that `dot_sse` does 7 operations total on 128 bytes at a time, compared to the scalar version, which does 7 arithmetic operations on 8 floats (or 32 bytes).
+
+This pattern repeats across all SSE functions in HLML.
