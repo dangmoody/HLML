@@ -75,13 +75,3 @@ One day I stumbled upon the [Unity.Mathematics](https://github.com/Unity-Technol
 * Compile time differences between the "generated" code and a templated equivalent were so minimal they weren't worth worrying about.
 * Being able to "Peek Definition" on a type in Visual Studio and see just the header with that type in it.  No templates to read past, just very simple, minimal, and straightforward code.
 * Maintaining changes across multiple (if not all) types was a lot easier than imagined.  Write the changes into the generator and watch it reflect the change across all the desired generated types automatically.
-
-
-Licenses
-========
-
-HLML is distributed under the GNU GPL v3 license but the following software (which HLML uses) are not.  Therefore HLML's license does not apply to them:
-
-* [Temper](https://github.com/floorman/temper) - MIT
-* [Doxygen](http://www.doxygen.nl/) - GNU GPL v2
-* [7-Zip](https://www.7-zip.org/download.html) - GNU LGPLv2.1+ with unRAR restriction / LZMA SDK in the public domain
