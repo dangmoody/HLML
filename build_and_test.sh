@@ -13,6 +13,11 @@ else
 	compiler_folder_name="gcc"
 fi
 
+# make build folder if it doesn't already exist
+if [ ! -d "build/${config}" ]; then
+	mkdir -p build/${compiler_folder_name}/${config}
+fi
+
 # copy doxygen
 cp -rf ./doxygen ./build/${compiler_folder_name}/${config}
 
