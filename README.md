@@ -16,6 +16,8 @@ As well as the above, HLML also offers the following:
 
 Currently HLML is written to produce optimised assembly for clang.  If you use another compiler then YMMV.
 
+HLML doesn't override any maths functions that are a part of C99.
+
 HLML is distributed under the GNU GPL v3 license.  See "LICENSE.md" for details.
 
 
@@ -57,7 +59,6 @@ Common Pitfalls
 	* All matrices have the ```*``` operator overloaded to do matrix multiplication, **NOT** a component-wise multiplication.
 	* All square matrices with floating point types have the ```/``` operator overloaded to multiply the light-hand matrix by the inverse of the right-hand matrix, it does **NOT** do a component-wise divide.
 * To avoid conflicts with Windows ```min```/```max``` macros, you can define ```NOMINMAX``` before including HLML.
-* HLML doesn't override any maths functions that are a part of C99.
 
 
 Contributing
