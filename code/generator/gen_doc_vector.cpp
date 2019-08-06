@@ -1,5 +1,8 @@
 #include "string_builder.h"
 
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wunused-function"
+
 static void DocLengthSqr( stringBuilder_t* sb, const char* fullTypeName ) {
 	String_Appendf( sb,
 		"/// \\relates %s\n" \
@@ -65,3 +68,5 @@ static void DocUnpack( stringBuilder_t* sb, const char* fullTypeName ) {
 		"/// \\relates %s\n" \
 		"/// \\brief Returns a 4-component integer vector containing each byte of the given integer.\n", fullTypeName );
 }
+
+#pragma clang diagnostic pop

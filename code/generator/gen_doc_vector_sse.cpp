@@ -1,5 +1,8 @@
 #include "string_builder.h"
 
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wunused-function"
+
 static void Doc_SSE_Normalize( stringBuilder_t* sbHeader, const char* fullTypeName ) {
 	String_Appendf( sbHeader,
 		"/// \\relates %s\n" \
@@ -35,3 +38,5 @@ static void Doc_SSE_Distance( stringBuilder_t* sbHeader, const char* fullTypeNam
 		"/// \\relates %s\n" \
 		"/// \\brief Finds the distance between each vector and stores the result in its respective component in the output register.\n", fullTypeName );
 }
+
+#pragma clang diagnostic pop

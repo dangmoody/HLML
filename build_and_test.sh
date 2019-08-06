@@ -6,13 +6,17 @@ set -e
 compiler=$1	# can be either "clang++" or "g++"
 config=$2	# can be either "debug" or "release"
 
-#determine the folder name to use
+# determine the folder name to use
 if [[ $compiler == clang* ]]; then
 	compiler_folder_name="clang"
 else
 	compiler_folder_name="gcc"
 fi
 
+# copy doxygen
+cp -rf ./doxygen ./build/${compiler_folder_name}/${config}
+
+# start building!
 echo ------- Building generator -------
 source_files_path="code/generator"
 source build_linux_clang_gcc.sh ${compiler} ${config} hlml-gen.exe ${source_files_path}

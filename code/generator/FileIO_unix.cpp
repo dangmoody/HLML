@@ -1,4 +1,5 @@
 #if defined( __linux__ ) || defined( __APPLE__ )
+
 #include "FileIO.h"
 
 #include "string_helpers.h"
@@ -143,4 +144,5 @@ bool FS_FolderExists( const char* name ) {
 
 	return S_ISDIR( info.st_mode );
 }
-#endif
+
+#endif // defined( __linux__ ) || defined( __APPLE__ )

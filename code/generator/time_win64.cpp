@@ -1,4 +1,5 @@
-#if defined( _WIN32 )
+#ifdef _WIN32
+
 #include "time.h"
 
 #define WIN32_LEAN_AND_MEAN 1
@@ -33,4 +34,5 @@ float64 Time_NowUS( void ) {
 float64 Time_NowNS( void ) {
 	return static_cast<float64>( ( Time_Now() * 1000000000 ) / g_frequency );
 }
-#endif
+
+#endif // _WIN32

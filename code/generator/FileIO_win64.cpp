@@ -1,10 +1,12 @@
+#ifdef _WIN32
+
 #ifndef _CRT_SECURE_NO_WARNINGS
 #define _CRT_SECURE_NO_WARNINGS
 #endif
 
 #include "FileIO.h"
 
-#if defined( _WIN32 )
+#define WIN32_LEAN_AND_MEAN 1
 #include <Windows.h>
 
 #include <stdio.h>
@@ -47,4 +49,5 @@ bool FS_FolderExists( const char* name ) {
 
 	return ( attribs != INVALID_FILE_ATTRIBUTES ) && ( ( attribs & FILE_ATTRIBUTE_DIRECTORY ) != 0 );
 }
-#endif
+
+#endif // _WIN32
