@@ -27,8 +27,7 @@ Installation
 1. Go to the [releases](https://github.com/floorman/HLML/releases) page and download the latest version.
 2. Unzip the header files into your project.
 3. **OPTIONAL:** Run ```hlm-gen-tests.exe``` (you shouldn't need to have a reason to run this and everything will more than likely 'just work', but you never know...).
-4. **OPTIONAL:** Run ```generate_documentation.bat``` to generate the documentation.  This will put it into a folder called ```documentation``` and you can freely put it whereever you want.
-5. Done!
+4. Done!
 
 
 Usage
