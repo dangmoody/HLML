@@ -43,9 +43,7 @@ along with hlml.  If not, see <http://www.gnu.org/licenses/>.
 
 #include "FileIO.h"
 
-#ifdef _WIN32
 #include "time.h"
-#endif
 
 #include <stdio.h>
 #include <assert.h>
@@ -756,9 +754,9 @@ static bool32 GenerateTestsMain( void ) {
 	return result;
 }
 
-static bool32 GenerateDoxygenPages( void ) {
-	// TODO: macOS, linux
+// TODO: macOS, linux
 #ifdef _WIN32
+static bool32 GenerateDoxygenPages( void ) {
 	printf( "Generating doxygen documentation..." );
 
 	process_t doxygenProc = OS_StartProcess( "doxygen/doxygen.exe", "doxygen/config" );
@@ -776,10 +774,10 @@ static bool32 GenerateDoxygenPages( void ) {
 	}
 
 	printf( "OK.\n" );
-#endif
 
 	return true;
 }
+#endif
 
 #define FAIL_IF( x, msg ) \
 	do { \
@@ -806,12 +804,9 @@ int main( int argc, char** argv ) {
 
 	Mem_Init( 2 * MB_TO_BYTES );
 
-	// TODO: macOS, linux
-#ifdef _WIN32
 	Time_Init();
 
 	float64 start = Time_NowMS();
-#endif
 
 	FAIL_IF( !FS_CreateFolder( GEN_OUT_GEN_FOLDER_PATH ), "Failed to create folder \"" GEN_OUT_GEN_FOLDER_PATH "\".\n" );
 	FAIL_IF( !FS_CreateFolder( GEN_TESTS_FOLDER_PATH ),   "Failed to create folder \"" GEN_TESTS_FOLDER_PATH "\".\n" );
@@ -845,15 +840,9 @@ int main( int argc, char** argv ) {
 	FAIL_IF( !GenerateTestsMain(),   "Failed generating \"" GEN_TESTS_FOLDER_PATH "/main.cpp\".\n" );
 	printf( "======= Done. =======\n\n" );
 
-	// TODO: macOS, linux
-#ifdef _WIN32
 	float64 end = Time_NowMS();
-#endif
 
-// TODO: macOS, linux
-#ifdef _WIN32
 	printf( "Code generation time taken: %f ms\n", end - start );
-#endif
 
 	printf( "\n" );
 
