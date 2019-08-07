@@ -26,7 +26,7 @@ Installation
 
 1. Go to the [releases](https://github.com/floorman/HLML/releases) page and download the latest version.
 2. Unzip the header files into your project.
-3. **OPTIONAL:** Run ```hlm-gen-tests.exe``` (you shouldn't need to have a reason to run this and everything will more than likely 'just work', but you never know...).
+3. **OPTIONAL:** Run ```hlm-gen-tests.exe``` (you shouldn't need to have a reason to run this and everything 'should just work', but you never know...).
 4. Done!
 
 
