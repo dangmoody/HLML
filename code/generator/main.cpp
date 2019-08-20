@@ -22,6 +22,7 @@ along with hlml.  If not, see <http://www.gnu.org/licenses/>.
 ===========================================================================
 */
 
+#include "defines.h"
 #include "allocator.h"
 #include "string_builder.h"
 
@@ -754,22 +755,32 @@ static bool32 GenerateTestsMain( void ) {
 	return result;
 }
 
-// TODO: macOS, linux
-#ifdef _WIN32
+// DM: running doxygen on MacOS isn't supported yet because I don't have access to a Mac
+// when I get access to one, I'll get it working
+#ifndef __APPLE__
 static bool32 GenerateDoxygenPages( void ) {
 	printf( "Generating doxygen documentation..." );
 
-	process_t doxygenProc = OS_StartProcess( "doxygen/doxygen.exe", "doxygen/config" );
+	const char* doxygenPath = NULL;
+#if defined( _WIN32 )
+	doxygenPath = "doxygen/windows/doxygen.exe";
+#elif defined( __linux__ )
+	doxygenPath = "doxygen/linux/doxygen";
+#elif defined( __APPLE__ )
+	doxygenPath = "doxygen/macos/doxygen";
+#endif
+
+	const char* args[] = {
+		"doxygen/config"
+	};
+
+	process_t doxygenProc = OS_StartProcess( doxygenPath, args, _countof( args ) );
 
 	if ( !doxygenProc.ptr ) {
 		return false;
 	}
 
-	if ( !OS_WaitForProcess( doxygenProc ) ) {
-		return false;
-	}
-
-	if ( !OS_CloseProcess( doxygenProc ) ) {
+	if ( OS_WaitForProcess( doxygenProc ) != 0 ) {
 		return false;
 	}
 
@@ -846,14 +857,13 @@ int main( int argc, char** argv ) {
 
 	printf( "\n" );
 
-	// TODO: macOS, linux
-#ifdef _WIN32
+#ifndef __APPLE__
 	printf( "======= Generating doxygen documentation pages. =======\n" );
 	FAIL_IF( !GenerateDoxygenPages(), "Failed generated doxygen pages.\n" );
 	printf( "======= Done. =======\n\n" );
 #endif
 
-	printf( "Finished.\n" );
+	printf( "Generation finished.\n" );
 
 	Mem_Shutdown();
 

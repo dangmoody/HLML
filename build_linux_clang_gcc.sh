@@ -42,7 +42,7 @@ if [[ $compiler == clang* ]]; then
 fi
 
 # warnings to ignore
-ignore_warnings="-Wno-padded -Wno-unused-macros -Wno-format-nonliteral -Wno-old-style-cast -Wno-double-promotion -Wno-float-equal -Wno-zero-as-null-pointer-constant"
+ignore_warnings="-Wno-padded -Wno-unused-macros -Wno-format-nonliteral -Wno-old-style-cast -Wno-double-promotion -Wno-float-equal -Wno-zero-as-null-pointer-constant -Wno-int-to-void-pointer-cast"
 
 if [[ $compiler == clang* ]]; then
 	# clang-specific warnings to ignore

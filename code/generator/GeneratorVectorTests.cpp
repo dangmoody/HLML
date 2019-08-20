@@ -1,5 +1,7 @@
 #include "GeneratorVectorTests.h"
 
+#include "defines.h"
+
 #include "allocator.h"
 
 #include "FileIO.h"

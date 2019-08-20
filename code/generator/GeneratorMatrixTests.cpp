@@ -1,5 +1,7 @@
 #include "GeneratorMatrixTests.h"
 
+#include "defines.h"
+
 #include "FileIO.h"
 
 #include "gen_funcs_vector.h"
