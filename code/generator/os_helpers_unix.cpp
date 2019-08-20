@@ -97,8 +97,9 @@ u32 OS_WaitForProcess( const process_t process ) {
 	u32 ret = 0;
 
 	int status = 0;
+	int waitResult = waitpid( proc->pid, &status, 0 );
 
-	if ( waitpid( proc->pid, &status, 0 ) > 0 ) {
+	if ( waitResult > 0 ) {
 		if ( WIFEXITED( status ) && !WEXITSTATUS( status ) ) {
 			ret = 0;
 		} else if ( WIFEXITED( status ) && WEXITSTATUS( status ) ) {
@@ -118,6 +119,8 @@ u32 OS_WaitForProcess( const process_t process ) {
 
 			ret = 1;
 		}
+	} else if ( waitResult == 0 ) {
+		// process is still running
 	} else {
 		int err = errno;
 		printf( "ERROR: waitpid() failed on child process: \"%s\": Errno: %s.\n", proc->name, ErrnoToString( err ) );
