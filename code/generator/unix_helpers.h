@@ -88,7 +88,9 @@ static const char* ErrnoToString( const int errnoValue ) {
 //		ENUM_TO_STRING( ENOKEY );
 		ENUM_TO_STRING( ENOLCK );
 		ENUM_TO_STRING( ENOLINK );
+#ifndef __APPLE__	// DM: apparently this one isn't supported on mac?
 		ENUM_TO_STRING( ENOMEDIUM );
+#endif
 		ENUM_TO_STRING( ENOMEM );
 		ENUM_TO_STRING( ENOMSG );
 //		ENUM_TO_STRING( ENONET );
