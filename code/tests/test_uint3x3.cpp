@@ -61,8 +61,9 @@ TEMPER_TEST( TestAssignment_uint3x3 )
 	TEMPER_PASS();
 }
 
-TEMPER_TEST( TestArithmeticAddition_uint3x3 )
+TEMPER_TEST( TestComponentWiseArithmeticAddition_uint3x3 )
 {
+	// scalar
 	uint3x3 answer = uint3x3(
 		7U, 7U, 7U,
 		8U, 8U, 8U,
@@ -86,8 +87,9 @@ TEMPER_TEST( TestArithmeticAddition_uint3x3 )
 	TEMPER_PASS();
 }
 
-TEMPER_TEST( TestArithmeticSubtraction_uint3x3 )
+TEMPER_TEST( TestComponentWiseArithmeticSubtraction_uint3x3 )
 {
+	// scalar
 	uint3x3 answer = uint3x3(
 		5U, 5U, 5U,
 		4U, 4U, 4U,
@@ -111,8 +113,61 @@ TEMPER_TEST( TestArithmeticSubtraction_uint3x3 )
 	TEMPER_PASS();
 }
 
-TEMPER_TEST( TestArithmeticMultiplication_uint3x3 )
+TEMPER_TEST( TestComponentWiseArithmeticMultiplication_uint3x3 )
 {
+	// scalar
+	uint3x3 answer = uint3x3(
+		6U, 6U, 6U,
+		12U, 12U, 12U,
+		36U, 36U, 36U
+	);
+
+	uint3x3 a = uint3x3(
+		6U, 6U, 6U,
+		6U, 6U, 6U,
+		12U, 12U, 12U
+	);
+	uint3x3 b = uint3x3(
+		1U, 1U, 1U,
+		2U, 2U, 2U,
+		3U, 3U, 3U
+	);
+	uint3x3 c = comp_mul( a, b );
+
+	TEMPER_EXPECT_TRUE( c == answer );
+
+	TEMPER_PASS();
+}
+
+TEMPER_TEST( TestComponentWiseArithmeticDivision_uint3x3 )
+{
+	// scalar
+	uint3x3 answer = uint3x3(
+		6U, 6U, 6U,
+		3U, 3U, 3U,
+		4U, 4U, 4U
+	);
+
+	uint3x3 a = uint3x3(
+		6U, 6U, 6U,
+		6U, 6U, 6U,
+		12U, 12U, 12U
+	);
+	uint3x3 b = uint3x3(
+		1U, 1U, 1U,
+		2U, 2U, 2U,
+		3U, 3U, 3U
+	);
+	uint3x3 c = comp_div( a, b );
+
+	TEMPER_EXPECT_TRUE( c == answer );
+
+	TEMPER_PASS();
+}
+
+TEMPER_TEST( TestMultiplyMatrix_uint3x3 )
+{
+	// scalar
 	uint3x3 answer = uint3x3(
 		36U, 36U, 36U,
 		36U, 36U, 36U,
@@ -130,31 +185,6 @@ TEMPER_TEST( TestArithmeticMultiplication_uint3x3 )
 		3U, 3U, 3U
 	);
 	uint3x3 c = a * b;
-
-	TEMPER_EXPECT_TRUE( c == answer );
-
-	TEMPER_PASS();
-}
-
-TEMPER_TEST( TestArithmeticDivision_uint3x3 )
-{
-	uint3x3 answer = uint3x3(
-		6U, 6U, 6U,
-		3U, 3U, 3U,
-		4U, 4U, 4U
-	);
-
-	uint3x3 a = uint3x3(
-		6U, 6U, 6U,
-		6U, 6U, 6U,
-		12U, 12U, 12U
-	);
-	uint3x3 b = uint3x3(
-		1U, 1U, 1U,
-		2U, 2U, 2U,
-		3U, 3U, 3U
-	);
-	uint3x3 c = a / b;
 
 	TEMPER_EXPECT_TRUE( c == answer );
 
@@ -476,6 +506,7 @@ TEMPER_TEST( TestBitwise_Unary_uint3x3 )
 
 TEMPER_TEST( TestIdentity_uint3x3 )
 {
+	// scalar
 	uint3x3 id = uint3x3(
 		1U, 0, 0,
 		0, 1U, 0,
@@ -505,36 +536,6 @@ TEMPER_TEST( TestTranspose_uint3x3 )
 		1U, 5U, 9U,
 		2U, 6U, 10U
 	) );
-
-	TEMPER_PASS();
-}
-
-TEMPER_TEST( TestCompMulDiv_uint3x3 )
-{
-	uint3x3 answer_mul = uint3x3(
-		8U, 8U, 8U,
-		32U, 32U, 32U,
-		192U, 192U, 192U
-	);
-	uint3x3 answer_div = uint3x3(
-		2U, 2U, 2U,
-		2U, 2U, 2U,
-		3U, 3U, 3U
-	);
-
-	uint3x3 a = uint3x3(
-		4U, 4U, 4U,
-		8U, 8U, 8U,
-		24U, 24U, 24U
-	);
-	uint3x3 b = uint3x3(
-		2U, 2U, 2U,
-		4U, 4U, 4U,
-		8U, 8U, 8U
-	);
-
-	TEMPER_EXPECT_TRUE( comp_mul( a, b ) == answer_mul );
-	TEMPER_EXPECT_TRUE( comp_div( a, b ) == answer_div );
 
 	TEMPER_PASS();
 }
@@ -573,10 +574,11 @@ TEMPER_TEST( TestScale_uint3x3 )
 TEMPER_SUITE( Test_uint3x3 )
 {
 	TEMPER_RUN_TEST( TestAssignment_uint3x3 );
-	TEMPER_RUN_TEST( TestArithmeticAddition_uint3x3 );
-	TEMPER_RUN_TEST( TestArithmeticSubtraction_uint3x3 );
-	TEMPER_RUN_TEST( TestArithmeticMultiplication_uint3x3 );
-	TEMPER_RUN_TEST( TestArithmeticDivision_uint3x3 );
+	TEMPER_RUN_TEST( TestComponentWiseArithmeticAddition_uint3x3 );
+	TEMPER_RUN_TEST( TestComponentWiseArithmeticSubtraction_uint3x3 );
+	TEMPER_RUN_TEST( TestComponentWiseArithmeticMultiplication_uint3x3 );
+	TEMPER_RUN_TEST( TestComponentWiseArithmeticDivision_uint3x3 );
+	TEMPER_RUN_TEST( TestMultiplyMatrix_uint3x3 );
 	TEMPER_RUN_TEST( TestMultiplyVector_uint3x3 );
 	TEMPER_RUN_TEST( TestIncrement_uint3x3 );
 	TEMPER_RUN_TEST( TestDecrement_uint3x3 );
@@ -590,7 +592,6 @@ TEMPER_SUITE( Test_uint3x3 )
 	TEMPER_RUN_TEST( TestBitwise_Unary_uint3x3 );
 	TEMPER_RUN_TEST( TestIdentity_uint3x3 );
 	TEMPER_RUN_TEST( TestTranspose_uint3x3 );
-	TEMPER_RUN_TEST( TestCompMulDiv_uint3x3 );
 	TEMPER_RUN_TEST( TestTranslate_uint3x3 );
 	TEMPER_RUN_TEST( TestScale_uint3x3 );
 }

@@ -68,6 +68,7 @@ TEMPER_TEST( TestArray_bool2x4 )
 
 TEMPER_TEST( TestIdentity_bool2x4 )
 {
+	// scalar
 	bool2x4 id = bool2x4(
 		true, false, false, false,
 		false, true, false, false

@@ -456,7 +456,7 @@ void Gen_MatrixOperatorsArithmetic( const genType_t type, const u32 numRows, con
 	const bool32 isSquare = numRows == numCols;
 
 	// TODO(DM): pseudo-inverse
-	if ( isSquare && Gen_IsFloatingPointType( type ) ) {
+	if ( isSquare && Gen_TypeIsFloatingPoint( type ) ) {
 		MatrixOperatorDiv( type, numRows, numCols, sbHeader, sbInl );
 	} else {
 		Gen_OperatorComponentWiseArithmeticRhsType( type, numRows, numCols, GEN_OP_ARITHMETIC_DIV, sbHeader, sbInl );
@@ -553,7 +553,7 @@ void Gen_MatrixInverse( const genType_t type, const u32 numRows, const u32 numCo
 	assert( numCols >= GEN_COMPONENT_COUNT_MIN );
 	assert( numCols <= GEN_COMPONENT_COUNT_MAX );
 
-	if ( !Gen_IsFloatingPointType( type ) ) {
+	if ( !Gen_TypeIsFloatingPoint( type ) ) {
 		return;
 	}
 
@@ -871,7 +871,7 @@ void Gen_MatrixRotate( const genType_t type, const u32 numRows, const u32 numCol
 	assert( numCols >= GEN_COMPONENT_COUNT_MIN );
 	assert( numCols <= GEN_COMPONENT_COUNT_MAX );
 
-	if ( !Gen_IsFloatingPointType( type ) ) {
+	if ( !Gen_TypeIsFloatingPoint( type ) ) {
 		return;
 	}
 
@@ -945,6 +945,10 @@ void Gen_MatrixRotate( const genType_t type, const u32 numRows, const u32 numCol
 			String_Append(  sbInl, "\treturn mat * rotation;\n" );
 			break;
 		}
+
+		default:
+			assert( false );	// should never make it here!
+			break;
 	}
 	String_Append( sbInl, "}\n" );
 	String_Append( sbInl, "\n" );
@@ -1031,7 +1035,7 @@ void Gen_MatrixOrtho( const genType_t type, const u32 numRows, const u32 numCols
 	assert( numCols >= GEN_COMPONENT_COUNT_MIN );
 	assert( numCols <= GEN_COMPONENT_COUNT_MAX );
 
-	if ( !Gen_IsFloatingPointType( type ) ) {
+	if ( !Gen_TypeIsFloatingPoint( type ) ) {
 		return;
 	}
 
@@ -1203,7 +1207,7 @@ void Gen_MatrixPerspective( const genType_t type, const u32 numRows, const u32 n
 	assert( numCols >= GEN_COMPONENT_COUNT_MIN );
 	assert( numCols <= GEN_COMPONENT_COUNT_MAX );
 
-	if ( !Gen_IsFloatingPointType( type ) ) {
+	if ( !Gen_TypeIsFloatingPoint( type ) ) {
 		return;
 	}
 
@@ -1364,7 +1368,7 @@ void Gen_MatrixLookAt( const genType_t type, const u32 numRows, const u32 numCol
 	assert( numCols >= GEN_COMPONENT_COUNT_MIN );
 	assert( numCols <= GEN_COMPONENT_COUNT_MAX );
 
-	if ( !Gen_IsFloatingPointType( type ) ) {
+	if ( !Gen_TypeIsFloatingPoint( type ) ) {
 		return;
 	}
 

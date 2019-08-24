@@ -2,65 +2,18 @@
 
 #include "string_builder.h"
 
-void Gen_GetValuesArray1D( const genType_t type, const u32 numValues, const float* values, stringBuilder_t* sb ) {
-	String_Append(  sb, "\t{ " );
-	for ( u32 componentIndex = 0; componentIndex < numValues; componentIndex++ ) {
-		char componentStr[GEN_STRING_LENGTH_NUMERIC_LITERAL];
-		Gen_GetNumericLiteral( type, values[componentIndex], componentStr );
-
-		String_Appendf( sb, "%s", componentStr );
-
-		if ( componentIndex != numValues - 1 ) {
-			String_Append( sb, ", " );
-		}
-	}
-	String_Append(  sb, " }" );
-}
-
-void Gen_GetValuesArray2D( const genType_t type, const u32 rows, const u32 cols, const float* values, stringBuilder_t* sb ) {
-	String_Append( sb, "\t{\n" );
-	for ( u32 row = 0; row < rows; row++ ) {
-		String_Append( sb, "\t\t{ " );
-		for ( u32 col = 0; col < cols; col++ ) {
-			const float* value = values + ( row * cols );
-
-			char componentStr[GEN_STRING_LENGTH_NUMERIC_LITERAL];
-			Gen_GetNumericLiteral( type, *value, componentStr );
-			
-			String_Appendf( sb, "%s", componentStr );
-
-			if ( col != cols - 1 ) {
-				String_Append( sb, ", " );
-			}
-		}
-		String_Append( sb, " }" );
-
-		if ( row != rows - 1 ) {
-			String_Append( sb, "," );
-		}
-
-		String_Append( sb, "\n" );
-	}
-	String_Append( sb, "\t};\n" );
-}
-
-void Gen_SSE_GetInputDataNameRadians( const genType_t type, char* outString ) {
+void Gen_SSE_Radians( const genType_t type, stringBuilder_t* sbHeader, stringBuilder_t* sbInl ) {
 	if ( !Gen_TypeSupportsSSE( type ) ) {
 		return;
 	}
 
-	const char* memberTypeString = Gen_GetMemberTypeString( type );
-
-	snprintf( outString, GEN_STRING_LENGTH_SSE_INPUT_NAME, "sse_input_radians_%s_t", memberTypeString );
-}
-
-void Gen_SSE_Radians( const genType_t type, stringBuilder_t* sbHeader, stringBuilder_t* sbInl ) {
 	char inputDataName[GEN_STRING_LENGTH_SSE_INPUT_NAME];
-	Gen_SSE_GetInputDataNameRadians( type, inputDataName );
+	Gen_SSE_GetInputDataName( type, 1, 1, "radians", inputDataName );
 
 	const char* registerName	= Gen_SSE_GetRegisterName( type );
 
-	const char* mulFuncStr		= Gen_SSE_GetFuncStrMul( type );
+	char mulFuncStr[GEN_STRING_LENGTH_SSE_INTRINSIC];
+	Gen_SSE_GetIntrinsicArithmeticStr( type, GEN_OP_ARITHMETIC_MUL, mulFuncStr );
 
 	String_Appendf( sbHeader, "struct %s\n", inputDataName );
 	String_Append(  sbHeader, "{\n" );
@@ -81,23 +34,18 @@ void Gen_SSE_Radians( const genType_t type, stringBuilder_t* sbHeader, stringBui
 	String_Append(  sbInl, "\n" );
 }
 
-void Gen_SSE_GetInputDataNameDegrees( const genType_t type, char* outString ) {
+void Gen_SSE_Degrees( const genType_t type, stringBuilder_t* sbHeader, stringBuilder_t* sbInl ) {
 	if ( !Gen_TypeSupportsSSE( type ) ) {
 		return;
 	}
 
-	const char* memberTypeString = Gen_GetMemberTypeString( type );
-
-	snprintf( outString, GEN_STRING_LENGTH_SSE_INPUT_NAME, "sse_input_degrees_%s_t", memberTypeString );
-}
-
-void Gen_SSE_Degrees( const genType_t type, stringBuilder_t* sbHeader, stringBuilder_t* sbInl ) {
 	char inputDataName[GEN_STRING_LENGTH_SSE_INPUT_NAME];
-	Gen_SSE_GetInputDataNameDegrees( type, inputDataName );
+	Gen_SSE_GetInputDataName( type, 1, 1, "degrees", inputDataName );
 
 	const char* registerName	= Gen_SSE_GetRegisterName( type );
 
-	const char* mulFuncStr		= Gen_SSE_GetFuncStrMul( type );
+	char mulFuncStr[GEN_STRING_LENGTH_SSE_INTRINSIC];
+	Gen_SSE_GetIntrinsicArithmeticStr( type, GEN_OP_ARITHMETIC_MUL, mulFuncStr );
 
 	String_Appendf( sbHeader, "struct %s\n", inputDataName );
 	String_Append(  sbHeader, "{\n" );
@@ -118,22 +66,6 @@ void Gen_SSE_Degrees( const genType_t type, stringBuilder_t* sbHeader, stringBui
 	String_Append(  sbInl, "\n" );
 }
 
-void Gen_SSE_GetInputDataNameLerp( const genType_t type, const u32 numComponents, char* outString ) {
-	if ( !Gen_TypeSupportsSSE( type ) ) {
-		return;
-	}
-
-	if ( numComponents == 1 ) {
-		const char* memberTypeString = Gen_GetMemberTypeString( type );
-
-		snprintf( outString, GEN_STRING_LENGTH_SSE_INPUT_NAME, "sse_input_lerp_%s_t", memberTypeString );
-	} else {
-		const char* typeString = Gen_GetTypeString( type );
-
-		snprintf( outString, GEN_STRING_LENGTH_SSE_INPUT_NAME, "sse_input_lerp_%s%d_t", typeString, numComponents );
-	}
-}
-
 void Gen_SSE_Lerp( const genType_t type, const u32 numComponents, stringBuilder_t* sbHeader, stringBuilder_t* sbInl ) {
 	assert( numComponents >= 1 );	// 1 for non-vector types
 	assert( numComponents <= GEN_COMPONENT_COUNT_MAX );
@@ -146,14 +78,18 @@ void Gen_SSE_Lerp( const genType_t type, const u32 numComponents, stringBuilder_
 	Gen_GetNumericLiteral( type, 1.0f, oneStr, 1 );
 
 	const char* registerName	= Gen_SSE_GetRegisterName( type );
-
-	const char* addFuncStr		= Gen_SSE_GetFuncStrAdd( type );
-	const char* subFuncStr		= Gen_SSE_GetFuncStrSub( type );
-	const char* mulFuncStr		= Gen_SSE_GetFuncStrMul( type );
 	const char* set1FuncStr		= Gen_SSE_GetFuncStrSet1( type );
 
+	char addFuncStr[GEN_STRING_LENGTH_SSE_INTRINSIC];
+	char subFuncStr[GEN_STRING_LENGTH_SSE_INTRINSIC];
+	char mulFuncStr[GEN_STRING_LENGTH_SSE_INTRINSIC];
+
+	Gen_SSE_GetIntrinsicArithmeticStr( type, GEN_OP_ARITHMETIC_ADD, addFuncStr );
+	Gen_SSE_GetIntrinsicArithmeticStr( type, GEN_OP_ARITHMETIC_SUB, subFuncStr );
+	Gen_SSE_GetIntrinsicArithmeticStr( type, GEN_OP_ARITHMETIC_MUL, mulFuncStr );
+
 	char inputDataName[GEN_STRING_LENGTH_SSE_INPUT_NAME];
-	Gen_SSE_GetInputDataNameLerp( type, numComponents, inputDataName );
+	Gen_SSE_GetInputDataName( type, 1, numComponents, "lerp", inputDataName );
 
 	String_Appendf( sbHeader, "struct %s\n", inputDataName );
 	String_Append(  sbHeader, "{\n" );

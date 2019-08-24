@@ -68,7 +68,7 @@ bool GeneratorScalarTest::Generate( const genType_t type ) {
 }
 
 void GeneratorScalarTest::GenerateTestFloateq() {
-	if ( !Gen_IsFloatingPointType( m_type ) ) {
+	if ( !Gen_TypeIsFloatingPoint( m_type ) ) {
 		return;
 	}
 
@@ -133,7 +133,7 @@ void GeneratorScalarTest::GenerateTestSign() {
 }
 
 void GeneratorScalarTest::GenerateTestDegreesRadians() {
-	if ( !Gen_IsFloatingPointType( m_type ) ) {
+	if ( !Gen_TypeIsFloatingPoint( m_type ) ) {
 		return;
 	}
 
@@ -165,10 +165,10 @@ void GeneratorScalarTest::GenerateTestDegreesRadians() {
 		const char* storeFuncStr	= Gen_SSE_GetFuncStrStore( m_type );
 
 		char inputDataNameRadians[GEN_STRING_LENGTH_SSE_INPUT_NAME];
-		Gen_SSE_GetInputDataNameRadians( m_type, inputDataNameRadians );
+		Gen_SSE_GetInputDataName( m_type, 1, 1, "radians", inputDataNameRadians );
 
 		char inputDataNameDegrees[GEN_STRING_LENGTH_SSE_INPUT_NAME];
-		Gen_SSE_GetInputDataNameDegrees( m_type, inputDataNameDegrees );
+		Gen_SSE_GetInputDataName( m_type, 1, 1, "degrees", inputDataNameDegrees );
 
 		String_Append(  &m_codeTests, "\n" );
 		String_Append(  &m_codeTests, "\t// SSE\n" );
@@ -232,7 +232,7 @@ void GeneratorScalarTest::GenerateTestMinMax() {
 	String_Appendf( &m_codeTests, "\t%s a = %s;\n", m_memberTypeString, aStr );
 	String_Appendf( &m_codeTests, "\t%s b = %s;\n", m_memberTypeString, bStr );
 	String_Append(  &m_codeTests, "\n" );
-	if ( Gen_IsFloatingPointType( m_type ) ) {
+	if ( Gen_TypeIsFloatingPoint( m_type ) ) {
 		String_Appendf( &m_codeTests, "\tTEMPER_EXPECT_TRUE( %s( min( a, b ), a ) );\n", floateqStr );
 		String_Appendf( &m_codeTests, "\tTEMPER_EXPECT_TRUE( %s( max( a, b ), b ) );\n", floateqStr );
 	} else {
@@ -268,7 +268,7 @@ void GeneratorScalarTest::GenerateTestClamp() {
 
 	const char* floateqStr = Gen_GetFuncNameFloateq( m_type );
 
-	bool isFloatingPointType = Gen_IsFloatingPointType( m_type );
+	bool isFloatingPointType = Gen_TypeIsFloatingPoint( m_type );
 
 	String_Appendf( &m_codeTests, "TEMPER_TEST( %s )\n", testName );
 	String_Append(  &m_codeTests, "{\n" );
@@ -298,7 +298,7 @@ void GeneratorScalarTest::GenerateTestClamp() {
 }
 
 void GeneratorScalarTest::GenerateTestSaturate() {
-	if ( !Gen_IsFloatingPointType( m_type ) ) {
+	if ( !Gen_TypeIsFloatingPoint( m_type ) ) {
 		return;
 	}
 
@@ -335,7 +335,7 @@ void GeneratorScalarTest::GenerateTestSaturate() {
 }
 
 void GeneratorScalarTest::GenerateTestLerp() {
-	if ( !Gen_IsFloatingPointType( m_type ) ) {
+	if ( !Gen_TypeIsFloatingPoint( m_type ) ) {
 		return;
 	}
 
@@ -367,7 +367,7 @@ void GeneratorScalarTest::GenerateTestLerp() {
 
 	if ( m_type == GEN_TYPE_FLOAT ) {
 		char inputDataName[GEN_STRING_LENGTH_SSE_INPUT_NAME];
-		Gen_SSE_GetInputDataNameLerp( m_type, 1, inputDataName );
+		Gen_SSE_GetInputDataName( m_type, 1, 1, "lerp", inputDataName );
 
 		const char* loadFuncStr		= Gen_SSE_GetFuncStrLoad( m_type );
 		const char* storeFuncStr	= Gen_SSE_GetFuncStrStore( m_type );

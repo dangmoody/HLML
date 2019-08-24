@@ -212,10 +212,52 @@ static void InlGenerateOperatorBitwiseRhsType( const genType_t type, const u32 n
 }
 
 
+void Gen_GetValuesArray1D( const genType_t type, const u32 numValues, const float* values, stringBuilder_t* sb ) {
+	String_Append(  sb, "\t{ " );
+	for ( u32 componentIndex = 0; componentIndex < numValues; componentIndex++ ) {
+		char componentStr[GEN_STRING_LENGTH_NUMERIC_LITERAL];
+		Gen_GetNumericLiteral( type, values[componentIndex], componentStr );
+
+		String_Appendf( sb, "%s", componentStr );
+
+		if ( componentIndex != numValues - 1 ) {
+			String_Append( sb, ", " );
+		}
+	}
+	String_Append(  sb, " }" );
+}
+
+void Gen_GetValuesArray2D( const genType_t type, const u32 rows, const u32 cols, const float* values, stringBuilder_t* sb ) {
+	String_Append( sb, "\t{\n" );
+	for ( u32 row = 0; row < rows; row++ ) {
+		String_Append( sb, "\t\t{ " );
+		for ( u32 col = 0; col < cols; col++ ) {
+			const float* value = values + ( row * cols );
+
+			char componentStr[GEN_STRING_LENGTH_NUMERIC_LITERAL];
+			Gen_GetNumericLiteral( type, *value, componentStr );
+			
+			String_Appendf( sb, "%s", componentStr );
+
+			if ( col != cols - 1 ) {
+				String_Append( sb, ", " );
+			}
+		}
+		String_Append( sb, " }" );
+
+		if ( row != rows - 1 ) {
+			String_Append( sb, "," );
+		}
+
+		String_Append( sb, "\n" );
+	}
+	String_Append( sb, "\t};\n" );
+}
+
 void Gen_Floateq( const genType_t type, stringBuilder_t* sb ) {
 	assert( sb );
 
-	if ( !Gen_IsFloatingPointType( type ) ) {
+	if ( !Gen_TypeIsFloatingPoint( type ) ) {
 		return;
 	}
 
@@ -257,7 +299,7 @@ void Gen_Sign( const genType_t type, stringBuilder_t* sb ) {
 void Gen_Radians( const genType_t type, stringBuilder_t* sb ) {
 	assert( sb );
 
-	if ( !Gen_IsFloatingPointType( type ) ) {
+	if ( !Gen_TypeIsFloatingPoint( type ) ) {
 		return;
 	}
 
@@ -279,7 +321,7 @@ void Gen_Radians( const genType_t type, stringBuilder_t* sb ) {
 void Gen_Degrees( const genType_t type, stringBuilder_t* sb ) {
 	assert( sb );
 
-	if ( !Gen_IsFloatingPointType( type ) ) {
+	if ( !Gen_TypeIsFloatingPoint( type ) ) {
 		return;
 	}
 
@@ -347,7 +389,7 @@ void Gen_Saturate( const genType_t type, const u32 numComponents, stringBuilder_
 	assert( numComponents >= 1 );	// we allow scalar types for this function
 	assert( numComponents <= GEN_COMPONENT_COUNT_MAX );
 
-	if ( !Gen_IsFloatingPointType( type ) ) {
+	if ( !Gen_TypeIsFloatingPoint( type ) ) {
 		return;
 	}
 
@@ -405,7 +447,7 @@ void Gen_Lerp( const genType_t type, const u32 numComponents, stringBuilder_t* s
 	assert( numComponents >= 1 );	// we allow scalar types for this function
 	assert( numComponents <= GEN_COMPONENT_COUNT_MAX );
 
-	if ( !Gen_IsFloatingPointType( type ) ) {
+	if ( !Gen_TypeIsFloatingPoint( type ) ) {
 		return;
 	}
 
@@ -515,7 +557,7 @@ void Gen_Smoothstep( const genType_t type, const u32 numComponents, stringBuilde
 	assert( numComponents >= 1 );	// we allow scalar types for this function
 	assert( numComponents <= GEN_COMPONENT_COUNT_MAX );
 
-	if ( !Gen_IsFloatingPointType( type ) ) {
+	if ( !Gen_TypeIsFloatingPoint( type ) ) {
 		return;
 	}
 
@@ -660,7 +702,7 @@ void Gen_OperatorsBitwise( const genType_t type, const u32 numRows, const u32 nu
 	assert( numCols >= GEN_COMPONENT_COUNT_MIN );
 	assert( numCols <= GEN_COMPONENT_COUNT_MAX );
 
-	if ( type != GEN_TYPE_BOOL && !Gen_IsIntegerType( type ) ) {
+	if ( type != GEN_TYPE_BOOL && !Gen_TypeIsInteger( type ) ) {
 		return;
 	}
 

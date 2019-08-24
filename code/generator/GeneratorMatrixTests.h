@@ -27,8 +27,10 @@ private:
 
 private:
 	void			GenerateTestAssignment();
-	void			GenerateTestArithmetic();
+	void			GenerateTestComponentWiseArithmetic();
 	void			GenerateTestMultiplyVector();
+	void			GenerateTestMultiplyMatrix();
+	void			GenerateTestDivideMatrix();
 	void			GenerateTestIncrement();
 	void			GenerateTestRelational();
 	void			GenerateTestBitwise();
@@ -50,7 +52,11 @@ private:
 						const float valuesRhs[GEN_COMPONENT_COUNT_MAX][GEN_COMPONENT_COUNT_MAX], stringBuilder_t* sb ) const;
 
 	// DM: does this want to live with the other generic matrix gen functions?
-	void			GetParmListArithmeticAnswer( const genOpArithmetic_t op, const u32 numRows, const u32 numCols,
+	void			GetParmListComponentWiseArithmeticAnswer( const genOpArithmetic_t op, const u32 numRows, const u32 numCols,
+						const float valuesLhs[GEN_COMPONENT_COUNT_MAX][GEN_COMPONENT_COUNT_MAX], const float valuesRhs[GEN_COMPONENT_COUNT_MAX][GEN_COMPONENT_COUNT_MAX],
+						char* outString ) const;
+
+	void			GetParmListMatrixMultiply( const u32 returnTypeRows, const u32 returnTypeCols,
 						const float valuesLhs[GEN_COMPONENT_COUNT_MAX][GEN_COMPONENT_COUNT_MAX], const float valuesRhs[GEN_COMPONENT_COUNT_MAX][GEN_COMPONENT_COUNT_MAX],
 						char* outString ) const;
 };

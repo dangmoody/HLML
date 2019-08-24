@@ -79,7 +79,7 @@ void Gen_VectorLength( const genType_t type, const u32 numComponents, stringBuil
 	String_Append(  sbInl, "{\n" );
 	String_Append(  sbInl, "\treturn " );
 
-	if ( !Gen_IsFloatingPointType( type ) ) {
+	if ( !Gen_TypeIsFloatingPoint( type ) ) {
 		String_Appendf( sbInl, "(%s)( ", returnTypeString );
 	}
 
@@ -93,7 +93,7 @@ void Gen_VectorLength( const genType_t type, const u32 numComponents, stringBuil
 		}
 	}
 
-	if ( !Gen_IsFloatingPointType( type ) ) {
+	if ( !Gen_TypeIsFloatingPoint( type ) ) {
 		String_Append( sbInl, " )" );
 	}
 
@@ -112,7 +112,7 @@ void Gen_VectorNormalize( const genType_t type, const u32 numComponents, stringB
 	assert( numComponents >= GEN_COMPONENT_COUNT_MIN );
 	assert( numComponents <= GEN_COMPONENT_COUNT_MAX );
 
-	if ( !Gen_IsFloatingPointType( type ) ) {
+	if ( !Gen_TypeIsFloatingPoint( type ) ) {
 		return;
 	}
 
@@ -199,7 +199,7 @@ void Gen_VectorCross( const genType_t type, const u32 numComponents, stringBuild
 	assert( numComponents >= GEN_COMPONENT_COUNT_MIN );
 	assert( numComponents <= GEN_COMPONENT_COUNT_MAX );
 
-	if ( !Gen_IsFloatingPointType( type ) ) {
+	if ( !Gen_TypeIsFloatingPoint( type ) ) {
 		return;
 	}
 
@@ -234,7 +234,7 @@ void Gen_VectorAngle( const genType_t type, const u32 numComponents, stringBuild
 	assert( numComponents >= GEN_COMPONENT_COUNT_MIN );
 	assert( numComponents <= GEN_COMPONENT_COUNT_MAX );
 
-	if ( !Gen_IsFloatingPointType( type ) ) {
+	if ( !Gen_TypeIsFloatingPoint( type ) ) {
 		return;
 	}
 

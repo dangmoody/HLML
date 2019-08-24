@@ -309,7 +309,7 @@ void GeneratorVector::GenerateOperatorsEquality() {
 		for ( u32 i = 0; i < m_numComponents; i++ ) {
 			char component = GEN_COMPONENT_NAMES_VECTOR[i];
 
-			if ( Gen_IsFloatingPointType( m_type ) ) {
+			if ( Gen_TypeIsFloatingPoint( m_type ) ) {
 				const char* floateqStr = Gen_GetFuncNameFloateq( m_type );
 
 				String_Appendf( &m_codeInl, "%s( lhs.%c, rhs.%c )", floateqStr, component, component );

@@ -37,10 +37,12 @@
 #define GEN_FILENAME_FUNCTIONS_VECTOR		"hlml_functions_vector"
 #define GEN_FILENAME_FUNCTIONS_VECTOR_SSE	"hlml_functions_vector_sse"
 #define GEN_FILENAME_FUNCTIONS_MATRIX		"hlml_functions_matrix"
+#define GEN_FILENAME_FUNCTIONS_MATRIX_SSE	"hlml_functions_matrix_sse"
 
 #define GEN_STRING_LENGTH_NUMERIC_LITERAL	16
 #define GEN_STRING_LENGTH_TYPE_NAME			16
 #define GEN_STRING_LENGTH_SSE_INPUT_NAME	32
+#define GEN_STRING_LENGTH_SSE_INTRINSIC		32
 
 #define GEN_STRING_LENGTH_PARM_LIST_VECTOR	64
 #define GEN_STRING_LENGTH_PARM_LIST_MATRIX	256
@@ -163,6 +165,13 @@ static const char* GEN_OPERATORS_BITWISE[GEN_OP_BITWISE_COUNT] = {
 	">>"
 };
 
+static const char* GEN_OPERATOR_STRINGS_ARITHMETIC[GEN_OP_ARITHMETIC_COUNT] = {
+	"add",
+	"sub",
+	"mul",
+	"div"
+};
+
 // type-to-string functions
 inline const char*	Gen_GetTypeString( const genType_t type );
 inline const char*	Gen_GetMemberTypeString( const genType_t type );
@@ -177,8 +186,8 @@ inline const char*	Gen_GetClipSpaceRangeString( const genClipSpace_t range );
 
 // type helper functions
 inline genType_t	Gen_GetSupportedFloatingPointType( const genType_t type ) { return ( type == GEN_TYPE_DOUBLE ) ? GEN_TYPE_DOUBLE : GEN_TYPE_FLOAT; }
-inline bool			Gen_IsFloatingPointType( const genType_t type ) { return type == GEN_TYPE_FLOAT || type == GEN_TYPE_DOUBLE; }
-inline bool			Gen_IsIntegerType( const genType_t type ) { return type == GEN_TYPE_INT || type == GEN_TYPE_UINT; }
+inline bool			Gen_TypeIsFloatingPoint( const genType_t type ) { return type == GEN_TYPE_FLOAT || type == GEN_TYPE_DOUBLE; }
+inline bool			Gen_TypeIsInteger( const genType_t type ) { return type == GEN_TYPE_INT || type == GEN_TYPE_UINT; }
 
 // built-in functions
 inline const char*	Gen_GetFuncNameSin( const genType_t type ) { return ( type == GEN_TYPE_DOUBLE ) ? "sin" : "sinf"; }
@@ -194,6 +203,10 @@ inline const char*	Gen_GetFuncNameFloateq( const genType_t type ) { return ( typ
 // hlml constants
 inline const char*	Gen_GetConstantNamePi( const genType_t type ) { return ( type == GEN_TYPE_DOUBLE ) ? "HLML_PI" : "(float)( HLML_PI )"; }
 inline const char*	Gen_GetConstantNameEpsilon( const genType_t type ) { return ( type == GEN_TYPE_DOUBLE ) ? "HLML_EPSILON" : "(float)( HLML_EPSILON )"; }
+
+// parm list/array helpers
+extern void			Gen_GetValuesArray1D( const genType_t type, const u32 numValues, const float* values, stringBuilder_t* sb );
+extern void			Gen_GetValuesArray2D( const genType_t type, const u32 rows, const u32 cols, const float* values, stringBuilder_t* sb );
 
 // generic helper functions that are typical of maths libraries
 extern void			Gen_Floateq( const genType_t type, stringBuilder_t* sb );
@@ -347,13 +360,8 @@ void Gen_GetNumericLiteral( const genType_t type, const float x, char* outStr, c
 
 const char* Gen_GetHandString( const genHand_t hand ) {
 	switch ( hand ) {
-		case GEN_HAND_LEFT:
-			return "left";
-			break;
-
-		case GEN_HAND_RIGHT:
-			return "right";
-			break;
+		case GEN_HAND_LEFT:		return "left";
+		case GEN_HAND_RIGHT:	return "right";
 
 		case GEN_HAND_COUNT:
 		default:
@@ -364,13 +372,8 @@ const char* Gen_GetHandString( const genHand_t hand ) {
 
 const char* Gen_GetClipSpaceRangeString( const genClipSpace_t range ) {
 	switch ( range ) {
-		case GEN_CLIP_SPACE_ZERO_TO_ONE:
-			return "zero to one";
-			break;
-
-		case GEN_CLIP_SPACE_MINUS_ONE_TO_ONE:
-			return "minus-one to one";
-			break;
+		case GEN_CLIP_SPACE_ZERO_TO_ONE:		return "zero to one";
+		case GEN_CLIP_SPACE_MINUS_ONE_TO_ONE:	return "minus-one to one";
 
 		case GEN_CLIP_SPACE_COUNT:
 		default:

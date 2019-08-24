@@ -81,6 +81,9 @@
     <ClCompile Include="os_helpers_unix.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="gen_funcs_matrix_sse.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="gen_common.h">
@@ -137,10 +140,10 @@
     <ClInclude Include="os_helpers.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="unix_helpers.h">
+    <ClInclude Include="defines.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="defines.h">
+    <ClInclude Include="gen_funcs_matrix_sse.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

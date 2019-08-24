@@ -24,6 +24,8 @@ along with hlml.  If not, see <http://www.gnu.org/licenses/>.
 
 // GENERATED FILE.  DO NOT EDIT.
 
+#pragma once
+
 #include <immintrin.h>
 
 // float2

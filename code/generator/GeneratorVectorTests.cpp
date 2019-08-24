@@ -36,7 +36,7 @@ bool GeneratorVectorTests::Generate( const genType_t type, const u32 numComponen
 	String_Appendf( &code, GEN_FILE_HEADER );
 
 	String_Append( &code, "#include \"../../" GEN_OUT_GEN_FOLDER_PATH GEN_FILENAME_FUNCTIONS_VECTOR ".h\"\n" );
-	if ( type == GEN_TYPE_FLOAT ) {
+	if ( Gen_TypeSupportsSSE( m_type ) ) {
 		String_Append( &code, "#include \"../../" GEN_OUT_GEN_FOLDER_PATH GEN_FILENAME_FUNCTIONS_SCALAR_SSE ".h\"\n" );
 		String_Append( &code, "#include \"../../" GEN_OUT_GEN_FOLDER_PATH GEN_FILENAME_FUNCTIONS_VECTOR_SSE ".h\"\n" );
 	}
@@ -361,7 +361,7 @@ void GeneratorVectorTests::GenerateTestRelational() {
 }
 
 void GeneratorVectorTests::GenerateTestBitwise() {
-	if ( !Gen_IsIntegerType( m_type ) ) {
+	if ( !Gen_TypeIsInteger( m_type ) ) {
 		return;
 	}
 
@@ -504,8 +504,8 @@ void GeneratorVectorTests::GenerateTestLength() {
 	String_Appendf( &m_codeTests, "\tTEMPER_EXPECT_TRUE( %s( length( vec ), %s%s ) );\n", floateqStr, lengthStr, fSpecifier );
 
 	if ( Gen_TypeSupportsSSE( m_type ) ) {
-		char inputDataName[GEN_STRING_LENGTH_SSE_INPUT_NAME];
-		Gen_SSE_GetInputDataNameLength( m_type, m_numComponents, inputDataName );
+		char inputDataNameLength[GEN_STRING_LENGTH_SSE_INPUT_NAME];
+		Gen_SSE_GetInputDataName( m_type, 1, m_numComponents, "length", inputDataNameLength );
 
 		const char* sseLoadStr = Gen_SSE_GetFuncStrLoad( m_type );
 		const char* sseStoreStr = Gen_SSE_GetFuncStrStore( m_type );
@@ -523,7 +523,7 @@ void GeneratorVectorTests::GenerateTestLength() {
 		Gen_GetValuesArray2D( m_type, m_numComponents, 4, *values, &m_codeTests );
 		String_Append(  &m_codeTests, "\n" );
 		
-		String_Appendf( &m_codeTests, "\t%s in;\n", inputDataName );
+		String_Appendf( &m_codeTests, "\t%s in;\n", inputDataNameLength );
 		String_Append(  &m_codeTests, "\n" );
 		for ( u32 i = 0; i < m_numComponents; i++ ) {
 			String_Appendf( &m_codeTests, "\tin.comp[%d] = %s( components[%d] );\n", i, sseLoadStr, i );
@@ -561,7 +561,7 @@ void GeneratorVectorTests::GenerateTestLength() {
 }
 
 void GeneratorVectorTests::GenerateTestNormalized() {
-	if ( !Gen_IsFloatingPointType( m_type ) ) {
+	if ( !Gen_TypeIsFloatingPoint( m_type ) ) {
 		return;
 	}
 
@@ -592,15 +592,15 @@ void GeneratorVectorTests::GenerateTestNormalized() {
 		const char* set1FuncStr		= Gen_SSE_GetFuncStrSet1( m_type );
 		const char* storeFuncStr	= Gen_SSE_GetFuncStrStore( m_type );
 
-		char inputDataName[GEN_STRING_LENGTH_SSE_INPUT_NAME];
-		Gen_SSE_GetInputDataNameNormalize( m_type, m_numComponents, inputDataName );
+		char inputDataNameNormalize[GEN_STRING_LENGTH_SSE_INPUT_NAME];
+		Gen_SSE_GetInputDataName( m_type, 1, m_numComponents, "normalize", inputDataNameNormalize );
 
 		char inputDataNameLength[GEN_STRING_LENGTH_SSE_INPUT_NAME];
-		Gen_SSE_GetInputDataNameLength( m_type, m_numComponents, inputDataNameLength );
+		Gen_SSE_GetInputDataName( m_type, 1, m_numComponents, "length", inputDataNameLength );
 
 		String_Append(  &m_codeTests, "\n" );
 		String_Append(  &m_codeTests, "\t// SSE\n" );
-		String_Appendf( &m_codeTests, "\t%s in;\n", inputDataName );
+		String_Appendf( &m_codeTests, "\t%s in;\n", inputDataNameNormalize );
 		String_Append(  &m_codeTests, "\n" );
 		for ( u32 i = 0; i < m_numComponents; i++ ) {
 			char valueStr[GEN_STRING_LENGTH_NUMERIC_LITERAL];
@@ -674,15 +674,15 @@ void GeneratorVectorTests::GenerateTestDot() {
 	String_Appendf( &m_codeTests, "\t%s a = %s%s;\n", m_fullTypeName, m_fullTypeName, parmListA );
 	String_Appendf( &m_codeTests, "\t%s b = %s%s;\n", m_fullTypeName, m_fullTypeName, parmListB );
 	String_Append(  &m_codeTests, "\n" );
-	if ( Gen_IsFloatingPointType( m_type ) ) {
+	if ( Gen_TypeIsFloatingPoint( m_type ) ) {
 		String_Appendf( &m_codeTests, "\tTEMPER_EXPECT_TRUE( %s( dot( a, b ), %s ) );\n", floateqStr, minusOneStrDotAnswer );
 	} else {
 		String_Appendf( &m_codeTests, "\tTEMPER_EXPECT_TRUE( dot( a, b ) == %s );\n", minusOneStrDotAnswer );
 	}
 
 	if ( Gen_TypeSupportsSSE( m_type ) ) {
-		char inputDataName[GEN_STRING_LENGTH_SSE_INPUT_NAME];
-		Gen_SSE_GetInputDataNameDot( m_type, m_numComponents, inputDataName );
+		char inputDataNameDot[GEN_STRING_LENGTH_SSE_INPUT_NAME];
+		Gen_SSE_GetInputDataName( m_type, 1, m_numComponents, "dot", inputDataNameDot );
 
 		const char* sseLoadStr = Gen_SSE_GetFuncStrLoad( m_type );
 		const char* sseStoreStr = Gen_SSE_GetFuncStrStore( m_type );
@@ -711,7 +711,7 @@ void GeneratorVectorTests::GenerateTestDot() {
 		Gen_GetValuesArray2D( m_type, m_numComponents, 4, *valuesRHS, &m_codeTests );
 		String_Append(  &m_codeTests, "\n" );
 		
-		String_Appendf( &m_codeTests, "\t%s in;\n", inputDataName );
+		String_Appendf( &m_codeTests, "\t%s in;\n", inputDataNameDot );
 		String_Append(  &m_codeTests, "\n" );
 		for ( u32 i = 0; i < m_numComponents; i++ ) {
 			String_Appendf( &m_codeTests, "\tin.lhs[%d] = %s( componentsLHS[%d] );\n", i, sseLoadStr, i );
@@ -728,7 +728,7 @@ void GeneratorVectorTests::GenerateTestDot() {
 		String_Appendf( &m_codeTests, "\t%s( dotResults, results );\n", sseStoreStr );
 		String_Append(  &m_codeTests, "\n" );
 		for ( u32 i = 0; i < 4; i++ ) {
-			if ( Gen_IsFloatingPointType( m_type ) ) {
+			if ( Gen_TypeIsFloatingPoint( m_type ) ) {
 				String_Appendf( &m_codeTests, "\tTEMPER_EXPECT_TRUE( %s( dotResults[%d], %s ) );\n", floateqStr, i, minusOneStr );
 			} else {
 				String_Appendf( &m_codeTests, "\tTEMPER_EXPECT_TRUE( dotResults[%d] == %s );\n", i, minusOneStr );
@@ -745,7 +745,7 @@ void GeneratorVectorTests::GenerateTestDot() {
 }
 
 void GeneratorVectorTests::GenerateTestCross() {
-	if ( !Gen_IsFloatingPointType( m_type ) ) {
+	if ( !Gen_TypeIsFloatingPoint( m_type ) ) {
 		return;
 	}
 
@@ -784,7 +784,7 @@ void GeneratorVectorTests::GenerateTestCross() {
 }
 
 void GeneratorVectorTests::GenerateTestAngle() {
-	if ( !Gen_IsFloatingPointType( m_type ) ) {
+	if ( !Gen_TypeIsFloatingPoint( m_type ) ) {
 		return;
 	}
 
@@ -920,8 +920,8 @@ void GeneratorVectorTests::GenerateTestDistance() {
 	String_Appendf( &m_codeTests, "\tTEMPER_EXPECT_TRUE( %s( dist, answerDistance ) );\n", floateqStr );
 
 	if ( Gen_TypeSupportsSSE( m_type ) ) {
-		char inputDataName[GEN_STRING_LENGTH_SSE_INPUT_NAME];
-		Gen_SSE_GetInputDataNameDistance( m_type, m_numComponents, inputDataName );
+		char inputDataNameDistance[GEN_STRING_LENGTH_SSE_INPUT_NAME];
+		Gen_SSE_GetInputDataName( m_type, 1, m_numComponents, "distance", inputDataNameDistance );
 
 		const char* sseLoadStr = Gen_SSE_GetFuncStrLoad( m_type );
 		const char* sseStoreStr = Gen_SSE_GetFuncStrStore( m_type );
@@ -950,7 +950,7 @@ void GeneratorVectorTests::GenerateTestDistance() {
 		Gen_GetValuesArray2D( m_type, m_numComponents, 4, *valuesRHS, &m_codeTests );
 		String_Append(  &m_codeTests, "\n" );
 		
-		String_Appendf( &m_codeTests, "\t%s in;\n", inputDataName );
+		String_Appendf( &m_codeTests, "\t%s in;\n", inputDataNameDistance );
 		String_Append(  &m_codeTests, "\n" );
 		for ( u32 i = 0; i < m_numComponents; i++ ) {
 			String_Appendf( &m_codeTests, "\tin.lhs[%d] = %s( componentsLHS[%d] );\n", i, sseLoadStr, i );
@@ -1032,7 +1032,7 @@ void GeneratorVectorTests::GenerateTestPacking() {
 }
 
 void GeneratorVectorTests::GenerateTestSaturate() {
-	if ( !Gen_IsFloatingPointType( m_type ) ) {
+	if ( !Gen_TypeIsFloatingPoint( m_type ) ) {
 		return;
 	}
 
@@ -1065,7 +1065,7 @@ void GeneratorVectorTests::GenerateTestSaturate() {
 }
 
 void GeneratorVectorTests::GenerateTestLerp() {
-	if ( !Gen_IsFloatingPointType( m_type ) ) {
+	if ( !Gen_TypeIsFloatingPoint( m_type ) ) {
 		return;
 	}
 
@@ -1142,7 +1142,7 @@ void GeneratorVectorTests::GenerateTestStep() {
 }
 
 void GeneratorVectorTests::GenerateTestSmoothstep() {
-	if ( !Gen_IsFloatingPointType( m_type ) ) {
+	if ( !Gen_TypeIsFloatingPoint( m_type ) ) {
 		return;
 	}
 

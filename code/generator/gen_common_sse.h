@@ -2,32 +2,22 @@
 
 #include "gen_common.h"
 
-					// DM: this is probably not the best place for these to live
-extern void			Gen_GetValuesArray1D( const genType_t type, const u32 numValues, const float* values, stringBuilder_t* sb );
-extern void			Gen_GetValuesArray2D( const genType_t type, const u32 rows, const u32 cols, const float* values, stringBuilder_t* sb );
-
-extern void			Gen_SSE_GetInputDataNameRadians( const genType_t type, char* outString );
 extern void			Gen_SSE_Radians( const genType_t type, stringBuilder_t* sbHeader, stringBuilder_t* sbInl );
-
-extern void			Gen_SSE_GetInputDataNameDegrees( const genType_t type, char* outString );
 extern void			Gen_SSE_Degrees( const genType_t type, stringBuilder_t* sbHeader, stringBuilder_t* sbInl );
-
-extern void			Gen_SSE_GetInputDataNameLerp( const genType_t type, const u32 numComponents, char* outString );
 extern void			Gen_SSE_Lerp( const genType_t type, const u32 numComponents, stringBuilder_t* sbHeader, stringBuilder_t* sbInl );
 
-
+// DM: this is temporary
+// rolling out more types once the first pass is done
 inline bool32		Gen_TypeSupportsSSE( const genType_t type ) { return type == GEN_TYPE_FLOAT; }
 
 inline const char*	Gen_SSE_GetRegisterName( const genType_t type );
+inline void			Gen_SSE_GetInputDataName( const genType_t type, const u32 numRows, const u32 numCols, const char* function, char* outString );
 
 inline const char*	Gen_SSE_GetFuncStrLoad( const genType_t type );
 inline const char*	Gen_SSE_GetFuncStrStore( const genType_t type );
 inline const char*	Gen_SSE_GetFuncStrSet1( const genType_t type );
 
-inline const char*	Gen_SSE_GetFuncStrAdd( const genType_t type );
-inline const char*	Gen_SSE_GetFuncStrSub( const genType_t type );
-inline const char*	Gen_SSE_GetFuncStrMul( const genType_t type );
-inline const char*	Gen_SSE_GetFuncStrDiv( const genType_t type );
+inline void			Gen_SSE_GetIntrinsicArithmeticStr( const genType_t type, const genOpArithmetic_t op, char* outString );
 
 // inline const char*	Gen_SSE_GetFuncStrAcos( const genType_t type );
 
@@ -51,6 +41,16 @@ const char* Gen_SSE_GetRegisterName( const genType_t type ) {
 			printf( "ERROR: Bad genType_t passed into %s.\n", __FUNCTION__ );
 			return "ERROR";
 	}
+}
+
+void Gen_SSE_GetInputDataName( const genType_t type, const u32 numRows, const u32 numCols, const char* function, char* outString ) {
+	assert( function );
+	assert( outString );
+
+	char fullTypeName[GEN_STRING_LENGTH_TYPE_NAME];
+	Gen_GetFullTypeName( type, numRows, numCols, fullTypeName );
+
+	snprintf( outString, GEN_STRING_LENGTH_SSE_INPUT_NAME, "sse_input_%s_%s_t", function, fullTypeName );
 }
 
 const char* Gen_SSE_GetFuncStrLoad( const genType_t type ) {
@@ -107,76 +107,37 @@ const char* Gen_SSE_GetFuncStrSet1( const genType_t type ) {
 	}
 }
 
-const char* Gen_SSE_GetFuncStrAdd( const genType_t type ) {
+void Gen_SSE_GetIntrinsicArithmeticStr( const genType_t type, const genOpArithmetic_t op, char* outString ) {
+	assert( type < GEN_TYPE_COUNT );
+	assert( op < GEN_OP_ARITHMETIC_COUNT );
+
+	const char* opStr = GEN_OPERATOR_STRINGS_ARITHMETIC[op];
+
+	// const char* suffix = GetSSEIntrinsicSuffixStr( type );
+	const char* suffix = NULL;
 	switch ( type ) {
 		case GEN_TYPE_INT:
 		case GEN_TYPE_UINT:
+			suffix = "epi32";
+			break;
+
 		case GEN_TYPE_FLOAT:
-			return "_mm_add_ps";
+			suffix = "ps";
+			break;
 
 		case GEN_TYPE_DOUBLE:
-			return "_mm_add_pd";
+			suffix = "pd";
+			break;
 
 		case GEN_TYPE_BOOL:
 		case GEN_TYPE_COUNT:
 		default:
 			printf( "ERROR: Bad genType_t passed into %s.\n", __FUNCTION__ );
-			return "ERROR";
+			suffix = "ERROR";
+			break;
 	}
-}
 
-const char* Gen_SSE_GetFuncStrSub( const genType_t type ) {
-	switch ( type ) {
-		case GEN_TYPE_INT:
-		case GEN_TYPE_UINT:
-		case GEN_TYPE_FLOAT:
-			return "_mm_sub_ps";
-
-		case GEN_TYPE_DOUBLE:
-			return "_mm_sub_pd";
-
-		case GEN_TYPE_BOOL:
-		case GEN_TYPE_COUNT:
-		default:
-			printf( "ERROR: Bad genType_t passed into %s.\n", __FUNCTION__ );
-			return "ERROR";
-	}
-}
-
-const char* Gen_SSE_GetFuncStrMul( const genType_t type ) {
-	switch ( type ) {
-		case GEN_TYPE_INT:
-		case GEN_TYPE_UINT:
-		case GEN_TYPE_FLOAT:
-			return "_mm_mul_ps";
-
-		case GEN_TYPE_DOUBLE:
-			return "_mm_mul_pd";
-
-		case GEN_TYPE_BOOL:
-		case GEN_TYPE_COUNT:
-		default:
-			printf( "ERROR: Bad genType_t passed into %s.\n", __FUNCTION__ );
-			return "ERROR";
-	}
-}
-
-const char* Gen_SSE_GetFuncStrDiv( const genType_t type ) {
-	switch ( type ) {
-		case GEN_TYPE_INT:
-		case GEN_TYPE_UINT:
-		case GEN_TYPE_FLOAT:
-			return "_mm_div_ps";
-
-		case GEN_TYPE_DOUBLE:
-			return "_mm_div_pd";
-
-		case GEN_TYPE_BOOL:
-		case GEN_TYPE_COUNT:
-		default:
-			printf( "ERROR: Bad genType_t passed into %s.\n", __FUNCTION__ );
-			return "ERROR";
-	}
+	snprintf( outString, GEN_STRING_LENGTH_SSE_INTRINSIC, "_mm_%s_%s", opStr, suffix );
 }
 
 // const char* Gen_SSE_GetFuncStrAcos( const genType_t type ) {

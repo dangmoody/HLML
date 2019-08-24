@@ -1,10 +1,8 @@
-#if defined( __APPLE__ ) || defined( __unix__ )
+#if defined( __APPLE__ ) || defined( __linux__ )
 
 #include "os_helpers.h"
 
 #include "defines.h"
-
-#include "unix_helpers.h"
 
 #include <unistd.h>
 #include <signal.h>
@@ -14,6 +12,7 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
 #include <errno.h>
 
@@ -34,7 +33,7 @@ process_t OS_StartProcess( const char* name, const char** args, const u32 argCou
 
 	if ( pid == -1 ) {
 		int err = errno;
-		printf( "ERROR: fork() for \"%s\" failed: Errno: %s.\n", name, ErrnoToString( err ) );
+		printf( "ERROR: fork() for \"%s\" failed: Errno: %s.\n", name, strerror( err ) );
 	} else if ( pid == 0 ) {
 		// child process
 		printf( "Started child process: %s (%u).\n", name, getpid() );
@@ -83,7 +82,7 @@ bool32 OS_KillProcess( process_t process, const u32 exitCode ) {
 
 	if ( result != 0 ) {
 		int err = errno;
-		printf( "ERROR: Failed to terminate process \"%s\": Errno: %s.\n", proc->name, ErrnoToString( err ) );
+		printf( "ERROR: Failed to terminate process \"%s\": Errno: %s.\n", proc->name, strerror( err ) );
 	}
 
 	CloseProcessInternal( process );
@@ -101,35 +100,29 @@ u32 OS_WaitForProcess( const process_t process ) {
 
 	if ( waitResult > 0 ) {
 		if ( WIFEXITED( status ) && !WEXITSTATUS( status ) ) {
-			ret = 0;
+			// program exited fine
 		} else if ( WIFEXITED( status ) && WEXITSTATUS( status ) ) {
 			if ( WEXITSTATUS( status ) == 127 ) {
 				int err = errno;
-				printf( "ERROR: execv on \"%s\" failed: Errno: %s.\n", proc->name, ErrnoToString( err ) );
-
-				ret = 1;
+				printf( "ERROR: execv on \"%s\" failed: Errno: %s.\n", proc->name, strerror( err ) );
 			} else {
 				printf( "WARNING: program \"%s\" terminated successfully, but returned non-zero.\n", proc->name );
-
-				ret = 0;
 			}
 		} else {
 			int err = errno;
-			printf( "ERROR: program \"%s\" failed to terminate successfully: Errno: %s.\n", proc->name, ErrnoToString( err ) );
-
-			ret = 1;
+			printf( "ERROR: program \"%s\" failed to terminate successfully: Errno: %s.\n", proc->name, strerror( err ) );
 		}
 	} else if ( waitResult == 0 ) {
 		// process is still running
 	} else {
 		int err = errno;
-		printf( "ERROR: waitpid() failed on child process: \"%s\": Errno: %s.\n", proc->name, ErrnoToString( err ) );
+		printf( "ERROR: waitpid() failed on child process: \"%s\": Errno: %s.\n", proc->name, strerror( err ) );
 	}
 
 	CloseProcessInternal( process );
 
-	return ret;
+	return WEXITSTATUS( status );
 }
 
-#endif // defined( __APPLE__ ) || defined( __unix__ )
+#endif // defined( __APPLE__ ) || defined( __linux__ )
 

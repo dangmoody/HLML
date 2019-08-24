@@ -25,7 +25,6 @@ along with hlml.  If not, see <http://www.gnu.org/licenses/>.
 // GENERATED FILE.  DO NOT EDIT.
 
 #pragma once
-#pragma once
 
 #include "../hlml_constants.h"
 

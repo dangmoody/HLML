@@ -56,8 +56,9 @@ TEMPER_TEST( TestAssignment_int2x4 )
 	TEMPER_PASS();
 }
 
-TEMPER_TEST( TestArithmeticAddition_int2x4 )
+TEMPER_TEST( TestComponentWiseArithmeticAddition_int2x4 )
 {
+	// scalar
 	int2x4 answer = int2x4(
 		7, 7, 7, 7,
 		8, 8, 8, 8
@@ -78,8 +79,9 @@ TEMPER_TEST( TestArithmeticAddition_int2x4 )
 	TEMPER_PASS();
 }
 
-TEMPER_TEST( TestArithmeticSubtraction_int2x4 )
+TEMPER_TEST( TestComponentWiseArithmeticSubtraction_int2x4 )
 {
+	// scalar
 	int2x4 answer = int2x4(
 		5, 5, 5, 5,
 		4, 4, 4, 4
@@ -100,8 +102,55 @@ TEMPER_TEST( TestArithmeticSubtraction_int2x4 )
 	TEMPER_PASS();
 }
 
-TEMPER_TEST( TestArithmeticMultiplication_int2x4 )
+TEMPER_TEST( TestComponentWiseArithmeticMultiplication_int2x4 )
 {
+	// scalar
+	int2x4 answer = int2x4(
+		6, 6, 6, 6,
+		12, 12, 12, 12
+	);
+
+	int2x4 a = int2x4(
+		6, 6, 6, 6,
+		6, 6, 6, 6
+	);
+	int2x4 b = int2x4(
+		1, 1, 1, 1,
+		2, 2, 2, 2
+	);
+	int2x4 c = comp_mul( a, b );
+
+	TEMPER_EXPECT_TRUE( c == answer );
+
+	TEMPER_PASS();
+}
+
+TEMPER_TEST( TestComponentWiseArithmeticDivision_int2x4 )
+{
+	// scalar
+	int2x4 answer = int2x4(
+		6, 6, 6, 6,
+		3, 3, 3, 3
+	);
+
+	int2x4 a = int2x4(
+		6, 6, 6, 6,
+		6, 6, 6, 6
+	);
+	int2x4 b = int2x4(
+		1, 1, 1, 1,
+		2, 2, 2, 2
+	);
+	int2x4 c = comp_div( a, b );
+
+	TEMPER_EXPECT_TRUE( c == answer );
+
+	TEMPER_PASS();
+}
+
+TEMPER_TEST( TestMultiplyMatrix_int2x4 )
+{
+	// scalar
 	int2x2 answer = int2x2(
 		72, 72,
 		72, 72
@@ -118,28 +167,6 @@ TEMPER_TEST( TestArithmeticMultiplication_int2x4 )
 		6, 6
 	);
 	int2x2 c = a * b;
-
-	TEMPER_EXPECT_TRUE( c == answer );
-
-	TEMPER_PASS();
-}
-
-TEMPER_TEST( TestArithmeticDivision_int2x4 )
-{
-	int2x4 answer = int2x4(
-		6, 6, 6, 6,
-		3, 3, 3, 3
-	);
-
-	int2x4 a = int2x4(
-		6, 6, 6, 6,
-		6, 6, 6, 6
-	);
-	int2x4 b = int2x4(
-		1, 1, 1, 1,
-		2, 2, 2, 2
-	);
-	int2x4 c = a / b;
 
 	TEMPER_EXPECT_TRUE( c == answer );
 
@@ -413,6 +440,7 @@ TEMPER_TEST( TestBitwise_Unary_int2x4 )
 
 TEMPER_TEST( TestIdentity_int2x4 )
 {
+	// scalar
 	int2x4 id = int2x4(
 		1, 0, 0, 0,
 		0, 1, 0, 0
@@ -445,32 +473,6 @@ TEMPER_TEST( TestTranspose_int2x4 )
 	TEMPER_PASS();
 }
 
-TEMPER_TEST( TestCompMulDiv_int2x4 )
-{
-	int2x4 answer_mul = int2x4(
-		8, 8, 8, 8,
-		32, 32, 32, 32
-	);
-	int2x4 answer_div = int2x4(
-		2, 2, 2, 2,
-		2, 2, 2, 2
-	);
-
-	int2x4 a = int2x4(
-		4, 4, 4, 4,
-		8, 8, 8, 8
-	);
-	int2x4 b = int2x4(
-		2, 2, 2, 2,
-		4, 4, 4, 4
-	);
-
-	TEMPER_EXPECT_TRUE( comp_mul( a, b ) == answer_mul );
-	TEMPER_EXPECT_TRUE( comp_div( a, b ) == answer_div );
-
-	TEMPER_PASS();
-}
-
 TEMPER_TEST( TestScale_int2x4 )
 {
 	int2x4 mat;
@@ -487,10 +489,11 @@ TEMPER_TEST( TestScale_int2x4 )
 TEMPER_SUITE( Test_int2x4 )
 {
 	TEMPER_RUN_TEST( TestAssignment_int2x4 );
-	TEMPER_RUN_TEST( TestArithmeticAddition_int2x4 );
-	TEMPER_RUN_TEST( TestArithmeticSubtraction_int2x4 );
-	TEMPER_RUN_TEST( TestArithmeticMultiplication_int2x4 );
-	TEMPER_RUN_TEST( TestArithmeticDivision_int2x4 );
+	TEMPER_RUN_TEST( TestComponentWiseArithmeticAddition_int2x4 );
+	TEMPER_RUN_TEST( TestComponentWiseArithmeticSubtraction_int2x4 );
+	TEMPER_RUN_TEST( TestComponentWiseArithmeticMultiplication_int2x4 );
+	TEMPER_RUN_TEST( TestComponentWiseArithmeticDivision_int2x4 );
+	TEMPER_RUN_TEST( TestMultiplyMatrix_int2x4 );
 	TEMPER_RUN_TEST( TestIncrement_int2x4 );
 	TEMPER_RUN_TEST( TestDecrement_int2x4 );
 	TEMPER_RUN_TEST( TestRelational_int2x4 );
@@ -503,6 +506,5 @@ TEMPER_SUITE( Test_int2x4 )
 	TEMPER_RUN_TEST( TestBitwise_Unary_int2x4 );
 	TEMPER_RUN_TEST( TestIdentity_int2x4 );
 	TEMPER_RUN_TEST( TestTranspose_int2x4 );
-	TEMPER_RUN_TEST( TestCompMulDiv_int2x4 );
 	TEMPER_RUN_TEST( TestScale_int2x4 );
 }
