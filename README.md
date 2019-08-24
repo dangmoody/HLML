@@ -40,8 +40,7 @@ The main header files to include are:
 For SSE functionality, include the following files:
 * ```hlml_functions_scalar_sse.h```
 * ```hlml_functions_vector_sse.h```
-
-(Matrix SSE functionality is currently in-progress, stay tuned...)
+* ```hlml_functions_matrix_sse.h```
 
 For more detailed documentation on how to use HLML's SSE functionality, please refer to [the SSE document](https://github.com/floorman/HLML/blob/simd/doc/SSE.md).
 
@@ -57,6 +56,7 @@ Common Pitfalls
 * HLML is focused on mathemetical expressive power where possible, therefore:
 	* All matrices have the ```*``` operator overloaded to do matrix multiplication, **NOT** a component-wise multiplication.
 	* All square matrices with floating point types have the ```/``` operator overloaded to multiply the light-hand matrix by the inverse of the right-hand matrix, it does **NOT** do a component-wise divide.
+		* If you want to do a component-wise multiply or divide with matrices, you will need the functions `comp_mul` and `comp_div`, respectively.
 * To avoid conflicts with Windows ```min```/```max``` macros, you can define ```NOMINMAX``` before including HLML.
 
 
