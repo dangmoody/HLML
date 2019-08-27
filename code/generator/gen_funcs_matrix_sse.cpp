@@ -46,6 +46,47 @@ void Gen_SSE_MatrixIdentity( const genType_t type, const u32 numRows, const u32 
 	String_Append(  sbInl, "\n" );
 }
 
+void Gen_SSE_MatrixTranspose( const genType_t type, const u32 numRows, const u32 numCols, stringBuilder_t* sbHeader, stringBuilder_t* sbInl ) {
+	assert( numRows <= GEN_COMPONENT_COUNT_MAX );
+	assert( numRows >= GEN_COMPONENT_COUNT_MIN );
+	assert( numCols <= GEN_COMPONENT_COUNT_MAX );
+	assert( numCols >= GEN_COMPONENT_COUNT_MIN );
+
+	if ( !Gen_TypeSupportsSSE( type ) ) {
+		return;
+	}
+
+	char inputDataName[GEN_STRING_LENGTH_SSE_INPUT_NAME];
+	Gen_SSE_GetInputDataName( type, numRows, numCols, "transpose", inputDataName );
+
+	const char* registerName = Gen_SSE_GetRegisterName( type );
+
+	String_Appendf( sbHeader, "struct %s\n", inputDataName );
+	String_Append(  sbHeader, "{\n" );
+	String_Appendf( sbHeader, "\t%s m[%d][%d];\n", registerName, numRows, numCols );
+	String_Append(  sbHeader, "};\n" );
+	String_Append(  sbHeader, "\n" );
+
+	String_Appendf( sbHeader, "inline void transpose_sse( const %s* in, %s out_results[%d][%d] );\n", inputDataName, registerName, numCols, numRows );
+	String_Append(  sbHeader, "\n" );
+
+	String_Appendf( sbInl, "void transpose_sse( const %s* in, %s out_results[%d][%d] )\n", inputDataName, registerName, numCols, numRows );
+	String_Append(  sbInl, "{\n" );
+	String_Append(  sbInl, "\tassert( in );\n" );
+	String_Append(  sbInl, "\n" );
+	for ( u32 row = 0; row < numRows; row++ ) {
+		for ( u32 col = 0; col < numCols; col++ ) {
+			String_Appendf( sbInl, "\tout_results[%d][%d] = in->m[%d][%d];\n", col, row, row, col );
+		}
+
+		if ( row != numRows - 1 ) {
+			String_Append( sbInl, "\n" );
+		}
+	}
+	String_Append(  sbInl, "}\n" );
+	String_Append(  sbInl, "\n" );
+}
+
 void Gen_SSE_MatrixArithmeticComponentWise( const genType_t type, const u32 numRows, const u32 numCols, const genOpArithmetic_t op, stringBuilder_t* sbHeader, stringBuilder_t* sbInl ) {
 	assert( numRows <= GEN_COMPONENT_COUNT_MAX );
 	assert( numRows >= GEN_COMPONENT_COUNT_MIN );

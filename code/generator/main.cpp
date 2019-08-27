@@ -499,7 +499,7 @@ static bool32 GenerateFunctionsMatrixSSE( void ) {
 				String_Appendf( &contentInl, "// %s\n", fullTypeName );
 
 				// Gen_SSE_MatrixIdentity( type, row, col, &contentHeader, &contentInl );
-				// Gen_SSE_MatrixTranspose( type, row, col, &contentHeader, &contentInl );
+				Gen_SSE_MatrixTranspose( type, row, col, &contentHeader, &contentInl );
 
 				// Gen_SSE_MatrixInverse( type, row, col, &contentHeader, &contentInl );
 				// Gen_SSE_MatrixDeterminant( type, row, col, &contentHeader, &contentInl );

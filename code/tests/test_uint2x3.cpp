@@ -456,6 +456,7 @@ TEMPER_TEST( TestIdentity_uint2x3 )
 
 TEMPER_TEST( TestTranspose_uint2x3 )
 {
+	// scalar
 	uint2x3 mat = uint2x3(
 		0U, 1U, 2U,
 		4U, 5U, 6U

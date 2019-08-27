@@ -25,6 +25,17 @@ along with hlml.  If not, see <http://www.gnu.org/licenses/>.
 // GENERATED FILE.  DO NOT EDIT.
 
 // float2x2
+void transpose_sse( const sse_input_transpose_float2x2_t* in, __m128 out_results[2][2] )
+{
+	assert( in );
+
+	out_results[0][0] = in->m[0][0];
+	out_results[1][0] = in->m[0][1];
+
+	out_results[0][1] = in->m[1][0];
+	out_results[1][1] = in->m[1][1];
+}
+
 void comp_add_sse( const sse_input_add_float2x2_t* in, __m128 out_results[2][2] )
 {
 	assert( in );
@@ -87,6 +98,19 @@ void scale_sse( const sse_input_scale_float2x2_t* in, __m128 out_results[2] )
 
 
 // float2x3
+void transpose_sse( const sse_input_transpose_float2x3_t* in, __m128 out_results[3][2] )
+{
+	assert( in );
+
+	out_results[0][0] = in->m[0][0];
+	out_results[1][0] = in->m[0][1];
+	out_results[2][0] = in->m[0][2];
+
+	out_results[0][1] = in->m[1][0];
+	out_results[1][1] = in->m[1][1];
+	out_results[2][1] = in->m[1][2];
+}
+
 void comp_add_sse( const sse_input_add_float2x3_t* in, __m128 out_results[2][3] )
 {
 	assert( in );
@@ -165,6 +189,21 @@ void scale_sse( const sse_input_scale_float2x3_t* in, __m128 out_results[2] )
 
 
 // float2x4
+void transpose_sse( const sse_input_transpose_float2x4_t* in, __m128 out_results[4][2] )
+{
+	assert( in );
+
+	out_results[0][0] = in->m[0][0];
+	out_results[1][0] = in->m[0][1];
+	out_results[2][0] = in->m[0][2];
+	out_results[3][0] = in->m[0][3];
+
+	out_results[0][1] = in->m[1][0];
+	out_results[1][1] = in->m[1][1];
+	out_results[2][1] = in->m[1][2];
+	out_results[3][1] = in->m[1][3];
+}
+
 void comp_add_sse( const sse_input_add_float2x4_t* in, __m128 out_results[2][4] )
 {
 	assert( in );
@@ -252,6 +291,20 @@ void scale_sse( const sse_input_scale_float2x4_t* in, __m128 out_results[2] )
 
 
 // float3x2
+void transpose_sse( const sse_input_transpose_float3x2_t* in, __m128 out_results[2][3] )
+{
+	assert( in );
+
+	out_results[0][0] = in->m[0][0];
+	out_results[1][0] = in->m[0][1];
+
+	out_results[0][1] = in->m[1][0];
+	out_results[1][1] = in->m[1][1];
+
+	out_results[0][2] = in->m[2][0];
+	out_results[1][2] = in->m[2][1];
+}
+
 void comp_add_sse( const sse_input_add_float3x2_t* in, __m128 out_results[3][2] )
 {
 	assert( in );
@@ -337,6 +390,23 @@ void scale_sse( const sse_input_scale_float3x2_t* in, __m128 out_results[2] )
 
 
 // float3x3
+void transpose_sse( const sse_input_transpose_float3x3_t* in, __m128 out_results[3][3] )
+{
+	assert( in );
+
+	out_results[0][0] = in->m[0][0];
+	out_results[1][0] = in->m[0][1];
+	out_results[2][0] = in->m[0][2];
+
+	out_results[0][1] = in->m[1][0];
+	out_results[1][1] = in->m[1][1];
+	out_results[2][1] = in->m[1][2];
+
+	out_results[0][2] = in->m[2][0];
+	out_results[1][2] = in->m[2][1];
+	out_results[2][2] = in->m[2][2];
+}
+
 void comp_add_sse( const sse_input_add_float3x3_t* in, __m128 out_results[3][3] )
 {
 	assert( in );
@@ -436,6 +506,26 @@ void scale_sse( const sse_input_scale_float3x3_t* in, __m128 out_results[3] )
 
 
 // float3x4
+void transpose_sse( const sse_input_transpose_float3x4_t* in, __m128 out_results[4][3] )
+{
+	assert( in );
+
+	out_results[0][0] = in->m[0][0];
+	out_results[1][0] = in->m[0][1];
+	out_results[2][0] = in->m[0][2];
+	out_results[3][0] = in->m[0][3];
+
+	out_results[0][1] = in->m[1][0];
+	out_results[1][1] = in->m[1][1];
+	out_results[2][1] = in->m[1][2];
+	out_results[3][1] = in->m[1][3];
+
+	out_results[0][2] = in->m[2][0];
+	out_results[1][2] = in->m[2][1];
+	out_results[2][2] = in->m[2][2];
+	out_results[3][2] = in->m[2][3];
+}
+
 void comp_add_sse( const sse_input_add_float3x4_t* in, __m128 out_results[3][4] )
 {
 	assert( in );
@@ -548,6 +638,23 @@ void scale_sse( const sse_input_scale_float3x4_t* in, __m128 out_results[3] )
 
 
 // float4x2
+void transpose_sse( const sse_input_transpose_float4x2_t* in, __m128 out_results[2][4] )
+{
+	assert( in );
+
+	out_results[0][0] = in->m[0][0];
+	out_results[1][0] = in->m[0][1];
+
+	out_results[0][1] = in->m[1][0];
+	out_results[1][1] = in->m[1][1];
+
+	out_results[0][2] = in->m[2][0];
+	out_results[1][2] = in->m[2][1];
+
+	out_results[0][3] = in->m[3][0];
+	out_results[1][3] = in->m[3][1];
+}
+
 void comp_add_sse( const sse_input_add_float4x2_t* in, __m128 out_results[4][2] )
 {
 	assert( in );
@@ -649,6 +756,27 @@ void scale_sse( const sse_input_scale_float4x2_t* in, __m128 out_results[2] )
 
 
 // float4x3
+void transpose_sse( const sse_input_transpose_float4x3_t* in, __m128 out_results[3][4] )
+{
+	assert( in );
+
+	out_results[0][0] = in->m[0][0];
+	out_results[1][0] = in->m[0][1];
+	out_results[2][0] = in->m[0][2];
+
+	out_results[0][1] = in->m[1][0];
+	out_results[1][1] = in->m[1][1];
+	out_results[2][1] = in->m[1][2];
+
+	out_results[0][2] = in->m[2][0];
+	out_results[1][2] = in->m[2][1];
+	out_results[2][2] = in->m[2][2];
+
+	out_results[0][3] = in->m[3][0];
+	out_results[1][3] = in->m[3][1];
+	out_results[2][3] = in->m[3][2];
+}
+
 void comp_add_sse( const sse_input_add_float4x3_t* in, __m128 out_results[4][3] )
 {
 	assert( in );
@@ -768,6 +896,31 @@ void scale_sse( const sse_input_scale_float4x3_t* in, __m128 out_results[3] )
 
 
 // float4x4
+void transpose_sse( const sse_input_transpose_float4x4_t* in, __m128 out_results[4][4] )
+{
+	assert( in );
+
+	out_results[0][0] = in->m[0][0];
+	out_results[1][0] = in->m[0][1];
+	out_results[2][0] = in->m[0][2];
+	out_results[3][0] = in->m[0][3];
+
+	out_results[0][1] = in->m[1][0];
+	out_results[1][1] = in->m[1][1];
+	out_results[2][1] = in->m[1][2];
+	out_results[3][1] = in->m[1][3];
+
+	out_results[0][2] = in->m[2][0];
+	out_results[1][2] = in->m[2][1];
+	out_results[2][2] = in->m[2][2];
+	out_results[3][2] = in->m[2][3];
+
+	out_results[0][3] = in->m[3][0];
+	out_results[1][3] = in->m[3][1];
+	out_results[2][3] = in->m[3][2];
+	out_results[3][3] = in->m[3][3];
+}
+
 void comp_add_sse( const sse_input_add_float4x4_t* in, __m128 out_results[4][4] )
 {
 	assert( in );

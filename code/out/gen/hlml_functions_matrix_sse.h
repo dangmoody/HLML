@@ -29,6 +29,13 @@ along with hlml.  If not, see <http://www.gnu.org/licenses/>.
 #include <immintrin.h>
 
 // float2x2
+struct sse_input_transpose_float2x2_t
+{
+	__m128 m[2][2];
+};
+
+inline void transpose_sse( const sse_input_transpose_float2x2_t* in, __m128 out_results[2][2] );
+
 struct sse_input_add_float2x2_t
 {
 	__m128 lhs[2][2];
@@ -71,6 +78,13 @@ inline void scale_sse( const sse_input_scale_float2x2_t* in, __m128 out_results[
 
 
 // float2x3
+struct sse_input_transpose_float2x3_t
+{
+	__m128 m[2][3];
+};
+
+inline void transpose_sse( const sse_input_transpose_float2x3_t* in, __m128 out_results[3][2] );
+
 struct sse_input_add_float2x3_t
 {
 	__m128 lhs[2][3];
@@ -121,6 +135,13 @@ inline void scale_sse( const sse_input_scale_float2x3_t* in, __m128 out_results[
 
 
 // float2x4
+struct sse_input_transpose_float2x4_t
+{
+	__m128 m[2][4];
+};
+
+inline void transpose_sse( const sse_input_transpose_float2x4_t* in, __m128 out_results[4][2] );
+
 struct sse_input_add_float2x4_t
 {
 	__m128 lhs[2][4];
@@ -171,6 +192,13 @@ inline void scale_sse( const sse_input_scale_float2x4_t* in, __m128 out_results[
 
 
 // float3x2
+struct sse_input_transpose_float3x2_t
+{
+	__m128 m[3][2];
+};
+
+inline void transpose_sse( const sse_input_transpose_float3x2_t* in, __m128 out_results[2][3] );
+
 struct sse_input_add_float3x2_t
 {
 	__m128 lhs[3][2];
@@ -221,6 +249,13 @@ inline void scale_sse( const sse_input_scale_float3x2_t* in, __m128 out_results[
 
 
 // float3x3
+struct sse_input_transpose_float3x3_t
+{
+	__m128 m[3][3];
+};
+
+inline void transpose_sse( const sse_input_transpose_float3x3_t* in, __m128 out_results[3][3] );
+
 struct sse_input_add_float3x3_t
 {
 	__m128 lhs[3][3];
@@ -271,6 +306,13 @@ inline void scale_sse( const sse_input_scale_float3x3_t* in, __m128 out_results[
 
 
 // float3x4
+struct sse_input_transpose_float3x4_t
+{
+	__m128 m[3][4];
+};
+
+inline void transpose_sse( const sse_input_transpose_float3x4_t* in, __m128 out_results[4][3] );
+
 struct sse_input_add_float3x4_t
 {
 	__m128 lhs[3][4];
@@ -321,6 +363,13 @@ inline void scale_sse( const sse_input_scale_float3x4_t* in, __m128 out_results[
 
 
 // float4x2
+struct sse_input_transpose_float4x2_t
+{
+	__m128 m[4][2];
+};
+
+inline void transpose_sse( const sse_input_transpose_float4x2_t* in, __m128 out_results[2][4] );
+
 struct sse_input_add_float4x2_t
 {
 	__m128 lhs[4][2];
@@ -371,6 +420,13 @@ inline void scale_sse( const sse_input_scale_float4x2_t* in, __m128 out_results[
 
 
 // float4x3
+struct sse_input_transpose_float4x3_t
+{
+	__m128 m[4][3];
+};
+
+inline void transpose_sse( const sse_input_transpose_float4x3_t* in, __m128 out_results[3][4] );
+
 struct sse_input_add_float4x3_t
 {
 	__m128 lhs[4][3];
@@ -421,6 +477,13 @@ inline void scale_sse( const sse_input_scale_float4x3_t* in, __m128 out_results[
 
 
 // float4x4
+struct sse_input_transpose_float4x4_t
+{
+	__m128 m[4][4];
+};
+
+inline void transpose_sse( const sse_input_transpose_float4x4_t* in, __m128 out_results[4][4] );
+
 struct sse_input_add_float4x4_t
 {
 	__m128 lhs[4][4];

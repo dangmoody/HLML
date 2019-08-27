@@ -508,6 +508,7 @@ TEMPER_TEST( TestIdentity_uint3x4 )
 
 TEMPER_TEST( TestTranspose_uint3x4 )
 {
+	// scalar
 	uint3x4 mat = uint3x4(
 		0U, 1U, 2U, 3U,
 		4U, 5U, 6U, 7U,

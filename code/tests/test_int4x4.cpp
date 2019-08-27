@@ -577,6 +577,7 @@ TEMPER_TEST( TestIdentity_int4x4 )
 
 TEMPER_TEST( TestTranspose_int4x4 )
 {
+	// scalar
 	int4x4 mat = int4x4(
 		0, 1, 2, 3,
 		4, 5, 6, 7,

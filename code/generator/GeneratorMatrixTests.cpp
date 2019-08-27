@@ -783,11 +783,56 @@ void GeneratorMatrixTests::GenerateTestTranspose() {
 
 	String_Appendf( &m_codeTests, "TEMPER_TEST( %s )\n", testName );
 	String_Append(  &m_codeTests, "{\n" );
+	String_Append(  &m_codeTests, "\t// scalar\n" );
 	String_Appendf( &m_codeTests, "\t%s mat = %s%s;\n", m_fullTypeName, m_fullTypeName, parmListNormal );
 	String_Appendf( &m_codeTests, "\t%s trans = transpose( mat );\n", transposeTypeName );
 	String_Append(  &m_codeTests, "\n" );
 	String_Appendf( &m_codeTests, "\tTEMPER_EXPECT_TRUE( trans == %s%s );\n", transposeTypeName, parmListTransposed );
 	String_Append(  &m_codeTests, "\n" );
+
+	if ( Gen_TypeSupportsSSE( m_type ) ) {
+		char inputDataName[GEN_STRING_LENGTH_SSE_INPUT_NAME];
+		Gen_SSE_GetInputDataName( m_type, m_numRows, m_numCols, "transpose", inputDataName );
+
+		const char* registerName = Gen_SSE_GetRegisterName( m_type );
+
+		const char* set1FuncStr		= Gen_SSE_GetFuncStrSet1( m_type );
+		const char* storeFuncStr	= Gen_SSE_GetFuncStrStore( m_type );
+
+		const char* floateqStr = Gen_GetFuncNameFloateq( m_type );
+
+		String_Append(  &m_codeTests, "\t// SSE\n" );
+		String_Appendf( &m_codeTests, "\t%s results[%d][%d];\n", registerName, m_numCols, m_numRows );
+		String_Appendf( &m_codeTests, "\t%s in;\n", inputDataName );
+		String_Append(  &m_codeTests, "\n" );
+		for ( u32 row = 0; row < m_numRows; row++ ) {
+			String_Appendf( &m_codeTests, "\t// row %d\n", row );
+			for ( u32 col = 0; col < m_numCols; col++ ) {
+				char valueStr[GEN_STRING_LENGTH_NUMERIC_LITERAL];
+				Gen_GetNumericLiteral( m_type, valuesNormal[row][col], valueStr, 1 );
+
+				String_Appendf( &m_codeTests, "\tin.m[%d][%d] = %s( %s );\n", row, col, set1FuncStr, valueStr );
+			}
+
+			String_Appendf( &m_codeTests, "\n" );
+		}
+		String_Appendf( &m_codeTests, "\ttranspose_sse( &in, results );\n" );
+		String_Append(  &m_codeTests, "\n" );
+		String_Appendf( &m_codeTests, "\t%s transposeResults[4];\n", m_memberTypeString );
+
+		for ( u32 col = 0; col < m_numCols; col++ ) {
+			for ( u32 row = 0; row < m_numRows; row++ ) {
+				String_Appendf( &m_codeTests, "\t%s( transposeResults, results[%d][%d] );\n", storeFuncStr, col, row );
+
+				for ( u32 i = 0; i < 4; i++ ) {
+					String_Appendf( &m_codeTests, "\tTEMPER_EXPECT_TRUE( %s( transposeResults[%d], trans[%d][%d] ) );\n", floateqStr, i, col, row );
+				}
+
+				String_Append( &m_codeTests, "\n" );
+			}
+		}
+	}
+
 	String_Append(  &m_codeTests, "\tTEMPER_PASS();\n" );
 	String_Append(  &m_codeTests, "}\n" );
 	String_Append(  &m_codeTests, "\n" );

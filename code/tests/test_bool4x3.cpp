@@ -99,6 +99,7 @@ TEMPER_TEST( TestIdentity_bool4x3 )
 
 TEMPER_TEST( TestTranspose_bool4x3 )
 {
+	// scalar
 	bool4x3 mat = bool4x3(
 		false, true, true,
 		true, true, true,
