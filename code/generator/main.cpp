@@ -839,7 +839,7 @@ static bool32 GenerateTestsMain( void ) {
 
 // DM: running doxygen on MacOS isn't supported yet because I don't have access to a Mac
 // when I get access to one, I'll get it working
-#ifndef __APPLE__
+#ifdef _WIN32
 static bool32 GenerateDoxygenPages( void ) {
 	printf( "Generating doxygen documentation..." );
 
@@ -850,7 +850,7 @@ static bool32 GenerateDoxygenPages( void ) {
 	doxygenPath = "doxygen/linux/doxygen";
 #elif defined( __APPLE__ )
 	doxygenPath = "doxygen/macos/doxygen";
-#endif
+#endif // defined( _WIN32 )
 
 	const char* args[] = {
 		"doxygen/config"
@@ -870,7 +870,7 @@ static bool32 GenerateDoxygenPages( void ) {
 
 	return true;
 }
-#endif
+#endif // _WIN32
 
 #define FAIL_IF( x, msg ) \
 	do { \
@@ -940,7 +940,10 @@ int main( int argc, char** argv ) {
 
 	printf( "\n" );
 
-#ifndef __APPLE__
+	// DM: temporarily turning off documentation generation for all non-windows configs
+	// because GitHub has a limit on LFS space, which the doxygen executable for linux exceeds
+	// TODO(DM): turn this back on when a solution for that gets found
+#ifdef _WIN32
 	printf( "======= Generating doxygen documentation pages. =======\n" );
 	FAIL_IF( !GenerateDoxygenPages(), "Failed generated doxygen pages.\n" );
 	printf( "======= Done. =======\n\n" );
