@@ -1075,7 +1075,7 @@ void GeneratorMatrixTests::GenerateTestTranslate() {
 
 	pos += snprintf( parmListTranslateVector + pos, GEN_STRING_LENGTH_PARM_LIST_VECTOR, "( " );
 	for ( u32 col = 0; col < m_numCols - 1; col++ ) {
-		float number = static_cast<float>( col + baseNumber );
+		float number = (float) ( col + baseNumber );
 
 		Gen_GetNumericLiteral( m_type, number, valueStr, 1 );
 
@@ -1101,7 +1101,7 @@ void GeneratorMatrixTests::GenerateTestTranslate() {
 				pos += snprintf( parmListTranslated + pos, GEN_STRING_LENGTH_PARM_LIST_MATRIX, "%s", valueStr );
 			} else {
 				if ( col == m_numCols - 1 ) {
-					float number = static_cast<float>( row + baseNumber );
+					float number = (float) ( row + baseNumber );
 
 					Gen_GetNumericLiteral( m_type, number, valueStr, 1 );
 
@@ -1159,7 +1159,7 @@ void GeneratorMatrixTests::GenerateTestRotate() {
 	snprintf( testName, GEN_STRING_LENGTH_TEST_NAME, "TestRotate_%s", m_fullTypeName );
 
 	float rotDegrees = 45.0f;
-	float rotRadians = rotDegrees * static_cast<float>( M_PI ) / 180.0f;
+	float rotRadians = rotDegrees * (float)( M_PI ) / 180.0f;
 
 	float cosR = cosf( rotRadians );
 	float sinR = sinf( rotRadians );

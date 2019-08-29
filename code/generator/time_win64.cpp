@@ -20,19 +20,19 @@ s64 Time_Now( void ) {
 }
 
 float64 Time_NowSeconds( void ) {
-	return static_cast<float64>( Time_Now() ) / g_frequency;
+	return (float64) Time_Now() / g_frequency;
 }
 
 float64 Time_NowMS( void ) {
-	return static_cast<float64>( ( Time_Now() * 1000 ) / g_frequency );
+	return (float64) ( ( Time_Now() * 1000 ) / g_frequency );
 }
 
 float64 Time_NowUS( void ) {
-	return static_cast<float64>( ( Time_Now() * 1000000 ) / g_frequency );
+	return (float64) ( ( Time_Now() * 1000000 ) / g_frequency );
 }
 
 float64 Time_NowNS( void ) {
-	return static_cast<float64>( ( Time_Now() * 1000000000 ) / g_frequency );
+	return (float64) ( ( Time_Now() * 1000000000 ) / g_frequency );
 }
 
 #endif // _WIN32

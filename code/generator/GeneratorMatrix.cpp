@@ -332,7 +332,7 @@ void GeneratorMatrix::GenerateOperatorsArray() {
 void GeneratorMatrix::GenerateOperatorsEquality() {
 	// operator==
 	{
-		Gen_DocOperatorEquals( &m_codeHeader, m_fullTypeName );
+		Doc_OperatorEquals( &m_codeHeader, m_fullTypeName );
 		String_Appendf( &m_codeHeader, "inline bool operator==( const %s& lhs, const %s& rhs );\n", m_fullTypeName, m_fullTypeName );
 		String_Append(  &m_codeHeader, "\n" );
 

@@ -299,7 +299,7 @@ void GeneratorVector::GenerateOperatorsArray() {
 void GeneratorVector::GenerateOperatorsEquality() {
 	// operator==
 	{
-		Gen_DocOperatorEquals( &m_codeHeader, m_fullTypeName );
+		Doc_OperatorEquals( &m_codeHeader, m_fullTypeName );
 		String_Appendf( &m_codeHeader, "inline bool operator==( const %s& lhs, const %s& rhs );\n", m_fullTypeName, m_fullTypeName );
 		String_Append(  &m_codeHeader, "\n" );
 
@@ -338,7 +338,7 @@ void GeneratorVector::GenerateSwizzleFuncs() {
 	// for every vector type compatible with this one (that is: for each vector type with less components than this one)
 	for ( u32 vecComponents = GEN_COMPONENT_COUNT_MIN; vecComponents <= m_numComponents; vecComponents++ ) {
 		// generate every possible function combination ("xxxx" -> "xwzx" (etc.) -> "wwww")
-		u32 numFuncs = static_cast<u32>( pow( vecComponents, vecComponents ) );
+		u32 numFuncs = (u32) pow( vecComponents, vecComponents );
 		for ( u32 funcIndex = 0; funcIndex < numFuncs; funcIndex++ ) {
 			// convert 1d index into 4d
 			// follows the general formula: xn = ( ( Index - Index( x1, ..., x{n-1} ) ) / Product( D1, ..., D{N-1} ) ) % Dn

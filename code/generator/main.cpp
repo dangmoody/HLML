@@ -76,7 +76,7 @@ static bool32 GenerateVectors( void ) {
 	GeneratorVector gen;
 
 	for ( u32 typeIndex = 0; typeIndex < GEN_TYPE_COUNT; typeIndex++ ) {
-		genType_t type = static_cast<genType_t>( typeIndex );
+		genType_t type = (genType_t) typeIndex;
 
 		const char* typeString = Gen_GetTypeString( type );
 
@@ -98,7 +98,7 @@ static bool32 GenerateMatrices( void ) {
 	GeneratorMatrix gen;
 
 	for ( u32 typeIndex = 0; typeIndex < GEN_TYPE_COUNT; typeIndex++ ) {
-		genType_t type = static_cast<genType_t>( typeIndex );
+		genType_t type = (genType_t) typeIndex;
 
 		const char* typeString = Gen_GetTypeString( type );
 
@@ -135,7 +135,7 @@ static bool32 GenerateFunctionsScalar( void ) {
 		"\n" );
 
 	for ( u32 typeIndex = 0; typeIndex < GEN_TYPE_COUNT; typeIndex++ ) {
-		genType_t type = static_cast<genType_t>( typeIndex );
+		genType_t type = (genType_t) typeIndex;
 
 		if ( type == GEN_TYPE_BOOL ) {
 			continue;
@@ -200,7 +200,7 @@ static bool32 GenerateFunctionsVector( void ) {
 	String_Append( &contentInl, "#include \"" GEN_FILENAME_OPERATORS_VECTOR ".h\"\n" );
 
 	for ( u32 typeIndex = 0; typeIndex < GEN_TYPE_COUNT; typeIndex++ ) {
-		genType_t type = static_cast<genType_t>( typeIndex );
+		genType_t type = (genType_t) typeIndex;
 
 		if ( type == GEN_TYPE_BOOL ) {
 			continue;
@@ -217,7 +217,7 @@ static bool32 GenerateFunctionsVector( void ) {
 	String_Append( &contentInl, "\n" );
 
 	for ( u32 typeIndex = 0; typeIndex < GEN_TYPE_COUNT; typeIndex++ ) {
-		genType_t type = static_cast<genType_t>( typeIndex );
+		genType_t type = (genType_t) typeIndex;
 
 		if ( type == GEN_TYPE_BOOL ) {
 			continue;
@@ -284,7 +284,7 @@ static bool32 GenerateFunctionsMatrix( void ) {
 	String_Append( &contentInl, "#include \"" GEN_FILENAME_OPERATORS_MATRIX ".h\"\n" );
 
 	for ( u32 typeIndex = 0; typeIndex < GEN_TYPE_COUNT; typeIndex++ ) {
-		genType_t type = static_cast<genType_t>( typeIndex );
+		genType_t type = (genType_t) typeIndex;
 
 		const char* typeString = Gen_GetTypeString( type );
 
@@ -301,7 +301,7 @@ static bool32 GenerateFunctionsMatrix( void ) {
 	String_Appendf( &contentInl, "\n" );
 
 	for ( u32 typeIndex = 0; typeIndex < GEN_TYPE_COUNT; typeIndex++ ) {
-		genType_t type = static_cast<genType_t>( typeIndex );
+		genType_t type = (genType_t) typeIndex;
 
 		for ( u32 row = GEN_COMPONENT_COUNT_MIN; row <= GEN_COMPONENT_COUNT_MAX; row++ ) {
 			for ( u32 col = GEN_COMPONENT_COUNT_MIN; col <= GEN_COMPONENT_COUNT_MAX; col++ ) {
@@ -370,7 +370,7 @@ static bool32 GenerateFunctionsScalarSSE( void ) {
 		"\n" );
 
 	for ( u32 typeIndex = 0; typeIndex < GEN_TYPE_COUNT; typeIndex++ ) {
-		genType_t type = static_cast<genType_t>( typeIndex );
+		genType_t type = (genType_t) typeIndex;
 
 		if ( !Gen_TypeSupportsSSE( type ) ) {
 			continue;
@@ -424,7 +424,7 @@ static bool32 GenerateFunctionsVectorSSE( void ) {
 		"\n" );
 
 	for ( u32 typeIndex = 0; typeIndex < GEN_TYPE_COUNT; typeIndex++ ) {
-		genType_t type = static_cast<genType_t>( typeIndex );
+		genType_t type = (genType_t) typeIndex;
 
 		if ( !Gen_TypeSupportsSSE( type ) ) {
 			continue;
@@ -551,7 +551,7 @@ static bool32 GenerateOperatorsVector( void ) {
 
 	// includes
 	for ( u32 typeIndex = 0; typeIndex < GEN_TYPE_COUNT; typeIndex++ ) {
-		genType_t type = static_cast<genType_t>( typeIndex );
+		genType_t type = (genType_t) typeIndex;
 
 		const char* typeString = Gen_GetTypeString( type );
 
@@ -565,7 +565,7 @@ static bool32 GenerateOperatorsVector( void ) {
 
 	// header and inl code
 	for ( u32 typeIndex = 0; typeIndex < GEN_TYPE_COUNT; typeIndex++ ) {
-		genType_t type = static_cast<genType_t>( typeIndex );
+		genType_t type = (genType_t) typeIndex;
 
 		if ( type == GEN_TYPE_BOOL ) {
 			continue;
@@ -620,7 +620,7 @@ static bool32 GenerateOperatorsMatrix( void ) {
 
 	// includes
 	for ( u32 typeIndex = 0; typeIndex < GEN_TYPE_COUNT; typeIndex++ ) {
-		genType_t type = static_cast<genType_t>( typeIndex );
+		genType_t type = (genType_t) typeIndex;
 
 		if ( type == GEN_TYPE_BOOL ) {
 			continue;
@@ -640,7 +640,7 @@ static bool32 GenerateOperatorsMatrix( void ) {
 
 	// header and inl code
 	for ( u32 typeIndex = 0; typeIndex < GEN_TYPE_COUNT; typeIndex++ ) {
-		genType_t type = static_cast<genType_t>( typeIndex );
+		genType_t type = (genType_t) typeIndex;
 
 		if ( type == GEN_TYPE_BOOL ) {
 			continue;
@@ -683,7 +683,7 @@ static bool32 GenerateTestsScalar( void ) {
 	GeneratorScalarTest gen;
 
 	for ( u32 typeIndex = 0; typeIndex < GEN_TYPE_COUNT; typeIndex++ ) {
-		genType_t type = static_cast<genType_t>( typeIndex );
+		genType_t type = (genType_t) typeIndex;
 
 		if ( type == GEN_TYPE_BOOL ) {
 			continue;
@@ -707,7 +707,7 @@ static bool32 GenerateTestsVector( void ) {
 	GeneratorVectorTests gen;
 
 	for ( u32 typeIndex = 0; typeIndex < GEN_TYPE_COUNT; typeIndex++ ) {
-		genType_t type = static_cast<genType_t>( typeIndex );
+		genType_t type = (genType_t) typeIndex;
 
 		const char* typeString = Gen_GetTypeString( type );
 
@@ -729,7 +729,7 @@ static bool32 GenerateTestsMatrix( void ) {
 	GeneratorMatrixTests gen;
 
 	for ( u32 typeIndex = 0; typeIndex < GEN_TYPE_COUNT; typeIndex++ ) {
-		genType_t type = static_cast<genType_t>( typeIndex );
+		genType_t type = (genType_t) typeIndex;
 
 		const char* typeString = Gen_GetTypeString( type );
 
@@ -769,7 +769,7 @@ static bool32 GenerateTestsMain( void ) {
 	String_Append( &sb, "\n" );
 
 	for ( u32 typeIndex = 0; typeIndex < GEN_TYPE_COUNT; typeIndex++ ) {
-		genType_t type = static_cast<genType_t>( typeIndex );
+		genType_t type = (genType_t) typeIndex;
 
 		for ( u32 row = 1; row <= GEN_COMPONENT_COUNT_MAX; row++ ) {
 			for ( u32 col = 1; col <= GEN_COMPONENT_COUNT_MAX; col++ ) {
@@ -798,7 +798,7 @@ static bool32 GenerateTestsMain( void ) {
 	// so if these fail, the problem might be easier to diagnose
 	String_Append( &sb, "\t// scalar tests\n" );
 	for ( u32 typeIndex = 0; typeIndex < GEN_TYPE_COUNT; typeIndex++ ) {
-		genType_t type = static_cast<genType_t>( typeIndex );
+		genType_t type = (genType_t) typeIndex;
 
 		if ( type == GEN_TYPE_BOOL ) {
 			continue;
@@ -812,7 +812,7 @@ static bool32 GenerateTestsMain( void ) {
 	// now do vector and matrix types
 	String_Appendf( &sb, "\t// vector/matrix tests\n" );
 	for ( u32 typeIndex = 0; typeIndex < GEN_TYPE_COUNT; typeIndex++ ) {
-		genType_t type = static_cast<genType_t>( typeIndex );
+		genType_t type = (genType_t) typeIndex;
 
 		for ( u32 row = 1; row <= GEN_COMPONENT_COUNT_MAX; row++ ) {
 			for ( u32 col = GEN_COMPONENT_COUNT_MIN; col <= GEN_COMPONENT_COUNT_MAX; col++ ) {

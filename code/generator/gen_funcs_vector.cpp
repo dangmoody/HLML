@@ -1,11 +1,9 @@
 #include "gen_funcs_vector.h"
 
 #include "gen_doc_common.h"
+#include "gen_doc_vector.h"
 
 #include <assert.h>
-
-#include "gen_doc_vector.cpp"
-
 
 void Gen_GetParmListVector( const genType_t type, const u32 numComponents, const float* values, char* outParmListStr ) {
 	assert( numComponents >= GEN_COMPONENT_COUNT_MIN );
@@ -43,7 +41,7 @@ void Gen_VectorOperatorsArithmetic( const genType_t type, const u32 numComponent
 	}
 
 	for ( u32 opIndex = 0; opIndex < GEN_OP_ARITHMETIC_COUNT; opIndex++ ) {
-		genOpArithmetic_t op = static_cast<genOpArithmetic_t>( opIndex );
+		genOpArithmetic_t op = (genOpArithmetic_t) opIndex;
 
 		Gen_OperatorComponentWiseArithmeticScalar( type, 1, numComponents, op, sbHeader, sbInl );
 		Gen_OperatorComponentWiseArithmeticRhsType( type, 1, numComponents, op, sbHeader, sbInl );
@@ -67,11 +65,11 @@ void Gen_VectorLength( const genType_t type, const u32 numComponents, stringBuil
 
 	const char* sqrtFuncStr = Gen_GetFuncNameSqrt( type );
 
-	DocLengthSqr( sbHeader, fullTypeName );
+	Doc_VectorLengthSqr( sbHeader, fullTypeName );
 	String_Appendf( sbHeader, "inline %s lengthsqr( const %s& vec );\n", returnTypeString, fullTypeName );
 	String_Append(  sbHeader, "\n" );
 
-	DocLength( sbHeader, fullTypeName );
+	Doc_VectorLength( sbHeader, fullTypeName );
 	String_Appendf( sbHeader, "inline %s length( const %s& vec );\n", returnTypeString, fullTypeName );
 	String_Append(  sbHeader, "\n" );
 
@@ -124,11 +122,11 @@ void Gen_VectorNormalize( const genType_t type, const u32 numComponents, stringB
 	char fullTypeName[GEN_STRING_LENGTH_TYPE_NAME];
 	Gen_GetFullTypeName( type, 1, numComponents, fullTypeName );
 
-	DocNormalize( sbHeader, fullTypeName );
+	Doc_VectorNormalize( sbHeader, fullTypeName );
 	String_Appendf( sbHeader, "inline void normalize( %s& vec );\n", fullTypeName );
 	String_Append(  sbHeader, "\n" );
 
-	DocNormalized( sbHeader, fullTypeName );
+	Doc_VectorNormalized( sbHeader, fullTypeName );
 	String_Appendf( sbHeader, "inline %s normalized( const %s& vec );\n", fullTypeName, fullTypeName );
 	String_Append(  sbHeader, "\n" );
 
@@ -164,7 +162,7 @@ void Gen_VectorDot( const genType_t type, const u32 numComponents, stringBuilder
 	char fullTypeName[GEN_STRING_LENGTH_TYPE_NAME];
 	Gen_GetFullTypeName( type, 1, numComponents, fullTypeName );
 
-	DocDot( sbHeader, fullTypeName );
+	Doc_VectorDot( sbHeader, fullTypeName );
 	String_Appendf( sbHeader, "inline %s dot( const %s& lhs, const %s& rhs );\n", returnTypeString, fullTypeName, fullTypeName );
 	String_Append(  sbHeader, "\n" );
 
@@ -210,7 +208,7 @@ void Gen_VectorCross( const genType_t type, const u32 numComponents, stringBuild
 	char fullTypeName[GEN_STRING_LENGTH_TYPE_NAME];
 	Gen_GetFullTypeName( type, 1, numComponents, fullTypeName );
 
-	DocCross( sbHeader, fullTypeName );
+	Doc_VectorCross( sbHeader, fullTypeName );
 	String_Appendf( sbHeader, "inline %s cross( const %s& lhs, const %s& rhs );\n", fullTypeName, fullTypeName, fullTypeName );
 	String_Append(  sbHeader, "\n" );
 
@@ -247,7 +245,7 @@ void Gen_VectorAngle( const genType_t type, const u32 numComponents, stringBuild
 
 	const char* acosString = Gen_GetFuncNameAcos( floatingPointType );
 
-	DocAngle( sbHeader, fullTypeName );
+	Doc_VectorAngle( sbHeader, fullTypeName );
 	String_Appendf( sbHeader, "inline %s angle( const %s& lhs, const %s& rhs );\n", returnTypeString, fullTypeName, fullTypeName );
 	String_Append(  sbHeader, "\n" );
 
@@ -277,7 +275,7 @@ void Gen_VectorDistance( const genType_t type, const u32 numComponents, stringBu
 
 	// distancesq
 	{
-		DocDistanceSq( sbHeader, fullTypeName );
+		Doc_VectorDistanceSq( sbHeader, fullTypeName );
 		String_Appendf( sbHeader, "inline %s distancesqr( const %s& lhs, const %s& rhs );\n", returnTypeString, fullTypeName, fullTypeName );
 		String_Append(  sbHeader, "\n" );
 
@@ -290,7 +288,7 @@ void Gen_VectorDistance( const genType_t type, const u32 numComponents, stringBu
 
 	// distance
 	{
-		DocDistance( sbHeader, fullTypeName );
+		Doc_VectorDistance( sbHeader, fullTypeName );
 		String_Appendf( sbHeader, "inline %s distance( const %s& lhs, const %s& rhs );\n", returnTypeString, fullTypeName, fullTypeName );
 		String_Append(  sbHeader, "\n" );
 
@@ -323,7 +321,7 @@ void Gen_VectorPack( const genType_t type, const u32 numComponents, stringBuilde
 
 	const char* memberTypeString = Gen_GetMemberTypeString( type );
 
-	DocPack( sbHeader, fullTypeName );
+	Doc_VectorPack( sbHeader, fullTypeName );
 	String_Appendf( sbHeader, "inline %s pack( const %s& vec );\n", memberTypeString, fullTypeName );
 	String_Append(  sbHeader, "\n" );
 
@@ -363,7 +361,7 @@ void Gen_VectorUnpack( const genType_t type, const u32 numComponents, stringBuil
 
 	const char* memberTypeString = Gen_GetMemberTypeString( type );
 
-	DocUnpack( sbHeader, fullTypeName );
+	Doc_VectorUnpack( sbHeader, fullTypeName );
 	String_Appendf( sbHeader, "inline %s unpack( const %s x );\n", fullTypeName, memberTypeString );
 	String_Append(  sbHeader, "\n" );
 

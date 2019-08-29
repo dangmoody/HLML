@@ -26,31 +26,31 @@ s64 Time_Now( void ) {
 	struct timespec now;
 	clock_gettime( CLOCK_MONOTONIC_RAW, &now );
 
-	return static_cast<s64>( now.tv_sec + now.tv_nsec );
+	return (s64) ( now.tv_sec + now.tv_nsec );
 }
 
 float64 Time_NowSeconds( void ) {
 	assert( g_initialised );
 
-	return static_cast<float64>( Time_Now() ) / 1000000000.0;
+	return (float64) Time_Now() / 1000000000.0;
 }
 
 float64 Time_NowMS( void ) {
 	assert( g_initialised );
 
-	return static_cast<float64>( Time_Now() ) / 1000000.0;
+	return (float64) Time_Now() / 1000000.0;
 }
 
 float64 Time_NowUS( void ) {
 	assert( g_initialised );
 
-	return static_cast<float64>( Time_Now() ) / 1000.0;
+	return (float64) Time_Now() / 1000.0;
 }
 
 float64 Time_NowNS( void ) {
 	assert( g_initialised );
 
-	return static_cast<float64>( Time_Now() );
+	return (float64) Time_Now();
 }
 
 #endif // defined( __linux__ ) || defined( __APPLE__ )

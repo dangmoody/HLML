@@ -2,9 +2,9 @@
 
 #include "gen_common_sse.h"
 
-#include "string_builder.h"
+#include "gen_doc_vector_sse.h"
 
-#include "gen_doc_vector_sse.cpp"
+#include "string_builder.h"
 
 void Gen_SSE_VectorNormalize( const genType_t type, const u32 numComponents, stringBuilder_t* sbHeader, stringBuilder_t* sbInl ) {
 	assert( numComponents >= GEN_COMPONENT_COUNT_MIN );
@@ -42,7 +42,7 @@ void Gen_SSE_VectorNormalize( const genType_t type, const u32 numComponents, str
 	String_Append(  sbHeader, "};\n" );
 	String_Append(  sbHeader, "\n" );
 	
-	Doc_SSE_Normalize( sbHeader, fullTypeName );
+	Doc_SSE_VectorNormalize( sbHeader, fullTypeName );
 	String_Appendf( sbHeader, "inline void normalize_sse( const %s* in, %s out_results[%d] );\n", inputDataNameNormalize, registerName, numComponents );
 	String_Append(  sbHeader, "\n" );
 
@@ -96,7 +96,7 @@ void Gen_SSE_VectorDot( const genType_t type, const u32 numComponents, stringBui
 	String_Append(  sbHeader, "};\n" );
 	String_Append(  sbHeader, "\n" );
 
-	Doc_SSE_Dot( sbHeader, fullTypeName );
+	Doc_SSE_VectorDot( sbHeader, fullTypeName );
 	String_Appendf( sbHeader, "inline void dot_sse( const %s* in, %s* out_results );\n", inputDataName, registerName );
 	String_Append(  sbHeader, "\n" );
 
@@ -168,7 +168,7 @@ void Gen_SSE_VectorLength( const genType_t type, const u32 numComponents, string
 
 	// lengthsq
 	{
-		Doc_SSE_Lengthsq( sbHeader, fullTypeName );
+		Doc_SSE_VectorLengthsq( sbHeader, fullTypeName );
 		String_Appendf( sbHeader, "inline void lengthsq_sse( const %s* in, %s* out_results );\n", inputDataNameLength, registerName );
 		String_Append(  sbHeader, "\n" );
 
@@ -194,7 +194,7 @@ void Gen_SSE_VectorLength( const genType_t type, const u32 numComponents, string
 
 	// length
 	{
-		Doc_SSE_Length( sbHeader, fullTypeName );
+		Doc_SSE_VectorLength( sbHeader, fullTypeName );
 		String_Appendf( sbHeader, "inline void length_sse( const %s* in, %s* out_results );\n", inputDataNameLength, registerName );
 		String_Append(  sbHeader, "\n" );
 
@@ -241,7 +241,7 @@ void Gen_SSE_VectorDistance( const genType_t type, const u32 numComponents, stri
 
 	// distancesq
 	{
-		Doc_SSE_Distancesq( sbHeader, fullTypeName );
+		Doc_SSE_VectorDistancesq( sbHeader, fullTypeName );
 		String_Appendf( sbHeader, "inline void distancesq_sse( const %s* in, %s* out_results );\n", inputDataNameDistance, registerName );
 		String_Append(  sbHeader, "\n" );
 
@@ -263,7 +263,7 @@ void Gen_SSE_VectorDistance( const genType_t type, const u32 numComponents, stri
 
 	// distance
 	{
-		Doc_SSE_Distance( sbHeader, fullTypeName );
+		Doc_SSE_VectorDistance( sbHeader, fullTypeName );
 		String_Appendf( sbHeader, "inline void distance_sse( const %s* in, %s* out_results );\n", inputDataNameDistance, registerName );
 		String_Append(  sbHeader, "\n" );
 
