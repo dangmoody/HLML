@@ -469,7 +469,7 @@ static bool32 GenerateFunctionsMatrixSSE( void ) {
 	char filePathInl[64] = { 0 };
 	snprintf( filePathInl, 64, "%s%s.inl", GEN_OUT_GEN_FOLDER_PATH, GEN_FILENAME_FUNCTIONS_MATRIX_SSE );
 
-	stringBuilder_t contentHeader = String_Create( 16 * KB_TO_BYTES );
+	stringBuilder_t contentHeader = String_Create( 22 * KB_TO_BYTES );
 	stringBuilder_t contentInl = String_Create( 64 * KB_TO_BYTES );
 
 	String_Append( &contentHeader, GEN_FILE_HEADER );

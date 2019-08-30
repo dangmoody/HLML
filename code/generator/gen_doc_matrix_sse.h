@@ -10,14 +10,20 @@ inline void Doc_SSE_MatrixIdentity( stringBuilder_t* sb, const char* fullTypeNam
 	);
 }
 
-inline void Doc_SSE_MatrixTranspose( stringBuilder_t* sb, const char* fullTypeName, const char* registerName, const u32 numRows, const u32 numCols ) {
+inline void Doc_SSE_MatrixTranspose( stringBuilder_t* sb, const genType_t type, const u32 numRows, const u32 numCols, const char* registerName ) {
+	char fullTypeName[GEN_STRING_LENGTH_TYPE_NAME];
+	Gen_GetFullTypeName( type, numRows, numCols, fullTypeName );
+
 	String_Appendf( sb,
 		"/// \\relates %s\n" \
-		"/// \\brief Stores a transposed matrix of %d x %d %ss in the output given the input %d x %d register matrix.\n", fullTypeName, numCols, numRows, registerName, numRows, numCols
+		"/// \\brief Stores a transposed matrix of %d x %d %s registers in the output given the input %d x %d register matrix.\n", fullTypeName, numCols, numRows, registerName, numRows, numCols
 	);
 }
 
-inline void Doc_SSE_MatrixArithmeticComponentWise( stringBuilder_t* sb, const char* fullTypeName, const char* registerName, const genOpArithmetic_t op ) {
+inline void Doc_SSE_MatrixArithmeticComponentWise( stringBuilder_t* sb, const genType_t type, const u32 numRows, const u32 numCols, const char* registerName, const genOpArithmetic_t op ) {
+	char fullTypeName[GEN_STRING_LENGTH_TYPE_NAME];
+	Gen_GetFullTypeName( type, numRows, numCols, fullTypeName );
+
 	const char* verb = NULL;
 	switch ( op ) {
 		case GEN_OP_ARITHMETIC_ADD:
@@ -49,14 +55,20 @@ inline void Doc_SSE_MatrixArithmeticComponentWise( stringBuilder_t* sb, const ch
 	);
 }
 
-inline void Doc_SSE_MatrixTranslate( stringBuilder_t* sb, const char* fullTypeName, const char* registerName ) {
+inline void Doc_SSE_MatrixTranslate( stringBuilder_t* sb, const genType_t type, const u32 numRows, const u32 numCols, const char* registerName ) {
+	char fullTypeName[GEN_STRING_LENGTH_TYPE_NAME];
+	Gen_GetFullTypeName( type, numRows, numCols, fullTypeName );
+
 	String_Appendf( sb,
 		"/// \\relates %s\n" \
 		"/// \\brief Stores a last matrix column that has been translated by the given %s register vector in the input.\n", fullTypeName, registerName
 	);
 }
 
-inline void Doc_SSE_MatrixScale( stringBuilder_t* sb, const char* fullTypeName ) {
+inline void Doc_SSE_MatrixScale( stringBuilder_t* sb, const genType_t type, const u32 numRows, const u32 numCols ) {
+	char fullTypeName[GEN_STRING_LENGTH_TYPE_NAME];
+	Gen_GetFullTypeName( type, numRows, numCols, fullTypeName );
+
 	String_Appendf( sb,
 		"/// \\relates %s\n" \
 		"/// \\brief Stores an array of %s diagonals that have been scaled by the given vector in the input.\n", fullTypeName, fullTypeName

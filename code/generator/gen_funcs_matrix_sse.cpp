@@ -2,6 +2,8 @@
 
 #include "gen_common_sse.h"
 
+#include "gen_doc_matrix_sse.h"
+
 #include "string_builder.h"
 
 void Gen_SSE_MatrixIdentity( const genType_t type, const u32 numRows, const u32 numCols, stringBuilder_t* sbHeader, stringBuilder_t* sbInl ) {
@@ -67,6 +69,7 @@ void Gen_SSE_MatrixTranspose( const genType_t type, const u32 numRows, const u32
 	String_Append(  sbHeader, "};\n" );
 	String_Append(  sbHeader, "\n" );
 
+	Doc_SSE_MatrixTranspose( sbHeader, type, numRows, numCols, registerName );
 	String_Appendf( sbHeader, "inline void transpose_sse( const %s* in, %s out_results[%d][%d] );\n", inputDataName, registerName, numCols, numRows );
 	String_Append(  sbHeader, "\n" );
 
@@ -114,6 +117,7 @@ void Gen_SSE_MatrixArithmeticComponentWise( const genType_t type, const u32 numR
 	String_Append(  sbHeader, "};\n" );
 	String_Append(  sbHeader, "\n" );
 
+	Doc_SSE_MatrixArithmeticComponentWise( sbHeader, type, numRows, numCols, registerName, op );
 	String_Appendf( sbHeader, "inline void comp_%s_sse( const %s* in, %s out_results[%d][%d] );\n", opStr, inputDataName, registerName, numRows, numCols );
 	String_Append(  sbHeader, "\n" );
 
@@ -167,6 +171,7 @@ void Gen_SSE_MatrixTranslate( const genType_t type, const u32 numRows, const u32
 	String_Append(  sbHeader, "};\n" );
 	String_Append(  sbHeader, "\n" );
 
+	Doc_SSE_MatrixTranslate( sbHeader, type, numRows, numCols, registerName );
 	String_Appendf( sbHeader, "inline void translate_sse( const %s* in, %s out_results[%d] );\n", inputDataName, registerName, translateVecComponents );
 	String_Append(  sbHeader, "\n" );
 
@@ -208,6 +213,7 @@ void Gen_SSE_MatrixScale( const genType_t type, const u32 numRows, const u32 num
 	String_Append(  sbHeader, "};\n" );
 	String_Append(  sbHeader, "\n" );
 
+	Doc_SSE_MatrixScale( sbHeader, type, numRows, numCols );
 	String_Appendf( sbHeader, "inline void scale_sse( const %s* in, %s out_results[%d] );\n", inputDataName, registerName, numScaleComponents );
 	String_Append(  sbHeader, "\n" );
 
