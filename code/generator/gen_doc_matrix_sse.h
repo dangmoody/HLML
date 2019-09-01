@@ -13,11 +13,47 @@ inline void Doc_SSE_MatrixIdentity( stringBuilder_t* sb, const char* fullTypeNam
 }
 
 inline void Doc_SSE_MatrixTranspose( stringBuilder_t* sb, const char* fullTypeName, const u32 numRows, const u32 numCols, const char* registerName ) {
+	assert( sb );
 	assert( fullTypeName );
+	assert( numRows >= GEN_COMPONENT_COUNT_MIN );
+	assert( numRows <= GEN_COMPONENT_COUNT_MAX );
+	assert( numCols >= GEN_COMPONENT_COUNT_MIN );
+	assert( numCols <= GEN_COMPONENT_COUNT_MAX );
+	assert( registerName );
 
 	String_Appendf( sb,
 		"/// \\relates %s\n" \
 		"/// \\brief Stores a transposed matrix of %d x %d %s registers in the output given the input %d x %d register matrix.\n", fullTypeName, numCols, numRows, registerName, numRows, numCols
+	);
+}
+
+inline void Doc_SSE_MatrixInverse( stringBuilder_t* sb, const char* fullTypeName, const u32 numRows, const u32 numCols, const char* registerName ) {
+	assert( sb );
+	assert( fullTypeName );
+	assert( numRows >= GEN_COMPONENT_COUNT_MIN );
+	assert( numRows <= GEN_COMPONENT_COUNT_MAX );
+	assert( numCols >= GEN_COMPONENT_COUNT_MIN );
+	assert( numCols <= GEN_COMPONENT_COUNT_MAX );
+	assert( registerName );
+
+	String_Appendf( sb,
+		"/// \\relates %s\n"
+		"/// \\brief Stores an inverted matrix of %d x %d %s registers.\n", fullTypeName, numRows, numCols, registerName
+	);
+}
+
+inline void Doc_SSE_MatrixDeterminant( stringBuilder_t* sb, const char* fullTypeName, const u32 numRows, const u32 numCols, const char* registerName ) {
+	assert( sb );
+	assert( fullTypeName );
+	assert( numRows >= GEN_COMPONENT_COUNT_MIN );
+	assert( numRows <= GEN_COMPONENT_COUNT_MAX );
+	assert( numCols >= GEN_COMPONENT_COUNT_MIN );
+	assert( numCols <= GEN_COMPONENT_COUNT_MAX );
+	assert( registerName );
+
+	String_Appendf( sb,
+		"/// \\relates %s\n"
+		"/// \\brief Stores the determinants of a matrix of %d x %d %s registers.\n", fullTypeName, numRows, numCols, registerName
 	);
 }
 
