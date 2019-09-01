@@ -488,6 +488,7 @@ TEMPER_TEST( TestInverse_double4x4 )
 
 TEMPER_TEST( TestDeterminant_double4x4 )
 {
+	// scalar
 	double4x4 mat = double4x4(
 		6.000000, 2.000000, 3.000000, 4.000000,
 		2.000000, 7.000000, 5.000000, 3.000000,

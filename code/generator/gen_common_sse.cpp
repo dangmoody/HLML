@@ -7,8 +7,10 @@ void Gen_SSE_Radians( const genType_t type, stringBuilder_t* sbHeader, stringBui
 		return;
 	}
 
+	const char* memberTypeString = Gen_GetMemberTypeString( type );
+
 	char inputDataName[GEN_STRING_LENGTH_SSE_INPUT_NAME];
-	Gen_SSE_GetInputDataName( type, 1, 1, "radians", inputDataName );
+	Gen_SSE_GetInputDataName( memberTypeString, "radians", inputDataName );
 
 	const char* registerName	= Gen_SSE_GetRegisterName( type );
 
@@ -39,8 +41,10 @@ void Gen_SSE_Degrees( const genType_t type, stringBuilder_t* sbHeader, stringBui
 		return;
 	}
 
+	const char* memberTypeString = Gen_GetMemberTypeString( type );
+
 	char inputDataName[GEN_STRING_LENGTH_SSE_INPUT_NAME];
-	Gen_SSE_GetInputDataName( type, 1, 1, "degrees", inputDataName );
+	Gen_SSE_GetInputDataName( memberTypeString, "degrees", inputDataName );
 
 	const char* registerName	= Gen_SSE_GetRegisterName( type );
 
@@ -74,6 +78,9 @@ void Gen_SSE_Lerp( const genType_t type, const u32 numComponents, stringBuilder_
 		return;
 	}
 
+	char fullTypeName[GEN_STRING_LENGTH_TYPE_NAME];
+	Gen_GetFullTypeName( type, 1, numComponents, fullTypeName );
+
 	char oneStr[GEN_STRING_LENGTH_NUMERIC_LITERAL];
 	Gen_GetNumericLiteral( type, 1.0f, oneStr, 1 );
 
@@ -89,7 +96,7 @@ void Gen_SSE_Lerp( const genType_t type, const u32 numComponents, stringBuilder_
 	Gen_SSE_GetIntrinsicArithmeticStr( type, GEN_OP_ARITHMETIC_MUL, mulFuncStr );
 
 	char inputDataName[GEN_STRING_LENGTH_SSE_INPUT_NAME];
-	Gen_SSE_GetInputDataName( type, 1, numComponents, "lerp", inputDataName );
+	Gen_SSE_GetInputDataName( fullTypeName, "lerp", inputDataName );
 
 	String_Appendf( sbHeader, "struct %s\n", inputDataName );
 	String_Append(  sbHeader, "{\n" );

@@ -25,8 +25,8 @@ along with hlml.  If not, see <http://www.gnu.org/licenses/>.
 // GENERATED FILE.  DO NOT EDIT.
 
 #include "../../code/out/gen/hlml_functions_matrix.h"
-
 #include "../../code/out/gen/hlml_functions_matrix_sse.h"
+
 #include <temper/temper.h>
 
 TEMPER_TEST( TestAssignment_float2x2 )
@@ -78,15 +78,15 @@ TEMPER_TEST( TestComponentWiseArithmeticAddition_float2x2 )
 	TEMPER_EXPECT_TRUE( c == answer );
 
 	// SSE
-	float a00[4] = 	{ 6.000000f, 6.000000f, 6.000000f, 6.000000f };
-	float a01[4] = 	{ 6.000000f, 6.000000f, 6.000000f, 6.000000f };
-	float a10[4] = 	{ 6.000000f, 6.000000f, 6.000000f, 6.000000f };
-	float a11[4] = 	{ 6.000000f, 6.000000f, 6.000000f, 6.000000f };
+	float a00[4] =	{ 6.000000f, 6.000000f, 6.000000f, 6.000000f };
+	float a01[4] =	{ 6.000000f, 6.000000f, 6.000000f, 6.000000f };
+	float a10[4] =	{ 6.000000f, 6.000000f, 6.000000f, 6.000000f };
+	float a11[4] =	{ 6.000000f, 6.000000f, 6.000000f, 6.000000f };
 
-	float b00[4] = 	{ 1.000000f, 1.000000f, 1.000000f, 1.000000f };
-	float b01[4] = 	{ 1.000000f, 1.000000f, 1.000000f, 1.000000f };
-	float b10[4] = 	{ 2.000000f, 2.000000f, 2.000000f, 2.000000f };
-	float b11[4] = 	{ 2.000000f, 2.000000f, 2.000000f, 2.000000f };
+	float b00[4] =	{ 1.000000f, 1.000000f, 1.000000f, 1.000000f };
+	float b01[4] =	{ 1.000000f, 1.000000f, 1.000000f, 1.000000f };
+	float b10[4] =	{ 2.000000f, 2.000000f, 2.000000f, 2.000000f };
+	float b11[4] =	{ 2.000000f, 2.000000f, 2.000000f, 2.000000f };
 
 	__m128 results[2][2];
 	sse_input_add_float2x2_t in;
@@ -152,15 +152,15 @@ TEMPER_TEST( TestComponentWiseArithmeticSubtraction_float2x2 )
 	TEMPER_EXPECT_TRUE( c == answer );
 
 	// SSE
-	float a00[4] = 	{ 6.000000f, 6.000000f, 6.000000f, 6.000000f };
-	float a01[4] = 	{ 6.000000f, 6.000000f, 6.000000f, 6.000000f };
-	float a10[4] = 	{ 6.000000f, 6.000000f, 6.000000f, 6.000000f };
-	float a11[4] = 	{ 6.000000f, 6.000000f, 6.000000f, 6.000000f };
+	float a00[4] =	{ 6.000000f, 6.000000f, 6.000000f, 6.000000f };
+	float a01[4] =	{ 6.000000f, 6.000000f, 6.000000f, 6.000000f };
+	float a10[4] =	{ 6.000000f, 6.000000f, 6.000000f, 6.000000f };
+	float a11[4] =	{ 6.000000f, 6.000000f, 6.000000f, 6.000000f };
 
-	float b00[4] = 	{ 1.000000f, 1.000000f, 1.000000f, 1.000000f };
-	float b01[4] = 	{ 1.000000f, 1.000000f, 1.000000f, 1.000000f };
-	float b10[4] = 	{ 2.000000f, 2.000000f, 2.000000f, 2.000000f };
-	float b11[4] = 	{ 2.000000f, 2.000000f, 2.000000f, 2.000000f };
+	float b00[4] =	{ 1.000000f, 1.000000f, 1.000000f, 1.000000f };
+	float b01[4] =	{ 1.000000f, 1.000000f, 1.000000f, 1.000000f };
+	float b10[4] =	{ 2.000000f, 2.000000f, 2.000000f, 2.000000f };
+	float b11[4] =	{ 2.000000f, 2.000000f, 2.000000f, 2.000000f };
 
 	__m128 results[2][2];
 	sse_input_sub_float2x2_t in;
@@ -226,15 +226,15 @@ TEMPER_TEST( TestComponentWiseArithmeticMultiplication_float2x2 )
 	TEMPER_EXPECT_TRUE( c == answer );
 
 	// SSE
-	float a00[4] = 	{ 6.000000f, 6.000000f, 6.000000f, 6.000000f };
-	float a01[4] = 	{ 6.000000f, 6.000000f, 6.000000f, 6.000000f };
-	float a10[4] = 	{ 6.000000f, 6.000000f, 6.000000f, 6.000000f };
-	float a11[4] = 	{ 6.000000f, 6.000000f, 6.000000f, 6.000000f };
+	float a00[4] =	{ 6.000000f, 6.000000f, 6.000000f, 6.000000f };
+	float a01[4] =	{ 6.000000f, 6.000000f, 6.000000f, 6.000000f };
+	float a10[4] =	{ 6.000000f, 6.000000f, 6.000000f, 6.000000f };
+	float a11[4] =	{ 6.000000f, 6.000000f, 6.000000f, 6.000000f };
 
-	float b00[4] = 	{ 1.000000f, 1.000000f, 1.000000f, 1.000000f };
-	float b01[4] = 	{ 1.000000f, 1.000000f, 1.000000f, 1.000000f };
-	float b10[4] = 	{ 2.000000f, 2.000000f, 2.000000f, 2.000000f };
-	float b11[4] = 	{ 2.000000f, 2.000000f, 2.000000f, 2.000000f };
+	float b00[4] =	{ 1.000000f, 1.000000f, 1.000000f, 1.000000f };
+	float b01[4] =	{ 1.000000f, 1.000000f, 1.000000f, 1.000000f };
+	float b10[4] =	{ 2.000000f, 2.000000f, 2.000000f, 2.000000f };
+	float b11[4] =	{ 2.000000f, 2.000000f, 2.000000f, 2.000000f };
 
 	__m128 results[2][2];
 	sse_input_mul_float2x2_t in;
@@ -300,15 +300,15 @@ TEMPER_TEST( TestComponentWiseArithmeticDivision_float2x2 )
 	TEMPER_EXPECT_TRUE( c == answer );
 
 	// SSE
-	float a00[4] = 	{ 6.000000f, 6.000000f, 6.000000f, 6.000000f };
-	float a01[4] = 	{ 6.000000f, 6.000000f, 6.000000f, 6.000000f };
-	float a10[4] = 	{ 6.000000f, 6.000000f, 6.000000f, 6.000000f };
-	float a11[4] = 	{ 6.000000f, 6.000000f, 6.000000f, 6.000000f };
+	float a00[4] =	{ 6.000000f, 6.000000f, 6.000000f, 6.000000f };
+	float a01[4] =	{ 6.000000f, 6.000000f, 6.000000f, 6.000000f };
+	float a10[4] =	{ 6.000000f, 6.000000f, 6.000000f, 6.000000f };
+	float a11[4] =	{ 6.000000f, 6.000000f, 6.000000f, 6.000000f };
 
-	float b00[4] = 	{ 1.000000f, 1.000000f, 1.000000f, 1.000000f };
-	float b01[4] = 	{ 1.000000f, 1.000000f, 1.000000f, 1.000000f };
-	float b10[4] = 	{ 2.000000f, 2.000000f, 2.000000f, 2.000000f };
-	float b11[4] = 	{ 2.000000f, 2.000000f, 2.000000f, 2.000000f };
+	float b00[4] =	{ 1.000000f, 1.000000f, 1.000000f, 1.000000f };
+	float b01[4] =	{ 1.000000f, 1.000000f, 1.000000f, 1.000000f };
+	float b10[4] =	{ 2.000000f, 2.000000f, 2.000000f, 2.000000f };
+	float b11[4] =	{ 2.000000f, 2.000000f, 2.000000f, 2.000000f };
 
 	__m128 results[2][2];
 	sse_input_div_float2x2_t in;
@@ -648,6 +648,7 @@ TEMPER_TEST( TestInverse_float2x2 )
 
 TEMPER_TEST( TestDeterminant_float2x2 )
 {
+	// scalar
 	float2x2 mat = float2x2(
 		6.000000f, 2.000000f,
 		2.000000f, 6.000000f
@@ -655,6 +656,28 @@ TEMPER_TEST( TestDeterminant_float2x2 )
 	float det = determinant( mat );
 
 	TEMPER_EXPECT_TRUE( floateq( det, 32.0f ) );
+
+	// SSE
+	float m00[4] =	{ 6.000000f, 6.000000f, 6.000000f, 6.000000f };
+	float m01[4] =	{ 2.000000f, 2.000000f, 2.000000f, 2.000000f };
+	float m10[4] =	{ 2.000000f, 2.000000f, 2.000000f, 2.000000f };
+	float m11[4] =	{ 6.000000f, 6.000000f, 6.000000f, 6.000000f };
+
+	__m128 results;
+	sse_input_determinant_float2x2_t in;
+	in.m[0][0] = _mm_load_ps( m00 );
+	in.m[0][1] = _mm_load_ps( m01 );
+	in.m[1][0] = _mm_load_ps( m10 );
+	in.m[1][1] = _mm_load_ps( m11 );
+
+	determinant_sse( &in, &results );
+
+	float determinantResults[4];
+	_mm_store_ps( determinantResults, results );
+	TEMPER_EXPECT_TRUE( floateq( determinantResults[0], 32.0f ) );
+	TEMPER_EXPECT_TRUE( floateq( determinantResults[1], 32.0f ) );
+	TEMPER_EXPECT_TRUE( floateq( determinantResults[2], 32.0f ) );
+	TEMPER_EXPECT_TRUE( floateq( determinantResults[3], 32.0f ) );
 
 	TEMPER_PASS();
 }

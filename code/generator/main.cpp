@@ -473,13 +473,18 @@ static bool32 GenerateFunctionsMatrixSSE( void ) {
 	stringBuilder_t contentInl = String_Create( 64 * KB_TO_BYTES );
 
 	String_Append( &contentHeader, GEN_FILE_HEADER );
-	String_Append( &contentInl, GEN_FILE_HEADER );
-
 	String_Append( &contentHeader,
 		"#pragma once\n"
 		"\n"
 		"#include <immintrin.h>\n"
-		"\n" );
+		"\n"
+	);
+
+	String_Append( &contentInl, GEN_FILE_HEADER );
+	String_Append( &contentInl,
+		"#include \"../" GEN_HEADER_CONSTANTS_SSE "\"\n"
+		"\n"
+	);
 
 	for ( u32 typeIndex = 0; typeIndex < GEN_TYPE_COUNT; typeIndex++ ) {
 		genType_t type = (genType_t) typeIndex;
@@ -501,8 +506,8 @@ static bool32 GenerateFunctionsMatrixSSE( void ) {
 				// Gen_SSE_MatrixIdentity( type, row, col, &contentHeader, &contentInl );
 				Gen_SSE_MatrixTranspose( type, row, col, &contentHeader, &contentInl );
 
-				// Gen_SSE_MatrixInverse( type, row, col, &contentHeader, &contentInl );
-				// Gen_SSE_MatrixDeterminant( type, row, col, &contentHeader, &contentInl );
+				Gen_SSE_MatrixInverse( type, row, col, &contentHeader, &contentInl );
+				Gen_SSE_MatrixDeterminant( type, row, col, &contentHeader, &contentInl );
 
 				for ( u32 opIndex = 0; opIndex < GEN_OP_ARITHMETIC_COUNT; opIndex++ ) {
 					genOpArithmetic_t op = (genOpArithmetic_t) opIndex;

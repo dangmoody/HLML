@@ -404,6 +404,7 @@ TEMPER_TEST( TestInverse_double2x2 )
 
 TEMPER_TEST( TestDeterminant_double2x2 )
 {
+	// scalar
 	double2x2 mat = double2x2(
 		6.000000, 2.000000,
 		2.000000, 6.000000

@@ -505,7 +505,7 @@ void GeneratorVectorTests::GenerateTestLength() {
 
 	if ( Gen_TypeSupportsSSE( m_type ) ) {
 		char inputDataNameLength[GEN_STRING_LENGTH_SSE_INPUT_NAME];
-		Gen_SSE_GetInputDataName( m_type, 1, m_numComponents, "length", inputDataNameLength );
+		Gen_SSE_GetInputDataName( m_fullTypeName, "length", inputDataNameLength );
 
 		const char* sseLoadStr = Gen_SSE_GetFuncStrLoad( m_type );
 		const char* sseStoreStr = Gen_SSE_GetFuncStrStore( m_type );
@@ -593,10 +593,10 @@ void GeneratorVectorTests::GenerateTestNormalized() {
 		const char* storeFuncStr	= Gen_SSE_GetFuncStrStore( m_type );
 
 		char inputDataNameNormalize[GEN_STRING_LENGTH_SSE_INPUT_NAME];
-		Gen_SSE_GetInputDataName( m_type, 1, m_numComponents, "normalize", inputDataNameNormalize );
+		Gen_SSE_GetInputDataName( m_fullTypeName, "normalize", inputDataNameNormalize );
 
 		char inputDataNameLength[GEN_STRING_LENGTH_SSE_INPUT_NAME];
-		Gen_SSE_GetInputDataName( m_type, 1, m_numComponents, "length", inputDataNameLength );
+		Gen_SSE_GetInputDataName( m_fullTypeName, "length", inputDataNameLength );
 
 		String_Append(  &m_codeTests, "\n" );
 		String_Append(  &m_codeTests, "\t// SSE\n" );
@@ -682,7 +682,7 @@ void GeneratorVectorTests::GenerateTestDot() {
 
 	if ( Gen_TypeSupportsSSE( m_type ) ) {
 		char inputDataNameDot[GEN_STRING_LENGTH_SSE_INPUT_NAME];
-		Gen_SSE_GetInputDataName( m_type, 1, m_numComponents, "dot", inputDataNameDot );
+		Gen_SSE_GetInputDataName( m_fullTypeName, "dot", inputDataNameDot );
 
 		const char* sseLoadStr = Gen_SSE_GetFuncStrLoad( m_type );
 		const char* sseStoreStr = Gen_SSE_GetFuncStrStore( m_type );
@@ -921,7 +921,7 @@ void GeneratorVectorTests::GenerateTestDistance() {
 
 	if ( Gen_TypeSupportsSSE( m_type ) ) {
 		char inputDataNameDistance[GEN_STRING_LENGTH_SSE_INPUT_NAME];
-		Gen_SSE_GetInputDataName( m_type, 1, m_numComponents, "distance", inputDataNameDistance );
+		Gen_SSE_GetInputDataName( m_fullTypeName, "distance", inputDataNameDistance );
 
 		const char* sseLoadStr = Gen_SSE_GetFuncStrLoad( m_type );
 		const char* sseStoreStr = Gen_SSE_GetFuncStrStore( m_type );

@@ -11,11 +11,13 @@ extern void			Gen_SSE_Lerp( const genType_t type, const u32 numComponents, strin
 inline bool32		Gen_TypeSupportsSSE( const genType_t type ) { return type == GEN_TYPE_FLOAT; }
 
 inline const char*	Gen_SSE_GetRegisterName( const genType_t type );
-inline void			Gen_SSE_GetInputDataName( const genType_t type, const u32 numRows, const u32 numCols, const char* function, char* outString );
+inline void			Gen_SSE_GetInputDataName( const char* fullTypeName, const char* function, char* outString );
 
 inline const char*	Gen_SSE_GetFuncStrLoad( const genType_t type );
 inline const char*	Gen_SSE_GetFuncStrStore( const genType_t type );
 inline const char*	Gen_SSE_GetFuncStrSet1( const genType_t type );
+inline const char*	Gen_SSE_GetFuncStrRcp( const genType_t type );
+inline const char*	Gen_SSE_GetFuncStrXor( const genType_t type );
 
 inline void			Gen_SSE_GetIntrinsicArithmeticStr( const genType_t type, const genOpArithmetic_t op, char* outString );
 
@@ -43,14 +45,14 @@ const char* Gen_SSE_GetRegisterName( const genType_t type ) {
 	}
 }
 
-void Gen_SSE_GetInputDataName( const genType_t type, const u32 numRows, const u32 numCols, const char* function, char* outString ) {
+void Gen_SSE_GetInputDataName( const char* fullTypeName, const char* function, char* outString ) {
+	assert( fullTypeName );
 	assert( function );
 	assert( outString );
 
-	char fullTypeName[GEN_STRING_LENGTH_TYPE_NAME];
-	Gen_GetFullTypeName( type, numRows, numCols, fullTypeName );
+	int length = snprintf( outString, GEN_STRING_LENGTH_SSE_INPUT_NAME, "sse_input_%s_%s_t", function, fullTypeName );
 
-	snprintf( outString, GEN_STRING_LENGTH_SSE_INPUT_NAME, "sse_input_%s_%s_t", function, fullTypeName );
+	assert( length < GEN_STRING_LENGTH_SSE_INPUT_NAME && "Constant SSE input name constant needs to be bumped!" );
 }
 
 const char* Gen_SSE_GetFuncStrLoad( const genType_t type ) {
@@ -98,6 +100,42 @@ const char* Gen_SSE_GetFuncStrSet1( const genType_t type ) {
 
 		case GEN_TYPE_DOUBLE:
 			return "_mm_set1_pd";
+
+		case GEN_TYPE_BOOL:
+		case GEN_TYPE_COUNT:
+		default:
+			printf( "ERROR: Bad genType_t passed into %s.\n", __FUNCTION__ );
+			return "ERROR";
+	}
+}
+
+const char* Gen_SSE_GetFuncStrRcp( const genType_t type ) {
+	switch ( type ) {
+		case GEN_TYPE_INT:
+		case GEN_TYPE_UINT:
+		case GEN_TYPE_FLOAT:
+			return "_mm_rcp_ps";
+
+		case GEN_TYPE_DOUBLE:
+			return "_mm_rcp_pd";
+
+		case GEN_TYPE_BOOL:
+		case GEN_TYPE_COUNT:
+		default:
+			printf( "ERROR: Bad genType_t passed into %s.\n", __FUNCTION__ );
+			return "ERROR";
+	}
+}
+
+const char*	Gen_SSE_GetFuncStrXor( const genType_t type ) {
+	switch ( type ) {
+		case GEN_TYPE_INT:
+		case GEN_TYPE_UINT:
+		case GEN_TYPE_FLOAT:
+			return "_mm_xor_ps";
+
+		case GEN_TYPE_DOUBLE:
+			return "_mm_xor_pd";
 
 		case GEN_TYPE_BOOL:
 		case GEN_TYPE_COUNT:

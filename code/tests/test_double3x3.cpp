@@ -446,6 +446,7 @@ TEMPER_TEST( TestInverse_double3x3 )
 
 TEMPER_TEST( TestDeterminant_double3x3 )
 {
+	// scalar
 	double3x3 mat = double3x3(
 		6.000000, 2.000000, 3.000000,
 		2.000000, 7.000000, 2.000000,

@@ -165,10 +165,10 @@ void GeneratorScalarTest::GenerateTestDegreesRadians() {
 		const char* storeFuncStr	= Gen_SSE_GetFuncStrStore( m_type );
 
 		char inputDataNameRadians[GEN_STRING_LENGTH_SSE_INPUT_NAME];
-		Gen_SSE_GetInputDataName( m_type, 1, 1, "radians", inputDataNameRadians );
+		Gen_SSE_GetInputDataName( m_memberTypeString, "radians", inputDataNameRadians );
 
 		char inputDataNameDegrees[GEN_STRING_LENGTH_SSE_INPUT_NAME];
-		Gen_SSE_GetInputDataName( m_type, 1, 1, "degrees", inputDataNameDegrees );
+		Gen_SSE_GetInputDataName( m_memberTypeString, "degrees", inputDataNameDegrees );
 
 		String_Append(  &m_codeTests, "\n" );
 		String_Append(  &m_codeTests, "\t// SSE\n" );
@@ -367,7 +367,7 @@ void GeneratorScalarTest::GenerateTestLerp() {
 
 	if ( m_type == GEN_TYPE_FLOAT ) {
 		char inputDataName[GEN_STRING_LENGTH_SSE_INPUT_NAME];
-		Gen_SSE_GetInputDataName( m_type, 1, 1, "lerp", inputDataName );
+		Gen_SSE_GetInputDataName( m_memberTypeString, "lerp", inputDataName );
 
 		const char* loadFuncStr		= Gen_SSE_GetFuncStrLoad( m_type );
 		const char* storeFuncStr	= Gen_SSE_GetFuncStrStore( m_type );

@@ -40,12 +40,12 @@ bool GeneratorMatrixTests::Generate( const genType_t type, const u32 numRows, co
 	String_Append( &code, GEN_FILE_HEADER );
 
 	String_Append( &code, "#include \"../../" GEN_OUT_GEN_FOLDER_PATH GEN_FILENAME_FUNCTIONS_MATRIX ".h\"\n" );
-	String_Append( &code, "\n" );
 
 	if ( Gen_TypeSupportsSSE( m_type ) ) {
 		String_Append( &code, "#include \"../../" GEN_OUT_GEN_FOLDER_PATH GEN_FILENAME_FUNCTIONS_MATRIX_SSE ".h\"\n" );
 	}
 
+	String_Append( &code, "\n" );
 	String_Append( &code, "#include <temper/temper.h>\n" );
 	String_Append( &code, "\n" );
 
@@ -792,7 +792,7 @@ void GeneratorMatrixTests::GenerateTestTranspose() {
 
 	if ( Gen_TypeSupportsSSE( m_type ) ) {
 		char inputDataName[GEN_STRING_LENGTH_SSE_INPUT_NAME];
-		Gen_SSE_GetInputDataName( m_type, m_numRows, m_numCols, "transpose", inputDataName );
+		Gen_SSE_GetInputDataName( m_fullTypeName, "transpose", inputDataName );
 
 		const char* registerName = Gen_SSE_GetRegisterName( m_type );
 
@@ -906,72 +906,6 @@ void GeneratorMatrixTests::GenerateTestInverse() {
 	String_Appendf( &m_codeSuite, "\tTEMPER_RUN_TEST( %s );\n", testName );
 }
 
-// void GeneratorMatrixTests::GenerateTestCompMulDiv() {
-// 	if ( m_type == GEN_TYPE_BOOL ) {
-// 		return;
-// 	}
-// 
-// 	char testName[GEN_STRING_LENGTH_TEST_NAME];
-// 	snprintf( testName, GEN_STRING_LENGTH_TEST_NAME, "TestCompMulDiv_%s", m_fullTypeName );
-// 
-// 	float matA[4][4] = {
-// 		{ 4.0f,  4.0f,  4.0f,  4.0f  },
-// 		{ 8.0f,  8.0f,  8.0f,  8.0f  },
-// 		{ 24.0f, 24.0f, 24.0f, 24.0f },
-// 		{ 30.0f, 30.0f, 30.0f, 30.0f }
-// 	};
-// 
-// 	float matB[4][4] = {
-// 		{ 2.0f,  2.0f,  2.0f,  2.0f  },
-// 		{ 4.0f,  4.0f,  4.0f,  4.0f  },
-// 		{ 8.0f,  8.0f,  8.0f,  8.0f  },
-// 		{ 10.0f, 10.0f, 10.0f, 10.0f }
-// 	};
-// 
-// 	float matAnswerMul[4][4] = {
-// 		{ 8.0f,   8.0f,   8.0f,   8.0f   },
-// 		{ 32.0f,  32.0f,  32.0f,  32.0f  },
-// 		{ 192.0f, 192.0f, 192.0f, 192.0f },
-// 		{ 300.0f, 300.0f, 300.0f, 300.0f }
-// 	};
-// 
-// 	float matAnswerDiv[4][4] = {
-// 		{ 2.0f, 2.0f, 2.0f, 2.0f },
-// 		{ 2.0f, 2.0f, 2.0f, 2.0f },
-// 		{ 3.0f, 3.0f, 3.0f, 3.0f },
-// 		{ 3.0f, 3.0f, 3.0f, 3.0f }
-// 	};
-// 
-// 	char parmListA[GEN_STRING_LENGTH_PARM_LIST_MATRIX];
-// 	char parmListB[GEN_STRING_LENGTH_PARM_LIST_MATRIX];
-// 
-// 	char parmListAnswerMul[GEN_STRING_LENGTH_PARM_LIST_MATRIX];
-// 	char parmListAnswerDiv[GEN_STRING_LENGTH_PARM_LIST_MATRIX];
-// 
-// 	Gen_GetParmListMatrix( m_type, m_numRows, m_numCols, matA, parmListA );
-// 	Gen_GetParmListMatrix( m_type, m_numRows, m_numCols, matB, parmListB );
-// 
-// 	Gen_GetParmListMatrix( m_type, m_numRows, m_numCols, matAnswerMul, parmListAnswerMul );
-// 	Gen_GetParmListMatrix( m_type, m_numRows, m_numCols, matAnswerDiv, parmListAnswerDiv );
-// 
-// 	String_Appendf( &m_codeTests, "TEMPER_TEST( %s )\n", testName );
-// 	String_Append(  &m_codeTests, "{\n" );
-// 	String_Appendf( &m_codeTests, "\t%s answer_mul = %s%s;\n", m_fullTypeName, m_fullTypeName, parmListAnswerMul );
-// 	String_Appendf( &m_codeTests, "\t%s answer_div = %s%s;\n", m_fullTypeName, m_fullTypeName, parmListAnswerDiv );
-// 	String_Append(  &m_codeTests, "\n" );
-// 	String_Appendf( &m_codeTests, "\t%s a = %s%s;\n", m_fullTypeName, m_fullTypeName, parmListA );
-// 	String_Appendf( &m_codeTests, "\t%s b = %s%s;\n", m_fullTypeName, m_fullTypeName, parmListB );
-// 	String_Append(  &m_codeTests, "\n" );
-// 	String_Append(  &m_codeTests, "\tTEMPER_EXPECT_TRUE( comp_mul( a, b ) == answer_mul );\n" );
-// 	String_Append(  &m_codeTests, "\tTEMPER_EXPECT_TRUE( comp_div( a, b ) == answer_div );\n" );
-// 	String_Append(  &m_codeTests, "\n" );
-// 	String_Append(  &m_codeTests, "\tTEMPER_PASS();\n" );
-// 	String_Append(  &m_codeTests, "}\n" );
-// 	String_Append(  &m_codeTests, "\n" );
-// 
-// 	String_Appendf( &m_codeSuite, "\tTEMPER_RUN_TEST( %s );\n", testName );
-// }
-
 void GeneratorMatrixTests::GenerateTestDeterminant() {
 	if ( m_type == GEN_TYPE_BOOL || m_type == GEN_TYPE_UINT ) {
 		return;
@@ -1015,34 +949,82 @@ void GeneratorMatrixTests::GenerateTestDeterminant() {
 	char answerStr[GEN_STRING_LENGTH_NUMERIC_LITERAL];
 	Gen_GetNumericLiteral( m_type, determinants[m_numRows - 2], answerStr, 1 );
 
+	const char* floateqStr = Gen_GetFuncNameFloateq( m_type );
+
 	char parmList[GEN_STRING_LENGTH_PARM_LIST_MATRIX];
+
+	// DM: this looks ugly but but I understand this is the correct way to get a ptr to a 2D array
+	// I don't know of a better way of doing this
+	float (*valuesMat)[4] = NULL;
 
 	switch ( m_numRows ) {
 		case 2:
-			Gen_GetParmListMatrix( m_type, m_numRows, m_numCols, mat2x2, parmList );
+			valuesMat = mat2x2;
 			break;
 
 		case 3:
-			Gen_GetParmListMatrix( m_type, m_numRows, m_numCols, mat3x3, parmList );
+			valuesMat = mat3x3;
 			break;
 
 		case 4:
-			Gen_GetParmListMatrix( m_type, m_numRows, m_numCols, mat4x4, parmList );
+			valuesMat = mat4x4;
 			break;
 	}
 
+	Gen_GetParmListMatrix( m_type, m_numRows, m_numCols, valuesMat, parmList );
+
 	String_Appendf( &m_codeTests, "TEMPER_TEST( %s )\n", testName );
 	String_Append(  &m_codeTests, "{\n" );
+	String_Append(  &m_codeTests, "\t// scalar\n" );
 	String_Appendf( &m_codeTests, "\t%s mat = %s%s;\n", m_fullTypeName, m_fullTypeName, parmList );
 	String_Appendf( &m_codeTests, "\t%s det = determinant( mat );\n", m_memberTypeString );
 	String_Append(  &m_codeTests, "\n" );
 	if ( Gen_TypeIsFloatingPoint( m_type ) ) {
-		const char* floateqStr = Gen_GetFuncNameFloateq( m_type );
-
 		String_Appendf( &m_codeTests, "\tTEMPER_EXPECT_TRUE( %s( det, %s ) );\n", floateqStr, answerStr );
 	} else {
 		String_Appendf( &m_codeTests, "\tTEMPER_EXPECT_TRUE( det == %s );\n", answerStr );
 	}
+
+	if ( Gen_TypeSupportsSSE( m_type ) ) {
+		char inputDataName[GEN_STRING_LENGTH_SSE_INPUT_NAME];
+		Gen_SSE_GetInputDataName( m_fullTypeName, "determinant", inputDataName );
+
+		const char* registerName = Gen_SSE_GetRegisterName( m_type );
+
+		const char* loadFuncStr		= Gen_SSE_GetFuncStrLoad( m_type );
+		const char* storeFuncStr	= Gen_SSE_GetFuncStrStore( m_type );
+
+		String_Append(  &m_codeTests, "\n" );
+		String_Append(  &m_codeTests, "\t// SSE\n" );
+		for ( u32 row = 0; row < m_numRows; row++ ) {
+			for ( u32 col = 0; col < m_numCols; col++ ) {
+				float value = valuesMat[row][col];
+				float values[4] = { value, value, value, value };
+
+				String_Appendf( &m_codeTests, "\t%s m%d%d[4] =", m_memberTypeString, row, col );
+				Gen_GetValuesArray1D( m_type, 4, values, &m_codeTests );
+				String_Append(  &m_codeTests, ";\n" );
+			}
+		}
+		String_Append(  &m_codeTests, "\n" );
+		String_Appendf( &m_codeTests, "\t%s results;\n", registerName );
+		String_Appendf( &m_codeTests, "\t%s in;\n", inputDataName );
+		for ( u32 row = 0; row < m_numRows; row++ ) {
+			for ( u32 col = 0; col < m_numCols; col++ ) {
+				String_Appendf( &m_codeTests, "\tin.m[%d][%d] = %s( m%d%d );\n", row, col, loadFuncStr, row, col );
+			}
+		}
+		String_Append(  &m_codeTests, "\n" );
+		String_Appendf( &m_codeTests, "\tdeterminant_sse( &in, &results );\n" );
+		String_Append(  &m_codeTests, "\n" );
+		String_Appendf( &m_codeTests, "\t%s determinantResults[4];\n", m_memberTypeString );
+		String_Appendf( &m_codeTests, "\t%s( determinantResults, results );\n", storeFuncStr );
+		String_Appendf( &m_codeTests, "\tTEMPER_EXPECT_TRUE( %s( determinantResults[0], %s ) );\n", floateqStr, answerStr );
+		String_Appendf( &m_codeTests, "\tTEMPER_EXPECT_TRUE( %s( determinantResults[1], %s ) );\n", floateqStr, answerStr );
+		String_Appendf( &m_codeTests, "\tTEMPER_EXPECT_TRUE( %s( determinantResults[2], %s ) );\n", floateqStr, answerStr );
+		String_Appendf( &m_codeTests, "\tTEMPER_EXPECT_TRUE( %s( determinantResults[3], %s ) );\n", floateqStr, answerStr );
+	}
+
 	String_Append( &m_codeTests, "\n" );
 	String_Append( &m_codeTests, "\tTEMPER_PASS();\n" );
 	String_Append( &m_codeTests, "}\n" );
@@ -1607,7 +1589,7 @@ void GeneratorMatrixTests::GetTestCodeOperatorArithmeticInternal( const genOpAri
 		const char* registerName = Gen_SSE_GetRegisterName( m_type );
 
 		char inputDataNameArithmetic[GEN_STRING_LENGTH_SSE_INPUT_NAME];
-		Gen_SSE_GetInputDataName( m_type, m_numRows, m_numCols, opStr, inputDataNameArithmetic );
+		Gen_SSE_GetInputDataName( m_fullTypeName, opStr, inputDataNameArithmetic );
 
 		const char* loadFuncStr = Gen_SSE_GetFuncStrLoad( m_type );
 		const char* storeFuncStr = Gen_SSE_GetFuncStrStore( m_type );
@@ -1620,7 +1602,7 @@ void GeneratorMatrixTests::GetTestCodeOperatorArithmeticInternal( const genOpAri
 				float value = valuesLhs[row][col];
 				float values[4] = { value, value, value, value };
 
-				String_Appendf( sb, "\t%s a%d%d[4] = ", m_memberTypeString, row, col );
+				String_Appendf( sb, "\t%s a%d%d[4] =", m_memberTypeString, row, col );
 				Gen_GetValuesArray1D( m_type, 4, values, sb );
 				String_Append(  sb, ";\n" );
 			}
@@ -1631,7 +1613,7 @@ void GeneratorMatrixTests::GetTestCodeOperatorArithmeticInternal( const genOpAri
 				float value = valuesRhs[row][col];
 				float values[4] = { value, value, value, value };
 
-				String_Appendf( sb, "\t%s b%d%d[4] = ", m_memberTypeString, row, col );
+				String_Appendf( sb, "\t%s b%d%d[4] =", m_memberTypeString, row, col );
 				Gen_GetValuesArray1D( m_type, 4, values, sb );
 				String_Append(  sb, ";\n" );
 			}

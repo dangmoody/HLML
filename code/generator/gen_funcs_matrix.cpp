@@ -632,10 +632,10 @@ void Gen_MatrixDeterminant( const genType_t type, const u32 numRows, const u32 n
 			String_Appendf( sbInl, "\t%s sub05 = mat[2][0] * mat[3][1] - mat[3][0] * mat[2][1];\n", memberTypeString );
 			String_Append(  sbInl, "\n" );
 			String_Appendf( sbInl, "\t%s cofactor = %s(\n", vectorTypeName, vectorTypeName );
-			String_Append(  sbInl, "\t\t ( mat[1][1] * sub00 - mat[1][2] * sub01 + mat[1][3] * sub02 ),\n" );
-			String_Append(  sbInl, "\t\t-( mat[1][0] * sub00 - mat[1][2] * sub03 + mat[1][3] * sub04 ),\n" );
-			String_Append(  sbInl, "\t\t ( mat[1][0] * sub01 - mat[1][1] * sub03 + mat[1][3] * sub05 ),\n" );
-			String_Append(  sbInl, "\t\t-( mat[1][0] * sub02 - mat[1][1] * sub04 + mat[1][2] * sub05 )\n" );
+			String_Append(  sbInl, "\t\t ( ( ( mat[1][1] * sub00 ) - ( mat[1][2] * sub01 ) ) + ( mat[1][3] * sub02 ) ),\n" );
+			String_Append(  sbInl, "\t\t-( ( ( mat[1][0] * sub00 ) - ( mat[1][2] * sub03 ) ) + ( mat[1][3] * sub04 ) ),\n" );
+			String_Append(  sbInl, "\t\t ( ( ( mat[1][0] * sub01 ) - ( mat[1][1] * sub03 ) ) + ( mat[1][3] * sub05 ) ),\n" );
+			String_Append(  sbInl, "\t\t-( ( ( mat[1][0] * sub02 ) - ( mat[1][1] * sub04 ) ) + ( mat[1][2] * sub05 ) )\n" );
 			String_Append(  sbInl, "\t);\n" );
 			String_Append(  sbInl, "\n" );
 			String_Append(  sbInl, "\treturn\n" );

@@ -661,10 +661,10 @@ int32_t determinant( const int4x4& mat )
 	int32_t sub05 = mat[2][0] * mat[3][1] - mat[3][0] * mat[2][1];
 
 	int4 cofactor = int4(
-		 ( mat[1][1] * sub00 - mat[1][2] * sub01 + mat[1][3] * sub02 ),
-		-( mat[1][0] * sub00 - mat[1][2] * sub03 + mat[1][3] * sub04 ),
-		 ( mat[1][0] * sub01 - mat[1][1] * sub03 + mat[1][3] * sub05 ),
-		-( mat[1][0] * sub02 - mat[1][1] * sub04 + mat[1][2] * sub05 )
+		 ( ( ( mat[1][1] * sub00 ) - ( mat[1][2] * sub01 ) ) + ( mat[1][3] * sub02 ) ),
+		-( ( ( mat[1][0] * sub00 ) - ( mat[1][2] * sub03 ) ) + ( mat[1][3] * sub04 ) ),
+		 ( ( ( mat[1][0] * sub01 ) - ( mat[1][1] * sub03 ) ) + ( mat[1][3] * sub05 ) ),
+		-( ( ( mat[1][0] * sub02 ) - ( mat[1][1] * sub04 ) ) + ( mat[1][2] * sub05 ) )
 	);
 
 	return
@@ -1817,10 +1817,10 @@ float determinant( const float4x4& mat )
 	float sub05 = mat[2][0] * mat[3][1] - mat[3][0] * mat[2][1];
 
 	float4 cofactor = float4(
-		 ( mat[1][1] * sub00 - mat[1][2] * sub01 + mat[1][3] * sub02 ),
-		-( mat[1][0] * sub00 - mat[1][2] * sub03 + mat[1][3] * sub04 ),
-		 ( mat[1][0] * sub01 - mat[1][1] * sub03 + mat[1][3] * sub05 ),
-		-( mat[1][0] * sub02 - mat[1][1] * sub04 + mat[1][2] * sub05 )
+		 ( ( ( mat[1][1] * sub00 ) - ( mat[1][2] * sub01 ) ) + ( mat[1][3] * sub02 ) ),
+		-( ( ( mat[1][0] * sub00 ) - ( mat[1][2] * sub03 ) ) + ( mat[1][3] * sub04 ) ),
+		 ( ( ( mat[1][0] * sub01 ) - ( mat[1][1] * sub03 ) ) + ( mat[1][3] * sub05 ) ),
+		-( ( ( mat[1][0] * sub02 ) - ( mat[1][1] * sub04 ) ) + ( mat[1][2] * sub05 ) )
 	);
 
 	return
@@ -2645,10 +2645,10 @@ double determinant( const double4x4& mat )
 	double sub05 = mat[2][0] * mat[3][1] - mat[3][0] * mat[2][1];
 
 	double4 cofactor = double4(
-		 ( mat[1][1] * sub00 - mat[1][2] * sub01 + mat[1][3] * sub02 ),
-		-( mat[1][0] * sub00 - mat[1][2] * sub03 + mat[1][3] * sub04 ),
-		 ( mat[1][0] * sub01 - mat[1][1] * sub03 + mat[1][3] * sub05 ),
-		-( mat[1][0] * sub02 - mat[1][1] * sub04 + mat[1][2] * sub05 )
+		 ( ( ( mat[1][1] * sub00 ) - ( mat[1][2] * sub01 ) ) + ( mat[1][3] * sub02 ) ),
+		-( ( ( mat[1][0] * sub00 ) - ( mat[1][2] * sub03 ) ) + ( mat[1][3] * sub04 ) ),
+		 ( ( ( mat[1][0] * sub01 ) - ( mat[1][1] * sub03 ) ) + ( mat[1][3] * sub05 ) ),
+		-( ( ( mat[1][0] * sub02 ) - ( mat[1][1] * sub04 ) ) + ( mat[1][2] * sub05 ) )
 	);
 
 	return

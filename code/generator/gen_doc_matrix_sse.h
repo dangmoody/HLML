@@ -4,15 +4,16 @@
 #include "string_builder.h"
 
 inline void Doc_SSE_MatrixIdentity( stringBuilder_t* sb, const char* fullTypeName, const char* registerName ) {
+	assert( fullTypeName );
+
 	String_Appendf( sb,
 		"/// \\relates %s\n" \
 		"/// \\brief Sets a matrix of %s registers to identity.\n", fullTypeName, registerName
 	);
 }
 
-inline void Doc_SSE_MatrixTranspose( stringBuilder_t* sb, const genType_t type, const u32 numRows, const u32 numCols, const char* registerName ) {
-	char fullTypeName[GEN_STRING_LENGTH_TYPE_NAME];
-	Gen_GetFullTypeName( type, numRows, numCols, fullTypeName );
+inline void Doc_SSE_MatrixTranspose( stringBuilder_t* sb, const char* fullTypeName, const u32 numRows, const u32 numCols, const char* registerName ) {
+	assert( fullTypeName );
 
 	String_Appendf( sb,
 		"/// \\relates %s\n" \
@@ -20,9 +21,8 @@ inline void Doc_SSE_MatrixTranspose( stringBuilder_t* sb, const genType_t type, 
 	);
 }
 
-inline void Doc_SSE_MatrixArithmeticComponentWise( stringBuilder_t* sb, const genType_t type, const u32 numRows, const u32 numCols, const char* registerName, const genOpArithmetic_t op ) {
-	char fullTypeName[GEN_STRING_LENGTH_TYPE_NAME];
-	Gen_GetFullTypeName( type, numRows, numCols, fullTypeName );
+inline void Doc_SSE_MatrixArithmeticComponentWise( stringBuilder_t* sb, const char* fullTypeName, const char* registerName, const genOpArithmetic_t op ) {
+	assert( fullTypeName );
 
 	const char* verb = NULL;
 	switch ( op ) {
@@ -55,9 +55,8 @@ inline void Doc_SSE_MatrixArithmeticComponentWise( stringBuilder_t* sb, const ge
 	);
 }
 
-inline void Doc_SSE_MatrixTranslate( stringBuilder_t* sb, const genType_t type, const u32 numRows, const u32 numCols, const char* registerName ) {
-	char fullTypeName[GEN_STRING_LENGTH_TYPE_NAME];
-	Gen_GetFullTypeName( type, numRows, numCols, fullTypeName );
+inline void Doc_SSE_MatrixTranslate( stringBuilder_t* sb, const char* fullTypeName, const char* registerName ) {
+	assert( fullTypeName );
 
 	String_Appendf( sb,
 		"/// \\relates %s\n" \
@@ -65,9 +64,8 @@ inline void Doc_SSE_MatrixTranslate( stringBuilder_t* sb, const genType_t type, 
 	);
 }
 
-inline void Doc_SSE_MatrixScale( stringBuilder_t* sb, const genType_t type, const u32 numRows, const u32 numCols ) {
-	char fullTypeName[GEN_STRING_LENGTH_TYPE_NAME];
-	Gen_GetFullTypeName( type, numRows, numCols, fullTypeName );
+inline void Doc_SSE_MatrixScale( stringBuilder_t* sb, const char* fullTypeName ) {
+	assert( fullTypeName );
 
 	String_Appendf( sb,
 		"/// \\relates %s\n" \

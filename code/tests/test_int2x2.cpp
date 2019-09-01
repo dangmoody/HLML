@@ -488,6 +488,7 @@ TEMPER_TEST( TestTranspose_int2x2 )
 
 TEMPER_TEST( TestDeterminant_int2x2 )
 {
+	// scalar
 	int2x2 mat = int2x2(
 		6, 2,
 		2, 6

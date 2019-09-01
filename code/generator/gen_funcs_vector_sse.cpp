@@ -31,10 +31,10 @@ void Gen_SSE_VectorNormalize( const genType_t type, const u32 numComponents, str
 	Gen_SSE_GetIntrinsicArithmeticStr( type, GEN_OP_ARITHMETIC_DIV, divFuncStr );
 
 	char inputDataNameNormalize[GEN_STRING_LENGTH_SSE_INPUT_NAME];
-	Gen_SSE_GetInputDataName( type, 1, numComponents, "normalize", inputDataNameNormalize );
+	Gen_SSE_GetInputDataName( fullTypeName, "normalize", inputDataNameNormalize );
 
 	char inputDataNameLength[GEN_STRING_LENGTH_SSE_INPUT_NAME];
-	Gen_SSE_GetInputDataName( type, 1, numComponents, "length", inputDataNameLength );
+	Gen_SSE_GetInputDataName( fullTypeName, "length", inputDataNameLength );
 
 	String_Appendf( sbHeader, "struct %s\n", inputDataNameNormalize );
 	String_Append(  sbHeader, "{\n" );
@@ -79,7 +79,7 @@ void Gen_SSE_VectorDot( const genType_t type, const u32 numComponents, stringBui
 	Gen_GetFullTypeName( type, 1, numComponents, fullTypeName );
 
 	char inputDataName[GEN_STRING_LENGTH_SSE_INPUT_NAME];
-	Gen_SSE_GetInputDataName( type, 1, numComponents, "dot", inputDataName );
+	Gen_SSE_GetInputDataName( fullTypeName, "dot", inputDataName );
 
 	const char* registerName = Gen_SSE_GetRegisterName( type );
 
@@ -151,10 +151,10 @@ void Gen_SSE_VectorLength( const genType_t type, const u32 numComponents, string
 	Gen_GetFullTypeName( type, 1, numComponents, fullTypeName );
 
 	char inputDataNameLength[GEN_STRING_LENGTH_SSE_INPUT_NAME];
-	Gen_SSE_GetInputDataName( type, 1, numComponents, "length", inputDataNameLength );
+	Gen_SSE_GetInputDataName( fullTypeName, "length", inputDataNameLength );
 
 	char inputDataNameDot[GEN_STRING_LENGTH_SSE_INPUT_NAME];
-	Gen_SSE_GetInputDataName( type, 1, numComponents, "dot", inputDataNameDot );
+	Gen_SSE_GetInputDataName( fullTypeName, "dot", inputDataNameDot );
 
 	const char* registerName = Gen_SSE_GetRegisterName( type );
 
@@ -222,10 +222,10 @@ void Gen_SSE_VectorDistance( const genType_t type, const u32 numComponents, stri
 	Gen_GetFullTypeName( type, 1, numComponents, fullTypeName );
 
 	char inputDataNameDistance[GEN_STRING_LENGTH_SSE_INPUT_NAME];
-	Gen_SSE_GetInputDataName( type, 1, numComponents, "distance", inputDataNameDistance );
+	Gen_SSE_GetInputDataName( fullTypeName, "distance", inputDataNameDistance );
 
 	char inputDataNameLength[GEN_STRING_LENGTH_SSE_INPUT_NAME];
-	Gen_SSE_GetInputDataName( type, 1, numComponents, "length", inputDataNameLength );
+	Gen_SSE_GetInputDataName( fullTypeName, "length", inputDataNameLength );
 
 	const char* registerName = Gen_SSE_GetRegisterName( type );
 

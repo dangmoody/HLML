@@ -38,6 +38,20 @@ struct sse_input_transpose_float2x2_t
 /// \brief Stores a transposed matrix of 2 x 2 __m128 registers in the output given the input 2 x 2 register matrix.
 inline void transpose_sse( const sse_input_transpose_float2x2_t* in, __m128 out_results[2][2] );
 
+struct sse_input_inverse_float2x2_t
+{
+	__m128 m[2][2];
+};
+
+inline void inverse_sse( const sse_input_inverse_float2x2_t* in, __m128 out_results[2][2] );
+
+struct sse_input_determinant_float2x2_t
+{
+	__m128 m[2][2];
+};
+
+inline void determinant_sse( const sse_input_determinant_float2x2_t* in, __m128* out_result );
+
 struct sse_input_add_float2x2_t
 {
 	__m128 lhs[2][2];
@@ -311,6 +325,20 @@ struct sse_input_transpose_float3x3_t
 /// \relates float3x3
 /// \brief Stores a transposed matrix of 3 x 3 __m128 registers in the output given the input 3 x 3 register matrix.
 inline void transpose_sse( const sse_input_transpose_float3x3_t* in, __m128 out_results[3][3] );
+
+struct sse_input_inverse_float3x3_t
+{
+	__m128 m[3][3];
+};
+
+inline void inverse_sse( const sse_input_inverse_float3x3_t* in, __m128 out_results[3][3] );
+
+struct sse_input_determinant_float3x3_t
+{
+	__m128 m[3][3];
+};
+
+inline void determinant_sse( const sse_input_determinant_float3x3_t* in, __m128* out_result );
 
 struct sse_input_add_float3x3_t
 {
@@ -595,6 +623,20 @@ struct sse_input_transpose_float4x4_t
 /// \relates float4x4
 /// \brief Stores a transposed matrix of 4 x 4 __m128 registers in the output given the input 4 x 4 register matrix.
 inline void transpose_sse( const sse_input_transpose_float4x4_t* in, __m128 out_results[4][4] );
+
+struct sse_input_inverse_float4x4_t
+{
+	__m128 m[4][4];
+};
+
+inline void inverse_sse( const sse_input_inverse_float4x4_t* in, __m128 out_results[4][4] );
+
+struct sse_input_determinant_float4x4_t
+{
+	__m128 m[4][4];
+};
+
+inline void determinant_sse( const sse_input_determinant_float4x4_t* in, __m128* out_result );
 
 struct sse_input_add_float4x4_t
 {

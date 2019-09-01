@@ -27,6 +27,7 @@
 
 #define GEN_HEADER_TYPES					"hlml_types.h"
 #define GEN_HEADER_CONSTANTS				"hlml_constants.h"
+#define GEN_HEADER_CONSTANTS_SSE			"hlml_constants_sse.h"
 #define GEN_HEADER_USER						"hlml_user.h"
 
 #define GEN_FILENAME_OPERATORS_VECTOR		"hlml_operators_vector"
@@ -41,7 +42,7 @@
 
 #define GEN_STRING_LENGTH_NUMERIC_LITERAL	16
 #define GEN_STRING_LENGTH_TYPE_NAME			16
-#define GEN_STRING_LENGTH_SSE_INPUT_NAME	32
+#define GEN_STRING_LENGTH_SSE_INPUT_NAME	34
 #define GEN_STRING_LENGTH_SSE_INTRINSIC		32
 
 #define GEN_STRING_LENGTH_PARM_LIST_VECTOR	64
