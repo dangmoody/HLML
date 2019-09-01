@@ -143,7 +143,7 @@ void Gen_SSE_MatrixInverse( const genType_t type, const u32 numRows, const u32 n
 	String_Appendf( sbHeader, "inline void inverse_sse( const %s* in, %s out_results[%d][%d] );\n", inputDataNameInverse, registerName, numRows, numCols );
 	String_Append(  sbHeader, "\n" );
 
-	String_Appendf( sbInl, "void inverse_sse( const %s* in, %s out_results[%d][%d] )\n", inputDataNameInverse, registerName );
+	String_Appendf( sbInl, "void inverse_sse( const %s* in, %s out_results[%d][%d] )\n", inputDataNameInverse, registerName, numRows, numCols );
 	String_Append(  sbInl, "{\n" );
 	String_Append(  sbInl, "\tassert( in );\n" );
 	String_Append(  sbInl, "\n" );
