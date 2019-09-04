@@ -22,13 +22,13 @@ void Gen_SSE_VectorNormalize( const genType_t type, const u32 numComponents, str
 
 	const char* registerName = Gen_SSE_GetRegisterName( type );
 
-	const char* set1FuncStr = Gen_SSE_GetFuncStrSet1( type );
+	const char* set1FuncStr = Gen_SSE_GetIntrinsicSet1( type );
 
 	char mulFuncStr[GEN_STRING_LENGTH_SSE_INTRINSIC];
 	char divFuncStr[GEN_STRING_LENGTH_SSE_INTRINSIC];
 
-	Gen_SSE_GetIntrinsicArithmeticStr( type, GEN_OP_ARITHMETIC_MUL, mulFuncStr );
-	Gen_SSE_GetIntrinsicArithmeticStr( type, GEN_OP_ARITHMETIC_DIV, divFuncStr );
+	Gen_SSE_GetIntrinsicArithmetic( type, GEN_OP_ARITHMETIC_MUL, mulFuncStr );
+	Gen_SSE_GetIntrinsicArithmetic( type, GEN_OP_ARITHMETIC_DIV, divFuncStr );
 
 	char inputDataNameNormalize[GEN_STRING_LENGTH_SSE_INPUT_NAME];
 	Gen_SSE_GetInputDataName( fullTypeName, "normalize", inputDataNameNormalize );
@@ -86,8 +86,8 @@ void Gen_SSE_VectorDot( const genType_t type, const u32 numComponents, stringBui
 	char addFuncStr[GEN_STRING_LENGTH_SSE_INPUT_NAME];
 	char mulFuncStr[GEN_STRING_LENGTH_SSE_INPUT_NAME];
 
-	Gen_SSE_GetIntrinsicArithmeticStr( type, GEN_OP_ARITHMETIC_ADD, addFuncStr );
-	Gen_SSE_GetIntrinsicArithmeticStr( type, GEN_OP_ARITHMETIC_MUL, mulFuncStr );
+	Gen_SSE_GetIntrinsicArithmetic( type, GEN_OP_ARITHMETIC_ADD, addFuncStr );
+	Gen_SSE_GetIntrinsicArithmetic( type, GEN_OP_ARITHMETIC_MUL, mulFuncStr );
 
 	String_Appendf( sbHeader, "struct %s\n", inputDataName );
 	String_Append(  sbHeader, "{\n" );
@@ -230,7 +230,7 @@ void Gen_SSE_VectorDistance( const genType_t type, const u32 numComponents, stri
 	const char* registerName = Gen_SSE_GetRegisterName( type );
 
 	char subFuncStr[GEN_STRING_LENGTH_SSE_INPUT_NAME];
-	Gen_SSE_GetIntrinsicArithmeticStr( type, GEN_OP_ARITHMETIC_SUB, subFuncStr );
+	Gen_SSE_GetIntrinsicArithmetic( type, GEN_OP_ARITHMETIC_SUB, subFuncStr );
 
 	String_Appendf( sbHeader, "struct %s\n", inputDataNameDistance );
 	String_Append(  sbHeader, "{\n" );

@@ -507,8 +507,8 @@ void GeneratorVectorTests::GenerateTestLength() {
 		char inputDataNameLength[GEN_STRING_LENGTH_SSE_INPUT_NAME];
 		Gen_SSE_GetInputDataName( m_fullTypeName, "length", inputDataNameLength );
 
-		const char* sseLoadStr = Gen_SSE_GetFuncStrLoad( m_type );
-		const char* sseStoreStr = Gen_SSE_GetFuncStrStore( m_type );
+		const char* sseLoadStr = Gen_SSE_GetIntrinsicLoad( m_type );
+		const char* sseStoreStr = Gen_SSE_GetIntrinsicStore( m_type );
 
 		float values[4][4] = {
 			{ 2.0f, 2.0f, 2.0f, 2.0f },	// x
@@ -589,8 +589,8 @@ void GeneratorVectorTests::GenerateTestNormalized() {
 	if ( Gen_TypeSupportsSSE( m_type ) ) {
 		const char* floateqStr = Gen_GetFuncNameFloateq( m_type );
 
-		const char* set1FuncStr		= Gen_SSE_GetFuncStrSet1( m_type );
-		const char* storeFuncStr	= Gen_SSE_GetFuncStrStore( m_type );
+		const char* set1FuncStr		= Gen_SSE_GetIntrinsicSet1( m_type );
+		const char* storeFuncStr	= Gen_SSE_GetIntrinsicStore( m_type );
 
 		char inputDataNameNormalize[GEN_STRING_LENGTH_SSE_INPUT_NAME];
 		Gen_SSE_GetInputDataName( m_fullTypeName, "normalize", inputDataNameNormalize );
@@ -684,8 +684,8 @@ void GeneratorVectorTests::GenerateTestDot() {
 		char inputDataNameDot[GEN_STRING_LENGTH_SSE_INPUT_NAME];
 		Gen_SSE_GetInputDataName( m_fullTypeName, "dot", inputDataNameDot );
 
-		const char* sseLoadStr = Gen_SSE_GetFuncStrLoad( m_type );
-		const char* sseStoreStr = Gen_SSE_GetFuncStrStore( m_type );
+		const char* sseLoadStr = Gen_SSE_GetIntrinsicLoad( m_type );
+		const char* sseStoreStr = Gen_SSE_GetIntrinsicStore( m_type );
 
 		float valuesLHS[4][4] = {
 			{ 0.0f, 0.0f, 0.0f, 0.0f },	// x
@@ -817,8 +817,8 @@ void GeneratorVectorTests::GenerateTestAngle() {
 
 #if 0
 	if ( Gen_TypeSupportsSSE( m_type ) ) {
-		const char* set1FuncStr		= Gen_SSE_GetFuncStrSet1( m_type );
-		const char* storeFuncStr	= Gen_SSE_GetFuncStrStore( m_type );
+		const char* set1FuncStr		= Gen_SSE_GetIntrinsicSet1( m_type );
+		const char* storeFuncStr	= Gen_SSE_GetIntrinsicStore( m_type );
 
 		char inputDataName[GEN_STRING_LENGTH_SSE_INPUT_NAME];
 		Gen_SSE_GetInputDataNameAngle( m_type, m_numComponents, inputDataName );
@@ -923,8 +923,8 @@ void GeneratorVectorTests::GenerateTestDistance() {
 		char inputDataNameDistance[GEN_STRING_LENGTH_SSE_INPUT_NAME];
 		Gen_SSE_GetInputDataName( m_fullTypeName, "distance", inputDataNameDistance );
 
-		const char* sseLoadStr = Gen_SSE_GetFuncStrLoad( m_type );
-		const char* sseStoreStr = Gen_SSE_GetFuncStrStore( m_type );
+		const char* sseLoadStr = Gen_SSE_GetIntrinsicLoad( m_type );
+		const char* sseStoreStr = Gen_SSE_GetIntrinsicStore( m_type );
 
 		float valuesLHS[4][4] = {
 			{ 7.0f, 7.0f, 7.0f, 7.0f },	// x
