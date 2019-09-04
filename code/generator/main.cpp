@@ -54,7 +54,7 @@ static bool32 GenerateTypeHeader( void ) {
 	char headerFilePath[1024] = { 0 };
 	snprintf( headerFilePath, 1024, "%s%s", GEN_OUT_FOLDER_PATH, GEN_HEADER_TYPES );
 
-	stringBuilder_t sb = String_Create( 1 * KB_TO_BYTES );
+	stringBuilder_t sb = String_Create( 2 * KB_TO_BYTES );
 
 	String_Append( &sb, GEN_FILE_HEADER );
 	String_Append( &sb,
@@ -187,7 +187,7 @@ static bool32 GenerateFunctionsVector( void ) {
 	char filePathInl[64] = { 0 };
 	snprintf( filePathInl, 64, "%s%s.inl", GEN_OUT_GEN_FOLDER_PATH, GEN_FILENAME_FUNCTIONS_VECTOR );
 
-	stringBuilder_t contentHeader = String_Create( 16 * KB_TO_BYTES );
+	stringBuilder_t contentHeader = String_Create( 18 * KB_TO_BYTES );
 
 	String_Append( &contentHeader, GEN_FILE_HEADER );
 	String_Append( &contentHeader,
@@ -354,7 +354,7 @@ static bool32 GenerateFunctionsScalarSSE( void ) {
 	char filePathInl[64] = { 0 };
 	snprintf( filePathInl, 64, "%s%s.inl", GEN_OUT_GEN_FOLDER_PATH, GEN_FILENAME_FUNCTIONS_SCALAR_SSE );
 
-	stringBuilder_t contentHeader = String_Create( 2 * KB_TO_BYTES );
+	stringBuilder_t contentHeader = String_Create( 4 * KB_TO_BYTES );
 	String_Append( &contentHeader, GEN_FILE_HEADER );
 	String_Append( &contentHeader,
 		"#pragma once\n"
@@ -362,7 +362,7 @@ static bool32 GenerateFunctionsScalarSSE( void ) {
 		"#include <xmmintrin.h>\n"
 		"\n" );
 
-	stringBuilder_t contentInl = String_Create( 2 * KB_TO_BYTES );
+	stringBuilder_t contentInl = String_Create( 4 * KB_TO_BYTES );
 	String_Append( &contentInl, GEN_FILE_HEADER );
 	String_Append( &contentInl, "#include <assert.h>\n"
 		"\n" \
@@ -469,7 +469,7 @@ static bool32 GenerateFunctionsMatrixSSE( void ) {
 	char filePathInl[64] = { 0 };
 	snprintf( filePathInl, 64, "%s%s.inl", GEN_OUT_GEN_FOLDER_PATH, GEN_FILENAME_FUNCTIONS_MATRIX_SSE );
 
-	stringBuilder_t contentHeader = String_Create( 22 * KB_TO_BYTES );
+	stringBuilder_t contentHeader = String_Create( 28 * KB_TO_BYTES );
 	stringBuilder_t contentInl = String_Create( 64 * KB_TO_BYTES );
 
 	String_Append( &contentHeader, GEN_FILE_HEADER );
@@ -483,6 +483,8 @@ static bool32 GenerateFunctionsMatrixSSE( void ) {
 	String_Append( &contentInl, GEN_FILE_HEADER );
 	String_Append( &contentInl,
 		"#include \"../" GEN_HEADER_CONSTANTS_SSE "\"\n"
+		"\n"
+		"#include \"" GEN_FILENAME_FUNCTIONS_VECTOR_SSE ".h\"\n"
 		"\n"
 	);
 
@@ -503,24 +505,24 @@ static bool32 GenerateFunctionsMatrixSSE( void ) {
 				String_Appendf( &contentHeader, "// %s\n", fullTypeName );
 				String_Appendf( &contentInl, "// %s\n", fullTypeName );
 
+				Gen_SSE_MacroNegate( type, &contentHeader );
+
 				// Gen_SSE_MatrixIdentity( type, row, col, &contentHeader, &contentInl );
 				Gen_SSE_MatrixTranspose( type, row, col, &contentHeader, &contentInl );
 
-				Gen_SSE_MatrixInverse( type, row, col, &contentHeader, &contentInl );
 				Gen_SSE_MatrixDeterminant( type, row, col, &contentHeader, &contentInl );
+				// Gen_SSE_MatrixInverse( type, row, col, &contentHeader, &contentInl );
 
 				for ( u32 opIndex = 0; opIndex < GEN_OP_ARITHMETIC_COUNT; opIndex++ ) {
 					genOpArithmetic_t op = (genOpArithmetic_t) opIndex;
 					Gen_SSE_MatrixArithmeticComponentWise( type, row, col, op, &contentHeader, &contentInl );
 				}
 
+				Gen_SSE_MatrixMultiply( type, row, col, &contentHeader, &contentInl );
+
 				Gen_SSE_MatrixTranslate( type, row, col, &contentHeader, &contentInl );
 				// Gen_SSE_MatrixRotate( type, row, col, &contentHeader, &contentInl );
 				Gen_SSE_MatrixScale( type, row, col, &contentHeader, &contentInl );
-
-				// Gen_SSE_MatrixOrtho( type, row, col, &contentHeader, &contentInl );
-				// Gen_SSE_MatrixPerspective( type, row, col, &contentHeader, &contentInl );
-				// Gen_SSE_MatrixLookAt( type, row, col, &contentHeader, &contentInl );
 
 				String_Append( &contentHeader, "\n" );
 				String_Append( &contentInl, "\n" );

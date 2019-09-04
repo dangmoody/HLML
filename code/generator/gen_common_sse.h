@@ -25,6 +25,8 @@ along with The HLML Generator.  If not, see <http://www.gnu.org/licenses/>.
 
 #include "gen_common.h"
 
+extern void			Gen_SSE_MacroNegate( const genType_t type, stringBuilder_t* sbHeader );
+
 extern void			Gen_SSE_Radians( const genType_t type, stringBuilder_t* sbHeader, stringBuilder_t* sbInl );
 extern void			Gen_SSE_Degrees( const genType_t type, stringBuilder_t* sbHeader, stringBuilder_t* sbInl );
 extern void			Gen_SSE_Lerp( const genType_t type, const u32 numComponents, stringBuilder_t* sbHeader, stringBuilder_t* sbInl );
@@ -36,13 +38,14 @@ inline bool32		Gen_TypeSupportsSSE( const genType_t type ) { return type == GEN_
 inline const char*	Gen_SSE_GetRegisterName( const genType_t type );
 inline void			Gen_SSE_GetInputDataName( const char* fullTypeName, const char* function, char* outString );
 
-inline const char*	Gen_SSE_GetFuncStrLoad( const genType_t type );
-inline const char*	Gen_SSE_GetFuncStrStore( const genType_t type );
-inline const char*	Gen_SSE_GetFuncStrSet1( const genType_t type );
-inline const char*	Gen_SSE_GetFuncStrRcp( const genType_t type );
-inline const char*	Gen_SSE_GetFuncStrXor( const genType_t type );
+inline const char*	Gen_SSE_GetIntrinsicLoad( const genType_t type );
+inline const char*	Gen_SSE_GetIntrinsicStore( const genType_t type );
+inline const char*	Gen_SSE_GetIntrinsicSet1( const genType_t type );
+inline const char*	Gen_SSE_GetIntrinsicRcp( const genType_t type );
+inline const char*	Gen_SSE_GetIntrinsicXor( const genType_t type );
+inline void			Gen_SSE_GetIntrinsicArithmetic( const genType_t type, const genOpArithmetic_t op, char* outString );
 
-inline void			Gen_SSE_GetIntrinsicArithmeticStr( const genType_t type, const genOpArithmetic_t op, char* outString );
+inline const char*	Gen_SSE_GetMacroNameNegate( const genType_t type );
 
 // inline const char*	Gen_SSE_GetFuncStrAcos( const genType_t type );
 
@@ -78,7 +81,7 @@ void Gen_SSE_GetInputDataName( const char* fullTypeName, const char* function, c
 	assert( length < GEN_STRING_LENGTH_SSE_INPUT_NAME && "Constant SSE input name constant needs to be bumped!" );
 }
 
-const char* Gen_SSE_GetFuncStrLoad( const genType_t type ) {
+const char* Gen_SSE_GetIntrinsicLoad( const genType_t type ) {
 	switch ( type ) {
 		case GEN_TYPE_INT:
 		case GEN_TYPE_UINT:
@@ -96,7 +99,7 @@ const char* Gen_SSE_GetFuncStrLoad( const genType_t type ) {
 	}
 }
 
-const char* Gen_SSE_GetFuncStrStore( const genType_t type ) {
+const char* Gen_SSE_GetIntrinsicStore( const genType_t type ) {
 	switch ( type ) {
 		case GEN_TYPE_INT:
 		case GEN_TYPE_UINT:
@@ -114,7 +117,7 @@ const char* Gen_SSE_GetFuncStrStore( const genType_t type ) {
 	}
 }
 
-const char* Gen_SSE_GetFuncStrSet1( const genType_t type ) {
+const char* Gen_SSE_GetIntrinsicSet1( const genType_t type ) {
 	switch ( type ) {
 		case GEN_TYPE_INT:
 		case GEN_TYPE_UINT:
@@ -132,7 +135,7 @@ const char* Gen_SSE_GetFuncStrSet1( const genType_t type ) {
 	}
 }
 
-const char* Gen_SSE_GetFuncStrRcp( const genType_t type ) {
+const char* Gen_SSE_GetIntrinsicRcp( const genType_t type ) {
 	switch ( type ) {
 		case GEN_TYPE_INT:
 		case GEN_TYPE_UINT:
@@ -150,7 +153,7 @@ const char* Gen_SSE_GetFuncStrRcp( const genType_t type ) {
 	}
 }
 
-const char*	Gen_SSE_GetFuncStrXor( const genType_t type ) {
+const char*	Gen_SSE_GetIntrinsicXor( const genType_t type ) {
 	switch ( type ) {
 		case GEN_TYPE_INT:
 		case GEN_TYPE_UINT:
@@ -168,7 +171,7 @@ const char*	Gen_SSE_GetFuncStrXor( const genType_t type ) {
 	}
 }
 
-void Gen_SSE_GetIntrinsicArithmeticStr( const genType_t type, const genOpArithmetic_t op, char* outString ) {
+void Gen_SSE_GetIntrinsicArithmetic( const genType_t type, const genOpArithmetic_t op, char* outString ) {
 	assert( type < GEN_TYPE_COUNT );
 	assert( op < GEN_OP_ARITHMETIC_COUNT );
 
@@ -199,6 +202,26 @@ void Gen_SSE_GetIntrinsicArithmeticStr( const genType_t type, const genOpArithme
 	}
 
 	snprintf( outString, GEN_STRING_LENGTH_SSE_INTRINSIC, "_mm_%s_%s", opStr, suffix );
+}
+
+const char* Gen_SSE_GetMacroNameNegate( const genType_t type ) {
+	switch ( type ) {
+		case GEN_TYPE_INT:
+		case GEN_TYPE_UINT:
+			return "_NEGATE_EPI32";
+
+		case GEN_TYPE_FLOAT:
+			return "_NEGATE_PS";
+
+		case GEN_TYPE_DOUBLE:
+			return "_NEGATE_PD";
+
+		case GEN_TYPE_BOOL:
+		case GEN_TYPE_COUNT:
+		default:
+			printf( "ERROR: Bad genType_t passed into %s.\n", __FUNCTION__ );
+			return "ERROR";
+	}
 }
 
 // const char* Gen_SSE_GetFuncStrAcos( const genType_t type ) {

@@ -740,53 +740,6 @@ TEMPER_TEST( TestInverse_float2x2 )
 
 	TEMPER_EXPECT_TRUE( mat * matInverse == identityMatrix );
 
-	// SSE
-	float m00[4] =	{ 2.000000f, 2.000000f, 2.000000f, 2.000000f };
-	float m01[4] =	{ 4.000000f, 4.000000f, 4.000000f, 4.000000f };
-	float m10[4] =	{ 6.000000f, 6.000000f, 6.000000f, 6.000000f };
-	float m11[4] =	{ 8.000000f, 8.000000f, 8.000000f, 8.000000f };
-
-	__m128 results[2][2];
-	sse_input_inverse_float2x2_t in;
-	in.m[0][0] = _mm_load_ps( m00 );
-	in.m[0][1] = _mm_load_ps( m01 );
-	in.m[1][0] = _mm_load_ps( m10 );
-	in.m[1][1] = _mm_load_ps( m11 );
-
-	inverse_sse( &in, results );
-
-	sse_input_mul_float2x2_t inMul;
-	memcpy( inMul.lhs, in.m, sizeof( in.m ) );
-	memcpy( inMul.rhs, results, sizeof( results ) );
-
-	mul_sse( &inMul, results );
-
-	float inverseResults[4];
-
-	_mm_store_ps( inverseResults, results[0][0] );
-	TEMPER_EXPECT_TRUE( floateq( inverseResults[0], identityMatrix[0][0], 0.001000f ) );
-	TEMPER_EXPECT_TRUE( floateq( inverseResults[1], identityMatrix[0][0], 0.001000f ) );
-	TEMPER_EXPECT_TRUE( floateq( inverseResults[2], identityMatrix[0][0], 0.001000f ) );
-	TEMPER_EXPECT_TRUE( floateq( inverseResults[3], identityMatrix[0][0], 0.001000f ) );
-
-	_mm_store_ps( inverseResults, results[0][1] );
-	TEMPER_EXPECT_TRUE( floateq( inverseResults[0], identityMatrix[0][1], 0.001000f ) );
-	TEMPER_EXPECT_TRUE( floateq( inverseResults[1], identityMatrix[0][1], 0.001000f ) );
-	TEMPER_EXPECT_TRUE( floateq( inverseResults[2], identityMatrix[0][1], 0.001000f ) );
-	TEMPER_EXPECT_TRUE( floateq( inverseResults[3], identityMatrix[0][1], 0.001000f ) );
-
-	_mm_store_ps( inverseResults, results[1][0] );
-	TEMPER_EXPECT_TRUE( floateq( inverseResults[0], identityMatrix[1][0], 0.001000f ) );
-	TEMPER_EXPECT_TRUE( floateq( inverseResults[1], identityMatrix[1][0], 0.001000f ) );
-	TEMPER_EXPECT_TRUE( floateq( inverseResults[2], identityMatrix[1][0], 0.001000f ) );
-	TEMPER_EXPECT_TRUE( floateq( inverseResults[3], identityMatrix[1][0], 0.001000f ) );
-
-	_mm_store_ps( inverseResults, results[1][1] );
-	TEMPER_EXPECT_TRUE( floateq( inverseResults[0], identityMatrix[1][1], 0.001000f ) );
-	TEMPER_EXPECT_TRUE( floateq( inverseResults[1], identityMatrix[1][1], 0.001000f ) );
-	TEMPER_EXPECT_TRUE( floateq( inverseResults[2], identityMatrix[1][1], 0.001000f ) );
-	TEMPER_EXPECT_TRUE( floateq( inverseResults[3], identityMatrix[1][1], 0.001000f ) );
-
 	TEMPER_PASS();
 }
 

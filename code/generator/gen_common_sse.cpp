@@ -25,6 +25,21 @@ along with The HLML Generator.  If not, see <http://www.gnu.org/licenses/>.
 
 #include "string_builder.h"
 
+void Gen_SSE_MacroNegate( const genType_t type, stringBuilder_t* sbHeader ) {
+	if ( !Gen_TypeSupportsSSE( type ) ) {
+		return;
+	}
+
+	const char* macroName = Gen_SSE_GetMacroNameNegate( type );
+
+	char subFuncStr[GEN_STRING_LENGTH_SSE_INTRINSIC];
+	Gen_SSE_GetIntrinsicArithmetic( type, GEN_OP_ARITHMETIC_SUB, subFuncStr );
+
+	String_Append(  sbHeader, "/// \\brief changes the sign of the values in register x\n" );
+	String_Appendf( sbHeader, "#define %s( x ) %s( HLML_ZERO_SSE, (x) )\n", macroName, subFuncStr );
+	String_Append(  sbHeader, "\n" );
+}
+
 void Gen_SSE_Radians( const genType_t type, stringBuilder_t* sbHeader, stringBuilder_t* sbInl ) {
 	if ( !Gen_TypeSupportsSSE( type ) ) {
 		return;
@@ -38,7 +53,7 @@ void Gen_SSE_Radians( const genType_t type, stringBuilder_t* sbHeader, stringBui
 	const char* registerName	= Gen_SSE_GetRegisterName( type );
 
 	char mulFuncStr[GEN_STRING_LENGTH_SSE_INTRINSIC];
-	Gen_SSE_GetIntrinsicArithmeticStr( type, GEN_OP_ARITHMETIC_MUL, mulFuncStr );
+	Gen_SSE_GetIntrinsicArithmetic( type, GEN_OP_ARITHMETIC_MUL, mulFuncStr );
 
 	String_Appendf( sbHeader, "struct %s\n", inputDataName );
 	String_Append(  sbHeader, "{\n" );
@@ -72,7 +87,7 @@ void Gen_SSE_Degrees( const genType_t type, stringBuilder_t* sbHeader, stringBui
 	const char* registerName	= Gen_SSE_GetRegisterName( type );
 
 	char mulFuncStr[GEN_STRING_LENGTH_SSE_INTRINSIC];
-	Gen_SSE_GetIntrinsicArithmeticStr( type, GEN_OP_ARITHMETIC_MUL, mulFuncStr );
+	Gen_SSE_GetIntrinsicArithmetic( type, GEN_OP_ARITHMETIC_MUL, mulFuncStr );
 
 	String_Appendf( sbHeader, "struct %s\n", inputDataName );
 	String_Append(  sbHeader, "{\n" );
@@ -108,15 +123,15 @@ void Gen_SSE_Lerp( const genType_t type, const u32 numComponents, stringBuilder_
 	Gen_GetNumericLiteral( type, 1.0f, oneStr, 1 );
 
 	const char* registerName	= Gen_SSE_GetRegisterName( type );
-	const char* set1FuncStr		= Gen_SSE_GetFuncStrSet1( type );
+	const char* set1FuncStr		= Gen_SSE_GetIntrinsicSet1( type );
 
 	char addFuncStr[GEN_STRING_LENGTH_SSE_INTRINSIC];
 	char subFuncStr[GEN_STRING_LENGTH_SSE_INTRINSIC];
 	char mulFuncStr[GEN_STRING_LENGTH_SSE_INTRINSIC];
 
-	Gen_SSE_GetIntrinsicArithmeticStr( type, GEN_OP_ARITHMETIC_ADD, addFuncStr );
-	Gen_SSE_GetIntrinsicArithmeticStr( type, GEN_OP_ARITHMETIC_SUB, subFuncStr );
-	Gen_SSE_GetIntrinsicArithmeticStr( type, GEN_OP_ARITHMETIC_MUL, mulFuncStr );
+	Gen_SSE_GetIntrinsicArithmetic( type, GEN_OP_ARITHMETIC_ADD, addFuncStr );
+	Gen_SSE_GetIntrinsicArithmetic( type, GEN_OP_ARITHMETIC_SUB, subFuncStr );
+	Gen_SSE_GetIntrinsicArithmetic( type, GEN_OP_ARITHMETIC_MUL, mulFuncStr );
 
 	char inputDataName[GEN_STRING_LENGTH_SSE_INPUT_NAME];
 	Gen_SSE_GetInputDataName( fullTypeName, "lerp", inputDataName );

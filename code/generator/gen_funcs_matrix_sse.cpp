@@ -46,7 +46,7 @@ void Gen_SSE_MatrixIdentity( const genType_t type, const u32 numRows, const u32 
 
 	const char* registerName = Gen_SSE_GetRegisterName( type );
 
-	const char* set1FuncStr = Gen_SSE_GetFuncStrSet1( type );
+	const char* set1FuncStr = Gen_SSE_GetIntrinsicSet1( type );
 
 	char zeroStr[GEN_STRING_LENGTH_NUMERIC_LITERAL];
 	Gen_GetNumericLiteral( type, 0.0f, zeroStr, 1 );
@@ -122,166 +122,6 @@ void Gen_SSE_MatrixTranspose( const genType_t type, const u32 numRows, const u32
 	String_Append(  sbInl, "\n" );
 }
 
-void Gen_SSE_MatrixInverse( const genType_t type, const u32 numRows, const u32 numCols, stringBuilder_t* sbHeader, stringBuilder_t* sbInl ) {
-	assert( numRows <= GEN_COMPONENT_COUNT_MAX );
-	assert( numRows >= GEN_COMPONENT_COUNT_MIN );
-	assert( numCols <= GEN_COMPONENT_COUNT_MAX );
-	assert( numCols >= GEN_COMPONENT_COUNT_MIN );
-
-	if ( !Gen_TypeSupportsSSE( type ) ) {
-		return;
-	}
-
-	if ( numRows != numCols ) {
-		return;
-	}
-
-	char fullTypeName[GEN_STRING_LENGTH_TYPE_NAME];
-	Gen_GetFullTypeName( type, numRows, numCols, fullTypeName );
-
-	char inputDataNameInverse[GEN_STRING_LENGTH_SSE_INPUT_NAME];
-	Gen_SSE_GetInputDataName( fullTypeName, "inverse", inputDataNameInverse );
-
-	char inputDataNameDeterminant[GEN_STRING_LENGTH_SSE_INPUT_NAME];
-	Gen_SSE_GetInputDataName( fullTypeName, "determinant", inputDataNameDeterminant );
-
-	const char* registerName = Gen_SSE_GetRegisterName( type );
-
-	const char* rcpFuncStr = Gen_SSE_GetFuncStrRcp( type );
-	const char* xorFuncStr = Gen_SSE_GetFuncStrXor( type );
-
-	char subFuncStr[GEN_STRING_LENGTH_SSE_INTRINSIC];
-	char mulFuncStr[GEN_STRING_LENGTH_SSE_INTRINSIC];
-
-	Gen_SSE_GetIntrinsicArithmeticStr( type, GEN_OP_ARITHMETIC_SUB, subFuncStr );
-	Gen_SSE_GetIntrinsicArithmeticStr( type, GEN_OP_ARITHMETIC_MUL, mulFuncStr );
-
-	String_Appendf( sbHeader, "struct %s\n", inputDataNameInverse );
-	String_Append(  sbHeader, "{\n" );
-	String_Appendf( sbHeader, "\t%s m[%d][%d];\n", registerName, numRows, numCols );
-	String_Append(  sbHeader, "};\n" );
-	String_Append(  sbHeader, "\n" );
-
-	Doc_SSE_MatrixInverse( sbHeader, fullTypeName, numRows, numCols, registerName );
-	String_Appendf( sbHeader, "inline void inverse_sse( const %s* in, %s out_results[%d][%d] );\n", inputDataNameInverse, registerName, numRows, numCols );
-	String_Append(  sbHeader, "\n" );
-
-	String_Appendf( sbInl, "void inverse_sse( const %s* in, %s out_results[%d][%d] )\n", inputDataNameInverse, registerName, numRows, numCols );
-	String_Append(  sbInl, "{\n" );
-	String_Append(  sbInl, "\tassert( in );\n" );
-	String_Append(  sbInl, "\n" );
-	String_Appendf( sbInl, "\t%s in_det;\n", inputDataNameDeterminant );
-	String_Append(  sbInl, "\tmemcpy( in_det.m, in->m, sizeof( in->m ) );\n" );
-	String_Append(  sbInl, "\n" );
-	String_Appendf( sbInl, "\t%s determinants;\n", registerName );
-	String_Append(  sbInl, "\tdeterminant_sse( &in_det, &determinants );\n" );
-	String_Append(  sbInl, "\n" );
-	String_Appendf( sbInl, "\tdeterminants = %s( determinants );\n", rcpFuncStr );
-	String_Append(  sbInl, "\n" );
-	switch ( numRows ) {
-		case 2:
-			/*
-			 mat[1][1] * invdet, -mat[0][1] * invdet,
-			-mat[1][0] * invdet,  mat[0][0] * invdet
-			*/
-			String_Appendf( sbInl, "\t%s neg0 = %s( in->m[0][1], HLML_ZERO_SSE );\n", registerName, xorFuncStr );
-			String_Appendf( sbInl, "\t%s neg1 = %s( in->m[1][0], HLML_ZERO_SSE );\n", registerName, xorFuncStr );
-			String_Append(  sbInl, "\n" );
-			String_Appendf( sbInl, "\tout_results[0][0] = %s( in->m[1][1], determinants );\n", mulFuncStr );
-			String_Appendf( sbInl, "\tout_results[0][1] = %s( neg0, determinants );\n", mulFuncStr );
-			String_Appendf( sbInl, "\tout_results[1][0] = %s( neg1, determinants );\n", mulFuncStr );
-			String_Appendf( sbInl, "\tout_results[1][1] = %s( in->m[0][0], determinants );\n", mulFuncStr );
-			break;
-
-		case 3:
-			/*
-			 ( mat[1][1] * mat[2][2] - mat[1][2] * mat[2][1] ) * invdet,
-			-( mat[0][1] * mat[2][2] - mat[0][2] * mat[2][1] ) * invdet,
-			 ( mat[0][1] * mat[1][2] - mat[0][2] * mat[1][1] ) * invdet,
-
-			-( mat[1][0] * mat[2][2] - mat[1][2] * mat[2][0] ) * invdet,
-			 ( mat[0][0] * mat[2][2] - mat[0][2] * mat[2][0] ) * invdet,
-			-( mat[0][0] * mat[1][2] - mat[0][2] * mat[1][0] ) * invdet,
-
-			 ( mat[1][0] * mat[2][1] - mat[1][1] * mat[2][0] ) * invdet,
-			-( mat[0][0] * mat[2][1] - mat[0][1] * mat[2][0] ) * invdet,
-			 ( mat[0][0] * mat[1][1] - mat[0][1] * mat[1][0] ) * invdet
-			*/
-			String_Append(  sbInl, "\t// row 0\n" );
-			String_Appendf( sbInl, "\t%s mul00a = %s( in->m[1][1], in->m[2][2] );\n", registerName, mulFuncStr );
-			String_Appendf( sbInl, "\t%s mul00b = %s( in->m[1][2], in->m[2][1] );\n", registerName, mulFuncStr );
-			String_Appendf( sbInl, "\t%s mul01a = %s( in->m[0][1], in->m[2][2] );\n", registerName, mulFuncStr );
-			String_Appendf( sbInl, "\t%s mul01b = %s( in->m[0][2], in->m[2][1] );\n", registerName, mulFuncStr );
-			String_Appendf( sbInl, "\t%s mul02a = %s( in->m[0][1], in->m[1][2] );\n", registerName, mulFuncStr );
-			String_Appendf( sbInl, "\t%s mul02b = %s( in->m[0][2], in->m[1][1] );\n", registerName, mulFuncStr );
-			String_Append(  sbInl, "\n" );
-			String_Appendf( sbInl, "\t%s sub00 = %s( mul00a, mul00b );\n", registerName, subFuncStr );
-			String_Appendf( sbInl, "\t%s sub01 = %s( mul01a, mul01b );\n", registerName, subFuncStr );
-			String_Appendf( sbInl, "\t%s sub02 = %s( mul02a, mul02b );\n", registerName, subFuncStr );
-			String_Append(  sbInl, "\n" );
-			String_Appendf( sbInl, "\tsub00 = %s( sub00, determinants );\n", mulFuncStr );
-			String_Appendf( sbInl, "\tsub01 = %s( sub01, determinants );\n", mulFuncStr );
-			String_Appendf( sbInl, "\tsub02 = %s( sub02, determinants );\n", mulFuncStr );
-			String_Appendf( sbInl, "\tsub01 = %s( sub01, HLML_ZERO_SSE );\n", xorFuncStr );
-			String_Append(  sbInl, "\n" );
-			String_Append(  sbInl, "\t// row 1\n" );
-			String_Appendf( sbInl, "\t%s mul10a = %s( in->m[1][0], in->m[2][2] );\n", registerName, mulFuncStr );
-			String_Appendf( sbInl, "\t%s mul10b = %s( in->m[1][2], in->m[2][0] );\n", registerName, mulFuncStr );
-			String_Appendf( sbInl, "\t%s mul11a = %s( in->m[0][0], in->m[2][2] );\n", registerName, mulFuncStr );
-			String_Appendf( sbInl, "\t%s mul11b = %s( in->m[0][2], in->m[2][0] );\n", registerName, mulFuncStr );
-			String_Appendf( sbInl, "\t%s mul12a = %s( in->m[0][0], in->m[1][2] );\n", registerName, mulFuncStr );
-			String_Appendf( sbInl, "\t%s mul12b = %s( in->m[0][2], in->m[1][0] );\n", registerName, mulFuncStr );
-			String_Append(  sbInl, "\n" );
-			String_Appendf( sbInl, "\t%s sub10 = %s( mul10a, mul10b );\n", registerName, subFuncStr );
-			String_Appendf( sbInl, "\t%s sub11 = %s( mul11a, mul11b );\n", registerName, subFuncStr );
-			String_Appendf( sbInl, "\t%s sub12 = %s( mul12a, mul12b );\n", registerName, subFuncStr );
-			String_Append(  sbInl, "\n" );
-			String_Appendf( sbInl, "\tsub10 = %s( sub10, determinants );\n", mulFuncStr );
-			String_Appendf( sbInl, "\tsub11 = %s( sub11, determinants );\n", mulFuncStr );
-			String_Appendf( sbInl, "\tsub12 = %s( sub12, determinants );\n", mulFuncStr );
-			String_Appendf( sbInl, "\tsub10 = %s( sub10, HLML_ZERO_SSE );\n", xorFuncStr );
-			String_Appendf( sbInl, "\tsub12 = %s( sub12, HLML_ZERO_SSE );\n", xorFuncStr );
-			String_Append(  sbInl, "\n" );
-			String_Append(  sbInl, "\t// row 2\n" );
-			String_Appendf( sbInl, "\t%s mul20a = %s( in->m[1][0], in->m[2][1] );\n", registerName, mulFuncStr );
-			String_Appendf( sbInl, "\t%s mul20b = %s( in->m[1][1], in->m[2][0] );\n", registerName, mulFuncStr );
-			String_Appendf( sbInl, "\t%s mul21a = %s( in->m[0][0], in->m[2][1] );\n", registerName, mulFuncStr );
-			String_Appendf( sbInl, "\t%s mul21b = %s( in->m[0][1], in->m[2][0] );\n", registerName, mulFuncStr );
-			String_Appendf( sbInl, "\t%s mul22a = %s( in->m[0][0], in->m[1][1] );\n", registerName, mulFuncStr );
-			String_Appendf( sbInl, "\t%s mul22b = %s( in->m[0][1], in->m[1][0] );\n", registerName, mulFuncStr );
-			String_Append(  sbInl, "\n" );
-			String_Appendf( sbInl, "\t%s sub20 = %s( mul20a, mul20b );\n", registerName, subFuncStr );
-			String_Appendf( sbInl, "\t%s sub21 = %s( mul21a, mul21b );\n", registerName, subFuncStr );
-			String_Appendf( sbInl, "\t%s sub22 = %s( mul22a, mul22b );\n", registerName, subFuncStr );
-			String_Append(  sbInl, "\n" );
-			String_Appendf( sbInl, "\tsub20 = %s( sub20, determinants );\n", mulFuncStr );
-			String_Appendf( sbInl, "\tsub21 = %s( sub21, determinants );\n", mulFuncStr );
-			String_Appendf( sbInl, "\tsub22 = %s( sub22, determinants );\n", mulFuncStr );
-			String_Appendf( sbInl, "\tsub21 = %s( sub21, HLML_ZERO_SSE );\n", xorFuncStr );
-			String_Append(  sbInl, "\n" );
-			String_Appendf( sbInl, "\tout_results[0][0] = sub00;\n" );
-			String_Appendf( sbInl, "\tout_results[0][1] = sub01;\n" );
-			String_Appendf( sbInl, "\tout_results[0][2] = sub02;\n" );
-			String_Append(  sbInl, "\n" );
-			String_Appendf( sbInl, "\tout_results[1][0] = sub10;\n" );
-			String_Appendf( sbInl, "\tout_results[1][1] = sub11;\n" );
-			String_Appendf( sbInl, "\tout_results[1][2] = sub12;\n" );
-			String_Append(  sbInl, "\n" );
-			String_Appendf( sbInl, "\tout_results[2][0] = sub20;\n" );
-			String_Appendf( sbInl, "\tout_results[2][1] = sub21;\n" );
-			String_Appendf( sbInl, "\tout_results[2][2] = sub22;\n" );
-			break;
-
-		case 4:
-			String_Append(  sbInl, "\t// TODO(DM): this\n" );
-			String_Append(  sbInl, "\t( (void) out_results ); // unused\n" );
-			break;
-	}
-	
-	String_Append(  sbInl, "}\n" );
-	String_Append(  sbInl, "\n" );
-}
-
 void Gen_SSE_MatrixDeterminant( const genType_t type, const u32 numRows, const u32 numCols, stringBuilder_t* sbHeader, stringBuilder_t* sbInl ) {
 	assert( numRows <= GEN_COMPONENT_COUNT_MAX );
 	assert( numRows >= GEN_COMPONENT_COUNT_MIN );
@@ -304,13 +144,15 @@ void Gen_SSE_MatrixDeterminant( const genType_t type, const u32 numRows, const u
 
 	const char* registerName = Gen_SSE_GetRegisterName( type );
 
+	const char* macroNegate = Gen_SSE_GetMacroNameNegate( type );
+
 	char addFuncStr[GEN_STRING_LENGTH_SSE_INTRINSIC];
 	char subFuncStr[GEN_STRING_LENGTH_SSE_INTRINSIC];
 	char mulFuncStr[GEN_STRING_LENGTH_SSE_INTRINSIC];
 
-	Gen_SSE_GetIntrinsicArithmeticStr( type, GEN_OP_ARITHMETIC_ADD, addFuncStr );
-	Gen_SSE_GetIntrinsicArithmeticStr( type, GEN_OP_ARITHMETIC_SUB, subFuncStr );
-	Gen_SSE_GetIntrinsicArithmeticStr( type, GEN_OP_ARITHMETIC_MUL, mulFuncStr );
+	Gen_SSE_GetIntrinsicArithmetic( type, GEN_OP_ARITHMETIC_ADD, addFuncStr );
+	Gen_SSE_GetIntrinsicArithmetic( type, GEN_OP_ARITHMETIC_SUB, subFuncStr );
+	Gen_SSE_GetIntrinsicArithmetic( type, GEN_OP_ARITHMETIC_MUL, mulFuncStr );
 
 	String_Appendf( sbHeader, "struct %s\n", inputDataName );
 	String_Append(  sbHeader, "{\n" );
@@ -419,7 +261,7 @@ void Gen_SSE_MatrixDeterminant( const genType_t type, const u32 numRows, const u
 			String_Appendf( sbInl, "\t%s cofactor1mul2 = %s( in->m[1][3], sub4 );\n",            registerName, mulFuncStr );
 			String_Appendf( sbInl, "\t%s cofactor1sub  = %s( cofactor1mul0, cofactor1mul1 );\n", registerName, subFuncStr );
 			String_Appendf( sbInl, "\t%s cofactor1     = %s( cofactor1sub, cofactor1mul2 );\n",  registerName, addFuncStr );
-			String_Appendf( sbInl, "\tcofactor1 = %s( HLML_ZERO_SSE, cofactor1 );\n",            subFuncStr );
+			String_Appendf( sbInl, "\tcofactor1 = %s( cofactor1 );\n",                           macroNegate );
 			String_Append(  sbInl, "\n" );
 			String_Appendf( sbInl, "\t%s cofactor2mul0 = %s( in->m[1][0], sub1 );\n",            registerName, mulFuncStr );
 			String_Appendf( sbInl, "\t%s cofactor2mul1 = %s( in->m[1][1], sub3 );\n",            registerName, mulFuncStr );
@@ -432,7 +274,7 @@ void Gen_SSE_MatrixDeterminant( const genType_t type, const u32 numRows, const u
 			String_Appendf( sbInl, "\t%s cofactor3mul2 = %s( in->m[1][2], sub5 );\n",            registerName, mulFuncStr );
 			String_Appendf( sbInl, "\t%s cofactor3sub  = %s( cofactor3mul0, cofactor3mul1 );\n", registerName, subFuncStr );
 			String_Appendf( sbInl, "\t%s cofactor3     = %s( cofactor3sub, cofactor3mul2 );\n",  registerName, addFuncStr );
-			String_Appendf( sbInl, "\tcofactor3 = %s( HLML_ZERO_SSE, cofactor3 );\n",            subFuncStr );
+			String_Appendf( sbInl, "\tcofactor3 = %s( cofactor3 );\n",                           macroNegate );
 			String_Append(  sbInl, "\n" );
 			String_Appendf( sbInl, "\t%s finalmul0     = %s( in->m[0][0], cofactor0 );\n",       registerName, mulFuncStr );
 			String_Appendf( sbInl, "\t%s finalmul1     = %s( in->m[0][1], cofactor1 );\n",       registerName, mulFuncStr );
@@ -465,13 +307,16 @@ void Gen_SSE_MatrixArithmeticComponentWise( const genType_t type, const u32 numR
 
 	const char* opStr = GEN_OPERATOR_STRINGS_ARITHMETIC[op];
 
+	char function[32];
+	snprintf( function, 32, "comp_%s", opStr );
+
 	char inputDataName[GEN_STRING_LENGTH_SSE_INPUT_NAME];
-	Gen_SSE_GetInputDataName( fullTypeName, opStr, inputDataName );
+	Gen_SSE_GetInputDataName( fullTypeName, function, inputDataName );
 
 	const char* registerName = Gen_SSE_GetRegisterName( type );
 
 	char intrinsicStr[GEN_STRING_LENGTH_SSE_INPUT_NAME];
-	Gen_SSE_GetIntrinsicArithmeticStr( type, op, intrinsicStr );
+	Gen_SSE_GetIntrinsicArithmetic( type, op, intrinsicStr );
 
 	String_Appendf( sbHeader, "struct %s\n", inputDataName );
 	String_Append(  sbHeader, "{\n" );
@@ -503,6 +348,126 @@ void Gen_SSE_MatrixArithmeticComponentWise( const genType_t type, const u32 numR
 	String_Append(  sbInl, "\n" );
 }
 
+void Gen_SSE_MatrixMultiply( const genType_t type, const u32 numRows, const u32 numCols, stringBuilder_t* sbHeader, stringBuilder_t* sbInl ) {
+	assert( numRows <= GEN_COMPONENT_COUNT_MAX );
+	assert( numRows >= GEN_COMPONENT_COUNT_MIN );
+	assert( numCols <= GEN_COMPONENT_COUNT_MAX );
+	assert( numCols >= GEN_COMPONENT_COUNT_MIN );
+
+	if ( !Gen_TypeSupportsSSE( type ) ) {
+		return;
+	}
+
+	const u32 lhsRows = numRows;
+	const u32 lhsCols = numCols;
+
+	const u32 rhsRows = numCols;
+	const u32 rhsCols = numRows;
+
+	const u32 returnRows = numRows;
+	const u32 returnCols = numRows;
+
+	char fullTypeName[GEN_STRING_LENGTH_TYPE_NAME];
+	Gen_GetFullTypeName( type, numRows, numCols, fullTypeName );
+
+	char transposedTypeName[GEN_STRING_LENGTH_TYPE_NAME];
+	Gen_GetFullTypeName( type, numCols, numRows, transposedTypeName );
+
+	char dotVectorTypeString[GEN_STRING_LENGTH_TYPE_NAME];
+	Gen_GetFullTypeName( type, 1, numCols, dotVectorTypeString );
+
+	char inputDataNameMul[GEN_STRING_LENGTH_SSE_INPUT_NAME];
+	char inputDataNameTranspose[GEN_STRING_LENGTH_SSE_INPUT_NAME];
+	char inputDataNameDot[GEN_STRING_LENGTH_SSE_INPUT_NAME];
+	
+	Gen_SSE_GetInputDataName( fullTypeName, "mul", inputDataNameMul );
+	Gen_SSE_GetInputDataName( transposedTypeName, "transpose", inputDataNameTranspose );
+	Gen_SSE_GetInputDataName( dotVectorTypeString, "dot", inputDataNameDot );
+
+	const char* registerName = Gen_SSE_GetRegisterName( type );
+
+	String_Appendf( sbHeader, "struct %s\n", inputDataNameMul );
+	String_Append(  sbHeader, "{\n" );
+	String_Appendf( sbHeader, "\t%s lhs[%d][%d];\n", registerName, lhsRows, lhsCols );
+	String_Appendf( sbHeader, "\t%s rhs[%d][%d];\n", registerName, rhsRows, rhsCols );
+	String_Append(  sbHeader, "};\n" );
+	String_Append(  sbHeader, "\n" );
+
+	String_Appendf( sbHeader, "inline void mul_sse( const %s* in, %s out_results[%d][%d] );\n", inputDataNameMul, registerName, returnRows, returnCols );
+	String_Append(  sbHeader, "\n" );
+
+	/*
+	float4 row0 = lhs[0];
+	float4 row1 = lhs[1];
+	float4 row2 = lhs[2];
+	float4 row3 = lhs[3];
+
+	float4 col0 = { rhs[0].x, rhs[1].x, rhs[2].x, rhs[3].x };
+	float4 col1 = { rhs[0].y, rhs[1].y, rhs[2].y, rhs[3].y };
+	float4 col2 = { rhs[0].z, rhs[1].z, rhs[2].z, rhs[3].z };
+	float4 col3 = { rhs[0].w, rhs[1].w, rhs[2].w, rhs[3].w };
+
+	return float4x4(
+		row0.x * col0.x + row0.y * col0.y + row0.z * col0.z + row0.w * col0.w,
+		row0.x * col1.x + row0.y * col1.y + row0.z * col1.z + row0.w * col1.w,
+		row0.x * col2.x + row0.y * col2.y + row0.z * col2.z + row0.w * col2.w,
+		row0.x * col3.x + row0.y * col3.y + row0.z * col3.z + row0.w * col3.w,
+
+		row1.x * col0.x + row1.y * col0.y + row1.z * col0.z + row1.w * col0.w,
+		row1.x * col1.x + row1.y * col1.y + row1.z * col1.z + row1.w * col1.w,
+		row1.x * col2.x + row1.y * col2.y + row1.z * col2.z + row1.w * col2.w,
+		row1.x * col3.x + row1.y * col3.y + row1.z * col3.z + row1.w * col3.w,
+
+		row2.x * col0.x + row2.y * col0.y + row2.z * col0.z + row2.w * col0.w,
+		row2.x * col1.x + row2.y * col1.y + row2.z * col1.z + row2.w * col1.w,
+		row2.x * col2.x + row2.y * col2.y + row2.z * col2.z + row2.w * col2.w,
+		row2.x * col3.x + row2.y * col3.y + row2.z * col3.z + row2.w * col3.w,
+
+		row3.x * col0.x + row3.y * col0.y + row3.z * col0.z + row3.w * col0.w,
+		row3.x * col1.x + row3.y * col1.y + row3.z * col1.z + row3.w * col1.w,
+		row3.x * col2.x + row3.y * col2.y + row3.z * col2.z + row3.w * col2.w,
+		row3.x * col3.x + row3.y * col3.y + row3.z * col3.z + row3.w * col3.w
+	);
+	*/
+	String_Appendf( sbInl, "void mul_sse( const %s* in, %s out_results[%d][%d] )\n", inputDataNameMul, registerName, returnRows, returnCols );
+	String_Append(  sbInl, "{\n" );
+	String_Appendf( sbInl, "\t%s rhs_transposed[%d][%d];\n", registerName, rhsCols, rhsRows );
+	String_Append(  sbInl, "\n" );
+	String_Appendf( sbInl, "\t%s in_transpose;\n", inputDataNameTranspose );
+	String_Append(  sbInl, "\tmemcpy( in_transpose.m, in->rhs, sizeof( in->rhs ) );\n" );
+	String_Appendf( sbInl, "\ttranspose_sse( &in_transpose, rhs_transposed );\n" );
+	String_Append(  sbInl, "\n" );
+	String_Appendf( sbInl, "\t%s in_dot;\n", inputDataNameDot );
+	for ( u32 row = 0; row < returnRows; row++ ) {
+		for ( u32 col = 0; col < returnCols; col++ ) {
+			String_Appendf( sbInl, "\tmemcpy( in_dot.lhs, in->lhs[%d], sizeof( in->lhs[%d] ) );\n", row, row );
+			String_Appendf( sbInl, "\tmemcpy( in_dot.rhs, rhs_transposed[%d], sizeof( rhs_transposed[%d] ) );\n", col, col );
+			String_Appendf( sbInl, "\tdot_sse( &in_dot, &out_results[%d][%d] );\n", row, col );
+
+			if ( col != returnCols - 1 ) {
+				String_Append( sbInl, "\n" );
+			}
+		}
+
+		if ( row != returnRows - 1 ) {
+			String_Append( sbInl, "\n" );
+		}
+	}
+	String_Append(  sbInl, "}\n" );
+	String_Append(  sbInl, "\n" );
+}
+
+// void Gen_SSE_MatrixDivide( const genType_t type, const u32 numRows, const u32 numCols, stringBuilder_t* sbHeader, stringBuilder_t* sbInl ) {
+// 	assert( numRows <= GEN_COMPONENT_COUNT_MAX );
+// 	assert( numRows >= GEN_COMPONENT_COUNT_MIN );
+// 	assert( numCols <= GEN_COMPONENT_COUNT_MAX );
+// 	assert( numCols >= GEN_COMPONENT_COUNT_MIN );
+// 
+// 	if ( !Gen_TypeSupportsSSE( type ) ) {
+// 		return;
+// 	}
+// }
+
 void Gen_SSE_MatrixTranslate( const genType_t type, const u32 numRows, const u32 numCols, stringBuilder_t* sbHeader, stringBuilder_t* sbInl ) {
 	assert( numRows <= GEN_COMPONENT_COUNT_MAX );
 	assert( numRows >= GEN_COMPONENT_COUNT_MIN );
@@ -528,7 +493,7 @@ void Gen_SSE_MatrixTranslate( const genType_t type, const u32 numRows, const u32
 	const u32 translateVecComponents = numCols - 1;
 
 	char addFuncStr[GEN_STRING_LENGTH_SSE_INPUT_NAME];
-	Gen_SSE_GetIntrinsicArithmeticStr( type, GEN_OP_ARITHMETIC_ADD, addFuncStr );
+	Gen_SSE_GetIntrinsicArithmetic( type, GEN_OP_ARITHMETIC_ADD, addFuncStr );
 
 	String_Appendf( sbHeader, "struct %s\n", inputDataName );
 	String_Append(  sbHeader, "{\n" );
@@ -573,7 +538,7 @@ void Gen_SSE_MatrixScale( const genType_t type, const u32 numRows, const u32 num
 	const u32 numScaleComponents = GEN_MIN( numRows, numCols );
 
 	char mulFuncStr[GEN_STRING_LENGTH_SSE_INPUT_NAME];
-	Gen_SSE_GetIntrinsicArithmeticStr( type, GEN_OP_ARITHMETIC_MUL, mulFuncStr );
+	Gen_SSE_GetIntrinsicArithmetic( type, GEN_OP_ARITHMETIC_MUL, mulFuncStr );
 
 	String_Appendf( sbHeader, "struct %s\n", inputDataName );
 	String_Append(  sbHeader, "{\n" );
