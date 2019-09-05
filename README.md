@@ -37,12 +37,12 @@ The main header files to include are:
 * ```hlml_functions_vector.h```
 * ```hlml_functions_matrix.h```
 
-For SSE functionality, include the following files:
+For SSE functionality (if using the experimental SSE functionality pre-release), include the following files:
 * ```hlml_functions_scalar_sse.h```
 * ```hlml_functions_vector_sse.h```
 * ```hlml_functions_matrix_sse.h```
 
-For more detailed documentation on how to use HLML's SSE functionality, please refer to [the SSE document](https://github.com/floorman/HLML/blob/simd/doc/SSE.md).
+For more detailed documentation on how to use HLML's experimental SSE functionality, please refer to [the SSE document](https://github.com/floorman/HLML/blob/simd/doc/SSE.md).
 
 
 Code Examples

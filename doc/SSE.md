@@ -1,6 +1,6 @@
 # Using HLML's SSE Functionality
 
-**WARNING: HLML'S SIMD FUNCTIONALITY IS NOT FINAL AND IS SUBJECT TO CHANGE.**
+**WARNING: HLML'S SIMD FUNCTIONALITY IS STILL EXPERIMENTAL, IS NOT FINAL, AND IS SUBJECT TO CHANGE.**
 -------------------
 
 HLML is designed such that changing between the scalar/SIMD versions of functions is as simple as possible to allow for easier changing of code and better refactorability within your codebase.
