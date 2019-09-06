@@ -62,11 +62,14 @@ Creating a Model-View-Projection matrix:
 ```C
 float4x4 model = translate( player_transform, position );
 
+// lh = left handed, zo = zero-to-one depth
+// there also exists rh (right-handed) and no (negative-one-to-one) combinations
 float4x4 view = lookat_lh_zo( eye, forward, world_up );
 
 float4x4 projection = perspective_lh_zo( fov, aspect, znear, zfar );
 
-float4x4 mvp = model * view * projection; // performs matrix multiplication, not per-component multiplication
+// performs matrix multiplication, not per-component multiplication
+float4x4 mvp = model * view * projection;
 ```
 
 Vector Swizzling:
