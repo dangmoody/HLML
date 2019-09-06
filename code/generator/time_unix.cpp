@@ -32,10 +32,14 @@ along with The HLML Generator.  If not, see <http://www.gnu.org/licenses/>.
 /*
 Timer for Linux/MacOS
 
-DM: I don't like how Time_Now() actually returns nano seconds when it should return clock cycles.
-I don't have a dedicated linux box or a Mac so I can't accurately test, but it looks close enough to me.
-If I'm wrong and someone can fix this, please do so.
+DM: this seems to be the best implementation I can get on Linux, multiplying each resultant second by the constant seems wrong though
+
+I don't like how Time_Now() actually returns nano seconds when it should return clock cycles but I don't have a dedicated linux PC or a Mac so I'm not sure I can totally trust my test results, but its the best I can do all things considered and it looks close enough to me
+
+if I'm wrong and someone can fix/improve this then please do
 */
+
+#define GEN_CLOCK_MOD 1000000000.0
 
 static bool g_initialised = false;
 
@@ -47,9 +51,9 @@ s64 Time_Now( void ) {
 	assert( g_initialised );
 
 	struct timespec now;
-	clock_gettime( CLOCK_MONOTONIC_RAW, &now );
+	clock_gettime( CLOCK_MONOTONIC, &now );
 
-	return (s64) ( now.tv_sec + now.tv_nsec );
+	return (s64) ( now.tv_sec * GEN_CLOCK_MOD + now.tv_nsec );
 }
 
 float64 Time_NowSeconds( void ) {
@@ -75,5 +79,7 @@ float64 Time_NowNS( void ) {
 
 	return (float64) Time_Now();
 }
+
+#undef GEN_CLOCK_MOD
 
 #endif // defined( __linux__ ) || defined( __APPLE__ )
