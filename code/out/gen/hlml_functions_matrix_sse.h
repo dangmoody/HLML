@@ -36,10 +36,10 @@ SOFTWARE.
 
 #include <immintrin.h>
 
-// float2x2
-/// \brief changes the sign of the values in register x
-#define _NEGATE_PS( x ) _mm_sub_ps( HLML_ZERO_SSE, (x) )
+/// \brief Changes the sign of the values in the register.
+#define _NEGATE_PS( reg ) _mm_sub_ps( HLML_ZERO_SSE, (reg) )
 
+// float2x2
 struct sse_input_transpose_float2x2_t
 {
 	__m128 m[2][2];
@@ -127,9 +127,6 @@ inline void scale_sse( const sse_input_scale_float2x2_t* in, __m128 out_results[
 
 
 // float2x3
-/// \brief changes the sign of the values in register x
-#define _NEGATE_PS( x ) _mm_sub_ps( HLML_ZERO_SSE, (x) )
-
 struct sse_input_transpose_float2x3_t
 {
 	__m128 m[2][3];
@@ -209,9 +206,6 @@ inline void scale_sse( const sse_input_scale_float2x3_t* in, __m128 out_results[
 
 
 // float2x4
-/// \brief changes the sign of the values in register x
-#define _NEGATE_PS( x ) _mm_sub_ps( HLML_ZERO_SSE, (x) )
-
 struct sse_input_transpose_float2x4_t
 {
 	__m128 m[2][4];
@@ -291,9 +285,6 @@ inline void scale_sse( const sse_input_scale_float2x4_t* in, __m128 out_results[
 
 
 // float3x2
-/// \brief changes the sign of the values in register x
-#define _NEGATE_PS( x ) _mm_sub_ps( HLML_ZERO_SSE, (x) )
-
 struct sse_input_transpose_float3x2_t
 {
 	__m128 m[3][2];
@@ -373,9 +364,6 @@ inline void scale_sse( const sse_input_scale_float3x2_t* in, __m128 out_results[
 
 
 // float3x3
-/// \brief changes the sign of the values in register x
-#define _NEGATE_PS( x ) _mm_sub_ps( HLML_ZERO_SSE, (x) )
-
 struct sse_input_transpose_float3x3_t
 {
 	__m128 m[3][3];
@@ -473,9 +461,6 @@ inline void scale_sse( const sse_input_scale_float3x3_t* in, __m128 out_results[
 
 
 // float3x4
-/// \brief changes the sign of the values in register x
-#define _NEGATE_PS( x ) _mm_sub_ps( HLML_ZERO_SSE, (x) )
-
 struct sse_input_transpose_float3x4_t
 {
 	__m128 m[3][4];
@@ -555,9 +540,6 @@ inline void scale_sse( const sse_input_scale_float3x4_t* in, __m128 out_results[
 
 
 // float4x2
-/// \brief changes the sign of the values in register x
-#define _NEGATE_PS( x ) _mm_sub_ps( HLML_ZERO_SSE, (x) )
-
 struct sse_input_transpose_float4x2_t
 {
 	__m128 m[4][2];
@@ -637,9 +619,6 @@ inline void scale_sse( const sse_input_scale_float4x2_t* in, __m128 out_results[
 
 
 // float4x3
-/// \brief changes the sign of the values in register x
-#define _NEGATE_PS( x ) _mm_sub_ps( HLML_ZERO_SSE, (x) )
-
 struct sse_input_transpose_float4x3_t
 {
 	__m128 m[4][3];
@@ -719,9 +698,6 @@ inline void scale_sse( const sse_input_scale_float4x3_t* in, __m128 out_results[
 
 
 // float4x4
-/// \brief changes the sign of the values in register x
-#define _NEGATE_PS( x ) _mm_sub_ps( HLML_ZERO_SSE, (x) )
-
 struct sse_input_transpose_float4x4_t
 {
 	__m128 m[4][4];

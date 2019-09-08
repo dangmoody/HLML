@@ -480,6 +480,8 @@ static bool32 GenerateFunctionsMatrixSSE( void ) {
 		"\n"
 	);
 
+	Gen_SSE_MacroNegate( GEN_TYPE_FLOAT, &contentHeader );
+
 	String_Append( &contentInl, GEN_FILE_HEADER );
 	String_Append( &contentInl,
 		"#include \"../" GEN_HEADER_CONSTANTS_SSE "\"\n"
@@ -504,8 +506,6 @@ static bool32 GenerateFunctionsMatrixSSE( void ) {
 
 				String_Appendf( &contentHeader, "// %s\n", fullTypeName );
 				String_Appendf( &contentInl, "// %s\n", fullTypeName );
-
-				Gen_SSE_MacroNegate( type, &contentHeader );
 
 				// Gen_SSE_MatrixIdentity( type, row, col, &contentHeader, &contentInl );
 				Gen_SSE_MatrixTranspose( type, row, col, &contentHeader, &contentInl );

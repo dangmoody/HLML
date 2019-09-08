@@ -35,8 +35,8 @@ void Gen_SSE_MacroNegate( const genType_t type, stringBuilder_t* sbHeader ) {
 	char subFuncStr[GEN_STRING_LENGTH_SSE_INTRINSIC];
 	Gen_SSE_GetIntrinsicArithmetic( type, GEN_OP_ARITHMETIC_SUB, subFuncStr );
 
-	String_Append(  sbHeader, "/// \\brief changes the sign of the values in register x\n" );
-	String_Appendf( sbHeader, "#define %s( x ) %s( HLML_ZERO_SSE, (x) )\n", macroName, subFuncStr );
+	String_Append(  sbHeader, "/// \\brief Changes the sign of the values in the register.\n" );
+	String_Appendf( sbHeader, "#define %s( reg ) %s( HLML_ZERO_SSE, (reg) )\n", macroName, subFuncStr );
 	String_Append(  sbHeader, "\n" );
 }
 
