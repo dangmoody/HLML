@@ -18,7 +18,7 @@ Currently HLML is written to produce optimised assembly for clang.  If you use a
 
 HLML doesn't override any maths functions that are a part of C99.
 
-HLML is distributed under the GNU GPL v3 license.  See "LICENSE.md" for details.
+See the "Licenses" section below for details about what licenses HLML uses.
 
 
 Installation
