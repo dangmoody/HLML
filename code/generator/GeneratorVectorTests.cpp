@@ -1,14 +1,19 @@
 #include "GeneratorVectorTests.h"
 
+#include "defines.h"
+
 #include "allocator.h"
 
 #include "FileIO.h"
 
+#include "gen_common_sse.h"
+
 #include "gen_funcs_vector.h"
+#include "gen_funcs_vector_sse.h"
 
 bool GeneratorVectorTests::Generate( const genType_t type, const u32 numComponents ) {
-	const u32 testsCodeBytes = 12 * KB_TO_BYTES;
-	const u32 suiteCodeBytes = 4 * KB_TO_BYTES;
+	const u32 testsCodeBytes = 14 * KB_TO_BYTES;
+	const u32 suiteCodeBytes = 2 * KB_TO_BYTES;
 
 	m_codeTests = String_Create( testsCodeBytes );
 	m_codeSuite = String_Create( suiteCodeBytes );
@@ -20,13 +25,22 @@ bool GeneratorVectorTests::Generate( const genType_t type, const u32 numComponen
 	m_typeString = Gen_GetTypeString( type );
 	m_memberTypeString = Gen_GetMemberTypeString( type );
 
+	if ( Gen_TypeSupportsSSE( m_type ) ) {
+		m_registerName = Gen_SSE_GetRegisterName( m_type );
+	}
+
 	snprintf( m_fullTypeName, GEN_STRING_LENGTH_TYPE_NAME, "%s%d", m_typeString, numComponents );
 
-	stringBuilder_t code = String_Create( 10 * KB_TO_BYTES );
+	stringBuilder_t code = String_Create( testsCodeBytes + suiteCodeBytes );
 
 	String_Appendf( &code, GEN_FILE_HEADER );
 
 	String_Append( &code, "#include \"../../" GEN_OUT_GEN_FOLDER_PATH GEN_FILENAME_FUNCTIONS_VECTOR ".h\"\n" );
+	if ( Gen_TypeSupportsSSE( m_type ) ) {
+		String_Append( &code, "#include \"../../" GEN_OUT_GEN_FOLDER_PATH GEN_FILENAME_FUNCTIONS_SCALAR_SSE ".h\"\n" );
+		String_Append( &code, "#include \"../../" GEN_OUT_GEN_FOLDER_PATH GEN_FILENAME_FUNCTIONS_VECTOR_SSE ".h\"\n" );
+	}
+
 	String_Append( &code, "\n" );
 
 	String_Append( &code, "#include <temper/temper.h>\n" );
@@ -93,7 +107,7 @@ void GeneratorVectorTests::GenerateTestAssignment() {
 	snprintf( testName, GEN_STRING_LENGTH_TEST_NAME, "TestAssignment_%s", m_fullTypeName );
 
 	char oneStr[GEN_STRING_LENGTH_NUMERIC_LITERAL];
-	Gen_GetNumericLiteral( m_type, 1, oneStr );
+	Gen_GetNumericLiteral( m_type, 1, oneStr, 1 );
 
 	float values[] = { 0.0f, 1.0f, 2.0f, 3.0f };
 
@@ -130,10 +144,10 @@ void GeneratorVectorTests::GenerateTestArray() {
 	Gen_GetParmListVector( m_type, m_numComponents, values, parmList );
 
 	char valuesStr[4][GEN_STRING_LENGTH_NUMERIC_LITERAL];
-	Gen_GetNumericLiteral( m_type, 0, valuesStr[0] );
-	Gen_GetNumericLiteral( m_type, 1, valuesStr[1] );
-	Gen_GetNumericLiteral( m_type, 2, valuesStr[2] );
-	Gen_GetNumericLiteral( m_type, 3, valuesStr[3] );
+	Gen_GetNumericLiteral( m_type, 0, valuesStr[0], 1 );
+	Gen_GetNumericLiteral( m_type, 1, valuesStr[1], 1 );
+	Gen_GetNumericLiteral( m_type, 2, valuesStr[2], 1 );
+	Gen_GetNumericLiteral( m_type, 3, valuesStr[3], 1 );
 
 	String_Appendf( &m_codeTests, "TEMPER_TEST( %s )\n", testName );
 	String_Append(  &m_codeTests, "{\n" );
@@ -157,7 +171,7 @@ void GeneratorVectorTests::GenerateTestArithmetic() {
 
 	// number picked at random
 	char baseNumberStr[GEN_STRING_LENGTH_NUMERIC_LITERAL];
-	Gen_GetNumericLiteral( m_type, 6, baseNumberStr );
+	Gen_GetNumericLiteral( m_type, 6, baseNumberStr, 1 );
 
 	float valuesAdd[]	= { 2.0f,  3.0f,  4.0f,  5.0f  };
 	float valuesSub[]	= { 2.0f,  3.0f,  4.0f,  5.0f  };
@@ -264,8 +278,6 @@ void GeneratorVectorTests::GenerateTestRelational() {
 	char testName[GEN_STRING_LENGTH_TEST_NAME] = { 0 };
 	snprintf( testName, GEN_STRING_LENGTH_TEST_NAME, "TestRelational_%s", m_fullTypeName );
 
-	String_Appendf( &m_codeSuite, "\tTEMPER_RUN_TEST( %s );\n", testName );
-
 	char boolTypeName[GEN_STRING_LENGTH_NUMERIC_LITERAL];
 	snprintf( boolTypeName, GEN_STRING_LENGTH_NUMERIC_LITERAL, "bool%d", m_numComponents );
 
@@ -274,10 +286,10 @@ void GeneratorVectorTests::GenerateTestRelational() {
 	char twoStr[GEN_STRING_LENGTH_NUMERIC_LITERAL];
 	char threeStr[GEN_STRING_LENGTH_NUMERIC_LITERAL];
 
-	Gen_GetNumericLiteral( m_type, 0, zeroStr );
-	Gen_GetNumericLiteral( m_type, 1, oneStr );
-	Gen_GetNumericLiteral( m_type, 2, twoStr );
-	Gen_GetNumericLiteral( m_type, 3, threeStr );
+	Gen_GetNumericLiteral( m_type, 0, zeroStr, 1 );
+	Gen_GetNumericLiteral( m_type, 1, oneStr, 1 );
+	Gen_GetNumericLiteral( m_type, 2, twoStr, 1 );
+	Gen_GetNumericLiteral( m_type, 3, threeStr, 1 );
 
 	char parmLists[4][GEN_STRING_LENGTH_PARM_LIST_VECTOR];
 	snprintf( parmLists[0], 64, "( %s )", zeroStr );
@@ -349,7 +361,7 @@ void GeneratorVectorTests::GenerateTestRelational() {
 }
 
 void GeneratorVectorTests::GenerateTestBitwise() {
-	if ( !Gen_IsIntegerType( m_type ) ) {
+	if ( !Gen_TypeIsInteger( m_type ) ) {
 		return;
 	}
 
@@ -462,7 +474,7 @@ void GeneratorVectorTests::GenerateTestLength() {
 	snprintf( testName, 32, "TestLength_%s", m_fullTypeName );
 
 	char twoStr[GEN_STRING_LENGTH_NUMERIC_LITERAL];
-	Gen_GetNumericLiteral( m_type, 2, twoStr );
+	Gen_GetNumericLiteral( m_type, 2, twoStr, 1 );
 
 	// values are strings otherwise compiler truncates floating point bits and screws with the test
 	const char* squaredLengths[] = {
@@ -485,10 +497,61 @@ void GeneratorVectorTests::GenerateTestLength() {
 
 	String_Appendf( &m_codeTests, "TEMPER_TEST( %s )\n", testName );
 	String_Append(  &m_codeTests, "{\n" );
+	String_Append(  &m_codeTests, "\t// scalar\n" );
 	String_Appendf( &m_codeTests, "\t%s vec = %s( %s );\n", m_fullTypeName, m_fullTypeName, twoStr );
 	String_Append(  &m_codeTests, "\n" );
 	String_Appendf( &m_codeTests, "\tTEMPER_EXPECT_TRUE( %s( lengthsqr( vec ), %s%s ) );\n", floateqStr, squaredLengthStr, fSpecifier );
 	String_Appendf( &m_codeTests, "\tTEMPER_EXPECT_TRUE( %s( length( vec ), %s%s ) );\n", floateqStr, lengthStr, fSpecifier );
+
+	if ( Gen_TypeSupportsSSE( m_type ) ) {
+		char inputDataNameLength[GEN_STRING_LENGTH_SSE_INPUT_NAME];
+		Gen_SSE_GetInputDataName( m_fullTypeName, "length", inputDataNameLength );
+
+		const char* sseLoadStr = Gen_SSE_GetIntrinsicLoad( m_type );
+		const char* sseStoreStr = Gen_SSE_GetIntrinsicStore( m_type );
+
+		float values[4][4] = {
+			{ 2.0f, 2.0f, 2.0f, 2.0f },	// x
+			{ 2.0f, 2.0f, 2.0f, 2.0f },	// y
+			{ 2.0f, 2.0f, 2.0f, 2.0f },	// z
+			{ 2.0f, 2.0f, 2.0f, 2.0f }	// w
+		};
+
+		String_Append(  &m_codeTests, "\n" );
+		String_Append(  &m_codeTests, "\t// SSE\n" );
+		String_Appendf( &m_codeTests, "\t%s components[%d][4] =\n", m_memberTypeString, m_numComponents );
+		Gen_GetValuesArray2D( m_type, m_numComponents, 4, *values, &m_codeTests );
+		String_Append(  &m_codeTests, "\n" );
+		
+		String_Appendf( &m_codeTests, "\t%s in;\n", inputDataNameLength );
+		String_Append(  &m_codeTests, "\n" );
+		for ( u32 i = 0; i < m_numComponents; i++ ) {
+			String_Appendf( &m_codeTests, "\tin.comp[%d] = %s( components[%d] );\n", i, sseLoadStr, i );
+		}
+		String_Append(  &m_codeTests, "\n" );
+		String_Appendf( &m_codeTests, "\t%s results;\n", m_registerName );
+		String_Append(  &m_codeTests, "\n" );
+		String_Append(  &m_codeTests, "\t// lengthsq\n" );
+		String_Appendf( &m_codeTests, "\tlengthsq_sse( &in, &results );\n" );
+		String_Append(  &m_codeTests, "\n" );
+		String_Appendf( &m_codeTests, "\t%s squaredLengthResults[4];\n", m_memberTypeString );
+		String_Appendf( &m_codeTests, "\t%s( squaredLengthResults, results );\n", sseStoreStr );
+		String_Append(  &m_codeTests, "\n" );
+		for ( u32 i = 0; i < 4; i++ ) {
+			String_Appendf( &m_codeTests, "\tTEMPER_EXPECT_TRUE( %s( squaredLengthResults[%d], %sf ) );\n", floateqStr, i, squaredLengthStr );
+		}
+		String_Append(  &m_codeTests, "\n" );
+		String_Append(  &m_codeTests, "\t// length\n" );
+		String_Appendf( &m_codeTests, "\tlength_sse( &in, &results );\n" );
+		String_Append(  &m_codeTests, "\n" );
+		String_Appendf( &m_codeTests, "\t%s lengthResults[4];\n", m_memberTypeString );
+		String_Appendf( &m_codeTests, "\t%s( lengthResults, results );\n", sseStoreStr );
+		String_Append(  &m_codeTests, "\n" );
+		for ( u32 i = 0; i < 4; i++ ) {
+			String_Appendf( &m_codeTests, "\tTEMPER_EXPECT_TRUE( %s( lengthResults[%d], %sf ) );\n", floateqStr, i, lengthStr );
+		}
+	}
+
 	String_Append(  &m_codeTests, "\n" );
 	String_Append(  &m_codeTests, "\tTEMPER_PASS();\n" );
 	String_Append(  &m_codeTests, "}\n" );
@@ -498,7 +561,7 @@ void GeneratorVectorTests::GenerateTestLength() {
 }
 
 void GeneratorVectorTests::GenerateTestNormalized() {
-	if ( m_type != GEN_TYPE_FLOAT && m_type != GEN_TYPE_DOUBLE ) {
+	if ( !Gen_TypeIsFloatingPoint( m_type ) ) {
 		return;
 	}
 
@@ -513,14 +576,58 @@ void GeneratorVectorTests::GenerateTestNormalized() {
 	genType_t floatingPointType = Gen_GetSupportedFloatingPointType( m_type );
 
 	char oneStr[GEN_STRING_LENGTH_NUMERIC_LITERAL];
-	Gen_GetNumericLiteral( floatingPointType, 1, oneStr );
+	Gen_GetNumericLiteral( floatingPointType, 1, oneStr, 1 );
 
 	String_Appendf( &m_codeTests, "TEMPER_TEST( %s )\n", testName );
 	String_Append(  &m_codeTests, "{\n" );
+	String_Append(  &m_codeTests, "\t// scalar\n" );
 	String_Appendf( &m_codeTests, "\t%s vec = %s%s;\n", m_fullTypeName, m_fullTypeName, parmList );
 	String_Append(  &m_codeTests, "\tvec = normalized( vec );\n" );
 	String_Append(  &m_codeTests, "\n" );
 	String_Appendf( &m_codeTests, "\tTEMPER_EXPECT_TRUE( length( vec ) == %s );\n", oneStr );
+
+	if ( Gen_TypeSupportsSSE( m_type ) ) {
+		const char* floateqStr = Gen_GetFuncNameFloateq( m_type );
+
+		const char* set1FuncStr		= Gen_SSE_GetIntrinsicSet1( m_type );
+		const char* storeFuncStr	= Gen_SSE_GetIntrinsicStore( m_type );
+
+		char inputDataNameNormalize[GEN_STRING_LENGTH_SSE_INPUT_NAME];
+		Gen_SSE_GetInputDataName( m_fullTypeName, "normalize", inputDataNameNormalize );
+
+		char inputDataNameLength[GEN_STRING_LENGTH_SSE_INPUT_NAME];
+		Gen_SSE_GetInputDataName( m_fullTypeName, "length", inputDataNameLength );
+
+		String_Append(  &m_codeTests, "\n" );
+		String_Append(  &m_codeTests, "\t// SSE\n" );
+		String_Appendf( &m_codeTests, "\t%s in;\n", inputDataNameNormalize );
+		String_Append(  &m_codeTests, "\n" );
+		for ( u32 i = 0; i < m_numComponents; i++ ) {
+			char valueStr[GEN_STRING_LENGTH_NUMERIC_LITERAL];
+			Gen_GetNumericLiteral( m_type, values[i], valueStr, 1 );
+
+			String_Appendf( &m_codeTests, "\tin.comp[%d] = %s( %s );\n", i, set1FuncStr, valueStr );
+		}
+		String_Append(  &m_codeTests, "\n" );
+		String_Appendf( &m_codeTests, "\t%s results[%d];\n", m_registerName, m_numComponents );
+		String_Appendf( &m_codeTests, "\tnormalize_sse( &in, results );\n" );
+		String_Append(  &m_codeTests, "\n" );
+		String_Appendf( &m_codeTests, "\t%s inLength;\n", inputDataNameLength );
+		for ( u32 i = 0; i < m_numComponents; i++ ) {
+			String_Appendf( &m_codeTests, "\tinLength.comp[%d] = results[%d];\n", i, i );
+		}
+		String_Append(  &m_codeTests, "\n" );
+		String_Appendf( &m_codeTests, "\t%s results2;\n", m_registerName );
+		String_Appendf( &m_codeTests, "\tlength_sse( &inLength, &results2 );\n" );
+		String_Append(  &m_codeTests, "\n" );
+		String_Appendf( &m_codeTests, "\t%s normalizeResults[4];\n", m_memberTypeString, m_numComponents );
+		String_Appendf( &m_codeTests, "\t%s( normalizeResults, results2 );\n", storeFuncStr );
+		String_Append(  &m_codeTests, "\n" );
+		for ( u32 i = 0; i < 4; i++ ) {
+			String_Appendf( &m_codeTests, "\tTEMPER_EXPECT_TRUE( %s( normalizeResults[%d], %s ) );\n", floateqStr, i, oneStr );
+		}
+	}
+
 	String_Append(  &m_codeTests, "\n" );
 	String_Append(  &m_codeTests, "\tTEMPER_PASS();\n" );
 	String_Append(  &m_codeTests, "}\n" );
@@ -540,15 +647,15 @@ void GeneratorVectorTests::GenerateTestDot() {
 	genType_t dotReturnType = ( m_type == GEN_TYPE_UINT ) ? GEN_TYPE_INT : m_type;
 
 	char minusOneStrDotAnswer[GEN_STRING_LENGTH_NUMERIC_LITERAL];
-	Gen_GetNumericLiteral( dotReturnType, -1, minusOneStrDotAnswer );
+	Gen_GetNumericLiteral( dotReturnType, -1, minusOneStrDotAnswer, 1 );
 
 	char minusOneStr[GEN_STRING_LENGTH_NUMERIC_LITERAL];
 	char zeroStr[GEN_STRING_LENGTH_NUMERIC_LITERAL];
 	char oneStr[GEN_STRING_LENGTH_NUMERIC_LITERAL];
 
-	Gen_GetNumericLiteral( m_type, -1, minusOneStr );
-	Gen_GetNumericLiteral( m_type,  0, zeroStr );
-	Gen_GetNumericLiteral( m_type,  1, oneStr );
+	Gen_GetNumericLiteral( m_type, -1.0f, minusOneStr, 1 );
+	Gen_GetNumericLiteral( m_type,  0.0f, zeroStr, 1 );
+	Gen_GetNumericLiteral( m_type,  1.0f, oneStr, 1 );
 
 	float valuesA[4] = { 0.0f,  1.0f, 0.0f, 0.0f };
 	float valuesB[4] = { 0.0f, -1.0f, 0.0f, 0.0f };
@@ -563,24 +670,82 @@ void GeneratorVectorTests::GenerateTestDot() {
 
 	String_Appendf( &m_codeTests, "TEMPER_TEST( TestDot_%s )\n", m_fullTypeName );
 	String_Append(  &m_codeTests, "{\n" );
+	String_Append(  &m_codeTests, "\t// scalar\n" );
 	String_Appendf( &m_codeTests, "\t%s a = %s%s;\n", m_fullTypeName, m_fullTypeName, parmListA );
 	String_Appendf( &m_codeTests, "\t%s b = %s%s;\n", m_fullTypeName, m_fullTypeName, parmListB );
 	String_Append(  &m_codeTests, "\n" );
-	if ( Gen_IsFloatingPointType( m_type ) ) {
+	if ( Gen_TypeIsFloatingPoint( m_type ) ) {
 		String_Appendf( &m_codeTests, "\tTEMPER_EXPECT_TRUE( %s( dot( a, b ), %s ) );\n", floateqStr, minusOneStrDotAnswer );
 	} else {
 		String_Appendf( &m_codeTests, "\tTEMPER_EXPECT_TRUE( dot( a, b ) == %s );\n", minusOneStrDotAnswer );
 	}
-	String_Append( &m_codeTests, "\n" );
-	String_Append( &m_codeTests, "\tTEMPER_PASS();\n" );
-	String_Append( &m_codeTests, "}\n" );
-	String_Append( &m_codeTests, "\n" );
+
+	if ( Gen_TypeSupportsSSE( m_type ) ) {
+		char inputDataNameDot[GEN_STRING_LENGTH_SSE_INPUT_NAME];
+		Gen_SSE_GetInputDataName( m_fullTypeName, "dot", inputDataNameDot );
+
+		const char* sseLoadStr = Gen_SSE_GetIntrinsicLoad( m_type );
+		const char* sseStoreStr = Gen_SSE_GetIntrinsicStore( m_type );
+
+		float valuesLHS[4][4] = {
+			{ 0.0f, 0.0f, 0.0f, 0.0f },	// x
+			{ 1.0f, 1.0f, 1.0f, 1.0f },	// y
+			{ 0.0f, 0.0f, 0.0f, 0.0f },	// z
+			{ 0.0f, 0.0f, 0.0f, 0.0f }	// w
+		};
+
+		float valuesRHS[4][4] = {
+			{  0.0f,  0.0f,  0.0f,  0.0f },	// x
+			{ -1.0f, -1.0f, -1.0f, -1.0f },	// y
+			{  0.0f,  0.0f,  0.0f,  0.0f },	// z
+			{  0.0f,  0.0f,  0.0f,  0.0f }	// w
+		};
+
+		String_Append(  &m_codeTests, "\n" );
+		String_Append(  &m_codeTests, "\t// SIMD\n" );
+		String_Appendf( &m_codeTests, "\t%s componentsLHS[%d][4] =\n", m_memberTypeString, m_numComponents );
+		Gen_GetValuesArray2D( m_type, m_numComponents, 4, *valuesLHS, &m_codeTests );
+		String_Append(  &m_codeTests, "\n" );
+
+		String_Appendf( &m_codeTests, "\t%s componentsRHS[%d][4] =\n", m_memberTypeString, m_numComponents );
+		Gen_GetValuesArray2D( m_type, m_numComponents, 4, *valuesRHS, &m_codeTests );
+		String_Append(  &m_codeTests, "\n" );
+		
+		String_Appendf( &m_codeTests, "\t%s in;\n", inputDataNameDot );
+		String_Append(  &m_codeTests, "\n" );
+		for ( u32 i = 0; i < m_numComponents; i++ ) {
+			String_Appendf( &m_codeTests, "\tin.lhs[%d] = %s( componentsLHS[%d] );\n", i, sseLoadStr, i );
+		}
+		String_Append( &m_codeTests, "\n" );
+		for ( u32 i = 0; i < m_numComponents; i++ ) {
+			String_Appendf( &m_codeTests, "\tin.rhs[%d] = %s( componentsRHS[%d] );\n", i, sseLoadStr, i );
+		}
+		String_Append(  &m_codeTests, "\n" );
+		String_Appendf( &m_codeTests, "\t%s results;\n", m_registerName );
+		String_Appendf( &m_codeTests, "\tdot_sse( &in, &results );\n" );
+		String_Append(  &m_codeTests, "\n" );
+		String_Appendf( &m_codeTests, "\t%s dotResults[4];\n", m_memberTypeString );
+		String_Appendf( &m_codeTests, "\t%s( dotResults, results );\n", sseStoreStr );
+		String_Append(  &m_codeTests, "\n" );
+		for ( u32 i = 0; i < 4; i++ ) {
+			if ( Gen_TypeIsFloatingPoint( m_type ) ) {
+				String_Appendf( &m_codeTests, "\tTEMPER_EXPECT_TRUE( %s( dotResults[%d], %s ) );\n", floateqStr, i, minusOneStr );
+			} else {
+				String_Appendf( &m_codeTests, "\tTEMPER_EXPECT_TRUE( dotResults[%d] == %s );\n", i, minusOneStr );
+			}
+		}
+	}
+
+	String_Append(  &m_codeTests, "\n" );
+	String_Append(  &m_codeTests, "\tTEMPER_PASS();\n" );
+	String_Append(  &m_codeTests, "}\n" );
+	String_Append(  &m_codeTests, "\n" );
 
 	String_Appendf( &m_codeSuite, "\tTEMPER_RUN_TEST( %s );\n", testName );
 }
 
 void GeneratorVectorTests::GenerateTestCross() {
-	if ( m_type != GEN_TYPE_FLOAT && m_type != GEN_TYPE_DOUBLE ) {
+	if ( !Gen_TypeIsFloatingPoint( m_type ) ) {
 		return;
 	}
 
@@ -619,7 +784,7 @@ void GeneratorVectorTests::GenerateTestCross() {
 }
 
 void GeneratorVectorTests::GenerateTestAngle() {
-	if ( !Gen_IsFloatingPointType( m_type ) ) {
+	if ( !Gen_TypeIsFloatingPoint( m_type ) ) {
 		return;
 	}
 
@@ -638,21 +803,60 @@ void GeneratorVectorTests::GenerateTestAngle() {
 	const genType_t floatingPointType = Gen_GetSupportedFloatingPointType( m_type );
 
 	char ninetyStr[GEN_STRING_LENGTH_NUMERIC_LITERAL];
-	Gen_GetNumericLiteral( floatingPointType, 90, ninetyStr );
+	Gen_GetNumericLiteral( floatingPointType, 90.0f, ninetyStr, 1 );
 
 	const char* floateqStr = Gen_GetFuncNameFloateq( m_type );
 
 	String_Appendf( &m_codeTests, "TEMPER_TEST( %s )\n", testName );
 	String_Append(  &m_codeTests, "{\n" );
+	String_Append(  &m_codeTests, "\t// scalar\n" );
 	String_Appendf( &m_codeTests, "\t%s right = %s%s;\n", m_fullTypeName, m_fullTypeName, parmListRight );
-	String_Appendf( &m_codeTests, "\t%s up =    %s%s;\n", m_fullTypeName, m_fullTypeName, parmListUp );
-	String_Appendf( &m_codeTests, "\t%s answer = angle( up, right );\n", m_typeString );
+	String_Appendf( &m_codeTests, "\t%s up    = %s%s;\n", m_fullTypeName, m_fullTypeName, parmListUp );
 	String_Append(  &m_codeTests, "\n" );
-	String_Appendf( &m_codeTests, "\tTEMPER_EXPECT_TRUE( %s( answer, %s ) );\n", floateqStr, ninetyStr );
-	String_Append(  &m_codeTests, "\n" );
-	String_Append(  &m_codeTests, "\tTEMPER_PASS();\n" );
-	String_Append(  &m_codeTests, "}\n" );
-	String_Append(  &m_codeTests, "\n" );
+	String_Appendf( &m_codeTests, "\tTEMPER_EXPECT_TRUE( %s( angle( up, right ), %s ) );\n", floateqStr, ninetyStr );
+
+#if 0
+	if ( Gen_TypeSupportsSSE( m_type ) ) {
+		const char* set1FuncStr		= Gen_SSE_GetIntrinsicSet1( m_type );
+		const char* storeFuncStr	= Gen_SSE_GetIntrinsicStore( m_type );
+
+		char inputDataName[GEN_STRING_LENGTH_SSE_INPUT_NAME];
+		Gen_SSE_GetInputDataNameAngle( m_type, m_numComponents, inputDataName );
+
+		String_Append(  &m_codeTests, "\n" );
+		String_Append(  &m_codeTests, "\t// SSE\n" );
+		String_Appendf( &m_codeTests, "\t%s in;\n", inputDataName );
+		String_Append(  &m_codeTests, "\n" );
+		for ( u32 i = 0; i < m_numComponents; i++ ) {
+			char valueStr[GEN_STRING_LENGTH_NUMERIC_LITERAL];
+			Gen_GetNumericLiteral( m_type, right[i], valueStr, 1 );
+
+			String_Appendf( &m_codeTests, "\tin.lhs[%d] = %s( %s );\n", i, set1FuncStr, valueStr );
+		}
+		String_Append( &m_codeTests, "\n" );
+		for ( u32 i = 0; i < m_numComponents; i++ ) {
+			char valueStr[GEN_STRING_LENGTH_NUMERIC_LITERAL];
+			Gen_GetNumericLiteral( m_type, up[i], valueStr, 1 );
+
+			String_Appendf( &m_codeTests, "\tin.rhs[%d] = %s( %s );\n", i, set1FuncStr, valueStr );
+		}
+		String_Append(  &m_codeTests, "\n" );
+		String_Appendf( &m_codeTests, "\t%s results;\n", m_registerName );
+		String_Append(  &m_codeTests, "\tangle_sse( &angleResults, &results );\n" );
+		String_Append(  &m_codeTests, "\n" );
+		String_Appendf( &m_codeTests, "\t%s angleResults[4];\n", m_memberTypeString );
+		String_Appendf( &m_codeTests, "\t%s( angleResults, results );\n", storeFuncStr );
+		String_Append(  &m_codeTests, "\n" );
+		for ( u32 i = 0; i < m_numComponents; i++ ) {
+			String_Appendf( &m_codeTests, "\tTEMPER_EXPECT_TRUE( %s( angleResults[%d], %s ) );\n", floateqStr, i, ninetyStr );
+		}
+	}
+#endif
+
+	String_Append( &m_codeTests, "\n" );
+	String_Append( &m_codeTests, "\tTEMPER_PASS();\n" );
+	String_Append( &m_codeTests, "}\n" );
+	String_Append( &m_codeTests, "\n" );
 
 	String_Appendf( &m_codeSuite, "\tTEMPER_RUN_TEST( %s );\n", testName );
 }
@@ -682,12 +886,12 @@ void GeneratorVectorTests::GenerateTestDistance() {
 
 	switch ( m_numComponents ) {
 		case 2:
-			Gen_GetNumericLiteral( floatingPointType, 104.0f, answerDistanceSqrStr );
+			Gen_GetNumericLiteral( floatingPointType, 104.0f, answerDistanceSqrStr, 1 );
 			Gen_GetNumericLiteral( floatingPointType, 10.198039f, answerDistanceStr );
 			break;
 
 		case 3:
-			Gen_GetNumericLiteral( floatingPointType, 105.0f, answerDistanceSqrStr );
+			Gen_GetNumericLiteral( floatingPointType, 105.0f, answerDistanceSqrStr, 1 );
 			Gen_GetNumericLiteral( floatingPointType, 10.246951f, answerDistanceStr );
 			break;
 	}
@@ -708,11 +912,77 @@ void GeneratorVectorTests::GenerateTestDistance() {
 	String_Appendf( &m_codeTests, "\t%s a = %s%s;\n", m_fullTypeName, m_fullTypeName, parmList0 );
 	String_Appendf( &m_codeTests, "\t%s b = %s%s;\n", m_fullTypeName, m_fullTypeName, parmList1 );
 	String_Append(  &m_codeTests, "\n" );
+	String_Append(  &m_codeTests, "\t// scalar\n" );
 	String_Appendf( &m_codeTests, "\t%s distSqr = distancesqr( a, b );\n", floatingPointStr );
 	String_Appendf( &m_codeTests, "\t%s dist    = distance( a, b );\n", floatingPointStr );
 	String_Append(  &m_codeTests, "\n" );
 	String_Appendf( &m_codeTests, "\tTEMPER_EXPECT_TRUE( %s( distSqr, answerDistanceSqr ) );\n", floateqStr );
 	String_Appendf( &m_codeTests, "\tTEMPER_EXPECT_TRUE( %s( dist, answerDistance ) );\n", floateqStr );
+
+	if ( Gen_TypeSupportsSSE( m_type ) ) {
+		char inputDataNameDistance[GEN_STRING_LENGTH_SSE_INPUT_NAME];
+		Gen_SSE_GetInputDataName( m_fullTypeName, "distance", inputDataNameDistance );
+
+		const char* sseLoadStr = Gen_SSE_GetIntrinsicLoad( m_type );
+		const char* sseStoreStr = Gen_SSE_GetIntrinsicStore( m_type );
+
+		float valuesLHS[4][4] = {
+			{ 7.0f, 7.0f, 7.0f, 7.0f },	// x
+			{ 4.0f, 4.0f, 4.0f, 4.0f },	// y
+			{ 3.0f, 3.0f, 3.0f, 3.0f },	// z
+			{ 0.0f, 0.0f, 0.0f, 0.0f },	// w
+		};
+
+		float valuesRHS[4][4] = {
+			{ 17.0f, 17.0f, 17.0f, 17.0f },	// x
+			{ 6.0f,  6.0f,  6.0f,  6.0f  },	// y
+			{ 2.0f,  2.0f,  2.0f,  2.0f  },	// z
+			{ 0.0f,  0.0f,  0.0f,  0.0f  },	// w
+		};
+
+		String_Append(  &m_codeTests, "\n" );
+		String_Append(  &m_codeTests, "\t// SSE\n" );
+		String_Appendf( &m_codeTests, "\t%s componentsLHS[%d][4] =\n", m_memberTypeString, m_numComponents );
+		Gen_GetValuesArray2D( m_type, m_numComponents, 4, *valuesLHS, &m_codeTests );
+		String_Append(  &m_codeTests, "\n" );
+
+		String_Appendf( &m_codeTests, "\t%s componentsRHS[%d][4] =\n", m_memberTypeString, m_numComponents );
+		Gen_GetValuesArray2D( m_type, m_numComponents, 4, *valuesRHS, &m_codeTests );
+		String_Append(  &m_codeTests, "\n" );
+		
+		String_Appendf( &m_codeTests, "\t%s in;\n", inputDataNameDistance );
+		String_Append(  &m_codeTests, "\n" );
+		for ( u32 i = 0; i < m_numComponents; i++ ) {
+			String_Appendf( &m_codeTests, "\tin.lhs[%d] = %s( componentsLHS[%d] );\n", i, sseLoadStr, i );
+		}
+		String_Append(  &m_codeTests, "\n" );
+		for ( u32 i = 0; i < m_numComponents; i++ ) {
+			String_Appendf( &m_codeTests, "\tin.rhs[%d] = %s( componentsRHS[%d] );\n", i, sseLoadStr, i );
+		}
+		String_Append(  &m_codeTests, "\n" );
+		String_Appendf( &m_codeTests, "\t%s results;\n", m_registerName );
+		String_Append(  &m_codeTests, "\n" );
+		String_Append(  &m_codeTests, "\t// distancesq\n" );
+		String_Appendf( &m_codeTests, "\tdistancesq_sse( &in, &results );\n" );
+		String_Append(  &m_codeTests, "\n" );
+		String_Appendf( &m_codeTests, "\t%s squaredDistanceResults[4];\n", m_memberTypeString );
+		String_Appendf( &m_codeTests, "\t%s( squaredDistanceResults, results );\n", sseStoreStr );
+		String_Append(  &m_codeTests, "\n" );
+		for ( u32 i = 0; i < 4; i++ ) {
+			String_Appendf( &m_codeTests, "\tTEMPER_EXPECT_TRUE( %s( squaredDistanceResults[%d], %s ) );\n", floateqStr, i, answerDistanceSqrStr );
+		}
+		String_Append(  &m_codeTests, "\n" );
+		String_Append(  &m_codeTests, "\t// distance\n" );
+		String_Appendf( &m_codeTests, "\tdistance_sse( &in, &results );\n" );
+		String_Append(  &m_codeTests, "\n" );
+		String_Appendf( &m_codeTests, "\t%s distanceResults[4];\n", m_memberTypeString );
+		String_Appendf( &m_codeTests, "\t%s( distanceResults, results );\n", sseStoreStr );
+		String_Append(  &m_codeTests, "\n" );
+		for ( u32 i = 0; i < 4; i++ ) {
+			String_Appendf( &m_codeTests, "\tTEMPER_EXPECT_TRUE( %s( distanceResults[%d], %s ) );\n", floateqStr, i, answerDistanceStr );
+		}
+	}
+
 	String_Append(  &m_codeTests, "\n" );
 	String_Append(  &m_codeTests, "\tTEMPER_PASS();\n" );
 	String_Append(  &m_codeTests, "}\n" );
@@ -762,7 +1032,7 @@ void GeneratorVectorTests::GenerateTestPacking() {
 }
 
 void GeneratorVectorTests::GenerateTestSaturate() {
-	if ( !Gen_IsFloatingPointType( m_type ) ) {
+	if ( !Gen_TypeIsFloatingPoint( m_type ) ) {
 		return;
 	}
 
@@ -795,7 +1065,7 @@ void GeneratorVectorTests::GenerateTestSaturate() {
 }
 
 void GeneratorVectorTests::GenerateTestLerp() {
-	if ( !Gen_IsFloatingPointType( m_type ) ) {
+	if ( !Gen_TypeIsFloatingPoint( m_type ) ) {
 		return;
 	}
 
@@ -815,7 +1085,7 @@ void GeneratorVectorTests::GenerateTestLerp() {
 	Gen_GetParmListVector( m_type, m_numComponents, valuesAnswer, parmListAnswer );
 
 	char lerpValStr[GEN_STRING_LENGTH_NUMERIC_LITERAL];
-	Gen_GetNumericLiteral( m_type, 0.5, lerpValStr );
+	Gen_GetNumericLiteral( m_type, 0.5f, lerpValStr, 1 );
 
 	String_Appendf( &m_codeTests, "TEMPER_TEST( %s )\n", testName );
 	String_Append(  &m_codeTests, "{\n" );
@@ -872,7 +1142,7 @@ void GeneratorVectorTests::GenerateTestStep() {
 }
 
 void GeneratorVectorTests::GenerateTestSmoothstep() {
-	if ( !Gen_IsFloatingPointType( m_type ) ) {
+	if ( !Gen_TypeIsFloatingPoint( m_type ) ) {
 		return;
 	}
 

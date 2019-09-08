@@ -78,7 +78,7 @@
     <IntDir>$(SolutionDir)build\clang\$(Configuration)\intermediate\$(ProjectName)\</IntDir>
   </PropertyGroup>
   <PropertyGroup Label="LLVM" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <ClangClAdditionalOptions>-Weverything -Wall -Wextra -Wpedantic -Wno-c++98-compat-pedantic -Wno-covered-switch-default -Wno-newline-eof -Wno-reserved-id-macro -Wno-global-constructors -Wno-exit-time-destructors -Wno-unused-macros -Wno-old-style-cast -Wno-shadow-field-in-constructor</ClangClAdditionalOptions>
+    <ClangClAdditionalOptions>-Weverything -Wall -Wextra -Wpedantic -Wno-c++98-compat-pedantic -Wno-covered-switch-default -Wno-newline-eof -Wno-reserved-id-macro -Wno-global-constructors -Wno-exit-time-destructors -Wno-unused-macros -Wno-old-style-cast -Wno-shadow-field-in-constructor -msse2</ClangClAdditionalOptions>
   </PropertyGroup>
   <PropertyGroup Label="LLVM" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClangClAdditionalOptions>-Weverything -Wall -Wextra -Wpedantic -Wno-c++98-compat-pedantic -Wno-covered-switch-default -Wno-newline-eof -Wno-reserved-id-macro -Wno-global-constructors -Wno-exit-time-destructors -Wno-unused-macros -Wno-old-style-cast -Wno-shadow-field-in-constructor</ClangClAdditionalOptions>

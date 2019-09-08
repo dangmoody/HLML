@@ -17,30 +17,46 @@
     <ClCompile Include="FileIO_win64.cpp" />
     <ClCompile Include="GeneratorScalarTests.cpp" />
     <ClCompile Include="gen_common.cpp" />
+    <ClCompile Include="gen_common_sse.cpp" />
     <ClCompile Include="gen_funcs_matrix.cpp" />
+    <ClCompile Include="gen_funcs_matrix_sse.cpp" />
     <ClCompile Include="gen_funcs_vector.cpp" />
     <ClCompile Include="GeneratorMatrix.cpp" />
     <ClCompile Include="GeneratorMatrixTests.cpp" />
     <ClCompile Include="GeneratorVectorTests.cpp" />
     <ClCompile Include="GeneratorVector.cpp" />
+    <ClCompile Include="gen_funcs_vector_sse.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="os_helpers_unix.cpp" />
+    <ClCompile Include="os_helpers_win64.cpp" />
     <ClCompile Include="string_builder.cpp" />
+    <ClCompile Include="time_unix.cpp" />
     <ClCompile Include="time_win64.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="allocator.h" />
+    <ClInclude Include="defines.h" />
     <ClInclude Include="FileIO.h" />
     <ClInclude Include="GeneratorScalarTests.h" />
     <ClInclude Include="gen_common.h" />
+    <ClInclude Include="gen_common_sse.h" />
     <ClInclude Include="gen_doc_common.h" />
+    <ClInclude Include="gen_doc_matrix.h" />
+    <ClInclude Include="gen_doc_matrix_sse.h" />
+    <ClInclude Include="gen_doc_vector.h" />
+    <ClInclude Include="gen_doc_vector_sse.h" />
     <ClInclude Include="gen_funcs_matrix.h" />
+    <ClInclude Include="gen_funcs_matrix_sse.h" />
     <ClInclude Include="gen_funcs_vector.h" />
     <ClInclude Include="GeneratorMatrix.h" />
     <ClInclude Include="GeneratorMatrixTests.h" />
     <ClInclude Include="GeneratorVectorTests.h" />
     <ClInclude Include="GeneratorVector.h" />
+    <ClInclude Include="gen_funcs_vector_sse.h" />
     <ClInclude Include="int_types.h" />
+    <ClInclude Include="os_helpers.h" />
     <ClInclude Include="string_builder.h" />
+    <ClInclude Include="string_helpers.h" />
     <ClInclude Include="time.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
@@ -105,9 +121,15 @@
       <GenerateDebugInformation>DebugFull</GenerateDebugInformation>
     </Link>
     <PostBuildEvent>
+      <Command>xcopy $(SolutionDir)doxygen $(OutDir)doxygen /s /e /v /y /i</Command>
+      <Message>Copying doxygen...</Message>
+    </PostBuildEvent>
+    <PreBuildEvent>
       <Command>
       </Command>
-    </PostBuildEvent>
+      <Message>
+      </Message>
+    </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
@@ -127,6 +149,16 @@
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>false</GenerateDebugInformation>
     </Link>
+    <PreBuildEvent>
+      <Command>
+      </Command>
+      <Message>
+      </Message>
+    </PreBuildEvent>
+    <PostBuildEvent>
+      <Message>Copying doxygen...</Message>
+      <Command>xcopy $(SolutionDir)doxygen $(OutDir)doxygen /s /e /v /y /i</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

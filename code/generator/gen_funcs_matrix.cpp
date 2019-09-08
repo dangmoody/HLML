@@ -1,108 +1,32 @@
+/*
+===========================================================================
+
+HLML Generator.
+Copyright (c) Dan Moody 2018 - Present.
+
+This file is part of the HLML Generator.
+
+The HLML Generator is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+The HLML Generator is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with The HLML Generator.  If not, see <http://www.gnu.org/licenses/>.
+
+===========================================================================
+*/
 #include "gen_funcs_matrix.h"
 
 #include "gen_doc_common.h"
+#include "gen_doc_matrix.h"
 
 #include <assert.h>
-
-static void DocMatrixMultiplication( stringBuilder_t* sb, const char* fullTypeName ) {
-	String_Appendf( sb,
-		"/// \\relates %s\n" \
-		"/// \\brief Returns a copy of the matrix where each row of the left-hand matrix has been dot-producted by the corresponding column of the right-hand matrix.\n", fullTypeName );
-}
-
-static void DocCompoundMatrixMultiplication( stringBuilder_t* sb, const char* fullTypeName ) {
-	String_Appendf( sb,
-		"/// \\relates %s\n" \
-		"/// \\brief Dot products each row of the left-hand matrix with the corresponding column of the right-hand matrix.\n", fullTypeName );
-}
-
-static void DocMatrixDivision( stringBuilder_t* sb, const char* fullTypeName ) {
-	String_Appendf( sb,
-		"/// \\relates %s\n" \
-		"/// \\brief Returns a copy of the matrix where the left-hand matrix has been mathematically multiplied by the inverse of the right-hand matrix.\n", fullTypeName );
-}
-
-static void DocCompoundMatrixDivision( stringBuilder_t* sb, const char* fullTypeName ) {
-	String_Appendf( sb,
-		"/// \\relates %s\n" \
-		"/// \\brief Multiplies the left-hand matrix by the right-hand matrix (dot product row/col style).\n", fullTypeName );
-}
-
-static void DocIdentity( stringBuilder_t* sb, const char* fullTypeName ) {
-	String_Appendf( sb,
-		"/// \\relates %s\n" \
-		"/// \\brief Sets the matrix to an identity matrix.\n", fullTypeName );
-}
-
-static void DocTranpose( stringBuilder_t* sb, const char* fullTypeName ) {
-	String_Appendf( sb,
-		"/// \\relates %s\n" \
-		"/// \\brief Returns a copy of the matrix that is transposed, where the value of each row is set to the value of each column and vice versa.\n", fullTypeName );
-}
-
-static void DocInverse( stringBuilder_t* sb, const char* fullTypeName ) {
-	String_Appendf( sb,
-		"/// \\relates %s\n" \
-		"/// \\brief Returns a copy of the matrix that is inversed.\n" \
-		"/// Currently this is only applicable for square matrices.  Pseudo-inverse support for non-square matrices is coming soon.\n", fullTypeName );
-}
-
-static void DocDeterminant( stringBuilder_t* sb, const char* fullTypeName ) {
-	String_Appendf( sb,
-		"/// \\relates %s\n" \
-		"/// \\brief Returns the determinant of the matrix.\n", fullTypeName );
-}
-
-static void DocTranslate( stringBuilder_t* sb, const char* fullTypeName ) {
-	String_Appendf( sb,
-		"/// \\relates %s\n" \
-		"/// \\brief Returns a copy of the matrix where each component of the 3rd column has been added by the given vector.\n", fullTypeName );
-}
-
-static void DocRotate( stringBuilder_t* sb, const char* fullTypeName ) {
-	String_Appendf( sb,
-		"/// \\relates %s\n" \
-		"/// \\brief Returns a copy of the matrix that has had a rotation applied to it in radians on one or more of the following axes.\n", fullTypeName );
-}
-
-static void DocScaleUniform( stringBuilder_t* sb, const char* fullTypeName ) {
-	String_Appendf( sb,
-		"/// \\relates %s\n" \
-		"/// \\brief Returns a copy of the matrix that has had a uniform scale applied to it.\n", fullTypeName );
-}
-
-static void DocScaleNonUniform( stringBuilder_t* sb, const char* fullTypeName ) {
-	String_Appendf( sb,
-		"/// \\relates %s\n" \
-		"/// \\brief Returns a copy of the matrix that has had a non-uniform scale applied to it.\n", fullTypeName );
-}
-
-static void DocOrtho( stringBuilder_t* sb, const char* fullTypeName, const genHand_t hand, const genClipSpace_t range ) {
-	const char* handStr = Gen_GetHandString( hand );
-	const char* rangeStr = Gen_GetClipSpaceRangeString( range );
-
-	String_Appendf( sb,
-		"/// \\relates %s\n" \
-		"/// \\brief Returns an %s-handed orthographic projection matrix with the clip-space range %s.\n", fullTypeName, handStr, rangeStr );
-}
-
-static void DocPerspective( stringBuilder_t* sb, const char* fullTypeName, const genHand_t hand, const genClipSpace_t range ) {
-	const char* handStr = Gen_GetHandString( hand );
-	const char* rangeStr = Gen_GetClipSpaceRangeString( range );
-
-	String_Appendf( sb,
-		"/// \\relates %s\n" \
-		"/// \\brief Returns a %s-handed perspective projection matrix based on a vertical field-of-view in degrees and an aspect ratio " \
-		"in the clip-space range of %s.\n", fullTypeName, handStr, rangeStr );
-}
-
-static void DocLookAt( stringBuilder_t* sb, const char* fullTypeName, const genHand_t hand ) {
-	const char* handStr = Gen_GetHandString( hand );
-
-	String_Appendf( sb,
-		"/// \\relates %s\n" \
-		"/// \\brief Returns a %s-handed orthonormal matrix that is oriented at position eye to look at position target.\n", fullTypeName, handStr );
-}
 
 static void MatrixOperatorMul( const genType_t type, const u32 numRows, const u32 numCols, stringBuilder_t* sbHeader, stringBuilder_t* sbInl ) {
 	u32 numRhsRows = numCols;
@@ -120,11 +44,11 @@ static void MatrixOperatorMul( const genType_t type, const u32 numRows, const u3
 
 	// header
 	{
-		DocMatrixMultiplication( sbHeader, fullTypeName );
+		Doc_MatrixMultiplication( sbHeader, fullTypeName );
 		String_Appendf( sbHeader, "inline %s operator*( const %s& lhs, const %s& rhs );\n", returnTypeName, fullTypeName, rhsTypeName );
 		String_Append(  sbHeader, "\n" );
 
-		DocCompoundMatrixMultiplication( sbHeader, fullTypeName );
+		Doc_MatrixMultiplicationCompound( sbHeader, fullTypeName );
 		String_Appendf( sbHeader, "inline %s operator*=( %s& lhs, const %s& rhs );\n", returnTypeName, fullTypeName, rhsTypeName );
 		String_Append(  sbHeader, "\n" );
 	}
@@ -206,7 +130,7 @@ static void MatrixOperatorDiv( const genType_t type, const u32 numRows, const u3
 	snprintf( fullTypeName, GEN_STRING_LENGTH_TYPE_NAME, "%s%dx%d", typeString, numRows, numCols );
 
 	// main operator
-	DocMatrixDivision( sbHeader, fullTypeName );
+	Doc_MatrixDivision( sbHeader, fullTypeName );
 	String_Appendf( sbHeader, "inline %s operator/( const %s& lhs, const %s& rhs );\n", fullTypeName, fullTypeName, fullTypeName );
 	String_Append(  sbHeader, "\n" );
 
@@ -217,7 +141,7 @@ static void MatrixOperatorDiv( const genType_t type, const u32 numRows, const u3
 	String_Append(  sbInl, "\n" );
 
 	// compound operator
-	DocCompoundMatrixDivision( sbHeader, fullTypeName );
+	Doc_MatrixDivisionCompound( sbHeader, fullTypeName );
 	String_Appendf( sbHeader, "inline %s operator/=( %s& lhs, const %s& rhs );\n", fullTypeName, fullTypeName, fullTypeName );
 	String_Append(  sbHeader, "\n" );
 
@@ -245,7 +169,7 @@ static void MatrixMulVector( const genType_t type, const u32 numRows, const u32 
 
 	// main operator
 	{
-		Gen_DocComponentWiseArithmeticRhsType( sbHeader, vectorTypeName, fullTypeName, GEN_OP_ARITHMETIC_MUL );
+		Doc_ComponentWiseArithmeticRhsType( sbHeader, vectorTypeName, fullTypeName, GEN_OP_ARITHMETIC_MUL );
 		String_Appendf( sbHeader, "inline %s operator*( const %s& lhs, const %s& rhs );\n", vectorTypeName, fullTypeName, vectorTypeName );
 		String_Append(  sbHeader, "\n" );
 
@@ -268,7 +192,7 @@ static void MatrixMulVector( const genType_t type, const u32 numRows, const u32 
 
 	// compound operator
 	{
-		Gen_DocOperatorCompoundComponentWiseArithmeticRhsType( sbHeader, vectorTypeName, fullTypeName, GEN_OP_ARITHMETIC_MUL );
+		Doc_OperatorCompoundComponentWiseArithmeticRhsType( sbHeader, vectorTypeName, fullTypeName, GEN_OP_ARITHMETIC_MUL );
 		String_Appendf( sbHeader, "inline %s operator*=( %s& lhs, const %s& rhs );\n", vectorTypeName, vectorTypeName, fullTypeName );
 		String_Append(  sbHeader, "\n" );
 
@@ -456,7 +380,7 @@ void Gen_MatrixOperatorsArithmetic( const genType_t type, const u32 numRows, con
 	const bool32 isSquare = numRows == numCols;
 
 	// TODO(DM): pseudo-inverse
-	if ( isSquare && Gen_IsFloatingPointType( type ) ) {
+	if ( isSquare && Gen_TypeIsFloatingPoint( type ) ) {
 		MatrixOperatorDiv( type, numRows, numCols, sbHeader, sbInl );
 	} else {
 		Gen_OperatorComponentWiseArithmeticRhsType( type, numRows, numCols, GEN_OP_ARITHMETIC_DIV, sbHeader, sbInl );
@@ -479,10 +403,10 @@ void Gen_MatrixIdentity( const genType_t type, const u32 numRows, const u32 numC
 	char zeroStr[GEN_STRING_LENGTH_NUMERIC_LITERAL];
 	char oneStr[GEN_STRING_LENGTH_NUMERIC_LITERAL];
 
-	Gen_GetNumericLiteral( type, 0, zeroStr );
-	Gen_GetNumericLiteral( type, 1, oneStr );
+	Gen_GetNumericLiteral( type, 0, zeroStr, 1 );
+	Gen_GetNumericLiteral( type, 1, oneStr, 1 );
 
-	DocIdentity( sbHeader, fullTypeName );
+	Doc_MatrixIdentity( sbHeader, fullTypeName );
 	String_Appendf( sbHeader, "inline void identity( %s& mat );\n", fullTypeName );
 	String_Append(  sbHeader, "\n" );
 
@@ -517,7 +441,7 @@ void Gen_MatrixTranspose( const genType_t type, const u32 numRows, const u32 num
 	char transposeTypeName[GEN_STRING_LENGTH_TYPE_NAME];
 	snprintf( transposeTypeName, GEN_STRING_LENGTH_TYPE_NAME, "%s%dx%d", typeString, numCols, numRows );
 
-	DocTranpose( sbHeader, fullTypeName );
+	Doc_MatrixTranpose( sbHeader, fullTypeName );
 	String_Appendf( sbHeader, "inline %s transpose( const %s& mat );\n", transposeTypeName, fullTypeName );
 	String_Append(  sbHeader, "\n" );
 
@@ -553,7 +477,7 @@ void Gen_MatrixInverse( const genType_t type, const u32 numRows, const u32 numCo
 	assert( numCols >= GEN_COMPONENT_COUNT_MIN );
 	assert( numCols <= GEN_COMPONENT_COUNT_MAX );
 
-	if ( !Gen_IsFloatingPointType( type ) ) {
+	if ( !Gen_TypeIsFloatingPoint( type ) ) {
 		return;
 	}
 
@@ -564,7 +488,7 @@ void Gen_MatrixInverse( const genType_t type, const u32 numRows, const u32 numCo
 	}
 
 	char oneStr[GEN_STRING_LENGTH_NUMERIC_LITERAL];
-	Gen_GetNumericLiteral( type, 1, oneStr );
+	Gen_GetNumericLiteral( type, 1, oneStr, 1 );
 
 	const char* typeString = Gen_GetTypeString( type );
 	const char* memberTypeString = Gen_GetMemberTypeString( type );
@@ -575,7 +499,7 @@ void Gen_MatrixInverse( const genType_t type, const u32 numRows, const u32 numCo
 	char fullTypeName[GEN_STRING_LENGTH_TYPE_NAME];
 	snprintf( fullTypeName, GEN_STRING_LENGTH_TYPE_NAME, "%s%dx%d", typeString, numRows, numCols );
 
-	DocInverse( sbHeader, fullTypeName );
+	Doc_MatrixInverse( sbHeader, fullTypeName );
 	String_Appendf( sbHeader, "inline %s inverse( const %s& mat );\n", fullTypeName, fullTypeName );
 	String_Append(  sbHeader, "\n" );
 
@@ -701,7 +625,7 @@ void Gen_MatrixDeterminant( const genType_t type, const u32 numRows, const u32 n
 	char fullTypeName[GEN_STRING_LENGTH_TYPE_NAME];
 	snprintf( fullTypeName, GEN_STRING_LENGTH_TYPE_NAME, "%s%dx%d", typeString, numRows, numCols );
 
-	DocDeterminant( sbHeader, fullTypeName );
+	Doc_MatrixDeterminant( sbHeader, fullTypeName );
 	String_Appendf( sbHeader, "inline %s determinant( const %s& mat );\n", memberTypeString, fullTypeName );
 	String_Appendf( sbHeader, "\n" );
 
@@ -731,10 +655,10 @@ void Gen_MatrixDeterminant( const genType_t type, const u32 numRows, const u32 n
 			String_Appendf( sbInl, "\t%s sub05 = mat[2][0] * mat[3][1] - mat[3][0] * mat[2][1];\n", memberTypeString );
 			String_Append(  sbInl, "\n" );
 			String_Appendf( sbInl, "\t%s cofactor = %s(\n", vectorTypeName, vectorTypeName );
-			String_Append(  sbInl, "\t\t ( mat[1][1] * sub00 - mat[1][2] * sub01 + mat[1][3] * sub02 ),\n" );
-			String_Append(  sbInl, "\t\t-( mat[1][0] * sub00 - mat[1][2] * sub03 + mat[1][3] * sub04 ),\n" );
-			String_Append(  sbInl, "\t\t ( mat[1][0] * sub01 - mat[1][1] * sub03 + mat[1][3] * sub05 ),\n" );
-			String_Append(  sbInl, "\t\t-( mat[1][0] * sub02 - mat[1][1] * sub04 + mat[1][2] * sub05 )\n" );
+			String_Append(  sbInl, "\t\t ( ( ( mat[1][1] * sub00 ) - ( mat[1][2] * sub01 ) ) + ( mat[1][3] * sub02 ) ),\n" );
+			String_Append(  sbInl, "\t\t-( ( ( mat[1][0] * sub00 ) - ( mat[1][2] * sub03 ) ) + ( mat[1][3] * sub04 ) ),\n" );
+			String_Append(  sbInl, "\t\t ( ( ( mat[1][0] * sub01 ) - ( mat[1][1] * sub03 ) ) + ( mat[1][3] * sub05 ) ),\n" );
+			String_Append(  sbInl, "\t\t-( ( ( mat[1][0] * sub02 ) - ( mat[1][1] * sub04 ) ) + ( mat[1][2] * sub05 ) )\n" );
 			String_Append(  sbInl, "\t);\n" );
 			String_Append(  sbInl, "\n" );
 			String_Append(  sbInl, "\treturn\n" );
@@ -764,7 +688,7 @@ void Gen_MatrixCompMulDiv( const genType_t type, const u32 numRows, const u32 nu
 	{
 		char opStr = GEN_OPERATORS_ARITHMETIC[GEN_OP_ARITHMETIC_MUL];
 
-		Gen_DocComponentWiseArithmeticRhsType( sbHeader, fullTypeName, fullTypeName, GEN_OP_ARITHMETIC_MUL );
+		Doc_ComponentWiseArithmeticRhsType( sbHeader, fullTypeName, fullTypeName, GEN_OP_ARITHMETIC_MUL );
 		String_Appendf( sbHeader, "inline %s comp_mul( const %s& lhs, const %s& rhs );\n", fullTypeName, fullTypeName, fullTypeName );
 		String_Append(  sbHeader, "\n" );
 
@@ -789,7 +713,7 @@ void Gen_MatrixCompMulDiv( const genType_t type, const u32 numRows, const u32 nu
 	{
 		char opStr = GEN_OPERATORS_ARITHMETIC[GEN_OP_ARITHMETIC_DIV];
 		
-		Gen_DocComponentWiseArithmeticRhsType( sbHeader, fullTypeName, fullTypeName, GEN_OP_ARITHMETIC_DIV );
+		Doc_ComponentWiseArithmeticRhsType( sbHeader, fullTypeName, fullTypeName, GEN_OP_ARITHMETIC_DIV );
 		String_Appendf( sbHeader, "inline %s comp_div( const %s& lhs, const %s& rhs );\n", fullTypeName, fullTypeName, fullTypeName );
 		String_Append(  sbHeader, "\n" );
 
@@ -830,7 +754,7 @@ void Gen_MatrixTranslate( const genType_t type, const u32 numRows, const u32 num
 	char fullTypeName[GEN_STRING_LENGTH_TYPE_NAME];
 	Gen_GetFullTypeName( type, numRows, numCols, fullTypeName );
 
-	DocTranslate( sbHeader, fullTypeName );
+	Doc_MatrixTranslate( sbHeader, fullTypeName );
 	String_Appendf( sbHeader, "inline %s translate( const %s& mat, const %s%d& vec );\n", fullTypeName, fullTypeName, typeString, vecComponents );
 	String_Append(  sbHeader, "\n" );
 
@@ -871,7 +795,7 @@ void Gen_MatrixRotate( const genType_t type, const u32 numRows, const u32 numCol
 	assert( numCols >= GEN_COMPONENT_COUNT_MIN );
 	assert( numCols <= GEN_COMPONENT_COUNT_MAX );
 
-	if ( !Gen_IsFloatingPointType( type ) ) {
+	if ( !Gen_TypeIsFloatingPoint( type ) ) {
 		return;
 	}
 
@@ -894,7 +818,7 @@ void Gen_MatrixRotate( const genType_t type, const u32 numRows, const u32 numCol
 	snprintf( fullTypeName, GEN_STRING_LENGTH_TYPE_NAME, "%s%dx%d", typeString, numRows, numCols );
 
 	char oneStr[GEN_STRING_LENGTH_NUMERIC_LITERAL];
-	Gen_GetNumericLiteral( type, 1, oneStr );
+	Gen_GetNumericLiteral( type, 1, oneStr, 1 );
 
 	stringBuilder_t parmListStr = String_Create( 64 );
 	String_Appendf( &parmListStr, "const %s& mat, const %s rad", fullTypeName, typeString );
@@ -905,7 +829,7 @@ void Gen_MatrixRotate( const genType_t type, const u32 numRows, const u32 numCol
 	const char* cosFuncStr = Gen_GetFuncNameCos( type );
 	const char* sinFuncStr = Gen_GetFuncNameSin( type );
 
-	DocRotate( sbHeader, fullTypeName );
+	Doc_MatrixRotate( sbHeader, fullTypeName );
 	String_Appendf( sbHeader, "inline %s rotate( %s );\n", fullTypeName, parmListStr.str );
 	String_Append(  sbHeader, "\n" );
 
@@ -945,6 +869,10 @@ void Gen_MatrixRotate( const genType_t type, const u32 numRows, const u32 numCol
 			String_Append(  sbInl, "\treturn mat * rotation;\n" );
 			break;
 		}
+
+		default:
+			assert( false );	// should never make it here!
+			break;
 	}
 	String_Append( sbInl, "}\n" );
 	String_Append( sbInl, "\n" );
@@ -975,11 +903,11 @@ void Gen_MatrixScale( const genType_t type, const u32 numRows, const u32 numCols
 	char scaleVectorString[GEN_STRING_LENGTH_TYPE_NAME];
 	snprintf( scaleVectorString, GEN_STRING_LENGTH_TYPE_NAME, "%s%d", typeString, scaleCols );
 
-	DocScaleUniform( sbHeader, fullTypeName );
+	Doc_MatrixScaleUniform( sbHeader, fullTypeName );
 	String_Appendf( sbHeader, "inline %s scale( const %s& mat, const %s scalar );\n", fullTypeName, fullTypeName, memberTypeString );
 	String_Append(  sbHeader, "\n" );
 
-	DocScaleNonUniform( sbHeader, fullTypeName );
+	Doc_MatrixScaleNonUniform( sbHeader, fullTypeName );
 	String_Appendf( sbHeader, "inline %s scale( const %s& mat, const %s& vec );\n", fullTypeName, fullTypeName, scaleVectorString );
 	String_Append(  sbHeader, "\n" );
 
@@ -1031,7 +959,7 @@ void Gen_MatrixOrtho( const genType_t type, const u32 numRows, const u32 numCols
 	assert( numCols >= GEN_COMPONENT_COUNT_MIN );
 	assert( numCols <= GEN_COMPONENT_COUNT_MAX );
 
-	if ( !Gen_IsFloatingPointType( type ) ) {
+	if ( !Gen_TypeIsFloatingPoint( type ) ) {
 		return;
 	}
 
@@ -1050,11 +978,11 @@ void Gen_MatrixOrtho( const genType_t type, const u32 numRows, const u32 numCols
 	char oneStr[GEN_STRING_LENGTH_NUMERIC_LITERAL];
 	char twoStr[GEN_STRING_LENGTH_NUMERIC_LITERAL];
 
-	Gen_GetNumericLiteral( type, -2, minusTwoStr );
-	Gen_GetNumericLiteral( type, -1, minusOneStr );
-	Gen_GetNumericLiteral( type,  0, zeroStr );
-	Gen_GetNumericLiteral( type,  1, oneStr );
-	Gen_GetNumericLiteral( type,  2, twoStr );
+	Gen_GetNumericLiteral( type, -2, minusTwoStr, 1 );
+	Gen_GetNumericLiteral( type, -1, minusOneStr, 1 );
+	Gen_GetNumericLiteral( type,  0, zeroStr, 1 );
+	Gen_GetNumericLiteral( type,  1, oneStr, 1 );
+	Gen_GetNumericLiteral( type,  2, twoStr, 1 );
 
 	genHand_t hand;
 	genClipSpace_t range;
@@ -1070,7 +998,7 @@ void Gen_MatrixOrtho( const genType_t type, const u32 numRows, const u32 numCols
 		handStr = Gen_GetHandString( hand );
 		rangeStr = Gen_GetClipSpaceRangeString( range );
 
-		DocOrtho( sbHeader, fullTypeName, hand, range );
+		Doc_MatrixOrtho( sbHeader, fullTypeName, hand, range );
 		String_Appendf( sbHeader, "inline %s ortho_lh_zo( const %s left, const %s right, const %s top, const %s bottom, const %s znear, const %s zfar );\n",
 			fullTypeName, typeString, typeString, typeString, typeString, typeString, typeString );
 		String_Append( sbHeader, "\n" );
@@ -1103,7 +1031,7 @@ void Gen_MatrixOrtho( const genType_t type, const u32 numRows, const u32 numCols
 		handStr = Gen_GetHandString( hand );
 		rangeStr = Gen_GetClipSpaceRangeString( range );
 
-		DocOrtho( sbHeader, fullTypeName, hand, range );
+		Doc_MatrixOrtho( sbHeader, fullTypeName, hand, range );
 		String_Appendf( sbHeader, "inline %s ortho_lh_no( const %s left, const %s right, const %s top, const %s bottom, const %s znear, const %s zfar );\n",
 			fullTypeName, typeString, typeString, typeString, typeString, typeString, typeString );
 		String_Appendf( sbHeader, "\n" );
@@ -1137,7 +1065,7 @@ void Gen_MatrixOrtho( const genType_t type, const u32 numRows, const u32 numCols
 		handStr = Gen_GetHandString( hand );
 		rangeStr = Gen_GetClipSpaceRangeString( range );
 
-		DocOrtho( sbHeader, fullTypeName, hand, range );
+		Doc_MatrixOrtho( sbHeader, fullTypeName, hand, range );
 		String_Appendf( sbHeader, "inline %s ortho_rh_zo( const %s left, const %s right, const %s top, const %s bottom, const %s znear, const %s zfar );\n",
 			fullTypeName, typeString, typeString, typeString, typeString, typeString, typeString );
 		String_Append(  sbHeader, "\n" );
@@ -1170,7 +1098,7 @@ void Gen_MatrixOrtho( const genType_t type, const u32 numRows, const u32 numCols
 		handStr = Gen_GetHandString( hand );
 		rangeStr = Gen_GetClipSpaceRangeString( range );
 
-		DocOrtho( sbHeader, fullTypeName, hand, range );
+		Doc_MatrixOrtho( sbHeader, fullTypeName, hand, range );
 		String_Appendf( sbHeader, "inline %s ortho_rh_no( const %s left, const %s right, const %s top, const %s bottom, const %s znear, const %s zfar );\n",
 			fullTypeName, typeString, typeString, typeString, typeString, typeString, typeString );
 		String_Append( sbHeader, "\n" );
@@ -1203,7 +1131,7 @@ void Gen_MatrixPerspective( const genType_t type, const u32 numRows, const u32 n
 	assert( numCols >= GEN_COMPONENT_COUNT_MIN );
 	assert( numCols <= GEN_COMPONENT_COUNT_MAX );
 
-	if ( !Gen_IsFloatingPointType( type ) ) {
+	if ( !Gen_TypeIsFloatingPoint( type ) ) {
 		return;
 	}
 
@@ -1222,11 +1150,11 @@ void Gen_MatrixPerspective( const genType_t type, const u32 numRows, const u32 n
 	char oneStr[GEN_STRING_LENGTH_NUMERIC_LITERAL];
 	char twoStr[GEN_STRING_LENGTH_NUMERIC_LITERAL];
 
-	Gen_GetNumericLiteral( type, -1.0f, minusOneStr );
-	Gen_GetNumericLiteral( type,  0.0f, zeroStr );
-	Gen_GetNumericLiteral( type,  0.5f, halfStr );
-	Gen_GetNumericLiteral( type,  1.0f, oneStr );
-	Gen_GetNumericLiteral( type,  2.0f, twoStr );
+	Gen_GetNumericLiteral( type, -1.0f, minusOneStr, 1 );
+	Gen_GetNumericLiteral( type,  0.0f, zeroStr, 1 );
+	Gen_GetNumericLiteral( type,  0.5f, halfStr, 1 );
+	Gen_GetNumericLiteral( type,  1.0f, oneStr, 1 );
+	Gen_GetNumericLiteral( type,  2.0f, twoStr, 1 );
 
 	const char* tanFuncStr = Gen_GetFuncNameTan( type );
 
@@ -1244,7 +1172,7 @@ void Gen_MatrixPerspective( const genType_t type, const u32 numRows, const u32 n
 		handStr = Gen_GetHandString( hand );
 		rangeStr = Gen_GetClipSpaceRangeString( range );
 
-		DocPerspective( sbHeader, fullTypeName, hand, range );
+		Doc_MatrixPerspective( sbHeader, fullTypeName, hand, range );
 		String_Appendf( sbHeader, "inline %s perspective_lh_zo( const %s fovdeg, const %s aspect, const %s znear, const %s zfar );\n",
 			fullTypeName, typeString, typeString, typeString, typeString );
 		String_Append( sbHeader, "\n" );
@@ -1274,7 +1202,7 @@ void Gen_MatrixPerspective( const genType_t type, const u32 numRows, const u32 n
 		handStr = Gen_GetHandString( hand );
 		rangeStr = Gen_GetClipSpaceRangeString( range );
 
-		DocPerspective( sbHeader, fullTypeName, hand, range );
+		Doc_MatrixPerspective( sbHeader, fullTypeName, hand, range );
 		String_Appendf( sbHeader, "inline %s perspective_lh_no( const %s fovdeg, const %s aspect, const %s znear, const %s zfar );\n",
 			fullTypeName, typeString, typeString, typeString, typeString );
 		String_Appendf( sbHeader, "\n" );
@@ -1305,7 +1233,7 @@ void Gen_MatrixPerspective( const genType_t type, const u32 numRows, const u32 n
 		handStr = Gen_GetHandString( hand );
 		rangeStr = Gen_GetClipSpaceRangeString( range );
 
-		DocPerspective( sbHeader, fullTypeName, hand, range );
+		Doc_MatrixPerspective( sbHeader, fullTypeName, hand, range );
 		String_Appendf( sbHeader, "inline %s perspective_rh_zo( const %s fovdeg, const %s aspect, const %s znear, const %s zfar );\n",
 			fullTypeName, typeString, typeString, typeString, typeString );
 		String_Appendf( sbHeader, "\n" );
@@ -1334,7 +1262,7 @@ void Gen_MatrixPerspective( const genType_t type, const u32 numRows, const u32 n
 		handStr = Gen_GetHandString( hand );
 		rangeStr = Gen_GetClipSpaceRangeString( range );
 
-		DocPerspective( sbHeader, fullTypeName, hand, range );
+		Doc_MatrixPerspective( sbHeader, fullTypeName, hand, range );
 		String_Appendf( sbHeader, "inline %s perspective_rh_no( const %s fovdeg, const %s aspect, const %s znear, const %s zfar );\n",
 			fullTypeName, typeString, typeString, typeString, typeString );
 		String_Append( sbHeader, "\n" );
@@ -1364,7 +1292,7 @@ void Gen_MatrixLookAt( const genType_t type, const u32 numRows, const u32 numCol
 	assert( numCols >= GEN_COMPONENT_COUNT_MIN );
 	assert( numCols <= GEN_COMPONENT_COUNT_MAX );
 
-	if ( !Gen_IsFloatingPointType( type ) ) {
+	if ( !Gen_TypeIsFloatingPoint( type ) ) {
 		return;
 	}
 
@@ -1379,8 +1307,8 @@ void Gen_MatrixLookAt( const genType_t type, const u32 numRows, const u32 numCol
 	char zeroStr[GEN_STRING_LENGTH_NUMERIC_LITERAL] = { 0 };
 	char oneStr[GEN_STRING_LENGTH_NUMERIC_LITERAL] = { 0 };
 
-	Gen_GetNumericLiteral( type, 0.0f, zeroStr );
-	Gen_GetNumericLiteral( type, 1.0f, oneStr );
+	Gen_GetNumericLiteral( type, 0.0f, zeroStr, 1 );
+	Gen_GetNumericLiteral( type, 1.0f, oneStr, 1 );
 
 	char vectorTypeString[GEN_STRING_LENGTH_TYPE_NAME] = { 0 };
 	snprintf( vectorTypeString, GEN_STRING_LENGTH_TYPE_NAME, "%s%d", typeString, numVecComponents );
@@ -1390,7 +1318,7 @@ void Gen_MatrixLookAt( const genType_t type, const u32 numRows, const u32 numCol
 
 	// left-handed
 	{
-		DocLookAt( sbHeader, fullTypeName, GEN_HAND_LEFT );
+		Doc_MatrixLookAt( sbHeader, fullTypeName, GEN_HAND_LEFT );
 		String_Appendf( sbHeader, "inline %s lookat_lh( const %s& eye, const %s& target, const %s& up );\n",
 			fullTypeName, vectorTypeString, vectorTypeString, vectorTypeString );
 		String_Append( sbHeader, "\n" );
@@ -1415,7 +1343,7 @@ void Gen_MatrixLookAt( const genType_t type, const u32 numRows, const u32 numCol
 
 	// right-handed
 	{
-		DocLookAt( sbHeader, fullTypeName, GEN_HAND_RIGHT );
+		Doc_MatrixLookAt( sbHeader, fullTypeName, GEN_HAND_RIGHT );
 		String_Appendf( sbHeader, "inline %s lookat_rh( const %s& eye, const %s& target, const %s& up );\n",
 			fullTypeName, vectorTypeString, vectorTypeString, vectorTypeString );
 		String_Append( sbHeader, "\n" );

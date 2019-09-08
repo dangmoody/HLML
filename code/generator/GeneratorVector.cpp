@@ -1,3 +1,26 @@
+/*
+===========================================================================
+
+HLML Generator.
+Copyright (c) Dan Moody 2018 - Present.
+
+This file is part of the HLML Generator.
+
+The HLML Generator is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+The HLML Generator is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with The HLML Generator.  If not, see <http://www.gnu.org/licenses/>.
+
+===========================================================================
+*/
 #include "GeneratorVector.h"
 
 #include "allocator.h"
@@ -299,7 +322,7 @@ void GeneratorVector::GenerateOperatorsArray() {
 void GeneratorVector::GenerateOperatorsEquality() {
 	// operator==
 	{
-		Gen_DocOperatorEquals( &m_codeHeader, m_fullTypeName );
+		Doc_OperatorEquals( &m_codeHeader, m_fullTypeName );
 		String_Appendf( &m_codeHeader, "inline bool operator==( const %s& lhs, const %s& rhs );\n", m_fullTypeName, m_fullTypeName );
 		String_Append(  &m_codeHeader, "\n" );
 
@@ -309,7 +332,7 @@ void GeneratorVector::GenerateOperatorsEquality() {
 		for ( u32 i = 0; i < m_numComponents; i++ ) {
 			char component = GEN_COMPONENT_NAMES_VECTOR[i];
 
-			if ( Gen_IsFloatingPointType( m_type ) ) {
+			if ( Gen_TypeIsFloatingPoint( m_type ) ) {
 				const char* floateqStr = Gen_GetFuncNameFloateq( m_type );
 
 				String_Appendf( &m_codeInl, "%s( lhs.%c, rhs.%c )", floateqStr, component, component );
@@ -338,7 +361,7 @@ void GeneratorVector::GenerateSwizzleFuncs() {
 	// for every vector type compatible with this one (that is: for each vector type with less components than this one)
 	for ( u32 vecComponents = GEN_COMPONENT_COUNT_MIN; vecComponents <= m_numComponents; vecComponents++ ) {
 		// generate every possible function combination ("xxxx" -> "xwzx" (etc.) -> "wwww")
-		u32 numFuncs = static_cast<u32>( pow( vecComponents, vecComponents ) );
+		u32 numFuncs = (u32) pow( vecComponents, vecComponents );
 		for ( u32 funcIndex = 0; funcIndex < numFuncs; funcIndex++ ) {
 			// convert 1d index into 4d
 			// follows the general formula: xn = ( ( Index - Index( x1, ..., x{n-1} ) ) / Product( D1, ..., D{N-1} ) ) % Dn
