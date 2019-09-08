@@ -1083,10 +1083,17 @@ void GeneratorMatrixTests::GenerateTestInverse() {
 	};
 
 	float mat4x4[4][4] = {
+#if 0
 		{ 6.0f, 2.0f, 3.0f, 4.0f },
 		{ 2.0f, 7.0f, 5.0f, 3.0f },
 		{ 3.0f, 5.0f, 7.0f, 2.0f },
 		{ 4.0f, 3.0f, 2.0f, 6.0f }
+#else
+		{ 1.0f, 0.0f, 0.0f, 1.0f },
+		{ 0.0f, 2.0f, 1.0f, 2.0f },
+		{ 2.0f, 1.0f, 0.0f, 1.0f },
+		{ 2.0f, 0.0f, 1.0f, 4.0f }
+#endif
 	};
 
 	char parmList[GEN_STRING_LENGTH_PARM_LIST_MATRIX] = { 0 };
@@ -1115,6 +1122,8 @@ void GeneratorMatrixTests::GenerateTestInverse() {
 	char epsilonStr[GEN_STRING_LENGTH_NUMERIC_LITERAL];
 	Gen_GetNumericLiteral( m_type, epsilon, epsilonStr );
 
+	const char* floateqStr = Gen_GetFuncNameFloateq( m_type );
+
 	String_Appendf( &m_codeTests, "TEMPER_TEST( %s )\n", testName );
 	String_Append(  &m_codeTests, "{\n" );
 	String_Append(  &m_codeTests, "\t// scalar\n" );
@@ -1125,6 +1134,62 @@ void GeneratorMatrixTests::GenerateTestInverse() {
 	String_Append(  &m_codeTests, "\n" );
 	String_Appendf( &m_codeTests, "\tTEMPER_EXPECT_TRUE( mat * matInverse == identityMatrix );\n" );
 	String_Append(  &m_codeTests, "\n" );
+
+	if ( Gen_TypeSupportsSSE( m_type ) ) {
+		char inputDataNameInverse[GEN_STRING_LENGTH_SSE_INPUT_NAME];
+		char inputDataNameMul[GEN_STRING_LENGTH_SSE_INPUT_NAME];
+
+		Gen_SSE_GetInputDataName( m_fullTypeName, "inverse", inputDataNameInverse );
+		Gen_SSE_GetInputDataName( m_fullTypeName, "mul", inputDataNameMul );
+
+		const char* registerName = Gen_SSE_GetRegisterName( m_type );
+
+		const char* loadFuncStr = Gen_SSE_GetIntrinsicLoad( m_type );
+		const char* storeFuncStr = Gen_SSE_GetIntrinsicStore( m_type );
+
+		String_Append(  &m_codeTests, "\t// SSE\n" );
+		for ( u32 row = 0; row < m_numRows; row++ ) {
+			for ( u32 col = 0; col < m_numCols; col++ ) {
+				float value = valuesMat[row][col];
+				float values[4] = { value, value, value, value };
+
+				String_Appendf( &m_codeTests, "\t%s m%d%d[4] =", m_memberTypeString, row, col );
+				Gen_GetValuesArray1D( m_type, 4, values, &m_codeTests );
+				String_Append(  &m_codeTests, ";\n" );
+			}
+		}
+		String_Append(  &m_codeTests, "\n" );
+		String_Appendf( &m_codeTests, "\t%s results[%d][%d];\n", registerName, m_numRows, m_numCols );
+		String_Appendf( &m_codeTests, "\t%s in;\n", inputDataNameInverse );
+		for ( u32 row = 0; row < m_numRows; row++ ) {
+			for ( u32 col = 0; col < m_numCols; col++ ) {
+				String_Appendf( &m_codeTests, "\tin.m[%d][%d] = %s( m%d%d );\n", row, col, loadFuncStr, row, col );
+			}
+		}
+		String_Append(  &m_codeTests, "\n" );
+		String_Appendf( &m_codeTests, "\tinverse_sse( &in, results );\n" );
+		String_Append(  &m_codeTests, "\n" );
+		String_Appendf( &m_codeTests, "\t%s inMul;\n", inputDataNameMul );
+		String_Append(  &m_codeTests, "\tmemcpy( inMul.lhs, in.m, sizeof( in.m ) );\n" );
+		String_Append(  &m_codeTests, "\tmemcpy( inMul.rhs, results, sizeof( results ) );\n" );
+		String_Append(  &m_codeTests, "\n" );
+		String_Appendf( &m_codeTests, "\tmul_sse( &inMul, results );\n" );
+		String_Append(  &m_codeTests, "\n" );
+		String_Appendf( &m_codeTests, "\t%s inverseResults[4];\n", m_memberTypeString );
+		String_Append(  &m_codeTests, "\n" );
+		for ( u32 row = 0; row < m_numRows; row++ ) {
+			for ( u32 col = 0; col < m_numCols; col++ ) {
+				String_Appendf( &m_codeTests, "\t%s( inverseResults, results[%d][%d] );\n", storeFuncStr, row, col );
+
+				for ( u32 componentIndex = 0; componentIndex < 4; componentIndex++ ) {
+					String_Appendf( &m_codeTests, "\tTEMPER_EXPECT_TRUE( %s( inverseResults[%d], identityMatrix[%d][%d], %s ) );\n", floateqStr, componentIndex, row, col, epsilonStr );
+				}
+
+				String_Append( &m_codeTests, "\n" );
+			}
+		}
+	}
+
 	String_Append(  &m_codeTests, "\tTEMPER_PASS();\n" );
 	String_Append(  &m_codeTests, "}\n" );
 	String_Append(  &m_codeTests, "\n" );

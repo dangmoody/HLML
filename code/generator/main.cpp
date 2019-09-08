@@ -470,7 +470,7 @@ static bool32 GenerateFunctionsMatrixSSE( void ) {
 	snprintf( filePathInl, 64, "%s%s.inl", GEN_OUT_GEN_FOLDER_PATH, GEN_FILENAME_FUNCTIONS_MATRIX_SSE );
 
 	stringBuilder_t contentHeader = String_Create( 28 * KB_TO_BYTES );
-	stringBuilder_t contentInl = String_Create( 64 * KB_TO_BYTES );
+	stringBuilder_t contentInl = String_Create( 68 * KB_TO_BYTES );
 
 	String_Append( &contentHeader, GEN_FILE_HEADER );
 	String_Append( &contentHeader,
@@ -511,7 +511,7 @@ static bool32 GenerateFunctionsMatrixSSE( void ) {
 				Gen_SSE_MatrixTranspose( type, row, col, &contentHeader, &contentInl );
 
 				Gen_SSE_MatrixDeterminant( type, row, col, &contentHeader, &contentInl );
-				// Gen_SSE_MatrixInverse( type, row, col, &contentHeader, &contentInl );
+				Gen_SSE_MatrixInverse( type, row, col, &contentHeader, &contentInl );
 
 				for ( u32 opIndex = 0; opIndex < GEN_OP_ARITHMETIC_COUNT; opIndex++ ) {
 					genOpArithmetic_t op = (genOpArithmetic_t) opIndex;

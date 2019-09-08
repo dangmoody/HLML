@@ -59,6 +59,27 @@ void determinant_sse( const sse_input_determinant_float2x2_t* in, __m128* out_re
 	*out_result = _mm_sub_ps( mul0, mul1 );
 }
 
+void inverse_sse( const sse_input_inverse_float2x2_t* in, __m128 out_results[2][2] )
+{
+	assert( in );
+
+	sse_input_determinant_float2x2_t in_det;
+	memcpy( in_det.m, in->m, sizeof( in->m ) );
+
+	__m128 determinants;
+	determinant_sse( &in_det, &determinants );
+
+	determinants = _mm_rcp_ps( determinants );
+
+	__m128 neg0 = _NEGATE_PS( in->m[0][1] );
+	__m128 neg1 = _NEGATE_PS( in->m[1][0] );
+
+	out_results[0][0] = _mm_mul_ps( in->m[1][1], determinants );
+	out_results[0][1] = _mm_mul_ps( neg0, determinants );
+	out_results[1][0] = _mm_mul_ps( neg1, determinants );
+	out_results[1][1] = _mm_mul_ps( in->m[0][0], determinants );
+}
+
 void comp_add_sse( const sse_input_comp_add_float2x2_t* in, __m128 out_results[2][2] )
 {
 	assert( in );
@@ -578,6 +599,83 @@ void determinant_sse( const sse_input_determinant_float3x3_t* in, __m128* out_re
 	__m128 add0  = _mm_sub_ps( mul0, mul1 );
 
 	*out_result = _mm_add_ps( add0, mul2 );
+}
+
+void inverse_sse( const sse_input_inverse_float3x3_t* in, __m128 out_results[3][3] )
+{
+	assert( in );
+
+	sse_input_determinant_float3x3_t in_det;
+	memcpy( in_det.m, in->m, sizeof( in->m ) );
+
+	__m128 determinants;
+	determinant_sse( &in_det, &determinants );
+
+	determinants = _mm_rcp_ps( determinants );
+
+	// row 0
+	__m128 mul00a = _mm_mul_ps( in->m[1][1], in->m[2][2] );
+	__m128 mul00b = _mm_mul_ps( in->m[1][2], in->m[2][1] );
+	__m128 mul01a = _mm_mul_ps( in->m[0][1], in->m[2][2] );
+	__m128 mul01b = _mm_mul_ps( in->m[0][2], in->m[2][1] );
+	__m128 mul02a = _mm_mul_ps( in->m[0][1], in->m[1][2] );
+	__m128 mul02b = _mm_mul_ps( in->m[0][2], in->m[1][1] );
+
+	__m128 sub00 = _mm_sub_ps( mul00a, mul00b );
+	__m128 sub01 = _mm_sub_ps( mul01a, mul01b );
+	__m128 sub02 = _mm_sub_ps( mul02a, mul02b );
+
+	sub00 = _mm_mul_ps( sub00, determinants );
+	sub01 = _mm_mul_ps( sub01, determinants );
+	sub02 = _mm_mul_ps( sub02, determinants );
+	sub01 = _NEGATE_PS( sub01 );
+
+	// row 1
+	__m128 mul10a = _mm_mul_ps( in->m[1][0], in->m[2][2] );
+	__m128 mul10b = _mm_mul_ps( in->m[1][2], in->m[2][0] );
+	__m128 mul11a = _mm_mul_ps( in->m[0][0], in->m[2][2] );
+	__m128 mul11b = _mm_mul_ps( in->m[0][2], in->m[2][0] );
+	__m128 mul12a = _mm_mul_ps( in->m[0][0], in->m[1][2] );
+	__m128 mul12b = _mm_mul_ps( in->m[0][2], in->m[1][0] );
+
+	__m128 sub10 = _mm_sub_ps( mul10a, mul10b );
+	__m128 sub11 = _mm_sub_ps( mul11a, mul11b );
+	__m128 sub12 = _mm_sub_ps( mul12a, mul12b );
+
+	sub10 = _mm_mul_ps( sub10, determinants );
+	sub11 = _mm_mul_ps( sub11, determinants );
+	sub12 = _mm_mul_ps( sub12, determinants );
+	sub10 = _NEGATE_PS( sub10 );
+	sub12 = _NEGATE_PS( sub12 );
+
+	// row 2
+	__m128 mul20a = _mm_mul_ps( in->m[1][0], in->m[2][1] );
+	__m128 mul20b = _mm_mul_ps( in->m[1][1], in->m[2][0] );
+	__m128 mul21a = _mm_mul_ps( in->m[0][0], in->m[2][1] );
+	__m128 mul21b = _mm_mul_ps( in->m[0][1], in->m[2][0] );
+	__m128 mul22a = _mm_mul_ps( in->m[0][0], in->m[1][1] );
+	__m128 mul22b = _mm_mul_ps( in->m[0][1], in->m[1][0] );
+
+	__m128 sub20 = _mm_sub_ps( mul20a, mul20b );
+	__m128 sub21 = _mm_sub_ps( mul21a, mul21b );
+	__m128 sub22 = _mm_sub_ps( mul22a, mul22b );
+
+	sub20 = _mm_mul_ps( sub20, determinants );
+	sub21 = _mm_mul_ps( sub21, determinants );
+	sub22 = _mm_mul_ps( sub22, determinants );
+	sub21 = _NEGATE_PS( sub21 );
+
+	out_results[0][0] = sub00;
+	out_results[0][1] = sub01;
+	out_results[0][2] = sub02;
+
+	out_results[1][0] = sub10;
+	out_results[1][1] = sub11;
+	out_results[1][2] = sub12;
+
+	out_results[2][0] = sub20;
+	out_results[2][1] = sub21;
+	out_results[2][2] = sub22;
 }
 
 void comp_add_sse( const sse_input_comp_add_float3x3_t* in, __m128 out_results[3][3] )
@@ -1398,6 +1496,190 @@ void determinant_sse( const sse_input_determinant_float4x4_t* in, __m128* out_re
 	__m128 final1        = _mm_add_ps( finalmul2, finalmul3 );
 
 	*out_result = _mm_add_ps( final0, final1 );
+}
+
+void inverse_sse( const sse_input_inverse_float4x4_t* in, __m128 out_results[4][4] )
+{
+	assert( in );
+
+	// DM: doesn't need to be as complex as the scalar implementation
+	// based off: https://github.com/datenwolf/linmath.h/blob/master/linmath.h
+
+	__m128 sub00mula    = _mm_mul_ps( in->m[0][0], in->m[1][1] );
+	__m128 sub00mulb    = _mm_mul_ps( in->m[1][0], in->m[0][1] );
+	__m128 sub00        = _mm_sub_ps( sub00mula, sub00mulb );
+
+	__m128 sub01mula    = _mm_mul_ps( in->m[0][0], in->m[1][2] );
+	__m128 sub01mulb    = _mm_mul_ps( in->m[1][0], in->m[0][2] );
+	__m128 sub01        = _mm_sub_ps( sub01mula, sub01mulb );
+
+	__m128 sub02mula    = _mm_mul_ps( in->m[0][0], in->m[1][3] );
+	__m128 sub02mulb    = _mm_mul_ps( in->m[1][0], in->m[0][3] );
+	__m128 sub02        = _mm_sub_ps( sub02mula, sub02mulb );
+
+	__m128 sub03mula    = _mm_mul_ps( in->m[0][1], in->m[1][2] );
+	__m128 sub03mulb    = _mm_mul_ps( in->m[1][1], in->m[0][2] );
+	__m128 sub03        = _mm_sub_ps( sub03mula, sub03mulb );
+
+	__m128 sub04mula    = _mm_mul_ps( in->m[0][1], in->m[1][3] );
+	__m128 sub04mulb    = _mm_mul_ps( in->m[1][1], in->m[0][3] );
+	__m128 sub04        = _mm_sub_ps( sub04mula, sub04mulb );
+
+	__m128 sub05mula    = _mm_mul_ps( in->m[0][2], in->m[1][3] );
+	__m128 sub05mulb    = _mm_mul_ps( in->m[1][2], in->m[0][3] );
+	__m128 sub05        = _mm_sub_ps( sub05mula, sub05mulb );
+
+	__m128 cof00mula    = _mm_mul_ps( in->m[2][0], in->m[3][1] );
+	__m128 cof00mulb    = _mm_mul_ps( in->m[3][0], in->m[2][1] );
+	__m128 cof00        = _mm_sub_ps( cof00mula, cof00mulb );
+
+	__m128 cof01mula    = _mm_mul_ps( in->m[2][0], in->m[3][2] );
+	__m128 cof01mulb    = _mm_mul_ps( in->m[3][0], in->m[2][2] );
+	__m128 cof01        = _mm_sub_ps( cof01mula, cof01mulb );
+
+	__m128 cof02mula    = _mm_mul_ps( in->m[2][0], in->m[3][3] );
+	__m128 cof02mulb    = _mm_mul_ps( in->m[3][0], in->m[2][3] );
+	__m128 cof02        = _mm_sub_ps( cof02mula, cof02mulb );
+
+	__m128 cof03mula    = _mm_mul_ps( in->m[2][1], in->m[3][2] );
+	__m128 cof03mulb    = _mm_mul_ps( in->m[3][1], in->m[2][2] );
+	__m128 cof03        = _mm_sub_ps( cof03mula, cof03mulb );
+
+	__m128 cof04mula    = _mm_mul_ps( in->m[2][1], in->m[3][3] );
+	__m128 cof04mulb    = _mm_mul_ps( in->m[3][1], in->m[2][3] );
+	__m128 cof04        = _mm_sub_ps( cof04mula, cof04mulb );
+
+	__m128 cof05mula    = _mm_mul_ps( in->m[2][2], in->m[3][3] );
+	__m128 cof05mulb    = _mm_mul_ps( in->m[3][2], in->m[2][3] );
+	__m128 cof05        = _mm_sub_ps( cof05mula, cof05mulb );
+
+	__m128 detsubmul0   = _mm_mul_ps( sub00, cof05 );
+	__m128 detsubmul1   = _NEGATE_PS( _mm_mul_ps( sub01, cof04 ) );
+	__m128 detsubmul2   = _mm_mul_ps( sub02, cof03 );
+	__m128 detsubmul3   = _mm_mul_ps( sub03, cof02 );
+	__m128 detsubmul4   = _NEGATE_PS( _mm_mul_ps( sub04, cof01 ) );
+	__m128 detsubmul5   = _mm_mul_ps( sub05, cof00 );
+
+	__m128 detadd0      = _mm_add_ps( detsubmul0, detsubmul1 );
+	__m128 detadd1      = _mm_add_ps( detsubmul2, detsubmul3 );
+	__m128 detadd2      = _mm_add_ps( detsubmul4, detsubmul5 );
+
+	__m128 detadd3      = _mm_add_ps( detadd0, detadd1 );
+	__m128 det          = _mm_add_ps( detadd2, detadd3 );
+
+	__m128 invdet       = _mm_rcp_ps( det );
+
+	__m128 out00submula = _mm_mul_ps( in->m[1][1], cof05 );
+	__m128 out00submulb = _mm_mul_ps( in->m[1][2], cof04 );
+	__m128 out00submulc = _mm_mul_ps( in->m[1][3], cof03 );
+	__m128 out00subsub  = _mm_sub_ps( out00submula, out00submulb );
+	__m128 out00subadd  = _mm_add_ps( out00subsub, out00submulc );
+	out_results[0][0] = _mm_mul_ps( out00subadd, invdet );
+
+	__m128 out01submula = _mm_mul_ps( _NEGATE_PS( in->m[0][1] ), cof05 );
+	__m128 out01submulb = _mm_mul_ps( in->m[0][2], cof04 );
+	__m128 out01submulc = _mm_mul_ps( in->m[0][3], cof03 );
+	__m128 out01subadd  = _mm_add_ps( out01submula, out01submulb );
+	__m128 out01subsub  = _mm_sub_ps( out01subadd, out01submulc );
+	out_results[0][1] = _mm_mul_ps( out01subsub, invdet );
+
+	__m128 out02submula = _mm_mul_ps( in->m[3][1], sub05 );
+	__m128 out02submulb = _mm_mul_ps( in->m[3][2], sub04 );
+	__m128 out02submulc = _mm_mul_ps( in->m[3][3], sub03 );
+	__m128 out02subsub  = _mm_sub_ps( out02submula, out02submulb );
+	__m128 out02subadd  = _mm_add_ps( out02subsub, out02submulc );
+	out_results[0][2] = _mm_mul_ps( out02subadd, invdet );
+
+	__m128 out03submula = _mm_mul_ps( _NEGATE_PS( in->m[2][1] ), sub05 );
+	__m128 out03submulb = _mm_mul_ps( in->m[2][2], sub04 );
+	__m128 out03submulc = _mm_mul_ps( in->m[2][3], sub03 );
+	__m128 out03subadd  = _mm_add_ps( out03submula, out03submulb );
+	__m128 out03subsub  = _mm_sub_ps( out03subadd, out03submulc );
+	out_results[0][3] = _mm_mul_ps( out03subsub, invdet );
+
+	__m128 out10submula = _mm_mul_ps( _NEGATE_PS( in->m[1][0] ), cof05 );
+	__m128 out10submulb = _mm_mul_ps( in->m[1][2], cof02 );
+	__m128 out10submulc = _mm_mul_ps( in->m[1][3], cof01 );
+	__m128 out10subadd  = _mm_add_ps( out10submula, out10submulb );
+	__m128 out10subsub  = _mm_sub_ps( out10subadd, out10submulc );
+	out_results[1][0] = _mm_mul_ps( out10subsub, invdet );
+
+	__m128 out11submula = _mm_mul_ps( in->m[0][0], cof05 );
+	__m128 out11submulb = _mm_mul_ps( in->m[0][2], cof02 );
+	__m128 out11submulc = _mm_mul_ps( in->m[0][3], cof01 );
+	__m128 out11subsub  = _mm_sub_ps( out11submula, out11submulb );
+	__m128 out11subadd  = _mm_add_ps( out11subsub, out11submulc );
+	out_results[1][1] = _mm_mul_ps( out11subadd, invdet );
+
+	__m128 out12submula = _mm_mul_ps( _NEGATE_PS( in->m[3][0] ), sub05 );
+	__m128 out12submulb = _mm_mul_ps( in->m[3][2], sub02 );
+	__m128 out12submulc = _mm_mul_ps( in->m[3][3], sub01 );
+	__m128 out12subadd  = _mm_add_ps( out12submula, out12submulb );
+	__m128 out12subsub  = _mm_sub_ps( out12subadd, out12submulc );
+	out_results[1][2] = _mm_mul_ps( out12subsub, invdet );
+
+	__m128 out13submula = _mm_mul_ps( in->m[2][0], sub05 );
+	__m128 out13submulb = _mm_mul_ps( in->m[2][2], sub02 );
+	__m128 out13submulc = _mm_mul_ps( in->m[2][3], sub01 );
+	__m128 out13subsub  = _mm_sub_ps( out13submula, out13submulb );
+	__m128 out13subadd  = _mm_add_ps( out13subsub, out13submulc );
+	out_results[1][3] = _mm_mul_ps( out13subadd, invdet );
+
+	__m128 out20submula = _mm_mul_ps( in->m[1][0], cof04 );
+	__m128 out20submulb = _mm_mul_ps( in->m[1][1], cof02 );
+	__m128 out20submulc = _mm_mul_ps( in->m[1][3], cof00 );
+	__m128 out20subsub  = _mm_sub_ps( out20submula, out20submulb );
+	__m128 out20subadd  = _mm_add_ps( out20subsub, out20submulc );
+	out_results[2][0] = _mm_mul_ps( out20subadd, invdet );
+
+	__m128 out21submula = _mm_mul_ps( _NEGATE_PS( in->m[0][0] ), cof04 );
+	__m128 out21submulb = _mm_mul_ps( in->m[0][1], cof02 );
+	__m128 out21submulc = _mm_mul_ps( in->m[0][3], cof00 );
+	__m128 out21subadd  = _mm_add_ps( out21submula, out21submulb );
+	__m128 out21subsub  = _mm_sub_ps( out21subadd, out21submulc );
+	out_results[2][1] = _mm_mul_ps( out21subsub, invdet );
+
+	__m128 out22submula = _mm_mul_ps( in->m[3][0], sub04 );
+	__m128 out22submulb = _mm_mul_ps( in->m[3][1], sub02 );
+	__m128 out22submulc = _mm_mul_ps( in->m[3][3], sub00 );
+	__m128 out22subsub  = _mm_sub_ps( out22submula, out22submulb );
+	__m128 out22subadd  = _mm_add_ps( out22subsub, out22submulc );
+	out_results[2][2] = _mm_mul_ps( out22subadd, invdet );
+
+	__m128 out23submula = _mm_mul_ps( _NEGATE_PS( in->m[2][0] ), sub04 );
+	__m128 out23submulb = _mm_mul_ps( in->m[2][1], sub02 );
+	__m128 out23submulc = _mm_mul_ps( in->m[2][3], sub00 );
+	__m128 out23subadd  = _mm_add_ps( out23submula, out23submulb );
+	__m128 out23subsub  = _mm_sub_ps( out23subadd, out23submulc );
+	out_results[2][3] = _mm_mul_ps( out23subsub, invdet );
+
+	__m128 out30submula = _mm_mul_ps( _NEGATE_PS( in->m[1][0] ), cof03 );
+	__m128 out30submulb = _mm_mul_ps( in->m[1][1], cof01 );
+	__m128 out30submulc = _mm_mul_ps( in->m[1][2], cof00 );
+	__m128 out30subadd  = _mm_add_ps( out30submula, out30submulb );
+	__m128 out30subsub  = _mm_sub_ps( out30subadd, out30submulc );
+	out_results[3][0] = _mm_mul_ps( out30subsub, invdet );
+
+	__m128 out31submula = _mm_mul_ps( in->m[0][0], cof03 );
+	__m128 out31submulb = _mm_mul_ps( in->m[0][1], cof01 );
+	__m128 out31submulc = _mm_mul_ps( in->m[0][2], cof00 );
+	__m128 out31subsub  = _mm_sub_ps( out31submula, out31submulb );
+	__m128 out31subadd  = _mm_add_ps( out31subsub, out31submulc );
+	out_results[3][1] = _mm_mul_ps( out31subadd, invdet );
+
+	__m128 out32submula = _mm_mul_ps( _NEGATE_PS( in->m[3][0] ), sub03 );
+	__m128 out32submulb = _mm_mul_ps( in->m[3][1], sub01 );
+	__m128 out32submulc = _mm_mul_ps( in->m[3][2], sub00 );
+	__m128 out32subadd  = _mm_add_ps( out32submula, out32submulb );
+	__m128 out32subsub  = _mm_sub_ps( out32subadd, out32submulc );
+	out_results[3][2] = _mm_mul_ps( out32subsub, invdet );
+
+	__m128 out33submula = _mm_mul_ps( in->m[2][0], sub03 );
+	__m128 out33submulb = _mm_mul_ps( in->m[2][1], sub01 );
+	__m128 out33submulc = _mm_mul_ps( in->m[2][2], sub00 );
+	__m128 out33subsub  = _mm_sub_ps( out33submula, out33submulb );
+	__m128 out33subadd  = _mm_add_ps( out33subsub, out33submulc );
+	out_results[3][3] = _mm_mul_ps( out33subadd, invdet );
 }
 
 void comp_add_sse( const sse_input_comp_add_float4x4_t* in, __m128 out_results[4][4] )

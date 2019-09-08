@@ -1080,6 +1080,93 @@ TEMPER_TEST( TestInverse_float3x3 )
 
 	TEMPER_EXPECT_TRUE( mat * matInverse == identityMatrix );
 
+	// SSE
+	float m00[4] =	{ 6.000000f, 6.000000f, 6.000000f, 6.000000f };
+	float m01[4] =	{ 2.000000f, 2.000000f, 2.000000f, 2.000000f };
+	float m02[4] =	{ 3.000000f, 3.000000f, 3.000000f, 3.000000f };
+	float m10[4] =	{ 2.000000f, 2.000000f, 2.000000f, 2.000000f };
+	float m11[4] =	{ 7.000000f, 7.000000f, 7.000000f, 7.000000f };
+	float m12[4] =	{ 2.000000f, 2.000000f, 2.000000f, 2.000000f };
+	float m20[4] =	{ 3.000000f, 3.000000f, 3.000000f, 3.000000f };
+	float m21[4] =	{ 2.000000f, 2.000000f, 2.000000f, 2.000000f };
+	float m22[4] =	{ 6.000000f, 6.000000f, 6.000000f, 6.000000f };
+
+	__m128 results[3][3];
+	sse_input_inverse_float3x3_t in;
+	in.m[0][0] = _mm_load_ps( m00 );
+	in.m[0][1] = _mm_load_ps( m01 );
+	in.m[0][2] = _mm_load_ps( m02 );
+	in.m[1][0] = _mm_load_ps( m10 );
+	in.m[1][1] = _mm_load_ps( m11 );
+	in.m[1][2] = _mm_load_ps( m12 );
+	in.m[2][0] = _mm_load_ps( m20 );
+	in.m[2][1] = _mm_load_ps( m21 );
+	in.m[2][2] = _mm_load_ps( m22 );
+
+	inverse_sse( &in, results );
+
+	sse_input_mul_float3x3_t inMul;
+	memcpy( inMul.lhs, in.m, sizeof( in.m ) );
+	memcpy( inMul.rhs, results, sizeof( results ) );
+
+	mul_sse( &inMul, results );
+
+	float inverseResults[4];
+
+	_mm_store_ps( inverseResults, results[0][0] );
+	TEMPER_EXPECT_TRUE( floateq( inverseResults[0], identityMatrix[0][0], 0.001000f ) );
+	TEMPER_EXPECT_TRUE( floateq( inverseResults[1], identityMatrix[0][0], 0.001000f ) );
+	TEMPER_EXPECT_TRUE( floateq( inverseResults[2], identityMatrix[0][0], 0.001000f ) );
+	TEMPER_EXPECT_TRUE( floateq( inverseResults[3], identityMatrix[0][0], 0.001000f ) );
+
+	_mm_store_ps( inverseResults, results[0][1] );
+	TEMPER_EXPECT_TRUE( floateq( inverseResults[0], identityMatrix[0][1], 0.001000f ) );
+	TEMPER_EXPECT_TRUE( floateq( inverseResults[1], identityMatrix[0][1], 0.001000f ) );
+	TEMPER_EXPECT_TRUE( floateq( inverseResults[2], identityMatrix[0][1], 0.001000f ) );
+	TEMPER_EXPECT_TRUE( floateq( inverseResults[3], identityMatrix[0][1], 0.001000f ) );
+
+	_mm_store_ps( inverseResults, results[0][2] );
+	TEMPER_EXPECT_TRUE( floateq( inverseResults[0], identityMatrix[0][2], 0.001000f ) );
+	TEMPER_EXPECT_TRUE( floateq( inverseResults[1], identityMatrix[0][2], 0.001000f ) );
+	TEMPER_EXPECT_TRUE( floateq( inverseResults[2], identityMatrix[0][2], 0.001000f ) );
+	TEMPER_EXPECT_TRUE( floateq( inverseResults[3], identityMatrix[0][2], 0.001000f ) );
+
+	_mm_store_ps( inverseResults, results[1][0] );
+	TEMPER_EXPECT_TRUE( floateq( inverseResults[0], identityMatrix[1][0], 0.001000f ) );
+	TEMPER_EXPECT_TRUE( floateq( inverseResults[1], identityMatrix[1][0], 0.001000f ) );
+	TEMPER_EXPECT_TRUE( floateq( inverseResults[2], identityMatrix[1][0], 0.001000f ) );
+	TEMPER_EXPECT_TRUE( floateq( inverseResults[3], identityMatrix[1][0], 0.001000f ) );
+
+	_mm_store_ps( inverseResults, results[1][1] );
+	TEMPER_EXPECT_TRUE( floateq( inverseResults[0], identityMatrix[1][1], 0.001000f ) );
+	TEMPER_EXPECT_TRUE( floateq( inverseResults[1], identityMatrix[1][1], 0.001000f ) );
+	TEMPER_EXPECT_TRUE( floateq( inverseResults[2], identityMatrix[1][1], 0.001000f ) );
+	TEMPER_EXPECT_TRUE( floateq( inverseResults[3], identityMatrix[1][1], 0.001000f ) );
+
+	_mm_store_ps( inverseResults, results[1][2] );
+	TEMPER_EXPECT_TRUE( floateq( inverseResults[0], identityMatrix[1][2], 0.001000f ) );
+	TEMPER_EXPECT_TRUE( floateq( inverseResults[1], identityMatrix[1][2], 0.001000f ) );
+	TEMPER_EXPECT_TRUE( floateq( inverseResults[2], identityMatrix[1][2], 0.001000f ) );
+	TEMPER_EXPECT_TRUE( floateq( inverseResults[3], identityMatrix[1][2], 0.001000f ) );
+
+	_mm_store_ps( inverseResults, results[2][0] );
+	TEMPER_EXPECT_TRUE( floateq( inverseResults[0], identityMatrix[2][0], 0.001000f ) );
+	TEMPER_EXPECT_TRUE( floateq( inverseResults[1], identityMatrix[2][0], 0.001000f ) );
+	TEMPER_EXPECT_TRUE( floateq( inverseResults[2], identityMatrix[2][0], 0.001000f ) );
+	TEMPER_EXPECT_TRUE( floateq( inverseResults[3], identityMatrix[2][0], 0.001000f ) );
+
+	_mm_store_ps( inverseResults, results[2][1] );
+	TEMPER_EXPECT_TRUE( floateq( inverseResults[0], identityMatrix[2][1], 0.001000f ) );
+	TEMPER_EXPECT_TRUE( floateq( inverseResults[1], identityMatrix[2][1], 0.001000f ) );
+	TEMPER_EXPECT_TRUE( floateq( inverseResults[2], identityMatrix[2][1], 0.001000f ) );
+	TEMPER_EXPECT_TRUE( floateq( inverseResults[3], identityMatrix[2][1], 0.001000f ) );
+
+	_mm_store_ps( inverseResults, results[2][2] );
+	TEMPER_EXPECT_TRUE( floateq( inverseResults[0], identityMatrix[2][2], 0.001000f ) );
+	TEMPER_EXPECT_TRUE( floateq( inverseResults[1], identityMatrix[2][2], 0.001000f ) );
+	TEMPER_EXPECT_TRUE( floateq( inverseResults[2], identityMatrix[2][2], 0.001000f ) );
+	TEMPER_EXPECT_TRUE( floateq( inverseResults[3], identityMatrix[2][2], 0.001000f ) );
+
 	TEMPER_PASS();
 }
 
