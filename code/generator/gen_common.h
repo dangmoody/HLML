@@ -62,6 +62,7 @@ along with The HLML Generator.  If not, see <http://www.gnu.org/licenses/>.
 #define GEN_FILENAME_FUNCTIONS_VECTOR_SSE	"hlml_functions_vector_sse"
 #define GEN_FILENAME_FUNCTIONS_MATRIX		"hlml_functions_matrix"
 #define GEN_FILENAME_FUNCTIONS_MATRIX_SSE	"hlml_functions_matrix_sse"
+#define GEN_FILENAME_FUNCTIONS_QUATERNION	"hlml_functions_quaternion"
 
 #define GEN_STRING_LENGTH_NUMERIC_LITERAL	16
 #define GEN_STRING_LENGTH_TYPE_NAME			16

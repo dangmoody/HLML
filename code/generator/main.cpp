@@ -40,6 +40,7 @@ along with The HLML Generator.  If not, see <http://www.gnu.org/licenses/>.
 #include "gen_funcs_vector_sse.h"
 #include "gen_funcs_matrix.h"
 #include "gen_funcs_matrix_sse.h"
+#include "gen_funcs_quaternion.h"
 
 #include "os_helpers.h"
 
@@ -341,6 +342,70 @@ static bool32 GenerateFunctionsMatrix( void ) {
 
 	bool32 wroteHeader	= FS_WriteEntireFile( filePathHeader, contentHeader.str, contentHeader.length );
 	bool32 wroteInl		= FS_WriteEntireFile( filePathInl, contentInl.str, contentInl.length );
+
+	Mem_Reset();
+
+	return wroteHeader && wroteInl;
+}
+
+static bool32 GenerateFunctionsQuaternion( void ) {
+
+	char filePathHeader[64] = { 0 };
+	snprintf(filePathHeader, 64, "%s%s.h", GEN_OUT_GEN_FOLDER_PATH, GEN_FILENAME_FUNCTIONS_QUATERNION);
+
+	char filePathInl[64] = { 0 };
+	snprintf(filePathInl, 64, "%s%s.inl", GEN_OUT_GEN_FOLDER_PATH, GEN_FILENAME_FUNCTIONS_QUATERNION);
+
+	stringBuilder_t contentHeader = String_Create(128 * KB_TO_BYTES);
+	String_Append(&contentHeader, GEN_FILE_HEADER);
+	String_Append(&contentHeader,
+		"#pragma once\n"
+		"\n");
+
+	stringBuilder_t contentInl = String_Create(128 * KB_TO_BYTES);
+	String_Append(&contentInl, GEN_FILE_HEADER);
+	String_Append(&contentInl, "#include \"" GEN_FILENAME_FUNCTIONS_VECTOR ".h\"\n");
+	String_Append(&contentInl, "#include \"" GEN_FILENAME_OPERATORS_MATRIX ".h\"\n");
+
+	for (u32 typeIndex = 0; typeIndex < GEN_TYPE_COUNT; typeIndex++) {
+		genType_t type = (genType_t)typeIndex;
+		if (Gen_TypeIsFloatingPoint(type) == false) {
+			continue;
+		}
+
+		const char* typeString = Gen_GetTypeString(type);
+		String_Appendf(&contentHeader, "#include \"%s%d.h\"\n", typeString, 4);
+	}
+
+	String_Appendf(&contentHeader, "\n");
+	String_Appendf(&contentInl, "\n");
+
+	for (u32 typeIndex = 0; typeIndex < GEN_TYPE_COUNT; typeIndex++) {
+		genType_t type = (genType_t)typeIndex;
+		if (Gen_TypeIsFloatingPoint(type) == false) {
+			continue;
+		}
+
+		char fullTypeName[GEN_STRING_LENGTH_TYPE_NAME];
+		Gen_GetFullTypeName(type, 4, 4, fullTypeName);
+
+		printf("Basic functions %s...", fullTypeName);
+
+		String_Appendf(&contentHeader, "// %s\n", fullTypeName);
+		String_Appendf(&contentInl, "// %s\n", fullTypeName);
+
+		Gen_QuaternionMultiply(type, &contentHeader, &contentInl);
+
+		String_Append(&contentHeader, "\n");
+		String_Append(&contentInl, "\n");
+
+		printf("OK.\n");
+	}
+
+	String_Appendf(&contentHeader, "#include \"" GEN_FILENAME_FUNCTIONS_QUATERNION ".inl\"\n");
+
+	bool32 wroteHeader = FS_WriteEntireFile(filePathHeader, contentHeader.str, contentHeader.length);
+	bool32 wroteInl = FS_WriteEntireFile(filePathInl, contentInl.str, contentInl.length);
 
 	Mem_Reset();
 
@@ -921,12 +986,13 @@ int main( int argc, char** argv ) {
 	printf( "======= Done. =======\n\n" );
 
 	printf( "======= Generating functions. =======\n" );
-	FAIL_IF( !GenerateFunctionsScalar(),    "Failed generating main scalar functions.\n" );
-	FAIL_IF( !GenerateFunctionsVector(),    "Failed generating main vector functions.\n" );
-	FAIL_IF( !GenerateFunctionsMatrix(),    "Failed generating main matrix functions.\n" );
-	FAIL_IF( !GenerateFunctionsScalarSSE(), "Failed generating main scalar SSE functions.\n" );
-	FAIL_IF( !GenerateFunctionsVectorSSE(), "Failed generating main vector SSE functions.\n" );
-	FAIL_IF( !GenerateFunctionsMatrixSSE(), "Failed generating main matrix SSE functions.\n" );
+	FAIL_IF( !GenerateFunctionsScalar(),     "Failed generating main scalar functions.\n" );
+	FAIL_IF( !GenerateFunctionsVector(),     "Failed generating main vector functions.\n" );
+	FAIL_IF( !GenerateFunctionsMatrix(),     "Failed generating main matrix functions.\n" );
+	FAIL_IF( !GenerateFunctionsQuaternion(), "Failed generating main quaternion functions.\n" );
+	FAIL_IF( !GenerateFunctionsScalarSSE(),  "Failed generating main scalar SSE functions.\n" );
+	FAIL_IF( !GenerateFunctionsVectorSSE(),  "Failed generating main vector SSE functions.\n" );
+	FAIL_IF( !GenerateFunctionsMatrixSSE(),  "Failed generating main matrix SSE functions.\n" );
 	printf( "======= Done. =======\n\n" );
 
 	printf( "======= Generating operators. =======\n" );

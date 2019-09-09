@@ -20,6 +20,7 @@
     <ClCompile Include="gen_common_sse.cpp" />
     <ClCompile Include="gen_funcs_matrix.cpp" />
     <ClCompile Include="gen_funcs_matrix_sse.cpp" />
+    <ClCompile Include="gen_funcs_quaternion.cpp" />
     <ClCompile Include="gen_funcs_vector.cpp" />
     <ClCompile Include="GeneratorMatrix.cpp" />
     <ClCompile Include="GeneratorMatrixTests.cpp" />
@@ -47,6 +48,7 @@
     <ClInclude Include="gen_doc_vector_sse.h" />
     <ClInclude Include="gen_funcs_matrix.h" />
     <ClInclude Include="gen_funcs_matrix_sse.h" />
+    <ClInclude Include="gen_funcs_quaternion.h" />
     <ClInclude Include="gen_funcs_vector.h" />
     <ClInclude Include="GeneratorMatrix.h" />
     <ClInclude Include="GeneratorMatrixTests.h" />
