@@ -54,7 +54,6 @@ void Gen_GetParmListQuaternion(const genType_t type, const float* values, char* 
 }
 
 void Gen_QuaternionMultiply(const genType_t type, stringBuilder_t* sbHeader, stringBuilder_t* sbInl) {
-
 	if (Gen_TypeIsFloatingPoint(type) == false) {
 		return;
 	}
@@ -73,6 +72,32 @@ void Gen_QuaternionMultiply(const genType_t type, stringBuilder_t* sbHeader, str
 
 	String_Appendf(sbInl, "\t%s scalar = lhs.w * rhs.w - dot(%s3(lhs), %s3(rhs));\n", typeName, typeName, typeName);
 	String_Appendf(sbInl, "\t%s3 imaginary = %s3(rhs) * lhs.w + %s3(lhs) * rhs.w + cross(%s3(lhs), %s3(rhs));\n", typeName, typeName, typeName, typeName, typeName);
+
+	String_Appendf(sbInl, "\treturn %s4(imaginary.x, imaginary.y, imaginary.z, scalar.w);\n", typeName);
+
+	String_Append(sbInl, "}\n");
+	String_Append(sbInl, "\n");
+}
+
+void Gen_QuaternionMultiplyScalar(const genType_t type, stringBuilder_t* sbHeader, stringBuilder_t* sbInl) {
+	if (Gen_TypeIsFloatingPoint(type) == false) {
+		return;
+	}
+
+	const char* returnTypeString = Gen_GetMemberTypeString(type);
+
+	char typeName[GEN_STRING_LENGTH_TYPE_NAME];
+	Gen_GetFullTypeName(type, 1, 1, typeName);
+
+	//Doc_VectorDot(sbHeader, type4Name);
+	String_Appendf(sbHeader, "inline %s quaternion_mul( const %s4& lhs, const %s& rhs );\n", returnTypeString, typeName, typeName);
+	String_Append(sbHeader, "\n");
+
+	String_Appendf(sbInl, "%s quaternion_mul( const %s4& lhs, const %s& rhs )\n", returnTypeString, typeName, typeName);
+	String_Append(sbInl, "{\n");
+
+	String_Appendf(sbInl, "\t%s scalar = lhs.w * rhs;\n", typeName);
+	String_Appendf(sbInl, "\t%s3 imaginary = %s3(lhs) * rhs;\n", typeName, typeName);
 
 	String_Appendf(sbInl, "\treturn %s4(imaginary.x, imaginary.y, imaginary.z, scalar.w);\n", typeName);
 

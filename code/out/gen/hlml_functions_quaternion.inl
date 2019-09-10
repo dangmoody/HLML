@@ -43,12 +43,26 @@ float quaternion_mul( const float4& lhs, const float4& rhs )
 	return float4(imaginary.x, imaginary.y, imaginary.z, scalar.w);
 }
 
+float quaternion_mul( const float4& lhs, const float& rhs )
+{
+	float scalar = lhs.w * rhs;
+	float3 imaginary = float3(lhs) * rhs;
+	return float4(imaginary.x, imaginary.y, imaginary.z, scalar.w);
+}
+
 
 // double4x4
 double quaternion_mul( const double4& lhs, const double4& rhs )
 {
 	double scalar = lhs.w * rhs.w - dot(double3(lhs), double3(rhs));
 	double3 imaginary = double3(rhs) * lhs.w + double3(lhs) * rhs.w + cross(double3(lhs), double3(rhs));
+	return double4(imaginary.x, imaginary.y, imaginary.z, scalar.w);
+}
+
+double quaternion_mul( const double4& lhs, const double& rhs )
+{
+	double scalar = lhs.w * rhs;
+	double3 imaginary = double3(lhs) * rhs;
 	return double4(imaginary.x, imaginary.y, imaginary.z, scalar.w);
 }
 

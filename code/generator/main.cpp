@@ -395,6 +395,7 @@ static bool32 GenerateFunctionsQuaternion( void ) {
 		String_Appendf(&contentInl, "// %s\n", fullTypeName);
 
 		Gen_QuaternionMultiply(type, &contentHeader, &contentInl);
+		Gen_QuaternionMultiplyScalar(type, &contentHeader, &contentInl);
 
 		String_Append(&contentHeader, "\n");
 		String_Append(&contentInl, "\n");

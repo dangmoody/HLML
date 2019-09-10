@@ -40,9 +40,13 @@ SOFTWARE.
 // float4x4
 inline float quaternion_mul( const float4& lhs, const float4& rhs );
 
+inline float quaternion_mul( const float4& lhs, const float& rhs );
+
 
 // double4x4
 inline double quaternion_mul( const double4& lhs, const double4& rhs );
+
+inline double quaternion_mul( const double4& lhs, const double& rhs );
 
 
 #include "hlml_functions_quaternion.inl"
