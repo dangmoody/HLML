@@ -42,11 +42,15 @@ inline float quaternion_mul( const float4& lhs, const float4& rhs );
 
 inline float quaternion_mul( const float4& lhs, const float& rhs );
 
+inline float quaternion_normalize( const float4& quat );
+
 
 // double4x4
 inline double quaternion_mul( const double4& lhs, const double4& rhs );
 
 inline double quaternion_mul( const double4& lhs, const double& rhs );
+
+inline double quaternion_normalize( const double4& quat );
 
 
 #include "hlml_functions_quaternion.inl"

@@ -104,3 +104,29 @@ void Gen_QuaternionMultiplyScalar(const genType_t type, stringBuilder_t* sbHeade
 	String_Append(sbInl, "}\n");
 	String_Append(sbInl, "\n");
 }
+
+void Gen_QuaternionNormalize(const genType_t type, stringBuilder_t* sbHeader, stringBuilder_t* sbInl) {
+	if (Gen_TypeIsFloatingPoint(type) == false) {
+		return;
+	}
+
+	const char* returnTypeString = Gen_GetMemberTypeString(type);
+
+	char typeName[GEN_STRING_LENGTH_TYPE_NAME];
+	Gen_GetFullTypeName(type, 1, 1, typeName);
+
+	//Doc_VectorDot(sbHeader, type4Name);
+	String_Appendf(sbHeader, "inline %s quaternion_normalize( const %s4& quat );\n", returnTypeString, typeName);
+	String_Append(sbHeader, "\n");
+
+	String_Appendf(sbInl, "%s quaternion_normalize( const %s4& quat )\n", returnTypeString, typeName);
+	String_Append(sbInl, "{\n");
+
+	String_Appendf(sbInl, "\t%s scalar = quat.w * quat.w;\n", typeName);
+	String_Appendf(sbInl, "\t%s3 imaginary = %s3(quat) * %s3(quat);\n", typeName, typeName);
+
+	String_Appendf(sbInl, "\treturn sqrt(scalar + imaginary);\n", typeName);
+
+	String_Append(sbInl, "}\n");
+	String_Append(sbInl, "\n");
+}

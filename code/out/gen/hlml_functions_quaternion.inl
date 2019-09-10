@@ -50,6 +50,13 @@ float quaternion_mul( const float4& lhs, const float& rhs )
 	return float4(imaginary.x, imaginary.y, imaginary.z, scalar.w);
 }
 
+float quaternion_normalize( const float4& quat )
+{
+	float scalar = quat.w * quat.w;
+	float3 imaginary = float3(quat) * float3(quat);
+	return sqrt(scalar + imaginary);
+}
+
 
 // double4x4
 double quaternion_mul( const double4& lhs, const double4& rhs )
@@ -64,6 +71,13 @@ double quaternion_mul( const double4& lhs, const double& rhs )
 	double scalar = lhs.w * rhs;
 	double3 imaginary = double3(lhs) * rhs;
 	return double4(imaginary.x, imaginary.y, imaginary.z, scalar.w);
+}
+
+double quaternion_normalize( const double4& quat )
+{
+	double scalar = quat.w * quat.w;
+	double3 imaginary = double3(quat) * double3(quat);
+	return sqrt(scalar + imaginary);
 }
 
 
