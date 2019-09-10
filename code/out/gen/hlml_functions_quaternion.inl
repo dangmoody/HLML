@@ -50,11 +50,23 @@ float quaternion_mul( const float4& lhs, const float& rhs )
 	return float4(imaginary.x, imaginary.y, imaginary.z, scalar.w);
 }
 
-float quaternion_normalize( const float4& quat )
+float quaternion_magnitude( const float4& quat )
 {
-	float scalar = quat.w * quat.w;
-	float3 imaginary = float3(quat) * float3(quat);
-	return sqrt(scalar + imaginary);
+	return sqrt(( quat.x * quat.x ) + ( quat.y * quat.y ) + ( quat.z * quat.z ) + ( quat.w * quat.w ));
+}
+
+float4 quaternion_normalize( const float4& quat )
+{
+	float3 normV;
+	float normS;
+	float mag = quaternion_magnitude(quat);
+	if (mag != 0)
+	{
+		float magInverse = 1.0f / mag;
+		float3 normV *= magInverse;
+		float normS *= magInverse;
+	}
+	return float4(normV.x, normV.y, normV.z, normS);
 }
 
 
@@ -73,11 +85,23 @@ double quaternion_mul( const double4& lhs, const double& rhs )
 	return double4(imaginary.x, imaginary.y, imaginary.z, scalar.w);
 }
 
-double quaternion_normalize( const double4& quat )
+double quaternion_magnitude( const double4& quat )
 {
-	double scalar = quat.w * quat.w;
-	double3 imaginary = double3(quat) * double3(quat);
-	return sqrt(scalar + imaginary);
+	return sqrt(( quat.x * quat.x ) + ( quat.y * quat.y ) + ( quat.z * quat.z ) + ( quat.w * quat.w ));
+}
+
+double4 quaternion_normalize( const double4& quat )
+{
+	double3 normV;
+	double normS;
+	double mag = quaternion_magnitude(quat);
+	if (mag != 0)
+	{
+		double magInverse = 1.0f / mag;
+		double3 normV *= magInverse;
+		double normS *= magInverse;
+	}
+	return double4(normV.x, normV.y, normV.z, normS);
 }
 
 
