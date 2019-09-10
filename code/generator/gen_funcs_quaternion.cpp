@@ -190,23 +190,17 @@ void Gen_QuaternionConjugate(const genType_t type, stringBuilder_t* sbHeader, st
 	String_Appendf(sbInl, "%s4 quaternion_conjugate( const %s4& quat )\n", returnTypeString, typeName);
 	String_Append(sbInl, "{\n");
 
-	String_Appendf(sbInl, "\t%s scalar = quat.w;\n", typeName);
-	String_Appendf(sbInl, "\t%s3 imaginary = float3(", typeName);
+	String_Appendf(sbInl, "\treturn %s4( ", typeName);
 
 	const int numComponents = 3;
 	for (u32 i = 0; i < numComponents; i++) {
 		const char componentName = GEN_COMPONENT_NAMES_VECTOR[i];
 
 		String_Appendf(sbInl, "( quat.%c * ( -1 ) )", componentName);
-
-		if (i != numComponents - 1) {
-			String_Append(sbInl, ", ");
-		}
+		String_Append(sbInl, ", ");
 	}
 
-	String_Append(sbInl, " );\n");
-
-	String_Appendf(sbInl, "\treturn %s4(imaginary.x, imaginary.y, imaginary.z, scalar);\n", typeName);
+	String_Appendf(sbInl, "quat.w );\n");
 
 	String_Append(sbInl, "}\n");
 	String_Append(sbInl, "\n");

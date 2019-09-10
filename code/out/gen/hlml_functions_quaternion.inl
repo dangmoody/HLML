@@ -71,9 +71,7 @@ float4 quaternion_normalize( const float4& quat )
 
 float4 quaternion_conjugate( const float4& quat )
 {
-	float scalar = quat.w;
-	float3 imaginary = float3(( quat.x * ( -1 ) ), ( quat.y * ( -1 ) ), ( quat.z * ( -1 ) ) );
-	return float4(imaginary.x, imaginary.y, imaginary.z, scalar);
+	return float4( ( quat.x * ( -1 ) ), ( quat.y * ( -1 ) ), ( quat.z * ( -1 ) ), quat.w );
 }
 
 
@@ -113,9 +111,7 @@ double4 quaternion_normalize( const double4& quat )
 
 double4 quaternion_conjugate( const double4& quat )
 {
-	double scalar = quat.w;
-	double3 imaginary = float3(( quat.x * ( -1 ) ), ( quat.y * ( -1 ) ), ( quat.z * ( -1 ) ) );
-	return double4(imaginary.x, imaginary.y, imaginary.z, scalar);
+	return double4( ( quat.x * ( -1 ) ), ( quat.y * ( -1 ) ), ( quat.z * ( -1 ) ), quat.w );
 }
 
 
