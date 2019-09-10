@@ -31,3 +31,4 @@ extern void		Gen_QuaternionMultiply(const genType_t type, stringBuilder_t* sbHea
 extern void		Gen_QuaternionMultiplyScalar(const genType_t type, stringBuilder_t* sbHeader, stringBuilder_t* sbInl);
 extern void		Gen_QuaternionMagnitude(const genType_t type, stringBuilder_t* sbHeader, stringBuilder_t* sbInl);
 extern void		Gen_QuaternionNormalize(const genType_t type, stringBuilder_t* sbHeader, stringBuilder_t* sbInl);
+extern void		Gen_QuaternionConjugate(const genType_t type, stringBuilder_t* sbHeader, stringBuilder_t* sbInl);

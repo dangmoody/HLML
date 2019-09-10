@@ -173,3 +173,41 @@ void Gen_QuaternionNormalize(const genType_t type, stringBuilder_t* sbHeader, st
 	String_Append(sbInl, "}\n");
 	String_Append(sbInl, "\n");
 }
+
+void Gen_QuaternionConjugate(const genType_t type, stringBuilder_t* sbHeader, stringBuilder_t* sbInl) {
+	if (Gen_TypeIsFloatingPoint(type) == false) {
+		return;
+	}
+
+	const char* returnTypeString = Gen_GetMemberTypeString(type);
+	char typeName[GEN_STRING_LENGTH_TYPE_NAME];
+	Gen_GetFullTypeName(type, 1, 1, typeName);
+
+	//Doc_VectorDot(sbHeader, type4Name);
+	String_Appendf(sbHeader, "inline %s4 quaternion_conjugate( const %s4& quat );\n", returnTypeString, typeName);
+	String_Append(sbHeader, "\n");
+
+	String_Appendf(sbInl, "%s4 quaternion_conjugate( const %s4& quat )\n", returnTypeString, typeName);
+	String_Append(sbInl, "{\n");
+
+	String_Appendf(sbInl, "\t%s scalar = quat.w;\n", typeName);
+	String_Appendf(sbInl, "\t%s3 imaginary = float3(", typeName);
+
+	const int numComponents = 3;
+	for (u32 i = 0; i < numComponents; i++) {
+		const char componentName = GEN_COMPONENT_NAMES_VECTOR[i];
+
+		String_Appendf(sbInl, "( quat.%c * ( -1 ) )", componentName);
+
+		if (i != numComponents - 1) {
+			String_Append(sbInl, ", ");
+		}
+	}
+
+	String_Append(sbInl, " );\n");
+
+	String_Appendf(sbInl, "\treturn %s4(imaginary.x, imaginary.y, imaginary.z, scalar);\n", typeName);
+
+	String_Append(sbInl, "}\n");
+	String_Append(sbInl, "\n");
+}

@@ -69,6 +69,13 @@ float4 quaternion_normalize( const float4& quat )
 	return float4(normV.x, normV.y, normV.z, normS);
 }
 
+float4 quaternion_conjugate( const float4& quat )
+{
+	float scalar = quat.w;
+	float3 imaginary = float3(( quat.x * ( -1 ) ), ( quat.y * ( -1 ) ), ( quat.z * ( -1 ) ) );
+	return float4(imaginary.x, imaginary.y, imaginary.z, scalar);
+}
+
 
 // double4x4
 double quaternion_mul( const double4& lhs, const double4& rhs )
@@ -102,6 +109,13 @@ double4 quaternion_normalize( const double4& quat )
 		double normS *= magInverse;
 	}
 	return double4(normV.x, normV.y, normV.z, normS);
+}
+
+double4 quaternion_conjugate( const double4& quat )
+{
+	double scalar = quat.w;
+	double3 imaginary = float3(( quat.x * ( -1 ) ), ( quat.y * ( -1 ) ), ( quat.z * ( -1 ) ) );
+	return double4(imaginary.x, imaginary.y, imaginary.z, scalar);
 }
 
 
