@@ -430,13 +430,24 @@ static bool32 GenerateFunctionsVectorSSE( void ) {
 			continue;
 		}
 
+		const char* registerName = Gen_SSE_GetRegisterName( type );
+
 		for ( u32 componentIndex = GEN_COMPONENT_COUNT_MIN; componentIndex <= GEN_COMPONENT_COUNT_MAX; componentIndex++ ) {
 			char fullTypeName[GEN_STRING_LENGTH_TYPE_NAME];
 			Gen_GetFullTypeName( type, 1, componentIndex, fullTypeName );
 
 			printf( "SIMD vector functions %s...", fullTypeName );
 
+			char sseTypeName[GEN_STRING_LENGTH_SSE_INPUT_NAME];
+			Gen_SSE_GetFullTypeName( fullTypeName, sseTypeName );
+
 			String_Appendf( &contentHeader, "// %s\n", fullTypeName );
+			String_Appendf( &contentHeader, "struct %s\n", sseTypeName );
+			String_Append(  &contentHeader, "{\n" );
+			String_Appendf( &contentHeader, "\t%s comp[%d];\n", registerName, componentIndex );
+			String_Append(  &contentHeader, "};\n" );
+			String_Append(  &contentHeader, "\n" );
+
 			String_Appendf( &contentInl, "// %s\n", fullTypeName );
 
 			Gen_SSE_VectorLength( type, componentIndex, &contentHeader, &contentInl );
@@ -470,7 +481,7 @@ static bool32 GenerateFunctionsMatrixSSE( void ) {
 	snprintf( filePathInl, 64, "%s%s.inl", GEN_OUT_GEN_FOLDER_PATH, GEN_FILENAME_FUNCTIONS_MATRIX_SSE );
 
 	stringBuilder_t contentHeader = String_Create( 28 * KB_TO_BYTES );
-	stringBuilder_t contentInl = String_Create( 68 * KB_TO_BYTES );
+	stringBuilder_t contentInl = String_Create( 70 * KB_TO_BYTES );
 
 	String_Append( &contentHeader, GEN_FILE_HEADER );
 	String_Append( &contentHeader,
@@ -478,18 +489,13 @@ static bool32 GenerateFunctionsMatrixSSE( void ) {
 		"\n"
 		"#include <immintrin.h>\n"
 		"\n"
-	);
-
-	Gen_SSE_MacroNegate( GEN_TYPE_FLOAT, &contentHeader );
-
-	String_Append( &contentInl, GEN_FILE_HEADER );
-	String_Append( &contentInl,
-		"#include \"../" GEN_HEADER_CONSTANTS_SSE "\"\n"
-		"\n"
 		"#include \"" GEN_FILENAME_FUNCTIONS_VECTOR_SSE ".h\"\n"
 		"\n"
 	);
 
+	Gen_SSE_MacroNegate( GEN_TYPE_FLOAT, &contentHeader );
+
+	// generate type forward declarations
 	for ( u32 typeIndex = 0; typeIndex < GEN_TYPE_COUNT; typeIndex++ ) {
 		genType_t type = (genType_t) typeIndex;
 
@@ -502,9 +508,50 @@ static bool32 GenerateFunctionsMatrixSSE( void ) {
 				char fullTypeName[GEN_STRING_LENGTH_TYPE_NAME];
 				Gen_GetFullTypeName( type, row, col, fullTypeName );
 
+				char sseTypeName[GEN_STRING_LENGTH_SSE_INPUT_NAME];
+				Gen_SSE_GetFullTypeName( fullTypeName, sseTypeName );
+
+				String_Appendf( &contentHeader, "struct %s;\n", sseTypeName );
+			}
+		}
+	}
+	String_Appendf( &contentHeader, "\n" );
+
+	String_Append( &contentInl, GEN_FILE_HEADER );
+	String_Append( &contentInl,
+		"#include \"../" GEN_HEADER_CONSTANTS_SSE "\"\n"
+		"\n"
+		"#include \"" GEN_FILENAME_FUNCTIONS_VECTOR_SSE ".h\"\n"
+		"\n"
+	);
+
+	// generate functions
+	for ( u32 typeIndex = 0; typeIndex < GEN_TYPE_COUNT; typeIndex++ ) {
+		genType_t type = (genType_t) typeIndex;
+
+		if ( !Gen_TypeSupportsSSE( type ) ) {
+			continue;
+		}
+
+		const char* registerName = Gen_SSE_GetRegisterName( type );
+
+		for ( u32 row = GEN_COMPONENT_COUNT_MIN; row <= GEN_COMPONENT_COUNT_MAX; row++ ) {
+			for ( u32 col = GEN_COMPONENT_COUNT_MIN; col <= GEN_COMPONENT_COUNT_MAX; col++ ) {
+				char fullTypeName[GEN_STRING_LENGTH_TYPE_NAME];
+				Gen_GetFullTypeName( type, row, col, fullTypeName );
+
 				printf( "SIMD matrix functions %s...", fullTypeName );
 
+				char sseTypeName[GEN_STRING_LENGTH_SSE_INPUT_NAME];
+				Gen_SSE_GetFullTypeName( fullTypeName, sseTypeName );
+
 				String_Appendf( &contentHeader, "// %s\n", fullTypeName );
+				String_Appendf( &contentHeader, "struct %s\n", sseTypeName );
+				String_Append(  &contentHeader, "{\n" );
+				String_Appendf( &contentHeader, "\t%s m[%d][%d];\n", registerName, row, col );
+				String_Append(  &contentHeader, "};\n" );
+				String_Append(  &contentHeader, "\n" );
+
 				String_Appendf( &contentInl, "// %s\n", fullTypeName );
 
 				// Gen_SSE_MatrixIdentity( type, row, col, &contentHeader, &contentInl );

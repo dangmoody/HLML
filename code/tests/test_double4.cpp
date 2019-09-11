@@ -220,10 +220,10 @@ TEMPER_TEST( TestLength_double4 )
 TEMPER_TEST( TestNormalized_double4 )
 {
 	// scalar
-	double4 vec = double4( 2.000000, 3.000000, 4.000000, 5.000000 );
+	double4 vec = double4( 5.000000, 4.000000, 3.000000, 2.000000 );
 	vec = normalized( vec );
 
-	TEMPER_EXPECT_TRUE( length( vec ) == 1.0 );
+	TEMPER_EXPECT_TRUE( doubleeq( length( vec ), 1.0 ) );
 
 	TEMPER_PASS();
 }

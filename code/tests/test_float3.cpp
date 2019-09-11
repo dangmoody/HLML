@@ -223,7 +223,7 @@ TEMPER_TEST( TestLength_float3 )
 		{ 2.000000f, 2.000000f, 2.000000f, 2.000000f }
 	};
 
-	sse_input_length_float3_t in;
+	float3_sse_t in;
 
 	in.comp[0] = _mm_load_ps( components[0] );
 	in.comp[1] = _mm_load_ps( components[1] );
@@ -259,36 +259,31 @@ TEMPER_TEST( TestLength_float3 )
 TEMPER_TEST( TestNormalized_float3 )
 {
 	// scalar
-	float3 vec = float3( 2.000000f, 3.000000f, 4.000000f );
+	float3 vec = float3( 5.000000f, 4.000000f, 3.000000f );
 	vec = normalized( vec );
 
-	TEMPER_EXPECT_TRUE( length( vec ) == 1.0f );
+	TEMPER_EXPECT_TRUE( floateq( length( vec ), 1.0f ) );
 
 	// SSE
-	sse_input_normalize_float3_t in;
+	__m128 results;
+	float3_sse_t in;
+	float3_sse_t in_normalised;
 
-	in.comp[0] = _mm_set1_ps( 2.0f );
-	in.comp[1] = _mm_set1_ps( 3.0f );
-	in.comp[2] = _mm_set1_ps( 4.0f );
+	in.comp[0] = _mm_set1_ps( 5.0f );
+	in.comp[1] = _mm_set1_ps( 4.0f );
+	in.comp[2] = _mm_set1_ps( 3.0f );
 
-	__m128 results[3];
-	normalize_sse( &in, results );
-
-	sse_input_length_float3_t inLength;
-	inLength.comp[0] = results[0];
-	inLength.comp[1] = results[1];
-	inLength.comp[2] = results[2];
-
-	__m128 results2;
-	length_sse( &inLength, &results2 );
+	normalize_sse( &in, &in_normalised );
+	length_sse( &in_normalised, &results );
 
 	float normalizeResults[4];
-	_mm_store_ps( normalizeResults, results2 );
+	_mm_store_ps( normalizeResults, results );
 
-	TEMPER_EXPECT_TRUE( floateq( normalizeResults[0], 1.0f ) );
-	TEMPER_EXPECT_TRUE( floateq( normalizeResults[1], 1.0f ) );
-	TEMPER_EXPECT_TRUE( floateq( normalizeResults[2], 1.0f ) );
-	TEMPER_EXPECT_TRUE( floateq( normalizeResults[3], 1.0f ) );
+	const float epsilon = 0.000100f;
+	TEMPER_EXPECT_TRUE( floateq( normalizeResults[0], 1.0f, epsilon ) );
+	TEMPER_EXPECT_TRUE( floateq( normalizeResults[1], 1.0f, epsilon ) );
+	TEMPER_EXPECT_TRUE( floateq( normalizeResults[2], 1.0f, epsilon ) );
+	TEMPER_EXPECT_TRUE( floateq( normalizeResults[3], 1.0f, epsilon ) );
 
 	TEMPER_PASS();
 }
@@ -316,18 +311,18 @@ TEMPER_TEST( TestDot_float3 )
 		{ 0.000000f, 0.000000f, 0.000000f, 0.000000f }
 	};
 
-	sse_input_dot_float3_t in;
+	float3_sse_t lhs;
+	lhs.comp[0] = _mm_load_ps( componentsLHS[0] );
+	lhs.comp[1] = _mm_load_ps( componentsLHS[1] );
+	lhs.comp[2] = _mm_load_ps( componentsLHS[2] );
 
-	in.lhs[0] = _mm_load_ps( componentsLHS[0] );
-	in.lhs[1] = _mm_load_ps( componentsLHS[1] );
-	in.lhs[2] = _mm_load_ps( componentsLHS[2] );
-
-	in.rhs[0] = _mm_load_ps( componentsRHS[0] );
-	in.rhs[1] = _mm_load_ps( componentsRHS[1] );
-	in.rhs[2] = _mm_load_ps( componentsRHS[2] );
+	float3_sse_t rhs;
+	rhs.comp[0] = _mm_load_ps( componentsRHS[0] );
+	rhs.comp[1] = _mm_load_ps( componentsRHS[1] );
+	rhs.comp[2] = _mm_load_ps( componentsRHS[2] );
 
 	__m128 results;
-	dot_sse( &in, &results );
+	dot_sse( &lhs, &rhs, &results );
 
 	float dotResults[4];
 	_mm_store_ps( dotResults, results );
@@ -392,20 +387,20 @@ TEMPER_TEST( TestDistance_float3 )
 		{ 2.000000f, 2.000000f, 2.000000f, 2.000000f }
 	};
 
-	sse_input_distance_float3_t in;
+	float3_sse_t lhs;
+	lhs.comp[0] = _mm_load_ps( componentsLHS[0] );
+	lhs.comp[1] = _mm_load_ps( componentsLHS[1] );
+	lhs.comp[2] = _mm_load_ps( componentsLHS[2] );
 
-	in.lhs[0] = _mm_load_ps( componentsLHS[0] );
-	in.lhs[1] = _mm_load_ps( componentsLHS[1] );
-	in.lhs[2] = _mm_load_ps( componentsLHS[2] );
-
-	in.rhs[0] = _mm_load_ps( componentsRHS[0] );
-	in.rhs[1] = _mm_load_ps( componentsRHS[1] );
-	in.rhs[2] = _mm_load_ps( componentsRHS[2] );
+	float3_sse_t rhs;
+	rhs.comp[0] = _mm_load_ps( componentsRHS[0] );
+	rhs.comp[1] = _mm_load_ps( componentsRHS[1] );
+	rhs.comp[2] = _mm_load_ps( componentsRHS[2] );
 
 	__m128 results;
 
 	// distancesq
-	distancesq_sse( &in, &results );
+	distancesq_sse( &lhs, &rhs, &results );
 
 	float squaredDistanceResults[4];
 	_mm_store_ps( squaredDistanceResults, results );
@@ -416,7 +411,7 @@ TEMPER_TEST( TestDistance_float3 )
 	TEMPER_EXPECT_TRUE( floateq( squaredDistanceResults[3], 105.0f ) );
 
 	// distance
-	distance_sse( &in, &results );
+	distance_sse( &lhs, &rhs, &results );
 
 	float distanceResults[4];
 	_mm_store_ps( distanceResults, results );

@@ -219,10 +219,10 @@ TEMPER_TEST( TestLength_double3 )
 TEMPER_TEST( TestNormalized_double3 )
 {
 	// scalar
-	double3 vec = double3( 2.000000, 3.000000, 4.000000 );
+	double3 vec = double3( 5.000000, 4.000000, 3.000000 );
 	vec = normalized( vec );
 
-	TEMPER_EXPECT_TRUE( length( vec ) == 1.0 );
+	TEMPER_EXPECT_TRUE( doubleeq( length( vec ), 1.0 ) );
 
 	TEMPER_PASS();
 }

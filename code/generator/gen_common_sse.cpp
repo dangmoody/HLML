@@ -45,31 +45,21 @@ void Gen_SSE_Radians( const genType_t type, stringBuilder_t* sbHeader, stringBui
 		return;
 	}
 
-	const char* memberTypeString = Gen_GetMemberTypeString( type );
-
-	char inputDataName[GEN_STRING_LENGTH_SSE_INPUT_NAME];
-	Gen_SSE_GetInputDataName( memberTypeString, "radians", inputDataName );
+//	const char* memberTypeString = Gen_GetMemberTypeString( type );
 
 	const char* registerName	= Gen_SSE_GetRegisterName( type );
 
 	char mulFuncStr[GEN_STRING_LENGTH_SSE_INTRINSIC];
 	Gen_SSE_GetIntrinsicArithmetic( type, GEN_OP_ARITHMETIC_MUL, mulFuncStr );
 
-	String_Appendf( sbHeader, "struct %s\n", inputDataName );
-	String_Append(  sbHeader, "{\n" );
-	String_Appendf( sbHeader, "\t%s deg;\n", registerName );
-	String_Append(  sbHeader, "};\n" );
+	String_Appendf( sbHeader, "inline void radians_sse( const %s deg, %s* out_radians );\n", registerName, registerName );
 	String_Append(  sbHeader, "\n" );
 
-	String_Appendf( sbHeader, "inline void radians_sse( const %s* in, %s* out_results );\n", inputDataName, registerName );
-	String_Append(  sbHeader, "\n" );
-
-	String_Appendf( sbInl, "void radians_sse( const %s* in, %s* out_results )\n", inputDataName, registerName );
+	String_Appendf( sbInl, "void radians_sse( const %s deg, %s* out_radians )\n", registerName, registerName );
 	String_Append(  sbInl, "{\n" );
-	String_Append(  sbInl, "\tassert( in );\n" );
-	String_Append(  sbInl, "\tassert( out_results );\n" );
+	String_Append(  sbInl, "\tassert( out_radians );\n" );
 	String_Append(  sbInl, "\n" );
-	String_Appendf( sbInl, "\t*out_results = %s( in->deg, HLML_DEG_TO_RAD_SSE );\n", mulFuncStr );
+	String_Appendf( sbInl, "\t*out_radians = %s( deg, HLML_DEG_TO_RAD_SSE );\n", mulFuncStr );
 	String_Append(  sbInl, "}\n" );
 	String_Append(  sbInl, "\n" );
 }
@@ -79,31 +69,21 @@ void Gen_SSE_Degrees( const genType_t type, stringBuilder_t* sbHeader, stringBui
 		return;
 	}
 
-	const char* memberTypeString = Gen_GetMemberTypeString( type );
+//	const char* memberTypeString = Gen_GetMemberTypeString( type );
 
-	char inputDataName[GEN_STRING_LENGTH_SSE_INPUT_NAME];
-	Gen_SSE_GetInputDataName( memberTypeString, "degrees", inputDataName );
-
-	const char* registerName	= Gen_SSE_GetRegisterName( type );
+	const char* registerName = Gen_SSE_GetRegisterName( type );
 
 	char mulFuncStr[GEN_STRING_LENGTH_SSE_INTRINSIC];
 	Gen_SSE_GetIntrinsicArithmetic( type, GEN_OP_ARITHMETIC_MUL, mulFuncStr );
 
-	String_Appendf( sbHeader, "struct %s\n", inputDataName );
-	String_Append(  sbHeader, "{\n" );
-	String_Appendf( sbHeader, "\t%s rad;\n", registerName );
-	String_Append(  sbHeader, "};\n" );
+	String_Appendf( sbHeader, "inline void degrees_sse( const %s rad, %s* out_degrees );\n", registerName, registerName );
 	String_Append(  sbHeader, "\n" );
 
-	String_Appendf( sbHeader, "inline void degrees_sse( const %s* in, %s* out_results );\n", inputDataName, registerName );
-	String_Append(  sbHeader, "\n" );
-
-	String_Appendf( sbInl, "void degrees_sse( const %s* in, %s* out_results )\n", inputDataName, registerName );
+	String_Appendf( sbInl, "void degrees_sse( const %s rad, %s* out_degrees )\n", registerName, registerName );
 	String_Append(  sbInl, "{\n" );
-	String_Append(  sbInl, "\tassert( in );\n" );
-	String_Append(  sbInl, "\tassert( out_results );\n" );
+	String_Append(  sbInl, "\tassert( out_degrees );\n" );
 	String_Append(  sbInl, "\n" );
-	String_Appendf( sbInl, "\t*out_results = %s( in->rad, HLML_RAD_TO_DEG_SSE );\n", mulFuncStr );
+	String_Appendf( sbInl, "\t*out_degrees = %s( rad, HLML_RAD_TO_DEG_SSE );\n", mulFuncStr );
 	String_Append(  sbInl, "}\n" );
 	String_Append(  sbInl, "\n" );
 }
@@ -133,10 +113,10 @@ void Gen_SSE_Lerp( const genType_t type, const u32 numComponents, stringBuilder_
 	Gen_SSE_GetIntrinsicArithmetic( type, GEN_OP_ARITHMETIC_SUB, subFuncStr );
 	Gen_SSE_GetIntrinsicArithmetic( type, GEN_OP_ARITHMETIC_MUL, mulFuncStr );
 
-	char inputDataName[GEN_STRING_LENGTH_SSE_INPUT_NAME];
-	Gen_SSE_GetInputDataName( fullTypeName, "lerp", inputDataName );
+	char sseTypeName[GEN_STRING_LENGTH_SSE_INPUT_NAME];
+	Gen_SSE_GetFullTypeName( fullTypeName, sseTypeName );
 
-	String_Appendf( sbHeader, "struct %s\n", inputDataName );
+	String_Appendf( sbHeader, "struct %s\n", sseTypeName );
 	String_Append(  sbHeader, "{\n" );
 	String_Appendf( sbHeader, "\t%s lhs;\n", registerName );
 	String_Appendf( sbHeader, "\t%s rhs;\n", registerName );
@@ -144,10 +124,10 @@ void Gen_SSE_Lerp( const genType_t type, const u32 numComponents, stringBuilder_
 	String_Append(  sbHeader, "};\n" );
 	String_Append(  sbHeader, "\n" );
 
-	String_Appendf( sbHeader, "inline void lerp_sse( const %s* in, %s* out_results );\n", inputDataName, registerName );
+	String_Appendf( sbHeader, "inline void lerp_sse( const %s* in, %s* out_results );\n", sseTypeName, registerName );
 	String_Append(  sbHeader, "\n" );
 
-	String_Appendf( sbInl, "void lerp_sse( const %s* in, %s* out_results )\n", inputDataName, registerName );
+	String_Appendf( sbInl, "void lerp_sse( const %s* in, %s* out_results )\n", sseTypeName, registerName );
 	String_Append(  sbInl, "{\n" );
 	String_Append(  sbInl, "\tassert( in );\n" );
 	String_Append(  sbInl, "\tassert( out_results );\n" );

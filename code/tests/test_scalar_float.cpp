@@ -42,9 +42,8 @@ TEMPER_TEST( TestDegreesRadians_float )
 	__m128 results;
 
 	// radians
-	sse_input_radians_float_t inRadians;
-	inRadians.deg = _mm_load_ps( degs );
-	radians_sse( &inRadians, &results );
+	__m128 inRadians = _mm_load_ps( degs );
+	radians_sse( inRadians, &results );
 
 	float radiansResults[4];
 	_mm_store_ps( radiansResults, results );
@@ -55,9 +54,8 @@ TEMPER_TEST( TestDegreesRadians_float )
 	TEMPER_EXPECT_TRUE( floateq( radiansResults[3], 1.57079637f ) );
 
 	// degrees
-	sse_input_degrees_float_t inDegrees;
-	inDegrees.rad = _mm_load_ps( rads );
-	degrees_sse( &inDegrees, &results );
+	__m128 inDegrees = _mm_load_ps( rads );
+	degrees_sse( inDegrees, &results );
 
 	float degreesResults[4];
 	_mm_store_ps( degreesResults, results );
@@ -124,7 +122,7 @@ TEMPER_TEST( TestLerp_float )
 	float threes[4] = { 3.0f, 3.0f, 3.0f, 3.0f };
 	float halves[4] = { 0.5f, 0.5f, 0.5f, 0.5f };
 
-	sse_input_lerp_float_t in;
+	float_sse_t in;
 
 	in.lhs = _mm_load_ps( ones );
 	in.rhs = _mm_load_ps( threes );

@@ -176,7 +176,7 @@ void GeneratorScalarTest::GenerateTestDegreesRadians() {
 
 	String_Appendf( &m_codeTests, "TEMPER_TEST( %s )\n", testName );
 	String_Append(  &m_codeTests, "{\n" );
-	String_Append( &m_codeTests, "\t// scalar\n" );
+	String_Append(  &m_codeTests, "\t// scalar\n" );
 	String_Appendf( &m_codeTests, "\t%s deg = %s;\n", m_memberTypeString, degreesStr );
 	String_Appendf( &m_codeTests, "\t%s rad = %s;\n", m_memberTypeString, radiansStr );
 	String_Append(  &m_codeTests, "\n" );
@@ -187,12 +187,6 @@ void GeneratorScalarTest::GenerateTestDegreesRadians() {
 		const char* loadFuncStr		= Gen_SSE_GetIntrinsicLoad( m_type );
 		const char* storeFuncStr	= Gen_SSE_GetIntrinsicStore( m_type );
 
-		char inputDataNameRadians[GEN_STRING_LENGTH_SSE_INPUT_NAME];
-		Gen_SSE_GetInputDataName( m_memberTypeString, "radians", inputDataNameRadians );
-
-		char inputDataNameDegrees[GEN_STRING_LENGTH_SSE_INPUT_NAME];
-		Gen_SSE_GetInputDataName( m_memberTypeString, "degrees", inputDataNameDegrees );
-
 		String_Append(  &m_codeTests, "\n" );
 		String_Append(  &m_codeTests, "\t// SSE\n" );
 		String_Appendf( &m_codeTests, "\t%s degs[4] = { deg, deg, deg, deg };\n", m_memberTypeString );
@@ -201,9 +195,8 @@ void GeneratorScalarTest::GenerateTestDegreesRadians() {
 		String_Appendf( &m_codeTests, "\t%s results;\n", m_registerName );
 		String_Append(  &m_codeTests, "\n" );
 		String_Append(  &m_codeTests, "\t// radians\n" );
-		String_Appendf( &m_codeTests, "\t%s inRadians;\n", inputDataNameRadians );
-		String_Appendf( &m_codeTests, "\tinRadians.deg = %s( degs );\n", loadFuncStr );
-		String_Appendf( &m_codeTests, "\tradians_sse( &inRadians, &results );\n" );
+		String_Appendf( &m_codeTests, "\t%s inRadians = %s( degs );\n", m_registerName, loadFuncStr );
+		String_Appendf( &m_codeTests, "\tradians_sse( inRadians, &results );\n" );
 		String_Append(  &m_codeTests, "\n" );
 		String_Appendf( &m_codeTests, "\t%s radiansResults[4];\n", m_memberTypeString );
 		String_Appendf( &m_codeTests, "\t%s( radiansResults, results );\n", storeFuncStr );
@@ -213,9 +206,8 @@ void GeneratorScalarTest::GenerateTestDegreesRadians() {
 		}
 		String_Append(  &m_codeTests, "\n" );
 		String_Append(  &m_codeTests, "\t// degrees\n" );
-		String_Appendf( &m_codeTests, "\t%s inDegrees;\n", inputDataNameDegrees );
-		String_Appendf( &m_codeTests, "\tinDegrees.rad = %s( rads );\n", loadFuncStr );
-		String_Appendf( &m_codeTests, "\tdegrees_sse( &inDegrees, &results );\n" );
+		String_Appendf( &m_codeTests, "\t%s inDegrees = %s( rads );\n", m_registerName, loadFuncStr );
+		String_Appendf( &m_codeTests, "\tdegrees_sse( inDegrees, &results );\n" );
 		String_Append(  &m_codeTests, "\n" );
 		String_Appendf( &m_codeTests, "\t%s degreesResults[4];\n", m_memberTypeString );
 		String_Appendf( &m_codeTests, "\t%s( degreesResults, results );\n", storeFuncStr );
@@ -389,8 +381,8 @@ void GeneratorScalarTest::GenerateTestLerp() {
 	String_Appendf( &m_codeTests, "\tTEMPER_EXPECT_TRUE( %s( answer, %s ) );\n", floateqStr, answerStr );
 
 	if ( m_type == GEN_TYPE_FLOAT ) {
-		char inputDataName[GEN_STRING_LENGTH_SSE_INPUT_NAME];
-		Gen_SSE_GetInputDataName( m_memberTypeString, "lerp", inputDataName );
+		char sseTypeName[GEN_STRING_LENGTH_SSE_INPUT_NAME];
+		Gen_SSE_GetFullTypeName( m_memberTypeString, sseTypeName );
 
 		const char* loadFuncStr		= Gen_SSE_GetIntrinsicLoad( m_type );
 		const char* storeFuncStr	= Gen_SSE_GetIntrinsicStore( m_type );
@@ -401,7 +393,7 @@ void GeneratorScalarTest::GenerateTestLerp() {
 		String_Appendf( &m_codeTests, "\t%s threes[4] = { %s, %s, %s, %s };\n", m_memberTypeString, bStr, bStr, bStr, bStr );
 		String_Appendf( &m_codeTests, "\t%s halves[4] = { %s, %s, %s, %s };\n", m_memberTypeString, halfStr, halfStr, halfStr, halfStr );
 		String_Append(  &m_codeTests, "\n" );
-		String_Appendf( &m_codeTests, "\t%s in;\n", inputDataName );
+		String_Appendf( &m_codeTests, "\t%s in;\n", sseTypeName );
 		String_Append(  &m_codeTests, "\n" );
 		String_Appendf( &m_codeTests, "\tin.lhs = %s( ones );\n", loadFuncStr );
 		String_Appendf( &m_codeTests, "\tin.rhs = %s( threes );\n", loadFuncStr );
