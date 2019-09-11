@@ -185,7 +185,9 @@ inline void Gen_SSE_GetIntrinsicArithmetic( const genType_t type, const genOpAri
 			break;
 	}
 
-	snprintf( outString, GEN_STRING_LENGTH_SSE_INTRINSIC, "_mm_%s_%s", opStr, suffix );
+	int length = snprintf( outString, GEN_STRING_LENGTH_SSE_INTRINSIC, "_mm_%s_%s", opStr, suffix );
+
+	assert( length < GEN_STRING_LENGTH_SSE_INTRINSIC && "SSE intrinsic string length constant needs to be increased." );
 }
 
 inline const char* Gen_SSE_GetMacroNameNegate( const genType_t type ) {
