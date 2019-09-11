@@ -616,7 +616,7 @@ void GeneratorVectorTests::GenerateTestNormalized() {
 		String_Appendf( &m_codeTests, "\tnormalize_sse( &in, &in_normalised );\n" );
 		String_Appendf( &m_codeTests, "\tlength_sse( &in_normalised, &results );\n" );
 		String_Append(  &m_codeTests, "\n" );
-		String_Appendf( &m_codeTests, "\t%s normalizeResults[4];\n", m_memberTypeString, m_numComponents );
+		String_Appendf( &m_codeTests, "\t%s normalizeResults[4];\n", m_memberTypeString );
 		String_Appendf( &m_codeTests, "\t%s( normalizeResults, results );\n", storeFuncStr );
 		String_Append(  &m_codeTests, "\n" );
 		String_Appendf( &m_codeTests, "\tconst %s epsilon = %s;\n", m_memberTypeString, epsilonStr );
