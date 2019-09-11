@@ -626,7 +626,7 @@ void Gen_SSE_MatrixArithmeticComponentWise( const genType_t type, const u32 numR
 
 	const char* registerName = Gen_SSE_GetRegisterName( type );
 
-	char intrinsicStr[GEN_STRING_LENGTH_SSE_INPUT_NAME];
+	char intrinsicStr[GEN_STRING_LENGTH_SSE_INTRINSIC];
 	Gen_SSE_GetIntrinsicArithmetic( type, op, intrinsicStr );
 
 	Doc_SSE_MatrixArithmeticComponentWise( sbHeader, fullTypeName, registerName, op );
@@ -762,7 +762,7 @@ void Gen_SSE_MatrixTranslate( const genType_t type, const u32 numRows, const u32
 
 	const char* registerName = Gen_SSE_GetRegisterName( type );
 
-	char addFuncStr[GEN_STRING_LENGTH_SSE_INPUT_NAME];
+	char addFuncStr[GEN_STRING_LENGTH_SSE_INTRINSIC];
 	Gen_SSE_GetIntrinsicArithmetic( type, GEN_OP_ARITHMETIC_ADD, addFuncStr );
 
 	Doc_SSE_MatrixTranslate( sbHeader, fullTypeName, registerName );
@@ -805,10 +805,10 @@ void Gen_SSE_MatrixScale( const genType_t type, const u32 numRows, const u32 num
 	char scaleVecTypeName[GEN_STRING_LENGTH_TYPE_NAME];
 	Gen_GetFullTypeName( type, 1, numScaleComponents, scaleVecTypeName );
 
-	char sseScaleVecName[GEN_STRING_LENGTH_TYPE_NAME];
+	char sseScaleVecName[GEN_STRING_LENGTH_SSE_INPUT_NAME];
 	Gen_SSE_GetFullTypeName( scaleVecTypeName, sseScaleVecName );
 
-	char mulFuncStr[GEN_STRING_LENGTH_SSE_INPUT_NAME];
+	char mulFuncStr[GEN_STRING_LENGTH_SSE_INTRINSIC];
 	Gen_SSE_GetIntrinsicArithmetic( type, GEN_OP_ARITHMETIC_MUL, mulFuncStr );
 
 	Doc_SSE_MatrixScale( sbHeader, fullTypeName );
