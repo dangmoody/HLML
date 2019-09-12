@@ -38,9 +38,9 @@ SOFTWARE.
 #include "double4.h"
 
 // float4
-inline float quaternion_mul( const float4& lhs, const float4& rhs );
+inline float4 quaternion_mul( const float4& lhs, const float4& rhs );
 
-inline float quaternion_mul( const float4& lhs, const float& rhs );
+inline float4 quaternion_mul( const float4& lhs, const float& rhs );
 
 inline float quaternion_magnitude( const float4& quat );
 
@@ -54,9 +54,9 @@ inline float3 quaternion_rotate_axis( const float4& quat, const float angle, con
 
 
 // double4
-inline double quaternion_mul( const double4& lhs, const double4& rhs );
+inline double4 quaternion_mul( const double4& lhs, const double4& rhs );
 
-inline double quaternion_mul( const double4& lhs, const double& rhs );
+inline double4 quaternion_mul( const double4& lhs, const double& rhs );
 
 inline double quaternion_magnitude( const double4& quat );
 

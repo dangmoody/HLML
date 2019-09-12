@@ -63,16 +63,16 @@ void Gen_QuaternionMultiply(const genType_t type, stringBuilder_t* sbHeader, str
 	char typeName[GEN_STRING_LENGTH_TYPE_NAME];
 	Gen_GetFullTypeName(type, 1, 1, typeName);
 
-	String_Appendf(sbHeader, "inline %s quaternion_mul( const %s4& lhs, const %s4& rhs );\n", returnTypeString, typeName, typeName);
+	String_Appendf(sbHeader, "inline %s4 quaternion_mul( const %s4& lhs, const %s4& rhs );\n", returnTypeString, typeName, typeName);
 	String_Append(sbHeader, "\n");
 
-	String_Appendf(sbInl, "%s quaternion_mul( const %s4& lhs, const %s4& rhs )\n", returnTypeString, typeName, typeName);
+	String_Appendf(sbInl, "%s4 quaternion_mul( const %s4& lhs, const %s4& rhs )\n", returnTypeString, typeName, typeName);
 	String_Append(sbInl, "{\n");
 
-	String_Appendf(sbInl, "\t%s scalar = lhs.w * rhs.w - dot(%s3(lhs), %s3(rhs));\n", typeName, typeName, typeName);
-	String_Appendf(sbInl, "\t%s3 imaginary = %s3(rhs) * lhs.w + %s3(lhs) * rhs.w + cross(%s3(lhs), %s3(rhs));\n", typeName, typeName, typeName, typeName, typeName);
+	String_Appendf(sbInl, "\t%s scalar = lhs.w * rhs.w - dot( %s3( lhs ), %s3( rhs ) );\n", typeName, typeName, typeName);
+	String_Appendf(sbInl, "\t%s3 imaginary = %s3( rhs ) * lhs.w + %s3( lhs ) * rhs.w + cross( %s3( lhs ), %s3( rhs ) );\n", typeName, typeName, typeName, typeName, typeName);
 
-	String_Appendf(sbInl, "\treturn %s4(imaginary.x, imaginary.y, imaginary.z, scalar.w);\n", typeName);
+	String_Appendf(sbInl, "\treturn %s4( imaginary.x, imaginary.y, imaginary.z, scalar.w );\n", typeName);
 
 	String_Append(sbInl, "}\n");
 	String_Append(sbInl, "\n");
@@ -88,16 +88,16 @@ void Gen_QuaternionMultiplyScalar(const genType_t type, stringBuilder_t* sbHeade
 	char typeName[GEN_STRING_LENGTH_TYPE_NAME];
 	Gen_GetFullTypeName(type, 1, 1, typeName);
 
-	String_Appendf(sbHeader, "inline %s quaternion_mul( const %s4& lhs, const %s& rhs );\n", returnTypeString, typeName, typeName);
+	String_Appendf(sbHeader, "inline %s4 quaternion_mul( const %s4& lhs, const %s& rhs );\n", returnTypeString, typeName, typeName);
 	String_Append(sbHeader, "\n");
 
-	String_Appendf(sbInl, "%s quaternion_mul( const %s4& lhs, const %s& rhs )\n", returnTypeString, typeName, typeName);
+	String_Appendf(sbInl, "%s4 quaternion_mul( const %s4& lhs, const %s& rhs )\n", returnTypeString, typeName, typeName);
 	String_Append(sbInl, "{\n");
 
 	String_Appendf(sbInl, "\t%s scalar = lhs.w * rhs;\n", typeName);
-	String_Appendf(sbInl, "\t%s3 imaginary = %s3(lhs) * rhs;\n", typeName, typeName);
+	String_Appendf(sbInl, "\t%s3 imaginary = %s3( lhs ) * rhs;\n", typeName, typeName);
 
-	String_Appendf(sbInl, "\treturn %s4(imaginary.x, imaginary.y, imaginary.z, scalar.w);\n", typeName);
+	String_Appendf(sbInl, "\treturn %s4( imaginary.x, imaginary.y, imaginary.z, scalar.w );\n", typeName);
 
 	String_Append(sbInl, "}\n");
 	String_Append(sbInl, "\n");
@@ -119,7 +119,7 @@ void Gen_QuaternionMagnitude(const genType_t type, stringBuilder_t* sbHeader, st
 	String_Appendf(sbInl, "%s quaternion_magnitude( const %s4& quat )\n", returnTypeString, typeName);
 	String_Append(sbInl, "{\n");
 
-	String_Appendf(sbInl, "\treturn sqrt(", typeName);
+	String_Appendf(sbInl, "\treturn sqrt( ", typeName);
 
 	const int numComponents = 4;
 	for (u32 i = 0; i < numComponents; i++) {
@@ -132,7 +132,7 @@ void Gen_QuaternionMagnitude(const genType_t type, stringBuilder_t* sbHeader, st
 		}
 	}
 
-	String_Append(sbInl, ");\n");
+	String_Append(sbInl, " );\n");
 
 	String_Append(sbInl, "}\n");
 	String_Append(sbInl, "\n");
@@ -156,15 +156,15 @@ void Gen_QuaternionNormalize(const genType_t type, stringBuilder_t* sbHeader, st
 
 	String_Appendf(sbInl, "\t%s3 normV;\n", typeName);
 	String_Appendf(sbInl, "\t%s normS;\n", typeName);
-	String_Appendf(sbInl, "\t%s mag = quaternion_magnitude(quat);\n", typeName);
-	String_Append(sbInl, "\tif (mag != 0)\n");
+	String_Appendf(sbInl, "\t%s mag = quaternion_magnitude( quat );\n", typeName);
+	String_Append(sbInl, "\tif ( mag != 0 )\n");
 	String_Append(sbInl, "\t{\n");
 	String_Appendf(sbInl, "\t\t%s magInverse = 1.0f / mag;\n", typeName);
 	String_Appendf(sbInl, "\t\t%s3 normV *= magInverse;\n", typeName);
 	String_Appendf(sbInl, "\t\t%s normS *= magInverse;\n", typeName);
 	String_Append(sbInl, "\t}\n");
 
-	String_Appendf(sbInl, "\treturn %s4(normV.x, normV.y, normV.z, normS);\n", typeName);
+	String_Appendf(sbInl, "\treturn %s4( normV.x, normV.y, normV.z, normS );\n", typeName);
 
 	String_Append(sbInl, "}\n");
 	String_Append(sbInl, "\n");
