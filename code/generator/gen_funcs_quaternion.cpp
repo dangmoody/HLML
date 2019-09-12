@@ -294,3 +294,52 @@ void Gen_QuaternionLerp(const genType_t type, stringBuilder_t* sbHeader, stringB
 	String_Append(sbInl, "}\n");
 	String_Append(sbInl, "\n");
 }
+
+void Gen_QuaternionSlerp(const genType_t type, stringBuilder_t* sbHeader, stringBuilder_t* sbInl) {
+	if (Gen_TypeIsFloatingPoint(type) == false) {
+		return;
+	}
+
+	const char* returnTypeString = Gen_GetMemberTypeString(type);
+	char typeName[GEN_STRING_LENGTH_TYPE_NAME];
+	Gen_GetFullTypeName(type, 1, 1, typeName);
+
+	String_Appendf(sbHeader, "inline %s4 quaternion_slerp( const %s4& lhs, const %s4 rhs, const %s percent );\n", returnTypeString, typeName, typeName, typeName);
+	String_Append(sbHeader, "\n");
+
+	String_Appendf(sbInl, "%s4 quaternion_slerp( const %s4& lhs, const %s4 rhs, const %s percent )\n", returnTypeString, typeName, typeName, typeName);
+	String_Append(sbInl, "{\n");
+
+	String_Appendf(sbInl, "\t%s4 quat;\n", typeName, typeName);
+	String_Appendf(sbInl, "\t%s t = 1 - percent;\n", typeName);
+
+	String_Appendf(sbInl, "\t%s theta = acos( ", typeName);
+
+	const int numComponents = GEN_COMPONENT_COUNT_MAX;
+	for (u32 i = 0; i < numComponents; i++) {
+		const char componentName = GEN_COMPONENT_NAMES_VECTOR[i];
+
+		String_Appendf(sbInl, "( lhs.%c * rhs.%c )", componentName, componentName);
+
+		if (i != numComponents - 1) {
+			String_Append(sbInl, " + ");
+		}
+	}
+
+	String_Append(sbInl, " );\n");
+	String_Appendf(sbInl, "\t%s sn = sin( theta );\n", typeName);
+
+	String_Appendf(sbInl, "\t%s Wa = sin( t * theta ) / sn;\n", typeName);
+	String_Appendf(sbInl, "\t%s Wb = sin( percent * theta ) / sn;\n", typeName);
+
+	for (u32 i = 0; i < numComponents; i++) {
+		const char componentName = GEN_COMPONENT_NAMES_VECTOR[i];
+
+		String_Appendf(sbInl, "\tquat.%c = Wa * rhs.%c + Wb * lhs.%c;\n", componentName, componentName, componentName);
+	}
+
+	String_Appendf(sbInl, "\treturn quaternion_normalize( quat );\n", typeName);
+
+	String_Append(sbInl, "}\n");
+	String_Append(sbInl, "\n");
+}

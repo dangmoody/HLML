@@ -402,6 +402,7 @@ static bool32 GenerateFunctionsQuaternion( void ) {
 		Gen_QuaternionInverse(type, &contentHeader, &contentInl);
 		Gen_QuaternionRotationAxis(type, &contentHeader, &contentInl);
 		Gen_QuaternionLerp(type, &contentHeader, &contentInl);
+		Gen_QuaternionSlerp(type, &contentHeader, &contentInl);
 
 		String_Append(&contentHeader, "\n");
 		String_Append(&contentInl, "\n");
