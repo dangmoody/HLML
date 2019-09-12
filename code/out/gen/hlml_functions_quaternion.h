@@ -52,6 +52,8 @@ inline float4 quaternion_inverse( const float4& quat );
 
 inline float3 quaternion_rotate_axis( const float4& quat, const float angle, const float3 axis );
 
+inline float4 quaternion_lerp( const float4& lhs, const float4 rhs, const float percent );
+
 
 // double4
 inline double4 quaternion_mul( const double4& lhs, const double4& rhs );
@@ -67,6 +69,8 @@ inline double4 quaternion_conjugate( const double4& quat );
 inline double4 quaternion_inverse( const double4& quat );
 
 inline double3 quaternion_rotate_axis( const double4& quat, const double angle, const double3 axis );
+
+inline double4 quaternion_lerp( const double4& lhs, const double4 rhs, const double percent );
 
 
 #include "hlml_functions_quaternion.inl"

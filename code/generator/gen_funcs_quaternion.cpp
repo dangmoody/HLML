@@ -264,3 +264,33 @@ void Gen_QuaternionRotationAxis(const genType_t type, stringBuilder_t* sbHeader,
 	String_Append(sbInl, "}\n");
 	String_Append(sbInl, "\n");
 }
+
+void Gen_QuaternionLerp(const genType_t type, stringBuilder_t* sbHeader, stringBuilder_t* sbInl) {
+	if (Gen_TypeIsFloatingPoint(type) == false) {
+		return;
+	}
+
+	const char* returnTypeString = Gen_GetMemberTypeString(type);
+	char typeName[GEN_STRING_LENGTH_TYPE_NAME];
+	Gen_GetFullTypeName(type, 1, 1, typeName);
+
+	String_Appendf(sbHeader, "inline %s4 quaternion_lerp( const %s4& lhs, const %s4 rhs, const %s percent );\n", returnTypeString, typeName, typeName, typeName);
+	String_Append(sbHeader, "\n");
+
+	String_Appendf(sbInl, "%s4 quaternion_lerp( const %s4& lhs, const %s4 rhs, const %s percent )\n", returnTypeString, typeName, typeName, typeName);
+	String_Append(sbInl, "{\n");
+
+	String_Appendf(sbInl, "\t%s4 quat;\n", typeName, typeName);
+	String_Appendf(sbInl, "\t%s t = 1 - percent;\n", typeName);
+	
+	for (u32 i = 0; i < GEN_COMPONENT_COUNT_MAX; i++) {
+		const char componentName = GEN_COMPONENT_NAMES_VECTOR[i];
+
+		String_Appendf(sbInl, "\tquat.%c = t * lhs.%c + percent * rhs.%c;\n", componentName, componentName, componentName);
+	}
+
+	String_Appendf(sbInl, "\treturn quaternion_normalize( quat );\n", typeName);
+
+	String_Append(sbInl, "}\n");
+	String_Append(sbInl, "\n");
+}

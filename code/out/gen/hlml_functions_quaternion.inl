@@ -102,6 +102,17 @@ float3 quaternion_rotate_axis( const float4& quat, const float angle, const floa
 	return float3( rotatedVector.x, rotatedVector.y, rotatedVector.z );
 }
 
+float4 quaternion_lerp( const float4& lhs, const float4 rhs, const float percent )
+{
+	float4 quat;
+	float t = 1 - percent;
+	quat.x = t * lhs.x + percent * rhs.x;
+	quat.y = t * lhs.y + percent * rhs.y;
+	quat.z = t * lhs.z + percent * rhs.z;
+	quat.w = t * lhs.w + percent * rhs.w;
+	return quaternion_normalize( quat );
+}
+
 
 // double4
 double4 quaternion_mul( const double4& lhs, const double4& rhs )
@@ -168,6 +179,17 @@ double3 quaternion_rotate_axis( const double4& quat, const double angle, const d
 	double4 inverseQuat = quaternion_inverse( unitNormQuat );
 	double4 rotatedVector = unitNormQuat * pureQuat * inverseQuat;
 	return double3( rotatedVector.x, rotatedVector.y, rotatedVector.z );
+}
+
+double4 quaternion_lerp( const double4& lhs, const double4 rhs, const double percent )
+{
+	double4 quat;
+	double t = 1 - percent;
+	quat.x = t * lhs.x + percent * rhs.x;
+	quat.y = t * lhs.y + percent * rhs.y;
+	quat.z = t * lhs.z + percent * rhs.z;
+	quat.w = t * lhs.w + percent * rhs.w;
+	return quaternion_normalize( quat );
 }
 
 

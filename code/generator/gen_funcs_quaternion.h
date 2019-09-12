@@ -35,3 +35,4 @@ extern void		Gen_QuaternionConjugate(const genType_t type, stringBuilder_t* sbHe
 extern void		Gen_QuaternionInverse(const genType_t type, stringBuilder_t* sbHeader, stringBuilder_t* sbInl);
 
 extern void		Gen_QuaternionRotationAxis(const genType_t type, stringBuilder_t* sbHeader, stringBuilder_t* sbInl);
+extern void		Gen_QuaternionLerp(const genType_t type, stringBuilder_t* sbHeader, stringBuilder_t* sbInl);
