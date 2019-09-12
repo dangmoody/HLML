@@ -362,7 +362,7 @@ static bool32 GenerateFunctionsQuaternion( void ) {
 		"#pragma once\n"
 		"\n");
 
-	stringBuilder_t contentInl = String_Create(4 * KB_TO_BYTES);
+	stringBuilder_t contentInl = String_Create(8 * KB_TO_BYTES);
 	String_Append(&contentInl, GEN_FILE_HEADER);
 	String_Append(&contentInl, "#include \"" GEN_FILENAME_FUNCTIONS_VECTOR ".h\"\n");
 	String_Append(&contentInl, "#include \"" GEN_FILENAME_OPERATORS_MATRIX ".h\"\n");
@@ -399,6 +399,7 @@ static bool32 GenerateFunctionsQuaternion( void ) {
 		Gen_QuaternionMagnitude(type, &contentHeader, &contentInl);
 		Gen_QuaternionNormalize(type, &contentHeader, &contentInl);
 		Gen_QuaternionConjugate(type, &contentHeader, &contentInl);
+		Gen_QuaternionInverse(type, &contentHeader, &contentInl);
 
 		String_Append(&contentHeader, "\n");
 		String_Append(&contentInl, "\n");

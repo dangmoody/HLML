@@ -74,6 +74,17 @@ float4 quaternion_conjugate( const float4& quat )
 	return float4( ( quat.x * ( -1 ) ), ( quat.y * ( -1 ) ), ( quat.z * ( -1 ) ), quat.w );
 }
 
+float4 quaternion_inverse( const float4& quat )
+{
+	float magnitude = quaternion_magnitude( quat );
+	magnitude *= magnitude;
+	magnitude = 1 / magnitude;
+	float4 conjugate = quaternion_conjugate( quat );
+	float scalar = conjugate.w * magnitude;
+	float3 imaginary = float3( conjugate.x * magnitude, conjugate.y * magnitude, conjugate.z * magnitude );
+	return float4( imaginary.x, imaginary.y, imaginary.z, scalar);
+}
+
 
 // double4x4
 double quaternion_mul( const double4& lhs, const double4& rhs )
@@ -112,6 +123,17 @@ double4 quaternion_normalize( const double4& quat )
 double4 quaternion_conjugate( const double4& quat )
 {
 	return double4( ( quat.x * ( -1 ) ), ( quat.y * ( -1 ) ), ( quat.z * ( -1 ) ), quat.w );
+}
+
+double4 quaternion_inverse( const double4& quat )
+{
+	double magnitude = quaternion_magnitude( quat );
+	magnitude *= magnitude;
+	magnitude = 1 / magnitude;
+	double4 conjugate = quaternion_conjugate( quat );
+	double scalar = conjugate.w * magnitude;
+	double3 imaginary = double3( conjugate.x * magnitude, conjugate.y * magnitude, conjugate.z * magnitude );
+	return double4( imaginary.x, imaginary.y, imaginary.z, scalar);
 }
 
 
