@@ -356,13 +356,13 @@ static bool32 GenerateFunctionsQuaternion( void ) {
 	char filePathInl[64] = { 0 };
 	snprintf(filePathInl, 64, "%s%s.inl", GEN_OUT_GEN_FOLDER_PATH, GEN_FILENAME_FUNCTIONS_QUATERNION);
 
-	stringBuilder_t contentHeader = String_Create(128 * KB_TO_BYTES);
+	stringBuilder_t contentHeader = String_Create(4 * KB_TO_BYTES);
 	String_Append(&contentHeader, GEN_FILE_HEADER);
 	String_Append(&contentHeader,
 		"#pragma once\n"
 		"\n");
 
-	stringBuilder_t contentInl = String_Create(128 * KB_TO_BYTES);
+	stringBuilder_t contentInl = String_Create(4 * KB_TO_BYTES);
 	String_Append(&contentInl, GEN_FILE_HEADER);
 	String_Append(&contentInl, "#include \"" GEN_FILENAME_FUNCTIONS_VECTOR ".h\"\n");
 	String_Append(&contentInl, "#include \"" GEN_FILENAME_OPERATORS_MATRIX ".h\"\n");
