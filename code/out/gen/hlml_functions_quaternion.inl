@@ -35,7 +35,7 @@ SOFTWARE.
 #include "hlml_functions_vector.h"
 #include "hlml_operators_matrix.h"
 
-// float4x4
+// float4
 float quaternion_mul( const float4& lhs, const float4& rhs )
 {
 	float scalar = lhs.w * rhs.w - dot(float3(lhs), float3(rhs));
@@ -86,7 +86,7 @@ float4 quaternion_inverse( const float4& quat )
 }
 
 
-// double4x4
+// double4
 double quaternion_mul( const double4& lhs, const double4& rhs )
 {
 	double scalar = lhs.w * rhs.w - dot(double3(lhs), double3(rhs));

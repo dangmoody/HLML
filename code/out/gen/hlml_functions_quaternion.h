@@ -37,7 +37,7 @@ SOFTWARE.
 #include "float4.h"
 #include "double4.h"
 
-// float4x4
+// float4
 inline float quaternion_mul( const float4& lhs, const float4& rhs );
 
 inline float quaternion_mul( const float4& lhs, const float& rhs );
@@ -51,7 +51,7 @@ inline float4 quaternion_conjugate( const float4& quat );
 inline float4 quaternion_inverse( const float4& quat );
 
 
-// double4x4
+// double4
 inline double quaternion_mul( const double4& lhs, const double4& rhs );
 
 inline double quaternion_mul( const double4& lhs, const double& rhs );

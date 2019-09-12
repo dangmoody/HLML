@@ -387,7 +387,7 @@ static bool32 GenerateFunctionsQuaternion( void ) {
 		}
 
 		char fullTypeName[GEN_STRING_LENGTH_TYPE_NAME];
-		Gen_GetFullTypeName(type, 4, 4, fullTypeName);
+		Gen_GetFullTypeName(type, 1, 4, fullTypeName);
 
 		printf("Basic functions %s...", fullTypeName);
 
