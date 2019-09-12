@@ -82,7 +82,24 @@ float4 quaternion_inverse( const float4& quat )
 	float4 conjugate = quaternion_conjugate( quat );
 	float scalar = conjugate.w * magnitude;
 	float3 imaginary = float3( conjugate.x * magnitude, conjugate.y * magnitude, conjugate.z * magnitude );
-	return float4( imaginary.x, imaginary.y, imaginary.z, scalar);
+	return float4( imaginary.x, imaginary.y, imaginary.z, scalar );
+}
+
+float3 quaternion_rotate_axis( const float4& quat, const float angle, const float3 axis )
+{
+	float4 pureQuat = float4( quat.x, quat.y, quat.z, 0 );
+	float3 normalizedAxis = normalize( axis );
+	float4 realQuat = float4( normalizedAxis.x, normalizedAxis.y, normalizedAxis.z, axis );
+
+	float3 imaginary = float3( realQuat.x, realQuat.y, realQuat.z );
+	float3 normalizedImaginary = normalize( imaginary );
+	float unitNormScalar = cosf( realQuat.w * 0.5 );
+	float3 unitNormImaginary = normalizedImaginary * sinf( quat.w * 0.5 );
+	float4 unitNormQuat = float4( unitNormImaginary.x, unitNormImaginary.y, unitNormImaginary.z, unitNormScalar );
+
+	float4 inverseQuat = quaternion_inverse( unitNormQuat );
+	float4 rotatedVector = unitNormQuat * pureQuat * inverseQuat;
+	return float3( rotatedVector.x, rotatedVector.y, rotatedVector.z );
 }
 
 
@@ -133,7 +150,24 @@ double4 quaternion_inverse( const double4& quat )
 	double4 conjugate = quaternion_conjugate( quat );
 	double scalar = conjugate.w * magnitude;
 	double3 imaginary = double3( conjugate.x * magnitude, conjugate.y * magnitude, conjugate.z * magnitude );
-	return double4( imaginary.x, imaginary.y, imaginary.z, scalar);
+	return double4( imaginary.x, imaginary.y, imaginary.z, scalar );
+}
+
+double3 quaternion_rotate_axis( const double4& quat, const double angle, const double3 axis )
+{
+	double4 pureQuat = double4( quat.x, quat.y, quat.z, 0 );
+	double3 normalizedAxis = normalize( axis );
+	double4 realQuat = double4( normalizedAxis.x, normalizedAxis.y, normalizedAxis.z, axis );
+
+	double3 imaginary = double3( realQuat.x, realQuat.y, realQuat.z );
+	double3 normalizedImaginary = normalize( imaginary );
+	double unitNormScalar = cosf( realQuat.w * 0.5 );
+	double3 unitNormImaginary = normalizedImaginary * sinf( quat.w * 0.5 );
+	double4 unitNormQuat = double4( unitNormImaginary.x, unitNormImaginary.y, unitNormImaginary.z, unitNormScalar );
+
+	double4 inverseQuat = quaternion_inverse( unitNormQuat );
+	double4 rotatedVector = unitNormQuat * pureQuat * inverseQuat;
+	return double3( rotatedVector.x, rotatedVector.y, rotatedVector.z );
 }
 
 

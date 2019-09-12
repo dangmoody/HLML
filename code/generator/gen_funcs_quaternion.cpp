@@ -223,7 +223,43 @@ void Gen_QuaternionInverse(const genType_t type, stringBuilder_t* sbHeader, stri
 	String_Appendf(sbInl, "\t%s4 conjugate = quaternion_conjugate( quat );\n", typeName);
 	String_Appendf(sbInl, "\t%s scalar = conjugate.w * magnitude;\n", typeName);
 	String_Appendf(sbInl, "\t%s3 imaginary = %s3( conjugate.x * magnitude, conjugate.y * magnitude, conjugate.z * magnitude );\n", typeName, typeName);
-	String_Appendf(sbInl, "\treturn %s4( imaginary.x, imaginary.y, imaginary.z, scalar);\n", typeName);
+	String_Appendf(sbInl, "\treturn %s4( imaginary.x, imaginary.y, imaginary.z, scalar );\n", typeName);
+
+	String_Append(sbInl, "}\n");
+	String_Append(sbInl, "\n");
+}
+
+void Gen_QuaternionRotationAxis(const genType_t type, stringBuilder_t* sbHeader, stringBuilder_t* sbInl) {
+	if (Gen_TypeIsFloatingPoint(type) == false) {
+		return;
+	}
+
+	const char* returnTypeString = Gen_GetMemberTypeString(type);
+	char typeName[GEN_STRING_LENGTH_TYPE_NAME];
+	Gen_GetFullTypeName(type, 1, 1, typeName);
+
+	String_Appendf(sbHeader, "inline %s3 quaternion_rotate_axis( const %s4& quat, const %s angle, const %s3 axis );\n", returnTypeString, typeName, typeName, typeName);
+	String_Append(sbHeader, "\n");
+
+	String_Appendf(sbInl, "%s3 quaternion_rotate_axis( const %s4& quat, const %s angle, const %s3 axis )\n", returnTypeString, typeName, typeName, typeName);
+	String_Append(sbInl, "{\n");
+
+	String_Appendf(sbInl, "\t%s4 pureQuat = %s4( quat.x, quat.y, quat.z, 0 );\n", typeName, typeName);
+	String_Appendf(sbInl, "\t%s3 normalizedAxis = normalize( axis );\n", typeName);
+	String_Appendf(sbInl, "\t%s4 realQuat = %s4( normalizedAxis.x, normalizedAxis.y, normalizedAxis.z, axis );\n", typeName, typeName);
+	String_Append(sbInl, "\n");
+
+	// Converts the quaternion into its unit-norm format
+	String_Appendf(sbInl, "\t%s3 imaginary = %s3( realQuat.x, realQuat.y, realQuat.z );\n", typeName, typeName);
+	String_Appendf(sbInl, "\t%s3 normalizedImaginary = normalize( imaginary );\n", typeName);
+	String_Appendf(sbInl, "\t%s unitNormScalar = cosf( realQuat.w * 0.5 );\n", typeName);
+	String_Appendf(sbInl, "\t%s3 unitNormImaginary = normalizedImaginary * sinf( quat.w * 0.5 );\n", typeName);
+	String_Appendf(sbInl, "\t%s4 unitNormQuat = %s4( unitNormImaginary.x, unitNormImaginary.y, unitNormImaginary.z, unitNormScalar );\n", typeName, typeName);
+	String_Append(sbInl, "\n");
+	
+	String_Appendf(sbInl, "\t%s4 inverseQuat = quaternion_inverse( unitNormQuat );\n", typeName);
+	String_Appendf(sbInl, "\t%s4 rotatedVector = unitNormQuat * pureQuat * inverseQuat;\n", typeName);
+	String_Appendf(sbInl, "\treturn %s3( rotatedVector.x, rotatedVector.y, rotatedVector.z );\n", typeName);
 
 	String_Append(sbInl, "}\n");
 	String_Append(sbInl, "\n");
