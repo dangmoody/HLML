@@ -19,11 +19,9 @@ In the above example, each vector holds an X, Y, Z, and W component.
 
 To call the SSE version of a HLML function, you'll need to do the following things:
 
-1. Create and fill all data of the required input struct.
-	* All input structs follow the same naming convention: `sse_input_<function>_<vector>_t` (where `<function>` is something like `dot` and `<vector>` is something like `float4`).
-2. Create, or have ready, an SSE register to store the output.
-	* Some functions, like `normalize_sse`, output to an array of registers because the result of a `normalize` function is a vector.
-2. Call the function of the same name with "`_sse`" appended on the end (For example: The SSE version `dot` in HLML would be `dot_sse`).
+1. Rename the vector/matrix type to `<type>_sse_t` where `<type>` is, for example, `float4`.
+2. Replace each component for a SIMD register where each register holds 4 of each component (for example: element 0 of a `float4_sse_t` would hold 4 X components, element 1 holds 4 Y components, and so on).
+3. Call the function of the same name with "`_sse`" appended on the end (For example: The SSE version `dot` in HLML would be `dot_sse`).
 
 Therefore an example of doing the dot product via SSE in HLML looks like this (for X, Y, Z, and W components):
 ```C
@@ -50,28 +48,28 @@ float componentsRHS[4][4] =
 
 // here you fill the registers
 // index 0 corresponds to X, index 1 corresponds to Y, etc.
-sse_input_dot_float4_t in;
+float4_sse_t a;
+a.comp[0] = _mm_load_ps( componentsLHS[0] );	// x
+a.comp[1] = _mm_load_ps( componentsLHS[1] );	// y
+a.comp[2] = _mm_load_ps( componentsLHS[2] );	// z
+a.comp[3] = _mm_load_ps( componentsLHS[3] );	// w
 
-in.lhs[0] = _mm_load_ps( componentsLHS[0] );	// x
-in.lhs[1] = _mm_load_ps( componentsLHS[1] );	// y
-in.lhs[2] = _mm_load_ps( componentsLHS[2] );	// z
-in.lhs[3] = _mm_load_ps( componentsLHS[3] );	// w
-
-in.rhs[0] = _mm_load_ps( componentsRHS[0] );	// x
-in.rhs[1] = _mm_load_ps( componentsRHS[1] );	// y
-in.rhs[2] = _mm_load_ps( componentsRHS[2] );	// z
-in.rhs[3] = _mm_load_ps( componentsRHS[3] );	// w
+float4_sse_t b;
+b.comp[0] = _mm_load_ps( componentsRHS[0] );	// x
+b.comp[1] = _mm_load_ps( componentsRHS[1] );	// y
+b.comp[2] = _mm_load_ps( componentsRHS[2] );	// z
+b.comp[3] = _mm_load_ps( componentsRHS[3] );	// w
 
 __m128 results;
-dot_sse( &in, &results );
+dot_sse( &a, &b, &results );
 ```
 
-In the above example, all the X components (element 0) of `in.lhs` will get multiplied by all the X components `in.rhs` and so on.  The resulting mutliplications will then get added together with each result put into each register.
+In the above example, all the X components (element 0) of `a` will get multiplied by all the X components in `b` and so on.  The resulting mutliplications will then get added together with each result put into each register.
 
 Currently all HLML SSE functions work in chunks of 4 for each component (that is: each component array holds 4 components at a time).
 
-If you wanted to do the same for, say, just X and Y components, then all you'd need to do is remove the the Z and W component arrays, and change the input struct name to `sse_input_dot_float2_t`.
+If you wanted to do the same for, say, just X and Y components, then all you'd need to do is remove the the Z and W component arrays, and change the input struct name to `float2_sse_t`.
 
-This naming convention repeats across all SSE functions in HLML.  It is written this way so that programmers can figure out the names of the input struct and function call they need without having to look it up constantly (however you can always find everything in your locally generated documentation).
+This naming convention repeats across all SIMD functions in HLML.  It is written this way so that programmers can figure out the names of the input struct and function call they need without having to look it up constantly (however you can always find everything in your locally generated documentation).
 
 For a `float4` HLML's `dot_sse` function does 4 multiplications and 3 additions and puts through 32 floats, which is 7 operations total on 128 bytes at a time, compared to the scalar version which does 7 arithmetic operations on 8 floats (32 bytes) at a time.
