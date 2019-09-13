@@ -953,13 +953,13 @@ int main( int argc, char** argv ) {
 
 	Time_Init();
 
-	float64 start = Time_NowMS();
-
 	FAIL_IF( !FS_CreateFolder( GEN_OUT_GEN_FOLDER_PATH ), "Failed to create folder \"" GEN_OUT_GEN_FOLDER_PATH "\".\n" );
 	FAIL_IF( !FS_CreateFolder( GEN_TESTS_FOLDER_PATH ),   "Failed to create folder \"" GEN_TESTS_FOLDER_PATH "\".\n" );
 
+	float64 start = Time_NowMS();
+
 	printf( "======= Generating core headers. =======\n" );
-	FAIL_IF( !GenerateTypeHeader(),   "Failed generating \"" GEN_HEADER_TYPES "\".\n" );
+	FAIL_IF( !GenerateTypeHeader(), "Failed generating \"" GEN_HEADER_TYPES "\".\n" );
 	printf( "======= Done. =======\n\n" );
 
 	printf( "======= Generating types. =======\n" );
