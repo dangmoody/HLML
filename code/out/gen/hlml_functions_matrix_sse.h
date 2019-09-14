@@ -89,6 +89,8 @@ inline void comp_mul_sse( const float2x2_sse_t* lhs, const float2x2_sse_t* rhs, 
 /// \brief Stores a matrix that is the result of the component-wise division between the lhs and rhs __m128 registers of the input.
 inline void comp_div_sse( const float2x2_sse_t* lhs, const float2x2_sse_t* rhs, float2x2_sse_t* out );
 
+/// \relates float2x2
+/// \brief Performs a matrix-multiplication of 2 matrices of __m128 registers.
 inline void mul_sse( const float2x2_sse_t* lhs, const float2x2_sse_t* rhs, float2x2_sse_t* out );
 
 
@@ -122,6 +124,8 @@ inline void comp_mul_sse( const float2x3_sse_t* lhs, const float2x3_sse_t* rhs, 
 /// \brief Stores a matrix that is the result of the component-wise division between the lhs and rhs __m128 registers of the input.
 inline void comp_div_sse( const float2x3_sse_t* lhs, const float2x3_sse_t* rhs, float2x3_sse_t* out );
 
+/// \relates float2x3
+/// \brief Performs a matrix-multiplication of 2 matrices of __m128 registers.
 inline void mul_sse( const float2x3_sse_t* lhs, const float3x2_sse_t* rhs, float2x2_sse_t* out );
 
 
@@ -155,6 +159,8 @@ inline void comp_mul_sse( const float2x4_sse_t* lhs, const float2x4_sse_t* rhs, 
 /// \brief Stores a matrix that is the result of the component-wise division between the lhs and rhs __m128 registers of the input.
 inline void comp_div_sse( const float2x4_sse_t* lhs, const float2x4_sse_t* rhs, float2x4_sse_t* out );
 
+/// \relates float2x4
+/// \brief Performs a matrix-multiplication of 2 matrices of __m128 registers.
 inline void mul_sse( const float2x4_sse_t* lhs, const float4x2_sse_t* rhs, float2x2_sse_t* out );
 
 
@@ -188,6 +194,8 @@ inline void comp_mul_sse( const float3x2_sse_t* lhs, const float3x2_sse_t* rhs, 
 /// \brief Stores a matrix that is the result of the component-wise division between the lhs and rhs __m128 registers of the input.
 inline void comp_div_sse( const float3x2_sse_t* lhs, const float3x2_sse_t* rhs, float3x2_sse_t* out );
 
+/// \relates float3x2
+/// \brief Performs a matrix-multiplication of 2 matrices of __m128 registers.
 inline void mul_sse( const float3x2_sse_t* lhs, const float2x3_sse_t* rhs, float3x3_sse_t* out );
 
 
@@ -229,6 +237,8 @@ inline void comp_mul_sse( const float3x3_sse_t* lhs, const float3x3_sse_t* rhs, 
 /// \brief Stores a matrix that is the result of the component-wise division between the lhs and rhs __m128 registers of the input.
 inline void comp_div_sse( const float3x3_sse_t* lhs, const float3x3_sse_t* rhs, float3x3_sse_t* out );
 
+/// \relates float3x3
+/// \brief Performs a matrix-multiplication of 2 matrices of __m128 registers.
 inline void mul_sse( const float3x3_sse_t* lhs, const float3x3_sse_t* rhs, float3x3_sse_t* out );
 
 /// \relates float3x3
@@ -270,6 +280,8 @@ inline void comp_mul_sse( const float3x4_sse_t* lhs, const float3x4_sse_t* rhs, 
 /// \brief Stores a matrix that is the result of the component-wise division between the lhs and rhs __m128 registers of the input.
 inline void comp_div_sse( const float3x4_sse_t* lhs, const float3x4_sse_t* rhs, float3x4_sse_t* out );
 
+/// \relates float3x4
+/// \brief Performs a matrix-multiplication of 2 matrices of __m128 registers.
 inline void mul_sse( const float3x4_sse_t* lhs, const float4x3_sse_t* rhs, float3x3_sse_t* out );
 
 
@@ -303,6 +315,8 @@ inline void comp_mul_sse( const float4x2_sse_t* lhs, const float4x2_sse_t* rhs, 
 /// \brief Stores a matrix that is the result of the component-wise division between the lhs and rhs __m128 registers of the input.
 inline void comp_div_sse( const float4x2_sse_t* lhs, const float4x2_sse_t* rhs, float4x2_sse_t* out );
 
+/// \relates float4x2
+/// \brief Performs a matrix-multiplication of 2 matrices of __m128 registers.
 inline void mul_sse( const float4x2_sse_t* lhs, const float2x4_sse_t* rhs, float4x4_sse_t* out );
 
 
@@ -336,6 +350,8 @@ inline void comp_mul_sse( const float4x3_sse_t* lhs, const float4x3_sse_t* rhs, 
 /// \brief Stores a matrix that is the result of the component-wise division between the lhs and rhs __m128 registers of the input.
 inline void comp_div_sse( const float4x3_sse_t* lhs, const float4x3_sse_t* rhs, float4x3_sse_t* out );
 
+/// \relates float4x3
+/// \brief Performs a matrix-multiplication of 2 matrices of __m128 registers.
 inline void mul_sse( const float4x3_sse_t* lhs, const float3x4_sse_t* rhs, float4x4_sse_t* out );
 
 
@@ -377,6 +393,8 @@ inline void comp_mul_sse( const float4x4_sse_t* lhs, const float4x4_sse_t* rhs, 
 /// \brief Stores a matrix that is the result of the component-wise division between the lhs and rhs __m128 registers of the input.
 inline void comp_div_sse( const float4x4_sse_t* lhs, const float4x4_sse_t* rhs, float4x4_sse_t* out );
 
+/// \relates float4x4
+/// \brief Performs a matrix-multiplication of 2 matrices of __m128 registers.
 inline void mul_sse( const float4x4_sse_t* lhs, const float4x4_sse_t* rhs, float4x4_sse_t* out );
 
 /// \relates float4x4

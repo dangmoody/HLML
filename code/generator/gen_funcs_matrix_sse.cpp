@@ -700,8 +700,9 @@ void Gen_SSE_MatrixMultiply( const genType_t type, const u32 numRows, const u32 
 	char sseReturnName[GEN_STRING_LENGTH_SSE_INPUT_NAME];
 	Gen_SSE_GetFullTypeName( returnTypeName, sseReturnName );
 
-//	const char* registerName = Gen_SSE_GetRegisterName( type );
+	const char* registerName = Gen_SSE_GetRegisterName( type );
 
+	Doc_SSE_MatrixMul( sbHeader, lhsTypeName, registerName );
 	String_Appendf( sbHeader, "inline void mul_sse( const %s* lhs, const %s* rhs, %s* out );\n", sseLHSName, sseRHSName, sseReturnName );
 	String_Append(  sbHeader, "\n" );
 
@@ -712,7 +713,6 @@ void Gen_SSE_MatrixMultiply( const genType_t type, const u32 numRows, const u32 
 	String_Append(  sbInl, "\tassert( out );\n" );
 	String_Append(  sbInl, "\n" );
 	String_Appendf( sbInl, "\t%s rhs_transposed;\n", sseLHSName );
-	// String_Append(  sbInl, "\n" );
 	String_Appendf( sbInl, "\ttranspose_sse( rhs, &rhs_transposed );\n" );
 	String_Append(  sbInl, "\n" );
 	String_Appendf( sbInl, "\t%s dot_lhs;\n", sseDotName );
