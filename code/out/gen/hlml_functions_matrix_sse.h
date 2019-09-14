@@ -58,6 +58,10 @@ struct float2x2_sse_t
 };
 
 /// \relates float2x2
+/// \brief Sets a matrix of __m128 registers to identity.
+inline void identity_sse( float2x2_sse_t* mat );
+
+/// \relates float2x2
 /// \brief Stores a transposed matrix of 2 x 2 __m128 registers in the output given the input 2 x 2 register matrix.
 inline void transpose_sse( const float2x2_sse_t* in, float2x2_sse_t* out );
 
@@ -95,6 +99,10 @@ struct float2x3_sse_t
 };
 
 /// \relates float2x3
+/// \brief Sets a matrix of __m128 registers to identity.
+inline void identity_sse( float2x3_sse_t* mat );
+
+/// \relates float2x3
 /// \brief Stores a transposed matrix of 3 x 2 __m128 registers in the output given the input 2 x 3 register matrix.
 inline void transpose_sse( const float2x3_sse_t* in, float3x2_sse_t* out );
 
@@ -122,6 +130,10 @@ struct float2x4_sse_t
 {
 	__m128 m[2][4];
 };
+
+/// \relates float2x4
+/// \brief Sets a matrix of __m128 registers to identity.
+inline void identity_sse( float2x4_sse_t* mat );
 
 /// \relates float2x4
 /// \brief Stores a transposed matrix of 4 x 2 __m128 registers in the output given the input 2 x 4 register matrix.
@@ -153,6 +165,10 @@ struct float3x2_sse_t
 };
 
 /// \relates float3x2
+/// \brief Sets a matrix of __m128 registers to identity.
+inline void identity_sse( float3x2_sse_t* mat );
+
+/// \relates float3x2
 /// \brief Stores a transposed matrix of 2 x 3 __m128 registers in the output given the input 3 x 2 register matrix.
 inline void transpose_sse( const float3x2_sse_t* in, float2x3_sse_t* out );
 
@@ -180,6 +196,10 @@ struct float3x3_sse_t
 {
 	__m128 m[3][3];
 };
+
+/// \relates float3x3
+/// \brief Sets a matrix of __m128 registers to identity.
+inline void identity_sse( float3x3_sse_t* mat );
 
 /// \relates float3x3
 /// \brief Stores a transposed matrix of 3 x 3 __m128 registers in the output given the input 3 x 3 register matrix.
@@ -227,6 +247,10 @@ struct float3x4_sse_t
 };
 
 /// \relates float3x4
+/// \brief Sets a matrix of __m128 registers to identity.
+inline void identity_sse( float3x4_sse_t* mat );
+
+/// \relates float3x4
 /// \brief Stores a transposed matrix of 4 x 3 __m128 registers in the output given the input 3 x 4 register matrix.
 inline void transpose_sse( const float3x4_sse_t* in, float4x3_sse_t* out );
 
@@ -254,6 +278,10 @@ struct float4x2_sse_t
 {
 	__m128 m[4][2];
 };
+
+/// \relates float4x2
+/// \brief Sets a matrix of __m128 registers to identity.
+inline void identity_sse( float4x2_sse_t* mat );
 
 /// \relates float4x2
 /// \brief Stores a transposed matrix of 2 x 4 __m128 registers in the output given the input 4 x 2 register matrix.
@@ -285,6 +313,10 @@ struct float4x3_sse_t
 };
 
 /// \relates float4x3
+/// \brief Sets a matrix of __m128 registers to identity.
+inline void identity_sse( float4x3_sse_t* mat );
+
+/// \relates float4x3
 /// \brief Stores a transposed matrix of 3 x 4 __m128 registers in the output given the input 4 x 3 register matrix.
 inline void transpose_sse( const float4x3_sse_t* in, float3x4_sse_t* out );
 
@@ -312,6 +344,10 @@ struct float4x4_sse_t
 {
 	__m128 m[4][4];
 };
+
+/// \relates float4x4
+/// \brief Sets a matrix of __m128 registers to identity.
+inline void identity_sse( float4x4_sse_t* mat );
 
 /// \relates float4x4
 /// \brief Stores a transposed matrix of 4 x 4 __m128 registers in the output given the input 4 x 4 register matrix.

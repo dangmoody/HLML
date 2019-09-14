@@ -37,6 +37,17 @@ SOFTWARE.
 #include "hlml_functions_vector_sse.h"
 
 // float2x2
+void identity_sse( float2x2_sse_t* mat )
+{
+	// row 0
+	mat->m[0][0] = _mm_set1_ps( 1.0f );
+	mat->m[0][1] = _mm_set1_ps( 0.0f );
+
+	// row 1
+	mat->m[1][0] = _mm_set1_ps( 0.0f );
+	mat->m[1][1] = _mm_set1_ps( 1.0f );
+}
+
 void transpose_sse( const float2x2_sse_t* in, float2x2_sse_t* out )
 {
 	assert( in );
@@ -170,6 +181,19 @@ void mul_sse( const float2x2_sse_t* lhs, const float2x2_sse_t* rhs, float2x2_sse
 
 
 // float2x3
+void identity_sse( float2x3_sse_t* mat )
+{
+	// row 0
+	mat->m[0][0] = _mm_set1_ps( 1.0f );
+	mat->m[0][1] = _mm_set1_ps( 0.0f );
+	mat->m[0][2] = _mm_set1_ps( 0.0f );
+
+	// row 1
+	mat->m[1][0] = _mm_set1_ps( 0.0f );
+	mat->m[1][1] = _mm_set1_ps( 1.0f );
+	mat->m[1][2] = _mm_set1_ps( 0.0f );
+}
+
 void transpose_sse( const float2x3_sse_t* in, float3x2_sse_t* out )
 {
 	assert( in );
@@ -283,6 +307,21 @@ void mul_sse( const float2x3_sse_t* lhs, const float3x2_sse_t* rhs, float2x2_sse
 
 
 // float2x4
+void identity_sse( float2x4_sse_t* mat )
+{
+	// row 0
+	mat->m[0][0] = _mm_set1_ps( 1.0f );
+	mat->m[0][1] = _mm_set1_ps( 0.0f );
+	mat->m[0][2] = _mm_set1_ps( 0.0f );
+	mat->m[0][3] = _mm_set1_ps( 0.0f );
+
+	// row 1
+	mat->m[1][0] = _mm_set1_ps( 0.0f );
+	mat->m[1][1] = _mm_set1_ps( 1.0f );
+	mat->m[1][2] = _mm_set1_ps( 0.0f );
+	mat->m[1][3] = _mm_set1_ps( 0.0f );
+}
+
 void transpose_sse( const float2x4_sse_t* in, float4x2_sse_t* out )
 {
 	assert( in );
@@ -406,6 +445,21 @@ void mul_sse( const float2x4_sse_t* lhs, const float4x2_sse_t* rhs, float2x2_sse
 
 
 // float3x2
+void identity_sse( float3x2_sse_t* mat )
+{
+	// row 0
+	mat->m[0][0] = _mm_set1_ps( 1.0f );
+	mat->m[0][1] = _mm_set1_ps( 0.0f );
+
+	// row 1
+	mat->m[1][0] = _mm_set1_ps( 0.0f );
+	mat->m[1][1] = _mm_set1_ps( 1.0f );
+
+	// row 2
+	mat->m[2][0] = _mm_set1_ps( 0.0f );
+	mat->m[2][1] = _mm_set1_ps( 0.0f );
+}
+
 void transpose_sse( const float3x2_sse_t* in, float2x3_sse_t* out )
 {
 	assert( in );
@@ -548,6 +602,24 @@ void mul_sse( const float3x2_sse_t* lhs, const float2x3_sse_t* rhs, float3x3_sse
 
 
 // float3x3
+void identity_sse( float3x3_sse_t* mat )
+{
+	// row 0
+	mat->m[0][0] = _mm_set1_ps( 1.0f );
+	mat->m[0][1] = _mm_set1_ps( 0.0f );
+	mat->m[0][2] = _mm_set1_ps( 0.0f );
+
+	// row 1
+	mat->m[1][0] = _mm_set1_ps( 0.0f );
+	mat->m[1][1] = _mm_set1_ps( 1.0f );
+	mat->m[1][2] = _mm_set1_ps( 0.0f );
+
+	// row 2
+	mat->m[2][0] = _mm_set1_ps( 0.0f );
+	mat->m[2][1] = _mm_set1_ps( 0.0f );
+	mat->m[2][2] = _mm_set1_ps( 1.0f );
+}
+
 void transpose_sse( const float3x3_sse_t* in, float3x3_sse_t* out )
 {
 	assert( in );
@@ -826,6 +898,27 @@ void scale_sse( const float2_sse_t* diagonal, const float2_sse_t* scale, float2_
 
 
 // float3x4
+void identity_sse( float3x4_sse_t* mat )
+{
+	// row 0
+	mat->m[0][0] = _mm_set1_ps( 1.0f );
+	mat->m[0][1] = _mm_set1_ps( 0.0f );
+	mat->m[0][2] = _mm_set1_ps( 0.0f );
+	mat->m[0][3] = _mm_set1_ps( 0.0f );
+
+	// row 1
+	mat->m[1][0] = _mm_set1_ps( 0.0f );
+	mat->m[1][1] = _mm_set1_ps( 1.0f );
+	mat->m[1][2] = _mm_set1_ps( 0.0f );
+	mat->m[1][3] = _mm_set1_ps( 0.0f );
+
+	// row 2
+	mat->m[2][0] = _mm_set1_ps( 0.0f );
+	mat->m[2][1] = _mm_set1_ps( 0.0f );
+	mat->m[2][2] = _mm_set1_ps( 1.0f );
+	mat->m[2][3] = _mm_set1_ps( 0.0f );
+}
+
 void transpose_sse( const float3x4_sse_t* in, float4x3_sse_t* out )
 {
 	assert( in );
@@ -998,6 +1091,25 @@ void mul_sse( const float3x4_sse_t* lhs, const float4x3_sse_t* rhs, float3x3_sse
 
 
 // float4x2
+void identity_sse( float4x2_sse_t* mat )
+{
+	// row 0
+	mat->m[0][0] = _mm_set1_ps( 1.0f );
+	mat->m[0][1] = _mm_set1_ps( 0.0f );
+
+	// row 1
+	mat->m[1][0] = _mm_set1_ps( 0.0f );
+	mat->m[1][1] = _mm_set1_ps( 1.0f );
+
+	// row 2
+	mat->m[2][0] = _mm_set1_ps( 0.0f );
+	mat->m[2][1] = _mm_set1_ps( 0.0f );
+
+	// row 3
+	mat->m[3][0] = _mm_set1_ps( 0.0f );
+	mat->m[3][1] = _mm_set1_ps( 0.0f );
+}
+
 void transpose_sse( const float4x2_sse_t* in, float2x4_sse_t* out )
 {
 	assert( in );
@@ -1187,6 +1299,29 @@ void mul_sse( const float4x2_sse_t* lhs, const float2x4_sse_t* rhs, float4x4_sse
 
 
 // float4x3
+void identity_sse( float4x3_sse_t* mat )
+{
+	// row 0
+	mat->m[0][0] = _mm_set1_ps( 1.0f );
+	mat->m[0][1] = _mm_set1_ps( 0.0f );
+	mat->m[0][2] = _mm_set1_ps( 0.0f );
+
+	// row 1
+	mat->m[1][0] = _mm_set1_ps( 0.0f );
+	mat->m[1][1] = _mm_set1_ps( 1.0f );
+	mat->m[1][2] = _mm_set1_ps( 0.0f );
+
+	// row 2
+	mat->m[2][0] = _mm_set1_ps( 0.0f );
+	mat->m[2][1] = _mm_set1_ps( 0.0f );
+	mat->m[2][2] = _mm_set1_ps( 1.0f );
+
+	// row 3
+	mat->m[3][0] = _mm_set1_ps( 0.0f );
+	mat->m[3][1] = _mm_set1_ps( 0.0f );
+	mat->m[3][2] = _mm_set1_ps( 0.0f );
+}
+
 void transpose_sse( const float4x3_sse_t* in, float3x4_sse_t* out )
 {
 	assert( in );
@@ -1396,6 +1531,33 @@ void mul_sse( const float4x3_sse_t* lhs, const float3x4_sse_t* rhs, float4x4_sse
 
 
 // float4x4
+void identity_sse( float4x4_sse_t* mat )
+{
+	// row 0
+	mat->m[0][0] = _mm_set1_ps( 1.0f );
+	mat->m[0][1] = _mm_set1_ps( 0.0f );
+	mat->m[0][2] = _mm_set1_ps( 0.0f );
+	mat->m[0][3] = _mm_set1_ps( 0.0f );
+
+	// row 1
+	mat->m[1][0] = _mm_set1_ps( 0.0f );
+	mat->m[1][1] = _mm_set1_ps( 1.0f );
+	mat->m[1][2] = _mm_set1_ps( 0.0f );
+	mat->m[1][3] = _mm_set1_ps( 0.0f );
+
+	// row 2
+	mat->m[2][0] = _mm_set1_ps( 0.0f );
+	mat->m[2][1] = _mm_set1_ps( 0.0f );
+	mat->m[2][2] = _mm_set1_ps( 1.0f );
+	mat->m[2][3] = _mm_set1_ps( 0.0f );
+
+	// row 3
+	mat->m[3][0] = _mm_set1_ps( 0.0f );
+	mat->m[3][1] = _mm_set1_ps( 0.0f );
+	mat->m[3][2] = _mm_set1_ps( 0.0f );
+	mat->m[3][3] = _mm_set1_ps( 1.0f );
+}
+
 void transpose_sse( const float4x4_sse_t* in, float4x4_sse_t* out )
 {
 	assert( in );

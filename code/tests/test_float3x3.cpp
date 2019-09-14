@@ -926,6 +926,65 @@ TEMPER_TEST( TestIdentity_float3x3 )
 	identity( mat );
 	TEMPER_EXPECT_TRUE( mat == id );
 
+	// SSE
+	float3x3_sse_t matSSE;
+	identity_sse( &matSSE );
+
+	float identityResults[4];
+	_mm_store_ps( identityResults, matSSE.m[0][0] );
+	TEMPER_EXPECT_TRUE( identityResults[0] == 1.0f );
+	TEMPER_EXPECT_TRUE( identityResults[1] == 1.0f );
+	TEMPER_EXPECT_TRUE( identityResults[2] == 1.0f );
+	TEMPER_EXPECT_TRUE( identityResults[3] == 1.0f );
+
+	_mm_store_ps( identityResults, matSSE.m[0][1] );
+	TEMPER_EXPECT_TRUE( identityResults[0] == 0.0f );
+	TEMPER_EXPECT_TRUE( identityResults[1] == 0.0f );
+	TEMPER_EXPECT_TRUE( identityResults[2] == 0.0f );
+	TEMPER_EXPECT_TRUE( identityResults[3] == 0.0f );
+
+	_mm_store_ps( identityResults, matSSE.m[0][2] );
+	TEMPER_EXPECT_TRUE( identityResults[0] == 0.0f );
+	TEMPER_EXPECT_TRUE( identityResults[1] == 0.0f );
+	TEMPER_EXPECT_TRUE( identityResults[2] == 0.0f );
+	TEMPER_EXPECT_TRUE( identityResults[3] == 0.0f );
+
+	_mm_store_ps( identityResults, matSSE.m[1][0] );
+	TEMPER_EXPECT_TRUE( identityResults[0] == 0.0f );
+	TEMPER_EXPECT_TRUE( identityResults[1] == 0.0f );
+	TEMPER_EXPECT_TRUE( identityResults[2] == 0.0f );
+	TEMPER_EXPECT_TRUE( identityResults[3] == 0.0f );
+
+	_mm_store_ps( identityResults, matSSE.m[1][1] );
+	TEMPER_EXPECT_TRUE( identityResults[0] == 1.0f );
+	TEMPER_EXPECT_TRUE( identityResults[1] == 1.0f );
+	TEMPER_EXPECT_TRUE( identityResults[2] == 1.0f );
+	TEMPER_EXPECT_TRUE( identityResults[3] == 1.0f );
+
+	_mm_store_ps( identityResults, matSSE.m[1][2] );
+	TEMPER_EXPECT_TRUE( identityResults[0] == 0.0f );
+	TEMPER_EXPECT_TRUE( identityResults[1] == 0.0f );
+	TEMPER_EXPECT_TRUE( identityResults[2] == 0.0f );
+	TEMPER_EXPECT_TRUE( identityResults[3] == 0.0f );
+
+	_mm_store_ps( identityResults, matSSE.m[2][0] );
+	TEMPER_EXPECT_TRUE( identityResults[0] == 0.0f );
+	TEMPER_EXPECT_TRUE( identityResults[1] == 0.0f );
+	TEMPER_EXPECT_TRUE( identityResults[2] == 0.0f );
+	TEMPER_EXPECT_TRUE( identityResults[3] == 0.0f );
+
+	_mm_store_ps( identityResults, matSSE.m[2][1] );
+	TEMPER_EXPECT_TRUE( identityResults[0] == 0.0f );
+	TEMPER_EXPECT_TRUE( identityResults[1] == 0.0f );
+	TEMPER_EXPECT_TRUE( identityResults[2] == 0.0f );
+	TEMPER_EXPECT_TRUE( identityResults[3] == 0.0f );
+
+	_mm_store_ps( identityResults, matSSE.m[2][2] );
+	TEMPER_EXPECT_TRUE( identityResults[0] == 1.0f );
+	TEMPER_EXPECT_TRUE( identityResults[1] == 1.0f );
+	TEMPER_EXPECT_TRUE( identityResults[2] == 1.0f );
+	TEMPER_EXPECT_TRUE( identityResults[3] == 1.0f );
+
 	TEMPER_PASS();
 }
 

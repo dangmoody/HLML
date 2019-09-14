@@ -41,7 +41,7 @@ along with The HLML Generator.  If not, see <http://www.gnu.org/licenses/>.
 #include <math.h>
 
 bool GeneratorMatrixTests::Generate( const genType_t type, const u32 numRows, const u32 numCols ) {
-	const u32 testsCodeBytes = 78 * KB_TO_BYTES;
+	const u32 testsCodeBytes = 82 * KB_TO_BYTES;
 	const u32 suiteCodeBytes = 12 * KB_TO_BYTES;
 
 	m_codeTests = String_Create( testsCodeBytes );
@@ -817,29 +817,30 @@ void GeneratorMatrixTests::GenerateTestIdentity() {
 	String_Append(  &m_codeTests, "\tTEMPER_EXPECT_TRUE( mat == id );\n" );
 	String_Append( &m_codeTests, "\n" );
 
-	// if ( Gen_TypeSupportsSSE( m_type ) ) {
-	// 	const char* registerName = Gen_SSE_GetRegisterName( m_type );
+	if ( Gen_TypeSupportsSSE( m_type ) ) {
+		char sseTypeName[GEN_STRING_LENGTH_SSE_INPUT_NAME];
+		Gen_SSE_GetFullTypeName( m_fullTypeName, sseTypeName );
 
-	// 	const char* storeFuncStr = Gen_SSE_GetIntrinsicStore( m_type );
+		const char* storeFuncStr = Gen_SSE_GetIntrinsicStore( m_type );
 
-	// 	String_Append(  &m_codeTests, "\t// SSE\n" );
-	// 	String_Appendf( &m_codeTests, "\t%s results[%d][%d];\n", registerName, m_numRows, m_numCols );
-	// 	String_Append(  &m_codeTests, "\tidentity_sse( results );\n" );
-	// 	String_Append(  &m_codeTests, "\n" );
-	// 	String_Appendf( &m_codeTests, "\t%s identityResults[4];\n", m_memberTypeString );
-	// 	for ( u32 row = 0; row < m_numRows; row++ ) {
-	// 		for ( u32 col = 0; col < m_numCols; col++ ) {
-	// 			const char* valueStr = ( row == col ) ? oneStr : zeroStr;
+		String_Append(  &m_codeTests, "\t// SSE\n" );
+		String_Appendf( &m_codeTests, "\t%s matSSE;\n", sseTypeName );
+		String_Append(  &m_codeTests, "\tidentity_sse( &matSSE );\n" );
+		String_Append(  &m_codeTests, "\n" );
+		String_Appendf( &m_codeTests, "\t%s identityResults[4];\n", m_memberTypeString );
+		for ( u32 row = 0; row < m_numRows; row++ ) {
+			for ( u32 col = 0; col < m_numCols; col++ ) {
+				const char* valueStr = ( row == col ) ? oneStr : zeroStr;
 
-	// 			String_Appendf( &m_codeTests, "\t%s( identityResults, results[%d][%d] );\n", storeFuncStr, row, col );
-	// 			for ( u32 componentIndex = 0; componentIndex < 4; componentIndex++ ) {
-	// 				String_Appendf( &m_codeTests, "\tTEMPER_EXPECT_TRUE( identityResults[%d] == %s );\n", componentIndex, valueStr );
-	// 			}
+				String_Appendf( &m_codeTests, "\t%s( identityResults, matSSE.m[%d][%d] );\n", storeFuncStr, row, col );
+				for ( u32 componentIndex = 0; componentIndex < 4; componentIndex++ ) {
+					String_Appendf( &m_codeTests, "\tTEMPER_EXPECT_TRUE( identityResults[%d] == %s );\n", componentIndex, valueStr );
+				}
 
-	// 			String_Append(  &m_codeTests, "\n" );
-	// 		}
-	// 	}
-	// }
+				String_Append(  &m_codeTests, "\n" );
+			}
+		}
+	}
 
 	String_Append( &m_codeTests, "\tTEMPER_PASS();\n" );
 	String_Append( &m_codeTests, "}\n" );
@@ -890,8 +891,6 @@ void GeneratorMatrixTests::GenerateTestTranspose() {
 
 		Gen_SSE_GetFullTypeName( m_fullTypeName, sseTypeName );
 		Gen_SSE_GetFullTypeName( transposeTypeName, sseTransposedName );
-
-//		const char* registerName = Gen_SSE_GetRegisterName( m_type );
 
 		const char* set1FuncStr		= Gen_SSE_GetIntrinsicSet1( m_type );
 		const char* storeFuncStr	= Gen_SSE_GetIntrinsicStore( m_type );

@@ -44,6 +44,9 @@ void Gen_SSE_MatrixIdentity( const genType_t type, const u32 numRows, const u32 
 	char fullTypeName[GEN_STRING_LENGTH_TYPE_NAME];
 	Gen_GetFullTypeName( type, numRows, numCols, fullTypeName );
 
+	char sseTypeName[GEN_STRING_LENGTH_TYPE_NAME];
+	Gen_SSE_GetFullTypeName( fullTypeName, sseTypeName );
+
 	const char* registerName = Gen_SSE_GetRegisterName( type );
 
 	const char* set1FuncStr = Gen_SSE_GetIntrinsicSet1( type );
@@ -55,10 +58,10 @@ void Gen_SSE_MatrixIdentity( const genType_t type, const u32 numRows, const u32 
 	Gen_GetNumericLiteral( type, 1.0f, oneStr, 1 );
 
 	Doc_SSE_MatrixIdentity( sbHeader, fullTypeName, registerName );
-	String_Appendf( sbHeader, "inline void identity_sse( %s out_results[%d][%d] );\n", registerName, numRows, numCols );
+	String_Appendf( sbHeader, "inline void identity_sse( %s* mat );\n", sseTypeName );
 	String_Append(  sbHeader, "\n" );
 
-	String_Appendf( sbInl, "void identity_sse( %s out_results[%d][%d] )\n", registerName, numRows, numCols );
+	String_Appendf( sbInl, "void identity_sse( %s* mat )\n", sseTypeName );
 	String_Append(  sbInl, "{\n" );
 	for ( u32 row = 0; row < numRows; row++ ) {
 		String_Appendf( sbInl, "\t// row %d\n", row );
@@ -66,7 +69,7 @@ void Gen_SSE_MatrixIdentity( const genType_t type, const u32 numRows, const u32 
 		for ( u32 col = 0; col < numCols; col++ ) {
 			const char* valueStr = ( row == col ) ? oneStr : zeroStr;
 
-			String_Appendf( sbInl, "\tout_results[%d][%d] = %s( %s );\n", row, col, set1FuncStr, valueStr );
+			String_Appendf( sbInl, "\tmat->m[%d][%d] = %s( %s );\n", row, col, set1FuncStr, valueStr );
 		}
 
 		if ( row != numRows - 1 ) {
