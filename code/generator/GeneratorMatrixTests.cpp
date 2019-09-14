@@ -797,9 +797,9 @@ void GeneratorMatrixTests::GenerateTestIdentity() {
 	snprintf( testName, GEN_STRING_LENGTH_TEST_NAME, "TestIdentity_%s", m_fullTypeName );
 
 	char zeroStr[GEN_STRING_LENGTH_NUMERIC_LITERAL];
-	char oneStr[GEN_STRING_LENGTH_NUMERIC_LITERAL];
-
 	Gen_GetNumericLiteral( m_type, 0, zeroStr, 1 );
+
+	char oneStr[GEN_STRING_LENGTH_NUMERIC_LITERAL];
 	Gen_GetNumericLiteral( m_type, 1, oneStr, 1 );
 
 	char parmListIdentity[GEN_STRING_LENGTH_PARM_LIST_MATRIX] = { 0 };
