@@ -46,7 +46,7 @@ ignore_warnings="-Wno-padded -Wno-unused-macros -Wno-format-nonliteral -Wno-old-
 
 if [[ $compiler == clang* ]]; then
 	# clang-specific warnings to ignore
-	ignore_warnings="${ignore_warnings} -Wno-global-constructors -Wno-c++98-compat-pedantic -Wno-covered-switch-default -Wno-shadow-field-in-constructor -Wno-nested-anon-types -Wno-gnu-anonymous-struct -Wno-exit-time-destructors -Wno-reserved-id-macro"
+	ignore_warnings="${ignore_warnings} -Wno-newline-eof -Wno-global-constructors -Wno-c++98-compat-pedantic -Wno-covered-switch-default -Wno-shadow-field-in-constructor -Wno-nested-anon-types -Wno-gnu-anonymous-struct -Wno-exit-time-destructors -Wno-reserved-id-macro"
 else
 	# GCC-specific warnings to ignore
 	ignore_warnings="${ignore_warnings} -Wno-unused-variable -Wno-stringop-truncation -Wno-stringop-overflow"
