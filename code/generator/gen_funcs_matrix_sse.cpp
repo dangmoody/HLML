@@ -44,7 +44,7 @@ void Gen_SSE_MatrixIdentity( const genType_t type, const u32 numRows, const u32 
 	char fullTypeName[GEN_STRING_LENGTH_TYPE_NAME];
 	Gen_GetFullTypeName( type, numRows, numCols, fullTypeName );
 
-	char sseTypeName[GEN_STRING_LENGTH_TYPE_NAME];
+	char sseTypeName[GEN_STRING_LENGTH_SSE_INPUT_NAME];
 	Gen_SSE_GetFullTypeName( fullTypeName, sseTypeName );
 
 	const char* registerName = Gen_SSE_GetRegisterName( type );
