@@ -103,7 +103,7 @@ void Gen_QuaternionMultiplyScalar(const genType_t type, stringBuilder_t* sbHeade
 	String_Append(sbInl, "\n");
 }
 
-void Gen_QuaternionMagnitude(const genType_t type, stringBuilder_t* sbHeader, stringBuilder_t* sbInl) {
+void Gen_QuaternionLength(const genType_t type, stringBuilder_t* sbHeader, stringBuilder_t* sbInl) {
 	if (Gen_TypeIsFloatingPoint(type) == false) {
 		return;
 	}
@@ -113,10 +113,10 @@ void Gen_QuaternionMagnitude(const genType_t type, stringBuilder_t* sbHeader, st
 	char typeName[GEN_STRING_LENGTH_TYPE_NAME];
 	Gen_GetFullTypeName(type, 1, 1, typeName);
 
-	String_Appendf(sbHeader, "inline %s quaternion_magnitude( const %s4& quat );\n", returnTypeString, typeName);
+	String_Appendf(sbHeader, "inline %s quaternion_length( const %s4& quat );\n", returnTypeString, typeName);
 	String_Append(sbHeader, "\n");
 
-	String_Appendf(sbInl, "%s quaternion_magnitude( const %s4& quat )\n", returnTypeString, typeName);
+	String_Appendf(sbInl, "%s quaternion_length( const %s4& quat )\n", returnTypeString, typeName);
 	String_Append(sbInl, "{\n");
 
 	String_Appendf(sbInl, "\treturn sqrt( ", typeName);
