@@ -617,17 +617,14 @@ TEMPER_TEST( TestTranslate_Scalar_uint4x4 )
 	TEMPER_PASS();
 }
 
-TEMPER_TEST( TestScale_uint4x4 )
+TEMPER_TEST( TestScale_Scalar_uint4x4 )
 {
 	uint4x4 mat;
 	uint4x4 scaled = scale( mat, uint3( 2U, 2U, 2U ) );
 
-	TEMPER_EXPECT_TRUE( scaled == uint4x4(
-		2U, 0, 0, 0,
-		0, 2U, 0, 0,
-		0, 0, 2U, 0,
-		0, 0, 0, 1U
-	) );
+	TEMPER_EXPECT_TRUE( scaled[0][0] == 2U );
+	TEMPER_EXPECT_TRUE( scaled[1][1] == 2U );
+	TEMPER_EXPECT_TRUE( scaled[2][2] == 2U );
 
 	TEMPER_PASS();
 }
@@ -654,5 +651,5 @@ TEMPER_SUITE( Test_uint4x4 )
 	TEMPER_RUN_TEST( TestIdentity_Scalar_uint4x4 );
 	TEMPER_RUN_TEST( TestTranspose_Scalar_uint4x4 );
 	TEMPER_RUN_TEST( TestTranslate_Scalar_uint4x4 );
-	TEMPER_RUN_TEST( TestScale_uint4x4 );
+	TEMPER_RUN_TEST( TestScale_Scalar_uint4x4 );
 }

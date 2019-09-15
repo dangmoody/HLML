@@ -1339,8 +1339,7 @@ void GeneratorMatrixTests::GenerateTestTranslate() {
 				String_Append(  &m_codeTests, "," );
 			}
 
-			String_Appendf( &m_codeTests, "\t// 4 %c components", GEN_COMPONENT_NAMES_VECTOR[i] );
-			String_Append(  &m_codeTests, "\n" );
+			String_Appendf( &m_codeTests, "\t// 4 %c components\n", GEN_COMPONENT_NAMES_VECTOR[i] );
 		}
 		String_Append(  &m_codeTests, "\t};\n" );
 		String_Append(  &m_codeTests, "\n" );
@@ -1506,9 +1505,11 @@ void GeneratorMatrixTests::GenerateTestScale() {
 	}
 
 	char testName[GEN_STRING_LENGTH_TEST_NAME] = { 0 };
-	snprintf( testName, GEN_STRING_LENGTH_TEST_NAME, "TestScale_%s", m_fullTypeName );
+	snprintf( testName, GEN_STRING_LENGTH_TEST_NAME, "TestScale_Scalar_%s", m_fullTypeName );
 
-	const u32 scaleCols = 3;
+	// const u32 scaleCols = 3;
+	u32 scaleCols = GEN_MIN( m_numRows, m_numCols );
+	scaleCols = GEN_MAX( scaleCols - 1, 2 );
 
 	float scaleMatDiagonal[] = { 2.0f, 2.0f, 2.0f, 1.0f };
 
@@ -1521,12 +1522,23 @@ void GeneratorMatrixTests::GenerateTestScale() {
 	char scaleVecTypeString[GEN_STRING_LENGTH_TYPE_NAME] = { 0 };
 	snprintf( scaleVecTypeString, GEN_STRING_LENGTH_TYPE_NAME, "%s%d", m_typeString, scaleCols );
 
+	const char* floateqStr = Gen_GetFuncNameFloateq( m_type );
+
 	String_Appendf( &m_codeTests, "TEMPER_TEST( %s )\n", testName );
 	String_Append(  &m_codeTests, "{\n" );
 	String_Appendf( &m_codeTests, "\t%s mat;\n", m_fullTypeName );
 	String_Appendf( &m_codeTests, "\t%s scaled = scale( mat, %s%s );\n", m_fullTypeName, scaleVecTypeString, parmListScaleVec );
 	String_Append(  &m_codeTests, "\n" );
-	String_Appendf( &m_codeTests, "\tTEMPER_EXPECT_TRUE( scaled == %s%s );\n", m_fullTypeName, parmListscaleMat );
+	for ( u32 i = 0; i < scaleCols; i++ ) {
+		char valueStr[GEN_STRING_LENGTH_NUMERIC_LITERAL];
+		Gen_GetNumericLiteral( m_type, scaleMatDiagonal[i], valueStr );
+
+		if ( Gen_TypeIsFloatingPoint( m_type ) ) {
+			String_Appendf( &m_codeTests, "\tTEMPER_EXPECT_TRUE( %s( scaled[%d][%d], %s ) );\n", floateqStr, i, i, valueStr );
+		} else {
+			String_Appendf( &m_codeTests, "\tTEMPER_EXPECT_TRUE( scaled[%d][%d] == %s );\n", i, i, valueStr );
+		}
+	}
 	String_Append(  &m_codeTests, "\n" );
 	String_Append(  &m_codeTests, "\tTEMPER_PASS();\n" );
 	String_Append(  &m_codeTests, "}\n" );
@@ -1534,7 +1546,74 @@ void GeneratorMatrixTests::GenerateTestScale() {
 
 	String_Appendf( &m_codeSuite, "\tTEMPER_RUN_TEST( %s );\n", testName );
 
-	// TODO(DM): SSE test!
+	if ( Gen_TypeSupportsSSE( m_type ) ) {
+		// rules for generating SSE versions of translate() and scale() function are different from the scalar implementation
+		if ( m_numCols < 3 || m_numRows != m_numCols ) {
+			return;
+		}
+
+		snprintf( testName, GEN_STRING_LENGTH_TEST_NAME, "TestScale_SSE_%s", m_fullTypeName );
+
+		char sseScaleVecName[GEN_STRING_LENGTH_SSE_INPUT_NAME];
+		Gen_SSE_GetFullTypeName( scaleVecTypeString, sseScaleVecName );
+
+		const char* set1FuncStr = Gen_SSE_GetIntrinsicSet1( m_type );
+		const char* loadFuncStr = Gen_SSE_GetIntrinsicLoad( m_type );
+		const char* storeFuncStr = Gen_SSE_GetIntrinsicStore( m_type );
+
+		String_Appendf( &m_codeTests, "TEMPER_TEST( %s )\n", testName );
+		String_Append(  &m_codeTests, "{\n" );
+		String_Appendf( &m_codeTests, "\t%s scaleVecComponents[%d][4] =\n", m_memberTypeString, scaleCols );
+		String_Append(  &m_codeTests, "\t{\n" );
+		for ( u32 i = 0; i < scaleCols; i++ ) {
+			float value = scaleMatDiagonal[i];
+			float values[4] = { value, value, value, value };
+
+			String_Append(  &m_codeTests, "\t" );
+			Gen_GetValuesArray1D( m_type, 4, values, &m_codeTests );
+
+			if ( i < scaleCols - 1 ) {
+				String_Append(  &m_codeTests, "," );
+			}
+
+			String_Appendf( &m_codeTests, "\t// 4 %c components\n", GEN_COMPONENT_NAMES_VECTOR[i] );
+		}
+		String_Append(  &m_codeTests, "\t};\n" );
+		String_Append(  &m_codeTests, "\n" );
+		String_Appendf( &m_codeTests, "\t%s diagonal;\n", sseScaleVecName );
+		for ( u32 i = 0; i < scaleCols; i++ ) {
+			String_Appendf( &m_codeTests, "\tdiagonal.comp[%d] = %s( 1 );\n", i, set1FuncStr );
+		}
+		String_Append(  &m_codeTests, "\n" );
+		String_Appendf( &m_codeTests, "\t%s scale;\n", sseScaleVecName );
+		for ( u32 i = 0; i < scaleCols; i++ ) {
+			String_Appendf( &m_codeTests, "\tscale.comp[%d] = %s( scaleVecComponents[%d] );\n", i, loadFuncStr, i );
+		}
+		String_Append(  &m_codeTests, "\n" );
+		String_Append(  &m_codeTests, "\tscale_sse( &diagonal, &scale, &diagonal );\n" );
+		String_Append(  &m_codeTests, "\n" );
+		String_Appendf( &m_codeTests, "\t%s scaleResults[4];\n", m_memberTypeString );
+		for ( u32 componentIndex = 0; componentIndex < scaleCols; componentIndex++ ) {
+			String_Appendf( &m_codeTests, "\t%s( scaleResults, diagonal.comp[%d] );\n", storeFuncStr, componentIndex );
+
+			for ( u32 i = 0; i < 4; i++ ) {
+				char valueStr[GEN_STRING_LENGTH_NUMERIC_LITERAL];
+				Gen_GetNumericLiteral( m_type, scaleMatDiagonal[componentIndex], valueStr );
+
+				if ( Gen_TypeIsFloatingPoint( m_type ) ) {
+					String_Appendf( &m_codeTests, "\tTEMPER_EXPECT_TRUE( %s( scaleResults[%d], %s ) );\n", floateqStr, i, valueStr );
+				} else {
+					String_Appendf( &m_codeTests, "\tTEMPER_EXPECT_TRUE( scaleResults[%d] == %s );\n", i, valueStr );
+				}
+			}
+			String_Append(  &m_codeTests, "\n" );
+		}
+		String_Append(  &m_codeTests, "\tTEMPER_PASS();\n" );
+		String_Append(  &m_codeTests, "}\n" );
+		String_Append(  &m_codeTests, "\n" );
+
+		String_Appendf( &m_codeSuite, "\tTEMPER_RUN_TEST( %s );\n", testName );
+	}
 }
 
 void GeneratorMatrixTests::GenerateTestOrtho() {

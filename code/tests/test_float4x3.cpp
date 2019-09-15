@@ -1317,17 +1317,13 @@ TEMPER_TEST( TestTranspose_SSE_float4x3 )
 	TEMPER_PASS();
 }
 
-TEMPER_TEST( TestScale_float4x3 )
+TEMPER_TEST( TestScale_Scalar_float4x3 )
 {
 	float4x3 mat;
-	float4x3 scaled = scale( mat, float3( 2.000000f, 2.000000f, 2.000000f ) );
+	float4x3 scaled = scale( mat, float2( 2.000000f, 2.000000f ) );
 
-	TEMPER_EXPECT_TRUE( scaled == float4x3(
-		2.000000f, 0.0f, 0.0f,
-		0.0f, 2.000000f, 0.0f,
-		0.0f, 0.0f, 2.000000f,
-		0.0f, 0.0f, 0.0f
-	) );
+	TEMPER_EXPECT_TRUE( floateq( scaled[0][0], 2.000000f ) );
+	TEMPER_EXPECT_TRUE( floateq( scaled[1][1], 2.000000f ) );
 
 	TEMPER_PASS();
 }
@@ -1353,5 +1349,5 @@ TEMPER_SUITE( Test_float4x3 )
 	TEMPER_RUN_TEST( TestIdentity_SSE_float4x3 );
 	TEMPER_RUN_TEST( TestTranspose_Scalar_float4x3 );
 	TEMPER_RUN_TEST( TestTranspose_SSE_float4x3 );
-	TEMPER_RUN_TEST( TestScale_float4x3 );
+	TEMPER_RUN_TEST( TestScale_Scalar_float4x3 );
 }

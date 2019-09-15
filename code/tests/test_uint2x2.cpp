@@ -493,15 +493,13 @@ TEMPER_TEST( TestTranspose_Scalar_uint2x2 )
 	TEMPER_PASS();
 }
 
-TEMPER_TEST( TestScale_uint2x2 )
+TEMPER_TEST( TestScale_Scalar_uint2x2 )
 {
 	uint2x2 mat;
-	uint2x2 scaled = scale( mat, uint3( 2U, 2U, 2U ) );
+	uint2x2 scaled = scale( mat, uint2( 2U, 2U ) );
 
-	TEMPER_EXPECT_TRUE( scaled == uint2x2(
-		2U, 0,
-		0, 2U
-	) );
+	TEMPER_EXPECT_TRUE( scaled[0][0] == 2U );
+	TEMPER_EXPECT_TRUE( scaled[1][1] == 2U );
 
 	TEMPER_PASS();
 }
@@ -527,5 +525,5 @@ TEMPER_SUITE( Test_uint2x2 )
 	TEMPER_RUN_TEST( TestBitwise_Unary_uint2x2 );
 	TEMPER_RUN_TEST( TestIdentity_Scalar_uint2x2 );
 	TEMPER_RUN_TEST( TestTranspose_Scalar_uint2x2 );
-	TEMPER_RUN_TEST( TestScale_uint2x2 );
+	TEMPER_RUN_TEST( TestScale_Scalar_uint2x2 );
 }

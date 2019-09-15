@@ -552,17 +552,14 @@ TEMPER_TEST( TestRotate_double4x4 )
 	TEMPER_PASS();
 }
 
-TEMPER_TEST( TestScale_double4x4 )
+TEMPER_TEST( TestScale_Scalar_double4x4 )
 {
 	double4x4 mat;
 	double4x4 scaled = scale( mat, double3( 2.000000, 2.000000, 2.000000 ) );
 
-	TEMPER_EXPECT_TRUE( scaled == double4x4(
-		2.000000, 0.0, 0.0, 0.0,
-		0.0, 2.000000, 0.0, 0.0,
-		0.0, 0.0, 2.000000, 0.0,
-		0.0, 0.0, 0.0, 1.000000
-	) );
+	TEMPER_EXPECT_TRUE( doubleeq( scaled[0][0], 2.000000 ) );
+	TEMPER_EXPECT_TRUE( doubleeq( scaled[1][1], 2.000000 ) );
+	TEMPER_EXPECT_TRUE( doubleeq( scaled[2][2], 2.000000 ) );
 
 	TEMPER_PASS();
 }
@@ -706,7 +703,7 @@ TEMPER_SUITE( Test_double4x4 )
 	TEMPER_RUN_TEST( TestInverse_Scalar_double4x4 );
 	TEMPER_RUN_TEST( TestTranslate_Scalar_double4x4 );
 	TEMPER_RUN_TEST( TestRotate_double4x4 );
-	TEMPER_RUN_TEST( TestScale_double4x4 );
+	TEMPER_RUN_TEST( TestScale_Scalar_double4x4 );
 	TEMPER_RUN_TEST( TestOrtho_double4x4 );
 	TEMPER_RUN_TEST( TestPerspective_double4x4 );
 	TEMPER_RUN_TEST( TestLookAt_double4x4 );

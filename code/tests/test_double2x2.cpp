@@ -419,15 +419,13 @@ TEMPER_TEST( TestInverse_Scalar_double2x2 )
 	TEMPER_PASS();
 }
 
-TEMPER_TEST( TestScale_double2x2 )
+TEMPER_TEST( TestScale_Scalar_double2x2 )
 {
 	double2x2 mat;
-	double2x2 scaled = scale( mat, double3( 2.000000, 2.000000, 2.000000 ) );
+	double2x2 scaled = scale( mat, double2( 2.000000, 2.000000 ) );
 
-	TEMPER_EXPECT_TRUE( scaled == double2x2(
-		2.000000, 0.0,
-		0.0, 2.000000
-	) );
+	TEMPER_EXPECT_TRUE( doubleeq( scaled[0][0], 2.000000 ) );
+	TEMPER_EXPECT_TRUE( doubleeq( scaled[1][1], 2.000000 ) );
 
 	TEMPER_PASS();
 }
@@ -450,5 +448,5 @@ TEMPER_SUITE( Test_double2x2 )
 	TEMPER_RUN_TEST( TestTranspose_Scalar_double2x2 );
 	TEMPER_RUN_TEST( TestDeterminant_Scalar_double2x2 );
 	TEMPER_RUN_TEST( TestInverse_Scalar_double2x2 );
-	TEMPER_RUN_TEST( TestScale_double2x2 );
+	TEMPER_RUN_TEST( TestScale_Scalar_double2x2 );
 }

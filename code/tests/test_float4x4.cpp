@@ -1906,17 +1906,57 @@ TEMPER_TEST( TestRotate_float4x4 )
 	TEMPER_PASS();
 }
 
-TEMPER_TEST( TestScale_float4x4 )
+TEMPER_TEST( TestScale_Scalar_float4x4 )
 {
 	float4x4 mat;
 	float4x4 scaled = scale( mat, float3( 2.000000f, 2.000000f, 2.000000f ) );
 
-	TEMPER_EXPECT_TRUE( scaled == float4x4(
-		2.000000f, 0.0f, 0.0f, 0.0f,
-		0.0f, 2.000000f, 0.0f, 0.0f,
-		0.0f, 0.0f, 2.000000f, 0.0f,
-		0.0f, 0.0f, 0.0f, 1.000000f
-	) );
+	TEMPER_EXPECT_TRUE( floateq( scaled[0][0], 2.000000f ) );
+	TEMPER_EXPECT_TRUE( floateq( scaled[1][1], 2.000000f ) );
+	TEMPER_EXPECT_TRUE( floateq( scaled[2][2], 2.000000f ) );
+
+	TEMPER_PASS();
+}
+
+TEMPER_TEST( TestScale_SSE_float4x4 )
+{
+	float scaleVecComponents[3][4] =
+	{
+		{ 2.000000f, 2.000000f, 2.000000f, 2.000000f },	// 4 x components
+		{ 2.000000f, 2.000000f, 2.000000f, 2.000000f },	// 4 y components
+		{ 2.000000f, 2.000000f, 2.000000f, 2.000000f }	// 4 z components
+	};
+
+	float3_sse_t diagonal;
+	diagonal.comp[0] = _mm_set1_ps( 1 );
+	diagonal.comp[1] = _mm_set1_ps( 1 );
+	diagonal.comp[2] = _mm_set1_ps( 1 );
+
+	float3_sse_t scale;
+	scale.comp[0] = _mm_load_ps( scaleVecComponents[0] );
+	scale.comp[1] = _mm_load_ps( scaleVecComponents[1] );
+	scale.comp[2] = _mm_load_ps( scaleVecComponents[2] );
+
+	scale_sse( &diagonal, &scale, &diagonal );
+
+	float scaleResults[4];
+	_mm_store_ps( scaleResults, diagonal.comp[0] );
+	TEMPER_EXPECT_TRUE( floateq( scaleResults[0], 2.000000f ) );
+	TEMPER_EXPECT_TRUE( floateq( scaleResults[1], 2.000000f ) );
+	TEMPER_EXPECT_TRUE( floateq( scaleResults[2], 2.000000f ) );
+	TEMPER_EXPECT_TRUE( floateq( scaleResults[3], 2.000000f ) );
+
+	_mm_store_ps( scaleResults, diagonal.comp[1] );
+	TEMPER_EXPECT_TRUE( floateq( scaleResults[0], 2.000000f ) );
+	TEMPER_EXPECT_TRUE( floateq( scaleResults[1], 2.000000f ) );
+	TEMPER_EXPECT_TRUE( floateq( scaleResults[2], 2.000000f ) );
+	TEMPER_EXPECT_TRUE( floateq( scaleResults[3], 2.000000f ) );
+
+	_mm_store_ps( scaleResults, diagonal.comp[2] );
+	TEMPER_EXPECT_TRUE( floateq( scaleResults[0], 2.000000f ) );
+	TEMPER_EXPECT_TRUE( floateq( scaleResults[1], 2.000000f ) );
+	TEMPER_EXPECT_TRUE( floateq( scaleResults[2], 2.000000f ) );
+	TEMPER_EXPECT_TRUE( floateq( scaleResults[3], 2.000000f ) );
 
 	TEMPER_PASS();
 }
@@ -2070,7 +2110,8 @@ TEMPER_SUITE( Test_float4x4 )
 	TEMPER_RUN_TEST( TestTranslate_Scalar_float4x4 );
 	TEMPER_RUN_TEST( TestTranslate_SSE_float4x4 );
 	TEMPER_RUN_TEST( TestRotate_float4x4 );
-	TEMPER_RUN_TEST( TestScale_float4x4 );
+	TEMPER_RUN_TEST( TestScale_Scalar_float4x4 );
+	TEMPER_RUN_TEST( TestScale_SSE_float4x4 );
 	TEMPER_RUN_TEST( TestOrtho_float4x4 );
 	TEMPER_RUN_TEST( TestPerspective_float4x4 );
 	TEMPER_RUN_TEST( TestLookAt_float4x4 );

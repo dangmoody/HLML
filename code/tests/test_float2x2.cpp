@@ -851,15 +851,13 @@ TEMPER_TEST( TestInverse_SSE_float2x2 )
 	TEMPER_PASS();
 }
 
-TEMPER_TEST( TestScale_float2x2 )
+TEMPER_TEST( TestScale_Scalar_float2x2 )
 {
 	float2x2 mat;
-	float2x2 scaled = scale( mat, float3( 2.000000f, 2.000000f, 2.000000f ) );
+	float2x2 scaled = scale( mat, float2( 2.000000f, 2.000000f ) );
 
-	TEMPER_EXPECT_TRUE( scaled == float2x2(
-		2.000000f, 0.0f,
-		0.0f, 2.000000f
-	) );
+	TEMPER_EXPECT_TRUE( floateq( scaled[0][0], 2.000000f ) );
+	TEMPER_EXPECT_TRUE( floateq( scaled[1][1], 2.000000f ) );
 
 	TEMPER_PASS();
 }
@@ -891,5 +889,5 @@ TEMPER_SUITE( Test_float2x2 )
 	TEMPER_RUN_TEST( TestDeterminant_SSE_float2x2 );
 	TEMPER_RUN_TEST( TestInverse_Scalar_float2x2 );
 	TEMPER_RUN_TEST( TestInverse_SSE_float2x2 );
-	TEMPER_RUN_TEST( TestScale_float2x2 );
+	TEMPER_RUN_TEST( TestScale_Scalar_float2x2 );
 }
