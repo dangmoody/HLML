@@ -842,8 +842,9 @@ static bool32 GenerateTestsMain( void ) {
 	String_Append( &sb, "{\n" );
 	String_Append( &sb, "\tTEMPER_SET_COMMAND_LINE_ARGS( argc, argv );\n" );
 	String_Append( &sb, "\n" );
-
 	String_Append( &sb, "\tTEMPER_SET_SUITE_END_CALLBACK( OnSuiteEnd, nullptr );\n" );
+	String_Append( &sb, "\n" );
+	String_Append( &sb, "\tTEMPER_SET_TIME_UNIT( TEMPER_TIME_UNIT_US );\n" );
 	String_Append( &sb, "\n" );
 
 	// run the scalar tests first

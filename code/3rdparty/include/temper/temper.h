@@ -1,10 +1,8 @@
-#pragma once
-
 /*
 ===========================================================================
 
 Temper.
-v1.0.1
+v1.0.2
 
 Distributed under MIT License:
 Copyright (c) 2019 Dan Moody (daniel.guy.moody@gmail.com)
@@ -166,19 +164,26 @@ And to filter tests without command line args:
 ===========================================================================
 */
 
+#pragma once
+
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 #ifdef _WIN32
+#define WIN32_LEAN_AND_MEAN 1
 #include <Windows.h>
+#elif defined( __linux__ ) || defined( __APPLE__ )
+#include <time.h>
 #endif
 
 #include <stdio.h>
 #include <stdlib.h>
 #include <memory.h>
+#include <assert.h>
 
 #include <stdint.h>
-
-#ifdef __cplusplus
-extern "C" {
-#endif
+#include <stdbool.h>
 
 #if defined( __clang__ )
 #pragma clang diagnostic push
@@ -186,7 +191,7 @@ extern "C" {
 #pragma GCC diagnostic push
 #elif defined( _MSC_VER )
 #pragma warning( push, 4 )
-#endif
+#endif // defined( __clang__ )
 
 #if defined( __clang__ )
 #pragma clang diagnostic ignored "-Wunused-function"
@@ -204,7 +209,7 @@ extern "C" {
 #elif defined( _MSC_VER )
 #pragma warning( disable : 4505 )	// unused function
 #pragma warning( disable : 4551 )	// function call missing argument list
-#endif
+#endif // defined( __clang__ )
 
 #if defined( _WIN32 )
 #define TEMPER_COLOR_DEFAULT		0x07
@@ -220,7 +225,7 @@ typedef uint32_t					temperTestConsoleColor_t;
 #define TEMPER_COLOR_YELLOW			"\x1B[33m"
 
 typedef const char*					temperTestConsoleColor_t;
-#endif
+#endif // defined( _WIN32 )
 
 typedef enum temperFlagBits_t {
 	TEMPER_FLAG_ABORT_ON_FAIL		= 1 << 1,	// stop testing immediately after a test fails
@@ -233,6 +238,14 @@ typedef enum temperTestResult_t {
 	TEMPER_RESULT_FAILED,
 	TEMPER_RESULT_SKIPPED
 } temperTestResult_t;
+
+typedef enum temperTimeUnit_t {
+	TEMPER_TIME_UNIT_CLOCKS	= 0,
+	TEMPER_TIME_UNIT_NS,
+	TEMPER_TIME_UNIT_US,
+	TEMPER_TIME_UNIT_MS,
+	TEMPER_TIME_UNIT_SECONDS,
+} temperTimeUnit_t;
 
 typedef void( *temperTestCallback_t )( void* userdata );
 
@@ -249,8 +262,10 @@ typedef struct temperTestContext_t {
 	temperTestCallback_t			testFuncStart;
 	temperTestCallback_t			testFuncEnd;
 
+	double							testTime;
+
 	temperFlags_t					flags;
-	uint32_t						padding0;	// unused
+	temperTimeUnit_t				timeUnit;
 
 	uint32_t						numPassed;
 	uint32_t						numFailed;
@@ -262,6 +277,8 @@ typedef struct temperTestContext_t {
 
 	const char*						filteredTest;
 	const char*						filteredSuite;
+
+	const char*						timeUnitStr;
 } temperTestContext_t;
 
 extern temperTestContext_t			g_testContext;
@@ -311,13 +328,61 @@ static void TemperShowUsageInternal( void ) {
 	printf(
 		"Temper:\n"
 		"Usage:\n"
+		"    -h\n"
+		"    --help\n"
+		"        Shows this help and exits the program.\n"
 		"\n"
-		"\t--help     : Shows this help.\n"
-		"\t-t <name>  : Only run the test with the given name.\n"
-		"\t-s <suite> : Only run the suite with the given name.\n"
-		"\t-a         : Abort immediately on test failure.\n"
-		"\t-c         : Enable colored output.\n"
+		"    -t <name>\n"
+		"        Only run the test with the given name.\n"
+		"\n"
+		"    -s <suite>\n"
+		"        Only run the suite with the given name.\n"
+		"\n"
+		"    -a\n"
+		"        Abort immediately on test failure.\n"
+		"\n"
+		"    -c\n"
+		"        Enable colored output.\n"
+		"\n"
+		"    --time-unit=<unit>\n"
+		"        Set the timer unit of measurement\n"
+		"        Can be either: clocks, ns, us, ms, or seconds.\n"
 	);
+}
+
+static double TemperGetTimestamp( void ) {
+#if defined( _WIN32 )
+	static LARGE_INTEGER frequency;
+	if ( frequency.QuadPart == 0 ) {
+		QueryPerformanceFrequency( &frequency );
+	}
+
+	LARGE_INTEGER now;
+	QueryPerformanceCounter( &now );
+
+	switch ( g_testContext.timeUnit ) {
+		case TEMPER_TIME_UNIT_CLOCKS:	return (double) ( now.QuadPart );
+		case TEMPER_TIME_UNIT_NS:		return (double) ( ( now.QuadPart * 1000000000 ) / frequency.QuadPart );
+		case TEMPER_TIME_UNIT_US:		return (double) ( ( now.QuadPart * 1000000 ) / frequency.QuadPart );
+		case TEMPER_TIME_UNIT_MS:		return (double) ( ( now.QuadPart * 1000 ) / frequency.QuadPart );
+		case TEMPER_TIME_UNIT_SECONDS:	return (double) ( ( now.QuadPart ) / frequency.QuadPart );
+	}
+#elif defined( __APPLE__ ) || defined( __linux__ )
+	struct timespec now;
+	clock_gettime( CLOCK_MONOTONIC, &now );
+
+	int64_t clocks = (s64) ( now.tv_sec * 1000000000 + now.tv_nsec );
+
+	switch ( g_testContext.timeUnit ) {
+		case TEMPER_TIME_UNIT_CLOCKS:	return (double) clocks;
+		case TEMPER_TIME_UNIT_NS:		return (double) clocks;
+		case TEMPER_TIME_UNIT_US:		return (double) clocks / 1000.0;
+		case TEMPER_TIME_UNIT_MS:		return (double) clocks / 1000000.0;
+		case TEMPER_TIME_UNIT_SECONDS:	return (double) clocks / 1000000000.0;
+
+		default: assert( false && "Unknown temperTimeUnit_t enum specified at " __FILE__ ":" __LINE__ );
+	}
+#endif
 }
 
 // get the stats from temper on passed, failed, and skipped tests
@@ -365,34 +430,39 @@ static void TemperShowUsageInternal( void ) {
 // you can also call various functions in Temper to do the same things
 #define TEMPER_SET_COMMAND_LINE_ARGS( argc, argv ) \
 	do { \
+		/* set defaults in case args don't get set */ \
+		TEMPER_SET_TIME_UNIT( TEMPER_TIME_UNIT_MS ); \
+\
 		for ( int i = 0; i < argc; i++ ) { \
 			const char* arg = argv[i]; \
+			const char* nextArg = TemperGetNextArgInternal( i, argc, argv ); \
+			size_t arglen = strlen( arg ); \
 \
 			if ( arg[0] == '-' ) { \
 				switch ( arg[1] ) { \
+					case 'h': TemperShowUsageInternal(); exit( EXIT_SUCCESS ); \
+\
 					case 'a': TEMPER_TURN_FLAG_ON( TEMPER_FLAG_ABORT_ON_FAIL ); break; \
 					case 'c': TEMPER_TURN_FLAG_ON( TEMPER_FLAG_COLORED_OUTPUT ); break; \
 \
 					case 't': { \
-						const char* testName = TemperGetNextArgInternal( i, argc, argv ); \
-						if ( !testName ) { \
+						if ( !nextArg ) { \
 							TemperShowUsageInternal(); \
 							exit( EXIT_FAILURE ); \
 						} \
 \
-						TEMPER_FILTER_TEST( testName ); \
+						TEMPER_FILTER_TEST( nextArg ); \
 						i++; \
 						break; \
 					} \
 \
 					case 's': { \
-						const char* suiteName = TemperGetNextArgInternal( i, argc, argv ); \
-						if ( !suiteName ) { \
+						if ( !nextArg ) { \
 							TemperShowUsageInternal(); \
 							exit( EXIT_FAILURE ); \
 						} \
 \
-						TEMPER_FILTER_SUITE( suiteName ); \
+						TEMPER_FILTER_SUITE( nextArg ); \
 						i++; \
 						break; \
 					} \
@@ -401,6 +471,28 @@ static void TemperShowUsageInternal( void ) {
 						if ( strcmp( arg, "--help" ) == 0 ) { \
 							TemperShowUsageInternal(); \
 							exit( EXIT_SUCCESS ); \
+						} else if ( strncmp( arg, "--time-unit=", strlen( "--time-unit=" ) ) == 0 ) { \
+							const char* unitStart = (const char*) memchr( arg, '=', arglen ); \
+							unitStart++; \
+\
+							char unitStr[16]; \
+							snprintf( unitStr, 16, "%s", unitStart ); \
+\
+							if ( strcmp( unitStart, "clocks" ) == 0 ) { \
+								TEMPER_SET_TIME_UNIT( TEMPER_TIME_UNIT_CLOCKS ); \
+							} else if ( strcmp( unitStart, "ns" ) == 0 ) { \
+								TEMPER_SET_TIME_UNIT( TEMPER_TIME_UNIT_NS ); \
+							} else if ( strcmp( unitStart, "us" ) == 0 ) { \
+								TEMPER_SET_TIME_UNIT( TEMPER_TIME_UNIT_US ); \
+							} else if ( strcmp( unitStart, "ms" ) == 0 ) { \
+								TEMPER_SET_TIME_UNIT( TEMPER_TIME_UNIT_MS ); \
+							} else if ( strcmp( unitStart, "seconds" ) == 0 ) { \
+								TEMPER_SET_TIME_UNIT( TEMPER_TIME_UNIT_SECONDS ); \
+							} else { \
+								printf( "ERROR: Unknown time unit passed into Temper.\n" ); \
+								TemperShowUsageInternal(); \
+								exit( EXIT_FAILURE ); \
+							} \
 						} \
 						break; \
 					} \
@@ -441,6 +533,25 @@ static void TemperShowUsageInternal( void ) {
 	do { \
 		g_testContext.suiteFuncEnd = callback; \
 		g_testContext.suiteFuncEndData = userdata; \
+	} while ( 0 )
+
+// set the unit of measurement that Temper will use when recording how long a test takes
+#define TEMPER_SET_TIME_UNIT( unit ) \
+	do { \
+		g_testContext.timeUnit = unit; \
+\
+		switch ( unit ) { \
+			case TEMPER_TIME_UNIT_CLOCKS:	g_testContext.timeUnitStr = "clocks"; break; \
+			case TEMPER_TIME_UNIT_NS:		g_testContext.timeUnitStr = "ns"; break; \
+			case TEMPER_TIME_UNIT_US:		g_testContext.timeUnitStr = "us"; break; \
+			case TEMPER_TIME_UNIT_MS:		g_testContext.timeUnitStr = "ms"; break; \
+			case TEMPER_TIME_UNIT_SECONDS:	g_testContext.timeUnitStr = "seconds"; break; \
+			\
+			default: \
+				printf( "ERROR: Unknown time unit specified at %s:%d.\n", __FILE__, __LINE__ ); \
+				assert( false ); \
+				exit( EXIT_FAILURE ); \
+		} \
 	} while ( 0 )
 
 #define TEMPER_FAIL_TEST_INTERNAL( fmt ) \
@@ -485,7 +596,11 @@ static void TemperShowUsageInternal( void ) {
 			g_testContext.testFuncStart( g_testContext.testFuncStartData ); \
 		} \
 \
-		result = test(); \
+		double start = TemperGetTimestamp(); \
+		result = test(); /* run the test! */ \
+		double end = TemperGetTimestamp(); \
+\
+		g_testContext.testTime = end - start; \
 \
 		if ( g_testContext.testFuncEnd ) { \
 			g_testContext.testFuncEnd( g_testContext.testFuncEndData ); \
@@ -510,7 +625,7 @@ static void TemperShowUsageInternal( void ) {
 					TemperSetTextColorInternal( TEMPER_COLOR_GREEN ); \
 					printf( "	PASSED:" ); \
 					TemperSetTextColorInternal( TEMPER_COLOR_DEFAULT ); \
-					printf( "  %s.\n", #test ); \
+					printf( "  %s (%f %s).\n", #test, g_testContext.testTime, g_testContext.timeUnitStr ); \
 					break; \
 				} \
 \
@@ -589,7 +704,7 @@ static void TemperShowUsageInternal( void ) {
 #pragma GCC diagnostic pop
 #elif defined( _MSC_VER )
 #pragma warning( pop )
-#endif
+#endif // defined( __clang__ )
 
 #ifdef __cplusplus
 }
