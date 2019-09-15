@@ -533,19 +533,16 @@ TEMPER_TEST( TestTranspose_Scalar_int3x4 )
 	TEMPER_PASS();
 }
 
-TEMPER_TEST( TestTranslate_int3x4 )
+TEMPER_TEST( TestTranslate_Scalar_int3x4 )
 {
 	int3x4 mat;
-	int3x4 translated = int3x4(
-		1, 0, 0, 2,
-		0, 1, 0, 3,
-		0, 0, 1, 4
-	);
 
 	int3 translation = int3( 2, 3, 4 );
 	mat = translate( mat, translation );
 
-	TEMPER_EXPECT_TRUE( mat == translated );
+	TEMPER_EXPECT_TRUE( mat[0][3] == 2 );
+	TEMPER_EXPECT_TRUE( mat[1][3] == 3 );
+	TEMPER_EXPECT_TRUE( mat[2][3] == 4 );
 
 	TEMPER_PASS();
 }
@@ -584,6 +581,6 @@ TEMPER_SUITE( Test_int3x4 )
 	TEMPER_RUN_TEST( TestBitwise_Unary_int3x4 );
 	TEMPER_RUN_TEST( TestIdentity_Scalar_int3x4 );
 	TEMPER_RUN_TEST( TestTranspose_Scalar_int3x4 );
-	TEMPER_RUN_TEST( TestTranslate_int3x4 );
+	TEMPER_RUN_TEST( TestTranslate_Scalar_int3x4 );
 	TEMPER_RUN_TEST( TestScale_int3x4 );
 }

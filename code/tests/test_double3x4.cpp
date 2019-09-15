@@ -394,19 +394,16 @@ TEMPER_TEST( TestTranspose_Scalar_double3x4 )
 	TEMPER_PASS();
 }
 
-TEMPER_TEST( TestTranslate_double3x4 )
+TEMPER_TEST( TestTranslate_Scalar_double3x4 )
 {
 	double3x4 mat;
-	double3x4 translated = double3x4(
-		1.0, 0.0, 0.0, 2.0,
-		0.0, 1.0, 0.0, 3.0,
-		0.0, 0.0, 1.0, 4.0
-	);
 
-	double3 translation = double3( 2.0, 3.0, 4.0 );
+	double3 translation = double3( 2.000000, 3.000000, 4.000000 );
 	mat = translate( mat, translation );
 
-	TEMPER_EXPECT_TRUE( mat == translated );
+	TEMPER_EXPECT_TRUE( doubleeq( mat[0][3], 2.0 ) );
+	TEMPER_EXPECT_TRUE( doubleeq( mat[1][3], 3.0 ) );
+	TEMPER_EXPECT_TRUE( doubleeq( mat[2][3], 4.0 ) );
 
 	TEMPER_PASS();
 }
@@ -439,6 +436,6 @@ TEMPER_SUITE( Test_double3x4 )
 	TEMPER_RUN_TEST( TestArray_double3x4 );
 	TEMPER_RUN_TEST( TestIdentity_Scalar_double3x4 );
 	TEMPER_RUN_TEST( TestTranspose_Scalar_double3x4 );
-	TEMPER_RUN_TEST( TestTranslate_double3x4 );
+	TEMPER_RUN_TEST( TestTranslate_Scalar_double3x4 );
 	TEMPER_RUN_TEST( TestScale_double3x4 );
 }

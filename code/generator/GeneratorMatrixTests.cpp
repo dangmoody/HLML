@@ -59,7 +59,7 @@ static char g_matrixMultiplyParmListRHS[GEN_STRING_LENGTH_PARM_LIST_MATRIX];
 static char g_matrixMultiplyParmListAnswer[GEN_STRING_LENGTH_PARM_LIST_MATRIX];
 
 bool GeneratorMatrixTests::Generate( const genType_t type, const u32 numRows, const u32 numCols ) {
-	const u32 testsCodeBytes = 82 * KB_TO_BYTES;
+	const u32 testsCodeBytes = 84 * KB_TO_BYTES;
 	const u32 suiteCodeBytes = 12 * KB_TO_BYTES;
 
 	m_codeTests = String_Create( testsCodeBytes );
@@ -1264,79 +1264,39 @@ void GeneratorMatrixTests::GenerateTestTranslate() {
 	}
 
 	char testName[GEN_STRING_LENGTH_TEST_NAME] = { 0 };
-	snprintf( testName, GEN_STRING_LENGTH_TEST_NAME, "TestTranslate_%s", m_fullTypeName );
-
-	char valueStr[GEN_STRING_LENGTH_NUMERIC_LITERAL];
-
-	u32 baseNumber = 2;
+	snprintf( testName, GEN_STRING_LENGTH_TEST_NAME, "TestTranslate_Scalar_%s", m_fullTypeName );
 
 	char translateVectorTypeString[GEN_STRING_LENGTH_TYPE_NAME];
 	snprintf( translateVectorTypeString, GEN_STRING_LENGTH_TYPE_NAME, "%s%d", m_typeString, m_numCols - 1 );
 
-	char parmListTranslateVector[GEN_STRING_LENGTH_PARM_LIST_VECTOR] = { 0 };
-	int pos = 0;
+	u32 translateVecComponents = m_numCols - 1;
 
-	pos += snprintf( parmListTranslateVector + pos, GEN_STRING_LENGTH_PARM_LIST_VECTOR, "( " );
-	for ( u32 col = 0; col < m_numCols - 1; col++ ) {
-		float number = (float) ( col + baseNumber );
+	float valuesTranslateVec[GEN_COMPONENT_COUNT_MAX - 1] = {
+		2.0f, 3.0f, 4.0f
+	};
 
-		Gen_GetNumericLiteral( m_type, number, valueStr, 1 );
+	char parmListTranslated[GEN_STRING_LENGTH_PARM_LIST_VECTOR];
+	Gen_GetParmListVector( m_type, translateVecComponents, valuesTranslateVec, parmListTranslated );
 
-		pos += snprintf( parmListTranslateVector + pos, GEN_STRING_LENGTH_PARM_LIST_VECTOR, "%s", valueStr );
-
-		if ( col != m_numCols - 2 ) {
-			pos += snprintf( parmListTranslateVector + pos, GEN_STRING_LENGTH_PARM_LIST_VECTOR, ", " );
-		}
-	}
-	pos += snprintf( parmListTranslateVector + pos, GEN_STRING_LENGTH_PARM_LIST_VECTOR, " )" );
-
-	char parmListTranslated[GEN_STRING_LENGTH_PARM_LIST_MATRIX] = { 0 };
-	pos = 0;
-
-	pos += sprintf( parmListTranslated + pos, "(\n" );
-	for ( u32 row = 0; row < m_numRows; row++ ) {
-		pos += snprintf( parmListTranslated + pos, GEN_STRING_LENGTH_PARM_LIST_MATRIX, "\t\t" );
-
-		for ( u32 col = 0; col < m_numCols; col++ ) {
-			if ( row == col ) {
-				Gen_GetNumericLiteral( m_type, 1, valueStr, 1 );
-
-				pos += snprintf( parmListTranslated + pos, GEN_STRING_LENGTH_PARM_LIST_MATRIX, "%s", valueStr );
-			} else {
-				if ( col == m_numCols - 1 ) {
-					float number = (float) ( row + baseNumber );
-
-					Gen_GetNumericLiteral( m_type, number, valueStr, 1 );
-
-					pos += snprintf( parmListTranslated + pos, GEN_STRING_LENGTH_PARM_LIST_MATRIX, "%s", valueStr );
-				} else {
-					Gen_GetNumericLiteral( m_type, 0.0f, valueStr, 1 );
-					pos += snprintf( parmListTranslated + pos, GEN_STRING_LENGTH_PARM_LIST_MATRIX, "%s", valueStr );
-				}
-			}
-
-			if ( row + col != ( m_numRows - 1 ) + ( m_numCols - 1 ) ) {
-				pos += snprintf( parmListTranslated + pos, GEN_STRING_LENGTH_PARM_LIST_MATRIX, "," );
-			}
-
-			if ( col != m_numCols - 1 ) {
-				pos += snprintf( parmListTranslated + pos, GEN_STRING_LENGTH_PARM_LIST_MATRIX, " " );
-			}
-		}
-
-		pos += snprintf( parmListTranslated + pos, GEN_STRING_LENGTH_PARM_LIST_MATRIX, "\n" );
-	}
-	pos += snprintf( parmListTranslated + pos, GEN_STRING_LENGTH_PARM_LIST_MATRIX, "\t)" );
+	const char* floateqStr = Gen_GetFuncNameFloateq( m_type );
 
 	String_Appendf( &m_codeTests, "TEMPER_TEST( %s )\n", testName );
 	String_Append(  &m_codeTests, "{\n" );
 	String_Appendf( &m_codeTests, "\t%s mat;\n", m_fullTypeName );
-	String_Appendf( &m_codeTests, "\t%s translated = %s%s;\n", m_fullTypeName, m_fullTypeName, parmListTranslated );
 	String_Append(  &m_codeTests, "\n" );
-	String_Appendf( &m_codeTests, "\t%s translation = %s%s;\n", translateVectorTypeString, translateVectorTypeString, parmListTranslateVector );
+	String_Appendf( &m_codeTests, "\t%s translation = %s%s;\n", translateVectorTypeString, translateVectorTypeString, parmListTranslated );
 	String_Appendf( &m_codeTests, "\tmat = translate( mat, translation );\n" );
 	String_Append(  &m_codeTests, "\n" );
-	String_Append(  &m_codeTests, "\tTEMPER_EXPECT_TRUE( mat == translated );\n" );
+	for ( u32 i = 0; i < translateVecComponents; i++ ) {
+		char translateValueStr[GEN_STRING_LENGTH_NUMERIC_LITERAL];
+		Gen_GetNumericLiteral( m_type, valuesTranslateVec[i], translateValueStr, 1 );
+
+		if ( Gen_TypeIsFloatingPoint( m_type ) ) {
+			String_Appendf( &m_codeTests, "\tTEMPER_EXPECT_TRUE( %s( mat[%d][%d], %s ) );\n", floateqStr, i, translateVecComponents, translateValueStr );
+		} else {
+			String_Appendf( &m_codeTests, "\tTEMPER_EXPECT_TRUE( mat[%d][%d] == %s );\n", i, translateVecComponents, translateValueStr );
+		}
+	}
 	String_Append(  &m_codeTests, "\n" );
 	String_Append(  &m_codeTests, "\tTEMPER_PASS();\n" );
 	String_Append(  &m_codeTests, "}\n" );
@@ -1344,7 +1304,78 @@ void GeneratorMatrixTests::GenerateTestTranslate() {
 
 	String_Appendf( &m_codeSuite, "\tTEMPER_RUN_TEST( %s );\n", testName );
 
-	// TODO(DM): SSE test!
+	if ( Gen_TypeSupportsSSE( m_type ) ) {
+		// rules for generating SSE versions of translate() and scale() function are different from the scalar implementation
+		if ( m_numCols < 3 || m_numRows != m_numCols ) {
+			return;
+		}
+
+		snprintf( testName, GEN_STRING_LENGTH_TEST_NAME, "TestTranslate_SSE_%s", m_fullTypeName );
+
+		char sseTypeName[GEN_STRING_LENGTH_SSE_INPUT_NAME];
+		Gen_SSE_GetFullTypeName( m_fullTypeName, sseTypeName );
+
+		char translateVecTypeName[GEN_STRING_LENGTH_TYPE_NAME];
+		Gen_GetFullTypeName( m_type, 1, translateVecComponents, translateVecTypeName );
+
+		char sseTranslateVecName[GEN_STRING_LENGTH_TYPE_NAME];
+		Gen_SSE_GetFullTypeName( translateVecTypeName, sseTranslateVecName );
+
+		const char* loadFuncStr = Gen_SSE_GetIntrinsicLoad( m_type );
+		const char* storeFuncStr = Gen_SSE_GetIntrinsicStore( m_type );
+
+		String_Appendf( &m_codeTests, "TEMPER_TEST( %s )\n", testName );
+		String_Append(  &m_codeTests, "{\n" );
+		String_Appendf( &m_codeTests, "\t%s translateVecComponents[%d][4] =\n", m_memberTypeString, translateVecComponents );
+		String_Append(  &m_codeTests, "\t{\n" );
+		for ( u32 i = 0; i < translateVecComponents; i++ ) {
+			float value = valuesTranslateVec[i];
+			float values[4] = { value, value, value, value };
+
+			String_Append(  &m_codeTests, "\t" );
+			Gen_GetValuesArray1D( m_type, 4, values, &m_codeTests );
+
+			if ( i != translateVecComponents - 1 ) {
+				String_Append(  &m_codeTests, "," );
+			}
+
+			String_Appendf( &m_codeTests, "\t// 4 %c components", GEN_COMPONENT_NAMES_VECTOR[i] );
+			String_Append(  &m_codeTests, "\n" );
+		}
+		String_Append(  &m_codeTests, "\t};\n" );
+		String_Append(  &m_codeTests, "\n" );
+		String_Appendf( &m_codeTests, "\t%s pos;\n", sseTranslateVecName );
+		String_Appendf( &m_codeTests, "\tmemset( pos.comp, 0, %d * sizeof( __m128 ) );\n", translateVecComponents );
+		String_Append(  &m_codeTests, "\n" );
+		String_Appendf( &m_codeTests, "\t%s translation;\n", sseTranslateVecName );
+		for ( u32 i = 0; i < translateVecComponents; i++ ) {
+			String_Appendf( &m_codeTests, "\ttranslation.comp[%d] = %s( translateVecComponents[%d] );\n", i, loadFuncStr, i );
+		}
+		String_Append(  &m_codeTests, "\n" );
+		String_Appendf( &m_codeTests, "\ttranslate_sse( &pos, &translation, &pos );\n" );
+		String_Append(  &m_codeTests, "\n" );
+		String_Appendf( &m_codeTests, "\t%s translateResults[4];\n", m_memberTypeString );
+		String_Append(  &m_codeTests, "\n" );
+		for ( u32 componentIndex = 0; componentIndex < translateVecComponents; componentIndex++ ) {
+			String_Appendf( &m_codeTests, "\t%s( translateResults, pos.comp[%d] );\n", storeFuncStr, componentIndex );
+			for ( u32 i = 0; i < 4; i++ ) {
+				char valueStr[GEN_STRING_LENGTH_NUMERIC_LITERAL];
+				Gen_GetNumericLiteral( m_type, valuesTranslateVec[componentIndex], valueStr );
+
+				if ( Gen_TypeIsFloatingPoint( m_type ) ) {
+					String_Appendf( &m_codeTests, "\tTEMPER_EXPECT_TRUE( %s( translateResults[%d], %s ) );\n", floateqStr, i, valueStr );
+				} else {
+					String_Appendf( &m_codeTests, "\tTEMPER_EXPECT_TRUE( translateResults[%d] == %s );\n", floateqStr, i, valueStr );
+				}
+			}
+			String_Append(  &m_codeTests, "\n" );
+		}
+		String_Append(  &m_codeTests, "\tTEMPER_PASS();\n" );
+		String_Append(  &m_codeTests, "}\n" );
+		String_Append(  &m_codeTests, "\n" );
+
+		String_Appendf( &m_codeSuite, "\tTEMPER_RUN_TEST( %s );\n", testName );
+	}
 }
 
 void GeneratorMatrixTests::GenerateTestRotate() {

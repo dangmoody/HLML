@@ -1817,20 +1817,58 @@ TEMPER_TEST( TestInverse_SSE_float4x4 )
 	TEMPER_PASS();
 }
 
-TEMPER_TEST( TestTranslate_float4x4 )
+TEMPER_TEST( TestTranslate_Scalar_float4x4 )
 {
 	float4x4 mat;
-	float4x4 translated = float4x4(
-		1.0f, 0.0f, 0.0f, 2.0f,
-		0.0f, 1.0f, 0.0f, 3.0f,
-		0.0f, 0.0f, 1.0f, 4.0f,
-		0.0f, 0.0f, 0.0f, 1.0f
-	);
 
-	float3 translation = float3( 2.0f, 3.0f, 4.0f );
+	float3 translation = float3( 2.000000f, 3.000000f, 4.000000f );
 	mat = translate( mat, translation );
 
-	TEMPER_EXPECT_TRUE( mat == translated );
+	TEMPER_EXPECT_TRUE( floateq( mat[0][3], 2.0f ) );
+	TEMPER_EXPECT_TRUE( floateq( mat[1][3], 3.0f ) );
+	TEMPER_EXPECT_TRUE( floateq( mat[2][3], 4.0f ) );
+
+	TEMPER_PASS();
+}
+
+TEMPER_TEST( TestTranslate_SSE_float4x4 )
+{
+	float translateVecComponents[3][4] =
+	{
+		{ 2.000000f, 2.000000f, 2.000000f, 2.000000f },	// 4 x components
+		{ 3.000000f, 3.000000f, 3.000000f, 3.000000f },	// 4 y components
+		{ 4.000000f, 4.000000f, 4.000000f, 4.000000f }	// 4 z components
+	};
+
+	float3_sse_t pos;
+	memset( pos.comp, 0, 3 * sizeof( __m128 ) );
+
+	float3_sse_t translation;
+	translation.comp[0] = _mm_load_ps( translateVecComponents[0] );
+	translation.comp[1] = _mm_load_ps( translateVecComponents[1] );
+	translation.comp[2] = _mm_load_ps( translateVecComponents[2] );
+
+	translate_sse( &pos, &translation, &pos );
+
+	float translateResults[4];
+
+	_mm_store_ps( translateResults, pos.comp[0] );
+	TEMPER_EXPECT_TRUE( floateq( translateResults[0], 2.000000f ) );
+	TEMPER_EXPECT_TRUE( floateq( translateResults[1], 2.000000f ) );
+	TEMPER_EXPECT_TRUE( floateq( translateResults[2], 2.000000f ) );
+	TEMPER_EXPECT_TRUE( floateq( translateResults[3], 2.000000f ) );
+
+	_mm_store_ps( translateResults, pos.comp[1] );
+	TEMPER_EXPECT_TRUE( floateq( translateResults[0], 3.000000f ) );
+	TEMPER_EXPECT_TRUE( floateq( translateResults[1], 3.000000f ) );
+	TEMPER_EXPECT_TRUE( floateq( translateResults[2], 3.000000f ) );
+	TEMPER_EXPECT_TRUE( floateq( translateResults[3], 3.000000f ) );
+
+	_mm_store_ps( translateResults, pos.comp[2] );
+	TEMPER_EXPECT_TRUE( floateq( translateResults[0], 4.000000f ) );
+	TEMPER_EXPECT_TRUE( floateq( translateResults[1], 4.000000f ) );
+	TEMPER_EXPECT_TRUE( floateq( translateResults[2], 4.000000f ) );
+	TEMPER_EXPECT_TRUE( floateq( translateResults[3], 4.000000f ) );
 
 	TEMPER_PASS();
 }
@@ -2029,7 +2067,8 @@ TEMPER_SUITE( Test_float4x4 )
 	TEMPER_RUN_TEST( TestDeterminant_SSE_float4x4 );
 	TEMPER_RUN_TEST( TestInverse_Scalar_float4x4 );
 	TEMPER_RUN_TEST( TestInverse_SSE_float4x4 );
-	TEMPER_RUN_TEST( TestTranslate_float4x4 );
+	TEMPER_RUN_TEST( TestTranslate_Scalar_float4x4 );
+	TEMPER_RUN_TEST( TestTranslate_SSE_float4x4 );
 	TEMPER_RUN_TEST( TestRotate_float4x4 );
 	TEMPER_RUN_TEST( TestScale_float4x4 );
 	TEMPER_RUN_TEST( TestOrtho_float4x4 );

@@ -462,19 +462,15 @@ TEMPER_TEST( TestInverse_Scalar_double3x3 )
 	TEMPER_PASS();
 }
 
-TEMPER_TEST( TestTranslate_double3x3 )
+TEMPER_TEST( TestTranslate_Scalar_double3x3 )
 {
 	double3x3 mat;
-	double3x3 translated = double3x3(
-		1.0, 0.0, 2.0,
-		0.0, 1.0, 3.0,
-		0.0, 0.0, 1.0
-	);
 
-	double2 translation = double2( 2.0, 3.0 );
+	double2 translation = double2( 2.000000, 3.000000 );
 	mat = translate( mat, translation );
 
-	TEMPER_EXPECT_TRUE( mat == translated );
+	TEMPER_EXPECT_TRUE( doubleeq( mat[0][2], 2.0 ) );
+	TEMPER_EXPECT_TRUE( doubleeq( mat[1][2], 3.0 ) );
 
 	TEMPER_PASS();
 }
@@ -527,7 +523,7 @@ TEMPER_SUITE( Test_double3x3 )
 	TEMPER_RUN_TEST( TestTranspose_Scalar_double3x3 );
 	TEMPER_RUN_TEST( TestDeterminant_Scalar_double3x3 );
 	TEMPER_RUN_TEST( TestInverse_Scalar_double3x3 );
-	TEMPER_RUN_TEST( TestTranslate_double3x3 );
+	TEMPER_RUN_TEST( TestTranslate_Scalar_double3x3 );
 	TEMPER_RUN_TEST( TestRotate_double3x3 );
 	TEMPER_RUN_TEST( TestScale_double3x3 );
 }
