@@ -21,9 +21,9 @@ along with The HLML Generator.  If not, see <http://www.gnu.org/licenses/>.
 
 ===========================================================================
 */
-#ifdef _WIN32
+#include "timer.h"
 
-#include "time.h"
+#ifdef _WIN32
 
 #define WIN32_LEAN_AND_MEAN 1
 #include <Windows.h>

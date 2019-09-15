@@ -37,6 +37,24 @@ SOFTWARE.
 
 #include <temper/temper.h>
 
+static float3x3 g_identityMatrix;
+
+static float3x3 g_matrixMulLHS = float3x3(
+		6.000000f, 6.000000f, 6.000000f,
+		6.000000f, 6.000000f, 6.000000f,
+		12.000000f, 12.000000f, 12.000000f
+	);
+static float3x3 g_matrixMulRHS = float3x3(
+		1.000000f, 1.000000f, 1.000000f,
+		2.000000f, 2.000000f, 2.000000f,
+		3.000000f, 3.000000f, 3.000000f
+	);
+static float3x3 g_matrixMulAnswer = float3x3(
+		36.000000f, 36.000000f, 36.000000f,
+		36.000000f, 36.000000f, 36.000000f,
+		72.000000f, 72.000000f, 72.000000f
+	);
+
 TEMPER_TEST( TestAssignment_float3x3 )
 {
 	float3x3 mat;
@@ -70,9 +88,8 @@ TEMPER_TEST( TestAssignment_float3x3 )
 	TEMPER_PASS();
 }
 
-TEMPER_TEST( TestComponentWiseArithmeticAddition_float3x3 )
+TEMPER_TEST( TestComponentWiseArithmetic_Scalar_Addition_float3x3 )
 {
-	// scalar
 	float3x3 answer = float3x3(
 		7.000000f, 7.000000f, 7.000000f,
 		8.000000f, 8.000000f, 8.000000f,
@@ -93,7 +110,86 @@ TEMPER_TEST( TestComponentWiseArithmeticAddition_float3x3 )
 
 	TEMPER_EXPECT_TRUE( c == answer );
 
-	// SSE
+	TEMPER_PASS();
+}
+
+TEMPER_TEST( TestComponentWiseArithmetic_Scalar_Subtraction_float3x3 )
+{
+	float3x3 answer = float3x3(
+		5.000000f, 5.000000f, 5.000000f,
+		4.000000f, 4.000000f, 4.000000f,
+		9.000000f, 9.000000f, 9.000000f
+	);
+
+	float3x3 a = float3x3(
+		6.000000f, 6.000000f, 6.000000f,
+		6.000000f, 6.000000f, 6.000000f,
+		12.000000f, 12.000000f, 12.000000f
+	);
+	float3x3 b = float3x3(
+		1.000000f, 1.000000f, 1.000000f,
+		2.000000f, 2.000000f, 2.000000f,
+		3.000000f, 3.000000f, 3.000000f
+	);
+	float3x3 c = a - b;
+
+	TEMPER_EXPECT_TRUE( c == answer );
+
+	TEMPER_PASS();
+}
+
+TEMPER_TEST( TestComponentWiseArithmetic_Scalar_Multiplication_float3x3 )
+{
+	float3x3 answer = float3x3(
+		6.000000f, 6.000000f, 6.000000f,
+		12.000000f, 12.000000f, 12.000000f,
+		36.000000f, 36.000000f, 36.000000f
+	);
+
+	float3x3 a = float3x3(
+		6.000000f, 6.000000f, 6.000000f,
+		6.000000f, 6.000000f, 6.000000f,
+		12.000000f, 12.000000f, 12.000000f
+	);
+	float3x3 b = float3x3(
+		1.000000f, 1.000000f, 1.000000f,
+		2.000000f, 2.000000f, 2.000000f,
+		3.000000f, 3.000000f, 3.000000f
+	);
+	float3x3 c = comp_mul( a, b );
+
+	TEMPER_EXPECT_TRUE( c == answer );
+
+	TEMPER_PASS();
+}
+
+TEMPER_TEST( TestComponentWiseArithmetic_Scalar_Division_float3x3 )
+{
+	float3x3 answer = float3x3(
+		6.000000f, 6.000000f, 6.000000f,
+		3.000000f, 3.000000f, 3.000000f,
+		4.000000f, 4.000000f, 4.000000f
+	);
+
+	float3x3 a = float3x3(
+		6.000000f, 6.000000f, 6.000000f,
+		6.000000f, 6.000000f, 6.000000f,
+		12.000000f, 12.000000f, 12.000000f
+	);
+	float3x3 b = float3x3(
+		1.000000f, 1.000000f, 1.000000f,
+		2.000000f, 2.000000f, 2.000000f,
+		3.000000f, 3.000000f, 3.000000f
+	);
+	float3x3 c = comp_div( a, b );
+
+	TEMPER_EXPECT_TRUE( c == answer );
+
+	TEMPER_PASS();
+}
+
+TEMPER_TEST( TestComponentWiseArithmetic_SSE_Addition_float3x3 )
+{
 	float a00[4] =	{ 6.000000f, 6.000000f, 6.000000f, 6.000000f };
 	float a01[4] =	{ 6.000000f, 6.000000f, 6.000000f, 6.000000f };
 	float a02[4] =	{ 6.000000f, 6.000000f, 6.000000f, 6.000000f };
@@ -142,86 +238,64 @@ TEMPER_TEST( TestComponentWiseArithmeticAddition_float3x3 )
 	float arithmeticResults[4];
 
 	_mm_store_ps( arithmeticResults, results.m[0][0] );
-	TEMPER_EXPECT_TRUE( floateq( arithmeticResults[0], answer[0][0] ) );
-	TEMPER_EXPECT_TRUE( floateq( arithmeticResults[1], answer[0][0] ) );
-	TEMPER_EXPECT_TRUE( floateq( arithmeticResults[2], answer[0][0] ) );
-	TEMPER_EXPECT_TRUE( floateq( arithmeticResults[3], answer[0][0] ) );
+	TEMPER_EXPECT_TRUE( floateq( arithmeticResults[0], 7.000000f ) );
+	TEMPER_EXPECT_TRUE( floateq( arithmeticResults[1], 7.000000f ) );
+	TEMPER_EXPECT_TRUE( floateq( arithmeticResults[2], 7.000000f ) );
+	TEMPER_EXPECT_TRUE( floateq( arithmeticResults[3], 7.000000f ) );
 
 	_mm_store_ps( arithmeticResults, results.m[0][1] );
-	TEMPER_EXPECT_TRUE( floateq( arithmeticResults[0], answer[0][1] ) );
-	TEMPER_EXPECT_TRUE( floateq( arithmeticResults[1], answer[0][1] ) );
-	TEMPER_EXPECT_TRUE( floateq( arithmeticResults[2], answer[0][1] ) );
-	TEMPER_EXPECT_TRUE( floateq( arithmeticResults[3], answer[0][1] ) );
+	TEMPER_EXPECT_TRUE( floateq( arithmeticResults[0], 7.000000f ) );
+	TEMPER_EXPECT_TRUE( floateq( arithmeticResults[1], 7.000000f ) );
+	TEMPER_EXPECT_TRUE( floateq( arithmeticResults[2], 7.000000f ) );
+	TEMPER_EXPECT_TRUE( floateq( arithmeticResults[3], 7.000000f ) );
 
 	_mm_store_ps( arithmeticResults, results.m[0][2] );
-	TEMPER_EXPECT_TRUE( floateq( arithmeticResults[0], answer[0][2] ) );
-	TEMPER_EXPECT_TRUE( floateq( arithmeticResults[1], answer[0][2] ) );
-	TEMPER_EXPECT_TRUE( floateq( arithmeticResults[2], answer[0][2] ) );
-	TEMPER_EXPECT_TRUE( floateq( arithmeticResults[3], answer[0][2] ) );
+	TEMPER_EXPECT_TRUE( floateq( arithmeticResults[0], 7.000000f ) );
+	TEMPER_EXPECT_TRUE( floateq( arithmeticResults[1], 7.000000f ) );
+	TEMPER_EXPECT_TRUE( floateq( arithmeticResults[2], 7.000000f ) );
+	TEMPER_EXPECT_TRUE( floateq( arithmeticResults[3], 7.000000f ) );
 
 	_mm_store_ps( arithmeticResults, results.m[1][0] );
-	TEMPER_EXPECT_TRUE( floateq( arithmeticResults[0], answer[1][0] ) );
-	TEMPER_EXPECT_TRUE( floateq( arithmeticResults[1], answer[1][0] ) );
-	TEMPER_EXPECT_TRUE( floateq( arithmeticResults[2], answer[1][0] ) );
-	TEMPER_EXPECT_TRUE( floateq( arithmeticResults[3], answer[1][0] ) );
+	TEMPER_EXPECT_TRUE( floateq( arithmeticResults[0], 8.000000f ) );
+	TEMPER_EXPECT_TRUE( floateq( arithmeticResults[1], 8.000000f ) );
+	TEMPER_EXPECT_TRUE( floateq( arithmeticResults[2], 8.000000f ) );
+	TEMPER_EXPECT_TRUE( floateq( arithmeticResults[3], 8.000000f ) );
 
 	_mm_store_ps( arithmeticResults, results.m[1][1] );
-	TEMPER_EXPECT_TRUE( floateq( arithmeticResults[0], answer[1][1] ) );
-	TEMPER_EXPECT_TRUE( floateq( arithmeticResults[1], answer[1][1] ) );
-	TEMPER_EXPECT_TRUE( floateq( arithmeticResults[2], answer[1][1] ) );
-	TEMPER_EXPECT_TRUE( floateq( arithmeticResults[3], answer[1][1] ) );
+	TEMPER_EXPECT_TRUE( floateq( arithmeticResults[0], 8.000000f ) );
+	TEMPER_EXPECT_TRUE( floateq( arithmeticResults[1], 8.000000f ) );
+	TEMPER_EXPECT_TRUE( floateq( arithmeticResults[2], 8.000000f ) );
+	TEMPER_EXPECT_TRUE( floateq( arithmeticResults[3], 8.000000f ) );
 
 	_mm_store_ps( arithmeticResults, results.m[1][2] );
-	TEMPER_EXPECT_TRUE( floateq( arithmeticResults[0], answer[1][2] ) );
-	TEMPER_EXPECT_TRUE( floateq( arithmeticResults[1], answer[1][2] ) );
-	TEMPER_EXPECT_TRUE( floateq( arithmeticResults[2], answer[1][2] ) );
-	TEMPER_EXPECT_TRUE( floateq( arithmeticResults[3], answer[1][2] ) );
+	TEMPER_EXPECT_TRUE( floateq( arithmeticResults[0], 8.000000f ) );
+	TEMPER_EXPECT_TRUE( floateq( arithmeticResults[1], 8.000000f ) );
+	TEMPER_EXPECT_TRUE( floateq( arithmeticResults[2], 8.000000f ) );
+	TEMPER_EXPECT_TRUE( floateq( arithmeticResults[3], 8.000000f ) );
 
 	_mm_store_ps( arithmeticResults, results.m[2][0] );
-	TEMPER_EXPECT_TRUE( floateq( arithmeticResults[0], answer[2][0] ) );
-	TEMPER_EXPECT_TRUE( floateq( arithmeticResults[1], answer[2][0] ) );
-	TEMPER_EXPECT_TRUE( floateq( arithmeticResults[2], answer[2][0] ) );
-	TEMPER_EXPECT_TRUE( floateq( arithmeticResults[3], answer[2][0] ) );
+	TEMPER_EXPECT_TRUE( floateq( arithmeticResults[0], 15.000000f ) );
+	TEMPER_EXPECT_TRUE( floateq( arithmeticResults[1], 15.000000f ) );
+	TEMPER_EXPECT_TRUE( floateq( arithmeticResults[2], 15.000000f ) );
+	TEMPER_EXPECT_TRUE( floateq( arithmeticResults[3], 15.000000f ) );
 
 	_mm_store_ps( arithmeticResults, results.m[2][1] );
-	TEMPER_EXPECT_TRUE( floateq( arithmeticResults[0], answer[2][1] ) );
-	TEMPER_EXPECT_TRUE( floateq( arithmeticResults[1], answer[2][1] ) );
-	TEMPER_EXPECT_TRUE( floateq( arithmeticResults[2], answer[2][1] ) );
-	TEMPER_EXPECT_TRUE( floateq( arithmeticResults[3], answer[2][1] ) );
+	TEMPER_EXPECT_TRUE( floateq( arithmeticResults[0], 15.000000f ) );
+	TEMPER_EXPECT_TRUE( floateq( arithmeticResults[1], 15.000000f ) );
+	TEMPER_EXPECT_TRUE( floateq( arithmeticResults[2], 15.000000f ) );
+	TEMPER_EXPECT_TRUE( floateq( arithmeticResults[3], 15.000000f ) );
 
 	_mm_store_ps( arithmeticResults, results.m[2][2] );
-	TEMPER_EXPECT_TRUE( floateq( arithmeticResults[0], answer[2][2] ) );
-	TEMPER_EXPECT_TRUE( floateq( arithmeticResults[1], answer[2][2] ) );
-	TEMPER_EXPECT_TRUE( floateq( arithmeticResults[2], answer[2][2] ) );
-	TEMPER_EXPECT_TRUE( floateq( arithmeticResults[3], answer[2][2] ) );
+	TEMPER_EXPECT_TRUE( floateq( arithmeticResults[0], 15.000000f ) );
+	TEMPER_EXPECT_TRUE( floateq( arithmeticResults[1], 15.000000f ) );
+	TEMPER_EXPECT_TRUE( floateq( arithmeticResults[2], 15.000000f ) );
+	TEMPER_EXPECT_TRUE( floateq( arithmeticResults[3], 15.000000f ) );
 
 	TEMPER_PASS();
 }
 
-TEMPER_TEST( TestComponentWiseArithmeticSubtraction_float3x3 )
+TEMPER_TEST( TestComponentWiseArithmetic_SSE_Subtraction_float3x3 )
 {
-	// scalar
-	float3x3 answer = float3x3(
-		5.000000f, 5.000000f, 5.000000f,
-		4.000000f, 4.000000f, 4.000000f,
-		9.000000f, 9.000000f, 9.000000f
-	);
-
-	float3x3 a = float3x3(
-		6.000000f, 6.000000f, 6.000000f,
-		6.000000f, 6.000000f, 6.000000f,
-		12.000000f, 12.000000f, 12.000000f
-	);
-	float3x3 b = float3x3(
-		1.000000f, 1.000000f, 1.000000f,
-		2.000000f, 2.000000f, 2.000000f,
-		3.000000f, 3.000000f, 3.000000f
-	);
-	float3x3 c = a - b;
-
-	TEMPER_EXPECT_TRUE( c == answer );
-
-	// SSE
 	float a00[4] =	{ 6.000000f, 6.000000f, 6.000000f, 6.000000f };
 	float a01[4] =	{ 6.000000f, 6.000000f, 6.000000f, 6.000000f };
 	float a02[4] =	{ 6.000000f, 6.000000f, 6.000000f, 6.000000f };
@@ -270,86 +344,64 @@ TEMPER_TEST( TestComponentWiseArithmeticSubtraction_float3x3 )
 	float arithmeticResults[4];
 
 	_mm_store_ps( arithmeticResults, results.m[0][0] );
-	TEMPER_EXPECT_TRUE( floateq( arithmeticResults[0], answer[0][0] ) );
-	TEMPER_EXPECT_TRUE( floateq( arithmeticResults[1], answer[0][0] ) );
-	TEMPER_EXPECT_TRUE( floateq( arithmeticResults[2], answer[0][0] ) );
-	TEMPER_EXPECT_TRUE( floateq( arithmeticResults[3], answer[0][0] ) );
+	TEMPER_EXPECT_TRUE( floateq( arithmeticResults[0], 5.000000f ) );
+	TEMPER_EXPECT_TRUE( floateq( arithmeticResults[1], 5.000000f ) );
+	TEMPER_EXPECT_TRUE( floateq( arithmeticResults[2], 5.000000f ) );
+	TEMPER_EXPECT_TRUE( floateq( arithmeticResults[3], 5.000000f ) );
 
 	_mm_store_ps( arithmeticResults, results.m[0][1] );
-	TEMPER_EXPECT_TRUE( floateq( arithmeticResults[0], answer[0][1] ) );
-	TEMPER_EXPECT_TRUE( floateq( arithmeticResults[1], answer[0][1] ) );
-	TEMPER_EXPECT_TRUE( floateq( arithmeticResults[2], answer[0][1] ) );
-	TEMPER_EXPECT_TRUE( floateq( arithmeticResults[3], answer[0][1] ) );
+	TEMPER_EXPECT_TRUE( floateq( arithmeticResults[0], 5.000000f ) );
+	TEMPER_EXPECT_TRUE( floateq( arithmeticResults[1], 5.000000f ) );
+	TEMPER_EXPECT_TRUE( floateq( arithmeticResults[2], 5.000000f ) );
+	TEMPER_EXPECT_TRUE( floateq( arithmeticResults[3], 5.000000f ) );
 
 	_mm_store_ps( arithmeticResults, results.m[0][2] );
-	TEMPER_EXPECT_TRUE( floateq( arithmeticResults[0], answer[0][2] ) );
-	TEMPER_EXPECT_TRUE( floateq( arithmeticResults[1], answer[0][2] ) );
-	TEMPER_EXPECT_TRUE( floateq( arithmeticResults[2], answer[0][2] ) );
-	TEMPER_EXPECT_TRUE( floateq( arithmeticResults[3], answer[0][2] ) );
+	TEMPER_EXPECT_TRUE( floateq( arithmeticResults[0], 5.000000f ) );
+	TEMPER_EXPECT_TRUE( floateq( arithmeticResults[1], 5.000000f ) );
+	TEMPER_EXPECT_TRUE( floateq( arithmeticResults[2], 5.000000f ) );
+	TEMPER_EXPECT_TRUE( floateq( arithmeticResults[3], 5.000000f ) );
 
 	_mm_store_ps( arithmeticResults, results.m[1][0] );
-	TEMPER_EXPECT_TRUE( floateq( arithmeticResults[0], answer[1][0] ) );
-	TEMPER_EXPECT_TRUE( floateq( arithmeticResults[1], answer[1][0] ) );
-	TEMPER_EXPECT_TRUE( floateq( arithmeticResults[2], answer[1][0] ) );
-	TEMPER_EXPECT_TRUE( floateq( arithmeticResults[3], answer[1][0] ) );
+	TEMPER_EXPECT_TRUE( floateq( arithmeticResults[0], 4.000000f ) );
+	TEMPER_EXPECT_TRUE( floateq( arithmeticResults[1], 4.000000f ) );
+	TEMPER_EXPECT_TRUE( floateq( arithmeticResults[2], 4.000000f ) );
+	TEMPER_EXPECT_TRUE( floateq( arithmeticResults[3], 4.000000f ) );
 
 	_mm_store_ps( arithmeticResults, results.m[1][1] );
-	TEMPER_EXPECT_TRUE( floateq( arithmeticResults[0], answer[1][1] ) );
-	TEMPER_EXPECT_TRUE( floateq( arithmeticResults[1], answer[1][1] ) );
-	TEMPER_EXPECT_TRUE( floateq( arithmeticResults[2], answer[1][1] ) );
-	TEMPER_EXPECT_TRUE( floateq( arithmeticResults[3], answer[1][1] ) );
+	TEMPER_EXPECT_TRUE( floateq( arithmeticResults[0], 4.000000f ) );
+	TEMPER_EXPECT_TRUE( floateq( arithmeticResults[1], 4.000000f ) );
+	TEMPER_EXPECT_TRUE( floateq( arithmeticResults[2], 4.000000f ) );
+	TEMPER_EXPECT_TRUE( floateq( arithmeticResults[3], 4.000000f ) );
 
 	_mm_store_ps( arithmeticResults, results.m[1][2] );
-	TEMPER_EXPECT_TRUE( floateq( arithmeticResults[0], answer[1][2] ) );
-	TEMPER_EXPECT_TRUE( floateq( arithmeticResults[1], answer[1][2] ) );
-	TEMPER_EXPECT_TRUE( floateq( arithmeticResults[2], answer[1][2] ) );
-	TEMPER_EXPECT_TRUE( floateq( arithmeticResults[3], answer[1][2] ) );
+	TEMPER_EXPECT_TRUE( floateq( arithmeticResults[0], 4.000000f ) );
+	TEMPER_EXPECT_TRUE( floateq( arithmeticResults[1], 4.000000f ) );
+	TEMPER_EXPECT_TRUE( floateq( arithmeticResults[2], 4.000000f ) );
+	TEMPER_EXPECT_TRUE( floateq( arithmeticResults[3], 4.000000f ) );
 
 	_mm_store_ps( arithmeticResults, results.m[2][0] );
-	TEMPER_EXPECT_TRUE( floateq( arithmeticResults[0], answer[2][0] ) );
-	TEMPER_EXPECT_TRUE( floateq( arithmeticResults[1], answer[2][0] ) );
-	TEMPER_EXPECT_TRUE( floateq( arithmeticResults[2], answer[2][0] ) );
-	TEMPER_EXPECT_TRUE( floateq( arithmeticResults[3], answer[2][0] ) );
+	TEMPER_EXPECT_TRUE( floateq( arithmeticResults[0], 9.000000f ) );
+	TEMPER_EXPECT_TRUE( floateq( arithmeticResults[1], 9.000000f ) );
+	TEMPER_EXPECT_TRUE( floateq( arithmeticResults[2], 9.000000f ) );
+	TEMPER_EXPECT_TRUE( floateq( arithmeticResults[3], 9.000000f ) );
 
 	_mm_store_ps( arithmeticResults, results.m[2][1] );
-	TEMPER_EXPECT_TRUE( floateq( arithmeticResults[0], answer[2][1] ) );
-	TEMPER_EXPECT_TRUE( floateq( arithmeticResults[1], answer[2][1] ) );
-	TEMPER_EXPECT_TRUE( floateq( arithmeticResults[2], answer[2][1] ) );
-	TEMPER_EXPECT_TRUE( floateq( arithmeticResults[3], answer[2][1] ) );
+	TEMPER_EXPECT_TRUE( floateq( arithmeticResults[0], 9.000000f ) );
+	TEMPER_EXPECT_TRUE( floateq( arithmeticResults[1], 9.000000f ) );
+	TEMPER_EXPECT_TRUE( floateq( arithmeticResults[2], 9.000000f ) );
+	TEMPER_EXPECT_TRUE( floateq( arithmeticResults[3], 9.000000f ) );
 
 	_mm_store_ps( arithmeticResults, results.m[2][2] );
-	TEMPER_EXPECT_TRUE( floateq( arithmeticResults[0], answer[2][2] ) );
-	TEMPER_EXPECT_TRUE( floateq( arithmeticResults[1], answer[2][2] ) );
-	TEMPER_EXPECT_TRUE( floateq( arithmeticResults[2], answer[2][2] ) );
-	TEMPER_EXPECT_TRUE( floateq( arithmeticResults[3], answer[2][2] ) );
+	TEMPER_EXPECT_TRUE( floateq( arithmeticResults[0], 9.000000f ) );
+	TEMPER_EXPECT_TRUE( floateq( arithmeticResults[1], 9.000000f ) );
+	TEMPER_EXPECT_TRUE( floateq( arithmeticResults[2], 9.000000f ) );
+	TEMPER_EXPECT_TRUE( floateq( arithmeticResults[3], 9.000000f ) );
 
 	TEMPER_PASS();
 }
 
-TEMPER_TEST( TestComponentWiseArithmeticMultiplication_float3x3 )
+TEMPER_TEST( TestComponentWiseArithmetic_SSE_Multiplication_float3x3 )
 {
-	// scalar
-	float3x3 answer = float3x3(
-		6.000000f, 6.000000f, 6.000000f,
-		12.000000f, 12.000000f, 12.000000f,
-		36.000000f, 36.000000f, 36.000000f
-	);
-
-	float3x3 a = float3x3(
-		6.000000f, 6.000000f, 6.000000f,
-		6.000000f, 6.000000f, 6.000000f,
-		12.000000f, 12.000000f, 12.000000f
-	);
-	float3x3 b = float3x3(
-		1.000000f, 1.000000f, 1.000000f,
-		2.000000f, 2.000000f, 2.000000f,
-		3.000000f, 3.000000f, 3.000000f
-	);
-	float3x3 c = comp_mul( a, b );
-
-	TEMPER_EXPECT_TRUE( c == answer );
-
-	// SSE
 	float a00[4] =	{ 6.000000f, 6.000000f, 6.000000f, 6.000000f };
 	float a01[4] =	{ 6.000000f, 6.000000f, 6.000000f, 6.000000f };
 	float a02[4] =	{ 6.000000f, 6.000000f, 6.000000f, 6.000000f };
@@ -398,86 +450,64 @@ TEMPER_TEST( TestComponentWiseArithmeticMultiplication_float3x3 )
 	float arithmeticResults[4];
 
 	_mm_store_ps( arithmeticResults, results.m[0][0] );
-	TEMPER_EXPECT_TRUE( floateq( arithmeticResults[0], answer[0][0] ) );
-	TEMPER_EXPECT_TRUE( floateq( arithmeticResults[1], answer[0][0] ) );
-	TEMPER_EXPECT_TRUE( floateq( arithmeticResults[2], answer[0][0] ) );
-	TEMPER_EXPECT_TRUE( floateq( arithmeticResults[3], answer[0][0] ) );
+	TEMPER_EXPECT_TRUE( floateq( arithmeticResults[0], 6.000000f ) );
+	TEMPER_EXPECT_TRUE( floateq( arithmeticResults[1], 6.000000f ) );
+	TEMPER_EXPECT_TRUE( floateq( arithmeticResults[2], 6.000000f ) );
+	TEMPER_EXPECT_TRUE( floateq( arithmeticResults[3], 6.000000f ) );
 
 	_mm_store_ps( arithmeticResults, results.m[0][1] );
-	TEMPER_EXPECT_TRUE( floateq( arithmeticResults[0], answer[0][1] ) );
-	TEMPER_EXPECT_TRUE( floateq( arithmeticResults[1], answer[0][1] ) );
-	TEMPER_EXPECT_TRUE( floateq( arithmeticResults[2], answer[0][1] ) );
-	TEMPER_EXPECT_TRUE( floateq( arithmeticResults[3], answer[0][1] ) );
+	TEMPER_EXPECT_TRUE( floateq( arithmeticResults[0], 6.000000f ) );
+	TEMPER_EXPECT_TRUE( floateq( arithmeticResults[1], 6.000000f ) );
+	TEMPER_EXPECT_TRUE( floateq( arithmeticResults[2], 6.000000f ) );
+	TEMPER_EXPECT_TRUE( floateq( arithmeticResults[3], 6.000000f ) );
 
 	_mm_store_ps( arithmeticResults, results.m[0][2] );
-	TEMPER_EXPECT_TRUE( floateq( arithmeticResults[0], answer[0][2] ) );
-	TEMPER_EXPECT_TRUE( floateq( arithmeticResults[1], answer[0][2] ) );
-	TEMPER_EXPECT_TRUE( floateq( arithmeticResults[2], answer[0][2] ) );
-	TEMPER_EXPECT_TRUE( floateq( arithmeticResults[3], answer[0][2] ) );
+	TEMPER_EXPECT_TRUE( floateq( arithmeticResults[0], 6.000000f ) );
+	TEMPER_EXPECT_TRUE( floateq( arithmeticResults[1], 6.000000f ) );
+	TEMPER_EXPECT_TRUE( floateq( arithmeticResults[2], 6.000000f ) );
+	TEMPER_EXPECT_TRUE( floateq( arithmeticResults[3], 6.000000f ) );
 
 	_mm_store_ps( arithmeticResults, results.m[1][0] );
-	TEMPER_EXPECT_TRUE( floateq( arithmeticResults[0], answer[1][0] ) );
-	TEMPER_EXPECT_TRUE( floateq( arithmeticResults[1], answer[1][0] ) );
-	TEMPER_EXPECT_TRUE( floateq( arithmeticResults[2], answer[1][0] ) );
-	TEMPER_EXPECT_TRUE( floateq( arithmeticResults[3], answer[1][0] ) );
+	TEMPER_EXPECT_TRUE( floateq( arithmeticResults[0], 12.000000f ) );
+	TEMPER_EXPECT_TRUE( floateq( arithmeticResults[1], 12.000000f ) );
+	TEMPER_EXPECT_TRUE( floateq( arithmeticResults[2], 12.000000f ) );
+	TEMPER_EXPECT_TRUE( floateq( arithmeticResults[3], 12.000000f ) );
 
 	_mm_store_ps( arithmeticResults, results.m[1][1] );
-	TEMPER_EXPECT_TRUE( floateq( arithmeticResults[0], answer[1][1] ) );
-	TEMPER_EXPECT_TRUE( floateq( arithmeticResults[1], answer[1][1] ) );
-	TEMPER_EXPECT_TRUE( floateq( arithmeticResults[2], answer[1][1] ) );
-	TEMPER_EXPECT_TRUE( floateq( arithmeticResults[3], answer[1][1] ) );
+	TEMPER_EXPECT_TRUE( floateq( arithmeticResults[0], 12.000000f ) );
+	TEMPER_EXPECT_TRUE( floateq( arithmeticResults[1], 12.000000f ) );
+	TEMPER_EXPECT_TRUE( floateq( arithmeticResults[2], 12.000000f ) );
+	TEMPER_EXPECT_TRUE( floateq( arithmeticResults[3], 12.000000f ) );
 
 	_mm_store_ps( arithmeticResults, results.m[1][2] );
-	TEMPER_EXPECT_TRUE( floateq( arithmeticResults[0], answer[1][2] ) );
-	TEMPER_EXPECT_TRUE( floateq( arithmeticResults[1], answer[1][2] ) );
-	TEMPER_EXPECT_TRUE( floateq( arithmeticResults[2], answer[1][2] ) );
-	TEMPER_EXPECT_TRUE( floateq( arithmeticResults[3], answer[1][2] ) );
+	TEMPER_EXPECT_TRUE( floateq( arithmeticResults[0], 12.000000f ) );
+	TEMPER_EXPECT_TRUE( floateq( arithmeticResults[1], 12.000000f ) );
+	TEMPER_EXPECT_TRUE( floateq( arithmeticResults[2], 12.000000f ) );
+	TEMPER_EXPECT_TRUE( floateq( arithmeticResults[3], 12.000000f ) );
 
 	_mm_store_ps( arithmeticResults, results.m[2][0] );
-	TEMPER_EXPECT_TRUE( floateq( arithmeticResults[0], answer[2][0] ) );
-	TEMPER_EXPECT_TRUE( floateq( arithmeticResults[1], answer[2][0] ) );
-	TEMPER_EXPECT_TRUE( floateq( arithmeticResults[2], answer[2][0] ) );
-	TEMPER_EXPECT_TRUE( floateq( arithmeticResults[3], answer[2][0] ) );
+	TEMPER_EXPECT_TRUE( floateq( arithmeticResults[0], 36.000000f ) );
+	TEMPER_EXPECT_TRUE( floateq( arithmeticResults[1], 36.000000f ) );
+	TEMPER_EXPECT_TRUE( floateq( arithmeticResults[2], 36.000000f ) );
+	TEMPER_EXPECT_TRUE( floateq( arithmeticResults[3], 36.000000f ) );
 
 	_mm_store_ps( arithmeticResults, results.m[2][1] );
-	TEMPER_EXPECT_TRUE( floateq( arithmeticResults[0], answer[2][1] ) );
-	TEMPER_EXPECT_TRUE( floateq( arithmeticResults[1], answer[2][1] ) );
-	TEMPER_EXPECT_TRUE( floateq( arithmeticResults[2], answer[2][1] ) );
-	TEMPER_EXPECT_TRUE( floateq( arithmeticResults[3], answer[2][1] ) );
+	TEMPER_EXPECT_TRUE( floateq( arithmeticResults[0], 36.000000f ) );
+	TEMPER_EXPECT_TRUE( floateq( arithmeticResults[1], 36.000000f ) );
+	TEMPER_EXPECT_TRUE( floateq( arithmeticResults[2], 36.000000f ) );
+	TEMPER_EXPECT_TRUE( floateq( arithmeticResults[3], 36.000000f ) );
 
 	_mm_store_ps( arithmeticResults, results.m[2][2] );
-	TEMPER_EXPECT_TRUE( floateq( arithmeticResults[0], answer[2][2] ) );
-	TEMPER_EXPECT_TRUE( floateq( arithmeticResults[1], answer[2][2] ) );
-	TEMPER_EXPECT_TRUE( floateq( arithmeticResults[2], answer[2][2] ) );
-	TEMPER_EXPECT_TRUE( floateq( arithmeticResults[3], answer[2][2] ) );
+	TEMPER_EXPECT_TRUE( floateq( arithmeticResults[0], 36.000000f ) );
+	TEMPER_EXPECT_TRUE( floateq( arithmeticResults[1], 36.000000f ) );
+	TEMPER_EXPECT_TRUE( floateq( arithmeticResults[2], 36.000000f ) );
+	TEMPER_EXPECT_TRUE( floateq( arithmeticResults[3], 36.000000f ) );
 
 	TEMPER_PASS();
 }
 
-TEMPER_TEST( TestComponentWiseArithmeticDivision_float3x3 )
+TEMPER_TEST( TestComponentWiseArithmetic_SSE_Division_float3x3 )
 {
-	// scalar
-	float3x3 answer = float3x3(
-		6.000000f, 6.000000f, 6.000000f,
-		3.000000f, 3.000000f, 3.000000f,
-		4.000000f, 4.000000f, 4.000000f
-	);
-
-	float3x3 a = float3x3(
-		6.000000f, 6.000000f, 6.000000f,
-		6.000000f, 6.000000f, 6.000000f,
-		12.000000f, 12.000000f, 12.000000f
-	);
-	float3x3 b = float3x3(
-		1.000000f, 1.000000f, 1.000000f,
-		2.000000f, 2.000000f, 2.000000f,
-		3.000000f, 3.000000f, 3.000000f
-	);
-	float3x3 c = comp_div( a, b );
-
-	TEMPER_EXPECT_TRUE( c == answer );
-
-	// SSE
 	float a00[4] =	{ 6.000000f, 6.000000f, 6.000000f, 6.000000f };
 	float a01[4] =	{ 6.000000f, 6.000000f, 6.000000f, 6.000000f };
 	float a02[4] =	{ 6.000000f, 6.000000f, 6.000000f, 6.000000f };
@@ -526,86 +556,77 @@ TEMPER_TEST( TestComponentWiseArithmeticDivision_float3x3 )
 	float arithmeticResults[4];
 
 	_mm_store_ps( arithmeticResults, results.m[0][0] );
-	TEMPER_EXPECT_TRUE( floateq( arithmeticResults[0], answer[0][0] ) );
-	TEMPER_EXPECT_TRUE( floateq( arithmeticResults[1], answer[0][0] ) );
-	TEMPER_EXPECT_TRUE( floateq( arithmeticResults[2], answer[0][0] ) );
-	TEMPER_EXPECT_TRUE( floateq( arithmeticResults[3], answer[0][0] ) );
+	TEMPER_EXPECT_TRUE( floateq( arithmeticResults[0], 6.000000f ) );
+	TEMPER_EXPECT_TRUE( floateq( arithmeticResults[1], 6.000000f ) );
+	TEMPER_EXPECT_TRUE( floateq( arithmeticResults[2], 6.000000f ) );
+	TEMPER_EXPECT_TRUE( floateq( arithmeticResults[3], 6.000000f ) );
 
 	_mm_store_ps( arithmeticResults, results.m[0][1] );
-	TEMPER_EXPECT_TRUE( floateq( arithmeticResults[0], answer[0][1] ) );
-	TEMPER_EXPECT_TRUE( floateq( arithmeticResults[1], answer[0][1] ) );
-	TEMPER_EXPECT_TRUE( floateq( arithmeticResults[2], answer[0][1] ) );
-	TEMPER_EXPECT_TRUE( floateq( arithmeticResults[3], answer[0][1] ) );
+	TEMPER_EXPECT_TRUE( floateq( arithmeticResults[0], 6.000000f ) );
+	TEMPER_EXPECT_TRUE( floateq( arithmeticResults[1], 6.000000f ) );
+	TEMPER_EXPECT_TRUE( floateq( arithmeticResults[2], 6.000000f ) );
+	TEMPER_EXPECT_TRUE( floateq( arithmeticResults[3], 6.000000f ) );
 
 	_mm_store_ps( arithmeticResults, results.m[0][2] );
-	TEMPER_EXPECT_TRUE( floateq( arithmeticResults[0], answer[0][2] ) );
-	TEMPER_EXPECT_TRUE( floateq( arithmeticResults[1], answer[0][2] ) );
-	TEMPER_EXPECT_TRUE( floateq( arithmeticResults[2], answer[0][2] ) );
-	TEMPER_EXPECT_TRUE( floateq( arithmeticResults[3], answer[0][2] ) );
+	TEMPER_EXPECT_TRUE( floateq( arithmeticResults[0], 6.000000f ) );
+	TEMPER_EXPECT_TRUE( floateq( arithmeticResults[1], 6.000000f ) );
+	TEMPER_EXPECT_TRUE( floateq( arithmeticResults[2], 6.000000f ) );
+	TEMPER_EXPECT_TRUE( floateq( arithmeticResults[3], 6.000000f ) );
 
 	_mm_store_ps( arithmeticResults, results.m[1][0] );
-	TEMPER_EXPECT_TRUE( floateq( arithmeticResults[0], answer[1][0] ) );
-	TEMPER_EXPECT_TRUE( floateq( arithmeticResults[1], answer[1][0] ) );
-	TEMPER_EXPECT_TRUE( floateq( arithmeticResults[2], answer[1][0] ) );
-	TEMPER_EXPECT_TRUE( floateq( arithmeticResults[3], answer[1][0] ) );
+	TEMPER_EXPECT_TRUE( floateq( arithmeticResults[0], 3.000000f ) );
+	TEMPER_EXPECT_TRUE( floateq( arithmeticResults[1], 3.000000f ) );
+	TEMPER_EXPECT_TRUE( floateq( arithmeticResults[2], 3.000000f ) );
+	TEMPER_EXPECT_TRUE( floateq( arithmeticResults[3], 3.000000f ) );
 
 	_mm_store_ps( arithmeticResults, results.m[1][1] );
-	TEMPER_EXPECT_TRUE( floateq( arithmeticResults[0], answer[1][1] ) );
-	TEMPER_EXPECT_TRUE( floateq( arithmeticResults[1], answer[1][1] ) );
-	TEMPER_EXPECT_TRUE( floateq( arithmeticResults[2], answer[1][1] ) );
-	TEMPER_EXPECT_TRUE( floateq( arithmeticResults[3], answer[1][1] ) );
+	TEMPER_EXPECT_TRUE( floateq( arithmeticResults[0], 3.000000f ) );
+	TEMPER_EXPECT_TRUE( floateq( arithmeticResults[1], 3.000000f ) );
+	TEMPER_EXPECT_TRUE( floateq( arithmeticResults[2], 3.000000f ) );
+	TEMPER_EXPECT_TRUE( floateq( arithmeticResults[3], 3.000000f ) );
 
 	_mm_store_ps( arithmeticResults, results.m[1][2] );
-	TEMPER_EXPECT_TRUE( floateq( arithmeticResults[0], answer[1][2] ) );
-	TEMPER_EXPECT_TRUE( floateq( arithmeticResults[1], answer[1][2] ) );
-	TEMPER_EXPECT_TRUE( floateq( arithmeticResults[2], answer[1][2] ) );
-	TEMPER_EXPECT_TRUE( floateq( arithmeticResults[3], answer[1][2] ) );
+	TEMPER_EXPECT_TRUE( floateq( arithmeticResults[0], 3.000000f ) );
+	TEMPER_EXPECT_TRUE( floateq( arithmeticResults[1], 3.000000f ) );
+	TEMPER_EXPECT_TRUE( floateq( arithmeticResults[2], 3.000000f ) );
+	TEMPER_EXPECT_TRUE( floateq( arithmeticResults[3], 3.000000f ) );
 
 	_mm_store_ps( arithmeticResults, results.m[2][0] );
-	TEMPER_EXPECT_TRUE( floateq( arithmeticResults[0], answer[2][0] ) );
-	TEMPER_EXPECT_TRUE( floateq( arithmeticResults[1], answer[2][0] ) );
-	TEMPER_EXPECT_TRUE( floateq( arithmeticResults[2], answer[2][0] ) );
-	TEMPER_EXPECT_TRUE( floateq( arithmeticResults[3], answer[2][0] ) );
+	TEMPER_EXPECT_TRUE( floateq( arithmeticResults[0], 4.000000f ) );
+	TEMPER_EXPECT_TRUE( floateq( arithmeticResults[1], 4.000000f ) );
+	TEMPER_EXPECT_TRUE( floateq( arithmeticResults[2], 4.000000f ) );
+	TEMPER_EXPECT_TRUE( floateq( arithmeticResults[3], 4.000000f ) );
 
 	_mm_store_ps( arithmeticResults, results.m[2][1] );
-	TEMPER_EXPECT_TRUE( floateq( arithmeticResults[0], answer[2][1] ) );
-	TEMPER_EXPECT_TRUE( floateq( arithmeticResults[1], answer[2][1] ) );
-	TEMPER_EXPECT_TRUE( floateq( arithmeticResults[2], answer[2][1] ) );
-	TEMPER_EXPECT_TRUE( floateq( arithmeticResults[3], answer[2][1] ) );
+	TEMPER_EXPECT_TRUE( floateq( arithmeticResults[0], 4.000000f ) );
+	TEMPER_EXPECT_TRUE( floateq( arithmeticResults[1], 4.000000f ) );
+	TEMPER_EXPECT_TRUE( floateq( arithmeticResults[2], 4.000000f ) );
+	TEMPER_EXPECT_TRUE( floateq( arithmeticResults[3], 4.000000f ) );
 
 	_mm_store_ps( arithmeticResults, results.m[2][2] );
-	TEMPER_EXPECT_TRUE( floateq( arithmeticResults[0], answer[2][2] ) );
-	TEMPER_EXPECT_TRUE( floateq( arithmeticResults[1], answer[2][2] ) );
-	TEMPER_EXPECT_TRUE( floateq( arithmeticResults[2], answer[2][2] ) );
-	TEMPER_EXPECT_TRUE( floateq( arithmeticResults[3], answer[2][2] ) );
+	TEMPER_EXPECT_TRUE( floateq( arithmeticResults[0], 4.000000f ) );
+	TEMPER_EXPECT_TRUE( floateq( arithmeticResults[1], 4.000000f ) );
+	TEMPER_EXPECT_TRUE( floateq( arithmeticResults[2], 4.000000f ) );
+	TEMPER_EXPECT_TRUE( floateq( arithmeticResults[3], 4.000000f ) );
 
 	TEMPER_PASS();
 }
 
-TEMPER_TEST( TestMultiplyMatrix_float3x3 )
+TEMPER_TEST( TestMultiplyMatrix_Scalar_float3x3 )
 {
-	// scalar
-	float3x3 answer = float3x3(
-		36.000000f, 36.000000f, 36.000000f,
-		36.000000f, 36.000000f, 36.000000f,
-		72.000000f, 72.000000f, 72.000000f
-	);
+	float3x3 answer = g_matrixMulAnswer;
 
-	float3x3 a = float3x3(
-		6.000000f, 6.000000f, 6.000000f,
-		6.000000f, 6.000000f, 6.000000f,
-		12.000000f, 12.000000f, 12.000000f
-	);
-	float3x3 b = float3x3(
-		1.000000f, 1.000000f, 1.000000f,
-		2.000000f, 2.000000f, 2.000000f,
-		3.000000f, 3.000000f, 3.000000f
-	);
+	float3x3 a = g_matrixMulLHS;
+	float3x3 b = g_matrixMulRHS;
 	float3x3 c = a * b;
 
 	TEMPER_EXPECT_TRUE( c == answer );
 
-	// SSE
+	TEMPER_PASS();
+}
+
+TEMPER_TEST( TestMultiplyMatrix_SSE_float3x3 )
+{
 	float a00[4] =	{ 6.000000f, 6.000000f, 6.000000f, 6.000000f };
 	float a01[4] =	{ 6.000000f, 6.000000f, 6.000000f, 6.000000f };
 	float a02[4] =	{ 6.000000f, 6.000000f, 6.000000f, 6.000000f };
@@ -654,58 +675,58 @@ TEMPER_TEST( TestMultiplyMatrix_float3x3 )
 	float mulResults[4];
 
 	_mm_store_ps( mulResults, results.m[0][0] );
-	TEMPER_EXPECT_TRUE( floateq( mulResults[0], answer[0][0] ) );
-	TEMPER_EXPECT_TRUE( floateq( mulResults[1], answer[0][0] ) );
-	TEMPER_EXPECT_TRUE( floateq( mulResults[2], answer[0][0] ) );
-	TEMPER_EXPECT_TRUE( floateq( mulResults[3], answer[0][0] ) );
+	TEMPER_EXPECT_TRUE( floateq( mulResults[0], g_matrixMulAnswer[0][0] ) );
+	TEMPER_EXPECT_TRUE( floateq( mulResults[1], g_matrixMulAnswer[0][0] ) );
+	TEMPER_EXPECT_TRUE( floateq( mulResults[2], g_matrixMulAnswer[0][0] ) );
+	TEMPER_EXPECT_TRUE( floateq( mulResults[3], g_matrixMulAnswer[0][0] ) );
 
 	_mm_store_ps( mulResults, results.m[0][1] );
-	TEMPER_EXPECT_TRUE( floateq( mulResults[0], answer[0][1] ) );
-	TEMPER_EXPECT_TRUE( floateq( mulResults[1], answer[0][1] ) );
-	TEMPER_EXPECT_TRUE( floateq( mulResults[2], answer[0][1] ) );
-	TEMPER_EXPECT_TRUE( floateq( mulResults[3], answer[0][1] ) );
+	TEMPER_EXPECT_TRUE( floateq( mulResults[0], g_matrixMulAnswer[0][1] ) );
+	TEMPER_EXPECT_TRUE( floateq( mulResults[1], g_matrixMulAnswer[0][1] ) );
+	TEMPER_EXPECT_TRUE( floateq( mulResults[2], g_matrixMulAnswer[0][1] ) );
+	TEMPER_EXPECT_TRUE( floateq( mulResults[3], g_matrixMulAnswer[0][1] ) );
 
 	_mm_store_ps( mulResults, results.m[0][2] );
-	TEMPER_EXPECT_TRUE( floateq( mulResults[0], answer[0][2] ) );
-	TEMPER_EXPECT_TRUE( floateq( mulResults[1], answer[0][2] ) );
-	TEMPER_EXPECT_TRUE( floateq( mulResults[2], answer[0][2] ) );
-	TEMPER_EXPECT_TRUE( floateq( mulResults[3], answer[0][2] ) );
+	TEMPER_EXPECT_TRUE( floateq( mulResults[0], g_matrixMulAnswer[0][2] ) );
+	TEMPER_EXPECT_TRUE( floateq( mulResults[1], g_matrixMulAnswer[0][2] ) );
+	TEMPER_EXPECT_TRUE( floateq( mulResults[2], g_matrixMulAnswer[0][2] ) );
+	TEMPER_EXPECT_TRUE( floateq( mulResults[3], g_matrixMulAnswer[0][2] ) );
 
 	_mm_store_ps( mulResults, results.m[1][0] );
-	TEMPER_EXPECT_TRUE( floateq( mulResults[0], answer[1][0] ) );
-	TEMPER_EXPECT_TRUE( floateq( mulResults[1], answer[1][0] ) );
-	TEMPER_EXPECT_TRUE( floateq( mulResults[2], answer[1][0] ) );
-	TEMPER_EXPECT_TRUE( floateq( mulResults[3], answer[1][0] ) );
+	TEMPER_EXPECT_TRUE( floateq( mulResults[0], g_matrixMulAnswer[1][0] ) );
+	TEMPER_EXPECT_TRUE( floateq( mulResults[1], g_matrixMulAnswer[1][0] ) );
+	TEMPER_EXPECT_TRUE( floateq( mulResults[2], g_matrixMulAnswer[1][0] ) );
+	TEMPER_EXPECT_TRUE( floateq( mulResults[3], g_matrixMulAnswer[1][0] ) );
 
 	_mm_store_ps( mulResults, results.m[1][1] );
-	TEMPER_EXPECT_TRUE( floateq( mulResults[0], answer[1][1] ) );
-	TEMPER_EXPECT_TRUE( floateq( mulResults[1], answer[1][1] ) );
-	TEMPER_EXPECT_TRUE( floateq( mulResults[2], answer[1][1] ) );
-	TEMPER_EXPECT_TRUE( floateq( mulResults[3], answer[1][1] ) );
+	TEMPER_EXPECT_TRUE( floateq( mulResults[0], g_matrixMulAnswer[1][1] ) );
+	TEMPER_EXPECT_TRUE( floateq( mulResults[1], g_matrixMulAnswer[1][1] ) );
+	TEMPER_EXPECT_TRUE( floateq( mulResults[2], g_matrixMulAnswer[1][1] ) );
+	TEMPER_EXPECT_TRUE( floateq( mulResults[3], g_matrixMulAnswer[1][1] ) );
 
 	_mm_store_ps( mulResults, results.m[1][2] );
-	TEMPER_EXPECT_TRUE( floateq( mulResults[0], answer[1][2] ) );
-	TEMPER_EXPECT_TRUE( floateq( mulResults[1], answer[1][2] ) );
-	TEMPER_EXPECT_TRUE( floateq( mulResults[2], answer[1][2] ) );
-	TEMPER_EXPECT_TRUE( floateq( mulResults[3], answer[1][2] ) );
+	TEMPER_EXPECT_TRUE( floateq( mulResults[0], g_matrixMulAnswer[1][2] ) );
+	TEMPER_EXPECT_TRUE( floateq( mulResults[1], g_matrixMulAnswer[1][2] ) );
+	TEMPER_EXPECT_TRUE( floateq( mulResults[2], g_matrixMulAnswer[1][2] ) );
+	TEMPER_EXPECT_TRUE( floateq( mulResults[3], g_matrixMulAnswer[1][2] ) );
 
 	_mm_store_ps( mulResults, results.m[2][0] );
-	TEMPER_EXPECT_TRUE( floateq( mulResults[0], answer[2][0] ) );
-	TEMPER_EXPECT_TRUE( floateq( mulResults[1], answer[2][0] ) );
-	TEMPER_EXPECT_TRUE( floateq( mulResults[2], answer[2][0] ) );
-	TEMPER_EXPECT_TRUE( floateq( mulResults[3], answer[2][0] ) );
+	TEMPER_EXPECT_TRUE( floateq( mulResults[0], g_matrixMulAnswer[2][0] ) );
+	TEMPER_EXPECT_TRUE( floateq( mulResults[1], g_matrixMulAnswer[2][0] ) );
+	TEMPER_EXPECT_TRUE( floateq( mulResults[2], g_matrixMulAnswer[2][0] ) );
+	TEMPER_EXPECT_TRUE( floateq( mulResults[3], g_matrixMulAnswer[2][0] ) );
 
 	_mm_store_ps( mulResults, results.m[2][1] );
-	TEMPER_EXPECT_TRUE( floateq( mulResults[0], answer[2][1] ) );
-	TEMPER_EXPECT_TRUE( floateq( mulResults[1], answer[2][1] ) );
-	TEMPER_EXPECT_TRUE( floateq( mulResults[2], answer[2][1] ) );
-	TEMPER_EXPECT_TRUE( floateq( mulResults[3], answer[2][1] ) );
+	TEMPER_EXPECT_TRUE( floateq( mulResults[0], g_matrixMulAnswer[2][1] ) );
+	TEMPER_EXPECT_TRUE( floateq( mulResults[1], g_matrixMulAnswer[2][1] ) );
+	TEMPER_EXPECT_TRUE( floateq( mulResults[2], g_matrixMulAnswer[2][1] ) );
+	TEMPER_EXPECT_TRUE( floateq( mulResults[3], g_matrixMulAnswer[2][1] ) );
 
 	_mm_store_ps( mulResults, results.m[2][2] );
-	TEMPER_EXPECT_TRUE( floateq( mulResults[0], answer[2][2] ) );
-	TEMPER_EXPECT_TRUE( floateq( mulResults[1], answer[2][2] ) );
-	TEMPER_EXPECT_TRUE( floateq( mulResults[2], answer[2][2] ) );
-	TEMPER_EXPECT_TRUE( floateq( mulResults[3], answer[2][2] ) );
+	TEMPER_EXPECT_TRUE( floateq( mulResults[0], g_matrixMulAnswer[2][2] ) );
+	TEMPER_EXPECT_TRUE( floateq( mulResults[1], g_matrixMulAnswer[2][2] ) );
+	TEMPER_EXPECT_TRUE( floateq( mulResults[2], g_matrixMulAnswer[2][2] ) );
+	TEMPER_EXPECT_TRUE( floateq( mulResults[3], g_matrixMulAnswer[2][2] ) );
 
 
 	TEMPER_PASS();
@@ -730,7 +751,6 @@ TEMPER_TEST( TestMultiplyVector_float3x3 )
 
 TEMPER_TEST( TestDivideMatrix_float3x3 )
 {
-	// scalar
 	float3x3 answer = float3x3(
 		1.000000f, 0.0f, 0.0f,
 		0.0f, 1.000000f, 0.0f,
@@ -911,9 +931,8 @@ TEMPER_TEST( TestArray_float3x3 )
 	TEMPER_PASS();
 }
 
-TEMPER_TEST( TestIdentity_float3x3 )
+TEMPER_TEST( TestIdentity_Scalar_float3x3 )
 {
-	// scalar
 	float3x3 id = float3x3(
 		1.000000f, 0.0f, 0.0f,
 		0.0f, 1.000000f, 0.0f,
@@ -926,7 +945,11 @@ TEMPER_TEST( TestIdentity_float3x3 )
 	identity( mat );
 	TEMPER_EXPECT_TRUE( mat == id );
 
-	// SSE
+	TEMPER_PASS();
+}
+
+TEMPER_TEST( TestIdentity_SSE_float3x3 )
+{
 	float3x3_sse_t matSSE;
 	identity_sse( &matSSE );
 
@@ -988,9 +1011,8 @@ TEMPER_TEST( TestIdentity_float3x3 )
 	TEMPER_PASS();
 }
 
-TEMPER_TEST( TestTranspose_float3x3 )
+TEMPER_TEST( TestTranspose_Scalar_float3x3 )
 {
-	// scalar
 	float3x3 mat = float3x3(
 		0.000000f, 1.000000f, 2.000000f,
 		4.000000f, 5.000000f, 6.000000f,
@@ -1004,7 +1026,11 @@ TEMPER_TEST( TestTranspose_float3x3 )
 		2.000000f, 6.000000f, 10.000000f
 	) );
 
-	// SSE
+	TEMPER_PASS();
+}
+
+TEMPER_TEST( TestTranspose_SSE_float3x3 )
+{
 	float3x3_sse_t results;
 	float3x3_sse_t in;
 
@@ -1027,65 +1053,64 @@ TEMPER_TEST( TestTranspose_float3x3 )
 
 	float transposeResults[4];
 	_mm_store_ps( transposeResults, results.m[0][0] );
-	TEMPER_EXPECT_TRUE( floateq( transposeResults[0], trans[0][0] ) );
-	TEMPER_EXPECT_TRUE( floateq( transposeResults[1], trans[0][0] ) );
-	TEMPER_EXPECT_TRUE( floateq( transposeResults[2], trans[0][0] ) );
-	TEMPER_EXPECT_TRUE( floateq( transposeResults[3], trans[0][0] ) );
+	TEMPER_EXPECT_TRUE( floateq( transposeResults[0], 0.000000f ) );
+	TEMPER_EXPECT_TRUE( floateq( transposeResults[1], 0.000000f ) );
+	TEMPER_EXPECT_TRUE( floateq( transposeResults[2], 0.000000f ) );
+	TEMPER_EXPECT_TRUE( floateq( transposeResults[3], 0.000000f ) );
 
 	_mm_store_ps( transposeResults, results.m[0][1] );
-	TEMPER_EXPECT_TRUE( floateq( transposeResults[0], trans[0][1] ) );
-	TEMPER_EXPECT_TRUE( floateq( transposeResults[1], trans[0][1] ) );
-	TEMPER_EXPECT_TRUE( floateq( transposeResults[2], trans[0][1] ) );
-	TEMPER_EXPECT_TRUE( floateq( transposeResults[3], trans[0][1] ) );
+	TEMPER_EXPECT_TRUE( floateq( transposeResults[0], 4.000000f ) );
+	TEMPER_EXPECT_TRUE( floateq( transposeResults[1], 4.000000f ) );
+	TEMPER_EXPECT_TRUE( floateq( transposeResults[2], 4.000000f ) );
+	TEMPER_EXPECT_TRUE( floateq( transposeResults[3], 4.000000f ) );
 
 	_mm_store_ps( transposeResults, results.m[0][2] );
-	TEMPER_EXPECT_TRUE( floateq( transposeResults[0], trans[0][2] ) );
-	TEMPER_EXPECT_TRUE( floateq( transposeResults[1], trans[0][2] ) );
-	TEMPER_EXPECT_TRUE( floateq( transposeResults[2], trans[0][2] ) );
-	TEMPER_EXPECT_TRUE( floateq( transposeResults[3], trans[0][2] ) );
+	TEMPER_EXPECT_TRUE( floateq( transposeResults[0], 8.000000f ) );
+	TEMPER_EXPECT_TRUE( floateq( transposeResults[1], 8.000000f ) );
+	TEMPER_EXPECT_TRUE( floateq( transposeResults[2], 8.000000f ) );
+	TEMPER_EXPECT_TRUE( floateq( transposeResults[3], 8.000000f ) );
 
 	_mm_store_ps( transposeResults, results.m[1][0] );
-	TEMPER_EXPECT_TRUE( floateq( transposeResults[0], trans[1][0] ) );
-	TEMPER_EXPECT_TRUE( floateq( transposeResults[1], trans[1][0] ) );
-	TEMPER_EXPECT_TRUE( floateq( transposeResults[2], trans[1][0] ) );
-	TEMPER_EXPECT_TRUE( floateq( transposeResults[3], trans[1][0] ) );
+	TEMPER_EXPECT_TRUE( floateq( transposeResults[0], 1.000000f ) );
+	TEMPER_EXPECT_TRUE( floateq( transposeResults[1], 1.000000f ) );
+	TEMPER_EXPECT_TRUE( floateq( transposeResults[2], 1.000000f ) );
+	TEMPER_EXPECT_TRUE( floateq( transposeResults[3], 1.000000f ) );
 
 	_mm_store_ps( transposeResults, results.m[1][1] );
-	TEMPER_EXPECT_TRUE( floateq( transposeResults[0], trans[1][1] ) );
-	TEMPER_EXPECT_TRUE( floateq( transposeResults[1], trans[1][1] ) );
-	TEMPER_EXPECT_TRUE( floateq( transposeResults[2], trans[1][1] ) );
-	TEMPER_EXPECT_TRUE( floateq( transposeResults[3], trans[1][1] ) );
+	TEMPER_EXPECT_TRUE( floateq( transposeResults[0], 5.000000f ) );
+	TEMPER_EXPECT_TRUE( floateq( transposeResults[1], 5.000000f ) );
+	TEMPER_EXPECT_TRUE( floateq( transposeResults[2], 5.000000f ) );
+	TEMPER_EXPECT_TRUE( floateq( transposeResults[3], 5.000000f ) );
 
 	_mm_store_ps( transposeResults, results.m[1][2] );
-	TEMPER_EXPECT_TRUE( floateq( transposeResults[0], trans[1][2] ) );
-	TEMPER_EXPECT_TRUE( floateq( transposeResults[1], trans[1][2] ) );
-	TEMPER_EXPECT_TRUE( floateq( transposeResults[2], trans[1][2] ) );
-	TEMPER_EXPECT_TRUE( floateq( transposeResults[3], trans[1][2] ) );
+	TEMPER_EXPECT_TRUE( floateq( transposeResults[0], 9.000000f ) );
+	TEMPER_EXPECT_TRUE( floateq( transposeResults[1], 9.000000f ) );
+	TEMPER_EXPECT_TRUE( floateq( transposeResults[2], 9.000000f ) );
+	TEMPER_EXPECT_TRUE( floateq( transposeResults[3], 9.000000f ) );
 
 	_mm_store_ps( transposeResults, results.m[2][0] );
-	TEMPER_EXPECT_TRUE( floateq( transposeResults[0], trans[2][0] ) );
-	TEMPER_EXPECT_TRUE( floateq( transposeResults[1], trans[2][0] ) );
-	TEMPER_EXPECT_TRUE( floateq( transposeResults[2], trans[2][0] ) );
-	TEMPER_EXPECT_TRUE( floateq( transposeResults[3], trans[2][0] ) );
+	TEMPER_EXPECT_TRUE( floateq( transposeResults[0], 2.000000f ) );
+	TEMPER_EXPECT_TRUE( floateq( transposeResults[1], 2.000000f ) );
+	TEMPER_EXPECT_TRUE( floateq( transposeResults[2], 2.000000f ) );
+	TEMPER_EXPECT_TRUE( floateq( transposeResults[3], 2.000000f ) );
 
 	_mm_store_ps( transposeResults, results.m[2][1] );
-	TEMPER_EXPECT_TRUE( floateq( transposeResults[0], trans[2][1] ) );
-	TEMPER_EXPECT_TRUE( floateq( transposeResults[1], trans[2][1] ) );
-	TEMPER_EXPECT_TRUE( floateq( transposeResults[2], trans[2][1] ) );
-	TEMPER_EXPECT_TRUE( floateq( transposeResults[3], trans[2][1] ) );
+	TEMPER_EXPECT_TRUE( floateq( transposeResults[0], 6.000000f ) );
+	TEMPER_EXPECT_TRUE( floateq( transposeResults[1], 6.000000f ) );
+	TEMPER_EXPECT_TRUE( floateq( transposeResults[2], 6.000000f ) );
+	TEMPER_EXPECT_TRUE( floateq( transposeResults[3], 6.000000f ) );
 
 	_mm_store_ps( transposeResults, results.m[2][2] );
-	TEMPER_EXPECT_TRUE( floateq( transposeResults[0], trans[2][2] ) );
-	TEMPER_EXPECT_TRUE( floateq( transposeResults[1], trans[2][2] ) );
-	TEMPER_EXPECT_TRUE( floateq( transposeResults[2], trans[2][2] ) );
-	TEMPER_EXPECT_TRUE( floateq( transposeResults[3], trans[2][2] ) );
+	TEMPER_EXPECT_TRUE( floateq( transposeResults[0], 10.000000f ) );
+	TEMPER_EXPECT_TRUE( floateq( transposeResults[1], 10.000000f ) );
+	TEMPER_EXPECT_TRUE( floateq( transposeResults[2], 10.000000f ) );
+	TEMPER_EXPECT_TRUE( floateq( transposeResults[3], 10.000000f ) );
 
 	TEMPER_PASS();
 }
 
-TEMPER_TEST( TestDeterminant_float3x3 )
+TEMPER_TEST( TestDeterminant_Scalar_float3x3 )
 {
-	// scalar
 	float3x3 mat = float3x3(
 		6.000000f, 2.000000f, 3.000000f,
 		2.000000f, 7.000000f, 2.000000f,
@@ -1095,7 +1120,11 @@ TEMPER_TEST( TestDeterminant_float3x3 )
 
 	TEMPER_EXPECT_TRUE( floateq( det, 165.0f ) );
 
-	// SSE
+	TEMPER_PASS();
+}
+
+TEMPER_TEST( TestDeterminant_SSE_float3x3 )
+{
 	float m00[4] =	{ 6.000000f, 6.000000f, 6.000000f, 6.000000f };
 	float m01[4] =	{ 2.000000f, 2.000000f, 2.000000f, 2.000000f };
 	float m02[4] =	{ 3.000000f, 3.000000f, 3.000000f, 3.000000f };
@@ -1130,11 +1159,8 @@ TEMPER_TEST( TestDeterminant_float3x3 )
 	TEMPER_PASS();
 }
 
-TEMPER_TEST( TestInverse_float3x3 )
+TEMPER_TEST( TestInverse_Scalar_float3x3 )
 {
-	// scalar
-	float3x3 identityMatrix;
-
 	float3x3 mat = float3x3(
 		6.000000f, 2.000000f, 3.000000f,
 		2.000000f, 7.000000f, 2.000000f,
@@ -1142,9 +1168,13 @@ TEMPER_TEST( TestInverse_float3x3 )
 	);
 	float3x3 matInverse = inverse( mat );
 
-	TEMPER_EXPECT_TRUE( mat * matInverse == identityMatrix );
+	TEMPER_EXPECT_TRUE( mat * matInverse == g_identityMatrix );
 
-	// SSE
+	TEMPER_PASS();
+}
+
+TEMPER_TEST( TestInverse_SSE_float3x3 )
+{
 	float m00[4] =	{ 6.000000f, 6.000000f, 6.000000f, 6.000000f };
 	float m01[4] =	{ 2.000000f, 2.000000f, 2.000000f, 2.000000f };
 	float m02[4] =	{ 3.000000f, 3.000000f, 3.000000f, 3.000000f };
@@ -1175,58 +1205,58 @@ TEMPER_TEST( TestInverse_float3x3 )
 	float inverseResults[4];
 
 	_mm_store_ps( inverseResults, results.m[0][0] );
-	TEMPER_EXPECT_TRUE( floateq( inverseResults[0], identityMatrix[0][0], 0.001000f ) );
-	TEMPER_EXPECT_TRUE( floateq( inverseResults[1], identityMatrix[0][0], 0.001000f ) );
-	TEMPER_EXPECT_TRUE( floateq( inverseResults[2], identityMatrix[0][0], 0.001000f ) );
-	TEMPER_EXPECT_TRUE( floateq( inverseResults[3], identityMatrix[0][0], 0.001000f ) );
+	TEMPER_EXPECT_TRUE( floateq( inverseResults[0], g_identityMatrix[0][0], 0.001000f ) );
+	TEMPER_EXPECT_TRUE( floateq( inverseResults[1], g_identityMatrix[0][0], 0.001000f ) );
+	TEMPER_EXPECT_TRUE( floateq( inverseResults[2], g_identityMatrix[0][0], 0.001000f ) );
+	TEMPER_EXPECT_TRUE( floateq( inverseResults[3], g_identityMatrix[0][0], 0.001000f ) );
 
 	_mm_store_ps( inverseResults, results.m[0][1] );
-	TEMPER_EXPECT_TRUE( floateq( inverseResults[0], identityMatrix[0][1], 0.001000f ) );
-	TEMPER_EXPECT_TRUE( floateq( inverseResults[1], identityMatrix[0][1], 0.001000f ) );
-	TEMPER_EXPECT_TRUE( floateq( inverseResults[2], identityMatrix[0][1], 0.001000f ) );
-	TEMPER_EXPECT_TRUE( floateq( inverseResults[3], identityMatrix[0][1], 0.001000f ) );
+	TEMPER_EXPECT_TRUE( floateq( inverseResults[0], g_identityMatrix[0][1], 0.001000f ) );
+	TEMPER_EXPECT_TRUE( floateq( inverseResults[1], g_identityMatrix[0][1], 0.001000f ) );
+	TEMPER_EXPECT_TRUE( floateq( inverseResults[2], g_identityMatrix[0][1], 0.001000f ) );
+	TEMPER_EXPECT_TRUE( floateq( inverseResults[3], g_identityMatrix[0][1], 0.001000f ) );
 
 	_mm_store_ps( inverseResults, results.m[0][2] );
-	TEMPER_EXPECT_TRUE( floateq( inverseResults[0], identityMatrix[0][2], 0.001000f ) );
-	TEMPER_EXPECT_TRUE( floateq( inverseResults[1], identityMatrix[0][2], 0.001000f ) );
-	TEMPER_EXPECT_TRUE( floateq( inverseResults[2], identityMatrix[0][2], 0.001000f ) );
-	TEMPER_EXPECT_TRUE( floateq( inverseResults[3], identityMatrix[0][2], 0.001000f ) );
+	TEMPER_EXPECT_TRUE( floateq( inverseResults[0], g_identityMatrix[0][2], 0.001000f ) );
+	TEMPER_EXPECT_TRUE( floateq( inverseResults[1], g_identityMatrix[0][2], 0.001000f ) );
+	TEMPER_EXPECT_TRUE( floateq( inverseResults[2], g_identityMatrix[0][2], 0.001000f ) );
+	TEMPER_EXPECT_TRUE( floateq( inverseResults[3], g_identityMatrix[0][2], 0.001000f ) );
 
 	_mm_store_ps( inverseResults, results.m[1][0] );
-	TEMPER_EXPECT_TRUE( floateq( inverseResults[0], identityMatrix[1][0], 0.001000f ) );
-	TEMPER_EXPECT_TRUE( floateq( inverseResults[1], identityMatrix[1][0], 0.001000f ) );
-	TEMPER_EXPECT_TRUE( floateq( inverseResults[2], identityMatrix[1][0], 0.001000f ) );
-	TEMPER_EXPECT_TRUE( floateq( inverseResults[3], identityMatrix[1][0], 0.001000f ) );
+	TEMPER_EXPECT_TRUE( floateq( inverseResults[0], g_identityMatrix[1][0], 0.001000f ) );
+	TEMPER_EXPECT_TRUE( floateq( inverseResults[1], g_identityMatrix[1][0], 0.001000f ) );
+	TEMPER_EXPECT_TRUE( floateq( inverseResults[2], g_identityMatrix[1][0], 0.001000f ) );
+	TEMPER_EXPECT_TRUE( floateq( inverseResults[3], g_identityMatrix[1][0], 0.001000f ) );
 
 	_mm_store_ps( inverseResults, results.m[1][1] );
-	TEMPER_EXPECT_TRUE( floateq( inverseResults[0], identityMatrix[1][1], 0.001000f ) );
-	TEMPER_EXPECT_TRUE( floateq( inverseResults[1], identityMatrix[1][1], 0.001000f ) );
-	TEMPER_EXPECT_TRUE( floateq( inverseResults[2], identityMatrix[1][1], 0.001000f ) );
-	TEMPER_EXPECT_TRUE( floateq( inverseResults[3], identityMatrix[1][1], 0.001000f ) );
+	TEMPER_EXPECT_TRUE( floateq( inverseResults[0], g_identityMatrix[1][1], 0.001000f ) );
+	TEMPER_EXPECT_TRUE( floateq( inverseResults[1], g_identityMatrix[1][1], 0.001000f ) );
+	TEMPER_EXPECT_TRUE( floateq( inverseResults[2], g_identityMatrix[1][1], 0.001000f ) );
+	TEMPER_EXPECT_TRUE( floateq( inverseResults[3], g_identityMatrix[1][1], 0.001000f ) );
 
 	_mm_store_ps( inverseResults, results.m[1][2] );
-	TEMPER_EXPECT_TRUE( floateq( inverseResults[0], identityMatrix[1][2], 0.001000f ) );
-	TEMPER_EXPECT_TRUE( floateq( inverseResults[1], identityMatrix[1][2], 0.001000f ) );
-	TEMPER_EXPECT_TRUE( floateq( inverseResults[2], identityMatrix[1][2], 0.001000f ) );
-	TEMPER_EXPECT_TRUE( floateq( inverseResults[3], identityMatrix[1][2], 0.001000f ) );
+	TEMPER_EXPECT_TRUE( floateq( inverseResults[0], g_identityMatrix[1][2], 0.001000f ) );
+	TEMPER_EXPECT_TRUE( floateq( inverseResults[1], g_identityMatrix[1][2], 0.001000f ) );
+	TEMPER_EXPECT_TRUE( floateq( inverseResults[2], g_identityMatrix[1][2], 0.001000f ) );
+	TEMPER_EXPECT_TRUE( floateq( inverseResults[3], g_identityMatrix[1][2], 0.001000f ) );
 
 	_mm_store_ps( inverseResults, results.m[2][0] );
-	TEMPER_EXPECT_TRUE( floateq( inverseResults[0], identityMatrix[2][0], 0.001000f ) );
-	TEMPER_EXPECT_TRUE( floateq( inverseResults[1], identityMatrix[2][0], 0.001000f ) );
-	TEMPER_EXPECT_TRUE( floateq( inverseResults[2], identityMatrix[2][0], 0.001000f ) );
-	TEMPER_EXPECT_TRUE( floateq( inverseResults[3], identityMatrix[2][0], 0.001000f ) );
+	TEMPER_EXPECT_TRUE( floateq( inverseResults[0], g_identityMatrix[2][0], 0.001000f ) );
+	TEMPER_EXPECT_TRUE( floateq( inverseResults[1], g_identityMatrix[2][0], 0.001000f ) );
+	TEMPER_EXPECT_TRUE( floateq( inverseResults[2], g_identityMatrix[2][0], 0.001000f ) );
+	TEMPER_EXPECT_TRUE( floateq( inverseResults[3], g_identityMatrix[2][0], 0.001000f ) );
 
 	_mm_store_ps( inverseResults, results.m[2][1] );
-	TEMPER_EXPECT_TRUE( floateq( inverseResults[0], identityMatrix[2][1], 0.001000f ) );
-	TEMPER_EXPECT_TRUE( floateq( inverseResults[1], identityMatrix[2][1], 0.001000f ) );
-	TEMPER_EXPECT_TRUE( floateq( inverseResults[2], identityMatrix[2][1], 0.001000f ) );
-	TEMPER_EXPECT_TRUE( floateq( inverseResults[3], identityMatrix[2][1], 0.001000f ) );
+	TEMPER_EXPECT_TRUE( floateq( inverseResults[0], g_identityMatrix[2][1], 0.001000f ) );
+	TEMPER_EXPECT_TRUE( floateq( inverseResults[1], g_identityMatrix[2][1], 0.001000f ) );
+	TEMPER_EXPECT_TRUE( floateq( inverseResults[2], g_identityMatrix[2][1], 0.001000f ) );
+	TEMPER_EXPECT_TRUE( floateq( inverseResults[3], g_identityMatrix[2][1], 0.001000f ) );
 
 	_mm_store_ps( inverseResults, results.m[2][2] );
-	TEMPER_EXPECT_TRUE( floateq( inverseResults[0], identityMatrix[2][2], 0.001000f ) );
-	TEMPER_EXPECT_TRUE( floateq( inverseResults[1], identityMatrix[2][2], 0.001000f ) );
-	TEMPER_EXPECT_TRUE( floateq( inverseResults[2], identityMatrix[2][2], 0.001000f ) );
-	TEMPER_EXPECT_TRUE( floateq( inverseResults[3], identityMatrix[2][2], 0.001000f ) );
+	TEMPER_EXPECT_TRUE( floateq( inverseResults[0], g_identityMatrix[2][2], 0.001000f ) );
+	TEMPER_EXPECT_TRUE( floateq( inverseResults[1], g_identityMatrix[2][2], 0.001000f ) );
+	TEMPER_EXPECT_TRUE( floateq( inverseResults[2], g_identityMatrix[2][2], 0.001000f ) );
+	TEMPER_EXPECT_TRUE( floateq( inverseResults[3], g_identityMatrix[2][2], 0.001000f ) );
 
 	TEMPER_PASS();
 }
@@ -1281,21 +1311,30 @@ TEMPER_TEST( TestScale_float3x3 )
 TEMPER_SUITE( Test_float3x3 )
 {
 	TEMPER_RUN_TEST( TestAssignment_float3x3 );
-	TEMPER_RUN_TEST( TestComponentWiseArithmeticAddition_float3x3 );
-	TEMPER_RUN_TEST( TestComponentWiseArithmeticSubtraction_float3x3 );
-	TEMPER_RUN_TEST( TestComponentWiseArithmeticMultiplication_float3x3 );
-	TEMPER_RUN_TEST( TestComponentWiseArithmeticDivision_float3x3 );
-	TEMPER_RUN_TEST( TestMultiplyMatrix_float3x3 );
+	TEMPER_RUN_TEST( TestComponentWiseArithmetic_Scalar_Addition_float3x3 );
+	TEMPER_RUN_TEST( TestComponentWiseArithmetic_Scalar_Subtraction_float3x3 );
+	TEMPER_RUN_TEST( TestComponentWiseArithmetic_Scalar_Multiplication_float3x3 );
+	TEMPER_RUN_TEST( TestComponentWiseArithmetic_Scalar_Division_float3x3 );
+	TEMPER_RUN_TEST( TestComponentWiseArithmetic_SSE_Addition_float3x3 );
+	TEMPER_RUN_TEST( TestComponentWiseArithmetic_SSE_Subtraction_float3x3 );
+	TEMPER_RUN_TEST( TestComponentWiseArithmetic_SSE_Multiplication_float3x3 );
+	TEMPER_RUN_TEST( TestComponentWiseArithmetic_SSE_Division_float3x3 );
+	TEMPER_RUN_TEST( TestMultiplyMatrix_Scalar_float3x3 );
+	TEMPER_RUN_TEST( TestMultiplyMatrix_SSE_float3x3 );
 	TEMPER_RUN_TEST( TestMultiplyVector_float3x3 );
 	TEMPER_RUN_TEST( TestDivideMatrix_float3x3 );
 	TEMPER_RUN_TEST( TestIncrement_float3x3 );
 	TEMPER_RUN_TEST( TestDecrement_float3x3 );
 	TEMPER_RUN_TEST( TestRelational_float3x3 );
 	TEMPER_RUN_TEST( TestArray_float3x3 );
-	TEMPER_RUN_TEST( TestIdentity_float3x3 );
-	TEMPER_RUN_TEST( TestTranspose_float3x3 );
-	TEMPER_RUN_TEST( TestDeterminant_float3x3 );
-	TEMPER_RUN_TEST( TestInverse_float3x3 );
+	TEMPER_RUN_TEST( TestIdentity_Scalar_float3x3 );
+	TEMPER_RUN_TEST( TestIdentity_SSE_float3x3 );
+	TEMPER_RUN_TEST( TestTranspose_Scalar_float3x3 );
+	TEMPER_RUN_TEST( TestTranspose_SSE_float3x3 );
+	TEMPER_RUN_TEST( TestDeterminant_Scalar_float3x3 );
+	TEMPER_RUN_TEST( TestDeterminant_SSE_float3x3 );
+	TEMPER_RUN_TEST( TestInverse_Scalar_float3x3 );
+	TEMPER_RUN_TEST( TestInverse_SSE_float3x3 );
 	TEMPER_RUN_TEST( TestTranslate_float3x3 );
 	TEMPER_RUN_TEST( TestRotate_float3x3 );
 	TEMPER_RUN_TEST( TestScale_float3x3 );

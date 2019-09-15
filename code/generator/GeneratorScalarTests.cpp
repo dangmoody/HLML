@@ -29,6 +29,9 @@ along with The HLML Generator.  If not, see <http://www.gnu.org/licenses/>.
 
 #include "gen_common_sse.h"
 
+static char g_degreesStr[GEN_STRING_LENGTH_NUMERIC_LITERAL];
+static const char* g_radiansStr;
+
 bool GeneratorScalarTest::Generate( const genType_t type ) {
 	const u32 testsCodeBytes = 4 * KB_TO_BYTES;
 	const u32 suiteCodeBytes = 2 * KB_TO_BYTES;
@@ -49,9 +52,23 @@ bool GeneratorScalarTest::Generate( const genType_t type ) {
 	String_Append( &code, "#include <temper/temper.h>\n" );
 	String_Append( &code, "\n" );
 
-	if ( m_type == GEN_TYPE_FLOAT ) {
+	if ( Gen_TypeSupportsSSE( m_type ) ) {
 		String_Append( &code, "#include \"../../" GEN_OUT_GEN_FOLDER_PATH GEN_FILENAME_FUNCTIONS_SCALAR_SSE ".h\"\n" );
 		String_Append( &code, "\n" );
+	}
+
+	if ( Gen_TypeIsFloatingPoint( m_type ) ) {
+		Gen_GetNumericLiteral( m_type, 90.0f, g_degreesStr, 1 );
+
+		// DM: must be done this way to avoid floating-point imprecision
+		g_radiansStr = "1.57079637";
+		if ( m_type == GEN_TYPE_FLOAT ) {
+			g_radiansStr = "1.57079637f";
+		}
+
+		String_Appendf( &code, "static %s g_deg = %s;\n", m_memberTypeString, g_degreesStr );
+		String_Appendf( &code, "static %s g_rad = %s;\n", m_memberTypeString, g_radiansStr );
+		String_Append(  &code, "\n" );
 	}
 
 	String_Appendf( &m_codeSuite, "TEMPER_SUITE( Test_%s )\n", m_memberTypeString );
@@ -161,36 +178,31 @@ void GeneratorScalarTest::GenerateTestDegreesRadians() {
 	}
 
 	char testName[GEN_STRING_LENGTH_TEST_NAME] = { 0 };
-	snprintf( testName, GEN_STRING_LENGTH_TEST_NAME, "TestDegreesRadians_%s", m_memberTypeString );
-
-	char degreesStr[GEN_STRING_LENGTH_NUMERIC_LITERAL];
-	Gen_GetNumericLiteral( m_type, 90.0f, degreesStr, 1 );
-
-	// DM: must be done this way to avoid floating-point imprecision
-	const char* radiansStr = "1.57079637";
-	if ( m_type == GEN_TYPE_FLOAT ) {
-		radiansStr = "1.57079637f";
-	}
+	snprintf( testName, GEN_STRING_LENGTH_TEST_NAME, "TestDegreesRadians_Scalar_%s", m_memberTypeString );
 
 	const char* floateqStr = Gen_GetFuncNameFloateq( m_type );
 
 	String_Appendf( &m_codeTests, "TEMPER_TEST( %s )\n", testName );
 	String_Append(  &m_codeTests, "{\n" );
-	String_Append(  &m_codeTests, "\t// scalar\n" );
-	String_Appendf( &m_codeTests, "\t%s deg = %s;\n", m_memberTypeString, degreesStr );
-	String_Appendf( &m_codeTests, "\t%s rad = %s;\n", m_memberTypeString, radiansStr );
+	String_Appendf( &m_codeTests, "\tTEMPER_EXPECT_TRUE( %s( radians( g_deg ), %s ) );\n", floateqStr, g_radiansStr );
+	String_Appendf( &m_codeTests, "\tTEMPER_EXPECT_TRUE( %s( degrees( g_rad ), %s ) );\n", floateqStr, g_degreesStr );
 	String_Append(  &m_codeTests, "\n" );
-	String_Appendf( &m_codeTests, "\tTEMPER_EXPECT_TRUE( %s( radians( deg ), %s ) );\n", floateqStr, radiansStr );
-	String_Appendf( &m_codeTests, "\tTEMPER_EXPECT_TRUE( %s( degrees( rad ), %s ) );\n", floateqStr, degreesStr );
+	String_Append(  &m_codeTests, "\tTEMPER_PASS();\n" );
+	String_Append(  &m_codeTests, "}\n" );
+	String_Append(  &m_codeTests, "\n" );
+
+	String_Appendf( &m_codeSuite, "\tTEMPER_RUN_TEST( %s );\n", testName );
 
 	if ( Gen_TypeSupportsSSE( m_type ) ) {
+		snprintf( testName, GEN_STRING_LENGTH_TEST_NAME, "TestDegreesRadians_SSE_%s", m_memberTypeString );
+
 		const char* loadFuncStr		= Gen_SSE_GetIntrinsicLoad( m_type );
 		const char* storeFuncStr	= Gen_SSE_GetIntrinsicStore( m_type );
 
-		String_Append(  &m_codeTests, "\n" );
-		String_Append(  &m_codeTests, "\t// SSE\n" );
-		String_Appendf( &m_codeTests, "\t%s degs[4] = { deg, deg, deg, deg };\n", m_memberTypeString );
-		String_Appendf( &m_codeTests, "\t%s rads[4] = { rad, rad, rad, rad };\n", m_memberTypeString );
+		String_Appendf( &m_codeTests, "TEMPER_TEST( %s )\n", testName );
+		String_Append(  &m_codeTests, "{\n" );
+		String_Appendf( &m_codeTests, "\t%s degs[4] = { g_deg, g_deg, g_deg, g_deg };\n", m_memberTypeString );
+		String_Appendf( &m_codeTests, "\t%s rads[4] = { g_rad, g_rad, g_rad, g_rad };\n", m_memberTypeString );
 		String_Append(  &m_codeTests, "\n" );
 		String_Appendf( &m_codeTests, "\t%s results;\n", m_registerName );
 		String_Append(  &m_codeTests, "\n" );
@@ -202,7 +214,7 @@ void GeneratorScalarTest::GenerateTestDegreesRadians() {
 		String_Appendf( &m_codeTests, "\t%s( radiansResults, results );\n", storeFuncStr );
 		String_Append(  &m_codeTests, "\n" );
 		for ( u32 i = 0; i < 4; i++ ) {
-			String_Appendf( &m_codeTests, "\tTEMPER_EXPECT_TRUE( %s( radiansResults[%d], %s ) );\n", floateqStr, i, radiansStr );
+			String_Appendf( &m_codeTests, "\tTEMPER_EXPECT_TRUE( %s( radiansResults[%d], %s ) );\n", floateqStr, i, g_radiansStr );
 		}
 		String_Append(  &m_codeTests, "\n" );
 		String_Append(  &m_codeTests, "\t// degrees\n" );
@@ -213,16 +225,15 @@ void GeneratorScalarTest::GenerateTestDegreesRadians() {
 		String_Appendf( &m_codeTests, "\t%s( degreesResults, results );\n", storeFuncStr );
 		String_Append(  &m_codeTests, "\n" );
 		for ( u32 i = 0; i < 4; i++ ) {
-			String_Appendf( &m_codeTests, "\tTEMPER_EXPECT_TRUE( %s( degreesResults[%d], %s ) );\n", floateqStr, i, degreesStr );
+			String_Appendf( &m_codeTests, "\tTEMPER_EXPECT_TRUE( %s( degreesResults[%d], %s ) );\n", floateqStr, i, g_degreesStr );
 		}
+		String_Append(  &m_codeTests, "\n" );
+		String_Append(  &m_codeTests, "\tTEMPER_PASS();\n" );
+		String_Append(  &m_codeTests, "}\n" );
+		String_Append(  &m_codeTests, "\n" );
+
+		String_Appendf( &m_codeSuite, "\tTEMPER_RUN_TEST( %s );\n", testName );
 	}
-
-	String_Append(  &m_codeTests, "\n" );
-	String_Append(  &m_codeTests, "\tTEMPER_PASS();\n" );
-	String_Append(  &m_codeTests, "}\n" );
-	String_Append(  &m_codeTests, "\n" );
-
-	String_Appendf( &m_codeSuite, "\tTEMPER_RUN_TEST( %s );\n", testName );
 }
 
 void GeneratorScalarTest::GenerateTestMinMax() {
@@ -355,7 +366,7 @@ void GeneratorScalarTest::GenerateTestLerp() {
 	}
 
 	char testName[GEN_STRING_LENGTH_TEST_NAME] = { 0 };
-	snprintf( testName, 32, "TestLerp_%s", m_memberTypeString );
+	snprintf( testName, 32, "TestLerp_Scalar_%s", m_memberTypeString );
 
 	// numbers chosen arbitrarily
 	char aStr[GEN_STRING_LENGTH_NUMERIC_LITERAL];
@@ -372,23 +383,31 @@ void GeneratorScalarTest::GenerateTestLerp() {
 
 	String_Appendf( &m_codeTests, "TEMPER_TEST( %s )\n", testName );
 	String_Append(  &m_codeTests, "{\n" );
-	String_Append(  &m_codeTests, "\t// scalar\n" );
 	String_Appendf( &m_codeTests, "\t%s a = %s;\n", m_memberTypeString, aStr );
 	String_Appendf( &m_codeTests, "\t%s b = %s;\n", m_memberTypeString, bStr );
 	String_Append(  &m_codeTests, "\n" );
 	String_Appendf( &m_codeTests, "\t%s answer = lerp( a, b, %s );\n", m_memberTypeString, halfStr );
 	String_Append(  &m_codeTests, "\n" );
 	String_Appendf( &m_codeTests, "\tTEMPER_EXPECT_TRUE( %s( answer, %s ) );\n", floateqStr, answerStr );
+	String_Append(  &m_codeTests, "\n" );
+	String_Append(  &m_codeTests, "\tTEMPER_PASS();\n" );
+	String_Append(  &m_codeTests, "}\n" );
+	String_Append(  &m_codeTests, "\n" );
 
-	if ( m_type == GEN_TYPE_FLOAT ) {
+	String_Appendf( &m_codeSuite, "\tTEMPER_RUN_TEST( %s );\n", testName );
+
+	if ( Gen_TypeSupportsSSE( m_type ) ) {
+		snprintf( testName, 32, "TestLerp_SSE_%s", m_memberTypeString );
+
 		char sseTypeName[GEN_STRING_LENGTH_SSE_INPUT_NAME];
 		Gen_SSE_GetFullTypeName( m_memberTypeString, sseTypeName );
 
 		const char* loadFuncStr		= Gen_SSE_GetIntrinsicLoad( m_type );
 		const char* storeFuncStr	= Gen_SSE_GetIntrinsicStore( m_type );
 
+		String_Appendf( &m_codeTests, "TEMPER_TEST( %s )\n", testName );
+		String_Append(  &m_codeTests, "{\n" );
 		String_Append(  &m_codeTests, "\n" );
-		String_Append(  &m_codeTests, "\t// SSE\n" );
 		String_Appendf( &m_codeTests, "\t%s ones[4]   = { %s, %s, %s, %s };\n", m_memberTypeString, aStr, aStr, aStr, aStr );
 		String_Appendf( &m_codeTests, "\t%s threes[4] = { %s, %s, %s, %s };\n", m_memberTypeString, bStr, bStr, bStr, bStr );
 		String_Appendf( &m_codeTests, "\t%s halves[4] = { %s, %s, %s, %s };\n", m_memberTypeString, halfStr, halfStr, halfStr, halfStr );
@@ -409,12 +428,11 @@ void GeneratorScalarTest::GenerateTestLerp() {
 		String_Appendf( &m_codeTests, "\tTEMPER_EXPECT_TRUE( %s( lerpResults[1], %s ) );\n", floateqStr, answerStr );
 		String_Appendf( &m_codeTests, "\tTEMPER_EXPECT_TRUE( %s( lerpResults[2], %s ) );\n", floateqStr, answerStr );
 		String_Appendf( &m_codeTests, "\tTEMPER_EXPECT_TRUE( %s( lerpResults[3], %s ) );\n", floateqStr, answerStr );
+		String_Append(  &m_codeTests, "\n" );
+		String_Append(  &m_codeTests, "\tTEMPER_PASS();\n" );
+		String_Append(  &m_codeTests, "}\n" );
+		String_Append(  &m_codeTests, "\n" );
+
+		String_Appendf( &m_codeSuite, "\tTEMPER_RUN_TEST( %s );\n", testName );
 	}
-
-	String_Append(  &m_codeTests, "\n" );
-	String_Append(  &m_codeTests, "\tTEMPER_PASS();\n" );
-	String_Append(  &m_codeTests, "}\n" );
-	String_Append(  &m_codeTests, "\n" );
-
-	String_Appendf( &m_codeSuite, "\tTEMPER_RUN_TEST( %s );\n", testName );
 }

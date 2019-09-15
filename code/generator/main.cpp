@@ -45,7 +45,7 @@ along with The HLML Generator.  If not, see <http://www.gnu.org/licenses/>.
 
 #include "FileIO.h"
 
-#include "time.h"
+#include "timer.h"
 
 #include <stdio.h>
 #include <assert.h>
@@ -819,7 +819,6 @@ static bool32 GenerateTestsMain( void ) {
 	String_Append( &sb, "\t( (void) userdata );\n" );
 	String_Append( &sb, "\tprintf( \"\\n\" );\n" );
 	String_Append( &sb, "}\n" );
-
 	String_Append( &sb, "\n" );
 
 	for ( u32 typeIndex = 0; typeIndex < GEN_TYPE_COUNT; typeIndex++ ) {

@@ -4,6 +4,9 @@
 
 #include "../../code/out/gen/hlml_functions_scalar_sse.h"
 
+static float g_deg = 90.0f;
+static float g_rad = 1.57079637f;
+
 TEMPER_TEST( TestFloateq_float )
 {
 	float a = 5.0f;
@@ -26,18 +29,18 @@ TEMPER_TEST( TestSign_float )
 	TEMPER_PASS();
 }
 
-TEMPER_TEST( TestDegreesRadians_float )
+TEMPER_TEST( TestDegreesRadians_Scalar_float )
 {
-	// scalar
-	float deg = 90.0f;
-	float rad = 1.57079637f;
+	TEMPER_EXPECT_TRUE( floateq( radians( g_deg ), 1.57079637f ) );
+	TEMPER_EXPECT_TRUE( floateq( degrees( g_rad ), 90.0f ) );
 
-	TEMPER_EXPECT_TRUE( floateq( radians( deg ), 1.57079637f ) );
-	TEMPER_EXPECT_TRUE( floateq( degrees( rad ), 90.0f ) );
+	TEMPER_PASS();
+}
 
-	// SSE
-	float degs[4] = { deg, deg, deg, deg };
-	float rads[4] = { rad, rad, rad, rad };
+TEMPER_TEST( TestDegreesRadians_SSE_float )
+{
+	float degs[4] = { g_deg, g_deg, g_deg, g_deg };
+	float rads[4] = { g_rad, g_rad, g_rad, g_rad };
 
 	__m128 results;
 
@@ -107,9 +110,8 @@ TEMPER_TEST( TestSaturate_float )
 	TEMPER_PASS();
 }
 
-TEMPER_TEST( TestLerp_float )
+TEMPER_TEST( TestLerp_Scalar_float )
 {
-	// scalar
 	float a = 1.0f;
 	float b = 3.0f;
 
@@ -117,7 +119,12 @@ TEMPER_TEST( TestLerp_float )
 
 	TEMPER_EXPECT_TRUE( floateq( answer, 2.0f ) );
 
-	// SSE
+	TEMPER_PASS();
+}
+
+TEMPER_TEST( TestLerp_SSE_float )
+{
+
 	float ones[4]   = { 1.0f, 1.0f, 1.0f, 1.0f };
 	float threes[4] = { 3.0f, 3.0f, 3.0f, 3.0f };
 	float halves[4] = { 0.5f, 0.5f, 0.5f, 0.5f };
@@ -146,9 +153,11 @@ TEMPER_SUITE( Test_float )
 {
 	TEMPER_RUN_TEST( TestFloateq_float );
 	TEMPER_RUN_TEST( TestSign_float );
-	TEMPER_RUN_TEST( TestDegreesRadians_float );
+	TEMPER_RUN_TEST( TestDegreesRadians_Scalar_float );
+	TEMPER_RUN_TEST( TestDegreesRadians_SSE_float );
 	TEMPER_RUN_TEST( TestMinMax_float );
 	TEMPER_RUN_TEST( TestClamp_float );
 	TEMPER_RUN_TEST( TestSaturate_float );
-	TEMPER_RUN_TEST( TestLerp_float );
+	TEMPER_RUN_TEST( TestLerp_Scalar_float );
+	TEMPER_RUN_TEST( TestLerp_SSE_float );
 }

@@ -205,9 +205,8 @@ TEMPER_TEST( TestRelational_double3 )
 	TEMPER_PASS();
 }
 
-TEMPER_TEST( TestLength_double3 )
+TEMPER_TEST( TestLength_Scalar_double3 )
 {
-	// scalar
 	double3 vec = double3( 2.0 );
 
 	TEMPER_EXPECT_TRUE( doubleeq( lengthsqr( vec ), 12.0 ) );
@@ -216,9 +215,8 @@ TEMPER_TEST( TestLength_double3 )
 	TEMPER_PASS();
 }
 
-TEMPER_TEST( TestNormalized_double3 )
+TEMPER_TEST( TestNormalized_Scalar_double3 )
 {
-	// scalar
 	double3 vec = double3( 5.000000, 4.000000, 3.000000 );
 	vec = normalized( vec );
 
@@ -227,9 +225,8 @@ TEMPER_TEST( TestNormalized_double3 )
 	TEMPER_PASS();
 }
 
-TEMPER_TEST( TestDot_double3 )
+TEMPER_TEST( TestDot_Scalar_double3 )
 {
-	// scalar
 	double3 a = double3( 0.000000, 1.000000, 0.000000 );
 	double3 b = double3( 0.000000, -1.000000, 0.000000 );
 
@@ -249,9 +246,8 @@ TEMPER_TEST( TestCross_double3 )
 	TEMPER_PASS();
 }
 
-TEMPER_TEST( TestAngle_double3 )
+TEMPER_TEST( TestAngle_Scalar_double3 )
 {
-	// scalar
 	double3 right = double3( 1.000000, 0.000000, 0.000000 );
 	double3 up    = double3( 0.000000, 1.000000, 0.000000 );
 
@@ -260,7 +256,7 @@ TEMPER_TEST( TestAngle_double3 )
 	TEMPER_PASS();
 }
 
-TEMPER_TEST( TestDistance_double3 )
+TEMPER_TEST( TestDistance_Scalar_double3 )
 {
 	double answerDistanceSqr = 105.0;
 	double answerDistance    = 10.246951;
@@ -268,7 +264,6 @@ TEMPER_TEST( TestDistance_double3 )
 	double3 a = double3( 7.000000, 4.000000, 3.000000 );
 	double3 b = double3( 17.000000, 6.000000, 2.000000 );
 
-	// scalar
 	double distSqr = distancesqr( a, b );
 	double dist    = distance( a, b );
 
@@ -352,12 +347,12 @@ TEMPER_SUITE( Test_double3 )
 	TEMPER_RUN_TEST( TestIncrement_double3 );
 	TEMPER_RUN_TEST( TestDecrement_double3 );
 	TEMPER_RUN_TEST( TestRelational_double3 );
-	TEMPER_RUN_TEST( TestLength_double3 );
-	TEMPER_RUN_TEST( TestNormalized_double3 );
-	TEMPER_RUN_TEST( TestDot_double3 );
+	TEMPER_RUN_TEST( TestLength_Scalar_double3 );
+	TEMPER_RUN_TEST( TestNormalized_Scalar_double3 );
+	TEMPER_RUN_TEST( TestDot_Scalar_double3 );
 	TEMPER_RUN_TEST( TestCross_double3 );
-	TEMPER_RUN_TEST( TestAngle_double3 );
-	TEMPER_RUN_TEST( TestDistance_double3 );
+	TEMPER_RUN_TEST( TestAngle_Scalar_double3 );
+	TEMPER_RUN_TEST( TestDistance_Scalar_double3 );
 	TEMPER_RUN_TEST( TestSaturate_double3 );
 	TEMPER_RUN_TEST( TestLerp_double3 );
 	TEMPER_RUN_TEST( TestStep_double3 );

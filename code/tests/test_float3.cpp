@@ -207,15 +207,18 @@ TEMPER_TEST( TestRelational_float3 )
 	TEMPER_PASS();
 }
 
-TEMPER_TEST( TestLength_float3 )
+TEMPER_TEST( TestLength_Scalar_float3 )
 {
-	// scalar
 	float3 vec = float3( 2.0f );
 
 	TEMPER_EXPECT_TRUE( floateq( lengthsqr( vec ), 12.0f ) );
 	TEMPER_EXPECT_TRUE( floateq( length( vec ), 3.46410161514f ) );
 
-	// SSE
+	TEMPER_PASS();
+}
+
+TEMPER_TEST( TestLength_SSE_float3 )
+{
 	float components[3][4] =
 	{
 		{ 2.000000f, 2.000000f, 2.000000f, 2.000000f },
@@ -256,15 +259,18 @@ TEMPER_TEST( TestLength_float3 )
 	TEMPER_PASS();
 }
 
-TEMPER_TEST( TestNormalized_float3 )
+TEMPER_TEST( TestNormalized_Scalar_float3 )
 {
-	// scalar
 	float3 vec = float3( 5.000000f, 4.000000f, 3.000000f );
 	vec = normalized( vec );
 
 	TEMPER_EXPECT_TRUE( floateq( length( vec ), 1.0f ) );
 
-	// SSE
+	TEMPER_PASS();
+}
+
+TEMPER_TEST( TestNormalized_SSE_float3 )
+{
 	__m128 results;
 	float3_sse_t in;
 	float3_sse_t in_normalised;
@@ -284,19 +290,21 @@ TEMPER_TEST( TestNormalized_float3 )
 	TEMPER_EXPECT_TRUE( floateq( normalizeResults[1], 1.0f, epsilon ) );
 	TEMPER_EXPECT_TRUE( floateq( normalizeResults[2], 1.0f, epsilon ) );
 	TEMPER_EXPECT_TRUE( floateq( normalizeResults[3], 1.0f, epsilon ) );
-
 	TEMPER_PASS();
 }
 
-TEMPER_TEST( TestDot_float3 )
+TEMPER_TEST( TestDot_Scalar_float3 )
 {
-	// scalar
 	float3 a = float3( 0.000000f, 1.000000f, 0.000000f );
 	float3 b = float3( 0.000000f, -1.000000f, 0.000000f );
 
 	TEMPER_EXPECT_TRUE( floateq( dot( a, b ), -1.0f ) );
 
-	// SIMD
+	TEMPER_PASS();
+}
+
+TEMPER_TEST( TestDot_SSE_float3 )
+{
 	float componentsLHS[3][4] =
 	{
 		{ 0.000000f, 0.000000f, 0.000000f, 0.000000f },
@@ -346,9 +354,8 @@ TEMPER_TEST( TestCross_float3 )
 	TEMPER_PASS();
 }
 
-TEMPER_TEST( TestAngle_float3 )
+TEMPER_TEST( TestAngle_Scalar_float3 )
 {
-	// scalar
 	float3 right = float3( 1.000000f, 0.000000f, 0.000000f );
 	float3 up    = float3( 0.000000f, 1.000000f, 0.000000f );
 
@@ -357,7 +364,7 @@ TEMPER_TEST( TestAngle_float3 )
 	TEMPER_PASS();
 }
 
-TEMPER_TEST( TestDistance_float3 )
+TEMPER_TEST( TestDistance_Scalar_float3 )
 {
 	float answerDistanceSqr = 105.0f;
 	float answerDistance    = 10.246951f;
@@ -365,14 +372,17 @@ TEMPER_TEST( TestDistance_float3 )
 	float3 a = float3( 7.000000f, 4.000000f, 3.000000f );
 	float3 b = float3( 17.000000f, 6.000000f, 2.000000f );
 
-	// scalar
 	float distSqr = distancesqr( a, b );
 	float dist    = distance( a, b );
 
 	TEMPER_EXPECT_TRUE( floateq( distSqr, answerDistanceSqr ) );
 	TEMPER_EXPECT_TRUE( floateq( dist, answerDistance ) );
 
-	// SSE
+	TEMPER_PASS();
+}
+
+TEMPER_TEST( TestDistance_SSE_float3 )
+{
 	float componentsLHS[3][4] =
 	{
 		{ 7.000000f, 7.000000f, 7.000000f, 7.000000f },
@@ -498,12 +508,17 @@ TEMPER_SUITE( Test_float3 )
 	TEMPER_RUN_TEST( TestIncrement_float3 );
 	TEMPER_RUN_TEST( TestDecrement_float3 );
 	TEMPER_RUN_TEST( TestRelational_float3 );
-	TEMPER_RUN_TEST( TestLength_float3 );
-	TEMPER_RUN_TEST( TestNormalized_float3 );
-	TEMPER_RUN_TEST( TestDot_float3 );
+	TEMPER_RUN_TEST( TestLength_Scalar_float3 );
+	TEMPER_RUN_TEST( TestLength_SSE_float3 );
+	TEMPER_RUN_TEST( TestLength_SSE_float3 );
+	TEMPER_RUN_TEST( TestNormalized_Scalar_float3 );
+	TEMPER_RUN_TEST( TestNormalized_SSE_float3 );
+	TEMPER_RUN_TEST( TestDot_Scalar_float3 );
+	TEMPER_RUN_TEST( TestDot_SSE_float3 );
 	TEMPER_RUN_TEST( TestCross_float3 );
-	TEMPER_RUN_TEST( TestAngle_float3 );
-	TEMPER_RUN_TEST( TestDistance_float3 );
+	TEMPER_RUN_TEST( TestAngle_Scalar_float3 );
+	TEMPER_RUN_TEST( TestDistance_Scalar_float3 );
+	TEMPER_RUN_TEST( TestDistance_SSE_float3 );
 	TEMPER_RUN_TEST( TestSaturate_float3 );
 	TEMPER_RUN_TEST( TestLerp_float3 );
 	TEMPER_RUN_TEST( TestStep_float3 );

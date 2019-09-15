@@ -277,9 +277,8 @@ TEMPER_TEST( TestBitwiseUnary_int4 )
 	TEMPER_PASS();
 }
 
-TEMPER_TEST( TestLength_int4 )
+TEMPER_TEST( TestLength_Scalar_int4 )
 {
-	// scalar
 	int4 vec = int4( 2 );
 
 	TEMPER_EXPECT_TRUE( floateq( lengthsqr( vec ), 16.0f ) );
@@ -288,9 +287,8 @@ TEMPER_TEST( TestLength_int4 )
 	TEMPER_PASS();
 }
 
-TEMPER_TEST( TestDot_int4 )
+TEMPER_TEST( TestDot_Scalar_int4 )
 {
-	// scalar
 	int4 a = int4( 0, 1, 0, 0 );
 	int4 b = int4( 0, -1, 0, 0 );
 
@@ -328,7 +326,7 @@ TEMPER_SUITE( Test_int4 )
 	TEMPER_RUN_TEST( TestBitwise_ShiftLeft_int4 );
 	TEMPER_RUN_TEST( TestBitwise_ShiftRight_int4 );
 	TEMPER_RUN_TEST( TestBitwiseUnary_int4 );
-	TEMPER_RUN_TEST( TestLength_int4 );
-	TEMPER_RUN_TEST( TestDot_int4 );
+	TEMPER_RUN_TEST( TestLength_Scalar_int4 );
+	TEMPER_RUN_TEST( TestDot_Scalar_int4 );
 	TEMPER_RUN_TEST( TestStep_int4 );
 }

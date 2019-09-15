@@ -208,15 +208,18 @@ TEMPER_TEST( TestRelational_float4 )
 	TEMPER_PASS();
 }
 
-TEMPER_TEST( TestLength_float4 )
+TEMPER_TEST( TestLength_Scalar_float4 )
 {
-	// scalar
 	float4 vec = float4( 2.0f );
 
 	TEMPER_EXPECT_TRUE( floateq( lengthsqr( vec ), 16.0f ) );
 	TEMPER_EXPECT_TRUE( floateq( length( vec ), 4.0f ) );
 
-	// SSE
+	TEMPER_PASS();
+}
+
+TEMPER_TEST( TestLength_SSE_float4 )
+{
 	float components[4][4] =
 	{
 		{ 2.000000f, 2.000000f, 2.000000f, 2.000000f },
@@ -259,15 +262,18 @@ TEMPER_TEST( TestLength_float4 )
 	TEMPER_PASS();
 }
 
-TEMPER_TEST( TestNormalized_float4 )
+TEMPER_TEST( TestNormalized_Scalar_float4 )
 {
-	// scalar
 	float4 vec = float4( 5.000000f, 4.000000f, 3.000000f, 2.000000f );
 	vec = normalized( vec );
 
 	TEMPER_EXPECT_TRUE( floateq( length( vec ), 1.0f ) );
 
-	// SSE
+	TEMPER_PASS();
+}
+
+TEMPER_TEST( TestNormalized_SSE_float4 )
+{
 	__m128 results;
 	float4_sse_t in;
 	float4_sse_t in_normalised;
@@ -288,19 +294,21 @@ TEMPER_TEST( TestNormalized_float4 )
 	TEMPER_EXPECT_TRUE( floateq( normalizeResults[1], 1.0f, epsilon ) );
 	TEMPER_EXPECT_TRUE( floateq( normalizeResults[2], 1.0f, epsilon ) );
 	TEMPER_EXPECT_TRUE( floateq( normalizeResults[3], 1.0f, epsilon ) );
-
 	TEMPER_PASS();
 }
 
-TEMPER_TEST( TestDot_float4 )
+TEMPER_TEST( TestDot_Scalar_float4 )
 {
-	// scalar
 	float4 a = float4( 0.000000f, 1.000000f, 0.000000f, 0.000000f );
 	float4 b = float4( 0.000000f, -1.000000f, 0.000000f, 0.000000f );
 
 	TEMPER_EXPECT_TRUE( floateq( dot( a, b ), -1.0f ) );
 
-	// SIMD
+	TEMPER_PASS();
+}
+
+TEMPER_TEST( TestDot_SSE_float4 )
+{
 	float componentsLHS[4][4] =
 	{
 		{ 0.000000f, 0.000000f, 0.000000f, 0.000000f },
@@ -354,9 +362,8 @@ TEMPER_TEST( TestCross_float4 )
 	TEMPER_PASS();
 }
 
-TEMPER_TEST( TestAngle_float4 )
+TEMPER_TEST( TestAngle_Scalar_float4 )
 {
-	// scalar
 	float4 right = float4( 1.000000f, 0.000000f, 0.000000f, 0.000000f );
 	float4 up    = float4( 0.000000f, 1.000000f, 0.000000f, 0.000000f );
 
@@ -439,11 +446,15 @@ TEMPER_SUITE( Test_float4 )
 	TEMPER_RUN_TEST( TestIncrement_float4 );
 	TEMPER_RUN_TEST( TestDecrement_float4 );
 	TEMPER_RUN_TEST( TestRelational_float4 );
-	TEMPER_RUN_TEST( TestLength_float4 );
-	TEMPER_RUN_TEST( TestNormalized_float4 );
-	TEMPER_RUN_TEST( TestDot_float4 );
+	TEMPER_RUN_TEST( TestLength_Scalar_float4 );
+	TEMPER_RUN_TEST( TestLength_SSE_float4 );
+	TEMPER_RUN_TEST( TestLength_SSE_float4 );
+	TEMPER_RUN_TEST( TestNormalized_Scalar_float4 );
+	TEMPER_RUN_TEST( TestNormalized_SSE_float4 );
+	TEMPER_RUN_TEST( TestDot_Scalar_float4 );
+	TEMPER_RUN_TEST( TestDot_SSE_float4 );
 	TEMPER_RUN_TEST( TestCross_float4 );
-	TEMPER_RUN_TEST( TestAngle_float4 );
+	TEMPER_RUN_TEST( TestAngle_Scalar_float4 );
 	TEMPER_RUN_TEST( TestSaturate_float4 );
 	TEMPER_RUN_TEST( TestLerp_float4 );
 	TEMPER_RUN_TEST( TestStep_float4 );

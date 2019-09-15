@@ -71,7 +71,10 @@ private:
 	void			GenerateTestPerspective();
 	void			GenerateTestLookAt();
 
-	void			GetTestCodeOperatorArithmeticInternal( const genOpArithmetic_t op, const float valuesLhs[GEN_COMPONENT_COUNT_MAX][GEN_COMPONENT_COUNT_MAX],
+	void			GetTestCodeOperatorArithmeticInternalScalar( const genOpArithmetic_t op, const float valuesLhs[GEN_COMPONENT_COUNT_MAX][GEN_COMPONENT_COUNT_MAX],
+						const float valuesRhs[GEN_COMPONENT_COUNT_MAX][GEN_COMPONENT_COUNT_MAX], stringBuilder_t* sb ) const;
+
+	void			GetTestCodeOperatorArithmeticInternalSSE( const genOpArithmetic_t op, const float valuesLhs[GEN_COMPONENT_COUNT_MAX][GEN_COMPONENT_COUNT_MAX],
 						const float valuesRhs[GEN_COMPONENT_COUNT_MAX][GEN_COMPONENT_COUNT_MAX], stringBuilder_t* sb ) const;
 
 	// DM: does this want to live with the other generic matrix gen functions?
