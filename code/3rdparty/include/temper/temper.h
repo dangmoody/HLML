@@ -371,7 +371,7 @@ static double TemperGetTimestamp( void ) {
 	struct timespec now;
 	clock_gettime( CLOCK_MONOTONIC, &now );
 
-	int64_t clocks = (s64) ( now.tv_sec * 1000000000 + now.tv_nsec );
+	int64_t clocks = (int64_t) ( now.tv_sec * 1000000000 + now.tv_nsec );
 
 	switch ( g_testContext.timeUnit ) {
 		case TEMPER_TIME_UNIT_CLOCKS:	return (double) clocks;
@@ -379,8 +379,6 @@ static double TemperGetTimestamp( void ) {
 		case TEMPER_TIME_UNIT_US:		return (double) clocks / 1000.0;
 		case TEMPER_TIME_UNIT_MS:		return (double) clocks / 1000000.0;
 		case TEMPER_TIME_UNIT_SECONDS:	return (double) clocks / 1000000000.0;
-
-		default: assert( false && "Unknown temperTimeUnit_t enum specified at " __FILE__ ":" __LINE__ );
 	}
 #endif
 }
