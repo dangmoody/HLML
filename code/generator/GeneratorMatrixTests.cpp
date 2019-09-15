@@ -1318,7 +1318,7 @@ void GeneratorMatrixTests::GenerateTestTranslate() {
 		char translateVecTypeName[GEN_STRING_LENGTH_TYPE_NAME];
 		Gen_GetFullTypeName( m_type, 1, translateVecComponents, translateVecTypeName );
 
-		char sseTranslateVecName[GEN_STRING_LENGTH_TYPE_NAME];
+		char sseTranslateVecName[GEN_STRING_LENGTH_SSE_INPUT_NAME];
 		Gen_SSE_GetFullTypeName( translateVecTypeName, sseTranslateVecName );
 
 		const char* loadFuncStr = Gen_SSE_GetIntrinsicLoad( m_type );
