@@ -381,6 +381,11 @@ static double TemperGetTimestamp( void ) {
 		case TEMPER_TIME_UNIT_SECONDS:	return (double) clocks / 1000000000.0;
 	}
 #endif
+
+	// should never get here
+	assert( false && "Unrecognised time unit passed into TemperGetTimestamp().\n" );
+
+	return 0.0;
 }
 
 // get the stats from temper on passed, failed, and skipped tests
