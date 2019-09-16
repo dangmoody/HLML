@@ -246,7 +246,7 @@ void GeneratorVectorTests::GenerateTestIncrement() {
 
 	for ( u32 i = 0; i < GEN_OP_INCREMENT_COUNT; i++ ) {
 		char testName[GEN_STRING_LENGTH_TEST_NAME] = { 0 };
-		snprintf( testName, 32, "Test%s_%s", suffices[i], m_fullTypeName );
+		snprintf( testName, GEN_STRING_LENGTH_TEST_NAME, "Test%s_%s", suffices[i], m_fullTypeName );
 
 		String_Appendf( &m_codeTests, "TEMPER_TEST( %s )\n", testName );
 		String_Append(  &m_codeTests, "{\n" );
@@ -471,7 +471,7 @@ void GeneratorVectorTests::GenerateTestLength() {
 	}
 
 	char testName[GEN_STRING_LENGTH_TEST_NAME] = { 0 };
-	snprintf( testName, 32, "TestLength_Scalar_%s", m_fullTypeName );
+	snprintf( testName, GEN_STRING_LENGTH_TEST_NAME, "TestLength_Scalar_%s", m_fullTypeName );
 
 	char twoStr[GEN_STRING_LENGTH_NUMERIC_LITERAL];
 	Gen_GetNumericLiteral( m_type, 2, twoStr, 1 );
@@ -509,7 +509,7 @@ void GeneratorVectorTests::GenerateTestLength() {
 	String_Appendf( &m_codeSuite, "\tTEMPER_RUN_TEST( %s );\n", testName );
 
 	if ( Gen_TypeSupportsSSE( m_type ) ) {
-		snprintf( testName, 32, "TestLength_SSE_%s", m_fullTypeName );
+		snprintf( testName, GEN_STRING_LENGTH_TEST_NAME, "TestLength_SSE_%s", m_fullTypeName );
 
 		char sseTypeName[GEN_STRING_LENGTH_SSE_INPUT_NAME];
 		Gen_SSE_GetFullTypeName( m_fullTypeName, sseTypeName );
@@ -765,7 +765,7 @@ void GeneratorVectorTests::GenerateTestCross() {
 	}
 
 	char testName[GEN_STRING_LENGTH_TEST_NAME] = { 0 };
-	snprintf( testName, 32, "TestCross_Scalar_%s", m_fullTypeName );
+	snprintf( testName, GEN_STRING_LENGTH_TEST_NAME, "TestCross_Scalar_%s", m_fullTypeName );
 
 	if ( m_numComponents < 3 ) {
 		return;
@@ -798,7 +798,7 @@ void GeneratorVectorTests::GenerateTestCross() {
 	String_Appendf( &m_codeSuite, "\tTEMPER_RUN_TEST( %s );\n", testName );
 
 	if ( Gen_TypeSupportsSSE( m_type ) ) {
-		snprintf( testName, 32, "TestCross_SSE_%s", m_fullTypeName );
+		snprintf( testName, GEN_STRING_LENGTH_TEST_NAME, "TestCross_SSE_%s", m_fullTypeName );
 
 		char sseTypeName[GEN_STRING_LENGTH_SSE_INPUT_NAME];
 		Gen_SSE_GetFullTypeName( m_fullTypeName, sseTypeName );
@@ -891,7 +891,7 @@ void GeneratorVectorTests::GenerateTestAngle() {
 	}
 
 	char testName[GEN_STRING_LENGTH_TEST_NAME] = { 0 };
-	snprintf( testName, 32, "TestAngle_Scalar_%s", m_fullTypeName );
+	snprintf( testName, GEN_STRING_LENGTH_TEST_NAME, "TestAngle_Scalar_%s", m_fullTypeName );
 
 	float right[]	= { 1.0f, 0.0f, 0.0f, 0.0f };
 	float up[]		= { 0.0f, 1.0f, 0.0f, 0.0f };
@@ -925,7 +925,7 @@ void GeneratorVectorTests::GenerateTestAngle() {
 	// DM!!! finish this!
 #if 0
 	if ( Gen_TypeSupportsSSE( m_type ) ) {
-		snprintf( testName, 32, "TestAngle_SSE_%s", m_fullTypeName );
+		snprintf( testName, GEN_STRING_LENGTH_TEST_NAME, "TestAngle_SSE_%s", m_fullTypeName );
 
 		const char* set1FuncStr		= Gen_SSE_GetIntrinsicSet1( m_type );
 		const char* storeFuncStr	= Gen_SSE_GetIntrinsicStore( m_type );
@@ -979,7 +979,7 @@ void GeneratorVectorTests::GenerateTestDistance() {
 	}
 
 	char testName[GEN_STRING_LENGTH_TEST_NAME] = { 0 };
-	snprintf( testName, 32, "TestDistance_Scalar_%s", m_fullTypeName );
+	snprintf( testName, GEN_STRING_LENGTH_TEST_NAME, "TestDistance_Scalar_%s", m_fullTypeName );
 
 	genType_t floatingPointType = Gen_GetSupportedFloatingPointType( m_type );
 	const char* floatingPointStr = Gen_GetTypeString( floatingPointType );
@@ -1033,7 +1033,7 @@ void GeneratorVectorTests::GenerateTestDistance() {
 	String_Appendf( &m_codeSuite, "\tTEMPER_RUN_TEST( %s );\n", testName );
 
 	if ( Gen_TypeSupportsSSE( m_type ) ) {
-		snprintf( testName, 32, "TestDistance_SSE_%s", m_fullTypeName );
+		snprintf( testName, GEN_STRING_LENGTH_TEST_NAME, "TestDistance_SSE_%s", m_fullTypeName );
 
 		char sseTypeName[GEN_STRING_LENGTH_SSE_INPUT_NAME];
 		Gen_SSE_GetFullTypeName( m_fullTypeName, sseTypeName );
@@ -1150,7 +1150,7 @@ void GeneratorVectorTests::GenerateTestSaturate() {
 	}
 
 	char testName[GEN_STRING_LENGTH_TEST_NAME] = { 0 };
-	snprintf( testName, 32, "TestSaturate_%s", m_fullTypeName );
+	snprintf( testName, GEN_STRING_LENGTH_TEST_NAME, "TestSaturate_%s", m_fullTypeName );
 
 	float values[]			= { -1.0f, 2.0f, 4.0f, 6.0f };
 	float valuesAnswer[]	= {  0.0f, 1.0f, 1.0f, 1.0f };
@@ -1183,7 +1183,7 @@ void GeneratorVectorTests::GenerateTestLerp() {
 	}
 
 	char testName[GEN_STRING_LENGTH_TEST_NAME] = { 0 };
-	snprintf( testName, 32, "TestLerp_%s", m_fullTypeName );
+	snprintf( testName, GEN_STRING_LENGTH_TEST_NAME, "TestLerp_%s", m_fullTypeName );
 
 	float valuesA[]			= { 0.0f, 1.0f, 0.0f, 0.0f };
 	float valuesB[]			= { 1.0f, 0.0f, 0.0f, 0.0f };
@@ -1223,7 +1223,7 @@ void GeneratorVectorTests::GenerateTestStep() {
 	}
 
 	char testName[GEN_STRING_LENGTH_TEST_NAME] = { 0 };
-	snprintf( testName, 32, "TestStep_%s", m_fullTypeName );
+	snprintf( testName, GEN_STRING_LENGTH_TEST_NAME, "TestStep_%s", m_fullTypeName );
 
 	// numbers chosen at random
 	float valuesA[]			= { 1.0f, 2.0f, 3.0f, 4.0f };
@@ -1260,7 +1260,7 @@ void GeneratorVectorTests::GenerateTestSmoothstep() {
 	}
 
 	char testName[GEN_STRING_LENGTH_TEST_NAME] = { 0 };
-	snprintf( testName, 32, "TestSmoothstep_%s", m_fullTypeName );
+	snprintf( testName, GEN_STRING_LENGTH_TEST_NAME, "TestSmoothstep_%s", m_fullTypeName );
 
 	float valuesLow[]						= { 0.0f, 0.0f, 0.0f, 0.0f };
 	float valuesHigh[]						= { 1.0f, 1.0f, 1.0f, 1.0f };

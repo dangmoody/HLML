@@ -366,7 +366,7 @@ void GeneratorScalarTest::GenerateTestLerp() {
 	}
 
 	char testName[GEN_STRING_LENGTH_TEST_NAME] = { 0 };
-	snprintf( testName, 32, "TestLerp_Scalar_%s", m_memberTypeString );
+	snprintf( testName, GEN_STRING_LENGTH_TEST_NAME, "TestLerp_Scalar_%s", m_memberTypeString );
 
 	// numbers chosen arbitrarily
 	char aStr[GEN_STRING_LENGTH_NUMERIC_LITERAL];
@@ -397,7 +397,7 @@ void GeneratorScalarTest::GenerateTestLerp() {
 	String_Appendf( &m_codeSuite, "\tTEMPER_RUN_TEST( %s );\n", testName );
 
 	if ( Gen_TypeSupportsSSE( m_type ) ) {
-		snprintf( testName, 32, "TestLerp_SSE_%s", m_memberTypeString );
+		snprintf( testName, GEN_STRING_LENGTH_TEST_NAME, "TestLerp_SSE_%s", m_memberTypeString );
 
 		char sseTypeName[GEN_STRING_LENGTH_SSE_INPUT_NAME];
 		Gen_SSE_GetFullTypeName( m_memberTypeString, sseTypeName );
