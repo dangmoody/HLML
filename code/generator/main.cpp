@@ -415,13 +415,18 @@ static bool32 GenerateFunctionsVectorSSE( void ) {
 	stringBuilder_t contentInl = String_Create( 16 * KB_TO_BYTES );
 
 	String_Append( &contentHeader, GEN_FILE_HEADER );
-	String_Append( &contentInl, GEN_FILE_HEADER );
-
 	String_Append( &contentHeader,
 		"#pragma once\n"
 		"\n"
 		"#include <immintrin.h>\n"
-		"\n" );
+		"\n"
+	);
+
+	String_Append( &contentInl, GEN_FILE_HEADER );
+	String_Append( &contentInl,
+		"#include \"../" GEN_HEADER_CONSTANTS_SSE "\"\n"
+		"\n"
+	);
 
 	for ( u32 typeIndex = 0; typeIndex < GEN_TYPE_COUNT; typeIndex++ ) {
 		genType_t type = (genType_t) typeIndex;
@@ -453,6 +458,7 @@ static bool32 GenerateFunctionsVectorSSE( void ) {
 			Gen_SSE_VectorLength( type, componentIndex, &contentHeader, &contentInl );
 			Gen_SSE_VectorNormalize( type, componentIndex, &contentHeader, &contentInl );
 			Gen_SSE_VectorDot( type, componentIndex, &contentHeader, &contentInl );
+			Gen_SSE_VectorCross( type, componentIndex, &contentHeader, &contentInl );
 			Gen_SSE_VectorDistance( type, componentIndex, &contentHeader, &contentInl );
 			// Gen_SSE_VectorAngle( type, componentIndex, &contentHeader, &contentInl );
 

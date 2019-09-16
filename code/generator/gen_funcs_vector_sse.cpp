@@ -119,6 +119,61 @@ void Gen_SSE_VectorDot( const genType_t type, const u32 numComponents, stringBui
 	String_Append(  sbInl, "\n" );
 }
 
+void Gen_SSE_VectorCross( const genType_t type, const u32 numComponents, stringBuilder_t* sbHeader, stringBuilder_t* sbInl ) {
+	assert( numComponents >= GEN_COMPONENT_COUNT_MIN );
+	assert( numComponents <= GEN_COMPONENT_COUNT_MAX );
+
+	if ( !Gen_TypeSupportsSSE( type ) ) {
+		return;
+	}
+
+	if ( numComponents < 3 ) {
+		return;
+	}
+
+	char fullTypeName[GEN_STRING_LENGTH_TYPE_NAME];
+	Gen_GetFullTypeName( type, 1, numComponents, fullTypeName );
+
+	char sseTypeName[GEN_STRING_LENGTH_SSE_INPUT_NAME];
+	Gen_SSE_GetFullTypeName( fullTypeName, sseTypeName );
+
+	const char* registerName = Gen_SSE_GetRegisterName( type );
+
+	char mulFuncStr[GEN_STRING_LENGTH_SSE_INTRINSIC];
+	Gen_SSE_GetIntrinsicArithmetic( type, GEN_OP_ARITHMETIC_MUL, mulFuncStr );
+
+	char subFuncStr[GEN_STRING_LENGTH_SSE_INTRINSIC];
+	Gen_SSE_GetIntrinsicArithmetic( type, GEN_OP_ARITHMETIC_SUB, subFuncStr );
+
+	Doc_SSE_VectorCross( sbHeader, fullTypeName );
+	String_Appendf( sbHeader, "inline void cross_sse( const %s* lhs, const %s* rhs, %s* out_results );\n", sseTypeName, sseTypeName, sseTypeName );
+	String_Append(  sbHeader, "\n" );
+
+	String_Appendf( sbInl, "void cross_sse( const %s* lhs, const %s* rhs, %s* out_results )\n", sseTypeName, sseTypeName, sseTypeName );
+	String_Append(  sbInl, "{\n" );
+	String_Append(  sbInl, "\tassert( lhs );\n" );
+	String_Append(  sbInl, "\tassert( rhs );\n" );
+	String_Append(  sbInl, "\tassert( out_results );\n" );
+	String_Append(  sbInl, "\n" );
+	String_Appendf( sbInl, "\t%s xmula = %s( lhs->comp[1], rhs->comp[2] );\n", registerName, mulFuncStr );
+	String_Appendf( sbInl, "\t%s xmulb = %s( lhs->comp[2], rhs->comp[1] );\n", registerName, mulFuncStr );
+	String_Appendf( sbInl, "\tout_results->comp[0] = %s( xmula, xmulb );\n", subFuncStr );
+	String_Append(  sbInl, "\n" );
+	String_Appendf( sbInl, "\t%s ymula = %s( lhs->comp[2], rhs->comp[0] );\n", registerName, mulFuncStr );
+	String_Appendf( sbInl, "\t%s ymulb = %s( lhs->comp[0], rhs->comp[2] );\n", registerName, mulFuncStr );
+	String_Appendf( sbInl, "\tout_results->comp[1] = %s( ymula, ymulb );\n", subFuncStr );
+	String_Append(  sbInl, "\n" );
+	String_Appendf( sbInl, "\t%s zmula = %s( lhs->comp[0], rhs->comp[1] );\n", registerName, mulFuncStr );
+	String_Appendf( sbInl, "\t%s zmulb = %s( lhs->comp[1], rhs->comp[0] );\n", registerName, mulFuncStr );
+	String_Appendf( sbInl, "\tout_results->comp[2] = %s( zmula, zmulb );\n", subFuncStr );
+	if ( numComponents > 3 ) {
+		String_Append( sbInl, "\n" );
+		String_Append( sbInl, "\tout_results->comp[3] = HLML_ZERO_SSE;\n" );
+	}
+	String_Append(  sbInl, "}\n" );
+	String_Append(  sbInl, "\n" );
+}
+
 void Gen_SSE_VectorLength( const genType_t type, const u32 numComponents, stringBuilder_t* sbHeader, stringBuilder_t* sbInl ) {
 	assert( numComponents >= GEN_COMPONENT_COUNT_MIN );
 	assert( numComponents <= GEN_COMPONENT_COUNT_MAX );

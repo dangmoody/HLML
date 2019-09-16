@@ -12,7 +12,7 @@
 #include "gen_funcs_vector_sse.h"
 
 bool GeneratorVectorTests::Generate( const genType_t type, const u32 numComponents ) {
-	const u32 testsCodeBytes = 14 * KB_TO_BYTES;
+	const u32 testsCodeBytes = 16 * KB_TO_BYTES;
 	const u32 suiteCodeBytes = 2 * KB_TO_BYTES;
 
 	m_codeTests = String_Create( testsCodeBytes );
@@ -765,7 +765,7 @@ void GeneratorVectorTests::GenerateTestCross() {
 	}
 
 	char testName[GEN_STRING_LENGTH_TEST_NAME] = { 0 };
-	snprintf( testName, 32, "TestCross_%s", m_fullTypeName );
+	snprintf( testName, 32, "TestCross_Scalar_%s", m_fullTypeName );
 
 	if ( m_numComponents < 3 ) {
 		return;
@@ -784,20 +784,105 @@ void GeneratorVectorTests::GenerateTestCross() {
 	Gen_GetParmListVector( m_type, m_numComponents, forward, parmListForward );
 
 	String_Appendf( &m_codeTests, "TEMPER_TEST( %s )\n", testName );
-	String_Appendf( &m_codeTests, "{\n" );
+	String_Append(  &m_codeTests, "{\n" );
 	String_Appendf( &m_codeTests, "\t%s left = %s%s;\n", m_fullTypeName, m_fullTypeName, parmListLeft );
 	String_Appendf( &m_codeTests, "\t%s forward = %s%s;\n", m_fullTypeName, m_fullTypeName, parmListForward );
 	String_Appendf( &m_codeTests, "\t%s up = %s%s;\n", m_fullTypeName, m_fullTypeName, parmListUp );
-	String_Appendf( &m_codeTests, "\n" );
+	String_Append(  &m_codeTests, "\n" );
 	String_Appendf( &m_codeTests, "\tTEMPER_EXPECT_TRUE( cross( left, forward ) == up );\n" );
-	String_Appendf( &m_codeTests, "\n" );
-	String_Appendf( &m_codeTests, "\tTEMPER_PASS();\n" );
-	String_Appendf( &m_codeTests, "}\n" );
-	String_Appendf( &m_codeTests, "\n" );
+	String_Append(  &m_codeTests, "\n" );
+	String_Append(  &m_codeTests, "\tTEMPER_PASS();\n" );
+	String_Append(  &m_codeTests, "}\n" );
+	String_Append(  &m_codeTests, "\n" );
 
 	String_Appendf( &m_codeSuite, "\tTEMPER_RUN_TEST( %s );\n", testName );
 
-	// TODO(DM): SSE test
+	if ( Gen_TypeSupportsSSE( m_type ) ) {
+		snprintf( testName, 32, "TestCross_SSE_%s", m_fullTypeName );
+
+		char sseTypeName[GEN_STRING_LENGTH_SSE_INPUT_NAME];
+		Gen_SSE_GetFullTypeName( m_fullTypeName, sseTypeName );
+
+		const char* floateqStr = Gen_GetFuncNameFloateq( m_type );
+
+		const char* loadFuncStr		= Gen_SSE_GetIntrinsicLoad( m_type );
+		const char* storeFuncStr	= Gen_SSE_GetIntrinsicStore( m_type );
+
+		String_Appendf( &m_codeTests, "TEMPER_TEST( %s )\n", testName );
+		String_Append(  &m_codeTests, "{\n" );
+		String_Appendf( &m_codeTests, "\t%s componentsLeft[%d][4] =\n", m_memberTypeString, m_numComponents );
+		String_Append(  &m_codeTests, "\t{\n" );
+		for ( u32 componentIndex = 0; componentIndex < m_numComponents; componentIndex++ ) {
+			float value = left[componentIndex];
+			float values[4] = { value, value, value, value };
+
+			String_Append( &m_codeTests, "\t" );
+			Gen_GetValuesArray1D( m_type, 4, values, &m_codeTests );
+
+			if ( componentIndex != m_numComponents - 1 ) {
+				String_Append( &m_codeTests, "," );
+			}
+
+			String_Appendf( &m_codeTests, "\t// 4 %c components\n", GEN_COMPONENT_NAMES_VECTOR[componentIndex] );
+		}
+		String_Append(  &m_codeTests, "\t};\n" );
+		String_Append(  &m_codeTests, "\n" );
+
+		String_Appendf( &m_codeTests, "\t%s componentsForward[%d][4] =\n", m_memberTypeString, m_numComponents );
+		String_Append(  &m_codeTests, "\t{\n" );
+		for ( u32 componentIndex = 0; componentIndex < m_numComponents; componentIndex++ ) {
+			float value = forward[componentIndex];
+			float values[4] = { value, value, value, value };
+
+			String_Append( &m_codeTests, "\t" );
+			Gen_GetValuesArray1D( m_type, 4, values, &m_codeTests );
+
+			if ( componentIndex != m_numComponents - 1 ) {
+				String_Append( &m_codeTests, "," );
+			}
+
+			String_Appendf( &m_codeTests, "\t// 4 %c components\n", GEN_COMPONENT_NAMES_VECTOR[componentIndex] );
+		}
+		String_Append(  &m_codeTests, "\t};\n" );
+		String_Append(  &m_codeTests, "\n" );
+		
+		String_Appendf( &m_codeTests, "\t%s left;\n", sseTypeName );
+		for ( u32 i = 0; i < m_numComponents; i++ ) {
+			String_Appendf( &m_codeTests, "\tleft.comp[%d] = %s( componentsLeft[%d] );\n", i, loadFuncStr, i );
+		}
+		String_Append(  &m_codeTests, "\n" );
+		String_Appendf( &m_codeTests, "\t%s forward;\n", sseTypeName );
+		for ( u32 i = 0; i < m_numComponents; i++ ) {
+			String_Appendf( &m_codeTests, "\tforward.comp[%d] = %s( componentsForward[%d] );\n", i, loadFuncStr, i );
+		}
+		String_Append(  &m_codeTests, "\n" );
+		String_Appendf( &m_codeTests, "\t%s up;\n", sseTypeName );
+		String_Append(  &m_codeTests, "\n" );
+		String_Append(  &m_codeTests, "\tcross_sse( &left, &forward, &up );\n" );
+		String_Append(  &m_codeTests, "\n" );
+		String_Appendf( &m_codeTests, "\t%s crossResults[4];\n", m_memberTypeString );
+		for ( u32 componentIndex = 0; componentIndex < m_numComponents; componentIndex++ ) {
+			String_Appendf( &m_codeTests, "\t%s( crossResults, up.comp[%d] );\n", storeFuncStr, componentIndex );
+
+			for ( u32 i = 0; i < 4; i++ ) {
+				char valueStr[GEN_STRING_LENGTH_NUMERIC_LITERAL];
+				Gen_GetNumericLiteral( m_type, up[componentIndex], valueStr );
+
+				if ( Gen_TypeIsFloatingPoint( m_type ) ) {
+					String_Appendf( &m_codeTests, "\tTEMPER_EXPECT_TRUE( %s( crossResults[%d], %s ) );\n", floateqStr, i, valueStr );
+				} else {
+					String_Appendf( &m_codeTests, "\tTEMPER_EXPECT_TRUE( crossResults[%d] == %s );\n", i, valueStr );
+				}
+			}
+
+			String_Append(  &m_codeTests, "\n" );
+		}
+		String_Append(  &m_codeTests, "\tTEMPER_PASS();\n" );
+		String_Append(  &m_codeTests, "}\n" );
+		String_Append(  &m_codeTests, "\n" );
+
+		String_Appendf( &m_codeSuite, "\tTEMPER_RUN_TEST( %s );\n", testName );
+	}
 }
 
 void GeneratorVectorTests::GenerateTestAngle() {

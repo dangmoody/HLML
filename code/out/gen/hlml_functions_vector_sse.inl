@@ -32,6 +32,8 @@ SOFTWARE.
 // EDITING THIS FILE MAY CAUSE SIDE EFFECTS.
 // DO SO AT YOUR OWN RISK.
 
+#include "../hlml_constants_sse.h"
+
 // float2
 void lengthsq_sse( const float2_sse_t* in, __m128* out_results )
 {
@@ -151,6 +153,25 @@ void dot_sse( const float3_sse_t* lhs, const float3_sse_t* rhs, __m128* out_resu
 	*out_results = _mm_add_ps( add0, mul2 );
 }
 
+void cross_sse( const float3_sse_t* lhs, const float3_sse_t* rhs, float3_sse_t* out_results )
+{
+	assert( lhs );
+	assert( rhs );
+	assert( out_results );
+
+	__m128 xmula = _mm_mul_ps( lhs->comp[1], rhs->comp[2] );
+	__m128 xmulb = _mm_mul_ps( lhs->comp[2], rhs->comp[1] );
+	out_results->comp[0] = _mm_sub_ps( xmula, xmulb );
+
+	__m128 ymula = _mm_mul_ps( lhs->comp[2], rhs->comp[0] );
+	__m128 ymulb = _mm_mul_ps( lhs->comp[0], rhs->comp[2] );
+	out_results->comp[1] = _mm_sub_ps( ymula, ymulb );
+
+	__m128 zmula = _mm_mul_ps( lhs->comp[0], rhs->comp[1] );
+	__m128 zmulb = _mm_mul_ps( lhs->comp[1], rhs->comp[0] );
+	out_results->comp[2] = _mm_sub_ps( zmula, zmulb );
+}
+
 void distancesq_sse( const float3_sse_t* lhs, const float3_sse_t* rhs, __m128* out_results )
 {
 	assert( lhs );
@@ -229,6 +250,27 @@ void dot_sse( const float4_sse_t* lhs, const float4_sse_t* rhs, __m128* out_resu
 	__m128 add1 = _mm_add_ps( mul2, mul3 );
 
 	*out_results = _mm_add_ps( add0, add1 );
+}
+
+void cross_sse( const float4_sse_t* lhs, const float4_sse_t* rhs, float4_sse_t* out_results )
+{
+	assert( lhs );
+	assert( rhs );
+	assert( out_results );
+
+	__m128 xmula = _mm_mul_ps( lhs->comp[1], rhs->comp[2] );
+	__m128 xmulb = _mm_mul_ps( lhs->comp[2], rhs->comp[1] );
+	out_results->comp[0] = _mm_sub_ps( xmula, xmulb );
+
+	__m128 ymula = _mm_mul_ps( lhs->comp[2], rhs->comp[0] );
+	__m128 ymulb = _mm_mul_ps( lhs->comp[0], rhs->comp[2] );
+	out_results->comp[1] = _mm_sub_ps( ymula, ymulb );
+
+	__m128 zmula = _mm_mul_ps( lhs->comp[0], rhs->comp[1] );
+	__m128 zmulb = _mm_mul_ps( lhs->comp[1], rhs->comp[0] );
+	out_results->comp[2] = _mm_sub_ps( zmula, zmulb );
+
+	out_results->comp[3] = HLML_ZERO_SSE;
 }
 
 void distancesq_sse( const float4_sse_t* lhs, const float4_sse_t* rhs, __m128* out_results )

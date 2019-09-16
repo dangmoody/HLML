@@ -39,6 +39,13 @@ inline void Doc_SSE_VectorDot( stringBuilder_t* sbHeader, const char* fullTypeNa
 	);
 }
 
+inline void Doc_SSE_VectorCross( stringBuilder_t* sbHeader, const char* fullTypeName ) {
+	String_Appendf( sbHeader,
+		"/// \\relates %s\n" \
+		"/// \\brief Stores the cross product of register vectors lhs and rhs into out_results.\n", fullTypeName
+	);
+}
+
 inline void Doc_SSE_VectorLengthsq( stringBuilder_t* sbHeader, const char* fullTypeName ) {
 	String_Appendf( sbHeader,
 		"/// \\relates %s\n" \

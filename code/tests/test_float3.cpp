@@ -343,13 +343,65 @@ TEMPER_TEST( TestDot_SSE_float3 )
 	TEMPER_PASS();
 }
 
-TEMPER_TEST( TestCross_float3 )
+TEMPER_TEST( TestCross_Scalar_float3 )
 {
 	float3 left = float3( -1.000000f, 0.000000f, 0.000000f );
 	float3 forward = float3( 0.000000f, 0.000000f, 1.000000f );
 	float3 up = float3( 0.000000f, 1.000000f, 0.000000f );
 
 	TEMPER_EXPECT_TRUE( cross( left, forward ) == up );
+
+	TEMPER_PASS();
+}
+
+TEMPER_TEST( TestCross_SSE_float3 )
+{
+	float componentsLeft[3][4] =
+	{
+		{ -1.000000f, -1.000000f, -1.000000f, -1.000000f },	// 4 x components
+		{ 0.000000f, 0.000000f, 0.000000f, 0.000000f },	// 4 y components
+		{ 0.000000f, 0.000000f, 0.000000f, 0.000000f }	// 4 z components
+	};
+
+	float componentsForward[3][4] =
+	{
+		{ 0.000000f, 0.000000f, 0.000000f, 0.000000f },	// 4 x components
+		{ 0.000000f, 0.000000f, 0.000000f, 0.000000f },	// 4 y components
+		{ 1.000000f, 1.000000f, 1.000000f, 1.000000f }	// 4 z components
+	};
+
+	float3_sse_t left;
+	left.comp[0] = _mm_load_ps( componentsLeft[0] );
+	left.comp[1] = _mm_load_ps( componentsLeft[1] );
+	left.comp[2] = _mm_load_ps( componentsLeft[2] );
+
+	float3_sse_t forward;
+	forward.comp[0] = _mm_load_ps( componentsForward[0] );
+	forward.comp[1] = _mm_load_ps( componentsForward[1] );
+	forward.comp[2] = _mm_load_ps( componentsForward[2] );
+
+	float3_sse_t up;
+
+	cross_sse( &left, &forward, &up );
+
+	float crossResults[4];
+	_mm_store_ps( crossResults, up.comp[0] );
+	TEMPER_EXPECT_TRUE( floateq( crossResults[0], 0.000000f ) );
+	TEMPER_EXPECT_TRUE( floateq( crossResults[1], 0.000000f ) );
+	TEMPER_EXPECT_TRUE( floateq( crossResults[2], 0.000000f ) );
+	TEMPER_EXPECT_TRUE( floateq( crossResults[3], 0.000000f ) );
+
+	_mm_store_ps( crossResults, up.comp[1] );
+	TEMPER_EXPECT_TRUE( floateq( crossResults[0], 1.000000f ) );
+	TEMPER_EXPECT_TRUE( floateq( crossResults[1], 1.000000f ) );
+	TEMPER_EXPECT_TRUE( floateq( crossResults[2], 1.000000f ) );
+	TEMPER_EXPECT_TRUE( floateq( crossResults[3], 1.000000f ) );
+
+	_mm_store_ps( crossResults, up.comp[2] );
+	TEMPER_EXPECT_TRUE( floateq( crossResults[0], 0.000000f ) );
+	TEMPER_EXPECT_TRUE( floateq( crossResults[1], 0.000000f ) );
+	TEMPER_EXPECT_TRUE( floateq( crossResults[2], 0.000000f ) );
+	TEMPER_EXPECT_TRUE( floateq( crossResults[3], 0.000000f ) );
 
 	TEMPER_PASS();
 }
@@ -515,7 +567,8 @@ TEMPER_SUITE( Test_float3 )
 	TEMPER_RUN_TEST( TestNormalized_SSE_float3 );
 	TEMPER_RUN_TEST( TestDot_Scalar_float3 );
 	TEMPER_RUN_TEST( TestDot_SSE_float3 );
-	TEMPER_RUN_TEST( TestCross_float3 );
+	TEMPER_RUN_TEST( TestCross_Scalar_float3 );
+	TEMPER_RUN_TEST( TestCross_SSE_float3 );
 	TEMPER_RUN_TEST( TestAngle_Scalar_float3 );
 	TEMPER_RUN_TEST( TestDistance_Scalar_float3 );
 	TEMPER_RUN_TEST( TestDistance_SSE_float3 );

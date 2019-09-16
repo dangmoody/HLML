@@ -90,6 +90,10 @@ inline void normalize_sse( const float3_sse_t* in, float3_sse_t* out );
 inline void dot_sse( const float3_sse_t* lhs, const float3_sse_t* rhs, __m128* out_results );
 
 /// \relates float3
+/// \brief Stores the cross product of register vectors lhs and rhs into out_results.
+inline void cross_sse( const float3_sse_t* lhs, const float3_sse_t* rhs, float3_sse_t* out_results );
+
+/// \relates float3
 /// \brief Finds the squared distance between each vector and stores the result in its respective component in the output register.
 inline void distancesq_sse( const float3_sse_t* lhs, const float3_sse_t* rhs, __m128* out_results );
 
@@ -119,6 +123,10 @@ inline void normalize_sse( const float4_sse_t* in, float4_sse_t* out );
 /// \relates float4
 /// \brief Performs a dot-product on each index of the left-hand-side and right-hand-side registers, respectively, and stores the result in its respective component in the output register.
 inline void dot_sse( const float4_sse_t* lhs, const float4_sse_t* rhs, __m128* out_results );
+
+/// \relates float4
+/// \brief Stores the cross product of register vectors lhs and rhs into out_results.
+inline void cross_sse( const float4_sse_t* lhs, const float4_sse_t* rhs, float4_sse_t* out_results );
 
 /// \relates float4
 /// \brief Finds the squared distance between each vector and stores the result in its respective component in the output register.

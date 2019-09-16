@@ -236,7 +236,7 @@ TEMPER_TEST( TestDot_Scalar_double4 )
 	TEMPER_PASS();
 }
 
-TEMPER_TEST( TestCross_double4 )
+TEMPER_TEST( TestCross_Scalar_double4 )
 {
 	double4 left = double4( -1.000000, 0.000000, 0.000000, 0.000000 );
 	double4 forward = double4( 0.000000, 0.000000, 1.000000, 0.000000 );
@@ -334,7 +334,7 @@ TEMPER_SUITE( Test_double4 )
 	TEMPER_RUN_TEST( TestLength_Scalar_double4 );
 	TEMPER_RUN_TEST( TestNormalized_Scalar_double4 );
 	TEMPER_RUN_TEST( TestDot_Scalar_double4 );
-	TEMPER_RUN_TEST( TestCross_double4 );
+	TEMPER_RUN_TEST( TestCross_Scalar_double4 );
 	TEMPER_RUN_TEST( TestAngle_Scalar_double4 );
 	TEMPER_RUN_TEST( TestSaturate_double4 );
 	TEMPER_RUN_TEST( TestLerp_double4 );
