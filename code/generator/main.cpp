@@ -45,7 +45,7 @@ along with The HLML Generator.  If not, see <http://www.gnu.org/licenses/>.
 
 #include "FileIO.h"
 
-#include "time.h"
+#include "timer.h"
 
 #include <stdio.h>
 #include <assert.h>
@@ -415,13 +415,18 @@ static bool32 GenerateFunctionsVectorSSE( void ) {
 	stringBuilder_t contentInl = String_Create( 16 * KB_TO_BYTES );
 
 	String_Append( &contentHeader, GEN_FILE_HEADER );
-	String_Append( &contentInl, GEN_FILE_HEADER );
-
 	String_Append( &contentHeader,
 		"#pragma once\n"
 		"\n"
 		"#include <immintrin.h>\n"
-		"\n" );
+		"\n"
+	);
+
+	String_Append( &contentInl, GEN_FILE_HEADER );
+	String_Append( &contentInl,
+		"#include \"../" GEN_HEADER_CONSTANTS_SSE "\"\n"
+		"\n"
+	);
 
 	for ( u32 typeIndex = 0; typeIndex < GEN_TYPE_COUNT; typeIndex++ ) {
 		genType_t type = (genType_t) typeIndex;
@@ -430,18 +435,30 @@ static bool32 GenerateFunctionsVectorSSE( void ) {
 			continue;
 		}
 
+		const char* registerName = Gen_SSE_GetRegisterName( type );
+
 		for ( u32 componentIndex = GEN_COMPONENT_COUNT_MIN; componentIndex <= GEN_COMPONENT_COUNT_MAX; componentIndex++ ) {
 			char fullTypeName[GEN_STRING_LENGTH_TYPE_NAME];
 			Gen_GetFullTypeName( type, 1, componentIndex, fullTypeName );
 
 			printf( "SIMD vector functions %s...", fullTypeName );
 
+			char sseTypeName[GEN_STRING_LENGTH_SSE_INPUT_NAME];
+			Gen_SSE_GetFullTypeName( fullTypeName, sseTypeName );
+
 			String_Appendf( &contentHeader, "// %s\n", fullTypeName );
+			String_Appendf( &contentHeader, "struct %s\n", sseTypeName );
+			String_Append(  &contentHeader, "{\n" );
+			String_Appendf( &contentHeader, "\t%s comp[%d];\n", registerName, componentIndex );
+			String_Append(  &contentHeader, "};\n" );
+			String_Append(  &contentHeader, "\n" );
+
 			String_Appendf( &contentInl, "// %s\n", fullTypeName );
 
 			Gen_SSE_VectorLength( type, componentIndex, &contentHeader, &contentInl );
 			Gen_SSE_VectorNormalize( type, componentIndex, &contentHeader, &contentInl );
 			Gen_SSE_VectorDot( type, componentIndex, &contentHeader, &contentInl );
+			Gen_SSE_VectorCross( type, componentIndex, &contentHeader, &contentInl );
 			Gen_SSE_VectorDistance( type, componentIndex, &contentHeader, &contentInl );
 			// Gen_SSE_VectorAngle( type, componentIndex, &contentHeader, &contentInl );
 
@@ -470,7 +487,7 @@ static bool32 GenerateFunctionsMatrixSSE( void ) {
 	snprintf( filePathInl, 64, "%s%s.inl", GEN_OUT_GEN_FOLDER_PATH, GEN_FILENAME_FUNCTIONS_MATRIX_SSE );
 
 	stringBuilder_t contentHeader = String_Create( 28 * KB_TO_BYTES );
-	stringBuilder_t contentInl = String_Create( 68 * KB_TO_BYTES );
+	stringBuilder_t contentInl = String_Create( 70 * KB_TO_BYTES );
 
 	String_Append( &contentHeader, GEN_FILE_HEADER );
 	String_Append( &contentHeader,
@@ -478,16 +495,13 @@ static bool32 GenerateFunctionsMatrixSSE( void ) {
 		"\n"
 		"#include <immintrin.h>\n"
 		"\n"
-	);
-
-	String_Append( &contentInl, GEN_FILE_HEADER );
-	String_Append( &contentInl,
-		"#include \"../" GEN_HEADER_CONSTANTS_SSE "\"\n"
-		"\n"
 		"#include \"" GEN_FILENAME_FUNCTIONS_VECTOR_SSE ".h\"\n"
 		"\n"
 	);
 
+	Gen_SSE_MacroNegate( GEN_TYPE_FLOAT, &contentHeader );
+
+	// generate type forward declarations
 	for ( u32 typeIndex = 0; typeIndex < GEN_TYPE_COUNT; typeIndex++ ) {
 		genType_t type = (genType_t) typeIndex;
 
@@ -500,14 +514,53 @@ static bool32 GenerateFunctionsMatrixSSE( void ) {
 				char fullTypeName[GEN_STRING_LENGTH_TYPE_NAME];
 				Gen_GetFullTypeName( type, row, col, fullTypeName );
 
+				char sseTypeName[GEN_STRING_LENGTH_SSE_INPUT_NAME];
+				Gen_SSE_GetFullTypeName( fullTypeName, sseTypeName );
+
+				String_Appendf( &contentHeader, "struct %s;\n", sseTypeName );
+			}
+		}
+	}
+	String_Appendf( &contentHeader, "\n" );
+
+	String_Append( &contentInl, GEN_FILE_HEADER );
+	String_Append( &contentInl,
+		"#include \"../" GEN_HEADER_CONSTANTS_SSE "\"\n"
+		"\n"
+		"#include \"" GEN_FILENAME_FUNCTIONS_VECTOR_SSE ".h\"\n"
+		"\n"
+	);
+
+	// generate functions
+	for ( u32 typeIndex = 0; typeIndex < GEN_TYPE_COUNT; typeIndex++ ) {
+		genType_t type = (genType_t) typeIndex;
+
+		if ( !Gen_TypeSupportsSSE( type ) ) {
+			continue;
+		}
+
+		const char* registerName = Gen_SSE_GetRegisterName( type );
+
+		for ( u32 row = GEN_COMPONENT_COUNT_MIN; row <= GEN_COMPONENT_COUNT_MAX; row++ ) {
+			for ( u32 col = GEN_COMPONENT_COUNT_MIN; col <= GEN_COMPONENT_COUNT_MAX; col++ ) {
+				char fullTypeName[GEN_STRING_LENGTH_TYPE_NAME];
+				Gen_GetFullTypeName( type, row, col, fullTypeName );
+
 				printf( "SIMD matrix functions %s...", fullTypeName );
 
+				char sseTypeName[GEN_STRING_LENGTH_SSE_INPUT_NAME];
+				Gen_SSE_GetFullTypeName( fullTypeName, sseTypeName );
+
 				String_Appendf( &contentHeader, "// %s\n", fullTypeName );
+				String_Appendf( &contentHeader, "struct %s\n", sseTypeName );
+				String_Append(  &contentHeader, "{\n" );
+				String_Appendf( &contentHeader, "\t%s m[%d][%d];\n", registerName, row, col );
+				String_Append(  &contentHeader, "};\n" );
+				String_Append(  &contentHeader, "\n" );
+
 				String_Appendf( &contentInl, "// %s\n", fullTypeName );
 
-				Gen_SSE_MacroNegate( type, &contentHeader );
-
-				// Gen_SSE_MatrixIdentity( type, row, col, &contentHeader, &contentInl );
+				Gen_SSE_MatrixIdentity( type, row, col, &contentHeader, &contentInl );
 				Gen_SSE_MatrixTranspose( type, row, col, &contentHeader, &contentInl );
 
 				Gen_SSE_MatrixDeterminant( type, row, col, &contentHeader, &contentInl );
@@ -772,7 +825,6 @@ static bool32 GenerateTestsMain( void ) {
 	String_Append( &sb, "\t( (void) userdata );\n" );
 	String_Append( &sb, "\tprintf( \"\\n\" );\n" );
 	String_Append( &sb, "}\n" );
-
 	String_Append( &sb, "\n" );
 
 	for ( u32 typeIndex = 0; typeIndex < GEN_TYPE_COUNT; typeIndex++ ) {
@@ -796,8 +848,9 @@ static bool32 GenerateTestsMain( void ) {
 	String_Append( &sb, "{\n" );
 	String_Append( &sb, "\tTEMPER_SET_COMMAND_LINE_ARGS( argc, argv );\n" );
 	String_Append( &sb, "\n" );
-
 	String_Append( &sb, "\tTEMPER_SET_SUITE_END_CALLBACK( OnSuiteEnd, nullptr );\n" );
+	String_Append( &sb, "\n" );
+	String_Append( &sb, "\tTEMPER_SET_TIME_UNIT( TEMPER_TIME_UNIT_US );\n" );
 	String_Append( &sb, "\n" );
 
 	// run the scalar tests first
@@ -906,13 +959,13 @@ int main( int argc, char** argv ) {
 
 	Time_Init();
 
-	float64 start = Time_NowMS();
-
 	FAIL_IF( !FS_CreateFolder( GEN_OUT_GEN_FOLDER_PATH ), "Failed to create folder \"" GEN_OUT_GEN_FOLDER_PATH "\".\n" );
 	FAIL_IF( !FS_CreateFolder( GEN_TESTS_FOLDER_PATH ),   "Failed to create folder \"" GEN_TESTS_FOLDER_PATH "\".\n" );
 
+	float64 start = Time_NowMS();
+
 	printf( "======= Generating core headers. =======\n" );
-	FAIL_IF( !GenerateTypeHeader(),   "Failed generating \"" GEN_HEADER_TYPES "\".\n" );
+	FAIL_IF( !GenerateTypeHeader(), "Failed generating \"" GEN_HEADER_TYPES "\".\n" );
 	printf( "======= Done. =======\n\n" );
 
 	printf( "======= Generating types. =======\n" );

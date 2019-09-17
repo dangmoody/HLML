@@ -116,8 +116,6 @@ bool32 OS_KillProcess( process_t process, const u32 exitCode ) {
 u32 OS_WaitForProcess( const process_t process ) {
 	processUnix_t* proc = (processUnix_t*) process.ptr;
 
-	u32 ret = 0;
-
 	int status = 0;
 	int waitResult = waitpid( proc->pid, &status, 0 );
 

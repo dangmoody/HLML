@@ -37,18 +37,30 @@ SOFTWARE.
 #include "hlml_functions_vector_sse.h"
 
 // float2x2
-void transpose_sse( const sse_input_transpose_float2x2_t* in, __m128 out_results[2][2] )
+void identity_sse( float2x2_sse_t* mat )
 {
-	assert( in );
+	// row 0
+	mat->m[0][0] = _mm_set1_ps( 1.0f );
+	mat->m[0][1] = _mm_set1_ps( 0.0f );
 
-	out_results[0][0] = in->m[0][0];
-	out_results[1][0] = in->m[0][1];
-
-	out_results[0][1] = in->m[1][0];
-	out_results[1][1] = in->m[1][1];
+	// row 1
+	mat->m[1][0] = _mm_set1_ps( 0.0f );
+	mat->m[1][1] = _mm_set1_ps( 1.0f );
 }
 
-void determinant_sse( const sse_input_determinant_float2x2_t* in, __m128* out_result )
+void transpose_sse( const float2x2_sse_t* in, float2x2_sse_t* out )
+{
+	assert( in );
+	assert( out );
+
+	out->m[0][0] = in->m[0][0];
+	out->m[1][0] = in->m[0][1];
+
+	out->m[0][1] = in->m[1][0];
+	out->m[1][1] = in->m[1][1];
+}
+
+void determinant_sse( const float2x2_sse_t* in, __m128* out_result )
 {
 	assert( in );
 	assert( out_result );
@@ -59,523 +71,574 @@ void determinant_sse( const sse_input_determinant_float2x2_t* in, __m128* out_re
 	*out_result = _mm_sub_ps( mul0, mul1 );
 }
 
-void inverse_sse( const sse_input_inverse_float2x2_t* in, __m128 out_results[2][2] )
+void inverse_sse( const float2x2_sse_t* in, float2x2_sse_t* out )
 {
 	assert( in );
-
-	sse_input_determinant_float2x2_t in_det;
-	memcpy( in_det.m, in->m, sizeof( in->m ) );
+	assert( out );
 
 	__m128 determinants;
-	determinant_sse( &in_det, &determinants );
+	determinant_sse( in, &determinants );
 
 	determinants = _mm_rcp_ps( determinants );
 
 	__m128 neg0 = _NEGATE_PS( in->m[0][1] );
 	__m128 neg1 = _NEGATE_PS( in->m[1][0] );
 
-	out_results[0][0] = _mm_mul_ps( in->m[1][1], determinants );
-	out_results[0][1] = _mm_mul_ps( neg0, determinants );
-	out_results[1][0] = _mm_mul_ps( neg1, determinants );
-	out_results[1][1] = _mm_mul_ps( in->m[0][0], determinants );
+	out->m[0][0] = _mm_mul_ps( in->m[1][1], determinants );
+	out->m[0][1] = _mm_mul_ps( neg0, determinants );
+	out->m[1][0] = _mm_mul_ps( neg1, determinants );
+	out->m[1][1] = _mm_mul_ps( in->m[0][0], determinants );
 }
 
-void comp_add_sse( const sse_input_comp_add_float2x2_t* in, __m128 out_results[2][2] )
+void comp_add_sse( const float2x2_sse_t* lhs, const float2x2_sse_t* rhs, float2x2_sse_t* out )
 {
-	assert( in );
+	assert( lhs );
+	assert( rhs );
+	assert( out );
 
 	// row 0
-	out_results[0][0] = _mm_add_ps( in->lhs[0][0], in->rhs[0][0] );
-	out_results[0][1] = _mm_add_ps( in->lhs[0][1], in->rhs[0][1] );
+	out->m[0][0] = _mm_add_ps( lhs->m[0][0], rhs->m[0][0] );
+	out->m[0][1] = _mm_add_ps( lhs->m[0][1], rhs->m[0][1] );
 
 	// row 1
-	out_results[1][0] = _mm_add_ps( in->lhs[1][0], in->rhs[1][0] );
-	out_results[1][1] = _mm_add_ps( in->lhs[1][1], in->rhs[1][1] );
+	out->m[1][0] = _mm_add_ps( lhs->m[1][0], rhs->m[1][0] );
+	out->m[1][1] = _mm_add_ps( lhs->m[1][1], rhs->m[1][1] );
 }
 
-void comp_sub_sse( const sse_input_comp_sub_float2x2_t* in, __m128 out_results[2][2] )
+void comp_sub_sse( const float2x2_sse_t* lhs, const float2x2_sse_t* rhs, float2x2_sse_t* out )
 {
-	assert( in );
+	assert( lhs );
+	assert( rhs );
+	assert( out );
 
 	// row 0
-	out_results[0][0] = _mm_sub_ps( in->lhs[0][0], in->rhs[0][0] );
-	out_results[0][1] = _mm_sub_ps( in->lhs[0][1], in->rhs[0][1] );
+	out->m[0][0] = _mm_sub_ps( lhs->m[0][0], rhs->m[0][0] );
+	out->m[0][1] = _mm_sub_ps( lhs->m[0][1], rhs->m[0][1] );
 
 	// row 1
-	out_results[1][0] = _mm_sub_ps( in->lhs[1][0], in->rhs[1][0] );
-	out_results[1][1] = _mm_sub_ps( in->lhs[1][1], in->rhs[1][1] );
+	out->m[1][0] = _mm_sub_ps( lhs->m[1][0], rhs->m[1][0] );
+	out->m[1][1] = _mm_sub_ps( lhs->m[1][1], rhs->m[1][1] );
 }
 
-void comp_mul_sse( const sse_input_comp_mul_float2x2_t* in, __m128 out_results[2][2] )
+void comp_mul_sse( const float2x2_sse_t* lhs, const float2x2_sse_t* rhs, float2x2_sse_t* out )
 {
-	assert( in );
+	assert( lhs );
+	assert( rhs );
+	assert( out );
 
 	// row 0
-	out_results[0][0] = _mm_mul_ps( in->lhs[0][0], in->rhs[0][0] );
-	out_results[0][1] = _mm_mul_ps( in->lhs[0][1], in->rhs[0][1] );
+	out->m[0][0] = _mm_mul_ps( lhs->m[0][0], rhs->m[0][0] );
+	out->m[0][1] = _mm_mul_ps( lhs->m[0][1], rhs->m[0][1] );
 
 	// row 1
-	out_results[1][0] = _mm_mul_ps( in->lhs[1][0], in->rhs[1][0] );
-	out_results[1][1] = _mm_mul_ps( in->lhs[1][1], in->rhs[1][1] );
+	out->m[1][0] = _mm_mul_ps( lhs->m[1][0], rhs->m[1][0] );
+	out->m[1][1] = _mm_mul_ps( lhs->m[1][1], rhs->m[1][1] );
 }
 
-void comp_div_sse( const sse_input_comp_div_float2x2_t* in, __m128 out_results[2][2] )
+void comp_div_sse( const float2x2_sse_t* lhs, const float2x2_sse_t* rhs, float2x2_sse_t* out )
 {
-	assert( in );
+	assert( lhs );
+	assert( rhs );
+	assert( out );
 
 	// row 0
-	out_results[0][0] = _mm_div_ps( in->lhs[0][0], in->rhs[0][0] );
-	out_results[0][1] = _mm_div_ps( in->lhs[0][1], in->rhs[0][1] );
+	out->m[0][0] = _mm_div_ps( lhs->m[0][0], rhs->m[0][0] );
+	out->m[0][1] = _mm_div_ps( lhs->m[0][1], rhs->m[0][1] );
 
 	// row 1
-	out_results[1][0] = _mm_div_ps( in->lhs[1][0], in->rhs[1][0] );
-	out_results[1][1] = _mm_div_ps( in->lhs[1][1], in->rhs[1][1] );
+	out->m[1][0] = _mm_div_ps( lhs->m[1][0], rhs->m[1][0] );
+	out->m[1][1] = _mm_div_ps( lhs->m[1][1], rhs->m[1][1] );
 }
 
-void mul_sse( const sse_input_mul_float2x2_t* in, __m128 out_results[2][2] )
+void mul_sse( const float2x2_sse_t* lhs, const float2x2_sse_t* rhs, float2x2_sse_t* out )
 {
-	__m128 rhs_transposed[2][2];
+	assert( lhs );
+	assert( rhs );
+	assert( out );
 
-	sse_input_transpose_float2x2_t in_transpose;
-	memcpy( in_transpose.m, in->rhs, sizeof( in->rhs ) );
-	transpose_sse( &in_transpose, rhs_transposed );
+	float2x2_sse_t rhs_transposed;
+	transpose_sse( rhs, &rhs_transposed );
 
-	sse_input_dot_float2_t in_dot;
-	memcpy( in_dot.lhs, in->lhs[0], sizeof( in->lhs[0] ) );
-	memcpy( in_dot.rhs, rhs_transposed[0], sizeof( rhs_transposed[0] ) );
-	dot_sse( &in_dot, &out_results[0][0] );
+	float2_sse_t dot_lhs;
+	float2_sse_t dot_rhs;
 
-	memcpy( in_dot.lhs, in->lhs[0], sizeof( in->lhs[0] ) );
-	memcpy( in_dot.rhs, rhs_transposed[1], sizeof( rhs_transposed[1] ) );
-	dot_sse( &in_dot, &out_results[0][1] );
+	memcpy( dot_lhs.comp, &lhs->m[0], sizeof( lhs->m[0] ) );
+	memcpy( dot_rhs.comp, &rhs_transposed.m[0], sizeof( rhs_transposed.m[0] ) );
+	dot_sse( &dot_lhs, &dot_rhs, &out->m[0][0] );
 
-	memcpy( in_dot.lhs, in->lhs[1], sizeof( in->lhs[1] ) );
-	memcpy( in_dot.rhs, rhs_transposed[0], sizeof( rhs_transposed[0] ) );
-	dot_sse( &in_dot, &out_results[1][0] );
+	memcpy( dot_lhs.comp, &lhs->m[0], sizeof( lhs->m[0] ) );
+	memcpy( dot_rhs.comp, &rhs_transposed.m[1], sizeof( rhs_transposed.m[1] ) );
+	dot_sse( &dot_lhs, &dot_rhs, &out->m[0][1] );
 
-	memcpy( in_dot.lhs, in->lhs[1], sizeof( in->lhs[1] ) );
-	memcpy( in_dot.rhs, rhs_transposed[1], sizeof( rhs_transposed[1] ) );
-	dot_sse( &in_dot, &out_results[1][1] );
-}
+	memcpy( dot_lhs.comp, &lhs->m[1], sizeof( lhs->m[1] ) );
+	memcpy( dot_rhs.comp, &rhs_transposed.m[0], sizeof( rhs_transposed.m[0] ) );
+	dot_sse( &dot_lhs, &dot_rhs, &out->m[1][0] );
 
-void scale_sse( const sse_input_scale_float2x2_t* in, __m128 out_results[2] )
-{
-	assert( in );
-
-	out_results[0] = _mm_mul_ps( in->diagonal[0], in->scale[0] );
-	out_results[1] = _mm_mul_ps( in->diagonal[1], in->scale[1] );
+	memcpy( dot_lhs.comp, &lhs->m[1], sizeof( lhs->m[1] ) );
+	memcpy( dot_rhs.comp, &rhs_transposed.m[1], sizeof( rhs_transposed.m[1] ) );
+	dot_sse( &dot_lhs, &dot_rhs, &out->m[1][1] );
 }
 
 
 // float2x3
-void transpose_sse( const sse_input_transpose_float2x3_t* in, __m128 out_results[3][2] )
+void identity_sse( float2x3_sse_t* mat )
 {
-	assert( in );
-
-	out_results[0][0] = in->m[0][0];
-	out_results[1][0] = in->m[0][1];
-	out_results[2][0] = in->m[0][2];
-
-	out_results[0][1] = in->m[1][0];
-	out_results[1][1] = in->m[1][1];
-	out_results[2][1] = in->m[1][2];
-}
-
-void comp_add_sse( const sse_input_comp_add_float2x3_t* in, __m128 out_results[2][3] )
-{
-	assert( in );
-
 	// row 0
-	out_results[0][0] = _mm_add_ps( in->lhs[0][0], in->rhs[0][0] );
-	out_results[0][1] = _mm_add_ps( in->lhs[0][1], in->rhs[0][1] );
-	out_results[0][2] = _mm_add_ps( in->lhs[0][2], in->rhs[0][2] );
+	mat->m[0][0] = _mm_set1_ps( 1.0f );
+	mat->m[0][1] = _mm_set1_ps( 0.0f );
+	mat->m[0][2] = _mm_set1_ps( 0.0f );
 
 	// row 1
-	out_results[1][0] = _mm_add_ps( in->lhs[1][0], in->rhs[1][0] );
-	out_results[1][1] = _mm_add_ps( in->lhs[1][1], in->rhs[1][1] );
-	out_results[1][2] = _mm_add_ps( in->lhs[1][2], in->rhs[1][2] );
+	mat->m[1][0] = _mm_set1_ps( 0.0f );
+	mat->m[1][1] = _mm_set1_ps( 1.0f );
+	mat->m[1][2] = _mm_set1_ps( 0.0f );
 }
 
-void comp_sub_sse( const sse_input_comp_sub_float2x3_t* in, __m128 out_results[2][3] )
+void transpose_sse( const float2x3_sse_t* in, float3x2_sse_t* out )
 {
 	assert( in );
+	assert( out );
+
+	out->m[0][0] = in->m[0][0];
+	out->m[1][0] = in->m[0][1];
+	out->m[2][0] = in->m[0][2];
+
+	out->m[0][1] = in->m[1][0];
+	out->m[1][1] = in->m[1][1];
+	out->m[2][1] = in->m[1][2];
+}
+
+void comp_add_sse( const float2x3_sse_t* lhs, const float2x3_sse_t* rhs, float2x3_sse_t* out )
+{
+	assert( lhs );
+	assert( rhs );
+	assert( out );
 
 	// row 0
-	out_results[0][0] = _mm_sub_ps( in->lhs[0][0], in->rhs[0][0] );
-	out_results[0][1] = _mm_sub_ps( in->lhs[0][1], in->rhs[0][1] );
-	out_results[0][2] = _mm_sub_ps( in->lhs[0][2], in->rhs[0][2] );
+	out->m[0][0] = _mm_add_ps( lhs->m[0][0], rhs->m[0][0] );
+	out->m[0][1] = _mm_add_ps( lhs->m[0][1], rhs->m[0][1] );
+	out->m[0][2] = _mm_add_ps( lhs->m[0][2], rhs->m[0][2] );
 
 	// row 1
-	out_results[1][0] = _mm_sub_ps( in->lhs[1][0], in->rhs[1][0] );
-	out_results[1][1] = _mm_sub_ps( in->lhs[1][1], in->rhs[1][1] );
-	out_results[1][2] = _mm_sub_ps( in->lhs[1][2], in->rhs[1][2] );
+	out->m[1][0] = _mm_add_ps( lhs->m[1][0], rhs->m[1][0] );
+	out->m[1][1] = _mm_add_ps( lhs->m[1][1], rhs->m[1][1] );
+	out->m[1][2] = _mm_add_ps( lhs->m[1][2], rhs->m[1][2] );
 }
 
-void comp_mul_sse( const sse_input_comp_mul_float2x3_t* in, __m128 out_results[2][3] )
+void comp_sub_sse( const float2x3_sse_t* lhs, const float2x3_sse_t* rhs, float2x3_sse_t* out )
 {
-	assert( in );
+	assert( lhs );
+	assert( rhs );
+	assert( out );
 
 	// row 0
-	out_results[0][0] = _mm_mul_ps( in->lhs[0][0], in->rhs[0][0] );
-	out_results[0][1] = _mm_mul_ps( in->lhs[0][1], in->rhs[0][1] );
-	out_results[0][2] = _mm_mul_ps( in->lhs[0][2], in->rhs[0][2] );
+	out->m[0][0] = _mm_sub_ps( lhs->m[0][0], rhs->m[0][0] );
+	out->m[0][1] = _mm_sub_ps( lhs->m[0][1], rhs->m[0][1] );
+	out->m[0][2] = _mm_sub_ps( lhs->m[0][2], rhs->m[0][2] );
 
 	// row 1
-	out_results[1][0] = _mm_mul_ps( in->lhs[1][0], in->rhs[1][0] );
-	out_results[1][1] = _mm_mul_ps( in->lhs[1][1], in->rhs[1][1] );
-	out_results[1][2] = _mm_mul_ps( in->lhs[1][2], in->rhs[1][2] );
+	out->m[1][0] = _mm_sub_ps( lhs->m[1][0], rhs->m[1][0] );
+	out->m[1][1] = _mm_sub_ps( lhs->m[1][1], rhs->m[1][1] );
+	out->m[1][2] = _mm_sub_ps( lhs->m[1][2], rhs->m[1][2] );
 }
 
-void comp_div_sse( const sse_input_comp_div_float2x3_t* in, __m128 out_results[2][3] )
+void comp_mul_sse( const float2x3_sse_t* lhs, const float2x3_sse_t* rhs, float2x3_sse_t* out )
 {
-	assert( in );
+	assert( lhs );
+	assert( rhs );
+	assert( out );
 
 	// row 0
-	out_results[0][0] = _mm_div_ps( in->lhs[0][0], in->rhs[0][0] );
-	out_results[0][1] = _mm_div_ps( in->lhs[0][1], in->rhs[0][1] );
-	out_results[0][2] = _mm_div_ps( in->lhs[0][2], in->rhs[0][2] );
+	out->m[0][0] = _mm_mul_ps( lhs->m[0][0], rhs->m[0][0] );
+	out->m[0][1] = _mm_mul_ps( lhs->m[0][1], rhs->m[0][1] );
+	out->m[0][2] = _mm_mul_ps( lhs->m[0][2], rhs->m[0][2] );
 
 	// row 1
-	out_results[1][0] = _mm_div_ps( in->lhs[1][0], in->rhs[1][0] );
-	out_results[1][1] = _mm_div_ps( in->lhs[1][1], in->rhs[1][1] );
-	out_results[1][2] = _mm_div_ps( in->lhs[1][2], in->rhs[1][2] );
+	out->m[1][0] = _mm_mul_ps( lhs->m[1][0], rhs->m[1][0] );
+	out->m[1][1] = _mm_mul_ps( lhs->m[1][1], rhs->m[1][1] );
+	out->m[1][2] = _mm_mul_ps( lhs->m[1][2], rhs->m[1][2] );
 }
 
-void mul_sse( const sse_input_mul_float2x3_t* in, __m128 out_results[2][2] )
+void comp_div_sse( const float2x3_sse_t* lhs, const float2x3_sse_t* rhs, float2x3_sse_t* out )
 {
-	__m128 rhs_transposed[2][3];
+	assert( lhs );
+	assert( rhs );
+	assert( out );
 
-	sse_input_transpose_float3x2_t in_transpose;
-	memcpy( in_transpose.m, in->rhs, sizeof( in->rhs ) );
-	transpose_sse( &in_transpose, rhs_transposed );
+	// row 0
+	out->m[0][0] = _mm_div_ps( lhs->m[0][0], rhs->m[0][0] );
+	out->m[0][1] = _mm_div_ps( lhs->m[0][1], rhs->m[0][1] );
+	out->m[0][2] = _mm_div_ps( lhs->m[0][2], rhs->m[0][2] );
 
-	sse_input_dot_float3_t in_dot;
-	memcpy( in_dot.lhs, in->lhs[0], sizeof( in->lhs[0] ) );
-	memcpy( in_dot.rhs, rhs_transposed[0], sizeof( rhs_transposed[0] ) );
-	dot_sse( &in_dot, &out_results[0][0] );
-
-	memcpy( in_dot.lhs, in->lhs[0], sizeof( in->lhs[0] ) );
-	memcpy( in_dot.rhs, rhs_transposed[1], sizeof( rhs_transposed[1] ) );
-	dot_sse( &in_dot, &out_results[0][1] );
-
-	memcpy( in_dot.lhs, in->lhs[1], sizeof( in->lhs[1] ) );
-	memcpy( in_dot.rhs, rhs_transposed[0], sizeof( rhs_transposed[0] ) );
-	dot_sse( &in_dot, &out_results[1][0] );
-
-	memcpy( in_dot.lhs, in->lhs[1], sizeof( in->lhs[1] ) );
-	memcpy( in_dot.rhs, rhs_transposed[1], sizeof( rhs_transposed[1] ) );
-	dot_sse( &in_dot, &out_results[1][1] );
+	// row 1
+	out->m[1][0] = _mm_div_ps( lhs->m[1][0], rhs->m[1][0] );
+	out->m[1][1] = _mm_div_ps( lhs->m[1][1], rhs->m[1][1] );
+	out->m[1][2] = _mm_div_ps( lhs->m[1][2], rhs->m[1][2] );
 }
 
-void translate_sse( const sse_input_translate_float2x3_t* in, __m128 out_results[2] )
+void mul_sse( const float2x3_sse_t* lhs, const float3x2_sse_t* rhs, float2x2_sse_t* out )
 {
-	assert( in );
+	assert( lhs );
+	assert( rhs );
+	assert( out );
 
-	out_results[0] = _mm_add_ps( in->column[0], in->vec[0] );
-	out_results[1] = _mm_add_ps( in->column[1], in->vec[1] );
-}
+	float2x3_sse_t rhs_transposed;
+	transpose_sse( rhs, &rhs_transposed );
 
-void scale_sse( const sse_input_scale_float2x3_t* in, __m128 out_results[2] )
-{
-	assert( in );
+	float3_sse_t dot_lhs;
+	float3_sse_t dot_rhs;
 
-	out_results[0] = _mm_mul_ps( in->diagonal[0], in->scale[0] );
-	out_results[1] = _mm_mul_ps( in->diagonal[1], in->scale[1] );
+	memcpy( dot_lhs.comp, &lhs->m[0], sizeof( lhs->m[0] ) );
+	memcpy( dot_rhs.comp, &rhs_transposed.m[0], sizeof( rhs_transposed.m[0] ) );
+	dot_sse( &dot_lhs, &dot_rhs, &out->m[0][0] );
+
+	memcpy( dot_lhs.comp, &lhs->m[0], sizeof( lhs->m[0] ) );
+	memcpy( dot_rhs.comp, &rhs_transposed.m[1], sizeof( rhs_transposed.m[1] ) );
+	dot_sse( &dot_lhs, &dot_rhs, &out->m[0][1] );
+
+	memcpy( dot_lhs.comp, &lhs->m[1], sizeof( lhs->m[1] ) );
+	memcpy( dot_rhs.comp, &rhs_transposed.m[0], sizeof( rhs_transposed.m[0] ) );
+	dot_sse( &dot_lhs, &dot_rhs, &out->m[1][0] );
+
+	memcpy( dot_lhs.comp, &lhs->m[1], sizeof( lhs->m[1] ) );
+	memcpy( dot_rhs.comp, &rhs_transposed.m[1], sizeof( rhs_transposed.m[1] ) );
+	dot_sse( &dot_lhs, &dot_rhs, &out->m[1][1] );
 }
 
 
 // float2x4
-void transpose_sse( const sse_input_transpose_float2x4_t* in, __m128 out_results[4][2] )
+void identity_sse( float2x4_sse_t* mat )
 {
-	assert( in );
-
-	out_results[0][0] = in->m[0][0];
-	out_results[1][0] = in->m[0][1];
-	out_results[2][0] = in->m[0][2];
-	out_results[3][0] = in->m[0][3];
-
-	out_results[0][1] = in->m[1][0];
-	out_results[1][1] = in->m[1][1];
-	out_results[2][1] = in->m[1][2];
-	out_results[3][1] = in->m[1][3];
-}
-
-void comp_add_sse( const sse_input_comp_add_float2x4_t* in, __m128 out_results[2][4] )
-{
-	assert( in );
-
 	// row 0
-	out_results[0][0] = _mm_add_ps( in->lhs[0][0], in->rhs[0][0] );
-	out_results[0][1] = _mm_add_ps( in->lhs[0][1], in->rhs[0][1] );
-	out_results[0][2] = _mm_add_ps( in->lhs[0][2], in->rhs[0][2] );
-	out_results[0][3] = _mm_add_ps( in->lhs[0][3], in->rhs[0][3] );
+	mat->m[0][0] = _mm_set1_ps( 1.0f );
+	mat->m[0][1] = _mm_set1_ps( 0.0f );
+	mat->m[0][2] = _mm_set1_ps( 0.0f );
+	mat->m[0][3] = _mm_set1_ps( 0.0f );
 
 	// row 1
-	out_results[1][0] = _mm_add_ps( in->lhs[1][0], in->rhs[1][0] );
-	out_results[1][1] = _mm_add_ps( in->lhs[1][1], in->rhs[1][1] );
-	out_results[1][2] = _mm_add_ps( in->lhs[1][2], in->rhs[1][2] );
-	out_results[1][3] = _mm_add_ps( in->lhs[1][3], in->rhs[1][3] );
+	mat->m[1][0] = _mm_set1_ps( 0.0f );
+	mat->m[1][1] = _mm_set1_ps( 1.0f );
+	mat->m[1][2] = _mm_set1_ps( 0.0f );
+	mat->m[1][3] = _mm_set1_ps( 0.0f );
 }
 
-void comp_sub_sse( const sse_input_comp_sub_float2x4_t* in, __m128 out_results[2][4] )
+void transpose_sse( const float2x4_sse_t* in, float4x2_sse_t* out )
 {
 	assert( in );
+	assert( out );
+
+	out->m[0][0] = in->m[0][0];
+	out->m[1][0] = in->m[0][1];
+	out->m[2][0] = in->m[0][2];
+	out->m[3][0] = in->m[0][3];
+
+	out->m[0][1] = in->m[1][0];
+	out->m[1][1] = in->m[1][1];
+	out->m[2][1] = in->m[1][2];
+	out->m[3][1] = in->m[1][3];
+}
+
+void comp_add_sse( const float2x4_sse_t* lhs, const float2x4_sse_t* rhs, float2x4_sse_t* out )
+{
+	assert( lhs );
+	assert( rhs );
+	assert( out );
 
 	// row 0
-	out_results[0][0] = _mm_sub_ps( in->lhs[0][0], in->rhs[0][0] );
-	out_results[0][1] = _mm_sub_ps( in->lhs[0][1], in->rhs[0][1] );
-	out_results[0][2] = _mm_sub_ps( in->lhs[0][2], in->rhs[0][2] );
-	out_results[0][3] = _mm_sub_ps( in->lhs[0][3], in->rhs[0][3] );
+	out->m[0][0] = _mm_add_ps( lhs->m[0][0], rhs->m[0][0] );
+	out->m[0][1] = _mm_add_ps( lhs->m[0][1], rhs->m[0][1] );
+	out->m[0][2] = _mm_add_ps( lhs->m[0][2], rhs->m[0][2] );
+	out->m[0][3] = _mm_add_ps( lhs->m[0][3], rhs->m[0][3] );
 
 	// row 1
-	out_results[1][0] = _mm_sub_ps( in->lhs[1][0], in->rhs[1][0] );
-	out_results[1][1] = _mm_sub_ps( in->lhs[1][1], in->rhs[1][1] );
-	out_results[1][2] = _mm_sub_ps( in->lhs[1][2], in->rhs[1][2] );
-	out_results[1][3] = _mm_sub_ps( in->lhs[1][3], in->rhs[1][3] );
+	out->m[1][0] = _mm_add_ps( lhs->m[1][0], rhs->m[1][0] );
+	out->m[1][1] = _mm_add_ps( lhs->m[1][1], rhs->m[1][1] );
+	out->m[1][2] = _mm_add_ps( lhs->m[1][2], rhs->m[1][2] );
+	out->m[1][3] = _mm_add_ps( lhs->m[1][3], rhs->m[1][3] );
 }
 
-void comp_mul_sse( const sse_input_comp_mul_float2x4_t* in, __m128 out_results[2][4] )
+void comp_sub_sse( const float2x4_sse_t* lhs, const float2x4_sse_t* rhs, float2x4_sse_t* out )
 {
-	assert( in );
+	assert( lhs );
+	assert( rhs );
+	assert( out );
 
 	// row 0
-	out_results[0][0] = _mm_mul_ps( in->lhs[0][0], in->rhs[0][0] );
-	out_results[0][1] = _mm_mul_ps( in->lhs[0][1], in->rhs[0][1] );
-	out_results[0][2] = _mm_mul_ps( in->lhs[0][2], in->rhs[0][2] );
-	out_results[0][3] = _mm_mul_ps( in->lhs[0][3], in->rhs[0][3] );
+	out->m[0][0] = _mm_sub_ps( lhs->m[0][0], rhs->m[0][0] );
+	out->m[0][1] = _mm_sub_ps( lhs->m[0][1], rhs->m[0][1] );
+	out->m[0][2] = _mm_sub_ps( lhs->m[0][2], rhs->m[0][2] );
+	out->m[0][3] = _mm_sub_ps( lhs->m[0][3], rhs->m[0][3] );
 
 	// row 1
-	out_results[1][0] = _mm_mul_ps( in->lhs[1][0], in->rhs[1][0] );
-	out_results[1][1] = _mm_mul_ps( in->lhs[1][1], in->rhs[1][1] );
-	out_results[1][2] = _mm_mul_ps( in->lhs[1][2], in->rhs[1][2] );
-	out_results[1][3] = _mm_mul_ps( in->lhs[1][3], in->rhs[1][3] );
+	out->m[1][0] = _mm_sub_ps( lhs->m[1][0], rhs->m[1][0] );
+	out->m[1][1] = _mm_sub_ps( lhs->m[1][1], rhs->m[1][1] );
+	out->m[1][2] = _mm_sub_ps( lhs->m[1][2], rhs->m[1][2] );
+	out->m[1][3] = _mm_sub_ps( lhs->m[1][3], rhs->m[1][3] );
 }
 
-void comp_div_sse( const sse_input_comp_div_float2x4_t* in, __m128 out_results[2][4] )
+void comp_mul_sse( const float2x4_sse_t* lhs, const float2x4_sse_t* rhs, float2x4_sse_t* out )
 {
-	assert( in );
+	assert( lhs );
+	assert( rhs );
+	assert( out );
 
 	// row 0
-	out_results[0][0] = _mm_div_ps( in->lhs[0][0], in->rhs[0][0] );
-	out_results[0][1] = _mm_div_ps( in->lhs[0][1], in->rhs[0][1] );
-	out_results[0][2] = _mm_div_ps( in->lhs[0][2], in->rhs[0][2] );
-	out_results[0][3] = _mm_div_ps( in->lhs[0][3], in->rhs[0][3] );
+	out->m[0][0] = _mm_mul_ps( lhs->m[0][0], rhs->m[0][0] );
+	out->m[0][1] = _mm_mul_ps( lhs->m[0][1], rhs->m[0][1] );
+	out->m[0][2] = _mm_mul_ps( lhs->m[0][2], rhs->m[0][2] );
+	out->m[0][3] = _mm_mul_ps( lhs->m[0][3], rhs->m[0][3] );
 
 	// row 1
-	out_results[1][0] = _mm_div_ps( in->lhs[1][0], in->rhs[1][0] );
-	out_results[1][1] = _mm_div_ps( in->lhs[1][1], in->rhs[1][1] );
-	out_results[1][2] = _mm_div_ps( in->lhs[1][2], in->rhs[1][2] );
-	out_results[1][3] = _mm_div_ps( in->lhs[1][3], in->rhs[1][3] );
+	out->m[1][0] = _mm_mul_ps( lhs->m[1][0], rhs->m[1][0] );
+	out->m[1][1] = _mm_mul_ps( lhs->m[1][1], rhs->m[1][1] );
+	out->m[1][2] = _mm_mul_ps( lhs->m[1][2], rhs->m[1][2] );
+	out->m[1][3] = _mm_mul_ps( lhs->m[1][3], rhs->m[1][3] );
 }
 
-void mul_sse( const sse_input_mul_float2x4_t* in, __m128 out_results[2][2] )
+void comp_div_sse( const float2x4_sse_t* lhs, const float2x4_sse_t* rhs, float2x4_sse_t* out )
 {
-	__m128 rhs_transposed[2][4];
+	assert( lhs );
+	assert( rhs );
+	assert( out );
 
-	sse_input_transpose_float4x2_t in_transpose;
-	memcpy( in_transpose.m, in->rhs, sizeof( in->rhs ) );
-	transpose_sse( &in_transpose, rhs_transposed );
+	// row 0
+	out->m[0][0] = _mm_div_ps( lhs->m[0][0], rhs->m[0][0] );
+	out->m[0][1] = _mm_div_ps( lhs->m[0][1], rhs->m[0][1] );
+	out->m[0][2] = _mm_div_ps( lhs->m[0][2], rhs->m[0][2] );
+	out->m[0][3] = _mm_div_ps( lhs->m[0][3], rhs->m[0][3] );
 
-	sse_input_dot_float4_t in_dot;
-	memcpy( in_dot.lhs, in->lhs[0], sizeof( in->lhs[0] ) );
-	memcpy( in_dot.rhs, rhs_transposed[0], sizeof( rhs_transposed[0] ) );
-	dot_sse( &in_dot, &out_results[0][0] );
-
-	memcpy( in_dot.lhs, in->lhs[0], sizeof( in->lhs[0] ) );
-	memcpy( in_dot.rhs, rhs_transposed[1], sizeof( rhs_transposed[1] ) );
-	dot_sse( &in_dot, &out_results[0][1] );
-
-	memcpy( in_dot.lhs, in->lhs[1], sizeof( in->lhs[1] ) );
-	memcpy( in_dot.rhs, rhs_transposed[0], sizeof( rhs_transposed[0] ) );
-	dot_sse( &in_dot, &out_results[1][0] );
-
-	memcpy( in_dot.lhs, in->lhs[1], sizeof( in->lhs[1] ) );
-	memcpy( in_dot.rhs, rhs_transposed[1], sizeof( rhs_transposed[1] ) );
-	dot_sse( &in_dot, &out_results[1][1] );
+	// row 1
+	out->m[1][0] = _mm_div_ps( lhs->m[1][0], rhs->m[1][0] );
+	out->m[1][1] = _mm_div_ps( lhs->m[1][1], rhs->m[1][1] );
+	out->m[1][2] = _mm_div_ps( lhs->m[1][2], rhs->m[1][2] );
+	out->m[1][3] = _mm_div_ps( lhs->m[1][3], rhs->m[1][3] );
 }
 
-void translate_sse( const sse_input_translate_float2x4_t* in, __m128 out_results[3] )
+void mul_sse( const float2x4_sse_t* lhs, const float4x2_sse_t* rhs, float2x2_sse_t* out )
 {
-	assert( in );
+	assert( lhs );
+	assert( rhs );
+	assert( out );
 
-	out_results[0] = _mm_add_ps( in->column[0], in->vec[0] );
-	out_results[1] = _mm_add_ps( in->column[1], in->vec[1] );
-	out_results[2] = _mm_add_ps( in->column[2], in->vec[2] );
-}
+	float2x4_sse_t rhs_transposed;
+	transpose_sse( rhs, &rhs_transposed );
 
-void scale_sse( const sse_input_scale_float2x4_t* in, __m128 out_results[2] )
-{
-	assert( in );
+	float4_sse_t dot_lhs;
+	float4_sse_t dot_rhs;
 
-	out_results[0] = _mm_mul_ps( in->diagonal[0], in->scale[0] );
-	out_results[1] = _mm_mul_ps( in->diagonal[1], in->scale[1] );
+	memcpy( dot_lhs.comp, &lhs->m[0], sizeof( lhs->m[0] ) );
+	memcpy( dot_rhs.comp, &rhs_transposed.m[0], sizeof( rhs_transposed.m[0] ) );
+	dot_sse( &dot_lhs, &dot_rhs, &out->m[0][0] );
+
+	memcpy( dot_lhs.comp, &lhs->m[0], sizeof( lhs->m[0] ) );
+	memcpy( dot_rhs.comp, &rhs_transposed.m[1], sizeof( rhs_transposed.m[1] ) );
+	dot_sse( &dot_lhs, &dot_rhs, &out->m[0][1] );
+
+	memcpy( dot_lhs.comp, &lhs->m[1], sizeof( lhs->m[1] ) );
+	memcpy( dot_rhs.comp, &rhs_transposed.m[0], sizeof( rhs_transposed.m[0] ) );
+	dot_sse( &dot_lhs, &dot_rhs, &out->m[1][0] );
+
+	memcpy( dot_lhs.comp, &lhs->m[1], sizeof( lhs->m[1] ) );
+	memcpy( dot_rhs.comp, &rhs_transposed.m[1], sizeof( rhs_transposed.m[1] ) );
+	dot_sse( &dot_lhs, &dot_rhs, &out->m[1][1] );
 }
 
 
 // float3x2
-void transpose_sse( const sse_input_transpose_float3x2_t* in, __m128 out_results[2][3] )
+void identity_sse( float3x2_sse_t* mat )
 {
-	assert( in );
-
-	out_results[0][0] = in->m[0][0];
-	out_results[1][0] = in->m[0][1];
-
-	out_results[0][1] = in->m[1][0];
-	out_results[1][1] = in->m[1][1];
-
-	out_results[0][2] = in->m[2][0];
-	out_results[1][2] = in->m[2][1];
-}
-
-void comp_add_sse( const sse_input_comp_add_float3x2_t* in, __m128 out_results[3][2] )
-{
-	assert( in );
-
 	// row 0
-	out_results[0][0] = _mm_add_ps( in->lhs[0][0], in->rhs[0][0] );
-	out_results[0][1] = _mm_add_ps( in->lhs[0][1], in->rhs[0][1] );
+	mat->m[0][0] = _mm_set1_ps( 1.0f );
+	mat->m[0][1] = _mm_set1_ps( 0.0f );
 
 	// row 1
-	out_results[1][0] = _mm_add_ps( in->lhs[1][0], in->rhs[1][0] );
-	out_results[1][1] = _mm_add_ps( in->lhs[1][1], in->rhs[1][1] );
+	mat->m[1][0] = _mm_set1_ps( 0.0f );
+	mat->m[1][1] = _mm_set1_ps( 1.0f );
 
 	// row 2
-	out_results[2][0] = _mm_add_ps( in->lhs[2][0], in->rhs[2][0] );
-	out_results[2][1] = _mm_add_ps( in->lhs[2][1], in->rhs[2][1] );
+	mat->m[2][0] = _mm_set1_ps( 0.0f );
+	mat->m[2][1] = _mm_set1_ps( 0.0f );
 }
 
-void comp_sub_sse( const sse_input_comp_sub_float3x2_t* in, __m128 out_results[3][2] )
+void transpose_sse( const float3x2_sse_t* in, float2x3_sse_t* out )
 {
 	assert( in );
+	assert( out );
+
+	out->m[0][0] = in->m[0][0];
+	out->m[1][0] = in->m[0][1];
+
+	out->m[0][1] = in->m[1][0];
+	out->m[1][1] = in->m[1][1];
+
+	out->m[0][2] = in->m[2][0];
+	out->m[1][2] = in->m[2][1];
+}
+
+void comp_add_sse( const float3x2_sse_t* lhs, const float3x2_sse_t* rhs, float3x2_sse_t* out )
+{
+	assert( lhs );
+	assert( rhs );
+	assert( out );
 
 	// row 0
-	out_results[0][0] = _mm_sub_ps( in->lhs[0][0], in->rhs[0][0] );
-	out_results[0][1] = _mm_sub_ps( in->lhs[0][1], in->rhs[0][1] );
+	out->m[0][0] = _mm_add_ps( lhs->m[0][0], rhs->m[0][0] );
+	out->m[0][1] = _mm_add_ps( lhs->m[0][1], rhs->m[0][1] );
 
 	// row 1
-	out_results[1][0] = _mm_sub_ps( in->lhs[1][0], in->rhs[1][0] );
-	out_results[1][1] = _mm_sub_ps( in->lhs[1][1], in->rhs[1][1] );
+	out->m[1][0] = _mm_add_ps( lhs->m[1][0], rhs->m[1][0] );
+	out->m[1][1] = _mm_add_ps( lhs->m[1][1], rhs->m[1][1] );
 
 	// row 2
-	out_results[2][0] = _mm_sub_ps( in->lhs[2][0], in->rhs[2][0] );
-	out_results[2][1] = _mm_sub_ps( in->lhs[2][1], in->rhs[2][1] );
+	out->m[2][0] = _mm_add_ps( lhs->m[2][0], rhs->m[2][0] );
+	out->m[2][1] = _mm_add_ps( lhs->m[2][1], rhs->m[2][1] );
 }
 
-void comp_mul_sse( const sse_input_comp_mul_float3x2_t* in, __m128 out_results[3][2] )
+void comp_sub_sse( const float3x2_sse_t* lhs, const float3x2_sse_t* rhs, float3x2_sse_t* out )
 {
-	assert( in );
+	assert( lhs );
+	assert( rhs );
+	assert( out );
 
 	// row 0
-	out_results[0][0] = _mm_mul_ps( in->lhs[0][0], in->rhs[0][0] );
-	out_results[0][1] = _mm_mul_ps( in->lhs[0][1], in->rhs[0][1] );
+	out->m[0][0] = _mm_sub_ps( lhs->m[0][0], rhs->m[0][0] );
+	out->m[0][1] = _mm_sub_ps( lhs->m[0][1], rhs->m[0][1] );
 
 	// row 1
-	out_results[1][0] = _mm_mul_ps( in->lhs[1][0], in->rhs[1][0] );
-	out_results[1][1] = _mm_mul_ps( in->lhs[1][1], in->rhs[1][1] );
+	out->m[1][0] = _mm_sub_ps( lhs->m[1][0], rhs->m[1][0] );
+	out->m[1][1] = _mm_sub_ps( lhs->m[1][1], rhs->m[1][1] );
 
 	// row 2
-	out_results[2][0] = _mm_mul_ps( in->lhs[2][0], in->rhs[2][0] );
-	out_results[2][1] = _mm_mul_ps( in->lhs[2][1], in->rhs[2][1] );
+	out->m[2][0] = _mm_sub_ps( lhs->m[2][0], rhs->m[2][0] );
+	out->m[2][1] = _mm_sub_ps( lhs->m[2][1], rhs->m[2][1] );
 }
 
-void comp_div_sse( const sse_input_comp_div_float3x2_t* in, __m128 out_results[3][2] )
+void comp_mul_sse( const float3x2_sse_t* lhs, const float3x2_sse_t* rhs, float3x2_sse_t* out )
 {
-	assert( in );
+	assert( lhs );
+	assert( rhs );
+	assert( out );
 
 	// row 0
-	out_results[0][0] = _mm_div_ps( in->lhs[0][0], in->rhs[0][0] );
-	out_results[0][1] = _mm_div_ps( in->lhs[0][1], in->rhs[0][1] );
+	out->m[0][0] = _mm_mul_ps( lhs->m[0][0], rhs->m[0][0] );
+	out->m[0][1] = _mm_mul_ps( lhs->m[0][1], rhs->m[0][1] );
 
 	// row 1
-	out_results[1][0] = _mm_div_ps( in->lhs[1][0], in->rhs[1][0] );
-	out_results[1][1] = _mm_div_ps( in->lhs[1][1], in->rhs[1][1] );
+	out->m[1][0] = _mm_mul_ps( lhs->m[1][0], rhs->m[1][0] );
+	out->m[1][1] = _mm_mul_ps( lhs->m[1][1], rhs->m[1][1] );
 
 	// row 2
-	out_results[2][0] = _mm_div_ps( in->lhs[2][0], in->rhs[2][0] );
-	out_results[2][1] = _mm_div_ps( in->lhs[2][1], in->rhs[2][1] );
+	out->m[2][0] = _mm_mul_ps( lhs->m[2][0], rhs->m[2][0] );
+	out->m[2][1] = _mm_mul_ps( lhs->m[2][1], rhs->m[2][1] );
 }
 
-void mul_sse( const sse_input_mul_float3x2_t* in, __m128 out_results[3][3] )
+void comp_div_sse( const float3x2_sse_t* lhs, const float3x2_sse_t* rhs, float3x2_sse_t* out )
 {
-	__m128 rhs_transposed[3][2];
+	assert( lhs );
+	assert( rhs );
+	assert( out );
 
-	sse_input_transpose_float2x3_t in_transpose;
-	memcpy( in_transpose.m, in->rhs, sizeof( in->rhs ) );
-	transpose_sse( &in_transpose, rhs_transposed );
+	// row 0
+	out->m[0][0] = _mm_div_ps( lhs->m[0][0], rhs->m[0][0] );
+	out->m[0][1] = _mm_div_ps( lhs->m[0][1], rhs->m[0][1] );
 
-	sse_input_dot_float2_t in_dot;
-	memcpy( in_dot.lhs, in->lhs[0], sizeof( in->lhs[0] ) );
-	memcpy( in_dot.rhs, rhs_transposed[0], sizeof( rhs_transposed[0] ) );
-	dot_sse( &in_dot, &out_results[0][0] );
+	// row 1
+	out->m[1][0] = _mm_div_ps( lhs->m[1][0], rhs->m[1][0] );
+	out->m[1][1] = _mm_div_ps( lhs->m[1][1], rhs->m[1][1] );
 
-	memcpy( in_dot.lhs, in->lhs[0], sizeof( in->lhs[0] ) );
-	memcpy( in_dot.rhs, rhs_transposed[1], sizeof( rhs_transposed[1] ) );
-	dot_sse( &in_dot, &out_results[0][1] );
-
-	memcpy( in_dot.lhs, in->lhs[0], sizeof( in->lhs[0] ) );
-	memcpy( in_dot.rhs, rhs_transposed[2], sizeof( rhs_transposed[2] ) );
-	dot_sse( &in_dot, &out_results[0][2] );
-
-	memcpy( in_dot.lhs, in->lhs[1], sizeof( in->lhs[1] ) );
-	memcpy( in_dot.rhs, rhs_transposed[0], sizeof( rhs_transposed[0] ) );
-	dot_sse( &in_dot, &out_results[1][0] );
-
-	memcpy( in_dot.lhs, in->lhs[1], sizeof( in->lhs[1] ) );
-	memcpy( in_dot.rhs, rhs_transposed[1], sizeof( rhs_transposed[1] ) );
-	dot_sse( &in_dot, &out_results[1][1] );
-
-	memcpy( in_dot.lhs, in->lhs[1], sizeof( in->lhs[1] ) );
-	memcpy( in_dot.rhs, rhs_transposed[2], sizeof( rhs_transposed[2] ) );
-	dot_sse( &in_dot, &out_results[1][2] );
-
-	memcpy( in_dot.lhs, in->lhs[2], sizeof( in->lhs[2] ) );
-	memcpy( in_dot.rhs, rhs_transposed[0], sizeof( rhs_transposed[0] ) );
-	dot_sse( &in_dot, &out_results[2][0] );
-
-	memcpy( in_dot.lhs, in->lhs[2], sizeof( in->lhs[2] ) );
-	memcpy( in_dot.rhs, rhs_transposed[1], sizeof( rhs_transposed[1] ) );
-	dot_sse( &in_dot, &out_results[2][1] );
-
-	memcpy( in_dot.lhs, in->lhs[2], sizeof( in->lhs[2] ) );
-	memcpy( in_dot.rhs, rhs_transposed[2], sizeof( rhs_transposed[2] ) );
-	dot_sse( &in_dot, &out_results[2][2] );
+	// row 2
+	out->m[2][0] = _mm_div_ps( lhs->m[2][0], rhs->m[2][0] );
+	out->m[2][1] = _mm_div_ps( lhs->m[2][1], rhs->m[2][1] );
 }
 
-void translate_sse( const sse_input_translate_float3x2_t* in, __m128 out_results[1] )
+void mul_sse( const float3x2_sse_t* lhs, const float2x3_sse_t* rhs, float3x3_sse_t* out )
 {
-	assert( in );
+	assert( lhs );
+	assert( rhs );
+	assert( out );
 
-	out_results[0] = _mm_add_ps( in->column[0], in->vec[0] );
-}
+	float3x2_sse_t rhs_transposed;
+	transpose_sse( rhs, &rhs_transposed );
 
-void scale_sse( const sse_input_scale_float3x2_t* in, __m128 out_results[2] )
-{
-	assert( in );
+	float2_sse_t dot_lhs;
+	float2_sse_t dot_rhs;
 
-	out_results[0] = _mm_mul_ps( in->diagonal[0], in->scale[0] );
-	out_results[1] = _mm_mul_ps( in->diagonal[1], in->scale[1] );
+	memcpy( dot_lhs.comp, &lhs->m[0], sizeof( lhs->m[0] ) );
+	memcpy( dot_rhs.comp, &rhs_transposed.m[0], sizeof( rhs_transposed.m[0] ) );
+	dot_sse( &dot_lhs, &dot_rhs, &out->m[0][0] );
+
+	memcpy( dot_lhs.comp, &lhs->m[0], sizeof( lhs->m[0] ) );
+	memcpy( dot_rhs.comp, &rhs_transposed.m[1], sizeof( rhs_transposed.m[1] ) );
+	dot_sse( &dot_lhs, &dot_rhs, &out->m[0][1] );
+
+	memcpy( dot_lhs.comp, &lhs->m[0], sizeof( lhs->m[0] ) );
+	memcpy( dot_rhs.comp, &rhs_transposed.m[2], sizeof( rhs_transposed.m[2] ) );
+	dot_sse( &dot_lhs, &dot_rhs, &out->m[0][2] );
+
+	memcpy( dot_lhs.comp, &lhs->m[1], sizeof( lhs->m[1] ) );
+	memcpy( dot_rhs.comp, &rhs_transposed.m[0], sizeof( rhs_transposed.m[0] ) );
+	dot_sse( &dot_lhs, &dot_rhs, &out->m[1][0] );
+
+	memcpy( dot_lhs.comp, &lhs->m[1], sizeof( lhs->m[1] ) );
+	memcpy( dot_rhs.comp, &rhs_transposed.m[1], sizeof( rhs_transposed.m[1] ) );
+	dot_sse( &dot_lhs, &dot_rhs, &out->m[1][1] );
+
+	memcpy( dot_lhs.comp, &lhs->m[1], sizeof( lhs->m[1] ) );
+	memcpy( dot_rhs.comp, &rhs_transposed.m[2], sizeof( rhs_transposed.m[2] ) );
+	dot_sse( &dot_lhs, &dot_rhs, &out->m[1][2] );
+
+	memcpy( dot_lhs.comp, &lhs->m[2], sizeof( lhs->m[2] ) );
+	memcpy( dot_rhs.comp, &rhs_transposed.m[0], sizeof( rhs_transposed.m[0] ) );
+	dot_sse( &dot_lhs, &dot_rhs, &out->m[2][0] );
+
+	memcpy( dot_lhs.comp, &lhs->m[2], sizeof( lhs->m[2] ) );
+	memcpy( dot_rhs.comp, &rhs_transposed.m[1], sizeof( rhs_transposed.m[1] ) );
+	dot_sse( &dot_lhs, &dot_rhs, &out->m[2][1] );
+
+	memcpy( dot_lhs.comp, &lhs->m[2], sizeof( lhs->m[2] ) );
+	memcpy( dot_rhs.comp, &rhs_transposed.m[2], sizeof( rhs_transposed.m[2] ) );
+	dot_sse( &dot_lhs, &dot_rhs, &out->m[2][2] );
 }
 
 
 // float3x3
-void transpose_sse( const sse_input_transpose_float3x3_t* in, __m128 out_results[3][3] )
+void identity_sse( float3x3_sse_t* mat )
 {
-	assert( in );
+	// row 0
+	mat->m[0][0] = _mm_set1_ps( 1.0f );
+	mat->m[0][1] = _mm_set1_ps( 0.0f );
+	mat->m[0][2] = _mm_set1_ps( 0.0f );
 
-	out_results[0][0] = in->m[0][0];
-	out_results[1][0] = in->m[0][1];
-	out_results[2][0] = in->m[0][2];
+	// row 1
+	mat->m[1][0] = _mm_set1_ps( 0.0f );
+	mat->m[1][1] = _mm_set1_ps( 1.0f );
+	mat->m[1][2] = _mm_set1_ps( 0.0f );
 
-	out_results[0][1] = in->m[1][0];
-	out_results[1][1] = in->m[1][1];
-	out_results[2][1] = in->m[1][2];
-
-	out_results[0][2] = in->m[2][0];
-	out_results[1][2] = in->m[2][1];
-	out_results[2][2] = in->m[2][2];
+	// row 2
+	mat->m[2][0] = _mm_set1_ps( 0.0f );
+	mat->m[2][1] = _mm_set1_ps( 0.0f );
+	mat->m[2][2] = _mm_set1_ps( 1.0f );
 }
 
-void determinant_sse( const sse_input_determinant_float3x3_t* in, __m128* out_result )
+void transpose_sse( const float3x3_sse_t* in, float3x3_sse_t* out )
+{
+	assert( in );
+	assert( out );
+
+	out->m[0][0] = in->m[0][0];
+	out->m[1][0] = in->m[0][1];
+	out->m[2][0] = in->m[0][2];
+
+	out->m[0][1] = in->m[1][0];
+	out->m[1][1] = in->m[1][1];
+	out->m[2][1] = in->m[1][2];
+
+	out->m[0][2] = in->m[2][0];
+	out->m[1][2] = in->m[2][1];
+	out->m[2][2] = in->m[2][2];
+}
+
+void determinant_sse( const float3x3_sse_t* in, __m128* out_result )
 {
 	assert( in );
 	assert( out_result );
@@ -601,15 +664,13 @@ void determinant_sse( const sse_input_determinant_float3x3_t* in, __m128* out_re
 	*out_result = _mm_add_ps( add0, mul2 );
 }
 
-void inverse_sse( const sse_input_inverse_float3x3_t* in, __m128 out_results[3][3] )
+void inverse_sse( const float3x3_sse_t* in, float3x3_sse_t* out )
 {
 	assert( in );
-
-	sse_input_determinant_float3x3_t in_det;
-	memcpy( in_det.m, in->m, sizeof( in->m ) );
+	assert( out );
 
 	__m128 determinants;
-	determinant_sse( &in_det, &determinants );
+	determinant_sse( in, &determinants );
 
 	determinants = _mm_rcp_ps( determinants );
 
@@ -665,774 +726,865 @@ void inverse_sse( const sse_input_inverse_float3x3_t* in, __m128 out_results[3][
 	sub22 = _mm_mul_ps( sub22, determinants );
 	sub21 = _NEGATE_PS( sub21 );
 
-	out_results[0][0] = sub00;
-	out_results[0][1] = sub01;
-	out_results[0][2] = sub02;
+	out->m[0][0] = sub00;
+	out->m[0][1] = sub01;
+	out->m[0][2] = sub02;
 
-	out_results[1][0] = sub10;
-	out_results[1][1] = sub11;
-	out_results[1][2] = sub12;
+	out->m[1][0] = sub10;
+	out->m[1][1] = sub11;
+	out->m[1][2] = sub12;
 
-	out_results[2][0] = sub20;
-	out_results[2][1] = sub21;
-	out_results[2][2] = sub22;
+	out->m[2][0] = sub20;
+	out->m[2][1] = sub21;
+	out->m[2][2] = sub22;
 }
 
-void comp_add_sse( const sse_input_comp_add_float3x3_t* in, __m128 out_results[3][3] )
+void comp_add_sse( const float3x3_sse_t* lhs, const float3x3_sse_t* rhs, float3x3_sse_t* out )
 {
-	assert( in );
+	assert( lhs );
+	assert( rhs );
+	assert( out );
 
 	// row 0
-	out_results[0][0] = _mm_add_ps( in->lhs[0][0], in->rhs[0][0] );
-	out_results[0][1] = _mm_add_ps( in->lhs[0][1], in->rhs[0][1] );
-	out_results[0][2] = _mm_add_ps( in->lhs[0][2], in->rhs[0][2] );
+	out->m[0][0] = _mm_add_ps( lhs->m[0][0], rhs->m[0][0] );
+	out->m[0][1] = _mm_add_ps( lhs->m[0][1], rhs->m[0][1] );
+	out->m[0][2] = _mm_add_ps( lhs->m[0][2], rhs->m[0][2] );
 
 	// row 1
-	out_results[1][0] = _mm_add_ps( in->lhs[1][0], in->rhs[1][0] );
-	out_results[1][1] = _mm_add_ps( in->lhs[1][1], in->rhs[1][1] );
-	out_results[1][2] = _mm_add_ps( in->lhs[1][2], in->rhs[1][2] );
+	out->m[1][0] = _mm_add_ps( lhs->m[1][0], rhs->m[1][0] );
+	out->m[1][1] = _mm_add_ps( lhs->m[1][1], rhs->m[1][1] );
+	out->m[1][2] = _mm_add_ps( lhs->m[1][2], rhs->m[1][2] );
 
 	// row 2
-	out_results[2][0] = _mm_add_ps( in->lhs[2][0], in->rhs[2][0] );
-	out_results[2][1] = _mm_add_ps( in->lhs[2][1], in->rhs[2][1] );
-	out_results[2][2] = _mm_add_ps( in->lhs[2][2], in->rhs[2][2] );
+	out->m[2][0] = _mm_add_ps( lhs->m[2][0], rhs->m[2][0] );
+	out->m[2][1] = _mm_add_ps( lhs->m[2][1], rhs->m[2][1] );
+	out->m[2][2] = _mm_add_ps( lhs->m[2][2], rhs->m[2][2] );
 }
 
-void comp_sub_sse( const sse_input_comp_sub_float3x3_t* in, __m128 out_results[3][3] )
+void comp_sub_sse( const float3x3_sse_t* lhs, const float3x3_sse_t* rhs, float3x3_sse_t* out )
 {
-	assert( in );
+	assert( lhs );
+	assert( rhs );
+	assert( out );
 
 	// row 0
-	out_results[0][0] = _mm_sub_ps( in->lhs[0][0], in->rhs[0][0] );
-	out_results[0][1] = _mm_sub_ps( in->lhs[0][1], in->rhs[0][1] );
-	out_results[0][2] = _mm_sub_ps( in->lhs[0][2], in->rhs[0][2] );
+	out->m[0][0] = _mm_sub_ps( lhs->m[0][0], rhs->m[0][0] );
+	out->m[0][1] = _mm_sub_ps( lhs->m[0][1], rhs->m[0][1] );
+	out->m[0][2] = _mm_sub_ps( lhs->m[0][2], rhs->m[0][2] );
 
 	// row 1
-	out_results[1][0] = _mm_sub_ps( in->lhs[1][0], in->rhs[1][0] );
-	out_results[1][1] = _mm_sub_ps( in->lhs[1][1], in->rhs[1][1] );
-	out_results[1][2] = _mm_sub_ps( in->lhs[1][2], in->rhs[1][2] );
+	out->m[1][0] = _mm_sub_ps( lhs->m[1][0], rhs->m[1][0] );
+	out->m[1][1] = _mm_sub_ps( lhs->m[1][1], rhs->m[1][1] );
+	out->m[1][2] = _mm_sub_ps( lhs->m[1][2], rhs->m[1][2] );
 
 	// row 2
-	out_results[2][0] = _mm_sub_ps( in->lhs[2][0], in->rhs[2][0] );
-	out_results[2][1] = _mm_sub_ps( in->lhs[2][1], in->rhs[2][1] );
-	out_results[2][2] = _mm_sub_ps( in->lhs[2][2], in->rhs[2][2] );
+	out->m[2][0] = _mm_sub_ps( lhs->m[2][0], rhs->m[2][0] );
+	out->m[2][1] = _mm_sub_ps( lhs->m[2][1], rhs->m[2][1] );
+	out->m[2][2] = _mm_sub_ps( lhs->m[2][2], rhs->m[2][2] );
 }
 
-void comp_mul_sse( const sse_input_comp_mul_float3x3_t* in, __m128 out_results[3][3] )
+void comp_mul_sse( const float3x3_sse_t* lhs, const float3x3_sse_t* rhs, float3x3_sse_t* out )
 {
-	assert( in );
+	assert( lhs );
+	assert( rhs );
+	assert( out );
 
 	// row 0
-	out_results[0][0] = _mm_mul_ps( in->lhs[0][0], in->rhs[0][0] );
-	out_results[0][1] = _mm_mul_ps( in->lhs[0][1], in->rhs[0][1] );
-	out_results[0][2] = _mm_mul_ps( in->lhs[0][2], in->rhs[0][2] );
+	out->m[0][0] = _mm_mul_ps( lhs->m[0][0], rhs->m[0][0] );
+	out->m[0][1] = _mm_mul_ps( lhs->m[0][1], rhs->m[0][1] );
+	out->m[0][2] = _mm_mul_ps( lhs->m[0][2], rhs->m[0][2] );
 
 	// row 1
-	out_results[1][0] = _mm_mul_ps( in->lhs[1][0], in->rhs[1][0] );
-	out_results[1][1] = _mm_mul_ps( in->lhs[1][1], in->rhs[1][1] );
-	out_results[1][2] = _mm_mul_ps( in->lhs[1][2], in->rhs[1][2] );
+	out->m[1][0] = _mm_mul_ps( lhs->m[1][0], rhs->m[1][0] );
+	out->m[1][1] = _mm_mul_ps( lhs->m[1][1], rhs->m[1][1] );
+	out->m[1][2] = _mm_mul_ps( lhs->m[1][2], rhs->m[1][2] );
 
 	// row 2
-	out_results[2][0] = _mm_mul_ps( in->lhs[2][0], in->rhs[2][0] );
-	out_results[2][1] = _mm_mul_ps( in->lhs[2][1], in->rhs[2][1] );
-	out_results[2][2] = _mm_mul_ps( in->lhs[2][2], in->rhs[2][2] );
+	out->m[2][0] = _mm_mul_ps( lhs->m[2][0], rhs->m[2][0] );
+	out->m[2][1] = _mm_mul_ps( lhs->m[2][1], rhs->m[2][1] );
+	out->m[2][2] = _mm_mul_ps( lhs->m[2][2], rhs->m[2][2] );
 }
 
-void comp_div_sse( const sse_input_comp_div_float3x3_t* in, __m128 out_results[3][3] )
+void comp_div_sse( const float3x3_sse_t* lhs, const float3x3_sse_t* rhs, float3x3_sse_t* out )
 {
-	assert( in );
+	assert( lhs );
+	assert( rhs );
+	assert( out );
 
 	// row 0
-	out_results[0][0] = _mm_div_ps( in->lhs[0][0], in->rhs[0][0] );
-	out_results[0][1] = _mm_div_ps( in->lhs[0][1], in->rhs[0][1] );
-	out_results[0][2] = _mm_div_ps( in->lhs[0][2], in->rhs[0][2] );
+	out->m[0][0] = _mm_div_ps( lhs->m[0][0], rhs->m[0][0] );
+	out->m[0][1] = _mm_div_ps( lhs->m[0][1], rhs->m[0][1] );
+	out->m[0][2] = _mm_div_ps( lhs->m[0][2], rhs->m[0][2] );
 
 	// row 1
-	out_results[1][0] = _mm_div_ps( in->lhs[1][0], in->rhs[1][0] );
-	out_results[1][1] = _mm_div_ps( in->lhs[1][1], in->rhs[1][1] );
-	out_results[1][2] = _mm_div_ps( in->lhs[1][2], in->rhs[1][2] );
+	out->m[1][0] = _mm_div_ps( lhs->m[1][0], rhs->m[1][0] );
+	out->m[1][1] = _mm_div_ps( lhs->m[1][1], rhs->m[1][1] );
+	out->m[1][2] = _mm_div_ps( lhs->m[1][2], rhs->m[1][2] );
 
 	// row 2
-	out_results[2][0] = _mm_div_ps( in->lhs[2][0], in->rhs[2][0] );
-	out_results[2][1] = _mm_div_ps( in->lhs[2][1], in->rhs[2][1] );
-	out_results[2][2] = _mm_div_ps( in->lhs[2][2], in->rhs[2][2] );
+	out->m[2][0] = _mm_div_ps( lhs->m[2][0], rhs->m[2][0] );
+	out->m[2][1] = _mm_div_ps( lhs->m[2][1], rhs->m[2][1] );
+	out->m[2][2] = _mm_div_ps( lhs->m[2][2], rhs->m[2][2] );
 }
 
-void mul_sse( const sse_input_mul_float3x3_t* in, __m128 out_results[3][3] )
+void mul_sse( const float3x3_sse_t* lhs, const float3x3_sse_t* rhs, float3x3_sse_t* out )
 {
-	__m128 rhs_transposed[3][3];
+	assert( lhs );
+	assert( rhs );
+	assert( out );
 
-	sse_input_transpose_float3x3_t in_transpose;
-	memcpy( in_transpose.m, in->rhs, sizeof( in->rhs ) );
-	transpose_sse( &in_transpose, rhs_transposed );
+	float3x3_sse_t rhs_transposed;
+	transpose_sse( rhs, &rhs_transposed );
 
-	sse_input_dot_float3_t in_dot;
-	memcpy( in_dot.lhs, in->lhs[0], sizeof( in->lhs[0] ) );
-	memcpy( in_dot.rhs, rhs_transposed[0], sizeof( rhs_transposed[0] ) );
-	dot_sse( &in_dot, &out_results[0][0] );
+	float3_sse_t dot_lhs;
+	float3_sse_t dot_rhs;
 
-	memcpy( in_dot.lhs, in->lhs[0], sizeof( in->lhs[0] ) );
-	memcpy( in_dot.rhs, rhs_transposed[1], sizeof( rhs_transposed[1] ) );
-	dot_sse( &in_dot, &out_results[0][1] );
+	memcpy( dot_lhs.comp, &lhs->m[0], sizeof( lhs->m[0] ) );
+	memcpy( dot_rhs.comp, &rhs_transposed.m[0], sizeof( rhs_transposed.m[0] ) );
+	dot_sse( &dot_lhs, &dot_rhs, &out->m[0][0] );
 
-	memcpy( in_dot.lhs, in->lhs[0], sizeof( in->lhs[0] ) );
-	memcpy( in_dot.rhs, rhs_transposed[2], sizeof( rhs_transposed[2] ) );
-	dot_sse( &in_dot, &out_results[0][2] );
+	memcpy( dot_lhs.comp, &lhs->m[0], sizeof( lhs->m[0] ) );
+	memcpy( dot_rhs.comp, &rhs_transposed.m[1], sizeof( rhs_transposed.m[1] ) );
+	dot_sse( &dot_lhs, &dot_rhs, &out->m[0][1] );
 
-	memcpy( in_dot.lhs, in->lhs[1], sizeof( in->lhs[1] ) );
-	memcpy( in_dot.rhs, rhs_transposed[0], sizeof( rhs_transposed[0] ) );
-	dot_sse( &in_dot, &out_results[1][0] );
+	memcpy( dot_lhs.comp, &lhs->m[0], sizeof( lhs->m[0] ) );
+	memcpy( dot_rhs.comp, &rhs_transposed.m[2], sizeof( rhs_transposed.m[2] ) );
+	dot_sse( &dot_lhs, &dot_rhs, &out->m[0][2] );
 
-	memcpy( in_dot.lhs, in->lhs[1], sizeof( in->lhs[1] ) );
-	memcpy( in_dot.rhs, rhs_transposed[1], sizeof( rhs_transposed[1] ) );
-	dot_sse( &in_dot, &out_results[1][1] );
+	memcpy( dot_lhs.comp, &lhs->m[1], sizeof( lhs->m[1] ) );
+	memcpy( dot_rhs.comp, &rhs_transposed.m[0], sizeof( rhs_transposed.m[0] ) );
+	dot_sse( &dot_lhs, &dot_rhs, &out->m[1][0] );
 
-	memcpy( in_dot.lhs, in->lhs[1], sizeof( in->lhs[1] ) );
-	memcpy( in_dot.rhs, rhs_transposed[2], sizeof( rhs_transposed[2] ) );
-	dot_sse( &in_dot, &out_results[1][2] );
+	memcpy( dot_lhs.comp, &lhs->m[1], sizeof( lhs->m[1] ) );
+	memcpy( dot_rhs.comp, &rhs_transposed.m[1], sizeof( rhs_transposed.m[1] ) );
+	dot_sse( &dot_lhs, &dot_rhs, &out->m[1][1] );
 
-	memcpy( in_dot.lhs, in->lhs[2], sizeof( in->lhs[2] ) );
-	memcpy( in_dot.rhs, rhs_transposed[0], sizeof( rhs_transposed[0] ) );
-	dot_sse( &in_dot, &out_results[2][0] );
+	memcpy( dot_lhs.comp, &lhs->m[1], sizeof( lhs->m[1] ) );
+	memcpy( dot_rhs.comp, &rhs_transposed.m[2], sizeof( rhs_transposed.m[2] ) );
+	dot_sse( &dot_lhs, &dot_rhs, &out->m[1][2] );
 
-	memcpy( in_dot.lhs, in->lhs[2], sizeof( in->lhs[2] ) );
-	memcpy( in_dot.rhs, rhs_transposed[1], sizeof( rhs_transposed[1] ) );
-	dot_sse( &in_dot, &out_results[2][1] );
+	memcpy( dot_lhs.comp, &lhs->m[2], sizeof( lhs->m[2] ) );
+	memcpy( dot_rhs.comp, &rhs_transposed.m[0], sizeof( rhs_transposed.m[0] ) );
+	dot_sse( &dot_lhs, &dot_rhs, &out->m[2][0] );
 
-	memcpy( in_dot.lhs, in->lhs[2], sizeof( in->lhs[2] ) );
-	memcpy( in_dot.rhs, rhs_transposed[2], sizeof( rhs_transposed[2] ) );
-	dot_sse( &in_dot, &out_results[2][2] );
+	memcpy( dot_lhs.comp, &lhs->m[2], sizeof( lhs->m[2] ) );
+	memcpy( dot_rhs.comp, &rhs_transposed.m[1], sizeof( rhs_transposed.m[1] ) );
+	dot_sse( &dot_lhs, &dot_rhs, &out->m[2][1] );
+
+	memcpy( dot_lhs.comp, &lhs->m[2], sizeof( lhs->m[2] ) );
+	memcpy( dot_rhs.comp, &rhs_transposed.m[2], sizeof( rhs_transposed.m[2] ) );
+	dot_sse( &dot_lhs, &dot_rhs, &out->m[2][2] );
 }
 
-void translate_sse( const sse_input_translate_float3x3_t* in, __m128 out_results[2] )
+void translate_sse( const float2_sse_t* column, const float2_sse_t* vec, float2_sse_t* out_column )
 {
-	assert( in );
+	assert( column );
+	assert( vec );
+	assert( out_column );
 
-	out_results[0] = _mm_add_ps( in->column[0], in->vec[0] );
-	out_results[1] = _mm_add_ps( in->column[1], in->vec[1] );
+	out_column->comp[0] = _mm_add_ps( column->comp[0], vec->comp[0] );
+	out_column->comp[1] = _mm_add_ps( column->comp[1], vec->comp[1] );
 }
 
-void scale_sse( const sse_input_scale_float3x3_t* in, __m128 out_results[3] )
+void scale_sse( const float2_sse_t* diagonal, const float2_sse_t* scale, float2_sse_t* out_diagonal )
 {
-	assert( in );
+	assert( diagonal );
+	assert( scale );
+	assert( out_diagonal );
 
-	out_results[0] = _mm_mul_ps( in->diagonal[0], in->scale[0] );
-	out_results[1] = _mm_mul_ps( in->diagonal[1], in->scale[1] );
-	out_results[2] = _mm_mul_ps( in->diagonal[2], in->scale[2] );
+	out_diagonal->comp[0] = _mm_mul_ps( diagonal->comp[0], scale->comp[0] );
+	out_diagonal->comp[1] = _mm_mul_ps( diagonal->comp[1], scale->comp[1] );
 }
 
 
 // float3x4
-void transpose_sse( const sse_input_transpose_float3x4_t* in, __m128 out_results[4][3] )
+void identity_sse( float3x4_sse_t* mat )
 {
-	assert( in );
-
-	out_results[0][0] = in->m[0][0];
-	out_results[1][0] = in->m[0][1];
-	out_results[2][0] = in->m[0][2];
-	out_results[3][0] = in->m[0][3];
-
-	out_results[0][1] = in->m[1][0];
-	out_results[1][1] = in->m[1][1];
-	out_results[2][1] = in->m[1][2];
-	out_results[3][1] = in->m[1][3];
-
-	out_results[0][2] = in->m[2][0];
-	out_results[1][2] = in->m[2][1];
-	out_results[2][2] = in->m[2][2];
-	out_results[3][2] = in->m[2][3];
-}
-
-void comp_add_sse( const sse_input_comp_add_float3x4_t* in, __m128 out_results[3][4] )
-{
-	assert( in );
-
 	// row 0
-	out_results[0][0] = _mm_add_ps( in->lhs[0][0], in->rhs[0][0] );
-	out_results[0][1] = _mm_add_ps( in->lhs[0][1], in->rhs[0][1] );
-	out_results[0][2] = _mm_add_ps( in->lhs[0][2], in->rhs[0][2] );
-	out_results[0][3] = _mm_add_ps( in->lhs[0][3], in->rhs[0][3] );
+	mat->m[0][0] = _mm_set1_ps( 1.0f );
+	mat->m[0][1] = _mm_set1_ps( 0.0f );
+	mat->m[0][2] = _mm_set1_ps( 0.0f );
+	mat->m[0][3] = _mm_set1_ps( 0.0f );
 
 	// row 1
-	out_results[1][0] = _mm_add_ps( in->lhs[1][0], in->rhs[1][0] );
-	out_results[1][1] = _mm_add_ps( in->lhs[1][1], in->rhs[1][1] );
-	out_results[1][2] = _mm_add_ps( in->lhs[1][2], in->rhs[1][2] );
-	out_results[1][3] = _mm_add_ps( in->lhs[1][3], in->rhs[1][3] );
+	mat->m[1][0] = _mm_set1_ps( 0.0f );
+	mat->m[1][1] = _mm_set1_ps( 1.0f );
+	mat->m[1][2] = _mm_set1_ps( 0.0f );
+	mat->m[1][3] = _mm_set1_ps( 0.0f );
 
 	// row 2
-	out_results[2][0] = _mm_add_ps( in->lhs[2][0], in->rhs[2][0] );
-	out_results[2][1] = _mm_add_ps( in->lhs[2][1], in->rhs[2][1] );
-	out_results[2][2] = _mm_add_ps( in->lhs[2][2], in->rhs[2][2] );
-	out_results[2][3] = _mm_add_ps( in->lhs[2][3], in->rhs[2][3] );
+	mat->m[2][0] = _mm_set1_ps( 0.0f );
+	mat->m[2][1] = _mm_set1_ps( 0.0f );
+	mat->m[2][2] = _mm_set1_ps( 1.0f );
+	mat->m[2][3] = _mm_set1_ps( 0.0f );
 }
 
-void comp_sub_sse( const sse_input_comp_sub_float3x4_t* in, __m128 out_results[3][4] )
+void transpose_sse( const float3x4_sse_t* in, float4x3_sse_t* out )
 {
 	assert( in );
+	assert( out );
+
+	out->m[0][0] = in->m[0][0];
+	out->m[1][0] = in->m[0][1];
+	out->m[2][0] = in->m[0][2];
+	out->m[3][0] = in->m[0][3];
+
+	out->m[0][1] = in->m[1][0];
+	out->m[1][1] = in->m[1][1];
+	out->m[2][1] = in->m[1][2];
+	out->m[3][1] = in->m[1][3];
+
+	out->m[0][2] = in->m[2][0];
+	out->m[1][2] = in->m[2][1];
+	out->m[2][2] = in->m[2][2];
+	out->m[3][2] = in->m[2][3];
+}
+
+void comp_add_sse( const float3x4_sse_t* lhs, const float3x4_sse_t* rhs, float3x4_sse_t* out )
+{
+	assert( lhs );
+	assert( rhs );
+	assert( out );
 
 	// row 0
-	out_results[0][0] = _mm_sub_ps( in->lhs[0][0], in->rhs[0][0] );
-	out_results[0][1] = _mm_sub_ps( in->lhs[0][1], in->rhs[0][1] );
-	out_results[0][2] = _mm_sub_ps( in->lhs[0][2], in->rhs[0][2] );
-	out_results[0][3] = _mm_sub_ps( in->lhs[0][3], in->rhs[0][3] );
+	out->m[0][0] = _mm_add_ps( lhs->m[0][0], rhs->m[0][0] );
+	out->m[0][1] = _mm_add_ps( lhs->m[0][1], rhs->m[0][1] );
+	out->m[0][2] = _mm_add_ps( lhs->m[0][2], rhs->m[0][2] );
+	out->m[0][3] = _mm_add_ps( lhs->m[0][3], rhs->m[0][3] );
 
 	// row 1
-	out_results[1][0] = _mm_sub_ps( in->lhs[1][0], in->rhs[1][0] );
-	out_results[1][1] = _mm_sub_ps( in->lhs[1][1], in->rhs[1][1] );
-	out_results[1][2] = _mm_sub_ps( in->lhs[1][2], in->rhs[1][2] );
-	out_results[1][3] = _mm_sub_ps( in->lhs[1][3], in->rhs[1][3] );
+	out->m[1][0] = _mm_add_ps( lhs->m[1][0], rhs->m[1][0] );
+	out->m[1][1] = _mm_add_ps( lhs->m[1][1], rhs->m[1][1] );
+	out->m[1][2] = _mm_add_ps( lhs->m[1][2], rhs->m[1][2] );
+	out->m[1][3] = _mm_add_ps( lhs->m[1][3], rhs->m[1][3] );
 
 	// row 2
-	out_results[2][0] = _mm_sub_ps( in->lhs[2][0], in->rhs[2][0] );
-	out_results[2][1] = _mm_sub_ps( in->lhs[2][1], in->rhs[2][1] );
-	out_results[2][2] = _mm_sub_ps( in->lhs[2][2], in->rhs[2][2] );
-	out_results[2][3] = _mm_sub_ps( in->lhs[2][3], in->rhs[2][3] );
+	out->m[2][0] = _mm_add_ps( lhs->m[2][0], rhs->m[2][0] );
+	out->m[2][1] = _mm_add_ps( lhs->m[2][1], rhs->m[2][1] );
+	out->m[2][2] = _mm_add_ps( lhs->m[2][2], rhs->m[2][2] );
+	out->m[2][3] = _mm_add_ps( lhs->m[2][3], rhs->m[2][3] );
 }
 
-void comp_mul_sse( const sse_input_comp_mul_float3x4_t* in, __m128 out_results[3][4] )
+void comp_sub_sse( const float3x4_sse_t* lhs, const float3x4_sse_t* rhs, float3x4_sse_t* out )
 {
-	assert( in );
+	assert( lhs );
+	assert( rhs );
+	assert( out );
 
 	// row 0
-	out_results[0][0] = _mm_mul_ps( in->lhs[0][0], in->rhs[0][0] );
-	out_results[0][1] = _mm_mul_ps( in->lhs[0][1], in->rhs[0][1] );
-	out_results[0][2] = _mm_mul_ps( in->lhs[0][2], in->rhs[0][2] );
-	out_results[0][3] = _mm_mul_ps( in->lhs[0][3], in->rhs[0][3] );
+	out->m[0][0] = _mm_sub_ps( lhs->m[0][0], rhs->m[0][0] );
+	out->m[0][1] = _mm_sub_ps( lhs->m[0][1], rhs->m[0][1] );
+	out->m[0][2] = _mm_sub_ps( lhs->m[0][2], rhs->m[0][2] );
+	out->m[0][3] = _mm_sub_ps( lhs->m[0][3], rhs->m[0][3] );
 
 	// row 1
-	out_results[1][0] = _mm_mul_ps( in->lhs[1][0], in->rhs[1][0] );
-	out_results[1][1] = _mm_mul_ps( in->lhs[1][1], in->rhs[1][1] );
-	out_results[1][2] = _mm_mul_ps( in->lhs[1][2], in->rhs[1][2] );
-	out_results[1][3] = _mm_mul_ps( in->lhs[1][3], in->rhs[1][3] );
+	out->m[1][0] = _mm_sub_ps( lhs->m[1][0], rhs->m[1][0] );
+	out->m[1][1] = _mm_sub_ps( lhs->m[1][1], rhs->m[1][1] );
+	out->m[1][2] = _mm_sub_ps( lhs->m[1][2], rhs->m[1][2] );
+	out->m[1][3] = _mm_sub_ps( lhs->m[1][3], rhs->m[1][3] );
 
 	// row 2
-	out_results[2][0] = _mm_mul_ps( in->lhs[2][0], in->rhs[2][0] );
-	out_results[2][1] = _mm_mul_ps( in->lhs[2][1], in->rhs[2][1] );
-	out_results[2][2] = _mm_mul_ps( in->lhs[2][2], in->rhs[2][2] );
-	out_results[2][3] = _mm_mul_ps( in->lhs[2][3], in->rhs[2][3] );
+	out->m[2][0] = _mm_sub_ps( lhs->m[2][0], rhs->m[2][0] );
+	out->m[2][1] = _mm_sub_ps( lhs->m[2][1], rhs->m[2][1] );
+	out->m[2][2] = _mm_sub_ps( lhs->m[2][2], rhs->m[2][2] );
+	out->m[2][3] = _mm_sub_ps( lhs->m[2][3], rhs->m[2][3] );
 }
 
-void comp_div_sse( const sse_input_comp_div_float3x4_t* in, __m128 out_results[3][4] )
+void comp_mul_sse( const float3x4_sse_t* lhs, const float3x4_sse_t* rhs, float3x4_sse_t* out )
 {
-	assert( in );
+	assert( lhs );
+	assert( rhs );
+	assert( out );
 
 	// row 0
-	out_results[0][0] = _mm_div_ps( in->lhs[0][0], in->rhs[0][0] );
-	out_results[0][1] = _mm_div_ps( in->lhs[0][1], in->rhs[0][1] );
-	out_results[0][2] = _mm_div_ps( in->lhs[0][2], in->rhs[0][2] );
-	out_results[0][3] = _mm_div_ps( in->lhs[0][3], in->rhs[0][3] );
+	out->m[0][0] = _mm_mul_ps( lhs->m[0][0], rhs->m[0][0] );
+	out->m[0][1] = _mm_mul_ps( lhs->m[0][1], rhs->m[0][1] );
+	out->m[0][2] = _mm_mul_ps( lhs->m[0][2], rhs->m[0][2] );
+	out->m[0][3] = _mm_mul_ps( lhs->m[0][3], rhs->m[0][3] );
 
 	// row 1
-	out_results[1][0] = _mm_div_ps( in->lhs[1][0], in->rhs[1][0] );
-	out_results[1][1] = _mm_div_ps( in->lhs[1][1], in->rhs[1][1] );
-	out_results[1][2] = _mm_div_ps( in->lhs[1][2], in->rhs[1][2] );
-	out_results[1][3] = _mm_div_ps( in->lhs[1][3], in->rhs[1][3] );
+	out->m[1][0] = _mm_mul_ps( lhs->m[1][0], rhs->m[1][0] );
+	out->m[1][1] = _mm_mul_ps( lhs->m[1][1], rhs->m[1][1] );
+	out->m[1][2] = _mm_mul_ps( lhs->m[1][2], rhs->m[1][2] );
+	out->m[1][3] = _mm_mul_ps( lhs->m[1][3], rhs->m[1][3] );
 
 	// row 2
-	out_results[2][0] = _mm_div_ps( in->lhs[2][0], in->rhs[2][0] );
-	out_results[2][1] = _mm_div_ps( in->lhs[2][1], in->rhs[2][1] );
-	out_results[2][2] = _mm_div_ps( in->lhs[2][2], in->rhs[2][2] );
-	out_results[2][3] = _mm_div_ps( in->lhs[2][3], in->rhs[2][3] );
+	out->m[2][0] = _mm_mul_ps( lhs->m[2][0], rhs->m[2][0] );
+	out->m[2][1] = _mm_mul_ps( lhs->m[2][1], rhs->m[2][1] );
+	out->m[2][2] = _mm_mul_ps( lhs->m[2][2], rhs->m[2][2] );
+	out->m[2][3] = _mm_mul_ps( lhs->m[2][3], rhs->m[2][3] );
 }
 
-void mul_sse( const sse_input_mul_float3x4_t* in, __m128 out_results[3][3] )
+void comp_div_sse( const float3x4_sse_t* lhs, const float3x4_sse_t* rhs, float3x4_sse_t* out )
 {
-	__m128 rhs_transposed[3][4];
+	assert( lhs );
+	assert( rhs );
+	assert( out );
 
-	sse_input_transpose_float4x3_t in_transpose;
-	memcpy( in_transpose.m, in->rhs, sizeof( in->rhs ) );
-	transpose_sse( &in_transpose, rhs_transposed );
+	// row 0
+	out->m[0][0] = _mm_div_ps( lhs->m[0][0], rhs->m[0][0] );
+	out->m[0][1] = _mm_div_ps( lhs->m[0][1], rhs->m[0][1] );
+	out->m[0][2] = _mm_div_ps( lhs->m[0][2], rhs->m[0][2] );
+	out->m[0][3] = _mm_div_ps( lhs->m[0][3], rhs->m[0][3] );
 
-	sse_input_dot_float4_t in_dot;
-	memcpy( in_dot.lhs, in->lhs[0], sizeof( in->lhs[0] ) );
-	memcpy( in_dot.rhs, rhs_transposed[0], sizeof( rhs_transposed[0] ) );
-	dot_sse( &in_dot, &out_results[0][0] );
+	// row 1
+	out->m[1][0] = _mm_div_ps( lhs->m[1][0], rhs->m[1][0] );
+	out->m[1][1] = _mm_div_ps( lhs->m[1][1], rhs->m[1][1] );
+	out->m[1][2] = _mm_div_ps( lhs->m[1][2], rhs->m[1][2] );
+	out->m[1][3] = _mm_div_ps( lhs->m[1][3], rhs->m[1][3] );
 
-	memcpy( in_dot.lhs, in->lhs[0], sizeof( in->lhs[0] ) );
-	memcpy( in_dot.rhs, rhs_transposed[1], sizeof( rhs_transposed[1] ) );
-	dot_sse( &in_dot, &out_results[0][1] );
-
-	memcpy( in_dot.lhs, in->lhs[0], sizeof( in->lhs[0] ) );
-	memcpy( in_dot.rhs, rhs_transposed[2], sizeof( rhs_transposed[2] ) );
-	dot_sse( &in_dot, &out_results[0][2] );
-
-	memcpy( in_dot.lhs, in->lhs[1], sizeof( in->lhs[1] ) );
-	memcpy( in_dot.rhs, rhs_transposed[0], sizeof( rhs_transposed[0] ) );
-	dot_sse( &in_dot, &out_results[1][0] );
-
-	memcpy( in_dot.lhs, in->lhs[1], sizeof( in->lhs[1] ) );
-	memcpy( in_dot.rhs, rhs_transposed[1], sizeof( rhs_transposed[1] ) );
-	dot_sse( &in_dot, &out_results[1][1] );
-
-	memcpy( in_dot.lhs, in->lhs[1], sizeof( in->lhs[1] ) );
-	memcpy( in_dot.rhs, rhs_transposed[2], sizeof( rhs_transposed[2] ) );
-	dot_sse( &in_dot, &out_results[1][2] );
-
-	memcpy( in_dot.lhs, in->lhs[2], sizeof( in->lhs[2] ) );
-	memcpy( in_dot.rhs, rhs_transposed[0], sizeof( rhs_transposed[0] ) );
-	dot_sse( &in_dot, &out_results[2][0] );
-
-	memcpy( in_dot.lhs, in->lhs[2], sizeof( in->lhs[2] ) );
-	memcpy( in_dot.rhs, rhs_transposed[1], sizeof( rhs_transposed[1] ) );
-	dot_sse( &in_dot, &out_results[2][1] );
-
-	memcpy( in_dot.lhs, in->lhs[2], sizeof( in->lhs[2] ) );
-	memcpy( in_dot.rhs, rhs_transposed[2], sizeof( rhs_transposed[2] ) );
-	dot_sse( &in_dot, &out_results[2][2] );
+	// row 2
+	out->m[2][0] = _mm_div_ps( lhs->m[2][0], rhs->m[2][0] );
+	out->m[2][1] = _mm_div_ps( lhs->m[2][1], rhs->m[2][1] );
+	out->m[2][2] = _mm_div_ps( lhs->m[2][2], rhs->m[2][2] );
+	out->m[2][3] = _mm_div_ps( lhs->m[2][3], rhs->m[2][3] );
 }
 
-void translate_sse( const sse_input_translate_float3x4_t* in, __m128 out_results[3] )
+void mul_sse( const float3x4_sse_t* lhs, const float4x3_sse_t* rhs, float3x3_sse_t* out )
 {
-	assert( in );
+	assert( lhs );
+	assert( rhs );
+	assert( out );
 
-	out_results[0] = _mm_add_ps( in->column[0], in->vec[0] );
-	out_results[1] = _mm_add_ps( in->column[1], in->vec[1] );
-	out_results[2] = _mm_add_ps( in->column[2], in->vec[2] );
-}
+	float3x4_sse_t rhs_transposed;
+	transpose_sse( rhs, &rhs_transposed );
 
-void scale_sse( const sse_input_scale_float3x4_t* in, __m128 out_results[3] )
-{
-	assert( in );
+	float4_sse_t dot_lhs;
+	float4_sse_t dot_rhs;
 
-	out_results[0] = _mm_mul_ps( in->diagonal[0], in->scale[0] );
-	out_results[1] = _mm_mul_ps( in->diagonal[1], in->scale[1] );
-	out_results[2] = _mm_mul_ps( in->diagonal[2], in->scale[2] );
+	memcpy( dot_lhs.comp, &lhs->m[0], sizeof( lhs->m[0] ) );
+	memcpy( dot_rhs.comp, &rhs_transposed.m[0], sizeof( rhs_transposed.m[0] ) );
+	dot_sse( &dot_lhs, &dot_rhs, &out->m[0][0] );
+
+	memcpy( dot_lhs.comp, &lhs->m[0], sizeof( lhs->m[0] ) );
+	memcpy( dot_rhs.comp, &rhs_transposed.m[1], sizeof( rhs_transposed.m[1] ) );
+	dot_sse( &dot_lhs, &dot_rhs, &out->m[0][1] );
+
+	memcpy( dot_lhs.comp, &lhs->m[0], sizeof( lhs->m[0] ) );
+	memcpy( dot_rhs.comp, &rhs_transposed.m[2], sizeof( rhs_transposed.m[2] ) );
+	dot_sse( &dot_lhs, &dot_rhs, &out->m[0][2] );
+
+	memcpy( dot_lhs.comp, &lhs->m[1], sizeof( lhs->m[1] ) );
+	memcpy( dot_rhs.comp, &rhs_transposed.m[0], sizeof( rhs_transposed.m[0] ) );
+	dot_sse( &dot_lhs, &dot_rhs, &out->m[1][0] );
+
+	memcpy( dot_lhs.comp, &lhs->m[1], sizeof( lhs->m[1] ) );
+	memcpy( dot_rhs.comp, &rhs_transposed.m[1], sizeof( rhs_transposed.m[1] ) );
+	dot_sse( &dot_lhs, &dot_rhs, &out->m[1][1] );
+
+	memcpy( dot_lhs.comp, &lhs->m[1], sizeof( lhs->m[1] ) );
+	memcpy( dot_rhs.comp, &rhs_transposed.m[2], sizeof( rhs_transposed.m[2] ) );
+	dot_sse( &dot_lhs, &dot_rhs, &out->m[1][2] );
+
+	memcpy( dot_lhs.comp, &lhs->m[2], sizeof( lhs->m[2] ) );
+	memcpy( dot_rhs.comp, &rhs_transposed.m[0], sizeof( rhs_transposed.m[0] ) );
+	dot_sse( &dot_lhs, &dot_rhs, &out->m[2][0] );
+
+	memcpy( dot_lhs.comp, &lhs->m[2], sizeof( lhs->m[2] ) );
+	memcpy( dot_rhs.comp, &rhs_transposed.m[1], sizeof( rhs_transposed.m[1] ) );
+	dot_sse( &dot_lhs, &dot_rhs, &out->m[2][1] );
+
+	memcpy( dot_lhs.comp, &lhs->m[2], sizeof( lhs->m[2] ) );
+	memcpy( dot_rhs.comp, &rhs_transposed.m[2], sizeof( rhs_transposed.m[2] ) );
+	dot_sse( &dot_lhs, &dot_rhs, &out->m[2][2] );
 }
 
 
 // float4x2
-void transpose_sse( const sse_input_transpose_float4x2_t* in, __m128 out_results[2][4] )
+void identity_sse( float4x2_sse_t* mat )
 {
-	assert( in );
-
-	out_results[0][0] = in->m[0][0];
-	out_results[1][0] = in->m[0][1];
-
-	out_results[0][1] = in->m[1][0];
-	out_results[1][1] = in->m[1][1];
-
-	out_results[0][2] = in->m[2][0];
-	out_results[1][2] = in->m[2][1];
-
-	out_results[0][3] = in->m[3][0];
-	out_results[1][3] = in->m[3][1];
-}
-
-void comp_add_sse( const sse_input_comp_add_float4x2_t* in, __m128 out_results[4][2] )
-{
-	assert( in );
-
 	// row 0
-	out_results[0][0] = _mm_add_ps( in->lhs[0][0], in->rhs[0][0] );
-	out_results[0][1] = _mm_add_ps( in->lhs[0][1], in->rhs[0][1] );
+	mat->m[0][0] = _mm_set1_ps( 1.0f );
+	mat->m[0][1] = _mm_set1_ps( 0.0f );
 
 	// row 1
-	out_results[1][0] = _mm_add_ps( in->lhs[1][0], in->rhs[1][0] );
-	out_results[1][1] = _mm_add_ps( in->lhs[1][1], in->rhs[1][1] );
+	mat->m[1][0] = _mm_set1_ps( 0.0f );
+	mat->m[1][1] = _mm_set1_ps( 1.0f );
 
 	// row 2
-	out_results[2][0] = _mm_add_ps( in->lhs[2][0], in->rhs[2][0] );
-	out_results[2][1] = _mm_add_ps( in->lhs[2][1], in->rhs[2][1] );
+	mat->m[2][0] = _mm_set1_ps( 0.0f );
+	mat->m[2][1] = _mm_set1_ps( 0.0f );
 
 	// row 3
-	out_results[3][0] = _mm_add_ps( in->lhs[3][0], in->rhs[3][0] );
-	out_results[3][1] = _mm_add_ps( in->lhs[3][1], in->rhs[3][1] );
+	mat->m[3][0] = _mm_set1_ps( 0.0f );
+	mat->m[3][1] = _mm_set1_ps( 0.0f );
 }
 
-void comp_sub_sse( const sse_input_comp_sub_float4x2_t* in, __m128 out_results[4][2] )
+void transpose_sse( const float4x2_sse_t* in, float2x4_sse_t* out )
 {
 	assert( in );
+	assert( out );
+
+	out->m[0][0] = in->m[0][0];
+	out->m[1][0] = in->m[0][1];
+
+	out->m[0][1] = in->m[1][0];
+	out->m[1][1] = in->m[1][1];
+
+	out->m[0][2] = in->m[2][0];
+	out->m[1][2] = in->m[2][1];
+
+	out->m[0][3] = in->m[3][0];
+	out->m[1][3] = in->m[3][1];
+}
+
+void comp_add_sse( const float4x2_sse_t* lhs, const float4x2_sse_t* rhs, float4x2_sse_t* out )
+{
+	assert( lhs );
+	assert( rhs );
+	assert( out );
 
 	// row 0
-	out_results[0][0] = _mm_sub_ps( in->lhs[0][0], in->rhs[0][0] );
-	out_results[0][1] = _mm_sub_ps( in->lhs[0][1], in->rhs[0][1] );
+	out->m[0][0] = _mm_add_ps( lhs->m[0][0], rhs->m[0][0] );
+	out->m[0][1] = _mm_add_ps( lhs->m[0][1], rhs->m[0][1] );
 
 	// row 1
-	out_results[1][0] = _mm_sub_ps( in->lhs[1][0], in->rhs[1][0] );
-	out_results[1][1] = _mm_sub_ps( in->lhs[1][1], in->rhs[1][1] );
+	out->m[1][0] = _mm_add_ps( lhs->m[1][0], rhs->m[1][0] );
+	out->m[1][1] = _mm_add_ps( lhs->m[1][1], rhs->m[1][1] );
 
 	// row 2
-	out_results[2][0] = _mm_sub_ps( in->lhs[2][0], in->rhs[2][0] );
-	out_results[2][1] = _mm_sub_ps( in->lhs[2][1], in->rhs[2][1] );
+	out->m[2][0] = _mm_add_ps( lhs->m[2][0], rhs->m[2][0] );
+	out->m[2][1] = _mm_add_ps( lhs->m[2][1], rhs->m[2][1] );
 
 	// row 3
-	out_results[3][0] = _mm_sub_ps( in->lhs[3][0], in->rhs[3][0] );
-	out_results[3][1] = _mm_sub_ps( in->lhs[3][1], in->rhs[3][1] );
+	out->m[3][0] = _mm_add_ps( lhs->m[3][0], rhs->m[3][0] );
+	out->m[3][1] = _mm_add_ps( lhs->m[3][1], rhs->m[3][1] );
 }
 
-void comp_mul_sse( const sse_input_comp_mul_float4x2_t* in, __m128 out_results[4][2] )
+void comp_sub_sse( const float4x2_sse_t* lhs, const float4x2_sse_t* rhs, float4x2_sse_t* out )
 {
-	assert( in );
+	assert( lhs );
+	assert( rhs );
+	assert( out );
 
 	// row 0
-	out_results[0][0] = _mm_mul_ps( in->lhs[0][0], in->rhs[0][0] );
-	out_results[0][1] = _mm_mul_ps( in->lhs[0][1], in->rhs[0][1] );
+	out->m[0][0] = _mm_sub_ps( lhs->m[0][0], rhs->m[0][0] );
+	out->m[0][1] = _mm_sub_ps( lhs->m[0][1], rhs->m[0][1] );
 
 	// row 1
-	out_results[1][0] = _mm_mul_ps( in->lhs[1][0], in->rhs[1][0] );
-	out_results[1][1] = _mm_mul_ps( in->lhs[1][1], in->rhs[1][1] );
+	out->m[1][0] = _mm_sub_ps( lhs->m[1][0], rhs->m[1][0] );
+	out->m[1][1] = _mm_sub_ps( lhs->m[1][1], rhs->m[1][1] );
 
 	// row 2
-	out_results[2][0] = _mm_mul_ps( in->lhs[2][0], in->rhs[2][0] );
-	out_results[2][1] = _mm_mul_ps( in->lhs[2][1], in->rhs[2][1] );
+	out->m[2][0] = _mm_sub_ps( lhs->m[2][0], rhs->m[2][0] );
+	out->m[2][1] = _mm_sub_ps( lhs->m[2][1], rhs->m[2][1] );
 
 	// row 3
-	out_results[3][0] = _mm_mul_ps( in->lhs[3][0], in->rhs[3][0] );
-	out_results[3][1] = _mm_mul_ps( in->lhs[3][1], in->rhs[3][1] );
+	out->m[3][0] = _mm_sub_ps( lhs->m[3][0], rhs->m[3][0] );
+	out->m[3][1] = _mm_sub_ps( lhs->m[3][1], rhs->m[3][1] );
 }
 
-void comp_div_sse( const sse_input_comp_div_float4x2_t* in, __m128 out_results[4][2] )
+void comp_mul_sse( const float4x2_sse_t* lhs, const float4x2_sse_t* rhs, float4x2_sse_t* out )
 {
-	assert( in );
+	assert( lhs );
+	assert( rhs );
+	assert( out );
 
 	// row 0
-	out_results[0][0] = _mm_div_ps( in->lhs[0][0], in->rhs[0][0] );
-	out_results[0][1] = _mm_div_ps( in->lhs[0][1], in->rhs[0][1] );
+	out->m[0][0] = _mm_mul_ps( lhs->m[0][0], rhs->m[0][0] );
+	out->m[0][1] = _mm_mul_ps( lhs->m[0][1], rhs->m[0][1] );
 
 	// row 1
-	out_results[1][0] = _mm_div_ps( in->lhs[1][0], in->rhs[1][0] );
-	out_results[1][1] = _mm_div_ps( in->lhs[1][1], in->rhs[1][1] );
+	out->m[1][0] = _mm_mul_ps( lhs->m[1][0], rhs->m[1][0] );
+	out->m[1][1] = _mm_mul_ps( lhs->m[1][1], rhs->m[1][1] );
 
 	// row 2
-	out_results[2][0] = _mm_div_ps( in->lhs[2][0], in->rhs[2][0] );
-	out_results[2][1] = _mm_div_ps( in->lhs[2][1], in->rhs[2][1] );
+	out->m[2][0] = _mm_mul_ps( lhs->m[2][0], rhs->m[2][0] );
+	out->m[2][1] = _mm_mul_ps( lhs->m[2][1], rhs->m[2][1] );
 
 	// row 3
-	out_results[3][0] = _mm_div_ps( in->lhs[3][0], in->rhs[3][0] );
-	out_results[3][1] = _mm_div_ps( in->lhs[3][1], in->rhs[3][1] );
+	out->m[3][0] = _mm_mul_ps( lhs->m[3][0], rhs->m[3][0] );
+	out->m[3][1] = _mm_mul_ps( lhs->m[3][1], rhs->m[3][1] );
 }
 
-void mul_sse( const sse_input_mul_float4x2_t* in, __m128 out_results[4][4] )
+void comp_div_sse( const float4x2_sse_t* lhs, const float4x2_sse_t* rhs, float4x2_sse_t* out )
 {
-	__m128 rhs_transposed[4][2];
+	assert( lhs );
+	assert( rhs );
+	assert( out );
 
-	sse_input_transpose_float2x4_t in_transpose;
-	memcpy( in_transpose.m, in->rhs, sizeof( in->rhs ) );
-	transpose_sse( &in_transpose, rhs_transposed );
+	// row 0
+	out->m[0][0] = _mm_div_ps( lhs->m[0][0], rhs->m[0][0] );
+	out->m[0][1] = _mm_div_ps( lhs->m[0][1], rhs->m[0][1] );
 
-	sse_input_dot_float2_t in_dot;
-	memcpy( in_dot.lhs, in->lhs[0], sizeof( in->lhs[0] ) );
-	memcpy( in_dot.rhs, rhs_transposed[0], sizeof( rhs_transposed[0] ) );
-	dot_sse( &in_dot, &out_results[0][0] );
+	// row 1
+	out->m[1][0] = _mm_div_ps( lhs->m[1][0], rhs->m[1][0] );
+	out->m[1][1] = _mm_div_ps( lhs->m[1][1], rhs->m[1][1] );
 
-	memcpy( in_dot.lhs, in->lhs[0], sizeof( in->lhs[0] ) );
-	memcpy( in_dot.rhs, rhs_transposed[1], sizeof( rhs_transposed[1] ) );
-	dot_sse( &in_dot, &out_results[0][1] );
+	// row 2
+	out->m[2][0] = _mm_div_ps( lhs->m[2][0], rhs->m[2][0] );
+	out->m[2][1] = _mm_div_ps( lhs->m[2][1], rhs->m[2][1] );
 
-	memcpy( in_dot.lhs, in->lhs[0], sizeof( in->lhs[0] ) );
-	memcpy( in_dot.rhs, rhs_transposed[2], sizeof( rhs_transposed[2] ) );
-	dot_sse( &in_dot, &out_results[0][2] );
-
-	memcpy( in_dot.lhs, in->lhs[0], sizeof( in->lhs[0] ) );
-	memcpy( in_dot.rhs, rhs_transposed[3], sizeof( rhs_transposed[3] ) );
-	dot_sse( &in_dot, &out_results[0][3] );
-
-	memcpy( in_dot.lhs, in->lhs[1], sizeof( in->lhs[1] ) );
-	memcpy( in_dot.rhs, rhs_transposed[0], sizeof( rhs_transposed[0] ) );
-	dot_sse( &in_dot, &out_results[1][0] );
-
-	memcpy( in_dot.lhs, in->lhs[1], sizeof( in->lhs[1] ) );
-	memcpy( in_dot.rhs, rhs_transposed[1], sizeof( rhs_transposed[1] ) );
-	dot_sse( &in_dot, &out_results[1][1] );
-
-	memcpy( in_dot.lhs, in->lhs[1], sizeof( in->lhs[1] ) );
-	memcpy( in_dot.rhs, rhs_transposed[2], sizeof( rhs_transposed[2] ) );
-	dot_sse( &in_dot, &out_results[1][2] );
-
-	memcpy( in_dot.lhs, in->lhs[1], sizeof( in->lhs[1] ) );
-	memcpy( in_dot.rhs, rhs_transposed[3], sizeof( rhs_transposed[3] ) );
-	dot_sse( &in_dot, &out_results[1][3] );
-
-	memcpy( in_dot.lhs, in->lhs[2], sizeof( in->lhs[2] ) );
-	memcpy( in_dot.rhs, rhs_transposed[0], sizeof( rhs_transposed[0] ) );
-	dot_sse( &in_dot, &out_results[2][0] );
-
-	memcpy( in_dot.lhs, in->lhs[2], sizeof( in->lhs[2] ) );
-	memcpy( in_dot.rhs, rhs_transposed[1], sizeof( rhs_transposed[1] ) );
-	dot_sse( &in_dot, &out_results[2][1] );
-
-	memcpy( in_dot.lhs, in->lhs[2], sizeof( in->lhs[2] ) );
-	memcpy( in_dot.rhs, rhs_transposed[2], sizeof( rhs_transposed[2] ) );
-	dot_sse( &in_dot, &out_results[2][2] );
-
-	memcpy( in_dot.lhs, in->lhs[2], sizeof( in->lhs[2] ) );
-	memcpy( in_dot.rhs, rhs_transposed[3], sizeof( rhs_transposed[3] ) );
-	dot_sse( &in_dot, &out_results[2][3] );
-
-	memcpy( in_dot.lhs, in->lhs[3], sizeof( in->lhs[3] ) );
-	memcpy( in_dot.rhs, rhs_transposed[0], sizeof( rhs_transposed[0] ) );
-	dot_sse( &in_dot, &out_results[3][0] );
-
-	memcpy( in_dot.lhs, in->lhs[3], sizeof( in->lhs[3] ) );
-	memcpy( in_dot.rhs, rhs_transposed[1], sizeof( rhs_transposed[1] ) );
-	dot_sse( &in_dot, &out_results[3][1] );
-
-	memcpy( in_dot.lhs, in->lhs[3], sizeof( in->lhs[3] ) );
-	memcpy( in_dot.rhs, rhs_transposed[2], sizeof( rhs_transposed[2] ) );
-	dot_sse( &in_dot, &out_results[3][2] );
-
-	memcpy( in_dot.lhs, in->lhs[3], sizeof( in->lhs[3] ) );
-	memcpy( in_dot.rhs, rhs_transposed[3], sizeof( rhs_transposed[3] ) );
-	dot_sse( &in_dot, &out_results[3][3] );
+	// row 3
+	out->m[3][0] = _mm_div_ps( lhs->m[3][0], rhs->m[3][0] );
+	out->m[3][1] = _mm_div_ps( lhs->m[3][1], rhs->m[3][1] );
 }
 
-void translate_sse( const sse_input_translate_float4x2_t* in, __m128 out_results[1] )
+void mul_sse( const float4x2_sse_t* lhs, const float2x4_sse_t* rhs, float4x4_sse_t* out )
 {
-	assert( in );
+	assert( lhs );
+	assert( rhs );
+	assert( out );
 
-	out_results[0] = _mm_add_ps( in->column[0], in->vec[0] );
-}
+	float4x2_sse_t rhs_transposed;
+	transpose_sse( rhs, &rhs_transposed );
 
-void scale_sse( const sse_input_scale_float4x2_t* in, __m128 out_results[2] )
-{
-	assert( in );
+	float2_sse_t dot_lhs;
+	float2_sse_t dot_rhs;
 
-	out_results[0] = _mm_mul_ps( in->diagonal[0], in->scale[0] );
-	out_results[1] = _mm_mul_ps( in->diagonal[1], in->scale[1] );
+	memcpy( dot_lhs.comp, &lhs->m[0], sizeof( lhs->m[0] ) );
+	memcpy( dot_rhs.comp, &rhs_transposed.m[0], sizeof( rhs_transposed.m[0] ) );
+	dot_sse( &dot_lhs, &dot_rhs, &out->m[0][0] );
+
+	memcpy( dot_lhs.comp, &lhs->m[0], sizeof( lhs->m[0] ) );
+	memcpy( dot_rhs.comp, &rhs_transposed.m[1], sizeof( rhs_transposed.m[1] ) );
+	dot_sse( &dot_lhs, &dot_rhs, &out->m[0][1] );
+
+	memcpy( dot_lhs.comp, &lhs->m[0], sizeof( lhs->m[0] ) );
+	memcpy( dot_rhs.comp, &rhs_transposed.m[2], sizeof( rhs_transposed.m[2] ) );
+	dot_sse( &dot_lhs, &dot_rhs, &out->m[0][2] );
+
+	memcpy( dot_lhs.comp, &lhs->m[0], sizeof( lhs->m[0] ) );
+	memcpy( dot_rhs.comp, &rhs_transposed.m[3], sizeof( rhs_transposed.m[3] ) );
+	dot_sse( &dot_lhs, &dot_rhs, &out->m[0][3] );
+
+	memcpy( dot_lhs.comp, &lhs->m[1], sizeof( lhs->m[1] ) );
+	memcpy( dot_rhs.comp, &rhs_transposed.m[0], sizeof( rhs_transposed.m[0] ) );
+	dot_sse( &dot_lhs, &dot_rhs, &out->m[1][0] );
+
+	memcpy( dot_lhs.comp, &lhs->m[1], sizeof( lhs->m[1] ) );
+	memcpy( dot_rhs.comp, &rhs_transposed.m[1], sizeof( rhs_transposed.m[1] ) );
+	dot_sse( &dot_lhs, &dot_rhs, &out->m[1][1] );
+
+	memcpy( dot_lhs.comp, &lhs->m[1], sizeof( lhs->m[1] ) );
+	memcpy( dot_rhs.comp, &rhs_transposed.m[2], sizeof( rhs_transposed.m[2] ) );
+	dot_sse( &dot_lhs, &dot_rhs, &out->m[1][2] );
+
+	memcpy( dot_lhs.comp, &lhs->m[1], sizeof( lhs->m[1] ) );
+	memcpy( dot_rhs.comp, &rhs_transposed.m[3], sizeof( rhs_transposed.m[3] ) );
+	dot_sse( &dot_lhs, &dot_rhs, &out->m[1][3] );
+
+	memcpy( dot_lhs.comp, &lhs->m[2], sizeof( lhs->m[2] ) );
+	memcpy( dot_rhs.comp, &rhs_transposed.m[0], sizeof( rhs_transposed.m[0] ) );
+	dot_sse( &dot_lhs, &dot_rhs, &out->m[2][0] );
+
+	memcpy( dot_lhs.comp, &lhs->m[2], sizeof( lhs->m[2] ) );
+	memcpy( dot_rhs.comp, &rhs_transposed.m[1], sizeof( rhs_transposed.m[1] ) );
+	dot_sse( &dot_lhs, &dot_rhs, &out->m[2][1] );
+
+	memcpy( dot_lhs.comp, &lhs->m[2], sizeof( lhs->m[2] ) );
+	memcpy( dot_rhs.comp, &rhs_transposed.m[2], sizeof( rhs_transposed.m[2] ) );
+	dot_sse( &dot_lhs, &dot_rhs, &out->m[2][2] );
+
+	memcpy( dot_lhs.comp, &lhs->m[2], sizeof( lhs->m[2] ) );
+	memcpy( dot_rhs.comp, &rhs_transposed.m[3], sizeof( rhs_transposed.m[3] ) );
+	dot_sse( &dot_lhs, &dot_rhs, &out->m[2][3] );
+
+	memcpy( dot_lhs.comp, &lhs->m[3], sizeof( lhs->m[3] ) );
+	memcpy( dot_rhs.comp, &rhs_transposed.m[0], sizeof( rhs_transposed.m[0] ) );
+	dot_sse( &dot_lhs, &dot_rhs, &out->m[3][0] );
+
+	memcpy( dot_lhs.comp, &lhs->m[3], sizeof( lhs->m[3] ) );
+	memcpy( dot_rhs.comp, &rhs_transposed.m[1], sizeof( rhs_transposed.m[1] ) );
+	dot_sse( &dot_lhs, &dot_rhs, &out->m[3][1] );
+
+	memcpy( dot_lhs.comp, &lhs->m[3], sizeof( lhs->m[3] ) );
+	memcpy( dot_rhs.comp, &rhs_transposed.m[2], sizeof( rhs_transposed.m[2] ) );
+	dot_sse( &dot_lhs, &dot_rhs, &out->m[3][2] );
+
+	memcpy( dot_lhs.comp, &lhs->m[3], sizeof( lhs->m[3] ) );
+	memcpy( dot_rhs.comp, &rhs_transposed.m[3], sizeof( rhs_transposed.m[3] ) );
+	dot_sse( &dot_lhs, &dot_rhs, &out->m[3][3] );
 }
 
 
 // float4x3
-void transpose_sse( const sse_input_transpose_float4x3_t* in, __m128 out_results[3][4] )
+void identity_sse( float4x3_sse_t* mat )
 {
-	assert( in );
-
-	out_results[0][0] = in->m[0][0];
-	out_results[1][0] = in->m[0][1];
-	out_results[2][0] = in->m[0][2];
-
-	out_results[0][1] = in->m[1][0];
-	out_results[1][1] = in->m[1][1];
-	out_results[2][1] = in->m[1][2];
-
-	out_results[0][2] = in->m[2][0];
-	out_results[1][2] = in->m[2][1];
-	out_results[2][2] = in->m[2][2];
-
-	out_results[0][3] = in->m[3][0];
-	out_results[1][3] = in->m[3][1];
-	out_results[2][3] = in->m[3][2];
-}
-
-void comp_add_sse( const sse_input_comp_add_float4x3_t* in, __m128 out_results[4][3] )
-{
-	assert( in );
-
 	// row 0
-	out_results[0][0] = _mm_add_ps( in->lhs[0][0], in->rhs[0][0] );
-	out_results[0][1] = _mm_add_ps( in->lhs[0][1], in->rhs[0][1] );
-	out_results[0][2] = _mm_add_ps( in->lhs[0][2], in->rhs[0][2] );
+	mat->m[0][0] = _mm_set1_ps( 1.0f );
+	mat->m[0][1] = _mm_set1_ps( 0.0f );
+	mat->m[0][2] = _mm_set1_ps( 0.0f );
 
 	// row 1
-	out_results[1][0] = _mm_add_ps( in->lhs[1][0], in->rhs[1][0] );
-	out_results[1][1] = _mm_add_ps( in->lhs[1][1], in->rhs[1][1] );
-	out_results[1][2] = _mm_add_ps( in->lhs[1][2], in->rhs[1][2] );
+	mat->m[1][0] = _mm_set1_ps( 0.0f );
+	mat->m[1][1] = _mm_set1_ps( 1.0f );
+	mat->m[1][2] = _mm_set1_ps( 0.0f );
 
 	// row 2
-	out_results[2][0] = _mm_add_ps( in->lhs[2][0], in->rhs[2][0] );
-	out_results[2][1] = _mm_add_ps( in->lhs[2][1], in->rhs[2][1] );
-	out_results[2][2] = _mm_add_ps( in->lhs[2][2], in->rhs[2][2] );
+	mat->m[2][0] = _mm_set1_ps( 0.0f );
+	mat->m[2][1] = _mm_set1_ps( 0.0f );
+	mat->m[2][2] = _mm_set1_ps( 1.0f );
 
 	// row 3
-	out_results[3][0] = _mm_add_ps( in->lhs[3][0], in->rhs[3][0] );
-	out_results[3][1] = _mm_add_ps( in->lhs[3][1], in->rhs[3][1] );
-	out_results[3][2] = _mm_add_ps( in->lhs[3][2], in->rhs[3][2] );
+	mat->m[3][0] = _mm_set1_ps( 0.0f );
+	mat->m[3][1] = _mm_set1_ps( 0.0f );
+	mat->m[3][2] = _mm_set1_ps( 0.0f );
 }
 
-void comp_sub_sse( const sse_input_comp_sub_float4x3_t* in, __m128 out_results[4][3] )
+void transpose_sse( const float4x3_sse_t* in, float3x4_sse_t* out )
 {
 	assert( in );
+	assert( out );
+
+	out->m[0][0] = in->m[0][0];
+	out->m[1][0] = in->m[0][1];
+	out->m[2][0] = in->m[0][2];
+
+	out->m[0][1] = in->m[1][0];
+	out->m[1][1] = in->m[1][1];
+	out->m[2][1] = in->m[1][2];
+
+	out->m[0][2] = in->m[2][0];
+	out->m[1][2] = in->m[2][1];
+	out->m[2][2] = in->m[2][2];
+
+	out->m[0][3] = in->m[3][0];
+	out->m[1][3] = in->m[3][1];
+	out->m[2][3] = in->m[3][2];
+}
+
+void comp_add_sse( const float4x3_sse_t* lhs, const float4x3_sse_t* rhs, float4x3_sse_t* out )
+{
+	assert( lhs );
+	assert( rhs );
+	assert( out );
 
 	// row 0
-	out_results[0][0] = _mm_sub_ps( in->lhs[0][0], in->rhs[0][0] );
-	out_results[0][1] = _mm_sub_ps( in->lhs[0][1], in->rhs[0][1] );
-	out_results[0][2] = _mm_sub_ps( in->lhs[0][2], in->rhs[0][2] );
+	out->m[0][0] = _mm_add_ps( lhs->m[0][0], rhs->m[0][0] );
+	out->m[0][1] = _mm_add_ps( lhs->m[0][1], rhs->m[0][1] );
+	out->m[0][2] = _mm_add_ps( lhs->m[0][2], rhs->m[0][2] );
 
 	// row 1
-	out_results[1][0] = _mm_sub_ps( in->lhs[1][0], in->rhs[1][0] );
-	out_results[1][1] = _mm_sub_ps( in->lhs[1][1], in->rhs[1][1] );
-	out_results[1][2] = _mm_sub_ps( in->lhs[1][2], in->rhs[1][2] );
+	out->m[1][0] = _mm_add_ps( lhs->m[1][0], rhs->m[1][0] );
+	out->m[1][1] = _mm_add_ps( lhs->m[1][1], rhs->m[1][1] );
+	out->m[1][2] = _mm_add_ps( lhs->m[1][2], rhs->m[1][2] );
 
 	// row 2
-	out_results[2][0] = _mm_sub_ps( in->lhs[2][0], in->rhs[2][0] );
-	out_results[2][1] = _mm_sub_ps( in->lhs[2][1], in->rhs[2][1] );
-	out_results[2][2] = _mm_sub_ps( in->lhs[2][2], in->rhs[2][2] );
+	out->m[2][0] = _mm_add_ps( lhs->m[2][0], rhs->m[2][0] );
+	out->m[2][1] = _mm_add_ps( lhs->m[2][1], rhs->m[2][1] );
+	out->m[2][2] = _mm_add_ps( lhs->m[2][2], rhs->m[2][2] );
 
 	// row 3
-	out_results[3][0] = _mm_sub_ps( in->lhs[3][0], in->rhs[3][0] );
-	out_results[3][1] = _mm_sub_ps( in->lhs[3][1], in->rhs[3][1] );
-	out_results[3][2] = _mm_sub_ps( in->lhs[3][2], in->rhs[3][2] );
+	out->m[3][0] = _mm_add_ps( lhs->m[3][0], rhs->m[3][0] );
+	out->m[3][1] = _mm_add_ps( lhs->m[3][1], rhs->m[3][1] );
+	out->m[3][2] = _mm_add_ps( lhs->m[3][2], rhs->m[3][2] );
 }
 
-void comp_mul_sse( const sse_input_comp_mul_float4x3_t* in, __m128 out_results[4][3] )
+void comp_sub_sse( const float4x3_sse_t* lhs, const float4x3_sse_t* rhs, float4x3_sse_t* out )
 {
-	assert( in );
+	assert( lhs );
+	assert( rhs );
+	assert( out );
 
 	// row 0
-	out_results[0][0] = _mm_mul_ps( in->lhs[0][0], in->rhs[0][0] );
-	out_results[0][1] = _mm_mul_ps( in->lhs[0][1], in->rhs[0][1] );
-	out_results[0][2] = _mm_mul_ps( in->lhs[0][2], in->rhs[0][2] );
+	out->m[0][0] = _mm_sub_ps( lhs->m[0][0], rhs->m[0][0] );
+	out->m[0][1] = _mm_sub_ps( lhs->m[0][1], rhs->m[0][1] );
+	out->m[0][2] = _mm_sub_ps( lhs->m[0][2], rhs->m[0][2] );
 
 	// row 1
-	out_results[1][0] = _mm_mul_ps( in->lhs[1][0], in->rhs[1][0] );
-	out_results[1][1] = _mm_mul_ps( in->lhs[1][1], in->rhs[1][1] );
-	out_results[1][2] = _mm_mul_ps( in->lhs[1][2], in->rhs[1][2] );
+	out->m[1][0] = _mm_sub_ps( lhs->m[1][0], rhs->m[1][0] );
+	out->m[1][1] = _mm_sub_ps( lhs->m[1][1], rhs->m[1][1] );
+	out->m[1][2] = _mm_sub_ps( lhs->m[1][2], rhs->m[1][2] );
 
 	// row 2
-	out_results[2][0] = _mm_mul_ps( in->lhs[2][0], in->rhs[2][0] );
-	out_results[2][1] = _mm_mul_ps( in->lhs[2][1], in->rhs[2][1] );
-	out_results[2][2] = _mm_mul_ps( in->lhs[2][2], in->rhs[2][2] );
+	out->m[2][0] = _mm_sub_ps( lhs->m[2][0], rhs->m[2][0] );
+	out->m[2][1] = _mm_sub_ps( lhs->m[2][1], rhs->m[2][1] );
+	out->m[2][2] = _mm_sub_ps( lhs->m[2][2], rhs->m[2][2] );
 
 	// row 3
-	out_results[3][0] = _mm_mul_ps( in->lhs[3][0], in->rhs[3][0] );
-	out_results[3][1] = _mm_mul_ps( in->lhs[3][1], in->rhs[3][1] );
-	out_results[3][2] = _mm_mul_ps( in->lhs[3][2], in->rhs[3][2] );
+	out->m[3][0] = _mm_sub_ps( lhs->m[3][0], rhs->m[3][0] );
+	out->m[3][1] = _mm_sub_ps( lhs->m[3][1], rhs->m[3][1] );
+	out->m[3][2] = _mm_sub_ps( lhs->m[3][2], rhs->m[3][2] );
 }
 
-void comp_div_sse( const sse_input_comp_div_float4x3_t* in, __m128 out_results[4][3] )
+void comp_mul_sse( const float4x3_sse_t* lhs, const float4x3_sse_t* rhs, float4x3_sse_t* out )
 {
-	assert( in );
+	assert( lhs );
+	assert( rhs );
+	assert( out );
 
 	// row 0
-	out_results[0][0] = _mm_div_ps( in->lhs[0][0], in->rhs[0][0] );
-	out_results[0][1] = _mm_div_ps( in->lhs[0][1], in->rhs[0][1] );
-	out_results[0][2] = _mm_div_ps( in->lhs[0][2], in->rhs[0][2] );
+	out->m[0][0] = _mm_mul_ps( lhs->m[0][0], rhs->m[0][0] );
+	out->m[0][1] = _mm_mul_ps( lhs->m[0][1], rhs->m[0][1] );
+	out->m[0][2] = _mm_mul_ps( lhs->m[0][2], rhs->m[0][2] );
 
 	// row 1
-	out_results[1][0] = _mm_div_ps( in->lhs[1][0], in->rhs[1][0] );
-	out_results[1][1] = _mm_div_ps( in->lhs[1][1], in->rhs[1][1] );
-	out_results[1][2] = _mm_div_ps( in->lhs[1][2], in->rhs[1][2] );
+	out->m[1][0] = _mm_mul_ps( lhs->m[1][0], rhs->m[1][0] );
+	out->m[1][1] = _mm_mul_ps( lhs->m[1][1], rhs->m[1][1] );
+	out->m[1][2] = _mm_mul_ps( lhs->m[1][2], rhs->m[1][2] );
 
 	// row 2
-	out_results[2][0] = _mm_div_ps( in->lhs[2][0], in->rhs[2][0] );
-	out_results[2][1] = _mm_div_ps( in->lhs[2][1], in->rhs[2][1] );
-	out_results[2][2] = _mm_div_ps( in->lhs[2][2], in->rhs[2][2] );
+	out->m[2][0] = _mm_mul_ps( lhs->m[2][0], rhs->m[2][0] );
+	out->m[2][1] = _mm_mul_ps( lhs->m[2][1], rhs->m[2][1] );
+	out->m[2][2] = _mm_mul_ps( lhs->m[2][2], rhs->m[2][2] );
 
 	// row 3
-	out_results[3][0] = _mm_div_ps( in->lhs[3][0], in->rhs[3][0] );
-	out_results[3][1] = _mm_div_ps( in->lhs[3][1], in->rhs[3][1] );
-	out_results[3][2] = _mm_div_ps( in->lhs[3][2], in->rhs[3][2] );
+	out->m[3][0] = _mm_mul_ps( lhs->m[3][0], rhs->m[3][0] );
+	out->m[3][1] = _mm_mul_ps( lhs->m[3][1], rhs->m[3][1] );
+	out->m[3][2] = _mm_mul_ps( lhs->m[3][2], rhs->m[3][2] );
 }
 
-void mul_sse( const sse_input_mul_float4x3_t* in, __m128 out_results[4][4] )
+void comp_div_sse( const float4x3_sse_t* lhs, const float4x3_sse_t* rhs, float4x3_sse_t* out )
 {
-	__m128 rhs_transposed[4][3];
+	assert( lhs );
+	assert( rhs );
+	assert( out );
 
-	sse_input_transpose_float3x4_t in_transpose;
-	memcpy( in_transpose.m, in->rhs, sizeof( in->rhs ) );
-	transpose_sse( &in_transpose, rhs_transposed );
+	// row 0
+	out->m[0][0] = _mm_div_ps( lhs->m[0][0], rhs->m[0][0] );
+	out->m[0][1] = _mm_div_ps( lhs->m[0][1], rhs->m[0][1] );
+	out->m[0][2] = _mm_div_ps( lhs->m[0][2], rhs->m[0][2] );
 
-	sse_input_dot_float3_t in_dot;
-	memcpy( in_dot.lhs, in->lhs[0], sizeof( in->lhs[0] ) );
-	memcpy( in_dot.rhs, rhs_transposed[0], sizeof( rhs_transposed[0] ) );
-	dot_sse( &in_dot, &out_results[0][0] );
+	// row 1
+	out->m[1][0] = _mm_div_ps( lhs->m[1][0], rhs->m[1][0] );
+	out->m[1][1] = _mm_div_ps( lhs->m[1][1], rhs->m[1][1] );
+	out->m[1][2] = _mm_div_ps( lhs->m[1][2], rhs->m[1][2] );
 
-	memcpy( in_dot.lhs, in->lhs[0], sizeof( in->lhs[0] ) );
-	memcpy( in_dot.rhs, rhs_transposed[1], sizeof( rhs_transposed[1] ) );
-	dot_sse( &in_dot, &out_results[0][1] );
+	// row 2
+	out->m[2][0] = _mm_div_ps( lhs->m[2][0], rhs->m[2][0] );
+	out->m[2][1] = _mm_div_ps( lhs->m[2][1], rhs->m[2][1] );
+	out->m[2][2] = _mm_div_ps( lhs->m[2][2], rhs->m[2][2] );
 
-	memcpy( in_dot.lhs, in->lhs[0], sizeof( in->lhs[0] ) );
-	memcpy( in_dot.rhs, rhs_transposed[2], sizeof( rhs_transposed[2] ) );
-	dot_sse( &in_dot, &out_results[0][2] );
-
-	memcpy( in_dot.lhs, in->lhs[0], sizeof( in->lhs[0] ) );
-	memcpy( in_dot.rhs, rhs_transposed[3], sizeof( rhs_transposed[3] ) );
-	dot_sse( &in_dot, &out_results[0][3] );
-
-	memcpy( in_dot.lhs, in->lhs[1], sizeof( in->lhs[1] ) );
-	memcpy( in_dot.rhs, rhs_transposed[0], sizeof( rhs_transposed[0] ) );
-	dot_sse( &in_dot, &out_results[1][0] );
-
-	memcpy( in_dot.lhs, in->lhs[1], sizeof( in->lhs[1] ) );
-	memcpy( in_dot.rhs, rhs_transposed[1], sizeof( rhs_transposed[1] ) );
-	dot_sse( &in_dot, &out_results[1][1] );
-
-	memcpy( in_dot.lhs, in->lhs[1], sizeof( in->lhs[1] ) );
-	memcpy( in_dot.rhs, rhs_transposed[2], sizeof( rhs_transposed[2] ) );
-	dot_sse( &in_dot, &out_results[1][2] );
-
-	memcpy( in_dot.lhs, in->lhs[1], sizeof( in->lhs[1] ) );
-	memcpy( in_dot.rhs, rhs_transposed[3], sizeof( rhs_transposed[3] ) );
-	dot_sse( &in_dot, &out_results[1][3] );
-
-	memcpy( in_dot.lhs, in->lhs[2], sizeof( in->lhs[2] ) );
-	memcpy( in_dot.rhs, rhs_transposed[0], sizeof( rhs_transposed[0] ) );
-	dot_sse( &in_dot, &out_results[2][0] );
-
-	memcpy( in_dot.lhs, in->lhs[2], sizeof( in->lhs[2] ) );
-	memcpy( in_dot.rhs, rhs_transposed[1], sizeof( rhs_transposed[1] ) );
-	dot_sse( &in_dot, &out_results[2][1] );
-
-	memcpy( in_dot.lhs, in->lhs[2], sizeof( in->lhs[2] ) );
-	memcpy( in_dot.rhs, rhs_transposed[2], sizeof( rhs_transposed[2] ) );
-	dot_sse( &in_dot, &out_results[2][2] );
-
-	memcpy( in_dot.lhs, in->lhs[2], sizeof( in->lhs[2] ) );
-	memcpy( in_dot.rhs, rhs_transposed[3], sizeof( rhs_transposed[3] ) );
-	dot_sse( &in_dot, &out_results[2][3] );
-
-	memcpy( in_dot.lhs, in->lhs[3], sizeof( in->lhs[3] ) );
-	memcpy( in_dot.rhs, rhs_transposed[0], sizeof( rhs_transposed[0] ) );
-	dot_sse( &in_dot, &out_results[3][0] );
-
-	memcpy( in_dot.lhs, in->lhs[3], sizeof( in->lhs[3] ) );
-	memcpy( in_dot.rhs, rhs_transposed[1], sizeof( rhs_transposed[1] ) );
-	dot_sse( &in_dot, &out_results[3][1] );
-
-	memcpy( in_dot.lhs, in->lhs[3], sizeof( in->lhs[3] ) );
-	memcpy( in_dot.rhs, rhs_transposed[2], sizeof( rhs_transposed[2] ) );
-	dot_sse( &in_dot, &out_results[3][2] );
-
-	memcpy( in_dot.lhs, in->lhs[3], sizeof( in->lhs[3] ) );
-	memcpy( in_dot.rhs, rhs_transposed[3], sizeof( rhs_transposed[3] ) );
-	dot_sse( &in_dot, &out_results[3][3] );
+	// row 3
+	out->m[3][0] = _mm_div_ps( lhs->m[3][0], rhs->m[3][0] );
+	out->m[3][1] = _mm_div_ps( lhs->m[3][1], rhs->m[3][1] );
+	out->m[3][2] = _mm_div_ps( lhs->m[3][2], rhs->m[3][2] );
 }
 
-void translate_sse( const sse_input_translate_float4x3_t* in, __m128 out_results[2] )
+void mul_sse( const float4x3_sse_t* lhs, const float3x4_sse_t* rhs, float4x4_sse_t* out )
 {
-	assert( in );
+	assert( lhs );
+	assert( rhs );
+	assert( out );
 
-	out_results[0] = _mm_add_ps( in->column[0], in->vec[0] );
-	out_results[1] = _mm_add_ps( in->column[1], in->vec[1] );
-}
+	float4x3_sse_t rhs_transposed;
+	transpose_sse( rhs, &rhs_transposed );
 
-void scale_sse( const sse_input_scale_float4x3_t* in, __m128 out_results[3] )
-{
-	assert( in );
+	float3_sse_t dot_lhs;
+	float3_sse_t dot_rhs;
 
-	out_results[0] = _mm_mul_ps( in->diagonal[0], in->scale[0] );
-	out_results[1] = _mm_mul_ps( in->diagonal[1], in->scale[1] );
-	out_results[2] = _mm_mul_ps( in->diagonal[2], in->scale[2] );
+	memcpy( dot_lhs.comp, &lhs->m[0], sizeof( lhs->m[0] ) );
+	memcpy( dot_rhs.comp, &rhs_transposed.m[0], sizeof( rhs_transposed.m[0] ) );
+	dot_sse( &dot_lhs, &dot_rhs, &out->m[0][0] );
+
+	memcpy( dot_lhs.comp, &lhs->m[0], sizeof( lhs->m[0] ) );
+	memcpy( dot_rhs.comp, &rhs_transposed.m[1], sizeof( rhs_transposed.m[1] ) );
+	dot_sse( &dot_lhs, &dot_rhs, &out->m[0][1] );
+
+	memcpy( dot_lhs.comp, &lhs->m[0], sizeof( lhs->m[0] ) );
+	memcpy( dot_rhs.comp, &rhs_transposed.m[2], sizeof( rhs_transposed.m[2] ) );
+	dot_sse( &dot_lhs, &dot_rhs, &out->m[0][2] );
+
+	memcpy( dot_lhs.comp, &lhs->m[0], sizeof( lhs->m[0] ) );
+	memcpy( dot_rhs.comp, &rhs_transposed.m[3], sizeof( rhs_transposed.m[3] ) );
+	dot_sse( &dot_lhs, &dot_rhs, &out->m[0][3] );
+
+	memcpy( dot_lhs.comp, &lhs->m[1], sizeof( lhs->m[1] ) );
+	memcpy( dot_rhs.comp, &rhs_transposed.m[0], sizeof( rhs_transposed.m[0] ) );
+	dot_sse( &dot_lhs, &dot_rhs, &out->m[1][0] );
+
+	memcpy( dot_lhs.comp, &lhs->m[1], sizeof( lhs->m[1] ) );
+	memcpy( dot_rhs.comp, &rhs_transposed.m[1], sizeof( rhs_transposed.m[1] ) );
+	dot_sse( &dot_lhs, &dot_rhs, &out->m[1][1] );
+
+	memcpy( dot_lhs.comp, &lhs->m[1], sizeof( lhs->m[1] ) );
+	memcpy( dot_rhs.comp, &rhs_transposed.m[2], sizeof( rhs_transposed.m[2] ) );
+	dot_sse( &dot_lhs, &dot_rhs, &out->m[1][2] );
+
+	memcpy( dot_lhs.comp, &lhs->m[1], sizeof( lhs->m[1] ) );
+	memcpy( dot_rhs.comp, &rhs_transposed.m[3], sizeof( rhs_transposed.m[3] ) );
+	dot_sse( &dot_lhs, &dot_rhs, &out->m[1][3] );
+
+	memcpy( dot_lhs.comp, &lhs->m[2], sizeof( lhs->m[2] ) );
+	memcpy( dot_rhs.comp, &rhs_transposed.m[0], sizeof( rhs_transposed.m[0] ) );
+	dot_sse( &dot_lhs, &dot_rhs, &out->m[2][0] );
+
+	memcpy( dot_lhs.comp, &lhs->m[2], sizeof( lhs->m[2] ) );
+	memcpy( dot_rhs.comp, &rhs_transposed.m[1], sizeof( rhs_transposed.m[1] ) );
+	dot_sse( &dot_lhs, &dot_rhs, &out->m[2][1] );
+
+	memcpy( dot_lhs.comp, &lhs->m[2], sizeof( lhs->m[2] ) );
+	memcpy( dot_rhs.comp, &rhs_transposed.m[2], sizeof( rhs_transposed.m[2] ) );
+	dot_sse( &dot_lhs, &dot_rhs, &out->m[2][2] );
+
+	memcpy( dot_lhs.comp, &lhs->m[2], sizeof( lhs->m[2] ) );
+	memcpy( dot_rhs.comp, &rhs_transposed.m[3], sizeof( rhs_transposed.m[3] ) );
+	dot_sse( &dot_lhs, &dot_rhs, &out->m[2][3] );
+
+	memcpy( dot_lhs.comp, &lhs->m[3], sizeof( lhs->m[3] ) );
+	memcpy( dot_rhs.comp, &rhs_transposed.m[0], sizeof( rhs_transposed.m[0] ) );
+	dot_sse( &dot_lhs, &dot_rhs, &out->m[3][0] );
+
+	memcpy( dot_lhs.comp, &lhs->m[3], sizeof( lhs->m[3] ) );
+	memcpy( dot_rhs.comp, &rhs_transposed.m[1], sizeof( rhs_transposed.m[1] ) );
+	dot_sse( &dot_lhs, &dot_rhs, &out->m[3][1] );
+
+	memcpy( dot_lhs.comp, &lhs->m[3], sizeof( lhs->m[3] ) );
+	memcpy( dot_rhs.comp, &rhs_transposed.m[2], sizeof( rhs_transposed.m[2] ) );
+	dot_sse( &dot_lhs, &dot_rhs, &out->m[3][2] );
+
+	memcpy( dot_lhs.comp, &lhs->m[3], sizeof( lhs->m[3] ) );
+	memcpy( dot_rhs.comp, &rhs_transposed.m[3], sizeof( rhs_transposed.m[3] ) );
+	dot_sse( &dot_lhs, &dot_rhs, &out->m[3][3] );
 }
 
 
 // float4x4
-void transpose_sse( const sse_input_transpose_float4x4_t* in, __m128 out_results[4][4] )
+void identity_sse( float4x4_sse_t* mat )
 {
-	assert( in );
+	// row 0
+	mat->m[0][0] = _mm_set1_ps( 1.0f );
+	mat->m[0][1] = _mm_set1_ps( 0.0f );
+	mat->m[0][2] = _mm_set1_ps( 0.0f );
+	mat->m[0][3] = _mm_set1_ps( 0.0f );
 
-	out_results[0][0] = in->m[0][0];
-	out_results[1][0] = in->m[0][1];
-	out_results[2][0] = in->m[0][2];
-	out_results[3][0] = in->m[0][3];
+	// row 1
+	mat->m[1][0] = _mm_set1_ps( 0.0f );
+	mat->m[1][1] = _mm_set1_ps( 1.0f );
+	mat->m[1][2] = _mm_set1_ps( 0.0f );
+	mat->m[1][3] = _mm_set1_ps( 0.0f );
 
-	out_results[0][1] = in->m[1][0];
-	out_results[1][1] = in->m[1][1];
-	out_results[2][1] = in->m[1][2];
-	out_results[3][1] = in->m[1][3];
+	// row 2
+	mat->m[2][0] = _mm_set1_ps( 0.0f );
+	mat->m[2][1] = _mm_set1_ps( 0.0f );
+	mat->m[2][2] = _mm_set1_ps( 1.0f );
+	mat->m[2][3] = _mm_set1_ps( 0.0f );
 
-	out_results[0][2] = in->m[2][0];
-	out_results[1][2] = in->m[2][1];
-	out_results[2][2] = in->m[2][2];
-	out_results[3][2] = in->m[2][3];
-
-	out_results[0][3] = in->m[3][0];
-	out_results[1][3] = in->m[3][1];
-	out_results[2][3] = in->m[3][2];
-	out_results[3][3] = in->m[3][3];
+	// row 3
+	mat->m[3][0] = _mm_set1_ps( 0.0f );
+	mat->m[3][1] = _mm_set1_ps( 0.0f );
+	mat->m[3][2] = _mm_set1_ps( 0.0f );
+	mat->m[3][3] = _mm_set1_ps( 1.0f );
 }
 
-void determinant_sse( const sse_input_determinant_float4x4_t* in, __m128* out_result )
+void transpose_sse( const float4x4_sse_t* in, float4x4_sse_t* out )
+{
+	assert( in );
+	assert( out );
+
+	out->m[0][0] = in->m[0][0];
+	out->m[1][0] = in->m[0][1];
+	out->m[2][0] = in->m[0][2];
+	out->m[3][0] = in->m[0][3];
+
+	out->m[0][1] = in->m[1][0];
+	out->m[1][1] = in->m[1][1];
+	out->m[2][1] = in->m[1][2];
+	out->m[3][1] = in->m[1][3];
+
+	out->m[0][2] = in->m[2][0];
+	out->m[1][2] = in->m[2][1];
+	out->m[2][2] = in->m[2][2];
+	out->m[3][2] = in->m[2][3];
+
+	out->m[0][3] = in->m[3][0];
+	out->m[1][3] = in->m[3][1];
+	out->m[2][3] = in->m[3][2];
+	out->m[3][3] = in->m[3][3];
+}
+
+void determinant_sse( const float4x4_sse_t* in, __m128* out_result )
 {
 	assert( in );
 	assert( out_result );
@@ -1498,9 +1650,10 @@ void determinant_sse( const sse_input_determinant_float4x4_t* in, __m128* out_re
 	*out_result = _mm_add_ps( final0, final1 );
 }
 
-void inverse_sse( const sse_input_inverse_float4x4_t* in, __m128 out_results[4][4] )
+void inverse_sse( const float4x4_sse_t* in, float4x4_sse_t* out )
 {
 	assert( in );
+	assert( out );
 
 	// DM: doesn't need to be as complex as the scalar implementation
 	// based off: https://github.com/datenwolf/linmath.h/blob/master/linmath.h
@@ -1574,321 +1727,335 @@ void inverse_sse( const sse_input_inverse_float4x4_t* in, __m128 out_results[4][
 	__m128 out00submulc = _mm_mul_ps( in->m[1][3], cof03 );
 	__m128 out00subsub  = _mm_sub_ps( out00submula, out00submulb );
 	__m128 out00subadd  = _mm_add_ps( out00subsub, out00submulc );
-	out_results[0][0] = _mm_mul_ps( out00subadd, invdet );
+	out->m[0][0] = _mm_mul_ps( out00subadd, invdet );
 
 	__m128 out01submula = _mm_mul_ps( _NEGATE_PS( in->m[0][1] ), cof05 );
 	__m128 out01submulb = _mm_mul_ps( in->m[0][2], cof04 );
 	__m128 out01submulc = _mm_mul_ps( in->m[0][3], cof03 );
 	__m128 out01subadd  = _mm_add_ps( out01submula, out01submulb );
 	__m128 out01subsub  = _mm_sub_ps( out01subadd, out01submulc );
-	out_results[0][1] = _mm_mul_ps( out01subsub, invdet );
+	out->m[0][1] = _mm_mul_ps( out01subsub, invdet );
 
 	__m128 out02submula = _mm_mul_ps( in->m[3][1], sub05 );
 	__m128 out02submulb = _mm_mul_ps( in->m[3][2], sub04 );
 	__m128 out02submulc = _mm_mul_ps( in->m[3][3], sub03 );
 	__m128 out02subsub  = _mm_sub_ps( out02submula, out02submulb );
 	__m128 out02subadd  = _mm_add_ps( out02subsub, out02submulc );
-	out_results[0][2] = _mm_mul_ps( out02subadd, invdet );
+	out->m[0][2] = _mm_mul_ps( out02subadd, invdet );
 
 	__m128 out03submula = _mm_mul_ps( _NEGATE_PS( in->m[2][1] ), sub05 );
 	__m128 out03submulb = _mm_mul_ps( in->m[2][2], sub04 );
 	__m128 out03submulc = _mm_mul_ps( in->m[2][3], sub03 );
 	__m128 out03subadd  = _mm_add_ps( out03submula, out03submulb );
 	__m128 out03subsub  = _mm_sub_ps( out03subadd, out03submulc );
-	out_results[0][3] = _mm_mul_ps( out03subsub, invdet );
+	out->m[0][3] = _mm_mul_ps( out03subsub, invdet );
 
 	__m128 out10submula = _mm_mul_ps( _NEGATE_PS( in->m[1][0] ), cof05 );
 	__m128 out10submulb = _mm_mul_ps( in->m[1][2], cof02 );
 	__m128 out10submulc = _mm_mul_ps( in->m[1][3], cof01 );
 	__m128 out10subadd  = _mm_add_ps( out10submula, out10submulb );
 	__m128 out10subsub  = _mm_sub_ps( out10subadd, out10submulc );
-	out_results[1][0] = _mm_mul_ps( out10subsub, invdet );
+	out->m[1][0] = _mm_mul_ps( out10subsub, invdet );
 
 	__m128 out11submula = _mm_mul_ps( in->m[0][0], cof05 );
 	__m128 out11submulb = _mm_mul_ps( in->m[0][2], cof02 );
 	__m128 out11submulc = _mm_mul_ps( in->m[0][3], cof01 );
 	__m128 out11subsub  = _mm_sub_ps( out11submula, out11submulb );
 	__m128 out11subadd  = _mm_add_ps( out11subsub, out11submulc );
-	out_results[1][1] = _mm_mul_ps( out11subadd, invdet );
+	out->m[1][1] = _mm_mul_ps( out11subadd, invdet );
 
 	__m128 out12submula = _mm_mul_ps( _NEGATE_PS( in->m[3][0] ), sub05 );
 	__m128 out12submulb = _mm_mul_ps( in->m[3][2], sub02 );
 	__m128 out12submulc = _mm_mul_ps( in->m[3][3], sub01 );
 	__m128 out12subadd  = _mm_add_ps( out12submula, out12submulb );
 	__m128 out12subsub  = _mm_sub_ps( out12subadd, out12submulc );
-	out_results[1][2] = _mm_mul_ps( out12subsub, invdet );
+	out->m[1][2] = _mm_mul_ps( out12subsub, invdet );
 
 	__m128 out13submula = _mm_mul_ps( in->m[2][0], sub05 );
 	__m128 out13submulb = _mm_mul_ps( in->m[2][2], sub02 );
 	__m128 out13submulc = _mm_mul_ps( in->m[2][3], sub01 );
 	__m128 out13subsub  = _mm_sub_ps( out13submula, out13submulb );
 	__m128 out13subadd  = _mm_add_ps( out13subsub, out13submulc );
-	out_results[1][3] = _mm_mul_ps( out13subadd, invdet );
+	out->m[1][3] = _mm_mul_ps( out13subadd, invdet );
 
 	__m128 out20submula = _mm_mul_ps( in->m[1][0], cof04 );
 	__m128 out20submulb = _mm_mul_ps( in->m[1][1], cof02 );
 	__m128 out20submulc = _mm_mul_ps( in->m[1][3], cof00 );
 	__m128 out20subsub  = _mm_sub_ps( out20submula, out20submulb );
 	__m128 out20subadd  = _mm_add_ps( out20subsub, out20submulc );
-	out_results[2][0] = _mm_mul_ps( out20subadd, invdet );
+	out->m[2][0] = _mm_mul_ps( out20subadd, invdet );
 
 	__m128 out21submula = _mm_mul_ps( _NEGATE_PS( in->m[0][0] ), cof04 );
 	__m128 out21submulb = _mm_mul_ps( in->m[0][1], cof02 );
 	__m128 out21submulc = _mm_mul_ps( in->m[0][3], cof00 );
 	__m128 out21subadd  = _mm_add_ps( out21submula, out21submulb );
 	__m128 out21subsub  = _mm_sub_ps( out21subadd, out21submulc );
-	out_results[2][1] = _mm_mul_ps( out21subsub, invdet );
+	out->m[2][1] = _mm_mul_ps( out21subsub, invdet );
 
 	__m128 out22submula = _mm_mul_ps( in->m[3][0], sub04 );
 	__m128 out22submulb = _mm_mul_ps( in->m[3][1], sub02 );
 	__m128 out22submulc = _mm_mul_ps( in->m[3][3], sub00 );
 	__m128 out22subsub  = _mm_sub_ps( out22submula, out22submulb );
 	__m128 out22subadd  = _mm_add_ps( out22subsub, out22submulc );
-	out_results[2][2] = _mm_mul_ps( out22subadd, invdet );
+	out->m[2][2] = _mm_mul_ps( out22subadd, invdet );
 
 	__m128 out23submula = _mm_mul_ps( _NEGATE_PS( in->m[2][0] ), sub04 );
 	__m128 out23submulb = _mm_mul_ps( in->m[2][1], sub02 );
 	__m128 out23submulc = _mm_mul_ps( in->m[2][3], sub00 );
 	__m128 out23subadd  = _mm_add_ps( out23submula, out23submulb );
 	__m128 out23subsub  = _mm_sub_ps( out23subadd, out23submulc );
-	out_results[2][3] = _mm_mul_ps( out23subsub, invdet );
+	out->m[2][3] = _mm_mul_ps( out23subsub, invdet );
 
 	__m128 out30submula = _mm_mul_ps( _NEGATE_PS( in->m[1][0] ), cof03 );
 	__m128 out30submulb = _mm_mul_ps( in->m[1][1], cof01 );
 	__m128 out30submulc = _mm_mul_ps( in->m[1][2], cof00 );
 	__m128 out30subadd  = _mm_add_ps( out30submula, out30submulb );
 	__m128 out30subsub  = _mm_sub_ps( out30subadd, out30submulc );
-	out_results[3][0] = _mm_mul_ps( out30subsub, invdet );
+	out->m[3][0] = _mm_mul_ps( out30subsub, invdet );
 
 	__m128 out31submula = _mm_mul_ps( in->m[0][0], cof03 );
 	__m128 out31submulb = _mm_mul_ps( in->m[0][1], cof01 );
 	__m128 out31submulc = _mm_mul_ps( in->m[0][2], cof00 );
 	__m128 out31subsub  = _mm_sub_ps( out31submula, out31submulb );
 	__m128 out31subadd  = _mm_add_ps( out31subsub, out31submulc );
-	out_results[3][1] = _mm_mul_ps( out31subadd, invdet );
+	out->m[3][1] = _mm_mul_ps( out31subadd, invdet );
 
 	__m128 out32submula = _mm_mul_ps( _NEGATE_PS( in->m[3][0] ), sub03 );
 	__m128 out32submulb = _mm_mul_ps( in->m[3][1], sub01 );
 	__m128 out32submulc = _mm_mul_ps( in->m[3][2], sub00 );
 	__m128 out32subadd  = _mm_add_ps( out32submula, out32submulb );
 	__m128 out32subsub  = _mm_sub_ps( out32subadd, out32submulc );
-	out_results[3][2] = _mm_mul_ps( out32subsub, invdet );
+	out->m[3][2] = _mm_mul_ps( out32subsub, invdet );
 
 	__m128 out33submula = _mm_mul_ps( in->m[2][0], sub03 );
 	__m128 out33submulb = _mm_mul_ps( in->m[2][1], sub01 );
 	__m128 out33submulc = _mm_mul_ps( in->m[2][2], sub00 );
 	__m128 out33subsub  = _mm_sub_ps( out33submula, out33submulb );
 	__m128 out33subadd  = _mm_add_ps( out33subsub, out33submulc );
-	out_results[3][3] = _mm_mul_ps( out33subadd, invdet );
+	out->m[3][3] = _mm_mul_ps( out33subadd, invdet );
 }
 
-void comp_add_sse( const sse_input_comp_add_float4x4_t* in, __m128 out_results[4][4] )
+void comp_add_sse( const float4x4_sse_t* lhs, const float4x4_sse_t* rhs, float4x4_sse_t* out )
 {
-	assert( in );
+	assert( lhs );
+	assert( rhs );
+	assert( out );
 
 	// row 0
-	out_results[0][0] = _mm_add_ps( in->lhs[0][0], in->rhs[0][0] );
-	out_results[0][1] = _mm_add_ps( in->lhs[0][1], in->rhs[0][1] );
-	out_results[0][2] = _mm_add_ps( in->lhs[0][2], in->rhs[0][2] );
-	out_results[0][3] = _mm_add_ps( in->lhs[0][3], in->rhs[0][3] );
+	out->m[0][0] = _mm_add_ps( lhs->m[0][0], rhs->m[0][0] );
+	out->m[0][1] = _mm_add_ps( lhs->m[0][1], rhs->m[0][1] );
+	out->m[0][2] = _mm_add_ps( lhs->m[0][2], rhs->m[0][2] );
+	out->m[0][3] = _mm_add_ps( lhs->m[0][3], rhs->m[0][3] );
 
 	// row 1
-	out_results[1][0] = _mm_add_ps( in->lhs[1][0], in->rhs[1][0] );
-	out_results[1][1] = _mm_add_ps( in->lhs[1][1], in->rhs[1][1] );
-	out_results[1][2] = _mm_add_ps( in->lhs[1][2], in->rhs[1][2] );
-	out_results[1][3] = _mm_add_ps( in->lhs[1][3], in->rhs[1][3] );
+	out->m[1][0] = _mm_add_ps( lhs->m[1][0], rhs->m[1][0] );
+	out->m[1][1] = _mm_add_ps( lhs->m[1][1], rhs->m[1][1] );
+	out->m[1][2] = _mm_add_ps( lhs->m[1][2], rhs->m[1][2] );
+	out->m[1][3] = _mm_add_ps( lhs->m[1][3], rhs->m[1][3] );
 
 	// row 2
-	out_results[2][0] = _mm_add_ps( in->lhs[2][0], in->rhs[2][0] );
-	out_results[2][1] = _mm_add_ps( in->lhs[2][1], in->rhs[2][1] );
-	out_results[2][2] = _mm_add_ps( in->lhs[2][2], in->rhs[2][2] );
-	out_results[2][3] = _mm_add_ps( in->lhs[2][3], in->rhs[2][3] );
+	out->m[2][0] = _mm_add_ps( lhs->m[2][0], rhs->m[2][0] );
+	out->m[2][1] = _mm_add_ps( lhs->m[2][1], rhs->m[2][1] );
+	out->m[2][2] = _mm_add_ps( lhs->m[2][2], rhs->m[2][2] );
+	out->m[2][3] = _mm_add_ps( lhs->m[2][3], rhs->m[2][3] );
 
 	// row 3
-	out_results[3][0] = _mm_add_ps( in->lhs[3][0], in->rhs[3][0] );
-	out_results[3][1] = _mm_add_ps( in->lhs[3][1], in->rhs[3][1] );
-	out_results[3][2] = _mm_add_ps( in->lhs[3][2], in->rhs[3][2] );
-	out_results[3][3] = _mm_add_ps( in->lhs[3][3], in->rhs[3][3] );
+	out->m[3][0] = _mm_add_ps( lhs->m[3][0], rhs->m[3][0] );
+	out->m[3][1] = _mm_add_ps( lhs->m[3][1], rhs->m[3][1] );
+	out->m[3][2] = _mm_add_ps( lhs->m[3][2], rhs->m[3][2] );
+	out->m[3][3] = _mm_add_ps( lhs->m[3][3], rhs->m[3][3] );
 }
 
-void comp_sub_sse( const sse_input_comp_sub_float4x4_t* in, __m128 out_results[4][4] )
+void comp_sub_sse( const float4x4_sse_t* lhs, const float4x4_sse_t* rhs, float4x4_sse_t* out )
 {
-	assert( in );
+	assert( lhs );
+	assert( rhs );
+	assert( out );
 
 	// row 0
-	out_results[0][0] = _mm_sub_ps( in->lhs[0][0], in->rhs[0][0] );
-	out_results[0][1] = _mm_sub_ps( in->lhs[0][1], in->rhs[0][1] );
-	out_results[0][2] = _mm_sub_ps( in->lhs[0][2], in->rhs[0][2] );
-	out_results[0][3] = _mm_sub_ps( in->lhs[0][3], in->rhs[0][3] );
+	out->m[0][0] = _mm_sub_ps( lhs->m[0][0], rhs->m[0][0] );
+	out->m[0][1] = _mm_sub_ps( lhs->m[0][1], rhs->m[0][1] );
+	out->m[0][2] = _mm_sub_ps( lhs->m[0][2], rhs->m[0][2] );
+	out->m[0][3] = _mm_sub_ps( lhs->m[0][3], rhs->m[0][3] );
 
 	// row 1
-	out_results[1][0] = _mm_sub_ps( in->lhs[1][0], in->rhs[1][0] );
-	out_results[1][1] = _mm_sub_ps( in->lhs[1][1], in->rhs[1][1] );
-	out_results[1][2] = _mm_sub_ps( in->lhs[1][2], in->rhs[1][2] );
-	out_results[1][3] = _mm_sub_ps( in->lhs[1][3], in->rhs[1][3] );
+	out->m[1][0] = _mm_sub_ps( lhs->m[1][0], rhs->m[1][0] );
+	out->m[1][1] = _mm_sub_ps( lhs->m[1][1], rhs->m[1][1] );
+	out->m[1][2] = _mm_sub_ps( lhs->m[1][2], rhs->m[1][2] );
+	out->m[1][3] = _mm_sub_ps( lhs->m[1][3], rhs->m[1][3] );
 
 	// row 2
-	out_results[2][0] = _mm_sub_ps( in->lhs[2][0], in->rhs[2][0] );
-	out_results[2][1] = _mm_sub_ps( in->lhs[2][1], in->rhs[2][1] );
-	out_results[2][2] = _mm_sub_ps( in->lhs[2][2], in->rhs[2][2] );
-	out_results[2][3] = _mm_sub_ps( in->lhs[2][3], in->rhs[2][3] );
+	out->m[2][0] = _mm_sub_ps( lhs->m[2][0], rhs->m[2][0] );
+	out->m[2][1] = _mm_sub_ps( lhs->m[2][1], rhs->m[2][1] );
+	out->m[2][2] = _mm_sub_ps( lhs->m[2][2], rhs->m[2][2] );
+	out->m[2][3] = _mm_sub_ps( lhs->m[2][3], rhs->m[2][3] );
 
 	// row 3
-	out_results[3][0] = _mm_sub_ps( in->lhs[3][0], in->rhs[3][0] );
-	out_results[3][1] = _mm_sub_ps( in->lhs[3][1], in->rhs[3][1] );
-	out_results[3][2] = _mm_sub_ps( in->lhs[3][2], in->rhs[3][2] );
-	out_results[3][3] = _mm_sub_ps( in->lhs[3][3], in->rhs[3][3] );
+	out->m[3][0] = _mm_sub_ps( lhs->m[3][0], rhs->m[3][0] );
+	out->m[3][1] = _mm_sub_ps( lhs->m[3][1], rhs->m[3][1] );
+	out->m[3][2] = _mm_sub_ps( lhs->m[3][2], rhs->m[3][2] );
+	out->m[3][3] = _mm_sub_ps( lhs->m[3][3], rhs->m[3][3] );
 }
 
-void comp_mul_sse( const sse_input_comp_mul_float4x4_t* in, __m128 out_results[4][4] )
+void comp_mul_sse( const float4x4_sse_t* lhs, const float4x4_sse_t* rhs, float4x4_sse_t* out )
 {
-	assert( in );
+	assert( lhs );
+	assert( rhs );
+	assert( out );
 
 	// row 0
-	out_results[0][0] = _mm_mul_ps( in->lhs[0][0], in->rhs[0][0] );
-	out_results[0][1] = _mm_mul_ps( in->lhs[0][1], in->rhs[0][1] );
-	out_results[0][2] = _mm_mul_ps( in->lhs[0][2], in->rhs[0][2] );
-	out_results[0][3] = _mm_mul_ps( in->lhs[0][3], in->rhs[0][3] );
+	out->m[0][0] = _mm_mul_ps( lhs->m[0][0], rhs->m[0][0] );
+	out->m[0][1] = _mm_mul_ps( lhs->m[0][1], rhs->m[0][1] );
+	out->m[0][2] = _mm_mul_ps( lhs->m[0][2], rhs->m[0][2] );
+	out->m[0][3] = _mm_mul_ps( lhs->m[0][3], rhs->m[0][3] );
 
 	// row 1
-	out_results[1][0] = _mm_mul_ps( in->lhs[1][0], in->rhs[1][0] );
-	out_results[1][1] = _mm_mul_ps( in->lhs[1][1], in->rhs[1][1] );
-	out_results[1][2] = _mm_mul_ps( in->lhs[1][2], in->rhs[1][2] );
-	out_results[1][3] = _mm_mul_ps( in->lhs[1][3], in->rhs[1][3] );
+	out->m[1][0] = _mm_mul_ps( lhs->m[1][0], rhs->m[1][0] );
+	out->m[1][1] = _mm_mul_ps( lhs->m[1][1], rhs->m[1][1] );
+	out->m[1][2] = _mm_mul_ps( lhs->m[1][2], rhs->m[1][2] );
+	out->m[1][3] = _mm_mul_ps( lhs->m[1][3], rhs->m[1][3] );
 
 	// row 2
-	out_results[2][0] = _mm_mul_ps( in->lhs[2][0], in->rhs[2][0] );
-	out_results[2][1] = _mm_mul_ps( in->lhs[2][1], in->rhs[2][1] );
-	out_results[2][2] = _mm_mul_ps( in->lhs[2][2], in->rhs[2][2] );
-	out_results[2][3] = _mm_mul_ps( in->lhs[2][3], in->rhs[2][3] );
+	out->m[2][0] = _mm_mul_ps( lhs->m[2][0], rhs->m[2][0] );
+	out->m[2][1] = _mm_mul_ps( lhs->m[2][1], rhs->m[2][1] );
+	out->m[2][2] = _mm_mul_ps( lhs->m[2][2], rhs->m[2][2] );
+	out->m[2][3] = _mm_mul_ps( lhs->m[2][3], rhs->m[2][3] );
 
 	// row 3
-	out_results[3][0] = _mm_mul_ps( in->lhs[3][0], in->rhs[3][0] );
-	out_results[3][1] = _mm_mul_ps( in->lhs[3][1], in->rhs[3][1] );
-	out_results[3][2] = _mm_mul_ps( in->lhs[3][2], in->rhs[3][2] );
-	out_results[3][3] = _mm_mul_ps( in->lhs[3][3], in->rhs[3][3] );
+	out->m[3][0] = _mm_mul_ps( lhs->m[3][0], rhs->m[3][0] );
+	out->m[3][1] = _mm_mul_ps( lhs->m[3][1], rhs->m[3][1] );
+	out->m[3][2] = _mm_mul_ps( lhs->m[3][2], rhs->m[3][2] );
+	out->m[3][3] = _mm_mul_ps( lhs->m[3][3], rhs->m[3][3] );
 }
 
-void comp_div_sse( const sse_input_comp_div_float4x4_t* in, __m128 out_results[4][4] )
+void comp_div_sse( const float4x4_sse_t* lhs, const float4x4_sse_t* rhs, float4x4_sse_t* out )
 {
-	assert( in );
+	assert( lhs );
+	assert( rhs );
+	assert( out );
 
 	// row 0
-	out_results[0][0] = _mm_div_ps( in->lhs[0][0], in->rhs[0][0] );
-	out_results[0][1] = _mm_div_ps( in->lhs[0][1], in->rhs[0][1] );
-	out_results[0][2] = _mm_div_ps( in->lhs[0][2], in->rhs[0][2] );
-	out_results[0][3] = _mm_div_ps( in->lhs[0][3], in->rhs[0][3] );
+	out->m[0][0] = _mm_div_ps( lhs->m[0][0], rhs->m[0][0] );
+	out->m[0][1] = _mm_div_ps( lhs->m[0][1], rhs->m[0][1] );
+	out->m[0][2] = _mm_div_ps( lhs->m[0][2], rhs->m[0][2] );
+	out->m[0][3] = _mm_div_ps( lhs->m[0][3], rhs->m[0][3] );
 
 	// row 1
-	out_results[1][0] = _mm_div_ps( in->lhs[1][0], in->rhs[1][0] );
-	out_results[1][1] = _mm_div_ps( in->lhs[1][1], in->rhs[1][1] );
-	out_results[1][2] = _mm_div_ps( in->lhs[1][2], in->rhs[1][2] );
-	out_results[1][3] = _mm_div_ps( in->lhs[1][3], in->rhs[1][3] );
+	out->m[1][0] = _mm_div_ps( lhs->m[1][0], rhs->m[1][0] );
+	out->m[1][1] = _mm_div_ps( lhs->m[1][1], rhs->m[1][1] );
+	out->m[1][2] = _mm_div_ps( lhs->m[1][2], rhs->m[1][2] );
+	out->m[1][3] = _mm_div_ps( lhs->m[1][3], rhs->m[1][3] );
 
 	// row 2
-	out_results[2][0] = _mm_div_ps( in->lhs[2][0], in->rhs[2][0] );
-	out_results[2][1] = _mm_div_ps( in->lhs[2][1], in->rhs[2][1] );
-	out_results[2][2] = _mm_div_ps( in->lhs[2][2], in->rhs[2][2] );
-	out_results[2][3] = _mm_div_ps( in->lhs[2][3], in->rhs[2][3] );
+	out->m[2][0] = _mm_div_ps( lhs->m[2][0], rhs->m[2][0] );
+	out->m[2][1] = _mm_div_ps( lhs->m[2][1], rhs->m[2][1] );
+	out->m[2][2] = _mm_div_ps( lhs->m[2][2], rhs->m[2][2] );
+	out->m[2][3] = _mm_div_ps( lhs->m[2][3], rhs->m[2][3] );
 
 	// row 3
-	out_results[3][0] = _mm_div_ps( in->lhs[3][0], in->rhs[3][0] );
-	out_results[3][1] = _mm_div_ps( in->lhs[3][1], in->rhs[3][1] );
-	out_results[3][2] = _mm_div_ps( in->lhs[3][2], in->rhs[3][2] );
-	out_results[3][3] = _mm_div_ps( in->lhs[3][3], in->rhs[3][3] );
+	out->m[3][0] = _mm_div_ps( lhs->m[3][0], rhs->m[3][0] );
+	out->m[3][1] = _mm_div_ps( lhs->m[3][1], rhs->m[3][1] );
+	out->m[3][2] = _mm_div_ps( lhs->m[3][2], rhs->m[3][2] );
+	out->m[3][3] = _mm_div_ps( lhs->m[3][3], rhs->m[3][3] );
 }
 
-void mul_sse( const sse_input_mul_float4x4_t* in, __m128 out_results[4][4] )
+void mul_sse( const float4x4_sse_t* lhs, const float4x4_sse_t* rhs, float4x4_sse_t* out )
 {
-	__m128 rhs_transposed[4][4];
+	assert( lhs );
+	assert( rhs );
+	assert( out );
 
-	sse_input_transpose_float4x4_t in_transpose;
-	memcpy( in_transpose.m, in->rhs, sizeof( in->rhs ) );
-	transpose_sse( &in_transpose, rhs_transposed );
+	float4x4_sse_t rhs_transposed;
+	transpose_sse( rhs, &rhs_transposed );
 
-	sse_input_dot_float4_t in_dot;
-	memcpy( in_dot.lhs, in->lhs[0], sizeof( in->lhs[0] ) );
-	memcpy( in_dot.rhs, rhs_transposed[0], sizeof( rhs_transposed[0] ) );
-	dot_sse( &in_dot, &out_results[0][0] );
+	float4_sse_t dot_lhs;
+	float4_sse_t dot_rhs;
 
-	memcpy( in_dot.lhs, in->lhs[0], sizeof( in->lhs[0] ) );
-	memcpy( in_dot.rhs, rhs_transposed[1], sizeof( rhs_transposed[1] ) );
-	dot_sse( &in_dot, &out_results[0][1] );
+	memcpy( dot_lhs.comp, &lhs->m[0], sizeof( lhs->m[0] ) );
+	memcpy( dot_rhs.comp, &rhs_transposed.m[0], sizeof( rhs_transposed.m[0] ) );
+	dot_sse( &dot_lhs, &dot_rhs, &out->m[0][0] );
 
-	memcpy( in_dot.lhs, in->lhs[0], sizeof( in->lhs[0] ) );
-	memcpy( in_dot.rhs, rhs_transposed[2], sizeof( rhs_transposed[2] ) );
-	dot_sse( &in_dot, &out_results[0][2] );
+	memcpy( dot_lhs.comp, &lhs->m[0], sizeof( lhs->m[0] ) );
+	memcpy( dot_rhs.comp, &rhs_transposed.m[1], sizeof( rhs_transposed.m[1] ) );
+	dot_sse( &dot_lhs, &dot_rhs, &out->m[0][1] );
 
-	memcpy( in_dot.lhs, in->lhs[0], sizeof( in->lhs[0] ) );
-	memcpy( in_dot.rhs, rhs_transposed[3], sizeof( rhs_transposed[3] ) );
-	dot_sse( &in_dot, &out_results[0][3] );
+	memcpy( dot_lhs.comp, &lhs->m[0], sizeof( lhs->m[0] ) );
+	memcpy( dot_rhs.comp, &rhs_transposed.m[2], sizeof( rhs_transposed.m[2] ) );
+	dot_sse( &dot_lhs, &dot_rhs, &out->m[0][2] );
 
-	memcpy( in_dot.lhs, in->lhs[1], sizeof( in->lhs[1] ) );
-	memcpy( in_dot.rhs, rhs_transposed[0], sizeof( rhs_transposed[0] ) );
-	dot_sse( &in_dot, &out_results[1][0] );
+	memcpy( dot_lhs.comp, &lhs->m[0], sizeof( lhs->m[0] ) );
+	memcpy( dot_rhs.comp, &rhs_transposed.m[3], sizeof( rhs_transposed.m[3] ) );
+	dot_sse( &dot_lhs, &dot_rhs, &out->m[0][3] );
 
-	memcpy( in_dot.lhs, in->lhs[1], sizeof( in->lhs[1] ) );
-	memcpy( in_dot.rhs, rhs_transposed[1], sizeof( rhs_transposed[1] ) );
-	dot_sse( &in_dot, &out_results[1][1] );
+	memcpy( dot_lhs.comp, &lhs->m[1], sizeof( lhs->m[1] ) );
+	memcpy( dot_rhs.comp, &rhs_transposed.m[0], sizeof( rhs_transposed.m[0] ) );
+	dot_sse( &dot_lhs, &dot_rhs, &out->m[1][0] );
 
-	memcpy( in_dot.lhs, in->lhs[1], sizeof( in->lhs[1] ) );
-	memcpy( in_dot.rhs, rhs_transposed[2], sizeof( rhs_transposed[2] ) );
-	dot_sse( &in_dot, &out_results[1][2] );
+	memcpy( dot_lhs.comp, &lhs->m[1], sizeof( lhs->m[1] ) );
+	memcpy( dot_rhs.comp, &rhs_transposed.m[1], sizeof( rhs_transposed.m[1] ) );
+	dot_sse( &dot_lhs, &dot_rhs, &out->m[1][1] );
 
-	memcpy( in_dot.lhs, in->lhs[1], sizeof( in->lhs[1] ) );
-	memcpy( in_dot.rhs, rhs_transposed[3], sizeof( rhs_transposed[3] ) );
-	dot_sse( &in_dot, &out_results[1][3] );
+	memcpy( dot_lhs.comp, &lhs->m[1], sizeof( lhs->m[1] ) );
+	memcpy( dot_rhs.comp, &rhs_transposed.m[2], sizeof( rhs_transposed.m[2] ) );
+	dot_sse( &dot_lhs, &dot_rhs, &out->m[1][2] );
 
-	memcpy( in_dot.lhs, in->lhs[2], sizeof( in->lhs[2] ) );
-	memcpy( in_dot.rhs, rhs_transposed[0], sizeof( rhs_transposed[0] ) );
-	dot_sse( &in_dot, &out_results[2][0] );
+	memcpy( dot_lhs.comp, &lhs->m[1], sizeof( lhs->m[1] ) );
+	memcpy( dot_rhs.comp, &rhs_transposed.m[3], sizeof( rhs_transposed.m[3] ) );
+	dot_sse( &dot_lhs, &dot_rhs, &out->m[1][3] );
 
-	memcpy( in_dot.lhs, in->lhs[2], sizeof( in->lhs[2] ) );
-	memcpy( in_dot.rhs, rhs_transposed[1], sizeof( rhs_transposed[1] ) );
-	dot_sse( &in_dot, &out_results[2][1] );
+	memcpy( dot_lhs.comp, &lhs->m[2], sizeof( lhs->m[2] ) );
+	memcpy( dot_rhs.comp, &rhs_transposed.m[0], sizeof( rhs_transposed.m[0] ) );
+	dot_sse( &dot_lhs, &dot_rhs, &out->m[2][0] );
 
-	memcpy( in_dot.lhs, in->lhs[2], sizeof( in->lhs[2] ) );
-	memcpy( in_dot.rhs, rhs_transposed[2], sizeof( rhs_transposed[2] ) );
-	dot_sse( &in_dot, &out_results[2][2] );
+	memcpy( dot_lhs.comp, &lhs->m[2], sizeof( lhs->m[2] ) );
+	memcpy( dot_rhs.comp, &rhs_transposed.m[1], sizeof( rhs_transposed.m[1] ) );
+	dot_sse( &dot_lhs, &dot_rhs, &out->m[2][1] );
 
-	memcpy( in_dot.lhs, in->lhs[2], sizeof( in->lhs[2] ) );
-	memcpy( in_dot.rhs, rhs_transposed[3], sizeof( rhs_transposed[3] ) );
-	dot_sse( &in_dot, &out_results[2][3] );
+	memcpy( dot_lhs.comp, &lhs->m[2], sizeof( lhs->m[2] ) );
+	memcpy( dot_rhs.comp, &rhs_transposed.m[2], sizeof( rhs_transposed.m[2] ) );
+	dot_sse( &dot_lhs, &dot_rhs, &out->m[2][2] );
 
-	memcpy( in_dot.lhs, in->lhs[3], sizeof( in->lhs[3] ) );
-	memcpy( in_dot.rhs, rhs_transposed[0], sizeof( rhs_transposed[0] ) );
-	dot_sse( &in_dot, &out_results[3][0] );
+	memcpy( dot_lhs.comp, &lhs->m[2], sizeof( lhs->m[2] ) );
+	memcpy( dot_rhs.comp, &rhs_transposed.m[3], sizeof( rhs_transposed.m[3] ) );
+	dot_sse( &dot_lhs, &dot_rhs, &out->m[2][3] );
 
-	memcpy( in_dot.lhs, in->lhs[3], sizeof( in->lhs[3] ) );
-	memcpy( in_dot.rhs, rhs_transposed[1], sizeof( rhs_transposed[1] ) );
-	dot_sse( &in_dot, &out_results[3][1] );
+	memcpy( dot_lhs.comp, &lhs->m[3], sizeof( lhs->m[3] ) );
+	memcpy( dot_rhs.comp, &rhs_transposed.m[0], sizeof( rhs_transposed.m[0] ) );
+	dot_sse( &dot_lhs, &dot_rhs, &out->m[3][0] );
 
-	memcpy( in_dot.lhs, in->lhs[3], sizeof( in->lhs[3] ) );
-	memcpy( in_dot.rhs, rhs_transposed[2], sizeof( rhs_transposed[2] ) );
-	dot_sse( &in_dot, &out_results[3][2] );
+	memcpy( dot_lhs.comp, &lhs->m[3], sizeof( lhs->m[3] ) );
+	memcpy( dot_rhs.comp, &rhs_transposed.m[1], sizeof( rhs_transposed.m[1] ) );
+	dot_sse( &dot_lhs, &dot_rhs, &out->m[3][1] );
 
-	memcpy( in_dot.lhs, in->lhs[3], sizeof( in->lhs[3] ) );
-	memcpy( in_dot.rhs, rhs_transposed[3], sizeof( rhs_transposed[3] ) );
-	dot_sse( &in_dot, &out_results[3][3] );
+	memcpy( dot_lhs.comp, &lhs->m[3], sizeof( lhs->m[3] ) );
+	memcpy( dot_rhs.comp, &rhs_transposed.m[2], sizeof( rhs_transposed.m[2] ) );
+	dot_sse( &dot_lhs, &dot_rhs, &out->m[3][2] );
+
+	memcpy( dot_lhs.comp, &lhs->m[3], sizeof( lhs->m[3] ) );
+	memcpy( dot_rhs.comp, &rhs_transposed.m[3], sizeof( rhs_transposed.m[3] ) );
+	dot_sse( &dot_lhs, &dot_rhs, &out->m[3][3] );
 }
 
-void translate_sse( const sse_input_translate_float4x4_t* in, __m128 out_results[3] )
+void translate_sse( const float3_sse_t* column, const float3_sse_t* vec, float3_sse_t* out_column )
 {
-	assert( in );
+	assert( column );
+	assert( vec );
+	assert( out_column );
 
-	out_results[0] = _mm_add_ps( in->column[0], in->vec[0] );
-	out_results[1] = _mm_add_ps( in->column[1], in->vec[1] );
-	out_results[2] = _mm_add_ps( in->column[2], in->vec[2] );
+	out_column->comp[0] = _mm_add_ps( column->comp[0], vec->comp[0] );
+	out_column->comp[1] = _mm_add_ps( column->comp[1], vec->comp[1] );
+	out_column->comp[2] = _mm_add_ps( column->comp[2], vec->comp[2] );
 }
 
-void scale_sse( const sse_input_scale_float4x4_t* in, __m128 out_results[4] )
+void scale_sse( const float3_sse_t* diagonal, const float3_sse_t* scale, float3_sse_t* out_diagonal )
 {
-	assert( in );
+	assert( diagonal );
+	assert( scale );
+	assert( out_diagonal );
 
-	out_results[0] = _mm_mul_ps( in->diagonal[0], in->scale[0] );
-	out_results[1] = _mm_mul_ps( in->diagonal[1], in->scale[1] );
-	out_results[2] = _mm_mul_ps( in->diagonal[2], in->scale[2] );
-	out_results[3] = _mm_mul_ps( in->diagonal[3], in->scale[3] );
+	out_diagonal->comp[0] = _mm_mul_ps( diagonal->comp[0], scale->comp[0] );
+	out_diagonal->comp[1] = _mm_mul_ps( diagonal->comp[1], scale->comp[1] );
+	out_diagonal->comp[2] = _mm_mul_ps( diagonal->comp[2], scale->comp[2] );
 }
 
 

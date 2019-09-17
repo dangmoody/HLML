@@ -275,9 +275,8 @@ TEMPER_TEST( TestBitwiseUnary_uint2 )
 	TEMPER_PASS();
 }
 
-TEMPER_TEST( TestLength_uint2 )
+TEMPER_TEST( TestLength_Scalar_uint2 )
 {
-	// scalar
 	uint2 vec = uint2( 2U );
 
 	TEMPER_EXPECT_TRUE( floateq( lengthsqr( vec ), 8.0f ) );
@@ -286,7 +285,7 @@ TEMPER_TEST( TestLength_uint2 )
 	TEMPER_PASS();
 }
 
-TEMPER_TEST( TestDistance_uint2 )
+TEMPER_TEST( TestDistance_Scalar_uint2 )
 {
 	float answerDistanceSqr = 104.0f;
 	float answerDistance    = 10.198039f;
@@ -294,7 +293,6 @@ TEMPER_TEST( TestDistance_uint2 )
 	uint2 a = uint2( 7U, 4U );
 	uint2 b = uint2( 17U, 6U );
 
-	// scalar
 	float distSqr = distancesqr( a, b );
 	float dist    = distance( a, b );
 
@@ -333,7 +331,7 @@ TEMPER_SUITE( Test_uint2 )
 	TEMPER_RUN_TEST( TestBitwise_ShiftLeft_uint2 );
 	TEMPER_RUN_TEST( TestBitwise_ShiftRight_uint2 );
 	TEMPER_RUN_TEST( TestBitwiseUnary_uint2 );
-	TEMPER_RUN_TEST( TestLength_uint2 );
-	TEMPER_RUN_TEST( TestDistance_uint2 );
+	TEMPER_RUN_TEST( TestLength_Scalar_uint2 );
+	TEMPER_RUN_TEST( TestDistance_Scalar_uint2 );
 	TEMPER_RUN_TEST( TestStep_uint2 );
 }

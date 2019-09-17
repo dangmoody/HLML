@@ -37,147 +37,104 @@ SOFTWARE.
 #include <immintrin.h>
 
 // float2
-struct sse_input_length_float2_t
+struct float2_sse_t
 {
 	__m128 comp[2];
 };
 
 /// \relates float2
 /// \brief Finds the squared length of each input vector and stores it in its respective component in the output register.
-inline void lengthsq_sse( const sse_input_length_float2_t* in, __m128* out_results );
+inline void lengthsq_sse( const float2_sse_t* in, __m128* out_results );
 
 /// \relates float2
 /// \brief Finds the length of each input vector and stores it in its respective component in the output register.
-inline void length_sse( const sse_input_length_float2_t* in, __m128* out_results );
-
-struct sse_input_normalize_float2_t
-{
-	__m128 comp[2];
-};
+inline void length_sse( const float2_sse_t* in, __m128* out_results );
 
 /// \relates float2
 /// \brief Normalizes each input array element and stores the normalized result in the corresponding element in the output.
-inline void normalize_sse( const sse_input_normalize_float2_t* in, __m128 out_results[2] );
-
-struct sse_input_dot_float2_t
-{
-	__m128 lhs[2];
-	__m128 rhs[2];
-};
+inline void normalize_sse( const float2_sse_t* in, float2_sse_t* out );
 
 /// \relates float2
 /// \brief Performs a dot-product on each index of the left-hand-side and right-hand-side registers, respectively, and stores the result in its respective component in the output register.
-inline void dot_sse( const sse_input_dot_float2_t* in, __m128* out_results );
-
-struct sse_input_distance_float2_t
-{
-	__m128 lhs[2];
-	__m128 rhs[2];
-};
+inline void dot_sse( const float2_sse_t* lhs, const float2_sse_t* rhs, __m128* out_results );
 
 /// \relates float2
 /// \brief Finds the squared distance between each vector and stores the result in its respective component in the output register.
-inline void distancesq_sse( const sse_input_distance_float2_t* in, __m128* out_results );
+inline void distancesq_sse( const float2_sse_t* lhs, const float2_sse_t* rhs, __m128* out_results );
 
 /// \relates float2
 /// \brief Finds the distance between each vector and stores the result in its respective component in the output register.
-inline void distance_sse( const sse_input_distance_float2_t* in, __m128* out_results );
+inline void distance_sse( const float2_sse_t* lhs, const float2_sse_t* rhs, __m128* out_results );
 
 
 // float3
-struct sse_input_length_float3_t
+struct float3_sse_t
 {
 	__m128 comp[3];
 };
 
 /// \relates float3
 /// \brief Finds the squared length of each input vector and stores it in its respective component in the output register.
-inline void lengthsq_sse( const sse_input_length_float3_t* in, __m128* out_results );
+inline void lengthsq_sse( const float3_sse_t* in, __m128* out_results );
 
 /// \relates float3
 /// \brief Finds the length of each input vector and stores it in its respective component in the output register.
-inline void length_sse( const sse_input_length_float3_t* in, __m128* out_results );
-
-struct sse_input_normalize_float3_t
-{
-	__m128 comp[3];
-};
+inline void length_sse( const float3_sse_t* in, __m128* out_results );
 
 /// \relates float3
 /// \brief Normalizes each input array element and stores the normalized result in the corresponding element in the output.
-inline void normalize_sse( const sse_input_normalize_float3_t* in, __m128 out_results[3] );
-
-struct sse_input_dot_float3_t
-{
-	__m128 lhs[3];
-	__m128 rhs[3];
-};
+inline void normalize_sse( const float3_sse_t* in, float3_sse_t* out );
 
 /// \relates float3
 /// \brief Performs a dot-product on each index of the left-hand-side and right-hand-side registers, respectively, and stores the result in its respective component in the output register.
-inline void dot_sse( const sse_input_dot_float3_t* in, __m128* out_results );
+inline void dot_sse( const float3_sse_t* lhs, const float3_sse_t* rhs, __m128* out_results );
 
-struct sse_input_distance_float3_t
-{
-	__m128 lhs[3];
-	__m128 rhs[3];
-};
+/// \relates float3
+/// \brief Stores the cross product of register vectors lhs and rhs into out_results.
+inline void cross_sse( const float3_sse_t* lhs, const float3_sse_t* rhs, float3_sse_t* out_results );
 
 /// \relates float3
 /// \brief Finds the squared distance between each vector and stores the result in its respective component in the output register.
-inline void distancesq_sse( const sse_input_distance_float3_t* in, __m128* out_results );
+inline void distancesq_sse( const float3_sse_t* lhs, const float3_sse_t* rhs, __m128* out_results );
 
 /// \relates float3
 /// \brief Finds the distance between each vector and stores the result in its respective component in the output register.
-inline void distance_sse( const sse_input_distance_float3_t* in, __m128* out_results );
+inline void distance_sse( const float3_sse_t* lhs, const float3_sse_t* rhs, __m128* out_results );
 
 
 // float4
-struct sse_input_length_float4_t
+struct float4_sse_t
 {
 	__m128 comp[4];
 };
 
 /// \relates float4
 /// \brief Finds the squared length of each input vector and stores it in its respective component in the output register.
-inline void lengthsq_sse( const sse_input_length_float4_t* in, __m128* out_results );
+inline void lengthsq_sse( const float4_sse_t* in, __m128* out_results );
 
 /// \relates float4
 /// \brief Finds the length of each input vector and stores it in its respective component in the output register.
-inline void length_sse( const sse_input_length_float4_t* in, __m128* out_results );
-
-struct sse_input_normalize_float4_t
-{
-	__m128 comp[4];
-};
+inline void length_sse( const float4_sse_t* in, __m128* out_results );
 
 /// \relates float4
 /// \brief Normalizes each input array element and stores the normalized result in the corresponding element in the output.
-inline void normalize_sse( const sse_input_normalize_float4_t* in, __m128 out_results[4] );
-
-struct sse_input_dot_float4_t
-{
-	__m128 lhs[4];
-	__m128 rhs[4];
-};
+inline void normalize_sse( const float4_sse_t* in, float4_sse_t* out );
 
 /// \relates float4
 /// \brief Performs a dot-product on each index of the left-hand-side and right-hand-side registers, respectively, and stores the result in its respective component in the output register.
-inline void dot_sse( const sse_input_dot_float4_t* in, __m128* out_results );
+inline void dot_sse( const float4_sse_t* lhs, const float4_sse_t* rhs, __m128* out_results );
 
-struct sse_input_distance_float4_t
-{
-	__m128 lhs[4];
-	__m128 rhs[4];
-};
+/// \relates float4
+/// \brief Stores the cross product of register vectors lhs and rhs into out_results.
+inline void cross_sse( const float4_sse_t* lhs, const float4_sse_t* rhs, float4_sse_t* out_results );
 
 /// \relates float4
 /// \brief Finds the squared distance between each vector and stores the result in its respective component in the output register.
-inline void distancesq_sse( const sse_input_distance_float4_t* in, __m128* out_results );
+inline void distancesq_sse( const float4_sse_t* lhs, const float4_sse_t* rhs, __m128* out_results );
 
 /// \relates float4
 /// \brief Finds the distance between each vector and stores the result in its respective component in the output register.
-inline void distance_sse( const sse_input_distance_float4_t* in, __m128* out_results );
+inline void distance_sse( const float4_sse_t* lhs, const float4_sse_t* rhs, __m128* out_results );
 
 
 #include "hlml_functions_vector_sse.inl"
