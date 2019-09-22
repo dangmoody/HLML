@@ -2,7 +2,7 @@
 ===========================================================================
 
 Temper.
-v1.0.2
+v1.1.0
 
 Distributed under MIT License:
 Copyright (c) 2019 Dan Moody (daniel.guy.moody@gmail.com)
@@ -134,11 +134,25 @@ touching it.
 4. COMMAND LINE USAGE:
 Temper supports a few command line options:
 
-	--help		: Shows the help in console.
-	-t <name>	: Only run the test with the given name.
-	-s <suite>	: Only run the suite with the given name.
-	-a			: Abort immediately on test failure.
-	-c			: Enable colored output.
+		-h
+		--help
+			Shows this help and exits the program.
+
+		-t <name>
+			Only run the test with the given name.
+
+		-s <suite>
+			Only run the suite with the given name.
+
+		-a
+			Abort immediately on test failure.
+
+		-c
+			Enable colored output.
+
+		--time-unit=<unit>
+			Set the timer unit of measurement.
+			Can be either: clocks, ns, us, ms, or seconds.
 
 These settings can also be configured via user functions.
 
@@ -161,6 +175,11 @@ And to filter tests without command line args:
 	// you will still need to manually run it
 	TEMPER_FILTER_TEST( XShouldEqual0 );
 
+To set the time unit, you'll need to set the `temperTimeUnit_t` enum via (for example):
+
+	// sets the unit of measurement for how long tests take to run to microseconds
+	TEMPER_SET_TIME_UNIT( TEMPER_TIME_UNIT_US );
+
 ===========================================================================
 */
 
@@ -170,35 +189,13 @@ And to filter tests without command line args:
 extern "C" {
 #endif
 
-#ifdef _WIN32
-#define WIN32_LEAN_AND_MEAN 1
-#include <Windows.h>
-#elif defined( __linux__ ) || defined( __APPLE__ )
-#include <time.h>
-#endif
-
-#include <stdio.h>
-#include <stdlib.h>
-#include <memory.h>
-#include <assert.h>
-
-#include <stdint.h>
-#include <stdbool.h>
-
-#if defined( __clang__ )
-#pragma clang diagnostic push
-#elif defined( __GNUC__ )
-#pragma GCC diagnostic push
-#elif defined( _MSC_VER )
-#pragma warning( push, 4 )
-#endif // defined( __clang__ )
-
 #if defined( __clang__ )
 #pragma clang diagnostic ignored "-Wunused-function"
 #pragma clang diagnostic ignored "-Wmissing-field-initializers"
 #pragma clang diagnostic ignored "-Wzero-as-null-pointer-constant"
 #pragma clang diagnostic ignored "-Wold-style-cast"
 #pragma clang diagnostic ignored "-Wc++98-compat-pedantic"
+#pragma clang diagnostic ignored "-Wreserved-id-macro"
 #elif defined( __GNUC__ )
 #pragma GCC diagnostic ignored "-Wunused-function"
 #pragma GCC diagnostic ignored "-Wmissing-field-initializers"
@@ -210,6 +207,40 @@ extern "C" {
 #pragma warning( disable : 4505 )	// unused function
 #pragma warning( disable : 4551 )	// function call missing argument list
 #endif // defined( __clang__ )
+
+#if defined( __linux__ ) || defined( __APPLE__ )
+#pragma push_macro( "_POSIX_C_SOURCE" )
+#undef _POSIX_C_SOURCE
+#define _POSIX_C_SOURCE 199309L
+#endif
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <memory.h>
+#include <assert.h>
+
+#include <string.h>
+
+#include <stdint.h>
+
+#ifndef __cplusplus
+#include <stdbool.h>
+#endif
+
+#if defined( __clang__ )
+#pragma clang diagnostic push
+#elif defined( __GNUC__ )
+#pragma GCC diagnostic push
+#elif defined( _MSC_VER )
+#pragma warning( push, 4 )
+#endif // defined( __clang__ )
+
+#if defined( _WIN32 )
+#define WIN32_LEAN_AND_MEAN 1
+#include <Windows.h>
+#elif defined( __linux__ ) || defined( __APPLE__ )
+#include <time.h>
+#endif // defined( _WIN32 )
 
 #if defined( _WIN32 )
 #define TEMPER_COLOR_DEFAULT		0x07
@@ -240,11 +271,11 @@ typedef enum temperTestResult_t {
 } temperTestResult_t;
 
 typedef enum temperTimeUnit_t {
-	TEMPER_TIME_UNIT_CLOCKS	= 0,
+	TEMPER_TIME_UNIT_CLOCKS			= 0,
 	TEMPER_TIME_UNIT_NS,
 	TEMPER_TIME_UNIT_US,
 	TEMPER_TIME_UNIT_MS,
-	TEMPER_TIME_UNIT_SECONDS,
+	TEMPER_TIME_UNIT_SECONDS
 } temperTimeUnit_t;
 
 typedef void( *temperTestCallback_t )( void* userdata );
@@ -345,12 +376,12 @@ static void TemperShowUsageInternal( void ) {
 		"        Enable colored output.\n"
 		"\n"
 		"    --time-unit=<unit>\n"
-		"        Set the timer unit of measurement\n"
+		"        Set the timer unit of measurement.\n"
 		"        Can be either: clocks, ns, us, ms, or seconds.\n"
 	);
 }
 
-static double TemperGetTimestamp( void ) {
+static double TemperGetTimestampInternal( void ) {
 #if defined( _WIN32 )
 	static LARGE_INTEGER frequency;
 	if ( frequency.QuadPart == 0 ) {
@@ -383,7 +414,7 @@ static double TemperGetTimestamp( void ) {
 #endif
 
 	// should never get here
-	assert( false && "Unrecognised time unit passed into TemperGetTimestamp().\n" );
+	assert( false && "Unrecognised time unit passed into TemperGetTimestampInternal().\n" );
 
 	return 0.0;
 }
@@ -474,12 +505,12 @@ static double TemperGetTimestamp( void ) {
 						if ( strcmp( arg, "--help" ) == 0 ) { \
 							TemperShowUsageInternal(); \
 							exit( EXIT_SUCCESS ); \
-						} else if ( strncmp( arg, "--time-unit=", strlen( "--time-unit=" ) ) == 0 ) { \
+						} else if ( strcmp( arg, "--time-unit=" ) == 0 ) { \
 							const char* unitStart = (const char*) memchr( arg, '=', arglen ); \
 							unitStart++; \
 \
-							char unitStr[16]; \
-							snprintf( unitStr, 16, "%s", unitStart ); \
+							char unitStr[1024]; \
+							sprintf( unitStr, "%s", unitStart ); \
 \
 							if ( strcmp( unitStart, "clocks" ) == 0 ) { \
 								TEMPER_SET_TIME_UNIT( TEMPER_TIME_UNIT_CLOCKS ); \
@@ -599,9 +630,9 @@ static double TemperGetTimestamp( void ) {
 			g_testContext.testFuncStart( g_testContext.testFuncStartData ); \
 		} \
 \
-		double start = TemperGetTimestamp(); \
+		double start = TemperGetTimestampInternal(); \
 		result = test(); /* run the test! */ \
-		double end = TemperGetTimestamp(); \
+		double end = TemperGetTimestampInternal(); \
 \
 		g_testContext.testTime = end - start; \
 \
@@ -700,6 +731,10 @@ static double TemperGetTimestamp( void ) {
 
 #define TEMPER_FAIL() \
 	TEMPER_FAIL_TEST_INTERNAL( NULL )
+
+#if defined( __linux__ ) || defined( __APPLE__ )
+#pragma pop_macro( "_POSIX_C_SOURCE" )
+#endif
 
 #if defined( __clang__ )
 #pragma clang diagnostic pop
