@@ -151,7 +151,7 @@ static bool32 GenerateFunctionsScalar( void ) {
 
 		// scalar only funcs
 		Gen_Floateq( type, &sb );
-		
+
 		Gen_Sign( type, &sb );
 
 		Gen_Radians( type, &sb );
