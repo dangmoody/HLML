@@ -25,8 +25,6 @@ along with The HLML Generator.  If not, see <http://www.gnu.org/licenses/>.
 
 #include "gen_common.h"
 
-extern void		Gen_GetParmListQuaternion(const genType_t type, const float* values, char* outParmListStr);
-
 extern void		Gen_QuaternionMultiply(const genType_t type, stringBuilder_t* sbHeader, stringBuilder_t* sbInl);
 extern void		Gen_QuaternionMultiplyScalar(const genType_t type, stringBuilder_t* sbHeader, stringBuilder_t* sbInl);
 extern void		Gen_QuaternionLength(const genType_t type, stringBuilder_t* sbHeader, stringBuilder_t* sbInl);

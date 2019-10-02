@@ -50,7 +50,7 @@ float4 quaternion_mul( const float4& lhs, const float& rhs )
 	return float4( imaginary.x, imaginary.y, imaginary.z, scalar.w );
 }
 
-float quaternion_magnitude( const float4& quat )
+float quaternion_length( const float4& quat )
 {
 	return sqrt( ( quat.x * quat.x ) + ( quat.y * quat.y ) + ( quat.z * quat.z ) + ( quat.w * quat.w ) );
 }
@@ -144,7 +144,7 @@ double4 quaternion_mul( const double4& lhs, const double& rhs )
 	return double4( imaginary.x, imaginary.y, imaginary.z, scalar.w );
 }
 
-double quaternion_magnitude( const double4& quat )
+double quaternion_length( const double4& quat )
 {
 	return sqrt( ( quat.x * quat.x ) + ( quat.y * quat.y ) + ( quat.z * quat.z ) + ( quat.w * quat.w ) );
 }

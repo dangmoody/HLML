@@ -42,7 +42,7 @@ inline float4 quaternion_mul( const float4& lhs, const float4& rhs );
 
 inline float4 quaternion_mul( const float4& lhs, const float& rhs );
 
-inline float quaternion_magnitude( const float4& quat );
+inline float quaternion_length( const float4& quat );
 
 inline float4 quaternion_normalize( const float4& quat );
 
@@ -62,7 +62,7 @@ inline double4 quaternion_mul( const double4& lhs, const double4& rhs );
 
 inline double4 quaternion_mul( const double4& lhs, const double& rhs );
 
-inline double quaternion_magnitude( const double4& quat );
+inline double quaternion_length( const double4& quat );
 
 inline double4 quaternion_normalize( const double4& quat );
 

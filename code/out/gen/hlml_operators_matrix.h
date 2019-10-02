@@ -34,6 +34,15 @@ SOFTWARE.
 
 #pragma once
 
+#include "bool2x2.h"
+#include "bool2x3.h"
+#include "bool2x4.h"
+#include "bool3x2.h"
+#include "bool3x3.h"
+#include "bool3x4.h"
+#include "bool4x2.h"
+#include "bool4x3.h"
+#include "bool4x4.h"
 #include "int2x2.h"
 #include "int2x3.h"
 #include "int2x4.h"

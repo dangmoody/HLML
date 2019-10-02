@@ -210,5 +210,11 @@
     <ClCompile Include="test_scalar_uint32_t.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="test_quaternion_double4.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="test_quaternion_float4.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

@@ -28,31 +28,6 @@ along with The HLML Generator.  If not, see <http://www.gnu.org/licenses/>.
 
 #include <assert.h>
 
-void Gen_GetParmListQuaternion(const genType_t type, const float* values, char* outParmListStr) {
-	assert(values);
-	assert(outParmListStr);
-
-	char valueStr[GEN_STRING_LENGTH_NUMERIC_LITERAL];
-
-	int pos = 0;
-
-	pos += snprintf(outParmListStr + pos, GEN_STRING_LENGTH_PARM_LIST_VECTOR, "( ");
-
-	for (u32 i = 0; i < 4; i++) {
-		const float value = values[i];
-
-		Gen_GetNumericLiteral(type, value, valueStr);
-
-		pos += snprintf(outParmListStr + pos, GEN_STRING_LENGTH_PARM_LIST_VECTOR, "%s", valueStr);
-
-		if (i != 3) {
-			pos += snprintf(outParmListStr + pos, GEN_STRING_LENGTH_PARM_LIST_VECTOR, ", ");
-		}
-	}
-
-	pos += snprintf(outParmListStr + pos, GEN_STRING_LENGTH_PARM_LIST_VECTOR, " )");
-}
-
 void Gen_QuaternionMultiply(const genType_t type, stringBuilder_t* sbHeader, stringBuilder_t* sbInl) {
 	if (Gen_TypeIsFloatingPoint(type) == false) {
 		return;

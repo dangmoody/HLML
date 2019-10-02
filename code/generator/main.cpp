@@ -32,6 +32,7 @@ along with The HLML Generator.  If not, see <http://www.gnu.org/licenses/>.
 #include "GeneratorScalarTests.h"
 #include "GeneratorVectorTests.h"
 #include "GeneratorMatrixTests.h"
+#include "GeneratorQuaternionTests.h"
 
 #include "gen_common.h"
 #include "gen_common_sse.h"
@@ -755,10 +756,6 @@ static bool32 GenerateOperatorsMatrix( void ) {
 	for ( u32 typeIndex = 0; typeIndex < GEN_TYPE_COUNT; typeIndex++ ) {
 		genType_t type = (genType_t) typeIndex;
 
-		if ( type == GEN_TYPE_BOOL ) {
-			continue;
-		}
-
 		const char* typeString = Gen_GetTypeString( type );
 
 		for ( u32 row = GEN_COMPONENT_COUNT_MIN; row <= GEN_COMPONENT_COUNT_MAX; row++ ) {
@@ -877,6 +874,30 @@ static bool32 GenerateTestsMatrix( void ) {
 				printf( "OK.\n" );
 			}
 		}
+	}
+
+	return true;
+}
+
+static bool32 GenerateTestsQuaternion(void) {
+	GeneratorQuaternionTests gen;
+
+	for (u32 typeIndex = 0; typeIndex < GEN_TYPE_COUNT; typeIndex++) {
+		genType_t type = (genType_t)typeIndex;
+
+		if (Gen_TypeIsFloatingPoint(type) == false) {
+			continue;
+		}
+
+		const char* typeString = Gen_GetTypeString(type);
+
+		printf("Generating test_quaternion_%s.cpp...", typeString);
+
+		if (!gen.Generate(type)) {
+			return false;
+		}
+
+		printf("OK.\n");
 	}
 
 	return true;
@@ -1065,6 +1086,7 @@ int main( int argc, char** argv ) {
 	FAIL_IF( !GenerateTestsScalar(), "Failed generating scalar tests.\n" );
 	FAIL_IF( !GenerateTestsVector(), "Failed generating vector tests.\n" );
 	FAIL_IF( !GenerateTestsMatrix(), "Failed generating matrix tests.\n" );
+	FAIL_IF( !GenerateTestsQuaternion(), "Failed generating matrix tests.\n" );
 	FAIL_IF( !GenerateTestsMain(),   "Failed generating \"" GEN_TESTS_FOLDER_PATH "/main.cpp\".\n" );
 	printf( "======= Done. =======\n\n" );
 
