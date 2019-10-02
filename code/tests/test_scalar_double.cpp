@@ -2,6 +2,9 @@
 
 #include <temper/temper.h>
 
+static double g_deg = 90.0;
+static double g_rad = 1.57079637;
+
 TEMPER_TEST( TestFloateq_double )
 {
 	double a = 5.0;
@@ -24,14 +27,10 @@ TEMPER_TEST( TestSign_double )
 	TEMPER_PASS();
 }
 
-TEMPER_TEST( TestDegreesRadians_double )
+TEMPER_TEST( TestDegreesRadians_Scalar_double )
 {
-	// scalar
-	double deg = 90.0;
-	double rad = 1.57079637;
-
-	TEMPER_EXPECT_TRUE( doubleeq( radians( deg ), 1.57079637 ) );
-	TEMPER_EXPECT_TRUE( doubleeq( degrees( rad ), 90.0 ) );
+	TEMPER_EXPECT_TRUE( doubleeq( radians( g_deg ), 1.57079637 ) );
+	TEMPER_EXPECT_TRUE( doubleeq( degrees( g_rad ), 90.0 ) );
 
 	TEMPER_PASS();
 }
@@ -75,9 +74,8 @@ TEMPER_TEST( TestSaturate_double )
 	TEMPER_PASS();
 }
 
-TEMPER_TEST( TestLerp_double )
+TEMPER_TEST( TestLerp_Scalar_double )
 {
-	// scalar
 	double a = 1.0;
 	double b = 3.0;
 
@@ -92,9 +90,9 @@ TEMPER_SUITE( Test_double )
 {
 	TEMPER_RUN_TEST( TestFloateq_double );
 	TEMPER_RUN_TEST( TestSign_double );
-	TEMPER_RUN_TEST( TestDegreesRadians_double );
+	TEMPER_RUN_TEST( TestDegreesRadians_Scalar_double );
 	TEMPER_RUN_TEST( TestMinMax_double );
 	TEMPER_RUN_TEST( TestClamp_double );
 	TEMPER_RUN_TEST( TestSaturate_double );
-	TEMPER_RUN_TEST( TestLerp_double );
+	TEMPER_RUN_TEST( TestLerp_Scalar_double );
 }

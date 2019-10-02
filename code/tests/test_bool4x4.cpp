@@ -36,6 +36,27 @@ SOFTWARE.
 
 #include <temper/temper.h>
 
+static bool4x4 g_identityMatrix;
+
+static bool4x4 g_matrixMulLHS = bool4x4(
+		true, true, true, true,
+		true, true, true, true,
+		true, true, true, true,
+		true, true, true, true
+	);
+static bool4x4 g_matrixMulRHS = bool4x4(
+		true, true, true, true,
+		true, true, true, true,
+		true, true, true, true,
+		true, true, true, true
+	);
+static bool4x4 g_matrixMulAnswer = bool4x4(
+		true, true, true, true,
+		true, true, true, true,
+		true, true, true, true,
+		true, true, true, true
+	);
+
 TEMPER_TEST( TestAssignment_bool4x4 )
 {
 	bool4x4 mat;
@@ -86,9 +107,8 @@ TEMPER_TEST( TestArray_bool4x4 )
 	TEMPER_PASS();
 }
 
-TEMPER_TEST( TestIdentity_bool4x4 )
+TEMPER_TEST( TestIdentity_Scalar_bool4x4 )
 {
-	// scalar
 	bool4x4 id = bool4x4(
 		true, false, false, false,
 		false, true, false, false,
@@ -105,9 +125,8 @@ TEMPER_TEST( TestIdentity_bool4x4 )
 	TEMPER_PASS();
 }
 
-TEMPER_TEST( TestTranspose_bool4x4 )
+TEMPER_TEST( TestTranspose_Scalar_bool4x4 )
 {
-	// scalar
 	bool4x4 mat = bool4x4(
 		false, true, true, true,
 		true, true, true, true,
@@ -130,6 +149,6 @@ TEMPER_SUITE( Test_bool4x4 )
 {
 	TEMPER_RUN_TEST( TestAssignment_bool4x4 );
 	TEMPER_RUN_TEST( TestArray_bool4x4 );
-	TEMPER_RUN_TEST( TestIdentity_bool4x4 );
-	TEMPER_RUN_TEST( TestTranspose_bool4x4 );
+	TEMPER_RUN_TEST( TestIdentity_Scalar_bool4x4 );
+	TEMPER_RUN_TEST( TestTranspose_Scalar_bool4x4 );
 }

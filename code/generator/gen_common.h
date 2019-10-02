@@ -205,17 +205,6 @@ static const char* GEN_OPERATOR_STRINGS_ARITHMETIC[GEN_OP_ARITHMETIC_COUNT] = {
 	"div"
 };
 
-// type-to-string functions
-inline const char*	Gen_GetTypeString( const genType_t type );
-inline const char*	Gen_GetMemberTypeString( const genType_t type );
-inline void			Gen_GetFullTypeName( const genType_t type, const u32 numRows, const u32 numCols, char* outString );
-inline void			Gen_GetParmTypeName( const genType_t type, const u32 numComponents, char* outString );
-
-inline const char*	Gen_GetDefaultLiteralValue( const genType_t type );
-inline void			Gen_GetNumericLiteral( const genType_t type, const float value, char* outString, const u32 decimalPlaces = 0 );
-
-inline const char*	Gen_GetHandString( const genHand_t hand );
-inline const char*	Gen_GetClipSpaceRangeString( const genClipSpace_t range );
 
 // type helper functions
 inline genType_t	Gen_GetSupportedFloatingPointType( const genType_t type ) { return ( type == GEN_TYPE_DOUBLE ) ? GEN_TYPE_DOUBLE : GEN_TYPE_FLOAT; }
@@ -236,6 +225,7 @@ inline const char*	Gen_GetFuncNameFloateq( const genType_t type ) { return ( typ
 // hlml constants
 inline const char*	Gen_GetConstantNamePi( const genType_t type ) { return ( type == GEN_TYPE_DOUBLE ) ? "HLML_PI" : "(float)( HLML_PI )"; }
 inline const char*	Gen_GetConstantNameEpsilon( const genType_t type ) { return ( type == GEN_TYPE_DOUBLE ) ? "HLML_EPSILON" : "(float)( HLML_EPSILON )"; }
+
 
 // parm list/array helpers
 extern void			Gen_GetValuesArray1D( const genType_t type, const u32 numValues, const float* values, stringBuilder_t* sb );
@@ -268,7 +258,8 @@ extern void			Gen_OperatorComponentWiseArithmeticRhsType( const genType_t type, 
 extern void			Gen_OperatorNotEquals( const genType_t type, const u32 numRows, const u32 numCols, stringBuilder_t* sbHeader, stringBuilder_t* sbInl );
 
 
-const char* Gen_GetTypeString( const genType_t type ) {
+// type-to-string functions
+inline const char* Gen_GetTypeString( const genType_t type ) {
 	switch ( type ) {
 		case GEN_TYPE_BOOL:		return "bool";
 		case GEN_TYPE_INT:		return "int";
@@ -283,7 +274,7 @@ const char* Gen_GetTypeString( const genType_t type ) {
 	}
 }
 
-const char* Gen_GetMemberTypeString( const genType_t type ) {
+inline const char* Gen_GetMemberTypeString( const genType_t type ) {
 	switch ( type ) {
 		case GEN_TYPE_BOOL:		return "bool32_t";
 		case GEN_TYPE_INT:		return "int32_t";
@@ -298,7 +289,7 @@ const char* Gen_GetMemberTypeString( const genType_t type ) {
 	}
 }
 
-void Gen_GetFullTypeName( const genType_t type, const u32 numRows, const u32 numCols, char* outString ) {
+inline void Gen_GetFullTypeName( const genType_t type, const u32 numRows, const u32 numCols, char* outString ) {
 	assert( numRows >= 1 );	// 1 for vectors
 	assert( numRows <= GEN_COMPONENT_COUNT_MAX );
 	assert( numCols >= 1 );	// 1 for straight scalar types
@@ -326,7 +317,7 @@ void Gen_GetFullTypeName( const genType_t type, const u32 numRows, const u32 num
 	}
 }
 
-void Gen_GetParmTypeName( const genType_t type, const u32 numComponents, char* outString ) {
+inline void Gen_GetParmTypeName( const genType_t type, const u32 numComponents, char* outString ) {
 	if ( numComponents == 1 ) {
 		const char* memberTypeString = Gen_GetMemberTypeString( type );
 
@@ -334,11 +325,13 @@ void Gen_GetParmTypeName( const genType_t type, const u32 numComponents, char* o
 	} else {
 		const char* typeString = Gen_GetTypeString( type );
 
-		snprintf( outString, GEN_STRING_LENGTH_TYPE_NAME, "%s%d&", typeString, numComponents );
+		int length = snprintf( outString, GEN_STRING_LENGTH_TYPE_NAME, "%s%d&", typeString, numComponents );
+
+		assert( length < GEN_STRING_LENGTH_TYPE_NAME && "Type name string length constant needs to be increased." );
 	}
 }
 
-const char* Gen_GetDefaultLiteralValue( const genType_t type ) {
+inline const char* Gen_GetDefaultLiteralValue( const genType_t type ) {
 	switch ( type ) {
 		case GEN_TYPE_BOOL:		return "false";
 		case GEN_TYPE_INT:		return "0";
@@ -353,45 +346,49 @@ const char* Gen_GetDefaultLiteralValue( const genType_t type ) {
 	}
 }
 
-void Gen_GetNumericLiteral( const genType_t type, const float x, char* outStr, const u32 decimalPlaces ) {
+inline void Gen_GetNumericLiteral( const genType_t type, const float x, char* outStr, const u32 decimalPlaces = 0 ) {
+	int length = 0;
+
 	switch ( type ) {
 		case GEN_TYPE_BOOL:
-			snprintf( outStr, GEN_STRING_LENGTH_NUMERIC_LITERAL, "%s", ( x != 0 ) ? "true" : "false" );
+			length = snprintf( outStr, GEN_STRING_LENGTH_NUMERIC_LITERAL, "%s", ( x != 0 ) ? "true" : "false" );
 			break;
 
 		case GEN_TYPE_INT:
-			snprintf( outStr, GEN_STRING_LENGTH_NUMERIC_LITERAL, "%d", (s32) x );
+			length = snprintf( outStr, GEN_STRING_LENGTH_NUMERIC_LITERAL, "%d", (s32) x );
 			break;
 
 		case GEN_TYPE_UINT:
-			snprintf( outStr, GEN_STRING_LENGTH_NUMERIC_LITERAL, "%uU", (u32) x );
+			length = snprintf( outStr, GEN_STRING_LENGTH_NUMERIC_LITERAL, "%uU", (u32) x );
 			break;
 
 		case GEN_TYPE_FLOAT:
 			if ( decimalPlaces == 0 ) {
-				snprintf( outStr, GEN_STRING_LENGTH_NUMERIC_LITERAL, "%ff", (float) x );
+				length = snprintf( outStr, GEN_STRING_LENGTH_NUMERIC_LITERAL, "%ff", (float) x );
 			} else {
-				snprintf( outStr, GEN_STRING_LENGTH_NUMERIC_LITERAL, "%.*ff", decimalPlaces, (float) x );
+				length = snprintf( outStr, GEN_STRING_LENGTH_NUMERIC_LITERAL, "%.*ff", decimalPlaces, (float) x );
 			}
 			break;
 
 		case GEN_TYPE_DOUBLE:
 			if ( decimalPlaces == 0 ) {
-				snprintf( outStr, GEN_STRING_LENGTH_NUMERIC_LITERAL, "%f", (double) x );
+				length = snprintf( outStr, GEN_STRING_LENGTH_NUMERIC_LITERAL, "%f", (double) x );
 			} else {
-				snprintf( outStr, GEN_STRING_LENGTH_NUMERIC_LITERAL, "%.*f", decimalPlaces, (double) x );
+				length = snprintf( outStr, GEN_STRING_LENGTH_NUMERIC_LITERAL, "%.*f", decimalPlaces, (double) x );
 			}
 			break;
 
 		case GEN_TYPE_COUNT:
 		default:
 			printf( "ERROR: Bad genType_t enum passed through to: %s.\n", __FUNCTION__ );
-			snprintf( outStr, GEN_STRING_LENGTH_NUMERIC_LITERAL, "ERROR" );
+			length = snprintf( outStr, GEN_STRING_LENGTH_NUMERIC_LITERAL, "ERROR" );
 			break;
 	}
+
+	assert( length < GEN_STRING_LENGTH_NUMERIC_LITERAL && "Numeric literal string length constant needs to be increased." );
 }
 
-const char* Gen_GetHandString( const genHand_t hand ) {
+inline const char* Gen_GetHandString( const genHand_t hand ) {
 	switch ( hand ) {
 		case GEN_HAND_LEFT:		return "left";
 		case GEN_HAND_RIGHT:	return "right";
@@ -403,7 +400,7 @@ const char* Gen_GetHandString( const genHand_t hand ) {
 	}
 }
 
-const char* Gen_GetClipSpaceRangeString( const genClipSpace_t range ) {
+inline const char* Gen_GetClipSpaceRangeString( const genClipSpace_t range ) {
 	switch ( range ) {
 		case GEN_CLIP_SPACE_ZERO_TO_ONE:		return "zero to one";
 		case GEN_CLIP_SPACE_MINUS_ONE_TO_ONE:	return "minus-one to one";

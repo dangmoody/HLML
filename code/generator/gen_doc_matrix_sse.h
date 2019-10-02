@@ -131,3 +131,10 @@ inline void Doc_SSE_MatrixScale( stringBuilder_t* sb, const char* fullTypeName )
 		"/// \\brief Stores an array of %s diagonals that have been scaled by the given vector in the input.\n", fullTypeName, fullTypeName
 	);
 }
+
+inline void Doc_SSE_MatrixMul( stringBuilder_t* sb, const char* fullTypeName, const char* registerName ) {
+	String_Appendf( sb,
+		"/// \\relates %s\n" \
+		"/// \\brief Performs a matrix-multiplication of 2 matrices of %s registers.\n", fullTypeName, registerName
+	);
+}

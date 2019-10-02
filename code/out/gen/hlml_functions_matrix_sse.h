@@ -36,786 +36,374 @@ SOFTWARE.
 
 #include <immintrin.h>
 
-// float2x2
-/// \brief changes the sign of the values in register x
-#define _NEGATE_PS( x ) _mm_sub_ps( HLML_ZERO_SSE, (x) )
+#include "hlml_functions_vector_sse.h"
 
-struct sse_input_transpose_float2x2_t
+/// \brief Changes the sign of the values in the register.
+#define _NEGATE_PS( reg ) _mm_sub_ps( HLML_ZERO_SSE, (reg) )
+
+struct float2x2_sse_t;
+struct float2x3_sse_t;
+struct float2x4_sse_t;
+struct float3x2_sse_t;
+struct float3x3_sse_t;
+struct float3x4_sse_t;
+struct float4x2_sse_t;
+struct float4x3_sse_t;
+struct float4x4_sse_t;
+
+// float2x2
+struct float2x2_sse_t
 {
 	__m128 m[2][2];
 };
+
+/// \relates float2x2
+/// \brief Sets a matrix of __m128 registers to identity.
+inline void identity_sse( float2x2_sse_t* mat );
 
 /// \relates float2x2
 /// \brief Stores a transposed matrix of 2 x 2 __m128 registers in the output given the input 2 x 2 register matrix.
-inline void transpose_sse( const sse_input_transpose_float2x2_t* in, __m128 out_results[2][2] );
-
-struct sse_input_determinant_float2x2_t
-{
-	__m128 m[2][2];
-};
+inline void transpose_sse( const float2x2_sse_t* in, float2x2_sse_t* out );
 
 /// \relates float2x2
 /// \brief Stores the determinants of a matrix of 2 x 2 __m128 registers.
-inline void determinant_sse( const sse_input_determinant_float2x2_t* in, __m128* out_result );
-
-struct sse_input_inverse_float2x2_t
-{
-	__m128 m[2][2];
-};
+inline void determinant_sse( const float2x2_sse_t* in, __m128* out_result );
 
 /// \relates float2x2
 /// \brief Stores an inverted matrix of 2 x 2 __m128 registers.
-inline void inverse_sse( const sse_input_inverse_float2x2_t* in, __m128 out_results[2][2] );
-
-struct sse_input_comp_add_float2x2_t
-{
-	__m128 lhs[2][2];
-	__m128 rhs[2][2];
-};
+inline void inverse_sse( const float2x2_sse_t* in, float2x2_sse_t* out );
 
 /// \relates float2x2
 /// \brief Stores a matrix that is the result of the component-wise addition between the lhs and rhs __m128 registers of the input.
-inline void comp_add_sse( const sse_input_comp_add_float2x2_t* in, __m128 out_results[2][2] );
-
-struct sse_input_comp_sub_float2x2_t
-{
-	__m128 lhs[2][2];
-	__m128 rhs[2][2];
-};
+inline void comp_add_sse( const float2x2_sse_t* lhs, const float2x2_sse_t* rhs, float2x2_sse_t* out );
 
 /// \relates float2x2
 /// \brief Stores a matrix that is the result of the component-wise subtraction between the lhs and rhs __m128 registers of the input.
-inline void comp_sub_sse( const sse_input_comp_sub_float2x2_t* in, __m128 out_results[2][2] );
-
-struct sse_input_comp_mul_float2x2_t
-{
-	__m128 lhs[2][2];
-	__m128 rhs[2][2];
-};
+inline void comp_sub_sse( const float2x2_sse_t* lhs, const float2x2_sse_t* rhs, float2x2_sse_t* out );
 
 /// \relates float2x2
 /// \brief Stores a matrix that is the result of the component-wise multiplication between the lhs and rhs __m128 registers of the input.
-inline void comp_mul_sse( const sse_input_comp_mul_float2x2_t* in, __m128 out_results[2][2] );
-
-struct sse_input_comp_div_float2x2_t
-{
-	__m128 lhs[2][2];
-	__m128 rhs[2][2];
-};
+inline void comp_mul_sse( const float2x2_sse_t* lhs, const float2x2_sse_t* rhs, float2x2_sse_t* out );
 
 /// \relates float2x2
 /// \brief Stores a matrix that is the result of the component-wise division between the lhs and rhs __m128 registers of the input.
-inline void comp_div_sse( const sse_input_comp_div_float2x2_t* in, __m128 out_results[2][2] );
-
-struct sse_input_mul_float2x2_t
-{
-	__m128 lhs[2][2];
-	__m128 rhs[2][2];
-};
-
-inline void mul_sse( const sse_input_mul_float2x2_t* in, __m128 out_results[2][2] );
-
-struct sse_input_scale_float2x2_t
-{
-	__m128 diagonal[2];
-	__m128 scale[2];
-};
+inline void comp_div_sse( const float2x2_sse_t* lhs, const float2x2_sse_t* rhs, float2x2_sse_t* out );
 
 /// \relates float2x2
-/// \brief Stores an array of float2x2 diagonals that have been scaled by the given vector in the input.
-inline void scale_sse( const sse_input_scale_float2x2_t* in, __m128 out_results[2] );
+/// \brief Performs a matrix-multiplication of 2 matrices of __m128 registers.
+inline void mul_sse( const float2x2_sse_t* lhs, const float2x2_sse_t* rhs, float2x2_sse_t* out );
 
 
 // float2x3
-/// \brief changes the sign of the values in register x
-#define _NEGATE_PS( x ) _mm_sub_ps( HLML_ZERO_SSE, (x) )
-
-struct sse_input_transpose_float2x3_t
+struct float2x3_sse_t
 {
 	__m128 m[2][3];
 };
 
 /// \relates float2x3
-/// \brief Stores a transposed matrix of 3 x 2 __m128 registers in the output given the input 2 x 3 register matrix.
-inline void transpose_sse( const sse_input_transpose_float2x3_t* in, __m128 out_results[3][2] );
+/// \brief Sets a matrix of __m128 registers to identity.
+inline void identity_sse( float2x3_sse_t* mat );
 
-struct sse_input_comp_add_float2x3_t
-{
-	__m128 lhs[2][3];
-	__m128 rhs[2][3];
-};
+/// \relates float2x3
+/// \brief Stores a transposed matrix of 3 x 2 __m128 registers in the output given the input 2 x 3 register matrix.
+inline void transpose_sse( const float2x3_sse_t* in, float3x2_sse_t* out );
 
 /// \relates float2x3
 /// \brief Stores a matrix that is the result of the component-wise addition between the lhs and rhs __m128 registers of the input.
-inline void comp_add_sse( const sse_input_comp_add_float2x3_t* in, __m128 out_results[2][3] );
-
-struct sse_input_comp_sub_float2x3_t
-{
-	__m128 lhs[2][3];
-	__m128 rhs[2][3];
-};
+inline void comp_add_sse( const float2x3_sse_t* lhs, const float2x3_sse_t* rhs, float2x3_sse_t* out );
 
 /// \relates float2x3
 /// \brief Stores a matrix that is the result of the component-wise subtraction between the lhs and rhs __m128 registers of the input.
-inline void comp_sub_sse( const sse_input_comp_sub_float2x3_t* in, __m128 out_results[2][3] );
-
-struct sse_input_comp_mul_float2x3_t
-{
-	__m128 lhs[2][3];
-	__m128 rhs[2][3];
-};
+inline void comp_sub_sse( const float2x3_sse_t* lhs, const float2x3_sse_t* rhs, float2x3_sse_t* out );
 
 /// \relates float2x3
 /// \brief Stores a matrix that is the result of the component-wise multiplication between the lhs and rhs __m128 registers of the input.
-inline void comp_mul_sse( const sse_input_comp_mul_float2x3_t* in, __m128 out_results[2][3] );
-
-struct sse_input_comp_div_float2x3_t
-{
-	__m128 lhs[2][3];
-	__m128 rhs[2][3];
-};
+inline void comp_mul_sse( const float2x3_sse_t* lhs, const float2x3_sse_t* rhs, float2x3_sse_t* out );
 
 /// \relates float2x3
 /// \brief Stores a matrix that is the result of the component-wise division between the lhs and rhs __m128 registers of the input.
-inline void comp_div_sse( const sse_input_comp_div_float2x3_t* in, __m128 out_results[2][3] );
-
-struct sse_input_mul_float2x3_t
-{
-	__m128 lhs[2][3];
-	__m128 rhs[3][2];
-};
-
-inline void mul_sse( const sse_input_mul_float2x3_t* in, __m128 out_results[2][2] );
-
-struct sse_input_translate_float2x3_t
-{
-	__m128 column[2];
-	__m128 vec[2];
-};
+inline void comp_div_sse( const float2x3_sse_t* lhs, const float2x3_sse_t* rhs, float2x3_sse_t* out );
 
 /// \relates float2x3
-/// \brief Stores a last matrix column that has been translated by the given __m128 register vector in the input.
-inline void translate_sse( const sse_input_translate_float2x3_t* in, __m128 out_results[2] );
-
-struct sse_input_scale_float2x3_t
-{
-	__m128 diagonal[2];
-	__m128 scale[2];
-};
-
-/// \relates float2x3
-/// \brief Stores an array of float2x3 diagonals that have been scaled by the given vector in the input.
-inline void scale_sse( const sse_input_scale_float2x3_t* in, __m128 out_results[2] );
+/// \brief Performs a matrix-multiplication of 2 matrices of __m128 registers.
+inline void mul_sse( const float2x3_sse_t* lhs, const float3x2_sse_t* rhs, float2x2_sse_t* out );
 
 
 // float2x4
-/// \brief changes the sign of the values in register x
-#define _NEGATE_PS( x ) _mm_sub_ps( HLML_ZERO_SSE, (x) )
-
-struct sse_input_transpose_float2x4_t
+struct float2x4_sse_t
 {
 	__m128 m[2][4];
 };
 
 /// \relates float2x4
-/// \brief Stores a transposed matrix of 4 x 2 __m128 registers in the output given the input 2 x 4 register matrix.
-inline void transpose_sse( const sse_input_transpose_float2x4_t* in, __m128 out_results[4][2] );
+/// \brief Sets a matrix of __m128 registers to identity.
+inline void identity_sse( float2x4_sse_t* mat );
 
-struct sse_input_comp_add_float2x4_t
-{
-	__m128 lhs[2][4];
-	__m128 rhs[2][4];
-};
+/// \relates float2x4
+/// \brief Stores a transposed matrix of 4 x 2 __m128 registers in the output given the input 2 x 4 register matrix.
+inline void transpose_sse( const float2x4_sse_t* in, float4x2_sse_t* out );
 
 /// \relates float2x4
 /// \brief Stores a matrix that is the result of the component-wise addition between the lhs and rhs __m128 registers of the input.
-inline void comp_add_sse( const sse_input_comp_add_float2x4_t* in, __m128 out_results[2][4] );
-
-struct sse_input_comp_sub_float2x4_t
-{
-	__m128 lhs[2][4];
-	__m128 rhs[2][4];
-};
+inline void comp_add_sse( const float2x4_sse_t* lhs, const float2x4_sse_t* rhs, float2x4_sse_t* out );
 
 /// \relates float2x4
 /// \brief Stores a matrix that is the result of the component-wise subtraction between the lhs and rhs __m128 registers of the input.
-inline void comp_sub_sse( const sse_input_comp_sub_float2x4_t* in, __m128 out_results[2][4] );
-
-struct sse_input_comp_mul_float2x4_t
-{
-	__m128 lhs[2][4];
-	__m128 rhs[2][4];
-};
+inline void comp_sub_sse( const float2x4_sse_t* lhs, const float2x4_sse_t* rhs, float2x4_sse_t* out );
 
 /// \relates float2x4
 /// \brief Stores a matrix that is the result of the component-wise multiplication between the lhs and rhs __m128 registers of the input.
-inline void comp_mul_sse( const sse_input_comp_mul_float2x4_t* in, __m128 out_results[2][4] );
-
-struct sse_input_comp_div_float2x4_t
-{
-	__m128 lhs[2][4];
-	__m128 rhs[2][4];
-};
+inline void comp_mul_sse( const float2x4_sse_t* lhs, const float2x4_sse_t* rhs, float2x4_sse_t* out );
 
 /// \relates float2x4
 /// \brief Stores a matrix that is the result of the component-wise division between the lhs and rhs __m128 registers of the input.
-inline void comp_div_sse( const sse_input_comp_div_float2x4_t* in, __m128 out_results[2][4] );
-
-struct sse_input_mul_float2x4_t
-{
-	__m128 lhs[2][4];
-	__m128 rhs[4][2];
-};
-
-inline void mul_sse( const sse_input_mul_float2x4_t* in, __m128 out_results[2][2] );
-
-struct sse_input_translate_float2x4_t
-{
-	__m128 column[3];
-	__m128 vec[3];
-};
+inline void comp_div_sse( const float2x4_sse_t* lhs, const float2x4_sse_t* rhs, float2x4_sse_t* out );
 
 /// \relates float2x4
-/// \brief Stores a last matrix column that has been translated by the given __m128 register vector in the input.
-inline void translate_sse( const sse_input_translate_float2x4_t* in, __m128 out_results[3] );
-
-struct sse_input_scale_float2x4_t
-{
-	__m128 diagonal[2];
-	__m128 scale[2];
-};
-
-/// \relates float2x4
-/// \brief Stores an array of float2x4 diagonals that have been scaled by the given vector in the input.
-inline void scale_sse( const sse_input_scale_float2x4_t* in, __m128 out_results[2] );
+/// \brief Performs a matrix-multiplication of 2 matrices of __m128 registers.
+inline void mul_sse( const float2x4_sse_t* lhs, const float4x2_sse_t* rhs, float2x2_sse_t* out );
 
 
 // float3x2
-/// \brief changes the sign of the values in register x
-#define _NEGATE_PS( x ) _mm_sub_ps( HLML_ZERO_SSE, (x) )
-
-struct sse_input_transpose_float3x2_t
+struct float3x2_sse_t
 {
 	__m128 m[3][2];
 };
 
 /// \relates float3x2
-/// \brief Stores a transposed matrix of 2 x 3 __m128 registers in the output given the input 3 x 2 register matrix.
-inline void transpose_sse( const sse_input_transpose_float3x2_t* in, __m128 out_results[2][3] );
+/// \brief Sets a matrix of __m128 registers to identity.
+inline void identity_sse( float3x2_sse_t* mat );
 
-struct sse_input_comp_add_float3x2_t
-{
-	__m128 lhs[3][2];
-	__m128 rhs[3][2];
-};
+/// \relates float3x2
+/// \brief Stores a transposed matrix of 2 x 3 __m128 registers in the output given the input 3 x 2 register matrix.
+inline void transpose_sse( const float3x2_sse_t* in, float2x3_sse_t* out );
 
 /// \relates float3x2
 /// \brief Stores a matrix that is the result of the component-wise addition between the lhs and rhs __m128 registers of the input.
-inline void comp_add_sse( const sse_input_comp_add_float3x2_t* in, __m128 out_results[3][2] );
-
-struct sse_input_comp_sub_float3x2_t
-{
-	__m128 lhs[3][2];
-	__m128 rhs[3][2];
-};
+inline void comp_add_sse( const float3x2_sse_t* lhs, const float3x2_sse_t* rhs, float3x2_sse_t* out );
 
 /// \relates float3x2
 /// \brief Stores a matrix that is the result of the component-wise subtraction between the lhs and rhs __m128 registers of the input.
-inline void comp_sub_sse( const sse_input_comp_sub_float3x2_t* in, __m128 out_results[3][2] );
-
-struct sse_input_comp_mul_float3x2_t
-{
-	__m128 lhs[3][2];
-	__m128 rhs[3][2];
-};
+inline void comp_sub_sse( const float3x2_sse_t* lhs, const float3x2_sse_t* rhs, float3x2_sse_t* out );
 
 /// \relates float3x2
 /// \brief Stores a matrix that is the result of the component-wise multiplication between the lhs and rhs __m128 registers of the input.
-inline void comp_mul_sse( const sse_input_comp_mul_float3x2_t* in, __m128 out_results[3][2] );
-
-struct sse_input_comp_div_float3x2_t
-{
-	__m128 lhs[3][2];
-	__m128 rhs[3][2];
-};
+inline void comp_mul_sse( const float3x2_sse_t* lhs, const float3x2_sse_t* rhs, float3x2_sse_t* out );
 
 /// \relates float3x2
 /// \brief Stores a matrix that is the result of the component-wise division between the lhs and rhs __m128 registers of the input.
-inline void comp_div_sse( const sse_input_comp_div_float3x2_t* in, __m128 out_results[3][2] );
-
-struct sse_input_mul_float3x2_t
-{
-	__m128 lhs[3][2];
-	__m128 rhs[2][3];
-};
-
-inline void mul_sse( const sse_input_mul_float3x2_t* in, __m128 out_results[3][3] );
-
-struct sse_input_translate_float3x2_t
-{
-	__m128 column[1];
-	__m128 vec[1];
-};
+inline void comp_div_sse( const float3x2_sse_t* lhs, const float3x2_sse_t* rhs, float3x2_sse_t* out );
 
 /// \relates float3x2
-/// \brief Stores a last matrix column that has been translated by the given __m128 register vector in the input.
-inline void translate_sse( const sse_input_translate_float3x2_t* in, __m128 out_results[1] );
-
-struct sse_input_scale_float3x2_t
-{
-	__m128 diagonal[2];
-	__m128 scale[2];
-};
-
-/// \relates float3x2
-/// \brief Stores an array of float3x2 diagonals that have been scaled by the given vector in the input.
-inline void scale_sse( const sse_input_scale_float3x2_t* in, __m128 out_results[2] );
+/// \brief Performs a matrix-multiplication of 2 matrices of __m128 registers.
+inline void mul_sse( const float3x2_sse_t* lhs, const float2x3_sse_t* rhs, float3x3_sse_t* out );
 
 
 // float3x3
-/// \brief changes the sign of the values in register x
-#define _NEGATE_PS( x ) _mm_sub_ps( HLML_ZERO_SSE, (x) )
-
-struct sse_input_transpose_float3x3_t
+struct float3x3_sse_t
 {
 	__m128 m[3][3];
 };
+
+/// \relates float3x3
+/// \brief Sets a matrix of __m128 registers to identity.
+inline void identity_sse( float3x3_sse_t* mat );
 
 /// \relates float3x3
 /// \brief Stores a transposed matrix of 3 x 3 __m128 registers in the output given the input 3 x 3 register matrix.
-inline void transpose_sse( const sse_input_transpose_float3x3_t* in, __m128 out_results[3][3] );
-
-struct sse_input_determinant_float3x3_t
-{
-	__m128 m[3][3];
-};
+inline void transpose_sse( const float3x3_sse_t* in, float3x3_sse_t* out );
 
 /// \relates float3x3
 /// \brief Stores the determinants of a matrix of 3 x 3 __m128 registers.
-inline void determinant_sse( const sse_input_determinant_float3x3_t* in, __m128* out_result );
-
-struct sse_input_inverse_float3x3_t
-{
-	__m128 m[3][3];
-};
+inline void determinant_sse( const float3x3_sse_t* in, __m128* out_result );
 
 /// \relates float3x3
 /// \brief Stores an inverted matrix of 3 x 3 __m128 registers.
-inline void inverse_sse( const sse_input_inverse_float3x3_t* in, __m128 out_results[3][3] );
-
-struct sse_input_comp_add_float3x3_t
-{
-	__m128 lhs[3][3];
-	__m128 rhs[3][3];
-};
+inline void inverse_sse( const float3x3_sse_t* in, float3x3_sse_t* out );
 
 /// \relates float3x3
 /// \brief Stores a matrix that is the result of the component-wise addition between the lhs and rhs __m128 registers of the input.
-inline void comp_add_sse( const sse_input_comp_add_float3x3_t* in, __m128 out_results[3][3] );
-
-struct sse_input_comp_sub_float3x3_t
-{
-	__m128 lhs[3][3];
-	__m128 rhs[3][3];
-};
+inline void comp_add_sse( const float3x3_sse_t* lhs, const float3x3_sse_t* rhs, float3x3_sse_t* out );
 
 /// \relates float3x3
 /// \brief Stores a matrix that is the result of the component-wise subtraction between the lhs and rhs __m128 registers of the input.
-inline void comp_sub_sse( const sse_input_comp_sub_float3x3_t* in, __m128 out_results[3][3] );
-
-struct sse_input_comp_mul_float3x3_t
-{
-	__m128 lhs[3][3];
-	__m128 rhs[3][3];
-};
+inline void comp_sub_sse( const float3x3_sse_t* lhs, const float3x3_sse_t* rhs, float3x3_sse_t* out );
 
 /// \relates float3x3
 /// \brief Stores a matrix that is the result of the component-wise multiplication between the lhs and rhs __m128 registers of the input.
-inline void comp_mul_sse( const sse_input_comp_mul_float3x3_t* in, __m128 out_results[3][3] );
-
-struct sse_input_comp_div_float3x3_t
-{
-	__m128 lhs[3][3];
-	__m128 rhs[3][3];
-};
+inline void comp_mul_sse( const float3x3_sse_t* lhs, const float3x3_sse_t* rhs, float3x3_sse_t* out );
 
 /// \relates float3x3
 /// \brief Stores a matrix that is the result of the component-wise division between the lhs and rhs __m128 registers of the input.
-inline void comp_div_sse( const sse_input_comp_div_float3x3_t* in, __m128 out_results[3][3] );
+inline void comp_div_sse( const float3x3_sse_t* lhs, const float3x3_sse_t* rhs, float3x3_sse_t* out );
 
-struct sse_input_mul_float3x3_t
-{
-	__m128 lhs[3][3];
-	__m128 rhs[3][3];
-};
-
-inline void mul_sse( const sse_input_mul_float3x3_t* in, __m128 out_results[3][3] );
-
-struct sse_input_translate_float3x3_t
-{
-	__m128 column[2];
-	__m128 vec[2];
-};
+/// \relates float3x3
+/// \brief Performs a matrix-multiplication of 2 matrices of __m128 registers.
+inline void mul_sse( const float3x3_sse_t* lhs, const float3x3_sse_t* rhs, float3x3_sse_t* out );
 
 /// \relates float3x3
 /// \brief Stores a last matrix column that has been translated by the given __m128 register vector in the input.
-inline void translate_sse( const sse_input_translate_float3x3_t* in, __m128 out_results[2] );
-
-struct sse_input_scale_float3x3_t
-{
-	__m128 diagonal[3];
-	__m128 scale[3];
-};
+inline void translate_sse( const float2_sse_t* column, const float2_sse_t* vec, float2_sse_t* out_column );
 
 /// \relates float3x3
 /// \brief Stores an array of float3x3 diagonals that have been scaled by the given vector in the input.
-inline void scale_sse( const sse_input_scale_float3x3_t* in, __m128 out_results[3] );
+inline void scale_sse( const float2_sse_t* diagonal, const float2_sse_t* scale, float2_sse_t* out_diagonal );
 
 
 // float3x4
-/// \brief changes the sign of the values in register x
-#define _NEGATE_PS( x ) _mm_sub_ps( HLML_ZERO_SSE, (x) )
-
-struct sse_input_transpose_float3x4_t
+struct float3x4_sse_t
 {
 	__m128 m[3][4];
 };
 
 /// \relates float3x4
-/// \brief Stores a transposed matrix of 4 x 3 __m128 registers in the output given the input 3 x 4 register matrix.
-inline void transpose_sse( const sse_input_transpose_float3x4_t* in, __m128 out_results[4][3] );
+/// \brief Sets a matrix of __m128 registers to identity.
+inline void identity_sse( float3x4_sse_t* mat );
 
-struct sse_input_comp_add_float3x4_t
-{
-	__m128 lhs[3][4];
-	__m128 rhs[3][4];
-};
+/// \relates float3x4
+/// \brief Stores a transposed matrix of 4 x 3 __m128 registers in the output given the input 3 x 4 register matrix.
+inline void transpose_sse( const float3x4_sse_t* in, float4x3_sse_t* out );
 
 /// \relates float3x4
 /// \brief Stores a matrix that is the result of the component-wise addition between the lhs and rhs __m128 registers of the input.
-inline void comp_add_sse( const sse_input_comp_add_float3x4_t* in, __m128 out_results[3][4] );
-
-struct sse_input_comp_sub_float3x4_t
-{
-	__m128 lhs[3][4];
-	__m128 rhs[3][4];
-};
+inline void comp_add_sse( const float3x4_sse_t* lhs, const float3x4_sse_t* rhs, float3x4_sse_t* out );
 
 /// \relates float3x4
 /// \brief Stores a matrix that is the result of the component-wise subtraction between the lhs and rhs __m128 registers of the input.
-inline void comp_sub_sse( const sse_input_comp_sub_float3x4_t* in, __m128 out_results[3][4] );
-
-struct sse_input_comp_mul_float3x4_t
-{
-	__m128 lhs[3][4];
-	__m128 rhs[3][4];
-};
+inline void comp_sub_sse( const float3x4_sse_t* lhs, const float3x4_sse_t* rhs, float3x4_sse_t* out );
 
 /// \relates float3x4
 /// \brief Stores a matrix that is the result of the component-wise multiplication between the lhs and rhs __m128 registers of the input.
-inline void comp_mul_sse( const sse_input_comp_mul_float3x4_t* in, __m128 out_results[3][4] );
-
-struct sse_input_comp_div_float3x4_t
-{
-	__m128 lhs[3][4];
-	__m128 rhs[3][4];
-};
+inline void comp_mul_sse( const float3x4_sse_t* lhs, const float3x4_sse_t* rhs, float3x4_sse_t* out );
 
 /// \relates float3x4
 /// \brief Stores a matrix that is the result of the component-wise division between the lhs and rhs __m128 registers of the input.
-inline void comp_div_sse( const sse_input_comp_div_float3x4_t* in, __m128 out_results[3][4] );
-
-struct sse_input_mul_float3x4_t
-{
-	__m128 lhs[3][4];
-	__m128 rhs[4][3];
-};
-
-inline void mul_sse( const sse_input_mul_float3x4_t* in, __m128 out_results[3][3] );
-
-struct sse_input_translate_float3x4_t
-{
-	__m128 column[3];
-	__m128 vec[3];
-};
+inline void comp_div_sse( const float3x4_sse_t* lhs, const float3x4_sse_t* rhs, float3x4_sse_t* out );
 
 /// \relates float3x4
-/// \brief Stores a last matrix column that has been translated by the given __m128 register vector in the input.
-inline void translate_sse( const sse_input_translate_float3x4_t* in, __m128 out_results[3] );
-
-struct sse_input_scale_float3x4_t
-{
-	__m128 diagonal[3];
-	__m128 scale[3];
-};
-
-/// \relates float3x4
-/// \brief Stores an array of float3x4 diagonals that have been scaled by the given vector in the input.
-inline void scale_sse( const sse_input_scale_float3x4_t* in, __m128 out_results[3] );
+/// \brief Performs a matrix-multiplication of 2 matrices of __m128 registers.
+inline void mul_sse( const float3x4_sse_t* lhs, const float4x3_sse_t* rhs, float3x3_sse_t* out );
 
 
 // float4x2
-/// \brief changes the sign of the values in register x
-#define _NEGATE_PS( x ) _mm_sub_ps( HLML_ZERO_SSE, (x) )
-
-struct sse_input_transpose_float4x2_t
+struct float4x2_sse_t
 {
 	__m128 m[4][2];
 };
 
 /// \relates float4x2
-/// \brief Stores a transposed matrix of 2 x 4 __m128 registers in the output given the input 4 x 2 register matrix.
-inline void transpose_sse( const sse_input_transpose_float4x2_t* in, __m128 out_results[2][4] );
+/// \brief Sets a matrix of __m128 registers to identity.
+inline void identity_sse( float4x2_sse_t* mat );
 
-struct sse_input_comp_add_float4x2_t
-{
-	__m128 lhs[4][2];
-	__m128 rhs[4][2];
-};
+/// \relates float4x2
+/// \brief Stores a transposed matrix of 2 x 4 __m128 registers in the output given the input 4 x 2 register matrix.
+inline void transpose_sse( const float4x2_sse_t* in, float2x4_sse_t* out );
 
 /// \relates float4x2
 /// \brief Stores a matrix that is the result of the component-wise addition between the lhs and rhs __m128 registers of the input.
-inline void comp_add_sse( const sse_input_comp_add_float4x2_t* in, __m128 out_results[4][2] );
-
-struct sse_input_comp_sub_float4x2_t
-{
-	__m128 lhs[4][2];
-	__m128 rhs[4][2];
-};
+inline void comp_add_sse( const float4x2_sse_t* lhs, const float4x2_sse_t* rhs, float4x2_sse_t* out );
 
 /// \relates float4x2
 /// \brief Stores a matrix that is the result of the component-wise subtraction between the lhs and rhs __m128 registers of the input.
-inline void comp_sub_sse( const sse_input_comp_sub_float4x2_t* in, __m128 out_results[4][2] );
-
-struct sse_input_comp_mul_float4x2_t
-{
-	__m128 lhs[4][2];
-	__m128 rhs[4][2];
-};
+inline void comp_sub_sse( const float4x2_sse_t* lhs, const float4x2_sse_t* rhs, float4x2_sse_t* out );
 
 /// \relates float4x2
 /// \brief Stores a matrix that is the result of the component-wise multiplication between the lhs and rhs __m128 registers of the input.
-inline void comp_mul_sse( const sse_input_comp_mul_float4x2_t* in, __m128 out_results[4][2] );
-
-struct sse_input_comp_div_float4x2_t
-{
-	__m128 lhs[4][2];
-	__m128 rhs[4][2];
-};
+inline void comp_mul_sse( const float4x2_sse_t* lhs, const float4x2_sse_t* rhs, float4x2_sse_t* out );
 
 /// \relates float4x2
 /// \brief Stores a matrix that is the result of the component-wise division between the lhs and rhs __m128 registers of the input.
-inline void comp_div_sse( const sse_input_comp_div_float4x2_t* in, __m128 out_results[4][2] );
-
-struct sse_input_mul_float4x2_t
-{
-	__m128 lhs[4][2];
-	__m128 rhs[2][4];
-};
-
-inline void mul_sse( const sse_input_mul_float4x2_t* in, __m128 out_results[4][4] );
-
-struct sse_input_translate_float4x2_t
-{
-	__m128 column[1];
-	__m128 vec[1];
-};
+inline void comp_div_sse( const float4x2_sse_t* lhs, const float4x2_sse_t* rhs, float4x2_sse_t* out );
 
 /// \relates float4x2
-/// \brief Stores a last matrix column that has been translated by the given __m128 register vector in the input.
-inline void translate_sse( const sse_input_translate_float4x2_t* in, __m128 out_results[1] );
-
-struct sse_input_scale_float4x2_t
-{
-	__m128 diagonal[2];
-	__m128 scale[2];
-};
-
-/// \relates float4x2
-/// \brief Stores an array of float4x2 diagonals that have been scaled by the given vector in the input.
-inline void scale_sse( const sse_input_scale_float4x2_t* in, __m128 out_results[2] );
+/// \brief Performs a matrix-multiplication of 2 matrices of __m128 registers.
+inline void mul_sse( const float4x2_sse_t* lhs, const float2x4_sse_t* rhs, float4x4_sse_t* out );
 
 
 // float4x3
-/// \brief changes the sign of the values in register x
-#define _NEGATE_PS( x ) _mm_sub_ps( HLML_ZERO_SSE, (x) )
-
-struct sse_input_transpose_float4x3_t
+struct float4x3_sse_t
 {
 	__m128 m[4][3];
 };
 
 /// \relates float4x3
-/// \brief Stores a transposed matrix of 3 x 4 __m128 registers in the output given the input 4 x 3 register matrix.
-inline void transpose_sse( const sse_input_transpose_float4x3_t* in, __m128 out_results[3][4] );
+/// \brief Sets a matrix of __m128 registers to identity.
+inline void identity_sse( float4x3_sse_t* mat );
 
-struct sse_input_comp_add_float4x3_t
-{
-	__m128 lhs[4][3];
-	__m128 rhs[4][3];
-};
+/// \relates float4x3
+/// \brief Stores a transposed matrix of 3 x 4 __m128 registers in the output given the input 4 x 3 register matrix.
+inline void transpose_sse( const float4x3_sse_t* in, float3x4_sse_t* out );
 
 /// \relates float4x3
 /// \brief Stores a matrix that is the result of the component-wise addition between the lhs and rhs __m128 registers of the input.
-inline void comp_add_sse( const sse_input_comp_add_float4x3_t* in, __m128 out_results[4][3] );
-
-struct sse_input_comp_sub_float4x3_t
-{
-	__m128 lhs[4][3];
-	__m128 rhs[4][3];
-};
+inline void comp_add_sse( const float4x3_sse_t* lhs, const float4x3_sse_t* rhs, float4x3_sse_t* out );
 
 /// \relates float4x3
 /// \brief Stores a matrix that is the result of the component-wise subtraction between the lhs and rhs __m128 registers of the input.
-inline void comp_sub_sse( const sse_input_comp_sub_float4x3_t* in, __m128 out_results[4][3] );
-
-struct sse_input_comp_mul_float4x3_t
-{
-	__m128 lhs[4][3];
-	__m128 rhs[4][3];
-};
+inline void comp_sub_sse( const float4x3_sse_t* lhs, const float4x3_sse_t* rhs, float4x3_sse_t* out );
 
 /// \relates float4x3
 /// \brief Stores a matrix that is the result of the component-wise multiplication between the lhs and rhs __m128 registers of the input.
-inline void comp_mul_sse( const sse_input_comp_mul_float4x3_t* in, __m128 out_results[4][3] );
-
-struct sse_input_comp_div_float4x3_t
-{
-	__m128 lhs[4][3];
-	__m128 rhs[4][3];
-};
+inline void comp_mul_sse( const float4x3_sse_t* lhs, const float4x3_sse_t* rhs, float4x3_sse_t* out );
 
 /// \relates float4x3
 /// \brief Stores a matrix that is the result of the component-wise division between the lhs and rhs __m128 registers of the input.
-inline void comp_div_sse( const sse_input_comp_div_float4x3_t* in, __m128 out_results[4][3] );
-
-struct sse_input_mul_float4x3_t
-{
-	__m128 lhs[4][3];
-	__m128 rhs[3][4];
-};
-
-inline void mul_sse( const sse_input_mul_float4x3_t* in, __m128 out_results[4][4] );
-
-struct sse_input_translate_float4x3_t
-{
-	__m128 column[2];
-	__m128 vec[2];
-};
+inline void comp_div_sse( const float4x3_sse_t* lhs, const float4x3_sse_t* rhs, float4x3_sse_t* out );
 
 /// \relates float4x3
-/// \brief Stores a last matrix column that has been translated by the given __m128 register vector in the input.
-inline void translate_sse( const sse_input_translate_float4x3_t* in, __m128 out_results[2] );
-
-struct sse_input_scale_float4x3_t
-{
-	__m128 diagonal[3];
-	__m128 scale[3];
-};
-
-/// \relates float4x3
-/// \brief Stores an array of float4x3 diagonals that have been scaled by the given vector in the input.
-inline void scale_sse( const sse_input_scale_float4x3_t* in, __m128 out_results[3] );
+/// \brief Performs a matrix-multiplication of 2 matrices of __m128 registers.
+inline void mul_sse( const float4x3_sse_t* lhs, const float3x4_sse_t* rhs, float4x4_sse_t* out );
 
 
 // float4x4
-/// \brief changes the sign of the values in register x
-#define _NEGATE_PS( x ) _mm_sub_ps( HLML_ZERO_SSE, (x) )
-
-struct sse_input_transpose_float4x4_t
+struct float4x4_sse_t
 {
 	__m128 m[4][4];
 };
+
+/// \relates float4x4
+/// \brief Sets a matrix of __m128 registers to identity.
+inline void identity_sse( float4x4_sse_t* mat );
 
 /// \relates float4x4
 /// \brief Stores a transposed matrix of 4 x 4 __m128 registers in the output given the input 4 x 4 register matrix.
-inline void transpose_sse( const sse_input_transpose_float4x4_t* in, __m128 out_results[4][4] );
-
-struct sse_input_determinant_float4x4_t
-{
-	__m128 m[4][4];
-};
+inline void transpose_sse( const float4x4_sse_t* in, float4x4_sse_t* out );
 
 /// \relates float4x4
 /// \brief Stores the determinants of a matrix of 4 x 4 __m128 registers.
-inline void determinant_sse( const sse_input_determinant_float4x4_t* in, __m128* out_result );
-
-struct sse_input_inverse_float4x4_t
-{
-	__m128 m[4][4];
-};
+inline void determinant_sse( const float4x4_sse_t* in, __m128* out_result );
 
 /// \relates float4x4
 /// \brief Stores an inverted matrix of 4 x 4 __m128 registers.
-inline void inverse_sse( const sse_input_inverse_float4x4_t* in, __m128 out_results[4][4] );
-
-struct sse_input_comp_add_float4x4_t
-{
-	__m128 lhs[4][4];
-	__m128 rhs[4][4];
-};
+inline void inverse_sse( const float4x4_sse_t* in, float4x4_sse_t* out );
 
 /// \relates float4x4
 /// \brief Stores a matrix that is the result of the component-wise addition between the lhs and rhs __m128 registers of the input.
-inline void comp_add_sse( const sse_input_comp_add_float4x4_t* in, __m128 out_results[4][4] );
-
-struct sse_input_comp_sub_float4x4_t
-{
-	__m128 lhs[4][4];
-	__m128 rhs[4][4];
-};
+inline void comp_add_sse( const float4x4_sse_t* lhs, const float4x4_sse_t* rhs, float4x4_sse_t* out );
 
 /// \relates float4x4
 /// \brief Stores a matrix that is the result of the component-wise subtraction between the lhs and rhs __m128 registers of the input.
-inline void comp_sub_sse( const sse_input_comp_sub_float4x4_t* in, __m128 out_results[4][4] );
-
-struct sse_input_comp_mul_float4x4_t
-{
-	__m128 lhs[4][4];
-	__m128 rhs[4][4];
-};
+inline void comp_sub_sse( const float4x4_sse_t* lhs, const float4x4_sse_t* rhs, float4x4_sse_t* out );
 
 /// \relates float4x4
 /// \brief Stores a matrix that is the result of the component-wise multiplication between the lhs and rhs __m128 registers of the input.
-inline void comp_mul_sse( const sse_input_comp_mul_float4x4_t* in, __m128 out_results[4][4] );
-
-struct sse_input_comp_div_float4x4_t
-{
-	__m128 lhs[4][4];
-	__m128 rhs[4][4];
-};
+inline void comp_mul_sse( const float4x4_sse_t* lhs, const float4x4_sse_t* rhs, float4x4_sse_t* out );
 
 /// \relates float4x4
 /// \brief Stores a matrix that is the result of the component-wise division between the lhs and rhs __m128 registers of the input.
-inline void comp_div_sse( const sse_input_comp_div_float4x4_t* in, __m128 out_results[4][4] );
+inline void comp_div_sse( const float4x4_sse_t* lhs, const float4x4_sse_t* rhs, float4x4_sse_t* out );
 
-struct sse_input_mul_float4x4_t
-{
-	__m128 lhs[4][4];
-	__m128 rhs[4][4];
-};
-
-inline void mul_sse( const sse_input_mul_float4x4_t* in, __m128 out_results[4][4] );
-
-struct sse_input_translate_float4x4_t
-{
-	__m128 column[3];
-	__m128 vec[3];
-};
+/// \relates float4x4
+/// \brief Performs a matrix-multiplication of 2 matrices of __m128 registers.
+inline void mul_sse( const float4x4_sse_t* lhs, const float4x4_sse_t* rhs, float4x4_sse_t* out );
 
 /// \relates float4x4
 /// \brief Stores a last matrix column that has been translated by the given __m128 register vector in the input.
-inline void translate_sse( const sse_input_translate_float4x4_t* in, __m128 out_results[3] );
-
-struct sse_input_scale_float4x4_t
-{
-	__m128 diagonal[4];
-	__m128 scale[4];
-};
+inline void translate_sse( const float3_sse_t* column, const float3_sse_t* vec, float3_sse_t* out_column );
 
 /// \relates float4x4
 /// \brief Stores an array of float4x4 diagonals that have been scaled by the given vector in the input.
-inline void scale_sse( const sse_input_scale_float4x4_t* in, __m128 out_results[4] );
+inline void scale_sse( const float3_sse_t* diagonal, const float3_sse_t* scale, float3_sse_t* out_diagonal );
 
 
 #include "hlml_functions_matrix_sse.inl"

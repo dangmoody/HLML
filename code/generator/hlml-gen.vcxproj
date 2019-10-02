@@ -31,8 +31,8 @@
     <ClCompile Include="os_helpers_unix.cpp" />
     <ClCompile Include="os_helpers_win64.cpp" />
     <ClCompile Include="string_builder.cpp" />
-    <ClCompile Include="time_unix.cpp" />
-    <ClCompile Include="time_win64.cpp" />
+    <ClCompile Include="timer_unix.cpp" />
+    <ClCompile Include="timer_win64.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="allocator.h" />
@@ -59,7 +59,7 @@
     <ClInclude Include="os_helpers.h" />
     <ClInclude Include="string_builder.h" />
     <ClInclude Include="string_helpers.h" />
-    <ClInclude Include="time.h" />
+    <ClInclude Include="timer.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>

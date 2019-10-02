@@ -898,10 +898,10 @@ void Gen_MatrixScale( const genType_t type, const u32 numRows, const u32 numCols
 	char fullTypeName[GEN_STRING_LENGTH_TYPE_NAME];
 	snprintf( fullTypeName, GEN_STRING_LENGTH_TYPE_NAME, "%s%dx%d", typeString, numRows, numCols );
 
-	const u32 scaleCols = 3;
+	const u32 numScaleComponents = 3;
 
 	char scaleVectorString[GEN_STRING_LENGTH_TYPE_NAME];
-	snprintf( scaleVectorString, GEN_STRING_LENGTH_TYPE_NAME, "%s%d", typeString, scaleCols );
+	snprintf( scaleVectorString, GEN_STRING_LENGTH_TYPE_NAME, "%s%d", typeString, numScaleComponents );
 
 	Doc_MatrixScaleUniform( sbHeader, fullTypeName );
 	String_Appendf( sbHeader, "inline %s scale( const %s& mat, const %s scalar );\n", fullTypeName, fullTypeName, memberTypeString );
@@ -914,10 +914,10 @@ void Gen_MatrixScale( const genType_t type, const u32 numRows, const u32 numCols
 	String_Appendf( sbInl, "%s scale( const %s& mat, const %s scalar )\n", fullTypeName, fullTypeName, memberTypeString );
 	String_Append(  sbInl, "{\n" );
 	String_Appendf( sbInl, "\treturn scale( mat, %s( ", scaleVectorString );
-	for ( u32 col = 0; col < scaleCols; col++ ) {
+	for ( u32 col = 0; col < numScaleComponents; col++ ) {
 		String_Append( sbInl, "scalar" );
 
-		if ( col != scaleCols - 1 ) {
+		if ( col != numScaleComponents - 1 ) {
 			String_Append( sbInl, ", " );
 		}
 	}
@@ -933,7 +933,7 @@ void Gen_MatrixScale( const genType_t type, const u32 numRows, const u32 numCols
 		for ( u32 col = 0; col < numCols; col++ ) {
 			String_Appendf( sbInl, "\t\tmat[%d][%d]", row, col );
 
-			if ( row == col && col < scaleCols ) {
+			if ( row == col && col < numScaleComponents ) {
 				String_Appendf( sbInl, " * vec.%c", GEN_COMPONENT_NAMES_VECTOR[row] );
 			}
 

@@ -204,9 +204,8 @@ TEMPER_TEST( TestRelational_double2 )
 	TEMPER_PASS();
 }
 
-TEMPER_TEST( TestLength_double2 )
+TEMPER_TEST( TestLength_Scalar_double2 )
 {
-	// scalar
 	double2 vec = double2( 2.0 );
 
 	TEMPER_EXPECT_TRUE( doubleeq( lengthsqr( vec ), 8.0 ) );
@@ -215,20 +214,18 @@ TEMPER_TEST( TestLength_double2 )
 	TEMPER_PASS();
 }
 
-TEMPER_TEST( TestNormalized_double2 )
+TEMPER_TEST( TestNormalized_Scalar_double2 )
 {
-	// scalar
-	double2 vec = double2( 2.000000, 3.000000 );
+	double2 vec = double2( 5.000000, 4.000000 );
 	vec = normalized( vec );
 
-	TEMPER_EXPECT_TRUE( length( vec ) == 1.0 );
+	TEMPER_EXPECT_TRUE( doubleeq( length( vec ), 1.0 ) );
 
 	TEMPER_PASS();
 }
 
-TEMPER_TEST( TestDot_double2 )
+TEMPER_TEST( TestDot_Scalar_double2 )
 {
-	// scalar
 	double2 a = double2( 0.000000, 1.000000 );
 	double2 b = double2( 0.000000, -1.000000 );
 
@@ -237,9 +234,8 @@ TEMPER_TEST( TestDot_double2 )
 	TEMPER_PASS();
 }
 
-TEMPER_TEST( TestAngle_double2 )
+TEMPER_TEST( TestAngle_Scalar_double2 )
 {
-	// scalar
 	double2 right = double2( 1.000000, 0.000000 );
 	double2 up    = double2( 0.000000, 1.000000 );
 
@@ -248,7 +244,7 @@ TEMPER_TEST( TestAngle_double2 )
 	TEMPER_PASS();
 }
 
-TEMPER_TEST( TestDistance_double2 )
+TEMPER_TEST( TestDistance_Scalar_double2 )
 {
 	double answerDistanceSqr = 104.0;
 	double answerDistance    = 10.198039;
@@ -256,7 +252,6 @@ TEMPER_TEST( TestDistance_double2 )
 	double2 a = double2( 7.000000, 4.000000 );
 	double2 b = double2( 17.000000, 6.000000 );
 
-	// scalar
 	double distSqr = distancesqr( a, b );
 	double dist    = distance( a, b );
 
@@ -340,11 +335,11 @@ TEMPER_SUITE( Test_double2 )
 	TEMPER_RUN_TEST( TestIncrement_double2 );
 	TEMPER_RUN_TEST( TestDecrement_double2 );
 	TEMPER_RUN_TEST( TestRelational_double2 );
-	TEMPER_RUN_TEST( TestLength_double2 );
-	TEMPER_RUN_TEST( TestNormalized_double2 );
-	TEMPER_RUN_TEST( TestDot_double2 );
-	TEMPER_RUN_TEST( TestAngle_double2 );
-	TEMPER_RUN_TEST( TestDistance_double2 );
+	TEMPER_RUN_TEST( TestLength_Scalar_double2 );
+	TEMPER_RUN_TEST( TestNormalized_Scalar_double2 );
+	TEMPER_RUN_TEST( TestDot_Scalar_double2 );
+	TEMPER_RUN_TEST( TestAngle_Scalar_double2 );
+	TEMPER_RUN_TEST( TestDistance_Scalar_double2 );
 	TEMPER_RUN_TEST( TestSaturate_double2 );
 	TEMPER_RUN_TEST( TestLerp_double2 );
 	TEMPER_RUN_TEST( TestStep_double2 );

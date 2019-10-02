@@ -36,6 +36,23 @@ SOFTWARE.
 
 #include <temper/temper.h>
 
+static bool3x2 g_identityMatrix;
+
+static bool3x2 g_matrixMulLHS = bool3x2(
+		true, true,
+		true, true,
+		true, true
+	);
+static bool2x3 g_matrixMulRHS = bool2x3(
+		true, true, true,
+		true, true, true
+	);
+static bool3x3 g_matrixMulAnswer = bool3x3(
+		true, true, true,
+		true, true, true,
+		true, true, true
+	);
+
 TEMPER_TEST( TestAssignment_bool3x2 )
 {
 	bool3x2 mat;
@@ -80,9 +97,8 @@ TEMPER_TEST( TestArray_bool3x2 )
 	TEMPER_PASS();
 }
 
-TEMPER_TEST( TestIdentity_bool3x2 )
+TEMPER_TEST( TestIdentity_Scalar_bool3x2 )
 {
-	// scalar
 	bool3x2 id = bool3x2(
 		true, false,
 		false, true,
@@ -98,9 +114,8 @@ TEMPER_TEST( TestIdentity_bool3x2 )
 	TEMPER_PASS();
 }
 
-TEMPER_TEST( TestTranspose_bool3x2 )
+TEMPER_TEST( TestTranspose_Scalar_bool3x2 )
 {
-	// scalar
 	bool3x2 mat = bool3x2(
 		false, true,
 		true, true,
@@ -120,6 +135,6 @@ TEMPER_SUITE( Test_bool3x2 )
 {
 	TEMPER_RUN_TEST( TestAssignment_bool3x2 );
 	TEMPER_RUN_TEST( TestArray_bool3x2 );
-	TEMPER_RUN_TEST( TestIdentity_bool3x2 );
-	TEMPER_RUN_TEST( TestTranspose_bool3x2 );
+	TEMPER_RUN_TEST( TestIdentity_Scalar_bool3x2 );
+	TEMPER_RUN_TEST( TestTranspose_Scalar_bool3x2 );
 }

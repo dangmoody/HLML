@@ -37,23 +37,21 @@ SOFTWARE.
 #include "../hlml_constants_sse.h"
 
 // float
-void radians_sse( const sse_input_radians_float_t* in, __m128* out_results )
+void radians_sse( const __m128 deg, __m128* out_radians )
 {
-	assert( in );
-	assert( out_results );
+	assert( out_radians );
 
-	*out_results = _mm_mul_ps( in->deg, HLML_DEG_TO_RAD_SSE );
+	*out_radians = _mm_mul_ps( deg, HLML_DEG_TO_RAD_SSE );
 }
 
-void degrees_sse( const sse_input_degrees_float_t* in, __m128* out_results )
+void degrees_sse( const __m128 rad, __m128* out_degrees )
 {
-	assert( in );
-	assert( out_results );
+	assert( out_degrees );
 
-	*out_results = _mm_mul_ps( in->rad, HLML_RAD_TO_DEG_SSE );
+	*out_degrees = _mm_mul_ps( rad, HLML_RAD_TO_DEG_SSE );
 }
 
-void lerp_sse( const sse_input_lerp_float_t* in, __m128* out_results )
+void lerp_sse( const float_sse_t* in, __m128* out_results )
 {
 	assert( in );
 	assert( out_results );
