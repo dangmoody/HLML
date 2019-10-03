@@ -37,7 +37,7 @@ SOFTWARE.
 #include <stdint.h>
 #include "../hlml_types.h"
 
-struct bool2;
+#include "bool2.h"
 struct bool4;
 struct float3;
 

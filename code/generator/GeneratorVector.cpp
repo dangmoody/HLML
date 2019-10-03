@@ -66,10 +66,14 @@ bool GeneratorVector::Generate( const genType_t type, const u32 numComponents ) 
 		String_Append( &m_codeHeader, "#include \"../" GEN_HEADER_TYPES "\"\n" );
 		String_Append( &m_codeHeader, "\n" );
 
-		// forward declarations
+		// forward declarations & includes
 		for ( u32 i = GEN_COMPONENT_COUNT_MIN; i <= GEN_COMPONENT_COUNT_MAX; i++ ) {
+			// includes for smaller vectors due to swizzle functions
+			if (i < m_numComponents) {
+				String_Appendf( &m_codeHeader, "#include \"%s%d.h\"\n", m_typeString, i );
+			}
 			// dont forward declare ourself
-			if ( i != m_numComponents ) {
+			else if ( i != m_numComponents ) {
 				String_Appendf( &m_codeHeader, "struct %s%d;\n", m_typeString, i );
 			}
 		}
