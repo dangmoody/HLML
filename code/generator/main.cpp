@@ -682,10 +682,6 @@ static bool32 GenerateOperatorsMatrix( void ) {
 	for ( u32 typeIndex = 0; typeIndex < GEN_TYPE_COUNT; typeIndex++ ) {
 		genType_t type = (genType_t) typeIndex;
 
-		if ( type == GEN_TYPE_BOOL ) {
-			continue;
-		}
-
 		const char* typeString = Gen_GetTypeString( type );
 
 		for ( u32 row = GEN_COMPONENT_COUNT_MIN; row <= GEN_COMPONENT_COUNT_MAX; row++ ) {
@@ -693,6 +689,8 @@ static bool32 GenerateOperatorsMatrix( void ) {
 				String_Appendf( &contentHeader, "#include \"%s%dx%d.h\"\n", typeString, row, col );
 			}
 		}
+
+		String_Append( &contentHeader, "\n" );
 	}
 
 	String_Append( &contentHeader, "\n" );

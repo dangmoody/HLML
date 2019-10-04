@@ -39,8 +39,8 @@ SOFTWARE.
 #include <stdint.h>
 #include "../hlml_types.h"
 
-struct double2;
-struct double3;
+#include "double2.h"
+#include "double3.h"
 struct float3;
 
 // ignore prohibition of anymous structs for GCC

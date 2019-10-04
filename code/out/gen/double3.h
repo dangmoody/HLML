@@ -39,7 +39,7 @@ SOFTWARE.
 #include <stdint.h>
 #include "../hlml_types.h"
 
-struct double2;
+#include "double2.h"
 struct double4;
 struct float3;
 
