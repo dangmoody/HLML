@@ -533,7 +533,9 @@ void GeneratorVectorTests::GenerateTestLength() {
 		String_Appendf( &m_codeTests, "\t%s in;\n", sseTypeName );
 		String_Append(  &m_codeTests, "\n" );
 		for ( u32 i = 0; i < m_numComponents; i++ ) {
-			String_Appendf( &m_codeTests, "\tin.comp[%d] = %s( components[%d] );\n", i, sseLoadStr, i );
+			const char componentStr = GEN_COMPONENT_NAMES_VECTOR[i];
+
+			String_Appendf( &m_codeTests, "\tin.%c = %s( components[%d] );\n", componentStr, sseLoadStr, i );
 		}
 		String_Append(  &m_codeTests, "\n" );
 		String_Appendf( &m_codeTests, "\t%s results;\n", m_registerName );
@@ -625,7 +627,9 @@ void GeneratorVectorTests::GenerateTestNormalized() {
 			char valueStr[GEN_STRING_LENGTH_NUMERIC_LITERAL];
 			Gen_GetNumericLiteral( m_type, values[i], valueStr, 1 );
 
-			String_Appendf( &m_codeTests, "\tin.comp[%d] = %s( %s );\n", i, set1FuncStr, valueStr );
+			const char componentStr = GEN_COMPONENT_NAMES_VECTOR[i];
+
+			String_Appendf( &m_codeTests, "\tin.%c = %s( %s );\n", componentStr, set1FuncStr, valueStr );
 		}
 		String_Append(  &m_codeTests, "\n" );
 		String_Appendf( &m_codeTests, "\tnormalize_sse( &in, &in_normalised );\n" );
@@ -729,12 +733,16 @@ void GeneratorVectorTests::GenerateTestDot() {
 		String_Append(  &m_codeTests, "\n" );
 		String_Appendf( &m_codeTests, "\t%s lhs;\n", sseTypeName );
 		for ( u32 i = 0; i < m_numComponents; i++ ) {
-			String_Appendf( &m_codeTests, "\tlhs.comp[%d] = %s( componentsLHS[%d] );\n", i, sseLoadStr, i );
+			const char componentStr = GEN_COMPONENT_NAMES_VECTOR[i];
+
+			String_Appendf( &m_codeTests, "\tlhs.%c = %s( componentsLHS[%d] );\n", componentStr, sseLoadStr, i );
 		}
 		String_Append( &m_codeTests, "\n" );
 		String_Appendf( &m_codeTests, "\t%s rhs;\n", sseTypeName );
 		for ( u32 i = 0; i < m_numComponents; i++ ) {
-			String_Appendf( &m_codeTests, "\trhs.comp[%d] = %s( componentsRHS[%d] );\n", i, sseLoadStr, i );
+			const char componentStr = GEN_COMPONENT_NAMES_VECTOR[i];
+
+			String_Appendf( &m_codeTests, "\trhs.%c = %s( componentsRHS[%d] );\n", componentStr, sseLoadStr, i );
 		}
 		String_Append(  &m_codeTests, "\n" );
 		String_Appendf( &m_codeTests, "\t%s results;\n", m_registerName );
@@ -848,12 +856,16 @@ void GeneratorVectorTests::GenerateTestCross() {
 		
 		String_Appendf( &m_codeTests, "\t%s left;\n", sseTypeName );
 		for ( u32 i = 0; i < m_numComponents; i++ ) {
-			String_Appendf( &m_codeTests, "\tleft.comp[%d] = %s( componentsLeft[%d] );\n", i, loadFuncStr, i );
+			const char componentStr = GEN_COMPONENT_NAMES_VECTOR[i];
+
+			String_Appendf( &m_codeTests, "\tleft.%c = %s( componentsLeft[%d] );\n", componentStr, loadFuncStr, i );
 		}
 		String_Append(  &m_codeTests, "\n" );
 		String_Appendf( &m_codeTests, "\t%s forward;\n", sseTypeName );
 		for ( u32 i = 0; i < m_numComponents; i++ ) {
-			String_Appendf( &m_codeTests, "\tforward.comp[%d] = %s( componentsForward[%d] );\n", i, loadFuncStr, i );
+			const char componentStr = GEN_COMPONENT_NAMES_VECTOR[i];
+
+			String_Appendf( &m_codeTests, "\tforward.%c = %s( componentsForward[%d] );\n", componentStr, loadFuncStr, i );
 		}
 		String_Append(  &m_codeTests, "\n" );
 		String_Appendf( &m_codeTests, "\t%s up;\n", sseTypeName );
@@ -862,7 +874,9 @@ void GeneratorVectorTests::GenerateTestCross() {
 		String_Append(  &m_codeTests, "\n" );
 		String_Appendf( &m_codeTests, "\t%s crossResults[4];\n", m_memberTypeString );
 		for ( u32 componentIndex = 0; componentIndex < m_numComponents; componentIndex++ ) {
-			String_Appendf( &m_codeTests, "\t%s( crossResults, up.comp[%d] );\n", storeFuncStr, componentIndex );
+			const char componentStr = GEN_COMPONENT_NAMES_VECTOR[componentIndex];
+
+			String_Appendf( &m_codeTests, "\t%s( crossResults, up.%c );\n", storeFuncStr, componentStr );
 
 			for ( u32 i = 0; i < 4; i++ ) {
 				char valueStr[GEN_STRING_LENGTH_NUMERIC_LITERAL];
@@ -1066,12 +1080,16 @@ void GeneratorVectorTests::GenerateTestDistance() {
 		String_Append(  &m_codeTests, "\n" );
 		String_Appendf( &m_codeTests, "\t%s lhs;\n", sseTypeName );
 		for ( u32 i = 0; i < m_numComponents; i++ ) {
-			String_Appendf( &m_codeTests, "\tlhs.comp[%d] = %s( componentsLHS[%d] );\n", i, sseLoadStr, i );
+			const char componentStr = GEN_COMPONENT_NAMES_VECTOR[i];
+
+			String_Appendf( &m_codeTests, "\tlhs.%c = %s( componentsLHS[%d] );\n", componentStr, sseLoadStr, i );
 		}
 		String_Append(  &m_codeTests, "\n" );
 		String_Appendf( &m_codeTests, "\t%s rhs;\n", sseTypeName );
 		for ( u32 i = 0; i < m_numComponents; i++ ) {
-			String_Appendf( &m_codeTests, "\trhs.comp[%d] = %s( componentsRHS[%d] );\n", i, sseLoadStr, i );
+			const char componentStr = GEN_COMPONENT_NAMES_VECTOR[i];
+
+			String_Appendf( &m_codeTests, "\trhs.%c = %s( componentsRHS[%d] );\n", componentStr, sseLoadStr, i );
 		}
 		String_Append(  &m_codeTests, "\n" );
 		String_Appendf( &m_codeTests, "\t%s results;\n", m_registerName );

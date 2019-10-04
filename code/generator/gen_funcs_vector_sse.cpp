@@ -47,7 +47,9 @@ void Gen_SSE_VectorNormalize( const genType_t type, const u32 numComponents, str
 	String_Appendf( sbInl, "\t%s invlen = %s( len );\n", registerName, rcpFuncStr );
 	String_Append(  sbInl, "\n" );
 	for ( u32 i = 0; i < numComponents; i++ ) {
-		String_Appendf( sbInl, "\tout->comp[%d] = %s( in->comp[%d], invlen );\n", i, mulFuncStr, i );
+		const char componentStr = GEN_COMPONENT_NAMES_VECTOR[i];
+
+		String_Appendf( sbInl, "\tout->%c = %s( in->%c, invlen );\n", componentStr, mulFuncStr, componentStr );
 	}
 	String_Append(  sbInl, "}\n" );
 	String_Append(  sbInl, "\n" );
@@ -87,16 +89,16 @@ void Gen_SSE_VectorDot( const genType_t type, const u32 numComponents, stringBui
 	String_Append(  sbInl, "\n" );
 	switch ( numComponents ) {
 		case 2:
-			String_Appendf( sbInl, "\t%s mul0 = %s( lhs->comp[0], rhs->comp[0] );\n", registerName, mulFuncStr );
-			String_Appendf( sbInl, "\t%s mul1 = %s( lhs->comp[1], rhs->comp[1] );\n", registerName, mulFuncStr );
+			String_Appendf( sbInl, "\t%s mul0 = %s( lhs->x, rhs->x );\n", registerName, mulFuncStr );
+			String_Appendf( sbInl, "\t%s mul1 = %s( lhs->y, rhs->y );\n", registerName, mulFuncStr );
 			String_Append(  sbInl, "\n" );
 			String_Appendf( sbInl, "\t*out_results = %s( mul0, mul1 );\n", addFuncStr );
 			break;
 
 		case 3:
-			String_Appendf( sbInl, "\t%s mul0 = %s( lhs->comp[0], rhs->comp[0] );\n", registerName, mulFuncStr );
-			String_Appendf( sbInl, "\t%s mul1 = %s( lhs->comp[1], rhs->comp[1] );\n", registerName, mulFuncStr );
-			String_Appendf( sbInl, "\t%s mul2 = %s( lhs->comp[2], rhs->comp[2] );\n", registerName, mulFuncStr );
+			String_Appendf( sbInl, "\t%s mul0 = %s( lhs->x, rhs->x );\n", registerName, mulFuncStr );
+			String_Appendf( sbInl, "\t%s mul1 = %s( lhs->y, rhs->y );\n", registerName, mulFuncStr );
+			String_Appendf( sbInl, "\t%s mul2 = %s( lhs->z, rhs->z );\n", registerName, mulFuncStr );
 			String_Append(  sbInl, "\n" );
 			String_Appendf( sbInl, "\t%s add0 = %s( mul0, mul1 );\n", registerName, addFuncStr );
 			String_Append(  sbInl, "\n" );
@@ -104,13 +106,13 @@ void Gen_SSE_VectorDot( const genType_t type, const u32 numComponents, stringBui
 			break;
 
 		case 4:
-			String_Appendf( sbInl, "\t%s mul0 = %s( lhs->comp[0], rhs->comp[0] );\n", registerName, mulFuncStr );
-			String_Appendf( sbInl, "\t%s mul1 = %s( lhs->comp[1], rhs->comp[1] );\n", registerName, mulFuncStr );
-			String_Appendf( sbInl, "\t%s mul2 = %s( lhs->comp[2], rhs->comp[2] );\n", registerName, mulFuncStr );
-			String_Appendf( sbInl, "\t%s mul3 = %s( lhs->comp[3], rhs->comp[3] );\n", registerName, mulFuncStr );
+			String_Appendf( sbInl, "\t%s mul_x = %s( lhs->x, rhs->x );\n", registerName, mulFuncStr );
+			String_Appendf( sbInl, "\t%s mul_y = %s( lhs->y, rhs->y );\n", registerName, mulFuncStr );
+			String_Appendf( sbInl, "\t%s mul_z = %s( lhs->z, rhs->z );\n", registerName, mulFuncStr );
+			String_Appendf( sbInl, "\t%s mul_w = %s( lhs->w, rhs->w );\n", registerName, mulFuncStr );
 			String_Append(  sbInl, "\n" );
-			String_Appendf( sbInl, "\t%s add0 = %s( mul0, mul1 );\n", registerName, addFuncStr );
-			String_Appendf( sbInl, "\t%s add1 = %s( mul2, mul3 );\n", registerName, addFuncStr );
+			String_Appendf( sbInl, "\t%s add0 = %s( mul_x, mul_y );\n", registerName, addFuncStr );
+			String_Appendf( sbInl, "\t%s add1 = %s( mul_z, mul_w );\n", registerName, addFuncStr );
 			String_Append(  sbInl, "\n" );
 			String_Appendf( sbInl, "\t*out_results = %s( add0, add1 );\n", addFuncStr );
 			break;
@@ -155,20 +157,20 @@ void Gen_SSE_VectorCross( const genType_t type, const u32 numComponents, stringB
 	String_Append(  sbInl, "\tassert( rhs );\n" );
 	String_Append(  sbInl, "\tassert( out_results );\n" );
 	String_Append(  sbInl, "\n" );
-	String_Appendf( sbInl, "\t%s xmula = %s( lhs->comp[1], rhs->comp[2] );\n", registerName, mulFuncStr );
-	String_Appendf( sbInl, "\t%s xmulb = %s( lhs->comp[2], rhs->comp[1] );\n", registerName, mulFuncStr );
-	String_Appendf( sbInl, "\tout_results->comp[0] = %s( xmula, xmulb );\n", subFuncStr );
+	String_Appendf( sbInl, "\t%s xmula = %s( lhs->y, rhs->z );\n", registerName, mulFuncStr );
+	String_Appendf( sbInl, "\t%s xmulb = %s( lhs->z, rhs->y );\n", registerName, mulFuncStr );
+	String_Appendf( sbInl, "\tout_results->x = %s( xmula, xmulb );\n", subFuncStr );
 	String_Append(  sbInl, "\n" );
-	String_Appendf( sbInl, "\t%s ymula = %s( lhs->comp[2], rhs->comp[0] );\n", registerName, mulFuncStr );
-	String_Appendf( sbInl, "\t%s ymulb = %s( lhs->comp[0], rhs->comp[2] );\n", registerName, mulFuncStr );
-	String_Appendf( sbInl, "\tout_results->comp[1] = %s( ymula, ymulb );\n", subFuncStr );
+	String_Appendf( sbInl, "\t%s ymula = %s( lhs->z, rhs->x );\n", registerName, mulFuncStr );
+	String_Appendf( sbInl, "\t%s ymulb = %s( lhs->x, rhs->z );\n", registerName, mulFuncStr );
+	String_Appendf( sbInl, "\tout_results->y = %s( ymula, ymulb );\n", subFuncStr );
 	String_Append(  sbInl, "\n" );
-	String_Appendf( sbInl, "\t%s zmula = %s( lhs->comp[0], rhs->comp[1] );\n", registerName, mulFuncStr );
-	String_Appendf( sbInl, "\t%s zmulb = %s( lhs->comp[1], rhs->comp[0] );\n", registerName, mulFuncStr );
-	String_Appendf( sbInl, "\tout_results->comp[2] = %s( zmula, zmulb );\n", subFuncStr );
+	String_Appendf( sbInl, "\t%s zmula = %s( lhs->x, rhs->y );\n", registerName, mulFuncStr );
+	String_Appendf( sbInl, "\t%s zmulb = %s( lhs->y, rhs->x );\n", registerName, mulFuncStr );
+	String_Appendf( sbInl, "\tout_results->z = %s( zmula, zmulb );\n", subFuncStr );
 	if ( numComponents > 3 ) {
 		String_Append( sbInl, "\n" );
-		String_Append( sbInl, "\tout_results->comp[3] = HLML_ZERO_SSE;\n" );
+		String_Append( sbInl, "\tout_results->w = HLML_ZERO_SSE;\n" );
 	}
 	String_Append(  sbInl, "}\n" );
 	String_Append(  sbInl, "\n" );
@@ -259,7 +261,9 @@ void Gen_SSE_VectorDistance( const genType_t type, const u32 numComponents, stri
 		String_Append(  sbInl, "\n" );
 		String_Appendf( sbInl, "\t%s data;\n", sseTypeName );
 		for ( u32 i = 0; i < numComponents; i++ ) {
-			String_Appendf( sbInl, "\tdata.comp[%d] = %s( lhs->comp[%d], rhs->comp[%d] );\n", i, subFuncStr, i, i );
+			const char componentStr = GEN_COMPONENT_NAMES_VECTOR[i];
+
+			String_Appendf( sbInl, "\tdata.%c = %s( lhs->%c, rhs->%c );\n", componentStr, subFuncStr, componentStr, componentStr );
 		}
 		String_Append(  sbInl, "\n" );
 		String_Append(  sbInl, "\tlengthsq_sse( &data, out_results );\n" );
@@ -281,7 +285,9 @@ void Gen_SSE_VectorDistance( const genType_t type, const u32 numComponents, stri
 		String_Append(  sbInl, "\n" );
 		String_Appendf( sbInl, "\t%s data;\n", sseTypeName );
 		for ( u32 i = 0; i < numComponents; i++ ) {
-			String_Appendf( sbInl, "\tdata.comp[%d] = %s( lhs->comp[%d], rhs->comp[%d] );\n", i, subFuncStr, i, i );
+			const char componentStr = GEN_COMPONENT_NAMES_VECTOR[i];
+
+			String_Appendf( sbInl, "\tdata.%c = %s( lhs->%c, rhs->%c );\n", componentStr, subFuncStr, componentStr, componentStr );
 		}
 		String_Append(  sbInl, "\n" );
 		String_Append(  sbInl, "\tlength_sse( &data, out_results );\n" );
@@ -336,12 +342,12 @@ void Gen_SSE_VectorAngle( const genType_t type, const u32 numComponents, stringB
 	String_Appendf( sbInl, "\t%s inNormalize;\n", inputDataNameNormalize );
 	String_Append(  sbInl, "\n" );
 	for ( u32 i = 0; i < numComponents; i++ ) {
-		String_Appendf( sbInl, "\tinNormalize.comp[%d] = in->lhs[%d];\n", i, i );
+		String_Appendf( sbInl, "\tinNormalize.%c = in->lhs[%d];\n", i, i );
 	}
 	String_Appendf( sbInl, "\tnormalize_sse( inNormalize, resultsLHS );\n" );
 	String_Append(  sbInl, "\n" );
 	for ( u32 i = 0; i < numComponents; i++ ) {
-		String_Appendf( sbInl, "\tinNormalize.comp[%d] = in->rhs[%d];\n", i, i );
+		String_Appendf( sbInl, "\tinNormalize.%c = in->rhs[%d];\n", i, i );
 	}
 	String_Append(  sbInl, "\tnormalize_sse( inNormalize, resultsRHS );\n" );
 	String_Append(  sbInl, "\n" );

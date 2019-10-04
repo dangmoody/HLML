@@ -62,8 +62,8 @@ void normalize_sse( const float2_sse_t* in, float2_sse_t* out )
 
 	__m128 invlen = _mm_rcp_ps( len );
 
-	out->comp[0] = _mm_mul_ps( in->comp[0], invlen );
-	out->comp[1] = _mm_mul_ps( in->comp[1], invlen );
+	out->x = _mm_mul_ps( in->x, invlen );
+	out->y = _mm_mul_ps( in->y, invlen );
 }
 
 void dot_sse( const float2_sse_t* lhs, const float2_sse_t* rhs, __m128* out_results )
@@ -72,8 +72,8 @@ void dot_sse( const float2_sse_t* lhs, const float2_sse_t* rhs, __m128* out_resu
 	assert( rhs );
 	assert( out_results );
 
-	__m128 mul0 = _mm_mul_ps( lhs->comp[0], rhs->comp[0] );
-	__m128 mul1 = _mm_mul_ps( lhs->comp[1], rhs->comp[1] );
+	__m128 mul0 = _mm_mul_ps( lhs->x, rhs->x );
+	__m128 mul1 = _mm_mul_ps( lhs->y, rhs->y );
 
 	*out_results = _mm_add_ps( mul0, mul1 );
 }
@@ -85,8 +85,8 @@ void distancesq_sse( const float2_sse_t* lhs, const float2_sse_t* rhs, __m128* o
 	assert( out_results );
 
 	float2_sse_t data;
-	data.comp[0] = _mm_sub_ps( lhs->comp[0], rhs->comp[0] );
-	data.comp[1] = _mm_sub_ps( lhs->comp[1], rhs->comp[1] );
+	data.x = _mm_sub_ps( lhs->x, rhs->x );
+	data.y = _mm_sub_ps( lhs->y, rhs->y );
 
 	lengthsq_sse( &data, out_results );
 }
@@ -98,8 +98,8 @@ void distance_sse( const float2_sse_t* lhs, const float2_sse_t* rhs, __m128* out
 	assert( out_results );
 
 	float2_sse_t data;
-	data.comp[0] = _mm_sub_ps( lhs->comp[0], rhs->comp[0] );
-	data.comp[1] = _mm_sub_ps( lhs->comp[1], rhs->comp[1] );
+	data.x = _mm_sub_ps( lhs->x, rhs->x );
+	data.y = _mm_sub_ps( lhs->y, rhs->y );
 
 	length_sse( &data, out_results );
 }
@@ -133,9 +133,9 @@ void normalize_sse( const float3_sse_t* in, float3_sse_t* out )
 
 	__m128 invlen = _mm_rcp_ps( len );
 
-	out->comp[0] = _mm_mul_ps( in->comp[0], invlen );
-	out->comp[1] = _mm_mul_ps( in->comp[1], invlen );
-	out->comp[2] = _mm_mul_ps( in->comp[2], invlen );
+	out->x = _mm_mul_ps( in->x, invlen );
+	out->y = _mm_mul_ps( in->y, invlen );
+	out->z = _mm_mul_ps( in->z, invlen );
 }
 
 void dot_sse( const float3_sse_t* lhs, const float3_sse_t* rhs, __m128* out_results )
@@ -144,9 +144,9 @@ void dot_sse( const float3_sse_t* lhs, const float3_sse_t* rhs, __m128* out_resu
 	assert( rhs );
 	assert( out_results );
 
-	__m128 mul0 = _mm_mul_ps( lhs->comp[0], rhs->comp[0] );
-	__m128 mul1 = _mm_mul_ps( lhs->comp[1], rhs->comp[1] );
-	__m128 mul2 = _mm_mul_ps( lhs->comp[2], rhs->comp[2] );
+	__m128 mul0 = _mm_mul_ps( lhs->x, rhs->x );
+	__m128 mul1 = _mm_mul_ps( lhs->y, rhs->y );
+	__m128 mul2 = _mm_mul_ps( lhs->z, rhs->z );
 
 	__m128 add0 = _mm_add_ps( mul0, mul1 );
 
@@ -159,17 +159,17 @@ void cross_sse( const float3_sse_t* lhs, const float3_sse_t* rhs, float3_sse_t* 
 	assert( rhs );
 	assert( out_results );
 
-	__m128 xmula = _mm_mul_ps( lhs->comp[1], rhs->comp[2] );
-	__m128 xmulb = _mm_mul_ps( lhs->comp[2], rhs->comp[1] );
-	out_results->comp[0] = _mm_sub_ps( xmula, xmulb );
+	__m128 xmula = _mm_mul_ps( lhs->y, rhs->z );
+	__m128 xmulb = _mm_mul_ps( lhs->z, rhs->y );
+	out_results->x = _mm_sub_ps( xmula, xmulb );
 
-	__m128 ymula = _mm_mul_ps( lhs->comp[2], rhs->comp[0] );
-	__m128 ymulb = _mm_mul_ps( lhs->comp[0], rhs->comp[2] );
-	out_results->comp[1] = _mm_sub_ps( ymula, ymulb );
+	__m128 ymula = _mm_mul_ps( lhs->z, rhs->x );
+	__m128 ymulb = _mm_mul_ps( lhs->x, rhs->z );
+	out_results->y = _mm_sub_ps( ymula, ymulb );
 
-	__m128 zmula = _mm_mul_ps( lhs->comp[0], rhs->comp[1] );
-	__m128 zmulb = _mm_mul_ps( lhs->comp[1], rhs->comp[0] );
-	out_results->comp[2] = _mm_sub_ps( zmula, zmulb );
+	__m128 zmula = _mm_mul_ps( lhs->x, rhs->y );
+	__m128 zmulb = _mm_mul_ps( lhs->y, rhs->x );
+	out_results->z = _mm_sub_ps( zmula, zmulb );
 }
 
 void distancesq_sse( const float3_sse_t* lhs, const float3_sse_t* rhs, __m128* out_results )
@@ -179,9 +179,9 @@ void distancesq_sse( const float3_sse_t* lhs, const float3_sse_t* rhs, __m128* o
 	assert( out_results );
 
 	float3_sse_t data;
-	data.comp[0] = _mm_sub_ps( lhs->comp[0], rhs->comp[0] );
-	data.comp[1] = _mm_sub_ps( lhs->comp[1], rhs->comp[1] );
-	data.comp[2] = _mm_sub_ps( lhs->comp[2], rhs->comp[2] );
+	data.x = _mm_sub_ps( lhs->x, rhs->x );
+	data.y = _mm_sub_ps( lhs->y, rhs->y );
+	data.z = _mm_sub_ps( lhs->z, rhs->z );
 
 	lengthsq_sse( &data, out_results );
 }
@@ -193,9 +193,9 @@ void distance_sse( const float3_sse_t* lhs, const float3_sse_t* rhs, __m128* out
 	assert( out_results );
 
 	float3_sse_t data;
-	data.comp[0] = _mm_sub_ps( lhs->comp[0], rhs->comp[0] );
-	data.comp[1] = _mm_sub_ps( lhs->comp[1], rhs->comp[1] );
-	data.comp[2] = _mm_sub_ps( lhs->comp[2], rhs->comp[2] );
+	data.x = _mm_sub_ps( lhs->x, rhs->x );
+	data.y = _mm_sub_ps( lhs->y, rhs->y );
+	data.z = _mm_sub_ps( lhs->z, rhs->z );
 
 	length_sse( &data, out_results );
 }
@@ -229,10 +229,10 @@ void normalize_sse( const float4_sse_t* in, float4_sse_t* out )
 
 	__m128 invlen = _mm_rcp_ps( len );
 
-	out->comp[0] = _mm_mul_ps( in->comp[0], invlen );
-	out->comp[1] = _mm_mul_ps( in->comp[1], invlen );
-	out->comp[2] = _mm_mul_ps( in->comp[2], invlen );
-	out->comp[3] = _mm_mul_ps( in->comp[3], invlen );
+	out->x = _mm_mul_ps( in->x, invlen );
+	out->y = _mm_mul_ps( in->y, invlen );
+	out->z = _mm_mul_ps( in->z, invlen );
+	out->w = _mm_mul_ps( in->w, invlen );
 }
 
 void dot_sse( const float4_sse_t* lhs, const float4_sse_t* rhs, __m128* out_results )
@@ -241,13 +241,13 @@ void dot_sse( const float4_sse_t* lhs, const float4_sse_t* rhs, __m128* out_resu
 	assert( rhs );
 	assert( out_results );
 
-	__m128 mul0 = _mm_mul_ps( lhs->comp[0], rhs->comp[0] );
-	__m128 mul1 = _mm_mul_ps( lhs->comp[1], rhs->comp[1] );
-	__m128 mul2 = _mm_mul_ps( lhs->comp[2], rhs->comp[2] );
-	__m128 mul3 = _mm_mul_ps( lhs->comp[3], rhs->comp[3] );
+	__m128 mul_x = _mm_mul_ps( lhs->x, rhs->x );
+	__m128 mul_y = _mm_mul_ps( lhs->y, rhs->y );
+	__m128 mul_z = _mm_mul_ps( lhs->z, rhs->z );
+	__m128 mul_w = _mm_mul_ps( lhs->w, rhs->w );
 
-	__m128 add0 = _mm_add_ps( mul0, mul1 );
-	__m128 add1 = _mm_add_ps( mul2, mul3 );
+	__m128 add0 = _mm_add_ps( mul_x, mul_y );
+	__m128 add1 = _mm_add_ps( mul_z, mul_w );
 
 	*out_results = _mm_add_ps( add0, add1 );
 }
@@ -258,19 +258,19 @@ void cross_sse( const float4_sse_t* lhs, const float4_sse_t* rhs, float4_sse_t* 
 	assert( rhs );
 	assert( out_results );
 
-	__m128 xmula = _mm_mul_ps( lhs->comp[1], rhs->comp[2] );
-	__m128 xmulb = _mm_mul_ps( lhs->comp[2], rhs->comp[1] );
-	out_results->comp[0] = _mm_sub_ps( xmula, xmulb );
+	__m128 xmula = _mm_mul_ps( lhs->y, rhs->z );
+	__m128 xmulb = _mm_mul_ps( lhs->z, rhs->y );
+	out_results->x = _mm_sub_ps( xmula, xmulb );
 
-	__m128 ymula = _mm_mul_ps( lhs->comp[2], rhs->comp[0] );
-	__m128 ymulb = _mm_mul_ps( lhs->comp[0], rhs->comp[2] );
-	out_results->comp[1] = _mm_sub_ps( ymula, ymulb );
+	__m128 ymula = _mm_mul_ps( lhs->z, rhs->x );
+	__m128 ymulb = _mm_mul_ps( lhs->x, rhs->z );
+	out_results->y = _mm_sub_ps( ymula, ymulb );
 
-	__m128 zmula = _mm_mul_ps( lhs->comp[0], rhs->comp[1] );
-	__m128 zmulb = _mm_mul_ps( lhs->comp[1], rhs->comp[0] );
-	out_results->comp[2] = _mm_sub_ps( zmula, zmulb );
+	__m128 zmula = _mm_mul_ps( lhs->x, rhs->y );
+	__m128 zmulb = _mm_mul_ps( lhs->y, rhs->x );
+	out_results->z = _mm_sub_ps( zmula, zmulb );
 
-	out_results->comp[3] = HLML_ZERO_SSE;
+	out_results->w = HLML_ZERO_SSE;
 }
 
 void distancesq_sse( const float4_sse_t* lhs, const float4_sse_t* rhs, __m128* out_results )
@@ -280,10 +280,10 @@ void distancesq_sse( const float4_sse_t* lhs, const float4_sse_t* rhs, __m128* o
 	assert( out_results );
 
 	float4_sse_t data;
-	data.comp[0] = _mm_sub_ps( lhs->comp[0], rhs->comp[0] );
-	data.comp[1] = _mm_sub_ps( lhs->comp[1], rhs->comp[1] );
-	data.comp[2] = _mm_sub_ps( lhs->comp[2], rhs->comp[2] );
-	data.comp[3] = _mm_sub_ps( lhs->comp[3], rhs->comp[3] );
+	data.x = _mm_sub_ps( lhs->x, rhs->x );
+	data.y = _mm_sub_ps( lhs->y, rhs->y );
+	data.z = _mm_sub_ps( lhs->z, rhs->z );
+	data.w = _mm_sub_ps( lhs->w, rhs->w );
 
 	lengthsq_sse( &data, out_results );
 }
@@ -295,10 +295,10 @@ void distance_sse( const float4_sse_t* lhs, const float4_sse_t* rhs, __m128* out
 	assert( out_results );
 
 	float4_sse_t data;
-	data.comp[0] = _mm_sub_ps( lhs->comp[0], rhs->comp[0] );
-	data.comp[1] = _mm_sub_ps( lhs->comp[1], rhs->comp[1] );
-	data.comp[2] = _mm_sub_ps( lhs->comp[2], rhs->comp[2] );
-	data.comp[3] = _mm_sub_ps( lhs->comp[3], rhs->comp[3] );
+	data.x = _mm_sub_ps( lhs->x, rhs->x );
+	data.y = _mm_sub_ps( lhs->y, rhs->y );
+	data.z = _mm_sub_ps( lhs->z, rhs->z );
+	data.w = _mm_sub_ps( lhs->w, rhs->w );
 
 	length_sse( &data, out_results );
 }

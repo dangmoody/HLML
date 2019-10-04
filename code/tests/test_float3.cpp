@@ -228,9 +228,9 @@ TEMPER_TEST( TestLength_SSE_float3 )
 
 	float3_sse_t in;
 
-	in.comp[0] = _mm_load_ps( components[0] );
-	in.comp[1] = _mm_load_ps( components[1] );
-	in.comp[2] = _mm_load_ps( components[2] );
+	in.x = _mm_load_ps( components[0] );
+	in.y = _mm_load_ps( components[1] );
+	in.z = _mm_load_ps( components[2] );
 
 	__m128 results;
 
@@ -275,9 +275,9 @@ TEMPER_TEST( TestNormalized_SSE_float3 )
 	float3_sse_t in;
 	float3_sse_t in_normalised;
 
-	in.comp[0] = _mm_set1_ps( 5.0f );
-	in.comp[1] = _mm_set1_ps( 4.0f );
-	in.comp[2] = _mm_set1_ps( 3.0f );
+	in.x = _mm_set1_ps( 5.0f );
+	in.y = _mm_set1_ps( 4.0f );
+	in.z = _mm_set1_ps( 3.0f );
 
 	normalize_sse( &in, &in_normalised );
 	length_sse( &in_normalised, &results );
@@ -320,14 +320,14 @@ TEMPER_TEST( TestDot_SSE_float3 )
 	};
 
 	float3_sse_t lhs;
-	lhs.comp[0] = _mm_load_ps( componentsLHS[0] );
-	lhs.comp[1] = _mm_load_ps( componentsLHS[1] );
-	lhs.comp[2] = _mm_load_ps( componentsLHS[2] );
+	lhs.x = _mm_load_ps( componentsLHS[0] );
+	lhs.y = _mm_load_ps( componentsLHS[1] );
+	lhs.z = _mm_load_ps( componentsLHS[2] );
 
 	float3_sse_t rhs;
-	rhs.comp[0] = _mm_load_ps( componentsRHS[0] );
-	rhs.comp[1] = _mm_load_ps( componentsRHS[1] );
-	rhs.comp[2] = _mm_load_ps( componentsRHS[2] );
+	rhs.x = _mm_load_ps( componentsRHS[0] );
+	rhs.y = _mm_load_ps( componentsRHS[1] );
+	rhs.z = _mm_load_ps( componentsRHS[2] );
 
 	__m128 results;
 	dot_sse( &lhs, &rhs, &results );
@@ -371,33 +371,33 @@ TEMPER_TEST( TestCross_SSE_float3 )
 	};
 
 	float3_sse_t left;
-	left.comp[0] = _mm_load_ps( componentsLeft[0] );
-	left.comp[1] = _mm_load_ps( componentsLeft[1] );
-	left.comp[2] = _mm_load_ps( componentsLeft[2] );
+	left.x = _mm_load_ps( componentsLeft[0] );
+	left.y = _mm_load_ps( componentsLeft[1] );
+	left.z = _mm_load_ps( componentsLeft[2] );
 
 	float3_sse_t forward;
-	forward.comp[0] = _mm_load_ps( componentsForward[0] );
-	forward.comp[1] = _mm_load_ps( componentsForward[1] );
-	forward.comp[2] = _mm_load_ps( componentsForward[2] );
+	forward.x = _mm_load_ps( componentsForward[0] );
+	forward.y = _mm_load_ps( componentsForward[1] );
+	forward.z = _mm_load_ps( componentsForward[2] );
 
 	float3_sse_t up;
 
 	cross_sse( &left, &forward, &up );
 
 	float crossResults[4];
-	_mm_store_ps( crossResults, up.comp[0] );
+	_mm_store_ps( crossResults, up.x );
 	TEMPER_EXPECT_TRUE( floateq( crossResults[0], 0.000000f ) );
 	TEMPER_EXPECT_TRUE( floateq( crossResults[1], 0.000000f ) );
 	TEMPER_EXPECT_TRUE( floateq( crossResults[2], 0.000000f ) );
 	TEMPER_EXPECT_TRUE( floateq( crossResults[3], 0.000000f ) );
 
-	_mm_store_ps( crossResults, up.comp[1] );
+	_mm_store_ps( crossResults, up.y );
 	TEMPER_EXPECT_TRUE( floateq( crossResults[0], 1.000000f ) );
 	TEMPER_EXPECT_TRUE( floateq( crossResults[1], 1.000000f ) );
 	TEMPER_EXPECT_TRUE( floateq( crossResults[2], 1.000000f ) );
 	TEMPER_EXPECT_TRUE( floateq( crossResults[3], 1.000000f ) );
 
-	_mm_store_ps( crossResults, up.comp[2] );
+	_mm_store_ps( crossResults, up.z );
 	TEMPER_EXPECT_TRUE( floateq( crossResults[0], 0.000000f ) );
 	TEMPER_EXPECT_TRUE( floateq( crossResults[1], 0.000000f ) );
 	TEMPER_EXPECT_TRUE( floateq( crossResults[2], 0.000000f ) );
@@ -450,14 +450,14 @@ TEMPER_TEST( TestDistance_SSE_float3 )
 	};
 
 	float3_sse_t lhs;
-	lhs.comp[0] = _mm_load_ps( componentsLHS[0] );
-	lhs.comp[1] = _mm_load_ps( componentsLHS[1] );
-	lhs.comp[2] = _mm_load_ps( componentsLHS[2] );
+	lhs.x = _mm_load_ps( componentsLHS[0] );
+	lhs.y = _mm_load_ps( componentsLHS[1] );
+	lhs.z = _mm_load_ps( componentsLHS[2] );
 
 	float3_sse_t rhs;
-	rhs.comp[0] = _mm_load_ps( componentsRHS[0] );
-	rhs.comp[1] = _mm_load_ps( componentsRHS[1] );
-	rhs.comp[2] = _mm_load_ps( componentsRHS[2] );
+	rhs.x = _mm_load_ps( componentsRHS[0] );
+	rhs.y = _mm_load_ps( componentsRHS[1] );
+	rhs.z = _mm_load_ps( componentsRHS[2] );
 
 	__m128 results;
 

@@ -1344,11 +1344,13 @@ void GeneratorMatrixTests::GenerateTestTranslate() {
 		String_Append(  &m_codeTests, "\t};\n" );
 		String_Append(  &m_codeTests, "\n" );
 		String_Appendf( &m_codeTests, "\t%s pos;\n", sseTranslateVecName );
-		String_Appendf( &m_codeTests, "\tmemset( pos.comp, 0, %d * sizeof( __m128 ) );\n", translateVecComponents );
+		String_Appendf( &m_codeTests, "\tmemset( &pos, 0, %d * sizeof( __m128 ) );\n", translateVecComponents );
 		String_Append(  &m_codeTests, "\n" );
 		String_Appendf( &m_codeTests, "\t%s translation;\n", sseTranslateVecName );
 		for ( u32 i = 0; i < translateVecComponents; i++ ) {
-			String_Appendf( &m_codeTests, "\ttranslation.comp[%d] = %s( translateVecComponents[%d] );\n", i, loadFuncStr, i );
+			const char componentStr = GEN_COMPONENT_NAMES_VECTOR[i];
+
+			String_Appendf( &m_codeTests, "\ttranslation.%c = %s( translateVecComponents[%d] );\n", componentStr, loadFuncStr, i );
 		}
 		String_Append(  &m_codeTests, "\n" );
 		String_Appendf( &m_codeTests, "\ttranslate_sse( &pos, &translation, &pos );\n" );
@@ -1356,7 +1358,9 @@ void GeneratorMatrixTests::GenerateTestTranslate() {
 		String_Appendf( &m_codeTests, "\t%s translateResults[4];\n", m_memberTypeString );
 		String_Append(  &m_codeTests, "\n" );
 		for ( u32 componentIndex = 0; componentIndex < translateVecComponents; componentIndex++ ) {
-			String_Appendf( &m_codeTests, "\t%s( translateResults, pos.comp[%d] );\n", storeFuncStr, componentIndex );
+			const char componentStr = GEN_COMPONENT_NAMES_VECTOR[componentIndex];
+
+			String_Appendf( &m_codeTests, "\t%s( translateResults, pos.%c );\n", storeFuncStr, componentStr );
 			for ( u32 i = 0; i < 4; i++ ) {
 				char valueStr[GEN_STRING_LENGTH_NUMERIC_LITERAL];
 				Gen_GetNumericLiteral( m_type, valuesTranslateVec[componentIndex], valueStr );
@@ -1582,19 +1586,25 @@ void GeneratorMatrixTests::GenerateTestScale() {
 		String_Append(  &m_codeTests, "\n" );
 		String_Appendf( &m_codeTests, "\t%s diagonal;\n", sseScaleVecName );
 		for ( u32 i = 0; i < scaleCols; i++ ) {
-			String_Appendf( &m_codeTests, "\tdiagonal.comp[%d] = %s( 1 );\n", i, set1FuncStr );
+			const char componentStr = GEN_COMPONENT_NAMES_VECTOR[i];
+
+			String_Appendf( &m_codeTests, "\tdiagonal.%c = %s( 1 );\n", componentStr, set1FuncStr );
 		}
 		String_Append(  &m_codeTests, "\n" );
 		String_Appendf( &m_codeTests, "\t%s scale;\n", sseScaleVecName );
 		for ( u32 i = 0; i < scaleCols; i++ ) {
-			String_Appendf( &m_codeTests, "\tscale.comp[%d] = %s( scaleVecComponents[%d] );\n", i, loadFuncStr, i );
+			const char componentStr = GEN_COMPONENT_NAMES_VECTOR[i];
+
+			String_Appendf( &m_codeTests, "\tscale.%c = %s( scaleVecComponents[%d] );\n", componentStr, loadFuncStr, i );
 		}
 		String_Append(  &m_codeTests, "\n" );
 		String_Append(  &m_codeTests, "\tscale_sse( &diagonal, &scale, &diagonal );\n" );
 		String_Append(  &m_codeTests, "\n" );
 		String_Appendf( &m_codeTests, "\t%s scaleResults[4];\n", m_memberTypeString );
 		for ( u32 componentIndex = 0; componentIndex < scaleCols; componentIndex++ ) {
-			String_Appendf( &m_codeTests, "\t%s( scaleResults, diagonal.comp[%d] );\n", storeFuncStr, componentIndex );
+			const char componentStr = GEN_COMPONENT_NAMES_VECTOR[componentIndex];
+
+			String_Appendf( &m_codeTests, "\t%s( scaleResults, diagonal.%c );\n", storeFuncStr, componentStr );
 
 			for ( u32 i = 0; i < 4; i++ ) {
 				char valueStr[GEN_STRING_LENGTH_NUMERIC_LITERAL];

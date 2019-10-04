@@ -156,26 +156,39 @@ void mul_sse( const float2x2_sse_t* lhs, const float2x2_sse_t* rhs, float2x2_sse
 	assert( rhs );
 	assert( out );
 
-	float2x2_sse_t rhs_transposed;
-	transpose_sse( rhs, &rhs_transposed );
-
 	float2_sse_t dot_lhs;
 	float2_sse_t dot_rhs;
 
-	memcpy( dot_lhs.comp, &lhs->m[0], sizeof( lhs->m[0] ) );
-	memcpy( dot_rhs.comp, &rhs_transposed.m[0], sizeof( rhs_transposed.m[0] ) );
+	dot_lhs.x = lhs->m[0][0];
+	dot_lhs.y = lhs->m[0][1];
+
+	dot_rhs.x = rhs->m[0][0];
+	dot_rhs.y = rhs->m[1][0];
+
 	dot_sse( &dot_lhs, &dot_rhs, &out->m[0][0] );
 
-	memcpy( dot_lhs.comp, &lhs->m[0], sizeof( lhs->m[0] ) );
-	memcpy( dot_rhs.comp, &rhs_transposed.m[1], sizeof( rhs_transposed.m[1] ) );
+	dot_lhs.x = lhs->m[0][0];
+	dot_lhs.y = lhs->m[0][1];
+
+	dot_rhs.x = rhs->m[0][1];
+	dot_rhs.y = rhs->m[1][1];
+
 	dot_sse( &dot_lhs, &dot_rhs, &out->m[0][1] );
 
-	memcpy( dot_lhs.comp, &lhs->m[1], sizeof( lhs->m[1] ) );
-	memcpy( dot_rhs.comp, &rhs_transposed.m[0], sizeof( rhs_transposed.m[0] ) );
+	dot_lhs.x = lhs->m[1][0];
+	dot_lhs.y = lhs->m[1][1];
+
+	dot_rhs.x = rhs->m[0][0];
+	dot_rhs.y = rhs->m[1][0];
+
 	dot_sse( &dot_lhs, &dot_rhs, &out->m[1][0] );
 
-	memcpy( dot_lhs.comp, &lhs->m[1], sizeof( lhs->m[1] ) );
-	memcpy( dot_rhs.comp, &rhs_transposed.m[1], sizeof( rhs_transposed.m[1] ) );
+	dot_lhs.x = lhs->m[1][0];
+	dot_lhs.y = lhs->m[1][1];
+
+	dot_rhs.x = rhs->m[0][1];
+	dot_rhs.y = rhs->m[1][1];
+
 	dot_sse( &dot_lhs, &dot_rhs, &out->m[1][1] );
 }
 
@@ -282,26 +295,47 @@ void mul_sse( const float2x3_sse_t* lhs, const float3x2_sse_t* rhs, float2x2_sse
 	assert( rhs );
 	assert( out );
 
-	float2x3_sse_t rhs_transposed;
-	transpose_sse( rhs, &rhs_transposed );
-
 	float3_sse_t dot_lhs;
 	float3_sse_t dot_rhs;
 
-	memcpy( dot_lhs.comp, &lhs->m[0], sizeof( lhs->m[0] ) );
-	memcpy( dot_rhs.comp, &rhs_transposed.m[0], sizeof( rhs_transposed.m[0] ) );
+	dot_lhs.x = lhs->m[0][0];
+	dot_lhs.y = lhs->m[0][1];
+	dot_lhs.z = lhs->m[0][2];
+
+	dot_rhs.x = rhs->m[0][0];
+	dot_rhs.y = rhs->m[1][0];
+	dot_rhs.z = rhs->m[2][0];
+
 	dot_sse( &dot_lhs, &dot_rhs, &out->m[0][0] );
 
-	memcpy( dot_lhs.comp, &lhs->m[0], sizeof( lhs->m[0] ) );
-	memcpy( dot_rhs.comp, &rhs_transposed.m[1], sizeof( rhs_transposed.m[1] ) );
+	dot_lhs.x = lhs->m[0][0];
+	dot_lhs.y = lhs->m[0][1];
+	dot_lhs.z = lhs->m[0][2];
+
+	dot_rhs.x = rhs->m[0][1];
+	dot_rhs.y = rhs->m[1][1];
+	dot_rhs.z = rhs->m[2][1];
+
 	dot_sse( &dot_lhs, &dot_rhs, &out->m[0][1] );
 
-	memcpy( dot_lhs.comp, &lhs->m[1], sizeof( lhs->m[1] ) );
-	memcpy( dot_rhs.comp, &rhs_transposed.m[0], sizeof( rhs_transposed.m[0] ) );
+	dot_lhs.x = lhs->m[1][0];
+	dot_lhs.y = lhs->m[1][1];
+	dot_lhs.z = lhs->m[1][2];
+
+	dot_rhs.x = rhs->m[0][0];
+	dot_rhs.y = rhs->m[1][0];
+	dot_rhs.z = rhs->m[2][0];
+
 	dot_sse( &dot_lhs, &dot_rhs, &out->m[1][0] );
 
-	memcpy( dot_lhs.comp, &lhs->m[1], sizeof( lhs->m[1] ) );
-	memcpy( dot_rhs.comp, &rhs_transposed.m[1], sizeof( rhs_transposed.m[1] ) );
+	dot_lhs.x = lhs->m[1][0];
+	dot_lhs.y = lhs->m[1][1];
+	dot_lhs.z = lhs->m[1][2];
+
+	dot_rhs.x = rhs->m[0][1];
+	dot_rhs.y = rhs->m[1][1];
+	dot_rhs.z = rhs->m[2][1];
+
 	dot_sse( &dot_lhs, &dot_rhs, &out->m[1][1] );
 }
 
@@ -420,26 +454,55 @@ void mul_sse( const float2x4_sse_t* lhs, const float4x2_sse_t* rhs, float2x2_sse
 	assert( rhs );
 	assert( out );
 
-	float2x4_sse_t rhs_transposed;
-	transpose_sse( rhs, &rhs_transposed );
-
 	float4_sse_t dot_lhs;
 	float4_sse_t dot_rhs;
 
-	memcpy( dot_lhs.comp, &lhs->m[0], sizeof( lhs->m[0] ) );
-	memcpy( dot_rhs.comp, &rhs_transposed.m[0], sizeof( rhs_transposed.m[0] ) );
+	dot_lhs.x = lhs->m[0][0];
+	dot_lhs.y = lhs->m[0][1];
+	dot_lhs.z = lhs->m[0][2];
+	dot_lhs.w = lhs->m[0][3];
+
+	dot_rhs.x = rhs->m[0][0];
+	dot_rhs.y = rhs->m[1][0];
+	dot_rhs.z = rhs->m[2][0];
+	dot_rhs.w = rhs->m[3][0];
+
 	dot_sse( &dot_lhs, &dot_rhs, &out->m[0][0] );
 
-	memcpy( dot_lhs.comp, &lhs->m[0], sizeof( lhs->m[0] ) );
-	memcpy( dot_rhs.comp, &rhs_transposed.m[1], sizeof( rhs_transposed.m[1] ) );
+	dot_lhs.x = lhs->m[0][0];
+	dot_lhs.y = lhs->m[0][1];
+	dot_lhs.z = lhs->m[0][2];
+	dot_lhs.w = lhs->m[0][3];
+
+	dot_rhs.x = rhs->m[0][1];
+	dot_rhs.y = rhs->m[1][1];
+	dot_rhs.z = rhs->m[2][1];
+	dot_rhs.w = rhs->m[3][1];
+
 	dot_sse( &dot_lhs, &dot_rhs, &out->m[0][1] );
 
-	memcpy( dot_lhs.comp, &lhs->m[1], sizeof( lhs->m[1] ) );
-	memcpy( dot_rhs.comp, &rhs_transposed.m[0], sizeof( rhs_transposed.m[0] ) );
+	dot_lhs.x = lhs->m[1][0];
+	dot_lhs.y = lhs->m[1][1];
+	dot_lhs.z = lhs->m[1][2];
+	dot_lhs.w = lhs->m[1][3];
+
+	dot_rhs.x = rhs->m[0][0];
+	dot_rhs.y = rhs->m[1][0];
+	dot_rhs.z = rhs->m[2][0];
+	dot_rhs.w = rhs->m[3][0];
+
 	dot_sse( &dot_lhs, &dot_rhs, &out->m[1][0] );
 
-	memcpy( dot_lhs.comp, &lhs->m[1], sizeof( lhs->m[1] ) );
-	memcpy( dot_rhs.comp, &rhs_transposed.m[1], sizeof( rhs_transposed.m[1] ) );
+	dot_lhs.x = lhs->m[1][0];
+	dot_lhs.y = lhs->m[1][1];
+	dot_lhs.z = lhs->m[1][2];
+	dot_lhs.w = lhs->m[1][3];
+
+	dot_rhs.x = rhs->m[0][1];
+	dot_rhs.y = rhs->m[1][1];
+	dot_rhs.z = rhs->m[2][1];
+	dot_rhs.w = rhs->m[3][1];
+
 	dot_sse( &dot_lhs, &dot_rhs, &out->m[1][1] );
 }
 
@@ -557,46 +620,79 @@ void mul_sse( const float3x2_sse_t* lhs, const float2x3_sse_t* rhs, float3x3_sse
 	assert( rhs );
 	assert( out );
 
-	float3x2_sse_t rhs_transposed;
-	transpose_sse( rhs, &rhs_transposed );
-
 	float2_sse_t dot_lhs;
 	float2_sse_t dot_rhs;
 
-	memcpy( dot_lhs.comp, &lhs->m[0], sizeof( lhs->m[0] ) );
-	memcpy( dot_rhs.comp, &rhs_transposed.m[0], sizeof( rhs_transposed.m[0] ) );
+	dot_lhs.x = lhs->m[0][0];
+	dot_lhs.y = lhs->m[0][1];
+
+	dot_rhs.x = rhs->m[0][0];
+	dot_rhs.y = rhs->m[1][0];
+
 	dot_sse( &dot_lhs, &dot_rhs, &out->m[0][0] );
 
-	memcpy( dot_lhs.comp, &lhs->m[0], sizeof( lhs->m[0] ) );
-	memcpy( dot_rhs.comp, &rhs_transposed.m[1], sizeof( rhs_transposed.m[1] ) );
+	dot_lhs.x = lhs->m[0][0];
+	dot_lhs.y = lhs->m[0][1];
+
+	dot_rhs.x = rhs->m[0][1];
+	dot_rhs.y = rhs->m[1][1];
+
 	dot_sse( &dot_lhs, &dot_rhs, &out->m[0][1] );
 
-	memcpy( dot_lhs.comp, &lhs->m[0], sizeof( lhs->m[0] ) );
-	memcpy( dot_rhs.comp, &rhs_transposed.m[2], sizeof( rhs_transposed.m[2] ) );
+	dot_lhs.x = lhs->m[0][0];
+	dot_lhs.y = lhs->m[0][1];
+
+	dot_rhs.x = rhs->m[0][2];
+	dot_rhs.y = rhs->m[1][2];
+
 	dot_sse( &dot_lhs, &dot_rhs, &out->m[0][2] );
 
-	memcpy( dot_lhs.comp, &lhs->m[1], sizeof( lhs->m[1] ) );
-	memcpy( dot_rhs.comp, &rhs_transposed.m[0], sizeof( rhs_transposed.m[0] ) );
+	dot_lhs.x = lhs->m[1][0];
+	dot_lhs.y = lhs->m[1][1];
+
+	dot_rhs.x = rhs->m[0][0];
+	dot_rhs.y = rhs->m[1][0];
+
 	dot_sse( &dot_lhs, &dot_rhs, &out->m[1][0] );
 
-	memcpy( dot_lhs.comp, &lhs->m[1], sizeof( lhs->m[1] ) );
-	memcpy( dot_rhs.comp, &rhs_transposed.m[1], sizeof( rhs_transposed.m[1] ) );
+	dot_lhs.x = lhs->m[1][0];
+	dot_lhs.y = lhs->m[1][1];
+
+	dot_rhs.x = rhs->m[0][1];
+	dot_rhs.y = rhs->m[1][1];
+
 	dot_sse( &dot_lhs, &dot_rhs, &out->m[1][1] );
 
-	memcpy( dot_lhs.comp, &lhs->m[1], sizeof( lhs->m[1] ) );
-	memcpy( dot_rhs.comp, &rhs_transposed.m[2], sizeof( rhs_transposed.m[2] ) );
+	dot_lhs.x = lhs->m[1][0];
+	dot_lhs.y = lhs->m[1][1];
+
+	dot_rhs.x = rhs->m[0][2];
+	dot_rhs.y = rhs->m[1][2];
+
 	dot_sse( &dot_lhs, &dot_rhs, &out->m[1][2] );
 
-	memcpy( dot_lhs.comp, &lhs->m[2], sizeof( lhs->m[2] ) );
-	memcpy( dot_rhs.comp, &rhs_transposed.m[0], sizeof( rhs_transposed.m[0] ) );
+	dot_lhs.x = lhs->m[2][0];
+	dot_lhs.y = lhs->m[2][1];
+
+	dot_rhs.x = rhs->m[0][0];
+	dot_rhs.y = rhs->m[1][0];
+
 	dot_sse( &dot_lhs, &dot_rhs, &out->m[2][0] );
 
-	memcpy( dot_lhs.comp, &lhs->m[2], sizeof( lhs->m[2] ) );
-	memcpy( dot_rhs.comp, &rhs_transposed.m[1], sizeof( rhs_transposed.m[1] ) );
+	dot_lhs.x = lhs->m[2][0];
+	dot_lhs.y = lhs->m[2][1];
+
+	dot_rhs.x = rhs->m[0][1];
+	dot_rhs.y = rhs->m[1][1];
+
 	dot_sse( &dot_lhs, &dot_rhs, &out->m[2][1] );
 
-	memcpy( dot_lhs.comp, &lhs->m[2], sizeof( lhs->m[2] ) );
-	memcpy( dot_rhs.comp, &rhs_transposed.m[2], sizeof( rhs_transposed.m[2] ) );
+	dot_lhs.x = lhs->m[2][0];
+	dot_lhs.y = lhs->m[2][1];
+
+	dot_rhs.x = rhs->m[0][2];
+	dot_rhs.y = rhs->m[1][2];
+
 	dot_sse( &dot_lhs, &dot_rhs, &out->m[2][2] );
 }
 
@@ -833,46 +929,97 @@ void mul_sse( const float3x3_sse_t* lhs, const float3x3_sse_t* rhs, float3x3_sse
 	assert( rhs );
 	assert( out );
 
-	float3x3_sse_t rhs_transposed;
-	transpose_sse( rhs, &rhs_transposed );
-
 	float3_sse_t dot_lhs;
 	float3_sse_t dot_rhs;
 
-	memcpy( dot_lhs.comp, &lhs->m[0], sizeof( lhs->m[0] ) );
-	memcpy( dot_rhs.comp, &rhs_transposed.m[0], sizeof( rhs_transposed.m[0] ) );
+	dot_lhs.x = lhs->m[0][0];
+	dot_lhs.y = lhs->m[0][1];
+	dot_lhs.z = lhs->m[0][2];
+
+	dot_rhs.x = rhs->m[0][0];
+	dot_rhs.y = rhs->m[1][0];
+	dot_rhs.z = rhs->m[2][0];
+
 	dot_sse( &dot_lhs, &dot_rhs, &out->m[0][0] );
 
-	memcpy( dot_lhs.comp, &lhs->m[0], sizeof( lhs->m[0] ) );
-	memcpy( dot_rhs.comp, &rhs_transposed.m[1], sizeof( rhs_transposed.m[1] ) );
+	dot_lhs.x = lhs->m[0][0];
+	dot_lhs.y = lhs->m[0][1];
+	dot_lhs.z = lhs->m[0][2];
+
+	dot_rhs.x = rhs->m[0][1];
+	dot_rhs.y = rhs->m[1][1];
+	dot_rhs.z = rhs->m[2][1];
+
 	dot_sse( &dot_lhs, &dot_rhs, &out->m[0][1] );
 
-	memcpy( dot_lhs.comp, &lhs->m[0], sizeof( lhs->m[0] ) );
-	memcpy( dot_rhs.comp, &rhs_transposed.m[2], sizeof( rhs_transposed.m[2] ) );
+	dot_lhs.x = lhs->m[0][0];
+	dot_lhs.y = lhs->m[0][1];
+	dot_lhs.z = lhs->m[0][2];
+
+	dot_rhs.x = rhs->m[0][2];
+	dot_rhs.y = rhs->m[1][2];
+	dot_rhs.z = rhs->m[2][2];
+
 	dot_sse( &dot_lhs, &dot_rhs, &out->m[0][2] );
 
-	memcpy( dot_lhs.comp, &lhs->m[1], sizeof( lhs->m[1] ) );
-	memcpy( dot_rhs.comp, &rhs_transposed.m[0], sizeof( rhs_transposed.m[0] ) );
+	dot_lhs.x = lhs->m[1][0];
+	dot_lhs.y = lhs->m[1][1];
+	dot_lhs.z = lhs->m[1][2];
+
+	dot_rhs.x = rhs->m[0][0];
+	dot_rhs.y = rhs->m[1][0];
+	dot_rhs.z = rhs->m[2][0];
+
 	dot_sse( &dot_lhs, &dot_rhs, &out->m[1][0] );
 
-	memcpy( dot_lhs.comp, &lhs->m[1], sizeof( lhs->m[1] ) );
-	memcpy( dot_rhs.comp, &rhs_transposed.m[1], sizeof( rhs_transposed.m[1] ) );
+	dot_lhs.x = lhs->m[1][0];
+	dot_lhs.y = lhs->m[1][1];
+	dot_lhs.z = lhs->m[1][2];
+
+	dot_rhs.x = rhs->m[0][1];
+	dot_rhs.y = rhs->m[1][1];
+	dot_rhs.z = rhs->m[2][1];
+
 	dot_sse( &dot_lhs, &dot_rhs, &out->m[1][1] );
 
-	memcpy( dot_lhs.comp, &lhs->m[1], sizeof( lhs->m[1] ) );
-	memcpy( dot_rhs.comp, &rhs_transposed.m[2], sizeof( rhs_transposed.m[2] ) );
+	dot_lhs.x = lhs->m[1][0];
+	dot_lhs.y = lhs->m[1][1];
+	dot_lhs.z = lhs->m[1][2];
+
+	dot_rhs.x = rhs->m[0][2];
+	dot_rhs.y = rhs->m[1][2];
+	dot_rhs.z = rhs->m[2][2];
+
 	dot_sse( &dot_lhs, &dot_rhs, &out->m[1][2] );
 
-	memcpy( dot_lhs.comp, &lhs->m[2], sizeof( lhs->m[2] ) );
-	memcpy( dot_rhs.comp, &rhs_transposed.m[0], sizeof( rhs_transposed.m[0] ) );
+	dot_lhs.x = lhs->m[2][0];
+	dot_lhs.y = lhs->m[2][1];
+	dot_lhs.z = lhs->m[2][2];
+
+	dot_rhs.x = rhs->m[0][0];
+	dot_rhs.y = rhs->m[1][0];
+	dot_rhs.z = rhs->m[2][0];
+
 	dot_sse( &dot_lhs, &dot_rhs, &out->m[2][0] );
 
-	memcpy( dot_lhs.comp, &lhs->m[2], sizeof( lhs->m[2] ) );
-	memcpy( dot_rhs.comp, &rhs_transposed.m[1], sizeof( rhs_transposed.m[1] ) );
+	dot_lhs.x = lhs->m[2][0];
+	dot_lhs.y = lhs->m[2][1];
+	dot_lhs.z = lhs->m[2][2];
+
+	dot_rhs.x = rhs->m[0][1];
+	dot_rhs.y = rhs->m[1][1];
+	dot_rhs.z = rhs->m[2][1];
+
 	dot_sse( &dot_lhs, &dot_rhs, &out->m[2][1] );
 
-	memcpy( dot_lhs.comp, &lhs->m[2], sizeof( lhs->m[2] ) );
-	memcpy( dot_rhs.comp, &rhs_transposed.m[2], sizeof( rhs_transposed.m[2] ) );
+	dot_lhs.x = lhs->m[2][0];
+	dot_lhs.y = lhs->m[2][1];
+	dot_lhs.z = lhs->m[2][2];
+
+	dot_rhs.x = rhs->m[0][2];
+	dot_rhs.y = rhs->m[1][2];
+	dot_rhs.z = rhs->m[2][2];
+
 	dot_sse( &dot_lhs, &dot_rhs, &out->m[2][2] );
 }
 
@@ -882,8 +1029,8 @@ void translate_sse( const float2_sse_t* column, const float2_sse_t* vec, float2_
 	assert( vec );
 	assert( out_column );
 
-	out_column->comp[0] = _mm_add_ps( column->comp[0], vec->comp[0] );
-	out_column->comp[1] = _mm_add_ps( column->comp[1], vec->comp[1] );
+	out_column->x = _mm_add_ps( column->x, vec->x );
+	out_column->y = _mm_add_ps( column->y, vec->y );
 }
 
 void scale_sse( const float2_sse_t* diagonal, const float2_sse_t* scale, float2_sse_t* out_diagonal )
@@ -892,8 +1039,8 @@ void scale_sse( const float2_sse_t* diagonal, const float2_sse_t* scale, float2_
 	assert( scale );
 	assert( out_diagonal );
 
-	out_diagonal->comp[0] = _mm_mul_ps( diagonal->comp[0], scale->comp[0] );
-	out_diagonal->comp[1] = _mm_mul_ps( diagonal->comp[1], scale->comp[1] );
+	out_diagonal->x = _mm_mul_ps( diagonal->x, scale->x );
+	out_diagonal->y = _mm_mul_ps( diagonal->y, scale->y );
 }
 
 
@@ -1046,46 +1193,115 @@ void mul_sse( const float3x4_sse_t* lhs, const float4x3_sse_t* rhs, float3x3_sse
 	assert( rhs );
 	assert( out );
 
-	float3x4_sse_t rhs_transposed;
-	transpose_sse( rhs, &rhs_transposed );
-
 	float4_sse_t dot_lhs;
 	float4_sse_t dot_rhs;
 
-	memcpy( dot_lhs.comp, &lhs->m[0], sizeof( lhs->m[0] ) );
-	memcpy( dot_rhs.comp, &rhs_transposed.m[0], sizeof( rhs_transposed.m[0] ) );
+	dot_lhs.x = lhs->m[0][0];
+	dot_lhs.y = lhs->m[0][1];
+	dot_lhs.z = lhs->m[0][2];
+	dot_lhs.w = lhs->m[0][3];
+
+	dot_rhs.x = rhs->m[0][0];
+	dot_rhs.y = rhs->m[1][0];
+	dot_rhs.z = rhs->m[2][0];
+	dot_rhs.w = rhs->m[3][0];
+
 	dot_sse( &dot_lhs, &dot_rhs, &out->m[0][0] );
 
-	memcpy( dot_lhs.comp, &lhs->m[0], sizeof( lhs->m[0] ) );
-	memcpy( dot_rhs.comp, &rhs_transposed.m[1], sizeof( rhs_transposed.m[1] ) );
+	dot_lhs.x = lhs->m[0][0];
+	dot_lhs.y = lhs->m[0][1];
+	dot_lhs.z = lhs->m[0][2];
+	dot_lhs.w = lhs->m[0][3];
+
+	dot_rhs.x = rhs->m[0][1];
+	dot_rhs.y = rhs->m[1][1];
+	dot_rhs.z = rhs->m[2][1];
+	dot_rhs.w = rhs->m[3][1];
+
 	dot_sse( &dot_lhs, &dot_rhs, &out->m[0][1] );
 
-	memcpy( dot_lhs.comp, &lhs->m[0], sizeof( lhs->m[0] ) );
-	memcpy( dot_rhs.comp, &rhs_transposed.m[2], sizeof( rhs_transposed.m[2] ) );
+	dot_lhs.x = lhs->m[0][0];
+	dot_lhs.y = lhs->m[0][1];
+	dot_lhs.z = lhs->m[0][2];
+	dot_lhs.w = lhs->m[0][3];
+
+	dot_rhs.x = rhs->m[0][2];
+	dot_rhs.y = rhs->m[1][2];
+	dot_rhs.z = rhs->m[2][2];
+	dot_rhs.w = rhs->m[3][2];
+
 	dot_sse( &dot_lhs, &dot_rhs, &out->m[0][2] );
 
-	memcpy( dot_lhs.comp, &lhs->m[1], sizeof( lhs->m[1] ) );
-	memcpy( dot_rhs.comp, &rhs_transposed.m[0], sizeof( rhs_transposed.m[0] ) );
+	dot_lhs.x = lhs->m[1][0];
+	dot_lhs.y = lhs->m[1][1];
+	dot_lhs.z = lhs->m[1][2];
+	dot_lhs.w = lhs->m[1][3];
+
+	dot_rhs.x = rhs->m[0][0];
+	dot_rhs.y = rhs->m[1][0];
+	dot_rhs.z = rhs->m[2][0];
+	dot_rhs.w = rhs->m[3][0];
+
 	dot_sse( &dot_lhs, &dot_rhs, &out->m[1][0] );
 
-	memcpy( dot_lhs.comp, &lhs->m[1], sizeof( lhs->m[1] ) );
-	memcpy( dot_rhs.comp, &rhs_transposed.m[1], sizeof( rhs_transposed.m[1] ) );
+	dot_lhs.x = lhs->m[1][0];
+	dot_lhs.y = lhs->m[1][1];
+	dot_lhs.z = lhs->m[1][2];
+	dot_lhs.w = lhs->m[1][3];
+
+	dot_rhs.x = rhs->m[0][1];
+	dot_rhs.y = rhs->m[1][1];
+	dot_rhs.z = rhs->m[2][1];
+	dot_rhs.w = rhs->m[3][1];
+
 	dot_sse( &dot_lhs, &dot_rhs, &out->m[1][1] );
 
-	memcpy( dot_lhs.comp, &lhs->m[1], sizeof( lhs->m[1] ) );
-	memcpy( dot_rhs.comp, &rhs_transposed.m[2], sizeof( rhs_transposed.m[2] ) );
+	dot_lhs.x = lhs->m[1][0];
+	dot_lhs.y = lhs->m[1][1];
+	dot_lhs.z = lhs->m[1][2];
+	dot_lhs.w = lhs->m[1][3];
+
+	dot_rhs.x = rhs->m[0][2];
+	dot_rhs.y = rhs->m[1][2];
+	dot_rhs.z = rhs->m[2][2];
+	dot_rhs.w = rhs->m[3][2];
+
 	dot_sse( &dot_lhs, &dot_rhs, &out->m[1][2] );
 
-	memcpy( dot_lhs.comp, &lhs->m[2], sizeof( lhs->m[2] ) );
-	memcpy( dot_rhs.comp, &rhs_transposed.m[0], sizeof( rhs_transposed.m[0] ) );
+	dot_lhs.x = lhs->m[2][0];
+	dot_lhs.y = lhs->m[2][1];
+	dot_lhs.z = lhs->m[2][2];
+	dot_lhs.w = lhs->m[2][3];
+
+	dot_rhs.x = rhs->m[0][0];
+	dot_rhs.y = rhs->m[1][0];
+	dot_rhs.z = rhs->m[2][0];
+	dot_rhs.w = rhs->m[3][0];
+
 	dot_sse( &dot_lhs, &dot_rhs, &out->m[2][0] );
 
-	memcpy( dot_lhs.comp, &lhs->m[2], sizeof( lhs->m[2] ) );
-	memcpy( dot_rhs.comp, &rhs_transposed.m[1], sizeof( rhs_transposed.m[1] ) );
+	dot_lhs.x = lhs->m[2][0];
+	dot_lhs.y = lhs->m[2][1];
+	dot_lhs.z = lhs->m[2][2];
+	dot_lhs.w = lhs->m[2][3];
+
+	dot_rhs.x = rhs->m[0][1];
+	dot_rhs.y = rhs->m[1][1];
+	dot_rhs.z = rhs->m[2][1];
+	dot_rhs.w = rhs->m[3][1];
+
 	dot_sse( &dot_lhs, &dot_rhs, &out->m[2][1] );
 
-	memcpy( dot_lhs.comp, &lhs->m[2], sizeof( lhs->m[2] ) );
-	memcpy( dot_rhs.comp, &rhs_transposed.m[2], sizeof( rhs_transposed.m[2] ) );
+	dot_lhs.x = lhs->m[2][0];
+	dot_lhs.y = lhs->m[2][1];
+	dot_lhs.z = lhs->m[2][2];
+	dot_lhs.w = lhs->m[2][3];
+
+	dot_rhs.x = rhs->m[0][2];
+	dot_rhs.y = rhs->m[1][2];
+	dot_rhs.z = rhs->m[2][2];
+	dot_rhs.w = rhs->m[3][2];
+
 	dot_sse( &dot_lhs, &dot_rhs, &out->m[2][2] );
 }
 
@@ -1226,74 +1442,135 @@ void mul_sse( const float4x2_sse_t* lhs, const float2x4_sse_t* rhs, float4x4_sse
 	assert( rhs );
 	assert( out );
 
-	float4x2_sse_t rhs_transposed;
-	transpose_sse( rhs, &rhs_transposed );
-
 	float2_sse_t dot_lhs;
 	float2_sse_t dot_rhs;
 
-	memcpy( dot_lhs.comp, &lhs->m[0], sizeof( lhs->m[0] ) );
-	memcpy( dot_rhs.comp, &rhs_transposed.m[0], sizeof( rhs_transposed.m[0] ) );
+	dot_lhs.x = lhs->m[0][0];
+	dot_lhs.y = lhs->m[0][1];
+
+	dot_rhs.x = rhs->m[0][0];
+	dot_rhs.y = rhs->m[1][0];
+
 	dot_sse( &dot_lhs, &dot_rhs, &out->m[0][0] );
 
-	memcpy( dot_lhs.comp, &lhs->m[0], sizeof( lhs->m[0] ) );
-	memcpy( dot_rhs.comp, &rhs_transposed.m[1], sizeof( rhs_transposed.m[1] ) );
+	dot_lhs.x = lhs->m[0][0];
+	dot_lhs.y = lhs->m[0][1];
+
+	dot_rhs.x = rhs->m[0][1];
+	dot_rhs.y = rhs->m[1][1];
+
 	dot_sse( &dot_lhs, &dot_rhs, &out->m[0][1] );
 
-	memcpy( dot_lhs.comp, &lhs->m[0], sizeof( lhs->m[0] ) );
-	memcpy( dot_rhs.comp, &rhs_transposed.m[2], sizeof( rhs_transposed.m[2] ) );
+	dot_lhs.x = lhs->m[0][0];
+	dot_lhs.y = lhs->m[0][1];
+
+	dot_rhs.x = rhs->m[0][2];
+	dot_rhs.y = rhs->m[1][2];
+
 	dot_sse( &dot_lhs, &dot_rhs, &out->m[0][2] );
 
-	memcpy( dot_lhs.comp, &lhs->m[0], sizeof( lhs->m[0] ) );
-	memcpy( dot_rhs.comp, &rhs_transposed.m[3], sizeof( rhs_transposed.m[3] ) );
+	dot_lhs.x = lhs->m[0][0];
+	dot_lhs.y = lhs->m[0][1];
+
+	dot_rhs.x = rhs->m[0][3];
+	dot_rhs.y = rhs->m[1][3];
+
 	dot_sse( &dot_lhs, &dot_rhs, &out->m[0][3] );
 
-	memcpy( dot_lhs.comp, &lhs->m[1], sizeof( lhs->m[1] ) );
-	memcpy( dot_rhs.comp, &rhs_transposed.m[0], sizeof( rhs_transposed.m[0] ) );
+	dot_lhs.x = lhs->m[1][0];
+	dot_lhs.y = lhs->m[1][1];
+
+	dot_rhs.x = rhs->m[0][0];
+	dot_rhs.y = rhs->m[1][0];
+
 	dot_sse( &dot_lhs, &dot_rhs, &out->m[1][0] );
 
-	memcpy( dot_lhs.comp, &lhs->m[1], sizeof( lhs->m[1] ) );
-	memcpy( dot_rhs.comp, &rhs_transposed.m[1], sizeof( rhs_transposed.m[1] ) );
+	dot_lhs.x = lhs->m[1][0];
+	dot_lhs.y = lhs->m[1][1];
+
+	dot_rhs.x = rhs->m[0][1];
+	dot_rhs.y = rhs->m[1][1];
+
 	dot_sse( &dot_lhs, &dot_rhs, &out->m[1][1] );
 
-	memcpy( dot_lhs.comp, &lhs->m[1], sizeof( lhs->m[1] ) );
-	memcpy( dot_rhs.comp, &rhs_transposed.m[2], sizeof( rhs_transposed.m[2] ) );
+	dot_lhs.x = lhs->m[1][0];
+	dot_lhs.y = lhs->m[1][1];
+
+	dot_rhs.x = rhs->m[0][2];
+	dot_rhs.y = rhs->m[1][2];
+
 	dot_sse( &dot_lhs, &dot_rhs, &out->m[1][2] );
 
-	memcpy( dot_lhs.comp, &lhs->m[1], sizeof( lhs->m[1] ) );
-	memcpy( dot_rhs.comp, &rhs_transposed.m[3], sizeof( rhs_transposed.m[3] ) );
+	dot_lhs.x = lhs->m[1][0];
+	dot_lhs.y = lhs->m[1][1];
+
+	dot_rhs.x = rhs->m[0][3];
+	dot_rhs.y = rhs->m[1][3];
+
 	dot_sse( &dot_lhs, &dot_rhs, &out->m[1][3] );
 
-	memcpy( dot_lhs.comp, &lhs->m[2], sizeof( lhs->m[2] ) );
-	memcpy( dot_rhs.comp, &rhs_transposed.m[0], sizeof( rhs_transposed.m[0] ) );
+	dot_lhs.x = lhs->m[2][0];
+	dot_lhs.y = lhs->m[2][1];
+
+	dot_rhs.x = rhs->m[0][0];
+	dot_rhs.y = rhs->m[1][0];
+
 	dot_sse( &dot_lhs, &dot_rhs, &out->m[2][0] );
 
-	memcpy( dot_lhs.comp, &lhs->m[2], sizeof( lhs->m[2] ) );
-	memcpy( dot_rhs.comp, &rhs_transposed.m[1], sizeof( rhs_transposed.m[1] ) );
+	dot_lhs.x = lhs->m[2][0];
+	dot_lhs.y = lhs->m[2][1];
+
+	dot_rhs.x = rhs->m[0][1];
+	dot_rhs.y = rhs->m[1][1];
+
 	dot_sse( &dot_lhs, &dot_rhs, &out->m[2][1] );
 
-	memcpy( dot_lhs.comp, &lhs->m[2], sizeof( lhs->m[2] ) );
-	memcpy( dot_rhs.comp, &rhs_transposed.m[2], sizeof( rhs_transposed.m[2] ) );
+	dot_lhs.x = lhs->m[2][0];
+	dot_lhs.y = lhs->m[2][1];
+
+	dot_rhs.x = rhs->m[0][2];
+	dot_rhs.y = rhs->m[1][2];
+
 	dot_sse( &dot_lhs, &dot_rhs, &out->m[2][2] );
 
-	memcpy( dot_lhs.comp, &lhs->m[2], sizeof( lhs->m[2] ) );
-	memcpy( dot_rhs.comp, &rhs_transposed.m[3], sizeof( rhs_transposed.m[3] ) );
+	dot_lhs.x = lhs->m[2][0];
+	dot_lhs.y = lhs->m[2][1];
+
+	dot_rhs.x = rhs->m[0][3];
+	dot_rhs.y = rhs->m[1][3];
+
 	dot_sse( &dot_lhs, &dot_rhs, &out->m[2][3] );
 
-	memcpy( dot_lhs.comp, &lhs->m[3], sizeof( lhs->m[3] ) );
-	memcpy( dot_rhs.comp, &rhs_transposed.m[0], sizeof( rhs_transposed.m[0] ) );
+	dot_lhs.x = lhs->m[3][0];
+	dot_lhs.y = lhs->m[3][1];
+
+	dot_rhs.x = rhs->m[0][0];
+	dot_rhs.y = rhs->m[1][0];
+
 	dot_sse( &dot_lhs, &dot_rhs, &out->m[3][0] );
 
-	memcpy( dot_lhs.comp, &lhs->m[3], sizeof( lhs->m[3] ) );
-	memcpy( dot_rhs.comp, &rhs_transposed.m[1], sizeof( rhs_transposed.m[1] ) );
+	dot_lhs.x = lhs->m[3][0];
+	dot_lhs.y = lhs->m[3][1];
+
+	dot_rhs.x = rhs->m[0][1];
+	dot_rhs.y = rhs->m[1][1];
+
 	dot_sse( &dot_lhs, &dot_rhs, &out->m[3][1] );
 
-	memcpy( dot_lhs.comp, &lhs->m[3], sizeof( lhs->m[3] ) );
-	memcpy( dot_rhs.comp, &rhs_transposed.m[2], sizeof( rhs_transposed.m[2] ) );
+	dot_lhs.x = lhs->m[3][0];
+	dot_lhs.y = lhs->m[3][1];
+
+	dot_rhs.x = rhs->m[0][2];
+	dot_rhs.y = rhs->m[1][2];
+
 	dot_sse( &dot_lhs, &dot_rhs, &out->m[3][2] );
 
-	memcpy( dot_lhs.comp, &lhs->m[3], sizeof( lhs->m[3] ) );
-	memcpy( dot_rhs.comp, &rhs_transposed.m[3], sizeof( rhs_transposed.m[3] ) );
+	dot_lhs.x = lhs->m[3][0];
+	dot_lhs.y = lhs->m[3][1];
+
+	dot_rhs.x = rhs->m[0][3];
+	dot_rhs.y = rhs->m[1][3];
+
 	dot_sse( &dot_lhs, &dot_rhs, &out->m[3][3] );
 }
 
@@ -1458,74 +1735,167 @@ void mul_sse( const float4x3_sse_t* lhs, const float3x4_sse_t* rhs, float4x4_sse
 	assert( rhs );
 	assert( out );
 
-	float4x3_sse_t rhs_transposed;
-	transpose_sse( rhs, &rhs_transposed );
-
 	float3_sse_t dot_lhs;
 	float3_sse_t dot_rhs;
 
-	memcpy( dot_lhs.comp, &lhs->m[0], sizeof( lhs->m[0] ) );
-	memcpy( dot_rhs.comp, &rhs_transposed.m[0], sizeof( rhs_transposed.m[0] ) );
+	dot_lhs.x = lhs->m[0][0];
+	dot_lhs.y = lhs->m[0][1];
+	dot_lhs.z = lhs->m[0][2];
+
+	dot_rhs.x = rhs->m[0][0];
+	dot_rhs.y = rhs->m[1][0];
+	dot_rhs.z = rhs->m[2][0];
+
 	dot_sse( &dot_lhs, &dot_rhs, &out->m[0][0] );
 
-	memcpy( dot_lhs.comp, &lhs->m[0], sizeof( lhs->m[0] ) );
-	memcpy( dot_rhs.comp, &rhs_transposed.m[1], sizeof( rhs_transposed.m[1] ) );
+	dot_lhs.x = lhs->m[0][0];
+	dot_lhs.y = lhs->m[0][1];
+	dot_lhs.z = lhs->m[0][2];
+
+	dot_rhs.x = rhs->m[0][1];
+	dot_rhs.y = rhs->m[1][1];
+	dot_rhs.z = rhs->m[2][1];
+
 	dot_sse( &dot_lhs, &dot_rhs, &out->m[0][1] );
 
-	memcpy( dot_lhs.comp, &lhs->m[0], sizeof( lhs->m[0] ) );
-	memcpy( dot_rhs.comp, &rhs_transposed.m[2], sizeof( rhs_transposed.m[2] ) );
+	dot_lhs.x = lhs->m[0][0];
+	dot_lhs.y = lhs->m[0][1];
+	dot_lhs.z = lhs->m[0][2];
+
+	dot_rhs.x = rhs->m[0][2];
+	dot_rhs.y = rhs->m[1][2];
+	dot_rhs.z = rhs->m[2][2];
+
 	dot_sse( &dot_lhs, &dot_rhs, &out->m[0][2] );
 
-	memcpy( dot_lhs.comp, &lhs->m[0], sizeof( lhs->m[0] ) );
-	memcpy( dot_rhs.comp, &rhs_transposed.m[3], sizeof( rhs_transposed.m[3] ) );
+	dot_lhs.x = lhs->m[0][0];
+	dot_lhs.y = lhs->m[0][1];
+	dot_lhs.z = lhs->m[0][2];
+
+	dot_rhs.x = rhs->m[0][3];
+	dot_rhs.y = rhs->m[1][3];
+	dot_rhs.z = rhs->m[2][3];
+
 	dot_sse( &dot_lhs, &dot_rhs, &out->m[0][3] );
 
-	memcpy( dot_lhs.comp, &lhs->m[1], sizeof( lhs->m[1] ) );
-	memcpy( dot_rhs.comp, &rhs_transposed.m[0], sizeof( rhs_transposed.m[0] ) );
+	dot_lhs.x = lhs->m[1][0];
+	dot_lhs.y = lhs->m[1][1];
+	dot_lhs.z = lhs->m[1][2];
+
+	dot_rhs.x = rhs->m[0][0];
+	dot_rhs.y = rhs->m[1][0];
+	dot_rhs.z = rhs->m[2][0];
+
 	dot_sse( &dot_lhs, &dot_rhs, &out->m[1][0] );
 
-	memcpy( dot_lhs.comp, &lhs->m[1], sizeof( lhs->m[1] ) );
-	memcpy( dot_rhs.comp, &rhs_transposed.m[1], sizeof( rhs_transposed.m[1] ) );
+	dot_lhs.x = lhs->m[1][0];
+	dot_lhs.y = lhs->m[1][1];
+	dot_lhs.z = lhs->m[1][2];
+
+	dot_rhs.x = rhs->m[0][1];
+	dot_rhs.y = rhs->m[1][1];
+	dot_rhs.z = rhs->m[2][1];
+
 	dot_sse( &dot_lhs, &dot_rhs, &out->m[1][1] );
 
-	memcpy( dot_lhs.comp, &lhs->m[1], sizeof( lhs->m[1] ) );
-	memcpy( dot_rhs.comp, &rhs_transposed.m[2], sizeof( rhs_transposed.m[2] ) );
+	dot_lhs.x = lhs->m[1][0];
+	dot_lhs.y = lhs->m[1][1];
+	dot_lhs.z = lhs->m[1][2];
+
+	dot_rhs.x = rhs->m[0][2];
+	dot_rhs.y = rhs->m[1][2];
+	dot_rhs.z = rhs->m[2][2];
+
 	dot_sse( &dot_lhs, &dot_rhs, &out->m[1][2] );
 
-	memcpy( dot_lhs.comp, &lhs->m[1], sizeof( lhs->m[1] ) );
-	memcpy( dot_rhs.comp, &rhs_transposed.m[3], sizeof( rhs_transposed.m[3] ) );
+	dot_lhs.x = lhs->m[1][0];
+	dot_lhs.y = lhs->m[1][1];
+	dot_lhs.z = lhs->m[1][2];
+
+	dot_rhs.x = rhs->m[0][3];
+	dot_rhs.y = rhs->m[1][3];
+	dot_rhs.z = rhs->m[2][3];
+
 	dot_sse( &dot_lhs, &dot_rhs, &out->m[1][3] );
 
-	memcpy( dot_lhs.comp, &lhs->m[2], sizeof( lhs->m[2] ) );
-	memcpy( dot_rhs.comp, &rhs_transposed.m[0], sizeof( rhs_transposed.m[0] ) );
+	dot_lhs.x = lhs->m[2][0];
+	dot_lhs.y = lhs->m[2][1];
+	dot_lhs.z = lhs->m[2][2];
+
+	dot_rhs.x = rhs->m[0][0];
+	dot_rhs.y = rhs->m[1][0];
+	dot_rhs.z = rhs->m[2][0];
+
 	dot_sse( &dot_lhs, &dot_rhs, &out->m[2][0] );
 
-	memcpy( dot_lhs.comp, &lhs->m[2], sizeof( lhs->m[2] ) );
-	memcpy( dot_rhs.comp, &rhs_transposed.m[1], sizeof( rhs_transposed.m[1] ) );
+	dot_lhs.x = lhs->m[2][0];
+	dot_lhs.y = lhs->m[2][1];
+	dot_lhs.z = lhs->m[2][2];
+
+	dot_rhs.x = rhs->m[0][1];
+	dot_rhs.y = rhs->m[1][1];
+	dot_rhs.z = rhs->m[2][1];
+
 	dot_sse( &dot_lhs, &dot_rhs, &out->m[2][1] );
 
-	memcpy( dot_lhs.comp, &lhs->m[2], sizeof( lhs->m[2] ) );
-	memcpy( dot_rhs.comp, &rhs_transposed.m[2], sizeof( rhs_transposed.m[2] ) );
+	dot_lhs.x = lhs->m[2][0];
+	dot_lhs.y = lhs->m[2][1];
+	dot_lhs.z = lhs->m[2][2];
+
+	dot_rhs.x = rhs->m[0][2];
+	dot_rhs.y = rhs->m[1][2];
+	dot_rhs.z = rhs->m[2][2];
+
 	dot_sse( &dot_lhs, &dot_rhs, &out->m[2][2] );
 
-	memcpy( dot_lhs.comp, &lhs->m[2], sizeof( lhs->m[2] ) );
-	memcpy( dot_rhs.comp, &rhs_transposed.m[3], sizeof( rhs_transposed.m[3] ) );
+	dot_lhs.x = lhs->m[2][0];
+	dot_lhs.y = lhs->m[2][1];
+	dot_lhs.z = lhs->m[2][2];
+
+	dot_rhs.x = rhs->m[0][3];
+	dot_rhs.y = rhs->m[1][3];
+	dot_rhs.z = rhs->m[2][3];
+
 	dot_sse( &dot_lhs, &dot_rhs, &out->m[2][3] );
 
-	memcpy( dot_lhs.comp, &lhs->m[3], sizeof( lhs->m[3] ) );
-	memcpy( dot_rhs.comp, &rhs_transposed.m[0], sizeof( rhs_transposed.m[0] ) );
+	dot_lhs.x = lhs->m[3][0];
+	dot_lhs.y = lhs->m[3][1];
+	dot_lhs.z = lhs->m[3][2];
+
+	dot_rhs.x = rhs->m[0][0];
+	dot_rhs.y = rhs->m[1][0];
+	dot_rhs.z = rhs->m[2][0];
+
 	dot_sse( &dot_lhs, &dot_rhs, &out->m[3][0] );
 
-	memcpy( dot_lhs.comp, &lhs->m[3], sizeof( lhs->m[3] ) );
-	memcpy( dot_rhs.comp, &rhs_transposed.m[1], sizeof( rhs_transposed.m[1] ) );
+	dot_lhs.x = lhs->m[3][0];
+	dot_lhs.y = lhs->m[3][1];
+	dot_lhs.z = lhs->m[3][2];
+
+	dot_rhs.x = rhs->m[0][1];
+	dot_rhs.y = rhs->m[1][1];
+	dot_rhs.z = rhs->m[2][1];
+
 	dot_sse( &dot_lhs, &dot_rhs, &out->m[3][1] );
 
-	memcpy( dot_lhs.comp, &lhs->m[3], sizeof( lhs->m[3] ) );
-	memcpy( dot_rhs.comp, &rhs_transposed.m[2], sizeof( rhs_transposed.m[2] ) );
+	dot_lhs.x = lhs->m[3][0];
+	dot_lhs.y = lhs->m[3][1];
+	dot_lhs.z = lhs->m[3][2];
+
+	dot_rhs.x = rhs->m[0][2];
+	dot_rhs.y = rhs->m[1][2];
+	dot_rhs.z = rhs->m[2][2];
+
 	dot_sse( &dot_lhs, &dot_rhs, &out->m[3][2] );
 
-	memcpy( dot_lhs.comp, &lhs->m[3], sizeof( lhs->m[3] ) );
-	memcpy( dot_rhs.comp, &rhs_transposed.m[3], sizeof( rhs_transposed.m[3] ) );
+	dot_lhs.x = lhs->m[3][0];
+	dot_lhs.y = lhs->m[3][1];
+	dot_lhs.z = lhs->m[3][2];
+
+	dot_rhs.x = rhs->m[0][3];
+	dot_rhs.y = rhs->m[1][3];
+	dot_rhs.z = rhs->m[2][3];
+
 	dot_sse( &dot_lhs, &dot_rhs, &out->m[3][3] );
 }
 
@@ -1965,74 +2335,199 @@ void mul_sse( const float4x4_sse_t* lhs, const float4x4_sse_t* rhs, float4x4_sse
 	assert( rhs );
 	assert( out );
 
-	float4x4_sse_t rhs_transposed;
-	transpose_sse( rhs, &rhs_transposed );
-
 	float4_sse_t dot_lhs;
 	float4_sse_t dot_rhs;
 
-	memcpy( dot_lhs.comp, &lhs->m[0], sizeof( lhs->m[0] ) );
-	memcpy( dot_rhs.comp, &rhs_transposed.m[0], sizeof( rhs_transposed.m[0] ) );
+	dot_lhs.x = lhs->m[0][0];
+	dot_lhs.y = lhs->m[0][1];
+	dot_lhs.z = lhs->m[0][2];
+	dot_lhs.w = lhs->m[0][3];
+
+	dot_rhs.x = rhs->m[0][0];
+	dot_rhs.y = rhs->m[1][0];
+	dot_rhs.z = rhs->m[2][0];
+	dot_rhs.w = rhs->m[3][0];
+
 	dot_sse( &dot_lhs, &dot_rhs, &out->m[0][0] );
 
-	memcpy( dot_lhs.comp, &lhs->m[0], sizeof( lhs->m[0] ) );
-	memcpy( dot_rhs.comp, &rhs_transposed.m[1], sizeof( rhs_transposed.m[1] ) );
+	dot_lhs.x = lhs->m[0][0];
+	dot_lhs.y = lhs->m[0][1];
+	dot_lhs.z = lhs->m[0][2];
+	dot_lhs.w = lhs->m[0][3];
+
+	dot_rhs.x = rhs->m[0][1];
+	dot_rhs.y = rhs->m[1][1];
+	dot_rhs.z = rhs->m[2][1];
+	dot_rhs.w = rhs->m[3][1];
+
 	dot_sse( &dot_lhs, &dot_rhs, &out->m[0][1] );
 
-	memcpy( dot_lhs.comp, &lhs->m[0], sizeof( lhs->m[0] ) );
-	memcpy( dot_rhs.comp, &rhs_transposed.m[2], sizeof( rhs_transposed.m[2] ) );
+	dot_lhs.x = lhs->m[0][0];
+	dot_lhs.y = lhs->m[0][1];
+	dot_lhs.z = lhs->m[0][2];
+	dot_lhs.w = lhs->m[0][3];
+
+	dot_rhs.x = rhs->m[0][2];
+	dot_rhs.y = rhs->m[1][2];
+	dot_rhs.z = rhs->m[2][2];
+	dot_rhs.w = rhs->m[3][2];
+
 	dot_sse( &dot_lhs, &dot_rhs, &out->m[0][2] );
 
-	memcpy( dot_lhs.comp, &lhs->m[0], sizeof( lhs->m[0] ) );
-	memcpy( dot_rhs.comp, &rhs_transposed.m[3], sizeof( rhs_transposed.m[3] ) );
+	dot_lhs.x = lhs->m[0][0];
+	dot_lhs.y = lhs->m[0][1];
+	dot_lhs.z = lhs->m[0][2];
+	dot_lhs.w = lhs->m[0][3];
+
+	dot_rhs.x = rhs->m[0][3];
+	dot_rhs.y = rhs->m[1][3];
+	dot_rhs.z = rhs->m[2][3];
+	dot_rhs.w = rhs->m[3][3];
+
 	dot_sse( &dot_lhs, &dot_rhs, &out->m[0][3] );
 
-	memcpy( dot_lhs.comp, &lhs->m[1], sizeof( lhs->m[1] ) );
-	memcpy( dot_rhs.comp, &rhs_transposed.m[0], sizeof( rhs_transposed.m[0] ) );
+	dot_lhs.x = lhs->m[1][0];
+	dot_lhs.y = lhs->m[1][1];
+	dot_lhs.z = lhs->m[1][2];
+	dot_lhs.w = lhs->m[1][3];
+
+	dot_rhs.x = rhs->m[0][0];
+	dot_rhs.y = rhs->m[1][0];
+	dot_rhs.z = rhs->m[2][0];
+	dot_rhs.w = rhs->m[3][0];
+
 	dot_sse( &dot_lhs, &dot_rhs, &out->m[1][0] );
 
-	memcpy( dot_lhs.comp, &lhs->m[1], sizeof( lhs->m[1] ) );
-	memcpy( dot_rhs.comp, &rhs_transposed.m[1], sizeof( rhs_transposed.m[1] ) );
+	dot_lhs.x = lhs->m[1][0];
+	dot_lhs.y = lhs->m[1][1];
+	dot_lhs.z = lhs->m[1][2];
+	dot_lhs.w = lhs->m[1][3];
+
+	dot_rhs.x = rhs->m[0][1];
+	dot_rhs.y = rhs->m[1][1];
+	dot_rhs.z = rhs->m[2][1];
+	dot_rhs.w = rhs->m[3][1];
+
 	dot_sse( &dot_lhs, &dot_rhs, &out->m[1][1] );
 
-	memcpy( dot_lhs.comp, &lhs->m[1], sizeof( lhs->m[1] ) );
-	memcpy( dot_rhs.comp, &rhs_transposed.m[2], sizeof( rhs_transposed.m[2] ) );
+	dot_lhs.x = lhs->m[1][0];
+	dot_lhs.y = lhs->m[1][1];
+	dot_lhs.z = lhs->m[1][2];
+	dot_lhs.w = lhs->m[1][3];
+
+	dot_rhs.x = rhs->m[0][2];
+	dot_rhs.y = rhs->m[1][2];
+	dot_rhs.z = rhs->m[2][2];
+	dot_rhs.w = rhs->m[3][2];
+
 	dot_sse( &dot_lhs, &dot_rhs, &out->m[1][2] );
 
-	memcpy( dot_lhs.comp, &lhs->m[1], sizeof( lhs->m[1] ) );
-	memcpy( dot_rhs.comp, &rhs_transposed.m[3], sizeof( rhs_transposed.m[3] ) );
+	dot_lhs.x = lhs->m[1][0];
+	dot_lhs.y = lhs->m[1][1];
+	dot_lhs.z = lhs->m[1][2];
+	dot_lhs.w = lhs->m[1][3];
+
+	dot_rhs.x = rhs->m[0][3];
+	dot_rhs.y = rhs->m[1][3];
+	dot_rhs.z = rhs->m[2][3];
+	dot_rhs.w = rhs->m[3][3];
+
 	dot_sse( &dot_lhs, &dot_rhs, &out->m[1][3] );
 
-	memcpy( dot_lhs.comp, &lhs->m[2], sizeof( lhs->m[2] ) );
-	memcpy( dot_rhs.comp, &rhs_transposed.m[0], sizeof( rhs_transposed.m[0] ) );
+	dot_lhs.x = lhs->m[2][0];
+	dot_lhs.y = lhs->m[2][1];
+	dot_lhs.z = lhs->m[2][2];
+	dot_lhs.w = lhs->m[2][3];
+
+	dot_rhs.x = rhs->m[0][0];
+	dot_rhs.y = rhs->m[1][0];
+	dot_rhs.z = rhs->m[2][0];
+	dot_rhs.w = rhs->m[3][0];
+
 	dot_sse( &dot_lhs, &dot_rhs, &out->m[2][0] );
 
-	memcpy( dot_lhs.comp, &lhs->m[2], sizeof( lhs->m[2] ) );
-	memcpy( dot_rhs.comp, &rhs_transposed.m[1], sizeof( rhs_transposed.m[1] ) );
+	dot_lhs.x = lhs->m[2][0];
+	dot_lhs.y = lhs->m[2][1];
+	dot_lhs.z = lhs->m[2][2];
+	dot_lhs.w = lhs->m[2][3];
+
+	dot_rhs.x = rhs->m[0][1];
+	dot_rhs.y = rhs->m[1][1];
+	dot_rhs.z = rhs->m[2][1];
+	dot_rhs.w = rhs->m[3][1];
+
 	dot_sse( &dot_lhs, &dot_rhs, &out->m[2][1] );
 
-	memcpy( dot_lhs.comp, &lhs->m[2], sizeof( lhs->m[2] ) );
-	memcpy( dot_rhs.comp, &rhs_transposed.m[2], sizeof( rhs_transposed.m[2] ) );
+	dot_lhs.x = lhs->m[2][0];
+	dot_lhs.y = lhs->m[2][1];
+	dot_lhs.z = lhs->m[2][2];
+	dot_lhs.w = lhs->m[2][3];
+
+	dot_rhs.x = rhs->m[0][2];
+	dot_rhs.y = rhs->m[1][2];
+	dot_rhs.z = rhs->m[2][2];
+	dot_rhs.w = rhs->m[3][2];
+
 	dot_sse( &dot_lhs, &dot_rhs, &out->m[2][2] );
 
-	memcpy( dot_lhs.comp, &lhs->m[2], sizeof( lhs->m[2] ) );
-	memcpy( dot_rhs.comp, &rhs_transposed.m[3], sizeof( rhs_transposed.m[3] ) );
+	dot_lhs.x = lhs->m[2][0];
+	dot_lhs.y = lhs->m[2][1];
+	dot_lhs.z = lhs->m[2][2];
+	dot_lhs.w = lhs->m[2][3];
+
+	dot_rhs.x = rhs->m[0][3];
+	dot_rhs.y = rhs->m[1][3];
+	dot_rhs.z = rhs->m[2][3];
+	dot_rhs.w = rhs->m[3][3];
+
 	dot_sse( &dot_lhs, &dot_rhs, &out->m[2][3] );
 
-	memcpy( dot_lhs.comp, &lhs->m[3], sizeof( lhs->m[3] ) );
-	memcpy( dot_rhs.comp, &rhs_transposed.m[0], sizeof( rhs_transposed.m[0] ) );
+	dot_lhs.x = lhs->m[3][0];
+	dot_lhs.y = lhs->m[3][1];
+	dot_lhs.z = lhs->m[3][2];
+	dot_lhs.w = lhs->m[3][3];
+
+	dot_rhs.x = rhs->m[0][0];
+	dot_rhs.y = rhs->m[1][0];
+	dot_rhs.z = rhs->m[2][0];
+	dot_rhs.w = rhs->m[3][0];
+
 	dot_sse( &dot_lhs, &dot_rhs, &out->m[3][0] );
 
-	memcpy( dot_lhs.comp, &lhs->m[3], sizeof( lhs->m[3] ) );
-	memcpy( dot_rhs.comp, &rhs_transposed.m[1], sizeof( rhs_transposed.m[1] ) );
+	dot_lhs.x = lhs->m[3][0];
+	dot_lhs.y = lhs->m[3][1];
+	dot_lhs.z = lhs->m[3][2];
+	dot_lhs.w = lhs->m[3][3];
+
+	dot_rhs.x = rhs->m[0][1];
+	dot_rhs.y = rhs->m[1][1];
+	dot_rhs.z = rhs->m[2][1];
+	dot_rhs.w = rhs->m[3][1];
+
 	dot_sse( &dot_lhs, &dot_rhs, &out->m[3][1] );
 
-	memcpy( dot_lhs.comp, &lhs->m[3], sizeof( lhs->m[3] ) );
-	memcpy( dot_rhs.comp, &rhs_transposed.m[2], sizeof( rhs_transposed.m[2] ) );
+	dot_lhs.x = lhs->m[3][0];
+	dot_lhs.y = lhs->m[3][1];
+	dot_lhs.z = lhs->m[3][2];
+	dot_lhs.w = lhs->m[3][3];
+
+	dot_rhs.x = rhs->m[0][2];
+	dot_rhs.y = rhs->m[1][2];
+	dot_rhs.z = rhs->m[2][2];
+	dot_rhs.w = rhs->m[3][2];
+
 	dot_sse( &dot_lhs, &dot_rhs, &out->m[3][2] );
 
-	memcpy( dot_lhs.comp, &lhs->m[3], sizeof( lhs->m[3] ) );
-	memcpy( dot_rhs.comp, &rhs_transposed.m[3], sizeof( rhs_transposed.m[3] ) );
+	dot_lhs.x = lhs->m[3][0];
+	dot_lhs.y = lhs->m[3][1];
+	dot_lhs.z = lhs->m[3][2];
+	dot_lhs.w = lhs->m[3][3];
+
+	dot_rhs.x = rhs->m[0][3];
+	dot_rhs.y = rhs->m[1][3];
+	dot_rhs.z = rhs->m[2][3];
+	dot_rhs.w = rhs->m[3][3];
+
 	dot_sse( &dot_lhs, &dot_rhs, &out->m[3][3] );
 }
 
@@ -2042,9 +2537,9 @@ void translate_sse( const float3_sse_t* column, const float3_sse_t* vec, float3_
 	assert( vec );
 	assert( out_column );
 
-	out_column->comp[0] = _mm_add_ps( column->comp[0], vec->comp[0] );
-	out_column->comp[1] = _mm_add_ps( column->comp[1], vec->comp[1] );
-	out_column->comp[2] = _mm_add_ps( column->comp[2], vec->comp[2] );
+	out_column->x = _mm_add_ps( column->x, vec->x );
+	out_column->y = _mm_add_ps( column->y, vec->y );
+	out_column->z = _mm_add_ps( column->z, vec->z );
 }
 
 void scale_sse( const float3_sse_t* diagonal, const float3_sse_t* scale, float3_sse_t* out_diagonal )
@@ -2053,9 +2548,9 @@ void scale_sse( const float3_sse_t* diagonal, const float3_sse_t* scale, float3_
 	assert( scale );
 	assert( out_diagonal );
 
-	out_diagonal->comp[0] = _mm_mul_ps( diagonal->comp[0], scale->comp[0] );
-	out_diagonal->comp[1] = _mm_mul_ps( diagonal->comp[1], scale->comp[1] );
-	out_diagonal->comp[2] = _mm_mul_ps( diagonal->comp[2], scale->comp[2] );
+	out_diagonal->x = _mm_mul_ps( diagonal->x, scale->x );
+	out_diagonal->y = _mm_mul_ps( diagonal->y, scale->y );
+	out_diagonal->z = _mm_mul_ps( diagonal->z, scale->z );
 }
 
 

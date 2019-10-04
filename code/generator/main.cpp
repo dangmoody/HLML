@@ -449,7 +449,9 @@ static bool32 GenerateFunctionsVectorSSE( void ) {
 			String_Appendf( &contentHeader, "// %s\n", fullTypeName );
 			String_Appendf( &contentHeader, "struct %s\n", sseTypeName );
 			String_Append(  &contentHeader, "{\n" );
-			String_Appendf( &contentHeader, "\t%s comp[%d];\n", registerName, componentIndex );
+			for ( u32 i = 0; i < componentIndex; i++ ) {
+				String_Appendf( &contentHeader, "\t\t\t%s %c;\n", registerName, GEN_COMPONENT_NAMES_VECTOR[i] );
+			}
 			String_Append(  &contentHeader, "};\n" );
 			String_Append(  &contentHeader, "\n" );
 
@@ -487,7 +489,7 @@ static bool32 GenerateFunctionsMatrixSSE( void ) {
 	snprintf( filePathInl, 64, "%s%s.inl", GEN_OUT_GEN_FOLDER_PATH, GEN_FILENAME_FUNCTIONS_MATRIX_SSE );
 
 	stringBuilder_t contentHeader = String_Create( 28 * KB_TO_BYTES );
-	stringBuilder_t contentInl = String_Create( 70 * KB_TO_BYTES );
+	stringBuilder_t contentInl = String_Create( 76 * KB_TO_BYTES );
 
 	String_Append( &contentHeader, GEN_FILE_HEADER );
 	String_Append( &contentHeader,
@@ -849,8 +851,6 @@ static bool32 GenerateTestsMain( void ) {
 	String_Append( &sb, "\tTEMPER_SET_COMMAND_LINE_ARGS( argc, argv );\n" );
 	String_Append( &sb, "\n" );
 	String_Append( &sb, "\tTEMPER_SET_SUITE_END_CALLBACK( OnSuiteEnd, nullptr );\n" );
-	String_Append( &sb, "\n" );
-	String_Append( &sb, "\tTEMPER_SET_TIME_UNIT( TEMPER_TIME_UNIT_US );\n" );
 	String_Append( &sb, "\n" );
 
 	// run the scalar tests first

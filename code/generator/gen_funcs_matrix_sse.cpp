@@ -712,16 +712,23 @@ void Gen_SSE_MatrixMultiply( const genType_t type, const u32 numRows, const u32 
 	String_Append(  sbInl, "\tassert( rhs );\n" );
 	String_Append(  sbInl, "\tassert( out );\n" );
 	String_Append(  sbInl, "\n" );
-	String_Appendf( sbInl, "\t%s rhs_transposed;\n", sseLHSName );
-	String_Appendf( sbInl, "\ttranspose_sse( rhs, &rhs_transposed );\n" );
-	String_Append(  sbInl, "\n" );
 	String_Appendf( sbInl, "\t%s dot_lhs;\n", sseDotName );
 	String_Appendf( sbInl, "\t%s dot_rhs;\n", sseDotName );
 	String_Append(  sbInl, "\n" );
 	for ( u32 row = 0; row < returnRows; row++ ) {
 		for ( u32 col = 0; col < returnCols; col++ ) {
-			String_Appendf( sbInl, "\tmemcpy( dot_lhs.comp, &lhs->m[%d], sizeof( lhs->m[%d] ) );\n", row, row );
-			String_Appendf( sbInl, "\tmemcpy( dot_rhs.comp, &rhs_transposed.m[%d], sizeof( rhs_transposed.m[%d] ) );\n", col, col );
+			for ( u32 i = 0; i < lhsCols; i++ ) {
+				const char componentStr = GEN_COMPONENT_NAMES_VECTOR[i];
+				String_Appendf( sbInl, "\tdot_lhs.%c = lhs->m[%d][%d];\n", componentStr, row, i );
+			}
+			String_Append( sbInl, "\n" );
+
+			for ( u32 i = 0; i < rhsRows; i++ ) {
+				const char componentStr = GEN_COMPONENT_NAMES_VECTOR[i];
+				String_Appendf( sbInl, "\tdot_rhs.%c = rhs->m[%d][%d];\n", componentStr, i, col );
+			}
+			String_Append(  sbInl, "\n" );
+
 			String_Appendf( sbInl, "\tdot_sse( &dot_lhs, &dot_rhs, &out->m[%d][%d] );\n", row, col );
 
 			if ( col != returnCols - 1 ) {
@@ -779,7 +786,9 @@ void Gen_SSE_MatrixTranslate( const genType_t type, const u32 numRows, const u32
 	String_Append(  sbInl, "\tassert( out_column );\n" );
 	String_Append(  sbInl, "\n" );
 	for ( u32 i = 0; i < translateVecComponents; i++ ) {
-		String_Appendf( sbInl, "\tout_column->comp[%d] = %s( column->comp[%d], vec->comp[%d] );\n", i, addFuncStr, i, i );
+		const char componentStr = GEN_COMPONENT_NAMES_VECTOR[i];
+
+		String_Appendf( sbInl, "\tout_column->%c = %s( column->%c, vec->%c );\n", componentStr, addFuncStr, componentStr, componentStr );
 	}
 	String_Append(  sbInl, "}\n" );
 	String_Append(  sbInl, "\n" );
@@ -825,7 +834,9 @@ void Gen_SSE_MatrixScale( const genType_t type, const u32 numRows, const u32 num
 	String_Append(  sbInl, "\tassert( out_diagonal );\n" );
 	String_Append(  sbInl, "\n" );
 	for ( u32 i = 0; i < numScaleComponents; i++ ) {
-		String_Appendf( sbInl, "\tout_diagonal->comp[%d] = %s( diagonal->comp[%d], scale->comp[%d] );\n", i, mulFuncStr, i, i );
+		const char componentStr = GEN_COMPONENT_NAMES_VECTOR[i];
+
+		String_Appendf( sbInl, "\tout_diagonal->%c = %s( diagonal->%c, scale->%c );\n", componentStr, mulFuncStr, componentStr, componentStr );
 	}
 	String_Append(  sbInl, "}\n" );
 	String_Append(  sbInl, "\n" );

@@ -1283,23 +1283,23 @@ TEMPER_TEST( TestTranslate_SSE_float3x3 )
 	};
 
 	float2_sse_t pos;
-	memset( pos.comp, 0, 2 * sizeof( __m128 ) );
+	memset( &pos, 0, 2 * sizeof( __m128 ) );
 
 	float2_sse_t translation;
-	translation.comp[0] = _mm_load_ps( translateVecComponents[0] );
-	translation.comp[1] = _mm_load_ps( translateVecComponents[1] );
+	translation.x = _mm_load_ps( translateVecComponents[0] );
+	translation.y = _mm_load_ps( translateVecComponents[1] );
 
 	translate_sse( &pos, &translation, &pos );
 
 	float translateResults[4];
 
-	_mm_store_ps( translateResults, pos.comp[0] );
+	_mm_store_ps( translateResults, pos.x );
 	TEMPER_EXPECT_TRUE( floateq( translateResults[0], 2.000000f ) );
 	TEMPER_EXPECT_TRUE( floateq( translateResults[1], 2.000000f ) );
 	TEMPER_EXPECT_TRUE( floateq( translateResults[2], 2.000000f ) );
 	TEMPER_EXPECT_TRUE( floateq( translateResults[3], 2.000000f ) );
 
-	_mm_store_ps( translateResults, pos.comp[1] );
+	_mm_store_ps( translateResults, pos.y );
 	TEMPER_EXPECT_TRUE( floateq( translateResults[0], 3.000000f ) );
 	TEMPER_EXPECT_TRUE( floateq( translateResults[1], 3.000000f ) );
 	TEMPER_EXPECT_TRUE( floateq( translateResults[2], 3.000000f ) );
@@ -1344,23 +1344,23 @@ TEMPER_TEST( TestScale_SSE_float3x3 )
 	};
 
 	float2_sse_t diagonal;
-	diagonal.comp[0] = _mm_set1_ps( 1 );
-	diagonal.comp[1] = _mm_set1_ps( 1 );
+	diagonal.x = _mm_set1_ps( 1 );
+	diagonal.y = _mm_set1_ps( 1 );
 
 	float2_sse_t scale;
-	scale.comp[0] = _mm_load_ps( scaleVecComponents[0] );
-	scale.comp[1] = _mm_load_ps( scaleVecComponents[1] );
+	scale.x = _mm_load_ps( scaleVecComponents[0] );
+	scale.y = _mm_load_ps( scaleVecComponents[1] );
 
 	scale_sse( &diagonal, &scale, &diagonal );
 
 	float scaleResults[4];
-	_mm_store_ps( scaleResults, diagonal.comp[0] );
+	_mm_store_ps( scaleResults, diagonal.x );
 	TEMPER_EXPECT_TRUE( floateq( scaleResults[0], 2.000000f ) );
 	TEMPER_EXPECT_TRUE( floateq( scaleResults[1], 2.000000f ) );
 	TEMPER_EXPECT_TRUE( floateq( scaleResults[2], 2.000000f ) );
 	TEMPER_EXPECT_TRUE( floateq( scaleResults[3], 2.000000f ) );
 
-	_mm_store_ps( scaleResults, diagonal.comp[1] );
+	_mm_store_ps( scaleResults, diagonal.y );
 	TEMPER_EXPECT_TRUE( floateq( scaleResults[0], 2.000000f ) );
 	TEMPER_EXPECT_TRUE( floateq( scaleResults[1], 2.000000f ) );
 	TEMPER_EXPECT_TRUE( floateq( scaleResults[2], 2.000000f ) );

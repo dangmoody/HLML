@@ -39,7 +39,8 @@ SOFTWARE.
 // float2
 struct float2_sse_t
 {
-	__m128 comp[2];
+			__m128 x;
+			__m128 y;
 };
 
 /// \relates float2
@@ -70,7 +71,9 @@ inline void distance_sse( const float2_sse_t* lhs, const float2_sse_t* rhs, __m1
 // float3
 struct float3_sse_t
 {
-	__m128 comp[3];
+			__m128 x;
+			__m128 y;
+			__m128 z;
 };
 
 /// \relates float3
@@ -105,7 +108,10 @@ inline void distance_sse( const float3_sse_t* lhs, const float3_sse_t* rhs, __m1
 // float4
 struct float4_sse_t
 {
-	__m128 comp[4];
+			__m128 x;
+			__m128 y;
+			__m128 z;
+			__m128 w;
 };
 
 /// \relates float4
