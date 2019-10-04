@@ -33,6 +33,7 @@ SOFTWARE.
 // DO SO AT YOUR OWN RISK.
 
 #include "../../code/out/gen/hlml_functions_matrix.h"
+#include "../../code/out/gen/hlml_operators_matrix.h"
 #include "../../code/out/gen/hlml_functions_matrix_sse.h"
 
 #include <temper/temper.h>
