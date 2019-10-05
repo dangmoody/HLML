@@ -831,7 +831,7 @@ static bool32 GenerateTestsMain( void ) {
 		genType_t type = (genType_t) typeIndex;
 
 		for ( u32 row = 1; row <= GEN_COMPONENT_COUNT_MAX; row++ ) {
-			for ( u32 col = 1; col <= GEN_COMPONENT_COUNT_MAX; col++ ) {
+			for ( u32 col = GEN_COMPONENT_COUNT_MIN; col <= GEN_COMPONENT_COUNT_MAX; col++ ) {
 				char fullTypeName[GEN_STRING_LENGTH_TYPE_NAME] = { 0 };
 				Gen_GetFullTypeName( type, row, col, fullTypeName );
 
