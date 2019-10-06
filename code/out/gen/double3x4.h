@@ -88,4 +88,3 @@ inline bool operator==( const double3x4& lhs, const double3x4& rhs );
 /// \brief Returns true if not all of the components of the left-hand-side double3x4 match the other one, otherwise returns false.
 inline bool operator!=( const double3x4& lhs, const double3x4& rhs );
 
-#include "double3x4.inl"

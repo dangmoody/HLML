@@ -84,8 +84,9 @@ bool GeneratorMatrixTests::Generate( const genType_t type, const u32 numRows, co
 
 	String_Append(  &code, GEN_FILE_HEADER );
 
-	String_Append(  &code, "#include \"../../" GEN_OUT_GEN_FOLDER_PATH GEN_FILENAME_FUNCTIONS_MATRIX ".h\"\n" );
-	String_Append(  &code, "#include \"../../" GEN_OUT_GEN_FOLDER_PATH GEN_FILENAME_OPERATORS_MATRIX ".h\"\n" );
+	String_Append(  &code, "#include \"../../" GEN_OUT_GEN_FOLDER_PATH GEN_HEADER_FUNCTIONS_MATRIX "\"\n" );
+	String_Append(  &code, "#include \"../../" GEN_OUT_GEN_FOLDER_PATH GEN_HEADER_OPERATORS_MATRIX "\"\n" );
+	
 	if ( Gen_TypeSupportsSSE( m_type ) ) {
 		String_Append( &code, "#include \"../../" GEN_OUT_GEN_FOLDER_PATH GEN_FILENAME_FUNCTIONS_MATRIX_SSE ".h\"\n" );
 	}

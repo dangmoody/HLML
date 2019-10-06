@@ -48,7 +48,7 @@ bool GeneratorVector::Generate( const genType_t type, const u32 numComponents ) 
 	snprintf( m_fullTypeName, GEN_STRING_LENGTH_TYPE_NAME, "%s%d", m_typeString, numComponents );
 
 	m_codeHeader = String_Create( 32 * KB_TO_BYTES );
-	m_codeInl = String_Create( 4 * KB_TO_BYTES );
+	m_codeInl = String_Create( 32 * KB_TO_BYTES );
 
 	// header pre-functions
 	{
@@ -117,19 +117,20 @@ bool GeneratorVector::Generate( const genType_t type, const u32 numComponents ) 
 	// inl before functions
 	{
 		String_Append( &m_codeInl, GEN_FILE_HEADER );
+		String_Append( &m_codeInl, "#pragma once\n" );
+		String_Append( &m_codeInl, "\n" );
 
 		String_Append( &m_codeInl, "// hlml includes\n" );
 
 		for ( u32 i = GEN_COMPONENT_COUNT_MIN; i <= GEN_COMPONENT_COUNT_MAX; i++ ) {
-			// don't include ourself
-			if ( m_numComponents != i ) {
-				String_Appendf( &m_codeInl, "#include \"%s%d.h\"\n", m_typeString, i );
-			}
+			String_Appendf( &m_codeInl, "#include \"%s%d.h\"\n", m_typeString, i );
 		}
 		String_Append( &m_codeInl, "\n" );
 
-		String_Append( &m_codeInl, "#include \"" GEN_FILENAME_FUNCTIONS_SCALAR ".h\"\n" );
-		String_Append( &m_codeInl, "\n" );
+		if ( m_type == GEN_TYPE_FLOAT ) {
+			String_Append( &m_codeInl, "#include \"" GEN_HEADER_FUNCTIONS_SCALAR "\"\n" );
+			String_Append( &m_codeInl, "\n" );
+		}
 
 		String_Append( &m_codeInl,
 			"// others\n" \
@@ -158,9 +159,6 @@ bool GeneratorVector::Generate( const genType_t type, const u32 numComponents ) 
 		"\n" );
 
 	GenerateOperatorsEquality();
-
-	String_Appendf( &m_codeHeader, "#include \"%s.inl\"", m_fullTypeName );
-	String_Append(  &m_codeHeader, "\n" );
 
 	char fileNameHeader[64] = {};
 	snprintf( fileNameHeader, 64, "%s%s.h", GEN_OUT_GEN_FOLDER_PATH, m_fullTypeName );
@@ -379,20 +377,22 @@ void GeneratorVector::GenerateSwizzleFuncs() {
 				GEN_COMPONENT_NAMES_VECTOR[x], GEN_COMPONENT_NAMES_VECTOR[y], GEN_COMPONENT_NAMES_VECTOR[z], GEN_COMPONENT_NAMES_VECTOR[w] );
 			funcName[vecComponents] = 0;
 
-			String_Appendf( &m_codeHeader, "\tinline %s%d %s() const { ", m_typeString, vecComponents, funcName );
-			String_Appendf( &m_codeHeader, "return %s%d( ", m_typeString, vecComponents );
+			String_Appendf( &m_codeHeader, "\tinline %s%d %s() const;\n", m_typeString, vecComponents, funcName );
+
+			String_Appendf( &m_codeInl, "%s%d %s::%s() const { ", m_typeString, vecComponents, m_fullTypeName, funcName );
+			String_Appendf( &m_codeInl, "return %s%d( ", m_typeString, vecComponents );
 			for ( u32 componentIndex = 0; componentIndex < vecComponents; componentIndex++ ) {
-				String_Appendf( &m_codeHeader, "%c", funcName[componentIndex] );
+				String_Appendf( &m_codeInl, "%c", funcName[componentIndex] );
 
 				if ( componentIndex != vecComponents - 1 ) {
-					String_Append( &m_codeHeader, ", " );
+					String_Append( &m_codeInl, ", " );
 				}
 			}
-			String_Append( &m_codeHeader, " );" );
-			String_Append( &m_codeHeader, " }\n" );
+			String_Append( &m_codeInl, " );" );
+			String_Append( &m_codeInl, " }\n" );
 		}
 
-		String_Append( &m_codeHeader, "\n" );
+		String_Append( &m_codeInl, "\n" );
 	}
 }
 

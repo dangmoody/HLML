@@ -102,11 +102,10 @@ struct bool2
 	inline bool32_t& operator[]( const uint32_t index );
 
 	// swizzle funcs
-	inline bool2 xx() const { return bool2( x, x ); }
-	inline bool2 yx() const { return bool2( y, x ); }
-	inline bool2 xy() const { return bool2( x, y ); }
-	inline bool2 yy() const { return bool2( y, y ); }
-
+	inline bool2 xx() const;
+	inline bool2 yx() const;
+	inline bool2 xy() const;
+	inline bool2 yy() const;
 };
 
 #if defined( __clang__ ) || defined( __GNUC__ )
@@ -123,4 +122,3 @@ inline bool operator==( const bool2& lhs, const bool2& rhs );
 /// \brief Returns true if not all of the components of the left-hand-side bool2 match the other one, otherwise returns false.
 inline bool operator!=( const bool2& lhs, const bool2& rhs );
 
-#include "bool2.inl"

@@ -86,4 +86,3 @@ inline bool operator==( const int2x2& lhs, const int2x2& rhs );
 /// \brief Returns true if not all of the components of the left-hand-side int2x2 match the other one, otherwise returns false.
 inline bool operator!=( const int2x2& lhs, const int2x2& rhs );
 
-#include "int2x2.inl"

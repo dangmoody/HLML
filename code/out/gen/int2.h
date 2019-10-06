@@ -110,11 +110,10 @@ struct int2
 	inline int32_t& operator[]( const uint32_t index );
 
 	// swizzle funcs
-	inline int2 xx() const { return int2( x, x ); }
-	inline int2 yx() const { return int2( y, x ); }
-	inline int2 xy() const { return int2( x, y ); }
-	inline int2 yy() const { return int2( y, y ); }
-
+	inline int2 xx() const;
+	inline int2 yx() const;
+	inline int2 xy() const;
+	inline int2 yy() const;
 };
 
 #if defined( __clang__ ) || defined( __GNUC__ )
@@ -131,4 +130,3 @@ inline bool operator==( const int2& lhs, const int2& rhs );
 /// \brief Returns true if not all of the components of the left-hand-side int2 match the other one, otherwise returns false.
 inline bool operator!=( const int2& lhs, const int2& rhs );
 
-#include "int2.inl"

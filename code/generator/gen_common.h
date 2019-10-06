@@ -53,14 +53,15 @@ along with The HLML Generator.  If not, see <http://www.gnu.org/licenses/>.
 #define GEN_HEADER_CONSTANTS_SSE			"hlml_constants_sse.h"
 #define GEN_HEADER_USER						"hlml_user.h"
 
-#define GEN_FILENAME_OPERATORS_VECTOR		"hlml_operators_vector"
-#define GEN_FILENAME_OPERATORS_MATRIX		"hlml_operators_matrix"
+#define GEN_HEADER_OPERATORS_VECTOR			"hlml_operators_vector.h"
+#define GEN_HEADER_OPERATORS_MATRIX			"hlml_operators_matrix.h"
 
-#define GEN_FILENAME_FUNCTIONS_SCALAR		"hlml_functions_scalar"
+#define GEN_HEADER_FUNCTIONS_SCALAR			"hlml_functions_scalar.h"
+#define GEN_HEADER_FUNCTIONS_VECTOR			"hlml_functions_vector.h"
+#define GEN_HEADER_FUNCTIONS_MATRIX			"hlml_functions_matrix.h"
+
 #define GEN_FILENAME_FUNCTIONS_SCALAR_SSE	"hlml_functions_scalar_sse"
-#define GEN_FILENAME_FUNCTIONS_VECTOR		"hlml_functions_vector"
 #define GEN_FILENAME_FUNCTIONS_VECTOR_SSE	"hlml_functions_vector_sse"
-#define GEN_FILENAME_FUNCTIONS_MATRIX		"hlml_functions_matrix"
 #define GEN_FILENAME_FUNCTIONS_MATRIX_SSE	"hlml_functions_matrix_sse"
 
 #define GEN_STRING_LENGTH_NUMERIC_LITERAL	16
@@ -239,20 +240,18 @@ extern void			Gen_Degrees( const genType_t type, stringBuilder_t* sb );
 extern void			Gen_MinMax( const genType_t type, stringBuilder_t* sb );
 extern void			Gen_Clamp( const genType_t type, stringBuilder_t* sb );
 
-extern void			Gen_Saturate( const genType_t type, const u32 numComponents, stringBuilder_t* sbHeader, stringBuilder_t* sbInl );
-extern void			Gen_Lerp( const genType_t type, const u32 numComponents, stringBuilder_t* sbHeader, stringBuilder_t* sbInl );
-extern void			Gen_Step( const genType_t type, const u32 numComponents, stringBuilder_t* sbHeader, stringBuilder_t* sbInl );
-extern void			Gen_Smoothstep( const genType_t type, const u32 numComponents, stringBuilder_t* sbHeader, stringBuilder_t* sbInl );
+extern void			Gen_Saturate( const genType_t type, const u32 numComponents, stringBuilder_t* sbHeader );
+extern void			Gen_Lerp( const genType_t type, const u32 numComponents, stringBuilder_t* sbHeader );
+extern void			Gen_Step( const genType_t type, const u32 numComponents, stringBuilder_t* sbHeader );
+extern void			Gen_Smoothstep( const genType_t type, const u32 numComponents, stringBuilder_t* sbHeader );
 
 // functions that are guaranteed to be the same across vectors and matrices
-extern void			Gen_OperatorsIncrement( const genType_t type, const u32 numRows, const u32 numCols, stringBuilder_t* sbHeader, stringBuilder_t* sbInl );
-extern void			Gen_OperatorsRelational( const genType_t type, const u32 numRows, const u32 numCols, stringBuilder_t* sbHeader, stringBuilder_t* sbInl );
-extern void			Gen_OperatorsBitwise( const genType_t type, const u32 numRows, const u32 numCols, stringBuilder_t* sbHeader, stringBuilder_t* sbInl );
+extern void			Gen_OperatorsIncrement( const genType_t type, const u32 numRows, const u32 numCols, stringBuilder_t* sbHeader );
+extern void			Gen_OperatorsRelational( const genType_t type, const u32 numRows, const u32 numCols, stringBuilder_t* sbHeader );
+extern void			Gen_OperatorsBitwise( const genType_t type, const u32 numRows, const u32 numCols, stringBuilder_t* sbHeader );
 
-extern void			Gen_OperatorComponentWiseArithmeticScalar( const genType_t type, const u32 numRows, const u32 numCols, const genOpArithmetic_t op,
-						stringBuilder_t* sbHeader, stringBuilder_t* sbInl );
-extern void			Gen_OperatorComponentWiseArithmeticRhsType( const genType_t type, const u32 numRows, const u32 numCols, const genOpArithmetic_t op,
-						stringBuilder_t* sbHeader, stringBuilder_t* sbInl );
+extern void			Gen_OperatorComponentWiseArithmeticScalar( const genType_t type, const u32 numRows, const u32 numCols, const genOpArithmetic_t op, stringBuilder_t* sbHeader );
+extern void			Gen_OperatorComponentWiseArithmeticRhsType( const genType_t type, const u32 numRows, const u32 numCols, const genOpArithmetic_t op, stringBuilder_t* sbHeader );
 
 extern void			Gen_OperatorNotEquals( const genType_t type, const u32 numRows, const u32 numCols, stringBuilder_t* sbHeader, stringBuilder_t* sbInl );
 

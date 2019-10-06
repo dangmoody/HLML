@@ -34,1227 +34,3471 @@ SOFTWARE.
 
 #pragma once
 
-#include "bool2x2.h"
-#include "bool2x3.h"
-#include "bool2x4.h"
-#include "bool3x2.h"
-#include "bool3x3.h"
-#include "bool3x4.h"
-#include "bool4x2.h"
-#include "bool4x3.h"
-#include "bool4x4.h"
+#include "bool2x2.inl"
+#include "bool2x3.inl"
+#include "bool2x4.inl"
+#include "bool3x2.inl"
+#include "bool3x3.inl"
+#include "bool3x4.inl"
+#include "bool4x2.inl"
+#include "bool4x3.inl"
+#include "bool4x4.inl"
 
-#include "int2x2.h"
-#include "int2x3.h"
-#include "int2x4.h"
-#include "int3x2.h"
-#include "int3x3.h"
-#include "int3x4.h"
-#include "int4x2.h"
-#include "int4x3.h"
-#include "int4x4.h"
+#include "int2x2.inl"
+#include "int2x3.inl"
+#include "int2x4.inl"
+#include "int3x2.inl"
+#include "int3x3.inl"
+#include "int3x4.inl"
+#include "int4x2.inl"
+#include "int4x3.inl"
+#include "int4x4.inl"
 
-#include "uint2x2.h"
-#include "uint2x3.h"
-#include "uint2x4.h"
-#include "uint3x2.h"
-#include "uint3x3.h"
-#include "uint3x4.h"
-#include "uint4x2.h"
-#include "uint4x3.h"
-#include "uint4x4.h"
+#include "uint2x2.inl"
+#include "uint2x3.inl"
+#include "uint2x4.inl"
+#include "uint3x2.inl"
+#include "uint3x3.inl"
+#include "uint3x4.inl"
+#include "uint4x2.inl"
+#include "uint4x3.inl"
+#include "uint4x4.inl"
 
-#include "float2x2.h"
-#include "float2x3.h"
-#include "float2x4.h"
-#include "float3x2.h"
-#include "float3x3.h"
-#include "float3x4.h"
-#include "float4x2.h"
-#include "float4x3.h"
-#include "float4x4.h"
+#include "float2x2.inl"
+#include "float2x3.inl"
+#include "float2x4.inl"
+#include "float3x2.inl"
+#include "float3x3.inl"
+#include "float3x4.inl"
+#include "float4x2.inl"
+#include "float4x3.inl"
+#include "float4x4.inl"
 
-#include "double2x2.h"
-#include "double2x3.h"
-#include "double2x4.h"
-#include "double3x2.h"
-#include "double3x3.h"
-#include "double3x4.h"
-#include "double4x2.h"
-#include "double4x3.h"
-#include "double4x4.h"
+#include "double2x2.inl"
+#include "double2x3.inl"
+#include "double2x4.inl"
+#include "double3x2.inl"
+#include "double3x3.inl"
+#include "double3x4.inl"
+#include "double4x2.inl"
+#include "double4x3.inl"
+#include "double4x4.inl"
 
+#include "hlml_functions_vector.h"
+#include "hlml_operators_matrix.h"
 
 // bool2x2
 /// \relates bool2x2
 /// \brief Sets the matrix to an identity matrix.
-inline void identity( bool2x2& mat );
+inline void identity( bool2x2& mat )
+{
+	mat[0] = { true, false };
+	mat[1] = { false, true };
+}
 
 /// \relates bool2x2
 /// \brief Returns a copy of the matrix that is transposed, where the value of each row is set to the value of each column and vice versa.
-inline bool2x2 transpose( const bool2x2& mat );
+inline bool2x2 transpose( const bool2x2& mat )
+{
+	return bool2x2(
+		mat[0][0], mat[1][0],
+		mat[0][1], mat[1][1]
+	);
+}
 
 
 // bool2x3
 /// \relates bool2x3
 /// \brief Sets the matrix to an identity matrix.
-inline void identity( bool2x3& mat );
+inline void identity( bool2x3& mat )
+{
+	mat[0] = { true, false, false };
+	mat[1] = { false, true, false };
+}
 
 /// \relates bool2x3
 /// \brief Returns a copy of the matrix that is transposed, where the value of each row is set to the value of each column and vice versa.
-inline bool3x2 transpose( const bool2x3& mat );
+inline bool3x2 transpose( const bool2x3& mat )
+{
+	return bool3x2(
+		mat[0][0], mat[1][0],
+		mat[0][1], mat[1][1],
+		mat[0][2], mat[1][2]
+	);
+}
 
 
 // bool2x4
 /// \relates bool2x4
 /// \brief Sets the matrix to an identity matrix.
-inline void identity( bool2x4& mat );
+inline void identity( bool2x4& mat )
+{
+	mat[0] = { true, false, false, false };
+	mat[1] = { false, true, false, false };
+}
 
 /// \relates bool2x4
 /// \brief Returns a copy of the matrix that is transposed, where the value of each row is set to the value of each column and vice versa.
-inline bool4x2 transpose( const bool2x4& mat );
+inline bool4x2 transpose( const bool2x4& mat )
+{
+	return bool4x2(
+		mat[0][0], mat[1][0],
+		mat[0][1], mat[1][1],
+		mat[0][2], mat[1][2],
+		mat[0][3], mat[1][3]
+	);
+}
 
 
 // bool3x2
 /// \relates bool3x2
 /// \brief Sets the matrix to an identity matrix.
-inline void identity( bool3x2& mat );
+inline void identity( bool3x2& mat )
+{
+	mat[0] = { true, false };
+	mat[1] = { false, true };
+	mat[2] = { false, false };
+}
 
 /// \relates bool3x2
 /// \brief Returns a copy of the matrix that is transposed, where the value of each row is set to the value of each column and vice versa.
-inline bool2x3 transpose( const bool3x2& mat );
+inline bool2x3 transpose( const bool3x2& mat )
+{
+	return bool2x3(
+		mat[0][0], mat[1][0], mat[2][0],
+		mat[0][1], mat[1][1], mat[2][1]
+	);
+}
 
 
 // bool3x3
 /// \relates bool3x3
 /// \brief Sets the matrix to an identity matrix.
-inline void identity( bool3x3& mat );
+inline void identity( bool3x3& mat )
+{
+	mat[0] = { true, false, false };
+	mat[1] = { false, true, false };
+	mat[2] = { false, false, true };
+}
 
 /// \relates bool3x3
 /// \brief Returns a copy of the matrix that is transposed, where the value of each row is set to the value of each column and vice versa.
-inline bool3x3 transpose( const bool3x3& mat );
+inline bool3x3 transpose( const bool3x3& mat )
+{
+	return bool3x3(
+		mat[0][0], mat[1][0], mat[2][0],
+		mat[0][1], mat[1][1], mat[2][1],
+		mat[0][2], mat[1][2], mat[2][2]
+	);
+}
 
 
 // bool3x4
 /// \relates bool3x4
 /// \brief Sets the matrix to an identity matrix.
-inline void identity( bool3x4& mat );
+inline void identity( bool3x4& mat )
+{
+	mat[0] = { true, false, false, false };
+	mat[1] = { false, true, false, false };
+	mat[2] = { false, false, true, false };
+}
 
 /// \relates bool3x4
 /// \brief Returns a copy of the matrix that is transposed, where the value of each row is set to the value of each column and vice versa.
-inline bool4x3 transpose( const bool3x4& mat );
+inline bool4x3 transpose( const bool3x4& mat )
+{
+	return bool4x3(
+		mat[0][0], mat[1][0], mat[2][0],
+		mat[0][1], mat[1][1], mat[2][1],
+		mat[0][2], mat[1][2], mat[2][2],
+		mat[0][3], mat[1][3], mat[2][3]
+	);
+}
 
 
 // bool4x2
 /// \relates bool4x2
 /// \brief Sets the matrix to an identity matrix.
-inline void identity( bool4x2& mat );
+inline void identity( bool4x2& mat )
+{
+	mat[0] = { true, false };
+	mat[1] = { false, true };
+	mat[2] = { false, false };
+	mat[3] = { false, false };
+}
 
 /// \relates bool4x2
 /// \brief Returns a copy of the matrix that is transposed, where the value of each row is set to the value of each column and vice versa.
-inline bool2x4 transpose( const bool4x2& mat );
+inline bool2x4 transpose( const bool4x2& mat )
+{
+	return bool2x4(
+		mat[0][0], mat[1][0], mat[2][0], mat[3][0],
+		mat[0][1], mat[1][1], mat[2][1], mat[3][1]
+	);
+}
 
 
 // bool4x3
 /// \relates bool4x3
 /// \brief Sets the matrix to an identity matrix.
-inline void identity( bool4x3& mat );
+inline void identity( bool4x3& mat )
+{
+	mat[0] = { true, false, false };
+	mat[1] = { false, true, false };
+	mat[2] = { false, false, true };
+	mat[3] = { false, false, false };
+}
 
 /// \relates bool4x3
 /// \brief Returns a copy of the matrix that is transposed, where the value of each row is set to the value of each column and vice versa.
-inline bool3x4 transpose( const bool4x3& mat );
+inline bool3x4 transpose( const bool4x3& mat )
+{
+	return bool3x4(
+		mat[0][0], mat[1][0], mat[2][0], mat[3][0],
+		mat[0][1], mat[1][1], mat[2][1], mat[3][1],
+		mat[0][2], mat[1][2], mat[2][2], mat[3][2]
+	);
+}
 
 
 // bool4x4
 /// \relates bool4x4
 /// \brief Sets the matrix to an identity matrix.
-inline void identity( bool4x4& mat );
+inline void identity( bool4x4& mat )
+{
+	mat[0] = { true, false, false, false };
+	mat[1] = { false, true, false, false };
+	mat[2] = { false, false, true, false };
+	mat[3] = { false, false, false, true };
+}
 
 /// \relates bool4x4
 /// \brief Returns a copy of the matrix that is transposed, where the value of each row is set to the value of each column and vice versa.
-inline bool4x4 transpose( const bool4x4& mat );
+inline bool4x4 transpose( const bool4x4& mat )
+{
+	return bool4x4(
+		mat[0][0], mat[1][0], mat[2][0], mat[3][0],
+		mat[0][1], mat[1][1], mat[2][1], mat[3][1],
+		mat[0][2], mat[1][2], mat[2][2], mat[3][2],
+		mat[0][3], mat[1][3], mat[2][3], mat[3][3]
+	);
+}
 
 
 // int2x2
 /// \relates int2x2
 /// \brief Sets the matrix to an identity matrix.
-inline void identity( int2x2& mat );
+inline void identity( int2x2& mat )
+{
+	mat[0] = { 1, 0 };
+	mat[1] = { 0, 1 };
+}
 
 /// \relates int2x2
 /// \brief Returns a copy of the matrix that is transposed, where the value of each row is set to the value of each column and vice versa.
-inline int2x2 transpose( const int2x2& mat );
+inline int2x2 transpose( const int2x2& mat )
+{
+	return int2x2(
+		mat[0][0], mat[1][0],
+		mat[0][1], mat[1][1]
+	);
+}
 
 /// \relates int2x2
 /// \brief Returns the determinant of the matrix.
-inline int32_t determinant( const int2x2& mat );
+inline int32_t determinant( const int2x2& mat )
+{
+	return mat[0][0] * mat[1][1] - mat[1][0] * mat[0][1];
+}
 
 /// \relates int2x2
 /// \brief Returns a copy of the int2x2 that has been component-wise multiplied by the corresponding component of the right-hand int2x2.
-inline int2x2 comp_mul( const int2x2& lhs, const int2x2& rhs );
+inline int2x2 comp_mul( const int2x2& lhs, const int2x2& rhs )
+{
+	return int2x2(
+		lhs[0] * rhs[0],
+		lhs[1] * rhs[1]
+	);
+}
 
 /// \relates int2x2
 /// \brief Returns a copy of the int2x2 that has been component-wise divided by the corresponding component of the right-hand int2x2.
-inline int2x2 comp_div( const int2x2& lhs, const int2x2& rhs );
-
-/// \relates int2x2
-/// \brief Returns a copy of the matrix that has had a uniform scale applied to it.
-inline int2x2 scale( const int2x2& mat, const int32_t scalar );
+inline int2x2 comp_div( const int2x2& lhs, const int2x2& rhs )
+{
+	return int2x2(
+		lhs[0] / rhs[0],
+		lhs[1] / rhs[1]
+	);
+}
 
 /// \relates int2x2
 /// \brief Returns a copy of the matrix that has had a non-uniform scale applied to it.
-inline int2x2 scale( const int2x2& mat, const int3& vec );
+inline int2x2 scale( const int2x2& mat, const int3& vec )
+{
+	return int2x2(
+		mat[0][0] * vec.x,
+		mat[0][1],
+
+		mat[1][0],
+		mat[1][1] * vec.y
+	);
+}
+
+/// \relates int2x2
+/// \brief Returns a copy of the matrix that has had a uniform scale applied to it.
+inline int2x2 scale( const int2x2& mat, const int32_t scalar )
+{
+	return scale( mat, int3( scalar, scalar, scalar ) );
+}
 
 
 // int2x3
 /// \relates int2x3
 /// \brief Sets the matrix to an identity matrix.
-inline void identity( int2x3& mat );
+inline void identity( int2x3& mat )
+{
+	mat[0] = { 1, 0, 0 };
+	mat[1] = { 0, 1, 0 };
+}
 
 /// \relates int2x3
 /// \brief Returns a copy of the matrix that is transposed, where the value of each row is set to the value of each column and vice versa.
-inline int3x2 transpose( const int2x3& mat );
+inline int3x2 transpose( const int2x3& mat )
+{
+	return int3x2(
+		mat[0][0], mat[1][0],
+		mat[0][1], mat[1][1],
+		mat[0][2], mat[1][2]
+	);
+}
 
 /// \relates int2x3
 /// \brief Returns a copy of the int2x3 that has been component-wise multiplied by the corresponding component of the right-hand int2x3.
-inline int2x3 comp_mul( const int2x3& lhs, const int2x3& rhs );
+inline int2x3 comp_mul( const int2x3& lhs, const int2x3& rhs )
+{
+	return int2x3(
+		lhs[0] * rhs[0],
+		lhs[1] * rhs[1]
+	);
+}
 
 /// \relates int2x3
 /// \brief Returns a copy of the int2x3 that has been component-wise divided by the corresponding component of the right-hand int2x3.
-inline int2x3 comp_div( const int2x3& lhs, const int2x3& rhs );
-
-/// \relates int2x3
-/// \brief Returns a copy of the matrix that has had a uniform scale applied to it.
-inline int2x3 scale( const int2x3& mat, const int32_t scalar );
+inline int2x3 comp_div( const int2x3& lhs, const int2x3& rhs )
+{
+	return int2x3(
+		lhs[0] / rhs[0],
+		lhs[1] / rhs[1]
+	);
+}
 
 /// \relates int2x3
 /// \brief Returns a copy of the matrix that has had a non-uniform scale applied to it.
-inline int2x3 scale( const int2x3& mat, const int3& vec );
+inline int2x3 scale( const int2x3& mat, const int3& vec )
+{
+	return int2x3(
+		mat[0][0] * vec.x,
+		mat[0][1],
+		mat[0][2],
+
+		mat[1][0],
+		mat[1][1] * vec.y,
+		mat[1][2]
+	);
+}
+
+/// \relates int2x3
+/// \brief Returns a copy of the matrix that has had a uniform scale applied to it.
+inline int2x3 scale( const int2x3& mat, const int32_t scalar )
+{
+	return scale( mat, int3( scalar, scalar, scalar ) );
+}
 
 
 // int2x4
 /// \relates int2x4
 /// \brief Sets the matrix to an identity matrix.
-inline void identity( int2x4& mat );
+inline void identity( int2x4& mat )
+{
+	mat[0] = { 1, 0, 0, 0 };
+	mat[1] = { 0, 1, 0, 0 };
+}
 
 /// \relates int2x4
 /// \brief Returns a copy of the matrix that is transposed, where the value of each row is set to the value of each column and vice versa.
-inline int4x2 transpose( const int2x4& mat );
+inline int4x2 transpose( const int2x4& mat )
+{
+	return int4x2(
+		mat[0][0], mat[1][0],
+		mat[0][1], mat[1][1],
+		mat[0][2], mat[1][2],
+		mat[0][3], mat[1][3]
+	);
+}
 
 /// \relates int2x4
 /// \brief Returns a copy of the int2x4 that has been component-wise multiplied by the corresponding component of the right-hand int2x4.
-inline int2x4 comp_mul( const int2x4& lhs, const int2x4& rhs );
+inline int2x4 comp_mul( const int2x4& lhs, const int2x4& rhs )
+{
+	return int2x4(
+		lhs[0] * rhs[0],
+		lhs[1] * rhs[1]
+	);
+}
 
 /// \relates int2x4
 /// \brief Returns a copy of the int2x4 that has been component-wise divided by the corresponding component of the right-hand int2x4.
-inline int2x4 comp_div( const int2x4& lhs, const int2x4& rhs );
-
-/// \relates int2x4
-/// \brief Returns a copy of the matrix that has had a uniform scale applied to it.
-inline int2x4 scale( const int2x4& mat, const int32_t scalar );
+inline int2x4 comp_div( const int2x4& lhs, const int2x4& rhs )
+{
+	return int2x4(
+		lhs[0] / rhs[0],
+		lhs[1] / rhs[1]
+	);
+}
 
 /// \relates int2x4
 /// \brief Returns a copy of the matrix that has had a non-uniform scale applied to it.
-inline int2x4 scale( const int2x4& mat, const int3& vec );
+inline int2x4 scale( const int2x4& mat, const int3& vec )
+{
+	return int2x4(
+		mat[0][0] * vec.x,
+		mat[0][1],
+		mat[0][2],
+		mat[0][3],
+
+		mat[1][0],
+		mat[1][1] * vec.y,
+		mat[1][2],
+		mat[1][3]
+	);
+}
+
+/// \relates int2x4
+/// \brief Returns a copy of the matrix that has had a uniform scale applied to it.
+inline int2x4 scale( const int2x4& mat, const int32_t scalar )
+{
+	return scale( mat, int3( scalar, scalar, scalar ) );
+}
 
 
 // int3x2
 /// \relates int3x2
 /// \brief Sets the matrix to an identity matrix.
-inline void identity( int3x2& mat );
+inline void identity( int3x2& mat )
+{
+	mat[0] = { 1, 0 };
+	mat[1] = { 0, 1 };
+	mat[2] = { 0, 0 };
+}
 
 /// \relates int3x2
 /// \brief Returns a copy of the matrix that is transposed, where the value of each row is set to the value of each column and vice versa.
-inline int2x3 transpose( const int3x2& mat );
+inline int2x3 transpose( const int3x2& mat )
+{
+	return int2x3(
+		mat[0][0], mat[1][0], mat[2][0],
+		mat[0][1], mat[1][1], mat[2][1]
+	);
+}
 
 /// \relates int3x2
 /// \brief Returns a copy of the int3x2 that has been component-wise multiplied by the corresponding component of the right-hand int3x2.
-inline int3x2 comp_mul( const int3x2& lhs, const int3x2& rhs );
+inline int3x2 comp_mul( const int3x2& lhs, const int3x2& rhs )
+{
+	return int3x2(
+		lhs[0] * rhs[0],
+		lhs[1] * rhs[1],
+		lhs[2] * rhs[2]
+	);
+}
 
 /// \relates int3x2
 /// \brief Returns a copy of the int3x2 that has been component-wise divided by the corresponding component of the right-hand int3x2.
-inline int3x2 comp_div( const int3x2& lhs, const int3x2& rhs );
+inline int3x2 comp_div( const int3x2& lhs, const int3x2& rhs )
+{
+	return int3x2(
+		lhs[0] / rhs[0],
+		lhs[1] / rhs[1],
+		lhs[2] / rhs[2]
+	);
+}
 
 
 // int3x3
 /// \relates int3x3
 /// \brief Sets the matrix to an identity matrix.
-inline void identity( int3x3& mat );
+inline void identity( int3x3& mat )
+{
+	mat[0] = { 1, 0, 0 };
+	mat[1] = { 0, 1, 0 };
+	mat[2] = { 0, 0, 1 };
+}
 
 /// \relates int3x3
 /// \brief Returns a copy of the matrix that is transposed, where the value of each row is set to the value of each column and vice versa.
-inline int3x3 transpose( const int3x3& mat );
+inline int3x3 transpose( const int3x3& mat )
+{
+	return int3x3(
+		mat[0][0], mat[1][0], mat[2][0],
+		mat[0][1], mat[1][1], mat[2][1],
+		mat[0][2], mat[1][2], mat[2][2]
+	);
+}
 
 /// \relates int3x3
 /// \brief Returns the determinant of the matrix.
-inline int32_t determinant( const int3x3& mat );
+inline int32_t determinant( const int3x3& mat )
+{
+	return
+		+ mat[0][0] * ( mat[1][1] * mat[2][2] - mat[2][1] * mat[1][2] )
+		- mat[0][1] * ( mat[1][0] * mat[2][2] - mat[2][0] * mat[1][2] )
+		+ mat[0][2] * ( mat[1][0] * mat[2][1] - mat[2][0] * mat[1][1] );
+}
 
 /// \relates int3x3
 /// \brief Returns a copy of the int3x3 that has been component-wise multiplied by the corresponding component of the right-hand int3x3.
-inline int3x3 comp_mul( const int3x3& lhs, const int3x3& rhs );
+inline int3x3 comp_mul( const int3x3& lhs, const int3x3& rhs )
+{
+	return int3x3(
+		lhs[0] * rhs[0],
+		lhs[1] * rhs[1],
+		lhs[2] * rhs[2]
+	);
+}
 
 /// \relates int3x3
 /// \brief Returns a copy of the int3x3 that has been component-wise divided by the corresponding component of the right-hand int3x3.
-inline int3x3 comp_div( const int3x3& lhs, const int3x3& rhs );
+inline int3x3 comp_div( const int3x3& lhs, const int3x3& rhs )
+{
+	return int3x3(
+		lhs[0] / rhs[0],
+		lhs[1] / rhs[1],
+		lhs[2] / rhs[2]
+	);
+}
 
 /// \relates int3x3
 /// \brief Returns a copy of the matrix where each component of the 3rd column has been added by the given vector.
-inline int3x3 translate( const int3x3& mat, const int2& vec );
-
-/// \relates int3x3
-/// \brief Returns a copy of the matrix that has had a uniform scale applied to it.
-inline int3x3 scale( const int3x3& mat, const int32_t scalar );
+inline int3x3 translate( const int3x3& mat, const int2& vec )
+{
+	return int3x3(
+		mat[0][0], mat[0][1], mat[0][2] + vec.x,
+		mat[1][0], mat[1][1], mat[1][2] + vec.y,
+		mat[2][0], mat[2][1], mat[2][2]
+	);
+}
 
 /// \relates int3x3
 /// \brief Returns a copy of the matrix that has had a non-uniform scale applied to it.
-inline int3x3 scale( const int3x3& mat, const int3& vec );
+inline int3x3 scale( const int3x3& mat, const int3& vec )
+{
+	return int3x3(
+		mat[0][0] * vec.x,
+		mat[0][1],
+		mat[0][2],
+
+		mat[1][0],
+		mat[1][1] * vec.y,
+		mat[1][2],
+
+		mat[2][0],
+		mat[2][1],
+		mat[2][2] * vec.z
+	);
+}
+
+/// \relates int3x3
+/// \brief Returns a copy of the matrix that has had a uniform scale applied to it.
+inline int3x3 scale( const int3x3& mat, const int32_t scalar )
+{
+	return scale( mat, int3( scalar, scalar, scalar ) );
+}
 
 
 // int3x4
 /// \relates int3x4
 /// \brief Sets the matrix to an identity matrix.
-inline void identity( int3x4& mat );
+inline void identity( int3x4& mat )
+{
+	mat[0] = { 1, 0, 0, 0 };
+	mat[1] = { 0, 1, 0, 0 };
+	mat[2] = { 0, 0, 1, 0 };
+}
 
 /// \relates int3x4
 /// \brief Returns a copy of the matrix that is transposed, where the value of each row is set to the value of each column and vice versa.
-inline int4x3 transpose( const int3x4& mat );
+inline int4x3 transpose( const int3x4& mat )
+{
+	return int4x3(
+		mat[0][0], mat[1][0], mat[2][0],
+		mat[0][1], mat[1][1], mat[2][1],
+		mat[0][2], mat[1][2], mat[2][2],
+		mat[0][3], mat[1][3], mat[2][3]
+	);
+}
 
 /// \relates int3x4
 /// \brief Returns a copy of the int3x4 that has been component-wise multiplied by the corresponding component of the right-hand int3x4.
-inline int3x4 comp_mul( const int3x4& lhs, const int3x4& rhs );
+inline int3x4 comp_mul( const int3x4& lhs, const int3x4& rhs )
+{
+	return int3x4(
+		lhs[0] * rhs[0],
+		lhs[1] * rhs[1],
+		lhs[2] * rhs[2]
+	);
+}
 
 /// \relates int3x4
 /// \brief Returns a copy of the int3x4 that has been component-wise divided by the corresponding component of the right-hand int3x4.
-inline int3x4 comp_div( const int3x4& lhs, const int3x4& rhs );
+inline int3x4 comp_div( const int3x4& lhs, const int3x4& rhs )
+{
+	return int3x4(
+		lhs[0] / rhs[0],
+		lhs[1] / rhs[1],
+		lhs[2] / rhs[2]
+	);
+}
 
 /// \relates int3x4
 /// \brief Returns a copy of the matrix where each component of the 3rd column has been added by the given vector.
-inline int3x4 translate( const int3x4& mat, const int3& vec );
-
-/// \relates int3x4
-/// \brief Returns a copy of the matrix that has had a uniform scale applied to it.
-inline int3x4 scale( const int3x4& mat, const int32_t scalar );
+inline int3x4 translate( const int3x4& mat, const int3& vec )
+{
+	return int3x4(
+		mat[0][0], mat[0][1], mat[0][2], mat[0][3] + vec.x,
+		mat[1][0], mat[1][1], mat[1][2], mat[1][3] + vec.y,
+		mat[2][0], mat[2][1], mat[2][2], mat[2][3] + vec.z
+	);
+}
 
 /// \relates int3x4
 /// \brief Returns a copy of the matrix that has had a non-uniform scale applied to it.
-inline int3x4 scale( const int3x4& mat, const int3& vec );
+inline int3x4 scale( const int3x4& mat, const int3& vec )
+{
+	return int3x4(
+		mat[0][0] * vec.x,
+		mat[0][1],
+		mat[0][2],
+		mat[0][3],
+
+		mat[1][0],
+		mat[1][1] * vec.y,
+		mat[1][2],
+		mat[1][3],
+
+		mat[2][0],
+		mat[2][1],
+		mat[2][2] * vec.z,
+		mat[2][3]
+	);
+}
+
+/// \relates int3x4
+/// \brief Returns a copy of the matrix that has had a uniform scale applied to it.
+inline int3x4 scale( const int3x4& mat, const int32_t scalar )
+{
+	return scale( mat, int3( scalar, scalar, scalar ) );
+}
 
 
 // int4x2
 /// \relates int4x2
 /// \brief Sets the matrix to an identity matrix.
-inline void identity( int4x2& mat );
+inline void identity( int4x2& mat )
+{
+	mat[0] = { 1, 0 };
+	mat[1] = { 0, 1 };
+	mat[2] = { 0, 0 };
+	mat[3] = { 0, 0 };
+}
 
 /// \relates int4x2
 /// \brief Returns a copy of the matrix that is transposed, where the value of each row is set to the value of each column and vice versa.
-inline int2x4 transpose( const int4x2& mat );
+inline int2x4 transpose( const int4x2& mat )
+{
+	return int2x4(
+		mat[0][0], mat[1][0], mat[2][0], mat[3][0],
+		mat[0][1], mat[1][1], mat[2][1], mat[3][1]
+	);
+}
 
 /// \relates int4x2
 /// \brief Returns a copy of the int4x2 that has been component-wise multiplied by the corresponding component of the right-hand int4x2.
-inline int4x2 comp_mul( const int4x2& lhs, const int4x2& rhs );
+inline int4x2 comp_mul( const int4x2& lhs, const int4x2& rhs )
+{
+	return int4x2(
+		lhs[0] * rhs[0],
+		lhs[1] * rhs[1],
+		lhs[2] * rhs[2],
+		lhs[3] * rhs[3]
+	);
+}
 
 /// \relates int4x2
 /// \brief Returns a copy of the int4x2 that has been component-wise divided by the corresponding component of the right-hand int4x2.
-inline int4x2 comp_div( const int4x2& lhs, const int4x2& rhs );
+inline int4x2 comp_div( const int4x2& lhs, const int4x2& rhs )
+{
+	return int4x2(
+		lhs[0] / rhs[0],
+		lhs[1] / rhs[1],
+		lhs[2] / rhs[2],
+		lhs[3] / rhs[3]
+	);
+}
 
 
 // int4x3
 /// \relates int4x3
 /// \brief Sets the matrix to an identity matrix.
-inline void identity( int4x3& mat );
+inline void identity( int4x3& mat )
+{
+	mat[0] = { 1, 0, 0 };
+	mat[1] = { 0, 1, 0 };
+	mat[2] = { 0, 0, 1 };
+	mat[3] = { 0, 0, 0 };
+}
 
 /// \relates int4x3
 /// \brief Returns a copy of the matrix that is transposed, where the value of each row is set to the value of each column and vice versa.
-inline int3x4 transpose( const int4x3& mat );
+inline int3x4 transpose( const int4x3& mat )
+{
+	return int3x4(
+		mat[0][0], mat[1][0], mat[2][0], mat[3][0],
+		mat[0][1], mat[1][1], mat[2][1], mat[3][1],
+		mat[0][2], mat[1][2], mat[2][2], mat[3][2]
+	);
+}
 
 /// \relates int4x3
 /// \brief Returns a copy of the int4x3 that has been component-wise multiplied by the corresponding component of the right-hand int4x3.
-inline int4x3 comp_mul( const int4x3& lhs, const int4x3& rhs );
+inline int4x3 comp_mul( const int4x3& lhs, const int4x3& rhs )
+{
+	return int4x3(
+		lhs[0] * rhs[0],
+		lhs[1] * rhs[1],
+		lhs[2] * rhs[2],
+		lhs[3] * rhs[3]
+	);
+}
 
 /// \relates int4x3
 /// \brief Returns a copy of the int4x3 that has been component-wise divided by the corresponding component of the right-hand int4x3.
-inline int4x3 comp_div( const int4x3& lhs, const int4x3& rhs );
-
-/// \relates int4x3
-/// \brief Returns a copy of the matrix that has had a uniform scale applied to it.
-inline int4x3 scale( const int4x3& mat, const int32_t scalar );
+inline int4x3 comp_div( const int4x3& lhs, const int4x3& rhs )
+{
+	return int4x3(
+		lhs[0] / rhs[0],
+		lhs[1] / rhs[1],
+		lhs[2] / rhs[2],
+		lhs[3] / rhs[3]
+	);
+}
 
 /// \relates int4x3
 /// \brief Returns a copy of the matrix that has had a non-uniform scale applied to it.
-inline int4x3 scale( const int4x3& mat, const int3& vec );
+inline int4x3 scale( const int4x3& mat, const int3& vec )
+{
+	return int4x3(
+		mat[0][0] * vec.x,
+		mat[0][1],
+		mat[0][2],
+
+		mat[1][0],
+		mat[1][1] * vec.y,
+		mat[1][2],
+
+		mat[2][0],
+		mat[2][1],
+		mat[2][2] * vec.z,
+
+		mat[3][0],
+		mat[3][1],
+		mat[3][2]
+	);
+}
+
+/// \relates int4x3
+/// \brief Returns a copy of the matrix that has had a uniform scale applied to it.
+inline int4x3 scale( const int4x3& mat, const int32_t scalar )
+{
+	return scale( mat, int3( scalar, scalar, scalar ) );
+}
 
 
 // int4x4
 /// \relates int4x4
 /// \brief Sets the matrix to an identity matrix.
-inline void identity( int4x4& mat );
+inline void identity( int4x4& mat )
+{
+	mat[0] = { 1, 0, 0, 0 };
+	mat[1] = { 0, 1, 0, 0 };
+	mat[2] = { 0, 0, 1, 0 };
+	mat[3] = { 0, 0, 0, 1 };
+}
 
 /// \relates int4x4
 /// \brief Returns a copy of the matrix that is transposed, where the value of each row is set to the value of each column and vice versa.
-inline int4x4 transpose( const int4x4& mat );
+inline int4x4 transpose( const int4x4& mat )
+{
+	return int4x4(
+		mat[0][0], mat[1][0], mat[2][0], mat[3][0],
+		mat[0][1], mat[1][1], mat[2][1], mat[3][1],
+		mat[0][2], mat[1][2], mat[2][2], mat[3][2],
+		mat[0][3], mat[1][3], mat[2][3], mat[3][3]
+	);
+}
 
 /// \relates int4x4
 /// \brief Returns the determinant of the matrix.
-inline int32_t determinant( const int4x4& mat );
+inline int32_t determinant( const int4x4& mat )
+{
+	// using glm's method where you basically take determinants from each sub matrix and cache the repeat occurences
+	int32_t sub00 = mat[2][2] * mat[3][3] - mat[3][2] * mat[2][3];
+	int32_t sub01 = mat[2][1] * mat[3][3] - mat[2][3] * mat[3][1];
+	int32_t sub02 = mat[2][1] * mat[3][2] - mat[3][1] * mat[2][2];
+	int32_t sub03 = mat[2][0] * mat[3][3] - mat[3][0] * mat[2][3];
+	int32_t sub04 = mat[2][0] * mat[3][2] - mat[3][0] * mat[2][2];
+	int32_t sub05 = mat[2][0] * mat[3][1] - mat[3][0] * mat[2][1];
+
+	int4 cofactor = int4(
+		 ( ( ( mat[1][1] * sub00 ) - ( mat[1][2] * sub01 ) ) + ( mat[1][3] * sub02 ) ),
+		-( ( ( mat[1][0] * sub00 ) - ( mat[1][2] * sub03 ) ) + ( mat[1][3] * sub04 ) ),
+		 ( ( ( mat[1][0] * sub01 ) - ( mat[1][1] * sub03 ) ) + ( mat[1][3] * sub05 ) ),
+		-( ( ( mat[1][0] * sub02 ) - ( mat[1][1] * sub04 ) ) + ( mat[1][2] * sub05 ) )
+	);
+
+	return
+		mat[0][0] * cofactor.x + mat[0][1] * cofactor.y +
+		mat[0][2] * cofactor.z + mat[0][3] * cofactor.w;
+}
 
 /// \relates int4x4
 /// \brief Returns a copy of the int4x4 that has been component-wise multiplied by the corresponding component of the right-hand int4x4.
-inline int4x4 comp_mul( const int4x4& lhs, const int4x4& rhs );
+inline int4x4 comp_mul( const int4x4& lhs, const int4x4& rhs )
+{
+	return int4x4(
+		lhs[0] * rhs[0],
+		lhs[1] * rhs[1],
+		lhs[2] * rhs[2],
+		lhs[3] * rhs[3]
+	);
+}
 
 /// \relates int4x4
 /// \brief Returns a copy of the int4x4 that has been component-wise divided by the corresponding component of the right-hand int4x4.
-inline int4x4 comp_div( const int4x4& lhs, const int4x4& rhs );
+inline int4x4 comp_div( const int4x4& lhs, const int4x4& rhs )
+{
+	return int4x4(
+		lhs[0] / rhs[0],
+		lhs[1] / rhs[1],
+		lhs[2] / rhs[2],
+		lhs[3] / rhs[3]
+	);
+}
 
 /// \relates int4x4
 /// \brief Returns a copy of the matrix where each component of the 3rd column has been added by the given vector.
-inline int4x4 translate( const int4x4& mat, const int3& vec );
-
-/// \relates int4x4
-/// \brief Returns a copy of the matrix that has had a uniform scale applied to it.
-inline int4x4 scale( const int4x4& mat, const int32_t scalar );
+inline int4x4 translate( const int4x4& mat, const int3& vec )
+{
+	return int4x4(
+		mat[0][0], mat[0][1], mat[0][2], mat[0][3] + vec.x,
+		mat[1][0], mat[1][1], mat[1][2], mat[1][3] + vec.y,
+		mat[2][0], mat[2][1], mat[2][2], mat[2][3] + vec.z,
+		mat[3][0], mat[3][1], mat[3][2], mat[3][3]
+	);
+}
 
 /// \relates int4x4
 /// \brief Returns a copy of the matrix that has had a non-uniform scale applied to it.
-inline int4x4 scale( const int4x4& mat, const int3& vec );
+inline int4x4 scale( const int4x4& mat, const int3& vec )
+{
+	return int4x4(
+		mat[0][0] * vec.x,
+		mat[0][1],
+		mat[0][2],
+		mat[0][3],
+
+		mat[1][0],
+		mat[1][1] * vec.y,
+		mat[1][2],
+		mat[1][3],
+
+		mat[2][0],
+		mat[2][1],
+		mat[2][2] * vec.z,
+		mat[2][3],
+
+		mat[3][0],
+		mat[3][1],
+		mat[3][2],
+		mat[3][3]
+	);
+}
+
+/// \relates int4x4
+/// \brief Returns a copy of the matrix that has had a uniform scale applied to it.
+inline int4x4 scale( const int4x4& mat, const int32_t scalar )
+{
+	return scale( mat, int3( scalar, scalar, scalar ) );
+}
 
 
 // uint2x2
 /// \relates uint2x2
 /// \brief Sets the matrix to an identity matrix.
-inline void identity( uint2x2& mat );
+inline void identity( uint2x2& mat )
+{
+	mat[0] = { 1U, 0U };
+	mat[1] = { 0U, 1U };
+}
 
 /// \relates uint2x2
 /// \brief Returns a copy of the matrix that is transposed, where the value of each row is set to the value of each column and vice versa.
-inline uint2x2 transpose( const uint2x2& mat );
+inline uint2x2 transpose( const uint2x2& mat )
+{
+	return uint2x2(
+		mat[0][0], mat[1][0],
+		mat[0][1], mat[1][1]
+	);
+}
 
 /// \relates uint2x2
 /// \brief Returns a copy of the uint2x2 that has been component-wise multiplied by the corresponding component of the right-hand uint2x2.
-inline uint2x2 comp_mul( const uint2x2& lhs, const uint2x2& rhs );
+inline uint2x2 comp_mul( const uint2x2& lhs, const uint2x2& rhs )
+{
+	return uint2x2(
+		lhs[0] * rhs[0],
+		lhs[1] * rhs[1]
+	);
+}
 
 /// \relates uint2x2
 /// \brief Returns a copy of the uint2x2 that has been component-wise divided by the corresponding component of the right-hand uint2x2.
-inline uint2x2 comp_div( const uint2x2& lhs, const uint2x2& rhs );
-
-/// \relates uint2x2
-/// \brief Returns a copy of the matrix that has had a uniform scale applied to it.
-inline uint2x2 scale( const uint2x2& mat, const uint32_t scalar );
+inline uint2x2 comp_div( const uint2x2& lhs, const uint2x2& rhs )
+{
+	return uint2x2(
+		lhs[0] / rhs[0],
+		lhs[1] / rhs[1]
+	);
+}
 
 /// \relates uint2x2
 /// \brief Returns a copy of the matrix that has had a non-uniform scale applied to it.
-inline uint2x2 scale( const uint2x2& mat, const uint3& vec );
+inline uint2x2 scale( const uint2x2& mat, const uint3& vec )
+{
+	return uint2x2(
+		mat[0][0] * vec.x,
+		mat[0][1],
+
+		mat[1][0],
+		mat[1][1] * vec.y
+	);
+}
+
+/// \relates uint2x2
+/// \brief Returns a copy of the matrix that has had a uniform scale applied to it.
+inline uint2x2 scale( const uint2x2& mat, const uint32_t scalar )
+{
+	return scale( mat, uint3( scalar, scalar, scalar ) );
+}
 
 
 // uint2x3
 /// \relates uint2x3
 /// \brief Sets the matrix to an identity matrix.
-inline void identity( uint2x3& mat );
+inline void identity( uint2x3& mat )
+{
+	mat[0] = { 1U, 0U, 0U };
+	mat[1] = { 0U, 1U, 0U };
+}
 
 /// \relates uint2x3
 /// \brief Returns a copy of the matrix that is transposed, where the value of each row is set to the value of each column and vice versa.
-inline uint3x2 transpose( const uint2x3& mat );
+inline uint3x2 transpose( const uint2x3& mat )
+{
+	return uint3x2(
+		mat[0][0], mat[1][0],
+		mat[0][1], mat[1][1],
+		mat[0][2], mat[1][2]
+	);
+}
 
 /// \relates uint2x3
 /// \brief Returns a copy of the uint2x3 that has been component-wise multiplied by the corresponding component of the right-hand uint2x3.
-inline uint2x3 comp_mul( const uint2x3& lhs, const uint2x3& rhs );
+inline uint2x3 comp_mul( const uint2x3& lhs, const uint2x3& rhs )
+{
+	return uint2x3(
+		lhs[0] * rhs[0],
+		lhs[1] * rhs[1]
+	);
+}
 
 /// \relates uint2x3
 /// \brief Returns a copy of the uint2x3 that has been component-wise divided by the corresponding component of the right-hand uint2x3.
-inline uint2x3 comp_div( const uint2x3& lhs, const uint2x3& rhs );
-
-/// \relates uint2x3
-/// \brief Returns a copy of the matrix that has had a uniform scale applied to it.
-inline uint2x3 scale( const uint2x3& mat, const uint32_t scalar );
+inline uint2x3 comp_div( const uint2x3& lhs, const uint2x3& rhs )
+{
+	return uint2x3(
+		lhs[0] / rhs[0],
+		lhs[1] / rhs[1]
+	);
+}
 
 /// \relates uint2x3
 /// \brief Returns a copy of the matrix that has had a non-uniform scale applied to it.
-inline uint2x3 scale( const uint2x3& mat, const uint3& vec );
+inline uint2x3 scale( const uint2x3& mat, const uint3& vec )
+{
+	return uint2x3(
+		mat[0][0] * vec.x,
+		mat[0][1],
+		mat[0][2],
+
+		mat[1][0],
+		mat[1][1] * vec.y,
+		mat[1][2]
+	);
+}
+
+/// \relates uint2x3
+/// \brief Returns a copy of the matrix that has had a uniform scale applied to it.
+inline uint2x3 scale( const uint2x3& mat, const uint32_t scalar )
+{
+	return scale( mat, uint3( scalar, scalar, scalar ) );
+}
 
 
 // uint2x4
 /// \relates uint2x4
 /// \brief Sets the matrix to an identity matrix.
-inline void identity( uint2x4& mat );
+inline void identity( uint2x4& mat )
+{
+	mat[0] = { 1U, 0U, 0U, 0U };
+	mat[1] = { 0U, 1U, 0U, 0U };
+}
 
 /// \relates uint2x4
 /// \brief Returns a copy of the matrix that is transposed, where the value of each row is set to the value of each column and vice versa.
-inline uint4x2 transpose( const uint2x4& mat );
+inline uint4x2 transpose( const uint2x4& mat )
+{
+	return uint4x2(
+		mat[0][0], mat[1][0],
+		mat[0][1], mat[1][1],
+		mat[0][2], mat[1][2],
+		mat[0][3], mat[1][3]
+	);
+}
 
 /// \relates uint2x4
 /// \brief Returns a copy of the uint2x4 that has been component-wise multiplied by the corresponding component of the right-hand uint2x4.
-inline uint2x4 comp_mul( const uint2x4& lhs, const uint2x4& rhs );
+inline uint2x4 comp_mul( const uint2x4& lhs, const uint2x4& rhs )
+{
+	return uint2x4(
+		lhs[0] * rhs[0],
+		lhs[1] * rhs[1]
+	);
+}
 
 /// \relates uint2x4
 /// \brief Returns a copy of the uint2x4 that has been component-wise divided by the corresponding component of the right-hand uint2x4.
-inline uint2x4 comp_div( const uint2x4& lhs, const uint2x4& rhs );
-
-/// \relates uint2x4
-/// \brief Returns a copy of the matrix that has had a uniform scale applied to it.
-inline uint2x4 scale( const uint2x4& mat, const uint32_t scalar );
+inline uint2x4 comp_div( const uint2x4& lhs, const uint2x4& rhs )
+{
+	return uint2x4(
+		lhs[0] / rhs[0],
+		lhs[1] / rhs[1]
+	);
+}
 
 /// \relates uint2x4
 /// \brief Returns a copy of the matrix that has had a non-uniform scale applied to it.
-inline uint2x4 scale( const uint2x4& mat, const uint3& vec );
+inline uint2x4 scale( const uint2x4& mat, const uint3& vec )
+{
+	return uint2x4(
+		mat[0][0] * vec.x,
+		mat[0][1],
+		mat[0][2],
+		mat[0][3],
+
+		mat[1][0],
+		mat[1][1] * vec.y,
+		mat[1][2],
+		mat[1][3]
+	);
+}
+
+/// \relates uint2x4
+/// \brief Returns a copy of the matrix that has had a uniform scale applied to it.
+inline uint2x4 scale( const uint2x4& mat, const uint32_t scalar )
+{
+	return scale( mat, uint3( scalar, scalar, scalar ) );
+}
 
 
 // uint3x2
 /// \relates uint3x2
 /// \brief Sets the matrix to an identity matrix.
-inline void identity( uint3x2& mat );
+inline void identity( uint3x2& mat )
+{
+	mat[0] = { 1U, 0U };
+	mat[1] = { 0U, 1U };
+	mat[2] = { 0U, 0U };
+}
 
 /// \relates uint3x2
 /// \brief Returns a copy of the matrix that is transposed, where the value of each row is set to the value of each column and vice versa.
-inline uint2x3 transpose( const uint3x2& mat );
+inline uint2x3 transpose( const uint3x2& mat )
+{
+	return uint2x3(
+		mat[0][0], mat[1][0], mat[2][0],
+		mat[0][1], mat[1][1], mat[2][1]
+	);
+}
 
 /// \relates uint3x2
 /// \brief Returns a copy of the uint3x2 that has been component-wise multiplied by the corresponding component of the right-hand uint3x2.
-inline uint3x2 comp_mul( const uint3x2& lhs, const uint3x2& rhs );
+inline uint3x2 comp_mul( const uint3x2& lhs, const uint3x2& rhs )
+{
+	return uint3x2(
+		lhs[0] * rhs[0],
+		lhs[1] * rhs[1],
+		lhs[2] * rhs[2]
+	);
+}
 
 /// \relates uint3x2
 /// \brief Returns a copy of the uint3x2 that has been component-wise divided by the corresponding component of the right-hand uint3x2.
-inline uint3x2 comp_div( const uint3x2& lhs, const uint3x2& rhs );
+inline uint3x2 comp_div( const uint3x2& lhs, const uint3x2& rhs )
+{
+	return uint3x2(
+		lhs[0] / rhs[0],
+		lhs[1] / rhs[1],
+		lhs[2] / rhs[2]
+	);
+}
 
 
 // uint3x3
 /// \relates uint3x3
 /// \brief Sets the matrix to an identity matrix.
-inline void identity( uint3x3& mat );
+inline void identity( uint3x3& mat )
+{
+	mat[0] = { 1U, 0U, 0U };
+	mat[1] = { 0U, 1U, 0U };
+	mat[2] = { 0U, 0U, 1U };
+}
 
 /// \relates uint3x3
 /// \brief Returns a copy of the matrix that is transposed, where the value of each row is set to the value of each column and vice versa.
-inline uint3x3 transpose( const uint3x3& mat );
+inline uint3x3 transpose( const uint3x3& mat )
+{
+	return uint3x3(
+		mat[0][0], mat[1][0], mat[2][0],
+		mat[0][1], mat[1][1], mat[2][1],
+		mat[0][2], mat[1][2], mat[2][2]
+	);
+}
 
 /// \relates uint3x3
 /// \brief Returns a copy of the uint3x3 that has been component-wise multiplied by the corresponding component of the right-hand uint3x3.
-inline uint3x3 comp_mul( const uint3x3& lhs, const uint3x3& rhs );
+inline uint3x3 comp_mul( const uint3x3& lhs, const uint3x3& rhs )
+{
+	return uint3x3(
+		lhs[0] * rhs[0],
+		lhs[1] * rhs[1],
+		lhs[2] * rhs[2]
+	);
+}
 
 /// \relates uint3x3
 /// \brief Returns a copy of the uint3x3 that has been component-wise divided by the corresponding component of the right-hand uint3x3.
-inline uint3x3 comp_div( const uint3x3& lhs, const uint3x3& rhs );
+inline uint3x3 comp_div( const uint3x3& lhs, const uint3x3& rhs )
+{
+	return uint3x3(
+		lhs[0] / rhs[0],
+		lhs[1] / rhs[1],
+		lhs[2] / rhs[2]
+	);
+}
 
 /// \relates uint3x3
 /// \brief Returns a copy of the matrix where each component of the 3rd column has been added by the given vector.
-inline uint3x3 translate( const uint3x3& mat, const uint2& vec );
-
-/// \relates uint3x3
-/// \brief Returns a copy of the matrix that has had a uniform scale applied to it.
-inline uint3x3 scale( const uint3x3& mat, const uint32_t scalar );
+inline uint3x3 translate( const uint3x3& mat, const uint2& vec )
+{
+	return uint3x3(
+		mat[0][0], mat[0][1], mat[0][2] + vec.x,
+		mat[1][0], mat[1][1], mat[1][2] + vec.y,
+		mat[2][0], mat[2][1], mat[2][2]
+	);
+}
 
 /// \relates uint3x3
 /// \brief Returns a copy of the matrix that has had a non-uniform scale applied to it.
-inline uint3x3 scale( const uint3x3& mat, const uint3& vec );
+inline uint3x3 scale( const uint3x3& mat, const uint3& vec )
+{
+	return uint3x3(
+		mat[0][0] * vec.x,
+		mat[0][1],
+		mat[0][2],
+
+		mat[1][0],
+		mat[1][1] * vec.y,
+		mat[1][2],
+
+		mat[2][0],
+		mat[2][1],
+		mat[2][2] * vec.z
+	);
+}
+
+/// \relates uint3x3
+/// \brief Returns a copy of the matrix that has had a uniform scale applied to it.
+inline uint3x3 scale( const uint3x3& mat, const uint32_t scalar )
+{
+	return scale( mat, uint3( scalar, scalar, scalar ) );
+}
 
 
 // uint3x4
 /// \relates uint3x4
 /// \brief Sets the matrix to an identity matrix.
-inline void identity( uint3x4& mat );
+inline void identity( uint3x4& mat )
+{
+	mat[0] = { 1U, 0U, 0U, 0U };
+	mat[1] = { 0U, 1U, 0U, 0U };
+	mat[2] = { 0U, 0U, 1U, 0U };
+}
 
 /// \relates uint3x4
 /// \brief Returns a copy of the matrix that is transposed, where the value of each row is set to the value of each column and vice versa.
-inline uint4x3 transpose( const uint3x4& mat );
+inline uint4x3 transpose( const uint3x4& mat )
+{
+	return uint4x3(
+		mat[0][0], mat[1][0], mat[2][0],
+		mat[0][1], mat[1][1], mat[2][1],
+		mat[0][2], mat[1][2], mat[2][2],
+		mat[0][3], mat[1][3], mat[2][3]
+	);
+}
 
 /// \relates uint3x4
 /// \brief Returns a copy of the uint3x4 that has been component-wise multiplied by the corresponding component of the right-hand uint3x4.
-inline uint3x4 comp_mul( const uint3x4& lhs, const uint3x4& rhs );
+inline uint3x4 comp_mul( const uint3x4& lhs, const uint3x4& rhs )
+{
+	return uint3x4(
+		lhs[0] * rhs[0],
+		lhs[1] * rhs[1],
+		lhs[2] * rhs[2]
+	);
+}
 
 /// \relates uint3x4
 /// \brief Returns a copy of the uint3x4 that has been component-wise divided by the corresponding component of the right-hand uint3x4.
-inline uint3x4 comp_div( const uint3x4& lhs, const uint3x4& rhs );
+inline uint3x4 comp_div( const uint3x4& lhs, const uint3x4& rhs )
+{
+	return uint3x4(
+		lhs[0] / rhs[0],
+		lhs[1] / rhs[1],
+		lhs[2] / rhs[2]
+	);
+}
 
 /// \relates uint3x4
 /// \brief Returns a copy of the matrix where each component of the 3rd column has been added by the given vector.
-inline uint3x4 translate( const uint3x4& mat, const uint3& vec );
-
-/// \relates uint3x4
-/// \brief Returns a copy of the matrix that has had a uniform scale applied to it.
-inline uint3x4 scale( const uint3x4& mat, const uint32_t scalar );
+inline uint3x4 translate( const uint3x4& mat, const uint3& vec )
+{
+	return uint3x4(
+		mat[0][0], mat[0][1], mat[0][2], mat[0][3] + vec.x,
+		mat[1][0], mat[1][1], mat[1][2], mat[1][3] + vec.y,
+		mat[2][0], mat[2][1], mat[2][2], mat[2][3] + vec.z
+	);
+}
 
 /// \relates uint3x4
 /// \brief Returns a copy of the matrix that has had a non-uniform scale applied to it.
-inline uint3x4 scale( const uint3x4& mat, const uint3& vec );
+inline uint3x4 scale( const uint3x4& mat, const uint3& vec )
+{
+	return uint3x4(
+		mat[0][0] * vec.x,
+		mat[0][1],
+		mat[0][2],
+		mat[0][3],
+
+		mat[1][0],
+		mat[1][1] * vec.y,
+		mat[1][2],
+		mat[1][3],
+
+		mat[2][0],
+		mat[2][1],
+		mat[2][2] * vec.z,
+		mat[2][3]
+	);
+}
+
+/// \relates uint3x4
+/// \brief Returns a copy of the matrix that has had a uniform scale applied to it.
+inline uint3x4 scale( const uint3x4& mat, const uint32_t scalar )
+{
+	return scale( mat, uint3( scalar, scalar, scalar ) );
+}
 
 
 // uint4x2
 /// \relates uint4x2
 /// \brief Sets the matrix to an identity matrix.
-inline void identity( uint4x2& mat );
+inline void identity( uint4x2& mat )
+{
+	mat[0] = { 1U, 0U };
+	mat[1] = { 0U, 1U };
+	mat[2] = { 0U, 0U };
+	mat[3] = { 0U, 0U };
+}
 
 /// \relates uint4x2
 /// \brief Returns a copy of the matrix that is transposed, where the value of each row is set to the value of each column and vice versa.
-inline uint2x4 transpose( const uint4x2& mat );
+inline uint2x4 transpose( const uint4x2& mat )
+{
+	return uint2x4(
+		mat[0][0], mat[1][0], mat[2][0], mat[3][0],
+		mat[0][1], mat[1][1], mat[2][1], mat[3][1]
+	);
+}
 
 /// \relates uint4x2
 /// \brief Returns a copy of the uint4x2 that has been component-wise multiplied by the corresponding component of the right-hand uint4x2.
-inline uint4x2 comp_mul( const uint4x2& lhs, const uint4x2& rhs );
+inline uint4x2 comp_mul( const uint4x2& lhs, const uint4x2& rhs )
+{
+	return uint4x2(
+		lhs[0] * rhs[0],
+		lhs[1] * rhs[1],
+		lhs[2] * rhs[2],
+		lhs[3] * rhs[3]
+	);
+}
 
 /// \relates uint4x2
 /// \brief Returns a copy of the uint4x2 that has been component-wise divided by the corresponding component of the right-hand uint4x2.
-inline uint4x2 comp_div( const uint4x2& lhs, const uint4x2& rhs );
+inline uint4x2 comp_div( const uint4x2& lhs, const uint4x2& rhs )
+{
+	return uint4x2(
+		lhs[0] / rhs[0],
+		lhs[1] / rhs[1],
+		lhs[2] / rhs[2],
+		lhs[3] / rhs[3]
+	);
+}
 
 
 // uint4x3
 /// \relates uint4x3
 /// \brief Sets the matrix to an identity matrix.
-inline void identity( uint4x3& mat );
+inline void identity( uint4x3& mat )
+{
+	mat[0] = { 1U, 0U, 0U };
+	mat[1] = { 0U, 1U, 0U };
+	mat[2] = { 0U, 0U, 1U };
+	mat[3] = { 0U, 0U, 0U };
+}
 
 /// \relates uint4x3
 /// \brief Returns a copy of the matrix that is transposed, where the value of each row is set to the value of each column and vice versa.
-inline uint3x4 transpose( const uint4x3& mat );
+inline uint3x4 transpose( const uint4x3& mat )
+{
+	return uint3x4(
+		mat[0][0], mat[1][0], mat[2][0], mat[3][0],
+		mat[0][1], mat[1][1], mat[2][1], mat[3][1],
+		mat[0][2], mat[1][2], mat[2][2], mat[3][2]
+	);
+}
 
 /// \relates uint4x3
 /// \brief Returns a copy of the uint4x3 that has been component-wise multiplied by the corresponding component of the right-hand uint4x3.
-inline uint4x3 comp_mul( const uint4x3& lhs, const uint4x3& rhs );
+inline uint4x3 comp_mul( const uint4x3& lhs, const uint4x3& rhs )
+{
+	return uint4x3(
+		lhs[0] * rhs[0],
+		lhs[1] * rhs[1],
+		lhs[2] * rhs[2],
+		lhs[3] * rhs[3]
+	);
+}
 
 /// \relates uint4x3
 /// \brief Returns a copy of the uint4x3 that has been component-wise divided by the corresponding component of the right-hand uint4x3.
-inline uint4x3 comp_div( const uint4x3& lhs, const uint4x3& rhs );
-
-/// \relates uint4x3
-/// \brief Returns a copy of the matrix that has had a uniform scale applied to it.
-inline uint4x3 scale( const uint4x3& mat, const uint32_t scalar );
+inline uint4x3 comp_div( const uint4x3& lhs, const uint4x3& rhs )
+{
+	return uint4x3(
+		lhs[0] / rhs[0],
+		lhs[1] / rhs[1],
+		lhs[2] / rhs[2],
+		lhs[3] / rhs[3]
+	);
+}
 
 /// \relates uint4x3
 /// \brief Returns a copy of the matrix that has had a non-uniform scale applied to it.
-inline uint4x3 scale( const uint4x3& mat, const uint3& vec );
+inline uint4x3 scale( const uint4x3& mat, const uint3& vec )
+{
+	return uint4x3(
+		mat[0][0] * vec.x,
+		mat[0][1],
+		mat[0][2],
+
+		mat[1][0],
+		mat[1][1] * vec.y,
+		mat[1][2],
+
+		mat[2][0],
+		mat[2][1],
+		mat[2][2] * vec.z,
+
+		mat[3][0],
+		mat[3][1],
+		mat[3][2]
+	);
+}
+
+/// \relates uint4x3
+/// \brief Returns a copy of the matrix that has had a uniform scale applied to it.
+inline uint4x3 scale( const uint4x3& mat, const uint32_t scalar )
+{
+	return scale( mat, uint3( scalar, scalar, scalar ) );
+}
 
 
 // uint4x4
 /// \relates uint4x4
 /// \brief Sets the matrix to an identity matrix.
-inline void identity( uint4x4& mat );
+inline void identity( uint4x4& mat )
+{
+	mat[0] = { 1U, 0U, 0U, 0U };
+	mat[1] = { 0U, 1U, 0U, 0U };
+	mat[2] = { 0U, 0U, 1U, 0U };
+	mat[3] = { 0U, 0U, 0U, 1U };
+}
 
 /// \relates uint4x4
 /// \brief Returns a copy of the matrix that is transposed, where the value of each row is set to the value of each column and vice versa.
-inline uint4x4 transpose( const uint4x4& mat );
+inline uint4x4 transpose( const uint4x4& mat )
+{
+	return uint4x4(
+		mat[0][0], mat[1][0], mat[2][0], mat[3][0],
+		mat[0][1], mat[1][1], mat[2][1], mat[3][1],
+		mat[0][2], mat[1][2], mat[2][2], mat[3][2],
+		mat[0][3], mat[1][3], mat[2][3], mat[3][3]
+	);
+}
 
 /// \relates uint4x4
 /// \brief Returns a copy of the uint4x4 that has been component-wise multiplied by the corresponding component of the right-hand uint4x4.
-inline uint4x4 comp_mul( const uint4x4& lhs, const uint4x4& rhs );
+inline uint4x4 comp_mul( const uint4x4& lhs, const uint4x4& rhs )
+{
+	return uint4x4(
+		lhs[0] * rhs[0],
+		lhs[1] * rhs[1],
+		lhs[2] * rhs[2],
+		lhs[3] * rhs[3]
+	);
+}
 
 /// \relates uint4x4
 /// \brief Returns a copy of the uint4x4 that has been component-wise divided by the corresponding component of the right-hand uint4x4.
-inline uint4x4 comp_div( const uint4x4& lhs, const uint4x4& rhs );
+inline uint4x4 comp_div( const uint4x4& lhs, const uint4x4& rhs )
+{
+	return uint4x4(
+		lhs[0] / rhs[0],
+		lhs[1] / rhs[1],
+		lhs[2] / rhs[2],
+		lhs[3] / rhs[3]
+	);
+}
 
 /// \relates uint4x4
 /// \brief Returns a copy of the matrix where each component of the 3rd column has been added by the given vector.
-inline uint4x4 translate( const uint4x4& mat, const uint3& vec );
-
-/// \relates uint4x4
-/// \brief Returns a copy of the matrix that has had a uniform scale applied to it.
-inline uint4x4 scale( const uint4x4& mat, const uint32_t scalar );
+inline uint4x4 translate( const uint4x4& mat, const uint3& vec )
+{
+	return uint4x4(
+		mat[0][0], mat[0][1], mat[0][2], mat[0][3] + vec.x,
+		mat[1][0], mat[1][1], mat[1][2], mat[1][3] + vec.y,
+		mat[2][0], mat[2][1], mat[2][2], mat[2][3] + vec.z,
+		mat[3][0], mat[3][1], mat[3][2], mat[3][3]
+	);
+}
 
 /// \relates uint4x4
 /// \brief Returns a copy of the matrix that has had a non-uniform scale applied to it.
-inline uint4x4 scale( const uint4x4& mat, const uint3& vec );
+inline uint4x4 scale( const uint4x4& mat, const uint3& vec )
+{
+	return uint4x4(
+		mat[0][0] * vec.x,
+		mat[0][1],
+		mat[0][2],
+		mat[0][3],
+
+		mat[1][0],
+		mat[1][1] * vec.y,
+		mat[1][2],
+		mat[1][3],
+
+		mat[2][0],
+		mat[2][1],
+		mat[2][2] * vec.z,
+		mat[2][3],
+
+		mat[3][0],
+		mat[3][1],
+		mat[3][2],
+		mat[3][3]
+	);
+}
+
+/// \relates uint4x4
+/// \brief Returns a copy of the matrix that has had a uniform scale applied to it.
+inline uint4x4 scale( const uint4x4& mat, const uint32_t scalar )
+{
+	return scale( mat, uint3( scalar, scalar, scalar ) );
+}
 
 
 // float2x2
 /// \relates float2x2
 /// \brief Sets the matrix to an identity matrix.
-inline void identity( float2x2& mat );
+inline void identity( float2x2& mat )
+{
+	mat[0] = { 1.0f, 0.0f };
+	mat[1] = { 0.0f, 1.0f };
+}
 
 /// \relates float2x2
 /// \brief Returns a copy of the matrix that is transposed, where the value of each row is set to the value of each column and vice versa.
-inline float2x2 transpose( const float2x2& mat );
+inline float2x2 transpose( const float2x2& mat )
+{
+	return float2x2(
+		mat[0][0], mat[1][0],
+		mat[0][1], mat[1][1]
+	);
+}
+
+/// \relates float2x2
+/// \brief Returns the determinant of the matrix.
+inline float determinant( const float2x2& mat )
+{
+	return mat[0][0] * mat[1][1] - mat[1][0] * mat[0][1];
+}
 
 /// \relates float2x2
 /// \brief Returns a copy of the matrix that is inversed.
 /// Currently this is only applicable for square matrices.  Pseudo-inverse support for non-square matrices is coming soon.
-inline float2x2 inverse( const float2x2& mat );
-
-/// \relates float2x2
-/// \brief Returns the determinant of the matrix.
-inline float determinant( const float2x2& mat );
+inline float2x2 inverse( const float2x2& mat )
+{
+	const float invdet = 1.0f / determinant( mat );
+	return float2x2(
+		 mat[1][1] * invdet, -mat[0][1] * invdet,
+		-mat[1][0] * invdet,  mat[0][0] * invdet
+	);
+}
 
 /// \relates float2x2
 /// \brief Returns a copy of the float2x2 that has been component-wise multiplied by the corresponding component of the right-hand float2x2.
-inline float2x2 comp_mul( const float2x2& lhs, const float2x2& rhs );
+inline float2x2 comp_mul( const float2x2& lhs, const float2x2& rhs )
+{
+	return float2x2(
+		lhs[0] * rhs[0],
+		lhs[1] * rhs[1]
+	);
+}
 
 /// \relates float2x2
 /// \brief Returns a copy of the float2x2 that has been component-wise divided by the corresponding component of the right-hand float2x2.
-inline float2x2 comp_div( const float2x2& lhs, const float2x2& rhs );
-
-/// \relates float2x2
-/// \brief Returns a copy of the matrix that has had a uniform scale applied to it.
-inline float2x2 scale( const float2x2& mat, const float scalar );
+inline float2x2 comp_div( const float2x2& lhs, const float2x2& rhs )
+{
+	return float2x2(
+		lhs[0] / rhs[0],
+		lhs[1] / rhs[1]
+	);
+}
 
 /// \relates float2x2
 /// \brief Returns a copy of the matrix that has had a non-uniform scale applied to it.
-inline float2x2 scale( const float2x2& mat, const float3& vec );
+inline float2x2 scale( const float2x2& mat, const float3& vec )
+{
+	return float2x2(
+		mat[0][0] * vec.x,
+		mat[0][1],
+
+		mat[1][0],
+		mat[1][1] * vec.y
+	);
+}
+
+/// \relates float2x2
+/// \brief Returns a copy of the matrix that has had a uniform scale applied to it.
+inline float2x2 scale( const float2x2& mat, const float scalar )
+{
+	return scale( mat, float3( scalar, scalar, scalar ) );
+}
 
 
 // float2x3
 /// \relates float2x3
 /// \brief Sets the matrix to an identity matrix.
-inline void identity( float2x3& mat );
+inline void identity( float2x3& mat )
+{
+	mat[0] = { 1.0f, 0.0f, 0.0f };
+	mat[1] = { 0.0f, 1.0f, 0.0f };
+}
 
 /// \relates float2x3
 /// \brief Returns a copy of the matrix that is transposed, where the value of each row is set to the value of each column and vice versa.
-inline float3x2 transpose( const float2x3& mat );
+inline float3x2 transpose( const float2x3& mat )
+{
+	return float3x2(
+		mat[0][0], mat[1][0],
+		mat[0][1], mat[1][1],
+		mat[0][2], mat[1][2]
+	);
+}
 
 /// \relates float2x3
 /// \brief Returns a copy of the float2x3 that has been component-wise multiplied by the corresponding component of the right-hand float2x3.
-inline float2x3 comp_mul( const float2x3& lhs, const float2x3& rhs );
+inline float2x3 comp_mul( const float2x3& lhs, const float2x3& rhs )
+{
+	return float2x3(
+		lhs[0] * rhs[0],
+		lhs[1] * rhs[1]
+	);
+}
 
 /// \relates float2x3
 /// \brief Returns a copy of the float2x3 that has been component-wise divided by the corresponding component of the right-hand float2x3.
-inline float2x3 comp_div( const float2x3& lhs, const float2x3& rhs );
-
-/// \relates float2x3
-/// \brief Returns a copy of the matrix that has had a uniform scale applied to it.
-inline float2x3 scale( const float2x3& mat, const float scalar );
+inline float2x3 comp_div( const float2x3& lhs, const float2x3& rhs )
+{
+	return float2x3(
+		lhs[0] / rhs[0],
+		lhs[1] / rhs[1]
+	);
+}
 
 /// \relates float2x3
 /// \brief Returns a copy of the matrix that has had a non-uniform scale applied to it.
-inline float2x3 scale( const float2x3& mat, const float3& vec );
+inline float2x3 scale( const float2x3& mat, const float3& vec )
+{
+	return float2x3(
+		mat[0][0] * vec.x,
+		mat[0][1],
+		mat[0][2],
+
+		mat[1][0],
+		mat[1][1] * vec.y,
+		mat[1][2]
+	);
+}
+
+/// \relates float2x3
+/// \brief Returns a copy of the matrix that has had a uniform scale applied to it.
+inline float2x3 scale( const float2x3& mat, const float scalar )
+{
+	return scale( mat, float3( scalar, scalar, scalar ) );
+}
 
 
 // float2x4
 /// \relates float2x4
 /// \brief Sets the matrix to an identity matrix.
-inline void identity( float2x4& mat );
+inline void identity( float2x4& mat )
+{
+	mat[0] = { 1.0f, 0.0f, 0.0f, 0.0f };
+	mat[1] = { 0.0f, 1.0f, 0.0f, 0.0f };
+}
 
 /// \relates float2x4
 /// \brief Returns a copy of the matrix that is transposed, where the value of each row is set to the value of each column and vice versa.
-inline float4x2 transpose( const float2x4& mat );
+inline float4x2 transpose( const float2x4& mat )
+{
+	return float4x2(
+		mat[0][0], mat[1][0],
+		mat[0][1], mat[1][1],
+		mat[0][2], mat[1][2],
+		mat[0][3], mat[1][3]
+	);
+}
 
 /// \relates float2x4
 /// \brief Returns a copy of the float2x4 that has been component-wise multiplied by the corresponding component of the right-hand float2x4.
-inline float2x4 comp_mul( const float2x4& lhs, const float2x4& rhs );
+inline float2x4 comp_mul( const float2x4& lhs, const float2x4& rhs )
+{
+	return float2x4(
+		lhs[0] * rhs[0],
+		lhs[1] * rhs[1]
+	);
+}
 
 /// \relates float2x4
 /// \brief Returns a copy of the float2x4 that has been component-wise divided by the corresponding component of the right-hand float2x4.
-inline float2x4 comp_div( const float2x4& lhs, const float2x4& rhs );
-
-/// \relates float2x4
-/// \brief Returns a copy of the matrix that has had a uniform scale applied to it.
-inline float2x4 scale( const float2x4& mat, const float scalar );
+inline float2x4 comp_div( const float2x4& lhs, const float2x4& rhs )
+{
+	return float2x4(
+		lhs[0] / rhs[0],
+		lhs[1] / rhs[1]
+	);
+}
 
 /// \relates float2x4
 /// \brief Returns a copy of the matrix that has had a non-uniform scale applied to it.
-inline float2x4 scale( const float2x4& mat, const float3& vec );
+inline float2x4 scale( const float2x4& mat, const float3& vec )
+{
+	return float2x4(
+		mat[0][0] * vec.x,
+		mat[0][1],
+		mat[0][2],
+		mat[0][3],
+
+		mat[1][0],
+		mat[1][1] * vec.y,
+		mat[1][2],
+		mat[1][3]
+	);
+}
+
+/// \relates float2x4
+/// \brief Returns a copy of the matrix that has had a uniform scale applied to it.
+inline float2x4 scale( const float2x4& mat, const float scalar )
+{
+	return scale( mat, float3( scalar, scalar, scalar ) );
+}
 
 
 // float3x2
 /// \relates float3x2
 /// \brief Sets the matrix to an identity matrix.
-inline void identity( float3x2& mat );
+inline void identity( float3x2& mat )
+{
+	mat[0] = { 1.0f, 0.0f };
+	mat[1] = { 0.0f, 1.0f };
+	mat[2] = { 0.0f, 0.0f };
+}
 
 /// \relates float3x2
 /// \brief Returns a copy of the matrix that is transposed, where the value of each row is set to the value of each column and vice versa.
-inline float2x3 transpose( const float3x2& mat );
+inline float2x3 transpose( const float3x2& mat )
+{
+	return float2x3(
+		mat[0][0], mat[1][0], mat[2][0],
+		mat[0][1], mat[1][1], mat[2][1]
+	);
+}
 
 /// \relates float3x2
 /// \brief Returns a copy of the float3x2 that has been component-wise multiplied by the corresponding component of the right-hand float3x2.
-inline float3x2 comp_mul( const float3x2& lhs, const float3x2& rhs );
+inline float3x2 comp_mul( const float3x2& lhs, const float3x2& rhs )
+{
+	return float3x2(
+		lhs[0] * rhs[0],
+		lhs[1] * rhs[1],
+		lhs[2] * rhs[2]
+	);
+}
 
 /// \relates float3x2
 /// \brief Returns a copy of the float3x2 that has been component-wise divided by the corresponding component of the right-hand float3x2.
-inline float3x2 comp_div( const float3x2& lhs, const float3x2& rhs );
+inline float3x2 comp_div( const float3x2& lhs, const float3x2& rhs )
+{
+	return float3x2(
+		lhs[0] / rhs[0],
+		lhs[1] / rhs[1],
+		lhs[2] / rhs[2]
+	);
+}
 
 
 // float3x3
 /// \relates float3x3
 /// \brief Sets the matrix to an identity matrix.
-inline void identity( float3x3& mat );
+inline void identity( float3x3& mat )
+{
+	mat[0] = { 1.0f, 0.0f, 0.0f };
+	mat[1] = { 0.0f, 1.0f, 0.0f };
+	mat[2] = { 0.0f, 0.0f, 1.0f };
+}
 
 /// \relates float3x3
 /// \brief Returns a copy of the matrix that is transposed, where the value of each row is set to the value of each column and vice versa.
-inline float3x3 transpose( const float3x3& mat );
+inline float3x3 transpose( const float3x3& mat )
+{
+	return float3x3(
+		mat[0][0], mat[1][0], mat[2][0],
+		mat[0][1], mat[1][1], mat[2][1],
+		mat[0][2], mat[1][2], mat[2][2]
+	);
+}
+
+/// \relates float3x3
+/// \brief Returns the determinant of the matrix.
+inline float determinant( const float3x3& mat )
+{
+	return
+		+ mat[0][0] * ( mat[1][1] * mat[2][2] - mat[2][1] * mat[1][2] )
+		- mat[0][1] * ( mat[1][0] * mat[2][2] - mat[2][0] * mat[1][2] )
+		+ mat[0][2] * ( mat[1][0] * mat[2][1] - mat[2][0] * mat[1][1] );
+}
 
 /// \relates float3x3
 /// \brief Returns a copy of the matrix that is inversed.
 /// Currently this is only applicable for square matrices.  Pseudo-inverse support for non-square matrices is coming soon.
-inline float3x3 inverse( const float3x3& mat );
+inline float3x3 inverse( const float3x3& mat )
+{
+	const float invdet = 1.0f / determinant( mat );
+	return float3x3(
+		 ( mat[1][1] * mat[2][2] - mat[1][2] * mat[2][1] ) * invdet,
+		-( mat[0][1] * mat[2][2] - mat[0][2] * mat[2][1] ) * invdet,
+		 ( mat[0][1] * mat[1][2] - mat[0][2] * mat[1][1] ) * invdet,
 
-/// \relates float3x3
-/// \brief Returns the determinant of the matrix.
-inline float determinant( const float3x3& mat );
+		-( mat[1][0] * mat[2][2] - mat[1][2] * mat[2][0] ) * invdet,
+		 ( mat[0][0] * mat[2][2] - mat[0][2] * mat[2][0] ) * invdet,
+		-( mat[0][0] * mat[1][2] - mat[0][2] * mat[1][0] ) * invdet,
+
+		 ( mat[1][0] * mat[2][1] - mat[1][1] * mat[2][0] ) * invdet,
+		-( mat[0][0] * mat[2][1] - mat[0][1] * mat[2][0] ) * invdet,
+		 ( mat[0][0] * mat[1][1] - mat[0][1] * mat[1][0] ) * invdet
+	);
+}
 
 /// \relates float3x3
 /// \brief Returns a copy of the float3x3 that has been component-wise multiplied by the corresponding component of the right-hand float3x3.
-inline float3x3 comp_mul( const float3x3& lhs, const float3x3& rhs );
+inline float3x3 comp_mul( const float3x3& lhs, const float3x3& rhs )
+{
+	return float3x3(
+		lhs[0] * rhs[0],
+		lhs[1] * rhs[1],
+		lhs[2] * rhs[2]
+	);
+}
 
 /// \relates float3x3
 /// \brief Returns a copy of the float3x3 that has been component-wise divided by the corresponding component of the right-hand float3x3.
-inline float3x3 comp_div( const float3x3& lhs, const float3x3& rhs );
+inline float3x3 comp_div( const float3x3& lhs, const float3x3& rhs )
+{
+	return float3x3(
+		lhs[0] / rhs[0],
+		lhs[1] / rhs[1],
+		lhs[2] / rhs[2]
+	);
+}
 
 /// \relates float3x3
 /// \brief Returns a copy of the matrix where each component of the 3rd column has been added by the given vector.
-inline float3x3 translate( const float3x3& mat, const float2& vec );
+inline float3x3 translate( const float3x3& mat, const float2& vec )
+{
+	return float3x3(
+		mat[0][0], mat[0][1], mat[0][2] + vec.x,
+		mat[1][0], mat[1][1], mat[1][2] + vec.y,
+		mat[2][0], mat[2][1], mat[2][2]
+	);
+}
 
 /// \relates float3x3
 /// \brief Returns a copy of the matrix that has had a rotation applied to it in radians on one or more of the following axes.
-inline float3x3 rotate( const float3x3& mat, const float rad );
+inline float3x3 rotate( const float3x3& mat, const float rad )
+{
+	const float c = cosf( rad );
+	const float s = sinf( rad );
 
-/// \relates float3x3
-/// \brief Returns a copy of the matrix that has had a uniform scale applied to it.
-inline float3x3 scale( const float3x3& mat, const float scalar );
+	return float3x3(
+		mat[0] * c + mat[1] * -s,
+		mat[0] * s + mat[1] * c,
+		mat[2]
+	);
+}
 
 /// \relates float3x3
 /// \brief Returns a copy of the matrix that has had a non-uniform scale applied to it.
-inline float3x3 scale( const float3x3& mat, const float3& vec );
+inline float3x3 scale( const float3x3& mat, const float3& vec )
+{
+	return float3x3(
+		mat[0][0] * vec.x,
+		mat[0][1],
+		mat[0][2],
+
+		mat[1][0],
+		mat[1][1] * vec.y,
+		mat[1][2],
+
+		mat[2][0],
+		mat[2][1],
+		mat[2][2] * vec.z
+	);
+}
+
+/// \relates float3x3
+/// \brief Returns a copy of the matrix that has had a uniform scale applied to it.
+inline float3x3 scale( const float3x3& mat, const float scalar )
+{
+	return scale( mat, float3( scalar, scalar, scalar ) );
+}
 
 
 // float3x4
 /// \relates float3x4
 /// \brief Sets the matrix to an identity matrix.
-inline void identity( float3x4& mat );
+inline void identity( float3x4& mat )
+{
+	mat[0] = { 1.0f, 0.0f, 0.0f, 0.0f };
+	mat[1] = { 0.0f, 1.0f, 0.0f, 0.0f };
+	mat[2] = { 0.0f, 0.0f, 1.0f, 0.0f };
+}
 
 /// \relates float3x4
 /// \brief Returns a copy of the matrix that is transposed, where the value of each row is set to the value of each column and vice versa.
-inline float4x3 transpose( const float3x4& mat );
+inline float4x3 transpose( const float3x4& mat )
+{
+	return float4x3(
+		mat[0][0], mat[1][0], mat[2][0],
+		mat[0][1], mat[1][1], mat[2][1],
+		mat[0][2], mat[1][2], mat[2][2],
+		mat[0][3], mat[1][3], mat[2][3]
+	);
+}
 
 /// \relates float3x4
 /// \brief Returns a copy of the float3x4 that has been component-wise multiplied by the corresponding component of the right-hand float3x4.
-inline float3x4 comp_mul( const float3x4& lhs, const float3x4& rhs );
+inline float3x4 comp_mul( const float3x4& lhs, const float3x4& rhs )
+{
+	return float3x4(
+		lhs[0] * rhs[0],
+		lhs[1] * rhs[1],
+		lhs[2] * rhs[2]
+	);
+}
 
 /// \relates float3x4
 /// \brief Returns a copy of the float3x4 that has been component-wise divided by the corresponding component of the right-hand float3x4.
-inline float3x4 comp_div( const float3x4& lhs, const float3x4& rhs );
+inline float3x4 comp_div( const float3x4& lhs, const float3x4& rhs )
+{
+	return float3x4(
+		lhs[0] / rhs[0],
+		lhs[1] / rhs[1],
+		lhs[2] / rhs[2]
+	);
+}
 
 /// \relates float3x4
 /// \brief Returns a copy of the matrix where each component of the 3rd column has been added by the given vector.
-inline float3x4 translate( const float3x4& mat, const float3& vec );
-
-/// \relates float3x4
-/// \brief Returns a copy of the matrix that has had a uniform scale applied to it.
-inline float3x4 scale( const float3x4& mat, const float scalar );
+inline float3x4 translate( const float3x4& mat, const float3& vec )
+{
+	return float3x4(
+		mat[0][0], mat[0][1], mat[0][2], mat[0][3] + vec.x,
+		mat[1][0], mat[1][1], mat[1][2], mat[1][3] + vec.y,
+		mat[2][0], mat[2][1], mat[2][2], mat[2][3] + vec.z
+	);
+}
 
 /// \relates float3x4
 /// \brief Returns a copy of the matrix that has had a non-uniform scale applied to it.
-inline float3x4 scale( const float3x4& mat, const float3& vec );
+inline float3x4 scale( const float3x4& mat, const float3& vec )
+{
+	return float3x4(
+		mat[0][0] * vec.x,
+		mat[0][1],
+		mat[0][2],
+		mat[0][3],
+
+		mat[1][0],
+		mat[1][1] * vec.y,
+		mat[1][2],
+		mat[1][3],
+
+		mat[2][0],
+		mat[2][1],
+		mat[2][2] * vec.z,
+		mat[2][3]
+	);
+}
+
+/// \relates float3x4
+/// \brief Returns a copy of the matrix that has had a uniform scale applied to it.
+inline float3x4 scale( const float3x4& mat, const float scalar )
+{
+	return scale( mat, float3( scalar, scalar, scalar ) );
+}
 
 
 // float4x2
 /// \relates float4x2
 /// \brief Sets the matrix to an identity matrix.
-inline void identity( float4x2& mat );
+inline void identity( float4x2& mat )
+{
+	mat[0] = { 1.0f, 0.0f };
+	mat[1] = { 0.0f, 1.0f };
+	mat[2] = { 0.0f, 0.0f };
+	mat[3] = { 0.0f, 0.0f };
+}
 
 /// \relates float4x2
 /// \brief Returns a copy of the matrix that is transposed, where the value of each row is set to the value of each column and vice versa.
-inline float2x4 transpose( const float4x2& mat );
+inline float2x4 transpose( const float4x2& mat )
+{
+	return float2x4(
+		mat[0][0], mat[1][0], mat[2][0], mat[3][0],
+		mat[0][1], mat[1][1], mat[2][1], mat[3][1]
+	);
+}
 
 /// \relates float4x2
 /// \brief Returns a copy of the float4x2 that has been component-wise multiplied by the corresponding component of the right-hand float4x2.
-inline float4x2 comp_mul( const float4x2& lhs, const float4x2& rhs );
+inline float4x2 comp_mul( const float4x2& lhs, const float4x2& rhs )
+{
+	return float4x2(
+		lhs[0] * rhs[0],
+		lhs[1] * rhs[1],
+		lhs[2] * rhs[2],
+		lhs[3] * rhs[3]
+	);
+}
 
 /// \relates float4x2
 /// \brief Returns a copy of the float4x2 that has been component-wise divided by the corresponding component of the right-hand float4x2.
-inline float4x2 comp_div( const float4x2& lhs, const float4x2& rhs );
+inline float4x2 comp_div( const float4x2& lhs, const float4x2& rhs )
+{
+	return float4x2(
+		lhs[0] / rhs[0],
+		lhs[1] / rhs[1],
+		lhs[2] / rhs[2],
+		lhs[3] / rhs[3]
+	);
+}
 
 
 // float4x3
 /// \relates float4x3
 /// \brief Sets the matrix to an identity matrix.
-inline void identity( float4x3& mat );
+inline void identity( float4x3& mat )
+{
+	mat[0] = { 1.0f, 0.0f, 0.0f };
+	mat[1] = { 0.0f, 1.0f, 0.0f };
+	mat[2] = { 0.0f, 0.0f, 1.0f };
+	mat[3] = { 0.0f, 0.0f, 0.0f };
+}
 
 /// \relates float4x3
 /// \brief Returns a copy of the matrix that is transposed, where the value of each row is set to the value of each column and vice versa.
-inline float3x4 transpose( const float4x3& mat );
+inline float3x4 transpose( const float4x3& mat )
+{
+	return float3x4(
+		mat[0][0], mat[1][0], mat[2][0], mat[3][0],
+		mat[0][1], mat[1][1], mat[2][1], mat[3][1],
+		mat[0][2], mat[1][2], mat[2][2], mat[3][2]
+	);
+}
 
 /// \relates float4x3
 /// \brief Returns a copy of the float4x3 that has been component-wise multiplied by the corresponding component of the right-hand float4x3.
-inline float4x3 comp_mul( const float4x3& lhs, const float4x3& rhs );
+inline float4x3 comp_mul( const float4x3& lhs, const float4x3& rhs )
+{
+	return float4x3(
+		lhs[0] * rhs[0],
+		lhs[1] * rhs[1],
+		lhs[2] * rhs[2],
+		lhs[3] * rhs[3]
+	);
+}
 
 /// \relates float4x3
 /// \brief Returns a copy of the float4x3 that has been component-wise divided by the corresponding component of the right-hand float4x3.
-inline float4x3 comp_div( const float4x3& lhs, const float4x3& rhs );
-
-/// \relates float4x3
-/// \brief Returns a copy of the matrix that has had a uniform scale applied to it.
-inline float4x3 scale( const float4x3& mat, const float scalar );
+inline float4x3 comp_div( const float4x3& lhs, const float4x3& rhs )
+{
+	return float4x3(
+		lhs[0] / rhs[0],
+		lhs[1] / rhs[1],
+		lhs[2] / rhs[2],
+		lhs[3] / rhs[3]
+	);
+}
 
 /// \relates float4x3
 /// \brief Returns a copy of the matrix that has had a non-uniform scale applied to it.
-inline float4x3 scale( const float4x3& mat, const float3& vec );
+inline float4x3 scale( const float4x3& mat, const float3& vec )
+{
+	return float4x3(
+		mat[0][0] * vec.x,
+		mat[0][1],
+		mat[0][2],
+
+		mat[1][0],
+		mat[1][1] * vec.y,
+		mat[1][2],
+
+		mat[2][0],
+		mat[2][1],
+		mat[2][2] * vec.z,
+
+		mat[3][0],
+		mat[3][1],
+		mat[3][2]
+	);
+}
+
+/// \relates float4x3
+/// \brief Returns a copy of the matrix that has had a uniform scale applied to it.
+inline float4x3 scale( const float4x3& mat, const float scalar )
+{
+	return scale( mat, float3( scalar, scalar, scalar ) );
+}
 
 
 // float4x4
 /// \relates float4x4
 /// \brief Sets the matrix to an identity matrix.
-inline void identity( float4x4& mat );
+inline void identity( float4x4& mat )
+{
+	mat[0] = { 1.0f, 0.0f, 0.0f, 0.0f };
+	mat[1] = { 0.0f, 1.0f, 0.0f, 0.0f };
+	mat[2] = { 0.0f, 0.0f, 1.0f, 0.0f };
+	mat[3] = { 0.0f, 0.0f, 0.0f, 1.0f };
+}
 
 /// \relates float4x4
 /// \brief Returns a copy of the matrix that is transposed, where the value of each row is set to the value of each column and vice versa.
-inline float4x4 transpose( const float4x4& mat );
+inline float4x4 transpose( const float4x4& mat )
+{
+	return float4x4(
+		mat[0][0], mat[1][0], mat[2][0], mat[3][0],
+		mat[0][1], mat[1][1], mat[2][1], mat[3][1],
+		mat[0][2], mat[1][2], mat[2][2], mat[3][2],
+		mat[0][3], mat[1][3], mat[2][3], mat[3][3]
+	);
+}
+
+/// \relates float4x4
+/// \brief Returns the determinant of the matrix.
+inline float determinant( const float4x4& mat )
+{
+	// using glm's method where you basically take determinants from each sub matrix and cache the repeat occurences
+	float sub00 = mat[2][2] * mat[3][3] - mat[3][2] * mat[2][3];
+	float sub01 = mat[2][1] * mat[3][3] - mat[2][3] * mat[3][1];
+	float sub02 = mat[2][1] * mat[3][2] - mat[3][1] * mat[2][2];
+	float sub03 = mat[2][0] * mat[3][3] - mat[3][0] * mat[2][3];
+	float sub04 = mat[2][0] * mat[3][2] - mat[3][0] * mat[2][2];
+	float sub05 = mat[2][0] * mat[3][1] - mat[3][0] * mat[2][1];
+
+	float4 cofactor = float4(
+		 ( ( ( mat[1][1] * sub00 ) - ( mat[1][2] * sub01 ) ) + ( mat[1][3] * sub02 ) ),
+		-( ( ( mat[1][0] * sub00 ) - ( mat[1][2] * sub03 ) ) + ( mat[1][3] * sub04 ) ),
+		 ( ( ( mat[1][0] * sub01 ) - ( mat[1][1] * sub03 ) ) + ( mat[1][3] * sub05 ) ),
+		-( ( ( mat[1][0] * sub02 ) - ( mat[1][1] * sub04 ) ) + ( mat[1][2] * sub05 ) )
+	);
+
+	return
+		mat[0][0] * cofactor.x + mat[0][1] * cofactor.y +
+		mat[0][2] * cofactor.z + mat[0][3] * cofactor.w;
+}
 
 /// \relates float4x4
 /// \brief Returns a copy of the matrix that is inversed.
 /// Currently this is only applicable for square matrices.  Pseudo-inverse support for non-square matrices is coming soon.
-inline float4x4 inverse( const float4x4& mat );
+inline float4x4 inverse( const float4x4& mat )
+{
+	// uses the glm version, which is basically just an optimised version of the adjugate formula
+	float sub00 = mat[2][2] * mat[3][3] - mat[3][2] * mat[2][3];
+	float sub01 = mat[1][2] * mat[3][3] - mat[1][3] * mat[2][3];
+	float sub02 = mat[1][2] * mat[2][3] - mat[1][3] * mat[2][2];
 
-/// \relates float4x4
-/// \brief Returns the determinant of the matrix.
-inline float determinant( const float4x4& mat );
+	float sub03 = mat[2][1] * mat[3][3] - mat[2][3] * mat[3][1];
+	float sub04 = mat[1][1] * mat[3][3] - mat[1][3] * mat[3][1];
+	float sub05 = mat[1][1] * mat[2][3] - mat[1][3] * mat[2][1];
+
+	float sub06 = mat[2][1] * mat[3][2] - mat[2][2] * mat[3][1];
+	float sub07 = mat[1][1] * mat[3][2] - mat[1][2] * mat[3][1];
+	float sub08 = mat[1][1] * mat[2][2] - mat[1][2] * mat[2][1];
+
+	float sub09 = mat[2][0] * mat[3][3] - mat[3][0] * mat[2][3];
+	float sub10 = mat[1][0] * mat[3][3] - mat[3][0] * mat[1][3];
+	float sub11 = mat[1][0] * mat[2][3] - mat[2][0] * mat[1][3];
+
+	float sub12 = mat[2][0] * mat[3][2] - mat[2][2] * mat[3][0];
+	float sub13 = mat[1][0] * mat[3][2] - mat[1][2] * mat[3][0];
+	float sub14 = mat[1][0] * mat[2][2] - mat[1][2] * mat[2][0];
+
+	float sub15 = mat[2][0] * mat[3][1] - mat[2][1] * mat[3][0];
+	float sub16 = mat[1][0] * mat[3][1] - mat[1][1] * mat[3][0];
+	float sub17 = mat[1][0] * mat[2][1] - mat[1][1] * mat[2][0];
+
+	float4 fac0 = float4( sub00, sub00, sub01, sub02 );
+	float4 fac1 = float4( sub03, sub03, sub04, sub05 );
+	float4 fac2 = float4( sub06, sub06, sub07, sub08 );
+	float4 fac3 = float4( sub09, sub09, sub10, sub11 );
+	float4 fac4 = float4( sub12, sub12, sub13, sub14 );
+	float4 fac5 = float4( sub15, sub15, sub16, sub17 );
+
+	float4 vec0 = float4( mat[1][0], mat[0][0], mat[0][0], mat[0][0] );
+	float4 vec1 = float4( mat[1][1], mat[0][1], mat[0][1], mat[0][1] );
+	float4 vec2 = float4( mat[1][2], mat[0][2], mat[0][2], mat[0][2] );
+	float4 vec3 = float4( mat[1][3], mat[0][3], mat[0][3], mat[0][3] );
+
+	float4 inv0 = vec1 * fac0 - vec2 * fac1 + vec3 * fac2;
+	float4 inv1 = vec0 * fac0 - vec2 * fac3 + vec3 * fac4;
+	float4 inv2 = vec0 * fac1 - vec1 * fac3 + vec3 * fac5;
+	float4 inv3 = vec0 * fac2 - vec1 * fac4 + vec2 * fac5;
+
+	float4 sign0 = float4(  1, -1,  1, -1 );
+	float4 sign1 = float4( -1,  1, -1,  1 );
+
+	float4x4 result = float4x4(
+		inv0 * sign0,
+		inv1 * sign1,
+		inv2 * sign0,
+		inv3 * sign1
+	);
+
+	float4 col0 = float4( result[0][0], result[1][0], result[2][0], result[3][0] );
+	float4 dot0 = mat[0] * col0;
+
+	const float dot1 = ( dot0.x + dot0.y ) + ( dot0.z + dot0.w );
+
+	const float invdet = 1.0f / dot1;
+
+	return result * invdet;
+}
 
 /// \relates float4x4
 /// \brief Returns a copy of the float4x4 that has been component-wise multiplied by the corresponding component of the right-hand float4x4.
-inline float4x4 comp_mul( const float4x4& lhs, const float4x4& rhs );
+inline float4x4 comp_mul( const float4x4& lhs, const float4x4& rhs )
+{
+	return float4x4(
+		lhs[0] * rhs[0],
+		lhs[1] * rhs[1],
+		lhs[2] * rhs[2],
+		lhs[3] * rhs[3]
+	);
+}
 
 /// \relates float4x4
 /// \brief Returns a copy of the float4x4 that has been component-wise divided by the corresponding component of the right-hand float4x4.
-inline float4x4 comp_div( const float4x4& lhs, const float4x4& rhs );
+inline float4x4 comp_div( const float4x4& lhs, const float4x4& rhs )
+{
+	return float4x4(
+		lhs[0] / rhs[0],
+		lhs[1] / rhs[1],
+		lhs[2] / rhs[2],
+		lhs[3] / rhs[3]
+	);
+}
 
 /// \relates float4x4
 /// \brief Returns a copy of the matrix where each component of the 3rd column has been added by the given vector.
-inline float4x4 translate( const float4x4& mat, const float3& vec );
+inline float4x4 translate( const float4x4& mat, const float3& vec )
+{
+	return float4x4(
+		mat[0][0], mat[0][1], mat[0][2], mat[0][3] + vec.x,
+		mat[1][0], mat[1][1], mat[1][2], mat[1][3] + vec.y,
+		mat[2][0], mat[2][1], mat[2][2], mat[2][3] + vec.z,
+		mat[3][0], mat[3][1], mat[3][2], mat[3][3]
+	);
+}
 
 /// \relates float4x4
 /// \brief Returns a copy of the matrix that has had a rotation applied to it in radians on one or more of the following axes.
-inline float4x4 rotate( const float4x4& mat, const float rad, const float3& axis );
+inline float4x4 rotate( const float4x4& mat, const float rad, const float3& axis )
+{
+	const float c = cosf( rad );
+	const float s = sinf( rad );
 
-/// \relates float4x4
-/// \brief Returns a copy of the matrix that has had a uniform scale applied to it.
-inline float4x4 scale( const float4x4& mat, const float scalar );
+	float3 u = normalized( axis );
+	float ic = 1.0f - c;
+
+	float4x4 rotation = mat;
+	rotation[0][0] = c + u.x * ic;
+	rotation[0][1] = u.x * u.y * ic - u.z * s;
+	rotation[0][2] = u.x * u.z * ic + u.y * s;
+
+	rotation[1][0] = u.y * u.x * ic + u.z * s;
+	rotation[1][1] = c + u.y * ic;
+	rotation[1][2] = u.y * u.z * ic - u.x * s;
+
+	rotation[2][0] = u.z * u.x * ic - u.y * s;
+	rotation[2][1] = u.z * u.y * ic + u.x * s;
+	rotation[2][2] = c + u.z * ic;
+
+	return mat * rotation;
+}
 
 /// \relates float4x4
 /// \brief Returns a copy of the matrix that has had a non-uniform scale applied to it.
-inline float4x4 scale( const float4x4& mat, const float3& vec );
+inline float4x4 scale( const float4x4& mat, const float3& vec )
+{
+	return float4x4(
+		mat[0][0] * vec.x,
+		mat[0][1],
+		mat[0][2],
+		mat[0][3],
+
+		mat[1][0],
+		mat[1][1] * vec.y,
+		mat[1][2],
+		mat[1][3],
+
+		mat[2][0],
+		mat[2][1],
+		mat[2][2] * vec.z,
+		mat[2][3],
+
+		mat[3][0],
+		mat[3][1],
+		mat[3][2],
+		mat[3][3]
+	);
+}
+
+/// \relates float4x4
+/// \brief Returns a copy of the matrix that has had a uniform scale applied to it.
+inline float4x4 scale( const float4x4& mat, const float scalar )
+{
+	return scale( mat, float3( scalar, scalar, scalar ) );
+}
 
 /// \relates float4x4
 /// \brief Returns an left-handed orthographic projection matrix with the clip-space range zero to one.
-inline float4x4 ortho_lh_zo( const float left, const float right, const float top, const float bottom, const float znear, const float zfar );
+inline float4x4 ortho_lh_zo( const float left, const float right, const float top, const float bottom, const float znear, const float zfar )
+{
+	// left-handed, clip-space range: zero to one
+	const float right_minus_left = right - left;
+	const float right_plus_left = right + left;
+	const float top_minus_bottom = top - bottom;
+	const float top_plus_bottom = top + bottom;
+	const float far_minus_near = zfar - znear;
+
+	return float4x4(
+		2.0f / right_minus_left, 0.0f, 0.0f, -right_plus_left / right_minus_left,
+		0.0f, 2.0f / top_minus_bottom, 0.0f, -top_plus_bottom / top_minus_bottom,
+		0.0f, 0.0f, 1.0f / far_minus_near, -znear / far_minus_near,
+		0.0f, 0.0f, 0.0f, 1.0f
+	);
+}
 
 /// \relates float4x4
 /// \brief Returns an left-handed orthographic projection matrix with the clip-space range minus-one to one.
-inline float4x4 ortho_lh_no( const float left, const float right, const float top, const float bottom, const float znear, const float zfar );
+inline float4x4 ortho_lh_no( const float left, const float right, const float top, const float bottom, const float znear, const float zfar )
+{
+	// left-handed, clip-space range: minus-one to one
+	const float right_minus_left = right - left;
+	const float right_plus_left = right + left;
+	const float top_minus_bottom = top - bottom;
+	const float top_plus_bottom = top + bottom;
+	const float far_minus_near = zfar - znear;
+	const float far_plus_near = zfar + znear;
+
+	return float4x4(
+		2.0f / right_minus_left, 0.0f, 0.0f, -right_plus_left / right_minus_left,
+		0.0f, 2.0f / top_minus_bottom, 0.0f, -top_plus_bottom / top_minus_bottom,
+		0.0f, 0.0f, 2.0f / far_minus_near, -far_plus_near / far_minus_near,
+		0.0f, 0.0f, 0.0f, 1.0f
+	);
+}
 
 /// \relates float4x4
 /// \brief Returns an right-handed orthographic projection matrix with the clip-space range zero to one.
-inline float4x4 ortho_rh_zo( const float left, const float right, const float top, const float bottom, const float znear, const float zfar );
+inline float4x4 ortho_rh_zo( const float left, const float right, const float top, const float bottom, const float znear, const float zfar )
+{
+	// right-handed, clip-space range: zero to one
+	const float right_minus_left = right - left;
+	const float right_plus_left = right + left;
+	const float top_minus_bottom = top - bottom;
+	const float top_plus_bottom = top + bottom;
+	const float far_minus_near = zfar - znear;
+
+	return float4x4(
+		2.0f / right_minus_left, 0.0f, 0.0f, -right_plus_left / right_minus_left,
+		0.0f, 2.0f / top_minus_bottom, 0.0f, -top_plus_bottom / top_minus_bottom,
+		0.0f, 0.0f, -1.0f / far_minus_near, -znear / far_minus_near,
+		0.0f, 0.0f, 0.0f, 1.0f
+	);
+}
 
 /// \relates float4x4
 /// \brief Returns an right-handed orthographic projection matrix with the clip-space range minus-one to one.
-inline float4x4 ortho_rh_no( const float left, const float right, const float top, const float bottom, const float znear, const float zfar );
+inline float4x4 ortho_rh_no( const float left, const float right, const float top, const float bottom, const float znear, const float zfar )
+{
+	// right-handed, clip-space range: minus-one to one
+	const float right_minus_left = right - left;
+	const float right_plus_left = right + left;
+	const float top_minus_bottom = top - bottom;
+	const float top_plus_bottom = top + bottom;
+	const float far_minus_near = zfar - znear;
+	const float far_plus_near = zfar + znear;
+
+	return float4x4(
+		2.0f / right_minus_left, 0.0f, 0.0f, -right_plus_left / right_minus_left,
+		0.0f, 2.0f / top_minus_bottom, 0.0f, -top_plus_bottom / top_minus_bottom,
+		0.0f, 0.0f, -2.0f / far_minus_near, -far_plus_near / far_minus_near,
+		0.0f, 0.0f, 0.0f, 1.0f
+	);
+}
 
 /// \relates float4x4
 /// \brief Returns a left-handed perspective projection matrix based on a vertical field-of-view in degrees and an aspect ratio in the clip-space range of zero to one.
-inline float4x4 perspective_lh_zo( const float fovdeg, const float aspect, const float znear, const float zfar );
+inline float4x4 perspective_lh_zo( const float fovdeg, const float aspect, const float znear, const float zfar )
+{
+	// left-handed, clip space range: zero to one
+	const float far_minus_near = zfar - znear;
+	const float tan_half_fov = tanf( fovdeg * 0.5f );
+
+	return float4x4(
+		1.0f / ( aspect * tan_half_fov ), 0.0f, 0.0f, 0.0f,
+		0.0f, 1.0f / tan_half_fov, 0.0f, 0.0f,
+		0.0f, 0.0f, zfar / far_minus_near, -( zfar * znear ) / far_minus_near,
+		0.0f, 0.0f, 1.0f, 0.0f
+	);
+}
 
 /// \relates float4x4
 /// \brief Returns a left-handed perspective projection matrix based on a vertical field-of-view in degrees and an aspect ratio in the clip-space range of minus-one to one.
-inline float4x4 perspective_lh_no( const float fovdeg, const float aspect, const float znear, const float zfar );
+inline float4x4 perspective_lh_no( const float fovdeg, const float aspect, const float znear, const float zfar )
+{
+	// left-handed, clip space range: minus-one to one
+	const float far_minus_near = zfar - znear;
+	const float far_plus_near = zfar + znear;
+	const float tan_half_fov = tanf( fovdeg * 0.5f );
+
+	return float4x4(
+		1.0f / ( aspect * tan_half_fov ), 0.0f, 0.0f, 0.0f,
+		0.0f, 1.0f / tan_half_fov, 0.0f, 0.0f,
+		0.0f, 0.0f, far_plus_near / far_minus_near, -( 2.0f * zfar * znear ) / far_minus_near,
+		0.0f, 0.0f, 1.0f, 0.0f
+	);
+}
 
 /// \relates float4x4
 /// \brief Returns a right-handed perspective projection matrix based on a vertical field-of-view in degrees and an aspect ratio in the clip-space range of zero to one.
-inline float4x4 perspective_rh_zo( const float fovdeg, const float aspect, const float znear, const float zfar );
+inline float4x4 perspective_rh_zo( const float fovdeg, const float aspect, const float znear, const float zfar )
+{
+	// right-handed, clip space range: zero to one
+	const float tan_half_fov = tanf( fovdeg * 0.5f );
+
+	return float4x4(
+		1.0f / ( aspect * tan_half_fov ), 0.0f, 0.0f, 0.0f,
+		0.0f, 1.0f / tan_half_fov, 0.0f, 0.0f,
+		0.0f, 0.0f, zfar / ( znear - zfar ), -( zfar * znear ) / ( zfar - znear ),
+		0.0f, 0.0f, -1.0f, 0.0f
+	);
+}
 
 /// \relates float4x4
 /// \brief Returns a right-handed perspective projection matrix based on a vertical field-of-view in degrees and an aspect ratio in the clip-space range of minus-one to one.
-inline float4x4 perspective_rh_no( const float fovdeg, const float aspect, const float znear, const float zfar );
+inline float4x4 perspective_rh_no( const float fovdeg, const float aspect, const float znear, const float zfar )
+{
+	// right-handed, clip space range: minus-one to one
+	const float far_minus_near = zfar - znear;
+	const float far_plus_near = zfar + znear;
+	const float tan_half_fov = tanf( fovdeg * 0.5f );
+
+	return float4x4(
+		1.0f / ( aspect * tan_half_fov ), 0.0f, 0.0f, 0.0f,
+		0.0f, 1.0f / tan_half_fov, 0.0f, 0.0f,
+		0.0f, 0.0f, -far_plus_near / far_minus_near, -( 2.0f * zfar * znear ) / far_minus_near,
+		0.0f, 0.0f, -1.0f, 0.0f
+	);
+}
 
 /// \relates float4x4
 /// \brief Returns a left-handed orthonormal matrix that is oriented at position eye to look at position target.
-inline float4x4 lookat_lh( const float3& eye, const float3& target, const float3& up );
+inline float4x4 lookat_lh( const float3& eye, const float3& target, const float3& up )
+{
+	// left handed
+	const float3 forward = normalized( target - eye );
+	const float3 right = normalized( cross( up, forward ) );
+	const float3 up1 = cross( forward, right );
+
+	return float4x4(
+		right.x,   right.y,   right.z,   -dot( right, eye ),
+		up1.x,     up1.y,     up1.z,     -dot( up1, eye ),
+		forward.x, forward.y, forward.z, -dot( forward, eye ),
+		0.0f, 0.0f, 0.0f, 1.0f
+	);
+}
 
 /// \relates float4x4
 /// \brief Returns a right-handed orthonormal matrix that is oriented at position eye to look at position target.
-inline float4x4 lookat_rh( const float3& eye, const float3& target, const float3& up );
+inline float4x4 lookat_rh( const float3& eye, const float3& target, const float3& up )
+{
+	// right handed
+	const float3 forward = normalized( target - eye );
+	const float3 right = normalized( cross( forward, up ) );
+	const float3 up1 = cross( right, forward );
+
+	return float4x4(
+		 right.x,    right.y,    right.z,   -dot( right, eye ),
+		 up1.x,      up1.y,      up1.z,     -dot( up1, eye ),
+		-forward.x, -forward.y, -forward.z,  dot( forward, eye ),
+		0.0f, 0.0f, 0.0f, 1.0f
+	);
+}
 
 
 // double2x2
 /// \relates double2x2
 /// \brief Sets the matrix to an identity matrix.
-inline void identity( double2x2& mat );
+inline void identity( double2x2& mat )
+{
+	mat[0] = { 1.0, 0.0 };
+	mat[1] = { 0.0, 1.0 };
+}
 
 /// \relates double2x2
 /// \brief Returns a copy of the matrix that is transposed, where the value of each row is set to the value of each column and vice versa.
-inline double2x2 transpose( const double2x2& mat );
+inline double2x2 transpose( const double2x2& mat )
+{
+	return double2x2(
+		mat[0][0], mat[1][0],
+		mat[0][1], mat[1][1]
+	);
+}
+
+/// \relates double2x2
+/// \brief Returns the determinant of the matrix.
+inline double determinant( const double2x2& mat )
+{
+	return mat[0][0] * mat[1][1] - mat[1][0] * mat[0][1];
+}
 
 /// \relates double2x2
 /// \brief Returns a copy of the matrix that is inversed.
 /// Currently this is only applicable for square matrices.  Pseudo-inverse support for non-square matrices is coming soon.
-inline double2x2 inverse( const double2x2& mat );
-
-/// \relates double2x2
-/// \brief Returns the determinant of the matrix.
-inline double determinant( const double2x2& mat );
+inline double2x2 inverse( const double2x2& mat )
+{
+	const double invdet = 1.0 / determinant( mat );
+	return double2x2(
+		 mat[1][1] * invdet, -mat[0][1] * invdet,
+		-mat[1][0] * invdet,  mat[0][0] * invdet
+	);
+}
 
 /// \relates double2x2
 /// \brief Returns a copy of the double2x2 that has been component-wise multiplied by the corresponding component of the right-hand double2x2.
-inline double2x2 comp_mul( const double2x2& lhs, const double2x2& rhs );
+inline double2x2 comp_mul( const double2x2& lhs, const double2x2& rhs )
+{
+	return double2x2(
+		lhs[0] * rhs[0],
+		lhs[1] * rhs[1]
+	);
+}
 
 /// \relates double2x2
 /// \brief Returns a copy of the double2x2 that has been component-wise divided by the corresponding component of the right-hand double2x2.
-inline double2x2 comp_div( const double2x2& lhs, const double2x2& rhs );
-
-/// \relates double2x2
-/// \brief Returns a copy of the matrix that has had a uniform scale applied to it.
-inline double2x2 scale( const double2x2& mat, const double scalar );
+inline double2x2 comp_div( const double2x2& lhs, const double2x2& rhs )
+{
+	return double2x2(
+		lhs[0] / rhs[0],
+		lhs[1] / rhs[1]
+	);
+}
 
 /// \relates double2x2
 /// \brief Returns a copy of the matrix that has had a non-uniform scale applied to it.
-inline double2x2 scale( const double2x2& mat, const double3& vec );
+inline double2x2 scale( const double2x2& mat, const double3& vec )
+{
+	return double2x2(
+		mat[0][0] * vec.x,
+		mat[0][1],
+
+		mat[1][0],
+		mat[1][1] * vec.y
+	);
+}
+
+/// \relates double2x2
+/// \brief Returns a copy of the matrix that has had a uniform scale applied to it.
+inline double2x2 scale( const double2x2& mat, const double scalar )
+{
+	return scale( mat, double3( scalar, scalar, scalar ) );
+}
 
 
 // double2x3
 /// \relates double2x3
 /// \brief Sets the matrix to an identity matrix.
-inline void identity( double2x3& mat );
+inline void identity( double2x3& mat )
+{
+	mat[0] = { 1.0, 0.0, 0.0 };
+	mat[1] = { 0.0, 1.0, 0.0 };
+}
 
 /// \relates double2x3
 /// \brief Returns a copy of the matrix that is transposed, where the value of each row is set to the value of each column and vice versa.
-inline double3x2 transpose( const double2x3& mat );
+inline double3x2 transpose( const double2x3& mat )
+{
+	return double3x2(
+		mat[0][0], mat[1][0],
+		mat[0][1], mat[1][1],
+		mat[0][2], mat[1][2]
+	);
+}
 
 /// \relates double2x3
 /// \brief Returns a copy of the double2x3 that has been component-wise multiplied by the corresponding component of the right-hand double2x3.
-inline double2x3 comp_mul( const double2x3& lhs, const double2x3& rhs );
+inline double2x3 comp_mul( const double2x3& lhs, const double2x3& rhs )
+{
+	return double2x3(
+		lhs[0] * rhs[0],
+		lhs[1] * rhs[1]
+	);
+}
 
 /// \relates double2x3
 /// \brief Returns a copy of the double2x3 that has been component-wise divided by the corresponding component of the right-hand double2x3.
-inline double2x3 comp_div( const double2x3& lhs, const double2x3& rhs );
-
-/// \relates double2x3
-/// \brief Returns a copy of the matrix that has had a uniform scale applied to it.
-inline double2x3 scale( const double2x3& mat, const double scalar );
+inline double2x3 comp_div( const double2x3& lhs, const double2x3& rhs )
+{
+	return double2x3(
+		lhs[0] / rhs[0],
+		lhs[1] / rhs[1]
+	);
+}
 
 /// \relates double2x3
 /// \brief Returns a copy of the matrix that has had a non-uniform scale applied to it.
-inline double2x3 scale( const double2x3& mat, const double3& vec );
+inline double2x3 scale( const double2x3& mat, const double3& vec )
+{
+	return double2x3(
+		mat[0][0] * vec.x,
+		mat[0][1],
+		mat[0][2],
+
+		mat[1][0],
+		mat[1][1] * vec.y,
+		mat[1][2]
+	);
+}
+
+/// \relates double2x3
+/// \brief Returns a copy of the matrix that has had a uniform scale applied to it.
+inline double2x3 scale( const double2x3& mat, const double scalar )
+{
+	return scale( mat, double3( scalar, scalar, scalar ) );
+}
 
 
 // double2x4
 /// \relates double2x4
 /// \brief Sets the matrix to an identity matrix.
-inline void identity( double2x4& mat );
+inline void identity( double2x4& mat )
+{
+	mat[0] = { 1.0, 0.0, 0.0, 0.0 };
+	mat[1] = { 0.0, 1.0, 0.0, 0.0 };
+}
 
 /// \relates double2x4
 /// \brief Returns a copy of the matrix that is transposed, where the value of each row is set to the value of each column and vice versa.
-inline double4x2 transpose( const double2x4& mat );
+inline double4x2 transpose( const double2x4& mat )
+{
+	return double4x2(
+		mat[0][0], mat[1][0],
+		mat[0][1], mat[1][1],
+		mat[0][2], mat[1][2],
+		mat[0][3], mat[1][3]
+	);
+}
 
 /// \relates double2x4
 /// \brief Returns a copy of the double2x4 that has been component-wise multiplied by the corresponding component of the right-hand double2x4.
-inline double2x4 comp_mul( const double2x4& lhs, const double2x4& rhs );
+inline double2x4 comp_mul( const double2x4& lhs, const double2x4& rhs )
+{
+	return double2x4(
+		lhs[0] * rhs[0],
+		lhs[1] * rhs[1]
+	);
+}
 
 /// \relates double2x4
 /// \brief Returns a copy of the double2x4 that has been component-wise divided by the corresponding component of the right-hand double2x4.
-inline double2x4 comp_div( const double2x4& lhs, const double2x4& rhs );
-
-/// \relates double2x4
-/// \brief Returns a copy of the matrix that has had a uniform scale applied to it.
-inline double2x4 scale( const double2x4& mat, const double scalar );
+inline double2x4 comp_div( const double2x4& lhs, const double2x4& rhs )
+{
+	return double2x4(
+		lhs[0] / rhs[0],
+		lhs[1] / rhs[1]
+	);
+}
 
 /// \relates double2x4
 /// \brief Returns a copy of the matrix that has had a non-uniform scale applied to it.
-inline double2x4 scale( const double2x4& mat, const double3& vec );
+inline double2x4 scale( const double2x4& mat, const double3& vec )
+{
+	return double2x4(
+		mat[0][0] * vec.x,
+		mat[0][1],
+		mat[0][2],
+		mat[0][3],
+
+		mat[1][0],
+		mat[1][1] * vec.y,
+		mat[1][2],
+		mat[1][3]
+	);
+}
+
+/// \relates double2x4
+/// \brief Returns a copy of the matrix that has had a uniform scale applied to it.
+inline double2x4 scale( const double2x4& mat, const double scalar )
+{
+	return scale( mat, double3( scalar, scalar, scalar ) );
+}
 
 
 // double3x2
 /// \relates double3x2
 /// \brief Sets the matrix to an identity matrix.
-inline void identity( double3x2& mat );
+inline void identity( double3x2& mat )
+{
+	mat[0] = { 1.0, 0.0 };
+	mat[1] = { 0.0, 1.0 };
+	mat[2] = { 0.0, 0.0 };
+}
 
 /// \relates double3x2
 /// \brief Returns a copy of the matrix that is transposed, where the value of each row is set to the value of each column and vice versa.
-inline double2x3 transpose( const double3x2& mat );
+inline double2x3 transpose( const double3x2& mat )
+{
+	return double2x3(
+		mat[0][0], mat[1][0], mat[2][0],
+		mat[0][1], mat[1][1], mat[2][1]
+	);
+}
 
 /// \relates double3x2
 /// \brief Returns a copy of the double3x2 that has been component-wise multiplied by the corresponding component of the right-hand double3x2.
-inline double3x2 comp_mul( const double3x2& lhs, const double3x2& rhs );
+inline double3x2 comp_mul( const double3x2& lhs, const double3x2& rhs )
+{
+	return double3x2(
+		lhs[0] * rhs[0],
+		lhs[1] * rhs[1],
+		lhs[2] * rhs[2]
+	);
+}
 
 /// \relates double3x2
 /// \brief Returns a copy of the double3x2 that has been component-wise divided by the corresponding component of the right-hand double3x2.
-inline double3x2 comp_div( const double3x2& lhs, const double3x2& rhs );
+inline double3x2 comp_div( const double3x2& lhs, const double3x2& rhs )
+{
+	return double3x2(
+		lhs[0] / rhs[0],
+		lhs[1] / rhs[1],
+		lhs[2] / rhs[2]
+	);
+}
 
 
 // double3x3
 /// \relates double3x3
 /// \brief Sets the matrix to an identity matrix.
-inline void identity( double3x3& mat );
+inline void identity( double3x3& mat )
+{
+	mat[0] = { 1.0, 0.0, 0.0 };
+	mat[1] = { 0.0, 1.0, 0.0 };
+	mat[2] = { 0.0, 0.0, 1.0 };
+}
 
 /// \relates double3x3
 /// \brief Returns a copy of the matrix that is transposed, where the value of each row is set to the value of each column and vice versa.
-inline double3x3 transpose( const double3x3& mat );
+inline double3x3 transpose( const double3x3& mat )
+{
+	return double3x3(
+		mat[0][0], mat[1][0], mat[2][0],
+		mat[0][1], mat[1][1], mat[2][1],
+		mat[0][2], mat[1][2], mat[2][2]
+	);
+}
+
+/// \relates double3x3
+/// \brief Returns the determinant of the matrix.
+inline double determinant( const double3x3& mat )
+{
+	return
+		+ mat[0][0] * ( mat[1][1] * mat[2][2] - mat[2][1] * mat[1][2] )
+		- mat[0][1] * ( mat[1][0] * mat[2][2] - mat[2][0] * mat[1][2] )
+		+ mat[0][2] * ( mat[1][0] * mat[2][1] - mat[2][0] * mat[1][1] );
+}
 
 /// \relates double3x3
 /// \brief Returns a copy of the matrix that is inversed.
 /// Currently this is only applicable for square matrices.  Pseudo-inverse support for non-square matrices is coming soon.
-inline double3x3 inverse( const double3x3& mat );
+inline double3x3 inverse( const double3x3& mat )
+{
+	const double invdet = 1.0 / determinant( mat );
+	return double3x3(
+		 ( mat[1][1] * mat[2][2] - mat[1][2] * mat[2][1] ) * invdet,
+		-( mat[0][1] * mat[2][2] - mat[0][2] * mat[2][1] ) * invdet,
+		 ( mat[0][1] * mat[1][2] - mat[0][2] * mat[1][1] ) * invdet,
 
-/// \relates double3x3
-/// \brief Returns the determinant of the matrix.
-inline double determinant( const double3x3& mat );
+		-( mat[1][0] * mat[2][2] - mat[1][2] * mat[2][0] ) * invdet,
+		 ( mat[0][0] * mat[2][2] - mat[0][2] * mat[2][0] ) * invdet,
+		-( mat[0][0] * mat[1][2] - mat[0][2] * mat[1][0] ) * invdet,
+
+		 ( mat[1][0] * mat[2][1] - mat[1][1] * mat[2][0] ) * invdet,
+		-( mat[0][0] * mat[2][1] - mat[0][1] * mat[2][0] ) * invdet,
+		 ( mat[0][0] * mat[1][1] - mat[0][1] * mat[1][0] ) * invdet
+	);
+}
 
 /// \relates double3x3
 /// \brief Returns a copy of the double3x3 that has been component-wise multiplied by the corresponding component of the right-hand double3x3.
-inline double3x3 comp_mul( const double3x3& lhs, const double3x3& rhs );
+inline double3x3 comp_mul( const double3x3& lhs, const double3x3& rhs )
+{
+	return double3x3(
+		lhs[0] * rhs[0],
+		lhs[1] * rhs[1],
+		lhs[2] * rhs[2]
+	);
+}
 
 /// \relates double3x3
 /// \brief Returns a copy of the double3x3 that has been component-wise divided by the corresponding component of the right-hand double3x3.
-inline double3x3 comp_div( const double3x3& lhs, const double3x3& rhs );
+inline double3x3 comp_div( const double3x3& lhs, const double3x3& rhs )
+{
+	return double3x3(
+		lhs[0] / rhs[0],
+		lhs[1] / rhs[1],
+		lhs[2] / rhs[2]
+	);
+}
 
 /// \relates double3x3
 /// \brief Returns a copy of the matrix where each component of the 3rd column has been added by the given vector.
-inline double3x3 translate( const double3x3& mat, const double2& vec );
+inline double3x3 translate( const double3x3& mat, const double2& vec )
+{
+	return double3x3(
+		mat[0][0], mat[0][1], mat[0][2] + vec.x,
+		mat[1][0], mat[1][1], mat[1][2] + vec.y,
+		mat[2][0], mat[2][1], mat[2][2]
+	);
+}
 
 /// \relates double3x3
 /// \brief Returns a copy of the matrix that has had a rotation applied to it in radians on one or more of the following axes.
-inline double3x3 rotate( const double3x3& mat, const double rad );
+inline double3x3 rotate( const double3x3& mat, const double rad )
+{
+	const double c = cos( rad );
+	const double s = sin( rad );
 
-/// \relates double3x3
-/// \brief Returns a copy of the matrix that has had a uniform scale applied to it.
-inline double3x3 scale( const double3x3& mat, const double scalar );
+	return double3x3(
+		mat[0] * c + mat[1] * -s,
+		mat[0] * s + mat[1] * c,
+		mat[2]
+	);
+}
 
 /// \relates double3x3
 /// \brief Returns a copy of the matrix that has had a non-uniform scale applied to it.
-inline double3x3 scale( const double3x3& mat, const double3& vec );
+inline double3x3 scale( const double3x3& mat, const double3& vec )
+{
+	return double3x3(
+		mat[0][0] * vec.x,
+		mat[0][1],
+		mat[0][2],
+
+		mat[1][0],
+		mat[1][1] * vec.y,
+		mat[1][2],
+
+		mat[2][0],
+		mat[2][1],
+		mat[2][2] * vec.z
+	);
+}
+
+/// \relates double3x3
+/// \brief Returns a copy of the matrix that has had a uniform scale applied to it.
+inline double3x3 scale( const double3x3& mat, const double scalar )
+{
+	return scale( mat, double3( scalar, scalar, scalar ) );
+}
 
 
 // double3x4
 /// \relates double3x4
 /// \brief Sets the matrix to an identity matrix.
-inline void identity( double3x4& mat );
+inline void identity( double3x4& mat )
+{
+	mat[0] = { 1.0, 0.0, 0.0, 0.0 };
+	mat[1] = { 0.0, 1.0, 0.0, 0.0 };
+	mat[2] = { 0.0, 0.0, 1.0, 0.0 };
+}
 
 /// \relates double3x4
 /// \brief Returns a copy of the matrix that is transposed, where the value of each row is set to the value of each column and vice versa.
-inline double4x3 transpose( const double3x4& mat );
+inline double4x3 transpose( const double3x4& mat )
+{
+	return double4x3(
+		mat[0][0], mat[1][0], mat[2][0],
+		mat[0][1], mat[1][1], mat[2][1],
+		mat[0][2], mat[1][2], mat[2][2],
+		mat[0][3], mat[1][3], mat[2][3]
+	);
+}
 
 /// \relates double3x4
 /// \brief Returns a copy of the double3x4 that has been component-wise multiplied by the corresponding component of the right-hand double3x4.
-inline double3x4 comp_mul( const double3x4& lhs, const double3x4& rhs );
+inline double3x4 comp_mul( const double3x4& lhs, const double3x4& rhs )
+{
+	return double3x4(
+		lhs[0] * rhs[0],
+		lhs[1] * rhs[1],
+		lhs[2] * rhs[2]
+	);
+}
 
 /// \relates double3x4
 /// \brief Returns a copy of the double3x4 that has been component-wise divided by the corresponding component of the right-hand double3x4.
-inline double3x4 comp_div( const double3x4& lhs, const double3x4& rhs );
+inline double3x4 comp_div( const double3x4& lhs, const double3x4& rhs )
+{
+	return double3x4(
+		lhs[0] / rhs[0],
+		lhs[1] / rhs[1],
+		lhs[2] / rhs[2]
+	);
+}
 
 /// \relates double3x4
 /// \brief Returns a copy of the matrix where each component of the 3rd column has been added by the given vector.
-inline double3x4 translate( const double3x4& mat, const double3& vec );
-
-/// \relates double3x4
-/// \brief Returns a copy of the matrix that has had a uniform scale applied to it.
-inline double3x4 scale( const double3x4& mat, const double scalar );
+inline double3x4 translate( const double3x4& mat, const double3& vec )
+{
+	return double3x4(
+		mat[0][0], mat[0][1], mat[0][2], mat[0][3] + vec.x,
+		mat[1][0], mat[1][1], mat[1][2], mat[1][3] + vec.y,
+		mat[2][0], mat[2][1], mat[2][2], mat[2][3] + vec.z
+	);
+}
 
 /// \relates double3x4
 /// \brief Returns a copy of the matrix that has had a non-uniform scale applied to it.
-inline double3x4 scale( const double3x4& mat, const double3& vec );
+inline double3x4 scale( const double3x4& mat, const double3& vec )
+{
+	return double3x4(
+		mat[0][0] * vec.x,
+		mat[0][1],
+		mat[0][2],
+		mat[0][3],
+
+		mat[1][0],
+		mat[1][1] * vec.y,
+		mat[1][2],
+		mat[1][3],
+
+		mat[2][0],
+		mat[2][1],
+		mat[2][2] * vec.z,
+		mat[2][3]
+	);
+}
+
+/// \relates double3x4
+/// \brief Returns a copy of the matrix that has had a uniform scale applied to it.
+inline double3x4 scale( const double3x4& mat, const double scalar )
+{
+	return scale( mat, double3( scalar, scalar, scalar ) );
+}
 
 
 // double4x2
 /// \relates double4x2
 /// \brief Sets the matrix to an identity matrix.
-inline void identity( double4x2& mat );
+inline void identity( double4x2& mat )
+{
+	mat[0] = { 1.0, 0.0 };
+	mat[1] = { 0.0, 1.0 };
+	mat[2] = { 0.0, 0.0 };
+	mat[3] = { 0.0, 0.0 };
+}
 
 /// \relates double4x2
 /// \brief Returns a copy of the matrix that is transposed, where the value of each row is set to the value of each column and vice versa.
-inline double2x4 transpose( const double4x2& mat );
+inline double2x4 transpose( const double4x2& mat )
+{
+	return double2x4(
+		mat[0][0], mat[1][0], mat[2][0], mat[3][0],
+		mat[0][1], mat[1][1], mat[2][1], mat[3][1]
+	);
+}
 
 /// \relates double4x2
 /// \brief Returns a copy of the double4x2 that has been component-wise multiplied by the corresponding component of the right-hand double4x2.
-inline double4x2 comp_mul( const double4x2& lhs, const double4x2& rhs );
+inline double4x2 comp_mul( const double4x2& lhs, const double4x2& rhs )
+{
+	return double4x2(
+		lhs[0] * rhs[0],
+		lhs[1] * rhs[1],
+		lhs[2] * rhs[2],
+		lhs[3] * rhs[3]
+	);
+}
 
 /// \relates double4x2
 /// \brief Returns a copy of the double4x2 that has been component-wise divided by the corresponding component of the right-hand double4x2.
-inline double4x2 comp_div( const double4x2& lhs, const double4x2& rhs );
+inline double4x2 comp_div( const double4x2& lhs, const double4x2& rhs )
+{
+	return double4x2(
+		lhs[0] / rhs[0],
+		lhs[1] / rhs[1],
+		lhs[2] / rhs[2],
+		lhs[3] / rhs[3]
+	);
+}
 
 
 // double4x3
 /// \relates double4x3
 /// \brief Sets the matrix to an identity matrix.
-inline void identity( double4x3& mat );
+inline void identity( double4x3& mat )
+{
+	mat[0] = { 1.0, 0.0, 0.0 };
+	mat[1] = { 0.0, 1.0, 0.0 };
+	mat[2] = { 0.0, 0.0, 1.0 };
+	mat[3] = { 0.0, 0.0, 0.0 };
+}
 
 /// \relates double4x3
 /// \brief Returns a copy of the matrix that is transposed, where the value of each row is set to the value of each column and vice versa.
-inline double3x4 transpose( const double4x3& mat );
+inline double3x4 transpose( const double4x3& mat )
+{
+	return double3x4(
+		mat[0][0], mat[1][0], mat[2][0], mat[3][0],
+		mat[0][1], mat[1][1], mat[2][1], mat[3][1],
+		mat[0][2], mat[1][2], mat[2][2], mat[3][2]
+	);
+}
 
 /// \relates double4x3
 /// \brief Returns a copy of the double4x3 that has been component-wise multiplied by the corresponding component of the right-hand double4x3.
-inline double4x3 comp_mul( const double4x3& lhs, const double4x3& rhs );
+inline double4x3 comp_mul( const double4x3& lhs, const double4x3& rhs )
+{
+	return double4x3(
+		lhs[0] * rhs[0],
+		lhs[1] * rhs[1],
+		lhs[2] * rhs[2],
+		lhs[3] * rhs[3]
+	);
+}
 
 /// \relates double4x3
 /// \brief Returns a copy of the double4x3 that has been component-wise divided by the corresponding component of the right-hand double4x3.
-inline double4x3 comp_div( const double4x3& lhs, const double4x3& rhs );
-
-/// \relates double4x3
-/// \brief Returns a copy of the matrix that has had a uniform scale applied to it.
-inline double4x3 scale( const double4x3& mat, const double scalar );
+inline double4x3 comp_div( const double4x3& lhs, const double4x3& rhs )
+{
+	return double4x3(
+		lhs[0] / rhs[0],
+		lhs[1] / rhs[1],
+		lhs[2] / rhs[2],
+		lhs[3] / rhs[3]
+	);
+}
 
 /// \relates double4x3
 /// \brief Returns a copy of the matrix that has had a non-uniform scale applied to it.
-inline double4x3 scale( const double4x3& mat, const double3& vec );
+inline double4x3 scale( const double4x3& mat, const double3& vec )
+{
+	return double4x3(
+		mat[0][0] * vec.x,
+		mat[0][1],
+		mat[0][2],
+
+		mat[1][0],
+		mat[1][1] * vec.y,
+		mat[1][2],
+
+		mat[2][0],
+		mat[2][1],
+		mat[2][2] * vec.z,
+
+		mat[3][0],
+		mat[3][1],
+		mat[3][2]
+	);
+}
+
+/// \relates double4x3
+/// \brief Returns a copy of the matrix that has had a uniform scale applied to it.
+inline double4x3 scale( const double4x3& mat, const double scalar )
+{
+	return scale( mat, double3( scalar, scalar, scalar ) );
+}
 
 
 // double4x4
 /// \relates double4x4
 /// \brief Sets the matrix to an identity matrix.
-inline void identity( double4x4& mat );
+inline void identity( double4x4& mat )
+{
+	mat[0] = { 1.0, 0.0, 0.0, 0.0 };
+	mat[1] = { 0.0, 1.0, 0.0, 0.0 };
+	mat[2] = { 0.0, 0.0, 1.0, 0.0 };
+	mat[3] = { 0.0, 0.0, 0.0, 1.0 };
+}
 
 /// \relates double4x4
 /// \brief Returns a copy of the matrix that is transposed, where the value of each row is set to the value of each column and vice versa.
-inline double4x4 transpose( const double4x4& mat );
+inline double4x4 transpose( const double4x4& mat )
+{
+	return double4x4(
+		mat[0][0], mat[1][0], mat[2][0], mat[3][0],
+		mat[0][1], mat[1][1], mat[2][1], mat[3][1],
+		mat[0][2], mat[1][2], mat[2][2], mat[3][2],
+		mat[0][3], mat[1][3], mat[2][3], mat[3][3]
+	);
+}
+
+/// \relates double4x4
+/// \brief Returns the determinant of the matrix.
+inline double determinant( const double4x4& mat )
+{
+	// using glm's method where you basically take determinants from each sub matrix and cache the repeat occurences
+	double sub00 = mat[2][2] * mat[3][3] - mat[3][2] * mat[2][3];
+	double sub01 = mat[2][1] * mat[3][3] - mat[2][3] * mat[3][1];
+	double sub02 = mat[2][1] * mat[3][2] - mat[3][1] * mat[2][2];
+	double sub03 = mat[2][0] * mat[3][3] - mat[3][0] * mat[2][3];
+	double sub04 = mat[2][0] * mat[3][2] - mat[3][0] * mat[2][2];
+	double sub05 = mat[2][0] * mat[3][1] - mat[3][0] * mat[2][1];
+
+	double4 cofactor = double4(
+		 ( ( ( mat[1][1] * sub00 ) - ( mat[1][2] * sub01 ) ) + ( mat[1][3] * sub02 ) ),
+		-( ( ( mat[1][0] * sub00 ) - ( mat[1][2] * sub03 ) ) + ( mat[1][3] * sub04 ) ),
+		 ( ( ( mat[1][0] * sub01 ) - ( mat[1][1] * sub03 ) ) + ( mat[1][3] * sub05 ) ),
+		-( ( ( mat[1][0] * sub02 ) - ( mat[1][1] * sub04 ) ) + ( mat[1][2] * sub05 ) )
+	);
+
+	return
+		mat[0][0] * cofactor.x + mat[0][1] * cofactor.y +
+		mat[0][2] * cofactor.z + mat[0][3] * cofactor.w;
+}
 
 /// \relates double4x4
 /// \brief Returns a copy of the matrix that is inversed.
 /// Currently this is only applicable for square matrices.  Pseudo-inverse support for non-square matrices is coming soon.
-inline double4x4 inverse( const double4x4& mat );
+inline double4x4 inverse( const double4x4& mat )
+{
+	// uses the glm version, which is basically just an optimised version of the adjugate formula
+	double sub00 = mat[2][2] * mat[3][3] - mat[3][2] * mat[2][3];
+	double sub01 = mat[1][2] * mat[3][3] - mat[1][3] * mat[2][3];
+	double sub02 = mat[1][2] * mat[2][3] - mat[1][3] * mat[2][2];
 
-/// \relates double4x4
-/// \brief Returns the determinant of the matrix.
-inline double determinant( const double4x4& mat );
+	double sub03 = mat[2][1] * mat[3][3] - mat[2][3] * mat[3][1];
+	double sub04 = mat[1][1] * mat[3][3] - mat[1][3] * mat[3][1];
+	double sub05 = mat[1][1] * mat[2][3] - mat[1][3] * mat[2][1];
+
+	double sub06 = mat[2][1] * mat[3][2] - mat[2][2] * mat[3][1];
+	double sub07 = mat[1][1] * mat[3][2] - mat[1][2] * mat[3][1];
+	double sub08 = mat[1][1] * mat[2][2] - mat[1][2] * mat[2][1];
+
+	double sub09 = mat[2][0] * mat[3][3] - mat[3][0] * mat[2][3];
+	double sub10 = mat[1][0] * mat[3][3] - mat[3][0] * mat[1][3];
+	double sub11 = mat[1][0] * mat[2][3] - mat[2][0] * mat[1][3];
+
+	double sub12 = mat[2][0] * mat[3][2] - mat[2][2] * mat[3][0];
+	double sub13 = mat[1][0] * mat[3][2] - mat[1][2] * mat[3][0];
+	double sub14 = mat[1][0] * mat[2][2] - mat[1][2] * mat[2][0];
+
+	double sub15 = mat[2][0] * mat[3][1] - mat[2][1] * mat[3][0];
+	double sub16 = mat[1][0] * mat[3][1] - mat[1][1] * mat[3][0];
+	double sub17 = mat[1][0] * mat[2][1] - mat[1][1] * mat[2][0];
+
+	double4 fac0 = double4( sub00, sub00, sub01, sub02 );
+	double4 fac1 = double4( sub03, sub03, sub04, sub05 );
+	double4 fac2 = double4( sub06, sub06, sub07, sub08 );
+	double4 fac3 = double4( sub09, sub09, sub10, sub11 );
+	double4 fac4 = double4( sub12, sub12, sub13, sub14 );
+	double4 fac5 = double4( sub15, sub15, sub16, sub17 );
+
+	double4 vec0 = double4( mat[1][0], mat[0][0], mat[0][0], mat[0][0] );
+	double4 vec1 = double4( mat[1][1], mat[0][1], mat[0][1], mat[0][1] );
+	double4 vec2 = double4( mat[1][2], mat[0][2], mat[0][2], mat[0][2] );
+	double4 vec3 = double4( mat[1][3], mat[0][3], mat[0][3], mat[0][3] );
+
+	double4 inv0 = vec1 * fac0 - vec2 * fac1 + vec3 * fac2;
+	double4 inv1 = vec0 * fac0 - vec2 * fac3 + vec3 * fac4;
+	double4 inv2 = vec0 * fac1 - vec1 * fac3 + vec3 * fac5;
+	double4 inv3 = vec0 * fac2 - vec1 * fac4 + vec2 * fac5;
+
+	double4 sign0 = double4(  1, -1,  1, -1 );
+	double4 sign1 = double4( -1,  1, -1,  1 );
+
+	double4x4 result = double4x4(
+		inv0 * sign0,
+		inv1 * sign1,
+		inv2 * sign0,
+		inv3 * sign1
+	);
+
+	double4 col0 = double4( result[0][0], result[1][0], result[2][0], result[3][0] );
+	double4 dot0 = mat[0] * col0;
+
+	const double dot1 = ( dot0.x + dot0.y ) + ( dot0.z + dot0.w );
+
+	const double invdet = 1.0 / dot1;
+
+	return result * invdet;
+}
 
 /// \relates double4x4
 /// \brief Returns a copy of the double4x4 that has been component-wise multiplied by the corresponding component of the right-hand double4x4.
-inline double4x4 comp_mul( const double4x4& lhs, const double4x4& rhs );
+inline double4x4 comp_mul( const double4x4& lhs, const double4x4& rhs )
+{
+	return double4x4(
+		lhs[0] * rhs[0],
+		lhs[1] * rhs[1],
+		lhs[2] * rhs[2],
+		lhs[3] * rhs[3]
+	);
+}
 
 /// \relates double4x4
 /// \brief Returns a copy of the double4x4 that has been component-wise divided by the corresponding component of the right-hand double4x4.
-inline double4x4 comp_div( const double4x4& lhs, const double4x4& rhs );
+inline double4x4 comp_div( const double4x4& lhs, const double4x4& rhs )
+{
+	return double4x4(
+		lhs[0] / rhs[0],
+		lhs[1] / rhs[1],
+		lhs[2] / rhs[2],
+		lhs[3] / rhs[3]
+	);
+}
 
 /// \relates double4x4
 /// \brief Returns a copy of the matrix where each component of the 3rd column has been added by the given vector.
-inline double4x4 translate( const double4x4& mat, const double3& vec );
+inline double4x4 translate( const double4x4& mat, const double3& vec )
+{
+	return double4x4(
+		mat[0][0], mat[0][1], mat[0][2], mat[0][3] + vec.x,
+		mat[1][0], mat[1][1], mat[1][2], mat[1][3] + vec.y,
+		mat[2][0], mat[2][1], mat[2][2], mat[2][3] + vec.z,
+		mat[3][0], mat[3][1], mat[3][2], mat[3][3]
+	);
+}
 
 /// \relates double4x4
 /// \brief Returns a copy of the matrix that has had a rotation applied to it in radians on one or more of the following axes.
-inline double4x4 rotate( const double4x4& mat, const double rad, const double3& axis );
+inline double4x4 rotate( const double4x4& mat, const double rad, const double3& axis )
+{
+	const double c = cos( rad );
+	const double s = sin( rad );
 
-/// \relates double4x4
-/// \brief Returns a copy of the matrix that has had a uniform scale applied to it.
-inline double4x4 scale( const double4x4& mat, const double scalar );
+	double3 u = normalized( axis );
+	double ic = 1.0 - c;
+
+	double4x4 rotation = mat;
+	rotation[0][0] = c + u.x * ic;
+	rotation[0][1] = u.x * u.y * ic - u.z * s;
+	rotation[0][2] = u.x * u.z * ic + u.y * s;
+
+	rotation[1][0] = u.y * u.x * ic + u.z * s;
+	rotation[1][1] = c + u.y * ic;
+	rotation[1][2] = u.y * u.z * ic - u.x * s;
+
+	rotation[2][0] = u.z * u.x * ic - u.y * s;
+	rotation[2][1] = u.z * u.y * ic + u.x * s;
+	rotation[2][2] = c + u.z * ic;
+
+	return mat * rotation;
+}
 
 /// \relates double4x4
 /// \brief Returns a copy of the matrix that has had a non-uniform scale applied to it.
-inline double4x4 scale( const double4x4& mat, const double3& vec );
+inline double4x4 scale( const double4x4& mat, const double3& vec )
+{
+	return double4x4(
+		mat[0][0] * vec.x,
+		mat[0][1],
+		mat[0][2],
+		mat[0][3],
+
+		mat[1][0],
+		mat[1][1] * vec.y,
+		mat[1][2],
+		mat[1][3],
+
+		mat[2][0],
+		mat[2][1],
+		mat[2][2] * vec.z,
+		mat[2][3],
+
+		mat[3][0],
+		mat[3][1],
+		mat[3][2],
+		mat[3][3]
+	);
+}
+
+/// \relates double4x4
+/// \brief Returns a copy of the matrix that has had a uniform scale applied to it.
+inline double4x4 scale( const double4x4& mat, const double scalar )
+{
+	return scale( mat, double3( scalar, scalar, scalar ) );
+}
 
 /// \relates double4x4
 /// \brief Returns an left-handed orthographic projection matrix with the clip-space range zero to one.
-inline double4x4 ortho_lh_zo( const double left, const double right, const double top, const double bottom, const double znear, const double zfar );
+inline double4x4 ortho_lh_zo( const double left, const double right, const double top, const double bottom, const double znear, const double zfar )
+{
+	// left-handed, clip-space range: zero to one
+	const double right_minus_left = right - left;
+	const double right_plus_left = right + left;
+	const double top_minus_bottom = top - bottom;
+	const double top_plus_bottom = top + bottom;
+	const double far_minus_near = zfar - znear;
+
+	return double4x4(
+		2.0 / right_minus_left, 0.0, 0.0, -right_plus_left / right_minus_left,
+		0.0, 2.0 / top_minus_bottom, 0.0, -top_plus_bottom / top_minus_bottom,
+		0.0, 0.0, 1.0 / far_minus_near, -znear / far_minus_near,
+		0.0, 0.0, 0.0, 1.0
+	);
+}
 
 /// \relates double4x4
 /// \brief Returns an left-handed orthographic projection matrix with the clip-space range minus-one to one.
-inline double4x4 ortho_lh_no( const double left, const double right, const double top, const double bottom, const double znear, const double zfar );
+inline double4x4 ortho_lh_no( const double left, const double right, const double top, const double bottom, const double znear, const double zfar )
+{
+	// left-handed, clip-space range: minus-one to one
+	const double right_minus_left = right - left;
+	const double right_plus_left = right + left;
+	const double top_minus_bottom = top - bottom;
+	const double top_plus_bottom = top + bottom;
+	const double far_minus_near = zfar - znear;
+	const double far_plus_near = zfar + znear;
+
+	return double4x4(
+		2.0 / right_minus_left, 0.0, 0.0, -right_plus_left / right_minus_left,
+		0.0, 2.0 / top_minus_bottom, 0.0, -top_plus_bottom / top_minus_bottom,
+		0.0, 0.0, 2.0 / far_minus_near, -far_plus_near / far_minus_near,
+		0.0, 0.0, 0.0, 1.0
+	);
+}
 
 /// \relates double4x4
 /// \brief Returns an right-handed orthographic projection matrix with the clip-space range zero to one.
-inline double4x4 ortho_rh_zo( const double left, const double right, const double top, const double bottom, const double znear, const double zfar );
+inline double4x4 ortho_rh_zo( const double left, const double right, const double top, const double bottom, const double znear, const double zfar )
+{
+	// right-handed, clip-space range: zero to one
+	const double right_minus_left = right - left;
+	const double right_plus_left = right + left;
+	const double top_minus_bottom = top - bottom;
+	const double top_plus_bottom = top + bottom;
+	const double far_minus_near = zfar - znear;
+
+	return double4x4(
+		2.0 / right_minus_left, 0.0, 0.0, -right_plus_left / right_minus_left,
+		0.0, 2.0 / top_minus_bottom, 0.0, -top_plus_bottom / top_minus_bottom,
+		0.0, 0.0, -1.0 / far_minus_near, -znear / far_minus_near,
+		0.0, 0.0, 0.0, 1.0
+	);
+}
 
 /// \relates double4x4
 /// \brief Returns an right-handed orthographic projection matrix with the clip-space range minus-one to one.
-inline double4x4 ortho_rh_no( const double left, const double right, const double top, const double bottom, const double znear, const double zfar );
+inline double4x4 ortho_rh_no( const double left, const double right, const double top, const double bottom, const double znear, const double zfar )
+{
+	// right-handed, clip-space range: minus-one to one
+	const double right_minus_left = right - left;
+	const double right_plus_left = right + left;
+	const double top_minus_bottom = top - bottom;
+	const double top_plus_bottom = top + bottom;
+	const double far_minus_near = zfar - znear;
+	const double far_plus_near = zfar + znear;
+
+	return double4x4(
+		2.0 / right_minus_left, 0.0, 0.0, -right_plus_left / right_minus_left,
+		0.0, 2.0 / top_minus_bottom, 0.0, -top_plus_bottom / top_minus_bottom,
+		0.0, 0.0, -2.0 / far_minus_near, -far_plus_near / far_minus_near,
+		0.0, 0.0, 0.0, 1.0
+	);
+}
 
 /// \relates double4x4
 /// \brief Returns a left-handed perspective projection matrix based on a vertical field-of-view in degrees and an aspect ratio in the clip-space range of zero to one.
-inline double4x4 perspective_lh_zo( const double fovdeg, const double aspect, const double znear, const double zfar );
+inline double4x4 perspective_lh_zo( const double fovdeg, const double aspect, const double znear, const double zfar )
+{
+	// left-handed, clip space range: zero to one
+	const double far_minus_near = zfar - znear;
+	const double tan_half_fov = tan( fovdeg * 0.5 );
+
+	return double4x4(
+		1.0 / ( aspect * tan_half_fov ), 0.0, 0.0, 0.0,
+		0.0, 1.0 / tan_half_fov, 0.0, 0.0,
+		0.0, 0.0, zfar / far_minus_near, -( zfar * znear ) / far_minus_near,
+		0.0, 0.0, 1.0, 0.0
+	);
+}
 
 /// \relates double4x4
 /// \brief Returns a left-handed perspective projection matrix based on a vertical field-of-view in degrees and an aspect ratio in the clip-space range of minus-one to one.
-inline double4x4 perspective_lh_no( const double fovdeg, const double aspect, const double znear, const double zfar );
+inline double4x4 perspective_lh_no( const double fovdeg, const double aspect, const double znear, const double zfar )
+{
+	// left-handed, clip space range: minus-one to one
+	const double far_minus_near = zfar - znear;
+	const double far_plus_near = zfar + znear;
+	const double tan_half_fov = tan( fovdeg * 0.5 );
+
+	return double4x4(
+		1.0 / ( aspect * tan_half_fov ), 0.0, 0.0, 0.0,
+		0.0, 1.0 / tan_half_fov, 0.0, 0.0,
+		0.0, 0.0, far_plus_near / far_minus_near, -( 2.0 * zfar * znear ) / far_minus_near,
+		0.0, 0.0, 1.0, 0.0
+	);
+}
 
 /// \relates double4x4
 /// \brief Returns a right-handed perspective projection matrix based on a vertical field-of-view in degrees and an aspect ratio in the clip-space range of zero to one.
-inline double4x4 perspective_rh_zo( const double fovdeg, const double aspect, const double znear, const double zfar );
+inline double4x4 perspective_rh_zo( const double fovdeg, const double aspect, const double znear, const double zfar )
+{
+	// right-handed, clip space range: zero to one
+	const double tan_half_fov = tan( fovdeg * 0.5 );
+
+	return double4x4(
+		1.0 / ( aspect * tan_half_fov ), 0.0, 0.0, 0.0,
+		0.0, 1.0 / tan_half_fov, 0.0, 0.0,
+		0.0, 0.0, zfar / ( znear - zfar ), -( zfar * znear ) / ( zfar - znear ),
+		0.0, 0.0, -1.0, 0.0
+	);
+}
 
 /// \relates double4x4
 /// \brief Returns a right-handed perspective projection matrix based on a vertical field-of-view in degrees and an aspect ratio in the clip-space range of minus-one to one.
-inline double4x4 perspective_rh_no( const double fovdeg, const double aspect, const double znear, const double zfar );
+inline double4x4 perspective_rh_no( const double fovdeg, const double aspect, const double znear, const double zfar )
+{
+	// right-handed, clip space range: minus-one to one
+	const double far_minus_near = zfar - znear;
+	const double far_plus_near = zfar + znear;
+	const double tan_half_fov = tan( fovdeg * 0.5 );
+
+	return double4x4(
+		1.0 / ( aspect * tan_half_fov ), 0.0, 0.0, 0.0,
+		0.0, 1.0 / tan_half_fov, 0.0, 0.0,
+		0.0, 0.0, -far_plus_near / far_minus_near, -( 2.0 * zfar * znear ) / far_minus_near,
+		0.0, 0.0, -1.0, 0.0
+	);
+}
 
 /// \relates double4x4
 /// \brief Returns a left-handed orthonormal matrix that is oriented at position eye to look at position target.
-inline double4x4 lookat_lh( const double3& eye, const double3& target, const double3& up );
+inline double4x4 lookat_lh( const double3& eye, const double3& target, const double3& up )
+{
+	// left handed
+	const double3 forward = normalized( target - eye );
+	const double3 right = normalized( cross( up, forward ) );
+	const double3 up1 = cross( forward, right );
+
+	return double4x4(
+		right.x,   right.y,   right.z,   -dot( right, eye ),
+		up1.x,     up1.y,     up1.z,     -dot( up1, eye ),
+		forward.x, forward.y, forward.z, -dot( forward, eye ),
+		0.0, 0.0, 0.0, 1.0
+	);
+}
 
 /// \relates double4x4
 /// \brief Returns a right-handed orthonormal matrix that is oriented at position eye to look at position target.
-inline double4x4 lookat_rh( const double3& eye, const double3& target, const double3& up );
+inline double4x4 lookat_rh( const double3& eye, const double3& target, const double3& up )
+{
+	// right handed
+	const double3 forward = normalized( target - eye );
+	const double3 right = normalized( cross( forward, up ) );
+	const double3 up1 = cross( right, forward );
+
+	return double4x4(
+		 right.x,    right.y,    right.z,   -dot( right, eye ),
+		 up1.x,      up1.y,      up1.z,     -dot( up1, eye ),
+		-forward.x, -forward.y, -forward.z,  dot( forward, eye ),
+		0.0, 0.0, 0.0, 1.0
+	);
+}
 
 
-#include "hlml_functions_matrix.inl"

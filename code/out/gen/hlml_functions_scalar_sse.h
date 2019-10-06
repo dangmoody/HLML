@@ -34,12 +34,27 @@ SOFTWARE.
 
 #pragma once
 
+// HLML includes
+#include "../hlml_constants_sse.h"
+
+// others
 #include <xmmintrin.h>
+#include <assert.h>
 
 // float
-inline void radians_sse( const __m128 deg, __m128* out_radians );
+inline void radians_sse( const __m128 deg, __m128* out_radians )
+{
+	assert( out_radians );
 
-inline void degrees_sse( const __m128 rad, __m128* out_degrees );
+	*out_radians = _mm_mul_ps( deg, HLML_DEG_TO_RAD_SSE );
+}
+
+inline void degrees_sse( const __m128 rad, __m128* out_degrees )
+{
+	assert( out_degrees );
+
+	*out_degrees = _mm_mul_ps( rad, HLML_RAD_TO_DEG_SSE );
+}
 
 struct float_sse_t
 {
@@ -48,7 +63,19 @@ struct float_sse_t
 	__m128 t;
 };
 
-inline void lerp_sse( const float_sse_t* in, __m128* out_results );
+inline void lerp_sse( const float_sse_t* in, __m128* out_results )
+{
+	assert( in );
+	assert( out_results );
+
+	__m128 one = _mm_set1_ps( 1.0f );
+
+	__m128 sub0 = _mm_sub_ps( one, in->t );
+
+	__m128 mul0 = _mm_mul_ps( sub0, in->lhs );
+	__m128 mul1 = _mm_mul_ps( in->t, in->rhs );
+
+	*out_results = _mm_add_ps( mul0, mul1 );
+}
 
 
-#include "hlml_functions_scalar_sse.inl"

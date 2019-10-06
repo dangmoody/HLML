@@ -32,8 +32,15 @@ SOFTWARE.
 // EDITING THIS FILE MAY CAUSE SIDE EFFECTS.
 // DO SO AT YOUR OWN RISK.
 
+#pragma once
+
+// hlml includes
+#include "double4x3.h"
+
 // others
 #include <math.h>
+#include <memory.h>
+#include <assert.h>
 
 // forward declares
 double4x3 inverse( const double4x3& mat );
@@ -117,7 +124,7 @@ bool operator==( const double4x3& lhs, const double4x3& rhs )
 		&& lhs[3] == rhs[3];
 }
 
-bool operator!=( const double4x3& lhs, const double4x3& rhs )
+inline bool operator!=( const double4x3& lhs, const double4x3& rhs )
 {
 	return !( operator==( lhs, rhs ) );
 }

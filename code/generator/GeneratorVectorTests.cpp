@@ -35,7 +35,8 @@ bool GeneratorVectorTests::Generate( const genType_t type, const u32 numComponen
 
 	String_Appendf( &code, GEN_FILE_HEADER );
 
-	String_Append( &code, "#include \"../../" GEN_OUT_GEN_FOLDER_PATH GEN_FILENAME_FUNCTIONS_VECTOR ".h\"\n" );
+	String_Append( &code, "#include \"../../" GEN_OUT_GEN_FOLDER_PATH GEN_HEADER_FUNCTIONS_VECTOR "\"\n" );
+	
 	if ( Gen_TypeSupportsSSE( m_type ) ) {
 		String_Append( &code, "#include \"../../" GEN_OUT_GEN_FOLDER_PATH GEN_FILENAME_FUNCTIONS_SCALAR_SSE ".h\"\n" );
 		String_Append( &code, "#include \"../../" GEN_OUT_GEN_FOLDER_PATH GEN_FILENAME_FUNCTIONS_VECTOR_SSE ".h\"\n" );
