@@ -763,6 +763,8 @@ static bool32 GenerateOperatorsMatrix( void ) {
 				String_Appendf( &contentHeader, "#include \"%s%dx%d.h\"\n", typeString, row, col );
 			}
 		}
+
+		String_Append( &contentHeader, "\n" );
 	}
 
 	String_Append( &contentHeader, "\n" );

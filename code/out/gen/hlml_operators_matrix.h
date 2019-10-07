@@ -43,6 +43,7 @@ SOFTWARE.
 #include "bool4x2.h"
 #include "bool4x3.h"
 #include "bool4x4.h"
+
 #include "int2x2.h"
 #include "int2x3.h"
 #include "int2x4.h"
@@ -52,6 +53,7 @@ SOFTWARE.
 #include "int4x2.h"
 #include "int4x3.h"
 #include "int4x4.h"
+
 #include "uint2x2.h"
 #include "uint2x3.h"
 #include "uint2x4.h"
@@ -61,6 +63,7 @@ SOFTWARE.
 #include "uint4x2.h"
 #include "uint4x3.h"
 #include "uint4x4.h"
+
 #include "float2x2.h"
 #include "float2x3.h"
 #include "float2x4.h"
@@ -70,6 +73,7 @@ SOFTWARE.
 #include "float4x2.h"
 #include "float4x3.h"
 #include "float4x4.h"
+
 #include "double2x2.h"
 #include "double2x3.h"
 #include "double2x4.h"
@@ -79,6 +83,7 @@ SOFTWARE.
 #include "double4x2.h"
 #include "double4x3.h"
 #include "double4x4.h"
+
 
 // int2x2
 /// \relates int2x2

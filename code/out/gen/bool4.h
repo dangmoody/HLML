@@ -37,8 +37,8 @@ SOFTWARE.
 #include <stdint.h>
 #include "../hlml_types.h"
 
-struct bool2;
-struct bool3;
+#include "bool2.h"
+#include "bool3.h"
 struct float3;
 
 // ignore prohibition of anymous structs for GCC
