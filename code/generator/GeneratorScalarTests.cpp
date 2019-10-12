@@ -66,8 +66,8 @@ bool GeneratorScalarTest::Generate( const genType_t type ) {
 			g_radiansStr = "1.57079637f";
 		}
 
-		String_Appendf( &code, "static %s g_deg = %s;\n", m_memberTypeString, g_degreesStr );
-		String_Appendf( &code, "static %s g_rad = %s;\n", m_memberTypeString, g_radiansStr );
+		String_Appendf( &code, "static %s g_deg_%s = %s;\n", m_memberTypeString, m_memberTypeString, g_degreesStr );
+		String_Appendf( &code, "static %s g_rad_%s = %s;\n", m_memberTypeString, m_memberTypeString, g_radiansStr );
 		String_Append(  &code, "\n" );
 	}
 
@@ -184,8 +184,8 @@ void GeneratorScalarTest::GenerateTestDegreesRadians() {
 
 	String_Appendf( &m_codeTests, "TEMPER_TEST( %s )\n", testName );
 	String_Append(  &m_codeTests, "{\n" );
-	String_Appendf( &m_codeTests, "\tTEMPER_EXPECT_TRUE( %s( radians( g_deg ), %s ) );\n", floateqStr, g_radiansStr );
-	String_Appendf( &m_codeTests, "\tTEMPER_EXPECT_TRUE( %s( degrees( g_rad ), %s ) );\n", floateqStr, g_degreesStr );
+	String_Appendf( &m_codeTests, "\tTEMPER_EXPECT_TRUE( %s( radians( g_deg_%s ), %s ) );\n", floateqStr, m_memberTypeString, g_radiansStr );
+	String_Appendf( &m_codeTests, "\tTEMPER_EXPECT_TRUE( %s( degrees( g_rad_%s ), %s ) );\n", floateqStr, m_memberTypeString, g_degreesStr );
 	String_Append(  &m_codeTests, "\n" );
 	String_Append(  &m_codeTests, "\tTEMPER_PASS();\n" );
 	String_Append(  &m_codeTests, "}\n" );
@@ -201,8 +201,8 @@ void GeneratorScalarTest::GenerateTestDegreesRadians() {
 
 		String_Appendf( &m_codeTests, "TEMPER_TEST( %s )\n", testName );
 		String_Append(  &m_codeTests, "{\n" );
-		String_Appendf( &m_codeTests, "\t%s degs[4] = { g_deg, g_deg, g_deg, g_deg };\n", m_memberTypeString );
-		String_Appendf( &m_codeTests, "\t%s rads[4] = { g_rad, g_rad, g_rad, g_rad };\n", m_memberTypeString );
+		String_Appendf( &m_codeTests, "\t%s degs[4] = { g_deg_%s, g_deg_%s, g_deg_%s, g_deg_%s };\n", m_memberTypeString, m_memberTypeString, m_memberTypeString, m_memberTypeString, m_memberTypeString );
+		String_Appendf( &m_codeTests, "\t%s rads[4] = { g_rad_%s, g_rad_%s, g_rad_%s, g_rad_%s };\n", m_memberTypeString, m_memberTypeString, m_memberTypeString, m_memberTypeString, m_memberTypeString );
 		String_Append(  &m_codeTests, "\n" );
 		String_Appendf( &m_codeTests, "\t%s results;\n", m_registerName );
 		String_Append(  &m_codeTests, "\n" );

@@ -252,7 +252,7 @@ static bool32 GenerateFunctionsVector( void ) {
 
 	Mem_Reset();
 
-	return wroteHeader /*&& wroteInl*/;
+	return wroteHeader;
 }
 
 static bool32 GenerateFunctionsMatrix( void ) {
@@ -272,7 +272,7 @@ static bool32 GenerateFunctionsMatrix( void ) {
 
 		for ( u32 row = GEN_COMPONENT_COUNT_MIN; row <= GEN_COMPONENT_COUNT_MAX; row++ ) {
 			for ( u32 col = GEN_COMPONENT_COUNT_MIN; col <= GEN_COMPONENT_COUNT_MAX; col++ ) {
-				String_Appendf( &contentHeader, "#include \"%s%dx%d.inl\"\n", typeString, row, col );
+				String_Appendf( &contentHeader, "#include \"%s%dx%d.h\"\n", typeString, row, col );
 			}
 		}
 
@@ -546,7 +546,7 @@ static bool32 GenerateOperatorsVector( void ) {
 		const char* typeString = Gen_GetTypeString( type );
 
 		for ( u32 componentIndex = GEN_COMPONENT_COUNT_MIN; componentIndex <= GEN_COMPONENT_COUNT_MAX; componentIndex++ ) {
-			String_Appendf( &contentHeader, "#include \"%s%d.inl\"\n", typeString, componentIndex );
+			String_Appendf( &contentHeader, "#include \"%s%d.h\"\n", typeString, componentIndex );
 		}
 
 		String_Append( &contentHeader, "\n" );
@@ -608,8 +608,25 @@ static bool32 GenerateOperatorsMatrix( void ) {
 		String_Append( &contentHeader, "\n" );
 	}
 
-	String_Appendf( &contentHeader, "#include \"" GEN_HEADER_FUNCTIONS_VECTOR "\"\n" );
-	String_Append(  &contentHeader, "\n" );
+	String_Append( &contentHeader, "#include \"" GEN_HEADER_FUNCTIONS_VECTOR "\"\n" );
+	String_Append( &contentHeader, "\n" );
+
+	for ( u32 typeIndex = 0; typeIndex < GEN_TYPE_COUNT; typeIndex++ ) {
+		genType_t type = (genType_t) typeIndex;
+
+		if ( type == GEN_TYPE_BOOL ) {
+			continue;
+		}
+
+		for ( u32 components = GEN_COMPONENT_COUNT_MIN; components <= GEN_COMPONENT_COUNT_MAX; components++ ) {
+			char fullTypeName[GEN_STRING_LENGTH_TYPE_NAME];
+			Gen_GetFullTypeName( type, components, components, fullTypeName );
+
+			String_Appendf( &contentHeader, "%s inverse( const %s& mat );\n", fullTypeName, fullTypeName );
+		}
+
+		String_Append( &contentHeader, "\n" );
+	}
 
 	// header and inl code
 	for ( u32 typeIndex = 0; typeIndex < GEN_TYPE_COUNT; typeIndex++ ) {

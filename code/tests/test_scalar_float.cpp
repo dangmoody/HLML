@@ -37,8 +37,8 @@ SOFTWARE.
 
 #include <temper/temper.h>
 
-static float g_deg = 90.0f;
-static float g_rad = 1.57079637f;
+static float g_deg_float = 90.0f;
+static float g_rad_float = 1.57079637f;
 
 TEMPER_TEST( TestFloateq_float )
 {
@@ -64,16 +64,16 @@ TEMPER_TEST( TestSign_float )
 
 TEMPER_TEST( TestDegreesRadians_Scalar_float )
 {
-	TEMPER_EXPECT_TRUE( floateq( radians( g_deg ), 1.57079637f ) );
-	TEMPER_EXPECT_TRUE( floateq( degrees( g_rad ), 90.0f ) );
+	TEMPER_EXPECT_TRUE( floateq( radians( g_deg_float ), 1.57079637f ) );
+	TEMPER_EXPECT_TRUE( floateq( degrees( g_rad_float ), 90.0f ) );
 
 	TEMPER_PASS();
 }
 
 TEMPER_TEST( TestDegreesRadians_SSE_float )
 {
-	float degs[4] = { g_deg, g_deg, g_deg, g_deg };
-	float rads[4] = { g_rad, g_rad, g_rad, g_rad };
+	float degs[4] = { g_deg_float, g_deg_float, g_deg_float, g_deg_float };
+	float rads[4] = { g_rad_float, g_rad_float, g_rad_float, g_rad_float };
 
 	__m128 results;
 

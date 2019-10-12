@@ -59,7 +59,7 @@ static char g_matrixMultiplyParmListRHS[GEN_STRING_LENGTH_PARM_LIST_MATRIX];
 static char g_matrixMultiplyParmListAnswer[GEN_STRING_LENGTH_PARM_LIST_MATRIX];
 
 bool GeneratorMatrixTests::Generate( const genType_t type, const u32 numRows, const u32 numCols ) {
-	const u32 testsCodeBytes = 84 * KB_TO_BYTES;
+	const u32 testsCodeBytes = 90 * KB_TO_BYTES;
 	const u32 suiteCodeBytes = 12 * KB_TO_BYTES;
 
 	m_codeTests = String_Create( testsCodeBytes );
@@ -84,12 +84,8 @@ bool GeneratorMatrixTests::Generate( const genType_t type, const u32 numRows, co
 
 	String_Append(  &code, GEN_FILE_HEADER );
 
-	String_Append(  &code, "#include \"../../" GEN_OUT_GEN_FOLDER_PATH GEN_HEADER_FUNCTIONS_MATRIX "\"\n" );
-	String_Append(  &code, "#include \"../../" GEN_OUT_GEN_FOLDER_PATH GEN_HEADER_OPERATORS_MATRIX "\"\n" );
-	
-	if ( Gen_TypeSupportsSSE( m_type ) ) {
-		String_Append( &code, "#include \"../../" GEN_OUT_GEN_FOLDER_PATH GEN_FILENAME_FUNCTIONS_MATRIX_SSE ".h\"\n" );
-	}
+	// TODO(DM): if we do end up using this as our final include solution, make the filename a constant
+	String_Append( &code, "#include \"hlml.h\"\n" );
 
 	String_Append(  &code, "\n" );
 	String_Append(  &code, "#include <temper/temper.h>\n" );
@@ -102,11 +98,11 @@ bool GeneratorMatrixTests::Generate( const genType_t type, const u32 numRows, co
 		char mulTypeNameReturn[GEN_STRING_LENGTH_TYPE_NAME];
 		Gen_GetFullTypeName( m_type, m_numRows, m_numRows, mulTypeNameReturn );
 
-		String_Appendf( &code, "static %s g_identityMatrix;\n", m_fullTypeName );
+		String_Appendf( &code, "static %s g_identityMatrix_%s;\n", m_fullTypeName, m_fullTypeName );
 		String_Append(  &code, "\n" );
-		String_Appendf( &code, "static %s g_matrixMulLHS = %s%s;\n", m_fullTypeName, m_fullTypeName, g_matrixMultiplyParmListLHS );
-		String_Appendf( &code, "static %s g_matrixMulRHS = %s%s;\n", mulTypeNameRHS, mulTypeNameRHS, g_matrixMultiplyParmListRHS );
-		String_Appendf( &code, "static %s g_matrixMulAnswer = %s%s;\n", mulTypeNameReturn, mulTypeNameReturn, g_matrixMultiplyParmListAnswer );
+		String_Appendf( &code, "static %s g_matrixMulLHS_%s    = %s%s;\n", m_fullTypeName, m_fullTypeName, m_fullTypeName, g_matrixMultiplyParmListLHS );
+		String_Appendf( &code, "static %s g_matrixMulRHS_%s    = %s%s;\n", mulTypeNameRHS, m_fullTypeName, mulTypeNameRHS, g_matrixMultiplyParmListRHS );
+		String_Appendf( &code, "static %s g_matrixMulAnswer_%s = %s%s;\n", mulTypeNameReturn, m_fullTypeName, mulTypeNameReturn, g_matrixMultiplyParmListAnswer );
 		String_Append(  &code, "\n" );
 	}
 
@@ -425,10 +421,10 @@ void GeneratorMatrixTests::GenerateTestMultiplyMatrix() {
 
 	String_Appendf( &m_codeTests, "TEMPER_TEST( %s )\n", testName );
 	String_Append(  &m_codeTests, "{\n" );
-	String_Appendf( &m_codeTests, "\t%s answer = g_matrixMulAnswer;\n", returnTypeName );
+	String_Appendf( &m_codeTests, "\t%s answer = g_matrixMulAnswer_%s;\n", returnTypeName, m_fullTypeName );
 	String_Append(  &m_codeTests, "\n" );
-	String_Appendf( &m_codeTests, "\t%s a = g_matrixMulLHS;\n", lhsTypeName );
-	String_Appendf( &m_codeTests, "\t%s b = g_matrixMulRHS;\n", rhsTypeName );
+	String_Appendf( &m_codeTests, "\t%s a = g_matrixMulLHS_%s;\n", lhsTypeName, m_fullTypeName );
+	String_Appendf( &m_codeTests, "\t%s b = g_matrixMulRHS_%s;\n", rhsTypeName, m_fullTypeName );
 	String_Appendf( &m_codeTests, "\t%s c = a %c b;\n", returnTypeName, GEN_OPERATORS_ARITHMETIC[GEN_OP_ARITHMETIC_MUL] );
 	String_Append(  &m_codeTests, "\n" );
 	String_Append(  &m_codeTests, "\tTEMPER_EXPECT_TRUE( c == answer );\n" );
@@ -501,7 +497,7 @@ void GeneratorMatrixTests::GenerateTestMultiplyMatrix() {
 				String_Appendf( &m_codeTests, "\t%s( mulResults, results.m[%d][%d] );\n", storeFuncStr, row, col );
 
 				for ( u32 componentIndex = 0; componentIndex < 4; componentIndex++ ) {
-					String_Appendf( &m_codeTests, "\tTEMPER_EXPECT_TRUE( %s( mulResults[%d], g_matrixMulAnswer[%d][%d] ) );\n", floateqStr, componentIndex, row, col );
+					String_Appendf( &m_codeTests, "\tTEMPER_EXPECT_TRUE( %s( mulResults[%d], g_matrixMulAnswer_%s[%d][%d] ) );\n", floateqStr, componentIndex, m_fullTypeName, row, col );
 				}
 
 				String_Append( &m_codeTests, "\n" );
@@ -1192,7 +1188,7 @@ void GeneratorMatrixTests::GenerateTestInverse() {
 	String_Appendf( &m_codeTests, "\t%s mat = %s%s;\n", m_fullTypeName, m_fullTypeName, parmList );
 	String_Appendf( &m_codeTests, "\t%s matInverse = inverse( mat );\n", m_fullTypeName );
 	String_Append(  &m_codeTests, "\n" );
-	String_Appendf( &m_codeTests, "\tTEMPER_EXPECT_TRUE( mat * matInverse == g_identityMatrix );\n" );
+	String_Appendf( &m_codeTests, "\tTEMPER_EXPECT_TRUE( mat * matInverse == g_identityMatrix_%s );\n", m_fullTypeName );
 	String_Append(  &m_codeTests, "\n" );
 	String_Append(  &m_codeTests, "\tTEMPER_PASS();\n" );
 	String_Append(  &m_codeTests, "}\n" );
@@ -1242,7 +1238,7 @@ void GeneratorMatrixTests::GenerateTestInverse() {
 				String_Appendf( &m_codeTests, "\t%s( inverseResults, results.m[%d][%d] );\n", storeFuncStr, row, col );
 
 				for ( u32 componentIndex = 0; componentIndex < 4; componentIndex++ ) {
-					String_Appendf( &m_codeTests, "\tTEMPER_EXPECT_TRUE( %s( inverseResults[%d], g_identityMatrix[%d][%d], %s ) );\n", floateqStr, componentIndex, row, col, epsilonStr );
+					String_Appendf( &m_codeTests, "\tTEMPER_EXPECT_TRUE( %s( inverseResults[%d], g_identityMatrix_%s[%d][%d], %s ) );\n", floateqStr, componentIndex, m_fullTypeName, row, col, epsilonStr );
 				}
 
 				String_Append( &m_codeTests, "\n" );

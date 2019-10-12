@@ -34,25 +34,25 @@ SOFTWARE.
 
 #pragma once
 
-#include "bool2.inl"
-#include "bool3.inl"
-#include "bool4.inl"
+#include "bool2.h"
+#include "bool3.h"
+#include "bool4.h"
 
-#include "int2.inl"
-#include "int3.inl"
-#include "int4.inl"
+#include "int2.h"
+#include "int3.h"
+#include "int4.h"
 
-#include "uint2.inl"
-#include "uint3.inl"
-#include "uint4.inl"
+#include "uint2.h"
+#include "uint3.h"
+#include "uint4.h"
 
-#include "float2.inl"
-#include "float3.inl"
-#include "float4.inl"
+#include "float2.h"
+#include "float3.h"
+#include "float4.h"
 
-#include "double2.inl"
-#include "double3.inl"
-#include "double4.inl"
+#include "double2.h"
+#include "double3.h"
+#include "double4.h"
 
 // int2
 inline int2 operator+( const int2& lhs, const int32_t rhs )

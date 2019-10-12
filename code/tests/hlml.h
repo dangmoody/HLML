@@ -1,3 +1,5 @@
+#pragma once
+
 #include "../out/gen/bool2.inl"
 #include "../out/gen/bool2x2.inl"
 #include "../out/gen/bool2x3.inl"

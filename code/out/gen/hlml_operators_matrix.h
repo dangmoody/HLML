@@ -86,6 +86,22 @@ SOFTWARE.
 
 #include "hlml_functions_vector.h"
 
+int2x2 inverse( const int2x2& mat );
+int3x3 inverse( const int3x3& mat );
+int4x4 inverse( const int4x4& mat );
+
+uint2x2 inverse( const uint2x2& mat );
+uint3x3 inverse( const uint3x3& mat );
+uint4x4 inverse( const uint4x4& mat );
+
+float2x2 inverse( const float2x2& mat );
+float3x3 inverse( const float3x3& mat );
+float4x4 inverse( const float4x4& mat );
+
+double2x2 inverse( const double2x2& mat );
+double3x3 inverse( const double3x3& mat );
+double4x4 inverse( const double4x4& mat );
+
 // int2x2
 inline int2x2 operator+( const int2x2& lhs, const int32_t rhs )
 {

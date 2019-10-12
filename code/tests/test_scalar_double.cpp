@@ -36,8 +36,8 @@ SOFTWARE.
 
 #include <temper/temper.h>
 
-static double g_deg = 90.0;
-static double g_rad = 1.57079637;
+static double g_deg_double = 90.0;
+static double g_rad_double = 1.57079637;
 
 TEMPER_TEST( TestFloateq_double )
 {
@@ -63,8 +63,8 @@ TEMPER_TEST( TestSign_double )
 
 TEMPER_TEST( TestDegreesRadians_Scalar_double )
 {
-	TEMPER_EXPECT_TRUE( doubleeq( radians( g_deg ), 1.57079637 ) );
-	TEMPER_EXPECT_TRUE( doubleeq( degrees( g_rad ), 90.0 ) );
+	TEMPER_EXPECT_TRUE( doubleeq( radians( g_deg_double ), 1.57079637 ) );
+	TEMPER_EXPECT_TRUE( doubleeq( degrees( g_rad_double ), 90.0 ) );
 
 	TEMPER_PASS();
 }
