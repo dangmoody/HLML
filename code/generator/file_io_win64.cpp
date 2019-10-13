@@ -29,6 +29,8 @@ along with The HLML Generator.  If not, see <http://www.gnu.org/licenses/>.
 
 #include "file_io.h"
 
+#include "defines.h"
+
 #define WIN32_LEAN_AND_MEAN 1
 #include <Windows.h>
 
@@ -51,7 +53,7 @@ along with The HLML Generator.  If not, see <http://www.gnu.org/licenses/>.
 		} \
 	} while ( 0 )
 #else
-#define WIN64_ASSERT( x ) x
+#define WIN64_ASSERT( x ) UNUSED( x )
 #endif // _DEBUG
 
 static HANDLE OpenOrCreateFileInternal( const char* filename ) {
@@ -68,7 +70,8 @@ static HANDLE OpenOrCreateFileInternal( const char* filename ) {
 }
 
 static void CloseFileInternal( const HANDLE file ) {
-	WIN64_ASSERT( CloseHandle( file ) );
+	bool32 result = CloseHandle( file );
+	WIN64_ASSERT( result );
 }
 
 
@@ -80,7 +83,8 @@ void FS_WriteEntireFile( const char* filename, const char* data, const size_t le
 	HANDLE file = OpenOrCreateFileInternal( filename );
 
 	DWORD bytesWritten = 0;
-	WIN64_ASSERT( WriteFile( file, data, (DWORD) length, &bytesWritten, NULL ) );
+	bool32 result = WriteFile( file, data, (DWORD) length, &bytesWritten, NULL );
+	WIN64_ASSERT( result );
 
 	assert( bytesWritten == length );
 
@@ -95,7 +99,8 @@ void FS_CreateFolder( const char* name ) {
 	}
 
 	SECURITY_ATTRIBUTES secattr = {};
-	WIN64_ASSERT( CreateDirectory( name, &secattr ) );
+	bool32 result = CreateDirectory( name, &secattr );
+	WIN64_ASSERT( result );
 }
 
 void FS_DeleteFolder( const char* name ) {
@@ -104,7 +109,8 @@ void FS_DeleteFolder( const char* name ) {
 	FS_DeleteAllFilesInFolder( name );
 
 	// actually delete the folder
-	WIN64_ASSERT( RemoveDirectory( name ) );
+	bool32 result = RemoveDirectory( name );
+	WIN64_ASSERT( result );
 }
 
 bool32 FS_FolderExists( const char* name ) {
@@ -129,14 +135,17 @@ void FS_DeleteAllFilesInFolder( const char* name ) {
 	do {
 		if ( info.cFileName[0] != 0 && info.cFileName[0] != '.' ) {
 			snprintf( filename, 128, "%s\\%s", name, info.cFileName );
-			WIN64_ASSERT( DeleteFile( filename ) );
+
+			bool32 result = DeleteFile( filename );
+			WIN64_ASSERT( result );
 
 			shouldClose = true;
 		}
 	} while ( FindNextFile( handle, &info ) );
 
 	if ( shouldClose ) {
-		WIN64_ASSERT( FindClose( handle ) );
+		bool32 result = FindClose( handle );
+		WIN64_ASSERT( result );
 	}
 }
 

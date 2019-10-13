@@ -32,10 +32,6 @@ SOFTWARE.
 // EDITING THIS FILE MAY CAUSE SIDE EFFECTS.
 // DO SO AT YOUR OWN RISK.
 
-#include "../../code/out/gen/hlml_functions_scalar.h"
-
-#include <temper/temper.h>
-
 TEMPER_TEST( TestMinMax_uint32_t )
 {
 	uint32_t a = 5U;

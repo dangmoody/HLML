@@ -32,11 +32,6 @@ SOFTWARE.
 // EDITING THIS FILE MAY CAUSE SIDE EFFECTS.
 // DO SO AT YOUR OWN RISK.
 
-#include "../../code/out/gen/hlml_functions_scalar.h"
-#include "../../code/out/gen/hlml_functions_scalar_sse.h"
-
-#include <temper/temper.h>
-
 static float g_deg_float = 90.0f;
 static float g_rad_float = 1.57079637f;
 

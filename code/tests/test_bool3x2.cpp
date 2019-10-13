@@ -32,10 +32,6 @@ SOFTWARE.
 // EDITING THIS FILE MAY CAUSE SIDE EFFECTS.
 // DO SO AT YOUR OWN RISK.
 
-#include "hlml.h"
-
-#include <temper/temper.h>
-
 static bool3x2 g_identityMatrix_bool3x2;
 
 static bool3x2 g_matrixMulLHS_bool3x2    = bool3x2(

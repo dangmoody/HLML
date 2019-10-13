@@ -47,15 +47,6 @@ bool GeneratorScalarTest::Generate( const genType_t type ) {
 
 	stringBuilder_t code = String_Create( testsCodeBytes + suiteCodeBytes );
 	String_Append( &code, GEN_FILE_HEADER );
-	String_Append( &code, "#include \"../../" GEN_OUT_GEN_FOLDER_PATH GEN_HEADER_FUNCTIONS_SCALAR "\"\n" );
-
-	if ( Gen_TypeSupportsSSE( m_type ) ) {
-		String_Append( &code, "#include \"../../" GEN_OUT_GEN_FOLDER_PATH GEN_FILENAME_FUNCTIONS_SCALAR_SSE ".h\"\n" );
-	}
-
-	String_Append( &code, "\n" );
-	String_Append( &code, "#include <temper/temper.h>\n" );
-	String_Append( &code, "\n" );
 
 	if ( Gen_TypeIsFloatingPoint( m_type ) ) {
 		Gen_GetNumericLiteral( m_type, 90.0f, g_degreesStr, 1 );

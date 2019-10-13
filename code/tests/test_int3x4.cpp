@@ -32,10 +32,6 @@ SOFTWARE.
 // EDITING THIS FILE MAY CAUSE SIDE EFFECTS.
 // DO SO AT YOUR OWN RISK.
 
-#include "hlml.h"
-
-#include <temper/temper.h>
-
 static int3x4 g_identityMatrix_int3x4;
 
 static int3x4 g_matrixMulLHS_int3x4    = int3x4(

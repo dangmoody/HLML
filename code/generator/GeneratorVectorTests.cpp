@@ -35,19 +35,6 @@ bool GeneratorVectorTests::Generate( const genType_t type, const u32 numComponen
 
 	String_Appendf( &code, GEN_FILE_HEADER );
 
-	// TODO(DM): if we do end up using this as our final include solution, make the filename a constant
-	String_Append( &code, "#include \"hlml.h\"\n" );
-	
-	if ( Gen_TypeSupportsSSE( m_type ) ) {
-		String_Append( &code, "#include \"../../" GEN_OUT_GEN_FOLDER_PATH GEN_FILENAME_FUNCTIONS_SCALAR_SSE ".h\"\n" );
-		String_Append( &code, "#include \"../../" GEN_OUT_GEN_FOLDER_PATH GEN_FILENAME_FUNCTIONS_VECTOR_SSE ".h\"\n" );
-	}
-
-	String_Append( &code, "\n" );
-
-	String_Append( &code, "#include <temper/temper.h>\n" );
-	String_Append( &code, "\n" );
-
 	String_Appendf( &m_codeSuite, "TEMPER_SUITE( Test_%s )\n", m_fullTypeName );
 	String_Append(  &m_codeSuite, "{\n" );
 

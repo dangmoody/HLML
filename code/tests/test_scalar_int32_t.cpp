@@ -32,10 +32,6 @@ SOFTWARE.
 // EDITING THIS FILE MAY CAUSE SIDE EFFECTS.
 // DO SO AT YOUR OWN RISK.
 
-#include "../../code/out/gen/hlml_functions_scalar.h"
-
-#include <temper/temper.h>
-
 TEMPER_TEST( TestSign_int32_t )
 {
 	TEMPER_EXPECT_TRUE( sign( -5 ) == -1 );
