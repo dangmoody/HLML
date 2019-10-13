@@ -81,6 +81,7 @@
 #include "../out/gen/hlml_functions_scalar.h"
 #include "../out/gen/hlml_functions_vector.h"
 #include "../out/gen/hlml_functions_matrix.h"
+#include "../out/gen/hlml_functions_quaternion.h"
 
 #include "../out/gen/hlml_functions_scalar_sse.h"
 #include "../out/gen/hlml_functions_vector_sse.h"

@@ -332,19 +332,14 @@ static bool32 GenerateFunctionsQuaternion( void ) {
 	char filePathHeader[64] = { 0 };
 	snprintf(filePathHeader, 64, "%s%s.h", GEN_OUT_GEN_FOLDER_PATH, GEN_FILENAME_FUNCTIONS_QUATERNION);
 
-	char filePathInl[64] = { 0 };
-	snprintf(filePathInl, 64, "%s%s.inl", GEN_OUT_GEN_FOLDER_PATH, GEN_FILENAME_FUNCTIONS_QUATERNION);
-
-	stringBuilder_t contentHeader = String_Create(4 * KB_TO_BYTES);
+	stringBuilder_t contentHeader = String_Create(10 * KB_TO_BYTES);
 	String_Append(&contentHeader, GEN_FILE_HEADER);
 	String_Append(&contentHeader,
 		"#pragma once\n"
 		"\n");
 
-	stringBuilder_t contentInl = String_Create(8 * KB_TO_BYTES);
-	String_Append(&contentInl, GEN_FILE_HEADER);
-	String_Append(&contentInl, "#include \"" GEN_FILENAME_FUNCTIONS_VECTOR ".h\"\n");
-	String_Append(&contentInl, "#include \"" GEN_FILENAME_OPERATORS_MATRIX ".h\"\n");
+	String_Appendf( &contentHeader, "#include \"" GEN_HEADER_FUNCTIONS_VECTOR "\"\n" );
+	String_Appendf( &contentHeader, "#include \"" GEN_HEADER_OPERATORS_MATRIX "\"\n" );
 
 	for (u32 typeIndex = 0; typeIndex < GEN_TYPE_COUNT; typeIndex++) {
 		genType_t type = (genType_t)typeIndex;
@@ -357,7 +352,6 @@ static bool32 GenerateFunctionsQuaternion( void ) {
 	}
 
 	String_Appendf(&contentHeader, "\n");
-	String_Appendf(&contentInl, "\n");
 
 	for (u32 typeIndex = 0; typeIndex < GEN_TYPE_COUNT; typeIndex++) {
 		genType_t type = (genType_t)typeIndex;
@@ -371,32 +365,27 @@ static bool32 GenerateFunctionsQuaternion( void ) {
 		printf("Basic functions %s...", fullTypeName);
 
 		String_Appendf(&contentHeader, "// %s\n", fullTypeName);
-		String_Appendf(&contentInl, "// %s\n", fullTypeName);
 
-		Gen_QuaternionMultiply(type, &contentHeader, &contentInl);
-		Gen_QuaternionMultiplyScalar(type, &contentHeader, &contentInl);
-		Gen_QuaternionLength(type, &contentHeader, &contentInl);
-		Gen_QuaternionNormalize(type, &contentHeader, &contentInl);
-		Gen_QuaternionConjugate(type, &contentHeader, &contentInl);
-		Gen_QuaternionInverse(type, &contentHeader, &contentInl);
-		Gen_QuaternionRotationAxis(type, &contentHeader, &contentInl);
-		Gen_QuaternionLerp(type, &contentHeader, &contentInl);
-		Gen_QuaternionSlerp(type, &contentHeader, &contentInl);
+		Gen_QuaternionMultiply(type, &contentHeader);
+		Gen_QuaternionMultiplyScalar(type, &contentHeader);
+		Gen_QuaternionLength(type, &contentHeader);
+		Gen_QuaternionNormalize(type, &contentHeader);
+		Gen_QuaternionConjugate(type, &contentHeader);
+		Gen_QuaternionInverse(type, &contentHeader);
+		Gen_QuaternionRotationAxis(type, &contentHeader);
+		Gen_QuaternionLerp(type, &contentHeader);
+		Gen_QuaternionSlerp(type, &contentHeader);
 
 		String_Append(&contentHeader, "\n");
-		String_Append(&contentInl, "\n");
 
 		printf("OK.\n");
 	}
 
-	String_Appendf(&contentHeader, "#include \"" GEN_FILENAME_FUNCTIONS_QUATERNION ".inl\"\n");
-
-	bool32 wroteHeader = FS_WriteEntireFile(filePathHeader, contentHeader.str, contentHeader.length);
-	bool32 wroteInl = FS_WriteEntireFile(filePathInl, contentInl.str, contentInl.length);
+	const bool32 wroteHeader = FS_WriteEntireFile(filePathHeader, contentHeader.str, contentHeader.length);
 
 	Mem_Reset();
 
-	return wroteHeader && wroteInl;
+	return wroteHeader;
 }
 
 static bool32 GenerateFunctionsScalarSSE( void ) {

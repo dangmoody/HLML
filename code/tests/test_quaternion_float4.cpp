@@ -32,8 +32,7 @@ SOFTWARE.
 // EDITING THIS FILE MAY CAUSE SIDE EFFECTS.
 // DO SO AT YOUR OWN RISK.
 
-#include "../../code/out/gen/hlml_functions_quaternion.h"
-
+#include "hlml.h"
 #include <temper/temper.h>
 
 TEMPER_TEST( TestArithmeticMultiplyScalar_float4 )
@@ -48,7 +47,7 @@ TEMPER_TEST( TestArithmeticMultiplyScalar_float4 )
 	TEMPER_PASS();
 }
 
-TEMPER_SUITE( Test_float4 )
+TEMPER_SUITE( Test_quaternion_float4 )
 {
 	TEMPER_RUN_TEST( TestArithmeticMultiplyScalar_float4 );
 }

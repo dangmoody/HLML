@@ -47,13 +47,13 @@ bool GeneratorQuaternionTests::Generate( const genType_t type ) {
 
 	String_Appendf(&code, GEN_FILE_HEADER);
 
-	String_Append(&code, "#include \"../../" GEN_OUT_GEN_FOLDER_PATH GEN_FILENAME_FUNCTIONS_QUATERNION ".h\"\n");
-	String_Append(&code, "\n");
+	// TODO(DM): if we do end up using this as our final include solution, make the filename a constant
+	String_Append(&code, "#include \"hlml.h\"\n");
 
 	String_Append(&code, "#include <temper/temper.h>\n");
 	String_Append(&code, "\n");
 
-	String_Appendf(&m_codeSuite, "TEMPER_SUITE( Test_%s )\n", m_fullTypeName);
+	String_Appendf(&m_codeSuite, "TEMPER_SUITE( Test_%s_%s )\n", "quaternion", m_fullTypeName);
 	String_Append(&m_codeSuite, "{\n");
 
 	GenerateTestMultiplyScalarQuaternion();
