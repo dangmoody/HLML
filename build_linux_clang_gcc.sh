@@ -6,7 +6,8 @@ set -e
 compiler=$1				# can be either "clang++" or "g++"
 config=$2				# can be either "debug" or "release"
 output_file=$3			# name of the exe to build, should include ".exe"
-source_files_path=$4	# path to source files to build, shouldn't include "*.cpp"
+source_files_path=$4	# path to source files to build, shouldn't include file names
+source_files=$5			# file(s) to build, should include ".cpp", supports "*.cpp"
 
 #determine the folder name to use
 if [[ $compiler == clang* ]]; then
@@ -56,9 +57,10 @@ fi
 
 echo Building for $compiler
 
-echo Building with options : ${options_compiler}
-echo Enabled errors        : ${options_error}
-echo Ignoring options      : ${ignore_warnings}
+echo Building source file\(s\) : ${source_files_path}${source_files}
+echo Building with options     : ${options_compiler}
+echo Enabled errors            : ${options_error}
+echo Ignoring options          : ${ignore_warnings}
 echo ""
 
-${compiler} ${options_std} ${options_compiler} -o build/${compiler_folder_name}/${config}/${output_file} ${source_files_path}/*.cpp ${options_error} ${ignore_warnings}
+${compiler} ${options_std} ${options_compiler} -o build/${compiler_folder_name}/${config}/${output_file} ${source_files_path}${source_files} ${options_error} ${ignore_warnings}

@@ -32,10 +32,6 @@ SOFTWARE.
 // EDITING THIS FILE MAY CAUSE SIDE EFFECTS.
 // DO SO AT YOUR OWN RISK.
 
-#include "hlml.h"
-
-#include <temper/temper.h>
-
 static float2x2 g_identityMatrix_float2x2;
 
 static float2x2 g_matrixMulLHS_float2x2    = float2x2(

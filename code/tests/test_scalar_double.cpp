@@ -32,10 +32,6 @@ SOFTWARE.
 // EDITING THIS FILE MAY CAUSE SIDE EFFECTS.
 // DO SO AT YOUR OWN RISK.
 
-#include "../../code/out/gen/hlml_functions_scalar.h"
-
-#include <temper/temper.h>
-
 static double g_deg_double = 90.0;
 static double g_rad_double = 1.57079637;
 

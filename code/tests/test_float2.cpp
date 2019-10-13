@@ -32,12 +32,6 @@ SOFTWARE.
 // EDITING THIS FILE MAY CAUSE SIDE EFFECTS.
 // DO SO AT YOUR OWN RISK.
 
-#include "hlml.h"
-#include "../../code/out/gen/hlml_functions_scalar_sse.h"
-#include "../../code/out/gen/hlml_functions_vector_sse.h"
-
-#include <temper/temper.h>
-
 // also tests equality operators
 TEMPER_TEST( TestAssignment_float2 )
 {

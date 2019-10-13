@@ -761,8 +761,60 @@ static bool32 GenerateTestsMain( void ) {
 
 	String_Append( &sb, GEN_FILE_HEADER );
 
+	String_Append( &sb, "#define NOMINMAX\n" );
+	String_Append( &sb, "\n" );
+
+	// TODO(DM): if we do end up using this as our final include solution, make the filename a constant
+	String_Append( &sb, "#include \"hlml.h\"\n" );
+	String_Append( &sb, "\n" );
+
 	String_Append( &sb, "#include <temper/temper.h>\n" );
 	String_Append( &sb, "\n" );
+
+	// scalar tests
+	for ( u32 typeIndex = 0; typeIndex < GEN_TYPE_COUNT; typeIndex++ ) {
+		genType_t type = (genType_t) typeIndex;
+
+		if ( type == GEN_TYPE_BOOL ) {
+			continue;
+		}
+
+		const char* memberTypeString = Gen_GetMemberTypeString( type );
+
+		String_Appendf( &sb, "#include \"test_scalar_%s.cpp\"\n", memberTypeString );
+	}
+
+	String_Append( &sb, "\n" );
+
+	// vector tests
+	for ( u32 typeIndex = 0; typeIndex < GEN_TYPE_COUNT; typeIndex++ ) {
+		genType_t type = (genType_t) typeIndex;
+
+		for ( u32 componentIndex = GEN_COMPONENT_COUNT_MIN; componentIndex <= GEN_COMPONENT_COUNT_MAX; componentIndex++ ) {
+			char fullTypeName[GEN_STRING_LENGTH_TYPE_NAME] = { 0 };
+			Gen_GetFullTypeName( type, 1, componentIndex, fullTypeName );
+
+			String_Appendf( &sb, "#include \"test_%s.cpp\"\n", fullTypeName );
+		}
+
+		String_Append( &sb, "\n" );
+	}
+
+	// matrix tests
+	for ( u32 typeIndex = 0; typeIndex < GEN_TYPE_COUNT; typeIndex++ ) {
+		genType_t type = (genType_t) typeIndex;
+
+		for ( u32 row = GEN_COMPONENT_COUNT_MIN; row <= GEN_COMPONENT_COUNT_MAX; row++ ) {
+			for ( u32 col = GEN_COMPONENT_COUNT_MIN; col <= GEN_COMPONENT_COUNT_MAX; col++ ) {
+				char fullTypeName[GEN_STRING_LENGTH_TYPE_NAME] = { 0 };
+				Gen_GetFullTypeName( type, row, col, fullTypeName );
+
+				String_Appendf( &sb, "#include \"test_%s.cpp\"\n", fullTypeName );
+			}
+
+			String_Append( &sb, "\n" );
+		}
+	}
 
 	String_Append( &sb, "static void OnSuiteEnd( void* userdata )\n" );
 	String_Append( &sb, "{\n" );
@@ -770,20 +822,6 @@ static bool32 GenerateTestsMain( void ) {
 	String_Append( &sb, "\tprintf( \"\\n\" );\n" );
 	String_Append( &sb, "}\n" );
 	String_Append( &sb, "\n" );
-
-	for ( u32 typeIndex = 0; typeIndex < GEN_TYPE_COUNT; typeIndex++ ) {
-		genType_t type = (genType_t) typeIndex;
-
-		for ( u32 row = 1; row <= GEN_COMPONENT_COUNT_MAX; row++ ) {
-			for ( u32 col = 1; col <= GEN_COMPONENT_COUNT_MAX; col++ ) {
-				char fullTypeName[GEN_STRING_LENGTH_TYPE_NAME] = { 0 };
-				Gen_GetFullTypeName( type, row, col, fullTypeName );
-
-				String_Appendf( &sb, "TEMPER_SUITE_EXTERN( Test_%s );\n", fullTypeName );
-			}
-			String_Append( &sb, "\n" );
-		}
-	}
 
 	String_Append( &sb, "TEMPER_DEFS();\n" );
 	String_Append( &sb, "\n" );

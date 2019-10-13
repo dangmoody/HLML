@@ -32,10 +32,6 @@ SOFTWARE.
 // EDITING THIS FILE MAY CAUSE SIDE EFFECTS.
 // DO SO AT YOUR OWN RISK.
 
-#include "hlml.h"
-
-#include <temper/temper.h>
-
 static double3x2 g_identityMatrix_double3x2;
 
 static double3x2 g_matrixMulLHS_double3x2    = double3x2(

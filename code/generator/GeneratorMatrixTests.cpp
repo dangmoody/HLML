@@ -83,14 +83,6 @@ bool GeneratorMatrixTests::Generate( const genType_t type, const u32 numRows, co
 	stringBuilder_t code = String_Create( testsCodeBytes + suiteCodeBytes );
 
 	String_Append(  &code, GEN_FILE_HEADER );
-
-	// TODO(DM): if we do end up using this as our final include solution, make the filename a constant
-	String_Append( &code, "#include \"hlml.h\"\n" );
-
-	String_Append(  &code, "\n" );
-	String_Append(  &code, "#include <temper/temper.h>\n" );
-	String_Append(  &code, "\n" );
-
 	{
 		char mulTypeNameRHS[GEN_STRING_LENGTH_TYPE_NAME];
 		Gen_GetFullTypeName( m_type, m_numCols, m_numRows, mulTypeNameRHS );
