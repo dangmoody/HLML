@@ -34,14 +34,16 @@ along with The HLML Generator.  If not, see <http://www.gnu.org/licenses/>.
 
 #include <dirent.h>
 #include <unistd.h>
-
-#include <string.h>
-
-#include <assert.h>
-
 #include <errno.h>
 
-static void DeleteAllFilesInFolderInternal( DIR* dir ) {
+#include <stdio.h>
+#include <string.h>
+#include <assert.h>
+
+static void DeleteAllFilesInFolderInternal( DIR* dir, const char* dirName ) {
+	assert( dir );
+	assert( name );
+
 	int osResult = 0;
 
 	struct dirent* dirEntry = nullptr;
@@ -52,14 +54,14 @@ static void DeleteAllFilesInFolderInternal( DIR* dir ) {
 		}
 
 		char buffer[PATH_MAX] = { 0 };
-		snprintf( buffer, 1024, "%s/%s", name, dirEntry->d_name );
+		snprintf( buffer, 1024, "%s/%s", dirName, dirEntry->d_name );
 
 		struct stat info;
 
 		osResult = stat( buffer, &info );
 		if ( osResult != 0 ) {
 			int err = errno;
-			printf( "ERROR: Failed to get stat on \"%s\": %s\n", name, strerror( err ) );
+			printf( "ERROR: Failed to get stat on \"%s\": %s\n", dirName, strerror( err ) );
 			assert( false );
 		}
 
@@ -168,7 +170,7 @@ void FS_DeleteFolder( const char* name ) {
 		assert( false );
 	}
 
-	DeleteAllFilesInFolderInternal( dir );
+	DeleteAllFilesInFolderInternal( dir, name );
 
 	osResult = closedir( dir );
 	if ( osResult != 0 ) {
@@ -208,7 +210,7 @@ void FS_DeleteAllFilesInFolder( const char* name ) {
 		assert( false );
 	}
 
-	DeleteAllFilesInFolderInternal( dir );
+	DeleteAllFilesInFolderInternal( dir, name );
 
 	int osResult = closedir( dir );
 	if ( osResult != 0 ) {

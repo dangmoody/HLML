@@ -25,6 +25,8 @@ along with The HLML Generator.  If not, see <http://www.gnu.org/licenses/>.
 
 #include "int_types.h"
 
+#include <stddef.h>
+
 /*
 FIle IO
 
