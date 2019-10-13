@@ -442,8 +442,6 @@ static bool32 GenerateFunctionsVectorSSE( void ) {
 			Gen_SSE_VectorDistance( type, componentIndex, &contentHeader );
 			// Gen_SSE_VectorAngle( type, componentIndex, &contentHeader );
 
-			String_Append( &contentHeader, "\n" );
-
 			printf( "OK.\n" );
 		}
 	}
@@ -535,8 +533,6 @@ static bool32 GenerateFunctionsMatrixSSE( void ) {
 				Gen_SSE_MatrixTranslate( type, row, col, &contentHeader );
 				// Gen_SSE_MatrixRotate( type, row, col, &contentHeader );
 				Gen_SSE_MatrixScale( type, row, col, &contentHeader );
-
-				String_Append( &contentHeader, "\n" );
 
 				printf( "OK.\n" );
 			}
