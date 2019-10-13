@@ -43,7 +43,7 @@ along with The HLML Generator.  If not, see <http://www.gnu.org/licenses/>.
 
 #include "os_helpers.h"
 
-#include "FileIO.h"
+#include "file_io.h"
 
 #include "timer.h"
 
@@ -65,11 +65,11 @@ static bool32 GenerateTypeHeader( void ) {
 		"// ensure that a bool is 4 bytes\n"
 		"typedef uint32_t bool32_t;\n" );
 
-	bool32 result = FS_WriteEntireFile( headerFilePath, sb.str, sb.length );
+	FS_WriteEntireFile( headerFilePath, sb.str, sb.length );
 
 	Mem_Reset();
 
-	return result;
+	return true;
 }
 
 static bool32 GenerateVectors( void ) {
@@ -173,11 +173,11 @@ static bool32 GenerateFunctionsScalar( void ) {
 		printf( "OK.\n" );
 	}
 
-	bool32 wroteHeader = FS_WriteEntireFile( fileNameHeader, sb.str, sb.length );
+	FS_WriteEntireFile( fileNameHeader, sb.str, sb.length );
 
 	Mem_Reset();
 
-	return wroteHeader;
+	return true;
 }
 
 static bool32 GenerateFunctionsVector( void ) {
@@ -248,11 +248,11 @@ static bool32 GenerateFunctionsVector( void ) {
 		}
 	}
 
-	bool32 wroteHeader = FS_WriteEntireFile( filePathHeader, contentHeader.str, contentHeader.length );
+	FS_WriteEntireFile( filePathHeader, contentHeader.str, contentHeader.length );
 
 	Mem_Reset();
 
-	return wroteHeader;
+	return true;
 }
 
 static bool32 GenerateFunctionsMatrix( void ) {
@@ -318,11 +318,11 @@ static bool32 GenerateFunctionsMatrix( void ) {
 		}
 	}
 
-	bool32 wroteHeader = FS_WriteEntireFile( filePathHeader, contentHeader.str, contentHeader.length );
+	FS_WriteEntireFile( filePathHeader, contentHeader.str, contentHeader.length );
 
 	Mem_Reset();
 
-	return wroteHeader;
+	return true;
 }
 
 static bool32 GenerateFunctionsScalarSSE( void ) {
@@ -366,11 +366,11 @@ static bool32 GenerateFunctionsScalarSSE( void ) {
 		printf( "OK.\n" );
 	}
 
-	bool32 wroteHeader = FS_WriteEntireFile( filePathHeader, contentHeader.str, contentHeader.length );
+	FS_WriteEntireFile( filePathHeader, contentHeader.str, contentHeader.length );
 
 	Mem_Reset();
 
-	return wroteHeader;
+	return true;
 }
 
 static bool32 GenerateFunctionsVectorSSE( void ) {
@@ -448,11 +448,11 @@ static bool32 GenerateFunctionsVectorSSE( void ) {
 		}
 	}
 
-	bool32 wroteHeader = FS_WriteEntireFile( filePathHeader, contentHeader.str, contentHeader.length );
+	FS_WriteEntireFile( filePathHeader, contentHeader.str, contentHeader.length );
 
 	Mem_Reset();
 
-	return wroteHeader;
+	return true;
 }
 
 static bool32 GenerateFunctionsMatrixSSE( void ) {
@@ -543,11 +543,11 @@ static bool32 GenerateFunctionsMatrixSSE( void ) {
 		}
 	}
 
-	bool32 wroteHeader = FS_WriteEntireFile( filePathHeader, contentHeader.str, contentHeader.length );
+	FS_WriteEntireFile( filePathHeader, contentHeader.str, contentHeader.length );
 
 	Mem_Reset();
 
-	return wroteHeader;
+	return true;
 }
 
 static bool32 GenerateOperatorsVector( void ) {
@@ -597,11 +597,11 @@ static bool32 GenerateOperatorsVector( void ) {
 		}
 	}
 
-	bool32 wroteHeader = FS_WriteEntireFile( filePathHeader, contentHeader.str, contentHeader.length );
+	FS_WriteEntireFile( filePathHeader, contentHeader.str, contentHeader.length );
 
 	Mem_Reset();
 
-	return wroteHeader;
+	return true;
 }
 
 static bool32 GenerateOperatorsMatrix( void ) {
@@ -676,11 +676,11 @@ static bool32 GenerateOperatorsMatrix( void ) {
 		}
 	}
 
-	bool32 wroteHeader = FS_WriteEntireFile( filePathHeader, contentHeader.str, contentHeader.length );
+	FS_WriteEntireFile( filePathHeader, contentHeader.str, contentHeader.length );
 
 	Mem_Reset();
 
-	return wroteHeader;
+	return true;
 }
 
 static bool32 GenerateTestsScalar( void ) {
@@ -832,11 +832,11 @@ static bool32 GenerateTestsMain( void ) {
 	String_Append( &sb, "}" );
 	String_Append( &sb, "\n" );
 
-	bool32 result = FS_WriteEntireFile( filePathMain, sb.str, sb.length );
+	FS_WriteEntireFile( filePathMain, sb.str, sb.length );
 
 	Mem_Reset();
 
-	return result;
+	return true;
 }
 
 // DM: running doxygen on MacOS isn't supported yet because I don't have access to a Mac
@@ -874,15 +874,6 @@ static bool32 GenerateDoxygenPages( void ) {
 }
 #endif // _WIN32
 
-#define FAIL_IF( x, msg ) \
-	do { \
-		if ( x ) { \
-			printf( "ERROR: " ); \
-			printf( msg ); \
-			return EXIT_FAILURE; \
-		} \
-	} while ( 0 )
-
 int main( int argc, char** argv ) {
 	UNUSED( argc );
 	UNUSED( argv );
@@ -893,7 +884,7 @@ int main( int argc, char** argv ) {
 	printf( "Generating...\n" );
 	printf( "\n" );
 
-	FS_CleanFolder( GEN_OUT_GEN_FOLDER_PATH );
+	FS_DeleteAllFilesInFolder( GEN_OUT_GEN_FOLDER_PATH );
 
 	printf( "\n" );
 
@@ -901,39 +892,39 @@ int main( int argc, char** argv ) {
 
 	Time_Init();
 
-	FAIL_IF( !FS_CreateFolder( GEN_OUT_GEN_FOLDER_PATH ), "Failed to create folder \"" GEN_OUT_GEN_FOLDER_PATH "\".\n" );
-	FAIL_IF( !FS_CreateFolder( GEN_TESTS_FOLDER_PATH ),   "Failed to create folder \"" GEN_TESTS_FOLDER_PATH "\".\n" );
+	FS_CreateFolder( GEN_OUT_GEN_FOLDER_PATH );
+	FS_CreateFolder( GEN_TESTS_FOLDER_PATH );
 
 	float64 start = Time_NowMS();
 
 	printf( "======= Generating core headers. =======\n" );
-	FAIL_IF( !GenerateTypeHeader(), "Failed generating \"" GEN_HEADER_TYPES "\".\n" );
+	GenerateTypeHeader();
 	printf( "======= Done. =======\n\n" );
 
 	printf( "======= Generating types. =======\n" );
-	FAIL_IF( !GenerateVectors(),  "Failed generating a vector implementation.\n" );
-	FAIL_IF( !GenerateMatrices(), "Failed generating a vector implementation.\n" );
+	GenerateVectors();
+	GenerateMatrices();
 	printf( "======= Done. =======\n\n" );
 
 	printf( "======= Generating functions. =======\n" );
-	FAIL_IF( !GenerateFunctionsScalar(),    "Failed generating main scalar functions.\n" );
-	FAIL_IF( !GenerateFunctionsVector(),    "Failed generating main vector functions.\n" );
-	FAIL_IF( !GenerateFunctionsMatrix(),    "Failed generating main matrix functions.\n" );
-	FAIL_IF( !GenerateFunctionsScalarSSE(), "Failed generating main scalar SSE functions.\n" );
-	FAIL_IF( !GenerateFunctionsVectorSSE(), "Failed generating main vector SSE functions.\n" );
-	FAIL_IF( !GenerateFunctionsMatrixSSE(), "Failed generating main matrix SSE functions.\n" );
+	GenerateFunctionsScalar();
+	GenerateFunctionsVector();
+	GenerateFunctionsMatrix();
+	GenerateFunctionsScalarSSE();
+	GenerateFunctionsVectorSSE();
+	GenerateFunctionsMatrixSSE();
 	printf( "======= Done. =======\n\n" );
 
 	printf( "======= Generating operators. =======\n" );
-	FAIL_IF( !GenerateOperatorsVector(), "Failed generating vector operators.\n" );
-	FAIL_IF( !GenerateOperatorsMatrix(), "Failed generating matrix operators.\n" );
+	GenerateOperatorsVector();
+	GenerateOperatorsMatrix();
 	printf( "======= Done. =======\n\n" );
 
 	printf( "======= Generating tests. =======\n" );
-	FAIL_IF( !GenerateTestsScalar(), "Failed generating scalar tests.\n" );
-	FAIL_IF( !GenerateTestsVector(), "Failed generating vector tests.\n" );
-	FAIL_IF( !GenerateTestsMatrix(), "Failed generating matrix tests.\n" );
-	FAIL_IF( !GenerateTestsMain(),   "Failed generating \"" GEN_TESTS_FOLDER_PATH "/main.cpp\".\n" );
+	GenerateTestsScalar();
+	GenerateTestsVector();
+	GenerateTestsMatrix();
+	GenerateTestsMain();
 	printf( "======= Done. =======\n\n" );
 
 	float64 end = Time_NowMS();
@@ -947,7 +938,7 @@ int main( int argc, char** argv ) {
 	// TODO(DM): turn this back on when a solution for that gets found
 #ifdef _WIN32
 	printf( "======= Generating doxygen documentation pages. =======\n" );
-	FAIL_IF( !GenerateDoxygenPages(), "Failed generated doxygen pages.\n" );
+	GenerateDoxygenPages();
 	printf( "======= Done. =======\n\n" );
 #endif
 

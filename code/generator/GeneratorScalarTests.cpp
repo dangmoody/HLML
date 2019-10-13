@@ -25,7 +25,7 @@ along with The HLML Generator.  If not, see <http://www.gnu.org/licenses/>.
 
 #include "allocator.h"
 
-#include "FileIO.h"
+#include "file_io.h"
 
 #include "gen_common_sse.h"
 
@@ -96,15 +96,11 @@ bool GeneratorScalarTest::Generate( const genType_t type ) {
 	char filename[1024] = { 0 };
 	snprintf( filename, 1024, GEN_TESTS_FOLDER_PATH "test_scalar_%s.cpp", m_memberTypeString );
 
-	bool32 result = FS_WriteEntireFile( filename, code.str, code.length );
-
-	if ( !result ) {
-		printf( "Can't generate scalar test suite for %s.  That's rough man.\n", m_memberTypeString );
-	}
+	FS_WriteEntireFile( filename, code.str, code.length );
 
 	Mem_Reset();
 
-	return result;
+	return true;
 }
 
 void GeneratorScalarTest::GenerateTestFloateq() {
