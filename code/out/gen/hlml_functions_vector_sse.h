@@ -43,10 +43,28 @@ SOFTWARE.
 // float2
 struct float2_sse_t
 {
-			__m128 x;
-			__m128 y;
+	__m128 x;
+	__m128 y;
 };
 
+// float3
+struct float3_sse_t
+{
+	__m128 x;
+	__m128 y;
+	__m128 z;
+};
+
+// float4
+struct float4_sse_t
+{
+	__m128 x;
+	__m128 y;
+	__m128 z;
+	__m128 w;
+};
+
+// float2
 /// \relates float2
 /// \brief Performs a dot-product on each index of the left-hand-side and right-hand-side registers, respectively, and stores the result in its respective component in the output register.
 inline void dot_sse( const float2_sse_t* lhs, const float2_sse_t* rhs, __m128* out_results )
@@ -130,13 +148,6 @@ inline void distance_sse( const float2_sse_t* lhs, const float2_sse_t* rhs, __m1
 
 
 // float3
-struct float3_sse_t
-{
-			__m128 x;
-			__m128 y;
-			__m128 z;
-};
-
 /// \relates float3
 /// \brief Performs a dot-product on each index of the left-hand-side and right-hand-side registers, respectively, and stores the result in its respective component in the output register.
 inline void dot_sse( const float3_sse_t* lhs, const float3_sse_t* rhs, __m128* out_results )
@@ -249,14 +260,6 @@ inline void distance_sse( const float3_sse_t* lhs, const float3_sse_t* rhs, __m1
 
 
 // float4
-struct float4_sse_t
-{
-			__m128 x;
-			__m128 y;
-			__m128 z;
-			__m128 w;
-};
-
 /// \relates float4
 /// \brief Performs a dot-product on each index of the left-hand-side and right-hand-side registers, respectively, and stores the result in its respective component in the output register.
 inline void dot_sse( const float4_sse_t* lhs, const float4_sse_t* rhs, __m128* out_results )

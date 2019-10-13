@@ -404,8 +404,6 @@ static bool32 GenerateFunctionsVectorSSE( void ) {
 			char fullTypeName[GEN_STRING_LENGTH_TYPE_NAME];
 			Gen_GetFullTypeName( type, 1, componentIndex, fullTypeName );
 
-			printf( "SIMD vector functions %s...", fullTypeName );
-
 			char sseTypeName[GEN_STRING_LENGTH_SSE_INPUT_NAME];
 			Gen_SSE_GetFullTypeName( fullTypeName, sseTypeName );
 
@@ -413,11 +411,30 @@ static bool32 GenerateFunctionsVectorSSE( void ) {
 			String_Appendf( &contentHeader, "struct %s\n", sseTypeName );
 			String_Append(  &contentHeader, "{\n" );
 			for ( u32 i = 0; i < componentIndex; i++ ) {
-				String_Appendf( &contentHeader, "\t\t\t%s %c;\n", registerName, GEN_COMPONENT_NAMES_VECTOR[i] );
+				String_Appendf( &contentHeader, "\t%s %c;\n", registerName, GEN_COMPONENT_NAMES_VECTOR[i] );
 			}
 			String_Append(  &contentHeader, "};\n" );
 			String_Append(  &contentHeader, "\n" );
+		}
+	}
 
+	for ( u32 typeIndex = 0; typeIndex < GEN_TYPE_COUNT; typeIndex++ ) {
+		genType_t type = (genType_t) typeIndex;
+
+		if ( !Gen_TypeSupportsSSE( type ) ) {
+			continue;
+		}
+
+		for ( u32 componentIndex = GEN_COMPONENT_COUNT_MIN; componentIndex <= GEN_COMPONENT_COUNT_MAX; componentIndex++ ) {
+			char fullTypeName[GEN_STRING_LENGTH_TYPE_NAME];
+			Gen_GetFullTypeName( type, 1, componentIndex, fullTypeName );
+
+			printf( "SIMD vector functions %s...", fullTypeName );
+
+			char sseTypeName[GEN_STRING_LENGTH_SSE_INPUT_NAME];
+			Gen_SSE_GetFullTypeName( fullTypeName, sseTypeName );
+
+			String_Appendf( &contentHeader, "// %s\n", fullTypeName );
 			Gen_SSE_VectorDot( type, componentIndex, &contentHeader );
 			Gen_SSE_VectorCross( type, componentIndex, &contentHeader );
 			Gen_SSE_VectorLength( type, componentIndex, &contentHeader );
@@ -499,6 +516,8 @@ static bool32 GenerateFunctionsMatrixSSE( void ) {
 				Gen_GetFullTypeName( type, row, col, fullTypeName );
 
 				printf( "SIMD matrix functions %s...", fullTypeName );
+
+				String_Appendf( &contentHeader, "// %s\n", fullTypeName );
 
 				Gen_SSE_MatrixIdentity( type, row, col, &contentHeader );
 				Gen_SSE_MatrixTranspose( type, row, col, &contentHeader );

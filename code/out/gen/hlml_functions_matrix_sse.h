@@ -96,6 +96,7 @@ struct float4x4_sse_t
 };
 
 
+// float2x2
 /// \relates float2x2
 /// \brief Sets a matrix of __m128 registers to identity.
 inline void identity_sse( float2x2_sse_t* mat )
@@ -270,6 +271,7 @@ inline void mul_sse( const float2x2_sse_t* lhs, const float2x2_sse_t* rhs, float
 }
 
 
+// float2x3
 /// \relates float2x3
 /// \brief Sets a matrix of __m128 registers to identity.
 inline void identity_sse( float2x3_sse_t* mat )
@@ -430,6 +432,7 @@ inline void mul_sse( const float2x3_sse_t* lhs, const float3x2_sse_t* rhs, float
 }
 
 
+// float2x4
 /// \relates float2x4
 /// \brief Sets a matrix of __m128 registers to identity.
 inline void identity_sse( float2x4_sse_t* mat )
@@ -610,6 +613,7 @@ inline void mul_sse( const float2x4_sse_t* lhs, const float4x2_sse_t* rhs, float
 }
 
 
+// float3x2
 /// \relates float3x2
 /// \brief Sets a matrix of __m128 registers to identity.
 inline void identity_sse( float3x2_sse_t* mat )
@@ -813,6 +817,7 @@ inline void mul_sse( const float3x2_sse_t* lhs, const float2x3_sse_t* rhs, float
 }
 
 
+// float3x3
 /// \relates float3x3
 /// \brief Sets a matrix of __m128 registers to identity.
 inline void identity_sse( float3x3_sse_t* mat )
@@ -1181,6 +1186,7 @@ inline void scale_sse( const float2_sse_t* diagonal, const float2_sse_t* scale, 
 }
 
 
+// float3x4
 /// \relates float3x4
 /// \brief Sets a matrix of __m128 registers to identity.
 inline void identity_sse( float3x4_sse_t* mat )
@@ -1456,6 +1462,7 @@ inline void mul_sse( const float3x4_sse_t* lhs, const float4x3_sse_t* rhs, float
 }
 
 
+// float4x2
 /// \relates float4x2
 /// \brief Sets a matrix of __m128 registers to identity.
 inline void identity_sse( float4x2_sse_t* mat )
@@ -1738,6 +1745,7 @@ inline void mul_sse( const float4x2_sse_t* lhs, const float2x4_sse_t* rhs, float
 }
 
 
+// float4x3
 /// \relates float4x3
 /// \brief Sets a matrix of __m128 registers to identity.
 inline void identity_sse( float4x3_sse_t* mat )
@@ -2076,6 +2084,7 @@ inline void mul_sse( const float4x3_sse_t* lhs, const float3x4_sse_t* rhs, float
 }
 
 
+// float4x4
 /// \relates float4x4
 /// \brief Sets a matrix of __m128 registers to identity.
 inline void identity_sse( float4x4_sse_t* mat )

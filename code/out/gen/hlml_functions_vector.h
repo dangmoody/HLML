@@ -54,6 +54,8 @@ SOFTWARE.
 #include "hlml_operators_vector.h"
 
 // int2
+/// \relates int2
+/// \brief Returns 1 if y is greater than x, otherwise returns 0.
 inline int2 step( const int2& x, const int2& y )
 {
 	return int2(
@@ -99,6 +101,8 @@ inline float distance( const int2& lhs, const int2& rhs )
 
 
 // int3
+/// \relates int3
+/// \brief Returns 1 if y is greater than x, otherwise returns 0.
 inline int3 step( const int3& x, const int3& y )
 {
 	return int3(
@@ -145,6 +149,8 @@ inline float distance( const int3& lhs, const int3& rhs )
 
 
 // int4
+/// \relates int4
+/// \brief Returns 1 if y is greater than x, otherwise returns 0.
 inline int4 step( const int4& x, const int4& y )
 {
 	return int4(
@@ -178,6 +184,8 @@ inline int32_t dot( const int4& lhs, const int4& rhs )
 
 
 // uint2
+/// \relates uint2
+/// \brief Returns 1 if y is greater than x, otherwise returns 0.
 inline uint2 step( const uint2& x, const uint2& y )
 {
 	return uint2(
@@ -223,6 +231,8 @@ inline float distance( const uint2& lhs, const uint2& rhs )
 
 
 // uint3
+/// \relates uint3
+/// \brief Returns 1 if y is greater than x, otherwise returns 0.
 inline uint3 step( const uint3& x, const uint3& y )
 {
 	return uint3(
@@ -269,6 +279,8 @@ inline float distance( const uint3& lhs, const uint3& rhs )
 
 
 // uint4
+/// \relates uint4
+/// \brief Returns 1 if y is greater than x, otherwise returns 0.
 inline uint4 step( const uint4& x, const uint4& y )
 {
 	return uint4(
@@ -341,6 +353,8 @@ inline float2 lerp( const float2& a, const float2& b, const float t )
 	);
 }
 
+/// \relates float2
+/// \brief Returns 1 if y is greater than x, otherwise returns 0.
 inline float2 step( const float2& x, const float2& y )
 {
 	return float2(
@@ -452,6 +466,8 @@ inline float3 lerp( const float3& a, const float3& b, const float t )
 	);
 }
 
+/// \relates float3
+/// \brief Returns 1 if y is greater than x, otherwise returns 0.
 inline float3 step( const float3& x, const float3& y )
 {
 	return float3(
@@ -579,6 +595,8 @@ inline float4 lerp( const float4& a, const float4& b, const float t )
 	);
 }
 
+/// \relates float4
+/// \brief Returns 1 if y is greater than x, otherwise returns 0.
 inline float4 step( const float4& x, const float4& y )
 {
 	return float4(
@@ -692,6 +710,8 @@ inline double2 lerp( const double2& a, const double2& b, const double t )
 	);
 }
 
+/// \relates double2
+/// \brief Returns 1 if y is greater than x, otherwise returns 0.
 inline double2 step( const double2& x, const double2& y )
 {
 	return double2(
@@ -803,6 +823,8 @@ inline double3 lerp( const double3& a, const double3& b, const double t )
 	);
 }
 
+/// \relates double3
+/// \brief Returns 1 if y is greater than x, otherwise returns 0.
 inline double3 step( const double3& x, const double3& y )
 {
 	return double3(
@@ -930,6 +952,8 @@ inline double4 lerp( const double4& a, const double4& b, const double t )
 	);
 }
 
+/// \relates double4
+/// \brief Returns 1 if y is greater than x, otherwise returns 0.
 inline double4 step( const double4& x, const double4& y )
 {
 	return double4(
