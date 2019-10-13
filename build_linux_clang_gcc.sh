@@ -27,9 +27,11 @@ if [[ $compiler == clang* ]]; then
 	options_compiler="-Xclang -flto-visibility-public-std"
 fi
 
-# enable optimisations for release
+# config options
 if [[ $config = release ]]; then
-	options_compiler="${options_compiler} -O3 -ffast-math"
+	options_compiler="${options_compiler} -O3 -ffast-math"	# enable optimisations
+elif [[ $config == debug ]]; then
+	options_compiler="${options_compiler} -g"				# generate debugging symbols
 fi
 
 # additional includes

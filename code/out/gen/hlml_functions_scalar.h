@@ -65,6 +65,8 @@ inline int32_t clamp( const int32_t x, const int32_t low, const int32_t high )
 	return min( max( x, low ), high );
 }
 
+/// \relates int32_t
+/// \brief Returns 1 if y is greater than x, otherwise returns 0.
 inline int32_t step( const int32_t x, const int32_t y )
 {
 	return ( y > x ? 1 : 0 );
@@ -90,6 +92,8 @@ inline uint32_t clamp( const uint32_t x, const uint32_t low, const uint32_t high
 	return min( max( x, low ), high );
 }
 
+/// \relates uint32_t
+/// \brief Returns 1 if y is greater than x, otherwise returns 0.
 inline uint32_t step( const uint32_t x, const uint32_t y )
 {
 	return ( y > x ? 1U : 0U );
@@ -154,6 +158,8 @@ inline float lerp( const float a, const float b, const float t )
 	return ( 1.0f - t ) * a + t * b;
 }
 
+/// \relates float
+/// \brief Returns 1 if y is greater than x, otherwise returns 0.
 inline float step( const float x, const float y )
 {
 	return ( y > x ? 1.0f : 0.0f );
@@ -235,6 +241,8 @@ inline double lerp( const double a, const double b, const double t )
 	return ( 1.0 - t ) * a + t * b;
 }
 
+/// \relates double
+/// \brief Returns 1 if y is greater than x, otherwise returns 0.
 inline double step( const double x, const double y )
 {
 	return ( y > x ? 1.0 : 0.0 );

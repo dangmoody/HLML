@@ -32,7 +32,7 @@ SOFTWARE.
 // EDITING THIS FILE MAY CAUSE SIDE EFFECTS.
 // DO SO AT YOUR OWN RISK.
 
-#include "../../code/out/gen/hlml_functions_vector.h"
+#include "hlml.h"
 #include "../../code/out/gen/hlml_functions_scalar_sse.h"
 #include "../../code/out/gen/hlml_functions_vector_sse.h"
 
@@ -226,8 +226,8 @@ TEMPER_TEST( TestLength_SSE_float2 )
 
 	float2_sse_t in;
 
-	in.comp[0] = _mm_load_ps( components[0] );
-	in.comp[1] = _mm_load_ps( components[1] );
+	in.x = _mm_load_ps( components[0] );
+	in.y = _mm_load_ps( components[1] );
 
 	__m128 results;
 
@@ -272,8 +272,8 @@ TEMPER_TEST( TestNormalized_SSE_float2 )
 	float2_sse_t in;
 	float2_sse_t in_normalised;
 
-	in.comp[0] = _mm_set1_ps( 5.0f );
-	in.comp[1] = _mm_set1_ps( 4.0f );
+	in.x = _mm_set1_ps( 5.0f );
+	in.y = _mm_set1_ps( 4.0f );
 
 	normalize_sse( &in, &in_normalised );
 	length_sse( &in_normalised, &results );
@@ -314,12 +314,12 @@ TEMPER_TEST( TestDot_SSE_float2 )
 	};
 
 	float2_sse_t lhs;
-	lhs.comp[0] = _mm_load_ps( componentsLHS[0] );
-	lhs.comp[1] = _mm_load_ps( componentsLHS[1] );
+	lhs.x = _mm_load_ps( componentsLHS[0] );
+	lhs.y = _mm_load_ps( componentsLHS[1] );
 
 	float2_sse_t rhs;
-	rhs.comp[0] = _mm_load_ps( componentsRHS[0] );
-	rhs.comp[1] = _mm_load_ps( componentsRHS[1] );
+	rhs.x = _mm_load_ps( componentsRHS[0] );
+	rhs.y = _mm_load_ps( componentsRHS[1] );
 
 	__m128 results;
 	dot_sse( &lhs, &rhs, &results );
@@ -377,12 +377,12 @@ TEMPER_TEST( TestDistance_SSE_float2 )
 	};
 
 	float2_sse_t lhs;
-	lhs.comp[0] = _mm_load_ps( componentsLHS[0] );
-	lhs.comp[1] = _mm_load_ps( componentsLHS[1] );
+	lhs.x = _mm_load_ps( componentsLHS[0] );
+	lhs.y = _mm_load_ps( componentsLHS[1] );
 
 	float2_sse_t rhs;
-	rhs.comp[0] = _mm_load_ps( componentsRHS[0] );
-	rhs.comp[1] = _mm_load_ps( componentsRHS[1] );
+	rhs.x = _mm_load_ps( componentsRHS[0] );
+	rhs.y = _mm_load_ps( componentsRHS[1] );
 
 	__m128 results;
 

@@ -110,11 +110,10 @@ struct double2
 	inline double& operator[]( const uint32_t index );
 
 	// swizzle funcs
-	inline double2 xx() const { return double2( x, x ); }
-	inline double2 yx() const { return double2( y, x ); }
-	inline double2 xy() const { return double2( x, y ); }
-	inline double2 yy() const { return double2( y, y ); }
-
+	inline double2 xx() const;
+	inline double2 yx() const;
+	inline double2 xy() const;
+	inline double2 yy() const;
 };
 
 #if defined( __clang__ ) || defined( __GNUC__ )
@@ -131,4 +130,3 @@ inline bool operator==( const double2& lhs, const double2& rhs );
 /// \brief Returns true if not all of the components of the left-hand-side double2 match the other one, otherwise returns false.
 inline bool operator!=( const double2& lhs, const double2& rhs );
 
-#include "double2.inl"

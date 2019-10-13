@@ -32,11 +32,12 @@ SOFTWARE.
 // EDITING THIS FILE MAY CAUSE SIDE EFFECTS.
 // DO SO AT YOUR OWN RISK.
 
+#pragma once
+
 // hlml includes
+#include "double2.h"
 #include "double3.h"
 #include "double4.h"
-
-#include "hlml_functions_scalar.h"
 
 // others
 #include <math.h>
@@ -104,12 +105,17 @@ double& double2::operator[]( const uint32_t index )
 	return data[index];
 }
 
+double2 double2::xx() const { return double2( x, x ); }
+double2 double2::yx() const { return double2( y, x ); }
+double2 double2::xy() const { return double2( x, y ); }
+double2 double2::yy() const { return double2( y, y ); }
+
 bool operator==( const double2& lhs, const double2& rhs )
 {
 	return doubleeq( lhs.x, rhs.x ) && doubleeq( lhs.y, rhs.y );
 }
 
-bool operator!=( const double2& lhs, const double2& rhs )
+inline bool operator!=( const double2& lhs, const double2& rhs )
 {
 	return !( operator==( lhs, rhs ) );
 }

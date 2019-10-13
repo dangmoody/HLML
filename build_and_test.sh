@@ -40,6 +40,6 @@ echo ------- Done -------
 echo ""
 
 echo ------- Running tests -------
-build/${compiler_folder_name}/${config}/hlml-gen-tests.exe -c
+build/${compiler_folder_name}/${config}/hlml-gen-tests.exe -c --time-unit=us
 echo ------- Done -------
 echo ""

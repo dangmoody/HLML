@@ -32,8 +32,15 @@ SOFTWARE.
 // EDITING THIS FILE MAY CAUSE SIDE EFFECTS.
 // DO SO AT YOUR OWN RISK.
 
+#pragma once
+
+// hlml includes
+#include "uint2x2.h"
+
 // others
 #include <math.h>
+#include <memory.h>
+#include <assert.h>
 
 // forward declares
 uint2x2 inverse( const uint2x2& mat );
@@ -103,7 +110,7 @@ bool operator==( const uint2x2& lhs, const uint2x2& rhs )
 		&& lhs[1] == rhs[1];
 }
 
-bool operator!=( const uint2x2& lhs, const uint2x2& rhs )
+inline bool operator!=( const uint2x2& lhs, const uint2x2& rhs )
 {
 	return !( operator==( lhs, rhs ) );
 }

@@ -32,8 +32,15 @@ SOFTWARE.
 // EDITING THIS FILE MAY CAUSE SIDE EFFECTS.
 // DO SO AT YOUR OWN RISK.
 
+#pragma once
+
+// hlml includes
+#include "double2x2.h"
+
 // others
 #include <math.h>
+#include <memory.h>
+#include <assert.h>
 
 // forward declares
 double2x2 inverse( const double2x2& mat );
@@ -103,7 +110,7 @@ bool operator==( const double2x2& lhs, const double2x2& rhs )
 		&& lhs[1] == rhs[1];
 }
 
-bool operator!=( const double2x2& lhs, const double2x2& rhs )
+inline bool operator!=( const double2x2& lhs, const double2x2& rhs )
 {
 	return !( operator==( lhs, rhs ) );
 }

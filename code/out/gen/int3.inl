@@ -32,11 +32,12 @@ SOFTWARE.
 // EDITING THIS FILE MAY CAUSE SIDE EFFECTS.
 // DO SO AT YOUR OWN RISK.
 
+#pragma once
+
 // hlml includes
 #include "int2.h"
+#include "int3.h"
 #include "int4.h"
-
-#include "hlml_functions_scalar.h"
 
 // others
 #include <math.h>
@@ -105,12 +106,45 @@ int32_t& int3::operator[]( const uint32_t index )
 	return data[index];
 }
 
+int2 int3::xx() const { return int2( x, x ); }
+int2 int3::yx() const { return int2( y, x ); }
+int2 int3::xy() const { return int2( x, y ); }
+int2 int3::yy() const { return int2( y, y ); }
+
+int3 int3::xxx() const { return int3( x, x, x ); }
+int3 int3::yxx() const { return int3( y, x, x ); }
+int3 int3::zxx() const { return int3( z, x, x ); }
+int3 int3::xyx() const { return int3( x, y, x ); }
+int3 int3::yyx() const { return int3( y, y, x ); }
+int3 int3::zyx() const { return int3( z, y, x ); }
+int3 int3::xzx() const { return int3( x, z, x ); }
+int3 int3::yzx() const { return int3( y, z, x ); }
+int3 int3::zzx() const { return int3( z, z, x ); }
+int3 int3::xxy() const { return int3( x, x, y ); }
+int3 int3::yxy() const { return int3( y, x, y ); }
+int3 int3::zxy() const { return int3( z, x, y ); }
+int3 int3::xyy() const { return int3( x, y, y ); }
+int3 int3::yyy() const { return int3( y, y, y ); }
+int3 int3::zyy() const { return int3( z, y, y ); }
+int3 int3::xzy() const { return int3( x, z, y ); }
+int3 int3::yzy() const { return int3( y, z, y ); }
+int3 int3::zzy() const { return int3( z, z, y ); }
+int3 int3::xxz() const { return int3( x, x, z ); }
+int3 int3::yxz() const { return int3( y, x, z ); }
+int3 int3::zxz() const { return int3( z, x, z ); }
+int3 int3::xyz() const { return int3( x, y, z ); }
+int3 int3::yyz() const { return int3( y, y, z ); }
+int3 int3::zyz() const { return int3( z, y, z ); }
+int3 int3::xzz() const { return int3( x, z, z ); }
+int3 int3::yzz() const { return int3( y, z, z ); }
+int3 int3::zzz() const { return int3( z, z, z ); }
+
 bool operator==( const int3& lhs, const int3& rhs )
 {
 	return ( lhs.x == rhs.x ) && ( lhs.y == rhs.y ) && ( lhs.z == rhs.z );
 }
 
-bool operator!=( const int3& lhs, const int3& rhs )
+inline bool operator!=( const int3& lhs, const int3& rhs )
 {
 	return !( operator==( lhs, rhs ) );
 }

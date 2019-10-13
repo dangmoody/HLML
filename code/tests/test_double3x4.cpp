@@ -32,25 +32,24 @@ SOFTWARE.
 // EDITING THIS FILE MAY CAUSE SIDE EFFECTS.
 // DO SO AT YOUR OWN RISK.
 
-#include "../../code/out/gen/hlml_functions_matrix.h"
-#include "../../code/out/gen/hlml_operators_matrix.h"
+#include "hlml.h"
 
 #include <temper/temper.h>
 
-static double3x4 g_identityMatrix;
+static double3x4 g_identityMatrix_double3x4;
 
-static double3x4 g_matrixMulLHS = double3x4(
+static double3x4 g_matrixMulLHS_double3x4    = double3x4(
 		6.000000, 6.000000, 6.000000, 6.000000,
 		6.000000, 6.000000, 6.000000, 6.000000,
 		12.000000, 12.000000, 12.000000, 12.000000
 	);
-static double4x3 g_matrixMulRHS = double4x3(
+static double4x3 g_matrixMulRHS_double3x4    = double4x3(
 		1.000000, 1.000000, 1.000000,
 		2.000000, 2.000000, 2.000000,
 		3.000000, 3.000000, 3.000000,
 		6.000000, 6.000000, 6.000000
 	);
-static double3x3 g_matrixMulAnswer = double3x3(
+static double3x3 g_matrixMulAnswer_double3x4 = double3x3(
 		72.000000, 72.000000, 72.000000,
 		72.000000, 72.000000, 72.000000,
 		144.000000, 144.000000, 144.000000
@@ -191,10 +190,10 @@ TEMPER_TEST( TestComponentWiseArithmetic_Scalar_Division_double3x4 )
 
 TEMPER_TEST( TestMultiplyMatrix_Scalar_double3x4 )
 {
-	double3x3 answer = g_matrixMulAnswer;
+	double3x3 answer = g_matrixMulAnswer_double3x4;
 
-	double3x4 a = g_matrixMulLHS;
-	double4x3 b = g_matrixMulRHS;
+	double3x4 a = g_matrixMulLHS_double3x4;
+	double4x3 b = g_matrixMulRHS_double3x4;
 	double3x3 c = a * b;
 
 	TEMPER_EXPECT_TRUE( c == answer );

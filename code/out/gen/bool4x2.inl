@@ -32,8 +32,15 @@ SOFTWARE.
 // EDITING THIS FILE MAY CAUSE SIDE EFFECTS.
 // DO SO AT YOUR OWN RISK.
 
+#pragma once
+
+// hlml includes
+#include "bool4x2.h"
+
 // others
 #include <math.h>
+#include <memory.h>
+#include <assert.h>
 
 bool4x2::bool4x2()
 {
@@ -114,7 +121,7 @@ bool operator==( const bool4x2& lhs, const bool4x2& rhs )
 		&& lhs[3] == rhs[3];
 }
 
-bool operator!=( const bool4x2& lhs, const bool4x2& rhs )
+inline bool operator!=( const bool4x2& lhs, const bool4x2& rhs )
 {
 	return !( operator==( lhs, rhs ) );
 }

@@ -32,8 +32,11 @@ SOFTWARE.
 // EDITING THIS FILE MAY CAUSE SIDE EFFECTS.
 // DO SO AT YOUR OWN RISK.
 
+#pragma once
+
 // hlml includes
 #include "float2.h"
+#include "float3.h"
 #include "float4.h"
 
 #include "hlml_functions_scalar.h"
@@ -105,12 +108,45 @@ float& float3::operator[]( const uint32_t index )
 	return data[index];
 }
 
+float2 float3::xx() const { return float2( x, x ); }
+float2 float3::yx() const { return float2( y, x ); }
+float2 float3::xy() const { return float2( x, y ); }
+float2 float3::yy() const { return float2( y, y ); }
+
+float3 float3::xxx() const { return float3( x, x, x ); }
+float3 float3::yxx() const { return float3( y, x, x ); }
+float3 float3::zxx() const { return float3( z, x, x ); }
+float3 float3::xyx() const { return float3( x, y, x ); }
+float3 float3::yyx() const { return float3( y, y, x ); }
+float3 float3::zyx() const { return float3( z, y, x ); }
+float3 float3::xzx() const { return float3( x, z, x ); }
+float3 float3::yzx() const { return float3( y, z, x ); }
+float3 float3::zzx() const { return float3( z, z, x ); }
+float3 float3::xxy() const { return float3( x, x, y ); }
+float3 float3::yxy() const { return float3( y, x, y ); }
+float3 float3::zxy() const { return float3( z, x, y ); }
+float3 float3::xyy() const { return float3( x, y, y ); }
+float3 float3::yyy() const { return float3( y, y, y ); }
+float3 float3::zyy() const { return float3( z, y, y ); }
+float3 float3::xzy() const { return float3( x, z, y ); }
+float3 float3::yzy() const { return float3( y, z, y ); }
+float3 float3::zzy() const { return float3( z, z, y ); }
+float3 float3::xxz() const { return float3( x, x, z ); }
+float3 float3::yxz() const { return float3( y, x, z ); }
+float3 float3::zxz() const { return float3( z, x, z ); }
+float3 float3::xyz() const { return float3( x, y, z ); }
+float3 float3::yyz() const { return float3( y, y, z ); }
+float3 float3::zyz() const { return float3( z, y, z ); }
+float3 float3::xzz() const { return float3( x, z, z ); }
+float3 float3::yzz() const { return float3( y, z, z ); }
+float3 float3::zzz() const { return float3( z, z, z ); }
+
 bool operator==( const float3& lhs, const float3& rhs )
 {
 	return floateq( lhs.x, rhs.x ) && floateq( lhs.y, rhs.y ) && floateq( lhs.z, rhs.z );
 }
 
-bool operator!=( const float3& lhs, const float3& rhs )
+inline bool operator!=( const float3& lhs, const float3& rhs )
 {
 	return !( operator==( lhs, rhs ) );
 }

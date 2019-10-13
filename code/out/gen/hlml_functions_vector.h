@@ -37,468 +37,1012 @@ SOFTWARE.
 #include "int2.h"
 #include "int3.h"
 #include "int4.h"
+
 #include "uint2.h"
 #include "uint3.h"
 #include "uint4.h"
+
 #include "float2.h"
 #include "float3.h"
 #include "float4.h"
+
 #include "double2.h"
 #include "double3.h"
 #include "double4.h"
 
+#include "hlml_functions_scalar.h"
+#include "hlml_operators_vector.h"
+
 // int2
-inline int2 step( const int2& x, const int2& y );
+/// \relates int2
+/// \brief Returns 1 if y is greater than x, otherwise returns 0.
+inline int2 step( const int2& x, const int2& y )
+{
+	return int2(
+		step( x[0], y[0] ),
+		step( x[1], y[1] )
+	);
+}
 
 /// \relates int2
 /// \brief Returns the magnitude of the vector squared.
-inline float lengthsqr( const int2& vec );
+inline float lengthsqr( const int2& vec )
+{
+	return (float)( ( vec.x * vec.x ) + ( vec.y * vec.y ) );
+}
 
 /// \relates int2
 /// \brief Returns the magnitude of the vector.
-inline float length( const int2& vec );
+inline float length( const int2& vec )
+{
+	return sqrtf( lengthsqr( vec ) );
+}
 
 /// \relates int2
 /// \brief Returns the dot product of the two vectors.
-inline int32_t dot( const int2& lhs, const int2& rhs );
+inline int32_t dot( const int2& lhs, const int2& rhs )
+{
+	return ( lhs.x * rhs.x ) + ( lhs.y * rhs.y );
+}
 
 /// \relates int2
 /// \brief Returns the squared distance between the two vectors.
-inline float distancesqr( const int2& lhs, const int2& rhs );
+inline float distancesqr( const int2& lhs, const int2& rhs )
+{
+	return lengthsqr( lhs - rhs );
+}
 
 /// \relates int2
 /// \brief Returns the distance between the two vectors.
-inline float distance( const int2& lhs, const int2& rhs );
+inline float distance( const int2& lhs, const int2& rhs )
+{
+	return length( lhs - rhs );
+}
 
 
 // int3
-inline int3 step( const int3& x, const int3& y );
+/// \relates int3
+/// \brief Returns 1 if y is greater than x, otherwise returns 0.
+inline int3 step( const int3& x, const int3& y )
+{
+	return int3(
+		step( x[0], y[0] ),
+		step( x[1], y[1] ),
+		step( x[2], y[2] )
+	);
+}
 
 /// \relates int3
 /// \brief Returns the magnitude of the vector squared.
-inline float lengthsqr( const int3& vec );
+inline float lengthsqr( const int3& vec )
+{
+	return (float)( ( vec.x * vec.x ) + ( vec.y * vec.y ) + ( vec.z * vec.z ) );
+}
 
 /// \relates int3
 /// \brief Returns the magnitude of the vector.
-inline float length( const int3& vec );
+inline float length( const int3& vec )
+{
+	return sqrtf( lengthsqr( vec ) );
+}
 
 /// \relates int3
 /// \brief Returns the dot product of the two vectors.
-inline int32_t dot( const int3& lhs, const int3& rhs );
+inline int32_t dot( const int3& lhs, const int3& rhs )
+{
+	return ( lhs.x * rhs.x ) + ( lhs.y * rhs.y ) + ( lhs.z * rhs.z );
+}
 
 /// \relates int3
 /// \brief Returns the squared distance between the two vectors.
-inline float distancesqr( const int3& lhs, const int3& rhs );
+inline float distancesqr( const int3& lhs, const int3& rhs )
+{
+	return lengthsqr( lhs - rhs );
+}
 
 /// \relates int3
 /// \brief Returns the distance between the two vectors.
-inline float distance( const int3& lhs, const int3& rhs );
+inline float distance( const int3& lhs, const int3& rhs )
+{
+	return length( lhs - rhs );
+}
 
 
 // int4
-inline int4 step( const int4& x, const int4& y );
+/// \relates int4
+/// \brief Returns 1 if y is greater than x, otherwise returns 0.
+inline int4 step( const int4& x, const int4& y )
+{
+	return int4(
+		step( x[0], y[0] ),
+		step( x[1], y[1] ),
+		step( x[2], y[2] ),
+		step( x[3], y[3] )
+	);
+}
 
 /// \relates int4
 /// \brief Returns the magnitude of the vector squared.
-inline float lengthsqr( const int4& vec );
+inline float lengthsqr( const int4& vec )
+{
+	return (float)( ( vec.x * vec.x ) + ( vec.y * vec.y ) + ( vec.z * vec.z ) + ( vec.w * vec.w ) );
+}
 
 /// \relates int4
 /// \brief Returns the magnitude of the vector.
-inline float length( const int4& vec );
+inline float length( const int4& vec )
+{
+	return sqrtf( lengthsqr( vec ) );
+}
 
 /// \relates int4
 /// \brief Returns the dot product of the two vectors.
-inline int32_t dot( const int4& lhs, const int4& rhs );
+inline int32_t dot( const int4& lhs, const int4& rhs )
+{
+	return ( lhs.x * rhs.x ) + ( lhs.y * rhs.y ) + ( lhs.z * rhs.z ) + ( lhs.w * rhs.w );
+}
 
 
 // uint2
-inline uint2 step( const uint2& x, const uint2& y );
+/// \relates uint2
+/// \brief Returns 1 if y is greater than x, otherwise returns 0.
+inline uint2 step( const uint2& x, const uint2& y )
+{
+	return uint2(
+		step( x[0], y[0] ),
+		step( x[1], y[1] )
+	);
+}
 
 /// \relates uint2
 /// \brief Returns the magnitude of the vector squared.
-inline float lengthsqr( const uint2& vec );
+inline float lengthsqr( const uint2& vec )
+{
+	return (float)( ( vec.x * vec.x ) + ( vec.y * vec.y ) );
+}
 
 /// \relates uint2
 /// \brief Returns the magnitude of the vector.
-inline float length( const uint2& vec );
+inline float length( const uint2& vec )
+{
+	return sqrtf( lengthsqr( vec ) );
+}
 
 /// \relates uint2
 /// \brief Returns the dot product of the two vectors.
-inline int32_t dot( const uint2& lhs, const uint2& rhs );
+inline int32_t dot( const uint2& lhs, const uint2& rhs )
+{
+	return (int32_t)( ( lhs.x * rhs.x ) + ( lhs.y * rhs.y ) );
+}
 
 /// \relates uint2
 /// \brief Returns the squared distance between the two vectors.
-inline float distancesqr( const uint2& lhs, const uint2& rhs );
+inline float distancesqr( const uint2& lhs, const uint2& rhs )
+{
+	return lengthsqr( lhs - rhs );
+}
 
 /// \relates uint2
 /// \brief Returns the distance between the two vectors.
-inline float distance( const uint2& lhs, const uint2& rhs );
+inline float distance( const uint2& lhs, const uint2& rhs )
+{
+	return length( lhs - rhs );
+}
 
 
 // uint3
-inline uint3 step( const uint3& x, const uint3& y );
+/// \relates uint3
+/// \brief Returns 1 if y is greater than x, otherwise returns 0.
+inline uint3 step( const uint3& x, const uint3& y )
+{
+	return uint3(
+		step( x[0], y[0] ),
+		step( x[1], y[1] ),
+		step( x[2], y[2] )
+	);
+}
 
 /// \relates uint3
 /// \brief Returns the magnitude of the vector squared.
-inline float lengthsqr( const uint3& vec );
+inline float lengthsqr( const uint3& vec )
+{
+	return (float)( ( vec.x * vec.x ) + ( vec.y * vec.y ) + ( vec.z * vec.z ) );
+}
 
 /// \relates uint3
 /// \brief Returns the magnitude of the vector.
-inline float length( const uint3& vec );
+inline float length( const uint3& vec )
+{
+	return sqrtf( lengthsqr( vec ) );
+}
 
 /// \relates uint3
 /// \brief Returns the dot product of the two vectors.
-inline int32_t dot( const uint3& lhs, const uint3& rhs );
+inline int32_t dot( const uint3& lhs, const uint3& rhs )
+{
+	return (int32_t)( ( lhs.x * rhs.x ) + ( lhs.y * rhs.y ) + ( lhs.z * rhs.z ) );
+}
 
 /// \relates uint3
 /// \brief Returns the squared distance between the two vectors.
-inline float distancesqr( const uint3& lhs, const uint3& rhs );
+inline float distancesqr( const uint3& lhs, const uint3& rhs )
+{
+	return lengthsqr( lhs - rhs );
+}
 
 /// \relates uint3
 /// \brief Returns the distance between the two vectors.
-inline float distance( const uint3& lhs, const uint3& rhs );
+inline float distance( const uint3& lhs, const uint3& rhs )
+{
+	return length( lhs - rhs );
+}
 
 
 // uint4
-inline uint4 step( const uint4& x, const uint4& y );
+/// \relates uint4
+/// \brief Returns 1 if y is greater than x, otherwise returns 0.
+inline uint4 step( const uint4& x, const uint4& y )
+{
+	return uint4(
+		step( x[0], y[0] ),
+		step( x[1], y[1] ),
+		step( x[2], y[2] ),
+		step( x[3], y[3] )
+	);
+}
 
 /// \relates uint4
 /// \brief Returns the magnitude of the vector squared.
-inline float lengthsqr( const uint4& vec );
+inline float lengthsqr( const uint4& vec )
+{
+	return (float)( ( vec.x * vec.x ) + ( vec.y * vec.y ) + ( vec.z * vec.z ) + ( vec.w * vec.w ) );
+}
 
 /// \relates uint4
 /// \brief Returns the magnitude of the vector.
-inline float length( const uint4& vec );
+inline float length( const uint4& vec )
+{
+	return sqrtf( lengthsqr( vec ) );
+}
 
 /// \relates uint4
 /// \brief Returns the dot product of the two vectors.
-inline int32_t dot( const uint4& lhs, const uint4& rhs );
+inline int32_t dot( const uint4& lhs, const uint4& rhs )
+{
+	return (int32_t)( ( lhs.x * rhs.x ) + ( lhs.y * rhs.y ) + ( lhs.z * rhs.z ) + ( lhs.w * rhs.w ) );
+}
 
 /// \relates uint4
 /// \brief Returns a 32 bit integer containing each component of the vector (starting with x) at each byte.
-inline uint32_t pack( const uint4& vec );
+inline uint32_t pack( const uint4& vec )
+{
+	return ( vec.x << 24 ) | ( vec.y << 16 ) | ( vec.z << 8 ) | ( vec.w << 0 );
+}
 
 /// \relates uint4
 /// \brief Returns a 4-component integer vector containing each byte of the given integer.
-inline uint4 unpack( const uint32_t x );
+inline uint4 unpack( const uint32_t x )
+{
+	return uint4(
+		( x >> 24 ) & 0xFF,
+		( x >> 16 ) & 0xFF,
+		( x >> 8 ) & 0xFF,
+		( x >> 0 ) & 0xFF
+	);
+}
 
 
 // float2
 /// \relates float2
 /// \brief Returns a copy of the float2 with each component clamped between the range 0 and 1.
-inline float2 saturate( const float2& x );
+inline float2 saturate( const float2& x )
+{
+	return float2(
+		clamp( x[0], 0.0f, 1.0f ),
+		clamp( x[1], 0.0f, 1.0f )
+	);
+}
 
 /// \relates float2
 /// \brief Returns a linearly interpolated float2 between types "a" and "b".
-inline float2 lerp( const float2& a, const float2& b, const float t );
+inline float2 lerp( const float2& a, const float2& b, const float t )
+{
+	return float2(
+		lerp( a[0], b[0], t ),
+		lerp( a[1], b[1], t )
+	);
+}
 
-inline float2 step( const float2& x, const float2& y );
+/// \relates float2
+/// \brief Returns 1 if y is greater than x, otherwise returns 0.
+inline float2 step( const float2& x, const float2& y )
+{
+	return float2(
+		step( x[0], y[0] ),
+		step( x[1], y[1] )
+	);
+}
 
 /// \relates float2
 /// \brief Performs a sigmoid-like interpolation and clamp.
-inline float2 smoothstep( const float2& low, const float2& high, const float2& x );
+inline float2 smoothstep( const float2& low, const float2& high, const float2& x )
+{
+	return float2(
+		smoothstep( low[0], high[0], x[0] ),
+		smoothstep( low[1], high[1], x[1] )
+	);
+}
 
 /// \relates float2
 /// \brief Performs a 'smoother' version of smoothstep, as design by Ken Perlin.
 /// https://en.wikipedia.org/wiki/Smoothstep#Variations
-inline float2 smootherstep( const float2& low, const float2& high, const float2& x );
+inline float2 smootherstep( const float2& low, const float2& high, const float2& x )
+{
+	return float2(
+		smootherstep( low[0], high[0], x[0] ),
+		smootherstep( low[1], high[1], x[1] )
+	);
+}
 
 /// \relates float2
 /// \brief Returns the magnitude of the vector squared.
-inline float lengthsqr( const float2& vec );
+inline float lengthsqr( const float2& vec )
+{
+	return ( vec.x * vec.x ) + ( vec.y * vec.y );
+}
 
 /// \relates float2
 /// \brief Returns the magnitude of the vector.
-inline float length( const float2& vec );
+inline float length( const float2& vec )
+{
+	return sqrtf( lengthsqr( vec ) );
+}
 
 /// \relates float2
 /// \brief Normalizes the vector.
-inline void normalize( float2& vec );
+inline void normalize( float2& vec )
+{
+	float invlen = 1.0f / length( vec );
+	vec *= invlen;
+}
 
 /// \relates float2
 /// \brief Returns a normalized copy of the vector.
-inline float2 normalized( const float2& vec );
+inline float2 normalized( const float2& vec )
+{
+	float invlen = 1.0f / length( vec );
+	return (float2)( vec * invlen );
+}
 
 /// \relates float2
 /// \brief Returns the dot product of the two vectors.
-inline float dot( const float2& lhs, const float2& rhs );
+inline float dot( const float2& lhs, const float2& rhs )
+{
+	return ( lhs.x * rhs.x ) + ( lhs.y * rhs.y );
+}
 
 /// \relates float2
 /// \brief Returns the angle in degrees between the two vectors.
-inline float angle( const float2& lhs, const float2& rhs );
+inline float angle( const float2& lhs, const float2& rhs )
+{
+	return degrees( acosf( dot( normalized( lhs ), normalized( rhs ) ) ) );
+}
 
 /// \relates float2
 /// \brief Returns the squared distance between the two vectors.
-inline float distancesqr( const float2& lhs, const float2& rhs );
+inline float distancesqr( const float2& lhs, const float2& rhs )
+{
+	return lengthsqr( lhs - rhs );
+}
 
 /// \relates float2
 /// \brief Returns the distance between the two vectors.
-inline float distance( const float2& lhs, const float2& rhs );
+inline float distance( const float2& lhs, const float2& rhs )
+{
+	return length( lhs - rhs );
+}
 
 
 // float3
 /// \relates float3
 /// \brief Returns a copy of the float3 with each component clamped between the range 0 and 1.
-inline float3 saturate( const float3& x );
+inline float3 saturate( const float3& x )
+{
+	return float3(
+		clamp( x[0], 0.0f, 1.0f ),
+		clamp( x[1], 0.0f, 1.0f ),
+		clamp( x[2], 0.0f, 1.0f )
+	);
+}
 
 /// \relates float3
 /// \brief Returns a linearly interpolated float3 between types "a" and "b".
-inline float3 lerp( const float3& a, const float3& b, const float t );
+inline float3 lerp( const float3& a, const float3& b, const float t )
+{
+	return float3(
+		lerp( a[0], b[0], t ),
+		lerp( a[1], b[1], t ),
+		lerp( a[2], b[2], t )
+	);
+}
 
-inline float3 step( const float3& x, const float3& y );
+/// \relates float3
+/// \brief Returns 1 if y is greater than x, otherwise returns 0.
+inline float3 step( const float3& x, const float3& y )
+{
+	return float3(
+		step( x[0], y[0] ),
+		step( x[1], y[1] ),
+		step( x[2], y[2] )
+	);
+}
 
 /// \relates float3
 /// \brief Performs a sigmoid-like interpolation and clamp.
-inline float3 smoothstep( const float3& low, const float3& high, const float3& x );
+inline float3 smoothstep( const float3& low, const float3& high, const float3& x )
+{
+	return float3(
+		smoothstep( low[0], high[0], x[0] ),
+		smoothstep( low[1], high[1], x[1] ),
+		smoothstep( low[2], high[2], x[2] )
+	);
+}
 
 /// \relates float3
 /// \brief Performs a 'smoother' version of smoothstep, as design by Ken Perlin.
 /// https://en.wikipedia.org/wiki/Smoothstep#Variations
-inline float3 smootherstep( const float3& low, const float3& high, const float3& x );
+inline float3 smootherstep( const float3& low, const float3& high, const float3& x )
+{
+	return float3(
+		smootherstep( low[0], high[0], x[0] ),
+		smootherstep( low[1], high[1], x[1] ),
+		smootherstep( low[2], high[2], x[2] )
+	);
+}
 
 /// \relates float3
 /// \brief Returns the magnitude of the vector squared.
-inline float lengthsqr( const float3& vec );
+inline float lengthsqr( const float3& vec )
+{
+	return ( vec.x * vec.x ) + ( vec.y * vec.y ) + ( vec.z * vec.z );
+}
 
 /// \relates float3
 /// \brief Returns the magnitude of the vector.
-inline float length( const float3& vec );
+inline float length( const float3& vec )
+{
+	return sqrtf( lengthsqr( vec ) );
+}
 
 /// \relates float3
 /// \brief Normalizes the vector.
-inline void normalize( float3& vec );
+inline void normalize( float3& vec )
+{
+	float invlen = 1.0f / length( vec );
+	vec *= invlen;
+}
 
 /// \relates float3
 /// \brief Returns a normalized copy of the vector.
-inline float3 normalized( const float3& vec );
+inline float3 normalized( const float3& vec )
+{
+	float invlen = 1.0f / length( vec );
+	return (float3)( vec * invlen );
+}
 
 /// \relates float3
 /// \brief Returns the dot product of the two vectors.
-inline float dot( const float3& lhs, const float3& rhs );
+inline float dot( const float3& lhs, const float3& rhs )
+{
+	return ( lhs.x * rhs.x ) + ( lhs.y * rhs.y ) + ( lhs.z * rhs.z );
+}
 
 /// \relates float3
 /// \brief Returns a vector perpendicular (normal) to the two vectors.
-inline float3 cross( const float3& lhs, const float3& rhs );
+inline float3 cross( const float3& lhs, const float3& rhs )
+{
+	return float3(
+		( lhs.y * rhs.z ) - ( lhs.z * rhs.y ),
+		( lhs.z * rhs.x ) - ( lhs.x * rhs.z ),
+		( lhs.x * rhs.y ) - ( lhs.y * rhs.x )
+	);
+}
 
 /// \relates float3
 /// \brief Returns the angle in degrees between the two vectors.
-inline float angle( const float3& lhs, const float3& rhs );
+inline float angle( const float3& lhs, const float3& rhs )
+{
+	return degrees( acosf( dot( normalized( lhs ), normalized( rhs ) ) ) );
+}
 
 /// \relates float3
 /// \brief Returns the squared distance between the two vectors.
-inline float distancesqr( const float3& lhs, const float3& rhs );
+inline float distancesqr( const float3& lhs, const float3& rhs )
+{
+	return lengthsqr( lhs - rhs );
+}
 
 /// \relates float3
 /// \brief Returns the distance between the two vectors.
-inline float distance( const float3& lhs, const float3& rhs );
+inline float distance( const float3& lhs, const float3& rhs )
+{
+	return length( lhs - rhs );
+}
 
 
 // float4
 /// \relates float4
 /// \brief Returns a copy of the float4 with each component clamped between the range 0 and 1.
-inline float4 saturate( const float4& x );
+inline float4 saturate( const float4& x )
+{
+	return float4(
+		clamp( x[0], 0.0f, 1.0f ),
+		clamp( x[1], 0.0f, 1.0f ),
+		clamp( x[2], 0.0f, 1.0f ),
+		clamp( x[3], 0.0f, 1.0f )
+	);
+}
 
 /// \relates float4
 /// \brief Returns a linearly interpolated float4 between types "a" and "b".
-inline float4 lerp( const float4& a, const float4& b, const float t );
+inline float4 lerp( const float4& a, const float4& b, const float t )
+{
+	return float4(
+		lerp( a[0], b[0], t ),
+		lerp( a[1], b[1], t ),
+		lerp( a[2], b[2], t ),
+		lerp( a[3], b[3], t )
+	);
+}
 
-inline float4 step( const float4& x, const float4& y );
+/// \relates float4
+/// \brief Returns 1 if y is greater than x, otherwise returns 0.
+inline float4 step( const float4& x, const float4& y )
+{
+	return float4(
+		step( x[0], y[0] ),
+		step( x[1], y[1] ),
+		step( x[2], y[2] ),
+		step( x[3], y[3] )
+	);
+}
 
 /// \relates float4
 /// \brief Performs a sigmoid-like interpolation and clamp.
-inline float4 smoothstep( const float4& low, const float4& high, const float4& x );
+inline float4 smoothstep( const float4& low, const float4& high, const float4& x )
+{
+	return float4(
+		smoothstep( low[0], high[0], x[0] ),
+		smoothstep( low[1], high[1], x[1] ),
+		smoothstep( low[2], high[2], x[2] ),
+		smoothstep( low[3], high[3], x[3] )
+	);
+}
 
 /// \relates float4
 /// \brief Performs a 'smoother' version of smoothstep, as design by Ken Perlin.
 /// https://en.wikipedia.org/wiki/Smoothstep#Variations
-inline float4 smootherstep( const float4& low, const float4& high, const float4& x );
+inline float4 smootherstep( const float4& low, const float4& high, const float4& x )
+{
+	return float4(
+		smootherstep( low[0], high[0], x[0] ),
+		smootherstep( low[1], high[1], x[1] ),
+		smootherstep( low[2], high[2], x[2] ),
+		smootherstep( low[3], high[3], x[3] )
+	);
+}
 
 /// \relates float4
 /// \brief Returns the magnitude of the vector squared.
-inline float lengthsqr( const float4& vec );
+inline float lengthsqr( const float4& vec )
+{
+	return ( vec.x * vec.x ) + ( vec.y * vec.y ) + ( vec.z * vec.z ) + ( vec.w * vec.w );
+}
 
 /// \relates float4
 /// \brief Returns the magnitude of the vector.
-inline float length( const float4& vec );
+inline float length( const float4& vec )
+{
+	return sqrtf( lengthsqr( vec ) );
+}
 
 /// \relates float4
 /// \brief Normalizes the vector.
-inline void normalize( float4& vec );
+inline void normalize( float4& vec )
+{
+	float invlen = 1.0f / length( vec );
+	vec *= invlen;
+}
 
 /// \relates float4
 /// \brief Returns a normalized copy of the vector.
-inline float4 normalized( const float4& vec );
+inline float4 normalized( const float4& vec )
+{
+	float invlen = 1.0f / length( vec );
+	return (float4)( vec * invlen );
+}
 
 /// \relates float4
 /// \brief Returns the dot product of the two vectors.
-inline float dot( const float4& lhs, const float4& rhs );
+inline float dot( const float4& lhs, const float4& rhs )
+{
+	return ( lhs.x * rhs.x ) + ( lhs.y * rhs.y ) + ( lhs.z * rhs.z ) + ( lhs.w * rhs.w );
+}
 
 /// \relates float4
 /// \brief Returns a vector perpendicular (normal) to the two vectors.
-inline float4 cross( const float4& lhs, const float4& rhs );
+inline float4 cross( const float4& lhs, const float4& rhs )
+{
+	return float4(
+		( lhs.y * rhs.z ) - ( lhs.z * rhs.y ),
+		( lhs.z * rhs.x ) - ( lhs.x * rhs.z ),
+		( lhs.x * rhs.y ) - ( lhs.y * rhs.x ),
+		0.0f
+	);
+}
 
 /// \relates float4
 /// \brief Returns the angle in degrees between the two vectors.
-inline float angle( const float4& lhs, const float4& rhs );
+inline float angle( const float4& lhs, const float4& rhs )
+{
+	return degrees( acosf( dot( normalized( lhs ), normalized( rhs ) ) ) );
+}
 
 
 // double2
 /// \relates double2
 /// \brief Returns a copy of the double2 with each component clamped between the range 0 and 1.
-inline double2 saturate( const double2& x );
+inline double2 saturate( const double2& x )
+{
+	return double2(
+		clamp( x[0], 0.0, 1.0 ),
+		clamp( x[1], 0.0, 1.0 )
+	);
+}
 
 /// \relates double2
 /// \brief Returns a linearly interpolated double2 between types "a" and "b".
-inline double2 lerp( const double2& a, const double2& b, const double t );
+inline double2 lerp( const double2& a, const double2& b, const double t )
+{
+	return double2(
+		lerp( a[0], b[0], t ),
+		lerp( a[1], b[1], t )
+	);
+}
 
-inline double2 step( const double2& x, const double2& y );
+/// \relates double2
+/// \brief Returns 1 if y is greater than x, otherwise returns 0.
+inline double2 step( const double2& x, const double2& y )
+{
+	return double2(
+		step( x[0], y[0] ),
+		step( x[1], y[1] )
+	);
+}
 
 /// \relates double2
 /// \brief Performs a sigmoid-like interpolation and clamp.
-inline double2 smoothstep( const double2& low, const double2& high, const double2& x );
+inline double2 smoothstep( const double2& low, const double2& high, const double2& x )
+{
+	return double2(
+		smoothstep( low[0], high[0], x[0] ),
+		smoothstep( low[1], high[1], x[1] )
+	);
+}
 
 /// \relates double2
 /// \brief Performs a 'smoother' version of smoothstep, as design by Ken Perlin.
 /// https://en.wikipedia.org/wiki/Smoothstep#Variations
-inline double2 smootherstep( const double2& low, const double2& high, const double2& x );
+inline double2 smootherstep( const double2& low, const double2& high, const double2& x )
+{
+	return double2(
+		smootherstep( low[0], high[0], x[0] ),
+		smootherstep( low[1], high[1], x[1] )
+	);
+}
 
 /// \relates double2
 /// \brief Returns the magnitude of the vector squared.
-inline double lengthsqr( const double2& vec );
+inline double lengthsqr( const double2& vec )
+{
+	return ( vec.x * vec.x ) + ( vec.y * vec.y );
+}
 
 /// \relates double2
 /// \brief Returns the magnitude of the vector.
-inline double length( const double2& vec );
+inline double length( const double2& vec )
+{
+	return sqrt( lengthsqr( vec ) );
+}
 
 /// \relates double2
 /// \brief Normalizes the vector.
-inline void normalize( double2& vec );
+inline void normalize( double2& vec )
+{
+	double invlen = 1.0 / length( vec );
+	vec *= invlen;
+}
 
 /// \relates double2
 /// \brief Returns a normalized copy of the vector.
-inline double2 normalized( const double2& vec );
+inline double2 normalized( const double2& vec )
+{
+	double invlen = 1.0 / length( vec );
+	return (double2)( vec * invlen );
+}
 
 /// \relates double2
 /// \brief Returns the dot product of the two vectors.
-inline double dot( const double2& lhs, const double2& rhs );
+inline double dot( const double2& lhs, const double2& rhs )
+{
+	return ( lhs.x * rhs.x ) + ( lhs.y * rhs.y );
+}
 
 /// \relates double2
 /// \brief Returns the angle in degrees between the two vectors.
-inline double angle( const double2& lhs, const double2& rhs );
+inline double angle( const double2& lhs, const double2& rhs )
+{
+	return degrees( acos( dot( normalized( lhs ), normalized( rhs ) ) ) );
+}
 
 /// \relates double2
 /// \brief Returns the squared distance between the two vectors.
-inline double distancesqr( const double2& lhs, const double2& rhs );
+inline double distancesqr( const double2& lhs, const double2& rhs )
+{
+	return lengthsqr( lhs - rhs );
+}
 
 /// \relates double2
 /// \brief Returns the distance between the two vectors.
-inline double distance( const double2& lhs, const double2& rhs );
+inline double distance( const double2& lhs, const double2& rhs )
+{
+	return length( lhs - rhs );
+}
 
 
 // double3
 /// \relates double3
 /// \brief Returns a copy of the double3 with each component clamped between the range 0 and 1.
-inline double3 saturate( const double3& x );
+inline double3 saturate( const double3& x )
+{
+	return double3(
+		clamp( x[0], 0.0, 1.0 ),
+		clamp( x[1], 0.0, 1.0 ),
+		clamp( x[2], 0.0, 1.0 )
+	);
+}
 
 /// \relates double3
 /// \brief Returns a linearly interpolated double3 between types "a" and "b".
-inline double3 lerp( const double3& a, const double3& b, const double t );
+inline double3 lerp( const double3& a, const double3& b, const double t )
+{
+	return double3(
+		lerp( a[0], b[0], t ),
+		lerp( a[1], b[1], t ),
+		lerp( a[2], b[2], t )
+	);
+}
 
-inline double3 step( const double3& x, const double3& y );
+/// \relates double3
+/// \brief Returns 1 if y is greater than x, otherwise returns 0.
+inline double3 step( const double3& x, const double3& y )
+{
+	return double3(
+		step( x[0], y[0] ),
+		step( x[1], y[1] ),
+		step( x[2], y[2] )
+	);
+}
 
 /// \relates double3
 /// \brief Performs a sigmoid-like interpolation and clamp.
-inline double3 smoothstep( const double3& low, const double3& high, const double3& x );
+inline double3 smoothstep( const double3& low, const double3& high, const double3& x )
+{
+	return double3(
+		smoothstep( low[0], high[0], x[0] ),
+		smoothstep( low[1], high[1], x[1] ),
+		smoothstep( low[2], high[2], x[2] )
+	);
+}
 
 /// \relates double3
 /// \brief Performs a 'smoother' version of smoothstep, as design by Ken Perlin.
 /// https://en.wikipedia.org/wiki/Smoothstep#Variations
-inline double3 smootherstep( const double3& low, const double3& high, const double3& x );
+inline double3 smootherstep( const double3& low, const double3& high, const double3& x )
+{
+	return double3(
+		smootherstep( low[0], high[0], x[0] ),
+		smootherstep( low[1], high[1], x[1] ),
+		smootherstep( low[2], high[2], x[2] )
+	);
+}
 
 /// \relates double3
 /// \brief Returns the magnitude of the vector squared.
-inline double lengthsqr( const double3& vec );
+inline double lengthsqr( const double3& vec )
+{
+	return ( vec.x * vec.x ) + ( vec.y * vec.y ) + ( vec.z * vec.z );
+}
 
 /// \relates double3
 /// \brief Returns the magnitude of the vector.
-inline double length( const double3& vec );
+inline double length( const double3& vec )
+{
+	return sqrt( lengthsqr( vec ) );
+}
 
 /// \relates double3
 /// \brief Normalizes the vector.
-inline void normalize( double3& vec );
+inline void normalize( double3& vec )
+{
+	double invlen = 1.0 / length( vec );
+	vec *= invlen;
+}
 
 /// \relates double3
 /// \brief Returns a normalized copy of the vector.
-inline double3 normalized( const double3& vec );
+inline double3 normalized( const double3& vec )
+{
+	double invlen = 1.0 / length( vec );
+	return (double3)( vec * invlen );
+}
 
 /// \relates double3
 /// \brief Returns the dot product of the two vectors.
-inline double dot( const double3& lhs, const double3& rhs );
+inline double dot( const double3& lhs, const double3& rhs )
+{
+	return ( lhs.x * rhs.x ) + ( lhs.y * rhs.y ) + ( lhs.z * rhs.z );
+}
 
 /// \relates double3
 /// \brief Returns a vector perpendicular (normal) to the two vectors.
-inline double3 cross( const double3& lhs, const double3& rhs );
+inline double3 cross( const double3& lhs, const double3& rhs )
+{
+	return double3(
+		( lhs.y * rhs.z ) - ( lhs.z * rhs.y ),
+		( lhs.z * rhs.x ) - ( lhs.x * rhs.z ),
+		( lhs.x * rhs.y ) - ( lhs.y * rhs.x )
+	);
+}
 
 /// \relates double3
 /// \brief Returns the angle in degrees between the two vectors.
-inline double angle( const double3& lhs, const double3& rhs );
+inline double angle( const double3& lhs, const double3& rhs )
+{
+	return degrees( acos( dot( normalized( lhs ), normalized( rhs ) ) ) );
+}
 
 /// \relates double3
 /// \brief Returns the squared distance between the two vectors.
-inline double distancesqr( const double3& lhs, const double3& rhs );
+inline double distancesqr( const double3& lhs, const double3& rhs )
+{
+	return lengthsqr( lhs - rhs );
+}
 
 /// \relates double3
 /// \brief Returns the distance between the two vectors.
-inline double distance( const double3& lhs, const double3& rhs );
+inline double distance( const double3& lhs, const double3& rhs )
+{
+	return length( lhs - rhs );
+}
 
 
 // double4
 /// \relates double4
 /// \brief Returns a copy of the double4 with each component clamped between the range 0 and 1.
-inline double4 saturate( const double4& x );
+inline double4 saturate( const double4& x )
+{
+	return double4(
+		clamp( x[0], 0.0, 1.0 ),
+		clamp( x[1], 0.0, 1.0 ),
+		clamp( x[2], 0.0, 1.0 ),
+		clamp( x[3], 0.0, 1.0 )
+	);
+}
 
 /// \relates double4
 /// \brief Returns a linearly interpolated double4 between types "a" and "b".
-inline double4 lerp( const double4& a, const double4& b, const double t );
+inline double4 lerp( const double4& a, const double4& b, const double t )
+{
+	return double4(
+		lerp( a[0], b[0], t ),
+		lerp( a[1], b[1], t ),
+		lerp( a[2], b[2], t ),
+		lerp( a[3], b[3], t )
+	);
+}
 
-inline double4 step( const double4& x, const double4& y );
+/// \relates double4
+/// \brief Returns 1 if y is greater than x, otherwise returns 0.
+inline double4 step( const double4& x, const double4& y )
+{
+	return double4(
+		step( x[0], y[0] ),
+		step( x[1], y[1] ),
+		step( x[2], y[2] ),
+		step( x[3], y[3] )
+	);
+}
 
 /// \relates double4
 /// \brief Performs a sigmoid-like interpolation and clamp.
-inline double4 smoothstep( const double4& low, const double4& high, const double4& x );
+inline double4 smoothstep( const double4& low, const double4& high, const double4& x )
+{
+	return double4(
+		smoothstep( low[0], high[0], x[0] ),
+		smoothstep( low[1], high[1], x[1] ),
+		smoothstep( low[2], high[2], x[2] ),
+		smoothstep( low[3], high[3], x[3] )
+	);
+}
 
 /// \relates double4
 /// \brief Performs a 'smoother' version of smoothstep, as design by Ken Perlin.
 /// https://en.wikipedia.org/wiki/Smoothstep#Variations
-inline double4 smootherstep( const double4& low, const double4& high, const double4& x );
+inline double4 smootherstep( const double4& low, const double4& high, const double4& x )
+{
+	return double4(
+		smootherstep( low[0], high[0], x[0] ),
+		smootherstep( low[1], high[1], x[1] ),
+		smootherstep( low[2], high[2], x[2] ),
+		smootherstep( low[3], high[3], x[3] )
+	);
+}
 
 /// \relates double4
 /// \brief Returns the magnitude of the vector squared.
-inline double lengthsqr( const double4& vec );
+inline double lengthsqr( const double4& vec )
+{
+	return ( vec.x * vec.x ) + ( vec.y * vec.y ) + ( vec.z * vec.z ) + ( vec.w * vec.w );
+}
 
 /// \relates double4
 /// \brief Returns the magnitude of the vector.
-inline double length( const double4& vec );
+inline double length( const double4& vec )
+{
+	return sqrt( lengthsqr( vec ) );
+}
 
 /// \relates double4
 /// \brief Normalizes the vector.
-inline void normalize( double4& vec );
+inline void normalize( double4& vec )
+{
+	double invlen = 1.0 / length( vec );
+	vec *= invlen;
+}
 
 /// \relates double4
 /// \brief Returns a normalized copy of the vector.
-inline double4 normalized( const double4& vec );
+inline double4 normalized( const double4& vec )
+{
+	double invlen = 1.0 / length( vec );
+	return (double4)( vec * invlen );
+}
 
 /// \relates double4
 /// \brief Returns the dot product of the two vectors.
-inline double dot( const double4& lhs, const double4& rhs );
+inline double dot( const double4& lhs, const double4& rhs )
+{
+	return ( lhs.x * rhs.x ) + ( lhs.y * rhs.y ) + ( lhs.z * rhs.z ) + ( lhs.w * rhs.w );
+}
 
 /// \relates double4
 /// \brief Returns a vector perpendicular (normal) to the two vectors.
-inline double4 cross( const double4& lhs, const double4& rhs );
+inline double4 cross( const double4& lhs, const double4& rhs )
+{
+	return double4(
+		( lhs.y * rhs.z ) - ( lhs.z * rhs.y ),
+		( lhs.z * rhs.x ) - ( lhs.x * rhs.z ),
+		( lhs.x * rhs.y ) - ( lhs.y * rhs.x ),
+		0.0
+	);
+}
 
 /// \relates double4
 /// \brief Returns the angle in degrees between the two vectors.
-inline double angle( const double4& lhs, const double4& rhs );
+inline double angle( const double4& lhs, const double4& rhs )
+{
+	return degrees( acos( dot( normalized( lhs ), normalized( rhs ) ) ) );
+}
 
 
-#include "hlml_functions_vector.inl"

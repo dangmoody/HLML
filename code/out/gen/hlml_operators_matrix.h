@@ -84,5045 +84,12315 @@ SOFTWARE.
 #include "double4x3.h"
 #include "double4x4.h"
 
+#include "hlml_functions_vector.h"
+
+int2x2 inverse( const int2x2& mat );
+int3x3 inverse( const int3x3& mat );
+int4x4 inverse( const int4x4& mat );
+
+uint2x2 inverse( const uint2x2& mat );
+uint3x3 inverse( const uint3x3& mat );
+uint4x4 inverse( const uint4x4& mat );
+
+float2x2 inverse( const float2x2& mat );
+float3x3 inverse( const float3x3& mat );
+float4x4 inverse( const float4x4& mat );
+
+double2x2 inverse( const double2x2& mat );
+double3x3 inverse( const double3x3& mat );
+double4x4 inverse( const double4x4& mat );
 
 // int2x2
 /// \relates int2x2
 /// \brief Returns a copy of the int2x2 that has been component-wise added by the given scalar value.
-inline int2x2 operator+( const int2x2& lhs, const int32_t rhs );
+inline int2x2 operator+( const int2x2& lhs, const int32_t rhs )
+{
+	return int2x2(
+		lhs[0] + rhs,
+		lhs[1] + rhs
+	);
+}
 
 /// \relates int2x2
 /// \brief Adds each component by the given scalar value.
-inline int2x2 operator+=( int2x2& lhs, const int32_t rhs );
+inline int2x2 operator+=( int2x2& lhs, const int32_t rhs )
+{
+	return ( lhs = lhs + rhs );
+}
 
 /// \relates int2x2
 /// \brief Returns a copy of the int2x2 that has been component-wise added by the corresponding component of the right-hand int2x2.
-inline int2x2 operator+( const int2x2& lhs, const int2x2& rhs );
+inline int2x2 operator+( const int2x2& lhs, const int2x2& rhs )
+{
+	return int2x2(
+		lhs[0] + rhs[0],
+		lhs[1] + rhs[1]
+	);
+}
 
 /// \relates int2x2
 /// \brief Adds each component of the int2x2 by the corresponding component of the right-hand int2x2.
-inline int2x2 operator+=( int2x2& lhs, const int2x2& rhs );
+inline int2x2 operator+=( int2x2& lhs, const int2x2& rhs )
+{
+	return ( lhs = lhs + rhs );
+}
 
 /// \relates int2x2
 /// \brief Returns a copy of the int2x2 that has been component-wise subtracted by the given scalar value.
-inline int2x2 operator-( const int2x2& lhs, const int32_t rhs );
+inline int2x2 operator-( const int2x2& lhs, const int32_t rhs )
+{
+	return int2x2(
+		lhs[0] - rhs,
+		lhs[1] - rhs
+	);
+}
 
 /// \relates int2x2
 /// \brief Subtracts each component by the given scalar value.
-inline int2x2 operator-=( int2x2& lhs, const int32_t rhs );
+inline int2x2 operator-=( int2x2& lhs, const int32_t rhs )
+{
+	return ( lhs = lhs - rhs );
+}
 
 /// \relates int2x2
 /// \brief Returns a copy of the int2x2 that has been component-wise subtracted by the corresponding component of the right-hand int2x2.
-inline int2x2 operator-( const int2x2& lhs, const int2x2& rhs );
+inline int2x2 operator-( const int2x2& lhs, const int2x2& rhs )
+{
+	return int2x2(
+		lhs[0] - rhs[0],
+		lhs[1] - rhs[1]
+	);
+}
 
 /// \relates int2x2
 /// \brief Subtracts each component of the int2x2 by the corresponding component of the right-hand int2x2.
-inline int2x2 operator-=( int2x2& lhs, const int2x2& rhs );
+inline int2x2 operator-=( int2x2& lhs, const int2x2& rhs )
+{
+	return ( lhs = lhs - rhs );
+}
 
 /// \relates int2x2
 /// \brief Returns a copy of the int2x2 that has been component-wise multiplied by the given scalar value.
-inline int2x2 operator*( const int2x2& lhs, const int32_t rhs );
+inline int2x2 operator*( const int2x2& lhs, const int32_t rhs )
+{
+	return int2x2(
+		lhs[0] * rhs,
+		lhs[1] * rhs
+	);
+}
 
 /// \relates int2x2
 /// \brief Multiplies each component by the given scalar value.
-inline int2x2 operator*=( int2x2& lhs, const int32_t rhs );
+inline int2x2 operator*=( int2x2& lhs, const int32_t rhs )
+{
+	return ( lhs = lhs * rhs );
+}
 
 /// \relates int2x2
 /// \brief Returns a copy of the matrix where each row of the left-hand matrix has been dot-producted by the corresponding column of the right-hand matrix.
-inline int2x2 operator*( const int2x2& lhs, const int2x2& rhs );
+inline int2x2 operator*( const int2x2& lhs, const int2x2& rhs )
+{
+	int2 row0 = lhs[0];
+	int2 row1 = lhs[1];
 
-/// \relates int2x2
-/// \brief Dot products each row of the left-hand matrix with the corresponding column of the right-hand matrix.
-inline int2x2 operator*=( int2x2& lhs, const int2x2& rhs );
+	int2 col0 = { rhs[0].x, rhs[1].x };
+	int2 col1 = { rhs[0].y, rhs[1].y };
+
+	return int2x2(
+		row0.x * col0.x + row0.y * col0.y,
+		row0.x * col1.x + row0.y * col1.y,
+
+		row1.x * col0.x + row1.y * col0.y,
+		row1.x * col1.x + row1.y * col1.y
+	);
+}
+
+inline int2x2 operator*=( int2x2& lhs, const int2x2& rhs )
+{
+	return ( lhs = lhs * rhs );
+}
 
 /// \relates int2x2
 /// \brief Returns a copy of the int2x2 that has been component-wise divided by the given scalar value.
-inline int2x2 operator/( const int2x2& lhs, const int32_t rhs );
+inline int2x2 operator/( const int2x2& lhs, const int32_t rhs )
+{
+	return int2x2(
+		lhs[0] / rhs,
+		lhs[1] / rhs
+	);
+}
 
 /// \relates int2x2
 /// \brief Divides each component by the given scalar value.
-inline int2x2 operator/=( int2x2& lhs, const int32_t rhs );
+inline int2x2 operator/=( int2x2& lhs, const int32_t rhs )
+{
+	return ( lhs = lhs / rhs );
+}
 
 /// \relates int2x2
 /// \brief Returns a copy of the int2x2 that has been component-wise divided by the corresponding component of the right-hand int2x2.
-inline int2x2 operator/( const int2x2& lhs, const int2x2& rhs );
+inline int2x2 operator/( const int2x2& lhs, const int2x2& rhs )
+{
+	return int2x2(
+		lhs[0] / rhs[0],
+		lhs[1] / rhs[1]
+	);
+}
 
 /// \relates int2x2
 /// \brief Divides each component of the int2x2 by the corresponding component of the right-hand int2x2.
-inline int2x2 operator/=( int2x2& lhs, const int2x2& rhs );
+inline int2x2 operator/=( int2x2& lhs, const int2x2& rhs )
+{
+	return ( lhs = lhs / rhs );
+}
 
 /// \relates int2
 /// \brief Returns a copy of the int2 that has been component-wise multiplied by the corresponding component of the right-hand int2x2.
-inline int2 operator*( const int2x2& lhs, const int2& rhs );
+inline int2 operator*( const int2x2& lhs, const int2& rhs )
+{
+	return int2(
+		(int32_t) dot( lhs[0], rhs ),
+		(int32_t) dot( lhs[1], rhs )
+	);
+}
 
 /// \relates int2
 /// \brief Multiplies each component of the int2 by the corresponding component of the right-hand int2x2.
-inline int2 operator*=( int2& lhs, const int2x2& rhs );
+inline int2 operator*=( int2& lhs, const int2x2& rhs )
+{
+	return ( lhs = rhs * lhs );
+}
 
+// prefix
 /// \relates int2x2
 /// \brief Prefix increment operator.  Adds one to each component of the given int2x2 before evaluation.
-inline int2x2& operator++( int2x2& lhs );
+inline int2x2& operator++( int2x2& lhs )
+{
+	++lhs[0];
+	++lhs[1];
+	return lhs;
+}
 
+// postfix
 /// \relates int2x2
 /// \brief Postfix increment operator.  Adds one to each component of the given int2x2 after evaluation.
-inline int2x2& operator++( int2x2& lhs, const int );
+inline int2x2& operator++( int2x2& lhs, const int )
+{
+	lhs[0]++;
+	lhs[1]++;
+	return lhs;
+}
 
+// prefix
 /// \relates int2x2
 /// \brief Prefix decrement operator.  Subtracts one from each component of the given int2x2 before evaluation.
-inline int2x2& operator--( int2x2& lhs );
+inline int2x2& operator--( int2x2& lhs )
+{
+	--lhs[0];
+	--lhs[1];
+	return lhs;
+}
 
+// postfix
 /// \relates int2x2
 /// \brief Postfix decrement operator.  Subtracts one from each component of the given int2x2 after evaluation.
-inline int2x2& operator--( int2x2& lhs, const int );
+inline int2x2& operator--( int2x2& lhs, const int )
+{
+	lhs[0]--;
+	lhs[1]--;
+	return lhs;
+}
 
 /// \relates int2x2
 /// \brief Returns a bool2x2 where each component is true if the component of the left-hand type is less than the corresponding right-hand type component.
-inline bool2x2 operator<( const int2x2& lhs, const int2x2& rhs );
+inline bool2x2 operator<( const int2x2& lhs, const int2x2& rhs )
+{
+	return bool2x2(
+		lhs[0] < rhs[0],
+		lhs[1] < rhs[1]
+	);
+}
 
 /// \relates int2x2
 /// \brief Returns a bool2x2 where each component is true if the component of the left-hand type is less than or equal to the corresponding right-hand type component.
-inline bool2x2 operator<=( const int2x2& lhs, const int2x2& rhs );
+inline bool2x2 operator<=( const int2x2& lhs, const int2x2& rhs )
+{
+	return bool2x2(
+		lhs[0] <= rhs[0],
+		lhs[1] <= rhs[1]
+	);
+}
 
 /// \relates int2x2
 /// \brief Returns a bool2x2 where each component is true if the component of the left-hand type is greater than the corresponding right-hand type component.
-inline bool2x2 operator>( const int2x2& lhs, const int2x2& rhs );
+inline bool2x2 operator>( const int2x2& lhs, const int2x2& rhs )
+{
+	return bool2x2(
+		lhs[0] > rhs[0],
+		lhs[1] > rhs[1]
+	);
+}
 
 /// \relates int2x2
 /// \brief Returns a bool2x2 where each component is true if the component of the left-hand type is greater than or equal to the corresponding right-hand type component.
-inline bool2x2 operator>=( const int2x2& lhs, const int2x2& rhs );
+inline bool2x2 operator>=( const int2x2& lhs, const int2x2& rhs )
+{
+	return bool2x2(
+		lhs[0] >= rhs[0],
+		lhs[1] >= rhs[1]
+	);
+}
 
 /// \relates int2x2
 /// \brief Returns a copy of the int2x2 where each component has been bitwise AND'd against the given scalar value.
-inline int2x2 operator&( const int2x2& lhs, const int32_t& rhs );
+inline int2x2 operator&( const int2x2& lhs, const int32_t& rhs )
+{
+	return int2x2(
+		lhs[0] & rhs,
+		lhs[1] & rhs
+	);
+}
 
 /// \relates int2x2
 /// \brief Performs a bitwise AND on the given left-hand int2x2 against the given scalar value.
-inline int2x2 operator&=( int2x2& lhs, const int32_t& rhs );
+inline int2x2 operator&=( int2x2& lhs, const int32_t& rhs )
+{
+	return ( lhs = lhs & rhs );
+}
 
 /// \relates int2x2
 /// \brief Returns a copy of the int2x2 where each component of the left-hand int2x2 has been bitwise AND'd against the corresponding component of the right-hand side int2x2.
-inline int2x2 operator&( const int2x2& lhs, const int2x2& rhs );
+inline int2x2 operator&( const int2x2& lhs, const int2x2& rhs )
+{
+	return int2x2(
+		lhs[0] & rhs[0],
+		lhs[1] & rhs[1]
+	);
+}
 
 /// \relates int2x2
 /// \brief Performs a bitwise AND on the given left-hand int2x2 against the corresponding component of the given right-hand int2x2.
-inline int2x2 operator&=( int2x2& lhs, const int2x2& rhs );
+inline int2x2 operator&=( int2x2& lhs, const int2x2& rhs )
+{
+	return ( lhs = lhs & rhs );
+}
 
 /// \relates int2x2
 /// \brief Returns a copy of the int2x2 where each component has been bitwise OR'd against the given scalar value.
-inline int2x2 operator|( const int2x2& lhs, const int32_t& rhs );
+inline int2x2 operator|( const int2x2& lhs, const int32_t& rhs )
+{
+	return int2x2(
+		lhs[0] | rhs,
+		lhs[1] | rhs
+	);
+}
 
 /// \relates int2x2
 /// \brief Performs a bitwise OR on the given left-hand int2x2 against the given scalar value.
-inline int2x2 operator|=( int2x2& lhs, const int32_t& rhs );
+inline int2x2 operator|=( int2x2& lhs, const int32_t& rhs )
+{
+	return ( lhs = lhs | rhs );
+}
 
 /// \relates int2x2
 /// \brief Returns a copy of the int2x2 where each component of the left-hand int2x2 has been bitwise OR'd against the corresponding component of the right-hand side int2x2.
-inline int2x2 operator|( const int2x2& lhs, const int2x2& rhs );
+inline int2x2 operator|( const int2x2& lhs, const int2x2& rhs )
+{
+	return int2x2(
+		lhs[0] | rhs[0],
+		lhs[1] | rhs[1]
+	);
+}
 
 /// \relates int2x2
 /// \brief Performs a bitwise OR on the given left-hand int2x2 against the corresponding component of the given right-hand int2x2.
-inline int2x2 operator|=( int2x2& lhs, const int2x2& rhs );
+inline int2x2 operator|=( int2x2& lhs, const int2x2& rhs )
+{
+	return ( lhs = lhs | rhs );
+}
 
 /// \relates int2x2
 /// \brief Returns a copy of the int2x2 where each component has been bitwise XOR'd against the given scalar value.
-inline int2x2 operator^( const int2x2& lhs, const int32_t& rhs );
+inline int2x2 operator^( const int2x2& lhs, const int32_t& rhs )
+{
+	return int2x2(
+		lhs[0] ^ rhs,
+		lhs[1] ^ rhs
+	);
+}
 
 /// \relates int2x2
 /// \brief Performs a bitwise XOR on the given left-hand int2x2 against the given scalar value.
-inline int2x2 operator^=( int2x2& lhs, const int32_t& rhs );
+inline int2x2 operator^=( int2x2& lhs, const int32_t& rhs )
+{
+	return ( lhs = lhs ^ rhs );
+}
 
 /// \relates int2x2
 /// \brief Returns a copy of the int2x2 where each component of the left-hand int2x2 has been bitwise XOR'd against the corresponding component of the right-hand side int2x2.
-inline int2x2 operator^( const int2x2& lhs, const int2x2& rhs );
+inline int2x2 operator^( const int2x2& lhs, const int2x2& rhs )
+{
+	return int2x2(
+		lhs[0] ^ rhs[0],
+		lhs[1] ^ rhs[1]
+	);
+}
 
 /// \relates int2x2
 /// \brief Performs a bitwise XOR on the given left-hand int2x2 against the corresponding component of the given right-hand int2x2.
-inline int2x2 operator^=( int2x2& lhs, const int2x2& rhs );
+inline int2x2 operator^=( int2x2& lhs, const int2x2& rhs )
+{
+	return ( lhs = lhs ^ rhs );
+}
 
 /// \relates int2x2
 /// \brief Returns a copy of the int2x2 where each component has been bitwise left-shifted by the given scalar value.
-inline int2x2 operator<<( const int2x2& lhs, const int32_t& rhs );
+inline int2x2 operator<<( const int2x2& lhs, const int32_t& rhs )
+{
+	return int2x2(
+		lhs[0] << rhs,
+		lhs[1] << rhs
+	);
+}
 
 /// \relates int2x2
 /// \brief Performs a left bitshift on the given left-hand int2x2 by the given scalar value.
-inline int2x2 operator<<=( int2x2& lhs, const int32_t& rhs );
+inline int2x2 operator<<=( int2x2& lhs, const int32_t& rhs )
+{
+	return ( lhs = lhs << rhs );
+}
 
 /// \relates int2x2
 /// \brief Returns a copy of the int2x2 where each component of the left-hand int2x2 has been bitwise left-shifted by the corresponding component of the right-hand side int2x2.
-inline int2x2 operator<<( const int2x2& lhs, const int2x2& rhs );
+inline int2x2 operator<<( const int2x2& lhs, const int2x2& rhs )
+{
+	return int2x2(
+		lhs[0] << rhs[0],
+		lhs[1] << rhs[1]
+	);
+}
 
 /// \relates int2x2
 /// \brief Performs a left bitshift on the given left-hand int2x2 by the corresponding component of the given right-hand int2x2.
-inline int2x2 operator<<=( int2x2& lhs, const int2x2& rhs );
+inline int2x2 operator<<=( int2x2& lhs, const int2x2& rhs )
+{
+	return ( lhs = lhs << rhs );
+}
 
 /// \relates int2x2
 /// \brief Returns a copy of the int2x2 where each component has been bitwise right-shifted by the given scalar value.
-inline int2x2 operator>>( const int2x2& lhs, const int32_t& rhs );
+inline int2x2 operator>>( const int2x2& lhs, const int32_t& rhs )
+{
+	return int2x2(
+		lhs[0] >> rhs,
+		lhs[1] >> rhs
+	);
+}
 
 /// \relates int2x2
 /// \brief Performs a right bitshift on the given left-hand int2x2 by the given scalar value.
-inline int2x2 operator>>=( int2x2& lhs, const int32_t& rhs );
+inline int2x2 operator>>=( int2x2& lhs, const int32_t& rhs )
+{
+	return ( lhs = lhs >> rhs );
+}
 
 /// \relates int2x2
 /// \brief Returns a copy of the int2x2 where each component of the left-hand int2x2 has been bitwise right-shifted by the corresponding component of the right-hand side int2x2.
-inline int2x2 operator>>( const int2x2& lhs, const int2x2& rhs );
+inline int2x2 operator>>( const int2x2& lhs, const int2x2& rhs )
+{
+	return int2x2(
+		lhs[0] >> rhs[0],
+		lhs[1] >> rhs[1]
+	);
+}
 
 /// \relates int2x2
 /// \brief Performs a right bitshift on the given left-hand int2x2 by the corresponding component of the given right-hand int2x2.
-inline int2x2 operator>>=( int2x2& lhs, const int2x2& rhs );
+inline int2x2 operator>>=( int2x2& lhs, const int2x2& rhs )
+{
+	return ( lhs = lhs >> rhs );
+}
 
 /// \relates int2x2
 /// \brief Performs a unary bitwise operation on all components of the given int2x2.
-inline int2x2 operator~( const int2x2& lhs );
+inline int2x2 operator~( const int2x2& lhs )
+{
+	return int2x2(
+		~lhs[0],
+		~lhs[1]
+	);
+}
 
 
 // int2x3
 /// \relates int2x3
 /// \brief Returns a copy of the int2x3 that has been component-wise added by the given scalar value.
-inline int2x3 operator+( const int2x3& lhs, const int32_t rhs );
+inline int2x3 operator+( const int2x3& lhs, const int32_t rhs )
+{
+	return int2x3(
+		lhs[0] + rhs,
+		lhs[1] + rhs
+	);
+}
 
 /// \relates int2x3
 /// \brief Adds each component by the given scalar value.
-inline int2x3 operator+=( int2x3& lhs, const int32_t rhs );
+inline int2x3 operator+=( int2x3& lhs, const int32_t rhs )
+{
+	return ( lhs = lhs + rhs );
+}
 
 /// \relates int2x3
 /// \brief Returns a copy of the int2x3 that has been component-wise added by the corresponding component of the right-hand int2x3.
-inline int2x3 operator+( const int2x3& lhs, const int2x3& rhs );
+inline int2x3 operator+( const int2x3& lhs, const int2x3& rhs )
+{
+	return int2x3(
+		lhs[0] + rhs[0],
+		lhs[1] + rhs[1]
+	);
+}
 
 /// \relates int2x3
 /// \brief Adds each component of the int2x3 by the corresponding component of the right-hand int2x3.
-inline int2x3 operator+=( int2x3& lhs, const int2x3& rhs );
+inline int2x3 operator+=( int2x3& lhs, const int2x3& rhs )
+{
+	return ( lhs = lhs + rhs );
+}
 
 /// \relates int2x3
 /// \brief Returns a copy of the int2x3 that has been component-wise subtracted by the given scalar value.
-inline int2x3 operator-( const int2x3& lhs, const int32_t rhs );
+inline int2x3 operator-( const int2x3& lhs, const int32_t rhs )
+{
+	return int2x3(
+		lhs[0] - rhs,
+		lhs[1] - rhs
+	);
+}
 
 /// \relates int2x3
 /// \brief Subtracts each component by the given scalar value.
-inline int2x3 operator-=( int2x3& lhs, const int32_t rhs );
+inline int2x3 operator-=( int2x3& lhs, const int32_t rhs )
+{
+	return ( lhs = lhs - rhs );
+}
 
 /// \relates int2x3
 /// \brief Returns a copy of the int2x3 that has been component-wise subtracted by the corresponding component of the right-hand int2x3.
-inline int2x3 operator-( const int2x3& lhs, const int2x3& rhs );
+inline int2x3 operator-( const int2x3& lhs, const int2x3& rhs )
+{
+	return int2x3(
+		lhs[0] - rhs[0],
+		lhs[1] - rhs[1]
+	);
+}
 
 /// \relates int2x3
 /// \brief Subtracts each component of the int2x3 by the corresponding component of the right-hand int2x3.
-inline int2x3 operator-=( int2x3& lhs, const int2x3& rhs );
+inline int2x3 operator-=( int2x3& lhs, const int2x3& rhs )
+{
+	return ( lhs = lhs - rhs );
+}
 
 /// \relates int2x3
 /// \brief Returns a copy of the int2x3 that has been component-wise multiplied by the given scalar value.
-inline int2x3 operator*( const int2x3& lhs, const int32_t rhs );
+inline int2x3 operator*( const int2x3& lhs, const int32_t rhs )
+{
+	return int2x3(
+		lhs[0] * rhs,
+		lhs[1] * rhs
+	);
+}
 
 /// \relates int2x3
 /// \brief Multiplies each component by the given scalar value.
-inline int2x3 operator*=( int2x3& lhs, const int32_t rhs );
+inline int2x3 operator*=( int2x3& lhs, const int32_t rhs )
+{
+	return ( lhs = lhs * rhs );
+}
 
 /// \relates int2x3
 /// \brief Returns a copy of the matrix where each row of the left-hand matrix has been dot-producted by the corresponding column of the right-hand matrix.
-inline int2x2 operator*( const int2x3& lhs, const int3x2& rhs );
+inline int2x2 operator*( const int2x3& lhs, const int3x2& rhs )
+{
+	int3 row0 = lhs[0];
+	int3 row1 = lhs[1];
 
-/// \relates int2x3
-/// \brief Dot products each row of the left-hand matrix with the corresponding column of the right-hand matrix.
-inline int2x2 operator*=( int2x3& lhs, const int3x2& rhs );
+	int3 col0 = { rhs[0].x, rhs[1].x, rhs[2].x };
+	int3 col1 = { rhs[0].y, rhs[1].y, rhs[2].y };
+
+	return int2x2(
+		row0.x * col0.x + row0.y * col0.y + row0.z * col0.z,
+		row0.x * col1.x + row0.y * col1.y + row0.z * col1.z,
+
+		row1.x * col0.x + row1.y * col0.y + row1.z * col0.z,
+		row1.x * col1.x + row1.y * col1.y + row1.z * col1.z
+	);
+}
 
 /// \relates int2x3
 /// \brief Returns a copy of the int2x3 that has been component-wise divided by the given scalar value.
-inline int2x3 operator/( const int2x3& lhs, const int32_t rhs );
+inline int2x3 operator/( const int2x3& lhs, const int32_t rhs )
+{
+	return int2x3(
+		lhs[0] / rhs,
+		lhs[1] / rhs
+	);
+}
 
 /// \relates int2x3
 /// \brief Divides each component by the given scalar value.
-inline int2x3 operator/=( int2x3& lhs, const int32_t rhs );
+inline int2x3 operator/=( int2x3& lhs, const int32_t rhs )
+{
+	return ( lhs = lhs / rhs );
+}
 
 /// \relates int2x3
 /// \brief Returns a copy of the int2x3 that has been component-wise divided by the corresponding component of the right-hand int2x3.
-inline int2x3 operator/( const int2x3& lhs, const int2x3& rhs );
+inline int2x3 operator/( const int2x3& lhs, const int2x3& rhs )
+{
+	return int2x3(
+		lhs[0] / rhs[0],
+		lhs[1] / rhs[1]
+	);
+}
 
+// prefix
 /// \relates int2x3
 /// \brief Prefix increment operator.  Adds one to each component of the given int2x3 before evaluation.
-inline int2x3& operator++( int2x3& lhs );
+inline int2x3& operator++( int2x3& lhs )
+{
+	++lhs[0];
+	++lhs[1];
+	return lhs;
+}
 
+// postfix
 /// \relates int2x3
 /// \brief Postfix increment operator.  Adds one to each component of the given int2x3 after evaluation.
-inline int2x3& operator++( int2x3& lhs, const int );
+inline int2x3& operator++( int2x3& lhs, const int )
+{
+	lhs[0]++;
+	lhs[1]++;
+	return lhs;
+}
 
+// prefix
 /// \relates int2x3
 /// \brief Prefix decrement operator.  Subtracts one from each component of the given int2x3 before evaluation.
-inline int2x3& operator--( int2x3& lhs );
+inline int2x3& operator--( int2x3& lhs )
+{
+	--lhs[0];
+	--lhs[1];
+	return lhs;
+}
 
+// postfix
 /// \relates int2x3
 /// \brief Postfix decrement operator.  Subtracts one from each component of the given int2x3 after evaluation.
-inline int2x3& operator--( int2x3& lhs, const int );
+inline int2x3& operator--( int2x3& lhs, const int )
+{
+	lhs[0]--;
+	lhs[1]--;
+	return lhs;
+}
 
 /// \relates int2x3
 /// \brief Returns a bool2x3 where each component is true if the component of the left-hand type is less than the corresponding right-hand type component.
-inline bool2x3 operator<( const int2x3& lhs, const int2x3& rhs );
+inline bool2x3 operator<( const int2x3& lhs, const int2x3& rhs )
+{
+	return bool2x3(
+		lhs[0] < rhs[0],
+		lhs[1] < rhs[1]
+	);
+}
 
 /// \relates int2x3
 /// \brief Returns a bool2x3 where each component is true if the component of the left-hand type is less than or equal to the corresponding right-hand type component.
-inline bool2x3 operator<=( const int2x3& lhs, const int2x3& rhs );
+inline bool2x3 operator<=( const int2x3& lhs, const int2x3& rhs )
+{
+	return bool2x3(
+		lhs[0] <= rhs[0],
+		lhs[1] <= rhs[1]
+	);
+}
 
 /// \relates int2x3
 /// \brief Returns a bool2x3 where each component is true if the component of the left-hand type is greater than the corresponding right-hand type component.
-inline bool2x3 operator>( const int2x3& lhs, const int2x3& rhs );
+inline bool2x3 operator>( const int2x3& lhs, const int2x3& rhs )
+{
+	return bool2x3(
+		lhs[0] > rhs[0],
+		lhs[1] > rhs[1]
+	);
+}
 
 /// \relates int2x3
 /// \brief Returns a bool2x3 where each component is true if the component of the left-hand type is greater than or equal to the corresponding right-hand type component.
-inline bool2x3 operator>=( const int2x3& lhs, const int2x3& rhs );
+inline bool2x3 operator>=( const int2x3& lhs, const int2x3& rhs )
+{
+	return bool2x3(
+		lhs[0] >= rhs[0],
+		lhs[1] >= rhs[1]
+	);
+}
 
 /// \relates int2x3
 /// \brief Returns a copy of the int2x3 where each component has been bitwise AND'd against the given scalar value.
-inline int2x3 operator&( const int2x3& lhs, const int32_t& rhs );
+inline int2x3 operator&( const int2x3& lhs, const int32_t& rhs )
+{
+	return int2x3(
+		lhs[0] & rhs,
+		lhs[1] & rhs
+	);
+}
 
 /// \relates int2x3
 /// \brief Performs a bitwise AND on the given left-hand int2x3 against the given scalar value.
-inline int2x3 operator&=( int2x3& lhs, const int32_t& rhs );
+inline int2x3 operator&=( int2x3& lhs, const int32_t& rhs )
+{
+	return ( lhs = lhs & rhs );
+}
 
 /// \relates int2x3
 /// \brief Returns a copy of the int2x3 where each component of the left-hand int2x3 has been bitwise AND'd against the corresponding component of the right-hand side int2x3.
-inline int2x3 operator&( const int2x3& lhs, const int2x3& rhs );
+inline int2x3 operator&( const int2x3& lhs, const int2x3& rhs )
+{
+	return int2x3(
+		lhs[0] & rhs[0],
+		lhs[1] & rhs[1]
+	);
+}
 
 /// \relates int2x3
 /// \brief Performs a bitwise AND on the given left-hand int2x3 against the corresponding component of the given right-hand int2x3.
-inline int2x3 operator&=( int2x3& lhs, const int2x3& rhs );
+inline int2x3 operator&=( int2x3& lhs, const int2x3& rhs )
+{
+	return ( lhs = lhs & rhs );
+}
 
 /// \relates int2x3
 /// \brief Returns a copy of the int2x3 where each component has been bitwise OR'd against the given scalar value.
-inline int2x3 operator|( const int2x3& lhs, const int32_t& rhs );
+inline int2x3 operator|( const int2x3& lhs, const int32_t& rhs )
+{
+	return int2x3(
+		lhs[0] | rhs,
+		lhs[1] | rhs
+	);
+}
 
 /// \relates int2x3
 /// \brief Performs a bitwise OR on the given left-hand int2x3 against the given scalar value.
-inline int2x3 operator|=( int2x3& lhs, const int32_t& rhs );
+inline int2x3 operator|=( int2x3& lhs, const int32_t& rhs )
+{
+	return ( lhs = lhs | rhs );
+}
 
 /// \relates int2x3
 /// \brief Returns a copy of the int2x3 where each component of the left-hand int2x3 has been bitwise OR'd against the corresponding component of the right-hand side int2x3.
-inline int2x3 operator|( const int2x3& lhs, const int2x3& rhs );
+inline int2x3 operator|( const int2x3& lhs, const int2x3& rhs )
+{
+	return int2x3(
+		lhs[0] | rhs[0],
+		lhs[1] | rhs[1]
+	);
+}
 
 /// \relates int2x3
 /// \brief Performs a bitwise OR on the given left-hand int2x3 against the corresponding component of the given right-hand int2x3.
-inline int2x3 operator|=( int2x3& lhs, const int2x3& rhs );
+inline int2x3 operator|=( int2x3& lhs, const int2x3& rhs )
+{
+	return ( lhs = lhs | rhs );
+}
 
 /// \relates int2x3
 /// \brief Returns a copy of the int2x3 where each component has been bitwise XOR'd against the given scalar value.
-inline int2x3 operator^( const int2x3& lhs, const int32_t& rhs );
+inline int2x3 operator^( const int2x3& lhs, const int32_t& rhs )
+{
+	return int2x3(
+		lhs[0] ^ rhs,
+		lhs[1] ^ rhs
+	);
+}
 
 /// \relates int2x3
 /// \brief Performs a bitwise XOR on the given left-hand int2x3 against the given scalar value.
-inline int2x3 operator^=( int2x3& lhs, const int32_t& rhs );
+inline int2x3 operator^=( int2x3& lhs, const int32_t& rhs )
+{
+	return ( lhs = lhs ^ rhs );
+}
 
 /// \relates int2x3
 /// \brief Returns a copy of the int2x3 where each component of the left-hand int2x3 has been bitwise XOR'd against the corresponding component of the right-hand side int2x3.
-inline int2x3 operator^( const int2x3& lhs, const int2x3& rhs );
+inline int2x3 operator^( const int2x3& lhs, const int2x3& rhs )
+{
+	return int2x3(
+		lhs[0] ^ rhs[0],
+		lhs[1] ^ rhs[1]
+	);
+}
 
 /// \relates int2x3
 /// \brief Performs a bitwise XOR on the given left-hand int2x3 against the corresponding component of the given right-hand int2x3.
-inline int2x3 operator^=( int2x3& lhs, const int2x3& rhs );
+inline int2x3 operator^=( int2x3& lhs, const int2x3& rhs )
+{
+	return ( lhs = lhs ^ rhs );
+}
 
 /// \relates int2x3
 /// \brief Returns a copy of the int2x3 where each component has been bitwise left-shifted by the given scalar value.
-inline int2x3 operator<<( const int2x3& lhs, const int32_t& rhs );
+inline int2x3 operator<<( const int2x3& lhs, const int32_t& rhs )
+{
+	return int2x3(
+		lhs[0] << rhs,
+		lhs[1] << rhs
+	);
+}
 
 /// \relates int2x3
 /// \brief Performs a left bitshift on the given left-hand int2x3 by the given scalar value.
-inline int2x3 operator<<=( int2x3& lhs, const int32_t& rhs );
+inline int2x3 operator<<=( int2x3& lhs, const int32_t& rhs )
+{
+	return ( lhs = lhs << rhs );
+}
 
 /// \relates int2x3
 /// \brief Returns a copy of the int2x3 where each component of the left-hand int2x3 has been bitwise left-shifted by the corresponding component of the right-hand side int2x3.
-inline int2x3 operator<<( const int2x3& lhs, const int2x3& rhs );
+inline int2x3 operator<<( const int2x3& lhs, const int2x3& rhs )
+{
+	return int2x3(
+		lhs[0] << rhs[0],
+		lhs[1] << rhs[1]
+	);
+}
 
 /// \relates int2x3
 /// \brief Performs a left bitshift on the given left-hand int2x3 by the corresponding component of the given right-hand int2x3.
-inline int2x3 operator<<=( int2x3& lhs, const int2x3& rhs );
+inline int2x3 operator<<=( int2x3& lhs, const int2x3& rhs )
+{
+	return ( lhs = lhs << rhs );
+}
 
 /// \relates int2x3
 /// \brief Returns a copy of the int2x3 where each component has been bitwise right-shifted by the given scalar value.
-inline int2x3 operator>>( const int2x3& lhs, const int32_t& rhs );
+inline int2x3 operator>>( const int2x3& lhs, const int32_t& rhs )
+{
+	return int2x3(
+		lhs[0] >> rhs,
+		lhs[1] >> rhs
+	);
+}
 
 /// \relates int2x3
 /// \brief Performs a right bitshift on the given left-hand int2x3 by the given scalar value.
-inline int2x3 operator>>=( int2x3& lhs, const int32_t& rhs );
+inline int2x3 operator>>=( int2x3& lhs, const int32_t& rhs )
+{
+	return ( lhs = lhs >> rhs );
+}
 
 /// \relates int2x3
 /// \brief Returns a copy of the int2x3 where each component of the left-hand int2x3 has been bitwise right-shifted by the corresponding component of the right-hand side int2x3.
-inline int2x3 operator>>( const int2x3& lhs, const int2x3& rhs );
+inline int2x3 operator>>( const int2x3& lhs, const int2x3& rhs )
+{
+	return int2x3(
+		lhs[0] >> rhs[0],
+		lhs[1] >> rhs[1]
+	);
+}
 
 /// \relates int2x3
 /// \brief Performs a right bitshift on the given left-hand int2x3 by the corresponding component of the given right-hand int2x3.
-inline int2x3 operator>>=( int2x3& lhs, const int2x3& rhs );
+inline int2x3 operator>>=( int2x3& lhs, const int2x3& rhs )
+{
+	return ( lhs = lhs >> rhs );
+}
 
 /// \relates int2x3
 /// \brief Performs a unary bitwise operation on all components of the given int2x3.
-inline int2x3 operator~( const int2x3& lhs );
+inline int2x3 operator~( const int2x3& lhs )
+{
+	return int2x3(
+		~lhs[0],
+		~lhs[1]
+	);
+}
 
 
 // int2x4
 /// \relates int2x4
 /// \brief Returns a copy of the int2x4 that has been component-wise added by the given scalar value.
-inline int2x4 operator+( const int2x4& lhs, const int32_t rhs );
+inline int2x4 operator+( const int2x4& lhs, const int32_t rhs )
+{
+	return int2x4(
+		lhs[0] + rhs,
+		lhs[1] + rhs
+	);
+}
 
 /// \relates int2x4
 /// \brief Adds each component by the given scalar value.
-inline int2x4 operator+=( int2x4& lhs, const int32_t rhs );
+inline int2x4 operator+=( int2x4& lhs, const int32_t rhs )
+{
+	return ( lhs = lhs + rhs );
+}
 
 /// \relates int2x4
 /// \brief Returns a copy of the int2x4 that has been component-wise added by the corresponding component of the right-hand int2x4.
-inline int2x4 operator+( const int2x4& lhs, const int2x4& rhs );
+inline int2x4 operator+( const int2x4& lhs, const int2x4& rhs )
+{
+	return int2x4(
+		lhs[0] + rhs[0],
+		lhs[1] + rhs[1]
+	);
+}
 
 /// \relates int2x4
 /// \brief Adds each component of the int2x4 by the corresponding component of the right-hand int2x4.
-inline int2x4 operator+=( int2x4& lhs, const int2x4& rhs );
+inline int2x4 operator+=( int2x4& lhs, const int2x4& rhs )
+{
+	return ( lhs = lhs + rhs );
+}
 
 /// \relates int2x4
 /// \brief Returns a copy of the int2x4 that has been component-wise subtracted by the given scalar value.
-inline int2x4 operator-( const int2x4& lhs, const int32_t rhs );
+inline int2x4 operator-( const int2x4& lhs, const int32_t rhs )
+{
+	return int2x4(
+		lhs[0] - rhs,
+		lhs[1] - rhs
+	);
+}
 
 /// \relates int2x4
 /// \brief Subtracts each component by the given scalar value.
-inline int2x4 operator-=( int2x4& lhs, const int32_t rhs );
+inline int2x4 operator-=( int2x4& lhs, const int32_t rhs )
+{
+	return ( lhs = lhs - rhs );
+}
 
 /// \relates int2x4
 /// \brief Returns a copy of the int2x4 that has been component-wise subtracted by the corresponding component of the right-hand int2x4.
-inline int2x4 operator-( const int2x4& lhs, const int2x4& rhs );
+inline int2x4 operator-( const int2x4& lhs, const int2x4& rhs )
+{
+	return int2x4(
+		lhs[0] - rhs[0],
+		lhs[1] - rhs[1]
+	);
+}
 
 /// \relates int2x4
 /// \brief Subtracts each component of the int2x4 by the corresponding component of the right-hand int2x4.
-inline int2x4 operator-=( int2x4& lhs, const int2x4& rhs );
+inline int2x4 operator-=( int2x4& lhs, const int2x4& rhs )
+{
+	return ( lhs = lhs - rhs );
+}
 
 /// \relates int2x4
 /// \brief Returns a copy of the int2x4 that has been component-wise multiplied by the given scalar value.
-inline int2x4 operator*( const int2x4& lhs, const int32_t rhs );
+inline int2x4 operator*( const int2x4& lhs, const int32_t rhs )
+{
+	return int2x4(
+		lhs[0] * rhs,
+		lhs[1] * rhs
+	);
+}
 
 /// \relates int2x4
 /// \brief Multiplies each component by the given scalar value.
-inline int2x4 operator*=( int2x4& lhs, const int32_t rhs );
+inline int2x4 operator*=( int2x4& lhs, const int32_t rhs )
+{
+	return ( lhs = lhs * rhs );
+}
 
 /// \relates int2x4
 /// \brief Returns a copy of the matrix where each row of the left-hand matrix has been dot-producted by the corresponding column of the right-hand matrix.
-inline int2x2 operator*( const int2x4& lhs, const int4x2& rhs );
+inline int2x2 operator*( const int2x4& lhs, const int4x2& rhs )
+{
+	int4 row0 = lhs[0];
+	int4 row1 = lhs[1];
 
-/// \relates int2x4
-/// \brief Dot products each row of the left-hand matrix with the corresponding column of the right-hand matrix.
-inline int2x2 operator*=( int2x4& lhs, const int4x2& rhs );
+	int4 col0 = { rhs[0].x, rhs[1].x, rhs[2].x, rhs[3].x };
+	int4 col1 = { rhs[0].y, rhs[1].y, rhs[2].y, rhs[3].y };
+
+	return int2x2(
+		row0.x * col0.x + row0.y * col0.y + row0.z * col0.z + row0.w * col0.w,
+		row0.x * col1.x + row0.y * col1.y + row0.z * col1.z + row0.w * col1.w,
+
+		row1.x * col0.x + row1.y * col0.y + row1.z * col0.z + row1.w * col0.w,
+		row1.x * col1.x + row1.y * col1.y + row1.z * col1.z + row1.w * col1.w
+	);
+}
 
 /// \relates int2x4
 /// \brief Returns a copy of the int2x4 that has been component-wise divided by the given scalar value.
-inline int2x4 operator/( const int2x4& lhs, const int32_t rhs );
+inline int2x4 operator/( const int2x4& lhs, const int32_t rhs )
+{
+	return int2x4(
+		lhs[0] / rhs,
+		lhs[1] / rhs
+	);
+}
 
 /// \relates int2x4
 /// \brief Divides each component by the given scalar value.
-inline int2x4 operator/=( int2x4& lhs, const int32_t rhs );
+inline int2x4 operator/=( int2x4& lhs, const int32_t rhs )
+{
+	return ( lhs = lhs / rhs );
+}
 
 /// \relates int2x4
 /// \brief Returns a copy of the int2x4 that has been component-wise divided by the corresponding component of the right-hand int2x4.
-inline int2x4 operator/( const int2x4& lhs, const int2x4& rhs );
+inline int2x4 operator/( const int2x4& lhs, const int2x4& rhs )
+{
+	return int2x4(
+		lhs[0] / rhs[0],
+		lhs[1] / rhs[1]
+	);
+}
 
+// prefix
 /// \relates int2x4
 /// \brief Prefix increment operator.  Adds one to each component of the given int2x4 before evaluation.
-inline int2x4& operator++( int2x4& lhs );
+inline int2x4& operator++( int2x4& lhs )
+{
+	++lhs[0];
+	++lhs[1];
+	return lhs;
+}
 
+// postfix
 /// \relates int2x4
 /// \brief Postfix increment operator.  Adds one to each component of the given int2x4 after evaluation.
-inline int2x4& operator++( int2x4& lhs, const int );
+inline int2x4& operator++( int2x4& lhs, const int )
+{
+	lhs[0]++;
+	lhs[1]++;
+	return lhs;
+}
 
+// prefix
 /// \relates int2x4
 /// \brief Prefix decrement operator.  Subtracts one from each component of the given int2x4 before evaluation.
-inline int2x4& operator--( int2x4& lhs );
+inline int2x4& operator--( int2x4& lhs )
+{
+	--lhs[0];
+	--lhs[1];
+	return lhs;
+}
 
+// postfix
 /// \relates int2x4
 /// \brief Postfix decrement operator.  Subtracts one from each component of the given int2x4 after evaluation.
-inline int2x4& operator--( int2x4& lhs, const int );
+inline int2x4& operator--( int2x4& lhs, const int )
+{
+	lhs[0]--;
+	lhs[1]--;
+	return lhs;
+}
 
 /// \relates int2x4
 /// \brief Returns a bool2x4 where each component is true if the component of the left-hand type is less than the corresponding right-hand type component.
-inline bool2x4 operator<( const int2x4& lhs, const int2x4& rhs );
+inline bool2x4 operator<( const int2x4& lhs, const int2x4& rhs )
+{
+	return bool2x4(
+		lhs[0] < rhs[0],
+		lhs[1] < rhs[1]
+	);
+}
 
 /// \relates int2x4
 /// \brief Returns a bool2x4 where each component is true if the component of the left-hand type is less than or equal to the corresponding right-hand type component.
-inline bool2x4 operator<=( const int2x4& lhs, const int2x4& rhs );
+inline bool2x4 operator<=( const int2x4& lhs, const int2x4& rhs )
+{
+	return bool2x4(
+		lhs[0] <= rhs[0],
+		lhs[1] <= rhs[1]
+	);
+}
 
 /// \relates int2x4
 /// \brief Returns a bool2x4 where each component is true if the component of the left-hand type is greater than the corresponding right-hand type component.
-inline bool2x4 operator>( const int2x4& lhs, const int2x4& rhs );
+inline bool2x4 operator>( const int2x4& lhs, const int2x4& rhs )
+{
+	return bool2x4(
+		lhs[0] > rhs[0],
+		lhs[1] > rhs[1]
+	);
+}
 
 /// \relates int2x4
 /// \brief Returns a bool2x4 where each component is true if the component of the left-hand type is greater than or equal to the corresponding right-hand type component.
-inline bool2x4 operator>=( const int2x4& lhs, const int2x4& rhs );
+inline bool2x4 operator>=( const int2x4& lhs, const int2x4& rhs )
+{
+	return bool2x4(
+		lhs[0] >= rhs[0],
+		lhs[1] >= rhs[1]
+	);
+}
 
 /// \relates int2x4
 /// \brief Returns a copy of the int2x4 where each component has been bitwise AND'd against the given scalar value.
-inline int2x4 operator&( const int2x4& lhs, const int32_t& rhs );
+inline int2x4 operator&( const int2x4& lhs, const int32_t& rhs )
+{
+	return int2x4(
+		lhs[0] & rhs,
+		lhs[1] & rhs
+	);
+}
 
 /// \relates int2x4
 /// \brief Performs a bitwise AND on the given left-hand int2x4 against the given scalar value.
-inline int2x4 operator&=( int2x4& lhs, const int32_t& rhs );
+inline int2x4 operator&=( int2x4& lhs, const int32_t& rhs )
+{
+	return ( lhs = lhs & rhs );
+}
 
 /// \relates int2x4
 /// \brief Returns a copy of the int2x4 where each component of the left-hand int2x4 has been bitwise AND'd against the corresponding component of the right-hand side int2x4.
-inline int2x4 operator&( const int2x4& lhs, const int2x4& rhs );
+inline int2x4 operator&( const int2x4& lhs, const int2x4& rhs )
+{
+	return int2x4(
+		lhs[0] & rhs[0],
+		lhs[1] & rhs[1]
+	);
+}
 
 /// \relates int2x4
 /// \brief Performs a bitwise AND on the given left-hand int2x4 against the corresponding component of the given right-hand int2x4.
-inline int2x4 operator&=( int2x4& lhs, const int2x4& rhs );
+inline int2x4 operator&=( int2x4& lhs, const int2x4& rhs )
+{
+	return ( lhs = lhs & rhs );
+}
 
 /// \relates int2x4
 /// \brief Returns a copy of the int2x4 where each component has been bitwise OR'd against the given scalar value.
-inline int2x4 operator|( const int2x4& lhs, const int32_t& rhs );
+inline int2x4 operator|( const int2x4& lhs, const int32_t& rhs )
+{
+	return int2x4(
+		lhs[0] | rhs,
+		lhs[1] | rhs
+	);
+}
 
 /// \relates int2x4
 /// \brief Performs a bitwise OR on the given left-hand int2x4 against the given scalar value.
-inline int2x4 operator|=( int2x4& lhs, const int32_t& rhs );
+inline int2x4 operator|=( int2x4& lhs, const int32_t& rhs )
+{
+	return ( lhs = lhs | rhs );
+}
 
 /// \relates int2x4
 /// \brief Returns a copy of the int2x4 where each component of the left-hand int2x4 has been bitwise OR'd against the corresponding component of the right-hand side int2x4.
-inline int2x4 operator|( const int2x4& lhs, const int2x4& rhs );
+inline int2x4 operator|( const int2x4& lhs, const int2x4& rhs )
+{
+	return int2x4(
+		lhs[0] | rhs[0],
+		lhs[1] | rhs[1]
+	);
+}
 
 /// \relates int2x4
 /// \brief Performs a bitwise OR on the given left-hand int2x4 against the corresponding component of the given right-hand int2x4.
-inline int2x4 operator|=( int2x4& lhs, const int2x4& rhs );
+inline int2x4 operator|=( int2x4& lhs, const int2x4& rhs )
+{
+	return ( lhs = lhs | rhs );
+}
 
 /// \relates int2x4
 /// \brief Returns a copy of the int2x4 where each component has been bitwise XOR'd against the given scalar value.
-inline int2x4 operator^( const int2x4& lhs, const int32_t& rhs );
+inline int2x4 operator^( const int2x4& lhs, const int32_t& rhs )
+{
+	return int2x4(
+		lhs[0] ^ rhs,
+		lhs[1] ^ rhs
+	);
+}
 
 /// \relates int2x4
 /// \brief Performs a bitwise XOR on the given left-hand int2x4 against the given scalar value.
-inline int2x4 operator^=( int2x4& lhs, const int32_t& rhs );
+inline int2x4 operator^=( int2x4& lhs, const int32_t& rhs )
+{
+	return ( lhs = lhs ^ rhs );
+}
 
 /// \relates int2x4
 /// \brief Returns a copy of the int2x4 where each component of the left-hand int2x4 has been bitwise XOR'd against the corresponding component of the right-hand side int2x4.
-inline int2x4 operator^( const int2x4& lhs, const int2x4& rhs );
+inline int2x4 operator^( const int2x4& lhs, const int2x4& rhs )
+{
+	return int2x4(
+		lhs[0] ^ rhs[0],
+		lhs[1] ^ rhs[1]
+	);
+}
 
 /// \relates int2x4
 /// \brief Performs a bitwise XOR on the given left-hand int2x4 against the corresponding component of the given right-hand int2x4.
-inline int2x4 operator^=( int2x4& lhs, const int2x4& rhs );
+inline int2x4 operator^=( int2x4& lhs, const int2x4& rhs )
+{
+	return ( lhs = lhs ^ rhs );
+}
 
 /// \relates int2x4
 /// \brief Returns a copy of the int2x4 where each component has been bitwise left-shifted by the given scalar value.
-inline int2x4 operator<<( const int2x4& lhs, const int32_t& rhs );
+inline int2x4 operator<<( const int2x4& lhs, const int32_t& rhs )
+{
+	return int2x4(
+		lhs[0] << rhs,
+		lhs[1] << rhs
+	);
+}
 
 /// \relates int2x4
 /// \brief Performs a left bitshift on the given left-hand int2x4 by the given scalar value.
-inline int2x4 operator<<=( int2x4& lhs, const int32_t& rhs );
+inline int2x4 operator<<=( int2x4& lhs, const int32_t& rhs )
+{
+	return ( lhs = lhs << rhs );
+}
 
 /// \relates int2x4
 /// \brief Returns a copy of the int2x4 where each component of the left-hand int2x4 has been bitwise left-shifted by the corresponding component of the right-hand side int2x4.
-inline int2x4 operator<<( const int2x4& lhs, const int2x4& rhs );
+inline int2x4 operator<<( const int2x4& lhs, const int2x4& rhs )
+{
+	return int2x4(
+		lhs[0] << rhs[0],
+		lhs[1] << rhs[1]
+	);
+}
 
 /// \relates int2x4
 /// \brief Performs a left bitshift on the given left-hand int2x4 by the corresponding component of the given right-hand int2x4.
-inline int2x4 operator<<=( int2x4& lhs, const int2x4& rhs );
+inline int2x4 operator<<=( int2x4& lhs, const int2x4& rhs )
+{
+	return ( lhs = lhs << rhs );
+}
 
 /// \relates int2x4
 /// \brief Returns a copy of the int2x4 where each component has been bitwise right-shifted by the given scalar value.
-inline int2x4 operator>>( const int2x4& lhs, const int32_t& rhs );
+inline int2x4 operator>>( const int2x4& lhs, const int32_t& rhs )
+{
+	return int2x4(
+		lhs[0] >> rhs,
+		lhs[1] >> rhs
+	);
+}
 
 /// \relates int2x4
 /// \brief Performs a right bitshift on the given left-hand int2x4 by the given scalar value.
-inline int2x4 operator>>=( int2x4& lhs, const int32_t& rhs );
+inline int2x4 operator>>=( int2x4& lhs, const int32_t& rhs )
+{
+	return ( lhs = lhs >> rhs );
+}
 
 /// \relates int2x4
 /// \brief Returns a copy of the int2x4 where each component of the left-hand int2x4 has been bitwise right-shifted by the corresponding component of the right-hand side int2x4.
-inline int2x4 operator>>( const int2x4& lhs, const int2x4& rhs );
+inline int2x4 operator>>( const int2x4& lhs, const int2x4& rhs )
+{
+	return int2x4(
+		lhs[0] >> rhs[0],
+		lhs[1] >> rhs[1]
+	);
+}
 
 /// \relates int2x4
 /// \brief Performs a right bitshift on the given left-hand int2x4 by the corresponding component of the given right-hand int2x4.
-inline int2x4 operator>>=( int2x4& lhs, const int2x4& rhs );
+inline int2x4 operator>>=( int2x4& lhs, const int2x4& rhs )
+{
+	return ( lhs = lhs >> rhs );
+}
 
 /// \relates int2x4
 /// \brief Performs a unary bitwise operation on all components of the given int2x4.
-inline int2x4 operator~( const int2x4& lhs );
+inline int2x4 operator~( const int2x4& lhs )
+{
+	return int2x4(
+		~lhs[0],
+		~lhs[1]
+	);
+}
 
 
 // int3x2
 /// \relates int3x2
 /// \brief Returns a copy of the int3x2 that has been component-wise added by the given scalar value.
-inline int3x2 operator+( const int3x2& lhs, const int32_t rhs );
+inline int3x2 operator+( const int3x2& lhs, const int32_t rhs )
+{
+	return int3x2(
+		lhs[0] + rhs,
+		lhs[1] + rhs,
+		lhs[2] + rhs
+	);
+}
 
 /// \relates int3x2
 /// \brief Adds each component by the given scalar value.
-inline int3x2 operator+=( int3x2& lhs, const int32_t rhs );
+inline int3x2 operator+=( int3x2& lhs, const int32_t rhs )
+{
+	return ( lhs = lhs + rhs );
+}
 
 /// \relates int3x2
 /// \brief Returns a copy of the int3x2 that has been component-wise added by the corresponding component of the right-hand int3x2.
-inline int3x2 operator+( const int3x2& lhs, const int3x2& rhs );
+inline int3x2 operator+( const int3x2& lhs, const int3x2& rhs )
+{
+	return int3x2(
+		lhs[0] + rhs[0],
+		lhs[1] + rhs[1],
+		lhs[2] + rhs[2]
+	);
+}
 
 /// \relates int3x2
 /// \brief Adds each component of the int3x2 by the corresponding component of the right-hand int3x2.
-inline int3x2 operator+=( int3x2& lhs, const int3x2& rhs );
+inline int3x2 operator+=( int3x2& lhs, const int3x2& rhs )
+{
+	return ( lhs = lhs + rhs );
+}
 
 /// \relates int3x2
 /// \brief Returns a copy of the int3x2 that has been component-wise subtracted by the given scalar value.
-inline int3x2 operator-( const int3x2& lhs, const int32_t rhs );
+inline int3x2 operator-( const int3x2& lhs, const int32_t rhs )
+{
+	return int3x2(
+		lhs[0] - rhs,
+		lhs[1] - rhs,
+		lhs[2] - rhs
+	);
+}
 
 /// \relates int3x2
 /// \brief Subtracts each component by the given scalar value.
-inline int3x2 operator-=( int3x2& lhs, const int32_t rhs );
+inline int3x2 operator-=( int3x2& lhs, const int32_t rhs )
+{
+	return ( lhs = lhs - rhs );
+}
 
 /// \relates int3x2
 /// \brief Returns a copy of the int3x2 that has been component-wise subtracted by the corresponding component of the right-hand int3x2.
-inline int3x2 operator-( const int3x2& lhs, const int3x2& rhs );
+inline int3x2 operator-( const int3x2& lhs, const int3x2& rhs )
+{
+	return int3x2(
+		lhs[0] - rhs[0],
+		lhs[1] - rhs[1],
+		lhs[2] - rhs[2]
+	);
+}
 
 /// \relates int3x2
 /// \brief Subtracts each component of the int3x2 by the corresponding component of the right-hand int3x2.
-inline int3x2 operator-=( int3x2& lhs, const int3x2& rhs );
+inline int3x2 operator-=( int3x2& lhs, const int3x2& rhs )
+{
+	return ( lhs = lhs - rhs );
+}
 
 /// \relates int3x2
 /// \brief Returns a copy of the int3x2 that has been component-wise multiplied by the given scalar value.
-inline int3x2 operator*( const int3x2& lhs, const int32_t rhs );
+inline int3x2 operator*( const int3x2& lhs, const int32_t rhs )
+{
+	return int3x2(
+		lhs[0] * rhs,
+		lhs[1] * rhs,
+		lhs[2] * rhs
+	);
+}
 
 /// \relates int3x2
 /// \brief Multiplies each component by the given scalar value.
-inline int3x2 operator*=( int3x2& lhs, const int32_t rhs );
+inline int3x2 operator*=( int3x2& lhs, const int32_t rhs )
+{
+	return ( lhs = lhs * rhs );
+}
 
 /// \relates int3x2
 /// \brief Returns a copy of the matrix where each row of the left-hand matrix has been dot-producted by the corresponding column of the right-hand matrix.
-inline int3x3 operator*( const int3x2& lhs, const int2x3& rhs );
+inline int3x3 operator*( const int3x2& lhs, const int2x3& rhs )
+{
+	int2 row0 = lhs[0];
+	int2 row1 = lhs[1];
+	int2 row2 = lhs[2];
 
-/// \relates int3x2
-/// \brief Dot products each row of the left-hand matrix with the corresponding column of the right-hand matrix.
-inline int3x3 operator*=( int3x2& lhs, const int2x3& rhs );
+	int2 col0 = { rhs[0].x, rhs[1].x };
+	int2 col1 = { rhs[0].y, rhs[1].y };
+	int2 col2 = { rhs[0].z, rhs[1].z };
+
+	return int3x3(
+		row0.x * col0.x + row0.y * col0.y,
+		row0.x * col1.x + row0.y * col1.y,
+		row0.x * col2.x + row0.y * col2.y,
+
+		row1.x * col0.x + row1.y * col0.y,
+		row1.x * col1.x + row1.y * col1.y,
+		row1.x * col2.x + row1.y * col2.y,
+
+		row2.x * col0.x + row2.y * col0.y,
+		row2.x * col1.x + row2.y * col1.y,
+		row2.x * col2.x + row2.y * col2.y
+	);
+}
 
 /// \relates int3x2
 /// \brief Returns a copy of the int3x2 that has been component-wise divided by the given scalar value.
-inline int3x2 operator/( const int3x2& lhs, const int32_t rhs );
+inline int3x2 operator/( const int3x2& lhs, const int32_t rhs )
+{
+	return int3x2(
+		lhs[0] / rhs,
+		lhs[1] / rhs,
+		lhs[2] / rhs
+	);
+}
 
 /// \relates int3x2
 /// \brief Divides each component by the given scalar value.
-inline int3x2 operator/=( int3x2& lhs, const int32_t rhs );
+inline int3x2 operator/=( int3x2& lhs, const int32_t rhs )
+{
+	return ( lhs = lhs / rhs );
+}
 
 /// \relates int3x2
 /// \brief Returns a copy of the int3x2 that has been component-wise divided by the corresponding component of the right-hand int3x2.
-inline int3x2 operator/( const int3x2& lhs, const int3x2& rhs );
+inline int3x2 operator/( const int3x2& lhs, const int3x2& rhs )
+{
+	return int3x2(
+		lhs[0] / rhs[0],
+		lhs[1] / rhs[1],
+		lhs[2] / rhs[2]
+	);
+}
 
+// prefix
 /// \relates int3x2
 /// \brief Prefix increment operator.  Adds one to each component of the given int3x2 before evaluation.
-inline int3x2& operator++( int3x2& lhs );
+inline int3x2& operator++( int3x2& lhs )
+{
+	++lhs[0];
+	++lhs[1];
+	++lhs[2];
+	return lhs;
+}
 
+// postfix
 /// \relates int3x2
 /// \brief Postfix increment operator.  Adds one to each component of the given int3x2 after evaluation.
-inline int3x2& operator++( int3x2& lhs, const int );
+inline int3x2& operator++( int3x2& lhs, const int )
+{
+	lhs[0]++;
+	lhs[1]++;
+	lhs[2]++;
+	return lhs;
+}
 
+// prefix
 /// \relates int3x2
 /// \brief Prefix decrement operator.  Subtracts one from each component of the given int3x2 before evaluation.
-inline int3x2& operator--( int3x2& lhs );
+inline int3x2& operator--( int3x2& lhs )
+{
+	--lhs[0];
+	--lhs[1];
+	--lhs[2];
+	return lhs;
+}
 
+// postfix
 /// \relates int3x2
 /// \brief Postfix decrement operator.  Subtracts one from each component of the given int3x2 after evaluation.
-inline int3x2& operator--( int3x2& lhs, const int );
+inline int3x2& operator--( int3x2& lhs, const int )
+{
+	lhs[0]--;
+	lhs[1]--;
+	lhs[2]--;
+	return lhs;
+}
 
 /// \relates int3x2
 /// \brief Returns a bool3x2 where each component is true if the component of the left-hand type is less than the corresponding right-hand type component.
-inline bool3x2 operator<( const int3x2& lhs, const int3x2& rhs );
+inline bool3x2 operator<( const int3x2& lhs, const int3x2& rhs )
+{
+	return bool3x2(
+		lhs[0] < rhs[0],
+		lhs[1] < rhs[1],
+		lhs[2] < rhs[2]
+	);
+}
 
 /// \relates int3x2
 /// \brief Returns a bool3x2 where each component is true if the component of the left-hand type is less than or equal to the corresponding right-hand type component.
-inline bool3x2 operator<=( const int3x2& lhs, const int3x2& rhs );
+inline bool3x2 operator<=( const int3x2& lhs, const int3x2& rhs )
+{
+	return bool3x2(
+		lhs[0] <= rhs[0],
+		lhs[1] <= rhs[1],
+		lhs[2] <= rhs[2]
+	);
+}
 
 /// \relates int3x2
 /// \brief Returns a bool3x2 where each component is true if the component of the left-hand type is greater than the corresponding right-hand type component.
-inline bool3x2 operator>( const int3x2& lhs, const int3x2& rhs );
+inline bool3x2 operator>( const int3x2& lhs, const int3x2& rhs )
+{
+	return bool3x2(
+		lhs[0] > rhs[0],
+		lhs[1] > rhs[1],
+		lhs[2] > rhs[2]
+	);
+}
 
 /// \relates int3x2
 /// \brief Returns a bool3x2 where each component is true if the component of the left-hand type is greater than or equal to the corresponding right-hand type component.
-inline bool3x2 operator>=( const int3x2& lhs, const int3x2& rhs );
+inline bool3x2 operator>=( const int3x2& lhs, const int3x2& rhs )
+{
+	return bool3x2(
+		lhs[0] >= rhs[0],
+		lhs[1] >= rhs[1],
+		lhs[2] >= rhs[2]
+	);
+}
 
 /// \relates int3x2
 /// \brief Returns a copy of the int3x2 where each component has been bitwise AND'd against the given scalar value.
-inline int3x2 operator&( const int3x2& lhs, const int32_t& rhs );
+inline int3x2 operator&( const int3x2& lhs, const int32_t& rhs )
+{
+	return int3x2(
+		lhs[0] & rhs,
+		lhs[1] & rhs,
+		lhs[2] & rhs
+	);
+}
 
 /// \relates int3x2
 /// \brief Performs a bitwise AND on the given left-hand int3x2 against the given scalar value.
-inline int3x2 operator&=( int3x2& lhs, const int32_t& rhs );
+inline int3x2 operator&=( int3x2& lhs, const int32_t& rhs )
+{
+	return ( lhs = lhs & rhs );
+}
 
 /// \relates int3x2
 /// \brief Returns a copy of the int3x2 where each component of the left-hand int3x2 has been bitwise AND'd against the corresponding component of the right-hand side int3x2.
-inline int3x2 operator&( const int3x2& lhs, const int3x2& rhs );
+inline int3x2 operator&( const int3x2& lhs, const int3x2& rhs )
+{
+	return int3x2(
+		lhs[0] & rhs[0],
+		lhs[1] & rhs[1],
+		lhs[2] & rhs[2]
+	);
+}
 
 /// \relates int3x2
 /// \brief Performs a bitwise AND on the given left-hand int3x2 against the corresponding component of the given right-hand int3x2.
-inline int3x2 operator&=( int3x2& lhs, const int3x2& rhs );
+inline int3x2 operator&=( int3x2& lhs, const int3x2& rhs )
+{
+	return ( lhs = lhs & rhs );
+}
 
 /// \relates int3x2
 /// \brief Returns a copy of the int3x2 where each component has been bitwise OR'd against the given scalar value.
-inline int3x2 operator|( const int3x2& lhs, const int32_t& rhs );
+inline int3x2 operator|( const int3x2& lhs, const int32_t& rhs )
+{
+	return int3x2(
+		lhs[0] | rhs,
+		lhs[1] | rhs,
+		lhs[2] | rhs
+	);
+}
 
 /// \relates int3x2
 /// \brief Performs a bitwise OR on the given left-hand int3x2 against the given scalar value.
-inline int3x2 operator|=( int3x2& lhs, const int32_t& rhs );
+inline int3x2 operator|=( int3x2& lhs, const int32_t& rhs )
+{
+	return ( lhs = lhs | rhs );
+}
 
 /// \relates int3x2
 /// \brief Returns a copy of the int3x2 where each component of the left-hand int3x2 has been bitwise OR'd against the corresponding component of the right-hand side int3x2.
-inline int3x2 operator|( const int3x2& lhs, const int3x2& rhs );
+inline int3x2 operator|( const int3x2& lhs, const int3x2& rhs )
+{
+	return int3x2(
+		lhs[0] | rhs[0],
+		lhs[1] | rhs[1],
+		lhs[2] | rhs[2]
+	);
+}
 
 /// \relates int3x2
 /// \brief Performs a bitwise OR on the given left-hand int3x2 against the corresponding component of the given right-hand int3x2.
-inline int3x2 operator|=( int3x2& lhs, const int3x2& rhs );
+inline int3x2 operator|=( int3x2& lhs, const int3x2& rhs )
+{
+	return ( lhs = lhs | rhs );
+}
 
 /// \relates int3x2
 /// \brief Returns a copy of the int3x2 where each component has been bitwise XOR'd against the given scalar value.
-inline int3x2 operator^( const int3x2& lhs, const int32_t& rhs );
+inline int3x2 operator^( const int3x2& lhs, const int32_t& rhs )
+{
+	return int3x2(
+		lhs[0] ^ rhs,
+		lhs[1] ^ rhs,
+		lhs[2] ^ rhs
+	);
+}
 
 /// \relates int3x2
 /// \brief Performs a bitwise XOR on the given left-hand int3x2 against the given scalar value.
-inline int3x2 operator^=( int3x2& lhs, const int32_t& rhs );
+inline int3x2 operator^=( int3x2& lhs, const int32_t& rhs )
+{
+	return ( lhs = lhs ^ rhs );
+}
 
 /// \relates int3x2
 /// \brief Returns a copy of the int3x2 where each component of the left-hand int3x2 has been bitwise XOR'd against the corresponding component of the right-hand side int3x2.
-inline int3x2 operator^( const int3x2& lhs, const int3x2& rhs );
+inline int3x2 operator^( const int3x2& lhs, const int3x2& rhs )
+{
+	return int3x2(
+		lhs[0] ^ rhs[0],
+		lhs[1] ^ rhs[1],
+		lhs[2] ^ rhs[2]
+	);
+}
 
 /// \relates int3x2
 /// \brief Performs a bitwise XOR on the given left-hand int3x2 against the corresponding component of the given right-hand int3x2.
-inline int3x2 operator^=( int3x2& lhs, const int3x2& rhs );
+inline int3x2 operator^=( int3x2& lhs, const int3x2& rhs )
+{
+	return ( lhs = lhs ^ rhs );
+}
 
 /// \relates int3x2
 /// \brief Returns a copy of the int3x2 where each component has been bitwise left-shifted by the given scalar value.
-inline int3x2 operator<<( const int3x2& lhs, const int32_t& rhs );
+inline int3x2 operator<<( const int3x2& lhs, const int32_t& rhs )
+{
+	return int3x2(
+		lhs[0] << rhs,
+		lhs[1] << rhs,
+		lhs[2] << rhs
+	);
+}
 
 /// \relates int3x2
 /// \brief Performs a left bitshift on the given left-hand int3x2 by the given scalar value.
-inline int3x2 operator<<=( int3x2& lhs, const int32_t& rhs );
+inline int3x2 operator<<=( int3x2& lhs, const int32_t& rhs )
+{
+	return ( lhs = lhs << rhs );
+}
 
 /// \relates int3x2
 /// \brief Returns a copy of the int3x2 where each component of the left-hand int3x2 has been bitwise left-shifted by the corresponding component of the right-hand side int3x2.
-inline int3x2 operator<<( const int3x2& lhs, const int3x2& rhs );
+inline int3x2 operator<<( const int3x2& lhs, const int3x2& rhs )
+{
+	return int3x2(
+		lhs[0] << rhs[0],
+		lhs[1] << rhs[1],
+		lhs[2] << rhs[2]
+	);
+}
 
 /// \relates int3x2
 /// \brief Performs a left bitshift on the given left-hand int3x2 by the corresponding component of the given right-hand int3x2.
-inline int3x2 operator<<=( int3x2& lhs, const int3x2& rhs );
+inline int3x2 operator<<=( int3x2& lhs, const int3x2& rhs )
+{
+	return ( lhs = lhs << rhs );
+}
 
 /// \relates int3x2
 /// \brief Returns a copy of the int3x2 where each component has been bitwise right-shifted by the given scalar value.
-inline int3x2 operator>>( const int3x2& lhs, const int32_t& rhs );
+inline int3x2 operator>>( const int3x2& lhs, const int32_t& rhs )
+{
+	return int3x2(
+		lhs[0] >> rhs,
+		lhs[1] >> rhs,
+		lhs[2] >> rhs
+	);
+}
 
 /// \relates int3x2
 /// \brief Performs a right bitshift on the given left-hand int3x2 by the given scalar value.
-inline int3x2 operator>>=( int3x2& lhs, const int32_t& rhs );
+inline int3x2 operator>>=( int3x2& lhs, const int32_t& rhs )
+{
+	return ( lhs = lhs >> rhs );
+}
 
 /// \relates int3x2
 /// \brief Returns a copy of the int3x2 where each component of the left-hand int3x2 has been bitwise right-shifted by the corresponding component of the right-hand side int3x2.
-inline int3x2 operator>>( const int3x2& lhs, const int3x2& rhs );
+inline int3x2 operator>>( const int3x2& lhs, const int3x2& rhs )
+{
+	return int3x2(
+		lhs[0] >> rhs[0],
+		lhs[1] >> rhs[1],
+		lhs[2] >> rhs[2]
+	);
+}
 
 /// \relates int3x2
 /// \brief Performs a right bitshift on the given left-hand int3x2 by the corresponding component of the given right-hand int3x2.
-inline int3x2 operator>>=( int3x2& lhs, const int3x2& rhs );
+inline int3x2 operator>>=( int3x2& lhs, const int3x2& rhs )
+{
+	return ( lhs = lhs >> rhs );
+}
 
 /// \relates int3x2
 /// \brief Performs a unary bitwise operation on all components of the given int3x2.
-inline int3x2 operator~( const int3x2& lhs );
+inline int3x2 operator~( const int3x2& lhs )
+{
+	return int3x2(
+		~lhs[0],
+		~lhs[1],
+		~lhs[2]
+	);
+}
 
 
 // int3x3
 /// \relates int3x3
 /// \brief Returns a copy of the int3x3 that has been component-wise added by the given scalar value.
-inline int3x3 operator+( const int3x3& lhs, const int32_t rhs );
+inline int3x3 operator+( const int3x3& lhs, const int32_t rhs )
+{
+	return int3x3(
+		lhs[0] + rhs,
+		lhs[1] + rhs,
+		lhs[2] + rhs
+	);
+}
 
 /// \relates int3x3
 /// \brief Adds each component by the given scalar value.
-inline int3x3 operator+=( int3x3& lhs, const int32_t rhs );
+inline int3x3 operator+=( int3x3& lhs, const int32_t rhs )
+{
+	return ( lhs = lhs + rhs );
+}
 
 /// \relates int3x3
 /// \brief Returns a copy of the int3x3 that has been component-wise added by the corresponding component of the right-hand int3x3.
-inline int3x3 operator+( const int3x3& lhs, const int3x3& rhs );
+inline int3x3 operator+( const int3x3& lhs, const int3x3& rhs )
+{
+	return int3x3(
+		lhs[0] + rhs[0],
+		lhs[1] + rhs[1],
+		lhs[2] + rhs[2]
+	);
+}
 
 /// \relates int3x3
 /// \brief Adds each component of the int3x3 by the corresponding component of the right-hand int3x3.
-inline int3x3 operator+=( int3x3& lhs, const int3x3& rhs );
+inline int3x3 operator+=( int3x3& lhs, const int3x3& rhs )
+{
+	return ( lhs = lhs + rhs );
+}
 
 /// \relates int3x3
 /// \brief Returns a copy of the int3x3 that has been component-wise subtracted by the given scalar value.
-inline int3x3 operator-( const int3x3& lhs, const int32_t rhs );
+inline int3x3 operator-( const int3x3& lhs, const int32_t rhs )
+{
+	return int3x3(
+		lhs[0] - rhs,
+		lhs[1] - rhs,
+		lhs[2] - rhs
+	);
+}
 
 /// \relates int3x3
 /// \brief Subtracts each component by the given scalar value.
-inline int3x3 operator-=( int3x3& lhs, const int32_t rhs );
+inline int3x3 operator-=( int3x3& lhs, const int32_t rhs )
+{
+	return ( lhs = lhs - rhs );
+}
 
 /// \relates int3x3
 /// \brief Returns a copy of the int3x3 that has been component-wise subtracted by the corresponding component of the right-hand int3x3.
-inline int3x3 operator-( const int3x3& lhs, const int3x3& rhs );
+inline int3x3 operator-( const int3x3& lhs, const int3x3& rhs )
+{
+	return int3x3(
+		lhs[0] - rhs[0],
+		lhs[1] - rhs[1],
+		lhs[2] - rhs[2]
+	);
+}
 
 /// \relates int3x3
 /// \brief Subtracts each component of the int3x3 by the corresponding component of the right-hand int3x3.
-inline int3x3 operator-=( int3x3& lhs, const int3x3& rhs );
+inline int3x3 operator-=( int3x3& lhs, const int3x3& rhs )
+{
+	return ( lhs = lhs - rhs );
+}
 
 /// \relates int3x3
 /// \brief Returns a copy of the int3x3 that has been component-wise multiplied by the given scalar value.
-inline int3x3 operator*( const int3x3& lhs, const int32_t rhs );
+inline int3x3 operator*( const int3x3& lhs, const int32_t rhs )
+{
+	return int3x3(
+		lhs[0] * rhs,
+		lhs[1] * rhs,
+		lhs[2] * rhs
+	);
+}
 
 /// \relates int3x3
 /// \brief Multiplies each component by the given scalar value.
-inline int3x3 operator*=( int3x3& lhs, const int32_t rhs );
+inline int3x3 operator*=( int3x3& lhs, const int32_t rhs )
+{
+	return ( lhs = lhs * rhs );
+}
 
 /// \relates int3x3
 /// \brief Returns a copy of the matrix where each row of the left-hand matrix has been dot-producted by the corresponding column of the right-hand matrix.
-inline int3x3 operator*( const int3x3& lhs, const int3x3& rhs );
+inline int3x3 operator*( const int3x3& lhs, const int3x3& rhs )
+{
+	int3 row0 = lhs[0];
+	int3 row1 = lhs[1];
+	int3 row2 = lhs[2];
 
-/// \relates int3x3
-/// \brief Dot products each row of the left-hand matrix with the corresponding column of the right-hand matrix.
-inline int3x3 operator*=( int3x3& lhs, const int3x3& rhs );
+	int3 col0 = { rhs[0].x, rhs[1].x, rhs[2].x };
+	int3 col1 = { rhs[0].y, rhs[1].y, rhs[2].y };
+	int3 col2 = { rhs[0].z, rhs[1].z, rhs[2].z };
+
+	return int3x3(
+		row0.x * col0.x + row0.y * col0.y + row0.z * col0.z,
+		row0.x * col1.x + row0.y * col1.y + row0.z * col1.z,
+		row0.x * col2.x + row0.y * col2.y + row0.z * col2.z,
+
+		row1.x * col0.x + row1.y * col0.y + row1.z * col0.z,
+		row1.x * col1.x + row1.y * col1.y + row1.z * col1.z,
+		row1.x * col2.x + row1.y * col2.y + row1.z * col2.z,
+
+		row2.x * col0.x + row2.y * col0.y + row2.z * col0.z,
+		row2.x * col1.x + row2.y * col1.y + row2.z * col1.z,
+		row2.x * col2.x + row2.y * col2.y + row2.z * col2.z
+	);
+}
+
+inline int3x3 operator*=( int3x3& lhs, const int3x3& rhs )
+{
+	return ( lhs = lhs * rhs );
+}
 
 /// \relates int3x3
 /// \brief Returns a copy of the int3x3 that has been component-wise divided by the given scalar value.
-inline int3x3 operator/( const int3x3& lhs, const int32_t rhs );
+inline int3x3 operator/( const int3x3& lhs, const int32_t rhs )
+{
+	return int3x3(
+		lhs[0] / rhs,
+		lhs[1] / rhs,
+		lhs[2] / rhs
+	);
+}
 
 /// \relates int3x3
 /// \brief Divides each component by the given scalar value.
-inline int3x3 operator/=( int3x3& lhs, const int32_t rhs );
+inline int3x3 operator/=( int3x3& lhs, const int32_t rhs )
+{
+	return ( lhs = lhs / rhs );
+}
 
 /// \relates int3x3
 /// \brief Returns a copy of the int3x3 that has been component-wise divided by the corresponding component of the right-hand int3x3.
-inline int3x3 operator/( const int3x3& lhs, const int3x3& rhs );
+inline int3x3 operator/( const int3x3& lhs, const int3x3& rhs )
+{
+	return int3x3(
+		lhs[0] / rhs[0],
+		lhs[1] / rhs[1],
+		lhs[2] / rhs[2]
+	);
+}
 
 /// \relates int3x3
 /// \brief Divides each component of the int3x3 by the corresponding component of the right-hand int3x3.
-inline int3x3 operator/=( int3x3& lhs, const int3x3& rhs );
+inline int3x3 operator/=( int3x3& lhs, const int3x3& rhs )
+{
+	return ( lhs = lhs / rhs );
+}
 
 /// \relates int3
 /// \brief Returns a copy of the int3 that has been component-wise multiplied by the corresponding component of the right-hand int3x3.
-inline int3 operator*( const int3x3& lhs, const int3& rhs );
+inline int3 operator*( const int3x3& lhs, const int3& rhs )
+{
+	return int3(
+		(int32_t) dot( lhs[0], rhs ),
+		(int32_t) dot( lhs[1], rhs ),
+		(int32_t) dot( lhs[2], rhs )
+	);
+}
 
 /// \relates int3
 /// \brief Multiplies each component of the int3 by the corresponding component of the right-hand int3x3.
-inline int3 operator*=( int3& lhs, const int3x3& rhs );
+inline int3 operator*=( int3& lhs, const int3x3& rhs )
+{
+	return ( lhs = rhs * lhs );
+}
 
+// prefix
 /// \relates int3x3
 /// \brief Prefix increment operator.  Adds one to each component of the given int3x3 before evaluation.
-inline int3x3& operator++( int3x3& lhs );
+inline int3x3& operator++( int3x3& lhs )
+{
+	++lhs[0];
+	++lhs[1];
+	++lhs[2];
+	return lhs;
+}
 
+// postfix
 /// \relates int3x3
 /// \brief Postfix increment operator.  Adds one to each component of the given int3x3 after evaluation.
-inline int3x3& operator++( int3x3& lhs, const int );
+inline int3x3& operator++( int3x3& lhs, const int )
+{
+	lhs[0]++;
+	lhs[1]++;
+	lhs[2]++;
+	return lhs;
+}
 
+// prefix
 /// \relates int3x3
 /// \brief Prefix decrement operator.  Subtracts one from each component of the given int3x3 before evaluation.
-inline int3x3& operator--( int3x3& lhs );
+inline int3x3& operator--( int3x3& lhs )
+{
+	--lhs[0];
+	--lhs[1];
+	--lhs[2];
+	return lhs;
+}
 
+// postfix
 /// \relates int3x3
 /// \brief Postfix decrement operator.  Subtracts one from each component of the given int3x3 after evaluation.
-inline int3x3& operator--( int3x3& lhs, const int );
+inline int3x3& operator--( int3x3& lhs, const int )
+{
+	lhs[0]--;
+	lhs[1]--;
+	lhs[2]--;
+	return lhs;
+}
 
 /// \relates int3x3
 /// \brief Returns a bool3x3 where each component is true if the component of the left-hand type is less than the corresponding right-hand type component.
-inline bool3x3 operator<( const int3x3& lhs, const int3x3& rhs );
+inline bool3x3 operator<( const int3x3& lhs, const int3x3& rhs )
+{
+	return bool3x3(
+		lhs[0] < rhs[0],
+		lhs[1] < rhs[1],
+		lhs[2] < rhs[2]
+	);
+}
 
 /// \relates int3x3
 /// \brief Returns a bool3x3 where each component is true if the component of the left-hand type is less than or equal to the corresponding right-hand type component.
-inline bool3x3 operator<=( const int3x3& lhs, const int3x3& rhs );
+inline bool3x3 operator<=( const int3x3& lhs, const int3x3& rhs )
+{
+	return bool3x3(
+		lhs[0] <= rhs[0],
+		lhs[1] <= rhs[1],
+		lhs[2] <= rhs[2]
+	);
+}
 
 /// \relates int3x3
 /// \brief Returns a bool3x3 where each component is true if the component of the left-hand type is greater than the corresponding right-hand type component.
-inline bool3x3 operator>( const int3x3& lhs, const int3x3& rhs );
+inline bool3x3 operator>( const int3x3& lhs, const int3x3& rhs )
+{
+	return bool3x3(
+		lhs[0] > rhs[0],
+		lhs[1] > rhs[1],
+		lhs[2] > rhs[2]
+	);
+}
 
 /// \relates int3x3
 /// \brief Returns a bool3x3 where each component is true if the component of the left-hand type is greater than or equal to the corresponding right-hand type component.
-inline bool3x3 operator>=( const int3x3& lhs, const int3x3& rhs );
+inline bool3x3 operator>=( const int3x3& lhs, const int3x3& rhs )
+{
+	return bool3x3(
+		lhs[0] >= rhs[0],
+		lhs[1] >= rhs[1],
+		lhs[2] >= rhs[2]
+	);
+}
 
 /// \relates int3x3
 /// \brief Returns a copy of the int3x3 where each component has been bitwise AND'd against the given scalar value.
-inline int3x3 operator&( const int3x3& lhs, const int32_t& rhs );
+inline int3x3 operator&( const int3x3& lhs, const int32_t& rhs )
+{
+	return int3x3(
+		lhs[0] & rhs,
+		lhs[1] & rhs,
+		lhs[2] & rhs
+	);
+}
 
 /// \relates int3x3
 /// \brief Performs a bitwise AND on the given left-hand int3x3 against the given scalar value.
-inline int3x3 operator&=( int3x3& lhs, const int32_t& rhs );
+inline int3x3 operator&=( int3x3& lhs, const int32_t& rhs )
+{
+	return ( lhs = lhs & rhs );
+}
 
 /// \relates int3x3
 /// \brief Returns a copy of the int3x3 where each component of the left-hand int3x3 has been bitwise AND'd against the corresponding component of the right-hand side int3x3.
-inline int3x3 operator&( const int3x3& lhs, const int3x3& rhs );
+inline int3x3 operator&( const int3x3& lhs, const int3x3& rhs )
+{
+	return int3x3(
+		lhs[0] & rhs[0],
+		lhs[1] & rhs[1],
+		lhs[2] & rhs[2]
+	);
+}
 
 /// \relates int3x3
 /// \brief Performs a bitwise AND on the given left-hand int3x3 against the corresponding component of the given right-hand int3x3.
-inline int3x3 operator&=( int3x3& lhs, const int3x3& rhs );
+inline int3x3 operator&=( int3x3& lhs, const int3x3& rhs )
+{
+	return ( lhs = lhs & rhs );
+}
 
 /// \relates int3x3
 /// \brief Returns a copy of the int3x3 where each component has been bitwise OR'd against the given scalar value.
-inline int3x3 operator|( const int3x3& lhs, const int32_t& rhs );
+inline int3x3 operator|( const int3x3& lhs, const int32_t& rhs )
+{
+	return int3x3(
+		lhs[0] | rhs,
+		lhs[1] | rhs,
+		lhs[2] | rhs
+	);
+}
 
 /// \relates int3x3
 /// \brief Performs a bitwise OR on the given left-hand int3x3 against the given scalar value.
-inline int3x3 operator|=( int3x3& lhs, const int32_t& rhs );
+inline int3x3 operator|=( int3x3& lhs, const int32_t& rhs )
+{
+	return ( lhs = lhs | rhs );
+}
 
 /// \relates int3x3
 /// \brief Returns a copy of the int3x3 where each component of the left-hand int3x3 has been bitwise OR'd against the corresponding component of the right-hand side int3x3.
-inline int3x3 operator|( const int3x3& lhs, const int3x3& rhs );
+inline int3x3 operator|( const int3x3& lhs, const int3x3& rhs )
+{
+	return int3x3(
+		lhs[0] | rhs[0],
+		lhs[1] | rhs[1],
+		lhs[2] | rhs[2]
+	);
+}
 
 /// \relates int3x3
 /// \brief Performs a bitwise OR on the given left-hand int3x3 against the corresponding component of the given right-hand int3x3.
-inline int3x3 operator|=( int3x3& lhs, const int3x3& rhs );
+inline int3x3 operator|=( int3x3& lhs, const int3x3& rhs )
+{
+	return ( lhs = lhs | rhs );
+}
 
 /// \relates int3x3
 /// \brief Returns a copy of the int3x3 where each component has been bitwise XOR'd against the given scalar value.
-inline int3x3 operator^( const int3x3& lhs, const int32_t& rhs );
+inline int3x3 operator^( const int3x3& lhs, const int32_t& rhs )
+{
+	return int3x3(
+		lhs[0] ^ rhs,
+		lhs[1] ^ rhs,
+		lhs[2] ^ rhs
+	);
+}
 
 /// \relates int3x3
 /// \brief Performs a bitwise XOR on the given left-hand int3x3 against the given scalar value.
-inline int3x3 operator^=( int3x3& lhs, const int32_t& rhs );
+inline int3x3 operator^=( int3x3& lhs, const int32_t& rhs )
+{
+	return ( lhs = lhs ^ rhs );
+}
 
 /// \relates int3x3
 /// \brief Returns a copy of the int3x3 where each component of the left-hand int3x3 has been bitwise XOR'd against the corresponding component of the right-hand side int3x3.
-inline int3x3 operator^( const int3x3& lhs, const int3x3& rhs );
+inline int3x3 operator^( const int3x3& lhs, const int3x3& rhs )
+{
+	return int3x3(
+		lhs[0] ^ rhs[0],
+		lhs[1] ^ rhs[1],
+		lhs[2] ^ rhs[2]
+	);
+}
 
 /// \relates int3x3
 /// \brief Performs a bitwise XOR on the given left-hand int3x3 against the corresponding component of the given right-hand int3x3.
-inline int3x3 operator^=( int3x3& lhs, const int3x3& rhs );
+inline int3x3 operator^=( int3x3& lhs, const int3x3& rhs )
+{
+	return ( lhs = lhs ^ rhs );
+}
 
 /// \relates int3x3
 /// \brief Returns a copy of the int3x3 where each component has been bitwise left-shifted by the given scalar value.
-inline int3x3 operator<<( const int3x3& lhs, const int32_t& rhs );
+inline int3x3 operator<<( const int3x3& lhs, const int32_t& rhs )
+{
+	return int3x3(
+		lhs[0] << rhs,
+		lhs[1] << rhs,
+		lhs[2] << rhs
+	);
+}
 
 /// \relates int3x3
 /// \brief Performs a left bitshift on the given left-hand int3x3 by the given scalar value.
-inline int3x3 operator<<=( int3x3& lhs, const int32_t& rhs );
+inline int3x3 operator<<=( int3x3& lhs, const int32_t& rhs )
+{
+	return ( lhs = lhs << rhs );
+}
 
 /// \relates int3x3
 /// \brief Returns a copy of the int3x3 where each component of the left-hand int3x3 has been bitwise left-shifted by the corresponding component of the right-hand side int3x3.
-inline int3x3 operator<<( const int3x3& lhs, const int3x3& rhs );
+inline int3x3 operator<<( const int3x3& lhs, const int3x3& rhs )
+{
+	return int3x3(
+		lhs[0] << rhs[0],
+		lhs[1] << rhs[1],
+		lhs[2] << rhs[2]
+	);
+}
 
 /// \relates int3x3
 /// \brief Performs a left bitshift on the given left-hand int3x3 by the corresponding component of the given right-hand int3x3.
-inline int3x3 operator<<=( int3x3& lhs, const int3x3& rhs );
+inline int3x3 operator<<=( int3x3& lhs, const int3x3& rhs )
+{
+	return ( lhs = lhs << rhs );
+}
 
 /// \relates int3x3
 /// \brief Returns a copy of the int3x3 where each component has been bitwise right-shifted by the given scalar value.
-inline int3x3 operator>>( const int3x3& lhs, const int32_t& rhs );
+inline int3x3 operator>>( const int3x3& lhs, const int32_t& rhs )
+{
+	return int3x3(
+		lhs[0] >> rhs,
+		lhs[1] >> rhs,
+		lhs[2] >> rhs
+	);
+}
 
 /// \relates int3x3
 /// \brief Performs a right bitshift on the given left-hand int3x3 by the given scalar value.
-inline int3x3 operator>>=( int3x3& lhs, const int32_t& rhs );
+inline int3x3 operator>>=( int3x3& lhs, const int32_t& rhs )
+{
+	return ( lhs = lhs >> rhs );
+}
 
 /// \relates int3x3
 /// \brief Returns a copy of the int3x3 where each component of the left-hand int3x3 has been bitwise right-shifted by the corresponding component of the right-hand side int3x3.
-inline int3x3 operator>>( const int3x3& lhs, const int3x3& rhs );
+inline int3x3 operator>>( const int3x3& lhs, const int3x3& rhs )
+{
+	return int3x3(
+		lhs[0] >> rhs[0],
+		lhs[1] >> rhs[1],
+		lhs[2] >> rhs[2]
+	);
+}
 
 /// \relates int3x3
 /// \brief Performs a right bitshift on the given left-hand int3x3 by the corresponding component of the given right-hand int3x3.
-inline int3x3 operator>>=( int3x3& lhs, const int3x3& rhs );
+inline int3x3 operator>>=( int3x3& lhs, const int3x3& rhs )
+{
+	return ( lhs = lhs >> rhs );
+}
 
 /// \relates int3x3
 /// \brief Performs a unary bitwise operation on all components of the given int3x3.
-inline int3x3 operator~( const int3x3& lhs );
+inline int3x3 operator~( const int3x3& lhs )
+{
+	return int3x3(
+		~lhs[0],
+		~lhs[1],
+		~lhs[2]
+	);
+}
 
 
 // int3x4
 /// \relates int3x4
 /// \brief Returns a copy of the int3x4 that has been component-wise added by the given scalar value.
-inline int3x4 operator+( const int3x4& lhs, const int32_t rhs );
+inline int3x4 operator+( const int3x4& lhs, const int32_t rhs )
+{
+	return int3x4(
+		lhs[0] + rhs,
+		lhs[1] + rhs,
+		lhs[2] + rhs
+	);
+}
 
 /// \relates int3x4
 /// \brief Adds each component by the given scalar value.
-inline int3x4 operator+=( int3x4& lhs, const int32_t rhs );
+inline int3x4 operator+=( int3x4& lhs, const int32_t rhs )
+{
+	return ( lhs = lhs + rhs );
+}
 
 /// \relates int3x4
 /// \brief Returns a copy of the int3x4 that has been component-wise added by the corresponding component of the right-hand int3x4.
-inline int3x4 operator+( const int3x4& lhs, const int3x4& rhs );
+inline int3x4 operator+( const int3x4& lhs, const int3x4& rhs )
+{
+	return int3x4(
+		lhs[0] + rhs[0],
+		lhs[1] + rhs[1],
+		lhs[2] + rhs[2]
+	);
+}
 
 /// \relates int3x4
 /// \brief Adds each component of the int3x4 by the corresponding component of the right-hand int3x4.
-inline int3x4 operator+=( int3x4& lhs, const int3x4& rhs );
+inline int3x4 operator+=( int3x4& lhs, const int3x4& rhs )
+{
+	return ( lhs = lhs + rhs );
+}
 
 /// \relates int3x4
 /// \brief Returns a copy of the int3x4 that has been component-wise subtracted by the given scalar value.
-inline int3x4 operator-( const int3x4& lhs, const int32_t rhs );
+inline int3x4 operator-( const int3x4& lhs, const int32_t rhs )
+{
+	return int3x4(
+		lhs[0] - rhs,
+		lhs[1] - rhs,
+		lhs[2] - rhs
+	);
+}
 
 /// \relates int3x4
 /// \brief Subtracts each component by the given scalar value.
-inline int3x4 operator-=( int3x4& lhs, const int32_t rhs );
+inline int3x4 operator-=( int3x4& lhs, const int32_t rhs )
+{
+	return ( lhs = lhs - rhs );
+}
 
 /// \relates int3x4
 /// \brief Returns a copy of the int3x4 that has been component-wise subtracted by the corresponding component of the right-hand int3x4.
-inline int3x4 operator-( const int3x4& lhs, const int3x4& rhs );
+inline int3x4 operator-( const int3x4& lhs, const int3x4& rhs )
+{
+	return int3x4(
+		lhs[0] - rhs[0],
+		lhs[1] - rhs[1],
+		lhs[2] - rhs[2]
+	);
+}
 
 /// \relates int3x4
 /// \brief Subtracts each component of the int3x4 by the corresponding component of the right-hand int3x4.
-inline int3x4 operator-=( int3x4& lhs, const int3x4& rhs );
+inline int3x4 operator-=( int3x4& lhs, const int3x4& rhs )
+{
+	return ( lhs = lhs - rhs );
+}
 
 /// \relates int3x4
 /// \brief Returns a copy of the int3x4 that has been component-wise multiplied by the given scalar value.
-inline int3x4 operator*( const int3x4& lhs, const int32_t rhs );
+inline int3x4 operator*( const int3x4& lhs, const int32_t rhs )
+{
+	return int3x4(
+		lhs[0] * rhs,
+		lhs[1] * rhs,
+		lhs[2] * rhs
+	);
+}
 
 /// \relates int3x4
 /// \brief Multiplies each component by the given scalar value.
-inline int3x4 operator*=( int3x4& lhs, const int32_t rhs );
+inline int3x4 operator*=( int3x4& lhs, const int32_t rhs )
+{
+	return ( lhs = lhs * rhs );
+}
 
 /// \relates int3x4
 /// \brief Returns a copy of the matrix where each row of the left-hand matrix has been dot-producted by the corresponding column of the right-hand matrix.
-inline int3x3 operator*( const int3x4& lhs, const int4x3& rhs );
+inline int3x3 operator*( const int3x4& lhs, const int4x3& rhs )
+{
+	int4 row0 = lhs[0];
+	int4 row1 = lhs[1];
+	int4 row2 = lhs[2];
 
-/// \relates int3x4
-/// \brief Dot products each row of the left-hand matrix with the corresponding column of the right-hand matrix.
-inline int3x3 operator*=( int3x4& lhs, const int4x3& rhs );
+	int4 col0 = { rhs[0].x, rhs[1].x, rhs[2].x, rhs[3].x };
+	int4 col1 = { rhs[0].y, rhs[1].y, rhs[2].y, rhs[3].y };
+	int4 col2 = { rhs[0].z, rhs[1].z, rhs[2].z, rhs[3].z };
+
+	return int3x3(
+		row0.x * col0.x + row0.y * col0.y + row0.z * col0.z + row0.w * col0.w,
+		row0.x * col1.x + row0.y * col1.y + row0.z * col1.z + row0.w * col1.w,
+		row0.x * col2.x + row0.y * col2.y + row0.z * col2.z + row0.w * col2.w,
+
+		row1.x * col0.x + row1.y * col0.y + row1.z * col0.z + row1.w * col0.w,
+		row1.x * col1.x + row1.y * col1.y + row1.z * col1.z + row1.w * col1.w,
+		row1.x * col2.x + row1.y * col2.y + row1.z * col2.z + row1.w * col2.w,
+
+		row2.x * col0.x + row2.y * col0.y + row2.z * col0.z + row2.w * col0.w,
+		row2.x * col1.x + row2.y * col1.y + row2.z * col1.z + row2.w * col1.w,
+		row2.x * col2.x + row2.y * col2.y + row2.z * col2.z + row2.w * col2.w
+	);
+}
 
 /// \relates int3x4
 /// \brief Returns a copy of the int3x4 that has been component-wise divided by the given scalar value.
-inline int3x4 operator/( const int3x4& lhs, const int32_t rhs );
+inline int3x4 operator/( const int3x4& lhs, const int32_t rhs )
+{
+	return int3x4(
+		lhs[0] / rhs,
+		lhs[1] / rhs,
+		lhs[2] / rhs
+	);
+}
 
 /// \relates int3x4
 /// \brief Divides each component by the given scalar value.
-inline int3x4 operator/=( int3x4& lhs, const int32_t rhs );
+inline int3x4 operator/=( int3x4& lhs, const int32_t rhs )
+{
+	return ( lhs = lhs / rhs );
+}
 
 /// \relates int3x4
 /// \brief Returns a copy of the int3x4 that has been component-wise divided by the corresponding component of the right-hand int3x4.
-inline int3x4 operator/( const int3x4& lhs, const int3x4& rhs );
+inline int3x4 operator/( const int3x4& lhs, const int3x4& rhs )
+{
+	return int3x4(
+		lhs[0] / rhs[0],
+		lhs[1] / rhs[1],
+		lhs[2] / rhs[2]
+	);
+}
 
+// prefix
 /// \relates int3x4
 /// \brief Prefix increment operator.  Adds one to each component of the given int3x4 before evaluation.
-inline int3x4& operator++( int3x4& lhs );
+inline int3x4& operator++( int3x4& lhs )
+{
+	++lhs[0];
+	++lhs[1];
+	++lhs[2];
+	return lhs;
+}
 
+// postfix
 /// \relates int3x4
 /// \brief Postfix increment operator.  Adds one to each component of the given int3x4 after evaluation.
-inline int3x4& operator++( int3x4& lhs, const int );
+inline int3x4& operator++( int3x4& lhs, const int )
+{
+	lhs[0]++;
+	lhs[1]++;
+	lhs[2]++;
+	return lhs;
+}
 
+// prefix
 /// \relates int3x4
 /// \brief Prefix decrement operator.  Subtracts one from each component of the given int3x4 before evaluation.
-inline int3x4& operator--( int3x4& lhs );
+inline int3x4& operator--( int3x4& lhs )
+{
+	--lhs[0];
+	--lhs[1];
+	--lhs[2];
+	return lhs;
+}
 
+// postfix
 /// \relates int3x4
 /// \brief Postfix decrement operator.  Subtracts one from each component of the given int3x4 after evaluation.
-inline int3x4& operator--( int3x4& lhs, const int );
+inline int3x4& operator--( int3x4& lhs, const int )
+{
+	lhs[0]--;
+	lhs[1]--;
+	lhs[2]--;
+	return lhs;
+}
 
 /// \relates int3x4
 /// \brief Returns a bool3x4 where each component is true if the component of the left-hand type is less than the corresponding right-hand type component.
-inline bool3x4 operator<( const int3x4& lhs, const int3x4& rhs );
+inline bool3x4 operator<( const int3x4& lhs, const int3x4& rhs )
+{
+	return bool3x4(
+		lhs[0] < rhs[0],
+		lhs[1] < rhs[1],
+		lhs[2] < rhs[2]
+	);
+}
 
 /// \relates int3x4
 /// \brief Returns a bool3x4 where each component is true if the component of the left-hand type is less than or equal to the corresponding right-hand type component.
-inline bool3x4 operator<=( const int3x4& lhs, const int3x4& rhs );
+inline bool3x4 operator<=( const int3x4& lhs, const int3x4& rhs )
+{
+	return bool3x4(
+		lhs[0] <= rhs[0],
+		lhs[1] <= rhs[1],
+		lhs[2] <= rhs[2]
+	);
+}
 
 /// \relates int3x4
 /// \brief Returns a bool3x4 where each component is true if the component of the left-hand type is greater than the corresponding right-hand type component.
-inline bool3x4 operator>( const int3x4& lhs, const int3x4& rhs );
+inline bool3x4 operator>( const int3x4& lhs, const int3x4& rhs )
+{
+	return bool3x4(
+		lhs[0] > rhs[0],
+		lhs[1] > rhs[1],
+		lhs[2] > rhs[2]
+	);
+}
 
 /// \relates int3x4
 /// \brief Returns a bool3x4 where each component is true if the component of the left-hand type is greater than or equal to the corresponding right-hand type component.
-inline bool3x4 operator>=( const int3x4& lhs, const int3x4& rhs );
+inline bool3x4 operator>=( const int3x4& lhs, const int3x4& rhs )
+{
+	return bool3x4(
+		lhs[0] >= rhs[0],
+		lhs[1] >= rhs[1],
+		lhs[2] >= rhs[2]
+	);
+}
 
 /// \relates int3x4
 /// \brief Returns a copy of the int3x4 where each component has been bitwise AND'd against the given scalar value.
-inline int3x4 operator&( const int3x4& lhs, const int32_t& rhs );
+inline int3x4 operator&( const int3x4& lhs, const int32_t& rhs )
+{
+	return int3x4(
+		lhs[0] & rhs,
+		lhs[1] & rhs,
+		lhs[2] & rhs
+	);
+}
 
 /// \relates int3x4
 /// \brief Performs a bitwise AND on the given left-hand int3x4 against the given scalar value.
-inline int3x4 operator&=( int3x4& lhs, const int32_t& rhs );
+inline int3x4 operator&=( int3x4& lhs, const int32_t& rhs )
+{
+	return ( lhs = lhs & rhs );
+}
 
 /// \relates int3x4
 /// \brief Returns a copy of the int3x4 where each component of the left-hand int3x4 has been bitwise AND'd against the corresponding component of the right-hand side int3x4.
-inline int3x4 operator&( const int3x4& lhs, const int3x4& rhs );
+inline int3x4 operator&( const int3x4& lhs, const int3x4& rhs )
+{
+	return int3x4(
+		lhs[0] & rhs[0],
+		lhs[1] & rhs[1],
+		lhs[2] & rhs[2]
+	);
+}
 
 /// \relates int3x4
 /// \brief Performs a bitwise AND on the given left-hand int3x4 against the corresponding component of the given right-hand int3x4.
-inline int3x4 operator&=( int3x4& lhs, const int3x4& rhs );
+inline int3x4 operator&=( int3x4& lhs, const int3x4& rhs )
+{
+	return ( lhs = lhs & rhs );
+}
 
 /// \relates int3x4
 /// \brief Returns a copy of the int3x4 where each component has been bitwise OR'd against the given scalar value.
-inline int3x4 operator|( const int3x4& lhs, const int32_t& rhs );
+inline int3x4 operator|( const int3x4& lhs, const int32_t& rhs )
+{
+	return int3x4(
+		lhs[0] | rhs,
+		lhs[1] | rhs,
+		lhs[2] | rhs
+	);
+}
 
 /// \relates int3x4
 /// \brief Performs a bitwise OR on the given left-hand int3x4 against the given scalar value.
-inline int3x4 operator|=( int3x4& lhs, const int32_t& rhs );
+inline int3x4 operator|=( int3x4& lhs, const int32_t& rhs )
+{
+	return ( lhs = lhs | rhs );
+}
 
 /// \relates int3x4
 /// \brief Returns a copy of the int3x4 where each component of the left-hand int3x4 has been bitwise OR'd against the corresponding component of the right-hand side int3x4.
-inline int3x4 operator|( const int3x4& lhs, const int3x4& rhs );
+inline int3x4 operator|( const int3x4& lhs, const int3x4& rhs )
+{
+	return int3x4(
+		lhs[0] | rhs[0],
+		lhs[1] | rhs[1],
+		lhs[2] | rhs[2]
+	);
+}
 
 /// \relates int3x4
 /// \brief Performs a bitwise OR on the given left-hand int3x4 against the corresponding component of the given right-hand int3x4.
-inline int3x4 operator|=( int3x4& lhs, const int3x4& rhs );
+inline int3x4 operator|=( int3x4& lhs, const int3x4& rhs )
+{
+	return ( lhs = lhs | rhs );
+}
 
 /// \relates int3x4
 /// \brief Returns a copy of the int3x4 where each component has been bitwise XOR'd against the given scalar value.
-inline int3x4 operator^( const int3x4& lhs, const int32_t& rhs );
+inline int3x4 operator^( const int3x4& lhs, const int32_t& rhs )
+{
+	return int3x4(
+		lhs[0] ^ rhs,
+		lhs[1] ^ rhs,
+		lhs[2] ^ rhs
+	);
+}
 
 /// \relates int3x4
 /// \brief Performs a bitwise XOR on the given left-hand int3x4 against the given scalar value.
-inline int3x4 operator^=( int3x4& lhs, const int32_t& rhs );
+inline int3x4 operator^=( int3x4& lhs, const int32_t& rhs )
+{
+	return ( lhs = lhs ^ rhs );
+}
 
 /// \relates int3x4
 /// \brief Returns a copy of the int3x4 where each component of the left-hand int3x4 has been bitwise XOR'd against the corresponding component of the right-hand side int3x4.
-inline int3x4 operator^( const int3x4& lhs, const int3x4& rhs );
+inline int3x4 operator^( const int3x4& lhs, const int3x4& rhs )
+{
+	return int3x4(
+		lhs[0] ^ rhs[0],
+		lhs[1] ^ rhs[1],
+		lhs[2] ^ rhs[2]
+	);
+}
 
 /// \relates int3x4
 /// \brief Performs a bitwise XOR on the given left-hand int3x4 against the corresponding component of the given right-hand int3x4.
-inline int3x4 operator^=( int3x4& lhs, const int3x4& rhs );
+inline int3x4 operator^=( int3x4& lhs, const int3x4& rhs )
+{
+	return ( lhs = lhs ^ rhs );
+}
 
 /// \relates int3x4
 /// \brief Returns a copy of the int3x4 where each component has been bitwise left-shifted by the given scalar value.
-inline int3x4 operator<<( const int3x4& lhs, const int32_t& rhs );
+inline int3x4 operator<<( const int3x4& lhs, const int32_t& rhs )
+{
+	return int3x4(
+		lhs[0] << rhs,
+		lhs[1] << rhs,
+		lhs[2] << rhs
+	);
+}
 
 /// \relates int3x4
 /// \brief Performs a left bitshift on the given left-hand int3x4 by the given scalar value.
-inline int3x4 operator<<=( int3x4& lhs, const int32_t& rhs );
+inline int3x4 operator<<=( int3x4& lhs, const int32_t& rhs )
+{
+	return ( lhs = lhs << rhs );
+}
 
 /// \relates int3x4
 /// \brief Returns a copy of the int3x4 where each component of the left-hand int3x4 has been bitwise left-shifted by the corresponding component of the right-hand side int3x4.
-inline int3x4 operator<<( const int3x4& lhs, const int3x4& rhs );
+inline int3x4 operator<<( const int3x4& lhs, const int3x4& rhs )
+{
+	return int3x4(
+		lhs[0] << rhs[0],
+		lhs[1] << rhs[1],
+		lhs[2] << rhs[2]
+	);
+}
 
 /// \relates int3x4
 /// \brief Performs a left bitshift on the given left-hand int3x4 by the corresponding component of the given right-hand int3x4.
-inline int3x4 operator<<=( int3x4& lhs, const int3x4& rhs );
+inline int3x4 operator<<=( int3x4& lhs, const int3x4& rhs )
+{
+	return ( lhs = lhs << rhs );
+}
 
 /// \relates int3x4
 /// \brief Returns a copy of the int3x4 where each component has been bitwise right-shifted by the given scalar value.
-inline int3x4 operator>>( const int3x4& lhs, const int32_t& rhs );
+inline int3x4 operator>>( const int3x4& lhs, const int32_t& rhs )
+{
+	return int3x4(
+		lhs[0] >> rhs,
+		lhs[1] >> rhs,
+		lhs[2] >> rhs
+	);
+}
 
 /// \relates int3x4
 /// \brief Performs a right bitshift on the given left-hand int3x4 by the given scalar value.
-inline int3x4 operator>>=( int3x4& lhs, const int32_t& rhs );
+inline int3x4 operator>>=( int3x4& lhs, const int32_t& rhs )
+{
+	return ( lhs = lhs >> rhs );
+}
 
 /// \relates int3x4
 /// \brief Returns a copy of the int3x4 where each component of the left-hand int3x4 has been bitwise right-shifted by the corresponding component of the right-hand side int3x4.
-inline int3x4 operator>>( const int3x4& lhs, const int3x4& rhs );
+inline int3x4 operator>>( const int3x4& lhs, const int3x4& rhs )
+{
+	return int3x4(
+		lhs[0] >> rhs[0],
+		lhs[1] >> rhs[1],
+		lhs[2] >> rhs[2]
+	);
+}
 
 /// \relates int3x4
 /// \brief Performs a right bitshift on the given left-hand int3x4 by the corresponding component of the given right-hand int3x4.
-inline int3x4 operator>>=( int3x4& lhs, const int3x4& rhs );
+inline int3x4 operator>>=( int3x4& lhs, const int3x4& rhs )
+{
+	return ( lhs = lhs >> rhs );
+}
 
 /// \relates int3x4
 /// \brief Performs a unary bitwise operation on all components of the given int3x4.
-inline int3x4 operator~( const int3x4& lhs );
+inline int3x4 operator~( const int3x4& lhs )
+{
+	return int3x4(
+		~lhs[0],
+		~lhs[1],
+		~lhs[2]
+	);
+}
 
 
 // int4x2
 /// \relates int4x2
 /// \brief Returns a copy of the int4x2 that has been component-wise added by the given scalar value.
-inline int4x2 operator+( const int4x2& lhs, const int32_t rhs );
+inline int4x2 operator+( const int4x2& lhs, const int32_t rhs )
+{
+	return int4x2(
+		lhs[0] + rhs,
+		lhs[1] + rhs,
+		lhs[2] + rhs,
+		lhs[3] + rhs
+	);
+}
 
 /// \relates int4x2
 /// \brief Adds each component by the given scalar value.
-inline int4x2 operator+=( int4x2& lhs, const int32_t rhs );
+inline int4x2 operator+=( int4x2& lhs, const int32_t rhs )
+{
+	return ( lhs = lhs + rhs );
+}
 
 /// \relates int4x2
 /// \brief Returns a copy of the int4x2 that has been component-wise added by the corresponding component of the right-hand int4x2.
-inline int4x2 operator+( const int4x2& lhs, const int4x2& rhs );
+inline int4x2 operator+( const int4x2& lhs, const int4x2& rhs )
+{
+	return int4x2(
+		lhs[0] + rhs[0],
+		lhs[1] + rhs[1],
+		lhs[2] + rhs[2],
+		lhs[3] + rhs[3]
+	);
+}
 
 /// \relates int4x2
 /// \brief Adds each component of the int4x2 by the corresponding component of the right-hand int4x2.
-inline int4x2 operator+=( int4x2& lhs, const int4x2& rhs );
+inline int4x2 operator+=( int4x2& lhs, const int4x2& rhs )
+{
+	return ( lhs = lhs + rhs );
+}
 
 /// \relates int4x2
 /// \brief Returns a copy of the int4x2 that has been component-wise subtracted by the given scalar value.
-inline int4x2 operator-( const int4x2& lhs, const int32_t rhs );
+inline int4x2 operator-( const int4x2& lhs, const int32_t rhs )
+{
+	return int4x2(
+		lhs[0] - rhs,
+		lhs[1] - rhs,
+		lhs[2] - rhs,
+		lhs[3] - rhs
+	);
+}
 
 /// \relates int4x2
 /// \brief Subtracts each component by the given scalar value.
-inline int4x2 operator-=( int4x2& lhs, const int32_t rhs );
+inline int4x2 operator-=( int4x2& lhs, const int32_t rhs )
+{
+	return ( lhs = lhs - rhs );
+}
 
 /// \relates int4x2
 /// \brief Returns a copy of the int4x2 that has been component-wise subtracted by the corresponding component of the right-hand int4x2.
-inline int4x2 operator-( const int4x2& lhs, const int4x2& rhs );
+inline int4x2 operator-( const int4x2& lhs, const int4x2& rhs )
+{
+	return int4x2(
+		lhs[0] - rhs[0],
+		lhs[1] - rhs[1],
+		lhs[2] - rhs[2],
+		lhs[3] - rhs[3]
+	);
+}
 
 /// \relates int4x2
 /// \brief Subtracts each component of the int4x2 by the corresponding component of the right-hand int4x2.
-inline int4x2 operator-=( int4x2& lhs, const int4x2& rhs );
+inline int4x2 operator-=( int4x2& lhs, const int4x2& rhs )
+{
+	return ( lhs = lhs - rhs );
+}
 
 /// \relates int4x2
 /// \brief Returns a copy of the int4x2 that has been component-wise multiplied by the given scalar value.
-inline int4x2 operator*( const int4x2& lhs, const int32_t rhs );
+inline int4x2 operator*( const int4x2& lhs, const int32_t rhs )
+{
+	return int4x2(
+		lhs[0] * rhs,
+		lhs[1] * rhs,
+		lhs[2] * rhs,
+		lhs[3] * rhs
+	);
+}
 
 /// \relates int4x2
 /// \brief Multiplies each component by the given scalar value.
-inline int4x2 operator*=( int4x2& lhs, const int32_t rhs );
+inline int4x2 operator*=( int4x2& lhs, const int32_t rhs )
+{
+	return ( lhs = lhs * rhs );
+}
 
 /// \relates int4x2
 /// \brief Returns a copy of the matrix where each row of the left-hand matrix has been dot-producted by the corresponding column of the right-hand matrix.
-inline int4x4 operator*( const int4x2& lhs, const int2x4& rhs );
+inline int4x4 operator*( const int4x2& lhs, const int2x4& rhs )
+{
+	int2 row0 = lhs[0];
+	int2 row1 = lhs[1];
+	int2 row2 = lhs[2];
+	int2 row3 = lhs[3];
 
-/// \relates int4x2
-/// \brief Dot products each row of the left-hand matrix with the corresponding column of the right-hand matrix.
-inline int4x4 operator*=( int4x2& lhs, const int2x4& rhs );
+	int2 col0 = { rhs[0].x, rhs[1].x };
+	int2 col1 = { rhs[0].y, rhs[1].y };
+	int2 col2 = { rhs[0].z, rhs[1].z };
+	int2 col3 = { rhs[0].w, rhs[1].w };
+
+	return int4x4(
+		row0.x * col0.x + row0.y * col0.y,
+		row0.x * col1.x + row0.y * col1.y,
+		row0.x * col2.x + row0.y * col2.y,
+		row0.x * col3.x + row0.y * col3.y,
+
+		row1.x * col0.x + row1.y * col0.y,
+		row1.x * col1.x + row1.y * col1.y,
+		row1.x * col2.x + row1.y * col2.y,
+		row1.x * col3.x + row1.y * col3.y,
+
+		row2.x * col0.x + row2.y * col0.y,
+		row2.x * col1.x + row2.y * col1.y,
+		row2.x * col2.x + row2.y * col2.y,
+		row2.x * col3.x + row2.y * col3.y,
+
+		row3.x * col0.x + row3.y * col0.y,
+		row3.x * col1.x + row3.y * col1.y,
+		row3.x * col2.x + row3.y * col2.y,
+		row3.x * col3.x + row3.y * col3.y
+	);
+}
 
 /// \relates int4x2
 /// \brief Returns a copy of the int4x2 that has been component-wise divided by the given scalar value.
-inline int4x2 operator/( const int4x2& lhs, const int32_t rhs );
+inline int4x2 operator/( const int4x2& lhs, const int32_t rhs )
+{
+	return int4x2(
+		lhs[0] / rhs,
+		lhs[1] / rhs,
+		lhs[2] / rhs,
+		lhs[3] / rhs
+	);
+}
 
 /// \relates int4x2
 /// \brief Divides each component by the given scalar value.
-inline int4x2 operator/=( int4x2& lhs, const int32_t rhs );
+inline int4x2 operator/=( int4x2& lhs, const int32_t rhs )
+{
+	return ( lhs = lhs / rhs );
+}
 
 /// \relates int4x2
 /// \brief Returns a copy of the int4x2 that has been component-wise divided by the corresponding component of the right-hand int4x2.
-inline int4x2 operator/( const int4x2& lhs, const int4x2& rhs );
+inline int4x2 operator/( const int4x2& lhs, const int4x2& rhs )
+{
+	return int4x2(
+		lhs[0] / rhs[0],
+		lhs[1] / rhs[1],
+		lhs[2] / rhs[2],
+		lhs[3] / rhs[3]
+	);
+}
 
+// prefix
 /// \relates int4x2
 /// \brief Prefix increment operator.  Adds one to each component of the given int4x2 before evaluation.
-inline int4x2& operator++( int4x2& lhs );
+inline int4x2& operator++( int4x2& lhs )
+{
+	++lhs[0];
+	++lhs[1];
+	++lhs[2];
+	++lhs[3];
+	return lhs;
+}
 
+// postfix
 /// \relates int4x2
 /// \brief Postfix increment operator.  Adds one to each component of the given int4x2 after evaluation.
-inline int4x2& operator++( int4x2& lhs, const int );
+inline int4x2& operator++( int4x2& lhs, const int )
+{
+	lhs[0]++;
+	lhs[1]++;
+	lhs[2]++;
+	lhs[3]++;
+	return lhs;
+}
 
+// prefix
 /// \relates int4x2
 /// \brief Prefix decrement operator.  Subtracts one from each component of the given int4x2 before evaluation.
-inline int4x2& operator--( int4x2& lhs );
+inline int4x2& operator--( int4x2& lhs )
+{
+	--lhs[0];
+	--lhs[1];
+	--lhs[2];
+	--lhs[3];
+	return lhs;
+}
 
+// postfix
 /// \relates int4x2
 /// \brief Postfix decrement operator.  Subtracts one from each component of the given int4x2 after evaluation.
-inline int4x2& operator--( int4x2& lhs, const int );
+inline int4x2& operator--( int4x2& lhs, const int )
+{
+	lhs[0]--;
+	lhs[1]--;
+	lhs[2]--;
+	lhs[3]--;
+	return lhs;
+}
 
 /// \relates int4x2
 /// \brief Returns a bool4x2 where each component is true if the component of the left-hand type is less than the corresponding right-hand type component.
-inline bool4x2 operator<( const int4x2& lhs, const int4x2& rhs );
+inline bool4x2 operator<( const int4x2& lhs, const int4x2& rhs )
+{
+	return bool4x2(
+		lhs[0] < rhs[0],
+		lhs[1] < rhs[1],
+		lhs[2] < rhs[2],
+		lhs[3] < rhs[3]
+	);
+}
 
 /// \relates int4x2
 /// \brief Returns a bool4x2 where each component is true if the component of the left-hand type is less than or equal to the corresponding right-hand type component.
-inline bool4x2 operator<=( const int4x2& lhs, const int4x2& rhs );
+inline bool4x2 operator<=( const int4x2& lhs, const int4x2& rhs )
+{
+	return bool4x2(
+		lhs[0] <= rhs[0],
+		lhs[1] <= rhs[1],
+		lhs[2] <= rhs[2],
+		lhs[3] <= rhs[3]
+	);
+}
 
 /// \relates int4x2
 /// \brief Returns a bool4x2 where each component is true if the component of the left-hand type is greater than the corresponding right-hand type component.
-inline bool4x2 operator>( const int4x2& lhs, const int4x2& rhs );
+inline bool4x2 operator>( const int4x2& lhs, const int4x2& rhs )
+{
+	return bool4x2(
+		lhs[0] > rhs[0],
+		lhs[1] > rhs[1],
+		lhs[2] > rhs[2],
+		lhs[3] > rhs[3]
+	);
+}
 
 /// \relates int4x2
 /// \brief Returns a bool4x2 where each component is true if the component of the left-hand type is greater than or equal to the corresponding right-hand type component.
-inline bool4x2 operator>=( const int4x2& lhs, const int4x2& rhs );
+inline bool4x2 operator>=( const int4x2& lhs, const int4x2& rhs )
+{
+	return bool4x2(
+		lhs[0] >= rhs[0],
+		lhs[1] >= rhs[1],
+		lhs[2] >= rhs[2],
+		lhs[3] >= rhs[3]
+	);
+}
 
 /// \relates int4x2
 /// \brief Returns a copy of the int4x2 where each component has been bitwise AND'd against the given scalar value.
-inline int4x2 operator&( const int4x2& lhs, const int32_t& rhs );
+inline int4x2 operator&( const int4x2& lhs, const int32_t& rhs )
+{
+	return int4x2(
+		lhs[0] & rhs,
+		lhs[1] & rhs,
+		lhs[2] & rhs,
+		lhs[3] & rhs
+	);
+}
 
 /// \relates int4x2
 /// \brief Performs a bitwise AND on the given left-hand int4x2 against the given scalar value.
-inline int4x2 operator&=( int4x2& lhs, const int32_t& rhs );
+inline int4x2 operator&=( int4x2& lhs, const int32_t& rhs )
+{
+	return ( lhs = lhs & rhs );
+}
 
 /// \relates int4x2
 /// \brief Returns a copy of the int4x2 where each component of the left-hand int4x2 has been bitwise AND'd against the corresponding component of the right-hand side int4x2.
-inline int4x2 operator&( const int4x2& lhs, const int4x2& rhs );
+inline int4x2 operator&( const int4x2& lhs, const int4x2& rhs )
+{
+	return int4x2(
+		lhs[0] & rhs[0],
+		lhs[1] & rhs[1],
+		lhs[2] & rhs[2],
+		lhs[3] & rhs[3]
+	);
+}
 
 /// \relates int4x2
 /// \brief Performs a bitwise AND on the given left-hand int4x2 against the corresponding component of the given right-hand int4x2.
-inline int4x2 operator&=( int4x2& lhs, const int4x2& rhs );
+inline int4x2 operator&=( int4x2& lhs, const int4x2& rhs )
+{
+	return ( lhs = lhs & rhs );
+}
 
 /// \relates int4x2
 /// \brief Returns a copy of the int4x2 where each component has been bitwise OR'd against the given scalar value.
-inline int4x2 operator|( const int4x2& lhs, const int32_t& rhs );
+inline int4x2 operator|( const int4x2& lhs, const int32_t& rhs )
+{
+	return int4x2(
+		lhs[0] | rhs,
+		lhs[1] | rhs,
+		lhs[2] | rhs,
+		lhs[3] | rhs
+	);
+}
 
 /// \relates int4x2
 /// \brief Performs a bitwise OR on the given left-hand int4x2 against the given scalar value.
-inline int4x2 operator|=( int4x2& lhs, const int32_t& rhs );
+inline int4x2 operator|=( int4x2& lhs, const int32_t& rhs )
+{
+	return ( lhs = lhs | rhs );
+}
 
 /// \relates int4x2
 /// \brief Returns a copy of the int4x2 where each component of the left-hand int4x2 has been bitwise OR'd against the corresponding component of the right-hand side int4x2.
-inline int4x2 operator|( const int4x2& lhs, const int4x2& rhs );
+inline int4x2 operator|( const int4x2& lhs, const int4x2& rhs )
+{
+	return int4x2(
+		lhs[0] | rhs[0],
+		lhs[1] | rhs[1],
+		lhs[2] | rhs[2],
+		lhs[3] | rhs[3]
+	);
+}
 
 /// \relates int4x2
 /// \brief Performs a bitwise OR on the given left-hand int4x2 against the corresponding component of the given right-hand int4x2.
-inline int4x2 operator|=( int4x2& lhs, const int4x2& rhs );
+inline int4x2 operator|=( int4x2& lhs, const int4x2& rhs )
+{
+	return ( lhs = lhs | rhs );
+}
 
 /// \relates int4x2
 /// \brief Returns a copy of the int4x2 where each component has been bitwise XOR'd against the given scalar value.
-inline int4x2 operator^( const int4x2& lhs, const int32_t& rhs );
+inline int4x2 operator^( const int4x2& lhs, const int32_t& rhs )
+{
+	return int4x2(
+		lhs[0] ^ rhs,
+		lhs[1] ^ rhs,
+		lhs[2] ^ rhs,
+		lhs[3] ^ rhs
+	);
+}
 
 /// \relates int4x2
 /// \brief Performs a bitwise XOR on the given left-hand int4x2 against the given scalar value.
-inline int4x2 operator^=( int4x2& lhs, const int32_t& rhs );
+inline int4x2 operator^=( int4x2& lhs, const int32_t& rhs )
+{
+	return ( lhs = lhs ^ rhs );
+}
 
 /// \relates int4x2
 /// \brief Returns a copy of the int4x2 where each component of the left-hand int4x2 has been bitwise XOR'd against the corresponding component of the right-hand side int4x2.
-inline int4x2 operator^( const int4x2& lhs, const int4x2& rhs );
+inline int4x2 operator^( const int4x2& lhs, const int4x2& rhs )
+{
+	return int4x2(
+		lhs[0] ^ rhs[0],
+		lhs[1] ^ rhs[1],
+		lhs[2] ^ rhs[2],
+		lhs[3] ^ rhs[3]
+	);
+}
 
 /// \relates int4x2
 /// \brief Performs a bitwise XOR on the given left-hand int4x2 against the corresponding component of the given right-hand int4x2.
-inline int4x2 operator^=( int4x2& lhs, const int4x2& rhs );
+inline int4x2 operator^=( int4x2& lhs, const int4x2& rhs )
+{
+	return ( lhs = lhs ^ rhs );
+}
 
 /// \relates int4x2
 /// \brief Returns a copy of the int4x2 where each component has been bitwise left-shifted by the given scalar value.
-inline int4x2 operator<<( const int4x2& lhs, const int32_t& rhs );
+inline int4x2 operator<<( const int4x2& lhs, const int32_t& rhs )
+{
+	return int4x2(
+		lhs[0] << rhs,
+		lhs[1] << rhs,
+		lhs[2] << rhs,
+		lhs[3] << rhs
+	);
+}
 
 /// \relates int4x2
 /// \brief Performs a left bitshift on the given left-hand int4x2 by the given scalar value.
-inline int4x2 operator<<=( int4x2& lhs, const int32_t& rhs );
+inline int4x2 operator<<=( int4x2& lhs, const int32_t& rhs )
+{
+	return ( lhs = lhs << rhs );
+}
 
 /// \relates int4x2
 /// \brief Returns a copy of the int4x2 where each component of the left-hand int4x2 has been bitwise left-shifted by the corresponding component of the right-hand side int4x2.
-inline int4x2 operator<<( const int4x2& lhs, const int4x2& rhs );
+inline int4x2 operator<<( const int4x2& lhs, const int4x2& rhs )
+{
+	return int4x2(
+		lhs[0] << rhs[0],
+		lhs[1] << rhs[1],
+		lhs[2] << rhs[2],
+		lhs[3] << rhs[3]
+	);
+}
 
 /// \relates int4x2
 /// \brief Performs a left bitshift on the given left-hand int4x2 by the corresponding component of the given right-hand int4x2.
-inline int4x2 operator<<=( int4x2& lhs, const int4x2& rhs );
+inline int4x2 operator<<=( int4x2& lhs, const int4x2& rhs )
+{
+	return ( lhs = lhs << rhs );
+}
 
 /// \relates int4x2
 /// \brief Returns a copy of the int4x2 where each component has been bitwise right-shifted by the given scalar value.
-inline int4x2 operator>>( const int4x2& lhs, const int32_t& rhs );
+inline int4x2 operator>>( const int4x2& lhs, const int32_t& rhs )
+{
+	return int4x2(
+		lhs[0] >> rhs,
+		lhs[1] >> rhs,
+		lhs[2] >> rhs,
+		lhs[3] >> rhs
+	);
+}
 
 /// \relates int4x2
 /// \brief Performs a right bitshift on the given left-hand int4x2 by the given scalar value.
-inline int4x2 operator>>=( int4x2& lhs, const int32_t& rhs );
+inline int4x2 operator>>=( int4x2& lhs, const int32_t& rhs )
+{
+	return ( lhs = lhs >> rhs );
+}
 
 /// \relates int4x2
 /// \brief Returns a copy of the int4x2 where each component of the left-hand int4x2 has been bitwise right-shifted by the corresponding component of the right-hand side int4x2.
-inline int4x2 operator>>( const int4x2& lhs, const int4x2& rhs );
+inline int4x2 operator>>( const int4x2& lhs, const int4x2& rhs )
+{
+	return int4x2(
+		lhs[0] >> rhs[0],
+		lhs[1] >> rhs[1],
+		lhs[2] >> rhs[2],
+		lhs[3] >> rhs[3]
+	);
+}
 
 /// \relates int4x2
 /// \brief Performs a right bitshift on the given left-hand int4x2 by the corresponding component of the given right-hand int4x2.
-inline int4x2 operator>>=( int4x2& lhs, const int4x2& rhs );
+inline int4x2 operator>>=( int4x2& lhs, const int4x2& rhs )
+{
+	return ( lhs = lhs >> rhs );
+}
 
 /// \relates int4x2
 /// \brief Performs a unary bitwise operation on all components of the given int4x2.
-inline int4x2 operator~( const int4x2& lhs );
+inline int4x2 operator~( const int4x2& lhs )
+{
+	return int4x2(
+		~lhs[0],
+		~lhs[1],
+		~lhs[2],
+		~lhs[3]
+	);
+}
 
 
 // int4x3
 /// \relates int4x3
 /// \brief Returns a copy of the int4x3 that has been component-wise added by the given scalar value.
-inline int4x3 operator+( const int4x3& lhs, const int32_t rhs );
+inline int4x3 operator+( const int4x3& lhs, const int32_t rhs )
+{
+	return int4x3(
+		lhs[0] + rhs,
+		lhs[1] + rhs,
+		lhs[2] + rhs,
+		lhs[3] + rhs
+	);
+}
 
 /// \relates int4x3
 /// \brief Adds each component by the given scalar value.
-inline int4x3 operator+=( int4x3& lhs, const int32_t rhs );
+inline int4x3 operator+=( int4x3& lhs, const int32_t rhs )
+{
+	return ( lhs = lhs + rhs );
+}
 
 /// \relates int4x3
 /// \brief Returns a copy of the int4x3 that has been component-wise added by the corresponding component of the right-hand int4x3.
-inline int4x3 operator+( const int4x3& lhs, const int4x3& rhs );
+inline int4x3 operator+( const int4x3& lhs, const int4x3& rhs )
+{
+	return int4x3(
+		lhs[0] + rhs[0],
+		lhs[1] + rhs[1],
+		lhs[2] + rhs[2],
+		lhs[3] + rhs[3]
+	);
+}
 
 /// \relates int4x3
 /// \brief Adds each component of the int4x3 by the corresponding component of the right-hand int4x3.
-inline int4x3 operator+=( int4x3& lhs, const int4x3& rhs );
+inline int4x3 operator+=( int4x3& lhs, const int4x3& rhs )
+{
+	return ( lhs = lhs + rhs );
+}
 
 /// \relates int4x3
 /// \brief Returns a copy of the int4x3 that has been component-wise subtracted by the given scalar value.
-inline int4x3 operator-( const int4x3& lhs, const int32_t rhs );
+inline int4x3 operator-( const int4x3& lhs, const int32_t rhs )
+{
+	return int4x3(
+		lhs[0] - rhs,
+		lhs[1] - rhs,
+		lhs[2] - rhs,
+		lhs[3] - rhs
+	);
+}
 
 /// \relates int4x3
 /// \brief Subtracts each component by the given scalar value.
-inline int4x3 operator-=( int4x3& lhs, const int32_t rhs );
+inline int4x3 operator-=( int4x3& lhs, const int32_t rhs )
+{
+	return ( lhs = lhs - rhs );
+}
 
 /// \relates int4x3
 /// \brief Returns a copy of the int4x3 that has been component-wise subtracted by the corresponding component of the right-hand int4x3.
-inline int4x3 operator-( const int4x3& lhs, const int4x3& rhs );
+inline int4x3 operator-( const int4x3& lhs, const int4x3& rhs )
+{
+	return int4x3(
+		lhs[0] - rhs[0],
+		lhs[1] - rhs[1],
+		lhs[2] - rhs[2],
+		lhs[3] - rhs[3]
+	);
+}
 
 /// \relates int4x3
 /// \brief Subtracts each component of the int4x3 by the corresponding component of the right-hand int4x3.
-inline int4x3 operator-=( int4x3& lhs, const int4x3& rhs );
+inline int4x3 operator-=( int4x3& lhs, const int4x3& rhs )
+{
+	return ( lhs = lhs - rhs );
+}
 
 /// \relates int4x3
 /// \brief Returns a copy of the int4x3 that has been component-wise multiplied by the given scalar value.
-inline int4x3 operator*( const int4x3& lhs, const int32_t rhs );
+inline int4x3 operator*( const int4x3& lhs, const int32_t rhs )
+{
+	return int4x3(
+		lhs[0] * rhs,
+		lhs[1] * rhs,
+		lhs[2] * rhs,
+		lhs[3] * rhs
+	);
+}
 
 /// \relates int4x3
 /// \brief Multiplies each component by the given scalar value.
-inline int4x3 operator*=( int4x3& lhs, const int32_t rhs );
+inline int4x3 operator*=( int4x3& lhs, const int32_t rhs )
+{
+	return ( lhs = lhs * rhs );
+}
 
 /// \relates int4x3
 /// \brief Returns a copy of the matrix where each row of the left-hand matrix has been dot-producted by the corresponding column of the right-hand matrix.
-inline int4x4 operator*( const int4x3& lhs, const int3x4& rhs );
+inline int4x4 operator*( const int4x3& lhs, const int3x4& rhs )
+{
+	int3 row0 = lhs[0];
+	int3 row1 = lhs[1];
+	int3 row2 = lhs[2];
+	int3 row3 = lhs[3];
 
-/// \relates int4x3
-/// \brief Dot products each row of the left-hand matrix with the corresponding column of the right-hand matrix.
-inline int4x4 operator*=( int4x3& lhs, const int3x4& rhs );
+	int3 col0 = { rhs[0].x, rhs[1].x, rhs[2].x };
+	int3 col1 = { rhs[0].y, rhs[1].y, rhs[2].y };
+	int3 col2 = { rhs[0].z, rhs[1].z, rhs[2].z };
+	int3 col3 = { rhs[0].w, rhs[1].w, rhs[2].w };
+
+	return int4x4(
+		row0.x * col0.x + row0.y * col0.y + row0.z * col0.z,
+		row0.x * col1.x + row0.y * col1.y + row0.z * col1.z,
+		row0.x * col2.x + row0.y * col2.y + row0.z * col2.z,
+		row0.x * col3.x + row0.y * col3.y + row0.z * col3.z,
+
+		row1.x * col0.x + row1.y * col0.y + row1.z * col0.z,
+		row1.x * col1.x + row1.y * col1.y + row1.z * col1.z,
+		row1.x * col2.x + row1.y * col2.y + row1.z * col2.z,
+		row1.x * col3.x + row1.y * col3.y + row1.z * col3.z,
+
+		row2.x * col0.x + row2.y * col0.y + row2.z * col0.z,
+		row2.x * col1.x + row2.y * col1.y + row2.z * col1.z,
+		row2.x * col2.x + row2.y * col2.y + row2.z * col2.z,
+		row2.x * col3.x + row2.y * col3.y + row2.z * col3.z,
+
+		row3.x * col0.x + row3.y * col0.y + row3.z * col0.z,
+		row3.x * col1.x + row3.y * col1.y + row3.z * col1.z,
+		row3.x * col2.x + row3.y * col2.y + row3.z * col2.z,
+		row3.x * col3.x + row3.y * col3.y + row3.z * col3.z
+	);
+}
 
 /// \relates int4x3
 /// \brief Returns a copy of the int4x3 that has been component-wise divided by the given scalar value.
-inline int4x3 operator/( const int4x3& lhs, const int32_t rhs );
+inline int4x3 operator/( const int4x3& lhs, const int32_t rhs )
+{
+	return int4x3(
+		lhs[0] / rhs,
+		lhs[1] / rhs,
+		lhs[2] / rhs,
+		lhs[3] / rhs
+	);
+}
 
 /// \relates int4x3
 /// \brief Divides each component by the given scalar value.
-inline int4x3 operator/=( int4x3& lhs, const int32_t rhs );
+inline int4x3 operator/=( int4x3& lhs, const int32_t rhs )
+{
+	return ( lhs = lhs / rhs );
+}
 
 /// \relates int4x3
 /// \brief Returns a copy of the int4x3 that has been component-wise divided by the corresponding component of the right-hand int4x3.
-inline int4x3 operator/( const int4x3& lhs, const int4x3& rhs );
+inline int4x3 operator/( const int4x3& lhs, const int4x3& rhs )
+{
+	return int4x3(
+		lhs[0] / rhs[0],
+		lhs[1] / rhs[1],
+		lhs[2] / rhs[2],
+		lhs[3] / rhs[3]
+	);
+}
 
+// prefix
 /// \relates int4x3
 /// \brief Prefix increment operator.  Adds one to each component of the given int4x3 before evaluation.
-inline int4x3& operator++( int4x3& lhs );
+inline int4x3& operator++( int4x3& lhs )
+{
+	++lhs[0];
+	++lhs[1];
+	++lhs[2];
+	++lhs[3];
+	return lhs;
+}
 
+// postfix
 /// \relates int4x3
 /// \brief Postfix increment operator.  Adds one to each component of the given int4x3 after evaluation.
-inline int4x3& operator++( int4x3& lhs, const int );
+inline int4x3& operator++( int4x3& lhs, const int )
+{
+	lhs[0]++;
+	lhs[1]++;
+	lhs[2]++;
+	lhs[3]++;
+	return lhs;
+}
 
+// prefix
 /// \relates int4x3
 /// \brief Prefix decrement operator.  Subtracts one from each component of the given int4x3 before evaluation.
-inline int4x3& operator--( int4x3& lhs );
+inline int4x3& operator--( int4x3& lhs )
+{
+	--lhs[0];
+	--lhs[1];
+	--lhs[2];
+	--lhs[3];
+	return lhs;
+}
 
+// postfix
 /// \relates int4x3
 /// \brief Postfix decrement operator.  Subtracts one from each component of the given int4x3 after evaluation.
-inline int4x3& operator--( int4x3& lhs, const int );
+inline int4x3& operator--( int4x3& lhs, const int )
+{
+	lhs[0]--;
+	lhs[1]--;
+	lhs[2]--;
+	lhs[3]--;
+	return lhs;
+}
 
 /// \relates int4x3
 /// \brief Returns a bool4x3 where each component is true if the component of the left-hand type is less than the corresponding right-hand type component.
-inline bool4x3 operator<( const int4x3& lhs, const int4x3& rhs );
+inline bool4x3 operator<( const int4x3& lhs, const int4x3& rhs )
+{
+	return bool4x3(
+		lhs[0] < rhs[0],
+		lhs[1] < rhs[1],
+		lhs[2] < rhs[2],
+		lhs[3] < rhs[3]
+	);
+}
 
 /// \relates int4x3
 /// \brief Returns a bool4x3 where each component is true if the component of the left-hand type is less than or equal to the corresponding right-hand type component.
-inline bool4x3 operator<=( const int4x3& lhs, const int4x3& rhs );
+inline bool4x3 operator<=( const int4x3& lhs, const int4x3& rhs )
+{
+	return bool4x3(
+		lhs[0] <= rhs[0],
+		lhs[1] <= rhs[1],
+		lhs[2] <= rhs[2],
+		lhs[3] <= rhs[3]
+	);
+}
 
 /// \relates int4x3
 /// \brief Returns a bool4x3 where each component is true if the component of the left-hand type is greater than the corresponding right-hand type component.
-inline bool4x3 operator>( const int4x3& lhs, const int4x3& rhs );
+inline bool4x3 operator>( const int4x3& lhs, const int4x3& rhs )
+{
+	return bool4x3(
+		lhs[0] > rhs[0],
+		lhs[1] > rhs[1],
+		lhs[2] > rhs[2],
+		lhs[3] > rhs[3]
+	);
+}
 
 /// \relates int4x3
 /// \brief Returns a bool4x3 where each component is true if the component of the left-hand type is greater than or equal to the corresponding right-hand type component.
-inline bool4x3 operator>=( const int4x3& lhs, const int4x3& rhs );
+inline bool4x3 operator>=( const int4x3& lhs, const int4x3& rhs )
+{
+	return bool4x3(
+		lhs[0] >= rhs[0],
+		lhs[1] >= rhs[1],
+		lhs[2] >= rhs[2],
+		lhs[3] >= rhs[3]
+	);
+}
 
 /// \relates int4x3
 /// \brief Returns a copy of the int4x3 where each component has been bitwise AND'd against the given scalar value.
-inline int4x3 operator&( const int4x3& lhs, const int32_t& rhs );
+inline int4x3 operator&( const int4x3& lhs, const int32_t& rhs )
+{
+	return int4x3(
+		lhs[0] & rhs,
+		lhs[1] & rhs,
+		lhs[2] & rhs,
+		lhs[3] & rhs
+	);
+}
 
 /// \relates int4x3
 /// \brief Performs a bitwise AND on the given left-hand int4x3 against the given scalar value.
-inline int4x3 operator&=( int4x3& lhs, const int32_t& rhs );
+inline int4x3 operator&=( int4x3& lhs, const int32_t& rhs )
+{
+	return ( lhs = lhs & rhs );
+}
 
 /// \relates int4x3
 /// \brief Returns a copy of the int4x3 where each component of the left-hand int4x3 has been bitwise AND'd against the corresponding component of the right-hand side int4x3.
-inline int4x3 operator&( const int4x3& lhs, const int4x3& rhs );
+inline int4x3 operator&( const int4x3& lhs, const int4x3& rhs )
+{
+	return int4x3(
+		lhs[0] & rhs[0],
+		lhs[1] & rhs[1],
+		lhs[2] & rhs[2],
+		lhs[3] & rhs[3]
+	);
+}
 
 /// \relates int4x3
 /// \brief Performs a bitwise AND on the given left-hand int4x3 against the corresponding component of the given right-hand int4x3.
-inline int4x3 operator&=( int4x3& lhs, const int4x3& rhs );
+inline int4x3 operator&=( int4x3& lhs, const int4x3& rhs )
+{
+	return ( lhs = lhs & rhs );
+}
 
 /// \relates int4x3
 /// \brief Returns a copy of the int4x3 where each component has been bitwise OR'd against the given scalar value.
-inline int4x3 operator|( const int4x3& lhs, const int32_t& rhs );
+inline int4x3 operator|( const int4x3& lhs, const int32_t& rhs )
+{
+	return int4x3(
+		lhs[0] | rhs,
+		lhs[1] | rhs,
+		lhs[2] | rhs,
+		lhs[3] | rhs
+	);
+}
 
 /// \relates int4x3
 /// \brief Performs a bitwise OR on the given left-hand int4x3 against the given scalar value.
-inline int4x3 operator|=( int4x3& lhs, const int32_t& rhs );
+inline int4x3 operator|=( int4x3& lhs, const int32_t& rhs )
+{
+	return ( lhs = lhs | rhs );
+}
 
 /// \relates int4x3
 /// \brief Returns a copy of the int4x3 where each component of the left-hand int4x3 has been bitwise OR'd against the corresponding component of the right-hand side int4x3.
-inline int4x3 operator|( const int4x3& lhs, const int4x3& rhs );
+inline int4x3 operator|( const int4x3& lhs, const int4x3& rhs )
+{
+	return int4x3(
+		lhs[0] | rhs[0],
+		lhs[1] | rhs[1],
+		lhs[2] | rhs[2],
+		lhs[3] | rhs[3]
+	);
+}
 
 /// \relates int4x3
 /// \brief Performs a bitwise OR on the given left-hand int4x3 against the corresponding component of the given right-hand int4x3.
-inline int4x3 operator|=( int4x3& lhs, const int4x3& rhs );
+inline int4x3 operator|=( int4x3& lhs, const int4x3& rhs )
+{
+	return ( lhs = lhs | rhs );
+}
 
 /// \relates int4x3
 /// \brief Returns a copy of the int4x3 where each component has been bitwise XOR'd against the given scalar value.
-inline int4x3 operator^( const int4x3& lhs, const int32_t& rhs );
+inline int4x3 operator^( const int4x3& lhs, const int32_t& rhs )
+{
+	return int4x3(
+		lhs[0] ^ rhs,
+		lhs[1] ^ rhs,
+		lhs[2] ^ rhs,
+		lhs[3] ^ rhs
+	);
+}
 
 /// \relates int4x3
 /// \brief Performs a bitwise XOR on the given left-hand int4x3 against the given scalar value.
-inline int4x3 operator^=( int4x3& lhs, const int32_t& rhs );
+inline int4x3 operator^=( int4x3& lhs, const int32_t& rhs )
+{
+	return ( lhs = lhs ^ rhs );
+}
 
 /// \relates int4x3
 /// \brief Returns a copy of the int4x3 where each component of the left-hand int4x3 has been bitwise XOR'd against the corresponding component of the right-hand side int4x3.
-inline int4x3 operator^( const int4x3& lhs, const int4x3& rhs );
+inline int4x3 operator^( const int4x3& lhs, const int4x3& rhs )
+{
+	return int4x3(
+		lhs[0] ^ rhs[0],
+		lhs[1] ^ rhs[1],
+		lhs[2] ^ rhs[2],
+		lhs[3] ^ rhs[3]
+	);
+}
 
 /// \relates int4x3
 /// \brief Performs a bitwise XOR on the given left-hand int4x3 against the corresponding component of the given right-hand int4x3.
-inline int4x3 operator^=( int4x3& lhs, const int4x3& rhs );
+inline int4x3 operator^=( int4x3& lhs, const int4x3& rhs )
+{
+	return ( lhs = lhs ^ rhs );
+}
 
 /// \relates int4x3
 /// \brief Returns a copy of the int4x3 where each component has been bitwise left-shifted by the given scalar value.
-inline int4x3 operator<<( const int4x3& lhs, const int32_t& rhs );
+inline int4x3 operator<<( const int4x3& lhs, const int32_t& rhs )
+{
+	return int4x3(
+		lhs[0] << rhs,
+		lhs[1] << rhs,
+		lhs[2] << rhs,
+		lhs[3] << rhs
+	);
+}
 
 /// \relates int4x3
 /// \brief Performs a left bitshift on the given left-hand int4x3 by the given scalar value.
-inline int4x3 operator<<=( int4x3& lhs, const int32_t& rhs );
+inline int4x3 operator<<=( int4x3& lhs, const int32_t& rhs )
+{
+	return ( lhs = lhs << rhs );
+}
 
 /// \relates int4x3
 /// \brief Returns a copy of the int4x3 where each component of the left-hand int4x3 has been bitwise left-shifted by the corresponding component of the right-hand side int4x3.
-inline int4x3 operator<<( const int4x3& lhs, const int4x3& rhs );
+inline int4x3 operator<<( const int4x3& lhs, const int4x3& rhs )
+{
+	return int4x3(
+		lhs[0] << rhs[0],
+		lhs[1] << rhs[1],
+		lhs[2] << rhs[2],
+		lhs[3] << rhs[3]
+	);
+}
 
 /// \relates int4x3
 /// \brief Performs a left bitshift on the given left-hand int4x3 by the corresponding component of the given right-hand int4x3.
-inline int4x3 operator<<=( int4x3& lhs, const int4x3& rhs );
+inline int4x3 operator<<=( int4x3& lhs, const int4x3& rhs )
+{
+	return ( lhs = lhs << rhs );
+}
 
 /// \relates int4x3
 /// \brief Returns a copy of the int4x3 where each component has been bitwise right-shifted by the given scalar value.
-inline int4x3 operator>>( const int4x3& lhs, const int32_t& rhs );
+inline int4x3 operator>>( const int4x3& lhs, const int32_t& rhs )
+{
+	return int4x3(
+		lhs[0] >> rhs,
+		lhs[1] >> rhs,
+		lhs[2] >> rhs,
+		lhs[3] >> rhs
+	);
+}
 
 /// \relates int4x3
 /// \brief Performs a right bitshift on the given left-hand int4x3 by the given scalar value.
-inline int4x3 operator>>=( int4x3& lhs, const int32_t& rhs );
+inline int4x3 operator>>=( int4x3& lhs, const int32_t& rhs )
+{
+	return ( lhs = lhs >> rhs );
+}
 
 /// \relates int4x3
 /// \brief Returns a copy of the int4x3 where each component of the left-hand int4x3 has been bitwise right-shifted by the corresponding component of the right-hand side int4x3.
-inline int4x3 operator>>( const int4x3& lhs, const int4x3& rhs );
+inline int4x3 operator>>( const int4x3& lhs, const int4x3& rhs )
+{
+	return int4x3(
+		lhs[0] >> rhs[0],
+		lhs[1] >> rhs[1],
+		lhs[2] >> rhs[2],
+		lhs[3] >> rhs[3]
+	);
+}
 
 /// \relates int4x3
 /// \brief Performs a right bitshift on the given left-hand int4x3 by the corresponding component of the given right-hand int4x3.
-inline int4x3 operator>>=( int4x3& lhs, const int4x3& rhs );
+inline int4x3 operator>>=( int4x3& lhs, const int4x3& rhs )
+{
+	return ( lhs = lhs >> rhs );
+}
 
 /// \relates int4x3
 /// \brief Performs a unary bitwise operation on all components of the given int4x3.
-inline int4x3 operator~( const int4x3& lhs );
+inline int4x3 operator~( const int4x3& lhs )
+{
+	return int4x3(
+		~lhs[0],
+		~lhs[1],
+		~lhs[2],
+		~lhs[3]
+	);
+}
 
 
 // int4x4
 /// \relates int4x4
 /// \brief Returns a copy of the int4x4 that has been component-wise added by the given scalar value.
-inline int4x4 operator+( const int4x4& lhs, const int32_t rhs );
+inline int4x4 operator+( const int4x4& lhs, const int32_t rhs )
+{
+	return int4x4(
+		lhs[0] + rhs,
+		lhs[1] + rhs,
+		lhs[2] + rhs,
+		lhs[3] + rhs
+	);
+}
 
 /// \relates int4x4
 /// \brief Adds each component by the given scalar value.
-inline int4x4 operator+=( int4x4& lhs, const int32_t rhs );
+inline int4x4 operator+=( int4x4& lhs, const int32_t rhs )
+{
+	return ( lhs = lhs + rhs );
+}
 
 /// \relates int4x4
 /// \brief Returns a copy of the int4x4 that has been component-wise added by the corresponding component of the right-hand int4x4.
-inline int4x4 operator+( const int4x4& lhs, const int4x4& rhs );
+inline int4x4 operator+( const int4x4& lhs, const int4x4& rhs )
+{
+	return int4x4(
+		lhs[0] + rhs[0],
+		lhs[1] + rhs[1],
+		lhs[2] + rhs[2],
+		lhs[3] + rhs[3]
+	);
+}
 
 /// \relates int4x4
 /// \brief Adds each component of the int4x4 by the corresponding component of the right-hand int4x4.
-inline int4x4 operator+=( int4x4& lhs, const int4x4& rhs );
+inline int4x4 operator+=( int4x4& lhs, const int4x4& rhs )
+{
+	return ( lhs = lhs + rhs );
+}
 
 /// \relates int4x4
 /// \brief Returns a copy of the int4x4 that has been component-wise subtracted by the given scalar value.
-inline int4x4 operator-( const int4x4& lhs, const int32_t rhs );
+inline int4x4 operator-( const int4x4& lhs, const int32_t rhs )
+{
+	return int4x4(
+		lhs[0] - rhs,
+		lhs[1] - rhs,
+		lhs[2] - rhs,
+		lhs[3] - rhs
+	);
+}
 
 /// \relates int4x4
 /// \brief Subtracts each component by the given scalar value.
-inline int4x4 operator-=( int4x4& lhs, const int32_t rhs );
+inline int4x4 operator-=( int4x4& lhs, const int32_t rhs )
+{
+	return ( lhs = lhs - rhs );
+}
 
 /// \relates int4x4
 /// \brief Returns a copy of the int4x4 that has been component-wise subtracted by the corresponding component of the right-hand int4x4.
-inline int4x4 operator-( const int4x4& lhs, const int4x4& rhs );
+inline int4x4 operator-( const int4x4& lhs, const int4x4& rhs )
+{
+	return int4x4(
+		lhs[0] - rhs[0],
+		lhs[1] - rhs[1],
+		lhs[2] - rhs[2],
+		lhs[3] - rhs[3]
+	);
+}
 
 /// \relates int4x4
 /// \brief Subtracts each component of the int4x4 by the corresponding component of the right-hand int4x4.
-inline int4x4 operator-=( int4x4& lhs, const int4x4& rhs );
+inline int4x4 operator-=( int4x4& lhs, const int4x4& rhs )
+{
+	return ( lhs = lhs - rhs );
+}
 
 /// \relates int4x4
 /// \brief Returns a copy of the int4x4 that has been component-wise multiplied by the given scalar value.
-inline int4x4 operator*( const int4x4& lhs, const int32_t rhs );
+inline int4x4 operator*( const int4x4& lhs, const int32_t rhs )
+{
+	return int4x4(
+		lhs[0] * rhs,
+		lhs[1] * rhs,
+		lhs[2] * rhs,
+		lhs[3] * rhs
+	);
+}
 
 /// \relates int4x4
 /// \brief Multiplies each component by the given scalar value.
-inline int4x4 operator*=( int4x4& lhs, const int32_t rhs );
+inline int4x4 operator*=( int4x4& lhs, const int32_t rhs )
+{
+	return ( lhs = lhs * rhs );
+}
 
 /// \relates int4x4
 /// \brief Returns a copy of the matrix where each row of the left-hand matrix has been dot-producted by the corresponding column of the right-hand matrix.
-inline int4x4 operator*( const int4x4& lhs, const int4x4& rhs );
+inline int4x4 operator*( const int4x4& lhs, const int4x4& rhs )
+{
+	int4 row0 = lhs[0];
+	int4 row1 = lhs[1];
+	int4 row2 = lhs[2];
+	int4 row3 = lhs[3];
 
-/// \relates int4x4
-/// \brief Dot products each row of the left-hand matrix with the corresponding column of the right-hand matrix.
-inline int4x4 operator*=( int4x4& lhs, const int4x4& rhs );
+	int4 col0 = { rhs[0].x, rhs[1].x, rhs[2].x, rhs[3].x };
+	int4 col1 = { rhs[0].y, rhs[1].y, rhs[2].y, rhs[3].y };
+	int4 col2 = { rhs[0].z, rhs[1].z, rhs[2].z, rhs[3].z };
+	int4 col3 = { rhs[0].w, rhs[1].w, rhs[2].w, rhs[3].w };
+
+	return int4x4(
+		row0.x * col0.x + row0.y * col0.y + row0.z * col0.z + row0.w * col0.w,
+		row0.x * col1.x + row0.y * col1.y + row0.z * col1.z + row0.w * col1.w,
+		row0.x * col2.x + row0.y * col2.y + row0.z * col2.z + row0.w * col2.w,
+		row0.x * col3.x + row0.y * col3.y + row0.z * col3.z + row0.w * col3.w,
+
+		row1.x * col0.x + row1.y * col0.y + row1.z * col0.z + row1.w * col0.w,
+		row1.x * col1.x + row1.y * col1.y + row1.z * col1.z + row1.w * col1.w,
+		row1.x * col2.x + row1.y * col2.y + row1.z * col2.z + row1.w * col2.w,
+		row1.x * col3.x + row1.y * col3.y + row1.z * col3.z + row1.w * col3.w,
+
+		row2.x * col0.x + row2.y * col0.y + row2.z * col0.z + row2.w * col0.w,
+		row2.x * col1.x + row2.y * col1.y + row2.z * col1.z + row2.w * col1.w,
+		row2.x * col2.x + row2.y * col2.y + row2.z * col2.z + row2.w * col2.w,
+		row2.x * col3.x + row2.y * col3.y + row2.z * col3.z + row2.w * col3.w,
+
+		row3.x * col0.x + row3.y * col0.y + row3.z * col0.z + row3.w * col0.w,
+		row3.x * col1.x + row3.y * col1.y + row3.z * col1.z + row3.w * col1.w,
+		row3.x * col2.x + row3.y * col2.y + row3.z * col2.z + row3.w * col2.w,
+		row3.x * col3.x + row3.y * col3.y + row3.z * col3.z + row3.w * col3.w
+	);
+}
+
+inline int4x4 operator*=( int4x4& lhs, const int4x4& rhs )
+{
+	return ( lhs = lhs * rhs );
+}
 
 /// \relates int4x4
 /// \brief Returns a copy of the int4x4 that has been component-wise divided by the given scalar value.
-inline int4x4 operator/( const int4x4& lhs, const int32_t rhs );
+inline int4x4 operator/( const int4x4& lhs, const int32_t rhs )
+{
+	return int4x4(
+		lhs[0] / rhs,
+		lhs[1] / rhs,
+		lhs[2] / rhs,
+		lhs[3] / rhs
+	);
+}
 
 /// \relates int4x4
 /// \brief Divides each component by the given scalar value.
-inline int4x4 operator/=( int4x4& lhs, const int32_t rhs );
+inline int4x4 operator/=( int4x4& lhs, const int32_t rhs )
+{
+	return ( lhs = lhs / rhs );
+}
 
 /// \relates int4x4
 /// \brief Returns a copy of the int4x4 that has been component-wise divided by the corresponding component of the right-hand int4x4.
-inline int4x4 operator/( const int4x4& lhs, const int4x4& rhs );
+inline int4x4 operator/( const int4x4& lhs, const int4x4& rhs )
+{
+	return int4x4(
+		lhs[0] / rhs[0],
+		lhs[1] / rhs[1],
+		lhs[2] / rhs[2],
+		lhs[3] / rhs[3]
+	);
+}
 
 /// \relates int4x4
 /// \brief Divides each component of the int4x4 by the corresponding component of the right-hand int4x4.
-inline int4x4 operator/=( int4x4& lhs, const int4x4& rhs );
+inline int4x4 operator/=( int4x4& lhs, const int4x4& rhs )
+{
+	return ( lhs = lhs / rhs );
+}
 
 /// \relates int4
 /// \brief Returns a copy of the int4 that has been component-wise multiplied by the corresponding component of the right-hand int4x4.
-inline int4 operator*( const int4x4& lhs, const int4& rhs );
+inline int4 operator*( const int4x4& lhs, const int4& rhs )
+{
+	return int4(
+		(int32_t) dot( lhs[0], rhs ),
+		(int32_t) dot( lhs[1], rhs ),
+		(int32_t) dot( lhs[2], rhs ),
+		(int32_t) dot( lhs[3], rhs )
+	);
+}
 
 /// \relates int4
 /// \brief Multiplies each component of the int4 by the corresponding component of the right-hand int4x4.
-inline int4 operator*=( int4& lhs, const int4x4& rhs );
+inline int4 operator*=( int4& lhs, const int4x4& rhs )
+{
+	return ( lhs = rhs * lhs );
+}
 
+// prefix
 /// \relates int4x4
 /// \brief Prefix increment operator.  Adds one to each component of the given int4x4 before evaluation.
-inline int4x4& operator++( int4x4& lhs );
+inline int4x4& operator++( int4x4& lhs )
+{
+	++lhs[0];
+	++lhs[1];
+	++lhs[2];
+	++lhs[3];
+	return lhs;
+}
 
+// postfix
 /// \relates int4x4
 /// \brief Postfix increment operator.  Adds one to each component of the given int4x4 after evaluation.
-inline int4x4& operator++( int4x4& lhs, const int );
+inline int4x4& operator++( int4x4& lhs, const int )
+{
+	lhs[0]++;
+	lhs[1]++;
+	lhs[2]++;
+	lhs[3]++;
+	return lhs;
+}
 
+// prefix
 /// \relates int4x4
 /// \brief Prefix decrement operator.  Subtracts one from each component of the given int4x4 before evaluation.
-inline int4x4& operator--( int4x4& lhs );
+inline int4x4& operator--( int4x4& lhs )
+{
+	--lhs[0];
+	--lhs[1];
+	--lhs[2];
+	--lhs[3];
+	return lhs;
+}
 
+// postfix
 /// \relates int4x4
 /// \brief Postfix decrement operator.  Subtracts one from each component of the given int4x4 after evaluation.
-inline int4x4& operator--( int4x4& lhs, const int );
+inline int4x4& operator--( int4x4& lhs, const int )
+{
+	lhs[0]--;
+	lhs[1]--;
+	lhs[2]--;
+	lhs[3]--;
+	return lhs;
+}
 
 /// \relates int4x4
 /// \brief Returns a bool4x4 where each component is true if the component of the left-hand type is less than the corresponding right-hand type component.
-inline bool4x4 operator<( const int4x4& lhs, const int4x4& rhs );
+inline bool4x4 operator<( const int4x4& lhs, const int4x4& rhs )
+{
+	return bool4x4(
+		lhs[0] < rhs[0],
+		lhs[1] < rhs[1],
+		lhs[2] < rhs[2],
+		lhs[3] < rhs[3]
+	);
+}
 
 /// \relates int4x4
 /// \brief Returns a bool4x4 where each component is true if the component of the left-hand type is less than or equal to the corresponding right-hand type component.
-inline bool4x4 operator<=( const int4x4& lhs, const int4x4& rhs );
+inline bool4x4 operator<=( const int4x4& lhs, const int4x4& rhs )
+{
+	return bool4x4(
+		lhs[0] <= rhs[0],
+		lhs[1] <= rhs[1],
+		lhs[2] <= rhs[2],
+		lhs[3] <= rhs[3]
+	);
+}
 
 /// \relates int4x4
 /// \brief Returns a bool4x4 where each component is true if the component of the left-hand type is greater than the corresponding right-hand type component.
-inline bool4x4 operator>( const int4x4& lhs, const int4x4& rhs );
+inline bool4x4 operator>( const int4x4& lhs, const int4x4& rhs )
+{
+	return bool4x4(
+		lhs[0] > rhs[0],
+		lhs[1] > rhs[1],
+		lhs[2] > rhs[2],
+		lhs[3] > rhs[3]
+	);
+}
 
 /// \relates int4x4
 /// \brief Returns a bool4x4 where each component is true if the component of the left-hand type is greater than or equal to the corresponding right-hand type component.
-inline bool4x4 operator>=( const int4x4& lhs, const int4x4& rhs );
+inline bool4x4 operator>=( const int4x4& lhs, const int4x4& rhs )
+{
+	return bool4x4(
+		lhs[0] >= rhs[0],
+		lhs[1] >= rhs[1],
+		lhs[2] >= rhs[2],
+		lhs[3] >= rhs[3]
+	);
+}
 
 /// \relates int4x4
 /// \brief Returns a copy of the int4x4 where each component has been bitwise AND'd against the given scalar value.
-inline int4x4 operator&( const int4x4& lhs, const int32_t& rhs );
+inline int4x4 operator&( const int4x4& lhs, const int32_t& rhs )
+{
+	return int4x4(
+		lhs[0] & rhs,
+		lhs[1] & rhs,
+		lhs[2] & rhs,
+		lhs[3] & rhs
+	);
+}
 
 /// \relates int4x4
 /// \brief Performs a bitwise AND on the given left-hand int4x4 against the given scalar value.
-inline int4x4 operator&=( int4x4& lhs, const int32_t& rhs );
+inline int4x4 operator&=( int4x4& lhs, const int32_t& rhs )
+{
+	return ( lhs = lhs & rhs );
+}
 
 /// \relates int4x4
 /// \brief Returns a copy of the int4x4 where each component of the left-hand int4x4 has been bitwise AND'd against the corresponding component of the right-hand side int4x4.
-inline int4x4 operator&( const int4x4& lhs, const int4x4& rhs );
+inline int4x4 operator&( const int4x4& lhs, const int4x4& rhs )
+{
+	return int4x4(
+		lhs[0] & rhs[0],
+		lhs[1] & rhs[1],
+		lhs[2] & rhs[2],
+		lhs[3] & rhs[3]
+	);
+}
 
 /// \relates int4x4
 /// \brief Performs a bitwise AND on the given left-hand int4x4 against the corresponding component of the given right-hand int4x4.
-inline int4x4 operator&=( int4x4& lhs, const int4x4& rhs );
+inline int4x4 operator&=( int4x4& lhs, const int4x4& rhs )
+{
+	return ( lhs = lhs & rhs );
+}
 
 /// \relates int4x4
 /// \brief Returns a copy of the int4x4 where each component has been bitwise OR'd against the given scalar value.
-inline int4x4 operator|( const int4x4& lhs, const int32_t& rhs );
+inline int4x4 operator|( const int4x4& lhs, const int32_t& rhs )
+{
+	return int4x4(
+		lhs[0] | rhs,
+		lhs[1] | rhs,
+		lhs[2] | rhs,
+		lhs[3] | rhs
+	);
+}
 
 /// \relates int4x4
 /// \brief Performs a bitwise OR on the given left-hand int4x4 against the given scalar value.
-inline int4x4 operator|=( int4x4& lhs, const int32_t& rhs );
+inline int4x4 operator|=( int4x4& lhs, const int32_t& rhs )
+{
+	return ( lhs = lhs | rhs );
+}
 
 /// \relates int4x4
 /// \brief Returns a copy of the int4x4 where each component of the left-hand int4x4 has been bitwise OR'd against the corresponding component of the right-hand side int4x4.
-inline int4x4 operator|( const int4x4& lhs, const int4x4& rhs );
+inline int4x4 operator|( const int4x4& lhs, const int4x4& rhs )
+{
+	return int4x4(
+		lhs[0] | rhs[0],
+		lhs[1] | rhs[1],
+		lhs[2] | rhs[2],
+		lhs[3] | rhs[3]
+	);
+}
 
 /// \relates int4x4
 /// \brief Performs a bitwise OR on the given left-hand int4x4 against the corresponding component of the given right-hand int4x4.
-inline int4x4 operator|=( int4x4& lhs, const int4x4& rhs );
+inline int4x4 operator|=( int4x4& lhs, const int4x4& rhs )
+{
+	return ( lhs = lhs | rhs );
+}
 
 /// \relates int4x4
 /// \brief Returns a copy of the int4x4 where each component has been bitwise XOR'd against the given scalar value.
-inline int4x4 operator^( const int4x4& lhs, const int32_t& rhs );
+inline int4x4 operator^( const int4x4& lhs, const int32_t& rhs )
+{
+	return int4x4(
+		lhs[0] ^ rhs,
+		lhs[1] ^ rhs,
+		lhs[2] ^ rhs,
+		lhs[3] ^ rhs
+	);
+}
 
 /// \relates int4x4
 /// \brief Performs a bitwise XOR on the given left-hand int4x4 against the given scalar value.
-inline int4x4 operator^=( int4x4& lhs, const int32_t& rhs );
+inline int4x4 operator^=( int4x4& lhs, const int32_t& rhs )
+{
+	return ( lhs = lhs ^ rhs );
+}
 
 /// \relates int4x4
 /// \brief Returns a copy of the int4x4 where each component of the left-hand int4x4 has been bitwise XOR'd against the corresponding component of the right-hand side int4x4.
-inline int4x4 operator^( const int4x4& lhs, const int4x4& rhs );
+inline int4x4 operator^( const int4x4& lhs, const int4x4& rhs )
+{
+	return int4x4(
+		lhs[0] ^ rhs[0],
+		lhs[1] ^ rhs[1],
+		lhs[2] ^ rhs[2],
+		lhs[3] ^ rhs[3]
+	);
+}
 
 /// \relates int4x4
 /// \brief Performs a bitwise XOR on the given left-hand int4x4 against the corresponding component of the given right-hand int4x4.
-inline int4x4 operator^=( int4x4& lhs, const int4x4& rhs );
+inline int4x4 operator^=( int4x4& lhs, const int4x4& rhs )
+{
+	return ( lhs = lhs ^ rhs );
+}
 
 /// \relates int4x4
 /// \brief Returns a copy of the int4x4 where each component has been bitwise left-shifted by the given scalar value.
-inline int4x4 operator<<( const int4x4& lhs, const int32_t& rhs );
+inline int4x4 operator<<( const int4x4& lhs, const int32_t& rhs )
+{
+	return int4x4(
+		lhs[0] << rhs,
+		lhs[1] << rhs,
+		lhs[2] << rhs,
+		lhs[3] << rhs
+	);
+}
 
 /// \relates int4x4
 /// \brief Performs a left bitshift on the given left-hand int4x4 by the given scalar value.
-inline int4x4 operator<<=( int4x4& lhs, const int32_t& rhs );
+inline int4x4 operator<<=( int4x4& lhs, const int32_t& rhs )
+{
+	return ( lhs = lhs << rhs );
+}
 
 /// \relates int4x4
 /// \brief Returns a copy of the int4x4 where each component of the left-hand int4x4 has been bitwise left-shifted by the corresponding component of the right-hand side int4x4.
-inline int4x4 operator<<( const int4x4& lhs, const int4x4& rhs );
+inline int4x4 operator<<( const int4x4& lhs, const int4x4& rhs )
+{
+	return int4x4(
+		lhs[0] << rhs[0],
+		lhs[1] << rhs[1],
+		lhs[2] << rhs[2],
+		lhs[3] << rhs[3]
+	);
+}
 
 /// \relates int4x4
 /// \brief Performs a left bitshift on the given left-hand int4x4 by the corresponding component of the given right-hand int4x4.
-inline int4x4 operator<<=( int4x4& lhs, const int4x4& rhs );
+inline int4x4 operator<<=( int4x4& lhs, const int4x4& rhs )
+{
+	return ( lhs = lhs << rhs );
+}
 
 /// \relates int4x4
 /// \brief Returns a copy of the int4x4 where each component has been bitwise right-shifted by the given scalar value.
-inline int4x4 operator>>( const int4x4& lhs, const int32_t& rhs );
+inline int4x4 operator>>( const int4x4& lhs, const int32_t& rhs )
+{
+	return int4x4(
+		lhs[0] >> rhs,
+		lhs[1] >> rhs,
+		lhs[2] >> rhs,
+		lhs[3] >> rhs
+	);
+}
 
 /// \relates int4x4
 /// \brief Performs a right bitshift on the given left-hand int4x4 by the given scalar value.
-inline int4x4 operator>>=( int4x4& lhs, const int32_t& rhs );
+inline int4x4 operator>>=( int4x4& lhs, const int32_t& rhs )
+{
+	return ( lhs = lhs >> rhs );
+}
 
 /// \relates int4x4
 /// \brief Returns a copy of the int4x4 where each component of the left-hand int4x4 has been bitwise right-shifted by the corresponding component of the right-hand side int4x4.
-inline int4x4 operator>>( const int4x4& lhs, const int4x4& rhs );
+inline int4x4 operator>>( const int4x4& lhs, const int4x4& rhs )
+{
+	return int4x4(
+		lhs[0] >> rhs[0],
+		lhs[1] >> rhs[1],
+		lhs[2] >> rhs[2],
+		lhs[3] >> rhs[3]
+	);
+}
 
 /// \relates int4x4
 /// \brief Performs a right bitshift on the given left-hand int4x4 by the corresponding component of the given right-hand int4x4.
-inline int4x4 operator>>=( int4x4& lhs, const int4x4& rhs );
+inline int4x4 operator>>=( int4x4& lhs, const int4x4& rhs )
+{
+	return ( lhs = lhs >> rhs );
+}
 
 /// \relates int4x4
 /// \brief Performs a unary bitwise operation on all components of the given int4x4.
-inline int4x4 operator~( const int4x4& lhs );
+inline int4x4 operator~( const int4x4& lhs )
+{
+	return int4x4(
+		~lhs[0],
+		~lhs[1],
+		~lhs[2],
+		~lhs[3]
+	);
+}
 
 
 // uint2x2
 /// \relates uint2x2
 /// \brief Returns a copy of the uint2x2 that has been component-wise added by the given scalar value.
-inline uint2x2 operator+( const uint2x2& lhs, const uint32_t rhs );
+inline uint2x2 operator+( const uint2x2& lhs, const uint32_t rhs )
+{
+	return uint2x2(
+		lhs[0] + rhs,
+		lhs[1] + rhs
+	);
+}
 
 /// \relates uint2x2
 /// \brief Adds each component by the given scalar value.
-inline uint2x2 operator+=( uint2x2& lhs, const uint32_t rhs );
+inline uint2x2 operator+=( uint2x2& lhs, const uint32_t rhs )
+{
+	return ( lhs = lhs + rhs );
+}
 
 /// \relates uint2x2
 /// \brief Returns a copy of the uint2x2 that has been component-wise added by the corresponding component of the right-hand uint2x2.
-inline uint2x2 operator+( const uint2x2& lhs, const uint2x2& rhs );
+inline uint2x2 operator+( const uint2x2& lhs, const uint2x2& rhs )
+{
+	return uint2x2(
+		lhs[0] + rhs[0],
+		lhs[1] + rhs[1]
+	);
+}
 
 /// \relates uint2x2
 /// \brief Adds each component of the uint2x2 by the corresponding component of the right-hand uint2x2.
-inline uint2x2 operator+=( uint2x2& lhs, const uint2x2& rhs );
+inline uint2x2 operator+=( uint2x2& lhs, const uint2x2& rhs )
+{
+	return ( lhs = lhs + rhs );
+}
 
 /// \relates uint2x2
 /// \brief Returns a copy of the uint2x2 that has been component-wise subtracted by the given scalar value.
-inline uint2x2 operator-( const uint2x2& lhs, const uint32_t rhs );
+inline uint2x2 operator-( const uint2x2& lhs, const uint32_t rhs )
+{
+	return uint2x2(
+		lhs[0] - rhs,
+		lhs[1] - rhs
+	);
+}
 
 /// \relates uint2x2
 /// \brief Subtracts each component by the given scalar value.
-inline uint2x2 operator-=( uint2x2& lhs, const uint32_t rhs );
+inline uint2x2 operator-=( uint2x2& lhs, const uint32_t rhs )
+{
+	return ( lhs = lhs - rhs );
+}
 
 /// \relates uint2x2
 /// \brief Returns a copy of the uint2x2 that has been component-wise subtracted by the corresponding component of the right-hand uint2x2.
-inline uint2x2 operator-( const uint2x2& lhs, const uint2x2& rhs );
+inline uint2x2 operator-( const uint2x2& lhs, const uint2x2& rhs )
+{
+	return uint2x2(
+		lhs[0] - rhs[0],
+		lhs[1] - rhs[1]
+	);
+}
 
 /// \relates uint2x2
 /// \brief Subtracts each component of the uint2x2 by the corresponding component of the right-hand uint2x2.
-inline uint2x2 operator-=( uint2x2& lhs, const uint2x2& rhs );
+inline uint2x2 operator-=( uint2x2& lhs, const uint2x2& rhs )
+{
+	return ( lhs = lhs - rhs );
+}
 
 /// \relates uint2x2
 /// \brief Returns a copy of the uint2x2 that has been component-wise multiplied by the given scalar value.
-inline uint2x2 operator*( const uint2x2& lhs, const uint32_t rhs );
+inline uint2x2 operator*( const uint2x2& lhs, const uint32_t rhs )
+{
+	return uint2x2(
+		lhs[0] * rhs,
+		lhs[1] * rhs
+	);
+}
 
 /// \relates uint2x2
 /// \brief Multiplies each component by the given scalar value.
-inline uint2x2 operator*=( uint2x2& lhs, const uint32_t rhs );
+inline uint2x2 operator*=( uint2x2& lhs, const uint32_t rhs )
+{
+	return ( lhs = lhs * rhs );
+}
 
 /// \relates uint2x2
 /// \brief Returns a copy of the matrix where each row of the left-hand matrix has been dot-producted by the corresponding column of the right-hand matrix.
-inline uint2x2 operator*( const uint2x2& lhs, const uint2x2& rhs );
+inline uint2x2 operator*( const uint2x2& lhs, const uint2x2& rhs )
+{
+	uint2 row0 = lhs[0];
+	uint2 row1 = lhs[1];
 
-/// \relates uint2x2
-/// \brief Dot products each row of the left-hand matrix with the corresponding column of the right-hand matrix.
-inline uint2x2 operator*=( uint2x2& lhs, const uint2x2& rhs );
+	uint2 col0 = { rhs[0].x, rhs[1].x };
+	uint2 col1 = { rhs[0].y, rhs[1].y };
+
+	return uint2x2(
+		row0.x * col0.x + row0.y * col0.y,
+		row0.x * col1.x + row0.y * col1.y,
+
+		row1.x * col0.x + row1.y * col0.y,
+		row1.x * col1.x + row1.y * col1.y
+	);
+}
+
+inline uint2x2 operator*=( uint2x2& lhs, const uint2x2& rhs )
+{
+	return ( lhs = lhs * rhs );
+}
 
 /// \relates uint2x2
 /// \brief Returns a copy of the uint2x2 that has been component-wise divided by the given scalar value.
-inline uint2x2 operator/( const uint2x2& lhs, const uint32_t rhs );
+inline uint2x2 operator/( const uint2x2& lhs, const uint32_t rhs )
+{
+	return uint2x2(
+		lhs[0] / rhs,
+		lhs[1] / rhs
+	);
+}
 
 /// \relates uint2x2
 /// \brief Divides each component by the given scalar value.
-inline uint2x2 operator/=( uint2x2& lhs, const uint32_t rhs );
+inline uint2x2 operator/=( uint2x2& lhs, const uint32_t rhs )
+{
+	return ( lhs = lhs / rhs );
+}
 
 /// \relates uint2x2
 /// \brief Returns a copy of the uint2x2 that has been component-wise divided by the corresponding component of the right-hand uint2x2.
-inline uint2x2 operator/( const uint2x2& lhs, const uint2x2& rhs );
+inline uint2x2 operator/( const uint2x2& lhs, const uint2x2& rhs )
+{
+	return uint2x2(
+		lhs[0] / rhs[0],
+		lhs[1] / rhs[1]
+	);
+}
 
 /// \relates uint2x2
 /// \brief Divides each component of the uint2x2 by the corresponding component of the right-hand uint2x2.
-inline uint2x2 operator/=( uint2x2& lhs, const uint2x2& rhs );
+inline uint2x2 operator/=( uint2x2& lhs, const uint2x2& rhs )
+{
+	return ( lhs = lhs / rhs );
+}
 
 /// \relates uint2
 /// \brief Returns a copy of the uint2 that has been component-wise multiplied by the corresponding component of the right-hand uint2x2.
-inline uint2 operator*( const uint2x2& lhs, const uint2& rhs );
+inline uint2 operator*( const uint2x2& lhs, const uint2& rhs )
+{
+	return uint2(
+		(uint32_t) dot( lhs[0], rhs ),
+		(uint32_t) dot( lhs[1], rhs )
+	);
+}
 
 /// \relates uint2
 /// \brief Multiplies each component of the uint2 by the corresponding component of the right-hand uint2x2.
-inline uint2 operator*=( uint2& lhs, const uint2x2& rhs );
+inline uint2 operator*=( uint2& lhs, const uint2x2& rhs )
+{
+	return ( lhs = rhs * lhs );
+}
 
+// prefix
 /// \relates uint2x2
 /// \brief Prefix increment operator.  Adds one to each component of the given uint2x2 before evaluation.
-inline uint2x2& operator++( uint2x2& lhs );
+inline uint2x2& operator++( uint2x2& lhs )
+{
+	++lhs[0];
+	++lhs[1];
+	return lhs;
+}
 
+// postfix
 /// \relates uint2x2
 /// \brief Postfix increment operator.  Adds one to each component of the given uint2x2 after evaluation.
-inline uint2x2& operator++( uint2x2& lhs, const int );
+inline uint2x2& operator++( uint2x2& lhs, const int )
+{
+	lhs[0]++;
+	lhs[1]++;
+	return lhs;
+}
 
+// prefix
 /// \relates uint2x2
 /// \brief Prefix decrement operator.  Subtracts one from each component of the given uint2x2 before evaluation.
-inline uint2x2& operator--( uint2x2& lhs );
+inline uint2x2& operator--( uint2x2& lhs )
+{
+	--lhs[0];
+	--lhs[1];
+	return lhs;
+}
 
+// postfix
 /// \relates uint2x2
 /// \brief Postfix decrement operator.  Subtracts one from each component of the given uint2x2 after evaluation.
-inline uint2x2& operator--( uint2x2& lhs, const int );
+inline uint2x2& operator--( uint2x2& lhs, const int )
+{
+	lhs[0]--;
+	lhs[1]--;
+	return lhs;
+}
 
 /// \relates uint2x2
 /// \brief Returns a bool2x2 where each component is true if the component of the left-hand type is less than the corresponding right-hand type component.
-inline bool2x2 operator<( const uint2x2& lhs, const uint2x2& rhs );
+inline bool2x2 operator<( const uint2x2& lhs, const uint2x2& rhs )
+{
+	return bool2x2(
+		lhs[0] < rhs[0],
+		lhs[1] < rhs[1]
+	);
+}
 
 /// \relates uint2x2
 /// \brief Returns a bool2x2 where each component is true if the component of the left-hand type is less than or equal to the corresponding right-hand type component.
-inline bool2x2 operator<=( const uint2x2& lhs, const uint2x2& rhs );
+inline bool2x2 operator<=( const uint2x2& lhs, const uint2x2& rhs )
+{
+	return bool2x2(
+		lhs[0] <= rhs[0],
+		lhs[1] <= rhs[1]
+	);
+}
 
 /// \relates uint2x2
 /// \brief Returns a bool2x2 where each component is true if the component of the left-hand type is greater than the corresponding right-hand type component.
-inline bool2x2 operator>( const uint2x2& lhs, const uint2x2& rhs );
+inline bool2x2 operator>( const uint2x2& lhs, const uint2x2& rhs )
+{
+	return bool2x2(
+		lhs[0] > rhs[0],
+		lhs[1] > rhs[1]
+	);
+}
 
 /// \relates uint2x2
 /// \brief Returns a bool2x2 where each component is true if the component of the left-hand type is greater than or equal to the corresponding right-hand type component.
-inline bool2x2 operator>=( const uint2x2& lhs, const uint2x2& rhs );
+inline bool2x2 operator>=( const uint2x2& lhs, const uint2x2& rhs )
+{
+	return bool2x2(
+		lhs[0] >= rhs[0],
+		lhs[1] >= rhs[1]
+	);
+}
 
 /// \relates uint2x2
 /// \brief Returns a copy of the uint2x2 where each component has been bitwise AND'd against the given scalar value.
-inline uint2x2 operator&( const uint2x2& lhs, const uint32_t& rhs );
+inline uint2x2 operator&( const uint2x2& lhs, const uint32_t& rhs )
+{
+	return uint2x2(
+		lhs[0] & rhs,
+		lhs[1] & rhs
+	);
+}
 
 /// \relates uint2x2
 /// \brief Performs a bitwise AND on the given left-hand uint2x2 against the given scalar value.
-inline uint2x2 operator&=( uint2x2& lhs, const uint32_t& rhs );
+inline uint2x2 operator&=( uint2x2& lhs, const uint32_t& rhs )
+{
+	return ( lhs = lhs & rhs );
+}
 
 /// \relates uint2x2
 /// \brief Returns a copy of the uint2x2 where each component of the left-hand uint2x2 has been bitwise AND'd against the corresponding component of the right-hand side uint2x2.
-inline uint2x2 operator&( const uint2x2& lhs, const uint2x2& rhs );
+inline uint2x2 operator&( const uint2x2& lhs, const uint2x2& rhs )
+{
+	return uint2x2(
+		lhs[0] & rhs[0],
+		lhs[1] & rhs[1]
+	);
+}
 
 /// \relates uint2x2
 /// \brief Performs a bitwise AND on the given left-hand uint2x2 against the corresponding component of the given right-hand uint2x2.
-inline uint2x2 operator&=( uint2x2& lhs, const uint2x2& rhs );
+inline uint2x2 operator&=( uint2x2& lhs, const uint2x2& rhs )
+{
+	return ( lhs = lhs & rhs );
+}
 
 /// \relates uint2x2
 /// \brief Returns a copy of the uint2x2 where each component has been bitwise OR'd against the given scalar value.
-inline uint2x2 operator|( const uint2x2& lhs, const uint32_t& rhs );
+inline uint2x2 operator|( const uint2x2& lhs, const uint32_t& rhs )
+{
+	return uint2x2(
+		lhs[0] | rhs,
+		lhs[1] | rhs
+	);
+}
 
 /// \relates uint2x2
 /// \brief Performs a bitwise OR on the given left-hand uint2x2 against the given scalar value.
-inline uint2x2 operator|=( uint2x2& lhs, const uint32_t& rhs );
+inline uint2x2 operator|=( uint2x2& lhs, const uint32_t& rhs )
+{
+	return ( lhs = lhs | rhs );
+}
 
 /// \relates uint2x2
 /// \brief Returns a copy of the uint2x2 where each component of the left-hand uint2x2 has been bitwise OR'd against the corresponding component of the right-hand side uint2x2.
-inline uint2x2 operator|( const uint2x2& lhs, const uint2x2& rhs );
+inline uint2x2 operator|( const uint2x2& lhs, const uint2x2& rhs )
+{
+	return uint2x2(
+		lhs[0] | rhs[0],
+		lhs[1] | rhs[1]
+	);
+}
 
 /// \relates uint2x2
 /// \brief Performs a bitwise OR on the given left-hand uint2x2 against the corresponding component of the given right-hand uint2x2.
-inline uint2x2 operator|=( uint2x2& lhs, const uint2x2& rhs );
+inline uint2x2 operator|=( uint2x2& lhs, const uint2x2& rhs )
+{
+	return ( lhs = lhs | rhs );
+}
 
 /// \relates uint2x2
 /// \brief Returns a copy of the uint2x2 where each component has been bitwise XOR'd against the given scalar value.
-inline uint2x2 operator^( const uint2x2& lhs, const uint32_t& rhs );
+inline uint2x2 operator^( const uint2x2& lhs, const uint32_t& rhs )
+{
+	return uint2x2(
+		lhs[0] ^ rhs,
+		lhs[1] ^ rhs
+	);
+}
 
 /// \relates uint2x2
 /// \brief Performs a bitwise XOR on the given left-hand uint2x2 against the given scalar value.
-inline uint2x2 operator^=( uint2x2& lhs, const uint32_t& rhs );
+inline uint2x2 operator^=( uint2x2& lhs, const uint32_t& rhs )
+{
+	return ( lhs = lhs ^ rhs );
+}
 
 /// \relates uint2x2
 /// \brief Returns a copy of the uint2x2 where each component of the left-hand uint2x2 has been bitwise XOR'd against the corresponding component of the right-hand side uint2x2.
-inline uint2x2 operator^( const uint2x2& lhs, const uint2x2& rhs );
+inline uint2x2 operator^( const uint2x2& lhs, const uint2x2& rhs )
+{
+	return uint2x2(
+		lhs[0] ^ rhs[0],
+		lhs[1] ^ rhs[1]
+	);
+}
 
 /// \relates uint2x2
 /// \brief Performs a bitwise XOR on the given left-hand uint2x2 against the corresponding component of the given right-hand uint2x2.
-inline uint2x2 operator^=( uint2x2& lhs, const uint2x2& rhs );
+inline uint2x2 operator^=( uint2x2& lhs, const uint2x2& rhs )
+{
+	return ( lhs = lhs ^ rhs );
+}
 
 /// \relates uint2x2
 /// \brief Returns a copy of the uint2x2 where each component has been bitwise left-shifted by the given scalar value.
-inline uint2x2 operator<<( const uint2x2& lhs, const uint32_t& rhs );
+inline uint2x2 operator<<( const uint2x2& lhs, const uint32_t& rhs )
+{
+	return uint2x2(
+		lhs[0] << rhs,
+		lhs[1] << rhs
+	);
+}
 
 /// \relates uint2x2
 /// \brief Performs a left bitshift on the given left-hand uint2x2 by the given scalar value.
-inline uint2x2 operator<<=( uint2x2& lhs, const uint32_t& rhs );
+inline uint2x2 operator<<=( uint2x2& lhs, const uint32_t& rhs )
+{
+	return ( lhs = lhs << rhs );
+}
 
 /// \relates uint2x2
 /// \brief Returns a copy of the uint2x2 where each component of the left-hand uint2x2 has been bitwise left-shifted by the corresponding component of the right-hand side uint2x2.
-inline uint2x2 operator<<( const uint2x2& lhs, const uint2x2& rhs );
+inline uint2x2 operator<<( const uint2x2& lhs, const uint2x2& rhs )
+{
+	return uint2x2(
+		lhs[0] << rhs[0],
+		lhs[1] << rhs[1]
+	);
+}
 
 /// \relates uint2x2
 /// \brief Performs a left bitshift on the given left-hand uint2x2 by the corresponding component of the given right-hand uint2x2.
-inline uint2x2 operator<<=( uint2x2& lhs, const uint2x2& rhs );
+inline uint2x2 operator<<=( uint2x2& lhs, const uint2x2& rhs )
+{
+	return ( lhs = lhs << rhs );
+}
 
 /// \relates uint2x2
 /// \brief Returns a copy of the uint2x2 where each component has been bitwise right-shifted by the given scalar value.
-inline uint2x2 operator>>( const uint2x2& lhs, const uint32_t& rhs );
+inline uint2x2 operator>>( const uint2x2& lhs, const uint32_t& rhs )
+{
+	return uint2x2(
+		lhs[0] >> rhs,
+		lhs[1] >> rhs
+	);
+}
 
 /// \relates uint2x2
 /// \brief Performs a right bitshift on the given left-hand uint2x2 by the given scalar value.
-inline uint2x2 operator>>=( uint2x2& lhs, const uint32_t& rhs );
+inline uint2x2 operator>>=( uint2x2& lhs, const uint32_t& rhs )
+{
+	return ( lhs = lhs >> rhs );
+}
 
 /// \relates uint2x2
 /// \brief Returns a copy of the uint2x2 where each component of the left-hand uint2x2 has been bitwise right-shifted by the corresponding component of the right-hand side uint2x2.
-inline uint2x2 operator>>( const uint2x2& lhs, const uint2x2& rhs );
+inline uint2x2 operator>>( const uint2x2& lhs, const uint2x2& rhs )
+{
+	return uint2x2(
+		lhs[0] >> rhs[0],
+		lhs[1] >> rhs[1]
+	);
+}
 
 /// \relates uint2x2
 /// \brief Performs a right bitshift on the given left-hand uint2x2 by the corresponding component of the given right-hand uint2x2.
-inline uint2x2 operator>>=( uint2x2& lhs, const uint2x2& rhs );
+inline uint2x2 operator>>=( uint2x2& lhs, const uint2x2& rhs )
+{
+	return ( lhs = lhs >> rhs );
+}
 
 /// \relates uint2x2
 /// \brief Performs a unary bitwise operation on all components of the given uint2x2.
-inline uint2x2 operator~( const uint2x2& lhs );
+inline uint2x2 operator~( const uint2x2& lhs )
+{
+	return uint2x2(
+		~lhs[0],
+		~lhs[1]
+	);
+}
 
 
 // uint2x3
 /// \relates uint2x3
 /// \brief Returns a copy of the uint2x3 that has been component-wise added by the given scalar value.
-inline uint2x3 operator+( const uint2x3& lhs, const uint32_t rhs );
+inline uint2x3 operator+( const uint2x3& lhs, const uint32_t rhs )
+{
+	return uint2x3(
+		lhs[0] + rhs,
+		lhs[1] + rhs
+	);
+}
 
 /// \relates uint2x3
 /// \brief Adds each component by the given scalar value.
-inline uint2x3 operator+=( uint2x3& lhs, const uint32_t rhs );
+inline uint2x3 operator+=( uint2x3& lhs, const uint32_t rhs )
+{
+	return ( lhs = lhs + rhs );
+}
 
 /// \relates uint2x3
 /// \brief Returns a copy of the uint2x3 that has been component-wise added by the corresponding component of the right-hand uint2x3.
-inline uint2x3 operator+( const uint2x3& lhs, const uint2x3& rhs );
+inline uint2x3 operator+( const uint2x3& lhs, const uint2x3& rhs )
+{
+	return uint2x3(
+		lhs[0] + rhs[0],
+		lhs[1] + rhs[1]
+	);
+}
 
 /// \relates uint2x3
 /// \brief Adds each component of the uint2x3 by the corresponding component of the right-hand uint2x3.
-inline uint2x3 operator+=( uint2x3& lhs, const uint2x3& rhs );
+inline uint2x3 operator+=( uint2x3& lhs, const uint2x3& rhs )
+{
+	return ( lhs = lhs + rhs );
+}
 
 /// \relates uint2x3
 /// \brief Returns a copy of the uint2x3 that has been component-wise subtracted by the given scalar value.
-inline uint2x3 operator-( const uint2x3& lhs, const uint32_t rhs );
+inline uint2x3 operator-( const uint2x3& lhs, const uint32_t rhs )
+{
+	return uint2x3(
+		lhs[0] - rhs,
+		lhs[1] - rhs
+	);
+}
 
 /// \relates uint2x3
 /// \brief Subtracts each component by the given scalar value.
-inline uint2x3 operator-=( uint2x3& lhs, const uint32_t rhs );
+inline uint2x3 operator-=( uint2x3& lhs, const uint32_t rhs )
+{
+	return ( lhs = lhs - rhs );
+}
 
 /// \relates uint2x3
 /// \brief Returns a copy of the uint2x3 that has been component-wise subtracted by the corresponding component of the right-hand uint2x3.
-inline uint2x3 operator-( const uint2x3& lhs, const uint2x3& rhs );
+inline uint2x3 operator-( const uint2x3& lhs, const uint2x3& rhs )
+{
+	return uint2x3(
+		lhs[0] - rhs[0],
+		lhs[1] - rhs[1]
+	);
+}
 
 /// \relates uint2x3
 /// \brief Subtracts each component of the uint2x3 by the corresponding component of the right-hand uint2x3.
-inline uint2x3 operator-=( uint2x3& lhs, const uint2x3& rhs );
+inline uint2x3 operator-=( uint2x3& lhs, const uint2x3& rhs )
+{
+	return ( lhs = lhs - rhs );
+}
 
 /// \relates uint2x3
 /// \brief Returns a copy of the uint2x3 that has been component-wise multiplied by the given scalar value.
-inline uint2x3 operator*( const uint2x3& lhs, const uint32_t rhs );
+inline uint2x3 operator*( const uint2x3& lhs, const uint32_t rhs )
+{
+	return uint2x3(
+		lhs[0] * rhs,
+		lhs[1] * rhs
+	);
+}
 
 /// \relates uint2x3
 /// \brief Multiplies each component by the given scalar value.
-inline uint2x3 operator*=( uint2x3& lhs, const uint32_t rhs );
+inline uint2x3 operator*=( uint2x3& lhs, const uint32_t rhs )
+{
+	return ( lhs = lhs * rhs );
+}
 
 /// \relates uint2x3
 /// \brief Returns a copy of the matrix where each row of the left-hand matrix has been dot-producted by the corresponding column of the right-hand matrix.
-inline uint2x2 operator*( const uint2x3& lhs, const uint3x2& rhs );
+inline uint2x2 operator*( const uint2x3& lhs, const uint3x2& rhs )
+{
+	uint3 row0 = lhs[0];
+	uint3 row1 = lhs[1];
 
-/// \relates uint2x3
-/// \brief Dot products each row of the left-hand matrix with the corresponding column of the right-hand matrix.
-inline uint2x2 operator*=( uint2x3& lhs, const uint3x2& rhs );
+	uint3 col0 = { rhs[0].x, rhs[1].x, rhs[2].x };
+	uint3 col1 = { rhs[0].y, rhs[1].y, rhs[2].y };
+
+	return uint2x2(
+		row0.x * col0.x + row0.y * col0.y + row0.z * col0.z,
+		row0.x * col1.x + row0.y * col1.y + row0.z * col1.z,
+
+		row1.x * col0.x + row1.y * col0.y + row1.z * col0.z,
+		row1.x * col1.x + row1.y * col1.y + row1.z * col1.z
+	);
+}
 
 /// \relates uint2x3
 /// \brief Returns a copy of the uint2x3 that has been component-wise divided by the given scalar value.
-inline uint2x3 operator/( const uint2x3& lhs, const uint32_t rhs );
+inline uint2x3 operator/( const uint2x3& lhs, const uint32_t rhs )
+{
+	return uint2x3(
+		lhs[0] / rhs,
+		lhs[1] / rhs
+	);
+}
 
 /// \relates uint2x3
 /// \brief Divides each component by the given scalar value.
-inline uint2x3 operator/=( uint2x3& lhs, const uint32_t rhs );
+inline uint2x3 operator/=( uint2x3& lhs, const uint32_t rhs )
+{
+	return ( lhs = lhs / rhs );
+}
 
 /// \relates uint2x3
 /// \brief Returns a copy of the uint2x3 that has been component-wise divided by the corresponding component of the right-hand uint2x3.
-inline uint2x3 operator/( const uint2x3& lhs, const uint2x3& rhs );
+inline uint2x3 operator/( const uint2x3& lhs, const uint2x3& rhs )
+{
+	return uint2x3(
+		lhs[0] / rhs[0],
+		lhs[1] / rhs[1]
+	);
+}
 
+// prefix
 /// \relates uint2x3
 /// \brief Prefix increment operator.  Adds one to each component of the given uint2x3 before evaluation.
-inline uint2x3& operator++( uint2x3& lhs );
+inline uint2x3& operator++( uint2x3& lhs )
+{
+	++lhs[0];
+	++lhs[1];
+	return lhs;
+}
 
+// postfix
 /// \relates uint2x3
 /// \brief Postfix increment operator.  Adds one to each component of the given uint2x3 after evaluation.
-inline uint2x3& operator++( uint2x3& lhs, const int );
+inline uint2x3& operator++( uint2x3& lhs, const int )
+{
+	lhs[0]++;
+	lhs[1]++;
+	return lhs;
+}
 
+// prefix
 /// \relates uint2x3
 /// \brief Prefix decrement operator.  Subtracts one from each component of the given uint2x3 before evaluation.
-inline uint2x3& operator--( uint2x3& lhs );
+inline uint2x3& operator--( uint2x3& lhs )
+{
+	--lhs[0];
+	--lhs[1];
+	return lhs;
+}
 
+// postfix
 /// \relates uint2x3
 /// \brief Postfix decrement operator.  Subtracts one from each component of the given uint2x3 after evaluation.
-inline uint2x3& operator--( uint2x3& lhs, const int );
+inline uint2x3& operator--( uint2x3& lhs, const int )
+{
+	lhs[0]--;
+	lhs[1]--;
+	return lhs;
+}
 
 /// \relates uint2x3
 /// \brief Returns a bool2x3 where each component is true if the component of the left-hand type is less than the corresponding right-hand type component.
-inline bool2x3 operator<( const uint2x3& lhs, const uint2x3& rhs );
+inline bool2x3 operator<( const uint2x3& lhs, const uint2x3& rhs )
+{
+	return bool2x3(
+		lhs[0] < rhs[0],
+		lhs[1] < rhs[1]
+	);
+}
 
 /// \relates uint2x3
 /// \brief Returns a bool2x3 where each component is true if the component of the left-hand type is less than or equal to the corresponding right-hand type component.
-inline bool2x3 operator<=( const uint2x3& lhs, const uint2x3& rhs );
+inline bool2x3 operator<=( const uint2x3& lhs, const uint2x3& rhs )
+{
+	return bool2x3(
+		lhs[0] <= rhs[0],
+		lhs[1] <= rhs[1]
+	);
+}
 
 /// \relates uint2x3
 /// \brief Returns a bool2x3 where each component is true if the component of the left-hand type is greater than the corresponding right-hand type component.
-inline bool2x3 operator>( const uint2x3& lhs, const uint2x3& rhs );
+inline bool2x3 operator>( const uint2x3& lhs, const uint2x3& rhs )
+{
+	return bool2x3(
+		lhs[0] > rhs[0],
+		lhs[1] > rhs[1]
+	);
+}
 
 /// \relates uint2x3
 /// \brief Returns a bool2x3 where each component is true if the component of the left-hand type is greater than or equal to the corresponding right-hand type component.
-inline bool2x3 operator>=( const uint2x3& lhs, const uint2x3& rhs );
+inline bool2x3 operator>=( const uint2x3& lhs, const uint2x3& rhs )
+{
+	return bool2x3(
+		lhs[0] >= rhs[0],
+		lhs[1] >= rhs[1]
+	);
+}
 
 /// \relates uint2x3
 /// \brief Returns a copy of the uint2x3 where each component has been bitwise AND'd against the given scalar value.
-inline uint2x3 operator&( const uint2x3& lhs, const uint32_t& rhs );
+inline uint2x3 operator&( const uint2x3& lhs, const uint32_t& rhs )
+{
+	return uint2x3(
+		lhs[0] & rhs,
+		lhs[1] & rhs
+	);
+}
 
 /// \relates uint2x3
 /// \brief Performs a bitwise AND on the given left-hand uint2x3 against the given scalar value.
-inline uint2x3 operator&=( uint2x3& lhs, const uint32_t& rhs );
+inline uint2x3 operator&=( uint2x3& lhs, const uint32_t& rhs )
+{
+	return ( lhs = lhs & rhs );
+}
 
 /// \relates uint2x3
 /// \brief Returns a copy of the uint2x3 where each component of the left-hand uint2x3 has been bitwise AND'd against the corresponding component of the right-hand side uint2x3.
-inline uint2x3 operator&( const uint2x3& lhs, const uint2x3& rhs );
+inline uint2x3 operator&( const uint2x3& lhs, const uint2x3& rhs )
+{
+	return uint2x3(
+		lhs[0] & rhs[0],
+		lhs[1] & rhs[1]
+	);
+}
 
 /// \relates uint2x3
 /// \brief Performs a bitwise AND on the given left-hand uint2x3 against the corresponding component of the given right-hand uint2x3.
-inline uint2x3 operator&=( uint2x3& lhs, const uint2x3& rhs );
+inline uint2x3 operator&=( uint2x3& lhs, const uint2x3& rhs )
+{
+	return ( lhs = lhs & rhs );
+}
 
 /// \relates uint2x3
 /// \brief Returns a copy of the uint2x3 where each component has been bitwise OR'd against the given scalar value.
-inline uint2x3 operator|( const uint2x3& lhs, const uint32_t& rhs );
+inline uint2x3 operator|( const uint2x3& lhs, const uint32_t& rhs )
+{
+	return uint2x3(
+		lhs[0] | rhs,
+		lhs[1] | rhs
+	);
+}
 
 /// \relates uint2x3
 /// \brief Performs a bitwise OR on the given left-hand uint2x3 against the given scalar value.
-inline uint2x3 operator|=( uint2x3& lhs, const uint32_t& rhs );
+inline uint2x3 operator|=( uint2x3& lhs, const uint32_t& rhs )
+{
+	return ( lhs = lhs | rhs );
+}
 
 /// \relates uint2x3
 /// \brief Returns a copy of the uint2x3 where each component of the left-hand uint2x3 has been bitwise OR'd against the corresponding component of the right-hand side uint2x3.
-inline uint2x3 operator|( const uint2x3& lhs, const uint2x3& rhs );
+inline uint2x3 operator|( const uint2x3& lhs, const uint2x3& rhs )
+{
+	return uint2x3(
+		lhs[0] | rhs[0],
+		lhs[1] | rhs[1]
+	);
+}
 
 /// \relates uint2x3
 /// \brief Performs a bitwise OR on the given left-hand uint2x3 against the corresponding component of the given right-hand uint2x3.
-inline uint2x3 operator|=( uint2x3& lhs, const uint2x3& rhs );
+inline uint2x3 operator|=( uint2x3& lhs, const uint2x3& rhs )
+{
+	return ( lhs = lhs | rhs );
+}
 
 /// \relates uint2x3
 /// \brief Returns a copy of the uint2x3 where each component has been bitwise XOR'd against the given scalar value.
-inline uint2x3 operator^( const uint2x3& lhs, const uint32_t& rhs );
+inline uint2x3 operator^( const uint2x3& lhs, const uint32_t& rhs )
+{
+	return uint2x3(
+		lhs[0] ^ rhs,
+		lhs[1] ^ rhs
+	);
+}
 
 /// \relates uint2x3
 /// \brief Performs a bitwise XOR on the given left-hand uint2x3 against the given scalar value.
-inline uint2x3 operator^=( uint2x3& lhs, const uint32_t& rhs );
+inline uint2x3 operator^=( uint2x3& lhs, const uint32_t& rhs )
+{
+	return ( lhs = lhs ^ rhs );
+}
 
 /// \relates uint2x3
 /// \brief Returns a copy of the uint2x3 where each component of the left-hand uint2x3 has been bitwise XOR'd against the corresponding component of the right-hand side uint2x3.
-inline uint2x3 operator^( const uint2x3& lhs, const uint2x3& rhs );
+inline uint2x3 operator^( const uint2x3& lhs, const uint2x3& rhs )
+{
+	return uint2x3(
+		lhs[0] ^ rhs[0],
+		lhs[1] ^ rhs[1]
+	);
+}
 
 /// \relates uint2x3
 /// \brief Performs a bitwise XOR on the given left-hand uint2x3 against the corresponding component of the given right-hand uint2x3.
-inline uint2x3 operator^=( uint2x3& lhs, const uint2x3& rhs );
+inline uint2x3 operator^=( uint2x3& lhs, const uint2x3& rhs )
+{
+	return ( lhs = lhs ^ rhs );
+}
 
 /// \relates uint2x3
 /// \brief Returns a copy of the uint2x3 where each component has been bitwise left-shifted by the given scalar value.
-inline uint2x3 operator<<( const uint2x3& lhs, const uint32_t& rhs );
+inline uint2x3 operator<<( const uint2x3& lhs, const uint32_t& rhs )
+{
+	return uint2x3(
+		lhs[0] << rhs,
+		lhs[1] << rhs
+	);
+}
 
 /// \relates uint2x3
 /// \brief Performs a left bitshift on the given left-hand uint2x3 by the given scalar value.
-inline uint2x3 operator<<=( uint2x3& lhs, const uint32_t& rhs );
+inline uint2x3 operator<<=( uint2x3& lhs, const uint32_t& rhs )
+{
+	return ( lhs = lhs << rhs );
+}
 
 /// \relates uint2x3
 /// \brief Returns a copy of the uint2x3 where each component of the left-hand uint2x3 has been bitwise left-shifted by the corresponding component of the right-hand side uint2x3.
-inline uint2x3 operator<<( const uint2x3& lhs, const uint2x3& rhs );
+inline uint2x3 operator<<( const uint2x3& lhs, const uint2x3& rhs )
+{
+	return uint2x3(
+		lhs[0] << rhs[0],
+		lhs[1] << rhs[1]
+	);
+}
 
 /// \relates uint2x3
 /// \brief Performs a left bitshift on the given left-hand uint2x3 by the corresponding component of the given right-hand uint2x3.
-inline uint2x3 operator<<=( uint2x3& lhs, const uint2x3& rhs );
+inline uint2x3 operator<<=( uint2x3& lhs, const uint2x3& rhs )
+{
+	return ( lhs = lhs << rhs );
+}
 
 /// \relates uint2x3
 /// \brief Returns a copy of the uint2x3 where each component has been bitwise right-shifted by the given scalar value.
-inline uint2x3 operator>>( const uint2x3& lhs, const uint32_t& rhs );
+inline uint2x3 operator>>( const uint2x3& lhs, const uint32_t& rhs )
+{
+	return uint2x3(
+		lhs[0] >> rhs,
+		lhs[1] >> rhs
+	);
+}
 
 /// \relates uint2x3
 /// \brief Performs a right bitshift on the given left-hand uint2x3 by the given scalar value.
-inline uint2x3 operator>>=( uint2x3& lhs, const uint32_t& rhs );
+inline uint2x3 operator>>=( uint2x3& lhs, const uint32_t& rhs )
+{
+	return ( lhs = lhs >> rhs );
+}
 
 /// \relates uint2x3
 /// \brief Returns a copy of the uint2x3 where each component of the left-hand uint2x3 has been bitwise right-shifted by the corresponding component of the right-hand side uint2x3.
-inline uint2x3 operator>>( const uint2x3& lhs, const uint2x3& rhs );
+inline uint2x3 operator>>( const uint2x3& lhs, const uint2x3& rhs )
+{
+	return uint2x3(
+		lhs[0] >> rhs[0],
+		lhs[1] >> rhs[1]
+	);
+}
 
 /// \relates uint2x3
 /// \brief Performs a right bitshift on the given left-hand uint2x3 by the corresponding component of the given right-hand uint2x3.
-inline uint2x3 operator>>=( uint2x3& lhs, const uint2x3& rhs );
+inline uint2x3 operator>>=( uint2x3& lhs, const uint2x3& rhs )
+{
+	return ( lhs = lhs >> rhs );
+}
 
 /// \relates uint2x3
 /// \brief Performs a unary bitwise operation on all components of the given uint2x3.
-inline uint2x3 operator~( const uint2x3& lhs );
+inline uint2x3 operator~( const uint2x3& lhs )
+{
+	return uint2x3(
+		~lhs[0],
+		~lhs[1]
+	);
+}
 
 
 // uint2x4
 /// \relates uint2x4
 /// \brief Returns a copy of the uint2x4 that has been component-wise added by the given scalar value.
-inline uint2x4 operator+( const uint2x4& lhs, const uint32_t rhs );
+inline uint2x4 operator+( const uint2x4& lhs, const uint32_t rhs )
+{
+	return uint2x4(
+		lhs[0] + rhs,
+		lhs[1] + rhs
+	);
+}
 
 /// \relates uint2x4
 /// \brief Adds each component by the given scalar value.
-inline uint2x4 operator+=( uint2x4& lhs, const uint32_t rhs );
+inline uint2x4 operator+=( uint2x4& lhs, const uint32_t rhs )
+{
+	return ( lhs = lhs + rhs );
+}
 
 /// \relates uint2x4
 /// \brief Returns a copy of the uint2x4 that has been component-wise added by the corresponding component of the right-hand uint2x4.
-inline uint2x4 operator+( const uint2x4& lhs, const uint2x4& rhs );
+inline uint2x4 operator+( const uint2x4& lhs, const uint2x4& rhs )
+{
+	return uint2x4(
+		lhs[0] + rhs[0],
+		lhs[1] + rhs[1]
+	);
+}
 
 /// \relates uint2x4
 /// \brief Adds each component of the uint2x4 by the corresponding component of the right-hand uint2x4.
-inline uint2x4 operator+=( uint2x4& lhs, const uint2x4& rhs );
+inline uint2x4 operator+=( uint2x4& lhs, const uint2x4& rhs )
+{
+	return ( lhs = lhs + rhs );
+}
 
 /// \relates uint2x4
 /// \brief Returns a copy of the uint2x4 that has been component-wise subtracted by the given scalar value.
-inline uint2x4 operator-( const uint2x4& lhs, const uint32_t rhs );
+inline uint2x4 operator-( const uint2x4& lhs, const uint32_t rhs )
+{
+	return uint2x4(
+		lhs[0] - rhs,
+		lhs[1] - rhs
+	);
+}
 
 /// \relates uint2x4
 /// \brief Subtracts each component by the given scalar value.
-inline uint2x4 operator-=( uint2x4& lhs, const uint32_t rhs );
+inline uint2x4 operator-=( uint2x4& lhs, const uint32_t rhs )
+{
+	return ( lhs = lhs - rhs );
+}
 
 /// \relates uint2x4
 /// \brief Returns a copy of the uint2x4 that has been component-wise subtracted by the corresponding component of the right-hand uint2x4.
-inline uint2x4 operator-( const uint2x4& lhs, const uint2x4& rhs );
+inline uint2x4 operator-( const uint2x4& lhs, const uint2x4& rhs )
+{
+	return uint2x4(
+		lhs[0] - rhs[0],
+		lhs[1] - rhs[1]
+	);
+}
 
 /// \relates uint2x4
 /// \brief Subtracts each component of the uint2x4 by the corresponding component of the right-hand uint2x4.
-inline uint2x4 operator-=( uint2x4& lhs, const uint2x4& rhs );
+inline uint2x4 operator-=( uint2x4& lhs, const uint2x4& rhs )
+{
+	return ( lhs = lhs - rhs );
+}
 
 /// \relates uint2x4
 /// \brief Returns a copy of the uint2x4 that has been component-wise multiplied by the given scalar value.
-inline uint2x4 operator*( const uint2x4& lhs, const uint32_t rhs );
+inline uint2x4 operator*( const uint2x4& lhs, const uint32_t rhs )
+{
+	return uint2x4(
+		lhs[0] * rhs,
+		lhs[1] * rhs
+	);
+}
 
 /// \relates uint2x4
 /// \brief Multiplies each component by the given scalar value.
-inline uint2x4 operator*=( uint2x4& lhs, const uint32_t rhs );
+inline uint2x4 operator*=( uint2x4& lhs, const uint32_t rhs )
+{
+	return ( lhs = lhs * rhs );
+}
 
 /// \relates uint2x4
 /// \brief Returns a copy of the matrix where each row of the left-hand matrix has been dot-producted by the corresponding column of the right-hand matrix.
-inline uint2x2 operator*( const uint2x4& lhs, const uint4x2& rhs );
+inline uint2x2 operator*( const uint2x4& lhs, const uint4x2& rhs )
+{
+	uint4 row0 = lhs[0];
+	uint4 row1 = lhs[1];
 
-/// \relates uint2x4
-/// \brief Dot products each row of the left-hand matrix with the corresponding column of the right-hand matrix.
-inline uint2x2 operator*=( uint2x4& lhs, const uint4x2& rhs );
+	uint4 col0 = { rhs[0].x, rhs[1].x, rhs[2].x, rhs[3].x };
+	uint4 col1 = { rhs[0].y, rhs[1].y, rhs[2].y, rhs[3].y };
+
+	return uint2x2(
+		row0.x * col0.x + row0.y * col0.y + row0.z * col0.z + row0.w * col0.w,
+		row0.x * col1.x + row0.y * col1.y + row0.z * col1.z + row0.w * col1.w,
+
+		row1.x * col0.x + row1.y * col0.y + row1.z * col0.z + row1.w * col0.w,
+		row1.x * col1.x + row1.y * col1.y + row1.z * col1.z + row1.w * col1.w
+	);
+}
 
 /// \relates uint2x4
 /// \brief Returns a copy of the uint2x4 that has been component-wise divided by the given scalar value.
-inline uint2x4 operator/( const uint2x4& lhs, const uint32_t rhs );
+inline uint2x4 operator/( const uint2x4& lhs, const uint32_t rhs )
+{
+	return uint2x4(
+		lhs[0] / rhs,
+		lhs[1] / rhs
+	);
+}
 
 /// \relates uint2x4
 /// \brief Divides each component by the given scalar value.
-inline uint2x4 operator/=( uint2x4& lhs, const uint32_t rhs );
+inline uint2x4 operator/=( uint2x4& lhs, const uint32_t rhs )
+{
+	return ( lhs = lhs / rhs );
+}
 
 /// \relates uint2x4
 /// \brief Returns a copy of the uint2x4 that has been component-wise divided by the corresponding component of the right-hand uint2x4.
-inline uint2x4 operator/( const uint2x4& lhs, const uint2x4& rhs );
+inline uint2x4 operator/( const uint2x4& lhs, const uint2x4& rhs )
+{
+	return uint2x4(
+		lhs[0] / rhs[0],
+		lhs[1] / rhs[1]
+	);
+}
 
+// prefix
 /// \relates uint2x4
 /// \brief Prefix increment operator.  Adds one to each component of the given uint2x4 before evaluation.
-inline uint2x4& operator++( uint2x4& lhs );
+inline uint2x4& operator++( uint2x4& lhs )
+{
+	++lhs[0];
+	++lhs[1];
+	return lhs;
+}
 
+// postfix
 /// \relates uint2x4
 /// \brief Postfix increment operator.  Adds one to each component of the given uint2x4 after evaluation.
-inline uint2x4& operator++( uint2x4& lhs, const int );
+inline uint2x4& operator++( uint2x4& lhs, const int )
+{
+	lhs[0]++;
+	lhs[1]++;
+	return lhs;
+}
 
+// prefix
 /// \relates uint2x4
 /// \brief Prefix decrement operator.  Subtracts one from each component of the given uint2x4 before evaluation.
-inline uint2x4& operator--( uint2x4& lhs );
+inline uint2x4& operator--( uint2x4& lhs )
+{
+	--lhs[0];
+	--lhs[1];
+	return lhs;
+}
 
+// postfix
 /// \relates uint2x4
 /// \brief Postfix decrement operator.  Subtracts one from each component of the given uint2x4 after evaluation.
-inline uint2x4& operator--( uint2x4& lhs, const int );
+inline uint2x4& operator--( uint2x4& lhs, const int )
+{
+	lhs[0]--;
+	lhs[1]--;
+	return lhs;
+}
 
 /// \relates uint2x4
 /// \brief Returns a bool2x4 where each component is true if the component of the left-hand type is less than the corresponding right-hand type component.
-inline bool2x4 operator<( const uint2x4& lhs, const uint2x4& rhs );
+inline bool2x4 operator<( const uint2x4& lhs, const uint2x4& rhs )
+{
+	return bool2x4(
+		lhs[0] < rhs[0],
+		lhs[1] < rhs[1]
+	);
+}
 
 /// \relates uint2x4
 /// \brief Returns a bool2x4 where each component is true if the component of the left-hand type is less than or equal to the corresponding right-hand type component.
-inline bool2x4 operator<=( const uint2x4& lhs, const uint2x4& rhs );
+inline bool2x4 operator<=( const uint2x4& lhs, const uint2x4& rhs )
+{
+	return bool2x4(
+		lhs[0] <= rhs[0],
+		lhs[1] <= rhs[1]
+	);
+}
 
 /// \relates uint2x4
 /// \brief Returns a bool2x4 where each component is true if the component of the left-hand type is greater than the corresponding right-hand type component.
-inline bool2x4 operator>( const uint2x4& lhs, const uint2x4& rhs );
+inline bool2x4 operator>( const uint2x4& lhs, const uint2x4& rhs )
+{
+	return bool2x4(
+		lhs[0] > rhs[0],
+		lhs[1] > rhs[1]
+	);
+}
 
 /// \relates uint2x4
 /// \brief Returns a bool2x4 where each component is true if the component of the left-hand type is greater than or equal to the corresponding right-hand type component.
-inline bool2x4 operator>=( const uint2x4& lhs, const uint2x4& rhs );
+inline bool2x4 operator>=( const uint2x4& lhs, const uint2x4& rhs )
+{
+	return bool2x4(
+		lhs[0] >= rhs[0],
+		lhs[1] >= rhs[1]
+	);
+}
 
 /// \relates uint2x4
 /// \brief Returns a copy of the uint2x4 where each component has been bitwise AND'd against the given scalar value.
-inline uint2x4 operator&( const uint2x4& lhs, const uint32_t& rhs );
+inline uint2x4 operator&( const uint2x4& lhs, const uint32_t& rhs )
+{
+	return uint2x4(
+		lhs[0] & rhs,
+		lhs[1] & rhs
+	);
+}
 
 /// \relates uint2x4
 /// \brief Performs a bitwise AND on the given left-hand uint2x4 against the given scalar value.
-inline uint2x4 operator&=( uint2x4& lhs, const uint32_t& rhs );
+inline uint2x4 operator&=( uint2x4& lhs, const uint32_t& rhs )
+{
+	return ( lhs = lhs & rhs );
+}
 
 /// \relates uint2x4
 /// \brief Returns a copy of the uint2x4 where each component of the left-hand uint2x4 has been bitwise AND'd against the corresponding component of the right-hand side uint2x4.
-inline uint2x4 operator&( const uint2x4& lhs, const uint2x4& rhs );
+inline uint2x4 operator&( const uint2x4& lhs, const uint2x4& rhs )
+{
+	return uint2x4(
+		lhs[0] & rhs[0],
+		lhs[1] & rhs[1]
+	);
+}
 
 /// \relates uint2x4
 /// \brief Performs a bitwise AND on the given left-hand uint2x4 against the corresponding component of the given right-hand uint2x4.
-inline uint2x4 operator&=( uint2x4& lhs, const uint2x4& rhs );
+inline uint2x4 operator&=( uint2x4& lhs, const uint2x4& rhs )
+{
+	return ( lhs = lhs & rhs );
+}
 
 /// \relates uint2x4
 /// \brief Returns a copy of the uint2x4 where each component has been bitwise OR'd against the given scalar value.
-inline uint2x4 operator|( const uint2x4& lhs, const uint32_t& rhs );
+inline uint2x4 operator|( const uint2x4& lhs, const uint32_t& rhs )
+{
+	return uint2x4(
+		lhs[0] | rhs,
+		lhs[1] | rhs
+	);
+}
 
 /// \relates uint2x4
 /// \brief Performs a bitwise OR on the given left-hand uint2x4 against the given scalar value.
-inline uint2x4 operator|=( uint2x4& lhs, const uint32_t& rhs );
+inline uint2x4 operator|=( uint2x4& lhs, const uint32_t& rhs )
+{
+	return ( lhs = lhs | rhs );
+}
 
 /// \relates uint2x4
 /// \brief Returns a copy of the uint2x4 where each component of the left-hand uint2x4 has been bitwise OR'd against the corresponding component of the right-hand side uint2x4.
-inline uint2x4 operator|( const uint2x4& lhs, const uint2x4& rhs );
+inline uint2x4 operator|( const uint2x4& lhs, const uint2x4& rhs )
+{
+	return uint2x4(
+		lhs[0] | rhs[0],
+		lhs[1] | rhs[1]
+	);
+}
 
 /// \relates uint2x4
 /// \brief Performs a bitwise OR on the given left-hand uint2x4 against the corresponding component of the given right-hand uint2x4.
-inline uint2x4 operator|=( uint2x4& lhs, const uint2x4& rhs );
+inline uint2x4 operator|=( uint2x4& lhs, const uint2x4& rhs )
+{
+	return ( lhs = lhs | rhs );
+}
 
 /// \relates uint2x4
 /// \brief Returns a copy of the uint2x4 where each component has been bitwise XOR'd against the given scalar value.
-inline uint2x4 operator^( const uint2x4& lhs, const uint32_t& rhs );
+inline uint2x4 operator^( const uint2x4& lhs, const uint32_t& rhs )
+{
+	return uint2x4(
+		lhs[0] ^ rhs,
+		lhs[1] ^ rhs
+	);
+}
 
 /// \relates uint2x4
 /// \brief Performs a bitwise XOR on the given left-hand uint2x4 against the given scalar value.
-inline uint2x4 operator^=( uint2x4& lhs, const uint32_t& rhs );
+inline uint2x4 operator^=( uint2x4& lhs, const uint32_t& rhs )
+{
+	return ( lhs = lhs ^ rhs );
+}
 
 /// \relates uint2x4
 /// \brief Returns a copy of the uint2x4 where each component of the left-hand uint2x4 has been bitwise XOR'd against the corresponding component of the right-hand side uint2x4.
-inline uint2x4 operator^( const uint2x4& lhs, const uint2x4& rhs );
+inline uint2x4 operator^( const uint2x4& lhs, const uint2x4& rhs )
+{
+	return uint2x4(
+		lhs[0] ^ rhs[0],
+		lhs[1] ^ rhs[1]
+	);
+}
 
 /// \relates uint2x4
 /// \brief Performs a bitwise XOR on the given left-hand uint2x4 against the corresponding component of the given right-hand uint2x4.
-inline uint2x4 operator^=( uint2x4& lhs, const uint2x4& rhs );
+inline uint2x4 operator^=( uint2x4& lhs, const uint2x4& rhs )
+{
+	return ( lhs = lhs ^ rhs );
+}
 
 /// \relates uint2x4
 /// \brief Returns a copy of the uint2x4 where each component has been bitwise left-shifted by the given scalar value.
-inline uint2x4 operator<<( const uint2x4& lhs, const uint32_t& rhs );
+inline uint2x4 operator<<( const uint2x4& lhs, const uint32_t& rhs )
+{
+	return uint2x4(
+		lhs[0] << rhs,
+		lhs[1] << rhs
+	);
+}
 
 /// \relates uint2x4
 /// \brief Performs a left bitshift on the given left-hand uint2x4 by the given scalar value.
-inline uint2x4 operator<<=( uint2x4& lhs, const uint32_t& rhs );
+inline uint2x4 operator<<=( uint2x4& lhs, const uint32_t& rhs )
+{
+	return ( lhs = lhs << rhs );
+}
 
 /// \relates uint2x4
 /// \brief Returns a copy of the uint2x4 where each component of the left-hand uint2x4 has been bitwise left-shifted by the corresponding component of the right-hand side uint2x4.
-inline uint2x4 operator<<( const uint2x4& lhs, const uint2x4& rhs );
+inline uint2x4 operator<<( const uint2x4& lhs, const uint2x4& rhs )
+{
+	return uint2x4(
+		lhs[0] << rhs[0],
+		lhs[1] << rhs[1]
+	);
+}
 
 /// \relates uint2x4
 /// \brief Performs a left bitshift on the given left-hand uint2x4 by the corresponding component of the given right-hand uint2x4.
-inline uint2x4 operator<<=( uint2x4& lhs, const uint2x4& rhs );
+inline uint2x4 operator<<=( uint2x4& lhs, const uint2x4& rhs )
+{
+	return ( lhs = lhs << rhs );
+}
 
 /// \relates uint2x4
 /// \brief Returns a copy of the uint2x4 where each component has been bitwise right-shifted by the given scalar value.
-inline uint2x4 operator>>( const uint2x4& lhs, const uint32_t& rhs );
+inline uint2x4 operator>>( const uint2x4& lhs, const uint32_t& rhs )
+{
+	return uint2x4(
+		lhs[0] >> rhs,
+		lhs[1] >> rhs
+	);
+}
 
 /// \relates uint2x4
 /// \brief Performs a right bitshift on the given left-hand uint2x4 by the given scalar value.
-inline uint2x4 operator>>=( uint2x4& lhs, const uint32_t& rhs );
+inline uint2x4 operator>>=( uint2x4& lhs, const uint32_t& rhs )
+{
+	return ( lhs = lhs >> rhs );
+}
 
 /// \relates uint2x4
 /// \brief Returns a copy of the uint2x4 where each component of the left-hand uint2x4 has been bitwise right-shifted by the corresponding component of the right-hand side uint2x4.
-inline uint2x4 operator>>( const uint2x4& lhs, const uint2x4& rhs );
+inline uint2x4 operator>>( const uint2x4& lhs, const uint2x4& rhs )
+{
+	return uint2x4(
+		lhs[0] >> rhs[0],
+		lhs[1] >> rhs[1]
+	);
+}
 
 /// \relates uint2x4
 /// \brief Performs a right bitshift on the given left-hand uint2x4 by the corresponding component of the given right-hand uint2x4.
-inline uint2x4 operator>>=( uint2x4& lhs, const uint2x4& rhs );
+inline uint2x4 operator>>=( uint2x4& lhs, const uint2x4& rhs )
+{
+	return ( lhs = lhs >> rhs );
+}
 
 /// \relates uint2x4
 /// \brief Performs a unary bitwise operation on all components of the given uint2x4.
-inline uint2x4 operator~( const uint2x4& lhs );
+inline uint2x4 operator~( const uint2x4& lhs )
+{
+	return uint2x4(
+		~lhs[0],
+		~lhs[1]
+	);
+}
 
 
 // uint3x2
 /// \relates uint3x2
 /// \brief Returns a copy of the uint3x2 that has been component-wise added by the given scalar value.
-inline uint3x2 operator+( const uint3x2& lhs, const uint32_t rhs );
+inline uint3x2 operator+( const uint3x2& lhs, const uint32_t rhs )
+{
+	return uint3x2(
+		lhs[0] + rhs,
+		lhs[1] + rhs,
+		lhs[2] + rhs
+	);
+}
 
 /// \relates uint3x2
 /// \brief Adds each component by the given scalar value.
-inline uint3x2 operator+=( uint3x2& lhs, const uint32_t rhs );
+inline uint3x2 operator+=( uint3x2& lhs, const uint32_t rhs )
+{
+	return ( lhs = lhs + rhs );
+}
 
 /// \relates uint3x2
 /// \brief Returns a copy of the uint3x2 that has been component-wise added by the corresponding component of the right-hand uint3x2.
-inline uint3x2 operator+( const uint3x2& lhs, const uint3x2& rhs );
+inline uint3x2 operator+( const uint3x2& lhs, const uint3x2& rhs )
+{
+	return uint3x2(
+		lhs[0] + rhs[0],
+		lhs[1] + rhs[1],
+		lhs[2] + rhs[2]
+	);
+}
 
 /// \relates uint3x2
 /// \brief Adds each component of the uint3x2 by the corresponding component of the right-hand uint3x2.
-inline uint3x2 operator+=( uint3x2& lhs, const uint3x2& rhs );
+inline uint3x2 operator+=( uint3x2& lhs, const uint3x2& rhs )
+{
+	return ( lhs = lhs + rhs );
+}
 
 /// \relates uint3x2
 /// \brief Returns a copy of the uint3x2 that has been component-wise subtracted by the given scalar value.
-inline uint3x2 operator-( const uint3x2& lhs, const uint32_t rhs );
+inline uint3x2 operator-( const uint3x2& lhs, const uint32_t rhs )
+{
+	return uint3x2(
+		lhs[0] - rhs,
+		lhs[1] - rhs,
+		lhs[2] - rhs
+	);
+}
 
 /// \relates uint3x2
 /// \brief Subtracts each component by the given scalar value.
-inline uint3x2 operator-=( uint3x2& lhs, const uint32_t rhs );
+inline uint3x2 operator-=( uint3x2& lhs, const uint32_t rhs )
+{
+	return ( lhs = lhs - rhs );
+}
 
 /// \relates uint3x2
 /// \brief Returns a copy of the uint3x2 that has been component-wise subtracted by the corresponding component of the right-hand uint3x2.
-inline uint3x2 operator-( const uint3x2& lhs, const uint3x2& rhs );
+inline uint3x2 operator-( const uint3x2& lhs, const uint3x2& rhs )
+{
+	return uint3x2(
+		lhs[0] - rhs[0],
+		lhs[1] - rhs[1],
+		lhs[2] - rhs[2]
+	);
+}
 
 /// \relates uint3x2
 /// \brief Subtracts each component of the uint3x2 by the corresponding component of the right-hand uint3x2.
-inline uint3x2 operator-=( uint3x2& lhs, const uint3x2& rhs );
+inline uint3x2 operator-=( uint3x2& lhs, const uint3x2& rhs )
+{
+	return ( lhs = lhs - rhs );
+}
 
 /// \relates uint3x2
 /// \brief Returns a copy of the uint3x2 that has been component-wise multiplied by the given scalar value.
-inline uint3x2 operator*( const uint3x2& lhs, const uint32_t rhs );
+inline uint3x2 operator*( const uint3x2& lhs, const uint32_t rhs )
+{
+	return uint3x2(
+		lhs[0] * rhs,
+		lhs[1] * rhs,
+		lhs[2] * rhs
+	);
+}
 
 /// \relates uint3x2
 /// \brief Multiplies each component by the given scalar value.
-inline uint3x2 operator*=( uint3x2& lhs, const uint32_t rhs );
+inline uint3x2 operator*=( uint3x2& lhs, const uint32_t rhs )
+{
+	return ( lhs = lhs * rhs );
+}
 
 /// \relates uint3x2
 /// \brief Returns a copy of the matrix where each row of the left-hand matrix has been dot-producted by the corresponding column of the right-hand matrix.
-inline uint3x3 operator*( const uint3x2& lhs, const uint2x3& rhs );
+inline uint3x3 operator*( const uint3x2& lhs, const uint2x3& rhs )
+{
+	uint2 row0 = lhs[0];
+	uint2 row1 = lhs[1];
+	uint2 row2 = lhs[2];
 
-/// \relates uint3x2
-/// \brief Dot products each row of the left-hand matrix with the corresponding column of the right-hand matrix.
-inline uint3x3 operator*=( uint3x2& lhs, const uint2x3& rhs );
+	uint2 col0 = { rhs[0].x, rhs[1].x };
+	uint2 col1 = { rhs[0].y, rhs[1].y };
+	uint2 col2 = { rhs[0].z, rhs[1].z };
+
+	return uint3x3(
+		row0.x * col0.x + row0.y * col0.y,
+		row0.x * col1.x + row0.y * col1.y,
+		row0.x * col2.x + row0.y * col2.y,
+
+		row1.x * col0.x + row1.y * col0.y,
+		row1.x * col1.x + row1.y * col1.y,
+		row1.x * col2.x + row1.y * col2.y,
+
+		row2.x * col0.x + row2.y * col0.y,
+		row2.x * col1.x + row2.y * col1.y,
+		row2.x * col2.x + row2.y * col2.y
+	);
+}
 
 /// \relates uint3x2
 /// \brief Returns a copy of the uint3x2 that has been component-wise divided by the given scalar value.
-inline uint3x2 operator/( const uint3x2& lhs, const uint32_t rhs );
+inline uint3x2 operator/( const uint3x2& lhs, const uint32_t rhs )
+{
+	return uint3x2(
+		lhs[0] / rhs,
+		lhs[1] / rhs,
+		lhs[2] / rhs
+	);
+}
 
 /// \relates uint3x2
 /// \brief Divides each component by the given scalar value.
-inline uint3x2 operator/=( uint3x2& lhs, const uint32_t rhs );
+inline uint3x2 operator/=( uint3x2& lhs, const uint32_t rhs )
+{
+	return ( lhs = lhs / rhs );
+}
 
 /// \relates uint3x2
 /// \brief Returns a copy of the uint3x2 that has been component-wise divided by the corresponding component of the right-hand uint3x2.
-inline uint3x2 operator/( const uint3x2& lhs, const uint3x2& rhs );
+inline uint3x2 operator/( const uint3x2& lhs, const uint3x2& rhs )
+{
+	return uint3x2(
+		lhs[0] / rhs[0],
+		lhs[1] / rhs[1],
+		lhs[2] / rhs[2]
+	);
+}
 
+// prefix
 /// \relates uint3x2
 /// \brief Prefix increment operator.  Adds one to each component of the given uint3x2 before evaluation.
-inline uint3x2& operator++( uint3x2& lhs );
+inline uint3x2& operator++( uint3x2& lhs )
+{
+	++lhs[0];
+	++lhs[1];
+	++lhs[2];
+	return lhs;
+}
 
+// postfix
 /// \relates uint3x2
 /// \brief Postfix increment operator.  Adds one to each component of the given uint3x2 after evaluation.
-inline uint3x2& operator++( uint3x2& lhs, const int );
+inline uint3x2& operator++( uint3x2& lhs, const int )
+{
+	lhs[0]++;
+	lhs[1]++;
+	lhs[2]++;
+	return lhs;
+}
 
+// prefix
 /// \relates uint3x2
 /// \brief Prefix decrement operator.  Subtracts one from each component of the given uint3x2 before evaluation.
-inline uint3x2& operator--( uint3x2& lhs );
+inline uint3x2& operator--( uint3x2& lhs )
+{
+	--lhs[0];
+	--lhs[1];
+	--lhs[2];
+	return lhs;
+}
 
+// postfix
 /// \relates uint3x2
 /// \brief Postfix decrement operator.  Subtracts one from each component of the given uint3x2 after evaluation.
-inline uint3x2& operator--( uint3x2& lhs, const int );
+inline uint3x2& operator--( uint3x2& lhs, const int )
+{
+	lhs[0]--;
+	lhs[1]--;
+	lhs[2]--;
+	return lhs;
+}
 
 /// \relates uint3x2
 /// \brief Returns a bool3x2 where each component is true if the component of the left-hand type is less than the corresponding right-hand type component.
-inline bool3x2 operator<( const uint3x2& lhs, const uint3x2& rhs );
+inline bool3x2 operator<( const uint3x2& lhs, const uint3x2& rhs )
+{
+	return bool3x2(
+		lhs[0] < rhs[0],
+		lhs[1] < rhs[1],
+		lhs[2] < rhs[2]
+	);
+}
 
 /// \relates uint3x2
 /// \brief Returns a bool3x2 where each component is true if the component of the left-hand type is less than or equal to the corresponding right-hand type component.
-inline bool3x2 operator<=( const uint3x2& lhs, const uint3x2& rhs );
+inline bool3x2 operator<=( const uint3x2& lhs, const uint3x2& rhs )
+{
+	return bool3x2(
+		lhs[0] <= rhs[0],
+		lhs[1] <= rhs[1],
+		lhs[2] <= rhs[2]
+	);
+}
 
 /// \relates uint3x2
 /// \brief Returns a bool3x2 where each component is true if the component of the left-hand type is greater than the corresponding right-hand type component.
-inline bool3x2 operator>( const uint3x2& lhs, const uint3x2& rhs );
+inline bool3x2 operator>( const uint3x2& lhs, const uint3x2& rhs )
+{
+	return bool3x2(
+		lhs[0] > rhs[0],
+		lhs[1] > rhs[1],
+		lhs[2] > rhs[2]
+	);
+}
 
 /// \relates uint3x2
 /// \brief Returns a bool3x2 where each component is true if the component of the left-hand type is greater than or equal to the corresponding right-hand type component.
-inline bool3x2 operator>=( const uint3x2& lhs, const uint3x2& rhs );
+inline bool3x2 operator>=( const uint3x2& lhs, const uint3x2& rhs )
+{
+	return bool3x2(
+		lhs[0] >= rhs[0],
+		lhs[1] >= rhs[1],
+		lhs[2] >= rhs[2]
+	);
+}
 
 /// \relates uint3x2
 /// \brief Returns a copy of the uint3x2 where each component has been bitwise AND'd against the given scalar value.
-inline uint3x2 operator&( const uint3x2& lhs, const uint32_t& rhs );
+inline uint3x2 operator&( const uint3x2& lhs, const uint32_t& rhs )
+{
+	return uint3x2(
+		lhs[0] & rhs,
+		lhs[1] & rhs,
+		lhs[2] & rhs
+	);
+}
 
 /// \relates uint3x2
 /// \brief Performs a bitwise AND on the given left-hand uint3x2 against the given scalar value.
-inline uint3x2 operator&=( uint3x2& lhs, const uint32_t& rhs );
+inline uint3x2 operator&=( uint3x2& lhs, const uint32_t& rhs )
+{
+	return ( lhs = lhs & rhs );
+}
 
 /// \relates uint3x2
 /// \brief Returns a copy of the uint3x2 where each component of the left-hand uint3x2 has been bitwise AND'd against the corresponding component of the right-hand side uint3x2.
-inline uint3x2 operator&( const uint3x2& lhs, const uint3x2& rhs );
+inline uint3x2 operator&( const uint3x2& lhs, const uint3x2& rhs )
+{
+	return uint3x2(
+		lhs[0] & rhs[0],
+		lhs[1] & rhs[1],
+		lhs[2] & rhs[2]
+	);
+}
 
 /// \relates uint3x2
 /// \brief Performs a bitwise AND on the given left-hand uint3x2 against the corresponding component of the given right-hand uint3x2.
-inline uint3x2 operator&=( uint3x2& lhs, const uint3x2& rhs );
+inline uint3x2 operator&=( uint3x2& lhs, const uint3x2& rhs )
+{
+	return ( lhs = lhs & rhs );
+}
 
 /// \relates uint3x2
 /// \brief Returns a copy of the uint3x2 where each component has been bitwise OR'd against the given scalar value.
-inline uint3x2 operator|( const uint3x2& lhs, const uint32_t& rhs );
+inline uint3x2 operator|( const uint3x2& lhs, const uint32_t& rhs )
+{
+	return uint3x2(
+		lhs[0] | rhs,
+		lhs[1] | rhs,
+		lhs[2] | rhs
+	);
+}
 
 /// \relates uint3x2
 /// \brief Performs a bitwise OR on the given left-hand uint3x2 against the given scalar value.
-inline uint3x2 operator|=( uint3x2& lhs, const uint32_t& rhs );
+inline uint3x2 operator|=( uint3x2& lhs, const uint32_t& rhs )
+{
+	return ( lhs = lhs | rhs );
+}
 
 /// \relates uint3x2
 /// \brief Returns a copy of the uint3x2 where each component of the left-hand uint3x2 has been bitwise OR'd against the corresponding component of the right-hand side uint3x2.
-inline uint3x2 operator|( const uint3x2& lhs, const uint3x2& rhs );
+inline uint3x2 operator|( const uint3x2& lhs, const uint3x2& rhs )
+{
+	return uint3x2(
+		lhs[0] | rhs[0],
+		lhs[1] | rhs[1],
+		lhs[2] | rhs[2]
+	);
+}
 
 /// \relates uint3x2
 /// \brief Performs a bitwise OR on the given left-hand uint3x2 against the corresponding component of the given right-hand uint3x2.
-inline uint3x2 operator|=( uint3x2& lhs, const uint3x2& rhs );
+inline uint3x2 operator|=( uint3x2& lhs, const uint3x2& rhs )
+{
+	return ( lhs = lhs | rhs );
+}
 
 /// \relates uint3x2
 /// \brief Returns a copy of the uint3x2 where each component has been bitwise XOR'd against the given scalar value.
-inline uint3x2 operator^( const uint3x2& lhs, const uint32_t& rhs );
+inline uint3x2 operator^( const uint3x2& lhs, const uint32_t& rhs )
+{
+	return uint3x2(
+		lhs[0] ^ rhs,
+		lhs[1] ^ rhs,
+		lhs[2] ^ rhs
+	);
+}
 
 /// \relates uint3x2
 /// \brief Performs a bitwise XOR on the given left-hand uint3x2 against the given scalar value.
-inline uint3x2 operator^=( uint3x2& lhs, const uint32_t& rhs );
+inline uint3x2 operator^=( uint3x2& lhs, const uint32_t& rhs )
+{
+	return ( lhs = lhs ^ rhs );
+}
 
 /// \relates uint3x2
 /// \brief Returns a copy of the uint3x2 where each component of the left-hand uint3x2 has been bitwise XOR'd against the corresponding component of the right-hand side uint3x2.
-inline uint3x2 operator^( const uint3x2& lhs, const uint3x2& rhs );
+inline uint3x2 operator^( const uint3x2& lhs, const uint3x2& rhs )
+{
+	return uint3x2(
+		lhs[0] ^ rhs[0],
+		lhs[1] ^ rhs[1],
+		lhs[2] ^ rhs[2]
+	);
+}
 
 /// \relates uint3x2
 /// \brief Performs a bitwise XOR on the given left-hand uint3x2 against the corresponding component of the given right-hand uint3x2.
-inline uint3x2 operator^=( uint3x2& lhs, const uint3x2& rhs );
+inline uint3x2 operator^=( uint3x2& lhs, const uint3x2& rhs )
+{
+	return ( lhs = lhs ^ rhs );
+}
 
 /// \relates uint3x2
 /// \brief Returns a copy of the uint3x2 where each component has been bitwise left-shifted by the given scalar value.
-inline uint3x2 operator<<( const uint3x2& lhs, const uint32_t& rhs );
+inline uint3x2 operator<<( const uint3x2& lhs, const uint32_t& rhs )
+{
+	return uint3x2(
+		lhs[0] << rhs,
+		lhs[1] << rhs,
+		lhs[2] << rhs
+	);
+}
 
 /// \relates uint3x2
 /// \brief Performs a left bitshift on the given left-hand uint3x2 by the given scalar value.
-inline uint3x2 operator<<=( uint3x2& lhs, const uint32_t& rhs );
+inline uint3x2 operator<<=( uint3x2& lhs, const uint32_t& rhs )
+{
+	return ( lhs = lhs << rhs );
+}
 
 /// \relates uint3x2
 /// \brief Returns a copy of the uint3x2 where each component of the left-hand uint3x2 has been bitwise left-shifted by the corresponding component of the right-hand side uint3x2.
-inline uint3x2 operator<<( const uint3x2& lhs, const uint3x2& rhs );
+inline uint3x2 operator<<( const uint3x2& lhs, const uint3x2& rhs )
+{
+	return uint3x2(
+		lhs[0] << rhs[0],
+		lhs[1] << rhs[1],
+		lhs[2] << rhs[2]
+	);
+}
 
 /// \relates uint3x2
 /// \brief Performs a left bitshift on the given left-hand uint3x2 by the corresponding component of the given right-hand uint3x2.
-inline uint3x2 operator<<=( uint3x2& lhs, const uint3x2& rhs );
+inline uint3x2 operator<<=( uint3x2& lhs, const uint3x2& rhs )
+{
+	return ( lhs = lhs << rhs );
+}
 
 /// \relates uint3x2
 /// \brief Returns a copy of the uint3x2 where each component has been bitwise right-shifted by the given scalar value.
-inline uint3x2 operator>>( const uint3x2& lhs, const uint32_t& rhs );
+inline uint3x2 operator>>( const uint3x2& lhs, const uint32_t& rhs )
+{
+	return uint3x2(
+		lhs[0] >> rhs,
+		lhs[1] >> rhs,
+		lhs[2] >> rhs
+	);
+}
 
 /// \relates uint3x2
 /// \brief Performs a right bitshift on the given left-hand uint3x2 by the given scalar value.
-inline uint3x2 operator>>=( uint3x2& lhs, const uint32_t& rhs );
+inline uint3x2 operator>>=( uint3x2& lhs, const uint32_t& rhs )
+{
+	return ( lhs = lhs >> rhs );
+}
 
 /// \relates uint3x2
 /// \brief Returns a copy of the uint3x2 where each component of the left-hand uint3x2 has been bitwise right-shifted by the corresponding component of the right-hand side uint3x2.
-inline uint3x2 operator>>( const uint3x2& lhs, const uint3x2& rhs );
+inline uint3x2 operator>>( const uint3x2& lhs, const uint3x2& rhs )
+{
+	return uint3x2(
+		lhs[0] >> rhs[0],
+		lhs[1] >> rhs[1],
+		lhs[2] >> rhs[2]
+	);
+}
 
 /// \relates uint3x2
 /// \brief Performs a right bitshift on the given left-hand uint3x2 by the corresponding component of the given right-hand uint3x2.
-inline uint3x2 operator>>=( uint3x2& lhs, const uint3x2& rhs );
+inline uint3x2 operator>>=( uint3x2& lhs, const uint3x2& rhs )
+{
+	return ( lhs = lhs >> rhs );
+}
 
 /// \relates uint3x2
 /// \brief Performs a unary bitwise operation on all components of the given uint3x2.
-inline uint3x2 operator~( const uint3x2& lhs );
+inline uint3x2 operator~( const uint3x2& lhs )
+{
+	return uint3x2(
+		~lhs[0],
+		~lhs[1],
+		~lhs[2]
+	);
+}
 
 
 // uint3x3
 /// \relates uint3x3
 /// \brief Returns a copy of the uint3x3 that has been component-wise added by the given scalar value.
-inline uint3x3 operator+( const uint3x3& lhs, const uint32_t rhs );
+inline uint3x3 operator+( const uint3x3& lhs, const uint32_t rhs )
+{
+	return uint3x3(
+		lhs[0] + rhs,
+		lhs[1] + rhs,
+		lhs[2] + rhs
+	);
+}
 
 /// \relates uint3x3
 /// \brief Adds each component by the given scalar value.
-inline uint3x3 operator+=( uint3x3& lhs, const uint32_t rhs );
+inline uint3x3 operator+=( uint3x3& lhs, const uint32_t rhs )
+{
+	return ( lhs = lhs + rhs );
+}
 
 /// \relates uint3x3
 /// \brief Returns a copy of the uint3x3 that has been component-wise added by the corresponding component of the right-hand uint3x3.
-inline uint3x3 operator+( const uint3x3& lhs, const uint3x3& rhs );
+inline uint3x3 operator+( const uint3x3& lhs, const uint3x3& rhs )
+{
+	return uint3x3(
+		lhs[0] + rhs[0],
+		lhs[1] + rhs[1],
+		lhs[2] + rhs[2]
+	);
+}
 
 /// \relates uint3x3
 /// \brief Adds each component of the uint3x3 by the corresponding component of the right-hand uint3x3.
-inline uint3x3 operator+=( uint3x3& lhs, const uint3x3& rhs );
+inline uint3x3 operator+=( uint3x3& lhs, const uint3x3& rhs )
+{
+	return ( lhs = lhs + rhs );
+}
 
 /// \relates uint3x3
 /// \brief Returns a copy of the uint3x3 that has been component-wise subtracted by the given scalar value.
-inline uint3x3 operator-( const uint3x3& lhs, const uint32_t rhs );
+inline uint3x3 operator-( const uint3x3& lhs, const uint32_t rhs )
+{
+	return uint3x3(
+		lhs[0] - rhs,
+		lhs[1] - rhs,
+		lhs[2] - rhs
+	);
+}
 
 /// \relates uint3x3
 /// \brief Subtracts each component by the given scalar value.
-inline uint3x3 operator-=( uint3x3& lhs, const uint32_t rhs );
+inline uint3x3 operator-=( uint3x3& lhs, const uint32_t rhs )
+{
+	return ( lhs = lhs - rhs );
+}
 
 /// \relates uint3x3
 /// \brief Returns a copy of the uint3x3 that has been component-wise subtracted by the corresponding component of the right-hand uint3x3.
-inline uint3x3 operator-( const uint3x3& lhs, const uint3x3& rhs );
+inline uint3x3 operator-( const uint3x3& lhs, const uint3x3& rhs )
+{
+	return uint3x3(
+		lhs[0] - rhs[0],
+		lhs[1] - rhs[1],
+		lhs[2] - rhs[2]
+	);
+}
 
 /// \relates uint3x3
 /// \brief Subtracts each component of the uint3x3 by the corresponding component of the right-hand uint3x3.
-inline uint3x3 operator-=( uint3x3& lhs, const uint3x3& rhs );
+inline uint3x3 operator-=( uint3x3& lhs, const uint3x3& rhs )
+{
+	return ( lhs = lhs - rhs );
+}
 
 /// \relates uint3x3
 /// \brief Returns a copy of the uint3x3 that has been component-wise multiplied by the given scalar value.
-inline uint3x3 operator*( const uint3x3& lhs, const uint32_t rhs );
+inline uint3x3 operator*( const uint3x3& lhs, const uint32_t rhs )
+{
+	return uint3x3(
+		lhs[0] * rhs,
+		lhs[1] * rhs,
+		lhs[2] * rhs
+	);
+}
 
 /// \relates uint3x3
 /// \brief Multiplies each component by the given scalar value.
-inline uint3x3 operator*=( uint3x3& lhs, const uint32_t rhs );
+inline uint3x3 operator*=( uint3x3& lhs, const uint32_t rhs )
+{
+	return ( lhs = lhs * rhs );
+}
 
 /// \relates uint3x3
 /// \brief Returns a copy of the matrix where each row of the left-hand matrix has been dot-producted by the corresponding column of the right-hand matrix.
-inline uint3x3 operator*( const uint3x3& lhs, const uint3x3& rhs );
+inline uint3x3 operator*( const uint3x3& lhs, const uint3x3& rhs )
+{
+	uint3 row0 = lhs[0];
+	uint3 row1 = lhs[1];
+	uint3 row2 = lhs[2];
 
-/// \relates uint3x3
-/// \brief Dot products each row of the left-hand matrix with the corresponding column of the right-hand matrix.
-inline uint3x3 operator*=( uint3x3& lhs, const uint3x3& rhs );
+	uint3 col0 = { rhs[0].x, rhs[1].x, rhs[2].x };
+	uint3 col1 = { rhs[0].y, rhs[1].y, rhs[2].y };
+	uint3 col2 = { rhs[0].z, rhs[1].z, rhs[2].z };
+
+	return uint3x3(
+		row0.x * col0.x + row0.y * col0.y + row0.z * col0.z,
+		row0.x * col1.x + row0.y * col1.y + row0.z * col1.z,
+		row0.x * col2.x + row0.y * col2.y + row0.z * col2.z,
+
+		row1.x * col0.x + row1.y * col0.y + row1.z * col0.z,
+		row1.x * col1.x + row1.y * col1.y + row1.z * col1.z,
+		row1.x * col2.x + row1.y * col2.y + row1.z * col2.z,
+
+		row2.x * col0.x + row2.y * col0.y + row2.z * col0.z,
+		row2.x * col1.x + row2.y * col1.y + row2.z * col1.z,
+		row2.x * col2.x + row2.y * col2.y + row2.z * col2.z
+	);
+}
+
+inline uint3x3 operator*=( uint3x3& lhs, const uint3x3& rhs )
+{
+	return ( lhs = lhs * rhs );
+}
 
 /// \relates uint3x3
 /// \brief Returns a copy of the uint3x3 that has been component-wise divided by the given scalar value.
-inline uint3x3 operator/( const uint3x3& lhs, const uint32_t rhs );
+inline uint3x3 operator/( const uint3x3& lhs, const uint32_t rhs )
+{
+	return uint3x3(
+		lhs[0] / rhs,
+		lhs[1] / rhs,
+		lhs[2] / rhs
+	);
+}
 
 /// \relates uint3x3
 /// \brief Divides each component by the given scalar value.
-inline uint3x3 operator/=( uint3x3& lhs, const uint32_t rhs );
+inline uint3x3 operator/=( uint3x3& lhs, const uint32_t rhs )
+{
+	return ( lhs = lhs / rhs );
+}
 
 /// \relates uint3x3
 /// \brief Returns a copy of the uint3x3 that has been component-wise divided by the corresponding component of the right-hand uint3x3.
-inline uint3x3 operator/( const uint3x3& lhs, const uint3x3& rhs );
+inline uint3x3 operator/( const uint3x3& lhs, const uint3x3& rhs )
+{
+	return uint3x3(
+		lhs[0] / rhs[0],
+		lhs[1] / rhs[1],
+		lhs[2] / rhs[2]
+	);
+}
 
 /// \relates uint3x3
 /// \brief Divides each component of the uint3x3 by the corresponding component of the right-hand uint3x3.
-inline uint3x3 operator/=( uint3x3& lhs, const uint3x3& rhs );
+inline uint3x3 operator/=( uint3x3& lhs, const uint3x3& rhs )
+{
+	return ( lhs = lhs / rhs );
+}
 
 /// \relates uint3
 /// \brief Returns a copy of the uint3 that has been component-wise multiplied by the corresponding component of the right-hand uint3x3.
-inline uint3 operator*( const uint3x3& lhs, const uint3& rhs );
+inline uint3 operator*( const uint3x3& lhs, const uint3& rhs )
+{
+	return uint3(
+		(uint32_t) dot( lhs[0], rhs ),
+		(uint32_t) dot( lhs[1], rhs ),
+		(uint32_t) dot( lhs[2], rhs )
+	);
+}
 
 /// \relates uint3
 /// \brief Multiplies each component of the uint3 by the corresponding component of the right-hand uint3x3.
-inline uint3 operator*=( uint3& lhs, const uint3x3& rhs );
+inline uint3 operator*=( uint3& lhs, const uint3x3& rhs )
+{
+	return ( lhs = rhs * lhs );
+}
 
+// prefix
 /// \relates uint3x3
 /// \brief Prefix increment operator.  Adds one to each component of the given uint3x3 before evaluation.
-inline uint3x3& operator++( uint3x3& lhs );
+inline uint3x3& operator++( uint3x3& lhs )
+{
+	++lhs[0];
+	++lhs[1];
+	++lhs[2];
+	return lhs;
+}
 
+// postfix
 /// \relates uint3x3
 /// \brief Postfix increment operator.  Adds one to each component of the given uint3x3 after evaluation.
-inline uint3x3& operator++( uint3x3& lhs, const int );
+inline uint3x3& operator++( uint3x3& lhs, const int )
+{
+	lhs[0]++;
+	lhs[1]++;
+	lhs[2]++;
+	return lhs;
+}
 
+// prefix
 /// \relates uint3x3
 /// \brief Prefix decrement operator.  Subtracts one from each component of the given uint3x3 before evaluation.
-inline uint3x3& operator--( uint3x3& lhs );
+inline uint3x3& operator--( uint3x3& lhs )
+{
+	--lhs[0];
+	--lhs[1];
+	--lhs[2];
+	return lhs;
+}
 
+// postfix
 /// \relates uint3x3
 /// \brief Postfix decrement operator.  Subtracts one from each component of the given uint3x3 after evaluation.
-inline uint3x3& operator--( uint3x3& lhs, const int );
+inline uint3x3& operator--( uint3x3& lhs, const int )
+{
+	lhs[0]--;
+	lhs[1]--;
+	lhs[2]--;
+	return lhs;
+}
 
 /// \relates uint3x3
 /// \brief Returns a bool3x3 where each component is true if the component of the left-hand type is less than the corresponding right-hand type component.
-inline bool3x3 operator<( const uint3x3& lhs, const uint3x3& rhs );
+inline bool3x3 operator<( const uint3x3& lhs, const uint3x3& rhs )
+{
+	return bool3x3(
+		lhs[0] < rhs[0],
+		lhs[1] < rhs[1],
+		lhs[2] < rhs[2]
+	);
+}
 
 /// \relates uint3x3
 /// \brief Returns a bool3x3 where each component is true if the component of the left-hand type is less than or equal to the corresponding right-hand type component.
-inline bool3x3 operator<=( const uint3x3& lhs, const uint3x3& rhs );
+inline bool3x3 operator<=( const uint3x3& lhs, const uint3x3& rhs )
+{
+	return bool3x3(
+		lhs[0] <= rhs[0],
+		lhs[1] <= rhs[1],
+		lhs[2] <= rhs[2]
+	);
+}
 
 /// \relates uint3x3
 /// \brief Returns a bool3x3 where each component is true if the component of the left-hand type is greater than the corresponding right-hand type component.
-inline bool3x3 operator>( const uint3x3& lhs, const uint3x3& rhs );
+inline bool3x3 operator>( const uint3x3& lhs, const uint3x3& rhs )
+{
+	return bool3x3(
+		lhs[0] > rhs[0],
+		lhs[1] > rhs[1],
+		lhs[2] > rhs[2]
+	);
+}
 
 /// \relates uint3x3
 /// \brief Returns a bool3x3 where each component is true if the component of the left-hand type is greater than or equal to the corresponding right-hand type component.
-inline bool3x3 operator>=( const uint3x3& lhs, const uint3x3& rhs );
+inline bool3x3 operator>=( const uint3x3& lhs, const uint3x3& rhs )
+{
+	return bool3x3(
+		lhs[0] >= rhs[0],
+		lhs[1] >= rhs[1],
+		lhs[2] >= rhs[2]
+	);
+}
 
 /// \relates uint3x3
 /// \brief Returns a copy of the uint3x3 where each component has been bitwise AND'd against the given scalar value.
-inline uint3x3 operator&( const uint3x3& lhs, const uint32_t& rhs );
+inline uint3x3 operator&( const uint3x3& lhs, const uint32_t& rhs )
+{
+	return uint3x3(
+		lhs[0] & rhs,
+		lhs[1] & rhs,
+		lhs[2] & rhs
+	);
+}
 
 /// \relates uint3x3
 /// \brief Performs a bitwise AND on the given left-hand uint3x3 against the given scalar value.
-inline uint3x3 operator&=( uint3x3& lhs, const uint32_t& rhs );
+inline uint3x3 operator&=( uint3x3& lhs, const uint32_t& rhs )
+{
+	return ( lhs = lhs & rhs );
+}
 
 /// \relates uint3x3
 /// \brief Returns a copy of the uint3x3 where each component of the left-hand uint3x3 has been bitwise AND'd against the corresponding component of the right-hand side uint3x3.
-inline uint3x3 operator&( const uint3x3& lhs, const uint3x3& rhs );
+inline uint3x3 operator&( const uint3x3& lhs, const uint3x3& rhs )
+{
+	return uint3x3(
+		lhs[0] & rhs[0],
+		lhs[1] & rhs[1],
+		lhs[2] & rhs[2]
+	);
+}
 
 /// \relates uint3x3
 /// \brief Performs a bitwise AND on the given left-hand uint3x3 against the corresponding component of the given right-hand uint3x3.
-inline uint3x3 operator&=( uint3x3& lhs, const uint3x3& rhs );
+inline uint3x3 operator&=( uint3x3& lhs, const uint3x3& rhs )
+{
+	return ( lhs = lhs & rhs );
+}
 
 /// \relates uint3x3
 /// \brief Returns a copy of the uint3x3 where each component has been bitwise OR'd against the given scalar value.
-inline uint3x3 operator|( const uint3x3& lhs, const uint32_t& rhs );
+inline uint3x3 operator|( const uint3x3& lhs, const uint32_t& rhs )
+{
+	return uint3x3(
+		lhs[0] | rhs,
+		lhs[1] | rhs,
+		lhs[2] | rhs
+	);
+}
 
 /// \relates uint3x3
 /// \brief Performs a bitwise OR on the given left-hand uint3x3 against the given scalar value.
-inline uint3x3 operator|=( uint3x3& lhs, const uint32_t& rhs );
+inline uint3x3 operator|=( uint3x3& lhs, const uint32_t& rhs )
+{
+	return ( lhs = lhs | rhs );
+}
 
 /// \relates uint3x3
 /// \brief Returns a copy of the uint3x3 where each component of the left-hand uint3x3 has been bitwise OR'd against the corresponding component of the right-hand side uint3x3.
-inline uint3x3 operator|( const uint3x3& lhs, const uint3x3& rhs );
+inline uint3x3 operator|( const uint3x3& lhs, const uint3x3& rhs )
+{
+	return uint3x3(
+		lhs[0] | rhs[0],
+		lhs[1] | rhs[1],
+		lhs[2] | rhs[2]
+	);
+}
 
 /// \relates uint3x3
 /// \brief Performs a bitwise OR on the given left-hand uint3x3 against the corresponding component of the given right-hand uint3x3.
-inline uint3x3 operator|=( uint3x3& lhs, const uint3x3& rhs );
+inline uint3x3 operator|=( uint3x3& lhs, const uint3x3& rhs )
+{
+	return ( lhs = lhs | rhs );
+}
 
 /// \relates uint3x3
 /// \brief Returns a copy of the uint3x3 where each component has been bitwise XOR'd against the given scalar value.
-inline uint3x3 operator^( const uint3x3& lhs, const uint32_t& rhs );
+inline uint3x3 operator^( const uint3x3& lhs, const uint32_t& rhs )
+{
+	return uint3x3(
+		lhs[0] ^ rhs,
+		lhs[1] ^ rhs,
+		lhs[2] ^ rhs
+	);
+}
 
 /// \relates uint3x3
 /// \brief Performs a bitwise XOR on the given left-hand uint3x3 against the given scalar value.
-inline uint3x3 operator^=( uint3x3& lhs, const uint32_t& rhs );
+inline uint3x3 operator^=( uint3x3& lhs, const uint32_t& rhs )
+{
+	return ( lhs = lhs ^ rhs );
+}
 
 /// \relates uint3x3
 /// \brief Returns a copy of the uint3x3 where each component of the left-hand uint3x3 has been bitwise XOR'd against the corresponding component of the right-hand side uint3x3.
-inline uint3x3 operator^( const uint3x3& lhs, const uint3x3& rhs );
+inline uint3x3 operator^( const uint3x3& lhs, const uint3x3& rhs )
+{
+	return uint3x3(
+		lhs[0] ^ rhs[0],
+		lhs[1] ^ rhs[1],
+		lhs[2] ^ rhs[2]
+	);
+}
 
 /// \relates uint3x3
 /// \brief Performs a bitwise XOR on the given left-hand uint3x3 against the corresponding component of the given right-hand uint3x3.
-inline uint3x3 operator^=( uint3x3& lhs, const uint3x3& rhs );
+inline uint3x3 operator^=( uint3x3& lhs, const uint3x3& rhs )
+{
+	return ( lhs = lhs ^ rhs );
+}
 
 /// \relates uint3x3
 /// \brief Returns a copy of the uint3x3 where each component has been bitwise left-shifted by the given scalar value.
-inline uint3x3 operator<<( const uint3x3& lhs, const uint32_t& rhs );
+inline uint3x3 operator<<( const uint3x3& lhs, const uint32_t& rhs )
+{
+	return uint3x3(
+		lhs[0] << rhs,
+		lhs[1] << rhs,
+		lhs[2] << rhs
+	);
+}
 
 /// \relates uint3x3
 /// \brief Performs a left bitshift on the given left-hand uint3x3 by the given scalar value.
-inline uint3x3 operator<<=( uint3x3& lhs, const uint32_t& rhs );
+inline uint3x3 operator<<=( uint3x3& lhs, const uint32_t& rhs )
+{
+	return ( lhs = lhs << rhs );
+}
 
 /// \relates uint3x3
 /// \brief Returns a copy of the uint3x3 where each component of the left-hand uint3x3 has been bitwise left-shifted by the corresponding component of the right-hand side uint3x3.
-inline uint3x3 operator<<( const uint3x3& lhs, const uint3x3& rhs );
+inline uint3x3 operator<<( const uint3x3& lhs, const uint3x3& rhs )
+{
+	return uint3x3(
+		lhs[0] << rhs[0],
+		lhs[1] << rhs[1],
+		lhs[2] << rhs[2]
+	);
+}
 
 /// \relates uint3x3
 /// \brief Performs a left bitshift on the given left-hand uint3x3 by the corresponding component of the given right-hand uint3x3.
-inline uint3x3 operator<<=( uint3x3& lhs, const uint3x3& rhs );
+inline uint3x3 operator<<=( uint3x3& lhs, const uint3x3& rhs )
+{
+	return ( lhs = lhs << rhs );
+}
 
 /// \relates uint3x3
 /// \brief Returns a copy of the uint3x3 where each component has been bitwise right-shifted by the given scalar value.
-inline uint3x3 operator>>( const uint3x3& lhs, const uint32_t& rhs );
+inline uint3x3 operator>>( const uint3x3& lhs, const uint32_t& rhs )
+{
+	return uint3x3(
+		lhs[0] >> rhs,
+		lhs[1] >> rhs,
+		lhs[2] >> rhs
+	);
+}
 
 /// \relates uint3x3
 /// \brief Performs a right bitshift on the given left-hand uint3x3 by the given scalar value.
-inline uint3x3 operator>>=( uint3x3& lhs, const uint32_t& rhs );
+inline uint3x3 operator>>=( uint3x3& lhs, const uint32_t& rhs )
+{
+	return ( lhs = lhs >> rhs );
+}
 
 /// \relates uint3x3
 /// \brief Returns a copy of the uint3x3 where each component of the left-hand uint3x3 has been bitwise right-shifted by the corresponding component of the right-hand side uint3x3.
-inline uint3x3 operator>>( const uint3x3& lhs, const uint3x3& rhs );
+inline uint3x3 operator>>( const uint3x3& lhs, const uint3x3& rhs )
+{
+	return uint3x3(
+		lhs[0] >> rhs[0],
+		lhs[1] >> rhs[1],
+		lhs[2] >> rhs[2]
+	);
+}
 
 /// \relates uint3x3
 /// \brief Performs a right bitshift on the given left-hand uint3x3 by the corresponding component of the given right-hand uint3x3.
-inline uint3x3 operator>>=( uint3x3& lhs, const uint3x3& rhs );
+inline uint3x3 operator>>=( uint3x3& lhs, const uint3x3& rhs )
+{
+	return ( lhs = lhs >> rhs );
+}
 
 /// \relates uint3x3
 /// \brief Performs a unary bitwise operation on all components of the given uint3x3.
-inline uint3x3 operator~( const uint3x3& lhs );
+inline uint3x3 operator~( const uint3x3& lhs )
+{
+	return uint3x3(
+		~lhs[0],
+		~lhs[1],
+		~lhs[2]
+	);
+}
 
 
 // uint3x4
 /// \relates uint3x4
 /// \brief Returns a copy of the uint3x4 that has been component-wise added by the given scalar value.
-inline uint3x4 operator+( const uint3x4& lhs, const uint32_t rhs );
+inline uint3x4 operator+( const uint3x4& lhs, const uint32_t rhs )
+{
+	return uint3x4(
+		lhs[0] + rhs,
+		lhs[1] + rhs,
+		lhs[2] + rhs
+	);
+}
 
 /// \relates uint3x4
 /// \brief Adds each component by the given scalar value.
-inline uint3x4 operator+=( uint3x4& lhs, const uint32_t rhs );
+inline uint3x4 operator+=( uint3x4& lhs, const uint32_t rhs )
+{
+	return ( lhs = lhs + rhs );
+}
 
 /// \relates uint3x4
 /// \brief Returns a copy of the uint3x4 that has been component-wise added by the corresponding component of the right-hand uint3x4.
-inline uint3x4 operator+( const uint3x4& lhs, const uint3x4& rhs );
+inline uint3x4 operator+( const uint3x4& lhs, const uint3x4& rhs )
+{
+	return uint3x4(
+		lhs[0] + rhs[0],
+		lhs[1] + rhs[1],
+		lhs[2] + rhs[2]
+	);
+}
 
 /// \relates uint3x4
 /// \brief Adds each component of the uint3x4 by the corresponding component of the right-hand uint3x4.
-inline uint3x4 operator+=( uint3x4& lhs, const uint3x4& rhs );
+inline uint3x4 operator+=( uint3x4& lhs, const uint3x4& rhs )
+{
+	return ( lhs = lhs + rhs );
+}
 
 /// \relates uint3x4
 /// \brief Returns a copy of the uint3x4 that has been component-wise subtracted by the given scalar value.
-inline uint3x4 operator-( const uint3x4& lhs, const uint32_t rhs );
+inline uint3x4 operator-( const uint3x4& lhs, const uint32_t rhs )
+{
+	return uint3x4(
+		lhs[0] - rhs,
+		lhs[1] - rhs,
+		lhs[2] - rhs
+	);
+}
 
 /// \relates uint3x4
 /// \brief Subtracts each component by the given scalar value.
-inline uint3x4 operator-=( uint3x4& lhs, const uint32_t rhs );
+inline uint3x4 operator-=( uint3x4& lhs, const uint32_t rhs )
+{
+	return ( lhs = lhs - rhs );
+}
 
 /// \relates uint3x4
 /// \brief Returns a copy of the uint3x4 that has been component-wise subtracted by the corresponding component of the right-hand uint3x4.
-inline uint3x4 operator-( const uint3x4& lhs, const uint3x4& rhs );
+inline uint3x4 operator-( const uint3x4& lhs, const uint3x4& rhs )
+{
+	return uint3x4(
+		lhs[0] - rhs[0],
+		lhs[1] - rhs[1],
+		lhs[2] - rhs[2]
+	);
+}
 
 /// \relates uint3x4
 /// \brief Subtracts each component of the uint3x4 by the corresponding component of the right-hand uint3x4.
-inline uint3x4 operator-=( uint3x4& lhs, const uint3x4& rhs );
+inline uint3x4 operator-=( uint3x4& lhs, const uint3x4& rhs )
+{
+	return ( lhs = lhs - rhs );
+}
 
 /// \relates uint3x4
 /// \brief Returns a copy of the uint3x4 that has been component-wise multiplied by the given scalar value.
-inline uint3x4 operator*( const uint3x4& lhs, const uint32_t rhs );
+inline uint3x4 operator*( const uint3x4& lhs, const uint32_t rhs )
+{
+	return uint3x4(
+		lhs[0] * rhs,
+		lhs[1] * rhs,
+		lhs[2] * rhs
+	);
+}
 
 /// \relates uint3x4
 /// \brief Multiplies each component by the given scalar value.
-inline uint3x4 operator*=( uint3x4& lhs, const uint32_t rhs );
+inline uint3x4 operator*=( uint3x4& lhs, const uint32_t rhs )
+{
+	return ( lhs = lhs * rhs );
+}
 
 /// \relates uint3x4
 /// \brief Returns a copy of the matrix where each row of the left-hand matrix has been dot-producted by the corresponding column of the right-hand matrix.
-inline uint3x3 operator*( const uint3x4& lhs, const uint4x3& rhs );
+inline uint3x3 operator*( const uint3x4& lhs, const uint4x3& rhs )
+{
+	uint4 row0 = lhs[0];
+	uint4 row1 = lhs[1];
+	uint4 row2 = lhs[2];
 
-/// \relates uint3x4
-/// \brief Dot products each row of the left-hand matrix with the corresponding column of the right-hand matrix.
-inline uint3x3 operator*=( uint3x4& lhs, const uint4x3& rhs );
+	uint4 col0 = { rhs[0].x, rhs[1].x, rhs[2].x, rhs[3].x };
+	uint4 col1 = { rhs[0].y, rhs[1].y, rhs[2].y, rhs[3].y };
+	uint4 col2 = { rhs[0].z, rhs[1].z, rhs[2].z, rhs[3].z };
+
+	return uint3x3(
+		row0.x * col0.x + row0.y * col0.y + row0.z * col0.z + row0.w * col0.w,
+		row0.x * col1.x + row0.y * col1.y + row0.z * col1.z + row0.w * col1.w,
+		row0.x * col2.x + row0.y * col2.y + row0.z * col2.z + row0.w * col2.w,
+
+		row1.x * col0.x + row1.y * col0.y + row1.z * col0.z + row1.w * col0.w,
+		row1.x * col1.x + row1.y * col1.y + row1.z * col1.z + row1.w * col1.w,
+		row1.x * col2.x + row1.y * col2.y + row1.z * col2.z + row1.w * col2.w,
+
+		row2.x * col0.x + row2.y * col0.y + row2.z * col0.z + row2.w * col0.w,
+		row2.x * col1.x + row2.y * col1.y + row2.z * col1.z + row2.w * col1.w,
+		row2.x * col2.x + row2.y * col2.y + row2.z * col2.z + row2.w * col2.w
+	);
+}
 
 /// \relates uint3x4
 /// \brief Returns a copy of the uint3x4 that has been component-wise divided by the given scalar value.
-inline uint3x4 operator/( const uint3x4& lhs, const uint32_t rhs );
+inline uint3x4 operator/( const uint3x4& lhs, const uint32_t rhs )
+{
+	return uint3x4(
+		lhs[0] / rhs,
+		lhs[1] / rhs,
+		lhs[2] / rhs
+	);
+}
 
 /// \relates uint3x4
 /// \brief Divides each component by the given scalar value.
-inline uint3x4 operator/=( uint3x4& lhs, const uint32_t rhs );
+inline uint3x4 operator/=( uint3x4& lhs, const uint32_t rhs )
+{
+	return ( lhs = lhs / rhs );
+}
 
 /// \relates uint3x4
 /// \brief Returns a copy of the uint3x4 that has been component-wise divided by the corresponding component of the right-hand uint3x4.
-inline uint3x4 operator/( const uint3x4& lhs, const uint3x4& rhs );
+inline uint3x4 operator/( const uint3x4& lhs, const uint3x4& rhs )
+{
+	return uint3x4(
+		lhs[0] / rhs[0],
+		lhs[1] / rhs[1],
+		lhs[2] / rhs[2]
+	);
+}
 
+// prefix
 /// \relates uint3x4
 /// \brief Prefix increment operator.  Adds one to each component of the given uint3x4 before evaluation.
-inline uint3x4& operator++( uint3x4& lhs );
+inline uint3x4& operator++( uint3x4& lhs )
+{
+	++lhs[0];
+	++lhs[1];
+	++lhs[2];
+	return lhs;
+}
 
+// postfix
 /// \relates uint3x4
 /// \brief Postfix increment operator.  Adds one to each component of the given uint3x4 after evaluation.
-inline uint3x4& operator++( uint3x4& lhs, const int );
+inline uint3x4& operator++( uint3x4& lhs, const int )
+{
+	lhs[0]++;
+	lhs[1]++;
+	lhs[2]++;
+	return lhs;
+}
 
+// prefix
 /// \relates uint3x4
 /// \brief Prefix decrement operator.  Subtracts one from each component of the given uint3x4 before evaluation.
-inline uint3x4& operator--( uint3x4& lhs );
+inline uint3x4& operator--( uint3x4& lhs )
+{
+	--lhs[0];
+	--lhs[1];
+	--lhs[2];
+	return lhs;
+}
 
+// postfix
 /// \relates uint3x4
 /// \brief Postfix decrement operator.  Subtracts one from each component of the given uint3x4 after evaluation.
-inline uint3x4& operator--( uint3x4& lhs, const int );
+inline uint3x4& operator--( uint3x4& lhs, const int )
+{
+	lhs[0]--;
+	lhs[1]--;
+	lhs[2]--;
+	return lhs;
+}
 
 /// \relates uint3x4
 /// \brief Returns a bool3x4 where each component is true if the component of the left-hand type is less than the corresponding right-hand type component.
-inline bool3x4 operator<( const uint3x4& lhs, const uint3x4& rhs );
+inline bool3x4 operator<( const uint3x4& lhs, const uint3x4& rhs )
+{
+	return bool3x4(
+		lhs[0] < rhs[0],
+		lhs[1] < rhs[1],
+		lhs[2] < rhs[2]
+	);
+}
 
 /// \relates uint3x4
 /// \brief Returns a bool3x4 where each component is true if the component of the left-hand type is less than or equal to the corresponding right-hand type component.
-inline bool3x4 operator<=( const uint3x4& lhs, const uint3x4& rhs );
+inline bool3x4 operator<=( const uint3x4& lhs, const uint3x4& rhs )
+{
+	return bool3x4(
+		lhs[0] <= rhs[0],
+		lhs[1] <= rhs[1],
+		lhs[2] <= rhs[2]
+	);
+}
 
 /// \relates uint3x4
 /// \brief Returns a bool3x4 where each component is true if the component of the left-hand type is greater than the corresponding right-hand type component.
-inline bool3x4 operator>( const uint3x4& lhs, const uint3x4& rhs );
+inline bool3x4 operator>( const uint3x4& lhs, const uint3x4& rhs )
+{
+	return bool3x4(
+		lhs[0] > rhs[0],
+		lhs[1] > rhs[1],
+		lhs[2] > rhs[2]
+	);
+}
 
 /// \relates uint3x4
 /// \brief Returns a bool3x4 where each component is true if the component of the left-hand type is greater than or equal to the corresponding right-hand type component.
-inline bool3x4 operator>=( const uint3x4& lhs, const uint3x4& rhs );
+inline bool3x4 operator>=( const uint3x4& lhs, const uint3x4& rhs )
+{
+	return bool3x4(
+		lhs[0] >= rhs[0],
+		lhs[1] >= rhs[1],
+		lhs[2] >= rhs[2]
+	);
+}
 
 /// \relates uint3x4
 /// \brief Returns a copy of the uint3x4 where each component has been bitwise AND'd against the given scalar value.
-inline uint3x4 operator&( const uint3x4& lhs, const uint32_t& rhs );
+inline uint3x4 operator&( const uint3x4& lhs, const uint32_t& rhs )
+{
+	return uint3x4(
+		lhs[0] & rhs,
+		lhs[1] & rhs,
+		lhs[2] & rhs
+	);
+}
 
 /// \relates uint3x4
 /// \brief Performs a bitwise AND on the given left-hand uint3x4 against the given scalar value.
-inline uint3x4 operator&=( uint3x4& lhs, const uint32_t& rhs );
+inline uint3x4 operator&=( uint3x4& lhs, const uint32_t& rhs )
+{
+	return ( lhs = lhs & rhs );
+}
 
 /// \relates uint3x4
 /// \brief Returns a copy of the uint3x4 where each component of the left-hand uint3x4 has been bitwise AND'd against the corresponding component of the right-hand side uint3x4.
-inline uint3x4 operator&( const uint3x4& lhs, const uint3x4& rhs );
+inline uint3x4 operator&( const uint3x4& lhs, const uint3x4& rhs )
+{
+	return uint3x4(
+		lhs[0] & rhs[0],
+		lhs[1] & rhs[1],
+		lhs[2] & rhs[2]
+	);
+}
 
 /// \relates uint3x4
 /// \brief Performs a bitwise AND on the given left-hand uint3x4 against the corresponding component of the given right-hand uint3x4.
-inline uint3x4 operator&=( uint3x4& lhs, const uint3x4& rhs );
+inline uint3x4 operator&=( uint3x4& lhs, const uint3x4& rhs )
+{
+	return ( lhs = lhs & rhs );
+}
 
 /// \relates uint3x4
 /// \brief Returns a copy of the uint3x4 where each component has been bitwise OR'd against the given scalar value.
-inline uint3x4 operator|( const uint3x4& lhs, const uint32_t& rhs );
+inline uint3x4 operator|( const uint3x4& lhs, const uint32_t& rhs )
+{
+	return uint3x4(
+		lhs[0] | rhs,
+		lhs[1] | rhs,
+		lhs[2] | rhs
+	);
+}
 
 /// \relates uint3x4
 /// \brief Performs a bitwise OR on the given left-hand uint3x4 against the given scalar value.
-inline uint3x4 operator|=( uint3x4& lhs, const uint32_t& rhs );
+inline uint3x4 operator|=( uint3x4& lhs, const uint32_t& rhs )
+{
+	return ( lhs = lhs | rhs );
+}
 
 /// \relates uint3x4
 /// \brief Returns a copy of the uint3x4 where each component of the left-hand uint3x4 has been bitwise OR'd against the corresponding component of the right-hand side uint3x4.
-inline uint3x4 operator|( const uint3x4& lhs, const uint3x4& rhs );
+inline uint3x4 operator|( const uint3x4& lhs, const uint3x4& rhs )
+{
+	return uint3x4(
+		lhs[0] | rhs[0],
+		lhs[1] | rhs[1],
+		lhs[2] | rhs[2]
+	);
+}
 
 /// \relates uint3x4
 /// \brief Performs a bitwise OR on the given left-hand uint3x4 against the corresponding component of the given right-hand uint3x4.
-inline uint3x4 operator|=( uint3x4& lhs, const uint3x4& rhs );
+inline uint3x4 operator|=( uint3x4& lhs, const uint3x4& rhs )
+{
+	return ( lhs = lhs | rhs );
+}
 
 /// \relates uint3x4
 /// \brief Returns a copy of the uint3x4 where each component has been bitwise XOR'd against the given scalar value.
-inline uint3x4 operator^( const uint3x4& lhs, const uint32_t& rhs );
+inline uint3x4 operator^( const uint3x4& lhs, const uint32_t& rhs )
+{
+	return uint3x4(
+		lhs[0] ^ rhs,
+		lhs[1] ^ rhs,
+		lhs[2] ^ rhs
+	);
+}
 
 /// \relates uint3x4
 /// \brief Performs a bitwise XOR on the given left-hand uint3x4 against the given scalar value.
-inline uint3x4 operator^=( uint3x4& lhs, const uint32_t& rhs );
+inline uint3x4 operator^=( uint3x4& lhs, const uint32_t& rhs )
+{
+	return ( lhs = lhs ^ rhs );
+}
 
 /// \relates uint3x4
 /// \brief Returns a copy of the uint3x4 where each component of the left-hand uint3x4 has been bitwise XOR'd against the corresponding component of the right-hand side uint3x4.
-inline uint3x4 operator^( const uint3x4& lhs, const uint3x4& rhs );
+inline uint3x4 operator^( const uint3x4& lhs, const uint3x4& rhs )
+{
+	return uint3x4(
+		lhs[0] ^ rhs[0],
+		lhs[1] ^ rhs[1],
+		lhs[2] ^ rhs[2]
+	);
+}
 
 /// \relates uint3x4
 /// \brief Performs a bitwise XOR on the given left-hand uint3x4 against the corresponding component of the given right-hand uint3x4.
-inline uint3x4 operator^=( uint3x4& lhs, const uint3x4& rhs );
+inline uint3x4 operator^=( uint3x4& lhs, const uint3x4& rhs )
+{
+	return ( lhs = lhs ^ rhs );
+}
 
 /// \relates uint3x4
 /// \brief Returns a copy of the uint3x4 where each component has been bitwise left-shifted by the given scalar value.
-inline uint3x4 operator<<( const uint3x4& lhs, const uint32_t& rhs );
+inline uint3x4 operator<<( const uint3x4& lhs, const uint32_t& rhs )
+{
+	return uint3x4(
+		lhs[0] << rhs,
+		lhs[1] << rhs,
+		lhs[2] << rhs
+	);
+}
 
 /// \relates uint3x4
 /// \brief Performs a left bitshift on the given left-hand uint3x4 by the given scalar value.
-inline uint3x4 operator<<=( uint3x4& lhs, const uint32_t& rhs );
+inline uint3x4 operator<<=( uint3x4& lhs, const uint32_t& rhs )
+{
+	return ( lhs = lhs << rhs );
+}
 
 /// \relates uint3x4
 /// \brief Returns a copy of the uint3x4 where each component of the left-hand uint3x4 has been bitwise left-shifted by the corresponding component of the right-hand side uint3x4.
-inline uint3x4 operator<<( const uint3x4& lhs, const uint3x4& rhs );
+inline uint3x4 operator<<( const uint3x4& lhs, const uint3x4& rhs )
+{
+	return uint3x4(
+		lhs[0] << rhs[0],
+		lhs[1] << rhs[1],
+		lhs[2] << rhs[2]
+	);
+}
 
 /// \relates uint3x4
 /// \brief Performs a left bitshift on the given left-hand uint3x4 by the corresponding component of the given right-hand uint3x4.
-inline uint3x4 operator<<=( uint3x4& lhs, const uint3x4& rhs );
+inline uint3x4 operator<<=( uint3x4& lhs, const uint3x4& rhs )
+{
+	return ( lhs = lhs << rhs );
+}
 
 /// \relates uint3x4
 /// \brief Returns a copy of the uint3x4 where each component has been bitwise right-shifted by the given scalar value.
-inline uint3x4 operator>>( const uint3x4& lhs, const uint32_t& rhs );
+inline uint3x4 operator>>( const uint3x4& lhs, const uint32_t& rhs )
+{
+	return uint3x4(
+		lhs[0] >> rhs,
+		lhs[1] >> rhs,
+		lhs[2] >> rhs
+	);
+}
 
 /// \relates uint3x4
 /// \brief Performs a right bitshift on the given left-hand uint3x4 by the given scalar value.
-inline uint3x4 operator>>=( uint3x4& lhs, const uint32_t& rhs );
+inline uint3x4 operator>>=( uint3x4& lhs, const uint32_t& rhs )
+{
+	return ( lhs = lhs >> rhs );
+}
 
 /// \relates uint3x4
 /// \brief Returns a copy of the uint3x4 where each component of the left-hand uint3x4 has been bitwise right-shifted by the corresponding component of the right-hand side uint3x4.
-inline uint3x4 operator>>( const uint3x4& lhs, const uint3x4& rhs );
+inline uint3x4 operator>>( const uint3x4& lhs, const uint3x4& rhs )
+{
+	return uint3x4(
+		lhs[0] >> rhs[0],
+		lhs[1] >> rhs[1],
+		lhs[2] >> rhs[2]
+	);
+}
 
 /// \relates uint3x4
 /// \brief Performs a right bitshift on the given left-hand uint3x4 by the corresponding component of the given right-hand uint3x4.
-inline uint3x4 operator>>=( uint3x4& lhs, const uint3x4& rhs );
+inline uint3x4 operator>>=( uint3x4& lhs, const uint3x4& rhs )
+{
+	return ( lhs = lhs >> rhs );
+}
 
 /// \relates uint3x4
 /// \brief Performs a unary bitwise operation on all components of the given uint3x4.
-inline uint3x4 operator~( const uint3x4& lhs );
+inline uint3x4 operator~( const uint3x4& lhs )
+{
+	return uint3x4(
+		~lhs[0],
+		~lhs[1],
+		~lhs[2]
+	);
+}
 
 
 // uint4x2
 /// \relates uint4x2
 /// \brief Returns a copy of the uint4x2 that has been component-wise added by the given scalar value.
-inline uint4x2 operator+( const uint4x2& lhs, const uint32_t rhs );
+inline uint4x2 operator+( const uint4x2& lhs, const uint32_t rhs )
+{
+	return uint4x2(
+		lhs[0] + rhs,
+		lhs[1] + rhs,
+		lhs[2] + rhs,
+		lhs[3] + rhs
+	);
+}
 
 /// \relates uint4x2
 /// \brief Adds each component by the given scalar value.
-inline uint4x2 operator+=( uint4x2& lhs, const uint32_t rhs );
+inline uint4x2 operator+=( uint4x2& lhs, const uint32_t rhs )
+{
+	return ( lhs = lhs + rhs );
+}
 
 /// \relates uint4x2
 /// \brief Returns a copy of the uint4x2 that has been component-wise added by the corresponding component of the right-hand uint4x2.
-inline uint4x2 operator+( const uint4x2& lhs, const uint4x2& rhs );
+inline uint4x2 operator+( const uint4x2& lhs, const uint4x2& rhs )
+{
+	return uint4x2(
+		lhs[0] + rhs[0],
+		lhs[1] + rhs[1],
+		lhs[2] + rhs[2],
+		lhs[3] + rhs[3]
+	);
+}
 
 /// \relates uint4x2
 /// \brief Adds each component of the uint4x2 by the corresponding component of the right-hand uint4x2.
-inline uint4x2 operator+=( uint4x2& lhs, const uint4x2& rhs );
+inline uint4x2 operator+=( uint4x2& lhs, const uint4x2& rhs )
+{
+	return ( lhs = lhs + rhs );
+}
 
 /// \relates uint4x2
 /// \brief Returns a copy of the uint4x2 that has been component-wise subtracted by the given scalar value.
-inline uint4x2 operator-( const uint4x2& lhs, const uint32_t rhs );
+inline uint4x2 operator-( const uint4x2& lhs, const uint32_t rhs )
+{
+	return uint4x2(
+		lhs[0] - rhs,
+		lhs[1] - rhs,
+		lhs[2] - rhs,
+		lhs[3] - rhs
+	);
+}
 
 /// \relates uint4x2
 /// \brief Subtracts each component by the given scalar value.
-inline uint4x2 operator-=( uint4x2& lhs, const uint32_t rhs );
+inline uint4x2 operator-=( uint4x2& lhs, const uint32_t rhs )
+{
+	return ( lhs = lhs - rhs );
+}
 
 /// \relates uint4x2
 /// \brief Returns a copy of the uint4x2 that has been component-wise subtracted by the corresponding component of the right-hand uint4x2.
-inline uint4x2 operator-( const uint4x2& lhs, const uint4x2& rhs );
+inline uint4x2 operator-( const uint4x2& lhs, const uint4x2& rhs )
+{
+	return uint4x2(
+		lhs[0] - rhs[0],
+		lhs[1] - rhs[1],
+		lhs[2] - rhs[2],
+		lhs[3] - rhs[3]
+	);
+}
 
 /// \relates uint4x2
 /// \brief Subtracts each component of the uint4x2 by the corresponding component of the right-hand uint4x2.
-inline uint4x2 operator-=( uint4x2& lhs, const uint4x2& rhs );
+inline uint4x2 operator-=( uint4x2& lhs, const uint4x2& rhs )
+{
+	return ( lhs = lhs - rhs );
+}
 
 /// \relates uint4x2
 /// \brief Returns a copy of the uint4x2 that has been component-wise multiplied by the given scalar value.
-inline uint4x2 operator*( const uint4x2& lhs, const uint32_t rhs );
+inline uint4x2 operator*( const uint4x2& lhs, const uint32_t rhs )
+{
+	return uint4x2(
+		lhs[0] * rhs,
+		lhs[1] * rhs,
+		lhs[2] * rhs,
+		lhs[3] * rhs
+	);
+}
 
 /// \relates uint4x2
 /// \brief Multiplies each component by the given scalar value.
-inline uint4x2 operator*=( uint4x2& lhs, const uint32_t rhs );
+inline uint4x2 operator*=( uint4x2& lhs, const uint32_t rhs )
+{
+	return ( lhs = lhs * rhs );
+}
 
 /// \relates uint4x2
 /// \brief Returns a copy of the matrix where each row of the left-hand matrix has been dot-producted by the corresponding column of the right-hand matrix.
-inline uint4x4 operator*( const uint4x2& lhs, const uint2x4& rhs );
+inline uint4x4 operator*( const uint4x2& lhs, const uint2x4& rhs )
+{
+	uint2 row0 = lhs[0];
+	uint2 row1 = lhs[1];
+	uint2 row2 = lhs[2];
+	uint2 row3 = lhs[3];
 
-/// \relates uint4x2
-/// \brief Dot products each row of the left-hand matrix with the corresponding column of the right-hand matrix.
-inline uint4x4 operator*=( uint4x2& lhs, const uint2x4& rhs );
+	uint2 col0 = { rhs[0].x, rhs[1].x };
+	uint2 col1 = { rhs[0].y, rhs[1].y };
+	uint2 col2 = { rhs[0].z, rhs[1].z };
+	uint2 col3 = { rhs[0].w, rhs[1].w };
+
+	return uint4x4(
+		row0.x * col0.x + row0.y * col0.y,
+		row0.x * col1.x + row0.y * col1.y,
+		row0.x * col2.x + row0.y * col2.y,
+		row0.x * col3.x + row0.y * col3.y,
+
+		row1.x * col0.x + row1.y * col0.y,
+		row1.x * col1.x + row1.y * col1.y,
+		row1.x * col2.x + row1.y * col2.y,
+		row1.x * col3.x + row1.y * col3.y,
+
+		row2.x * col0.x + row2.y * col0.y,
+		row2.x * col1.x + row2.y * col1.y,
+		row2.x * col2.x + row2.y * col2.y,
+		row2.x * col3.x + row2.y * col3.y,
+
+		row3.x * col0.x + row3.y * col0.y,
+		row3.x * col1.x + row3.y * col1.y,
+		row3.x * col2.x + row3.y * col2.y,
+		row3.x * col3.x + row3.y * col3.y
+	);
+}
 
 /// \relates uint4x2
 /// \brief Returns a copy of the uint4x2 that has been component-wise divided by the given scalar value.
-inline uint4x2 operator/( const uint4x2& lhs, const uint32_t rhs );
+inline uint4x2 operator/( const uint4x2& lhs, const uint32_t rhs )
+{
+	return uint4x2(
+		lhs[0] / rhs,
+		lhs[1] / rhs,
+		lhs[2] / rhs,
+		lhs[3] / rhs
+	);
+}
 
 /// \relates uint4x2
 /// \brief Divides each component by the given scalar value.
-inline uint4x2 operator/=( uint4x2& lhs, const uint32_t rhs );
+inline uint4x2 operator/=( uint4x2& lhs, const uint32_t rhs )
+{
+	return ( lhs = lhs / rhs );
+}
 
 /// \relates uint4x2
 /// \brief Returns a copy of the uint4x2 that has been component-wise divided by the corresponding component of the right-hand uint4x2.
-inline uint4x2 operator/( const uint4x2& lhs, const uint4x2& rhs );
+inline uint4x2 operator/( const uint4x2& lhs, const uint4x2& rhs )
+{
+	return uint4x2(
+		lhs[0] / rhs[0],
+		lhs[1] / rhs[1],
+		lhs[2] / rhs[2],
+		lhs[3] / rhs[3]
+	);
+}
 
+// prefix
 /// \relates uint4x2
 /// \brief Prefix increment operator.  Adds one to each component of the given uint4x2 before evaluation.
-inline uint4x2& operator++( uint4x2& lhs );
+inline uint4x2& operator++( uint4x2& lhs )
+{
+	++lhs[0];
+	++lhs[1];
+	++lhs[2];
+	++lhs[3];
+	return lhs;
+}
 
+// postfix
 /// \relates uint4x2
 /// \brief Postfix increment operator.  Adds one to each component of the given uint4x2 after evaluation.
-inline uint4x2& operator++( uint4x2& lhs, const int );
+inline uint4x2& operator++( uint4x2& lhs, const int )
+{
+	lhs[0]++;
+	lhs[1]++;
+	lhs[2]++;
+	lhs[3]++;
+	return lhs;
+}
 
+// prefix
 /// \relates uint4x2
 /// \brief Prefix decrement operator.  Subtracts one from each component of the given uint4x2 before evaluation.
-inline uint4x2& operator--( uint4x2& lhs );
+inline uint4x2& operator--( uint4x2& lhs )
+{
+	--lhs[0];
+	--lhs[1];
+	--lhs[2];
+	--lhs[3];
+	return lhs;
+}
 
+// postfix
 /// \relates uint4x2
 /// \brief Postfix decrement operator.  Subtracts one from each component of the given uint4x2 after evaluation.
-inline uint4x2& operator--( uint4x2& lhs, const int );
+inline uint4x2& operator--( uint4x2& lhs, const int )
+{
+	lhs[0]--;
+	lhs[1]--;
+	lhs[2]--;
+	lhs[3]--;
+	return lhs;
+}
 
 /// \relates uint4x2
 /// \brief Returns a bool4x2 where each component is true if the component of the left-hand type is less than the corresponding right-hand type component.
-inline bool4x2 operator<( const uint4x2& lhs, const uint4x2& rhs );
+inline bool4x2 operator<( const uint4x2& lhs, const uint4x2& rhs )
+{
+	return bool4x2(
+		lhs[0] < rhs[0],
+		lhs[1] < rhs[1],
+		lhs[2] < rhs[2],
+		lhs[3] < rhs[3]
+	);
+}
 
 /// \relates uint4x2
 /// \brief Returns a bool4x2 where each component is true if the component of the left-hand type is less than or equal to the corresponding right-hand type component.
-inline bool4x2 operator<=( const uint4x2& lhs, const uint4x2& rhs );
+inline bool4x2 operator<=( const uint4x2& lhs, const uint4x2& rhs )
+{
+	return bool4x2(
+		lhs[0] <= rhs[0],
+		lhs[1] <= rhs[1],
+		lhs[2] <= rhs[2],
+		lhs[3] <= rhs[3]
+	);
+}
 
 /// \relates uint4x2
 /// \brief Returns a bool4x2 where each component is true if the component of the left-hand type is greater than the corresponding right-hand type component.
-inline bool4x2 operator>( const uint4x2& lhs, const uint4x2& rhs );
+inline bool4x2 operator>( const uint4x2& lhs, const uint4x2& rhs )
+{
+	return bool4x2(
+		lhs[0] > rhs[0],
+		lhs[1] > rhs[1],
+		lhs[2] > rhs[2],
+		lhs[3] > rhs[3]
+	);
+}
 
 /// \relates uint4x2
 /// \brief Returns a bool4x2 where each component is true if the component of the left-hand type is greater than or equal to the corresponding right-hand type component.
-inline bool4x2 operator>=( const uint4x2& lhs, const uint4x2& rhs );
+inline bool4x2 operator>=( const uint4x2& lhs, const uint4x2& rhs )
+{
+	return bool4x2(
+		lhs[0] >= rhs[0],
+		lhs[1] >= rhs[1],
+		lhs[2] >= rhs[2],
+		lhs[3] >= rhs[3]
+	);
+}
 
 /// \relates uint4x2
 /// \brief Returns a copy of the uint4x2 where each component has been bitwise AND'd against the given scalar value.
-inline uint4x2 operator&( const uint4x2& lhs, const uint32_t& rhs );
+inline uint4x2 operator&( const uint4x2& lhs, const uint32_t& rhs )
+{
+	return uint4x2(
+		lhs[0] & rhs,
+		lhs[1] & rhs,
+		lhs[2] & rhs,
+		lhs[3] & rhs
+	);
+}
 
 /// \relates uint4x2
 /// \brief Performs a bitwise AND on the given left-hand uint4x2 against the given scalar value.
-inline uint4x2 operator&=( uint4x2& lhs, const uint32_t& rhs );
+inline uint4x2 operator&=( uint4x2& lhs, const uint32_t& rhs )
+{
+	return ( lhs = lhs & rhs );
+}
 
 /// \relates uint4x2
 /// \brief Returns a copy of the uint4x2 where each component of the left-hand uint4x2 has been bitwise AND'd against the corresponding component of the right-hand side uint4x2.
-inline uint4x2 operator&( const uint4x2& lhs, const uint4x2& rhs );
+inline uint4x2 operator&( const uint4x2& lhs, const uint4x2& rhs )
+{
+	return uint4x2(
+		lhs[0] & rhs[0],
+		lhs[1] & rhs[1],
+		lhs[2] & rhs[2],
+		lhs[3] & rhs[3]
+	);
+}
 
 /// \relates uint4x2
 /// \brief Performs a bitwise AND on the given left-hand uint4x2 against the corresponding component of the given right-hand uint4x2.
-inline uint4x2 operator&=( uint4x2& lhs, const uint4x2& rhs );
+inline uint4x2 operator&=( uint4x2& lhs, const uint4x2& rhs )
+{
+	return ( lhs = lhs & rhs );
+}
 
 /// \relates uint4x2
 /// \brief Returns a copy of the uint4x2 where each component has been bitwise OR'd against the given scalar value.
-inline uint4x2 operator|( const uint4x2& lhs, const uint32_t& rhs );
+inline uint4x2 operator|( const uint4x2& lhs, const uint32_t& rhs )
+{
+	return uint4x2(
+		lhs[0] | rhs,
+		lhs[1] | rhs,
+		lhs[2] | rhs,
+		lhs[3] | rhs
+	);
+}
 
 /// \relates uint4x2
 /// \brief Performs a bitwise OR on the given left-hand uint4x2 against the given scalar value.
-inline uint4x2 operator|=( uint4x2& lhs, const uint32_t& rhs );
+inline uint4x2 operator|=( uint4x2& lhs, const uint32_t& rhs )
+{
+	return ( lhs = lhs | rhs );
+}
 
 /// \relates uint4x2
 /// \brief Returns a copy of the uint4x2 where each component of the left-hand uint4x2 has been bitwise OR'd against the corresponding component of the right-hand side uint4x2.
-inline uint4x2 operator|( const uint4x2& lhs, const uint4x2& rhs );
+inline uint4x2 operator|( const uint4x2& lhs, const uint4x2& rhs )
+{
+	return uint4x2(
+		lhs[0] | rhs[0],
+		lhs[1] | rhs[1],
+		lhs[2] | rhs[2],
+		lhs[3] | rhs[3]
+	);
+}
 
 /// \relates uint4x2
 /// \brief Performs a bitwise OR on the given left-hand uint4x2 against the corresponding component of the given right-hand uint4x2.
-inline uint4x2 operator|=( uint4x2& lhs, const uint4x2& rhs );
+inline uint4x2 operator|=( uint4x2& lhs, const uint4x2& rhs )
+{
+	return ( lhs = lhs | rhs );
+}
 
 /// \relates uint4x2
 /// \brief Returns a copy of the uint4x2 where each component has been bitwise XOR'd against the given scalar value.
-inline uint4x2 operator^( const uint4x2& lhs, const uint32_t& rhs );
+inline uint4x2 operator^( const uint4x2& lhs, const uint32_t& rhs )
+{
+	return uint4x2(
+		lhs[0] ^ rhs,
+		lhs[1] ^ rhs,
+		lhs[2] ^ rhs,
+		lhs[3] ^ rhs
+	);
+}
 
 /// \relates uint4x2
 /// \brief Performs a bitwise XOR on the given left-hand uint4x2 against the given scalar value.
-inline uint4x2 operator^=( uint4x2& lhs, const uint32_t& rhs );
+inline uint4x2 operator^=( uint4x2& lhs, const uint32_t& rhs )
+{
+	return ( lhs = lhs ^ rhs );
+}
 
 /// \relates uint4x2
 /// \brief Returns a copy of the uint4x2 where each component of the left-hand uint4x2 has been bitwise XOR'd against the corresponding component of the right-hand side uint4x2.
-inline uint4x2 operator^( const uint4x2& lhs, const uint4x2& rhs );
+inline uint4x2 operator^( const uint4x2& lhs, const uint4x2& rhs )
+{
+	return uint4x2(
+		lhs[0] ^ rhs[0],
+		lhs[1] ^ rhs[1],
+		lhs[2] ^ rhs[2],
+		lhs[3] ^ rhs[3]
+	);
+}
 
 /// \relates uint4x2
 /// \brief Performs a bitwise XOR on the given left-hand uint4x2 against the corresponding component of the given right-hand uint4x2.
-inline uint4x2 operator^=( uint4x2& lhs, const uint4x2& rhs );
+inline uint4x2 operator^=( uint4x2& lhs, const uint4x2& rhs )
+{
+	return ( lhs = lhs ^ rhs );
+}
 
 /// \relates uint4x2
 /// \brief Returns a copy of the uint4x2 where each component has been bitwise left-shifted by the given scalar value.
-inline uint4x2 operator<<( const uint4x2& lhs, const uint32_t& rhs );
+inline uint4x2 operator<<( const uint4x2& lhs, const uint32_t& rhs )
+{
+	return uint4x2(
+		lhs[0] << rhs,
+		lhs[1] << rhs,
+		lhs[2] << rhs,
+		lhs[3] << rhs
+	);
+}
 
 /// \relates uint4x2
 /// \brief Performs a left bitshift on the given left-hand uint4x2 by the given scalar value.
-inline uint4x2 operator<<=( uint4x2& lhs, const uint32_t& rhs );
+inline uint4x2 operator<<=( uint4x2& lhs, const uint32_t& rhs )
+{
+	return ( lhs = lhs << rhs );
+}
 
 /// \relates uint4x2
 /// \brief Returns a copy of the uint4x2 where each component of the left-hand uint4x2 has been bitwise left-shifted by the corresponding component of the right-hand side uint4x2.
-inline uint4x2 operator<<( const uint4x2& lhs, const uint4x2& rhs );
+inline uint4x2 operator<<( const uint4x2& lhs, const uint4x2& rhs )
+{
+	return uint4x2(
+		lhs[0] << rhs[0],
+		lhs[1] << rhs[1],
+		lhs[2] << rhs[2],
+		lhs[3] << rhs[3]
+	);
+}
 
 /// \relates uint4x2
 /// \brief Performs a left bitshift on the given left-hand uint4x2 by the corresponding component of the given right-hand uint4x2.
-inline uint4x2 operator<<=( uint4x2& lhs, const uint4x2& rhs );
+inline uint4x2 operator<<=( uint4x2& lhs, const uint4x2& rhs )
+{
+	return ( lhs = lhs << rhs );
+}
 
 /// \relates uint4x2
 /// \brief Returns a copy of the uint4x2 where each component has been bitwise right-shifted by the given scalar value.
-inline uint4x2 operator>>( const uint4x2& lhs, const uint32_t& rhs );
+inline uint4x2 operator>>( const uint4x2& lhs, const uint32_t& rhs )
+{
+	return uint4x2(
+		lhs[0] >> rhs,
+		lhs[1] >> rhs,
+		lhs[2] >> rhs,
+		lhs[3] >> rhs
+	);
+}
 
 /// \relates uint4x2
 /// \brief Performs a right bitshift on the given left-hand uint4x2 by the given scalar value.
-inline uint4x2 operator>>=( uint4x2& lhs, const uint32_t& rhs );
+inline uint4x2 operator>>=( uint4x2& lhs, const uint32_t& rhs )
+{
+	return ( lhs = lhs >> rhs );
+}
 
 /// \relates uint4x2
 /// \brief Returns a copy of the uint4x2 where each component of the left-hand uint4x2 has been bitwise right-shifted by the corresponding component of the right-hand side uint4x2.
-inline uint4x2 operator>>( const uint4x2& lhs, const uint4x2& rhs );
+inline uint4x2 operator>>( const uint4x2& lhs, const uint4x2& rhs )
+{
+	return uint4x2(
+		lhs[0] >> rhs[0],
+		lhs[1] >> rhs[1],
+		lhs[2] >> rhs[2],
+		lhs[3] >> rhs[3]
+	);
+}
 
 /// \relates uint4x2
 /// \brief Performs a right bitshift on the given left-hand uint4x2 by the corresponding component of the given right-hand uint4x2.
-inline uint4x2 operator>>=( uint4x2& lhs, const uint4x2& rhs );
+inline uint4x2 operator>>=( uint4x2& lhs, const uint4x2& rhs )
+{
+	return ( lhs = lhs >> rhs );
+}
 
 /// \relates uint4x2
 /// \brief Performs a unary bitwise operation on all components of the given uint4x2.
-inline uint4x2 operator~( const uint4x2& lhs );
+inline uint4x2 operator~( const uint4x2& lhs )
+{
+	return uint4x2(
+		~lhs[0],
+		~lhs[1],
+		~lhs[2],
+		~lhs[3]
+	);
+}
 
 
 // uint4x3
 /// \relates uint4x3
 /// \brief Returns a copy of the uint4x3 that has been component-wise added by the given scalar value.
-inline uint4x3 operator+( const uint4x3& lhs, const uint32_t rhs );
+inline uint4x3 operator+( const uint4x3& lhs, const uint32_t rhs )
+{
+	return uint4x3(
+		lhs[0] + rhs,
+		lhs[1] + rhs,
+		lhs[2] + rhs,
+		lhs[3] + rhs
+	);
+}
 
 /// \relates uint4x3
 /// \brief Adds each component by the given scalar value.
-inline uint4x3 operator+=( uint4x3& lhs, const uint32_t rhs );
+inline uint4x3 operator+=( uint4x3& lhs, const uint32_t rhs )
+{
+	return ( lhs = lhs + rhs );
+}
 
 /// \relates uint4x3
 /// \brief Returns a copy of the uint4x3 that has been component-wise added by the corresponding component of the right-hand uint4x3.
-inline uint4x3 operator+( const uint4x3& lhs, const uint4x3& rhs );
+inline uint4x3 operator+( const uint4x3& lhs, const uint4x3& rhs )
+{
+	return uint4x3(
+		lhs[0] + rhs[0],
+		lhs[1] + rhs[1],
+		lhs[2] + rhs[2],
+		lhs[3] + rhs[3]
+	);
+}
 
 /// \relates uint4x3
 /// \brief Adds each component of the uint4x3 by the corresponding component of the right-hand uint4x3.
-inline uint4x3 operator+=( uint4x3& lhs, const uint4x3& rhs );
+inline uint4x3 operator+=( uint4x3& lhs, const uint4x3& rhs )
+{
+	return ( lhs = lhs + rhs );
+}
 
 /// \relates uint4x3
 /// \brief Returns a copy of the uint4x3 that has been component-wise subtracted by the given scalar value.
-inline uint4x3 operator-( const uint4x3& lhs, const uint32_t rhs );
+inline uint4x3 operator-( const uint4x3& lhs, const uint32_t rhs )
+{
+	return uint4x3(
+		lhs[0] - rhs,
+		lhs[1] - rhs,
+		lhs[2] - rhs,
+		lhs[3] - rhs
+	);
+}
 
 /// \relates uint4x3
 /// \brief Subtracts each component by the given scalar value.
-inline uint4x3 operator-=( uint4x3& lhs, const uint32_t rhs );
+inline uint4x3 operator-=( uint4x3& lhs, const uint32_t rhs )
+{
+	return ( lhs = lhs - rhs );
+}
 
 /// \relates uint4x3
 /// \brief Returns a copy of the uint4x3 that has been component-wise subtracted by the corresponding component of the right-hand uint4x3.
-inline uint4x3 operator-( const uint4x3& lhs, const uint4x3& rhs );
+inline uint4x3 operator-( const uint4x3& lhs, const uint4x3& rhs )
+{
+	return uint4x3(
+		lhs[0] - rhs[0],
+		lhs[1] - rhs[1],
+		lhs[2] - rhs[2],
+		lhs[3] - rhs[3]
+	);
+}
 
 /// \relates uint4x3
 /// \brief Subtracts each component of the uint4x3 by the corresponding component of the right-hand uint4x3.
-inline uint4x3 operator-=( uint4x3& lhs, const uint4x3& rhs );
+inline uint4x3 operator-=( uint4x3& lhs, const uint4x3& rhs )
+{
+	return ( lhs = lhs - rhs );
+}
 
 /// \relates uint4x3
 /// \brief Returns a copy of the uint4x3 that has been component-wise multiplied by the given scalar value.
-inline uint4x3 operator*( const uint4x3& lhs, const uint32_t rhs );
+inline uint4x3 operator*( const uint4x3& lhs, const uint32_t rhs )
+{
+	return uint4x3(
+		lhs[0] * rhs,
+		lhs[1] * rhs,
+		lhs[2] * rhs,
+		lhs[3] * rhs
+	);
+}
 
 /// \relates uint4x3
 /// \brief Multiplies each component by the given scalar value.
-inline uint4x3 operator*=( uint4x3& lhs, const uint32_t rhs );
+inline uint4x3 operator*=( uint4x3& lhs, const uint32_t rhs )
+{
+	return ( lhs = lhs * rhs );
+}
 
 /// \relates uint4x3
 /// \brief Returns a copy of the matrix where each row of the left-hand matrix has been dot-producted by the corresponding column of the right-hand matrix.
-inline uint4x4 operator*( const uint4x3& lhs, const uint3x4& rhs );
+inline uint4x4 operator*( const uint4x3& lhs, const uint3x4& rhs )
+{
+	uint3 row0 = lhs[0];
+	uint3 row1 = lhs[1];
+	uint3 row2 = lhs[2];
+	uint3 row3 = lhs[3];
 
-/// \relates uint4x3
-/// \brief Dot products each row of the left-hand matrix with the corresponding column of the right-hand matrix.
-inline uint4x4 operator*=( uint4x3& lhs, const uint3x4& rhs );
+	uint3 col0 = { rhs[0].x, rhs[1].x, rhs[2].x };
+	uint3 col1 = { rhs[0].y, rhs[1].y, rhs[2].y };
+	uint3 col2 = { rhs[0].z, rhs[1].z, rhs[2].z };
+	uint3 col3 = { rhs[0].w, rhs[1].w, rhs[2].w };
+
+	return uint4x4(
+		row0.x * col0.x + row0.y * col0.y + row0.z * col0.z,
+		row0.x * col1.x + row0.y * col1.y + row0.z * col1.z,
+		row0.x * col2.x + row0.y * col2.y + row0.z * col2.z,
+		row0.x * col3.x + row0.y * col3.y + row0.z * col3.z,
+
+		row1.x * col0.x + row1.y * col0.y + row1.z * col0.z,
+		row1.x * col1.x + row1.y * col1.y + row1.z * col1.z,
+		row1.x * col2.x + row1.y * col2.y + row1.z * col2.z,
+		row1.x * col3.x + row1.y * col3.y + row1.z * col3.z,
+
+		row2.x * col0.x + row2.y * col0.y + row2.z * col0.z,
+		row2.x * col1.x + row2.y * col1.y + row2.z * col1.z,
+		row2.x * col2.x + row2.y * col2.y + row2.z * col2.z,
+		row2.x * col3.x + row2.y * col3.y + row2.z * col3.z,
+
+		row3.x * col0.x + row3.y * col0.y + row3.z * col0.z,
+		row3.x * col1.x + row3.y * col1.y + row3.z * col1.z,
+		row3.x * col2.x + row3.y * col2.y + row3.z * col2.z,
+		row3.x * col3.x + row3.y * col3.y + row3.z * col3.z
+	);
+}
 
 /// \relates uint4x3
 /// \brief Returns a copy of the uint4x3 that has been component-wise divided by the given scalar value.
-inline uint4x3 operator/( const uint4x3& lhs, const uint32_t rhs );
+inline uint4x3 operator/( const uint4x3& lhs, const uint32_t rhs )
+{
+	return uint4x3(
+		lhs[0] / rhs,
+		lhs[1] / rhs,
+		lhs[2] / rhs,
+		lhs[3] / rhs
+	);
+}
 
 /// \relates uint4x3
 /// \brief Divides each component by the given scalar value.
-inline uint4x3 operator/=( uint4x3& lhs, const uint32_t rhs );
+inline uint4x3 operator/=( uint4x3& lhs, const uint32_t rhs )
+{
+	return ( lhs = lhs / rhs );
+}
 
 /// \relates uint4x3
 /// \brief Returns a copy of the uint4x3 that has been component-wise divided by the corresponding component of the right-hand uint4x3.
-inline uint4x3 operator/( const uint4x3& lhs, const uint4x3& rhs );
+inline uint4x3 operator/( const uint4x3& lhs, const uint4x3& rhs )
+{
+	return uint4x3(
+		lhs[0] / rhs[0],
+		lhs[1] / rhs[1],
+		lhs[2] / rhs[2],
+		lhs[3] / rhs[3]
+	);
+}
 
+// prefix
 /// \relates uint4x3
 /// \brief Prefix increment operator.  Adds one to each component of the given uint4x3 before evaluation.
-inline uint4x3& operator++( uint4x3& lhs );
+inline uint4x3& operator++( uint4x3& lhs )
+{
+	++lhs[0];
+	++lhs[1];
+	++lhs[2];
+	++lhs[3];
+	return lhs;
+}
 
+// postfix
 /// \relates uint4x3
 /// \brief Postfix increment operator.  Adds one to each component of the given uint4x3 after evaluation.
-inline uint4x3& operator++( uint4x3& lhs, const int );
+inline uint4x3& operator++( uint4x3& lhs, const int )
+{
+	lhs[0]++;
+	lhs[1]++;
+	lhs[2]++;
+	lhs[3]++;
+	return lhs;
+}
 
+// prefix
 /// \relates uint4x3
 /// \brief Prefix decrement operator.  Subtracts one from each component of the given uint4x3 before evaluation.
-inline uint4x3& operator--( uint4x3& lhs );
+inline uint4x3& operator--( uint4x3& lhs )
+{
+	--lhs[0];
+	--lhs[1];
+	--lhs[2];
+	--lhs[3];
+	return lhs;
+}
 
+// postfix
 /// \relates uint4x3
 /// \brief Postfix decrement operator.  Subtracts one from each component of the given uint4x3 after evaluation.
-inline uint4x3& operator--( uint4x3& lhs, const int );
+inline uint4x3& operator--( uint4x3& lhs, const int )
+{
+	lhs[0]--;
+	lhs[1]--;
+	lhs[2]--;
+	lhs[3]--;
+	return lhs;
+}
 
 /// \relates uint4x3
 /// \brief Returns a bool4x3 where each component is true if the component of the left-hand type is less than the corresponding right-hand type component.
-inline bool4x3 operator<( const uint4x3& lhs, const uint4x3& rhs );
+inline bool4x3 operator<( const uint4x3& lhs, const uint4x3& rhs )
+{
+	return bool4x3(
+		lhs[0] < rhs[0],
+		lhs[1] < rhs[1],
+		lhs[2] < rhs[2],
+		lhs[3] < rhs[3]
+	);
+}
 
 /// \relates uint4x3
 /// \brief Returns a bool4x3 where each component is true if the component of the left-hand type is less than or equal to the corresponding right-hand type component.
-inline bool4x3 operator<=( const uint4x3& lhs, const uint4x3& rhs );
+inline bool4x3 operator<=( const uint4x3& lhs, const uint4x3& rhs )
+{
+	return bool4x3(
+		lhs[0] <= rhs[0],
+		lhs[1] <= rhs[1],
+		lhs[2] <= rhs[2],
+		lhs[3] <= rhs[3]
+	);
+}
 
 /// \relates uint4x3
 /// \brief Returns a bool4x3 where each component is true if the component of the left-hand type is greater than the corresponding right-hand type component.
-inline bool4x3 operator>( const uint4x3& lhs, const uint4x3& rhs );
+inline bool4x3 operator>( const uint4x3& lhs, const uint4x3& rhs )
+{
+	return bool4x3(
+		lhs[0] > rhs[0],
+		lhs[1] > rhs[1],
+		lhs[2] > rhs[2],
+		lhs[3] > rhs[3]
+	);
+}
 
 /// \relates uint4x3
 /// \brief Returns a bool4x3 where each component is true if the component of the left-hand type is greater than or equal to the corresponding right-hand type component.
-inline bool4x3 operator>=( const uint4x3& lhs, const uint4x3& rhs );
+inline bool4x3 operator>=( const uint4x3& lhs, const uint4x3& rhs )
+{
+	return bool4x3(
+		lhs[0] >= rhs[0],
+		lhs[1] >= rhs[1],
+		lhs[2] >= rhs[2],
+		lhs[3] >= rhs[3]
+	);
+}
 
 /// \relates uint4x3
 /// \brief Returns a copy of the uint4x3 where each component has been bitwise AND'd against the given scalar value.
-inline uint4x3 operator&( const uint4x3& lhs, const uint32_t& rhs );
+inline uint4x3 operator&( const uint4x3& lhs, const uint32_t& rhs )
+{
+	return uint4x3(
+		lhs[0] & rhs,
+		lhs[1] & rhs,
+		lhs[2] & rhs,
+		lhs[3] & rhs
+	);
+}
 
 /// \relates uint4x3
 /// \brief Performs a bitwise AND on the given left-hand uint4x3 against the given scalar value.
-inline uint4x3 operator&=( uint4x3& lhs, const uint32_t& rhs );
+inline uint4x3 operator&=( uint4x3& lhs, const uint32_t& rhs )
+{
+	return ( lhs = lhs & rhs );
+}
 
 /// \relates uint4x3
 /// \brief Returns a copy of the uint4x3 where each component of the left-hand uint4x3 has been bitwise AND'd against the corresponding component of the right-hand side uint4x3.
-inline uint4x3 operator&( const uint4x3& lhs, const uint4x3& rhs );
+inline uint4x3 operator&( const uint4x3& lhs, const uint4x3& rhs )
+{
+	return uint4x3(
+		lhs[0] & rhs[0],
+		lhs[1] & rhs[1],
+		lhs[2] & rhs[2],
+		lhs[3] & rhs[3]
+	);
+}
 
 /// \relates uint4x3
 /// \brief Performs a bitwise AND on the given left-hand uint4x3 against the corresponding component of the given right-hand uint4x3.
-inline uint4x3 operator&=( uint4x3& lhs, const uint4x3& rhs );
+inline uint4x3 operator&=( uint4x3& lhs, const uint4x3& rhs )
+{
+	return ( lhs = lhs & rhs );
+}
 
 /// \relates uint4x3
 /// \brief Returns a copy of the uint4x3 where each component has been bitwise OR'd against the given scalar value.
-inline uint4x3 operator|( const uint4x3& lhs, const uint32_t& rhs );
+inline uint4x3 operator|( const uint4x3& lhs, const uint32_t& rhs )
+{
+	return uint4x3(
+		lhs[0] | rhs,
+		lhs[1] | rhs,
+		lhs[2] | rhs,
+		lhs[3] | rhs
+	);
+}
 
 /// \relates uint4x3
 /// \brief Performs a bitwise OR on the given left-hand uint4x3 against the given scalar value.
-inline uint4x3 operator|=( uint4x3& lhs, const uint32_t& rhs );
+inline uint4x3 operator|=( uint4x3& lhs, const uint32_t& rhs )
+{
+	return ( lhs = lhs | rhs );
+}
 
 /// \relates uint4x3
 /// \brief Returns a copy of the uint4x3 where each component of the left-hand uint4x3 has been bitwise OR'd against the corresponding component of the right-hand side uint4x3.
-inline uint4x3 operator|( const uint4x3& lhs, const uint4x3& rhs );
+inline uint4x3 operator|( const uint4x3& lhs, const uint4x3& rhs )
+{
+	return uint4x3(
+		lhs[0] | rhs[0],
+		lhs[1] | rhs[1],
+		lhs[2] | rhs[2],
+		lhs[3] | rhs[3]
+	);
+}
 
 /// \relates uint4x3
 /// \brief Performs a bitwise OR on the given left-hand uint4x3 against the corresponding component of the given right-hand uint4x3.
-inline uint4x3 operator|=( uint4x3& lhs, const uint4x3& rhs );
+inline uint4x3 operator|=( uint4x3& lhs, const uint4x3& rhs )
+{
+	return ( lhs = lhs | rhs );
+}
 
 /// \relates uint4x3
 /// \brief Returns a copy of the uint4x3 where each component has been bitwise XOR'd against the given scalar value.
-inline uint4x3 operator^( const uint4x3& lhs, const uint32_t& rhs );
+inline uint4x3 operator^( const uint4x3& lhs, const uint32_t& rhs )
+{
+	return uint4x3(
+		lhs[0] ^ rhs,
+		lhs[1] ^ rhs,
+		lhs[2] ^ rhs,
+		lhs[3] ^ rhs
+	);
+}
 
 /// \relates uint4x3
 /// \brief Performs a bitwise XOR on the given left-hand uint4x3 against the given scalar value.
-inline uint4x3 operator^=( uint4x3& lhs, const uint32_t& rhs );
+inline uint4x3 operator^=( uint4x3& lhs, const uint32_t& rhs )
+{
+	return ( lhs = lhs ^ rhs );
+}
 
 /// \relates uint4x3
 /// \brief Returns a copy of the uint4x3 where each component of the left-hand uint4x3 has been bitwise XOR'd against the corresponding component of the right-hand side uint4x3.
-inline uint4x3 operator^( const uint4x3& lhs, const uint4x3& rhs );
+inline uint4x3 operator^( const uint4x3& lhs, const uint4x3& rhs )
+{
+	return uint4x3(
+		lhs[0] ^ rhs[0],
+		lhs[1] ^ rhs[1],
+		lhs[2] ^ rhs[2],
+		lhs[3] ^ rhs[3]
+	);
+}
 
 /// \relates uint4x3
 /// \brief Performs a bitwise XOR on the given left-hand uint4x3 against the corresponding component of the given right-hand uint4x3.
-inline uint4x3 operator^=( uint4x3& lhs, const uint4x3& rhs );
+inline uint4x3 operator^=( uint4x3& lhs, const uint4x3& rhs )
+{
+	return ( lhs = lhs ^ rhs );
+}
 
 /// \relates uint4x3
 /// \brief Returns a copy of the uint4x3 where each component has been bitwise left-shifted by the given scalar value.
-inline uint4x3 operator<<( const uint4x3& lhs, const uint32_t& rhs );
+inline uint4x3 operator<<( const uint4x3& lhs, const uint32_t& rhs )
+{
+	return uint4x3(
+		lhs[0] << rhs,
+		lhs[1] << rhs,
+		lhs[2] << rhs,
+		lhs[3] << rhs
+	);
+}
 
 /// \relates uint4x3
 /// \brief Performs a left bitshift on the given left-hand uint4x3 by the given scalar value.
-inline uint4x3 operator<<=( uint4x3& lhs, const uint32_t& rhs );
+inline uint4x3 operator<<=( uint4x3& lhs, const uint32_t& rhs )
+{
+	return ( lhs = lhs << rhs );
+}
 
 /// \relates uint4x3
 /// \brief Returns a copy of the uint4x3 where each component of the left-hand uint4x3 has been bitwise left-shifted by the corresponding component of the right-hand side uint4x3.
-inline uint4x3 operator<<( const uint4x3& lhs, const uint4x3& rhs );
+inline uint4x3 operator<<( const uint4x3& lhs, const uint4x3& rhs )
+{
+	return uint4x3(
+		lhs[0] << rhs[0],
+		lhs[1] << rhs[1],
+		lhs[2] << rhs[2],
+		lhs[3] << rhs[3]
+	);
+}
 
 /// \relates uint4x3
 /// \brief Performs a left bitshift on the given left-hand uint4x3 by the corresponding component of the given right-hand uint4x3.
-inline uint4x3 operator<<=( uint4x3& lhs, const uint4x3& rhs );
+inline uint4x3 operator<<=( uint4x3& lhs, const uint4x3& rhs )
+{
+	return ( lhs = lhs << rhs );
+}
 
 /// \relates uint4x3
 /// \brief Returns a copy of the uint4x3 where each component has been bitwise right-shifted by the given scalar value.
-inline uint4x3 operator>>( const uint4x3& lhs, const uint32_t& rhs );
+inline uint4x3 operator>>( const uint4x3& lhs, const uint32_t& rhs )
+{
+	return uint4x3(
+		lhs[0] >> rhs,
+		lhs[1] >> rhs,
+		lhs[2] >> rhs,
+		lhs[3] >> rhs
+	);
+}
 
 /// \relates uint4x3
 /// \brief Performs a right bitshift on the given left-hand uint4x3 by the given scalar value.
-inline uint4x3 operator>>=( uint4x3& lhs, const uint32_t& rhs );
+inline uint4x3 operator>>=( uint4x3& lhs, const uint32_t& rhs )
+{
+	return ( lhs = lhs >> rhs );
+}
 
 /// \relates uint4x3
 /// \brief Returns a copy of the uint4x3 where each component of the left-hand uint4x3 has been bitwise right-shifted by the corresponding component of the right-hand side uint4x3.
-inline uint4x3 operator>>( const uint4x3& lhs, const uint4x3& rhs );
+inline uint4x3 operator>>( const uint4x3& lhs, const uint4x3& rhs )
+{
+	return uint4x3(
+		lhs[0] >> rhs[0],
+		lhs[1] >> rhs[1],
+		lhs[2] >> rhs[2],
+		lhs[3] >> rhs[3]
+	);
+}
 
 /// \relates uint4x3
 /// \brief Performs a right bitshift on the given left-hand uint4x3 by the corresponding component of the given right-hand uint4x3.
-inline uint4x3 operator>>=( uint4x3& lhs, const uint4x3& rhs );
+inline uint4x3 operator>>=( uint4x3& lhs, const uint4x3& rhs )
+{
+	return ( lhs = lhs >> rhs );
+}
 
 /// \relates uint4x3
 /// \brief Performs a unary bitwise operation on all components of the given uint4x3.
-inline uint4x3 operator~( const uint4x3& lhs );
+inline uint4x3 operator~( const uint4x3& lhs )
+{
+	return uint4x3(
+		~lhs[0],
+		~lhs[1],
+		~lhs[2],
+		~lhs[3]
+	);
+}
 
 
 // uint4x4
 /// \relates uint4x4
 /// \brief Returns a copy of the uint4x4 that has been component-wise added by the given scalar value.
-inline uint4x4 operator+( const uint4x4& lhs, const uint32_t rhs );
+inline uint4x4 operator+( const uint4x4& lhs, const uint32_t rhs )
+{
+	return uint4x4(
+		lhs[0] + rhs,
+		lhs[1] + rhs,
+		lhs[2] + rhs,
+		lhs[3] + rhs
+	);
+}
 
 /// \relates uint4x4
 /// \brief Adds each component by the given scalar value.
-inline uint4x4 operator+=( uint4x4& lhs, const uint32_t rhs );
+inline uint4x4 operator+=( uint4x4& lhs, const uint32_t rhs )
+{
+	return ( lhs = lhs + rhs );
+}
 
 /// \relates uint4x4
 /// \brief Returns a copy of the uint4x4 that has been component-wise added by the corresponding component of the right-hand uint4x4.
-inline uint4x4 operator+( const uint4x4& lhs, const uint4x4& rhs );
+inline uint4x4 operator+( const uint4x4& lhs, const uint4x4& rhs )
+{
+	return uint4x4(
+		lhs[0] + rhs[0],
+		lhs[1] + rhs[1],
+		lhs[2] + rhs[2],
+		lhs[3] + rhs[3]
+	);
+}
 
 /// \relates uint4x4
 /// \brief Adds each component of the uint4x4 by the corresponding component of the right-hand uint4x4.
-inline uint4x4 operator+=( uint4x4& lhs, const uint4x4& rhs );
+inline uint4x4 operator+=( uint4x4& lhs, const uint4x4& rhs )
+{
+	return ( lhs = lhs + rhs );
+}
 
 /// \relates uint4x4
 /// \brief Returns a copy of the uint4x4 that has been component-wise subtracted by the given scalar value.
-inline uint4x4 operator-( const uint4x4& lhs, const uint32_t rhs );
+inline uint4x4 operator-( const uint4x4& lhs, const uint32_t rhs )
+{
+	return uint4x4(
+		lhs[0] - rhs,
+		lhs[1] - rhs,
+		lhs[2] - rhs,
+		lhs[3] - rhs
+	);
+}
 
 /// \relates uint4x4
 /// \brief Subtracts each component by the given scalar value.
-inline uint4x4 operator-=( uint4x4& lhs, const uint32_t rhs );
+inline uint4x4 operator-=( uint4x4& lhs, const uint32_t rhs )
+{
+	return ( lhs = lhs - rhs );
+}
 
 /// \relates uint4x4
 /// \brief Returns a copy of the uint4x4 that has been component-wise subtracted by the corresponding component of the right-hand uint4x4.
-inline uint4x4 operator-( const uint4x4& lhs, const uint4x4& rhs );
+inline uint4x4 operator-( const uint4x4& lhs, const uint4x4& rhs )
+{
+	return uint4x4(
+		lhs[0] - rhs[0],
+		lhs[1] - rhs[1],
+		lhs[2] - rhs[2],
+		lhs[3] - rhs[3]
+	);
+}
 
 /// \relates uint4x4
 /// \brief Subtracts each component of the uint4x4 by the corresponding component of the right-hand uint4x4.
-inline uint4x4 operator-=( uint4x4& lhs, const uint4x4& rhs );
+inline uint4x4 operator-=( uint4x4& lhs, const uint4x4& rhs )
+{
+	return ( lhs = lhs - rhs );
+}
 
 /// \relates uint4x4
 /// \brief Returns a copy of the uint4x4 that has been component-wise multiplied by the given scalar value.
-inline uint4x4 operator*( const uint4x4& lhs, const uint32_t rhs );
+inline uint4x4 operator*( const uint4x4& lhs, const uint32_t rhs )
+{
+	return uint4x4(
+		lhs[0] * rhs,
+		lhs[1] * rhs,
+		lhs[2] * rhs,
+		lhs[3] * rhs
+	);
+}
 
 /// \relates uint4x4
 /// \brief Multiplies each component by the given scalar value.
-inline uint4x4 operator*=( uint4x4& lhs, const uint32_t rhs );
+inline uint4x4 operator*=( uint4x4& lhs, const uint32_t rhs )
+{
+	return ( lhs = lhs * rhs );
+}
 
 /// \relates uint4x4
 /// \brief Returns a copy of the matrix where each row of the left-hand matrix has been dot-producted by the corresponding column of the right-hand matrix.
-inline uint4x4 operator*( const uint4x4& lhs, const uint4x4& rhs );
+inline uint4x4 operator*( const uint4x4& lhs, const uint4x4& rhs )
+{
+	uint4 row0 = lhs[0];
+	uint4 row1 = lhs[1];
+	uint4 row2 = lhs[2];
+	uint4 row3 = lhs[3];
 
-/// \relates uint4x4
-/// \brief Dot products each row of the left-hand matrix with the corresponding column of the right-hand matrix.
-inline uint4x4 operator*=( uint4x4& lhs, const uint4x4& rhs );
+	uint4 col0 = { rhs[0].x, rhs[1].x, rhs[2].x, rhs[3].x };
+	uint4 col1 = { rhs[0].y, rhs[1].y, rhs[2].y, rhs[3].y };
+	uint4 col2 = { rhs[0].z, rhs[1].z, rhs[2].z, rhs[3].z };
+	uint4 col3 = { rhs[0].w, rhs[1].w, rhs[2].w, rhs[3].w };
+
+	return uint4x4(
+		row0.x * col0.x + row0.y * col0.y + row0.z * col0.z + row0.w * col0.w,
+		row0.x * col1.x + row0.y * col1.y + row0.z * col1.z + row0.w * col1.w,
+		row0.x * col2.x + row0.y * col2.y + row0.z * col2.z + row0.w * col2.w,
+		row0.x * col3.x + row0.y * col3.y + row0.z * col3.z + row0.w * col3.w,
+
+		row1.x * col0.x + row1.y * col0.y + row1.z * col0.z + row1.w * col0.w,
+		row1.x * col1.x + row1.y * col1.y + row1.z * col1.z + row1.w * col1.w,
+		row1.x * col2.x + row1.y * col2.y + row1.z * col2.z + row1.w * col2.w,
+		row1.x * col3.x + row1.y * col3.y + row1.z * col3.z + row1.w * col3.w,
+
+		row2.x * col0.x + row2.y * col0.y + row2.z * col0.z + row2.w * col0.w,
+		row2.x * col1.x + row2.y * col1.y + row2.z * col1.z + row2.w * col1.w,
+		row2.x * col2.x + row2.y * col2.y + row2.z * col2.z + row2.w * col2.w,
+		row2.x * col3.x + row2.y * col3.y + row2.z * col3.z + row2.w * col3.w,
+
+		row3.x * col0.x + row3.y * col0.y + row3.z * col0.z + row3.w * col0.w,
+		row3.x * col1.x + row3.y * col1.y + row3.z * col1.z + row3.w * col1.w,
+		row3.x * col2.x + row3.y * col2.y + row3.z * col2.z + row3.w * col2.w,
+		row3.x * col3.x + row3.y * col3.y + row3.z * col3.z + row3.w * col3.w
+	);
+}
+
+inline uint4x4 operator*=( uint4x4& lhs, const uint4x4& rhs )
+{
+	return ( lhs = lhs * rhs );
+}
 
 /// \relates uint4x4
 /// \brief Returns a copy of the uint4x4 that has been component-wise divided by the given scalar value.
-inline uint4x4 operator/( const uint4x4& lhs, const uint32_t rhs );
+inline uint4x4 operator/( const uint4x4& lhs, const uint32_t rhs )
+{
+	return uint4x4(
+		lhs[0] / rhs,
+		lhs[1] / rhs,
+		lhs[2] / rhs,
+		lhs[3] / rhs
+	);
+}
 
 /// \relates uint4x4
 /// \brief Divides each component by the given scalar value.
-inline uint4x4 operator/=( uint4x4& lhs, const uint32_t rhs );
+inline uint4x4 operator/=( uint4x4& lhs, const uint32_t rhs )
+{
+	return ( lhs = lhs / rhs );
+}
 
 /// \relates uint4x4
 /// \brief Returns a copy of the uint4x4 that has been component-wise divided by the corresponding component of the right-hand uint4x4.
-inline uint4x4 operator/( const uint4x4& lhs, const uint4x4& rhs );
+inline uint4x4 operator/( const uint4x4& lhs, const uint4x4& rhs )
+{
+	return uint4x4(
+		lhs[0] / rhs[0],
+		lhs[1] / rhs[1],
+		lhs[2] / rhs[2],
+		lhs[3] / rhs[3]
+	);
+}
 
 /// \relates uint4x4
 /// \brief Divides each component of the uint4x4 by the corresponding component of the right-hand uint4x4.
-inline uint4x4 operator/=( uint4x4& lhs, const uint4x4& rhs );
+inline uint4x4 operator/=( uint4x4& lhs, const uint4x4& rhs )
+{
+	return ( lhs = lhs / rhs );
+}
 
 /// \relates uint4
 /// \brief Returns a copy of the uint4 that has been component-wise multiplied by the corresponding component of the right-hand uint4x4.
-inline uint4 operator*( const uint4x4& lhs, const uint4& rhs );
+inline uint4 operator*( const uint4x4& lhs, const uint4& rhs )
+{
+	return uint4(
+		(uint32_t) dot( lhs[0], rhs ),
+		(uint32_t) dot( lhs[1], rhs ),
+		(uint32_t) dot( lhs[2], rhs ),
+		(uint32_t) dot( lhs[3], rhs )
+	);
+}
 
 /// \relates uint4
 /// \brief Multiplies each component of the uint4 by the corresponding component of the right-hand uint4x4.
-inline uint4 operator*=( uint4& lhs, const uint4x4& rhs );
+inline uint4 operator*=( uint4& lhs, const uint4x4& rhs )
+{
+	return ( lhs = rhs * lhs );
+}
 
+// prefix
 /// \relates uint4x4
 /// \brief Prefix increment operator.  Adds one to each component of the given uint4x4 before evaluation.
-inline uint4x4& operator++( uint4x4& lhs );
+inline uint4x4& operator++( uint4x4& lhs )
+{
+	++lhs[0];
+	++lhs[1];
+	++lhs[2];
+	++lhs[3];
+	return lhs;
+}
 
+// postfix
 /// \relates uint4x4
 /// \brief Postfix increment operator.  Adds one to each component of the given uint4x4 after evaluation.
-inline uint4x4& operator++( uint4x4& lhs, const int );
+inline uint4x4& operator++( uint4x4& lhs, const int )
+{
+	lhs[0]++;
+	lhs[1]++;
+	lhs[2]++;
+	lhs[3]++;
+	return lhs;
+}
 
+// prefix
 /// \relates uint4x4
 /// \brief Prefix decrement operator.  Subtracts one from each component of the given uint4x4 before evaluation.
-inline uint4x4& operator--( uint4x4& lhs );
+inline uint4x4& operator--( uint4x4& lhs )
+{
+	--lhs[0];
+	--lhs[1];
+	--lhs[2];
+	--lhs[3];
+	return lhs;
+}
 
+// postfix
 /// \relates uint4x4
 /// \brief Postfix decrement operator.  Subtracts one from each component of the given uint4x4 after evaluation.
-inline uint4x4& operator--( uint4x4& lhs, const int );
+inline uint4x4& operator--( uint4x4& lhs, const int )
+{
+	lhs[0]--;
+	lhs[1]--;
+	lhs[2]--;
+	lhs[3]--;
+	return lhs;
+}
 
 /// \relates uint4x4
 /// \brief Returns a bool4x4 where each component is true if the component of the left-hand type is less than the corresponding right-hand type component.
-inline bool4x4 operator<( const uint4x4& lhs, const uint4x4& rhs );
+inline bool4x4 operator<( const uint4x4& lhs, const uint4x4& rhs )
+{
+	return bool4x4(
+		lhs[0] < rhs[0],
+		lhs[1] < rhs[1],
+		lhs[2] < rhs[2],
+		lhs[3] < rhs[3]
+	);
+}
 
 /// \relates uint4x4
 /// \brief Returns a bool4x4 where each component is true if the component of the left-hand type is less than or equal to the corresponding right-hand type component.
-inline bool4x4 operator<=( const uint4x4& lhs, const uint4x4& rhs );
+inline bool4x4 operator<=( const uint4x4& lhs, const uint4x4& rhs )
+{
+	return bool4x4(
+		lhs[0] <= rhs[0],
+		lhs[1] <= rhs[1],
+		lhs[2] <= rhs[2],
+		lhs[3] <= rhs[3]
+	);
+}
 
 /// \relates uint4x4
 /// \brief Returns a bool4x4 where each component is true if the component of the left-hand type is greater than the corresponding right-hand type component.
-inline bool4x4 operator>( const uint4x4& lhs, const uint4x4& rhs );
+inline bool4x4 operator>( const uint4x4& lhs, const uint4x4& rhs )
+{
+	return bool4x4(
+		lhs[0] > rhs[0],
+		lhs[1] > rhs[1],
+		lhs[2] > rhs[2],
+		lhs[3] > rhs[3]
+	);
+}
 
 /// \relates uint4x4
 /// \brief Returns a bool4x4 where each component is true if the component of the left-hand type is greater than or equal to the corresponding right-hand type component.
-inline bool4x4 operator>=( const uint4x4& lhs, const uint4x4& rhs );
+inline bool4x4 operator>=( const uint4x4& lhs, const uint4x4& rhs )
+{
+	return bool4x4(
+		lhs[0] >= rhs[0],
+		lhs[1] >= rhs[1],
+		lhs[2] >= rhs[2],
+		lhs[3] >= rhs[3]
+	);
+}
 
 /// \relates uint4x4
 /// \brief Returns a copy of the uint4x4 where each component has been bitwise AND'd against the given scalar value.
-inline uint4x4 operator&( const uint4x4& lhs, const uint32_t& rhs );
+inline uint4x4 operator&( const uint4x4& lhs, const uint32_t& rhs )
+{
+	return uint4x4(
+		lhs[0] & rhs,
+		lhs[1] & rhs,
+		lhs[2] & rhs,
+		lhs[3] & rhs
+	);
+}
 
 /// \relates uint4x4
 /// \brief Performs a bitwise AND on the given left-hand uint4x4 against the given scalar value.
-inline uint4x4 operator&=( uint4x4& lhs, const uint32_t& rhs );
+inline uint4x4 operator&=( uint4x4& lhs, const uint32_t& rhs )
+{
+	return ( lhs = lhs & rhs );
+}
 
 /// \relates uint4x4
 /// \brief Returns a copy of the uint4x4 where each component of the left-hand uint4x4 has been bitwise AND'd against the corresponding component of the right-hand side uint4x4.
-inline uint4x4 operator&( const uint4x4& lhs, const uint4x4& rhs );
+inline uint4x4 operator&( const uint4x4& lhs, const uint4x4& rhs )
+{
+	return uint4x4(
+		lhs[0] & rhs[0],
+		lhs[1] & rhs[1],
+		lhs[2] & rhs[2],
+		lhs[3] & rhs[3]
+	);
+}
 
 /// \relates uint4x4
 /// \brief Performs a bitwise AND on the given left-hand uint4x4 against the corresponding component of the given right-hand uint4x4.
-inline uint4x4 operator&=( uint4x4& lhs, const uint4x4& rhs );
+inline uint4x4 operator&=( uint4x4& lhs, const uint4x4& rhs )
+{
+	return ( lhs = lhs & rhs );
+}
 
 /// \relates uint4x4
 /// \brief Returns a copy of the uint4x4 where each component has been bitwise OR'd against the given scalar value.
-inline uint4x4 operator|( const uint4x4& lhs, const uint32_t& rhs );
+inline uint4x4 operator|( const uint4x4& lhs, const uint32_t& rhs )
+{
+	return uint4x4(
+		lhs[0] | rhs,
+		lhs[1] | rhs,
+		lhs[2] | rhs,
+		lhs[3] | rhs
+	);
+}
 
 /// \relates uint4x4
 /// \brief Performs a bitwise OR on the given left-hand uint4x4 against the given scalar value.
-inline uint4x4 operator|=( uint4x4& lhs, const uint32_t& rhs );
+inline uint4x4 operator|=( uint4x4& lhs, const uint32_t& rhs )
+{
+	return ( lhs = lhs | rhs );
+}
 
 /// \relates uint4x4
 /// \brief Returns a copy of the uint4x4 where each component of the left-hand uint4x4 has been bitwise OR'd against the corresponding component of the right-hand side uint4x4.
-inline uint4x4 operator|( const uint4x4& lhs, const uint4x4& rhs );
+inline uint4x4 operator|( const uint4x4& lhs, const uint4x4& rhs )
+{
+	return uint4x4(
+		lhs[0] | rhs[0],
+		lhs[1] | rhs[1],
+		lhs[2] | rhs[2],
+		lhs[3] | rhs[3]
+	);
+}
 
 /// \relates uint4x4
 /// \brief Performs a bitwise OR on the given left-hand uint4x4 against the corresponding component of the given right-hand uint4x4.
-inline uint4x4 operator|=( uint4x4& lhs, const uint4x4& rhs );
+inline uint4x4 operator|=( uint4x4& lhs, const uint4x4& rhs )
+{
+	return ( lhs = lhs | rhs );
+}
 
 /// \relates uint4x4
 /// \brief Returns a copy of the uint4x4 where each component has been bitwise XOR'd against the given scalar value.
-inline uint4x4 operator^( const uint4x4& lhs, const uint32_t& rhs );
+inline uint4x4 operator^( const uint4x4& lhs, const uint32_t& rhs )
+{
+	return uint4x4(
+		lhs[0] ^ rhs,
+		lhs[1] ^ rhs,
+		lhs[2] ^ rhs,
+		lhs[3] ^ rhs
+	);
+}
 
 /// \relates uint4x4
 /// \brief Performs a bitwise XOR on the given left-hand uint4x4 against the given scalar value.
-inline uint4x4 operator^=( uint4x4& lhs, const uint32_t& rhs );
+inline uint4x4 operator^=( uint4x4& lhs, const uint32_t& rhs )
+{
+	return ( lhs = lhs ^ rhs );
+}
 
 /// \relates uint4x4
 /// \brief Returns a copy of the uint4x4 where each component of the left-hand uint4x4 has been bitwise XOR'd against the corresponding component of the right-hand side uint4x4.
-inline uint4x4 operator^( const uint4x4& lhs, const uint4x4& rhs );
+inline uint4x4 operator^( const uint4x4& lhs, const uint4x4& rhs )
+{
+	return uint4x4(
+		lhs[0] ^ rhs[0],
+		lhs[1] ^ rhs[1],
+		lhs[2] ^ rhs[2],
+		lhs[3] ^ rhs[3]
+	);
+}
 
 /// \relates uint4x4
 /// \brief Performs a bitwise XOR on the given left-hand uint4x4 against the corresponding component of the given right-hand uint4x4.
-inline uint4x4 operator^=( uint4x4& lhs, const uint4x4& rhs );
+inline uint4x4 operator^=( uint4x4& lhs, const uint4x4& rhs )
+{
+	return ( lhs = lhs ^ rhs );
+}
 
 /// \relates uint4x4
 /// \brief Returns a copy of the uint4x4 where each component has been bitwise left-shifted by the given scalar value.
-inline uint4x4 operator<<( const uint4x4& lhs, const uint32_t& rhs );
+inline uint4x4 operator<<( const uint4x4& lhs, const uint32_t& rhs )
+{
+	return uint4x4(
+		lhs[0] << rhs,
+		lhs[1] << rhs,
+		lhs[2] << rhs,
+		lhs[3] << rhs
+	);
+}
 
 /// \relates uint4x4
 /// \brief Performs a left bitshift on the given left-hand uint4x4 by the given scalar value.
-inline uint4x4 operator<<=( uint4x4& lhs, const uint32_t& rhs );
+inline uint4x4 operator<<=( uint4x4& lhs, const uint32_t& rhs )
+{
+	return ( lhs = lhs << rhs );
+}
 
 /// \relates uint4x4
 /// \brief Returns a copy of the uint4x4 where each component of the left-hand uint4x4 has been bitwise left-shifted by the corresponding component of the right-hand side uint4x4.
-inline uint4x4 operator<<( const uint4x4& lhs, const uint4x4& rhs );
+inline uint4x4 operator<<( const uint4x4& lhs, const uint4x4& rhs )
+{
+	return uint4x4(
+		lhs[0] << rhs[0],
+		lhs[1] << rhs[1],
+		lhs[2] << rhs[2],
+		lhs[3] << rhs[3]
+	);
+}
 
 /// \relates uint4x4
 /// \brief Performs a left bitshift on the given left-hand uint4x4 by the corresponding component of the given right-hand uint4x4.
-inline uint4x4 operator<<=( uint4x4& lhs, const uint4x4& rhs );
+inline uint4x4 operator<<=( uint4x4& lhs, const uint4x4& rhs )
+{
+	return ( lhs = lhs << rhs );
+}
 
 /// \relates uint4x4
 /// \brief Returns a copy of the uint4x4 where each component has been bitwise right-shifted by the given scalar value.
-inline uint4x4 operator>>( const uint4x4& lhs, const uint32_t& rhs );
+inline uint4x4 operator>>( const uint4x4& lhs, const uint32_t& rhs )
+{
+	return uint4x4(
+		lhs[0] >> rhs,
+		lhs[1] >> rhs,
+		lhs[2] >> rhs,
+		lhs[3] >> rhs
+	);
+}
 
 /// \relates uint4x4
 /// \brief Performs a right bitshift on the given left-hand uint4x4 by the given scalar value.
-inline uint4x4 operator>>=( uint4x4& lhs, const uint32_t& rhs );
+inline uint4x4 operator>>=( uint4x4& lhs, const uint32_t& rhs )
+{
+	return ( lhs = lhs >> rhs );
+}
 
 /// \relates uint4x4
 /// \brief Returns a copy of the uint4x4 where each component of the left-hand uint4x4 has been bitwise right-shifted by the corresponding component of the right-hand side uint4x4.
-inline uint4x4 operator>>( const uint4x4& lhs, const uint4x4& rhs );
+inline uint4x4 operator>>( const uint4x4& lhs, const uint4x4& rhs )
+{
+	return uint4x4(
+		lhs[0] >> rhs[0],
+		lhs[1] >> rhs[1],
+		lhs[2] >> rhs[2],
+		lhs[3] >> rhs[3]
+	);
+}
 
 /// \relates uint4x4
 /// \brief Performs a right bitshift on the given left-hand uint4x4 by the corresponding component of the given right-hand uint4x4.
-inline uint4x4 operator>>=( uint4x4& lhs, const uint4x4& rhs );
+inline uint4x4 operator>>=( uint4x4& lhs, const uint4x4& rhs )
+{
+	return ( lhs = lhs >> rhs );
+}
 
 /// \relates uint4x4
 /// \brief Performs a unary bitwise operation on all components of the given uint4x4.
-inline uint4x4 operator~( const uint4x4& lhs );
+inline uint4x4 operator~( const uint4x4& lhs )
+{
+	return uint4x4(
+		~lhs[0],
+		~lhs[1],
+		~lhs[2],
+		~lhs[3]
+	);
+}
 
 
 // float2x2
 /// \relates float2x2
 /// \brief Returns a copy of the float2x2 that has been component-wise added by the given scalar value.
-inline float2x2 operator+( const float2x2& lhs, const float rhs );
+inline float2x2 operator+( const float2x2& lhs, const float rhs )
+{
+	return float2x2(
+		lhs[0] + rhs,
+		lhs[1] + rhs
+	);
+}
 
 /// \relates float2x2
 /// \brief Adds each component by the given scalar value.
-inline float2x2 operator+=( float2x2& lhs, const float rhs );
+inline float2x2 operator+=( float2x2& lhs, const float rhs )
+{
+	return ( lhs = lhs + rhs );
+}
 
 /// \relates float2x2
 /// \brief Returns a copy of the float2x2 that has been component-wise added by the corresponding component of the right-hand float2x2.
-inline float2x2 operator+( const float2x2& lhs, const float2x2& rhs );
+inline float2x2 operator+( const float2x2& lhs, const float2x2& rhs )
+{
+	return float2x2(
+		lhs[0] + rhs[0],
+		lhs[1] + rhs[1]
+	);
+}
 
 /// \relates float2x2
 /// \brief Adds each component of the float2x2 by the corresponding component of the right-hand float2x2.
-inline float2x2 operator+=( float2x2& lhs, const float2x2& rhs );
+inline float2x2 operator+=( float2x2& lhs, const float2x2& rhs )
+{
+	return ( lhs = lhs + rhs );
+}
 
 /// \relates float2x2
 /// \brief Returns a copy of the float2x2 that has been component-wise subtracted by the given scalar value.
-inline float2x2 operator-( const float2x2& lhs, const float rhs );
+inline float2x2 operator-( const float2x2& lhs, const float rhs )
+{
+	return float2x2(
+		lhs[0] - rhs,
+		lhs[1] - rhs
+	);
+}
 
 /// \relates float2x2
 /// \brief Subtracts each component by the given scalar value.
-inline float2x2 operator-=( float2x2& lhs, const float rhs );
+inline float2x2 operator-=( float2x2& lhs, const float rhs )
+{
+	return ( lhs = lhs - rhs );
+}
 
 /// \relates float2x2
 /// \brief Returns a copy of the float2x2 that has been component-wise subtracted by the corresponding component of the right-hand float2x2.
-inline float2x2 operator-( const float2x2& lhs, const float2x2& rhs );
+inline float2x2 operator-( const float2x2& lhs, const float2x2& rhs )
+{
+	return float2x2(
+		lhs[0] - rhs[0],
+		lhs[1] - rhs[1]
+	);
+}
 
 /// \relates float2x2
 /// \brief Subtracts each component of the float2x2 by the corresponding component of the right-hand float2x2.
-inline float2x2 operator-=( float2x2& lhs, const float2x2& rhs );
+inline float2x2 operator-=( float2x2& lhs, const float2x2& rhs )
+{
+	return ( lhs = lhs - rhs );
+}
 
 /// \relates float2x2
 /// \brief Returns a copy of the float2x2 that has been component-wise multiplied by the given scalar value.
-inline float2x2 operator*( const float2x2& lhs, const float rhs );
+inline float2x2 operator*( const float2x2& lhs, const float rhs )
+{
+	return float2x2(
+		lhs[0] * rhs,
+		lhs[1] * rhs
+	);
+}
 
 /// \relates float2x2
 /// \brief Multiplies each component by the given scalar value.
-inline float2x2 operator*=( float2x2& lhs, const float rhs );
+inline float2x2 operator*=( float2x2& lhs, const float rhs )
+{
+	return ( lhs = lhs * rhs );
+}
 
 /// \relates float2x2
 /// \brief Returns a copy of the matrix where each row of the left-hand matrix has been dot-producted by the corresponding column of the right-hand matrix.
-inline float2x2 operator*( const float2x2& lhs, const float2x2& rhs );
+inline float2x2 operator*( const float2x2& lhs, const float2x2& rhs )
+{
+	float2 row0 = lhs[0];
+	float2 row1 = lhs[1];
 
-/// \relates float2x2
-/// \brief Dot products each row of the left-hand matrix with the corresponding column of the right-hand matrix.
-inline float2x2 operator*=( float2x2& lhs, const float2x2& rhs );
+	float2 col0 = { rhs[0].x, rhs[1].x };
+	float2 col1 = { rhs[0].y, rhs[1].y };
+
+	return float2x2(
+		row0.x * col0.x + row0.y * col0.y,
+		row0.x * col1.x + row0.y * col1.y,
+
+		row1.x * col0.x + row1.y * col0.y,
+		row1.x * col1.x + row1.y * col1.y
+	);
+}
+
+inline float2x2 operator*=( float2x2& lhs, const float2x2& rhs )
+{
+	return ( lhs = lhs * rhs );
+}
 
 /// \relates float2x2
 /// \brief Returns a copy of the float2x2 that has been component-wise divided by the given scalar value.
-inline float2x2 operator/( const float2x2& lhs, const float rhs );
+inline float2x2 operator/( const float2x2& lhs, const float rhs )
+{
+	return float2x2(
+		lhs[0] / rhs,
+		lhs[1] / rhs
+	);
+}
 
 /// \relates float2x2
 /// \brief Divides each component by the given scalar value.
-inline float2x2 operator/=( float2x2& lhs, const float rhs );
+inline float2x2 operator/=( float2x2& lhs, const float rhs )
+{
+	return ( lhs = lhs / rhs );
+}
 
 /// \relates float2x2
 /// \brief Returns a copy of the matrix where the left-hand matrix has been mathematically multiplied by the inverse of the right-hand matrix.
-inline float2x2 operator/( const float2x2& lhs, const float2x2& rhs );
+inline float2x2 operator/( const float2x2& lhs, const float2x2& rhs )
+{
+	return lhs * inverse( rhs );
+}
 
 /// \relates float2x2
 /// \brief Multiplies the left-hand matrix by the right-hand matrix (dot product row/col style).
-inline float2x2 operator/=( float2x2& lhs, const float2x2& rhs );
+inline float2x2 operator/=( float2x2& lhs, const float2x2& rhs )
+{
+	return ( lhs = lhs / rhs );
+}
 
 /// \relates float2
 /// \brief Returns a copy of the float2 that has been component-wise multiplied by the corresponding component of the right-hand float2x2.
-inline float2 operator*( const float2x2& lhs, const float2& rhs );
+inline float2 operator*( const float2x2& lhs, const float2& rhs )
+{
+	return float2(
+		(float) dot( lhs[0], rhs ),
+		(float) dot( lhs[1], rhs )
+	);
+}
 
 /// \relates float2
 /// \brief Multiplies each component of the float2 by the corresponding component of the right-hand float2x2.
-inline float2 operator*=( float2& lhs, const float2x2& rhs );
+inline float2 operator*=( float2& lhs, const float2x2& rhs )
+{
+	return ( lhs = rhs * lhs );
+}
 
+// prefix
 /// \relates float2x2
 /// \brief Prefix increment operator.  Adds one to each component of the given float2x2 before evaluation.
-inline float2x2& operator++( float2x2& lhs );
+inline float2x2& operator++( float2x2& lhs )
+{
+	++lhs[0];
+	++lhs[1];
+	return lhs;
+}
 
+// postfix
 /// \relates float2x2
 /// \brief Postfix increment operator.  Adds one to each component of the given float2x2 after evaluation.
-inline float2x2& operator++( float2x2& lhs, const int );
+inline float2x2& operator++( float2x2& lhs, const int )
+{
+	lhs[0]++;
+	lhs[1]++;
+	return lhs;
+}
 
+// prefix
 /// \relates float2x2
 /// \brief Prefix decrement operator.  Subtracts one from each component of the given float2x2 before evaluation.
-inline float2x2& operator--( float2x2& lhs );
+inline float2x2& operator--( float2x2& lhs )
+{
+	--lhs[0];
+	--lhs[1];
+	return lhs;
+}
 
+// postfix
 /// \relates float2x2
 /// \brief Postfix decrement operator.  Subtracts one from each component of the given float2x2 after evaluation.
-inline float2x2& operator--( float2x2& lhs, const int );
+inline float2x2& operator--( float2x2& lhs, const int )
+{
+	lhs[0]--;
+	lhs[1]--;
+	return lhs;
+}
 
 /// \relates float2x2
 /// \brief Returns a bool2x2 where each component is true if the component of the left-hand type is less than the corresponding right-hand type component.
-inline bool2x2 operator<( const float2x2& lhs, const float2x2& rhs );
+inline bool2x2 operator<( const float2x2& lhs, const float2x2& rhs )
+{
+	return bool2x2(
+		lhs[0] < rhs[0],
+		lhs[1] < rhs[1]
+	);
+}
 
 /// \relates float2x2
 /// \brief Returns a bool2x2 where each component is true if the component of the left-hand type is less than or equal to the corresponding right-hand type component.
-inline bool2x2 operator<=( const float2x2& lhs, const float2x2& rhs );
+inline bool2x2 operator<=( const float2x2& lhs, const float2x2& rhs )
+{
+	return bool2x2(
+		lhs[0] <= rhs[0],
+		lhs[1] <= rhs[1]
+	);
+}
 
 /// \relates float2x2
 /// \brief Returns a bool2x2 where each component is true if the component of the left-hand type is greater than the corresponding right-hand type component.
-inline bool2x2 operator>( const float2x2& lhs, const float2x2& rhs );
+inline bool2x2 operator>( const float2x2& lhs, const float2x2& rhs )
+{
+	return bool2x2(
+		lhs[0] > rhs[0],
+		lhs[1] > rhs[1]
+	);
+}
 
 /// \relates float2x2
 /// \brief Returns a bool2x2 where each component is true if the component of the left-hand type is greater than or equal to the corresponding right-hand type component.
-inline bool2x2 operator>=( const float2x2& lhs, const float2x2& rhs );
+inline bool2x2 operator>=( const float2x2& lhs, const float2x2& rhs )
+{
+	return bool2x2(
+		lhs[0] >= rhs[0],
+		lhs[1] >= rhs[1]
+	);
+}
 
 
 // float2x3
 /// \relates float2x3
 /// \brief Returns a copy of the float2x3 that has been component-wise added by the given scalar value.
-inline float2x3 operator+( const float2x3& lhs, const float rhs );
+inline float2x3 operator+( const float2x3& lhs, const float rhs )
+{
+	return float2x3(
+		lhs[0] + rhs,
+		lhs[1] + rhs
+	);
+}
 
 /// \relates float2x3
 /// \brief Adds each component by the given scalar value.
-inline float2x3 operator+=( float2x3& lhs, const float rhs );
+inline float2x3 operator+=( float2x3& lhs, const float rhs )
+{
+	return ( lhs = lhs + rhs );
+}
 
 /// \relates float2x3
 /// \brief Returns a copy of the float2x3 that has been component-wise added by the corresponding component of the right-hand float2x3.
-inline float2x3 operator+( const float2x3& lhs, const float2x3& rhs );
+inline float2x3 operator+( const float2x3& lhs, const float2x3& rhs )
+{
+	return float2x3(
+		lhs[0] + rhs[0],
+		lhs[1] + rhs[1]
+	);
+}
 
 /// \relates float2x3
 /// \brief Adds each component of the float2x3 by the corresponding component of the right-hand float2x3.
-inline float2x3 operator+=( float2x3& lhs, const float2x3& rhs );
+inline float2x3 operator+=( float2x3& lhs, const float2x3& rhs )
+{
+	return ( lhs = lhs + rhs );
+}
 
 /// \relates float2x3
 /// \brief Returns a copy of the float2x3 that has been component-wise subtracted by the given scalar value.
-inline float2x3 operator-( const float2x3& lhs, const float rhs );
+inline float2x3 operator-( const float2x3& lhs, const float rhs )
+{
+	return float2x3(
+		lhs[0] - rhs,
+		lhs[1] - rhs
+	);
+}
 
 /// \relates float2x3
 /// \brief Subtracts each component by the given scalar value.
-inline float2x3 operator-=( float2x3& lhs, const float rhs );
+inline float2x3 operator-=( float2x3& lhs, const float rhs )
+{
+	return ( lhs = lhs - rhs );
+}
 
 /// \relates float2x3
 /// \brief Returns a copy of the float2x3 that has been component-wise subtracted by the corresponding component of the right-hand float2x3.
-inline float2x3 operator-( const float2x3& lhs, const float2x3& rhs );
+inline float2x3 operator-( const float2x3& lhs, const float2x3& rhs )
+{
+	return float2x3(
+		lhs[0] - rhs[0],
+		lhs[1] - rhs[1]
+	);
+}
 
 /// \relates float2x3
 /// \brief Subtracts each component of the float2x3 by the corresponding component of the right-hand float2x3.
-inline float2x3 operator-=( float2x3& lhs, const float2x3& rhs );
+inline float2x3 operator-=( float2x3& lhs, const float2x3& rhs )
+{
+	return ( lhs = lhs - rhs );
+}
 
 /// \relates float2x3
 /// \brief Returns a copy of the float2x3 that has been component-wise multiplied by the given scalar value.
-inline float2x3 operator*( const float2x3& lhs, const float rhs );
+inline float2x3 operator*( const float2x3& lhs, const float rhs )
+{
+	return float2x3(
+		lhs[0] * rhs,
+		lhs[1] * rhs
+	);
+}
 
 /// \relates float2x3
 /// \brief Multiplies each component by the given scalar value.
-inline float2x3 operator*=( float2x3& lhs, const float rhs );
+inline float2x3 operator*=( float2x3& lhs, const float rhs )
+{
+	return ( lhs = lhs * rhs );
+}
 
 /// \relates float2x3
 /// \brief Returns a copy of the matrix where each row of the left-hand matrix has been dot-producted by the corresponding column of the right-hand matrix.
-inline float2x2 operator*( const float2x3& lhs, const float3x2& rhs );
+inline float2x2 operator*( const float2x3& lhs, const float3x2& rhs )
+{
+	float3 row0 = lhs[0];
+	float3 row1 = lhs[1];
 
-/// \relates float2x3
-/// \brief Dot products each row of the left-hand matrix with the corresponding column of the right-hand matrix.
-inline float2x2 operator*=( float2x3& lhs, const float3x2& rhs );
+	float3 col0 = { rhs[0].x, rhs[1].x, rhs[2].x };
+	float3 col1 = { rhs[0].y, rhs[1].y, rhs[2].y };
+
+	return float2x2(
+		row0.x * col0.x + row0.y * col0.y + row0.z * col0.z,
+		row0.x * col1.x + row0.y * col1.y + row0.z * col1.z,
+
+		row1.x * col0.x + row1.y * col0.y + row1.z * col0.z,
+		row1.x * col1.x + row1.y * col1.y + row1.z * col1.z
+	);
+}
 
 /// \relates float2x3
 /// \brief Returns a copy of the float2x3 that has been component-wise divided by the given scalar value.
-inline float2x3 operator/( const float2x3& lhs, const float rhs );
+inline float2x3 operator/( const float2x3& lhs, const float rhs )
+{
+	return float2x3(
+		lhs[0] / rhs,
+		lhs[1] / rhs
+	);
+}
 
 /// \relates float2x3
 /// \brief Divides each component by the given scalar value.
-inline float2x3 operator/=( float2x3& lhs, const float rhs );
+inline float2x3 operator/=( float2x3& lhs, const float rhs )
+{
+	return ( lhs = lhs / rhs );
+}
 
 /// \relates float2x3
 /// \brief Returns a copy of the float2x3 that has been component-wise divided by the corresponding component of the right-hand float2x3.
-inline float2x3 operator/( const float2x3& lhs, const float2x3& rhs );
+inline float2x3 operator/( const float2x3& lhs, const float2x3& rhs )
+{
+	return float2x3(
+		lhs[0] / rhs[0],
+		lhs[1] / rhs[1]
+	);
+}
 
+// prefix
 /// \relates float2x3
 /// \brief Prefix increment operator.  Adds one to each component of the given float2x3 before evaluation.
-inline float2x3& operator++( float2x3& lhs );
+inline float2x3& operator++( float2x3& lhs )
+{
+	++lhs[0];
+	++lhs[1];
+	return lhs;
+}
 
+// postfix
 /// \relates float2x3
 /// \brief Postfix increment operator.  Adds one to each component of the given float2x3 after evaluation.
-inline float2x3& operator++( float2x3& lhs, const int );
+inline float2x3& operator++( float2x3& lhs, const int )
+{
+	lhs[0]++;
+	lhs[1]++;
+	return lhs;
+}
 
+// prefix
 /// \relates float2x3
 /// \brief Prefix decrement operator.  Subtracts one from each component of the given float2x3 before evaluation.
-inline float2x3& operator--( float2x3& lhs );
+inline float2x3& operator--( float2x3& lhs )
+{
+	--lhs[0];
+	--lhs[1];
+	return lhs;
+}
 
+// postfix
 /// \relates float2x3
 /// \brief Postfix decrement operator.  Subtracts one from each component of the given float2x3 after evaluation.
-inline float2x3& operator--( float2x3& lhs, const int );
+inline float2x3& operator--( float2x3& lhs, const int )
+{
+	lhs[0]--;
+	lhs[1]--;
+	return lhs;
+}
 
 /// \relates float2x3
 /// \brief Returns a bool2x3 where each component is true if the component of the left-hand type is less than the corresponding right-hand type component.
-inline bool2x3 operator<( const float2x3& lhs, const float2x3& rhs );
+inline bool2x3 operator<( const float2x3& lhs, const float2x3& rhs )
+{
+	return bool2x3(
+		lhs[0] < rhs[0],
+		lhs[1] < rhs[1]
+	);
+}
 
 /// \relates float2x3
 /// \brief Returns a bool2x3 where each component is true if the component of the left-hand type is less than or equal to the corresponding right-hand type component.
-inline bool2x3 operator<=( const float2x3& lhs, const float2x3& rhs );
+inline bool2x3 operator<=( const float2x3& lhs, const float2x3& rhs )
+{
+	return bool2x3(
+		lhs[0] <= rhs[0],
+		lhs[1] <= rhs[1]
+	);
+}
 
 /// \relates float2x3
 /// \brief Returns a bool2x3 where each component is true if the component of the left-hand type is greater than the corresponding right-hand type component.
-inline bool2x3 operator>( const float2x3& lhs, const float2x3& rhs );
+inline bool2x3 operator>( const float2x3& lhs, const float2x3& rhs )
+{
+	return bool2x3(
+		lhs[0] > rhs[0],
+		lhs[1] > rhs[1]
+	);
+}
 
 /// \relates float2x3
 /// \brief Returns a bool2x3 where each component is true if the component of the left-hand type is greater than or equal to the corresponding right-hand type component.
-inline bool2x3 operator>=( const float2x3& lhs, const float2x3& rhs );
+inline bool2x3 operator>=( const float2x3& lhs, const float2x3& rhs )
+{
+	return bool2x3(
+		lhs[0] >= rhs[0],
+		lhs[1] >= rhs[1]
+	);
+}
 
 
 // float2x4
 /// \relates float2x4
 /// \brief Returns a copy of the float2x4 that has been component-wise added by the given scalar value.
-inline float2x4 operator+( const float2x4& lhs, const float rhs );
+inline float2x4 operator+( const float2x4& lhs, const float rhs )
+{
+	return float2x4(
+		lhs[0] + rhs,
+		lhs[1] + rhs
+	);
+}
 
 /// \relates float2x4
 /// \brief Adds each component by the given scalar value.
-inline float2x4 operator+=( float2x4& lhs, const float rhs );
+inline float2x4 operator+=( float2x4& lhs, const float rhs )
+{
+	return ( lhs = lhs + rhs );
+}
 
 /// \relates float2x4
 /// \brief Returns a copy of the float2x4 that has been component-wise added by the corresponding component of the right-hand float2x4.
-inline float2x4 operator+( const float2x4& lhs, const float2x4& rhs );
+inline float2x4 operator+( const float2x4& lhs, const float2x4& rhs )
+{
+	return float2x4(
+		lhs[0] + rhs[0],
+		lhs[1] + rhs[1]
+	);
+}
 
 /// \relates float2x4
 /// \brief Adds each component of the float2x4 by the corresponding component of the right-hand float2x4.
-inline float2x4 operator+=( float2x4& lhs, const float2x4& rhs );
+inline float2x4 operator+=( float2x4& lhs, const float2x4& rhs )
+{
+	return ( lhs = lhs + rhs );
+}
 
 /// \relates float2x4
 /// \brief Returns a copy of the float2x4 that has been component-wise subtracted by the given scalar value.
-inline float2x4 operator-( const float2x4& lhs, const float rhs );
+inline float2x4 operator-( const float2x4& lhs, const float rhs )
+{
+	return float2x4(
+		lhs[0] - rhs,
+		lhs[1] - rhs
+	);
+}
 
 /// \relates float2x4
 /// \brief Subtracts each component by the given scalar value.
-inline float2x4 operator-=( float2x4& lhs, const float rhs );
+inline float2x4 operator-=( float2x4& lhs, const float rhs )
+{
+	return ( lhs = lhs - rhs );
+}
 
 /// \relates float2x4
 /// \brief Returns a copy of the float2x4 that has been component-wise subtracted by the corresponding component of the right-hand float2x4.
-inline float2x4 operator-( const float2x4& lhs, const float2x4& rhs );
+inline float2x4 operator-( const float2x4& lhs, const float2x4& rhs )
+{
+	return float2x4(
+		lhs[0] - rhs[0],
+		lhs[1] - rhs[1]
+	);
+}
 
 /// \relates float2x4
 /// \brief Subtracts each component of the float2x4 by the corresponding component of the right-hand float2x4.
-inline float2x4 operator-=( float2x4& lhs, const float2x4& rhs );
+inline float2x4 operator-=( float2x4& lhs, const float2x4& rhs )
+{
+	return ( lhs = lhs - rhs );
+}
 
 /// \relates float2x4
 /// \brief Returns a copy of the float2x4 that has been component-wise multiplied by the given scalar value.
-inline float2x4 operator*( const float2x4& lhs, const float rhs );
+inline float2x4 operator*( const float2x4& lhs, const float rhs )
+{
+	return float2x4(
+		lhs[0] * rhs,
+		lhs[1] * rhs
+	);
+}
 
 /// \relates float2x4
 /// \brief Multiplies each component by the given scalar value.
-inline float2x4 operator*=( float2x4& lhs, const float rhs );
+inline float2x4 operator*=( float2x4& lhs, const float rhs )
+{
+	return ( lhs = lhs * rhs );
+}
 
 /// \relates float2x4
 /// \brief Returns a copy of the matrix where each row of the left-hand matrix has been dot-producted by the corresponding column of the right-hand matrix.
-inline float2x2 operator*( const float2x4& lhs, const float4x2& rhs );
+inline float2x2 operator*( const float2x4& lhs, const float4x2& rhs )
+{
+	float4 row0 = lhs[0];
+	float4 row1 = lhs[1];
 
-/// \relates float2x4
-/// \brief Dot products each row of the left-hand matrix with the corresponding column of the right-hand matrix.
-inline float2x2 operator*=( float2x4& lhs, const float4x2& rhs );
+	float4 col0 = { rhs[0].x, rhs[1].x, rhs[2].x, rhs[3].x };
+	float4 col1 = { rhs[0].y, rhs[1].y, rhs[2].y, rhs[3].y };
+
+	return float2x2(
+		row0.x * col0.x + row0.y * col0.y + row0.z * col0.z + row0.w * col0.w,
+		row0.x * col1.x + row0.y * col1.y + row0.z * col1.z + row0.w * col1.w,
+
+		row1.x * col0.x + row1.y * col0.y + row1.z * col0.z + row1.w * col0.w,
+		row1.x * col1.x + row1.y * col1.y + row1.z * col1.z + row1.w * col1.w
+	);
+}
 
 /// \relates float2x4
 /// \brief Returns a copy of the float2x4 that has been component-wise divided by the given scalar value.
-inline float2x4 operator/( const float2x4& lhs, const float rhs );
+inline float2x4 operator/( const float2x4& lhs, const float rhs )
+{
+	return float2x4(
+		lhs[0] / rhs,
+		lhs[1] / rhs
+	);
+}
 
 /// \relates float2x4
 /// \brief Divides each component by the given scalar value.
-inline float2x4 operator/=( float2x4& lhs, const float rhs );
+inline float2x4 operator/=( float2x4& lhs, const float rhs )
+{
+	return ( lhs = lhs / rhs );
+}
 
 /// \relates float2x4
 /// \brief Returns a copy of the float2x4 that has been component-wise divided by the corresponding component of the right-hand float2x4.
-inline float2x4 operator/( const float2x4& lhs, const float2x4& rhs );
+inline float2x4 operator/( const float2x4& lhs, const float2x4& rhs )
+{
+	return float2x4(
+		lhs[0] / rhs[0],
+		lhs[1] / rhs[1]
+	);
+}
 
+// prefix
 /// \relates float2x4
 /// \brief Prefix increment operator.  Adds one to each component of the given float2x4 before evaluation.
-inline float2x4& operator++( float2x4& lhs );
+inline float2x4& operator++( float2x4& lhs )
+{
+	++lhs[0];
+	++lhs[1];
+	return lhs;
+}
 
+// postfix
 /// \relates float2x4
 /// \brief Postfix increment operator.  Adds one to each component of the given float2x4 after evaluation.
-inline float2x4& operator++( float2x4& lhs, const int );
+inline float2x4& operator++( float2x4& lhs, const int )
+{
+	lhs[0]++;
+	lhs[1]++;
+	return lhs;
+}
 
+// prefix
 /// \relates float2x4
 /// \brief Prefix decrement operator.  Subtracts one from each component of the given float2x4 before evaluation.
-inline float2x4& operator--( float2x4& lhs );
+inline float2x4& operator--( float2x4& lhs )
+{
+	--lhs[0];
+	--lhs[1];
+	return lhs;
+}
 
+// postfix
 /// \relates float2x4
 /// \brief Postfix decrement operator.  Subtracts one from each component of the given float2x4 after evaluation.
-inline float2x4& operator--( float2x4& lhs, const int );
+inline float2x4& operator--( float2x4& lhs, const int )
+{
+	lhs[0]--;
+	lhs[1]--;
+	return lhs;
+}
 
 /// \relates float2x4
 /// \brief Returns a bool2x4 where each component is true if the component of the left-hand type is less than the corresponding right-hand type component.
-inline bool2x4 operator<( const float2x4& lhs, const float2x4& rhs );
+inline bool2x4 operator<( const float2x4& lhs, const float2x4& rhs )
+{
+	return bool2x4(
+		lhs[0] < rhs[0],
+		lhs[1] < rhs[1]
+	);
+}
 
 /// \relates float2x4
 /// \brief Returns a bool2x4 where each component is true if the component of the left-hand type is less than or equal to the corresponding right-hand type component.
-inline bool2x4 operator<=( const float2x4& lhs, const float2x4& rhs );
+inline bool2x4 operator<=( const float2x4& lhs, const float2x4& rhs )
+{
+	return bool2x4(
+		lhs[0] <= rhs[0],
+		lhs[1] <= rhs[1]
+	);
+}
 
 /// \relates float2x4
 /// \brief Returns a bool2x4 where each component is true if the component of the left-hand type is greater than the corresponding right-hand type component.
-inline bool2x4 operator>( const float2x4& lhs, const float2x4& rhs );
+inline bool2x4 operator>( const float2x4& lhs, const float2x4& rhs )
+{
+	return bool2x4(
+		lhs[0] > rhs[0],
+		lhs[1] > rhs[1]
+	);
+}
 
 /// \relates float2x4
 /// \brief Returns a bool2x4 where each component is true if the component of the left-hand type is greater than or equal to the corresponding right-hand type component.
-inline bool2x4 operator>=( const float2x4& lhs, const float2x4& rhs );
+inline bool2x4 operator>=( const float2x4& lhs, const float2x4& rhs )
+{
+	return bool2x4(
+		lhs[0] >= rhs[0],
+		lhs[1] >= rhs[1]
+	);
+}
 
 
 // float3x2
 /// \relates float3x2
 /// \brief Returns a copy of the float3x2 that has been component-wise added by the given scalar value.
-inline float3x2 operator+( const float3x2& lhs, const float rhs );
+inline float3x2 operator+( const float3x2& lhs, const float rhs )
+{
+	return float3x2(
+		lhs[0] + rhs,
+		lhs[1] + rhs,
+		lhs[2] + rhs
+	);
+}
 
 /// \relates float3x2
 /// \brief Adds each component by the given scalar value.
-inline float3x2 operator+=( float3x2& lhs, const float rhs );
+inline float3x2 operator+=( float3x2& lhs, const float rhs )
+{
+	return ( lhs = lhs + rhs );
+}
 
 /// \relates float3x2
 /// \brief Returns a copy of the float3x2 that has been component-wise added by the corresponding component of the right-hand float3x2.
-inline float3x2 operator+( const float3x2& lhs, const float3x2& rhs );
+inline float3x2 operator+( const float3x2& lhs, const float3x2& rhs )
+{
+	return float3x2(
+		lhs[0] + rhs[0],
+		lhs[1] + rhs[1],
+		lhs[2] + rhs[2]
+	);
+}
 
 /// \relates float3x2
 /// \brief Adds each component of the float3x2 by the corresponding component of the right-hand float3x2.
-inline float3x2 operator+=( float3x2& lhs, const float3x2& rhs );
+inline float3x2 operator+=( float3x2& lhs, const float3x2& rhs )
+{
+	return ( lhs = lhs + rhs );
+}
 
 /// \relates float3x2
 /// \brief Returns a copy of the float3x2 that has been component-wise subtracted by the given scalar value.
-inline float3x2 operator-( const float3x2& lhs, const float rhs );
+inline float3x2 operator-( const float3x2& lhs, const float rhs )
+{
+	return float3x2(
+		lhs[0] - rhs,
+		lhs[1] - rhs,
+		lhs[2] - rhs
+	);
+}
 
 /// \relates float3x2
 /// \brief Subtracts each component by the given scalar value.
-inline float3x2 operator-=( float3x2& lhs, const float rhs );
+inline float3x2 operator-=( float3x2& lhs, const float rhs )
+{
+	return ( lhs = lhs - rhs );
+}
 
 /// \relates float3x2
 /// \brief Returns a copy of the float3x2 that has been component-wise subtracted by the corresponding component of the right-hand float3x2.
-inline float3x2 operator-( const float3x2& lhs, const float3x2& rhs );
+inline float3x2 operator-( const float3x2& lhs, const float3x2& rhs )
+{
+	return float3x2(
+		lhs[0] - rhs[0],
+		lhs[1] - rhs[1],
+		lhs[2] - rhs[2]
+	);
+}
 
 /// \relates float3x2
 /// \brief Subtracts each component of the float3x2 by the corresponding component of the right-hand float3x2.
-inline float3x2 operator-=( float3x2& lhs, const float3x2& rhs );
+inline float3x2 operator-=( float3x2& lhs, const float3x2& rhs )
+{
+	return ( lhs = lhs - rhs );
+}
 
 /// \relates float3x2
 /// \brief Returns a copy of the float3x2 that has been component-wise multiplied by the given scalar value.
-inline float3x2 operator*( const float3x2& lhs, const float rhs );
+inline float3x2 operator*( const float3x2& lhs, const float rhs )
+{
+	return float3x2(
+		lhs[0] * rhs,
+		lhs[1] * rhs,
+		lhs[2] * rhs
+	);
+}
 
 /// \relates float3x2
 /// \brief Multiplies each component by the given scalar value.
-inline float3x2 operator*=( float3x2& lhs, const float rhs );
+inline float3x2 operator*=( float3x2& lhs, const float rhs )
+{
+	return ( lhs = lhs * rhs );
+}
 
 /// \relates float3x2
 /// \brief Returns a copy of the matrix where each row of the left-hand matrix has been dot-producted by the corresponding column of the right-hand matrix.
-inline float3x3 operator*( const float3x2& lhs, const float2x3& rhs );
+inline float3x3 operator*( const float3x2& lhs, const float2x3& rhs )
+{
+	float2 row0 = lhs[0];
+	float2 row1 = lhs[1];
+	float2 row2 = lhs[2];
 
-/// \relates float3x2
-/// \brief Dot products each row of the left-hand matrix with the corresponding column of the right-hand matrix.
-inline float3x3 operator*=( float3x2& lhs, const float2x3& rhs );
+	float2 col0 = { rhs[0].x, rhs[1].x };
+	float2 col1 = { rhs[0].y, rhs[1].y };
+	float2 col2 = { rhs[0].z, rhs[1].z };
+
+	return float3x3(
+		row0.x * col0.x + row0.y * col0.y,
+		row0.x * col1.x + row0.y * col1.y,
+		row0.x * col2.x + row0.y * col2.y,
+
+		row1.x * col0.x + row1.y * col0.y,
+		row1.x * col1.x + row1.y * col1.y,
+		row1.x * col2.x + row1.y * col2.y,
+
+		row2.x * col0.x + row2.y * col0.y,
+		row2.x * col1.x + row2.y * col1.y,
+		row2.x * col2.x + row2.y * col2.y
+	);
+}
 
 /// \relates float3x2
 /// \brief Returns a copy of the float3x2 that has been component-wise divided by the given scalar value.
-inline float3x2 operator/( const float3x2& lhs, const float rhs );
+inline float3x2 operator/( const float3x2& lhs, const float rhs )
+{
+	return float3x2(
+		lhs[0] / rhs,
+		lhs[1] / rhs,
+		lhs[2] / rhs
+	);
+}
 
 /// \relates float3x2
 /// \brief Divides each component by the given scalar value.
-inline float3x2 operator/=( float3x2& lhs, const float rhs );
+inline float3x2 operator/=( float3x2& lhs, const float rhs )
+{
+	return ( lhs = lhs / rhs );
+}
 
 /// \relates float3x2
 /// \brief Returns a copy of the float3x2 that has been component-wise divided by the corresponding component of the right-hand float3x2.
-inline float3x2 operator/( const float3x2& lhs, const float3x2& rhs );
+inline float3x2 operator/( const float3x2& lhs, const float3x2& rhs )
+{
+	return float3x2(
+		lhs[0] / rhs[0],
+		lhs[1] / rhs[1],
+		lhs[2] / rhs[2]
+	);
+}
 
+// prefix
 /// \relates float3x2
 /// \brief Prefix increment operator.  Adds one to each component of the given float3x2 before evaluation.
-inline float3x2& operator++( float3x2& lhs );
+inline float3x2& operator++( float3x2& lhs )
+{
+	++lhs[0];
+	++lhs[1];
+	++lhs[2];
+	return lhs;
+}
 
+// postfix
 /// \relates float3x2
 /// \brief Postfix increment operator.  Adds one to each component of the given float3x2 after evaluation.
-inline float3x2& operator++( float3x2& lhs, const int );
+inline float3x2& operator++( float3x2& lhs, const int )
+{
+	lhs[0]++;
+	lhs[1]++;
+	lhs[2]++;
+	return lhs;
+}
 
+// prefix
 /// \relates float3x2
 /// \brief Prefix decrement operator.  Subtracts one from each component of the given float3x2 before evaluation.
-inline float3x2& operator--( float3x2& lhs );
+inline float3x2& operator--( float3x2& lhs )
+{
+	--lhs[0];
+	--lhs[1];
+	--lhs[2];
+	return lhs;
+}
 
+// postfix
 /// \relates float3x2
 /// \brief Postfix decrement operator.  Subtracts one from each component of the given float3x2 after evaluation.
-inline float3x2& operator--( float3x2& lhs, const int );
+inline float3x2& operator--( float3x2& lhs, const int )
+{
+	lhs[0]--;
+	lhs[1]--;
+	lhs[2]--;
+	return lhs;
+}
 
 /// \relates float3x2
 /// \brief Returns a bool3x2 where each component is true if the component of the left-hand type is less than the corresponding right-hand type component.
-inline bool3x2 operator<( const float3x2& lhs, const float3x2& rhs );
+inline bool3x2 operator<( const float3x2& lhs, const float3x2& rhs )
+{
+	return bool3x2(
+		lhs[0] < rhs[0],
+		lhs[1] < rhs[1],
+		lhs[2] < rhs[2]
+	);
+}
 
 /// \relates float3x2
 /// \brief Returns a bool3x2 where each component is true if the component of the left-hand type is less than or equal to the corresponding right-hand type component.
-inline bool3x2 operator<=( const float3x2& lhs, const float3x2& rhs );
+inline bool3x2 operator<=( const float3x2& lhs, const float3x2& rhs )
+{
+	return bool3x2(
+		lhs[0] <= rhs[0],
+		lhs[1] <= rhs[1],
+		lhs[2] <= rhs[2]
+	);
+}
 
 /// \relates float3x2
 /// \brief Returns a bool3x2 where each component is true if the component of the left-hand type is greater than the corresponding right-hand type component.
-inline bool3x2 operator>( const float3x2& lhs, const float3x2& rhs );
+inline bool3x2 operator>( const float3x2& lhs, const float3x2& rhs )
+{
+	return bool3x2(
+		lhs[0] > rhs[0],
+		lhs[1] > rhs[1],
+		lhs[2] > rhs[2]
+	);
+}
 
 /// \relates float3x2
 /// \brief Returns a bool3x2 where each component is true if the component of the left-hand type is greater than or equal to the corresponding right-hand type component.
-inline bool3x2 operator>=( const float3x2& lhs, const float3x2& rhs );
+inline bool3x2 operator>=( const float3x2& lhs, const float3x2& rhs )
+{
+	return bool3x2(
+		lhs[0] >= rhs[0],
+		lhs[1] >= rhs[1],
+		lhs[2] >= rhs[2]
+	);
+}
 
 
 // float3x3
 /// \relates float3x3
 /// \brief Returns a copy of the float3x3 that has been component-wise added by the given scalar value.
-inline float3x3 operator+( const float3x3& lhs, const float rhs );
+inline float3x3 operator+( const float3x3& lhs, const float rhs )
+{
+	return float3x3(
+		lhs[0] + rhs,
+		lhs[1] + rhs,
+		lhs[2] + rhs
+	);
+}
 
 /// \relates float3x3
 /// \brief Adds each component by the given scalar value.
-inline float3x3 operator+=( float3x3& lhs, const float rhs );
+inline float3x3 operator+=( float3x3& lhs, const float rhs )
+{
+	return ( lhs = lhs + rhs );
+}
 
 /// \relates float3x3
 /// \brief Returns a copy of the float3x3 that has been component-wise added by the corresponding component of the right-hand float3x3.
-inline float3x3 operator+( const float3x3& lhs, const float3x3& rhs );
+inline float3x3 operator+( const float3x3& lhs, const float3x3& rhs )
+{
+	return float3x3(
+		lhs[0] + rhs[0],
+		lhs[1] + rhs[1],
+		lhs[2] + rhs[2]
+	);
+}
 
 /// \relates float3x3
 /// \brief Adds each component of the float3x3 by the corresponding component of the right-hand float3x3.
-inline float3x3 operator+=( float3x3& lhs, const float3x3& rhs );
+inline float3x3 operator+=( float3x3& lhs, const float3x3& rhs )
+{
+	return ( lhs = lhs + rhs );
+}
 
 /// \relates float3x3
 /// \brief Returns a copy of the float3x3 that has been component-wise subtracted by the given scalar value.
-inline float3x3 operator-( const float3x3& lhs, const float rhs );
+inline float3x3 operator-( const float3x3& lhs, const float rhs )
+{
+	return float3x3(
+		lhs[0] - rhs,
+		lhs[1] - rhs,
+		lhs[2] - rhs
+	);
+}
 
 /// \relates float3x3
 /// \brief Subtracts each component by the given scalar value.
-inline float3x3 operator-=( float3x3& lhs, const float rhs );
+inline float3x3 operator-=( float3x3& lhs, const float rhs )
+{
+	return ( lhs = lhs - rhs );
+}
 
 /// \relates float3x3
 /// \brief Returns a copy of the float3x3 that has been component-wise subtracted by the corresponding component of the right-hand float3x3.
-inline float3x3 operator-( const float3x3& lhs, const float3x3& rhs );
+inline float3x3 operator-( const float3x3& lhs, const float3x3& rhs )
+{
+	return float3x3(
+		lhs[0] - rhs[0],
+		lhs[1] - rhs[1],
+		lhs[2] - rhs[2]
+	);
+}
 
 /// \relates float3x3
 /// \brief Subtracts each component of the float3x3 by the corresponding component of the right-hand float3x3.
-inline float3x3 operator-=( float3x3& lhs, const float3x3& rhs );
+inline float3x3 operator-=( float3x3& lhs, const float3x3& rhs )
+{
+	return ( lhs = lhs - rhs );
+}
 
 /// \relates float3x3
 /// \brief Returns a copy of the float3x3 that has been component-wise multiplied by the given scalar value.
-inline float3x3 operator*( const float3x3& lhs, const float rhs );
+inline float3x3 operator*( const float3x3& lhs, const float rhs )
+{
+	return float3x3(
+		lhs[0] * rhs,
+		lhs[1] * rhs,
+		lhs[2] * rhs
+	);
+}
 
 /// \relates float3x3
 /// \brief Multiplies each component by the given scalar value.
-inline float3x3 operator*=( float3x3& lhs, const float rhs );
+inline float3x3 operator*=( float3x3& lhs, const float rhs )
+{
+	return ( lhs = lhs * rhs );
+}
 
 /// \relates float3x3
 /// \brief Returns a copy of the matrix where each row of the left-hand matrix has been dot-producted by the corresponding column of the right-hand matrix.
-inline float3x3 operator*( const float3x3& lhs, const float3x3& rhs );
+inline float3x3 operator*( const float3x3& lhs, const float3x3& rhs )
+{
+	float3 row0 = lhs[0];
+	float3 row1 = lhs[1];
+	float3 row2 = lhs[2];
 
-/// \relates float3x3
-/// \brief Dot products each row of the left-hand matrix with the corresponding column of the right-hand matrix.
-inline float3x3 operator*=( float3x3& lhs, const float3x3& rhs );
+	float3 col0 = { rhs[0].x, rhs[1].x, rhs[2].x };
+	float3 col1 = { rhs[0].y, rhs[1].y, rhs[2].y };
+	float3 col2 = { rhs[0].z, rhs[1].z, rhs[2].z };
+
+	return float3x3(
+		row0.x * col0.x + row0.y * col0.y + row0.z * col0.z,
+		row0.x * col1.x + row0.y * col1.y + row0.z * col1.z,
+		row0.x * col2.x + row0.y * col2.y + row0.z * col2.z,
+
+		row1.x * col0.x + row1.y * col0.y + row1.z * col0.z,
+		row1.x * col1.x + row1.y * col1.y + row1.z * col1.z,
+		row1.x * col2.x + row1.y * col2.y + row1.z * col2.z,
+
+		row2.x * col0.x + row2.y * col0.y + row2.z * col0.z,
+		row2.x * col1.x + row2.y * col1.y + row2.z * col1.z,
+		row2.x * col2.x + row2.y * col2.y + row2.z * col2.z
+	);
+}
+
+inline float3x3 operator*=( float3x3& lhs, const float3x3& rhs )
+{
+	return ( lhs = lhs * rhs );
+}
 
 /// \relates float3x3
 /// \brief Returns a copy of the float3x3 that has been component-wise divided by the given scalar value.
-inline float3x3 operator/( const float3x3& lhs, const float rhs );
+inline float3x3 operator/( const float3x3& lhs, const float rhs )
+{
+	return float3x3(
+		lhs[0] / rhs,
+		lhs[1] / rhs,
+		lhs[2] / rhs
+	);
+}
 
 /// \relates float3x3
 /// \brief Divides each component by the given scalar value.
-inline float3x3 operator/=( float3x3& lhs, const float rhs );
+inline float3x3 operator/=( float3x3& lhs, const float rhs )
+{
+	return ( lhs = lhs / rhs );
+}
 
 /// \relates float3x3
 /// \brief Returns a copy of the matrix where the left-hand matrix has been mathematically multiplied by the inverse of the right-hand matrix.
-inline float3x3 operator/( const float3x3& lhs, const float3x3& rhs );
+inline float3x3 operator/( const float3x3& lhs, const float3x3& rhs )
+{
+	return lhs * inverse( rhs );
+}
 
 /// \relates float3x3
 /// \brief Multiplies the left-hand matrix by the right-hand matrix (dot product row/col style).
-inline float3x3 operator/=( float3x3& lhs, const float3x3& rhs );
+inline float3x3 operator/=( float3x3& lhs, const float3x3& rhs )
+{
+	return ( lhs = lhs / rhs );
+}
 
 /// \relates float3
 /// \brief Returns a copy of the float3 that has been component-wise multiplied by the corresponding component of the right-hand float3x3.
-inline float3 operator*( const float3x3& lhs, const float3& rhs );
+inline float3 operator*( const float3x3& lhs, const float3& rhs )
+{
+	return float3(
+		(float) dot( lhs[0], rhs ),
+		(float) dot( lhs[1], rhs ),
+		(float) dot( lhs[2], rhs )
+	);
+}
 
 /// \relates float3
 /// \brief Multiplies each component of the float3 by the corresponding component of the right-hand float3x3.
-inline float3 operator*=( float3& lhs, const float3x3& rhs );
+inline float3 operator*=( float3& lhs, const float3x3& rhs )
+{
+	return ( lhs = rhs * lhs );
+}
 
+// prefix
 /// \relates float3x3
 /// \brief Prefix increment operator.  Adds one to each component of the given float3x3 before evaluation.
-inline float3x3& operator++( float3x3& lhs );
+inline float3x3& operator++( float3x3& lhs )
+{
+	++lhs[0];
+	++lhs[1];
+	++lhs[2];
+	return lhs;
+}
 
+// postfix
 /// \relates float3x3
 /// \brief Postfix increment operator.  Adds one to each component of the given float3x3 after evaluation.
-inline float3x3& operator++( float3x3& lhs, const int );
+inline float3x3& operator++( float3x3& lhs, const int )
+{
+	lhs[0]++;
+	lhs[1]++;
+	lhs[2]++;
+	return lhs;
+}
 
+// prefix
 /// \relates float3x3
 /// \brief Prefix decrement operator.  Subtracts one from each component of the given float3x3 before evaluation.
-inline float3x3& operator--( float3x3& lhs );
+inline float3x3& operator--( float3x3& lhs )
+{
+	--lhs[0];
+	--lhs[1];
+	--lhs[2];
+	return lhs;
+}
 
+// postfix
 /// \relates float3x3
 /// \brief Postfix decrement operator.  Subtracts one from each component of the given float3x3 after evaluation.
-inline float3x3& operator--( float3x3& lhs, const int );
+inline float3x3& operator--( float3x3& lhs, const int )
+{
+	lhs[0]--;
+	lhs[1]--;
+	lhs[2]--;
+	return lhs;
+}
 
 /// \relates float3x3
 /// \brief Returns a bool3x3 where each component is true if the component of the left-hand type is less than the corresponding right-hand type component.
-inline bool3x3 operator<( const float3x3& lhs, const float3x3& rhs );
+inline bool3x3 operator<( const float3x3& lhs, const float3x3& rhs )
+{
+	return bool3x3(
+		lhs[0] < rhs[0],
+		lhs[1] < rhs[1],
+		lhs[2] < rhs[2]
+	);
+}
 
 /// \relates float3x3
 /// \brief Returns a bool3x3 where each component is true if the component of the left-hand type is less than or equal to the corresponding right-hand type component.
-inline bool3x3 operator<=( const float3x3& lhs, const float3x3& rhs );
+inline bool3x3 operator<=( const float3x3& lhs, const float3x3& rhs )
+{
+	return bool3x3(
+		lhs[0] <= rhs[0],
+		lhs[1] <= rhs[1],
+		lhs[2] <= rhs[2]
+	);
+}
 
 /// \relates float3x3
 /// \brief Returns a bool3x3 where each component is true if the component of the left-hand type is greater than the corresponding right-hand type component.
-inline bool3x3 operator>( const float3x3& lhs, const float3x3& rhs );
+inline bool3x3 operator>( const float3x3& lhs, const float3x3& rhs )
+{
+	return bool3x3(
+		lhs[0] > rhs[0],
+		lhs[1] > rhs[1],
+		lhs[2] > rhs[2]
+	);
+}
 
 /// \relates float3x3
 /// \brief Returns a bool3x3 where each component is true if the component of the left-hand type is greater than or equal to the corresponding right-hand type component.
-inline bool3x3 operator>=( const float3x3& lhs, const float3x3& rhs );
+inline bool3x3 operator>=( const float3x3& lhs, const float3x3& rhs )
+{
+	return bool3x3(
+		lhs[0] >= rhs[0],
+		lhs[1] >= rhs[1],
+		lhs[2] >= rhs[2]
+	);
+}
 
 
 // float3x4
 /// \relates float3x4
 /// \brief Returns a copy of the float3x4 that has been component-wise added by the given scalar value.
-inline float3x4 operator+( const float3x4& lhs, const float rhs );
+inline float3x4 operator+( const float3x4& lhs, const float rhs )
+{
+	return float3x4(
+		lhs[0] + rhs,
+		lhs[1] + rhs,
+		lhs[2] + rhs
+	);
+}
 
 /// \relates float3x4
 /// \brief Adds each component by the given scalar value.
-inline float3x4 operator+=( float3x4& lhs, const float rhs );
+inline float3x4 operator+=( float3x4& lhs, const float rhs )
+{
+	return ( lhs = lhs + rhs );
+}
 
 /// \relates float3x4
 /// \brief Returns a copy of the float3x4 that has been component-wise added by the corresponding component of the right-hand float3x4.
-inline float3x4 operator+( const float3x4& lhs, const float3x4& rhs );
+inline float3x4 operator+( const float3x4& lhs, const float3x4& rhs )
+{
+	return float3x4(
+		lhs[0] + rhs[0],
+		lhs[1] + rhs[1],
+		lhs[2] + rhs[2]
+	);
+}
 
 /// \relates float3x4
 /// \brief Adds each component of the float3x4 by the corresponding component of the right-hand float3x4.
-inline float3x4 operator+=( float3x4& lhs, const float3x4& rhs );
+inline float3x4 operator+=( float3x4& lhs, const float3x4& rhs )
+{
+	return ( lhs = lhs + rhs );
+}
 
 /// \relates float3x4
 /// \brief Returns a copy of the float3x4 that has been component-wise subtracted by the given scalar value.
-inline float3x4 operator-( const float3x4& lhs, const float rhs );
+inline float3x4 operator-( const float3x4& lhs, const float rhs )
+{
+	return float3x4(
+		lhs[0] - rhs,
+		lhs[1] - rhs,
+		lhs[2] - rhs
+	);
+}
 
 /// \relates float3x4
 /// \brief Subtracts each component by the given scalar value.
-inline float3x4 operator-=( float3x4& lhs, const float rhs );
+inline float3x4 operator-=( float3x4& lhs, const float rhs )
+{
+	return ( lhs = lhs - rhs );
+}
 
 /// \relates float3x4
 /// \brief Returns a copy of the float3x4 that has been component-wise subtracted by the corresponding component of the right-hand float3x4.
-inline float3x4 operator-( const float3x4& lhs, const float3x4& rhs );
+inline float3x4 operator-( const float3x4& lhs, const float3x4& rhs )
+{
+	return float3x4(
+		lhs[0] - rhs[0],
+		lhs[1] - rhs[1],
+		lhs[2] - rhs[2]
+	);
+}
 
 /// \relates float3x4
 /// \brief Subtracts each component of the float3x4 by the corresponding component of the right-hand float3x4.
-inline float3x4 operator-=( float3x4& lhs, const float3x4& rhs );
+inline float3x4 operator-=( float3x4& lhs, const float3x4& rhs )
+{
+	return ( lhs = lhs - rhs );
+}
 
 /// \relates float3x4
 /// \brief Returns a copy of the float3x4 that has been component-wise multiplied by the given scalar value.
-inline float3x4 operator*( const float3x4& lhs, const float rhs );
+inline float3x4 operator*( const float3x4& lhs, const float rhs )
+{
+	return float3x4(
+		lhs[0] * rhs,
+		lhs[1] * rhs,
+		lhs[2] * rhs
+	);
+}
 
 /// \relates float3x4
 /// \brief Multiplies each component by the given scalar value.
-inline float3x4 operator*=( float3x4& lhs, const float rhs );
+inline float3x4 operator*=( float3x4& lhs, const float rhs )
+{
+	return ( lhs = lhs * rhs );
+}
 
 /// \relates float3x4
 /// \brief Returns a copy of the matrix where each row of the left-hand matrix has been dot-producted by the corresponding column of the right-hand matrix.
-inline float3x3 operator*( const float3x4& lhs, const float4x3& rhs );
+inline float3x3 operator*( const float3x4& lhs, const float4x3& rhs )
+{
+	float4 row0 = lhs[0];
+	float4 row1 = lhs[1];
+	float4 row2 = lhs[2];
 
-/// \relates float3x4
-/// \brief Dot products each row of the left-hand matrix with the corresponding column of the right-hand matrix.
-inline float3x3 operator*=( float3x4& lhs, const float4x3& rhs );
+	float4 col0 = { rhs[0].x, rhs[1].x, rhs[2].x, rhs[3].x };
+	float4 col1 = { rhs[0].y, rhs[1].y, rhs[2].y, rhs[3].y };
+	float4 col2 = { rhs[0].z, rhs[1].z, rhs[2].z, rhs[3].z };
+
+	return float3x3(
+		row0.x * col0.x + row0.y * col0.y + row0.z * col0.z + row0.w * col0.w,
+		row0.x * col1.x + row0.y * col1.y + row0.z * col1.z + row0.w * col1.w,
+		row0.x * col2.x + row0.y * col2.y + row0.z * col2.z + row0.w * col2.w,
+
+		row1.x * col0.x + row1.y * col0.y + row1.z * col0.z + row1.w * col0.w,
+		row1.x * col1.x + row1.y * col1.y + row1.z * col1.z + row1.w * col1.w,
+		row1.x * col2.x + row1.y * col2.y + row1.z * col2.z + row1.w * col2.w,
+
+		row2.x * col0.x + row2.y * col0.y + row2.z * col0.z + row2.w * col0.w,
+		row2.x * col1.x + row2.y * col1.y + row2.z * col1.z + row2.w * col1.w,
+		row2.x * col2.x + row2.y * col2.y + row2.z * col2.z + row2.w * col2.w
+	);
+}
 
 /// \relates float3x4
 /// \brief Returns a copy of the float3x4 that has been component-wise divided by the given scalar value.
-inline float3x4 operator/( const float3x4& lhs, const float rhs );
+inline float3x4 operator/( const float3x4& lhs, const float rhs )
+{
+	return float3x4(
+		lhs[0] / rhs,
+		lhs[1] / rhs,
+		lhs[2] / rhs
+	);
+}
 
 /// \relates float3x4
 /// \brief Divides each component by the given scalar value.
-inline float3x4 operator/=( float3x4& lhs, const float rhs );
+inline float3x4 operator/=( float3x4& lhs, const float rhs )
+{
+	return ( lhs = lhs / rhs );
+}
 
 /// \relates float3x4
 /// \brief Returns a copy of the float3x4 that has been component-wise divided by the corresponding component of the right-hand float3x4.
-inline float3x4 operator/( const float3x4& lhs, const float3x4& rhs );
+inline float3x4 operator/( const float3x4& lhs, const float3x4& rhs )
+{
+	return float3x4(
+		lhs[0] / rhs[0],
+		lhs[1] / rhs[1],
+		lhs[2] / rhs[2]
+	);
+}
 
+// prefix
 /// \relates float3x4
 /// \brief Prefix increment operator.  Adds one to each component of the given float3x4 before evaluation.
-inline float3x4& operator++( float3x4& lhs );
+inline float3x4& operator++( float3x4& lhs )
+{
+	++lhs[0];
+	++lhs[1];
+	++lhs[2];
+	return lhs;
+}
 
+// postfix
 /// \relates float3x4
 /// \brief Postfix increment operator.  Adds one to each component of the given float3x4 after evaluation.
-inline float3x4& operator++( float3x4& lhs, const int );
+inline float3x4& operator++( float3x4& lhs, const int )
+{
+	lhs[0]++;
+	lhs[1]++;
+	lhs[2]++;
+	return lhs;
+}
 
+// prefix
 /// \relates float3x4
 /// \brief Prefix decrement operator.  Subtracts one from each component of the given float3x4 before evaluation.
-inline float3x4& operator--( float3x4& lhs );
+inline float3x4& operator--( float3x4& lhs )
+{
+	--lhs[0];
+	--lhs[1];
+	--lhs[2];
+	return lhs;
+}
 
+// postfix
 /// \relates float3x4
 /// \brief Postfix decrement operator.  Subtracts one from each component of the given float3x4 after evaluation.
-inline float3x4& operator--( float3x4& lhs, const int );
+inline float3x4& operator--( float3x4& lhs, const int )
+{
+	lhs[0]--;
+	lhs[1]--;
+	lhs[2]--;
+	return lhs;
+}
 
 /// \relates float3x4
 /// \brief Returns a bool3x4 where each component is true if the component of the left-hand type is less than the corresponding right-hand type component.
-inline bool3x4 operator<( const float3x4& lhs, const float3x4& rhs );
+inline bool3x4 operator<( const float3x4& lhs, const float3x4& rhs )
+{
+	return bool3x4(
+		lhs[0] < rhs[0],
+		lhs[1] < rhs[1],
+		lhs[2] < rhs[2]
+	);
+}
 
 /// \relates float3x4
 /// \brief Returns a bool3x4 where each component is true if the component of the left-hand type is less than or equal to the corresponding right-hand type component.
-inline bool3x4 operator<=( const float3x4& lhs, const float3x4& rhs );
+inline bool3x4 operator<=( const float3x4& lhs, const float3x4& rhs )
+{
+	return bool3x4(
+		lhs[0] <= rhs[0],
+		lhs[1] <= rhs[1],
+		lhs[2] <= rhs[2]
+	);
+}
 
 /// \relates float3x4
 /// \brief Returns a bool3x4 where each component is true if the component of the left-hand type is greater than the corresponding right-hand type component.
-inline bool3x4 operator>( const float3x4& lhs, const float3x4& rhs );
+inline bool3x4 operator>( const float3x4& lhs, const float3x4& rhs )
+{
+	return bool3x4(
+		lhs[0] > rhs[0],
+		lhs[1] > rhs[1],
+		lhs[2] > rhs[2]
+	);
+}
 
 /// \relates float3x4
 /// \brief Returns a bool3x4 where each component is true if the component of the left-hand type is greater than or equal to the corresponding right-hand type component.
-inline bool3x4 operator>=( const float3x4& lhs, const float3x4& rhs );
+inline bool3x4 operator>=( const float3x4& lhs, const float3x4& rhs )
+{
+	return bool3x4(
+		lhs[0] >= rhs[0],
+		lhs[1] >= rhs[1],
+		lhs[2] >= rhs[2]
+	);
+}
 
 
 // float4x2
 /// \relates float4x2
 /// \brief Returns a copy of the float4x2 that has been component-wise added by the given scalar value.
-inline float4x2 operator+( const float4x2& lhs, const float rhs );
+inline float4x2 operator+( const float4x2& lhs, const float rhs )
+{
+	return float4x2(
+		lhs[0] + rhs,
+		lhs[1] + rhs,
+		lhs[2] + rhs,
+		lhs[3] + rhs
+	);
+}
 
 /// \relates float4x2
 /// \brief Adds each component by the given scalar value.
-inline float4x2 operator+=( float4x2& lhs, const float rhs );
+inline float4x2 operator+=( float4x2& lhs, const float rhs )
+{
+	return ( lhs = lhs + rhs );
+}
 
 /// \relates float4x2
 /// \brief Returns a copy of the float4x2 that has been component-wise added by the corresponding component of the right-hand float4x2.
-inline float4x2 operator+( const float4x2& lhs, const float4x2& rhs );
+inline float4x2 operator+( const float4x2& lhs, const float4x2& rhs )
+{
+	return float4x2(
+		lhs[0] + rhs[0],
+		lhs[1] + rhs[1],
+		lhs[2] + rhs[2],
+		lhs[3] + rhs[3]
+	);
+}
 
 /// \relates float4x2
 /// \brief Adds each component of the float4x2 by the corresponding component of the right-hand float4x2.
-inline float4x2 operator+=( float4x2& lhs, const float4x2& rhs );
+inline float4x2 operator+=( float4x2& lhs, const float4x2& rhs )
+{
+	return ( lhs = lhs + rhs );
+}
 
 /// \relates float4x2
 /// \brief Returns a copy of the float4x2 that has been component-wise subtracted by the given scalar value.
-inline float4x2 operator-( const float4x2& lhs, const float rhs );
+inline float4x2 operator-( const float4x2& lhs, const float rhs )
+{
+	return float4x2(
+		lhs[0] - rhs,
+		lhs[1] - rhs,
+		lhs[2] - rhs,
+		lhs[3] - rhs
+	);
+}
 
 /// \relates float4x2
 /// \brief Subtracts each component by the given scalar value.
-inline float4x2 operator-=( float4x2& lhs, const float rhs );
+inline float4x2 operator-=( float4x2& lhs, const float rhs )
+{
+	return ( lhs = lhs - rhs );
+}
 
 /// \relates float4x2
 /// \brief Returns a copy of the float4x2 that has been component-wise subtracted by the corresponding component of the right-hand float4x2.
-inline float4x2 operator-( const float4x2& lhs, const float4x2& rhs );
+inline float4x2 operator-( const float4x2& lhs, const float4x2& rhs )
+{
+	return float4x2(
+		lhs[0] - rhs[0],
+		lhs[1] - rhs[1],
+		lhs[2] - rhs[2],
+		lhs[3] - rhs[3]
+	);
+}
 
 /// \relates float4x2
 /// \brief Subtracts each component of the float4x2 by the corresponding component of the right-hand float4x2.
-inline float4x2 operator-=( float4x2& lhs, const float4x2& rhs );
+inline float4x2 operator-=( float4x2& lhs, const float4x2& rhs )
+{
+	return ( lhs = lhs - rhs );
+}
 
 /// \relates float4x2
 /// \brief Returns a copy of the float4x2 that has been component-wise multiplied by the given scalar value.
-inline float4x2 operator*( const float4x2& lhs, const float rhs );
+inline float4x2 operator*( const float4x2& lhs, const float rhs )
+{
+	return float4x2(
+		lhs[0] * rhs,
+		lhs[1] * rhs,
+		lhs[2] * rhs,
+		lhs[3] * rhs
+	);
+}
 
 /// \relates float4x2
 /// \brief Multiplies each component by the given scalar value.
-inline float4x2 operator*=( float4x2& lhs, const float rhs );
+inline float4x2 operator*=( float4x2& lhs, const float rhs )
+{
+	return ( lhs = lhs * rhs );
+}
 
 /// \relates float4x2
 /// \brief Returns a copy of the matrix where each row of the left-hand matrix has been dot-producted by the corresponding column of the right-hand matrix.
-inline float4x4 operator*( const float4x2& lhs, const float2x4& rhs );
+inline float4x4 operator*( const float4x2& lhs, const float2x4& rhs )
+{
+	float2 row0 = lhs[0];
+	float2 row1 = lhs[1];
+	float2 row2 = lhs[2];
+	float2 row3 = lhs[3];
 
-/// \relates float4x2
-/// \brief Dot products each row of the left-hand matrix with the corresponding column of the right-hand matrix.
-inline float4x4 operator*=( float4x2& lhs, const float2x4& rhs );
+	float2 col0 = { rhs[0].x, rhs[1].x };
+	float2 col1 = { rhs[0].y, rhs[1].y };
+	float2 col2 = { rhs[0].z, rhs[1].z };
+	float2 col3 = { rhs[0].w, rhs[1].w };
+
+	return float4x4(
+		row0.x * col0.x + row0.y * col0.y,
+		row0.x * col1.x + row0.y * col1.y,
+		row0.x * col2.x + row0.y * col2.y,
+		row0.x * col3.x + row0.y * col3.y,
+
+		row1.x * col0.x + row1.y * col0.y,
+		row1.x * col1.x + row1.y * col1.y,
+		row1.x * col2.x + row1.y * col2.y,
+		row1.x * col3.x + row1.y * col3.y,
+
+		row2.x * col0.x + row2.y * col0.y,
+		row2.x * col1.x + row2.y * col1.y,
+		row2.x * col2.x + row2.y * col2.y,
+		row2.x * col3.x + row2.y * col3.y,
+
+		row3.x * col0.x + row3.y * col0.y,
+		row3.x * col1.x + row3.y * col1.y,
+		row3.x * col2.x + row3.y * col2.y,
+		row3.x * col3.x + row3.y * col3.y
+	);
+}
 
 /// \relates float4x2
 /// \brief Returns a copy of the float4x2 that has been component-wise divided by the given scalar value.
-inline float4x2 operator/( const float4x2& lhs, const float rhs );
+inline float4x2 operator/( const float4x2& lhs, const float rhs )
+{
+	return float4x2(
+		lhs[0] / rhs,
+		lhs[1] / rhs,
+		lhs[2] / rhs,
+		lhs[3] / rhs
+	);
+}
 
 /// \relates float4x2
 /// \brief Divides each component by the given scalar value.
-inline float4x2 operator/=( float4x2& lhs, const float rhs );
+inline float4x2 operator/=( float4x2& lhs, const float rhs )
+{
+	return ( lhs = lhs / rhs );
+}
 
 /// \relates float4x2
 /// \brief Returns a copy of the float4x2 that has been component-wise divided by the corresponding component of the right-hand float4x2.
-inline float4x2 operator/( const float4x2& lhs, const float4x2& rhs );
+inline float4x2 operator/( const float4x2& lhs, const float4x2& rhs )
+{
+	return float4x2(
+		lhs[0] / rhs[0],
+		lhs[1] / rhs[1],
+		lhs[2] / rhs[2],
+		lhs[3] / rhs[3]
+	);
+}
 
+// prefix
 /// \relates float4x2
 /// \brief Prefix increment operator.  Adds one to each component of the given float4x2 before evaluation.
-inline float4x2& operator++( float4x2& lhs );
+inline float4x2& operator++( float4x2& lhs )
+{
+	++lhs[0];
+	++lhs[1];
+	++lhs[2];
+	++lhs[3];
+	return lhs;
+}
 
+// postfix
 /// \relates float4x2
 /// \brief Postfix increment operator.  Adds one to each component of the given float4x2 after evaluation.
-inline float4x2& operator++( float4x2& lhs, const int );
+inline float4x2& operator++( float4x2& lhs, const int )
+{
+	lhs[0]++;
+	lhs[1]++;
+	lhs[2]++;
+	lhs[3]++;
+	return lhs;
+}
 
+// prefix
 /// \relates float4x2
 /// \brief Prefix decrement operator.  Subtracts one from each component of the given float4x2 before evaluation.
-inline float4x2& operator--( float4x2& lhs );
+inline float4x2& operator--( float4x2& lhs )
+{
+	--lhs[0];
+	--lhs[1];
+	--lhs[2];
+	--lhs[3];
+	return lhs;
+}
 
+// postfix
 /// \relates float4x2
 /// \brief Postfix decrement operator.  Subtracts one from each component of the given float4x2 after evaluation.
-inline float4x2& operator--( float4x2& lhs, const int );
+inline float4x2& operator--( float4x2& lhs, const int )
+{
+	lhs[0]--;
+	lhs[1]--;
+	lhs[2]--;
+	lhs[3]--;
+	return lhs;
+}
 
 /// \relates float4x2
 /// \brief Returns a bool4x2 where each component is true if the component of the left-hand type is less than the corresponding right-hand type component.
-inline bool4x2 operator<( const float4x2& lhs, const float4x2& rhs );
+inline bool4x2 operator<( const float4x2& lhs, const float4x2& rhs )
+{
+	return bool4x2(
+		lhs[0] < rhs[0],
+		lhs[1] < rhs[1],
+		lhs[2] < rhs[2],
+		lhs[3] < rhs[3]
+	);
+}
 
 /// \relates float4x2
 /// \brief Returns a bool4x2 where each component is true if the component of the left-hand type is less than or equal to the corresponding right-hand type component.
-inline bool4x2 operator<=( const float4x2& lhs, const float4x2& rhs );
+inline bool4x2 operator<=( const float4x2& lhs, const float4x2& rhs )
+{
+	return bool4x2(
+		lhs[0] <= rhs[0],
+		lhs[1] <= rhs[1],
+		lhs[2] <= rhs[2],
+		lhs[3] <= rhs[3]
+	);
+}
 
 /// \relates float4x2
 /// \brief Returns a bool4x2 where each component is true if the component of the left-hand type is greater than the corresponding right-hand type component.
-inline bool4x2 operator>( const float4x2& lhs, const float4x2& rhs );
+inline bool4x2 operator>( const float4x2& lhs, const float4x2& rhs )
+{
+	return bool4x2(
+		lhs[0] > rhs[0],
+		lhs[1] > rhs[1],
+		lhs[2] > rhs[2],
+		lhs[3] > rhs[3]
+	);
+}
 
 /// \relates float4x2
 /// \brief Returns a bool4x2 where each component is true if the component of the left-hand type is greater than or equal to the corresponding right-hand type component.
-inline bool4x2 operator>=( const float4x2& lhs, const float4x2& rhs );
+inline bool4x2 operator>=( const float4x2& lhs, const float4x2& rhs )
+{
+	return bool4x2(
+		lhs[0] >= rhs[0],
+		lhs[1] >= rhs[1],
+		lhs[2] >= rhs[2],
+		lhs[3] >= rhs[3]
+	);
+}
 
 
 // float4x3
 /// \relates float4x3
 /// \brief Returns a copy of the float4x3 that has been component-wise added by the given scalar value.
-inline float4x3 operator+( const float4x3& lhs, const float rhs );
+inline float4x3 operator+( const float4x3& lhs, const float rhs )
+{
+	return float4x3(
+		lhs[0] + rhs,
+		lhs[1] + rhs,
+		lhs[2] + rhs,
+		lhs[3] + rhs
+	);
+}
 
 /// \relates float4x3
 /// \brief Adds each component by the given scalar value.
-inline float4x3 operator+=( float4x3& lhs, const float rhs );
+inline float4x3 operator+=( float4x3& lhs, const float rhs )
+{
+	return ( lhs = lhs + rhs );
+}
 
 /// \relates float4x3
 /// \brief Returns a copy of the float4x3 that has been component-wise added by the corresponding component of the right-hand float4x3.
-inline float4x3 operator+( const float4x3& lhs, const float4x3& rhs );
+inline float4x3 operator+( const float4x3& lhs, const float4x3& rhs )
+{
+	return float4x3(
+		lhs[0] + rhs[0],
+		lhs[1] + rhs[1],
+		lhs[2] + rhs[2],
+		lhs[3] + rhs[3]
+	);
+}
 
 /// \relates float4x3
 /// \brief Adds each component of the float4x3 by the corresponding component of the right-hand float4x3.
-inline float4x3 operator+=( float4x3& lhs, const float4x3& rhs );
+inline float4x3 operator+=( float4x3& lhs, const float4x3& rhs )
+{
+	return ( lhs = lhs + rhs );
+}
 
 /// \relates float4x3
 /// \brief Returns a copy of the float4x3 that has been component-wise subtracted by the given scalar value.
-inline float4x3 operator-( const float4x3& lhs, const float rhs );
+inline float4x3 operator-( const float4x3& lhs, const float rhs )
+{
+	return float4x3(
+		lhs[0] - rhs,
+		lhs[1] - rhs,
+		lhs[2] - rhs,
+		lhs[3] - rhs
+	);
+}
 
 /// \relates float4x3
 /// \brief Subtracts each component by the given scalar value.
-inline float4x3 operator-=( float4x3& lhs, const float rhs );
+inline float4x3 operator-=( float4x3& lhs, const float rhs )
+{
+	return ( lhs = lhs - rhs );
+}
 
 /// \relates float4x3
 /// \brief Returns a copy of the float4x3 that has been component-wise subtracted by the corresponding component of the right-hand float4x3.
-inline float4x3 operator-( const float4x3& lhs, const float4x3& rhs );
+inline float4x3 operator-( const float4x3& lhs, const float4x3& rhs )
+{
+	return float4x3(
+		lhs[0] - rhs[0],
+		lhs[1] - rhs[1],
+		lhs[2] - rhs[2],
+		lhs[3] - rhs[3]
+	);
+}
 
 /// \relates float4x3
 /// \brief Subtracts each component of the float4x3 by the corresponding component of the right-hand float4x3.
-inline float4x3 operator-=( float4x3& lhs, const float4x3& rhs );
+inline float4x3 operator-=( float4x3& lhs, const float4x3& rhs )
+{
+	return ( lhs = lhs - rhs );
+}
 
 /// \relates float4x3
 /// \brief Returns a copy of the float4x3 that has been component-wise multiplied by the given scalar value.
-inline float4x3 operator*( const float4x3& lhs, const float rhs );
+inline float4x3 operator*( const float4x3& lhs, const float rhs )
+{
+	return float4x3(
+		lhs[0] * rhs,
+		lhs[1] * rhs,
+		lhs[2] * rhs,
+		lhs[3] * rhs
+	);
+}
 
 /// \relates float4x3
 /// \brief Multiplies each component by the given scalar value.
-inline float4x3 operator*=( float4x3& lhs, const float rhs );
+inline float4x3 operator*=( float4x3& lhs, const float rhs )
+{
+	return ( lhs = lhs * rhs );
+}
 
 /// \relates float4x3
 /// \brief Returns a copy of the matrix where each row of the left-hand matrix has been dot-producted by the corresponding column of the right-hand matrix.
-inline float4x4 operator*( const float4x3& lhs, const float3x4& rhs );
+inline float4x4 operator*( const float4x3& lhs, const float3x4& rhs )
+{
+	float3 row0 = lhs[0];
+	float3 row1 = lhs[1];
+	float3 row2 = lhs[2];
+	float3 row3 = lhs[3];
 
-/// \relates float4x3
-/// \brief Dot products each row of the left-hand matrix with the corresponding column of the right-hand matrix.
-inline float4x4 operator*=( float4x3& lhs, const float3x4& rhs );
+	float3 col0 = { rhs[0].x, rhs[1].x, rhs[2].x };
+	float3 col1 = { rhs[0].y, rhs[1].y, rhs[2].y };
+	float3 col2 = { rhs[0].z, rhs[1].z, rhs[2].z };
+	float3 col3 = { rhs[0].w, rhs[1].w, rhs[2].w };
+
+	return float4x4(
+		row0.x * col0.x + row0.y * col0.y + row0.z * col0.z,
+		row0.x * col1.x + row0.y * col1.y + row0.z * col1.z,
+		row0.x * col2.x + row0.y * col2.y + row0.z * col2.z,
+		row0.x * col3.x + row0.y * col3.y + row0.z * col3.z,
+
+		row1.x * col0.x + row1.y * col0.y + row1.z * col0.z,
+		row1.x * col1.x + row1.y * col1.y + row1.z * col1.z,
+		row1.x * col2.x + row1.y * col2.y + row1.z * col2.z,
+		row1.x * col3.x + row1.y * col3.y + row1.z * col3.z,
+
+		row2.x * col0.x + row2.y * col0.y + row2.z * col0.z,
+		row2.x * col1.x + row2.y * col1.y + row2.z * col1.z,
+		row2.x * col2.x + row2.y * col2.y + row2.z * col2.z,
+		row2.x * col3.x + row2.y * col3.y + row2.z * col3.z,
+
+		row3.x * col0.x + row3.y * col0.y + row3.z * col0.z,
+		row3.x * col1.x + row3.y * col1.y + row3.z * col1.z,
+		row3.x * col2.x + row3.y * col2.y + row3.z * col2.z,
+		row3.x * col3.x + row3.y * col3.y + row3.z * col3.z
+	);
+}
 
 /// \relates float4x3
 /// \brief Returns a copy of the float4x3 that has been component-wise divided by the given scalar value.
-inline float4x3 operator/( const float4x3& lhs, const float rhs );
+inline float4x3 operator/( const float4x3& lhs, const float rhs )
+{
+	return float4x3(
+		lhs[0] / rhs,
+		lhs[1] / rhs,
+		lhs[2] / rhs,
+		lhs[3] / rhs
+	);
+}
 
 /// \relates float4x3
 /// \brief Divides each component by the given scalar value.
-inline float4x3 operator/=( float4x3& lhs, const float rhs );
+inline float4x3 operator/=( float4x3& lhs, const float rhs )
+{
+	return ( lhs = lhs / rhs );
+}
 
 /// \relates float4x3
 /// \brief Returns a copy of the float4x3 that has been component-wise divided by the corresponding component of the right-hand float4x3.
-inline float4x3 operator/( const float4x3& lhs, const float4x3& rhs );
+inline float4x3 operator/( const float4x3& lhs, const float4x3& rhs )
+{
+	return float4x3(
+		lhs[0] / rhs[0],
+		lhs[1] / rhs[1],
+		lhs[2] / rhs[2],
+		lhs[3] / rhs[3]
+	);
+}
 
+// prefix
 /// \relates float4x3
 /// \brief Prefix increment operator.  Adds one to each component of the given float4x3 before evaluation.
-inline float4x3& operator++( float4x3& lhs );
+inline float4x3& operator++( float4x3& lhs )
+{
+	++lhs[0];
+	++lhs[1];
+	++lhs[2];
+	++lhs[3];
+	return lhs;
+}
 
+// postfix
 /// \relates float4x3
 /// \brief Postfix increment operator.  Adds one to each component of the given float4x3 after evaluation.
-inline float4x3& operator++( float4x3& lhs, const int );
+inline float4x3& operator++( float4x3& lhs, const int )
+{
+	lhs[0]++;
+	lhs[1]++;
+	lhs[2]++;
+	lhs[3]++;
+	return lhs;
+}
 
+// prefix
 /// \relates float4x3
 /// \brief Prefix decrement operator.  Subtracts one from each component of the given float4x3 before evaluation.
-inline float4x3& operator--( float4x3& lhs );
+inline float4x3& operator--( float4x3& lhs )
+{
+	--lhs[0];
+	--lhs[1];
+	--lhs[2];
+	--lhs[3];
+	return lhs;
+}
 
+// postfix
 /// \relates float4x3
 /// \brief Postfix decrement operator.  Subtracts one from each component of the given float4x3 after evaluation.
-inline float4x3& operator--( float4x3& lhs, const int );
+inline float4x3& operator--( float4x3& lhs, const int )
+{
+	lhs[0]--;
+	lhs[1]--;
+	lhs[2]--;
+	lhs[3]--;
+	return lhs;
+}
 
 /// \relates float4x3
 /// \brief Returns a bool4x3 where each component is true if the component of the left-hand type is less than the corresponding right-hand type component.
-inline bool4x3 operator<( const float4x3& lhs, const float4x3& rhs );
+inline bool4x3 operator<( const float4x3& lhs, const float4x3& rhs )
+{
+	return bool4x3(
+		lhs[0] < rhs[0],
+		lhs[1] < rhs[1],
+		lhs[2] < rhs[2],
+		lhs[3] < rhs[3]
+	);
+}
 
 /// \relates float4x3
 /// \brief Returns a bool4x3 where each component is true if the component of the left-hand type is less than or equal to the corresponding right-hand type component.
-inline bool4x3 operator<=( const float4x3& lhs, const float4x3& rhs );
+inline bool4x3 operator<=( const float4x3& lhs, const float4x3& rhs )
+{
+	return bool4x3(
+		lhs[0] <= rhs[0],
+		lhs[1] <= rhs[1],
+		lhs[2] <= rhs[2],
+		lhs[3] <= rhs[3]
+	);
+}
 
 /// \relates float4x3
 /// \brief Returns a bool4x3 where each component is true if the component of the left-hand type is greater than the corresponding right-hand type component.
-inline bool4x3 operator>( const float4x3& lhs, const float4x3& rhs );
+inline bool4x3 operator>( const float4x3& lhs, const float4x3& rhs )
+{
+	return bool4x3(
+		lhs[0] > rhs[0],
+		lhs[1] > rhs[1],
+		lhs[2] > rhs[2],
+		lhs[3] > rhs[3]
+	);
+}
 
 /// \relates float4x3
 /// \brief Returns a bool4x3 where each component is true if the component of the left-hand type is greater than or equal to the corresponding right-hand type component.
-inline bool4x3 operator>=( const float4x3& lhs, const float4x3& rhs );
+inline bool4x3 operator>=( const float4x3& lhs, const float4x3& rhs )
+{
+	return bool4x3(
+		lhs[0] >= rhs[0],
+		lhs[1] >= rhs[1],
+		lhs[2] >= rhs[2],
+		lhs[3] >= rhs[3]
+	);
+}
 
 
 // float4x4
 /// \relates float4x4
 /// \brief Returns a copy of the float4x4 that has been component-wise added by the given scalar value.
-inline float4x4 operator+( const float4x4& lhs, const float rhs );
+inline float4x4 operator+( const float4x4& lhs, const float rhs )
+{
+	return float4x4(
+		lhs[0] + rhs,
+		lhs[1] + rhs,
+		lhs[2] + rhs,
+		lhs[3] + rhs
+	);
+}
 
 /// \relates float4x4
 /// \brief Adds each component by the given scalar value.
-inline float4x4 operator+=( float4x4& lhs, const float rhs );
+inline float4x4 operator+=( float4x4& lhs, const float rhs )
+{
+	return ( lhs = lhs + rhs );
+}
 
 /// \relates float4x4
 /// \brief Returns a copy of the float4x4 that has been component-wise added by the corresponding component of the right-hand float4x4.
-inline float4x4 operator+( const float4x4& lhs, const float4x4& rhs );
+inline float4x4 operator+( const float4x4& lhs, const float4x4& rhs )
+{
+	return float4x4(
+		lhs[0] + rhs[0],
+		lhs[1] + rhs[1],
+		lhs[2] + rhs[2],
+		lhs[3] + rhs[3]
+	);
+}
 
 /// \relates float4x4
 /// \brief Adds each component of the float4x4 by the corresponding component of the right-hand float4x4.
-inline float4x4 operator+=( float4x4& lhs, const float4x4& rhs );
+inline float4x4 operator+=( float4x4& lhs, const float4x4& rhs )
+{
+	return ( lhs = lhs + rhs );
+}
 
 /// \relates float4x4
 /// \brief Returns a copy of the float4x4 that has been component-wise subtracted by the given scalar value.
-inline float4x4 operator-( const float4x4& lhs, const float rhs );
+inline float4x4 operator-( const float4x4& lhs, const float rhs )
+{
+	return float4x4(
+		lhs[0] - rhs,
+		lhs[1] - rhs,
+		lhs[2] - rhs,
+		lhs[3] - rhs
+	);
+}
 
 /// \relates float4x4
 /// \brief Subtracts each component by the given scalar value.
-inline float4x4 operator-=( float4x4& lhs, const float rhs );
+inline float4x4 operator-=( float4x4& lhs, const float rhs )
+{
+	return ( lhs = lhs - rhs );
+}
 
 /// \relates float4x4
 /// \brief Returns a copy of the float4x4 that has been component-wise subtracted by the corresponding component of the right-hand float4x4.
-inline float4x4 operator-( const float4x4& lhs, const float4x4& rhs );
+inline float4x4 operator-( const float4x4& lhs, const float4x4& rhs )
+{
+	return float4x4(
+		lhs[0] - rhs[0],
+		lhs[1] - rhs[1],
+		lhs[2] - rhs[2],
+		lhs[3] - rhs[3]
+	);
+}
 
 /// \relates float4x4
 /// \brief Subtracts each component of the float4x4 by the corresponding component of the right-hand float4x4.
-inline float4x4 operator-=( float4x4& lhs, const float4x4& rhs );
+inline float4x4 operator-=( float4x4& lhs, const float4x4& rhs )
+{
+	return ( lhs = lhs - rhs );
+}
 
 /// \relates float4x4
 /// \brief Returns a copy of the float4x4 that has been component-wise multiplied by the given scalar value.
-inline float4x4 operator*( const float4x4& lhs, const float rhs );
+inline float4x4 operator*( const float4x4& lhs, const float rhs )
+{
+	return float4x4(
+		lhs[0] * rhs,
+		lhs[1] * rhs,
+		lhs[2] * rhs,
+		lhs[3] * rhs
+	);
+}
 
 /// \relates float4x4
 /// \brief Multiplies each component by the given scalar value.
-inline float4x4 operator*=( float4x4& lhs, const float rhs );
+inline float4x4 operator*=( float4x4& lhs, const float rhs )
+{
+	return ( lhs = lhs * rhs );
+}
 
 /// \relates float4x4
 /// \brief Returns a copy of the matrix where each row of the left-hand matrix has been dot-producted by the corresponding column of the right-hand matrix.
-inline float4x4 operator*( const float4x4& lhs, const float4x4& rhs );
+inline float4x4 operator*( const float4x4& lhs, const float4x4& rhs )
+{
+	float4 row0 = lhs[0];
+	float4 row1 = lhs[1];
+	float4 row2 = lhs[2];
+	float4 row3 = lhs[3];
 
-/// \relates float4x4
-/// \brief Dot products each row of the left-hand matrix with the corresponding column of the right-hand matrix.
-inline float4x4 operator*=( float4x4& lhs, const float4x4& rhs );
+	float4 col0 = { rhs[0].x, rhs[1].x, rhs[2].x, rhs[3].x };
+	float4 col1 = { rhs[0].y, rhs[1].y, rhs[2].y, rhs[3].y };
+	float4 col2 = { rhs[0].z, rhs[1].z, rhs[2].z, rhs[3].z };
+	float4 col3 = { rhs[0].w, rhs[1].w, rhs[2].w, rhs[3].w };
+
+	return float4x4(
+		row0.x * col0.x + row0.y * col0.y + row0.z * col0.z + row0.w * col0.w,
+		row0.x * col1.x + row0.y * col1.y + row0.z * col1.z + row0.w * col1.w,
+		row0.x * col2.x + row0.y * col2.y + row0.z * col2.z + row0.w * col2.w,
+		row0.x * col3.x + row0.y * col3.y + row0.z * col3.z + row0.w * col3.w,
+
+		row1.x * col0.x + row1.y * col0.y + row1.z * col0.z + row1.w * col0.w,
+		row1.x * col1.x + row1.y * col1.y + row1.z * col1.z + row1.w * col1.w,
+		row1.x * col2.x + row1.y * col2.y + row1.z * col2.z + row1.w * col2.w,
+		row1.x * col3.x + row1.y * col3.y + row1.z * col3.z + row1.w * col3.w,
+
+		row2.x * col0.x + row2.y * col0.y + row2.z * col0.z + row2.w * col0.w,
+		row2.x * col1.x + row2.y * col1.y + row2.z * col1.z + row2.w * col1.w,
+		row2.x * col2.x + row2.y * col2.y + row2.z * col2.z + row2.w * col2.w,
+		row2.x * col3.x + row2.y * col3.y + row2.z * col3.z + row2.w * col3.w,
+
+		row3.x * col0.x + row3.y * col0.y + row3.z * col0.z + row3.w * col0.w,
+		row3.x * col1.x + row3.y * col1.y + row3.z * col1.z + row3.w * col1.w,
+		row3.x * col2.x + row3.y * col2.y + row3.z * col2.z + row3.w * col2.w,
+		row3.x * col3.x + row3.y * col3.y + row3.z * col3.z + row3.w * col3.w
+	);
+}
+
+inline float4x4 operator*=( float4x4& lhs, const float4x4& rhs )
+{
+	return ( lhs = lhs * rhs );
+}
 
 /// \relates float4x4
 /// \brief Returns a copy of the float4x4 that has been component-wise divided by the given scalar value.
-inline float4x4 operator/( const float4x4& lhs, const float rhs );
+inline float4x4 operator/( const float4x4& lhs, const float rhs )
+{
+	return float4x4(
+		lhs[0] / rhs,
+		lhs[1] / rhs,
+		lhs[2] / rhs,
+		lhs[3] / rhs
+	);
+}
 
 /// \relates float4x4
 /// \brief Divides each component by the given scalar value.
-inline float4x4 operator/=( float4x4& lhs, const float rhs );
+inline float4x4 operator/=( float4x4& lhs, const float rhs )
+{
+	return ( lhs = lhs / rhs );
+}
 
 /// \relates float4x4
 /// \brief Returns a copy of the matrix where the left-hand matrix has been mathematically multiplied by the inverse of the right-hand matrix.
-inline float4x4 operator/( const float4x4& lhs, const float4x4& rhs );
+inline float4x4 operator/( const float4x4& lhs, const float4x4& rhs )
+{
+	return lhs * inverse( rhs );
+}
 
 /// \relates float4x4
 /// \brief Multiplies the left-hand matrix by the right-hand matrix (dot product row/col style).
-inline float4x4 operator/=( float4x4& lhs, const float4x4& rhs );
+inline float4x4 operator/=( float4x4& lhs, const float4x4& rhs )
+{
+	return ( lhs = lhs / rhs );
+}
 
 /// \relates float4
 /// \brief Returns a copy of the float4 that has been component-wise multiplied by the corresponding component of the right-hand float4x4.
-inline float4 operator*( const float4x4& lhs, const float4& rhs );
+inline float4 operator*( const float4x4& lhs, const float4& rhs )
+{
+	return float4(
+		(float) dot( lhs[0], rhs ),
+		(float) dot( lhs[1], rhs ),
+		(float) dot( lhs[2], rhs ),
+		(float) dot( lhs[3], rhs )
+	);
+}
 
 /// \relates float4
 /// \brief Multiplies each component of the float4 by the corresponding component of the right-hand float4x4.
-inline float4 operator*=( float4& lhs, const float4x4& rhs );
+inline float4 operator*=( float4& lhs, const float4x4& rhs )
+{
+	return ( lhs = rhs * lhs );
+}
 
+// prefix
 /// \relates float4x4
 /// \brief Prefix increment operator.  Adds one to each component of the given float4x4 before evaluation.
-inline float4x4& operator++( float4x4& lhs );
+inline float4x4& operator++( float4x4& lhs )
+{
+	++lhs[0];
+	++lhs[1];
+	++lhs[2];
+	++lhs[3];
+	return lhs;
+}
 
+// postfix
 /// \relates float4x4
 /// \brief Postfix increment operator.  Adds one to each component of the given float4x4 after evaluation.
-inline float4x4& operator++( float4x4& lhs, const int );
+inline float4x4& operator++( float4x4& lhs, const int )
+{
+	lhs[0]++;
+	lhs[1]++;
+	lhs[2]++;
+	lhs[3]++;
+	return lhs;
+}
 
+// prefix
 /// \relates float4x4
 /// \brief Prefix decrement operator.  Subtracts one from each component of the given float4x4 before evaluation.
-inline float4x4& operator--( float4x4& lhs );
+inline float4x4& operator--( float4x4& lhs )
+{
+	--lhs[0];
+	--lhs[1];
+	--lhs[2];
+	--lhs[3];
+	return lhs;
+}
 
+// postfix
 /// \relates float4x4
 /// \brief Postfix decrement operator.  Subtracts one from each component of the given float4x4 after evaluation.
-inline float4x4& operator--( float4x4& lhs, const int );
+inline float4x4& operator--( float4x4& lhs, const int )
+{
+	lhs[0]--;
+	lhs[1]--;
+	lhs[2]--;
+	lhs[3]--;
+	return lhs;
+}
 
 /// \relates float4x4
 /// \brief Returns a bool4x4 where each component is true if the component of the left-hand type is less than the corresponding right-hand type component.
-inline bool4x4 operator<( const float4x4& lhs, const float4x4& rhs );
+inline bool4x4 operator<( const float4x4& lhs, const float4x4& rhs )
+{
+	return bool4x4(
+		lhs[0] < rhs[0],
+		lhs[1] < rhs[1],
+		lhs[2] < rhs[2],
+		lhs[3] < rhs[3]
+	);
+}
 
 /// \relates float4x4
 /// \brief Returns a bool4x4 where each component is true if the component of the left-hand type is less than or equal to the corresponding right-hand type component.
-inline bool4x4 operator<=( const float4x4& lhs, const float4x4& rhs );
+inline bool4x4 operator<=( const float4x4& lhs, const float4x4& rhs )
+{
+	return bool4x4(
+		lhs[0] <= rhs[0],
+		lhs[1] <= rhs[1],
+		lhs[2] <= rhs[2],
+		lhs[3] <= rhs[3]
+	);
+}
 
 /// \relates float4x4
 /// \brief Returns a bool4x4 where each component is true if the component of the left-hand type is greater than the corresponding right-hand type component.
-inline bool4x4 operator>( const float4x4& lhs, const float4x4& rhs );
+inline bool4x4 operator>( const float4x4& lhs, const float4x4& rhs )
+{
+	return bool4x4(
+		lhs[0] > rhs[0],
+		lhs[1] > rhs[1],
+		lhs[2] > rhs[2],
+		lhs[3] > rhs[3]
+	);
+}
 
 /// \relates float4x4
 /// \brief Returns a bool4x4 where each component is true if the component of the left-hand type is greater than or equal to the corresponding right-hand type component.
-inline bool4x4 operator>=( const float4x4& lhs, const float4x4& rhs );
+inline bool4x4 operator>=( const float4x4& lhs, const float4x4& rhs )
+{
+	return bool4x4(
+		lhs[0] >= rhs[0],
+		lhs[1] >= rhs[1],
+		lhs[2] >= rhs[2],
+		lhs[3] >= rhs[3]
+	);
+}
 
 
 // double2x2
 /// \relates double2x2
 /// \brief Returns a copy of the double2x2 that has been component-wise added by the given scalar value.
-inline double2x2 operator+( const double2x2& lhs, const double rhs );
+inline double2x2 operator+( const double2x2& lhs, const double rhs )
+{
+	return double2x2(
+		lhs[0] + rhs,
+		lhs[1] + rhs
+	);
+}
 
 /// \relates double2x2
 /// \brief Adds each component by the given scalar value.
-inline double2x2 operator+=( double2x2& lhs, const double rhs );
+inline double2x2 operator+=( double2x2& lhs, const double rhs )
+{
+	return ( lhs = lhs + rhs );
+}
 
 /// \relates double2x2
 /// \brief Returns a copy of the double2x2 that has been component-wise added by the corresponding component of the right-hand double2x2.
-inline double2x2 operator+( const double2x2& lhs, const double2x2& rhs );
+inline double2x2 operator+( const double2x2& lhs, const double2x2& rhs )
+{
+	return double2x2(
+		lhs[0] + rhs[0],
+		lhs[1] + rhs[1]
+	);
+}
 
 /// \relates double2x2
 /// \brief Adds each component of the double2x2 by the corresponding component of the right-hand double2x2.
-inline double2x2 operator+=( double2x2& lhs, const double2x2& rhs );
+inline double2x2 operator+=( double2x2& lhs, const double2x2& rhs )
+{
+	return ( lhs = lhs + rhs );
+}
 
 /// \relates double2x2
 /// \brief Returns a copy of the double2x2 that has been component-wise subtracted by the given scalar value.
-inline double2x2 operator-( const double2x2& lhs, const double rhs );
+inline double2x2 operator-( const double2x2& lhs, const double rhs )
+{
+	return double2x2(
+		lhs[0] - rhs,
+		lhs[1] - rhs
+	);
+}
 
 /// \relates double2x2
 /// \brief Subtracts each component by the given scalar value.
-inline double2x2 operator-=( double2x2& lhs, const double rhs );
+inline double2x2 operator-=( double2x2& lhs, const double rhs )
+{
+	return ( lhs = lhs - rhs );
+}
 
 /// \relates double2x2
 /// \brief Returns a copy of the double2x2 that has been component-wise subtracted by the corresponding component of the right-hand double2x2.
-inline double2x2 operator-( const double2x2& lhs, const double2x2& rhs );
+inline double2x2 operator-( const double2x2& lhs, const double2x2& rhs )
+{
+	return double2x2(
+		lhs[0] - rhs[0],
+		lhs[1] - rhs[1]
+	);
+}
 
 /// \relates double2x2
 /// \brief Subtracts each component of the double2x2 by the corresponding component of the right-hand double2x2.
-inline double2x2 operator-=( double2x2& lhs, const double2x2& rhs );
+inline double2x2 operator-=( double2x2& lhs, const double2x2& rhs )
+{
+	return ( lhs = lhs - rhs );
+}
 
 /// \relates double2x2
 /// \brief Returns a copy of the double2x2 that has been component-wise multiplied by the given scalar value.
-inline double2x2 operator*( const double2x2& lhs, const double rhs );
+inline double2x2 operator*( const double2x2& lhs, const double rhs )
+{
+	return double2x2(
+		lhs[0] * rhs,
+		lhs[1] * rhs
+	);
+}
 
 /// \relates double2x2
 /// \brief Multiplies each component by the given scalar value.
-inline double2x2 operator*=( double2x2& lhs, const double rhs );
+inline double2x2 operator*=( double2x2& lhs, const double rhs )
+{
+	return ( lhs = lhs * rhs );
+}
 
 /// \relates double2x2
 /// \brief Returns a copy of the matrix where each row of the left-hand matrix has been dot-producted by the corresponding column of the right-hand matrix.
-inline double2x2 operator*( const double2x2& lhs, const double2x2& rhs );
+inline double2x2 operator*( const double2x2& lhs, const double2x2& rhs )
+{
+	double2 row0 = lhs[0];
+	double2 row1 = lhs[1];
 
-/// \relates double2x2
-/// \brief Dot products each row of the left-hand matrix with the corresponding column of the right-hand matrix.
-inline double2x2 operator*=( double2x2& lhs, const double2x2& rhs );
+	double2 col0 = { rhs[0].x, rhs[1].x };
+	double2 col1 = { rhs[0].y, rhs[1].y };
+
+	return double2x2(
+		row0.x * col0.x + row0.y * col0.y,
+		row0.x * col1.x + row0.y * col1.y,
+
+		row1.x * col0.x + row1.y * col0.y,
+		row1.x * col1.x + row1.y * col1.y
+	);
+}
+
+inline double2x2 operator*=( double2x2& lhs, const double2x2& rhs )
+{
+	return ( lhs = lhs * rhs );
+}
 
 /// \relates double2x2
 /// \brief Returns a copy of the double2x2 that has been component-wise divided by the given scalar value.
-inline double2x2 operator/( const double2x2& lhs, const double rhs );
+inline double2x2 operator/( const double2x2& lhs, const double rhs )
+{
+	return double2x2(
+		lhs[0] / rhs,
+		lhs[1] / rhs
+	);
+}
 
 /// \relates double2x2
 /// \brief Divides each component by the given scalar value.
-inline double2x2 operator/=( double2x2& lhs, const double rhs );
+inline double2x2 operator/=( double2x2& lhs, const double rhs )
+{
+	return ( lhs = lhs / rhs );
+}
 
 /// \relates double2x2
 /// \brief Returns a copy of the matrix where the left-hand matrix has been mathematically multiplied by the inverse of the right-hand matrix.
-inline double2x2 operator/( const double2x2& lhs, const double2x2& rhs );
+inline double2x2 operator/( const double2x2& lhs, const double2x2& rhs )
+{
+	return lhs * inverse( rhs );
+}
 
 /// \relates double2x2
 /// \brief Multiplies the left-hand matrix by the right-hand matrix (dot product row/col style).
-inline double2x2 operator/=( double2x2& lhs, const double2x2& rhs );
+inline double2x2 operator/=( double2x2& lhs, const double2x2& rhs )
+{
+	return ( lhs = lhs / rhs );
+}
 
 /// \relates double2
 /// \brief Returns a copy of the double2 that has been component-wise multiplied by the corresponding component of the right-hand double2x2.
-inline double2 operator*( const double2x2& lhs, const double2& rhs );
+inline double2 operator*( const double2x2& lhs, const double2& rhs )
+{
+	return double2(
+		(double) dot( lhs[0], rhs ),
+		(double) dot( lhs[1], rhs )
+	);
+}
 
 /// \relates double2
 /// \brief Multiplies each component of the double2 by the corresponding component of the right-hand double2x2.
-inline double2 operator*=( double2& lhs, const double2x2& rhs );
+inline double2 operator*=( double2& lhs, const double2x2& rhs )
+{
+	return ( lhs = rhs * lhs );
+}
 
+// prefix
 /// \relates double2x2
 /// \brief Prefix increment operator.  Adds one to each component of the given double2x2 before evaluation.
-inline double2x2& operator++( double2x2& lhs );
+inline double2x2& operator++( double2x2& lhs )
+{
+	++lhs[0];
+	++lhs[1];
+	return lhs;
+}
 
+// postfix
 /// \relates double2x2
 /// \brief Postfix increment operator.  Adds one to each component of the given double2x2 after evaluation.
-inline double2x2& operator++( double2x2& lhs, const int );
+inline double2x2& operator++( double2x2& lhs, const int )
+{
+	lhs[0]++;
+	lhs[1]++;
+	return lhs;
+}
 
+// prefix
 /// \relates double2x2
 /// \brief Prefix decrement operator.  Subtracts one from each component of the given double2x2 before evaluation.
-inline double2x2& operator--( double2x2& lhs );
+inline double2x2& operator--( double2x2& lhs )
+{
+	--lhs[0];
+	--lhs[1];
+	return lhs;
+}
 
+// postfix
 /// \relates double2x2
 /// \brief Postfix decrement operator.  Subtracts one from each component of the given double2x2 after evaluation.
-inline double2x2& operator--( double2x2& lhs, const int );
+inline double2x2& operator--( double2x2& lhs, const int )
+{
+	lhs[0]--;
+	lhs[1]--;
+	return lhs;
+}
 
 /// \relates double2x2
 /// \brief Returns a bool2x2 where each component is true if the component of the left-hand type is less than the corresponding right-hand type component.
-inline bool2x2 operator<( const double2x2& lhs, const double2x2& rhs );
+inline bool2x2 operator<( const double2x2& lhs, const double2x2& rhs )
+{
+	return bool2x2(
+		lhs[0] < rhs[0],
+		lhs[1] < rhs[1]
+	);
+}
 
 /// \relates double2x2
 /// \brief Returns a bool2x2 where each component is true if the component of the left-hand type is less than or equal to the corresponding right-hand type component.
-inline bool2x2 operator<=( const double2x2& lhs, const double2x2& rhs );
+inline bool2x2 operator<=( const double2x2& lhs, const double2x2& rhs )
+{
+	return bool2x2(
+		lhs[0] <= rhs[0],
+		lhs[1] <= rhs[1]
+	);
+}
 
 /// \relates double2x2
 /// \brief Returns a bool2x2 where each component is true if the component of the left-hand type is greater than the corresponding right-hand type component.
-inline bool2x2 operator>( const double2x2& lhs, const double2x2& rhs );
+inline bool2x2 operator>( const double2x2& lhs, const double2x2& rhs )
+{
+	return bool2x2(
+		lhs[0] > rhs[0],
+		lhs[1] > rhs[1]
+	);
+}
 
 /// \relates double2x2
 /// \brief Returns a bool2x2 where each component is true if the component of the left-hand type is greater than or equal to the corresponding right-hand type component.
-inline bool2x2 operator>=( const double2x2& lhs, const double2x2& rhs );
+inline bool2x2 operator>=( const double2x2& lhs, const double2x2& rhs )
+{
+	return bool2x2(
+		lhs[0] >= rhs[0],
+		lhs[1] >= rhs[1]
+	);
+}
 
 
 // double2x3
 /// \relates double2x3
 /// \brief Returns a copy of the double2x3 that has been component-wise added by the given scalar value.
-inline double2x3 operator+( const double2x3& lhs, const double rhs );
+inline double2x3 operator+( const double2x3& lhs, const double rhs )
+{
+	return double2x3(
+		lhs[0] + rhs,
+		lhs[1] + rhs
+	);
+}
 
 /// \relates double2x3
 /// \brief Adds each component by the given scalar value.
-inline double2x3 operator+=( double2x3& lhs, const double rhs );
+inline double2x3 operator+=( double2x3& lhs, const double rhs )
+{
+	return ( lhs = lhs + rhs );
+}
 
 /// \relates double2x3
 /// \brief Returns a copy of the double2x3 that has been component-wise added by the corresponding component of the right-hand double2x3.
-inline double2x3 operator+( const double2x3& lhs, const double2x3& rhs );
+inline double2x3 operator+( const double2x3& lhs, const double2x3& rhs )
+{
+	return double2x3(
+		lhs[0] + rhs[0],
+		lhs[1] + rhs[1]
+	);
+}
 
 /// \relates double2x3
 /// \brief Adds each component of the double2x3 by the corresponding component of the right-hand double2x3.
-inline double2x3 operator+=( double2x3& lhs, const double2x3& rhs );
+inline double2x3 operator+=( double2x3& lhs, const double2x3& rhs )
+{
+	return ( lhs = lhs + rhs );
+}
 
 /// \relates double2x3
 /// \brief Returns a copy of the double2x3 that has been component-wise subtracted by the given scalar value.
-inline double2x3 operator-( const double2x3& lhs, const double rhs );
+inline double2x3 operator-( const double2x3& lhs, const double rhs )
+{
+	return double2x3(
+		lhs[0] - rhs,
+		lhs[1] - rhs
+	);
+}
 
 /// \relates double2x3
 /// \brief Subtracts each component by the given scalar value.
-inline double2x3 operator-=( double2x3& lhs, const double rhs );
+inline double2x3 operator-=( double2x3& lhs, const double rhs )
+{
+	return ( lhs = lhs - rhs );
+}
 
 /// \relates double2x3
 /// \brief Returns a copy of the double2x3 that has been component-wise subtracted by the corresponding component of the right-hand double2x3.
-inline double2x3 operator-( const double2x3& lhs, const double2x3& rhs );
+inline double2x3 operator-( const double2x3& lhs, const double2x3& rhs )
+{
+	return double2x3(
+		lhs[0] - rhs[0],
+		lhs[1] - rhs[1]
+	);
+}
 
 /// \relates double2x3
 /// \brief Subtracts each component of the double2x3 by the corresponding component of the right-hand double2x3.
-inline double2x3 operator-=( double2x3& lhs, const double2x3& rhs );
+inline double2x3 operator-=( double2x3& lhs, const double2x3& rhs )
+{
+	return ( lhs = lhs - rhs );
+}
 
 /// \relates double2x3
 /// \brief Returns a copy of the double2x3 that has been component-wise multiplied by the given scalar value.
-inline double2x3 operator*( const double2x3& lhs, const double rhs );
+inline double2x3 operator*( const double2x3& lhs, const double rhs )
+{
+	return double2x3(
+		lhs[0] * rhs,
+		lhs[1] * rhs
+	);
+}
 
 /// \relates double2x3
 /// \brief Multiplies each component by the given scalar value.
-inline double2x3 operator*=( double2x3& lhs, const double rhs );
+inline double2x3 operator*=( double2x3& lhs, const double rhs )
+{
+	return ( lhs = lhs * rhs );
+}
 
 /// \relates double2x3
 /// \brief Returns a copy of the matrix where each row of the left-hand matrix has been dot-producted by the corresponding column of the right-hand matrix.
-inline double2x2 operator*( const double2x3& lhs, const double3x2& rhs );
+inline double2x2 operator*( const double2x3& lhs, const double3x2& rhs )
+{
+	double3 row0 = lhs[0];
+	double3 row1 = lhs[1];
 
-/// \relates double2x3
-/// \brief Dot products each row of the left-hand matrix with the corresponding column of the right-hand matrix.
-inline double2x2 operator*=( double2x3& lhs, const double3x2& rhs );
+	double3 col0 = { rhs[0].x, rhs[1].x, rhs[2].x };
+	double3 col1 = { rhs[0].y, rhs[1].y, rhs[2].y };
+
+	return double2x2(
+		row0.x * col0.x + row0.y * col0.y + row0.z * col0.z,
+		row0.x * col1.x + row0.y * col1.y + row0.z * col1.z,
+
+		row1.x * col0.x + row1.y * col0.y + row1.z * col0.z,
+		row1.x * col1.x + row1.y * col1.y + row1.z * col1.z
+	);
+}
 
 /// \relates double2x3
 /// \brief Returns a copy of the double2x3 that has been component-wise divided by the given scalar value.
-inline double2x3 operator/( const double2x3& lhs, const double rhs );
+inline double2x3 operator/( const double2x3& lhs, const double rhs )
+{
+	return double2x3(
+		lhs[0] / rhs,
+		lhs[1] / rhs
+	);
+}
 
 /// \relates double2x3
 /// \brief Divides each component by the given scalar value.
-inline double2x3 operator/=( double2x3& lhs, const double rhs );
+inline double2x3 operator/=( double2x3& lhs, const double rhs )
+{
+	return ( lhs = lhs / rhs );
+}
 
 /// \relates double2x3
 /// \brief Returns a copy of the double2x3 that has been component-wise divided by the corresponding component of the right-hand double2x3.
-inline double2x3 operator/( const double2x3& lhs, const double2x3& rhs );
+inline double2x3 operator/( const double2x3& lhs, const double2x3& rhs )
+{
+	return double2x3(
+		lhs[0] / rhs[0],
+		lhs[1] / rhs[1]
+	);
+}
 
+// prefix
 /// \relates double2x3
 /// \brief Prefix increment operator.  Adds one to each component of the given double2x3 before evaluation.
-inline double2x3& operator++( double2x3& lhs );
+inline double2x3& operator++( double2x3& lhs )
+{
+	++lhs[0];
+	++lhs[1];
+	return lhs;
+}
 
+// postfix
 /// \relates double2x3
 /// \brief Postfix increment operator.  Adds one to each component of the given double2x3 after evaluation.
-inline double2x3& operator++( double2x3& lhs, const int );
+inline double2x3& operator++( double2x3& lhs, const int )
+{
+	lhs[0]++;
+	lhs[1]++;
+	return lhs;
+}
 
+// prefix
 /// \relates double2x3
 /// \brief Prefix decrement operator.  Subtracts one from each component of the given double2x3 before evaluation.
-inline double2x3& operator--( double2x3& lhs );
+inline double2x3& operator--( double2x3& lhs )
+{
+	--lhs[0];
+	--lhs[1];
+	return lhs;
+}
 
+// postfix
 /// \relates double2x3
 /// \brief Postfix decrement operator.  Subtracts one from each component of the given double2x3 after evaluation.
-inline double2x3& operator--( double2x3& lhs, const int );
+inline double2x3& operator--( double2x3& lhs, const int )
+{
+	lhs[0]--;
+	lhs[1]--;
+	return lhs;
+}
 
 /// \relates double2x3
 /// \brief Returns a bool2x3 where each component is true if the component of the left-hand type is less than the corresponding right-hand type component.
-inline bool2x3 operator<( const double2x3& lhs, const double2x3& rhs );
+inline bool2x3 operator<( const double2x3& lhs, const double2x3& rhs )
+{
+	return bool2x3(
+		lhs[0] < rhs[0],
+		lhs[1] < rhs[1]
+	);
+}
 
 /// \relates double2x3
 /// \brief Returns a bool2x3 where each component is true if the component of the left-hand type is less than or equal to the corresponding right-hand type component.
-inline bool2x3 operator<=( const double2x3& lhs, const double2x3& rhs );
+inline bool2x3 operator<=( const double2x3& lhs, const double2x3& rhs )
+{
+	return bool2x3(
+		lhs[0] <= rhs[0],
+		lhs[1] <= rhs[1]
+	);
+}
 
 /// \relates double2x3
 /// \brief Returns a bool2x3 where each component is true if the component of the left-hand type is greater than the corresponding right-hand type component.
-inline bool2x3 operator>( const double2x3& lhs, const double2x3& rhs );
+inline bool2x3 operator>( const double2x3& lhs, const double2x3& rhs )
+{
+	return bool2x3(
+		lhs[0] > rhs[0],
+		lhs[1] > rhs[1]
+	);
+}
 
 /// \relates double2x3
 /// \brief Returns a bool2x3 where each component is true if the component of the left-hand type is greater than or equal to the corresponding right-hand type component.
-inline bool2x3 operator>=( const double2x3& lhs, const double2x3& rhs );
+inline bool2x3 operator>=( const double2x3& lhs, const double2x3& rhs )
+{
+	return bool2x3(
+		lhs[0] >= rhs[0],
+		lhs[1] >= rhs[1]
+	);
+}
 
 
 // double2x4
 /// \relates double2x4
 /// \brief Returns a copy of the double2x4 that has been component-wise added by the given scalar value.
-inline double2x4 operator+( const double2x4& lhs, const double rhs );
+inline double2x4 operator+( const double2x4& lhs, const double rhs )
+{
+	return double2x4(
+		lhs[0] + rhs,
+		lhs[1] + rhs
+	);
+}
 
 /// \relates double2x4
 /// \brief Adds each component by the given scalar value.
-inline double2x4 operator+=( double2x4& lhs, const double rhs );
+inline double2x4 operator+=( double2x4& lhs, const double rhs )
+{
+	return ( lhs = lhs + rhs );
+}
 
 /// \relates double2x4
 /// \brief Returns a copy of the double2x4 that has been component-wise added by the corresponding component of the right-hand double2x4.
-inline double2x4 operator+( const double2x4& lhs, const double2x4& rhs );
+inline double2x4 operator+( const double2x4& lhs, const double2x4& rhs )
+{
+	return double2x4(
+		lhs[0] + rhs[0],
+		lhs[1] + rhs[1]
+	);
+}
 
 /// \relates double2x4
 /// \brief Adds each component of the double2x4 by the corresponding component of the right-hand double2x4.
-inline double2x4 operator+=( double2x4& lhs, const double2x4& rhs );
+inline double2x4 operator+=( double2x4& lhs, const double2x4& rhs )
+{
+	return ( lhs = lhs + rhs );
+}
 
 /// \relates double2x4
 /// \brief Returns a copy of the double2x4 that has been component-wise subtracted by the given scalar value.
-inline double2x4 operator-( const double2x4& lhs, const double rhs );
+inline double2x4 operator-( const double2x4& lhs, const double rhs )
+{
+	return double2x4(
+		lhs[0] - rhs,
+		lhs[1] - rhs
+	);
+}
 
 /// \relates double2x4
 /// \brief Subtracts each component by the given scalar value.
-inline double2x4 operator-=( double2x4& lhs, const double rhs );
+inline double2x4 operator-=( double2x4& lhs, const double rhs )
+{
+	return ( lhs = lhs - rhs );
+}
 
 /// \relates double2x4
 /// \brief Returns a copy of the double2x4 that has been component-wise subtracted by the corresponding component of the right-hand double2x4.
-inline double2x4 operator-( const double2x4& lhs, const double2x4& rhs );
+inline double2x4 operator-( const double2x4& lhs, const double2x4& rhs )
+{
+	return double2x4(
+		lhs[0] - rhs[0],
+		lhs[1] - rhs[1]
+	);
+}
 
 /// \relates double2x4
 /// \brief Subtracts each component of the double2x4 by the corresponding component of the right-hand double2x4.
-inline double2x4 operator-=( double2x4& lhs, const double2x4& rhs );
+inline double2x4 operator-=( double2x4& lhs, const double2x4& rhs )
+{
+	return ( lhs = lhs - rhs );
+}
 
 /// \relates double2x4
 /// \brief Returns a copy of the double2x4 that has been component-wise multiplied by the given scalar value.
-inline double2x4 operator*( const double2x4& lhs, const double rhs );
+inline double2x4 operator*( const double2x4& lhs, const double rhs )
+{
+	return double2x4(
+		lhs[0] * rhs,
+		lhs[1] * rhs
+	);
+}
 
 /// \relates double2x4
 /// \brief Multiplies each component by the given scalar value.
-inline double2x4 operator*=( double2x4& lhs, const double rhs );
+inline double2x4 operator*=( double2x4& lhs, const double rhs )
+{
+	return ( lhs = lhs * rhs );
+}
 
 /// \relates double2x4
 /// \brief Returns a copy of the matrix where each row of the left-hand matrix has been dot-producted by the corresponding column of the right-hand matrix.
-inline double2x2 operator*( const double2x4& lhs, const double4x2& rhs );
+inline double2x2 operator*( const double2x4& lhs, const double4x2& rhs )
+{
+	double4 row0 = lhs[0];
+	double4 row1 = lhs[1];
 
-/// \relates double2x4
-/// \brief Dot products each row of the left-hand matrix with the corresponding column of the right-hand matrix.
-inline double2x2 operator*=( double2x4& lhs, const double4x2& rhs );
+	double4 col0 = { rhs[0].x, rhs[1].x, rhs[2].x, rhs[3].x };
+	double4 col1 = { rhs[0].y, rhs[1].y, rhs[2].y, rhs[3].y };
+
+	return double2x2(
+		row0.x * col0.x + row0.y * col0.y + row0.z * col0.z + row0.w * col0.w,
+		row0.x * col1.x + row0.y * col1.y + row0.z * col1.z + row0.w * col1.w,
+
+		row1.x * col0.x + row1.y * col0.y + row1.z * col0.z + row1.w * col0.w,
+		row1.x * col1.x + row1.y * col1.y + row1.z * col1.z + row1.w * col1.w
+	);
+}
 
 /// \relates double2x4
 /// \brief Returns a copy of the double2x4 that has been component-wise divided by the given scalar value.
-inline double2x4 operator/( const double2x4& lhs, const double rhs );
+inline double2x4 operator/( const double2x4& lhs, const double rhs )
+{
+	return double2x4(
+		lhs[0] / rhs,
+		lhs[1] / rhs
+	);
+}
 
 /// \relates double2x4
 /// \brief Divides each component by the given scalar value.
-inline double2x4 operator/=( double2x4& lhs, const double rhs );
+inline double2x4 operator/=( double2x4& lhs, const double rhs )
+{
+	return ( lhs = lhs / rhs );
+}
 
 /// \relates double2x4
 /// \brief Returns a copy of the double2x4 that has been component-wise divided by the corresponding component of the right-hand double2x4.
-inline double2x4 operator/( const double2x4& lhs, const double2x4& rhs );
+inline double2x4 operator/( const double2x4& lhs, const double2x4& rhs )
+{
+	return double2x4(
+		lhs[0] / rhs[0],
+		lhs[1] / rhs[1]
+	);
+}
 
+// prefix
 /// \relates double2x4
 /// \brief Prefix increment operator.  Adds one to each component of the given double2x4 before evaluation.
-inline double2x4& operator++( double2x4& lhs );
+inline double2x4& operator++( double2x4& lhs )
+{
+	++lhs[0];
+	++lhs[1];
+	return lhs;
+}
 
+// postfix
 /// \relates double2x4
 /// \brief Postfix increment operator.  Adds one to each component of the given double2x4 after evaluation.
-inline double2x4& operator++( double2x4& lhs, const int );
+inline double2x4& operator++( double2x4& lhs, const int )
+{
+	lhs[0]++;
+	lhs[1]++;
+	return lhs;
+}
 
+// prefix
 /// \relates double2x4
 /// \brief Prefix decrement operator.  Subtracts one from each component of the given double2x4 before evaluation.
-inline double2x4& operator--( double2x4& lhs );
+inline double2x4& operator--( double2x4& lhs )
+{
+	--lhs[0];
+	--lhs[1];
+	return lhs;
+}
 
+// postfix
 /// \relates double2x4
 /// \brief Postfix decrement operator.  Subtracts one from each component of the given double2x4 after evaluation.
-inline double2x4& operator--( double2x4& lhs, const int );
+inline double2x4& operator--( double2x4& lhs, const int )
+{
+	lhs[0]--;
+	lhs[1]--;
+	return lhs;
+}
 
 /// \relates double2x4
 /// \brief Returns a bool2x4 where each component is true if the component of the left-hand type is less than the corresponding right-hand type component.
-inline bool2x4 operator<( const double2x4& lhs, const double2x4& rhs );
+inline bool2x4 operator<( const double2x4& lhs, const double2x4& rhs )
+{
+	return bool2x4(
+		lhs[0] < rhs[0],
+		lhs[1] < rhs[1]
+	);
+}
 
 /// \relates double2x4
 /// \brief Returns a bool2x4 where each component is true if the component of the left-hand type is less than or equal to the corresponding right-hand type component.
-inline bool2x4 operator<=( const double2x4& lhs, const double2x4& rhs );
+inline bool2x4 operator<=( const double2x4& lhs, const double2x4& rhs )
+{
+	return bool2x4(
+		lhs[0] <= rhs[0],
+		lhs[1] <= rhs[1]
+	);
+}
 
 /// \relates double2x4
 /// \brief Returns a bool2x4 where each component is true if the component of the left-hand type is greater than the corresponding right-hand type component.
-inline bool2x4 operator>( const double2x4& lhs, const double2x4& rhs );
+inline bool2x4 operator>( const double2x4& lhs, const double2x4& rhs )
+{
+	return bool2x4(
+		lhs[0] > rhs[0],
+		lhs[1] > rhs[1]
+	);
+}
 
 /// \relates double2x4
 /// \brief Returns a bool2x4 where each component is true if the component of the left-hand type is greater than or equal to the corresponding right-hand type component.
-inline bool2x4 operator>=( const double2x4& lhs, const double2x4& rhs );
+inline bool2x4 operator>=( const double2x4& lhs, const double2x4& rhs )
+{
+	return bool2x4(
+		lhs[0] >= rhs[0],
+		lhs[1] >= rhs[1]
+	);
+}
 
 
 // double3x2
 /// \relates double3x2
 /// \brief Returns a copy of the double3x2 that has been component-wise added by the given scalar value.
-inline double3x2 operator+( const double3x2& lhs, const double rhs );
+inline double3x2 operator+( const double3x2& lhs, const double rhs )
+{
+	return double3x2(
+		lhs[0] + rhs,
+		lhs[1] + rhs,
+		lhs[2] + rhs
+	);
+}
 
 /// \relates double3x2
 /// \brief Adds each component by the given scalar value.
-inline double3x2 operator+=( double3x2& lhs, const double rhs );
+inline double3x2 operator+=( double3x2& lhs, const double rhs )
+{
+	return ( lhs = lhs + rhs );
+}
 
 /// \relates double3x2
 /// \brief Returns a copy of the double3x2 that has been component-wise added by the corresponding component of the right-hand double3x2.
-inline double3x2 operator+( const double3x2& lhs, const double3x2& rhs );
+inline double3x2 operator+( const double3x2& lhs, const double3x2& rhs )
+{
+	return double3x2(
+		lhs[0] + rhs[0],
+		lhs[1] + rhs[1],
+		lhs[2] + rhs[2]
+	);
+}
 
 /// \relates double3x2
 /// \brief Adds each component of the double3x2 by the corresponding component of the right-hand double3x2.
-inline double3x2 operator+=( double3x2& lhs, const double3x2& rhs );
+inline double3x2 operator+=( double3x2& lhs, const double3x2& rhs )
+{
+	return ( lhs = lhs + rhs );
+}
 
 /// \relates double3x2
 /// \brief Returns a copy of the double3x2 that has been component-wise subtracted by the given scalar value.
-inline double3x2 operator-( const double3x2& lhs, const double rhs );
+inline double3x2 operator-( const double3x2& lhs, const double rhs )
+{
+	return double3x2(
+		lhs[0] - rhs,
+		lhs[1] - rhs,
+		lhs[2] - rhs
+	);
+}
 
 /// \relates double3x2
 /// \brief Subtracts each component by the given scalar value.
-inline double3x2 operator-=( double3x2& lhs, const double rhs );
+inline double3x2 operator-=( double3x2& lhs, const double rhs )
+{
+	return ( lhs = lhs - rhs );
+}
 
 /// \relates double3x2
 /// \brief Returns a copy of the double3x2 that has been component-wise subtracted by the corresponding component of the right-hand double3x2.
-inline double3x2 operator-( const double3x2& lhs, const double3x2& rhs );
+inline double3x2 operator-( const double3x2& lhs, const double3x2& rhs )
+{
+	return double3x2(
+		lhs[0] - rhs[0],
+		lhs[1] - rhs[1],
+		lhs[2] - rhs[2]
+	);
+}
 
 /// \relates double3x2
 /// \brief Subtracts each component of the double3x2 by the corresponding component of the right-hand double3x2.
-inline double3x2 operator-=( double3x2& lhs, const double3x2& rhs );
+inline double3x2 operator-=( double3x2& lhs, const double3x2& rhs )
+{
+	return ( lhs = lhs - rhs );
+}
 
 /// \relates double3x2
 /// \brief Returns a copy of the double3x2 that has been component-wise multiplied by the given scalar value.
-inline double3x2 operator*( const double3x2& lhs, const double rhs );
+inline double3x2 operator*( const double3x2& lhs, const double rhs )
+{
+	return double3x2(
+		lhs[0] * rhs,
+		lhs[1] * rhs,
+		lhs[2] * rhs
+	);
+}
 
 /// \relates double3x2
 /// \brief Multiplies each component by the given scalar value.
-inline double3x2 operator*=( double3x2& lhs, const double rhs );
+inline double3x2 operator*=( double3x2& lhs, const double rhs )
+{
+	return ( lhs = lhs * rhs );
+}
 
 /// \relates double3x2
 /// \brief Returns a copy of the matrix where each row of the left-hand matrix has been dot-producted by the corresponding column of the right-hand matrix.
-inline double3x3 operator*( const double3x2& lhs, const double2x3& rhs );
+inline double3x3 operator*( const double3x2& lhs, const double2x3& rhs )
+{
+	double2 row0 = lhs[0];
+	double2 row1 = lhs[1];
+	double2 row2 = lhs[2];
 
-/// \relates double3x2
-/// \brief Dot products each row of the left-hand matrix with the corresponding column of the right-hand matrix.
-inline double3x3 operator*=( double3x2& lhs, const double2x3& rhs );
+	double2 col0 = { rhs[0].x, rhs[1].x };
+	double2 col1 = { rhs[0].y, rhs[1].y };
+	double2 col2 = { rhs[0].z, rhs[1].z };
+
+	return double3x3(
+		row0.x * col0.x + row0.y * col0.y,
+		row0.x * col1.x + row0.y * col1.y,
+		row0.x * col2.x + row0.y * col2.y,
+
+		row1.x * col0.x + row1.y * col0.y,
+		row1.x * col1.x + row1.y * col1.y,
+		row1.x * col2.x + row1.y * col2.y,
+
+		row2.x * col0.x + row2.y * col0.y,
+		row2.x * col1.x + row2.y * col1.y,
+		row2.x * col2.x + row2.y * col2.y
+	);
+}
 
 /// \relates double3x2
 /// \brief Returns a copy of the double3x2 that has been component-wise divided by the given scalar value.
-inline double3x2 operator/( const double3x2& lhs, const double rhs );
+inline double3x2 operator/( const double3x2& lhs, const double rhs )
+{
+	return double3x2(
+		lhs[0] / rhs,
+		lhs[1] / rhs,
+		lhs[2] / rhs
+	);
+}
 
 /// \relates double3x2
 /// \brief Divides each component by the given scalar value.
-inline double3x2 operator/=( double3x2& lhs, const double rhs );
+inline double3x2 operator/=( double3x2& lhs, const double rhs )
+{
+	return ( lhs = lhs / rhs );
+}
 
 /// \relates double3x2
 /// \brief Returns a copy of the double3x2 that has been component-wise divided by the corresponding component of the right-hand double3x2.
-inline double3x2 operator/( const double3x2& lhs, const double3x2& rhs );
+inline double3x2 operator/( const double3x2& lhs, const double3x2& rhs )
+{
+	return double3x2(
+		lhs[0] / rhs[0],
+		lhs[1] / rhs[1],
+		lhs[2] / rhs[2]
+	);
+}
 
+// prefix
 /// \relates double3x2
 /// \brief Prefix increment operator.  Adds one to each component of the given double3x2 before evaluation.
-inline double3x2& operator++( double3x2& lhs );
+inline double3x2& operator++( double3x2& lhs )
+{
+	++lhs[0];
+	++lhs[1];
+	++lhs[2];
+	return lhs;
+}
 
+// postfix
 /// \relates double3x2
 /// \brief Postfix increment operator.  Adds one to each component of the given double3x2 after evaluation.
-inline double3x2& operator++( double3x2& lhs, const int );
+inline double3x2& operator++( double3x2& lhs, const int )
+{
+	lhs[0]++;
+	lhs[1]++;
+	lhs[2]++;
+	return lhs;
+}
 
+// prefix
 /// \relates double3x2
 /// \brief Prefix decrement operator.  Subtracts one from each component of the given double3x2 before evaluation.
-inline double3x2& operator--( double3x2& lhs );
+inline double3x2& operator--( double3x2& lhs )
+{
+	--lhs[0];
+	--lhs[1];
+	--lhs[2];
+	return lhs;
+}
 
+// postfix
 /// \relates double3x2
 /// \brief Postfix decrement operator.  Subtracts one from each component of the given double3x2 after evaluation.
-inline double3x2& operator--( double3x2& lhs, const int );
+inline double3x2& operator--( double3x2& lhs, const int )
+{
+	lhs[0]--;
+	lhs[1]--;
+	lhs[2]--;
+	return lhs;
+}
 
 /// \relates double3x2
 /// \brief Returns a bool3x2 where each component is true if the component of the left-hand type is less than the corresponding right-hand type component.
-inline bool3x2 operator<( const double3x2& lhs, const double3x2& rhs );
+inline bool3x2 operator<( const double3x2& lhs, const double3x2& rhs )
+{
+	return bool3x2(
+		lhs[0] < rhs[0],
+		lhs[1] < rhs[1],
+		lhs[2] < rhs[2]
+	);
+}
 
 /// \relates double3x2
 /// \brief Returns a bool3x2 where each component is true if the component of the left-hand type is less than or equal to the corresponding right-hand type component.
-inline bool3x2 operator<=( const double3x2& lhs, const double3x2& rhs );
+inline bool3x2 operator<=( const double3x2& lhs, const double3x2& rhs )
+{
+	return bool3x2(
+		lhs[0] <= rhs[0],
+		lhs[1] <= rhs[1],
+		lhs[2] <= rhs[2]
+	);
+}
 
 /// \relates double3x2
 /// \brief Returns a bool3x2 where each component is true if the component of the left-hand type is greater than the corresponding right-hand type component.
-inline bool3x2 operator>( const double3x2& lhs, const double3x2& rhs );
+inline bool3x2 operator>( const double3x2& lhs, const double3x2& rhs )
+{
+	return bool3x2(
+		lhs[0] > rhs[0],
+		lhs[1] > rhs[1],
+		lhs[2] > rhs[2]
+	);
+}
 
 /// \relates double3x2
 /// \brief Returns a bool3x2 where each component is true if the component of the left-hand type is greater than or equal to the corresponding right-hand type component.
-inline bool3x2 operator>=( const double3x2& lhs, const double3x2& rhs );
+inline bool3x2 operator>=( const double3x2& lhs, const double3x2& rhs )
+{
+	return bool3x2(
+		lhs[0] >= rhs[0],
+		lhs[1] >= rhs[1],
+		lhs[2] >= rhs[2]
+	);
+}
 
 
 // double3x3
 /// \relates double3x3
 /// \brief Returns a copy of the double3x3 that has been component-wise added by the given scalar value.
-inline double3x3 operator+( const double3x3& lhs, const double rhs );
+inline double3x3 operator+( const double3x3& lhs, const double rhs )
+{
+	return double3x3(
+		lhs[0] + rhs,
+		lhs[1] + rhs,
+		lhs[2] + rhs
+	);
+}
 
 /// \relates double3x3
 /// \brief Adds each component by the given scalar value.
-inline double3x3 operator+=( double3x3& lhs, const double rhs );
+inline double3x3 operator+=( double3x3& lhs, const double rhs )
+{
+	return ( lhs = lhs + rhs );
+}
 
 /// \relates double3x3
 /// \brief Returns a copy of the double3x3 that has been component-wise added by the corresponding component of the right-hand double3x3.
-inline double3x3 operator+( const double3x3& lhs, const double3x3& rhs );
+inline double3x3 operator+( const double3x3& lhs, const double3x3& rhs )
+{
+	return double3x3(
+		lhs[0] + rhs[0],
+		lhs[1] + rhs[1],
+		lhs[2] + rhs[2]
+	);
+}
 
 /// \relates double3x3
 /// \brief Adds each component of the double3x3 by the corresponding component of the right-hand double3x3.
-inline double3x3 operator+=( double3x3& lhs, const double3x3& rhs );
+inline double3x3 operator+=( double3x3& lhs, const double3x3& rhs )
+{
+	return ( lhs = lhs + rhs );
+}
 
 /// \relates double3x3
 /// \brief Returns a copy of the double3x3 that has been component-wise subtracted by the given scalar value.
-inline double3x3 operator-( const double3x3& lhs, const double rhs );
+inline double3x3 operator-( const double3x3& lhs, const double rhs )
+{
+	return double3x3(
+		lhs[0] - rhs,
+		lhs[1] - rhs,
+		lhs[2] - rhs
+	);
+}
 
 /// \relates double3x3
 /// \brief Subtracts each component by the given scalar value.
-inline double3x3 operator-=( double3x3& lhs, const double rhs );
+inline double3x3 operator-=( double3x3& lhs, const double rhs )
+{
+	return ( lhs = lhs - rhs );
+}
 
 /// \relates double3x3
 /// \brief Returns a copy of the double3x3 that has been component-wise subtracted by the corresponding component of the right-hand double3x3.
-inline double3x3 operator-( const double3x3& lhs, const double3x3& rhs );
+inline double3x3 operator-( const double3x3& lhs, const double3x3& rhs )
+{
+	return double3x3(
+		lhs[0] - rhs[0],
+		lhs[1] - rhs[1],
+		lhs[2] - rhs[2]
+	);
+}
 
 /// \relates double3x3
 /// \brief Subtracts each component of the double3x3 by the corresponding component of the right-hand double3x3.
-inline double3x3 operator-=( double3x3& lhs, const double3x3& rhs );
+inline double3x3 operator-=( double3x3& lhs, const double3x3& rhs )
+{
+	return ( lhs = lhs - rhs );
+}
 
 /// \relates double3x3
 /// \brief Returns a copy of the double3x3 that has been component-wise multiplied by the given scalar value.
-inline double3x3 operator*( const double3x3& lhs, const double rhs );
+inline double3x3 operator*( const double3x3& lhs, const double rhs )
+{
+	return double3x3(
+		lhs[0] * rhs,
+		lhs[1] * rhs,
+		lhs[2] * rhs
+	);
+}
 
 /// \relates double3x3
 /// \brief Multiplies each component by the given scalar value.
-inline double3x3 operator*=( double3x3& lhs, const double rhs );
+inline double3x3 operator*=( double3x3& lhs, const double rhs )
+{
+	return ( lhs = lhs * rhs );
+}
 
 /// \relates double3x3
 /// \brief Returns a copy of the matrix where each row of the left-hand matrix has been dot-producted by the corresponding column of the right-hand matrix.
-inline double3x3 operator*( const double3x3& lhs, const double3x3& rhs );
+inline double3x3 operator*( const double3x3& lhs, const double3x3& rhs )
+{
+	double3 row0 = lhs[0];
+	double3 row1 = lhs[1];
+	double3 row2 = lhs[2];
 
-/// \relates double3x3
-/// \brief Dot products each row of the left-hand matrix with the corresponding column of the right-hand matrix.
-inline double3x3 operator*=( double3x3& lhs, const double3x3& rhs );
+	double3 col0 = { rhs[0].x, rhs[1].x, rhs[2].x };
+	double3 col1 = { rhs[0].y, rhs[1].y, rhs[2].y };
+	double3 col2 = { rhs[0].z, rhs[1].z, rhs[2].z };
+
+	return double3x3(
+		row0.x * col0.x + row0.y * col0.y + row0.z * col0.z,
+		row0.x * col1.x + row0.y * col1.y + row0.z * col1.z,
+		row0.x * col2.x + row0.y * col2.y + row0.z * col2.z,
+
+		row1.x * col0.x + row1.y * col0.y + row1.z * col0.z,
+		row1.x * col1.x + row1.y * col1.y + row1.z * col1.z,
+		row1.x * col2.x + row1.y * col2.y + row1.z * col2.z,
+
+		row2.x * col0.x + row2.y * col0.y + row2.z * col0.z,
+		row2.x * col1.x + row2.y * col1.y + row2.z * col1.z,
+		row2.x * col2.x + row2.y * col2.y + row2.z * col2.z
+	);
+}
+
+inline double3x3 operator*=( double3x3& lhs, const double3x3& rhs )
+{
+	return ( lhs = lhs * rhs );
+}
 
 /// \relates double3x3
 /// \brief Returns a copy of the double3x3 that has been component-wise divided by the given scalar value.
-inline double3x3 operator/( const double3x3& lhs, const double rhs );
+inline double3x3 operator/( const double3x3& lhs, const double rhs )
+{
+	return double3x3(
+		lhs[0] / rhs,
+		lhs[1] / rhs,
+		lhs[2] / rhs
+	);
+}
 
 /// \relates double3x3
 /// \brief Divides each component by the given scalar value.
-inline double3x3 operator/=( double3x3& lhs, const double rhs );
+inline double3x3 operator/=( double3x3& lhs, const double rhs )
+{
+	return ( lhs = lhs / rhs );
+}
 
 /// \relates double3x3
 /// \brief Returns a copy of the matrix where the left-hand matrix has been mathematically multiplied by the inverse of the right-hand matrix.
-inline double3x3 operator/( const double3x3& lhs, const double3x3& rhs );
+inline double3x3 operator/( const double3x3& lhs, const double3x3& rhs )
+{
+	return lhs * inverse( rhs );
+}
 
 /// \relates double3x3
 /// \brief Multiplies the left-hand matrix by the right-hand matrix (dot product row/col style).
-inline double3x3 operator/=( double3x3& lhs, const double3x3& rhs );
+inline double3x3 operator/=( double3x3& lhs, const double3x3& rhs )
+{
+	return ( lhs = lhs / rhs );
+}
 
 /// \relates double3
 /// \brief Returns a copy of the double3 that has been component-wise multiplied by the corresponding component of the right-hand double3x3.
-inline double3 operator*( const double3x3& lhs, const double3& rhs );
+inline double3 operator*( const double3x3& lhs, const double3& rhs )
+{
+	return double3(
+		(double) dot( lhs[0], rhs ),
+		(double) dot( lhs[1], rhs ),
+		(double) dot( lhs[2], rhs )
+	);
+}
 
 /// \relates double3
 /// \brief Multiplies each component of the double3 by the corresponding component of the right-hand double3x3.
-inline double3 operator*=( double3& lhs, const double3x3& rhs );
+inline double3 operator*=( double3& lhs, const double3x3& rhs )
+{
+	return ( lhs = rhs * lhs );
+}
 
+// prefix
 /// \relates double3x3
 /// \brief Prefix increment operator.  Adds one to each component of the given double3x3 before evaluation.
-inline double3x3& operator++( double3x3& lhs );
+inline double3x3& operator++( double3x3& lhs )
+{
+	++lhs[0];
+	++lhs[1];
+	++lhs[2];
+	return lhs;
+}
 
+// postfix
 /// \relates double3x3
 /// \brief Postfix increment operator.  Adds one to each component of the given double3x3 after evaluation.
-inline double3x3& operator++( double3x3& lhs, const int );
+inline double3x3& operator++( double3x3& lhs, const int )
+{
+	lhs[0]++;
+	lhs[1]++;
+	lhs[2]++;
+	return lhs;
+}
 
+// prefix
 /// \relates double3x3
 /// \brief Prefix decrement operator.  Subtracts one from each component of the given double3x3 before evaluation.
-inline double3x3& operator--( double3x3& lhs );
+inline double3x3& operator--( double3x3& lhs )
+{
+	--lhs[0];
+	--lhs[1];
+	--lhs[2];
+	return lhs;
+}
 
+// postfix
 /// \relates double3x3
 /// \brief Postfix decrement operator.  Subtracts one from each component of the given double3x3 after evaluation.
-inline double3x3& operator--( double3x3& lhs, const int );
+inline double3x3& operator--( double3x3& lhs, const int )
+{
+	lhs[0]--;
+	lhs[1]--;
+	lhs[2]--;
+	return lhs;
+}
 
 /// \relates double3x3
 /// \brief Returns a bool3x3 where each component is true if the component of the left-hand type is less than the corresponding right-hand type component.
-inline bool3x3 operator<( const double3x3& lhs, const double3x3& rhs );
+inline bool3x3 operator<( const double3x3& lhs, const double3x3& rhs )
+{
+	return bool3x3(
+		lhs[0] < rhs[0],
+		lhs[1] < rhs[1],
+		lhs[2] < rhs[2]
+	);
+}
 
 /// \relates double3x3
 /// \brief Returns a bool3x3 where each component is true if the component of the left-hand type is less than or equal to the corresponding right-hand type component.
-inline bool3x3 operator<=( const double3x3& lhs, const double3x3& rhs );
+inline bool3x3 operator<=( const double3x3& lhs, const double3x3& rhs )
+{
+	return bool3x3(
+		lhs[0] <= rhs[0],
+		lhs[1] <= rhs[1],
+		lhs[2] <= rhs[2]
+	);
+}
 
 /// \relates double3x3
 /// \brief Returns a bool3x3 where each component is true if the component of the left-hand type is greater than the corresponding right-hand type component.
-inline bool3x3 operator>( const double3x3& lhs, const double3x3& rhs );
+inline bool3x3 operator>( const double3x3& lhs, const double3x3& rhs )
+{
+	return bool3x3(
+		lhs[0] > rhs[0],
+		lhs[1] > rhs[1],
+		lhs[2] > rhs[2]
+	);
+}
 
 /// \relates double3x3
 /// \brief Returns a bool3x3 where each component is true if the component of the left-hand type is greater than or equal to the corresponding right-hand type component.
-inline bool3x3 operator>=( const double3x3& lhs, const double3x3& rhs );
+inline bool3x3 operator>=( const double3x3& lhs, const double3x3& rhs )
+{
+	return bool3x3(
+		lhs[0] >= rhs[0],
+		lhs[1] >= rhs[1],
+		lhs[2] >= rhs[2]
+	);
+}
 
 
 // double3x4
 /// \relates double3x4
 /// \brief Returns a copy of the double3x4 that has been component-wise added by the given scalar value.
-inline double3x4 operator+( const double3x4& lhs, const double rhs );
+inline double3x4 operator+( const double3x4& lhs, const double rhs )
+{
+	return double3x4(
+		lhs[0] + rhs,
+		lhs[1] + rhs,
+		lhs[2] + rhs
+	);
+}
 
 /// \relates double3x4
 /// \brief Adds each component by the given scalar value.
-inline double3x4 operator+=( double3x4& lhs, const double rhs );
+inline double3x4 operator+=( double3x4& lhs, const double rhs )
+{
+	return ( lhs = lhs + rhs );
+}
 
 /// \relates double3x4
 /// \brief Returns a copy of the double3x4 that has been component-wise added by the corresponding component of the right-hand double3x4.
-inline double3x4 operator+( const double3x4& lhs, const double3x4& rhs );
+inline double3x4 operator+( const double3x4& lhs, const double3x4& rhs )
+{
+	return double3x4(
+		lhs[0] + rhs[0],
+		lhs[1] + rhs[1],
+		lhs[2] + rhs[2]
+	);
+}
 
 /// \relates double3x4
 /// \brief Adds each component of the double3x4 by the corresponding component of the right-hand double3x4.
-inline double3x4 operator+=( double3x4& lhs, const double3x4& rhs );
+inline double3x4 operator+=( double3x4& lhs, const double3x4& rhs )
+{
+	return ( lhs = lhs + rhs );
+}
 
 /// \relates double3x4
 /// \brief Returns a copy of the double3x4 that has been component-wise subtracted by the given scalar value.
-inline double3x4 operator-( const double3x4& lhs, const double rhs );
+inline double3x4 operator-( const double3x4& lhs, const double rhs )
+{
+	return double3x4(
+		lhs[0] - rhs,
+		lhs[1] - rhs,
+		lhs[2] - rhs
+	);
+}
 
 /// \relates double3x4
 /// \brief Subtracts each component by the given scalar value.
-inline double3x4 operator-=( double3x4& lhs, const double rhs );
+inline double3x4 operator-=( double3x4& lhs, const double rhs )
+{
+	return ( lhs = lhs - rhs );
+}
 
 /// \relates double3x4
 /// \brief Returns a copy of the double3x4 that has been component-wise subtracted by the corresponding component of the right-hand double3x4.
-inline double3x4 operator-( const double3x4& lhs, const double3x4& rhs );
+inline double3x4 operator-( const double3x4& lhs, const double3x4& rhs )
+{
+	return double3x4(
+		lhs[0] - rhs[0],
+		lhs[1] - rhs[1],
+		lhs[2] - rhs[2]
+	);
+}
 
 /// \relates double3x4
 /// \brief Subtracts each component of the double3x4 by the corresponding component of the right-hand double3x4.
-inline double3x4 operator-=( double3x4& lhs, const double3x4& rhs );
+inline double3x4 operator-=( double3x4& lhs, const double3x4& rhs )
+{
+	return ( lhs = lhs - rhs );
+}
 
 /// \relates double3x4
 /// \brief Returns a copy of the double3x4 that has been component-wise multiplied by the given scalar value.
-inline double3x4 operator*( const double3x4& lhs, const double rhs );
+inline double3x4 operator*( const double3x4& lhs, const double rhs )
+{
+	return double3x4(
+		lhs[0] * rhs,
+		lhs[1] * rhs,
+		lhs[2] * rhs
+	);
+}
 
 /// \relates double3x4
 /// \brief Multiplies each component by the given scalar value.
-inline double3x4 operator*=( double3x4& lhs, const double rhs );
+inline double3x4 operator*=( double3x4& lhs, const double rhs )
+{
+	return ( lhs = lhs * rhs );
+}
 
 /// \relates double3x4
 /// \brief Returns a copy of the matrix where each row of the left-hand matrix has been dot-producted by the corresponding column of the right-hand matrix.
-inline double3x3 operator*( const double3x4& lhs, const double4x3& rhs );
+inline double3x3 operator*( const double3x4& lhs, const double4x3& rhs )
+{
+	double4 row0 = lhs[0];
+	double4 row1 = lhs[1];
+	double4 row2 = lhs[2];
 
-/// \relates double3x4
-/// \brief Dot products each row of the left-hand matrix with the corresponding column of the right-hand matrix.
-inline double3x3 operator*=( double3x4& lhs, const double4x3& rhs );
+	double4 col0 = { rhs[0].x, rhs[1].x, rhs[2].x, rhs[3].x };
+	double4 col1 = { rhs[0].y, rhs[1].y, rhs[2].y, rhs[3].y };
+	double4 col2 = { rhs[0].z, rhs[1].z, rhs[2].z, rhs[3].z };
+
+	return double3x3(
+		row0.x * col0.x + row0.y * col0.y + row0.z * col0.z + row0.w * col0.w,
+		row0.x * col1.x + row0.y * col1.y + row0.z * col1.z + row0.w * col1.w,
+		row0.x * col2.x + row0.y * col2.y + row0.z * col2.z + row0.w * col2.w,
+
+		row1.x * col0.x + row1.y * col0.y + row1.z * col0.z + row1.w * col0.w,
+		row1.x * col1.x + row1.y * col1.y + row1.z * col1.z + row1.w * col1.w,
+		row1.x * col2.x + row1.y * col2.y + row1.z * col2.z + row1.w * col2.w,
+
+		row2.x * col0.x + row2.y * col0.y + row2.z * col0.z + row2.w * col0.w,
+		row2.x * col1.x + row2.y * col1.y + row2.z * col1.z + row2.w * col1.w,
+		row2.x * col2.x + row2.y * col2.y + row2.z * col2.z + row2.w * col2.w
+	);
+}
 
 /// \relates double3x4
 /// \brief Returns a copy of the double3x4 that has been component-wise divided by the given scalar value.
-inline double3x4 operator/( const double3x4& lhs, const double rhs );
+inline double3x4 operator/( const double3x4& lhs, const double rhs )
+{
+	return double3x4(
+		lhs[0] / rhs,
+		lhs[1] / rhs,
+		lhs[2] / rhs
+	);
+}
 
 /// \relates double3x4
 /// \brief Divides each component by the given scalar value.
-inline double3x4 operator/=( double3x4& lhs, const double rhs );
+inline double3x4 operator/=( double3x4& lhs, const double rhs )
+{
+	return ( lhs = lhs / rhs );
+}
 
 /// \relates double3x4
 /// \brief Returns a copy of the double3x4 that has been component-wise divided by the corresponding component of the right-hand double3x4.
-inline double3x4 operator/( const double3x4& lhs, const double3x4& rhs );
+inline double3x4 operator/( const double3x4& lhs, const double3x4& rhs )
+{
+	return double3x4(
+		lhs[0] / rhs[0],
+		lhs[1] / rhs[1],
+		lhs[2] / rhs[2]
+	);
+}
 
+// prefix
 /// \relates double3x4
 /// \brief Prefix increment operator.  Adds one to each component of the given double3x4 before evaluation.
-inline double3x4& operator++( double3x4& lhs );
+inline double3x4& operator++( double3x4& lhs )
+{
+	++lhs[0];
+	++lhs[1];
+	++lhs[2];
+	return lhs;
+}
 
+// postfix
 /// \relates double3x4
 /// \brief Postfix increment operator.  Adds one to each component of the given double3x4 after evaluation.
-inline double3x4& operator++( double3x4& lhs, const int );
+inline double3x4& operator++( double3x4& lhs, const int )
+{
+	lhs[0]++;
+	lhs[1]++;
+	lhs[2]++;
+	return lhs;
+}
 
+// prefix
 /// \relates double3x4
 /// \brief Prefix decrement operator.  Subtracts one from each component of the given double3x4 before evaluation.
-inline double3x4& operator--( double3x4& lhs );
+inline double3x4& operator--( double3x4& lhs )
+{
+	--lhs[0];
+	--lhs[1];
+	--lhs[2];
+	return lhs;
+}
 
+// postfix
 /// \relates double3x4
 /// \brief Postfix decrement operator.  Subtracts one from each component of the given double3x4 after evaluation.
-inline double3x4& operator--( double3x4& lhs, const int );
+inline double3x4& operator--( double3x4& lhs, const int )
+{
+	lhs[0]--;
+	lhs[1]--;
+	lhs[2]--;
+	return lhs;
+}
 
 /// \relates double3x4
 /// \brief Returns a bool3x4 where each component is true if the component of the left-hand type is less than the corresponding right-hand type component.
-inline bool3x4 operator<( const double3x4& lhs, const double3x4& rhs );
+inline bool3x4 operator<( const double3x4& lhs, const double3x4& rhs )
+{
+	return bool3x4(
+		lhs[0] < rhs[0],
+		lhs[1] < rhs[1],
+		lhs[2] < rhs[2]
+	);
+}
 
 /// \relates double3x4
 /// \brief Returns a bool3x4 where each component is true if the component of the left-hand type is less than or equal to the corresponding right-hand type component.
-inline bool3x4 operator<=( const double3x4& lhs, const double3x4& rhs );
+inline bool3x4 operator<=( const double3x4& lhs, const double3x4& rhs )
+{
+	return bool3x4(
+		lhs[0] <= rhs[0],
+		lhs[1] <= rhs[1],
+		lhs[2] <= rhs[2]
+	);
+}
 
 /// \relates double3x4
 /// \brief Returns a bool3x4 where each component is true if the component of the left-hand type is greater than the corresponding right-hand type component.
-inline bool3x4 operator>( const double3x4& lhs, const double3x4& rhs );
+inline bool3x4 operator>( const double3x4& lhs, const double3x4& rhs )
+{
+	return bool3x4(
+		lhs[0] > rhs[0],
+		lhs[1] > rhs[1],
+		lhs[2] > rhs[2]
+	);
+}
 
 /// \relates double3x4
 /// \brief Returns a bool3x4 where each component is true if the component of the left-hand type is greater than or equal to the corresponding right-hand type component.
-inline bool3x4 operator>=( const double3x4& lhs, const double3x4& rhs );
+inline bool3x4 operator>=( const double3x4& lhs, const double3x4& rhs )
+{
+	return bool3x4(
+		lhs[0] >= rhs[0],
+		lhs[1] >= rhs[1],
+		lhs[2] >= rhs[2]
+	);
+}
 
 
 // double4x2
 /// \relates double4x2
 /// \brief Returns a copy of the double4x2 that has been component-wise added by the given scalar value.
-inline double4x2 operator+( const double4x2& lhs, const double rhs );
+inline double4x2 operator+( const double4x2& lhs, const double rhs )
+{
+	return double4x2(
+		lhs[0] + rhs,
+		lhs[1] + rhs,
+		lhs[2] + rhs,
+		lhs[3] + rhs
+	);
+}
 
 /// \relates double4x2
 /// \brief Adds each component by the given scalar value.
-inline double4x2 operator+=( double4x2& lhs, const double rhs );
+inline double4x2 operator+=( double4x2& lhs, const double rhs )
+{
+	return ( lhs = lhs + rhs );
+}
 
 /// \relates double4x2
 /// \brief Returns a copy of the double4x2 that has been component-wise added by the corresponding component of the right-hand double4x2.
-inline double4x2 operator+( const double4x2& lhs, const double4x2& rhs );
+inline double4x2 operator+( const double4x2& lhs, const double4x2& rhs )
+{
+	return double4x2(
+		lhs[0] + rhs[0],
+		lhs[1] + rhs[1],
+		lhs[2] + rhs[2],
+		lhs[3] + rhs[3]
+	);
+}
 
 /// \relates double4x2
 /// \brief Adds each component of the double4x2 by the corresponding component of the right-hand double4x2.
-inline double4x2 operator+=( double4x2& lhs, const double4x2& rhs );
+inline double4x2 operator+=( double4x2& lhs, const double4x2& rhs )
+{
+	return ( lhs = lhs + rhs );
+}
 
 /// \relates double4x2
 /// \brief Returns a copy of the double4x2 that has been component-wise subtracted by the given scalar value.
-inline double4x2 operator-( const double4x2& lhs, const double rhs );
+inline double4x2 operator-( const double4x2& lhs, const double rhs )
+{
+	return double4x2(
+		lhs[0] - rhs,
+		lhs[1] - rhs,
+		lhs[2] - rhs,
+		lhs[3] - rhs
+	);
+}
 
 /// \relates double4x2
 /// \brief Subtracts each component by the given scalar value.
-inline double4x2 operator-=( double4x2& lhs, const double rhs );
+inline double4x2 operator-=( double4x2& lhs, const double rhs )
+{
+	return ( lhs = lhs - rhs );
+}
 
 /// \relates double4x2
 /// \brief Returns a copy of the double4x2 that has been component-wise subtracted by the corresponding component of the right-hand double4x2.
-inline double4x2 operator-( const double4x2& lhs, const double4x2& rhs );
+inline double4x2 operator-( const double4x2& lhs, const double4x2& rhs )
+{
+	return double4x2(
+		lhs[0] - rhs[0],
+		lhs[1] - rhs[1],
+		lhs[2] - rhs[2],
+		lhs[3] - rhs[3]
+	);
+}
 
 /// \relates double4x2
 /// \brief Subtracts each component of the double4x2 by the corresponding component of the right-hand double4x2.
-inline double4x2 operator-=( double4x2& lhs, const double4x2& rhs );
+inline double4x2 operator-=( double4x2& lhs, const double4x2& rhs )
+{
+	return ( lhs = lhs - rhs );
+}
 
 /// \relates double4x2
 /// \brief Returns a copy of the double4x2 that has been component-wise multiplied by the given scalar value.
-inline double4x2 operator*( const double4x2& lhs, const double rhs );
+inline double4x2 operator*( const double4x2& lhs, const double rhs )
+{
+	return double4x2(
+		lhs[0] * rhs,
+		lhs[1] * rhs,
+		lhs[2] * rhs,
+		lhs[3] * rhs
+	);
+}
 
 /// \relates double4x2
 /// \brief Multiplies each component by the given scalar value.
-inline double4x2 operator*=( double4x2& lhs, const double rhs );
+inline double4x2 operator*=( double4x2& lhs, const double rhs )
+{
+	return ( lhs = lhs * rhs );
+}
 
 /// \relates double4x2
 /// \brief Returns a copy of the matrix where each row of the left-hand matrix has been dot-producted by the corresponding column of the right-hand matrix.
-inline double4x4 operator*( const double4x2& lhs, const double2x4& rhs );
+inline double4x4 operator*( const double4x2& lhs, const double2x4& rhs )
+{
+	double2 row0 = lhs[0];
+	double2 row1 = lhs[1];
+	double2 row2 = lhs[2];
+	double2 row3 = lhs[3];
 
-/// \relates double4x2
-/// \brief Dot products each row of the left-hand matrix with the corresponding column of the right-hand matrix.
-inline double4x4 operator*=( double4x2& lhs, const double2x4& rhs );
+	double2 col0 = { rhs[0].x, rhs[1].x };
+	double2 col1 = { rhs[0].y, rhs[1].y };
+	double2 col2 = { rhs[0].z, rhs[1].z };
+	double2 col3 = { rhs[0].w, rhs[1].w };
+
+	return double4x4(
+		row0.x * col0.x + row0.y * col0.y,
+		row0.x * col1.x + row0.y * col1.y,
+		row0.x * col2.x + row0.y * col2.y,
+		row0.x * col3.x + row0.y * col3.y,
+
+		row1.x * col0.x + row1.y * col0.y,
+		row1.x * col1.x + row1.y * col1.y,
+		row1.x * col2.x + row1.y * col2.y,
+		row1.x * col3.x + row1.y * col3.y,
+
+		row2.x * col0.x + row2.y * col0.y,
+		row2.x * col1.x + row2.y * col1.y,
+		row2.x * col2.x + row2.y * col2.y,
+		row2.x * col3.x + row2.y * col3.y,
+
+		row3.x * col0.x + row3.y * col0.y,
+		row3.x * col1.x + row3.y * col1.y,
+		row3.x * col2.x + row3.y * col2.y,
+		row3.x * col3.x + row3.y * col3.y
+	);
+}
 
 /// \relates double4x2
 /// \brief Returns a copy of the double4x2 that has been component-wise divided by the given scalar value.
-inline double4x2 operator/( const double4x2& lhs, const double rhs );
+inline double4x2 operator/( const double4x2& lhs, const double rhs )
+{
+	return double4x2(
+		lhs[0] / rhs,
+		lhs[1] / rhs,
+		lhs[2] / rhs,
+		lhs[3] / rhs
+	);
+}
 
 /// \relates double4x2
 /// \brief Divides each component by the given scalar value.
-inline double4x2 operator/=( double4x2& lhs, const double rhs );
+inline double4x2 operator/=( double4x2& lhs, const double rhs )
+{
+	return ( lhs = lhs / rhs );
+}
 
 /// \relates double4x2
 /// \brief Returns a copy of the double4x2 that has been component-wise divided by the corresponding component of the right-hand double4x2.
-inline double4x2 operator/( const double4x2& lhs, const double4x2& rhs );
+inline double4x2 operator/( const double4x2& lhs, const double4x2& rhs )
+{
+	return double4x2(
+		lhs[0] / rhs[0],
+		lhs[1] / rhs[1],
+		lhs[2] / rhs[2],
+		lhs[3] / rhs[3]
+	);
+}
 
+// prefix
 /// \relates double4x2
 /// \brief Prefix increment operator.  Adds one to each component of the given double4x2 before evaluation.
-inline double4x2& operator++( double4x2& lhs );
+inline double4x2& operator++( double4x2& lhs )
+{
+	++lhs[0];
+	++lhs[1];
+	++lhs[2];
+	++lhs[3];
+	return lhs;
+}
 
+// postfix
 /// \relates double4x2
 /// \brief Postfix increment operator.  Adds one to each component of the given double4x2 after evaluation.
-inline double4x2& operator++( double4x2& lhs, const int );
+inline double4x2& operator++( double4x2& lhs, const int )
+{
+	lhs[0]++;
+	lhs[1]++;
+	lhs[2]++;
+	lhs[3]++;
+	return lhs;
+}
 
+// prefix
 /// \relates double4x2
 /// \brief Prefix decrement operator.  Subtracts one from each component of the given double4x2 before evaluation.
-inline double4x2& operator--( double4x2& lhs );
+inline double4x2& operator--( double4x2& lhs )
+{
+	--lhs[0];
+	--lhs[1];
+	--lhs[2];
+	--lhs[3];
+	return lhs;
+}
 
+// postfix
 /// \relates double4x2
 /// \brief Postfix decrement operator.  Subtracts one from each component of the given double4x2 after evaluation.
-inline double4x2& operator--( double4x2& lhs, const int );
+inline double4x2& operator--( double4x2& lhs, const int )
+{
+	lhs[0]--;
+	lhs[1]--;
+	lhs[2]--;
+	lhs[3]--;
+	return lhs;
+}
 
 /// \relates double4x2
 /// \brief Returns a bool4x2 where each component is true if the component of the left-hand type is less than the corresponding right-hand type component.
-inline bool4x2 operator<( const double4x2& lhs, const double4x2& rhs );
+inline bool4x2 operator<( const double4x2& lhs, const double4x2& rhs )
+{
+	return bool4x2(
+		lhs[0] < rhs[0],
+		lhs[1] < rhs[1],
+		lhs[2] < rhs[2],
+		lhs[3] < rhs[3]
+	);
+}
 
 /// \relates double4x2
 /// \brief Returns a bool4x2 where each component is true if the component of the left-hand type is less than or equal to the corresponding right-hand type component.
-inline bool4x2 operator<=( const double4x2& lhs, const double4x2& rhs );
+inline bool4x2 operator<=( const double4x2& lhs, const double4x2& rhs )
+{
+	return bool4x2(
+		lhs[0] <= rhs[0],
+		lhs[1] <= rhs[1],
+		lhs[2] <= rhs[2],
+		lhs[3] <= rhs[3]
+	);
+}
 
 /// \relates double4x2
 /// \brief Returns a bool4x2 where each component is true if the component of the left-hand type is greater than the corresponding right-hand type component.
-inline bool4x2 operator>( const double4x2& lhs, const double4x2& rhs );
+inline bool4x2 operator>( const double4x2& lhs, const double4x2& rhs )
+{
+	return bool4x2(
+		lhs[0] > rhs[0],
+		lhs[1] > rhs[1],
+		lhs[2] > rhs[2],
+		lhs[3] > rhs[3]
+	);
+}
 
 /// \relates double4x2
 /// \brief Returns a bool4x2 where each component is true if the component of the left-hand type is greater than or equal to the corresponding right-hand type component.
-inline bool4x2 operator>=( const double4x2& lhs, const double4x2& rhs );
+inline bool4x2 operator>=( const double4x2& lhs, const double4x2& rhs )
+{
+	return bool4x2(
+		lhs[0] >= rhs[0],
+		lhs[1] >= rhs[1],
+		lhs[2] >= rhs[2],
+		lhs[3] >= rhs[3]
+	);
+}
 
 
 // double4x3
 /// \relates double4x3
 /// \brief Returns a copy of the double4x3 that has been component-wise added by the given scalar value.
-inline double4x3 operator+( const double4x3& lhs, const double rhs );
+inline double4x3 operator+( const double4x3& lhs, const double rhs )
+{
+	return double4x3(
+		lhs[0] + rhs,
+		lhs[1] + rhs,
+		lhs[2] + rhs,
+		lhs[3] + rhs
+	);
+}
 
 /// \relates double4x3
 /// \brief Adds each component by the given scalar value.
-inline double4x3 operator+=( double4x3& lhs, const double rhs );
+inline double4x3 operator+=( double4x3& lhs, const double rhs )
+{
+	return ( lhs = lhs + rhs );
+}
 
 /// \relates double4x3
 /// \brief Returns a copy of the double4x3 that has been component-wise added by the corresponding component of the right-hand double4x3.
-inline double4x3 operator+( const double4x3& lhs, const double4x3& rhs );
+inline double4x3 operator+( const double4x3& lhs, const double4x3& rhs )
+{
+	return double4x3(
+		lhs[0] + rhs[0],
+		lhs[1] + rhs[1],
+		lhs[2] + rhs[2],
+		lhs[3] + rhs[3]
+	);
+}
 
 /// \relates double4x3
 /// \brief Adds each component of the double4x3 by the corresponding component of the right-hand double4x3.
-inline double4x3 operator+=( double4x3& lhs, const double4x3& rhs );
+inline double4x3 operator+=( double4x3& lhs, const double4x3& rhs )
+{
+	return ( lhs = lhs + rhs );
+}
 
 /// \relates double4x3
 /// \brief Returns a copy of the double4x3 that has been component-wise subtracted by the given scalar value.
-inline double4x3 operator-( const double4x3& lhs, const double rhs );
+inline double4x3 operator-( const double4x3& lhs, const double rhs )
+{
+	return double4x3(
+		lhs[0] - rhs,
+		lhs[1] - rhs,
+		lhs[2] - rhs,
+		lhs[3] - rhs
+	);
+}
 
 /// \relates double4x3
 /// \brief Subtracts each component by the given scalar value.
-inline double4x3 operator-=( double4x3& lhs, const double rhs );
+inline double4x3 operator-=( double4x3& lhs, const double rhs )
+{
+	return ( lhs = lhs - rhs );
+}
 
 /// \relates double4x3
 /// \brief Returns a copy of the double4x3 that has been component-wise subtracted by the corresponding component of the right-hand double4x3.
-inline double4x3 operator-( const double4x3& lhs, const double4x3& rhs );
+inline double4x3 operator-( const double4x3& lhs, const double4x3& rhs )
+{
+	return double4x3(
+		lhs[0] - rhs[0],
+		lhs[1] - rhs[1],
+		lhs[2] - rhs[2],
+		lhs[3] - rhs[3]
+	);
+}
 
 /// \relates double4x3
 /// \brief Subtracts each component of the double4x3 by the corresponding component of the right-hand double4x3.
-inline double4x3 operator-=( double4x3& lhs, const double4x3& rhs );
+inline double4x3 operator-=( double4x3& lhs, const double4x3& rhs )
+{
+	return ( lhs = lhs - rhs );
+}
 
 /// \relates double4x3
 /// \brief Returns a copy of the double4x3 that has been component-wise multiplied by the given scalar value.
-inline double4x3 operator*( const double4x3& lhs, const double rhs );
+inline double4x3 operator*( const double4x3& lhs, const double rhs )
+{
+	return double4x3(
+		lhs[0] * rhs,
+		lhs[1] * rhs,
+		lhs[2] * rhs,
+		lhs[3] * rhs
+	);
+}
 
 /// \relates double4x3
 /// \brief Multiplies each component by the given scalar value.
-inline double4x3 operator*=( double4x3& lhs, const double rhs );
+inline double4x3 operator*=( double4x3& lhs, const double rhs )
+{
+	return ( lhs = lhs * rhs );
+}
 
 /// \relates double4x3
 /// \brief Returns a copy of the matrix where each row of the left-hand matrix has been dot-producted by the corresponding column of the right-hand matrix.
-inline double4x4 operator*( const double4x3& lhs, const double3x4& rhs );
+inline double4x4 operator*( const double4x3& lhs, const double3x4& rhs )
+{
+	double3 row0 = lhs[0];
+	double3 row1 = lhs[1];
+	double3 row2 = lhs[2];
+	double3 row3 = lhs[3];
 
-/// \relates double4x3
-/// \brief Dot products each row of the left-hand matrix with the corresponding column of the right-hand matrix.
-inline double4x4 operator*=( double4x3& lhs, const double3x4& rhs );
+	double3 col0 = { rhs[0].x, rhs[1].x, rhs[2].x };
+	double3 col1 = { rhs[0].y, rhs[1].y, rhs[2].y };
+	double3 col2 = { rhs[0].z, rhs[1].z, rhs[2].z };
+	double3 col3 = { rhs[0].w, rhs[1].w, rhs[2].w };
+
+	return double4x4(
+		row0.x * col0.x + row0.y * col0.y + row0.z * col0.z,
+		row0.x * col1.x + row0.y * col1.y + row0.z * col1.z,
+		row0.x * col2.x + row0.y * col2.y + row0.z * col2.z,
+		row0.x * col3.x + row0.y * col3.y + row0.z * col3.z,
+
+		row1.x * col0.x + row1.y * col0.y + row1.z * col0.z,
+		row1.x * col1.x + row1.y * col1.y + row1.z * col1.z,
+		row1.x * col2.x + row1.y * col2.y + row1.z * col2.z,
+		row1.x * col3.x + row1.y * col3.y + row1.z * col3.z,
+
+		row2.x * col0.x + row2.y * col0.y + row2.z * col0.z,
+		row2.x * col1.x + row2.y * col1.y + row2.z * col1.z,
+		row2.x * col2.x + row2.y * col2.y + row2.z * col2.z,
+		row2.x * col3.x + row2.y * col3.y + row2.z * col3.z,
+
+		row3.x * col0.x + row3.y * col0.y + row3.z * col0.z,
+		row3.x * col1.x + row3.y * col1.y + row3.z * col1.z,
+		row3.x * col2.x + row3.y * col2.y + row3.z * col2.z,
+		row3.x * col3.x + row3.y * col3.y + row3.z * col3.z
+	);
+}
 
 /// \relates double4x3
 /// \brief Returns a copy of the double4x3 that has been component-wise divided by the given scalar value.
-inline double4x3 operator/( const double4x3& lhs, const double rhs );
+inline double4x3 operator/( const double4x3& lhs, const double rhs )
+{
+	return double4x3(
+		lhs[0] / rhs,
+		lhs[1] / rhs,
+		lhs[2] / rhs,
+		lhs[3] / rhs
+	);
+}
 
 /// \relates double4x3
 /// \brief Divides each component by the given scalar value.
-inline double4x3 operator/=( double4x3& lhs, const double rhs );
+inline double4x3 operator/=( double4x3& lhs, const double rhs )
+{
+	return ( lhs = lhs / rhs );
+}
 
 /// \relates double4x3
 /// \brief Returns a copy of the double4x3 that has been component-wise divided by the corresponding component of the right-hand double4x3.
-inline double4x3 operator/( const double4x3& lhs, const double4x3& rhs );
+inline double4x3 operator/( const double4x3& lhs, const double4x3& rhs )
+{
+	return double4x3(
+		lhs[0] / rhs[0],
+		lhs[1] / rhs[1],
+		lhs[2] / rhs[2],
+		lhs[3] / rhs[3]
+	);
+}
 
+// prefix
 /// \relates double4x3
 /// \brief Prefix increment operator.  Adds one to each component of the given double4x3 before evaluation.
-inline double4x3& operator++( double4x3& lhs );
+inline double4x3& operator++( double4x3& lhs )
+{
+	++lhs[0];
+	++lhs[1];
+	++lhs[2];
+	++lhs[3];
+	return lhs;
+}
 
+// postfix
 /// \relates double4x3
 /// \brief Postfix increment operator.  Adds one to each component of the given double4x3 after evaluation.
-inline double4x3& operator++( double4x3& lhs, const int );
+inline double4x3& operator++( double4x3& lhs, const int )
+{
+	lhs[0]++;
+	lhs[1]++;
+	lhs[2]++;
+	lhs[3]++;
+	return lhs;
+}
 
+// prefix
 /// \relates double4x3
 /// \brief Prefix decrement operator.  Subtracts one from each component of the given double4x3 before evaluation.
-inline double4x3& operator--( double4x3& lhs );
+inline double4x3& operator--( double4x3& lhs )
+{
+	--lhs[0];
+	--lhs[1];
+	--lhs[2];
+	--lhs[3];
+	return lhs;
+}
 
+// postfix
 /// \relates double4x3
 /// \brief Postfix decrement operator.  Subtracts one from each component of the given double4x3 after evaluation.
-inline double4x3& operator--( double4x3& lhs, const int );
+inline double4x3& operator--( double4x3& lhs, const int )
+{
+	lhs[0]--;
+	lhs[1]--;
+	lhs[2]--;
+	lhs[3]--;
+	return lhs;
+}
 
 /// \relates double4x3
 /// \brief Returns a bool4x3 where each component is true if the component of the left-hand type is less than the corresponding right-hand type component.
-inline bool4x3 operator<( const double4x3& lhs, const double4x3& rhs );
+inline bool4x3 operator<( const double4x3& lhs, const double4x3& rhs )
+{
+	return bool4x3(
+		lhs[0] < rhs[0],
+		lhs[1] < rhs[1],
+		lhs[2] < rhs[2],
+		lhs[3] < rhs[3]
+	);
+}
 
 /// \relates double4x3
 /// \brief Returns a bool4x3 where each component is true if the component of the left-hand type is less than or equal to the corresponding right-hand type component.
-inline bool4x3 operator<=( const double4x3& lhs, const double4x3& rhs );
+inline bool4x3 operator<=( const double4x3& lhs, const double4x3& rhs )
+{
+	return bool4x3(
+		lhs[0] <= rhs[0],
+		lhs[1] <= rhs[1],
+		lhs[2] <= rhs[2],
+		lhs[3] <= rhs[3]
+	);
+}
 
 /// \relates double4x3
 /// \brief Returns a bool4x3 where each component is true if the component of the left-hand type is greater than the corresponding right-hand type component.
-inline bool4x3 operator>( const double4x3& lhs, const double4x3& rhs );
+inline bool4x3 operator>( const double4x3& lhs, const double4x3& rhs )
+{
+	return bool4x3(
+		lhs[0] > rhs[0],
+		lhs[1] > rhs[1],
+		lhs[2] > rhs[2],
+		lhs[3] > rhs[3]
+	);
+}
 
 /// \relates double4x3
 /// \brief Returns a bool4x3 where each component is true if the component of the left-hand type is greater than or equal to the corresponding right-hand type component.
-inline bool4x3 operator>=( const double4x3& lhs, const double4x3& rhs );
+inline bool4x3 operator>=( const double4x3& lhs, const double4x3& rhs )
+{
+	return bool4x3(
+		lhs[0] >= rhs[0],
+		lhs[1] >= rhs[1],
+		lhs[2] >= rhs[2],
+		lhs[3] >= rhs[3]
+	);
+}
 
 
 // double4x4
 /// \relates double4x4
 /// \brief Returns a copy of the double4x4 that has been component-wise added by the given scalar value.
-inline double4x4 operator+( const double4x4& lhs, const double rhs );
+inline double4x4 operator+( const double4x4& lhs, const double rhs )
+{
+	return double4x4(
+		lhs[0] + rhs,
+		lhs[1] + rhs,
+		lhs[2] + rhs,
+		lhs[3] + rhs
+	);
+}
 
 /// \relates double4x4
 /// \brief Adds each component by the given scalar value.
-inline double4x4 operator+=( double4x4& lhs, const double rhs );
+inline double4x4 operator+=( double4x4& lhs, const double rhs )
+{
+	return ( lhs = lhs + rhs );
+}
 
 /// \relates double4x4
 /// \brief Returns a copy of the double4x4 that has been component-wise added by the corresponding component of the right-hand double4x4.
-inline double4x4 operator+( const double4x4& lhs, const double4x4& rhs );
+inline double4x4 operator+( const double4x4& lhs, const double4x4& rhs )
+{
+	return double4x4(
+		lhs[0] + rhs[0],
+		lhs[1] + rhs[1],
+		lhs[2] + rhs[2],
+		lhs[3] + rhs[3]
+	);
+}
 
 /// \relates double4x4
 /// \brief Adds each component of the double4x4 by the corresponding component of the right-hand double4x4.
-inline double4x4 operator+=( double4x4& lhs, const double4x4& rhs );
+inline double4x4 operator+=( double4x4& lhs, const double4x4& rhs )
+{
+	return ( lhs = lhs + rhs );
+}
 
 /// \relates double4x4
 /// \brief Returns a copy of the double4x4 that has been component-wise subtracted by the given scalar value.
-inline double4x4 operator-( const double4x4& lhs, const double rhs );
+inline double4x4 operator-( const double4x4& lhs, const double rhs )
+{
+	return double4x4(
+		lhs[0] - rhs,
+		lhs[1] - rhs,
+		lhs[2] - rhs,
+		lhs[3] - rhs
+	);
+}
 
 /// \relates double4x4
 /// \brief Subtracts each component by the given scalar value.
-inline double4x4 operator-=( double4x4& lhs, const double rhs );
+inline double4x4 operator-=( double4x4& lhs, const double rhs )
+{
+	return ( lhs = lhs - rhs );
+}
 
 /// \relates double4x4
 /// \brief Returns a copy of the double4x4 that has been component-wise subtracted by the corresponding component of the right-hand double4x4.
-inline double4x4 operator-( const double4x4& lhs, const double4x4& rhs );
+inline double4x4 operator-( const double4x4& lhs, const double4x4& rhs )
+{
+	return double4x4(
+		lhs[0] - rhs[0],
+		lhs[1] - rhs[1],
+		lhs[2] - rhs[2],
+		lhs[3] - rhs[3]
+	);
+}
 
 /// \relates double4x4
 /// \brief Subtracts each component of the double4x4 by the corresponding component of the right-hand double4x4.
-inline double4x4 operator-=( double4x4& lhs, const double4x4& rhs );
+inline double4x4 operator-=( double4x4& lhs, const double4x4& rhs )
+{
+	return ( lhs = lhs - rhs );
+}
 
 /// \relates double4x4
 /// \brief Returns a copy of the double4x4 that has been component-wise multiplied by the given scalar value.
-inline double4x4 operator*( const double4x4& lhs, const double rhs );
+inline double4x4 operator*( const double4x4& lhs, const double rhs )
+{
+	return double4x4(
+		lhs[0] * rhs,
+		lhs[1] * rhs,
+		lhs[2] * rhs,
+		lhs[3] * rhs
+	);
+}
 
 /// \relates double4x4
 /// \brief Multiplies each component by the given scalar value.
-inline double4x4 operator*=( double4x4& lhs, const double rhs );
+inline double4x4 operator*=( double4x4& lhs, const double rhs )
+{
+	return ( lhs = lhs * rhs );
+}
 
 /// \relates double4x4
 /// \brief Returns a copy of the matrix where each row of the left-hand matrix has been dot-producted by the corresponding column of the right-hand matrix.
-inline double4x4 operator*( const double4x4& lhs, const double4x4& rhs );
+inline double4x4 operator*( const double4x4& lhs, const double4x4& rhs )
+{
+	double4 row0 = lhs[0];
+	double4 row1 = lhs[1];
+	double4 row2 = lhs[2];
+	double4 row3 = lhs[3];
 
-/// \relates double4x4
-/// \brief Dot products each row of the left-hand matrix with the corresponding column of the right-hand matrix.
-inline double4x4 operator*=( double4x4& lhs, const double4x4& rhs );
+	double4 col0 = { rhs[0].x, rhs[1].x, rhs[2].x, rhs[3].x };
+	double4 col1 = { rhs[0].y, rhs[1].y, rhs[2].y, rhs[3].y };
+	double4 col2 = { rhs[0].z, rhs[1].z, rhs[2].z, rhs[3].z };
+	double4 col3 = { rhs[0].w, rhs[1].w, rhs[2].w, rhs[3].w };
+
+	return double4x4(
+		row0.x * col0.x + row0.y * col0.y + row0.z * col0.z + row0.w * col0.w,
+		row0.x * col1.x + row0.y * col1.y + row0.z * col1.z + row0.w * col1.w,
+		row0.x * col2.x + row0.y * col2.y + row0.z * col2.z + row0.w * col2.w,
+		row0.x * col3.x + row0.y * col3.y + row0.z * col3.z + row0.w * col3.w,
+
+		row1.x * col0.x + row1.y * col0.y + row1.z * col0.z + row1.w * col0.w,
+		row1.x * col1.x + row1.y * col1.y + row1.z * col1.z + row1.w * col1.w,
+		row1.x * col2.x + row1.y * col2.y + row1.z * col2.z + row1.w * col2.w,
+		row1.x * col3.x + row1.y * col3.y + row1.z * col3.z + row1.w * col3.w,
+
+		row2.x * col0.x + row2.y * col0.y + row2.z * col0.z + row2.w * col0.w,
+		row2.x * col1.x + row2.y * col1.y + row2.z * col1.z + row2.w * col1.w,
+		row2.x * col2.x + row2.y * col2.y + row2.z * col2.z + row2.w * col2.w,
+		row2.x * col3.x + row2.y * col3.y + row2.z * col3.z + row2.w * col3.w,
+
+		row3.x * col0.x + row3.y * col0.y + row3.z * col0.z + row3.w * col0.w,
+		row3.x * col1.x + row3.y * col1.y + row3.z * col1.z + row3.w * col1.w,
+		row3.x * col2.x + row3.y * col2.y + row3.z * col2.z + row3.w * col2.w,
+		row3.x * col3.x + row3.y * col3.y + row3.z * col3.z + row3.w * col3.w
+	);
+}
+
+inline double4x4 operator*=( double4x4& lhs, const double4x4& rhs )
+{
+	return ( lhs = lhs * rhs );
+}
 
 /// \relates double4x4
 /// \brief Returns a copy of the double4x4 that has been component-wise divided by the given scalar value.
-inline double4x4 operator/( const double4x4& lhs, const double rhs );
+inline double4x4 operator/( const double4x4& lhs, const double rhs )
+{
+	return double4x4(
+		lhs[0] / rhs,
+		lhs[1] / rhs,
+		lhs[2] / rhs,
+		lhs[3] / rhs
+	);
+}
 
 /// \relates double4x4
 /// \brief Divides each component by the given scalar value.
-inline double4x4 operator/=( double4x4& lhs, const double rhs );
+inline double4x4 operator/=( double4x4& lhs, const double rhs )
+{
+	return ( lhs = lhs / rhs );
+}
 
 /// \relates double4x4
 /// \brief Returns a copy of the matrix where the left-hand matrix has been mathematically multiplied by the inverse of the right-hand matrix.
-inline double4x4 operator/( const double4x4& lhs, const double4x4& rhs );
+inline double4x4 operator/( const double4x4& lhs, const double4x4& rhs )
+{
+	return lhs * inverse( rhs );
+}
 
 /// \relates double4x4
 /// \brief Multiplies the left-hand matrix by the right-hand matrix (dot product row/col style).
-inline double4x4 operator/=( double4x4& lhs, const double4x4& rhs );
+inline double4x4 operator/=( double4x4& lhs, const double4x4& rhs )
+{
+	return ( lhs = lhs / rhs );
+}
 
 /// \relates double4
 /// \brief Returns a copy of the double4 that has been component-wise multiplied by the corresponding component of the right-hand double4x4.
-inline double4 operator*( const double4x4& lhs, const double4& rhs );
+inline double4 operator*( const double4x4& lhs, const double4& rhs )
+{
+	return double4(
+		(double) dot( lhs[0], rhs ),
+		(double) dot( lhs[1], rhs ),
+		(double) dot( lhs[2], rhs ),
+		(double) dot( lhs[3], rhs )
+	);
+}
 
 /// \relates double4
 /// \brief Multiplies each component of the double4 by the corresponding component of the right-hand double4x4.
-inline double4 operator*=( double4& lhs, const double4x4& rhs );
+inline double4 operator*=( double4& lhs, const double4x4& rhs )
+{
+	return ( lhs = rhs * lhs );
+}
 
+// prefix
 /// \relates double4x4
 /// \brief Prefix increment operator.  Adds one to each component of the given double4x4 before evaluation.
-inline double4x4& operator++( double4x4& lhs );
+inline double4x4& operator++( double4x4& lhs )
+{
+	++lhs[0];
+	++lhs[1];
+	++lhs[2];
+	++lhs[3];
+	return lhs;
+}
 
+// postfix
 /// \relates double4x4
 /// \brief Postfix increment operator.  Adds one to each component of the given double4x4 after evaluation.
-inline double4x4& operator++( double4x4& lhs, const int );
+inline double4x4& operator++( double4x4& lhs, const int )
+{
+	lhs[0]++;
+	lhs[1]++;
+	lhs[2]++;
+	lhs[3]++;
+	return lhs;
+}
 
+// prefix
 /// \relates double4x4
 /// \brief Prefix decrement operator.  Subtracts one from each component of the given double4x4 before evaluation.
-inline double4x4& operator--( double4x4& lhs );
+inline double4x4& operator--( double4x4& lhs )
+{
+	--lhs[0];
+	--lhs[1];
+	--lhs[2];
+	--lhs[3];
+	return lhs;
+}
 
+// postfix
 /// \relates double4x4
 /// \brief Postfix decrement operator.  Subtracts one from each component of the given double4x4 after evaluation.
-inline double4x4& operator--( double4x4& lhs, const int );
+inline double4x4& operator--( double4x4& lhs, const int )
+{
+	lhs[0]--;
+	lhs[1]--;
+	lhs[2]--;
+	lhs[3]--;
+	return lhs;
+}
 
 /// \relates double4x4
 /// \brief Returns a bool4x4 where each component is true if the component of the left-hand type is less than the corresponding right-hand type component.
-inline bool4x4 operator<( const double4x4& lhs, const double4x4& rhs );
+inline bool4x4 operator<( const double4x4& lhs, const double4x4& rhs )
+{
+	return bool4x4(
+		lhs[0] < rhs[0],
+		lhs[1] < rhs[1],
+		lhs[2] < rhs[2],
+		lhs[3] < rhs[3]
+	);
+}
 
 /// \relates double4x4
 /// \brief Returns a bool4x4 where each component is true if the component of the left-hand type is less than or equal to the corresponding right-hand type component.
-inline bool4x4 operator<=( const double4x4& lhs, const double4x4& rhs );
+inline bool4x4 operator<=( const double4x4& lhs, const double4x4& rhs )
+{
+	return bool4x4(
+		lhs[0] <= rhs[0],
+		lhs[1] <= rhs[1],
+		lhs[2] <= rhs[2],
+		lhs[3] <= rhs[3]
+	);
+}
 
 /// \relates double4x4
 /// \brief Returns a bool4x4 where each component is true if the component of the left-hand type is greater than the corresponding right-hand type component.
-inline bool4x4 operator>( const double4x4& lhs, const double4x4& rhs );
+inline bool4x4 operator>( const double4x4& lhs, const double4x4& rhs )
+{
+	return bool4x4(
+		lhs[0] > rhs[0],
+		lhs[1] > rhs[1],
+		lhs[2] > rhs[2],
+		lhs[3] > rhs[3]
+	);
+}
 
 /// \relates double4x4
 /// \brief Returns a bool4x4 where each component is true if the component of the left-hand type is greater than or equal to the corresponding right-hand type component.
-inline bool4x4 operator>=( const double4x4& lhs, const double4x4& rhs );
+inline bool4x4 operator>=( const double4x4& lhs, const double4x4& rhs )
+{
+	return bool4x4(
+		lhs[0] >= rhs[0],
+		lhs[1] >= rhs[1],
+		lhs[2] >= rhs[2],
+		lhs[3] >= rhs[3]
+	);
+}
 
 
-#include "hlml_operators_matrix.inl"

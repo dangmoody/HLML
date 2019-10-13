@@ -2,7 +2,7 @@
 ===========================================================================
 
 Temper.
-v1.1.0
+v1.1.1
 
 Distributed under MIT License:
 Copyright (c) 2019 Dan Moody (daniel.guy.moody@gmail.com)
@@ -505,7 +505,7 @@ static double TemperGetTimestampInternal( void ) {
 						if ( strcmp( arg, "--help" ) == 0 ) { \
 							TemperShowUsageInternal(); \
 							exit( EXIT_SUCCESS ); \
-						} else if ( strcmp( arg, "--time-unit=" ) == 0 ) { \
+						} else if ( strstr( arg, "--time-unit=" ) ) { \
 							const char* unitStart = (const char*) memchr( arg, '=', arglen ); \
 							unitStart++; \
 \

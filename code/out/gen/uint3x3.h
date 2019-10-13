@@ -86,4 +86,3 @@ inline bool operator==( const uint3x3& lhs, const uint3x3& rhs );
 /// \brief Returns true if not all of the components of the left-hand-side uint3x3 match the other one, otherwise returns false.
 inline bool operator!=( const uint3x3& lhs, const uint3x3& rhs );
 
-#include "uint3x3.inl"

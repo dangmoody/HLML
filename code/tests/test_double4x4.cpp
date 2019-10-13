@@ -32,26 +32,25 @@ SOFTWARE.
 // EDITING THIS FILE MAY CAUSE SIDE EFFECTS.
 // DO SO AT YOUR OWN RISK.
 
-#include "../../code/out/gen/hlml_functions_matrix.h"
-#include "../../code/out/gen/hlml_operators_matrix.h"
+#include "hlml.h"
 
 #include <temper/temper.h>
 
-static double4x4 g_identityMatrix;
+static double4x4 g_identityMatrix_double4x4;
 
-static double4x4 g_matrixMulLHS = double4x4(
+static double4x4 g_matrixMulLHS_double4x4    = double4x4(
 		6.000000, 6.000000, 6.000000, 6.000000,
 		6.000000, 6.000000, 6.000000, 6.000000,
 		12.000000, 12.000000, 12.000000, 12.000000,
 		18.000000, 18.000000, 18.000000, 18.000000
 	);
-static double4x4 g_matrixMulRHS = double4x4(
+static double4x4 g_matrixMulRHS_double4x4    = double4x4(
 		1.000000, 1.000000, 1.000000, 1.000000,
 		2.000000, 2.000000, 2.000000, 2.000000,
 		3.000000, 3.000000, 3.000000, 3.000000,
 		6.000000, 6.000000, 6.000000, 6.000000
 	);
-static double4x4 g_matrixMulAnswer = double4x4(
+static double4x4 g_matrixMulAnswer_double4x4 = double4x4(
 		72.000000, 72.000000, 72.000000, 72.000000,
 		72.000000, 72.000000, 72.000000, 72.000000,
 		144.000000, 144.000000, 144.000000, 144.000000,
@@ -210,10 +209,10 @@ TEMPER_TEST( TestComponentWiseArithmetic_Scalar_Division_double4x4 )
 
 TEMPER_TEST( TestMultiplyMatrix_Scalar_double4x4 )
 {
-	double4x4 answer = g_matrixMulAnswer;
+	double4x4 answer = g_matrixMulAnswer_double4x4;
 
-	double4x4 a = g_matrixMulLHS;
-	double4x4 b = g_matrixMulRHS;
+	double4x4 a = g_matrixMulLHS_double4x4;
+	double4x4 b = g_matrixMulRHS_double4x4;
 	double4x4 c = a * b;
 
 	TEMPER_EXPECT_TRUE( c == answer );
@@ -501,7 +500,7 @@ TEMPER_TEST( TestInverse_Scalar_double4x4 )
 	);
 	double4x4 matInverse = inverse( mat );
 
-	TEMPER_EXPECT_TRUE( mat * matInverse == g_identityMatrix );
+	TEMPER_EXPECT_TRUE( mat * matInverse == g_identityMatrix_double4x4 );
 
 	TEMPER_PASS();
 }

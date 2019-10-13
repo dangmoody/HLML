@@ -32,22 +32,21 @@ SOFTWARE.
 // EDITING THIS FILE MAY CAUSE SIDE EFFECTS.
 // DO SO AT YOUR OWN RISK.
 
-#include "../../code/out/gen/hlml_functions_matrix.h"
-#include "../../code/out/gen/hlml_operators_matrix.h"
+#include "hlml.h"
 
 #include <temper/temper.h>
 
-static bool2x2 g_identityMatrix;
+static bool2x2 g_identityMatrix_bool2x2;
 
-static bool2x2 g_matrixMulLHS = bool2x2(
+static bool2x2 g_matrixMulLHS_bool2x2    = bool2x2(
 		true, true,
 		true, true
 	);
-static bool2x2 g_matrixMulRHS = bool2x2(
+static bool2x2 g_matrixMulRHS_bool2x2    = bool2x2(
 		true, true,
 		true, true
 	);
-static bool2x2 g_matrixMulAnswer = bool2x2(
+static bool2x2 g_matrixMulAnswer_bool2x2 = bool2x2(
 		true, true,
 		true, true
 	);

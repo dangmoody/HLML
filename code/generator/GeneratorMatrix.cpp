@@ -76,15 +76,20 @@ bool GeneratorMatrix::Generate( const genType_t type, const u32 numRows, const u
 
 	// inl pre-functions
 	{
-		String_Append( &m_codeInl, GEN_FILE_HEADER );
+		String_Append(  &m_codeInl, GEN_FILE_HEADER );
+		String_Append(  &m_codeInl, "#pragma once\n" );
+		String_Append(  &m_codeInl, "\n" );
 
-//		String_Append( &m_codeInl, "// hlml includes\n" );
-//		String_Append( &m_codeInl, "#include \"../" GEN_HEADER_CONSTANTS "\"\n" );
-//		String_Append( &m_codeInl, "\n" );
+		String_Append(  &m_codeInl, "// hlml includes\n" );
+		String_Appendf( &m_codeInl, "#include \"%s.h\"\n", m_fullTypeName );
+//		String_Append(  &m_codeInl, "#include \"../" GEN_HEADER_CONSTANTS "\"\n" );
+		String_Append(  &m_codeInl, "\n" );
 
-		String_Append( &m_codeInl, "// others\n" );
-		String_Append( &m_codeInl, "#include <math.h>\n" );
-		String_Append( &m_codeInl, "\n" );
+		String_Append(  &m_codeInl, "// others\n" );
+		String_Append(  &m_codeInl, "#include <math.h>\n" );
+		String_Append(  &m_codeInl, "#include <memory.h>\n" );
+		String_Append(  &m_codeInl, "#include <assert.h>\n" );
+		String_Append(  &m_codeInl, "\n" );
 
 		if ( m_type != GEN_TYPE_BOOL ) {
 			String_Append(  &m_codeInl, "// forward declares\n" );
@@ -103,9 +108,6 @@ bool GeneratorMatrix::Generate( const genType_t type, const u32 numRows, const u
 	String_Append( &m_codeHeader, "};\n\n" );
 
 	GenerateOperatorsEquality();
-
-	String_Appendf( &m_codeHeader, "#include \"%s.inl\"", m_fullTypeName );
-	String_Append(  &m_codeHeader, "\n" );
 
 	char fileNameHeader[64];
 	snprintf( fileNameHeader, 64, "%s%s.h", GEN_OUT_GEN_FOLDER_PATH, m_fullTypeName );
