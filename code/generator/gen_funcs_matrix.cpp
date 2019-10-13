@@ -43,6 +43,7 @@ static void MatrixOperatorMul( const genType_t type, const u32 numRows, const u3
 	snprintf( returnTypeName, GEN_STRING_LENGTH_TYPE_NAME, "%s%dx%d", typeString, numRows, numRows );
 
 	// main operator
+	Doc_MatrixMultiplication( sbHeader, fullTypeName );
 	String_Appendf( sbHeader, "inline %s operator*( const %s& lhs, const %s& rhs )\n", returnTypeName, fullTypeName, rhsTypeName );
 	String_Append(  sbHeader, "{\n" );
 	// generate row vars

@@ -41,6 +41,7 @@ static void GenerateOperatorIncrementInl( const genType_t type, const u32 numRow
 
 	// prefix
 	String_Append(  sb, "// prefix\n" );
+	Doc_OperatorIncrementPrefix( sb, fullTypeName, op );
 	String_Appendf( sb, "inline %s& operator%s( %s& lhs )\n", fullTypeName, opStr, fullTypeName );
 	String_Append(  sb, "{\n" );
 	for ( u32 i = 0; i < numComponents; i++ ) {
@@ -52,6 +53,7 @@ static void GenerateOperatorIncrementInl( const genType_t type, const u32 numRow
 
 	// postfix
 	String_Append(  sb, "// postfix\n" );
+	Doc_OperatorIncrementPostfix( sb, fullTypeName, op );
 	String_Appendf( sb, "inline %s& operator%s( %s& lhs, const int )\n", fullTypeName, opStr, fullTypeName );
 	String_Append(  sb, "{\n" );
 	for ( u32 i = 0; i < numComponents; i++ ) {
@@ -75,6 +77,7 @@ static void InlGenerateOperatorRelational( const genType_t type, const u32 numRo
 
 	const char* opStr = GEN_OPERATORS_RELATIONAL[op];
 
+	Doc_OperatorRelational( sb, fullTypeName, numRows, numCols, op );
 	String_Appendf( sb, "inline %s operator%s( const %s& lhs, const %s& rhs )\n", boolReturnTypeName, opStr, fullTypeName, fullTypeName );
 	String_Append(  sb, "{\n" );
 	String_Appendf( sb, "\treturn %s(\n", boolReturnTypeName );
@@ -106,6 +109,7 @@ static void InlGenerateOperatorBitwiseScalar( const genType_t type, const u32 nu
 	const char* opStr = GEN_OPERATORS_BITWISE[op];
 
 	// main bitwise operator
+	Doc_OperatorBitwiseScalar( sb, fullTypeName, op );
 	String_Appendf( sb, "inline %s operator%s( const %s& lhs, const %s& rhs )\n", fullTypeName, opStr, fullTypeName, memberTypeString );
 	String_Append(  sb, "{\n" );
 	String_Appendf( sb, "\treturn %s(\n", fullTypeName );
@@ -123,6 +127,7 @@ static void InlGenerateOperatorBitwiseScalar( const genType_t type, const u32 nu
 	String_Append( sb, "\n" );
 
 	// compound bitwise operator
+	Doc_OperatorCompoundBitwiseScalar( sb, fullTypeName, op );
 	String_Appendf( sb, "inline %s operator%s=( %s& lhs, const %s& rhs )\n", fullTypeName, opStr, fullTypeName, memberTypeString );
 	String_Append(  sb, "{\n" );
 	String_Appendf( sb, "\treturn ( lhs = lhs %s rhs );\n", opStr );
@@ -141,6 +146,7 @@ static void InlGenerateOperatorBitwiseRhsType( const genType_t type, const u32 n
 	const char* opStr = GEN_OPERATORS_BITWISE[op];
 
 	// main bitwise operator
+	Doc_OperatorBitwiseRhsType( sb, fullTypeName, op );
 	String_Appendf( sb, "inline %s operator%s( const %s& lhs, const %s& rhs )\n", fullTypeName, opStr, fullTypeName, fullTypeName );
 	String_Append(  sb, "{\n" );
 	String_Appendf( sb, "\treturn %s(\n", fullTypeName );
@@ -158,6 +164,7 @@ static void InlGenerateOperatorBitwiseRhsType( const genType_t type, const u32 n
 	String_Append( sb, "\n" );
 
 	// compound bitwise operator
+	Doc_OperatorCompoundBitwiseRhsType( sb, fullTypeName, op );
 	String_Appendf( sb, "inline %s operator%s=( %s& lhs, const %s& rhs )\n", fullTypeName, opStr, fullTypeName, fullTypeName );
 	String_Append(  sb, "{\n" );
 	String_Appendf( sb, "\treturn ( lhs = lhs %s rhs );\n", opStr );
@@ -458,6 +465,7 @@ void Gen_Step( const genType_t type, const u32 numComponents, stringBuilder_t* s
 	char parmTypeName[GEN_STRING_LENGTH_TYPE_NAME];
 	Gen_GetParmTypeName( type, numComponents, parmTypeName );
 
+	Doc_Step( sbHeader, fullTypeName );
 	String_Appendf( sbHeader, "inline %s step( const %s x, const %s y )\n", fullTypeName, parmTypeName, parmTypeName );
 	if ( numComponents > 1 ) {
 		String_Append(  sbHeader, "{\n" );
@@ -679,6 +687,7 @@ void Gen_OperatorComponentWiseArithmeticScalar( const genType_t type, const u32 
 	char opStr = GEN_OPERATORS_ARITHMETIC[op];
 
 	// main arithmetic func
+	Doc_ComponentWiseArithmeticScalar( sbHeader, fullTypeName, op );
 	String_Appendf( sbHeader, "inline %s operator%c( const %s& lhs, const %s rhs )\n", fullTypeName, opStr, fullTypeName, memberTypeString );
 	String_Append(  sbHeader, "{\n" );
 	String_Appendf( sbHeader, "\treturn %s(\n", fullTypeName );
@@ -696,6 +705,7 @@ void Gen_OperatorComponentWiseArithmeticScalar( const genType_t type, const u32 
 	String_Append( sbHeader, "\n" );
 
 	// compound arithmetic func
+	Doc_OperatorCompoundArithmeticScalar( sbHeader, fullTypeName, op );
 	String_Appendf( sbHeader, "inline %s operator%c=( %s& lhs, const %s rhs )\n", fullTypeName, opStr, fullTypeName, memberTypeString );
 	String_Append(  sbHeader, "{\n" );
 	String_Appendf( sbHeader, "\treturn ( lhs = lhs %c rhs );\n", opStr );
@@ -731,6 +741,7 @@ void Gen_OperatorComponentWiseArithmeticRhsType( const genType_t type, const u32
 	char opStr = GEN_OPERATORS_ARITHMETIC[op];
 
 	// main arithmetic func
+	Doc_ComponentWiseArithmeticRhsType( sbHeader, fullTypeName, fullTypeName, op );
 	String_Appendf( sbHeader, "inline %s operator%c( const %s& lhs, const %s& rhs )\n", fullTypeName, opStr, fullTypeName, fullTypeName );
 	String_Append(  sbHeader, "{\n" );
 	String_Appendf( sbHeader, "\treturn %s(\n", fullTypeName );
@@ -749,6 +760,7 @@ void Gen_OperatorComponentWiseArithmeticRhsType( const genType_t type, const u32
 
 	// compound arithmetic func
 	if ( canGenerateCompound ) {
+		Doc_OperatorCompoundComponentWiseArithmeticRhsType( sbHeader, fullTypeName, fullTypeName, op );
 		String_Appendf( sbHeader, "inline %s operator%c=( %s& lhs, const %s& rhs )\n", fullTypeName, opStr, fullTypeName, fullTypeName );
 		String_Append(  sbHeader, "{\n" );
 		String_Appendf( sbHeader, "\treturn ( lhs = lhs %c rhs );\n", opStr );
