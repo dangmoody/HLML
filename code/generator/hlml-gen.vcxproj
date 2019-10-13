@@ -12,9 +12,8 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="allocator.cpp" />
-    <ClCompile Include="FileIO_common.cpp" />
-    <ClCompile Include="FileIO_unix.cpp" />
-    <ClCompile Include="FileIO_win64.cpp" />
+    <ClCompile Include="file_io_unix.cpp" />
+    <ClCompile Include="file_io_win64.cpp" />
     <ClCompile Include="GeneratorScalarTests.cpp" />
     <ClCompile Include="gen_common.cpp" />
     <ClCompile Include="gen_common_sse.cpp" />
@@ -36,7 +35,7 @@
   <ItemGroup>
     <ClInclude Include="allocator.h" />
     <ClInclude Include="defines.h" />
-    <ClInclude Include="FileIO.h" />
+    <ClInclude Include="file_io.h" />
     <ClInclude Include="GeneratorScalarTests.h" />
     <ClInclude Include="gen_common.h" />
     <ClInclude Include="gen_common_sse.h" />

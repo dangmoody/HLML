@@ -25,7 +25,7 @@ along with The HLML Generator.  If not, see <http://www.gnu.org/licenses/>.
 
 #include "defines.h"
 
-#include "FileIO.h"
+#include "file_io.h"
 
 #include "gen_funcs_vector.h"
 #include "gen_funcs_matrix.h"
@@ -155,15 +155,11 @@ bool GeneratorMatrixTests::Generate( const genType_t type, const u32 numRows, co
 	char filename[64] = { 0 };
 	snprintf( filename, 64, GEN_TESTS_FOLDER_PATH "test_%s.cpp", m_fullTypeName );
 
-	bool32 result = FS_WriteEntireFile( filename, code.str, code.length );
-
-	if ( !result ) {
-		printf( "Can't generate test suite for %s.  That's rough man.\n", m_fullTypeName );
-	}
+	FS_WriteEntireFile( filename, code.str, code.length );
 
 	Mem_Reset();
 
-	return result;
+	return true;
 }
 
 void GeneratorMatrixTests::GenerateTestAssignment() {

@@ -28,7 +28,7 @@ along with The HLML Generator.  If not, see <http://www.gnu.org/licenses/>.
 
 #include "gen_doc_common.h"
 
-#include "FileIO.h"
+#include "file_io.h"
 
 bool GeneratorMatrix::Generate( const genType_t type, const u32 numRows, const u32 numCols ) {
 	assert( numRows >= GEN_COMPONENT_COUNT_MIN );
@@ -115,12 +115,12 @@ bool GeneratorMatrix::Generate( const genType_t type, const u32 numRows, const u
 	char fileNameInl[64];
 	snprintf( fileNameInl, 64, "%s%s.inl", GEN_OUT_GEN_FOLDER_PATH, m_fullTypeName );
 
-	bool32 wroteHeader	= FS_WriteEntireFile( fileNameHeader, m_codeHeader.str, m_codeHeader.length );
-	bool32 wroteInl		= FS_WriteEntireFile( fileNameInl, m_codeInl.str, m_codeInl.length );
+	FS_WriteEntireFile( fileNameHeader, m_codeHeader.str, m_codeHeader.length );
+	FS_WriteEntireFile( fileNameInl, m_codeInl.str, m_codeInl.length );
 
 	Mem_Reset();
 
-	return wroteHeader && wroteInl;
+	return true;
 }
 
 #ifdef _DEBUG

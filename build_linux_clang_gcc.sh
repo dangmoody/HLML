@@ -31,7 +31,7 @@ fi
 if [[ $config = release ]]; then
 	options_compiler="${options_compiler} -O3 -ffast-math"	# enable optimisations
 elif [[ $config == debug ]]; then
-	options_compiler="${options_compiler} -g"				# generate debugging symbols
+	options_compiler="${options_compiler} -g -D_DEBUG"		# generate debugging symbols
 fi
 
 # additional includes

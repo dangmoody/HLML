@@ -4,7 +4,7 @@
 
 #include "allocator.h"
 
-#include "FileIO.h"
+#include "file_io.h"
 
 #include "gen_common_sse.h"
 
@@ -93,15 +93,11 @@ bool GeneratorVectorTests::Generate( const genType_t type, const u32 numComponen
 	char filename[1024] = { 0 };
 	snprintf( filename, 1024, "%stest_%s.cpp", GEN_TESTS_FOLDER_PATH, m_fullTypeName );
 
-	bool32 result = FS_WriteEntireFile( filename, code.str, code.length );
-
-	if ( !result ) {
-		printf( "Can't generate test suite for %s.  That's rough man.\n", m_fullTypeName );
-	}
+	FS_WriteEntireFile( filename, code.str, code.length );
 
 	Mem_Reset();
 
-	return result;
+	return true;
 }
 
 void GeneratorVectorTests::GenerateTestAssignment() {

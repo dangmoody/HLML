@@ -23,11 +23,23 @@ along with The HLML Generator.  If not, see <http://www.gnu.org/licenses/>.
 */
 #pragma once
 
-#include <string>
+#include "int_types.h"
 
-extern bool		FS_WriteEntireFile( const char* filename, const char* data, const size_t length );
+#include <stddef.h>
 
-extern bool		FS_CreateFolder( const char* name );
-extern bool		FS_DeleteFolder( const char* name );
-extern bool		FS_FolderExists( const char* name );
-extern bool		FS_CleanFolder( const char* name );
+/*
+FIle IO
+
+Must be done completely per-platform because Windows requires shared R/W access
+to all of the files that it touches.
+
+Linux/MacOS implementation does make heavy use of POSIX file IO functions
+because they work fine there.
+*/
+
+extern void		FS_WriteEntireFile( const char* filename, const char* data, const size_t length );
+
+extern void		FS_CreateFolder( const char* name );
+extern void		FS_DeleteFolder( const char* name );
+extern bool32	FS_FolderExists( const char* name );
+extern void		FS_DeleteAllFilesInFolder( const char* name );
