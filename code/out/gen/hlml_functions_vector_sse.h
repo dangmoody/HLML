@@ -167,8 +167,6 @@ inline void dot_sse( const float3_sse_t* lhs, const float3_sse_t* rhs, __m128* o
 
 /// \relates float3
 /// \brief Stores the cross product of register vectors lhs and rhs into out_results.
-inline void cross_sse( const float3_sse_t* lhs, const float3_sse_t* rhs, float3_sse_t* out_results );
-
 inline void cross_sse( const float3_sse_t* lhs, const float3_sse_t* rhs, float3_sse_t* out_results )
 {
 	assert( lhs );
@@ -281,8 +279,6 @@ inline void dot_sse( const float4_sse_t* lhs, const float4_sse_t* rhs, __m128* o
 
 /// \relates float4
 /// \brief Stores the cross product of register vectors lhs and rhs into out_results.
-inline void cross_sse( const float4_sse_t* lhs, const float4_sse_t* rhs, float4_sse_t* out_results );
-
 inline void cross_sse( const float4_sse_t* lhs, const float4_sse_t* rhs, float4_sse_t* out_results )
 {
 	assert( lhs );
