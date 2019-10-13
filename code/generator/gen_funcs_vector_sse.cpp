@@ -140,9 +140,6 @@ void Gen_SSE_VectorCross( const genType_t type, const u32 numComponents, stringB
 	Gen_SSE_GetIntrinsicArithmetic( type, GEN_OP_ARITHMETIC_SUB, subFuncStr );
 
 	Doc_SSE_VectorCross( sbHeader, fullTypeName );
-	String_Appendf( sbHeader, "inline void cross_sse( const %s* lhs, const %s* rhs, %s* out_results );\n", sseTypeName, sseTypeName, sseTypeName );
-	String_Append(  sbHeader, "\n" );
-
 	String_Appendf( sbHeader, "inline void cross_sse( const %s* lhs, const %s* rhs, %s* out_results )\n", sseTypeName, sseTypeName, sseTypeName );
 	String_Append(  sbHeader, "{\n" );
 	String_Append(  sbHeader, "\tassert( lhs );\n" );
