@@ -42,7 +42,7 @@ along with The HLML Generator.  If not, see <http://www.gnu.org/licenses/>.
 
 static void DeleteAllFilesInFolderInternal( DIR* dir, const char* dirName ) {
 	assert( dir );
-	assert( name );
+	assert( dirName );
 
 	int osResult = 0;
 
