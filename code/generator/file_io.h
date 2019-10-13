@@ -40,4 +40,4 @@ extern void		FS_WriteEntireFile( const char* filename, const char* data, const s
 extern void		FS_CreateFolder( const char* name );
 extern void		FS_DeleteFolder( const char* name );
 extern bool32	FS_FolderExists( const char* name );
-extern void		FS_CleanFolder( const char* name );
+extern void		FS_DeleteAllFilesInFolder( const char* name );
