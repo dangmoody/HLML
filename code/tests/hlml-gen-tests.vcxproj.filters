@@ -162,6 +162,18 @@
     <ClCompile Include="test_int4x4.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="test_scalar_double.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="test_scalar_float.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="test_scalar_int32_t.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="test_scalar_uint32_t.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="test_uint2.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -206,15 +218,20 @@
     </ClCompile>
     <ClCompile Include="test_scalar_int32_t.cpp">
       <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="test_scalar_uint32_t.cpp">
+    </ClCompile>
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="test_quaternion_double4.cpp">
       <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="test_quaternion_float4.cpp">
+    </ClCompile>
       <Filter>Source Files</Filter>
     </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="hlml.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

@@ -122,7 +122,7 @@ static bool32 GenerateMatrices( void ) {
 
 static bool32 GenerateFunctionsScalar( void ) {
 	char fileNameHeader[1024];
-	snprintf( fileNameHeader, 1024, "%s%s.h", GEN_OUT_GEN_FOLDER_PATH, GEN_FILENAME_FUNCTIONS_SCALAR );
+	snprintf( fileNameHeader, 1024, "%s%s", GEN_OUT_GEN_FOLDER_PATH, GEN_HEADER_FUNCTIONS_SCALAR );
 
 	stringBuilder_t sb = String_Create( 8 * KB_TO_BYTES );
 
@@ -163,43 +163,35 @@ static bool32 GenerateFunctionsScalar( void ) {
 		Gen_Clamp( type, &sb );
 
 		// generic/scalar/vector funcs
-		Gen_Saturate( type, 1, &sb, nullptr );
+		Gen_Saturate( type, 1, &sb );
 
-		Gen_Lerp( type, 1, &sb, nullptr );
+		Gen_Lerp( type, 1, &sb );
 
-		Gen_Step( type, 1, &sb, nullptr );
-		Gen_Smoothstep( type, 1, &sb, nullptr );
+		Gen_Step( type, 1, &sb );
+		Gen_Smoothstep( type, 1, &sb );
 
 		String_Append( &sb, "\n" );
 
 		printf( "OK.\n" );
 	}
 
-	bool32 result = FS_WriteEntireFile( fileNameHeader, sb.str, sb.length );
+	bool32 wroteHeader = FS_WriteEntireFile( fileNameHeader, sb.str, sb.length );
 
 	Mem_Reset();
 
-	return result;
+	return wroteHeader;
 }
 
 static bool32 GenerateFunctionsVector( void ) {
 	char filePathHeader[64] = { 0 };
-	snprintf( filePathHeader, 64, "%s%s.h", GEN_OUT_GEN_FOLDER_PATH, GEN_FILENAME_FUNCTIONS_VECTOR );
+	snprintf( filePathHeader, 64, "%s%s", GEN_OUT_GEN_FOLDER_PATH, GEN_HEADER_FUNCTIONS_VECTOR );
 
-	char filePathInl[64] = { 0 };
-	snprintf( filePathInl, 64, "%s%s.inl", GEN_OUT_GEN_FOLDER_PATH, GEN_FILENAME_FUNCTIONS_VECTOR );
-
-	stringBuilder_t contentHeader = String_Create( 18 * KB_TO_BYTES );
+	stringBuilder_t contentHeader = String_Create( 32 * KB_TO_BYTES );
 
 	String_Append( &contentHeader, GEN_FILE_HEADER );
 	String_Append( &contentHeader,
 		"#pragma once\n"
 		"\n" );
-
-	stringBuilder_t contentInl = String_Create( 16 * KB_TO_BYTES );
-
-	String_Append( &contentInl, GEN_FILE_HEADER );
-	String_Append( &contentInl, "#include \"" GEN_FILENAME_OPERATORS_VECTOR ".h\"\n" );
 
 	for ( u32 typeIndex = 0; typeIndex < GEN_TYPE_COUNT; typeIndex++ ) {
 		genType_t type = (genType_t) typeIndex;
@@ -213,10 +205,13 @@ static bool32 GenerateFunctionsVector( void ) {
 		for ( u32 componentIndex = GEN_COMPONENT_COUNT_MIN; componentIndex <= GEN_COMPONENT_COUNT_MAX; componentIndex++ ) {
 			String_Appendf( &contentHeader, "#include \"%s%d.h\"\n", typeString, componentIndex );
 		}
+
+		String_Appendf( &contentHeader, "\n" );
 	}
 
-	String_Append( &contentHeader, "\n" );
-	String_Append( &contentInl, "\n" );
+	String_Appendf( &contentHeader, "#include \"" GEN_HEADER_FUNCTIONS_SCALAR "\"\n" );
+	String_Appendf( &contentHeader, "#include \"" GEN_HEADER_OPERATORS_VECTOR "\"\n" );
+	String_Appendf( &contentHeader, "\n" );
 
 	for ( u32 typeIndex = 0; typeIndex < GEN_TYPE_COUNT; typeIndex++ ) {
 		genType_t type = (genType_t) typeIndex;
@@ -231,59 +226,46 @@ static bool32 GenerateFunctionsVector( void ) {
 			printf( "Algebra %s%d...", typeString, componentIndex );
 
 			String_Appendf( &contentHeader, "// %s%d\n", typeString, componentIndex );
-			String_Appendf( &contentInl, "// %s%d\n", typeString, componentIndex );
 
 			// generic/scalar funcs
-			Gen_Saturate( type, componentIndex, &contentHeader, &contentInl );
-			Gen_Lerp( type, componentIndex, &contentHeader, &contentInl );
+			Gen_Saturate( type, componentIndex, &contentHeader );
+			Gen_Lerp( type, componentIndex, &contentHeader );
 
-			Gen_Step( type, componentIndex, &contentHeader, &contentInl );
-			Gen_Smoothstep( type, componentIndex, &contentHeader, &contentInl );
+			Gen_Step( type, componentIndex, &contentHeader );
+			Gen_Smoothstep( type, componentIndex, &contentHeader );
 
 			// generic/scalar/vector funcs
-			Gen_VectorLength( type, componentIndex, &contentHeader, &contentInl );
-			Gen_VectorNormalize( type, componentIndex, &contentHeader, &contentInl );
-			Gen_VectorDot( type, componentIndex, &contentHeader, &contentInl );
-			Gen_VectorCross( type, componentIndex, &contentHeader, &contentInl );
-			Gen_VectorAngle( type, componentIndex, &contentHeader, &contentInl );
-			Gen_VectorDistance( type, componentIndex, &contentHeader, &contentInl );
-			Gen_VectorPack( type, componentIndex, &contentHeader, &contentInl );
-			Gen_VectorUnpack( type, componentIndex, &contentHeader, &contentInl );
+			Gen_VectorLength( type, componentIndex, &contentHeader );
+			Gen_VectorNormalize( type, componentIndex, &contentHeader );
+			Gen_VectorDot( type, componentIndex, &contentHeader );
+			Gen_VectorCross( type, componentIndex, &contentHeader );
+			Gen_VectorAngle( type, componentIndex, &contentHeader );
+			Gen_VectorDistance( type, componentIndex, &contentHeader );
+			Gen_VectorPack( type, componentIndex, &contentHeader );
+			Gen_VectorUnpack( type, componentIndex, &contentHeader );
 
 			String_Append( &contentHeader, "\n" );
-			String_Append( &contentInl, "\n" );
 
 			printf( "OK.\n" );
 		}
 	}
 
-	String_Append( &contentHeader, "#include \"" GEN_FILENAME_FUNCTIONS_VECTOR ".inl\"\n" );
-
-	bool32 wroteHeader	= FS_WriteEntireFile( filePathHeader, contentHeader.str, contentHeader.length );
-	bool32 wroteInl		= FS_WriteEntireFile( filePathInl, contentInl.str, contentInl.length );
+	bool32 wroteHeader = FS_WriteEntireFile( filePathHeader, contentHeader.str, contentHeader.length );
 
 	Mem_Reset();
 
-	return wroteHeader && wroteInl;
+	return wroteHeader;
 }
 
 static bool32 GenerateFunctionsMatrix( void ) {
 	char filePathHeader[64] = { 0 };
-	snprintf( filePathHeader, 64, "%s%s.h", GEN_OUT_GEN_FOLDER_PATH, GEN_FILENAME_FUNCTIONS_MATRIX );
-
-	char filePathInl[64] = { 0 };
-	snprintf( filePathInl, 64, "%s%s.inl", GEN_OUT_GEN_FOLDER_PATH, GEN_FILENAME_FUNCTIONS_MATRIX );
+	snprintf( filePathHeader, 64, "%s%s", GEN_OUT_GEN_FOLDER_PATH, GEN_HEADER_FUNCTIONS_MATRIX );
 
 	stringBuilder_t contentHeader = String_Create( 128 * KB_TO_BYTES );
 	String_Append( &contentHeader, GEN_FILE_HEADER );
 	String_Append( &contentHeader,
 		"#pragma once\n"
 		"\n" );
-
-	stringBuilder_t contentInl = String_Create( 128 * KB_TO_BYTES );
-	String_Append( &contentInl, GEN_FILE_HEADER );
-	String_Append( &contentInl, "#include \"" GEN_FILENAME_FUNCTIONS_VECTOR ".h\"\n" );
-	String_Append( &contentInl, "#include \"" GEN_FILENAME_OPERATORS_MATRIX ".h\"\n" );
 
 	for ( u32 typeIndex = 0; typeIndex < GEN_TYPE_COUNT; typeIndex++ ) {
 		genType_t type = (genType_t) typeIndex;
@@ -299,8 +281,9 @@ static bool32 GenerateFunctionsMatrix( void ) {
 		String_Appendf( &contentHeader, "\n" );
 	}
 
+	String_Appendf( &contentHeader, "#include \"" GEN_HEADER_FUNCTIONS_VECTOR "\"\n" );
+	String_Appendf( &contentHeader, "#include \"" GEN_HEADER_OPERATORS_MATRIX "\"\n" );
 	String_Appendf( &contentHeader, "\n" );
-	String_Appendf( &contentInl, "\n" );
 
 	for ( u32 typeIndex = 0; typeIndex < GEN_TYPE_COUNT; typeIndex++ ) {
 		genType_t type = (genType_t) typeIndex;
@@ -313,40 +296,35 @@ static bool32 GenerateFunctionsMatrix( void ) {
 				printf( "Basic functions %s...", fullTypeName );
 
 				String_Appendf( &contentHeader, "// %s\n", fullTypeName );
-				String_Appendf( &contentInl, "// %s\n", fullTypeName );
 
-				Gen_MatrixIdentity( type, row, col, &contentHeader, &contentInl );
-				Gen_MatrixTranspose( type, row, col, &contentHeader, &contentInl );
+				Gen_MatrixIdentity( type, row, col, &contentHeader );
+				Gen_MatrixTranspose( type, row, col, &contentHeader );
 
-				Gen_MatrixInverse( type, row, col, &contentHeader, &contentInl );
-				Gen_MatrixDeterminant( type, row, col, &contentHeader, &contentInl );
+				Gen_MatrixDeterminant( type, row, col, &contentHeader );
+				Gen_MatrixInverse( type, row, col, &contentHeader );
 
-				Gen_MatrixCompMulDiv( type, row, col, &contentHeader, &contentInl );
+				Gen_MatrixCompMulDiv( type, row, col, &contentHeader );
 
-				Gen_MatrixTranslate( type, row, col, &contentHeader, &contentInl );
-				Gen_MatrixRotate( type, row, col, &contentHeader, &contentInl );
-				Gen_MatrixScale( type, row, col, &contentHeader, &contentInl );
+				Gen_MatrixTranslate( type, row, col, &contentHeader );
+				Gen_MatrixRotate( type, row, col, &contentHeader );
+				Gen_MatrixScale( type, row, col, &contentHeader );
 
-				Gen_MatrixOrtho( type, row, col, &contentHeader, &contentInl );
-				Gen_MatrixPerspective( type, row, col, &contentHeader, &contentInl );
-				Gen_MatrixLookAt( type, row, col, &contentHeader, &contentInl );
+				Gen_MatrixOrtho( type, row, col, &contentHeader );
+				Gen_MatrixPerspective( type, row, col, &contentHeader );
+				Gen_MatrixLookAt( type, row, col, &contentHeader );
 
 				String_Append( &contentHeader, "\n" );
-				String_Append( &contentInl, "\n" );
 
 				printf( "OK.\n" );
 			}
 		}
 	}
 
-	String_Appendf( &contentHeader, "#include \"" GEN_FILENAME_FUNCTIONS_MATRIX ".inl\"\n" );
-
-	bool32 wroteHeader	= FS_WriteEntireFile( filePathHeader, contentHeader.str, contentHeader.length );
-	bool32 wroteInl		= FS_WriteEntireFile( filePathInl, contentInl.str, contentInl.length );
+	bool32 wroteHeader = FS_WriteEntireFile( filePathHeader, contentHeader.str, contentHeader.length );
 
 	Mem_Reset();
 
-	return wroteHeader && wroteInl;
+	return wroteHeader;
 }
 
 static bool32 GenerateFunctionsQuaternion( void ) {
@@ -425,23 +403,19 @@ static bool32 GenerateFunctionsScalarSSE( void ) {
 	char filePathHeader[64] = { 0 };
 	snprintf( filePathHeader, 64, "%s%s.h", GEN_OUT_GEN_FOLDER_PATH, GEN_FILENAME_FUNCTIONS_SCALAR_SSE );
 
-	char filePathInl[64] = { 0 };
-	snprintf( filePathInl, 64, "%s%s.inl", GEN_OUT_GEN_FOLDER_PATH, GEN_FILENAME_FUNCTIONS_SCALAR_SSE );
-
 	stringBuilder_t contentHeader = String_Create( 4 * KB_TO_BYTES );
 	String_Append( &contentHeader, GEN_FILE_HEADER );
 	String_Append( &contentHeader,
 		"#pragma once\n"
 		"\n"
+		"// HLML includes\n"
+		"#include \"../hlml_constants_sse.h\"\n"
+		"\n"
+		"// others\n"
 		"#include <xmmintrin.h>\n"
-		"\n" );
-
-	stringBuilder_t contentInl = String_Create( 4 * KB_TO_BYTES );
-	String_Append( &contentInl, GEN_FILE_HEADER );
-	String_Append( &contentInl, "#include <assert.h>\n"
-		"\n" \
-		"#include \"../hlml_constants_sse.h\"\n" \
-		"\n" );
+		"#include <assert.h>\n"
+		"\n"
+	);
 
 	for ( u32 typeIndex = 0; typeIndex < GEN_TYPE_COUNT; typeIndex++ ) {
 		genType_t type = (genType_t) typeIndex;
@@ -455,50 +429,39 @@ static bool32 GenerateFunctionsScalarSSE( void ) {
 		printf( "SIMD vector functions %s...", memberTypeString );
 
 		String_Appendf( &contentHeader, "// %s\n", memberTypeString );
-		String_Appendf( &contentInl, "// %s\n", memberTypeString );
 
-		Gen_SSE_Radians( type, &contentHeader, &contentInl );
-		Gen_SSE_Degrees( type, &contentHeader, &contentInl );
+		Gen_SSE_Radians( type, &contentHeader );
+		Gen_SSE_Degrees( type, &contentHeader );
 
-		Gen_SSE_Lerp( type, 1, &contentHeader, &contentInl );
+		Gen_SSE_Lerp( type, 1, &contentHeader );
 
 		String_Append( &contentHeader, "\n" );
-		String_Append( &contentInl, "\n" );
 
 		printf( "OK.\n" );
 	}
 
-	String_Append( &contentHeader, "#include \"" GEN_FILENAME_FUNCTIONS_SCALAR_SSE ".inl\"\n" );
-
-	bool32 wroteHeader	= FS_WriteEntireFile( filePathHeader, contentHeader.str, contentHeader.length );
-	bool32 wroteInl		= FS_WriteEntireFile( filePathInl, contentInl.str, contentInl.length );
+	bool32 wroteHeader = FS_WriteEntireFile( filePathHeader, contentHeader.str, contentHeader.length );
 
 	Mem_Reset();
 
-	return wroteHeader && wroteInl;
+	return wroteHeader;
 }
 
 static bool32 GenerateFunctionsVectorSSE( void ) {
 	char filePathHeader[64] = { 0 };
 	snprintf( filePathHeader, 64, "%s%s.h", GEN_OUT_GEN_FOLDER_PATH, GEN_FILENAME_FUNCTIONS_VECTOR_SSE );
 
-	char filePathInl[64] = { 0 };
-	snprintf( filePathInl, 64, "%s%s.inl", GEN_OUT_GEN_FOLDER_PATH, GEN_FILENAME_FUNCTIONS_VECTOR_SSE );
-
-	stringBuilder_t contentHeader = String_Create( 8 * KB_TO_BYTES );
-	stringBuilder_t contentInl = String_Create( 16 * KB_TO_BYTES );
+	stringBuilder_t contentHeader = String_Create( 16 * KB_TO_BYTES );
 
 	String_Append( &contentHeader, GEN_FILE_HEADER );
 	String_Append( &contentHeader,
 		"#pragma once\n"
 		"\n"
-		"#include <immintrin.h>\n"
-		"\n"
-	);
-
-	String_Append( &contentInl, GEN_FILE_HEADER );
-	String_Append( &contentInl,
+		"// HLML includes\n"
+		"#include \"" GEN_FILENAME_FUNCTIONS_VECTOR_SSE ".h\"\n"
 		"#include \"../" GEN_HEADER_CONSTANTS_SSE "\"\n"
+		"\n"
+		"#include <immintrin.h>\n"
 		"\n"
 	);
 
@@ -523,45 +486,37 @@ static bool32 GenerateFunctionsVectorSSE( void ) {
 			String_Appendf( &contentHeader, "// %s\n", fullTypeName );
 			String_Appendf( &contentHeader, "struct %s\n", sseTypeName );
 			String_Append(  &contentHeader, "{\n" );
-			String_Appendf( &contentHeader, "\t%s comp[%d];\n", registerName, componentIndex );
+			for ( u32 i = 0; i < componentIndex; i++ ) {
+				String_Appendf( &contentHeader, "\t\t\t%s %c;\n", registerName, GEN_COMPONENT_NAMES_VECTOR[i] );
+			}
 			String_Append(  &contentHeader, "};\n" );
 			String_Append(  &contentHeader, "\n" );
 
-			String_Appendf( &contentInl, "// %s\n", fullTypeName );
-
-			Gen_SSE_VectorLength( type, componentIndex, &contentHeader, &contentInl );
-			Gen_SSE_VectorNormalize( type, componentIndex, &contentHeader, &contentInl );
-			Gen_SSE_VectorDot( type, componentIndex, &contentHeader, &contentInl );
-			Gen_SSE_VectorCross( type, componentIndex, &contentHeader, &contentInl );
-			Gen_SSE_VectorDistance( type, componentIndex, &contentHeader, &contentInl );
-			// Gen_SSE_VectorAngle( type, componentIndex, &contentHeader, &contentInl );
+			Gen_SSE_VectorDot( type, componentIndex, &contentHeader );
+			Gen_SSE_VectorCross( type, componentIndex, &contentHeader );
+			Gen_SSE_VectorLength( type, componentIndex, &contentHeader );
+			Gen_SSE_VectorNormalize( type, componentIndex, &contentHeader );
+			Gen_SSE_VectorDistance( type, componentIndex, &contentHeader );
+			// Gen_SSE_VectorAngle( type, componentIndex, &contentHeader );
 
 			String_Append( &contentHeader, "\n" );
-			String_Append( &contentInl, "\n" );
 
 			printf( "OK.\n" );
 		}
 	}
 
-	String_Append( &contentHeader, "#include \"" GEN_FILENAME_FUNCTIONS_VECTOR_SSE ".inl\"\n" );
-
-	bool32 wroteHeader	= FS_WriteEntireFile( filePathHeader, contentHeader.str, contentHeader.length );
-	bool32 wroteInl		= FS_WriteEntireFile( filePathInl, contentInl.str, contentInl.length );
+	bool32 wroteHeader = FS_WriteEntireFile( filePathHeader, contentHeader.str, contentHeader.length );
 
 	Mem_Reset();
 
-	return wroteHeader && wroteInl;
+	return wroteHeader;
 }
 
 static bool32 GenerateFunctionsMatrixSSE( void ) {
 	char filePathHeader[64] = { 0 };
 	snprintf( filePathHeader, 64, "%s%s.h", GEN_OUT_GEN_FOLDER_PATH, GEN_FILENAME_FUNCTIONS_MATRIX_SSE );
 
-	char filePathInl[64] = { 0 };
-	snprintf( filePathInl, 64, "%s%s.inl", GEN_OUT_GEN_FOLDER_PATH, GEN_FILENAME_FUNCTIONS_MATRIX_SSE );
-
-	stringBuilder_t contentHeader = String_Create( 28 * KB_TO_BYTES );
-	stringBuilder_t contentInl = String_Create( 70 * KB_TO_BYTES );
+	stringBuilder_t contentHeader = String_Create( 80 * KB_TO_BYTES );
 
 	String_Append( &contentHeader, GEN_FILE_HEADER );
 	String_Append( &contentHeader,
@@ -583,44 +538,12 @@ static bool32 GenerateFunctionsMatrixSSE( void ) {
 			continue;
 		}
 
-		for ( u32 row = GEN_COMPONENT_COUNT_MIN; row <= GEN_COMPONENT_COUNT_MAX; row++ ) {
-			for ( u32 col = GEN_COMPONENT_COUNT_MIN; col <= GEN_COMPONENT_COUNT_MAX; col++ ) {
-				char fullTypeName[GEN_STRING_LENGTH_TYPE_NAME];
-				Gen_GetFullTypeName( type, row, col, fullTypeName );
-
-				char sseTypeName[GEN_STRING_LENGTH_SSE_INPUT_NAME];
-				Gen_SSE_GetFullTypeName( fullTypeName, sseTypeName );
-
-				String_Appendf( &contentHeader, "struct %s;\n", sseTypeName );
-			}
-		}
-	}
-	String_Appendf( &contentHeader, "\n" );
-
-	String_Append( &contentInl, GEN_FILE_HEADER );
-	String_Append( &contentInl,
-		"#include \"../" GEN_HEADER_CONSTANTS_SSE "\"\n"
-		"\n"
-		"#include \"" GEN_FILENAME_FUNCTIONS_VECTOR_SSE ".h\"\n"
-		"\n"
-	);
-
-	// generate functions
-	for ( u32 typeIndex = 0; typeIndex < GEN_TYPE_COUNT; typeIndex++ ) {
-		genType_t type = (genType_t) typeIndex;
-
-		if ( !Gen_TypeSupportsSSE( type ) ) {
-			continue;
-		}
-
 		const char* registerName = Gen_SSE_GetRegisterName( type );
 
 		for ( u32 row = GEN_COMPONENT_COUNT_MIN; row <= GEN_COMPONENT_COUNT_MAX; row++ ) {
 			for ( u32 col = GEN_COMPONENT_COUNT_MIN; col <= GEN_COMPONENT_COUNT_MAX; col++ ) {
 				char fullTypeName[GEN_STRING_LENGTH_TYPE_NAME];
 				Gen_GetFullTypeName( type, row, col, fullTypeName );
-
-				printf( "SIMD matrix functions %s...", fullTypeName );
 
 				char sseTypeName[GEN_STRING_LENGTH_SSE_INPUT_NAME];
 				Gen_SSE_GetFullTypeName( fullTypeName, sseTypeName );
@@ -631,59 +554,66 @@ static bool32 GenerateFunctionsMatrixSSE( void ) {
 				String_Appendf( &contentHeader, "\t%s m[%d][%d];\n", registerName, row, col );
 				String_Append(  &contentHeader, "};\n" );
 				String_Append(  &contentHeader, "\n" );
+			}
+		}
+	}
+	String_Appendf( &contentHeader, "\n" );
 
-				String_Appendf( &contentInl, "// %s\n", fullTypeName );
+	// generate functions
+	for ( u32 typeIndex = 0; typeIndex < GEN_TYPE_COUNT; typeIndex++ ) {
+		genType_t type = (genType_t) typeIndex;
 
-				Gen_SSE_MatrixIdentity( type, row, col, &contentHeader, &contentInl );
-				Gen_SSE_MatrixTranspose( type, row, col, &contentHeader, &contentInl );
+		if ( !Gen_TypeSupportsSSE( type ) ) {
+			continue;
+		}
 
-				Gen_SSE_MatrixDeterminant( type, row, col, &contentHeader, &contentInl );
-				Gen_SSE_MatrixInverse( type, row, col, &contentHeader, &contentInl );
+		for ( u32 row = GEN_COMPONENT_COUNT_MIN; row <= GEN_COMPONENT_COUNT_MAX; row++ ) {
+			for ( u32 col = GEN_COMPONENT_COUNT_MIN; col <= GEN_COMPONENT_COUNT_MAX; col++ ) {
+				char fullTypeName[GEN_STRING_LENGTH_TYPE_NAME];
+				Gen_GetFullTypeName( type, row, col, fullTypeName );
+
+				printf( "SIMD matrix functions %s...", fullTypeName );
+
+				Gen_SSE_MatrixIdentity( type, row, col, &contentHeader );
+				Gen_SSE_MatrixTranspose( type, row, col, &contentHeader );
+
+				Gen_SSE_MatrixDeterminant( type, row, col, &contentHeader );
+				Gen_SSE_MatrixInverse( type, row, col, &contentHeader );
 
 				for ( u32 opIndex = 0; opIndex < GEN_OP_ARITHMETIC_COUNT; opIndex++ ) {
 					genOpArithmetic_t op = (genOpArithmetic_t) opIndex;
-					Gen_SSE_MatrixArithmeticComponentWise( type, row, col, op, &contentHeader, &contentInl );
+					Gen_SSE_MatrixArithmeticComponentWise( type, row, col, op, &contentHeader );
 				}
 
-				Gen_SSE_MatrixMultiply( type, row, col, &contentHeader, &contentInl );
+				Gen_SSE_MatrixMultiply( type, row, col, &contentHeader );
 
-				Gen_SSE_MatrixTranslate( type, row, col, &contentHeader, &contentInl );
-				// Gen_SSE_MatrixRotate( type, row, col, &contentHeader, &contentInl );
-				Gen_SSE_MatrixScale( type, row, col, &contentHeader, &contentInl );
+				Gen_SSE_MatrixTranslate( type, row, col, &contentHeader );
+				// Gen_SSE_MatrixRotate( type, row, col, &contentHeader );
+				Gen_SSE_MatrixScale( type, row, col, &contentHeader );
 
 				String_Append( &contentHeader, "\n" );
-				String_Append( &contentInl, "\n" );
 
 				printf( "OK.\n" );
 			}
 		}
 	}
 
-	String_Append( &contentHeader, "#include \"" GEN_FILENAME_FUNCTIONS_MATRIX_SSE ".inl\"\n" );
-
-	bool32 wroteHeader	= FS_WriteEntireFile( filePathHeader, contentHeader.str, contentHeader.length );
-	bool32 wroteInl		= FS_WriteEntireFile( filePathInl, contentInl.str, contentInl.length );
+	bool32 wroteHeader = FS_WriteEntireFile( filePathHeader, contentHeader.str, contentHeader.length );
 
 	Mem_Reset();
 
-	return wroteHeader && wroteInl;
+	return wroteHeader;
 }
 
 static bool32 GenerateOperatorsVector( void ) {
 	char filePathHeader[64] = { 0 };
-	snprintf( filePathHeader, 64, "%s%s.h", GEN_OUT_GEN_FOLDER_PATH, GEN_FILENAME_OPERATORS_VECTOR );
-
-	char filePathInl[64] = { 0 };
-	snprintf( filePathInl, 64, "%s%s.inl", GEN_OUT_GEN_FOLDER_PATH, GEN_FILENAME_OPERATORS_VECTOR );
+	snprintf( filePathHeader, 64, "%s%s", GEN_OUT_GEN_FOLDER_PATH, GEN_HEADER_OPERATORS_VECTOR );
 
 	stringBuilder_t contentHeader = String_Create( 128 * KB_TO_BYTES );
+	String_Append( &contentHeader, GEN_FILE_HEADER );
 	String_Append( &contentHeader, "#pragma once\n" );
 	String_Append( &contentHeader, "\n" );
 
-	stringBuilder_t contentInl = String_Create( 128 * KB_TO_BYTES );
-	String_Append( &contentInl, "#include \"" GEN_FILENAME_OPERATORS_VECTOR ".h\"\n" );
-
-	// includes
 	for ( u32 typeIndex = 0; typeIndex < GEN_TYPE_COUNT; typeIndex++ ) {
 		genType_t type = (genType_t) typeIndex;
 
@@ -692,12 +622,10 @@ static bool32 GenerateOperatorsVector( void ) {
 		for ( u32 componentIndex = GEN_COMPONENT_COUNT_MIN; componentIndex <= GEN_COMPONENT_COUNT_MAX; componentIndex++ ) {
 			String_Appendf( &contentHeader, "#include \"%s%d.h\"\n", typeString, componentIndex );
 		}
+
+		String_Append( &contentHeader, "\n" );
 	}
 
-	String_Append( &contentHeader, "\n" );
-	String_Append( &contentInl, "\n" );
-
-	// header and inl code
 	for ( u32 typeIndex = 0; typeIndex < GEN_TYPE_COUNT; typeIndex++ ) {
 		genType_t type = (genType_t) typeIndex;
 
@@ -712,47 +640,34 @@ static bool32 GenerateOperatorsVector( void ) {
 			printf( "Vector operators %s...", fullTypeName );
 
 			String_Appendf( &contentHeader, "// %s\n", fullTypeName );
-			String_Appendf( &contentInl, "// %s\n", fullTypeName );
 
-			Gen_VectorOperatorsArithmetic( type, componentIndex, &contentHeader, &contentInl );
-			Gen_OperatorsIncrement( type, 1, componentIndex, &contentHeader, &contentInl );
-			Gen_OperatorsRelational( type, 1, componentIndex, &contentHeader, &contentInl );
-			Gen_OperatorsBitwise( type, 1, componentIndex, &contentHeader, &contentInl );
+			Gen_VectorOperatorsArithmetic( type, componentIndex, &contentHeader );
+			Gen_OperatorsIncrement( type, 1, componentIndex, &contentHeader );
+			Gen_OperatorsRelational( type, 1, componentIndex, &contentHeader );
+			Gen_OperatorsBitwise( type, 1, componentIndex, &contentHeader );
 
 			String_Append( &contentHeader, "\n" );
-			String_Append( &contentInl, "\n" );
 
 			printf( "OK.\n" );
 		}
 	}
 
-	String_Appendf( &contentHeader, "#include \"" GEN_FILENAME_OPERATORS_VECTOR ".inl\"\n" );
-
-	bool32 wroteHeader	= FS_WriteEntireFile( filePathHeader, contentHeader.str, contentHeader.length );
-	bool32 wroteInl		= FS_WriteEntireFile( filePathInl, contentInl.str, contentInl.length );
+	bool32 wroteHeader = FS_WriteEntireFile( filePathHeader, contentHeader.str, contentHeader.length );
 
 	Mem_Reset();
 
-	return wroteHeader && wroteInl;
+	return wroteHeader;
 }
 
 static bool32 GenerateOperatorsMatrix( void ) {
 	char filePathHeader[64];
-	snprintf( filePathHeader, 64, "%s%s.h", GEN_OUT_GEN_FOLDER_PATH, GEN_FILENAME_OPERATORS_MATRIX );
-
-	char filePathInl[64];
-	snprintf( filePathInl, 64, "%s%s.inl", GEN_OUT_GEN_FOLDER_PATH, GEN_FILENAME_OPERATORS_MATRIX );
+	snprintf( filePathHeader, 64, "%s%s", GEN_OUT_GEN_FOLDER_PATH, GEN_HEADER_OPERATORS_MATRIX );
 
 	stringBuilder_t contentHeader = String_Create( 512 * KB_TO_BYTES );
 	String_Append( &contentHeader, GEN_FILE_HEADER );
 	String_Append( &contentHeader, "#pragma once\n" );
 	String_Append( &contentHeader, "\n" );
 
-	stringBuilder_t contentInl = String_Create( 512 * KB_TO_BYTES );
-	String_Append( &contentInl, GEN_FILE_HEADER );
-	String_Append( &contentInl, "#include \"" GEN_FILENAME_OPERATORS_VECTOR ".h\"\n" );
-
-	// includes
 	for ( u32 typeIndex = 0; typeIndex < GEN_TYPE_COUNT; typeIndex++ ) {
 		genType_t type = (genType_t) typeIndex;
 
@@ -767,8 +682,25 @@ static bool32 GenerateOperatorsMatrix( void ) {
 		String_Append( &contentHeader, "\n" );
 	}
 
+	String_Append( &contentHeader, "#include \"" GEN_HEADER_FUNCTIONS_VECTOR "\"\n" );
 	String_Append( &contentHeader, "\n" );
-	String_Append( &contentInl, "\n" );
+
+	for ( u32 typeIndex = 0; typeIndex < GEN_TYPE_COUNT; typeIndex++ ) {
+		genType_t type = (genType_t) typeIndex;
+
+		if ( type == GEN_TYPE_BOOL ) {
+			continue;
+		}
+
+		for ( u32 components = GEN_COMPONENT_COUNT_MIN; components <= GEN_COMPONENT_COUNT_MAX; components++ ) {
+			char fullTypeName[GEN_STRING_LENGTH_TYPE_NAME];
+			Gen_GetFullTypeName( type, components, components, fullTypeName );
+
+			String_Appendf( &contentHeader, "%s inverse( const %s& mat );\n", fullTypeName, fullTypeName );
+		}
+
+		String_Append( &contentHeader, "\n" );
+	}
 
 	// header and inl code
 	for ( u32 typeIndex = 0; typeIndex < GEN_TYPE_COUNT; typeIndex++ ) {
@@ -786,29 +718,24 @@ static bool32 GenerateOperatorsMatrix( void ) {
 				printf( "Matrix operators %s...", fullTypeName );
 
 				String_Appendf( &contentHeader, "// %s\n", fullTypeName );
-				String_Appendf( &contentInl, "// %s\n", fullTypeName );
 
-				Gen_MatrixOperatorsArithmetic( type, row, col, &contentHeader, &contentInl );
-				Gen_OperatorsIncrement( type, row, col, &contentHeader, &contentInl );
-				Gen_OperatorsRelational( type, row, col, &contentHeader, &contentInl );
-				Gen_OperatorsBitwise( type, row, col, &contentHeader, &contentInl );
+				Gen_MatrixOperatorsArithmetic( type, row, col, &contentHeader );
+				Gen_OperatorsIncrement( type, row, col, &contentHeader );
+				Gen_OperatorsRelational( type, row, col, &contentHeader );
+				Gen_OperatorsBitwise( type, row, col, &contentHeader );
 
 				String_Append( &contentHeader, "\n" );
-				String_Append( &contentInl, "\n" );
 
 				printf( "OK.\n" );
 			}
 		}
 	}
 
-	String_Append( &contentHeader, "#include \"" GEN_FILENAME_OPERATORS_MATRIX ".inl\"\n" );
-
-	bool32 wroteHeader	= FS_WriteEntireFile( filePathHeader, contentHeader.str, contentHeader.length );
-	bool32 wroteInl		= FS_WriteEntireFile( filePathInl, contentInl.str, contentInl.length );
+	bool32 wroteHeader = FS_WriteEntireFile( filePathHeader, contentHeader.str, contentHeader.length );
 
 	Mem_Reset();
 
-	return wroteHeader && wroteInl;
+	return wroteHeader;
 }
 
 static bool32 GenerateTestsScalar( void ) {
@@ -945,8 +872,6 @@ static bool32 GenerateTestsMain( void ) {
 	String_Append( &sb, "\tTEMPER_SET_COMMAND_LINE_ARGS( argc, argv );\n" );
 	String_Append( &sb, "\n" );
 	String_Append( &sb, "\tTEMPER_SET_SUITE_END_CALLBACK( OnSuiteEnd, nullptr );\n" );
-	String_Append( &sb, "\n" );
-	String_Append( &sb, "\tTEMPER_SET_TIME_UNIT( TEMPER_TIME_UNIT_US );\n" );
 	String_Append( &sb, "\n" );
 
 	// run the scalar tests first

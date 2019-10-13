@@ -27,9 +27,9 @@ along with The HLML Generator.  If not, see <http://www.gnu.org/licenses/>.
 
 extern void		Gen_SSE_MacroNegate( const genType_t type, stringBuilder_t* sbHeader );
 
-extern void		Gen_SSE_Radians( const genType_t type, stringBuilder_t* sbHeader, stringBuilder_t* sbInl );
-extern void		Gen_SSE_Degrees( const genType_t type, stringBuilder_t* sbHeader, stringBuilder_t* sbInl );
-extern void		Gen_SSE_Lerp( const genType_t type, const u32 numComponents, stringBuilder_t* sbHeader, stringBuilder_t* sbInl );
+extern void		Gen_SSE_Radians( const genType_t type, stringBuilder_t* sbHeader );
+extern void		Gen_SSE_Degrees( const genType_t type, stringBuilder_t* sbHeader );
+extern void		Gen_SSE_Lerp( const genType_t type, const u32 numComponents, stringBuilder_t* sbHeader );
 
 
 inline bool32 Gen_TypeSupportsSSE( const genType_t type ) {

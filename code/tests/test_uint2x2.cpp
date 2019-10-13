@@ -32,22 +32,21 @@ SOFTWARE.
 // EDITING THIS FILE MAY CAUSE SIDE EFFECTS.
 // DO SO AT YOUR OWN RISK.
 
-#include "../../code/out/gen/hlml_functions_matrix.h"
-#include "../../code/out/gen/hlml_operators_matrix.h"
+#include "hlml.h"
 
 #include <temper/temper.h>
 
-static uint2x2 g_identityMatrix;
+static uint2x2 g_identityMatrix_uint2x2;
 
-static uint2x2 g_matrixMulLHS = uint2x2(
+static uint2x2 g_matrixMulLHS_uint2x2    = uint2x2(
 		6U, 6U,
 		6U, 6U
 	);
-static uint2x2 g_matrixMulRHS = uint2x2(
+static uint2x2 g_matrixMulRHS_uint2x2    = uint2x2(
 		1U, 1U,
 		2U, 2U
 	);
-static uint2x2 g_matrixMulAnswer = uint2x2(
+static uint2x2 g_matrixMulAnswer_uint2x2 = uint2x2(
 		18U, 18U,
 		18U, 18U
 	);
@@ -170,10 +169,10 @@ TEMPER_TEST( TestComponentWiseArithmetic_Scalar_Division_uint2x2 )
 
 TEMPER_TEST( TestMultiplyMatrix_Scalar_uint2x2 )
 {
-	uint2x2 answer = g_matrixMulAnswer;
+	uint2x2 answer = g_matrixMulAnswer_uint2x2;
 
-	uint2x2 a = g_matrixMulLHS;
-	uint2x2 b = g_matrixMulRHS;
+	uint2x2 a = g_matrixMulLHS_uint2x2;
+	uint2x2 b = g_matrixMulRHS_uint2x2;
 	uint2x2 c = a * b;
 
 	TEMPER_EXPECT_TRUE( c == answer );

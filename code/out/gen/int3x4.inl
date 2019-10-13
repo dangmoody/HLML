@@ -32,8 +32,15 @@ SOFTWARE.
 // EDITING THIS FILE MAY CAUSE SIDE EFFECTS.
 // DO SO AT YOUR OWN RISK.
 
+#pragma once
+
+// hlml includes
+#include "int3x4.h"
+
 // others
 #include <math.h>
+#include <memory.h>
+#include <assert.h>
 
 // forward declares
 int3x4 inverse( const int3x4& mat );
@@ -110,7 +117,7 @@ bool operator==( const int3x4& lhs, const int3x4& rhs )
 		&& lhs[2] == rhs[2];
 }
 
-bool operator!=( const int3x4& lhs, const int3x4& rhs )
+inline bool operator!=( const int3x4& lhs, const int3x4& rhs )
 {
 	return !( operator==( lhs, rhs ) );
 }

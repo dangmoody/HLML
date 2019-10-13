@@ -32,11 +32,12 @@ SOFTWARE.
 // EDITING THIS FILE MAY CAUSE SIDE EFFECTS.
 // DO SO AT YOUR OWN RISK.
 
+#pragma once
+
 // hlml includes
+#include "bool2.h"
 #include "bool3.h"
 #include "bool4.h"
-
-#include "hlml_functions_scalar.h"
 
 // others
 #include <math.h>
@@ -104,12 +105,17 @@ bool32_t& bool2::operator[]( const uint32_t index )
 	return data[index];
 }
 
+bool2 bool2::xx() const { return bool2( x, x ); }
+bool2 bool2::yx() const { return bool2( y, x ); }
+bool2 bool2::xy() const { return bool2( x, y ); }
+bool2 bool2::yy() const { return bool2( y, y ); }
+
 bool operator==( const bool2& lhs, const bool2& rhs )
 {
 	return ( lhs.x == rhs.x ) && ( lhs.y == rhs.y );
 }
 
-bool operator!=( const bool2& lhs, const bool2& rhs )
+inline bool operator!=( const bool2& lhs, const bool2& rhs )
 {
 	return !( operator==( lhs, rhs ) );
 }

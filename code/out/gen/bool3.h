@@ -104,39 +104,37 @@ struct bool3
 	inline bool32_t& operator[]( const uint32_t index );
 
 	// swizzle funcs
-	inline bool2 xx() const { return bool2( x, x ); }
-	inline bool2 yx() const { return bool2( y, x ); }
-	inline bool2 xy() const { return bool2( x, y ); }
-	inline bool2 yy() const { return bool2( y, y ); }
-
-	inline bool3 xxx() const { return bool3( x, x, x ); }
-	inline bool3 yxx() const { return bool3( y, x, x ); }
-	inline bool3 zxx() const { return bool3( z, x, x ); }
-	inline bool3 xyx() const { return bool3( x, y, x ); }
-	inline bool3 yyx() const { return bool3( y, y, x ); }
-	inline bool3 zyx() const { return bool3( z, y, x ); }
-	inline bool3 xzx() const { return bool3( x, z, x ); }
-	inline bool3 yzx() const { return bool3( y, z, x ); }
-	inline bool3 zzx() const { return bool3( z, z, x ); }
-	inline bool3 xxy() const { return bool3( x, x, y ); }
-	inline bool3 yxy() const { return bool3( y, x, y ); }
-	inline bool3 zxy() const { return bool3( z, x, y ); }
-	inline bool3 xyy() const { return bool3( x, y, y ); }
-	inline bool3 yyy() const { return bool3( y, y, y ); }
-	inline bool3 zyy() const { return bool3( z, y, y ); }
-	inline bool3 xzy() const { return bool3( x, z, y ); }
-	inline bool3 yzy() const { return bool3( y, z, y ); }
-	inline bool3 zzy() const { return bool3( z, z, y ); }
-	inline bool3 xxz() const { return bool3( x, x, z ); }
-	inline bool3 yxz() const { return bool3( y, x, z ); }
-	inline bool3 zxz() const { return bool3( z, x, z ); }
-	inline bool3 xyz() const { return bool3( x, y, z ); }
-	inline bool3 yyz() const { return bool3( y, y, z ); }
-	inline bool3 zyz() const { return bool3( z, y, z ); }
-	inline bool3 xzz() const { return bool3( x, z, z ); }
-	inline bool3 yzz() const { return bool3( y, z, z ); }
-	inline bool3 zzz() const { return bool3( z, z, z ); }
-
+	inline bool2 xx() const;
+	inline bool2 yx() const;
+	inline bool2 xy() const;
+	inline bool2 yy() const;
+	inline bool3 xxx() const;
+	inline bool3 yxx() const;
+	inline bool3 zxx() const;
+	inline bool3 xyx() const;
+	inline bool3 yyx() const;
+	inline bool3 zyx() const;
+	inline bool3 xzx() const;
+	inline bool3 yzx() const;
+	inline bool3 zzx() const;
+	inline bool3 xxy() const;
+	inline bool3 yxy() const;
+	inline bool3 zxy() const;
+	inline bool3 xyy() const;
+	inline bool3 yyy() const;
+	inline bool3 zyy() const;
+	inline bool3 xzy() const;
+	inline bool3 yzy() const;
+	inline bool3 zzy() const;
+	inline bool3 xxz() const;
+	inline bool3 yxz() const;
+	inline bool3 zxz() const;
+	inline bool3 xyz() const;
+	inline bool3 yyz() const;
+	inline bool3 zyz() const;
+	inline bool3 xzz() const;
+	inline bool3 yzz() const;
+	inline bool3 zzz() const;
 };
 
 #if defined( __clang__ ) || defined( __GNUC__ )
@@ -153,4 +151,3 @@ inline bool operator==( const bool3& lhs, const bool3& rhs );
 /// \brief Returns true if not all of the components of the left-hand-side bool3 match the other one, otherwise returns false.
 inline bool operator!=( const bool3& lhs, const bool3& rhs );
 
-#include "bool3.inl"

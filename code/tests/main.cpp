@@ -148,8 +148,6 @@ int main( int argc, char** argv )
 
 	TEMPER_SET_SUITE_END_CALLBACK( OnSuiteEnd, nullptr );
 
-	TEMPER_SET_TIME_UNIT( TEMPER_TIME_UNIT_US );
-
 	// scalar tests
 	TEMPER_RUN_SUITE( Test_int32_t );
 	TEMPER_RUN_SUITE( Test_uint32_t );

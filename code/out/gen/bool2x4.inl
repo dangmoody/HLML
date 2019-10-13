@@ -32,8 +32,15 @@ SOFTWARE.
 // EDITING THIS FILE MAY CAUSE SIDE EFFECTS.
 // DO SO AT YOUR OWN RISK.
 
+#pragma once
+
+// hlml includes
+#include "bool2x4.h"
+
 // others
 #include <math.h>
+#include <memory.h>
+#include <assert.h>
 
 bool2x4::bool2x4()
 {
@@ -100,7 +107,7 @@ bool operator==( const bool2x4& lhs, const bool2x4& rhs )
 		&& lhs[1] == rhs[1];
 }
 
-bool operator!=( const bool2x4& lhs, const bool2x4& rhs )
+inline bool operator!=( const bool2x4& lhs, const bool2x4& rhs )
 {
 	return !( operator==( lhs, rhs ) );
 }

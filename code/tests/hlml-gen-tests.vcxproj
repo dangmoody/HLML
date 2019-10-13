@@ -206,6 +206,9 @@
     <ClCompile Include="test_uint4x3.cpp" />
     <ClCompile Include="test_uint4x4.cpp" />
   </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="hlml.h" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

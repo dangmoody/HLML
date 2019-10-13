@@ -113,39 +113,37 @@ struct int3
 	inline int32_t& operator[]( const uint32_t index );
 
 	// swizzle funcs
-	inline int2 xx() const { return int2( x, x ); }
-	inline int2 yx() const { return int2( y, x ); }
-	inline int2 xy() const { return int2( x, y ); }
-	inline int2 yy() const { return int2( y, y ); }
-
-	inline int3 xxx() const { return int3( x, x, x ); }
-	inline int3 yxx() const { return int3( y, x, x ); }
-	inline int3 zxx() const { return int3( z, x, x ); }
-	inline int3 xyx() const { return int3( x, y, x ); }
-	inline int3 yyx() const { return int3( y, y, x ); }
-	inline int3 zyx() const { return int3( z, y, x ); }
-	inline int3 xzx() const { return int3( x, z, x ); }
-	inline int3 yzx() const { return int3( y, z, x ); }
-	inline int3 zzx() const { return int3( z, z, x ); }
-	inline int3 xxy() const { return int3( x, x, y ); }
-	inline int3 yxy() const { return int3( y, x, y ); }
-	inline int3 zxy() const { return int3( z, x, y ); }
-	inline int3 xyy() const { return int3( x, y, y ); }
-	inline int3 yyy() const { return int3( y, y, y ); }
-	inline int3 zyy() const { return int3( z, y, y ); }
-	inline int3 xzy() const { return int3( x, z, y ); }
-	inline int3 yzy() const { return int3( y, z, y ); }
-	inline int3 zzy() const { return int3( z, z, y ); }
-	inline int3 xxz() const { return int3( x, x, z ); }
-	inline int3 yxz() const { return int3( y, x, z ); }
-	inline int3 zxz() const { return int3( z, x, z ); }
-	inline int3 xyz() const { return int3( x, y, z ); }
-	inline int3 yyz() const { return int3( y, y, z ); }
-	inline int3 zyz() const { return int3( z, y, z ); }
-	inline int3 xzz() const { return int3( x, z, z ); }
-	inline int3 yzz() const { return int3( y, z, z ); }
-	inline int3 zzz() const { return int3( z, z, z ); }
-
+	inline int2 xx() const;
+	inline int2 yx() const;
+	inline int2 xy() const;
+	inline int2 yy() const;
+	inline int3 xxx() const;
+	inline int3 yxx() const;
+	inline int3 zxx() const;
+	inline int3 xyx() const;
+	inline int3 yyx() const;
+	inline int3 zyx() const;
+	inline int3 xzx() const;
+	inline int3 yzx() const;
+	inline int3 zzx() const;
+	inline int3 xxy() const;
+	inline int3 yxy() const;
+	inline int3 zxy() const;
+	inline int3 xyy() const;
+	inline int3 yyy() const;
+	inline int3 zyy() const;
+	inline int3 xzy() const;
+	inline int3 yzy() const;
+	inline int3 zzy() const;
+	inline int3 xxz() const;
+	inline int3 yxz() const;
+	inline int3 zxz() const;
+	inline int3 xyz() const;
+	inline int3 yyz() const;
+	inline int3 zyz() const;
+	inline int3 xzz() const;
+	inline int3 yzz() const;
+	inline int3 zzz() const;
 };
 
 #if defined( __clang__ ) || defined( __GNUC__ )
@@ -162,4 +160,3 @@ inline bool operator==( const int3& lhs, const int3& rhs );
 /// \brief Returns true if not all of the components of the left-hand-side int3 match the other one, otherwise returns false.
 inline bool operator!=( const int3& lhs, const int3& rhs );
 
-#include "int3.inl"

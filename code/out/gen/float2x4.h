@@ -88,4 +88,3 @@ inline bool operator==( const float2x4& lhs, const float2x4& rhs );
 /// \brief Returns true if not all of the components of the left-hand-side float2x4 match the other one, otherwise returns false.
 inline bool operator!=( const float2x4& lhs, const float2x4& rhs );
 
-#include "float2x4.inl"

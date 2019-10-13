@@ -32,11 +32,12 @@ SOFTWARE.
 // EDITING THIS FILE MAY CAUSE SIDE EFFECTS.
 // DO SO AT YOUR OWN RISK.
 
+#pragma once
+
 // hlml includes
 #include "double2.h"
+#include "double3.h"
 #include "double4.h"
-
-#include "hlml_functions_scalar.h"
 
 // others
 #include <math.h>
@@ -105,12 +106,45 @@ double& double3::operator[]( const uint32_t index )
 	return data[index];
 }
 
+double2 double3::xx() const { return double2( x, x ); }
+double2 double3::yx() const { return double2( y, x ); }
+double2 double3::xy() const { return double2( x, y ); }
+double2 double3::yy() const { return double2( y, y ); }
+
+double3 double3::xxx() const { return double3( x, x, x ); }
+double3 double3::yxx() const { return double3( y, x, x ); }
+double3 double3::zxx() const { return double3( z, x, x ); }
+double3 double3::xyx() const { return double3( x, y, x ); }
+double3 double3::yyx() const { return double3( y, y, x ); }
+double3 double3::zyx() const { return double3( z, y, x ); }
+double3 double3::xzx() const { return double3( x, z, x ); }
+double3 double3::yzx() const { return double3( y, z, x ); }
+double3 double3::zzx() const { return double3( z, z, x ); }
+double3 double3::xxy() const { return double3( x, x, y ); }
+double3 double3::yxy() const { return double3( y, x, y ); }
+double3 double3::zxy() const { return double3( z, x, y ); }
+double3 double3::xyy() const { return double3( x, y, y ); }
+double3 double3::yyy() const { return double3( y, y, y ); }
+double3 double3::zyy() const { return double3( z, y, y ); }
+double3 double3::xzy() const { return double3( x, z, y ); }
+double3 double3::yzy() const { return double3( y, z, y ); }
+double3 double3::zzy() const { return double3( z, z, y ); }
+double3 double3::xxz() const { return double3( x, x, z ); }
+double3 double3::yxz() const { return double3( y, x, z ); }
+double3 double3::zxz() const { return double3( z, x, z ); }
+double3 double3::xyz() const { return double3( x, y, z ); }
+double3 double3::yyz() const { return double3( y, y, z ); }
+double3 double3::zyz() const { return double3( z, y, z ); }
+double3 double3::xzz() const { return double3( x, z, z ); }
+double3 double3::yzz() const { return double3( y, z, z ); }
+double3 double3::zzz() const { return double3( z, z, z ); }
+
 bool operator==( const double3& lhs, const double3& rhs )
 {
 	return doubleeq( lhs.x, rhs.x ) && doubleeq( lhs.y, rhs.y ) && doubleeq( lhs.z, rhs.z );
 }
 
-bool operator!=( const double3& lhs, const double3& rhs )
+inline bool operator!=( const double3& lhs, const double3& rhs )
 {
 	return !( operator==( lhs, rhs ) );
 }

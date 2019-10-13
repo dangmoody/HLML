@@ -110,11 +110,10 @@ struct float2
 	inline float& operator[]( const uint32_t index );
 
 	// swizzle funcs
-	inline float2 xx() const { return float2( x, x ); }
-	inline float2 yx() const { return float2( y, x ); }
-	inline float2 xy() const { return float2( x, y ); }
-	inline float2 yy() const { return float2( y, y ); }
-
+	inline float2 xx() const;
+	inline float2 yx() const;
+	inline float2 xy() const;
+	inline float2 yy() const;
 };
 
 #if defined( __clang__ ) || defined( __GNUC__ )
@@ -131,4 +130,3 @@ inline bool operator==( const float2& lhs, const float2& rhs );
 /// \brief Returns true if not all of the components of the left-hand-side float2 match the other one, otherwise returns false.
 inline bool operator!=( const float2& lhs, const float2& rhs );
 
-#include "float2.inl"

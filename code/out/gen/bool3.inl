@@ -32,11 +32,12 @@ SOFTWARE.
 // EDITING THIS FILE MAY CAUSE SIDE EFFECTS.
 // DO SO AT YOUR OWN RISK.
 
+#pragma once
+
 // hlml includes
 #include "bool2.h"
+#include "bool3.h"
 #include "bool4.h"
-
-#include "hlml_functions_scalar.h"
 
 // others
 #include <math.h>
@@ -105,12 +106,45 @@ bool32_t& bool3::operator[]( const uint32_t index )
 	return data[index];
 }
 
+bool2 bool3::xx() const { return bool2( x, x ); }
+bool2 bool3::yx() const { return bool2( y, x ); }
+bool2 bool3::xy() const { return bool2( x, y ); }
+bool2 bool3::yy() const { return bool2( y, y ); }
+
+bool3 bool3::xxx() const { return bool3( x, x, x ); }
+bool3 bool3::yxx() const { return bool3( y, x, x ); }
+bool3 bool3::zxx() const { return bool3( z, x, x ); }
+bool3 bool3::xyx() const { return bool3( x, y, x ); }
+bool3 bool3::yyx() const { return bool3( y, y, x ); }
+bool3 bool3::zyx() const { return bool3( z, y, x ); }
+bool3 bool3::xzx() const { return bool3( x, z, x ); }
+bool3 bool3::yzx() const { return bool3( y, z, x ); }
+bool3 bool3::zzx() const { return bool3( z, z, x ); }
+bool3 bool3::xxy() const { return bool3( x, x, y ); }
+bool3 bool3::yxy() const { return bool3( y, x, y ); }
+bool3 bool3::zxy() const { return bool3( z, x, y ); }
+bool3 bool3::xyy() const { return bool3( x, y, y ); }
+bool3 bool3::yyy() const { return bool3( y, y, y ); }
+bool3 bool3::zyy() const { return bool3( z, y, y ); }
+bool3 bool3::xzy() const { return bool3( x, z, y ); }
+bool3 bool3::yzy() const { return bool3( y, z, y ); }
+bool3 bool3::zzy() const { return bool3( z, z, y ); }
+bool3 bool3::xxz() const { return bool3( x, x, z ); }
+bool3 bool3::yxz() const { return bool3( y, x, z ); }
+bool3 bool3::zxz() const { return bool3( z, x, z ); }
+bool3 bool3::xyz() const { return bool3( x, y, z ); }
+bool3 bool3::yyz() const { return bool3( y, y, z ); }
+bool3 bool3::zyz() const { return bool3( z, y, z ); }
+bool3 bool3::xzz() const { return bool3( x, z, z ); }
+bool3 bool3::yzz() const { return bool3( y, z, z ); }
+bool3 bool3::zzz() const { return bool3( z, z, z ); }
+
 bool operator==( const bool3& lhs, const bool3& rhs )
 {
 	return ( lhs.x == rhs.x ) && ( lhs.y == rhs.y ) && ( lhs.z == rhs.z );
 }
 
-bool operator!=( const bool3& lhs, const bool3& rhs )
+inline bool operator!=( const bool3& lhs, const bool3& rhs )
 {
 	return !( operator==( lhs, rhs ) );
 }

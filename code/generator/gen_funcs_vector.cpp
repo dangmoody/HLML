@@ -55,7 +55,7 @@ void Gen_GetParmListVector( const genType_t type, const u32 numComponents, const
 	pos += snprintf( outParmListStr + pos, GEN_STRING_LENGTH_PARM_LIST_VECTOR, " )" );
 }
 
-void Gen_VectorOperatorsArithmetic( const genType_t type, const u32 numComponents, stringBuilder_t* sbHeader, stringBuilder_t* sbInl ) {
+void Gen_VectorOperatorsArithmetic( const genType_t type, const u32 numComponents, stringBuilder_t* sbHeader ) {
 	assert( numComponents >= GEN_COMPONENT_COUNT_MIN );
 	assert( numComponents <= GEN_COMPONENT_COUNT_MAX );
 
@@ -66,12 +66,12 @@ void Gen_VectorOperatorsArithmetic( const genType_t type, const u32 numComponent
 	for ( u32 opIndex = 0; opIndex < GEN_OP_ARITHMETIC_COUNT; opIndex++ ) {
 		genOpArithmetic_t op = (genOpArithmetic_t) opIndex;
 
-		Gen_OperatorComponentWiseArithmeticScalar( type, 1, numComponents, op, sbHeader, sbInl );
-		Gen_OperatorComponentWiseArithmeticRhsType( type, 1, numComponents, op, sbHeader, sbInl );
+		Gen_OperatorComponentWiseArithmeticScalar( type, 1, numComponents, op, sbHeader );
+		Gen_OperatorComponentWiseArithmeticRhsType( type, 1, numComponents, op, sbHeader );
 	}
 }
 
-void Gen_VectorLength( const genType_t type, const u32 numComponents, stringBuilder_t* sbHeader, stringBuilder_t* sbInl ) {
+void Gen_VectorLength( const genType_t type, const u32 numComponents, stringBuilder_t* sbHeader ) {
 	assert( numComponents >= GEN_COMPONENT_COUNT_MIN );
 	assert( numComponents <= GEN_COMPONENT_COUNT_MAX );
 
@@ -89,47 +89,41 @@ void Gen_VectorLength( const genType_t type, const u32 numComponents, stringBuil
 	const char* sqrtFuncStr = Gen_GetFuncNameSqrt( type );
 
 	Doc_VectorLengthSqr( sbHeader, fullTypeName );
-	String_Appendf( sbHeader, "inline %s lengthsqr( const %s& vec );\n", returnTypeString, fullTypeName );
-	String_Append(  sbHeader, "\n" );
-
-	Doc_VectorLength( sbHeader, fullTypeName );
-	String_Appendf( sbHeader, "inline %s length( const %s& vec );\n", returnTypeString, fullTypeName );
-	String_Append(  sbHeader, "\n" );
-
-	String_Appendf( sbInl, "%s lengthsqr( const %s& vec )\n", returnTypeString, fullTypeName );
-	String_Append(  sbInl, "{\n" );
-	String_Append(  sbInl, "\treturn " );
+	String_Appendf( sbHeader, "inline %s lengthsqr( const %s& vec )\n", returnTypeString, fullTypeName );
+	String_Append(  sbHeader, "{\n" );
+	String_Append(  sbHeader, "\treturn " );
 
 	if ( !Gen_TypeIsFloatingPoint( type ) ) {
-		String_Appendf( sbInl, "(%s)( ", returnTypeString );
+		String_Appendf( sbHeader, "(%s)( ", returnTypeString );
 	}
 
 	for ( u32 i = 0; i < numComponents; i++ ) {
 		char componentName = GEN_COMPONENT_NAMES_VECTOR[i];
 
-		String_Appendf( sbInl, "( vec.%c * vec.%c )", componentName, componentName );
+		String_Appendf( sbHeader, "( vec.%c * vec.%c )", componentName, componentName );
 
 		if ( i != numComponents - 1 ) {
-			String_Append( sbInl, " + " );
+			String_Append( sbHeader, " + " );
 		}
 	}
 
 	if ( !Gen_TypeIsFloatingPoint( type ) ) {
-		String_Append( sbInl, " )" );
+		String_Append( sbHeader, " )" );
 	}
 
-	String_Append( sbInl, ";\n" );
-	String_Append( sbInl, "}\n" );
-	String_Append( sbInl, "\n" );
+	String_Append( sbHeader, ";\n" );
+	String_Append( sbHeader, "}\n" );
+	String_Append( sbHeader, "\n" );
 
-	String_Appendf( sbInl, "%s length( const %s& vec )\n", returnTypeString, fullTypeName );
-	String_Append(  sbInl, "{\n" );
-	String_Appendf( sbInl, "\treturn %s( lengthsqr( vec ) );\n", sqrtFuncStr );
-	String_Append(  sbInl, "}\n" );
-	String_Append(  sbInl, "\n" );
+	Doc_VectorLength( sbHeader, fullTypeName );
+	String_Appendf( sbHeader, "inline %s length( const %s& vec )\n", returnTypeString, fullTypeName );
+	String_Append(  sbHeader, "{\n" );
+	String_Appendf( sbHeader, "\treturn %s( lengthsqr( vec ) );\n", sqrtFuncStr );
+	String_Append(  sbHeader, "}\n" );
+	String_Append(  sbHeader, "\n" );
 }
 
-void Gen_VectorNormalize( const genType_t type, const u32 numComponents, stringBuilder_t* sbHeader, stringBuilder_t* sbInl ) {
+void Gen_VectorNormalize( const genType_t type, const u32 numComponents, stringBuilder_t* sbHeader ) {
 	assert( numComponents >= GEN_COMPONENT_COUNT_MIN );
 	assert( numComponents <= GEN_COMPONENT_COUNT_MAX );
 
@@ -146,29 +140,23 @@ void Gen_VectorNormalize( const genType_t type, const u32 numComponents, stringB
 	Gen_GetFullTypeName( type, 1, numComponents, fullTypeName );
 
 	Doc_VectorNormalize( sbHeader, fullTypeName );
-	String_Appendf( sbHeader, "inline void normalize( %s& vec );\n", fullTypeName );
+	String_Appendf( sbHeader, "inline void normalize( %s& vec )\n", fullTypeName );
+	String_Append(  sbHeader, "{\n" );
+	String_Appendf( sbHeader, "\t%s invlen = %s / length( vec );\n", typeString, oneStr );
+	String_Append(  sbHeader, "\tvec *= invlen;\n" );
+	String_Append(  sbHeader, "}\n" );
 	String_Append(  sbHeader, "\n" );
 
 	Doc_VectorNormalized( sbHeader, fullTypeName );
-	String_Appendf( sbHeader, "inline %s normalized( const %s& vec );\n", fullTypeName, fullTypeName );
+	String_Appendf( sbHeader, "inline %s normalized( const %s& vec )\n", fullTypeName, fullTypeName );
+	String_Append(  sbHeader, "{\n" );
+	String_Appendf( sbHeader, "\t%s invlen = %s / length( vec );\n", typeString, oneStr );
+	String_Appendf( sbHeader, "\treturn (%s)( vec * invlen );\n", fullTypeName );
+	String_Append(  sbHeader, "}\n" );
 	String_Append(  sbHeader, "\n" );
-
-	String_Appendf( sbInl, "void normalize( %s& vec )\n", fullTypeName );
-	String_Append(  sbInl, "{\n" );
-	String_Appendf( sbInl, "\t%s invlen = %s / length( vec );\n", typeString, oneStr );
-	String_Append(  sbInl, "\tvec *= invlen;\n" );
-	String_Append(  sbInl, "}\n" );
-	String_Append(  sbInl, "\n" );
-
-	String_Appendf( sbInl, "%s normalized( const %s& vec )\n", fullTypeName, fullTypeName );
-	String_Append(  sbInl, "{\n" );
-	String_Appendf( sbInl, "\t%s invlen = %s / length( vec );\n", typeString, oneStr );
-	String_Appendf( sbInl, "\treturn (%s)( vec * invlen );\n", fullTypeName );
-	String_Append(  sbInl, "}\n" );
-	String_Append(  sbInl, "\n" );
 }
 
-void Gen_VectorDot( const genType_t type, const u32 numComponents, stringBuilder_t* sbHeader, stringBuilder_t* sbInl ) {
+void Gen_VectorDot( const genType_t type, const u32 numComponents, stringBuilder_t* sbHeader ) {
 	assert( numComponents >= GEN_COMPONENT_COUNT_MIN );
 	assert( numComponents <= GEN_COMPONENT_COUNT_MAX );
 
@@ -186,37 +174,34 @@ void Gen_VectorDot( const genType_t type, const u32 numComponents, stringBuilder
 	Gen_GetFullTypeName( type, 1, numComponents, fullTypeName );
 
 	Doc_VectorDot( sbHeader, fullTypeName );
-	String_Appendf( sbHeader, "inline %s dot( const %s& lhs, const %s& rhs );\n", returnTypeString, fullTypeName, fullTypeName );
-	String_Append(  sbHeader, "\n" );
-
-	String_Appendf( sbInl, "%s dot( const %s& lhs, const %s& rhs )\n", returnTypeString, fullTypeName, fullTypeName );
-	String_Append(  sbInl, "{\n" );
-	String_Append(  sbInl, "\treturn " );
+	String_Appendf( sbHeader, "inline %s dot( const %s& lhs, const %s& rhs )\n", returnTypeString, fullTypeName, fullTypeName );
+	String_Append(  sbHeader, "{\n" );
+	String_Append(  sbHeader, "\treturn " );
 
 	if ( shouldTypeCast ) {
-		String_Appendf( sbInl, "(%s)( ", returnTypeString );
+		String_Appendf( sbHeader, "(%s)( ", returnTypeString );
 	}
 
 	for ( u32 i = 0; i < numComponents; i++ ) {
 		char componentName = GEN_COMPONENT_NAMES_VECTOR[i];
 
-		String_Appendf( sbInl, "( lhs.%c * rhs.%c )", componentName, componentName );
+		String_Appendf( sbHeader, "( lhs.%c * rhs.%c )", componentName, componentName );
 
 		if ( i != numComponents - 1 ) {
-			String_Append( sbInl, " + " );
+			String_Append( sbHeader, " + " );
 		}
 	}
 
 	if ( shouldTypeCast ) {
-		String_Append( sbInl, " )" );
+		String_Append( sbHeader, " )" );
 	}
 
-	String_Append( sbInl, ";\n" );
-	String_Append( sbInl, "}\n" );
-	String_Append( sbInl, "\n" );
+	String_Append( sbHeader, ";\n" );
+	String_Append( sbHeader, "}\n" );
+	String_Append( sbHeader, "\n" );
 }
 
-void Gen_VectorCross( const genType_t type, const u32 numComponents, stringBuilder_t* sbHeader, stringBuilder_t* sbInl ) {
+void Gen_VectorCross( const genType_t type, const u32 numComponents, stringBuilder_t* sbHeader ) {
 	assert( numComponents >= GEN_COMPONENT_COUNT_MIN );
 	assert( numComponents <= GEN_COMPONENT_COUNT_MAX );
 
@@ -232,26 +217,23 @@ void Gen_VectorCross( const genType_t type, const u32 numComponents, stringBuild
 	Gen_GetFullTypeName( type, 1, numComponents, fullTypeName );
 
 	Doc_VectorCross( sbHeader, fullTypeName );
-	String_Appendf( sbHeader, "inline %s cross( const %s& lhs, const %s& rhs );\n", fullTypeName, fullTypeName, fullTypeName );
-	String_Append(  sbHeader, "\n" );
-
-	String_Appendf( sbInl, "%s cross( const %s& lhs, const %s& rhs )\n", fullTypeName, fullTypeName, fullTypeName );
-	String_Append(  sbInl, "{\n" );
-	String_Appendf( sbInl, "\treturn %s(\n", fullTypeName );
-	String_Append(  sbInl, "\t\t( lhs.y * rhs.z ) - ( lhs.z * rhs.y ),\n" );
-	String_Append(  sbInl, "\t\t( lhs.z * rhs.x ) - ( lhs.x * rhs.z ),\n" );
-	String_Append(  sbInl, "\t\t( lhs.x * rhs.y ) - ( lhs.y * rhs.x )" );
+	String_Appendf( sbHeader, "inline %s cross( const %s& lhs, const %s& rhs )\n", fullTypeName, fullTypeName, fullTypeName );
+	String_Append(  sbHeader, "{\n" );
+	String_Appendf( sbHeader, "\treturn %s(\n", fullTypeName );
+	String_Append(  sbHeader, "\t\t( lhs.y * rhs.z ) - ( lhs.z * rhs.y ),\n" );
+	String_Append(  sbHeader, "\t\t( lhs.z * rhs.x ) - ( lhs.x * rhs.z ),\n" );
+	String_Append(  sbHeader, "\t\t( lhs.x * rhs.y ) - ( lhs.y * rhs.x )" );
 	if ( numComponents > 3 ) {
-		String_Appendf( sbInl, ",\n\t\t%s\n", Gen_GetDefaultLiteralValue( type ) );
+		String_Appendf( sbHeader, ",\n\t\t%s\n", Gen_GetDefaultLiteralValue( type ) );
 	} else {
-		String_Append( sbInl, "\n" );
+		String_Append( sbHeader, "\n" );
 	}
-	String_Append( sbInl, "\t);\n" );
-	String_Append( sbInl, "}\n" );
-	String_Append( sbInl, "\n" );
+	String_Append( sbHeader, "\t);\n" );
+	String_Append( sbHeader, "}\n" );
+	String_Append( sbHeader, "\n" );
 }
 
-void Gen_VectorAngle( const genType_t type, const u32 numComponents, stringBuilder_t* sbHeader, stringBuilder_t* sbInl ) {
+void Gen_VectorAngle( const genType_t type, const u32 numComponents, stringBuilder_t* sbHeader ) {
 	assert( numComponents >= GEN_COMPONENT_COUNT_MIN );
 	assert( numComponents <= GEN_COMPONENT_COUNT_MAX );
 
@@ -269,17 +251,14 @@ void Gen_VectorAngle( const genType_t type, const u32 numComponents, stringBuild
 	const char* acosString = Gen_GetFuncNameAcos( floatingPointType );
 
 	Doc_VectorAngle( sbHeader, fullTypeName );
-	String_Appendf( sbHeader, "inline %s angle( const %s& lhs, const %s& rhs );\n", returnTypeString, fullTypeName, fullTypeName );
+	String_Appendf( sbHeader, "inline %s angle( const %s& lhs, const %s& rhs )\n", returnTypeString, fullTypeName, fullTypeName );
+	String_Append(  sbHeader, "{\n" );
+	String_Appendf( sbHeader, "\treturn degrees( %s( dot( normalized( lhs ), normalized( rhs ) ) ) );\n", acosString );
+	String_Append(  sbHeader, "}\n" );
 	String_Append(  sbHeader, "\n" );
-
-	String_Appendf( sbInl, "%s angle( const %s& lhs, const %s& rhs )\n", returnTypeString, fullTypeName, fullTypeName );
-	String_Append(  sbInl, "{\n" );
-	String_Appendf( sbInl, "\treturn degrees( %s( dot( normalized( lhs ), normalized( rhs ) ) ) );\n", acosString );
-	String_Append(  sbInl, "}\n" );
-	String_Append(  sbInl, "\n" );
 }
 
-void Gen_VectorDistance( const genType_t type, const u32 numComponents, stringBuilder_t* sbHeader, stringBuilder_t* sbInl ) {
+void Gen_VectorDistance( const genType_t type, const u32 numComponents, stringBuilder_t* sbHeader ) {
 	assert( numComponents >= GEN_COMPONENT_COUNT_MIN );
 	assert( numComponents <= GEN_COMPONENT_COUNT_MAX );
 
@@ -299,31 +278,25 @@ void Gen_VectorDistance( const genType_t type, const u32 numComponents, stringBu
 	// distancesq
 	{
 		Doc_VectorDistanceSq( sbHeader, fullTypeName );
-		String_Appendf( sbHeader, "inline %s distancesqr( const %s& lhs, const %s& rhs );\n", returnTypeString, fullTypeName, fullTypeName );
+		String_Appendf( sbHeader, "inline %s distancesqr( const %s& lhs, const %s& rhs )\n", returnTypeString, fullTypeName, fullTypeName );
+		String_Append(  sbHeader, "{\n" );
+		String_Append(  sbHeader, "\treturn lengthsqr( lhs - rhs );\n" );
+		String_Append(  sbHeader, "}\n" );
 		String_Append(  sbHeader, "\n" );
-
-		String_Appendf( sbInl, "%s distancesqr( const %s& lhs, const %s& rhs )\n", returnTypeString, fullTypeName, fullTypeName );
-		String_Append(  sbInl, "{\n" );
-		String_Append(  sbInl, "\treturn lengthsqr( lhs - rhs );\n" );
-		String_Append(  sbInl, "}\n" );
-		String_Append(  sbInl, "\n" );
 	}
 
 	// distance
 	{
 		Doc_VectorDistance( sbHeader, fullTypeName );
-		String_Appendf( sbHeader, "inline %s distance( const %s& lhs, const %s& rhs );\n", returnTypeString, fullTypeName, fullTypeName );
+		String_Appendf( sbHeader, "inline %s distance( const %s& lhs, const %s& rhs )\n", returnTypeString, fullTypeName, fullTypeName );
+		String_Append(  sbHeader, "{\n" );
+		String_Append(  sbHeader, "\treturn length( lhs - rhs );\n" );
+		String_Append(  sbHeader, "}\n" );
 		String_Append(  sbHeader, "\n" );
-
-		String_Appendf( sbInl, "%s distance( const %s& lhs, const %s& rhs )\n", returnTypeString, fullTypeName, fullTypeName );
-		String_Append(  sbInl, "{\n" );
-		String_Append(  sbInl, "\treturn length( lhs - rhs );\n" );
-		String_Append(  sbInl, "}\n" );
-		String_Append(  sbInl, "\n" );
 	}
 }
 
-void Gen_VectorPack( const genType_t type, const u32 numComponents, stringBuilder_t* sbHeader, stringBuilder_t* sbInl ) {
+void Gen_VectorPack( const genType_t type, const u32 numComponents, stringBuilder_t* sbHeader ) {
 	assert( numComponents >= GEN_COMPONENT_COUNT_MIN );
 	assert( numComponents <= GEN_COMPONENT_COUNT_MAX );
 
@@ -345,25 +318,22 @@ void Gen_VectorPack( const genType_t type, const u32 numComponents, stringBuilde
 	const char* memberTypeString = Gen_GetMemberTypeString( type );
 
 	Doc_VectorPack( sbHeader, fullTypeName );
-	String_Appendf( sbHeader, "inline %s pack( const %s& vec );\n", memberTypeString, fullTypeName );
-	String_Append(  sbHeader, "\n" );
-
-	String_Appendf( sbInl, "%s pack( const %s& vec )\n", memberTypeString, fullTypeName );
-	String_Append(  sbInl, "{\n" );
-	String_Append(  sbInl, "\treturn " );
+	String_Appendf( sbHeader, "inline %s pack( const %s& vec )\n", memberTypeString, fullTypeName );
+	String_Append(  sbHeader, "{\n" );
+	String_Append(  sbHeader, "\treturn " );
 	for ( u32 i = 0; i < numComponents; i++ ) {
-		String_Appendf( sbInl, "( vec.%c << %d )", GEN_COMPONENT_NAMES_VECTOR[i], shiftVals[i] );
+		String_Appendf( sbHeader, "( vec.%c << %d )", GEN_COMPONENT_NAMES_VECTOR[i], shiftVals[i] );
 
 		if ( i != numComponents - 1 ) {
-			String_Append( sbInl, " | " );
+			String_Append( sbHeader, " | " );
 		}
 	}
-	String_Append( sbInl, ";\n" );
-	String_Append( sbInl, "}\n" );
-	String_Append( sbInl, "\n" );
+	String_Append( sbHeader, ";\n" );
+	String_Append( sbHeader, "}\n" );
+	String_Append( sbHeader, "\n" );
 }
 
-void Gen_VectorUnpack( const genType_t type, const u32 numComponents, stringBuilder_t* sbHeader, stringBuilder_t* sbInl ) {
+void Gen_VectorUnpack( const genType_t type, const u32 numComponents, stringBuilder_t* sbHeader ) {
 	assert( numComponents >= GEN_COMPONENT_COUNT_MIN );
 	assert( numComponents <= GEN_COMPONENT_COUNT_MAX );
 
@@ -385,22 +355,19 @@ void Gen_VectorUnpack( const genType_t type, const u32 numComponents, stringBuil
 	const char* memberTypeString = Gen_GetMemberTypeString( type );
 
 	Doc_VectorUnpack( sbHeader, fullTypeName );
-	String_Appendf( sbHeader, "inline %s unpack( const %s x );\n", fullTypeName, memberTypeString );
-	String_Append(  sbHeader, "\n" );
-
-	String_Appendf( sbInl, "%s unpack( const %s x )\n", fullTypeName, memberTypeString );
-	String_Append(  sbInl, "{\n" );
-	String_Appendf( sbInl, "\treturn %s(\n", fullTypeName );
+	String_Appendf( sbHeader, "inline %s unpack( const %s x )\n", fullTypeName, memberTypeString );
+	String_Append(  sbHeader, "{\n" );
+	String_Appendf( sbHeader, "\treturn %s(\n", fullTypeName );
 	for ( u32 i = 0; i < numComponents; i++ ) {
-		String_Appendf( sbInl, "\t\t( x >> %d ) & 0xFF", shiftVals[i] );
+		String_Appendf( sbHeader, "\t\t( x >> %d ) & 0xFF", shiftVals[i] );
 
 		if ( i != numComponents - 1 ) {
-			String_Append( sbInl, "," );
+			String_Append( sbHeader, "," );
 		}
 
-		String_Append( sbInl, "\n" );
+		String_Append( sbHeader, "\n" );
 	}
-	String_Append( sbInl, "\t);\n" );
-	String_Append( sbInl, "}\n" );
-	String_Append( sbInl, "\n" );
+	String_Append( sbHeader, "\t);\n" );
+	String_Append( sbHeader, "}\n" );
+	String_Append( sbHeader, "\n" );
 }

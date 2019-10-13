@@ -113,39 +113,37 @@ struct double3
 	inline double& operator[]( const uint32_t index );
 
 	// swizzle funcs
-	inline double2 xx() const { return double2( x, x ); }
-	inline double2 yx() const { return double2( y, x ); }
-	inline double2 xy() const { return double2( x, y ); }
-	inline double2 yy() const { return double2( y, y ); }
-
-	inline double3 xxx() const { return double3( x, x, x ); }
-	inline double3 yxx() const { return double3( y, x, x ); }
-	inline double3 zxx() const { return double3( z, x, x ); }
-	inline double3 xyx() const { return double3( x, y, x ); }
-	inline double3 yyx() const { return double3( y, y, x ); }
-	inline double3 zyx() const { return double3( z, y, x ); }
-	inline double3 xzx() const { return double3( x, z, x ); }
-	inline double3 yzx() const { return double3( y, z, x ); }
-	inline double3 zzx() const { return double3( z, z, x ); }
-	inline double3 xxy() const { return double3( x, x, y ); }
-	inline double3 yxy() const { return double3( y, x, y ); }
-	inline double3 zxy() const { return double3( z, x, y ); }
-	inline double3 xyy() const { return double3( x, y, y ); }
-	inline double3 yyy() const { return double3( y, y, y ); }
-	inline double3 zyy() const { return double3( z, y, y ); }
-	inline double3 xzy() const { return double3( x, z, y ); }
-	inline double3 yzy() const { return double3( y, z, y ); }
-	inline double3 zzy() const { return double3( z, z, y ); }
-	inline double3 xxz() const { return double3( x, x, z ); }
-	inline double3 yxz() const { return double3( y, x, z ); }
-	inline double3 zxz() const { return double3( z, x, z ); }
-	inline double3 xyz() const { return double3( x, y, z ); }
-	inline double3 yyz() const { return double3( y, y, z ); }
-	inline double3 zyz() const { return double3( z, y, z ); }
-	inline double3 xzz() const { return double3( x, z, z ); }
-	inline double3 yzz() const { return double3( y, z, z ); }
-	inline double3 zzz() const { return double3( z, z, z ); }
-
+	inline double2 xx() const;
+	inline double2 yx() const;
+	inline double2 xy() const;
+	inline double2 yy() const;
+	inline double3 xxx() const;
+	inline double3 yxx() const;
+	inline double3 zxx() const;
+	inline double3 xyx() const;
+	inline double3 yyx() const;
+	inline double3 zyx() const;
+	inline double3 xzx() const;
+	inline double3 yzx() const;
+	inline double3 zzx() const;
+	inline double3 xxy() const;
+	inline double3 yxy() const;
+	inline double3 zxy() const;
+	inline double3 xyy() const;
+	inline double3 yyy() const;
+	inline double3 zyy() const;
+	inline double3 xzy() const;
+	inline double3 yzy() const;
+	inline double3 zzy() const;
+	inline double3 xxz() const;
+	inline double3 yxz() const;
+	inline double3 zxz() const;
+	inline double3 xyz() const;
+	inline double3 yyz() const;
+	inline double3 zyz() const;
+	inline double3 xzz() const;
+	inline double3 yzz() const;
+	inline double3 zzz() const;
 };
 
 #if defined( __clang__ ) || defined( __GNUC__ )
@@ -162,4 +160,3 @@ inline bool operator==( const double3& lhs, const double3& rhs );
 /// \brief Returns true if not all of the components of the left-hand-side double3 match the other one, otherwise returns false.
 inline bool operator!=( const double3& lhs, const double3& rhs );
 
-#include "double3.inl"

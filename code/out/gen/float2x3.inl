@@ -32,8 +32,15 @@ SOFTWARE.
 // EDITING THIS FILE MAY CAUSE SIDE EFFECTS.
 // DO SO AT YOUR OWN RISK.
 
+#pragma once
+
+// hlml includes
+#include "float2x3.h"
+
 // others
 #include <math.h>
+#include <memory.h>
+#include <assert.h>
 
 // forward declares
 float2x3 inverse( const float2x3& mat );
@@ -103,7 +110,7 @@ bool operator==( const float2x3& lhs, const float2x3& rhs )
 		&& lhs[1] == rhs[1];
 }
 
-bool operator!=( const float2x3& lhs, const float2x3& rhs )
+inline bool operator!=( const float2x3& lhs, const float2x3& rhs )
 {
 	return !( operator==( lhs, rhs ) );
 }
