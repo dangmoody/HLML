@@ -46,7 +46,10 @@ SOFTWARE.
 
 bool4::bool4()
 {
-	memset( data, 0, 4 * sizeof( bool32_t ) );
+	x = false;
+	y = false;
+	z = false;
+	w = false;
 }
 
 bool4::bool4( const bool32_t x )

@@ -46,7 +46,8 @@ SOFTWARE.
 
 int2::int2()
 {
-	memset( data, 0, 2 * sizeof( int32_t ) );
+	x = 0;
+	y = 0;
 }
 
 int2::int2( const int32_t x )

@@ -46,7 +46,8 @@ SOFTWARE.
 
 double2::double2()
 {
-	memset( data, 0, 2 * sizeof( double ) );
+	x = 0.0;
+	y = 0.0;
 }
 
 double2::double2( const double x )

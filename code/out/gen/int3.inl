@@ -46,7 +46,9 @@ SOFTWARE.
 
 int3::int3()
 {
-	memset( data, 0, 3 * sizeof( int32_t ) );
+	x = 0;
+	y = 0;
+	z = 0;
 }
 
 int3::int3( const int32_t x )

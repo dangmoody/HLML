@@ -48,7 +48,9 @@ SOFTWARE.
 
 float3::float3()
 {
-	memset( data, 0, 3 * sizeof( float ) );
+	x = 0.0f;
+	y = 0.0f;
+	z = 0.0f;
 }
 
 float3::float3( const float x )

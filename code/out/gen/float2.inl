@@ -48,7 +48,8 @@ SOFTWARE.
 
 float2::float2()
 {
-	memset( data, 0, 2 * sizeof( float ) );
+	x = 0.0f;
+	y = 0.0f;
 }
 
 float2::float2( const float x )

@@ -199,13 +199,17 @@ void GeneratorVector::HeaderGenerateMembersStruct( const char componentNames[GEN
 void GeneratorVector::GenerateConstructors() {
 	// default ctor
 	{
+		const char* defaultValueStr = Gen_GetDefaultLiteralValue( m_type );
+
 		GenerateDocCtorDefault();
 		String_Appendf( &m_codeHeader, "\tinline %s();\n", m_fullTypeName );
 		String_Append(  &m_codeHeader, "\n" );
 
 		String_Appendf( &m_codeInl, "%s::%s()\n", m_fullTypeName, m_fullTypeName );
 		String_Append(  &m_codeInl, "{\n" );
-		String_Appendf( &m_codeInl, "\tmemset( data, 0, %d * sizeof( %s ) );\n", m_numComponents, m_memberTypeString );
+		for ( u32 i = 0; i < m_numComponents; i++ ) {
+			String_Appendf( &m_codeInl, "\t%c = %s;\n", GEN_COMPONENT_NAMES_VECTOR[i], defaultValueStr );
+		}
 		String_Append(  &m_codeInl, "}\n" );
 		String_Append(  &m_codeInl, "\n" );
 	}

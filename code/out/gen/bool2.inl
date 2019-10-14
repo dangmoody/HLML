@@ -46,7 +46,8 @@ SOFTWARE.
 
 bool2::bool2()
 {
-	memset( data, 0, 2 * sizeof( bool32_t ) );
+	x = false;
+	y = false;
 }
 
 bool2::bool2( const bool32_t x )

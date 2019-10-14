@@ -46,7 +46,10 @@ SOFTWARE.
 
 double4::double4()
 {
-	memset( data, 0, 4 * sizeof( double ) );
+	x = 0.0;
+	y = 0.0;
+	z = 0.0;
+	w = 0.0;
 }
 
 double4::double4( const double x )

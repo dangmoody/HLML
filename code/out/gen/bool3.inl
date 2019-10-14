@@ -46,7 +46,9 @@ SOFTWARE.
 
 bool3::bool3()
 {
-	memset( data, 0, 3 * sizeof( bool32_t ) );
+	x = false;
+	y = false;
+	z = false;
 }
 
 bool3::bool3( const bool32_t x )

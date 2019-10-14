@@ -46,7 +46,8 @@ SOFTWARE.
 
 uint2::uint2()
 {
-	memset( data, 0, 2 * sizeof( uint32_t ) );
+	x = 0;
+	y = 0;
 }
 
 uint2::uint2( const uint32_t x )

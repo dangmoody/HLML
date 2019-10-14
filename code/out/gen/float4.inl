@@ -48,7 +48,10 @@ SOFTWARE.
 
 float4::float4()
 {
-	memset( data, 0, 4 * sizeof( float ) );
+	x = 0.0f;
+	y = 0.0f;
+	z = 0.0f;
+	w = 0.0f;
 }
 
 float4::float4( const float x )

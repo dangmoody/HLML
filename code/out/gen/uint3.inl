@@ -46,7 +46,9 @@ SOFTWARE.
 
 uint3::uint3()
 {
-	memset( data, 0, 3 * sizeof( uint32_t ) );
+	x = 0;
+	y = 0;
+	z = 0;
 }
 
 uint3::uint3( const uint32_t x )

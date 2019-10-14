@@ -46,7 +46,10 @@ SOFTWARE.
 
 int4::int4()
 {
-	memset( data, 0, 4 * sizeof( int32_t ) );
+	x = 0;
+	y = 0;
+	z = 0;
+	w = 0;
 }
 
 int4::int4( const int32_t x )

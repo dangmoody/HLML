@@ -46,7 +46,9 @@ SOFTWARE.
 
 double3::double3()
 {
-	memset( data, 0, 3 * sizeof( double ) );
+	x = 0.0;
+	y = 0.0;
+	z = 0.0;
 }
 
 double3::double3( const double x )

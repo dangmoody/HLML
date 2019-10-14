@@ -46,7 +46,10 @@ SOFTWARE.
 
 uint4::uint4()
 {
-	memset( data, 0, 4 * sizeof( uint32_t ) );
+	x = 0;
+	y = 0;
+	z = 0;
+	w = 0;
 }
 
 uint4::uint4( const uint32_t x )
