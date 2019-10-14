@@ -26,8 +26,8 @@
     <ClCompile Include="GeneratorVector.cpp" />
     <ClCompile Include="gen_funcs_vector_sse.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="os_helpers_unix.cpp" />
-    <ClCompile Include="os_helpers_win64.cpp" />
+    <ClCompile Include="os_process_unix.cpp" />
+    <ClCompile Include="os_process_win64.cpp" />
     <ClCompile Include="string_builder.cpp" />
     <ClCompile Include="timer_unix.cpp" />
     <ClCompile Include="timer_win64.cpp" />
@@ -53,10 +53,11 @@
     <ClInclude Include="GeneratorVector.h" />
     <ClInclude Include="gen_funcs_vector_sse.h" />
     <ClInclude Include="int_types.h" />
-    <ClInclude Include="os_helpers.h" />
+    <ClInclude Include="os_process.h" />
     <ClInclude Include="string_builder.h" />
     <ClInclude Include="string_helpers.h" />
     <ClInclude Include="timer.h" />
+    <ClInclude Include="win64_helpers.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>

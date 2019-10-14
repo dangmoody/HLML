@@ -22,7 +22,8 @@ along with The HLML Generator.  If not, see <http://www.gnu.org/licenses/>.
 ===========================================================================
 */
 #ifdef _WIN32
-#include "os_helpers.h"
+#include "os_process.h"
+#include "win64_helpers.h"
 
 #define WIN32_LEAN_AND_MEAN 1
 #include <Windows.h>
@@ -40,17 +41,15 @@ struct processWin_t {
 static bool32 CloseProcess( process_t process ) {
 	assert( process.ptr );
 
+	bool32 result = false;
+
 	processWin_t* proc = (processWin_t*) process.ptr;
 
-	if ( !CloseHandle( proc->processInfo.hProcess ) ) {
-		printf( "Failed to close handle of process \"%s\", error code: 0x%X\n", proc->startupInfo.lpTitle, (int) GetLastError() );
-		return false;
-	}
+	result = CloseHandle( proc->processInfo.hProcess );
+	WIN64_ASSERT( result );
 
-	if ( !CloseHandle( proc->processInfo.hThread ) ) {
-		printf( "Failed to close thread of process \"%s\", error code: 0x%X\n", proc->startupInfo.lpTitle, (int) GetLastError() );
-		return false;
-	}
+	result = CloseHandle( proc->processInfo.hThread );
+	WIN64_ASSERT( result );
 
 	return true;
 }
@@ -82,11 +81,8 @@ process_t OS_StartProcess( const char* name, const char** args, const u32 argCou
 
 	fullCmdLine[fullCmdLen - 1] = 0;
 
-	if ( !CreateProcessA( NULL, fullCmdLine, NULL, NULL, TRUE, 0, NULL, NULL, &proc->startupInfo, &proc->processInfo ) ) {
-		printf( "Failed to create process \"%s\", error code: 0x%X\n", name, (int) GetLastError() );
-
-		return { NULL };
-	}
+	bool32 result = CreateProcessA( NULL, fullCmdLine, NULL, NULL, TRUE, 0, NULL, NULL, &proc->startupInfo, &proc->processInfo );
+	WIN64_ASSERT( result );
 
 	return { proc };
 }
@@ -94,14 +90,15 @@ process_t OS_StartProcess( const char* name, const char** args, const u32 argCou
 bool32 OS_KillProcess( process_t process, const u32 exitCode ) {
 	assert( process.ptr );
 
+	bool32 result = false;
+
 	processWin_t* proc = (processWin_t*) process.ptr;
 
-	if ( !TerminateProcess( proc->processInfo.hProcess, exitCode ) ) {
-		printf( "Failed to kill process \"%s\", error code: 0x%X\n", proc->startupInfo.lpTitle, (int) GetLastError() );
-		return false;
-	}
+	result = TerminateProcess( proc->processInfo.hProcess, exitCode );
+	WIN64_ASSERT( result );
 
-	CloseProcess( process );
+	result = CloseProcess( process );
+	WIN64_ASSERT( result );
 
 	free( proc );
 	proc = NULL;
@@ -114,11 +111,12 @@ u32 OS_WaitForProcess( const process_t process ) {
 
 	processWin_t* proc = (processWin_t*) process.ptr;
 
-	DWORD result = WaitForSingleObject( proc->processInfo.hProcess, U32_MAX );
+	DWORD procResult = WaitForSingleObject( proc->processInfo.hProcess, U32_MAX );
 
-	CloseProcess( (process_t) process );
+	bool32 result = CloseProcess( (process_t) process );
+	WIN64_ASSERT( result );
 
-	return result;
+	return procResult;
 }
 
 #endif // _WIN32

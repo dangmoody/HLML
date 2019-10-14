@@ -41,16 +41,17 @@ along with The HLML Generator.  If not, see <http://www.gnu.org/licenses/>.
 #include "gen_funcs_matrix.h"
 #include "gen_funcs_matrix_sse.h"
 
-#include "os_helpers.h"
+#include "os_process.h"
 
 #include "file_io.h"
 
 #include "timer.h"
 
 #include <stdio.h>
+#include <stdlib.h>
 #include <assert.h>
 
-static bool32 GenerateTypeHeader( void ) {
+static void GenerateTypeHeader( void ) {
 	char headerFilePath[1024] = { 0 };
 	snprintf( headerFilePath, 1024, "%s%s", GEN_OUT_FOLDER_PATH, GEN_HEADER_TYPES );
 
@@ -68,11 +69,9 @@ static bool32 GenerateTypeHeader( void ) {
 	FS_WriteEntireFile( headerFilePath, sb.str, sb.length );
 
 	Mem_Reset();
-
-	return true;
 }
 
-static bool32 GenerateVectors( void ) {
+static void GenerateVectors( void ) {
 	GeneratorVector gen;
 
 	for ( u32 typeIndex = 0; typeIndex < GEN_TYPE_COUNT; typeIndex++ ) {
@@ -83,18 +82,14 @@ static bool32 GenerateVectors( void ) {
 		for ( u32 componentIndex = GEN_COMPONENT_COUNT_MIN; componentIndex <= GEN_COMPONENT_COUNT_MAX; componentIndex++ ) {
 			printf( "Generating %s%d...", typeString, componentIndex );
 
-			if ( !gen.Generate( type, componentIndex ) ) {
-				return false;
-			}
+			gen.Generate( type, componentIndex );
 
 			printf( "OK.\n" );
 		}
 	}
-
-	return true;
 }
 
-static bool32 GenerateMatrices( void ) {
+static void GenerateMatrices( void ) {
 	GeneratorMatrix gen;
 
 	for ( u32 typeIndex = 0; typeIndex < GEN_TYPE_COUNT; typeIndex++ ) {
@@ -106,19 +101,15 @@ static bool32 GenerateMatrices( void ) {
 			for ( u32 col = GEN_COMPONENT_COUNT_MIN; col <= GEN_COMPONENT_COUNT_MAX; col++ ) {
 				printf( "Generating %s%dx%d...", typeString, row, col );
 
-				if ( !gen.Generate( type, row, col ) ) {
-					return false;
-				}
+				gen.Generate( type, row, col );
 
 				printf( "OK.\n" );
 			}
 		}
 	}
-
-	return true;
 }
 
-static bool32 GenerateFunctionsScalar( void ) {
+static void GenerateFunctionsScalar( void ) {
 	char fileNameHeader[1024];
 	snprintf( fileNameHeader, 1024, "%s%s", GEN_OUT_GEN_FOLDER_PATH, GEN_HEADER_FUNCTIONS_SCALAR );
 
@@ -176,11 +167,9 @@ static bool32 GenerateFunctionsScalar( void ) {
 	FS_WriteEntireFile( fileNameHeader, sb.str, sb.length );
 
 	Mem_Reset();
-
-	return true;
 }
 
-static bool32 GenerateFunctionsVector( void ) {
+static void GenerateFunctionsVector( void ) {
 	char filePathHeader[64] = { 0 };
 	snprintf( filePathHeader, 64, "%s%s", GEN_OUT_GEN_FOLDER_PATH, GEN_HEADER_FUNCTIONS_VECTOR );
 
@@ -251,11 +240,9 @@ static bool32 GenerateFunctionsVector( void ) {
 	FS_WriteEntireFile( filePathHeader, contentHeader.str, contentHeader.length );
 
 	Mem_Reset();
-
-	return true;
 }
 
-static bool32 GenerateFunctionsMatrix( void ) {
+static void GenerateFunctionsMatrix( void ) {
 	char filePathHeader[64] = { 0 };
 	snprintf( filePathHeader, 64, "%s%s", GEN_OUT_GEN_FOLDER_PATH, GEN_HEADER_FUNCTIONS_MATRIX );
 
@@ -321,11 +308,9 @@ static bool32 GenerateFunctionsMatrix( void ) {
 	FS_WriteEntireFile( filePathHeader, contentHeader.str, contentHeader.length );
 
 	Mem_Reset();
-
-	return true;
 }
 
-static bool32 GenerateFunctionsScalarSSE( void ) {
+static void GenerateFunctionsScalarSSE( void ) {
 	char filePathHeader[64] = { 0 };
 	snprintf( filePathHeader, 64, "%s%s.h", GEN_OUT_GEN_FOLDER_PATH, GEN_FILENAME_FUNCTIONS_SCALAR_SSE );
 
@@ -369,11 +354,9 @@ static bool32 GenerateFunctionsScalarSSE( void ) {
 	FS_WriteEntireFile( filePathHeader, contentHeader.str, contentHeader.length );
 
 	Mem_Reset();
-
-	return true;
 }
 
-static bool32 GenerateFunctionsVectorSSE( void ) {
+static void GenerateFunctionsVectorSSE( void ) {
 	char filePathHeader[64] = { 0 };
 	snprintf( filePathHeader, 64, "%s%s.h", GEN_OUT_GEN_FOLDER_PATH, GEN_FILENAME_FUNCTIONS_VECTOR_SSE );
 
@@ -451,11 +434,9 @@ static bool32 GenerateFunctionsVectorSSE( void ) {
 	FS_WriteEntireFile( filePathHeader, contentHeader.str, contentHeader.length );
 
 	Mem_Reset();
-
-	return true;
 }
 
-static bool32 GenerateFunctionsMatrixSSE( void ) {
+static void GenerateFunctionsMatrixSSE( void ) {
 	char filePathHeader[64] = { 0 };
 	snprintf( filePathHeader, 64, "%s%s.h", GEN_OUT_GEN_FOLDER_PATH, GEN_FILENAME_FUNCTIONS_MATRIX_SSE );
 
@@ -546,11 +527,9 @@ static bool32 GenerateFunctionsMatrixSSE( void ) {
 	FS_WriteEntireFile( filePathHeader, contentHeader.str, contentHeader.length );
 
 	Mem_Reset();
-
-	return true;
 }
 
-static bool32 GenerateOperatorsVector( void ) {
+static void GenerateOperatorsVector( void ) {
 	char filePathHeader[64] = { 0 };
 	snprintf( filePathHeader, 64, "%s%s", GEN_OUT_GEN_FOLDER_PATH, GEN_HEADER_OPERATORS_VECTOR );
 
@@ -600,11 +579,9 @@ static bool32 GenerateOperatorsVector( void ) {
 	FS_WriteEntireFile( filePathHeader, contentHeader.str, contentHeader.length );
 
 	Mem_Reset();
-
-	return true;
 }
 
-static bool32 GenerateOperatorsMatrix( void ) {
+static void GenerateOperatorsMatrix( void ) {
 	char filePathHeader[64];
 	snprintf( filePathHeader, 64, "%s%s", GEN_OUT_GEN_FOLDER_PATH, GEN_HEADER_OPERATORS_MATRIX );
 
@@ -679,11 +656,9 @@ static bool32 GenerateOperatorsMatrix( void ) {
 	FS_WriteEntireFile( filePathHeader, contentHeader.str, contentHeader.length );
 
 	Mem_Reset();
-
-	return true;
 }
 
-static bool32 GenerateTestsScalar( void ) {
+static void GenerateTestsScalar( void ) {
 	GeneratorScalarTest gen;
 
 	for ( u32 typeIndex = 0; typeIndex < GEN_TYPE_COUNT; typeIndex++ ) {
@@ -697,17 +672,13 @@ static bool32 GenerateTestsScalar( void ) {
 
 		printf( "Generating test_scalar_%s.cpp...", typeString );
 
-		if ( !gen.Generate( type ) ) {
-			return false;
-		}
+		gen.Generate( type );
 
 		printf( "OK.\n" );
 	}
-
-	return true;
 }
 
-static bool32 GenerateTestsVector( void ) {
+static void GenerateTestsVector( void ) {
 	GeneratorVectorTests gen;
 
 	for ( u32 typeIndex = 0; typeIndex < GEN_TYPE_COUNT; typeIndex++ ) {
@@ -718,18 +689,14 @@ static bool32 GenerateTestsVector( void ) {
 		for ( u32 componentIndex = GEN_COMPONENT_COUNT_MIN; componentIndex <= GEN_COMPONENT_COUNT_MAX; componentIndex++ ) {
 			printf( "Generating test_%s%d.cpp...", typeString, componentIndex );
 
-			if ( !gen.Generate( type, componentIndex ) ) {
-				return false;
-			}
+			gen.Generate( type, componentIndex );
 
 			printf( "OK.\n" );
 		}
 	}
-
-	return true;
 }
 
-static bool32 GenerateTestsMatrix( void ) {
+static void GenerateTestsMatrix( void ) {
 	GeneratorMatrixTests gen;
 
 	for ( u32 typeIndex = 0; typeIndex < GEN_TYPE_COUNT; typeIndex++ ) {
@@ -741,19 +708,15 @@ static bool32 GenerateTestsMatrix( void ) {
 			for ( u32 col = GEN_COMPONENT_COUNT_MIN; col <= GEN_COMPONENT_COUNT_MAX; col++ ) {
 				printf( "Generating test_%s%dx%d.cpp...", typeString, row, col );
 
-				if ( !gen.Generate( type, row, col ) ) {
-					return false;
-				}
+				gen.Generate( type, row, col );
 
 				printf( "OK.\n" );
 			}
 		}
 	}
-
-	return true;
 }
 
-static bool32 GenerateTestsMain( void ) {
+static void GenerateTestsMain( void ) {
 	char filePathMain[1024] = { 0 };
 	snprintf( filePathMain, 1024, "%smain.cpp", GEN_TESTS_FOLDER_PATH );
 
@@ -873,8 +836,6 @@ static bool32 GenerateTestsMain( void ) {
 	FS_WriteEntireFile( filePathMain, sb.str, sb.length );
 
 	Mem_Reset();
-
-	return true;
 }
 
 // DM: running doxygen on MacOS isn't supported yet because I don't have access to a Mac
@@ -976,7 +937,9 @@ int main( int argc, char** argv ) {
 	// TODO(DM): turn this back on when a solution for that gets found
 #ifdef _WIN32
 	printf( "======= Generating doxygen documentation pages. =======\n" );
-	GenerateDoxygenPages();
+	if ( !GenerateDoxygenPages() ) {
+		return EXIT_FAILURE;
+	}
 	printf( "======= Done. =======\n\n" );
 #endif
 

@@ -23,7 +23,7 @@ along with The HLML Generator.  If not, see <http://www.gnu.org/licenses/>.
 */
 #if defined( __APPLE__ ) || defined( __linux__ )
 
-#include "os_helpers.h"
+#include "os_process.h"
 
 #include "defines.h"
 
