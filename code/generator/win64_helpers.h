@@ -1,5 +1,7 @@
 #pragma once
 
+#include "defines.h"
+
 #ifndef WIN64_ASSERT
 #ifdef _DEBUG
 #define WIN64_ASSERT( x ) \
