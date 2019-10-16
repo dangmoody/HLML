@@ -114,7 +114,7 @@ I've always primarily used GLM as my maths library of choice, but there were a f
 (This isn't an attack on GLM, just some of my personal gripes with it).
 
 One day I stumbled upon the [Unity.Mathematics](https://github.com/Unity-Technologies/Unity.Mathematics) library where I saw that all the maths types were being generated via a tool.  I decided to try the same but for C++: Write a tool that generated maths types for me to see if there were any benefits of doing it that way, and I found that there were:
-* Compile time differences between the "generated" code and a templated equivalent were so minimal they weren't worth worrying about.
+* Compile times were shorter due to lack of templates.
 * Being able to "Peek Definition" on a type in Visual Studio and see just the header with that type in it.  No templates to read past, just very simple, minimal, and straightforward code.
 * Maintaining changes across multiple (if not all) types was a lot easier than imagined.  Write the changes into the generator and watch it reflect the change across all the desired generated types automatically.
 
