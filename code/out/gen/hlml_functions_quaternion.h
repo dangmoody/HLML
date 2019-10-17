@@ -42,9 +42,12 @@ SOFTWARE.
 // float4
 inline float4 quaternion_mul( const float4& lhs, const float4& rhs )
 {
-	float scalar = lhs.w * rhs.w - dot( float3( lhs ), float3( rhs ) );
-	float3 imaginary = float3( rhs ) * lhs.w + float3( lhs ) * rhs.w + cross( float3( lhs ), float3( rhs ) );
-	return float4( imaginary.x, imaginary.y, imaginary.z, scalar );
+	float4 quat;
+	quat.x = lhs.x * rhs.w + lhs.y * rhs.z - lhs.z * rhs.y + lhs.w * rhs.x;
+	quat.y = -lhs.x * rhs.z + lhs.y * rhs.w + lhs.z * rhs.x + lhs.w * rhs.y;
+	quat.z = lhs.x * rhs.y - lhs.y * rhs.x + lhs.z * rhs.w + lhs.w * rhs.z;
+	quat.w = -lhs.x * rhs.x - lhs.y * rhs.y - lhs.z * rhs.z + lhs.w * rhs.w;
+	return quat;
 }
 
 inline float4 quaternion_mul( const float4& lhs, const float& rhs )
@@ -138,9 +141,12 @@ inline float4 quaternion_slerp( const float4& lhs, const float4 rhs, const float
 // double4
 inline double4 quaternion_mul( const double4& lhs, const double4& rhs )
 {
-	double scalar = lhs.w * rhs.w - dot( double3( lhs ), double3( rhs ) );
-	double3 imaginary = double3( rhs ) * lhs.w + double3( lhs ) * rhs.w + cross( double3( lhs ), double3( rhs ) );
-	return double4( imaginary.x, imaginary.y, imaginary.z, scalar );
+	double4 quat;
+	quat.x = lhs.x * rhs.w + lhs.y * rhs.z - lhs.z * rhs.y + lhs.w * rhs.x;
+	quat.y = -lhs.x * rhs.z + lhs.y * rhs.w + lhs.z * rhs.x + lhs.w * rhs.y;
+	quat.z = lhs.x * rhs.y - lhs.y * rhs.x + lhs.z * rhs.w + lhs.w * rhs.z;
+	quat.w = -lhs.x * rhs.x - lhs.y * rhs.y - lhs.z * rhs.z + lhs.w * rhs.w;
+	return quat;
 }
 
 inline double4 quaternion_mul( const double4& lhs, const double& rhs )

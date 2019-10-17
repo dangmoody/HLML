@@ -853,6 +853,20 @@ static bool32 GenerateTestsMain( void ) {
 		}
 	}
 
+	// now do quaternions
+	String_Appendf(&sb, "\t// quaternion tests\n");
+	for (u32 typeIndex = 0; typeIndex < GEN_TYPE_COUNT; typeIndex++) {
+		const genType_t type = (genType_t)typeIndex;
+		if (Gen_TypeIsFloatingPoint(type) == false) {
+			continue;
+		}
+
+		char fullTypeName[GEN_STRING_LENGTH_TYPE_NAME] = { 0 };
+		Gen_GetFullTypeName(type, 1, 4, fullTypeName);
+
+		String_Appendf(&sb, "TEMPER_SUITE_EXTERN( Test_quaternion_%s );\n", fullTypeName);
+	}
+
 	String_Append( &sb, "TEMPER_DEFS();\n" );
 	String_Append( &sb, "\n" );
 
@@ -894,6 +908,21 @@ static bool32 GenerateTestsMain( void ) {
 			String_Appendf( &sb, "\n" );
 		}
 	}
+
+	// now do quaternions
+	String_Appendf(&sb, "\t// quaternion tests\n");
+	for (u32 typeIndex = 0; typeIndex < GEN_TYPE_COUNT; typeIndex++) {
+		const genType_t type = (genType_t)typeIndex;
+		if (Gen_TypeIsFloatingPoint(type) == false) {
+			continue;
+		}
+
+		char fullTypeName[GEN_STRING_LENGTH_TYPE_NAME] = { 0 };
+		Gen_GetFullTypeName(type, 1, 4, fullTypeName);
+
+		String_Appendf(&sb, "\tTEMPER_RUN_SUITE( Test_quaternion_%s );\n", fullTypeName);
+	}
+	String_Appendf(&sb, "\n");
 	String_Append( &sb, "\tTEMPER_SHOW_STATS();\n" );
 	String_Append( &sb, "\n" );
 	String_Append( &sb, "\treturn TEMPER_EXIT_CODE();\n" );

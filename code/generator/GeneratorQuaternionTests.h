@@ -47,4 +47,5 @@ private:
 
 private:
 	void			GenerateTestMultiplyScalarQuaternion();
+	void			GenerateTestMultiplyQuaternion();
 };

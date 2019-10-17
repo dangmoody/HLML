@@ -140,6 +140,9 @@ TEMPER_SUITE_EXTERN( Test_double4x2 );
 TEMPER_SUITE_EXTERN( Test_double4x3 );
 TEMPER_SUITE_EXTERN( Test_double4x4 );
 
+	// quaternion tests
+TEMPER_SUITE_EXTERN( Test_quaternion_float4 );
+TEMPER_SUITE_EXTERN( Test_quaternion_double4 );
 TEMPER_DEFS();
 
 int main( int argc, char** argv )
@@ -234,6 +237,10 @@ int main( int argc, char** argv )
 	TEMPER_RUN_SUITE( Test_double4x2 );
 	TEMPER_RUN_SUITE( Test_double4x3 );
 	TEMPER_RUN_SUITE( Test_double4x4 );
+
+	// quaternion tests
+	TEMPER_RUN_SUITE( Test_quaternion_float4 );
+	TEMPER_RUN_SUITE( Test_quaternion_double4 );
 
 	TEMPER_SHOW_STATS();
 

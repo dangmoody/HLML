@@ -41,10 +41,13 @@ void Gen_QuaternionMultiply(const genType_t type, stringBuilder_t* sbHeader) {
 	String_Appendf(sbHeader, "inline %s4 quaternion_mul( const %s4& lhs, const %s4& rhs )\n", returnTypeString, typeName, typeName);
 	String_Append(sbHeader, "{\n");
 
-	String_Appendf(sbHeader, "\t%s scalar = lhs.w * rhs.w - dot( %s3( lhs ), %s3( rhs ) );\n", typeName, typeName, typeName);
-	String_Appendf(sbHeader, "\t%s3 imaginary = %s3( rhs ) * lhs.w + %s3( lhs ) * rhs.w + cross( %s3( lhs ), %s3( rhs ) );\n", typeName, typeName, typeName, typeName, typeName);
+	String_Appendf(sbHeader, "\t%s4 quat;\n", typeName);
+	String_Append(sbHeader, "\tquat.x = lhs.x * rhs.w + lhs.y * rhs.z - lhs.z * rhs.y + lhs.w * rhs.x;\n");
+	String_Append(sbHeader, "\tquat.y = -lhs.x * rhs.z + lhs.y * rhs.w + lhs.z * rhs.x + lhs.w * rhs.y;\n");
+	String_Append(sbHeader, "\tquat.z = lhs.x * rhs.y - lhs.y * rhs.x + lhs.z * rhs.w + lhs.w * rhs.z;\n");
+	String_Append(sbHeader, "\tquat.w = -lhs.x * rhs.x - lhs.y * rhs.y - lhs.z * rhs.z + lhs.w * rhs.w;\n");
 
-	String_Appendf(sbHeader, "\treturn %s4( imaginary.x, imaginary.y, imaginary.z, scalar );\n", typeName);
+	String_Append(sbHeader, "\treturn quat;\n");
 
 	String_Append(sbHeader, "}\n");
 	String_Append(sbHeader, "\n");

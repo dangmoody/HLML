@@ -47,7 +47,20 @@ TEMPER_TEST( TestArithmeticMultiplyScalar_double4 )
 	TEMPER_PASS();
 }
 
+TEMPER_TEST( TestArithmeticMultiply_double4 )
+{
+	const double4 a = double4( ( 2.0 ), ( 3.0 ), ( 4.0 ), ( 5.0 ) );
+	const double4 b = double4( ( 1.0 ), ( 3.0 ), ( 5.0 ), ( 7.0 ) );
+
+	double4 c = quaternion_mul(a, b);
+
+	TEMPER_EXPECT_TRUE( c == double4( ( 22.0 ), ( 30.0 ), ( 56.0 ), ( 4.0 ) ) );
+
+	TEMPER_PASS();
+}
+
 TEMPER_SUITE( Test_quaternion_double4 )
 {
 	TEMPER_RUN_TEST( TestArithmeticMultiplyScalar_double4 );
+	TEMPER_RUN_TEST( TestArithmeticMultiply_double4 );
 }

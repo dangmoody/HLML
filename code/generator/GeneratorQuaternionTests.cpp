@@ -57,6 +57,7 @@ bool GeneratorQuaternionTests::Generate( const genType_t type ) {
 	String_Append(&m_codeSuite, "{\n");
 
 	GenerateTestMultiplyScalarQuaternion();
+	GenerateTestMultiplyQuaternion();
 
 	String_Append(&m_codeSuite, "}\n");
 
@@ -123,6 +124,69 @@ void GeneratorQuaternionTests::GenerateTestMultiplyScalarQuaternion() {
 	String_Append(&m_codeTests, "{\n");
 	String_Appendf(&m_codeTests, "\tconst %s a = %s( %s, %s, %s, %s );\n", m_fullTypeName, m_fullTypeName, parmListValues[0], parmListValues[1], parmListValues[2], parmListValues[3]);
 	String_Appendf(&m_codeTests, "\tconst %s b = %s;\n", m_baseTypeName, scalar);
+	String_Append(&m_codeTests, "\n");
+	String_Appendf(&m_codeTests, "\t%s c = quaternion_mul(a, b);\n", m_fullTypeName);
+	String_Append(&m_codeTests, "\n");
+	String_Appendf(&m_codeTests, "\tTEMPER_EXPECT_TRUE( c == %s( %s, %s, %s, %s ) );\n", m_fullTypeName, parmListAnswers[0], parmListAnswers[1], parmListAnswers[2], parmListAnswers[3]);
+	String_Append(&m_codeTests, "\n");
+	String_Append(&m_codeTests, "\tTEMPER_PASS();\n");
+	String_Append(&m_codeTests, "}\n");
+	String_Append(&m_codeTests, "\n");
+
+	String_Appendf(&m_codeSuite, "\tTEMPER_RUN_TEST( %s );\n", testName);
+}
+
+void GeneratorQuaternionTests::GenerateTestMultiplyQuaternion() {
+	if (Gen_TypeIsFloatingPoint(m_type) == false) {
+		return;
+	}
+
+	// number picked at random
+	char oneStr[GEN_STRING_LENGTH_NUMERIC_LITERAL];
+	char twoStr[GEN_STRING_LENGTH_NUMERIC_LITERAL];
+	char threeStr[GEN_STRING_LENGTH_NUMERIC_LITERAL];
+	char fourStr[GEN_STRING_LENGTH_NUMERIC_LITERAL];
+	char fiveStr[GEN_STRING_LENGTH_NUMERIC_LITERAL];
+	char sevenStr[GEN_STRING_LENGTH_NUMERIC_LITERAL];
+	char twentyTwoStr[GEN_STRING_LENGTH_NUMERIC_LITERAL];
+	char thirtyStr[GEN_STRING_LENGTH_NUMERIC_LITERAL];
+	char fiftySixStr[GEN_STRING_LENGTH_NUMERIC_LITERAL];
+
+	Gen_GetNumericLiteral(m_type, 1, oneStr, 1);
+	Gen_GetNumericLiteral(m_type, 2, twoStr, 1);
+	Gen_GetNumericLiteral(m_type, 3, threeStr, 1);
+	Gen_GetNumericLiteral(m_type, 4, fourStr, 1);
+	Gen_GetNumericLiteral(m_type, 5, fiveStr, 1);
+	Gen_GetNumericLiteral(m_type, 7, sevenStr, 1);
+	Gen_GetNumericLiteral(m_type, 22, twentyTwoStr, 1);
+	Gen_GetNumericLiteral(m_type, 30, thirtyStr, 1);
+	Gen_GetNumericLiteral(m_type, 56, fiftySixStr, 1);
+
+	char parmListRhsValues[4][GEN_STRING_LENGTH_PARM_LIST_VECTOR];
+	snprintf(parmListRhsValues[0], 64, "( %s )", twoStr);
+	snprintf(parmListRhsValues[1], 64, "( %s )", threeStr);
+	snprintf(parmListRhsValues[2], 64, "( %s )", fourStr);
+	snprintf(parmListRhsValues[3], 64, "( %s )", fiveStr);
+
+	char parmListLhsValues[4][GEN_STRING_LENGTH_PARM_LIST_VECTOR];
+	snprintf(parmListLhsValues[0], 64, "( %s )", oneStr);
+	snprintf(parmListLhsValues[1], 64, "( %s )", threeStr);
+	snprintf(parmListLhsValues[2], 64, "( %s )", fiveStr);
+	snprintf(parmListLhsValues[3], 64, "( %s )", sevenStr);
+
+	char parmListAnswers[4][GEN_STRING_LENGTH_PARM_LIST_VECTOR];
+	snprintf(parmListAnswers[0], 64, "( %s )", twentyTwoStr);
+	snprintf(parmListAnswers[1], 64, "( %s )", thirtyStr);
+	snprintf(parmListAnswers[2], 64, "( %s )", fiftySixStr);
+	snprintf(parmListAnswers[3], 64, "( %s )", fourStr);
+
+	char testName[GEN_STRING_LENGTH_TEST_NAME] = { 0 };
+	snprintf(testName, GEN_STRING_LENGTH_TEST_NAME, "TestArithmetic%s_%s", "Multiply", m_fullTypeName);
+
+	String_Appendf(&m_codeTests, "TEMPER_TEST( %s )\n", testName);
+	String_Append(&m_codeTests, "{\n");
+	String_Appendf(&m_codeTests, "\tconst %s a = %s( %s, %s, %s, %s );\n", m_fullTypeName, m_fullTypeName, parmListRhsValues[0], parmListRhsValues[1], parmListRhsValues[2], parmListRhsValues[3]);
+	String_Appendf(&m_codeTests, "\tconst %s b = %s( %s, %s, %s, %s );\n", m_fullTypeName, m_fullTypeName, parmListLhsValues[0], parmListLhsValues[1], parmListLhsValues[2], parmListLhsValues[3]);
 	String_Append(&m_codeTests, "\n");
 	String_Appendf(&m_codeTests, "\t%s c = quaternion_mul(a, b);\n", m_fullTypeName);
 	String_Append(&m_codeTests, "\n");
