@@ -78,7 +78,7 @@ bool GeneratorVectorTests::Generate( const genType_t type, const u32 numComponen
 	String_Append( &code, m_codeSuite.str );
 
 	char filename[1024] = { 0 };
-	snprintf( filename, 1024, "%stest_%s.cpp", GEN_TESTS_FOLDER_PATH, m_fullTypeName );
+	snprintf( filename, 1024, "%stest_%s.cpp", GEN_TESTS_FOLDER_PATH_CPP, m_fullTypeName );
 
 	FS_WriteEntireFile( filename, code.str, code.length );
 

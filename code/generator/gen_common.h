@@ -44,10 +44,14 @@ along with The HLML Generator.  If not, see <http://www.gnu.org/licenses/>.
 #define GEN_COMPONENT_COUNT_MAX				4
 
 // filenames
+// TODO(DM): sort these out so we have versions with and without "code"
 #define GEN_OUT_FOLDER_PATH					"code/out/"
 #define GEN_OUT_GEN_FOLDER_PATH				"code/out/gen/"
-#define GEN_TESTS_FOLDER_PATH				"code/tests/"
+#define GEN_TESTS_FOLDER_PATH_ROOT			"code/tests/"
+#define GEN_TESTS_FOLDER_PATH_C				GEN_TESTS_FOLDER_PATH_ROOT "c/"
+#define GEN_TESTS_FOLDER_PATH_CPP			GEN_TESTS_FOLDER_PATH_ROOT "cpp/"
 
+#define GEN_HEADER_MAIN						"hlml.h"
 #define GEN_HEADER_TYPES					"hlml_types.h"
 #define GEN_HEADER_CONSTANTS				"hlml_constants.h"
 #define GEN_HEADER_CONSTANTS_SSE			"hlml_constants_sse.h"
@@ -60,6 +64,7 @@ along with The HLML Generator.  If not, see <http://www.gnu.org/licenses/>.
 #define GEN_HEADER_FUNCTIONS_VECTOR			"hlml_functions_vector.h"
 #define GEN_HEADER_FUNCTIONS_MATRIX			"hlml_functions_matrix.h"
 
+// TODO(DM): change to: GEN_HEADER_FUNCTIONS_SCALAR_SSE and so on
 #define GEN_FILENAME_FUNCTIONS_SCALAR_SSE	"hlml_functions_scalar_sse"
 #define GEN_FILENAME_FUNCTIONS_VECTOR_SSE	"hlml_functions_vector_sse"
 #define GEN_FILENAME_FUNCTIONS_MATRIX_SSE	"hlml_functions_matrix_sse"
@@ -75,6 +80,18 @@ along with The HLML Generator.  If not, see <http://www.gnu.org/licenses/>.
 #define GEN_STRING_LENGTH_TEST_NAME			64
 
 struct stringBuilder_t;
+
+enum genLanguage_t {
+	GEN_LANGUAGE_C							= 0,
+	GEN_LANGUAGE_CPP,
+
+	GEN_LANGUAGE_COUNT
+};
+
+static const char* GEN_LANGUAGE_FILE_EXTENSIONS[GEN_LANGUAGE_COUNT] = {
+	"c",
+	"cpp"
+};
 
 enum genType_t {
 	GEN_TYPE_BOOL							= 0,
@@ -221,6 +238,13 @@ inline const char*	Gen_GetFuncNameFabs( const genType_t type ) { return ( type =
 
 // hlml functions
 inline const char*	Gen_GetFuncNameFloateq( const genType_t type ) { return ( type == GEN_TYPE_DOUBLE ) ? "doubleeq" : "floateq"; }
+inline const char*	Gen_GetFuncNameRadians( const genType_t type ) { return ( type == GEN_TYPE_DOUBLE ) ? "radians" : "radiansf"; }
+inline const char*	Gen_GetFuncNameDegrees( const genType_t type ) { return ( type == GEN_TYPE_DOUBLE ) ? "degrees" : "degreesf"; }
+inline const char*	Gen_GetFuncNameSaturate( const genType_t type ) { return ( type == GEN_TYPE_DOUBLE ) ? "saturate" : "saturatef"; }
+inline const char*	Gen_GetFuncNameLerp( const genType_t type ) { return ( type == GEN_TYPE_DOUBLE ) ? "lerp" : "lerpf"; }
+inline const char*	Gen_GetFuncNameStep( const genType_t type ) { return ( type == GEN_TYPE_DOUBLE ) ? "step" : "stepf"; }
+inline const char*	Gen_GetFuncNameSmoothstep( const genType_t type ) { return ( type == GEN_TYPE_DOUBLE ) ? "smoothstep" : "smoothstepf"; }
+inline const char*	Gen_GetFuncNameSmootherstep( const genType_t type ) { return ( type == GEN_TYPE_DOUBLE ) ? "smootherstep" : "smootherstepf"; }
 
 // hlml constants
 inline const char*	Gen_GetConstantNamePi( const genType_t type ) { return ( type == GEN_TYPE_DOUBLE ) ? "HLML_PI" : "(float)( HLML_PI )"; }
@@ -406,6 +430,63 @@ inline const char* Gen_GetClipSpaceRangeString( const genClipSpace_t range ) {
 		case GEN_CLIP_SPACE_COUNT:
 		default:
 			printf( "ERROR: Bad genClipSpace_t enum passed into %s.\n", __FUNCTION__ );
+			return "ERROR";
+	}
+}
+
+// hlml functions
+inline const char* Gen_GetFuncNameSign( const genType_t type ) {
+	switch ( type ) {
+		case GEN_TYPE_INT:		return "signi";
+		case GEN_TYPE_FLOAT:	return "signf";
+		case GEN_TYPE_DOUBLE:	return "signd";
+
+		case GEN_TYPE_BOOL:
+		case GEN_TYPE_UINT:
+		case GEN_TYPE_COUNT:
+			printf( "ERROR: Bad genType_t passed into %s.\n", __FUNCTION__ );
+			return "ERROR";
+	}
+}
+
+inline const char* Gen_GetFuncNameMin( const genType_t type ) {
+	switch ( type ) {
+		case GEN_TYPE_INT:		return "mini";
+		case GEN_TYPE_UINT:		return "minu";
+		case GEN_TYPE_FLOAT:	return "minf";
+		case GEN_TYPE_DOUBLE:	return "mind";
+
+		case GEN_TYPE_BOOL:
+		case GEN_TYPE_COUNT:
+			printf( "ERROR: Bad genType_t passed into %s.\n", __FUNCTION__ );
+			return "ERROR";
+	}
+}
+
+inline const char* Gen_GetFuncNameMax( const genType_t type ) {
+	switch ( type ) {
+		case GEN_TYPE_INT:		return "maxi";
+		case GEN_TYPE_UINT:		return "maxu";
+		case GEN_TYPE_FLOAT:	return "maxf";
+		case GEN_TYPE_DOUBLE:	return "maxd";
+
+		case GEN_TYPE_BOOL:
+		case GEN_TYPE_COUNT:
+			printf( "ERROR: Bad genType_t passed into %s.\n", __FUNCTION__ );
+			return "ERROR";
+	}
+}
+
+inline const char* Gen_GetFuncNameClamp( const genType_t type ) {
+	switch ( type ) {
+		case GEN_TYPE_INT:		return "clampi";
+		case GEN_TYPE_UINT:		return "clampu";
+		case GEN_TYPE_FLOAT:	return "clampf";
+		case GEN_TYPE_DOUBLE:	return "clampd";
+
+		case GEN_TYPE_BOOL:
+		case GEN_TYPE_COUNT:
+			printf( "ERROR: Bad genType_t passed into %s.\n", __FUNCTION__ );
 			return "ERROR";
 	}
 }

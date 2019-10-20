@@ -32,7 +32,7 @@ public:
 					GeneratorScalarTest() {}
 					~GeneratorScalarTest() {}
 
-	bool			Generate( const genType_t type );
+	bool			Generate( const genType_t type, const genLanguage_t language );
 
 private:
 	stringBuilder_t	m_codeTests;

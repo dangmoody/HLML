@@ -24,7 +24,7 @@ cp -rf ./doxygen ./build/${compiler_folder_name}/${config}
 # start building!
 echo ------- Building generator -------
 source_files="code/generator/"
-source build_linux_clang_gcc.sh ${compiler} ${config} hlml-gen.exe ${source_files} *.cpp
+source build_linux_clang_gcc.sh ${compiler} ${config} C++ hlml-gen.exe ${source_files} *.cpp
 echo ------- Done -------
 echo ""
 
@@ -33,13 +33,24 @@ build/${compiler_folder_name}/${config}/hlml-gen.exe
 echo ------- Done -------
 echo ""
 
-echo ------- Building tests -------
-source_files="code/tests/"
-source build_linux_clang_gcc.sh ${compiler} ${config} hlml-gen-tests.exe ${source_files} main.cpp
+echo ------- Building C tests -------
+source_files="code/tests/c/"
+source build_linux_clang_gcc.sh ${compiler} ${config} C hlml-gen-tests-c.exe ${source_files} main.c
 echo ------- Done -------
 echo ""
 
-echo ------- Running tests -------
-build/${compiler_folder_name}/${config}/hlml-gen-tests.exe -c --time-unit=us
+echo ------- Running C tests -------
+build/${compiler_folder_name}/${config}/hlml-gen-tests-c.exe -c --time-unit=us
 echo ------- Done -------
 echo ""
+
+# echo ------- Building C++ tests -------
+# source_files="code/tests/cpp/"
+# source build_linux_clang_gcc.sh ${compiler} ${config} C hlml-gen-tests-cpp.exe ${source_files} main.c
+# echo ------- Done -------
+# echo ""
+
+# echo ------- Running C++ tests -------
+# build/${compiler_folder_name}/${config}/hlml-gen-tests-cpp.exe -c --time-unit=us
+# echo ------- Done -------
+# echo ""

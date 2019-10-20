@@ -32,7 +32,7 @@ along with The HLML Generator.  If not, see <http://www.gnu.org/licenses/>.
 static char g_degreesStr[GEN_STRING_LENGTH_NUMERIC_LITERAL];
 static const char* g_radiansStr;
 
-bool GeneratorScalarTest::Generate( const genType_t type ) {
+bool GeneratorScalarTest::Generate( const genType_t type, const genLanguage_t language ) {
 	const u32 testsCodeBytes = 4 * KB_TO_BYTES;
 	const u32 suiteCodeBytes = 2 * KB_TO_BYTES;
 
@@ -71,7 +71,7 @@ bool GeneratorScalarTest::Generate( const genType_t type ) {
 
 	GenerateTestDegreesRadians();
 
-	GenerateTestMinMax();
+	// GenerateTestMinMax();
 
 	GenerateTestClamp();
 
@@ -85,7 +85,7 @@ bool GeneratorScalarTest::Generate( const genType_t type ) {
 	String_Appendf( &code, m_codeSuite.str );
 
 	char filename[1024] = { 0 };
-	snprintf( filename, 1024, GEN_TESTS_FOLDER_PATH "test_scalar_%s.cpp", m_memberTypeString );
+	snprintf( filename, 1024, GEN_TESTS_FOLDER_PATH_C "test_scalar_%s.%s", m_memberTypeString, GEN_LANGUAGE_FILE_EXTENSIONS[language] );
 
 	FS_WriteEntireFile( filename, code.str, code.length );
 
@@ -141,16 +141,18 @@ void GeneratorScalarTest::GenerateTestSign() {
 	char testName[GEN_STRING_LENGTH_TEST_NAME] = { 0 };
 	snprintf( testName, GEN_STRING_LENGTH_TEST_NAME, "TestSign_%s", m_memberTypeString );
 
-	char valueSignedStr[GEN_STRING_LENGTH_NUMERIC_LITERAL];
-	char valueUnsignedStr[GEN_STRING_LENGTH_NUMERIC_LITERAL];
+	const char* signFuncStr = Gen_GetFuncNameSign( m_type );
 
+	char valueSignedStr[GEN_STRING_LENGTH_NUMERIC_LITERAL];
 	Gen_GetNumericLiteral( m_type, -5, valueSignedStr, 1 );
+
+	char valueUnsignedStr[GEN_STRING_LENGTH_NUMERIC_LITERAL];
 	Gen_GetNumericLiteral( m_type, 9, valueUnsignedStr, 1 );
 
 	String_Appendf( &m_codeTests, "TEMPER_TEST( %s )\n", testName );
 	String_Append(  &m_codeTests, "{\n" );
-	String_Appendf( &m_codeTests, "\tTEMPER_EXPECT_TRUE( sign( %s ) == -1 );\n", valueSignedStr );
-	String_Appendf( &m_codeTests, "\tTEMPER_EXPECT_TRUE( sign( %s ) ==  1 );\n", valueUnsignedStr );
+	String_Appendf( &m_codeTests, "\tTEMPER_EXPECT_TRUE( %s( %s ) == -1 );\n", signFuncStr, valueSignedStr );
+	String_Appendf( &m_codeTests, "\tTEMPER_EXPECT_TRUE( %s( %s ) ==  1 );\n", signFuncStr, valueUnsignedStr );
 	String_Append(  &m_codeTests, "\n" );
 	String_Append(  &m_codeTests, "\tTEMPER_PASS();\n" );
 	String_Append(  &m_codeTests, "}\n" );
@@ -169,10 +171,13 @@ void GeneratorScalarTest::GenerateTestDegreesRadians() {
 
 	const char* floateqStr = Gen_GetFuncNameFloateq( m_type );
 
+	const char* radiansFuncStr = Gen_GetFuncNameRadians( m_type );
+	const char* degreesFuncStr = Gen_GetFuncNameDegrees( m_type );
+
 	String_Appendf( &m_codeTests, "TEMPER_TEST( %s )\n", testName );
 	String_Append(  &m_codeTests, "{\n" );
-	String_Appendf( &m_codeTests, "\tTEMPER_EXPECT_TRUE( %s( radians( g_deg_%s ), %s ) );\n", floateqStr, m_memberTypeString, g_radiansStr );
-	String_Appendf( &m_codeTests, "\tTEMPER_EXPECT_TRUE( %s( degrees( g_rad_%s ), %s ) );\n", floateqStr, m_memberTypeString, g_degreesStr );
+	String_Appendf( &m_codeTests, "\tTEMPER_EXPECT_TRUE( %s( %s( g_deg_%s ), %s ) );\n", floateqStr, radiansFuncStr, m_memberTypeString, g_radiansStr );
+	String_Appendf( &m_codeTests, "\tTEMPER_EXPECT_TRUE( %s( %s( g_rad_%s ), %s ) );\n", floateqStr, degreesFuncStr, m_memberTypeString, g_degreesStr );
 	String_Append(  &m_codeTests, "\n" );
 	String_Append(  &m_codeTests, "\tTEMPER_PASS();\n" );
 	String_Append(  &m_codeTests, "}\n" );
@@ -281,6 +286,8 @@ void GeneratorScalarTest::GenerateTestClamp() {
 
 	const char* floateqStr = Gen_GetFuncNameFloateq( m_type );
 
+	const char* clampFuncStr = Gen_GetFuncNameClamp( m_type );
+
 	bool isFloatingPointType = Gen_TypeIsFloatingPoint( m_type );
 
 	String_Appendf( &m_codeTests, "TEMPER_TEST( %s )\n", testName );
@@ -289,17 +296,19 @@ void GeneratorScalarTest::GenerateTestClamp() {
 	String_Appendf( &m_codeTests, "\t%s low  = %s;\n", m_memberTypeString, lowStr );
 	String_Appendf( &m_codeTests, "\t%s high = %s;\n", m_memberTypeString, highStr );
 	String_Append(  &m_codeTests, "\n" );
-	String_Appendf( &m_codeTests, "\ta = clamp( %s, low, high );\n", zeroStr );
 	if ( isFloatingPointType ) {
+		String_Appendf( &m_codeTests, "\ta = %s( %s, low, high );\n", clampFuncStr, zeroStr );
 		String_Appendf( &m_codeTests, "\tTEMPER_EXPECT_TRUE( %s( a, low ) );\n", floateqStr );
 	} else {
+		String_Appendf( &m_codeTests, "\ta = (%s) %s( %s, low, high );\n", m_memberTypeString, clampFuncStr, zeroStr );
 		String_Append( &m_codeTests, "\tTEMPER_EXPECT_TRUE( a == low );\n" );
 	}
 	String_Append( &m_codeTests, "\n" );
-	String_Appendf( &m_codeTests, "\ta = clamp( %s, low, high );\n", elevenStr );
-		if ( isFloatingPointType ) {
+	if ( isFloatingPointType ) {
+		String_Appendf( &m_codeTests, "\ta = %s( %s, low, high );\n", clampFuncStr, elevenStr );
 		String_Appendf( &m_codeTests, "\tTEMPER_EXPECT_TRUE( %s( a, high ) );\n", floateqStr );
 	} else {
+		String_Appendf( &m_codeTests, "\ta = (%s) %s( %s, low, high );\n", m_memberTypeString, clampFuncStr, elevenStr );
 		String_Append( &m_codeTests, "\tTEMPER_EXPECT_TRUE( a == high );\n" );
 	}
 	String_Append( &m_codeTests, "\n" );
@@ -330,14 +339,16 @@ void GeneratorScalarTest::GenerateTestSaturate() {
 
 	const char* floateqStr = Gen_GetFuncNameFloateq( m_type );
 
+	const char* saturateFuncStr = Gen_GetFuncNameSaturate( m_type );
+
 	String_Appendf( &m_codeTests, "TEMPER_TEST( %s )\n", testName );
 	String_Append(  &m_codeTests, "{\n" );
 	String_Appendf( &m_codeTests, "\t%s a;\n", m_memberTypeString );
 	String_Append(  &m_codeTests, "\n" );
-	String_Appendf( &m_codeTests, "\ta = saturate( %s );\n", minusOneStr );
+	String_Appendf( &m_codeTests, "\ta = %s( %s );\n", saturateFuncStr, minusOneStr );
 	String_Appendf( &m_codeTests, "\tTEMPER_EXPECT_TRUE( %s( a, %s ) );\n", floateqStr, zeroStr );
 	String_Append(  &m_codeTests, "\n" );
-	String_Appendf( &m_codeTests, "\ta = saturate( %s );\n", twoStr );
+	String_Appendf( &m_codeTests, "\ta = %s( %s );\n", saturateFuncStr, twoStr );
 	String_Appendf( &m_codeTests, "\tTEMPER_EXPECT_TRUE( %s( a, %s ) );\n", floateqStr, oneStr );
 	String_Append(  &m_codeTests, "\n" );
 	String_Append(  &m_codeTests, "\tTEMPER_PASS();\n" );
@@ -368,12 +379,14 @@ void GeneratorScalarTest::GenerateTestLerp() {
 
 	const char* floateqStr = Gen_GetFuncNameFloateq( m_type );
 
+	const char* lerpFuncStr = Gen_GetFuncNameLerp( m_type );
+
 	String_Appendf( &m_codeTests, "TEMPER_TEST( %s )\n", testName );
 	String_Append(  &m_codeTests, "{\n" );
 	String_Appendf( &m_codeTests, "\t%s a = %s;\n", m_memberTypeString, aStr );
 	String_Appendf( &m_codeTests, "\t%s b = %s;\n", m_memberTypeString, bStr );
 	String_Append(  &m_codeTests, "\n" );
-	String_Appendf( &m_codeTests, "\t%s answer = lerp( a, b, %s );\n", m_memberTypeString, halfStr );
+	String_Appendf( &m_codeTests, "\t%s answer = %s( a, b, %s );\n", m_memberTypeString, lerpFuncStr, halfStr );
 	String_Append(  &m_codeTests, "\n" );
 	String_Appendf( &m_codeTests, "\tTEMPER_EXPECT_TRUE( %s( answer, %s ) );\n", floateqStr, answerStr );
 	String_Append(  &m_codeTests, "\n" );

@@ -33,7 +33,8 @@ extern void		Gen_SSE_Lerp( const genType_t type, const u32 numComponents, string
 
 
 inline bool32 Gen_TypeSupportsSSE( const genType_t type ) {
-	return type == GEN_TYPE_FLOAT;
+	// return type == GEN_TYPE_FLOAT;
+	return type == GEN_TYPE_COUNT;
 }
 
 inline const char* Gen_SSE_GetRegisterName( const genType_t type ) {

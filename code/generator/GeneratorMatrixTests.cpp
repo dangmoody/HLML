@@ -145,7 +145,7 @@ bool GeneratorMatrixTests::Generate( const genType_t type, const u32 numRows, co
 	String_Append( &code, m_codeSuite.str );
 
 	char filename[64] = { 0 };
-	snprintf( filename, 64, GEN_TESTS_FOLDER_PATH "test_%s.cpp", m_fullTypeName );
+	snprintf( filename, 64, "%stest_%s.cpp", GEN_TESTS_FOLDER_PATH_CPP, m_fullTypeName );
 
 	FS_WriteEntireFile( filename, code.str, code.length );
 

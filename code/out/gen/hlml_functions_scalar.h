@@ -39,160 +39,162 @@ SOFTWARE.
 #include <math.h>
 #include <stdint.h>
 
+#ifndef __cplusplus
+#include <stdbool.h>
+#endif
+
 // int32_t
 /// \brief Returns -1 if x is < 0, 0 if x == 0, or 1 if x > 1.
 /// This function does no branching.
-inline int32_t sign( const int32_t x )
+inline int32_t signi( const int32_t x )
 {
 	return ( 0 < x ) - ( x < 0 );
 }
 
 /// \brief Returns x if its smaller than y, otherwise returns y.
-inline int32_t min( const int32_t x, const int32_t y )
+inline int32_t mini( const int32_t x, const int32_t y )
 {
 	return ( x < y ) ? x : y;
 }
 
 /// \brief Returns x if its bigger than y, otherwise returns y.
-inline int32_t max( const int32_t x, const int32_t y )
+inline int32_t maxi( const int32_t x, const int32_t y )
 {
 	return ( x > y ) ? x : y;
 }
 
 /// \brief If x is lower than low or higher than high then returns low or high respectively, otherwise returns x.
-inline int32_t clamp( const int32_t x, const int32_t low, const int32_t high )
+inline int32_t clampi( const int32_t x, const int32_t low, const int32_t high )
 {
-	return min( max( x, low ), high );
-}
-
-/// \relates int32_t
-/// \brief Returns 1 if y is greater than x, otherwise returns 0.
-inline int32_t step( const int32_t x, const int32_t y )
-{
-	return ( y > x ? 1 : 0 );
+	return mini( maxi( x, low ), high );
 }
 
 
 // uint32_t
 /// \brief Returns x if its smaller than y, otherwise returns y.
-inline uint32_t min( const uint32_t x, const uint32_t y )
+inline uint32_t minu( const uint32_t x, const uint32_t y )
 {
 	return ( x < y ) ? x : y;
 }
 
 /// \brief Returns x if its bigger than y, otherwise returns y.
-inline uint32_t max( const uint32_t x, const uint32_t y )
+inline uint32_t maxu( const uint32_t x, const uint32_t y )
 {
 	return ( x > y ) ? x : y;
 }
 
 /// \brief If x is lower than low or higher than high then returns low or high respectively, otherwise returns x.
-inline uint32_t clamp( const uint32_t x, const uint32_t low, const uint32_t high )
+inline uint32_t clampu( const uint32_t x, const uint32_t low, const uint32_t high )
 {
-	return min( max( x, low ), high );
-}
-
-/// \relates uint32_t
-/// \brief Returns 1 if y is greater than x, otherwise returns 0.
-inline uint32_t step( const uint32_t x, const uint32_t y )
-{
-	return ( y > x ? 1U : 0U );
+	return minu( maxu( x, low ), high );
 }
 
 
 // float
 /// \brief Returns true if the two given floating-point numbers are within a small enough epsilon range of each other that takes into account floating-point inaccuracy.
-inline bool floateq( const float lhs, const float rhs, const float epsilon = (float)( HLML_EPSILON ) )
+inline bool floateq_eps( const float lhs, const float rhs, const float epsilon )
 {
 	return fabsf( lhs - rhs ) < epsilon;
 }
 
+/// \brief Returns true if the two given floating-point numbers are within a small enough epsilon range of each other that takes into account floating-point inaccuracy.
+inline bool floateq( const float lhs, const float rhs )
+{
+	return floateq_eps( lhs, rhs, (float)( HLML_EPSILON ) );
+}
+
 /// \brief Returns -1 if x is < 0, 0 if x == 0, or 1 if x > 1.
 /// This function does no branching.
-inline int32_t sign( const float x )
+inline int32_t signf( const float x )
 {
 	return ( 0.0f < x ) - ( x < 0.0f );
 }
 
 /// \brief Returns the given degrees to radians.
-inline float radians( const float deg )
+inline float radiansf( const float deg )
 {
 	return deg * (float)( HLML_PI ) / 180.0f;
 }
 
 /// \brief Returns the given radians to degrees.
-inline float degrees( const float rad )
+inline float degreesf( const float rad )
 {
 	return rad * 180.0f / (float)( HLML_PI );
 }
 
 /// \brief Returns x if its smaller than y, otherwise returns y.
-inline float min( const float x, const float y )
+inline float minf( const float x, const float y )
 {
 	return ( x < y ) ? x : y;
 }
 
 /// \brief Returns x if its bigger than y, otherwise returns y.
-inline float max( const float x, const float y )
+inline float maxf( const float x, const float y )
 {
 	return ( x > y ) ? x : y;
 }
 
 /// \brief If x is lower than low or higher than high then returns low or high respectively, otherwise returns x.
-inline float clamp( const float x, const float low, const float high )
+inline float clampf( const float x, const float low, const float high )
 {
-	return min( max( x, low ), high );
+	return minf( maxf( x, low ), high );
 }
 
 /// \relates float
 /// \brief Returns a copy of the float with each component clamped between the range 0 and 1.
-inline float saturate( const float x )
+inline float saturatef( const float x )
 {
-	return clamp( x, 0.0f, 1.0f );
+	return clampf( x, 0.0f, 1.0f );
 }
 
 /// \relates float
 /// \brief Returns a linearly interpolated float between types "a" and "b".
-inline float lerp( const float a, const float b, const float t )
+inline float lerpf( const float a, const float b, const float t )
 {
 	return ( 1.0f - t ) * a + t * b;
 }
 
 /// \relates float
 /// \brief Returns 1 if y is greater than x, otherwise returns 0.
-inline float step( const float x, const float y )
+inline float stepf( const float x, const float y )
 {
 	return ( y > x ? 1.0f : 0.0f );
 }
 
 /// \relates float
 /// \brief Performs a sigmoid-like interpolation and clamp.
-inline float smoothstep( const float low, const float high, const float x )
+inline float smoothstepf( const float low, const float high, const float x )
 {
-	float t = saturate( ( x - low ) / ( high - low ) );
+	float t = saturatef( ( x - low ) / ( high - low ) );
 	return t * t * ( 3.0f - 2.0f * t );
 }
 
 /// \relates float
 /// \brief Performs a 'smoother' version of smoothstep, as design by Ken Perlin.
 /// https://en.wikipedia.org/wiki/Smoothstep#Variations
-inline float smootherstep( const float low, const float high, const float x )
+inline float smootherstepf( const float low, const float high, const float x )
 {
-	float t = saturate( ( x - low ) / ( high - low ) );
+	float t = saturatef( ( x - low ) / ( high - low ) );
 	return t * t * t * ( t * ( t * 6.0f - 15.0f ) + 10.0f );
 }
 
 
 // double
 /// \brief Returns true if the two given floating-point numbers are within a small enough epsilon range of each other that takes into account floating-point inaccuracy.
-inline bool doubleeq( const double lhs, const double rhs, const double epsilon = HLML_EPSILON )
+inline bool doubleeq_eps( const double lhs, const double rhs, const double epsilon )
 {
 	return fabs( lhs - rhs ) < epsilon;
 }
 
+/// \brief Returns true if the two given floating-point numbers are within a small enough epsilon range of each other that takes into account floating-point inaccuracy.
+inline bool doubleeq( const double lhs, const double rhs )
+{
+	return doubleeq_eps( lhs, rhs, HLML_EPSILON );
+}
+
 /// \brief Returns -1 if x is < 0, 0 if x == 0, or 1 if x > 1.
 /// This function does no branching.
-inline int32_t sign( const double x )
+inline int32_t signd( const double x )
 {
 	return ( 0.0 < x ) - ( x < 0.0 );
 }
@@ -210,28 +212,28 @@ inline double degrees( const double rad )
 }
 
 /// \brief Returns x if its smaller than y, otherwise returns y.
-inline double min( const double x, const double y )
+inline double mind( const double x, const double y )
 {
 	return ( x < y ) ? x : y;
 }
 
 /// \brief Returns x if its bigger than y, otherwise returns y.
-inline double max( const double x, const double y )
+inline double maxd( const double x, const double y )
 {
 	return ( x > y ) ? x : y;
 }
 
 /// \brief If x is lower than low or higher than high then returns low or high respectively, otherwise returns x.
-inline double clamp( const double x, const double low, const double high )
+inline double clampd( const double x, const double low, const double high )
 {
-	return min( max( x, low ), high );
+	return mind( maxd( x, low ), high );
 }
 
 /// \relates double
 /// \brief Returns a copy of the double with each component clamped between the range 0 and 1.
 inline double saturate( const double x )
 {
-	return clamp( x, 0.0, 1.0 );
+	return clampd( x, 0.0, 1.0 );
 }
 
 /// \relates double

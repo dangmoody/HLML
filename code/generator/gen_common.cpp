@@ -229,9 +229,16 @@ void Gen_Floateq( const genType_t type, stringBuilder_t* sb ) {
 	const char* parmEpsilonStr = Gen_GetConstantNameEpsilon( type );
 
 	Doc_Floateq( sb );
-	String_Appendf( sb, "inline bool %s( const %s lhs, const %s rhs, const %s epsilon = %s )\n", floateqStr, typeString, typeString, typeString, parmEpsilonStr );
+	String_Appendf( sb, "inline bool %s_eps( const %s lhs, const %s rhs, const %s epsilon )\n", floateqStr, typeString, typeString, typeString );
 	String_Append(  sb, "{\n" );
 	String_Appendf( sb, "\treturn %s( lhs - rhs ) < epsilon;\n", Gen_GetFuncNameFabs( type ) );
+	String_Append(  sb, "}\n" );
+	String_Append(  sb, "\n" );
+
+	Doc_Floateq( sb );
+	String_Appendf( sb, "inline bool %s( const %s lhs, const %s rhs )\n", floateqStr, typeString, typeString );
+	String_Append(  sb, "{\n" );
+	String_Appendf( sb, "\treturn %s_eps( lhs, rhs, %s );\n", floateqStr, parmEpsilonStr );
 	String_Append(  sb, "}\n" );
 	String_Append(  sb, "\n" );
 }
@@ -246,11 +253,13 @@ void Gen_Sign( const genType_t type, stringBuilder_t* sb ) {
 	const char* memberTypeString = Gen_GetMemberTypeString( type );
 	const char* intTypeString = Gen_GetMemberTypeString( GEN_TYPE_INT );
 
+	const char* signFuncStr = Gen_GetFuncNameSign( type );
+
 	char zeroStr[GEN_STRING_LENGTH_NUMERIC_LITERAL];
 	Gen_GetNumericLiteral( type, 0, zeroStr, 1 );
 
 	Doc_Sign( sb );
-	String_Appendf( sb, "inline %s sign( const %s x )\n", intTypeString, memberTypeString );
+	String_Appendf( sb, "inline %s %s( const %s x )\n", intTypeString, signFuncStr, memberTypeString );
 	String_Append(  sb, "{\n" );
 	String_Appendf( sb, "\treturn ( %s < x ) - ( x < %s );\n", zeroStr, zeroStr );
 	String_Append(  sb, "}\n" );
@@ -266,13 +275,15 @@ void Gen_Radians( const genType_t type, stringBuilder_t* sb ) {
 
 	const char* typeString = Gen_GetTypeString( type );
 
+	const char* radiansFuncStr = Gen_GetFuncNameRadians( type );
+
 	char oneHundredEightyStr[GEN_STRING_LENGTH_NUMERIC_LITERAL];
 	Gen_GetNumericLiteral( type, 180, oneHundredEightyStr, 1 );
 
 	const char* piStr = Gen_GetConstantNamePi( type );
 
 	Doc_Radians( sb );
-	String_Appendf( sb, "inline %s radians( const %s deg )\n", typeString, typeString );
+	String_Appendf( sb, "inline %s %s( const %s deg )\n", typeString, radiansFuncStr, typeString );
 	String_Append(  sb, "{\n" );
 	String_Appendf( sb, "\treturn deg * %s / %s;\n", piStr, oneHundredEightyStr );
 	String_Append(  sb, "}\n" );
@@ -288,13 +299,15 @@ void Gen_Degrees( const genType_t type, stringBuilder_t* sb ) {
 
 	const char* typeString = Gen_GetTypeString( type );
 
+	const char* degreesFuncStr = Gen_GetFuncNameDegrees( type );
+
 	char oneHundredEightyStr[GEN_STRING_LENGTH_NUMERIC_LITERAL];
 	Gen_GetNumericLiteral( type, 180, oneHundredEightyStr, 1 );
 
 	const char* piStr = Gen_GetConstantNamePi( type );
 
 	Doc_Degrees( sb );
-	String_Appendf( sb, "inline %s degrees( const %s rad )\n", typeString, typeString );
+	String_Appendf( sb, "inline %s %s( const %s rad )\n", typeString, degreesFuncStr, typeString );
 	String_Append(  sb, "{\n" );
 	String_Appendf( sb, "\treturn rad * %s / %s;\n", oneHundredEightyStr, piStr );
 	String_Append(  sb, "}\n" );
@@ -310,9 +323,12 @@ void Gen_MinMax( const genType_t type, stringBuilder_t* sb ) {
 
 	const char* memberTypeString = Gen_GetMemberTypeString( type );
 
+	const char* minFuncStr = Gen_GetFuncNameMin( type );
+	const char* maxFuncStr = Gen_GetFuncNameMax( type );
+
 	// min
 	Doc_Min( sb );
-	String_Appendf( sb, "inline %s min( const %s x, const %s y )\n", memberTypeString, memberTypeString, memberTypeString );
+	String_Appendf( sb, "inline %s %s( const %s x, const %s y )\n", memberTypeString, minFuncStr, memberTypeString, memberTypeString );
 	String_Append(  sb, "{\n" );
 	String_Append(  sb, "\treturn ( x < y ) ? x : y;\n" );
 	String_Append(  sb, "}\n" );
@@ -320,7 +336,7 @@ void Gen_MinMax( const genType_t type, stringBuilder_t* sb ) {
 
 	// max
 	Doc_Max( sb );
-	String_Appendf( sb, "inline %s max( const %s x, const %s y )\n", memberTypeString, memberTypeString, memberTypeString );
+	String_Appendf( sb, "inline %s %s( const %s x, const %s y )\n", memberTypeString, maxFuncStr, memberTypeString, memberTypeString );
 	String_Append(  sb, "{\n" );
 	String_Append(  sb, "\treturn ( x > y ) ? x : y;\n" );
 	String_Append(  sb, "}\n" );
@@ -336,10 +352,15 @@ void Gen_Clamp( const genType_t type, stringBuilder_t* sb ) {
 
 	const char* memberTypeString = Gen_GetMemberTypeString( type );
 
+	const char* clampFuncStr = Gen_GetFuncNameClamp( type );
+
+	const char* minFuncStr = Gen_GetFuncNameMin( type );
+	const char* maxFuncStr = Gen_GetFuncNameMax( type );
+
 	Doc_Clamp( sb );
-	String_Appendf( sb, "inline %s clamp( const %s x, const %s low, const %s high )\n", memberTypeString, memberTypeString, memberTypeString, memberTypeString );
+	String_Appendf( sb, "inline %s %s( const %s x, const %s low, const %s high )\n", memberTypeString, clampFuncStr, memberTypeString, memberTypeString, memberTypeString );
 	String_Append(  sb, "{\n" );
-	String_Append(  sb, "\treturn min( max( x, low ), high );\n" );
+	String_Appendf( sb, "\treturn %s( %s( x, low ), high );\n", minFuncStr, maxFuncStr );
 	String_Append(  sb, "}\n" );
 	String_Append(  sb, "\n" );
 }
@@ -357,6 +378,9 @@ void Gen_Saturate( const genType_t type, const u32 numComponents, stringBuilder_
 	char fullTypeName[GEN_STRING_LENGTH_TYPE_NAME];
 	Gen_GetFullTypeName( type, 1, numComponents, fullTypeName );
 
+	const char* saturateFuncStr = Gen_GetFuncNameSaturate( type );
+	const char* clampFuncStr = Gen_GetFuncNameClamp( type );
+
 	char zeroStr[GEN_STRING_LENGTH_NUMERIC_LITERAL];
 	char oneStr[GEN_STRING_LENGTH_NUMERIC_LITERAL];
 
@@ -369,12 +393,12 @@ void Gen_Saturate( const genType_t type, const u32 numComponents, stringBuilder_
 	bool isVector = numComponents > 1;
 
 	Doc_Saturate( sbHeader, fullTypeName );
-	String_Appendf( sbHeader, "inline %s saturate( const %s x )\n", fullTypeName, parmTypeName );
+	String_Appendf( sbHeader, "inline %s %s( const %s x )\n", fullTypeName, saturateFuncStr, parmTypeName );
 	if ( isVector ) {
 		String_Append(  sbHeader, "{\n" );
 		String_Appendf( sbHeader, "\treturn %s(\n", fullTypeName );
 		for ( u32 i = 0; i < numComponents; i++ ) {
-			String_Appendf( sbHeader, "\t\tclamp( x[%d], %s, %s )", i, zeroStr, oneStr );
+			String_Appendf( sbHeader, "\t\t%s( x[%d], %s, %s )", clampFuncStr, i, zeroStr, oneStr );
 
 			if ( i != numComponents - 1 ) {
 				String_Append( sbHeader, "," );
@@ -388,7 +412,7 @@ void Gen_Saturate( const genType_t type, const u32 numComponents, stringBuilder_
 		String_Append( sbHeader, "\n" );
 	} else {
 		String_Append(  sbHeader, "{\n" );
-		String_Appendf( sbHeader, "\treturn clamp( x, %s, %s );\n", zeroStr, oneStr );
+		String_Appendf( sbHeader, "\treturn %s( x, %s, %s );\n", clampFuncStr, zeroStr, oneStr );
 		String_Append(  sbHeader, "}\n" );
 		String_Append(  sbHeader, "\n" );
 	}
@@ -409,6 +433,8 @@ void Gen_Lerp( const genType_t type, const u32 numComponents, stringBuilder_t* s
 	char fullTypeName[GEN_STRING_LENGTH_TYPE_NAME];
 	Gen_GetFullTypeName( type, 1, numComponents, fullTypeName );
 
+	const char* lerpFuncStr = Gen_GetFuncNameLerp( type );
+
 	char oneStr[GEN_STRING_LENGTH_NUMERIC_LITERAL];
 	Gen_GetNumericLiteral( type, 1.0f, oneStr, 1 );
 
@@ -418,7 +444,7 @@ void Gen_Lerp( const genType_t type, const u32 numComponents, stringBuilder_t* s
 	bool isVector = numComponents > 1;
 
 	Doc_Lerp( sbHeader, fullTypeName );
-	String_Appendf( sbHeader, "inline %s lerp( const %s a, const %s b, const %s t )\n", fullTypeName, parmTypeName, parmTypeName, typeString );
+	String_Appendf( sbHeader, "inline %s %s( const %s a, const %s b, const %s t )\n", fullTypeName, lerpFuncStr, parmTypeName, parmTypeName, typeString );
 	if ( isVector ) {
 		String_Append(  sbHeader, "{\n" );
 		String_Appendf( sbHeader, "\treturn %s(\n", fullTypeName );
@@ -449,29 +475,31 @@ void Gen_Step( const genType_t type, const u32 numComponents, stringBuilder_t* s
 	assert( numComponents >= 1 );
 	assert( numComponents <= GEN_COMPONENT_COUNT_MAX );
 
-	if ( type == GEN_TYPE_BOOL ) {
+	if ( !Gen_TypeIsFloatingPoint( type ) ) {
 		return;
 	}
 
 	char fullTypeName[GEN_STRING_LENGTH_TYPE_NAME];
 	Gen_GetFullTypeName( type, 1, numComponents, fullTypeName );
 
-	char zeroStr[GEN_STRING_LENGTH_NUMERIC_LITERAL];
-	char oneStr[GEN_STRING_LENGTH_NUMERIC_LITERAL];
+	const char* stepFuncStr = Gen_GetFuncNameStep( type );
 
+	char zeroStr[GEN_STRING_LENGTH_NUMERIC_LITERAL];
 	Gen_GetNumericLiteral( type, 0.0f, zeroStr, 1 );
+
+	char oneStr[GEN_STRING_LENGTH_NUMERIC_LITERAL];
 	Gen_GetNumericLiteral( type, 1.0f, oneStr, 1 );
 
 	char parmTypeName[GEN_STRING_LENGTH_TYPE_NAME];
 	Gen_GetParmTypeName( type, numComponents, parmTypeName );
 
 	Doc_Step( sbHeader, fullTypeName );
-	String_Appendf( sbHeader, "inline %s step( const %s x, const %s y )\n", fullTypeName, parmTypeName, parmTypeName );
+	String_Appendf( sbHeader, "inline %s %s( const %s x, const %s y )\n", fullTypeName, stepFuncStr, parmTypeName, parmTypeName );
 	if ( numComponents > 1 ) {
 		String_Append(  sbHeader, "{\n" );
 		String_Appendf( sbHeader, "\treturn %s(\n", fullTypeName );
 		for ( u32 i = 0; i < numComponents; i++ ) {
-				String_Appendf( sbHeader, "\t\tstep( x[%d], y[%d] )", i, i );
+				String_Appendf( sbHeader, "\t\t%s( x[%d], y[%d] )", stepFuncStr, i, i );
 
 				if ( i != numComponents - 1 ) {
 					String_Append( sbHeader, "," );
@@ -503,16 +531,23 @@ void Gen_Smoothstep( const genType_t type, const u32 numComponents, stringBuilde
 	char fullTypeName[GEN_STRING_LENGTH_TYPE_NAME];
 	Gen_GetFullTypeName( type, 1, numComponents, fullTypeName );
 
-	char twoStr[GEN_STRING_LENGTH_NUMERIC_LITERAL];
-	char threeStr[GEN_STRING_LENGTH_NUMERIC_LITERAL];
-	char sixStr[GEN_STRING_LENGTH_NUMERIC_LITERAL];
-	char tenStr[GEN_STRING_LENGTH_NUMERIC_LITERAL];
-	char fifteenStr[GEN_STRING_LENGTH_NUMERIC_LITERAL];
+	const char* smoothstepFuncStr = Gen_GetFuncNameSmoothstep( type );
+	const char* smootherstepFuncStr = Gen_GetFuncNameSmootherstep( type );
+	const char* saturateFuncStr = Gen_GetFuncNameSaturate( type );
 
+	char twoStr[GEN_STRING_LENGTH_NUMERIC_LITERAL];
 	Gen_GetNumericLiteral( type, 2.0f,  twoStr, 1 );
+
+	char threeStr[GEN_STRING_LENGTH_NUMERIC_LITERAL];
 	Gen_GetNumericLiteral( type, 3.0f,  threeStr, 1 );
+
+	char sixStr[GEN_STRING_LENGTH_NUMERIC_LITERAL];
 	Gen_GetNumericLiteral( type, 6.0f,  sixStr, 1 );
+
+	char tenStr[GEN_STRING_LENGTH_NUMERIC_LITERAL];
 	Gen_GetNumericLiteral( type, 10.0f, tenStr, 1 );
+
+	char fifteenStr[GEN_STRING_LENGTH_NUMERIC_LITERAL];
 	Gen_GetNumericLiteral( type, 15.0f, fifteenStr, 1 );
 
 	char parmTypeName[GEN_STRING_LENGTH_TYPE_NAME];
@@ -523,12 +558,12 @@ void Gen_Smoothstep( const genType_t type, const u32 numComponents, stringBuilde
 	// smoothstep
 	{
 		Doc_Smoothstep( sbHeader, fullTypeName );
-		String_Appendf( sbHeader, "inline %s smoothstep( const %s low, const %s high, const %s x )\n", fullTypeName, parmTypeName, parmTypeName, parmTypeName );
+		String_Appendf( sbHeader, "inline %s %s( const %s low, const %s high, const %s x )\n", fullTypeName, smoothstepFuncStr, parmTypeName, parmTypeName, parmTypeName );
 		if ( isVector ) {
 			String_Append(  sbHeader, "{\n" );
 			String_Appendf( sbHeader, "\treturn %s(\n", fullTypeName );
 			for ( u32 i = 0; i < numComponents; i++ ) {
-				String_Appendf( sbHeader, "\t\tsmoothstep( low[%d], high[%d], x[%d] )", i, i, i );
+				String_Appendf( sbHeader, "\t\t%s( low[%d], high[%d], x[%d] )", smoothstepFuncStr, i, i, i );
 
 				if ( i != numComponents - 1 ) {
 					String_Append( sbHeader, "," );
@@ -541,7 +576,7 @@ void Gen_Smoothstep( const genType_t type, const u32 numComponents, stringBuilde
 			String_Append( sbHeader, "\n" );
 		} else {
 			String_Append(  sbHeader, "{\n" );
-			String_Appendf( sbHeader, "\t%s t = saturate( ( x - low ) / ( high - low ) );\n", fullTypeName );
+			String_Appendf( sbHeader, "\t%s t = %s( ( x - low ) / ( high - low ) );\n", fullTypeName, saturateFuncStr );
 			String_Appendf( sbHeader, "\treturn t * t * ( %s - %s * t );\n", threeStr, twoStr );
 			String_Append(  sbHeader, "}\n" );
 			String_Append(  sbHeader, "\n" );
@@ -551,12 +586,12 @@ void Gen_Smoothstep( const genType_t type, const u32 numComponents, stringBuilde
 	// smootherstep
 	{
 		Doc_Smootherstep( sbHeader, fullTypeName );
-		String_Appendf( sbHeader, "inline %s smootherstep( const %s low, const %s high, const %s x )\n", fullTypeName, parmTypeName, parmTypeName, parmTypeName );
+		String_Appendf( sbHeader, "inline %s %s( const %s low, const %s high, const %s x )\n", fullTypeName, smootherstepFuncStr, parmTypeName, parmTypeName, parmTypeName );
 		if ( isVector ) {
 			String_Append(  sbHeader, "{\n" );
 			String_Appendf( sbHeader, "\treturn %s(\n", fullTypeName );
 			for ( u32 i = 0; i < numComponents; i++ ) {
-				String_Appendf( sbHeader, "\t\tsmootherstep( low[%d], high[%d], x[%d] )", i, i, i );
+				String_Appendf( sbHeader, "\t\t%s( low[%d], high[%d], x[%d] )", smootherstepFuncStr, i, i, i );
 
 				if ( i != numComponents - 1 ) {
 					String_Append( sbHeader, "," );
@@ -569,7 +604,7 @@ void Gen_Smoothstep( const genType_t type, const u32 numComponents, stringBuilde
 			String_Append( sbHeader, "\n" );
 		} else {
 			String_Append(  sbHeader, "{\n" );
-			String_Appendf( sbHeader, "\t%s t = saturate( ( x - low ) / ( high - low ) );\n", fullTypeName );
+			String_Appendf( sbHeader, "\t%s t = %s( ( x - low ) / ( high - low ) );\n", fullTypeName, saturateFuncStr );
 			String_Appendf( sbHeader, "\treturn t * t * t * ( t * ( t * %s - %s ) + %s );\n", sixStr, fifteenStr, tenStr );
 			String_Append(  sbHeader, "}\n" );
 			String_Append(  sbHeader, "\n" );

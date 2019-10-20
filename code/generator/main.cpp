@@ -51,7 +51,81 @@ along with The HLML Generator.  If not, see <http://www.gnu.org/licenses/>.
 #include <stdlib.h>
 #include <assert.h>
 
-static void GenerateTypeHeader( void ) {
+static void GenerateHeaderMain( void ) {
+	printf( "%s...", GEN_HEADER_MAIN );
+
+	char headerFilePath[1024] = { 0 };
+	snprintf( headerFilePath, 1024, "%s%s", GEN_OUT_FOLDER_PATH, GEN_HEADER_MAIN );
+
+	stringBuilder_t sb = String_Create( 4 * KB_TO_BYTES );
+
+	String_Append( &sb, GEN_FILE_HEADER );
+	String_Append( &sb, "#pragma once\n" );
+
+	// include vectors
+#if 0
+	for ( u32 typeIndex = 0; typeIndex < GEN_TYPE_COUNT; typeIndex++ ) {
+		const genType_t type = (genType_t) typeIndex;
+
+		for ( u32 componentIndex = GEN_COMPONENT_COUNT_MIN; componentIndex <= GEN_COMPONENT_COUNT_MAX; componentIndex++ ) {
+			char fullTypeName[GEN_STRING_LENGTH_TYPE_NAME];
+			Gen_GetFullTypeName( type, 1, componentIndex, fullTypeName );
+
+			String_Appendf( &sb, "#include \"out/gen/%s.h\"\n", fullTypeName );
+		}
+
+		String_Append( &sb, "\n" );
+	}
+#endif
+
+	// include matrices
+#if 0
+	for ( u32 typeIndex = 0; typeIndex < GEN_TYPE_COUNT; typeIndex++ ) {
+		const genType_t type = (genType_t) typeIndex;
+
+		for ( u32 rows = GEN_COMPONENT_COUNT_MIN; rows <= GEN_COMPONENT_COUNT_MAX; rows++ ) {
+			for ( u32 cols = GEN_COMPONENT_COUNT_MIN; cols <= GEN_COMPONENT_COUNT_MAX; cols++ ) {
+				char fullTypeName[GEN_STRING_LENGTH_TYPE_NAME];
+				Gen_GetFullTypeName( type, rows, cols, fullTypeName );
+
+				String_Appendf( &sb, "#include \"out/gen/%s.h\"\n", fullTypeName );
+			}
+		}
+
+		String_Append( &sb, "\n" );
+	}
+#endif
+
+	// include operators
+#if 0
+	String_Appendf( &sb, "#include \"gen/%s\"\n", GEN_HEADER_OPERATORS_VECTOR );
+	String_Appendf( &sb, "#include \"gen/%s\"\n", GEN_HEADER_OPERATORS_MATRIX );
+#endif
+
+	// include functions
+	String_Appendf( &sb, "#include \"gen/%s\"\n", GEN_HEADER_FUNCTIONS_SCALAR );
+#if 0
+	String_Appendf( &sb, "#include \"gen/%s\"\n", GEN_HEADER_FUNCTIONS_VECTOR );
+	String_Appendf( &sb, "#include \"gen/%s\"\n", GEN_HEADER_FUNCTIONS_MATRIX );
+#endif
+
+	// include SSE helpers
+#if 0
+	String_Appendf( &sb, "#include \"gen/%s.h\"\n", GEN_FILENAME_FUNCTIONS_SCALAR_SSE );
+	String_Appendf( &sb, "#include \"gen/%s.h\"\n", GEN_FILENAME_FUNCTIONS_VECTOR_SSE );
+	String_Appendf( &sb, "#include \"gen/%s.h\"\n", GEN_FILENAME_FUNCTIONS_MATRIX_SSE );
+#endif
+
+	FS_WriteEntireFile( headerFilePath, sb.str, sb.length );
+
+	Mem_Reset();
+
+	printf( "OK.\n" );
+}
+
+static void GenerateHeaderTypes( void ) {
+	printf( "%s...", GEN_HEADER_TYPES );
+
 	char headerFilePath[1024] = { 0 };
 	snprintf( headerFilePath, 1024, "%s%s", GEN_OUT_FOLDER_PATH, GEN_HEADER_TYPES );
 
@@ -69,8 +143,11 @@ static void GenerateTypeHeader( void ) {
 	FS_WriteEntireFile( headerFilePath, sb.str, sb.length );
 
 	Mem_Reset();
+
+	printf( "OK.\n" );
 }
 
+#if 0
 static void GenerateVectors( void ) {
 	GeneratorVector gen;
 
@@ -88,7 +165,9 @@ static void GenerateVectors( void ) {
 		}
 	}
 }
+#endif
 
+#if 0
 static void GenerateMatrices( void ) {
 	GeneratorMatrix gen;
 
@@ -108,12 +187,13 @@ static void GenerateMatrices( void ) {
 		}
 	}
 }
+#endif
 
 static void GenerateFunctionsScalar( void ) {
 	char fileNameHeader[1024];
 	snprintf( fileNameHeader, 1024, "%s%s", GEN_OUT_GEN_FOLDER_PATH, GEN_HEADER_FUNCTIONS_SCALAR );
 
-	stringBuilder_t sb = String_Create( 8 * KB_TO_BYTES );
+	stringBuilder_t sb = String_Create( 9 * KB_TO_BYTES );
 
 	String_Append( &sb, GEN_FILE_HEADER );
 	String_Append( &sb,
@@ -123,6 +203,10 @@ static void GenerateFunctionsScalar( void ) {
 		"\n"
 		"#include <math.h>\n"
 		"#include <stdint.h>\n"
+		"\n"
+		"#ifndef __cplusplus\n"
+		"#include <stdbool.h>\n"
+		"#endif\n"
 		"\n" );
 
 	for ( u32 typeIndex = 0; typeIndex < GEN_TYPE_COUNT; typeIndex++ ) {
@@ -169,6 +253,7 @@ static void GenerateFunctionsScalar( void ) {
 	Mem_Reset();
 }
 
+#if 0
 static void GenerateFunctionsVector( void ) {
 	char filePathHeader[64] = { 0 };
 	snprintf( filePathHeader, 64, "%s%s", GEN_OUT_GEN_FOLDER_PATH, GEN_HEADER_FUNCTIONS_VECTOR );
@@ -241,7 +326,9 @@ static void GenerateFunctionsVector( void ) {
 
 	Mem_Reset();
 }
+#endif
 
+#if 0
 static void GenerateFunctionsMatrix( void ) {
 	char filePathHeader[64] = { 0 };
 	snprintf( filePathHeader, 64, "%s%s", GEN_OUT_GEN_FOLDER_PATH, GEN_HEADER_FUNCTIONS_MATRIX );
@@ -309,7 +396,9 @@ static void GenerateFunctionsMatrix( void ) {
 
 	Mem_Reset();
 }
+#endif
 
+#if 0
 static void GenerateFunctionsScalarSSE( void ) {
 	char filePathHeader[64] = { 0 };
 	snprintf( filePathHeader, 64, "%s%s.h", GEN_OUT_GEN_FOLDER_PATH, GEN_FILENAME_FUNCTIONS_SCALAR_SSE );
@@ -355,7 +444,9 @@ static void GenerateFunctionsScalarSSE( void ) {
 
 	Mem_Reset();
 }
+#endif
 
+#if 0
 static void GenerateFunctionsVectorSSE( void ) {
 	char filePathHeader[64] = { 0 };
 	snprintf( filePathHeader, 64, "%s%s.h", GEN_OUT_GEN_FOLDER_PATH, GEN_FILENAME_FUNCTIONS_VECTOR_SSE );
@@ -435,7 +526,9 @@ static void GenerateFunctionsVectorSSE( void ) {
 
 	Mem_Reset();
 }
+#endif
 
+#if 0
 static void GenerateFunctionsMatrixSSE( void ) {
 	char filePathHeader[64] = { 0 };
 	snprintf( filePathHeader, 64, "%s%s.h", GEN_OUT_GEN_FOLDER_PATH, GEN_FILENAME_FUNCTIONS_MATRIX_SSE );
@@ -528,7 +621,9 @@ static void GenerateFunctionsMatrixSSE( void ) {
 
 	Mem_Reset();
 }
+#endif
 
+#if 0
 static void GenerateOperatorsVector( void ) {
 	char filePathHeader[64] = { 0 };
 	snprintf( filePathHeader, 64, "%s%s", GEN_OUT_GEN_FOLDER_PATH, GEN_HEADER_OPERATORS_VECTOR );
@@ -580,7 +675,9 @@ static void GenerateOperatorsVector( void ) {
 
 	Mem_Reset();
 }
+#endif
 
+#if 0
 static void GenerateOperatorsMatrix( void ) {
 	char filePathHeader[64];
 	snprintf( filePathHeader, 64, "%s%s", GEN_OUT_GEN_FOLDER_PATH, GEN_HEADER_OPERATORS_MATRIX );
@@ -657,6 +754,7 @@ static void GenerateOperatorsMatrix( void ) {
 
 	Mem_Reset();
 }
+#endif
 
 static void GenerateTestsScalar( void ) {
 	GeneratorScalarTest gen;
@@ -672,12 +770,13 @@ static void GenerateTestsScalar( void ) {
 
 		printf( "Generating test_scalar_%s.cpp...", typeString );
 
-		gen.Generate( type );
+		gen.Generate( type, GEN_LANGUAGE_C );
 
 		printf( "OK.\n" );
 	}
 }
 
+#if 0
 static void GenerateTestsVector( void ) {
 	GeneratorVectorTests gen;
 
@@ -695,7 +794,9 @@ static void GenerateTestsVector( void ) {
 		}
 	}
 }
+#endif
 
+#if 0
 static void GenerateTestsMatrix( void ) {
 	GeneratorMatrixTests gen;
 
@@ -715,10 +816,13 @@ static void GenerateTestsMatrix( void ) {
 		}
 	}
 }
+#endif
 
 static void GenerateTestsMain( void ) {
+	const char* extension = GEN_LANGUAGE_FILE_EXTENSIONS[GEN_LANGUAGE_C];
+
 	char filePathMain[1024] = { 0 };
-	snprintf( filePathMain, 1024, "%smain.cpp", GEN_TESTS_FOLDER_PATH );
+	snprintf( filePathMain, 1024, "%smain.%s", GEN_TESTS_FOLDER_PATH_C, extension );
 
 	stringBuilder_t sb = String_Create( 8 * KB_TO_BYTES );
 
@@ -728,7 +832,7 @@ static void GenerateTestsMain( void ) {
 	String_Append( &sb, "\n" );
 
 	// TODO(DM): if we do end up using this as our final include solution, make the filename a constant
-	String_Append( &sb, "#include \"hlml.h\"\n" );
+	String_Append( &sb, "#include \"../../out/" GEN_HEADER_MAIN "\"\n" );
 	String_Append( &sb, "\n" );
 
 	String_Append( &sb, "#include <temper/temper.h>\n" );
@@ -744,12 +848,13 @@ static void GenerateTestsMain( void ) {
 
 		const char* memberTypeString = Gen_GetMemberTypeString( type );
 
-		String_Appendf( &sb, "#include \"test_scalar_%s.cpp\"\n", memberTypeString );
+		String_Appendf( &sb, "#include \"test_scalar_%s.%s\"\n", memberTypeString, extension );
 	}
 
 	String_Append( &sb, "\n" );
 
 	// vector tests
+#if 0
 	for ( u32 typeIndex = 0; typeIndex < GEN_TYPE_COUNT; typeIndex++ ) {
 		genType_t type = (genType_t) typeIndex;
 
@@ -757,13 +862,15 @@ static void GenerateTestsMain( void ) {
 			char fullTypeName[GEN_STRING_LENGTH_TYPE_NAME] = { 0 };
 			Gen_GetFullTypeName( type, 1, componentIndex, fullTypeName );
 
-			String_Appendf( &sb, "#include \"test_%s.cpp\"\n", fullTypeName );
+			String_Appendf( &sb, "#include \"test_%s.%s\"\n", fullTypeName, extension );
 		}
 
 		String_Append( &sb, "\n" );
 	}
+#endif
 
 	// matrix tests
+#if 0
 	for ( u32 typeIndex = 0; typeIndex < GEN_TYPE_COUNT; typeIndex++ ) {
 		genType_t type = (genType_t) typeIndex;
 
@@ -772,12 +879,13 @@ static void GenerateTestsMain( void ) {
 				char fullTypeName[GEN_STRING_LENGTH_TYPE_NAME] = { 0 };
 				Gen_GetFullTypeName( type, row, col, fullTypeName );
 
-				String_Appendf( &sb, "#include \"test_%s.cpp\"\n", fullTypeName );
+				String_Appendf( &sb, "#include \"test_%s.%s\"\n", fullTypeName, extension );
 			}
 
 			String_Append( &sb, "\n" );
 		}
 	}
+#endif
 
 	String_Append( &sb, "static void OnSuiteEnd( void* userdata )\n" );
 	String_Append( &sb, "{\n" );
@@ -793,7 +901,7 @@ static void GenerateTestsMain( void ) {
 	String_Append( &sb, "{\n" );
 	String_Append( &sb, "\tTEMPER_SET_COMMAND_LINE_ARGS( argc, argv );\n" );
 	String_Append( &sb, "\n" );
-	String_Append( &sb, "\tTEMPER_SET_SUITE_END_CALLBACK( OnSuiteEnd, nullptr );\n" );
+	String_Append( &sb, "\tTEMPER_SET_SUITE_END_CALLBACK( OnSuiteEnd, NULL );\n" );
 	String_Append( &sb, "\n" );
 
 	// run the scalar tests first
@@ -813,6 +921,7 @@ static void GenerateTestsMain( void ) {
 	String_Append( &sb, "\n" );
 
 	// now do vector and matrix types
+#if 0
 	String_Appendf( &sb, "\t// vector/matrix tests\n" );
 	for ( u32 typeIndex = 0; typeIndex < GEN_TYPE_COUNT; typeIndex++ ) {
 		genType_t type = (genType_t) typeIndex;
@@ -827,6 +936,7 @@ static void GenerateTestsMain( void ) {
 			String_Appendf( &sb, "\n" );
 		}
 	}
+#endif
 	String_Append( &sb, "\tTEMPER_SHOW_STATS();\n" );
 	String_Append( &sb, "\n" );
 	String_Append( &sb, "\treturn TEMPER_EXIT_CODE();\n" );
@@ -840,6 +950,7 @@ static void GenerateTestsMain( void ) {
 
 // DM: running doxygen on MacOS isn't supported yet because I don't have access to a Mac
 // when I get access to one, I'll get it working
+#if 0
 #ifdef _WIN32
 static bool32 GenerateDoxygenPages( void ) {
 	printf( "Generating doxygen documentation..." );
@@ -872,6 +983,7 @@ static bool32 GenerateDoxygenPages( void ) {
 	return true;
 }
 #endif // _WIN32
+#endif
 
 int main( int argc, char** argv ) {
 	UNUSED( argc );
@@ -884,6 +996,13 @@ int main( int argc, char** argv ) {
 	printf( "\n" );
 
 	FS_DeleteAllFilesInFolder( GEN_OUT_GEN_FOLDER_PATH );
+	FS_CreateFolder( GEN_OUT_GEN_FOLDER_PATH );
+
+	FS_DeleteAllFilesInFolder( GEN_TESTS_FOLDER_PATH_C );
+	FS_CreateFolder( GEN_TESTS_FOLDER_PATH_C );
+
+	FS_DeleteAllFilesInFolder( GEN_TESTS_FOLDER_PATH_CPP );
+	FS_CreateFolder( GEN_TESTS_FOLDER_PATH_CPP );
 
 	printf( "\n" );
 
@@ -891,39 +1010,46 @@ int main( int argc, char** argv ) {
 
 	Time_Init();
 
-	FS_CreateFolder( GEN_OUT_GEN_FOLDER_PATH );
-	FS_CreateFolder( GEN_TESTS_FOLDER_PATH );
-
 	float64 start = Time_NowMS();
 
 	printf( "======= Generating core headers. =======\n" );
-	GenerateTypeHeader();
+	GenerateHeaderMain();
+	GenerateHeaderTypes();
 	printf( "======= Done. =======\n\n" );
 
+#if 0
 	printf( "======= Generating types. =======\n" );
 	GenerateVectors();
 	GenerateMatrices();
 	printf( "======= Done. =======\n\n" );
+#endif
 
 	printf( "======= Generating functions. =======\n" );
 	GenerateFunctionsScalar();
+#if 0
 	GenerateFunctionsVector();
 	GenerateFunctionsMatrix();
 	GenerateFunctionsScalarSSE();
 	GenerateFunctionsVectorSSE();
 	GenerateFunctionsMatrixSSE();
+#endif
 	printf( "======= Done. =======\n\n" );
 
+#if 0
 	printf( "======= Generating operators. =======\n" );
 	GenerateOperatorsVector();
 	GenerateOperatorsMatrix();
 	printf( "======= Done. =======\n\n" );
+#endif
 
 	printf( "======= Generating tests. =======\n" );
 	GenerateTestsScalar();
+#if 0
 	GenerateTestsVector();
 	GenerateTestsMatrix();
+#endif
 	GenerateTestsMain();
+	// GenerateTestsMain_CPP();
 	printf( "======= Done. =======\n\n" );
 
 	float64 end = Time_NowMS();
@@ -935,7 +1061,7 @@ int main( int argc, char** argv ) {
 	// DM: temporarily turning off documentation generation for all non-windows configs
 	// because GitHub has a limit on LFS space, which the doxygen executable for linux exceeds
 	// TODO(DM): turn this back on when a solution for that gets found
-#ifdef _WIN32
+#if 0//#ifdef _WIN32
 	printf( "======= Generating doxygen documentation pages. =======\n" );
 	if ( !GenerateDoxygenPages() ) {
 		return EXIT_FAILURE;
