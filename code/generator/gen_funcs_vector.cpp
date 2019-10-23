@@ -248,12 +248,14 @@ void Gen_VectorAngle( const genType_t type, const u32 numComponents, stringBuild
 	char fullTypeName[GEN_STRING_LENGTH_TYPE_NAME];
 	Gen_GetFullTypeName( type, 1, numComponents, fullTypeName );
 
+	const char* degreesFuncStr = Gen_GetFuncNameDegrees( type );
+
 	const char* acosString = Gen_GetFuncNameAcos( floatingPointType );
 
 	Doc_VectorAngle( sbHeader, fullTypeName );
 	String_Appendf( sbHeader, "inline %s angle( const %s& lhs, const %s& rhs )\n", returnTypeString, fullTypeName, fullTypeName );
 	String_Append(  sbHeader, "{\n" );
-	String_Appendf( sbHeader, "\treturn degrees( %s( dot( normalized( lhs ), normalized( rhs ) ) ) );\n", acosString );
+	String_Appendf( sbHeader, "\treturn %s( %s( dot( normalized( lhs ), normalized( rhs ) ) ) );\n", degreesFuncStr, acosString );
 	String_Append(  sbHeader, "}\n" );
 	String_Append(  sbHeader, "\n" );
 }

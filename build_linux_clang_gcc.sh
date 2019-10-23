@@ -45,7 +45,6 @@ fi
 
 # clang++ requires extra weird c++ settings
 if [[ ${language} == C++ && ${compiler} == clang ]]; then
-	echo HERE IT IS
 	options_clangpp="-Xclang -flto-visibility-public-std"
 else
 	options_clangpp=""

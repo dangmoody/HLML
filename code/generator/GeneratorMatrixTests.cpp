@@ -1449,10 +1449,12 @@ void GeneratorMatrixTests::GenerateTestRotate() {
 	Gen_GetParmListMatrix( m_type, numRotMatRows, numRotMatCols, rotMatPitch, parmListMatPitch );
 	Gen_GetParmListMatrix( m_type, numRotMatRows, numRotMatCols, rotMatRoll, parmListMatRoll );
 
+	const char* radiansFuncStr = Gen_GetFuncNameRadians( m_type );
+
 	// matrices where cols == 3 only have roll rotation support
 	char parmListRotateRoll[GEN_STRING_LENGTH_PARM_LIST_MATRIX] = { 0 };
 	int pos = 0;
-	pos += sprintf( parmListRotateRoll + pos, "mat, radians( %s )", rotDegreesStr );
+	pos += sprintf( parmListRotateRoll + pos, "mat, %s( %s )", radiansFuncStr, rotDegreesStr );
 	if ( m_numCols > 3 ) {
 		pos += sprintf( parmListRotateRoll + pos, ", %s%s", rotateVecTypeString, parmListVecRoll );
 	}
@@ -1461,8 +1463,8 @@ void GeneratorMatrixTests::GenerateTestRotate() {
 	String_Append(  &m_codeTests, "{\n" );
 	String_Appendf( &m_codeTests, "\t%s mat;\n", m_fullTypeName );
 	if ( m_numRows > 3 ) {
-		String_Appendf( &m_codeTests, "\t%s yaw = rotate( mat, radians( %s ), %s%s );\n", m_fullTypeName, rotDegreesStr, rotateVecTypeString, parmListVecYaw );
-		String_Appendf( &m_codeTests, "\t%s pitch = rotate( mat, radians( %s ), %s%s );\n", m_fullTypeName, rotDegreesStr, rotateVecTypeString, parmListVecPitch );
+		String_Appendf( &m_codeTests, "\t%s yaw = rotate( mat, %s( %s ), %s%s );\n", m_fullTypeName, radiansFuncStr, rotDegreesStr, rotateVecTypeString, parmListVecYaw );
+		String_Appendf( &m_codeTests, "\t%s pitch = rotate( mat, %s( %s ), %s%s );\n", m_fullTypeName, radiansFuncStr, rotDegreesStr, rotateVecTypeString, parmListVecPitch );
 	}
 	String_Appendf( &m_codeTests, "\t%s roll = rotate( %s );\n", m_fullTypeName, parmListRotateRoll );
 	String_Append(  &m_codeTests, "\n" );

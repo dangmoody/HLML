@@ -32,38 +32,12 @@ SOFTWARE.
 // EDITING THIS FILE MAY CAUSE SIDE EFFECTS.
 // DO SO AT YOUR OWN RISK.
 
-#define NOMINMAX
+#pragma once
 
-#include "../../out/hlml.h"
+// HLML includes
+#include "../hlml_constants_sse.h"
 
-#include <temper/temper.h>
+// others
+#include <xmmintrin.h>
+#include <assert.h>
 
-#include "test_scalar_int32_t.c"
-#include "test_scalar_uint32_t.c"
-#include "test_scalar_float.c"
-#include "test_scalar_double.c"
-
-static void OnSuiteEnd( void* userdata )
-{
-	( (void) userdata );
-	printf( "\n" );
-}
-
-TEMPER_DEFS();
-
-int main( int argc, char** argv )
-{
-	TEMPER_SET_COMMAND_LINE_ARGS( argc, argv );
-
-	TEMPER_SET_SUITE_END_CALLBACK( OnSuiteEnd, NULL );
-
-	// scalar tests
-	TEMPER_RUN_SUITE( Test_int32_t );
-	TEMPER_RUN_SUITE( Test_uint32_t );
-	TEMPER_RUN_SUITE( Test_float );
-	TEMPER_RUN_SUITE( Test_double );
-
-	TEMPER_SHOW_STATS();
-
-	return TEMPER_EXIT_CODE();
-}

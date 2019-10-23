@@ -46,7 +46,9 @@ along with The HLML Generator.  If not, see <http://www.gnu.org/licenses/>.
 // filenames
 // TODO(DM): sort these out so we have versions with and without "code"
 #define GEN_OUT_FOLDER_PATH					"code/out/"
-#define GEN_OUT_GEN_FOLDER_PATH				"code/out/gen/"
+#define GEN_OUT_GEN_FOLDER_PATH_C			GEN_OUT_FOLDER_PATH "c/"
+#define GEN_OUT_GEN_FOLDER_PATH_CPP			GEN_OUT_FOLDER_PATH "cpp/"
+
 #define GEN_TESTS_FOLDER_PATH_ROOT			"code/tests/"
 #define GEN_TESTS_FOLDER_PATH_C				GEN_TESTS_FOLDER_PATH_ROOT "c/"
 #define GEN_TESTS_FOLDER_PATH_CPP			GEN_TESTS_FOLDER_PATH_ROOT "cpp/"
@@ -65,9 +67,9 @@ along with The HLML Generator.  If not, see <http://www.gnu.org/licenses/>.
 #define GEN_HEADER_FUNCTIONS_MATRIX			"hlml_functions_matrix.h"
 
 // TODO(DM): change to: GEN_HEADER_FUNCTIONS_SCALAR_SSE and so on
-#define GEN_FILENAME_FUNCTIONS_SCALAR_SSE	"hlml_functions_scalar_sse"
-#define GEN_FILENAME_FUNCTIONS_VECTOR_SSE	"hlml_functions_vector_sse"
-#define GEN_FILENAME_FUNCTIONS_MATRIX_SSE	"hlml_functions_matrix_sse"
+#define GEN_HEADER_FUNCTIONS_SCALAR_SSE		"hlml_functions_scalar_sse.h"
+#define GEN_HEADER_FUNCTIONS_VECTOR_SSE		"hlml_functions_vector_sse.h"
+#define GEN_HEADER_FUNCTIONS_MATRIX_SSE		"hlml_functions_matrix_sse.h"
 
 #define GEN_STRING_LENGTH_NUMERIC_LITERAL	16
 #define GEN_STRING_LENGTH_TYPE_NAME			16
@@ -80,18 +82,6 @@ along with The HLML Generator.  If not, see <http://www.gnu.org/licenses/>.
 #define GEN_STRING_LENGTH_TEST_NAME			64
 
 struct stringBuilder_t;
-
-enum genLanguage_t {
-	GEN_LANGUAGE_C							= 0,
-	GEN_LANGUAGE_CPP,
-
-	GEN_LANGUAGE_COUNT
-};
-
-static const char* GEN_LANGUAGE_FILE_EXTENSIONS[GEN_LANGUAGE_COUNT] = {
-	"c",
-	"cpp"
-};
 
 enum genType_t {
 	GEN_TYPE_BOOL							= 0,
@@ -250,6 +240,18 @@ inline const char*	Gen_GetFuncNameSmootherstep( const genType_t type ) { return 
 inline const char*	Gen_GetConstantNamePi( const genType_t type ) { return ( type == GEN_TYPE_DOUBLE ) ? "HLML_PI" : "(float)( HLML_PI )"; }
 inline const char*	Gen_GetConstantNameEpsilon( const genType_t type ) { return ( type == GEN_TYPE_DOUBLE ) ? "HLML_EPSILON" : "(float)( HLML_EPSILON )"; }
 
+
+// generic helper functions
+
+// generates the primary include header (hlml.h)
+extern void			Gen_HeaderMain( const char* includeSubFolder );
+
+// generates the main file in the tests
+// which includes all the tests files and functions and runs the suites
+extern void			Gen_TestsMain( const char* includeSubFolder );
+
+// generates the doxygen documentation pages
+extern bool32		Gen_DoxygenPages( const char* configPath );
 
 // parm list/array helpers
 extern void			Gen_GetValuesArray1D( const genType_t type, const u32 numValues, const float* values, stringBuilder_t* sb );

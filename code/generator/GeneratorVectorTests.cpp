@@ -1,3 +1,26 @@
+/*
+===========================================================================
+
+HLML Generator.
+Copyright (c) Dan Moody 2018 - Present.
+
+This file is part of the HLML Generator.
+
+The HLML Generator is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+The HLML Generator is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with The HLML Generator.  If not, see <http://www.gnu.org/licenses/>.
+
+===========================================================================
+*/
 #include "GeneratorVectorTests.h"
 
 #include "defines.h"
@@ -1164,12 +1187,14 @@ void GeneratorVectorTests::GenerateTestSaturate() {
 	Gen_GetParmListVector( m_type, m_numComponents, values, parmList );
 	Gen_GetParmListVector( m_type, m_numComponents, valuesAnswer, parmListAnswer );
 
+	const char* saturateFuncStr = Gen_GetFuncNameSaturate( m_type );
+
 	String_Appendf( &m_codeTests, "TEMPER_TEST( %s )\n", testName );
 	String_Append(  &m_codeTests, "{\n" );
 	String_Appendf( &m_codeTests, "\t%s answer = %s%s;\n", m_fullTypeName, m_fullTypeName, parmListAnswer );
 	String_Append(  &m_codeTests, "\n" );
 	String_Appendf( &m_codeTests, "\t%s vec = %s%s;\n", m_fullTypeName, m_fullTypeName, parmList );
-	String_Appendf( &m_codeTests, "\t%s clamped = saturate( vec );\n", m_fullTypeName );
+	String_Appendf( &m_codeTests, "\t%s clamped = %s( vec );\n", m_fullTypeName, saturateFuncStr );
 	String_Append(  &m_codeTests, "\n" );
 	String_Appendf( &m_codeTests, "\tTEMPER_EXPECT_TRUE( clamped == answer );\n" );
 	String_Append(  &m_codeTests, "\n" );
@@ -1203,13 +1228,15 @@ void GeneratorVectorTests::GenerateTestLerp() {
 	char lerpValStr[GEN_STRING_LENGTH_NUMERIC_LITERAL];
 	Gen_GetNumericLiteral( m_type, 0.5f, lerpValStr, 1 );
 
+	const char* lerpFuncStr = Gen_GetFuncNameLerp( m_type );
+
 	String_Appendf( &m_codeTests, "TEMPER_TEST( %s )\n", testName );
 	String_Append(  &m_codeTests, "{\n" );
 	String_Appendf( &m_codeTests, "\t%s answer = %s%s;\n", m_fullTypeName, m_fullTypeName, parmListAnswer );
 	String_Append(  &m_codeTests, "\n" );
 	String_Appendf( &m_codeTests, "\t%s a = %s%s;\n", m_fullTypeName, m_fullTypeName, parmListA );
 	String_Appendf( &m_codeTests, "\t%s b = %s%s;\n", m_fullTypeName, m_fullTypeName, parmListB );
-	String_Appendf( &m_codeTests, "\t%s lerped = lerp( a, b, %s );\n", m_fullTypeName, lerpValStr );
+	String_Appendf( &m_codeTests, "\t%s lerped = %s( a, b, %s );\n", m_fullTypeName, lerpFuncStr, lerpValStr );
 	String_Append(  &m_codeTests, "\n" );
 	String_Append(  &m_codeTests, "\tTEMPER_EXPECT_TRUE( lerped == answer );\n" );
 	String_Append(  &m_codeTests, "\n" );
@@ -1221,7 +1248,7 @@ void GeneratorVectorTests::GenerateTestLerp() {
 }
 
 void GeneratorVectorTests::GenerateTestStep() {
-	if ( m_type == GEN_TYPE_BOOL ) {
+	if ( !Gen_TypeIsFloatingPoint( m_type ) ) {
 		return;
 	}
 
@@ -1241,6 +1268,8 @@ void GeneratorVectorTests::GenerateTestStep() {
 	Gen_GetParmListVector( m_type, m_numComponents, valuesB, parmListB );
 	Gen_GetParmListVector( m_type, m_numComponents, valuesAnswer, parmListAnswer );
 
+	const char* stepFuncStr = Gen_GetFuncNameStep( m_type );
+
 	String_Appendf( &m_codeTests, "TEMPER_TEST( %s )\n", testName );
 	String_Append(  &m_codeTests, "{\n" );
 	String_Appendf( &m_codeTests, "\t%s answer = %s%s;\n", m_fullTypeName, m_fullTypeName, parmListAnswer );
@@ -1248,7 +1277,7 @@ void GeneratorVectorTests::GenerateTestStep() {
 	String_Appendf( &m_codeTests, "\t%s a = %s%s;\n", m_fullTypeName, m_fullTypeName, parmListA );
 	String_Appendf( &m_codeTests, "\t%s b = %s%s;\n", m_fullTypeName, m_fullTypeName, parmListB );
 	String_Append(  &m_codeTests, "\n" );
-	String_Append(  &m_codeTests, "\tTEMPER_EXPECT_TRUE( step( a, b ) == answer );\n" );
+	String_Appendf( &m_codeTests, "\tTEMPER_EXPECT_TRUE( %s( a, b ) == answer );\n", stepFuncStr );
 	String_Append(  &m_codeTests, "\n" );
 	String_Append(  &m_codeTests, "\tTEMPER_PASS();\n" );
 	String_Append(  &m_codeTests, "}\n" );
@@ -1301,6 +1330,9 @@ void GeneratorVectorTests::GenerateTestSmoothstep() {
 	Gen_GetParmListVector( m_type, m_numComponents, valuesAnswerInRangeSmootherstep, parmListAnswerInRangeSmootherstep );
 	Gen_GetParmListVector( m_type, m_numComponents, valuesAnswerClampedSmootherstep, parmListAnswerClampedSmootherstep );
 
+	const char* smoothstepFuncStr = Gen_GetFuncNameSmoothstep( m_type );
+	const char* smootherstepFuncStr = Gen_GetFuncNameSmootherstep( m_type );
+
 	String_Appendf( &m_codeTests, "TEMPER_TEST( %s )\n", testName );
 	String_Append(  &m_codeTests, "{\n" );
 	String_Appendf( &m_codeTests, "\t%s answerInRangeSmoothstep   = %s%s;\n", m_fullTypeName, m_fullTypeName, parmListAnswerInRangeSmoothstep );
@@ -1312,16 +1344,16 @@ void GeneratorVectorTests::GenerateTestSmoothstep() {
 	String_Appendf( &m_codeTests, "\t%s low  = %s%s;\n", m_fullTypeName, m_fullTypeName, parmListLow );
 	String_Appendf( &m_codeTests, "\t%s high = %s%s;\n", m_fullTypeName, m_fullTypeName, parmListHigh );
 	String_Append(  &m_codeTests, "\n" );
-	String_Appendf( &m_codeTests, "\tanswer = smoothstep( low, high, %s%s );\n", m_fullTypeName, parmListInput0 );
+	String_Appendf( &m_codeTests, "\tanswer = %s( low, high, %s%s );\n", smoothstepFuncStr, m_fullTypeName, parmListInput0 );
 	String_Append(  &m_codeTests, "\tTEMPER_EXPECT_TRUE( answer == answerInRangeSmoothstep );\n" );
 	String_Append(  &m_codeTests, "\n" );
-	String_Appendf( &m_codeTests, "\tanswer = smoothstep( low, high, %s%s );\n", m_fullTypeName, parmListInput1 );
+	String_Appendf( &m_codeTests, "\tanswer = %s( low, high, %s%s );\n", smoothstepFuncStr, m_fullTypeName, parmListInput1 );
 	String_Append(  &m_codeTests, "\tTEMPER_EXPECT_TRUE( answer == answerClampedSmoothstep );\n" );
 	String_Append(  &m_codeTests, "\n" );
-	String_Appendf( &m_codeTests, "\tanswer = smootherstep( low, high, %s%s );\n", m_fullTypeName, parmListInput0 );
+	String_Appendf( &m_codeTests, "\tanswer = %s( low, high, %s%s );\n", smootherstepFuncStr, m_fullTypeName, parmListInput0 );
 	String_Append(  &m_codeTests, "\tTEMPER_EXPECT_TRUE( answer == answerInRangeSmootherstep );\n" );
 	String_Append(  &m_codeTests, "\n" );
-	String_Appendf( &m_codeTests, "\tanswer = smootherstep( low, high, %s%s );\n", m_fullTypeName, parmListInput1 );
+	String_Appendf( &m_codeTests, "\tanswer = %s( low, high, %s%s );\n", smootherstepFuncStr, m_fullTypeName, parmListInput1 );
 	String_Append(  &m_codeTests, "\tTEMPER_EXPECT_TRUE( answer == answerClampedSmootherstep );\n" );
 	String_Append(  &m_codeTests, "\n" );
 	String_Append(  &m_codeTests, "\tTEMPER_PASS();\n" );

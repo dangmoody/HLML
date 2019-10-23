@@ -32,7 +32,7 @@ along with The HLML Generator.  If not, see <http://www.gnu.org/licenses/>.
 static char g_degreesStr[GEN_STRING_LENGTH_NUMERIC_LITERAL];
 static const char* g_radiansStr;
 
-bool GeneratorScalarTest::Generate( const genType_t type, const genLanguage_t language ) {
+bool GeneratorScalarTest::Generate( const genType_t type ) {
 	const u32 testsCodeBytes = 4 * KB_TO_BYTES;
 	const u32 suiteCodeBytes = 2 * KB_TO_BYTES;
 
@@ -85,7 +85,7 @@ bool GeneratorScalarTest::Generate( const genType_t type, const genLanguage_t la
 	String_Appendf( &code, m_codeSuite.str );
 
 	char filename[1024] = { 0 };
-	snprintf( filename, 1024, GEN_TESTS_FOLDER_PATH_C "test_scalar_%s.%s", m_memberTypeString, GEN_LANGUAGE_FILE_EXTENSIONS[language] );
+	snprintf( filename, 1024, "%stest_scalar_%s.cpp", GEN_TESTS_FOLDER_PATH_CPP, m_memberTypeString );
 
 	FS_WriteEntireFile( filename, code.str, code.length );
 

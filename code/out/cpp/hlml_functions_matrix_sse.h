@@ -33,4 +33,9 @@ SOFTWARE.
 // DO SO AT YOUR OWN RISK.
 
 #pragma once
-#include "gen/hlml_functions_scalar.h"
+
+#include <immintrin.h>
+
+#include "hlml_functions_vector_sse.h"
+
+

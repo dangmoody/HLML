@@ -161,10 +161,10 @@ bool GeneratorVector::Generate( const genType_t type, const u32 numComponents ) 
 	GenerateOperatorsEquality();
 
 	char fileNameHeader[64] = {};
-	snprintf( fileNameHeader, 64, "%s%s.h", GEN_OUT_GEN_FOLDER_PATH, m_fullTypeName );
+	snprintf( fileNameHeader, 64, "%s%s.h", GEN_OUT_GEN_FOLDER_PATH_CPP, m_fullTypeName );
 
 	char fileNameInl[64] = {};
-	snprintf( fileNameInl, 64, "%s%s.inl", GEN_OUT_GEN_FOLDER_PATH, m_fullTypeName );
+	snprintf( fileNameInl, 64, "%s%s.inl", GEN_OUT_GEN_FOLDER_PATH_CPP, m_fullTypeName );
 
 	FS_WriteEntireFile( fileNameHeader, m_codeHeader.str, m_codeHeader.length );
 	FS_WriteEntireFile( fileNameInl, m_codeInl.str, m_codeInl.length );
@@ -173,16 +173,6 @@ bool GeneratorVector::Generate( const genType_t type, const u32 numComponents ) 
 
 	return true;
 }
-
-#ifdef _DEBUG
-void GeneratorVector::PrintHeader() const {
-	printf( "%s\n", m_codeHeader.str );
-}
-
-void GeneratorVector::PrintInl() const {
-	printf( "%s\n", m_codeInl.str );
-}
-#endif
 
 void GeneratorVector::HeaderGenerateMembersStruct( const char componentNames[GEN_COMPONENT_COUNT_MAX] ) {
 	String_Append( &m_codeHeader, "\t\tstruct\n" );

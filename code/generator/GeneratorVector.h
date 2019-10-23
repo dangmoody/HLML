@@ -34,11 +34,6 @@ public:
 
 	bool			Generate( const genType_t type, const u32 numComponents );
 
-#ifdef _DEBUG
-	void			PrintHeader() const;
-	void			PrintInl() const;
-#endif
-
 private:
 	stringBuilder_t	m_codeHeader;
 	stringBuilder_t	m_codeInl;
