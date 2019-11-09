@@ -400,13 +400,3 @@ int4 int4::ywww() const { return int4( y, w, w, w ); }
 int4 int4::zwww() const { return int4( z, w, w, w ); }
 int4 int4::wwww() const { return int4( w, w, w, w ); }
 
-bool operator==( const int4& lhs, const int4& rhs )
-{
-	return ( lhs.x == rhs.x ) && ( lhs.y == rhs.y ) && ( lhs.z == rhs.z ) && ( lhs.w == rhs.w );
-}
-
-inline bool operator!=( const int4& lhs, const int4& rhs )
-{
-	return !( operator==( lhs, rhs ) );
-}
-

@@ -32,18 +32,35 @@ SOFTWARE.
 // EDITING THIS FILE MAY CAUSE SIDE EFFECTS.
 // DO SO AT YOUR OWN RISK.
 
-// also tests equality operators
 TEMPER_TEST( TestAssignment_bool2 )
 {
-	bool2 a;
+	bool2 vec;
 
-	a = bool2( true );
-	TEMPER_EXPECT_TRUE( a == bool2( true ) );
-	TEMPER_EXPECT_TRUE( a != bool2( false, true ) );
+	vec.x = true;
+	vec.y = true;
+	TEMPER_EXPECT_TRUE( vec.x == true );
+	TEMPER_EXPECT_TRUE( vec.y == true );
 
-	a = bool2( false, true );
-	TEMPER_EXPECT_TRUE( a == bool2( false, true ) );
-	TEMPER_EXPECT_TRUE( a != bool2( true ) );
+	vec.x = false;
+	vec.y = true;
+	TEMPER_EXPECT_TRUE( vec.x == false );
+	TEMPER_EXPECT_TRUE( vec.y == true );
+
+	TEMPER_PASS();
+}
+
+// also tests equality operators
+TEMPER_TEST( TestCtor_bool2 )
+{
+	bool2 vec;
+
+	vec = bool2( true );
+	TEMPER_EXPECT_TRUE( vec == bool2( true ) );
+	TEMPER_EXPECT_TRUE( vec != bool2( false, true ) );
+
+	vec = bool2( false, true );
+	TEMPER_EXPECT_TRUE( vec == bool2( false, true ) );
+	TEMPER_EXPECT_TRUE( vec != bool2( true ) );
 
 	TEMPER_PASS();
 }
@@ -52,8 +69,8 @@ TEMPER_TEST( TestArray_bool2 )
 {
 	bool2 a = bool2( false, true );
 
-	TEMPER_EXPECT_TRUE( a[0] == false );
-	TEMPER_EXPECT_TRUE( a[1] == true );
+	TEMPER_EXPECT_TRUE( a.x == false );
+	TEMPER_EXPECT_TRUE( a.y == true );
 
 	TEMPER_PASS();
 }
@@ -61,5 +78,6 @@ TEMPER_TEST( TestArray_bool2 )
 TEMPER_SUITE( Test_bool2 )
 {
 	TEMPER_RUN_TEST( TestAssignment_bool2 );
+	TEMPER_RUN_TEST( TestCtor_bool2 );
 	TEMPER_RUN_TEST( TestArray_bool2 );
 }

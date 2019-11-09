@@ -400,13 +400,3 @@ double4 double4::ywww() const { return double4( y, w, w, w ); }
 double4 double4::zwww() const { return double4( z, w, w, w ); }
 double4 double4::wwww() const { return double4( w, w, w, w ); }
 
-bool operator==( const double4& lhs, const double4& rhs )
-{
-	return doubleeq( lhs.x, rhs.x ) && doubleeq( lhs.y, rhs.y ) && doubleeq( lhs.z, rhs.z ) && doubleeq( lhs.w, rhs.w );
-}
-
-inline bool operator!=( const double4& lhs, const double4& rhs )
-{
-	return !( operator==( lhs, rhs ) );
-}
-

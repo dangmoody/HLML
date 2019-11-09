@@ -402,13 +402,3 @@ float4 float4::ywww() const { return float4( y, w, w, w ); }
 float4 float4::zwww() const { return float4( z, w, w, w ); }
 float4 float4::wwww() const { return float4( w, w, w, w ); }
 
-bool operator==( const float4& lhs, const float4& rhs )
-{
-	return floateq( lhs.x, rhs.x ) && floateq( lhs.y, rhs.y ) && floateq( lhs.z, rhs.z ) && floateq( lhs.w, rhs.w );
-}
-
-inline bool operator!=( const float4& lhs, const float4& rhs )
-{
-	return !( operator==( lhs, rhs ) );
-}
-

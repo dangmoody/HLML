@@ -113,13 +113,3 @@ float2 float2::yx() const { return float2( y, x ); }
 float2 float2::xy() const { return float2( x, y ); }
 float2 float2::yy() const { return float2( y, y ); }
 
-bool operator==( const float2& lhs, const float2& rhs )
-{
-	return floateq( lhs.x, rhs.x ) && floateq( lhs.y, rhs.y );
-}
-
-inline bool operator!=( const float2& lhs, const float2& rhs )
-{
-	return !( operator==( lhs, rhs ) );
-}
-

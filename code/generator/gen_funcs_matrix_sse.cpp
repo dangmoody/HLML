@@ -31,7 +31,7 @@ along with The HLML Generator.  If not, see <http://www.gnu.org/licenses/>.
 
 #include "string_builder.h"
 
-void Gen_SSE_MatrixIdentity( const genType_t type, const u32 numRows, const u32 numCols, stringBuilder_t* sbHeader ) {
+void Gen_SSE_MatrixIdentity( const genLanguage_t language, const genType_t type, const u32 numRows, const u32 numCols, stringBuilder_t* sbHeader ) {
 	assert( numRows <= GEN_COMPONENT_COUNT_MAX );
 	assert( numRows >= GEN_COMPONENT_COUNT_MIN );
 	assert( numCols <= GEN_COMPONENT_COUNT_MAX );
@@ -41,11 +41,8 @@ void Gen_SSE_MatrixIdentity( const genType_t type, const u32 numRows, const u32 
 		return;
 	}
 
-	char fullTypeName[GEN_STRING_LENGTH_TYPE_NAME];
-	Gen_GetFullTypeName( type, numRows, numCols, fullTypeName );
-
 	char sseTypeName[GEN_STRING_LENGTH_SSE_INPUT_NAME];
-	Gen_SSE_GetFullTypeName( fullTypeName, sseTypeName );
+	Gen_SSE_GetFullTypeName( type, numRows, numCols, sseTypeName );
 
 	const char* registerName = Gen_SSE_GetRegisterName( type );
 
@@ -57,8 +54,11 @@ void Gen_SSE_MatrixIdentity( const genType_t type, const u32 numRows, const u32 
 	char oneStr[GEN_STRING_LENGTH_NUMERIC_LITERAL];
 	Gen_GetNumericLiteral( type, 1.0f, oneStr, 1 );
 
-	Doc_SSE_MatrixIdentity( sbHeader, fullTypeName, registerName );
-	String_Appendf( sbHeader, "inline void identity_sse( %s* mat )\n", sseTypeName );
+	char identityFuncStr[GEN_STRING_LENGTH_FUNCTION_NAME];
+	Gen_SSE_GetFuncNameIdentity( language, type, numRows, numCols, identityFuncStr );
+
+	Doc_SSE_MatrixIdentity( sbHeader, sseTypeName, registerName );
+	String_Appendf( sbHeader, "inline static void %s( %s* mat )\n", identityFuncStr, sseTypeName );
 	String_Append(  sbHeader, "{\n" );
 	for ( u32 row = 0; row < numRows; row++ ) {
 		String_Appendf( sbHeader, "\t// row %d\n", row );
@@ -77,7 +77,7 @@ void Gen_SSE_MatrixIdentity( const genType_t type, const u32 numRows, const u32 
 	String_Append(  sbHeader, "\n" );
 }
 
-void Gen_SSE_MatrixTranspose( const genType_t type, const u32 numRows, const u32 numCols, stringBuilder_t* sbHeader ) {
+void Gen_SSE_MatrixTranspose( const genLanguage_t language, const genType_t type, const u32 numRows, const u32 numCols, stringBuilder_t* sbHeader ) {
 	assert( numRows <= GEN_COMPONENT_COUNT_MAX );
 	assert( numRows >= GEN_COMPONENT_COUNT_MIN );
 	assert( numCols <= GEN_COMPONENT_COUNT_MAX );
@@ -87,22 +87,22 @@ void Gen_SSE_MatrixTranspose( const genType_t type, const u32 numRows, const u32
 		return;
 	}
 
-	char fullTypeName[GEN_STRING_LENGTH_TYPE_NAME];
-	Gen_GetFullTypeName( type, numRows, numCols, fullTypeName );
-
 	char transposedTypeName[GEN_STRING_LENGTH_TYPE_NAME];
 	Gen_GetFullTypeName( type, numCols, numRows, transposedTypeName );
 
 	char sseTypeName[GEN_STRING_LENGTH_SSE_INPUT_NAME];
-	Gen_SSE_GetFullTypeName( fullTypeName, sseTypeName );
+	Gen_SSE_GetFullTypeName( type, numRows, numCols, sseTypeName );
 
 	char sseTransposedName[GEN_STRING_LENGTH_SSE_INPUT_NAME];
-	Gen_SSE_GetFullTypeName( transposedTypeName, sseTransposedName );
+	Gen_SSE_GetFullTypeName( type, numCols, numRows, sseTransposedName );
 
 	const char* registerName = Gen_SSE_GetRegisterName( type );
 
-	Doc_SSE_MatrixTranspose( sbHeader, fullTypeName, numRows, numCols, registerName );
-	String_Appendf( sbHeader, "inline void transpose_sse( const %s* in, %s* out )\n", sseTypeName, sseTransposedName );
+	char transposeFuncStr[GEN_STRING_LENGTH_FUNCTION_NAME];
+	Gen_SSE_GetFuncNameTranspose( language, type, numRows, numCols, transposeFuncStr );
+
+	Doc_SSE_MatrixTranspose( sbHeader, sseTypeName, numRows, numCols, registerName );
+	String_Appendf( sbHeader, "inline static void %s( const %s* in, %s* out )\n", transposeFuncStr, sseTypeName, sseTransposedName );
 	String_Append(  sbHeader, "{\n" );
 	String_Append(  sbHeader, "\tassert( in );\n" );
 	String_Append(  sbHeader, "\tassert( out );\n" );
@@ -120,7 +120,7 @@ void Gen_SSE_MatrixTranspose( const genType_t type, const u32 numRows, const u32
 	String_Append(  sbHeader, "\n" );
 }
 
-void Gen_SSE_MatrixDeterminant( const genType_t type, const u32 numRows, const u32 numCols, stringBuilder_t* sbHeader ) {
+void Gen_SSE_MatrixDeterminant( const genLanguage_t language, const genType_t type, const u32 numRows, const u32 numCols, stringBuilder_t* sbHeader ) {
 	assert( numRows <= GEN_COMPONENT_COUNT_MAX );
 	assert( numRows >= GEN_COMPONENT_COUNT_MIN );
 	assert( numCols <= GEN_COMPONENT_COUNT_MAX );
@@ -134,26 +134,27 @@ void Gen_SSE_MatrixDeterminant( const genType_t type, const u32 numRows, const u
 		return;
 	}
 
-	char fullTypeName[GEN_STRING_LENGTH_TYPE_NAME];
-	Gen_GetFullTypeName( type, numRows, numCols, fullTypeName );
-
 	char sseTypeName[GEN_STRING_LENGTH_SSE_INPUT_NAME];
-	Gen_SSE_GetFullTypeName( fullTypeName, sseTypeName );
+	Gen_SSE_GetFullTypeName( type, numRows, numCols, sseTypeName );
 
 	const char* registerName = Gen_SSE_GetRegisterName( type );
 
 	const char* macroNegate = Gen_SSE_GetMacroNameNegate( type );
 
 	char addFuncStr[GEN_STRING_LENGTH_SSE_INTRINSIC];
-	char subFuncStr[GEN_STRING_LENGTH_SSE_INTRINSIC];
-	char mulFuncStr[GEN_STRING_LENGTH_SSE_INTRINSIC];
-
 	Gen_SSE_GetIntrinsicArithmetic( type, GEN_OP_ARITHMETIC_ADD, addFuncStr );
+
+	char subFuncStr[GEN_STRING_LENGTH_SSE_INTRINSIC];
 	Gen_SSE_GetIntrinsicArithmetic( type, GEN_OP_ARITHMETIC_SUB, subFuncStr );
+
+	char mulFuncStr[GEN_STRING_LENGTH_SSE_INTRINSIC];
 	Gen_SSE_GetIntrinsicArithmetic( type, GEN_OP_ARITHMETIC_MUL, mulFuncStr );
 
-	Doc_SSE_MatrixDeterminant( sbHeader, fullTypeName, numRows, numCols, registerName );
-	String_Appendf( sbHeader, "inline void determinant_sse( const %s* in, %s* out_result )\n", sseTypeName, registerName );
+	char determinantFuncStr[GEN_STRING_LENGTH_FUNCTION_NAME];
+	Gen_SSE_GetFuncNameDeterminant( language, type, numRows, numCols, determinantFuncStr );
+
+	Doc_SSE_MatrixDeterminant( sbHeader, sseTypeName, numRows, numCols, registerName );
+	String_Appendf( sbHeader, "inline static void %s( const %s* in, %s* out_result )\n", determinantFuncStr, sseTypeName, registerName );
 	String_Append(  sbHeader, "{\n" );
 	String_Append(  sbHeader, "\tassert( in );\n" );
 	String_Append(  sbHeader, "\tassert( out_result );\n" );
@@ -281,7 +282,7 @@ void Gen_SSE_MatrixDeterminant( const genType_t type, const u32 numRows, const u
 	String_Append( sbHeader, "\n" );
 }
 
-void Gen_SSE_MatrixInverse( const genType_t type, const u32 numRows, const u32 numCols, stringBuilder_t* sbHeader ) {
+void Gen_SSE_MatrixInverse( const genLanguage_t language, const genType_t type, const u32 numRows, const u32 numCols, stringBuilder_t* sbHeader ) {
 	assert( numRows <= GEN_COMPONENT_COUNT_MAX );
 	assert( numRows >= GEN_COMPONENT_COUNT_MIN );
 	assert( numCols <= GEN_COMPONENT_COUNT_MAX );
@@ -295,11 +296,8 @@ void Gen_SSE_MatrixInverse( const genType_t type, const u32 numRows, const u32 n
 		return;
 	}
 
-	char fullTypeName[GEN_STRING_LENGTH_TYPE_NAME];
-	Gen_GetFullTypeName( type, numRows, numCols, fullTypeName );
-
 	char sseTypeName[GEN_STRING_LENGTH_SSE_INPUT_NAME];
-	Gen_SSE_GetFullTypeName( fullTypeName, sseTypeName );
+	Gen_SSE_GetFullTypeName( type, numRows, numCols, sseTypeName );
 
 	const char* registerName = Gen_SSE_GetRegisterName( type );
 
@@ -308,15 +306,22 @@ void Gen_SSE_MatrixInverse( const genType_t type, const u32 numRows, const u32 n
 	const char* rcpFuncStr = Gen_SSE_GetIntrinsicRcp( type );
 
 	char addFuncStr[GEN_STRING_LENGTH_SSE_INTRINSIC];
-	char subFuncStr[GEN_STRING_LENGTH_SSE_INTRINSIC];
-	char mulFuncStr[GEN_STRING_LENGTH_SSE_INTRINSIC];
-
 	Gen_SSE_GetIntrinsicArithmetic( type, GEN_OP_ARITHMETIC_ADD, addFuncStr );
+
+	char subFuncStr[GEN_STRING_LENGTH_SSE_INTRINSIC];
 	Gen_SSE_GetIntrinsicArithmetic( type, GEN_OP_ARITHMETIC_SUB, subFuncStr );
+
+	char mulFuncStr[GEN_STRING_LENGTH_SSE_INTRINSIC];
 	Gen_SSE_GetIntrinsicArithmetic( type, GEN_OP_ARITHMETIC_MUL, mulFuncStr );
 
-	Doc_SSE_MatrixInverse( sbHeader, fullTypeName, numRows, numCols, registerName );
-	String_Appendf( sbHeader, "inline void inverse_sse( const %s* in, %s* out )\n", sseTypeName, sseTypeName );
+	char inverseFuncStr[GEN_STRING_LENGTH_FUNCTION_NAME];
+	Gen_SSE_GetFuncNameInverse( language, type, numRows, numCols, inverseFuncStr );
+
+	char determinantFuncStr[GEN_STRING_LENGTH_FUNCTION_NAME];
+	Gen_SSE_GetFuncNameDeterminant( language, type, numRows, numCols, determinantFuncStr );
+
+	Doc_SSE_MatrixInverse( sbHeader, sseTypeName, numRows, numCols, registerName );
+	String_Appendf( sbHeader, "inline static void %s( const %s* in, %s* out )\n", inverseFuncStr, sseTypeName, sseTypeName );
 	String_Append(  sbHeader, "{\n" );
 	String_Append(  sbHeader, "\tassert( in );\n" );
 	String_Append(  sbHeader, "\tassert( out );\n" );
@@ -325,7 +330,7 @@ void Gen_SSE_MatrixInverse( const genType_t type, const u32 numRows, const u32 n
 	// more efficient method done for 4x4
 	if ( numRows < 4 ) {
 		String_Appendf( sbHeader, "\t%s determinants;\n", registerName );
-		String_Append(  sbHeader, "\tdeterminant_sse( in, &determinants );\n" );
+		String_Appendf( sbHeader, "\t%s( in, &determinants );\n", determinantFuncStr );
 		String_Append(  sbHeader, "\n" );
 		String_Appendf( sbHeader, "\tdeterminants = %s( determinants );\n", rcpFuncStr );
 		String_Append(  sbHeader, "\n" );
@@ -594,7 +599,7 @@ void Gen_SSE_MatrixInverse( const genType_t type, const u32 numRows, const u32 n
 	String_Append(  sbHeader, "\n" );
 }
 
-void Gen_SSE_MatrixArithmeticComponentWise( const genType_t type, const u32 numRows, const u32 numCols, const genOpArithmetic_t op, stringBuilder_t* sbHeader ) {
+void Gen_SSE_MatrixArithmeticComponentWise( const genLanguage_t language, const genType_t type, const u32 numRows, const u32 numCols, const genOpArithmetic_t op, stringBuilder_t* sbHeader ) {
 	assert( numRows <= GEN_COMPONENT_COUNT_MAX );
 	assert( numRows >= GEN_COMPONENT_COUNT_MIN );
 	assert( numCols <= GEN_COMPONENT_COUNT_MAX );
@@ -604,24 +609,19 @@ void Gen_SSE_MatrixArithmeticComponentWise( const genType_t type, const u32 numR
 		return;
 	}
 
-	char fullTypeName[GEN_STRING_LENGTH_TEST_NAME];
-	Gen_GetFullTypeName( type, numRows, numCols, fullTypeName );
-
-	const char* opStr = GEN_OPERATOR_STRINGS_ARITHMETIC[op];
-
-	char function[32];
-	snprintf( function, 32, "comp_%s", opStr );
-
 	char sseTypeName[GEN_STRING_LENGTH_SSE_INPUT_NAME];
-	Gen_SSE_GetFullTypeName( fullTypeName, sseTypeName );
+	Gen_SSE_GetFullTypeName( type, numRows, numCols, sseTypeName );
 
 	const char* registerName = Gen_SSE_GetRegisterName( type );
 
 	char intrinsicStr[GEN_STRING_LENGTH_SSE_INTRINSIC];
 	Gen_SSE_GetIntrinsicArithmetic( type, op, intrinsicStr );
 
-	Doc_SSE_MatrixArithmeticComponentWise( sbHeader, fullTypeName, registerName, op );
-	String_Appendf( sbHeader, "inline void comp_%s_sse( const %s* lhs, const %s* rhs, %s* out )\n", opStr, sseTypeName, sseTypeName, sseTypeName );
+	char funcStr[GEN_STRING_LENGTH_FUNCTION_NAME];
+	Gen_SSE_GetFuncNameComponentWiseArithmeticMatrix( language, type, numRows, numCols, op, funcStr );
+
+	Doc_SSE_MatrixArithmeticComponentWise( sbHeader, sseTypeName, registerName, op );
+	String_Appendf( sbHeader, "inline static void %s( const %s* lhs, const %s* rhs, %s* out )\n", funcStr, sseTypeName, sseTypeName, sseTypeName );
 	String_Append(  sbHeader, "{\n" );
 	String_Append(  sbHeader, "\tassert( lhs );\n" );
 	String_Append(  sbHeader, "\tassert( rhs );\n" );
@@ -642,7 +642,7 @@ void Gen_SSE_MatrixArithmeticComponentWise( const genType_t type, const u32 numR
 	String_Append(  sbHeader, "\n" );
 }
 
-void Gen_SSE_MatrixMultiply( const genType_t type, const u32 numRows, const u32 numCols, stringBuilder_t* sbHeader ) {
+void Gen_SSE_MatrixMultiply( const genLanguage_t language, const genType_t type, const u32 numRows, const u32 numCols, stringBuilder_t* sbHeader ) {
 	assert( numRows <= GEN_COMPONENT_COUNT_MAX );
 	assert( numRows >= GEN_COMPONENT_COUNT_MIN );
 	assert( numCols <= GEN_COMPONENT_COUNT_MAX );
@@ -674,21 +674,27 @@ void Gen_SSE_MatrixMultiply( const genType_t type, const u32 numRows, const u32 
 	Gen_GetFullTypeName( type, 1, numCols, dotVectorTypeString );
 
 	char sseDotName[GEN_STRING_LENGTH_SSE_INPUT_NAME];
-	Gen_SSE_GetFullTypeName( dotVectorTypeString, sseDotName );
+	Gen_SSE_GetFullTypeName( type, 1, numCols, sseDotName );
 
 	char sseLHSName[GEN_STRING_LENGTH_SSE_INPUT_NAME];
-	Gen_SSE_GetFullTypeName( lhsTypeName, sseLHSName );
+	Gen_SSE_GetFullTypeName( type, lhsRows, lhsCols, sseLHSName );
 
 	char sseRHSName[GEN_STRING_LENGTH_SSE_INPUT_NAME];
-	Gen_SSE_GetFullTypeName( rhsTypeName, sseRHSName );
+	Gen_SSE_GetFullTypeName( type, rhsRows, rhsCols, sseRHSName );
 
 	char sseReturnName[GEN_STRING_LENGTH_SSE_INPUT_NAME];
-	Gen_SSE_GetFullTypeName( returnTypeName, sseReturnName );
+	Gen_SSE_GetFullTypeName( type, returnRows, returnCols, sseReturnName );
 
 	const char* registerName = Gen_SSE_GetRegisterName( type );
 
+	char mulFuncStr[GEN_STRING_LENGTH_FUNCTION_NAME];
+	Gen_SSE_GetFuncNameMatrixMultiply( language, type, numRows, numCols, mulFuncStr );
+
+	char dotFuncStr[GEN_STRING_LENGTH_FUNCTION_NAME];
+	Gen_SSE_GetFuncNameDot( language, type, numCols, dotFuncStr );
+
 	Doc_SSE_MatrixMul( sbHeader, lhsTypeName, registerName );
-	String_Appendf( sbHeader, "inline void mul_sse( const %s* lhs, const %s* rhs, %s* out )\n", sseLHSName, sseRHSName, sseReturnName );
+	String_Appendf( sbHeader, "inline static void %s( const %s* lhs, const %s* rhs, %s* out )\n", mulFuncStr, sseLHSName, sseRHSName, sseReturnName );
 	String_Append(  sbHeader, "{\n" );
 	String_Append(  sbHeader, "\tassert( lhs );\n" );
 	String_Append(  sbHeader, "\tassert( rhs );\n" );
@@ -711,7 +717,7 @@ void Gen_SSE_MatrixMultiply( const genType_t type, const u32 numRows, const u32 
 			}
 			String_Append(  sbHeader, "\n" );
 
-			String_Appendf( sbHeader, "\tdot_sse( &dot_lhs, &dot_rhs, &out->m[%d][%d] );\n", row, col );
+			String_Appendf( sbHeader, "\t%s( &dot_lhs, &dot_rhs, &out->m[%d][%d] );\n", dotFuncStr, row, col );
 
 			if ( col != returnCols - 1 ) {
 				String_Append( sbHeader, "\n" );
@@ -726,7 +732,7 @@ void Gen_SSE_MatrixMultiply( const genType_t type, const u32 numRows, const u32 
 	String_Append(  sbHeader, "\n" );
 }
 
-void Gen_SSE_MatrixTranslate( const genType_t type, const u32 numRows, const u32 numCols, stringBuilder_t* sbHeader ) {
+void Gen_SSE_MatrixTranslate( const genLanguage_t language, const genType_t type, const u32 numRows, const u32 numCols, stringBuilder_t* sbHeader ) {
 	assert( numRows <= GEN_COMPONENT_COUNT_MAX );
 	assert( numRows >= GEN_COMPONENT_COUNT_MIN );
 	assert( numCols <= GEN_COMPONENT_COUNT_MAX );
@@ -741,8 +747,8 @@ void Gen_SSE_MatrixTranslate( const genType_t type, const u32 numRows, const u32
 		return;
 	}
 
-	char fullTypeName[GEN_STRING_LENGTH_TYPE_NAME];
-	Gen_GetFullTypeName( type, numRows, numCols, fullTypeName );
+	char sseTypeName[GEN_STRING_LENGTH_TYPE_NAME];
+	Gen_SSE_GetFullTypeName( type, numRows, numCols, sseTypeName );
 
 	const u32 translateVecComponents = numCols - 1;
 
@@ -750,15 +756,18 @@ void Gen_SSE_MatrixTranslate( const genType_t type, const u32 numRows, const u32
 	Gen_GetFullTypeName( type, 1, translateVecComponents, translateVecTypeName );
 
 	char sseTranslateVecName[GEN_STRING_LENGTH_SSE_INPUT_NAME];
-	Gen_SSE_GetFullTypeName( translateVecTypeName, sseTranslateVecName );
+	Gen_SSE_GetFullTypeName( type, 1, translateVecComponents, sseTranslateVecName );
 
 	const char* registerName = Gen_SSE_GetRegisterName( type );
 
 	char addFuncStr[GEN_STRING_LENGTH_SSE_INTRINSIC];
 	Gen_SSE_GetIntrinsicArithmetic( type, GEN_OP_ARITHMETIC_ADD, addFuncStr );
 
-	Doc_SSE_MatrixTranslate( sbHeader, fullTypeName, registerName );
-	String_Appendf( sbHeader, "inline void translate_sse( const %s* column, const %s* vec, %s* out_column )\n", sseTranslateVecName, sseTranslateVecName, sseTranslateVecName );
+	char translateFuncStr[GEN_STRING_LENGTH_FUNCTION_NAME];
+	Gen_SSE_GetFuncNameTranslate( language, type, numRows, numCols, translateFuncStr );
+
+	Doc_SSE_MatrixTranslate( sbHeader, sseTypeName, registerName );
+	String_Appendf( sbHeader, "inline static void %s( const %s* column, const %s* vec, %s* out_column )\n", translateFuncStr, sseTranslateVecName, sseTranslateVecName, sseTranslateVecName );
 	String_Append(  sbHeader, "{\n" );
 	String_Append(  sbHeader, "\tassert( column );\n" );
 	String_Append(  sbHeader, "\tassert( vec );\n" );
@@ -773,7 +782,7 @@ void Gen_SSE_MatrixTranslate( const genType_t type, const u32 numRows, const u32
 	String_Append(  sbHeader, "\n" );
 }
 
-void Gen_SSE_MatrixScale( const genType_t type, const u32 numRows, const u32 numCols, stringBuilder_t* sbHeader ) {
+void Gen_SSE_MatrixScale( const genLanguage_t language, const genType_t type, const u32 numRows, const u32 numCols, stringBuilder_t* sbHeader ) {
 	assert( numRows <= GEN_COMPONENT_COUNT_MAX );
 	assert( numRows >= GEN_COMPONENT_COUNT_MIN );
 	assert( numCols <= GEN_COMPONENT_COUNT_MAX );
@@ -788,22 +797,25 @@ void Gen_SSE_MatrixScale( const genType_t type, const u32 numRows, const u32 num
 		return;
 	}
 
-	char fullTypeName[GEN_STRING_LENGTH_TYPE_NAME];
-	Gen_GetFullTypeName( type, numRows, numCols, fullTypeName );
-
 	const u32 numScaleComponents = numRows - 1;
+
+	char sseTypeName[GEN_STRING_LENGTH_TYPE_NAME];
+	Gen_SSE_GetFullTypeName( type, numRows, numCols, sseTypeName );
 
 	char scaleVecTypeName[GEN_STRING_LENGTH_TYPE_NAME];
 	Gen_GetFullTypeName( type, 1, numScaleComponents, scaleVecTypeName );
 
 	char sseScaleVecName[GEN_STRING_LENGTH_SSE_INPUT_NAME];
-	Gen_SSE_GetFullTypeName( scaleVecTypeName, sseScaleVecName );
+	Gen_SSE_GetFullTypeName( type, 1, numScaleComponents, sseScaleVecName );
 
 	char mulFuncStr[GEN_STRING_LENGTH_SSE_INTRINSIC];
 	Gen_SSE_GetIntrinsicArithmetic( type, GEN_OP_ARITHMETIC_MUL, mulFuncStr );
 
-	Doc_SSE_MatrixScale( sbHeader, fullTypeName );
-	String_Appendf( sbHeader, "inline void scale_sse( const %s* diagonal, const %s* scale, %s* out_diagonal )\n", sseScaleVecName, sseScaleVecName, sseScaleVecName );
+	char scaleFuncStr[GEN_STRING_LENGTH_FUNCTION_NAME];
+	Gen_SSE_GetFuncNameScale( language, type, numRows, numCols, scaleFuncStr );
+
+	Doc_SSE_MatrixScale( sbHeader, sseTypeName );
+	String_Appendf( sbHeader, "inline static void %s( const %s* diagonal, const %s* scale, %s* out_diagonal )\n", scaleFuncStr, sseScaleVecName, sseScaleVecName, sseScaleVecName );
 	String_Append(  sbHeader, "{\n" );
 	String_Append(  sbHeader, "\tassert( diagonal );\n" );
 	String_Append(  sbHeader, "\tassert( scale );\n" );

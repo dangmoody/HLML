@@ -101,14 +101,3 @@ const bool3& bool2x3::operator[]( const uint32_t index ) const
 	return rows[index];
 }
 
-bool operator==( const bool2x3& lhs, const bool2x3& rhs )
-{
-	return lhs[0] == rhs[0]
-		&& lhs[1] == rhs[1];
-}
-
-inline bool operator!=( const bool2x3& lhs, const bool2x3& rhs )
-{
-	return !( operator==( lhs, rhs ) );
-}
-

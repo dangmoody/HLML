@@ -110,15 +110,3 @@ const uint4& uint3x4::operator[]( const uint32_t index ) const
 	return rows[index];
 }
 
-bool operator==( const uint3x4& lhs, const uint3x4& rhs )
-{
-	return lhs[0] == rhs[0]
-		&& lhs[1] == rhs[1]
-		&& lhs[2] == rhs[2];
-}
-
-inline bool operator!=( const uint3x4& lhs, const uint3x4& rhs )
-{
-	return !( operator==( lhs, rhs ) );
-}
-

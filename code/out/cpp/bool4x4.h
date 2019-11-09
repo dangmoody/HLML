@@ -78,11 +78,3 @@ struct bool4x4
 	inline const bool4& operator[]( const uint32_t index ) const;
 };
 
-/// \relates bool4x4
-/// \brief Returns true if the all the components of the left-hand-side bool4x4 match the other one, otherwise returns false.
-inline bool operator==( const bool4x4& lhs, const bool4x4& rhs );
-
-/// \relates bool4x4
-/// \brief Returns true if not all of the components of the left-hand-side bool4x4 match the other one, otherwise returns false.
-inline bool operator!=( const bool4x4& lhs, const bool4x4& rhs );
-

@@ -80,11 +80,3 @@ struct float3x2
 	inline const float2& operator[]( const uint32_t index ) const;
 };
 
-/// \relates float3x2
-/// \brief Returns true if the all the components of the left-hand-side float3x2 match the other one, otherwise returns false.
-inline bool operator==( const float3x2& lhs, const float3x2& rhs );
-
-/// \relates float3x2
-/// \brief Returns true if not all of the components of the left-hand-side float3x2 match the other one, otherwise returns false.
-inline bool operator!=( const float3x2& lhs, const float3x2& rhs );
-

@@ -143,13 +143,3 @@ float3 float3::xzz() const { return float3( x, z, z ); }
 float3 float3::yzz() const { return float3( y, z, z ); }
 float3 float3::zzz() const { return float3( z, z, z ); }
 
-bool operator==( const float3& lhs, const float3& rhs )
-{
-	return floateq( lhs.x, rhs.x ) && floateq( lhs.y, rhs.y ) && floateq( lhs.z, rhs.z );
-}
-
-inline bool operator!=( const float3& lhs, const float3& rhs )
-{
-	return !( operator==( lhs, rhs ) );
-}
-

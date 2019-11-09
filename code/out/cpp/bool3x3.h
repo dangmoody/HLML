@@ -78,11 +78,3 @@ struct bool3x3
 	inline const bool3& operator[]( const uint32_t index ) const;
 };
 
-/// \relates bool3x3
-/// \brief Returns true if the all the components of the left-hand-side bool3x3 match the other one, otherwise returns false.
-inline bool operator==( const bool3x3& lhs, const bool3x3& rhs );
-
-/// \relates bool3x3
-/// \brief Returns true if not all of the components of the left-hand-side bool3x3 match the other one, otherwise returns false.
-inline bool operator!=( const bool3x3& lhs, const bool3x3& rhs );
-

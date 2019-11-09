@@ -64,8 +64,9 @@ struct bool4
 			bool32_t w;
 		};
 
-		bool32_t data[4] = { 0 };
+		bool32_t data[4];
 	};
+
 
 	/// Default constructor.  Initializes all values to zero.
 	inline bool4();
@@ -399,12 +400,4 @@ struct bool4
 #elif defined( _MSC_VER )
 #pragma warning( pop )
 #endif
-
-/// \relates bool4
-/// \brief Returns true if the all the components of the left-hand-side bool4 match the other one, otherwise returns false.
-inline bool operator==( const bool4& lhs, const bool4& rhs );
-
-/// \relates bool4
-/// \brief Returns true if not all of the components of the left-hand-side bool4 match the other one, otherwise returns false.
-inline bool operator!=( const bool4& lhs, const bool4& rhs );
 

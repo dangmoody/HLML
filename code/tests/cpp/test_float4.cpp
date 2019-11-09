@@ -32,18 +32,43 @@ SOFTWARE.
 // EDITING THIS FILE MAY CAUSE SIDE EFFECTS.
 // DO SO AT YOUR OWN RISK.
 
-// also tests equality operators
 TEMPER_TEST( TestAssignment_float4 )
 {
-	float4 a;
+	float4 vec;
 
-	a = float4( 1.0f );
-	TEMPER_EXPECT_TRUE( a == float4( 1.0f ) );
-	TEMPER_EXPECT_TRUE( a != float4( 0.000000f, 1.000000f, 2.000000f, 3.000000f ) );
+	vec.x = 1.0f;
+	vec.y = 1.0f;
+	vec.z = 1.0f;
+	vec.w = 1.0f;
+	TEMPER_EXPECT_TRUE( vec.x == 1.0f );
+	TEMPER_EXPECT_TRUE( vec.y == 1.0f );
+	TEMPER_EXPECT_TRUE( vec.z == 1.0f );
+	TEMPER_EXPECT_TRUE( vec.w == 1.0f );
 
-	a = float4( 0.000000f, 1.000000f, 2.000000f, 3.000000f );
-	TEMPER_EXPECT_TRUE( a == float4( 0.000000f, 1.000000f, 2.000000f, 3.000000f ) );
-	TEMPER_EXPECT_TRUE( a != float4( 1.0f ) );
+	vec.x = 0.0f;
+	vec.y = 1.0f;
+	vec.z = 2.0f;
+	vec.w = 3.0f;
+	TEMPER_EXPECT_TRUE( vec.x == 0.0f );
+	TEMPER_EXPECT_TRUE( vec.y == 1.0f );
+	TEMPER_EXPECT_TRUE( vec.z == 2.0f );
+	TEMPER_EXPECT_TRUE( vec.w == 3.0f );
+
+	TEMPER_PASS();
+}
+
+// also tests equality operators
+TEMPER_TEST( TestCtor_float4 )
+{
+	float4 vec;
+
+	vec = float4( 1.0f );
+	TEMPER_EXPECT_TRUE( vec == float4( 1.0f ) );
+	TEMPER_EXPECT_TRUE( vec != float4( 0.000000f, 1.000000f, 2.000000f, 3.000000f ) );
+
+	vec = float4( 0.000000f, 1.000000f, 2.000000f, 3.000000f );
+	TEMPER_EXPECT_TRUE( vec == float4( 0.000000f, 1.000000f, 2.000000f, 3.000000f ) );
+	TEMPER_EXPECT_TRUE( vec != float4( 1.0f ) );
 
 	TEMPER_PASS();
 }
@@ -52,10 +77,44 @@ TEMPER_TEST( TestArray_float4 )
 {
 	float4 a = float4( 0.000000f, 1.000000f, 2.000000f, 3.000000f );
 
-	TEMPER_EXPECT_TRUE( a[0] == 0.0f );
-	TEMPER_EXPECT_TRUE( a[1] == 1.0f );
-	TEMPER_EXPECT_TRUE( a[2] == 2.0f );
-	TEMPER_EXPECT_TRUE( a[3] == 3.0f );
+	TEMPER_EXPECT_TRUE( a.x == 0.0f );
+	TEMPER_EXPECT_TRUE( a.y == 1.0f );
+	TEMPER_EXPECT_TRUE( a.z == 2.0f );
+	TEMPER_EXPECT_TRUE( a.w == 3.0f );
+
+	TEMPER_PASS();
+}
+
+TEMPER_TEST( TestIncrement_float4 )
+{
+	float4 vec;
+
+	// prefix
+	vec = float4( 0.000000f, 0.000000f, 0.000000f, 0.000000f );
+	++vec;
+	TEMPER_EXPECT_TRUE( vec == float4( 1.000000f, 1.000000f, 1.000000f, 1.000000f ) );
+
+	// postfix
+	vec = float4( 0.000000f, 0.000000f, 0.000000f, 0.000000f );
+	vec++;
+	TEMPER_EXPECT_TRUE( vec == float4( 1.000000f, 1.000000f, 1.000000f, 1.000000f ) );
+
+	TEMPER_PASS();
+}
+
+TEMPER_TEST( TestDecrement_float4 )
+{
+	float4 vec;
+
+	// prefix
+	vec = float4( 1.000000f, 1.000000f, 1.000000f, 1.000000f );
+	--vec;
+	TEMPER_EXPECT_TRUE( vec == float4( 0.000000f, 0.000000f, 0.000000f, 0.000000f ) );
+
+	// postfix
+	vec = float4( 1.000000f, 1.000000f, 1.000000f, 1.000000f );
+	vec--;
+	TEMPER_EXPECT_TRUE( vec == float4( 0.000000f, 0.000000f, 0.000000f, 0.000000f ) );
 
 	TEMPER_PASS();
 }
@@ -104,40 +163,6 @@ TEMPER_TEST( TestArithmeticDivision_float4 )
 	float4 c = a / b;
 
 	TEMPER_EXPECT_TRUE( c == float4( 3.000000f, 3.000000f, 2.000000f, 1.000000f ) );
-
-	TEMPER_PASS();
-}
-
-TEMPER_TEST( TestIncrement_float4 )
-{
-	float4 vec;
-
-	// prefix
-	vec = float4( 0.000000f, 0.000000f, 0.000000f, 0.000000f );
-	++vec;
-	TEMPER_EXPECT_TRUE( vec == float4( 1.000000f, 1.000000f, 1.000000f, 1.000000f ) );
-
-	// postfix
-	vec = float4( 0.000000f, 0.000000f, 0.000000f, 0.000000f );
-	vec++;
-	TEMPER_EXPECT_TRUE( vec == float4( 1.000000f, 1.000000f, 1.000000f, 1.000000f ) );
-
-	TEMPER_PASS();
-}
-
-TEMPER_TEST( TestDecrement_float4 )
-{
-	float4 vec;
-
-	// prefix
-	vec = float4( 1.000000f, 1.000000f, 1.000000f, 1.000000f );
-	--vec;
-	TEMPER_EXPECT_TRUE( vec == float4( 0.000000f, 0.000000f, 0.000000f, 0.000000f ) );
-
-	// postfix
-	vec = float4( 1.000000f, 1.000000f, 1.000000f, 1.000000f );
-	vec--;
-	TEMPER_EXPECT_TRUE( vec == float4( 0.000000f, 0.000000f, 0.000000f, 0.000000f ) );
 
 	TEMPER_PASS();
 }
@@ -212,6 +237,50 @@ TEMPER_TEST( TestLength_Scalar_float4 )
 	TEMPER_PASS();
 }
 
+TEMPER_TEST( TestLength_SSE_float4 )
+{
+	float components[4][4] =
+	{
+		{ 2.000000f, 2.000000f, 2.000000f, 2.000000f },
+		{ 2.000000f, 2.000000f, 2.000000f, 2.000000f },
+		{ 2.000000f, 2.000000f, 2.000000f, 2.000000f },
+		{ 2.000000f, 2.000000f, 2.000000f, 2.000000f }
+	};
+
+	float4_sse_t in;
+
+	in.x = _mm_load_ps( components[0] );
+	in.y = _mm_load_ps( components[1] );
+	in.z = _mm_load_ps( components[2] );
+	in.w = _mm_load_ps( components[3] );
+
+	__m128 results;
+
+	// lengthsq
+	lengthsq_sse( &in, &results );
+
+	float squaredLengthResults[4];
+	_mm_store_ps( squaredLengthResults, results );
+
+	TEMPER_EXPECT_TRUE( floateq( squaredLengthResults[0], 16.0f ) );
+	TEMPER_EXPECT_TRUE( floateq( squaredLengthResults[1], 16.0f ) );
+	TEMPER_EXPECT_TRUE( floateq( squaredLengthResults[2], 16.0f ) );
+	TEMPER_EXPECT_TRUE( floateq( squaredLengthResults[3], 16.0f ) );
+
+	// length
+	length_sse( &in, &results );
+
+	float lengthResults[4];
+	_mm_store_ps( lengthResults, results );
+
+	TEMPER_EXPECT_TRUE( floateq( lengthResults[0], 4.0f ) );
+	TEMPER_EXPECT_TRUE( floateq( lengthResults[1], 4.0f ) );
+	TEMPER_EXPECT_TRUE( floateq( lengthResults[2], 4.0f ) );
+	TEMPER_EXPECT_TRUE( floateq( lengthResults[3], 4.0f ) );
+
+	TEMPER_PASS();
+}
+
 TEMPER_TEST( TestNormalized_Scalar_float4 )
 {
 	float4 vec = float4( 5.000000f, 4.000000f, 3.000000f, 2.000000f );
@@ -219,6 +288,31 @@ TEMPER_TEST( TestNormalized_Scalar_float4 )
 
 	TEMPER_EXPECT_TRUE( floateq( length( vec ), 1.0f ) );
 
+	TEMPER_PASS();
+}
+
+TEMPER_TEST( TestNormalized_SSE_float4 )
+{
+	__m128 results;
+	float4_sse_t in;
+	float4_sse_t in_normalised;
+
+	in.x = _mm_set1_ps( 5.0f );
+	in.y = _mm_set1_ps( 4.0f );
+	in.z = _mm_set1_ps( 3.0f );
+	in.w = _mm_set1_ps( 2.0f );
+
+	normalize_sse( &in, &in_normalised );
+	length_sse( &in_normalised, &results );
+
+	float normalizeResults[4];
+	_mm_store_ps( normalizeResults, results );
+
+	const float epsilon = 0.000100f;
+	TEMPER_EXPECT_TRUE( floateq_eps( normalizeResults[0], 1.0f, epsilon ) );
+	TEMPER_EXPECT_TRUE( floateq_eps( normalizeResults[1], 1.0f, epsilon ) );
+	TEMPER_EXPECT_TRUE( floateq_eps( normalizeResults[2], 1.0f, epsilon ) );
+	TEMPER_EXPECT_TRUE( floateq_eps( normalizeResults[3], 1.0f, epsilon ) );
 	TEMPER_PASS();
 }
 
@@ -232,13 +326,119 @@ TEMPER_TEST( TestDot_Scalar_float4 )
 	TEMPER_PASS();
 }
 
+TEMPER_TEST( TestDot_SSE_float4 )
+{
+	float componentsLHS[4][4] =
+	{
+		{ 0.000000f, 0.000000f, 0.000000f, 0.000000f },
+		{ 1.000000f, 1.000000f, 1.000000f, 1.000000f },
+		{ 0.000000f, 0.000000f, 0.000000f, 0.000000f },
+		{ 0.000000f, 0.000000f, 0.000000f, 0.000000f }
+	};
+
+	float componentsRHS[4][4] =
+	{
+		{ 0.000000f, 0.000000f, 0.000000f, 0.000000f },
+		{ -1.000000f, -1.000000f, -1.000000f, -1.000000f },
+		{ 0.000000f, 0.000000f, 0.000000f, 0.000000f },
+		{ 0.000000f, 0.000000f, 0.000000f, 0.000000f }
+	};
+
+	float4_sse_t lhs;
+	lhs.x = _mm_load_ps( componentsLHS[0] );
+	lhs.y = _mm_load_ps( componentsLHS[1] );
+	lhs.z = _mm_load_ps( componentsLHS[2] );
+	lhs.w = _mm_load_ps( componentsLHS[3] );
+
+	float4_sse_t rhs;
+	rhs.x = _mm_load_ps( componentsRHS[0] );
+	rhs.y = _mm_load_ps( componentsRHS[1] );
+	rhs.z = _mm_load_ps( componentsRHS[2] );
+	rhs.w = _mm_load_ps( componentsRHS[3] );
+
+	__m128 results;
+	dot_sse( &lhs, &rhs, &results );
+
+	float dotResults[4];
+	_mm_store_ps( dotResults, results );
+
+	TEMPER_EXPECT_TRUE( floateq( dotResults[0], -1.0f ) );
+	TEMPER_EXPECT_TRUE( floateq( dotResults[1], -1.0f ) );
+	TEMPER_EXPECT_TRUE( floateq( dotResults[2], -1.0f ) );
+	TEMPER_EXPECT_TRUE( floateq( dotResults[3], -1.0f ) );
+
+	TEMPER_PASS();
+}
+
 TEMPER_TEST( TestCross_Scalar_float4 )
 {
-	float4 left = float4( -1.000000f, 0.000000f, 0.000000f, 0.000000f );
+	float4 left    = float4( -1.000000f, 0.000000f, 0.000000f, 0.000000f );
 	float4 forward = float4( 0.000000f, 0.000000f, 1.000000f, 0.000000f );
-	float4 up = float4( 0.000000f, 1.000000f, 0.000000f, 0.000000f );
+	float4 up      = float4( 0.000000f, 1.000000f, 0.000000f, 0.000000f );
 
 	TEMPER_EXPECT_TRUE( cross( left, forward ) == up );
+
+	TEMPER_PASS();
+}
+
+TEMPER_TEST( TestCross_SSE_float4 )
+{
+	float componentsLeft[4][4] =
+	{
+		{ -1.000000f, -1.000000f, -1.000000f, -1.000000f },	// 4 x components
+		{ 0.000000f, 0.000000f, 0.000000f, 0.000000f },	// 4 y components
+		{ 0.000000f, 0.000000f, 0.000000f, 0.000000f },	// 4 z components
+		{ 0.000000f, 0.000000f, 0.000000f, 0.000000f }	// 4 w components
+	};
+
+	float componentsForward[4][4] =
+	{
+		{ 0.000000f, 0.000000f, 0.000000f, 0.000000f },	// 4 x components
+		{ 0.000000f, 0.000000f, 0.000000f, 0.000000f },	// 4 y components
+		{ 1.000000f, 1.000000f, 1.000000f, 1.000000f },	// 4 z components
+		{ 0.000000f, 0.000000f, 0.000000f, 0.000000f }	// 4 w components
+	};
+
+	float4_sse_t left;
+	left.x = _mm_load_ps( componentsLeft[0] );
+	left.y = _mm_load_ps( componentsLeft[1] );
+	left.z = _mm_load_ps( componentsLeft[2] );
+	left.w = _mm_load_ps( componentsLeft[3] );
+
+	float4_sse_t forward;
+	forward.x = _mm_load_ps( componentsForward[0] );
+	forward.y = _mm_load_ps( componentsForward[1] );
+	forward.z = _mm_load_ps( componentsForward[2] );
+	forward.w = _mm_load_ps( componentsForward[3] );
+
+	float4_sse_t up;
+
+	cross_sse( &left, &forward, &up );
+
+	float crossResults[4];
+	_mm_store_ps( crossResults, up.x );
+	TEMPER_EXPECT_TRUE( floateq( crossResults[0], 0.000000f ) );
+	TEMPER_EXPECT_TRUE( floateq( crossResults[1], 0.000000f ) );
+	TEMPER_EXPECT_TRUE( floateq( crossResults[2], 0.000000f ) );
+	TEMPER_EXPECT_TRUE( floateq( crossResults[3], 0.000000f ) );
+
+	_mm_store_ps( crossResults, up.y );
+	TEMPER_EXPECT_TRUE( floateq( crossResults[0], 1.000000f ) );
+	TEMPER_EXPECT_TRUE( floateq( crossResults[1], 1.000000f ) );
+	TEMPER_EXPECT_TRUE( floateq( crossResults[2], 1.000000f ) );
+	TEMPER_EXPECT_TRUE( floateq( crossResults[3], 1.000000f ) );
+
+	_mm_store_ps( crossResults, up.z );
+	TEMPER_EXPECT_TRUE( floateq( crossResults[0], 0.000000f ) );
+	TEMPER_EXPECT_TRUE( floateq( crossResults[1], 0.000000f ) );
+	TEMPER_EXPECT_TRUE( floateq( crossResults[2], 0.000000f ) );
+	TEMPER_EXPECT_TRUE( floateq( crossResults[3], 0.000000f ) );
+
+	_mm_store_ps( crossResults, up.w );
+	TEMPER_EXPECT_TRUE( floateq( crossResults[0], 0.000000f ) );
+	TEMPER_EXPECT_TRUE( floateq( crossResults[1], 0.000000f ) );
+	TEMPER_EXPECT_TRUE( floateq( crossResults[2], 0.000000f ) );
+	TEMPER_EXPECT_TRUE( floateq( crossResults[3], 0.000000f ) );
 
 	TEMPER_PASS();
 }
@@ -258,7 +458,7 @@ TEMPER_TEST( TestSaturate_float4 )
 	float4 answer = float4( 0.000000f, 1.000000f, 1.000000f, 1.000000f );
 
 	float4 vec = float4( -1.000000f, 2.000000f, 4.000000f, 6.000000f );
-	float4 clamped = saturatef( vec );
+	float4 clamped = saturate( vec );
 
 	TEMPER_EXPECT_TRUE( clamped == answer );
 
@@ -271,7 +471,7 @@ TEMPER_TEST( TestLerp_float4 )
 
 	float4 a = float4( 0.000000f, 1.000000f, 0.000000f, 0.000000f );
 	float4 b = float4( 1.000000f, 0.000000f, 0.000000f, 0.000000f );
-	float4 lerped = lerpf( a, b, 0.5f );
+	float4 lerped = lerp( a, b, 0.5f );
 
 	TEMPER_EXPECT_TRUE( lerped == answer );
 
@@ -285,7 +485,7 @@ TEMPER_TEST( TestStep_float4 )
 	float4 a = float4( 1.000000f, 2.000000f, 3.000000f, 4.000000f );
 	float4 b = float4( 4.000000f, 3.000000f, 2.000000f, 1.000000f );
 
-	TEMPER_EXPECT_TRUE( stepf( a, b ) == answer );
+	TEMPER_EXPECT_TRUE( step( a, b ) == answer );
 
 	TEMPER_PASS();
 }
@@ -301,16 +501,16 @@ TEMPER_TEST( TestSmoothstep_float4 )
 	float4 low  = float4( 0.000000f, 0.000000f, 0.000000f, 0.000000f );
 	float4 high = float4( 1.000000f, 1.000000f, 1.000000f, 1.000000f );
 
-	answer = smoothstepf( low, high, float4( 0.200000f, 0.200000f, 0.200000f, 0.200000f ) );
+	answer = smoothstep( low, high, float4( 0.200000f, 0.200000f, 0.200000f, 0.200000f ) );
 	TEMPER_EXPECT_TRUE( answer == answerInRangeSmoothstep );
 
-	answer = smoothstepf( low, high, float4( 1.200000f, 1.200000f, 1.200000f, 1.200000f ) );
+	answer = smoothstep( low, high, float4( 1.200000f, 1.200000f, 1.200000f, 1.200000f ) );
 	TEMPER_EXPECT_TRUE( answer == answerClampedSmoothstep );
 
-	answer = smootherstepf( low, high, float4( 0.200000f, 0.200000f, 0.200000f, 0.200000f ) );
+	answer = smootherstep( low, high, float4( 0.200000f, 0.200000f, 0.200000f, 0.200000f ) );
 	TEMPER_EXPECT_TRUE( answer == answerInRangeSmootherstep );
 
-	answer = smootherstepf( low, high, float4( 1.200000f, 1.200000f, 1.200000f, 1.200000f ) );
+	answer = smootherstep( low, high, float4( 1.200000f, 1.200000f, 1.200000f, 1.200000f ) );
 	TEMPER_EXPECT_TRUE( answer == answerClampedSmootherstep );
 
 	TEMPER_PASS();
@@ -319,18 +519,24 @@ TEMPER_TEST( TestSmoothstep_float4 )
 TEMPER_SUITE( Test_float4 )
 {
 	TEMPER_RUN_TEST( TestAssignment_float4 );
+	TEMPER_RUN_TEST( TestCtor_float4 );
 	TEMPER_RUN_TEST( TestArray_float4 );
+	TEMPER_RUN_TEST( TestIncrement_float4 );
+	TEMPER_RUN_TEST( TestDecrement_float4 );
 	TEMPER_RUN_TEST( TestArithmeticAddition_float4 );
 	TEMPER_RUN_TEST( TestArithmeticSubtraction_float4 );
 	TEMPER_RUN_TEST( TestArithmeticMultiplication_float4 );
 	TEMPER_RUN_TEST( TestArithmeticDivision_float4 );
-	TEMPER_RUN_TEST( TestIncrement_float4 );
-	TEMPER_RUN_TEST( TestDecrement_float4 );
 	TEMPER_RUN_TEST( TestRelational_float4 );
 	TEMPER_RUN_TEST( TestLength_Scalar_float4 );
+	TEMPER_RUN_TEST( TestLength_SSE_float4 );
+	TEMPER_RUN_TEST( TestLength_SSE_float4 );
 	TEMPER_RUN_TEST( TestNormalized_Scalar_float4 );
+	TEMPER_RUN_TEST( TestNormalized_SSE_float4 );
 	TEMPER_RUN_TEST( TestDot_Scalar_float4 );
+	TEMPER_RUN_TEST( TestDot_SSE_float4 );
 	TEMPER_RUN_TEST( TestCross_Scalar_float4 );
+	TEMPER_RUN_TEST( TestCross_SSE_float4 );
 	TEMPER_RUN_TEST( TestAngle_Scalar_float4 );
 	TEMPER_RUN_TEST( TestSaturate_float4 );
 	TEMPER_RUN_TEST( TestLerp_float4 );

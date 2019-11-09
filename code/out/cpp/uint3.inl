@@ -141,13 +141,3 @@ uint3 uint3::xzz() const { return uint3( x, z, z ); }
 uint3 uint3::yzz() const { return uint3( y, z, z ); }
 uint3 uint3::zzz() const { return uint3( z, z, z ); }
 
-bool operator==( const uint3& lhs, const uint3& rhs )
-{
-	return ( lhs.x == rhs.x ) && ( lhs.y == rhs.y ) && ( lhs.z == rhs.z );
-}
-
-inline bool operator!=( const uint3& lhs, const uint3& rhs )
-{
-	return !( operator==( lhs, rhs ) );
-}
-

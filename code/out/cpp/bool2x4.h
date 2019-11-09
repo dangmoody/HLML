@@ -80,11 +80,3 @@ struct bool2x4
 	inline const bool4& operator[]( const uint32_t index ) const;
 };
 
-/// \relates bool2x4
-/// \brief Returns true if the all the components of the left-hand-side bool2x4 match the other one, otherwise returns false.
-inline bool operator==( const bool2x4& lhs, const bool2x4& rhs );
-
-/// \relates bool2x4
-/// \brief Returns true if not all of the components of the left-hand-side bool2x4 match the other one, otherwise returns false.
-inline bool operator!=( const bool2x4& lhs, const bool2x4& rhs );
-

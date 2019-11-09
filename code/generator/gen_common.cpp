@@ -23,6 +23,14 @@ along with The HLML Generator.  If not, see <http://www.gnu.org/licenses/>.
 */
 #include "gen_common.h"
 #include "gen_doc_common.h"
+#include "gen_common_sse.h"
+#include "gen_scalar_cpp.h"
+#include "gen_vector_cpp.h"
+#include "gen_matrix_cpp.h"
+#include "gen_funcs_vector.h"
+#include "gen_funcs_matrix.h"
+#include "gen_funcs_vector_sse.h"
+#include "gen_funcs_matrix_sse.h"
 
 #include "defines.h"
 #include "string_builder.h"
@@ -33,6 +41,10 @@ along with The HLML Generator.  If not, see <http://www.gnu.org/licenses/>.
 #include <assert.h>
 
 static void GenerateOperatorIncrementInl( const genType_t type, const u32 numRows, const u32 numCols, const genOpIncrement_t op, stringBuilder_t* sb ) {
+	assert( numRows >= 1 );	// 1 for vectors
+	assert( numRows <= GEN_COMPONENT_COUNT_MAX );
+	assert( numCols >= GEN_COMPONENT_COUNT_MIN );
+	assert( numCols <= GEN_COMPONENT_COUNT_MAX );
 	assert( sb );
 
 	u32 numComponents = ( numRows == 1 ) ? numCols : numRows;
@@ -67,123 +79,15 @@ static void GenerateOperatorIncrementInl( const genType_t type, const u32 numRow
 	String_Append( sb, "\n" );
 }
 
-static void InlGenerateOperatorRelational( const genType_t type, const u32 numRows, const u32 numCols, const genOpRelational_t op, stringBuilder_t* sb ) {
-	assert( sb );
 
-	u32 numComponents = ( numRows == 1 ) ? numCols : numRows;
+void Gen_HeaderMain( const genLanguage_t language ) {
+	const char* outGenFolder = GEN_FOLDER_PATHS_OUT_GEN[language];
+	const char* fileExtension = ( language == GEN_LANGUAGE_CPP ) ? "inl" : "h";
 
-	char fullTypeName[GEN_STRING_LENGTH_TYPE_NAME];
-	Gen_GetFullTypeName( type, numRows, numCols, fullTypeName );
-
-	char boolReturnTypeName[GEN_STRING_LENGTH_TYPE_NAME];
-	Gen_GetFullTypeName( GEN_TYPE_BOOL, numRows, numCols, boolReturnTypeName );
-
-	const char* opStr = GEN_OPERATORS_RELATIONAL[op];
-
-	Doc_OperatorRelational( sb, fullTypeName, numRows, numCols, op );
-	String_Appendf( sb, "inline %s operator%s( const %s& lhs, const %s& rhs )\n", boolReturnTypeName, opStr, fullTypeName, fullTypeName );
-	String_Append(  sb, "{\n" );
-	String_Appendf( sb, "\treturn %s(\n", boolReturnTypeName );
-
-	for ( u32 i = 0; i < numComponents; i++ ) {
-		String_Appendf( sb, "\t\tlhs[%d] %s rhs[%d]", i, opStr, i );
-
-		if ( i != numComponents - 1 ) {
-			String_Append( sb, "," );
-		}
-
-		String_Append( sb, "\n" );
-	}
-	String_Append( sb, "\t);\n" );
-	String_Append( sb, "}\n" );
-	String_Append( sb, "\n" );
-}
-
-static void InlGenerateOperatorBitwiseScalar( const genType_t type, const u32 numRows, const u32 numCols, const genOpBitwise_t op, stringBuilder_t* sb ) {
-	assert( sb );
-
-	u32 numComponents = ( numRows == 1 ) ? numCols : numRows;
-
-	char fullTypeName[GEN_STRING_LENGTH_TYPE_NAME];
-	Gen_GetFullTypeName( type, numRows, numCols, fullTypeName );
-
-	const char* memberTypeString = Gen_GetMemberTypeString( type );
-
-	const char* opStr = GEN_OPERATORS_BITWISE[op];
-
-	// main bitwise operator
-	Doc_OperatorBitwiseScalar( sb, fullTypeName, op );
-	String_Appendf( sb, "inline %s operator%s( const %s& lhs, const %s& rhs )\n", fullTypeName, opStr, fullTypeName, memberTypeString );
-	String_Append(  sb, "{\n" );
-	String_Appendf( sb, "\treturn %s(\n", fullTypeName );
-	for ( u32 i = 0; i < numComponents; i++ ) {
-		String_Appendf( sb, "\t\tlhs[%d] %s rhs", i, opStr );
-
-		if ( i != numComponents - 1 ) {
-			String_Append( sb, "," );
-		}
-
-		String_Append( sb, "\n" );
-	}
-	String_Append( sb, "\t);\n" );
-	String_Append( sb, "}\n" );
-	String_Append( sb, "\n" );
-
-	// compound bitwise operator
-	Doc_OperatorCompoundBitwiseScalar( sb, fullTypeName, op );
-	String_Appendf( sb, "inline %s operator%s=( %s& lhs, const %s& rhs )\n", fullTypeName, opStr, fullTypeName, memberTypeString );
-	String_Append(  sb, "{\n" );
-	String_Appendf( sb, "\treturn ( lhs = lhs %s rhs );\n", opStr );
-	String_Append(  sb, "}\n" );
-	String_Append(  sb, "\n" );
-}
-
-static void InlGenerateOperatorBitwiseRhsType( const genType_t type, const u32 numRows, const u32 numCols, const genOpBitwise_t op, stringBuilder_t* sb ) {
-	assert( sb );
-
-	u32 numComponents = ( numRows == 1 ) ? numCols : numRows;
-
-	char fullTypeName[GEN_STRING_LENGTH_TYPE_NAME];
-	Gen_GetFullTypeName( type, numRows, numCols, fullTypeName );
-
-	const char* opStr = GEN_OPERATORS_BITWISE[op];
-
-	// main bitwise operator
-	Doc_OperatorBitwiseRhsType( sb, fullTypeName, op );
-	String_Appendf( sb, "inline %s operator%s( const %s& lhs, const %s& rhs )\n", fullTypeName, opStr, fullTypeName, fullTypeName );
-	String_Append(  sb, "{\n" );
-	String_Appendf( sb, "\treturn %s(\n", fullTypeName );
-	for ( u32 i = 0; i < numComponents; i++ ) {
-		String_Appendf( sb, "\t\tlhs[%d] %s rhs[%d]", i, opStr, i );
-
-		if ( i != numComponents - 1 ) {
-			String_Append( sb, "," );
-		}
-
-		String_Append( sb, "\n" );
-	}
-	String_Append( sb, "\t);\n" );
-	String_Append( sb, "}\n" );
-	String_Append( sb, "\n" );
-
-	// compound bitwise operator
-	Doc_OperatorCompoundBitwiseRhsType( sb, fullTypeName, op );
-	String_Appendf( sb, "inline %s operator%s=( %s& lhs, const %s& rhs )\n", fullTypeName, opStr, fullTypeName, fullTypeName );
-	String_Append(  sb, "{\n" );
-	String_Appendf( sb, "\treturn ( lhs = lhs %s rhs );\n", opStr );
-	String_Append(  sb, "}\n" );
-	String_Append(  sb, "\n" );
-}
-
-
-void Gen_HeaderMain( const char* includeSubFolder ) {
-	assert( includeSubFolder );
-	assert( includeSubFolder[strlen( includeSubFolder ) - 1] == '/' );
-
-	printf( "%s...", GEN_HEADER_MAIN );
+	printf( "%s%s...", outGenFolder, GEN_HEADER_MAIN );
 
 	char headerFilePath[1024] = { 0 };
-	snprintf( headerFilePath, 1024, "%s%s%s", GEN_OUT_FOLDER_PATH, includeSubFolder, GEN_HEADER_MAIN );
+	snprintf( headerFilePath, 1024, "%s%s", outGenFolder, GEN_HEADER_MAIN );
 
 	stringBuilder_t sb = String_Create( 4 * KB_TO_BYTES );
 
@@ -201,7 +105,7 @@ void Gen_HeaderMain( const char* includeSubFolder ) {
 			char fullTypeName[GEN_STRING_LENGTH_TYPE_NAME];
 			Gen_GetFullTypeName( type, 1, componentIndex, fullTypeName );
 
-			String_Appendf( &sb, "#include \"%s.inl\"\n", fullTypeName );
+			String_Appendf( &sb, "#include \"%s.%s\"\n", fullTypeName, fileExtension );
 		}
 
 		String_Append( &sb, "\n" );
@@ -216,7 +120,7 @@ void Gen_HeaderMain( const char* includeSubFolder ) {
 				char fullTypeName[GEN_STRING_LENGTH_TYPE_NAME];
 				Gen_GetFullTypeName( type, rows, cols, fullTypeName );
 
-				String_Appendf( &sb, "#include \"%s.inl\"\n", fullTypeName );
+				String_Appendf( &sb, "#include \"%s.%s\"\n", fullTypeName, fileExtension );
 			}
 		}
 
@@ -224,7 +128,7 @@ void Gen_HeaderMain( const char* includeSubFolder ) {
 	}
 
 	// include operators
-	if ( strncmp( includeSubFolder, "cpp", strlen( includeSubFolder ) ) == 0 ) { // DM!!! HACK
+	if ( language == GEN_LANGUAGE_CPP ) {
 		String_Appendf( &sb, "#include \"" GEN_HEADER_OPERATORS_VECTOR "\"\n" );
 		String_Appendf( &sb, "#include \"" GEN_HEADER_OPERATORS_MATRIX "\"\n" );
 		String_Append(  &sb, "\n" );
@@ -248,12 +152,508 @@ void Gen_HeaderMain( const char* includeSubFolder ) {
 	printf( "OK.\n" );
 }
 
-void Gen_TestsMain( const char* includeSubFolder ) {
-	assert( includeSubFolder );
-	assert( includeSubFolder[strlen(includeSubFolder) - 1] == '/' );
+void Gen_FunctionsScalar( const char* folder ) {
+	assert( folder );
+	assert( folder[strlen( folder ) - 1] == '/' );
+
+	char fileNameHeader[1024];
+	snprintf( fileNameHeader, 1024, "%s%s", folder, GEN_HEADER_FUNCTIONS_SCALAR );
+
+	stringBuilder_t sb = String_Create( 9 * KB_TO_BYTES );
+
+	String_Append( &sb, GEN_FILE_HEADER );
+	String_Append( &sb,
+		"#pragma once\n"
+		"\n"
+		"#include \"../" GEN_HEADER_CONSTANTS "\"\n"
+		"\n"
+		"#include <math.h>\n"
+		"#include <stdint.h>\n"
+		"\n"
+		"#ifndef __cplusplus\n"
+		"#include <stdbool.h>\n"
+		"#endif\n"
+		"\n"
+	);
+
+	for ( u32 typeIndex = 0; typeIndex < GEN_TYPE_COUNT; typeIndex++ ) {
+		genType_t type = (genType_t) typeIndex;
+
+		if ( type == GEN_TYPE_BOOL ) {
+			continue;
+		}
+
+		const char* memberTypeString = Gen_GetMemberTypeString( type );
+
+		printf( "Generating %s...", memberTypeString );
+
+		String_Append( &sb, "// " );
+		String_Append( &sb, memberTypeString );
+		String_Append( &sb, "\n" );
+
+		// scalar only funcs
+		Gen_Floateq( type, &sb );
+
+		Gen_Sign( type, &sb );
+
+		Gen_Radians( type, &sb );
+		Gen_Degrees( type, &sb );
+
+		Gen_MinMax( type, &sb );
+		Gen_Clamp( type, &sb );
+
+		// generic/scalar/vector funcs
+		Gen_Saturate( GEN_LANGUAGE_C, type, 1, &sb );
+		Gen_Lerp( GEN_LANGUAGE_C, type, 1, &sb );
+		Gen_Step( GEN_LANGUAGE_C, type, 1, &sb );
+		Gen_Smoothstep( GEN_LANGUAGE_C, type, 1, &sb );
+
+		String_Append( &sb, "\n" );
+
+		printf( "OK.\n" );
+	}
+
+	FS_WriteEntireFile( fileNameHeader, sb.str, sb.length );
+
+	Mem_Reset();
+}
+
+void Gen_FunctionsVector( const genLanguage_t language ) {
+	char filePathHeader[64] = { 0 };
+	snprintf( filePathHeader, 64, "%s%s", GEN_FOLDER_PATHS_OUT_GEN[language], GEN_HEADER_FUNCTIONS_VECTOR );
+
+	stringBuilder_t contentHeader = String_Create( 128 * KB_TO_BYTES );
+
+	String_Append( &contentHeader, GEN_FILE_HEADER );
+	String_Append( &contentHeader,
+		"#pragma once\n"
+		"\n"
+		"#include \"../" GEN_HEADER_DEFINES "\"\n"
+		"\n" );
+
+	// includes
+	for ( u32 typeIndex = 0; typeIndex < GEN_TYPE_COUNT; typeIndex++ ) {
+		genType_t type = (genType_t) typeIndex;
+
+		const char* typeString = Gen_GetTypeString( type );
+
+		for ( u32 componentIndex = GEN_COMPONENT_COUNT_MIN; componentIndex <= GEN_COMPONENT_COUNT_MAX; componentIndex++ ) {
+			String_Appendf( &contentHeader, "#include \"%s%d.h\"\n", typeString, componentIndex );
+		}
+
+		String_Appendf( &contentHeader, "\n" );
+	}
+
+	String_Appendf( &contentHeader, "#include \"" GEN_HEADER_FUNCTIONS_SCALAR "\"\n" );
+	if ( language == GEN_LANGUAGE_CPP ) {
+		String_Appendf( &contentHeader, "#include \"" GEN_HEADER_OPERATORS_VECTOR "\"\n" );
+	}
+	String_Appendf( &contentHeader, "\n" );
+
+	// actual functions
+	for ( u32 typeIndex = 0; typeIndex < GEN_TYPE_COUNT; typeIndex++ ) {
+		genType_t type = (genType_t) typeIndex;
+
+		const char* typeString = Gen_GetTypeString( type );
+
+		for ( u32 componentIndex = GEN_COMPONENT_COUNT_MIN; componentIndex <= GEN_COMPONENT_COUNT_MAX; componentIndex++ ) {
+			printf( "Functions %s%d...", typeString, componentIndex );
+
+			String_Appendf( &contentHeader, "// %s%d\n", typeString, componentIndex );
+
+			// generic scalar funcs
+			Gen_Saturate( language, type, componentIndex, &contentHeader );
+			Gen_Lerp( language, type, componentIndex, &contentHeader );
+			Gen_Step( language, type, componentIndex, &contentHeader );
+			Gen_Smoothstep( language, type, componentIndex, &contentHeader );
+
+			// generic vector funcs
+			Gen_VectorFunctionsEquals( language, type, componentIndex, &contentHeader );
+			Gen_VectorFunctionsComponentWiseArithmetic( language, type, componentIndex, &contentHeader );
+			Gen_VectorFunctionsComponentWiseBitwise( language, type, componentIndex, &contentHeader );
+			Gen_VectorFunctionsComponentWiseRelational( language, type, componentIndex, &contentHeader );
+
+			// vector-specific funcs
+			Gen_VectorLength( language, type, componentIndex, &contentHeader );
+			Gen_VectorNormalize( language, type, componentIndex, &contentHeader );
+			Gen_VectorDot( language, type, componentIndex, &contentHeader );
+			Gen_VectorCross( language, type, componentIndex, &contentHeader );
+			Gen_VectorAngle( language, type, componentIndex, &contentHeader );
+			Gen_VectorDistance( language, type, componentIndex, &contentHeader );
+			Gen_VectorPack( language, type, componentIndex, &contentHeader );
+			Gen_VectorUnpack( language, type, componentIndex, &contentHeader );
+
+			String_Append( &contentHeader, "\n" );
+
+			printf( "OK.\n" );
+		}
+	}
+
+	FS_WriteEntireFile( filePathHeader, contentHeader.str, contentHeader.length );
+
+	Mem_Reset();
+}
+
+void Gen_FunctionsMatrix( const genLanguage_t language ) {
+	char filePathHeader[64] = { 0 };
+	snprintf( filePathHeader, 64, "%s%s", GEN_FOLDER_PATHS_OUT_GEN[language], GEN_HEADER_FUNCTIONS_MATRIX );
+
+	stringBuilder_t contentHeader = String_Create( 512 * KB_TO_BYTES );
+	String_Append( &contentHeader, GEN_FILE_HEADER );
+	String_Append( &contentHeader,
+		"#pragma once\n"
+		"\n"
+		"// ignore missing brace initializers\n"
+		"#if defined( __GNUC__ ) || defined( __clang__ )\n"
+		"#pragma GCC diagnostic push\n"
+		"#pragma GCC diagnostic ignored \"-Wmissing-braces\"\n"
+		"#endif\n"
+		"\n"
+	);
+
+	for ( u32 typeIndex = 0; typeIndex < GEN_TYPE_COUNT; typeIndex++ ) {
+		genType_t type = (genType_t) typeIndex;
+
+		const char* typeString = Gen_GetTypeString( type );
+
+		for ( u32 row = GEN_COMPONENT_COUNT_MIN; row <= GEN_COMPONENT_COUNT_MAX; row++ ) {
+			for ( u32 col = GEN_COMPONENT_COUNT_MIN; col <= GEN_COMPONENT_COUNT_MAX; col++ ) {
+				String_Appendf( &contentHeader, "#include \"%s%dx%d.h\"\n", typeString, row, col );
+			}
+		}
+
+		String_Appendf( &contentHeader, "\n" );
+	}
+
+	String_Appendf( &contentHeader, "#include \"" GEN_HEADER_FUNCTIONS_VECTOR "\"\n" );
+	String_Appendf( &contentHeader, "\n" );
+
+	for ( u32 typeIndex = 0; typeIndex < GEN_TYPE_COUNT; typeIndex++ ) {
+		genType_t type = (genType_t) typeIndex;
+
+		for ( u32 row = GEN_COMPONENT_COUNT_MIN; row <= GEN_COMPONENT_COUNT_MAX; row++ ) {
+			for ( u32 col = GEN_COMPONENT_COUNT_MIN; col <= GEN_COMPONENT_COUNT_MAX; col++ ) {
+				char fullTypeName[GEN_STRING_LENGTH_TYPE_NAME];
+				Gen_GetFullTypeName( type, row, col, fullTypeName );
+
+				printf( "Basic functions %s...", fullTypeName );
+
+				String_Appendf( &contentHeader, "// %s\n", fullTypeName );
+
+				Gen_MatrixEquals( language, type, row, col, &contentHeader );
+				Gen_MatrixComponentWiseArithmetic( language, type, row, col, &contentHeader );
+				Gen_MatrixComponentWiseBitwise( language, type, row, col, &contentHeader );
+				Gen_MatrixComponentWiseRelational( language, type, row, col, &contentHeader );
+
+				Gen_MatrixIdentity( language, type, row, col, &contentHeader );
+				Gen_MatrixTranspose( language, type, row, col, &contentHeader );
+
+				Gen_MatrixDeterminant( language, type, row, col, &contentHeader );
+				Gen_MatrixInverse( language, type, row, col, &contentHeader );
+
+				Gen_MatrixMultiply( language, type, row, col, &contentHeader );
+				Gen_MatrixMultiplyVector( language, type, row, col, &contentHeader );
+
+				Gen_MatrixTranslate( language, type, row, col, &contentHeader );
+				Gen_MatrixRotate( language, type, row, col, &contentHeader );
+				Gen_MatrixScale( language, type, row, col, &contentHeader );
+
+				Gen_MatrixOrtho( language, type, row, col, &contentHeader );
+				Gen_MatrixPerspective( language, type, row, col, &contentHeader );
+				Gen_MatrixLookAt( language, type, row, col, &contentHeader );
+
+				String_Append( &contentHeader, "\n" );
+
+				printf( "OK.\n" );
+			}
+		}
+	}
+
+	String_Append( &contentHeader, 
+		"#if defined( __GNUC__ ) || defined( __clang__ )\n"
+		"#pragma GCC diagnostic pop\n"
+		"#endif\n"
+	);
+
+	FS_WriteEntireFile( filePathHeader, contentHeader.str, contentHeader.length );
+
+	Mem_Reset();
+}
+
+void Gen_FunctionsScalarSSE( const genLanguage_t language ) {
+	const char* folder = GEN_FOLDER_PATHS_OUT_GEN[language];
+
+	char filePathHeader[64] = { 0 };
+	snprintf( filePathHeader, 64, "%s%s", folder, GEN_HEADER_FUNCTIONS_SCALAR_SSE );
+
+	stringBuilder_t contentHeader = String_Create( 4 * KB_TO_BYTES );
+	String_Append( &contentHeader, GEN_FILE_HEADER );
+	String_Append( &contentHeader,
+		"#pragma once\n"
+		"\n"
+		"// HLML includes\n"
+		"#include \"../hlml_constants_sse.h\"\n"
+		"\n"
+		"// others\n"
+		"#include <xmmintrin.h>\n"
+		"#include <assert.h>\n"
+		"\n"
+	);
+
+	for ( u32 typeIndex = 0; typeIndex < GEN_TYPE_COUNT; typeIndex++ ) {
+		genType_t type = (genType_t) typeIndex;
+
+		if ( !Gen_TypeSupportsSSE( type ) ) {
+			continue;
+		}
+
+		const char* memberTypeString = Gen_GetMemberTypeString( type );
+
+		printf( "SIMD vector functions %s...", memberTypeString );
+
+		String_Appendf( &contentHeader, "// %s\n", memberTypeString );
+
+		Gen_SSE_Radians( language, type, &contentHeader );
+		Gen_SSE_Degrees( language, type, &contentHeader );
+
+		Gen_SSE_Lerp( language, type, 1, &contentHeader );
+
+		String_Append( &contentHeader, "\n" );
+
+		printf( "OK.\n" );
+	}
+
+	FS_WriteEntireFile( filePathHeader, contentHeader.str, contentHeader.length );
+
+	Mem_Reset();
+}
+
+void Gen_FunctionsVectorSSE( const genLanguage_t language ) {
+	const char* folder = GEN_FOLDER_PATHS_OUT_GEN[language];
+
+	char filePathHeader[64] = { 0 };
+	snprintf( filePathHeader, 64, "%s%s", folder, GEN_HEADER_FUNCTIONS_VECTOR_SSE );
+
+	stringBuilder_t contentHeader = String_Create( 16 * KB_TO_BYTES );
+
+	String_Append( &contentHeader, GEN_FILE_HEADER );
+	String_Append( &contentHeader,
+		"#pragma once\n"
+		"\n"
+		"// HLML includes\n"
+		"#include \"" GEN_HEADER_FUNCTIONS_VECTOR_SSE "\"\n"
+		"#include \"../" GEN_HEADER_CONSTANTS_SSE "\"\n"
+		"\n"
+		"#include <immintrin.h>\n"
+		"\n"
+	);
+
+	for ( u32 typeIndex = 0; typeIndex < GEN_TYPE_COUNT; typeIndex++ ) {
+		genType_t type = (genType_t) typeIndex;
+
+		if ( !Gen_TypeSupportsSSE( type ) ) {
+			continue;
+		}
+
+		const char* registerName = Gen_SSE_GetRegisterName( type );
+
+		for ( u32 componentIndex = GEN_COMPONENT_COUNT_MIN; componentIndex <= GEN_COMPONENT_COUNT_MAX; componentIndex++ ) {
+			char sseTypeName[GEN_STRING_LENGTH_SSE_INPUT_NAME];
+			Gen_SSE_GetFullTypeName( type, 1, componentIndex, sseTypeName );
+
+			String_Appendf( &contentHeader, "typedef struct %s\n", sseTypeName );
+			String_Append(  &contentHeader, "{\n" );
+			for ( u32 i = 0; i < componentIndex; i++ ) {
+				String_Appendf( &contentHeader, "\t%s %c;\n", registerName, GEN_COMPONENT_NAMES_VECTOR[i] );
+			}
+			String_Appendf( &contentHeader, "} %s;\n", sseTypeName );
+			String_Append(  &contentHeader, "\n" );
+		}
+	}
+
+	for ( u32 typeIndex = 0; typeIndex < GEN_TYPE_COUNT; typeIndex++ ) {
+		genType_t type = (genType_t) typeIndex;
+
+		if ( !Gen_TypeSupportsSSE( type ) ) {
+			continue;
+		}
+
+		for ( u32 componentIndex = GEN_COMPONENT_COUNT_MIN; componentIndex <= GEN_COMPONENT_COUNT_MAX; componentIndex++ ) {
+			char sseTypeName[GEN_STRING_LENGTH_SSE_INPUT_NAME];
+			Gen_SSE_GetFullTypeName( type, 1, componentIndex, sseTypeName );
+
+			printf( "SIMD vector functions %s...", sseTypeName );
+
+			String_Appendf( &contentHeader, "// %s\n", sseTypeName );
+			Gen_SSE_VectorDot( language, type, componentIndex, &contentHeader );
+			Gen_SSE_VectorCross( language, type, componentIndex, &contentHeader );
+			Gen_SSE_VectorLength( language, type, componentIndex, &contentHeader );
+			Gen_SSE_VectorNormalize( language, type, componentIndex, &contentHeader );
+			Gen_SSE_VectorDistance( language, type, componentIndex, &contentHeader );
+
+			String_Append( &contentHeader, "\n" );
+
+			printf( "OK.\n" );
+		}
+	}
+
+	FS_WriteEntireFile( filePathHeader, contentHeader.str, contentHeader.length );
+
+	Mem_Reset();
+}
+
+void Gen_FunctionsMatrixSSE( const genLanguage_t language ) {
+	const char* folder = GEN_FOLDER_PATHS_OUT_GEN[language];
+
+	char filePathHeader[64] = { 0 };
+	snprintf( filePathHeader, 64, "%s%s", folder, GEN_HEADER_FUNCTIONS_MATRIX_SSE );
+
+	stringBuilder_t contentHeader = String_Create( 84 * KB_TO_BYTES );
+
+	String_Append( &contentHeader, GEN_FILE_HEADER );
+	String_Append( &contentHeader,
+		"#pragma once\n"
+		"\n"
+		"#include <immintrin.h>\n"
+		"\n"
+		"#include \"" GEN_HEADER_FUNCTIONS_VECTOR_SSE "\"\n"
+		"\n"
+	);
+
+	Gen_SSE_MacroNegate( GEN_TYPE_FLOAT, &contentHeader );
+
+	// generate type forward declarations
+	for ( u32 typeIndex = 0; typeIndex < GEN_TYPE_COUNT; typeIndex++ ) {
+		genType_t type = (genType_t) typeIndex;
+
+		if ( !Gen_TypeSupportsSSE( type ) ) {
+			continue;
+		}
+
+		const char* registerName = Gen_SSE_GetRegisterName( type );
+
+		for ( u32 row = GEN_COMPONENT_COUNT_MIN; row <= GEN_COMPONENT_COUNT_MAX; row++ ) {
+			for ( u32 col = GEN_COMPONENT_COUNT_MIN; col <= GEN_COMPONENT_COUNT_MAX; col++ ) {
+				char sseTypeName[GEN_STRING_LENGTH_SSE_INPUT_NAME];
+				Gen_SSE_GetFullTypeName( type, row, col, sseTypeName );
+
+				String_Appendf( &contentHeader, "typedef struct %s\n", sseTypeName );
+				String_Append(  &contentHeader, "{\n" );
+				String_Appendf( &contentHeader, "\t%s m[%d][%d];\n", registerName, row, col );
+				String_Appendf( &contentHeader, "} %s;\n", sseTypeName );
+				String_Append(  &contentHeader, "\n" );
+			}
+		}
+	}
+	String_Appendf( &contentHeader, "\n" );
+
+	// generate functions
+	for ( u32 typeIndex = 0; typeIndex < GEN_TYPE_COUNT; typeIndex++ ) {
+		genType_t type = (genType_t) typeIndex;
+
+		if ( !Gen_TypeSupportsSSE( type ) ) {
+			continue;
+		}
+
+		for ( u32 row = GEN_COMPONENT_COUNT_MIN; row <= GEN_COMPONENT_COUNT_MAX; row++ ) {
+			for ( u32 col = GEN_COMPONENT_COUNT_MIN; col <= GEN_COMPONENT_COUNT_MAX; col++ ) {
+				char fullTypeName[GEN_STRING_LENGTH_TYPE_NAME];
+				Gen_GetFullTypeName( type, row, col, fullTypeName );
+
+				printf( "SIMD matrix functions %s...", fullTypeName );
+
+				String_Appendf( &contentHeader, "// %s\n", fullTypeName );
+
+				Gen_SSE_MatrixIdentity( language, type, row, col, &contentHeader );
+				Gen_SSE_MatrixTranspose( language, type, row, col, &contentHeader );
+
+				Gen_SSE_MatrixDeterminant( language, type, row, col, &contentHeader );
+				Gen_SSE_MatrixInverse( language, type, row, col, &contentHeader );
+
+				for ( u32 opIndex = 0; opIndex < GEN_OP_ARITHMETIC_COUNT; opIndex++ ) {
+					genOpArithmetic_t op = (genOpArithmetic_t) opIndex;
+					Gen_SSE_MatrixArithmeticComponentWise( language, type, row, col, op, &contentHeader );
+				}
+
+				Gen_SSE_MatrixMultiply( language, type, row, col, &contentHeader );
+
+				Gen_SSE_MatrixTranslate( language, type, row, col, &contentHeader );
+				Gen_SSE_MatrixScale( language, type, row, col, &contentHeader );
+
+				String_Append( &contentHeader, "\n" );
+
+				printf( "OK.\n" );
+			}
+		}
+	}
+
+	FS_WriteEntireFile( filePathHeader, contentHeader.str, contentHeader.length );
+
+	Mem_Reset();
+}
+
+void Gen_Tests( const genLanguage_t language ) {
+	const char* fileExtension = GEN_SOURCE_FILE_EXTENSIONS[language];
+
+	// scalar tests
+	for ( u32 typeIndex = 0; typeIndex < GEN_TYPE_COUNT; typeIndex++ ) {
+		genType_t type = (genType_t) typeIndex;
+
+		if ( type == GEN_TYPE_BOOL ) {
+			continue;
+		}
+
+		const char* typeString = Gen_GetTypeString( type );
+
+		printf( "Generating test_scalar_%s.%s...", typeString, fileExtension );
+
+		Gen_ScalarTests( language, type );
+
+		printf( "OK.\n" );
+	}
+
+	// vector tests
+	for ( u32 typeIndex = 0; typeIndex < GEN_TYPE_COUNT; typeIndex++ ) {
+		genType_t type = (genType_t) typeIndex;
+
+		const char* typeString = Gen_GetTypeString( type );
+
+		for ( u32 componentIndex = GEN_COMPONENT_COUNT_MIN; componentIndex <= GEN_COMPONENT_COUNT_MAX; componentIndex++ ) {
+			printf( "Generating test_%s%d.%s...", typeString, componentIndex, fileExtension );
+
+			Gen_VectorTests( language, type, componentIndex );
+
+			printf( "OK.\n" );
+		}
+	}
+
+	// matrix tests
+	for ( u32 typeIndex = 0; typeIndex < GEN_TYPE_COUNT; typeIndex++ ) {
+		genType_t type = (genType_t) typeIndex;
+
+		const char* typeString = Gen_GetTypeString( type );
+
+		for ( u32 row = GEN_COMPONENT_COUNT_MIN; row <= GEN_COMPONENT_COUNT_MAX; row++ ) {
+			for ( u32 col = GEN_COMPONENT_COUNT_MIN; col <= GEN_COMPONENT_COUNT_MAX; col++ ) {
+				printf( "Generating test_%s%dx%d.%s...", typeString, row, col, fileExtension );
+
+				Gen_MatrixTests( language, type, row, col );
+
+				printf( "OK.\n" );
+			}
+		}
+	}
+}
+
+void Gen_TestsMain( const genLanguage_t language ) {
+	const char* testsFolder = GEN_FOLDER_PATHS_TESTS[language];
+	const char* fileExtension = GEN_SOURCE_FILE_EXTENSIONS[language];
+
+	char outGenInclude[1024];
+	snprintf( outGenInclude, 1024, "../../../%s", GEN_FOLDER_PATHS_OUT_GEN[language] );
 
 	char filePathMain[1024] = { 0 };
-	snprintf( filePathMain, 1024, "%smain.cpp", GEN_TESTS_FOLDER_PATH_CPP );
+	snprintf( filePathMain, 1024, "%smain.%s", testsFolder, fileExtension );
 
 	stringBuilder_t sb = String_Create( 8 * KB_TO_BYTES );
 
@@ -262,8 +662,7 @@ void Gen_TestsMain( const char* includeSubFolder ) {
 	String_Append( &sb, "#define NOMINMAX\n" );
 	String_Append( &sb, "\n" );
 
-	// TODO(DM): if we do end up using this as our final include solution, make the filename a constant
-	String_Appendf( &sb, "#include \"../../out/%s%s\"\n", includeSubFolder, GEN_HEADER_MAIN );
+	String_Appendf( &sb, "#include \"%s%s\"\n", outGenInclude, GEN_HEADER_MAIN );
 	String_Append(  &sb, "\n" );
 
 	String_Append( &sb, "#include <temper/temper.h>\n" );
@@ -279,7 +678,7 @@ void Gen_TestsMain( const char* includeSubFolder ) {
 
 		const char* memberTypeString = Gen_GetMemberTypeString( type );
 
-		String_Appendf( &sb, "#include \"test_scalar_%s.cpp\"\n", memberTypeString );
+		String_Appendf( &sb, "#include \"test_scalar_%s.%s\"\n", memberTypeString, fileExtension );
 	}
 
 	String_Append( &sb, "\n" );
@@ -292,7 +691,7 @@ void Gen_TestsMain( const char* includeSubFolder ) {
 			char fullTypeName[GEN_STRING_LENGTH_TYPE_NAME] = { 0 };
 			Gen_GetFullTypeName( type, 1, componentIndex, fullTypeName );
 
-			String_Appendf( &sb, "#include \"test_%s.cpp\"\n", fullTypeName );
+			String_Appendf( &sb, "#include \"test_%s.%s\"\n", fullTypeName, fileExtension );
 		}
 
 		String_Append( &sb, "\n" );
@@ -307,7 +706,7 @@ void Gen_TestsMain( const char* includeSubFolder ) {
 				char fullTypeName[GEN_STRING_LENGTH_TYPE_NAME] = { 0 };
 				Gen_GetFullTypeName( type, row, col, fullTypeName );
 
-				String_Appendf( &sb, "#include \"test_%s.cpp\"\n", fullTypeName );
+				String_Appendf( &sb, "#include \"test_%s.%s\"\n", fullTypeName, fileExtension );
 			}
 
 			String_Append( &sb, "\n" );
@@ -348,6 +747,7 @@ void Gen_TestsMain( const char* includeSubFolder ) {
 	String_Append( &sb, "\n" );
 
 	// now do vector and matrix types
+#if 1
 	String_Appendf( &sb, "\t// vector/matrix tests\n" );
 	for ( u32 typeIndex = 0; typeIndex < GEN_TYPE_COUNT; typeIndex++ ) {
 		genType_t type = (genType_t) typeIndex;
@@ -362,6 +762,20 @@ void Gen_TestsMain( const char* includeSubFolder ) {
 			String_Appendf( &sb, "\n" );
 		}
 	}
+#else
+	for ( u32 typeIndex = 0; typeIndex < GEN_TYPE_COUNT; typeIndex++ ) {
+		genType_t type = (genType_t) typeIndex;
+
+		for ( u32 componentIndex = GEN_COMPONENT_COUNT_MIN; componentIndex <= GEN_COMPONENT_COUNT_MAX; componentIndex++ ) {
+			char fullTypeName[GEN_STRING_LENGTH_TYPE_NAME] = { 0 };
+			Gen_GetFullTypeName( type, 1, componentIndex, fullTypeName );
+
+			String_Appendf( &sb, "\tTEMPER_RUN_SUITE( Test_%s );\n", fullTypeName );
+		}
+
+		String_Appendf( &sb, "\n" );
+	}
+#endif
 
 	String_Append( &sb, "\tTEMPER_SHOW_STATS();\n" );
 	String_Append( &sb, "\n" );
@@ -463,11 +877,12 @@ void Gen_Floateq( const genType_t type, stringBuilder_t* sb ) {
 	const char* typeString = Gen_GetTypeString( type );
 
 	const char* floateqStr = Gen_GetFuncNameFloateq( type );
+	const char* floateqepsStr = Gen_GetFuncNameFloateqeps( type );
 
 	const char* parmEpsilonStr = Gen_GetConstantNameEpsilon( type );
 
 	Doc_Floateq( sb );
-	String_Appendf( sb, "inline bool %s_eps( const %s lhs, const %s rhs, const %s epsilon )\n", floateqStr, typeString, typeString, typeString );
+	String_Appendf( sb, "inline bool %s( const %s lhs, const %s rhs, const %s epsilon )\n", floateqepsStr, typeString, typeString, typeString );
 	String_Append(  sb, "{\n" );
 	String_Appendf( sb, "\treturn %s( lhs - rhs ) < epsilon;\n", Gen_GetFuncNameFabs( type ) );
 	String_Append(  sb, "}\n" );
@@ -476,7 +891,7 @@ void Gen_Floateq( const genType_t type, stringBuilder_t* sb ) {
 	Doc_Floateq( sb );
 	String_Appendf( sb, "inline bool %s( const %s lhs, const %s rhs )\n", floateqStr, typeString, typeString );
 	String_Append(  sb, "{\n" );
-	String_Appendf( sb, "\treturn %s_eps( lhs, rhs, %s );\n", floateqStr, parmEpsilonStr );
+	String_Appendf( sb, "\treturn %s( lhs, rhs, %s );\n", floateqepsStr, parmEpsilonStr );
 	String_Append(  sb, "}\n" );
 	String_Append(  sb, "\n" );
 }
@@ -603,7 +1018,7 @@ void Gen_Clamp( const genType_t type, stringBuilder_t* sb ) {
 	String_Append(  sb, "\n" );
 }
 
-void Gen_Saturate( const genType_t type, const u32 numComponents, stringBuilder_t* sbHeader ) {
+void Gen_Saturate( const genLanguage_t language, const genType_t type, const u32 numComponents, stringBuilder_t* sbHeader ) {
 	assert( sbHeader );
 
 	assert( numComponents >= 1 );	// we allow scalar types for this function
@@ -616,17 +1031,21 @@ void Gen_Saturate( const genType_t type, const u32 numComponents, stringBuilder_
 	char fullTypeName[GEN_STRING_LENGTH_TYPE_NAME];
 	Gen_GetFullTypeName( type, 1, numComponents, fullTypeName );
 
-	const char* saturateFuncStr = Gen_GetFuncNameSaturate( type );
+	char saturateFuncStr[GEN_STRING_LENGTH_FUNCTION_NAME];
+	Gen_GetFuncNameSaturate( language, type, numComponents, saturateFuncStr );
+
 	const char* clampFuncStr = Gen_GetFuncNameClamp( type );
 
 	char zeroStr[GEN_STRING_LENGTH_NUMERIC_LITERAL];
-	char oneStr[GEN_STRING_LENGTH_NUMERIC_LITERAL];
-
 	Gen_GetNumericLiteral( type, 0.0f, zeroStr, 1 );
+
+	char oneStr[GEN_STRING_LENGTH_NUMERIC_LITERAL];
 	Gen_GetNumericLiteral( type, 1.0f, oneStr, 1 );
 
 	char parmTypeName[GEN_STRING_LENGTH_TYPE_NAME];
-	Gen_GetParmTypeName( type, numComponents, parmTypeName );
+	Gen_GetParmTypeName( language, type, 1, numComponents, parmTypeName );
+
+	const char* parmAccessStr = GEN_TYPE_ACCESS_OPERATORS[language];
 
 	bool isVector = numComponents > 1;
 
@@ -634,9 +1053,9 @@ void Gen_Saturate( const genType_t type, const u32 numComponents, stringBuilder_
 	String_Appendf( sbHeader, "inline %s %s( const %s x )\n", fullTypeName, saturateFuncStr, parmTypeName );
 	if ( isVector ) {
 		String_Append(  sbHeader, "{\n" );
-		String_Appendf( sbHeader, "\treturn %s(\n", fullTypeName );
+		String_Appendf( sbHeader, "\treturn HLML_CONSTRUCT( %s ) {\n", fullTypeName );
 		for ( u32 i = 0; i < numComponents; i++ ) {
-			String_Appendf( sbHeader, "\t\t%s( x[%d], %s, %s )", clampFuncStr, i, zeroStr, oneStr );
+			String_Appendf( sbHeader, "\t\t%s( x%s%c, %s, %s )", clampFuncStr, parmAccessStr, GEN_COMPONENT_NAMES_VECTOR[i], zeroStr, oneStr );
 
 			if ( i != numComponents - 1 ) {
 				String_Append( sbHeader, "," );
@@ -645,7 +1064,7 @@ void Gen_Saturate( const genType_t type, const u32 numComponents, stringBuilder_
 			String_Append( sbHeader, "\n" );
 		}
 
-		String_Append( sbHeader, "\t);\n" );
+		String_Append( sbHeader, "\t};\n" );
 		String_Append( sbHeader, "}\n" );
 		String_Append( sbHeader, "\n" );
 	} else {
@@ -656,7 +1075,7 @@ void Gen_Saturate( const genType_t type, const u32 numComponents, stringBuilder_
 	}
 }
 
-void Gen_Lerp( const genType_t type, const u32 numComponents, stringBuilder_t* sbHeader ) {
+void Gen_Lerp( const genLanguage_t language, const genType_t type, const u32 numComponents, stringBuilder_t* sbHeader ) {
 	assert( sbHeader );
 
 	assert( numComponents >= 1 );	// we allow scalar types for this function
@@ -671,23 +1090,28 @@ void Gen_Lerp( const genType_t type, const u32 numComponents, stringBuilder_t* s
 	char fullTypeName[GEN_STRING_LENGTH_TYPE_NAME];
 	Gen_GetFullTypeName( type, 1, numComponents, fullTypeName );
 
-	const char* lerpFuncStr = Gen_GetFuncNameLerp( type );
+	char lerpFuncStrScalar[GEN_STRING_LENGTH_FUNCTION_NAME];
+	Gen_GetFuncNameLerp( language, type, 1, lerpFuncStrScalar );
+
+	char lerpFuncStrVector[GEN_STRING_LENGTH_FUNCTION_NAME];
+	Gen_GetFuncNameLerp( language, type, numComponents, lerpFuncStrVector );
 
 	char oneStr[GEN_STRING_LENGTH_NUMERIC_LITERAL];
 	Gen_GetNumericLiteral( type, 1.0f, oneStr, 1 );
 
 	char parmTypeName[GEN_STRING_LENGTH_TYPE_NAME];
-	Gen_GetParmTypeName( type, numComponents, parmTypeName );
+	Gen_GetParmTypeName( language, type, 1, numComponents, parmTypeName );
 
-	bool isVector = numComponents > 1;
+	const char* parmAccessStr = GEN_TYPE_ACCESS_OPERATORS[language];
 
 	Doc_Lerp( sbHeader, fullTypeName );
-	String_Appendf( sbHeader, "inline %s %s( const %s a, const %s b, const %s t )\n", fullTypeName, lerpFuncStr, parmTypeName, parmTypeName, typeString );
-	if ( isVector ) {
+	if ( numComponents > 1 ) {
+		String_Appendf( sbHeader, "inline %s %s( const %s a, const %s b, const %s t )\n", fullTypeName, lerpFuncStrVector, parmTypeName, parmTypeName, typeString );
 		String_Append(  sbHeader, "{\n" );
-		String_Appendf( sbHeader, "\treturn %s(\n", fullTypeName );
+		String_Appendf( sbHeader, "\treturn HLML_CONSTRUCT( %s ) {\n", fullTypeName );
 		for ( u32 i = 0; i < numComponents; i++ ) {
-			String_Appendf( sbHeader, "\t\t%s( a[%d], b[%d], t )", lerpFuncStr, i, i );
+			const char componentStr = GEN_COMPONENT_NAMES_VECTOR[i];
+			String_Appendf( sbHeader, "\t\t%s( a%s%c, b%s%c, t )", lerpFuncStrScalar, parmAccessStr, componentStr, parmAccessStr, componentStr );
 
 			if ( i != numComponents - 1 ) {
 				String_Append( sbHeader, "," );
@@ -696,10 +1120,11 @@ void Gen_Lerp( const genType_t type, const u32 numComponents, stringBuilder_t* s
 			String_Append( sbHeader, "\n" );
 		}
 
-		String_Append( sbHeader, "\t);\n" );
+		String_Append( sbHeader, "\t};\n" );
 		String_Append( sbHeader, "}\n" );
 		String_Append( sbHeader, "\n" );
 	} else {
+		String_Appendf( sbHeader, "inline %s %s( const %s a, const %s b, const %s t )\n", fullTypeName, lerpFuncStrScalar, parmTypeName, parmTypeName, typeString );
 		String_Append(  sbHeader, "{\n" );
 		String_Appendf( sbHeader, "\treturn ( %s - t ) * a + t * b;\n", oneStr );
 		String_Append(  sbHeader, "}\n" );
@@ -707,7 +1132,7 @@ void Gen_Lerp( const genType_t type, const u32 numComponents, stringBuilder_t* s
 	}
 }
 
-void Gen_Step( const genType_t type, const u32 numComponents, stringBuilder_t* sbHeader ) {
+void Gen_Step( const genLanguage_t language, const genType_t type, const u32 numComponents, stringBuilder_t* sbHeader ) {
 	assert( sbHeader );
 
 	assert( numComponents >= 1 );
@@ -720,7 +1145,11 @@ void Gen_Step( const genType_t type, const u32 numComponents, stringBuilder_t* s
 	char fullTypeName[GEN_STRING_LENGTH_TYPE_NAME];
 	Gen_GetFullTypeName( type, 1, numComponents, fullTypeName );
 
-	const char* stepFuncStr = Gen_GetFuncNameStep( type );
+	char stepFuncStrScalar[GEN_STRING_LENGTH_FUNCTION_NAME];
+	Gen_GetFuncNameStep( language, type, 1, stepFuncStrScalar );
+
+	char stepFuncStrVector[GEN_STRING_LENGTH_FUNCTION_NAME];
+	Gen_GetFuncNameStep( language, type, numComponents, stepFuncStrVector );
 
 	char zeroStr[GEN_STRING_LENGTH_NUMERIC_LITERAL];
 	Gen_GetNumericLiteral( type, 0.0f, zeroStr, 1 );
@@ -729,15 +1158,18 @@ void Gen_Step( const genType_t type, const u32 numComponents, stringBuilder_t* s
 	Gen_GetNumericLiteral( type, 1.0f, oneStr, 1 );
 
 	char parmTypeName[GEN_STRING_LENGTH_TYPE_NAME];
-	Gen_GetParmTypeName( type, numComponents, parmTypeName );
+	Gen_GetParmTypeName( language, type, 1, numComponents, parmTypeName );
+
+	const char* parmAccessStr = GEN_TYPE_ACCESS_OPERATORS[language];
 
 	Doc_Step( sbHeader, fullTypeName );
-	String_Appendf( sbHeader, "inline %s %s( const %s x, const %s y )\n", fullTypeName, stepFuncStr, parmTypeName, parmTypeName );
 	if ( numComponents > 1 ) {
+		String_Appendf( sbHeader, "inline %s %s( const %s x, const %s y )\n", fullTypeName, stepFuncStrVector, parmTypeName, parmTypeName );
 		String_Append(  sbHeader, "{\n" );
-		String_Appendf( sbHeader, "\treturn %s(\n", fullTypeName );
+		String_Appendf( sbHeader, "\treturn HLML_CONSTRUCT( %s ) {\n", fullTypeName );
 		for ( u32 i = 0; i < numComponents; i++ ) {
-				String_Appendf( sbHeader, "\t\t%s( x[%d], y[%d] )", stepFuncStr, i, i );
+				const char componentStr = GEN_COMPONENT_NAMES_VECTOR[i];
+				String_Appendf( sbHeader, "\t\t%s( x%s%c, y%s%c )", stepFuncStrScalar, parmAccessStr, componentStr, parmAccessStr, componentStr );
 
 				if ( i != numComponents - 1 ) {
 					String_Append( sbHeader, "," );
@@ -745,10 +1177,11 @@ void Gen_Step( const genType_t type, const u32 numComponents, stringBuilder_t* s
 
 				String_Append( sbHeader, "\n" );
 		}
-		String_Appendf( sbHeader, "\t);\n" );
+		String_Appendf( sbHeader, "\t};\n" );
 		String_Append(  sbHeader, "}\n" );
 		String_Append(  sbHeader, "\n" );
 	} else {
+		String_Appendf( sbHeader, "inline %s %s( const %s x, const %s y )\n", fullTypeName, stepFuncStrScalar, parmTypeName, parmTypeName );
 		String_Append(  sbHeader, "{\n" );
 		String_Appendf( sbHeader, "\treturn ( y > x ? %s : %s );\n", oneStr, zeroStr );
 		String_Append(  sbHeader, "}\n" );
@@ -756,7 +1189,7 @@ void Gen_Step( const genType_t type, const u32 numComponents, stringBuilder_t* s
 	}
 }
 
-void Gen_Smoothstep( const genType_t type, const u32 numComponents, stringBuilder_t* sbHeader ) {
+void Gen_Smoothstep( const genLanguage_t language, const genType_t type, const u32 numComponents, stringBuilder_t* sbHeader ) {
 	assert( sbHeader );
 
 	assert( numComponents >= 1 );	// we allow scalar types for this function
@@ -769,9 +1202,23 @@ void Gen_Smoothstep( const genType_t type, const u32 numComponents, stringBuilde
 	char fullTypeName[GEN_STRING_LENGTH_TYPE_NAME];
 	Gen_GetFullTypeName( type, 1, numComponents, fullTypeName );
 
-	const char* smoothstepFuncStr = Gen_GetFuncNameSmoothstep( type );
-	const char* smootherstepFuncStr = Gen_GetFuncNameSmootherstep( type );
-	const char* saturateFuncStr = Gen_GetFuncNameSaturate( type );
+	char smoothstepFuncStrScalar[GEN_STRING_LENGTH_FUNCTION_NAME];
+	Gen_GetFuncNameSmoothstep( language, type, 1, smoothstepFuncStrScalar );
+
+	char smoothstepFuncStrVector[GEN_STRING_LENGTH_FUNCTION_NAME];
+	Gen_GetFuncNameSmoothstep( language, type, numComponents, smoothstepFuncStrVector );
+
+	char smootherstepFuncStrScalar[GEN_STRING_LENGTH_FUNCTION_NAME];
+	Gen_GetFuncNameSmootherstep( language, type, 1, smootherstepFuncStrScalar );
+
+	char smootherstepFuncStrVector[GEN_STRING_LENGTH_FUNCTION_NAME];
+	Gen_GetFuncNameSmootherstep( language, type, numComponents, smootherstepFuncStrVector );
+
+	char saturateFuncStrScalar[GEN_STRING_LENGTH_FUNCTION_NAME];
+	Gen_GetFuncNameSaturate( language, type, 1, saturateFuncStrScalar );
+
+	char saturateFuncStrVector[GEN_STRING_LENGTH_FUNCTION_NAME];
+	Gen_GetFuncNameSaturate( language, type, numComponents, saturateFuncStrVector );
 
 	char twoStr[GEN_STRING_LENGTH_NUMERIC_LITERAL];
 	Gen_GetNumericLiteral( type, 2.0f,  twoStr, 1 );
@@ -789,19 +1236,22 @@ void Gen_Smoothstep( const genType_t type, const u32 numComponents, stringBuilde
 	Gen_GetNumericLiteral( type, 15.0f, fifteenStr, 1 );
 
 	char parmTypeName[GEN_STRING_LENGTH_TYPE_NAME];
-	Gen_GetParmTypeName( type, numComponents, parmTypeName );
+	Gen_GetParmTypeName( language, type, 1, numComponents, parmTypeName );
+
+	const char* parmAccessStr = GEN_TYPE_ACCESS_OPERATORS[language];
 
 	bool32 isVector = numComponents > 1;
 
 	// smoothstep
 	{
 		Doc_Smoothstep( sbHeader, fullTypeName );
-		String_Appendf( sbHeader, "inline %s %s( const %s low, const %s high, const %s x )\n", fullTypeName, smoothstepFuncStr, parmTypeName, parmTypeName, parmTypeName );
 		if ( isVector ) {
+			String_Appendf( sbHeader, "inline %s %s( const %s low, const %s high, const %s x )\n", fullTypeName, smoothstepFuncStrVector, parmTypeName, parmTypeName, parmTypeName );
 			String_Append(  sbHeader, "{\n" );
-			String_Appendf( sbHeader, "\treturn %s(\n", fullTypeName );
+			String_Appendf( sbHeader, "\treturn HLML_CONSTRUCT( %s ) {\n", fullTypeName );
 			for ( u32 i = 0; i < numComponents; i++ ) {
-				String_Appendf( sbHeader, "\t\t%s( low[%d], high[%d], x[%d] )", smoothstepFuncStr, i, i, i );
+				const char componentStr = GEN_COMPONENT_NAMES_VECTOR[i];
+				String_Appendf( sbHeader, "\t\t%s( low%s%c, high%s%c, x%s%c )", smoothstepFuncStrScalar, parmAccessStr, componentStr, parmAccessStr, componentStr, parmAccessStr, componentStr );
 
 				if ( i != numComponents - 1 ) {
 					String_Append( sbHeader, "," );
@@ -809,12 +1259,13 @@ void Gen_Smoothstep( const genType_t type, const u32 numComponents, stringBuilde
 
 				String_Append( sbHeader, "\n" );
 			}
-			String_Append( sbHeader, "\t);\n" );
+			String_Append( sbHeader, "\t};\n" );
 			String_Append( sbHeader, "}\n" );
 			String_Append( sbHeader, "\n" );
 		} else {
+			String_Appendf( sbHeader, "inline %s %s( const %s low, const %s high, const %s x )\n", fullTypeName, smoothstepFuncStrScalar, parmTypeName, parmTypeName, parmTypeName );
 			String_Append(  sbHeader, "{\n" );
-			String_Appendf( sbHeader, "\t%s t = %s( ( x - low ) / ( high - low ) );\n", fullTypeName, saturateFuncStr );
+			String_Appendf( sbHeader, "\t%s t = %s( ( x - low ) / ( high - low ) );\n", fullTypeName, saturateFuncStrScalar );
 			String_Appendf( sbHeader, "\treturn t * t * ( %s - %s * t );\n", threeStr, twoStr );
 			String_Append(  sbHeader, "}\n" );
 			String_Append(  sbHeader, "\n" );
@@ -824,12 +1275,13 @@ void Gen_Smoothstep( const genType_t type, const u32 numComponents, stringBuilde
 	// smootherstep
 	{
 		Doc_Smootherstep( sbHeader, fullTypeName );
-		String_Appendf( sbHeader, "inline %s %s( const %s low, const %s high, const %s x )\n", fullTypeName, smootherstepFuncStr, parmTypeName, parmTypeName, parmTypeName );
 		if ( isVector ) {
+			String_Appendf( sbHeader, "inline %s %s( const %s low, const %s high, const %s x )\n", fullTypeName, smootherstepFuncStrVector, parmTypeName, parmTypeName, parmTypeName );
 			String_Append(  sbHeader, "{\n" );
-			String_Appendf( sbHeader, "\treturn %s(\n", fullTypeName );
+			String_Appendf( sbHeader, "\treturn HLML_CONSTRUCT( %s ) {\n", fullTypeName );
 			for ( u32 i = 0; i < numComponents; i++ ) {
-				String_Appendf( sbHeader, "\t\t%s( low[%d], high[%d], x[%d] )", smootherstepFuncStr, i, i, i );
+				const char componentStr = GEN_COMPONENT_NAMES_VECTOR[i];
+				String_Appendf( sbHeader, "\t\t%s( low%s%c, high%s%c, x%s%c )", smootherstepFuncStrScalar, parmAccessStr, componentStr, parmAccessStr, componentStr, parmAccessStr, componentStr );
 
 				if ( i != numComponents - 1 ) {
 					String_Append( sbHeader, "," );
@@ -837,12 +1289,13 @@ void Gen_Smoothstep( const genType_t type, const u32 numComponents, stringBuilde
 
 				String_Append( sbHeader, "\n" );
 			}
-			String_Append( sbHeader, "\t);\n" );
+			String_Append( sbHeader, "\t};\n" );
 			String_Append( sbHeader, "}\n" );
 			String_Append( sbHeader, "\n" );
 		} else {
+			String_Appendf( sbHeader, "inline %s %s( const %s low, const %s high, const %s x )\n", fullTypeName, smootherstepFuncStrScalar, parmTypeName, parmTypeName, parmTypeName );
 			String_Append(  sbHeader, "{\n" );
-			String_Appendf( sbHeader, "\t%s t = %s( ( x - low ) / ( high - low ) );\n", fullTypeName, saturateFuncStr );
+			String_Appendf( sbHeader, "\t%s t = %s( ( x - low ) / ( high - low ) );\n", fullTypeName, saturateFuncStrScalar );
 			String_Appendf( sbHeader, "\treturn t * t * t * ( t * ( t * %s - %s ) + %s );\n", sixStr, fifteenStr, tenStr );
 			String_Append(  sbHeader, "}\n" );
 			String_Append(  sbHeader, "\n" );
@@ -850,13 +1303,42 @@ void Gen_Smoothstep( const genType_t type, const u32 numComponents, stringBuilde
 	}
 }
 
-void Gen_OperatorsIncrement( const genType_t type, const u32 numRows, const u32 numCols, stringBuilder_t* sbHeader ) {
-	assert( sbHeader );
-
-	assert( numRows >= 1 );	// pass through 1 for vectors
+void Gen_OperatorsEquality( const genType_t type, const u32 numRows, const u32 numCols, stringBuilder_t* sbHeader ) {
+	assert( numRows >= 1 );	// pass through > 1 for vectors
 	assert( numRows <= GEN_COMPONENT_COUNT_MAX );
 	assert( numCols >= GEN_COMPONENT_COUNT_MIN );
 	assert( numCols <= GEN_COMPONENT_COUNT_MAX );
+	assert( sbHeader );
+
+	char fullTypeName[GEN_STRING_LENGTH_TYPE_NAME];
+	Gen_GetFullTypeName( type, numRows, numCols, fullTypeName );
+
+	char equalsFuncStr[GEN_STRING_LENGTH_FUNCTION_NAME];
+	Gen_GetFuncNameEquals( GEN_LANGUAGE_CPP, type, numRows, numCols, equalsFuncStr );
+
+	String_Appendf( sbHeader, "inline bool operator==( const %s& lhs, const %s& rhs )\n", fullTypeName, fullTypeName );
+	String_Append(  sbHeader, "{\n" );
+	if ( numRows == 1 ) {
+		Gen_VectorGetCodeEquals( GEN_LANGUAGE_CPP, type, numCols, sbHeader );
+	} else {
+		Gen_MatrixGetCodeEquals( GEN_LANGUAGE_CPP, type, numRows, numCols, sbHeader );
+	}
+	String_Append(  sbHeader, "}\n" );
+	String_Append(  sbHeader, "\n" );
+
+	String_Appendf( sbHeader, "inline bool operator!=( const %s& lhs, const %s& rhs )\n", fullTypeName, fullTypeName );
+	String_Append(  sbHeader, "{\n" );
+	String_Appendf( sbHeader, "\treturn !( operator==( lhs, rhs ) );\n", equalsFuncStr );
+	String_Append(  sbHeader, "}\n" );
+	String_Append(  sbHeader, "\n" );
+}
+
+void Gen_OperatorsIncrement( const genType_t type, const u32 numRows, const u32 numCols, stringBuilder_t* sbHeader ) {
+	assert( numRows >= 1 );	// pass through > 1 for vectors
+	assert( numRows <= GEN_COMPONENT_COUNT_MAX );
+	assert( numCols >= GEN_COMPONENT_COUNT_MIN );
+	assert( numCols <= GEN_COMPONENT_COUNT_MAX );
+	assert( sbHeader );
 
 	if ( type == GEN_TYPE_BOOL ) {
 		return;
@@ -869,197 +1351,29 @@ void Gen_OperatorsIncrement( const genType_t type, const u32 numRows, const u32 
 	}
 }
 
-void Gen_OperatorsRelational( const genType_t type, const u32 numRows, const u32 numCols, stringBuilder_t* sbHeader ) {
-	assert( sbHeader );
-
+void Gen_NotEquals( const genLanguage_t language, const genType_t type, const u32 numRows, const u32 numCols, stringBuilder_t* sbHeader ) {
 	assert( numRows >= 1 );	// pass through 1 for vectors
 	assert( numRows <= GEN_COMPONENT_COUNT_MAX );
 	assert( numCols >= GEN_COMPONENT_COUNT_MIN );
 	assert( numCols <= GEN_COMPONENT_COUNT_MAX );
-
-	if ( type == GEN_TYPE_BOOL ) {
-		return;
-	}
-
-	for ( u32 opIndex = 0; opIndex < GEN_OP_RELATIONAL_COUNT; opIndex++ ) {
-		genOpRelational_t op = (genOpRelational_t) opIndex;
-
-		InlGenerateOperatorRelational( type, numRows, numCols, op, sbHeader );
-	}
-}
-
-void Gen_OperatorsBitwise( const genType_t type, const u32 numRows, const u32 numCols, stringBuilder_t* sbHeader ) {
 	assert( sbHeader );
-
-	assert( numRows >= 1 );	// pass through 1 for vectors
-	assert( numRows <= GEN_COMPONENT_COUNT_MAX );
-	assert( numCols >= GEN_COMPONENT_COUNT_MIN );
-	assert( numCols <= GEN_COMPONENT_COUNT_MAX );
-
-	if ( type != GEN_TYPE_BOOL && !Gen_TypeIsInteger( type ) ) {
-		return;
-	}
-
-	// do all except unary operator
-	// unary doesn't take rhs type, so do that one separately
-	genOpBitwise_t ops[] = {
-		GEN_OP_BITWISE_AND,
-		GEN_OP_BITWISE_OR,
-		GEN_OP_BITWISE_XOR,
-		GEN_OP_BITWISE_SHIFT_LEFT,
-		GEN_OP_BITWISE_SHIFT_RIGHT
-	};
-
-	for ( genOpBitwise_t op : ops ) {
-		InlGenerateOperatorBitwiseScalar( type, numRows, numCols, op, sbHeader );
-		InlGenerateOperatorBitwiseRhsType( type, numRows, numCols, op, sbHeader );
-	}
-
-	// unary operator
-	u32 numComponents = ( numRows == 1 ) ? numCols : numRows;
-	char fullTypeName[GEN_STRING_LENGTH_TYPE_NAME];
-	Gen_GetFullTypeName( type, numRows, numCols, fullTypeName );
-
-	Doc_OperatorBitwiseUnary( sbHeader, fullTypeName );
-	String_Appendf( sbHeader, "inline %s operator~( const %s& lhs )\n", fullTypeName, fullTypeName );
-	String_Append( sbHeader, "{\n" );
-	String_Appendf( sbHeader, "\treturn %s(\n", fullTypeName );
-	for ( u32 i = 0; i < numComponents; i++ ) {
-		String_Appendf( sbHeader, "\t\t~lhs[%d]", i );
-
-		if ( i != numComponents - 1 ) {
-			String_Append( sbHeader, "," );
-		}
-
-		String_Append( sbHeader, "\n" );
-	}
-	String_Append( sbHeader, "\t);\n" );
-	String_Append( sbHeader, "}\n" );
-	String_Append( sbHeader, "\n" );
-}
-
-void Gen_OperatorComponentWiseArithmeticScalar( const genType_t type, const u32 numRows, const u32 numCols, const genOpArithmetic_t op, stringBuilder_t* sbHeader ) {
-	assert( sbHeader );
-
-	assert( numRows >= 1 );	// pass through 1 for vectors
-	assert( numRows <= GEN_COMPONENT_COUNT_MAX );
-	assert( numCols >= GEN_COMPONENT_COUNT_MIN );
-	assert( numCols <= GEN_COMPONENT_COUNT_MAX );
-
-	if ( type == GEN_TYPE_BOOL ) {
-		return;
-	}
-
-	u32 numComponents = ( numRows == 1 ) ? numCols : numRows;
 
 	char fullTypeName[GEN_STRING_LENGTH_TYPE_NAME];
 	Gen_GetFullTypeName( type, numRows, numCols, fullTypeName );
 
-	const char* memberTypeString = Gen_GetMemberTypeString( type );
+	char parmTypeName[GEN_STRING_LENGTH_TYPE_NAME];
+	Gen_GetParmTypeName( language, type, numRows, numCols, parmTypeName );
 
-	char opStr = GEN_OPERATORS_ARITHMETIC[op];
+	char equalsFuncStr[GEN_STRING_LENGTH_FUNCTION_NAME];
+	Gen_GetFuncNameEquals( language, type, numRows, numCols, equalsFuncStr );
 
-	// main arithmetic func
-	Doc_ComponentWiseArithmeticScalar( sbHeader, fullTypeName, op );
-	String_Appendf( sbHeader, "inline %s operator%c( const %s& lhs, const %s rhs )\n", fullTypeName, opStr, fullTypeName, memberTypeString );
-	String_Append(  sbHeader, "{\n" );
-	String_Appendf( sbHeader, "\treturn %s(\n", fullTypeName );
-	for ( u32 i = 0; i < numComponents; i++ ) {
-		String_Appendf( sbHeader, "\t\tlhs[%d] %c rhs", i, opStr );
-
-		if ( i != numComponents - 1 ) {
-			String_Append( sbHeader, "," );
-		}
-
-		String_Append( sbHeader, "\n" );
-	}
-	String_Append( sbHeader, "\t);\n" );
-	String_Append( sbHeader, "}\n" );
-	String_Append( sbHeader, "\n" );
-
-	// compound arithmetic func
-	Doc_OperatorCompoundArithmeticScalar( sbHeader, fullTypeName, op );
-	String_Appendf( sbHeader, "inline %s operator%c=( %s& lhs, const %s rhs )\n", fullTypeName, opStr, fullTypeName, memberTypeString );
-	String_Append(  sbHeader, "{\n" );
-	String_Appendf( sbHeader, "\treturn ( lhs = lhs %c rhs );\n", opStr );
-	String_Append(  sbHeader, "}\n" );
-	String_Append(  sbHeader, "\n" );
-}
-
-void Gen_OperatorComponentWiseArithmeticRhsType( const genType_t type, const u32 numRows, const u32 numCols, const genOpArithmetic_t op, stringBuilder_t* sbHeader ) {
-	assert( sbHeader );
-
-	assert( numRows >= 1 );	// pass through 1 for vectors
-	assert( numRows <= GEN_COMPONENT_COUNT_MAX );
-	assert( numCols >= GEN_COMPONENT_COUNT_MIN );
-	assert( numCols <= GEN_COMPONENT_COUNT_MAX );
-
-	if ( type == GEN_TYPE_BOOL ) {
-		return;
-	}
-
-	// don't generate compound arithmetic func on mul/div ops for non-square matrices
-	bool canGenerateCompound = true;
-	if ( op == GEN_OP_ARITHMETIC_MUL || op == GEN_OP_ARITHMETIC_DIV ) {
-		if ( numRows > 1 && numRows != numCols ) {
-			canGenerateCompound = false;
-		}
-	}
-
-	u32 numComponents = ( numRows == 1 ) ? numCols : numRows;
-
-	char fullTypeName[GEN_STRING_LENGTH_TYPE_NAME];
-	Gen_GetFullTypeName( type, numRows, numCols, fullTypeName );
-
-	char opStr = GEN_OPERATORS_ARITHMETIC[op];
-
-	// main arithmetic func
-	Doc_ComponentWiseArithmeticRhsType( sbHeader, fullTypeName, fullTypeName, op );
-	String_Appendf( sbHeader, "inline %s operator%c( const %s& lhs, const %s& rhs )\n", fullTypeName, opStr, fullTypeName, fullTypeName );
-	String_Append(  sbHeader, "{\n" );
-	String_Appendf( sbHeader, "\treturn %s(\n", fullTypeName );
-	for ( u32 i = 0; i < numComponents; i++ ) {
-		String_Appendf( sbHeader, "\t\tlhs[%d] %c rhs[%d]", i, opStr, i );
-
-		if ( i != numComponents - 1 ) {
-			String_Append( sbHeader, "," );
-		}
-
-		String_Append( sbHeader, "\n" );
-	}
-	String_Append( sbHeader, "\t);\n" );
-	String_Append( sbHeader, "}\n" );
-	String_Append( sbHeader, "\n" );
-
-	// compound arithmetic func
-	if ( canGenerateCompound ) {
-		Doc_OperatorCompoundComponentWiseArithmeticRhsType( sbHeader, fullTypeName, fullTypeName, op );
-		String_Appendf( sbHeader, "inline %s operator%c=( %s& lhs, const %s& rhs )\n", fullTypeName, opStr, fullTypeName, fullTypeName );
-		String_Append(  sbHeader, "{\n" );
-		String_Appendf( sbHeader, "\treturn ( lhs = lhs %c rhs );\n", opStr );
-		String_Append(  sbHeader, "}\n" );
-		String_Append(  sbHeader, "\n" );
-	}
-}
-
-void Gen_OperatorNotEquals( const genType_t type, const u32 numRows, const u32 numCols, stringBuilder_t* sbHeader, stringBuilder_t* sbInl ) {
-	assert( sbHeader );
-
-	assert( numRows >= 1 );	// pass through 1 for vectors
-	assert( numRows <= GEN_COMPONENT_COUNT_MAX );
-	assert( numCols >= GEN_COMPONENT_COUNT_MIN );
-	assert( numCols <= GEN_COMPONENT_COUNT_MAX );
-
-	char fullTypeName[GEN_STRING_LENGTH_TYPE_NAME];
-	Gen_GetFullTypeName( type, numRows, numCols, fullTypeName );
+	char notEqualsFuncStr[GEN_STRING_LENGTH_FUNCTION_NAME];
+	Gen_GetFuncNameNotEquals( language, type, numRows, numCols, notEqualsFuncStr );
 
 	Doc_OperatorNotEquals( sbHeader, fullTypeName );
-	String_Appendf( sbHeader, "inline bool operator!=( const %s& lhs, const %s& rhs );\n", fullTypeName, fullTypeName );
+	String_Appendf( sbHeader, "inline bool %s( const %s lhs, const %s rhs )\n", notEqualsFuncStr, parmTypeName, parmTypeName );
+	String_Append(  sbHeader, "{\n" );
+	String_Appendf( sbHeader, "\treturn !( %s( lhs, rhs ) );\n", equalsFuncStr );
+	String_Append(  sbHeader, "}\n" );
 	String_Append(  sbHeader, "\n" );
-
-	String_Appendf( sbInl, "inline bool operator!=( const %s& lhs, const %s& rhs )\n", fullTypeName, fullTypeName );
-	String_Append(  sbInl, "{\n" );
-	String_Append(  sbInl, "\treturn !( operator==( lhs, rhs ) );\n" );
-	String_Append(  sbInl, "}\n" );
-	String_Append(  sbInl, "\n" );
 }

@@ -69,8 +69,9 @@ struct uint2
 			uint32_t g;
 		};
 
-		uint32_t data[2] = { 0 };
+		uint32_t data[2];
 	};
+
 
 	/// Default constructor.  Initializes all values to zero.
 	inline uint2();
@@ -121,12 +122,4 @@ struct uint2
 #elif defined( _MSC_VER )
 #pragma warning( pop )
 #endif
-
-/// \relates uint2
-/// \brief Returns true if the all the components of the left-hand-side uint2 match the other one, otherwise returns false.
-inline bool operator==( const uint2& lhs, const uint2& rhs );
-
-/// \relates uint2
-/// \brief Returns true if not all of the components of the left-hand-side uint2 match the other one, otherwise returns false.
-inline bool operator!=( const uint2& lhs, const uint2& rhs );
 

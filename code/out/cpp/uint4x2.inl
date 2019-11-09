@@ -116,16 +116,3 @@ const uint2& uint4x2::operator[]( const uint32_t index ) const
 	return rows[index];
 }
 
-bool operator==( const uint4x2& lhs, const uint4x2& rhs )
-{
-	return lhs[0] == rhs[0]
-		&& lhs[1] == rhs[1]
-		&& lhs[2] == rhs[2]
-		&& lhs[3] == rhs[3];
-}
-
-inline bool operator!=( const uint4x2& lhs, const uint4x2& rhs )
-{
-	return !( operator==( lhs, rhs ) );
-}
-

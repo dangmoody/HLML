@@ -400,13 +400,3 @@ uint4 uint4::ywww() const { return uint4( y, w, w, w ); }
 uint4 uint4::zwww() const { return uint4( z, w, w, w ); }
 uint4 uint4::wwww() const { return uint4( w, w, w, w ); }
 
-bool operator==( const uint4& lhs, const uint4& rhs )
-{
-	return ( lhs.x == rhs.x ) && ( lhs.y == rhs.y ) && ( lhs.z == rhs.z ) && ( lhs.w == rhs.w );
-}
-
-inline bool operator!=( const uint4& lhs, const uint4& rhs )
-{
-	return !( operator==( lhs, rhs ) );
-}
-

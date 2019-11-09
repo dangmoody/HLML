@@ -69,8 +69,9 @@ struct float2
 			float g;
 		};
 
-		float data[2] = { 0 };
+		float data[2];
 	};
+
 
 	/// Default constructor.  Initializes all values to zero.
 	inline float2();
@@ -121,12 +122,4 @@ struct float2
 #elif defined( _MSC_VER )
 #pragma warning( pop )
 #endif
-
-/// \relates float2
-/// \brief Returns true if the all the components of the left-hand-side float2 match the other one, otherwise returns false.
-inline bool operator==( const float2& lhs, const float2& rhs );
-
-/// \relates float2
-/// \brief Returns true if not all of the components of the left-hand-side float2 match the other one, otherwise returns false.
-inline bool operator!=( const float2& lhs, const float2& rhs );
 

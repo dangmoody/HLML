@@ -80,11 +80,3 @@ struct float2x4
 	inline const float4& operator[]( const uint32_t index ) const;
 };
 
-/// \relates float2x4
-/// \brief Returns true if the all the components of the left-hand-side float2x4 match the other one, otherwise returns false.
-inline bool operator==( const float2x4& lhs, const float2x4& rhs );
-
-/// \relates float2x4
-/// \brief Returns true if not all of the components of the left-hand-side float2x4 match the other one, otherwise returns false.
-inline bool operator!=( const float2x4& lhs, const float2x4& rhs );
-

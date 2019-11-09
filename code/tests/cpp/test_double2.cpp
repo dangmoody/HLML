@@ -32,18 +32,35 @@ SOFTWARE.
 // EDITING THIS FILE MAY CAUSE SIDE EFFECTS.
 // DO SO AT YOUR OWN RISK.
 
-// also tests equality operators
 TEMPER_TEST( TestAssignment_double2 )
 {
-	double2 a;
+	double2 vec;
 
-	a = double2( 1.0 );
-	TEMPER_EXPECT_TRUE( a == double2( 1.0 ) );
-	TEMPER_EXPECT_TRUE( a != double2( 0.000000, 1.000000 ) );
+	vec.x = 1.0;
+	vec.y = 1.0;
+	TEMPER_EXPECT_TRUE( vec.x == 1.0 );
+	TEMPER_EXPECT_TRUE( vec.y == 1.0 );
 
-	a = double2( 0.000000, 1.000000 );
-	TEMPER_EXPECT_TRUE( a == double2( 0.000000, 1.000000 ) );
-	TEMPER_EXPECT_TRUE( a != double2( 1.0 ) );
+	vec.x = 0.0;
+	vec.y = 1.0;
+	TEMPER_EXPECT_TRUE( vec.x == 0.0 );
+	TEMPER_EXPECT_TRUE( vec.y == 1.0 );
+
+	TEMPER_PASS();
+}
+
+// also tests equality operators
+TEMPER_TEST( TestCtor_double2 )
+{
+	double2 vec;
+
+	vec = double2( 1.0 );
+	TEMPER_EXPECT_TRUE( vec == double2( 1.0 ) );
+	TEMPER_EXPECT_TRUE( vec != double2( 0.000000, 1.000000 ) );
+
+	vec = double2( 0.000000, 1.000000 );
+	TEMPER_EXPECT_TRUE( vec == double2( 0.000000, 1.000000 ) );
+	TEMPER_EXPECT_TRUE( vec != double2( 1.0 ) );
 
 	TEMPER_PASS();
 }
@@ -52,8 +69,42 @@ TEMPER_TEST( TestArray_double2 )
 {
 	double2 a = double2( 0.000000, 1.000000 );
 
-	TEMPER_EXPECT_TRUE( a[0] == 0.0 );
-	TEMPER_EXPECT_TRUE( a[1] == 1.0 );
+	TEMPER_EXPECT_TRUE( a.x == 0.0 );
+	TEMPER_EXPECT_TRUE( a.y == 1.0 );
+
+	TEMPER_PASS();
+}
+
+TEMPER_TEST( TestIncrement_double2 )
+{
+	double2 vec;
+
+	// prefix
+	vec = double2( 0.000000, 0.000000 );
+	++vec;
+	TEMPER_EXPECT_TRUE( vec == double2( 1.000000, 1.000000 ) );
+
+	// postfix
+	vec = double2( 0.000000, 0.000000 );
+	vec++;
+	TEMPER_EXPECT_TRUE( vec == double2( 1.000000, 1.000000 ) );
+
+	TEMPER_PASS();
+}
+
+TEMPER_TEST( TestDecrement_double2 )
+{
+	double2 vec;
+
+	// prefix
+	vec = double2( 1.000000, 1.000000 );
+	--vec;
+	TEMPER_EXPECT_TRUE( vec == double2( 0.000000, 0.000000 ) );
+
+	// postfix
+	vec = double2( 1.000000, 1.000000 );
+	vec--;
+	TEMPER_EXPECT_TRUE( vec == double2( 0.000000, 0.000000 ) );
 
 	TEMPER_PASS();
 }
@@ -102,40 +153,6 @@ TEMPER_TEST( TestArithmeticDivision_double2 )
 	double2 c = a / b;
 
 	TEMPER_EXPECT_TRUE( c == double2( 3.000000, 3.000000 ) );
-
-	TEMPER_PASS();
-}
-
-TEMPER_TEST( TestIncrement_double2 )
-{
-	double2 vec;
-
-	// prefix
-	vec = double2( 0.000000, 0.000000 );
-	++vec;
-	TEMPER_EXPECT_TRUE( vec == double2( 1.000000, 1.000000 ) );
-
-	// postfix
-	vec = double2( 0.000000, 0.000000 );
-	vec++;
-	TEMPER_EXPECT_TRUE( vec == double2( 1.000000, 1.000000 ) );
-
-	TEMPER_PASS();
-}
-
-TEMPER_TEST( TestDecrement_double2 )
-{
-	double2 vec;
-
-	// prefix
-	vec = double2( 1.000000, 1.000000 );
-	--vec;
-	TEMPER_EXPECT_TRUE( vec == double2( 0.000000, 0.000000 ) );
-
-	// postfix
-	vec = double2( 1.000000, 1.000000 );
-	vec--;
-	TEMPER_EXPECT_TRUE( vec == double2( 0.000000, 0.000000 ) );
 
 	TEMPER_PASS();
 }
@@ -323,13 +340,14 @@ TEMPER_TEST( TestSmoothstep_double2 )
 TEMPER_SUITE( Test_double2 )
 {
 	TEMPER_RUN_TEST( TestAssignment_double2 );
+	TEMPER_RUN_TEST( TestCtor_double2 );
 	TEMPER_RUN_TEST( TestArray_double2 );
+	TEMPER_RUN_TEST( TestIncrement_double2 );
+	TEMPER_RUN_TEST( TestDecrement_double2 );
 	TEMPER_RUN_TEST( TestArithmeticAddition_double2 );
 	TEMPER_RUN_TEST( TestArithmeticSubtraction_double2 );
 	TEMPER_RUN_TEST( TestArithmeticMultiplication_double2 );
 	TEMPER_RUN_TEST( TestArithmeticDivision_double2 );
-	TEMPER_RUN_TEST( TestIncrement_double2 );
-	TEMPER_RUN_TEST( TestDecrement_double2 );
 	TEMPER_RUN_TEST( TestRelational_double2 );
 	TEMPER_RUN_TEST( TestLength_Scalar_double2 );
 	TEMPER_RUN_TEST( TestNormalized_Scalar_double2 );

@@ -74,8 +74,9 @@ struct float4
 			float a;
 		};
 
-		float data[4] = { 0 };
+		float data[4];
 	};
+
 
 	/// Default constructor.  Initializes all values to zero.
 	inline float4();
@@ -409,12 +410,4 @@ struct float4
 #elif defined( _MSC_VER )
 #pragma warning( pop )
 #endif
-
-/// \relates float4
-/// \brief Returns true if the all the components of the left-hand-side float4 match the other one, otherwise returns false.
-inline bool operator==( const float4& lhs, const float4& rhs );
-
-/// \relates float4
-/// \brief Returns true if not all of the components of the left-hand-side float4 match the other one, otherwise returns false.
-inline bool operator!=( const float4& lhs, const float4& rhs );
 

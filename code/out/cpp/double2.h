@@ -69,8 +69,9 @@ struct double2
 			double g;
 		};
 
-		double data[2] = { 0 };
+		double data[2];
 	};
+
 
 	/// Default constructor.  Initializes all values to zero.
 	inline double2();
@@ -121,12 +122,4 @@ struct double2
 #elif defined( _MSC_VER )
 #pragma warning( pop )
 #endif
-
-/// \relates double2
-/// \brief Returns true if the all the components of the left-hand-side double2 match the other one, otherwise returns false.
-inline bool operator==( const double2& lhs, const double2& rhs );
-
-/// \relates double2
-/// \brief Returns true if not all of the components of the left-hand-side double2 match the other one, otherwise returns false.
-inline bool operator!=( const double2& lhs, const double2& rhs );
 

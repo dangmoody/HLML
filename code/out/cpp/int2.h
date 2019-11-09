@@ -69,8 +69,9 @@ struct int2
 			int32_t g;
 		};
 
-		int32_t data[2] = { 0 };
+		int32_t data[2];
 	};
+
 
 	/// Default constructor.  Initializes all values to zero.
 	inline int2();
@@ -121,12 +122,4 @@ struct int2
 #elif defined( _MSC_VER )
 #pragma warning( pop )
 #endif
-
-/// \relates int2
-/// \brief Returns true if the all the components of the left-hand-side int2 match the other one, otherwise returns false.
-inline bool operator==( const int2& lhs, const int2& rhs );
-
-/// \relates int2
-/// \brief Returns true if not all of the components of the left-hand-side int2 match the other one, otherwise returns false.
-inline bool operator!=( const int2& lhs, const int2& rhs );
 

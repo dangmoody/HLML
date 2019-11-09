@@ -141,13 +141,3 @@ int3 int3::xzz() const { return int3( x, z, z ); }
 int3 int3::yzz() const { return int3( y, z, z ); }
 int3 int3::zzz() const { return int3( z, z, z ); }
 
-bool operator==( const int3& lhs, const int3& rhs )
-{
-	return ( lhs.x == rhs.x ) && ( lhs.y == rhs.y ) && ( lhs.z == rhs.z );
-}
-
-inline bool operator!=( const int3& lhs, const int3& rhs )
-{
-	return !( operator==( lhs, rhs ) );
-}
-

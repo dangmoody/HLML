@@ -32,18 +32,43 @@ SOFTWARE.
 // EDITING THIS FILE MAY CAUSE SIDE EFFECTS.
 // DO SO AT YOUR OWN RISK.
 
-// also tests equality operators
 TEMPER_TEST( TestAssignment_double4 )
 {
-	double4 a;
+	double4 vec;
 
-	a = double4( 1.0 );
-	TEMPER_EXPECT_TRUE( a == double4( 1.0 ) );
-	TEMPER_EXPECT_TRUE( a != double4( 0.000000, 1.000000, 2.000000, 3.000000 ) );
+	vec.x = 1.0;
+	vec.y = 1.0;
+	vec.z = 1.0;
+	vec.w = 1.0;
+	TEMPER_EXPECT_TRUE( vec.x == 1.0 );
+	TEMPER_EXPECT_TRUE( vec.y == 1.0 );
+	TEMPER_EXPECT_TRUE( vec.z == 1.0 );
+	TEMPER_EXPECT_TRUE( vec.w == 1.0 );
 
-	a = double4( 0.000000, 1.000000, 2.000000, 3.000000 );
-	TEMPER_EXPECT_TRUE( a == double4( 0.000000, 1.000000, 2.000000, 3.000000 ) );
-	TEMPER_EXPECT_TRUE( a != double4( 1.0 ) );
+	vec.x = 0.0;
+	vec.y = 1.0;
+	vec.z = 2.0;
+	vec.w = 3.0;
+	TEMPER_EXPECT_TRUE( vec.x == 0.0 );
+	TEMPER_EXPECT_TRUE( vec.y == 1.0 );
+	TEMPER_EXPECT_TRUE( vec.z == 2.0 );
+	TEMPER_EXPECT_TRUE( vec.w == 3.0 );
+
+	TEMPER_PASS();
+}
+
+// also tests equality operators
+TEMPER_TEST( TestCtor_double4 )
+{
+	double4 vec;
+
+	vec = double4( 1.0 );
+	TEMPER_EXPECT_TRUE( vec == double4( 1.0 ) );
+	TEMPER_EXPECT_TRUE( vec != double4( 0.000000, 1.000000, 2.000000, 3.000000 ) );
+
+	vec = double4( 0.000000, 1.000000, 2.000000, 3.000000 );
+	TEMPER_EXPECT_TRUE( vec == double4( 0.000000, 1.000000, 2.000000, 3.000000 ) );
+	TEMPER_EXPECT_TRUE( vec != double4( 1.0 ) );
 
 	TEMPER_PASS();
 }
@@ -52,10 +77,44 @@ TEMPER_TEST( TestArray_double4 )
 {
 	double4 a = double4( 0.000000, 1.000000, 2.000000, 3.000000 );
 
-	TEMPER_EXPECT_TRUE( a[0] == 0.0 );
-	TEMPER_EXPECT_TRUE( a[1] == 1.0 );
-	TEMPER_EXPECT_TRUE( a[2] == 2.0 );
-	TEMPER_EXPECT_TRUE( a[3] == 3.0 );
+	TEMPER_EXPECT_TRUE( a.x == 0.0 );
+	TEMPER_EXPECT_TRUE( a.y == 1.0 );
+	TEMPER_EXPECT_TRUE( a.z == 2.0 );
+	TEMPER_EXPECT_TRUE( a.w == 3.0 );
+
+	TEMPER_PASS();
+}
+
+TEMPER_TEST( TestIncrement_double4 )
+{
+	double4 vec;
+
+	// prefix
+	vec = double4( 0.000000, 0.000000, 0.000000, 0.000000 );
+	++vec;
+	TEMPER_EXPECT_TRUE( vec == double4( 1.000000, 1.000000, 1.000000, 1.000000 ) );
+
+	// postfix
+	vec = double4( 0.000000, 0.000000, 0.000000, 0.000000 );
+	vec++;
+	TEMPER_EXPECT_TRUE( vec == double4( 1.000000, 1.000000, 1.000000, 1.000000 ) );
+
+	TEMPER_PASS();
+}
+
+TEMPER_TEST( TestDecrement_double4 )
+{
+	double4 vec;
+
+	// prefix
+	vec = double4( 1.000000, 1.000000, 1.000000, 1.000000 );
+	--vec;
+	TEMPER_EXPECT_TRUE( vec == double4( 0.000000, 0.000000, 0.000000, 0.000000 ) );
+
+	// postfix
+	vec = double4( 1.000000, 1.000000, 1.000000, 1.000000 );
+	vec--;
+	TEMPER_EXPECT_TRUE( vec == double4( 0.000000, 0.000000, 0.000000, 0.000000 ) );
 
 	TEMPER_PASS();
 }
@@ -104,40 +163,6 @@ TEMPER_TEST( TestArithmeticDivision_double4 )
 	double4 c = a / b;
 
 	TEMPER_EXPECT_TRUE( c == double4( 3.000000, 3.000000, 2.000000, 1.000000 ) );
-
-	TEMPER_PASS();
-}
-
-TEMPER_TEST( TestIncrement_double4 )
-{
-	double4 vec;
-
-	// prefix
-	vec = double4( 0.000000, 0.000000, 0.000000, 0.000000 );
-	++vec;
-	TEMPER_EXPECT_TRUE( vec == double4( 1.000000, 1.000000, 1.000000, 1.000000 ) );
-
-	// postfix
-	vec = double4( 0.000000, 0.000000, 0.000000, 0.000000 );
-	vec++;
-	TEMPER_EXPECT_TRUE( vec == double4( 1.000000, 1.000000, 1.000000, 1.000000 ) );
-
-	TEMPER_PASS();
-}
-
-TEMPER_TEST( TestDecrement_double4 )
-{
-	double4 vec;
-
-	// prefix
-	vec = double4( 1.000000, 1.000000, 1.000000, 1.000000 );
-	--vec;
-	TEMPER_EXPECT_TRUE( vec == double4( 0.000000, 0.000000, 0.000000, 0.000000 ) );
-
-	// postfix
-	vec = double4( 1.000000, 1.000000, 1.000000, 1.000000 );
-	vec--;
-	TEMPER_EXPECT_TRUE( vec == double4( 0.000000, 0.000000, 0.000000, 0.000000 ) );
 
 	TEMPER_PASS();
 }
@@ -234,9 +259,9 @@ TEMPER_TEST( TestDot_Scalar_double4 )
 
 TEMPER_TEST( TestCross_Scalar_double4 )
 {
-	double4 left = double4( -1.000000, 0.000000, 0.000000, 0.000000 );
+	double4 left    = double4( -1.000000, 0.000000, 0.000000, 0.000000 );
 	double4 forward = double4( 0.000000, 0.000000, 1.000000, 0.000000 );
-	double4 up = double4( 0.000000, 1.000000, 0.000000, 0.000000 );
+	double4 up      = double4( 0.000000, 1.000000, 0.000000, 0.000000 );
 
 	TEMPER_EXPECT_TRUE( cross( left, forward ) == up );
 
@@ -319,13 +344,14 @@ TEMPER_TEST( TestSmoothstep_double4 )
 TEMPER_SUITE( Test_double4 )
 {
 	TEMPER_RUN_TEST( TestAssignment_double4 );
+	TEMPER_RUN_TEST( TestCtor_double4 );
 	TEMPER_RUN_TEST( TestArray_double4 );
+	TEMPER_RUN_TEST( TestIncrement_double4 );
+	TEMPER_RUN_TEST( TestDecrement_double4 );
 	TEMPER_RUN_TEST( TestArithmeticAddition_double4 );
 	TEMPER_RUN_TEST( TestArithmeticSubtraction_double4 );
 	TEMPER_RUN_TEST( TestArithmeticMultiplication_double4 );
 	TEMPER_RUN_TEST( TestArithmeticDivision_double4 );
-	TEMPER_RUN_TEST( TestIncrement_double4 );
-	TEMPER_RUN_TEST( TestDecrement_double4 );
 	TEMPER_RUN_TEST( TestRelational_double4 );
 	TEMPER_RUN_TEST( TestLength_Scalar_double4 );
 	TEMPER_RUN_TEST( TestNormalized_Scalar_double4 );

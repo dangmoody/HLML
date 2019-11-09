@@ -80,11 +80,3 @@ struct double2x4
 	inline const double4& operator[]( const uint32_t index ) const;
 };
 
-/// \relates double2x4
-/// \brief Returns true if the all the components of the left-hand-side double2x4 match the other one, otherwise returns false.
-inline bool operator==( const double2x4& lhs, const double2x4& rhs );
-
-/// \relates double2x4
-/// \brief Returns true if not all of the components of the left-hand-side double2x4 match the other one, otherwise returns false.
-inline bool operator!=( const double2x4& lhs, const double2x4& rhs );
-

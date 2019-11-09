@@ -80,11 +80,3 @@ struct int3x4
 	inline const int4& operator[]( const uint32_t index ) const;
 };
 
-/// \relates int3x4
-/// \brief Returns true if the all the components of the left-hand-side int3x4 match the other one, otherwise returns false.
-inline bool operator==( const int3x4& lhs, const int3x4& rhs );
-
-/// \relates int3x4
-/// \brief Returns true if not all of the components of the left-hand-side int3x4 match the other one, otherwise returns false.
-inline bool operator!=( const int3x4& lhs, const int3x4& rhs );
-

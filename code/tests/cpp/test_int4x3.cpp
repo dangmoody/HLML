@@ -32,27 +32,50 @@ SOFTWARE.
 // EDITING THIS FILE MAY CAUSE SIDE EFFECTS.
 // DO SO AT YOUR OWN RISK.
 
-static int4x3 g_identityMatrix_int4x3;
-
-static int4x3 g_matrixMulLHS_int4x3    = int4x3(
-		6, 6, 6,
+static int4x3 g_matrixMulLHS_int4x3    = int4x3( 		6, 6, 6,
 		6, 6, 6,
 		12, 12, 12,
 		18, 18, 18
-	);
-static int3x4 g_matrixMulRHS_int4x3    = int3x4(
-		1, 1, 1, 1,
+ );
+
+static int3x4 g_matrixMulRHS_int4x3    = int3x4( 		1, 1, 1, 1,
 		2, 2, 2, 2,
 		3, 3, 3, 3
-	);
-static int4x4 g_matrixMulAnswer_int4x3 = int4x4(
-		36, 36, 36, 36,
+ );
+
+static int4x4 g_matrixMulAnswer_int4x3 = int4x4( 		36, 36, 36, 36,
 		36, 36, 36, 36,
 		72, 72, 72, 72,
 		108, 108, 108, 108
-	);
+ );
+
 
 TEMPER_TEST( TestAssignment_int4x3 )
+{
+	int4x3 mat;
+
+	mat.rows[0] = int3( 999, 0, 0 );
+	mat.rows[1] = int3( 0, 999, 0 );
+	mat.rows[2] = int3( 0, 0, 999 );
+	mat.rows[3] = int3( 0, 0, 0 );
+
+	TEMPER_EXPECT_TRUE( mat.rows[0].x == 999 );
+	TEMPER_EXPECT_TRUE( mat.rows[0].y == 0 );
+	TEMPER_EXPECT_TRUE( mat.rows[0].z == 0 );
+	TEMPER_EXPECT_TRUE( mat.rows[1].x == 0 );
+	TEMPER_EXPECT_TRUE( mat.rows[1].y == 999 );
+	TEMPER_EXPECT_TRUE( mat.rows[1].z == 0 );
+	TEMPER_EXPECT_TRUE( mat.rows[2].x == 0 );
+	TEMPER_EXPECT_TRUE( mat.rows[2].y == 0 );
+	TEMPER_EXPECT_TRUE( mat.rows[2].z == 999 );
+	TEMPER_EXPECT_TRUE( mat.rows[3].x == 0 );
+	TEMPER_EXPECT_TRUE( mat.rows[3].y == 0 );
+	TEMPER_EXPECT_TRUE( mat.rows[3].z == 0 );
+
+	TEMPER_PASS();
+}
+
+TEMPER_TEST( TestCtor_int4x3 )
 {
 	int4x3 mat;
 
@@ -90,6 +113,106 @@ TEMPER_TEST( TestAssignment_int4x3 )
 	TEMPER_PASS();
 }
 
+TEMPER_TEST( TestArray_int4x3 )
+{
+	int4x3 mat;
+
+	TEMPER_EXPECT_TRUE( mat[0] == int3( 1, 0, 0 ) );
+	TEMPER_EXPECT_TRUE( mat[1] == int3( 0, 1, 0 ) );
+	TEMPER_EXPECT_TRUE( mat[2] == int3( 0, 0, 1 ) );
+	TEMPER_EXPECT_TRUE( mat[3] == int3( 0, 0, 0 ) );
+
+	TEMPER_PASS();
+}
+
+TEMPER_TEST( TestIncrement_int4x3 )
+{
+	int4x3 answer;
+	int4x3 mat;
+
+	// prefix
+	answer = int4x3(
+		1, 1, 1,
+		1, 1, 1,
+		1, 1, 1,
+		1, 1, 1
+	);
+
+	mat = int4x3(
+		0, 0, 0,
+		0, 0, 0,
+		0, 0, 0,
+		0, 0, 0
+
+	);
+	++mat;
+	TEMPER_EXPECT_TRUE( mat == answer );
+
+	// postfix
+	answer = int4x3(
+		1, 1, 1,
+		1, 1, 1,
+		1, 1, 1,
+		1, 1, 1
+	);
+
+	mat = int4x3(
+		0, 0, 0,
+		0, 0, 0,
+		0, 0, 0,
+		0, 0, 0
+
+	);
+	mat++;
+	TEMPER_EXPECT_TRUE( mat == answer );
+
+	TEMPER_PASS();
+}
+
+TEMPER_TEST( TestDecrement_int4x3 )
+{
+	int4x3 answer;
+	int4x3 mat;
+
+	// prefix
+	answer = int4x3(
+		0, 0, 0,
+		0, 0, 0,
+		0, 0, 0,
+		0, 0, 0
+	);
+
+	mat = int4x3(
+		1, 1, 1,
+		1, 1, 1,
+		1, 1, 1,
+		1, 1, 1
+
+	);
+	--mat;
+	TEMPER_EXPECT_TRUE( mat == answer );
+
+	// postfix
+	answer = int4x3(
+		0, 0, 0,
+		0, 0, 0,
+		0, 0, 0,
+		0, 0, 0
+	);
+
+	mat = int4x3(
+		1, 1, 1,
+		1, 1, 1,
+		1, 1, 1,
+		1, 1, 1
+
+	);
+	mat--;
+	TEMPER_EXPECT_TRUE( mat == answer );
+
+	TEMPER_PASS();
+}
+
 TEMPER_TEST( TestComponentWiseArithmetic_Scalar_Addition_int4x3 )
 {
 	int4x3 answer = int4x3(
@@ -105,13 +228,15 @@ TEMPER_TEST( TestComponentWiseArithmetic_Scalar_Addition_int4x3 )
 		12, 12, 12,
 		18, 18, 18
 	);
+
 	int4x3 b = int4x3(
 		1, 1, 1,
 		2, 2, 2,
 		3, 3, 3,
 		6, 6, 6
 	);
-	int4x3 c = a + b;
+
+	int4x3 c = comp_addm( a, b );
 
 	TEMPER_EXPECT_TRUE( c == answer );
 
@@ -133,13 +258,15 @@ TEMPER_TEST( TestComponentWiseArithmetic_Scalar_Subtraction_int4x3 )
 		12, 12, 12,
 		18, 18, 18
 	);
+
 	int4x3 b = int4x3(
 		1, 1, 1,
 		2, 2, 2,
 		3, 3, 3,
 		6, 6, 6
 	);
-	int4x3 c = a - b;
+
+	int4x3 c = comp_subm( a, b );
 
 	TEMPER_EXPECT_TRUE( c == answer );
 
@@ -161,13 +288,15 @@ TEMPER_TEST( TestComponentWiseArithmetic_Scalar_Multiplication_int4x3 )
 		12, 12, 12,
 		18, 18, 18
 	);
+
 	int4x3 b = int4x3(
 		1, 1, 1,
 		2, 2, 2,
 		3, 3, 3,
 		6, 6, 6
 	);
-	int4x3 c = comp_mul( a, b );
+
+	int4x3 c = comp_mulm( a, b );
 
 	TEMPER_EXPECT_TRUE( c == answer );
 
@@ -189,13 +318,15 @@ TEMPER_TEST( TestComponentWiseArithmetic_Scalar_Division_int4x3 )
 		12, 12, 12,
 		18, 18, 18
 	);
+
 	int4x3 b = int4x3(
 		1, 1, 1,
 		2, 2, 2,
 		3, 3, 3,
 		6, 6, 6
 	);
-	int4x3 c = comp_div( a, b );
+
+	int4x3 c = comp_divm( a, b );
 
 	TEMPER_EXPECT_TRUE( c == answer );
 
@@ -215,113 +346,34 @@ TEMPER_TEST( TestMultiplyMatrix_Scalar_int4x3 )
 	TEMPER_PASS();
 }
 
-TEMPER_TEST( TestIncrement_int4x3 )
-{
-	int4x3 mat;
-
-	// prefix
-	mat = int4x3(
-		0, 0, 0,
-		0, 0, 0,
-		0, 0, 0,
-		0, 0, 0
-	);
-	++mat;
-	TEMPER_EXPECT_TRUE( mat == int4x3(
-		1, 1, 1,
-		1, 1, 1,
-		1, 1, 1,
-		1, 1, 1
-	) );
-
-	// postfix
-	mat = int4x3(
-		0, 0, 0,
-		0, 0, 0,
-		0, 0, 0,
-		0, 0, 0
-	);
-	mat++;
-	TEMPER_EXPECT_TRUE( mat == int4x3(
-		1, 1, 1,
-		1, 1, 1,
-		1, 1, 1,
-		1, 1, 1
-	) );
-
-	TEMPER_PASS();
-}
-
-TEMPER_TEST( TestDecrement_int4x3 )
-{
-	int4x3 mat;
-
-	// prefix
-	mat = int4x3(
-		1, 1, 1,
-		1, 1, 1,
-		1, 1, 1,
-		1, 1, 1
-	);
-	--mat;
-	TEMPER_EXPECT_TRUE( mat == int4x3(
-		0, 0, 0,
-		0, 0, 0,
-		0, 0, 0,
-		0, 0, 0
-	) );
-
-	// postfix
-	mat = int4x3(
-		1, 1, 1,
-		1, 1, 1,
-		1, 1, 1,
-		1, 1, 1
-	);
-	mat--;
-	TEMPER_EXPECT_TRUE( mat == int4x3(
-		0, 0, 0,
-		0, 0, 0,
-		0, 0, 0,
-		0, 0, 0
-	) );
-
-	TEMPER_PASS();
-}
-
 TEMPER_TEST( TestRelational_int4x3 )
 {
-	bool4x3 allTrue = bool4x3(
-		true, true, true,
+	bool4x3 allTrue = { 		true, true, true,
 		true, true, true,
 		true, true, true,
 		true, true, true
-	);
+ };
 
-	int4x3 mat0 = int4x3(
-		1, 1, 1,
+	int4x3 mat0 = int4x3( 		1, 1, 1,
 		1, 1, 1,
 		1, 1, 1,
 		1, 1, 1
-	);
-	int4x3 mat1 = int4x3(
-		2, 2, 2,
+ );
+	int4x3 mat1 = int4x3( 		2, 2, 2,
 		2, 2, 2,
 		2, 2, 2,
 		2, 2, 2
-	);
-	int4x3 mat2 = int4x3(
-		3, 3, 3,
+ );
+	int4x3 mat2 = int4x3( 		3, 3, 3,
 		3, 3, 3,
 		3, 3, 3,
 		3, 3, 3
-	);
-	int4x3 mat3 = int4x3(
-		4, 4, 4,
+ );
+	int4x3 mat3 = int4x3( 		4, 4, 4,
 		4, 4, 4,
 		4, 4, 4,
 		4, 4, 4
-	);
+ );
 
 	bool4x3 test0  = mat0 <= mat0;
 	bool4x3 test1  = mat0 >= mat0;
@@ -374,155 +426,154 @@ TEMPER_TEST( TestRelational_int4x3 )
 	TEMPER_PASS();
 }
 
-TEMPER_TEST( TestArray_int4x3 )
-{
-	int4x3 mat;
-
-	TEMPER_EXPECT_TRUE( mat[0] == int3( 1, 0, 0 ) );
-	TEMPER_EXPECT_TRUE( mat[1] == int3( 0, 1, 0 ) );
-	TEMPER_EXPECT_TRUE( mat[2] == int3( 0, 0, 1 ) );
-	TEMPER_EXPECT_TRUE( mat[3] == int3( 0, 0, 0 ) );
-
-	TEMPER_PASS();
-}
-
 TEMPER_TEST( TestBitwise_And_int4x3 )
 {
-	int4x3 a  = int4x3(
+	int4x3 answer = int4x3(
+		5, 5, 5,
+		5, 5, 5,
+		5, 5, 5,
+		5, 5, 5
+	);
+	int4x3 a = int4x3(
 		21, 21, 21,
 		21, 21, 21,
 		21, 21, 21,
 		21, 21, 21
 	);
-	int4x3 b  = int4x3(
+	int4x3 b = int4x3(
 		7, 7, 7,
 		7, 7, 7,
 		7, 7, 7,
 		7, 7, 7
 	);
 
-	int4x3 answer = a & b;
+	int4x3 c = a & b;
 
-	TEMPER_EXPECT_TRUE( answer == int4x3(
-		5, 5, 5,
-		5, 5, 5,
-		5, 5, 5,
-		5, 5, 5
-	) );
+	TEMPER_EXPECT_TRUE( c == answer );
 
 	TEMPER_PASS();
 }
 
 TEMPER_TEST( TestBitwise_Or_int4x3 )
 {
-	int4x3 a  = int4x3(
+	int4x3 answer = int4x3(
+		23, 23, 23,
+		23, 23, 23,
+		23, 23, 23,
+		23, 23, 23
+	);
+	int4x3 a = int4x3(
 		21, 21, 21,
 		21, 21, 21,
 		21, 21, 21,
 		21, 21, 21
 	);
-	int4x3 b  = int4x3(
+	int4x3 b = int4x3(
 		7, 7, 7,
 		7, 7, 7,
 		7, 7, 7,
 		7, 7, 7
 	);
 
-	int4x3 answer = a | b;
+	int4x3 c = a | b;
 
-	TEMPER_EXPECT_TRUE( answer == int4x3(
-		23, 23, 23,
-		23, 23, 23,
-		23, 23, 23,
-		23, 23, 23
-	) );
+	TEMPER_EXPECT_TRUE( c == answer );
 
 	TEMPER_PASS();
 }
 
 TEMPER_TEST( TestBitwise_Xor_int4x3 )
 {
-	int4x3 a  = int4x3(
+	int4x3 answer = int4x3(
+		18, 18, 18,
+		18, 18, 18,
+		18, 18, 18,
+		18, 18, 18
+	);
+	int4x3 a = int4x3(
 		21, 21, 21,
 		21, 21, 21,
 		21, 21, 21,
 		21, 21, 21
 	);
-	int4x3 b  = int4x3(
+	int4x3 b = int4x3(
 		7, 7, 7,
 		7, 7, 7,
 		7, 7, 7,
 		7, 7, 7
 	);
 
-	int4x3 answer = a ^ b;
+	int4x3 c = a ^ b;
 
-	TEMPER_EXPECT_TRUE( answer == int4x3(
-		18, 18, 18,
-		18, 18, 18,
-		18, 18, 18,
-		18, 18, 18
-	) );
+	TEMPER_EXPECT_TRUE( c == answer );
 
 	TEMPER_PASS();
 }
 
 TEMPER_TEST( TestBitwise_ShiftLeft_int4x3 )
 {
-	int4x3 a  = int4x3(
+	int4x3 answer = int4x3(
+		4, 4, 4,
+		4, 4, 4,
+		4, 4, 4,
+		4, 4, 4
+	);
+	int4x3 a = int4x3(
 		1, 1, 1,
 		1, 1, 1,
 		1, 1, 1,
 		1, 1, 1
 	);
-	int4x3 b  = int4x3(
+	int4x3 b = int4x3(
 		2, 2, 2,
 		2, 2, 2,
 		2, 2, 2,
 		2, 2, 2
 	);
 
-	int4x3 answer = a << b;
+	int4x3 c = a << b;
 
-	TEMPER_EXPECT_TRUE( answer == int4x3(
-		4, 4, 4,
-		4, 4, 4,
-		4, 4, 4,
-		4, 4, 4
-	) );
+	TEMPER_EXPECT_TRUE( c == answer );
 
 	TEMPER_PASS();
 }
 
 TEMPER_TEST( TestBitwise_ShiftRight_int4x3 )
 {
-	int4x3 a  = int4x3(
+	int4x3 answer = int4x3(
+		1, 1, 1,
+		1, 1, 1,
+		1, 1, 1,
+		1, 1, 1
+	);
+	int4x3 a = int4x3(
 		16, 16, 16,
 		16, 16, 16,
 		16, 16, 16,
 		16, 16, 16
 	);
-	int4x3 b  = int4x3(
+	int4x3 b = int4x3(
 		4, 4, 4,
 		4, 4, 4,
 		4, 4, 4,
 		4, 4, 4
 	);
 
-	int4x3 answer = a >> b;
+	int4x3 c = a >> b;
 
-	TEMPER_EXPECT_TRUE( answer == int4x3(
-		1, 1, 1,
-		1, 1, 1,
-		1, 1, 1,
-		1, 1, 1
-	) );
+	TEMPER_EXPECT_TRUE( c == answer );
 
 	TEMPER_PASS();
 }
 
 TEMPER_TEST( TestBitwise_Unary_int4x3 )
 {
+	int4x3 answer = int4x3(
+		(int32_t) -1, (int32_t) -1, (int32_t) -1,
+		(int32_t) -1, (int32_t) -1, (int32_t) -1,
+		(int32_t) -1, (int32_t) -1, (int32_t) -1,
+		(int32_t) -1, (int32_t) -1, (int32_t) -1
+	);
 	int4x3 a = int4x3(
 		0, 0, 0,
 		0, 0, 0,
@@ -530,26 +581,20 @@ TEMPER_TEST( TestBitwise_Unary_int4x3 )
 		0, 0, 0
 	);
 
-	int4x3 answer = ~a;
+	int4x3 b = ~a;
 
-	TEMPER_EXPECT_TRUE( answer == int4x3(
-		(int32_t) -1, (int32_t) -1, (int32_t) -1,
-		(int32_t) -1, (int32_t) -1, (int32_t) -1,
-		(int32_t) -1, (int32_t) -1, (int32_t) -1,
-		(int32_t) -1, (int32_t) -1, (int32_t) -1
-	) );
+	TEMPER_EXPECT_TRUE( b == answer );
 
 	TEMPER_PASS();
 }
 
 TEMPER_TEST( TestIdentity_Scalar_int4x3 )
 {
-	int4x3 id = int4x3(
-		1, 0, 0,
-		0, 1, 0,
-		0, 0, 1,
-		0, 0, 0
-	);
+	int4x3 id;
+	id[0] = int3( 1, 0, 0 );
+	id[1] = int3( 0, 1, 0 );
+	id[2] = int3( 0, 0, 1 );
+	id[3] = int3( 0, 0, 0 );
 
 	int4x3 mat;
 	TEMPER_EXPECT_TRUE( mat == id );
@@ -562,6 +607,12 @@ TEMPER_TEST( TestIdentity_Scalar_int4x3 )
 
 TEMPER_TEST( TestTranspose_Scalar_int4x3 )
 {
+	int3x4 answerTransposed = int3x4(
+		0, 4, 8, 12,
+		1, 5, 9, 13,
+		2, 6, 10, 14
+	);
+
 	int4x3 mat = int4x3(
 		0, 1, 2,
 		4, 5, 6,
@@ -570,22 +621,21 @@ TEMPER_TEST( TestTranspose_Scalar_int4x3 )
 	);
 	int3x4 trans = transpose( mat );
 
-	TEMPER_EXPECT_TRUE( trans == int3x4(
-		0, 4, 8, 12,
-		1, 5, 9, 13,
-		2, 6, 10, 14
-	) );
+	TEMPER_EXPECT_TRUE( trans == answerTransposed );
 
 	TEMPER_PASS();
 }
 
 TEMPER_TEST( TestScale_Scalar_int4x3 )
 {
+	int2 scaleVec = { 2, 2 };
 	int4x3 mat;
-	int4x3 scaled = scale( mat, int2( 2, 2 ) );
+	identity( mat );
 
-	TEMPER_EXPECT_TRUE( scaled[0][0] == 2 );
-	TEMPER_EXPECT_TRUE( scaled[1][1] == 2 );
+	int4x3 scaled = scale( mat, scaleVec );
+
+	TEMPER_EXPECT_TRUE( scaled.rows[0].x == 2 );
+	TEMPER_EXPECT_TRUE( scaled.rows[1].y == 2 );
 
 	TEMPER_PASS();
 }
@@ -593,15 +643,16 @@ TEMPER_TEST( TestScale_Scalar_int4x3 )
 TEMPER_SUITE( Test_int4x3 )
 {
 	TEMPER_RUN_TEST( TestAssignment_int4x3 );
+	TEMPER_RUN_TEST( TestCtor_int4x3 );
+	TEMPER_RUN_TEST( TestArray_int4x3 );
+	TEMPER_RUN_TEST( TestIncrement_int4x3 );
+	TEMPER_RUN_TEST( TestDecrement_int4x3 );
 	TEMPER_RUN_TEST( TestComponentWiseArithmetic_Scalar_Addition_int4x3 );
 	TEMPER_RUN_TEST( TestComponentWiseArithmetic_Scalar_Subtraction_int4x3 );
 	TEMPER_RUN_TEST( TestComponentWiseArithmetic_Scalar_Multiplication_int4x3 );
 	TEMPER_RUN_TEST( TestComponentWiseArithmetic_Scalar_Division_int4x3 );
 	TEMPER_RUN_TEST( TestMultiplyMatrix_Scalar_int4x3 );
-	TEMPER_RUN_TEST( TestIncrement_int4x3 );
-	TEMPER_RUN_TEST( TestDecrement_int4x3 );
 	TEMPER_RUN_TEST( TestRelational_int4x3 );
-	TEMPER_RUN_TEST( TestArray_int4x3 );
 	TEMPER_RUN_TEST( TestBitwise_And_int4x3 );
 	TEMPER_RUN_TEST( TestBitwise_Or_int4x3 );
 	TEMPER_RUN_TEST( TestBitwise_Xor_int4x3 );

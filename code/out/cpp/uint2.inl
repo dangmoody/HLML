@@ -111,13 +111,3 @@ uint2 uint2::yx() const { return uint2( y, x ); }
 uint2 uint2::xy() const { return uint2( x, y ); }
 uint2 uint2::yy() const { return uint2( y, y ); }
 
-bool operator==( const uint2& lhs, const uint2& rhs )
-{
-	return ( lhs.x == rhs.x ) && ( lhs.y == rhs.y );
-}
-
-inline bool operator!=( const uint2& lhs, const uint2& rhs )
-{
-	return !( operator==( lhs, rhs ) );
-}
-

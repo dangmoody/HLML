@@ -72,8 +72,9 @@ struct double3
 			double b;
 		};
 
-		double data[3] = { 0 };
+		double data[3];
 	};
+
 
 	/// Default constructor.  Initializes all values to zero.
 	inline double3();
@@ -151,12 +152,4 @@ struct double3
 #elif defined( _MSC_VER )
 #pragma warning( pop )
 #endif
-
-/// \relates double3
-/// \brief Returns true if the all the components of the left-hand-side double3 match the other one, otherwise returns false.
-inline bool operator==( const double3& lhs, const double3& rhs );
-
-/// \relates double3
-/// \brief Returns true if not all of the components of the left-hand-side double3 match the other one, otherwise returns false.
-inline bool operator!=( const double3& lhs, const double3& rhs );
 

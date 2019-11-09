@@ -74,8 +74,9 @@ struct double4
 			double a;
 		};
 
-		double data[4] = { 0 };
+		double data[4];
 	};
+
 
 	/// Default constructor.  Initializes all values to zero.
 	inline double4();
@@ -409,12 +410,4 @@ struct double4
 #elif defined( _MSC_VER )
 #pragma warning( pop )
 #endif
-
-/// \relates double4
-/// \brief Returns true if the all the components of the left-hand-side double4 match the other one, otherwise returns false.
-inline bool operator==( const double4& lhs, const double4& rhs );
-
-/// \relates double4
-/// \brief Returns true if not all of the components of the left-hand-side double4 match the other one, otherwise returns false.
-inline bool operator!=( const double4& lhs, const double4& rhs );
 

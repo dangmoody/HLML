@@ -72,8 +72,9 @@ struct float3
 			float b;
 		};
 
-		float data[3] = { 0 };
+		float data[3];
 	};
+
 
 	/// Default constructor.  Initializes all values to zero.
 	inline float3();
@@ -151,12 +152,4 @@ struct float3
 #elif defined( _MSC_VER )
 #pragma warning( pop )
 #endif
-
-/// \relates float3
-/// \brief Returns true if the all the components of the left-hand-side float3 match the other one, otherwise returns false.
-inline bool operator==( const float3& lhs, const float3& rhs );
-
-/// \relates float3
-/// \brief Returns true if not all of the components of the left-hand-side float3 match the other one, otherwise returns false.
-inline bool operator!=( const float3& lhs, const float3& rhs );
 

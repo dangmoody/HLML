@@ -111,13 +111,3 @@ double2 double2::yx() const { return double2( y, x ); }
 double2 double2::xy() const { return double2( x, y ); }
 double2 double2::yy() const { return double2( y, y ); }
 
-bool operator==( const double2& lhs, const double2& rhs )
-{
-	return doubleeq( lhs.x, rhs.x ) && doubleeq( lhs.y, rhs.y );
-}
-
-inline bool operator!=( const double2& lhs, const double2& rhs )
-{
-	return !( operator==( lhs, rhs ) );
-}
-

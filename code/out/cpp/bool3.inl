@@ -141,13 +141,3 @@ bool3 bool3::xzz() const { return bool3( x, z, z ); }
 bool3 bool3::yzz() const { return bool3( y, z, z ); }
 bool3 bool3::zzz() const { return bool3( z, z, z ); }
 
-bool operator==( const bool3& lhs, const bool3& rhs )
-{
-	return ( lhs.x == rhs.x ) && ( lhs.y == rhs.y ) && ( lhs.z == rhs.z );
-}
-
-inline bool operator!=( const bool3& lhs, const bool3& rhs )
-{
-	return !( operator==( lhs, rhs ) );
-}
-

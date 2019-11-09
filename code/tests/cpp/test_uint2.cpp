@@ -32,18 +32,35 @@ SOFTWARE.
 // EDITING THIS FILE MAY CAUSE SIDE EFFECTS.
 // DO SO AT YOUR OWN RISK.
 
-// also tests equality operators
 TEMPER_TEST( TestAssignment_uint2 )
 {
-	uint2 a;
+	uint2 vec;
 
-	a = uint2( 1U );
-	TEMPER_EXPECT_TRUE( a == uint2( 1U ) );
-	TEMPER_EXPECT_TRUE( a != uint2( 0U, 1U ) );
+	vec.x = 1U;
+	vec.y = 1U;
+	TEMPER_EXPECT_TRUE( vec.x == 1U );
+	TEMPER_EXPECT_TRUE( vec.y == 1U );
 
-	a = uint2( 0U, 1U );
-	TEMPER_EXPECT_TRUE( a == uint2( 0U, 1U ) );
-	TEMPER_EXPECT_TRUE( a != uint2( 1U ) );
+	vec.x = 0U;
+	vec.y = 1U;
+	TEMPER_EXPECT_TRUE( vec.x == 0U );
+	TEMPER_EXPECT_TRUE( vec.y == 1U );
+
+	TEMPER_PASS();
+}
+
+// also tests equality operators
+TEMPER_TEST( TestCtor_uint2 )
+{
+	uint2 vec;
+
+	vec = uint2( 1U );
+	TEMPER_EXPECT_TRUE( vec == uint2( 1U ) );
+	TEMPER_EXPECT_TRUE( vec != uint2( 0U, 1U ) );
+
+	vec = uint2( 0U, 1U );
+	TEMPER_EXPECT_TRUE( vec == uint2( 0U, 1U ) );
+	TEMPER_EXPECT_TRUE( vec != uint2( 1U ) );
 
 	TEMPER_PASS();
 }
@@ -52,8 +69,42 @@ TEMPER_TEST( TestArray_uint2 )
 {
 	uint2 a = uint2( 0U, 1U );
 
-	TEMPER_EXPECT_TRUE( a[0] == 0U );
-	TEMPER_EXPECT_TRUE( a[1] == 1U );
+	TEMPER_EXPECT_TRUE( a.x == 0U );
+	TEMPER_EXPECT_TRUE( a.y == 1U );
+
+	TEMPER_PASS();
+}
+
+TEMPER_TEST( TestIncrement_uint2 )
+{
+	uint2 vec;
+
+	// prefix
+	vec = uint2( 0U, 0U );
+	++vec;
+	TEMPER_EXPECT_TRUE( vec == uint2( 1U, 1U ) );
+
+	// postfix
+	vec = uint2( 0U, 0U );
+	vec++;
+	TEMPER_EXPECT_TRUE( vec == uint2( 1U, 1U ) );
+
+	TEMPER_PASS();
+}
+
+TEMPER_TEST( TestDecrement_uint2 )
+{
+	uint2 vec;
+
+	// prefix
+	vec = uint2( 1U, 1U );
+	--vec;
+	TEMPER_EXPECT_TRUE( vec == uint2( 0U, 0U ) );
+
+	// postfix
+	vec = uint2( 1U, 1U );
+	vec--;
+	TEMPER_EXPECT_TRUE( vec == uint2( 0U, 0U ) );
 
 	TEMPER_PASS();
 }
@@ -102,40 +153,6 @@ TEMPER_TEST( TestArithmeticDivision_uint2 )
 	uint2 c = a / b;
 
 	TEMPER_EXPECT_TRUE( c == uint2( 3U, 3U ) );
-
-	TEMPER_PASS();
-}
-
-TEMPER_TEST( TestIncrement_uint2 )
-{
-	uint2 vec;
-
-	// prefix
-	vec = uint2( 0U, 0U );
-	++vec;
-	TEMPER_EXPECT_TRUE( vec == uint2( 1U, 1U ) );
-
-	// postfix
-	vec = uint2( 0U, 0U );
-	vec++;
-	TEMPER_EXPECT_TRUE( vec == uint2( 1U, 1U ) );
-
-	TEMPER_PASS();
-}
-
-TEMPER_TEST( TestDecrement_uint2 )
-{
-	uint2 vec;
-
-	// prefix
-	vec = uint2( 1U, 1U );
-	--vec;
-	TEMPER_EXPECT_TRUE( vec == uint2( 0U, 0U ) );
-
-	// postfix
-	vec = uint2( 1U, 1U );
-	vec--;
-	TEMPER_EXPECT_TRUE( vec == uint2( 0U, 0U ) );
 
 	TEMPER_PASS();
 }
@@ -260,7 +277,7 @@ TEMPER_TEST( TestBitwise_ShiftRight_uint2 )
 	TEMPER_PASS();
 }
 
-TEMPER_TEST( TestBitwiseUnary_uint2 )
+TEMPER_TEST( TestBitwise_Unary_uint2 )
 {
 	uint2 a = uint2( 0U, 0U );
 
@@ -301,20 +318,21 @@ TEMPER_TEST( TestDistance_Scalar_uint2 )
 TEMPER_SUITE( Test_uint2 )
 {
 	TEMPER_RUN_TEST( TestAssignment_uint2 );
+	TEMPER_RUN_TEST( TestCtor_uint2 );
 	TEMPER_RUN_TEST( TestArray_uint2 );
+	TEMPER_RUN_TEST( TestIncrement_uint2 );
+	TEMPER_RUN_TEST( TestDecrement_uint2 );
 	TEMPER_RUN_TEST( TestArithmeticAddition_uint2 );
 	TEMPER_RUN_TEST( TestArithmeticSubtraction_uint2 );
 	TEMPER_RUN_TEST( TestArithmeticMultiplication_uint2 );
 	TEMPER_RUN_TEST( TestArithmeticDivision_uint2 );
-	TEMPER_RUN_TEST( TestIncrement_uint2 );
-	TEMPER_RUN_TEST( TestDecrement_uint2 );
 	TEMPER_RUN_TEST( TestRelational_uint2 );
 	TEMPER_RUN_TEST( TestBitwise_And_uint2 );
 	TEMPER_RUN_TEST( TestBitwise_Or_uint2 );
 	TEMPER_RUN_TEST( TestBitwise_Xor_uint2 );
 	TEMPER_RUN_TEST( TestBitwise_ShiftLeft_uint2 );
 	TEMPER_RUN_TEST( TestBitwise_ShiftRight_uint2 );
-	TEMPER_RUN_TEST( TestBitwiseUnary_uint2 );
+	TEMPER_RUN_TEST( TestBitwise_Unary_uint2 );
 	TEMPER_RUN_TEST( TestLength_Scalar_uint2 );
 	TEMPER_RUN_TEST( TestDistance_Scalar_uint2 );
 }

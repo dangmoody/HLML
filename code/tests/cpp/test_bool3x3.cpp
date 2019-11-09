@@ -32,25 +32,28 @@ SOFTWARE.
 // EDITING THIS FILE MAY CAUSE SIDE EFFECTS.
 // DO SO AT YOUR OWN RISK.
 
-static bool3x3 g_identityMatrix_bool3x3;
-
-static bool3x3 g_matrixMulLHS_bool3x3    = bool3x3(
-		true, true, true,
-		true, true, true,
-		true, true, true
-	);
-static bool3x3 g_matrixMulRHS_bool3x3    = bool3x3(
-		true, true, true,
-		true, true, true,
-		true, true, true
-	);
-static bool3x3 g_matrixMulAnswer_bool3x3 = bool3x3(
-		true, true, true,
-		true, true, true,
-		true, true, true
-	);
-
 TEMPER_TEST( TestAssignment_bool3x3 )
+{
+	bool3x3 mat;
+
+	mat.rows[0] = bool3( true, false, false );
+	mat.rows[1] = bool3( false, true, false );
+	mat.rows[2] = bool3( false, false, true );
+
+	TEMPER_EXPECT_TRUE( mat.rows[0].x == true );
+	TEMPER_EXPECT_TRUE( mat.rows[0].y == false );
+	TEMPER_EXPECT_TRUE( mat.rows[0].z == false );
+	TEMPER_EXPECT_TRUE( mat.rows[1].x == false );
+	TEMPER_EXPECT_TRUE( mat.rows[1].y == true );
+	TEMPER_EXPECT_TRUE( mat.rows[1].z == false );
+	TEMPER_EXPECT_TRUE( mat.rows[2].x == false );
+	TEMPER_EXPECT_TRUE( mat.rows[2].y == false );
+	TEMPER_EXPECT_TRUE( mat.rows[2].z == true );
+
+	TEMPER_PASS();
+}
+
+TEMPER_TEST( TestCtor_bool3x3 )
 {
 	bool3x3 mat;
 
@@ -96,11 +99,10 @@ TEMPER_TEST( TestArray_bool3x3 )
 
 TEMPER_TEST( TestIdentity_Scalar_bool3x3 )
 {
-	bool3x3 id = bool3x3(
-		true, false, false,
-		false, true, false,
-		false, false, true
-	);
+	bool3x3 id;
+	id[0] = bool3( true, false, false );
+	id[1] = bool3( false, true, false );
+	id[2] = bool3( false, false, true );
 
 	bool3x3 mat;
 	TEMPER_EXPECT_TRUE( mat == id );
@@ -113,6 +115,12 @@ TEMPER_TEST( TestIdentity_Scalar_bool3x3 )
 
 TEMPER_TEST( TestTranspose_Scalar_bool3x3 )
 {
+	bool3x3 answerTransposed = bool3x3(
+		false, true, true,
+		true, true, true,
+		true, true, true
+	);
+
 	bool3x3 mat = bool3x3(
 		false, true, true,
 		true, true, true,
@@ -120,11 +128,7 @@ TEMPER_TEST( TestTranspose_Scalar_bool3x3 )
 	);
 	bool3x3 trans = transpose( mat );
 
-	TEMPER_EXPECT_TRUE( trans == bool3x3(
-		false, true, true,
-		true, true, true,
-		true, true, true
-	) );
+	TEMPER_EXPECT_TRUE( trans == answerTransposed );
 
 	TEMPER_PASS();
 }
@@ -132,6 +136,7 @@ TEMPER_TEST( TestTranspose_Scalar_bool3x3 )
 TEMPER_SUITE( Test_bool3x3 )
 {
 	TEMPER_RUN_TEST( TestAssignment_bool3x3 );
+	TEMPER_RUN_TEST( TestCtor_bool3x3 );
 	TEMPER_RUN_TEST( TestArray_bool3x3 );
 	TEMPER_RUN_TEST( TestIdentity_Scalar_bool3x3 );
 	TEMPER_RUN_TEST( TestTranspose_Scalar_bool3x3 );

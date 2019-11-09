@@ -25,9 +25,13 @@ along with The HLML Generator.  If not, see <http://www.gnu.org/licenses/>.
 #include "allocator.h"
 #include "timer.h"
 
-#include <stdio.h>
+#include "gen_common.h"
+#include "gen_c.h"
+#include "gen_cpp.h"
 
-extern void Gen_CPP( void );
+#include "file_io.h"
+
+#include <stdio.h>
 
 int main( int argc, char** argv ) {
 	UNUSED( argc );
@@ -45,7 +49,82 @@ int main( int argc, char** argv ) {
 
 	Time_Init();
 
-	Gen_CPP();
+	for ( u32 i = 0; i < GEN_LANGUAGE_COUNT; i++ ) {
+		const genLanguage_t language = (genLanguage_t) i;
+
+		const char* pathOutGen = GEN_FOLDER_PATHS_OUT_GEN[language];
+		const char* pathTests = GEN_FOLDER_PATHS_TESTS[language];
+
+		FS_DeleteAllFilesInFolder( pathOutGen );
+		FS_CreateFolder( pathOutGen );
+
+		FS_DeleteAllFilesInFolder( pathTests );
+		FS_CreateFolder( pathTests );
+	}
+
+	float64 start = Time_NowMS();
+
+	printf( "======= Generating core headers. =======\n" );
+	Gen_HeaderMain( GEN_LANGUAGE_C );
+	Gen_HeaderMain( GEN_LANGUAGE_CPP );
+	printf( "======= Done. =======\n\n" );
+
+	printf( "======= Generating types. =======\n" );
+	Gen_Vectors_C();
+	Gen_Matrices_C();
+
+	Gen_Vectors_CPP();
+	Gen_Matrices_CPP();
+	printf( "======= Done. =======\n\n" );
+
+	printf( "======= Generating functions. =======\n" );
+	Gen_FunctionsScalar( GEN_FOLDER_PATHS_OUT_GEN[GEN_LANGUAGE_C] );
+	Gen_FunctionsScalar( GEN_FOLDER_PATHS_OUT_GEN[GEN_LANGUAGE_CPP] );
+
+	Gen_FunctionsVector( GEN_LANGUAGE_C );
+	Gen_FunctionsMatrix( GEN_LANGUAGE_C );
+
+	Gen_FunctionsVector( GEN_LANGUAGE_CPP );
+	Gen_FunctionsMatrix( GEN_LANGUAGE_CPP );
+	printf( "======= Done. =======\n\n" );
+
+	printf( "======= Generating C++ operator overloads. =======\n" );
+	Gen_OperatorsVector();
+	Gen_OperatorsMatrix();
+	printf( "======= Done. =======\n\n" );
+
+	printf( "======= Generating SSE helpers. =======\n" );
+	Gen_FunctionsScalarSSE( GEN_LANGUAGE_C );
+	Gen_FunctionsVectorSSE( GEN_LANGUAGE_C );
+	Gen_FunctionsMatrixSSE( GEN_LANGUAGE_C );
+
+	Gen_FunctionsScalarSSE( GEN_LANGUAGE_CPP );
+	Gen_FunctionsVectorSSE( GEN_LANGUAGE_CPP );
+	Gen_FunctionsMatrixSSE( GEN_LANGUAGE_CPP );
+	printf( "======= Done. =======\n\n" );
+
+	printf( "======= Generating tests. =======\n" );
+	Gen_Tests( GEN_LANGUAGE_C );
+	Gen_Tests( GEN_LANGUAGE_CPP );
+
+	Gen_TestsMain( GEN_LANGUAGE_C );
+	Gen_TestsMain( GEN_LANGUAGE_CPP );
+	printf( "======= Done. =======\n\n" );
+
+	float64 end = Time_NowMS();
+
+	// DM: temporarily turning off documentation generation for all non-windows configs
+	// because GitHub has a limit on LFS space, which the doxygen executable for linux exceeds
+	// TODO(DM): turn this back on when a solution for that gets found
+#ifdef _WIN32
+	printf( "======= Generating doxygen documentation pages. =======\n" );
+	if ( !Gen_DoxygenPages( "doxygen/cpp.conf" ) ) {
+		return 1;
+	}
+	printf( "======= Done. =======\n\n" );
+#endif
+
+	printf( "Code generation time taken: %f ms\n\n", end - start );
 
 	printf(
 		"All generators have run.  HLML Generator shutting down...\n"

@@ -80,11 +80,3 @@ struct int2x3
 	inline const int3& operator[]( const uint32_t index ) const;
 };
 
-/// \relates int2x3
-/// \brief Returns true if the all the components of the left-hand-side int2x3 match the other one, otherwise returns false.
-inline bool operator==( const int2x3& lhs, const int2x3& rhs );
-
-/// \relates int2x3
-/// \brief Returns true if not all of the components of the left-hand-side int2x3 match the other one, otherwise returns false.
-inline bool operator!=( const int2x3& lhs, const int2x3& rhs );
-

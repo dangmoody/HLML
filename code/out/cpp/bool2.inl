@@ -111,13 +111,3 @@ bool2 bool2::yx() const { return bool2( y, x ); }
 bool2 bool2::xy() const { return bool2( x, y ); }
 bool2 bool2::yy() const { return bool2( y, y ); }
 
-bool operator==( const bool2& lhs, const bool2& rhs )
-{
-	return ( lhs.x == rhs.x ) && ( lhs.y == rhs.y );
-}
-
-inline bool operator!=( const bool2& lhs, const bool2& rhs )
-{
-	return !( operator==( lhs, rhs ) );
-}
-

@@ -72,8 +72,9 @@ struct uint3
 			uint32_t b;
 		};
 
-		uint32_t data[3] = { 0 };
+		uint32_t data[3];
 	};
+
 
 	/// Default constructor.  Initializes all values to zero.
 	inline uint3();
@@ -151,12 +152,4 @@ struct uint3
 #elif defined( _MSC_VER )
 #pragma warning( pop )
 #endif
-
-/// \relates uint3
-/// \brief Returns true if the all the components of the left-hand-side uint3 match the other one, otherwise returns false.
-inline bool operator==( const uint3& lhs, const uint3& rhs );
-
-/// \relates uint3
-/// \brief Returns true if not all of the components of the left-hand-side uint3 match the other one, otherwise returns false.
-inline bool operator!=( const uint3& lhs, const uint3& rhs );
 

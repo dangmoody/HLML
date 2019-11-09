@@ -32,28 +32,55 @@ SOFTWARE.
 // EDITING THIS FILE MAY CAUSE SIDE EFFECTS.
 // DO SO AT YOUR OWN RISK.
 
-static double4x4 g_identityMatrix_double4x4;
-
-static double4x4 g_matrixMulLHS_double4x4    = double4x4(
-		6.000000, 6.000000, 6.000000, 6.000000,
+static double4x4 g_matrixMulLHS_double4x4    = double4x4( 		6.000000, 6.000000, 6.000000, 6.000000,
 		6.000000, 6.000000, 6.000000, 6.000000,
 		12.000000, 12.000000, 12.000000, 12.000000,
 		18.000000, 18.000000, 18.000000, 18.000000
-	);
-static double4x4 g_matrixMulRHS_double4x4    = double4x4(
-		1.000000, 1.000000, 1.000000, 1.000000,
+ );
+
+static double4x4 g_matrixMulRHS_double4x4    = double4x4( 		1.000000, 1.000000, 1.000000, 1.000000,
 		2.000000, 2.000000, 2.000000, 2.000000,
 		3.000000, 3.000000, 3.000000, 3.000000,
 		6.000000, 6.000000, 6.000000, 6.000000
-	);
-static double4x4 g_matrixMulAnswer_double4x4 = double4x4(
-		72.000000, 72.000000, 72.000000, 72.000000,
+ );
+
+static double4x4 g_matrixMulAnswer_double4x4 = double4x4( 		72.000000, 72.000000, 72.000000, 72.000000,
 		72.000000, 72.000000, 72.000000, 72.000000,
 		144.000000, 144.000000, 144.000000, 144.000000,
 		216.000000, 216.000000, 216.000000, 216.000000
-	);
+ );
+
 
 TEMPER_TEST( TestAssignment_double4x4 )
+{
+	double4x4 mat;
+
+	mat.rows[0] = double4( 999.000000, 0.000000, 0.000000, 0.000000 );
+	mat.rows[1] = double4( 0.000000, 999.000000, 0.000000, 0.000000 );
+	mat.rows[2] = double4( 0.000000, 0.000000, 999.000000, 0.000000 );
+	mat.rows[3] = double4( 0.000000, 0.000000, 0.000000, 999.000000 );
+
+	TEMPER_EXPECT_TRUE( mat.rows[0].x == 999.0 );
+	TEMPER_EXPECT_TRUE( mat.rows[0].y == 0.0 );
+	TEMPER_EXPECT_TRUE( mat.rows[0].z == 0.0 );
+	TEMPER_EXPECT_TRUE( mat.rows[0].w == 0.0 );
+	TEMPER_EXPECT_TRUE( mat.rows[1].x == 0.0 );
+	TEMPER_EXPECT_TRUE( mat.rows[1].y == 999.0 );
+	TEMPER_EXPECT_TRUE( mat.rows[1].z == 0.0 );
+	TEMPER_EXPECT_TRUE( mat.rows[1].w == 0.0 );
+	TEMPER_EXPECT_TRUE( mat.rows[2].x == 0.0 );
+	TEMPER_EXPECT_TRUE( mat.rows[2].y == 0.0 );
+	TEMPER_EXPECT_TRUE( mat.rows[2].z == 999.0 );
+	TEMPER_EXPECT_TRUE( mat.rows[2].w == 0.0 );
+	TEMPER_EXPECT_TRUE( mat.rows[3].x == 0.0 );
+	TEMPER_EXPECT_TRUE( mat.rows[3].y == 0.0 );
+	TEMPER_EXPECT_TRUE( mat.rows[3].z == 0.0 );
+	TEMPER_EXPECT_TRUE( mat.rows[3].w == 999.0 );
+
+	TEMPER_PASS();
+}
+
+TEMPER_TEST( TestCtor_double4x4 )
 {
 	double4x4 mat;
 
@@ -91,6 +118,106 @@ TEMPER_TEST( TestAssignment_double4x4 )
 	TEMPER_PASS();
 }
 
+TEMPER_TEST( TestArray_double4x4 )
+{
+	double4x4 mat;
+
+	TEMPER_EXPECT_TRUE( mat[0] == double4( 1.0, 0.0, 0.0, 0.0 ) );
+	TEMPER_EXPECT_TRUE( mat[1] == double4( 0.0, 1.0, 0.0, 0.0 ) );
+	TEMPER_EXPECT_TRUE( mat[2] == double4( 0.0, 0.0, 1.0, 0.0 ) );
+	TEMPER_EXPECT_TRUE( mat[3] == double4( 0.0, 0.0, 0.0, 1.0 ) );
+
+	TEMPER_PASS();
+}
+
+TEMPER_TEST( TestIncrement_double4x4 )
+{
+	double4x4 answer;
+	double4x4 mat;
+
+	// prefix
+	answer = double4x4(
+		1.000000, 1.000000, 1.000000, 1.000000,
+		1.000000, 1.000000, 1.000000, 1.000000,
+		1.000000, 1.000000, 1.000000, 1.000000,
+		1.000000, 1.000000, 1.000000, 1.000000
+	);
+
+	mat = double4x4(
+		0.000000, 0.000000, 0.000000, 0.000000,
+		0.000000, 0.000000, 0.000000, 0.000000,
+		0.000000, 0.000000, 0.000000, 0.000000,
+		0.000000, 0.000000, 0.000000, 0.000000
+
+	);
+	++mat;
+	TEMPER_EXPECT_TRUE( mat == answer );
+
+	// postfix
+	answer = double4x4(
+		1.000000, 1.000000, 1.000000, 1.000000,
+		1.000000, 1.000000, 1.000000, 1.000000,
+		1.000000, 1.000000, 1.000000, 1.000000,
+		1.000000, 1.000000, 1.000000, 1.000000
+	);
+
+	mat = double4x4(
+		0.000000, 0.000000, 0.000000, 0.000000,
+		0.000000, 0.000000, 0.000000, 0.000000,
+		0.000000, 0.000000, 0.000000, 0.000000,
+		0.000000, 0.000000, 0.000000, 0.000000
+
+	);
+	mat++;
+	TEMPER_EXPECT_TRUE( mat == answer );
+
+	TEMPER_PASS();
+}
+
+TEMPER_TEST( TestDecrement_double4x4 )
+{
+	double4x4 answer;
+	double4x4 mat;
+
+	// prefix
+	answer = double4x4(
+		0.000000, 0.000000, 0.000000, 0.000000,
+		0.000000, 0.000000, 0.000000, 0.000000,
+		0.000000, 0.000000, 0.000000, 0.000000,
+		0.000000, 0.000000, 0.000000, 0.000000
+	);
+
+	mat = double4x4(
+		1.000000, 1.000000, 1.000000, 1.000000,
+		1.000000, 1.000000, 1.000000, 1.000000,
+		1.000000, 1.000000, 1.000000, 1.000000,
+		1.000000, 1.000000, 1.000000, 1.000000
+
+	);
+	--mat;
+	TEMPER_EXPECT_TRUE( mat == answer );
+
+	// postfix
+	answer = double4x4(
+		0.000000, 0.000000, 0.000000, 0.000000,
+		0.000000, 0.000000, 0.000000, 0.000000,
+		0.000000, 0.000000, 0.000000, 0.000000,
+		0.000000, 0.000000, 0.000000, 0.000000
+	);
+
+	mat = double4x4(
+		1.000000, 1.000000, 1.000000, 1.000000,
+		1.000000, 1.000000, 1.000000, 1.000000,
+		1.000000, 1.000000, 1.000000, 1.000000,
+		1.000000, 1.000000, 1.000000, 1.000000
+
+	);
+	mat--;
+	TEMPER_EXPECT_TRUE( mat == answer );
+
+	TEMPER_PASS();
+}
+
 TEMPER_TEST( TestComponentWiseArithmetic_Scalar_Addition_double4x4 )
 {
 	double4x4 answer = double4x4(
@@ -106,13 +233,15 @@ TEMPER_TEST( TestComponentWiseArithmetic_Scalar_Addition_double4x4 )
 		12.000000, 12.000000, 12.000000, 12.000000,
 		18.000000, 18.000000, 18.000000, 18.000000
 	);
+
 	double4x4 b = double4x4(
 		1.000000, 1.000000, 1.000000, 1.000000,
 		2.000000, 2.000000, 2.000000, 2.000000,
 		3.000000, 3.000000, 3.000000, 3.000000,
 		6.000000, 6.000000, 6.000000, 6.000000
 	);
-	double4x4 c = a + b;
+
+	double4x4 c = comp_addm( a, b );
 
 	TEMPER_EXPECT_TRUE( c == answer );
 
@@ -134,13 +263,15 @@ TEMPER_TEST( TestComponentWiseArithmetic_Scalar_Subtraction_double4x4 )
 		12.000000, 12.000000, 12.000000, 12.000000,
 		18.000000, 18.000000, 18.000000, 18.000000
 	);
+
 	double4x4 b = double4x4(
 		1.000000, 1.000000, 1.000000, 1.000000,
 		2.000000, 2.000000, 2.000000, 2.000000,
 		3.000000, 3.000000, 3.000000, 3.000000,
 		6.000000, 6.000000, 6.000000, 6.000000
 	);
-	double4x4 c = a - b;
+
+	double4x4 c = comp_subm( a, b );
 
 	TEMPER_EXPECT_TRUE( c == answer );
 
@@ -162,13 +293,15 @@ TEMPER_TEST( TestComponentWiseArithmetic_Scalar_Multiplication_double4x4 )
 		12.000000, 12.000000, 12.000000, 12.000000,
 		18.000000, 18.000000, 18.000000, 18.000000
 	);
+
 	double4x4 b = double4x4(
 		1.000000, 1.000000, 1.000000, 1.000000,
 		2.000000, 2.000000, 2.000000, 2.000000,
 		3.000000, 3.000000, 3.000000, 3.000000,
 		6.000000, 6.000000, 6.000000, 6.000000
 	);
-	double4x4 c = comp_mul( a, b );
+
+	double4x4 c = comp_mulm( a, b );
 
 	TEMPER_EXPECT_TRUE( c == answer );
 
@@ -190,13 +323,15 @@ TEMPER_TEST( TestComponentWiseArithmetic_Scalar_Division_double4x4 )
 		12.000000, 12.000000, 12.000000, 12.000000,
 		18.000000, 18.000000, 18.000000, 18.000000
 	);
+
 	double4x4 b = double4x4(
 		1.000000, 1.000000, 1.000000, 1.000000,
 		2.000000, 2.000000, 2.000000, 2.000000,
 		3.000000, 3.000000, 3.000000, 3.000000,
 		6.000000, 6.000000, 6.000000, 6.000000
 	);
-	double4x4 c = comp_div( a, b );
+
+	double4x4 c = comp_divm( a, b );
 
 	TEMPER_EXPECT_TRUE( c == answer );
 
@@ -218,7 +353,7 @@ TEMPER_TEST( TestMultiplyMatrix_Scalar_double4x4 )
 
 TEMPER_TEST( TestMultiplyVector_double4x4 )
 {
-	double4 answerVec = double4( 28.000000, 68.000000, 108.000000, 148.000000 );
+	double4 answerVec = { 28.000000, 68.000000, 108.000000, 148.000000 };
 
 	double4x4 a = double4x4(
 		1.000000, 2.000000, 3.000000, 4.000000,
@@ -226,7 +361,7 @@ TEMPER_TEST( TestMultiplyVector_double4x4 )
 		9.000000, 10.000000, 11.000000, 12.000000,
 		13.000000, 14.000000, 15.000000, 16.000000
 	);
-	double4 b = double4( 2.000000, 1.000000, 4.000000, 3.000000 );
+	double4 b = { 2.000000, 1.000000, 4.000000, 3.000000 };
 	double4 c = a * b;
 
 	TEMPER_EXPECT_TRUE( c == answerVec );
@@ -236,25 +371,22 @@ TEMPER_TEST( TestMultiplyVector_double4x4 )
 
 TEMPER_TEST( TestDivideMatrix_double4x4 )
 {
-	double4x4 answer = double4x4(
-		1.000000, 0.0, 0.0, 0.0,
+	double4x4 answer = double4x4( 		1.000000, 0.0, 0.0, 0.0,
 		0.0, 1.000000, 0.0, 0.0,
 		0.0, 0.0, 1.000000, 0.0,
 		0.0, 0.0, 0.0, 1.000000
-	);
+ );
 
-	double4x4 a = double4x4(
-		6.000000, 2.000000, 3.000000, 4.000000,
+	double4x4 a = double4x4( 		6.000000, 2.000000, 3.000000, 4.000000,
 		2.000000, 7.000000, 5.000000, 3.000000,
 		3.000000, 5.000000, 7.000000, 2.000000,
 		4.000000, 3.000000, 2.000000, 6.000000
-	);
-	double4x4 b = double4x4(
-		6.000000, 2.000000, 3.000000, 4.000000,
+ );
+	double4x4 b = double4x4( 		6.000000, 2.000000, 3.000000, 4.000000,
 		2.000000, 7.000000, 5.000000, 3.000000,
 		3.000000, 5.000000, 7.000000, 2.000000,
 		4.000000, 3.000000, 2.000000, 6.000000
-	);
+ );
 	double4x4 c = a / b;
 
 	TEMPER_EXPECT_TRUE( c == answer );
@@ -262,113 +394,34 @@ TEMPER_TEST( TestDivideMatrix_double4x4 )
 	TEMPER_PASS();
 }
 
-TEMPER_TEST( TestIncrement_double4x4 )
-{
-	double4x4 mat;
-
-	// prefix
-	mat = double4x4(
-		0.000000, 0.000000, 0.000000, 0.000000,
-		0.000000, 0.000000, 0.000000, 0.000000,
-		0.000000, 0.000000, 0.000000, 0.000000,
-		0.000000, 0.000000, 0.000000, 0.000000
-	);
-	++mat;
-	TEMPER_EXPECT_TRUE( mat == double4x4(
-		1.000000, 1.000000, 1.000000, 1.000000,
-		1.000000, 1.000000, 1.000000, 1.000000,
-		1.000000, 1.000000, 1.000000, 1.000000,
-		1.000000, 1.000000, 1.000000, 1.000000
-	) );
-
-	// postfix
-	mat = double4x4(
-		0.000000, 0.000000, 0.000000, 0.000000,
-		0.000000, 0.000000, 0.000000, 0.000000,
-		0.000000, 0.000000, 0.000000, 0.000000,
-		0.000000, 0.000000, 0.000000, 0.000000
-	);
-	mat++;
-	TEMPER_EXPECT_TRUE( mat == double4x4(
-		1.000000, 1.000000, 1.000000, 1.000000,
-		1.000000, 1.000000, 1.000000, 1.000000,
-		1.000000, 1.000000, 1.000000, 1.000000,
-		1.000000, 1.000000, 1.000000, 1.000000
-	) );
-
-	TEMPER_PASS();
-}
-
-TEMPER_TEST( TestDecrement_double4x4 )
-{
-	double4x4 mat;
-
-	// prefix
-	mat = double4x4(
-		1.000000, 1.000000, 1.000000, 1.000000,
-		1.000000, 1.000000, 1.000000, 1.000000,
-		1.000000, 1.000000, 1.000000, 1.000000,
-		1.000000, 1.000000, 1.000000, 1.000000
-	);
-	--mat;
-	TEMPER_EXPECT_TRUE( mat == double4x4(
-		0.000000, 0.000000, 0.000000, 0.000000,
-		0.000000, 0.000000, 0.000000, 0.000000,
-		0.000000, 0.000000, 0.000000, 0.000000,
-		0.000000, 0.000000, 0.000000, 0.000000
-	) );
-
-	// postfix
-	mat = double4x4(
-		1.000000, 1.000000, 1.000000, 1.000000,
-		1.000000, 1.000000, 1.000000, 1.000000,
-		1.000000, 1.000000, 1.000000, 1.000000,
-		1.000000, 1.000000, 1.000000, 1.000000
-	);
-	mat--;
-	TEMPER_EXPECT_TRUE( mat == double4x4(
-		0.000000, 0.000000, 0.000000, 0.000000,
-		0.000000, 0.000000, 0.000000, 0.000000,
-		0.000000, 0.000000, 0.000000, 0.000000,
-		0.000000, 0.000000, 0.000000, 0.000000
-	) );
-
-	TEMPER_PASS();
-}
-
 TEMPER_TEST( TestRelational_double4x4 )
 {
-	bool4x4 allTrue = bool4x4(
-		true, true, true, true,
+	bool4x4 allTrue = { 		true, true, true, true,
 		true, true, true, true,
 		true, true, true, true,
 		true, true, true, true
-	);
+ };
 
-	double4x4 mat0 = double4x4(
-		1.000000, 1.000000, 1.000000, 1.000000,
+	double4x4 mat0 = double4x4( 		1.000000, 1.000000, 1.000000, 1.000000,
 		1.000000, 1.000000, 1.000000, 1.000000,
 		1.000000, 1.000000, 1.000000, 1.000000,
 		1.000000, 1.000000, 1.000000, 1.000000
-	);
-	double4x4 mat1 = double4x4(
-		2.000000, 2.000000, 2.000000, 2.000000,
+ );
+	double4x4 mat1 = double4x4( 		2.000000, 2.000000, 2.000000, 2.000000,
 		2.000000, 2.000000, 2.000000, 2.000000,
 		2.000000, 2.000000, 2.000000, 2.000000,
 		2.000000, 2.000000, 2.000000, 2.000000
-	);
-	double4x4 mat2 = double4x4(
-		3.000000, 3.000000, 3.000000, 3.000000,
+ );
+	double4x4 mat2 = double4x4( 		3.000000, 3.000000, 3.000000, 3.000000,
 		3.000000, 3.000000, 3.000000, 3.000000,
 		3.000000, 3.000000, 3.000000, 3.000000,
 		3.000000, 3.000000, 3.000000, 3.000000
-	);
-	double4x4 mat3 = double4x4(
-		4.000000, 4.000000, 4.000000, 4.000000,
+ );
+	double4x4 mat3 = double4x4( 		4.000000, 4.000000, 4.000000, 4.000000,
 		4.000000, 4.000000, 4.000000, 4.000000,
 		4.000000, 4.000000, 4.000000, 4.000000,
 		4.000000, 4.000000, 4.000000, 4.000000
-	);
+ );
 
 	bool4x4 test0  = mat0 <= mat0;
 	bool4x4 test1  = mat0 >= mat0;
@@ -421,26 +474,13 @@ TEMPER_TEST( TestRelational_double4x4 )
 	TEMPER_PASS();
 }
 
-TEMPER_TEST( TestArray_double4x4 )
-{
-	double4x4 mat;
-
-	TEMPER_EXPECT_TRUE( mat[0] == double4( 1.0, 0.0, 0.0, 0.0 ) );
-	TEMPER_EXPECT_TRUE( mat[1] == double4( 0.0, 1.0, 0.0, 0.0 ) );
-	TEMPER_EXPECT_TRUE( mat[2] == double4( 0.0, 0.0, 1.0, 0.0 ) );
-	TEMPER_EXPECT_TRUE( mat[3] == double4( 0.0, 0.0, 0.0, 1.0 ) );
-
-	TEMPER_PASS();
-}
-
 TEMPER_TEST( TestIdentity_Scalar_double4x4 )
 {
-	double4x4 id = double4x4(
-		1.000000, 0.0, 0.0, 0.0,
-		0.0, 1.000000, 0.0, 0.0,
-		0.0, 0.0, 1.000000, 0.0,
-		0.0, 0.0, 0.0, 1.000000
-	);
+	double4x4 id;
+	id[0] = double4( 1.000000, 0.000000, 0.000000, 0.000000 );
+	id[1] = double4( 0.000000, 1.000000, 0.000000, 0.000000 );
+	id[2] = double4( 0.000000, 0.000000, 1.000000, 0.000000 );
+	id[3] = double4( 0.000000, 0.000000, 0.000000, 1.000000 );
 
 	double4x4 mat;
 	TEMPER_EXPECT_TRUE( mat == id );
@@ -453,6 +493,13 @@ TEMPER_TEST( TestIdentity_Scalar_double4x4 )
 
 TEMPER_TEST( TestTranspose_Scalar_double4x4 )
 {
+	double4x4 answerTransposed = double4x4(
+		0.000000, 4.000000, 8.000000, 12.000000,
+		1.000000, 5.000000, 9.000000, 13.000000,
+		2.000000, 6.000000, 10.000000, 14.000000,
+		3.000000, 7.000000, 11.000000, 15.000000
+	);
+
 	double4x4 mat = double4x4(
 		0.000000, 1.000000, 2.000000, 3.000000,
 		4.000000, 5.000000, 6.000000, 7.000000,
@@ -461,12 +508,7 @@ TEMPER_TEST( TestTranspose_Scalar_double4x4 )
 	);
 	double4x4 trans = transpose( mat );
 
-	TEMPER_EXPECT_TRUE( trans == double4x4(
-		0.000000, 4.000000, 8.000000, 12.000000,
-		1.000000, 5.000000, 9.000000, 13.000000,
-		2.000000, 6.000000, 10.000000, 14.000000,
-		3.000000, 7.000000, 11.000000, 15.000000
-	) );
+	TEMPER_EXPECT_TRUE( trans == answerTransposed );
 
 	TEMPER_PASS();
 }
@@ -479,6 +521,7 @@ TEMPER_TEST( TestDeterminant_Scalar_double4x4 )
 		3.000000, 5.000000, 7.000000, 2.000000,
 		4.000000, 3.000000, 2.000000, 6.000000
 	);
+
 	double det = determinant( mat );
 
 	TEMPER_EXPECT_TRUE( doubleeq( det, 285.0 ) );
@@ -488,6 +531,9 @@ TEMPER_TEST( TestDeterminant_Scalar_double4x4 )
 
 TEMPER_TEST( TestInverse_Scalar_double4x4 )
 {
+	double4x4 id;
+	identity( id );
+
 	double4x4 mat = double4x4(
 		1.000000, 0.000000, 0.000000, 1.000000,
 		0.000000, 2.000000, 1.000000, 2.000000,
@@ -496,7 +542,7 @@ TEMPER_TEST( TestInverse_Scalar_double4x4 )
 	);
 	double4x4 matInverse = inverse( mat );
 
-	TEMPER_EXPECT_TRUE( mat * matInverse == g_identityMatrix_double4x4 );
+	TEMPER_EXPECT_TRUE( mat * matInverse == id );
 
 	TEMPER_PASS();
 }
@@ -504,13 +550,13 @@ TEMPER_TEST( TestInverse_Scalar_double4x4 )
 TEMPER_TEST( TestTranslate_Scalar_double4x4 )
 {
 	double4x4 mat;
-
 	double3 translation = double3( 2.000000, 3.000000, 4.000000 );
+
 	mat = translate( mat, translation );
 
-	TEMPER_EXPECT_TRUE( doubleeq( mat[0][3], 2.0 ) );
-	TEMPER_EXPECT_TRUE( doubleeq( mat[1][3], 3.0 ) );
-	TEMPER_EXPECT_TRUE( doubleeq( mat[2][3], 4.0 ) );
+	TEMPER_EXPECT_TRUE( doubleeq( mat.rows[0].w, 2.0 ) );
+	TEMPER_EXPECT_TRUE( doubleeq( mat.rows[1].w, 3.0 ) );
+	TEMPER_EXPECT_TRUE( doubleeq( mat.rows[2].w, 4.0 ) );
 
 	TEMPER_PASS();
 }
@@ -518,22 +564,10 @@ TEMPER_TEST( TestTranslate_Scalar_double4x4 )
 TEMPER_TEST( TestRotate_double4x4 )
 {
 	double4x4 mat;
-	double4x4 yaw = rotate( mat, radians( 45.0 ), double3( 0.000000, 1.000000, 0.000000 ) );
-	double4x4 pitch = rotate( mat, radians( 45.0 ), double3( 1.000000, 0.000000, 0.000000 ) );
-	double4x4 roll = rotate( mat, radians( 45.0 ), double3( 0.000000, 0.000000, 1.000000 ) );
+	identity( mat );
 
-	double4x4 answerYaw = double4x4(
-		0.707107, 0.000000, 0.707107, 0.000000,
-		0.000000, 1.000000, 0.000000, 0.000000,
-		-0.707107, 0.000000, 0.707107, 0.000000,
-		0.000000, 0.000000, 0.000000, 1.000000
-	);
-	double4x4 answerPitch = double4x4(
-		1.000000, 0.000000, 0.000000, 0.000000,
-		0.000000, 0.707107, -0.707107, 0.000000,
-		0.000000, 0.707107, 0.707107, 0.000000,
-		0.000000, 0.000000, 0.000000, 1.000000
-	);
+	double3 rollVec = { 0.000000, 0.000000, 1.000000 };
+	double4x4 roll = rotate( mat, radians( 45.0 ), rollVec );
 	double4x4 answerRoll = double4x4(
 		0.707107, -0.707107, 0.000000, 0.000000,
 		0.707107, 0.707107, 0.000000, 0.000000,
@@ -541,7 +575,20 @@ TEMPER_TEST( TestRotate_double4x4 )
 		0.000000, 0.000000, 0.000000, 1.000000
 	);
 
+	double4x4 yaw = rotate( mat, radians( 45.0 ), double3( 0.000000, 1.000000, 0.000000 ) );
+	double4x4 answerYaw = double4x4( 		0.707107, 0.000000, 0.707107, 0.000000,
+		0.000000, 1.000000, 0.000000, 0.000000,
+		-0.707107, 0.000000, 0.707107, 0.000000,
+		0.000000, 0.000000, 0.000000, 1.000000
+ );
 	TEMPER_EXPECT_TRUE( yaw == answerYaw );
+
+	double4x4 pitch = rotate( mat, radians( 45.0 ), double3( 1.000000, 0.000000, 0.000000 ) );
+	double4x4 answerPitch = double4x4( 		1.000000, 0.000000, 0.000000, 0.000000,
+		0.000000, 0.707107, -0.707107, 0.000000,
+		0.000000, 0.707107, 0.707107, 0.000000,
+		0.000000, 0.000000, 0.000000, 1.000000
+ );
 	TEMPER_EXPECT_TRUE( pitch == answerPitch );
 	TEMPER_EXPECT_TRUE( roll == answerRoll );
 
@@ -550,12 +597,15 @@ TEMPER_TEST( TestRotate_double4x4 )
 
 TEMPER_TEST( TestScale_Scalar_double4x4 )
 {
+	double3 scaleVec = { 2.000000, 2.000000, 2.000000 };
 	double4x4 mat;
-	double4x4 scaled = scale( mat, double3( 2.000000, 2.000000, 2.000000 ) );
+	identity( mat );
 
-	TEMPER_EXPECT_TRUE( doubleeq( scaled[0][0], 2.000000 ) );
-	TEMPER_EXPECT_TRUE( doubleeq( scaled[1][1], 2.000000 ) );
-	TEMPER_EXPECT_TRUE( doubleeq( scaled[2][2], 2.000000 ) );
+	double4x4 scaled = scale( mat, scaleVec );
+
+	TEMPER_EXPECT_TRUE( doubleeq( scaled.rows[0].x, 2.000000 ) );
+	TEMPER_EXPECT_TRUE( doubleeq( scaled.rows[1].y, 2.000000 ) );
+	TEMPER_EXPECT_TRUE( doubleeq( scaled.rows[2].z, 2.000000 ) );
 
 	TEMPER_PASS();
 }
@@ -638,6 +688,7 @@ TEMPER_TEST( TestPerspective_double4x4 )
 	);
 
 	double aspect = 1280.0 / 720.0;
+
 	double4x4 mat_LH_ZO = perspective_lh_zo( 90.0, aspect, 0.1, 100.0 );
 	double4x4 mat_LH_NO = perspective_lh_no( 90.0, aspect, 0.1, 100.0 );
 	double4x4 mat_RH_ZO = perspective_rh_zo( 90.0, aspect, 0.1, 100.0 );
@@ -666,9 +717,9 @@ TEMPER_TEST( TestLookAt_double4x4 )
 		0.000000, 0.000000, 0.000000, 1.000000
 	);
 
-	double3 currentPos = double3( 0.000000, 0.000000, 0.000000 );
-	double3 targetPos = double3( 1.000000, 0.000000, 1.000000 );
-	double3 up = double3( 0.000000, 1.000000, 0.000000 );
+	double3 currentPos = { 0.000000, 0.000000, 0.000000 };
+	double3 targetPos = { 1.000000, 0.000000, 1.000000 };
+	double3 up = { 0.000000, 1.000000, 0.000000 };
 
 	double4x4 mat_LH = lookat_lh( currentPos, targetPos, up );
 	double4x4 mat_RH = lookat_rh( currentPos, targetPos, up );
@@ -682,6 +733,10 @@ TEMPER_TEST( TestLookAt_double4x4 )
 TEMPER_SUITE( Test_double4x4 )
 {
 	TEMPER_RUN_TEST( TestAssignment_double4x4 );
+	TEMPER_RUN_TEST( TestCtor_double4x4 );
+	TEMPER_RUN_TEST( TestArray_double4x4 );
+	TEMPER_RUN_TEST( TestIncrement_double4x4 );
+	TEMPER_RUN_TEST( TestDecrement_double4x4 );
 	TEMPER_RUN_TEST( TestComponentWiseArithmetic_Scalar_Addition_double4x4 );
 	TEMPER_RUN_TEST( TestComponentWiseArithmetic_Scalar_Subtraction_double4x4 );
 	TEMPER_RUN_TEST( TestComponentWiseArithmetic_Scalar_Multiplication_double4x4 );
@@ -689,10 +744,7 @@ TEMPER_SUITE( Test_double4x4 )
 	TEMPER_RUN_TEST( TestMultiplyMatrix_Scalar_double4x4 );
 	TEMPER_RUN_TEST( TestMultiplyVector_double4x4 );
 	TEMPER_RUN_TEST( TestDivideMatrix_double4x4 );
-	TEMPER_RUN_TEST( TestIncrement_double4x4 );
-	TEMPER_RUN_TEST( TestDecrement_double4x4 );
 	TEMPER_RUN_TEST( TestRelational_double4x4 );
-	TEMPER_RUN_TEST( TestArray_double4x4 );
 	TEMPER_RUN_TEST( TestIdentity_Scalar_double4x4 );
 	TEMPER_RUN_TEST( TestTranspose_Scalar_double4x4 );
 	TEMPER_RUN_TEST( TestDeterminant_Scalar_double4x4 );

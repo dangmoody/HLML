@@ -141,13 +141,3 @@ double3 double3::xzz() const { return double3( x, z, z ); }
 double3 double3::yzz() const { return double3( y, z, z ); }
 double3 double3::zzz() const { return double3( z, z, z ); }
 
-bool operator==( const double3& lhs, const double3& rhs )
-{
-	return doubleeq( lhs.x, rhs.x ) && doubleeq( lhs.y, rhs.y ) && doubleeq( lhs.z, rhs.z );
-}
-
-inline bool operator!=( const double3& lhs, const double3& rhs )
-{
-	return !( operator==( lhs, rhs ) );
-}
-

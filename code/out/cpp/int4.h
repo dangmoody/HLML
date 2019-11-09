@@ -74,8 +74,9 @@ struct int4
 			int32_t a;
 		};
 
-		int32_t data[4] = { 0 };
+		int32_t data[4];
 	};
+
 
 	/// Default constructor.  Initializes all values to zero.
 	inline int4();
@@ -409,12 +410,4 @@ struct int4
 #elif defined( _MSC_VER )
 #pragma warning( pop )
 #endif
-
-/// \relates int4
-/// \brief Returns true if the all the components of the left-hand-side int4 match the other one, otherwise returns false.
-inline bool operator==( const int4& lhs, const int4& rhs );
-
-/// \relates int4
-/// \brief Returns true if not all of the components of the left-hand-side int4 match the other one, otherwise returns false.
-inline bool operator!=( const int4& lhs, const int4& rhs );
 

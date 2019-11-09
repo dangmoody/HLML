@@ -78,11 +78,3 @@ struct double3x3
 	inline const double3& operator[]( const uint32_t index ) const;
 };
 
-/// \relates double3x3
-/// \brief Returns true if the all the components of the left-hand-side double3x3 match the other one, otherwise returns false.
-inline bool operator==( const double3x3& lhs, const double3x3& rhs );
-
-/// \relates double3x3
-/// \brief Returns true if not all of the components of the left-hand-side double3x3 match the other one, otherwise returns false.
-inline bool operator!=( const double3x3& lhs, const double3x3& rhs );
-

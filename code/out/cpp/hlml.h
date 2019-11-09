@@ -104,6 +104,9 @@ SOFTWARE.
 #include "double4x3.inl"
 #include "double4x4.inl"
 
+#include "hlml_operators_vector.h"
+#include "hlml_operators_matrix.h"
+
 #include "hlml_functions_scalar.h"
 #include "hlml_functions_vector.h"
 #include "hlml_functions_matrix.h"

@@ -63,28 +63,29 @@ fi
 options_compiler="${options_compiler} -Icode/3rdparty/include/ -D_CRT_SECURE_NO_WARNINGS"
 
 # add -Weverything for clang
-options_error="-Wall -Wextra -Wpedantic"
+options_error="-Wall -Wextra"
 if [[ ${compiler} == clang ]]; then
-	options_error="${options_error} -Weverything"
+	options_error="${options_error} -Weverything -Wpedantic"
 fi
 
 # warnings to ignore
-# ignore_warnings="-Wno-padded -Wno-unused-macros -Wno-format-nonliteral -Wno-old-style-cast -Wno-double-promotion -Wno-float-equal -Wno-zero-as-null-pointer-constant -Wno-int-to-void-pointer-cast"
-
-ignore_warnings=""
+ignore_warnings="-Wno-missing-braces"
 
 if [[ ${compiler} == clang ]]; then
 	# clang-specific warnings to ignore
 	if [[ ${language} == C++ ]]; then
-		ignore_warnings="-Wno-padded -Wno-unused-macros -Wno-format-nonliteral -Wno-old-style-cast -Wno-double-promotion -Wno-float-equal -Wno-zero-as-null-pointer-constant -Wno-int-to-void-pointer-cast"
+		ignore_warnings="${ignore_warnings} -Wno-padded -Wno-unused-macros -Wno-format-nonliteral -Wno-old-style-cast -Wno-double-promotion -Wno-float-equal -Wno-zero-as-null-pointer-constant -Wno-int-to-void-pointer-cast"
 		ignore_warnings="${ignore_warnings} -Wno-newline-eof -Wno-global-constructors -Wno-c++98-compat-pedantic -Wno-covered-switch-default -Wno-shadow-field-in-constructor -Wno-nested-anon-types -Wno-gnu-anonymous-struct -Wno-exit-time-destructors -Wno-reserved-id-macro"
-	else
-		ignore_warnings=""
+	# else
+	#	DM: ignore warning for Clang/C only here
 	fi
 else
 	# GCC-specific warnings to ignore
-	ignore_warnings="-Wno-padded -Wno-unused-macros -Wno-format-nonliteral -Wno-old-style-cast -Wno-double-promotion -Wno-float-equal -Wno-zero-as-null-pointer-constant -Wno-int-to-void-pointer-cast"
-	ignore_warnings="${ignore_warnings} -Wno-unused-variable -Wno-stringop-truncation -Wno-stringop-overflow"
+	ignore_warnings="${ignore_warnings} -Wno-padded -Wno-unused-macros -Wno-format-nonliteral -Wno-float-equal -Wno-unused-variable"
+
+	if [[ ${language} == C++ ]]; then
+		ignore_warnings="${ignore_warnings} -Wno-old-style-cast"
+	fi
 fi
 
 echo Compiler                  : ${compiler_proc}

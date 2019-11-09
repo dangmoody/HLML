@@ -61,8 +61,9 @@ struct bool2
 			bool32_t y;
 		};
 
-		bool32_t data[2] = { 0 };
+		bool32_t data[2];
 	};
+
 
 	/// Default constructor.  Initializes all values to zero.
 	inline bool2();
@@ -113,12 +114,4 @@ struct bool2
 #elif defined( _MSC_VER )
 #pragma warning( pop )
 #endif
-
-/// \relates bool2
-/// \brief Returns true if the all the components of the left-hand-side bool2 match the other one, otherwise returns false.
-inline bool operator==( const bool2& lhs, const bool2& rhs );
-
-/// \relates bool2
-/// \brief Returns true if not all of the components of the left-hand-side bool2 match the other one, otherwise returns false.
-inline bool operator!=( const bool2& lhs, const bool2& rhs );
 

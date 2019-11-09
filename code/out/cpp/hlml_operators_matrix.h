@@ -86,125 +86,193 @@ SOFTWARE.
 
 #include "hlml_functions_vector.h"
 
-int2x2 inverse( const int2x2& mat );
-int3x3 inverse( const int3x3& mat );
-int4x4 inverse( const int4x4& mat );
+// bool2x2
+inline bool operator==( const bool2x2& lhs, const bool2x2& rhs )
+{
+	return ( lhs[0] == rhs[0] )
+		&& ( lhs[1] == rhs[1] );
+}
 
-uint2x2 inverse( const uint2x2& mat );
-uint3x3 inverse( const uint3x3& mat );
-uint4x4 inverse( const uint4x4& mat );
+inline bool operator!=( const bool2x2& lhs, const bool2x2& rhs )
+{
+	return !( operator==( lhs, rhs ) );
+}
 
-float2x2 inverse( const float2x2& mat );
-float3x3 inverse( const float3x3& mat );
-float4x4 inverse( const float4x4& mat );
 
-double2x2 inverse( const double2x2& mat );
-double3x3 inverse( const double3x3& mat );
-double4x4 inverse( const double4x4& mat );
+// bool2x3
+inline bool operator==( const bool2x3& lhs, const bool2x3& rhs )
+{
+	return ( lhs[0] == rhs[0] )
+		&& ( lhs[1] == rhs[1] );
+}
+
+inline bool operator!=( const bool2x3& lhs, const bool2x3& rhs )
+{
+	return !( operator==( lhs, rhs ) );
+}
+
+
+// bool2x4
+inline bool operator==( const bool2x4& lhs, const bool2x4& rhs )
+{
+	return ( lhs[0] == rhs[0] )
+		&& ( lhs[1] == rhs[1] );
+}
+
+inline bool operator!=( const bool2x4& lhs, const bool2x4& rhs )
+{
+	return !( operator==( lhs, rhs ) );
+}
+
+
+// bool3x2
+inline bool operator==( const bool3x2& lhs, const bool3x2& rhs )
+{
+	return ( lhs[0] == rhs[0] )
+		&& ( lhs[1] == rhs[1] )
+		&& ( lhs[2] == rhs[2] );
+}
+
+inline bool operator!=( const bool3x2& lhs, const bool3x2& rhs )
+{
+	return !( operator==( lhs, rhs ) );
+}
+
+
+// bool3x3
+inline bool operator==( const bool3x3& lhs, const bool3x3& rhs )
+{
+	return ( lhs[0] == rhs[0] )
+		&& ( lhs[1] == rhs[1] )
+		&& ( lhs[2] == rhs[2] );
+}
+
+inline bool operator!=( const bool3x3& lhs, const bool3x3& rhs )
+{
+	return !( operator==( lhs, rhs ) );
+}
+
+
+// bool3x4
+inline bool operator==( const bool3x4& lhs, const bool3x4& rhs )
+{
+	return ( lhs[0] == rhs[0] )
+		&& ( lhs[1] == rhs[1] )
+		&& ( lhs[2] == rhs[2] );
+}
+
+inline bool operator!=( const bool3x4& lhs, const bool3x4& rhs )
+{
+	return !( operator==( lhs, rhs ) );
+}
+
+
+// bool4x2
+inline bool operator==( const bool4x2& lhs, const bool4x2& rhs )
+{
+	return ( lhs[0] == rhs[0] )
+		&& ( lhs[1] == rhs[1] )
+		&& ( lhs[2] == rhs[2] )
+		&& ( lhs[3] == rhs[3] );
+}
+
+inline bool operator!=( const bool4x2& lhs, const bool4x2& rhs )
+{
+	return !( operator==( lhs, rhs ) );
+}
+
+
+// bool4x3
+inline bool operator==( const bool4x3& lhs, const bool4x3& rhs )
+{
+	return ( lhs[0] == rhs[0] )
+		&& ( lhs[1] == rhs[1] )
+		&& ( lhs[2] == rhs[2] )
+		&& ( lhs[3] == rhs[3] );
+}
+
+inline bool operator!=( const bool4x3& lhs, const bool4x3& rhs )
+{
+	return !( operator==( lhs, rhs ) );
+}
+
+
+// bool4x4
+inline bool operator==( const bool4x4& lhs, const bool4x4& rhs )
+{
+	return ( lhs[0] == rhs[0] )
+		&& ( lhs[1] == rhs[1] )
+		&& ( lhs[2] == rhs[2] )
+		&& ( lhs[3] == rhs[3] );
+}
+
+inline bool operator!=( const bool4x4& lhs, const bool4x4& rhs )
+{
+	return !( operator==( lhs, rhs ) );
+}
+
 
 // int2x2
-/// \relates int2x2
-/// \brief Returns a copy of the int2x2 that has been component-wise added by the given scalar value.
-inline int2x2 operator+( const int2x2& lhs, const int32_t rhs )
+inline bool operator==( const int2x2& lhs, const int2x2& rhs )
+{
+	return ( lhs[0] == rhs[0] )
+		&& ( lhs[1] == rhs[1] );
+}
+
+inline bool operator!=( const int2x2& lhs, const int2x2& rhs )
+{
+	return !( operator==( lhs, rhs ) );
+}
+
+inline int2x2 operator+( const int2x2& lhs, const int32_t scalar )
 {
 	return int2x2(
-		lhs[0] + rhs,
-		lhs[1] + rhs
+		lhs[0] + scalar,
+		lhs[1] + scalar
 	);
 }
 
-/// \relates int2x2
-/// \brief Adds each component by the given scalar value.
-inline int2x2 operator+=( int2x2& lhs, const int32_t rhs )
-{
-	return ( lhs = lhs + rhs );
-}
-
-/// \relates int2x2
-/// \brief Returns a copy of the int2x2 that has been component-wise added by the corresponding component of the right-hand int2x2.
 inline int2x2 operator+( const int2x2& lhs, const int2x2& rhs )
 {
+	return HLML_CONSTRUCT( int2x2 ) {
+		comp_addv( lhs.rows[0], rhs.rows[0] ),
+		comp_addv( lhs.rows[1], rhs.rows[1] )
+	};
+}
+
+inline int2x2 operator-( const int2x2& lhs, const int32_t scalar )
+{
 	return int2x2(
-		lhs[0] + rhs[0],
-		lhs[1] + rhs[1]
+		lhs[0] - scalar,
+		lhs[1] - scalar
 	);
 }
 
-/// \relates int2x2
-/// \brief Adds each component of the int2x2 by the corresponding component of the right-hand int2x2.
-inline int2x2 operator+=( int2x2& lhs, const int2x2& rhs )
-{
-	return ( lhs = lhs + rhs );
-}
-
-/// \relates int2x2
-/// \brief Returns a copy of the int2x2 that has been component-wise subtracted by the given scalar value.
-inline int2x2 operator-( const int2x2& lhs, const int32_t rhs )
-{
-	return int2x2(
-		lhs[0] - rhs,
-		lhs[1] - rhs
-	);
-}
-
-/// \relates int2x2
-/// \brief Subtracts each component by the given scalar value.
-inline int2x2 operator-=( int2x2& lhs, const int32_t rhs )
-{
-	return ( lhs = lhs - rhs );
-}
-
-/// \relates int2x2
-/// \brief Returns a copy of the int2x2 that has been component-wise subtracted by the corresponding component of the right-hand int2x2.
 inline int2x2 operator-( const int2x2& lhs, const int2x2& rhs )
 {
-	return int2x2(
-		lhs[0] - rhs[0],
-		lhs[1] - rhs[1]
-	);
-}
-
-/// \relates int2x2
-/// \brief Subtracts each component of the int2x2 by the corresponding component of the right-hand int2x2.
-inline int2x2 operator-=( int2x2& lhs, const int2x2& rhs )
-{
-	return ( lhs = lhs - rhs );
-}
-
-/// \relates int2x2
-/// \brief Returns a copy of the int2x2 that has been component-wise multiplied by the given scalar value.
-inline int2x2 operator*( const int2x2& lhs, const int32_t rhs )
-{
-	return int2x2(
-		lhs[0] * rhs,
-		lhs[1] * rhs
-	);
-}
-
-/// \relates int2x2
-/// \brief Multiplies each component by the given scalar value.
-inline int2x2 operator*=( int2x2& lhs, const int32_t rhs )
-{
-	return ( lhs = lhs * rhs );
+	return HLML_CONSTRUCT( int2x2 ) {
+		comp_subv( lhs.rows[0], rhs.rows[0] ),
+		comp_subv( lhs.rows[1], rhs.rows[1] )
+	};
 }
 
 /// \relates int2x2
 /// \brief Returns a copy of the matrix where each row of the left-hand matrix has been dot-producted by the corresponding column of the right-hand matrix.
 inline int2x2 operator*( const int2x2& lhs, const int2x2& rhs )
 {
-	int2 row0 = lhs[0];
-	int2 row1 = lhs[1];
+	int2 row0 = lhs.rows[0];
+	int2 row1 = lhs.rows[1];
 
-	int2 col0 = { rhs[0].x, rhs[1].x };
-	int2 col1 = { rhs[0].y, rhs[1].y };
+	int2 col0 = { rhs.rows[0].x, rhs.rows[1].x };
+	int2 col1 = { rhs.rows[0].y, rhs.rows[1].y };
 
-	return int2x2(
+	return HLML_CONSTRUCT( int2x2 ) {
 		row0.x * col0.x + row0.y * col0.y,
 		row0.x * col1.x + row0.y * col1.y,
 
 		row1.x * col0.x + row1.y * col0.y,
 		row1.x * col1.x + row1.y * col1.y
-	);
+	};
 }
 
 inline int2x2 operator*=( int2x2& lhs, const int2x2& rhs )
@@ -212,48 +280,30 @@ inline int2x2 operator*=( int2x2& lhs, const int2x2& rhs )
 	return ( lhs = lhs * rhs );
 }
 
-/// \relates int2x2
-/// \brief Returns a copy of the int2x2 that has been component-wise divided by the given scalar value.
-inline int2x2 operator/( const int2x2& lhs, const int32_t rhs )
+inline int2x2 operator/( const int2x2& lhs, const int32_t scalar )
 {
 	return int2x2(
-		lhs[0] / rhs,
-		lhs[1] / rhs
+		lhs[0] / scalar,
+		lhs[1] / scalar
 	);
 }
 
-/// \relates int2x2
-/// \brief Divides each component by the given scalar value.
-inline int2x2 operator/=( int2x2& lhs, const int32_t rhs )
-{
-	return ( lhs = lhs / rhs );
-}
-
-/// \relates int2x2
-/// \brief Returns a copy of the int2x2 that has been component-wise divided by the corresponding component of the right-hand int2x2.
 inline int2x2 operator/( const int2x2& lhs, const int2x2& rhs )
 {
-	return int2x2(
-		lhs[0] / rhs[0],
-		lhs[1] / rhs[1]
-	);
-}
-
-/// \relates int2x2
-/// \brief Divides each component of the int2x2 by the corresponding component of the right-hand int2x2.
-inline int2x2 operator/=( int2x2& lhs, const int2x2& rhs )
-{
-	return ( lhs = lhs / rhs );
+	return HLML_CONSTRUCT( int2x2 ) {
+		comp_divv( lhs.rows[0], rhs.rows[0] ),
+		comp_divv( lhs.rows[1], rhs.rows[1] )
+	};
 }
 
 /// \relates int2
 /// \brief Returns a copy of the int2 that has been component-wise multiplied by the corresponding component of the right-hand int2x2.
 inline int2 operator*( const int2x2& lhs, const int2& rhs )
 {
-	return int2(
-		(int32_t) dot( lhs[0], rhs ),
-		(int32_t) dot( lhs[1], rhs )
-	);
+	return HLML_CONSTRUCT( int2 ) {
+		lhs.rows[0].x * rhs.x + lhs.rows[0].y * rhs.y,
+		lhs.rows[1].x * rhs.x + lhs.rows[1].y * rhs.y
+	};
 }
 
 /// \relates int2
@@ -304,70 +354,13 @@ inline int2x2& operator--( int2x2& lhs, const int )
 }
 
 /// \relates int2x2
-/// \brief Returns a bool2x2 where each component is true if the component of the left-hand type is less than the corresponding right-hand type component.
-inline bool2x2 operator<( const int2x2& lhs, const int2x2& rhs )
-{
-	return bool2x2(
-		lhs[0] < rhs[0],
-		lhs[1] < rhs[1]
-	);
-}
-
-/// \relates int2x2
-/// \brief Returns a bool2x2 where each component is true if the component of the left-hand type is less than or equal to the corresponding right-hand type component.
-inline bool2x2 operator<=( const int2x2& lhs, const int2x2& rhs )
-{
-	return bool2x2(
-		lhs[0] <= rhs[0],
-		lhs[1] <= rhs[1]
-	);
-}
-
-/// \relates int2x2
-/// \brief Returns a bool2x2 where each component is true if the component of the left-hand type is greater than the corresponding right-hand type component.
-inline bool2x2 operator>( const int2x2& lhs, const int2x2& rhs )
-{
-	return bool2x2(
-		lhs[0] > rhs[0],
-		lhs[1] > rhs[1]
-	);
-}
-
-/// \relates int2x2
-/// \brief Returns a bool2x2 where each component is true if the component of the left-hand type is greater than or equal to the corresponding right-hand type component.
-inline bool2x2 operator>=( const int2x2& lhs, const int2x2& rhs )
-{
-	return bool2x2(
-		lhs[0] >= rhs[0],
-		lhs[1] >= rhs[1]
-	);
-}
-
-/// \relates int2x2
-/// \brief Returns a copy of the int2x2 where each component has been bitwise AND'd against the given scalar value.
-inline int2x2 operator&( const int2x2& lhs, const int32_t& rhs )
-{
-	return int2x2(
-		lhs[0] & rhs,
-		lhs[1] & rhs
-	);
-}
-
-/// \relates int2x2
-/// \brief Performs a bitwise AND on the given left-hand int2x2 against the given scalar value.
-inline int2x2 operator&=( int2x2& lhs, const int32_t& rhs )
-{
-	return ( lhs = lhs & rhs );
-}
-
-/// \relates int2x2
 /// \brief Returns a copy of the int2x2 where each component of the left-hand int2x2 has been bitwise AND'd against the corresponding component of the right-hand side int2x2.
-inline int2x2 operator&( const int2x2& lhs, const int2x2& rhs )
+inline int2x2 operator&( int2x2& lhs, const int2x2& rhs )
 {
-	return int2x2(
-		lhs[0] & rhs[0],
-		lhs[1] & rhs[1]
-	);
+	return HLML_CONSTRUCT( int2x2 ) {
+		comp_and( lhs.rows[0], rhs.rows[0] ),
+		comp_and( lhs.rows[1], rhs.rows[1] )
+	};
 }
 
 /// \relates int2x2
@@ -378,30 +371,13 @@ inline int2x2 operator&=( int2x2& lhs, const int2x2& rhs )
 }
 
 /// \relates int2x2
-/// \brief Returns a copy of the int2x2 where each component has been bitwise OR'd against the given scalar value.
-inline int2x2 operator|( const int2x2& lhs, const int32_t& rhs )
-{
-	return int2x2(
-		lhs[0] | rhs,
-		lhs[1] | rhs
-	);
-}
-
-/// \relates int2x2
-/// \brief Performs a bitwise OR on the given left-hand int2x2 against the given scalar value.
-inline int2x2 operator|=( int2x2& lhs, const int32_t& rhs )
-{
-	return ( lhs = lhs | rhs );
-}
-
-/// \relates int2x2
 /// \brief Returns a copy of the int2x2 where each component of the left-hand int2x2 has been bitwise OR'd against the corresponding component of the right-hand side int2x2.
-inline int2x2 operator|( const int2x2& lhs, const int2x2& rhs )
+inline int2x2 operator|( int2x2& lhs, const int2x2& rhs )
 {
-	return int2x2(
-		lhs[0] | rhs[0],
-		lhs[1] | rhs[1]
-	);
+	return HLML_CONSTRUCT( int2x2 ) {
+		comp_or( lhs.rows[0], rhs.rows[0] ),
+		comp_or( lhs.rows[1], rhs.rows[1] )
+	};
 }
 
 /// \relates int2x2
@@ -412,30 +388,13 @@ inline int2x2 operator|=( int2x2& lhs, const int2x2& rhs )
 }
 
 /// \relates int2x2
-/// \brief Returns a copy of the int2x2 where each component has been bitwise XOR'd against the given scalar value.
-inline int2x2 operator^( const int2x2& lhs, const int32_t& rhs )
-{
-	return int2x2(
-		lhs[0] ^ rhs,
-		lhs[1] ^ rhs
-	);
-}
-
-/// \relates int2x2
-/// \brief Performs a bitwise XOR on the given left-hand int2x2 against the given scalar value.
-inline int2x2 operator^=( int2x2& lhs, const int32_t& rhs )
-{
-	return ( lhs = lhs ^ rhs );
-}
-
-/// \relates int2x2
 /// \brief Returns a copy of the int2x2 where each component of the left-hand int2x2 has been bitwise XOR'd against the corresponding component of the right-hand side int2x2.
-inline int2x2 operator^( const int2x2& lhs, const int2x2& rhs )
+inline int2x2 operator^( int2x2& lhs, const int2x2& rhs )
 {
-	return int2x2(
-		lhs[0] ^ rhs[0],
-		lhs[1] ^ rhs[1]
-	);
+	return HLML_CONSTRUCT( int2x2 ) {
+		comp_xor( lhs.rows[0], rhs.rows[0] ),
+		comp_xor( lhs.rows[1], rhs.rows[1] )
+	};
 }
 
 /// \relates int2x2
@@ -446,30 +405,13 @@ inline int2x2 operator^=( int2x2& lhs, const int2x2& rhs )
 }
 
 /// \relates int2x2
-/// \brief Returns a copy of the int2x2 where each component has been bitwise left-shifted by the given scalar value.
-inline int2x2 operator<<( const int2x2& lhs, const int32_t& rhs )
-{
-	return int2x2(
-		lhs[0] << rhs,
-		lhs[1] << rhs
-	);
-}
-
-/// \relates int2x2
-/// \brief Performs a left bitshift on the given left-hand int2x2 by the given scalar value.
-inline int2x2 operator<<=( int2x2& lhs, const int32_t& rhs )
-{
-	return ( lhs = lhs << rhs );
-}
-
-/// \relates int2x2
 /// \brief Returns a copy of the int2x2 where each component of the left-hand int2x2 has been bitwise left-shifted by the corresponding component of the right-hand side int2x2.
-inline int2x2 operator<<( const int2x2& lhs, const int2x2& rhs )
+inline int2x2 operator<<( int2x2& lhs, const int2x2& rhs )
 {
-	return int2x2(
-		lhs[0] << rhs[0],
-		lhs[1] << rhs[1]
-	);
+	return HLML_CONSTRUCT( int2x2 ) {
+		comp_shift_left( lhs.rows[0], rhs.rows[0] ),
+		comp_shift_left( lhs.rows[1], rhs.rows[1] )
+	};
 }
 
 /// \relates int2x2
@@ -480,30 +422,13 @@ inline int2x2 operator<<=( int2x2& lhs, const int2x2& rhs )
 }
 
 /// \relates int2x2
-/// \brief Returns a copy of the int2x2 where each component has been bitwise right-shifted by the given scalar value.
-inline int2x2 operator>>( const int2x2& lhs, const int32_t& rhs )
-{
-	return int2x2(
-		lhs[0] >> rhs,
-		lhs[1] >> rhs
-	);
-}
-
-/// \relates int2x2
-/// \brief Performs a right bitshift on the given left-hand int2x2 by the given scalar value.
-inline int2x2 operator>>=( int2x2& lhs, const int32_t& rhs )
-{
-	return ( lhs = lhs >> rhs );
-}
-
-/// \relates int2x2
 /// \brief Returns a copy of the int2x2 where each component of the left-hand int2x2 has been bitwise right-shifted by the corresponding component of the right-hand side int2x2.
-inline int2x2 operator>>( const int2x2& lhs, const int2x2& rhs )
+inline int2x2 operator>>( int2x2& lhs, const int2x2& rhs )
 {
-	return int2x2(
-		lhs[0] >> rhs[0],
-		lhs[1] >> rhs[1]
-	);
+	return HLML_CONSTRUCT( int2x2 ) {
+		comp_shift_right( lhs.rows[0], rhs.rows[0] ),
+		comp_shift_right( lhs.rows[1], rhs.rows[1] )
+	};
 }
 
 /// \relates int2x2
@@ -515,145 +440,124 @@ inline int2x2 operator>>=( int2x2& lhs, const int2x2& rhs )
 
 /// \relates int2x2
 /// \brief Performs a unary bitwise operation on all components of the given int2x2.
-inline int2x2 operator~( const int2x2& lhs )
+inline int2x2 operator~( int2x2& lhs )
 {
-	return int2x2(
-		~lhs[0],
-		~lhs[1]
-	);
+	return HLML_CONSTRUCT( int2x2 ) {
+		comp_unary( lhs.rows[0] ),
+		comp_unary( lhs.rows[1] )
+	};
+}
+
+inline bool2x2 operator<( const int2x2& lhs, const int2x2& rhs )
+{
+	return HLML_CONSTRUCT( bool2x2 ) {
+		cmpl( lhs.rows[0], rhs.rows[0] ),
+		cmpl( lhs.rows[1], rhs.rows[1] )
+	};
+}
+
+inline bool2x2 operator<=( const int2x2& lhs, const int2x2& rhs )
+{
+	return HLML_CONSTRUCT( bool2x2 ) {
+		cmple( lhs.rows[0], rhs.rows[0] ),
+		cmple( lhs.rows[1], rhs.rows[1] )
+	};
+}
+
+inline bool2x2 operator>( const int2x2& lhs, const int2x2& rhs )
+{
+	return HLML_CONSTRUCT( bool2x2 ) {
+		cmpg( lhs.rows[0], rhs.rows[0] ),
+		cmpg( lhs.rows[1], rhs.rows[1] )
+	};
+}
+
+inline bool2x2 operator>=( const int2x2& lhs, const int2x2& rhs )
+{
+	return HLML_CONSTRUCT( bool2x2 ) {
+		cmpge( lhs.rows[0], rhs.rows[0] ),
+		cmpge( lhs.rows[1], rhs.rows[1] )
+	};
 }
 
 
 // int2x3
-/// \relates int2x3
-/// \brief Returns a copy of the int2x3 that has been component-wise added by the given scalar value.
-inline int2x3 operator+( const int2x3& lhs, const int32_t rhs )
+inline bool operator==( const int2x3& lhs, const int2x3& rhs )
+{
+	return ( lhs[0] == rhs[0] )
+		&& ( lhs[1] == rhs[1] );
+}
+
+inline bool operator!=( const int2x3& lhs, const int2x3& rhs )
+{
+	return !( operator==( lhs, rhs ) );
+}
+
+inline int2x3 operator+( const int2x3& lhs, const int32_t scalar )
 {
 	return int2x3(
-		lhs[0] + rhs,
-		lhs[1] + rhs
+		lhs[0] + scalar,
+		lhs[1] + scalar
 	);
 }
 
-/// \relates int2x3
-/// \brief Adds each component by the given scalar value.
-inline int2x3 operator+=( int2x3& lhs, const int32_t rhs )
-{
-	return ( lhs = lhs + rhs );
-}
-
-/// \relates int2x3
-/// \brief Returns a copy of the int2x3 that has been component-wise added by the corresponding component of the right-hand int2x3.
 inline int2x3 operator+( const int2x3& lhs, const int2x3& rhs )
 {
+	return HLML_CONSTRUCT( int2x3 ) {
+		comp_addv( lhs.rows[0], rhs.rows[0] ),
+		comp_addv( lhs.rows[1], rhs.rows[1] )
+	};
+}
+
+inline int2x3 operator-( const int2x3& lhs, const int32_t scalar )
+{
 	return int2x3(
-		lhs[0] + rhs[0],
-		lhs[1] + rhs[1]
+		lhs[0] - scalar,
+		lhs[1] - scalar
 	);
 }
 
-/// \relates int2x3
-/// \brief Adds each component of the int2x3 by the corresponding component of the right-hand int2x3.
-inline int2x3 operator+=( int2x3& lhs, const int2x3& rhs )
-{
-	return ( lhs = lhs + rhs );
-}
-
-/// \relates int2x3
-/// \brief Returns a copy of the int2x3 that has been component-wise subtracted by the given scalar value.
-inline int2x3 operator-( const int2x3& lhs, const int32_t rhs )
-{
-	return int2x3(
-		lhs[0] - rhs,
-		lhs[1] - rhs
-	);
-}
-
-/// \relates int2x3
-/// \brief Subtracts each component by the given scalar value.
-inline int2x3 operator-=( int2x3& lhs, const int32_t rhs )
-{
-	return ( lhs = lhs - rhs );
-}
-
-/// \relates int2x3
-/// \brief Returns a copy of the int2x3 that has been component-wise subtracted by the corresponding component of the right-hand int2x3.
 inline int2x3 operator-( const int2x3& lhs, const int2x3& rhs )
 {
-	return int2x3(
-		lhs[0] - rhs[0],
-		lhs[1] - rhs[1]
-	);
-}
-
-/// \relates int2x3
-/// \brief Subtracts each component of the int2x3 by the corresponding component of the right-hand int2x3.
-inline int2x3 operator-=( int2x3& lhs, const int2x3& rhs )
-{
-	return ( lhs = lhs - rhs );
-}
-
-/// \relates int2x3
-/// \brief Returns a copy of the int2x3 that has been component-wise multiplied by the given scalar value.
-inline int2x3 operator*( const int2x3& lhs, const int32_t rhs )
-{
-	return int2x3(
-		lhs[0] * rhs,
-		lhs[1] * rhs
-	);
-}
-
-/// \relates int2x3
-/// \brief Multiplies each component by the given scalar value.
-inline int2x3 operator*=( int2x3& lhs, const int32_t rhs )
-{
-	return ( lhs = lhs * rhs );
+	return HLML_CONSTRUCT( int2x3 ) {
+		comp_subv( lhs.rows[0], rhs.rows[0] ),
+		comp_subv( lhs.rows[1], rhs.rows[1] )
+	};
 }
 
 /// \relates int2x3
 /// \brief Returns a copy of the matrix where each row of the left-hand matrix has been dot-producted by the corresponding column of the right-hand matrix.
 inline int2x2 operator*( const int2x3& lhs, const int3x2& rhs )
 {
-	int3 row0 = lhs[0];
-	int3 row1 = lhs[1];
+	int3 row0 = lhs.rows[0];
+	int3 row1 = lhs.rows[1];
 
-	int3 col0 = { rhs[0].x, rhs[1].x, rhs[2].x };
-	int3 col1 = { rhs[0].y, rhs[1].y, rhs[2].y };
+	int3 col0 = { rhs.rows[0].x, rhs.rows[1].x, rhs.rows[2].x };
+	int3 col1 = { rhs.rows[0].y, rhs.rows[1].y, rhs.rows[2].y };
 
-	return int2x2(
+	return HLML_CONSTRUCT( int2x2 ) {
 		row0.x * col0.x + row0.y * col0.y + row0.z * col0.z,
 		row0.x * col1.x + row0.y * col1.y + row0.z * col1.z,
 
 		row1.x * col0.x + row1.y * col0.y + row1.z * col0.z,
 		row1.x * col1.x + row1.y * col1.y + row1.z * col1.z
-	);
+	};
 }
 
-/// \relates int2x3
-/// \brief Returns a copy of the int2x3 that has been component-wise divided by the given scalar value.
-inline int2x3 operator/( const int2x3& lhs, const int32_t rhs )
+inline int2x3 operator/( const int2x3& lhs, const int32_t scalar )
 {
 	return int2x3(
-		lhs[0] / rhs,
-		lhs[1] / rhs
+		lhs[0] / scalar,
+		lhs[1] / scalar
 	);
 }
 
-/// \relates int2x3
-/// \brief Divides each component by the given scalar value.
-inline int2x3 operator/=( int2x3& lhs, const int32_t rhs )
-{
-	return ( lhs = lhs / rhs );
-}
-
-/// \relates int2x3
-/// \brief Returns a copy of the int2x3 that has been component-wise divided by the corresponding component of the right-hand int2x3.
 inline int2x3 operator/( const int2x3& lhs, const int2x3& rhs )
 {
-	return int2x3(
-		lhs[0] / rhs[0],
-		lhs[1] / rhs[1]
-	);
+	return HLML_CONSTRUCT( int2x3 ) {
+		comp_divv( lhs.rows[0], rhs.rows[0] ),
+		comp_divv( lhs.rows[1], rhs.rows[1] )
+	};
 }
 
 // prefix
@@ -697,70 +601,13 @@ inline int2x3& operator--( int2x3& lhs, const int )
 }
 
 /// \relates int2x3
-/// \brief Returns a bool2x3 where each component is true if the component of the left-hand type is less than the corresponding right-hand type component.
-inline bool2x3 operator<( const int2x3& lhs, const int2x3& rhs )
-{
-	return bool2x3(
-		lhs[0] < rhs[0],
-		lhs[1] < rhs[1]
-	);
-}
-
-/// \relates int2x3
-/// \brief Returns a bool2x3 where each component is true if the component of the left-hand type is less than or equal to the corresponding right-hand type component.
-inline bool2x3 operator<=( const int2x3& lhs, const int2x3& rhs )
-{
-	return bool2x3(
-		lhs[0] <= rhs[0],
-		lhs[1] <= rhs[1]
-	);
-}
-
-/// \relates int2x3
-/// \brief Returns a bool2x3 where each component is true if the component of the left-hand type is greater than the corresponding right-hand type component.
-inline bool2x3 operator>( const int2x3& lhs, const int2x3& rhs )
-{
-	return bool2x3(
-		lhs[0] > rhs[0],
-		lhs[1] > rhs[1]
-	);
-}
-
-/// \relates int2x3
-/// \brief Returns a bool2x3 where each component is true if the component of the left-hand type is greater than or equal to the corresponding right-hand type component.
-inline bool2x3 operator>=( const int2x3& lhs, const int2x3& rhs )
-{
-	return bool2x3(
-		lhs[0] >= rhs[0],
-		lhs[1] >= rhs[1]
-	);
-}
-
-/// \relates int2x3
-/// \brief Returns a copy of the int2x3 where each component has been bitwise AND'd against the given scalar value.
-inline int2x3 operator&( const int2x3& lhs, const int32_t& rhs )
-{
-	return int2x3(
-		lhs[0] & rhs,
-		lhs[1] & rhs
-	);
-}
-
-/// \relates int2x3
-/// \brief Performs a bitwise AND on the given left-hand int2x3 against the given scalar value.
-inline int2x3 operator&=( int2x3& lhs, const int32_t& rhs )
-{
-	return ( lhs = lhs & rhs );
-}
-
-/// \relates int2x3
 /// \brief Returns a copy of the int2x3 where each component of the left-hand int2x3 has been bitwise AND'd against the corresponding component of the right-hand side int2x3.
-inline int2x3 operator&( const int2x3& lhs, const int2x3& rhs )
+inline int2x3 operator&( int2x3& lhs, const int2x3& rhs )
 {
-	return int2x3(
-		lhs[0] & rhs[0],
-		lhs[1] & rhs[1]
-	);
+	return HLML_CONSTRUCT( int2x3 ) {
+		comp_and( lhs.rows[0], rhs.rows[0] ),
+		comp_and( lhs.rows[1], rhs.rows[1] )
+	};
 }
 
 /// \relates int2x3
@@ -771,30 +618,13 @@ inline int2x3 operator&=( int2x3& lhs, const int2x3& rhs )
 }
 
 /// \relates int2x3
-/// \brief Returns a copy of the int2x3 where each component has been bitwise OR'd against the given scalar value.
-inline int2x3 operator|( const int2x3& lhs, const int32_t& rhs )
-{
-	return int2x3(
-		lhs[0] | rhs,
-		lhs[1] | rhs
-	);
-}
-
-/// \relates int2x3
-/// \brief Performs a bitwise OR on the given left-hand int2x3 against the given scalar value.
-inline int2x3 operator|=( int2x3& lhs, const int32_t& rhs )
-{
-	return ( lhs = lhs | rhs );
-}
-
-/// \relates int2x3
 /// \brief Returns a copy of the int2x3 where each component of the left-hand int2x3 has been bitwise OR'd against the corresponding component of the right-hand side int2x3.
-inline int2x3 operator|( const int2x3& lhs, const int2x3& rhs )
+inline int2x3 operator|( int2x3& lhs, const int2x3& rhs )
 {
-	return int2x3(
-		lhs[0] | rhs[0],
-		lhs[1] | rhs[1]
-	);
+	return HLML_CONSTRUCT( int2x3 ) {
+		comp_or( lhs.rows[0], rhs.rows[0] ),
+		comp_or( lhs.rows[1], rhs.rows[1] )
+	};
 }
 
 /// \relates int2x3
@@ -805,30 +635,13 @@ inline int2x3 operator|=( int2x3& lhs, const int2x3& rhs )
 }
 
 /// \relates int2x3
-/// \brief Returns a copy of the int2x3 where each component has been bitwise XOR'd against the given scalar value.
-inline int2x3 operator^( const int2x3& lhs, const int32_t& rhs )
-{
-	return int2x3(
-		lhs[0] ^ rhs,
-		lhs[1] ^ rhs
-	);
-}
-
-/// \relates int2x3
-/// \brief Performs a bitwise XOR on the given left-hand int2x3 against the given scalar value.
-inline int2x3 operator^=( int2x3& lhs, const int32_t& rhs )
-{
-	return ( lhs = lhs ^ rhs );
-}
-
-/// \relates int2x3
 /// \brief Returns a copy of the int2x3 where each component of the left-hand int2x3 has been bitwise XOR'd against the corresponding component of the right-hand side int2x3.
-inline int2x3 operator^( const int2x3& lhs, const int2x3& rhs )
+inline int2x3 operator^( int2x3& lhs, const int2x3& rhs )
 {
-	return int2x3(
-		lhs[0] ^ rhs[0],
-		lhs[1] ^ rhs[1]
-	);
+	return HLML_CONSTRUCT( int2x3 ) {
+		comp_xor( lhs.rows[0], rhs.rows[0] ),
+		comp_xor( lhs.rows[1], rhs.rows[1] )
+	};
 }
 
 /// \relates int2x3
@@ -839,30 +652,13 @@ inline int2x3 operator^=( int2x3& lhs, const int2x3& rhs )
 }
 
 /// \relates int2x3
-/// \brief Returns a copy of the int2x3 where each component has been bitwise left-shifted by the given scalar value.
-inline int2x3 operator<<( const int2x3& lhs, const int32_t& rhs )
-{
-	return int2x3(
-		lhs[0] << rhs,
-		lhs[1] << rhs
-	);
-}
-
-/// \relates int2x3
-/// \brief Performs a left bitshift on the given left-hand int2x3 by the given scalar value.
-inline int2x3 operator<<=( int2x3& lhs, const int32_t& rhs )
-{
-	return ( lhs = lhs << rhs );
-}
-
-/// \relates int2x3
 /// \brief Returns a copy of the int2x3 where each component of the left-hand int2x3 has been bitwise left-shifted by the corresponding component of the right-hand side int2x3.
-inline int2x3 operator<<( const int2x3& lhs, const int2x3& rhs )
+inline int2x3 operator<<( int2x3& lhs, const int2x3& rhs )
 {
-	return int2x3(
-		lhs[0] << rhs[0],
-		lhs[1] << rhs[1]
-	);
+	return HLML_CONSTRUCT( int2x3 ) {
+		comp_shift_left( lhs.rows[0], rhs.rows[0] ),
+		comp_shift_left( lhs.rows[1], rhs.rows[1] )
+	};
 }
 
 /// \relates int2x3
@@ -873,30 +669,13 @@ inline int2x3 operator<<=( int2x3& lhs, const int2x3& rhs )
 }
 
 /// \relates int2x3
-/// \brief Returns a copy of the int2x3 where each component has been bitwise right-shifted by the given scalar value.
-inline int2x3 operator>>( const int2x3& lhs, const int32_t& rhs )
-{
-	return int2x3(
-		lhs[0] >> rhs,
-		lhs[1] >> rhs
-	);
-}
-
-/// \relates int2x3
-/// \brief Performs a right bitshift on the given left-hand int2x3 by the given scalar value.
-inline int2x3 operator>>=( int2x3& lhs, const int32_t& rhs )
-{
-	return ( lhs = lhs >> rhs );
-}
-
-/// \relates int2x3
 /// \brief Returns a copy of the int2x3 where each component of the left-hand int2x3 has been bitwise right-shifted by the corresponding component of the right-hand side int2x3.
-inline int2x3 operator>>( const int2x3& lhs, const int2x3& rhs )
+inline int2x3 operator>>( int2x3& lhs, const int2x3& rhs )
 {
-	return int2x3(
-		lhs[0] >> rhs[0],
-		lhs[1] >> rhs[1]
-	);
+	return HLML_CONSTRUCT( int2x3 ) {
+		comp_shift_right( lhs.rows[0], rhs.rows[0] ),
+		comp_shift_right( lhs.rows[1], rhs.rows[1] )
+	};
 }
 
 /// \relates int2x3
@@ -908,145 +687,124 @@ inline int2x3 operator>>=( int2x3& lhs, const int2x3& rhs )
 
 /// \relates int2x3
 /// \brief Performs a unary bitwise operation on all components of the given int2x3.
-inline int2x3 operator~( const int2x3& lhs )
+inline int2x3 operator~( int2x3& lhs )
 {
-	return int2x3(
-		~lhs[0],
-		~lhs[1]
-	);
+	return HLML_CONSTRUCT( int2x3 ) {
+		comp_unary( lhs.rows[0] ),
+		comp_unary( lhs.rows[1] )
+	};
+}
+
+inline bool2x3 operator<( const int2x3& lhs, const int2x3& rhs )
+{
+	return HLML_CONSTRUCT( bool2x3 ) {
+		cmpl( lhs.rows[0], rhs.rows[0] ),
+		cmpl( lhs.rows[1], rhs.rows[1] )
+	};
+}
+
+inline bool2x3 operator<=( const int2x3& lhs, const int2x3& rhs )
+{
+	return HLML_CONSTRUCT( bool2x3 ) {
+		cmple( lhs.rows[0], rhs.rows[0] ),
+		cmple( lhs.rows[1], rhs.rows[1] )
+	};
+}
+
+inline bool2x3 operator>( const int2x3& lhs, const int2x3& rhs )
+{
+	return HLML_CONSTRUCT( bool2x3 ) {
+		cmpg( lhs.rows[0], rhs.rows[0] ),
+		cmpg( lhs.rows[1], rhs.rows[1] )
+	};
+}
+
+inline bool2x3 operator>=( const int2x3& lhs, const int2x3& rhs )
+{
+	return HLML_CONSTRUCT( bool2x3 ) {
+		cmpge( lhs.rows[0], rhs.rows[0] ),
+		cmpge( lhs.rows[1], rhs.rows[1] )
+	};
 }
 
 
 // int2x4
-/// \relates int2x4
-/// \brief Returns a copy of the int2x4 that has been component-wise added by the given scalar value.
-inline int2x4 operator+( const int2x4& lhs, const int32_t rhs )
+inline bool operator==( const int2x4& lhs, const int2x4& rhs )
+{
+	return ( lhs[0] == rhs[0] )
+		&& ( lhs[1] == rhs[1] );
+}
+
+inline bool operator!=( const int2x4& lhs, const int2x4& rhs )
+{
+	return !( operator==( lhs, rhs ) );
+}
+
+inline int2x4 operator+( const int2x4& lhs, const int32_t scalar )
 {
 	return int2x4(
-		lhs[0] + rhs,
-		lhs[1] + rhs
+		lhs[0] + scalar,
+		lhs[1] + scalar
 	);
 }
 
-/// \relates int2x4
-/// \brief Adds each component by the given scalar value.
-inline int2x4 operator+=( int2x4& lhs, const int32_t rhs )
-{
-	return ( lhs = lhs + rhs );
-}
-
-/// \relates int2x4
-/// \brief Returns a copy of the int2x4 that has been component-wise added by the corresponding component of the right-hand int2x4.
 inline int2x4 operator+( const int2x4& lhs, const int2x4& rhs )
 {
+	return HLML_CONSTRUCT( int2x4 ) {
+		comp_addv( lhs.rows[0], rhs.rows[0] ),
+		comp_addv( lhs.rows[1], rhs.rows[1] )
+	};
+}
+
+inline int2x4 operator-( const int2x4& lhs, const int32_t scalar )
+{
 	return int2x4(
-		lhs[0] + rhs[0],
-		lhs[1] + rhs[1]
+		lhs[0] - scalar,
+		lhs[1] - scalar
 	);
 }
 
-/// \relates int2x4
-/// \brief Adds each component of the int2x4 by the corresponding component of the right-hand int2x4.
-inline int2x4 operator+=( int2x4& lhs, const int2x4& rhs )
-{
-	return ( lhs = lhs + rhs );
-}
-
-/// \relates int2x4
-/// \brief Returns a copy of the int2x4 that has been component-wise subtracted by the given scalar value.
-inline int2x4 operator-( const int2x4& lhs, const int32_t rhs )
-{
-	return int2x4(
-		lhs[0] - rhs,
-		lhs[1] - rhs
-	);
-}
-
-/// \relates int2x4
-/// \brief Subtracts each component by the given scalar value.
-inline int2x4 operator-=( int2x4& lhs, const int32_t rhs )
-{
-	return ( lhs = lhs - rhs );
-}
-
-/// \relates int2x4
-/// \brief Returns a copy of the int2x4 that has been component-wise subtracted by the corresponding component of the right-hand int2x4.
 inline int2x4 operator-( const int2x4& lhs, const int2x4& rhs )
 {
-	return int2x4(
-		lhs[0] - rhs[0],
-		lhs[1] - rhs[1]
-	);
-}
-
-/// \relates int2x4
-/// \brief Subtracts each component of the int2x4 by the corresponding component of the right-hand int2x4.
-inline int2x4 operator-=( int2x4& lhs, const int2x4& rhs )
-{
-	return ( lhs = lhs - rhs );
-}
-
-/// \relates int2x4
-/// \brief Returns a copy of the int2x4 that has been component-wise multiplied by the given scalar value.
-inline int2x4 operator*( const int2x4& lhs, const int32_t rhs )
-{
-	return int2x4(
-		lhs[0] * rhs,
-		lhs[1] * rhs
-	);
-}
-
-/// \relates int2x4
-/// \brief Multiplies each component by the given scalar value.
-inline int2x4 operator*=( int2x4& lhs, const int32_t rhs )
-{
-	return ( lhs = lhs * rhs );
+	return HLML_CONSTRUCT( int2x4 ) {
+		comp_subv( lhs.rows[0], rhs.rows[0] ),
+		comp_subv( lhs.rows[1], rhs.rows[1] )
+	};
 }
 
 /// \relates int2x4
 /// \brief Returns a copy of the matrix where each row of the left-hand matrix has been dot-producted by the corresponding column of the right-hand matrix.
 inline int2x2 operator*( const int2x4& lhs, const int4x2& rhs )
 {
-	int4 row0 = lhs[0];
-	int4 row1 = lhs[1];
+	int4 row0 = lhs.rows[0];
+	int4 row1 = lhs.rows[1];
 
-	int4 col0 = { rhs[0].x, rhs[1].x, rhs[2].x, rhs[3].x };
-	int4 col1 = { rhs[0].y, rhs[1].y, rhs[2].y, rhs[3].y };
+	int4 col0 = { rhs.rows[0].x, rhs.rows[1].x, rhs.rows[2].x, rhs.rows[3].x };
+	int4 col1 = { rhs.rows[0].y, rhs.rows[1].y, rhs.rows[2].y, rhs.rows[3].y };
 
-	return int2x2(
+	return HLML_CONSTRUCT( int2x2 ) {
 		row0.x * col0.x + row0.y * col0.y + row0.z * col0.z + row0.w * col0.w,
 		row0.x * col1.x + row0.y * col1.y + row0.z * col1.z + row0.w * col1.w,
 
 		row1.x * col0.x + row1.y * col0.y + row1.z * col0.z + row1.w * col0.w,
 		row1.x * col1.x + row1.y * col1.y + row1.z * col1.z + row1.w * col1.w
-	);
+	};
 }
 
-/// \relates int2x4
-/// \brief Returns a copy of the int2x4 that has been component-wise divided by the given scalar value.
-inline int2x4 operator/( const int2x4& lhs, const int32_t rhs )
+inline int2x4 operator/( const int2x4& lhs, const int32_t scalar )
 {
 	return int2x4(
-		lhs[0] / rhs,
-		lhs[1] / rhs
+		lhs[0] / scalar,
+		lhs[1] / scalar
 	);
 }
 
-/// \relates int2x4
-/// \brief Divides each component by the given scalar value.
-inline int2x4 operator/=( int2x4& lhs, const int32_t rhs )
-{
-	return ( lhs = lhs / rhs );
-}
-
-/// \relates int2x4
-/// \brief Returns a copy of the int2x4 that has been component-wise divided by the corresponding component of the right-hand int2x4.
 inline int2x4 operator/( const int2x4& lhs, const int2x4& rhs )
 {
-	return int2x4(
-		lhs[0] / rhs[0],
-		lhs[1] / rhs[1]
-	);
+	return HLML_CONSTRUCT( int2x4 ) {
+		comp_divv( lhs.rows[0], rhs.rows[0] ),
+		comp_divv( lhs.rows[1], rhs.rows[1] )
+	};
 }
 
 // prefix
@@ -1090,70 +848,13 @@ inline int2x4& operator--( int2x4& lhs, const int )
 }
 
 /// \relates int2x4
-/// \brief Returns a bool2x4 where each component is true if the component of the left-hand type is less than the corresponding right-hand type component.
-inline bool2x4 operator<( const int2x4& lhs, const int2x4& rhs )
-{
-	return bool2x4(
-		lhs[0] < rhs[0],
-		lhs[1] < rhs[1]
-	);
-}
-
-/// \relates int2x4
-/// \brief Returns a bool2x4 where each component is true if the component of the left-hand type is less than or equal to the corresponding right-hand type component.
-inline bool2x4 operator<=( const int2x4& lhs, const int2x4& rhs )
-{
-	return bool2x4(
-		lhs[0] <= rhs[0],
-		lhs[1] <= rhs[1]
-	);
-}
-
-/// \relates int2x4
-/// \brief Returns a bool2x4 where each component is true if the component of the left-hand type is greater than the corresponding right-hand type component.
-inline bool2x4 operator>( const int2x4& lhs, const int2x4& rhs )
-{
-	return bool2x4(
-		lhs[0] > rhs[0],
-		lhs[1] > rhs[1]
-	);
-}
-
-/// \relates int2x4
-/// \brief Returns a bool2x4 where each component is true if the component of the left-hand type is greater than or equal to the corresponding right-hand type component.
-inline bool2x4 operator>=( const int2x4& lhs, const int2x4& rhs )
-{
-	return bool2x4(
-		lhs[0] >= rhs[0],
-		lhs[1] >= rhs[1]
-	);
-}
-
-/// \relates int2x4
-/// \brief Returns a copy of the int2x4 where each component has been bitwise AND'd against the given scalar value.
-inline int2x4 operator&( const int2x4& lhs, const int32_t& rhs )
-{
-	return int2x4(
-		lhs[0] & rhs,
-		lhs[1] & rhs
-	);
-}
-
-/// \relates int2x4
-/// \brief Performs a bitwise AND on the given left-hand int2x4 against the given scalar value.
-inline int2x4 operator&=( int2x4& lhs, const int32_t& rhs )
-{
-	return ( lhs = lhs & rhs );
-}
-
-/// \relates int2x4
 /// \brief Returns a copy of the int2x4 where each component of the left-hand int2x4 has been bitwise AND'd against the corresponding component of the right-hand side int2x4.
-inline int2x4 operator&( const int2x4& lhs, const int2x4& rhs )
+inline int2x4 operator&( int2x4& lhs, const int2x4& rhs )
 {
-	return int2x4(
-		lhs[0] & rhs[0],
-		lhs[1] & rhs[1]
-	);
+	return HLML_CONSTRUCT( int2x4 ) {
+		comp_and( lhs.rows[0], rhs.rows[0] ),
+		comp_and( lhs.rows[1], rhs.rows[1] )
+	};
 }
 
 /// \relates int2x4
@@ -1164,30 +865,13 @@ inline int2x4 operator&=( int2x4& lhs, const int2x4& rhs )
 }
 
 /// \relates int2x4
-/// \brief Returns a copy of the int2x4 where each component has been bitwise OR'd against the given scalar value.
-inline int2x4 operator|( const int2x4& lhs, const int32_t& rhs )
-{
-	return int2x4(
-		lhs[0] | rhs,
-		lhs[1] | rhs
-	);
-}
-
-/// \relates int2x4
-/// \brief Performs a bitwise OR on the given left-hand int2x4 against the given scalar value.
-inline int2x4 operator|=( int2x4& lhs, const int32_t& rhs )
-{
-	return ( lhs = lhs | rhs );
-}
-
-/// \relates int2x4
 /// \brief Returns a copy of the int2x4 where each component of the left-hand int2x4 has been bitwise OR'd against the corresponding component of the right-hand side int2x4.
-inline int2x4 operator|( const int2x4& lhs, const int2x4& rhs )
+inline int2x4 operator|( int2x4& lhs, const int2x4& rhs )
 {
-	return int2x4(
-		lhs[0] | rhs[0],
-		lhs[1] | rhs[1]
-	);
+	return HLML_CONSTRUCT( int2x4 ) {
+		comp_or( lhs.rows[0], rhs.rows[0] ),
+		comp_or( lhs.rows[1], rhs.rows[1] )
+	};
 }
 
 /// \relates int2x4
@@ -1198,30 +882,13 @@ inline int2x4 operator|=( int2x4& lhs, const int2x4& rhs )
 }
 
 /// \relates int2x4
-/// \brief Returns a copy of the int2x4 where each component has been bitwise XOR'd against the given scalar value.
-inline int2x4 operator^( const int2x4& lhs, const int32_t& rhs )
-{
-	return int2x4(
-		lhs[0] ^ rhs,
-		lhs[1] ^ rhs
-	);
-}
-
-/// \relates int2x4
-/// \brief Performs a bitwise XOR on the given left-hand int2x4 against the given scalar value.
-inline int2x4 operator^=( int2x4& lhs, const int32_t& rhs )
-{
-	return ( lhs = lhs ^ rhs );
-}
-
-/// \relates int2x4
 /// \brief Returns a copy of the int2x4 where each component of the left-hand int2x4 has been bitwise XOR'd against the corresponding component of the right-hand side int2x4.
-inline int2x4 operator^( const int2x4& lhs, const int2x4& rhs )
+inline int2x4 operator^( int2x4& lhs, const int2x4& rhs )
 {
-	return int2x4(
-		lhs[0] ^ rhs[0],
-		lhs[1] ^ rhs[1]
-	);
+	return HLML_CONSTRUCT( int2x4 ) {
+		comp_xor( lhs.rows[0], rhs.rows[0] ),
+		comp_xor( lhs.rows[1], rhs.rows[1] )
+	};
 }
 
 /// \relates int2x4
@@ -1232,30 +899,13 @@ inline int2x4 operator^=( int2x4& lhs, const int2x4& rhs )
 }
 
 /// \relates int2x4
-/// \brief Returns a copy of the int2x4 where each component has been bitwise left-shifted by the given scalar value.
-inline int2x4 operator<<( const int2x4& lhs, const int32_t& rhs )
-{
-	return int2x4(
-		lhs[0] << rhs,
-		lhs[1] << rhs
-	);
-}
-
-/// \relates int2x4
-/// \brief Performs a left bitshift on the given left-hand int2x4 by the given scalar value.
-inline int2x4 operator<<=( int2x4& lhs, const int32_t& rhs )
-{
-	return ( lhs = lhs << rhs );
-}
-
-/// \relates int2x4
 /// \brief Returns a copy of the int2x4 where each component of the left-hand int2x4 has been bitwise left-shifted by the corresponding component of the right-hand side int2x4.
-inline int2x4 operator<<( const int2x4& lhs, const int2x4& rhs )
+inline int2x4 operator<<( int2x4& lhs, const int2x4& rhs )
 {
-	return int2x4(
-		lhs[0] << rhs[0],
-		lhs[1] << rhs[1]
-	);
+	return HLML_CONSTRUCT( int2x4 ) {
+		comp_shift_left( lhs.rows[0], rhs.rows[0] ),
+		comp_shift_left( lhs.rows[1], rhs.rows[1] )
+	};
 }
 
 /// \relates int2x4
@@ -1266,30 +916,13 @@ inline int2x4 operator<<=( int2x4& lhs, const int2x4& rhs )
 }
 
 /// \relates int2x4
-/// \brief Returns a copy of the int2x4 where each component has been bitwise right-shifted by the given scalar value.
-inline int2x4 operator>>( const int2x4& lhs, const int32_t& rhs )
-{
-	return int2x4(
-		lhs[0] >> rhs,
-		lhs[1] >> rhs
-	);
-}
-
-/// \relates int2x4
-/// \brief Performs a right bitshift on the given left-hand int2x4 by the given scalar value.
-inline int2x4 operator>>=( int2x4& lhs, const int32_t& rhs )
-{
-	return ( lhs = lhs >> rhs );
-}
-
-/// \relates int2x4
 /// \brief Returns a copy of the int2x4 where each component of the left-hand int2x4 has been bitwise right-shifted by the corresponding component of the right-hand side int2x4.
-inline int2x4 operator>>( const int2x4& lhs, const int2x4& rhs )
+inline int2x4 operator>>( int2x4& lhs, const int2x4& rhs )
 {
-	return int2x4(
-		lhs[0] >> rhs[0],
-		lhs[1] >> rhs[1]
-	);
+	return HLML_CONSTRUCT( int2x4 ) {
+		comp_shift_right( lhs.rows[0], rhs.rows[0] ),
+		comp_shift_right( lhs.rows[1], rhs.rows[1] )
+	};
 }
 
 /// \relates int2x4
@@ -1301,119 +934,109 @@ inline int2x4 operator>>=( int2x4& lhs, const int2x4& rhs )
 
 /// \relates int2x4
 /// \brief Performs a unary bitwise operation on all components of the given int2x4.
-inline int2x4 operator~( const int2x4& lhs )
+inline int2x4 operator~( int2x4& lhs )
 {
-	return int2x4(
-		~lhs[0],
-		~lhs[1]
-	);
+	return HLML_CONSTRUCT( int2x4 ) {
+		comp_unary( lhs.rows[0] ),
+		comp_unary( lhs.rows[1] )
+	};
+}
+
+inline bool2x4 operator<( const int2x4& lhs, const int2x4& rhs )
+{
+	return HLML_CONSTRUCT( bool2x4 ) {
+		cmpl( lhs.rows[0], rhs.rows[0] ),
+		cmpl( lhs.rows[1], rhs.rows[1] )
+	};
+}
+
+inline bool2x4 operator<=( const int2x4& lhs, const int2x4& rhs )
+{
+	return HLML_CONSTRUCT( bool2x4 ) {
+		cmple( lhs.rows[0], rhs.rows[0] ),
+		cmple( lhs.rows[1], rhs.rows[1] )
+	};
+}
+
+inline bool2x4 operator>( const int2x4& lhs, const int2x4& rhs )
+{
+	return HLML_CONSTRUCT( bool2x4 ) {
+		cmpg( lhs.rows[0], rhs.rows[0] ),
+		cmpg( lhs.rows[1], rhs.rows[1] )
+	};
+}
+
+inline bool2x4 operator>=( const int2x4& lhs, const int2x4& rhs )
+{
+	return HLML_CONSTRUCT( bool2x4 ) {
+		cmpge( lhs.rows[0], rhs.rows[0] ),
+		cmpge( lhs.rows[1], rhs.rows[1] )
+	};
 }
 
 
 // int3x2
-/// \relates int3x2
-/// \brief Returns a copy of the int3x2 that has been component-wise added by the given scalar value.
-inline int3x2 operator+( const int3x2& lhs, const int32_t rhs )
+inline bool operator==( const int3x2& lhs, const int3x2& rhs )
+{
+	return ( lhs[0] == rhs[0] )
+		&& ( lhs[1] == rhs[1] )
+		&& ( lhs[2] == rhs[2] );
+}
+
+inline bool operator!=( const int3x2& lhs, const int3x2& rhs )
+{
+	return !( operator==( lhs, rhs ) );
+}
+
+inline int3x2 operator+( const int3x2& lhs, const int32_t scalar )
 {
 	return int3x2(
-		lhs[0] + rhs,
-		lhs[1] + rhs,
-		lhs[2] + rhs
+		lhs[0] + scalar,
+		lhs[1] + scalar,
+		lhs[2] + scalar
 	);
 }
 
-/// \relates int3x2
-/// \brief Adds each component by the given scalar value.
-inline int3x2 operator+=( int3x2& lhs, const int32_t rhs )
-{
-	return ( lhs = lhs + rhs );
-}
-
-/// \relates int3x2
-/// \brief Returns a copy of the int3x2 that has been component-wise added by the corresponding component of the right-hand int3x2.
 inline int3x2 operator+( const int3x2& lhs, const int3x2& rhs )
 {
+	return HLML_CONSTRUCT( int3x2 ) {
+		comp_addv( lhs.rows[0], rhs.rows[0] ),
+		comp_addv( lhs.rows[1], rhs.rows[1] ),
+		comp_addv( lhs.rows[2], rhs.rows[2] )
+	};
+}
+
+inline int3x2 operator-( const int3x2& lhs, const int32_t scalar )
+{
 	return int3x2(
-		lhs[0] + rhs[0],
-		lhs[1] + rhs[1],
-		lhs[2] + rhs[2]
+		lhs[0] - scalar,
+		lhs[1] - scalar,
+		lhs[2] - scalar
 	);
 }
 
-/// \relates int3x2
-/// \brief Adds each component of the int3x2 by the corresponding component of the right-hand int3x2.
-inline int3x2 operator+=( int3x2& lhs, const int3x2& rhs )
-{
-	return ( lhs = lhs + rhs );
-}
-
-/// \relates int3x2
-/// \brief Returns a copy of the int3x2 that has been component-wise subtracted by the given scalar value.
-inline int3x2 operator-( const int3x2& lhs, const int32_t rhs )
-{
-	return int3x2(
-		lhs[0] - rhs,
-		lhs[1] - rhs,
-		lhs[2] - rhs
-	);
-}
-
-/// \relates int3x2
-/// \brief Subtracts each component by the given scalar value.
-inline int3x2 operator-=( int3x2& lhs, const int32_t rhs )
-{
-	return ( lhs = lhs - rhs );
-}
-
-/// \relates int3x2
-/// \brief Returns a copy of the int3x2 that has been component-wise subtracted by the corresponding component of the right-hand int3x2.
 inline int3x2 operator-( const int3x2& lhs, const int3x2& rhs )
 {
-	return int3x2(
-		lhs[0] - rhs[0],
-		lhs[1] - rhs[1],
-		lhs[2] - rhs[2]
-	);
-}
-
-/// \relates int3x2
-/// \brief Subtracts each component of the int3x2 by the corresponding component of the right-hand int3x2.
-inline int3x2 operator-=( int3x2& lhs, const int3x2& rhs )
-{
-	return ( lhs = lhs - rhs );
-}
-
-/// \relates int3x2
-/// \brief Returns a copy of the int3x2 that has been component-wise multiplied by the given scalar value.
-inline int3x2 operator*( const int3x2& lhs, const int32_t rhs )
-{
-	return int3x2(
-		lhs[0] * rhs,
-		lhs[1] * rhs,
-		lhs[2] * rhs
-	);
-}
-
-/// \relates int3x2
-/// \brief Multiplies each component by the given scalar value.
-inline int3x2 operator*=( int3x2& lhs, const int32_t rhs )
-{
-	return ( lhs = lhs * rhs );
+	return HLML_CONSTRUCT( int3x2 ) {
+		comp_subv( lhs.rows[0], rhs.rows[0] ),
+		comp_subv( lhs.rows[1], rhs.rows[1] ),
+		comp_subv( lhs.rows[2], rhs.rows[2] )
+	};
 }
 
 /// \relates int3x2
 /// \brief Returns a copy of the matrix where each row of the left-hand matrix has been dot-producted by the corresponding column of the right-hand matrix.
 inline int3x3 operator*( const int3x2& lhs, const int2x3& rhs )
 {
-	int2 row0 = lhs[0];
-	int2 row1 = lhs[1];
-	int2 row2 = lhs[2];
+	int2 row0 = lhs.rows[0];
+	int2 row1 = lhs.rows[1];
+	int2 row2 = lhs.rows[2];
 
-	int2 col0 = { rhs[0].x, rhs[1].x };
-	int2 col1 = { rhs[0].y, rhs[1].y };
-	int2 col2 = { rhs[0].z, rhs[1].z };
+	int2 col0 = { rhs.rows[0].x, rhs.rows[1].x };
+	int2 col1 = { rhs.rows[0].y, rhs.rows[1].y };
+	int2 col2 = { rhs.rows[0].z, rhs.rows[1].z };
 
-	return int3x3(
+	return HLML_CONSTRUCT( int3x3 ) {
 		row0.x * col0.x + row0.y * col0.y,
 		row0.x * col1.x + row0.y * col1.y,
 		row0.x * col2.x + row0.y * col2.y,
@@ -1425,36 +1048,25 @@ inline int3x3 operator*( const int3x2& lhs, const int2x3& rhs )
 		row2.x * col0.x + row2.y * col0.y,
 		row2.x * col1.x + row2.y * col1.y,
 		row2.x * col2.x + row2.y * col2.y
-	);
+	};
 }
 
-/// \relates int3x2
-/// \brief Returns a copy of the int3x2 that has been component-wise divided by the given scalar value.
-inline int3x2 operator/( const int3x2& lhs, const int32_t rhs )
+inline int3x2 operator/( const int3x2& lhs, const int32_t scalar )
 {
 	return int3x2(
-		lhs[0] / rhs,
-		lhs[1] / rhs,
-		lhs[2] / rhs
+		lhs[0] / scalar,
+		lhs[1] / scalar,
+		lhs[2] / scalar
 	);
 }
 
-/// \relates int3x2
-/// \brief Divides each component by the given scalar value.
-inline int3x2 operator/=( int3x2& lhs, const int32_t rhs )
-{
-	return ( lhs = lhs / rhs );
-}
-
-/// \relates int3x2
-/// \brief Returns a copy of the int3x2 that has been component-wise divided by the corresponding component of the right-hand int3x2.
 inline int3x2 operator/( const int3x2& lhs, const int3x2& rhs )
 {
-	return int3x2(
-		lhs[0] / rhs[0],
-		lhs[1] / rhs[1],
-		lhs[2] / rhs[2]
-	);
+	return HLML_CONSTRUCT( int3x2 ) {
+		comp_divv( lhs.rows[0], rhs.rows[0] ),
+		comp_divv( lhs.rows[1], rhs.rows[1] ),
+		comp_divv( lhs.rows[2], rhs.rows[2] )
+	};
 }
 
 // prefix
@@ -1502,76 +1114,14 @@ inline int3x2& operator--( int3x2& lhs, const int )
 }
 
 /// \relates int3x2
-/// \brief Returns a bool3x2 where each component is true if the component of the left-hand type is less than the corresponding right-hand type component.
-inline bool3x2 operator<( const int3x2& lhs, const int3x2& rhs )
-{
-	return bool3x2(
-		lhs[0] < rhs[0],
-		lhs[1] < rhs[1],
-		lhs[2] < rhs[2]
-	);
-}
-
-/// \relates int3x2
-/// \brief Returns a bool3x2 where each component is true if the component of the left-hand type is less than or equal to the corresponding right-hand type component.
-inline bool3x2 operator<=( const int3x2& lhs, const int3x2& rhs )
-{
-	return bool3x2(
-		lhs[0] <= rhs[0],
-		lhs[1] <= rhs[1],
-		lhs[2] <= rhs[2]
-	);
-}
-
-/// \relates int3x2
-/// \brief Returns a bool3x2 where each component is true if the component of the left-hand type is greater than the corresponding right-hand type component.
-inline bool3x2 operator>( const int3x2& lhs, const int3x2& rhs )
-{
-	return bool3x2(
-		lhs[0] > rhs[0],
-		lhs[1] > rhs[1],
-		lhs[2] > rhs[2]
-	);
-}
-
-/// \relates int3x2
-/// \brief Returns a bool3x2 where each component is true if the component of the left-hand type is greater than or equal to the corresponding right-hand type component.
-inline bool3x2 operator>=( const int3x2& lhs, const int3x2& rhs )
-{
-	return bool3x2(
-		lhs[0] >= rhs[0],
-		lhs[1] >= rhs[1],
-		lhs[2] >= rhs[2]
-	);
-}
-
-/// \relates int3x2
-/// \brief Returns a copy of the int3x2 where each component has been bitwise AND'd against the given scalar value.
-inline int3x2 operator&( const int3x2& lhs, const int32_t& rhs )
-{
-	return int3x2(
-		lhs[0] & rhs,
-		lhs[1] & rhs,
-		lhs[2] & rhs
-	);
-}
-
-/// \relates int3x2
-/// \brief Performs a bitwise AND on the given left-hand int3x2 against the given scalar value.
-inline int3x2 operator&=( int3x2& lhs, const int32_t& rhs )
-{
-	return ( lhs = lhs & rhs );
-}
-
-/// \relates int3x2
 /// \brief Returns a copy of the int3x2 where each component of the left-hand int3x2 has been bitwise AND'd against the corresponding component of the right-hand side int3x2.
-inline int3x2 operator&( const int3x2& lhs, const int3x2& rhs )
+inline int3x2 operator&( int3x2& lhs, const int3x2& rhs )
 {
-	return int3x2(
-		lhs[0] & rhs[0],
-		lhs[1] & rhs[1],
-		lhs[2] & rhs[2]
-	);
+	return HLML_CONSTRUCT( int3x2 ) {
+		comp_and( lhs.rows[0], rhs.rows[0] ),
+		comp_and( lhs.rows[1], rhs.rows[1] ),
+		comp_and( lhs.rows[2], rhs.rows[2] )
+	};
 }
 
 /// \relates int3x2
@@ -1582,32 +1132,14 @@ inline int3x2 operator&=( int3x2& lhs, const int3x2& rhs )
 }
 
 /// \relates int3x2
-/// \brief Returns a copy of the int3x2 where each component has been bitwise OR'd against the given scalar value.
-inline int3x2 operator|( const int3x2& lhs, const int32_t& rhs )
-{
-	return int3x2(
-		lhs[0] | rhs,
-		lhs[1] | rhs,
-		lhs[2] | rhs
-	);
-}
-
-/// \relates int3x2
-/// \brief Performs a bitwise OR on the given left-hand int3x2 against the given scalar value.
-inline int3x2 operator|=( int3x2& lhs, const int32_t& rhs )
-{
-	return ( lhs = lhs | rhs );
-}
-
-/// \relates int3x2
 /// \brief Returns a copy of the int3x2 where each component of the left-hand int3x2 has been bitwise OR'd against the corresponding component of the right-hand side int3x2.
-inline int3x2 operator|( const int3x2& lhs, const int3x2& rhs )
+inline int3x2 operator|( int3x2& lhs, const int3x2& rhs )
 {
-	return int3x2(
-		lhs[0] | rhs[0],
-		lhs[1] | rhs[1],
-		lhs[2] | rhs[2]
-	);
+	return HLML_CONSTRUCT( int3x2 ) {
+		comp_or( lhs.rows[0], rhs.rows[0] ),
+		comp_or( lhs.rows[1], rhs.rows[1] ),
+		comp_or( lhs.rows[2], rhs.rows[2] )
+	};
 }
 
 /// \relates int3x2
@@ -1618,32 +1150,14 @@ inline int3x2 operator|=( int3x2& lhs, const int3x2& rhs )
 }
 
 /// \relates int3x2
-/// \brief Returns a copy of the int3x2 where each component has been bitwise XOR'd against the given scalar value.
-inline int3x2 operator^( const int3x2& lhs, const int32_t& rhs )
-{
-	return int3x2(
-		lhs[0] ^ rhs,
-		lhs[1] ^ rhs,
-		lhs[2] ^ rhs
-	);
-}
-
-/// \relates int3x2
-/// \brief Performs a bitwise XOR on the given left-hand int3x2 against the given scalar value.
-inline int3x2 operator^=( int3x2& lhs, const int32_t& rhs )
-{
-	return ( lhs = lhs ^ rhs );
-}
-
-/// \relates int3x2
 /// \brief Returns a copy of the int3x2 where each component of the left-hand int3x2 has been bitwise XOR'd against the corresponding component of the right-hand side int3x2.
-inline int3x2 operator^( const int3x2& lhs, const int3x2& rhs )
+inline int3x2 operator^( int3x2& lhs, const int3x2& rhs )
 {
-	return int3x2(
-		lhs[0] ^ rhs[0],
-		lhs[1] ^ rhs[1],
-		lhs[2] ^ rhs[2]
-	);
+	return HLML_CONSTRUCT( int3x2 ) {
+		comp_xor( lhs.rows[0], rhs.rows[0] ),
+		comp_xor( lhs.rows[1], rhs.rows[1] ),
+		comp_xor( lhs.rows[2], rhs.rows[2] )
+	};
 }
 
 /// \relates int3x2
@@ -1654,32 +1168,14 @@ inline int3x2 operator^=( int3x2& lhs, const int3x2& rhs )
 }
 
 /// \relates int3x2
-/// \brief Returns a copy of the int3x2 where each component has been bitwise left-shifted by the given scalar value.
-inline int3x2 operator<<( const int3x2& lhs, const int32_t& rhs )
-{
-	return int3x2(
-		lhs[0] << rhs,
-		lhs[1] << rhs,
-		lhs[2] << rhs
-	);
-}
-
-/// \relates int3x2
-/// \brief Performs a left bitshift on the given left-hand int3x2 by the given scalar value.
-inline int3x2 operator<<=( int3x2& lhs, const int32_t& rhs )
-{
-	return ( lhs = lhs << rhs );
-}
-
-/// \relates int3x2
 /// \brief Returns a copy of the int3x2 where each component of the left-hand int3x2 has been bitwise left-shifted by the corresponding component of the right-hand side int3x2.
-inline int3x2 operator<<( const int3x2& lhs, const int3x2& rhs )
+inline int3x2 operator<<( int3x2& lhs, const int3x2& rhs )
 {
-	return int3x2(
-		lhs[0] << rhs[0],
-		lhs[1] << rhs[1],
-		lhs[2] << rhs[2]
-	);
+	return HLML_CONSTRUCT( int3x2 ) {
+		comp_shift_left( lhs.rows[0], rhs.rows[0] ),
+		comp_shift_left( lhs.rows[1], rhs.rows[1] ),
+		comp_shift_left( lhs.rows[2], rhs.rows[2] )
+	};
 }
 
 /// \relates int3x2
@@ -1690,32 +1186,14 @@ inline int3x2 operator<<=( int3x2& lhs, const int3x2& rhs )
 }
 
 /// \relates int3x2
-/// \brief Returns a copy of the int3x2 where each component has been bitwise right-shifted by the given scalar value.
-inline int3x2 operator>>( const int3x2& lhs, const int32_t& rhs )
-{
-	return int3x2(
-		lhs[0] >> rhs,
-		lhs[1] >> rhs,
-		lhs[2] >> rhs
-	);
-}
-
-/// \relates int3x2
-/// \brief Performs a right bitshift on the given left-hand int3x2 by the given scalar value.
-inline int3x2 operator>>=( int3x2& lhs, const int32_t& rhs )
-{
-	return ( lhs = lhs >> rhs );
-}
-
-/// \relates int3x2
 /// \brief Returns a copy of the int3x2 where each component of the left-hand int3x2 has been bitwise right-shifted by the corresponding component of the right-hand side int3x2.
-inline int3x2 operator>>( const int3x2& lhs, const int3x2& rhs )
+inline int3x2 operator>>( int3x2& lhs, const int3x2& rhs )
 {
-	return int3x2(
-		lhs[0] >> rhs[0],
-		lhs[1] >> rhs[1],
-		lhs[2] >> rhs[2]
-	);
+	return HLML_CONSTRUCT( int3x2 ) {
+		comp_shift_right( lhs.rows[0], rhs.rows[0] ),
+		comp_shift_right( lhs.rows[1], rhs.rows[1] ),
+		comp_shift_right( lhs.rows[2], rhs.rows[2] )
+	};
 }
 
 /// \relates int3x2
@@ -1727,120 +1205,114 @@ inline int3x2 operator>>=( int3x2& lhs, const int3x2& rhs )
 
 /// \relates int3x2
 /// \brief Performs a unary bitwise operation on all components of the given int3x2.
-inline int3x2 operator~( const int3x2& lhs )
+inline int3x2 operator~( int3x2& lhs )
 {
-	return int3x2(
-		~lhs[0],
-		~lhs[1],
-		~lhs[2]
-	);
+	return HLML_CONSTRUCT( int3x2 ) {
+		comp_unary( lhs.rows[0] ),
+		comp_unary( lhs.rows[1] ),
+		comp_unary( lhs.rows[2] )
+	};
+}
+
+inline bool3x2 operator<( const int3x2& lhs, const int3x2& rhs )
+{
+	return HLML_CONSTRUCT( bool3x2 ) {
+		cmpl( lhs.rows[0], rhs.rows[0] ),
+		cmpl( lhs.rows[1], rhs.rows[1] ),
+		cmpl( lhs.rows[2], rhs.rows[2] )
+	};
+}
+
+inline bool3x2 operator<=( const int3x2& lhs, const int3x2& rhs )
+{
+	return HLML_CONSTRUCT( bool3x2 ) {
+		cmple( lhs.rows[0], rhs.rows[0] ),
+		cmple( lhs.rows[1], rhs.rows[1] ),
+		cmple( lhs.rows[2], rhs.rows[2] )
+	};
+}
+
+inline bool3x2 operator>( const int3x2& lhs, const int3x2& rhs )
+{
+	return HLML_CONSTRUCT( bool3x2 ) {
+		cmpg( lhs.rows[0], rhs.rows[0] ),
+		cmpg( lhs.rows[1], rhs.rows[1] ),
+		cmpg( lhs.rows[2], rhs.rows[2] )
+	};
+}
+
+inline bool3x2 operator>=( const int3x2& lhs, const int3x2& rhs )
+{
+	return HLML_CONSTRUCT( bool3x2 ) {
+		cmpge( lhs.rows[0], rhs.rows[0] ),
+		cmpge( lhs.rows[1], rhs.rows[1] ),
+		cmpge( lhs.rows[2], rhs.rows[2] )
+	};
 }
 
 
 // int3x3
-/// \relates int3x3
-/// \brief Returns a copy of the int3x3 that has been component-wise added by the given scalar value.
-inline int3x3 operator+( const int3x3& lhs, const int32_t rhs )
+inline bool operator==( const int3x3& lhs, const int3x3& rhs )
+{
+	return ( lhs[0] == rhs[0] )
+		&& ( lhs[1] == rhs[1] )
+		&& ( lhs[2] == rhs[2] );
+}
+
+inline bool operator!=( const int3x3& lhs, const int3x3& rhs )
+{
+	return !( operator==( lhs, rhs ) );
+}
+
+inline int3x3 operator+( const int3x3& lhs, const int32_t scalar )
 {
 	return int3x3(
-		lhs[0] + rhs,
-		lhs[1] + rhs,
-		lhs[2] + rhs
+		lhs[0] + scalar,
+		lhs[1] + scalar,
+		lhs[2] + scalar
 	);
 }
 
-/// \relates int3x3
-/// \brief Adds each component by the given scalar value.
-inline int3x3 operator+=( int3x3& lhs, const int32_t rhs )
-{
-	return ( lhs = lhs + rhs );
-}
-
-/// \relates int3x3
-/// \brief Returns a copy of the int3x3 that has been component-wise added by the corresponding component of the right-hand int3x3.
 inline int3x3 operator+( const int3x3& lhs, const int3x3& rhs )
 {
+	return HLML_CONSTRUCT( int3x3 ) {
+		comp_addv( lhs.rows[0], rhs.rows[0] ),
+		comp_addv( lhs.rows[1], rhs.rows[1] ),
+		comp_addv( lhs.rows[2], rhs.rows[2] )
+	};
+}
+
+inline int3x3 operator-( const int3x3& lhs, const int32_t scalar )
+{
 	return int3x3(
-		lhs[0] + rhs[0],
-		lhs[1] + rhs[1],
-		lhs[2] + rhs[2]
+		lhs[0] - scalar,
+		lhs[1] - scalar,
+		lhs[2] - scalar
 	);
 }
 
-/// \relates int3x3
-/// \brief Adds each component of the int3x3 by the corresponding component of the right-hand int3x3.
-inline int3x3 operator+=( int3x3& lhs, const int3x3& rhs )
-{
-	return ( lhs = lhs + rhs );
-}
-
-/// \relates int3x3
-/// \brief Returns a copy of the int3x3 that has been component-wise subtracted by the given scalar value.
-inline int3x3 operator-( const int3x3& lhs, const int32_t rhs )
-{
-	return int3x3(
-		lhs[0] - rhs,
-		lhs[1] - rhs,
-		lhs[2] - rhs
-	);
-}
-
-/// \relates int3x3
-/// \brief Subtracts each component by the given scalar value.
-inline int3x3 operator-=( int3x3& lhs, const int32_t rhs )
-{
-	return ( lhs = lhs - rhs );
-}
-
-/// \relates int3x3
-/// \brief Returns a copy of the int3x3 that has been component-wise subtracted by the corresponding component of the right-hand int3x3.
 inline int3x3 operator-( const int3x3& lhs, const int3x3& rhs )
 {
-	return int3x3(
-		lhs[0] - rhs[0],
-		lhs[1] - rhs[1],
-		lhs[2] - rhs[2]
-	);
-}
-
-/// \relates int3x3
-/// \brief Subtracts each component of the int3x3 by the corresponding component of the right-hand int3x3.
-inline int3x3 operator-=( int3x3& lhs, const int3x3& rhs )
-{
-	return ( lhs = lhs - rhs );
-}
-
-/// \relates int3x3
-/// \brief Returns a copy of the int3x3 that has been component-wise multiplied by the given scalar value.
-inline int3x3 operator*( const int3x3& lhs, const int32_t rhs )
-{
-	return int3x3(
-		lhs[0] * rhs,
-		lhs[1] * rhs,
-		lhs[2] * rhs
-	);
-}
-
-/// \relates int3x3
-/// \brief Multiplies each component by the given scalar value.
-inline int3x3 operator*=( int3x3& lhs, const int32_t rhs )
-{
-	return ( lhs = lhs * rhs );
+	return HLML_CONSTRUCT( int3x3 ) {
+		comp_subv( lhs.rows[0], rhs.rows[0] ),
+		comp_subv( lhs.rows[1], rhs.rows[1] ),
+		comp_subv( lhs.rows[2], rhs.rows[2] )
+	};
 }
 
 /// \relates int3x3
 /// \brief Returns a copy of the matrix where each row of the left-hand matrix has been dot-producted by the corresponding column of the right-hand matrix.
 inline int3x3 operator*( const int3x3& lhs, const int3x3& rhs )
 {
-	int3 row0 = lhs[0];
-	int3 row1 = lhs[1];
-	int3 row2 = lhs[2];
+	int3 row0 = lhs.rows[0];
+	int3 row1 = lhs.rows[1];
+	int3 row2 = lhs.rows[2];
 
-	int3 col0 = { rhs[0].x, rhs[1].x, rhs[2].x };
-	int3 col1 = { rhs[0].y, rhs[1].y, rhs[2].y };
-	int3 col2 = { rhs[0].z, rhs[1].z, rhs[2].z };
+	int3 col0 = { rhs.rows[0].x, rhs.rows[1].x, rhs.rows[2].x };
+	int3 col1 = { rhs.rows[0].y, rhs.rows[1].y, rhs.rows[2].y };
+	int3 col2 = { rhs.rows[0].z, rhs.rows[1].z, rhs.rows[2].z };
 
-	return int3x3(
+	return HLML_CONSTRUCT( int3x3 ) {
 		row0.x * col0.x + row0.y * col0.y + row0.z * col0.z,
 		row0.x * col1.x + row0.y * col1.y + row0.z * col1.z,
 		row0.x * col2.x + row0.y * col2.y + row0.z * col2.z,
@@ -1852,7 +1324,7 @@ inline int3x3 operator*( const int3x3& lhs, const int3x3& rhs )
 		row2.x * col0.x + row2.y * col0.y + row2.z * col0.z,
 		row2.x * col1.x + row2.y * col1.y + row2.z * col1.z,
 		row2.x * col2.x + row2.y * col2.y + row2.z * col2.z
-	);
+	};
 }
 
 inline int3x3 operator*=( int3x3& lhs, const int3x3& rhs )
@@ -1860,51 +1332,33 @@ inline int3x3 operator*=( int3x3& lhs, const int3x3& rhs )
 	return ( lhs = lhs * rhs );
 }
 
-/// \relates int3x3
-/// \brief Returns a copy of the int3x3 that has been component-wise divided by the given scalar value.
-inline int3x3 operator/( const int3x3& lhs, const int32_t rhs )
+inline int3x3 operator/( const int3x3& lhs, const int32_t scalar )
 {
 	return int3x3(
-		lhs[0] / rhs,
-		lhs[1] / rhs,
-		lhs[2] / rhs
+		lhs[0] / scalar,
+		lhs[1] / scalar,
+		lhs[2] / scalar
 	);
 }
 
-/// \relates int3x3
-/// \brief Divides each component by the given scalar value.
-inline int3x3 operator/=( int3x3& lhs, const int32_t rhs )
-{
-	return ( lhs = lhs / rhs );
-}
-
-/// \relates int3x3
-/// \brief Returns a copy of the int3x3 that has been component-wise divided by the corresponding component of the right-hand int3x3.
 inline int3x3 operator/( const int3x3& lhs, const int3x3& rhs )
 {
-	return int3x3(
-		lhs[0] / rhs[0],
-		lhs[1] / rhs[1],
-		lhs[2] / rhs[2]
-	);
-}
-
-/// \relates int3x3
-/// \brief Divides each component of the int3x3 by the corresponding component of the right-hand int3x3.
-inline int3x3 operator/=( int3x3& lhs, const int3x3& rhs )
-{
-	return ( lhs = lhs / rhs );
+	return HLML_CONSTRUCT( int3x3 ) {
+		comp_divv( lhs.rows[0], rhs.rows[0] ),
+		comp_divv( lhs.rows[1], rhs.rows[1] ),
+		comp_divv( lhs.rows[2], rhs.rows[2] )
+	};
 }
 
 /// \relates int3
 /// \brief Returns a copy of the int3 that has been component-wise multiplied by the corresponding component of the right-hand int3x3.
 inline int3 operator*( const int3x3& lhs, const int3& rhs )
 {
-	return int3(
-		(int32_t) dot( lhs[0], rhs ),
-		(int32_t) dot( lhs[1], rhs ),
-		(int32_t) dot( lhs[2], rhs )
-	);
+	return HLML_CONSTRUCT( int3 ) {
+		lhs.rows[0].x * rhs.x + lhs.rows[0].y * rhs.y + lhs.rows[0].z * rhs.z,
+		lhs.rows[1].x * rhs.x + lhs.rows[1].y * rhs.y + lhs.rows[1].z * rhs.z,
+		lhs.rows[2].x * rhs.x + lhs.rows[2].y * rhs.y + lhs.rows[2].z * rhs.z
+	};
 }
 
 /// \relates int3
@@ -1959,76 +1413,14 @@ inline int3x3& operator--( int3x3& lhs, const int )
 }
 
 /// \relates int3x3
-/// \brief Returns a bool3x3 where each component is true if the component of the left-hand type is less than the corresponding right-hand type component.
-inline bool3x3 operator<( const int3x3& lhs, const int3x3& rhs )
-{
-	return bool3x3(
-		lhs[0] < rhs[0],
-		lhs[1] < rhs[1],
-		lhs[2] < rhs[2]
-	);
-}
-
-/// \relates int3x3
-/// \brief Returns a bool3x3 where each component is true if the component of the left-hand type is less than or equal to the corresponding right-hand type component.
-inline bool3x3 operator<=( const int3x3& lhs, const int3x3& rhs )
-{
-	return bool3x3(
-		lhs[0] <= rhs[0],
-		lhs[1] <= rhs[1],
-		lhs[2] <= rhs[2]
-	);
-}
-
-/// \relates int3x3
-/// \brief Returns a bool3x3 where each component is true if the component of the left-hand type is greater than the corresponding right-hand type component.
-inline bool3x3 operator>( const int3x3& lhs, const int3x3& rhs )
-{
-	return bool3x3(
-		lhs[0] > rhs[0],
-		lhs[1] > rhs[1],
-		lhs[2] > rhs[2]
-	);
-}
-
-/// \relates int3x3
-/// \brief Returns a bool3x3 where each component is true if the component of the left-hand type is greater than or equal to the corresponding right-hand type component.
-inline bool3x3 operator>=( const int3x3& lhs, const int3x3& rhs )
-{
-	return bool3x3(
-		lhs[0] >= rhs[0],
-		lhs[1] >= rhs[1],
-		lhs[2] >= rhs[2]
-	);
-}
-
-/// \relates int3x3
-/// \brief Returns a copy of the int3x3 where each component has been bitwise AND'd against the given scalar value.
-inline int3x3 operator&( const int3x3& lhs, const int32_t& rhs )
-{
-	return int3x3(
-		lhs[0] & rhs,
-		lhs[1] & rhs,
-		lhs[2] & rhs
-	);
-}
-
-/// \relates int3x3
-/// \brief Performs a bitwise AND on the given left-hand int3x3 against the given scalar value.
-inline int3x3 operator&=( int3x3& lhs, const int32_t& rhs )
-{
-	return ( lhs = lhs & rhs );
-}
-
-/// \relates int3x3
 /// \brief Returns a copy of the int3x3 where each component of the left-hand int3x3 has been bitwise AND'd against the corresponding component of the right-hand side int3x3.
-inline int3x3 operator&( const int3x3& lhs, const int3x3& rhs )
+inline int3x3 operator&( int3x3& lhs, const int3x3& rhs )
 {
-	return int3x3(
-		lhs[0] & rhs[0],
-		lhs[1] & rhs[1],
-		lhs[2] & rhs[2]
-	);
+	return HLML_CONSTRUCT( int3x3 ) {
+		comp_and( lhs.rows[0], rhs.rows[0] ),
+		comp_and( lhs.rows[1], rhs.rows[1] ),
+		comp_and( lhs.rows[2], rhs.rows[2] )
+	};
 }
 
 /// \relates int3x3
@@ -2039,32 +1431,14 @@ inline int3x3 operator&=( int3x3& lhs, const int3x3& rhs )
 }
 
 /// \relates int3x3
-/// \brief Returns a copy of the int3x3 where each component has been bitwise OR'd against the given scalar value.
-inline int3x3 operator|( const int3x3& lhs, const int32_t& rhs )
-{
-	return int3x3(
-		lhs[0] | rhs,
-		lhs[1] | rhs,
-		lhs[2] | rhs
-	);
-}
-
-/// \relates int3x3
-/// \brief Performs a bitwise OR on the given left-hand int3x3 against the given scalar value.
-inline int3x3 operator|=( int3x3& lhs, const int32_t& rhs )
-{
-	return ( lhs = lhs | rhs );
-}
-
-/// \relates int3x3
 /// \brief Returns a copy of the int3x3 where each component of the left-hand int3x3 has been bitwise OR'd against the corresponding component of the right-hand side int3x3.
-inline int3x3 operator|( const int3x3& lhs, const int3x3& rhs )
+inline int3x3 operator|( int3x3& lhs, const int3x3& rhs )
 {
-	return int3x3(
-		lhs[0] | rhs[0],
-		lhs[1] | rhs[1],
-		lhs[2] | rhs[2]
-	);
+	return HLML_CONSTRUCT( int3x3 ) {
+		comp_or( lhs.rows[0], rhs.rows[0] ),
+		comp_or( lhs.rows[1], rhs.rows[1] ),
+		comp_or( lhs.rows[2], rhs.rows[2] )
+	};
 }
 
 /// \relates int3x3
@@ -2075,32 +1449,14 @@ inline int3x3 operator|=( int3x3& lhs, const int3x3& rhs )
 }
 
 /// \relates int3x3
-/// \brief Returns a copy of the int3x3 where each component has been bitwise XOR'd against the given scalar value.
-inline int3x3 operator^( const int3x3& lhs, const int32_t& rhs )
-{
-	return int3x3(
-		lhs[0] ^ rhs,
-		lhs[1] ^ rhs,
-		lhs[2] ^ rhs
-	);
-}
-
-/// \relates int3x3
-/// \brief Performs a bitwise XOR on the given left-hand int3x3 against the given scalar value.
-inline int3x3 operator^=( int3x3& lhs, const int32_t& rhs )
-{
-	return ( lhs = lhs ^ rhs );
-}
-
-/// \relates int3x3
 /// \brief Returns a copy of the int3x3 where each component of the left-hand int3x3 has been bitwise XOR'd against the corresponding component of the right-hand side int3x3.
-inline int3x3 operator^( const int3x3& lhs, const int3x3& rhs )
+inline int3x3 operator^( int3x3& lhs, const int3x3& rhs )
 {
-	return int3x3(
-		lhs[0] ^ rhs[0],
-		lhs[1] ^ rhs[1],
-		lhs[2] ^ rhs[2]
-	);
+	return HLML_CONSTRUCT( int3x3 ) {
+		comp_xor( lhs.rows[0], rhs.rows[0] ),
+		comp_xor( lhs.rows[1], rhs.rows[1] ),
+		comp_xor( lhs.rows[2], rhs.rows[2] )
+	};
 }
 
 /// \relates int3x3
@@ -2111,32 +1467,14 @@ inline int3x3 operator^=( int3x3& lhs, const int3x3& rhs )
 }
 
 /// \relates int3x3
-/// \brief Returns a copy of the int3x3 where each component has been bitwise left-shifted by the given scalar value.
-inline int3x3 operator<<( const int3x3& lhs, const int32_t& rhs )
-{
-	return int3x3(
-		lhs[0] << rhs,
-		lhs[1] << rhs,
-		lhs[2] << rhs
-	);
-}
-
-/// \relates int3x3
-/// \brief Performs a left bitshift on the given left-hand int3x3 by the given scalar value.
-inline int3x3 operator<<=( int3x3& lhs, const int32_t& rhs )
-{
-	return ( lhs = lhs << rhs );
-}
-
-/// \relates int3x3
 /// \brief Returns a copy of the int3x3 where each component of the left-hand int3x3 has been bitwise left-shifted by the corresponding component of the right-hand side int3x3.
-inline int3x3 operator<<( const int3x3& lhs, const int3x3& rhs )
+inline int3x3 operator<<( int3x3& lhs, const int3x3& rhs )
 {
-	return int3x3(
-		lhs[0] << rhs[0],
-		lhs[1] << rhs[1],
-		lhs[2] << rhs[2]
-	);
+	return HLML_CONSTRUCT( int3x3 ) {
+		comp_shift_left( lhs.rows[0], rhs.rows[0] ),
+		comp_shift_left( lhs.rows[1], rhs.rows[1] ),
+		comp_shift_left( lhs.rows[2], rhs.rows[2] )
+	};
 }
 
 /// \relates int3x3
@@ -2147,32 +1485,14 @@ inline int3x3 operator<<=( int3x3& lhs, const int3x3& rhs )
 }
 
 /// \relates int3x3
-/// \brief Returns a copy of the int3x3 where each component has been bitwise right-shifted by the given scalar value.
-inline int3x3 operator>>( const int3x3& lhs, const int32_t& rhs )
-{
-	return int3x3(
-		lhs[0] >> rhs,
-		lhs[1] >> rhs,
-		lhs[2] >> rhs
-	);
-}
-
-/// \relates int3x3
-/// \brief Performs a right bitshift on the given left-hand int3x3 by the given scalar value.
-inline int3x3 operator>>=( int3x3& lhs, const int32_t& rhs )
-{
-	return ( lhs = lhs >> rhs );
-}
-
-/// \relates int3x3
 /// \brief Returns a copy of the int3x3 where each component of the left-hand int3x3 has been bitwise right-shifted by the corresponding component of the right-hand side int3x3.
-inline int3x3 operator>>( const int3x3& lhs, const int3x3& rhs )
+inline int3x3 operator>>( int3x3& lhs, const int3x3& rhs )
 {
-	return int3x3(
-		lhs[0] >> rhs[0],
-		lhs[1] >> rhs[1],
-		lhs[2] >> rhs[2]
-	);
+	return HLML_CONSTRUCT( int3x3 ) {
+		comp_shift_right( lhs.rows[0], rhs.rows[0] ),
+		comp_shift_right( lhs.rows[1], rhs.rows[1] ),
+		comp_shift_right( lhs.rows[2], rhs.rows[2] )
+	};
 }
 
 /// \relates int3x3
@@ -2184,120 +1504,114 @@ inline int3x3 operator>>=( int3x3& lhs, const int3x3& rhs )
 
 /// \relates int3x3
 /// \brief Performs a unary bitwise operation on all components of the given int3x3.
-inline int3x3 operator~( const int3x3& lhs )
+inline int3x3 operator~( int3x3& lhs )
 {
-	return int3x3(
-		~lhs[0],
-		~lhs[1],
-		~lhs[2]
-	);
+	return HLML_CONSTRUCT( int3x3 ) {
+		comp_unary( lhs.rows[0] ),
+		comp_unary( lhs.rows[1] ),
+		comp_unary( lhs.rows[2] )
+	};
+}
+
+inline bool3x3 operator<( const int3x3& lhs, const int3x3& rhs )
+{
+	return HLML_CONSTRUCT( bool3x3 ) {
+		cmpl( lhs.rows[0], rhs.rows[0] ),
+		cmpl( lhs.rows[1], rhs.rows[1] ),
+		cmpl( lhs.rows[2], rhs.rows[2] )
+	};
+}
+
+inline bool3x3 operator<=( const int3x3& lhs, const int3x3& rhs )
+{
+	return HLML_CONSTRUCT( bool3x3 ) {
+		cmple( lhs.rows[0], rhs.rows[0] ),
+		cmple( lhs.rows[1], rhs.rows[1] ),
+		cmple( lhs.rows[2], rhs.rows[2] )
+	};
+}
+
+inline bool3x3 operator>( const int3x3& lhs, const int3x3& rhs )
+{
+	return HLML_CONSTRUCT( bool3x3 ) {
+		cmpg( lhs.rows[0], rhs.rows[0] ),
+		cmpg( lhs.rows[1], rhs.rows[1] ),
+		cmpg( lhs.rows[2], rhs.rows[2] )
+	};
+}
+
+inline bool3x3 operator>=( const int3x3& lhs, const int3x3& rhs )
+{
+	return HLML_CONSTRUCT( bool3x3 ) {
+		cmpge( lhs.rows[0], rhs.rows[0] ),
+		cmpge( lhs.rows[1], rhs.rows[1] ),
+		cmpge( lhs.rows[2], rhs.rows[2] )
+	};
 }
 
 
 // int3x4
-/// \relates int3x4
-/// \brief Returns a copy of the int3x4 that has been component-wise added by the given scalar value.
-inline int3x4 operator+( const int3x4& lhs, const int32_t rhs )
+inline bool operator==( const int3x4& lhs, const int3x4& rhs )
+{
+	return ( lhs[0] == rhs[0] )
+		&& ( lhs[1] == rhs[1] )
+		&& ( lhs[2] == rhs[2] );
+}
+
+inline bool operator!=( const int3x4& lhs, const int3x4& rhs )
+{
+	return !( operator==( lhs, rhs ) );
+}
+
+inline int3x4 operator+( const int3x4& lhs, const int32_t scalar )
 {
 	return int3x4(
-		lhs[0] + rhs,
-		lhs[1] + rhs,
-		lhs[2] + rhs
+		lhs[0] + scalar,
+		lhs[1] + scalar,
+		lhs[2] + scalar
 	);
 }
 
-/// \relates int3x4
-/// \brief Adds each component by the given scalar value.
-inline int3x4 operator+=( int3x4& lhs, const int32_t rhs )
-{
-	return ( lhs = lhs + rhs );
-}
-
-/// \relates int3x4
-/// \brief Returns a copy of the int3x4 that has been component-wise added by the corresponding component of the right-hand int3x4.
 inline int3x4 operator+( const int3x4& lhs, const int3x4& rhs )
 {
+	return HLML_CONSTRUCT( int3x4 ) {
+		comp_addv( lhs.rows[0], rhs.rows[0] ),
+		comp_addv( lhs.rows[1], rhs.rows[1] ),
+		comp_addv( lhs.rows[2], rhs.rows[2] )
+	};
+}
+
+inline int3x4 operator-( const int3x4& lhs, const int32_t scalar )
+{
 	return int3x4(
-		lhs[0] + rhs[0],
-		lhs[1] + rhs[1],
-		lhs[2] + rhs[2]
+		lhs[0] - scalar,
+		lhs[1] - scalar,
+		lhs[2] - scalar
 	);
 }
 
-/// \relates int3x4
-/// \brief Adds each component of the int3x4 by the corresponding component of the right-hand int3x4.
-inline int3x4 operator+=( int3x4& lhs, const int3x4& rhs )
-{
-	return ( lhs = lhs + rhs );
-}
-
-/// \relates int3x4
-/// \brief Returns a copy of the int3x4 that has been component-wise subtracted by the given scalar value.
-inline int3x4 operator-( const int3x4& lhs, const int32_t rhs )
-{
-	return int3x4(
-		lhs[0] - rhs,
-		lhs[1] - rhs,
-		lhs[2] - rhs
-	);
-}
-
-/// \relates int3x4
-/// \brief Subtracts each component by the given scalar value.
-inline int3x4 operator-=( int3x4& lhs, const int32_t rhs )
-{
-	return ( lhs = lhs - rhs );
-}
-
-/// \relates int3x4
-/// \brief Returns a copy of the int3x4 that has been component-wise subtracted by the corresponding component of the right-hand int3x4.
 inline int3x4 operator-( const int3x4& lhs, const int3x4& rhs )
 {
-	return int3x4(
-		lhs[0] - rhs[0],
-		lhs[1] - rhs[1],
-		lhs[2] - rhs[2]
-	);
-}
-
-/// \relates int3x4
-/// \brief Subtracts each component of the int3x4 by the corresponding component of the right-hand int3x4.
-inline int3x4 operator-=( int3x4& lhs, const int3x4& rhs )
-{
-	return ( lhs = lhs - rhs );
-}
-
-/// \relates int3x4
-/// \brief Returns a copy of the int3x4 that has been component-wise multiplied by the given scalar value.
-inline int3x4 operator*( const int3x4& lhs, const int32_t rhs )
-{
-	return int3x4(
-		lhs[0] * rhs,
-		lhs[1] * rhs,
-		lhs[2] * rhs
-	);
-}
-
-/// \relates int3x4
-/// \brief Multiplies each component by the given scalar value.
-inline int3x4 operator*=( int3x4& lhs, const int32_t rhs )
-{
-	return ( lhs = lhs * rhs );
+	return HLML_CONSTRUCT( int3x4 ) {
+		comp_subv( lhs.rows[0], rhs.rows[0] ),
+		comp_subv( lhs.rows[1], rhs.rows[1] ),
+		comp_subv( lhs.rows[2], rhs.rows[2] )
+	};
 }
 
 /// \relates int3x4
 /// \brief Returns a copy of the matrix where each row of the left-hand matrix has been dot-producted by the corresponding column of the right-hand matrix.
 inline int3x3 operator*( const int3x4& lhs, const int4x3& rhs )
 {
-	int4 row0 = lhs[0];
-	int4 row1 = lhs[1];
-	int4 row2 = lhs[2];
+	int4 row0 = lhs.rows[0];
+	int4 row1 = lhs.rows[1];
+	int4 row2 = lhs.rows[2];
 
-	int4 col0 = { rhs[0].x, rhs[1].x, rhs[2].x, rhs[3].x };
-	int4 col1 = { rhs[0].y, rhs[1].y, rhs[2].y, rhs[3].y };
-	int4 col2 = { rhs[0].z, rhs[1].z, rhs[2].z, rhs[3].z };
+	int4 col0 = { rhs.rows[0].x, rhs.rows[1].x, rhs.rows[2].x, rhs.rows[3].x };
+	int4 col1 = { rhs.rows[0].y, rhs.rows[1].y, rhs.rows[2].y, rhs.rows[3].y };
+	int4 col2 = { rhs.rows[0].z, rhs.rows[1].z, rhs.rows[2].z, rhs.rows[3].z };
 
-	return int3x3(
+	return HLML_CONSTRUCT( int3x3 ) {
 		row0.x * col0.x + row0.y * col0.y + row0.z * col0.z + row0.w * col0.w,
 		row0.x * col1.x + row0.y * col1.y + row0.z * col1.z + row0.w * col1.w,
 		row0.x * col2.x + row0.y * col2.y + row0.z * col2.z + row0.w * col2.w,
@@ -2309,36 +1623,25 @@ inline int3x3 operator*( const int3x4& lhs, const int4x3& rhs )
 		row2.x * col0.x + row2.y * col0.y + row2.z * col0.z + row2.w * col0.w,
 		row2.x * col1.x + row2.y * col1.y + row2.z * col1.z + row2.w * col1.w,
 		row2.x * col2.x + row2.y * col2.y + row2.z * col2.z + row2.w * col2.w
-	);
+	};
 }
 
-/// \relates int3x4
-/// \brief Returns a copy of the int3x4 that has been component-wise divided by the given scalar value.
-inline int3x4 operator/( const int3x4& lhs, const int32_t rhs )
+inline int3x4 operator/( const int3x4& lhs, const int32_t scalar )
 {
 	return int3x4(
-		lhs[0] / rhs,
-		lhs[1] / rhs,
-		lhs[2] / rhs
+		lhs[0] / scalar,
+		lhs[1] / scalar,
+		lhs[2] / scalar
 	);
 }
 
-/// \relates int3x4
-/// \brief Divides each component by the given scalar value.
-inline int3x4 operator/=( int3x4& lhs, const int32_t rhs )
-{
-	return ( lhs = lhs / rhs );
-}
-
-/// \relates int3x4
-/// \brief Returns a copy of the int3x4 that has been component-wise divided by the corresponding component of the right-hand int3x4.
 inline int3x4 operator/( const int3x4& lhs, const int3x4& rhs )
 {
-	return int3x4(
-		lhs[0] / rhs[0],
-		lhs[1] / rhs[1],
-		lhs[2] / rhs[2]
-	);
+	return HLML_CONSTRUCT( int3x4 ) {
+		comp_divv( lhs.rows[0], rhs.rows[0] ),
+		comp_divv( lhs.rows[1], rhs.rows[1] ),
+		comp_divv( lhs.rows[2], rhs.rows[2] )
+	};
 }
 
 // prefix
@@ -2386,76 +1689,14 @@ inline int3x4& operator--( int3x4& lhs, const int )
 }
 
 /// \relates int3x4
-/// \brief Returns a bool3x4 where each component is true if the component of the left-hand type is less than the corresponding right-hand type component.
-inline bool3x4 operator<( const int3x4& lhs, const int3x4& rhs )
-{
-	return bool3x4(
-		lhs[0] < rhs[0],
-		lhs[1] < rhs[1],
-		lhs[2] < rhs[2]
-	);
-}
-
-/// \relates int3x4
-/// \brief Returns a bool3x4 where each component is true if the component of the left-hand type is less than or equal to the corresponding right-hand type component.
-inline bool3x4 operator<=( const int3x4& lhs, const int3x4& rhs )
-{
-	return bool3x4(
-		lhs[0] <= rhs[0],
-		lhs[1] <= rhs[1],
-		lhs[2] <= rhs[2]
-	);
-}
-
-/// \relates int3x4
-/// \brief Returns a bool3x4 where each component is true if the component of the left-hand type is greater than the corresponding right-hand type component.
-inline bool3x4 operator>( const int3x4& lhs, const int3x4& rhs )
-{
-	return bool3x4(
-		lhs[0] > rhs[0],
-		lhs[1] > rhs[1],
-		lhs[2] > rhs[2]
-	);
-}
-
-/// \relates int3x4
-/// \brief Returns a bool3x4 where each component is true if the component of the left-hand type is greater than or equal to the corresponding right-hand type component.
-inline bool3x4 operator>=( const int3x4& lhs, const int3x4& rhs )
-{
-	return bool3x4(
-		lhs[0] >= rhs[0],
-		lhs[1] >= rhs[1],
-		lhs[2] >= rhs[2]
-	);
-}
-
-/// \relates int3x4
-/// \brief Returns a copy of the int3x4 where each component has been bitwise AND'd against the given scalar value.
-inline int3x4 operator&( const int3x4& lhs, const int32_t& rhs )
-{
-	return int3x4(
-		lhs[0] & rhs,
-		lhs[1] & rhs,
-		lhs[2] & rhs
-	);
-}
-
-/// \relates int3x4
-/// \brief Performs a bitwise AND on the given left-hand int3x4 against the given scalar value.
-inline int3x4 operator&=( int3x4& lhs, const int32_t& rhs )
-{
-	return ( lhs = lhs & rhs );
-}
-
-/// \relates int3x4
 /// \brief Returns a copy of the int3x4 where each component of the left-hand int3x4 has been bitwise AND'd against the corresponding component of the right-hand side int3x4.
-inline int3x4 operator&( const int3x4& lhs, const int3x4& rhs )
+inline int3x4 operator&( int3x4& lhs, const int3x4& rhs )
 {
-	return int3x4(
-		lhs[0] & rhs[0],
-		lhs[1] & rhs[1],
-		lhs[2] & rhs[2]
-	);
+	return HLML_CONSTRUCT( int3x4 ) {
+		comp_and( lhs.rows[0], rhs.rows[0] ),
+		comp_and( lhs.rows[1], rhs.rows[1] ),
+		comp_and( lhs.rows[2], rhs.rows[2] )
+	};
 }
 
 /// \relates int3x4
@@ -2466,32 +1707,14 @@ inline int3x4 operator&=( int3x4& lhs, const int3x4& rhs )
 }
 
 /// \relates int3x4
-/// \brief Returns a copy of the int3x4 where each component has been bitwise OR'd against the given scalar value.
-inline int3x4 operator|( const int3x4& lhs, const int32_t& rhs )
-{
-	return int3x4(
-		lhs[0] | rhs,
-		lhs[1] | rhs,
-		lhs[2] | rhs
-	);
-}
-
-/// \relates int3x4
-/// \brief Performs a bitwise OR on the given left-hand int3x4 against the given scalar value.
-inline int3x4 operator|=( int3x4& lhs, const int32_t& rhs )
-{
-	return ( lhs = lhs | rhs );
-}
-
-/// \relates int3x4
 /// \brief Returns a copy of the int3x4 where each component of the left-hand int3x4 has been bitwise OR'd against the corresponding component of the right-hand side int3x4.
-inline int3x4 operator|( const int3x4& lhs, const int3x4& rhs )
+inline int3x4 operator|( int3x4& lhs, const int3x4& rhs )
 {
-	return int3x4(
-		lhs[0] | rhs[0],
-		lhs[1] | rhs[1],
-		lhs[2] | rhs[2]
-	);
+	return HLML_CONSTRUCT( int3x4 ) {
+		comp_or( lhs.rows[0], rhs.rows[0] ),
+		comp_or( lhs.rows[1], rhs.rows[1] ),
+		comp_or( lhs.rows[2], rhs.rows[2] )
+	};
 }
 
 /// \relates int3x4
@@ -2502,32 +1725,14 @@ inline int3x4 operator|=( int3x4& lhs, const int3x4& rhs )
 }
 
 /// \relates int3x4
-/// \brief Returns a copy of the int3x4 where each component has been bitwise XOR'd against the given scalar value.
-inline int3x4 operator^( const int3x4& lhs, const int32_t& rhs )
-{
-	return int3x4(
-		lhs[0] ^ rhs,
-		lhs[1] ^ rhs,
-		lhs[2] ^ rhs
-	);
-}
-
-/// \relates int3x4
-/// \brief Performs a bitwise XOR on the given left-hand int3x4 against the given scalar value.
-inline int3x4 operator^=( int3x4& lhs, const int32_t& rhs )
-{
-	return ( lhs = lhs ^ rhs );
-}
-
-/// \relates int3x4
 /// \brief Returns a copy of the int3x4 where each component of the left-hand int3x4 has been bitwise XOR'd against the corresponding component of the right-hand side int3x4.
-inline int3x4 operator^( const int3x4& lhs, const int3x4& rhs )
+inline int3x4 operator^( int3x4& lhs, const int3x4& rhs )
 {
-	return int3x4(
-		lhs[0] ^ rhs[0],
-		lhs[1] ^ rhs[1],
-		lhs[2] ^ rhs[2]
-	);
+	return HLML_CONSTRUCT( int3x4 ) {
+		comp_xor( lhs.rows[0], rhs.rows[0] ),
+		comp_xor( lhs.rows[1], rhs.rows[1] ),
+		comp_xor( lhs.rows[2], rhs.rows[2] )
+	};
 }
 
 /// \relates int3x4
@@ -2538,32 +1743,14 @@ inline int3x4 operator^=( int3x4& lhs, const int3x4& rhs )
 }
 
 /// \relates int3x4
-/// \brief Returns a copy of the int3x4 where each component has been bitwise left-shifted by the given scalar value.
-inline int3x4 operator<<( const int3x4& lhs, const int32_t& rhs )
-{
-	return int3x4(
-		lhs[0] << rhs,
-		lhs[1] << rhs,
-		lhs[2] << rhs
-	);
-}
-
-/// \relates int3x4
-/// \brief Performs a left bitshift on the given left-hand int3x4 by the given scalar value.
-inline int3x4 operator<<=( int3x4& lhs, const int32_t& rhs )
-{
-	return ( lhs = lhs << rhs );
-}
-
-/// \relates int3x4
 /// \brief Returns a copy of the int3x4 where each component of the left-hand int3x4 has been bitwise left-shifted by the corresponding component of the right-hand side int3x4.
-inline int3x4 operator<<( const int3x4& lhs, const int3x4& rhs )
+inline int3x4 operator<<( int3x4& lhs, const int3x4& rhs )
 {
-	return int3x4(
-		lhs[0] << rhs[0],
-		lhs[1] << rhs[1],
-		lhs[2] << rhs[2]
-	);
+	return HLML_CONSTRUCT( int3x4 ) {
+		comp_shift_left( lhs.rows[0], rhs.rows[0] ),
+		comp_shift_left( lhs.rows[1], rhs.rows[1] ),
+		comp_shift_left( lhs.rows[2], rhs.rows[2] )
+	};
 }
 
 /// \relates int3x4
@@ -2574,32 +1761,14 @@ inline int3x4 operator<<=( int3x4& lhs, const int3x4& rhs )
 }
 
 /// \relates int3x4
-/// \brief Returns a copy of the int3x4 where each component has been bitwise right-shifted by the given scalar value.
-inline int3x4 operator>>( const int3x4& lhs, const int32_t& rhs )
-{
-	return int3x4(
-		lhs[0] >> rhs,
-		lhs[1] >> rhs,
-		lhs[2] >> rhs
-	);
-}
-
-/// \relates int3x4
-/// \brief Performs a right bitshift on the given left-hand int3x4 by the given scalar value.
-inline int3x4 operator>>=( int3x4& lhs, const int32_t& rhs )
-{
-	return ( lhs = lhs >> rhs );
-}
-
-/// \relates int3x4
 /// \brief Returns a copy of the int3x4 where each component of the left-hand int3x4 has been bitwise right-shifted by the corresponding component of the right-hand side int3x4.
-inline int3x4 operator>>( const int3x4& lhs, const int3x4& rhs )
+inline int3x4 operator>>( int3x4& lhs, const int3x4& rhs )
 {
-	return int3x4(
-		lhs[0] >> rhs[0],
-		lhs[1] >> rhs[1],
-		lhs[2] >> rhs[2]
-	);
+	return HLML_CONSTRUCT( int3x4 ) {
+		comp_shift_right( lhs.rows[0], rhs.rows[0] ),
+		comp_shift_right( lhs.rows[1], rhs.rows[1] ),
+		comp_shift_right( lhs.rows[2], rhs.rows[2] )
+	};
 }
 
 /// \relates int3x4
@@ -2611,127 +1780,121 @@ inline int3x4 operator>>=( int3x4& lhs, const int3x4& rhs )
 
 /// \relates int3x4
 /// \brief Performs a unary bitwise operation on all components of the given int3x4.
-inline int3x4 operator~( const int3x4& lhs )
+inline int3x4 operator~( int3x4& lhs )
 {
-	return int3x4(
-		~lhs[0],
-		~lhs[1],
-		~lhs[2]
-	);
+	return HLML_CONSTRUCT( int3x4 ) {
+		comp_unary( lhs.rows[0] ),
+		comp_unary( lhs.rows[1] ),
+		comp_unary( lhs.rows[2] )
+	};
+}
+
+inline bool3x4 operator<( const int3x4& lhs, const int3x4& rhs )
+{
+	return HLML_CONSTRUCT( bool3x4 ) {
+		cmpl( lhs.rows[0], rhs.rows[0] ),
+		cmpl( lhs.rows[1], rhs.rows[1] ),
+		cmpl( lhs.rows[2], rhs.rows[2] )
+	};
+}
+
+inline bool3x4 operator<=( const int3x4& lhs, const int3x4& rhs )
+{
+	return HLML_CONSTRUCT( bool3x4 ) {
+		cmple( lhs.rows[0], rhs.rows[0] ),
+		cmple( lhs.rows[1], rhs.rows[1] ),
+		cmple( lhs.rows[2], rhs.rows[2] )
+	};
+}
+
+inline bool3x4 operator>( const int3x4& lhs, const int3x4& rhs )
+{
+	return HLML_CONSTRUCT( bool3x4 ) {
+		cmpg( lhs.rows[0], rhs.rows[0] ),
+		cmpg( lhs.rows[1], rhs.rows[1] ),
+		cmpg( lhs.rows[2], rhs.rows[2] )
+	};
+}
+
+inline bool3x4 operator>=( const int3x4& lhs, const int3x4& rhs )
+{
+	return HLML_CONSTRUCT( bool3x4 ) {
+		cmpge( lhs.rows[0], rhs.rows[0] ),
+		cmpge( lhs.rows[1], rhs.rows[1] ),
+		cmpge( lhs.rows[2], rhs.rows[2] )
+	};
 }
 
 
 // int4x2
-/// \relates int4x2
-/// \brief Returns a copy of the int4x2 that has been component-wise added by the given scalar value.
-inline int4x2 operator+( const int4x2& lhs, const int32_t rhs )
+inline bool operator==( const int4x2& lhs, const int4x2& rhs )
+{
+	return ( lhs[0] == rhs[0] )
+		&& ( lhs[1] == rhs[1] )
+		&& ( lhs[2] == rhs[2] )
+		&& ( lhs[3] == rhs[3] );
+}
+
+inline bool operator!=( const int4x2& lhs, const int4x2& rhs )
+{
+	return !( operator==( lhs, rhs ) );
+}
+
+inline int4x2 operator+( const int4x2& lhs, const int32_t scalar )
 {
 	return int4x2(
-		lhs[0] + rhs,
-		lhs[1] + rhs,
-		lhs[2] + rhs,
-		lhs[3] + rhs
+		lhs[0] + scalar,
+		lhs[1] + scalar,
+		lhs[2] + scalar,
+		lhs[3] + scalar
 	);
 }
 
-/// \relates int4x2
-/// \brief Adds each component by the given scalar value.
-inline int4x2 operator+=( int4x2& lhs, const int32_t rhs )
-{
-	return ( lhs = lhs + rhs );
-}
-
-/// \relates int4x2
-/// \brief Returns a copy of the int4x2 that has been component-wise added by the corresponding component of the right-hand int4x2.
 inline int4x2 operator+( const int4x2& lhs, const int4x2& rhs )
 {
+	return HLML_CONSTRUCT( int4x2 ) {
+		comp_addv( lhs.rows[0], rhs.rows[0] ),
+		comp_addv( lhs.rows[1], rhs.rows[1] ),
+		comp_addv( lhs.rows[2], rhs.rows[2] ),
+		comp_addv( lhs.rows[3], rhs.rows[3] )
+	};
+}
+
+inline int4x2 operator-( const int4x2& lhs, const int32_t scalar )
+{
 	return int4x2(
-		lhs[0] + rhs[0],
-		lhs[1] + rhs[1],
-		lhs[2] + rhs[2],
-		lhs[3] + rhs[3]
+		lhs[0] - scalar,
+		lhs[1] - scalar,
+		lhs[2] - scalar,
+		lhs[3] - scalar
 	);
 }
 
-/// \relates int4x2
-/// \brief Adds each component of the int4x2 by the corresponding component of the right-hand int4x2.
-inline int4x2 operator+=( int4x2& lhs, const int4x2& rhs )
-{
-	return ( lhs = lhs + rhs );
-}
-
-/// \relates int4x2
-/// \brief Returns a copy of the int4x2 that has been component-wise subtracted by the given scalar value.
-inline int4x2 operator-( const int4x2& lhs, const int32_t rhs )
-{
-	return int4x2(
-		lhs[0] - rhs,
-		lhs[1] - rhs,
-		lhs[2] - rhs,
-		lhs[3] - rhs
-	);
-}
-
-/// \relates int4x2
-/// \brief Subtracts each component by the given scalar value.
-inline int4x2 operator-=( int4x2& lhs, const int32_t rhs )
-{
-	return ( lhs = lhs - rhs );
-}
-
-/// \relates int4x2
-/// \brief Returns a copy of the int4x2 that has been component-wise subtracted by the corresponding component of the right-hand int4x2.
 inline int4x2 operator-( const int4x2& lhs, const int4x2& rhs )
 {
-	return int4x2(
-		lhs[0] - rhs[0],
-		lhs[1] - rhs[1],
-		lhs[2] - rhs[2],
-		lhs[3] - rhs[3]
-	);
-}
-
-/// \relates int4x2
-/// \brief Subtracts each component of the int4x2 by the corresponding component of the right-hand int4x2.
-inline int4x2 operator-=( int4x2& lhs, const int4x2& rhs )
-{
-	return ( lhs = lhs - rhs );
-}
-
-/// \relates int4x2
-/// \brief Returns a copy of the int4x2 that has been component-wise multiplied by the given scalar value.
-inline int4x2 operator*( const int4x2& lhs, const int32_t rhs )
-{
-	return int4x2(
-		lhs[0] * rhs,
-		lhs[1] * rhs,
-		lhs[2] * rhs,
-		lhs[3] * rhs
-	);
-}
-
-/// \relates int4x2
-/// \brief Multiplies each component by the given scalar value.
-inline int4x2 operator*=( int4x2& lhs, const int32_t rhs )
-{
-	return ( lhs = lhs * rhs );
+	return HLML_CONSTRUCT( int4x2 ) {
+		comp_subv( lhs.rows[0], rhs.rows[0] ),
+		comp_subv( lhs.rows[1], rhs.rows[1] ),
+		comp_subv( lhs.rows[2], rhs.rows[2] ),
+		comp_subv( lhs.rows[3], rhs.rows[3] )
+	};
 }
 
 /// \relates int4x2
 /// \brief Returns a copy of the matrix where each row of the left-hand matrix has been dot-producted by the corresponding column of the right-hand matrix.
 inline int4x4 operator*( const int4x2& lhs, const int2x4& rhs )
 {
-	int2 row0 = lhs[0];
-	int2 row1 = lhs[1];
-	int2 row2 = lhs[2];
-	int2 row3 = lhs[3];
+	int2 row0 = lhs.rows[0];
+	int2 row1 = lhs.rows[1];
+	int2 row2 = lhs.rows[2];
+	int2 row3 = lhs.rows[3];
 
-	int2 col0 = { rhs[0].x, rhs[1].x };
-	int2 col1 = { rhs[0].y, rhs[1].y };
-	int2 col2 = { rhs[0].z, rhs[1].z };
-	int2 col3 = { rhs[0].w, rhs[1].w };
+	int2 col0 = { rhs.rows[0].x, rhs.rows[1].x };
+	int2 col1 = { rhs.rows[0].y, rhs.rows[1].y };
+	int2 col2 = { rhs.rows[0].z, rhs.rows[1].z };
+	int2 col3 = { rhs.rows[0].w, rhs.rows[1].w };
 
-	return int4x4(
+	return HLML_CONSTRUCT( int4x4 ) {
 		row0.x * col0.x + row0.y * col0.y,
 		row0.x * col1.x + row0.y * col1.y,
 		row0.x * col2.x + row0.y * col2.y,
@@ -2751,38 +1914,27 @@ inline int4x4 operator*( const int4x2& lhs, const int2x4& rhs )
 		row3.x * col1.x + row3.y * col1.y,
 		row3.x * col2.x + row3.y * col2.y,
 		row3.x * col3.x + row3.y * col3.y
-	);
+	};
 }
 
-/// \relates int4x2
-/// \brief Returns a copy of the int4x2 that has been component-wise divided by the given scalar value.
-inline int4x2 operator/( const int4x2& lhs, const int32_t rhs )
+inline int4x2 operator/( const int4x2& lhs, const int32_t scalar )
 {
 	return int4x2(
-		lhs[0] / rhs,
-		lhs[1] / rhs,
-		lhs[2] / rhs,
-		lhs[3] / rhs
+		lhs[0] / scalar,
+		lhs[1] / scalar,
+		lhs[2] / scalar,
+		lhs[3] / scalar
 	);
 }
 
-/// \relates int4x2
-/// \brief Divides each component by the given scalar value.
-inline int4x2 operator/=( int4x2& lhs, const int32_t rhs )
-{
-	return ( lhs = lhs / rhs );
-}
-
-/// \relates int4x2
-/// \brief Returns a copy of the int4x2 that has been component-wise divided by the corresponding component of the right-hand int4x2.
 inline int4x2 operator/( const int4x2& lhs, const int4x2& rhs )
 {
-	return int4x2(
-		lhs[0] / rhs[0],
-		lhs[1] / rhs[1],
-		lhs[2] / rhs[2],
-		lhs[3] / rhs[3]
-	);
+	return HLML_CONSTRUCT( int4x2 ) {
+		comp_divv( lhs.rows[0], rhs.rows[0] ),
+		comp_divv( lhs.rows[1], rhs.rows[1] ),
+		comp_divv( lhs.rows[2], rhs.rows[2] ),
+		comp_divv( lhs.rows[3], rhs.rows[3] )
+	};
 }
 
 // prefix
@@ -2834,82 +1986,15 @@ inline int4x2& operator--( int4x2& lhs, const int )
 }
 
 /// \relates int4x2
-/// \brief Returns a bool4x2 where each component is true if the component of the left-hand type is less than the corresponding right-hand type component.
-inline bool4x2 operator<( const int4x2& lhs, const int4x2& rhs )
-{
-	return bool4x2(
-		lhs[0] < rhs[0],
-		lhs[1] < rhs[1],
-		lhs[2] < rhs[2],
-		lhs[3] < rhs[3]
-	);
-}
-
-/// \relates int4x2
-/// \brief Returns a bool4x2 where each component is true if the component of the left-hand type is less than or equal to the corresponding right-hand type component.
-inline bool4x2 operator<=( const int4x2& lhs, const int4x2& rhs )
-{
-	return bool4x2(
-		lhs[0] <= rhs[0],
-		lhs[1] <= rhs[1],
-		lhs[2] <= rhs[2],
-		lhs[3] <= rhs[3]
-	);
-}
-
-/// \relates int4x2
-/// \brief Returns a bool4x2 where each component is true if the component of the left-hand type is greater than the corresponding right-hand type component.
-inline bool4x2 operator>( const int4x2& lhs, const int4x2& rhs )
-{
-	return bool4x2(
-		lhs[0] > rhs[0],
-		lhs[1] > rhs[1],
-		lhs[2] > rhs[2],
-		lhs[3] > rhs[3]
-	);
-}
-
-/// \relates int4x2
-/// \brief Returns a bool4x2 where each component is true if the component of the left-hand type is greater than or equal to the corresponding right-hand type component.
-inline bool4x2 operator>=( const int4x2& lhs, const int4x2& rhs )
-{
-	return bool4x2(
-		lhs[0] >= rhs[0],
-		lhs[1] >= rhs[1],
-		lhs[2] >= rhs[2],
-		lhs[3] >= rhs[3]
-	);
-}
-
-/// \relates int4x2
-/// \brief Returns a copy of the int4x2 where each component has been bitwise AND'd against the given scalar value.
-inline int4x2 operator&( const int4x2& lhs, const int32_t& rhs )
-{
-	return int4x2(
-		lhs[0] & rhs,
-		lhs[1] & rhs,
-		lhs[2] & rhs,
-		lhs[3] & rhs
-	);
-}
-
-/// \relates int4x2
-/// \brief Performs a bitwise AND on the given left-hand int4x2 against the given scalar value.
-inline int4x2 operator&=( int4x2& lhs, const int32_t& rhs )
-{
-	return ( lhs = lhs & rhs );
-}
-
-/// \relates int4x2
 /// \brief Returns a copy of the int4x2 where each component of the left-hand int4x2 has been bitwise AND'd against the corresponding component of the right-hand side int4x2.
-inline int4x2 operator&( const int4x2& lhs, const int4x2& rhs )
+inline int4x2 operator&( int4x2& lhs, const int4x2& rhs )
 {
-	return int4x2(
-		lhs[0] & rhs[0],
-		lhs[1] & rhs[1],
-		lhs[2] & rhs[2],
-		lhs[3] & rhs[3]
-	);
+	return HLML_CONSTRUCT( int4x2 ) {
+		comp_and( lhs.rows[0], rhs.rows[0] ),
+		comp_and( lhs.rows[1], rhs.rows[1] ),
+		comp_and( lhs.rows[2], rhs.rows[2] ),
+		comp_and( lhs.rows[3], rhs.rows[3] )
+	};
 }
 
 /// \relates int4x2
@@ -2920,34 +2005,15 @@ inline int4x2 operator&=( int4x2& lhs, const int4x2& rhs )
 }
 
 /// \relates int4x2
-/// \brief Returns a copy of the int4x2 where each component has been bitwise OR'd against the given scalar value.
-inline int4x2 operator|( const int4x2& lhs, const int32_t& rhs )
-{
-	return int4x2(
-		lhs[0] | rhs,
-		lhs[1] | rhs,
-		lhs[2] | rhs,
-		lhs[3] | rhs
-	);
-}
-
-/// \relates int4x2
-/// \brief Performs a bitwise OR on the given left-hand int4x2 against the given scalar value.
-inline int4x2 operator|=( int4x2& lhs, const int32_t& rhs )
-{
-	return ( lhs = lhs | rhs );
-}
-
-/// \relates int4x2
 /// \brief Returns a copy of the int4x2 where each component of the left-hand int4x2 has been bitwise OR'd against the corresponding component of the right-hand side int4x2.
-inline int4x2 operator|( const int4x2& lhs, const int4x2& rhs )
+inline int4x2 operator|( int4x2& lhs, const int4x2& rhs )
 {
-	return int4x2(
-		lhs[0] | rhs[0],
-		lhs[1] | rhs[1],
-		lhs[2] | rhs[2],
-		lhs[3] | rhs[3]
-	);
+	return HLML_CONSTRUCT( int4x2 ) {
+		comp_or( lhs.rows[0], rhs.rows[0] ),
+		comp_or( lhs.rows[1], rhs.rows[1] ),
+		comp_or( lhs.rows[2], rhs.rows[2] ),
+		comp_or( lhs.rows[3], rhs.rows[3] )
+	};
 }
 
 /// \relates int4x2
@@ -2958,34 +2024,15 @@ inline int4x2 operator|=( int4x2& lhs, const int4x2& rhs )
 }
 
 /// \relates int4x2
-/// \brief Returns a copy of the int4x2 where each component has been bitwise XOR'd against the given scalar value.
-inline int4x2 operator^( const int4x2& lhs, const int32_t& rhs )
-{
-	return int4x2(
-		lhs[0] ^ rhs,
-		lhs[1] ^ rhs,
-		lhs[2] ^ rhs,
-		lhs[3] ^ rhs
-	);
-}
-
-/// \relates int4x2
-/// \brief Performs a bitwise XOR on the given left-hand int4x2 against the given scalar value.
-inline int4x2 operator^=( int4x2& lhs, const int32_t& rhs )
-{
-	return ( lhs = lhs ^ rhs );
-}
-
-/// \relates int4x2
 /// \brief Returns a copy of the int4x2 where each component of the left-hand int4x2 has been bitwise XOR'd against the corresponding component of the right-hand side int4x2.
-inline int4x2 operator^( const int4x2& lhs, const int4x2& rhs )
+inline int4x2 operator^( int4x2& lhs, const int4x2& rhs )
 {
-	return int4x2(
-		lhs[0] ^ rhs[0],
-		lhs[1] ^ rhs[1],
-		lhs[2] ^ rhs[2],
-		lhs[3] ^ rhs[3]
-	);
+	return HLML_CONSTRUCT( int4x2 ) {
+		comp_xor( lhs.rows[0], rhs.rows[0] ),
+		comp_xor( lhs.rows[1], rhs.rows[1] ),
+		comp_xor( lhs.rows[2], rhs.rows[2] ),
+		comp_xor( lhs.rows[3], rhs.rows[3] )
+	};
 }
 
 /// \relates int4x2
@@ -2996,34 +2043,15 @@ inline int4x2 operator^=( int4x2& lhs, const int4x2& rhs )
 }
 
 /// \relates int4x2
-/// \brief Returns a copy of the int4x2 where each component has been bitwise left-shifted by the given scalar value.
-inline int4x2 operator<<( const int4x2& lhs, const int32_t& rhs )
-{
-	return int4x2(
-		lhs[0] << rhs,
-		lhs[1] << rhs,
-		lhs[2] << rhs,
-		lhs[3] << rhs
-	);
-}
-
-/// \relates int4x2
-/// \brief Performs a left bitshift on the given left-hand int4x2 by the given scalar value.
-inline int4x2 operator<<=( int4x2& lhs, const int32_t& rhs )
-{
-	return ( lhs = lhs << rhs );
-}
-
-/// \relates int4x2
 /// \brief Returns a copy of the int4x2 where each component of the left-hand int4x2 has been bitwise left-shifted by the corresponding component of the right-hand side int4x2.
-inline int4x2 operator<<( const int4x2& lhs, const int4x2& rhs )
+inline int4x2 operator<<( int4x2& lhs, const int4x2& rhs )
 {
-	return int4x2(
-		lhs[0] << rhs[0],
-		lhs[1] << rhs[1],
-		lhs[2] << rhs[2],
-		lhs[3] << rhs[3]
-	);
+	return HLML_CONSTRUCT( int4x2 ) {
+		comp_shift_left( lhs.rows[0], rhs.rows[0] ),
+		comp_shift_left( lhs.rows[1], rhs.rows[1] ),
+		comp_shift_left( lhs.rows[2], rhs.rows[2] ),
+		comp_shift_left( lhs.rows[3], rhs.rows[3] )
+	};
 }
 
 /// \relates int4x2
@@ -3034,34 +2062,15 @@ inline int4x2 operator<<=( int4x2& lhs, const int4x2& rhs )
 }
 
 /// \relates int4x2
-/// \brief Returns a copy of the int4x2 where each component has been bitwise right-shifted by the given scalar value.
-inline int4x2 operator>>( const int4x2& lhs, const int32_t& rhs )
-{
-	return int4x2(
-		lhs[0] >> rhs,
-		lhs[1] >> rhs,
-		lhs[2] >> rhs,
-		lhs[3] >> rhs
-	);
-}
-
-/// \relates int4x2
-/// \brief Performs a right bitshift on the given left-hand int4x2 by the given scalar value.
-inline int4x2 operator>>=( int4x2& lhs, const int32_t& rhs )
-{
-	return ( lhs = lhs >> rhs );
-}
-
-/// \relates int4x2
 /// \brief Returns a copy of the int4x2 where each component of the left-hand int4x2 has been bitwise right-shifted by the corresponding component of the right-hand side int4x2.
-inline int4x2 operator>>( const int4x2& lhs, const int4x2& rhs )
+inline int4x2 operator>>( int4x2& lhs, const int4x2& rhs )
 {
-	return int4x2(
-		lhs[0] >> rhs[0],
-		lhs[1] >> rhs[1],
-		lhs[2] >> rhs[2],
-		lhs[3] >> rhs[3]
-	);
+	return HLML_CONSTRUCT( int4x2 ) {
+		comp_shift_right( lhs.rows[0], rhs.rows[0] ),
+		comp_shift_right( lhs.rows[1], rhs.rows[1] ),
+		comp_shift_right( lhs.rows[2], rhs.rows[2] ),
+		comp_shift_right( lhs.rows[3], rhs.rows[3] )
+	};
 }
 
 /// \relates int4x2
@@ -3073,128 +2082,126 @@ inline int4x2 operator>>=( int4x2& lhs, const int4x2& rhs )
 
 /// \relates int4x2
 /// \brief Performs a unary bitwise operation on all components of the given int4x2.
-inline int4x2 operator~( const int4x2& lhs )
+inline int4x2 operator~( int4x2& lhs )
 {
-	return int4x2(
-		~lhs[0],
-		~lhs[1],
-		~lhs[2],
-		~lhs[3]
-	);
+	return HLML_CONSTRUCT( int4x2 ) {
+		comp_unary( lhs.rows[0] ),
+		comp_unary( lhs.rows[1] ),
+		comp_unary( lhs.rows[2] ),
+		comp_unary( lhs.rows[3] )
+	};
+}
+
+inline bool4x2 operator<( const int4x2& lhs, const int4x2& rhs )
+{
+	return HLML_CONSTRUCT( bool4x2 ) {
+		cmpl( lhs.rows[0], rhs.rows[0] ),
+		cmpl( lhs.rows[1], rhs.rows[1] ),
+		cmpl( lhs.rows[2], rhs.rows[2] ),
+		cmpl( lhs.rows[3], rhs.rows[3] )
+	};
+}
+
+inline bool4x2 operator<=( const int4x2& lhs, const int4x2& rhs )
+{
+	return HLML_CONSTRUCT( bool4x2 ) {
+		cmple( lhs.rows[0], rhs.rows[0] ),
+		cmple( lhs.rows[1], rhs.rows[1] ),
+		cmple( lhs.rows[2], rhs.rows[2] ),
+		cmple( lhs.rows[3], rhs.rows[3] )
+	};
+}
+
+inline bool4x2 operator>( const int4x2& lhs, const int4x2& rhs )
+{
+	return HLML_CONSTRUCT( bool4x2 ) {
+		cmpg( lhs.rows[0], rhs.rows[0] ),
+		cmpg( lhs.rows[1], rhs.rows[1] ),
+		cmpg( lhs.rows[2], rhs.rows[2] ),
+		cmpg( lhs.rows[3], rhs.rows[3] )
+	};
+}
+
+inline bool4x2 operator>=( const int4x2& lhs, const int4x2& rhs )
+{
+	return HLML_CONSTRUCT( bool4x2 ) {
+		cmpge( lhs.rows[0], rhs.rows[0] ),
+		cmpge( lhs.rows[1], rhs.rows[1] ),
+		cmpge( lhs.rows[2], rhs.rows[2] ),
+		cmpge( lhs.rows[3], rhs.rows[3] )
+	};
 }
 
 
 // int4x3
-/// \relates int4x3
-/// \brief Returns a copy of the int4x3 that has been component-wise added by the given scalar value.
-inline int4x3 operator+( const int4x3& lhs, const int32_t rhs )
+inline bool operator==( const int4x3& lhs, const int4x3& rhs )
+{
+	return ( lhs[0] == rhs[0] )
+		&& ( lhs[1] == rhs[1] )
+		&& ( lhs[2] == rhs[2] )
+		&& ( lhs[3] == rhs[3] );
+}
+
+inline bool operator!=( const int4x3& lhs, const int4x3& rhs )
+{
+	return !( operator==( lhs, rhs ) );
+}
+
+inline int4x3 operator+( const int4x3& lhs, const int32_t scalar )
 {
 	return int4x3(
-		lhs[0] + rhs,
-		lhs[1] + rhs,
-		lhs[2] + rhs,
-		lhs[3] + rhs
+		lhs[0] + scalar,
+		lhs[1] + scalar,
+		lhs[2] + scalar,
+		lhs[3] + scalar
 	);
 }
 
-/// \relates int4x3
-/// \brief Adds each component by the given scalar value.
-inline int4x3 operator+=( int4x3& lhs, const int32_t rhs )
-{
-	return ( lhs = lhs + rhs );
-}
-
-/// \relates int4x3
-/// \brief Returns a copy of the int4x3 that has been component-wise added by the corresponding component of the right-hand int4x3.
 inline int4x3 operator+( const int4x3& lhs, const int4x3& rhs )
 {
+	return HLML_CONSTRUCT( int4x3 ) {
+		comp_addv( lhs.rows[0], rhs.rows[0] ),
+		comp_addv( lhs.rows[1], rhs.rows[1] ),
+		comp_addv( lhs.rows[2], rhs.rows[2] ),
+		comp_addv( lhs.rows[3], rhs.rows[3] )
+	};
+}
+
+inline int4x3 operator-( const int4x3& lhs, const int32_t scalar )
+{
 	return int4x3(
-		lhs[0] + rhs[0],
-		lhs[1] + rhs[1],
-		lhs[2] + rhs[2],
-		lhs[3] + rhs[3]
+		lhs[0] - scalar,
+		lhs[1] - scalar,
+		lhs[2] - scalar,
+		lhs[3] - scalar
 	);
 }
 
-/// \relates int4x3
-/// \brief Adds each component of the int4x3 by the corresponding component of the right-hand int4x3.
-inline int4x3 operator+=( int4x3& lhs, const int4x3& rhs )
-{
-	return ( lhs = lhs + rhs );
-}
-
-/// \relates int4x3
-/// \brief Returns a copy of the int4x3 that has been component-wise subtracted by the given scalar value.
-inline int4x3 operator-( const int4x3& lhs, const int32_t rhs )
-{
-	return int4x3(
-		lhs[0] - rhs,
-		lhs[1] - rhs,
-		lhs[2] - rhs,
-		lhs[3] - rhs
-	);
-}
-
-/// \relates int4x3
-/// \brief Subtracts each component by the given scalar value.
-inline int4x3 operator-=( int4x3& lhs, const int32_t rhs )
-{
-	return ( lhs = lhs - rhs );
-}
-
-/// \relates int4x3
-/// \brief Returns a copy of the int4x3 that has been component-wise subtracted by the corresponding component of the right-hand int4x3.
 inline int4x3 operator-( const int4x3& lhs, const int4x3& rhs )
 {
-	return int4x3(
-		lhs[0] - rhs[0],
-		lhs[1] - rhs[1],
-		lhs[2] - rhs[2],
-		lhs[3] - rhs[3]
-	);
-}
-
-/// \relates int4x3
-/// \brief Subtracts each component of the int4x3 by the corresponding component of the right-hand int4x3.
-inline int4x3 operator-=( int4x3& lhs, const int4x3& rhs )
-{
-	return ( lhs = lhs - rhs );
-}
-
-/// \relates int4x3
-/// \brief Returns a copy of the int4x3 that has been component-wise multiplied by the given scalar value.
-inline int4x3 operator*( const int4x3& lhs, const int32_t rhs )
-{
-	return int4x3(
-		lhs[0] * rhs,
-		lhs[1] * rhs,
-		lhs[2] * rhs,
-		lhs[3] * rhs
-	);
-}
-
-/// \relates int4x3
-/// \brief Multiplies each component by the given scalar value.
-inline int4x3 operator*=( int4x3& lhs, const int32_t rhs )
-{
-	return ( lhs = lhs * rhs );
+	return HLML_CONSTRUCT( int4x3 ) {
+		comp_subv( lhs.rows[0], rhs.rows[0] ),
+		comp_subv( lhs.rows[1], rhs.rows[1] ),
+		comp_subv( lhs.rows[2], rhs.rows[2] ),
+		comp_subv( lhs.rows[3], rhs.rows[3] )
+	};
 }
 
 /// \relates int4x3
 /// \brief Returns a copy of the matrix where each row of the left-hand matrix has been dot-producted by the corresponding column of the right-hand matrix.
 inline int4x4 operator*( const int4x3& lhs, const int3x4& rhs )
 {
-	int3 row0 = lhs[0];
-	int3 row1 = lhs[1];
-	int3 row2 = lhs[2];
-	int3 row3 = lhs[3];
+	int3 row0 = lhs.rows[0];
+	int3 row1 = lhs.rows[1];
+	int3 row2 = lhs.rows[2];
+	int3 row3 = lhs.rows[3];
 
-	int3 col0 = { rhs[0].x, rhs[1].x, rhs[2].x };
-	int3 col1 = { rhs[0].y, rhs[1].y, rhs[2].y };
-	int3 col2 = { rhs[0].z, rhs[1].z, rhs[2].z };
-	int3 col3 = { rhs[0].w, rhs[1].w, rhs[2].w };
+	int3 col0 = { rhs.rows[0].x, rhs.rows[1].x, rhs.rows[2].x };
+	int3 col1 = { rhs.rows[0].y, rhs.rows[1].y, rhs.rows[2].y };
+	int3 col2 = { rhs.rows[0].z, rhs.rows[1].z, rhs.rows[2].z };
+	int3 col3 = { rhs.rows[0].w, rhs.rows[1].w, rhs.rows[2].w };
 
-	return int4x4(
+	return HLML_CONSTRUCT( int4x4 ) {
 		row0.x * col0.x + row0.y * col0.y + row0.z * col0.z,
 		row0.x * col1.x + row0.y * col1.y + row0.z * col1.z,
 		row0.x * col2.x + row0.y * col2.y + row0.z * col2.z,
@@ -3214,38 +2221,27 @@ inline int4x4 operator*( const int4x3& lhs, const int3x4& rhs )
 		row3.x * col1.x + row3.y * col1.y + row3.z * col1.z,
 		row3.x * col2.x + row3.y * col2.y + row3.z * col2.z,
 		row3.x * col3.x + row3.y * col3.y + row3.z * col3.z
-	);
+	};
 }
 
-/// \relates int4x3
-/// \brief Returns a copy of the int4x3 that has been component-wise divided by the given scalar value.
-inline int4x3 operator/( const int4x3& lhs, const int32_t rhs )
+inline int4x3 operator/( const int4x3& lhs, const int32_t scalar )
 {
 	return int4x3(
-		lhs[0] / rhs,
-		lhs[1] / rhs,
-		lhs[2] / rhs,
-		lhs[3] / rhs
+		lhs[0] / scalar,
+		lhs[1] / scalar,
+		lhs[2] / scalar,
+		lhs[3] / scalar
 	);
 }
 
-/// \relates int4x3
-/// \brief Divides each component by the given scalar value.
-inline int4x3 operator/=( int4x3& lhs, const int32_t rhs )
-{
-	return ( lhs = lhs / rhs );
-}
-
-/// \relates int4x3
-/// \brief Returns a copy of the int4x3 that has been component-wise divided by the corresponding component of the right-hand int4x3.
 inline int4x3 operator/( const int4x3& lhs, const int4x3& rhs )
 {
-	return int4x3(
-		lhs[0] / rhs[0],
-		lhs[1] / rhs[1],
-		lhs[2] / rhs[2],
-		lhs[3] / rhs[3]
-	);
+	return HLML_CONSTRUCT( int4x3 ) {
+		comp_divv( lhs.rows[0], rhs.rows[0] ),
+		comp_divv( lhs.rows[1], rhs.rows[1] ),
+		comp_divv( lhs.rows[2], rhs.rows[2] ),
+		comp_divv( lhs.rows[3], rhs.rows[3] )
+	};
 }
 
 // prefix
@@ -3297,82 +2293,15 @@ inline int4x3& operator--( int4x3& lhs, const int )
 }
 
 /// \relates int4x3
-/// \brief Returns a bool4x3 where each component is true if the component of the left-hand type is less than the corresponding right-hand type component.
-inline bool4x3 operator<( const int4x3& lhs, const int4x3& rhs )
-{
-	return bool4x3(
-		lhs[0] < rhs[0],
-		lhs[1] < rhs[1],
-		lhs[2] < rhs[2],
-		lhs[3] < rhs[3]
-	);
-}
-
-/// \relates int4x3
-/// \brief Returns a bool4x3 where each component is true if the component of the left-hand type is less than or equal to the corresponding right-hand type component.
-inline bool4x3 operator<=( const int4x3& lhs, const int4x3& rhs )
-{
-	return bool4x3(
-		lhs[0] <= rhs[0],
-		lhs[1] <= rhs[1],
-		lhs[2] <= rhs[2],
-		lhs[3] <= rhs[3]
-	);
-}
-
-/// \relates int4x3
-/// \brief Returns a bool4x3 where each component is true if the component of the left-hand type is greater than the corresponding right-hand type component.
-inline bool4x3 operator>( const int4x3& lhs, const int4x3& rhs )
-{
-	return bool4x3(
-		lhs[0] > rhs[0],
-		lhs[1] > rhs[1],
-		lhs[2] > rhs[2],
-		lhs[3] > rhs[3]
-	);
-}
-
-/// \relates int4x3
-/// \brief Returns a bool4x3 where each component is true if the component of the left-hand type is greater than or equal to the corresponding right-hand type component.
-inline bool4x3 operator>=( const int4x3& lhs, const int4x3& rhs )
-{
-	return bool4x3(
-		lhs[0] >= rhs[0],
-		lhs[1] >= rhs[1],
-		lhs[2] >= rhs[2],
-		lhs[3] >= rhs[3]
-	);
-}
-
-/// \relates int4x3
-/// \brief Returns a copy of the int4x3 where each component has been bitwise AND'd against the given scalar value.
-inline int4x3 operator&( const int4x3& lhs, const int32_t& rhs )
-{
-	return int4x3(
-		lhs[0] & rhs,
-		lhs[1] & rhs,
-		lhs[2] & rhs,
-		lhs[3] & rhs
-	);
-}
-
-/// \relates int4x3
-/// \brief Performs a bitwise AND on the given left-hand int4x3 against the given scalar value.
-inline int4x3 operator&=( int4x3& lhs, const int32_t& rhs )
-{
-	return ( lhs = lhs & rhs );
-}
-
-/// \relates int4x3
 /// \brief Returns a copy of the int4x3 where each component of the left-hand int4x3 has been bitwise AND'd against the corresponding component of the right-hand side int4x3.
-inline int4x3 operator&( const int4x3& lhs, const int4x3& rhs )
+inline int4x3 operator&( int4x3& lhs, const int4x3& rhs )
 {
-	return int4x3(
-		lhs[0] & rhs[0],
-		lhs[1] & rhs[1],
-		lhs[2] & rhs[2],
-		lhs[3] & rhs[3]
-	);
+	return HLML_CONSTRUCT( int4x3 ) {
+		comp_and( lhs.rows[0], rhs.rows[0] ),
+		comp_and( lhs.rows[1], rhs.rows[1] ),
+		comp_and( lhs.rows[2], rhs.rows[2] ),
+		comp_and( lhs.rows[3], rhs.rows[3] )
+	};
 }
 
 /// \relates int4x3
@@ -3383,34 +2312,15 @@ inline int4x3 operator&=( int4x3& lhs, const int4x3& rhs )
 }
 
 /// \relates int4x3
-/// \brief Returns a copy of the int4x3 where each component has been bitwise OR'd against the given scalar value.
-inline int4x3 operator|( const int4x3& lhs, const int32_t& rhs )
-{
-	return int4x3(
-		lhs[0] | rhs,
-		lhs[1] | rhs,
-		lhs[2] | rhs,
-		lhs[3] | rhs
-	);
-}
-
-/// \relates int4x3
-/// \brief Performs a bitwise OR on the given left-hand int4x3 against the given scalar value.
-inline int4x3 operator|=( int4x3& lhs, const int32_t& rhs )
-{
-	return ( lhs = lhs | rhs );
-}
-
-/// \relates int4x3
 /// \brief Returns a copy of the int4x3 where each component of the left-hand int4x3 has been bitwise OR'd against the corresponding component of the right-hand side int4x3.
-inline int4x3 operator|( const int4x3& lhs, const int4x3& rhs )
+inline int4x3 operator|( int4x3& lhs, const int4x3& rhs )
 {
-	return int4x3(
-		lhs[0] | rhs[0],
-		lhs[1] | rhs[1],
-		lhs[2] | rhs[2],
-		lhs[3] | rhs[3]
-	);
+	return HLML_CONSTRUCT( int4x3 ) {
+		comp_or( lhs.rows[0], rhs.rows[0] ),
+		comp_or( lhs.rows[1], rhs.rows[1] ),
+		comp_or( lhs.rows[2], rhs.rows[2] ),
+		comp_or( lhs.rows[3], rhs.rows[3] )
+	};
 }
 
 /// \relates int4x3
@@ -3421,34 +2331,15 @@ inline int4x3 operator|=( int4x3& lhs, const int4x3& rhs )
 }
 
 /// \relates int4x3
-/// \brief Returns a copy of the int4x3 where each component has been bitwise XOR'd against the given scalar value.
-inline int4x3 operator^( const int4x3& lhs, const int32_t& rhs )
-{
-	return int4x3(
-		lhs[0] ^ rhs,
-		lhs[1] ^ rhs,
-		lhs[2] ^ rhs,
-		lhs[3] ^ rhs
-	);
-}
-
-/// \relates int4x3
-/// \brief Performs a bitwise XOR on the given left-hand int4x3 against the given scalar value.
-inline int4x3 operator^=( int4x3& lhs, const int32_t& rhs )
-{
-	return ( lhs = lhs ^ rhs );
-}
-
-/// \relates int4x3
 /// \brief Returns a copy of the int4x3 where each component of the left-hand int4x3 has been bitwise XOR'd against the corresponding component of the right-hand side int4x3.
-inline int4x3 operator^( const int4x3& lhs, const int4x3& rhs )
+inline int4x3 operator^( int4x3& lhs, const int4x3& rhs )
 {
-	return int4x3(
-		lhs[0] ^ rhs[0],
-		lhs[1] ^ rhs[1],
-		lhs[2] ^ rhs[2],
-		lhs[3] ^ rhs[3]
-	);
+	return HLML_CONSTRUCT( int4x3 ) {
+		comp_xor( lhs.rows[0], rhs.rows[0] ),
+		comp_xor( lhs.rows[1], rhs.rows[1] ),
+		comp_xor( lhs.rows[2], rhs.rows[2] ),
+		comp_xor( lhs.rows[3], rhs.rows[3] )
+	};
 }
 
 /// \relates int4x3
@@ -3459,34 +2350,15 @@ inline int4x3 operator^=( int4x3& lhs, const int4x3& rhs )
 }
 
 /// \relates int4x3
-/// \brief Returns a copy of the int4x3 where each component has been bitwise left-shifted by the given scalar value.
-inline int4x3 operator<<( const int4x3& lhs, const int32_t& rhs )
-{
-	return int4x3(
-		lhs[0] << rhs,
-		lhs[1] << rhs,
-		lhs[2] << rhs,
-		lhs[3] << rhs
-	);
-}
-
-/// \relates int4x3
-/// \brief Performs a left bitshift on the given left-hand int4x3 by the given scalar value.
-inline int4x3 operator<<=( int4x3& lhs, const int32_t& rhs )
-{
-	return ( lhs = lhs << rhs );
-}
-
-/// \relates int4x3
 /// \brief Returns a copy of the int4x3 where each component of the left-hand int4x3 has been bitwise left-shifted by the corresponding component of the right-hand side int4x3.
-inline int4x3 operator<<( const int4x3& lhs, const int4x3& rhs )
+inline int4x3 operator<<( int4x3& lhs, const int4x3& rhs )
 {
-	return int4x3(
-		lhs[0] << rhs[0],
-		lhs[1] << rhs[1],
-		lhs[2] << rhs[2],
-		lhs[3] << rhs[3]
-	);
+	return HLML_CONSTRUCT( int4x3 ) {
+		comp_shift_left( lhs.rows[0], rhs.rows[0] ),
+		comp_shift_left( lhs.rows[1], rhs.rows[1] ),
+		comp_shift_left( lhs.rows[2], rhs.rows[2] ),
+		comp_shift_left( lhs.rows[3], rhs.rows[3] )
+	};
 }
 
 /// \relates int4x3
@@ -3497,34 +2369,15 @@ inline int4x3 operator<<=( int4x3& lhs, const int4x3& rhs )
 }
 
 /// \relates int4x3
-/// \brief Returns a copy of the int4x3 where each component has been bitwise right-shifted by the given scalar value.
-inline int4x3 operator>>( const int4x3& lhs, const int32_t& rhs )
-{
-	return int4x3(
-		lhs[0] >> rhs,
-		lhs[1] >> rhs,
-		lhs[2] >> rhs,
-		lhs[3] >> rhs
-	);
-}
-
-/// \relates int4x3
-/// \brief Performs a right bitshift on the given left-hand int4x3 by the given scalar value.
-inline int4x3 operator>>=( int4x3& lhs, const int32_t& rhs )
-{
-	return ( lhs = lhs >> rhs );
-}
-
-/// \relates int4x3
 /// \brief Returns a copy of the int4x3 where each component of the left-hand int4x3 has been bitwise right-shifted by the corresponding component of the right-hand side int4x3.
-inline int4x3 operator>>( const int4x3& lhs, const int4x3& rhs )
+inline int4x3 operator>>( int4x3& lhs, const int4x3& rhs )
 {
-	return int4x3(
-		lhs[0] >> rhs[0],
-		lhs[1] >> rhs[1],
-		lhs[2] >> rhs[2],
-		lhs[3] >> rhs[3]
-	);
+	return HLML_CONSTRUCT( int4x3 ) {
+		comp_shift_right( lhs.rows[0], rhs.rows[0] ),
+		comp_shift_right( lhs.rows[1], rhs.rows[1] ),
+		comp_shift_right( lhs.rows[2], rhs.rows[2] ),
+		comp_shift_right( lhs.rows[3], rhs.rows[3] )
+	};
 }
 
 /// \relates int4x3
@@ -3536,128 +2389,126 @@ inline int4x3 operator>>=( int4x3& lhs, const int4x3& rhs )
 
 /// \relates int4x3
 /// \brief Performs a unary bitwise operation on all components of the given int4x3.
-inline int4x3 operator~( const int4x3& lhs )
+inline int4x3 operator~( int4x3& lhs )
 {
-	return int4x3(
-		~lhs[0],
-		~lhs[1],
-		~lhs[2],
-		~lhs[3]
-	);
+	return HLML_CONSTRUCT( int4x3 ) {
+		comp_unary( lhs.rows[0] ),
+		comp_unary( lhs.rows[1] ),
+		comp_unary( lhs.rows[2] ),
+		comp_unary( lhs.rows[3] )
+	};
+}
+
+inline bool4x3 operator<( const int4x3& lhs, const int4x3& rhs )
+{
+	return HLML_CONSTRUCT( bool4x3 ) {
+		cmpl( lhs.rows[0], rhs.rows[0] ),
+		cmpl( lhs.rows[1], rhs.rows[1] ),
+		cmpl( lhs.rows[2], rhs.rows[2] ),
+		cmpl( lhs.rows[3], rhs.rows[3] )
+	};
+}
+
+inline bool4x3 operator<=( const int4x3& lhs, const int4x3& rhs )
+{
+	return HLML_CONSTRUCT( bool4x3 ) {
+		cmple( lhs.rows[0], rhs.rows[0] ),
+		cmple( lhs.rows[1], rhs.rows[1] ),
+		cmple( lhs.rows[2], rhs.rows[2] ),
+		cmple( lhs.rows[3], rhs.rows[3] )
+	};
+}
+
+inline bool4x3 operator>( const int4x3& lhs, const int4x3& rhs )
+{
+	return HLML_CONSTRUCT( bool4x3 ) {
+		cmpg( lhs.rows[0], rhs.rows[0] ),
+		cmpg( lhs.rows[1], rhs.rows[1] ),
+		cmpg( lhs.rows[2], rhs.rows[2] ),
+		cmpg( lhs.rows[3], rhs.rows[3] )
+	};
+}
+
+inline bool4x3 operator>=( const int4x3& lhs, const int4x3& rhs )
+{
+	return HLML_CONSTRUCT( bool4x3 ) {
+		cmpge( lhs.rows[0], rhs.rows[0] ),
+		cmpge( lhs.rows[1], rhs.rows[1] ),
+		cmpge( lhs.rows[2], rhs.rows[2] ),
+		cmpge( lhs.rows[3], rhs.rows[3] )
+	};
 }
 
 
 // int4x4
-/// \relates int4x4
-/// \brief Returns a copy of the int4x4 that has been component-wise added by the given scalar value.
-inline int4x4 operator+( const int4x4& lhs, const int32_t rhs )
+inline bool operator==( const int4x4& lhs, const int4x4& rhs )
+{
+	return ( lhs[0] == rhs[0] )
+		&& ( lhs[1] == rhs[1] )
+		&& ( lhs[2] == rhs[2] )
+		&& ( lhs[3] == rhs[3] );
+}
+
+inline bool operator!=( const int4x4& lhs, const int4x4& rhs )
+{
+	return !( operator==( lhs, rhs ) );
+}
+
+inline int4x4 operator+( const int4x4& lhs, const int32_t scalar )
 {
 	return int4x4(
-		lhs[0] + rhs,
-		lhs[1] + rhs,
-		lhs[2] + rhs,
-		lhs[3] + rhs
+		lhs[0] + scalar,
+		lhs[1] + scalar,
+		lhs[2] + scalar,
+		lhs[3] + scalar
 	);
 }
 
-/// \relates int4x4
-/// \brief Adds each component by the given scalar value.
-inline int4x4 operator+=( int4x4& lhs, const int32_t rhs )
-{
-	return ( lhs = lhs + rhs );
-}
-
-/// \relates int4x4
-/// \brief Returns a copy of the int4x4 that has been component-wise added by the corresponding component of the right-hand int4x4.
 inline int4x4 operator+( const int4x4& lhs, const int4x4& rhs )
 {
+	return HLML_CONSTRUCT( int4x4 ) {
+		comp_addv( lhs.rows[0], rhs.rows[0] ),
+		comp_addv( lhs.rows[1], rhs.rows[1] ),
+		comp_addv( lhs.rows[2], rhs.rows[2] ),
+		comp_addv( lhs.rows[3], rhs.rows[3] )
+	};
+}
+
+inline int4x4 operator-( const int4x4& lhs, const int32_t scalar )
+{
 	return int4x4(
-		lhs[0] + rhs[0],
-		lhs[1] + rhs[1],
-		lhs[2] + rhs[2],
-		lhs[3] + rhs[3]
+		lhs[0] - scalar,
+		lhs[1] - scalar,
+		lhs[2] - scalar,
+		lhs[3] - scalar
 	);
 }
 
-/// \relates int4x4
-/// \brief Adds each component of the int4x4 by the corresponding component of the right-hand int4x4.
-inline int4x4 operator+=( int4x4& lhs, const int4x4& rhs )
-{
-	return ( lhs = lhs + rhs );
-}
-
-/// \relates int4x4
-/// \brief Returns a copy of the int4x4 that has been component-wise subtracted by the given scalar value.
-inline int4x4 operator-( const int4x4& lhs, const int32_t rhs )
-{
-	return int4x4(
-		lhs[0] - rhs,
-		lhs[1] - rhs,
-		lhs[2] - rhs,
-		lhs[3] - rhs
-	);
-}
-
-/// \relates int4x4
-/// \brief Subtracts each component by the given scalar value.
-inline int4x4 operator-=( int4x4& lhs, const int32_t rhs )
-{
-	return ( lhs = lhs - rhs );
-}
-
-/// \relates int4x4
-/// \brief Returns a copy of the int4x4 that has been component-wise subtracted by the corresponding component of the right-hand int4x4.
 inline int4x4 operator-( const int4x4& lhs, const int4x4& rhs )
 {
-	return int4x4(
-		lhs[0] - rhs[0],
-		lhs[1] - rhs[1],
-		lhs[2] - rhs[2],
-		lhs[3] - rhs[3]
-	);
-}
-
-/// \relates int4x4
-/// \brief Subtracts each component of the int4x4 by the corresponding component of the right-hand int4x4.
-inline int4x4 operator-=( int4x4& lhs, const int4x4& rhs )
-{
-	return ( lhs = lhs - rhs );
-}
-
-/// \relates int4x4
-/// \brief Returns a copy of the int4x4 that has been component-wise multiplied by the given scalar value.
-inline int4x4 operator*( const int4x4& lhs, const int32_t rhs )
-{
-	return int4x4(
-		lhs[0] * rhs,
-		lhs[1] * rhs,
-		lhs[2] * rhs,
-		lhs[3] * rhs
-	);
-}
-
-/// \relates int4x4
-/// \brief Multiplies each component by the given scalar value.
-inline int4x4 operator*=( int4x4& lhs, const int32_t rhs )
-{
-	return ( lhs = lhs * rhs );
+	return HLML_CONSTRUCT( int4x4 ) {
+		comp_subv( lhs.rows[0], rhs.rows[0] ),
+		comp_subv( lhs.rows[1], rhs.rows[1] ),
+		comp_subv( lhs.rows[2], rhs.rows[2] ),
+		comp_subv( lhs.rows[3], rhs.rows[3] )
+	};
 }
 
 /// \relates int4x4
 /// \brief Returns a copy of the matrix where each row of the left-hand matrix has been dot-producted by the corresponding column of the right-hand matrix.
 inline int4x4 operator*( const int4x4& lhs, const int4x4& rhs )
 {
-	int4 row0 = lhs[0];
-	int4 row1 = lhs[1];
-	int4 row2 = lhs[2];
-	int4 row3 = lhs[3];
+	int4 row0 = lhs.rows[0];
+	int4 row1 = lhs.rows[1];
+	int4 row2 = lhs.rows[2];
+	int4 row3 = lhs.rows[3];
 
-	int4 col0 = { rhs[0].x, rhs[1].x, rhs[2].x, rhs[3].x };
-	int4 col1 = { rhs[0].y, rhs[1].y, rhs[2].y, rhs[3].y };
-	int4 col2 = { rhs[0].z, rhs[1].z, rhs[2].z, rhs[3].z };
-	int4 col3 = { rhs[0].w, rhs[1].w, rhs[2].w, rhs[3].w };
+	int4 col0 = { rhs.rows[0].x, rhs.rows[1].x, rhs.rows[2].x, rhs.rows[3].x };
+	int4 col1 = { rhs.rows[0].y, rhs.rows[1].y, rhs.rows[2].y, rhs.rows[3].y };
+	int4 col2 = { rhs.rows[0].z, rhs.rows[1].z, rhs.rows[2].z, rhs.rows[3].z };
+	int4 col3 = { rhs.rows[0].w, rhs.rows[1].w, rhs.rows[2].w, rhs.rows[3].w };
 
-	return int4x4(
+	return HLML_CONSTRUCT( int4x4 ) {
 		row0.x * col0.x + row0.y * col0.y + row0.z * col0.z + row0.w * col0.w,
 		row0.x * col1.x + row0.y * col1.y + row0.z * col1.z + row0.w * col1.w,
 		row0.x * col2.x + row0.y * col2.y + row0.z * col2.z + row0.w * col2.w,
@@ -3677,7 +2528,7 @@ inline int4x4 operator*( const int4x4& lhs, const int4x4& rhs )
 		row3.x * col1.x + row3.y * col1.y + row3.z * col1.z + row3.w * col1.w,
 		row3.x * col2.x + row3.y * col2.y + row3.z * col2.z + row3.w * col2.w,
 		row3.x * col3.x + row3.y * col3.y + row3.z * col3.z + row3.w * col3.w
-	);
+	};
 }
 
 inline int4x4 operator*=( int4x4& lhs, const int4x4& rhs )
@@ -3685,54 +2536,36 @@ inline int4x4 operator*=( int4x4& lhs, const int4x4& rhs )
 	return ( lhs = lhs * rhs );
 }
 
-/// \relates int4x4
-/// \brief Returns a copy of the int4x4 that has been component-wise divided by the given scalar value.
-inline int4x4 operator/( const int4x4& lhs, const int32_t rhs )
+inline int4x4 operator/( const int4x4& lhs, const int32_t scalar )
 {
 	return int4x4(
-		lhs[0] / rhs,
-		lhs[1] / rhs,
-		lhs[2] / rhs,
-		lhs[3] / rhs
+		lhs[0] / scalar,
+		lhs[1] / scalar,
+		lhs[2] / scalar,
+		lhs[3] / scalar
 	);
 }
 
-/// \relates int4x4
-/// \brief Divides each component by the given scalar value.
-inline int4x4 operator/=( int4x4& lhs, const int32_t rhs )
-{
-	return ( lhs = lhs / rhs );
-}
-
-/// \relates int4x4
-/// \brief Returns a copy of the int4x4 that has been component-wise divided by the corresponding component of the right-hand int4x4.
 inline int4x4 operator/( const int4x4& lhs, const int4x4& rhs )
 {
-	return int4x4(
-		lhs[0] / rhs[0],
-		lhs[1] / rhs[1],
-		lhs[2] / rhs[2],
-		lhs[3] / rhs[3]
-	);
-}
-
-/// \relates int4x4
-/// \brief Divides each component of the int4x4 by the corresponding component of the right-hand int4x4.
-inline int4x4 operator/=( int4x4& lhs, const int4x4& rhs )
-{
-	return ( lhs = lhs / rhs );
+	return HLML_CONSTRUCT( int4x4 ) {
+		comp_divv( lhs.rows[0], rhs.rows[0] ),
+		comp_divv( lhs.rows[1], rhs.rows[1] ),
+		comp_divv( lhs.rows[2], rhs.rows[2] ),
+		comp_divv( lhs.rows[3], rhs.rows[3] )
+	};
 }
 
 /// \relates int4
 /// \brief Returns a copy of the int4 that has been component-wise multiplied by the corresponding component of the right-hand int4x4.
 inline int4 operator*( const int4x4& lhs, const int4& rhs )
 {
-	return int4(
-		(int32_t) dot( lhs[0], rhs ),
-		(int32_t) dot( lhs[1], rhs ),
-		(int32_t) dot( lhs[2], rhs ),
-		(int32_t) dot( lhs[3], rhs )
-	);
+	return HLML_CONSTRUCT( int4 ) {
+		lhs.rows[0].x * rhs.x + lhs.rows[0].y * rhs.y + lhs.rows[0].z * rhs.z + lhs.rows[0].w * rhs.w,
+		lhs.rows[1].x * rhs.x + lhs.rows[1].y * rhs.y + lhs.rows[1].z * rhs.z + lhs.rows[1].w * rhs.w,
+		lhs.rows[2].x * rhs.x + lhs.rows[2].y * rhs.y + lhs.rows[2].z * rhs.z + lhs.rows[2].w * rhs.w,
+		lhs.rows[3].x * rhs.x + lhs.rows[3].y * rhs.y + lhs.rows[3].z * rhs.z + lhs.rows[3].w * rhs.w
+	};
 }
 
 /// \relates int4
@@ -3791,82 +2624,15 @@ inline int4x4& operator--( int4x4& lhs, const int )
 }
 
 /// \relates int4x4
-/// \brief Returns a bool4x4 where each component is true if the component of the left-hand type is less than the corresponding right-hand type component.
-inline bool4x4 operator<( const int4x4& lhs, const int4x4& rhs )
-{
-	return bool4x4(
-		lhs[0] < rhs[0],
-		lhs[1] < rhs[1],
-		lhs[2] < rhs[2],
-		lhs[3] < rhs[3]
-	);
-}
-
-/// \relates int4x4
-/// \brief Returns a bool4x4 where each component is true if the component of the left-hand type is less than or equal to the corresponding right-hand type component.
-inline bool4x4 operator<=( const int4x4& lhs, const int4x4& rhs )
-{
-	return bool4x4(
-		lhs[0] <= rhs[0],
-		lhs[1] <= rhs[1],
-		lhs[2] <= rhs[2],
-		lhs[3] <= rhs[3]
-	);
-}
-
-/// \relates int4x4
-/// \brief Returns a bool4x4 where each component is true if the component of the left-hand type is greater than the corresponding right-hand type component.
-inline bool4x4 operator>( const int4x4& lhs, const int4x4& rhs )
-{
-	return bool4x4(
-		lhs[0] > rhs[0],
-		lhs[1] > rhs[1],
-		lhs[2] > rhs[2],
-		lhs[3] > rhs[3]
-	);
-}
-
-/// \relates int4x4
-/// \brief Returns a bool4x4 where each component is true if the component of the left-hand type is greater than or equal to the corresponding right-hand type component.
-inline bool4x4 operator>=( const int4x4& lhs, const int4x4& rhs )
-{
-	return bool4x4(
-		lhs[0] >= rhs[0],
-		lhs[1] >= rhs[1],
-		lhs[2] >= rhs[2],
-		lhs[3] >= rhs[3]
-	);
-}
-
-/// \relates int4x4
-/// \brief Returns a copy of the int4x4 where each component has been bitwise AND'd against the given scalar value.
-inline int4x4 operator&( const int4x4& lhs, const int32_t& rhs )
-{
-	return int4x4(
-		lhs[0] & rhs,
-		lhs[1] & rhs,
-		lhs[2] & rhs,
-		lhs[3] & rhs
-	);
-}
-
-/// \relates int4x4
-/// \brief Performs a bitwise AND on the given left-hand int4x4 against the given scalar value.
-inline int4x4 operator&=( int4x4& lhs, const int32_t& rhs )
-{
-	return ( lhs = lhs & rhs );
-}
-
-/// \relates int4x4
 /// \brief Returns a copy of the int4x4 where each component of the left-hand int4x4 has been bitwise AND'd against the corresponding component of the right-hand side int4x4.
-inline int4x4 operator&( const int4x4& lhs, const int4x4& rhs )
+inline int4x4 operator&( int4x4& lhs, const int4x4& rhs )
 {
-	return int4x4(
-		lhs[0] & rhs[0],
-		lhs[1] & rhs[1],
-		lhs[2] & rhs[2],
-		lhs[3] & rhs[3]
-	);
+	return HLML_CONSTRUCT( int4x4 ) {
+		comp_and( lhs.rows[0], rhs.rows[0] ),
+		comp_and( lhs.rows[1], rhs.rows[1] ),
+		comp_and( lhs.rows[2], rhs.rows[2] ),
+		comp_and( lhs.rows[3], rhs.rows[3] )
+	};
 }
 
 /// \relates int4x4
@@ -3877,34 +2643,15 @@ inline int4x4 operator&=( int4x4& lhs, const int4x4& rhs )
 }
 
 /// \relates int4x4
-/// \brief Returns a copy of the int4x4 where each component has been bitwise OR'd against the given scalar value.
-inline int4x4 operator|( const int4x4& lhs, const int32_t& rhs )
-{
-	return int4x4(
-		lhs[0] | rhs,
-		lhs[1] | rhs,
-		lhs[2] | rhs,
-		lhs[3] | rhs
-	);
-}
-
-/// \relates int4x4
-/// \brief Performs a bitwise OR on the given left-hand int4x4 against the given scalar value.
-inline int4x4 operator|=( int4x4& lhs, const int32_t& rhs )
-{
-	return ( lhs = lhs | rhs );
-}
-
-/// \relates int4x4
 /// \brief Returns a copy of the int4x4 where each component of the left-hand int4x4 has been bitwise OR'd against the corresponding component of the right-hand side int4x4.
-inline int4x4 operator|( const int4x4& lhs, const int4x4& rhs )
+inline int4x4 operator|( int4x4& lhs, const int4x4& rhs )
 {
-	return int4x4(
-		lhs[0] | rhs[0],
-		lhs[1] | rhs[1],
-		lhs[2] | rhs[2],
-		lhs[3] | rhs[3]
-	);
+	return HLML_CONSTRUCT( int4x4 ) {
+		comp_or( lhs.rows[0], rhs.rows[0] ),
+		comp_or( lhs.rows[1], rhs.rows[1] ),
+		comp_or( lhs.rows[2], rhs.rows[2] ),
+		comp_or( lhs.rows[3], rhs.rows[3] )
+	};
 }
 
 /// \relates int4x4
@@ -3915,34 +2662,15 @@ inline int4x4 operator|=( int4x4& lhs, const int4x4& rhs )
 }
 
 /// \relates int4x4
-/// \brief Returns a copy of the int4x4 where each component has been bitwise XOR'd against the given scalar value.
-inline int4x4 operator^( const int4x4& lhs, const int32_t& rhs )
-{
-	return int4x4(
-		lhs[0] ^ rhs,
-		lhs[1] ^ rhs,
-		lhs[2] ^ rhs,
-		lhs[3] ^ rhs
-	);
-}
-
-/// \relates int4x4
-/// \brief Performs a bitwise XOR on the given left-hand int4x4 against the given scalar value.
-inline int4x4 operator^=( int4x4& lhs, const int32_t& rhs )
-{
-	return ( lhs = lhs ^ rhs );
-}
-
-/// \relates int4x4
 /// \brief Returns a copy of the int4x4 where each component of the left-hand int4x4 has been bitwise XOR'd against the corresponding component of the right-hand side int4x4.
-inline int4x4 operator^( const int4x4& lhs, const int4x4& rhs )
+inline int4x4 operator^( int4x4& lhs, const int4x4& rhs )
 {
-	return int4x4(
-		lhs[0] ^ rhs[0],
-		lhs[1] ^ rhs[1],
-		lhs[2] ^ rhs[2],
-		lhs[3] ^ rhs[3]
-	);
+	return HLML_CONSTRUCT( int4x4 ) {
+		comp_xor( lhs.rows[0], rhs.rows[0] ),
+		comp_xor( lhs.rows[1], rhs.rows[1] ),
+		comp_xor( lhs.rows[2], rhs.rows[2] ),
+		comp_xor( lhs.rows[3], rhs.rows[3] )
+	};
 }
 
 /// \relates int4x4
@@ -3953,34 +2681,15 @@ inline int4x4 operator^=( int4x4& lhs, const int4x4& rhs )
 }
 
 /// \relates int4x4
-/// \brief Returns a copy of the int4x4 where each component has been bitwise left-shifted by the given scalar value.
-inline int4x4 operator<<( const int4x4& lhs, const int32_t& rhs )
-{
-	return int4x4(
-		lhs[0] << rhs,
-		lhs[1] << rhs,
-		lhs[2] << rhs,
-		lhs[3] << rhs
-	);
-}
-
-/// \relates int4x4
-/// \brief Performs a left bitshift on the given left-hand int4x4 by the given scalar value.
-inline int4x4 operator<<=( int4x4& lhs, const int32_t& rhs )
-{
-	return ( lhs = lhs << rhs );
-}
-
-/// \relates int4x4
 /// \brief Returns a copy of the int4x4 where each component of the left-hand int4x4 has been bitwise left-shifted by the corresponding component of the right-hand side int4x4.
-inline int4x4 operator<<( const int4x4& lhs, const int4x4& rhs )
+inline int4x4 operator<<( int4x4& lhs, const int4x4& rhs )
 {
-	return int4x4(
-		lhs[0] << rhs[0],
-		lhs[1] << rhs[1],
-		lhs[2] << rhs[2],
-		lhs[3] << rhs[3]
-	);
+	return HLML_CONSTRUCT( int4x4 ) {
+		comp_shift_left( lhs.rows[0], rhs.rows[0] ),
+		comp_shift_left( lhs.rows[1], rhs.rows[1] ),
+		comp_shift_left( lhs.rows[2], rhs.rows[2] ),
+		comp_shift_left( lhs.rows[3], rhs.rows[3] )
+	};
 }
 
 /// \relates int4x4
@@ -3991,34 +2700,15 @@ inline int4x4 operator<<=( int4x4& lhs, const int4x4& rhs )
 }
 
 /// \relates int4x4
-/// \brief Returns a copy of the int4x4 where each component has been bitwise right-shifted by the given scalar value.
-inline int4x4 operator>>( const int4x4& lhs, const int32_t& rhs )
-{
-	return int4x4(
-		lhs[0] >> rhs,
-		lhs[1] >> rhs,
-		lhs[2] >> rhs,
-		lhs[3] >> rhs
-	);
-}
-
-/// \relates int4x4
-/// \brief Performs a right bitshift on the given left-hand int4x4 by the given scalar value.
-inline int4x4 operator>>=( int4x4& lhs, const int32_t& rhs )
-{
-	return ( lhs = lhs >> rhs );
-}
-
-/// \relates int4x4
 /// \brief Returns a copy of the int4x4 where each component of the left-hand int4x4 has been bitwise right-shifted by the corresponding component of the right-hand side int4x4.
-inline int4x4 operator>>( const int4x4& lhs, const int4x4& rhs )
+inline int4x4 operator>>( int4x4& lhs, const int4x4& rhs )
 {
-	return int4x4(
-		lhs[0] >> rhs[0],
-		lhs[1] >> rhs[1],
-		lhs[2] >> rhs[2],
-		lhs[3] >> rhs[3]
-	);
+	return HLML_CONSTRUCT( int4x4 ) {
+		comp_shift_right( lhs.rows[0], rhs.rows[0] ),
+		comp_shift_right( lhs.rows[1], rhs.rows[1] ),
+		comp_shift_right( lhs.rows[2], rhs.rows[2] ),
+		comp_shift_right( lhs.rows[3], rhs.rows[3] )
+	};
 }
 
 /// \relates int4x4
@@ -4030,120 +2720,118 @@ inline int4x4 operator>>=( int4x4& lhs, const int4x4& rhs )
 
 /// \relates int4x4
 /// \brief Performs a unary bitwise operation on all components of the given int4x4.
-inline int4x4 operator~( const int4x4& lhs )
+inline int4x4 operator~( int4x4& lhs )
 {
-	return int4x4(
-		~lhs[0],
-		~lhs[1],
-		~lhs[2],
-		~lhs[3]
-	);
+	return HLML_CONSTRUCT( int4x4 ) {
+		comp_unary( lhs.rows[0] ),
+		comp_unary( lhs.rows[1] ),
+		comp_unary( lhs.rows[2] ),
+		comp_unary( lhs.rows[3] )
+	};
+}
+
+inline bool4x4 operator<( const int4x4& lhs, const int4x4& rhs )
+{
+	return HLML_CONSTRUCT( bool4x4 ) {
+		cmpl( lhs.rows[0], rhs.rows[0] ),
+		cmpl( lhs.rows[1], rhs.rows[1] ),
+		cmpl( lhs.rows[2], rhs.rows[2] ),
+		cmpl( lhs.rows[3], rhs.rows[3] )
+	};
+}
+
+inline bool4x4 operator<=( const int4x4& lhs, const int4x4& rhs )
+{
+	return HLML_CONSTRUCT( bool4x4 ) {
+		cmple( lhs.rows[0], rhs.rows[0] ),
+		cmple( lhs.rows[1], rhs.rows[1] ),
+		cmple( lhs.rows[2], rhs.rows[2] ),
+		cmple( lhs.rows[3], rhs.rows[3] )
+	};
+}
+
+inline bool4x4 operator>( const int4x4& lhs, const int4x4& rhs )
+{
+	return HLML_CONSTRUCT( bool4x4 ) {
+		cmpg( lhs.rows[0], rhs.rows[0] ),
+		cmpg( lhs.rows[1], rhs.rows[1] ),
+		cmpg( lhs.rows[2], rhs.rows[2] ),
+		cmpg( lhs.rows[3], rhs.rows[3] )
+	};
+}
+
+inline bool4x4 operator>=( const int4x4& lhs, const int4x4& rhs )
+{
+	return HLML_CONSTRUCT( bool4x4 ) {
+		cmpge( lhs.rows[0], rhs.rows[0] ),
+		cmpge( lhs.rows[1], rhs.rows[1] ),
+		cmpge( lhs.rows[2], rhs.rows[2] ),
+		cmpge( lhs.rows[3], rhs.rows[3] )
+	};
 }
 
 
 // uint2x2
-/// \relates uint2x2
-/// \brief Returns a copy of the uint2x2 that has been component-wise added by the given scalar value.
-inline uint2x2 operator+( const uint2x2& lhs, const uint32_t rhs )
+inline bool operator==( const uint2x2& lhs, const uint2x2& rhs )
+{
+	return ( lhs[0] == rhs[0] )
+		&& ( lhs[1] == rhs[1] );
+}
+
+inline bool operator!=( const uint2x2& lhs, const uint2x2& rhs )
+{
+	return !( operator==( lhs, rhs ) );
+}
+
+inline uint2x2 operator+( const uint2x2& lhs, const uint32_t scalar )
 {
 	return uint2x2(
-		lhs[0] + rhs,
-		lhs[1] + rhs
+		lhs[0] + scalar,
+		lhs[1] + scalar
 	);
 }
 
-/// \relates uint2x2
-/// \brief Adds each component by the given scalar value.
-inline uint2x2 operator+=( uint2x2& lhs, const uint32_t rhs )
-{
-	return ( lhs = lhs + rhs );
-}
-
-/// \relates uint2x2
-/// \brief Returns a copy of the uint2x2 that has been component-wise added by the corresponding component of the right-hand uint2x2.
 inline uint2x2 operator+( const uint2x2& lhs, const uint2x2& rhs )
 {
+	return HLML_CONSTRUCT( uint2x2 ) {
+		comp_addv( lhs.rows[0], rhs.rows[0] ),
+		comp_addv( lhs.rows[1], rhs.rows[1] )
+	};
+}
+
+inline uint2x2 operator-( const uint2x2& lhs, const uint32_t scalar )
+{
 	return uint2x2(
-		lhs[0] + rhs[0],
-		lhs[1] + rhs[1]
+		lhs[0] - scalar,
+		lhs[1] - scalar
 	);
 }
 
-/// \relates uint2x2
-/// \brief Adds each component of the uint2x2 by the corresponding component of the right-hand uint2x2.
-inline uint2x2 operator+=( uint2x2& lhs, const uint2x2& rhs )
-{
-	return ( lhs = lhs + rhs );
-}
-
-/// \relates uint2x2
-/// \brief Returns a copy of the uint2x2 that has been component-wise subtracted by the given scalar value.
-inline uint2x2 operator-( const uint2x2& lhs, const uint32_t rhs )
-{
-	return uint2x2(
-		lhs[0] - rhs,
-		lhs[1] - rhs
-	);
-}
-
-/// \relates uint2x2
-/// \brief Subtracts each component by the given scalar value.
-inline uint2x2 operator-=( uint2x2& lhs, const uint32_t rhs )
-{
-	return ( lhs = lhs - rhs );
-}
-
-/// \relates uint2x2
-/// \brief Returns a copy of the uint2x2 that has been component-wise subtracted by the corresponding component of the right-hand uint2x2.
 inline uint2x2 operator-( const uint2x2& lhs, const uint2x2& rhs )
 {
-	return uint2x2(
-		lhs[0] - rhs[0],
-		lhs[1] - rhs[1]
-	);
-}
-
-/// \relates uint2x2
-/// \brief Subtracts each component of the uint2x2 by the corresponding component of the right-hand uint2x2.
-inline uint2x2 operator-=( uint2x2& lhs, const uint2x2& rhs )
-{
-	return ( lhs = lhs - rhs );
-}
-
-/// \relates uint2x2
-/// \brief Returns a copy of the uint2x2 that has been component-wise multiplied by the given scalar value.
-inline uint2x2 operator*( const uint2x2& lhs, const uint32_t rhs )
-{
-	return uint2x2(
-		lhs[0] * rhs,
-		lhs[1] * rhs
-	);
-}
-
-/// \relates uint2x2
-/// \brief Multiplies each component by the given scalar value.
-inline uint2x2 operator*=( uint2x2& lhs, const uint32_t rhs )
-{
-	return ( lhs = lhs * rhs );
+	return HLML_CONSTRUCT( uint2x2 ) {
+		comp_subv( lhs.rows[0], rhs.rows[0] ),
+		comp_subv( lhs.rows[1], rhs.rows[1] )
+	};
 }
 
 /// \relates uint2x2
 /// \brief Returns a copy of the matrix where each row of the left-hand matrix has been dot-producted by the corresponding column of the right-hand matrix.
 inline uint2x2 operator*( const uint2x2& lhs, const uint2x2& rhs )
 {
-	uint2 row0 = lhs[0];
-	uint2 row1 = lhs[1];
+	uint2 row0 = lhs.rows[0];
+	uint2 row1 = lhs.rows[1];
 
-	uint2 col0 = { rhs[0].x, rhs[1].x };
-	uint2 col1 = { rhs[0].y, rhs[1].y };
+	uint2 col0 = { rhs.rows[0].x, rhs.rows[1].x };
+	uint2 col1 = { rhs.rows[0].y, rhs.rows[1].y };
 
-	return uint2x2(
+	return HLML_CONSTRUCT( uint2x2 ) {
 		row0.x * col0.x + row0.y * col0.y,
 		row0.x * col1.x + row0.y * col1.y,
 
 		row1.x * col0.x + row1.y * col0.y,
 		row1.x * col1.x + row1.y * col1.y
-	);
+	};
 }
 
 inline uint2x2 operator*=( uint2x2& lhs, const uint2x2& rhs )
@@ -4151,48 +2839,30 @@ inline uint2x2 operator*=( uint2x2& lhs, const uint2x2& rhs )
 	return ( lhs = lhs * rhs );
 }
 
-/// \relates uint2x2
-/// \brief Returns a copy of the uint2x2 that has been component-wise divided by the given scalar value.
-inline uint2x2 operator/( const uint2x2& lhs, const uint32_t rhs )
+inline uint2x2 operator/( const uint2x2& lhs, const uint32_t scalar )
 {
 	return uint2x2(
-		lhs[0] / rhs,
-		lhs[1] / rhs
+		lhs[0] / scalar,
+		lhs[1] / scalar
 	);
 }
 
-/// \relates uint2x2
-/// \brief Divides each component by the given scalar value.
-inline uint2x2 operator/=( uint2x2& lhs, const uint32_t rhs )
-{
-	return ( lhs = lhs / rhs );
-}
-
-/// \relates uint2x2
-/// \brief Returns a copy of the uint2x2 that has been component-wise divided by the corresponding component of the right-hand uint2x2.
 inline uint2x2 operator/( const uint2x2& lhs, const uint2x2& rhs )
 {
-	return uint2x2(
-		lhs[0] / rhs[0],
-		lhs[1] / rhs[1]
-	);
-}
-
-/// \relates uint2x2
-/// \brief Divides each component of the uint2x2 by the corresponding component of the right-hand uint2x2.
-inline uint2x2 operator/=( uint2x2& lhs, const uint2x2& rhs )
-{
-	return ( lhs = lhs / rhs );
+	return HLML_CONSTRUCT( uint2x2 ) {
+		comp_divv( lhs.rows[0], rhs.rows[0] ),
+		comp_divv( lhs.rows[1], rhs.rows[1] )
+	};
 }
 
 /// \relates uint2
 /// \brief Returns a copy of the uint2 that has been component-wise multiplied by the corresponding component of the right-hand uint2x2.
 inline uint2 operator*( const uint2x2& lhs, const uint2& rhs )
 {
-	return uint2(
-		(uint32_t) dot( lhs[0], rhs ),
-		(uint32_t) dot( lhs[1], rhs )
-	);
+	return HLML_CONSTRUCT( uint2 ) {
+		lhs.rows[0].x * rhs.x + lhs.rows[0].y * rhs.y,
+		lhs.rows[1].x * rhs.x + lhs.rows[1].y * rhs.y
+	};
 }
 
 /// \relates uint2
@@ -4243,70 +2913,13 @@ inline uint2x2& operator--( uint2x2& lhs, const int )
 }
 
 /// \relates uint2x2
-/// \brief Returns a bool2x2 where each component is true if the component of the left-hand type is less than the corresponding right-hand type component.
-inline bool2x2 operator<( const uint2x2& lhs, const uint2x2& rhs )
-{
-	return bool2x2(
-		lhs[0] < rhs[0],
-		lhs[1] < rhs[1]
-	);
-}
-
-/// \relates uint2x2
-/// \brief Returns a bool2x2 where each component is true if the component of the left-hand type is less than or equal to the corresponding right-hand type component.
-inline bool2x2 operator<=( const uint2x2& lhs, const uint2x2& rhs )
-{
-	return bool2x2(
-		lhs[0] <= rhs[0],
-		lhs[1] <= rhs[1]
-	);
-}
-
-/// \relates uint2x2
-/// \brief Returns a bool2x2 where each component is true if the component of the left-hand type is greater than the corresponding right-hand type component.
-inline bool2x2 operator>( const uint2x2& lhs, const uint2x2& rhs )
-{
-	return bool2x2(
-		lhs[0] > rhs[0],
-		lhs[1] > rhs[1]
-	);
-}
-
-/// \relates uint2x2
-/// \brief Returns a bool2x2 where each component is true if the component of the left-hand type is greater than or equal to the corresponding right-hand type component.
-inline bool2x2 operator>=( const uint2x2& lhs, const uint2x2& rhs )
-{
-	return bool2x2(
-		lhs[0] >= rhs[0],
-		lhs[1] >= rhs[1]
-	);
-}
-
-/// \relates uint2x2
-/// \brief Returns a copy of the uint2x2 where each component has been bitwise AND'd against the given scalar value.
-inline uint2x2 operator&( const uint2x2& lhs, const uint32_t& rhs )
-{
-	return uint2x2(
-		lhs[0] & rhs,
-		lhs[1] & rhs
-	);
-}
-
-/// \relates uint2x2
-/// \brief Performs a bitwise AND on the given left-hand uint2x2 against the given scalar value.
-inline uint2x2 operator&=( uint2x2& lhs, const uint32_t& rhs )
-{
-	return ( lhs = lhs & rhs );
-}
-
-/// \relates uint2x2
 /// \brief Returns a copy of the uint2x2 where each component of the left-hand uint2x2 has been bitwise AND'd against the corresponding component of the right-hand side uint2x2.
-inline uint2x2 operator&( const uint2x2& lhs, const uint2x2& rhs )
+inline uint2x2 operator&( uint2x2& lhs, const uint2x2& rhs )
 {
-	return uint2x2(
-		lhs[0] & rhs[0],
-		lhs[1] & rhs[1]
-	);
+	return HLML_CONSTRUCT( uint2x2 ) {
+		comp_and( lhs.rows[0], rhs.rows[0] ),
+		comp_and( lhs.rows[1], rhs.rows[1] )
+	};
 }
 
 /// \relates uint2x2
@@ -4317,30 +2930,13 @@ inline uint2x2 operator&=( uint2x2& lhs, const uint2x2& rhs )
 }
 
 /// \relates uint2x2
-/// \brief Returns a copy of the uint2x2 where each component has been bitwise OR'd against the given scalar value.
-inline uint2x2 operator|( const uint2x2& lhs, const uint32_t& rhs )
-{
-	return uint2x2(
-		lhs[0] | rhs,
-		lhs[1] | rhs
-	);
-}
-
-/// \relates uint2x2
-/// \brief Performs a bitwise OR on the given left-hand uint2x2 against the given scalar value.
-inline uint2x2 operator|=( uint2x2& lhs, const uint32_t& rhs )
-{
-	return ( lhs = lhs | rhs );
-}
-
-/// \relates uint2x2
 /// \brief Returns a copy of the uint2x2 where each component of the left-hand uint2x2 has been bitwise OR'd against the corresponding component of the right-hand side uint2x2.
-inline uint2x2 operator|( const uint2x2& lhs, const uint2x2& rhs )
+inline uint2x2 operator|( uint2x2& lhs, const uint2x2& rhs )
 {
-	return uint2x2(
-		lhs[0] | rhs[0],
-		lhs[1] | rhs[1]
-	);
+	return HLML_CONSTRUCT( uint2x2 ) {
+		comp_or( lhs.rows[0], rhs.rows[0] ),
+		comp_or( lhs.rows[1], rhs.rows[1] )
+	};
 }
 
 /// \relates uint2x2
@@ -4351,30 +2947,13 @@ inline uint2x2 operator|=( uint2x2& lhs, const uint2x2& rhs )
 }
 
 /// \relates uint2x2
-/// \brief Returns a copy of the uint2x2 where each component has been bitwise XOR'd against the given scalar value.
-inline uint2x2 operator^( const uint2x2& lhs, const uint32_t& rhs )
-{
-	return uint2x2(
-		lhs[0] ^ rhs,
-		lhs[1] ^ rhs
-	);
-}
-
-/// \relates uint2x2
-/// \brief Performs a bitwise XOR on the given left-hand uint2x2 against the given scalar value.
-inline uint2x2 operator^=( uint2x2& lhs, const uint32_t& rhs )
-{
-	return ( lhs = lhs ^ rhs );
-}
-
-/// \relates uint2x2
 /// \brief Returns a copy of the uint2x2 where each component of the left-hand uint2x2 has been bitwise XOR'd against the corresponding component of the right-hand side uint2x2.
-inline uint2x2 operator^( const uint2x2& lhs, const uint2x2& rhs )
+inline uint2x2 operator^( uint2x2& lhs, const uint2x2& rhs )
 {
-	return uint2x2(
-		lhs[0] ^ rhs[0],
-		lhs[1] ^ rhs[1]
-	);
+	return HLML_CONSTRUCT( uint2x2 ) {
+		comp_xor( lhs.rows[0], rhs.rows[0] ),
+		comp_xor( lhs.rows[1], rhs.rows[1] )
+	};
 }
 
 /// \relates uint2x2
@@ -4385,30 +2964,13 @@ inline uint2x2 operator^=( uint2x2& lhs, const uint2x2& rhs )
 }
 
 /// \relates uint2x2
-/// \brief Returns a copy of the uint2x2 where each component has been bitwise left-shifted by the given scalar value.
-inline uint2x2 operator<<( const uint2x2& lhs, const uint32_t& rhs )
-{
-	return uint2x2(
-		lhs[0] << rhs,
-		lhs[1] << rhs
-	);
-}
-
-/// \relates uint2x2
-/// \brief Performs a left bitshift on the given left-hand uint2x2 by the given scalar value.
-inline uint2x2 operator<<=( uint2x2& lhs, const uint32_t& rhs )
-{
-	return ( lhs = lhs << rhs );
-}
-
-/// \relates uint2x2
 /// \brief Returns a copy of the uint2x2 where each component of the left-hand uint2x2 has been bitwise left-shifted by the corresponding component of the right-hand side uint2x2.
-inline uint2x2 operator<<( const uint2x2& lhs, const uint2x2& rhs )
+inline uint2x2 operator<<( uint2x2& lhs, const uint2x2& rhs )
 {
-	return uint2x2(
-		lhs[0] << rhs[0],
-		lhs[1] << rhs[1]
-	);
+	return HLML_CONSTRUCT( uint2x2 ) {
+		comp_shift_left( lhs.rows[0], rhs.rows[0] ),
+		comp_shift_left( lhs.rows[1], rhs.rows[1] )
+	};
 }
 
 /// \relates uint2x2
@@ -4419,30 +2981,13 @@ inline uint2x2 operator<<=( uint2x2& lhs, const uint2x2& rhs )
 }
 
 /// \relates uint2x2
-/// \brief Returns a copy of the uint2x2 where each component has been bitwise right-shifted by the given scalar value.
-inline uint2x2 operator>>( const uint2x2& lhs, const uint32_t& rhs )
-{
-	return uint2x2(
-		lhs[0] >> rhs,
-		lhs[1] >> rhs
-	);
-}
-
-/// \relates uint2x2
-/// \brief Performs a right bitshift on the given left-hand uint2x2 by the given scalar value.
-inline uint2x2 operator>>=( uint2x2& lhs, const uint32_t& rhs )
-{
-	return ( lhs = lhs >> rhs );
-}
-
-/// \relates uint2x2
 /// \brief Returns a copy of the uint2x2 where each component of the left-hand uint2x2 has been bitwise right-shifted by the corresponding component of the right-hand side uint2x2.
-inline uint2x2 operator>>( const uint2x2& lhs, const uint2x2& rhs )
+inline uint2x2 operator>>( uint2x2& lhs, const uint2x2& rhs )
 {
-	return uint2x2(
-		lhs[0] >> rhs[0],
-		lhs[1] >> rhs[1]
-	);
+	return HLML_CONSTRUCT( uint2x2 ) {
+		comp_shift_right( lhs.rows[0], rhs.rows[0] ),
+		comp_shift_right( lhs.rows[1], rhs.rows[1] )
+	};
 }
 
 /// \relates uint2x2
@@ -4454,145 +2999,124 @@ inline uint2x2 operator>>=( uint2x2& lhs, const uint2x2& rhs )
 
 /// \relates uint2x2
 /// \brief Performs a unary bitwise operation on all components of the given uint2x2.
-inline uint2x2 operator~( const uint2x2& lhs )
+inline uint2x2 operator~( uint2x2& lhs )
 {
-	return uint2x2(
-		~lhs[0],
-		~lhs[1]
-	);
+	return HLML_CONSTRUCT( uint2x2 ) {
+		comp_unary( lhs.rows[0] ),
+		comp_unary( lhs.rows[1] )
+	};
+}
+
+inline bool2x2 operator<( const uint2x2& lhs, const uint2x2& rhs )
+{
+	return HLML_CONSTRUCT( bool2x2 ) {
+		cmpl( lhs.rows[0], rhs.rows[0] ),
+		cmpl( lhs.rows[1], rhs.rows[1] )
+	};
+}
+
+inline bool2x2 operator<=( const uint2x2& lhs, const uint2x2& rhs )
+{
+	return HLML_CONSTRUCT( bool2x2 ) {
+		cmple( lhs.rows[0], rhs.rows[0] ),
+		cmple( lhs.rows[1], rhs.rows[1] )
+	};
+}
+
+inline bool2x2 operator>( const uint2x2& lhs, const uint2x2& rhs )
+{
+	return HLML_CONSTRUCT( bool2x2 ) {
+		cmpg( lhs.rows[0], rhs.rows[0] ),
+		cmpg( lhs.rows[1], rhs.rows[1] )
+	};
+}
+
+inline bool2x2 operator>=( const uint2x2& lhs, const uint2x2& rhs )
+{
+	return HLML_CONSTRUCT( bool2x2 ) {
+		cmpge( lhs.rows[0], rhs.rows[0] ),
+		cmpge( lhs.rows[1], rhs.rows[1] )
+	};
 }
 
 
 // uint2x3
-/// \relates uint2x3
-/// \brief Returns a copy of the uint2x3 that has been component-wise added by the given scalar value.
-inline uint2x3 operator+( const uint2x3& lhs, const uint32_t rhs )
+inline bool operator==( const uint2x3& lhs, const uint2x3& rhs )
+{
+	return ( lhs[0] == rhs[0] )
+		&& ( lhs[1] == rhs[1] );
+}
+
+inline bool operator!=( const uint2x3& lhs, const uint2x3& rhs )
+{
+	return !( operator==( lhs, rhs ) );
+}
+
+inline uint2x3 operator+( const uint2x3& lhs, const uint32_t scalar )
 {
 	return uint2x3(
-		lhs[0] + rhs,
-		lhs[1] + rhs
+		lhs[0] + scalar,
+		lhs[1] + scalar
 	);
 }
 
-/// \relates uint2x3
-/// \brief Adds each component by the given scalar value.
-inline uint2x3 operator+=( uint2x3& lhs, const uint32_t rhs )
-{
-	return ( lhs = lhs + rhs );
-}
-
-/// \relates uint2x3
-/// \brief Returns a copy of the uint2x3 that has been component-wise added by the corresponding component of the right-hand uint2x3.
 inline uint2x3 operator+( const uint2x3& lhs, const uint2x3& rhs )
 {
+	return HLML_CONSTRUCT( uint2x3 ) {
+		comp_addv( lhs.rows[0], rhs.rows[0] ),
+		comp_addv( lhs.rows[1], rhs.rows[1] )
+	};
+}
+
+inline uint2x3 operator-( const uint2x3& lhs, const uint32_t scalar )
+{
 	return uint2x3(
-		lhs[0] + rhs[0],
-		lhs[1] + rhs[1]
+		lhs[0] - scalar,
+		lhs[1] - scalar
 	);
 }
 
-/// \relates uint2x3
-/// \brief Adds each component of the uint2x3 by the corresponding component of the right-hand uint2x3.
-inline uint2x3 operator+=( uint2x3& lhs, const uint2x3& rhs )
-{
-	return ( lhs = lhs + rhs );
-}
-
-/// \relates uint2x3
-/// \brief Returns a copy of the uint2x3 that has been component-wise subtracted by the given scalar value.
-inline uint2x3 operator-( const uint2x3& lhs, const uint32_t rhs )
-{
-	return uint2x3(
-		lhs[0] - rhs,
-		lhs[1] - rhs
-	);
-}
-
-/// \relates uint2x3
-/// \brief Subtracts each component by the given scalar value.
-inline uint2x3 operator-=( uint2x3& lhs, const uint32_t rhs )
-{
-	return ( lhs = lhs - rhs );
-}
-
-/// \relates uint2x3
-/// \brief Returns a copy of the uint2x3 that has been component-wise subtracted by the corresponding component of the right-hand uint2x3.
 inline uint2x3 operator-( const uint2x3& lhs, const uint2x3& rhs )
 {
-	return uint2x3(
-		lhs[0] - rhs[0],
-		lhs[1] - rhs[1]
-	);
-}
-
-/// \relates uint2x3
-/// \brief Subtracts each component of the uint2x3 by the corresponding component of the right-hand uint2x3.
-inline uint2x3 operator-=( uint2x3& lhs, const uint2x3& rhs )
-{
-	return ( lhs = lhs - rhs );
-}
-
-/// \relates uint2x3
-/// \brief Returns a copy of the uint2x3 that has been component-wise multiplied by the given scalar value.
-inline uint2x3 operator*( const uint2x3& lhs, const uint32_t rhs )
-{
-	return uint2x3(
-		lhs[0] * rhs,
-		lhs[1] * rhs
-	);
-}
-
-/// \relates uint2x3
-/// \brief Multiplies each component by the given scalar value.
-inline uint2x3 operator*=( uint2x3& lhs, const uint32_t rhs )
-{
-	return ( lhs = lhs * rhs );
+	return HLML_CONSTRUCT( uint2x3 ) {
+		comp_subv( lhs.rows[0], rhs.rows[0] ),
+		comp_subv( lhs.rows[1], rhs.rows[1] )
+	};
 }
 
 /// \relates uint2x3
 /// \brief Returns a copy of the matrix where each row of the left-hand matrix has been dot-producted by the corresponding column of the right-hand matrix.
 inline uint2x2 operator*( const uint2x3& lhs, const uint3x2& rhs )
 {
-	uint3 row0 = lhs[0];
-	uint3 row1 = lhs[1];
+	uint3 row0 = lhs.rows[0];
+	uint3 row1 = lhs.rows[1];
 
-	uint3 col0 = { rhs[0].x, rhs[1].x, rhs[2].x };
-	uint3 col1 = { rhs[0].y, rhs[1].y, rhs[2].y };
+	uint3 col0 = { rhs.rows[0].x, rhs.rows[1].x, rhs.rows[2].x };
+	uint3 col1 = { rhs.rows[0].y, rhs.rows[1].y, rhs.rows[2].y };
 
-	return uint2x2(
+	return HLML_CONSTRUCT( uint2x2 ) {
 		row0.x * col0.x + row0.y * col0.y + row0.z * col0.z,
 		row0.x * col1.x + row0.y * col1.y + row0.z * col1.z,
 
 		row1.x * col0.x + row1.y * col0.y + row1.z * col0.z,
 		row1.x * col1.x + row1.y * col1.y + row1.z * col1.z
-	);
+	};
 }
 
-/// \relates uint2x3
-/// \brief Returns a copy of the uint2x3 that has been component-wise divided by the given scalar value.
-inline uint2x3 operator/( const uint2x3& lhs, const uint32_t rhs )
+inline uint2x3 operator/( const uint2x3& lhs, const uint32_t scalar )
 {
 	return uint2x3(
-		lhs[0] / rhs,
-		lhs[1] / rhs
+		lhs[0] / scalar,
+		lhs[1] / scalar
 	);
 }
 
-/// \relates uint2x3
-/// \brief Divides each component by the given scalar value.
-inline uint2x3 operator/=( uint2x3& lhs, const uint32_t rhs )
-{
-	return ( lhs = lhs / rhs );
-}
-
-/// \relates uint2x3
-/// \brief Returns a copy of the uint2x3 that has been component-wise divided by the corresponding component of the right-hand uint2x3.
 inline uint2x3 operator/( const uint2x3& lhs, const uint2x3& rhs )
 {
-	return uint2x3(
-		lhs[0] / rhs[0],
-		lhs[1] / rhs[1]
-	);
+	return HLML_CONSTRUCT( uint2x3 ) {
+		comp_divv( lhs.rows[0], rhs.rows[0] ),
+		comp_divv( lhs.rows[1], rhs.rows[1] )
+	};
 }
 
 // prefix
@@ -4636,70 +3160,13 @@ inline uint2x3& operator--( uint2x3& lhs, const int )
 }
 
 /// \relates uint2x3
-/// \brief Returns a bool2x3 where each component is true if the component of the left-hand type is less than the corresponding right-hand type component.
-inline bool2x3 operator<( const uint2x3& lhs, const uint2x3& rhs )
-{
-	return bool2x3(
-		lhs[0] < rhs[0],
-		lhs[1] < rhs[1]
-	);
-}
-
-/// \relates uint2x3
-/// \brief Returns a bool2x3 where each component is true if the component of the left-hand type is less than or equal to the corresponding right-hand type component.
-inline bool2x3 operator<=( const uint2x3& lhs, const uint2x3& rhs )
-{
-	return bool2x3(
-		lhs[0] <= rhs[0],
-		lhs[1] <= rhs[1]
-	);
-}
-
-/// \relates uint2x3
-/// \brief Returns a bool2x3 where each component is true if the component of the left-hand type is greater than the corresponding right-hand type component.
-inline bool2x3 operator>( const uint2x3& lhs, const uint2x3& rhs )
-{
-	return bool2x3(
-		lhs[0] > rhs[0],
-		lhs[1] > rhs[1]
-	);
-}
-
-/// \relates uint2x3
-/// \brief Returns a bool2x3 where each component is true if the component of the left-hand type is greater than or equal to the corresponding right-hand type component.
-inline bool2x3 operator>=( const uint2x3& lhs, const uint2x3& rhs )
-{
-	return bool2x3(
-		lhs[0] >= rhs[0],
-		lhs[1] >= rhs[1]
-	);
-}
-
-/// \relates uint2x3
-/// \brief Returns a copy of the uint2x3 where each component has been bitwise AND'd against the given scalar value.
-inline uint2x3 operator&( const uint2x3& lhs, const uint32_t& rhs )
-{
-	return uint2x3(
-		lhs[0] & rhs,
-		lhs[1] & rhs
-	);
-}
-
-/// \relates uint2x3
-/// \brief Performs a bitwise AND on the given left-hand uint2x3 against the given scalar value.
-inline uint2x3 operator&=( uint2x3& lhs, const uint32_t& rhs )
-{
-	return ( lhs = lhs & rhs );
-}
-
-/// \relates uint2x3
 /// \brief Returns a copy of the uint2x3 where each component of the left-hand uint2x3 has been bitwise AND'd against the corresponding component of the right-hand side uint2x3.
-inline uint2x3 operator&( const uint2x3& lhs, const uint2x3& rhs )
+inline uint2x3 operator&( uint2x3& lhs, const uint2x3& rhs )
 {
-	return uint2x3(
-		lhs[0] & rhs[0],
-		lhs[1] & rhs[1]
-	);
+	return HLML_CONSTRUCT( uint2x3 ) {
+		comp_and( lhs.rows[0], rhs.rows[0] ),
+		comp_and( lhs.rows[1], rhs.rows[1] )
+	};
 }
 
 /// \relates uint2x3
@@ -4710,30 +3177,13 @@ inline uint2x3 operator&=( uint2x3& lhs, const uint2x3& rhs )
 }
 
 /// \relates uint2x3
-/// \brief Returns a copy of the uint2x3 where each component has been bitwise OR'd against the given scalar value.
-inline uint2x3 operator|( const uint2x3& lhs, const uint32_t& rhs )
-{
-	return uint2x3(
-		lhs[0] | rhs,
-		lhs[1] | rhs
-	);
-}
-
-/// \relates uint2x3
-/// \brief Performs a bitwise OR on the given left-hand uint2x3 against the given scalar value.
-inline uint2x3 operator|=( uint2x3& lhs, const uint32_t& rhs )
-{
-	return ( lhs = lhs | rhs );
-}
-
-/// \relates uint2x3
 /// \brief Returns a copy of the uint2x3 where each component of the left-hand uint2x3 has been bitwise OR'd against the corresponding component of the right-hand side uint2x3.
-inline uint2x3 operator|( const uint2x3& lhs, const uint2x3& rhs )
+inline uint2x3 operator|( uint2x3& lhs, const uint2x3& rhs )
 {
-	return uint2x3(
-		lhs[0] | rhs[0],
-		lhs[1] | rhs[1]
-	);
+	return HLML_CONSTRUCT( uint2x3 ) {
+		comp_or( lhs.rows[0], rhs.rows[0] ),
+		comp_or( lhs.rows[1], rhs.rows[1] )
+	};
 }
 
 /// \relates uint2x3
@@ -4744,30 +3194,13 @@ inline uint2x3 operator|=( uint2x3& lhs, const uint2x3& rhs )
 }
 
 /// \relates uint2x3
-/// \brief Returns a copy of the uint2x3 where each component has been bitwise XOR'd against the given scalar value.
-inline uint2x3 operator^( const uint2x3& lhs, const uint32_t& rhs )
-{
-	return uint2x3(
-		lhs[0] ^ rhs,
-		lhs[1] ^ rhs
-	);
-}
-
-/// \relates uint2x3
-/// \brief Performs a bitwise XOR on the given left-hand uint2x3 against the given scalar value.
-inline uint2x3 operator^=( uint2x3& lhs, const uint32_t& rhs )
-{
-	return ( lhs = lhs ^ rhs );
-}
-
-/// \relates uint2x3
 /// \brief Returns a copy of the uint2x3 where each component of the left-hand uint2x3 has been bitwise XOR'd against the corresponding component of the right-hand side uint2x3.
-inline uint2x3 operator^( const uint2x3& lhs, const uint2x3& rhs )
+inline uint2x3 operator^( uint2x3& lhs, const uint2x3& rhs )
 {
-	return uint2x3(
-		lhs[0] ^ rhs[0],
-		lhs[1] ^ rhs[1]
-	);
+	return HLML_CONSTRUCT( uint2x3 ) {
+		comp_xor( lhs.rows[0], rhs.rows[0] ),
+		comp_xor( lhs.rows[1], rhs.rows[1] )
+	};
 }
 
 /// \relates uint2x3
@@ -4778,30 +3211,13 @@ inline uint2x3 operator^=( uint2x3& lhs, const uint2x3& rhs )
 }
 
 /// \relates uint2x3
-/// \brief Returns a copy of the uint2x3 where each component has been bitwise left-shifted by the given scalar value.
-inline uint2x3 operator<<( const uint2x3& lhs, const uint32_t& rhs )
-{
-	return uint2x3(
-		lhs[0] << rhs,
-		lhs[1] << rhs
-	);
-}
-
-/// \relates uint2x3
-/// \brief Performs a left bitshift on the given left-hand uint2x3 by the given scalar value.
-inline uint2x3 operator<<=( uint2x3& lhs, const uint32_t& rhs )
-{
-	return ( lhs = lhs << rhs );
-}
-
-/// \relates uint2x3
 /// \brief Returns a copy of the uint2x3 where each component of the left-hand uint2x3 has been bitwise left-shifted by the corresponding component of the right-hand side uint2x3.
-inline uint2x3 operator<<( const uint2x3& lhs, const uint2x3& rhs )
+inline uint2x3 operator<<( uint2x3& lhs, const uint2x3& rhs )
 {
-	return uint2x3(
-		lhs[0] << rhs[0],
-		lhs[1] << rhs[1]
-	);
+	return HLML_CONSTRUCT( uint2x3 ) {
+		comp_shift_left( lhs.rows[0], rhs.rows[0] ),
+		comp_shift_left( lhs.rows[1], rhs.rows[1] )
+	};
 }
 
 /// \relates uint2x3
@@ -4812,30 +3228,13 @@ inline uint2x3 operator<<=( uint2x3& lhs, const uint2x3& rhs )
 }
 
 /// \relates uint2x3
-/// \brief Returns a copy of the uint2x3 where each component has been bitwise right-shifted by the given scalar value.
-inline uint2x3 operator>>( const uint2x3& lhs, const uint32_t& rhs )
-{
-	return uint2x3(
-		lhs[0] >> rhs,
-		lhs[1] >> rhs
-	);
-}
-
-/// \relates uint2x3
-/// \brief Performs a right bitshift on the given left-hand uint2x3 by the given scalar value.
-inline uint2x3 operator>>=( uint2x3& lhs, const uint32_t& rhs )
-{
-	return ( lhs = lhs >> rhs );
-}
-
-/// \relates uint2x3
 /// \brief Returns a copy of the uint2x3 where each component of the left-hand uint2x3 has been bitwise right-shifted by the corresponding component of the right-hand side uint2x3.
-inline uint2x3 operator>>( const uint2x3& lhs, const uint2x3& rhs )
+inline uint2x3 operator>>( uint2x3& lhs, const uint2x3& rhs )
 {
-	return uint2x3(
-		lhs[0] >> rhs[0],
-		lhs[1] >> rhs[1]
-	);
+	return HLML_CONSTRUCT( uint2x3 ) {
+		comp_shift_right( lhs.rows[0], rhs.rows[0] ),
+		comp_shift_right( lhs.rows[1], rhs.rows[1] )
+	};
 }
 
 /// \relates uint2x3
@@ -4847,145 +3246,124 @@ inline uint2x3 operator>>=( uint2x3& lhs, const uint2x3& rhs )
 
 /// \relates uint2x3
 /// \brief Performs a unary bitwise operation on all components of the given uint2x3.
-inline uint2x3 operator~( const uint2x3& lhs )
+inline uint2x3 operator~( uint2x3& lhs )
 {
-	return uint2x3(
-		~lhs[0],
-		~lhs[1]
-	);
+	return HLML_CONSTRUCT( uint2x3 ) {
+		comp_unary( lhs.rows[0] ),
+		comp_unary( lhs.rows[1] )
+	};
+}
+
+inline bool2x3 operator<( const uint2x3& lhs, const uint2x3& rhs )
+{
+	return HLML_CONSTRUCT( bool2x3 ) {
+		cmpl( lhs.rows[0], rhs.rows[0] ),
+		cmpl( lhs.rows[1], rhs.rows[1] )
+	};
+}
+
+inline bool2x3 operator<=( const uint2x3& lhs, const uint2x3& rhs )
+{
+	return HLML_CONSTRUCT( bool2x3 ) {
+		cmple( lhs.rows[0], rhs.rows[0] ),
+		cmple( lhs.rows[1], rhs.rows[1] )
+	};
+}
+
+inline bool2x3 operator>( const uint2x3& lhs, const uint2x3& rhs )
+{
+	return HLML_CONSTRUCT( bool2x3 ) {
+		cmpg( lhs.rows[0], rhs.rows[0] ),
+		cmpg( lhs.rows[1], rhs.rows[1] )
+	};
+}
+
+inline bool2x3 operator>=( const uint2x3& lhs, const uint2x3& rhs )
+{
+	return HLML_CONSTRUCT( bool2x3 ) {
+		cmpge( lhs.rows[0], rhs.rows[0] ),
+		cmpge( lhs.rows[1], rhs.rows[1] )
+	};
 }
 
 
 // uint2x4
-/// \relates uint2x4
-/// \brief Returns a copy of the uint2x4 that has been component-wise added by the given scalar value.
-inline uint2x4 operator+( const uint2x4& lhs, const uint32_t rhs )
+inline bool operator==( const uint2x4& lhs, const uint2x4& rhs )
+{
+	return ( lhs[0] == rhs[0] )
+		&& ( lhs[1] == rhs[1] );
+}
+
+inline bool operator!=( const uint2x4& lhs, const uint2x4& rhs )
+{
+	return !( operator==( lhs, rhs ) );
+}
+
+inline uint2x4 operator+( const uint2x4& lhs, const uint32_t scalar )
 {
 	return uint2x4(
-		lhs[0] + rhs,
-		lhs[1] + rhs
+		lhs[0] + scalar,
+		lhs[1] + scalar
 	);
 }
 
-/// \relates uint2x4
-/// \brief Adds each component by the given scalar value.
-inline uint2x4 operator+=( uint2x4& lhs, const uint32_t rhs )
-{
-	return ( lhs = lhs + rhs );
-}
-
-/// \relates uint2x4
-/// \brief Returns a copy of the uint2x4 that has been component-wise added by the corresponding component of the right-hand uint2x4.
 inline uint2x4 operator+( const uint2x4& lhs, const uint2x4& rhs )
 {
+	return HLML_CONSTRUCT( uint2x4 ) {
+		comp_addv( lhs.rows[0], rhs.rows[0] ),
+		comp_addv( lhs.rows[1], rhs.rows[1] )
+	};
+}
+
+inline uint2x4 operator-( const uint2x4& lhs, const uint32_t scalar )
+{
 	return uint2x4(
-		lhs[0] + rhs[0],
-		lhs[1] + rhs[1]
+		lhs[0] - scalar,
+		lhs[1] - scalar
 	);
 }
 
-/// \relates uint2x4
-/// \brief Adds each component of the uint2x4 by the corresponding component of the right-hand uint2x4.
-inline uint2x4 operator+=( uint2x4& lhs, const uint2x4& rhs )
-{
-	return ( lhs = lhs + rhs );
-}
-
-/// \relates uint2x4
-/// \brief Returns a copy of the uint2x4 that has been component-wise subtracted by the given scalar value.
-inline uint2x4 operator-( const uint2x4& lhs, const uint32_t rhs )
-{
-	return uint2x4(
-		lhs[0] - rhs,
-		lhs[1] - rhs
-	);
-}
-
-/// \relates uint2x4
-/// \brief Subtracts each component by the given scalar value.
-inline uint2x4 operator-=( uint2x4& lhs, const uint32_t rhs )
-{
-	return ( lhs = lhs - rhs );
-}
-
-/// \relates uint2x4
-/// \brief Returns a copy of the uint2x4 that has been component-wise subtracted by the corresponding component of the right-hand uint2x4.
 inline uint2x4 operator-( const uint2x4& lhs, const uint2x4& rhs )
 {
-	return uint2x4(
-		lhs[0] - rhs[0],
-		lhs[1] - rhs[1]
-	);
-}
-
-/// \relates uint2x4
-/// \brief Subtracts each component of the uint2x4 by the corresponding component of the right-hand uint2x4.
-inline uint2x4 operator-=( uint2x4& lhs, const uint2x4& rhs )
-{
-	return ( lhs = lhs - rhs );
-}
-
-/// \relates uint2x4
-/// \brief Returns a copy of the uint2x4 that has been component-wise multiplied by the given scalar value.
-inline uint2x4 operator*( const uint2x4& lhs, const uint32_t rhs )
-{
-	return uint2x4(
-		lhs[0] * rhs,
-		lhs[1] * rhs
-	);
-}
-
-/// \relates uint2x4
-/// \brief Multiplies each component by the given scalar value.
-inline uint2x4 operator*=( uint2x4& lhs, const uint32_t rhs )
-{
-	return ( lhs = lhs * rhs );
+	return HLML_CONSTRUCT( uint2x4 ) {
+		comp_subv( lhs.rows[0], rhs.rows[0] ),
+		comp_subv( lhs.rows[1], rhs.rows[1] )
+	};
 }
 
 /// \relates uint2x4
 /// \brief Returns a copy of the matrix where each row of the left-hand matrix has been dot-producted by the corresponding column of the right-hand matrix.
 inline uint2x2 operator*( const uint2x4& lhs, const uint4x2& rhs )
 {
-	uint4 row0 = lhs[0];
-	uint4 row1 = lhs[1];
+	uint4 row0 = lhs.rows[0];
+	uint4 row1 = lhs.rows[1];
 
-	uint4 col0 = { rhs[0].x, rhs[1].x, rhs[2].x, rhs[3].x };
-	uint4 col1 = { rhs[0].y, rhs[1].y, rhs[2].y, rhs[3].y };
+	uint4 col0 = { rhs.rows[0].x, rhs.rows[1].x, rhs.rows[2].x, rhs.rows[3].x };
+	uint4 col1 = { rhs.rows[0].y, rhs.rows[1].y, rhs.rows[2].y, rhs.rows[3].y };
 
-	return uint2x2(
+	return HLML_CONSTRUCT( uint2x2 ) {
 		row0.x * col0.x + row0.y * col0.y + row0.z * col0.z + row0.w * col0.w,
 		row0.x * col1.x + row0.y * col1.y + row0.z * col1.z + row0.w * col1.w,
 
 		row1.x * col0.x + row1.y * col0.y + row1.z * col0.z + row1.w * col0.w,
 		row1.x * col1.x + row1.y * col1.y + row1.z * col1.z + row1.w * col1.w
-	);
+	};
 }
 
-/// \relates uint2x4
-/// \brief Returns a copy of the uint2x4 that has been component-wise divided by the given scalar value.
-inline uint2x4 operator/( const uint2x4& lhs, const uint32_t rhs )
+inline uint2x4 operator/( const uint2x4& lhs, const uint32_t scalar )
 {
 	return uint2x4(
-		lhs[0] / rhs,
-		lhs[1] / rhs
+		lhs[0] / scalar,
+		lhs[1] / scalar
 	);
 }
 
-/// \relates uint2x4
-/// \brief Divides each component by the given scalar value.
-inline uint2x4 operator/=( uint2x4& lhs, const uint32_t rhs )
-{
-	return ( lhs = lhs / rhs );
-}
-
-/// \relates uint2x4
-/// \brief Returns a copy of the uint2x4 that has been component-wise divided by the corresponding component of the right-hand uint2x4.
 inline uint2x4 operator/( const uint2x4& lhs, const uint2x4& rhs )
 {
-	return uint2x4(
-		lhs[0] / rhs[0],
-		lhs[1] / rhs[1]
-	);
+	return HLML_CONSTRUCT( uint2x4 ) {
+		comp_divv( lhs.rows[0], rhs.rows[0] ),
+		comp_divv( lhs.rows[1], rhs.rows[1] )
+	};
 }
 
 // prefix
@@ -5029,70 +3407,13 @@ inline uint2x4& operator--( uint2x4& lhs, const int )
 }
 
 /// \relates uint2x4
-/// \brief Returns a bool2x4 where each component is true if the component of the left-hand type is less than the corresponding right-hand type component.
-inline bool2x4 operator<( const uint2x4& lhs, const uint2x4& rhs )
-{
-	return bool2x4(
-		lhs[0] < rhs[0],
-		lhs[1] < rhs[1]
-	);
-}
-
-/// \relates uint2x4
-/// \brief Returns a bool2x4 where each component is true if the component of the left-hand type is less than or equal to the corresponding right-hand type component.
-inline bool2x4 operator<=( const uint2x4& lhs, const uint2x4& rhs )
-{
-	return bool2x4(
-		lhs[0] <= rhs[0],
-		lhs[1] <= rhs[1]
-	);
-}
-
-/// \relates uint2x4
-/// \brief Returns a bool2x4 where each component is true if the component of the left-hand type is greater than the corresponding right-hand type component.
-inline bool2x4 operator>( const uint2x4& lhs, const uint2x4& rhs )
-{
-	return bool2x4(
-		lhs[0] > rhs[0],
-		lhs[1] > rhs[1]
-	);
-}
-
-/// \relates uint2x4
-/// \brief Returns a bool2x4 where each component is true if the component of the left-hand type is greater than or equal to the corresponding right-hand type component.
-inline bool2x4 operator>=( const uint2x4& lhs, const uint2x4& rhs )
-{
-	return bool2x4(
-		lhs[0] >= rhs[0],
-		lhs[1] >= rhs[1]
-	);
-}
-
-/// \relates uint2x4
-/// \brief Returns a copy of the uint2x4 where each component has been bitwise AND'd against the given scalar value.
-inline uint2x4 operator&( const uint2x4& lhs, const uint32_t& rhs )
-{
-	return uint2x4(
-		lhs[0] & rhs,
-		lhs[1] & rhs
-	);
-}
-
-/// \relates uint2x4
-/// \brief Performs a bitwise AND on the given left-hand uint2x4 against the given scalar value.
-inline uint2x4 operator&=( uint2x4& lhs, const uint32_t& rhs )
-{
-	return ( lhs = lhs & rhs );
-}
-
-/// \relates uint2x4
 /// \brief Returns a copy of the uint2x4 where each component of the left-hand uint2x4 has been bitwise AND'd against the corresponding component of the right-hand side uint2x4.
-inline uint2x4 operator&( const uint2x4& lhs, const uint2x4& rhs )
+inline uint2x4 operator&( uint2x4& lhs, const uint2x4& rhs )
 {
-	return uint2x4(
-		lhs[0] & rhs[0],
-		lhs[1] & rhs[1]
-	);
+	return HLML_CONSTRUCT( uint2x4 ) {
+		comp_and( lhs.rows[0], rhs.rows[0] ),
+		comp_and( lhs.rows[1], rhs.rows[1] )
+	};
 }
 
 /// \relates uint2x4
@@ -5103,30 +3424,13 @@ inline uint2x4 operator&=( uint2x4& lhs, const uint2x4& rhs )
 }
 
 /// \relates uint2x4
-/// \brief Returns a copy of the uint2x4 where each component has been bitwise OR'd against the given scalar value.
-inline uint2x4 operator|( const uint2x4& lhs, const uint32_t& rhs )
-{
-	return uint2x4(
-		lhs[0] | rhs,
-		lhs[1] | rhs
-	);
-}
-
-/// \relates uint2x4
-/// \brief Performs a bitwise OR on the given left-hand uint2x4 against the given scalar value.
-inline uint2x4 operator|=( uint2x4& lhs, const uint32_t& rhs )
-{
-	return ( lhs = lhs | rhs );
-}
-
-/// \relates uint2x4
 /// \brief Returns a copy of the uint2x4 where each component of the left-hand uint2x4 has been bitwise OR'd against the corresponding component of the right-hand side uint2x4.
-inline uint2x4 operator|( const uint2x4& lhs, const uint2x4& rhs )
+inline uint2x4 operator|( uint2x4& lhs, const uint2x4& rhs )
 {
-	return uint2x4(
-		lhs[0] | rhs[0],
-		lhs[1] | rhs[1]
-	);
+	return HLML_CONSTRUCT( uint2x4 ) {
+		comp_or( lhs.rows[0], rhs.rows[0] ),
+		comp_or( lhs.rows[1], rhs.rows[1] )
+	};
 }
 
 /// \relates uint2x4
@@ -5137,30 +3441,13 @@ inline uint2x4 operator|=( uint2x4& lhs, const uint2x4& rhs )
 }
 
 /// \relates uint2x4
-/// \brief Returns a copy of the uint2x4 where each component has been bitwise XOR'd against the given scalar value.
-inline uint2x4 operator^( const uint2x4& lhs, const uint32_t& rhs )
-{
-	return uint2x4(
-		lhs[0] ^ rhs,
-		lhs[1] ^ rhs
-	);
-}
-
-/// \relates uint2x4
-/// \brief Performs a bitwise XOR on the given left-hand uint2x4 against the given scalar value.
-inline uint2x4 operator^=( uint2x4& lhs, const uint32_t& rhs )
-{
-	return ( lhs = lhs ^ rhs );
-}
-
-/// \relates uint2x4
 /// \brief Returns a copy of the uint2x4 where each component of the left-hand uint2x4 has been bitwise XOR'd against the corresponding component of the right-hand side uint2x4.
-inline uint2x4 operator^( const uint2x4& lhs, const uint2x4& rhs )
+inline uint2x4 operator^( uint2x4& lhs, const uint2x4& rhs )
 {
-	return uint2x4(
-		lhs[0] ^ rhs[0],
-		lhs[1] ^ rhs[1]
-	);
+	return HLML_CONSTRUCT( uint2x4 ) {
+		comp_xor( lhs.rows[0], rhs.rows[0] ),
+		comp_xor( lhs.rows[1], rhs.rows[1] )
+	};
 }
 
 /// \relates uint2x4
@@ -5171,30 +3458,13 @@ inline uint2x4 operator^=( uint2x4& lhs, const uint2x4& rhs )
 }
 
 /// \relates uint2x4
-/// \brief Returns a copy of the uint2x4 where each component has been bitwise left-shifted by the given scalar value.
-inline uint2x4 operator<<( const uint2x4& lhs, const uint32_t& rhs )
-{
-	return uint2x4(
-		lhs[0] << rhs,
-		lhs[1] << rhs
-	);
-}
-
-/// \relates uint2x4
-/// \brief Performs a left bitshift on the given left-hand uint2x4 by the given scalar value.
-inline uint2x4 operator<<=( uint2x4& lhs, const uint32_t& rhs )
-{
-	return ( lhs = lhs << rhs );
-}
-
-/// \relates uint2x4
 /// \brief Returns a copy of the uint2x4 where each component of the left-hand uint2x4 has been bitwise left-shifted by the corresponding component of the right-hand side uint2x4.
-inline uint2x4 operator<<( const uint2x4& lhs, const uint2x4& rhs )
+inline uint2x4 operator<<( uint2x4& lhs, const uint2x4& rhs )
 {
-	return uint2x4(
-		lhs[0] << rhs[0],
-		lhs[1] << rhs[1]
-	);
+	return HLML_CONSTRUCT( uint2x4 ) {
+		comp_shift_left( lhs.rows[0], rhs.rows[0] ),
+		comp_shift_left( lhs.rows[1], rhs.rows[1] )
+	};
 }
 
 /// \relates uint2x4
@@ -5205,30 +3475,13 @@ inline uint2x4 operator<<=( uint2x4& lhs, const uint2x4& rhs )
 }
 
 /// \relates uint2x4
-/// \brief Returns a copy of the uint2x4 where each component has been bitwise right-shifted by the given scalar value.
-inline uint2x4 operator>>( const uint2x4& lhs, const uint32_t& rhs )
-{
-	return uint2x4(
-		lhs[0] >> rhs,
-		lhs[1] >> rhs
-	);
-}
-
-/// \relates uint2x4
-/// \brief Performs a right bitshift on the given left-hand uint2x4 by the given scalar value.
-inline uint2x4 operator>>=( uint2x4& lhs, const uint32_t& rhs )
-{
-	return ( lhs = lhs >> rhs );
-}
-
-/// \relates uint2x4
 /// \brief Returns a copy of the uint2x4 where each component of the left-hand uint2x4 has been bitwise right-shifted by the corresponding component of the right-hand side uint2x4.
-inline uint2x4 operator>>( const uint2x4& lhs, const uint2x4& rhs )
+inline uint2x4 operator>>( uint2x4& lhs, const uint2x4& rhs )
 {
-	return uint2x4(
-		lhs[0] >> rhs[0],
-		lhs[1] >> rhs[1]
-	);
+	return HLML_CONSTRUCT( uint2x4 ) {
+		comp_shift_right( lhs.rows[0], rhs.rows[0] ),
+		comp_shift_right( lhs.rows[1], rhs.rows[1] )
+	};
 }
 
 /// \relates uint2x4
@@ -5240,119 +3493,109 @@ inline uint2x4 operator>>=( uint2x4& lhs, const uint2x4& rhs )
 
 /// \relates uint2x4
 /// \brief Performs a unary bitwise operation on all components of the given uint2x4.
-inline uint2x4 operator~( const uint2x4& lhs )
+inline uint2x4 operator~( uint2x4& lhs )
 {
-	return uint2x4(
-		~lhs[0],
-		~lhs[1]
-	);
+	return HLML_CONSTRUCT( uint2x4 ) {
+		comp_unary( lhs.rows[0] ),
+		comp_unary( lhs.rows[1] )
+	};
+}
+
+inline bool2x4 operator<( const uint2x4& lhs, const uint2x4& rhs )
+{
+	return HLML_CONSTRUCT( bool2x4 ) {
+		cmpl( lhs.rows[0], rhs.rows[0] ),
+		cmpl( lhs.rows[1], rhs.rows[1] )
+	};
+}
+
+inline bool2x4 operator<=( const uint2x4& lhs, const uint2x4& rhs )
+{
+	return HLML_CONSTRUCT( bool2x4 ) {
+		cmple( lhs.rows[0], rhs.rows[0] ),
+		cmple( lhs.rows[1], rhs.rows[1] )
+	};
+}
+
+inline bool2x4 operator>( const uint2x4& lhs, const uint2x4& rhs )
+{
+	return HLML_CONSTRUCT( bool2x4 ) {
+		cmpg( lhs.rows[0], rhs.rows[0] ),
+		cmpg( lhs.rows[1], rhs.rows[1] )
+	};
+}
+
+inline bool2x4 operator>=( const uint2x4& lhs, const uint2x4& rhs )
+{
+	return HLML_CONSTRUCT( bool2x4 ) {
+		cmpge( lhs.rows[0], rhs.rows[0] ),
+		cmpge( lhs.rows[1], rhs.rows[1] )
+	};
 }
 
 
 // uint3x2
-/// \relates uint3x2
-/// \brief Returns a copy of the uint3x2 that has been component-wise added by the given scalar value.
-inline uint3x2 operator+( const uint3x2& lhs, const uint32_t rhs )
+inline bool operator==( const uint3x2& lhs, const uint3x2& rhs )
+{
+	return ( lhs[0] == rhs[0] )
+		&& ( lhs[1] == rhs[1] )
+		&& ( lhs[2] == rhs[2] );
+}
+
+inline bool operator!=( const uint3x2& lhs, const uint3x2& rhs )
+{
+	return !( operator==( lhs, rhs ) );
+}
+
+inline uint3x2 operator+( const uint3x2& lhs, const uint32_t scalar )
 {
 	return uint3x2(
-		lhs[0] + rhs,
-		lhs[1] + rhs,
-		lhs[2] + rhs
+		lhs[0] + scalar,
+		lhs[1] + scalar,
+		lhs[2] + scalar
 	);
 }
 
-/// \relates uint3x2
-/// \brief Adds each component by the given scalar value.
-inline uint3x2 operator+=( uint3x2& lhs, const uint32_t rhs )
-{
-	return ( lhs = lhs + rhs );
-}
-
-/// \relates uint3x2
-/// \brief Returns a copy of the uint3x2 that has been component-wise added by the corresponding component of the right-hand uint3x2.
 inline uint3x2 operator+( const uint3x2& lhs, const uint3x2& rhs )
 {
+	return HLML_CONSTRUCT( uint3x2 ) {
+		comp_addv( lhs.rows[0], rhs.rows[0] ),
+		comp_addv( lhs.rows[1], rhs.rows[1] ),
+		comp_addv( lhs.rows[2], rhs.rows[2] )
+	};
+}
+
+inline uint3x2 operator-( const uint3x2& lhs, const uint32_t scalar )
+{
 	return uint3x2(
-		lhs[0] + rhs[0],
-		lhs[1] + rhs[1],
-		lhs[2] + rhs[2]
+		lhs[0] - scalar,
+		lhs[1] - scalar,
+		lhs[2] - scalar
 	);
 }
 
-/// \relates uint3x2
-/// \brief Adds each component of the uint3x2 by the corresponding component of the right-hand uint3x2.
-inline uint3x2 operator+=( uint3x2& lhs, const uint3x2& rhs )
-{
-	return ( lhs = lhs + rhs );
-}
-
-/// \relates uint3x2
-/// \brief Returns a copy of the uint3x2 that has been component-wise subtracted by the given scalar value.
-inline uint3x2 operator-( const uint3x2& lhs, const uint32_t rhs )
-{
-	return uint3x2(
-		lhs[0] - rhs,
-		lhs[1] - rhs,
-		lhs[2] - rhs
-	);
-}
-
-/// \relates uint3x2
-/// \brief Subtracts each component by the given scalar value.
-inline uint3x2 operator-=( uint3x2& lhs, const uint32_t rhs )
-{
-	return ( lhs = lhs - rhs );
-}
-
-/// \relates uint3x2
-/// \brief Returns a copy of the uint3x2 that has been component-wise subtracted by the corresponding component of the right-hand uint3x2.
 inline uint3x2 operator-( const uint3x2& lhs, const uint3x2& rhs )
 {
-	return uint3x2(
-		lhs[0] - rhs[0],
-		lhs[1] - rhs[1],
-		lhs[2] - rhs[2]
-	);
-}
-
-/// \relates uint3x2
-/// \brief Subtracts each component of the uint3x2 by the corresponding component of the right-hand uint3x2.
-inline uint3x2 operator-=( uint3x2& lhs, const uint3x2& rhs )
-{
-	return ( lhs = lhs - rhs );
-}
-
-/// \relates uint3x2
-/// \brief Returns a copy of the uint3x2 that has been component-wise multiplied by the given scalar value.
-inline uint3x2 operator*( const uint3x2& lhs, const uint32_t rhs )
-{
-	return uint3x2(
-		lhs[0] * rhs,
-		lhs[1] * rhs,
-		lhs[2] * rhs
-	);
-}
-
-/// \relates uint3x2
-/// \brief Multiplies each component by the given scalar value.
-inline uint3x2 operator*=( uint3x2& lhs, const uint32_t rhs )
-{
-	return ( lhs = lhs * rhs );
+	return HLML_CONSTRUCT( uint3x2 ) {
+		comp_subv( lhs.rows[0], rhs.rows[0] ),
+		comp_subv( lhs.rows[1], rhs.rows[1] ),
+		comp_subv( lhs.rows[2], rhs.rows[2] )
+	};
 }
 
 /// \relates uint3x2
 /// \brief Returns a copy of the matrix where each row of the left-hand matrix has been dot-producted by the corresponding column of the right-hand matrix.
 inline uint3x3 operator*( const uint3x2& lhs, const uint2x3& rhs )
 {
-	uint2 row0 = lhs[0];
-	uint2 row1 = lhs[1];
-	uint2 row2 = lhs[2];
+	uint2 row0 = lhs.rows[0];
+	uint2 row1 = lhs.rows[1];
+	uint2 row2 = lhs.rows[2];
 
-	uint2 col0 = { rhs[0].x, rhs[1].x };
-	uint2 col1 = { rhs[0].y, rhs[1].y };
-	uint2 col2 = { rhs[0].z, rhs[1].z };
+	uint2 col0 = { rhs.rows[0].x, rhs.rows[1].x };
+	uint2 col1 = { rhs.rows[0].y, rhs.rows[1].y };
+	uint2 col2 = { rhs.rows[0].z, rhs.rows[1].z };
 
-	return uint3x3(
+	return HLML_CONSTRUCT( uint3x3 ) {
 		row0.x * col0.x + row0.y * col0.y,
 		row0.x * col1.x + row0.y * col1.y,
 		row0.x * col2.x + row0.y * col2.y,
@@ -5364,36 +3607,25 @@ inline uint3x3 operator*( const uint3x2& lhs, const uint2x3& rhs )
 		row2.x * col0.x + row2.y * col0.y,
 		row2.x * col1.x + row2.y * col1.y,
 		row2.x * col2.x + row2.y * col2.y
-	);
+	};
 }
 
-/// \relates uint3x2
-/// \brief Returns a copy of the uint3x2 that has been component-wise divided by the given scalar value.
-inline uint3x2 operator/( const uint3x2& lhs, const uint32_t rhs )
+inline uint3x2 operator/( const uint3x2& lhs, const uint32_t scalar )
 {
 	return uint3x2(
-		lhs[0] / rhs,
-		lhs[1] / rhs,
-		lhs[2] / rhs
+		lhs[0] / scalar,
+		lhs[1] / scalar,
+		lhs[2] / scalar
 	);
 }
 
-/// \relates uint3x2
-/// \brief Divides each component by the given scalar value.
-inline uint3x2 operator/=( uint3x2& lhs, const uint32_t rhs )
-{
-	return ( lhs = lhs / rhs );
-}
-
-/// \relates uint3x2
-/// \brief Returns a copy of the uint3x2 that has been component-wise divided by the corresponding component of the right-hand uint3x2.
 inline uint3x2 operator/( const uint3x2& lhs, const uint3x2& rhs )
 {
-	return uint3x2(
-		lhs[0] / rhs[0],
-		lhs[1] / rhs[1],
-		lhs[2] / rhs[2]
-	);
+	return HLML_CONSTRUCT( uint3x2 ) {
+		comp_divv( lhs.rows[0], rhs.rows[0] ),
+		comp_divv( lhs.rows[1], rhs.rows[1] ),
+		comp_divv( lhs.rows[2], rhs.rows[2] )
+	};
 }
 
 // prefix
@@ -5441,76 +3673,14 @@ inline uint3x2& operator--( uint3x2& lhs, const int )
 }
 
 /// \relates uint3x2
-/// \brief Returns a bool3x2 where each component is true if the component of the left-hand type is less than the corresponding right-hand type component.
-inline bool3x2 operator<( const uint3x2& lhs, const uint3x2& rhs )
-{
-	return bool3x2(
-		lhs[0] < rhs[0],
-		lhs[1] < rhs[1],
-		lhs[2] < rhs[2]
-	);
-}
-
-/// \relates uint3x2
-/// \brief Returns a bool3x2 where each component is true if the component of the left-hand type is less than or equal to the corresponding right-hand type component.
-inline bool3x2 operator<=( const uint3x2& lhs, const uint3x2& rhs )
-{
-	return bool3x2(
-		lhs[0] <= rhs[0],
-		lhs[1] <= rhs[1],
-		lhs[2] <= rhs[2]
-	);
-}
-
-/// \relates uint3x2
-/// \brief Returns a bool3x2 where each component is true if the component of the left-hand type is greater than the corresponding right-hand type component.
-inline bool3x2 operator>( const uint3x2& lhs, const uint3x2& rhs )
-{
-	return bool3x2(
-		lhs[0] > rhs[0],
-		lhs[1] > rhs[1],
-		lhs[2] > rhs[2]
-	);
-}
-
-/// \relates uint3x2
-/// \brief Returns a bool3x2 where each component is true if the component of the left-hand type is greater than or equal to the corresponding right-hand type component.
-inline bool3x2 operator>=( const uint3x2& lhs, const uint3x2& rhs )
-{
-	return bool3x2(
-		lhs[0] >= rhs[0],
-		lhs[1] >= rhs[1],
-		lhs[2] >= rhs[2]
-	);
-}
-
-/// \relates uint3x2
-/// \brief Returns a copy of the uint3x2 where each component has been bitwise AND'd against the given scalar value.
-inline uint3x2 operator&( const uint3x2& lhs, const uint32_t& rhs )
-{
-	return uint3x2(
-		lhs[0] & rhs,
-		lhs[1] & rhs,
-		lhs[2] & rhs
-	);
-}
-
-/// \relates uint3x2
-/// \brief Performs a bitwise AND on the given left-hand uint3x2 against the given scalar value.
-inline uint3x2 operator&=( uint3x2& lhs, const uint32_t& rhs )
-{
-	return ( lhs = lhs & rhs );
-}
-
-/// \relates uint3x2
 /// \brief Returns a copy of the uint3x2 where each component of the left-hand uint3x2 has been bitwise AND'd against the corresponding component of the right-hand side uint3x2.
-inline uint3x2 operator&( const uint3x2& lhs, const uint3x2& rhs )
+inline uint3x2 operator&( uint3x2& lhs, const uint3x2& rhs )
 {
-	return uint3x2(
-		lhs[0] & rhs[0],
-		lhs[1] & rhs[1],
-		lhs[2] & rhs[2]
-	);
+	return HLML_CONSTRUCT( uint3x2 ) {
+		comp_and( lhs.rows[0], rhs.rows[0] ),
+		comp_and( lhs.rows[1], rhs.rows[1] ),
+		comp_and( lhs.rows[2], rhs.rows[2] )
+	};
 }
 
 /// \relates uint3x2
@@ -5521,32 +3691,14 @@ inline uint3x2 operator&=( uint3x2& lhs, const uint3x2& rhs )
 }
 
 /// \relates uint3x2
-/// \brief Returns a copy of the uint3x2 where each component has been bitwise OR'd against the given scalar value.
-inline uint3x2 operator|( const uint3x2& lhs, const uint32_t& rhs )
-{
-	return uint3x2(
-		lhs[0] | rhs,
-		lhs[1] | rhs,
-		lhs[2] | rhs
-	);
-}
-
-/// \relates uint3x2
-/// \brief Performs a bitwise OR on the given left-hand uint3x2 against the given scalar value.
-inline uint3x2 operator|=( uint3x2& lhs, const uint32_t& rhs )
-{
-	return ( lhs = lhs | rhs );
-}
-
-/// \relates uint3x2
 /// \brief Returns a copy of the uint3x2 where each component of the left-hand uint3x2 has been bitwise OR'd against the corresponding component of the right-hand side uint3x2.
-inline uint3x2 operator|( const uint3x2& lhs, const uint3x2& rhs )
+inline uint3x2 operator|( uint3x2& lhs, const uint3x2& rhs )
 {
-	return uint3x2(
-		lhs[0] | rhs[0],
-		lhs[1] | rhs[1],
-		lhs[2] | rhs[2]
-	);
+	return HLML_CONSTRUCT( uint3x2 ) {
+		comp_or( lhs.rows[0], rhs.rows[0] ),
+		comp_or( lhs.rows[1], rhs.rows[1] ),
+		comp_or( lhs.rows[2], rhs.rows[2] )
+	};
 }
 
 /// \relates uint3x2
@@ -5557,32 +3709,14 @@ inline uint3x2 operator|=( uint3x2& lhs, const uint3x2& rhs )
 }
 
 /// \relates uint3x2
-/// \brief Returns a copy of the uint3x2 where each component has been bitwise XOR'd against the given scalar value.
-inline uint3x2 operator^( const uint3x2& lhs, const uint32_t& rhs )
-{
-	return uint3x2(
-		lhs[0] ^ rhs,
-		lhs[1] ^ rhs,
-		lhs[2] ^ rhs
-	);
-}
-
-/// \relates uint3x2
-/// \brief Performs a bitwise XOR on the given left-hand uint3x2 against the given scalar value.
-inline uint3x2 operator^=( uint3x2& lhs, const uint32_t& rhs )
-{
-	return ( lhs = lhs ^ rhs );
-}
-
-/// \relates uint3x2
 /// \brief Returns a copy of the uint3x2 where each component of the left-hand uint3x2 has been bitwise XOR'd against the corresponding component of the right-hand side uint3x2.
-inline uint3x2 operator^( const uint3x2& lhs, const uint3x2& rhs )
+inline uint3x2 operator^( uint3x2& lhs, const uint3x2& rhs )
 {
-	return uint3x2(
-		lhs[0] ^ rhs[0],
-		lhs[1] ^ rhs[1],
-		lhs[2] ^ rhs[2]
-	);
+	return HLML_CONSTRUCT( uint3x2 ) {
+		comp_xor( lhs.rows[0], rhs.rows[0] ),
+		comp_xor( lhs.rows[1], rhs.rows[1] ),
+		comp_xor( lhs.rows[2], rhs.rows[2] )
+	};
 }
 
 /// \relates uint3x2
@@ -5593,32 +3727,14 @@ inline uint3x2 operator^=( uint3x2& lhs, const uint3x2& rhs )
 }
 
 /// \relates uint3x2
-/// \brief Returns a copy of the uint3x2 where each component has been bitwise left-shifted by the given scalar value.
-inline uint3x2 operator<<( const uint3x2& lhs, const uint32_t& rhs )
-{
-	return uint3x2(
-		lhs[0] << rhs,
-		lhs[1] << rhs,
-		lhs[2] << rhs
-	);
-}
-
-/// \relates uint3x2
-/// \brief Performs a left bitshift on the given left-hand uint3x2 by the given scalar value.
-inline uint3x2 operator<<=( uint3x2& lhs, const uint32_t& rhs )
-{
-	return ( lhs = lhs << rhs );
-}
-
-/// \relates uint3x2
 /// \brief Returns a copy of the uint3x2 where each component of the left-hand uint3x2 has been bitwise left-shifted by the corresponding component of the right-hand side uint3x2.
-inline uint3x2 operator<<( const uint3x2& lhs, const uint3x2& rhs )
+inline uint3x2 operator<<( uint3x2& lhs, const uint3x2& rhs )
 {
-	return uint3x2(
-		lhs[0] << rhs[0],
-		lhs[1] << rhs[1],
-		lhs[2] << rhs[2]
-	);
+	return HLML_CONSTRUCT( uint3x2 ) {
+		comp_shift_left( lhs.rows[0], rhs.rows[0] ),
+		comp_shift_left( lhs.rows[1], rhs.rows[1] ),
+		comp_shift_left( lhs.rows[2], rhs.rows[2] )
+	};
 }
 
 /// \relates uint3x2
@@ -5629,32 +3745,14 @@ inline uint3x2 operator<<=( uint3x2& lhs, const uint3x2& rhs )
 }
 
 /// \relates uint3x2
-/// \brief Returns a copy of the uint3x2 where each component has been bitwise right-shifted by the given scalar value.
-inline uint3x2 operator>>( const uint3x2& lhs, const uint32_t& rhs )
-{
-	return uint3x2(
-		lhs[0] >> rhs,
-		lhs[1] >> rhs,
-		lhs[2] >> rhs
-	);
-}
-
-/// \relates uint3x2
-/// \brief Performs a right bitshift on the given left-hand uint3x2 by the given scalar value.
-inline uint3x2 operator>>=( uint3x2& lhs, const uint32_t& rhs )
-{
-	return ( lhs = lhs >> rhs );
-}
-
-/// \relates uint3x2
 /// \brief Returns a copy of the uint3x2 where each component of the left-hand uint3x2 has been bitwise right-shifted by the corresponding component of the right-hand side uint3x2.
-inline uint3x2 operator>>( const uint3x2& lhs, const uint3x2& rhs )
+inline uint3x2 operator>>( uint3x2& lhs, const uint3x2& rhs )
 {
-	return uint3x2(
-		lhs[0] >> rhs[0],
-		lhs[1] >> rhs[1],
-		lhs[2] >> rhs[2]
-	);
+	return HLML_CONSTRUCT( uint3x2 ) {
+		comp_shift_right( lhs.rows[0], rhs.rows[0] ),
+		comp_shift_right( lhs.rows[1], rhs.rows[1] ),
+		comp_shift_right( lhs.rows[2], rhs.rows[2] )
+	};
 }
 
 /// \relates uint3x2
@@ -5666,120 +3764,114 @@ inline uint3x2 operator>>=( uint3x2& lhs, const uint3x2& rhs )
 
 /// \relates uint3x2
 /// \brief Performs a unary bitwise operation on all components of the given uint3x2.
-inline uint3x2 operator~( const uint3x2& lhs )
+inline uint3x2 operator~( uint3x2& lhs )
 {
-	return uint3x2(
-		~lhs[0],
-		~lhs[1],
-		~lhs[2]
-	);
+	return HLML_CONSTRUCT( uint3x2 ) {
+		comp_unary( lhs.rows[0] ),
+		comp_unary( lhs.rows[1] ),
+		comp_unary( lhs.rows[2] )
+	};
+}
+
+inline bool3x2 operator<( const uint3x2& lhs, const uint3x2& rhs )
+{
+	return HLML_CONSTRUCT( bool3x2 ) {
+		cmpl( lhs.rows[0], rhs.rows[0] ),
+		cmpl( lhs.rows[1], rhs.rows[1] ),
+		cmpl( lhs.rows[2], rhs.rows[2] )
+	};
+}
+
+inline bool3x2 operator<=( const uint3x2& lhs, const uint3x2& rhs )
+{
+	return HLML_CONSTRUCT( bool3x2 ) {
+		cmple( lhs.rows[0], rhs.rows[0] ),
+		cmple( lhs.rows[1], rhs.rows[1] ),
+		cmple( lhs.rows[2], rhs.rows[2] )
+	};
+}
+
+inline bool3x2 operator>( const uint3x2& lhs, const uint3x2& rhs )
+{
+	return HLML_CONSTRUCT( bool3x2 ) {
+		cmpg( lhs.rows[0], rhs.rows[0] ),
+		cmpg( lhs.rows[1], rhs.rows[1] ),
+		cmpg( lhs.rows[2], rhs.rows[2] )
+	};
+}
+
+inline bool3x2 operator>=( const uint3x2& lhs, const uint3x2& rhs )
+{
+	return HLML_CONSTRUCT( bool3x2 ) {
+		cmpge( lhs.rows[0], rhs.rows[0] ),
+		cmpge( lhs.rows[1], rhs.rows[1] ),
+		cmpge( lhs.rows[2], rhs.rows[2] )
+	};
 }
 
 
 // uint3x3
-/// \relates uint3x3
-/// \brief Returns a copy of the uint3x3 that has been component-wise added by the given scalar value.
-inline uint3x3 operator+( const uint3x3& lhs, const uint32_t rhs )
+inline bool operator==( const uint3x3& lhs, const uint3x3& rhs )
+{
+	return ( lhs[0] == rhs[0] )
+		&& ( lhs[1] == rhs[1] )
+		&& ( lhs[2] == rhs[2] );
+}
+
+inline bool operator!=( const uint3x3& lhs, const uint3x3& rhs )
+{
+	return !( operator==( lhs, rhs ) );
+}
+
+inline uint3x3 operator+( const uint3x3& lhs, const uint32_t scalar )
 {
 	return uint3x3(
-		lhs[0] + rhs,
-		lhs[1] + rhs,
-		lhs[2] + rhs
+		lhs[0] + scalar,
+		lhs[1] + scalar,
+		lhs[2] + scalar
 	);
 }
 
-/// \relates uint3x3
-/// \brief Adds each component by the given scalar value.
-inline uint3x3 operator+=( uint3x3& lhs, const uint32_t rhs )
-{
-	return ( lhs = lhs + rhs );
-}
-
-/// \relates uint3x3
-/// \brief Returns a copy of the uint3x3 that has been component-wise added by the corresponding component of the right-hand uint3x3.
 inline uint3x3 operator+( const uint3x3& lhs, const uint3x3& rhs )
 {
+	return HLML_CONSTRUCT( uint3x3 ) {
+		comp_addv( lhs.rows[0], rhs.rows[0] ),
+		comp_addv( lhs.rows[1], rhs.rows[1] ),
+		comp_addv( lhs.rows[2], rhs.rows[2] )
+	};
+}
+
+inline uint3x3 operator-( const uint3x3& lhs, const uint32_t scalar )
+{
 	return uint3x3(
-		lhs[0] + rhs[0],
-		lhs[1] + rhs[1],
-		lhs[2] + rhs[2]
+		lhs[0] - scalar,
+		lhs[1] - scalar,
+		lhs[2] - scalar
 	);
 }
 
-/// \relates uint3x3
-/// \brief Adds each component of the uint3x3 by the corresponding component of the right-hand uint3x3.
-inline uint3x3 operator+=( uint3x3& lhs, const uint3x3& rhs )
-{
-	return ( lhs = lhs + rhs );
-}
-
-/// \relates uint3x3
-/// \brief Returns a copy of the uint3x3 that has been component-wise subtracted by the given scalar value.
-inline uint3x3 operator-( const uint3x3& lhs, const uint32_t rhs )
-{
-	return uint3x3(
-		lhs[0] - rhs,
-		lhs[1] - rhs,
-		lhs[2] - rhs
-	);
-}
-
-/// \relates uint3x3
-/// \brief Subtracts each component by the given scalar value.
-inline uint3x3 operator-=( uint3x3& lhs, const uint32_t rhs )
-{
-	return ( lhs = lhs - rhs );
-}
-
-/// \relates uint3x3
-/// \brief Returns a copy of the uint3x3 that has been component-wise subtracted by the corresponding component of the right-hand uint3x3.
 inline uint3x3 operator-( const uint3x3& lhs, const uint3x3& rhs )
 {
-	return uint3x3(
-		lhs[0] - rhs[0],
-		lhs[1] - rhs[1],
-		lhs[2] - rhs[2]
-	);
-}
-
-/// \relates uint3x3
-/// \brief Subtracts each component of the uint3x3 by the corresponding component of the right-hand uint3x3.
-inline uint3x3 operator-=( uint3x3& lhs, const uint3x3& rhs )
-{
-	return ( lhs = lhs - rhs );
-}
-
-/// \relates uint3x3
-/// \brief Returns a copy of the uint3x3 that has been component-wise multiplied by the given scalar value.
-inline uint3x3 operator*( const uint3x3& lhs, const uint32_t rhs )
-{
-	return uint3x3(
-		lhs[0] * rhs,
-		lhs[1] * rhs,
-		lhs[2] * rhs
-	);
-}
-
-/// \relates uint3x3
-/// \brief Multiplies each component by the given scalar value.
-inline uint3x3 operator*=( uint3x3& lhs, const uint32_t rhs )
-{
-	return ( lhs = lhs * rhs );
+	return HLML_CONSTRUCT( uint3x3 ) {
+		comp_subv( lhs.rows[0], rhs.rows[0] ),
+		comp_subv( lhs.rows[1], rhs.rows[1] ),
+		comp_subv( lhs.rows[2], rhs.rows[2] )
+	};
 }
 
 /// \relates uint3x3
 /// \brief Returns a copy of the matrix where each row of the left-hand matrix has been dot-producted by the corresponding column of the right-hand matrix.
 inline uint3x3 operator*( const uint3x3& lhs, const uint3x3& rhs )
 {
-	uint3 row0 = lhs[0];
-	uint3 row1 = lhs[1];
-	uint3 row2 = lhs[2];
+	uint3 row0 = lhs.rows[0];
+	uint3 row1 = lhs.rows[1];
+	uint3 row2 = lhs.rows[2];
 
-	uint3 col0 = { rhs[0].x, rhs[1].x, rhs[2].x };
-	uint3 col1 = { rhs[0].y, rhs[1].y, rhs[2].y };
-	uint3 col2 = { rhs[0].z, rhs[1].z, rhs[2].z };
+	uint3 col0 = { rhs.rows[0].x, rhs.rows[1].x, rhs.rows[2].x };
+	uint3 col1 = { rhs.rows[0].y, rhs.rows[1].y, rhs.rows[2].y };
+	uint3 col2 = { rhs.rows[0].z, rhs.rows[1].z, rhs.rows[2].z };
 
-	return uint3x3(
+	return HLML_CONSTRUCT( uint3x3 ) {
 		row0.x * col0.x + row0.y * col0.y + row0.z * col0.z,
 		row0.x * col1.x + row0.y * col1.y + row0.z * col1.z,
 		row0.x * col2.x + row0.y * col2.y + row0.z * col2.z,
@@ -5791,7 +3883,7 @@ inline uint3x3 operator*( const uint3x3& lhs, const uint3x3& rhs )
 		row2.x * col0.x + row2.y * col0.y + row2.z * col0.z,
 		row2.x * col1.x + row2.y * col1.y + row2.z * col1.z,
 		row2.x * col2.x + row2.y * col2.y + row2.z * col2.z
-	);
+	};
 }
 
 inline uint3x3 operator*=( uint3x3& lhs, const uint3x3& rhs )
@@ -5799,51 +3891,33 @@ inline uint3x3 operator*=( uint3x3& lhs, const uint3x3& rhs )
 	return ( lhs = lhs * rhs );
 }
 
-/// \relates uint3x3
-/// \brief Returns a copy of the uint3x3 that has been component-wise divided by the given scalar value.
-inline uint3x3 operator/( const uint3x3& lhs, const uint32_t rhs )
+inline uint3x3 operator/( const uint3x3& lhs, const uint32_t scalar )
 {
 	return uint3x3(
-		lhs[0] / rhs,
-		lhs[1] / rhs,
-		lhs[2] / rhs
+		lhs[0] / scalar,
+		lhs[1] / scalar,
+		lhs[2] / scalar
 	);
 }
 
-/// \relates uint3x3
-/// \brief Divides each component by the given scalar value.
-inline uint3x3 operator/=( uint3x3& lhs, const uint32_t rhs )
-{
-	return ( lhs = lhs / rhs );
-}
-
-/// \relates uint3x3
-/// \brief Returns a copy of the uint3x3 that has been component-wise divided by the corresponding component of the right-hand uint3x3.
 inline uint3x3 operator/( const uint3x3& lhs, const uint3x3& rhs )
 {
-	return uint3x3(
-		lhs[0] / rhs[0],
-		lhs[1] / rhs[1],
-		lhs[2] / rhs[2]
-	);
-}
-
-/// \relates uint3x3
-/// \brief Divides each component of the uint3x3 by the corresponding component of the right-hand uint3x3.
-inline uint3x3 operator/=( uint3x3& lhs, const uint3x3& rhs )
-{
-	return ( lhs = lhs / rhs );
+	return HLML_CONSTRUCT( uint3x3 ) {
+		comp_divv( lhs.rows[0], rhs.rows[0] ),
+		comp_divv( lhs.rows[1], rhs.rows[1] ),
+		comp_divv( lhs.rows[2], rhs.rows[2] )
+	};
 }
 
 /// \relates uint3
 /// \brief Returns a copy of the uint3 that has been component-wise multiplied by the corresponding component of the right-hand uint3x3.
 inline uint3 operator*( const uint3x3& lhs, const uint3& rhs )
 {
-	return uint3(
-		(uint32_t) dot( lhs[0], rhs ),
-		(uint32_t) dot( lhs[1], rhs ),
-		(uint32_t) dot( lhs[2], rhs )
-	);
+	return HLML_CONSTRUCT( uint3 ) {
+		lhs.rows[0].x * rhs.x + lhs.rows[0].y * rhs.y + lhs.rows[0].z * rhs.z,
+		lhs.rows[1].x * rhs.x + lhs.rows[1].y * rhs.y + lhs.rows[1].z * rhs.z,
+		lhs.rows[2].x * rhs.x + lhs.rows[2].y * rhs.y + lhs.rows[2].z * rhs.z
+	};
 }
 
 /// \relates uint3
@@ -5898,76 +3972,14 @@ inline uint3x3& operator--( uint3x3& lhs, const int )
 }
 
 /// \relates uint3x3
-/// \brief Returns a bool3x3 where each component is true if the component of the left-hand type is less than the corresponding right-hand type component.
-inline bool3x3 operator<( const uint3x3& lhs, const uint3x3& rhs )
-{
-	return bool3x3(
-		lhs[0] < rhs[0],
-		lhs[1] < rhs[1],
-		lhs[2] < rhs[2]
-	);
-}
-
-/// \relates uint3x3
-/// \brief Returns a bool3x3 where each component is true if the component of the left-hand type is less than or equal to the corresponding right-hand type component.
-inline bool3x3 operator<=( const uint3x3& lhs, const uint3x3& rhs )
-{
-	return bool3x3(
-		lhs[0] <= rhs[0],
-		lhs[1] <= rhs[1],
-		lhs[2] <= rhs[2]
-	);
-}
-
-/// \relates uint3x3
-/// \brief Returns a bool3x3 where each component is true if the component of the left-hand type is greater than the corresponding right-hand type component.
-inline bool3x3 operator>( const uint3x3& lhs, const uint3x3& rhs )
-{
-	return bool3x3(
-		lhs[0] > rhs[0],
-		lhs[1] > rhs[1],
-		lhs[2] > rhs[2]
-	);
-}
-
-/// \relates uint3x3
-/// \brief Returns a bool3x3 where each component is true if the component of the left-hand type is greater than or equal to the corresponding right-hand type component.
-inline bool3x3 operator>=( const uint3x3& lhs, const uint3x3& rhs )
-{
-	return bool3x3(
-		lhs[0] >= rhs[0],
-		lhs[1] >= rhs[1],
-		lhs[2] >= rhs[2]
-	);
-}
-
-/// \relates uint3x3
-/// \brief Returns a copy of the uint3x3 where each component has been bitwise AND'd against the given scalar value.
-inline uint3x3 operator&( const uint3x3& lhs, const uint32_t& rhs )
-{
-	return uint3x3(
-		lhs[0] & rhs,
-		lhs[1] & rhs,
-		lhs[2] & rhs
-	);
-}
-
-/// \relates uint3x3
-/// \brief Performs a bitwise AND on the given left-hand uint3x3 against the given scalar value.
-inline uint3x3 operator&=( uint3x3& lhs, const uint32_t& rhs )
-{
-	return ( lhs = lhs & rhs );
-}
-
-/// \relates uint3x3
 /// \brief Returns a copy of the uint3x3 where each component of the left-hand uint3x3 has been bitwise AND'd against the corresponding component of the right-hand side uint3x3.
-inline uint3x3 operator&( const uint3x3& lhs, const uint3x3& rhs )
+inline uint3x3 operator&( uint3x3& lhs, const uint3x3& rhs )
 {
-	return uint3x3(
-		lhs[0] & rhs[0],
-		lhs[1] & rhs[1],
-		lhs[2] & rhs[2]
-	);
+	return HLML_CONSTRUCT( uint3x3 ) {
+		comp_and( lhs.rows[0], rhs.rows[0] ),
+		comp_and( lhs.rows[1], rhs.rows[1] ),
+		comp_and( lhs.rows[2], rhs.rows[2] )
+	};
 }
 
 /// \relates uint3x3
@@ -5978,32 +3990,14 @@ inline uint3x3 operator&=( uint3x3& lhs, const uint3x3& rhs )
 }
 
 /// \relates uint3x3
-/// \brief Returns a copy of the uint3x3 where each component has been bitwise OR'd against the given scalar value.
-inline uint3x3 operator|( const uint3x3& lhs, const uint32_t& rhs )
-{
-	return uint3x3(
-		lhs[0] | rhs,
-		lhs[1] | rhs,
-		lhs[2] | rhs
-	);
-}
-
-/// \relates uint3x3
-/// \brief Performs a bitwise OR on the given left-hand uint3x3 against the given scalar value.
-inline uint3x3 operator|=( uint3x3& lhs, const uint32_t& rhs )
-{
-	return ( lhs = lhs | rhs );
-}
-
-/// \relates uint3x3
 /// \brief Returns a copy of the uint3x3 where each component of the left-hand uint3x3 has been bitwise OR'd against the corresponding component of the right-hand side uint3x3.
-inline uint3x3 operator|( const uint3x3& lhs, const uint3x3& rhs )
+inline uint3x3 operator|( uint3x3& lhs, const uint3x3& rhs )
 {
-	return uint3x3(
-		lhs[0] | rhs[0],
-		lhs[1] | rhs[1],
-		lhs[2] | rhs[2]
-	);
+	return HLML_CONSTRUCT( uint3x3 ) {
+		comp_or( lhs.rows[0], rhs.rows[0] ),
+		comp_or( lhs.rows[1], rhs.rows[1] ),
+		comp_or( lhs.rows[2], rhs.rows[2] )
+	};
 }
 
 /// \relates uint3x3
@@ -6014,32 +4008,14 @@ inline uint3x3 operator|=( uint3x3& lhs, const uint3x3& rhs )
 }
 
 /// \relates uint3x3
-/// \brief Returns a copy of the uint3x3 where each component has been bitwise XOR'd against the given scalar value.
-inline uint3x3 operator^( const uint3x3& lhs, const uint32_t& rhs )
-{
-	return uint3x3(
-		lhs[0] ^ rhs,
-		lhs[1] ^ rhs,
-		lhs[2] ^ rhs
-	);
-}
-
-/// \relates uint3x3
-/// \brief Performs a bitwise XOR on the given left-hand uint3x3 against the given scalar value.
-inline uint3x3 operator^=( uint3x3& lhs, const uint32_t& rhs )
-{
-	return ( lhs = lhs ^ rhs );
-}
-
-/// \relates uint3x3
 /// \brief Returns a copy of the uint3x3 where each component of the left-hand uint3x3 has been bitwise XOR'd against the corresponding component of the right-hand side uint3x3.
-inline uint3x3 operator^( const uint3x3& lhs, const uint3x3& rhs )
+inline uint3x3 operator^( uint3x3& lhs, const uint3x3& rhs )
 {
-	return uint3x3(
-		lhs[0] ^ rhs[0],
-		lhs[1] ^ rhs[1],
-		lhs[2] ^ rhs[2]
-	);
+	return HLML_CONSTRUCT( uint3x3 ) {
+		comp_xor( lhs.rows[0], rhs.rows[0] ),
+		comp_xor( lhs.rows[1], rhs.rows[1] ),
+		comp_xor( lhs.rows[2], rhs.rows[2] )
+	};
 }
 
 /// \relates uint3x3
@@ -6050,32 +4026,14 @@ inline uint3x3 operator^=( uint3x3& lhs, const uint3x3& rhs )
 }
 
 /// \relates uint3x3
-/// \brief Returns a copy of the uint3x3 where each component has been bitwise left-shifted by the given scalar value.
-inline uint3x3 operator<<( const uint3x3& lhs, const uint32_t& rhs )
-{
-	return uint3x3(
-		lhs[0] << rhs,
-		lhs[1] << rhs,
-		lhs[2] << rhs
-	);
-}
-
-/// \relates uint3x3
-/// \brief Performs a left bitshift on the given left-hand uint3x3 by the given scalar value.
-inline uint3x3 operator<<=( uint3x3& lhs, const uint32_t& rhs )
-{
-	return ( lhs = lhs << rhs );
-}
-
-/// \relates uint3x3
 /// \brief Returns a copy of the uint3x3 where each component of the left-hand uint3x3 has been bitwise left-shifted by the corresponding component of the right-hand side uint3x3.
-inline uint3x3 operator<<( const uint3x3& lhs, const uint3x3& rhs )
+inline uint3x3 operator<<( uint3x3& lhs, const uint3x3& rhs )
 {
-	return uint3x3(
-		lhs[0] << rhs[0],
-		lhs[1] << rhs[1],
-		lhs[2] << rhs[2]
-	);
+	return HLML_CONSTRUCT( uint3x3 ) {
+		comp_shift_left( lhs.rows[0], rhs.rows[0] ),
+		comp_shift_left( lhs.rows[1], rhs.rows[1] ),
+		comp_shift_left( lhs.rows[2], rhs.rows[2] )
+	};
 }
 
 /// \relates uint3x3
@@ -6086,32 +4044,14 @@ inline uint3x3 operator<<=( uint3x3& lhs, const uint3x3& rhs )
 }
 
 /// \relates uint3x3
-/// \brief Returns a copy of the uint3x3 where each component has been bitwise right-shifted by the given scalar value.
-inline uint3x3 operator>>( const uint3x3& lhs, const uint32_t& rhs )
-{
-	return uint3x3(
-		lhs[0] >> rhs,
-		lhs[1] >> rhs,
-		lhs[2] >> rhs
-	);
-}
-
-/// \relates uint3x3
-/// \brief Performs a right bitshift on the given left-hand uint3x3 by the given scalar value.
-inline uint3x3 operator>>=( uint3x3& lhs, const uint32_t& rhs )
-{
-	return ( lhs = lhs >> rhs );
-}
-
-/// \relates uint3x3
 /// \brief Returns a copy of the uint3x3 where each component of the left-hand uint3x3 has been bitwise right-shifted by the corresponding component of the right-hand side uint3x3.
-inline uint3x3 operator>>( const uint3x3& lhs, const uint3x3& rhs )
+inline uint3x3 operator>>( uint3x3& lhs, const uint3x3& rhs )
 {
-	return uint3x3(
-		lhs[0] >> rhs[0],
-		lhs[1] >> rhs[1],
-		lhs[2] >> rhs[2]
-	);
+	return HLML_CONSTRUCT( uint3x3 ) {
+		comp_shift_right( lhs.rows[0], rhs.rows[0] ),
+		comp_shift_right( lhs.rows[1], rhs.rows[1] ),
+		comp_shift_right( lhs.rows[2], rhs.rows[2] )
+	};
 }
 
 /// \relates uint3x3
@@ -6123,120 +4063,114 @@ inline uint3x3 operator>>=( uint3x3& lhs, const uint3x3& rhs )
 
 /// \relates uint3x3
 /// \brief Performs a unary bitwise operation on all components of the given uint3x3.
-inline uint3x3 operator~( const uint3x3& lhs )
+inline uint3x3 operator~( uint3x3& lhs )
 {
-	return uint3x3(
-		~lhs[0],
-		~lhs[1],
-		~lhs[2]
-	);
+	return HLML_CONSTRUCT( uint3x3 ) {
+		comp_unary( lhs.rows[0] ),
+		comp_unary( lhs.rows[1] ),
+		comp_unary( lhs.rows[2] )
+	};
+}
+
+inline bool3x3 operator<( const uint3x3& lhs, const uint3x3& rhs )
+{
+	return HLML_CONSTRUCT( bool3x3 ) {
+		cmpl( lhs.rows[0], rhs.rows[0] ),
+		cmpl( lhs.rows[1], rhs.rows[1] ),
+		cmpl( lhs.rows[2], rhs.rows[2] )
+	};
+}
+
+inline bool3x3 operator<=( const uint3x3& lhs, const uint3x3& rhs )
+{
+	return HLML_CONSTRUCT( bool3x3 ) {
+		cmple( lhs.rows[0], rhs.rows[0] ),
+		cmple( lhs.rows[1], rhs.rows[1] ),
+		cmple( lhs.rows[2], rhs.rows[2] )
+	};
+}
+
+inline bool3x3 operator>( const uint3x3& lhs, const uint3x3& rhs )
+{
+	return HLML_CONSTRUCT( bool3x3 ) {
+		cmpg( lhs.rows[0], rhs.rows[0] ),
+		cmpg( lhs.rows[1], rhs.rows[1] ),
+		cmpg( lhs.rows[2], rhs.rows[2] )
+	};
+}
+
+inline bool3x3 operator>=( const uint3x3& lhs, const uint3x3& rhs )
+{
+	return HLML_CONSTRUCT( bool3x3 ) {
+		cmpge( lhs.rows[0], rhs.rows[0] ),
+		cmpge( lhs.rows[1], rhs.rows[1] ),
+		cmpge( lhs.rows[2], rhs.rows[2] )
+	};
 }
 
 
 // uint3x4
-/// \relates uint3x4
-/// \brief Returns a copy of the uint3x4 that has been component-wise added by the given scalar value.
-inline uint3x4 operator+( const uint3x4& lhs, const uint32_t rhs )
+inline bool operator==( const uint3x4& lhs, const uint3x4& rhs )
+{
+	return ( lhs[0] == rhs[0] )
+		&& ( lhs[1] == rhs[1] )
+		&& ( lhs[2] == rhs[2] );
+}
+
+inline bool operator!=( const uint3x4& lhs, const uint3x4& rhs )
+{
+	return !( operator==( lhs, rhs ) );
+}
+
+inline uint3x4 operator+( const uint3x4& lhs, const uint32_t scalar )
 {
 	return uint3x4(
-		lhs[0] + rhs,
-		lhs[1] + rhs,
-		lhs[2] + rhs
+		lhs[0] + scalar,
+		lhs[1] + scalar,
+		lhs[2] + scalar
 	);
 }
 
-/// \relates uint3x4
-/// \brief Adds each component by the given scalar value.
-inline uint3x4 operator+=( uint3x4& lhs, const uint32_t rhs )
-{
-	return ( lhs = lhs + rhs );
-}
-
-/// \relates uint3x4
-/// \brief Returns a copy of the uint3x4 that has been component-wise added by the corresponding component of the right-hand uint3x4.
 inline uint3x4 operator+( const uint3x4& lhs, const uint3x4& rhs )
 {
+	return HLML_CONSTRUCT( uint3x4 ) {
+		comp_addv( lhs.rows[0], rhs.rows[0] ),
+		comp_addv( lhs.rows[1], rhs.rows[1] ),
+		comp_addv( lhs.rows[2], rhs.rows[2] )
+	};
+}
+
+inline uint3x4 operator-( const uint3x4& lhs, const uint32_t scalar )
+{
 	return uint3x4(
-		lhs[0] + rhs[0],
-		lhs[1] + rhs[1],
-		lhs[2] + rhs[2]
+		lhs[0] - scalar,
+		lhs[1] - scalar,
+		lhs[2] - scalar
 	);
 }
 
-/// \relates uint3x4
-/// \brief Adds each component of the uint3x4 by the corresponding component of the right-hand uint3x4.
-inline uint3x4 operator+=( uint3x4& lhs, const uint3x4& rhs )
-{
-	return ( lhs = lhs + rhs );
-}
-
-/// \relates uint3x4
-/// \brief Returns a copy of the uint3x4 that has been component-wise subtracted by the given scalar value.
-inline uint3x4 operator-( const uint3x4& lhs, const uint32_t rhs )
-{
-	return uint3x4(
-		lhs[0] - rhs,
-		lhs[1] - rhs,
-		lhs[2] - rhs
-	);
-}
-
-/// \relates uint3x4
-/// \brief Subtracts each component by the given scalar value.
-inline uint3x4 operator-=( uint3x4& lhs, const uint32_t rhs )
-{
-	return ( lhs = lhs - rhs );
-}
-
-/// \relates uint3x4
-/// \brief Returns a copy of the uint3x4 that has been component-wise subtracted by the corresponding component of the right-hand uint3x4.
 inline uint3x4 operator-( const uint3x4& lhs, const uint3x4& rhs )
 {
-	return uint3x4(
-		lhs[0] - rhs[0],
-		lhs[1] - rhs[1],
-		lhs[2] - rhs[2]
-	);
-}
-
-/// \relates uint3x4
-/// \brief Subtracts each component of the uint3x4 by the corresponding component of the right-hand uint3x4.
-inline uint3x4 operator-=( uint3x4& lhs, const uint3x4& rhs )
-{
-	return ( lhs = lhs - rhs );
-}
-
-/// \relates uint3x4
-/// \brief Returns a copy of the uint3x4 that has been component-wise multiplied by the given scalar value.
-inline uint3x4 operator*( const uint3x4& lhs, const uint32_t rhs )
-{
-	return uint3x4(
-		lhs[0] * rhs,
-		lhs[1] * rhs,
-		lhs[2] * rhs
-	);
-}
-
-/// \relates uint3x4
-/// \brief Multiplies each component by the given scalar value.
-inline uint3x4 operator*=( uint3x4& lhs, const uint32_t rhs )
-{
-	return ( lhs = lhs * rhs );
+	return HLML_CONSTRUCT( uint3x4 ) {
+		comp_subv( lhs.rows[0], rhs.rows[0] ),
+		comp_subv( lhs.rows[1], rhs.rows[1] ),
+		comp_subv( lhs.rows[2], rhs.rows[2] )
+	};
 }
 
 /// \relates uint3x4
 /// \brief Returns a copy of the matrix where each row of the left-hand matrix has been dot-producted by the corresponding column of the right-hand matrix.
 inline uint3x3 operator*( const uint3x4& lhs, const uint4x3& rhs )
 {
-	uint4 row0 = lhs[0];
-	uint4 row1 = lhs[1];
-	uint4 row2 = lhs[2];
+	uint4 row0 = lhs.rows[0];
+	uint4 row1 = lhs.rows[1];
+	uint4 row2 = lhs.rows[2];
 
-	uint4 col0 = { rhs[0].x, rhs[1].x, rhs[2].x, rhs[3].x };
-	uint4 col1 = { rhs[0].y, rhs[1].y, rhs[2].y, rhs[3].y };
-	uint4 col2 = { rhs[0].z, rhs[1].z, rhs[2].z, rhs[3].z };
+	uint4 col0 = { rhs.rows[0].x, rhs.rows[1].x, rhs.rows[2].x, rhs.rows[3].x };
+	uint4 col1 = { rhs.rows[0].y, rhs.rows[1].y, rhs.rows[2].y, rhs.rows[3].y };
+	uint4 col2 = { rhs.rows[0].z, rhs.rows[1].z, rhs.rows[2].z, rhs.rows[3].z };
 
-	return uint3x3(
+	return HLML_CONSTRUCT( uint3x3 ) {
 		row0.x * col0.x + row0.y * col0.y + row0.z * col0.z + row0.w * col0.w,
 		row0.x * col1.x + row0.y * col1.y + row0.z * col1.z + row0.w * col1.w,
 		row0.x * col2.x + row0.y * col2.y + row0.z * col2.z + row0.w * col2.w,
@@ -6248,36 +4182,25 @@ inline uint3x3 operator*( const uint3x4& lhs, const uint4x3& rhs )
 		row2.x * col0.x + row2.y * col0.y + row2.z * col0.z + row2.w * col0.w,
 		row2.x * col1.x + row2.y * col1.y + row2.z * col1.z + row2.w * col1.w,
 		row2.x * col2.x + row2.y * col2.y + row2.z * col2.z + row2.w * col2.w
-	);
+	};
 }
 
-/// \relates uint3x4
-/// \brief Returns a copy of the uint3x4 that has been component-wise divided by the given scalar value.
-inline uint3x4 operator/( const uint3x4& lhs, const uint32_t rhs )
+inline uint3x4 operator/( const uint3x4& lhs, const uint32_t scalar )
 {
 	return uint3x4(
-		lhs[0] / rhs,
-		lhs[1] / rhs,
-		lhs[2] / rhs
+		lhs[0] / scalar,
+		lhs[1] / scalar,
+		lhs[2] / scalar
 	);
 }
 
-/// \relates uint3x4
-/// \brief Divides each component by the given scalar value.
-inline uint3x4 operator/=( uint3x4& lhs, const uint32_t rhs )
-{
-	return ( lhs = lhs / rhs );
-}
-
-/// \relates uint3x4
-/// \brief Returns a copy of the uint3x4 that has been component-wise divided by the corresponding component of the right-hand uint3x4.
 inline uint3x4 operator/( const uint3x4& lhs, const uint3x4& rhs )
 {
-	return uint3x4(
-		lhs[0] / rhs[0],
-		lhs[1] / rhs[1],
-		lhs[2] / rhs[2]
-	);
+	return HLML_CONSTRUCT( uint3x4 ) {
+		comp_divv( lhs.rows[0], rhs.rows[0] ),
+		comp_divv( lhs.rows[1], rhs.rows[1] ),
+		comp_divv( lhs.rows[2], rhs.rows[2] )
+	};
 }
 
 // prefix
@@ -6325,76 +4248,14 @@ inline uint3x4& operator--( uint3x4& lhs, const int )
 }
 
 /// \relates uint3x4
-/// \brief Returns a bool3x4 where each component is true if the component of the left-hand type is less than the corresponding right-hand type component.
-inline bool3x4 operator<( const uint3x4& lhs, const uint3x4& rhs )
-{
-	return bool3x4(
-		lhs[0] < rhs[0],
-		lhs[1] < rhs[1],
-		lhs[2] < rhs[2]
-	);
-}
-
-/// \relates uint3x4
-/// \brief Returns a bool3x4 where each component is true if the component of the left-hand type is less than or equal to the corresponding right-hand type component.
-inline bool3x4 operator<=( const uint3x4& lhs, const uint3x4& rhs )
-{
-	return bool3x4(
-		lhs[0] <= rhs[0],
-		lhs[1] <= rhs[1],
-		lhs[2] <= rhs[2]
-	);
-}
-
-/// \relates uint3x4
-/// \brief Returns a bool3x4 where each component is true if the component of the left-hand type is greater than the corresponding right-hand type component.
-inline bool3x4 operator>( const uint3x4& lhs, const uint3x4& rhs )
-{
-	return bool3x4(
-		lhs[0] > rhs[0],
-		lhs[1] > rhs[1],
-		lhs[2] > rhs[2]
-	);
-}
-
-/// \relates uint3x4
-/// \brief Returns a bool3x4 where each component is true if the component of the left-hand type is greater than or equal to the corresponding right-hand type component.
-inline bool3x4 operator>=( const uint3x4& lhs, const uint3x4& rhs )
-{
-	return bool3x4(
-		lhs[0] >= rhs[0],
-		lhs[1] >= rhs[1],
-		lhs[2] >= rhs[2]
-	);
-}
-
-/// \relates uint3x4
-/// \brief Returns a copy of the uint3x4 where each component has been bitwise AND'd against the given scalar value.
-inline uint3x4 operator&( const uint3x4& lhs, const uint32_t& rhs )
-{
-	return uint3x4(
-		lhs[0] & rhs,
-		lhs[1] & rhs,
-		lhs[2] & rhs
-	);
-}
-
-/// \relates uint3x4
-/// \brief Performs a bitwise AND on the given left-hand uint3x4 against the given scalar value.
-inline uint3x4 operator&=( uint3x4& lhs, const uint32_t& rhs )
-{
-	return ( lhs = lhs & rhs );
-}
-
-/// \relates uint3x4
 /// \brief Returns a copy of the uint3x4 where each component of the left-hand uint3x4 has been bitwise AND'd against the corresponding component of the right-hand side uint3x4.
-inline uint3x4 operator&( const uint3x4& lhs, const uint3x4& rhs )
+inline uint3x4 operator&( uint3x4& lhs, const uint3x4& rhs )
 {
-	return uint3x4(
-		lhs[0] & rhs[0],
-		lhs[1] & rhs[1],
-		lhs[2] & rhs[2]
-	);
+	return HLML_CONSTRUCT( uint3x4 ) {
+		comp_and( lhs.rows[0], rhs.rows[0] ),
+		comp_and( lhs.rows[1], rhs.rows[1] ),
+		comp_and( lhs.rows[2], rhs.rows[2] )
+	};
 }
 
 /// \relates uint3x4
@@ -6405,32 +4266,14 @@ inline uint3x4 operator&=( uint3x4& lhs, const uint3x4& rhs )
 }
 
 /// \relates uint3x4
-/// \brief Returns a copy of the uint3x4 where each component has been bitwise OR'd against the given scalar value.
-inline uint3x4 operator|( const uint3x4& lhs, const uint32_t& rhs )
-{
-	return uint3x4(
-		lhs[0] | rhs,
-		lhs[1] | rhs,
-		lhs[2] | rhs
-	);
-}
-
-/// \relates uint3x4
-/// \brief Performs a bitwise OR on the given left-hand uint3x4 against the given scalar value.
-inline uint3x4 operator|=( uint3x4& lhs, const uint32_t& rhs )
-{
-	return ( lhs = lhs | rhs );
-}
-
-/// \relates uint3x4
 /// \brief Returns a copy of the uint3x4 where each component of the left-hand uint3x4 has been bitwise OR'd against the corresponding component of the right-hand side uint3x4.
-inline uint3x4 operator|( const uint3x4& lhs, const uint3x4& rhs )
+inline uint3x4 operator|( uint3x4& lhs, const uint3x4& rhs )
 {
-	return uint3x4(
-		lhs[0] | rhs[0],
-		lhs[1] | rhs[1],
-		lhs[2] | rhs[2]
-	);
+	return HLML_CONSTRUCT( uint3x4 ) {
+		comp_or( lhs.rows[0], rhs.rows[0] ),
+		comp_or( lhs.rows[1], rhs.rows[1] ),
+		comp_or( lhs.rows[2], rhs.rows[2] )
+	};
 }
 
 /// \relates uint3x4
@@ -6441,32 +4284,14 @@ inline uint3x4 operator|=( uint3x4& lhs, const uint3x4& rhs )
 }
 
 /// \relates uint3x4
-/// \brief Returns a copy of the uint3x4 where each component has been bitwise XOR'd against the given scalar value.
-inline uint3x4 operator^( const uint3x4& lhs, const uint32_t& rhs )
-{
-	return uint3x4(
-		lhs[0] ^ rhs,
-		lhs[1] ^ rhs,
-		lhs[2] ^ rhs
-	);
-}
-
-/// \relates uint3x4
-/// \brief Performs a bitwise XOR on the given left-hand uint3x4 against the given scalar value.
-inline uint3x4 operator^=( uint3x4& lhs, const uint32_t& rhs )
-{
-	return ( lhs = lhs ^ rhs );
-}
-
-/// \relates uint3x4
 /// \brief Returns a copy of the uint3x4 where each component of the left-hand uint3x4 has been bitwise XOR'd against the corresponding component of the right-hand side uint3x4.
-inline uint3x4 operator^( const uint3x4& lhs, const uint3x4& rhs )
+inline uint3x4 operator^( uint3x4& lhs, const uint3x4& rhs )
 {
-	return uint3x4(
-		lhs[0] ^ rhs[0],
-		lhs[1] ^ rhs[1],
-		lhs[2] ^ rhs[2]
-	);
+	return HLML_CONSTRUCT( uint3x4 ) {
+		comp_xor( lhs.rows[0], rhs.rows[0] ),
+		comp_xor( lhs.rows[1], rhs.rows[1] ),
+		comp_xor( lhs.rows[2], rhs.rows[2] )
+	};
 }
 
 /// \relates uint3x4
@@ -6477,32 +4302,14 @@ inline uint3x4 operator^=( uint3x4& lhs, const uint3x4& rhs )
 }
 
 /// \relates uint3x4
-/// \brief Returns a copy of the uint3x4 where each component has been bitwise left-shifted by the given scalar value.
-inline uint3x4 operator<<( const uint3x4& lhs, const uint32_t& rhs )
-{
-	return uint3x4(
-		lhs[0] << rhs,
-		lhs[1] << rhs,
-		lhs[2] << rhs
-	);
-}
-
-/// \relates uint3x4
-/// \brief Performs a left bitshift on the given left-hand uint3x4 by the given scalar value.
-inline uint3x4 operator<<=( uint3x4& lhs, const uint32_t& rhs )
-{
-	return ( lhs = lhs << rhs );
-}
-
-/// \relates uint3x4
 /// \brief Returns a copy of the uint3x4 where each component of the left-hand uint3x4 has been bitwise left-shifted by the corresponding component of the right-hand side uint3x4.
-inline uint3x4 operator<<( const uint3x4& lhs, const uint3x4& rhs )
+inline uint3x4 operator<<( uint3x4& lhs, const uint3x4& rhs )
 {
-	return uint3x4(
-		lhs[0] << rhs[0],
-		lhs[1] << rhs[1],
-		lhs[2] << rhs[2]
-	);
+	return HLML_CONSTRUCT( uint3x4 ) {
+		comp_shift_left( lhs.rows[0], rhs.rows[0] ),
+		comp_shift_left( lhs.rows[1], rhs.rows[1] ),
+		comp_shift_left( lhs.rows[2], rhs.rows[2] )
+	};
 }
 
 /// \relates uint3x4
@@ -6513,32 +4320,14 @@ inline uint3x4 operator<<=( uint3x4& lhs, const uint3x4& rhs )
 }
 
 /// \relates uint3x4
-/// \brief Returns a copy of the uint3x4 where each component has been bitwise right-shifted by the given scalar value.
-inline uint3x4 operator>>( const uint3x4& lhs, const uint32_t& rhs )
-{
-	return uint3x4(
-		lhs[0] >> rhs,
-		lhs[1] >> rhs,
-		lhs[2] >> rhs
-	);
-}
-
-/// \relates uint3x4
-/// \brief Performs a right bitshift on the given left-hand uint3x4 by the given scalar value.
-inline uint3x4 operator>>=( uint3x4& lhs, const uint32_t& rhs )
-{
-	return ( lhs = lhs >> rhs );
-}
-
-/// \relates uint3x4
 /// \brief Returns a copy of the uint3x4 where each component of the left-hand uint3x4 has been bitwise right-shifted by the corresponding component of the right-hand side uint3x4.
-inline uint3x4 operator>>( const uint3x4& lhs, const uint3x4& rhs )
+inline uint3x4 operator>>( uint3x4& lhs, const uint3x4& rhs )
 {
-	return uint3x4(
-		lhs[0] >> rhs[0],
-		lhs[1] >> rhs[1],
-		lhs[2] >> rhs[2]
-	);
+	return HLML_CONSTRUCT( uint3x4 ) {
+		comp_shift_right( lhs.rows[0], rhs.rows[0] ),
+		comp_shift_right( lhs.rows[1], rhs.rows[1] ),
+		comp_shift_right( lhs.rows[2], rhs.rows[2] )
+	};
 }
 
 /// \relates uint3x4
@@ -6550,127 +4339,121 @@ inline uint3x4 operator>>=( uint3x4& lhs, const uint3x4& rhs )
 
 /// \relates uint3x4
 /// \brief Performs a unary bitwise operation on all components of the given uint3x4.
-inline uint3x4 operator~( const uint3x4& lhs )
+inline uint3x4 operator~( uint3x4& lhs )
 {
-	return uint3x4(
-		~lhs[0],
-		~lhs[1],
-		~lhs[2]
-	);
+	return HLML_CONSTRUCT( uint3x4 ) {
+		comp_unary( lhs.rows[0] ),
+		comp_unary( lhs.rows[1] ),
+		comp_unary( lhs.rows[2] )
+	};
+}
+
+inline bool3x4 operator<( const uint3x4& lhs, const uint3x4& rhs )
+{
+	return HLML_CONSTRUCT( bool3x4 ) {
+		cmpl( lhs.rows[0], rhs.rows[0] ),
+		cmpl( lhs.rows[1], rhs.rows[1] ),
+		cmpl( lhs.rows[2], rhs.rows[2] )
+	};
+}
+
+inline bool3x4 operator<=( const uint3x4& lhs, const uint3x4& rhs )
+{
+	return HLML_CONSTRUCT( bool3x4 ) {
+		cmple( lhs.rows[0], rhs.rows[0] ),
+		cmple( lhs.rows[1], rhs.rows[1] ),
+		cmple( lhs.rows[2], rhs.rows[2] )
+	};
+}
+
+inline bool3x4 operator>( const uint3x4& lhs, const uint3x4& rhs )
+{
+	return HLML_CONSTRUCT( bool3x4 ) {
+		cmpg( lhs.rows[0], rhs.rows[0] ),
+		cmpg( lhs.rows[1], rhs.rows[1] ),
+		cmpg( lhs.rows[2], rhs.rows[2] )
+	};
+}
+
+inline bool3x4 operator>=( const uint3x4& lhs, const uint3x4& rhs )
+{
+	return HLML_CONSTRUCT( bool3x4 ) {
+		cmpge( lhs.rows[0], rhs.rows[0] ),
+		cmpge( lhs.rows[1], rhs.rows[1] ),
+		cmpge( lhs.rows[2], rhs.rows[2] )
+	};
 }
 
 
 // uint4x2
-/// \relates uint4x2
-/// \brief Returns a copy of the uint4x2 that has been component-wise added by the given scalar value.
-inline uint4x2 operator+( const uint4x2& lhs, const uint32_t rhs )
+inline bool operator==( const uint4x2& lhs, const uint4x2& rhs )
+{
+	return ( lhs[0] == rhs[0] )
+		&& ( lhs[1] == rhs[1] )
+		&& ( lhs[2] == rhs[2] )
+		&& ( lhs[3] == rhs[3] );
+}
+
+inline bool operator!=( const uint4x2& lhs, const uint4x2& rhs )
+{
+	return !( operator==( lhs, rhs ) );
+}
+
+inline uint4x2 operator+( const uint4x2& lhs, const uint32_t scalar )
 {
 	return uint4x2(
-		lhs[0] + rhs,
-		lhs[1] + rhs,
-		lhs[2] + rhs,
-		lhs[3] + rhs
+		lhs[0] + scalar,
+		lhs[1] + scalar,
+		lhs[2] + scalar,
+		lhs[3] + scalar
 	);
 }
 
-/// \relates uint4x2
-/// \brief Adds each component by the given scalar value.
-inline uint4x2 operator+=( uint4x2& lhs, const uint32_t rhs )
-{
-	return ( lhs = lhs + rhs );
-}
-
-/// \relates uint4x2
-/// \brief Returns a copy of the uint4x2 that has been component-wise added by the corresponding component of the right-hand uint4x2.
 inline uint4x2 operator+( const uint4x2& lhs, const uint4x2& rhs )
 {
+	return HLML_CONSTRUCT( uint4x2 ) {
+		comp_addv( lhs.rows[0], rhs.rows[0] ),
+		comp_addv( lhs.rows[1], rhs.rows[1] ),
+		comp_addv( lhs.rows[2], rhs.rows[2] ),
+		comp_addv( lhs.rows[3], rhs.rows[3] )
+	};
+}
+
+inline uint4x2 operator-( const uint4x2& lhs, const uint32_t scalar )
+{
 	return uint4x2(
-		lhs[0] + rhs[0],
-		lhs[1] + rhs[1],
-		lhs[2] + rhs[2],
-		lhs[3] + rhs[3]
+		lhs[0] - scalar,
+		lhs[1] - scalar,
+		lhs[2] - scalar,
+		lhs[3] - scalar
 	);
 }
 
-/// \relates uint4x2
-/// \brief Adds each component of the uint4x2 by the corresponding component of the right-hand uint4x2.
-inline uint4x2 operator+=( uint4x2& lhs, const uint4x2& rhs )
-{
-	return ( lhs = lhs + rhs );
-}
-
-/// \relates uint4x2
-/// \brief Returns a copy of the uint4x2 that has been component-wise subtracted by the given scalar value.
-inline uint4x2 operator-( const uint4x2& lhs, const uint32_t rhs )
-{
-	return uint4x2(
-		lhs[0] - rhs,
-		lhs[1] - rhs,
-		lhs[2] - rhs,
-		lhs[3] - rhs
-	);
-}
-
-/// \relates uint4x2
-/// \brief Subtracts each component by the given scalar value.
-inline uint4x2 operator-=( uint4x2& lhs, const uint32_t rhs )
-{
-	return ( lhs = lhs - rhs );
-}
-
-/// \relates uint4x2
-/// \brief Returns a copy of the uint4x2 that has been component-wise subtracted by the corresponding component of the right-hand uint4x2.
 inline uint4x2 operator-( const uint4x2& lhs, const uint4x2& rhs )
 {
-	return uint4x2(
-		lhs[0] - rhs[0],
-		lhs[1] - rhs[1],
-		lhs[2] - rhs[2],
-		lhs[3] - rhs[3]
-	);
-}
-
-/// \relates uint4x2
-/// \brief Subtracts each component of the uint4x2 by the corresponding component of the right-hand uint4x2.
-inline uint4x2 operator-=( uint4x2& lhs, const uint4x2& rhs )
-{
-	return ( lhs = lhs - rhs );
-}
-
-/// \relates uint4x2
-/// \brief Returns a copy of the uint4x2 that has been component-wise multiplied by the given scalar value.
-inline uint4x2 operator*( const uint4x2& lhs, const uint32_t rhs )
-{
-	return uint4x2(
-		lhs[0] * rhs,
-		lhs[1] * rhs,
-		lhs[2] * rhs,
-		lhs[3] * rhs
-	);
-}
-
-/// \relates uint4x2
-/// \brief Multiplies each component by the given scalar value.
-inline uint4x2 operator*=( uint4x2& lhs, const uint32_t rhs )
-{
-	return ( lhs = lhs * rhs );
+	return HLML_CONSTRUCT( uint4x2 ) {
+		comp_subv( lhs.rows[0], rhs.rows[0] ),
+		comp_subv( lhs.rows[1], rhs.rows[1] ),
+		comp_subv( lhs.rows[2], rhs.rows[2] ),
+		comp_subv( lhs.rows[3], rhs.rows[3] )
+	};
 }
 
 /// \relates uint4x2
 /// \brief Returns a copy of the matrix where each row of the left-hand matrix has been dot-producted by the corresponding column of the right-hand matrix.
 inline uint4x4 operator*( const uint4x2& lhs, const uint2x4& rhs )
 {
-	uint2 row0 = lhs[0];
-	uint2 row1 = lhs[1];
-	uint2 row2 = lhs[2];
-	uint2 row3 = lhs[3];
+	uint2 row0 = lhs.rows[0];
+	uint2 row1 = lhs.rows[1];
+	uint2 row2 = lhs.rows[2];
+	uint2 row3 = lhs.rows[3];
 
-	uint2 col0 = { rhs[0].x, rhs[1].x };
-	uint2 col1 = { rhs[0].y, rhs[1].y };
-	uint2 col2 = { rhs[0].z, rhs[1].z };
-	uint2 col3 = { rhs[0].w, rhs[1].w };
+	uint2 col0 = { rhs.rows[0].x, rhs.rows[1].x };
+	uint2 col1 = { rhs.rows[0].y, rhs.rows[1].y };
+	uint2 col2 = { rhs.rows[0].z, rhs.rows[1].z };
+	uint2 col3 = { rhs.rows[0].w, rhs.rows[1].w };
 
-	return uint4x4(
+	return HLML_CONSTRUCT( uint4x4 ) {
 		row0.x * col0.x + row0.y * col0.y,
 		row0.x * col1.x + row0.y * col1.y,
 		row0.x * col2.x + row0.y * col2.y,
@@ -6690,38 +4473,27 @@ inline uint4x4 operator*( const uint4x2& lhs, const uint2x4& rhs )
 		row3.x * col1.x + row3.y * col1.y,
 		row3.x * col2.x + row3.y * col2.y,
 		row3.x * col3.x + row3.y * col3.y
-	);
+	};
 }
 
-/// \relates uint4x2
-/// \brief Returns a copy of the uint4x2 that has been component-wise divided by the given scalar value.
-inline uint4x2 operator/( const uint4x2& lhs, const uint32_t rhs )
+inline uint4x2 operator/( const uint4x2& lhs, const uint32_t scalar )
 {
 	return uint4x2(
-		lhs[0] / rhs,
-		lhs[1] / rhs,
-		lhs[2] / rhs,
-		lhs[3] / rhs
+		lhs[0] / scalar,
+		lhs[1] / scalar,
+		lhs[2] / scalar,
+		lhs[3] / scalar
 	);
 }
 
-/// \relates uint4x2
-/// \brief Divides each component by the given scalar value.
-inline uint4x2 operator/=( uint4x2& lhs, const uint32_t rhs )
-{
-	return ( lhs = lhs / rhs );
-}
-
-/// \relates uint4x2
-/// \brief Returns a copy of the uint4x2 that has been component-wise divided by the corresponding component of the right-hand uint4x2.
 inline uint4x2 operator/( const uint4x2& lhs, const uint4x2& rhs )
 {
-	return uint4x2(
-		lhs[0] / rhs[0],
-		lhs[1] / rhs[1],
-		lhs[2] / rhs[2],
-		lhs[3] / rhs[3]
-	);
+	return HLML_CONSTRUCT( uint4x2 ) {
+		comp_divv( lhs.rows[0], rhs.rows[0] ),
+		comp_divv( lhs.rows[1], rhs.rows[1] ),
+		comp_divv( lhs.rows[2], rhs.rows[2] ),
+		comp_divv( lhs.rows[3], rhs.rows[3] )
+	};
 }
 
 // prefix
@@ -6773,82 +4545,15 @@ inline uint4x2& operator--( uint4x2& lhs, const int )
 }
 
 /// \relates uint4x2
-/// \brief Returns a bool4x2 where each component is true if the component of the left-hand type is less than the corresponding right-hand type component.
-inline bool4x2 operator<( const uint4x2& lhs, const uint4x2& rhs )
-{
-	return bool4x2(
-		lhs[0] < rhs[0],
-		lhs[1] < rhs[1],
-		lhs[2] < rhs[2],
-		lhs[3] < rhs[3]
-	);
-}
-
-/// \relates uint4x2
-/// \brief Returns a bool4x2 where each component is true if the component of the left-hand type is less than or equal to the corresponding right-hand type component.
-inline bool4x2 operator<=( const uint4x2& lhs, const uint4x2& rhs )
-{
-	return bool4x2(
-		lhs[0] <= rhs[0],
-		lhs[1] <= rhs[1],
-		lhs[2] <= rhs[2],
-		lhs[3] <= rhs[3]
-	);
-}
-
-/// \relates uint4x2
-/// \brief Returns a bool4x2 where each component is true if the component of the left-hand type is greater than the corresponding right-hand type component.
-inline bool4x2 operator>( const uint4x2& lhs, const uint4x2& rhs )
-{
-	return bool4x2(
-		lhs[0] > rhs[0],
-		lhs[1] > rhs[1],
-		lhs[2] > rhs[2],
-		lhs[3] > rhs[3]
-	);
-}
-
-/// \relates uint4x2
-/// \brief Returns a bool4x2 where each component is true if the component of the left-hand type is greater than or equal to the corresponding right-hand type component.
-inline bool4x2 operator>=( const uint4x2& lhs, const uint4x2& rhs )
-{
-	return bool4x2(
-		lhs[0] >= rhs[0],
-		lhs[1] >= rhs[1],
-		lhs[2] >= rhs[2],
-		lhs[3] >= rhs[3]
-	);
-}
-
-/// \relates uint4x2
-/// \brief Returns a copy of the uint4x2 where each component has been bitwise AND'd against the given scalar value.
-inline uint4x2 operator&( const uint4x2& lhs, const uint32_t& rhs )
-{
-	return uint4x2(
-		lhs[0] & rhs,
-		lhs[1] & rhs,
-		lhs[2] & rhs,
-		lhs[3] & rhs
-	);
-}
-
-/// \relates uint4x2
-/// \brief Performs a bitwise AND on the given left-hand uint4x2 against the given scalar value.
-inline uint4x2 operator&=( uint4x2& lhs, const uint32_t& rhs )
-{
-	return ( lhs = lhs & rhs );
-}
-
-/// \relates uint4x2
 /// \brief Returns a copy of the uint4x2 where each component of the left-hand uint4x2 has been bitwise AND'd against the corresponding component of the right-hand side uint4x2.
-inline uint4x2 operator&( const uint4x2& lhs, const uint4x2& rhs )
+inline uint4x2 operator&( uint4x2& lhs, const uint4x2& rhs )
 {
-	return uint4x2(
-		lhs[0] & rhs[0],
-		lhs[1] & rhs[1],
-		lhs[2] & rhs[2],
-		lhs[3] & rhs[3]
-	);
+	return HLML_CONSTRUCT( uint4x2 ) {
+		comp_and( lhs.rows[0], rhs.rows[0] ),
+		comp_and( lhs.rows[1], rhs.rows[1] ),
+		comp_and( lhs.rows[2], rhs.rows[2] ),
+		comp_and( lhs.rows[3], rhs.rows[3] )
+	};
 }
 
 /// \relates uint4x2
@@ -6859,34 +4564,15 @@ inline uint4x2 operator&=( uint4x2& lhs, const uint4x2& rhs )
 }
 
 /// \relates uint4x2
-/// \brief Returns a copy of the uint4x2 where each component has been bitwise OR'd against the given scalar value.
-inline uint4x2 operator|( const uint4x2& lhs, const uint32_t& rhs )
-{
-	return uint4x2(
-		lhs[0] | rhs,
-		lhs[1] | rhs,
-		lhs[2] | rhs,
-		lhs[3] | rhs
-	);
-}
-
-/// \relates uint4x2
-/// \brief Performs a bitwise OR on the given left-hand uint4x2 against the given scalar value.
-inline uint4x2 operator|=( uint4x2& lhs, const uint32_t& rhs )
-{
-	return ( lhs = lhs | rhs );
-}
-
-/// \relates uint4x2
 /// \brief Returns a copy of the uint4x2 where each component of the left-hand uint4x2 has been bitwise OR'd against the corresponding component of the right-hand side uint4x2.
-inline uint4x2 operator|( const uint4x2& lhs, const uint4x2& rhs )
+inline uint4x2 operator|( uint4x2& lhs, const uint4x2& rhs )
 {
-	return uint4x2(
-		lhs[0] | rhs[0],
-		lhs[1] | rhs[1],
-		lhs[2] | rhs[2],
-		lhs[3] | rhs[3]
-	);
+	return HLML_CONSTRUCT( uint4x2 ) {
+		comp_or( lhs.rows[0], rhs.rows[0] ),
+		comp_or( lhs.rows[1], rhs.rows[1] ),
+		comp_or( lhs.rows[2], rhs.rows[2] ),
+		comp_or( lhs.rows[3], rhs.rows[3] )
+	};
 }
 
 /// \relates uint4x2
@@ -6897,34 +4583,15 @@ inline uint4x2 operator|=( uint4x2& lhs, const uint4x2& rhs )
 }
 
 /// \relates uint4x2
-/// \brief Returns a copy of the uint4x2 where each component has been bitwise XOR'd against the given scalar value.
-inline uint4x2 operator^( const uint4x2& lhs, const uint32_t& rhs )
-{
-	return uint4x2(
-		lhs[0] ^ rhs,
-		lhs[1] ^ rhs,
-		lhs[2] ^ rhs,
-		lhs[3] ^ rhs
-	);
-}
-
-/// \relates uint4x2
-/// \brief Performs a bitwise XOR on the given left-hand uint4x2 against the given scalar value.
-inline uint4x2 operator^=( uint4x2& lhs, const uint32_t& rhs )
-{
-	return ( lhs = lhs ^ rhs );
-}
-
-/// \relates uint4x2
 /// \brief Returns a copy of the uint4x2 where each component of the left-hand uint4x2 has been bitwise XOR'd against the corresponding component of the right-hand side uint4x2.
-inline uint4x2 operator^( const uint4x2& lhs, const uint4x2& rhs )
+inline uint4x2 operator^( uint4x2& lhs, const uint4x2& rhs )
 {
-	return uint4x2(
-		lhs[0] ^ rhs[0],
-		lhs[1] ^ rhs[1],
-		lhs[2] ^ rhs[2],
-		lhs[3] ^ rhs[3]
-	);
+	return HLML_CONSTRUCT( uint4x2 ) {
+		comp_xor( lhs.rows[0], rhs.rows[0] ),
+		comp_xor( lhs.rows[1], rhs.rows[1] ),
+		comp_xor( lhs.rows[2], rhs.rows[2] ),
+		comp_xor( lhs.rows[3], rhs.rows[3] )
+	};
 }
 
 /// \relates uint4x2
@@ -6935,34 +4602,15 @@ inline uint4x2 operator^=( uint4x2& lhs, const uint4x2& rhs )
 }
 
 /// \relates uint4x2
-/// \brief Returns a copy of the uint4x2 where each component has been bitwise left-shifted by the given scalar value.
-inline uint4x2 operator<<( const uint4x2& lhs, const uint32_t& rhs )
-{
-	return uint4x2(
-		lhs[0] << rhs,
-		lhs[1] << rhs,
-		lhs[2] << rhs,
-		lhs[3] << rhs
-	);
-}
-
-/// \relates uint4x2
-/// \brief Performs a left bitshift on the given left-hand uint4x2 by the given scalar value.
-inline uint4x2 operator<<=( uint4x2& lhs, const uint32_t& rhs )
-{
-	return ( lhs = lhs << rhs );
-}
-
-/// \relates uint4x2
 /// \brief Returns a copy of the uint4x2 where each component of the left-hand uint4x2 has been bitwise left-shifted by the corresponding component of the right-hand side uint4x2.
-inline uint4x2 operator<<( const uint4x2& lhs, const uint4x2& rhs )
+inline uint4x2 operator<<( uint4x2& lhs, const uint4x2& rhs )
 {
-	return uint4x2(
-		lhs[0] << rhs[0],
-		lhs[1] << rhs[1],
-		lhs[2] << rhs[2],
-		lhs[3] << rhs[3]
-	);
+	return HLML_CONSTRUCT( uint4x2 ) {
+		comp_shift_left( lhs.rows[0], rhs.rows[0] ),
+		comp_shift_left( lhs.rows[1], rhs.rows[1] ),
+		comp_shift_left( lhs.rows[2], rhs.rows[2] ),
+		comp_shift_left( lhs.rows[3], rhs.rows[3] )
+	};
 }
 
 /// \relates uint4x2
@@ -6973,34 +4621,15 @@ inline uint4x2 operator<<=( uint4x2& lhs, const uint4x2& rhs )
 }
 
 /// \relates uint4x2
-/// \brief Returns a copy of the uint4x2 where each component has been bitwise right-shifted by the given scalar value.
-inline uint4x2 operator>>( const uint4x2& lhs, const uint32_t& rhs )
-{
-	return uint4x2(
-		lhs[0] >> rhs,
-		lhs[1] >> rhs,
-		lhs[2] >> rhs,
-		lhs[3] >> rhs
-	);
-}
-
-/// \relates uint4x2
-/// \brief Performs a right bitshift on the given left-hand uint4x2 by the given scalar value.
-inline uint4x2 operator>>=( uint4x2& lhs, const uint32_t& rhs )
-{
-	return ( lhs = lhs >> rhs );
-}
-
-/// \relates uint4x2
 /// \brief Returns a copy of the uint4x2 where each component of the left-hand uint4x2 has been bitwise right-shifted by the corresponding component of the right-hand side uint4x2.
-inline uint4x2 operator>>( const uint4x2& lhs, const uint4x2& rhs )
+inline uint4x2 operator>>( uint4x2& lhs, const uint4x2& rhs )
 {
-	return uint4x2(
-		lhs[0] >> rhs[0],
-		lhs[1] >> rhs[1],
-		lhs[2] >> rhs[2],
-		lhs[3] >> rhs[3]
-	);
+	return HLML_CONSTRUCT( uint4x2 ) {
+		comp_shift_right( lhs.rows[0], rhs.rows[0] ),
+		comp_shift_right( lhs.rows[1], rhs.rows[1] ),
+		comp_shift_right( lhs.rows[2], rhs.rows[2] ),
+		comp_shift_right( lhs.rows[3], rhs.rows[3] )
+	};
 }
 
 /// \relates uint4x2
@@ -7012,128 +4641,126 @@ inline uint4x2 operator>>=( uint4x2& lhs, const uint4x2& rhs )
 
 /// \relates uint4x2
 /// \brief Performs a unary bitwise operation on all components of the given uint4x2.
-inline uint4x2 operator~( const uint4x2& lhs )
+inline uint4x2 operator~( uint4x2& lhs )
 {
-	return uint4x2(
-		~lhs[0],
-		~lhs[1],
-		~lhs[2],
-		~lhs[3]
-	);
+	return HLML_CONSTRUCT( uint4x2 ) {
+		comp_unary( lhs.rows[0] ),
+		comp_unary( lhs.rows[1] ),
+		comp_unary( lhs.rows[2] ),
+		comp_unary( lhs.rows[3] )
+	};
+}
+
+inline bool4x2 operator<( const uint4x2& lhs, const uint4x2& rhs )
+{
+	return HLML_CONSTRUCT( bool4x2 ) {
+		cmpl( lhs.rows[0], rhs.rows[0] ),
+		cmpl( lhs.rows[1], rhs.rows[1] ),
+		cmpl( lhs.rows[2], rhs.rows[2] ),
+		cmpl( lhs.rows[3], rhs.rows[3] )
+	};
+}
+
+inline bool4x2 operator<=( const uint4x2& lhs, const uint4x2& rhs )
+{
+	return HLML_CONSTRUCT( bool4x2 ) {
+		cmple( lhs.rows[0], rhs.rows[0] ),
+		cmple( lhs.rows[1], rhs.rows[1] ),
+		cmple( lhs.rows[2], rhs.rows[2] ),
+		cmple( lhs.rows[3], rhs.rows[3] )
+	};
+}
+
+inline bool4x2 operator>( const uint4x2& lhs, const uint4x2& rhs )
+{
+	return HLML_CONSTRUCT( bool4x2 ) {
+		cmpg( lhs.rows[0], rhs.rows[0] ),
+		cmpg( lhs.rows[1], rhs.rows[1] ),
+		cmpg( lhs.rows[2], rhs.rows[2] ),
+		cmpg( lhs.rows[3], rhs.rows[3] )
+	};
+}
+
+inline bool4x2 operator>=( const uint4x2& lhs, const uint4x2& rhs )
+{
+	return HLML_CONSTRUCT( bool4x2 ) {
+		cmpge( lhs.rows[0], rhs.rows[0] ),
+		cmpge( lhs.rows[1], rhs.rows[1] ),
+		cmpge( lhs.rows[2], rhs.rows[2] ),
+		cmpge( lhs.rows[3], rhs.rows[3] )
+	};
 }
 
 
 // uint4x3
-/// \relates uint4x3
-/// \brief Returns a copy of the uint4x3 that has been component-wise added by the given scalar value.
-inline uint4x3 operator+( const uint4x3& lhs, const uint32_t rhs )
+inline bool operator==( const uint4x3& lhs, const uint4x3& rhs )
+{
+	return ( lhs[0] == rhs[0] )
+		&& ( lhs[1] == rhs[1] )
+		&& ( lhs[2] == rhs[2] )
+		&& ( lhs[3] == rhs[3] );
+}
+
+inline bool operator!=( const uint4x3& lhs, const uint4x3& rhs )
+{
+	return !( operator==( lhs, rhs ) );
+}
+
+inline uint4x3 operator+( const uint4x3& lhs, const uint32_t scalar )
 {
 	return uint4x3(
-		lhs[0] + rhs,
-		lhs[1] + rhs,
-		lhs[2] + rhs,
-		lhs[3] + rhs
+		lhs[0] + scalar,
+		lhs[1] + scalar,
+		lhs[2] + scalar,
+		lhs[3] + scalar
 	);
 }
 
-/// \relates uint4x3
-/// \brief Adds each component by the given scalar value.
-inline uint4x3 operator+=( uint4x3& lhs, const uint32_t rhs )
-{
-	return ( lhs = lhs + rhs );
-}
-
-/// \relates uint4x3
-/// \brief Returns a copy of the uint4x3 that has been component-wise added by the corresponding component of the right-hand uint4x3.
 inline uint4x3 operator+( const uint4x3& lhs, const uint4x3& rhs )
 {
+	return HLML_CONSTRUCT( uint4x3 ) {
+		comp_addv( lhs.rows[0], rhs.rows[0] ),
+		comp_addv( lhs.rows[1], rhs.rows[1] ),
+		comp_addv( lhs.rows[2], rhs.rows[2] ),
+		comp_addv( lhs.rows[3], rhs.rows[3] )
+	};
+}
+
+inline uint4x3 operator-( const uint4x3& lhs, const uint32_t scalar )
+{
 	return uint4x3(
-		lhs[0] + rhs[0],
-		lhs[1] + rhs[1],
-		lhs[2] + rhs[2],
-		lhs[3] + rhs[3]
+		lhs[0] - scalar,
+		lhs[1] - scalar,
+		lhs[2] - scalar,
+		lhs[3] - scalar
 	);
 }
 
-/// \relates uint4x3
-/// \brief Adds each component of the uint4x3 by the corresponding component of the right-hand uint4x3.
-inline uint4x3 operator+=( uint4x3& lhs, const uint4x3& rhs )
-{
-	return ( lhs = lhs + rhs );
-}
-
-/// \relates uint4x3
-/// \brief Returns a copy of the uint4x3 that has been component-wise subtracted by the given scalar value.
-inline uint4x3 operator-( const uint4x3& lhs, const uint32_t rhs )
-{
-	return uint4x3(
-		lhs[0] - rhs,
-		lhs[1] - rhs,
-		lhs[2] - rhs,
-		lhs[3] - rhs
-	);
-}
-
-/// \relates uint4x3
-/// \brief Subtracts each component by the given scalar value.
-inline uint4x3 operator-=( uint4x3& lhs, const uint32_t rhs )
-{
-	return ( lhs = lhs - rhs );
-}
-
-/// \relates uint4x3
-/// \brief Returns a copy of the uint4x3 that has been component-wise subtracted by the corresponding component of the right-hand uint4x3.
 inline uint4x3 operator-( const uint4x3& lhs, const uint4x3& rhs )
 {
-	return uint4x3(
-		lhs[0] - rhs[0],
-		lhs[1] - rhs[1],
-		lhs[2] - rhs[2],
-		lhs[3] - rhs[3]
-	);
-}
-
-/// \relates uint4x3
-/// \brief Subtracts each component of the uint4x3 by the corresponding component of the right-hand uint4x3.
-inline uint4x3 operator-=( uint4x3& lhs, const uint4x3& rhs )
-{
-	return ( lhs = lhs - rhs );
-}
-
-/// \relates uint4x3
-/// \brief Returns a copy of the uint4x3 that has been component-wise multiplied by the given scalar value.
-inline uint4x3 operator*( const uint4x3& lhs, const uint32_t rhs )
-{
-	return uint4x3(
-		lhs[0] * rhs,
-		lhs[1] * rhs,
-		lhs[2] * rhs,
-		lhs[3] * rhs
-	);
-}
-
-/// \relates uint4x3
-/// \brief Multiplies each component by the given scalar value.
-inline uint4x3 operator*=( uint4x3& lhs, const uint32_t rhs )
-{
-	return ( lhs = lhs * rhs );
+	return HLML_CONSTRUCT( uint4x3 ) {
+		comp_subv( lhs.rows[0], rhs.rows[0] ),
+		comp_subv( lhs.rows[1], rhs.rows[1] ),
+		comp_subv( lhs.rows[2], rhs.rows[2] ),
+		comp_subv( lhs.rows[3], rhs.rows[3] )
+	};
 }
 
 /// \relates uint4x3
 /// \brief Returns a copy of the matrix where each row of the left-hand matrix has been dot-producted by the corresponding column of the right-hand matrix.
 inline uint4x4 operator*( const uint4x3& lhs, const uint3x4& rhs )
 {
-	uint3 row0 = lhs[0];
-	uint3 row1 = lhs[1];
-	uint3 row2 = lhs[2];
-	uint3 row3 = lhs[3];
+	uint3 row0 = lhs.rows[0];
+	uint3 row1 = lhs.rows[1];
+	uint3 row2 = lhs.rows[2];
+	uint3 row3 = lhs.rows[3];
 
-	uint3 col0 = { rhs[0].x, rhs[1].x, rhs[2].x };
-	uint3 col1 = { rhs[0].y, rhs[1].y, rhs[2].y };
-	uint3 col2 = { rhs[0].z, rhs[1].z, rhs[2].z };
-	uint3 col3 = { rhs[0].w, rhs[1].w, rhs[2].w };
+	uint3 col0 = { rhs.rows[0].x, rhs.rows[1].x, rhs.rows[2].x };
+	uint3 col1 = { rhs.rows[0].y, rhs.rows[1].y, rhs.rows[2].y };
+	uint3 col2 = { rhs.rows[0].z, rhs.rows[1].z, rhs.rows[2].z };
+	uint3 col3 = { rhs.rows[0].w, rhs.rows[1].w, rhs.rows[2].w };
 
-	return uint4x4(
+	return HLML_CONSTRUCT( uint4x4 ) {
 		row0.x * col0.x + row0.y * col0.y + row0.z * col0.z,
 		row0.x * col1.x + row0.y * col1.y + row0.z * col1.z,
 		row0.x * col2.x + row0.y * col2.y + row0.z * col2.z,
@@ -7153,38 +4780,27 @@ inline uint4x4 operator*( const uint4x3& lhs, const uint3x4& rhs )
 		row3.x * col1.x + row3.y * col1.y + row3.z * col1.z,
 		row3.x * col2.x + row3.y * col2.y + row3.z * col2.z,
 		row3.x * col3.x + row3.y * col3.y + row3.z * col3.z
-	);
+	};
 }
 
-/// \relates uint4x3
-/// \brief Returns a copy of the uint4x3 that has been component-wise divided by the given scalar value.
-inline uint4x3 operator/( const uint4x3& lhs, const uint32_t rhs )
+inline uint4x3 operator/( const uint4x3& lhs, const uint32_t scalar )
 {
 	return uint4x3(
-		lhs[0] / rhs,
-		lhs[1] / rhs,
-		lhs[2] / rhs,
-		lhs[3] / rhs
+		lhs[0] / scalar,
+		lhs[1] / scalar,
+		lhs[2] / scalar,
+		lhs[3] / scalar
 	);
 }
 
-/// \relates uint4x3
-/// \brief Divides each component by the given scalar value.
-inline uint4x3 operator/=( uint4x3& lhs, const uint32_t rhs )
-{
-	return ( lhs = lhs / rhs );
-}
-
-/// \relates uint4x3
-/// \brief Returns a copy of the uint4x3 that has been component-wise divided by the corresponding component of the right-hand uint4x3.
 inline uint4x3 operator/( const uint4x3& lhs, const uint4x3& rhs )
 {
-	return uint4x3(
-		lhs[0] / rhs[0],
-		lhs[1] / rhs[1],
-		lhs[2] / rhs[2],
-		lhs[3] / rhs[3]
-	);
+	return HLML_CONSTRUCT( uint4x3 ) {
+		comp_divv( lhs.rows[0], rhs.rows[0] ),
+		comp_divv( lhs.rows[1], rhs.rows[1] ),
+		comp_divv( lhs.rows[2], rhs.rows[2] ),
+		comp_divv( lhs.rows[3], rhs.rows[3] )
+	};
 }
 
 // prefix
@@ -7236,82 +4852,15 @@ inline uint4x3& operator--( uint4x3& lhs, const int )
 }
 
 /// \relates uint4x3
-/// \brief Returns a bool4x3 where each component is true if the component of the left-hand type is less than the corresponding right-hand type component.
-inline bool4x3 operator<( const uint4x3& lhs, const uint4x3& rhs )
-{
-	return bool4x3(
-		lhs[0] < rhs[0],
-		lhs[1] < rhs[1],
-		lhs[2] < rhs[2],
-		lhs[3] < rhs[3]
-	);
-}
-
-/// \relates uint4x3
-/// \brief Returns a bool4x3 where each component is true if the component of the left-hand type is less than or equal to the corresponding right-hand type component.
-inline bool4x3 operator<=( const uint4x3& lhs, const uint4x3& rhs )
-{
-	return bool4x3(
-		lhs[0] <= rhs[0],
-		lhs[1] <= rhs[1],
-		lhs[2] <= rhs[2],
-		lhs[3] <= rhs[3]
-	);
-}
-
-/// \relates uint4x3
-/// \brief Returns a bool4x3 where each component is true if the component of the left-hand type is greater than the corresponding right-hand type component.
-inline bool4x3 operator>( const uint4x3& lhs, const uint4x3& rhs )
-{
-	return bool4x3(
-		lhs[0] > rhs[0],
-		lhs[1] > rhs[1],
-		lhs[2] > rhs[2],
-		lhs[3] > rhs[3]
-	);
-}
-
-/// \relates uint4x3
-/// \brief Returns a bool4x3 where each component is true if the component of the left-hand type is greater than or equal to the corresponding right-hand type component.
-inline bool4x3 operator>=( const uint4x3& lhs, const uint4x3& rhs )
-{
-	return bool4x3(
-		lhs[0] >= rhs[0],
-		lhs[1] >= rhs[1],
-		lhs[2] >= rhs[2],
-		lhs[3] >= rhs[3]
-	);
-}
-
-/// \relates uint4x3
-/// \brief Returns a copy of the uint4x3 where each component has been bitwise AND'd against the given scalar value.
-inline uint4x3 operator&( const uint4x3& lhs, const uint32_t& rhs )
-{
-	return uint4x3(
-		lhs[0] & rhs,
-		lhs[1] & rhs,
-		lhs[2] & rhs,
-		lhs[3] & rhs
-	);
-}
-
-/// \relates uint4x3
-/// \brief Performs a bitwise AND on the given left-hand uint4x3 against the given scalar value.
-inline uint4x3 operator&=( uint4x3& lhs, const uint32_t& rhs )
-{
-	return ( lhs = lhs & rhs );
-}
-
-/// \relates uint4x3
 /// \brief Returns a copy of the uint4x3 where each component of the left-hand uint4x3 has been bitwise AND'd against the corresponding component of the right-hand side uint4x3.
-inline uint4x3 operator&( const uint4x3& lhs, const uint4x3& rhs )
+inline uint4x3 operator&( uint4x3& lhs, const uint4x3& rhs )
 {
-	return uint4x3(
-		lhs[0] & rhs[0],
-		lhs[1] & rhs[1],
-		lhs[2] & rhs[2],
-		lhs[3] & rhs[3]
-	);
+	return HLML_CONSTRUCT( uint4x3 ) {
+		comp_and( lhs.rows[0], rhs.rows[0] ),
+		comp_and( lhs.rows[1], rhs.rows[1] ),
+		comp_and( lhs.rows[2], rhs.rows[2] ),
+		comp_and( lhs.rows[3], rhs.rows[3] )
+	};
 }
 
 /// \relates uint4x3
@@ -7322,34 +4871,15 @@ inline uint4x3 operator&=( uint4x3& lhs, const uint4x3& rhs )
 }
 
 /// \relates uint4x3
-/// \brief Returns a copy of the uint4x3 where each component has been bitwise OR'd against the given scalar value.
-inline uint4x3 operator|( const uint4x3& lhs, const uint32_t& rhs )
-{
-	return uint4x3(
-		lhs[0] | rhs,
-		lhs[1] | rhs,
-		lhs[2] | rhs,
-		lhs[3] | rhs
-	);
-}
-
-/// \relates uint4x3
-/// \brief Performs a bitwise OR on the given left-hand uint4x3 against the given scalar value.
-inline uint4x3 operator|=( uint4x3& lhs, const uint32_t& rhs )
-{
-	return ( lhs = lhs | rhs );
-}
-
-/// \relates uint4x3
 /// \brief Returns a copy of the uint4x3 where each component of the left-hand uint4x3 has been bitwise OR'd against the corresponding component of the right-hand side uint4x3.
-inline uint4x3 operator|( const uint4x3& lhs, const uint4x3& rhs )
+inline uint4x3 operator|( uint4x3& lhs, const uint4x3& rhs )
 {
-	return uint4x3(
-		lhs[0] | rhs[0],
-		lhs[1] | rhs[1],
-		lhs[2] | rhs[2],
-		lhs[3] | rhs[3]
-	);
+	return HLML_CONSTRUCT( uint4x3 ) {
+		comp_or( lhs.rows[0], rhs.rows[0] ),
+		comp_or( lhs.rows[1], rhs.rows[1] ),
+		comp_or( lhs.rows[2], rhs.rows[2] ),
+		comp_or( lhs.rows[3], rhs.rows[3] )
+	};
 }
 
 /// \relates uint4x3
@@ -7360,34 +4890,15 @@ inline uint4x3 operator|=( uint4x3& lhs, const uint4x3& rhs )
 }
 
 /// \relates uint4x3
-/// \brief Returns a copy of the uint4x3 where each component has been bitwise XOR'd against the given scalar value.
-inline uint4x3 operator^( const uint4x3& lhs, const uint32_t& rhs )
-{
-	return uint4x3(
-		lhs[0] ^ rhs,
-		lhs[1] ^ rhs,
-		lhs[2] ^ rhs,
-		lhs[3] ^ rhs
-	);
-}
-
-/// \relates uint4x3
-/// \brief Performs a bitwise XOR on the given left-hand uint4x3 against the given scalar value.
-inline uint4x3 operator^=( uint4x3& lhs, const uint32_t& rhs )
-{
-	return ( lhs = lhs ^ rhs );
-}
-
-/// \relates uint4x3
 /// \brief Returns a copy of the uint4x3 where each component of the left-hand uint4x3 has been bitwise XOR'd against the corresponding component of the right-hand side uint4x3.
-inline uint4x3 operator^( const uint4x3& lhs, const uint4x3& rhs )
+inline uint4x3 operator^( uint4x3& lhs, const uint4x3& rhs )
 {
-	return uint4x3(
-		lhs[0] ^ rhs[0],
-		lhs[1] ^ rhs[1],
-		lhs[2] ^ rhs[2],
-		lhs[3] ^ rhs[3]
-	);
+	return HLML_CONSTRUCT( uint4x3 ) {
+		comp_xor( lhs.rows[0], rhs.rows[0] ),
+		comp_xor( lhs.rows[1], rhs.rows[1] ),
+		comp_xor( lhs.rows[2], rhs.rows[2] ),
+		comp_xor( lhs.rows[3], rhs.rows[3] )
+	};
 }
 
 /// \relates uint4x3
@@ -7398,34 +4909,15 @@ inline uint4x3 operator^=( uint4x3& lhs, const uint4x3& rhs )
 }
 
 /// \relates uint4x3
-/// \brief Returns a copy of the uint4x3 where each component has been bitwise left-shifted by the given scalar value.
-inline uint4x3 operator<<( const uint4x3& lhs, const uint32_t& rhs )
-{
-	return uint4x3(
-		lhs[0] << rhs,
-		lhs[1] << rhs,
-		lhs[2] << rhs,
-		lhs[3] << rhs
-	);
-}
-
-/// \relates uint4x3
-/// \brief Performs a left bitshift on the given left-hand uint4x3 by the given scalar value.
-inline uint4x3 operator<<=( uint4x3& lhs, const uint32_t& rhs )
-{
-	return ( lhs = lhs << rhs );
-}
-
-/// \relates uint4x3
 /// \brief Returns a copy of the uint4x3 where each component of the left-hand uint4x3 has been bitwise left-shifted by the corresponding component of the right-hand side uint4x3.
-inline uint4x3 operator<<( const uint4x3& lhs, const uint4x3& rhs )
+inline uint4x3 operator<<( uint4x3& lhs, const uint4x3& rhs )
 {
-	return uint4x3(
-		lhs[0] << rhs[0],
-		lhs[1] << rhs[1],
-		lhs[2] << rhs[2],
-		lhs[3] << rhs[3]
-	);
+	return HLML_CONSTRUCT( uint4x3 ) {
+		comp_shift_left( lhs.rows[0], rhs.rows[0] ),
+		comp_shift_left( lhs.rows[1], rhs.rows[1] ),
+		comp_shift_left( lhs.rows[2], rhs.rows[2] ),
+		comp_shift_left( lhs.rows[3], rhs.rows[3] )
+	};
 }
 
 /// \relates uint4x3
@@ -7436,34 +4928,15 @@ inline uint4x3 operator<<=( uint4x3& lhs, const uint4x3& rhs )
 }
 
 /// \relates uint4x3
-/// \brief Returns a copy of the uint4x3 where each component has been bitwise right-shifted by the given scalar value.
-inline uint4x3 operator>>( const uint4x3& lhs, const uint32_t& rhs )
-{
-	return uint4x3(
-		lhs[0] >> rhs,
-		lhs[1] >> rhs,
-		lhs[2] >> rhs,
-		lhs[3] >> rhs
-	);
-}
-
-/// \relates uint4x3
-/// \brief Performs a right bitshift on the given left-hand uint4x3 by the given scalar value.
-inline uint4x3 operator>>=( uint4x3& lhs, const uint32_t& rhs )
-{
-	return ( lhs = lhs >> rhs );
-}
-
-/// \relates uint4x3
 /// \brief Returns a copy of the uint4x3 where each component of the left-hand uint4x3 has been bitwise right-shifted by the corresponding component of the right-hand side uint4x3.
-inline uint4x3 operator>>( const uint4x3& lhs, const uint4x3& rhs )
+inline uint4x3 operator>>( uint4x3& lhs, const uint4x3& rhs )
 {
-	return uint4x3(
-		lhs[0] >> rhs[0],
-		lhs[1] >> rhs[1],
-		lhs[2] >> rhs[2],
-		lhs[3] >> rhs[3]
-	);
+	return HLML_CONSTRUCT( uint4x3 ) {
+		comp_shift_right( lhs.rows[0], rhs.rows[0] ),
+		comp_shift_right( lhs.rows[1], rhs.rows[1] ),
+		comp_shift_right( lhs.rows[2], rhs.rows[2] ),
+		comp_shift_right( lhs.rows[3], rhs.rows[3] )
+	};
 }
 
 /// \relates uint4x3
@@ -7475,128 +4948,126 @@ inline uint4x3 operator>>=( uint4x3& lhs, const uint4x3& rhs )
 
 /// \relates uint4x3
 /// \brief Performs a unary bitwise operation on all components of the given uint4x3.
-inline uint4x3 operator~( const uint4x3& lhs )
+inline uint4x3 operator~( uint4x3& lhs )
 {
-	return uint4x3(
-		~lhs[0],
-		~lhs[1],
-		~lhs[2],
-		~lhs[3]
-	);
+	return HLML_CONSTRUCT( uint4x3 ) {
+		comp_unary( lhs.rows[0] ),
+		comp_unary( lhs.rows[1] ),
+		comp_unary( lhs.rows[2] ),
+		comp_unary( lhs.rows[3] )
+	};
+}
+
+inline bool4x3 operator<( const uint4x3& lhs, const uint4x3& rhs )
+{
+	return HLML_CONSTRUCT( bool4x3 ) {
+		cmpl( lhs.rows[0], rhs.rows[0] ),
+		cmpl( lhs.rows[1], rhs.rows[1] ),
+		cmpl( lhs.rows[2], rhs.rows[2] ),
+		cmpl( lhs.rows[3], rhs.rows[3] )
+	};
+}
+
+inline bool4x3 operator<=( const uint4x3& lhs, const uint4x3& rhs )
+{
+	return HLML_CONSTRUCT( bool4x3 ) {
+		cmple( lhs.rows[0], rhs.rows[0] ),
+		cmple( lhs.rows[1], rhs.rows[1] ),
+		cmple( lhs.rows[2], rhs.rows[2] ),
+		cmple( lhs.rows[3], rhs.rows[3] )
+	};
+}
+
+inline bool4x3 operator>( const uint4x3& lhs, const uint4x3& rhs )
+{
+	return HLML_CONSTRUCT( bool4x3 ) {
+		cmpg( lhs.rows[0], rhs.rows[0] ),
+		cmpg( lhs.rows[1], rhs.rows[1] ),
+		cmpg( lhs.rows[2], rhs.rows[2] ),
+		cmpg( lhs.rows[3], rhs.rows[3] )
+	};
+}
+
+inline bool4x3 operator>=( const uint4x3& lhs, const uint4x3& rhs )
+{
+	return HLML_CONSTRUCT( bool4x3 ) {
+		cmpge( lhs.rows[0], rhs.rows[0] ),
+		cmpge( lhs.rows[1], rhs.rows[1] ),
+		cmpge( lhs.rows[2], rhs.rows[2] ),
+		cmpge( lhs.rows[3], rhs.rows[3] )
+	};
 }
 
 
 // uint4x4
-/// \relates uint4x4
-/// \brief Returns a copy of the uint4x4 that has been component-wise added by the given scalar value.
-inline uint4x4 operator+( const uint4x4& lhs, const uint32_t rhs )
+inline bool operator==( const uint4x4& lhs, const uint4x4& rhs )
+{
+	return ( lhs[0] == rhs[0] )
+		&& ( lhs[1] == rhs[1] )
+		&& ( lhs[2] == rhs[2] )
+		&& ( lhs[3] == rhs[3] );
+}
+
+inline bool operator!=( const uint4x4& lhs, const uint4x4& rhs )
+{
+	return !( operator==( lhs, rhs ) );
+}
+
+inline uint4x4 operator+( const uint4x4& lhs, const uint32_t scalar )
 {
 	return uint4x4(
-		lhs[0] + rhs,
-		lhs[1] + rhs,
-		lhs[2] + rhs,
-		lhs[3] + rhs
+		lhs[0] + scalar,
+		lhs[1] + scalar,
+		lhs[2] + scalar,
+		lhs[3] + scalar
 	);
 }
 
-/// \relates uint4x4
-/// \brief Adds each component by the given scalar value.
-inline uint4x4 operator+=( uint4x4& lhs, const uint32_t rhs )
-{
-	return ( lhs = lhs + rhs );
-}
-
-/// \relates uint4x4
-/// \brief Returns a copy of the uint4x4 that has been component-wise added by the corresponding component of the right-hand uint4x4.
 inline uint4x4 operator+( const uint4x4& lhs, const uint4x4& rhs )
 {
+	return HLML_CONSTRUCT( uint4x4 ) {
+		comp_addv( lhs.rows[0], rhs.rows[0] ),
+		comp_addv( lhs.rows[1], rhs.rows[1] ),
+		comp_addv( lhs.rows[2], rhs.rows[2] ),
+		comp_addv( lhs.rows[3], rhs.rows[3] )
+	};
+}
+
+inline uint4x4 operator-( const uint4x4& lhs, const uint32_t scalar )
+{
 	return uint4x4(
-		lhs[0] + rhs[0],
-		lhs[1] + rhs[1],
-		lhs[2] + rhs[2],
-		lhs[3] + rhs[3]
+		lhs[0] - scalar,
+		lhs[1] - scalar,
+		lhs[2] - scalar,
+		lhs[3] - scalar
 	);
 }
 
-/// \relates uint4x4
-/// \brief Adds each component of the uint4x4 by the corresponding component of the right-hand uint4x4.
-inline uint4x4 operator+=( uint4x4& lhs, const uint4x4& rhs )
-{
-	return ( lhs = lhs + rhs );
-}
-
-/// \relates uint4x4
-/// \brief Returns a copy of the uint4x4 that has been component-wise subtracted by the given scalar value.
-inline uint4x4 operator-( const uint4x4& lhs, const uint32_t rhs )
-{
-	return uint4x4(
-		lhs[0] - rhs,
-		lhs[1] - rhs,
-		lhs[2] - rhs,
-		lhs[3] - rhs
-	);
-}
-
-/// \relates uint4x4
-/// \brief Subtracts each component by the given scalar value.
-inline uint4x4 operator-=( uint4x4& lhs, const uint32_t rhs )
-{
-	return ( lhs = lhs - rhs );
-}
-
-/// \relates uint4x4
-/// \brief Returns a copy of the uint4x4 that has been component-wise subtracted by the corresponding component of the right-hand uint4x4.
 inline uint4x4 operator-( const uint4x4& lhs, const uint4x4& rhs )
 {
-	return uint4x4(
-		lhs[0] - rhs[0],
-		lhs[1] - rhs[1],
-		lhs[2] - rhs[2],
-		lhs[3] - rhs[3]
-	);
-}
-
-/// \relates uint4x4
-/// \brief Subtracts each component of the uint4x4 by the corresponding component of the right-hand uint4x4.
-inline uint4x4 operator-=( uint4x4& lhs, const uint4x4& rhs )
-{
-	return ( lhs = lhs - rhs );
-}
-
-/// \relates uint4x4
-/// \brief Returns a copy of the uint4x4 that has been component-wise multiplied by the given scalar value.
-inline uint4x4 operator*( const uint4x4& lhs, const uint32_t rhs )
-{
-	return uint4x4(
-		lhs[0] * rhs,
-		lhs[1] * rhs,
-		lhs[2] * rhs,
-		lhs[3] * rhs
-	);
-}
-
-/// \relates uint4x4
-/// \brief Multiplies each component by the given scalar value.
-inline uint4x4 operator*=( uint4x4& lhs, const uint32_t rhs )
-{
-	return ( lhs = lhs * rhs );
+	return HLML_CONSTRUCT( uint4x4 ) {
+		comp_subv( lhs.rows[0], rhs.rows[0] ),
+		comp_subv( lhs.rows[1], rhs.rows[1] ),
+		comp_subv( lhs.rows[2], rhs.rows[2] ),
+		comp_subv( lhs.rows[3], rhs.rows[3] )
+	};
 }
 
 /// \relates uint4x4
 /// \brief Returns a copy of the matrix where each row of the left-hand matrix has been dot-producted by the corresponding column of the right-hand matrix.
 inline uint4x4 operator*( const uint4x4& lhs, const uint4x4& rhs )
 {
-	uint4 row0 = lhs[0];
-	uint4 row1 = lhs[1];
-	uint4 row2 = lhs[2];
-	uint4 row3 = lhs[3];
+	uint4 row0 = lhs.rows[0];
+	uint4 row1 = lhs.rows[1];
+	uint4 row2 = lhs.rows[2];
+	uint4 row3 = lhs.rows[3];
 
-	uint4 col0 = { rhs[0].x, rhs[1].x, rhs[2].x, rhs[3].x };
-	uint4 col1 = { rhs[0].y, rhs[1].y, rhs[2].y, rhs[3].y };
-	uint4 col2 = { rhs[0].z, rhs[1].z, rhs[2].z, rhs[3].z };
-	uint4 col3 = { rhs[0].w, rhs[1].w, rhs[2].w, rhs[3].w };
+	uint4 col0 = { rhs.rows[0].x, rhs.rows[1].x, rhs.rows[2].x, rhs.rows[3].x };
+	uint4 col1 = { rhs.rows[0].y, rhs.rows[1].y, rhs.rows[2].y, rhs.rows[3].y };
+	uint4 col2 = { rhs.rows[0].z, rhs.rows[1].z, rhs.rows[2].z, rhs.rows[3].z };
+	uint4 col3 = { rhs.rows[0].w, rhs.rows[1].w, rhs.rows[2].w, rhs.rows[3].w };
 
-	return uint4x4(
+	return HLML_CONSTRUCT( uint4x4 ) {
 		row0.x * col0.x + row0.y * col0.y + row0.z * col0.z + row0.w * col0.w,
 		row0.x * col1.x + row0.y * col1.y + row0.z * col1.z + row0.w * col1.w,
 		row0.x * col2.x + row0.y * col2.y + row0.z * col2.z + row0.w * col2.w,
@@ -7616,7 +5087,7 @@ inline uint4x4 operator*( const uint4x4& lhs, const uint4x4& rhs )
 		row3.x * col1.x + row3.y * col1.y + row3.z * col1.z + row3.w * col1.w,
 		row3.x * col2.x + row3.y * col2.y + row3.z * col2.z + row3.w * col2.w,
 		row3.x * col3.x + row3.y * col3.y + row3.z * col3.z + row3.w * col3.w
-	);
+	};
 }
 
 inline uint4x4 operator*=( uint4x4& lhs, const uint4x4& rhs )
@@ -7624,54 +5095,36 @@ inline uint4x4 operator*=( uint4x4& lhs, const uint4x4& rhs )
 	return ( lhs = lhs * rhs );
 }
 
-/// \relates uint4x4
-/// \brief Returns a copy of the uint4x4 that has been component-wise divided by the given scalar value.
-inline uint4x4 operator/( const uint4x4& lhs, const uint32_t rhs )
+inline uint4x4 operator/( const uint4x4& lhs, const uint32_t scalar )
 {
 	return uint4x4(
-		lhs[0] / rhs,
-		lhs[1] / rhs,
-		lhs[2] / rhs,
-		lhs[3] / rhs
+		lhs[0] / scalar,
+		lhs[1] / scalar,
+		lhs[2] / scalar,
+		lhs[3] / scalar
 	);
 }
 
-/// \relates uint4x4
-/// \brief Divides each component by the given scalar value.
-inline uint4x4 operator/=( uint4x4& lhs, const uint32_t rhs )
-{
-	return ( lhs = lhs / rhs );
-}
-
-/// \relates uint4x4
-/// \brief Returns a copy of the uint4x4 that has been component-wise divided by the corresponding component of the right-hand uint4x4.
 inline uint4x4 operator/( const uint4x4& lhs, const uint4x4& rhs )
 {
-	return uint4x4(
-		lhs[0] / rhs[0],
-		lhs[1] / rhs[1],
-		lhs[2] / rhs[2],
-		lhs[3] / rhs[3]
-	);
-}
-
-/// \relates uint4x4
-/// \brief Divides each component of the uint4x4 by the corresponding component of the right-hand uint4x4.
-inline uint4x4 operator/=( uint4x4& lhs, const uint4x4& rhs )
-{
-	return ( lhs = lhs / rhs );
+	return HLML_CONSTRUCT( uint4x4 ) {
+		comp_divv( lhs.rows[0], rhs.rows[0] ),
+		comp_divv( lhs.rows[1], rhs.rows[1] ),
+		comp_divv( lhs.rows[2], rhs.rows[2] ),
+		comp_divv( lhs.rows[3], rhs.rows[3] )
+	};
 }
 
 /// \relates uint4
 /// \brief Returns a copy of the uint4 that has been component-wise multiplied by the corresponding component of the right-hand uint4x4.
 inline uint4 operator*( const uint4x4& lhs, const uint4& rhs )
 {
-	return uint4(
-		(uint32_t) dot( lhs[0], rhs ),
-		(uint32_t) dot( lhs[1], rhs ),
-		(uint32_t) dot( lhs[2], rhs ),
-		(uint32_t) dot( lhs[3], rhs )
-	);
+	return HLML_CONSTRUCT( uint4 ) {
+		lhs.rows[0].x * rhs.x + lhs.rows[0].y * rhs.y + lhs.rows[0].z * rhs.z + lhs.rows[0].w * rhs.w,
+		lhs.rows[1].x * rhs.x + lhs.rows[1].y * rhs.y + lhs.rows[1].z * rhs.z + lhs.rows[1].w * rhs.w,
+		lhs.rows[2].x * rhs.x + lhs.rows[2].y * rhs.y + lhs.rows[2].z * rhs.z + lhs.rows[2].w * rhs.w,
+		lhs.rows[3].x * rhs.x + lhs.rows[3].y * rhs.y + lhs.rows[3].z * rhs.z + lhs.rows[3].w * rhs.w
+	};
 }
 
 /// \relates uint4
@@ -7730,82 +5183,15 @@ inline uint4x4& operator--( uint4x4& lhs, const int )
 }
 
 /// \relates uint4x4
-/// \brief Returns a bool4x4 where each component is true if the component of the left-hand type is less than the corresponding right-hand type component.
-inline bool4x4 operator<( const uint4x4& lhs, const uint4x4& rhs )
-{
-	return bool4x4(
-		lhs[0] < rhs[0],
-		lhs[1] < rhs[1],
-		lhs[2] < rhs[2],
-		lhs[3] < rhs[3]
-	);
-}
-
-/// \relates uint4x4
-/// \brief Returns a bool4x4 where each component is true if the component of the left-hand type is less than or equal to the corresponding right-hand type component.
-inline bool4x4 operator<=( const uint4x4& lhs, const uint4x4& rhs )
-{
-	return bool4x4(
-		lhs[0] <= rhs[0],
-		lhs[1] <= rhs[1],
-		lhs[2] <= rhs[2],
-		lhs[3] <= rhs[3]
-	);
-}
-
-/// \relates uint4x4
-/// \brief Returns a bool4x4 where each component is true if the component of the left-hand type is greater than the corresponding right-hand type component.
-inline bool4x4 operator>( const uint4x4& lhs, const uint4x4& rhs )
-{
-	return bool4x4(
-		lhs[0] > rhs[0],
-		lhs[1] > rhs[1],
-		lhs[2] > rhs[2],
-		lhs[3] > rhs[3]
-	);
-}
-
-/// \relates uint4x4
-/// \brief Returns a bool4x4 where each component is true if the component of the left-hand type is greater than or equal to the corresponding right-hand type component.
-inline bool4x4 operator>=( const uint4x4& lhs, const uint4x4& rhs )
-{
-	return bool4x4(
-		lhs[0] >= rhs[0],
-		lhs[1] >= rhs[1],
-		lhs[2] >= rhs[2],
-		lhs[3] >= rhs[3]
-	);
-}
-
-/// \relates uint4x4
-/// \brief Returns a copy of the uint4x4 where each component has been bitwise AND'd against the given scalar value.
-inline uint4x4 operator&( const uint4x4& lhs, const uint32_t& rhs )
-{
-	return uint4x4(
-		lhs[0] & rhs,
-		lhs[1] & rhs,
-		lhs[2] & rhs,
-		lhs[3] & rhs
-	);
-}
-
-/// \relates uint4x4
-/// \brief Performs a bitwise AND on the given left-hand uint4x4 against the given scalar value.
-inline uint4x4 operator&=( uint4x4& lhs, const uint32_t& rhs )
-{
-	return ( lhs = lhs & rhs );
-}
-
-/// \relates uint4x4
 /// \brief Returns a copy of the uint4x4 where each component of the left-hand uint4x4 has been bitwise AND'd against the corresponding component of the right-hand side uint4x4.
-inline uint4x4 operator&( const uint4x4& lhs, const uint4x4& rhs )
+inline uint4x4 operator&( uint4x4& lhs, const uint4x4& rhs )
 {
-	return uint4x4(
-		lhs[0] & rhs[0],
-		lhs[1] & rhs[1],
-		lhs[2] & rhs[2],
-		lhs[3] & rhs[3]
-	);
+	return HLML_CONSTRUCT( uint4x4 ) {
+		comp_and( lhs.rows[0], rhs.rows[0] ),
+		comp_and( lhs.rows[1], rhs.rows[1] ),
+		comp_and( lhs.rows[2], rhs.rows[2] ),
+		comp_and( lhs.rows[3], rhs.rows[3] )
+	};
 }
 
 /// \relates uint4x4
@@ -7816,34 +5202,15 @@ inline uint4x4 operator&=( uint4x4& lhs, const uint4x4& rhs )
 }
 
 /// \relates uint4x4
-/// \brief Returns a copy of the uint4x4 where each component has been bitwise OR'd against the given scalar value.
-inline uint4x4 operator|( const uint4x4& lhs, const uint32_t& rhs )
-{
-	return uint4x4(
-		lhs[0] | rhs,
-		lhs[1] | rhs,
-		lhs[2] | rhs,
-		lhs[3] | rhs
-	);
-}
-
-/// \relates uint4x4
-/// \brief Performs a bitwise OR on the given left-hand uint4x4 against the given scalar value.
-inline uint4x4 operator|=( uint4x4& lhs, const uint32_t& rhs )
-{
-	return ( lhs = lhs | rhs );
-}
-
-/// \relates uint4x4
 /// \brief Returns a copy of the uint4x4 where each component of the left-hand uint4x4 has been bitwise OR'd against the corresponding component of the right-hand side uint4x4.
-inline uint4x4 operator|( const uint4x4& lhs, const uint4x4& rhs )
+inline uint4x4 operator|( uint4x4& lhs, const uint4x4& rhs )
 {
-	return uint4x4(
-		lhs[0] | rhs[0],
-		lhs[1] | rhs[1],
-		lhs[2] | rhs[2],
-		lhs[3] | rhs[3]
-	);
+	return HLML_CONSTRUCT( uint4x4 ) {
+		comp_or( lhs.rows[0], rhs.rows[0] ),
+		comp_or( lhs.rows[1], rhs.rows[1] ),
+		comp_or( lhs.rows[2], rhs.rows[2] ),
+		comp_or( lhs.rows[3], rhs.rows[3] )
+	};
 }
 
 /// \relates uint4x4
@@ -7854,34 +5221,15 @@ inline uint4x4 operator|=( uint4x4& lhs, const uint4x4& rhs )
 }
 
 /// \relates uint4x4
-/// \brief Returns a copy of the uint4x4 where each component has been bitwise XOR'd against the given scalar value.
-inline uint4x4 operator^( const uint4x4& lhs, const uint32_t& rhs )
-{
-	return uint4x4(
-		lhs[0] ^ rhs,
-		lhs[1] ^ rhs,
-		lhs[2] ^ rhs,
-		lhs[3] ^ rhs
-	);
-}
-
-/// \relates uint4x4
-/// \brief Performs a bitwise XOR on the given left-hand uint4x4 against the given scalar value.
-inline uint4x4 operator^=( uint4x4& lhs, const uint32_t& rhs )
-{
-	return ( lhs = lhs ^ rhs );
-}
-
-/// \relates uint4x4
 /// \brief Returns a copy of the uint4x4 where each component of the left-hand uint4x4 has been bitwise XOR'd against the corresponding component of the right-hand side uint4x4.
-inline uint4x4 operator^( const uint4x4& lhs, const uint4x4& rhs )
+inline uint4x4 operator^( uint4x4& lhs, const uint4x4& rhs )
 {
-	return uint4x4(
-		lhs[0] ^ rhs[0],
-		lhs[1] ^ rhs[1],
-		lhs[2] ^ rhs[2],
-		lhs[3] ^ rhs[3]
-	);
+	return HLML_CONSTRUCT( uint4x4 ) {
+		comp_xor( lhs.rows[0], rhs.rows[0] ),
+		comp_xor( lhs.rows[1], rhs.rows[1] ),
+		comp_xor( lhs.rows[2], rhs.rows[2] ),
+		comp_xor( lhs.rows[3], rhs.rows[3] )
+	};
 }
 
 /// \relates uint4x4
@@ -7892,34 +5240,15 @@ inline uint4x4 operator^=( uint4x4& lhs, const uint4x4& rhs )
 }
 
 /// \relates uint4x4
-/// \brief Returns a copy of the uint4x4 where each component has been bitwise left-shifted by the given scalar value.
-inline uint4x4 operator<<( const uint4x4& lhs, const uint32_t& rhs )
-{
-	return uint4x4(
-		lhs[0] << rhs,
-		lhs[1] << rhs,
-		lhs[2] << rhs,
-		lhs[3] << rhs
-	);
-}
-
-/// \relates uint4x4
-/// \brief Performs a left bitshift on the given left-hand uint4x4 by the given scalar value.
-inline uint4x4 operator<<=( uint4x4& lhs, const uint32_t& rhs )
-{
-	return ( lhs = lhs << rhs );
-}
-
-/// \relates uint4x4
 /// \brief Returns a copy of the uint4x4 where each component of the left-hand uint4x4 has been bitwise left-shifted by the corresponding component of the right-hand side uint4x4.
-inline uint4x4 operator<<( const uint4x4& lhs, const uint4x4& rhs )
+inline uint4x4 operator<<( uint4x4& lhs, const uint4x4& rhs )
 {
-	return uint4x4(
-		lhs[0] << rhs[0],
-		lhs[1] << rhs[1],
-		lhs[2] << rhs[2],
-		lhs[3] << rhs[3]
-	);
+	return HLML_CONSTRUCT( uint4x4 ) {
+		comp_shift_left( lhs.rows[0], rhs.rows[0] ),
+		comp_shift_left( lhs.rows[1], rhs.rows[1] ),
+		comp_shift_left( lhs.rows[2], rhs.rows[2] ),
+		comp_shift_left( lhs.rows[3], rhs.rows[3] )
+	};
 }
 
 /// \relates uint4x4
@@ -7930,34 +5259,15 @@ inline uint4x4 operator<<=( uint4x4& lhs, const uint4x4& rhs )
 }
 
 /// \relates uint4x4
-/// \brief Returns a copy of the uint4x4 where each component has been bitwise right-shifted by the given scalar value.
-inline uint4x4 operator>>( const uint4x4& lhs, const uint32_t& rhs )
-{
-	return uint4x4(
-		lhs[0] >> rhs,
-		lhs[1] >> rhs,
-		lhs[2] >> rhs,
-		lhs[3] >> rhs
-	);
-}
-
-/// \relates uint4x4
-/// \brief Performs a right bitshift on the given left-hand uint4x4 by the given scalar value.
-inline uint4x4 operator>>=( uint4x4& lhs, const uint32_t& rhs )
-{
-	return ( lhs = lhs >> rhs );
-}
-
-/// \relates uint4x4
 /// \brief Returns a copy of the uint4x4 where each component of the left-hand uint4x4 has been bitwise right-shifted by the corresponding component of the right-hand side uint4x4.
-inline uint4x4 operator>>( const uint4x4& lhs, const uint4x4& rhs )
+inline uint4x4 operator>>( uint4x4& lhs, const uint4x4& rhs )
 {
-	return uint4x4(
-		lhs[0] >> rhs[0],
-		lhs[1] >> rhs[1],
-		lhs[2] >> rhs[2],
-		lhs[3] >> rhs[3]
-	);
+	return HLML_CONSTRUCT( uint4x4 ) {
+		comp_shift_right( lhs.rows[0], rhs.rows[0] ),
+		comp_shift_right( lhs.rows[1], rhs.rows[1] ),
+		comp_shift_right( lhs.rows[2], rhs.rows[2] ),
+		comp_shift_right( lhs.rows[3], rhs.rows[3] )
+	};
 }
 
 /// \relates uint4x4
@@ -7969,142 +5279,123 @@ inline uint4x4 operator>>=( uint4x4& lhs, const uint4x4& rhs )
 
 /// \relates uint4x4
 /// \brief Performs a unary bitwise operation on all components of the given uint4x4.
-inline uint4x4 operator~( const uint4x4& lhs )
+inline uint4x4 operator~( uint4x4& lhs )
 {
-	return uint4x4(
-		~lhs[0],
-		~lhs[1],
-		~lhs[2],
-		~lhs[3]
-	);
+	return HLML_CONSTRUCT( uint4x4 ) {
+		comp_unary( lhs.rows[0] ),
+		comp_unary( lhs.rows[1] ),
+		comp_unary( lhs.rows[2] ),
+		comp_unary( lhs.rows[3] )
+	};
+}
+
+inline bool4x4 operator<( const uint4x4& lhs, const uint4x4& rhs )
+{
+	return HLML_CONSTRUCT( bool4x4 ) {
+		cmpl( lhs.rows[0], rhs.rows[0] ),
+		cmpl( lhs.rows[1], rhs.rows[1] ),
+		cmpl( lhs.rows[2], rhs.rows[2] ),
+		cmpl( lhs.rows[3], rhs.rows[3] )
+	};
+}
+
+inline bool4x4 operator<=( const uint4x4& lhs, const uint4x4& rhs )
+{
+	return HLML_CONSTRUCT( bool4x4 ) {
+		cmple( lhs.rows[0], rhs.rows[0] ),
+		cmple( lhs.rows[1], rhs.rows[1] ),
+		cmple( lhs.rows[2], rhs.rows[2] ),
+		cmple( lhs.rows[3], rhs.rows[3] )
+	};
+}
+
+inline bool4x4 operator>( const uint4x4& lhs, const uint4x4& rhs )
+{
+	return HLML_CONSTRUCT( bool4x4 ) {
+		cmpg( lhs.rows[0], rhs.rows[0] ),
+		cmpg( lhs.rows[1], rhs.rows[1] ),
+		cmpg( lhs.rows[2], rhs.rows[2] ),
+		cmpg( lhs.rows[3], rhs.rows[3] )
+	};
+}
+
+inline bool4x4 operator>=( const uint4x4& lhs, const uint4x4& rhs )
+{
+	return HLML_CONSTRUCT( bool4x4 ) {
+		cmpge( lhs.rows[0], rhs.rows[0] ),
+		cmpge( lhs.rows[1], rhs.rows[1] ),
+		cmpge( lhs.rows[2], rhs.rows[2] ),
+		cmpge( lhs.rows[3], rhs.rows[3] )
+	};
 }
 
 
 // float2x2
-/// \relates float2x2
-/// \brief Returns a copy of the float2x2 that has been component-wise added by the given scalar value.
-inline float2x2 operator+( const float2x2& lhs, const float rhs )
+inline bool operator==( const float2x2& lhs, const float2x2& rhs )
+{
+	return ( lhs[0] == rhs[0] )
+		&& ( lhs[1] == rhs[1] );
+}
+
+inline bool operator!=( const float2x2& lhs, const float2x2& rhs )
+{
+	return !( operator==( lhs, rhs ) );
+}
+
+inline float2x2 operator+( const float2x2& lhs, const float scalar )
 {
 	return float2x2(
-		lhs[0] + rhs,
-		lhs[1] + rhs
+		lhs[0] + scalar,
+		lhs[1] + scalar
 	);
 }
 
-/// \relates float2x2
-/// \brief Adds each component by the given scalar value.
-inline float2x2 operator+=( float2x2& lhs, const float rhs )
-{
-	return ( lhs = lhs + rhs );
-}
-
-/// \relates float2x2
-/// \brief Returns a copy of the float2x2 that has been component-wise added by the corresponding component of the right-hand float2x2.
 inline float2x2 operator+( const float2x2& lhs, const float2x2& rhs )
 {
+	return HLML_CONSTRUCT( float2x2 ) {
+		comp_addv( lhs.rows[0], rhs.rows[0] ),
+		comp_addv( lhs.rows[1], rhs.rows[1] )
+	};
+}
+
+inline float2x2 operator-( const float2x2& lhs, const float scalar )
+{
 	return float2x2(
-		lhs[0] + rhs[0],
-		lhs[1] + rhs[1]
+		lhs[0] - scalar,
+		lhs[1] - scalar
 	);
 }
 
-/// \relates float2x2
-/// \brief Adds each component of the float2x2 by the corresponding component of the right-hand float2x2.
-inline float2x2 operator+=( float2x2& lhs, const float2x2& rhs )
-{
-	return ( lhs = lhs + rhs );
-}
-
-/// \relates float2x2
-/// \brief Returns a copy of the float2x2 that has been component-wise subtracted by the given scalar value.
-inline float2x2 operator-( const float2x2& lhs, const float rhs )
-{
-	return float2x2(
-		lhs[0] - rhs,
-		lhs[1] - rhs
-	);
-}
-
-/// \relates float2x2
-/// \brief Subtracts each component by the given scalar value.
-inline float2x2 operator-=( float2x2& lhs, const float rhs )
-{
-	return ( lhs = lhs - rhs );
-}
-
-/// \relates float2x2
-/// \brief Returns a copy of the float2x2 that has been component-wise subtracted by the corresponding component of the right-hand float2x2.
 inline float2x2 operator-( const float2x2& lhs, const float2x2& rhs )
 {
-	return float2x2(
-		lhs[0] - rhs[0],
-		lhs[1] - rhs[1]
-	);
-}
-
-/// \relates float2x2
-/// \brief Subtracts each component of the float2x2 by the corresponding component of the right-hand float2x2.
-inline float2x2 operator-=( float2x2& lhs, const float2x2& rhs )
-{
-	return ( lhs = lhs - rhs );
-}
-
-/// \relates float2x2
-/// \brief Returns a copy of the float2x2 that has been component-wise multiplied by the given scalar value.
-inline float2x2 operator*( const float2x2& lhs, const float rhs )
-{
-	return float2x2(
-		lhs[0] * rhs,
-		lhs[1] * rhs
-	);
-}
-
-/// \relates float2x2
-/// \brief Multiplies each component by the given scalar value.
-inline float2x2 operator*=( float2x2& lhs, const float rhs )
-{
-	return ( lhs = lhs * rhs );
+	return HLML_CONSTRUCT( float2x2 ) {
+		comp_subv( lhs.rows[0], rhs.rows[0] ),
+		comp_subv( lhs.rows[1], rhs.rows[1] )
+	};
 }
 
 /// \relates float2x2
 /// \brief Returns a copy of the matrix where each row of the left-hand matrix has been dot-producted by the corresponding column of the right-hand matrix.
 inline float2x2 operator*( const float2x2& lhs, const float2x2& rhs )
 {
-	float2 row0 = lhs[0];
-	float2 row1 = lhs[1];
+	float2 row0 = lhs.rows[0];
+	float2 row1 = lhs.rows[1];
 
-	float2 col0 = { rhs[0].x, rhs[1].x };
-	float2 col1 = { rhs[0].y, rhs[1].y };
+	float2 col0 = { rhs.rows[0].x, rhs.rows[1].x };
+	float2 col1 = { rhs.rows[0].y, rhs.rows[1].y };
 
-	return float2x2(
+	return HLML_CONSTRUCT( float2x2 ) {
 		row0.x * col0.x + row0.y * col0.y,
 		row0.x * col1.x + row0.y * col1.y,
 
 		row1.x * col0.x + row1.y * col0.y,
 		row1.x * col1.x + row1.y * col1.y
-	);
+	};
 }
 
 inline float2x2 operator*=( float2x2& lhs, const float2x2& rhs )
 {
 	return ( lhs = lhs * rhs );
-}
-
-/// \relates float2x2
-/// \brief Returns a copy of the float2x2 that has been component-wise divided by the given scalar value.
-inline float2x2 operator/( const float2x2& lhs, const float rhs )
-{
-	return float2x2(
-		lhs[0] / rhs,
-		lhs[1] / rhs
-	);
-}
-
-/// \relates float2x2
-/// \brief Divides each component by the given scalar value.
-inline float2x2 operator/=( float2x2& lhs, const float rhs )
-{
-	return ( lhs = lhs / rhs );
 }
 
 /// \relates float2x2
@@ -8125,10 +5416,10 @@ inline float2x2 operator/=( float2x2& lhs, const float2x2& rhs )
 /// \brief Returns a copy of the float2 that has been component-wise multiplied by the corresponding component of the right-hand float2x2.
 inline float2 operator*( const float2x2& lhs, const float2& rhs )
 {
-	return float2(
-		(float) dot( lhs[0], rhs ),
-		(float) dot( lhs[1], rhs )
-	);
+	return HLML_CONSTRUCT( float2 ) {
+		lhs.rows[0].x * rhs.x + lhs.rows[0].y * rhs.y,
+		lhs.rows[1].x * rhs.x + lhs.rows[1].y * rhs.y
+	};
 }
 
 /// \relates float2
@@ -8178,177 +5469,116 @@ inline float2x2& operator--( float2x2& lhs, const int )
 	return lhs;
 }
 
-/// \relates float2x2
-/// \brief Returns a bool2x2 where each component is true if the component of the left-hand type is less than the corresponding right-hand type component.
 inline bool2x2 operator<( const float2x2& lhs, const float2x2& rhs )
 {
-	return bool2x2(
-		lhs[0] < rhs[0],
-		lhs[1] < rhs[1]
-	);
+	return HLML_CONSTRUCT( bool2x2 ) {
+		cmpl( lhs.rows[0], rhs.rows[0] ),
+		cmpl( lhs.rows[1], rhs.rows[1] )
+	};
 }
 
-/// \relates float2x2
-/// \brief Returns a bool2x2 where each component is true if the component of the left-hand type is less than or equal to the corresponding right-hand type component.
 inline bool2x2 operator<=( const float2x2& lhs, const float2x2& rhs )
 {
-	return bool2x2(
-		lhs[0] <= rhs[0],
-		lhs[1] <= rhs[1]
-	);
+	return HLML_CONSTRUCT( bool2x2 ) {
+		cmple( lhs.rows[0], rhs.rows[0] ),
+		cmple( lhs.rows[1], rhs.rows[1] )
+	};
 }
 
-/// \relates float2x2
-/// \brief Returns a bool2x2 where each component is true if the component of the left-hand type is greater than the corresponding right-hand type component.
 inline bool2x2 operator>( const float2x2& lhs, const float2x2& rhs )
 {
-	return bool2x2(
-		lhs[0] > rhs[0],
-		lhs[1] > rhs[1]
-	);
+	return HLML_CONSTRUCT( bool2x2 ) {
+		cmpg( lhs.rows[0], rhs.rows[0] ),
+		cmpg( lhs.rows[1], rhs.rows[1] )
+	};
 }
 
-/// \relates float2x2
-/// \brief Returns a bool2x2 where each component is true if the component of the left-hand type is greater than or equal to the corresponding right-hand type component.
 inline bool2x2 operator>=( const float2x2& lhs, const float2x2& rhs )
 {
-	return bool2x2(
-		lhs[0] >= rhs[0],
-		lhs[1] >= rhs[1]
-	);
+	return HLML_CONSTRUCT( bool2x2 ) {
+		cmpge( lhs.rows[0], rhs.rows[0] ),
+		cmpge( lhs.rows[1], rhs.rows[1] )
+	};
 }
 
 
 // float2x3
-/// \relates float2x3
-/// \brief Returns a copy of the float2x3 that has been component-wise added by the given scalar value.
-inline float2x3 operator+( const float2x3& lhs, const float rhs )
+inline bool operator==( const float2x3& lhs, const float2x3& rhs )
+{
+	return ( lhs[0] == rhs[0] )
+		&& ( lhs[1] == rhs[1] );
+}
+
+inline bool operator!=( const float2x3& lhs, const float2x3& rhs )
+{
+	return !( operator==( lhs, rhs ) );
+}
+
+inline float2x3 operator+( const float2x3& lhs, const float scalar )
 {
 	return float2x3(
-		lhs[0] + rhs,
-		lhs[1] + rhs
+		lhs[0] + scalar,
+		lhs[1] + scalar
 	);
 }
 
-/// \relates float2x3
-/// \brief Adds each component by the given scalar value.
-inline float2x3 operator+=( float2x3& lhs, const float rhs )
-{
-	return ( lhs = lhs + rhs );
-}
-
-/// \relates float2x3
-/// \brief Returns a copy of the float2x3 that has been component-wise added by the corresponding component of the right-hand float2x3.
 inline float2x3 operator+( const float2x3& lhs, const float2x3& rhs )
 {
+	return HLML_CONSTRUCT( float2x3 ) {
+		comp_addv( lhs.rows[0], rhs.rows[0] ),
+		comp_addv( lhs.rows[1], rhs.rows[1] )
+	};
+}
+
+inline float2x3 operator-( const float2x3& lhs, const float scalar )
+{
 	return float2x3(
-		lhs[0] + rhs[0],
-		lhs[1] + rhs[1]
+		lhs[0] - scalar,
+		lhs[1] - scalar
 	);
 }
 
-/// \relates float2x3
-/// \brief Adds each component of the float2x3 by the corresponding component of the right-hand float2x3.
-inline float2x3 operator+=( float2x3& lhs, const float2x3& rhs )
-{
-	return ( lhs = lhs + rhs );
-}
-
-/// \relates float2x3
-/// \brief Returns a copy of the float2x3 that has been component-wise subtracted by the given scalar value.
-inline float2x3 operator-( const float2x3& lhs, const float rhs )
-{
-	return float2x3(
-		lhs[0] - rhs,
-		lhs[1] - rhs
-	);
-}
-
-/// \relates float2x3
-/// \brief Subtracts each component by the given scalar value.
-inline float2x3 operator-=( float2x3& lhs, const float rhs )
-{
-	return ( lhs = lhs - rhs );
-}
-
-/// \relates float2x3
-/// \brief Returns a copy of the float2x3 that has been component-wise subtracted by the corresponding component of the right-hand float2x3.
 inline float2x3 operator-( const float2x3& lhs, const float2x3& rhs )
 {
-	return float2x3(
-		lhs[0] - rhs[0],
-		lhs[1] - rhs[1]
-	);
-}
-
-/// \relates float2x3
-/// \brief Subtracts each component of the float2x3 by the corresponding component of the right-hand float2x3.
-inline float2x3 operator-=( float2x3& lhs, const float2x3& rhs )
-{
-	return ( lhs = lhs - rhs );
-}
-
-/// \relates float2x3
-/// \brief Returns a copy of the float2x3 that has been component-wise multiplied by the given scalar value.
-inline float2x3 operator*( const float2x3& lhs, const float rhs )
-{
-	return float2x3(
-		lhs[0] * rhs,
-		lhs[1] * rhs
-	);
-}
-
-/// \relates float2x3
-/// \brief Multiplies each component by the given scalar value.
-inline float2x3 operator*=( float2x3& lhs, const float rhs )
-{
-	return ( lhs = lhs * rhs );
+	return HLML_CONSTRUCT( float2x3 ) {
+		comp_subv( lhs.rows[0], rhs.rows[0] ),
+		comp_subv( lhs.rows[1], rhs.rows[1] )
+	};
 }
 
 /// \relates float2x3
 /// \brief Returns a copy of the matrix where each row of the left-hand matrix has been dot-producted by the corresponding column of the right-hand matrix.
 inline float2x2 operator*( const float2x3& lhs, const float3x2& rhs )
 {
-	float3 row0 = lhs[0];
-	float3 row1 = lhs[1];
+	float3 row0 = lhs.rows[0];
+	float3 row1 = lhs.rows[1];
 
-	float3 col0 = { rhs[0].x, rhs[1].x, rhs[2].x };
-	float3 col1 = { rhs[0].y, rhs[1].y, rhs[2].y };
+	float3 col0 = { rhs.rows[0].x, rhs.rows[1].x, rhs.rows[2].x };
+	float3 col1 = { rhs.rows[0].y, rhs.rows[1].y, rhs.rows[2].y };
 
-	return float2x2(
+	return HLML_CONSTRUCT( float2x2 ) {
 		row0.x * col0.x + row0.y * col0.y + row0.z * col0.z,
 		row0.x * col1.x + row0.y * col1.y + row0.z * col1.z,
 
 		row1.x * col0.x + row1.y * col0.y + row1.z * col0.z,
 		row1.x * col1.x + row1.y * col1.y + row1.z * col1.z
-	);
+	};
 }
 
-/// \relates float2x3
-/// \brief Returns a copy of the float2x3 that has been component-wise divided by the given scalar value.
-inline float2x3 operator/( const float2x3& lhs, const float rhs )
+inline float2x3 operator/( const float2x3& lhs, const float scalar )
 {
 	return float2x3(
-		lhs[0] / rhs,
-		lhs[1] / rhs
+		lhs[0] / scalar,
+		lhs[1] / scalar
 	);
 }
 
-/// \relates float2x3
-/// \brief Divides each component by the given scalar value.
-inline float2x3 operator/=( float2x3& lhs, const float rhs )
-{
-	return ( lhs = lhs / rhs );
-}
-
-/// \relates float2x3
-/// \brief Returns a copy of the float2x3 that has been component-wise divided by the corresponding component of the right-hand float2x3.
 inline float2x3 operator/( const float2x3& lhs, const float2x3& rhs )
 {
-	return float2x3(
-		lhs[0] / rhs[0],
-		lhs[1] / rhs[1]
-	);
+	return HLML_CONSTRUCT( float2x3 ) {
+		comp_divv( lhs.rows[0], rhs.rows[0] ),
+		comp_divv( lhs.rows[1], rhs.rows[1] )
+	};
 }
 
 // prefix
@@ -8391,177 +5621,116 @@ inline float2x3& operator--( float2x3& lhs, const int )
 	return lhs;
 }
 
-/// \relates float2x3
-/// \brief Returns a bool2x3 where each component is true if the component of the left-hand type is less than the corresponding right-hand type component.
 inline bool2x3 operator<( const float2x3& lhs, const float2x3& rhs )
 {
-	return bool2x3(
-		lhs[0] < rhs[0],
-		lhs[1] < rhs[1]
-	);
+	return HLML_CONSTRUCT( bool2x3 ) {
+		cmpl( lhs.rows[0], rhs.rows[0] ),
+		cmpl( lhs.rows[1], rhs.rows[1] )
+	};
 }
 
-/// \relates float2x3
-/// \brief Returns a bool2x3 where each component is true if the component of the left-hand type is less than or equal to the corresponding right-hand type component.
 inline bool2x3 operator<=( const float2x3& lhs, const float2x3& rhs )
 {
-	return bool2x3(
-		lhs[0] <= rhs[0],
-		lhs[1] <= rhs[1]
-	);
+	return HLML_CONSTRUCT( bool2x3 ) {
+		cmple( lhs.rows[0], rhs.rows[0] ),
+		cmple( lhs.rows[1], rhs.rows[1] )
+	};
 }
 
-/// \relates float2x3
-/// \brief Returns a bool2x3 where each component is true if the component of the left-hand type is greater than the corresponding right-hand type component.
 inline bool2x3 operator>( const float2x3& lhs, const float2x3& rhs )
 {
-	return bool2x3(
-		lhs[0] > rhs[0],
-		lhs[1] > rhs[1]
-	);
+	return HLML_CONSTRUCT( bool2x3 ) {
+		cmpg( lhs.rows[0], rhs.rows[0] ),
+		cmpg( lhs.rows[1], rhs.rows[1] )
+	};
 }
 
-/// \relates float2x3
-/// \brief Returns a bool2x3 where each component is true if the component of the left-hand type is greater than or equal to the corresponding right-hand type component.
 inline bool2x3 operator>=( const float2x3& lhs, const float2x3& rhs )
 {
-	return bool2x3(
-		lhs[0] >= rhs[0],
-		lhs[1] >= rhs[1]
-	);
+	return HLML_CONSTRUCT( bool2x3 ) {
+		cmpge( lhs.rows[0], rhs.rows[0] ),
+		cmpge( lhs.rows[1], rhs.rows[1] )
+	};
 }
 
 
 // float2x4
-/// \relates float2x4
-/// \brief Returns a copy of the float2x4 that has been component-wise added by the given scalar value.
-inline float2x4 operator+( const float2x4& lhs, const float rhs )
+inline bool operator==( const float2x4& lhs, const float2x4& rhs )
+{
+	return ( lhs[0] == rhs[0] )
+		&& ( lhs[1] == rhs[1] );
+}
+
+inline bool operator!=( const float2x4& lhs, const float2x4& rhs )
+{
+	return !( operator==( lhs, rhs ) );
+}
+
+inline float2x4 operator+( const float2x4& lhs, const float scalar )
 {
 	return float2x4(
-		lhs[0] + rhs,
-		lhs[1] + rhs
+		lhs[0] + scalar,
+		lhs[1] + scalar
 	);
 }
 
-/// \relates float2x4
-/// \brief Adds each component by the given scalar value.
-inline float2x4 operator+=( float2x4& lhs, const float rhs )
-{
-	return ( lhs = lhs + rhs );
-}
-
-/// \relates float2x4
-/// \brief Returns a copy of the float2x4 that has been component-wise added by the corresponding component of the right-hand float2x4.
 inline float2x4 operator+( const float2x4& lhs, const float2x4& rhs )
 {
+	return HLML_CONSTRUCT( float2x4 ) {
+		comp_addv( lhs.rows[0], rhs.rows[0] ),
+		comp_addv( lhs.rows[1], rhs.rows[1] )
+	};
+}
+
+inline float2x4 operator-( const float2x4& lhs, const float scalar )
+{
 	return float2x4(
-		lhs[0] + rhs[0],
-		lhs[1] + rhs[1]
+		lhs[0] - scalar,
+		lhs[1] - scalar
 	);
 }
 
-/// \relates float2x4
-/// \brief Adds each component of the float2x4 by the corresponding component of the right-hand float2x4.
-inline float2x4 operator+=( float2x4& lhs, const float2x4& rhs )
-{
-	return ( lhs = lhs + rhs );
-}
-
-/// \relates float2x4
-/// \brief Returns a copy of the float2x4 that has been component-wise subtracted by the given scalar value.
-inline float2x4 operator-( const float2x4& lhs, const float rhs )
-{
-	return float2x4(
-		lhs[0] - rhs,
-		lhs[1] - rhs
-	);
-}
-
-/// \relates float2x4
-/// \brief Subtracts each component by the given scalar value.
-inline float2x4 operator-=( float2x4& lhs, const float rhs )
-{
-	return ( lhs = lhs - rhs );
-}
-
-/// \relates float2x4
-/// \brief Returns a copy of the float2x4 that has been component-wise subtracted by the corresponding component of the right-hand float2x4.
 inline float2x4 operator-( const float2x4& lhs, const float2x4& rhs )
 {
-	return float2x4(
-		lhs[0] - rhs[0],
-		lhs[1] - rhs[1]
-	);
-}
-
-/// \relates float2x4
-/// \brief Subtracts each component of the float2x4 by the corresponding component of the right-hand float2x4.
-inline float2x4 operator-=( float2x4& lhs, const float2x4& rhs )
-{
-	return ( lhs = lhs - rhs );
-}
-
-/// \relates float2x4
-/// \brief Returns a copy of the float2x4 that has been component-wise multiplied by the given scalar value.
-inline float2x4 operator*( const float2x4& lhs, const float rhs )
-{
-	return float2x4(
-		lhs[0] * rhs,
-		lhs[1] * rhs
-	);
-}
-
-/// \relates float2x4
-/// \brief Multiplies each component by the given scalar value.
-inline float2x4 operator*=( float2x4& lhs, const float rhs )
-{
-	return ( lhs = lhs * rhs );
+	return HLML_CONSTRUCT( float2x4 ) {
+		comp_subv( lhs.rows[0], rhs.rows[0] ),
+		comp_subv( lhs.rows[1], rhs.rows[1] )
+	};
 }
 
 /// \relates float2x4
 /// \brief Returns a copy of the matrix where each row of the left-hand matrix has been dot-producted by the corresponding column of the right-hand matrix.
 inline float2x2 operator*( const float2x4& lhs, const float4x2& rhs )
 {
-	float4 row0 = lhs[0];
-	float4 row1 = lhs[1];
+	float4 row0 = lhs.rows[0];
+	float4 row1 = lhs.rows[1];
 
-	float4 col0 = { rhs[0].x, rhs[1].x, rhs[2].x, rhs[3].x };
-	float4 col1 = { rhs[0].y, rhs[1].y, rhs[2].y, rhs[3].y };
+	float4 col0 = { rhs.rows[0].x, rhs.rows[1].x, rhs.rows[2].x, rhs.rows[3].x };
+	float4 col1 = { rhs.rows[0].y, rhs.rows[1].y, rhs.rows[2].y, rhs.rows[3].y };
 
-	return float2x2(
+	return HLML_CONSTRUCT( float2x2 ) {
 		row0.x * col0.x + row0.y * col0.y + row0.z * col0.z + row0.w * col0.w,
 		row0.x * col1.x + row0.y * col1.y + row0.z * col1.z + row0.w * col1.w,
 
 		row1.x * col0.x + row1.y * col0.y + row1.z * col0.z + row1.w * col0.w,
 		row1.x * col1.x + row1.y * col1.y + row1.z * col1.z + row1.w * col1.w
-	);
+	};
 }
 
-/// \relates float2x4
-/// \brief Returns a copy of the float2x4 that has been component-wise divided by the given scalar value.
-inline float2x4 operator/( const float2x4& lhs, const float rhs )
+inline float2x4 operator/( const float2x4& lhs, const float scalar )
 {
 	return float2x4(
-		lhs[0] / rhs,
-		lhs[1] / rhs
+		lhs[0] / scalar,
+		lhs[1] / scalar
 	);
 }
 
-/// \relates float2x4
-/// \brief Divides each component by the given scalar value.
-inline float2x4 operator/=( float2x4& lhs, const float rhs )
-{
-	return ( lhs = lhs / rhs );
-}
-
-/// \relates float2x4
-/// \brief Returns a copy of the float2x4 that has been component-wise divided by the corresponding component of the right-hand float2x4.
 inline float2x4 operator/( const float2x4& lhs, const float2x4& rhs )
 {
-	return float2x4(
-		lhs[0] / rhs[0],
-		lhs[1] / rhs[1]
-	);
+	return HLML_CONSTRUCT( float2x4 ) {
+		comp_divv( lhs.rows[0], rhs.rows[0] ),
+		comp_divv( lhs.rows[1], rhs.rows[1] )
+	};
 }
 
 // prefix
@@ -8604,151 +5773,101 @@ inline float2x4& operator--( float2x4& lhs, const int )
 	return lhs;
 }
 
-/// \relates float2x4
-/// \brief Returns a bool2x4 where each component is true if the component of the left-hand type is less than the corresponding right-hand type component.
 inline bool2x4 operator<( const float2x4& lhs, const float2x4& rhs )
 {
-	return bool2x4(
-		lhs[0] < rhs[0],
-		lhs[1] < rhs[1]
-	);
+	return HLML_CONSTRUCT( bool2x4 ) {
+		cmpl( lhs.rows[0], rhs.rows[0] ),
+		cmpl( lhs.rows[1], rhs.rows[1] )
+	};
 }
 
-/// \relates float2x4
-/// \brief Returns a bool2x4 where each component is true if the component of the left-hand type is less than or equal to the corresponding right-hand type component.
 inline bool2x4 operator<=( const float2x4& lhs, const float2x4& rhs )
 {
-	return bool2x4(
-		lhs[0] <= rhs[0],
-		lhs[1] <= rhs[1]
-	);
+	return HLML_CONSTRUCT( bool2x4 ) {
+		cmple( lhs.rows[0], rhs.rows[0] ),
+		cmple( lhs.rows[1], rhs.rows[1] )
+	};
 }
 
-/// \relates float2x4
-/// \brief Returns a bool2x4 where each component is true if the component of the left-hand type is greater than the corresponding right-hand type component.
 inline bool2x4 operator>( const float2x4& lhs, const float2x4& rhs )
 {
-	return bool2x4(
-		lhs[0] > rhs[0],
-		lhs[1] > rhs[1]
-	);
+	return HLML_CONSTRUCT( bool2x4 ) {
+		cmpg( lhs.rows[0], rhs.rows[0] ),
+		cmpg( lhs.rows[1], rhs.rows[1] )
+	};
 }
 
-/// \relates float2x4
-/// \brief Returns a bool2x4 where each component is true if the component of the left-hand type is greater than or equal to the corresponding right-hand type component.
 inline bool2x4 operator>=( const float2x4& lhs, const float2x4& rhs )
 {
-	return bool2x4(
-		lhs[0] >= rhs[0],
-		lhs[1] >= rhs[1]
-	);
+	return HLML_CONSTRUCT( bool2x4 ) {
+		cmpge( lhs.rows[0], rhs.rows[0] ),
+		cmpge( lhs.rows[1], rhs.rows[1] )
+	};
 }
 
 
 // float3x2
-/// \relates float3x2
-/// \brief Returns a copy of the float3x2 that has been component-wise added by the given scalar value.
-inline float3x2 operator+( const float3x2& lhs, const float rhs )
+inline bool operator==( const float3x2& lhs, const float3x2& rhs )
+{
+	return ( lhs[0] == rhs[0] )
+		&& ( lhs[1] == rhs[1] )
+		&& ( lhs[2] == rhs[2] );
+}
+
+inline bool operator!=( const float3x2& lhs, const float3x2& rhs )
+{
+	return !( operator==( lhs, rhs ) );
+}
+
+inline float3x2 operator+( const float3x2& lhs, const float scalar )
 {
 	return float3x2(
-		lhs[0] + rhs,
-		lhs[1] + rhs,
-		lhs[2] + rhs
+		lhs[0] + scalar,
+		lhs[1] + scalar,
+		lhs[2] + scalar
 	);
 }
 
-/// \relates float3x2
-/// \brief Adds each component by the given scalar value.
-inline float3x2 operator+=( float3x2& lhs, const float rhs )
-{
-	return ( lhs = lhs + rhs );
-}
-
-/// \relates float3x2
-/// \brief Returns a copy of the float3x2 that has been component-wise added by the corresponding component of the right-hand float3x2.
 inline float3x2 operator+( const float3x2& lhs, const float3x2& rhs )
 {
+	return HLML_CONSTRUCT( float3x2 ) {
+		comp_addv( lhs.rows[0], rhs.rows[0] ),
+		comp_addv( lhs.rows[1], rhs.rows[1] ),
+		comp_addv( lhs.rows[2], rhs.rows[2] )
+	};
+}
+
+inline float3x2 operator-( const float3x2& lhs, const float scalar )
+{
 	return float3x2(
-		lhs[0] + rhs[0],
-		lhs[1] + rhs[1],
-		lhs[2] + rhs[2]
+		lhs[0] - scalar,
+		lhs[1] - scalar,
+		lhs[2] - scalar
 	);
 }
 
-/// \relates float3x2
-/// \brief Adds each component of the float3x2 by the corresponding component of the right-hand float3x2.
-inline float3x2 operator+=( float3x2& lhs, const float3x2& rhs )
-{
-	return ( lhs = lhs + rhs );
-}
-
-/// \relates float3x2
-/// \brief Returns a copy of the float3x2 that has been component-wise subtracted by the given scalar value.
-inline float3x2 operator-( const float3x2& lhs, const float rhs )
-{
-	return float3x2(
-		lhs[0] - rhs,
-		lhs[1] - rhs,
-		lhs[2] - rhs
-	);
-}
-
-/// \relates float3x2
-/// \brief Subtracts each component by the given scalar value.
-inline float3x2 operator-=( float3x2& lhs, const float rhs )
-{
-	return ( lhs = lhs - rhs );
-}
-
-/// \relates float3x2
-/// \brief Returns a copy of the float3x2 that has been component-wise subtracted by the corresponding component of the right-hand float3x2.
 inline float3x2 operator-( const float3x2& lhs, const float3x2& rhs )
 {
-	return float3x2(
-		lhs[0] - rhs[0],
-		lhs[1] - rhs[1],
-		lhs[2] - rhs[2]
-	);
-}
-
-/// \relates float3x2
-/// \brief Subtracts each component of the float3x2 by the corresponding component of the right-hand float3x2.
-inline float3x2 operator-=( float3x2& lhs, const float3x2& rhs )
-{
-	return ( lhs = lhs - rhs );
-}
-
-/// \relates float3x2
-/// \brief Returns a copy of the float3x2 that has been component-wise multiplied by the given scalar value.
-inline float3x2 operator*( const float3x2& lhs, const float rhs )
-{
-	return float3x2(
-		lhs[0] * rhs,
-		lhs[1] * rhs,
-		lhs[2] * rhs
-	);
-}
-
-/// \relates float3x2
-/// \brief Multiplies each component by the given scalar value.
-inline float3x2 operator*=( float3x2& lhs, const float rhs )
-{
-	return ( lhs = lhs * rhs );
+	return HLML_CONSTRUCT( float3x2 ) {
+		comp_subv( lhs.rows[0], rhs.rows[0] ),
+		comp_subv( lhs.rows[1], rhs.rows[1] ),
+		comp_subv( lhs.rows[2], rhs.rows[2] )
+	};
 }
 
 /// \relates float3x2
 /// \brief Returns a copy of the matrix where each row of the left-hand matrix has been dot-producted by the corresponding column of the right-hand matrix.
 inline float3x3 operator*( const float3x2& lhs, const float2x3& rhs )
 {
-	float2 row0 = lhs[0];
-	float2 row1 = lhs[1];
-	float2 row2 = lhs[2];
+	float2 row0 = lhs.rows[0];
+	float2 row1 = lhs.rows[1];
+	float2 row2 = lhs.rows[2];
 
-	float2 col0 = { rhs[0].x, rhs[1].x };
-	float2 col1 = { rhs[0].y, rhs[1].y };
-	float2 col2 = { rhs[0].z, rhs[1].z };
+	float2 col0 = { rhs.rows[0].x, rhs.rows[1].x };
+	float2 col1 = { rhs.rows[0].y, rhs.rows[1].y };
+	float2 col2 = { rhs.rows[0].z, rhs.rows[1].z };
 
-	return float3x3(
+	return HLML_CONSTRUCT( float3x3 ) {
 		row0.x * col0.x + row0.y * col0.y,
 		row0.x * col1.x + row0.y * col1.y,
 		row0.x * col2.x + row0.y * col2.y,
@@ -8760,36 +5879,25 @@ inline float3x3 operator*( const float3x2& lhs, const float2x3& rhs )
 		row2.x * col0.x + row2.y * col0.y,
 		row2.x * col1.x + row2.y * col1.y,
 		row2.x * col2.x + row2.y * col2.y
-	);
+	};
 }
 
-/// \relates float3x2
-/// \brief Returns a copy of the float3x2 that has been component-wise divided by the given scalar value.
-inline float3x2 operator/( const float3x2& lhs, const float rhs )
+inline float3x2 operator/( const float3x2& lhs, const float scalar )
 {
 	return float3x2(
-		lhs[0] / rhs,
-		lhs[1] / rhs,
-		lhs[2] / rhs
+		lhs[0] / scalar,
+		lhs[1] / scalar,
+		lhs[2] / scalar
 	);
 }
 
-/// \relates float3x2
-/// \brief Divides each component by the given scalar value.
-inline float3x2 operator/=( float3x2& lhs, const float rhs )
-{
-	return ( lhs = lhs / rhs );
-}
-
-/// \relates float3x2
-/// \brief Returns a copy of the float3x2 that has been component-wise divided by the corresponding component of the right-hand float3x2.
 inline float3x2 operator/( const float3x2& lhs, const float3x2& rhs )
 {
-	return float3x2(
-		lhs[0] / rhs[0],
-		lhs[1] / rhs[1],
-		lhs[2] / rhs[2]
-	);
+	return HLML_CONSTRUCT( float3x2 ) {
+		comp_divv( lhs.rows[0], rhs.rows[0] ),
+		comp_divv( lhs.rows[1], rhs.rows[1] ),
+		comp_divv( lhs.rows[2], rhs.rows[2] )
+	};
 }
 
 // prefix
@@ -8836,155 +5944,105 @@ inline float3x2& operator--( float3x2& lhs, const int )
 	return lhs;
 }
 
-/// \relates float3x2
-/// \brief Returns a bool3x2 where each component is true if the component of the left-hand type is less than the corresponding right-hand type component.
 inline bool3x2 operator<( const float3x2& lhs, const float3x2& rhs )
 {
-	return bool3x2(
-		lhs[0] < rhs[0],
-		lhs[1] < rhs[1],
-		lhs[2] < rhs[2]
-	);
+	return HLML_CONSTRUCT( bool3x2 ) {
+		cmpl( lhs.rows[0], rhs.rows[0] ),
+		cmpl( lhs.rows[1], rhs.rows[1] ),
+		cmpl( lhs.rows[2], rhs.rows[2] )
+	};
 }
 
-/// \relates float3x2
-/// \brief Returns a bool3x2 where each component is true if the component of the left-hand type is less than or equal to the corresponding right-hand type component.
 inline bool3x2 operator<=( const float3x2& lhs, const float3x2& rhs )
 {
-	return bool3x2(
-		lhs[0] <= rhs[0],
-		lhs[1] <= rhs[1],
-		lhs[2] <= rhs[2]
-	);
+	return HLML_CONSTRUCT( bool3x2 ) {
+		cmple( lhs.rows[0], rhs.rows[0] ),
+		cmple( lhs.rows[1], rhs.rows[1] ),
+		cmple( lhs.rows[2], rhs.rows[2] )
+	};
 }
 
-/// \relates float3x2
-/// \brief Returns a bool3x2 where each component is true if the component of the left-hand type is greater than the corresponding right-hand type component.
 inline bool3x2 operator>( const float3x2& lhs, const float3x2& rhs )
 {
-	return bool3x2(
-		lhs[0] > rhs[0],
-		lhs[1] > rhs[1],
-		lhs[2] > rhs[2]
-	);
+	return HLML_CONSTRUCT( bool3x2 ) {
+		cmpg( lhs.rows[0], rhs.rows[0] ),
+		cmpg( lhs.rows[1], rhs.rows[1] ),
+		cmpg( lhs.rows[2], rhs.rows[2] )
+	};
 }
 
-/// \relates float3x2
-/// \brief Returns a bool3x2 where each component is true if the component of the left-hand type is greater than or equal to the corresponding right-hand type component.
 inline bool3x2 operator>=( const float3x2& lhs, const float3x2& rhs )
 {
-	return bool3x2(
-		lhs[0] >= rhs[0],
-		lhs[1] >= rhs[1],
-		lhs[2] >= rhs[2]
-	);
+	return HLML_CONSTRUCT( bool3x2 ) {
+		cmpge( lhs.rows[0], rhs.rows[0] ),
+		cmpge( lhs.rows[1], rhs.rows[1] ),
+		cmpge( lhs.rows[2], rhs.rows[2] )
+	};
 }
 
 
 // float3x3
-/// \relates float3x3
-/// \brief Returns a copy of the float3x3 that has been component-wise added by the given scalar value.
-inline float3x3 operator+( const float3x3& lhs, const float rhs )
+inline bool operator==( const float3x3& lhs, const float3x3& rhs )
+{
+	return ( lhs[0] == rhs[0] )
+		&& ( lhs[1] == rhs[1] )
+		&& ( lhs[2] == rhs[2] );
+}
+
+inline bool operator!=( const float3x3& lhs, const float3x3& rhs )
+{
+	return !( operator==( lhs, rhs ) );
+}
+
+inline float3x3 operator+( const float3x3& lhs, const float scalar )
 {
 	return float3x3(
-		lhs[0] + rhs,
-		lhs[1] + rhs,
-		lhs[2] + rhs
+		lhs[0] + scalar,
+		lhs[1] + scalar,
+		lhs[2] + scalar
 	);
 }
 
-/// \relates float3x3
-/// \brief Adds each component by the given scalar value.
-inline float3x3 operator+=( float3x3& lhs, const float rhs )
-{
-	return ( lhs = lhs + rhs );
-}
-
-/// \relates float3x3
-/// \brief Returns a copy of the float3x3 that has been component-wise added by the corresponding component of the right-hand float3x3.
 inline float3x3 operator+( const float3x3& lhs, const float3x3& rhs )
 {
+	return HLML_CONSTRUCT( float3x3 ) {
+		comp_addv( lhs.rows[0], rhs.rows[0] ),
+		comp_addv( lhs.rows[1], rhs.rows[1] ),
+		comp_addv( lhs.rows[2], rhs.rows[2] )
+	};
+}
+
+inline float3x3 operator-( const float3x3& lhs, const float scalar )
+{
 	return float3x3(
-		lhs[0] + rhs[0],
-		lhs[1] + rhs[1],
-		lhs[2] + rhs[2]
+		lhs[0] - scalar,
+		lhs[1] - scalar,
+		lhs[2] - scalar
 	);
 }
 
-/// \relates float3x3
-/// \brief Adds each component of the float3x3 by the corresponding component of the right-hand float3x3.
-inline float3x3 operator+=( float3x3& lhs, const float3x3& rhs )
-{
-	return ( lhs = lhs + rhs );
-}
-
-/// \relates float3x3
-/// \brief Returns a copy of the float3x3 that has been component-wise subtracted by the given scalar value.
-inline float3x3 operator-( const float3x3& lhs, const float rhs )
-{
-	return float3x3(
-		lhs[0] - rhs,
-		lhs[1] - rhs,
-		lhs[2] - rhs
-	);
-}
-
-/// \relates float3x3
-/// \brief Subtracts each component by the given scalar value.
-inline float3x3 operator-=( float3x3& lhs, const float rhs )
-{
-	return ( lhs = lhs - rhs );
-}
-
-/// \relates float3x3
-/// \brief Returns a copy of the float3x3 that has been component-wise subtracted by the corresponding component of the right-hand float3x3.
 inline float3x3 operator-( const float3x3& lhs, const float3x3& rhs )
 {
-	return float3x3(
-		lhs[0] - rhs[0],
-		lhs[1] - rhs[1],
-		lhs[2] - rhs[2]
-	);
-}
-
-/// \relates float3x3
-/// \brief Subtracts each component of the float3x3 by the corresponding component of the right-hand float3x3.
-inline float3x3 operator-=( float3x3& lhs, const float3x3& rhs )
-{
-	return ( lhs = lhs - rhs );
-}
-
-/// \relates float3x3
-/// \brief Returns a copy of the float3x3 that has been component-wise multiplied by the given scalar value.
-inline float3x3 operator*( const float3x3& lhs, const float rhs )
-{
-	return float3x3(
-		lhs[0] * rhs,
-		lhs[1] * rhs,
-		lhs[2] * rhs
-	);
-}
-
-/// \relates float3x3
-/// \brief Multiplies each component by the given scalar value.
-inline float3x3 operator*=( float3x3& lhs, const float rhs )
-{
-	return ( lhs = lhs * rhs );
+	return HLML_CONSTRUCT( float3x3 ) {
+		comp_subv( lhs.rows[0], rhs.rows[0] ),
+		comp_subv( lhs.rows[1], rhs.rows[1] ),
+		comp_subv( lhs.rows[2], rhs.rows[2] )
+	};
 }
 
 /// \relates float3x3
 /// \brief Returns a copy of the matrix where each row of the left-hand matrix has been dot-producted by the corresponding column of the right-hand matrix.
 inline float3x3 operator*( const float3x3& lhs, const float3x3& rhs )
 {
-	float3 row0 = lhs[0];
-	float3 row1 = lhs[1];
-	float3 row2 = lhs[2];
+	float3 row0 = lhs.rows[0];
+	float3 row1 = lhs.rows[1];
+	float3 row2 = lhs.rows[2];
 
-	float3 col0 = { rhs[0].x, rhs[1].x, rhs[2].x };
-	float3 col1 = { rhs[0].y, rhs[1].y, rhs[2].y };
-	float3 col2 = { rhs[0].z, rhs[1].z, rhs[2].z };
+	float3 col0 = { rhs.rows[0].x, rhs.rows[1].x, rhs.rows[2].x };
+	float3 col1 = { rhs.rows[0].y, rhs.rows[1].y, rhs.rows[2].y };
+	float3 col2 = { rhs.rows[0].z, rhs.rows[1].z, rhs.rows[2].z };
 
-	return float3x3(
+	return HLML_CONSTRUCT( float3x3 ) {
 		row0.x * col0.x + row0.y * col0.y + row0.z * col0.z,
 		row0.x * col1.x + row0.y * col1.y + row0.z * col1.z,
 		row0.x * col2.x + row0.y * col2.y + row0.z * col2.z,
@@ -8996,30 +6054,12 @@ inline float3x3 operator*( const float3x3& lhs, const float3x3& rhs )
 		row2.x * col0.x + row2.y * col0.y + row2.z * col0.z,
 		row2.x * col1.x + row2.y * col1.y + row2.z * col1.z,
 		row2.x * col2.x + row2.y * col2.y + row2.z * col2.z
-	);
+	};
 }
 
 inline float3x3 operator*=( float3x3& lhs, const float3x3& rhs )
 {
 	return ( lhs = lhs * rhs );
-}
-
-/// \relates float3x3
-/// \brief Returns a copy of the float3x3 that has been component-wise divided by the given scalar value.
-inline float3x3 operator/( const float3x3& lhs, const float rhs )
-{
-	return float3x3(
-		lhs[0] / rhs,
-		lhs[1] / rhs,
-		lhs[2] / rhs
-	);
-}
-
-/// \relates float3x3
-/// \brief Divides each component by the given scalar value.
-inline float3x3 operator/=( float3x3& lhs, const float rhs )
-{
-	return ( lhs = lhs / rhs );
 }
 
 /// \relates float3x3
@@ -9040,11 +6080,11 @@ inline float3x3 operator/=( float3x3& lhs, const float3x3& rhs )
 /// \brief Returns a copy of the float3 that has been component-wise multiplied by the corresponding component of the right-hand float3x3.
 inline float3 operator*( const float3x3& lhs, const float3& rhs )
 {
-	return float3(
-		(float) dot( lhs[0], rhs ),
-		(float) dot( lhs[1], rhs ),
-		(float) dot( lhs[2], rhs )
-	);
+	return HLML_CONSTRUCT( float3 ) {
+		lhs.rows[0].x * rhs.x + lhs.rows[0].y * rhs.y + lhs.rows[0].z * rhs.z,
+		lhs.rows[1].x * rhs.x + lhs.rows[1].y * rhs.y + lhs.rows[1].z * rhs.z,
+		lhs.rows[2].x * rhs.x + lhs.rows[2].y * rhs.y + lhs.rows[2].z * rhs.z
+	};
 }
 
 /// \relates float3
@@ -9098,155 +6138,105 @@ inline float3x3& operator--( float3x3& lhs, const int )
 	return lhs;
 }
 
-/// \relates float3x3
-/// \brief Returns a bool3x3 where each component is true if the component of the left-hand type is less than the corresponding right-hand type component.
 inline bool3x3 operator<( const float3x3& lhs, const float3x3& rhs )
 {
-	return bool3x3(
-		lhs[0] < rhs[0],
-		lhs[1] < rhs[1],
-		lhs[2] < rhs[2]
-	);
+	return HLML_CONSTRUCT( bool3x3 ) {
+		cmpl( lhs.rows[0], rhs.rows[0] ),
+		cmpl( lhs.rows[1], rhs.rows[1] ),
+		cmpl( lhs.rows[2], rhs.rows[2] )
+	};
 }
 
-/// \relates float3x3
-/// \brief Returns a bool3x3 where each component is true if the component of the left-hand type is less than or equal to the corresponding right-hand type component.
 inline bool3x3 operator<=( const float3x3& lhs, const float3x3& rhs )
 {
-	return bool3x3(
-		lhs[0] <= rhs[0],
-		lhs[1] <= rhs[1],
-		lhs[2] <= rhs[2]
-	);
+	return HLML_CONSTRUCT( bool3x3 ) {
+		cmple( lhs.rows[0], rhs.rows[0] ),
+		cmple( lhs.rows[1], rhs.rows[1] ),
+		cmple( lhs.rows[2], rhs.rows[2] )
+	};
 }
 
-/// \relates float3x3
-/// \brief Returns a bool3x3 where each component is true if the component of the left-hand type is greater than the corresponding right-hand type component.
 inline bool3x3 operator>( const float3x3& lhs, const float3x3& rhs )
 {
-	return bool3x3(
-		lhs[0] > rhs[0],
-		lhs[1] > rhs[1],
-		lhs[2] > rhs[2]
-	);
+	return HLML_CONSTRUCT( bool3x3 ) {
+		cmpg( lhs.rows[0], rhs.rows[0] ),
+		cmpg( lhs.rows[1], rhs.rows[1] ),
+		cmpg( lhs.rows[2], rhs.rows[2] )
+	};
 }
 
-/// \relates float3x3
-/// \brief Returns a bool3x3 where each component is true if the component of the left-hand type is greater than or equal to the corresponding right-hand type component.
 inline bool3x3 operator>=( const float3x3& lhs, const float3x3& rhs )
 {
-	return bool3x3(
-		lhs[0] >= rhs[0],
-		lhs[1] >= rhs[1],
-		lhs[2] >= rhs[2]
-	);
+	return HLML_CONSTRUCT( bool3x3 ) {
+		cmpge( lhs.rows[0], rhs.rows[0] ),
+		cmpge( lhs.rows[1], rhs.rows[1] ),
+		cmpge( lhs.rows[2], rhs.rows[2] )
+	};
 }
 
 
 // float3x4
-/// \relates float3x4
-/// \brief Returns a copy of the float3x4 that has been component-wise added by the given scalar value.
-inline float3x4 operator+( const float3x4& lhs, const float rhs )
+inline bool operator==( const float3x4& lhs, const float3x4& rhs )
+{
+	return ( lhs[0] == rhs[0] )
+		&& ( lhs[1] == rhs[1] )
+		&& ( lhs[2] == rhs[2] );
+}
+
+inline bool operator!=( const float3x4& lhs, const float3x4& rhs )
+{
+	return !( operator==( lhs, rhs ) );
+}
+
+inline float3x4 operator+( const float3x4& lhs, const float scalar )
 {
 	return float3x4(
-		lhs[0] + rhs,
-		lhs[1] + rhs,
-		lhs[2] + rhs
+		lhs[0] + scalar,
+		lhs[1] + scalar,
+		lhs[2] + scalar
 	);
 }
 
-/// \relates float3x4
-/// \brief Adds each component by the given scalar value.
-inline float3x4 operator+=( float3x4& lhs, const float rhs )
-{
-	return ( lhs = lhs + rhs );
-}
-
-/// \relates float3x4
-/// \brief Returns a copy of the float3x4 that has been component-wise added by the corresponding component of the right-hand float3x4.
 inline float3x4 operator+( const float3x4& lhs, const float3x4& rhs )
 {
+	return HLML_CONSTRUCT( float3x4 ) {
+		comp_addv( lhs.rows[0], rhs.rows[0] ),
+		comp_addv( lhs.rows[1], rhs.rows[1] ),
+		comp_addv( lhs.rows[2], rhs.rows[2] )
+	};
+}
+
+inline float3x4 operator-( const float3x4& lhs, const float scalar )
+{
 	return float3x4(
-		lhs[0] + rhs[0],
-		lhs[1] + rhs[1],
-		lhs[2] + rhs[2]
+		lhs[0] - scalar,
+		lhs[1] - scalar,
+		lhs[2] - scalar
 	);
 }
 
-/// \relates float3x4
-/// \brief Adds each component of the float3x4 by the corresponding component of the right-hand float3x4.
-inline float3x4 operator+=( float3x4& lhs, const float3x4& rhs )
-{
-	return ( lhs = lhs + rhs );
-}
-
-/// \relates float3x4
-/// \brief Returns a copy of the float3x4 that has been component-wise subtracted by the given scalar value.
-inline float3x4 operator-( const float3x4& lhs, const float rhs )
-{
-	return float3x4(
-		lhs[0] - rhs,
-		lhs[1] - rhs,
-		lhs[2] - rhs
-	);
-}
-
-/// \relates float3x4
-/// \brief Subtracts each component by the given scalar value.
-inline float3x4 operator-=( float3x4& lhs, const float rhs )
-{
-	return ( lhs = lhs - rhs );
-}
-
-/// \relates float3x4
-/// \brief Returns a copy of the float3x4 that has been component-wise subtracted by the corresponding component of the right-hand float3x4.
 inline float3x4 operator-( const float3x4& lhs, const float3x4& rhs )
 {
-	return float3x4(
-		lhs[0] - rhs[0],
-		lhs[1] - rhs[1],
-		lhs[2] - rhs[2]
-	);
-}
-
-/// \relates float3x4
-/// \brief Subtracts each component of the float3x4 by the corresponding component of the right-hand float3x4.
-inline float3x4 operator-=( float3x4& lhs, const float3x4& rhs )
-{
-	return ( lhs = lhs - rhs );
-}
-
-/// \relates float3x4
-/// \brief Returns a copy of the float3x4 that has been component-wise multiplied by the given scalar value.
-inline float3x4 operator*( const float3x4& lhs, const float rhs )
-{
-	return float3x4(
-		lhs[0] * rhs,
-		lhs[1] * rhs,
-		lhs[2] * rhs
-	);
-}
-
-/// \relates float3x4
-/// \brief Multiplies each component by the given scalar value.
-inline float3x4 operator*=( float3x4& lhs, const float rhs )
-{
-	return ( lhs = lhs * rhs );
+	return HLML_CONSTRUCT( float3x4 ) {
+		comp_subv( lhs.rows[0], rhs.rows[0] ),
+		comp_subv( lhs.rows[1], rhs.rows[1] ),
+		comp_subv( lhs.rows[2], rhs.rows[2] )
+	};
 }
 
 /// \relates float3x4
 /// \brief Returns a copy of the matrix where each row of the left-hand matrix has been dot-producted by the corresponding column of the right-hand matrix.
 inline float3x3 operator*( const float3x4& lhs, const float4x3& rhs )
 {
-	float4 row0 = lhs[0];
-	float4 row1 = lhs[1];
-	float4 row2 = lhs[2];
+	float4 row0 = lhs.rows[0];
+	float4 row1 = lhs.rows[1];
+	float4 row2 = lhs.rows[2];
 
-	float4 col0 = { rhs[0].x, rhs[1].x, rhs[2].x, rhs[3].x };
-	float4 col1 = { rhs[0].y, rhs[1].y, rhs[2].y, rhs[3].y };
-	float4 col2 = { rhs[0].z, rhs[1].z, rhs[2].z, rhs[3].z };
+	float4 col0 = { rhs.rows[0].x, rhs.rows[1].x, rhs.rows[2].x, rhs.rows[3].x };
+	float4 col1 = { rhs.rows[0].y, rhs.rows[1].y, rhs.rows[2].y, rhs.rows[3].y };
+	float4 col2 = { rhs.rows[0].z, rhs.rows[1].z, rhs.rows[2].z, rhs.rows[3].z };
 
-	return float3x3(
+	return HLML_CONSTRUCT( float3x3 ) {
 		row0.x * col0.x + row0.y * col0.y + row0.z * col0.z + row0.w * col0.w,
 		row0.x * col1.x + row0.y * col1.y + row0.z * col1.z + row0.w * col1.w,
 		row0.x * col2.x + row0.y * col2.y + row0.z * col2.z + row0.w * col2.w,
@@ -9258,36 +6248,25 @@ inline float3x3 operator*( const float3x4& lhs, const float4x3& rhs )
 		row2.x * col0.x + row2.y * col0.y + row2.z * col0.z + row2.w * col0.w,
 		row2.x * col1.x + row2.y * col1.y + row2.z * col1.z + row2.w * col1.w,
 		row2.x * col2.x + row2.y * col2.y + row2.z * col2.z + row2.w * col2.w
-	);
+	};
 }
 
-/// \relates float3x4
-/// \brief Returns a copy of the float3x4 that has been component-wise divided by the given scalar value.
-inline float3x4 operator/( const float3x4& lhs, const float rhs )
+inline float3x4 operator/( const float3x4& lhs, const float scalar )
 {
 	return float3x4(
-		lhs[0] / rhs,
-		lhs[1] / rhs,
-		lhs[2] / rhs
+		lhs[0] / scalar,
+		lhs[1] / scalar,
+		lhs[2] / scalar
 	);
 }
 
-/// \relates float3x4
-/// \brief Divides each component by the given scalar value.
-inline float3x4 operator/=( float3x4& lhs, const float rhs )
-{
-	return ( lhs = lhs / rhs );
-}
-
-/// \relates float3x4
-/// \brief Returns a copy of the float3x4 that has been component-wise divided by the corresponding component of the right-hand float3x4.
 inline float3x4 operator/( const float3x4& lhs, const float3x4& rhs )
 {
-	return float3x4(
-		lhs[0] / rhs[0],
-		lhs[1] / rhs[1],
-		lhs[2] / rhs[2]
-	);
+	return HLML_CONSTRUCT( float3x4 ) {
+		comp_divv( lhs.rows[0], rhs.rows[0] ),
+		comp_divv( lhs.rows[1], rhs.rows[1] ),
+		comp_divv( lhs.rows[2], rhs.rows[2] )
+	};
 }
 
 // prefix
@@ -9334,162 +6313,112 @@ inline float3x4& operator--( float3x4& lhs, const int )
 	return lhs;
 }
 
-/// \relates float3x4
-/// \brief Returns a bool3x4 where each component is true if the component of the left-hand type is less than the corresponding right-hand type component.
 inline bool3x4 operator<( const float3x4& lhs, const float3x4& rhs )
 {
-	return bool3x4(
-		lhs[0] < rhs[0],
-		lhs[1] < rhs[1],
-		lhs[2] < rhs[2]
-	);
+	return HLML_CONSTRUCT( bool3x4 ) {
+		cmpl( lhs.rows[0], rhs.rows[0] ),
+		cmpl( lhs.rows[1], rhs.rows[1] ),
+		cmpl( lhs.rows[2], rhs.rows[2] )
+	};
 }
 
-/// \relates float3x4
-/// \brief Returns a bool3x4 where each component is true if the component of the left-hand type is less than or equal to the corresponding right-hand type component.
 inline bool3x4 operator<=( const float3x4& lhs, const float3x4& rhs )
 {
-	return bool3x4(
-		lhs[0] <= rhs[0],
-		lhs[1] <= rhs[1],
-		lhs[2] <= rhs[2]
-	);
+	return HLML_CONSTRUCT( bool3x4 ) {
+		cmple( lhs.rows[0], rhs.rows[0] ),
+		cmple( lhs.rows[1], rhs.rows[1] ),
+		cmple( lhs.rows[2], rhs.rows[2] )
+	};
 }
 
-/// \relates float3x4
-/// \brief Returns a bool3x4 where each component is true if the component of the left-hand type is greater than the corresponding right-hand type component.
 inline bool3x4 operator>( const float3x4& lhs, const float3x4& rhs )
 {
-	return bool3x4(
-		lhs[0] > rhs[0],
-		lhs[1] > rhs[1],
-		lhs[2] > rhs[2]
-	);
+	return HLML_CONSTRUCT( bool3x4 ) {
+		cmpg( lhs.rows[0], rhs.rows[0] ),
+		cmpg( lhs.rows[1], rhs.rows[1] ),
+		cmpg( lhs.rows[2], rhs.rows[2] )
+	};
 }
 
-/// \relates float3x4
-/// \brief Returns a bool3x4 where each component is true if the component of the left-hand type is greater than or equal to the corresponding right-hand type component.
 inline bool3x4 operator>=( const float3x4& lhs, const float3x4& rhs )
 {
-	return bool3x4(
-		lhs[0] >= rhs[0],
-		lhs[1] >= rhs[1],
-		lhs[2] >= rhs[2]
-	);
+	return HLML_CONSTRUCT( bool3x4 ) {
+		cmpge( lhs.rows[0], rhs.rows[0] ),
+		cmpge( lhs.rows[1], rhs.rows[1] ),
+		cmpge( lhs.rows[2], rhs.rows[2] )
+	};
 }
 
 
 // float4x2
-/// \relates float4x2
-/// \brief Returns a copy of the float4x2 that has been component-wise added by the given scalar value.
-inline float4x2 operator+( const float4x2& lhs, const float rhs )
+inline bool operator==( const float4x2& lhs, const float4x2& rhs )
+{
+	return ( lhs[0] == rhs[0] )
+		&& ( lhs[1] == rhs[1] )
+		&& ( lhs[2] == rhs[2] )
+		&& ( lhs[3] == rhs[3] );
+}
+
+inline bool operator!=( const float4x2& lhs, const float4x2& rhs )
+{
+	return !( operator==( lhs, rhs ) );
+}
+
+inline float4x2 operator+( const float4x2& lhs, const float scalar )
 {
 	return float4x2(
-		lhs[0] + rhs,
-		lhs[1] + rhs,
-		lhs[2] + rhs,
-		lhs[3] + rhs
+		lhs[0] + scalar,
+		lhs[1] + scalar,
+		lhs[2] + scalar,
+		lhs[3] + scalar
 	);
 }
 
-/// \relates float4x2
-/// \brief Adds each component by the given scalar value.
-inline float4x2 operator+=( float4x2& lhs, const float rhs )
-{
-	return ( lhs = lhs + rhs );
-}
-
-/// \relates float4x2
-/// \brief Returns a copy of the float4x2 that has been component-wise added by the corresponding component of the right-hand float4x2.
 inline float4x2 operator+( const float4x2& lhs, const float4x2& rhs )
 {
+	return HLML_CONSTRUCT( float4x2 ) {
+		comp_addv( lhs.rows[0], rhs.rows[0] ),
+		comp_addv( lhs.rows[1], rhs.rows[1] ),
+		comp_addv( lhs.rows[2], rhs.rows[2] ),
+		comp_addv( lhs.rows[3], rhs.rows[3] )
+	};
+}
+
+inline float4x2 operator-( const float4x2& lhs, const float scalar )
+{
 	return float4x2(
-		lhs[0] + rhs[0],
-		lhs[1] + rhs[1],
-		lhs[2] + rhs[2],
-		lhs[3] + rhs[3]
+		lhs[0] - scalar,
+		lhs[1] - scalar,
+		lhs[2] - scalar,
+		lhs[3] - scalar
 	);
 }
 
-/// \relates float4x2
-/// \brief Adds each component of the float4x2 by the corresponding component of the right-hand float4x2.
-inline float4x2 operator+=( float4x2& lhs, const float4x2& rhs )
-{
-	return ( lhs = lhs + rhs );
-}
-
-/// \relates float4x2
-/// \brief Returns a copy of the float4x2 that has been component-wise subtracted by the given scalar value.
-inline float4x2 operator-( const float4x2& lhs, const float rhs )
-{
-	return float4x2(
-		lhs[0] - rhs,
-		lhs[1] - rhs,
-		lhs[2] - rhs,
-		lhs[3] - rhs
-	);
-}
-
-/// \relates float4x2
-/// \brief Subtracts each component by the given scalar value.
-inline float4x2 operator-=( float4x2& lhs, const float rhs )
-{
-	return ( lhs = lhs - rhs );
-}
-
-/// \relates float4x2
-/// \brief Returns a copy of the float4x2 that has been component-wise subtracted by the corresponding component of the right-hand float4x2.
 inline float4x2 operator-( const float4x2& lhs, const float4x2& rhs )
 {
-	return float4x2(
-		lhs[0] - rhs[0],
-		lhs[1] - rhs[1],
-		lhs[2] - rhs[2],
-		lhs[3] - rhs[3]
-	);
-}
-
-/// \relates float4x2
-/// \brief Subtracts each component of the float4x2 by the corresponding component of the right-hand float4x2.
-inline float4x2 operator-=( float4x2& lhs, const float4x2& rhs )
-{
-	return ( lhs = lhs - rhs );
-}
-
-/// \relates float4x2
-/// \brief Returns a copy of the float4x2 that has been component-wise multiplied by the given scalar value.
-inline float4x2 operator*( const float4x2& lhs, const float rhs )
-{
-	return float4x2(
-		lhs[0] * rhs,
-		lhs[1] * rhs,
-		lhs[2] * rhs,
-		lhs[3] * rhs
-	);
-}
-
-/// \relates float4x2
-/// \brief Multiplies each component by the given scalar value.
-inline float4x2 operator*=( float4x2& lhs, const float rhs )
-{
-	return ( lhs = lhs * rhs );
+	return HLML_CONSTRUCT( float4x2 ) {
+		comp_subv( lhs.rows[0], rhs.rows[0] ),
+		comp_subv( lhs.rows[1], rhs.rows[1] ),
+		comp_subv( lhs.rows[2], rhs.rows[2] ),
+		comp_subv( lhs.rows[3], rhs.rows[3] )
+	};
 }
 
 /// \relates float4x2
 /// \brief Returns a copy of the matrix where each row of the left-hand matrix has been dot-producted by the corresponding column of the right-hand matrix.
 inline float4x4 operator*( const float4x2& lhs, const float2x4& rhs )
 {
-	float2 row0 = lhs[0];
-	float2 row1 = lhs[1];
-	float2 row2 = lhs[2];
-	float2 row3 = lhs[3];
+	float2 row0 = lhs.rows[0];
+	float2 row1 = lhs.rows[1];
+	float2 row2 = lhs.rows[2];
+	float2 row3 = lhs.rows[3];
 
-	float2 col0 = { rhs[0].x, rhs[1].x };
-	float2 col1 = { rhs[0].y, rhs[1].y };
-	float2 col2 = { rhs[0].z, rhs[1].z };
-	float2 col3 = { rhs[0].w, rhs[1].w };
+	float2 col0 = { rhs.rows[0].x, rhs.rows[1].x };
+	float2 col1 = { rhs.rows[0].y, rhs.rows[1].y };
+	float2 col2 = { rhs.rows[0].z, rhs.rows[1].z };
+	float2 col3 = { rhs.rows[0].w, rhs.rows[1].w };
 
-	return float4x4(
+	return HLML_CONSTRUCT( float4x4 ) {
 		row0.x * col0.x + row0.y * col0.y,
 		row0.x * col1.x + row0.y * col1.y,
 		row0.x * col2.x + row0.y * col2.y,
@@ -9509,38 +6438,27 @@ inline float4x4 operator*( const float4x2& lhs, const float2x4& rhs )
 		row3.x * col1.x + row3.y * col1.y,
 		row3.x * col2.x + row3.y * col2.y,
 		row3.x * col3.x + row3.y * col3.y
-	);
+	};
 }
 
-/// \relates float4x2
-/// \brief Returns a copy of the float4x2 that has been component-wise divided by the given scalar value.
-inline float4x2 operator/( const float4x2& lhs, const float rhs )
+inline float4x2 operator/( const float4x2& lhs, const float scalar )
 {
 	return float4x2(
-		lhs[0] / rhs,
-		lhs[1] / rhs,
-		lhs[2] / rhs,
-		lhs[3] / rhs
+		lhs[0] / scalar,
+		lhs[1] / scalar,
+		lhs[2] / scalar,
+		lhs[3] / scalar
 	);
 }
 
-/// \relates float4x2
-/// \brief Divides each component by the given scalar value.
-inline float4x2 operator/=( float4x2& lhs, const float rhs )
-{
-	return ( lhs = lhs / rhs );
-}
-
-/// \relates float4x2
-/// \brief Returns a copy of the float4x2 that has been component-wise divided by the corresponding component of the right-hand float4x2.
 inline float4x2 operator/( const float4x2& lhs, const float4x2& rhs )
 {
-	return float4x2(
-		lhs[0] / rhs[0],
-		lhs[1] / rhs[1],
-		lhs[2] / rhs[2],
-		lhs[3] / rhs[3]
-	);
+	return HLML_CONSTRUCT( float4x2 ) {
+		comp_divv( lhs.rows[0], rhs.rows[0] ),
+		comp_divv( lhs.rows[1], rhs.rows[1] ),
+		comp_divv( lhs.rows[2], rhs.rows[2] ),
+		comp_divv( lhs.rows[3], rhs.rows[3] )
+	};
 }
 
 // prefix
@@ -9591,166 +6509,116 @@ inline float4x2& operator--( float4x2& lhs, const int )
 	return lhs;
 }
 
-/// \relates float4x2
-/// \brief Returns a bool4x2 where each component is true if the component of the left-hand type is less than the corresponding right-hand type component.
 inline bool4x2 operator<( const float4x2& lhs, const float4x2& rhs )
 {
-	return bool4x2(
-		lhs[0] < rhs[0],
-		lhs[1] < rhs[1],
-		lhs[2] < rhs[2],
-		lhs[3] < rhs[3]
-	);
+	return HLML_CONSTRUCT( bool4x2 ) {
+		cmpl( lhs.rows[0], rhs.rows[0] ),
+		cmpl( lhs.rows[1], rhs.rows[1] ),
+		cmpl( lhs.rows[2], rhs.rows[2] ),
+		cmpl( lhs.rows[3], rhs.rows[3] )
+	};
 }
 
-/// \relates float4x2
-/// \brief Returns a bool4x2 where each component is true if the component of the left-hand type is less than or equal to the corresponding right-hand type component.
 inline bool4x2 operator<=( const float4x2& lhs, const float4x2& rhs )
 {
-	return bool4x2(
-		lhs[0] <= rhs[0],
-		lhs[1] <= rhs[1],
-		lhs[2] <= rhs[2],
-		lhs[3] <= rhs[3]
-	);
+	return HLML_CONSTRUCT( bool4x2 ) {
+		cmple( lhs.rows[0], rhs.rows[0] ),
+		cmple( lhs.rows[1], rhs.rows[1] ),
+		cmple( lhs.rows[2], rhs.rows[2] ),
+		cmple( lhs.rows[3], rhs.rows[3] )
+	};
 }
 
-/// \relates float4x2
-/// \brief Returns a bool4x2 where each component is true if the component of the left-hand type is greater than the corresponding right-hand type component.
 inline bool4x2 operator>( const float4x2& lhs, const float4x2& rhs )
 {
-	return bool4x2(
-		lhs[0] > rhs[0],
-		lhs[1] > rhs[1],
-		lhs[2] > rhs[2],
-		lhs[3] > rhs[3]
-	);
+	return HLML_CONSTRUCT( bool4x2 ) {
+		cmpg( lhs.rows[0], rhs.rows[0] ),
+		cmpg( lhs.rows[1], rhs.rows[1] ),
+		cmpg( lhs.rows[2], rhs.rows[2] ),
+		cmpg( lhs.rows[3], rhs.rows[3] )
+	};
 }
 
-/// \relates float4x2
-/// \brief Returns a bool4x2 where each component is true if the component of the left-hand type is greater than or equal to the corresponding right-hand type component.
 inline bool4x2 operator>=( const float4x2& lhs, const float4x2& rhs )
 {
-	return bool4x2(
-		lhs[0] >= rhs[0],
-		lhs[1] >= rhs[1],
-		lhs[2] >= rhs[2],
-		lhs[3] >= rhs[3]
-	);
+	return HLML_CONSTRUCT( bool4x2 ) {
+		cmpge( lhs.rows[0], rhs.rows[0] ),
+		cmpge( lhs.rows[1], rhs.rows[1] ),
+		cmpge( lhs.rows[2], rhs.rows[2] ),
+		cmpge( lhs.rows[3], rhs.rows[3] )
+	};
 }
 
 
 // float4x3
-/// \relates float4x3
-/// \brief Returns a copy of the float4x3 that has been component-wise added by the given scalar value.
-inline float4x3 operator+( const float4x3& lhs, const float rhs )
+inline bool operator==( const float4x3& lhs, const float4x3& rhs )
+{
+	return ( lhs[0] == rhs[0] )
+		&& ( lhs[1] == rhs[1] )
+		&& ( lhs[2] == rhs[2] )
+		&& ( lhs[3] == rhs[3] );
+}
+
+inline bool operator!=( const float4x3& lhs, const float4x3& rhs )
+{
+	return !( operator==( lhs, rhs ) );
+}
+
+inline float4x3 operator+( const float4x3& lhs, const float scalar )
 {
 	return float4x3(
-		lhs[0] + rhs,
-		lhs[1] + rhs,
-		lhs[2] + rhs,
-		lhs[3] + rhs
+		lhs[0] + scalar,
+		lhs[1] + scalar,
+		lhs[2] + scalar,
+		lhs[3] + scalar
 	);
 }
 
-/// \relates float4x3
-/// \brief Adds each component by the given scalar value.
-inline float4x3 operator+=( float4x3& lhs, const float rhs )
-{
-	return ( lhs = lhs + rhs );
-}
-
-/// \relates float4x3
-/// \brief Returns a copy of the float4x3 that has been component-wise added by the corresponding component of the right-hand float4x3.
 inline float4x3 operator+( const float4x3& lhs, const float4x3& rhs )
 {
+	return HLML_CONSTRUCT( float4x3 ) {
+		comp_addv( lhs.rows[0], rhs.rows[0] ),
+		comp_addv( lhs.rows[1], rhs.rows[1] ),
+		comp_addv( lhs.rows[2], rhs.rows[2] ),
+		comp_addv( lhs.rows[3], rhs.rows[3] )
+	};
+}
+
+inline float4x3 operator-( const float4x3& lhs, const float scalar )
+{
 	return float4x3(
-		lhs[0] + rhs[0],
-		lhs[1] + rhs[1],
-		lhs[2] + rhs[2],
-		lhs[3] + rhs[3]
+		lhs[0] - scalar,
+		lhs[1] - scalar,
+		lhs[2] - scalar,
+		lhs[3] - scalar
 	);
 }
 
-/// \relates float4x3
-/// \brief Adds each component of the float4x3 by the corresponding component of the right-hand float4x3.
-inline float4x3 operator+=( float4x3& lhs, const float4x3& rhs )
-{
-	return ( lhs = lhs + rhs );
-}
-
-/// \relates float4x3
-/// \brief Returns a copy of the float4x3 that has been component-wise subtracted by the given scalar value.
-inline float4x3 operator-( const float4x3& lhs, const float rhs )
-{
-	return float4x3(
-		lhs[0] - rhs,
-		lhs[1] - rhs,
-		lhs[2] - rhs,
-		lhs[3] - rhs
-	);
-}
-
-/// \relates float4x3
-/// \brief Subtracts each component by the given scalar value.
-inline float4x3 operator-=( float4x3& lhs, const float rhs )
-{
-	return ( lhs = lhs - rhs );
-}
-
-/// \relates float4x3
-/// \brief Returns a copy of the float4x3 that has been component-wise subtracted by the corresponding component of the right-hand float4x3.
 inline float4x3 operator-( const float4x3& lhs, const float4x3& rhs )
 {
-	return float4x3(
-		lhs[0] - rhs[0],
-		lhs[1] - rhs[1],
-		lhs[2] - rhs[2],
-		lhs[3] - rhs[3]
-	);
-}
-
-/// \relates float4x3
-/// \brief Subtracts each component of the float4x3 by the corresponding component of the right-hand float4x3.
-inline float4x3 operator-=( float4x3& lhs, const float4x3& rhs )
-{
-	return ( lhs = lhs - rhs );
-}
-
-/// \relates float4x3
-/// \brief Returns a copy of the float4x3 that has been component-wise multiplied by the given scalar value.
-inline float4x3 operator*( const float4x3& lhs, const float rhs )
-{
-	return float4x3(
-		lhs[0] * rhs,
-		lhs[1] * rhs,
-		lhs[2] * rhs,
-		lhs[3] * rhs
-	);
-}
-
-/// \relates float4x3
-/// \brief Multiplies each component by the given scalar value.
-inline float4x3 operator*=( float4x3& lhs, const float rhs )
-{
-	return ( lhs = lhs * rhs );
+	return HLML_CONSTRUCT( float4x3 ) {
+		comp_subv( lhs.rows[0], rhs.rows[0] ),
+		comp_subv( lhs.rows[1], rhs.rows[1] ),
+		comp_subv( lhs.rows[2], rhs.rows[2] ),
+		comp_subv( lhs.rows[3], rhs.rows[3] )
+	};
 }
 
 /// \relates float4x3
 /// \brief Returns a copy of the matrix where each row of the left-hand matrix has been dot-producted by the corresponding column of the right-hand matrix.
 inline float4x4 operator*( const float4x3& lhs, const float3x4& rhs )
 {
-	float3 row0 = lhs[0];
-	float3 row1 = lhs[1];
-	float3 row2 = lhs[2];
-	float3 row3 = lhs[3];
+	float3 row0 = lhs.rows[0];
+	float3 row1 = lhs.rows[1];
+	float3 row2 = lhs.rows[2];
+	float3 row3 = lhs.rows[3];
 
-	float3 col0 = { rhs[0].x, rhs[1].x, rhs[2].x };
-	float3 col1 = { rhs[0].y, rhs[1].y, rhs[2].y };
-	float3 col2 = { rhs[0].z, rhs[1].z, rhs[2].z };
-	float3 col3 = { rhs[0].w, rhs[1].w, rhs[2].w };
+	float3 col0 = { rhs.rows[0].x, rhs.rows[1].x, rhs.rows[2].x };
+	float3 col1 = { rhs.rows[0].y, rhs.rows[1].y, rhs.rows[2].y };
+	float3 col2 = { rhs.rows[0].z, rhs.rows[1].z, rhs.rows[2].z };
+	float3 col3 = { rhs.rows[0].w, rhs.rows[1].w, rhs.rows[2].w };
 
-	return float4x4(
+	return HLML_CONSTRUCT( float4x4 ) {
 		row0.x * col0.x + row0.y * col0.y + row0.z * col0.z,
 		row0.x * col1.x + row0.y * col1.y + row0.z * col1.z,
 		row0.x * col2.x + row0.y * col2.y + row0.z * col2.z,
@@ -9770,38 +6638,27 @@ inline float4x4 operator*( const float4x3& lhs, const float3x4& rhs )
 		row3.x * col1.x + row3.y * col1.y + row3.z * col1.z,
 		row3.x * col2.x + row3.y * col2.y + row3.z * col2.z,
 		row3.x * col3.x + row3.y * col3.y + row3.z * col3.z
-	);
+	};
 }
 
-/// \relates float4x3
-/// \brief Returns a copy of the float4x3 that has been component-wise divided by the given scalar value.
-inline float4x3 operator/( const float4x3& lhs, const float rhs )
+inline float4x3 operator/( const float4x3& lhs, const float scalar )
 {
 	return float4x3(
-		lhs[0] / rhs,
-		lhs[1] / rhs,
-		lhs[2] / rhs,
-		lhs[3] / rhs
+		lhs[0] / scalar,
+		lhs[1] / scalar,
+		lhs[2] / scalar,
+		lhs[3] / scalar
 	);
 }
 
-/// \relates float4x3
-/// \brief Divides each component by the given scalar value.
-inline float4x3 operator/=( float4x3& lhs, const float rhs )
-{
-	return ( lhs = lhs / rhs );
-}
-
-/// \relates float4x3
-/// \brief Returns a copy of the float4x3 that has been component-wise divided by the corresponding component of the right-hand float4x3.
 inline float4x3 operator/( const float4x3& lhs, const float4x3& rhs )
 {
-	return float4x3(
-		lhs[0] / rhs[0],
-		lhs[1] / rhs[1],
-		lhs[2] / rhs[2],
-		lhs[3] / rhs[3]
-	);
+	return HLML_CONSTRUCT( float4x3 ) {
+		comp_divv( lhs.rows[0], rhs.rows[0] ),
+		comp_divv( lhs.rows[1], rhs.rows[1] ),
+		comp_divv( lhs.rows[2], rhs.rows[2] ),
+		comp_divv( lhs.rows[3], rhs.rows[3] )
+	};
 }
 
 // prefix
@@ -9852,166 +6709,116 @@ inline float4x3& operator--( float4x3& lhs, const int )
 	return lhs;
 }
 
-/// \relates float4x3
-/// \brief Returns a bool4x3 where each component is true if the component of the left-hand type is less than the corresponding right-hand type component.
 inline bool4x3 operator<( const float4x3& lhs, const float4x3& rhs )
 {
-	return bool4x3(
-		lhs[0] < rhs[0],
-		lhs[1] < rhs[1],
-		lhs[2] < rhs[2],
-		lhs[3] < rhs[3]
-	);
+	return HLML_CONSTRUCT( bool4x3 ) {
+		cmpl( lhs.rows[0], rhs.rows[0] ),
+		cmpl( lhs.rows[1], rhs.rows[1] ),
+		cmpl( lhs.rows[2], rhs.rows[2] ),
+		cmpl( lhs.rows[3], rhs.rows[3] )
+	};
 }
 
-/// \relates float4x3
-/// \brief Returns a bool4x3 where each component is true if the component of the left-hand type is less than or equal to the corresponding right-hand type component.
 inline bool4x3 operator<=( const float4x3& lhs, const float4x3& rhs )
 {
-	return bool4x3(
-		lhs[0] <= rhs[0],
-		lhs[1] <= rhs[1],
-		lhs[2] <= rhs[2],
-		lhs[3] <= rhs[3]
-	);
+	return HLML_CONSTRUCT( bool4x3 ) {
+		cmple( lhs.rows[0], rhs.rows[0] ),
+		cmple( lhs.rows[1], rhs.rows[1] ),
+		cmple( lhs.rows[2], rhs.rows[2] ),
+		cmple( lhs.rows[3], rhs.rows[3] )
+	};
 }
 
-/// \relates float4x3
-/// \brief Returns a bool4x3 where each component is true if the component of the left-hand type is greater than the corresponding right-hand type component.
 inline bool4x3 operator>( const float4x3& lhs, const float4x3& rhs )
 {
-	return bool4x3(
-		lhs[0] > rhs[0],
-		lhs[1] > rhs[1],
-		lhs[2] > rhs[2],
-		lhs[3] > rhs[3]
-	);
+	return HLML_CONSTRUCT( bool4x3 ) {
+		cmpg( lhs.rows[0], rhs.rows[0] ),
+		cmpg( lhs.rows[1], rhs.rows[1] ),
+		cmpg( lhs.rows[2], rhs.rows[2] ),
+		cmpg( lhs.rows[3], rhs.rows[3] )
+	};
 }
 
-/// \relates float4x3
-/// \brief Returns a bool4x3 where each component is true if the component of the left-hand type is greater than or equal to the corresponding right-hand type component.
 inline bool4x3 operator>=( const float4x3& lhs, const float4x3& rhs )
 {
-	return bool4x3(
-		lhs[0] >= rhs[0],
-		lhs[1] >= rhs[1],
-		lhs[2] >= rhs[2],
-		lhs[3] >= rhs[3]
-	);
+	return HLML_CONSTRUCT( bool4x3 ) {
+		cmpge( lhs.rows[0], rhs.rows[0] ),
+		cmpge( lhs.rows[1], rhs.rows[1] ),
+		cmpge( lhs.rows[2], rhs.rows[2] ),
+		cmpge( lhs.rows[3], rhs.rows[3] )
+	};
 }
 
 
 // float4x4
-/// \relates float4x4
-/// \brief Returns a copy of the float4x4 that has been component-wise added by the given scalar value.
-inline float4x4 operator+( const float4x4& lhs, const float rhs )
+inline bool operator==( const float4x4& lhs, const float4x4& rhs )
+{
+	return ( lhs[0] == rhs[0] )
+		&& ( lhs[1] == rhs[1] )
+		&& ( lhs[2] == rhs[2] )
+		&& ( lhs[3] == rhs[3] );
+}
+
+inline bool operator!=( const float4x4& lhs, const float4x4& rhs )
+{
+	return !( operator==( lhs, rhs ) );
+}
+
+inline float4x4 operator+( const float4x4& lhs, const float scalar )
 {
 	return float4x4(
-		lhs[0] + rhs,
-		lhs[1] + rhs,
-		lhs[2] + rhs,
-		lhs[3] + rhs
+		lhs[0] + scalar,
+		lhs[1] + scalar,
+		lhs[2] + scalar,
+		lhs[3] + scalar
 	);
 }
 
-/// \relates float4x4
-/// \brief Adds each component by the given scalar value.
-inline float4x4 operator+=( float4x4& lhs, const float rhs )
-{
-	return ( lhs = lhs + rhs );
-}
-
-/// \relates float4x4
-/// \brief Returns a copy of the float4x4 that has been component-wise added by the corresponding component of the right-hand float4x4.
 inline float4x4 operator+( const float4x4& lhs, const float4x4& rhs )
 {
+	return HLML_CONSTRUCT( float4x4 ) {
+		comp_addv( lhs.rows[0], rhs.rows[0] ),
+		comp_addv( lhs.rows[1], rhs.rows[1] ),
+		comp_addv( lhs.rows[2], rhs.rows[2] ),
+		comp_addv( lhs.rows[3], rhs.rows[3] )
+	};
+}
+
+inline float4x4 operator-( const float4x4& lhs, const float scalar )
+{
 	return float4x4(
-		lhs[0] + rhs[0],
-		lhs[1] + rhs[1],
-		lhs[2] + rhs[2],
-		lhs[3] + rhs[3]
+		lhs[0] - scalar,
+		lhs[1] - scalar,
+		lhs[2] - scalar,
+		lhs[3] - scalar
 	);
 }
 
-/// \relates float4x4
-/// \brief Adds each component of the float4x4 by the corresponding component of the right-hand float4x4.
-inline float4x4 operator+=( float4x4& lhs, const float4x4& rhs )
-{
-	return ( lhs = lhs + rhs );
-}
-
-/// \relates float4x4
-/// \brief Returns a copy of the float4x4 that has been component-wise subtracted by the given scalar value.
-inline float4x4 operator-( const float4x4& lhs, const float rhs )
-{
-	return float4x4(
-		lhs[0] - rhs,
-		lhs[1] - rhs,
-		lhs[2] - rhs,
-		lhs[3] - rhs
-	);
-}
-
-/// \relates float4x4
-/// \brief Subtracts each component by the given scalar value.
-inline float4x4 operator-=( float4x4& lhs, const float rhs )
-{
-	return ( lhs = lhs - rhs );
-}
-
-/// \relates float4x4
-/// \brief Returns a copy of the float4x4 that has been component-wise subtracted by the corresponding component of the right-hand float4x4.
 inline float4x4 operator-( const float4x4& lhs, const float4x4& rhs )
 {
-	return float4x4(
-		lhs[0] - rhs[0],
-		lhs[1] - rhs[1],
-		lhs[2] - rhs[2],
-		lhs[3] - rhs[3]
-	);
-}
-
-/// \relates float4x4
-/// \brief Subtracts each component of the float4x4 by the corresponding component of the right-hand float4x4.
-inline float4x4 operator-=( float4x4& lhs, const float4x4& rhs )
-{
-	return ( lhs = lhs - rhs );
-}
-
-/// \relates float4x4
-/// \brief Returns a copy of the float4x4 that has been component-wise multiplied by the given scalar value.
-inline float4x4 operator*( const float4x4& lhs, const float rhs )
-{
-	return float4x4(
-		lhs[0] * rhs,
-		lhs[1] * rhs,
-		lhs[2] * rhs,
-		lhs[3] * rhs
-	);
-}
-
-/// \relates float4x4
-/// \brief Multiplies each component by the given scalar value.
-inline float4x4 operator*=( float4x4& lhs, const float rhs )
-{
-	return ( lhs = lhs * rhs );
+	return HLML_CONSTRUCT( float4x4 ) {
+		comp_subv( lhs.rows[0], rhs.rows[0] ),
+		comp_subv( lhs.rows[1], rhs.rows[1] ),
+		comp_subv( lhs.rows[2], rhs.rows[2] ),
+		comp_subv( lhs.rows[3], rhs.rows[3] )
+	};
 }
 
 /// \relates float4x4
 /// \brief Returns a copy of the matrix where each row of the left-hand matrix has been dot-producted by the corresponding column of the right-hand matrix.
 inline float4x4 operator*( const float4x4& lhs, const float4x4& rhs )
 {
-	float4 row0 = lhs[0];
-	float4 row1 = lhs[1];
-	float4 row2 = lhs[2];
-	float4 row3 = lhs[3];
+	float4 row0 = lhs.rows[0];
+	float4 row1 = lhs.rows[1];
+	float4 row2 = lhs.rows[2];
+	float4 row3 = lhs.rows[3];
 
-	float4 col0 = { rhs[0].x, rhs[1].x, rhs[2].x, rhs[3].x };
-	float4 col1 = { rhs[0].y, rhs[1].y, rhs[2].y, rhs[3].y };
-	float4 col2 = { rhs[0].z, rhs[1].z, rhs[2].z, rhs[3].z };
-	float4 col3 = { rhs[0].w, rhs[1].w, rhs[2].w, rhs[3].w };
+	float4 col0 = { rhs.rows[0].x, rhs.rows[1].x, rhs.rows[2].x, rhs.rows[3].x };
+	float4 col1 = { rhs.rows[0].y, rhs.rows[1].y, rhs.rows[2].y, rhs.rows[3].y };
+	float4 col2 = { rhs.rows[0].z, rhs.rows[1].z, rhs.rows[2].z, rhs.rows[3].z };
+	float4 col3 = { rhs.rows[0].w, rhs.rows[1].w, rhs.rows[2].w, rhs.rows[3].w };
 
-	return float4x4(
+	return HLML_CONSTRUCT( float4x4 ) {
 		row0.x * col0.x + row0.y * col0.y + row0.z * col0.z + row0.w * col0.w,
 		row0.x * col1.x + row0.y * col1.y + row0.z * col1.z + row0.w * col1.w,
 		row0.x * col2.x + row0.y * col2.y + row0.z * col2.z + row0.w * col2.w,
@@ -10031,31 +6838,12 @@ inline float4x4 operator*( const float4x4& lhs, const float4x4& rhs )
 		row3.x * col1.x + row3.y * col1.y + row3.z * col1.z + row3.w * col1.w,
 		row3.x * col2.x + row3.y * col2.y + row3.z * col2.z + row3.w * col2.w,
 		row3.x * col3.x + row3.y * col3.y + row3.z * col3.z + row3.w * col3.w
-	);
+	};
 }
 
 inline float4x4 operator*=( float4x4& lhs, const float4x4& rhs )
 {
 	return ( lhs = lhs * rhs );
-}
-
-/// \relates float4x4
-/// \brief Returns a copy of the float4x4 that has been component-wise divided by the given scalar value.
-inline float4x4 operator/( const float4x4& lhs, const float rhs )
-{
-	return float4x4(
-		lhs[0] / rhs,
-		lhs[1] / rhs,
-		lhs[2] / rhs,
-		lhs[3] / rhs
-	);
-}
-
-/// \relates float4x4
-/// \brief Divides each component by the given scalar value.
-inline float4x4 operator/=( float4x4& lhs, const float rhs )
-{
-	return ( lhs = lhs / rhs );
 }
 
 /// \relates float4x4
@@ -10076,12 +6864,12 @@ inline float4x4 operator/=( float4x4& lhs, const float4x4& rhs )
 /// \brief Returns a copy of the float4 that has been component-wise multiplied by the corresponding component of the right-hand float4x4.
 inline float4 operator*( const float4x4& lhs, const float4& rhs )
 {
-	return float4(
-		(float) dot( lhs[0], rhs ),
-		(float) dot( lhs[1], rhs ),
-		(float) dot( lhs[2], rhs ),
-		(float) dot( lhs[3], rhs )
-	);
+	return HLML_CONSTRUCT( float4 ) {
+		lhs.rows[0].x * rhs.x + lhs.rows[0].y * rhs.y + lhs.rows[0].z * rhs.z + lhs.rows[0].w * rhs.w,
+		lhs.rows[1].x * rhs.x + lhs.rows[1].y * rhs.y + lhs.rows[1].z * rhs.z + lhs.rows[1].w * rhs.w,
+		lhs.rows[2].x * rhs.x + lhs.rows[2].y * rhs.y + lhs.rows[2].z * rhs.z + lhs.rows[2].w * rhs.w,
+		lhs.rows[3].x * rhs.x + lhs.rows[3].y * rhs.y + lhs.rows[3].z * rhs.z + lhs.rows[3].w * rhs.w
+	};
 }
 
 /// \relates float4
@@ -10139,180 +6927,113 @@ inline float4x4& operator--( float4x4& lhs, const int )
 	return lhs;
 }
 
-/// \relates float4x4
-/// \brief Returns a bool4x4 where each component is true if the component of the left-hand type is less than the corresponding right-hand type component.
 inline bool4x4 operator<( const float4x4& lhs, const float4x4& rhs )
 {
-	return bool4x4(
-		lhs[0] < rhs[0],
-		lhs[1] < rhs[1],
-		lhs[2] < rhs[2],
-		lhs[3] < rhs[3]
-	);
+	return HLML_CONSTRUCT( bool4x4 ) {
+		cmpl( lhs.rows[0], rhs.rows[0] ),
+		cmpl( lhs.rows[1], rhs.rows[1] ),
+		cmpl( lhs.rows[2], rhs.rows[2] ),
+		cmpl( lhs.rows[3], rhs.rows[3] )
+	};
 }
 
-/// \relates float4x4
-/// \brief Returns a bool4x4 where each component is true if the component of the left-hand type is less than or equal to the corresponding right-hand type component.
 inline bool4x4 operator<=( const float4x4& lhs, const float4x4& rhs )
 {
-	return bool4x4(
-		lhs[0] <= rhs[0],
-		lhs[1] <= rhs[1],
-		lhs[2] <= rhs[2],
-		lhs[3] <= rhs[3]
-	);
+	return HLML_CONSTRUCT( bool4x4 ) {
+		cmple( lhs.rows[0], rhs.rows[0] ),
+		cmple( lhs.rows[1], rhs.rows[1] ),
+		cmple( lhs.rows[2], rhs.rows[2] ),
+		cmple( lhs.rows[3], rhs.rows[3] )
+	};
 }
 
-/// \relates float4x4
-/// \brief Returns a bool4x4 where each component is true if the component of the left-hand type is greater than the corresponding right-hand type component.
 inline bool4x4 operator>( const float4x4& lhs, const float4x4& rhs )
 {
-	return bool4x4(
-		lhs[0] > rhs[0],
-		lhs[1] > rhs[1],
-		lhs[2] > rhs[2],
-		lhs[3] > rhs[3]
-	);
+	return HLML_CONSTRUCT( bool4x4 ) {
+		cmpg( lhs.rows[0], rhs.rows[0] ),
+		cmpg( lhs.rows[1], rhs.rows[1] ),
+		cmpg( lhs.rows[2], rhs.rows[2] ),
+		cmpg( lhs.rows[3], rhs.rows[3] )
+	};
 }
 
-/// \relates float4x4
-/// \brief Returns a bool4x4 where each component is true if the component of the left-hand type is greater than or equal to the corresponding right-hand type component.
 inline bool4x4 operator>=( const float4x4& lhs, const float4x4& rhs )
 {
-	return bool4x4(
-		lhs[0] >= rhs[0],
-		lhs[1] >= rhs[1],
-		lhs[2] >= rhs[2],
-		lhs[3] >= rhs[3]
-	);
+	return HLML_CONSTRUCT( bool4x4 ) {
+		cmpge( lhs.rows[0], rhs.rows[0] ),
+		cmpge( lhs.rows[1], rhs.rows[1] ),
+		cmpge( lhs.rows[2], rhs.rows[2] ),
+		cmpge( lhs.rows[3], rhs.rows[3] )
+	};
 }
 
 
 // double2x2
-/// \relates double2x2
-/// \brief Returns a copy of the double2x2 that has been component-wise added by the given scalar value.
-inline double2x2 operator+( const double2x2& lhs, const double rhs )
+inline bool operator==( const double2x2& lhs, const double2x2& rhs )
+{
+	return ( lhs[0] == rhs[0] )
+		&& ( lhs[1] == rhs[1] );
+}
+
+inline bool operator!=( const double2x2& lhs, const double2x2& rhs )
+{
+	return !( operator==( lhs, rhs ) );
+}
+
+inline double2x2 operator+( const double2x2& lhs, const double scalar )
 {
 	return double2x2(
-		lhs[0] + rhs,
-		lhs[1] + rhs
+		lhs[0] + scalar,
+		lhs[1] + scalar
 	);
 }
 
-/// \relates double2x2
-/// \brief Adds each component by the given scalar value.
-inline double2x2 operator+=( double2x2& lhs, const double rhs )
-{
-	return ( lhs = lhs + rhs );
-}
-
-/// \relates double2x2
-/// \brief Returns a copy of the double2x2 that has been component-wise added by the corresponding component of the right-hand double2x2.
 inline double2x2 operator+( const double2x2& lhs, const double2x2& rhs )
 {
+	return HLML_CONSTRUCT( double2x2 ) {
+		comp_addv( lhs.rows[0], rhs.rows[0] ),
+		comp_addv( lhs.rows[1], rhs.rows[1] )
+	};
+}
+
+inline double2x2 operator-( const double2x2& lhs, const double scalar )
+{
 	return double2x2(
-		lhs[0] + rhs[0],
-		lhs[1] + rhs[1]
+		lhs[0] - scalar,
+		lhs[1] - scalar
 	);
 }
 
-/// \relates double2x2
-/// \brief Adds each component of the double2x2 by the corresponding component of the right-hand double2x2.
-inline double2x2 operator+=( double2x2& lhs, const double2x2& rhs )
-{
-	return ( lhs = lhs + rhs );
-}
-
-/// \relates double2x2
-/// \brief Returns a copy of the double2x2 that has been component-wise subtracted by the given scalar value.
-inline double2x2 operator-( const double2x2& lhs, const double rhs )
-{
-	return double2x2(
-		lhs[0] - rhs,
-		lhs[1] - rhs
-	);
-}
-
-/// \relates double2x2
-/// \brief Subtracts each component by the given scalar value.
-inline double2x2 operator-=( double2x2& lhs, const double rhs )
-{
-	return ( lhs = lhs - rhs );
-}
-
-/// \relates double2x2
-/// \brief Returns a copy of the double2x2 that has been component-wise subtracted by the corresponding component of the right-hand double2x2.
 inline double2x2 operator-( const double2x2& lhs, const double2x2& rhs )
 {
-	return double2x2(
-		lhs[0] - rhs[0],
-		lhs[1] - rhs[1]
-	);
-}
-
-/// \relates double2x2
-/// \brief Subtracts each component of the double2x2 by the corresponding component of the right-hand double2x2.
-inline double2x2 operator-=( double2x2& lhs, const double2x2& rhs )
-{
-	return ( lhs = lhs - rhs );
-}
-
-/// \relates double2x2
-/// \brief Returns a copy of the double2x2 that has been component-wise multiplied by the given scalar value.
-inline double2x2 operator*( const double2x2& lhs, const double rhs )
-{
-	return double2x2(
-		lhs[0] * rhs,
-		lhs[1] * rhs
-	);
-}
-
-/// \relates double2x2
-/// \brief Multiplies each component by the given scalar value.
-inline double2x2 operator*=( double2x2& lhs, const double rhs )
-{
-	return ( lhs = lhs * rhs );
+	return HLML_CONSTRUCT( double2x2 ) {
+		comp_subv( lhs.rows[0], rhs.rows[0] ),
+		comp_subv( lhs.rows[1], rhs.rows[1] )
+	};
 }
 
 /// \relates double2x2
 /// \brief Returns a copy of the matrix where each row of the left-hand matrix has been dot-producted by the corresponding column of the right-hand matrix.
 inline double2x2 operator*( const double2x2& lhs, const double2x2& rhs )
 {
-	double2 row0 = lhs[0];
-	double2 row1 = lhs[1];
+	double2 row0 = lhs.rows[0];
+	double2 row1 = lhs.rows[1];
 
-	double2 col0 = { rhs[0].x, rhs[1].x };
-	double2 col1 = { rhs[0].y, rhs[1].y };
+	double2 col0 = { rhs.rows[0].x, rhs.rows[1].x };
+	double2 col1 = { rhs.rows[0].y, rhs.rows[1].y };
 
-	return double2x2(
+	return HLML_CONSTRUCT( double2x2 ) {
 		row0.x * col0.x + row0.y * col0.y,
 		row0.x * col1.x + row0.y * col1.y,
 
 		row1.x * col0.x + row1.y * col0.y,
 		row1.x * col1.x + row1.y * col1.y
-	);
+	};
 }
 
 inline double2x2 operator*=( double2x2& lhs, const double2x2& rhs )
 {
 	return ( lhs = lhs * rhs );
-}
-
-/// \relates double2x2
-/// \brief Returns a copy of the double2x2 that has been component-wise divided by the given scalar value.
-inline double2x2 operator/( const double2x2& lhs, const double rhs )
-{
-	return double2x2(
-		lhs[0] / rhs,
-		lhs[1] / rhs
-	);
-}
-
-/// \relates double2x2
-/// \brief Divides each component by the given scalar value.
-inline double2x2 operator/=( double2x2& lhs, const double rhs )
-{
-	return ( lhs = lhs / rhs );
 }
 
 /// \relates double2x2
@@ -10333,10 +7054,10 @@ inline double2x2 operator/=( double2x2& lhs, const double2x2& rhs )
 /// \brief Returns a copy of the double2 that has been component-wise multiplied by the corresponding component of the right-hand double2x2.
 inline double2 operator*( const double2x2& lhs, const double2& rhs )
 {
-	return double2(
-		(double) dot( lhs[0], rhs ),
-		(double) dot( lhs[1], rhs )
-	);
+	return HLML_CONSTRUCT( double2 ) {
+		lhs.rows[0].x * rhs.x + lhs.rows[0].y * rhs.y,
+		lhs.rows[1].x * rhs.x + lhs.rows[1].y * rhs.y
+	};
 }
 
 /// \relates double2
@@ -10386,177 +7107,116 @@ inline double2x2& operator--( double2x2& lhs, const int )
 	return lhs;
 }
 
-/// \relates double2x2
-/// \brief Returns a bool2x2 where each component is true if the component of the left-hand type is less than the corresponding right-hand type component.
 inline bool2x2 operator<( const double2x2& lhs, const double2x2& rhs )
 {
-	return bool2x2(
-		lhs[0] < rhs[0],
-		lhs[1] < rhs[1]
-	);
+	return HLML_CONSTRUCT( bool2x2 ) {
+		cmpl( lhs.rows[0], rhs.rows[0] ),
+		cmpl( lhs.rows[1], rhs.rows[1] )
+	};
 }
 
-/// \relates double2x2
-/// \brief Returns a bool2x2 where each component is true if the component of the left-hand type is less than or equal to the corresponding right-hand type component.
 inline bool2x2 operator<=( const double2x2& lhs, const double2x2& rhs )
 {
-	return bool2x2(
-		lhs[0] <= rhs[0],
-		lhs[1] <= rhs[1]
-	);
+	return HLML_CONSTRUCT( bool2x2 ) {
+		cmple( lhs.rows[0], rhs.rows[0] ),
+		cmple( lhs.rows[1], rhs.rows[1] )
+	};
 }
 
-/// \relates double2x2
-/// \brief Returns a bool2x2 where each component is true if the component of the left-hand type is greater than the corresponding right-hand type component.
 inline bool2x2 operator>( const double2x2& lhs, const double2x2& rhs )
 {
-	return bool2x2(
-		lhs[0] > rhs[0],
-		lhs[1] > rhs[1]
-	);
+	return HLML_CONSTRUCT( bool2x2 ) {
+		cmpg( lhs.rows[0], rhs.rows[0] ),
+		cmpg( lhs.rows[1], rhs.rows[1] )
+	};
 }
 
-/// \relates double2x2
-/// \brief Returns a bool2x2 where each component is true if the component of the left-hand type is greater than or equal to the corresponding right-hand type component.
 inline bool2x2 operator>=( const double2x2& lhs, const double2x2& rhs )
 {
-	return bool2x2(
-		lhs[0] >= rhs[0],
-		lhs[1] >= rhs[1]
-	);
+	return HLML_CONSTRUCT( bool2x2 ) {
+		cmpge( lhs.rows[0], rhs.rows[0] ),
+		cmpge( lhs.rows[1], rhs.rows[1] )
+	};
 }
 
 
 // double2x3
-/// \relates double2x3
-/// \brief Returns a copy of the double2x3 that has been component-wise added by the given scalar value.
-inline double2x3 operator+( const double2x3& lhs, const double rhs )
+inline bool operator==( const double2x3& lhs, const double2x3& rhs )
+{
+	return ( lhs[0] == rhs[0] )
+		&& ( lhs[1] == rhs[1] );
+}
+
+inline bool operator!=( const double2x3& lhs, const double2x3& rhs )
+{
+	return !( operator==( lhs, rhs ) );
+}
+
+inline double2x3 operator+( const double2x3& lhs, const double scalar )
 {
 	return double2x3(
-		lhs[0] + rhs,
-		lhs[1] + rhs
+		lhs[0] + scalar,
+		lhs[1] + scalar
 	);
 }
 
-/// \relates double2x3
-/// \brief Adds each component by the given scalar value.
-inline double2x3 operator+=( double2x3& lhs, const double rhs )
-{
-	return ( lhs = lhs + rhs );
-}
-
-/// \relates double2x3
-/// \brief Returns a copy of the double2x3 that has been component-wise added by the corresponding component of the right-hand double2x3.
 inline double2x3 operator+( const double2x3& lhs, const double2x3& rhs )
 {
+	return HLML_CONSTRUCT( double2x3 ) {
+		comp_addv( lhs.rows[0], rhs.rows[0] ),
+		comp_addv( lhs.rows[1], rhs.rows[1] )
+	};
+}
+
+inline double2x3 operator-( const double2x3& lhs, const double scalar )
+{
 	return double2x3(
-		lhs[0] + rhs[0],
-		lhs[1] + rhs[1]
+		lhs[0] - scalar,
+		lhs[1] - scalar
 	);
 }
 
-/// \relates double2x3
-/// \brief Adds each component of the double2x3 by the corresponding component of the right-hand double2x3.
-inline double2x3 operator+=( double2x3& lhs, const double2x3& rhs )
-{
-	return ( lhs = lhs + rhs );
-}
-
-/// \relates double2x3
-/// \brief Returns a copy of the double2x3 that has been component-wise subtracted by the given scalar value.
-inline double2x3 operator-( const double2x3& lhs, const double rhs )
-{
-	return double2x3(
-		lhs[0] - rhs,
-		lhs[1] - rhs
-	);
-}
-
-/// \relates double2x3
-/// \brief Subtracts each component by the given scalar value.
-inline double2x3 operator-=( double2x3& lhs, const double rhs )
-{
-	return ( lhs = lhs - rhs );
-}
-
-/// \relates double2x3
-/// \brief Returns a copy of the double2x3 that has been component-wise subtracted by the corresponding component of the right-hand double2x3.
 inline double2x3 operator-( const double2x3& lhs, const double2x3& rhs )
 {
-	return double2x3(
-		lhs[0] - rhs[0],
-		lhs[1] - rhs[1]
-	);
-}
-
-/// \relates double2x3
-/// \brief Subtracts each component of the double2x3 by the corresponding component of the right-hand double2x3.
-inline double2x3 operator-=( double2x3& lhs, const double2x3& rhs )
-{
-	return ( lhs = lhs - rhs );
-}
-
-/// \relates double2x3
-/// \brief Returns a copy of the double2x3 that has been component-wise multiplied by the given scalar value.
-inline double2x3 operator*( const double2x3& lhs, const double rhs )
-{
-	return double2x3(
-		lhs[0] * rhs,
-		lhs[1] * rhs
-	);
-}
-
-/// \relates double2x3
-/// \brief Multiplies each component by the given scalar value.
-inline double2x3 operator*=( double2x3& lhs, const double rhs )
-{
-	return ( lhs = lhs * rhs );
+	return HLML_CONSTRUCT( double2x3 ) {
+		comp_subv( lhs.rows[0], rhs.rows[0] ),
+		comp_subv( lhs.rows[1], rhs.rows[1] )
+	};
 }
 
 /// \relates double2x3
 /// \brief Returns a copy of the matrix where each row of the left-hand matrix has been dot-producted by the corresponding column of the right-hand matrix.
 inline double2x2 operator*( const double2x3& lhs, const double3x2& rhs )
 {
-	double3 row0 = lhs[0];
-	double3 row1 = lhs[1];
+	double3 row0 = lhs.rows[0];
+	double3 row1 = lhs.rows[1];
 
-	double3 col0 = { rhs[0].x, rhs[1].x, rhs[2].x };
-	double3 col1 = { rhs[0].y, rhs[1].y, rhs[2].y };
+	double3 col0 = { rhs.rows[0].x, rhs.rows[1].x, rhs.rows[2].x };
+	double3 col1 = { rhs.rows[0].y, rhs.rows[1].y, rhs.rows[2].y };
 
-	return double2x2(
+	return HLML_CONSTRUCT( double2x2 ) {
 		row0.x * col0.x + row0.y * col0.y + row0.z * col0.z,
 		row0.x * col1.x + row0.y * col1.y + row0.z * col1.z,
 
 		row1.x * col0.x + row1.y * col0.y + row1.z * col0.z,
 		row1.x * col1.x + row1.y * col1.y + row1.z * col1.z
-	);
+	};
 }
 
-/// \relates double2x3
-/// \brief Returns a copy of the double2x3 that has been component-wise divided by the given scalar value.
-inline double2x3 operator/( const double2x3& lhs, const double rhs )
+inline double2x3 operator/( const double2x3& lhs, const double scalar )
 {
 	return double2x3(
-		lhs[0] / rhs,
-		lhs[1] / rhs
+		lhs[0] / scalar,
+		lhs[1] / scalar
 	);
 }
 
-/// \relates double2x3
-/// \brief Divides each component by the given scalar value.
-inline double2x3 operator/=( double2x3& lhs, const double rhs )
-{
-	return ( lhs = lhs / rhs );
-}
-
-/// \relates double2x3
-/// \brief Returns a copy of the double2x3 that has been component-wise divided by the corresponding component of the right-hand double2x3.
 inline double2x3 operator/( const double2x3& lhs, const double2x3& rhs )
 {
-	return double2x3(
-		lhs[0] / rhs[0],
-		lhs[1] / rhs[1]
-	);
+	return HLML_CONSTRUCT( double2x3 ) {
+		comp_divv( lhs.rows[0], rhs.rows[0] ),
+		comp_divv( lhs.rows[1], rhs.rows[1] )
+	};
 }
 
 // prefix
@@ -10599,177 +7259,116 @@ inline double2x3& operator--( double2x3& lhs, const int )
 	return lhs;
 }
 
-/// \relates double2x3
-/// \brief Returns a bool2x3 where each component is true if the component of the left-hand type is less than the corresponding right-hand type component.
 inline bool2x3 operator<( const double2x3& lhs, const double2x3& rhs )
 {
-	return bool2x3(
-		lhs[0] < rhs[0],
-		lhs[1] < rhs[1]
-	);
+	return HLML_CONSTRUCT( bool2x3 ) {
+		cmpl( lhs.rows[0], rhs.rows[0] ),
+		cmpl( lhs.rows[1], rhs.rows[1] )
+	};
 }
 
-/// \relates double2x3
-/// \brief Returns a bool2x3 where each component is true if the component of the left-hand type is less than or equal to the corresponding right-hand type component.
 inline bool2x3 operator<=( const double2x3& lhs, const double2x3& rhs )
 {
-	return bool2x3(
-		lhs[0] <= rhs[0],
-		lhs[1] <= rhs[1]
-	);
+	return HLML_CONSTRUCT( bool2x3 ) {
+		cmple( lhs.rows[0], rhs.rows[0] ),
+		cmple( lhs.rows[1], rhs.rows[1] )
+	};
 }
 
-/// \relates double2x3
-/// \brief Returns a bool2x3 where each component is true if the component of the left-hand type is greater than the corresponding right-hand type component.
 inline bool2x3 operator>( const double2x3& lhs, const double2x3& rhs )
 {
-	return bool2x3(
-		lhs[0] > rhs[0],
-		lhs[1] > rhs[1]
-	);
+	return HLML_CONSTRUCT( bool2x3 ) {
+		cmpg( lhs.rows[0], rhs.rows[0] ),
+		cmpg( lhs.rows[1], rhs.rows[1] )
+	};
 }
 
-/// \relates double2x3
-/// \brief Returns a bool2x3 where each component is true if the component of the left-hand type is greater than or equal to the corresponding right-hand type component.
 inline bool2x3 operator>=( const double2x3& lhs, const double2x3& rhs )
 {
-	return bool2x3(
-		lhs[0] >= rhs[0],
-		lhs[1] >= rhs[1]
-	);
+	return HLML_CONSTRUCT( bool2x3 ) {
+		cmpge( lhs.rows[0], rhs.rows[0] ),
+		cmpge( lhs.rows[1], rhs.rows[1] )
+	};
 }
 
 
 // double2x4
-/// \relates double2x4
-/// \brief Returns a copy of the double2x4 that has been component-wise added by the given scalar value.
-inline double2x4 operator+( const double2x4& lhs, const double rhs )
+inline bool operator==( const double2x4& lhs, const double2x4& rhs )
+{
+	return ( lhs[0] == rhs[0] )
+		&& ( lhs[1] == rhs[1] );
+}
+
+inline bool operator!=( const double2x4& lhs, const double2x4& rhs )
+{
+	return !( operator==( lhs, rhs ) );
+}
+
+inline double2x4 operator+( const double2x4& lhs, const double scalar )
 {
 	return double2x4(
-		lhs[0] + rhs,
-		lhs[1] + rhs
+		lhs[0] + scalar,
+		lhs[1] + scalar
 	);
 }
 
-/// \relates double2x4
-/// \brief Adds each component by the given scalar value.
-inline double2x4 operator+=( double2x4& lhs, const double rhs )
-{
-	return ( lhs = lhs + rhs );
-}
-
-/// \relates double2x4
-/// \brief Returns a copy of the double2x4 that has been component-wise added by the corresponding component of the right-hand double2x4.
 inline double2x4 operator+( const double2x4& lhs, const double2x4& rhs )
 {
+	return HLML_CONSTRUCT( double2x4 ) {
+		comp_addv( lhs.rows[0], rhs.rows[0] ),
+		comp_addv( lhs.rows[1], rhs.rows[1] )
+	};
+}
+
+inline double2x4 operator-( const double2x4& lhs, const double scalar )
+{
 	return double2x4(
-		lhs[0] + rhs[0],
-		lhs[1] + rhs[1]
+		lhs[0] - scalar,
+		lhs[1] - scalar
 	);
 }
 
-/// \relates double2x4
-/// \brief Adds each component of the double2x4 by the corresponding component of the right-hand double2x4.
-inline double2x4 operator+=( double2x4& lhs, const double2x4& rhs )
-{
-	return ( lhs = lhs + rhs );
-}
-
-/// \relates double2x4
-/// \brief Returns a copy of the double2x4 that has been component-wise subtracted by the given scalar value.
-inline double2x4 operator-( const double2x4& lhs, const double rhs )
-{
-	return double2x4(
-		lhs[0] - rhs,
-		lhs[1] - rhs
-	);
-}
-
-/// \relates double2x4
-/// \brief Subtracts each component by the given scalar value.
-inline double2x4 operator-=( double2x4& lhs, const double rhs )
-{
-	return ( lhs = lhs - rhs );
-}
-
-/// \relates double2x4
-/// \brief Returns a copy of the double2x4 that has been component-wise subtracted by the corresponding component of the right-hand double2x4.
 inline double2x4 operator-( const double2x4& lhs, const double2x4& rhs )
 {
-	return double2x4(
-		lhs[0] - rhs[0],
-		lhs[1] - rhs[1]
-	);
-}
-
-/// \relates double2x4
-/// \brief Subtracts each component of the double2x4 by the corresponding component of the right-hand double2x4.
-inline double2x4 operator-=( double2x4& lhs, const double2x4& rhs )
-{
-	return ( lhs = lhs - rhs );
-}
-
-/// \relates double2x4
-/// \brief Returns a copy of the double2x4 that has been component-wise multiplied by the given scalar value.
-inline double2x4 operator*( const double2x4& lhs, const double rhs )
-{
-	return double2x4(
-		lhs[0] * rhs,
-		lhs[1] * rhs
-	);
-}
-
-/// \relates double2x4
-/// \brief Multiplies each component by the given scalar value.
-inline double2x4 operator*=( double2x4& lhs, const double rhs )
-{
-	return ( lhs = lhs * rhs );
+	return HLML_CONSTRUCT( double2x4 ) {
+		comp_subv( lhs.rows[0], rhs.rows[0] ),
+		comp_subv( lhs.rows[1], rhs.rows[1] )
+	};
 }
 
 /// \relates double2x4
 /// \brief Returns a copy of the matrix where each row of the left-hand matrix has been dot-producted by the corresponding column of the right-hand matrix.
 inline double2x2 operator*( const double2x4& lhs, const double4x2& rhs )
 {
-	double4 row0 = lhs[0];
-	double4 row1 = lhs[1];
+	double4 row0 = lhs.rows[0];
+	double4 row1 = lhs.rows[1];
 
-	double4 col0 = { rhs[0].x, rhs[1].x, rhs[2].x, rhs[3].x };
-	double4 col1 = { rhs[0].y, rhs[1].y, rhs[2].y, rhs[3].y };
+	double4 col0 = { rhs.rows[0].x, rhs.rows[1].x, rhs.rows[2].x, rhs.rows[3].x };
+	double4 col1 = { rhs.rows[0].y, rhs.rows[1].y, rhs.rows[2].y, rhs.rows[3].y };
 
-	return double2x2(
+	return HLML_CONSTRUCT( double2x2 ) {
 		row0.x * col0.x + row0.y * col0.y + row0.z * col0.z + row0.w * col0.w,
 		row0.x * col1.x + row0.y * col1.y + row0.z * col1.z + row0.w * col1.w,
 
 		row1.x * col0.x + row1.y * col0.y + row1.z * col0.z + row1.w * col0.w,
 		row1.x * col1.x + row1.y * col1.y + row1.z * col1.z + row1.w * col1.w
-	);
+	};
 }
 
-/// \relates double2x4
-/// \brief Returns a copy of the double2x4 that has been component-wise divided by the given scalar value.
-inline double2x4 operator/( const double2x4& lhs, const double rhs )
+inline double2x4 operator/( const double2x4& lhs, const double scalar )
 {
 	return double2x4(
-		lhs[0] / rhs,
-		lhs[1] / rhs
+		lhs[0] / scalar,
+		lhs[1] / scalar
 	);
 }
 
-/// \relates double2x4
-/// \brief Divides each component by the given scalar value.
-inline double2x4 operator/=( double2x4& lhs, const double rhs )
-{
-	return ( lhs = lhs / rhs );
-}
-
-/// \relates double2x4
-/// \brief Returns a copy of the double2x4 that has been component-wise divided by the corresponding component of the right-hand double2x4.
 inline double2x4 operator/( const double2x4& lhs, const double2x4& rhs )
 {
-	return double2x4(
-		lhs[0] / rhs[0],
-		lhs[1] / rhs[1]
-	);
+	return HLML_CONSTRUCT( double2x4 ) {
+		comp_divv( lhs.rows[0], rhs.rows[0] ),
+		comp_divv( lhs.rows[1], rhs.rows[1] )
+	};
 }
 
 // prefix
@@ -10812,151 +7411,101 @@ inline double2x4& operator--( double2x4& lhs, const int )
 	return lhs;
 }
 
-/// \relates double2x4
-/// \brief Returns a bool2x4 where each component is true if the component of the left-hand type is less than the corresponding right-hand type component.
 inline bool2x4 operator<( const double2x4& lhs, const double2x4& rhs )
 {
-	return bool2x4(
-		lhs[0] < rhs[0],
-		lhs[1] < rhs[1]
-	);
+	return HLML_CONSTRUCT( bool2x4 ) {
+		cmpl( lhs.rows[0], rhs.rows[0] ),
+		cmpl( lhs.rows[1], rhs.rows[1] )
+	};
 }
 
-/// \relates double2x4
-/// \brief Returns a bool2x4 where each component is true if the component of the left-hand type is less than or equal to the corresponding right-hand type component.
 inline bool2x4 operator<=( const double2x4& lhs, const double2x4& rhs )
 {
-	return bool2x4(
-		lhs[0] <= rhs[0],
-		lhs[1] <= rhs[1]
-	);
+	return HLML_CONSTRUCT( bool2x4 ) {
+		cmple( lhs.rows[0], rhs.rows[0] ),
+		cmple( lhs.rows[1], rhs.rows[1] )
+	};
 }
 
-/// \relates double2x4
-/// \brief Returns a bool2x4 where each component is true if the component of the left-hand type is greater than the corresponding right-hand type component.
 inline bool2x4 operator>( const double2x4& lhs, const double2x4& rhs )
 {
-	return bool2x4(
-		lhs[0] > rhs[0],
-		lhs[1] > rhs[1]
-	);
+	return HLML_CONSTRUCT( bool2x4 ) {
+		cmpg( lhs.rows[0], rhs.rows[0] ),
+		cmpg( lhs.rows[1], rhs.rows[1] )
+	};
 }
 
-/// \relates double2x4
-/// \brief Returns a bool2x4 where each component is true if the component of the left-hand type is greater than or equal to the corresponding right-hand type component.
 inline bool2x4 operator>=( const double2x4& lhs, const double2x4& rhs )
 {
-	return bool2x4(
-		lhs[0] >= rhs[0],
-		lhs[1] >= rhs[1]
-	);
+	return HLML_CONSTRUCT( bool2x4 ) {
+		cmpge( lhs.rows[0], rhs.rows[0] ),
+		cmpge( lhs.rows[1], rhs.rows[1] )
+	};
 }
 
 
 // double3x2
-/// \relates double3x2
-/// \brief Returns a copy of the double3x2 that has been component-wise added by the given scalar value.
-inline double3x2 operator+( const double3x2& lhs, const double rhs )
+inline bool operator==( const double3x2& lhs, const double3x2& rhs )
+{
+	return ( lhs[0] == rhs[0] )
+		&& ( lhs[1] == rhs[1] )
+		&& ( lhs[2] == rhs[2] );
+}
+
+inline bool operator!=( const double3x2& lhs, const double3x2& rhs )
+{
+	return !( operator==( lhs, rhs ) );
+}
+
+inline double3x2 operator+( const double3x2& lhs, const double scalar )
 {
 	return double3x2(
-		lhs[0] + rhs,
-		lhs[1] + rhs,
-		lhs[2] + rhs
+		lhs[0] + scalar,
+		lhs[1] + scalar,
+		lhs[2] + scalar
 	);
 }
 
-/// \relates double3x2
-/// \brief Adds each component by the given scalar value.
-inline double3x2 operator+=( double3x2& lhs, const double rhs )
-{
-	return ( lhs = lhs + rhs );
-}
-
-/// \relates double3x2
-/// \brief Returns a copy of the double3x2 that has been component-wise added by the corresponding component of the right-hand double3x2.
 inline double3x2 operator+( const double3x2& lhs, const double3x2& rhs )
 {
+	return HLML_CONSTRUCT( double3x2 ) {
+		comp_addv( lhs.rows[0], rhs.rows[0] ),
+		comp_addv( lhs.rows[1], rhs.rows[1] ),
+		comp_addv( lhs.rows[2], rhs.rows[2] )
+	};
+}
+
+inline double3x2 operator-( const double3x2& lhs, const double scalar )
+{
 	return double3x2(
-		lhs[0] + rhs[0],
-		lhs[1] + rhs[1],
-		lhs[2] + rhs[2]
+		lhs[0] - scalar,
+		lhs[1] - scalar,
+		lhs[2] - scalar
 	);
 }
 
-/// \relates double3x2
-/// \brief Adds each component of the double3x2 by the corresponding component of the right-hand double3x2.
-inline double3x2 operator+=( double3x2& lhs, const double3x2& rhs )
-{
-	return ( lhs = lhs + rhs );
-}
-
-/// \relates double3x2
-/// \brief Returns a copy of the double3x2 that has been component-wise subtracted by the given scalar value.
-inline double3x2 operator-( const double3x2& lhs, const double rhs )
-{
-	return double3x2(
-		lhs[0] - rhs,
-		lhs[1] - rhs,
-		lhs[2] - rhs
-	);
-}
-
-/// \relates double3x2
-/// \brief Subtracts each component by the given scalar value.
-inline double3x2 operator-=( double3x2& lhs, const double rhs )
-{
-	return ( lhs = lhs - rhs );
-}
-
-/// \relates double3x2
-/// \brief Returns a copy of the double3x2 that has been component-wise subtracted by the corresponding component of the right-hand double3x2.
 inline double3x2 operator-( const double3x2& lhs, const double3x2& rhs )
 {
-	return double3x2(
-		lhs[0] - rhs[0],
-		lhs[1] - rhs[1],
-		lhs[2] - rhs[2]
-	);
-}
-
-/// \relates double3x2
-/// \brief Subtracts each component of the double3x2 by the corresponding component of the right-hand double3x2.
-inline double3x2 operator-=( double3x2& lhs, const double3x2& rhs )
-{
-	return ( lhs = lhs - rhs );
-}
-
-/// \relates double3x2
-/// \brief Returns a copy of the double3x2 that has been component-wise multiplied by the given scalar value.
-inline double3x2 operator*( const double3x2& lhs, const double rhs )
-{
-	return double3x2(
-		lhs[0] * rhs,
-		lhs[1] * rhs,
-		lhs[2] * rhs
-	);
-}
-
-/// \relates double3x2
-/// \brief Multiplies each component by the given scalar value.
-inline double3x2 operator*=( double3x2& lhs, const double rhs )
-{
-	return ( lhs = lhs * rhs );
+	return HLML_CONSTRUCT( double3x2 ) {
+		comp_subv( lhs.rows[0], rhs.rows[0] ),
+		comp_subv( lhs.rows[1], rhs.rows[1] ),
+		comp_subv( lhs.rows[2], rhs.rows[2] )
+	};
 }
 
 /// \relates double3x2
 /// \brief Returns a copy of the matrix where each row of the left-hand matrix has been dot-producted by the corresponding column of the right-hand matrix.
 inline double3x3 operator*( const double3x2& lhs, const double2x3& rhs )
 {
-	double2 row0 = lhs[0];
-	double2 row1 = lhs[1];
-	double2 row2 = lhs[2];
+	double2 row0 = lhs.rows[0];
+	double2 row1 = lhs.rows[1];
+	double2 row2 = lhs.rows[2];
 
-	double2 col0 = { rhs[0].x, rhs[1].x };
-	double2 col1 = { rhs[0].y, rhs[1].y };
-	double2 col2 = { rhs[0].z, rhs[1].z };
+	double2 col0 = { rhs.rows[0].x, rhs.rows[1].x };
+	double2 col1 = { rhs.rows[0].y, rhs.rows[1].y };
+	double2 col2 = { rhs.rows[0].z, rhs.rows[1].z };
 
-	return double3x3(
+	return HLML_CONSTRUCT( double3x3 ) {
 		row0.x * col0.x + row0.y * col0.y,
 		row0.x * col1.x + row0.y * col1.y,
 		row0.x * col2.x + row0.y * col2.y,
@@ -10968,36 +7517,25 @@ inline double3x3 operator*( const double3x2& lhs, const double2x3& rhs )
 		row2.x * col0.x + row2.y * col0.y,
 		row2.x * col1.x + row2.y * col1.y,
 		row2.x * col2.x + row2.y * col2.y
-	);
+	};
 }
 
-/// \relates double3x2
-/// \brief Returns a copy of the double3x2 that has been component-wise divided by the given scalar value.
-inline double3x2 operator/( const double3x2& lhs, const double rhs )
+inline double3x2 operator/( const double3x2& lhs, const double scalar )
 {
 	return double3x2(
-		lhs[0] / rhs,
-		lhs[1] / rhs,
-		lhs[2] / rhs
+		lhs[0] / scalar,
+		lhs[1] / scalar,
+		lhs[2] / scalar
 	);
 }
 
-/// \relates double3x2
-/// \brief Divides each component by the given scalar value.
-inline double3x2 operator/=( double3x2& lhs, const double rhs )
-{
-	return ( lhs = lhs / rhs );
-}
-
-/// \relates double3x2
-/// \brief Returns a copy of the double3x2 that has been component-wise divided by the corresponding component of the right-hand double3x2.
 inline double3x2 operator/( const double3x2& lhs, const double3x2& rhs )
 {
-	return double3x2(
-		lhs[0] / rhs[0],
-		lhs[1] / rhs[1],
-		lhs[2] / rhs[2]
-	);
+	return HLML_CONSTRUCT( double3x2 ) {
+		comp_divv( lhs.rows[0], rhs.rows[0] ),
+		comp_divv( lhs.rows[1], rhs.rows[1] ),
+		comp_divv( lhs.rows[2], rhs.rows[2] )
+	};
 }
 
 // prefix
@@ -11044,155 +7582,105 @@ inline double3x2& operator--( double3x2& lhs, const int )
 	return lhs;
 }
 
-/// \relates double3x2
-/// \brief Returns a bool3x2 where each component is true if the component of the left-hand type is less than the corresponding right-hand type component.
 inline bool3x2 operator<( const double3x2& lhs, const double3x2& rhs )
 {
-	return bool3x2(
-		lhs[0] < rhs[0],
-		lhs[1] < rhs[1],
-		lhs[2] < rhs[2]
-	);
+	return HLML_CONSTRUCT( bool3x2 ) {
+		cmpl( lhs.rows[0], rhs.rows[0] ),
+		cmpl( lhs.rows[1], rhs.rows[1] ),
+		cmpl( lhs.rows[2], rhs.rows[2] )
+	};
 }
 
-/// \relates double3x2
-/// \brief Returns a bool3x2 where each component is true if the component of the left-hand type is less than or equal to the corresponding right-hand type component.
 inline bool3x2 operator<=( const double3x2& lhs, const double3x2& rhs )
 {
-	return bool3x2(
-		lhs[0] <= rhs[0],
-		lhs[1] <= rhs[1],
-		lhs[2] <= rhs[2]
-	);
+	return HLML_CONSTRUCT( bool3x2 ) {
+		cmple( lhs.rows[0], rhs.rows[0] ),
+		cmple( lhs.rows[1], rhs.rows[1] ),
+		cmple( lhs.rows[2], rhs.rows[2] )
+	};
 }
 
-/// \relates double3x2
-/// \brief Returns a bool3x2 where each component is true if the component of the left-hand type is greater than the corresponding right-hand type component.
 inline bool3x2 operator>( const double3x2& lhs, const double3x2& rhs )
 {
-	return bool3x2(
-		lhs[0] > rhs[0],
-		lhs[1] > rhs[1],
-		lhs[2] > rhs[2]
-	);
+	return HLML_CONSTRUCT( bool3x2 ) {
+		cmpg( lhs.rows[0], rhs.rows[0] ),
+		cmpg( lhs.rows[1], rhs.rows[1] ),
+		cmpg( lhs.rows[2], rhs.rows[2] )
+	};
 }
 
-/// \relates double3x2
-/// \brief Returns a bool3x2 where each component is true if the component of the left-hand type is greater than or equal to the corresponding right-hand type component.
 inline bool3x2 operator>=( const double3x2& lhs, const double3x2& rhs )
 {
-	return bool3x2(
-		lhs[0] >= rhs[0],
-		lhs[1] >= rhs[1],
-		lhs[2] >= rhs[2]
-	);
+	return HLML_CONSTRUCT( bool3x2 ) {
+		cmpge( lhs.rows[0], rhs.rows[0] ),
+		cmpge( lhs.rows[1], rhs.rows[1] ),
+		cmpge( lhs.rows[2], rhs.rows[2] )
+	};
 }
 
 
 // double3x3
-/// \relates double3x3
-/// \brief Returns a copy of the double3x3 that has been component-wise added by the given scalar value.
-inline double3x3 operator+( const double3x3& lhs, const double rhs )
+inline bool operator==( const double3x3& lhs, const double3x3& rhs )
+{
+	return ( lhs[0] == rhs[0] )
+		&& ( lhs[1] == rhs[1] )
+		&& ( lhs[2] == rhs[2] );
+}
+
+inline bool operator!=( const double3x3& lhs, const double3x3& rhs )
+{
+	return !( operator==( lhs, rhs ) );
+}
+
+inline double3x3 operator+( const double3x3& lhs, const double scalar )
 {
 	return double3x3(
-		lhs[0] + rhs,
-		lhs[1] + rhs,
-		lhs[2] + rhs
+		lhs[0] + scalar,
+		lhs[1] + scalar,
+		lhs[2] + scalar
 	);
 }
 
-/// \relates double3x3
-/// \brief Adds each component by the given scalar value.
-inline double3x3 operator+=( double3x3& lhs, const double rhs )
-{
-	return ( lhs = lhs + rhs );
-}
-
-/// \relates double3x3
-/// \brief Returns a copy of the double3x3 that has been component-wise added by the corresponding component of the right-hand double3x3.
 inline double3x3 operator+( const double3x3& lhs, const double3x3& rhs )
 {
+	return HLML_CONSTRUCT( double3x3 ) {
+		comp_addv( lhs.rows[0], rhs.rows[0] ),
+		comp_addv( lhs.rows[1], rhs.rows[1] ),
+		comp_addv( lhs.rows[2], rhs.rows[2] )
+	};
+}
+
+inline double3x3 operator-( const double3x3& lhs, const double scalar )
+{
 	return double3x3(
-		lhs[0] + rhs[0],
-		lhs[1] + rhs[1],
-		lhs[2] + rhs[2]
+		lhs[0] - scalar,
+		lhs[1] - scalar,
+		lhs[2] - scalar
 	);
 }
 
-/// \relates double3x3
-/// \brief Adds each component of the double3x3 by the corresponding component of the right-hand double3x3.
-inline double3x3 operator+=( double3x3& lhs, const double3x3& rhs )
-{
-	return ( lhs = lhs + rhs );
-}
-
-/// \relates double3x3
-/// \brief Returns a copy of the double3x3 that has been component-wise subtracted by the given scalar value.
-inline double3x3 operator-( const double3x3& lhs, const double rhs )
-{
-	return double3x3(
-		lhs[0] - rhs,
-		lhs[1] - rhs,
-		lhs[2] - rhs
-	);
-}
-
-/// \relates double3x3
-/// \brief Subtracts each component by the given scalar value.
-inline double3x3 operator-=( double3x3& lhs, const double rhs )
-{
-	return ( lhs = lhs - rhs );
-}
-
-/// \relates double3x3
-/// \brief Returns a copy of the double3x3 that has been component-wise subtracted by the corresponding component of the right-hand double3x3.
 inline double3x3 operator-( const double3x3& lhs, const double3x3& rhs )
 {
-	return double3x3(
-		lhs[0] - rhs[0],
-		lhs[1] - rhs[1],
-		lhs[2] - rhs[2]
-	);
-}
-
-/// \relates double3x3
-/// \brief Subtracts each component of the double3x3 by the corresponding component of the right-hand double3x3.
-inline double3x3 operator-=( double3x3& lhs, const double3x3& rhs )
-{
-	return ( lhs = lhs - rhs );
-}
-
-/// \relates double3x3
-/// \brief Returns a copy of the double3x3 that has been component-wise multiplied by the given scalar value.
-inline double3x3 operator*( const double3x3& lhs, const double rhs )
-{
-	return double3x3(
-		lhs[0] * rhs,
-		lhs[1] * rhs,
-		lhs[2] * rhs
-	);
-}
-
-/// \relates double3x3
-/// \brief Multiplies each component by the given scalar value.
-inline double3x3 operator*=( double3x3& lhs, const double rhs )
-{
-	return ( lhs = lhs * rhs );
+	return HLML_CONSTRUCT( double3x3 ) {
+		comp_subv( lhs.rows[0], rhs.rows[0] ),
+		comp_subv( lhs.rows[1], rhs.rows[1] ),
+		comp_subv( lhs.rows[2], rhs.rows[2] )
+	};
 }
 
 /// \relates double3x3
 /// \brief Returns a copy of the matrix where each row of the left-hand matrix has been dot-producted by the corresponding column of the right-hand matrix.
 inline double3x3 operator*( const double3x3& lhs, const double3x3& rhs )
 {
-	double3 row0 = lhs[0];
-	double3 row1 = lhs[1];
-	double3 row2 = lhs[2];
+	double3 row0 = lhs.rows[0];
+	double3 row1 = lhs.rows[1];
+	double3 row2 = lhs.rows[2];
 
-	double3 col0 = { rhs[0].x, rhs[1].x, rhs[2].x };
-	double3 col1 = { rhs[0].y, rhs[1].y, rhs[2].y };
-	double3 col2 = { rhs[0].z, rhs[1].z, rhs[2].z };
+	double3 col0 = { rhs.rows[0].x, rhs.rows[1].x, rhs.rows[2].x };
+	double3 col1 = { rhs.rows[0].y, rhs.rows[1].y, rhs.rows[2].y };
+	double3 col2 = { rhs.rows[0].z, rhs.rows[1].z, rhs.rows[2].z };
 
-	return double3x3(
+	return HLML_CONSTRUCT( double3x3 ) {
 		row0.x * col0.x + row0.y * col0.y + row0.z * col0.z,
 		row0.x * col1.x + row0.y * col1.y + row0.z * col1.z,
 		row0.x * col2.x + row0.y * col2.y + row0.z * col2.z,
@@ -11204,30 +7692,12 @@ inline double3x3 operator*( const double3x3& lhs, const double3x3& rhs )
 		row2.x * col0.x + row2.y * col0.y + row2.z * col0.z,
 		row2.x * col1.x + row2.y * col1.y + row2.z * col1.z,
 		row2.x * col2.x + row2.y * col2.y + row2.z * col2.z
-	);
+	};
 }
 
 inline double3x3 operator*=( double3x3& lhs, const double3x3& rhs )
 {
 	return ( lhs = lhs * rhs );
-}
-
-/// \relates double3x3
-/// \brief Returns a copy of the double3x3 that has been component-wise divided by the given scalar value.
-inline double3x3 operator/( const double3x3& lhs, const double rhs )
-{
-	return double3x3(
-		lhs[0] / rhs,
-		lhs[1] / rhs,
-		lhs[2] / rhs
-	);
-}
-
-/// \relates double3x3
-/// \brief Divides each component by the given scalar value.
-inline double3x3 operator/=( double3x3& lhs, const double rhs )
-{
-	return ( lhs = lhs / rhs );
 }
 
 /// \relates double3x3
@@ -11248,11 +7718,11 @@ inline double3x3 operator/=( double3x3& lhs, const double3x3& rhs )
 /// \brief Returns a copy of the double3 that has been component-wise multiplied by the corresponding component of the right-hand double3x3.
 inline double3 operator*( const double3x3& lhs, const double3& rhs )
 {
-	return double3(
-		(double) dot( lhs[0], rhs ),
-		(double) dot( lhs[1], rhs ),
-		(double) dot( lhs[2], rhs )
-	);
+	return HLML_CONSTRUCT( double3 ) {
+		lhs.rows[0].x * rhs.x + lhs.rows[0].y * rhs.y + lhs.rows[0].z * rhs.z,
+		lhs.rows[1].x * rhs.x + lhs.rows[1].y * rhs.y + lhs.rows[1].z * rhs.z,
+		lhs.rows[2].x * rhs.x + lhs.rows[2].y * rhs.y + lhs.rows[2].z * rhs.z
+	};
 }
 
 /// \relates double3
@@ -11306,155 +7776,105 @@ inline double3x3& operator--( double3x3& lhs, const int )
 	return lhs;
 }
 
-/// \relates double3x3
-/// \brief Returns a bool3x3 where each component is true if the component of the left-hand type is less than the corresponding right-hand type component.
 inline bool3x3 operator<( const double3x3& lhs, const double3x3& rhs )
 {
-	return bool3x3(
-		lhs[0] < rhs[0],
-		lhs[1] < rhs[1],
-		lhs[2] < rhs[2]
-	);
+	return HLML_CONSTRUCT( bool3x3 ) {
+		cmpl( lhs.rows[0], rhs.rows[0] ),
+		cmpl( lhs.rows[1], rhs.rows[1] ),
+		cmpl( lhs.rows[2], rhs.rows[2] )
+	};
 }
 
-/// \relates double3x3
-/// \brief Returns a bool3x3 where each component is true if the component of the left-hand type is less than or equal to the corresponding right-hand type component.
 inline bool3x3 operator<=( const double3x3& lhs, const double3x3& rhs )
 {
-	return bool3x3(
-		lhs[0] <= rhs[0],
-		lhs[1] <= rhs[1],
-		lhs[2] <= rhs[2]
-	);
+	return HLML_CONSTRUCT( bool3x3 ) {
+		cmple( lhs.rows[0], rhs.rows[0] ),
+		cmple( lhs.rows[1], rhs.rows[1] ),
+		cmple( lhs.rows[2], rhs.rows[2] )
+	};
 }
 
-/// \relates double3x3
-/// \brief Returns a bool3x3 where each component is true if the component of the left-hand type is greater than the corresponding right-hand type component.
 inline bool3x3 operator>( const double3x3& lhs, const double3x3& rhs )
 {
-	return bool3x3(
-		lhs[0] > rhs[0],
-		lhs[1] > rhs[1],
-		lhs[2] > rhs[2]
-	);
+	return HLML_CONSTRUCT( bool3x3 ) {
+		cmpg( lhs.rows[0], rhs.rows[0] ),
+		cmpg( lhs.rows[1], rhs.rows[1] ),
+		cmpg( lhs.rows[2], rhs.rows[2] )
+	};
 }
 
-/// \relates double3x3
-/// \brief Returns a bool3x3 where each component is true if the component of the left-hand type is greater than or equal to the corresponding right-hand type component.
 inline bool3x3 operator>=( const double3x3& lhs, const double3x3& rhs )
 {
-	return bool3x3(
-		lhs[0] >= rhs[0],
-		lhs[1] >= rhs[1],
-		lhs[2] >= rhs[2]
-	);
+	return HLML_CONSTRUCT( bool3x3 ) {
+		cmpge( lhs.rows[0], rhs.rows[0] ),
+		cmpge( lhs.rows[1], rhs.rows[1] ),
+		cmpge( lhs.rows[2], rhs.rows[2] )
+	};
 }
 
 
 // double3x4
-/// \relates double3x4
-/// \brief Returns a copy of the double3x4 that has been component-wise added by the given scalar value.
-inline double3x4 operator+( const double3x4& lhs, const double rhs )
+inline bool operator==( const double3x4& lhs, const double3x4& rhs )
+{
+	return ( lhs[0] == rhs[0] )
+		&& ( lhs[1] == rhs[1] )
+		&& ( lhs[2] == rhs[2] );
+}
+
+inline bool operator!=( const double3x4& lhs, const double3x4& rhs )
+{
+	return !( operator==( lhs, rhs ) );
+}
+
+inline double3x4 operator+( const double3x4& lhs, const double scalar )
 {
 	return double3x4(
-		lhs[0] + rhs,
-		lhs[1] + rhs,
-		lhs[2] + rhs
+		lhs[0] + scalar,
+		lhs[1] + scalar,
+		lhs[2] + scalar
 	);
 }
 
-/// \relates double3x4
-/// \brief Adds each component by the given scalar value.
-inline double3x4 operator+=( double3x4& lhs, const double rhs )
-{
-	return ( lhs = lhs + rhs );
-}
-
-/// \relates double3x4
-/// \brief Returns a copy of the double3x4 that has been component-wise added by the corresponding component of the right-hand double3x4.
 inline double3x4 operator+( const double3x4& lhs, const double3x4& rhs )
 {
+	return HLML_CONSTRUCT( double3x4 ) {
+		comp_addv( lhs.rows[0], rhs.rows[0] ),
+		comp_addv( lhs.rows[1], rhs.rows[1] ),
+		comp_addv( lhs.rows[2], rhs.rows[2] )
+	};
+}
+
+inline double3x4 operator-( const double3x4& lhs, const double scalar )
+{
 	return double3x4(
-		lhs[0] + rhs[0],
-		lhs[1] + rhs[1],
-		lhs[2] + rhs[2]
+		lhs[0] - scalar,
+		lhs[1] - scalar,
+		lhs[2] - scalar
 	);
 }
 
-/// \relates double3x4
-/// \brief Adds each component of the double3x4 by the corresponding component of the right-hand double3x4.
-inline double3x4 operator+=( double3x4& lhs, const double3x4& rhs )
-{
-	return ( lhs = lhs + rhs );
-}
-
-/// \relates double3x4
-/// \brief Returns a copy of the double3x4 that has been component-wise subtracted by the given scalar value.
-inline double3x4 operator-( const double3x4& lhs, const double rhs )
-{
-	return double3x4(
-		lhs[0] - rhs,
-		lhs[1] - rhs,
-		lhs[2] - rhs
-	);
-}
-
-/// \relates double3x4
-/// \brief Subtracts each component by the given scalar value.
-inline double3x4 operator-=( double3x4& lhs, const double rhs )
-{
-	return ( lhs = lhs - rhs );
-}
-
-/// \relates double3x4
-/// \brief Returns a copy of the double3x4 that has been component-wise subtracted by the corresponding component of the right-hand double3x4.
 inline double3x4 operator-( const double3x4& lhs, const double3x4& rhs )
 {
-	return double3x4(
-		lhs[0] - rhs[0],
-		lhs[1] - rhs[1],
-		lhs[2] - rhs[2]
-	);
-}
-
-/// \relates double3x4
-/// \brief Subtracts each component of the double3x4 by the corresponding component of the right-hand double3x4.
-inline double3x4 operator-=( double3x4& lhs, const double3x4& rhs )
-{
-	return ( lhs = lhs - rhs );
-}
-
-/// \relates double3x4
-/// \brief Returns a copy of the double3x4 that has been component-wise multiplied by the given scalar value.
-inline double3x4 operator*( const double3x4& lhs, const double rhs )
-{
-	return double3x4(
-		lhs[0] * rhs,
-		lhs[1] * rhs,
-		lhs[2] * rhs
-	);
-}
-
-/// \relates double3x4
-/// \brief Multiplies each component by the given scalar value.
-inline double3x4 operator*=( double3x4& lhs, const double rhs )
-{
-	return ( lhs = lhs * rhs );
+	return HLML_CONSTRUCT( double3x4 ) {
+		comp_subv( lhs.rows[0], rhs.rows[0] ),
+		comp_subv( lhs.rows[1], rhs.rows[1] ),
+		comp_subv( lhs.rows[2], rhs.rows[2] )
+	};
 }
 
 /// \relates double3x4
 /// \brief Returns a copy of the matrix where each row of the left-hand matrix has been dot-producted by the corresponding column of the right-hand matrix.
 inline double3x3 operator*( const double3x4& lhs, const double4x3& rhs )
 {
-	double4 row0 = lhs[0];
-	double4 row1 = lhs[1];
-	double4 row2 = lhs[2];
+	double4 row0 = lhs.rows[0];
+	double4 row1 = lhs.rows[1];
+	double4 row2 = lhs.rows[2];
 
-	double4 col0 = { rhs[0].x, rhs[1].x, rhs[2].x, rhs[3].x };
-	double4 col1 = { rhs[0].y, rhs[1].y, rhs[2].y, rhs[3].y };
-	double4 col2 = { rhs[0].z, rhs[1].z, rhs[2].z, rhs[3].z };
+	double4 col0 = { rhs.rows[0].x, rhs.rows[1].x, rhs.rows[2].x, rhs.rows[3].x };
+	double4 col1 = { rhs.rows[0].y, rhs.rows[1].y, rhs.rows[2].y, rhs.rows[3].y };
+	double4 col2 = { rhs.rows[0].z, rhs.rows[1].z, rhs.rows[2].z, rhs.rows[3].z };
 
-	return double3x3(
+	return HLML_CONSTRUCT( double3x3 ) {
 		row0.x * col0.x + row0.y * col0.y + row0.z * col0.z + row0.w * col0.w,
 		row0.x * col1.x + row0.y * col1.y + row0.z * col1.z + row0.w * col1.w,
 		row0.x * col2.x + row0.y * col2.y + row0.z * col2.z + row0.w * col2.w,
@@ -11466,36 +7886,25 @@ inline double3x3 operator*( const double3x4& lhs, const double4x3& rhs )
 		row2.x * col0.x + row2.y * col0.y + row2.z * col0.z + row2.w * col0.w,
 		row2.x * col1.x + row2.y * col1.y + row2.z * col1.z + row2.w * col1.w,
 		row2.x * col2.x + row2.y * col2.y + row2.z * col2.z + row2.w * col2.w
-	);
+	};
 }
 
-/// \relates double3x4
-/// \brief Returns a copy of the double3x4 that has been component-wise divided by the given scalar value.
-inline double3x4 operator/( const double3x4& lhs, const double rhs )
+inline double3x4 operator/( const double3x4& lhs, const double scalar )
 {
 	return double3x4(
-		lhs[0] / rhs,
-		lhs[1] / rhs,
-		lhs[2] / rhs
+		lhs[0] / scalar,
+		lhs[1] / scalar,
+		lhs[2] / scalar
 	);
 }
 
-/// \relates double3x4
-/// \brief Divides each component by the given scalar value.
-inline double3x4 operator/=( double3x4& lhs, const double rhs )
-{
-	return ( lhs = lhs / rhs );
-}
-
-/// \relates double3x4
-/// \brief Returns a copy of the double3x4 that has been component-wise divided by the corresponding component of the right-hand double3x4.
 inline double3x4 operator/( const double3x4& lhs, const double3x4& rhs )
 {
-	return double3x4(
-		lhs[0] / rhs[0],
-		lhs[1] / rhs[1],
-		lhs[2] / rhs[2]
-	);
+	return HLML_CONSTRUCT( double3x4 ) {
+		comp_divv( lhs.rows[0], rhs.rows[0] ),
+		comp_divv( lhs.rows[1], rhs.rows[1] ),
+		comp_divv( lhs.rows[2], rhs.rows[2] )
+	};
 }
 
 // prefix
@@ -11542,162 +7951,112 @@ inline double3x4& operator--( double3x4& lhs, const int )
 	return lhs;
 }
 
-/// \relates double3x4
-/// \brief Returns a bool3x4 where each component is true if the component of the left-hand type is less than the corresponding right-hand type component.
 inline bool3x4 operator<( const double3x4& lhs, const double3x4& rhs )
 {
-	return bool3x4(
-		lhs[0] < rhs[0],
-		lhs[1] < rhs[1],
-		lhs[2] < rhs[2]
-	);
+	return HLML_CONSTRUCT( bool3x4 ) {
+		cmpl( lhs.rows[0], rhs.rows[0] ),
+		cmpl( lhs.rows[1], rhs.rows[1] ),
+		cmpl( lhs.rows[2], rhs.rows[2] )
+	};
 }
 
-/// \relates double3x4
-/// \brief Returns a bool3x4 where each component is true if the component of the left-hand type is less than or equal to the corresponding right-hand type component.
 inline bool3x4 operator<=( const double3x4& lhs, const double3x4& rhs )
 {
-	return bool3x4(
-		lhs[0] <= rhs[0],
-		lhs[1] <= rhs[1],
-		lhs[2] <= rhs[2]
-	);
+	return HLML_CONSTRUCT( bool3x4 ) {
+		cmple( lhs.rows[0], rhs.rows[0] ),
+		cmple( lhs.rows[1], rhs.rows[1] ),
+		cmple( lhs.rows[2], rhs.rows[2] )
+	};
 }
 
-/// \relates double3x4
-/// \brief Returns a bool3x4 where each component is true if the component of the left-hand type is greater than the corresponding right-hand type component.
 inline bool3x4 operator>( const double3x4& lhs, const double3x4& rhs )
 {
-	return bool3x4(
-		lhs[0] > rhs[0],
-		lhs[1] > rhs[1],
-		lhs[2] > rhs[2]
-	);
+	return HLML_CONSTRUCT( bool3x4 ) {
+		cmpg( lhs.rows[0], rhs.rows[0] ),
+		cmpg( lhs.rows[1], rhs.rows[1] ),
+		cmpg( lhs.rows[2], rhs.rows[2] )
+	};
 }
 
-/// \relates double3x4
-/// \brief Returns a bool3x4 where each component is true if the component of the left-hand type is greater than or equal to the corresponding right-hand type component.
 inline bool3x4 operator>=( const double3x4& lhs, const double3x4& rhs )
 {
-	return bool3x4(
-		lhs[0] >= rhs[0],
-		lhs[1] >= rhs[1],
-		lhs[2] >= rhs[2]
-	);
+	return HLML_CONSTRUCT( bool3x4 ) {
+		cmpge( lhs.rows[0], rhs.rows[0] ),
+		cmpge( lhs.rows[1], rhs.rows[1] ),
+		cmpge( lhs.rows[2], rhs.rows[2] )
+	};
 }
 
 
 // double4x2
-/// \relates double4x2
-/// \brief Returns a copy of the double4x2 that has been component-wise added by the given scalar value.
-inline double4x2 operator+( const double4x2& lhs, const double rhs )
+inline bool operator==( const double4x2& lhs, const double4x2& rhs )
+{
+	return ( lhs[0] == rhs[0] )
+		&& ( lhs[1] == rhs[1] )
+		&& ( lhs[2] == rhs[2] )
+		&& ( lhs[3] == rhs[3] );
+}
+
+inline bool operator!=( const double4x2& lhs, const double4x2& rhs )
+{
+	return !( operator==( lhs, rhs ) );
+}
+
+inline double4x2 operator+( const double4x2& lhs, const double scalar )
 {
 	return double4x2(
-		lhs[0] + rhs,
-		lhs[1] + rhs,
-		lhs[2] + rhs,
-		lhs[3] + rhs
+		lhs[0] + scalar,
+		lhs[1] + scalar,
+		lhs[2] + scalar,
+		lhs[3] + scalar
 	);
 }
 
-/// \relates double4x2
-/// \brief Adds each component by the given scalar value.
-inline double4x2 operator+=( double4x2& lhs, const double rhs )
-{
-	return ( lhs = lhs + rhs );
-}
-
-/// \relates double4x2
-/// \brief Returns a copy of the double4x2 that has been component-wise added by the corresponding component of the right-hand double4x2.
 inline double4x2 operator+( const double4x2& lhs, const double4x2& rhs )
 {
+	return HLML_CONSTRUCT( double4x2 ) {
+		comp_addv( lhs.rows[0], rhs.rows[0] ),
+		comp_addv( lhs.rows[1], rhs.rows[1] ),
+		comp_addv( lhs.rows[2], rhs.rows[2] ),
+		comp_addv( lhs.rows[3], rhs.rows[3] )
+	};
+}
+
+inline double4x2 operator-( const double4x2& lhs, const double scalar )
+{
 	return double4x2(
-		lhs[0] + rhs[0],
-		lhs[1] + rhs[1],
-		lhs[2] + rhs[2],
-		lhs[3] + rhs[3]
+		lhs[0] - scalar,
+		lhs[1] - scalar,
+		lhs[2] - scalar,
+		lhs[3] - scalar
 	);
 }
 
-/// \relates double4x2
-/// \brief Adds each component of the double4x2 by the corresponding component of the right-hand double4x2.
-inline double4x2 operator+=( double4x2& lhs, const double4x2& rhs )
-{
-	return ( lhs = lhs + rhs );
-}
-
-/// \relates double4x2
-/// \brief Returns a copy of the double4x2 that has been component-wise subtracted by the given scalar value.
-inline double4x2 operator-( const double4x2& lhs, const double rhs )
-{
-	return double4x2(
-		lhs[0] - rhs,
-		lhs[1] - rhs,
-		lhs[2] - rhs,
-		lhs[3] - rhs
-	);
-}
-
-/// \relates double4x2
-/// \brief Subtracts each component by the given scalar value.
-inline double4x2 operator-=( double4x2& lhs, const double rhs )
-{
-	return ( lhs = lhs - rhs );
-}
-
-/// \relates double4x2
-/// \brief Returns a copy of the double4x2 that has been component-wise subtracted by the corresponding component of the right-hand double4x2.
 inline double4x2 operator-( const double4x2& lhs, const double4x2& rhs )
 {
-	return double4x2(
-		lhs[0] - rhs[0],
-		lhs[1] - rhs[1],
-		lhs[2] - rhs[2],
-		lhs[3] - rhs[3]
-	);
-}
-
-/// \relates double4x2
-/// \brief Subtracts each component of the double4x2 by the corresponding component of the right-hand double4x2.
-inline double4x2 operator-=( double4x2& lhs, const double4x2& rhs )
-{
-	return ( lhs = lhs - rhs );
-}
-
-/// \relates double4x2
-/// \brief Returns a copy of the double4x2 that has been component-wise multiplied by the given scalar value.
-inline double4x2 operator*( const double4x2& lhs, const double rhs )
-{
-	return double4x2(
-		lhs[0] * rhs,
-		lhs[1] * rhs,
-		lhs[2] * rhs,
-		lhs[3] * rhs
-	);
-}
-
-/// \relates double4x2
-/// \brief Multiplies each component by the given scalar value.
-inline double4x2 operator*=( double4x2& lhs, const double rhs )
-{
-	return ( lhs = lhs * rhs );
+	return HLML_CONSTRUCT( double4x2 ) {
+		comp_subv( lhs.rows[0], rhs.rows[0] ),
+		comp_subv( lhs.rows[1], rhs.rows[1] ),
+		comp_subv( lhs.rows[2], rhs.rows[2] ),
+		comp_subv( lhs.rows[3], rhs.rows[3] )
+	};
 }
 
 /// \relates double4x2
 /// \brief Returns a copy of the matrix where each row of the left-hand matrix has been dot-producted by the corresponding column of the right-hand matrix.
 inline double4x4 operator*( const double4x2& lhs, const double2x4& rhs )
 {
-	double2 row0 = lhs[0];
-	double2 row1 = lhs[1];
-	double2 row2 = lhs[2];
-	double2 row3 = lhs[3];
+	double2 row0 = lhs.rows[0];
+	double2 row1 = lhs.rows[1];
+	double2 row2 = lhs.rows[2];
+	double2 row3 = lhs.rows[3];
 
-	double2 col0 = { rhs[0].x, rhs[1].x };
-	double2 col1 = { rhs[0].y, rhs[1].y };
-	double2 col2 = { rhs[0].z, rhs[1].z };
-	double2 col3 = { rhs[0].w, rhs[1].w };
+	double2 col0 = { rhs.rows[0].x, rhs.rows[1].x };
+	double2 col1 = { rhs.rows[0].y, rhs.rows[1].y };
+	double2 col2 = { rhs.rows[0].z, rhs.rows[1].z };
+	double2 col3 = { rhs.rows[0].w, rhs.rows[1].w };
 
-	return double4x4(
+	return HLML_CONSTRUCT( double4x4 ) {
 		row0.x * col0.x + row0.y * col0.y,
 		row0.x * col1.x + row0.y * col1.y,
 		row0.x * col2.x + row0.y * col2.y,
@@ -11717,38 +8076,27 @@ inline double4x4 operator*( const double4x2& lhs, const double2x4& rhs )
 		row3.x * col1.x + row3.y * col1.y,
 		row3.x * col2.x + row3.y * col2.y,
 		row3.x * col3.x + row3.y * col3.y
-	);
+	};
 }
 
-/// \relates double4x2
-/// \brief Returns a copy of the double4x2 that has been component-wise divided by the given scalar value.
-inline double4x2 operator/( const double4x2& lhs, const double rhs )
+inline double4x2 operator/( const double4x2& lhs, const double scalar )
 {
 	return double4x2(
-		lhs[0] / rhs,
-		lhs[1] / rhs,
-		lhs[2] / rhs,
-		lhs[3] / rhs
+		lhs[0] / scalar,
+		lhs[1] / scalar,
+		lhs[2] / scalar,
+		lhs[3] / scalar
 	);
 }
 
-/// \relates double4x2
-/// \brief Divides each component by the given scalar value.
-inline double4x2 operator/=( double4x2& lhs, const double rhs )
-{
-	return ( lhs = lhs / rhs );
-}
-
-/// \relates double4x2
-/// \brief Returns a copy of the double4x2 that has been component-wise divided by the corresponding component of the right-hand double4x2.
 inline double4x2 operator/( const double4x2& lhs, const double4x2& rhs )
 {
-	return double4x2(
-		lhs[0] / rhs[0],
-		lhs[1] / rhs[1],
-		lhs[2] / rhs[2],
-		lhs[3] / rhs[3]
-	);
+	return HLML_CONSTRUCT( double4x2 ) {
+		comp_divv( lhs.rows[0], rhs.rows[0] ),
+		comp_divv( lhs.rows[1], rhs.rows[1] ),
+		comp_divv( lhs.rows[2], rhs.rows[2] ),
+		comp_divv( lhs.rows[3], rhs.rows[3] )
+	};
 }
 
 // prefix
@@ -11799,166 +8147,116 @@ inline double4x2& operator--( double4x2& lhs, const int )
 	return lhs;
 }
 
-/// \relates double4x2
-/// \brief Returns a bool4x2 where each component is true if the component of the left-hand type is less than the corresponding right-hand type component.
 inline bool4x2 operator<( const double4x2& lhs, const double4x2& rhs )
 {
-	return bool4x2(
-		lhs[0] < rhs[0],
-		lhs[1] < rhs[1],
-		lhs[2] < rhs[2],
-		lhs[3] < rhs[3]
-	);
+	return HLML_CONSTRUCT( bool4x2 ) {
+		cmpl( lhs.rows[0], rhs.rows[0] ),
+		cmpl( lhs.rows[1], rhs.rows[1] ),
+		cmpl( lhs.rows[2], rhs.rows[2] ),
+		cmpl( lhs.rows[3], rhs.rows[3] )
+	};
 }
 
-/// \relates double4x2
-/// \brief Returns a bool4x2 where each component is true if the component of the left-hand type is less than or equal to the corresponding right-hand type component.
 inline bool4x2 operator<=( const double4x2& lhs, const double4x2& rhs )
 {
-	return bool4x2(
-		lhs[0] <= rhs[0],
-		lhs[1] <= rhs[1],
-		lhs[2] <= rhs[2],
-		lhs[3] <= rhs[3]
-	);
+	return HLML_CONSTRUCT( bool4x2 ) {
+		cmple( lhs.rows[0], rhs.rows[0] ),
+		cmple( lhs.rows[1], rhs.rows[1] ),
+		cmple( lhs.rows[2], rhs.rows[2] ),
+		cmple( lhs.rows[3], rhs.rows[3] )
+	};
 }
 
-/// \relates double4x2
-/// \brief Returns a bool4x2 where each component is true if the component of the left-hand type is greater than the corresponding right-hand type component.
 inline bool4x2 operator>( const double4x2& lhs, const double4x2& rhs )
 {
-	return bool4x2(
-		lhs[0] > rhs[0],
-		lhs[1] > rhs[1],
-		lhs[2] > rhs[2],
-		lhs[3] > rhs[3]
-	);
+	return HLML_CONSTRUCT( bool4x2 ) {
+		cmpg( lhs.rows[0], rhs.rows[0] ),
+		cmpg( lhs.rows[1], rhs.rows[1] ),
+		cmpg( lhs.rows[2], rhs.rows[2] ),
+		cmpg( lhs.rows[3], rhs.rows[3] )
+	};
 }
 
-/// \relates double4x2
-/// \brief Returns a bool4x2 where each component is true if the component of the left-hand type is greater than or equal to the corresponding right-hand type component.
 inline bool4x2 operator>=( const double4x2& lhs, const double4x2& rhs )
 {
-	return bool4x2(
-		lhs[0] >= rhs[0],
-		lhs[1] >= rhs[1],
-		lhs[2] >= rhs[2],
-		lhs[3] >= rhs[3]
-	);
+	return HLML_CONSTRUCT( bool4x2 ) {
+		cmpge( lhs.rows[0], rhs.rows[0] ),
+		cmpge( lhs.rows[1], rhs.rows[1] ),
+		cmpge( lhs.rows[2], rhs.rows[2] ),
+		cmpge( lhs.rows[3], rhs.rows[3] )
+	};
 }
 
 
 // double4x3
-/// \relates double4x3
-/// \brief Returns a copy of the double4x3 that has been component-wise added by the given scalar value.
-inline double4x3 operator+( const double4x3& lhs, const double rhs )
+inline bool operator==( const double4x3& lhs, const double4x3& rhs )
+{
+	return ( lhs[0] == rhs[0] )
+		&& ( lhs[1] == rhs[1] )
+		&& ( lhs[2] == rhs[2] )
+		&& ( lhs[3] == rhs[3] );
+}
+
+inline bool operator!=( const double4x3& lhs, const double4x3& rhs )
+{
+	return !( operator==( lhs, rhs ) );
+}
+
+inline double4x3 operator+( const double4x3& lhs, const double scalar )
 {
 	return double4x3(
-		lhs[0] + rhs,
-		lhs[1] + rhs,
-		lhs[2] + rhs,
-		lhs[3] + rhs
+		lhs[0] + scalar,
+		lhs[1] + scalar,
+		lhs[2] + scalar,
+		lhs[3] + scalar
 	);
 }
 
-/// \relates double4x3
-/// \brief Adds each component by the given scalar value.
-inline double4x3 operator+=( double4x3& lhs, const double rhs )
-{
-	return ( lhs = lhs + rhs );
-}
-
-/// \relates double4x3
-/// \brief Returns a copy of the double4x3 that has been component-wise added by the corresponding component of the right-hand double4x3.
 inline double4x3 operator+( const double4x3& lhs, const double4x3& rhs )
 {
+	return HLML_CONSTRUCT( double4x3 ) {
+		comp_addv( lhs.rows[0], rhs.rows[0] ),
+		comp_addv( lhs.rows[1], rhs.rows[1] ),
+		comp_addv( lhs.rows[2], rhs.rows[2] ),
+		comp_addv( lhs.rows[3], rhs.rows[3] )
+	};
+}
+
+inline double4x3 operator-( const double4x3& lhs, const double scalar )
+{
 	return double4x3(
-		lhs[0] + rhs[0],
-		lhs[1] + rhs[1],
-		lhs[2] + rhs[2],
-		lhs[3] + rhs[3]
+		lhs[0] - scalar,
+		lhs[1] - scalar,
+		lhs[2] - scalar,
+		lhs[3] - scalar
 	);
 }
 
-/// \relates double4x3
-/// \brief Adds each component of the double4x3 by the corresponding component of the right-hand double4x3.
-inline double4x3 operator+=( double4x3& lhs, const double4x3& rhs )
-{
-	return ( lhs = lhs + rhs );
-}
-
-/// \relates double4x3
-/// \brief Returns a copy of the double4x3 that has been component-wise subtracted by the given scalar value.
-inline double4x3 operator-( const double4x3& lhs, const double rhs )
-{
-	return double4x3(
-		lhs[0] - rhs,
-		lhs[1] - rhs,
-		lhs[2] - rhs,
-		lhs[3] - rhs
-	);
-}
-
-/// \relates double4x3
-/// \brief Subtracts each component by the given scalar value.
-inline double4x3 operator-=( double4x3& lhs, const double rhs )
-{
-	return ( lhs = lhs - rhs );
-}
-
-/// \relates double4x3
-/// \brief Returns a copy of the double4x3 that has been component-wise subtracted by the corresponding component of the right-hand double4x3.
 inline double4x3 operator-( const double4x3& lhs, const double4x3& rhs )
 {
-	return double4x3(
-		lhs[0] - rhs[0],
-		lhs[1] - rhs[1],
-		lhs[2] - rhs[2],
-		lhs[3] - rhs[3]
-	);
-}
-
-/// \relates double4x3
-/// \brief Subtracts each component of the double4x3 by the corresponding component of the right-hand double4x3.
-inline double4x3 operator-=( double4x3& lhs, const double4x3& rhs )
-{
-	return ( lhs = lhs - rhs );
-}
-
-/// \relates double4x3
-/// \brief Returns a copy of the double4x3 that has been component-wise multiplied by the given scalar value.
-inline double4x3 operator*( const double4x3& lhs, const double rhs )
-{
-	return double4x3(
-		lhs[0] * rhs,
-		lhs[1] * rhs,
-		lhs[2] * rhs,
-		lhs[3] * rhs
-	);
-}
-
-/// \relates double4x3
-/// \brief Multiplies each component by the given scalar value.
-inline double4x3 operator*=( double4x3& lhs, const double rhs )
-{
-	return ( lhs = lhs * rhs );
+	return HLML_CONSTRUCT( double4x3 ) {
+		comp_subv( lhs.rows[0], rhs.rows[0] ),
+		comp_subv( lhs.rows[1], rhs.rows[1] ),
+		comp_subv( lhs.rows[2], rhs.rows[2] ),
+		comp_subv( lhs.rows[3], rhs.rows[3] )
+	};
 }
 
 /// \relates double4x3
 /// \brief Returns a copy of the matrix where each row of the left-hand matrix has been dot-producted by the corresponding column of the right-hand matrix.
 inline double4x4 operator*( const double4x3& lhs, const double3x4& rhs )
 {
-	double3 row0 = lhs[0];
-	double3 row1 = lhs[1];
-	double3 row2 = lhs[2];
-	double3 row3 = lhs[3];
+	double3 row0 = lhs.rows[0];
+	double3 row1 = lhs.rows[1];
+	double3 row2 = lhs.rows[2];
+	double3 row3 = lhs.rows[3];
 
-	double3 col0 = { rhs[0].x, rhs[1].x, rhs[2].x };
-	double3 col1 = { rhs[0].y, rhs[1].y, rhs[2].y };
-	double3 col2 = { rhs[0].z, rhs[1].z, rhs[2].z };
-	double3 col3 = { rhs[0].w, rhs[1].w, rhs[2].w };
+	double3 col0 = { rhs.rows[0].x, rhs.rows[1].x, rhs.rows[2].x };
+	double3 col1 = { rhs.rows[0].y, rhs.rows[1].y, rhs.rows[2].y };
+	double3 col2 = { rhs.rows[0].z, rhs.rows[1].z, rhs.rows[2].z };
+	double3 col3 = { rhs.rows[0].w, rhs.rows[1].w, rhs.rows[2].w };
 
-	return double4x4(
+	return HLML_CONSTRUCT( double4x4 ) {
 		row0.x * col0.x + row0.y * col0.y + row0.z * col0.z,
 		row0.x * col1.x + row0.y * col1.y + row0.z * col1.z,
 		row0.x * col2.x + row0.y * col2.y + row0.z * col2.z,
@@ -11978,38 +8276,27 @@ inline double4x4 operator*( const double4x3& lhs, const double3x4& rhs )
 		row3.x * col1.x + row3.y * col1.y + row3.z * col1.z,
 		row3.x * col2.x + row3.y * col2.y + row3.z * col2.z,
 		row3.x * col3.x + row3.y * col3.y + row3.z * col3.z
-	);
+	};
 }
 
-/// \relates double4x3
-/// \brief Returns a copy of the double4x3 that has been component-wise divided by the given scalar value.
-inline double4x3 operator/( const double4x3& lhs, const double rhs )
+inline double4x3 operator/( const double4x3& lhs, const double scalar )
 {
 	return double4x3(
-		lhs[0] / rhs,
-		lhs[1] / rhs,
-		lhs[2] / rhs,
-		lhs[3] / rhs
+		lhs[0] / scalar,
+		lhs[1] / scalar,
+		lhs[2] / scalar,
+		lhs[3] / scalar
 	);
 }
 
-/// \relates double4x3
-/// \brief Divides each component by the given scalar value.
-inline double4x3 operator/=( double4x3& lhs, const double rhs )
-{
-	return ( lhs = lhs / rhs );
-}
-
-/// \relates double4x3
-/// \brief Returns a copy of the double4x3 that has been component-wise divided by the corresponding component of the right-hand double4x3.
 inline double4x3 operator/( const double4x3& lhs, const double4x3& rhs )
 {
-	return double4x3(
-		lhs[0] / rhs[0],
-		lhs[1] / rhs[1],
-		lhs[2] / rhs[2],
-		lhs[3] / rhs[3]
-	);
+	return HLML_CONSTRUCT( double4x3 ) {
+		comp_divv( lhs.rows[0], rhs.rows[0] ),
+		comp_divv( lhs.rows[1], rhs.rows[1] ),
+		comp_divv( lhs.rows[2], rhs.rows[2] ),
+		comp_divv( lhs.rows[3], rhs.rows[3] )
+	};
 }
 
 // prefix
@@ -12060,166 +8347,116 @@ inline double4x3& operator--( double4x3& lhs, const int )
 	return lhs;
 }
 
-/// \relates double4x3
-/// \brief Returns a bool4x3 where each component is true if the component of the left-hand type is less than the corresponding right-hand type component.
 inline bool4x3 operator<( const double4x3& lhs, const double4x3& rhs )
 {
-	return bool4x3(
-		lhs[0] < rhs[0],
-		lhs[1] < rhs[1],
-		lhs[2] < rhs[2],
-		lhs[3] < rhs[3]
-	);
+	return HLML_CONSTRUCT( bool4x3 ) {
+		cmpl( lhs.rows[0], rhs.rows[0] ),
+		cmpl( lhs.rows[1], rhs.rows[1] ),
+		cmpl( lhs.rows[2], rhs.rows[2] ),
+		cmpl( lhs.rows[3], rhs.rows[3] )
+	};
 }
 
-/// \relates double4x3
-/// \brief Returns a bool4x3 where each component is true if the component of the left-hand type is less than or equal to the corresponding right-hand type component.
 inline bool4x3 operator<=( const double4x3& lhs, const double4x3& rhs )
 {
-	return bool4x3(
-		lhs[0] <= rhs[0],
-		lhs[1] <= rhs[1],
-		lhs[2] <= rhs[2],
-		lhs[3] <= rhs[3]
-	);
+	return HLML_CONSTRUCT( bool4x3 ) {
+		cmple( lhs.rows[0], rhs.rows[0] ),
+		cmple( lhs.rows[1], rhs.rows[1] ),
+		cmple( lhs.rows[2], rhs.rows[2] ),
+		cmple( lhs.rows[3], rhs.rows[3] )
+	};
 }
 
-/// \relates double4x3
-/// \brief Returns a bool4x3 where each component is true if the component of the left-hand type is greater than the corresponding right-hand type component.
 inline bool4x3 operator>( const double4x3& lhs, const double4x3& rhs )
 {
-	return bool4x3(
-		lhs[0] > rhs[0],
-		lhs[1] > rhs[1],
-		lhs[2] > rhs[2],
-		lhs[3] > rhs[3]
-	);
+	return HLML_CONSTRUCT( bool4x3 ) {
+		cmpg( lhs.rows[0], rhs.rows[0] ),
+		cmpg( lhs.rows[1], rhs.rows[1] ),
+		cmpg( lhs.rows[2], rhs.rows[2] ),
+		cmpg( lhs.rows[3], rhs.rows[3] )
+	};
 }
 
-/// \relates double4x3
-/// \brief Returns a bool4x3 where each component is true if the component of the left-hand type is greater than or equal to the corresponding right-hand type component.
 inline bool4x3 operator>=( const double4x3& lhs, const double4x3& rhs )
 {
-	return bool4x3(
-		lhs[0] >= rhs[0],
-		lhs[1] >= rhs[1],
-		lhs[2] >= rhs[2],
-		lhs[3] >= rhs[3]
-	);
+	return HLML_CONSTRUCT( bool4x3 ) {
+		cmpge( lhs.rows[0], rhs.rows[0] ),
+		cmpge( lhs.rows[1], rhs.rows[1] ),
+		cmpge( lhs.rows[2], rhs.rows[2] ),
+		cmpge( lhs.rows[3], rhs.rows[3] )
+	};
 }
 
 
 // double4x4
-/// \relates double4x4
-/// \brief Returns a copy of the double4x4 that has been component-wise added by the given scalar value.
-inline double4x4 operator+( const double4x4& lhs, const double rhs )
+inline bool operator==( const double4x4& lhs, const double4x4& rhs )
+{
+	return ( lhs[0] == rhs[0] )
+		&& ( lhs[1] == rhs[1] )
+		&& ( lhs[2] == rhs[2] )
+		&& ( lhs[3] == rhs[3] );
+}
+
+inline bool operator!=( const double4x4& lhs, const double4x4& rhs )
+{
+	return !( operator==( lhs, rhs ) );
+}
+
+inline double4x4 operator+( const double4x4& lhs, const double scalar )
 {
 	return double4x4(
-		lhs[0] + rhs,
-		lhs[1] + rhs,
-		lhs[2] + rhs,
-		lhs[3] + rhs
+		lhs[0] + scalar,
+		lhs[1] + scalar,
+		lhs[2] + scalar,
+		lhs[3] + scalar
 	);
 }
 
-/// \relates double4x4
-/// \brief Adds each component by the given scalar value.
-inline double4x4 operator+=( double4x4& lhs, const double rhs )
-{
-	return ( lhs = lhs + rhs );
-}
-
-/// \relates double4x4
-/// \brief Returns a copy of the double4x4 that has been component-wise added by the corresponding component of the right-hand double4x4.
 inline double4x4 operator+( const double4x4& lhs, const double4x4& rhs )
 {
+	return HLML_CONSTRUCT( double4x4 ) {
+		comp_addv( lhs.rows[0], rhs.rows[0] ),
+		comp_addv( lhs.rows[1], rhs.rows[1] ),
+		comp_addv( lhs.rows[2], rhs.rows[2] ),
+		comp_addv( lhs.rows[3], rhs.rows[3] )
+	};
+}
+
+inline double4x4 operator-( const double4x4& lhs, const double scalar )
+{
 	return double4x4(
-		lhs[0] + rhs[0],
-		lhs[1] + rhs[1],
-		lhs[2] + rhs[2],
-		lhs[3] + rhs[3]
+		lhs[0] - scalar,
+		lhs[1] - scalar,
+		lhs[2] - scalar,
+		lhs[3] - scalar
 	);
 }
 
-/// \relates double4x4
-/// \brief Adds each component of the double4x4 by the corresponding component of the right-hand double4x4.
-inline double4x4 operator+=( double4x4& lhs, const double4x4& rhs )
-{
-	return ( lhs = lhs + rhs );
-}
-
-/// \relates double4x4
-/// \brief Returns a copy of the double4x4 that has been component-wise subtracted by the given scalar value.
-inline double4x4 operator-( const double4x4& lhs, const double rhs )
-{
-	return double4x4(
-		lhs[0] - rhs,
-		lhs[1] - rhs,
-		lhs[2] - rhs,
-		lhs[3] - rhs
-	);
-}
-
-/// \relates double4x4
-/// \brief Subtracts each component by the given scalar value.
-inline double4x4 operator-=( double4x4& lhs, const double rhs )
-{
-	return ( lhs = lhs - rhs );
-}
-
-/// \relates double4x4
-/// \brief Returns a copy of the double4x4 that has been component-wise subtracted by the corresponding component of the right-hand double4x4.
 inline double4x4 operator-( const double4x4& lhs, const double4x4& rhs )
 {
-	return double4x4(
-		lhs[0] - rhs[0],
-		lhs[1] - rhs[1],
-		lhs[2] - rhs[2],
-		lhs[3] - rhs[3]
-	);
-}
-
-/// \relates double4x4
-/// \brief Subtracts each component of the double4x4 by the corresponding component of the right-hand double4x4.
-inline double4x4 operator-=( double4x4& lhs, const double4x4& rhs )
-{
-	return ( lhs = lhs - rhs );
-}
-
-/// \relates double4x4
-/// \brief Returns a copy of the double4x4 that has been component-wise multiplied by the given scalar value.
-inline double4x4 operator*( const double4x4& lhs, const double rhs )
-{
-	return double4x4(
-		lhs[0] * rhs,
-		lhs[1] * rhs,
-		lhs[2] * rhs,
-		lhs[3] * rhs
-	);
-}
-
-/// \relates double4x4
-/// \brief Multiplies each component by the given scalar value.
-inline double4x4 operator*=( double4x4& lhs, const double rhs )
-{
-	return ( lhs = lhs * rhs );
+	return HLML_CONSTRUCT( double4x4 ) {
+		comp_subv( lhs.rows[0], rhs.rows[0] ),
+		comp_subv( lhs.rows[1], rhs.rows[1] ),
+		comp_subv( lhs.rows[2], rhs.rows[2] ),
+		comp_subv( lhs.rows[3], rhs.rows[3] )
+	};
 }
 
 /// \relates double4x4
 /// \brief Returns a copy of the matrix where each row of the left-hand matrix has been dot-producted by the corresponding column of the right-hand matrix.
 inline double4x4 operator*( const double4x4& lhs, const double4x4& rhs )
 {
-	double4 row0 = lhs[0];
-	double4 row1 = lhs[1];
-	double4 row2 = lhs[2];
-	double4 row3 = lhs[3];
+	double4 row0 = lhs.rows[0];
+	double4 row1 = lhs.rows[1];
+	double4 row2 = lhs.rows[2];
+	double4 row3 = lhs.rows[3];
 
-	double4 col0 = { rhs[0].x, rhs[1].x, rhs[2].x, rhs[3].x };
-	double4 col1 = { rhs[0].y, rhs[1].y, rhs[2].y, rhs[3].y };
-	double4 col2 = { rhs[0].z, rhs[1].z, rhs[2].z, rhs[3].z };
-	double4 col3 = { rhs[0].w, rhs[1].w, rhs[2].w, rhs[3].w };
+	double4 col0 = { rhs.rows[0].x, rhs.rows[1].x, rhs.rows[2].x, rhs.rows[3].x };
+	double4 col1 = { rhs.rows[0].y, rhs.rows[1].y, rhs.rows[2].y, rhs.rows[3].y };
+	double4 col2 = { rhs.rows[0].z, rhs.rows[1].z, rhs.rows[2].z, rhs.rows[3].z };
+	double4 col3 = { rhs.rows[0].w, rhs.rows[1].w, rhs.rows[2].w, rhs.rows[3].w };
 
-	return double4x4(
+	return HLML_CONSTRUCT( double4x4 ) {
 		row0.x * col0.x + row0.y * col0.y + row0.z * col0.z + row0.w * col0.w,
 		row0.x * col1.x + row0.y * col1.y + row0.z * col1.z + row0.w * col1.w,
 		row0.x * col2.x + row0.y * col2.y + row0.z * col2.z + row0.w * col2.w,
@@ -12239,31 +8476,12 @@ inline double4x4 operator*( const double4x4& lhs, const double4x4& rhs )
 		row3.x * col1.x + row3.y * col1.y + row3.z * col1.z + row3.w * col1.w,
 		row3.x * col2.x + row3.y * col2.y + row3.z * col2.z + row3.w * col2.w,
 		row3.x * col3.x + row3.y * col3.y + row3.z * col3.z + row3.w * col3.w
-	);
+	};
 }
 
 inline double4x4 operator*=( double4x4& lhs, const double4x4& rhs )
 {
 	return ( lhs = lhs * rhs );
-}
-
-/// \relates double4x4
-/// \brief Returns a copy of the double4x4 that has been component-wise divided by the given scalar value.
-inline double4x4 operator/( const double4x4& lhs, const double rhs )
-{
-	return double4x4(
-		lhs[0] / rhs,
-		lhs[1] / rhs,
-		lhs[2] / rhs,
-		lhs[3] / rhs
-	);
-}
-
-/// \relates double4x4
-/// \brief Divides each component by the given scalar value.
-inline double4x4 operator/=( double4x4& lhs, const double rhs )
-{
-	return ( lhs = lhs / rhs );
 }
 
 /// \relates double4x4
@@ -12284,12 +8502,12 @@ inline double4x4 operator/=( double4x4& lhs, const double4x4& rhs )
 /// \brief Returns a copy of the double4 that has been component-wise multiplied by the corresponding component of the right-hand double4x4.
 inline double4 operator*( const double4x4& lhs, const double4& rhs )
 {
-	return double4(
-		(double) dot( lhs[0], rhs ),
-		(double) dot( lhs[1], rhs ),
-		(double) dot( lhs[2], rhs ),
-		(double) dot( lhs[3], rhs )
-	);
+	return HLML_CONSTRUCT( double4 ) {
+		lhs.rows[0].x * rhs.x + lhs.rows[0].y * rhs.y + lhs.rows[0].z * rhs.z + lhs.rows[0].w * rhs.w,
+		lhs.rows[1].x * rhs.x + lhs.rows[1].y * rhs.y + lhs.rows[1].z * rhs.z + lhs.rows[1].w * rhs.w,
+		lhs.rows[2].x * rhs.x + lhs.rows[2].y * rhs.y + lhs.rows[2].z * rhs.z + lhs.rows[2].w * rhs.w,
+		lhs.rows[3].x * rhs.x + lhs.rows[3].y * rhs.y + lhs.rows[3].z * rhs.z + lhs.rows[3].w * rhs.w
+	};
 }
 
 /// \relates double4
@@ -12347,52 +8565,44 @@ inline double4x4& operator--( double4x4& lhs, const int )
 	return lhs;
 }
 
-/// \relates double4x4
-/// \brief Returns a bool4x4 where each component is true if the component of the left-hand type is less than the corresponding right-hand type component.
 inline bool4x4 operator<( const double4x4& lhs, const double4x4& rhs )
 {
-	return bool4x4(
-		lhs[0] < rhs[0],
-		lhs[1] < rhs[1],
-		lhs[2] < rhs[2],
-		lhs[3] < rhs[3]
-	);
+	return HLML_CONSTRUCT( bool4x4 ) {
+		cmpl( lhs.rows[0], rhs.rows[0] ),
+		cmpl( lhs.rows[1], rhs.rows[1] ),
+		cmpl( lhs.rows[2], rhs.rows[2] ),
+		cmpl( lhs.rows[3], rhs.rows[3] )
+	};
 }
 
-/// \relates double4x4
-/// \brief Returns a bool4x4 where each component is true if the component of the left-hand type is less than or equal to the corresponding right-hand type component.
 inline bool4x4 operator<=( const double4x4& lhs, const double4x4& rhs )
 {
-	return bool4x4(
-		lhs[0] <= rhs[0],
-		lhs[1] <= rhs[1],
-		lhs[2] <= rhs[2],
-		lhs[3] <= rhs[3]
-	);
+	return HLML_CONSTRUCT( bool4x4 ) {
+		cmple( lhs.rows[0], rhs.rows[0] ),
+		cmple( lhs.rows[1], rhs.rows[1] ),
+		cmple( lhs.rows[2], rhs.rows[2] ),
+		cmple( lhs.rows[3], rhs.rows[3] )
+	};
 }
 
-/// \relates double4x4
-/// \brief Returns a bool4x4 where each component is true if the component of the left-hand type is greater than the corresponding right-hand type component.
 inline bool4x4 operator>( const double4x4& lhs, const double4x4& rhs )
 {
-	return bool4x4(
-		lhs[0] > rhs[0],
-		lhs[1] > rhs[1],
-		lhs[2] > rhs[2],
-		lhs[3] > rhs[3]
-	);
+	return HLML_CONSTRUCT( bool4x4 ) {
+		cmpg( lhs.rows[0], rhs.rows[0] ),
+		cmpg( lhs.rows[1], rhs.rows[1] ),
+		cmpg( lhs.rows[2], rhs.rows[2] ),
+		cmpg( lhs.rows[3], rhs.rows[3] )
+	};
 }
 
-/// \relates double4x4
-/// \brief Returns a bool4x4 where each component is true if the component of the left-hand type is greater than or equal to the corresponding right-hand type component.
 inline bool4x4 operator>=( const double4x4& lhs, const double4x4& rhs )
 {
-	return bool4x4(
-		lhs[0] >= rhs[0],
-		lhs[1] >= rhs[1],
-		lhs[2] >= rhs[2],
-		lhs[3] >= rhs[3]
-	);
+	return HLML_CONSTRUCT( bool4x4 ) {
+		cmpge( lhs.rows[0], rhs.rows[0] ),
+		cmpge( lhs.rows[1], rhs.rows[1] ),
+		cmpge( lhs.rows[2], rhs.rows[2] ),
+		cmpge( lhs.rows[3], rhs.rows[3] )
+	};
 }
 
 

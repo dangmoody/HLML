@@ -111,13 +111,3 @@ int2 int2::yx() const { return int2( y, x ); }
 int2 int2::xy() const { return int2( x, y ); }
 int2 int2::yy() const { return int2( y, y ); }
 
-bool operator==( const int2& lhs, const int2& rhs )
-{
-	return ( lhs.x == rhs.x ) && ( lhs.y == rhs.y );
-}
-
-inline bool operator!=( const int2& lhs, const int2& rhs )
-{
-	return !( operator==( lhs, rhs ) );
-}
-

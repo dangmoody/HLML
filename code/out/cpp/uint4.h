@@ -74,8 +74,9 @@ struct uint4
 			uint32_t a;
 		};
 
-		uint32_t data[4] = { 0 };
+		uint32_t data[4];
 	};
+
 
 	/// Default constructor.  Initializes all values to zero.
 	inline uint4();
@@ -409,12 +410,4 @@ struct uint4
 #elif defined( _MSC_VER )
 #pragma warning( pop )
 #endif
-
-/// \relates uint4
-/// \brief Returns true if the all the components of the left-hand-side uint4 match the other one, otherwise returns false.
-inline bool operator==( const uint4& lhs, const uint4& rhs );
-
-/// \relates uint4
-/// \brief Returns true if not all of the components of the left-hand-side uint4 match the other one, otherwise returns false.
-inline bool operator!=( const uint4& lhs, const uint4& rhs );
 
