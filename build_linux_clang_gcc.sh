@@ -81,7 +81,7 @@ if [[ ${compiler} == clang ]]; then
 	fi
 else
 	# GCC-specific warnings to ignore
-	ignore_warnings="${ignore_warnings} -Wno-padded -Wno-unused-macros -Wno-format-nonliteral -Wno-float-equal -Wno-unused-variable"
+	ignore_warnings="${ignore_warnings} -Wno-padded -Wno-unused-macros -Wno-format-nonliteral -Wno-float-equal -Wno-unused-variable -Wno-stringop-truncation"
 
 	if [[ ${language} == C++ ]]; then
 		ignore_warnings="${ignore_warnings} -Wno-old-style-cast"
