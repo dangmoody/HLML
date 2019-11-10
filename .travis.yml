@@ -85,4 +85,4 @@ matrix:
       before_script:
         - chmod +x build_linux_clang_gcc.sh
         - chmod +x build_and_test.sh
-      script: ./build_and_test.sh ${CXX} release
+      script: ./build_and_test.sh clang release
