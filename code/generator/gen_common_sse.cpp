@@ -40,19 +40,20 @@ void Gen_SSE_MacroNegate( const genType_t type, stringBuilder_t* sbHeader ) {
 	String_Append(  sbHeader, "\n" );
 }
 
-void Gen_SSE_Radians( const genType_t type, stringBuilder_t* sbHeader ) {
+void Gen_SSE_Radians( const genLanguage_t language, const genType_t type, stringBuilder_t* sbHeader ) {
 	if ( !Gen_TypeSupportsSSE( type ) ) {
 		return;
 	}
-
-//	const char* memberTypeString = Gen_GetMemberTypeString( type );
 
 	const char* registerName	= Gen_SSE_GetRegisterName( type );
 
 	char mulFuncStr[GEN_STRING_LENGTH_SSE_INTRINSIC];
 	Gen_SSE_GetIntrinsicArithmetic( type, GEN_OP_ARITHMETIC_MUL, mulFuncStr );
 
-	String_Appendf( sbHeader, "inline void radians_sse( const %s deg, %s* out_radians )\n", registerName, registerName );
+	char radiansFuncStr[GEN_STRING_LENGTH_FUNCTION_NAME];
+	Gen_SSE_GetFuncNameRadians( language, type, radiansFuncStr );
+
+	String_Appendf( sbHeader, "inline static void %s( const %s deg, %s* out_radians )\n", radiansFuncStr, registerName, registerName );
 	String_Append(  sbHeader, "{\n" );
 	String_Append(  sbHeader, "\tassert( out_radians );\n" );
 	String_Append(  sbHeader, "\n" );
@@ -61,19 +62,20 @@ void Gen_SSE_Radians( const genType_t type, stringBuilder_t* sbHeader ) {
 	String_Append(  sbHeader, "\n" );
 }
 
-void Gen_SSE_Degrees( const genType_t type, stringBuilder_t* sbHeader ) {
+void Gen_SSE_Degrees( const genLanguage_t language, const genType_t type, stringBuilder_t* sbHeader ) {
 	if ( !Gen_TypeSupportsSSE( type ) ) {
 		return;
 	}
-
-//	const char* memberTypeString = Gen_GetMemberTypeString( type );
 
 	const char* registerName = Gen_SSE_GetRegisterName( type );
 
 	char mulFuncStr[GEN_STRING_LENGTH_SSE_INTRINSIC];
 	Gen_SSE_GetIntrinsicArithmetic( type, GEN_OP_ARITHMETIC_MUL, mulFuncStr );
 
-	String_Appendf( sbHeader, "inline void degrees_sse( const %s rad, %s* out_degrees )\n", registerName, registerName );
+	char degreesFuncStr[GEN_STRING_LENGTH_FUNCTION_NAME];
+	Gen_SSE_GetFuncNameDegrees( language, type, degreesFuncStr );
+
+	String_Appendf( sbHeader, "inline static void %s( const %s rad, %s* out_degrees )\n", degreesFuncStr, registerName, registerName );
 	String_Append(  sbHeader, "{\n" );
 	String_Append(  sbHeader, "\tassert( out_degrees );\n" );
 	String_Append(  sbHeader, "\n" );
@@ -82,7 +84,7 @@ void Gen_SSE_Degrees( const genType_t type, stringBuilder_t* sbHeader ) {
 	String_Append(  sbHeader, "\n" );
 }
 
-void Gen_SSE_Lerp( const genType_t type, const u32 numComponents, stringBuilder_t* sbHeader ) {
+void Gen_SSE_Lerp( const genLanguage_t language, const genType_t type, const u32 numComponents, stringBuilder_t* sbHeader ) {
 	assert( numComponents >= 1 );	// 1 for non-vector types
 	assert( numComponents <= GEN_COMPONENT_COUNT_MAX );
 
@@ -90,47 +92,50 @@ void Gen_SSE_Lerp( const genType_t type, const u32 numComponents, stringBuilder_
 		return;
 	}
 
-	char fullTypeName[GEN_STRING_LENGTH_TYPE_NAME];
-	Gen_GetFullTypeName( type, 1, numComponents, fullTypeName );
+	char lerpFuncStr[GEN_STRING_LENGTH_FUNCTION_NAME];
+	Gen_SSE_GetFuncNameLerp( language, type, numComponents, lerpFuncStr );
 
-	char oneStr[GEN_STRING_LENGTH_NUMERIC_LITERAL];
-	Gen_GetNumericLiteral( type, 1.0f, oneStr, 1 );
+	if ( numComponents == 1 ) {
+		const char* registerName = Gen_SSE_GetRegisterName( type );
 
-	const char* registerName	= Gen_SSE_GetRegisterName( type );
-	const char* set1FuncStr		= Gen_SSE_GetIntrinsicSet1( type );
+		char addFuncStr[GEN_STRING_LENGTH_SSE_INTRINSIC];
+		Gen_SSE_GetIntrinsicArithmetic( type, GEN_OP_ARITHMETIC_ADD, addFuncStr );
 
-	char addFuncStr[GEN_STRING_LENGTH_SSE_INTRINSIC];
-	char subFuncStr[GEN_STRING_LENGTH_SSE_INTRINSIC];
-	char mulFuncStr[GEN_STRING_LENGTH_SSE_INTRINSIC];
+		char subFuncStr[GEN_STRING_LENGTH_SSE_INTRINSIC];
+		Gen_SSE_GetIntrinsicArithmetic( type, GEN_OP_ARITHMETIC_SUB, subFuncStr );
 
-	Gen_SSE_GetIntrinsicArithmetic( type, GEN_OP_ARITHMETIC_ADD, addFuncStr );
-	Gen_SSE_GetIntrinsicArithmetic( type, GEN_OP_ARITHMETIC_SUB, subFuncStr );
-	Gen_SSE_GetIntrinsicArithmetic( type, GEN_OP_ARITHMETIC_MUL, mulFuncStr );
+		char mulFuncStr[GEN_STRING_LENGTH_SSE_INTRINSIC];
+		Gen_SSE_GetIntrinsicArithmetic( type, GEN_OP_ARITHMETIC_MUL, mulFuncStr );
 
-	char sseTypeName[GEN_STRING_LENGTH_SSE_INPUT_NAME];
-	Gen_SSE_GetFullTypeName( fullTypeName, sseTypeName );
+		String_Appendf( sbHeader, "inline static void %s( const %s lhs, const %s rhs, const %s t, %s* out_results )\n", lerpFuncStr, registerName, registerName, registerName, registerName );
+		String_Append(  sbHeader, "{\n" );
+		String_Append(  sbHeader, "\tassert( out_results );\n" );
+		String_Append(  sbHeader, "\n" );
+		String_Appendf( sbHeader, "\t%s sub0 = %s( HLML_ONE_SSE, t );\n", registerName, subFuncStr );
+		String_Append(  sbHeader, "\n" );
+		String_Appendf( sbHeader, "\t%s mul0 = %s( sub0, lhs );\n", registerName, mulFuncStr );
+		String_Appendf( sbHeader, "\t%s mul1 = %s( t, rhs );\n", registerName, mulFuncStr );
+		String_Append(  sbHeader, "\n" );
+		String_Appendf( sbHeader, "\t*out_results = %s( mul0, mul1 );\n", addFuncStr );
+		String_Append(  sbHeader, "}\n" );
+		String_Append(  sbHeader, "\n" );
+	} else {
+		char sseTypeName[GEN_STRING_LENGTH_SSE_INPUT_NAME];
+		Gen_SSE_GetFullTypeName( type, 1, numComponents, sseTypeName );
 
-	String_Appendf( sbHeader, "struct %s\n", sseTypeName );
-	String_Append(  sbHeader, "{\n" );
-	String_Appendf( sbHeader, "\t%s lhs;\n", registerName );
-	String_Appendf( sbHeader, "\t%s rhs;\n", registerName );
-	String_Appendf( sbHeader, "\t%s t;\n", registerName );
-	String_Append(  sbHeader, "};\n" );
-	String_Append(  sbHeader, "\n" );
+		String_Appendf( sbHeader, "inline static void %s( const %s* lhs, const %s* rhs, const %s* t, %s* out_results )\n", lerpFuncStr, sseTypeName, sseTypeName, sseTypeName, sseTypeName );
+		String_Append(  sbHeader, "{\n" );
+		String_Appendf( sbHeader, "\tassert( lhs );\n" );
+		String_Appendf( sbHeader, "\tassert( rhs );\n" );
+		String_Appendf( sbHeader, "\tassert( t );\n" );
+		String_Appendf( sbHeader, "\tassert( out_results );\n" );
+		String_Append(  sbHeader, "\n" );
+		for ( u32 i = 0; i < numComponents; i++ ) {
+			char componentStr = GEN_COMPONENT_NAMES_VECTOR[i];
 
-	String_Appendf( sbHeader, "inline void lerp_sse( const %s* in, %s* out_results )\n", sseTypeName, registerName );
-	String_Append(  sbHeader, "{\n" );
-	String_Append(  sbHeader, "\tassert( in );\n" );
-	String_Append(  sbHeader, "\tassert( out_results );\n" );
-	String_Append(  sbHeader, "\n" );
-	String_Appendf( sbHeader, "\t%s one = %s( %s );\n", registerName, set1FuncStr, oneStr );
-	String_Append(  sbHeader, "\n" );
-	String_Appendf( sbHeader, "\t%s sub0 = %s( one, in->t );\n", registerName, subFuncStr );
-	String_Append(  sbHeader, "\n" );
-	String_Appendf( sbHeader, "\t%s mul0 = %s( sub0, in->lhs );\n", registerName, mulFuncStr );
-	String_Appendf( sbHeader, "\t%s mul1 = %s( in->t, in->rhs );\n", registerName, mulFuncStr );
-	String_Append(  sbHeader, "\n" );
-	String_Appendf( sbHeader, "\t*out_results = %s( mul0, mul1 );\n", addFuncStr );
-	String_Append(  sbHeader, "}\n" );
-	String_Append(  sbHeader, "\n" );
+			String_Appendf( sbHeader, "\tlerp_sse( lhs->%c, rhs->%c, t->%c, out_results->%c );\n", componentStr, componentStr, componentStr, componentStr );
+		}
+		String_Append(  sbHeader, "}\n" );
+		String_Append(  sbHeader, "\n" );
+	}
 }

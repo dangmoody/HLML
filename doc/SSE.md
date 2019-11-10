@@ -7,7 +7,7 @@ HLML is designed such that changing between the scalar/SIMD versions of function
 
 If you wanted to, for example, find the dot product of two vectors in HLML (in scalar), you'd call the `dot` function like so:
 ```C
-#include <hlml/gen/hlml_functions_vector.h>
+#include <hlml/hlml.h>
 
 float4 a = float4( 1.0f, 0.0f, 0.0f, 0.0f );
 float4 b = float4( 0.0f, 1.0f, 0.0f, 0.0f );
@@ -25,40 +25,21 @@ To call the SSE version of a HLML function, you'll need to do the following thin
 
 Therefore an example of doing the dot product via SSE in HLML looks like this (for X, Y, Z, and W components):
 ```C
-#include <hlml/gen/hlml_functions_vector_sse.h>
-
-// these 2 arrays are just for example data only
-// it's up to your app to re-arrange vectors into arrays of each component
-// and load them into each register in the input data
-float componentsLHS[4][4] =
-{
-	{ 0.000000f, 0.000000f, 0.000000f, 0.000000f }, // 4 x components
-	{ 1.000000f, 1.000000f, 1.000000f, 1.000000f }, // 4 y components
-	{ 0.000000f, 0.000000f, 0.000000f, 0.000000f }, // 4 z components
-	{ 0.000000f, 0.000000f, 0.000000f, 0.000000f }  // 4 w components
-};
-
-float componentsRHS[4][4] =
-{
-	{  0.000000f,  0.000000f,  0.000000f,  0.000000f }, // 4 x components
-	{ -1.000000f, -1.000000f, -1.000000f, -1.000000f }, // 4 y components
-	{  0.000000f,  0.000000f,  0.000000f,  0.000000f }, // 4 z components
-	{  0.000000f,  0.000000f,  0.000000f,  0.000000f }  // 4 w components
-};
+#include <hlml/hlml.h>
 
 // here you fill the registers
 // index 0 corresponds to X, index 1 corresponds to Y, etc.
 float4_sse_t a;
-a.comp[0] = _mm_load_ps( componentsLHS[0] );	// x
-a.comp[1] = _mm_load_ps( componentsLHS[1] );	// y
-a.comp[2] = _mm_load_ps( componentsLHS[2] );	// z
-a.comp[3] = _mm_load_ps( componentsLHS[3] );	// w
+a.comp[0] = _mm_load_ps( lhs_xs );	// x
+a.comp[1] = _mm_load_ps( lhs_ys );	// y
+a.comp[2] = _mm_load_ps( lhs_zs );	// z
+a.comp[3] = _mm_load_ps( lhs_ws );	// w
 
 float4_sse_t b;
-b.comp[0] = _mm_load_ps( componentsRHS[0] );	// x
-b.comp[1] = _mm_load_ps( componentsRHS[1] );	// y
-b.comp[2] = _mm_load_ps( componentsRHS[2] );	// z
-b.comp[3] = _mm_load_ps( componentsRHS[3] );	// w
+b.comp[0] = _mm_load_ps( rhs_xs );	// x
+b.comp[1] = _mm_load_ps( rhs_ys );	// y
+b.comp[2] = _mm_load_ps( rhs_zs );	// z
+b.comp[3] = _mm_load_ps( rhs_ws );	// w
 
 __m128 results;
 dot_sse( &a, &b, &results );

@@ -44,21 +44,23 @@ along with The HLML Generator.  If not, see <http://www.gnu.org/licenses/>.
 #define GEN_COMPONENT_COUNT_MAX				4
 
 // filenames
+// TODO(DM): sort these out so we have versions with and without "code"
 #define GEN_OUT_FOLDER_PATH					"code/out/"
-#define GEN_OUT_GEN_FOLDER_PATH				"code/out/gen/"
-#define GEN_TESTS_FOLDER_PATH				"code/tests/"
+#define GEN_TESTS_FOLDER_PATH_ROOT			"code/tests/"
 
+#define GEN_HEADER_MAIN						"hlml.h"
 #define GEN_HEADER_TYPES					"hlml_types.h"
 #define GEN_HEADER_CONSTANTS				"hlml_constants.h"
 #define GEN_HEADER_CONSTANTS_SSE			"hlml_constants_sse.h"
 #define GEN_HEADER_USER						"hlml_user.h"
+#define GEN_HEADER_DEFINES					"hlml_defines.h"
 
-#define GEN_HEADER_OPERATORS_VECTOR			"hlml_operators_vector.h"
-#define GEN_HEADER_OPERATORS_MATRIX			"hlml_operators_matrix.h"
+#define GEN_FILENAME_OPERATORS_VECTOR		"hlml_operators_vector"
+#define GEN_FILENAME_OPERATORS_MATRIX		"hlml_operators_matrix"
 
-#define GEN_HEADER_FUNCTIONS_SCALAR			"hlml_functions_scalar.h"
-#define GEN_HEADER_FUNCTIONS_VECTOR			"hlml_functions_vector.h"
-#define GEN_HEADER_FUNCTIONS_MATRIX			"hlml_functions_matrix.h"
+#define GEN_FILENAME_FUNCTIONS_SCALAR		"hlml_functions_scalar"
+#define GEN_FILENAME_FUNCTIONS_VECTOR		"hlml_functions_vector"
+#define GEN_FILENAME_FUNCTIONS_MATRIX		"hlml_functions_matrix"
 
 #define GEN_FILENAME_FUNCTIONS_SCALAR_SSE	"hlml_functions_scalar_sse"
 #define GEN_FILENAME_FUNCTIONS_VECTOR_SSE	"hlml_functions_vector_sse"
@@ -66,6 +68,7 @@ along with The HLML Generator.  If not, see <http://www.gnu.org/licenses/>.
 
 #define GEN_STRING_LENGTH_NUMERIC_LITERAL	16
 #define GEN_STRING_LENGTH_TYPE_NAME			16
+#define GEN_STRING_LENGTH_FUNCTION_NAME		32
 #define GEN_STRING_LENGTH_SSE_INPUT_NAME	34
 #define GEN_STRING_LENGTH_SSE_INTRINSIC		32
 
@@ -75,6 +78,48 @@ along with The HLML Generator.  If not, see <http://www.gnu.org/licenses/>.
 #define GEN_STRING_LENGTH_TEST_NAME			64
 
 struct stringBuilder_t;
+
+enum genLanguage_t {
+	GEN_LANGUAGE_C							= 0,
+	GEN_LANGUAGE_CPP,
+
+	GEN_LANGUAGE_COUNT
+};
+
+static const char* GEN_FOLDER_PATHS_OUT_GEN[GEN_LANGUAGE_COUNT] = {
+	GEN_OUT_FOLDER_PATH "c/",
+	GEN_OUT_FOLDER_PATH "cpp/"
+};
+
+static const char* GEN_FOLDER_PATHS_TESTS[GEN_LANGUAGE_COUNT] = {
+	GEN_TESTS_FOLDER_PATH_ROOT "c/",
+	GEN_TESTS_FOLDER_PATH_ROOT "cpp/"
+};
+
+static const char* GEN_SOURCE_FILE_EXTENSIONS[GEN_LANGUAGE_COUNT] = {
+	"c",
+	"cpp"
+};
+
+static const char GEN_TYPE_PARM_MODIFIERS[GEN_LANGUAGE_COUNT] = {
+	'*',
+	'&'
+};
+
+static const char* GEN_TYPE_PARM_REFERENCE_MODIFIERS[GEN_LANGUAGE_COUNT] = {
+	"&",
+	""
+};
+
+static const char* GEN_TYPE_PARM_DEREFERENCE_MODIFIERS[GEN_LANGUAGE_COUNT] = {
+	"*",
+	""
+};
+
+static const char* GEN_TYPE_ACCESS_OPERATORS[GEN_LANGUAGE_COUNT] = {
+	"->",
+	"."
+};
 
 enum genType_t {
 	GEN_TYPE_BOOL							= 0,
@@ -93,11 +138,21 @@ enum genHand_t {
 	GEN_HAND_COUNT
 };
 
+static const char* GEN_HAND_SPECIFIERS[GEN_HAND_COUNT] = {
+	"lh",
+	"rh"
+};
+
 enum genClipSpace_t {
 	GEN_CLIP_SPACE_ZERO_TO_ONE				= 0,
 	GEN_CLIP_SPACE_MINUS_ONE_TO_ONE,
 
 	GEN_CLIP_SPACE_COUNT
+};
+
+static const char* GEN_CLIP_SPACE_SPECIFIERS[GEN_HAND_COUNT] = {
+	"zo",
+	"no",
 };
 
 enum genOpArithmetic_t {
@@ -221,39 +276,64 @@ inline const char*	Gen_GetFuncNameFabs( const genType_t type ) { return ( type =
 
 // hlml functions
 inline const char*	Gen_GetFuncNameFloateq( const genType_t type ) { return ( type == GEN_TYPE_DOUBLE ) ? "doubleeq" : "floateq"; }
+inline const char*	Gen_GetFuncNameFloateqeps( const genType_t type ) { return ( type == GEN_TYPE_DOUBLE ) ? "doubleeq_eps" : "floateq_eps"; }
+inline const char*	Gen_GetFuncNameRadians( const genType_t type ) { return ( type == GEN_TYPE_DOUBLE ) ? "radians" : "radiansf"; }
+inline const char*	Gen_GetFuncNameDegrees( const genType_t type ) { return ( type == GEN_TYPE_DOUBLE ) ? "degrees" : "degreesf"; }
 
 // hlml constants
 inline const char*	Gen_GetConstantNamePi( const genType_t type ) { return ( type == GEN_TYPE_DOUBLE ) ? "HLML_PI" : "(float)( HLML_PI )"; }
 inline const char*	Gen_GetConstantNameEpsilon( const genType_t type ) { return ( type == GEN_TYPE_DOUBLE ) ? "HLML_EPSILON" : "(float)( HLML_EPSILON )"; }
 
 
+// generic helper functions
+
+// generates the primary include header (hlml.h)
+extern void			Gen_HeaderMain( const genLanguage_t language );
+
+// generate the files containing the arithmetic functions for each type
+extern void			Gen_FunctionsScalar( const char* folder );
+extern void			Gen_FunctionsVector( const genLanguage_t language );
+extern void			Gen_FunctionsMatrix( const genLanguage_t language );
+
+// generate the files containing the SSE functions for each type
+extern void			Gen_FunctionsScalarSSE( const genLanguage_t language );
+extern void			Gen_FunctionsVectorSSE( const genLanguage_t language );
+extern void			Gen_FunctionsMatrixSSE( const genLanguage_t language );
+
+// generates the tests for the specified language
+extern void			Gen_Tests( const genLanguage_t language );
+
+// generates the tests "main" file
+extern void			Gen_TestsMain( const genLanguage_t language );
+
+// generates the doxygen documentation pages
+extern bool32		Gen_DoxygenPages( const char* configPath );
+
 // parm list/array helpers
+// TODO(DM): allow specify prefix for each initialiser list
 extern void			Gen_GetValuesArray1D( const genType_t type, const u32 numValues, const float* values, stringBuilder_t* sb );
 extern void			Gen_GetValuesArray2D( const genType_t type, const u32 rows, const u32 cols, const float* values, stringBuilder_t* sb );
 
-// generic helper functions that are typical of maths libraries
-extern void			Gen_Floateq( const genType_t type, stringBuilder_t* sb );
-extern void			Gen_Sign( const genType_t type, stringBuilder_t* sb );
+// scalar functions
+extern void			Gen_Floateq( const genType_t type, stringBuilder_t* sbFwdDec, stringBuilder_t* sbImpl );
+extern void			Gen_Sign( const genType_t type, stringBuilder_t* sbFwdDec, stringBuilder_t* sbImpl );
 
-extern void			Gen_Radians( const genType_t type, stringBuilder_t* sb );
-extern void			Gen_Degrees( const genType_t type, stringBuilder_t* sb );
-extern void			Gen_MinMax( const genType_t type, stringBuilder_t* sb );
-extern void			Gen_Clamp( const genType_t type, stringBuilder_t* sb );
+extern void			Gen_Radians( const genType_t type, stringBuilder_t* sbFwdDec, stringBuilder_t* sbImpl );
+extern void			Gen_Degrees( const genType_t type, stringBuilder_t* sbFwdDec, stringBuilder_t* sbImpl );
+extern void			Gen_MinMax( const genType_t type, stringBuilder_t* sbFwdDec, stringBuilder_t* sbImpl );
+extern void			Gen_Clamp( const genType_t type, stringBuilder_t* sbFwdDec, stringBuilder_t* sbImpl );
 
-extern void			Gen_Saturate( const genType_t type, const u32 numComponents, stringBuilder_t* sbHeader );
-extern void			Gen_Lerp( const genType_t type, const u32 numComponents, stringBuilder_t* sbHeader );
-extern void			Gen_Step( const genType_t type, const u32 numComponents, stringBuilder_t* sbHeader );
-extern void			Gen_Smoothstep( const genType_t type, const u32 numComponents, stringBuilder_t* sbHeader );
+// scalar/vector functions
+extern void			Gen_Saturate( const genLanguage_t language, const genType_t type, const u32 numComponents, stringBuilder_t* sbFwdDec, stringBuilder_t* sbImpl );
+extern void			Gen_Lerp( const genLanguage_t language, const genType_t type, const u32 numComponents, stringBuilder_t* sbFwdDec, stringBuilder_t* sbImpl );
+extern void			Gen_Step( const genLanguage_t language, const genType_t type, const u32 numComponents, stringBuilder_t* sbFwdDec, stringBuilder_t* sbImpl );
+extern void			Gen_Smoothstep( const genLanguage_t language, const genType_t type, const u32 numComponents, stringBuilder_t* sbFwdDec, stringBuilder_t* sbImpl );
 
-// functions that are guaranteed to be the same across vectors and matrices
-extern void			Gen_OperatorsIncrement( const genType_t type, const u32 numRows, const u32 numCols, stringBuilder_t* sbHeader );
-extern void			Gen_OperatorsRelational( const genType_t type, const u32 numRows, const u32 numCols, stringBuilder_t* sbHeader );
-extern void			Gen_OperatorsBitwise( const genType_t type, const u32 numRows, const u32 numCols, stringBuilder_t* sbHeader );
+// C++ operator overloads for vectors and matrices
+extern void			Gen_OperatorsEquality( const genType_t type, const u32 numRows, const u32 numCols, stringBuilder_t* sbFwdDec, stringBuilder_t* sbImpl );
+extern void			Gen_OperatorsIncrement( const genType_t type, const u32 numRows, const u32 numCols, stringBuilder_t* sbFwdDec, stringBuilder_t* sbImpl );
 
-extern void			Gen_OperatorComponentWiseArithmeticScalar( const genType_t type, const u32 numRows, const u32 numCols, const genOpArithmetic_t op, stringBuilder_t* sbHeader );
-extern void			Gen_OperatorComponentWiseArithmeticRhsType( const genType_t type, const u32 numRows, const u32 numCols, const genOpArithmetic_t op, stringBuilder_t* sbHeader );
-
-extern void			Gen_OperatorNotEquals( const genType_t type, const u32 numRows, const u32 numCols, stringBuilder_t* sbHeader, stringBuilder_t* sbInl );
+extern void			Gen_NotEquals( const genLanguage_t language, const genType_t type, const u32 numRows, const u32 numCols, stringBuilder_t* sbFwdDec, stringBuilder_t* sbImpl );
 
 
 // type-to-string functions
@@ -315,16 +395,23 @@ inline void Gen_GetFullTypeName( const genType_t type, const u32 numRows, const 
 	}
 }
 
-inline void Gen_GetParmTypeName( const genType_t type, const u32 numComponents, char* outString ) {
-	if ( numComponents == 1 ) {
-		const char* memberTypeString = Gen_GetMemberTypeString( type );
+inline void Gen_GetParmTypeName( const genLanguage_t language, const genType_t type, const u32 numRows, const u32 numCols, char* outString ) {
+	assert( numRows >= 1 );
+	assert( numRows <= GEN_COMPONENT_COUNT_MAX );
+	assert( numCols >= 1 );
+	assert( numCols <= GEN_COMPONENT_COUNT_MAX );
+	assert( outString );
 
+	if ( numCols == 1 ) {
+		// scalar
+		const char* memberTypeString = Gen_GetMemberTypeString( type );
 		strncpy( outString, memberTypeString, GEN_STRING_LENGTH_TYPE_NAME );
 	} else {
-		const char* typeString = Gen_GetTypeString( type );
+		// vector of some kind
+		char fullTypeName[GEN_STRING_LENGTH_TYPE_NAME];
+		Gen_GetFullTypeName( type, numRows, numCols, fullTypeName );
 
-		int length = snprintf( outString, GEN_STRING_LENGTH_TYPE_NAME, "%s%d&", typeString, numComponents );
-
+		int length = snprintf( outString, GEN_STRING_LENGTH_TYPE_NAME, "%s%c", fullTypeName, GEN_TYPE_PARM_MODIFIERS[language] );
 		assert( length < GEN_STRING_LENGTH_TYPE_NAME && "Type name string length constant needs to be increased." );
 	}
 }
@@ -407,5 +494,421 @@ inline const char* Gen_GetClipSpaceRangeString( const genClipSpace_t range ) {
 		default:
 			printf( "ERROR: Bad genClipSpace_t enum passed into %s.\n", __FUNCTION__ );
 			return "ERROR";
+	}
+}
+
+// hlml functions
+inline const char* Gen_GetFuncNameSign( const genType_t type ) {
+	switch ( type ) {
+		case GEN_TYPE_INT:		return "signi";
+		case GEN_TYPE_FLOAT:	return "signf";
+		case GEN_TYPE_DOUBLE:	return "signd";
+
+		case GEN_TYPE_BOOL:
+		case GEN_TYPE_UINT:
+		case GEN_TYPE_COUNT:
+		default:
+			printf( "ERROR: Bad genType_t passed into %s.\n", __FUNCTION__ );
+			return "ERROR";
+	}
+}
+
+inline const char* Gen_GetFuncNameMin( const genType_t type ) {
+	switch ( type ) {
+		case GEN_TYPE_INT:		return "mini";
+		case GEN_TYPE_UINT:		return "minu";
+		case GEN_TYPE_FLOAT:	return "minf";
+		case GEN_TYPE_DOUBLE:	return "mind";
+
+		case GEN_TYPE_BOOL:
+		case GEN_TYPE_COUNT:
+		default:
+			printf( "ERROR: Bad genType_t passed into %s.\n", __FUNCTION__ );
+			return "ERROR";
+	}
+}
+
+inline const char* Gen_GetFuncNameMax( const genType_t type ) {
+	switch ( type ) {
+		case GEN_TYPE_INT:		return "maxi";
+		case GEN_TYPE_UINT:		return "maxu";
+		case GEN_TYPE_FLOAT:	return "maxf";
+		case GEN_TYPE_DOUBLE:	return "maxd";
+
+		case GEN_TYPE_BOOL:
+		case GEN_TYPE_COUNT:
+		default:
+			printf( "ERROR: Bad genType_t passed into %s.\n", __FUNCTION__ );
+			return "ERROR";
+	}
+}
+
+inline const char* Gen_GetFuncNameClamp( const genType_t type ) {
+	switch ( type ) {
+		case GEN_TYPE_INT:		return "clampi";
+		case GEN_TYPE_UINT:		return "clampu";
+		case GEN_TYPE_FLOAT:	return "clampf";
+		case GEN_TYPE_DOUBLE:	return "clampd";
+
+		case GEN_TYPE_BOOL:
+		case GEN_TYPE_COUNT:
+		default:
+			printf( "ERROR: Bad genType_t passed into %s.\n", __FUNCTION__ );
+			return "ERROR";
+	}
+}
+
+// to get a function name don't call this directly
+// use one of the wrapper functions below
+// the only other function that is allowed to call this is Gen_SSE_GetFuncNameInternal
+inline void Gen_GetFuncNameInternal( const genLanguage_t language, const genType_t type, const u32 numRows, const u32 numCols, const char* funcName, char* outString ) {
+	// 1 rows and 1 cols for scalar
+	// 1 rows and M cols for vector
+	// N rows and M cols for matrix
+	assert( numRows >= 1 );
+	assert( numRows <= GEN_COMPONENT_COUNT_MAX );
+	assert( numCols >= 1 );
+	assert( numCols <= GEN_COMPONENT_COUNT_MAX );
+	assert( outString );
+
+	if ( numCols > 1 ) {
+		// assert( numRows != 1 );
+		if ( language == GEN_LANGUAGE_C ) {
+			char fullTypeName[GEN_STRING_LENGTH_TYPE_NAME];
+			Gen_GetFullTypeName( type, numRows, numCols, fullTypeName );
+
+			snprintf( outString, GEN_STRING_LENGTH_FUNCTION_NAME, "%s_%s", fullTypeName, funcName );
+		} else {
+			strncpy( outString, funcName, GEN_STRING_LENGTH_FUNCTION_NAME );
+		}
+	} else {
+		assert( numCols == 1 );
+		assert( numRows == 1 );
+
+		const char* modifier = ( type == GEN_TYPE_FLOAT ) ? "f" : "";
+		snprintf( outString, GEN_STRING_LENGTH_FUNCTION_NAME, "%s%s", funcName, modifier );
+	}
+}
+
+inline void Gen_GetFuncNameEquals( const genLanguage_t language, const genType_t type, const u32 numRows, const u32 numCols, char* outString ) {
+	assert( numRows >= 1 );	// 1 for vectors
+	assert( numRows <= GEN_COMPONENT_COUNT_MAX );
+	assert( numCols >= GEN_COMPONENT_COUNT_MIN );
+	assert( numCols <= GEN_COMPONENT_COUNT_MAX );
+
+	Gen_GetFuncNameInternal( language, type, numRows, numCols, "cmpe", outString );
+}
+
+inline void Gen_GetFuncNameNotEquals( const genLanguage_t language, const genType_t type, const u32 numRows, const u32 numCols, char* outString ) {
+	assert( numRows >= 1 );	// 1 for vectors
+	assert( numRows <= GEN_COMPONENT_COUNT_MAX );
+	assert( numCols >= GEN_COMPONENT_COUNT_MIN );
+	assert( numCols <= GEN_COMPONENT_COUNT_MAX );
+
+	Gen_GetFuncNameInternal( language, type, numRows, numCols, "cmpne", outString );
+}
+
+inline void Gen_GetFuncNameComponentWiseArithmeticScalar( const genLanguage_t language, const genType_t type, const u32 numRows, const u32 numCols, const genOpArithmetic_t op, char* outString ) {
+	assert( numRows >= 1 );	// 1 for vectors
+	assert( numRows <= GEN_COMPONENT_COUNT_MAX );
+	assert( numCols >= GEN_COMPONENT_COUNT_MIN );
+	assert( numCols <= GEN_COMPONENT_COUNT_MAX );
+
+	char prefix[GEN_STRING_LENGTH_FUNCTION_NAME];
+	snprintf( prefix, GEN_STRING_LENGTH_FUNCTION_NAME, "comp_%ss", GEN_OPERATOR_STRINGS_ARITHMETIC[op] );
+
+	Gen_GetFuncNameInternal( language, type, numRows, numCols, prefix, outString );
+}
+
+inline void Gen_GetFuncNameComponentWiseArithmeticVector( const genLanguage_t language, const genType_t type, const u32 numRows, const u32 numCols, const genOpArithmetic_t op, char* outString ) {
+	assert( numRows >= 1 );	// 1 for vectors
+	assert( numRows <= GEN_COMPONENT_COUNT_MAX );
+	assert( numCols >= GEN_COMPONENT_COUNT_MIN );
+	assert( numCols <= GEN_COMPONENT_COUNT_MAX );
+
+	char prefix[GEN_STRING_LENGTH_FUNCTION_NAME];
+	snprintf( prefix, GEN_STRING_LENGTH_FUNCTION_NAME, "comp_%sv", GEN_OPERATOR_STRINGS_ARITHMETIC[op] );
+
+	Gen_GetFuncNameInternal( language, type, numRows, numCols, prefix, outString );
+}
+
+inline void Gen_GetFuncNameComponentWiseArithmeticMatrix( const genLanguage_t language, const genType_t type, const u32 numRows, const u32 numCols, const genOpArithmetic_t op, char* outString ) {
+	assert( numRows >= GEN_COMPONENT_COUNT_MIN );
+	assert( numRows <= GEN_COMPONENT_COUNT_MAX );
+	assert( numCols >= GEN_COMPONENT_COUNT_MIN );
+	assert( numCols <= GEN_COMPONENT_COUNT_MAX );
+
+	char prefix[GEN_STRING_LENGTH_FUNCTION_NAME];
+	snprintf( prefix, GEN_STRING_LENGTH_FUNCTION_NAME, "comp_%sm", GEN_OPERATOR_STRINGS_ARITHMETIC[op] );
+
+	Gen_GetFuncNameInternal( language, type, numRows, numCols, prefix, outString );
+}
+
+inline void Gen_GetFuncNameBitwise( const genLanguage_t language, const genType_t type, const u32 numRows, const u32 numCols, const genOpBitwise_t op, char* outString ) {
+	assert( numRows >= 1 );	// 1 for vectors
+	assert( numRows <= GEN_COMPONENT_COUNT_MAX );
+	assert( numCols >= GEN_COMPONENT_COUNT_MIN );
+	assert( numCols <= GEN_COMPONENT_COUNT_MAX );
+
+	const char* opStr = NULL;
+	switch ( op ) {
+		case GEN_OP_BITWISE_AND:			opStr = "and";			break;
+		case GEN_OP_BITWISE_OR:				opStr = "or";			break;
+		case GEN_OP_BITWISE_XOR:			opStr = "xor";			break;
+		case GEN_OP_BITWISE_UNARY:			opStr = "unary";		break;
+		case GEN_OP_BITWISE_SHIFT_LEFT:		opStr = "shift_left";	break;
+		case GEN_OP_BITWISE_SHIFT_RIGHT:	opStr = "shift_right";	break;
+
+		case GEN_OP_BITWISE_COUNT:
+		default:
+			assert( false && "Bad genOpBitwise_t passed." );
+			break;
+	}
+
+	char prefix[GEN_STRING_LENGTH_FUNCTION_NAME];
+	snprintf( prefix, GEN_STRING_LENGTH_FUNCTION_NAME, "comp_%s", opStr );
+
+	Gen_GetFuncNameInternal( language, type, numRows, numCols, prefix, outString );
+}
+
+inline void Gen_GetFuncNameRelational( const genLanguage_t language, const genType_t type, const u32 numRows, const u32 numCols, const genOpRelational_t op, char* outString ) {
+	assert( numRows >= 1 );	// 1 for vectors
+	assert( numRows <= GEN_COMPONENT_COUNT_MAX );
+	assert( numCols >= GEN_COMPONENT_COUNT_MIN );
+	assert( numCols <= GEN_COMPONENT_COUNT_MAX );
+
+	const char* opStr = NULL;
+	switch ( op ) {
+		case GEN_OP_RELATIONAL_LESS:			opStr = "l";	break;
+		case GEN_OP_RELATIONAL_LESS_EQUAL:		opStr = "le";	break;
+		case GEN_OP_RELATIONAL_GREATER_EQUAL:	opStr = "ge";	break;
+		case GEN_OP_RELATIONAL_GREATER:			opStr = "g";	break;
+
+		case GEN_OP_RELATIONAL_COUNT:
+		default:
+			assert( false && "Bad genOpRelational_t passed." );
+			break;
+	}
+
+	char funcName[GEN_STRING_LENGTH_FUNCTION_NAME];
+	snprintf( funcName, GEN_STRING_LENGTH_FUNCTION_NAME, "cmp%s", opStr );
+
+	Gen_GetFuncNameInternal( language, type, numRows, numCols, funcName, outString );
+}
+
+inline void Gen_GetFuncNameSaturate( const genLanguage_t language, const genType_t type, const u32 numComponents, char* outString ) {
+	Gen_GetFuncNameInternal( language, type, 1, numComponents, "saturate", outString );
+}
+
+inline void Gen_GetFuncNameLerp( const genLanguage_t language, const genType_t type, const u32 numComponents, char* outString ) {
+	Gen_GetFuncNameInternal( language, type, 1, numComponents, "lerp", outString );
+}
+
+inline void Gen_GetFuncNameStep( const genLanguage_t language, const genType_t type, const u32 numComponents, char* outString ) {
+	Gen_GetFuncNameInternal( language, type, 1, numComponents, "step", outString );
+}
+
+inline void Gen_GetFuncNameSmoothstep( const genLanguage_t language, const genType_t type, const u32 numComponents, char* outString ) {
+	Gen_GetFuncNameInternal( language, type, 1, numComponents, "smoothstep", outString );
+}
+
+inline void Gen_GetFuncNameSmootherstep( const genLanguage_t language, const genType_t type, const u32 numComponents, char* outString ) {
+	Gen_GetFuncNameInternal( language, type, 1, numComponents, "smootherstep", outString );
+}
+
+inline void Gen_GetFuncNameLengthsqr( const genLanguage_t language, const genType_t type, const u32 numComponents, char* outString ) {
+	assert( numComponents >= GEN_COMPONENT_COUNT_MIN );
+	assert( numComponents <= GEN_COMPONENT_COUNT_MAX );
+
+	Gen_GetFuncNameInternal( language, type, 1, numComponents, "lengthsqr", outString );
+}
+
+inline void Gen_GetFuncNameLength( const genLanguage_t language, const genType_t type, const u32 numComponents, char* outString ) {
+	assert( numComponents >= GEN_COMPONENT_COUNT_MIN );
+	assert( numComponents <= GEN_COMPONENT_COUNT_MAX );
+
+	Gen_GetFuncNameInternal( language, type, 1, numComponents, "length", outString );
+}
+
+inline void Gen_GetFuncNameDot( const genLanguage_t language, const genType_t type, const u32 numComponents, char* outString ) {
+	assert( numComponents >= GEN_COMPONENT_COUNT_MIN );
+	assert( numComponents <= GEN_COMPONENT_COUNT_MAX );
+
+	Gen_GetFuncNameInternal( language, type, 1, numComponents, "dot", outString );
+}
+
+inline void Gen_GetFuncNameCross( const genLanguage_t language, const genType_t type, const u32 numComponents, char* outString ) {
+	assert( numComponents >= GEN_COMPONENT_COUNT_MIN );
+	assert( numComponents <= GEN_COMPONENT_COUNT_MAX );
+
+	Gen_GetFuncNameInternal( language, type, 1, numComponents, "cross", outString );
+}
+
+inline void Gen_GetFuncNameDistancesqr( const genLanguage_t language, const genType_t type, const u32 numComponents, char* outString ) {
+	assert( numComponents >= GEN_COMPONENT_COUNT_MIN );
+	assert( numComponents <= GEN_COMPONENT_COUNT_MAX );
+
+	Gen_GetFuncNameInternal( language, type, 1, numComponents, "distancesqr", outString );
+}
+
+inline void Gen_GetFuncNameAngle( const genLanguage_t language, const genType_t type, const u32 numComponents, char* outString ) {
+	assert( numComponents >= GEN_COMPONENT_COUNT_MIN );
+	assert( numComponents <= GEN_COMPONENT_COUNT_MAX );
+
+	Gen_GetFuncNameInternal( language, type, 1, numComponents, "angle", outString );
+}
+
+inline void Gen_GetFuncNameDistance( const genLanguage_t language, const genType_t type, const u32 numComponents, char* outString ) {
+	assert( numComponents >= GEN_COMPONENT_COUNT_MIN );
+	assert( numComponents <= GEN_COMPONENT_COUNT_MAX );
+
+	Gen_GetFuncNameInternal( language, type, 1, numComponents, "distance", outString );
+}
+
+inline void Gen_GetFuncNameNormalize( const genLanguage_t language, const genType_t type, const u32 numComponents, char* outString ) {
+	assert( numComponents >= GEN_COMPONENT_COUNT_MIN );
+	assert( numComponents <= GEN_COMPONENT_COUNT_MAX );
+
+	Gen_GetFuncNameInternal( language, type, 1, numComponents, "normalize", outString );
+}
+
+inline void Gen_GetFuncNameNormalized( const genLanguage_t language, const genType_t type, const u32 numComponents, char* outString ) {
+	assert( numComponents >= GEN_COMPONENT_COUNT_MIN );
+	assert( numComponents <= GEN_COMPONENT_COUNT_MAX );
+
+	Gen_GetFuncNameInternal( language, type, 1, numComponents, "normalized", outString );
+}
+
+// matrices
+inline void Gen_GetFuncNameIdentity( const genLanguage_t language, const genType_t type, const u32 numRows, const u32 numCols, char* outString ) {
+	assert( numRows >= GEN_COMPONENT_COUNT_MIN );
+	assert( numRows <= GEN_COMPONENT_COUNT_MAX );
+	assert( numCols >= GEN_COMPONENT_COUNT_MIN );
+	assert( numCols <= GEN_COMPONENT_COUNT_MAX );
+
+	Gen_GetFuncNameInternal( language, type, numRows, numCols, "identity", outString );
+}
+
+inline void Gen_GetFuncNameTranspose( const genLanguage_t language, const genType_t type, const u32 numRows, const u32 numCols, char* outString ) {
+	assert( numRows >= GEN_COMPONENT_COUNT_MIN );
+	assert( numRows <= GEN_COMPONENT_COUNT_MAX );
+	assert( numCols >= GEN_COMPONENT_COUNT_MIN );
+	assert( numCols <= GEN_COMPONENT_COUNT_MAX );
+
+	Gen_GetFuncNameInternal( language, type, numRows, numCols, "transpose", outString );
+}
+
+inline void Gen_GetFuncNameDeterminant( const genLanguage_t language, const genType_t type, const u32 numRows, const u32 numCols, char* outString ) {
+	assert( numRows >= GEN_COMPONENT_COUNT_MIN );
+	assert( numRows <= GEN_COMPONENT_COUNT_MAX );
+	assert( numCols >= GEN_COMPONENT_COUNT_MIN );
+	assert( numCols <= GEN_COMPONENT_COUNT_MAX );
+
+	Gen_GetFuncNameInternal( language, type, numRows, numCols, "determinant", outString );
+}
+
+inline void Gen_GetFuncNameInverse( const genLanguage_t language, const genType_t type, const u32 numRows, const u32 numCols, char* outString ) {
+	assert( numRows >= GEN_COMPONENT_COUNT_MIN );
+	assert( numRows <= GEN_COMPONENT_COUNT_MAX );
+	assert( numCols >= GEN_COMPONENT_COUNT_MIN );
+	assert( numCols <= GEN_COMPONENT_COUNT_MAX );
+
+	Gen_GetFuncNameInternal( language, type, numRows, numCols, "inverse", outString );
+}
+
+inline void Gen_GetFuncNameTranslate( const genLanguage_t language, const genType_t type, const u32 numRows, const u32 numCols, char* outString ) {
+	assert( numRows >= GEN_COMPONENT_COUNT_MIN );
+	assert( numRows <= GEN_COMPONENT_COUNT_MAX );
+	assert( numCols >= GEN_COMPONENT_COUNT_MIN );
+	assert( numCols <= GEN_COMPONENT_COUNT_MAX );
+
+	Gen_GetFuncNameInternal( language, type, numRows, numCols, "translate", outString );
+}
+
+inline void Gen_GetFuncNameRotate( const genLanguage_t language, const genType_t type, const u32 numRows, const u32 numCols, char* outString ) {
+	assert( numRows >= GEN_COMPONENT_COUNT_MIN );
+	assert( numRows <= GEN_COMPONENT_COUNT_MAX );
+	assert( numCols >= GEN_COMPONENT_COUNT_MIN );
+	assert( numCols <= GEN_COMPONENT_COUNT_MAX );
+
+	Gen_GetFuncNameInternal( language, type, numRows, numCols, "rotate", outString );
+}
+
+inline void Gen_GetFuncNameScale( const genLanguage_t language, const genType_t type, const u32 numRows, const u32 numCols, char* outString ) {
+	assert( numRows >= GEN_COMPONENT_COUNT_MIN );
+	assert( numRows <= GEN_COMPONENT_COUNT_MAX );
+	assert( numCols >= GEN_COMPONENT_COUNT_MIN );
+	assert( numCols <= GEN_COMPONENT_COUNT_MAX );
+
+	Gen_GetFuncNameInternal( language, type, numRows, numCols, "scale", outString );
+}
+
+inline void Gen_GetFuncNameOrtho( const genLanguage_t language, const genType_t type, const u32 numRows, const u32 numCols, const genHand_t hand, const genClipSpace_t clipSpace, char* outString ) {
+	assert( numRows >= GEN_COMPONENT_COUNT_MIN );
+	assert( numRows <= GEN_COMPONENT_COUNT_MAX );
+	assert( numCols >= GEN_COMPONENT_COUNT_MIN );
+	assert( numCols <= GEN_COMPONENT_COUNT_MAX );
+
+	const char* handStr = GEN_HAND_SPECIFIERS[hand];
+	const char* clipSpaceStr = GEN_CLIP_SPACE_SPECIFIERS[clipSpace];
+
+	char funcName[GEN_STRING_LENGTH_FUNCTION_NAME];
+	snprintf( funcName, GEN_STRING_LENGTH_FUNCTION_NAME, "ortho_%s_%s", handStr, clipSpaceStr );
+
+	Gen_GetFuncNameInternal( language, type, numRows, numCols, funcName, outString );
+}
+
+inline void Gen_GetFuncNamePerspective( const genLanguage_t language, const genType_t type, const u32 numRows, const u32 numCols, const genHand_t hand, const genClipSpace_t clipSpace, char* outString ) {
+	assert( numRows >= GEN_COMPONENT_COUNT_MIN );
+	assert( numRows <= GEN_COMPONENT_COUNT_MAX );
+	assert( numCols >= GEN_COMPONENT_COUNT_MIN );
+	assert( numCols <= GEN_COMPONENT_COUNT_MAX );
+
+	const char* handStr = GEN_HAND_SPECIFIERS[hand];
+	const char* clipSpaceStr = GEN_CLIP_SPACE_SPECIFIERS[clipSpace];
+
+	char funcName[GEN_STRING_LENGTH_FUNCTION_NAME];
+	snprintf( funcName, GEN_STRING_LENGTH_FUNCTION_NAME, "perspective_%s_%s", handStr, clipSpaceStr );
+
+	Gen_GetFuncNameInternal( language, type, numRows, numCols, funcName, outString );
+}
+
+inline void Gen_GetFuncNameLookAt( const genLanguage_t language, const genType_t type, const u32 numRows, const u32 numCols, const genHand_t hand, char* outString ) {
+	assert( numRows >= GEN_COMPONENT_COUNT_MIN );
+	assert( numRows <= GEN_COMPONENT_COUNT_MAX );
+	assert( numCols >= GEN_COMPONENT_COUNT_MIN );
+	assert( numCols <= GEN_COMPONENT_COUNT_MAX );
+
+	char funcName[GEN_STRING_LENGTH_FUNCTION_NAME];
+	snprintf( funcName, GEN_STRING_LENGTH_FUNCTION_NAME, "lookat_%s", GEN_HAND_SPECIFIERS[hand] );
+
+	Gen_GetFuncNameInternal( language, type, numRows, numCols, funcName, outString );
+}
+
+inline void Gen_GetFuncNameMatrixMultiply( const genLanguage_t language, const genType_t type, const u32 numRows, const u32 numCols, char* outString ) {
+	assert( numRows >= GEN_COMPONENT_COUNT_MIN );
+	assert( numRows <= GEN_COMPONENT_COUNT_MAX );
+	assert( numCols >= GEN_COMPONENT_COUNT_MIN );
+	assert( numCols <= GEN_COMPONENT_COUNT_MAX );
+	assert( outString );
+
+	if ( language == GEN_LANGUAGE_C ) {
+		Gen_GetFuncNameInternal( language, type, numRows, numCols, "mulm", outString );
+	} else {
+		Gen_GetFuncNameInternal( language, type, numRows, numCols, "mul", outString );
+	}
+}
+
+inline void Gen_GetFuncNameMatrixMultiplyVector( const genLanguage_t language, const genType_t type, const u32 numRows, const u32 numCols, char* outString ) {
+	assert( numRows >= GEN_COMPONENT_COUNT_MIN );
+	assert( numRows <= GEN_COMPONENT_COUNT_MAX );
+	assert( numCols >= GEN_COMPONENT_COUNT_MIN );
+	assert( numCols <= GEN_COMPONENT_COUNT_MAX );
+	assert( outString );
+
+	if ( language == GEN_LANGUAGE_C ) {
+		Gen_GetFuncNameInternal( language, type, numRows, numCols, "mulv", outString );
+	} else {
+		Gen_GetFuncNameInternal( language, type, numRows, numCols, "mul", outString );
 	}
 }

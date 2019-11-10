@@ -243,7 +243,7 @@ inline void Doc_OperatorIncrementPostfix( stringBuilder_t* sb, const char* fullT
 	);
 }
 
-inline void Doc_OperatorRelational( stringBuilder_t* sb, const char* fullTypeName, const u32 numRows, const u32 numCols, const genOpRelational_t op ) {
+inline void Doc_ComponentWiseRelational( stringBuilder_t* sb, const char* fullTypeName, const u32 numRows, const u32 numCols, const genOpRelational_t op ) {
 	assert( numRows >= 1 );	// pass through 1 for vectors
 	assert( numRows <= GEN_COMPONENT_COUNT_MAX );
 	assert( numCols >= GEN_COMPONENT_COUNT_MIN );
@@ -269,51 +269,6 @@ inline void Doc_OperatorRelational( stringBuilder_t* sb, const char* fullTypeNam
 		"/// \\relates %s\n"
 		"/// \\brief Returns a %s "
 		"where each component is true if the component of the left-hand type is %s the corresponding right-hand type component.\n", fullTypeName, boolTypeName, noun
-	);
-}
-
-inline void Doc_OperatorBitwiseScalar( stringBuilder_t* sb, const char* fullTypeName, const genOpBitwise_t op ) {
-	const char* adjective;
-	const char* preposition;
-	switch ( op ) {
-		case GEN_OP_BITWISE_AND:
-			adjective = "bitwise AND'd";
-			preposition = "against";
-			break;
-
-		case GEN_OP_BITWISE_OR:
-			adjective = "bitwise OR'd";
-			preposition = "against";
-			break;
-
-		case GEN_OP_BITWISE_XOR:
-			adjective = "bitwise XOR'd";
-			preposition = "against";
-			break;
-
-		case GEN_OP_BITWISE_UNARY:
-			printf( "ERROR: For bitwise unary documentation, call Doc_OperatorBitwiseUnary().\n" );
-			return;
-
-		case GEN_OP_BITWISE_SHIFT_LEFT:
-			adjective = "bitwise left-shifted";
-			preposition = "by";
-			break;
-
-		case GEN_OP_BITWISE_SHIFT_RIGHT:
-			adjective = "bitwise right-shifted";
-			preposition = "by";
-			break;
-
-		case GEN_OP_BITWISE_COUNT:
-		default:
-			printf( "ERROR: Bad genOpArithmetic_t enum passed into %s.\n", __FUNCTION__ );
-			return;
-	}
-
-	String_Appendf( sb,
-		"/// \\relates %s\n"
-		"/// \\brief Returns a copy of the %s where each component has been %s %s the given scalar value.\n", fullTypeName, fullTypeName, adjective, preposition
 	);
 }
 

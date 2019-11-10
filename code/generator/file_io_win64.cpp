@@ -56,6 +56,17 @@ static void CloseFileInternal( const HANDLE file ) {
 	WIN64_ASSERT( result );
 }
 
+static void CreateFolderInternal( const char* path ) {
+	if ( FS_FolderExists( path ) ) {
+		return;
+	}
+
+	SECURITY_ATTRIBUTES secattr = {};
+	bool result = CreateDirectoryA( path, &secattr );
+
+	WIN64_ASSERT( result );
+}
+
 
 void FS_WriteEntireFile( const char* filename, const char* data, const size_t length ) {
 	assert( filename );
@@ -73,16 +84,25 @@ void FS_WriteEntireFile( const char* filename, const char* data, const size_t le
 	CloseFileInternal( file );
 }
 
-void FS_CreateFolder( const char* name ) {
-	assert( name );
+void FS_CreateFolder( const char* path ) {
+	size_t pathlen = strlen( path );
 
-	if ( FS_FolderExists( name ) ) {
-		return;
+	// dont process trailing slash if one exists
+	// otherwise we will get duplicate results for sub-dirs to parse
+	if ( path[pathlen - 1] == '/' ) {
+		pathlen--;
 	}
 
-	SECURITY_ATTRIBUTES secattr = {};
-	bool32 result = CreateDirectory( name, &secattr );
-	WIN64_ASSERT( result );
+	for ( size_t i = 0; i <= pathlen; i++ ) {
+		if ( path[i] != '/' && path[i] != '\0' ) {
+			continue;
+		}
+
+		char name[1024] = { 0 };
+		strncpy( name, path, i );
+
+		CreateFolderInternal( name );
+	}
 }
 
 void FS_DeleteFolder( const char* name ) {
