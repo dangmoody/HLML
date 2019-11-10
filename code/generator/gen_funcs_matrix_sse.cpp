@@ -747,7 +747,7 @@ void Gen_SSE_MatrixTranslate( const genLanguage_t language, const genType_t type
 		return;
 	}
 
-	char sseTypeName[GEN_STRING_LENGTH_TYPE_NAME];
+	char sseTypeName[GEN_STRING_LENGTH_SSE_INPUT_NAME];
 	Gen_SSE_GetFullTypeName( type, numRows, numCols, sseTypeName );
 
 	const u32 translateVecComponents = numCols - 1;
