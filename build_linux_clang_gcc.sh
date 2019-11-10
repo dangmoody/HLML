@@ -51,7 +51,7 @@ if [[ ${language} == C++ ]]; then
 		options_clangpp=""
 	fi
 else
-	options_clangpp="-std=c99"
+	options_clangpp=-std=c99
 fi
 
 options_compiler="${options_clangpp}"
