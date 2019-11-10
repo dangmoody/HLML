@@ -55,17 +55,16 @@ along with The HLML Generator.  If not, see <http://www.gnu.org/licenses/>.
 #define GEN_HEADER_USER						"hlml_user.h"
 #define GEN_HEADER_DEFINES					"hlml_defines.h"
 
-#define GEN_HEADER_OPERATORS_VECTOR			"hlml_operators_vector.h"
-#define GEN_HEADER_OPERATORS_MATRIX			"hlml_operators_matrix.h"
+#define GEN_FILENAME_OPERATORS_VECTOR		"hlml_operators_vector"
+#define GEN_FILENAME_OPERATORS_MATRIX		"hlml_operators_matrix"
 
-#define GEN_HEADER_FUNCTIONS_SCALAR			"hlml_functions_scalar.h"
-#define GEN_HEADER_FUNCTIONS_VECTOR			"hlml_functions_vector.h"
-#define GEN_HEADER_FUNCTIONS_MATRIX			"hlml_functions_matrix.h"
+#define GEN_FILENAME_FUNCTIONS_SCALAR		"hlml_functions_scalar"
+#define GEN_FILENAME_FUNCTIONS_VECTOR		"hlml_functions_vector"
+#define GEN_FILENAME_FUNCTIONS_MATRIX		"hlml_functions_matrix"
 
-// TODO(DM): change to: GEN_HEADER_FUNCTIONS_SCALAR_SSE and so on
-#define GEN_HEADER_FUNCTIONS_SCALAR_SSE		"hlml_functions_scalar_sse.h"
-#define GEN_HEADER_FUNCTIONS_VECTOR_SSE		"hlml_functions_vector_sse.h"
-#define GEN_HEADER_FUNCTIONS_MATRIX_SSE		"hlml_functions_matrix_sse.h"
+#define GEN_FILENAME_FUNCTIONS_SCALAR_SSE	"hlml_functions_scalar_sse"
+#define GEN_FILENAME_FUNCTIONS_VECTOR_SSE	"hlml_functions_vector_sse"
+#define GEN_FILENAME_FUNCTIONS_MATRIX_SSE	"hlml_functions_matrix_sse"
 
 #define GEN_STRING_LENGTH_NUMERIC_LITERAL	16
 #define GEN_STRING_LENGTH_TYPE_NAME			16
@@ -316,25 +315,25 @@ extern void			Gen_GetValuesArray1D( const genType_t type, const u32 numValues, c
 extern void			Gen_GetValuesArray2D( const genType_t type, const u32 rows, const u32 cols, const float* values, stringBuilder_t* sb );
 
 // scalar functions
-extern void			Gen_Floateq( const genType_t type, stringBuilder_t* sb );
-extern void			Gen_Sign( const genType_t type, stringBuilder_t* sb );
+extern void			Gen_Floateq( const genType_t type, stringBuilder_t* sbFwdDec, stringBuilder_t* sbImpl );
+extern void			Gen_Sign( const genType_t type, stringBuilder_t* sbFwdDec, stringBuilder_t* sbImpl );
 
-extern void			Gen_Radians( const genType_t type, stringBuilder_t* sb );
-extern void			Gen_Degrees( const genType_t type, stringBuilder_t* sb );
-extern void			Gen_MinMax( const genType_t type, stringBuilder_t* sb );
-extern void			Gen_Clamp( const genType_t type, stringBuilder_t* sb );
+extern void			Gen_Radians( const genType_t type, stringBuilder_t* sbFwdDec, stringBuilder_t* sbImpl );
+extern void			Gen_Degrees( const genType_t type, stringBuilder_t* sbFwdDec, stringBuilder_t* sbImpl );
+extern void			Gen_MinMax( const genType_t type, stringBuilder_t* sbFwdDec, stringBuilder_t* sbImpl );
+extern void			Gen_Clamp( const genType_t type, stringBuilder_t* sbFwdDec, stringBuilder_t* sbImpl );
 
 // scalar/vector functions
-extern void			Gen_Saturate( const genLanguage_t language, const genType_t type, const u32 numComponents, stringBuilder_t* sbHeader );
-extern void			Gen_Lerp( const genLanguage_t language, const genType_t type, const u32 numComponents, stringBuilder_t* sbHeader );
-extern void			Gen_Step( const genLanguage_t language, const genType_t type, const u32 numComponents, stringBuilder_t* sbHeader );
-extern void			Gen_Smoothstep( const genLanguage_t language, const genType_t type, const u32 numComponents, stringBuilder_t* sbHeader );
+extern void			Gen_Saturate( const genLanguage_t language, const genType_t type, const u32 numComponents, stringBuilder_t* sbFwdDec, stringBuilder_t* sbImpl );
+extern void			Gen_Lerp( const genLanguage_t language, const genType_t type, const u32 numComponents, stringBuilder_t* sbFwdDec, stringBuilder_t* sbImpl );
+extern void			Gen_Step( const genLanguage_t language, const genType_t type, const u32 numComponents, stringBuilder_t* sbFwdDec, stringBuilder_t* sbImpl );
+extern void			Gen_Smoothstep( const genLanguage_t language, const genType_t type, const u32 numComponents, stringBuilder_t* sbFwdDec, stringBuilder_t* sbImpl );
 
 // C++ operator overloads for vectors and matrices
-extern void			Gen_OperatorsEquality( const genType_t type, const u32 numRows, const u32 numCols, stringBuilder_t* sbHeader );
-extern void			Gen_OperatorsIncrement( const genType_t type, const u32 numRows, const u32 numCols, stringBuilder_t* sbHeader );
+extern void			Gen_OperatorsEquality( const genType_t type, const u32 numRows, const u32 numCols, stringBuilder_t* sbFwdDec, stringBuilder_t* sbImpl );
+extern void			Gen_OperatorsIncrement( const genType_t type, const u32 numRows, const u32 numCols, stringBuilder_t* sbFwdDec, stringBuilder_t* sbImpl );
 
-extern void			Gen_NotEquals( const genLanguage_t language, const genType_t type, const u32 numRows, const u32 numCols, stringBuilder_t* sbHeader );
+extern void			Gen_NotEquals( const genLanguage_t language, const genType_t type, const u32 numRows, const u32 numCols, stringBuilder_t* sbFwdDec, stringBuilder_t* sbImpl );
 
 
 // type-to-string functions

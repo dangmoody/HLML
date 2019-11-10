@@ -95,30 +95,3446 @@ SOFTWARE.
 // bool2x2
 /// \relates bool2x2
 /// \brief Returns true if the all the components of the left-hand-side bool2x2 match the other one, otherwise returns false.
-inline bool bool2x2_cmpe( const bool2x2* lhs, const bool2x2* rhs )
+inline bool bool2x2_cmpe( const bool2x2* lhs, const bool2x2* rhs );
+
+/// \relates bool2x2
+/// \brief Returns true if not all of the components of the left-hand-side bool2x2 match the other one, otherwise returns false.
+inline bool bool2x2_cmpne( const bool2x2* lhs, const bool2x2* rhs );
+/// \relates bool2x2
+/// \brief Sets the matrix to an identity matrix.
+inline void bool2x2_identity( bool2x2* mat );
+
+/// \relates bool2x2
+/// \brief Returns a copy of the matrix that is transposed, where the value of each row is set to the value of each column and vice versa.
+inline bool2x2 bool2x2_transpose( const bool2x2* mat );
+
+
+// bool2x3
+/// \relates bool2x3
+/// \brief Returns true if the all the components of the left-hand-side bool2x3 match the other one, otherwise returns false.
+inline bool bool2x3_cmpe( const bool2x3* lhs, const bool2x3* rhs );
+
+/// \relates bool2x3
+/// \brief Returns true if not all of the components of the left-hand-side bool2x3 match the other one, otherwise returns false.
+inline bool bool2x3_cmpne( const bool2x3* lhs, const bool2x3* rhs );
+/// \relates bool2x3
+/// \brief Sets the matrix to an identity matrix.
+inline void bool2x3_identity( bool2x3* mat );
+
+/// \relates bool2x3
+/// \brief Returns a copy of the matrix that is transposed, where the value of each row is set to the value of each column and vice versa.
+inline bool3x2 bool2x3_transpose( const bool2x3* mat );
+
+
+// bool2x4
+/// \relates bool2x4
+/// \brief Returns true if the all the components of the left-hand-side bool2x4 match the other one, otherwise returns false.
+inline bool bool2x4_cmpe( const bool2x4* lhs, const bool2x4* rhs );
+
+/// \relates bool2x4
+/// \brief Returns true if not all of the components of the left-hand-side bool2x4 match the other one, otherwise returns false.
+inline bool bool2x4_cmpne( const bool2x4* lhs, const bool2x4* rhs );
+/// \relates bool2x4
+/// \brief Sets the matrix to an identity matrix.
+inline void bool2x4_identity( bool2x4* mat );
+
+/// \relates bool2x4
+/// \brief Returns a copy of the matrix that is transposed, where the value of each row is set to the value of each column and vice versa.
+inline bool4x2 bool2x4_transpose( const bool2x4* mat );
+
+
+// bool3x2
+/// \relates bool3x2
+/// \brief Returns true if the all the components of the left-hand-side bool3x2 match the other one, otherwise returns false.
+inline bool bool3x2_cmpe( const bool3x2* lhs, const bool3x2* rhs );
+
+/// \relates bool3x2
+/// \brief Returns true if not all of the components of the left-hand-side bool3x2 match the other one, otherwise returns false.
+inline bool bool3x2_cmpne( const bool3x2* lhs, const bool3x2* rhs );
+/// \relates bool3x2
+/// \brief Sets the matrix to an identity matrix.
+inline void bool3x2_identity( bool3x2* mat );
+
+/// \relates bool3x2
+/// \brief Returns a copy of the matrix that is transposed, where the value of each row is set to the value of each column and vice versa.
+inline bool2x3 bool3x2_transpose( const bool3x2* mat );
+
+
+// bool3x3
+/// \relates bool3x3
+/// \brief Returns true if the all the components of the left-hand-side bool3x3 match the other one, otherwise returns false.
+inline bool bool3x3_cmpe( const bool3x3* lhs, const bool3x3* rhs );
+
+/// \relates bool3x3
+/// \brief Returns true if not all of the components of the left-hand-side bool3x3 match the other one, otherwise returns false.
+inline bool bool3x3_cmpne( const bool3x3* lhs, const bool3x3* rhs );
+/// \relates bool3x3
+/// \brief Sets the matrix to an identity matrix.
+inline void bool3x3_identity( bool3x3* mat );
+
+/// \relates bool3x3
+/// \brief Returns a copy of the matrix that is transposed, where the value of each row is set to the value of each column and vice versa.
+inline bool3x3 bool3x3_transpose( const bool3x3* mat );
+
+
+// bool3x4
+/// \relates bool3x4
+/// \brief Returns true if the all the components of the left-hand-side bool3x4 match the other one, otherwise returns false.
+inline bool bool3x4_cmpe( const bool3x4* lhs, const bool3x4* rhs );
+
+/// \relates bool3x4
+/// \brief Returns true if not all of the components of the left-hand-side bool3x4 match the other one, otherwise returns false.
+inline bool bool3x4_cmpne( const bool3x4* lhs, const bool3x4* rhs );
+/// \relates bool3x4
+/// \brief Sets the matrix to an identity matrix.
+inline void bool3x4_identity( bool3x4* mat );
+
+/// \relates bool3x4
+/// \brief Returns a copy of the matrix that is transposed, where the value of each row is set to the value of each column and vice versa.
+inline bool4x3 bool3x4_transpose( const bool3x4* mat );
+
+
+// bool4x2
+/// \relates bool4x2
+/// \brief Returns true if the all the components of the left-hand-side bool4x2 match the other one, otherwise returns false.
+inline bool bool4x2_cmpe( const bool4x2* lhs, const bool4x2* rhs );
+
+/// \relates bool4x2
+/// \brief Returns true if not all of the components of the left-hand-side bool4x2 match the other one, otherwise returns false.
+inline bool bool4x2_cmpne( const bool4x2* lhs, const bool4x2* rhs );
+/// \relates bool4x2
+/// \brief Sets the matrix to an identity matrix.
+inline void bool4x2_identity( bool4x2* mat );
+
+/// \relates bool4x2
+/// \brief Returns a copy of the matrix that is transposed, where the value of each row is set to the value of each column and vice versa.
+inline bool2x4 bool4x2_transpose( const bool4x2* mat );
+
+
+// bool4x3
+/// \relates bool4x3
+/// \brief Returns true if the all the components of the left-hand-side bool4x3 match the other one, otherwise returns false.
+inline bool bool4x3_cmpe( const bool4x3* lhs, const bool4x3* rhs );
+
+/// \relates bool4x3
+/// \brief Returns true if not all of the components of the left-hand-side bool4x3 match the other one, otherwise returns false.
+inline bool bool4x3_cmpne( const bool4x3* lhs, const bool4x3* rhs );
+/// \relates bool4x3
+/// \brief Sets the matrix to an identity matrix.
+inline void bool4x3_identity( bool4x3* mat );
+
+/// \relates bool4x3
+/// \brief Returns a copy of the matrix that is transposed, where the value of each row is set to the value of each column and vice versa.
+inline bool3x4 bool4x3_transpose( const bool4x3* mat );
+
+
+// bool4x4
+/// \relates bool4x4
+/// \brief Returns true if the all the components of the left-hand-side bool4x4 match the other one, otherwise returns false.
+inline bool bool4x4_cmpe( const bool4x4* lhs, const bool4x4* rhs );
+
+/// \relates bool4x4
+/// \brief Returns true if not all of the components of the left-hand-side bool4x4 match the other one, otherwise returns false.
+inline bool bool4x4_cmpne( const bool4x4* lhs, const bool4x4* rhs );
+/// \relates bool4x4
+/// \brief Sets the matrix to an identity matrix.
+inline void bool4x4_identity( bool4x4* mat );
+
+/// \relates bool4x4
+/// \brief Returns a copy of the matrix that is transposed, where the value of each row is set to the value of each column and vice versa.
+inline bool4x4 bool4x4_transpose( const bool4x4* mat );
+
+
+// int2x2
+/// \relates int2x2
+/// \brief Returns true if the all the components of the left-hand-side int2x2 match the other one, otherwise returns false.
+inline bool int2x2_cmpe( const int2x2* lhs, const int2x2* rhs );
+
+/// \relates int2x2
+/// \brief Returns true if not all of the components of the left-hand-side int2x2 match the other one, otherwise returns false.
+inline bool int2x2_cmpne( const int2x2* lhs, const int2x2* rhs );
+/// \relates int2x2
+/// \brief Returns a copy of the int2x2 that has been component-wise added by the given scalar value.
+inline int2x2 int2x2_comp_adds( const int2x2* lhs, const int32_t scalar );
+
+/// \relates int2x2
+/// \brief Returns a copy of the int2x2 that has been component-wise added by the corresponding component of the right-hand int2x2.
+inline int2x2 int2x2_comp_addm( const int2x2* lhs, const int2x2* rhs );
+
+/// \relates int2x2
+/// \brief Returns a copy of the int2x2 that has been component-wise subtracted by the given scalar value.
+inline int2x2 int2x2_comp_subs( const int2x2* lhs, const int32_t scalar );
+
+/// \relates int2x2
+/// \brief Returns a copy of the int2x2 that has been component-wise subtracted by the corresponding component of the right-hand int2x2.
+inline int2x2 int2x2_comp_subm( const int2x2* lhs, const int2x2* rhs );
+
+/// \relates int2x2
+/// \brief Returns a copy of the int2x2 that has been component-wise multiplied by the given scalar value.
+inline int2x2 int2x2_comp_muls( const int2x2* lhs, const int32_t scalar );
+
+/// \relates int2x2
+/// \brief Returns a copy of the int2x2 that has been component-wise multiplied by the corresponding component of the right-hand int2x2.
+inline int2x2 int2x2_comp_mulm( const int2x2* lhs, const int2x2* rhs );
+
+/// \relates int2x2
+/// \brief Returns a copy of the int2x2 that has been component-wise divided by the given scalar value.
+inline int2x2 int2x2_comp_divs( const int2x2* lhs, const int32_t scalar );
+
+/// \relates int2x2
+/// \brief Returns a copy of the int2x2 that has been component-wise divided by the corresponding component of the right-hand int2x2.
+inline int2x2 int2x2_comp_divm( const int2x2* lhs, const int2x2* rhs );
+
+/// \relates int2x2
+/// \brief Returns a copy of the int2x2 where each component of the left-hand int2x2 has been bitwise AND'd against the corresponding component of the right-hand side int2x2.
+inline int2x2 int2x2_comp_and( const int2x2* lhs, const int2x2* rhs );
+
+/// \relates int2x2
+/// \brief Returns a copy of the int2x2 where each component of the left-hand int2x2 has been bitwise OR'd against the corresponding component of the right-hand side int2x2.
+inline int2x2 int2x2_comp_or( const int2x2* lhs, const int2x2* rhs );
+
+/// \relates int2x2
+/// \brief Returns a copy of the int2x2 where each component of the left-hand int2x2 has been bitwise XOR'd against the corresponding component of the right-hand side int2x2.
+inline int2x2 int2x2_comp_xor( const int2x2* lhs, const int2x2* rhs );
+
+/// \relates int2x2
+/// \brief Performs a unary bitwise operation on all components of the given int2x2.
+inline int2x2 int2x2_comp_unary( const int2x2* lhs );
+
+/// \relates int2x2
+/// \brief Returns a copy of the int2x2 where each component of the left-hand int2x2 has been bitwise left-shifted by the corresponding component of the right-hand side int2x2.
+inline int2x2 int2x2_comp_shift_left( const int2x2* lhs, const int2x2* rhs );
+
+/// \relates int2x2
+/// \brief Returns a copy of the int2x2 where each component of the left-hand int2x2 has been bitwise right-shifted by the corresponding component of the right-hand side int2x2.
+inline int2x2 int2x2_comp_shift_right( const int2x2* lhs, const int2x2* rhs );
+
+/// \relates int2x2
+/// \brief Returns a bool2x2 where each component is true if the component of the left-hand type is less than the corresponding right-hand type component.
+inline bool2x2 int2x2_cmpl( const int2x2* lhs, const int2x2* rhs );
+
+/// \relates int2x2
+/// \brief Returns a bool2x2 where each component is true if the component of the left-hand type is less than or equal to the corresponding right-hand type component.
+inline bool2x2 int2x2_cmple( const int2x2* lhs, const int2x2* rhs );
+
+/// \relates int2x2
+/// \brief Returns a bool2x2 where each component is true if the component of the left-hand type is greater than the corresponding right-hand type component.
+inline bool2x2 int2x2_cmpg( const int2x2* lhs, const int2x2* rhs );
+
+/// \relates int2x2
+/// \brief Returns a bool2x2 where each component is true if the component of the left-hand type is greater than or equal to the corresponding right-hand type component.
+inline bool2x2 int2x2_cmpge( const int2x2* lhs, const int2x2* rhs );
+
+/// \relates int2x2
+/// \brief Sets the matrix to an identity matrix.
+inline void int2x2_identity( int2x2* mat );
+
+/// \relates int2x2
+/// \brief Returns a copy of the matrix that is transposed, where the value of each row is set to the value of each column and vice versa.
+inline int2x2 int2x2_transpose( const int2x2* mat );
+
+/// \relates int2x2
+/// \brief Returns the determinant of the matrix.
+inline int32_t int2x2_determinant( const int2x2* mat );
+
+/// \relates int2x2
+/// \brief Returns a copy of the matrix where each row of the left-hand matrix has been dot-producted by the corresponding column of the right-hand matrix.
+inline int2x2 int2x2_mulm( const int2x2* lhs, const int2x2* rhs );
+
+/// \relates int2x2
+/// \brief Returns the right-hand vector multiplied by the left-hand matrix.
+inline int2 int2x2_mulv( const int2x2* lhs, const int2* rhs );
+
+
+// int2x3
+/// \relates int2x3
+/// \brief Returns true if the all the components of the left-hand-side int2x3 match the other one, otherwise returns false.
+inline bool int2x3_cmpe( const int2x3* lhs, const int2x3* rhs );
+
+/// \relates int2x3
+/// \brief Returns true if not all of the components of the left-hand-side int2x3 match the other one, otherwise returns false.
+inline bool int2x3_cmpne( const int2x3* lhs, const int2x3* rhs );
+/// \relates int2x3
+/// \brief Returns a copy of the int2x3 that has been component-wise added by the given scalar value.
+inline int2x3 int2x3_comp_adds( const int2x3* lhs, const int32_t scalar );
+
+/// \relates int2x3
+/// \brief Returns a copy of the int2x3 that has been component-wise added by the corresponding component of the right-hand int2x3.
+inline int2x3 int2x3_comp_addm( const int2x3* lhs, const int2x3* rhs );
+
+/// \relates int2x3
+/// \brief Returns a copy of the int2x3 that has been component-wise subtracted by the given scalar value.
+inline int2x3 int2x3_comp_subs( const int2x3* lhs, const int32_t scalar );
+
+/// \relates int2x3
+/// \brief Returns a copy of the int2x3 that has been component-wise subtracted by the corresponding component of the right-hand int2x3.
+inline int2x3 int2x3_comp_subm( const int2x3* lhs, const int2x3* rhs );
+
+/// \relates int2x3
+/// \brief Returns a copy of the int2x3 that has been component-wise multiplied by the given scalar value.
+inline int2x3 int2x3_comp_muls( const int2x3* lhs, const int32_t scalar );
+
+/// \relates int2x3
+/// \brief Returns a copy of the int2x3 that has been component-wise multiplied by the corresponding component of the right-hand int2x3.
+inline int2x3 int2x3_comp_mulm( const int2x3* lhs, const int2x3* rhs );
+
+/// \relates int2x3
+/// \brief Returns a copy of the int2x3 that has been component-wise divided by the given scalar value.
+inline int2x3 int2x3_comp_divs( const int2x3* lhs, const int32_t scalar );
+
+/// \relates int2x3
+/// \brief Returns a copy of the int2x3 that has been component-wise divided by the corresponding component of the right-hand int2x3.
+inline int2x3 int2x3_comp_divm( const int2x3* lhs, const int2x3* rhs );
+
+/// \relates int2x3
+/// \brief Returns a copy of the int2x3 where each component of the left-hand int2x3 has been bitwise AND'd against the corresponding component of the right-hand side int2x3.
+inline int2x3 int2x3_comp_and( const int2x3* lhs, const int2x3* rhs );
+
+/// \relates int2x3
+/// \brief Returns a copy of the int2x3 where each component of the left-hand int2x3 has been bitwise OR'd against the corresponding component of the right-hand side int2x3.
+inline int2x3 int2x3_comp_or( const int2x3* lhs, const int2x3* rhs );
+
+/// \relates int2x3
+/// \brief Returns a copy of the int2x3 where each component of the left-hand int2x3 has been bitwise XOR'd against the corresponding component of the right-hand side int2x3.
+inline int2x3 int2x3_comp_xor( const int2x3* lhs, const int2x3* rhs );
+
+/// \relates int2x3
+/// \brief Performs a unary bitwise operation on all components of the given int2x3.
+inline int2x3 int2x3_comp_unary( const int2x3* lhs );
+
+/// \relates int2x3
+/// \brief Returns a copy of the int2x3 where each component of the left-hand int2x3 has been bitwise left-shifted by the corresponding component of the right-hand side int2x3.
+inline int2x3 int2x3_comp_shift_left( const int2x3* lhs, const int2x3* rhs );
+
+/// \relates int2x3
+/// \brief Returns a copy of the int2x3 where each component of the left-hand int2x3 has been bitwise right-shifted by the corresponding component of the right-hand side int2x3.
+inline int2x3 int2x3_comp_shift_right( const int2x3* lhs, const int2x3* rhs );
+
+/// \relates int2x3
+/// \brief Returns a bool2x3 where each component is true if the component of the left-hand type is less than the corresponding right-hand type component.
+inline bool2x3 int2x3_cmpl( const int2x3* lhs, const int2x3* rhs );
+
+/// \relates int2x3
+/// \brief Returns a bool2x3 where each component is true if the component of the left-hand type is less than or equal to the corresponding right-hand type component.
+inline bool2x3 int2x3_cmple( const int2x3* lhs, const int2x3* rhs );
+
+/// \relates int2x3
+/// \brief Returns a bool2x3 where each component is true if the component of the left-hand type is greater than the corresponding right-hand type component.
+inline bool2x3 int2x3_cmpg( const int2x3* lhs, const int2x3* rhs );
+
+/// \relates int2x3
+/// \brief Returns a bool2x3 where each component is true if the component of the left-hand type is greater than or equal to the corresponding right-hand type component.
+inline bool2x3 int2x3_cmpge( const int2x3* lhs, const int2x3* rhs );
+
+/// \relates int2x3
+/// \brief Sets the matrix to an identity matrix.
+inline void int2x3_identity( int2x3* mat );
+
+/// \relates int2x3
+/// \brief Returns a copy of the matrix that is transposed, where the value of each row is set to the value of each column and vice versa.
+inline int3x2 int2x3_transpose( const int2x3* mat );
+
+/// \relates int2x3
+/// \brief Returns a copy of the matrix where each row of the left-hand matrix has been dot-producted by the corresponding column of the right-hand matrix.
+inline int2x2 int2x3_mulm( const int2x3* lhs, const int3x2* rhs );
+
+/// \relates int2x3
+/// \brief Returns a copy of the matrix that has had a non-uniform scale applied to it.
+inline int2x3 int2x3_scale( const int2x3* mat, const int2* vec );
+
+
+// int2x4
+/// \relates int2x4
+/// \brief Returns true if the all the components of the left-hand-side int2x4 match the other one, otherwise returns false.
+inline bool int2x4_cmpe( const int2x4* lhs, const int2x4* rhs );
+
+/// \relates int2x4
+/// \brief Returns true if not all of the components of the left-hand-side int2x4 match the other one, otherwise returns false.
+inline bool int2x4_cmpne( const int2x4* lhs, const int2x4* rhs );
+/// \relates int2x4
+/// \brief Returns a copy of the int2x4 that has been component-wise added by the given scalar value.
+inline int2x4 int2x4_comp_adds( const int2x4* lhs, const int32_t scalar );
+
+/// \relates int2x4
+/// \brief Returns a copy of the int2x4 that has been component-wise added by the corresponding component of the right-hand int2x4.
+inline int2x4 int2x4_comp_addm( const int2x4* lhs, const int2x4* rhs );
+
+/// \relates int2x4
+/// \brief Returns a copy of the int2x4 that has been component-wise subtracted by the given scalar value.
+inline int2x4 int2x4_comp_subs( const int2x4* lhs, const int32_t scalar );
+
+/// \relates int2x4
+/// \brief Returns a copy of the int2x4 that has been component-wise subtracted by the corresponding component of the right-hand int2x4.
+inline int2x4 int2x4_comp_subm( const int2x4* lhs, const int2x4* rhs );
+
+/// \relates int2x4
+/// \brief Returns a copy of the int2x4 that has been component-wise multiplied by the given scalar value.
+inline int2x4 int2x4_comp_muls( const int2x4* lhs, const int32_t scalar );
+
+/// \relates int2x4
+/// \brief Returns a copy of the int2x4 that has been component-wise multiplied by the corresponding component of the right-hand int2x4.
+inline int2x4 int2x4_comp_mulm( const int2x4* lhs, const int2x4* rhs );
+
+/// \relates int2x4
+/// \brief Returns a copy of the int2x4 that has been component-wise divided by the given scalar value.
+inline int2x4 int2x4_comp_divs( const int2x4* lhs, const int32_t scalar );
+
+/// \relates int2x4
+/// \brief Returns a copy of the int2x4 that has been component-wise divided by the corresponding component of the right-hand int2x4.
+inline int2x4 int2x4_comp_divm( const int2x4* lhs, const int2x4* rhs );
+
+/// \relates int2x4
+/// \brief Returns a copy of the int2x4 where each component of the left-hand int2x4 has been bitwise AND'd against the corresponding component of the right-hand side int2x4.
+inline int2x4 int2x4_comp_and( const int2x4* lhs, const int2x4* rhs );
+
+/// \relates int2x4
+/// \brief Returns a copy of the int2x4 where each component of the left-hand int2x4 has been bitwise OR'd against the corresponding component of the right-hand side int2x4.
+inline int2x4 int2x4_comp_or( const int2x4* lhs, const int2x4* rhs );
+
+/// \relates int2x4
+/// \brief Returns a copy of the int2x4 where each component of the left-hand int2x4 has been bitwise XOR'd against the corresponding component of the right-hand side int2x4.
+inline int2x4 int2x4_comp_xor( const int2x4* lhs, const int2x4* rhs );
+
+/// \relates int2x4
+/// \brief Performs a unary bitwise operation on all components of the given int2x4.
+inline int2x4 int2x4_comp_unary( const int2x4* lhs );
+
+/// \relates int2x4
+/// \brief Returns a copy of the int2x4 where each component of the left-hand int2x4 has been bitwise left-shifted by the corresponding component of the right-hand side int2x4.
+inline int2x4 int2x4_comp_shift_left( const int2x4* lhs, const int2x4* rhs );
+
+/// \relates int2x4
+/// \brief Returns a copy of the int2x4 where each component of the left-hand int2x4 has been bitwise right-shifted by the corresponding component of the right-hand side int2x4.
+inline int2x4 int2x4_comp_shift_right( const int2x4* lhs, const int2x4* rhs );
+
+/// \relates int2x4
+/// \brief Returns a bool2x4 where each component is true if the component of the left-hand type is less than the corresponding right-hand type component.
+inline bool2x4 int2x4_cmpl( const int2x4* lhs, const int2x4* rhs );
+
+/// \relates int2x4
+/// \brief Returns a bool2x4 where each component is true if the component of the left-hand type is less than or equal to the corresponding right-hand type component.
+inline bool2x4 int2x4_cmple( const int2x4* lhs, const int2x4* rhs );
+
+/// \relates int2x4
+/// \brief Returns a bool2x4 where each component is true if the component of the left-hand type is greater than the corresponding right-hand type component.
+inline bool2x4 int2x4_cmpg( const int2x4* lhs, const int2x4* rhs );
+
+/// \relates int2x4
+/// \brief Returns a bool2x4 where each component is true if the component of the left-hand type is greater than or equal to the corresponding right-hand type component.
+inline bool2x4 int2x4_cmpge( const int2x4* lhs, const int2x4* rhs );
+
+/// \relates int2x4
+/// \brief Sets the matrix to an identity matrix.
+inline void int2x4_identity( int2x4* mat );
+
+/// \relates int2x4
+/// \brief Returns a copy of the matrix that is transposed, where the value of each row is set to the value of each column and vice versa.
+inline int4x2 int2x4_transpose( const int2x4* mat );
+
+/// \relates int2x4
+/// \brief Returns a copy of the matrix where each row of the left-hand matrix has been dot-producted by the corresponding column of the right-hand matrix.
+inline int2x2 int2x4_mulm( const int2x4* lhs, const int4x2* rhs );
+
+/// \relates int2x4
+/// \brief Returns a copy of the matrix that has had a non-uniform scale applied to it.
+inline int2x4 int2x4_scale( const int2x4* mat, const int2* vec );
+
+
+// int3x2
+/// \relates int3x2
+/// \brief Returns true if the all the components of the left-hand-side int3x2 match the other one, otherwise returns false.
+inline bool int3x2_cmpe( const int3x2* lhs, const int3x2* rhs );
+
+/// \relates int3x2
+/// \brief Returns true if not all of the components of the left-hand-side int3x2 match the other one, otherwise returns false.
+inline bool int3x2_cmpne( const int3x2* lhs, const int3x2* rhs );
+/// \relates int3x2
+/// \brief Returns a copy of the int3x2 that has been component-wise added by the given scalar value.
+inline int3x2 int3x2_comp_adds( const int3x2* lhs, const int32_t scalar );
+
+/// \relates int3x2
+/// \brief Returns a copy of the int3x2 that has been component-wise added by the corresponding component of the right-hand int3x2.
+inline int3x2 int3x2_comp_addm( const int3x2* lhs, const int3x2* rhs );
+
+/// \relates int3x2
+/// \brief Returns a copy of the int3x2 that has been component-wise subtracted by the given scalar value.
+inline int3x2 int3x2_comp_subs( const int3x2* lhs, const int32_t scalar );
+
+/// \relates int3x2
+/// \brief Returns a copy of the int3x2 that has been component-wise subtracted by the corresponding component of the right-hand int3x2.
+inline int3x2 int3x2_comp_subm( const int3x2* lhs, const int3x2* rhs );
+
+/// \relates int3x2
+/// \brief Returns a copy of the int3x2 that has been component-wise multiplied by the given scalar value.
+inline int3x2 int3x2_comp_muls( const int3x2* lhs, const int32_t scalar );
+
+/// \relates int3x2
+/// \brief Returns a copy of the int3x2 that has been component-wise multiplied by the corresponding component of the right-hand int3x2.
+inline int3x2 int3x2_comp_mulm( const int3x2* lhs, const int3x2* rhs );
+
+/// \relates int3x2
+/// \brief Returns a copy of the int3x2 that has been component-wise divided by the given scalar value.
+inline int3x2 int3x2_comp_divs( const int3x2* lhs, const int32_t scalar );
+
+/// \relates int3x2
+/// \brief Returns a copy of the int3x2 that has been component-wise divided by the corresponding component of the right-hand int3x2.
+inline int3x2 int3x2_comp_divm( const int3x2* lhs, const int3x2* rhs );
+
+/// \relates int3x2
+/// \brief Returns a copy of the int3x2 where each component of the left-hand int3x2 has been bitwise AND'd against the corresponding component of the right-hand side int3x2.
+inline int3x2 int3x2_comp_and( const int3x2* lhs, const int3x2* rhs );
+
+/// \relates int3x2
+/// \brief Returns a copy of the int3x2 where each component of the left-hand int3x2 has been bitwise OR'd against the corresponding component of the right-hand side int3x2.
+inline int3x2 int3x2_comp_or( const int3x2* lhs, const int3x2* rhs );
+
+/// \relates int3x2
+/// \brief Returns a copy of the int3x2 where each component of the left-hand int3x2 has been bitwise XOR'd against the corresponding component of the right-hand side int3x2.
+inline int3x2 int3x2_comp_xor( const int3x2* lhs, const int3x2* rhs );
+
+/// \relates int3x2
+/// \brief Performs a unary bitwise operation on all components of the given int3x2.
+inline int3x2 int3x2_comp_unary( const int3x2* lhs );
+
+/// \relates int3x2
+/// \brief Returns a copy of the int3x2 where each component of the left-hand int3x2 has been bitwise left-shifted by the corresponding component of the right-hand side int3x2.
+inline int3x2 int3x2_comp_shift_left( const int3x2* lhs, const int3x2* rhs );
+
+/// \relates int3x2
+/// \brief Returns a copy of the int3x2 where each component of the left-hand int3x2 has been bitwise right-shifted by the corresponding component of the right-hand side int3x2.
+inline int3x2 int3x2_comp_shift_right( const int3x2* lhs, const int3x2* rhs );
+
+/// \relates int3x2
+/// \brief Returns a bool3x2 where each component is true if the component of the left-hand type is less than the corresponding right-hand type component.
+inline bool3x2 int3x2_cmpl( const int3x2* lhs, const int3x2* rhs );
+
+/// \relates int3x2
+/// \brief Returns a bool3x2 where each component is true if the component of the left-hand type is less than or equal to the corresponding right-hand type component.
+inline bool3x2 int3x2_cmple( const int3x2* lhs, const int3x2* rhs );
+
+/// \relates int3x2
+/// \brief Returns a bool3x2 where each component is true if the component of the left-hand type is greater than the corresponding right-hand type component.
+inline bool3x2 int3x2_cmpg( const int3x2* lhs, const int3x2* rhs );
+
+/// \relates int3x2
+/// \brief Returns a bool3x2 where each component is true if the component of the left-hand type is greater than or equal to the corresponding right-hand type component.
+inline bool3x2 int3x2_cmpge( const int3x2* lhs, const int3x2* rhs );
+
+/// \relates int3x2
+/// \brief Sets the matrix to an identity matrix.
+inline void int3x2_identity( int3x2* mat );
+
+/// \relates int3x2
+/// \brief Returns a copy of the matrix that is transposed, where the value of each row is set to the value of each column and vice versa.
+inline int2x3 int3x2_transpose( const int3x2* mat );
+
+/// \relates int3x2
+/// \brief Returns a copy of the matrix where each row of the left-hand matrix has been dot-producted by the corresponding column of the right-hand matrix.
+inline int3x3 int3x2_mulm( const int3x2* lhs, const int2x3* rhs );
+
+
+// int3x3
+/// \relates int3x3
+/// \brief Returns true if the all the components of the left-hand-side int3x3 match the other one, otherwise returns false.
+inline bool int3x3_cmpe( const int3x3* lhs, const int3x3* rhs );
+
+/// \relates int3x3
+/// \brief Returns true if not all of the components of the left-hand-side int3x3 match the other one, otherwise returns false.
+inline bool int3x3_cmpne( const int3x3* lhs, const int3x3* rhs );
+/// \relates int3x3
+/// \brief Returns a copy of the int3x3 that has been component-wise added by the given scalar value.
+inline int3x3 int3x3_comp_adds( const int3x3* lhs, const int32_t scalar );
+
+/// \relates int3x3
+/// \brief Returns a copy of the int3x3 that has been component-wise added by the corresponding component of the right-hand int3x3.
+inline int3x3 int3x3_comp_addm( const int3x3* lhs, const int3x3* rhs );
+
+/// \relates int3x3
+/// \brief Returns a copy of the int3x3 that has been component-wise subtracted by the given scalar value.
+inline int3x3 int3x3_comp_subs( const int3x3* lhs, const int32_t scalar );
+
+/// \relates int3x3
+/// \brief Returns a copy of the int3x3 that has been component-wise subtracted by the corresponding component of the right-hand int3x3.
+inline int3x3 int3x3_comp_subm( const int3x3* lhs, const int3x3* rhs );
+
+/// \relates int3x3
+/// \brief Returns a copy of the int3x3 that has been component-wise multiplied by the given scalar value.
+inline int3x3 int3x3_comp_muls( const int3x3* lhs, const int32_t scalar );
+
+/// \relates int3x3
+/// \brief Returns a copy of the int3x3 that has been component-wise multiplied by the corresponding component of the right-hand int3x3.
+inline int3x3 int3x3_comp_mulm( const int3x3* lhs, const int3x3* rhs );
+
+/// \relates int3x3
+/// \brief Returns a copy of the int3x3 that has been component-wise divided by the given scalar value.
+inline int3x3 int3x3_comp_divs( const int3x3* lhs, const int32_t scalar );
+
+/// \relates int3x3
+/// \brief Returns a copy of the int3x3 that has been component-wise divided by the corresponding component of the right-hand int3x3.
+inline int3x3 int3x3_comp_divm( const int3x3* lhs, const int3x3* rhs );
+
+/// \relates int3x3
+/// \brief Returns a copy of the int3x3 where each component of the left-hand int3x3 has been bitwise AND'd against the corresponding component of the right-hand side int3x3.
+inline int3x3 int3x3_comp_and( const int3x3* lhs, const int3x3* rhs );
+
+/// \relates int3x3
+/// \brief Returns a copy of the int3x3 where each component of the left-hand int3x3 has been bitwise OR'd against the corresponding component of the right-hand side int3x3.
+inline int3x3 int3x3_comp_or( const int3x3* lhs, const int3x3* rhs );
+
+/// \relates int3x3
+/// \brief Returns a copy of the int3x3 where each component of the left-hand int3x3 has been bitwise XOR'd against the corresponding component of the right-hand side int3x3.
+inline int3x3 int3x3_comp_xor( const int3x3* lhs, const int3x3* rhs );
+
+/// \relates int3x3
+/// \brief Performs a unary bitwise operation on all components of the given int3x3.
+inline int3x3 int3x3_comp_unary( const int3x3* lhs );
+
+/// \relates int3x3
+/// \brief Returns a copy of the int3x3 where each component of the left-hand int3x3 has been bitwise left-shifted by the corresponding component of the right-hand side int3x3.
+inline int3x3 int3x3_comp_shift_left( const int3x3* lhs, const int3x3* rhs );
+
+/// \relates int3x3
+/// \brief Returns a copy of the int3x3 where each component of the left-hand int3x3 has been bitwise right-shifted by the corresponding component of the right-hand side int3x3.
+inline int3x3 int3x3_comp_shift_right( const int3x3* lhs, const int3x3* rhs );
+
+/// \relates int3x3
+/// \brief Returns a bool3x3 where each component is true if the component of the left-hand type is less than the corresponding right-hand type component.
+inline bool3x3 int3x3_cmpl( const int3x3* lhs, const int3x3* rhs );
+
+/// \relates int3x3
+/// \brief Returns a bool3x3 where each component is true if the component of the left-hand type is less than or equal to the corresponding right-hand type component.
+inline bool3x3 int3x3_cmple( const int3x3* lhs, const int3x3* rhs );
+
+/// \relates int3x3
+/// \brief Returns a bool3x3 where each component is true if the component of the left-hand type is greater than the corresponding right-hand type component.
+inline bool3x3 int3x3_cmpg( const int3x3* lhs, const int3x3* rhs );
+
+/// \relates int3x3
+/// \brief Returns a bool3x3 where each component is true if the component of the left-hand type is greater than or equal to the corresponding right-hand type component.
+inline bool3x3 int3x3_cmpge( const int3x3* lhs, const int3x3* rhs );
+
+/// \relates int3x3
+/// \brief Sets the matrix to an identity matrix.
+inline void int3x3_identity( int3x3* mat );
+
+/// \relates int3x3
+/// \brief Returns a copy of the matrix that is transposed, where the value of each row is set to the value of each column and vice versa.
+inline int3x3 int3x3_transpose( const int3x3* mat );
+
+/// \relates int3x3
+/// \brief Returns the determinant of the matrix.
+inline int32_t int3x3_determinant( const int3x3* mat );
+
+/// \relates int3x3
+/// \brief Returns a copy of the matrix where each row of the left-hand matrix has been dot-producted by the corresponding column of the right-hand matrix.
+inline int3x3 int3x3_mulm( const int3x3* lhs, const int3x3* rhs );
+
+/// \relates int3x3
+/// \brief Returns the right-hand vector multiplied by the left-hand matrix.
+inline int3 int3x3_mulv( const int3x3* lhs, const int3* rhs );
+
+/// \relates int3x3
+/// \brief Returns a copy of the matrix where each component of the 3rd column has been added by the given vector.
+inline int3x3 int3x3_translate( const int3x3* mat, const int2* vec );
+
+/// \relates int3x3
+/// \brief Returns a copy of the matrix that has had a non-uniform scale applied to it.
+inline int3x3 int3x3_scale( const int3x3* mat, const int2* vec );
+
+
+// int3x4
+/// \relates int3x4
+/// \brief Returns true if the all the components of the left-hand-side int3x4 match the other one, otherwise returns false.
+inline bool int3x4_cmpe( const int3x4* lhs, const int3x4* rhs );
+
+/// \relates int3x4
+/// \brief Returns true if not all of the components of the left-hand-side int3x4 match the other one, otherwise returns false.
+inline bool int3x4_cmpne( const int3x4* lhs, const int3x4* rhs );
+/// \relates int3x4
+/// \brief Returns a copy of the int3x4 that has been component-wise added by the given scalar value.
+inline int3x4 int3x4_comp_adds( const int3x4* lhs, const int32_t scalar );
+
+/// \relates int3x4
+/// \brief Returns a copy of the int3x4 that has been component-wise added by the corresponding component of the right-hand int3x4.
+inline int3x4 int3x4_comp_addm( const int3x4* lhs, const int3x4* rhs );
+
+/// \relates int3x4
+/// \brief Returns a copy of the int3x4 that has been component-wise subtracted by the given scalar value.
+inline int3x4 int3x4_comp_subs( const int3x4* lhs, const int32_t scalar );
+
+/// \relates int3x4
+/// \brief Returns a copy of the int3x4 that has been component-wise subtracted by the corresponding component of the right-hand int3x4.
+inline int3x4 int3x4_comp_subm( const int3x4* lhs, const int3x4* rhs );
+
+/// \relates int3x4
+/// \brief Returns a copy of the int3x4 that has been component-wise multiplied by the given scalar value.
+inline int3x4 int3x4_comp_muls( const int3x4* lhs, const int32_t scalar );
+
+/// \relates int3x4
+/// \brief Returns a copy of the int3x4 that has been component-wise multiplied by the corresponding component of the right-hand int3x4.
+inline int3x4 int3x4_comp_mulm( const int3x4* lhs, const int3x4* rhs );
+
+/// \relates int3x4
+/// \brief Returns a copy of the int3x4 that has been component-wise divided by the given scalar value.
+inline int3x4 int3x4_comp_divs( const int3x4* lhs, const int32_t scalar );
+
+/// \relates int3x4
+/// \brief Returns a copy of the int3x4 that has been component-wise divided by the corresponding component of the right-hand int3x4.
+inline int3x4 int3x4_comp_divm( const int3x4* lhs, const int3x4* rhs );
+
+/// \relates int3x4
+/// \brief Returns a copy of the int3x4 where each component of the left-hand int3x4 has been bitwise AND'd against the corresponding component of the right-hand side int3x4.
+inline int3x4 int3x4_comp_and( const int3x4* lhs, const int3x4* rhs );
+
+/// \relates int3x4
+/// \brief Returns a copy of the int3x4 where each component of the left-hand int3x4 has been bitwise OR'd against the corresponding component of the right-hand side int3x4.
+inline int3x4 int3x4_comp_or( const int3x4* lhs, const int3x4* rhs );
+
+/// \relates int3x4
+/// \brief Returns a copy of the int3x4 where each component of the left-hand int3x4 has been bitwise XOR'd against the corresponding component of the right-hand side int3x4.
+inline int3x4 int3x4_comp_xor( const int3x4* lhs, const int3x4* rhs );
+
+/// \relates int3x4
+/// \brief Performs a unary bitwise operation on all components of the given int3x4.
+inline int3x4 int3x4_comp_unary( const int3x4* lhs );
+
+/// \relates int3x4
+/// \brief Returns a copy of the int3x4 where each component of the left-hand int3x4 has been bitwise left-shifted by the corresponding component of the right-hand side int3x4.
+inline int3x4 int3x4_comp_shift_left( const int3x4* lhs, const int3x4* rhs );
+
+/// \relates int3x4
+/// \brief Returns a copy of the int3x4 where each component of the left-hand int3x4 has been bitwise right-shifted by the corresponding component of the right-hand side int3x4.
+inline int3x4 int3x4_comp_shift_right( const int3x4* lhs, const int3x4* rhs );
+
+/// \relates int3x4
+/// \brief Returns a bool3x4 where each component is true if the component of the left-hand type is less than the corresponding right-hand type component.
+inline bool3x4 int3x4_cmpl( const int3x4* lhs, const int3x4* rhs );
+
+/// \relates int3x4
+/// \brief Returns a bool3x4 where each component is true if the component of the left-hand type is less than or equal to the corresponding right-hand type component.
+inline bool3x4 int3x4_cmple( const int3x4* lhs, const int3x4* rhs );
+
+/// \relates int3x4
+/// \brief Returns a bool3x4 where each component is true if the component of the left-hand type is greater than the corresponding right-hand type component.
+inline bool3x4 int3x4_cmpg( const int3x4* lhs, const int3x4* rhs );
+
+/// \relates int3x4
+/// \brief Returns a bool3x4 where each component is true if the component of the left-hand type is greater than or equal to the corresponding right-hand type component.
+inline bool3x4 int3x4_cmpge( const int3x4* lhs, const int3x4* rhs );
+
+/// \relates int3x4
+/// \brief Sets the matrix to an identity matrix.
+inline void int3x4_identity( int3x4* mat );
+
+/// \relates int3x4
+/// \brief Returns a copy of the matrix that is transposed, where the value of each row is set to the value of each column and vice versa.
+inline int4x3 int3x4_transpose( const int3x4* mat );
+
+/// \relates int3x4
+/// \brief Returns a copy of the matrix where each row of the left-hand matrix has been dot-producted by the corresponding column of the right-hand matrix.
+inline int3x3 int3x4_mulm( const int3x4* lhs, const int4x3* rhs );
+
+/// \relates int3x4
+/// \brief Returns a copy of the matrix where each component of the 3rd column has been added by the given vector.
+inline int3x4 int3x4_translate( const int3x4* mat, const int3* vec );
+
+/// \relates int3x4
+/// \brief Returns a copy of the matrix that has had a non-uniform scale applied to it.
+inline int3x4 int3x4_scale( const int3x4* mat, const int2* vec );
+
+
+// int4x2
+/// \relates int4x2
+/// \brief Returns true if the all the components of the left-hand-side int4x2 match the other one, otherwise returns false.
+inline bool int4x2_cmpe( const int4x2* lhs, const int4x2* rhs );
+
+/// \relates int4x2
+/// \brief Returns true if not all of the components of the left-hand-side int4x2 match the other one, otherwise returns false.
+inline bool int4x2_cmpne( const int4x2* lhs, const int4x2* rhs );
+/// \relates int4x2
+/// \brief Returns a copy of the int4x2 that has been component-wise added by the given scalar value.
+inline int4x2 int4x2_comp_adds( const int4x2* lhs, const int32_t scalar );
+
+/// \relates int4x2
+/// \brief Returns a copy of the int4x2 that has been component-wise added by the corresponding component of the right-hand int4x2.
+inline int4x2 int4x2_comp_addm( const int4x2* lhs, const int4x2* rhs );
+
+/// \relates int4x2
+/// \brief Returns a copy of the int4x2 that has been component-wise subtracted by the given scalar value.
+inline int4x2 int4x2_comp_subs( const int4x2* lhs, const int32_t scalar );
+
+/// \relates int4x2
+/// \brief Returns a copy of the int4x2 that has been component-wise subtracted by the corresponding component of the right-hand int4x2.
+inline int4x2 int4x2_comp_subm( const int4x2* lhs, const int4x2* rhs );
+
+/// \relates int4x2
+/// \brief Returns a copy of the int4x2 that has been component-wise multiplied by the given scalar value.
+inline int4x2 int4x2_comp_muls( const int4x2* lhs, const int32_t scalar );
+
+/// \relates int4x2
+/// \brief Returns a copy of the int4x2 that has been component-wise multiplied by the corresponding component of the right-hand int4x2.
+inline int4x2 int4x2_comp_mulm( const int4x2* lhs, const int4x2* rhs );
+
+/// \relates int4x2
+/// \brief Returns a copy of the int4x2 that has been component-wise divided by the given scalar value.
+inline int4x2 int4x2_comp_divs( const int4x2* lhs, const int32_t scalar );
+
+/// \relates int4x2
+/// \brief Returns a copy of the int4x2 that has been component-wise divided by the corresponding component of the right-hand int4x2.
+inline int4x2 int4x2_comp_divm( const int4x2* lhs, const int4x2* rhs );
+
+/// \relates int4x2
+/// \brief Returns a copy of the int4x2 where each component of the left-hand int4x2 has been bitwise AND'd against the corresponding component of the right-hand side int4x2.
+inline int4x2 int4x2_comp_and( const int4x2* lhs, const int4x2* rhs );
+
+/// \relates int4x2
+/// \brief Returns a copy of the int4x2 where each component of the left-hand int4x2 has been bitwise OR'd against the corresponding component of the right-hand side int4x2.
+inline int4x2 int4x2_comp_or( const int4x2* lhs, const int4x2* rhs );
+
+/// \relates int4x2
+/// \brief Returns a copy of the int4x2 where each component of the left-hand int4x2 has been bitwise XOR'd against the corresponding component of the right-hand side int4x2.
+inline int4x2 int4x2_comp_xor( const int4x2* lhs, const int4x2* rhs );
+
+/// \relates int4x2
+/// \brief Performs a unary bitwise operation on all components of the given int4x2.
+inline int4x2 int4x2_comp_unary( const int4x2* lhs );
+
+/// \relates int4x2
+/// \brief Returns a copy of the int4x2 where each component of the left-hand int4x2 has been bitwise left-shifted by the corresponding component of the right-hand side int4x2.
+inline int4x2 int4x2_comp_shift_left( const int4x2* lhs, const int4x2* rhs );
+
+/// \relates int4x2
+/// \brief Returns a copy of the int4x2 where each component of the left-hand int4x2 has been bitwise right-shifted by the corresponding component of the right-hand side int4x2.
+inline int4x2 int4x2_comp_shift_right( const int4x2* lhs, const int4x2* rhs );
+
+/// \relates int4x2
+/// \brief Returns a bool4x2 where each component is true if the component of the left-hand type is less than the corresponding right-hand type component.
+inline bool4x2 int4x2_cmpl( const int4x2* lhs, const int4x2* rhs );
+
+/// \relates int4x2
+/// \brief Returns a bool4x2 where each component is true if the component of the left-hand type is less than or equal to the corresponding right-hand type component.
+inline bool4x2 int4x2_cmple( const int4x2* lhs, const int4x2* rhs );
+
+/// \relates int4x2
+/// \brief Returns a bool4x2 where each component is true if the component of the left-hand type is greater than the corresponding right-hand type component.
+inline bool4x2 int4x2_cmpg( const int4x2* lhs, const int4x2* rhs );
+
+/// \relates int4x2
+/// \brief Returns a bool4x2 where each component is true if the component of the left-hand type is greater than or equal to the corresponding right-hand type component.
+inline bool4x2 int4x2_cmpge( const int4x2* lhs, const int4x2* rhs );
+
+/// \relates int4x2
+/// \brief Sets the matrix to an identity matrix.
+inline void int4x2_identity( int4x2* mat );
+
+/// \relates int4x2
+/// \brief Returns a copy of the matrix that is transposed, where the value of each row is set to the value of each column and vice versa.
+inline int2x4 int4x2_transpose( const int4x2* mat );
+
+/// \relates int4x2
+/// \brief Returns a copy of the matrix where each row of the left-hand matrix has been dot-producted by the corresponding column of the right-hand matrix.
+inline int4x4 int4x2_mulm( const int4x2* lhs, const int2x4* rhs );
+
+
+// int4x3
+/// \relates int4x3
+/// \brief Returns true if the all the components of the left-hand-side int4x3 match the other one, otherwise returns false.
+inline bool int4x3_cmpe( const int4x3* lhs, const int4x3* rhs );
+
+/// \relates int4x3
+/// \brief Returns true if not all of the components of the left-hand-side int4x3 match the other one, otherwise returns false.
+inline bool int4x3_cmpne( const int4x3* lhs, const int4x3* rhs );
+/// \relates int4x3
+/// \brief Returns a copy of the int4x3 that has been component-wise added by the given scalar value.
+inline int4x3 int4x3_comp_adds( const int4x3* lhs, const int32_t scalar );
+
+/// \relates int4x3
+/// \brief Returns a copy of the int4x3 that has been component-wise added by the corresponding component of the right-hand int4x3.
+inline int4x3 int4x3_comp_addm( const int4x3* lhs, const int4x3* rhs );
+
+/// \relates int4x3
+/// \brief Returns a copy of the int4x3 that has been component-wise subtracted by the given scalar value.
+inline int4x3 int4x3_comp_subs( const int4x3* lhs, const int32_t scalar );
+
+/// \relates int4x3
+/// \brief Returns a copy of the int4x3 that has been component-wise subtracted by the corresponding component of the right-hand int4x3.
+inline int4x3 int4x3_comp_subm( const int4x3* lhs, const int4x3* rhs );
+
+/// \relates int4x3
+/// \brief Returns a copy of the int4x3 that has been component-wise multiplied by the given scalar value.
+inline int4x3 int4x3_comp_muls( const int4x3* lhs, const int32_t scalar );
+
+/// \relates int4x3
+/// \brief Returns a copy of the int4x3 that has been component-wise multiplied by the corresponding component of the right-hand int4x3.
+inline int4x3 int4x3_comp_mulm( const int4x3* lhs, const int4x3* rhs );
+
+/// \relates int4x3
+/// \brief Returns a copy of the int4x3 that has been component-wise divided by the given scalar value.
+inline int4x3 int4x3_comp_divs( const int4x3* lhs, const int32_t scalar );
+
+/// \relates int4x3
+/// \brief Returns a copy of the int4x3 that has been component-wise divided by the corresponding component of the right-hand int4x3.
+inline int4x3 int4x3_comp_divm( const int4x3* lhs, const int4x3* rhs );
+
+/// \relates int4x3
+/// \brief Returns a copy of the int4x3 where each component of the left-hand int4x3 has been bitwise AND'd against the corresponding component of the right-hand side int4x3.
+inline int4x3 int4x3_comp_and( const int4x3* lhs, const int4x3* rhs );
+
+/// \relates int4x3
+/// \brief Returns a copy of the int4x3 where each component of the left-hand int4x3 has been bitwise OR'd against the corresponding component of the right-hand side int4x3.
+inline int4x3 int4x3_comp_or( const int4x3* lhs, const int4x3* rhs );
+
+/// \relates int4x3
+/// \brief Returns a copy of the int4x3 where each component of the left-hand int4x3 has been bitwise XOR'd against the corresponding component of the right-hand side int4x3.
+inline int4x3 int4x3_comp_xor( const int4x3* lhs, const int4x3* rhs );
+
+/// \relates int4x3
+/// \brief Performs a unary bitwise operation on all components of the given int4x3.
+inline int4x3 int4x3_comp_unary( const int4x3* lhs );
+
+/// \relates int4x3
+/// \brief Returns a copy of the int4x3 where each component of the left-hand int4x3 has been bitwise left-shifted by the corresponding component of the right-hand side int4x3.
+inline int4x3 int4x3_comp_shift_left( const int4x3* lhs, const int4x3* rhs );
+
+/// \relates int4x3
+/// \brief Returns a copy of the int4x3 where each component of the left-hand int4x3 has been bitwise right-shifted by the corresponding component of the right-hand side int4x3.
+inline int4x3 int4x3_comp_shift_right( const int4x3* lhs, const int4x3* rhs );
+
+/// \relates int4x3
+/// \brief Returns a bool4x3 where each component is true if the component of the left-hand type is less than the corresponding right-hand type component.
+inline bool4x3 int4x3_cmpl( const int4x3* lhs, const int4x3* rhs );
+
+/// \relates int4x3
+/// \brief Returns a bool4x3 where each component is true if the component of the left-hand type is less than or equal to the corresponding right-hand type component.
+inline bool4x3 int4x3_cmple( const int4x3* lhs, const int4x3* rhs );
+
+/// \relates int4x3
+/// \brief Returns a bool4x3 where each component is true if the component of the left-hand type is greater than the corresponding right-hand type component.
+inline bool4x3 int4x3_cmpg( const int4x3* lhs, const int4x3* rhs );
+
+/// \relates int4x3
+/// \brief Returns a bool4x3 where each component is true if the component of the left-hand type is greater than or equal to the corresponding right-hand type component.
+inline bool4x3 int4x3_cmpge( const int4x3* lhs, const int4x3* rhs );
+
+/// \relates int4x3
+/// \brief Sets the matrix to an identity matrix.
+inline void int4x3_identity( int4x3* mat );
+
+/// \relates int4x3
+/// \brief Returns a copy of the matrix that is transposed, where the value of each row is set to the value of each column and vice versa.
+inline int3x4 int4x3_transpose( const int4x3* mat );
+
+/// \relates int4x3
+/// \brief Returns a copy of the matrix where each row of the left-hand matrix has been dot-producted by the corresponding column of the right-hand matrix.
+inline int4x4 int4x3_mulm( const int4x3* lhs, const int3x4* rhs );
+
+/// \relates int4x3
+/// \brief Returns a copy of the matrix that has had a non-uniform scale applied to it.
+inline int4x3 int4x3_scale( const int4x3* mat, const int2* vec );
+
+
+// int4x4
+/// \relates int4x4
+/// \brief Returns true if the all the components of the left-hand-side int4x4 match the other one, otherwise returns false.
+inline bool int4x4_cmpe( const int4x4* lhs, const int4x4* rhs );
+
+/// \relates int4x4
+/// \brief Returns true if not all of the components of the left-hand-side int4x4 match the other one, otherwise returns false.
+inline bool int4x4_cmpne( const int4x4* lhs, const int4x4* rhs );
+/// \relates int4x4
+/// \brief Returns a copy of the int4x4 that has been component-wise added by the given scalar value.
+inline int4x4 int4x4_comp_adds( const int4x4* lhs, const int32_t scalar );
+
+/// \relates int4x4
+/// \brief Returns a copy of the int4x4 that has been component-wise added by the corresponding component of the right-hand int4x4.
+inline int4x4 int4x4_comp_addm( const int4x4* lhs, const int4x4* rhs );
+
+/// \relates int4x4
+/// \brief Returns a copy of the int4x4 that has been component-wise subtracted by the given scalar value.
+inline int4x4 int4x4_comp_subs( const int4x4* lhs, const int32_t scalar );
+
+/// \relates int4x4
+/// \brief Returns a copy of the int4x4 that has been component-wise subtracted by the corresponding component of the right-hand int4x4.
+inline int4x4 int4x4_comp_subm( const int4x4* lhs, const int4x4* rhs );
+
+/// \relates int4x4
+/// \brief Returns a copy of the int4x4 that has been component-wise multiplied by the given scalar value.
+inline int4x4 int4x4_comp_muls( const int4x4* lhs, const int32_t scalar );
+
+/// \relates int4x4
+/// \brief Returns a copy of the int4x4 that has been component-wise multiplied by the corresponding component of the right-hand int4x4.
+inline int4x4 int4x4_comp_mulm( const int4x4* lhs, const int4x4* rhs );
+
+/// \relates int4x4
+/// \brief Returns a copy of the int4x4 that has been component-wise divided by the given scalar value.
+inline int4x4 int4x4_comp_divs( const int4x4* lhs, const int32_t scalar );
+
+/// \relates int4x4
+/// \brief Returns a copy of the int4x4 that has been component-wise divided by the corresponding component of the right-hand int4x4.
+inline int4x4 int4x4_comp_divm( const int4x4* lhs, const int4x4* rhs );
+
+/// \relates int4x4
+/// \brief Returns a copy of the int4x4 where each component of the left-hand int4x4 has been bitwise AND'd against the corresponding component of the right-hand side int4x4.
+inline int4x4 int4x4_comp_and( const int4x4* lhs, const int4x4* rhs );
+
+/// \relates int4x4
+/// \brief Returns a copy of the int4x4 where each component of the left-hand int4x4 has been bitwise OR'd against the corresponding component of the right-hand side int4x4.
+inline int4x4 int4x4_comp_or( const int4x4* lhs, const int4x4* rhs );
+
+/// \relates int4x4
+/// \brief Returns a copy of the int4x4 where each component of the left-hand int4x4 has been bitwise XOR'd against the corresponding component of the right-hand side int4x4.
+inline int4x4 int4x4_comp_xor( const int4x4* lhs, const int4x4* rhs );
+
+/// \relates int4x4
+/// \brief Performs a unary bitwise operation on all components of the given int4x4.
+inline int4x4 int4x4_comp_unary( const int4x4* lhs );
+
+/// \relates int4x4
+/// \brief Returns a copy of the int4x4 where each component of the left-hand int4x4 has been bitwise left-shifted by the corresponding component of the right-hand side int4x4.
+inline int4x4 int4x4_comp_shift_left( const int4x4* lhs, const int4x4* rhs );
+
+/// \relates int4x4
+/// \brief Returns a copy of the int4x4 where each component of the left-hand int4x4 has been bitwise right-shifted by the corresponding component of the right-hand side int4x4.
+inline int4x4 int4x4_comp_shift_right( const int4x4* lhs, const int4x4* rhs );
+
+/// \relates int4x4
+/// \brief Returns a bool4x4 where each component is true if the component of the left-hand type is less than the corresponding right-hand type component.
+inline bool4x4 int4x4_cmpl( const int4x4* lhs, const int4x4* rhs );
+
+/// \relates int4x4
+/// \brief Returns a bool4x4 where each component is true if the component of the left-hand type is less than or equal to the corresponding right-hand type component.
+inline bool4x4 int4x4_cmple( const int4x4* lhs, const int4x4* rhs );
+
+/// \relates int4x4
+/// \brief Returns a bool4x4 where each component is true if the component of the left-hand type is greater than the corresponding right-hand type component.
+inline bool4x4 int4x4_cmpg( const int4x4* lhs, const int4x4* rhs );
+
+/// \relates int4x4
+/// \brief Returns a bool4x4 where each component is true if the component of the left-hand type is greater than or equal to the corresponding right-hand type component.
+inline bool4x4 int4x4_cmpge( const int4x4* lhs, const int4x4* rhs );
+
+/// \relates int4x4
+/// \brief Sets the matrix to an identity matrix.
+inline void int4x4_identity( int4x4* mat );
+
+/// \relates int4x4
+/// \brief Returns a copy of the matrix that is transposed, where the value of each row is set to the value of each column and vice versa.
+inline int4x4 int4x4_transpose( const int4x4* mat );
+
+/// \relates int4x4
+/// \brief Returns the determinant of the matrix.
+inline int32_t int4x4_determinant( const int4x4* mat );
+
+/// \relates int4x4
+/// \brief Returns a copy of the matrix where each row of the left-hand matrix has been dot-producted by the corresponding column of the right-hand matrix.
+inline int4x4 int4x4_mulm( const int4x4* lhs, const int4x4* rhs );
+
+/// \relates int4x4
+/// \brief Returns the right-hand vector multiplied by the left-hand matrix.
+inline int4 int4x4_mulv( const int4x4* lhs, const int4* rhs );
+
+/// \relates int4x4
+/// \brief Returns a copy of the matrix where each component of the 3rd column has been added by the given vector.
+inline int4x4 int4x4_translate( const int4x4* mat, const int3* vec );
+
+/// \relates int4x4
+/// \brief Returns a copy of the matrix that has had a non-uniform scale applied to it.
+inline int4x4 int4x4_scale( const int4x4* mat, const int3* vec );
+
+
+// uint2x2
+/// \relates uint2x2
+/// \brief Returns true if the all the components of the left-hand-side uint2x2 match the other one, otherwise returns false.
+inline bool uint2x2_cmpe( const uint2x2* lhs, const uint2x2* rhs );
+
+/// \relates uint2x2
+/// \brief Returns true if not all of the components of the left-hand-side uint2x2 match the other one, otherwise returns false.
+inline bool uint2x2_cmpne( const uint2x2* lhs, const uint2x2* rhs );
+/// \relates uint2x2
+/// \brief Returns a copy of the uint2x2 that has been component-wise added by the given scalar value.
+inline uint2x2 uint2x2_comp_adds( const uint2x2* lhs, const uint32_t scalar );
+
+/// \relates uint2x2
+/// \brief Returns a copy of the uint2x2 that has been component-wise added by the corresponding component of the right-hand uint2x2.
+inline uint2x2 uint2x2_comp_addm( const uint2x2* lhs, const uint2x2* rhs );
+
+/// \relates uint2x2
+/// \brief Returns a copy of the uint2x2 that has been component-wise subtracted by the given scalar value.
+inline uint2x2 uint2x2_comp_subs( const uint2x2* lhs, const uint32_t scalar );
+
+/// \relates uint2x2
+/// \brief Returns a copy of the uint2x2 that has been component-wise subtracted by the corresponding component of the right-hand uint2x2.
+inline uint2x2 uint2x2_comp_subm( const uint2x2* lhs, const uint2x2* rhs );
+
+/// \relates uint2x2
+/// \brief Returns a copy of the uint2x2 that has been component-wise multiplied by the given scalar value.
+inline uint2x2 uint2x2_comp_muls( const uint2x2* lhs, const uint32_t scalar );
+
+/// \relates uint2x2
+/// \brief Returns a copy of the uint2x2 that has been component-wise multiplied by the corresponding component of the right-hand uint2x2.
+inline uint2x2 uint2x2_comp_mulm( const uint2x2* lhs, const uint2x2* rhs );
+
+/// \relates uint2x2
+/// \brief Returns a copy of the uint2x2 that has been component-wise divided by the given scalar value.
+inline uint2x2 uint2x2_comp_divs( const uint2x2* lhs, const uint32_t scalar );
+
+/// \relates uint2x2
+/// \brief Returns a copy of the uint2x2 that has been component-wise divided by the corresponding component of the right-hand uint2x2.
+inline uint2x2 uint2x2_comp_divm( const uint2x2* lhs, const uint2x2* rhs );
+
+/// \relates uint2x2
+/// \brief Returns a copy of the uint2x2 where each component of the left-hand uint2x2 has been bitwise AND'd against the corresponding component of the right-hand side uint2x2.
+inline uint2x2 uint2x2_comp_and( const uint2x2* lhs, const uint2x2* rhs );
+
+/// \relates uint2x2
+/// \brief Returns a copy of the uint2x2 where each component of the left-hand uint2x2 has been bitwise OR'd against the corresponding component of the right-hand side uint2x2.
+inline uint2x2 uint2x2_comp_or( const uint2x2* lhs, const uint2x2* rhs );
+
+/// \relates uint2x2
+/// \brief Returns a copy of the uint2x2 where each component of the left-hand uint2x2 has been bitwise XOR'd against the corresponding component of the right-hand side uint2x2.
+inline uint2x2 uint2x2_comp_xor( const uint2x2* lhs, const uint2x2* rhs );
+
+/// \relates uint2x2
+/// \brief Performs a unary bitwise operation on all components of the given uint2x2.
+inline uint2x2 uint2x2_comp_unary( const uint2x2* lhs );
+
+/// \relates uint2x2
+/// \brief Returns a copy of the uint2x2 where each component of the left-hand uint2x2 has been bitwise left-shifted by the corresponding component of the right-hand side uint2x2.
+inline uint2x2 uint2x2_comp_shift_left( const uint2x2* lhs, const uint2x2* rhs );
+
+/// \relates uint2x2
+/// \brief Returns a copy of the uint2x2 where each component of the left-hand uint2x2 has been bitwise right-shifted by the corresponding component of the right-hand side uint2x2.
+inline uint2x2 uint2x2_comp_shift_right( const uint2x2* lhs, const uint2x2* rhs );
+
+/// \relates uint2x2
+/// \brief Returns a bool2x2 where each component is true if the component of the left-hand type is less than the corresponding right-hand type component.
+inline bool2x2 uint2x2_cmpl( const uint2x2* lhs, const uint2x2* rhs );
+
+/// \relates uint2x2
+/// \brief Returns a bool2x2 where each component is true if the component of the left-hand type is less than or equal to the corresponding right-hand type component.
+inline bool2x2 uint2x2_cmple( const uint2x2* lhs, const uint2x2* rhs );
+
+/// \relates uint2x2
+/// \brief Returns a bool2x2 where each component is true if the component of the left-hand type is greater than the corresponding right-hand type component.
+inline bool2x2 uint2x2_cmpg( const uint2x2* lhs, const uint2x2* rhs );
+
+/// \relates uint2x2
+/// \brief Returns a bool2x2 where each component is true if the component of the left-hand type is greater than or equal to the corresponding right-hand type component.
+inline bool2x2 uint2x2_cmpge( const uint2x2* lhs, const uint2x2* rhs );
+
+/// \relates uint2x2
+/// \brief Sets the matrix to an identity matrix.
+inline void uint2x2_identity( uint2x2* mat );
+
+/// \relates uint2x2
+/// \brief Returns a copy of the matrix that is transposed, where the value of each row is set to the value of each column and vice versa.
+inline uint2x2 uint2x2_transpose( const uint2x2* mat );
+
+/// \relates uint2x2
+/// \brief Returns a copy of the matrix where each row of the left-hand matrix has been dot-producted by the corresponding column of the right-hand matrix.
+inline uint2x2 uint2x2_mulm( const uint2x2* lhs, const uint2x2* rhs );
+
+/// \relates uint2x2
+/// \brief Returns the right-hand vector multiplied by the left-hand matrix.
+inline uint2 uint2x2_mulv( const uint2x2* lhs, const uint2* rhs );
+
+
+// uint2x3
+/// \relates uint2x3
+/// \brief Returns true if the all the components of the left-hand-side uint2x3 match the other one, otherwise returns false.
+inline bool uint2x3_cmpe( const uint2x3* lhs, const uint2x3* rhs );
+
+/// \relates uint2x3
+/// \brief Returns true if not all of the components of the left-hand-side uint2x3 match the other one, otherwise returns false.
+inline bool uint2x3_cmpne( const uint2x3* lhs, const uint2x3* rhs );
+/// \relates uint2x3
+/// \brief Returns a copy of the uint2x3 that has been component-wise added by the given scalar value.
+inline uint2x3 uint2x3_comp_adds( const uint2x3* lhs, const uint32_t scalar );
+
+/// \relates uint2x3
+/// \brief Returns a copy of the uint2x3 that has been component-wise added by the corresponding component of the right-hand uint2x3.
+inline uint2x3 uint2x3_comp_addm( const uint2x3* lhs, const uint2x3* rhs );
+
+/// \relates uint2x3
+/// \brief Returns a copy of the uint2x3 that has been component-wise subtracted by the given scalar value.
+inline uint2x3 uint2x3_comp_subs( const uint2x3* lhs, const uint32_t scalar );
+
+/// \relates uint2x3
+/// \brief Returns a copy of the uint2x3 that has been component-wise subtracted by the corresponding component of the right-hand uint2x3.
+inline uint2x3 uint2x3_comp_subm( const uint2x3* lhs, const uint2x3* rhs );
+
+/// \relates uint2x3
+/// \brief Returns a copy of the uint2x3 that has been component-wise multiplied by the given scalar value.
+inline uint2x3 uint2x3_comp_muls( const uint2x3* lhs, const uint32_t scalar );
+
+/// \relates uint2x3
+/// \brief Returns a copy of the uint2x3 that has been component-wise multiplied by the corresponding component of the right-hand uint2x3.
+inline uint2x3 uint2x3_comp_mulm( const uint2x3* lhs, const uint2x3* rhs );
+
+/// \relates uint2x3
+/// \brief Returns a copy of the uint2x3 that has been component-wise divided by the given scalar value.
+inline uint2x3 uint2x3_comp_divs( const uint2x3* lhs, const uint32_t scalar );
+
+/// \relates uint2x3
+/// \brief Returns a copy of the uint2x3 that has been component-wise divided by the corresponding component of the right-hand uint2x3.
+inline uint2x3 uint2x3_comp_divm( const uint2x3* lhs, const uint2x3* rhs );
+
+/// \relates uint2x3
+/// \brief Returns a copy of the uint2x3 where each component of the left-hand uint2x3 has been bitwise AND'd against the corresponding component of the right-hand side uint2x3.
+inline uint2x3 uint2x3_comp_and( const uint2x3* lhs, const uint2x3* rhs );
+
+/// \relates uint2x3
+/// \brief Returns a copy of the uint2x3 where each component of the left-hand uint2x3 has been bitwise OR'd against the corresponding component of the right-hand side uint2x3.
+inline uint2x3 uint2x3_comp_or( const uint2x3* lhs, const uint2x3* rhs );
+
+/// \relates uint2x3
+/// \brief Returns a copy of the uint2x3 where each component of the left-hand uint2x3 has been bitwise XOR'd against the corresponding component of the right-hand side uint2x3.
+inline uint2x3 uint2x3_comp_xor( const uint2x3* lhs, const uint2x3* rhs );
+
+/// \relates uint2x3
+/// \brief Performs a unary bitwise operation on all components of the given uint2x3.
+inline uint2x3 uint2x3_comp_unary( const uint2x3* lhs );
+
+/// \relates uint2x3
+/// \brief Returns a copy of the uint2x3 where each component of the left-hand uint2x3 has been bitwise left-shifted by the corresponding component of the right-hand side uint2x3.
+inline uint2x3 uint2x3_comp_shift_left( const uint2x3* lhs, const uint2x3* rhs );
+
+/// \relates uint2x3
+/// \brief Returns a copy of the uint2x3 where each component of the left-hand uint2x3 has been bitwise right-shifted by the corresponding component of the right-hand side uint2x3.
+inline uint2x3 uint2x3_comp_shift_right( const uint2x3* lhs, const uint2x3* rhs );
+
+/// \relates uint2x3
+/// \brief Returns a bool2x3 where each component is true if the component of the left-hand type is less than the corresponding right-hand type component.
+inline bool2x3 uint2x3_cmpl( const uint2x3* lhs, const uint2x3* rhs );
+
+/// \relates uint2x3
+/// \brief Returns a bool2x3 where each component is true if the component of the left-hand type is less than or equal to the corresponding right-hand type component.
+inline bool2x3 uint2x3_cmple( const uint2x3* lhs, const uint2x3* rhs );
+
+/// \relates uint2x3
+/// \brief Returns a bool2x3 where each component is true if the component of the left-hand type is greater than the corresponding right-hand type component.
+inline bool2x3 uint2x3_cmpg( const uint2x3* lhs, const uint2x3* rhs );
+
+/// \relates uint2x3
+/// \brief Returns a bool2x3 where each component is true if the component of the left-hand type is greater than or equal to the corresponding right-hand type component.
+inline bool2x3 uint2x3_cmpge( const uint2x3* lhs, const uint2x3* rhs );
+
+/// \relates uint2x3
+/// \brief Sets the matrix to an identity matrix.
+inline void uint2x3_identity( uint2x3* mat );
+
+/// \relates uint2x3
+/// \brief Returns a copy of the matrix that is transposed, where the value of each row is set to the value of each column and vice versa.
+inline uint3x2 uint2x3_transpose( const uint2x3* mat );
+
+/// \relates uint2x3
+/// \brief Returns a copy of the matrix where each row of the left-hand matrix has been dot-producted by the corresponding column of the right-hand matrix.
+inline uint2x2 uint2x3_mulm( const uint2x3* lhs, const uint3x2* rhs );
+
+/// \relates uint2x3
+/// \brief Returns a copy of the matrix that has had a non-uniform scale applied to it.
+inline uint2x3 uint2x3_scale( const uint2x3* mat, const uint2* vec );
+
+
+// uint2x4
+/// \relates uint2x4
+/// \brief Returns true if the all the components of the left-hand-side uint2x4 match the other one, otherwise returns false.
+inline bool uint2x4_cmpe( const uint2x4* lhs, const uint2x4* rhs );
+
+/// \relates uint2x4
+/// \brief Returns true if not all of the components of the left-hand-side uint2x4 match the other one, otherwise returns false.
+inline bool uint2x4_cmpne( const uint2x4* lhs, const uint2x4* rhs );
+/// \relates uint2x4
+/// \brief Returns a copy of the uint2x4 that has been component-wise added by the given scalar value.
+inline uint2x4 uint2x4_comp_adds( const uint2x4* lhs, const uint32_t scalar );
+
+/// \relates uint2x4
+/// \brief Returns a copy of the uint2x4 that has been component-wise added by the corresponding component of the right-hand uint2x4.
+inline uint2x4 uint2x4_comp_addm( const uint2x4* lhs, const uint2x4* rhs );
+
+/// \relates uint2x4
+/// \brief Returns a copy of the uint2x4 that has been component-wise subtracted by the given scalar value.
+inline uint2x4 uint2x4_comp_subs( const uint2x4* lhs, const uint32_t scalar );
+
+/// \relates uint2x4
+/// \brief Returns a copy of the uint2x4 that has been component-wise subtracted by the corresponding component of the right-hand uint2x4.
+inline uint2x4 uint2x4_comp_subm( const uint2x4* lhs, const uint2x4* rhs );
+
+/// \relates uint2x4
+/// \brief Returns a copy of the uint2x4 that has been component-wise multiplied by the given scalar value.
+inline uint2x4 uint2x4_comp_muls( const uint2x4* lhs, const uint32_t scalar );
+
+/// \relates uint2x4
+/// \brief Returns a copy of the uint2x4 that has been component-wise multiplied by the corresponding component of the right-hand uint2x4.
+inline uint2x4 uint2x4_comp_mulm( const uint2x4* lhs, const uint2x4* rhs );
+
+/// \relates uint2x4
+/// \brief Returns a copy of the uint2x4 that has been component-wise divided by the given scalar value.
+inline uint2x4 uint2x4_comp_divs( const uint2x4* lhs, const uint32_t scalar );
+
+/// \relates uint2x4
+/// \brief Returns a copy of the uint2x4 that has been component-wise divided by the corresponding component of the right-hand uint2x4.
+inline uint2x4 uint2x4_comp_divm( const uint2x4* lhs, const uint2x4* rhs );
+
+/// \relates uint2x4
+/// \brief Returns a copy of the uint2x4 where each component of the left-hand uint2x4 has been bitwise AND'd against the corresponding component of the right-hand side uint2x4.
+inline uint2x4 uint2x4_comp_and( const uint2x4* lhs, const uint2x4* rhs );
+
+/// \relates uint2x4
+/// \brief Returns a copy of the uint2x4 where each component of the left-hand uint2x4 has been bitwise OR'd against the corresponding component of the right-hand side uint2x4.
+inline uint2x4 uint2x4_comp_or( const uint2x4* lhs, const uint2x4* rhs );
+
+/// \relates uint2x4
+/// \brief Returns a copy of the uint2x4 where each component of the left-hand uint2x4 has been bitwise XOR'd against the corresponding component of the right-hand side uint2x4.
+inline uint2x4 uint2x4_comp_xor( const uint2x4* lhs, const uint2x4* rhs );
+
+/// \relates uint2x4
+/// \brief Performs a unary bitwise operation on all components of the given uint2x4.
+inline uint2x4 uint2x4_comp_unary( const uint2x4* lhs );
+
+/// \relates uint2x4
+/// \brief Returns a copy of the uint2x4 where each component of the left-hand uint2x4 has been bitwise left-shifted by the corresponding component of the right-hand side uint2x4.
+inline uint2x4 uint2x4_comp_shift_left( const uint2x4* lhs, const uint2x4* rhs );
+
+/// \relates uint2x4
+/// \brief Returns a copy of the uint2x4 where each component of the left-hand uint2x4 has been bitwise right-shifted by the corresponding component of the right-hand side uint2x4.
+inline uint2x4 uint2x4_comp_shift_right( const uint2x4* lhs, const uint2x4* rhs );
+
+/// \relates uint2x4
+/// \brief Returns a bool2x4 where each component is true if the component of the left-hand type is less than the corresponding right-hand type component.
+inline bool2x4 uint2x4_cmpl( const uint2x4* lhs, const uint2x4* rhs );
+
+/// \relates uint2x4
+/// \brief Returns a bool2x4 where each component is true if the component of the left-hand type is less than or equal to the corresponding right-hand type component.
+inline bool2x4 uint2x4_cmple( const uint2x4* lhs, const uint2x4* rhs );
+
+/// \relates uint2x4
+/// \brief Returns a bool2x4 where each component is true if the component of the left-hand type is greater than the corresponding right-hand type component.
+inline bool2x4 uint2x4_cmpg( const uint2x4* lhs, const uint2x4* rhs );
+
+/// \relates uint2x4
+/// \brief Returns a bool2x4 where each component is true if the component of the left-hand type is greater than or equal to the corresponding right-hand type component.
+inline bool2x4 uint2x4_cmpge( const uint2x4* lhs, const uint2x4* rhs );
+
+/// \relates uint2x4
+/// \brief Sets the matrix to an identity matrix.
+inline void uint2x4_identity( uint2x4* mat );
+
+/// \relates uint2x4
+/// \brief Returns a copy of the matrix that is transposed, where the value of each row is set to the value of each column and vice versa.
+inline uint4x2 uint2x4_transpose( const uint2x4* mat );
+
+/// \relates uint2x4
+/// \brief Returns a copy of the matrix where each row of the left-hand matrix has been dot-producted by the corresponding column of the right-hand matrix.
+inline uint2x2 uint2x4_mulm( const uint2x4* lhs, const uint4x2* rhs );
+
+/// \relates uint2x4
+/// \brief Returns a copy of the matrix that has had a non-uniform scale applied to it.
+inline uint2x4 uint2x4_scale( const uint2x4* mat, const uint2* vec );
+
+
+// uint3x2
+/// \relates uint3x2
+/// \brief Returns true if the all the components of the left-hand-side uint3x2 match the other one, otherwise returns false.
+inline bool uint3x2_cmpe( const uint3x2* lhs, const uint3x2* rhs );
+
+/// \relates uint3x2
+/// \brief Returns true if not all of the components of the left-hand-side uint3x2 match the other one, otherwise returns false.
+inline bool uint3x2_cmpne( const uint3x2* lhs, const uint3x2* rhs );
+/// \relates uint3x2
+/// \brief Returns a copy of the uint3x2 that has been component-wise added by the given scalar value.
+inline uint3x2 uint3x2_comp_adds( const uint3x2* lhs, const uint32_t scalar );
+
+/// \relates uint3x2
+/// \brief Returns a copy of the uint3x2 that has been component-wise added by the corresponding component of the right-hand uint3x2.
+inline uint3x2 uint3x2_comp_addm( const uint3x2* lhs, const uint3x2* rhs );
+
+/// \relates uint3x2
+/// \brief Returns a copy of the uint3x2 that has been component-wise subtracted by the given scalar value.
+inline uint3x2 uint3x2_comp_subs( const uint3x2* lhs, const uint32_t scalar );
+
+/// \relates uint3x2
+/// \brief Returns a copy of the uint3x2 that has been component-wise subtracted by the corresponding component of the right-hand uint3x2.
+inline uint3x2 uint3x2_comp_subm( const uint3x2* lhs, const uint3x2* rhs );
+
+/// \relates uint3x2
+/// \brief Returns a copy of the uint3x2 that has been component-wise multiplied by the given scalar value.
+inline uint3x2 uint3x2_comp_muls( const uint3x2* lhs, const uint32_t scalar );
+
+/// \relates uint3x2
+/// \brief Returns a copy of the uint3x2 that has been component-wise multiplied by the corresponding component of the right-hand uint3x2.
+inline uint3x2 uint3x2_comp_mulm( const uint3x2* lhs, const uint3x2* rhs );
+
+/// \relates uint3x2
+/// \brief Returns a copy of the uint3x2 that has been component-wise divided by the given scalar value.
+inline uint3x2 uint3x2_comp_divs( const uint3x2* lhs, const uint32_t scalar );
+
+/// \relates uint3x2
+/// \brief Returns a copy of the uint3x2 that has been component-wise divided by the corresponding component of the right-hand uint3x2.
+inline uint3x2 uint3x2_comp_divm( const uint3x2* lhs, const uint3x2* rhs );
+
+/// \relates uint3x2
+/// \brief Returns a copy of the uint3x2 where each component of the left-hand uint3x2 has been bitwise AND'd against the corresponding component of the right-hand side uint3x2.
+inline uint3x2 uint3x2_comp_and( const uint3x2* lhs, const uint3x2* rhs );
+
+/// \relates uint3x2
+/// \brief Returns a copy of the uint3x2 where each component of the left-hand uint3x2 has been bitwise OR'd against the corresponding component of the right-hand side uint3x2.
+inline uint3x2 uint3x2_comp_or( const uint3x2* lhs, const uint3x2* rhs );
+
+/// \relates uint3x2
+/// \brief Returns a copy of the uint3x2 where each component of the left-hand uint3x2 has been bitwise XOR'd against the corresponding component of the right-hand side uint3x2.
+inline uint3x2 uint3x2_comp_xor( const uint3x2* lhs, const uint3x2* rhs );
+
+/// \relates uint3x2
+/// \brief Performs a unary bitwise operation on all components of the given uint3x2.
+inline uint3x2 uint3x2_comp_unary( const uint3x2* lhs );
+
+/// \relates uint3x2
+/// \brief Returns a copy of the uint3x2 where each component of the left-hand uint3x2 has been bitwise left-shifted by the corresponding component of the right-hand side uint3x2.
+inline uint3x2 uint3x2_comp_shift_left( const uint3x2* lhs, const uint3x2* rhs );
+
+/// \relates uint3x2
+/// \brief Returns a copy of the uint3x2 where each component of the left-hand uint3x2 has been bitwise right-shifted by the corresponding component of the right-hand side uint3x2.
+inline uint3x2 uint3x2_comp_shift_right( const uint3x2* lhs, const uint3x2* rhs );
+
+/// \relates uint3x2
+/// \brief Returns a bool3x2 where each component is true if the component of the left-hand type is less than the corresponding right-hand type component.
+inline bool3x2 uint3x2_cmpl( const uint3x2* lhs, const uint3x2* rhs );
+
+/// \relates uint3x2
+/// \brief Returns a bool3x2 where each component is true if the component of the left-hand type is less than or equal to the corresponding right-hand type component.
+inline bool3x2 uint3x2_cmple( const uint3x2* lhs, const uint3x2* rhs );
+
+/// \relates uint3x2
+/// \brief Returns a bool3x2 where each component is true if the component of the left-hand type is greater than the corresponding right-hand type component.
+inline bool3x2 uint3x2_cmpg( const uint3x2* lhs, const uint3x2* rhs );
+
+/// \relates uint3x2
+/// \brief Returns a bool3x2 where each component is true if the component of the left-hand type is greater than or equal to the corresponding right-hand type component.
+inline bool3x2 uint3x2_cmpge( const uint3x2* lhs, const uint3x2* rhs );
+
+/// \relates uint3x2
+/// \brief Sets the matrix to an identity matrix.
+inline void uint3x2_identity( uint3x2* mat );
+
+/// \relates uint3x2
+/// \brief Returns a copy of the matrix that is transposed, where the value of each row is set to the value of each column and vice versa.
+inline uint2x3 uint3x2_transpose( const uint3x2* mat );
+
+/// \relates uint3x2
+/// \brief Returns a copy of the matrix where each row of the left-hand matrix has been dot-producted by the corresponding column of the right-hand matrix.
+inline uint3x3 uint3x2_mulm( const uint3x2* lhs, const uint2x3* rhs );
+
+
+// uint3x3
+/// \relates uint3x3
+/// \brief Returns true if the all the components of the left-hand-side uint3x3 match the other one, otherwise returns false.
+inline bool uint3x3_cmpe( const uint3x3* lhs, const uint3x3* rhs );
+
+/// \relates uint3x3
+/// \brief Returns true if not all of the components of the left-hand-side uint3x3 match the other one, otherwise returns false.
+inline bool uint3x3_cmpne( const uint3x3* lhs, const uint3x3* rhs );
+/// \relates uint3x3
+/// \brief Returns a copy of the uint3x3 that has been component-wise added by the given scalar value.
+inline uint3x3 uint3x3_comp_adds( const uint3x3* lhs, const uint32_t scalar );
+
+/// \relates uint3x3
+/// \brief Returns a copy of the uint3x3 that has been component-wise added by the corresponding component of the right-hand uint3x3.
+inline uint3x3 uint3x3_comp_addm( const uint3x3* lhs, const uint3x3* rhs );
+
+/// \relates uint3x3
+/// \brief Returns a copy of the uint3x3 that has been component-wise subtracted by the given scalar value.
+inline uint3x3 uint3x3_comp_subs( const uint3x3* lhs, const uint32_t scalar );
+
+/// \relates uint3x3
+/// \brief Returns a copy of the uint3x3 that has been component-wise subtracted by the corresponding component of the right-hand uint3x3.
+inline uint3x3 uint3x3_comp_subm( const uint3x3* lhs, const uint3x3* rhs );
+
+/// \relates uint3x3
+/// \brief Returns a copy of the uint3x3 that has been component-wise multiplied by the given scalar value.
+inline uint3x3 uint3x3_comp_muls( const uint3x3* lhs, const uint32_t scalar );
+
+/// \relates uint3x3
+/// \brief Returns a copy of the uint3x3 that has been component-wise multiplied by the corresponding component of the right-hand uint3x3.
+inline uint3x3 uint3x3_comp_mulm( const uint3x3* lhs, const uint3x3* rhs );
+
+/// \relates uint3x3
+/// \brief Returns a copy of the uint3x3 that has been component-wise divided by the given scalar value.
+inline uint3x3 uint3x3_comp_divs( const uint3x3* lhs, const uint32_t scalar );
+
+/// \relates uint3x3
+/// \brief Returns a copy of the uint3x3 that has been component-wise divided by the corresponding component of the right-hand uint3x3.
+inline uint3x3 uint3x3_comp_divm( const uint3x3* lhs, const uint3x3* rhs );
+
+/// \relates uint3x3
+/// \brief Returns a copy of the uint3x3 where each component of the left-hand uint3x3 has been bitwise AND'd against the corresponding component of the right-hand side uint3x3.
+inline uint3x3 uint3x3_comp_and( const uint3x3* lhs, const uint3x3* rhs );
+
+/// \relates uint3x3
+/// \brief Returns a copy of the uint3x3 where each component of the left-hand uint3x3 has been bitwise OR'd against the corresponding component of the right-hand side uint3x3.
+inline uint3x3 uint3x3_comp_or( const uint3x3* lhs, const uint3x3* rhs );
+
+/// \relates uint3x3
+/// \brief Returns a copy of the uint3x3 where each component of the left-hand uint3x3 has been bitwise XOR'd against the corresponding component of the right-hand side uint3x3.
+inline uint3x3 uint3x3_comp_xor( const uint3x3* lhs, const uint3x3* rhs );
+
+/// \relates uint3x3
+/// \brief Performs a unary bitwise operation on all components of the given uint3x3.
+inline uint3x3 uint3x3_comp_unary( const uint3x3* lhs );
+
+/// \relates uint3x3
+/// \brief Returns a copy of the uint3x3 where each component of the left-hand uint3x3 has been bitwise left-shifted by the corresponding component of the right-hand side uint3x3.
+inline uint3x3 uint3x3_comp_shift_left( const uint3x3* lhs, const uint3x3* rhs );
+
+/// \relates uint3x3
+/// \brief Returns a copy of the uint3x3 where each component of the left-hand uint3x3 has been bitwise right-shifted by the corresponding component of the right-hand side uint3x3.
+inline uint3x3 uint3x3_comp_shift_right( const uint3x3* lhs, const uint3x3* rhs );
+
+/// \relates uint3x3
+/// \brief Returns a bool3x3 where each component is true if the component of the left-hand type is less than the corresponding right-hand type component.
+inline bool3x3 uint3x3_cmpl( const uint3x3* lhs, const uint3x3* rhs );
+
+/// \relates uint3x3
+/// \brief Returns a bool3x3 where each component is true if the component of the left-hand type is less than or equal to the corresponding right-hand type component.
+inline bool3x3 uint3x3_cmple( const uint3x3* lhs, const uint3x3* rhs );
+
+/// \relates uint3x3
+/// \brief Returns a bool3x3 where each component is true if the component of the left-hand type is greater than the corresponding right-hand type component.
+inline bool3x3 uint3x3_cmpg( const uint3x3* lhs, const uint3x3* rhs );
+
+/// \relates uint3x3
+/// \brief Returns a bool3x3 where each component is true if the component of the left-hand type is greater than or equal to the corresponding right-hand type component.
+inline bool3x3 uint3x3_cmpge( const uint3x3* lhs, const uint3x3* rhs );
+
+/// \relates uint3x3
+/// \brief Sets the matrix to an identity matrix.
+inline void uint3x3_identity( uint3x3* mat );
+
+/// \relates uint3x3
+/// \brief Returns a copy of the matrix that is transposed, where the value of each row is set to the value of each column and vice versa.
+inline uint3x3 uint3x3_transpose( const uint3x3* mat );
+
+/// \relates uint3x3
+/// \brief Returns a copy of the matrix where each row of the left-hand matrix has been dot-producted by the corresponding column of the right-hand matrix.
+inline uint3x3 uint3x3_mulm( const uint3x3* lhs, const uint3x3* rhs );
+
+/// \relates uint3x3
+/// \brief Returns the right-hand vector multiplied by the left-hand matrix.
+inline uint3 uint3x3_mulv( const uint3x3* lhs, const uint3* rhs );
+
+/// \relates uint3x3
+/// \brief Returns a copy of the matrix where each component of the 3rd column has been added by the given vector.
+inline uint3x3 uint3x3_translate( const uint3x3* mat, const uint2* vec );
+
+/// \relates uint3x3
+/// \brief Returns a copy of the matrix that has had a non-uniform scale applied to it.
+inline uint3x3 uint3x3_scale( const uint3x3* mat, const uint2* vec );
+
+
+// uint3x4
+/// \relates uint3x4
+/// \brief Returns true if the all the components of the left-hand-side uint3x4 match the other one, otherwise returns false.
+inline bool uint3x4_cmpe( const uint3x4* lhs, const uint3x4* rhs );
+
+/// \relates uint3x4
+/// \brief Returns true if not all of the components of the left-hand-side uint3x4 match the other one, otherwise returns false.
+inline bool uint3x4_cmpne( const uint3x4* lhs, const uint3x4* rhs );
+/// \relates uint3x4
+/// \brief Returns a copy of the uint3x4 that has been component-wise added by the given scalar value.
+inline uint3x4 uint3x4_comp_adds( const uint3x4* lhs, const uint32_t scalar );
+
+/// \relates uint3x4
+/// \brief Returns a copy of the uint3x4 that has been component-wise added by the corresponding component of the right-hand uint3x4.
+inline uint3x4 uint3x4_comp_addm( const uint3x4* lhs, const uint3x4* rhs );
+
+/// \relates uint3x4
+/// \brief Returns a copy of the uint3x4 that has been component-wise subtracted by the given scalar value.
+inline uint3x4 uint3x4_comp_subs( const uint3x4* lhs, const uint32_t scalar );
+
+/// \relates uint3x4
+/// \brief Returns a copy of the uint3x4 that has been component-wise subtracted by the corresponding component of the right-hand uint3x4.
+inline uint3x4 uint3x4_comp_subm( const uint3x4* lhs, const uint3x4* rhs );
+
+/// \relates uint3x4
+/// \brief Returns a copy of the uint3x4 that has been component-wise multiplied by the given scalar value.
+inline uint3x4 uint3x4_comp_muls( const uint3x4* lhs, const uint32_t scalar );
+
+/// \relates uint3x4
+/// \brief Returns a copy of the uint3x4 that has been component-wise multiplied by the corresponding component of the right-hand uint3x4.
+inline uint3x4 uint3x4_comp_mulm( const uint3x4* lhs, const uint3x4* rhs );
+
+/// \relates uint3x4
+/// \brief Returns a copy of the uint3x4 that has been component-wise divided by the given scalar value.
+inline uint3x4 uint3x4_comp_divs( const uint3x4* lhs, const uint32_t scalar );
+
+/// \relates uint3x4
+/// \brief Returns a copy of the uint3x4 that has been component-wise divided by the corresponding component of the right-hand uint3x4.
+inline uint3x4 uint3x4_comp_divm( const uint3x4* lhs, const uint3x4* rhs );
+
+/// \relates uint3x4
+/// \brief Returns a copy of the uint3x4 where each component of the left-hand uint3x4 has been bitwise AND'd against the corresponding component of the right-hand side uint3x4.
+inline uint3x4 uint3x4_comp_and( const uint3x4* lhs, const uint3x4* rhs );
+
+/// \relates uint3x4
+/// \brief Returns a copy of the uint3x4 where each component of the left-hand uint3x4 has been bitwise OR'd against the corresponding component of the right-hand side uint3x4.
+inline uint3x4 uint3x4_comp_or( const uint3x4* lhs, const uint3x4* rhs );
+
+/// \relates uint3x4
+/// \brief Returns a copy of the uint3x4 where each component of the left-hand uint3x4 has been bitwise XOR'd against the corresponding component of the right-hand side uint3x4.
+inline uint3x4 uint3x4_comp_xor( const uint3x4* lhs, const uint3x4* rhs );
+
+/// \relates uint3x4
+/// \brief Performs a unary bitwise operation on all components of the given uint3x4.
+inline uint3x4 uint3x4_comp_unary( const uint3x4* lhs );
+
+/// \relates uint3x4
+/// \brief Returns a copy of the uint3x4 where each component of the left-hand uint3x4 has been bitwise left-shifted by the corresponding component of the right-hand side uint3x4.
+inline uint3x4 uint3x4_comp_shift_left( const uint3x4* lhs, const uint3x4* rhs );
+
+/// \relates uint3x4
+/// \brief Returns a copy of the uint3x4 where each component of the left-hand uint3x4 has been bitwise right-shifted by the corresponding component of the right-hand side uint3x4.
+inline uint3x4 uint3x4_comp_shift_right( const uint3x4* lhs, const uint3x4* rhs );
+
+/// \relates uint3x4
+/// \brief Returns a bool3x4 where each component is true if the component of the left-hand type is less than the corresponding right-hand type component.
+inline bool3x4 uint3x4_cmpl( const uint3x4* lhs, const uint3x4* rhs );
+
+/// \relates uint3x4
+/// \brief Returns a bool3x4 where each component is true if the component of the left-hand type is less than or equal to the corresponding right-hand type component.
+inline bool3x4 uint3x4_cmple( const uint3x4* lhs, const uint3x4* rhs );
+
+/// \relates uint3x4
+/// \brief Returns a bool3x4 where each component is true if the component of the left-hand type is greater than the corresponding right-hand type component.
+inline bool3x4 uint3x4_cmpg( const uint3x4* lhs, const uint3x4* rhs );
+
+/// \relates uint3x4
+/// \brief Returns a bool3x4 where each component is true if the component of the left-hand type is greater than or equal to the corresponding right-hand type component.
+inline bool3x4 uint3x4_cmpge( const uint3x4* lhs, const uint3x4* rhs );
+
+/// \relates uint3x4
+/// \brief Sets the matrix to an identity matrix.
+inline void uint3x4_identity( uint3x4* mat );
+
+/// \relates uint3x4
+/// \brief Returns a copy of the matrix that is transposed, where the value of each row is set to the value of each column and vice versa.
+inline uint4x3 uint3x4_transpose( const uint3x4* mat );
+
+/// \relates uint3x4
+/// \brief Returns a copy of the matrix where each row of the left-hand matrix has been dot-producted by the corresponding column of the right-hand matrix.
+inline uint3x3 uint3x4_mulm( const uint3x4* lhs, const uint4x3* rhs );
+
+/// \relates uint3x4
+/// \brief Returns a copy of the matrix where each component of the 3rd column has been added by the given vector.
+inline uint3x4 uint3x4_translate( const uint3x4* mat, const uint3* vec );
+
+/// \relates uint3x4
+/// \brief Returns a copy of the matrix that has had a non-uniform scale applied to it.
+inline uint3x4 uint3x4_scale( const uint3x4* mat, const uint2* vec );
+
+
+// uint4x2
+/// \relates uint4x2
+/// \brief Returns true if the all the components of the left-hand-side uint4x2 match the other one, otherwise returns false.
+inline bool uint4x2_cmpe( const uint4x2* lhs, const uint4x2* rhs );
+
+/// \relates uint4x2
+/// \brief Returns true if not all of the components of the left-hand-side uint4x2 match the other one, otherwise returns false.
+inline bool uint4x2_cmpne( const uint4x2* lhs, const uint4x2* rhs );
+/// \relates uint4x2
+/// \brief Returns a copy of the uint4x2 that has been component-wise added by the given scalar value.
+inline uint4x2 uint4x2_comp_adds( const uint4x2* lhs, const uint32_t scalar );
+
+/// \relates uint4x2
+/// \brief Returns a copy of the uint4x2 that has been component-wise added by the corresponding component of the right-hand uint4x2.
+inline uint4x2 uint4x2_comp_addm( const uint4x2* lhs, const uint4x2* rhs );
+
+/// \relates uint4x2
+/// \brief Returns a copy of the uint4x2 that has been component-wise subtracted by the given scalar value.
+inline uint4x2 uint4x2_comp_subs( const uint4x2* lhs, const uint32_t scalar );
+
+/// \relates uint4x2
+/// \brief Returns a copy of the uint4x2 that has been component-wise subtracted by the corresponding component of the right-hand uint4x2.
+inline uint4x2 uint4x2_comp_subm( const uint4x2* lhs, const uint4x2* rhs );
+
+/// \relates uint4x2
+/// \brief Returns a copy of the uint4x2 that has been component-wise multiplied by the given scalar value.
+inline uint4x2 uint4x2_comp_muls( const uint4x2* lhs, const uint32_t scalar );
+
+/// \relates uint4x2
+/// \brief Returns a copy of the uint4x2 that has been component-wise multiplied by the corresponding component of the right-hand uint4x2.
+inline uint4x2 uint4x2_comp_mulm( const uint4x2* lhs, const uint4x2* rhs );
+
+/// \relates uint4x2
+/// \brief Returns a copy of the uint4x2 that has been component-wise divided by the given scalar value.
+inline uint4x2 uint4x2_comp_divs( const uint4x2* lhs, const uint32_t scalar );
+
+/// \relates uint4x2
+/// \brief Returns a copy of the uint4x2 that has been component-wise divided by the corresponding component of the right-hand uint4x2.
+inline uint4x2 uint4x2_comp_divm( const uint4x2* lhs, const uint4x2* rhs );
+
+/// \relates uint4x2
+/// \brief Returns a copy of the uint4x2 where each component of the left-hand uint4x2 has been bitwise AND'd against the corresponding component of the right-hand side uint4x2.
+inline uint4x2 uint4x2_comp_and( const uint4x2* lhs, const uint4x2* rhs );
+
+/// \relates uint4x2
+/// \brief Returns a copy of the uint4x2 where each component of the left-hand uint4x2 has been bitwise OR'd against the corresponding component of the right-hand side uint4x2.
+inline uint4x2 uint4x2_comp_or( const uint4x2* lhs, const uint4x2* rhs );
+
+/// \relates uint4x2
+/// \brief Returns a copy of the uint4x2 where each component of the left-hand uint4x2 has been bitwise XOR'd against the corresponding component of the right-hand side uint4x2.
+inline uint4x2 uint4x2_comp_xor( const uint4x2* lhs, const uint4x2* rhs );
+
+/// \relates uint4x2
+/// \brief Performs a unary bitwise operation on all components of the given uint4x2.
+inline uint4x2 uint4x2_comp_unary( const uint4x2* lhs );
+
+/// \relates uint4x2
+/// \brief Returns a copy of the uint4x2 where each component of the left-hand uint4x2 has been bitwise left-shifted by the corresponding component of the right-hand side uint4x2.
+inline uint4x2 uint4x2_comp_shift_left( const uint4x2* lhs, const uint4x2* rhs );
+
+/// \relates uint4x2
+/// \brief Returns a copy of the uint4x2 where each component of the left-hand uint4x2 has been bitwise right-shifted by the corresponding component of the right-hand side uint4x2.
+inline uint4x2 uint4x2_comp_shift_right( const uint4x2* lhs, const uint4x2* rhs );
+
+/// \relates uint4x2
+/// \brief Returns a bool4x2 where each component is true if the component of the left-hand type is less than the corresponding right-hand type component.
+inline bool4x2 uint4x2_cmpl( const uint4x2* lhs, const uint4x2* rhs );
+
+/// \relates uint4x2
+/// \brief Returns a bool4x2 where each component is true if the component of the left-hand type is less than or equal to the corresponding right-hand type component.
+inline bool4x2 uint4x2_cmple( const uint4x2* lhs, const uint4x2* rhs );
+
+/// \relates uint4x2
+/// \brief Returns a bool4x2 where each component is true if the component of the left-hand type is greater than the corresponding right-hand type component.
+inline bool4x2 uint4x2_cmpg( const uint4x2* lhs, const uint4x2* rhs );
+
+/// \relates uint4x2
+/// \brief Returns a bool4x2 where each component is true if the component of the left-hand type is greater than or equal to the corresponding right-hand type component.
+inline bool4x2 uint4x2_cmpge( const uint4x2* lhs, const uint4x2* rhs );
+
+/// \relates uint4x2
+/// \brief Sets the matrix to an identity matrix.
+inline void uint4x2_identity( uint4x2* mat );
+
+/// \relates uint4x2
+/// \brief Returns a copy of the matrix that is transposed, where the value of each row is set to the value of each column and vice versa.
+inline uint2x4 uint4x2_transpose( const uint4x2* mat );
+
+/// \relates uint4x2
+/// \brief Returns a copy of the matrix where each row of the left-hand matrix has been dot-producted by the corresponding column of the right-hand matrix.
+inline uint4x4 uint4x2_mulm( const uint4x2* lhs, const uint2x4* rhs );
+
+
+// uint4x3
+/// \relates uint4x3
+/// \brief Returns true if the all the components of the left-hand-side uint4x3 match the other one, otherwise returns false.
+inline bool uint4x3_cmpe( const uint4x3* lhs, const uint4x3* rhs );
+
+/// \relates uint4x3
+/// \brief Returns true if not all of the components of the left-hand-side uint4x3 match the other one, otherwise returns false.
+inline bool uint4x3_cmpne( const uint4x3* lhs, const uint4x3* rhs );
+/// \relates uint4x3
+/// \brief Returns a copy of the uint4x3 that has been component-wise added by the given scalar value.
+inline uint4x3 uint4x3_comp_adds( const uint4x3* lhs, const uint32_t scalar );
+
+/// \relates uint4x3
+/// \brief Returns a copy of the uint4x3 that has been component-wise added by the corresponding component of the right-hand uint4x3.
+inline uint4x3 uint4x3_comp_addm( const uint4x3* lhs, const uint4x3* rhs );
+
+/// \relates uint4x3
+/// \brief Returns a copy of the uint4x3 that has been component-wise subtracted by the given scalar value.
+inline uint4x3 uint4x3_comp_subs( const uint4x3* lhs, const uint32_t scalar );
+
+/// \relates uint4x3
+/// \brief Returns a copy of the uint4x3 that has been component-wise subtracted by the corresponding component of the right-hand uint4x3.
+inline uint4x3 uint4x3_comp_subm( const uint4x3* lhs, const uint4x3* rhs );
+
+/// \relates uint4x3
+/// \brief Returns a copy of the uint4x3 that has been component-wise multiplied by the given scalar value.
+inline uint4x3 uint4x3_comp_muls( const uint4x3* lhs, const uint32_t scalar );
+
+/// \relates uint4x3
+/// \brief Returns a copy of the uint4x3 that has been component-wise multiplied by the corresponding component of the right-hand uint4x3.
+inline uint4x3 uint4x3_comp_mulm( const uint4x3* lhs, const uint4x3* rhs );
+
+/// \relates uint4x3
+/// \brief Returns a copy of the uint4x3 that has been component-wise divided by the given scalar value.
+inline uint4x3 uint4x3_comp_divs( const uint4x3* lhs, const uint32_t scalar );
+
+/// \relates uint4x3
+/// \brief Returns a copy of the uint4x3 that has been component-wise divided by the corresponding component of the right-hand uint4x3.
+inline uint4x3 uint4x3_comp_divm( const uint4x3* lhs, const uint4x3* rhs );
+
+/// \relates uint4x3
+/// \brief Returns a copy of the uint4x3 where each component of the left-hand uint4x3 has been bitwise AND'd against the corresponding component of the right-hand side uint4x3.
+inline uint4x3 uint4x3_comp_and( const uint4x3* lhs, const uint4x3* rhs );
+
+/// \relates uint4x3
+/// \brief Returns a copy of the uint4x3 where each component of the left-hand uint4x3 has been bitwise OR'd against the corresponding component of the right-hand side uint4x3.
+inline uint4x3 uint4x3_comp_or( const uint4x3* lhs, const uint4x3* rhs );
+
+/// \relates uint4x3
+/// \brief Returns a copy of the uint4x3 where each component of the left-hand uint4x3 has been bitwise XOR'd against the corresponding component of the right-hand side uint4x3.
+inline uint4x3 uint4x3_comp_xor( const uint4x3* lhs, const uint4x3* rhs );
+
+/// \relates uint4x3
+/// \brief Performs a unary bitwise operation on all components of the given uint4x3.
+inline uint4x3 uint4x3_comp_unary( const uint4x3* lhs );
+
+/// \relates uint4x3
+/// \brief Returns a copy of the uint4x3 where each component of the left-hand uint4x3 has been bitwise left-shifted by the corresponding component of the right-hand side uint4x3.
+inline uint4x3 uint4x3_comp_shift_left( const uint4x3* lhs, const uint4x3* rhs );
+
+/// \relates uint4x3
+/// \brief Returns a copy of the uint4x3 where each component of the left-hand uint4x3 has been bitwise right-shifted by the corresponding component of the right-hand side uint4x3.
+inline uint4x3 uint4x3_comp_shift_right( const uint4x3* lhs, const uint4x3* rhs );
+
+/// \relates uint4x3
+/// \brief Returns a bool4x3 where each component is true if the component of the left-hand type is less than the corresponding right-hand type component.
+inline bool4x3 uint4x3_cmpl( const uint4x3* lhs, const uint4x3* rhs );
+
+/// \relates uint4x3
+/// \brief Returns a bool4x3 where each component is true if the component of the left-hand type is less than or equal to the corresponding right-hand type component.
+inline bool4x3 uint4x3_cmple( const uint4x3* lhs, const uint4x3* rhs );
+
+/// \relates uint4x3
+/// \brief Returns a bool4x3 where each component is true if the component of the left-hand type is greater than the corresponding right-hand type component.
+inline bool4x3 uint4x3_cmpg( const uint4x3* lhs, const uint4x3* rhs );
+
+/// \relates uint4x3
+/// \brief Returns a bool4x3 where each component is true if the component of the left-hand type is greater than or equal to the corresponding right-hand type component.
+inline bool4x3 uint4x3_cmpge( const uint4x3* lhs, const uint4x3* rhs );
+
+/// \relates uint4x3
+/// \brief Sets the matrix to an identity matrix.
+inline void uint4x3_identity( uint4x3* mat );
+
+/// \relates uint4x3
+/// \brief Returns a copy of the matrix that is transposed, where the value of each row is set to the value of each column and vice versa.
+inline uint3x4 uint4x3_transpose( const uint4x3* mat );
+
+/// \relates uint4x3
+/// \brief Returns a copy of the matrix where each row of the left-hand matrix has been dot-producted by the corresponding column of the right-hand matrix.
+inline uint4x4 uint4x3_mulm( const uint4x3* lhs, const uint3x4* rhs );
+
+/// \relates uint4x3
+/// \brief Returns a copy of the matrix that has had a non-uniform scale applied to it.
+inline uint4x3 uint4x3_scale( const uint4x3* mat, const uint2* vec );
+
+
+// uint4x4
+/// \relates uint4x4
+/// \brief Returns true if the all the components of the left-hand-side uint4x4 match the other one, otherwise returns false.
+inline bool uint4x4_cmpe( const uint4x4* lhs, const uint4x4* rhs );
+
+/// \relates uint4x4
+/// \brief Returns true if not all of the components of the left-hand-side uint4x4 match the other one, otherwise returns false.
+inline bool uint4x4_cmpne( const uint4x4* lhs, const uint4x4* rhs );
+/// \relates uint4x4
+/// \brief Returns a copy of the uint4x4 that has been component-wise added by the given scalar value.
+inline uint4x4 uint4x4_comp_adds( const uint4x4* lhs, const uint32_t scalar );
+
+/// \relates uint4x4
+/// \brief Returns a copy of the uint4x4 that has been component-wise added by the corresponding component of the right-hand uint4x4.
+inline uint4x4 uint4x4_comp_addm( const uint4x4* lhs, const uint4x4* rhs );
+
+/// \relates uint4x4
+/// \brief Returns a copy of the uint4x4 that has been component-wise subtracted by the given scalar value.
+inline uint4x4 uint4x4_comp_subs( const uint4x4* lhs, const uint32_t scalar );
+
+/// \relates uint4x4
+/// \brief Returns a copy of the uint4x4 that has been component-wise subtracted by the corresponding component of the right-hand uint4x4.
+inline uint4x4 uint4x4_comp_subm( const uint4x4* lhs, const uint4x4* rhs );
+
+/// \relates uint4x4
+/// \brief Returns a copy of the uint4x4 that has been component-wise multiplied by the given scalar value.
+inline uint4x4 uint4x4_comp_muls( const uint4x4* lhs, const uint32_t scalar );
+
+/// \relates uint4x4
+/// \brief Returns a copy of the uint4x4 that has been component-wise multiplied by the corresponding component of the right-hand uint4x4.
+inline uint4x4 uint4x4_comp_mulm( const uint4x4* lhs, const uint4x4* rhs );
+
+/// \relates uint4x4
+/// \brief Returns a copy of the uint4x4 that has been component-wise divided by the given scalar value.
+inline uint4x4 uint4x4_comp_divs( const uint4x4* lhs, const uint32_t scalar );
+
+/// \relates uint4x4
+/// \brief Returns a copy of the uint4x4 that has been component-wise divided by the corresponding component of the right-hand uint4x4.
+inline uint4x4 uint4x4_comp_divm( const uint4x4* lhs, const uint4x4* rhs );
+
+/// \relates uint4x4
+/// \brief Returns a copy of the uint4x4 where each component of the left-hand uint4x4 has been bitwise AND'd against the corresponding component of the right-hand side uint4x4.
+inline uint4x4 uint4x4_comp_and( const uint4x4* lhs, const uint4x4* rhs );
+
+/// \relates uint4x4
+/// \brief Returns a copy of the uint4x4 where each component of the left-hand uint4x4 has been bitwise OR'd against the corresponding component of the right-hand side uint4x4.
+inline uint4x4 uint4x4_comp_or( const uint4x4* lhs, const uint4x4* rhs );
+
+/// \relates uint4x4
+/// \brief Returns a copy of the uint4x4 where each component of the left-hand uint4x4 has been bitwise XOR'd against the corresponding component of the right-hand side uint4x4.
+inline uint4x4 uint4x4_comp_xor( const uint4x4* lhs, const uint4x4* rhs );
+
+/// \relates uint4x4
+/// \brief Performs a unary bitwise operation on all components of the given uint4x4.
+inline uint4x4 uint4x4_comp_unary( const uint4x4* lhs );
+
+/// \relates uint4x4
+/// \brief Returns a copy of the uint4x4 where each component of the left-hand uint4x4 has been bitwise left-shifted by the corresponding component of the right-hand side uint4x4.
+inline uint4x4 uint4x4_comp_shift_left( const uint4x4* lhs, const uint4x4* rhs );
+
+/// \relates uint4x4
+/// \brief Returns a copy of the uint4x4 where each component of the left-hand uint4x4 has been bitwise right-shifted by the corresponding component of the right-hand side uint4x4.
+inline uint4x4 uint4x4_comp_shift_right( const uint4x4* lhs, const uint4x4* rhs );
+
+/// \relates uint4x4
+/// \brief Returns a bool4x4 where each component is true if the component of the left-hand type is less than the corresponding right-hand type component.
+inline bool4x4 uint4x4_cmpl( const uint4x4* lhs, const uint4x4* rhs );
+
+/// \relates uint4x4
+/// \brief Returns a bool4x4 where each component is true if the component of the left-hand type is less than or equal to the corresponding right-hand type component.
+inline bool4x4 uint4x4_cmple( const uint4x4* lhs, const uint4x4* rhs );
+
+/// \relates uint4x4
+/// \brief Returns a bool4x4 where each component is true if the component of the left-hand type is greater than the corresponding right-hand type component.
+inline bool4x4 uint4x4_cmpg( const uint4x4* lhs, const uint4x4* rhs );
+
+/// \relates uint4x4
+/// \brief Returns a bool4x4 where each component is true if the component of the left-hand type is greater than or equal to the corresponding right-hand type component.
+inline bool4x4 uint4x4_cmpge( const uint4x4* lhs, const uint4x4* rhs );
+
+/// \relates uint4x4
+/// \brief Sets the matrix to an identity matrix.
+inline void uint4x4_identity( uint4x4* mat );
+
+/// \relates uint4x4
+/// \brief Returns a copy of the matrix that is transposed, where the value of each row is set to the value of each column and vice versa.
+inline uint4x4 uint4x4_transpose( const uint4x4* mat );
+
+/// \relates uint4x4
+/// \brief Returns a copy of the matrix where each row of the left-hand matrix has been dot-producted by the corresponding column of the right-hand matrix.
+inline uint4x4 uint4x4_mulm( const uint4x4* lhs, const uint4x4* rhs );
+
+/// \relates uint4x4
+/// \brief Returns the right-hand vector multiplied by the left-hand matrix.
+inline uint4 uint4x4_mulv( const uint4x4* lhs, const uint4* rhs );
+
+/// \relates uint4x4
+/// \brief Returns a copy of the matrix where each component of the 3rd column has been added by the given vector.
+inline uint4x4 uint4x4_translate( const uint4x4* mat, const uint3* vec );
+
+/// \relates uint4x4
+/// \brief Returns a copy of the matrix that has had a non-uniform scale applied to it.
+inline uint4x4 uint4x4_scale( const uint4x4* mat, const uint3* vec );
+
+
+// float2x2
+/// \relates float2x2
+/// \brief Returns true if the all the components of the left-hand-side float2x2 match the other one, otherwise returns false.
+inline bool float2x2_cmpe( const float2x2* lhs, const float2x2* rhs );
+
+/// \relates float2x2
+/// \brief Returns true if not all of the components of the left-hand-side float2x2 match the other one, otherwise returns false.
+inline bool float2x2_cmpne( const float2x2* lhs, const float2x2* rhs );
+/// \relates float2x2
+/// \brief Returns a copy of the float2x2 that has been component-wise added by the given scalar value.
+inline float2x2 float2x2_comp_adds( const float2x2* lhs, const float scalar );
+
+/// \relates float2x2
+/// \brief Returns a copy of the float2x2 that has been component-wise added by the corresponding component of the right-hand float2x2.
+inline float2x2 float2x2_comp_addm( const float2x2* lhs, const float2x2* rhs );
+
+/// \relates float2x2
+/// \brief Returns a copy of the float2x2 that has been component-wise subtracted by the given scalar value.
+inline float2x2 float2x2_comp_subs( const float2x2* lhs, const float scalar );
+
+/// \relates float2x2
+/// \brief Returns a copy of the float2x2 that has been component-wise subtracted by the corresponding component of the right-hand float2x2.
+inline float2x2 float2x2_comp_subm( const float2x2* lhs, const float2x2* rhs );
+
+/// \relates float2x2
+/// \brief Returns a copy of the float2x2 that has been component-wise multiplied by the given scalar value.
+inline float2x2 float2x2_comp_muls( const float2x2* lhs, const float scalar );
+
+/// \relates float2x2
+/// \brief Returns a copy of the float2x2 that has been component-wise multiplied by the corresponding component of the right-hand float2x2.
+inline float2x2 float2x2_comp_mulm( const float2x2* lhs, const float2x2* rhs );
+
+/// \relates float2x2
+/// \brief Returns a copy of the float2x2 that has been component-wise divided by the given scalar value.
+inline float2x2 float2x2_comp_divs( const float2x2* lhs, const float scalar );
+
+/// \relates float2x2
+/// \brief Returns a copy of the float2x2 that has been component-wise divided by the corresponding component of the right-hand float2x2.
+inline float2x2 float2x2_comp_divm( const float2x2* lhs, const float2x2* rhs );
+
+/// \relates float2x2
+/// \brief Returns a bool2x2 where each component is true if the component of the left-hand type is less than the corresponding right-hand type component.
+inline bool2x2 float2x2_cmpl( const float2x2* lhs, const float2x2* rhs );
+
+/// \relates float2x2
+/// \brief Returns a bool2x2 where each component is true if the component of the left-hand type is less than or equal to the corresponding right-hand type component.
+inline bool2x2 float2x2_cmple( const float2x2* lhs, const float2x2* rhs );
+
+/// \relates float2x2
+/// \brief Returns a bool2x2 where each component is true if the component of the left-hand type is greater than the corresponding right-hand type component.
+inline bool2x2 float2x2_cmpg( const float2x2* lhs, const float2x2* rhs );
+
+/// \relates float2x2
+/// \brief Returns a bool2x2 where each component is true if the component of the left-hand type is greater than or equal to the corresponding right-hand type component.
+inline bool2x2 float2x2_cmpge( const float2x2* lhs, const float2x2* rhs );
+
+/// \relates float2x2
+/// \brief Sets the matrix to an identity matrix.
+inline void float2x2_identity( float2x2* mat );
+
+/// \relates float2x2
+/// \brief Returns a copy of the matrix that is transposed, where the value of each row is set to the value of each column and vice versa.
+inline float2x2 float2x2_transpose( const float2x2* mat );
+
+/// \relates float2x2
+/// \brief Returns the determinant of the matrix.
+inline float float2x2_determinant( const float2x2* mat );
+
+/// \relates float2x2
+/// \brief Returns a copy of the matrix that is inversed.
+/// Currently this is only applicable for square matrices.  Pseudo-inverse support for non-square matrices is coming soon.
+inline float2x2 float2x2_inverse( const float2x2* mat );
+
+/// \relates float2x2
+/// \brief Returns a copy of the matrix where each row of the left-hand matrix has been dot-producted by the corresponding column of the right-hand matrix.
+inline float2x2 float2x2_mulm( const float2x2* lhs, const float2x2* rhs );
+
+/// \relates float2x2
+/// \brief Returns the right-hand vector multiplied by the left-hand matrix.
+inline float2 float2x2_mulv( const float2x2* lhs, const float2* rhs );
+
+
+// float2x3
+/// \relates float2x3
+/// \brief Returns true if the all the components of the left-hand-side float2x3 match the other one, otherwise returns false.
+inline bool float2x3_cmpe( const float2x3* lhs, const float2x3* rhs );
+
+/// \relates float2x3
+/// \brief Returns true if not all of the components of the left-hand-side float2x3 match the other one, otherwise returns false.
+inline bool float2x3_cmpne( const float2x3* lhs, const float2x3* rhs );
+/// \relates float2x3
+/// \brief Returns a copy of the float2x3 that has been component-wise added by the given scalar value.
+inline float2x3 float2x3_comp_adds( const float2x3* lhs, const float scalar );
+
+/// \relates float2x3
+/// \brief Returns a copy of the float2x3 that has been component-wise added by the corresponding component of the right-hand float2x3.
+inline float2x3 float2x3_comp_addm( const float2x3* lhs, const float2x3* rhs );
+
+/// \relates float2x3
+/// \brief Returns a copy of the float2x3 that has been component-wise subtracted by the given scalar value.
+inline float2x3 float2x3_comp_subs( const float2x3* lhs, const float scalar );
+
+/// \relates float2x3
+/// \brief Returns a copy of the float2x3 that has been component-wise subtracted by the corresponding component of the right-hand float2x3.
+inline float2x3 float2x3_comp_subm( const float2x3* lhs, const float2x3* rhs );
+
+/// \relates float2x3
+/// \brief Returns a copy of the float2x3 that has been component-wise multiplied by the given scalar value.
+inline float2x3 float2x3_comp_muls( const float2x3* lhs, const float scalar );
+
+/// \relates float2x3
+/// \brief Returns a copy of the float2x3 that has been component-wise multiplied by the corresponding component of the right-hand float2x3.
+inline float2x3 float2x3_comp_mulm( const float2x3* lhs, const float2x3* rhs );
+
+/// \relates float2x3
+/// \brief Returns a copy of the float2x3 that has been component-wise divided by the given scalar value.
+inline float2x3 float2x3_comp_divs( const float2x3* lhs, const float scalar );
+
+/// \relates float2x3
+/// \brief Returns a copy of the float2x3 that has been component-wise divided by the corresponding component of the right-hand float2x3.
+inline float2x3 float2x3_comp_divm( const float2x3* lhs, const float2x3* rhs );
+
+/// \relates float2x3
+/// \brief Returns a bool2x3 where each component is true if the component of the left-hand type is less than the corresponding right-hand type component.
+inline bool2x3 float2x3_cmpl( const float2x3* lhs, const float2x3* rhs );
+
+/// \relates float2x3
+/// \brief Returns a bool2x3 where each component is true if the component of the left-hand type is less than or equal to the corresponding right-hand type component.
+inline bool2x3 float2x3_cmple( const float2x3* lhs, const float2x3* rhs );
+
+/// \relates float2x3
+/// \brief Returns a bool2x3 where each component is true if the component of the left-hand type is greater than the corresponding right-hand type component.
+inline bool2x3 float2x3_cmpg( const float2x3* lhs, const float2x3* rhs );
+
+/// \relates float2x3
+/// \brief Returns a bool2x3 where each component is true if the component of the left-hand type is greater than or equal to the corresponding right-hand type component.
+inline bool2x3 float2x3_cmpge( const float2x3* lhs, const float2x3* rhs );
+
+/// \relates float2x3
+/// \brief Sets the matrix to an identity matrix.
+inline void float2x3_identity( float2x3* mat );
+
+/// \relates float2x3
+/// \brief Returns a copy of the matrix that is transposed, where the value of each row is set to the value of each column and vice versa.
+inline float3x2 float2x3_transpose( const float2x3* mat );
+
+/// \relates float2x3
+/// \brief Returns a copy of the matrix where each row of the left-hand matrix has been dot-producted by the corresponding column of the right-hand matrix.
+inline float2x2 float2x3_mulm( const float2x3* lhs, const float3x2* rhs );
+
+/// \relates float2x3
+/// \brief Returns a copy of the matrix that has had a non-uniform scale applied to it.
+inline float2x3 float2x3_scale( const float2x3* mat, const float2* vec );
+
+
+// float2x4
+/// \relates float2x4
+/// \brief Returns true if the all the components of the left-hand-side float2x4 match the other one, otherwise returns false.
+inline bool float2x4_cmpe( const float2x4* lhs, const float2x4* rhs );
+
+/// \relates float2x4
+/// \brief Returns true if not all of the components of the left-hand-side float2x4 match the other one, otherwise returns false.
+inline bool float2x4_cmpne( const float2x4* lhs, const float2x4* rhs );
+/// \relates float2x4
+/// \brief Returns a copy of the float2x4 that has been component-wise added by the given scalar value.
+inline float2x4 float2x4_comp_adds( const float2x4* lhs, const float scalar );
+
+/// \relates float2x4
+/// \brief Returns a copy of the float2x4 that has been component-wise added by the corresponding component of the right-hand float2x4.
+inline float2x4 float2x4_comp_addm( const float2x4* lhs, const float2x4* rhs );
+
+/// \relates float2x4
+/// \brief Returns a copy of the float2x4 that has been component-wise subtracted by the given scalar value.
+inline float2x4 float2x4_comp_subs( const float2x4* lhs, const float scalar );
+
+/// \relates float2x4
+/// \brief Returns a copy of the float2x4 that has been component-wise subtracted by the corresponding component of the right-hand float2x4.
+inline float2x4 float2x4_comp_subm( const float2x4* lhs, const float2x4* rhs );
+
+/// \relates float2x4
+/// \brief Returns a copy of the float2x4 that has been component-wise multiplied by the given scalar value.
+inline float2x4 float2x4_comp_muls( const float2x4* lhs, const float scalar );
+
+/// \relates float2x4
+/// \brief Returns a copy of the float2x4 that has been component-wise multiplied by the corresponding component of the right-hand float2x4.
+inline float2x4 float2x4_comp_mulm( const float2x4* lhs, const float2x4* rhs );
+
+/// \relates float2x4
+/// \brief Returns a copy of the float2x4 that has been component-wise divided by the given scalar value.
+inline float2x4 float2x4_comp_divs( const float2x4* lhs, const float scalar );
+
+/// \relates float2x4
+/// \brief Returns a copy of the float2x4 that has been component-wise divided by the corresponding component of the right-hand float2x4.
+inline float2x4 float2x4_comp_divm( const float2x4* lhs, const float2x4* rhs );
+
+/// \relates float2x4
+/// \brief Returns a bool2x4 where each component is true if the component of the left-hand type is less than the corresponding right-hand type component.
+inline bool2x4 float2x4_cmpl( const float2x4* lhs, const float2x4* rhs );
+
+/// \relates float2x4
+/// \brief Returns a bool2x4 where each component is true if the component of the left-hand type is less than or equal to the corresponding right-hand type component.
+inline bool2x4 float2x4_cmple( const float2x4* lhs, const float2x4* rhs );
+
+/// \relates float2x4
+/// \brief Returns a bool2x4 where each component is true if the component of the left-hand type is greater than the corresponding right-hand type component.
+inline bool2x4 float2x4_cmpg( const float2x4* lhs, const float2x4* rhs );
+
+/// \relates float2x4
+/// \brief Returns a bool2x4 where each component is true if the component of the left-hand type is greater than or equal to the corresponding right-hand type component.
+inline bool2x4 float2x4_cmpge( const float2x4* lhs, const float2x4* rhs );
+
+/// \relates float2x4
+/// \brief Sets the matrix to an identity matrix.
+inline void float2x4_identity( float2x4* mat );
+
+/// \relates float2x4
+/// \brief Returns a copy of the matrix that is transposed, where the value of each row is set to the value of each column and vice versa.
+inline float4x2 float2x4_transpose( const float2x4* mat );
+
+/// \relates float2x4
+/// \brief Returns a copy of the matrix where each row of the left-hand matrix has been dot-producted by the corresponding column of the right-hand matrix.
+inline float2x2 float2x4_mulm( const float2x4* lhs, const float4x2* rhs );
+
+/// \relates float2x4
+/// \brief Returns a copy of the matrix that has had a non-uniform scale applied to it.
+inline float2x4 float2x4_scale( const float2x4* mat, const float2* vec );
+
+
+// float3x2
+/// \relates float3x2
+/// \brief Returns true if the all the components of the left-hand-side float3x2 match the other one, otherwise returns false.
+inline bool float3x2_cmpe( const float3x2* lhs, const float3x2* rhs );
+
+/// \relates float3x2
+/// \brief Returns true if not all of the components of the left-hand-side float3x2 match the other one, otherwise returns false.
+inline bool float3x2_cmpne( const float3x2* lhs, const float3x2* rhs );
+/// \relates float3x2
+/// \brief Returns a copy of the float3x2 that has been component-wise added by the given scalar value.
+inline float3x2 float3x2_comp_adds( const float3x2* lhs, const float scalar );
+
+/// \relates float3x2
+/// \brief Returns a copy of the float3x2 that has been component-wise added by the corresponding component of the right-hand float3x2.
+inline float3x2 float3x2_comp_addm( const float3x2* lhs, const float3x2* rhs );
+
+/// \relates float3x2
+/// \brief Returns a copy of the float3x2 that has been component-wise subtracted by the given scalar value.
+inline float3x2 float3x2_comp_subs( const float3x2* lhs, const float scalar );
+
+/// \relates float3x2
+/// \brief Returns a copy of the float3x2 that has been component-wise subtracted by the corresponding component of the right-hand float3x2.
+inline float3x2 float3x2_comp_subm( const float3x2* lhs, const float3x2* rhs );
+
+/// \relates float3x2
+/// \brief Returns a copy of the float3x2 that has been component-wise multiplied by the given scalar value.
+inline float3x2 float3x2_comp_muls( const float3x2* lhs, const float scalar );
+
+/// \relates float3x2
+/// \brief Returns a copy of the float3x2 that has been component-wise multiplied by the corresponding component of the right-hand float3x2.
+inline float3x2 float3x2_comp_mulm( const float3x2* lhs, const float3x2* rhs );
+
+/// \relates float3x2
+/// \brief Returns a copy of the float3x2 that has been component-wise divided by the given scalar value.
+inline float3x2 float3x2_comp_divs( const float3x2* lhs, const float scalar );
+
+/// \relates float3x2
+/// \brief Returns a copy of the float3x2 that has been component-wise divided by the corresponding component of the right-hand float3x2.
+inline float3x2 float3x2_comp_divm( const float3x2* lhs, const float3x2* rhs );
+
+/// \relates float3x2
+/// \brief Returns a bool3x2 where each component is true if the component of the left-hand type is less than the corresponding right-hand type component.
+inline bool3x2 float3x2_cmpl( const float3x2* lhs, const float3x2* rhs );
+
+/// \relates float3x2
+/// \brief Returns a bool3x2 where each component is true if the component of the left-hand type is less than or equal to the corresponding right-hand type component.
+inline bool3x2 float3x2_cmple( const float3x2* lhs, const float3x2* rhs );
+
+/// \relates float3x2
+/// \brief Returns a bool3x2 where each component is true if the component of the left-hand type is greater than the corresponding right-hand type component.
+inline bool3x2 float3x2_cmpg( const float3x2* lhs, const float3x2* rhs );
+
+/// \relates float3x2
+/// \brief Returns a bool3x2 where each component is true if the component of the left-hand type is greater than or equal to the corresponding right-hand type component.
+inline bool3x2 float3x2_cmpge( const float3x2* lhs, const float3x2* rhs );
+
+/// \relates float3x2
+/// \brief Sets the matrix to an identity matrix.
+inline void float3x2_identity( float3x2* mat );
+
+/// \relates float3x2
+/// \brief Returns a copy of the matrix that is transposed, where the value of each row is set to the value of each column and vice versa.
+inline float2x3 float3x2_transpose( const float3x2* mat );
+
+/// \relates float3x2
+/// \brief Returns a copy of the matrix where each row of the left-hand matrix has been dot-producted by the corresponding column of the right-hand matrix.
+inline float3x3 float3x2_mulm( const float3x2* lhs, const float2x3* rhs );
+
+
+// float3x3
+/// \relates float3x3
+/// \brief Returns true if the all the components of the left-hand-side float3x3 match the other one, otherwise returns false.
+inline bool float3x3_cmpe( const float3x3* lhs, const float3x3* rhs );
+
+/// \relates float3x3
+/// \brief Returns true if not all of the components of the left-hand-side float3x3 match the other one, otherwise returns false.
+inline bool float3x3_cmpne( const float3x3* lhs, const float3x3* rhs );
+/// \relates float3x3
+/// \brief Returns a copy of the float3x3 that has been component-wise added by the given scalar value.
+inline float3x3 float3x3_comp_adds( const float3x3* lhs, const float scalar );
+
+/// \relates float3x3
+/// \brief Returns a copy of the float3x3 that has been component-wise added by the corresponding component of the right-hand float3x3.
+inline float3x3 float3x3_comp_addm( const float3x3* lhs, const float3x3* rhs );
+
+/// \relates float3x3
+/// \brief Returns a copy of the float3x3 that has been component-wise subtracted by the given scalar value.
+inline float3x3 float3x3_comp_subs( const float3x3* lhs, const float scalar );
+
+/// \relates float3x3
+/// \brief Returns a copy of the float3x3 that has been component-wise subtracted by the corresponding component of the right-hand float3x3.
+inline float3x3 float3x3_comp_subm( const float3x3* lhs, const float3x3* rhs );
+
+/// \relates float3x3
+/// \brief Returns a copy of the float3x3 that has been component-wise multiplied by the given scalar value.
+inline float3x3 float3x3_comp_muls( const float3x3* lhs, const float scalar );
+
+/// \relates float3x3
+/// \brief Returns a copy of the float3x3 that has been component-wise multiplied by the corresponding component of the right-hand float3x3.
+inline float3x3 float3x3_comp_mulm( const float3x3* lhs, const float3x3* rhs );
+
+/// \relates float3x3
+/// \brief Returns a copy of the float3x3 that has been component-wise divided by the given scalar value.
+inline float3x3 float3x3_comp_divs( const float3x3* lhs, const float scalar );
+
+/// \relates float3x3
+/// \brief Returns a copy of the float3x3 that has been component-wise divided by the corresponding component of the right-hand float3x3.
+inline float3x3 float3x3_comp_divm( const float3x3* lhs, const float3x3* rhs );
+
+/// \relates float3x3
+/// \brief Returns a bool3x3 where each component is true if the component of the left-hand type is less than the corresponding right-hand type component.
+inline bool3x3 float3x3_cmpl( const float3x3* lhs, const float3x3* rhs );
+
+/// \relates float3x3
+/// \brief Returns a bool3x3 where each component is true if the component of the left-hand type is less than or equal to the corresponding right-hand type component.
+inline bool3x3 float3x3_cmple( const float3x3* lhs, const float3x3* rhs );
+
+/// \relates float3x3
+/// \brief Returns a bool3x3 where each component is true if the component of the left-hand type is greater than the corresponding right-hand type component.
+inline bool3x3 float3x3_cmpg( const float3x3* lhs, const float3x3* rhs );
+
+/// \relates float3x3
+/// \brief Returns a bool3x3 where each component is true if the component of the left-hand type is greater than or equal to the corresponding right-hand type component.
+inline bool3x3 float3x3_cmpge( const float3x3* lhs, const float3x3* rhs );
+
+/// \relates float3x3
+/// \brief Sets the matrix to an identity matrix.
+inline void float3x3_identity( float3x3* mat );
+
+/// \relates float3x3
+/// \brief Returns a copy of the matrix that is transposed, where the value of each row is set to the value of each column and vice versa.
+inline float3x3 float3x3_transpose( const float3x3* mat );
+
+/// \relates float3x3
+/// \brief Returns the determinant of the matrix.
+inline float float3x3_determinant( const float3x3* mat );
+
+/// \relates float3x3
+/// \brief Returns a copy of the matrix that is inversed.
+/// Currently this is only applicable for square matrices.  Pseudo-inverse support for non-square matrices is coming soon.
+inline float3x3 float3x3_inverse( const float3x3* mat );
+
+/// \relates float3x3
+/// \brief Returns a copy of the matrix where each row of the left-hand matrix has been dot-producted by the corresponding column of the right-hand matrix.
+inline float3x3 float3x3_mulm( const float3x3* lhs, const float3x3* rhs );
+
+/// \relates float3x3
+/// \brief Returns the right-hand vector multiplied by the left-hand matrix.
+inline float3 float3x3_mulv( const float3x3* lhs, const float3* rhs );
+
+/// \relates float3x3
+/// \brief Returns a copy of the matrix where each component of the 3rd column has been added by the given vector.
+inline float3x3 float3x3_translate( const float3x3* mat, const float2* vec );
+
+/// \relates float3x3
+/// \brief Returns a copy of the matrix that has had a rotation applied to it in radians on one or more of the following axes.
+inline float3x3 float3x3_rotate( const float3x3* mat, const float rad );
+
+/// \relates float3x3
+/// \brief Returns a copy of the matrix that has had a non-uniform scale applied to it.
+inline float3x3 float3x3_scale( const float3x3* mat, const float2* vec );
+
+
+// float3x4
+/// \relates float3x4
+/// \brief Returns true if the all the components of the left-hand-side float3x4 match the other one, otherwise returns false.
+inline bool float3x4_cmpe( const float3x4* lhs, const float3x4* rhs );
+
+/// \relates float3x4
+/// \brief Returns true if not all of the components of the left-hand-side float3x4 match the other one, otherwise returns false.
+inline bool float3x4_cmpne( const float3x4* lhs, const float3x4* rhs );
+/// \relates float3x4
+/// \brief Returns a copy of the float3x4 that has been component-wise added by the given scalar value.
+inline float3x4 float3x4_comp_adds( const float3x4* lhs, const float scalar );
+
+/// \relates float3x4
+/// \brief Returns a copy of the float3x4 that has been component-wise added by the corresponding component of the right-hand float3x4.
+inline float3x4 float3x4_comp_addm( const float3x4* lhs, const float3x4* rhs );
+
+/// \relates float3x4
+/// \brief Returns a copy of the float3x4 that has been component-wise subtracted by the given scalar value.
+inline float3x4 float3x4_comp_subs( const float3x4* lhs, const float scalar );
+
+/// \relates float3x4
+/// \brief Returns a copy of the float3x4 that has been component-wise subtracted by the corresponding component of the right-hand float3x4.
+inline float3x4 float3x4_comp_subm( const float3x4* lhs, const float3x4* rhs );
+
+/// \relates float3x4
+/// \brief Returns a copy of the float3x4 that has been component-wise multiplied by the given scalar value.
+inline float3x4 float3x4_comp_muls( const float3x4* lhs, const float scalar );
+
+/// \relates float3x4
+/// \brief Returns a copy of the float3x4 that has been component-wise multiplied by the corresponding component of the right-hand float3x4.
+inline float3x4 float3x4_comp_mulm( const float3x4* lhs, const float3x4* rhs );
+
+/// \relates float3x4
+/// \brief Returns a copy of the float3x4 that has been component-wise divided by the given scalar value.
+inline float3x4 float3x4_comp_divs( const float3x4* lhs, const float scalar );
+
+/// \relates float3x4
+/// \brief Returns a copy of the float3x4 that has been component-wise divided by the corresponding component of the right-hand float3x4.
+inline float3x4 float3x4_comp_divm( const float3x4* lhs, const float3x4* rhs );
+
+/// \relates float3x4
+/// \brief Returns a bool3x4 where each component is true if the component of the left-hand type is less than the corresponding right-hand type component.
+inline bool3x4 float3x4_cmpl( const float3x4* lhs, const float3x4* rhs );
+
+/// \relates float3x4
+/// \brief Returns a bool3x4 where each component is true if the component of the left-hand type is less than or equal to the corresponding right-hand type component.
+inline bool3x4 float3x4_cmple( const float3x4* lhs, const float3x4* rhs );
+
+/// \relates float3x4
+/// \brief Returns a bool3x4 where each component is true if the component of the left-hand type is greater than the corresponding right-hand type component.
+inline bool3x4 float3x4_cmpg( const float3x4* lhs, const float3x4* rhs );
+
+/// \relates float3x4
+/// \brief Returns a bool3x4 where each component is true if the component of the left-hand type is greater than or equal to the corresponding right-hand type component.
+inline bool3x4 float3x4_cmpge( const float3x4* lhs, const float3x4* rhs );
+
+/// \relates float3x4
+/// \brief Sets the matrix to an identity matrix.
+inline void float3x4_identity( float3x4* mat );
+
+/// \relates float3x4
+/// \brief Returns a copy of the matrix that is transposed, where the value of each row is set to the value of each column and vice versa.
+inline float4x3 float3x4_transpose( const float3x4* mat );
+
+/// \relates float3x4
+/// \brief Returns a copy of the matrix where each row of the left-hand matrix has been dot-producted by the corresponding column of the right-hand matrix.
+inline float3x3 float3x4_mulm( const float3x4* lhs, const float4x3* rhs );
+
+/// \relates float3x4
+/// \brief Returns a copy of the matrix where each component of the 3rd column has been added by the given vector.
+inline float3x4 float3x4_translate( const float3x4* mat, const float3* vec );
+
+/// \relates float3x4
+/// \brief Returns a copy of the matrix that has had a non-uniform scale applied to it.
+inline float3x4 float3x4_scale( const float3x4* mat, const float2* vec );
+
+
+// float4x2
+/// \relates float4x2
+/// \brief Returns true if the all the components of the left-hand-side float4x2 match the other one, otherwise returns false.
+inline bool float4x2_cmpe( const float4x2* lhs, const float4x2* rhs );
+
+/// \relates float4x2
+/// \brief Returns true if not all of the components of the left-hand-side float4x2 match the other one, otherwise returns false.
+inline bool float4x2_cmpne( const float4x2* lhs, const float4x2* rhs );
+/// \relates float4x2
+/// \brief Returns a copy of the float4x2 that has been component-wise added by the given scalar value.
+inline float4x2 float4x2_comp_adds( const float4x2* lhs, const float scalar );
+
+/// \relates float4x2
+/// \brief Returns a copy of the float4x2 that has been component-wise added by the corresponding component of the right-hand float4x2.
+inline float4x2 float4x2_comp_addm( const float4x2* lhs, const float4x2* rhs );
+
+/// \relates float4x2
+/// \brief Returns a copy of the float4x2 that has been component-wise subtracted by the given scalar value.
+inline float4x2 float4x2_comp_subs( const float4x2* lhs, const float scalar );
+
+/// \relates float4x2
+/// \brief Returns a copy of the float4x2 that has been component-wise subtracted by the corresponding component of the right-hand float4x2.
+inline float4x2 float4x2_comp_subm( const float4x2* lhs, const float4x2* rhs );
+
+/// \relates float4x2
+/// \brief Returns a copy of the float4x2 that has been component-wise multiplied by the given scalar value.
+inline float4x2 float4x2_comp_muls( const float4x2* lhs, const float scalar );
+
+/// \relates float4x2
+/// \brief Returns a copy of the float4x2 that has been component-wise multiplied by the corresponding component of the right-hand float4x2.
+inline float4x2 float4x2_comp_mulm( const float4x2* lhs, const float4x2* rhs );
+
+/// \relates float4x2
+/// \brief Returns a copy of the float4x2 that has been component-wise divided by the given scalar value.
+inline float4x2 float4x2_comp_divs( const float4x2* lhs, const float scalar );
+
+/// \relates float4x2
+/// \brief Returns a copy of the float4x2 that has been component-wise divided by the corresponding component of the right-hand float4x2.
+inline float4x2 float4x2_comp_divm( const float4x2* lhs, const float4x2* rhs );
+
+/// \relates float4x2
+/// \brief Returns a bool4x2 where each component is true if the component of the left-hand type is less than the corresponding right-hand type component.
+inline bool4x2 float4x2_cmpl( const float4x2* lhs, const float4x2* rhs );
+
+/// \relates float4x2
+/// \brief Returns a bool4x2 where each component is true if the component of the left-hand type is less than or equal to the corresponding right-hand type component.
+inline bool4x2 float4x2_cmple( const float4x2* lhs, const float4x2* rhs );
+
+/// \relates float4x2
+/// \brief Returns a bool4x2 where each component is true if the component of the left-hand type is greater than the corresponding right-hand type component.
+inline bool4x2 float4x2_cmpg( const float4x2* lhs, const float4x2* rhs );
+
+/// \relates float4x2
+/// \brief Returns a bool4x2 where each component is true if the component of the left-hand type is greater than or equal to the corresponding right-hand type component.
+inline bool4x2 float4x2_cmpge( const float4x2* lhs, const float4x2* rhs );
+
+/// \relates float4x2
+/// \brief Sets the matrix to an identity matrix.
+inline void float4x2_identity( float4x2* mat );
+
+/// \relates float4x2
+/// \brief Returns a copy of the matrix that is transposed, where the value of each row is set to the value of each column and vice versa.
+inline float2x4 float4x2_transpose( const float4x2* mat );
+
+/// \relates float4x2
+/// \brief Returns a copy of the matrix where each row of the left-hand matrix has been dot-producted by the corresponding column of the right-hand matrix.
+inline float4x4 float4x2_mulm( const float4x2* lhs, const float2x4* rhs );
+
+
+// float4x3
+/// \relates float4x3
+/// \brief Returns true if the all the components of the left-hand-side float4x3 match the other one, otherwise returns false.
+inline bool float4x3_cmpe( const float4x3* lhs, const float4x3* rhs );
+
+/// \relates float4x3
+/// \brief Returns true if not all of the components of the left-hand-side float4x3 match the other one, otherwise returns false.
+inline bool float4x3_cmpne( const float4x3* lhs, const float4x3* rhs );
+/// \relates float4x3
+/// \brief Returns a copy of the float4x3 that has been component-wise added by the given scalar value.
+inline float4x3 float4x3_comp_adds( const float4x3* lhs, const float scalar );
+
+/// \relates float4x3
+/// \brief Returns a copy of the float4x3 that has been component-wise added by the corresponding component of the right-hand float4x3.
+inline float4x3 float4x3_comp_addm( const float4x3* lhs, const float4x3* rhs );
+
+/// \relates float4x3
+/// \brief Returns a copy of the float4x3 that has been component-wise subtracted by the given scalar value.
+inline float4x3 float4x3_comp_subs( const float4x3* lhs, const float scalar );
+
+/// \relates float4x3
+/// \brief Returns a copy of the float4x3 that has been component-wise subtracted by the corresponding component of the right-hand float4x3.
+inline float4x3 float4x3_comp_subm( const float4x3* lhs, const float4x3* rhs );
+
+/// \relates float4x3
+/// \brief Returns a copy of the float4x3 that has been component-wise multiplied by the given scalar value.
+inline float4x3 float4x3_comp_muls( const float4x3* lhs, const float scalar );
+
+/// \relates float4x3
+/// \brief Returns a copy of the float4x3 that has been component-wise multiplied by the corresponding component of the right-hand float4x3.
+inline float4x3 float4x3_comp_mulm( const float4x3* lhs, const float4x3* rhs );
+
+/// \relates float4x3
+/// \brief Returns a copy of the float4x3 that has been component-wise divided by the given scalar value.
+inline float4x3 float4x3_comp_divs( const float4x3* lhs, const float scalar );
+
+/// \relates float4x3
+/// \brief Returns a copy of the float4x3 that has been component-wise divided by the corresponding component of the right-hand float4x3.
+inline float4x3 float4x3_comp_divm( const float4x3* lhs, const float4x3* rhs );
+
+/// \relates float4x3
+/// \brief Returns a bool4x3 where each component is true if the component of the left-hand type is less than the corresponding right-hand type component.
+inline bool4x3 float4x3_cmpl( const float4x3* lhs, const float4x3* rhs );
+
+/// \relates float4x3
+/// \brief Returns a bool4x3 where each component is true if the component of the left-hand type is less than or equal to the corresponding right-hand type component.
+inline bool4x3 float4x3_cmple( const float4x3* lhs, const float4x3* rhs );
+
+/// \relates float4x3
+/// \brief Returns a bool4x3 where each component is true if the component of the left-hand type is greater than the corresponding right-hand type component.
+inline bool4x3 float4x3_cmpg( const float4x3* lhs, const float4x3* rhs );
+
+/// \relates float4x3
+/// \brief Returns a bool4x3 where each component is true if the component of the left-hand type is greater than or equal to the corresponding right-hand type component.
+inline bool4x3 float4x3_cmpge( const float4x3* lhs, const float4x3* rhs );
+
+/// \relates float4x3
+/// \brief Sets the matrix to an identity matrix.
+inline void float4x3_identity( float4x3* mat );
+
+/// \relates float4x3
+/// \brief Returns a copy of the matrix that is transposed, where the value of each row is set to the value of each column and vice versa.
+inline float3x4 float4x3_transpose( const float4x3* mat );
+
+/// \relates float4x3
+/// \brief Returns a copy of the matrix where each row of the left-hand matrix has been dot-producted by the corresponding column of the right-hand matrix.
+inline float4x4 float4x3_mulm( const float4x3* lhs, const float3x4* rhs );
+
+/// \relates float4x3
+/// \brief Returns a copy of the matrix that has had a non-uniform scale applied to it.
+inline float4x3 float4x3_scale( const float4x3* mat, const float2* vec );
+
+
+// float4x4
+/// \relates float4x4
+/// \brief Returns true if the all the components of the left-hand-side float4x4 match the other one, otherwise returns false.
+inline bool float4x4_cmpe( const float4x4* lhs, const float4x4* rhs );
+
+/// \relates float4x4
+/// \brief Returns true if not all of the components of the left-hand-side float4x4 match the other one, otherwise returns false.
+inline bool float4x4_cmpne( const float4x4* lhs, const float4x4* rhs );
+/// \relates float4x4
+/// \brief Returns a copy of the float4x4 that has been component-wise added by the given scalar value.
+inline float4x4 float4x4_comp_adds( const float4x4* lhs, const float scalar );
+
+/// \relates float4x4
+/// \brief Returns a copy of the float4x4 that has been component-wise added by the corresponding component of the right-hand float4x4.
+inline float4x4 float4x4_comp_addm( const float4x4* lhs, const float4x4* rhs );
+
+/// \relates float4x4
+/// \brief Returns a copy of the float4x4 that has been component-wise subtracted by the given scalar value.
+inline float4x4 float4x4_comp_subs( const float4x4* lhs, const float scalar );
+
+/// \relates float4x4
+/// \brief Returns a copy of the float4x4 that has been component-wise subtracted by the corresponding component of the right-hand float4x4.
+inline float4x4 float4x4_comp_subm( const float4x4* lhs, const float4x4* rhs );
+
+/// \relates float4x4
+/// \brief Returns a copy of the float4x4 that has been component-wise multiplied by the given scalar value.
+inline float4x4 float4x4_comp_muls( const float4x4* lhs, const float scalar );
+
+/// \relates float4x4
+/// \brief Returns a copy of the float4x4 that has been component-wise multiplied by the corresponding component of the right-hand float4x4.
+inline float4x4 float4x4_comp_mulm( const float4x4* lhs, const float4x4* rhs );
+
+/// \relates float4x4
+/// \brief Returns a copy of the float4x4 that has been component-wise divided by the given scalar value.
+inline float4x4 float4x4_comp_divs( const float4x4* lhs, const float scalar );
+
+/// \relates float4x4
+/// \brief Returns a copy of the float4x4 that has been component-wise divided by the corresponding component of the right-hand float4x4.
+inline float4x4 float4x4_comp_divm( const float4x4* lhs, const float4x4* rhs );
+
+/// \relates float4x4
+/// \brief Returns a bool4x4 where each component is true if the component of the left-hand type is less than the corresponding right-hand type component.
+inline bool4x4 float4x4_cmpl( const float4x4* lhs, const float4x4* rhs );
+
+/// \relates float4x4
+/// \brief Returns a bool4x4 where each component is true if the component of the left-hand type is less than or equal to the corresponding right-hand type component.
+inline bool4x4 float4x4_cmple( const float4x4* lhs, const float4x4* rhs );
+
+/// \relates float4x4
+/// \brief Returns a bool4x4 where each component is true if the component of the left-hand type is greater than the corresponding right-hand type component.
+inline bool4x4 float4x4_cmpg( const float4x4* lhs, const float4x4* rhs );
+
+/// \relates float4x4
+/// \brief Returns a bool4x4 where each component is true if the component of the left-hand type is greater than or equal to the corresponding right-hand type component.
+inline bool4x4 float4x4_cmpge( const float4x4* lhs, const float4x4* rhs );
+
+/// \relates float4x4
+/// \brief Sets the matrix to an identity matrix.
+inline void float4x4_identity( float4x4* mat );
+
+/// \relates float4x4
+/// \brief Returns a copy of the matrix that is transposed, where the value of each row is set to the value of each column and vice versa.
+inline float4x4 float4x4_transpose( const float4x4* mat );
+
+/// \relates float4x4
+/// \brief Returns the determinant of the matrix.
+inline float float4x4_determinant( const float4x4* mat );
+
+/// \relates float4x4
+/// \brief Returns a copy of the matrix that is inversed.
+/// Currently this is only applicable for square matrices.  Pseudo-inverse support for non-square matrices is coming soon.
+inline float4x4 float4x4_inverse( const float4x4* mat );
+
+/// \relates float4x4
+/// \brief Returns a copy of the matrix where each row of the left-hand matrix has been dot-producted by the corresponding column of the right-hand matrix.
+inline float4x4 float4x4_mulm( const float4x4* lhs, const float4x4* rhs );
+
+/// \relates float4x4
+/// \brief Returns the right-hand vector multiplied by the left-hand matrix.
+inline float4 float4x4_mulv( const float4x4* lhs, const float4* rhs );
+
+/// \relates float4x4
+/// \brief Returns a copy of the matrix where each component of the 3rd column has been added by the given vector.
+inline float4x4 float4x4_translate( const float4x4* mat, const float3* vec );
+
+/// \relates float4x4
+/// \brief Returns a copy of the matrix that has had a rotation applied to it in radians on one or more of the following axes.
+inline float4x4 float4x4_rotate( const float4x4* mat, const float rad, const float3* axis );
+
+/// \relates float4x4
+/// \brief Returns a copy of the matrix that has had a non-uniform scale applied to it.
+inline float4x4 float4x4_scale( const float4x4* mat, const float3* vec );
+
+/// \relates float4x4
+/// \brief Returns an left-handed orthographic projection matrix with the clip-space range zero to one.
+inline float4x4 float4x4_ortho_lh_zo( const float left, const float right, const float top, const float bottom, const float znear, const float zfar );
+
+/// \relates float4x4
+/// \brief Returns an left-handed orthographic projection matrix with the clip-space range minus-one to one.
+inline float4x4 float4x4_ortho_lh_no( const float left, const float right, const float top, const float bottom, const float znear, const float zfar );
+
+/// \relates float4x4
+/// \brief Returns an right-handed orthographic projection matrix with the clip-space range zero to one.
+inline float4x4 float4x4_ortho_rh_zo( const float left, const float right, const float top, const float bottom, const float znear, const float zfar );
+
+/// \relates float4x4
+/// \brief Returns an right-handed orthographic projection matrix with the clip-space range minus-one to one.
+inline float4x4 float4x4_ortho_rh_no( const float left, const float right, const float top, const float bottom, const float znear, const float zfar );
+
+/// \relates float4x4
+/// \brief Returns a left-handed perspective projection matrix based on a vertical field-of-view in degrees and an aspect ratio in the clip-space range of zero to one.
+inline float4x4 float4x4_perspective_lh_zo( const float fovdeg, const float aspect, const float znear, const float zfar );
+
+/// \relates float4x4
+/// \brief Returns a left-handed perspective projection matrix based on a vertical field-of-view in degrees and an aspect ratio in the clip-space range of minus-one to one.
+inline float4x4 float4x4_perspective_lh_no( const float fovdeg, const float aspect, const float znear, const float zfar );
+
+/// \relates float4x4
+/// \brief Returns a right-handed perspective projection matrix based on a vertical field-of-view in degrees and an aspect ratio in the clip-space range of zero to one.
+inline float4x4 float4x4_perspective_rh_zo( const float fovdeg, const float aspect, const float znear, const float zfar );
+
+/// \relates float4x4
+/// \brief Returns a right-handed perspective projection matrix based on a vertical field-of-view in degrees and an aspect ratio in the clip-space range of minus-one to one.
+inline float4x4 float4x4_perspective_rh_no( const float fovdeg, const float aspect, const float znear, const float zfar );
+
+/// \relates float4x4
+/// \brief Returns a left-handed orthonormal matrix that is oriented at position eye to look at position target.
+inline float4x4 float4x4_lookat_lh( const float3* eye, const float3* target, const float3* up );
+
+/// \relates float4x4
+/// \brief Returns a right-handed orthonormal matrix that is oriented at position eye to look at position target.
+inline float4x4 float4x4_lookat_rh( const float3* eye, const float3* target, const float3* up );
+
+
+// double2x2
+/// \relates double2x2
+/// \brief Returns true if the all the components of the left-hand-side double2x2 match the other one, otherwise returns false.
+inline bool double2x2_cmpe( const double2x2* lhs, const double2x2* rhs );
+
+/// \relates double2x2
+/// \brief Returns true if not all of the components of the left-hand-side double2x2 match the other one, otherwise returns false.
+inline bool double2x2_cmpne( const double2x2* lhs, const double2x2* rhs );
+/// \relates double2x2
+/// \brief Returns a copy of the double2x2 that has been component-wise added by the given scalar value.
+inline double2x2 double2x2_comp_adds( const double2x2* lhs, const double scalar );
+
+/// \relates double2x2
+/// \brief Returns a copy of the double2x2 that has been component-wise added by the corresponding component of the right-hand double2x2.
+inline double2x2 double2x2_comp_addm( const double2x2* lhs, const double2x2* rhs );
+
+/// \relates double2x2
+/// \brief Returns a copy of the double2x2 that has been component-wise subtracted by the given scalar value.
+inline double2x2 double2x2_comp_subs( const double2x2* lhs, const double scalar );
+
+/// \relates double2x2
+/// \brief Returns a copy of the double2x2 that has been component-wise subtracted by the corresponding component of the right-hand double2x2.
+inline double2x2 double2x2_comp_subm( const double2x2* lhs, const double2x2* rhs );
+
+/// \relates double2x2
+/// \brief Returns a copy of the double2x2 that has been component-wise multiplied by the given scalar value.
+inline double2x2 double2x2_comp_muls( const double2x2* lhs, const double scalar );
+
+/// \relates double2x2
+/// \brief Returns a copy of the double2x2 that has been component-wise multiplied by the corresponding component of the right-hand double2x2.
+inline double2x2 double2x2_comp_mulm( const double2x2* lhs, const double2x2* rhs );
+
+/// \relates double2x2
+/// \brief Returns a copy of the double2x2 that has been component-wise divided by the given scalar value.
+inline double2x2 double2x2_comp_divs( const double2x2* lhs, const double scalar );
+
+/// \relates double2x2
+/// \brief Returns a copy of the double2x2 that has been component-wise divided by the corresponding component of the right-hand double2x2.
+inline double2x2 double2x2_comp_divm( const double2x2* lhs, const double2x2* rhs );
+
+/// \relates double2x2
+/// \brief Returns a bool2x2 where each component is true if the component of the left-hand type is less than the corresponding right-hand type component.
+inline bool2x2 double2x2_cmpl( const double2x2* lhs, const double2x2* rhs );
+
+/// \relates double2x2
+/// \brief Returns a bool2x2 where each component is true if the component of the left-hand type is less than or equal to the corresponding right-hand type component.
+inline bool2x2 double2x2_cmple( const double2x2* lhs, const double2x2* rhs );
+
+/// \relates double2x2
+/// \brief Returns a bool2x2 where each component is true if the component of the left-hand type is greater than the corresponding right-hand type component.
+inline bool2x2 double2x2_cmpg( const double2x2* lhs, const double2x2* rhs );
+
+/// \relates double2x2
+/// \brief Returns a bool2x2 where each component is true if the component of the left-hand type is greater than or equal to the corresponding right-hand type component.
+inline bool2x2 double2x2_cmpge( const double2x2* lhs, const double2x2* rhs );
+
+/// \relates double2x2
+/// \brief Sets the matrix to an identity matrix.
+inline void double2x2_identity( double2x2* mat );
+
+/// \relates double2x2
+/// \brief Returns a copy of the matrix that is transposed, where the value of each row is set to the value of each column and vice versa.
+inline double2x2 double2x2_transpose( const double2x2* mat );
+
+/// \relates double2x2
+/// \brief Returns the determinant of the matrix.
+inline double double2x2_determinant( const double2x2* mat );
+
+/// \relates double2x2
+/// \brief Returns a copy of the matrix that is inversed.
+/// Currently this is only applicable for square matrices.  Pseudo-inverse support for non-square matrices is coming soon.
+inline double2x2 double2x2_inverse( const double2x2* mat );
+
+/// \relates double2x2
+/// \brief Returns a copy of the matrix where each row of the left-hand matrix has been dot-producted by the corresponding column of the right-hand matrix.
+inline double2x2 double2x2_mulm( const double2x2* lhs, const double2x2* rhs );
+
+/// \relates double2x2
+/// \brief Returns the right-hand vector multiplied by the left-hand matrix.
+inline double2 double2x2_mulv( const double2x2* lhs, const double2* rhs );
+
+
+// double2x3
+/// \relates double2x3
+/// \brief Returns true if the all the components of the left-hand-side double2x3 match the other one, otherwise returns false.
+inline bool double2x3_cmpe( const double2x3* lhs, const double2x3* rhs );
+
+/// \relates double2x3
+/// \brief Returns true if not all of the components of the left-hand-side double2x3 match the other one, otherwise returns false.
+inline bool double2x3_cmpne( const double2x3* lhs, const double2x3* rhs );
+/// \relates double2x3
+/// \brief Returns a copy of the double2x3 that has been component-wise added by the given scalar value.
+inline double2x3 double2x3_comp_adds( const double2x3* lhs, const double scalar );
+
+/// \relates double2x3
+/// \brief Returns a copy of the double2x3 that has been component-wise added by the corresponding component of the right-hand double2x3.
+inline double2x3 double2x3_comp_addm( const double2x3* lhs, const double2x3* rhs );
+
+/// \relates double2x3
+/// \brief Returns a copy of the double2x3 that has been component-wise subtracted by the given scalar value.
+inline double2x3 double2x3_comp_subs( const double2x3* lhs, const double scalar );
+
+/// \relates double2x3
+/// \brief Returns a copy of the double2x3 that has been component-wise subtracted by the corresponding component of the right-hand double2x3.
+inline double2x3 double2x3_comp_subm( const double2x3* lhs, const double2x3* rhs );
+
+/// \relates double2x3
+/// \brief Returns a copy of the double2x3 that has been component-wise multiplied by the given scalar value.
+inline double2x3 double2x3_comp_muls( const double2x3* lhs, const double scalar );
+
+/// \relates double2x3
+/// \brief Returns a copy of the double2x3 that has been component-wise multiplied by the corresponding component of the right-hand double2x3.
+inline double2x3 double2x3_comp_mulm( const double2x3* lhs, const double2x3* rhs );
+
+/// \relates double2x3
+/// \brief Returns a copy of the double2x3 that has been component-wise divided by the given scalar value.
+inline double2x3 double2x3_comp_divs( const double2x3* lhs, const double scalar );
+
+/// \relates double2x3
+/// \brief Returns a copy of the double2x3 that has been component-wise divided by the corresponding component of the right-hand double2x3.
+inline double2x3 double2x3_comp_divm( const double2x3* lhs, const double2x3* rhs );
+
+/// \relates double2x3
+/// \brief Returns a bool2x3 where each component is true if the component of the left-hand type is less than the corresponding right-hand type component.
+inline bool2x3 double2x3_cmpl( const double2x3* lhs, const double2x3* rhs );
+
+/// \relates double2x3
+/// \brief Returns a bool2x3 where each component is true if the component of the left-hand type is less than or equal to the corresponding right-hand type component.
+inline bool2x3 double2x3_cmple( const double2x3* lhs, const double2x3* rhs );
+
+/// \relates double2x3
+/// \brief Returns a bool2x3 where each component is true if the component of the left-hand type is greater than the corresponding right-hand type component.
+inline bool2x3 double2x3_cmpg( const double2x3* lhs, const double2x3* rhs );
+
+/// \relates double2x3
+/// \brief Returns a bool2x3 where each component is true if the component of the left-hand type is greater than or equal to the corresponding right-hand type component.
+inline bool2x3 double2x3_cmpge( const double2x3* lhs, const double2x3* rhs );
+
+/// \relates double2x3
+/// \brief Sets the matrix to an identity matrix.
+inline void double2x3_identity( double2x3* mat );
+
+/// \relates double2x3
+/// \brief Returns a copy of the matrix that is transposed, where the value of each row is set to the value of each column and vice versa.
+inline double3x2 double2x3_transpose( const double2x3* mat );
+
+/// \relates double2x3
+/// \brief Returns a copy of the matrix where each row of the left-hand matrix has been dot-producted by the corresponding column of the right-hand matrix.
+inline double2x2 double2x3_mulm( const double2x3* lhs, const double3x2* rhs );
+
+/// \relates double2x3
+/// \brief Returns a copy of the matrix that has had a non-uniform scale applied to it.
+inline double2x3 double2x3_scale( const double2x3* mat, const double2* vec );
+
+
+// double2x4
+/// \relates double2x4
+/// \brief Returns true if the all the components of the left-hand-side double2x4 match the other one, otherwise returns false.
+inline bool double2x4_cmpe( const double2x4* lhs, const double2x4* rhs );
+
+/// \relates double2x4
+/// \brief Returns true if not all of the components of the left-hand-side double2x4 match the other one, otherwise returns false.
+inline bool double2x4_cmpne( const double2x4* lhs, const double2x4* rhs );
+/// \relates double2x4
+/// \brief Returns a copy of the double2x4 that has been component-wise added by the given scalar value.
+inline double2x4 double2x4_comp_adds( const double2x4* lhs, const double scalar );
+
+/// \relates double2x4
+/// \brief Returns a copy of the double2x4 that has been component-wise added by the corresponding component of the right-hand double2x4.
+inline double2x4 double2x4_comp_addm( const double2x4* lhs, const double2x4* rhs );
+
+/// \relates double2x4
+/// \brief Returns a copy of the double2x4 that has been component-wise subtracted by the given scalar value.
+inline double2x4 double2x4_comp_subs( const double2x4* lhs, const double scalar );
+
+/// \relates double2x4
+/// \brief Returns a copy of the double2x4 that has been component-wise subtracted by the corresponding component of the right-hand double2x4.
+inline double2x4 double2x4_comp_subm( const double2x4* lhs, const double2x4* rhs );
+
+/// \relates double2x4
+/// \brief Returns a copy of the double2x4 that has been component-wise multiplied by the given scalar value.
+inline double2x4 double2x4_comp_muls( const double2x4* lhs, const double scalar );
+
+/// \relates double2x4
+/// \brief Returns a copy of the double2x4 that has been component-wise multiplied by the corresponding component of the right-hand double2x4.
+inline double2x4 double2x4_comp_mulm( const double2x4* lhs, const double2x4* rhs );
+
+/// \relates double2x4
+/// \brief Returns a copy of the double2x4 that has been component-wise divided by the given scalar value.
+inline double2x4 double2x4_comp_divs( const double2x4* lhs, const double scalar );
+
+/// \relates double2x4
+/// \brief Returns a copy of the double2x4 that has been component-wise divided by the corresponding component of the right-hand double2x4.
+inline double2x4 double2x4_comp_divm( const double2x4* lhs, const double2x4* rhs );
+
+/// \relates double2x4
+/// \brief Returns a bool2x4 where each component is true if the component of the left-hand type is less than the corresponding right-hand type component.
+inline bool2x4 double2x4_cmpl( const double2x4* lhs, const double2x4* rhs );
+
+/// \relates double2x4
+/// \brief Returns a bool2x4 where each component is true if the component of the left-hand type is less than or equal to the corresponding right-hand type component.
+inline bool2x4 double2x4_cmple( const double2x4* lhs, const double2x4* rhs );
+
+/// \relates double2x4
+/// \brief Returns a bool2x4 where each component is true if the component of the left-hand type is greater than the corresponding right-hand type component.
+inline bool2x4 double2x4_cmpg( const double2x4* lhs, const double2x4* rhs );
+
+/// \relates double2x4
+/// \brief Returns a bool2x4 where each component is true if the component of the left-hand type is greater than or equal to the corresponding right-hand type component.
+inline bool2x4 double2x4_cmpge( const double2x4* lhs, const double2x4* rhs );
+
+/// \relates double2x4
+/// \brief Sets the matrix to an identity matrix.
+inline void double2x4_identity( double2x4* mat );
+
+/// \relates double2x4
+/// \brief Returns a copy of the matrix that is transposed, where the value of each row is set to the value of each column and vice versa.
+inline double4x2 double2x4_transpose( const double2x4* mat );
+
+/// \relates double2x4
+/// \brief Returns a copy of the matrix where each row of the left-hand matrix has been dot-producted by the corresponding column of the right-hand matrix.
+inline double2x2 double2x4_mulm( const double2x4* lhs, const double4x2* rhs );
+
+/// \relates double2x4
+/// \brief Returns a copy of the matrix that has had a non-uniform scale applied to it.
+inline double2x4 double2x4_scale( const double2x4* mat, const double2* vec );
+
+
+// double3x2
+/// \relates double3x2
+/// \brief Returns true if the all the components of the left-hand-side double3x2 match the other one, otherwise returns false.
+inline bool double3x2_cmpe( const double3x2* lhs, const double3x2* rhs );
+
+/// \relates double3x2
+/// \brief Returns true if not all of the components of the left-hand-side double3x2 match the other one, otherwise returns false.
+inline bool double3x2_cmpne( const double3x2* lhs, const double3x2* rhs );
+/// \relates double3x2
+/// \brief Returns a copy of the double3x2 that has been component-wise added by the given scalar value.
+inline double3x2 double3x2_comp_adds( const double3x2* lhs, const double scalar );
+
+/// \relates double3x2
+/// \brief Returns a copy of the double3x2 that has been component-wise added by the corresponding component of the right-hand double3x2.
+inline double3x2 double3x2_comp_addm( const double3x2* lhs, const double3x2* rhs );
+
+/// \relates double3x2
+/// \brief Returns a copy of the double3x2 that has been component-wise subtracted by the given scalar value.
+inline double3x2 double3x2_comp_subs( const double3x2* lhs, const double scalar );
+
+/// \relates double3x2
+/// \brief Returns a copy of the double3x2 that has been component-wise subtracted by the corresponding component of the right-hand double3x2.
+inline double3x2 double3x2_comp_subm( const double3x2* lhs, const double3x2* rhs );
+
+/// \relates double3x2
+/// \brief Returns a copy of the double3x2 that has been component-wise multiplied by the given scalar value.
+inline double3x2 double3x2_comp_muls( const double3x2* lhs, const double scalar );
+
+/// \relates double3x2
+/// \brief Returns a copy of the double3x2 that has been component-wise multiplied by the corresponding component of the right-hand double3x2.
+inline double3x2 double3x2_comp_mulm( const double3x2* lhs, const double3x2* rhs );
+
+/// \relates double3x2
+/// \brief Returns a copy of the double3x2 that has been component-wise divided by the given scalar value.
+inline double3x2 double3x2_comp_divs( const double3x2* lhs, const double scalar );
+
+/// \relates double3x2
+/// \brief Returns a copy of the double3x2 that has been component-wise divided by the corresponding component of the right-hand double3x2.
+inline double3x2 double3x2_comp_divm( const double3x2* lhs, const double3x2* rhs );
+
+/// \relates double3x2
+/// \brief Returns a bool3x2 where each component is true if the component of the left-hand type is less than the corresponding right-hand type component.
+inline bool3x2 double3x2_cmpl( const double3x2* lhs, const double3x2* rhs );
+
+/// \relates double3x2
+/// \brief Returns a bool3x2 where each component is true if the component of the left-hand type is less than or equal to the corresponding right-hand type component.
+inline bool3x2 double3x2_cmple( const double3x2* lhs, const double3x2* rhs );
+
+/// \relates double3x2
+/// \brief Returns a bool3x2 where each component is true if the component of the left-hand type is greater than the corresponding right-hand type component.
+inline bool3x2 double3x2_cmpg( const double3x2* lhs, const double3x2* rhs );
+
+/// \relates double3x2
+/// \brief Returns a bool3x2 where each component is true if the component of the left-hand type is greater than or equal to the corresponding right-hand type component.
+inline bool3x2 double3x2_cmpge( const double3x2* lhs, const double3x2* rhs );
+
+/// \relates double3x2
+/// \brief Sets the matrix to an identity matrix.
+inline void double3x2_identity( double3x2* mat );
+
+/// \relates double3x2
+/// \brief Returns a copy of the matrix that is transposed, where the value of each row is set to the value of each column and vice versa.
+inline double2x3 double3x2_transpose( const double3x2* mat );
+
+/// \relates double3x2
+/// \brief Returns a copy of the matrix where each row of the left-hand matrix has been dot-producted by the corresponding column of the right-hand matrix.
+inline double3x3 double3x2_mulm( const double3x2* lhs, const double2x3* rhs );
+
+
+// double3x3
+/// \relates double3x3
+/// \brief Returns true if the all the components of the left-hand-side double3x3 match the other one, otherwise returns false.
+inline bool double3x3_cmpe( const double3x3* lhs, const double3x3* rhs );
+
+/// \relates double3x3
+/// \brief Returns true if not all of the components of the left-hand-side double3x3 match the other one, otherwise returns false.
+inline bool double3x3_cmpne( const double3x3* lhs, const double3x3* rhs );
+/// \relates double3x3
+/// \brief Returns a copy of the double3x3 that has been component-wise added by the given scalar value.
+inline double3x3 double3x3_comp_adds( const double3x3* lhs, const double scalar );
+
+/// \relates double3x3
+/// \brief Returns a copy of the double3x3 that has been component-wise added by the corresponding component of the right-hand double3x3.
+inline double3x3 double3x3_comp_addm( const double3x3* lhs, const double3x3* rhs );
+
+/// \relates double3x3
+/// \brief Returns a copy of the double3x3 that has been component-wise subtracted by the given scalar value.
+inline double3x3 double3x3_comp_subs( const double3x3* lhs, const double scalar );
+
+/// \relates double3x3
+/// \brief Returns a copy of the double3x3 that has been component-wise subtracted by the corresponding component of the right-hand double3x3.
+inline double3x3 double3x3_comp_subm( const double3x3* lhs, const double3x3* rhs );
+
+/// \relates double3x3
+/// \brief Returns a copy of the double3x3 that has been component-wise multiplied by the given scalar value.
+inline double3x3 double3x3_comp_muls( const double3x3* lhs, const double scalar );
+
+/// \relates double3x3
+/// \brief Returns a copy of the double3x3 that has been component-wise multiplied by the corresponding component of the right-hand double3x3.
+inline double3x3 double3x3_comp_mulm( const double3x3* lhs, const double3x3* rhs );
+
+/// \relates double3x3
+/// \brief Returns a copy of the double3x3 that has been component-wise divided by the given scalar value.
+inline double3x3 double3x3_comp_divs( const double3x3* lhs, const double scalar );
+
+/// \relates double3x3
+/// \brief Returns a copy of the double3x3 that has been component-wise divided by the corresponding component of the right-hand double3x3.
+inline double3x3 double3x3_comp_divm( const double3x3* lhs, const double3x3* rhs );
+
+/// \relates double3x3
+/// \brief Returns a bool3x3 where each component is true if the component of the left-hand type is less than the corresponding right-hand type component.
+inline bool3x3 double3x3_cmpl( const double3x3* lhs, const double3x3* rhs );
+
+/// \relates double3x3
+/// \brief Returns a bool3x3 where each component is true if the component of the left-hand type is less than or equal to the corresponding right-hand type component.
+inline bool3x3 double3x3_cmple( const double3x3* lhs, const double3x3* rhs );
+
+/// \relates double3x3
+/// \brief Returns a bool3x3 where each component is true if the component of the left-hand type is greater than the corresponding right-hand type component.
+inline bool3x3 double3x3_cmpg( const double3x3* lhs, const double3x3* rhs );
+
+/// \relates double3x3
+/// \brief Returns a bool3x3 where each component is true if the component of the left-hand type is greater than or equal to the corresponding right-hand type component.
+inline bool3x3 double3x3_cmpge( const double3x3* lhs, const double3x3* rhs );
+
+/// \relates double3x3
+/// \brief Sets the matrix to an identity matrix.
+inline void double3x3_identity( double3x3* mat );
+
+/// \relates double3x3
+/// \brief Returns a copy of the matrix that is transposed, where the value of each row is set to the value of each column and vice versa.
+inline double3x3 double3x3_transpose( const double3x3* mat );
+
+/// \relates double3x3
+/// \brief Returns the determinant of the matrix.
+inline double double3x3_determinant( const double3x3* mat );
+
+/// \relates double3x3
+/// \brief Returns a copy of the matrix that is inversed.
+/// Currently this is only applicable for square matrices.  Pseudo-inverse support for non-square matrices is coming soon.
+inline double3x3 double3x3_inverse( const double3x3* mat );
+
+/// \relates double3x3
+/// \brief Returns a copy of the matrix where each row of the left-hand matrix has been dot-producted by the corresponding column of the right-hand matrix.
+inline double3x3 double3x3_mulm( const double3x3* lhs, const double3x3* rhs );
+
+/// \relates double3x3
+/// \brief Returns the right-hand vector multiplied by the left-hand matrix.
+inline double3 double3x3_mulv( const double3x3* lhs, const double3* rhs );
+
+/// \relates double3x3
+/// \brief Returns a copy of the matrix where each component of the 3rd column has been added by the given vector.
+inline double3x3 double3x3_translate( const double3x3* mat, const double2* vec );
+
+/// \relates double3x3
+/// \brief Returns a copy of the matrix that has had a rotation applied to it in radians on one or more of the following axes.
+inline double3x3 double3x3_rotate( const double3x3* mat, const double rad );
+
+/// \relates double3x3
+/// \brief Returns a copy of the matrix that has had a non-uniform scale applied to it.
+inline double3x3 double3x3_scale( const double3x3* mat, const double2* vec );
+
+
+// double3x4
+/// \relates double3x4
+/// \brief Returns true if the all the components of the left-hand-side double3x4 match the other one, otherwise returns false.
+inline bool double3x4_cmpe( const double3x4* lhs, const double3x4* rhs );
+
+/// \relates double3x4
+/// \brief Returns true if not all of the components of the left-hand-side double3x4 match the other one, otherwise returns false.
+inline bool double3x4_cmpne( const double3x4* lhs, const double3x4* rhs );
+/// \relates double3x4
+/// \brief Returns a copy of the double3x4 that has been component-wise added by the given scalar value.
+inline double3x4 double3x4_comp_adds( const double3x4* lhs, const double scalar );
+
+/// \relates double3x4
+/// \brief Returns a copy of the double3x4 that has been component-wise added by the corresponding component of the right-hand double3x4.
+inline double3x4 double3x4_comp_addm( const double3x4* lhs, const double3x4* rhs );
+
+/// \relates double3x4
+/// \brief Returns a copy of the double3x4 that has been component-wise subtracted by the given scalar value.
+inline double3x4 double3x4_comp_subs( const double3x4* lhs, const double scalar );
+
+/// \relates double3x4
+/// \brief Returns a copy of the double3x4 that has been component-wise subtracted by the corresponding component of the right-hand double3x4.
+inline double3x4 double3x4_comp_subm( const double3x4* lhs, const double3x4* rhs );
+
+/// \relates double3x4
+/// \brief Returns a copy of the double3x4 that has been component-wise multiplied by the given scalar value.
+inline double3x4 double3x4_comp_muls( const double3x4* lhs, const double scalar );
+
+/// \relates double3x4
+/// \brief Returns a copy of the double3x4 that has been component-wise multiplied by the corresponding component of the right-hand double3x4.
+inline double3x4 double3x4_comp_mulm( const double3x4* lhs, const double3x4* rhs );
+
+/// \relates double3x4
+/// \brief Returns a copy of the double3x4 that has been component-wise divided by the given scalar value.
+inline double3x4 double3x4_comp_divs( const double3x4* lhs, const double scalar );
+
+/// \relates double3x4
+/// \brief Returns a copy of the double3x4 that has been component-wise divided by the corresponding component of the right-hand double3x4.
+inline double3x4 double3x4_comp_divm( const double3x4* lhs, const double3x4* rhs );
+
+/// \relates double3x4
+/// \brief Returns a bool3x4 where each component is true if the component of the left-hand type is less than the corresponding right-hand type component.
+inline bool3x4 double3x4_cmpl( const double3x4* lhs, const double3x4* rhs );
+
+/// \relates double3x4
+/// \brief Returns a bool3x4 where each component is true if the component of the left-hand type is less than or equal to the corresponding right-hand type component.
+inline bool3x4 double3x4_cmple( const double3x4* lhs, const double3x4* rhs );
+
+/// \relates double3x4
+/// \brief Returns a bool3x4 where each component is true if the component of the left-hand type is greater than the corresponding right-hand type component.
+inline bool3x4 double3x4_cmpg( const double3x4* lhs, const double3x4* rhs );
+
+/// \relates double3x4
+/// \brief Returns a bool3x4 where each component is true if the component of the left-hand type is greater than or equal to the corresponding right-hand type component.
+inline bool3x4 double3x4_cmpge( const double3x4* lhs, const double3x4* rhs );
+
+/// \relates double3x4
+/// \brief Sets the matrix to an identity matrix.
+inline void double3x4_identity( double3x4* mat );
+
+/// \relates double3x4
+/// \brief Returns a copy of the matrix that is transposed, where the value of each row is set to the value of each column and vice versa.
+inline double4x3 double3x4_transpose( const double3x4* mat );
+
+/// \relates double3x4
+/// \brief Returns a copy of the matrix where each row of the left-hand matrix has been dot-producted by the corresponding column of the right-hand matrix.
+inline double3x3 double3x4_mulm( const double3x4* lhs, const double4x3* rhs );
+
+/// \relates double3x4
+/// \brief Returns a copy of the matrix where each component of the 3rd column has been added by the given vector.
+inline double3x4 double3x4_translate( const double3x4* mat, const double3* vec );
+
+/// \relates double3x4
+/// \brief Returns a copy of the matrix that has had a non-uniform scale applied to it.
+inline double3x4 double3x4_scale( const double3x4* mat, const double2* vec );
+
+
+// double4x2
+/// \relates double4x2
+/// \brief Returns true if the all the components of the left-hand-side double4x2 match the other one, otherwise returns false.
+inline bool double4x2_cmpe( const double4x2* lhs, const double4x2* rhs );
+
+/// \relates double4x2
+/// \brief Returns true if not all of the components of the left-hand-side double4x2 match the other one, otherwise returns false.
+inline bool double4x2_cmpne( const double4x2* lhs, const double4x2* rhs );
+/// \relates double4x2
+/// \brief Returns a copy of the double4x2 that has been component-wise added by the given scalar value.
+inline double4x2 double4x2_comp_adds( const double4x2* lhs, const double scalar );
+
+/// \relates double4x2
+/// \brief Returns a copy of the double4x2 that has been component-wise added by the corresponding component of the right-hand double4x2.
+inline double4x2 double4x2_comp_addm( const double4x2* lhs, const double4x2* rhs );
+
+/// \relates double4x2
+/// \brief Returns a copy of the double4x2 that has been component-wise subtracted by the given scalar value.
+inline double4x2 double4x2_comp_subs( const double4x2* lhs, const double scalar );
+
+/// \relates double4x2
+/// \brief Returns a copy of the double4x2 that has been component-wise subtracted by the corresponding component of the right-hand double4x2.
+inline double4x2 double4x2_comp_subm( const double4x2* lhs, const double4x2* rhs );
+
+/// \relates double4x2
+/// \brief Returns a copy of the double4x2 that has been component-wise multiplied by the given scalar value.
+inline double4x2 double4x2_comp_muls( const double4x2* lhs, const double scalar );
+
+/// \relates double4x2
+/// \brief Returns a copy of the double4x2 that has been component-wise multiplied by the corresponding component of the right-hand double4x2.
+inline double4x2 double4x2_comp_mulm( const double4x2* lhs, const double4x2* rhs );
+
+/// \relates double4x2
+/// \brief Returns a copy of the double4x2 that has been component-wise divided by the given scalar value.
+inline double4x2 double4x2_comp_divs( const double4x2* lhs, const double scalar );
+
+/// \relates double4x2
+/// \brief Returns a copy of the double4x2 that has been component-wise divided by the corresponding component of the right-hand double4x2.
+inline double4x2 double4x2_comp_divm( const double4x2* lhs, const double4x2* rhs );
+
+/// \relates double4x2
+/// \brief Returns a bool4x2 where each component is true if the component of the left-hand type is less than the corresponding right-hand type component.
+inline bool4x2 double4x2_cmpl( const double4x2* lhs, const double4x2* rhs );
+
+/// \relates double4x2
+/// \brief Returns a bool4x2 where each component is true if the component of the left-hand type is less than or equal to the corresponding right-hand type component.
+inline bool4x2 double4x2_cmple( const double4x2* lhs, const double4x2* rhs );
+
+/// \relates double4x2
+/// \brief Returns a bool4x2 where each component is true if the component of the left-hand type is greater than the corresponding right-hand type component.
+inline bool4x2 double4x2_cmpg( const double4x2* lhs, const double4x2* rhs );
+
+/// \relates double4x2
+/// \brief Returns a bool4x2 where each component is true if the component of the left-hand type is greater than or equal to the corresponding right-hand type component.
+inline bool4x2 double4x2_cmpge( const double4x2* lhs, const double4x2* rhs );
+
+/// \relates double4x2
+/// \brief Sets the matrix to an identity matrix.
+inline void double4x2_identity( double4x2* mat );
+
+/// \relates double4x2
+/// \brief Returns a copy of the matrix that is transposed, where the value of each row is set to the value of each column and vice versa.
+inline double2x4 double4x2_transpose( const double4x2* mat );
+
+/// \relates double4x2
+/// \brief Returns a copy of the matrix where each row of the left-hand matrix has been dot-producted by the corresponding column of the right-hand matrix.
+inline double4x4 double4x2_mulm( const double4x2* lhs, const double2x4* rhs );
+
+
+// double4x3
+/// \relates double4x3
+/// \brief Returns true if the all the components of the left-hand-side double4x3 match the other one, otherwise returns false.
+inline bool double4x3_cmpe( const double4x3* lhs, const double4x3* rhs );
+
+/// \relates double4x3
+/// \brief Returns true if not all of the components of the left-hand-side double4x3 match the other one, otherwise returns false.
+inline bool double4x3_cmpne( const double4x3* lhs, const double4x3* rhs );
+/// \relates double4x3
+/// \brief Returns a copy of the double4x3 that has been component-wise added by the given scalar value.
+inline double4x3 double4x3_comp_adds( const double4x3* lhs, const double scalar );
+
+/// \relates double4x3
+/// \brief Returns a copy of the double4x3 that has been component-wise added by the corresponding component of the right-hand double4x3.
+inline double4x3 double4x3_comp_addm( const double4x3* lhs, const double4x3* rhs );
+
+/// \relates double4x3
+/// \brief Returns a copy of the double4x3 that has been component-wise subtracted by the given scalar value.
+inline double4x3 double4x3_comp_subs( const double4x3* lhs, const double scalar );
+
+/// \relates double4x3
+/// \brief Returns a copy of the double4x3 that has been component-wise subtracted by the corresponding component of the right-hand double4x3.
+inline double4x3 double4x3_comp_subm( const double4x3* lhs, const double4x3* rhs );
+
+/// \relates double4x3
+/// \brief Returns a copy of the double4x3 that has been component-wise multiplied by the given scalar value.
+inline double4x3 double4x3_comp_muls( const double4x3* lhs, const double scalar );
+
+/// \relates double4x3
+/// \brief Returns a copy of the double4x3 that has been component-wise multiplied by the corresponding component of the right-hand double4x3.
+inline double4x3 double4x3_comp_mulm( const double4x3* lhs, const double4x3* rhs );
+
+/// \relates double4x3
+/// \brief Returns a copy of the double4x3 that has been component-wise divided by the given scalar value.
+inline double4x3 double4x3_comp_divs( const double4x3* lhs, const double scalar );
+
+/// \relates double4x3
+/// \brief Returns a copy of the double4x3 that has been component-wise divided by the corresponding component of the right-hand double4x3.
+inline double4x3 double4x3_comp_divm( const double4x3* lhs, const double4x3* rhs );
+
+/// \relates double4x3
+/// \brief Returns a bool4x3 where each component is true if the component of the left-hand type is less than the corresponding right-hand type component.
+inline bool4x3 double4x3_cmpl( const double4x3* lhs, const double4x3* rhs );
+
+/// \relates double4x3
+/// \brief Returns a bool4x3 where each component is true if the component of the left-hand type is less than or equal to the corresponding right-hand type component.
+inline bool4x3 double4x3_cmple( const double4x3* lhs, const double4x3* rhs );
+
+/// \relates double4x3
+/// \brief Returns a bool4x3 where each component is true if the component of the left-hand type is greater than the corresponding right-hand type component.
+inline bool4x3 double4x3_cmpg( const double4x3* lhs, const double4x3* rhs );
+
+/// \relates double4x3
+/// \brief Returns a bool4x3 where each component is true if the component of the left-hand type is greater than or equal to the corresponding right-hand type component.
+inline bool4x3 double4x3_cmpge( const double4x3* lhs, const double4x3* rhs );
+
+/// \relates double4x3
+/// \brief Sets the matrix to an identity matrix.
+inline void double4x3_identity( double4x3* mat );
+
+/// \relates double4x3
+/// \brief Returns a copy of the matrix that is transposed, where the value of each row is set to the value of each column and vice versa.
+inline double3x4 double4x3_transpose( const double4x3* mat );
+
+/// \relates double4x3
+/// \brief Returns a copy of the matrix where each row of the left-hand matrix has been dot-producted by the corresponding column of the right-hand matrix.
+inline double4x4 double4x3_mulm( const double4x3* lhs, const double3x4* rhs );
+
+/// \relates double4x3
+/// \brief Returns a copy of the matrix that has had a non-uniform scale applied to it.
+inline double4x3 double4x3_scale( const double4x3* mat, const double2* vec );
+
+
+// double4x4
+/// \relates double4x4
+/// \brief Returns true if the all the components of the left-hand-side double4x4 match the other one, otherwise returns false.
+inline bool double4x4_cmpe( const double4x4* lhs, const double4x4* rhs );
+
+/// \relates double4x4
+/// \brief Returns true if not all of the components of the left-hand-side double4x4 match the other one, otherwise returns false.
+inline bool double4x4_cmpne( const double4x4* lhs, const double4x4* rhs );
+/// \relates double4x4
+/// \brief Returns a copy of the double4x4 that has been component-wise added by the given scalar value.
+inline double4x4 double4x4_comp_adds( const double4x4* lhs, const double scalar );
+
+/// \relates double4x4
+/// \brief Returns a copy of the double4x4 that has been component-wise added by the corresponding component of the right-hand double4x4.
+inline double4x4 double4x4_comp_addm( const double4x4* lhs, const double4x4* rhs );
+
+/// \relates double4x4
+/// \brief Returns a copy of the double4x4 that has been component-wise subtracted by the given scalar value.
+inline double4x4 double4x4_comp_subs( const double4x4* lhs, const double scalar );
+
+/// \relates double4x4
+/// \brief Returns a copy of the double4x4 that has been component-wise subtracted by the corresponding component of the right-hand double4x4.
+inline double4x4 double4x4_comp_subm( const double4x4* lhs, const double4x4* rhs );
+
+/// \relates double4x4
+/// \brief Returns a copy of the double4x4 that has been component-wise multiplied by the given scalar value.
+inline double4x4 double4x4_comp_muls( const double4x4* lhs, const double scalar );
+
+/// \relates double4x4
+/// \brief Returns a copy of the double4x4 that has been component-wise multiplied by the corresponding component of the right-hand double4x4.
+inline double4x4 double4x4_comp_mulm( const double4x4* lhs, const double4x4* rhs );
+
+/// \relates double4x4
+/// \brief Returns a copy of the double4x4 that has been component-wise divided by the given scalar value.
+inline double4x4 double4x4_comp_divs( const double4x4* lhs, const double scalar );
+
+/// \relates double4x4
+/// \brief Returns a copy of the double4x4 that has been component-wise divided by the corresponding component of the right-hand double4x4.
+inline double4x4 double4x4_comp_divm( const double4x4* lhs, const double4x4* rhs );
+
+/// \relates double4x4
+/// \brief Returns a bool4x4 where each component is true if the component of the left-hand type is less than the corresponding right-hand type component.
+inline bool4x4 double4x4_cmpl( const double4x4* lhs, const double4x4* rhs );
+
+/// \relates double4x4
+/// \brief Returns a bool4x4 where each component is true if the component of the left-hand type is less than or equal to the corresponding right-hand type component.
+inline bool4x4 double4x4_cmple( const double4x4* lhs, const double4x4* rhs );
+
+/// \relates double4x4
+/// \brief Returns a bool4x4 where each component is true if the component of the left-hand type is greater than the corresponding right-hand type component.
+inline bool4x4 double4x4_cmpg( const double4x4* lhs, const double4x4* rhs );
+
+/// \relates double4x4
+/// \brief Returns a bool4x4 where each component is true if the component of the left-hand type is greater than or equal to the corresponding right-hand type component.
+inline bool4x4 double4x4_cmpge( const double4x4* lhs, const double4x4* rhs );
+
+/// \relates double4x4
+/// \brief Sets the matrix to an identity matrix.
+inline void double4x4_identity( double4x4* mat );
+
+/// \relates double4x4
+/// \brief Returns a copy of the matrix that is transposed, where the value of each row is set to the value of each column and vice versa.
+inline double4x4 double4x4_transpose( const double4x4* mat );
+
+/// \relates double4x4
+/// \brief Returns the determinant of the matrix.
+inline double double4x4_determinant( const double4x4* mat );
+
+/// \relates double4x4
+/// \brief Returns a copy of the matrix that is inversed.
+/// Currently this is only applicable for square matrices.  Pseudo-inverse support for non-square matrices is coming soon.
+inline double4x4 double4x4_inverse( const double4x4* mat );
+
+/// \relates double4x4
+/// \brief Returns a copy of the matrix where each row of the left-hand matrix has been dot-producted by the corresponding column of the right-hand matrix.
+inline double4x4 double4x4_mulm( const double4x4* lhs, const double4x4* rhs );
+
+/// \relates double4x4
+/// \brief Returns the right-hand vector multiplied by the left-hand matrix.
+inline double4 double4x4_mulv( const double4x4* lhs, const double4* rhs );
+
+/// \relates double4x4
+/// \brief Returns a copy of the matrix where each component of the 3rd column has been added by the given vector.
+inline double4x4 double4x4_translate( const double4x4* mat, const double3* vec );
+
+/// \relates double4x4
+/// \brief Returns a copy of the matrix that has had a rotation applied to it in radians on one or more of the following axes.
+inline double4x4 double4x4_rotate( const double4x4* mat, const double rad, const double3* axis );
+
+/// \relates double4x4
+/// \brief Returns a copy of the matrix that has had a non-uniform scale applied to it.
+inline double4x4 double4x4_scale( const double4x4* mat, const double3* vec );
+
+/// \relates double4x4
+/// \brief Returns an left-handed orthographic projection matrix with the clip-space range zero to one.
+inline double4x4 double4x4_ortho_lh_zo( const double left, const double right, const double top, const double bottom, const double znear, const double zfar );
+
+/// \relates double4x4
+/// \brief Returns an left-handed orthographic projection matrix with the clip-space range minus-one to one.
+inline double4x4 double4x4_ortho_lh_no( const double left, const double right, const double top, const double bottom, const double znear, const double zfar );
+
+/// \relates double4x4
+/// \brief Returns an right-handed orthographic projection matrix with the clip-space range zero to one.
+inline double4x4 double4x4_ortho_rh_zo( const double left, const double right, const double top, const double bottom, const double znear, const double zfar );
+
+/// \relates double4x4
+/// \brief Returns an right-handed orthographic projection matrix with the clip-space range minus-one to one.
+inline double4x4 double4x4_ortho_rh_no( const double left, const double right, const double top, const double bottom, const double znear, const double zfar );
+
+/// \relates double4x4
+/// \brief Returns a left-handed perspective projection matrix based on a vertical field-of-view in degrees and an aspect ratio in the clip-space range of zero to one.
+inline double4x4 double4x4_perspective_lh_zo( const double fovdeg, const double aspect, const double znear, const double zfar );
+
+/// \relates double4x4
+/// \brief Returns a left-handed perspective projection matrix based on a vertical field-of-view in degrees and an aspect ratio in the clip-space range of minus-one to one.
+inline double4x4 double4x4_perspective_lh_no( const double fovdeg, const double aspect, const double znear, const double zfar );
+
+/// \relates double4x4
+/// \brief Returns a right-handed perspective projection matrix based on a vertical field-of-view in degrees and an aspect ratio in the clip-space range of zero to one.
+inline double4x4 double4x4_perspective_rh_zo( const double fovdeg, const double aspect, const double znear, const double zfar );
+
+/// \relates double4x4
+/// \brief Returns a right-handed perspective projection matrix based on a vertical field-of-view in degrees and an aspect ratio in the clip-space range of minus-one to one.
+inline double4x4 double4x4_perspective_rh_no( const double fovdeg, const double aspect, const double znear, const double zfar );
+
+/// \relates double4x4
+/// \brief Returns a left-handed orthonormal matrix that is oriented at position eye to look at position target.
+inline double4x4 double4x4_lookat_lh( const double3* eye, const double3* target, const double3* up );
+
+/// \relates double4x4
+/// \brief Returns a right-handed orthonormal matrix that is oriented at position eye to look at position target.
+inline double4x4 double4x4_lookat_rh( const double3* eye, const double3* target, const double3* up );
+
+
+#ifdef HLML_IMPLEMENTATION
+
+bool bool2x2_cmpe( const bool2x2* lhs, const bool2x2* rhs )
 {
 	return bool2_cmpe( &lhs->rows[0], &rhs->rows[0] )
 		&& bool2_cmpe( &lhs->rows[1], &rhs->rows[1] );
 }
 
-/// \relates bool2x2
-/// \brief Returns true if not all of the components of the left-hand-side bool2x2 match the other one, otherwise returns false.
-inline bool bool2x2_cmpne( const bool2x2* lhs, const bool2x2* rhs )
+bool bool2x2_cmpne( const bool2x2* lhs, const bool2x2* rhs )
 {
 	return !( bool2x2_cmpe( lhs, rhs ) );
 }
 
-/// \relates bool2x2
-/// \brief Sets the matrix to an identity matrix.
-inline void bool2x2_identity( bool2x2* mat )
+void bool2x2_identity( bool2x2* mat )
 {
 	mat->rows[0] = HLML_CONSTRUCT( bool2 ) { true, false };
 	mat->rows[1] = HLML_CONSTRUCT( bool2 ) { false, true };
 }
 
-/// \relates bool2x2
-/// \brief Returns a copy of the matrix that is transposed, where the value of each row is set to the value of each column and vice versa.
-inline bool2x2 bool2x2_transpose( const bool2x2* mat )
+bool2x2 bool2x2_transpose( const bool2x2* mat )
 {
 	return HLML_CONSTRUCT( bool2x2 ) {
 		mat->rows[0].x, mat->rows[1].x,
@@ -126,34 +3542,24 @@ inline bool2x2 bool2x2_transpose( const bool2x2* mat )
 	};
 }
 
-
-// bool2x3
-/// \relates bool2x3
-/// \brief Returns true if the all the components of the left-hand-side bool2x3 match the other one, otherwise returns false.
-inline bool bool2x3_cmpe( const bool2x3* lhs, const bool2x3* rhs )
+bool bool2x3_cmpe( const bool2x3* lhs, const bool2x3* rhs )
 {
 	return bool3_cmpe( &lhs->rows[0], &rhs->rows[0] )
 		&& bool3_cmpe( &lhs->rows[1], &rhs->rows[1] );
 }
 
-/// \relates bool2x3
-/// \brief Returns true if not all of the components of the left-hand-side bool2x3 match the other one, otherwise returns false.
-inline bool bool2x3_cmpne( const bool2x3* lhs, const bool2x3* rhs )
+bool bool2x3_cmpne( const bool2x3* lhs, const bool2x3* rhs )
 {
 	return !( bool2x3_cmpe( lhs, rhs ) );
 }
 
-/// \relates bool2x3
-/// \brief Sets the matrix to an identity matrix.
-inline void bool2x3_identity( bool2x3* mat )
+void bool2x3_identity( bool2x3* mat )
 {
 	mat->rows[0] = HLML_CONSTRUCT( bool3 ) { true, false, false };
 	mat->rows[1] = HLML_CONSTRUCT( bool3 ) { false, true, false };
 }
 
-/// \relates bool2x3
-/// \brief Returns a copy of the matrix that is transposed, where the value of each row is set to the value of each column and vice versa.
-inline bool3x2 bool2x3_transpose( const bool2x3* mat )
+bool3x2 bool2x3_transpose( const bool2x3* mat )
 {
 	return HLML_CONSTRUCT( bool3x2 ) {
 		mat->rows[0].x, mat->rows[1].x,
@@ -162,34 +3568,24 @@ inline bool3x2 bool2x3_transpose( const bool2x3* mat )
 	};
 }
 
-
-// bool2x4
-/// \relates bool2x4
-/// \brief Returns true if the all the components of the left-hand-side bool2x4 match the other one, otherwise returns false.
-inline bool bool2x4_cmpe( const bool2x4* lhs, const bool2x4* rhs )
+bool bool2x4_cmpe( const bool2x4* lhs, const bool2x4* rhs )
 {
 	return bool4_cmpe( &lhs->rows[0], &rhs->rows[0] )
 		&& bool4_cmpe( &lhs->rows[1], &rhs->rows[1] );
 }
 
-/// \relates bool2x4
-/// \brief Returns true if not all of the components of the left-hand-side bool2x4 match the other one, otherwise returns false.
-inline bool bool2x4_cmpne( const bool2x4* lhs, const bool2x4* rhs )
+bool bool2x4_cmpne( const bool2x4* lhs, const bool2x4* rhs )
 {
 	return !( bool2x4_cmpe( lhs, rhs ) );
 }
 
-/// \relates bool2x4
-/// \brief Sets the matrix to an identity matrix.
-inline void bool2x4_identity( bool2x4* mat )
+void bool2x4_identity( bool2x4* mat )
 {
 	mat->rows[0] = HLML_CONSTRUCT( bool4 ) { true, false, false, false };
 	mat->rows[1] = HLML_CONSTRUCT( bool4 ) { false, true, false, false };
 }
 
-/// \relates bool2x4
-/// \brief Returns a copy of the matrix that is transposed, where the value of each row is set to the value of each column and vice versa.
-inline bool4x2 bool2x4_transpose( const bool2x4* mat )
+bool4x2 bool2x4_transpose( const bool2x4* mat )
 {
 	return HLML_CONSTRUCT( bool4x2 ) {
 		mat->rows[0].x, mat->rows[1].x,
@@ -199,36 +3595,26 @@ inline bool4x2 bool2x4_transpose( const bool2x4* mat )
 	};
 }
 
-
-// bool3x2
-/// \relates bool3x2
-/// \brief Returns true if the all the components of the left-hand-side bool3x2 match the other one, otherwise returns false.
-inline bool bool3x2_cmpe( const bool3x2* lhs, const bool3x2* rhs )
+bool bool3x2_cmpe( const bool3x2* lhs, const bool3x2* rhs )
 {
 	return bool2_cmpe( &lhs->rows[0], &rhs->rows[0] )
 		&& bool2_cmpe( &lhs->rows[1], &rhs->rows[1] )
 		&& bool2_cmpe( &lhs->rows[2], &rhs->rows[2] );
 }
 
-/// \relates bool3x2
-/// \brief Returns true if not all of the components of the left-hand-side bool3x2 match the other one, otherwise returns false.
-inline bool bool3x2_cmpne( const bool3x2* lhs, const bool3x2* rhs )
+bool bool3x2_cmpne( const bool3x2* lhs, const bool3x2* rhs )
 {
 	return !( bool3x2_cmpe( lhs, rhs ) );
 }
 
-/// \relates bool3x2
-/// \brief Sets the matrix to an identity matrix.
-inline void bool3x2_identity( bool3x2* mat )
+void bool3x2_identity( bool3x2* mat )
 {
 	mat->rows[0] = HLML_CONSTRUCT( bool2 ) { true, false };
 	mat->rows[1] = HLML_CONSTRUCT( bool2 ) { false, true };
 	mat->rows[2] = HLML_CONSTRUCT( bool2 ) { false, false };
 }
 
-/// \relates bool3x2
-/// \brief Returns a copy of the matrix that is transposed, where the value of each row is set to the value of each column and vice versa.
-inline bool2x3 bool3x2_transpose( const bool3x2* mat )
+bool2x3 bool3x2_transpose( const bool3x2* mat )
 {
 	return HLML_CONSTRUCT( bool2x3 ) {
 		mat->rows[0].x, mat->rows[1].x, mat->rows[2].x,
@@ -236,36 +3622,26 @@ inline bool2x3 bool3x2_transpose( const bool3x2* mat )
 	};
 }
 
-
-// bool3x3
-/// \relates bool3x3
-/// \brief Returns true if the all the components of the left-hand-side bool3x3 match the other one, otherwise returns false.
-inline bool bool3x3_cmpe( const bool3x3* lhs, const bool3x3* rhs )
+bool bool3x3_cmpe( const bool3x3* lhs, const bool3x3* rhs )
 {
 	return bool3_cmpe( &lhs->rows[0], &rhs->rows[0] )
 		&& bool3_cmpe( &lhs->rows[1], &rhs->rows[1] )
 		&& bool3_cmpe( &lhs->rows[2], &rhs->rows[2] );
 }
 
-/// \relates bool3x3
-/// \brief Returns true if not all of the components of the left-hand-side bool3x3 match the other one, otherwise returns false.
-inline bool bool3x3_cmpne( const bool3x3* lhs, const bool3x3* rhs )
+bool bool3x3_cmpne( const bool3x3* lhs, const bool3x3* rhs )
 {
 	return !( bool3x3_cmpe( lhs, rhs ) );
 }
 
-/// \relates bool3x3
-/// \brief Sets the matrix to an identity matrix.
-inline void bool3x3_identity( bool3x3* mat )
+void bool3x3_identity( bool3x3* mat )
 {
 	mat->rows[0] = HLML_CONSTRUCT( bool3 ) { true, false, false };
 	mat->rows[1] = HLML_CONSTRUCT( bool3 ) { false, true, false };
 	mat->rows[2] = HLML_CONSTRUCT( bool3 ) { false, false, true };
 }
 
-/// \relates bool3x3
-/// \brief Returns a copy of the matrix that is transposed, where the value of each row is set to the value of each column and vice versa.
-inline bool3x3 bool3x3_transpose( const bool3x3* mat )
+bool3x3 bool3x3_transpose( const bool3x3* mat )
 {
 	return HLML_CONSTRUCT( bool3x3 ) {
 		mat->rows[0].x, mat->rows[1].x, mat->rows[2].x,
@@ -274,36 +3650,26 @@ inline bool3x3 bool3x3_transpose( const bool3x3* mat )
 	};
 }
 
-
-// bool3x4
-/// \relates bool3x4
-/// \brief Returns true if the all the components of the left-hand-side bool3x4 match the other one, otherwise returns false.
-inline bool bool3x4_cmpe( const bool3x4* lhs, const bool3x4* rhs )
+bool bool3x4_cmpe( const bool3x4* lhs, const bool3x4* rhs )
 {
 	return bool4_cmpe( &lhs->rows[0], &rhs->rows[0] )
 		&& bool4_cmpe( &lhs->rows[1], &rhs->rows[1] )
 		&& bool4_cmpe( &lhs->rows[2], &rhs->rows[2] );
 }
 
-/// \relates bool3x4
-/// \brief Returns true if not all of the components of the left-hand-side bool3x4 match the other one, otherwise returns false.
-inline bool bool3x4_cmpne( const bool3x4* lhs, const bool3x4* rhs )
+bool bool3x4_cmpne( const bool3x4* lhs, const bool3x4* rhs )
 {
 	return !( bool3x4_cmpe( lhs, rhs ) );
 }
 
-/// \relates bool3x4
-/// \brief Sets the matrix to an identity matrix.
-inline void bool3x4_identity( bool3x4* mat )
+void bool3x4_identity( bool3x4* mat )
 {
 	mat->rows[0] = HLML_CONSTRUCT( bool4 ) { true, false, false, false };
 	mat->rows[1] = HLML_CONSTRUCT( bool4 ) { false, true, false, false };
 	mat->rows[2] = HLML_CONSTRUCT( bool4 ) { false, false, true, false };
 }
 
-/// \relates bool3x4
-/// \brief Returns a copy of the matrix that is transposed, where the value of each row is set to the value of each column and vice versa.
-inline bool4x3 bool3x4_transpose( const bool3x4* mat )
+bool4x3 bool3x4_transpose( const bool3x4* mat )
 {
 	return HLML_CONSTRUCT( bool4x3 ) {
 		mat->rows[0].x, mat->rows[1].x, mat->rows[2].x,
@@ -313,11 +3679,7 @@ inline bool4x3 bool3x4_transpose( const bool3x4* mat )
 	};
 }
 
-
-// bool4x2
-/// \relates bool4x2
-/// \brief Returns true if the all the components of the left-hand-side bool4x2 match the other one, otherwise returns false.
-inline bool bool4x2_cmpe( const bool4x2* lhs, const bool4x2* rhs )
+bool bool4x2_cmpe( const bool4x2* lhs, const bool4x2* rhs )
 {
 	return bool2_cmpe( &lhs->rows[0], &rhs->rows[0] )
 		&& bool2_cmpe( &lhs->rows[1], &rhs->rows[1] )
@@ -325,16 +3687,12 @@ inline bool bool4x2_cmpe( const bool4x2* lhs, const bool4x2* rhs )
 		&& bool2_cmpe( &lhs->rows[3], &rhs->rows[3] );
 }
 
-/// \relates bool4x2
-/// \brief Returns true if not all of the components of the left-hand-side bool4x2 match the other one, otherwise returns false.
-inline bool bool4x2_cmpne( const bool4x2* lhs, const bool4x2* rhs )
+bool bool4x2_cmpne( const bool4x2* lhs, const bool4x2* rhs )
 {
 	return !( bool4x2_cmpe( lhs, rhs ) );
 }
 
-/// \relates bool4x2
-/// \brief Sets the matrix to an identity matrix.
-inline void bool4x2_identity( bool4x2* mat )
+void bool4x2_identity( bool4x2* mat )
 {
 	mat->rows[0] = HLML_CONSTRUCT( bool2 ) { true, false };
 	mat->rows[1] = HLML_CONSTRUCT( bool2 ) { false, true };
@@ -342,9 +3700,7 @@ inline void bool4x2_identity( bool4x2* mat )
 	mat->rows[3] = HLML_CONSTRUCT( bool2 ) { false, false };
 }
 
-/// \relates bool4x2
-/// \brief Returns a copy of the matrix that is transposed, where the value of each row is set to the value of each column and vice versa.
-inline bool2x4 bool4x2_transpose( const bool4x2* mat )
+bool2x4 bool4x2_transpose( const bool4x2* mat )
 {
 	return HLML_CONSTRUCT( bool2x4 ) {
 		mat->rows[0].x, mat->rows[1].x, mat->rows[2].x, mat->rows[3].x,
@@ -352,11 +3708,7 @@ inline bool2x4 bool4x2_transpose( const bool4x2* mat )
 	};
 }
 
-
-// bool4x3
-/// \relates bool4x3
-/// \brief Returns true if the all the components of the left-hand-side bool4x3 match the other one, otherwise returns false.
-inline bool bool4x3_cmpe( const bool4x3* lhs, const bool4x3* rhs )
+bool bool4x3_cmpe( const bool4x3* lhs, const bool4x3* rhs )
 {
 	return bool3_cmpe( &lhs->rows[0], &rhs->rows[0] )
 		&& bool3_cmpe( &lhs->rows[1], &rhs->rows[1] )
@@ -364,16 +3716,12 @@ inline bool bool4x3_cmpe( const bool4x3* lhs, const bool4x3* rhs )
 		&& bool3_cmpe( &lhs->rows[3], &rhs->rows[3] );
 }
 
-/// \relates bool4x3
-/// \brief Returns true if not all of the components of the left-hand-side bool4x3 match the other one, otherwise returns false.
-inline bool bool4x3_cmpne( const bool4x3* lhs, const bool4x3* rhs )
+bool bool4x3_cmpne( const bool4x3* lhs, const bool4x3* rhs )
 {
 	return !( bool4x3_cmpe( lhs, rhs ) );
 }
 
-/// \relates bool4x3
-/// \brief Sets the matrix to an identity matrix.
-inline void bool4x3_identity( bool4x3* mat )
+void bool4x3_identity( bool4x3* mat )
 {
 	mat->rows[0] = HLML_CONSTRUCT( bool3 ) { true, false, false };
 	mat->rows[1] = HLML_CONSTRUCT( bool3 ) { false, true, false };
@@ -381,9 +3729,7 @@ inline void bool4x3_identity( bool4x3* mat )
 	mat->rows[3] = HLML_CONSTRUCT( bool3 ) { false, false, false };
 }
 
-/// \relates bool4x3
-/// \brief Returns a copy of the matrix that is transposed, where the value of each row is set to the value of each column and vice versa.
-inline bool3x4 bool4x3_transpose( const bool4x3* mat )
+bool3x4 bool4x3_transpose( const bool4x3* mat )
 {
 	return HLML_CONSTRUCT( bool3x4 ) {
 		mat->rows[0].x, mat->rows[1].x, mat->rows[2].x, mat->rows[3].x,
@@ -392,11 +3738,7 @@ inline bool3x4 bool4x3_transpose( const bool4x3* mat )
 	};
 }
 
-
-// bool4x4
-/// \relates bool4x4
-/// \brief Returns true if the all the components of the left-hand-side bool4x4 match the other one, otherwise returns false.
-inline bool bool4x4_cmpe( const bool4x4* lhs, const bool4x4* rhs )
+bool bool4x4_cmpe( const bool4x4* lhs, const bool4x4* rhs )
 {
 	return bool4_cmpe( &lhs->rows[0], &rhs->rows[0] )
 		&& bool4_cmpe( &lhs->rows[1], &rhs->rows[1] )
@@ -404,16 +3746,12 @@ inline bool bool4x4_cmpe( const bool4x4* lhs, const bool4x4* rhs )
 		&& bool4_cmpe( &lhs->rows[3], &rhs->rows[3] );
 }
 
-/// \relates bool4x4
-/// \brief Returns true if not all of the components of the left-hand-side bool4x4 match the other one, otherwise returns false.
-inline bool bool4x4_cmpne( const bool4x4* lhs, const bool4x4* rhs )
+bool bool4x4_cmpne( const bool4x4* lhs, const bool4x4* rhs )
 {
 	return !( bool4x4_cmpe( lhs, rhs ) );
 }
 
-/// \relates bool4x4
-/// \brief Sets the matrix to an identity matrix.
-inline void bool4x4_identity( bool4x4* mat )
+void bool4x4_identity( bool4x4* mat )
 {
 	mat->rows[0] = HLML_CONSTRUCT( bool4 ) { true, false, false, false };
 	mat->rows[1] = HLML_CONSTRUCT( bool4 ) { false, true, false, false };
@@ -421,9 +3759,7 @@ inline void bool4x4_identity( bool4x4* mat )
 	mat->rows[3] = HLML_CONSTRUCT( bool4 ) { false, false, false, true };
 }
 
-/// \relates bool4x4
-/// \brief Returns a copy of the matrix that is transposed, where the value of each row is set to the value of each column and vice versa.
-inline bool4x4 bool4x4_transpose( const bool4x4* mat )
+bool4x4 bool4x4_transpose( const bool4x4* mat )
 {
 	return HLML_CONSTRUCT( bool4x4 ) {
 		mat->rows[0].x, mat->rows[1].x, mat->rows[2].x, mat->rows[3].x,
@@ -433,26 +3769,18 @@ inline bool4x4 bool4x4_transpose( const bool4x4* mat )
 	};
 }
 
-
-// int2x2
-/// \relates int2x2
-/// \brief Returns true if the all the components of the left-hand-side int2x2 match the other one, otherwise returns false.
-inline bool int2x2_cmpe( const int2x2* lhs, const int2x2* rhs )
+bool int2x2_cmpe( const int2x2* lhs, const int2x2* rhs )
 {
 	return int2_cmpe( &lhs->rows[0], &rhs->rows[0] )
 		&& int2_cmpe( &lhs->rows[1], &rhs->rows[1] );
 }
 
-/// \relates int2x2
-/// \brief Returns true if not all of the components of the left-hand-side int2x2 match the other one, otherwise returns false.
-inline bool int2x2_cmpne( const int2x2* lhs, const int2x2* rhs )
+bool int2x2_cmpne( const int2x2* lhs, const int2x2* rhs )
 {
 	return !( int2x2_cmpe( lhs, rhs ) );
 }
 
-/// \relates int2x2
-/// \brief Returns a copy of the int2x2 that has been component-wise added by the given scalar value.
-inline int2x2 int2x2_comp_adds( const int2x2* lhs, const int32_t scalar )
+int2x2 int2x2_comp_adds( const int2x2* lhs, const int32_t scalar )
 {
 	return HLML_CONSTRUCT( int2x2 ) {
 		lhs->rows[0].x + scalar, lhs->rows[0].y + scalar,
@@ -460,9 +3788,7 @@ inline int2x2 int2x2_comp_adds( const int2x2* lhs, const int32_t scalar )
 	};
 }
 
-/// \relates int2x2
-/// \brief Returns a copy of the int2x2 that has been component-wise added by the corresponding component of the right-hand int2x2.
-inline int2x2 int2x2_comp_addm( const int2x2* lhs, const int2x2* rhs )
+int2x2 int2x2_comp_addm( const int2x2* lhs, const int2x2* rhs )
 {
 	return HLML_CONSTRUCT( int2x2 ) {
 		int2_comp_addv( &lhs->rows[0], &rhs->rows[0] ),
@@ -470,9 +3796,7 @@ inline int2x2 int2x2_comp_addm( const int2x2* lhs, const int2x2* rhs )
 	};
 }
 
-/// \relates int2x2
-/// \brief Returns a copy of the int2x2 that has been component-wise subtracted by the given scalar value.
-inline int2x2 int2x2_comp_subs( const int2x2* lhs, const int32_t scalar )
+int2x2 int2x2_comp_subs( const int2x2* lhs, const int32_t scalar )
 {
 	return HLML_CONSTRUCT( int2x2 ) {
 		lhs->rows[0].x - scalar, lhs->rows[0].y - scalar,
@@ -480,9 +3804,7 @@ inline int2x2 int2x2_comp_subs( const int2x2* lhs, const int32_t scalar )
 	};
 }
 
-/// \relates int2x2
-/// \brief Returns a copy of the int2x2 that has been component-wise subtracted by the corresponding component of the right-hand int2x2.
-inline int2x2 int2x2_comp_subm( const int2x2* lhs, const int2x2* rhs )
+int2x2 int2x2_comp_subm( const int2x2* lhs, const int2x2* rhs )
 {
 	return HLML_CONSTRUCT( int2x2 ) {
 		int2_comp_subv( &lhs->rows[0], &rhs->rows[0] ),
@@ -490,9 +3812,7 @@ inline int2x2 int2x2_comp_subm( const int2x2* lhs, const int2x2* rhs )
 	};
 }
 
-/// \relates int2x2
-/// \brief Returns a copy of the int2x2 that has been component-wise multiplied by the given scalar value.
-inline int2x2 int2x2_comp_muls( const int2x2* lhs, const int32_t scalar )
+int2x2 int2x2_comp_muls( const int2x2* lhs, const int32_t scalar )
 {
 	return HLML_CONSTRUCT( int2x2 ) {
 		lhs->rows[0].x * scalar, lhs->rows[0].y * scalar,
@@ -500,9 +3820,7 @@ inline int2x2 int2x2_comp_muls( const int2x2* lhs, const int32_t scalar )
 	};
 }
 
-/// \relates int2x2
-/// \brief Returns a copy of the int2x2 that has been component-wise multiplied by the corresponding component of the right-hand int2x2.
-inline int2x2 int2x2_comp_mulm( const int2x2* lhs, const int2x2* rhs )
+int2x2 int2x2_comp_mulm( const int2x2* lhs, const int2x2* rhs )
 {
 	return HLML_CONSTRUCT( int2x2 ) {
 		int2_comp_mulv( &lhs->rows[0], &rhs->rows[0] ),
@@ -510,9 +3828,7 @@ inline int2x2 int2x2_comp_mulm( const int2x2* lhs, const int2x2* rhs )
 	};
 }
 
-/// \relates int2x2
-/// \brief Returns a copy of the int2x2 that has been component-wise divided by the given scalar value.
-inline int2x2 int2x2_comp_divs( const int2x2* lhs, const int32_t scalar )
+int2x2 int2x2_comp_divs( const int2x2* lhs, const int32_t scalar )
 {
 	return HLML_CONSTRUCT( int2x2 ) {
 		lhs->rows[0].x / scalar, lhs->rows[0].y / scalar,
@@ -520,9 +3836,7 @@ inline int2x2 int2x2_comp_divs( const int2x2* lhs, const int32_t scalar )
 	};
 }
 
-/// \relates int2x2
-/// \brief Returns a copy of the int2x2 that has been component-wise divided by the corresponding component of the right-hand int2x2.
-inline int2x2 int2x2_comp_divm( const int2x2* lhs, const int2x2* rhs )
+int2x2 int2x2_comp_divm( const int2x2* lhs, const int2x2* rhs )
 {
 	return HLML_CONSTRUCT( int2x2 ) {
 		int2_comp_divv( &lhs->rows[0], &rhs->rows[0] ),
@@ -530,9 +3844,7 @@ inline int2x2 int2x2_comp_divm( const int2x2* lhs, const int2x2* rhs )
 	};
 }
 
-/// \relates int2x2
-/// \brief Returns a copy of the int2x2 where each component of the left-hand int2x2 has been bitwise AND'd against the corresponding component of the right-hand side int2x2.
-inline int2x2 int2x2_comp_and( const int2x2* lhs, const int2x2* rhs )
+int2x2 int2x2_comp_and( const int2x2* lhs, const int2x2* rhs )
 {
 	return HLML_CONSTRUCT( int2x2 ) {
 		int2_comp_and( &lhs->rows[0], &rhs->rows[0] ),
@@ -540,9 +3852,7 @@ inline int2x2 int2x2_comp_and( const int2x2* lhs, const int2x2* rhs )
 	};
 }
 
-/// \relates int2x2
-/// \brief Returns a copy of the int2x2 where each component of the left-hand int2x2 has been bitwise OR'd against the corresponding component of the right-hand side int2x2.
-inline int2x2 int2x2_comp_or( const int2x2* lhs, const int2x2* rhs )
+int2x2 int2x2_comp_or( const int2x2* lhs, const int2x2* rhs )
 {
 	return HLML_CONSTRUCT( int2x2 ) {
 		int2_comp_or( &lhs->rows[0], &rhs->rows[0] ),
@@ -550,9 +3860,7 @@ inline int2x2 int2x2_comp_or( const int2x2* lhs, const int2x2* rhs )
 	};
 }
 
-/// \relates int2x2
-/// \brief Returns a copy of the int2x2 where each component of the left-hand int2x2 has been bitwise XOR'd against the corresponding component of the right-hand side int2x2.
-inline int2x2 int2x2_comp_xor( const int2x2* lhs, const int2x2* rhs )
+int2x2 int2x2_comp_xor( const int2x2* lhs, const int2x2* rhs )
 {
 	return HLML_CONSTRUCT( int2x2 ) {
 		int2_comp_xor( &lhs->rows[0], &rhs->rows[0] ),
@@ -560,9 +3868,7 @@ inline int2x2 int2x2_comp_xor( const int2x2* lhs, const int2x2* rhs )
 	};
 }
 
-/// \relates int2x2
-/// \brief Performs a unary bitwise operation on all components of the given int2x2.
-inline int2x2 int2x2_comp_unary( const int2x2* lhs )
+int2x2 int2x2_comp_unary( const int2x2* lhs )
 {
 	return HLML_CONSTRUCT( int2x2 ) {
 		~lhs->rows[0].x,
@@ -574,9 +3880,7 @@ inline int2x2 int2x2_comp_unary( const int2x2* lhs )
 	};
 }
 
-/// \relates int2x2
-/// \brief Returns a copy of the int2x2 where each component of the left-hand int2x2 has been bitwise left-shifted by the corresponding component of the right-hand side int2x2.
-inline int2x2 int2x2_comp_shift_left( const int2x2* lhs, const int2x2* rhs )
+int2x2 int2x2_comp_shift_left( const int2x2* lhs, const int2x2* rhs )
 {
 	return HLML_CONSTRUCT( int2x2 ) {
 		int2_comp_shift_left( &lhs->rows[0], &rhs->rows[0] ),
@@ -584,9 +3888,7 @@ inline int2x2 int2x2_comp_shift_left( const int2x2* lhs, const int2x2* rhs )
 	};
 }
 
-/// \relates int2x2
-/// \brief Returns a copy of the int2x2 where each component of the left-hand int2x2 has been bitwise right-shifted by the corresponding component of the right-hand side int2x2.
-inline int2x2 int2x2_comp_shift_right( const int2x2* lhs, const int2x2* rhs )
+int2x2 int2x2_comp_shift_right( const int2x2* lhs, const int2x2* rhs )
 {
 	return HLML_CONSTRUCT( int2x2 ) {
 		int2_comp_shift_right( &lhs->rows[0], &rhs->rows[0] ),
@@ -594,9 +3896,7 @@ inline int2x2 int2x2_comp_shift_right( const int2x2* lhs, const int2x2* rhs )
 	};
 }
 
-/// \relates int2x2
-/// \brief Returns a bool2x2 where each component is true if the component of the left-hand type is less than the corresponding right-hand type component.
-inline bool2x2 int2x2_cmpl( const int2x2* lhs, const int2x2* rhs )
+bool2x2 int2x2_cmpl( const int2x2* lhs, const int2x2* rhs )
 {
 	return HLML_CONSTRUCT( bool2x2 ) {
 		int2_cmpl( &lhs->rows[0], &rhs->rows[0] ),
@@ -604,9 +3904,7 @@ inline bool2x2 int2x2_cmpl( const int2x2* lhs, const int2x2* rhs )
 	};
 }
 
-/// \relates int2x2
-/// \brief Returns a bool2x2 where each component is true if the component of the left-hand type is less than or equal to the corresponding right-hand type component.
-inline bool2x2 int2x2_cmple( const int2x2* lhs, const int2x2* rhs )
+bool2x2 int2x2_cmple( const int2x2* lhs, const int2x2* rhs )
 {
 	return HLML_CONSTRUCT( bool2x2 ) {
 		int2_cmple( &lhs->rows[0], &rhs->rows[0] ),
@@ -614,9 +3912,7 @@ inline bool2x2 int2x2_cmple( const int2x2* lhs, const int2x2* rhs )
 	};
 }
 
-/// \relates int2x2
-/// \brief Returns a bool2x2 where each component is true if the component of the left-hand type is greater than the corresponding right-hand type component.
-inline bool2x2 int2x2_cmpg( const int2x2* lhs, const int2x2* rhs )
+bool2x2 int2x2_cmpg( const int2x2* lhs, const int2x2* rhs )
 {
 	return HLML_CONSTRUCT( bool2x2 ) {
 		int2_cmpg( &lhs->rows[0], &rhs->rows[0] ),
@@ -624,9 +3920,7 @@ inline bool2x2 int2x2_cmpg( const int2x2* lhs, const int2x2* rhs )
 	};
 }
 
-/// \relates int2x2
-/// \brief Returns a bool2x2 where each component is true if the component of the left-hand type is greater than or equal to the corresponding right-hand type component.
-inline bool2x2 int2x2_cmpge( const int2x2* lhs, const int2x2* rhs )
+bool2x2 int2x2_cmpge( const int2x2* lhs, const int2x2* rhs )
 {
 	return HLML_CONSTRUCT( bool2x2 ) {
 		int2_cmpge( &lhs->rows[0], &rhs->rows[0] ),
@@ -634,17 +3928,13 @@ inline bool2x2 int2x2_cmpge( const int2x2* lhs, const int2x2* rhs )
 	};
 }
 
-/// \relates int2x2
-/// \brief Sets the matrix to an identity matrix.
-inline void int2x2_identity( int2x2* mat )
+void int2x2_identity( int2x2* mat )
 {
 	mat->rows[0] = HLML_CONSTRUCT( int2 ) { 1, 0 };
 	mat->rows[1] = HLML_CONSTRUCT( int2 ) { 0, 1 };
 }
 
-/// \relates int2x2
-/// \brief Returns a copy of the matrix that is transposed, where the value of each row is set to the value of each column and vice versa.
-inline int2x2 int2x2_transpose( const int2x2* mat )
+int2x2 int2x2_transpose( const int2x2* mat )
 {
 	return HLML_CONSTRUCT( int2x2 ) {
 		mat->rows[0].x, mat->rows[1].x,
@@ -652,16 +3942,12 @@ inline int2x2 int2x2_transpose( const int2x2* mat )
 	};
 }
 
-/// \relates int2x2
-/// \brief Returns the determinant of the matrix.
-inline int32_t int2x2_determinant( const int2x2* mat )
+int32_t int2x2_determinant( const int2x2* mat )
 {
 	return mat->rows[0].x * mat->rows[1].y - mat->rows[1].x * mat->rows[0].y;
 }
 
-/// \relates int2x2
-/// \brief Returns a copy of the matrix where each row of the left-hand matrix has been dot-producted by the corresponding column of the right-hand matrix.
-inline int2x2 int2x2_mulm( const int2x2* lhs, const int2x2* rhs )
+int2x2 int2x2_mulm( const int2x2* lhs, const int2x2* rhs )
 {
 	int2 row0 = lhs->rows[0];
 	int2 row1 = lhs->rows[1];
@@ -678,9 +3964,7 @@ inline int2x2 int2x2_mulm( const int2x2* lhs, const int2x2* rhs )
 	};
 }
 
-/// \relates int2x2
-/// \brief Returns the right-hand vector multiplied by the left-hand matrix.
-inline int2 int2x2_mulv( const int2x2* lhs, const int2* rhs )
+int2 int2x2_mulv( const int2x2* lhs, const int2* rhs )
 {
 	return HLML_CONSTRUCT( int2 ) {
 		lhs->rows[0].x * rhs->x + lhs->rows[0].y * rhs->y,
@@ -688,26 +3972,18 @@ inline int2 int2x2_mulv( const int2x2* lhs, const int2* rhs )
 	};
 }
 
-
-// int2x3
-/// \relates int2x3
-/// \brief Returns true if the all the components of the left-hand-side int2x3 match the other one, otherwise returns false.
-inline bool int2x3_cmpe( const int2x3* lhs, const int2x3* rhs )
+bool int2x3_cmpe( const int2x3* lhs, const int2x3* rhs )
 {
 	return int3_cmpe( &lhs->rows[0], &rhs->rows[0] )
 		&& int3_cmpe( &lhs->rows[1], &rhs->rows[1] );
 }
 
-/// \relates int2x3
-/// \brief Returns true if not all of the components of the left-hand-side int2x3 match the other one, otherwise returns false.
-inline bool int2x3_cmpne( const int2x3* lhs, const int2x3* rhs )
+bool int2x3_cmpne( const int2x3* lhs, const int2x3* rhs )
 {
 	return !( int2x3_cmpe( lhs, rhs ) );
 }
 
-/// \relates int2x3
-/// \brief Returns a copy of the int2x3 that has been component-wise added by the given scalar value.
-inline int2x3 int2x3_comp_adds( const int2x3* lhs, const int32_t scalar )
+int2x3 int2x3_comp_adds( const int2x3* lhs, const int32_t scalar )
 {
 	return HLML_CONSTRUCT( int2x3 ) {
 		lhs->rows[0].x + scalar, lhs->rows[0].y + scalar, lhs->rows[0].z + scalar,
@@ -715,9 +3991,7 @@ inline int2x3 int2x3_comp_adds( const int2x3* lhs, const int32_t scalar )
 	};
 }
 
-/// \relates int2x3
-/// \brief Returns a copy of the int2x3 that has been component-wise added by the corresponding component of the right-hand int2x3.
-inline int2x3 int2x3_comp_addm( const int2x3* lhs, const int2x3* rhs )
+int2x3 int2x3_comp_addm( const int2x3* lhs, const int2x3* rhs )
 {
 	return HLML_CONSTRUCT( int2x3 ) {
 		int3_comp_addv( &lhs->rows[0], &rhs->rows[0] ),
@@ -725,9 +3999,7 @@ inline int2x3 int2x3_comp_addm( const int2x3* lhs, const int2x3* rhs )
 	};
 }
 
-/// \relates int2x3
-/// \brief Returns a copy of the int2x3 that has been component-wise subtracted by the given scalar value.
-inline int2x3 int2x3_comp_subs( const int2x3* lhs, const int32_t scalar )
+int2x3 int2x3_comp_subs( const int2x3* lhs, const int32_t scalar )
 {
 	return HLML_CONSTRUCT( int2x3 ) {
 		lhs->rows[0].x - scalar, lhs->rows[0].y - scalar, lhs->rows[0].z - scalar,
@@ -735,9 +4007,7 @@ inline int2x3 int2x3_comp_subs( const int2x3* lhs, const int32_t scalar )
 	};
 }
 
-/// \relates int2x3
-/// \brief Returns a copy of the int2x3 that has been component-wise subtracted by the corresponding component of the right-hand int2x3.
-inline int2x3 int2x3_comp_subm( const int2x3* lhs, const int2x3* rhs )
+int2x3 int2x3_comp_subm( const int2x3* lhs, const int2x3* rhs )
 {
 	return HLML_CONSTRUCT( int2x3 ) {
 		int3_comp_subv( &lhs->rows[0], &rhs->rows[0] ),
@@ -745,9 +4015,7 @@ inline int2x3 int2x3_comp_subm( const int2x3* lhs, const int2x3* rhs )
 	};
 }
 
-/// \relates int2x3
-/// \brief Returns a copy of the int2x3 that has been component-wise multiplied by the given scalar value.
-inline int2x3 int2x3_comp_muls( const int2x3* lhs, const int32_t scalar )
+int2x3 int2x3_comp_muls( const int2x3* lhs, const int32_t scalar )
 {
 	return HLML_CONSTRUCT( int2x3 ) {
 		lhs->rows[0].x * scalar, lhs->rows[0].y * scalar, lhs->rows[0].z * scalar,
@@ -755,9 +4023,7 @@ inline int2x3 int2x3_comp_muls( const int2x3* lhs, const int32_t scalar )
 	};
 }
 
-/// \relates int2x3
-/// \brief Returns a copy of the int2x3 that has been component-wise multiplied by the corresponding component of the right-hand int2x3.
-inline int2x3 int2x3_comp_mulm( const int2x3* lhs, const int2x3* rhs )
+int2x3 int2x3_comp_mulm( const int2x3* lhs, const int2x3* rhs )
 {
 	return HLML_CONSTRUCT( int2x3 ) {
 		int3_comp_mulv( &lhs->rows[0], &rhs->rows[0] ),
@@ -765,9 +4031,7 @@ inline int2x3 int2x3_comp_mulm( const int2x3* lhs, const int2x3* rhs )
 	};
 }
 
-/// \relates int2x3
-/// \brief Returns a copy of the int2x3 that has been component-wise divided by the given scalar value.
-inline int2x3 int2x3_comp_divs( const int2x3* lhs, const int32_t scalar )
+int2x3 int2x3_comp_divs( const int2x3* lhs, const int32_t scalar )
 {
 	return HLML_CONSTRUCT( int2x3 ) {
 		lhs->rows[0].x / scalar, lhs->rows[0].y / scalar, lhs->rows[0].z / scalar,
@@ -775,9 +4039,7 @@ inline int2x3 int2x3_comp_divs( const int2x3* lhs, const int32_t scalar )
 	};
 }
 
-/// \relates int2x3
-/// \brief Returns a copy of the int2x3 that has been component-wise divided by the corresponding component of the right-hand int2x3.
-inline int2x3 int2x3_comp_divm( const int2x3* lhs, const int2x3* rhs )
+int2x3 int2x3_comp_divm( const int2x3* lhs, const int2x3* rhs )
 {
 	return HLML_CONSTRUCT( int2x3 ) {
 		int3_comp_divv( &lhs->rows[0], &rhs->rows[0] ),
@@ -785,9 +4047,7 @@ inline int2x3 int2x3_comp_divm( const int2x3* lhs, const int2x3* rhs )
 	};
 }
 
-/// \relates int2x3
-/// \brief Returns a copy of the int2x3 where each component of the left-hand int2x3 has been bitwise AND'd against the corresponding component of the right-hand side int2x3.
-inline int2x3 int2x3_comp_and( const int2x3* lhs, const int2x3* rhs )
+int2x3 int2x3_comp_and( const int2x3* lhs, const int2x3* rhs )
 {
 	return HLML_CONSTRUCT( int2x3 ) {
 		int3_comp_and( &lhs->rows[0], &rhs->rows[0] ),
@@ -795,9 +4055,7 @@ inline int2x3 int2x3_comp_and( const int2x3* lhs, const int2x3* rhs )
 	};
 }
 
-/// \relates int2x3
-/// \brief Returns a copy of the int2x3 where each component of the left-hand int2x3 has been bitwise OR'd against the corresponding component of the right-hand side int2x3.
-inline int2x3 int2x3_comp_or( const int2x3* lhs, const int2x3* rhs )
+int2x3 int2x3_comp_or( const int2x3* lhs, const int2x3* rhs )
 {
 	return HLML_CONSTRUCT( int2x3 ) {
 		int3_comp_or( &lhs->rows[0], &rhs->rows[0] ),
@@ -805,9 +4063,7 @@ inline int2x3 int2x3_comp_or( const int2x3* lhs, const int2x3* rhs )
 	};
 }
 
-/// \relates int2x3
-/// \brief Returns a copy of the int2x3 where each component of the left-hand int2x3 has been bitwise XOR'd against the corresponding component of the right-hand side int2x3.
-inline int2x3 int2x3_comp_xor( const int2x3* lhs, const int2x3* rhs )
+int2x3 int2x3_comp_xor( const int2x3* lhs, const int2x3* rhs )
 {
 	return HLML_CONSTRUCT( int2x3 ) {
 		int3_comp_xor( &lhs->rows[0], &rhs->rows[0] ),
@@ -815,9 +4071,7 @@ inline int2x3 int2x3_comp_xor( const int2x3* lhs, const int2x3* rhs )
 	};
 }
 
-/// \relates int2x3
-/// \brief Performs a unary bitwise operation on all components of the given int2x3.
-inline int2x3 int2x3_comp_unary( const int2x3* lhs )
+int2x3 int2x3_comp_unary( const int2x3* lhs )
 {
 	return HLML_CONSTRUCT( int2x3 ) {
 		~lhs->rows[0].x,
@@ -831,9 +4085,7 @@ inline int2x3 int2x3_comp_unary( const int2x3* lhs )
 	};
 }
 
-/// \relates int2x3
-/// \brief Returns a copy of the int2x3 where each component of the left-hand int2x3 has been bitwise left-shifted by the corresponding component of the right-hand side int2x3.
-inline int2x3 int2x3_comp_shift_left( const int2x3* lhs, const int2x3* rhs )
+int2x3 int2x3_comp_shift_left( const int2x3* lhs, const int2x3* rhs )
 {
 	return HLML_CONSTRUCT( int2x3 ) {
 		int3_comp_shift_left( &lhs->rows[0], &rhs->rows[0] ),
@@ -841,9 +4093,7 @@ inline int2x3 int2x3_comp_shift_left( const int2x3* lhs, const int2x3* rhs )
 	};
 }
 
-/// \relates int2x3
-/// \brief Returns a copy of the int2x3 where each component of the left-hand int2x3 has been bitwise right-shifted by the corresponding component of the right-hand side int2x3.
-inline int2x3 int2x3_comp_shift_right( const int2x3* lhs, const int2x3* rhs )
+int2x3 int2x3_comp_shift_right( const int2x3* lhs, const int2x3* rhs )
 {
 	return HLML_CONSTRUCT( int2x3 ) {
 		int3_comp_shift_right( &lhs->rows[0], &rhs->rows[0] ),
@@ -851,9 +4101,7 @@ inline int2x3 int2x3_comp_shift_right( const int2x3* lhs, const int2x3* rhs )
 	};
 }
 
-/// \relates int2x3
-/// \brief Returns a bool2x3 where each component is true if the component of the left-hand type is less than the corresponding right-hand type component.
-inline bool2x3 int2x3_cmpl( const int2x3* lhs, const int2x3* rhs )
+bool2x3 int2x3_cmpl( const int2x3* lhs, const int2x3* rhs )
 {
 	return HLML_CONSTRUCT( bool2x3 ) {
 		int3_cmpl( &lhs->rows[0], &rhs->rows[0] ),
@@ -861,9 +4109,7 @@ inline bool2x3 int2x3_cmpl( const int2x3* lhs, const int2x3* rhs )
 	};
 }
 
-/// \relates int2x3
-/// \brief Returns a bool2x3 where each component is true if the component of the left-hand type is less than or equal to the corresponding right-hand type component.
-inline bool2x3 int2x3_cmple( const int2x3* lhs, const int2x3* rhs )
+bool2x3 int2x3_cmple( const int2x3* lhs, const int2x3* rhs )
 {
 	return HLML_CONSTRUCT( bool2x3 ) {
 		int3_cmple( &lhs->rows[0], &rhs->rows[0] ),
@@ -871,9 +4117,7 @@ inline bool2x3 int2x3_cmple( const int2x3* lhs, const int2x3* rhs )
 	};
 }
 
-/// \relates int2x3
-/// \brief Returns a bool2x3 where each component is true if the component of the left-hand type is greater than the corresponding right-hand type component.
-inline bool2x3 int2x3_cmpg( const int2x3* lhs, const int2x3* rhs )
+bool2x3 int2x3_cmpg( const int2x3* lhs, const int2x3* rhs )
 {
 	return HLML_CONSTRUCT( bool2x3 ) {
 		int3_cmpg( &lhs->rows[0], &rhs->rows[0] ),
@@ -881,9 +4125,7 @@ inline bool2x3 int2x3_cmpg( const int2x3* lhs, const int2x3* rhs )
 	};
 }
 
-/// \relates int2x3
-/// \brief Returns a bool2x3 where each component is true if the component of the left-hand type is greater than or equal to the corresponding right-hand type component.
-inline bool2x3 int2x3_cmpge( const int2x3* lhs, const int2x3* rhs )
+bool2x3 int2x3_cmpge( const int2x3* lhs, const int2x3* rhs )
 {
 	return HLML_CONSTRUCT( bool2x3 ) {
 		int3_cmpge( &lhs->rows[0], &rhs->rows[0] ),
@@ -891,17 +4133,13 @@ inline bool2x3 int2x3_cmpge( const int2x3* lhs, const int2x3* rhs )
 	};
 }
 
-/// \relates int2x3
-/// \brief Sets the matrix to an identity matrix.
-inline void int2x3_identity( int2x3* mat )
+void int2x3_identity( int2x3* mat )
 {
 	mat->rows[0] = HLML_CONSTRUCT( int3 ) { 1, 0, 0 };
 	mat->rows[1] = HLML_CONSTRUCT( int3 ) { 0, 1, 0 };
 }
 
-/// \relates int2x3
-/// \brief Returns a copy of the matrix that is transposed, where the value of each row is set to the value of each column and vice versa.
-inline int3x2 int2x3_transpose( const int2x3* mat )
+int3x2 int2x3_transpose( const int2x3* mat )
 {
 	return HLML_CONSTRUCT( int3x2 ) {
 		mat->rows[0].x, mat->rows[1].x,
@@ -910,9 +4148,7 @@ inline int3x2 int2x3_transpose( const int2x3* mat )
 	};
 }
 
-/// \relates int2x3
-/// \brief Returns a copy of the matrix where each row of the left-hand matrix has been dot-producted by the corresponding column of the right-hand matrix.
-inline int2x2 int2x3_mulm( const int2x3* lhs, const int3x2* rhs )
+int2x2 int2x3_mulm( const int2x3* lhs, const int3x2* rhs )
 {
 	int3 row0 = lhs->rows[0];
 	int3 row1 = lhs->rows[1];
@@ -929,9 +4165,7 @@ inline int2x2 int2x3_mulm( const int2x3* lhs, const int3x2* rhs )
 	};
 }
 
-/// \relates int2x3
-/// \brief Returns a copy of the matrix that has had a non-uniform scale applied to it.
-inline int2x3 int2x3_scale( const int2x3* mat, const int2* vec )
+int2x3 int2x3_scale( const int2x3* mat, const int2* vec )
 {
 	return HLML_CONSTRUCT( int2x3 ) {
 		mat->rows[0].x * vec->x,
@@ -944,26 +4178,18 @@ inline int2x3 int2x3_scale( const int2x3* mat, const int2* vec )
 	};
 }
 
-
-// int2x4
-/// \relates int2x4
-/// \brief Returns true if the all the components of the left-hand-side int2x4 match the other one, otherwise returns false.
-inline bool int2x4_cmpe( const int2x4* lhs, const int2x4* rhs )
+bool int2x4_cmpe( const int2x4* lhs, const int2x4* rhs )
 {
 	return int4_cmpe( &lhs->rows[0], &rhs->rows[0] )
 		&& int4_cmpe( &lhs->rows[1], &rhs->rows[1] );
 }
 
-/// \relates int2x4
-/// \brief Returns true if not all of the components of the left-hand-side int2x4 match the other one, otherwise returns false.
-inline bool int2x4_cmpne( const int2x4* lhs, const int2x4* rhs )
+bool int2x4_cmpne( const int2x4* lhs, const int2x4* rhs )
 {
 	return !( int2x4_cmpe( lhs, rhs ) );
 }
 
-/// \relates int2x4
-/// \brief Returns a copy of the int2x4 that has been component-wise added by the given scalar value.
-inline int2x4 int2x4_comp_adds( const int2x4* lhs, const int32_t scalar )
+int2x4 int2x4_comp_adds( const int2x4* lhs, const int32_t scalar )
 {
 	return HLML_CONSTRUCT( int2x4 ) {
 		lhs->rows[0].x + scalar, lhs->rows[0].y + scalar, lhs->rows[0].z + scalar, lhs->rows[0].w + scalar,
@@ -971,9 +4197,7 @@ inline int2x4 int2x4_comp_adds( const int2x4* lhs, const int32_t scalar )
 	};
 }
 
-/// \relates int2x4
-/// \brief Returns a copy of the int2x4 that has been component-wise added by the corresponding component of the right-hand int2x4.
-inline int2x4 int2x4_comp_addm( const int2x4* lhs, const int2x4* rhs )
+int2x4 int2x4_comp_addm( const int2x4* lhs, const int2x4* rhs )
 {
 	return HLML_CONSTRUCT( int2x4 ) {
 		int4_comp_addv( &lhs->rows[0], &rhs->rows[0] ),
@@ -981,9 +4205,7 @@ inline int2x4 int2x4_comp_addm( const int2x4* lhs, const int2x4* rhs )
 	};
 }
 
-/// \relates int2x4
-/// \brief Returns a copy of the int2x4 that has been component-wise subtracted by the given scalar value.
-inline int2x4 int2x4_comp_subs( const int2x4* lhs, const int32_t scalar )
+int2x4 int2x4_comp_subs( const int2x4* lhs, const int32_t scalar )
 {
 	return HLML_CONSTRUCT( int2x4 ) {
 		lhs->rows[0].x - scalar, lhs->rows[0].y - scalar, lhs->rows[0].z - scalar, lhs->rows[0].w - scalar,
@@ -991,9 +4213,7 @@ inline int2x4 int2x4_comp_subs( const int2x4* lhs, const int32_t scalar )
 	};
 }
 
-/// \relates int2x4
-/// \brief Returns a copy of the int2x4 that has been component-wise subtracted by the corresponding component of the right-hand int2x4.
-inline int2x4 int2x4_comp_subm( const int2x4* lhs, const int2x4* rhs )
+int2x4 int2x4_comp_subm( const int2x4* lhs, const int2x4* rhs )
 {
 	return HLML_CONSTRUCT( int2x4 ) {
 		int4_comp_subv( &lhs->rows[0], &rhs->rows[0] ),
@@ -1001,9 +4221,7 @@ inline int2x4 int2x4_comp_subm( const int2x4* lhs, const int2x4* rhs )
 	};
 }
 
-/// \relates int2x4
-/// \brief Returns a copy of the int2x4 that has been component-wise multiplied by the given scalar value.
-inline int2x4 int2x4_comp_muls( const int2x4* lhs, const int32_t scalar )
+int2x4 int2x4_comp_muls( const int2x4* lhs, const int32_t scalar )
 {
 	return HLML_CONSTRUCT( int2x4 ) {
 		lhs->rows[0].x * scalar, lhs->rows[0].y * scalar, lhs->rows[0].z * scalar, lhs->rows[0].w * scalar,
@@ -1011,9 +4229,7 @@ inline int2x4 int2x4_comp_muls( const int2x4* lhs, const int32_t scalar )
 	};
 }
 
-/// \relates int2x4
-/// \brief Returns a copy of the int2x4 that has been component-wise multiplied by the corresponding component of the right-hand int2x4.
-inline int2x4 int2x4_comp_mulm( const int2x4* lhs, const int2x4* rhs )
+int2x4 int2x4_comp_mulm( const int2x4* lhs, const int2x4* rhs )
 {
 	return HLML_CONSTRUCT( int2x4 ) {
 		int4_comp_mulv( &lhs->rows[0], &rhs->rows[0] ),
@@ -1021,9 +4237,7 @@ inline int2x4 int2x4_comp_mulm( const int2x4* lhs, const int2x4* rhs )
 	};
 }
 
-/// \relates int2x4
-/// \brief Returns a copy of the int2x4 that has been component-wise divided by the given scalar value.
-inline int2x4 int2x4_comp_divs( const int2x4* lhs, const int32_t scalar )
+int2x4 int2x4_comp_divs( const int2x4* lhs, const int32_t scalar )
 {
 	return HLML_CONSTRUCT( int2x4 ) {
 		lhs->rows[0].x / scalar, lhs->rows[0].y / scalar, lhs->rows[0].z / scalar, lhs->rows[0].w / scalar,
@@ -1031,9 +4245,7 @@ inline int2x4 int2x4_comp_divs( const int2x4* lhs, const int32_t scalar )
 	};
 }
 
-/// \relates int2x4
-/// \brief Returns a copy of the int2x4 that has been component-wise divided by the corresponding component of the right-hand int2x4.
-inline int2x4 int2x4_comp_divm( const int2x4* lhs, const int2x4* rhs )
+int2x4 int2x4_comp_divm( const int2x4* lhs, const int2x4* rhs )
 {
 	return HLML_CONSTRUCT( int2x4 ) {
 		int4_comp_divv( &lhs->rows[0], &rhs->rows[0] ),
@@ -1041,9 +4253,7 @@ inline int2x4 int2x4_comp_divm( const int2x4* lhs, const int2x4* rhs )
 	};
 }
 
-/// \relates int2x4
-/// \brief Returns a copy of the int2x4 where each component of the left-hand int2x4 has been bitwise AND'd against the corresponding component of the right-hand side int2x4.
-inline int2x4 int2x4_comp_and( const int2x4* lhs, const int2x4* rhs )
+int2x4 int2x4_comp_and( const int2x4* lhs, const int2x4* rhs )
 {
 	return HLML_CONSTRUCT( int2x4 ) {
 		int4_comp_and( &lhs->rows[0], &rhs->rows[0] ),
@@ -1051,9 +4261,7 @@ inline int2x4 int2x4_comp_and( const int2x4* lhs, const int2x4* rhs )
 	};
 }
 
-/// \relates int2x4
-/// \brief Returns a copy of the int2x4 where each component of the left-hand int2x4 has been bitwise OR'd against the corresponding component of the right-hand side int2x4.
-inline int2x4 int2x4_comp_or( const int2x4* lhs, const int2x4* rhs )
+int2x4 int2x4_comp_or( const int2x4* lhs, const int2x4* rhs )
 {
 	return HLML_CONSTRUCT( int2x4 ) {
 		int4_comp_or( &lhs->rows[0], &rhs->rows[0] ),
@@ -1061,9 +4269,7 @@ inline int2x4 int2x4_comp_or( const int2x4* lhs, const int2x4* rhs )
 	};
 }
 
-/// \relates int2x4
-/// \brief Returns a copy of the int2x4 where each component of the left-hand int2x4 has been bitwise XOR'd against the corresponding component of the right-hand side int2x4.
-inline int2x4 int2x4_comp_xor( const int2x4* lhs, const int2x4* rhs )
+int2x4 int2x4_comp_xor( const int2x4* lhs, const int2x4* rhs )
 {
 	return HLML_CONSTRUCT( int2x4 ) {
 		int4_comp_xor( &lhs->rows[0], &rhs->rows[0] ),
@@ -1071,9 +4277,7 @@ inline int2x4 int2x4_comp_xor( const int2x4* lhs, const int2x4* rhs )
 	};
 }
 
-/// \relates int2x4
-/// \brief Performs a unary bitwise operation on all components of the given int2x4.
-inline int2x4 int2x4_comp_unary( const int2x4* lhs )
+int2x4 int2x4_comp_unary( const int2x4* lhs )
 {
 	return HLML_CONSTRUCT( int2x4 ) {
 		~lhs->rows[0].x,
@@ -1089,9 +4293,7 @@ inline int2x4 int2x4_comp_unary( const int2x4* lhs )
 	};
 }
 
-/// \relates int2x4
-/// \brief Returns a copy of the int2x4 where each component of the left-hand int2x4 has been bitwise left-shifted by the corresponding component of the right-hand side int2x4.
-inline int2x4 int2x4_comp_shift_left( const int2x4* lhs, const int2x4* rhs )
+int2x4 int2x4_comp_shift_left( const int2x4* lhs, const int2x4* rhs )
 {
 	return HLML_CONSTRUCT( int2x4 ) {
 		int4_comp_shift_left( &lhs->rows[0], &rhs->rows[0] ),
@@ -1099,9 +4301,7 @@ inline int2x4 int2x4_comp_shift_left( const int2x4* lhs, const int2x4* rhs )
 	};
 }
 
-/// \relates int2x4
-/// \brief Returns a copy of the int2x4 where each component of the left-hand int2x4 has been bitwise right-shifted by the corresponding component of the right-hand side int2x4.
-inline int2x4 int2x4_comp_shift_right( const int2x4* lhs, const int2x4* rhs )
+int2x4 int2x4_comp_shift_right( const int2x4* lhs, const int2x4* rhs )
 {
 	return HLML_CONSTRUCT( int2x4 ) {
 		int4_comp_shift_right( &lhs->rows[0], &rhs->rows[0] ),
@@ -1109,9 +4309,7 @@ inline int2x4 int2x4_comp_shift_right( const int2x4* lhs, const int2x4* rhs )
 	};
 }
 
-/// \relates int2x4
-/// \brief Returns a bool2x4 where each component is true if the component of the left-hand type is less than the corresponding right-hand type component.
-inline bool2x4 int2x4_cmpl( const int2x4* lhs, const int2x4* rhs )
+bool2x4 int2x4_cmpl( const int2x4* lhs, const int2x4* rhs )
 {
 	return HLML_CONSTRUCT( bool2x4 ) {
 		int4_cmpl( &lhs->rows[0], &rhs->rows[0] ),
@@ -1119,9 +4317,7 @@ inline bool2x4 int2x4_cmpl( const int2x4* lhs, const int2x4* rhs )
 	};
 }
 
-/// \relates int2x4
-/// \brief Returns a bool2x4 where each component is true if the component of the left-hand type is less than or equal to the corresponding right-hand type component.
-inline bool2x4 int2x4_cmple( const int2x4* lhs, const int2x4* rhs )
+bool2x4 int2x4_cmple( const int2x4* lhs, const int2x4* rhs )
 {
 	return HLML_CONSTRUCT( bool2x4 ) {
 		int4_cmple( &lhs->rows[0], &rhs->rows[0] ),
@@ -1129,9 +4325,7 @@ inline bool2x4 int2x4_cmple( const int2x4* lhs, const int2x4* rhs )
 	};
 }
 
-/// \relates int2x4
-/// \brief Returns a bool2x4 where each component is true if the component of the left-hand type is greater than the corresponding right-hand type component.
-inline bool2x4 int2x4_cmpg( const int2x4* lhs, const int2x4* rhs )
+bool2x4 int2x4_cmpg( const int2x4* lhs, const int2x4* rhs )
 {
 	return HLML_CONSTRUCT( bool2x4 ) {
 		int4_cmpg( &lhs->rows[0], &rhs->rows[0] ),
@@ -1139,9 +4333,7 @@ inline bool2x4 int2x4_cmpg( const int2x4* lhs, const int2x4* rhs )
 	};
 }
 
-/// \relates int2x4
-/// \brief Returns a bool2x4 where each component is true if the component of the left-hand type is greater than or equal to the corresponding right-hand type component.
-inline bool2x4 int2x4_cmpge( const int2x4* lhs, const int2x4* rhs )
+bool2x4 int2x4_cmpge( const int2x4* lhs, const int2x4* rhs )
 {
 	return HLML_CONSTRUCT( bool2x4 ) {
 		int4_cmpge( &lhs->rows[0], &rhs->rows[0] ),
@@ -1149,17 +4341,13 @@ inline bool2x4 int2x4_cmpge( const int2x4* lhs, const int2x4* rhs )
 	};
 }
 
-/// \relates int2x4
-/// \brief Sets the matrix to an identity matrix.
-inline void int2x4_identity( int2x4* mat )
+void int2x4_identity( int2x4* mat )
 {
 	mat->rows[0] = HLML_CONSTRUCT( int4 ) { 1, 0, 0, 0 };
 	mat->rows[1] = HLML_CONSTRUCT( int4 ) { 0, 1, 0, 0 };
 }
 
-/// \relates int2x4
-/// \brief Returns a copy of the matrix that is transposed, where the value of each row is set to the value of each column and vice versa.
-inline int4x2 int2x4_transpose( const int2x4* mat )
+int4x2 int2x4_transpose( const int2x4* mat )
 {
 	return HLML_CONSTRUCT( int4x2 ) {
 		mat->rows[0].x, mat->rows[1].x,
@@ -1169,9 +4357,7 @@ inline int4x2 int2x4_transpose( const int2x4* mat )
 	};
 }
 
-/// \relates int2x4
-/// \brief Returns a copy of the matrix where each row of the left-hand matrix has been dot-producted by the corresponding column of the right-hand matrix.
-inline int2x2 int2x4_mulm( const int2x4* lhs, const int4x2* rhs )
+int2x2 int2x4_mulm( const int2x4* lhs, const int4x2* rhs )
 {
 	int4 row0 = lhs->rows[0];
 	int4 row1 = lhs->rows[1];
@@ -1188,9 +4374,7 @@ inline int2x2 int2x4_mulm( const int2x4* lhs, const int4x2* rhs )
 	};
 }
 
-/// \relates int2x4
-/// \brief Returns a copy of the matrix that has had a non-uniform scale applied to it.
-inline int2x4 int2x4_scale( const int2x4* mat, const int2* vec )
+int2x4 int2x4_scale( const int2x4* mat, const int2* vec )
 {
 	return HLML_CONSTRUCT( int2x4 ) {
 		mat->rows[0].x * vec->x,
@@ -1205,27 +4389,19 @@ inline int2x4 int2x4_scale( const int2x4* mat, const int2* vec )
 	};
 }
 
-
-// int3x2
-/// \relates int3x2
-/// \brief Returns true if the all the components of the left-hand-side int3x2 match the other one, otherwise returns false.
-inline bool int3x2_cmpe( const int3x2* lhs, const int3x2* rhs )
+bool int3x2_cmpe( const int3x2* lhs, const int3x2* rhs )
 {
 	return int2_cmpe( &lhs->rows[0], &rhs->rows[0] )
 		&& int2_cmpe( &lhs->rows[1], &rhs->rows[1] )
 		&& int2_cmpe( &lhs->rows[2], &rhs->rows[2] );
 }
 
-/// \relates int3x2
-/// \brief Returns true if not all of the components of the left-hand-side int3x2 match the other one, otherwise returns false.
-inline bool int3x2_cmpne( const int3x2* lhs, const int3x2* rhs )
+bool int3x2_cmpne( const int3x2* lhs, const int3x2* rhs )
 {
 	return !( int3x2_cmpe( lhs, rhs ) );
 }
 
-/// \relates int3x2
-/// \brief Returns a copy of the int3x2 that has been component-wise added by the given scalar value.
-inline int3x2 int3x2_comp_adds( const int3x2* lhs, const int32_t scalar )
+int3x2 int3x2_comp_adds( const int3x2* lhs, const int32_t scalar )
 {
 	return HLML_CONSTRUCT( int3x2 ) {
 		lhs->rows[0].x + scalar, lhs->rows[0].y + scalar,
@@ -1234,9 +4410,7 @@ inline int3x2 int3x2_comp_adds( const int3x2* lhs, const int32_t scalar )
 	};
 }
 
-/// \relates int3x2
-/// \brief Returns a copy of the int3x2 that has been component-wise added by the corresponding component of the right-hand int3x2.
-inline int3x2 int3x2_comp_addm( const int3x2* lhs, const int3x2* rhs )
+int3x2 int3x2_comp_addm( const int3x2* lhs, const int3x2* rhs )
 {
 	return HLML_CONSTRUCT( int3x2 ) {
 		int2_comp_addv( &lhs->rows[0], &rhs->rows[0] ),
@@ -1245,9 +4419,7 @@ inline int3x2 int3x2_comp_addm( const int3x2* lhs, const int3x2* rhs )
 	};
 }
 
-/// \relates int3x2
-/// \brief Returns a copy of the int3x2 that has been component-wise subtracted by the given scalar value.
-inline int3x2 int3x2_comp_subs( const int3x2* lhs, const int32_t scalar )
+int3x2 int3x2_comp_subs( const int3x2* lhs, const int32_t scalar )
 {
 	return HLML_CONSTRUCT( int3x2 ) {
 		lhs->rows[0].x - scalar, lhs->rows[0].y - scalar,
@@ -1256,9 +4428,7 @@ inline int3x2 int3x2_comp_subs( const int3x2* lhs, const int32_t scalar )
 	};
 }
 
-/// \relates int3x2
-/// \brief Returns a copy of the int3x2 that has been component-wise subtracted by the corresponding component of the right-hand int3x2.
-inline int3x2 int3x2_comp_subm( const int3x2* lhs, const int3x2* rhs )
+int3x2 int3x2_comp_subm( const int3x2* lhs, const int3x2* rhs )
 {
 	return HLML_CONSTRUCT( int3x2 ) {
 		int2_comp_subv( &lhs->rows[0], &rhs->rows[0] ),
@@ -1267,9 +4437,7 @@ inline int3x2 int3x2_comp_subm( const int3x2* lhs, const int3x2* rhs )
 	};
 }
 
-/// \relates int3x2
-/// \brief Returns a copy of the int3x2 that has been component-wise multiplied by the given scalar value.
-inline int3x2 int3x2_comp_muls( const int3x2* lhs, const int32_t scalar )
+int3x2 int3x2_comp_muls( const int3x2* lhs, const int32_t scalar )
 {
 	return HLML_CONSTRUCT( int3x2 ) {
 		lhs->rows[0].x * scalar, lhs->rows[0].y * scalar,
@@ -1278,9 +4446,7 @@ inline int3x2 int3x2_comp_muls( const int3x2* lhs, const int32_t scalar )
 	};
 }
 
-/// \relates int3x2
-/// \brief Returns a copy of the int3x2 that has been component-wise multiplied by the corresponding component of the right-hand int3x2.
-inline int3x2 int3x2_comp_mulm( const int3x2* lhs, const int3x2* rhs )
+int3x2 int3x2_comp_mulm( const int3x2* lhs, const int3x2* rhs )
 {
 	return HLML_CONSTRUCT( int3x2 ) {
 		int2_comp_mulv( &lhs->rows[0], &rhs->rows[0] ),
@@ -1289,9 +4455,7 @@ inline int3x2 int3x2_comp_mulm( const int3x2* lhs, const int3x2* rhs )
 	};
 }
 
-/// \relates int3x2
-/// \brief Returns a copy of the int3x2 that has been component-wise divided by the given scalar value.
-inline int3x2 int3x2_comp_divs( const int3x2* lhs, const int32_t scalar )
+int3x2 int3x2_comp_divs( const int3x2* lhs, const int32_t scalar )
 {
 	return HLML_CONSTRUCT( int3x2 ) {
 		lhs->rows[0].x / scalar, lhs->rows[0].y / scalar,
@@ -1300,9 +4464,7 @@ inline int3x2 int3x2_comp_divs( const int3x2* lhs, const int32_t scalar )
 	};
 }
 
-/// \relates int3x2
-/// \brief Returns a copy of the int3x2 that has been component-wise divided by the corresponding component of the right-hand int3x2.
-inline int3x2 int3x2_comp_divm( const int3x2* lhs, const int3x2* rhs )
+int3x2 int3x2_comp_divm( const int3x2* lhs, const int3x2* rhs )
 {
 	return HLML_CONSTRUCT( int3x2 ) {
 		int2_comp_divv( &lhs->rows[0], &rhs->rows[0] ),
@@ -1311,9 +4473,7 @@ inline int3x2 int3x2_comp_divm( const int3x2* lhs, const int3x2* rhs )
 	};
 }
 
-/// \relates int3x2
-/// \brief Returns a copy of the int3x2 where each component of the left-hand int3x2 has been bitwise AND'd against the corresponding component of the right-hand side int3x2.
-inline int3x2 int3x2_comp_and( const int3x2* lhs, const int3x2* rhs )
+int3x2 int3x2_comp_and( const int3x2* lhs, const int3x2* rhs )
 {
 	return HLML_CONSTRUCT( int3x2 ) {
 		int2_comp_and( &lhs->rows[0], &rhs->rows[0] ),
@@ -1322,9 +4482,7 @@ inline int3x2 int3x2_comp_and( const int3x2* lhs, const int3x2* rhs )
 	};
 }
 
-/// \relates int3x2
-/// \brief Returns a copy of the int3x2 where each component of the left-hand int3x2 has been bitwise OR'd against the corresponding component of the right-hand side int3x2.
-inline int3x2 int3x2_comp_or( const int3x2* lhs, const int3x2* rhs )
+int3x2 int3x2_comp_or( const int3x2* lhs, const int3x2* rhs )
 {
 	return HLML_CONSTRUCT( int3x2 ) {
 		int2_comp_or( &lhs->rows[0], &rhs->rows[0] ),
@@ -1333,9 +4491,7 @@ inline int3x2 int3x2_comp_or( const int3x2* lhs, const int3x2* rhs )
 	};
 }
 
-/// \relates int3x2
-/// \brief Returns a copy of the int3x2 where each component of the left-hand int3x2 has been bitwise XOR'd against the corresponding component of the right-hand side int3x2.
-inline int3x2 int3x2_comp_xor( const int3x2* lhs, const int3x2* rhs )
+int3x2 int3x2_comp_xor( const int3x2* lhs, const int3x2* rhs )
 {
 	return HLML_CONSTRUCT( int3x2 ) {
 		int2_comp_xor( &lhs->rows[0], &rhs->rows[0] ),
@@ -1344,9 +4500,7 @@ inline int3x2 int3x2_comp_xor( const int3x2* lhs, const int3x2* rhs )
 	};
 }
 
-/// \relates int3x2
-/// \brief Performs a unary bitwise operation on all components of the given int3x2.
-inline int3x2 int3x2_comp_unary( const int3x2* lhs )
+int3x2 int3x2_comp_unary( const int3x2* lhs )
 {
 	return HLML_CONSTRUCT( int3x2 ) {
 		~lhs->rows[0].x,
@@ -1361,9 +4515,7 @@ inline int3x2 int3x2_comp_unary( const int3x2* lhs )
 	};
 }
 
-/// \relates int3x2
-/// \brief Returns a copy of the int3x2 where each component of the left-hand int3x2 has been bitwise left-shifted by the corresponding component of the right-hand side int3x2.
-inline int3x2 int3x2_comp_shift_left( const int3x2* lhs, const int3x2* rhs )
+int3x2 int3x2_comp_shift_left( const int3x2* lhs, const int3x2* rhs )
 {
 	return HLML_CONSTRUCT( int3x2 ) {
 		int2_comp_shift_left( &lhs->rows[0], &rhs->rows[0] ),
@@ -1372,9 +4524,7 @@ inline int3x2 int3x2_comp_shift_left( const int3x2* lhs, const int3x2* rhs )
 	};
 }
 
-/// \relates int3x2
-/// \brief Returns a copy of the int3x2 where each component of the left-hand int3x2 has been bitwise right-shifted by the corresponding component of the right-hand side int3x2.
-inline int3x2 int3x2_comp_shift_right( const int3x2* lhs, const int3x2* rhs )
+int3x2 int3x2_comp_shift_right( const int3x2* lhs, const int3x2* rhs )
 {
 	return HLML_CONSTRUCT( int3x2 ) {
 		int2_comp_shift_right( &lhs->rows[0], &rhs->rows[0] ),
@@ -1383,9 +4533,7 @@ inline int3x2 int3x2_comp_shift_right( const int3x2* lhs, const int3x2* rhs )
 	};
 }
 
-/// \relates int3x2
-/// \brief Returns a bool3x2 where each component is true if the component of the left-hand type is less than the corresponding right-hand type component.
-inline bool3x2 int3x2_cmpl( const int3x2* lhs, const int3x2* rhs )
+bool3x2 int3x2_cmpl( const int3x2* lhs, const int3x2* rhs )
 {
 	return HLML_CONSTRUCT( bool3x2 ) {
 		int2_cmpl( &lhs->rows[0], &rhs->rows[0] ),
@@ -1394,9 +4542,7 @@ inline bool3x2 int3x2_cmpl( const int3x2* lhs, const int3x2* rhs )
 	};
 }
 
-/// \relates int3x2
-/// \brief Returns a bool3x2 where each component is true if the component of the left-hand type is less than or equal to the corresponding right-hand type component.
-inline bool3x2 int3x2_cmple( const int3x2* lhs, const int3x2* rhs )
+bool3x2 int3x2_cmple( const int3x2* lhs, const int3x2* rhs )
 {
 	return HLML_CONSTRUCT( bool3x2 ) {
 		int2_cmple( &lhs->rows[0], &rhs->rows[0] ),
@@ -1405,9 +4551,7 @@ inline bool3x2 int3x2_cmple( const int3x2* lhs, const int3x2* rhs )
 	};
 }
 
-/// \relates int3x2
-/// \brief Returns a bool3x2 where each component is true if the component of the left-hand type is greater than the corresponding right-hand type component.
-inline bool3x2 int3x2_cmpg( const int3x2* lhs, const int3x2* rhs )
+bool3x2 int3x2_cmpg( const int3x2* lhs, const int3x2* rhs )
 {
 	return HLML_CONSTRUCT( bool3x2 ) {
 		int2_cmpg( &lhs->rows[0], &rhs->rows[0] ),
@@ -1416,9 +4560,7 @@ inline bool3x2 int3x2_cmpg( const int3x2* lhs, const int3x2* rhs )
 	};
 }
 
-/// \relates int3x2
-/// \brief Returns a bool3x2 where each component is true if the component of the left-hand type is greater than or equal to the corresponding right-hand type component.
-inline bool3x2 int3x2_cmpge( const int3x2* lhs, const int3x2* rhs )
+bool3x2 int3x2_cmpge( const int3x2* lhs, const int3x2* rhs )
 {
 	return HLML_CONSTRUCT( bool3x2 ) {
 		int2_cmpge( &lhs->rows[0], &rhs->rows[0] ),
@@ -1427,18 +4569,14 @@ inline bool3x2 int3x2_cmpge( const int3x2* lhs, const int3x2* rhs )
 	};
 }
 
-/// \relates int3x2
-/// \brief Sets the matrix to an identity matrix.
-inline void int3x2_identity( int3x2* mat )
+void int3x2_identity( int3x2* mat )
 {
 	mat->rows[0] = HLML_CONSTRUCT( int2 ) { 1, 0 };
 	mat->rows[1] = HLML_CONSTRUCT( int2 ) { 0, 1 };
 	mat->rows[2] = HLML_CONSTRUCT( int2 ) { 0, 0 };
 }
 
-/// \relates int3x2
-/// \brief Returns a copy of the matrix that is transposed, where the value of each row is set to the value of each column and vice versa.
-inline int2x3 int3x2_transpose( const int3x2* mat )
+int2x3 int3x2_transpose( const int3x2* mat )
 {
 	return HLML_CONSTRUCT( int2x3 ) {
 		mat->rows[0].x, mat->rows[1].x, mat->rows[2].x,
@@ -1446,9 +4584,7 @@ inline int2x3 int3x2_transpose( const int3x2* mat )
 	};
 }
 
-/// \relates int3x2
-/// \brief Returns a copy of the matrix where each row of the left-hand matrix has been dot-producted by the corresponding column of the right-hand matrix.
-inline int3x3 int3x2_mulm( const int3x2* lhs, const int2x3* rhs )
+int3x3 int3x2_mulm( const int3x2* lhs, const int2x3* rhs )
 {
 	int2 row0 = lhs->rows[0];
 	int2 row1 = lhs->rows[1];
@@ -1473,27 +4609,19 @@ inline int3x3 int3x2_mulm( const int3x2* lhs, const int2x3* rhs )
 	};
 }
 
-
-// int3x3
-/// \relates int3x3
-/// \brief Returns true if the all the components of the left-hand-side int3x3 match the other one, otherwise returns false.
-inline bool int3x3_cmpe( const int3x3* lhs, const int3x3* rhs )
+bool int3x3_cmpe( const int3x3* lhs, const int3x3* rhs )
 {
 	return int3_cmpe( &lhs->rows[0], &rhs->rows[0] )
 		&& int3_cmpe( &lhs->rows[1], &rhs->rows[1] )
 		&& int3_cmpe( &lhs->rows[2], &rhs->rows[2] );
 }
 
-/// \relates int3x3
-/// \brief Returns true if not all of the components of the left-hand-side int3x3 match the other one, otherwise returns false.
-inline bool int3x3_cmpne( const int3x3* lhs, const int3x3* rhs )
+bool int3x3_cmpne( const int3x3* lhs, const int3x3* rhs )
 {
 	return !( int3x3_cmpe( lhs, rhs ) );
 }
 
-/// \relates int3x3
-/// \brief Returns a copy of the int3x3 that has been component-wise added by the given scalar value.
-inline int3x3 int3x3_comp_adds( const int3x3* lhs, const int32_t scalar )
+int3x3 int3x3_comp_adds( const int3x3* lhs, const int32_t scalar )
 {
 	return HLML_CONSTRUCT( int3x3 ) {
 		lhs->rows[0].x + scalar, lhs->rows[0].y + scalar, lhs->rows[0].z + scalar,
@@ -1502,9 +4630,7 @@ inline int3x3 int3x3_comp_adds( const int3x3* lhs, const int32_t scalar )
 	};
 }
 
-/// \relates int3x3
-/// \brief Returns a copy of the int3x3 that has been component-wise added by the corresponding component of the right-hand int3x3.
-inline int3x3 int3x3_comp_addm( const int3x3* lhs, const int3x3* rhs )
+int3x3 int3x3_comp_addm( const int3x3* lhs, const int3x3* rhs )
 {
 	return HLML_CONSTRUCT( int3x3 ) {
 		int3_comp_addv( &lhs->rows[0], &rhs->rows[0] ),
@@ -1513,9 +4639,7 @@ inline int3x3 int3x3_comp_addm( const int3x3* lhs, const int3x3* rhs )
 	};
 }
 
-/// \relates int3x3
-/// \brief Returns a copy of the int3x3 that has been component-wise subtracted by the given scalar value.
-inline int3x3 int3x3_comp_subs( const int3x3* lhs, const int32_t scalar )
+int3x3 int3x3_comp_subs( const int3x3* lhs, const int32_t scalar )
 {
 	return HLML_CONSTRUCT( int3x3 ) {
 		lhs->rows[0].x - scalar, lhs->rows[0].y - scalar, lhs->rows[0].z - scalar,
@@ -1524,9 +4648,7 @@ inline int3x3 int3x3_comp_subs( const int3x3* lhs, const int32_t scalar )
 	};
 }
 
-/// \relates int3x3
-/// \brief Returns a copy of the int3x3 that has been component-wise subtracted by the corresponding component of the right-hand int3x3.
-inline int3x3 int3x3_comp_subm( const int3x3* lhs, const int3x3* rhs )
+int3x3 int3x3_comp_subm( const int3x3* lhs, const int3x3* rhs )
 {
 	return HLML_CONSTRUCT( int3x3 ) {
 		int3_comp_subv( &lhs->rows[0], &rhs->rows[0] ),
@@ -1535,9 +4657,7 @@ inline int3x3 int3x3_comp_subm( const int3x3* lhs, const int3x3* rhs )
 	};
 }
 
-/// \relates int3x3
-/// \brief Returns a copy of the int3x3 that has been component-wise multiplied by the given scalar value.
-inline int3x3 int3x3_comp_muls( const int3x3* lhs, const int32_t scalar )
+int3x3 int3x3_comp_muls( const int3x3* lhs, const int32_t scalar )
 {
 	return HLML_CONSTRUCT( int3x3 ) {
 		lhs->rows[0].x * scalar, lhs->rows[0].y * scalar, lhs->rows[0].z * scalar,
@@ -1546,9 +4666,7 @@ inline int3x3 int3x3_comp_muls( const int3x3* lhs, const int32_t scalar )
 	};
 }
 
-/// \relates int3x3
-/// \brief Returns a copy of the int3x3 that has been component-wise multiplied by the corresponding component of the right-hand int3x3.
-inline int3x3 int3x3_comp_mulm( const int3x3* lhs, const int3x3* rhs )
+int3x3 int3x3_comp_mulm( const int3x3* lhs, const int3x3* rhs )
 {
 	return HLML_CONSTRUCT( int3x3 ) {
 		int3_comp_mulv( &lhs->rows[0], &rhs->rows[0] ),
@@ -1557,9 +4675,7 @@ inline int3x3 int3x3_comp_mulm( const int3x3* lhs, const int3x3* rhs )
 	};
 }
 
-/// \relates int3x3
-/// \brief Returns a copy of the int3x3 that has been component-wise divided by the given scalar value.
-inline int3x3 int3x3_comp_divs( const int3x3* lhs, const int32_t scalar )
+int3x3 int3x3_comp_divs( const int3x3* lhs, const int32_t scalar )
 {
 	return HLML_CONSTRUCT( int3x3 ) {
 		lhs->rows[0].x / scalar, lhs->rows[0].y / scalar, lhs->rows[0].z / scalar,
@@ -1568,9 +4684,7 @@ inline int3x3 int3x3_comp_divs( const int3x3* lhs, const int32_t scalar )
 	};
 }
 
-/// \relates int3x3
-/// \brief Returns a copy of the int3x3 that has been component-wise divided by the corresponding component of the right-hand int3x3.
-inline int3x3 int3x3_comp_divm( const int3x3* lhs, const int3x3* rhs )
+int3x3 int3x3_comp_divm( const int3x3* lhs, const int3x3* rhs )
 {
 	return HLML_CONSTRUCT( int3x3 ) {
 		int3_comp_divv( &lhs->rows[0], &rhs->rows[0] ),
@@ -1579,9 +4693,7 @@ inline int3x3 int3x3_comp_divm( const int3x3* lhs, const int3x3* rhs )
 	};
 }
 
-/// \relates int3x3
-/// \brief Returns a copy of the int3x3 where each component of the left-hand int3x3 has been bitwise AND'd against the corresponding component of the right-hand side int3x3.
-inline int3x3 int3x3_comp_and( const int3x3* lhs, const int3x3* rhs )
+int3x3 int3x3_comp_and( const int3x3* lhs, const int3x3* rhs )
 {
 	return HLML_CONSTRUCT( int3x3 ) {
 		int3_comp_and( &lhs->rows[0], &rhs->rows[0] ),
@@ -1590,9 +4702,7 @@ inline int3x3 int3x3_comp_and( const int3x3* lhs, const int3x3* rhs )
 	};
 }
 
-/// \relates int3x3
-/// \brief Returns a copy of the int3x3 where each component of the left-hand int3x3 has been bitwise OR'd against the corresponding component of the right-hand side int3x3.
-inline int3x3 int3x3_comp_or( const int3x3* lhs, const int3x3* rhs )
+int3x3 int3x3_comp_or( const int3x3* lhs, const int3x3* rhs )
 {
 	return HLML_CONSTRUCT( int3x3 ) {
 		int3_comp_or( &lhs->rows[0], &rhs->rows[0] ),
@@ -1601,9 +4711,7 @@ inline int3x3 int3x3_comp_or( const int3x3* lhs, const int3x3* rhs )
 	};
 }
 
-/// \relates int3x3
-/// \brief Returns a copy of the int3x3 where each component of the left-hand int3x3 has been bitwise XOR'd against the corresponding component of the right-hand side int3x3.
-inline int3x3 int3x3_comp_xor( const int3x3* lhs, const int3x3* rhs )
+int3x3 int3x3_comp_xor( const int3x3* lhs, const int3x3* rhs )
 {
 	return HLML_CONSTRUCT( int3x3 ) {
 		int3_comp_xor( &lhs->rows[0], &rhs->rows[0] ),
@@ -1612,9 +4720,7 @@ inline int3x3 int3x3_comp_xor( const int3x3* lhs, const int3x3* rhs )
 	};
 }
 
-/// \relates int3x3
-/// \brief Performs a unary bitwise operation on all components of the given int3x3.
-inline int3x3 int3x3_comp_unary( const int3x3* lhs )
+int3x3 int3x3_comp_unary( const int3x3* lhs )
 {
 	return HLML_CONSTRUCT( int3x3 ) {
 		~lhs->rows[0].x,
@@ -1632,9 +4738,7 @@ inline int3x3 int3x3_comp_unary( const int3x3* lhs )
 	};
 }
 
-/// \relates int3x3
-/// \brief Returns a copy of the int3x3 where each component of the left-hand int3x3 has been bitwise left-shifted by the corresponding component of the right-hand side int3x3.
-inline int3x3 int3x3_comp_shift_left( const int3x3* lhs, const int3x3* rhs )
+int3x3 int3x3_comp_shift_left( const int3x3* lhs, const int3x3* rhs )
 {
 	return HLML_CONSTRUCT( int3x3 ) {
 		int3_comp_shift_left( &lhs->rows[0], &rhs->rows[0] ),
@@ -1643,9 +4747,7 @@ inline int3x3 int3x3_comp_shift_left( const int3x3* lhs, const int3x3* rhs )
 	};
 }
 
-/// \relates int3x3
-/// \brief Returns a copy of the int3x3 where each component of the left-hand int3x3 has been bitwise right-shifted by the corresponding component of the right-hand side int3x3.
-inline int3x3 int3x3_comp_shift_right( const int3x3* lhs, const int3x3* rhs )
+int3x3 int3x3_comp_shift_right( const int3x3* lhs, const int3x3* rhs )
 {
 	return HLML_CONSTRUCT( int3x3 ) {
 		int3_comp_shift_right( &lhs->rows[0], &rhs->rows[0] ),
@@ -1654,9 +4756,7 @@ inline int3x3 int3x3_comp_shift_right( const int3x3* lhs, const int3x3* rhs )
 	};
 }
 
-/// \relates int3x3
-/// \brief Returns a bool3x3 where each component is true if the component of the left-hand type is less than the corresponding right-hand type component.
-inline bool3x3 int3x3_cmpl( const int3x3* lhs, const int3x3* rhs )
+bool3x3 int3x3_cmpl( const int3x3* lhs, const int3x3* rhs )
 {
 	return HLML_CONSTRUCT( bool3x3 ) {
 		int3_cmpl( &lhs->rows[0], &rhs->rows[0] ),
@@ -1665,9 +4765,7 @@ inline bool3x3 int3x3_cmpl( const int3x3* lhs, const int3x3* rhs )
 	};
 }
 
-/// \relates int3x3
-/// \brief Returns a bool3x3 where each component is true if the component of the left-hand type is less than or equal to the corresponding right-hand type component.
-inline bool3x3 int3x3_cmple( const int3x3* lhs, const int3x3* rhs )
+bool3x3 int3x3_cmple( const int3x3* lhs, const int3x3* rhs )
 {
 	return HLML_CONSTRUCT( bool3x3 ) {
 		int3_cmple( &lhs->rows[0], &rhs->rows[0] ),
@@ -1676,9 +4774,7 @@ inline bool3x3 int3x3_cmple( const int3x3* lhs, const int3x3* rhs )
 	};
 }
 
-/// \relates int3x3
-/// \brief Returns a bool3x3 where each component is true if the component of the left-hand type is greater than the corresponding right-hand type component.
-inline bool3x3 int3x3_cmpg( const int3x3* lhs, const int3x3* rhs )
+bool3x3 int3x3_cmpg( const int3x3* lhs, const int3x3* rhs )
 {
 	return HLML_CONSTRUCT( bool3x3 ) {
 		int3_cmpg( &lhs->rows[0], &rhs->rows[0] ),
@@ -1687,9 +4783,7 @@ inline bool3x3 int3x3_cmpg( const int3x3* lhs, const int3x3* rhs )
 	};
 }
 
-/// \relates int3x3
-/// \brief Returns a bool3x3 where each component is true if the component of the left-hand type is greater than or equal to the corresponding right-hand type component.
-inline bool3x3 int3x3_cmpge( const int3x3* lhs, const int3x3* rhs )
+bool3x3 int3x3_cmpge( const int3x3* lhs, const int3x3* rhs )
 {
 	return HLML_CONSTRUCT( bool3x3 ) {
 		int3_cmpge( &lhs->rows[0], &rhs->rows[0] ),
@@ -1698,18 +4792,14 @@ inline bool3x3 int3x3_cmpge( const int3x3* lhs, const int3x3* rhs )
 	};
 }
 
-/// \relates int3x3
-/// \brief Sets the matrix to an identity matrix.
-inline void int3x3_identity( int3x3* mat )
+void int3x3_identity( int3x3* mat )
 {
 	mat->rows[0] = HLML_CONSTRUCT( int3 ) { 1, 0, 0 };
 	mat->rows[1] = HLML_CONSTRUCT( int3 ) { 0, 1, 0 };
 	mat->rows[2] = HLML_CONSTRUCT( int3 ) { 0, 0, 1 };
 }
 
-/// \relates int3x3
-/// \brief Returns a copy of the matrix that is transposed, where the value of each row is set to the value of each column and vice versa.
-inline int3x3 int3x3_transpose( const int3x3* mat )
+int3x3 int3x3_transpose( const int3x3* mat )
 {
 	return HLML_CONSTRUCT( int3x3 ) {
 		mat->rows[0].x, mat->rows[1].x, mat->rows[2].x,
@@ -1718,9 +4808,7 @@ inline int3x3 int3x3_transpose( const int3x3* mat )
 	};
 }
 
-/// \relates int3x3
-/// \brief Returns the determinant of the matrix.
-inline int32_t int3x3_determinant( const int3x3* mat )
+int32_t int3x3_determinant( const int3x3* mat )
 {
 	return
 		+ mat->rows[0].x * ( mat->rows[1].y * mat->rows[2].z - mat->rows[2].y * mat->rows[1].z ) 
@@ -1728,9 +4816,7 @@ inline int32_t int3x3_determinant( const int3x3* mat )
 		+ mat->rows[0].z * ( mat->rows[1].x * mat->rows[2].y - mat->rows[2].x * mat->rows[1].y );
 }
 
-/// \relates int3x3
-/// \brief Returns a copy of the matrix where each row of the left-hand matrix has been dot-producted by the corresponding column of the right-hand matrix.
-inline int3x3 int3x3_mulm( const int3x3* lhs, const int3x3* rhs )
+int3x3 int3x3_mulm( const int3x3* lhs, const int3x3* rhs )
 {
 	int3 row0 = lhs->rows[0];
 	int3 row1 = lhs->rows[1];
@@ -1755,9 +4841,7 @@ inline int3x3 int3x3_mulm( const int3x3* lhs, const int3x3* rhs )
 	};
 }
 
-/// \relates int3x3
-/// \brief Returns the right-hand vector multiplied by the left-hand matrix.
-inline int3 int3x3_mulv( const int3x3* lhs, const int3* rhs )
+int3 int3x3_mulv( const int3x3* lhs, const int3* rhs )
 {
 	return HLML_CONSTRUCT( int3 ) {
 		lhs->rows[0].x * rhs->x + lhs->rows[0].y * rhs->y + lhs->rows[0].z * rhs->z,
@@ -1766,9 +4850,7 @@ inline int3 int3x3_mulv( const int3x3* lhs, const int3* rhs )
 	};
 }
 
-/// \relates int3x3
-/// \brief Returns a copy of the matrix where each component of the 3rd column has been added by the given vector.
-inline int3x3 int3x3_translate( const int3x3* mat, const int2* vec )
+int3x3 int3x3_translate( const int3x3* mat, const int2* vec )
 {
 	return HLML_CONSTRUCT( int3x3 ) {
 		mat->rows[0].x, mat->rows[0].y, mat->rows[0].z + vec->x,
@@ -1777,9 +4859,7 @@ inline int3x3 int3x3_translate( const int3x3* mat, const int2* vec )
 	};
 }
 
-/// \relates int3x3
-/// \brief Returns a copy of the matrix that has had a non-uniform scale applied to it.
-inline int3x3 int3x3_scale( const int3x3* mat, const int2* vec )
+int3x3 int3x3_scale( const int3x3* mat, const int2* vec )
 {
 	return HLML_CONSTRUCT( int3x3 ) {
 		mat->rows[0].x * vec->x,
@@ -1796,27 +4876,19 @@ inline int3x3 int3x3_scale( const int3x3* mat, const int2* vec )
 	};
 }
 
-
-// int3x4
-/// \relates int3x4
-/// \brief Returns true if the all the components of the left-hand-side int3x4 match the other one, otherwise returns false.
-inline bool int3x4_cmpe( const int3x4* lhs, const int3x4* rhs )
+bool int3x4_cmpe( const int3x4* lhs, const int3x4* rhs )
 {
 	return int4_cmpe( &lhs->rows[0], &rhs->rows[0] )
 		&& int4_cmpe( &lhs->rows[1], &rhs->rows[1] )
 		&& int4_cmpe( &lhs->rows[2], &rhs->rows[2] );
 }
 
-/// \relates int3x4
-/// \brief Returns true if not all of the components of the left-hand-side int3x4 match the other one, otherwise returns false.
-inline bool int3x4_cmpne( const int3x4* lhs, const int3x4* rhs )
+bool int3x4_cmpne( const int3x4* lhs, const int3x4* rhs )
 {
 	return !( int3x4_cmpe( lhs, rhs ) );
 }
 
-/// \relates int3x4
-/// \brief Returns a copy of the int3x4 that has been component-wise added by the given scalar value.
-inline int3x4 int3x4_comp_adds( const int3x4* lhs, const int32_t scalar )
+int3x4 int3x4_comp_adds( const int3x4* lhs, const int32_t scalar )
 {
 	return HLML_CONSTRUCT( int3x4 ) {
 		lhs->rows[0].x + scalar, lhs->rows[0].y + scalar, lhs->rows[0].z + scalar, lhs->rows[0].w + scalar,
@@ -1825,9 +4897,7 @@ inline int3x4 int3x4_comp_adds( const int3x4* lhs, const int32_t scalar )
 	};
 }
 
-/// \relates int3x4
-/// \brief Returns a copy of the int3x4 that has been component-wise added by the corresponding component of the right-hand int3x4.
-inline int3x4 int3x4_comp_addm( const int3x4* lhs, const int3x4* rhs )
+int3x4 int3x4_comp_addm( const int3x4* lhs, const int3x4* rhs )
 {
 	return HLML_CONSTRUCT( int3x4 ) {
 		int4_comp_addv( &lhs->rows[0], &rhs->rows[0] ),
@@ -1836,9 +4906,7 @@ inline int3x4 int3x4_comp_addm( const int3x4* lhs, const int3x4* rhs )
 	};
 }
 
-/// \relates int3x4
-/// \brief Returns a copy of the int3x4 that has been component-wise subtracted by the given scalar value.
-inline int3x4 int3x4_comp_subs( const int3x4* lhs, const int32_t scalar )
+int3x4 int3x4_comp_subs( const int3x4* lhs, const int32_t scalar )
 {
 	return HLML_CONSTRUCT( int3x4 ) {
 		lhs->rows[0].x - scalar, lhs->rows[0].y - scalar, lhs->rows[0].z - scalar, lhs->rows[0].w - scalar,
@@ -1847,9 +4915,7 @@ inline int3x4 int3x4_comp_subs( const int3x4* lhs, const int32_t scalar )
 	};
 }
 
-/// \relates int3x4
-/// \brief Returns a copy of the int3x4 that has been component-wise subtracted by the corresponding component of the right-hand int3x4.
-inline int3x4 int3x4_comp_subm( const int3x4* lhs, const int3x4* rhs )
+int3x4 int3x4_comp_subm( const int3x4* lhs, const int3x4* rhs )
 {
 	return HLML_CONSTRUCT( int3x4 ) {
 		int4_comp_subv( &lhs->rows[0], &rhs->rows[0] ),
@@ -1858,9 +4924,7 @@ inline int3x4 int3x4_comp_subm( const int3x4* lhs, const int3x4* rhs )
 	};
 }
 
-/// \relates int3x4
-/// \brief Returns a copy of the int3x4 that has been component-wise multiplied by the given scalar value.
-inline int3x4 int3x4_comp_muls( const int3x4* lhs, const int32_t scalar )
+int3x4 int3x4_comp_muls( const int3x4* lhs, const int32_t scalar )
 {
 	return HLML_CONSTRUCT( int3x4 ) {
 		lhs->rows[0].x * scalar, lhs->rows[0].y * scalar, lhs->rows[0].z * scalar, lhs->rows[0].w * scalar,
@@ -1869,9 +4933,7 @@ inline int3x4 int3x4_comp_muls( const int3x4* lhs, const int32_t scalar )
 	};
 }
 
-/// \relates int3x4
-/// \brief Returns a copy of the int3x4 that has been component-wise multiplied by the corresponding component of the right-hand int3x4.
-inline int3x4 int3x4_comp_mulm( const int3x4* lhs, const int3x4* rhs )
+int3x4 int3x4_comp_mulm( const int3x4* lhs, const int3x4* rhs )
 {
 	return HLML_CONSTRUCT( int3x4 ) {
 		int4_comp_mulv( &lhs->rows[0], &rhs->rows[0] ),
@@ -1880,9 +4942,7 @@ inline int3x4 int3x4_comp_mulm( const int3x4* lhs, const int3x4* rhs )
 	};
 }
 
-/// \relates int3x4
-/// \brief Returns a copy of the int3x4 that has been component-wise divided by the given scalar value.
-inline int3x4 int3x4_comp_divs( const int3x4* lhs, const int32_t scalar )
+int3x4 int3x4_comp_divs( const int3x4* lhs, const int32_t scalar )
 {
 	return HLML_CONSTRUCT( int3x4 ) {
 		lhs->rows[0].x / scalar, lhs->rows[0].y / scalar, lhs->rows[0].z / scalar, lhs->rows[0].w / scalar,
@@ -1891,9 +4951,7 @@ inline int3x4 int3x4_comp_divs( const int3x4* lhs, const int32_t scalar )
 	};
 }
 
-/// \relates int3x4
-/// \brief Returns a copy of the int3x4 that has been component-wise divided by the corresponding component of the right-hand int3x4.
-inline int3x4 int3x4_comp_divm( const int3x4* lhs, const int3x4* rhs )
+int3x4 int3x4_comp_divm( const int3x4* lhs, const int3x4* rhs )
 {
 	return HLML_CONSTRUCT( int3x4 ) {
 		int4_comp_divv( &lhs->rows[0], &rhs->rows[0] ),
@@ -1902,9 +4960,7 @@ inline int3x4 int3x4_comp_divm( const int3x4* lhs, const int3x4* rhs )
 	};
 }
 
-/// \relates int3x4
-/// \brief Returns a copy of the int3x4 where each component of the left-hand int3x4 has been bitwise AND'd against the corresponding component of the right-hand side int3x4.
-inline int3x4 int3x4_comp_and( const int3x4* lhs, const int3x4* rhs )
+int3x4 int3x4_comp_and( const int3x4* lhs, const int3x4* rhs )
 {
 	return HLML_CONSTRUCT( int3x4 ) {
 		int4_comp_and( &lhs->rows[0], &rhs->rows[0] ),
@@ -1913,9 +4969,7 @@ inline int3x4 int3x4_comp_and( const int3x4* lhs, const int3x4* rhs )
 	};
 }
 
-/// \relates int3x4
-/// \brief Returns a copy of the int3x4 where each component of the left-hand int3x4 has been bitwise OR'd against the corresponding component of the right-hand side int3x4.
-inline int3x4 int3x4_comp_or( const int3x4* lhs, const int3x4* rhs )
+int3x4 int3x4_comp_or( const int3x4* lhs, const int3x4* rhs )
 {
 	return HLML_CONSTRUCT( int3x4 ) {
 		int4_comp_or( &lhs->rows[0], &rhs->rows[0] ),
@@ -1924,9 +4978,7 @@ inline int3x4 int3x4_comp_or( const int3x4* lhs, const int3x4* rhs )
 	};
 }
 
-/// \relates int3x4
-/// \brief Returns a copy of the int3x4 where each component of the left-hand int3x4 has been bitwise XOR'd against the corresponding component of the right-hand side int3x4.
-inline int3x4 int3x4_comp_xor( const int3x4* lhs, const int3x4* rhs )
+int3x4 int3x4_comp_xor( const int3x4* lhs, const int3x4* rhs )
 {
 	return HLML_CONSTRUCT( int3x4 ) {
 		int4_comp_xor( &lhs->rows[0], &rhs->rows[0] ),
@@ -1935,9 +4987,7 @@ inline int3x4 int3x4_comp_xor( const int3x4* lhs, const int3x4* rhs )
 	};
 }
 
-/// \relates int3x4
-/// \brief Performs a unary bitwise operation on all components of the given int3x4.
-inline int3x4 int3x4_comp_unary( const int3x4* lhs )
+int3x4 int3x4_comp_unary( const int3x4* lhs )
 {
 	return HLML_CONSTRUCT( int3x4 ) {
 		~lhs->rows[0].x,
@@ -1958,9 +5008,7 @@ inline int3x4 int3x4_comp_unary( const int3x4* lhs )
 	};
 }
 
-/// \relates int3x4
-/// \brief Returns a copy of the int3x4 where each component of the left-hand int3x4 has been bitwise left-shifted by the corresponding component of the right-hand side int3x4.
-inline int3x4 int3x4_comp_shift_left( const int3x4* lhs, const int3x4* rhs )
+int3x4 int3x4_comp_shift_left( const int3x4* lhs, const int3x4* rhs )
 {
 	return HLML_CONSTRUCT( int3x4 ) {
 		int4_comp_shift_left( &lhs->rows[0], &rhs->rows[0] ),
@@ -1969,9 +5017,7 @@ inline int3x4 int3x4_comp_shift_left( const int3x4* lhs, const int3x4* rhs )
 	};
 }
 
-/// \relates int3x4
-/// \brief Returns a copy of the int3x4 where each component of the left-hand int3x4 has been bitwise right-shifted by the corresponding component of the right-hand side int3x4.
-inline int3x4 int3x4_comp_shift_right( const int3x4* lhs, const int3x4* rhs )
+int3x4 int3x4_comp_shift_right( const int3x4* lhs, const int3x4* rhs )
 {
 	return HLML_CONSTRUCT( int3x4 ) {
 		int4_comp_shift_right( &lhs->rows[0], &rhs->rows[0] ),
@@ -1980,9 +5026,7 @@ inline int3x4 int3x4_comp_shift_right( const int3x4* lhs, const int3x4* rhs )
 	};
 }
 
-/// \relates int3x4
-/// \brief Returns a bool3x4 where each component is true if the component of the left-hand type is less than the corresponding right-hand type component.
-inline bool3x4 int3x4_cmpl( const int3x4* lhs, const int3x4* rhs )
+bool3x4 int3x4_cmpl( const int3x4* lhs, const int3x4* rhs )
 {
 	return HLML_CONSTRUCT( bool3x4 ) {
 		int4_cmpl( &lhs->rows[0], &rhs->rows[0] ),
@@ -1991,9 +5035,7 @@ inline bool3x4 int3x4_cmpl( const int3x4* lhs, const int3x4* rhs )
 	};
 }
 
-/// \relates int3x4
-/// \brief Returns a bool3x4 where each component is true if the component of the left-hand type is less than or equal to the corresponding right-hand type component.
-inline bool3x4 int3x4_cmple( const int3x4* lhs, const int3x4* rhs )
+bool3x4 int3x4_cmple( const int3x4* lhs, const int3x4* rhs )
 {
 	return HLML_CONSTRUCT( bool3x4 ) {
 		int4_cmple( &lhs->rows[0], &rhs->rows[0] ),
@@ -2002,9 +5044,7 @@ inline bool3x4 int3x4_cmple( const int3x4* lhs, const int3x4* rhs )
 	};
 }
 
-/// \relates int3x4
-/// \brief Returns a bool3x4 where each component is true if the component of the left-hand type is greater than the corresponding right-hand type component.
-inline bool3x4 int3x4_cmpg( const int3x4* lhs, const int3x4* rhs )
+bool3x4 int3x4_cmpg( const int3x4* lhs, const int3x4* rhs )
 {
 	return HLML_CONSTRUCT( bool3x4 ) {
 		int4_cmpg( &lhs->rows[0], &rhs->rows[0] ),
@@ -2013,9 +5053,7 @@ inline bool3x4 int3x4_cmpg( const int3x4* lhs, const int3x4* rhs )
 	};
 }
 
-/// \relates int3x4
-/// \brief Returns a bool3x4 where each component is true if the component of the left-hand type is greater than or equal to the corresponding right-hand type component.
-inline bool3x4 int3x4_cmpge( const int3x4* lhs, const int3x4* rhs )
+bool3x4 int3x4_cmpge( const int3x4* lhs, const int3x4* rhs )
 {
 	return HLML_CONSTRUCT( bool3x4 ) {
 		int4_cmpge( &lhs->rows[0], &rhs->rows[0] ),
@@ -2024,18 +5062,14 @@ inline bool3x4 int3x4_cmpge( const int3x4* lhs, const int3x4* rhs )
 	};
 }
 
-/// \relates int3x4
-/// \brief Sets the matrix to an identity matrix.
-inline void int3x4_identity( int3x4* mat )
+void int3x4_identity( int3x4* mat )
 {
 	mat->rows[0] = HLML_CONSTRUCT( int4 ) { 1, 0, 0, 0 };
 	mat->rows[1] = HLML_CONSTRUCT( int4 ) { 0, 1, 0, 0 };
 	mat->rows[2] = HLML_CONSTRUCT( int4 ) { 0, 0, 1, 0 };
 }
 
-/// \relates int3x4
-/// \brief Returns a copy of the matrix that is transposed, where the value of each row is set to the value of each column and vice versa.
-inline int4x3 int3x4_transpose( const int3x4* mat )
+int4x3 int3x4_transpose( const int3x4* mat )
 {
 	return HLML_CONSTRUCT( int4x3 ) {
 		mat->rows[0].x, mat->rows[1].x, mat->rows[2].x,
@@ -2045,9 +5079,7 @@ inline int4x3 int3x4_transpose( const int3x4* mat )
 	};
 }
 
-/// \relates int3x4
-/// \brief Returns a copy of the matrix where each row of the left-hand matrix has been dot-producted by the corresponding column of the right-hand matrix.
-inline int3x3 int3x4_mulm( const int3x4* lhs, const int4x3* rhs )
+int3x3 int3x4_mulm( const int3x4* lhs, const int4x3* rhs )
 {
 	int4 row0 = lhs->rows[0];
 	int4 row1 = lhs->rows[1];
@@ -2072,9 +5104,7 @@ inline int3x3 int3x4_mulm( const int3x4* lhs, const int4x3* rhs )
 	};
 }
 
-/// \relates int3x4
-/// \brief Returns a copy of the matrix where each component of the 3rd column has been added by the given vector.
-inline int3x4 int3x4_translate( const int3x4* mat, const int3* vec )
+int3x4 int3x4_translate( const int3x4* mat, const int3* vec )
 {
 	return HLML_CONSTRUCT( int3x4 ) {
 		mat->rows[0].x, mat->rows[0].y, mat->rows[0].z, mat->rows[0].w + vec->x,
@@ -2083,9 +5113,7 @@ inline int3x4 int3x4_translate( const int3x4* mat, const int3* vec )
 	};
 }
 
-/// \relates int3x4
-/// \brief Returns a copy of the matrix that has had a non-uniform scale applied to it.
-inline int3x4 int3x4_scale( const int3x4* mat, const int2* vec )
+int3x4 int3x4_scale( const int3x4* mat, const int2* vec )
 {
 	return HLML_CONSTRUCT( int3x4 ) {
 		mat->rows[0].x * vec->x,
@@ -2105,11 +5133,7 @@ inline int3x4 int3x4_scale( const int3x4* mat, const int2* vec )
 	};
 }
 
-
-// int4x2
-/// \relates int4x2
-/// \brief Returns true if the all the components of the left-hand-side int4x2 match the other one, otherwise returns false.
-inline bool int4x2_cmpe( const int4x2* lhs, const int4x2* rhs )
+bool int4x2_cmpe( const int4x2* lhs, const int4x2* rhs )
 {
 	return int2_cmpe( &lhs->rows[0], &rhs->rows[0] )
 		&& int2_cmpe( &lhs->rows[1], &rhs->rows[1] )
@@ -2117,16 +5141,12 @@ inline bool int4x2_cmpe( const int4x2* lhs, const int4x2* rhs )
 		&& int2_cmpe( &lhs->rows[3], &rhs->rows[3] );
 }
 
-/// \relates int4x2
-/// \brief Returns true if not all of the components of the left-hand-side int4x2 match the other one, otherwise returns false.
-inline bool int4x2_cmpne( const int4x2* lhs, const int4x2* rhs )
+bool int4x2_cmpne( const int4x2* lhs, const int4x2* rhs )
 {
 	return !( int4x2_cmpe( lhs, rhs ) );
 }
 
-/// \relates int4x2
-/// \brief Returns a copy of the int4x2 that has been component-wise added by the given scalar value.
-inline int4x2 int4x2_comp_adds( const int4x2* lhs, const int32_t scalar )
+int4x2 int4x2_comp_adds( const int4x2* lhs, const int32_t scalar )
 {
 	return HLML_CONSTRUCT( int4x2 ) {
 		lhs->rows[0].x + scalar, lhs->rows[0].y + scalar,
@@ -2136,9 +5156,7 @@ inline int4x2 int4x2_comp_adds( const int4x2* lhs, const int32_t scalar )
 	};
 }
 
-/// \relates int4x2
-/// \brief Returns a copy of the int4x2 that has been component-wise added by the corresponding component of the right-hand int4x2.
-inline int4x2 int4x2_comp_addm( const int4x2* lhs, const int4x2* rhs )
+int4x2 int4x2_comp_addm( const int4x2* lhs, const int4x2* rhs )
 {
 	return HLML_CONSTRUCT( int4x2 ) {
 		int2_comp_addv( &lhs->rows[0], &rhs->rows[0] ),
@@ -2148,9 +5166,7 @@ inline int4x2 int4x2_comp_addm( const int4x2* lhs, const int4x2* rhs )
 	};
 }
 
-/// \relates int4x2
-/// \brief Returns a copy of the int4x2 that has been component-wise subtracted by the given scalar value.
-inline int4x2 int4x2_comp_subs( const int4x2* lhs, const int32_t scalar )
+int4x2 int4x2_comp_subs( const int4x2* lhs, const int32_t scalar )
 {
 	return HLML_CONSTRUCT( int4x2 ) {
 		lhs->rows[0].x - scalar, lhs->rows[0].y - scalar,
@@ -2160,9 +5176,7 @@ inline int4x2 int4x2_comp_subs( const int4x2* lhs, const int32_t scalar )
 	};
 }
 
-/// \relates int4x2
-/// \brief Returns a copy of the int4x2 that has been component-wise subtracted by the corresponding component of the right-hand int4x2.
-inline int4x2 int4x2_comp_subm( const int4x2* lhs, const int4x2* rhs )
+int4x2 int4x2_comp_subm( const int4x2* lhs, const int4x2* rhs )
 {
 	return HLML_CONSTRUCT( int4x2 ) {
 		int2_comp_subv( &lhs->rows[0], &rhs->rows[0] ),
@@ -2172,9 +5186,7 @@ inline int4x2 int4x2_comp_subm( const int4x2* lhs, const int4x2* rhs )
 	};
 }
 
-/// \relates int4x2
-/// \brief Returns a copy of the int4x2 that has been component-wise multiplied by the given scalar value.
-inline int4x2 int4x2_comp_muls( const int4x2* lhs, const int32_t scalar )
+int4x2 int4x2_comp_muls( const int4x2* lhs, const int32_t scalar )
 {
 	return HLML_CONSTRUCT( int4x2 ) {
 		lhs->rows[0].x * scalar, lhs->rows[0].y * scalar,
@@ -2184,9 +5196,7 @@ inline int4x2 int4x2_comp_muls( const int4x2* lhs, const int32_t scalar )
 	};
 }
 
-/// \relates int4x2
-/// \brief Returns a copy of the int4x2 that has been component-wise multiplied by the corresponding component of the right-hand int4x2.
-inline int4x2 int4x2_comp_mulm( const int4x2* lhs, const int4x2* rhs )
+int4x2 int4x2_comp_mulm( const int4x2* lhs, const int4x2* rhs )
 {
 	return HLML_CONSTRUCT( int4x2 ) {
 		int2_comp_mulv( &lhs->rows[0], &rhs->rows[0] ),
@@ -2196,9 +5206,7 @@ inline int4x2 int4x2_comp_mulm( const int4x2* lhs, const int4x2* rhs )
 	};
 }
 
-/// \relates int4x2
-/// \brief Returns a copy of the int4x2 that has been component-wise divided by the given scalar value.
-inline int4x2 int4x2_comp_divs( const int4x2* lhs, const int32_t scalar )
+int4x2 int4x2_comp_divs( const int4x2* lhs, const int32_t scalar )
 {
 	return HLML_CONSTRUCT( int4x2 ) {
 		lhs->rows[0].x / scalar, lhs->rows[0].y / scalar,
@@ -2208,9 +5216,7 @@ inline int4x2 int4x2_comp_divs( const int4x2* lhs, const int32_t scalar )
 	};
 }
 
-/// \relates int4x2
-/// \brief Returns a copy of the int4x2 that has been component-wise divided by the corresponding component of the right-hand int4x2.
-inline int4x2 int4x2_comp_divm( const int4x2* lhs, const int4x2* rhs )
+int4x2 int4x2_comp_divm( const int4x2* lhs, const int4x2* rhs )
 {
 	return HLML_CONSTRUCT( int4x2 ) {
 		int2_comp_divv( &lhs->rows[0], &rhs->rows[0] ),
@@ -2220,9 +5226,7 @@ inline int4x2 int4x2_comp_divm( const int4x2* lhs, const int4x2* rhs )
 	};
 }
 
-/// \relates int4x2
-/// \brief Returns a copy of the int4x2 where each component of the left-hand int4x2 has been bitwise AND'd against the corresponding component of the right-hand side int4x2.
-inline int4x2 int4x2_comp_and( const int4x2* lhs, const int4x2* rhs )
+int4x2 int4x2_comp_and( const int4x2* lhs, const int4x2* rhs )
 {
 	return HLML_CONSTRUCT( int4x2 ) {
 		int2_comp_and( &lhs->rows[0], &rhs->rows[0] ),
@@ -2232,9 +5236,7 @@ inline int4x2 int4x2_comp_and( const int4x2* lhs, const int4x2* rhs )
 	};
 }
 
-/// \relates int4x2
-/// \brief Returns a copy of the int4x2 where each component of the left-hand int4x2 has been bitwise OR'd against the corresponding component of the right-hand side int4x2.
-inline int4x2 int4x2_comp_or( const int4x2* lhs, const int4x2* rhs )
+int4x2 int4x2_comp_or( const int4x2* lhs, const int4x2* rhs )
 {
 	return HLML_CONSTRUCT( int4x2 ) {
 		int2_comp_or( &lhs->rows[0], &rhs->rows[0] ),
@@ -2244,9 +5246,7 @@ inline int4x2 int4x2_comp_or( const int4x2* lhs, const int4x2* rhs )
 	};
 }
 
-/// \relates int4x2
-/// \brief Returns a copy of the int4x2 where each component of the left-hand int4x2 has been bitwise XOR'd against the corresponding component of the right-hand side int4x2.
-inline int4x2 int4x2_comp_xor( const int4x2* lhs, const int4x2* rhs )
+int4x2 int4x2_comp_xor( const int4x2* lhs, const int4x2* rhs )
 {
 	return HLML_CONSTRUCT( int4x2 ) {
 		int2_comp_xor( &lhs->rows[0], &rhs->rows[0] ),
@@ -2256,9 +5256,7 @@ inline int4x2 int4x2_comp_xor( const int4x2* lhs, const int4x2* rhs )
 	};
 }
 
-/// \relates int4x2
-/// \brief Performs a unary bitwise operation on all components of the given int4x2.
-inline int4x2 int4x2_comp_unary( const int4x2* lhs )
+int4x2 int4x2_comp_unary( const int4x2* lhs )
 {
 	return HLML_CONSTRUCT( int4x2 ) {
 		~lhs->rows[0].x,
@@ -2276,9 +5274,7 @@ inline int4x2 int4x2_comp_unary( const int4x2* lhs )
 	};
 }
 
-/// \relates int4x2
-/// \brief Returns a copy of the int4x2 where each component of the left-hand int4x2 has been bitwise left-shifted by the corresponding component of the right-hand side int4x2.
-inline int4x2 int4x2_comp_shift_left( const int4x2* lhs, const int4x2* rhs )
+int4x2 int4x2_comp_shift_left( const int4x2* lhs, const int4x2* rhs )
 {
 	return HLML_CONSTRUCT( int4x2 ) {
 		int2_comp_shift_left( &lhs->rows[0], &rhs->rows[0] ),
@@ -2288,9 +5284,7 @@ inline int4x2 int4x2_comp_shift_left( const int4x2* lhs, const int4x2* rhs )
 	};
 }
 
-/// \relates int4x2
-/// \brief Returns a copy of the int4x2 where each component of the left-hand int4x2 has been bitwise right-shifted by the corresponding component of the right-hand side int4x2.
-inline int4x2 int4x2_comp_shift_right( const int4x2* lhs, const int4x2* rhs )
+int4x2 int4x2_comp_shift_right( const int4x2* lhs, const int4x2* rhs )
 {
 	return HLML_CONSTRUCT( int4x2 ) {
 		int2_comp_shift_right( &lhs->rows[0], &rhs->rows[0] ),
@@ -2300,9 +5294,7 @@ inline int4x2 int4x2_comp_shift_right( const int4x2* lhs, const int4x2* rhs )
 	};
 }
 
-/// \relates int4x2
-/// \brief Returns a bool4x2 where each component is true if the component of the left-hand type is less than the corresponding right-hand type component.
-inline bool4x2 int4x2_cmpl( const int4x2* lhs, const int4x2* rhs )
+bool4x2 int4x2_cmpl( const int4x2* lhs, const int4x2* rhs )
 {
 	return HLML_CONSTRUCT( bool4x2 ) {
 		int2_cmpl( &lhs->rows[0], &rhs->rows[0] ),
@@ -2312,9 +5304,7 @@ inline bool4x2 int4x2_cmpl( const int4x2* lhs, const int4x2* rhs )
 	};
 }
 
-/// \relates int4x2
-/// \brief Returns a bool4x2 where each component is true if the component of the left-hand type is less than or equal to the corresponding right-hand type component.
-inline bool4x2 int4x2_cmple( const int4x2* lhs, const int4x2* rhs )
+bool4x2 int4x2_cmple( const int4x2* lhs, const int4x2* rhs )
 {
 	return HLML_CONSTRUCT( bool4x2 ) {
 		int2_cmple( &lhs->rows[0], &rhs->rows[0] ),
@@ -2324,9 +5314,7 @@ inline bool4x2 int4x2_cmple( const int4x2* lhs, const int4x2* rhs )
 	};
 }
 
-/// \relates int4x2
-/// \brief Returns a bool4x2 where each component is true if the component of the left-hand type is greater than the corresponding right-hand type component.
-inline bool4x2 int4x2_cmpg( const int4x2* lhs, const int4x2* rhs )
+bool4x2 int4x2_cmpg( const int4x2* lhs, const int4x2* rhs )
 {
 	return HLML_CONSTRUCT( bool4x2 ) {
 		int2_cmpg( &lhs->rows[0], &rhs->rows[0] ),
@@ -2336,9 +5324,7 @@ inline bool4x2 int4x2_cmpg( const int4x2* lhs, const int4x2* rhs )
 	};
 }
 
-/// \relates int4x2
-/// \brief Returns a bool4x2 where each component is true if the component of the left-hand type is greater than or equal to the corresponding right-hand type component.
-inline bool4x2 int4x2_cmpge( const int4x2* lhs, const int4x2* rhs )
+bool4x2 int4x2_cmpge( const int4x2* lhs, const int4x2* rhs )
 {
 	return HLML_CONSTRUCT( bool4x2 ) {
 		int2_cmpge( &lhs->rows[0], &rhs->rows[0] ),
@@ -2348,9 +5334,7 @@ inline bool4x2 int4x2_cmpge( const int4x2* lhs, const int4x2* rhs )
 	};
 }
 
-/// \relates int4x2
-/// \brief Sets the matrix to an identity matrix.
-inline void int4x2_identity( int4x2* mat )
+void int4x2_identity( int4x2* mat )
 {
 	mat->rows[0] = HLML_CONSTRUCT( int2 ) { 1, 0 };
 	mat->rows[1] = HLML_CONSTRUCT( int2 ) { 0, 1 };
@@ -2358,9 +5342,7 @@ inline void int4x2_identity( int4x2* mat )
 	mat->rows[3] = HLML_CONSTRUCT( int2 ) { 0, 0 };
 }
 
-/// \relates int4x2
-/// \brief Returns a copy of the matrix that is transposed, where the value of each row is set to the value of each column and vice versa.
-inline int2x4 int4x2_transpose( const int4x2* mat )
+int2x4 int4x2_transpose( const int4x2* mat )
 {
 	return HLML_CONSTRUCT( int2x4 ) {
 		mat->rows[0].x, mat->rows[1].x, mat->rows[2].x, mat->rows[3].x,
@@ -2368,9 +5350,7 @@ inline int2x4 int4x2_transpose( const int4x2* mat )
 	};
 }
 
-/// \relates int4x2
-/// \brief Returns a copy of the matrix where each row of the left-hand matrix has been dot-producted by the corresponding column of the right-hand matrix.
-inline int4x4 int4x2_mulm( const int4x2* lhs, const int2x4* rhs )
+int4x4 int4x2_mulm( const int4x2* lhs, const int2x4* rhs )
 {
 	int2 row0 = lhs->rows[0];
 	int2 row1 = lhs->rows[1];
@@ -2405,11 +5385,7 @@ inline int4x4 int4x2_mulm( const int4x2* lhs, const int2x4* rhs )
 	};
 }
 
-
-// int4x3
-/// \relates int4x3
-/// \brief Returns true if the all the components of the left-hand-side int4x3 match the other one, otherwise returns false.
-inline bool int4x3_cmpe( const int4x3* lhs, const int4x3* rhs )
+bool int4x3_cmpe( const int4x3* lhs, const int4x3* rhs )
 {
 	return int3_cmpe( &lhs->rows[0], &rhs->rows[0] )
 		&& int3_cmpe( &lhs->rows[1], &rhs->rows[1] )
@@ -2417,16 +5393,12 @@ inline bool int4x3_cmpe( const int4x3* lhs, const int4x3* rhs )
 		&& int3_cmpe( &lhs->rows[3], &rhs->rows[3] );
 }
 
-/// \relates int4x3
-/// \brief Returns true if not all of the components of the left-hand-side int4x3 match the other one, otherwise returns false.
-inline bool int4x3_cmpne( const int4x3* lhs, const int4x3* rhs )
+bool int4x3_cmpne( const int4x3* lhs, const int4x3* rhs )
 {
 	return !( int4x3_cmpe( lhs, rhs ) );
 }
 
-/// \relates int4x3
-/// \brief Returns a copy of the int4x3 that has been component-wise added by the given scalar value.
-inline int4x3 int4x3_comp_adds( const int4x3* lhs, const int32_t scalar )
+int4x3 int4x3_comp_adds( const int4x3* lhs, const int32_t scalar )
 {
 	return HLML_CONSTRUCT( int4x3 ) {
 		lhs->rows[0].x + scalar, lhs->rows[0].y + scalar, lhs->rows[0].z + scalar,
@@ -2436,9 +5408,7 @@ inline int4x3 int4x3_comp_adds( const int4x3* lhs, const int32_t scalar )
 	};
 }
 
-/// \relates int4x3
-/// \brief Returns a copy of the int4x3 that has been component-wise added by the corresponding component of the right-hand int4x3.
-inline int4x3 int4x3_comp_addm( const int4x3* lhs, const int4x3* rhs )
+int4x3 int4x3_comp_addm( const int4x3* lhs, const int4x3* rhs )
 {
 	return HLML_CONSTRUCT( int4x3 ) {
 		int3_comp_addv( &lhs->rows[0], &rhs->rows[0] ),
@@ -2448,9 +5418,7 @@ inline int4x3 int4x3_comp_addm( const int4x3* lhs, const int4x3* rhs )
 	};
 }
 
-/// \relates int4x3
-/// \brief Returns a copy of the int4x3 that has been component-wise subtracted by the given scalar value.
-inline int4x3 int4x3_comp_subs( const int4x3* lhs, const int32_t scalar )
+int4x3 int4x3_comp_subs( const int4x3* lhs, const int32_t scalar )
 {
 	return HLML_CONSTRUCT( int4x3 ) {
 		lhs->rows[0].x - scalar, lhs->rows[0].y - scalar, lhs->rows[0].z - scalar,
@@ -2460,9 +5428,7 @@ inline int4x3 int4x3_comp_subs( const int4x3* lhs, const int32_t scalar )
 	};
 }
 
-/// \relates int4x3
-/// \brief Returns a copy of the int4x3 that has been component-wise subtracted by the corresponding component of the right-hand int4x3.
-inline int4x3 int4x3_comp_subm( const int4x3* lhs, const int4x3* rhs )
+int4x3 int4x3_comp_subm( const int4x3* lhs, const int4x3* rhs )
 {
 	return HLML_CONSTRUCT( int4x3 ) {
 		int3_comp_subv( &lhs->rows[0], &rhs->rows[0] ),
@@ -2472,9 +5438,7 @@ inline int4x3 int4x3_comp_subm( const int4x3* lhs, const int4x3* rhs )
 	};
 }
 
-/// \relates int4x3
-/// \brief Returns a copy of the int4x3 that has been component-wise multiplied by the given scalar value.
-inline int4x3 int4x3_comp_muls( const int4x3* lhs, const int32_t scalar )
+int4x3 int4x3_comp_muls( const int4x3* lhs, const int32_t scalar )
 {
 	return HLML_CONSTRUCT( int4x3 ) {
 		lhs->rows[0].x * scalar, lhs->rows[0].y * scalar, lhs->rows[0].z * scalar,
@@ -2484,9 +5448,7 @@ inline int4x3 int4x3_comp_muls( const int4x3* lhs, const int32_t scalar )
 	};
 }
 
-/// \relates int4x3
-/// \brief Returns a copy of the int4x3 that has been component-wise multiplied by the corresponding component of the right-hand int4x3.
-inline int4x3 int4x3_comp_mulm( const int4x3* lhs, const int4x3* rhs )
+int4x3 int4x3_comp_mulm( const int4x3* lhs, const int4x3* rhs )
 {
 	return HLML_CONSTRUCT( int4x3 ) {
 		int3_comp_mulv( &lhs->rows[0], &rhs->rows[0] ),
@@ -2496,9 +5458,7 @@ inline int4x3 int4x3_comp_mulm( const int4x3* lhs, const int4x3* rhs )
 	};
 }
 
-/// \relates int4x3
-/// \brief Returns a copy of the int4x3 that has been component-wise divided by the given scalar value.
-inline int4x3 int4x3_comp_divs( const int4x3* lhs, const int32_t scalar )
+int4x3 int4x3_comp_divs( const int4x3* lhs, const int32_t scalar )
 {
 	return HLML_CONSTRUCT( int4x3 ) {
 		lhs->rows[0].x / scalar, lhs->rows[0].y / scalar, lhs->rows[0].z / scalar,
@@ -2508,9 +5468,7 @@ inline int4x3 int4x3_comp_divs( const int4x3* lhs, const int32_t scalar )
 	};
 }
 
-/// \relates int4x3
-/// \brief Returns a copy of the int4x3 that has been component-wise divided by the corresponding component of the right-hand int4x3.
-inline int4x3 int4x3_comp_divm( const int4x3* lhs, const int4x3* rhs )
+int4x3 int4x3_comp_divm( const int4x3* lhs, const int4x3* rhs )
 {
 	return HLML_CONSTRUCT( int4x3 ) {
 		int3_comp_divv( &lhs->rows[0], &rhs->rows[0] ),
@@ -2520,9 +5478,7 @@ inline int4x3 int4x3_comp_divm( const int4x3* lhs, const int4x3* rhs )
 	};
 }
 
-/// \relates int4x3
-/// \brief Returns a copy of the int4x3 where each component of the left-hand int4x3 has been bitwise AND'd against the corresponding component of the right-hand side int4x3.
-inline int4x3 int4x3_comp_and( const int4x3* lhs, const int4x3* rhs )
+int4x3 int4x3_comp_and( const int4x3* lhs, const int4x3* rhs )
 {
 	return HLML_CONSTRUCT( int4x3 ) {
 		int3_comp_and( &lhs->rows[0], &rhs->rows[0] ),
@@ -2532,9 +5488,7 @@ inline int4x3 int4x3_comp_and( const int4x3* lhs, const int4x3* rhs )
 	};
 }
 
-/// \relates int4x3
-/// \brief Returns a copy of the int4x3 where each component of the left-hand int4x3 has been bitwise OR'd against the corresponding component of the right-hand side int4x3.
-inline int4x3 int4x3_comp_or( const int4x3* lhs, const int4x3* rhs )
+int4x3 int4x3_comp_or( const int4x3* lhs, const int4x3* rhs )
 {
 	return HLML_CONSTRUCT( int4x3 ) {
 		int3_comp_or( &lhs->rows[0], &rhs->rows[0] ),
@@ -2544,9 +5498,7 @@ inline int4x3 int4x3_comp_or( const int4x3* lhs, const int4x3* rhs )
 	};
 }
 
-/// \relates int4x3
-/// \brief Returns a copy of the int4x3 where each component of the left-hand int4x3 has been bitwise XOR'd against the corresponding component of the right-hand side int4x3.
-inline int4x3 int4x3_comp_xor( const int4x3* lhs, const int4x3* rhs )
+int4x3 int4x3_comp_xor( const int4x3* lhs, const int4x3* rhs )
 {
 	return HLML_CONSTRUCT( int4x3 ) {
 		int3_comp_xor( &lhs->rows[0], &rhs->rows[0] ),
@@ -2556,9 +5508,7 @@ inline int4x3 int4x3_comp_xor( const int4x3* lhs, const int4x3* rhs )
 	};
 }
 
-/// \relates int4x3
-/// \brief Performs a unary bitwise operation on all components of the given int4x3.
-inline int4x3 int4x3_comp_unary( const int4x3* lhs )
+int4x3 int4x3_comp_unary( const int4x3* lhs )
 {
 	return HLML_CONSTRUCT( int4x3 ) {
 		~lhs->rows[0].x,
@@ -2580,9 +5530,7 @@ inline int4x3 int4x3_comp_unary( const int4x3* lhs )
 	};
 }
 
-/// \relates int4x3
-/// \brief Returns a copy of the int4x3 where each component of the left-hand int4x3 has been bitwise left-shifted by the corresponding component of the right-hand side int4x3.
-inline int4x3 int4x3_comp_shift_left( const int4x3* lhs, const int4x3* rhs )
+int4x3 int4x3_comp_shift_left( const int4x3* lhs, const int4x3* rhs )
 {
 	return HLML_CONSTRUCT( int4x3 ) {
 		int3_comp_shift_left( &lhs->rows[0], &rhs->rows[0] ),
@@ -2592,9 +5540,7 @@ inline int4x3 int4x3_comp_shift_left( const int4x3* lhs, const int4x3* rhs )
 	};
 }
 
-/// \relates int4x3
-/// \brief Returns a copy of the int4x3 where each component of the left-hand int4x3 has been bitwise right-shifted by the corresponding component of the right-hand side int4x3.
-inline int4x3 int4x3_comp_shift_right( const int4x3* lhs, const int4x3* rhs )
+int4x3 int4x3_comp_shift_right( const int4x3* lhs, const int4x3* rhs )
 {
 	return HLML_CONSTRUCT( int4x3 ) {
 		int3_comp_shift_right( &lhs->rows[0], &rhs->rows[0] ),
@@ -2604,9 +5550,7 @@ inline int4x3 int4x3_comp_shift_right( const int4x3* lhs, const int4x3* rhs )
 	};
 }
 
-/// \relates int4x3
-/// \brief Returns a bool4x3 where each component is true if the component of the left-hand type is less than the corresponding right-hand type component.
-inline bool4x3 int4x3_cmpl( const int4x3* lhs, const int4x3* rhs )
+bool4x3 int4x3_cmpl( const int4x3* lhs, const int4x3* rhs )
 {
 	return HLML_CONSTRUCT( bool4x3 ) {
 		int3_cmpl( &lhs->rows[0], &rhs->rows[0] ),
@@ -2616,9 +5560,7 @@ inline bool4x3 int4x3_cmpl( const int4x3* lhs, const int4x3* rhs )
 	};
 }
 
-/// \relates int4x3
-/// \brief Returns a bool4x3 where each component is true if the component of the left-hand type is less than or equal to the corresponding right-hand type component.
-inline bool4x3 int4x3_cmple( const int4x3* lhs, const int4x3* rhs )
+bool4x3 int4x3_cmple( const int4x3* lhs, const int4x3* rhs )
 {
 	return HLML_CONSTRUCT( bool4x3 ) {
 		int3_cmple( &lhs->rows[0], &rhs->rows[0] ),
@@ -2628,9 +5570,7 @@ inline bool4x3 int4x3_cmple( const int4x3* lhs, const int4x3* rhs )
 	};
 }
 
-/// \relates int4x3
-/// \brief Returns a bool4x3 where each component is true if the component of the left-hand type is greater than the corresponding right-hand type component.
-inline bool4x3 int4x3_cmpg( const int4x3* lhs, const int4x3* rhs )
+bool4x3 int4x3_cmpg( const int4x3* lhs, const int4x3* rhs )
 {
 	return HLML_CONSTRUCT( bool4x3 ) {
 		int3_cmpg( &lhs->rows[0], &rhs->rows[0] ),
@@ -2640,9 +5580,7 @@ inline bool4x3 int4x3_cmpg( const int4x3* lhs, const int4x3* rhs )
 	};
 }
 
-/// \relates int4x3
-/// \brief Returns a bool4x3 where each component is true if the component of the left-hand type is greater than or equal to the corresponding right-hand type component.
-inline bool4x3 int4x3_cmpge( const int4x3* lhs, const int4x3* rhs )
+bool4x3 int4x3_cmpge( const int4x3* lhs, const int4x3* rhs )
 {
 	return HLML_CONSTRUCT( bool4x3 ) {
 		int3_cmpge( &lhs->rows[0], &rhs->rows[0] ),
@@ -2652,9 +5590,7 @@ inline bool4x3 int4x3_cmpge( const int4x3* lhs, const int4x3* rhs )
 	};
 }
 
-/// \relates int4x3
-/// \brief Sets the matrix to an identity matrix.
-inline void int4x3_identity( int4x3* mat )
+void int4x3_identity( int4x3* mat )
 {
 	mat->rows[0] = HLML_CONSTRUCT( int3 ) { 1, 0, 0 };
 	mat->rows[1] = HLML_CONSTRUCT( int3 ) { 0, 1, 0 };
@@ -2662,9 +5598,7 @@ inline void int4x3_identity( int4x3* mat )
 	mat->rows[3] = HLML_CONSTRUCT( int3 ) { 0, 0, 0 };
 }
 
-/// \relates int4x3
-/// \brief Returns a copy of the matrix that is transposed, where the value of each row is set to the value of each column and vice versa.
-inline int3x4 int4x3_transpose( const int4x3* mat )
+int3x4 int4x3_transpose( const int4x3* mat )
 {
 	return HLML_CONSTRUCT( int3x4 ) {
 		mat->rows[0].x, mat->rows[1].x, mat->rows[2].x, mat->rows[3].x,
@@ -2673,9 +5607,7 @@ inline int3x4 int4x3_transpose( const int4x3* mat )
 	};
 }
 
-/// \relates int4x3
-/// \brief Returns a copy of the matrix where each row of the left-hand matrix has been dot-producted by the corresponding column of the right-hand matrix.
-inline int4x4 int4x3_mulm( const int4x3* lhs, const int3x4* rhs )
+int4x4 int4x3_mulm( const int4x3* lhs, const int3x4* rhs )
 {
 	int3 row0 = lhs->rows[0];
 	int3 row1 = lhs->rows[1];
@@ -2710,9 +5642,7 @@ inline int4x4 int4x3_mulm( const int4x3* lhs, const int3x4* rhs )
 	};
 }
 
-/// \relates int4x3
-/// \brief Returns a copy of the matrix that has had a non-uniform scale applied to it.
-inline int4x3 int4x3_scale( const int4x3* mat, const int2* vec )
+int4x3 int4x3_scale( const int4x3* mat, const int2* vec )
 {
 	return HLML_CONSTRUCT( int4x3 ) {
 		mat->rows[0].x * vec->x,
@@ -2733,11 +5663,7 @@ inline int4x3 int4x3_scale( const int4x3* mat, const int2* vec )
 	};
 }
 
-
-// int4x4
-/// \relates int4x4
-/// \brief Returns true if the all the components of the left-hand-side int4x4 match the other one, otherwise returns false.
-inline bool int4x4_cmpe( const int4x4* lhs, const int4x4* rhs )
+bool int4x4_cmpe( const int4x4* lhs, const int4x4* rhs )
 {
 	return int4_cmpe( &lhs->rows[0], &rhs->rows[0] )
 		&& int4_cmpe( &lhs->rows[1], &rhs->rows[1] )
@@ -2745,16 +5671,12 @@ inline bool int4x4_cmpe( const int4x4* lhs, const int4x4* rhs )
 		&& int4_cmpe( &lhs->rows[3], &rhs->rows[3] );
 }
 
-/// \relates int4x4
-/// \brief Returns true if not all of the components of the left-hand-side int4x4 match the other one, otherwise returns false.
-inline bool int4x4_cmpne( const int4x4* lhs, const int4x4* rhs )
+bool int4x4_cmpne( const int4x4* lhs, const int4x4* rhs )
 {
 	return !( int4x4_cmpe( lhs, rhs ) );
 }
 
-/// \relates int4x4
-/// \brief Returns a copy of the int4x4 that has been component-wise added by the given scalar value.
-inline int4x4 int4x4_comp_adds( const int4x4* lhs, const int32_t scalar )
+int4x4 int4x4_comp_adds( const int4x4* lhs, const int32_t scalar )
 {
 	return HLML_CONSTRUCT( int4x4 ) {
 		lhs->rows[0].x + scalar, lhs->rows[0].y + scalar, lhs->rows[0].z + scalar, lhs->rows[0].w + scalar,
@@ -2764,9 +5686,7 @@ inline int4x4 int4x4_comp_adds( const int4x4* lhs, const int32_t scalar )
 	};
 }
 
-/// \relates int4x4
-/// \brief Returns a copy of the int4x4 that has been component-wise added by the corresponding component of the right-hand int4x4.
-inline int4x4 int4x4_comp_addm( const int4x4* lhs, const int4x4* rhs )
+int4x4 int4x4_comp_addm( const int4x4* lhs, const int4x4* rhs )
 {
 	return HLML_CONSTRUCT( int4x4 ) {
 		int4_comp_addv( &lhs->rows[0], &rhs->rows[0] ),
@@ -2776,9 +5696,7 @@ inline int4x4 int4x4_comp_addm( const int4x4* lhs, const int4x4* rhs )
 	};
 }
 
-/// \relates int4x4
-/// \brief Returns a copy of the int4x4 that has been component-wise subtracted by the given scalar value.
-inline int4x4 int4x4_comp_subs( const int4x4* lhs, const int32_t scalar )
+int4x4 int4x4_comp_subs( const int4x4* lhs, const int32_t scalar )
 {
 	return HLML_CONSTRUCT( int4x4 ) {
 		lhs->rows[0].x - scalar, lhs->rows[0].y - scalar, lhs->rows[0].z - scalar, lhs->rows[0].w - scalar,
@@ -2788,9 +5706,7 @@ inline int4x4 int4x4_comp_subs( const int4x4* lhs, const int32_t scalar )
 	};
 }
 
-/// \relates int4x4
-/// \brief Returns a copy of the int4x4 that has been component-wise subtracted by the corresponding component of the right-hand int4x4.
-inline int4x4 int4x4_comp_subm( const int4x4* lhs, const int4x4* rhs )
+int4x4 int4x4_comp_subm( const int4x4* lhs, const int4x4* rhs )
 {
 	return HLML_CONSTRUCT( int4x4 ) {
 		int4_comp_subv( &lhs->rows[0], &rhs->rows[0] ),
@@ -2800,9 +5716,7 @@ inline int4x4 int4x4_comp_subm( const int4x4* lhs, const int4x4* rhs )
 	};
 }
 
-/// \relates int4x4
-/// \brief Returns a copy of the int4x4 that has been component-wise multiplied by the given scalar value.
-inline int4x4 int4x4_comp_muls( const int4x4* lhs, const int32_t scalar )
+int4x4 int4x4_comp_muls( const int4x4* lhs, const int32_t scalar )
 {
 	return HLML_CONSTRUCT( int4x4 ) {
 		lhs->rows[0].x * scalar, lhs->rows[0].y * scalar, lhs->rows[0].z * scalar, lhs->rows[0].w * scalar,
@@ -2812,9 +5726,7 @@ inline int4x4 int4x4_comp_muls( const int4x4* lhs, const int32_t scalar )
 	};
 }
 
-/// \relates int4x4
-/// \brief Returns a copy of the int4x4 that has been component-wise multiplied by the corresponding component of the right-hand int4x4.
-inline int4x4 int4x4_comp_mulm( const int4x4* lhs, const int4x4* rhs )
+int4x4 int4x4_comp_mulm( const int4x4* lhs, const int4x4* rhs )
 {
 	return HLML_CONSTRUCT( int4x4 ) {
 		int4_comp_mulv( &lhs->rows[0], &rhs->rows[0] ),
@@ -2824,9 +5736,7 @@ inline int4x4 int4x4_comp_mulm( const int4x4* lhs, const int4x4* rhs )
 	};
 }
 
-/// \relates int4x4
-/// \brief Returns a copy of the int4x4 that has been component-wise divided by the given scalar value.
-inline int4x4 int4x4_comp_divs( const int4x4* lhs, const int32_t scalar )
+int4x4 int4x4_comp_divs( const int4x4* lhs, const int32_t scalar )
 {
 	return HLML_CONSTRUCT( int4x4 ) {
 		lhs->rows[0].x / scalar, lhs->rows[0].y / scalar, lhs->rows[0].z / scalar, lhs->rows[0].w / scalar,
@@ -2836,9 +5746,7 @@ inline int4x4 int4x4_comp_divs( const int4x4* lhs, const int32_t scalar )
 	};
 }
 
-/// \relates int4x4
-/// \brief Returns a copy of the int4x4 that has been component-wise divided by the corresponding component of the right-hand int4x4.
-inline int4x4 int4x4_comp_divm( const int4x4* lhs, const int4x4* rhs )
+int4x4 int4x4_comp_divm( const int4x4* lhs, const int4x4* rhs )
 {
 	return HLML_CONSTRUCT( int4x4 ) {
 		int4_comp_divv( &lhs->rows[0], &rhs->rows[0] ),
@@ -2848,9 +5756,7 @@ inline int4x4 int4x4_comp_divm( const int4x4* lhs, const int4x4* rhs )
 	};
 }
 
-/// \relates int4x4
-/// \brief Returns a copy of the int4x4 where each component of the left-hand int4x4 has been bitwise AND'd against the corresponding component of the right-hand side int4x4.
-inline int4x4 int4x4_comp_and( const int4x4* lhs, const int4x4* rhs )
+int4x4 int4x4_comp_and( const int4x4* lhs, const int4x4* rhs )
 {
 	return HLML_CONSTRUCT( int4x4 ) {
 		int4_comp_and( &lhs->rows[0], &rhs->rows[0] ),
@@ -2860,9 +5766,7 @@ inline int4x4 int4x4_comp_and( const int4x4* lhs, const int4x4* rhs )
 	};
 }
 
-/// \relates int4x4
-/// \brief Returns a copy of the int4x4 where each component of the left-hand int4x4 has been bitwise OR'd against the corresponding component of the right-hand side int4x4.
-inline int4x4 int4x4_comp_or( const int4x4* lhs, const int4x4* rhs )
+int4x4 int4x4_comp_or( const int4x4* lhs, const int4x4* rhs )
 {
 	return HLML_CONSTRUCT( int4x4 ) {
 		int4_comp_or( &lhs->rows[0], &rhs->rows[0] ),
@@ -2872,9 +5776,7 @@ inline int4x4 int4x4_comp_or( const int4x4* lhs, const int4x4* rhs )
 	};
 }
 
-/// \relates int4x4
-/// \brief Returns a copy of the int4x4 where each component of the left-hand int4x4 has been bitwise XOR'd against the corresponding component of the right-hand side int4x4.
-inline int4x4 int4x4_comp_xor( const int4x4* lhs, const int4x4* rhs )
+int4x4 int4x4_comp_xor( const int4x4* lhs, const int4x4* rhs )
 {
 	return HLML_CONSTRUCT( int4x4 ) {
 		int4_comp_xor( &lhs->rows[0], &rhs->rows[0] ),
@@ -2884,9 +5786,7 @@ inline int4x4 int4x4_comp_xor( const int4x4* lhs, const int4x4* rhs )
 	};
 }
 
-/// \relates int4x4
-/// \brief Performs a unary bitwise operation on all components of the given int4x4.
-inline int4x4 int4x4_comp_unary( const int4x4* lhs )
+int4x4 int4x4_comp_unary( const int4x4* lhs )
 {
 	return HLML_CONSTRUCT( int4x4 ) {
 		~lhs->rows[0].x,
@@ -2912,9 +5812,7 @@ inline int4x4 int4x4_comp_unary( const int4x4* lhs )
 	};
 }
 
-/// \relates int4x4
-/// \brief Returns a copy of the int4x4 where each component of the left-hand int4x4 has been bitwise left-shifted by the corresponding component of the right-hand side int4x4.
-inline int4x4 int4x4_comp_shift_left( const int4x4* lhs, const int4x4* rhs )
+int4x4 int4x4_comp_shift_left( const int4x4* lhs, const int4x4* rhs )
 {
 	return HLML_CONSTRUCT( int4x4 ) {
 		int4_comp_shift_left( &lhs->rows[0], &rhs->rows[0] ),
@@ -2924,9 +5822,7 @@ inline int4x4 int4x4_comp_shift_left( const int4x4* lhs, const int4x4* rhs )
 	};
 }
 
-/// \relates int4x4
-/// \brief Returns a copy of the int4x4 where each component of the left-hand int4x4 has been bitwise right-shifted by the corresponding component of the right-hand side int4x4.
-inline int4x4 int4x4_comp_shift_right( const int4x4* lhs, const int4x4* rhs )
+int4x4 int4x4_comp_shift_right( const int4x4* lhs, const int4x4* rhs )
 {
 	return HLML_CONSTRUCT( int4x4 ) {
 		int4_comp_shift_right( &lhs->rows[0], &rhs->rows[0] ),
@@ -2936,9 +5832,7 @@ inline int4x4 int4x4_comp_shift_right( const int4x4* lhs, const int4x4* rhs )
 	};
 }
 
-/// \relates int4x4
-/// \brief Returns a bool4x4 where each component is true if the component of the left-hand type is less than the corresponding right-hand type component.
-inline bool4x4 int4x4_cmpl( const int4x4* lhs, const int4x4* rhs )
+bool4x4 int4x4_cmpl( const int4x4* lhs, const int4x4* rhs )
 {
 	return HLML_CONSTRUCT( bool4x4 ) {
 		int4_cmpl( &lhs->rows[0], &rhs->rows[0] ),
@@ -2948,9 +5842,7 @@ inline bool4x4 int4x4_cmpl( const int4x4* lhs, const int4x4* rhs )
 	};
 }
 
-/// \relates int4x4
-/// \brief Returns a bool4x4 where each component is true if the component of the left-hand type is less than or equal to the corresponding right-hand type component.
-inline bool4x4 int4x4_cmple( const int4x4* lhs, const int4x4* rhs )
+bool4x4 int4x4_cmple( const int4x4* lhs, const int4x4* rhs )
 {
 	return HLML_CONSTRUCT( bool4x4 ) {
 		int4_cmple( &lhs->rows[0], &rhs->rows[0] ),
@@ -2960,9 +5852,7 @@ inline bool4x4 int4x4_cmple( const int4x4* lhs, const int4x4* rhs )
 	};
 }
 
-/// \relates int4x4
-/// \brief Returns a bool4x4 where each component is true if the component of the left-hand type is greater than the corresponding right-hand type component.
-inline bool4x4 int4x4_cmpg( const int4x4* lhs, const int4x4* rhs )
+bool4x4 int4x4_cmpg( const int4x4* lhs, const int4x4* rhs )
 {
 	return HLML_CONSTRUCT( bool4x4 ) {
 		int4_cmpg( &lhs->rows[0], &rhs->rows[0] ),
@@ -2972,9 +5862,7 @@ inline bool4x4 int4x4_cmpg( const int4x4* lhs, const int4x4* rhs )
 	};
 }
 
-/// \relates int4x4
-/// \brief Returns a bool4x4 where each component is true if the component of the left-hand type is greater than or equal to the corresponding right-hand type component.
-inline bool4x4 int4x4_cmpge( const int4x4* lhs, const int4x4* rhs )
+bool4x4 int4x4_cmpge( const int4x4* lhs, const int4x4* rhs )
 {
 	return HLML_CONSTRUCT( bool4x4 ) {
 		int4_cmpge( &lhs->rows[0], &rhs->rows[0] ),
@@ -2984,9 +5872,7 @@ inline bool4x4 int4x4_cmpge( const int4x4* lhs, const int4x4* rhs )
 	};
 }
 
-/// \relates int4x4
-/// \brief Sets the matrix to an identity matrix.
-inline void int4x4_identity( int4x4* mat )
+void int4x4_identity( int4x4* mat )
 {
 	mat->rows[0] = HLML_CONSTRUCT( int4 ) { 1, 0, 0, 0 };
 	mat->rows[1] = HLML_CONSTRUCT( int4 ) { 0, 1, 0, 0 };
@@ -2994,9 +5880,7 @@ inline void int4x4_identity( int4x4* mat )
 	mat->rows[3] = HLML_CONSTRUCT( int4 ) { 0, 0, 0, 1 };
 }
 
-/// \relates int4x4
-/// \brief Returns a copy of the matrix that is transposed, where the value of each row is set to the value of each column and vice versa.
-inline int4x4 int4x4_transpose( const int4x4* mat )
+int4x4 int4x4_transpose( const int4x4* mat )
 {
 	return HLML_CONSTRUCT( int4x4 ) {
 		mat->rows[0].x, mat->rows[1].x, mat->rows[2].x, mat->rows[3].x,
@@ -3006,9 +5890,7 @@ inline int4x4 int4x4_transpose( const int4x4* mat )
 	};
 }
 
-/// \relates int4x4
-/// \brief Returns the determinant of the matrix.
-inline int32_t int4x4_determinant( const int4x4* mat )
+int32_t int4x4_determinant( const int4x4* mat )
 {
 	// using glm's method where you basically take determinants from each sub matrix and cache the repeat occurences
 	int32_t sub00 = mat->rows[2].z * mat->rows[3].w - mat->rows[3].z * mat->rows[2].w;
@@ -3030,9 +5912,7 @@ inline int32_t int4x4_determinant( const int4x4* mat )
 		mat->rows[0].z * cofactor.z + mat->rows[0].w * cofactor.w; 
 }
 
-/// \relates int4x4
-/// \brief Returns a copy of the matrix where each row of the left-hand matrix has been dot-producted by the corresponding column of the right-hand matrix.
-inline int4x4 int4x4_mulm( const int4x4* lhs, const int4x4* rhs )
+int4x4 int4x4_mulm( const int4x4* lhs, const int4x4* rhs )
 {
 	int4 row0 = lhs->rows[0];
 	int4 row1 = lhs->rows[1];
@@ -3067,9 +5947,7 @@ inline int4x4 int4x4_mulm( const int4x4* lhs, const int4x4* rhs )
 	};
 }
 
-/// \relates int4x4
-/// \brief Returns the right-hand vector multiplied by the left-hand matrix.
-inline int4 int4x4_mulv( const int4x4* lhs, const int4* rhs )
+int4 int4x4_mulv( const int4x4* lhs, const int4* rhs )
 {
 	return HLML_CONSTRUCT( int4 ) {
 		lhs->rows[0].x * rhs->x + lhs->rows[0].y * rhs->y + lhs->rows[0].z * rhs->z + lhs->rows[0].w * rhs->w,
@@ -3079,9 +5957,7 @@ inline int4 int4x4_mulv( const int4x4* lhs, const int4* rhs )
 	};
 }
 
-/// \relates int4x4
-/// \brief Returns a copy of the matrix where each component of the 3rd column has been added by the given vector.
-inline int4x4 int4x4_translate( const int4x4* mat, const int3* vec )
+int4x4 int4x4_translate( const int4x4* mat, const int3* vec )
 {
 	return HLML_CONSTRUCT( int4x4 ) {
 		mat->rows[0].x, mat->rows[0].y, mat->rows[0].z, mat->rows[0].w + vec->x,
@@ -3091,9 +5967,7 @@ inline int4x4 int4x4_translate( const int4x4* mat, const int3* vec )
 	};
 }
 
-/// \relates int4x4
-/// \brief Returns a copy of the matrix that has had a non-uniform scale applied to it.
-inline int4x4 int4x4_scale( const int4x4* mat, const int3* vec )
+int4x4 int4x4_scale( const int4x4* mat, const int3* vec )
 {
 	return HLML_CONSTRUCT( int4x4 ) {
 		mat->rows[0].x * vec->x,
@@ -3118,26 +5992,18 @@ inline int4x4 int4x4_scale( const int4x4* mat, const int3* vec )
 	};
 }
 
-
-// uint2x2
-/// \relates uint2x2
-/// \brief Returns true if the all the components of the left-hand-side uint2x2 match the other one, otherwise returns false.
-inline bool uint2x2_cmpe( const uint2x2* lhs, const uint2x2* rhs )
+bool uint2x2_cmpe( const uint2x2* lhs, const uint2x2* rhs )
 {
 	return uint2_cmpe( &lhs->rows[0], &rhs->rows[0] )
 		&& uint2_cmpe( &lhs->rows[1], &rhs->rows[1] );
 }
 
-/// \relates uint2x2
-/// \brief Returns true if not all of the components of the left-hand-side uint2x2 match the other one, otherwise returns false.
-inline bool uint2x2_cmpne( const uint2x2* lhs, const uint2x2* rhs )
+bool uint2x2_cmpne( const uint2x2* lhs, const uint2x2* rhs )
 {
 	return !( uint2x2_cmpe( lhs, rhs ) );
 }
 
-/// \relates uint2x2
-/// \brief Returns a copy of the uint2x2 that has been component-wise added by the given scalar value.
-inline uint2x2 uint2x2_comp_adds( const uint2x2* lhs, const uint32_t scalar )
+uint2x2 uint2x2_comp_adds( const uint2x2* lhs, const uint32_t scalar )
 {
 	return HLML_CONSTRUCT( uint2x2 ) {
 		lhs->rows[0].x + scalar, lhs->rows[0].y + scalar,
@@ -3145,9 +6011,7 @@ inline uint2x2 uint2x2_comp_adds( const uint2x2* lhs, const uint32_t scalar )
 	};
 }
 
-/// \relates uint2x2
-/// \brief Returns a copy of the uint2x2 that has been component-wise added by the corresponding component of the right-hand uint2x2.
-inline uint2x2 uint2x2_comp_addm( const uint2x2* lhs, const uint2x2* rhs )
+uint2x2 uint2x2_comp_addm( const uint2x2* lhs, const uint2x2* rhs )
 {
 	return HLML_CONSTRUCT( uint2x2 ) {
 		uint2_comp_addv( &lhs->rows[0], &rhs->rows[0] ),
@@ -3155,9 +6019,7 @@ inline uint2x2 uint2x2_comp_addm( const uint2x2* lhs, const uint2x2* rhs )
 	};
 }
 
-/// \relates uint2x2
-/// \brief Returns a copy of the uint2x2 that has been component-wise subtracted by the given scalar value.
-inline uint2x2 uint2x2_comp_subs( const uint2x2* lhs, const uint32_t scalar )
+uint2x2 uint2x2_comp_subs( const uint2x2* lhs, const uint32_t scalar )
 {
 	return HLML_CONSTRUCT( uint2x2 ) {
 		lhs->rows[0].x - scalar, lhs->rows[0].y - scalar,
@@ -3165,9 +6027,7 @@ inline uint2x2 uint2x2_comp_subs( const uint2x2* lhs, const uint32_t scalar )
 	};
 }
 
-/// \relates uint2x2
-/// \brief Returns a copy of the uint2x2 that has been component-wise subtracted by the corresponding component of the right-hand uint2x2.
-inline uint2x2 uint2x2_comp_subm( const uint2x2* lhs, const uint2x2* rhs )
+uint2x2 uint2x2_comp_subm( const uint2x2* lhs, const uint2x2* rhs )
 {
 	return HLML_CONSTRUCT( uint2x2 ) {
 		uint2_comp_subv( &lhs->rows[0], &rhs->rows[0] ),
@@ -3175,9 +6035,7 @@ inline uint2x2 uint2x2_comp_subm( const uint2x2* lhs, const uint2x2* rhs )
 	};
 }
 
-/// \relates uint2x2
-/// \brief Returns a copy of the uint2x2 that has been component-wise multiplied by the given scalar value.
-inline uint2x2 uint2x2_comp_muls( const uint2x2* lhs, const uint32_t scalar )
+uint2x2 uint2x2_comp_muls( const uint2x2* lhs, const uint32_t scalar )
 {
 	return HLML_CONSTRUCT( uint2x2 ) {
 		lhs->rows[0].x * scalar, lhs->rows[0].y * scalar,
@@ -3185,9 +6043,7 @@ inline uint2x2 uint2x2_comp_muls( const uint2x2* lhs, const uint32_t scalar )
 	};
 }
 
-/// \relates uint2x2
-/// \brief Returns a copy of the uint2x2 that has been component-wise multiplied by the corresponding component of the right-hand uint2x2.
-inline uint2x2 uint2x2_comp_mulm( const uint2x2* lhs, const uint2x2* rhs )
+uint2x2 uint2x2_comp_mulm( const uint2x2* lhs, const uint2x2* rhs )
 {
 	return HLML_CONSTRUCT( uint2x2 ) {
 		uint2_comp_mulv( &lhs->rows[0], &rhs->rows[0] ),
@@ -3195,9 +6051,7 @@ inline uint2x2 uint2x2_comp_mulm( const uint2x2* lhs, const uint2x2* rhs )
 	};
 }
 
-/// \relates uint2x2
-/// \brief Returns a copy of the uint2x2 that has been component-wise divided by the given scalar value.
-inline uint2x2 uint2x2_comp_divs( const uint2x2* lhs, const uint32_t scalar )
+uint2x2 uint2x2_comp_divs( const uint2x2* lhs, const uint32_t scalar )
 {
 	return HLML_CONSTRUCT( uint2x2 ) {
 		lhs->rows[0].x / scalar, lhs->rows[0].y / scalar,
@@ -3205,9 +6059,7 @@ inline uint2x2 uint2x2_comp_divs( const uint2x2* lhs, const uint32_t scalar )
 	};
 }
 
-/// \relates uint2x2
-/// \brief Returns a copy of the uint2x2 that has been component-wise divided by the corresponding component of the right-hand uint2x2.
-inline uint2x2 uint2x2_comp_divm( const uint2x2* lhs, const uint2x2* rhs )
+uint2x2 uint2x2_comp_divm( const uint2x2* lhs, const uint2x2* rhs )
 {
 	return HLML_CONSTRUCT( uint2x2 ) {
 		uint2_comp_divv( &lhs->rows[0], &rhs->rows[0] ),
@@ -3215,9 +6067,7 @@ inline uint2x2 uint2x2_comp_divm( const uint2x2* lhs, const uint2x2* rhs )
 	};
 }
 
-/// \relates uint2x2
-/// \brief Returns a copy of the uint2x2 where each component of the left-hand uint2x2 has been bitwise AND'd against the corresponding component of the right-hand side uint2x2.
-inline uint2x2 uint2x2_comp_and( const uint2x2* lhs, const uint2x2* rhs )
+uint2x2 uint2x2_comp_and( const uint2x2* lhs, const uint2x2* rhs )
 {
 	return HLML_CONSTRUCT( uint2x2 ) {
 		uint2_comp_and( &lhs->rows[0], &rhs->rows[0] ),
@@ -3225,9 +6075,7 @@ inline uint2x2 uint2x2_comp_and( const uint2x2* lhs, const uint2x2* rhs )
 	};
 }
 
-/// \relates uint2x2
-/// \brief Returns a copy of the uint2x2 where each component of the left-hand uint2x2 has been bitwise OR'd against the corresponding component of the right-hand side uint2x2.
-inline uint2x2 uint2x2_comp_or( const uint2x2* lhs, const uint2x2* rhs )
+uint2x2 uint2x2_comp_or( const uint2x2* lhs, const uint2x2* rhs )
 {
 	return HLML_CONSTRUCT( uint2x2 ) {
 		uint2_comp_or( &lhs->rows[0], &rhs->rows[0] ),
@@ -3235,9 +6083,7 @@ inline uint2x2 uint2x2_comp_or( const uint2x2* lhs, const uint2x2* rhs )
 	};
 }
 
-/// \relates uint2x2
-/// \brief Returns a copy of the uint2x2 where each component of the left-hand uint2x2 has been bitwise XOR'd against the corresponding component of the right-hand side uint2x2.
-inline uint2x2 uint2x2_comp_xor( const uint2x2* lhs, const uint2x2* rhs )
+uint2x2 uint2x2_comp_xor( const uint2x2* lhs, const uint2x2* rhs )
 {
 	return HLML_CONSTRUCT( uint2x2 ) {
 		uint2_comp_xor( &lhs->rows[0], &rhs->rows[0] ),
@@ -3245,9 +6091,7 @@ inline uint2x2 uint2x2_comp_xor( const uint2x2* lhs, const uint2x2* rhs )
 	};
 }
 
-/// \relates uint2x2
-/// \brief Performs a unary bitwise operation on all components of the given uint2x2.
-inline uint2x2 uint2x2_comp_unary( const uint2x2* lhs )
+uint2x2 uint2x2_comp_unary( const uint2x2* lhs )
 {
 	return HLML_CONSTRUCT( uint2x2 ) {
 		~lhs->rows[0].x,
@@ -3259,9 +6103,7 @@ inline uint2x2 uint2x2_comp_unary( const uint2x2* lhs )
 	};
 }
 
-/// \relates uint2x2
-/// \brief Returns a copy of the uint2x2 where each component of the left-hand uint2x2 has been bitwise left-shifted by the corresponding component of the right-hand side uint2x2.
-inline uint2x2 uint2x2_comp_shift_left( const uint2x2* lhs, const uint2x2* rhs )
+uint2x2 uint2x2_comp_shift_left( const uint2x2* lhs, const uint2x2* rhs )
 {
 	return HLML_CONSTRUCT( uint2x2 ) {
 		uint2_comp_shift_left( &lhs->rows[0], &rhs->rows[0] ),
@@ -3269,9 +6111,7 @@ inline uint2x2 uint2x2_comp_shift_left( const uint2x2* lhs, const uint2x2* rhs )
 	};
 }
 
-/// \relates uint2x2
-/// \brief Returns a copy of the uint2x2 where each component of the left-hand uint2x2 has been bitwise right-shifted by the corresponding component of the right-hand side uint2x2.
-inline uint2x2 uint2x2_comp_shift_right( const uint2x2* lhs, const uint2x2* rhs )
+uint2x2 uint2x2_comp_shift_right( const uint2x2* lhs, const uint2x2* rhs )
 {
 	return HLML_CONSTRUCT( uint2x2 ) {
 		uint2_comp_shift_right( &lhs->rows[0], &rhs->rows[0] ),
@@ -3279,9 +6119,7 @@ inline uint2x2 uint2x2_comp_shift_right( const uint2x2* lhs, const uint2x2* rhs 
 	};
 }
 
-/// \relates uint2x2
-/// \brief Returns a bool2x2 where each component is true if the component of the left-hand type is less than the corresponding right-hand type component.
-inline bool2x2 uint2x2_cmpl( const uint2x2* lhs, const uint2x2* rhs )
+bool2x2 uint2x2_cmpl( const uint2x2* lhs, const uint2x2* rhs )
 {
 	return HLML_CONSTRUCT( bool2x2 ) {
 		uint2_cmpl( &lhs->rows[0], &rhs->rows[0] ),
@@ -3289,9 +6127,7 @@ inline bool2x2 uint2x2_cmpl( const uint2x2* lhs, const uint2x2* rhs )
 	};
 }
 
-/// \relates uint2x2
-/// \brief Returns a bool2x2 where each component is true if the component of the left-hand type is less than or equal to the corresponding right-hand type component.
-inline bool2x2 uint2x2_cmple( const uint2x2* lhs, const uint2x2* rhs )
+bool2x2 uint2x2_cmple( const uint2x2* lhs, const uint2x2* rhs )
 {
 	return HLML_CONSTRUCT( bool2x2 ) {
 		uint2_cmple( &lhs->rows[0], &rhs->rows[0] ),
@@ -3299,9 +6135,7 @@ inline bool2x2 uint2x2_cmple( const uint2x2* lhs, const uint2x2* rhs )
 	};
 }
 
-/// \relates uint2x2
-/// \brief Returns a bool2x2 where each component is true if the component of the left-hand type is greater than the corresponding right-hand type component.
-inline bool2x2 uint2x2_cmpg( const uint2x2* lhs, const uint2x2* rhs )
+bool2x2 uint2x2_cmpg( const uint2x2* lhs, const uint2x2* rhs )
 {
 	return HLML_CONSTRUCT( bool2x2 ) {
 		uint2_cmpg( &lhs->rows[0], &rhs->rows[0] ),
@@ -3309,9 +6143,7 @@ inline bool2x2 uint2x2_cmpg( const uint2x2* lhs, const uint2x2* rhs )
 	};
 }
 
-/// \relates uint2x2
-/// \brief Returns a bool2x2 where each component is true if the component of the left-hand type is greater than or equal to the corresponding right-hand type component.
-inline bool2x2 uint2x2_cmpge( const uint2x2* lhs, const uint2x2* rhs )
+bool2x2 uint2x2_cmpge( const uint2x2* lhs, const uint2x2* rhs )
 {
 	return HLML_CONSTRUCT( bool2x2 ) {
 		uint2_cmpge( &lhs->rows[0], &rhs->rows[0] ),
@@ -3319,17 +6151,13 @@ inline bool2x2 uint2x2_cmpge( const uint2x2* lhs, const uint2x2* rhs )
 	};
 }
 
-/// \relates uint2x2
-/// \brief Sets the matrix to an identity matrix.
-inline void uint2x2_identity( uint2x2* mat )
+void uint2x2_identity( uint2x2* mat )
 {
 	mat->rows[0] = HLML_CONSTRUCT( uint2 ) { 1U, 0U };
 	mat->rows[1] = HLML_CONSTRUCT( uint2 ) { 0U, 1U };
 }
 
-/// \relates uint2x2
-/// \brief Returns a copy of the matrix that is transposed, where the value of each row is set to the value of each column and vice versa.
-inline uint2x2 uint2x2_transpose( const uint2x2* mat )
+uint2x2 uint2x2_transpose( const uint2x2* mat )
 {
 	return HLML_CONSTRUCT( uint2x2 ) {
 		mat->rows[0].x, mat->rows[1].x,
@@ -3337,9 +6165,7 @@ inline uint2x2 uint2x2_transpose( const uint2x2* mat )
 	};
 }
 
-/// \relates uint2x2
-/// \brief Returns a copy of the matrix where each row of the left-hand matrix has been dot-producted by the corresponding column of the right-hand matrix.
-inline uint2x2 uint2x2_mulm( const uint2x2* lhs, const uint2x2* rhs )
+uint2x2 uint2x2_mulm( const uint2x2* lhs, const uint2x2* rhs )
 {
 	uint2 row0 = lhs->rows[0];
 	uint2 row1 = lhs->rows[1];
@@ -3356,9 +6182,7 @@ inline uint2x2 uint2x2_mulm( const uint2x2* lhs, const uint2x2* rhs )
 	};
 }
 
-/// \relates uint2x2
-/// \brief Returns the right-hand vector multiplied by the left-hand matrix.
-inline uint2 uint2x2_mulv( const uint2x2* lhs, const uint2* rhs )
+uint2 uint2x2_mulv( const uint2x2* lhs, const uint2* rhs )
 {
 	return HLML_CONSTRUCT( uint2 ) {
 		lhs->rows[0].x * rhs->x + lhs->rows[0].y * rhs->y,
@@ -3366,26 +6190,18 @@ inline uint2 uint2x2_mulv( const uint2x2* lhs, const uint2* rhs )
 	};
 }
 
-
-// uint2x3
-/// \relates uint2x3
-/// \brief Returns true if the all the components of the left-hand-side uint2x3 match the other one, otherwise returns false.
-inline bool uint2x3_cmpe( const uint2x3* lhs, const uint2x3* rhs )
+bool uint2x3_cmpe( const uint2x3* lhs, const uint2x3* rhs )
 {
 	return uint3_cmpe( &lhs->rows[0], &rhs->rows[0] )
 		&& uint3_cmpe( &lhs->rows[1], &rhs->rows[1] );
 }
 
-/// \relates uint2x3
-/// \brief Returns true if not all of the components of the left-hand-side uint2x3 match the other one, otherwise returns false.
-inline bool uint2x3_cmpne( const uint2x3* lhs, const uint2x3* rhs )
+bool uint2x3_cmpne( const uint2x3* lhs, const uint2x3* rhs )
 {
 	return !( uint2x3_cmpe( lhs, rhs ) );
 }
 
-/// \relates uint2x3
-/// \brief Returns a copy of the uint2x3 that has been component-wise added by the given scalar value.
-inline uint2x3 uint2x3_comp_adds( const uint2x3* lhs, const uint32_t scalar )
+uint2x3 uint2x3_comp_adds( const uint2x3* lhs, const uint32_t scalar )
 {
 	return HLML_CONSTRUCT( uint2x3 ) {
 		lhs->rows[0].x + scalar, lhs->rows[0].y + scalar, lhs->rows[0].z + scalar,
@@ -3393,9 +6209,7 @@ inline uint2x3 uint2x3_comp_adds( const uint2x3* lhs, const uint32_t scalar )
 	};
 }
 
-/// \relates uint2x3
-/// \brief Returns a copy of the uint2x3 that has been component-wise added by the corresponding component of the right-hand uint2x3.
-inline uint2x3 uint2x3_comp_addm( const uint2x3* lhs, const uint2x3* rhs )
+uint2x3 uint2x3_comp_addm( const uint2x3* lhs, const uint2x3* rhs )
 {
 	return HLML_CONSTRUCT( uint2x3 ) {
 		uint3_comp_addv( &lhs->rows[0], &rhs->rows[0] ),
@@ -3403,9 +6217,7 @@ inline uint2x3 uint2x3_comp_addm( const uint2x3* lhs, const uint2x3* rhs )
 	};
 }
 
-/// \relates uint2x3
-/// \brief Returns a copy of the uint2x3 that has been component-wise subtracted by the given scalar value.
-inline uint2x3 uint2x3_comp_subs( const uint2x3* lhs, const uint32_t scalar )
+uint2x3 uint2x3_comp_subs( const uint2x3* lhs, const uint32_t scalar )
 {
 	return HLML_CONSTRUCT( uint2x3 ) {
 		lhs->rows[0].x - scalar, lhs->rows[0].y - scalar, lhs->rows[0].z - scalar,
@@ -3413,9 +6225,7 @@ inline uint2x3 uint2x3_comp_subs( const uint2x3* lhs, const uint32_t scalar )
 	};
 }
 
-/// \relates uint2x3
-/// \brief Returns a copy of the uint2x3 that has been component-wise subtracted by the corresponding component of the right-hand uint2x3.
-inline uint2x3 uint2x3_comp_subm( const uint2x3* lhs, const uint2x3* rhs )
+uint2x3 uint2x3_comp_subm( const uint2x3* lhs, const uint2x3* rhs )
 {
 	return HLML_CONSTRUCT( uint2x3 ) {
 		uint3_comp_subv( &lhs->rows[0], &rhs->rows[0] ),
@@ -3423,9 +6233,7 @@ inline uint2x3 uint2x3_comp_subm( const uint2x3* lhs, const uint2x3* rhs )
 	};
 }
 
-/// \relates uint2x3
-/// \brief Returns a copy of the uint2x3 that has been component-wise multiplied by the given scalar value.
-inline uint2x3 uint2x3_comp_muls( const uint2x3* lhs, const uint32_t scalar )
+uint2x3 uint2x3_comp_muls( const uint2x3* lhs, const uint32_t scalar )
 {
 	return HLML_CONSTRUCT( uint2x3 ) {
 		lhs->rows[0].x * scalar, lhs->rows[0].y * scalar, lhs->rows[0].z * scalar,
@@ -3433,9 +6241,7 @@ inline uint2x3 uint2x3_comp_muls( const uint2x3* lhs, const uint32_t scalar )
 	};
 }
 
-/// \relates uint2x3
-/// \brief Returns a copy of the uint2x3 that has been component-wise multiplied by the corresponding component of the right-hand uint2x3.
-inline uint2x3 uint2x3_comp_mulm( const uint2x3* lhs, const uint2x3* rhs )
+uint2x3 uint2x3_comp_mulm( const uint2x3* lhs, const uint2x3* rhs )
 {
 	return HLML_CONSTRUCT( uint2x3 ) {
 		uint3_comp_mulv( &lhs->rows[0], &rhs->rows[0] ),
@@ -3443,9 +6249,7 @@ inline uint2x3 uint2x3_comp_mulm( const uint2x3* lhs, const uint2x3* rhs )
 	};
 }
 
-/// \relates uint2x3
-/// \brief Returns a copy of the uint2x3 that has been component-wise divided by the given scalar value.
-inline uint2x3 uint2x3_comp_divs( const uint2x3* lhs, const uint32_t scalar )
+uint2x3 uint2x3_comp_divs( const uint2x3* lhs, const uint32_t scalar )
 {
 	return HLML_CONSTRUCT( uint2x3 ) {
 		lhs->rows[0].x / scalar, lhs->rows[0].y / scalar, lhs->rows[0].z / scalar,
@@ -3453,9 +6257,7 @@ inline uint2x3 uint2x3_comp_divs( const uint2x3* lhs, const uint32_t scalar )
 	};
 }
 
-/// \relates uint2x3
-/// \brief Returns a copy of the uint2x3 that has been component-wise divided by the corresponding component of the right-hand uint2x3.
-inline uint2x3 uint2x3_comp_divm( const uint2x3* lhs, const uint2x3* rhs )
+uint2x3 uint2x3_comp_divm( const uint2x3* lhs, const uint2x3* rhs )
 {
 	return HLML_CONSTRUCT( uint2x3 ) {
 		uint3_comp_divv( &lhs->rows[0], &rhs->rows[0] ),
@@ -3463,9 +6265,7 @@ inline uint2x3 uint2x3_comp_divm( const uint2x3* lhs, const uint2x3* rhs )
 	};
 }
 
-/// \relates uint2x3
-/// \brief Returns a copy of the uint2x3 where each component of the left-hand uint2x3 has been bitwise AND'd against the corresponding component of the right-hand side uint2x3.
-inline uint2x3 uint2x3_comp_and( const uint2x3* lhs, const uint2x3* rhs )
+uint2x3 uint2x3_comp_and( const uint2x3* lhs, const uint2x3* rhs )
 {
 	return HLML_CONSTRUCT( uint2x3 ) {
 		uint3_comp_and( &lhs->rows[0], &rhs->rows[0] ),
@@ -3473,9 +6273,7 @@ inline uint2x3 uint2x3_comp_and( const uint2x3* lhs, const uint2x3* rhs )
 	};
 }
 
-/// \relates uint2x3
-/// \brief Returns a copy of the uint2x3 where each component of the left-hand uint2x3 has been bitwise OR'd against the corresponding component of the right-hand side uint2x3.
-inline uint2x3 uint2x3_comp_or( const uint2x3* lhs, const uint2x3* rhs )
+uint2x3 uint2x3_comp_or( const uint2x3* lhs, const uint2x3* rhs )
 {
 	return HLML_CONSTRUCT( uint2x3 ) {
 		uint3_comp_or( &lhs->rows[0], &rhs->rows[0] ),
@@ -3483,9 +6281,7 @@ inline uint2x3 uint2x3_comp_or( const uint2x3* lhs, const uint2x3* rhs )
 	};
 }
 
-/// \relates uint2x3
-/// \brief Returns a copy of the uint2x3 where each component of the left-hand uint2x3 has been bitwise XOR'd against the corresponding component of the right-hand side uint2x3.
-inline uint2x3 uint2x3_comp_xor( const uint2x3* lhs, const uint2x3* rhs )
+uint2x3 uint2x3_comp_xor( const uint2x3* lhs, const uint2x3* rhs )
 {
 	return HLML_CONSTRUCT( uint2x3 ) {
 		uint3_comp_xor( &lhs->rows[0], &rhs->rows[0] ),
@@ -3493,9 +6289,7 @@ inline uint2x3 uint2x3_comp_xor( const uint2x3* lhs, const uint2x3* rhs )
 	};
 }
 
-/// \relates uint2x3
-/// \brief Performs a unary bitwise operation on all components of the given uint2x3.
-inline uint2x3 uint2x3_comp_unary( const uint2x3* lhs )
+uint2x3 uint2x3_comp_unary( const uint2x3* lhs )
 {
 	return HLML_CONSTRUCT( uint2x3 ) {
 		~lhs->rows[0].x,
@@ -3509,9 +6303,7 @@ inline uint2x3 uint2x3_comp_unary( const uint2x3* lhs )
 	};
 }
 
-/// \relates uint2x3
-/// \brief Returns a copy of the uint2x3 where each component of the left-hand uint2x3 has been bitwise left-shifted by the corresponding component of the right-hand side uint2x3.
-inline uint2x3 uint2x3_comp_shift_left( const uint2x3* lhs, const uint2x3* rhs )
+uint2x3 uint2x3_comp_shift_left( const uint2x3* lhs, const uint2x3* rhs )
 {
 	return HLML_CONSTRUCT( uint2x3 ) {
 		uint3_comp_shift_left( &lhs->rows[0], &rhs->rows[0] ),
@@ -3519,9 +6311,7 @@ inline uint2x3 uint2x3_comp_shift_left( const uint2x3* lhs, const uint2x3* rhs )
 	};
 }
 
-/// \relates uint2x3
-/// \brief Returns a copy of the uint2x3 where each component of the left-hand uint2x3 has been bitwise right-shifted by the corresponding component of the right-hand side uint2x3.
-inline uint2x3 uint2x3_comp_shift_right( const uint2x3* lhs, const uint2x3* rhs )
+uint2x3 uint2x3_comp_shift_right( const uint2x3* lhs, const uint2x3* rhs )
 {
 	return HLML_CONSTRUCT( uint2x3 ) {
 		uint3_comp_shift_right( &lhs->rows[0], &rhs->rows[0] ),
@@ -3529,9 +6319,7 @@ inline uint2x3 uint2x3_comp_shift_right( const uint2x3* lhs, const uint2x3* rhs 
 	};
 }
 
-/// \relates uint2x3
-/// \brief Returns a bool2x3 where each component is true if the component of the left-hand type is less than the corresponding right-hand type component.
-inline bool2x3 uint2x3_cmpl( const uint2x3* lhs, const uint2x3* rhs )
+bool2x3 uint2x3_cmpl( const uint2x3* lhs, const uint2x3* rhs )
 {
 	return HLML_CONSTRUCT( bool2x3 ) {
 		uint3_cmpl( &lhs->rows[0], &rhs->rows[0] ),
@@ -3539,9 +6327,7 @@ inline bool2x3 uint2x3_cmpl( const uint2x3* lhs, const uint2x3* rhs )
 	};
 }
 
-/// \relates uint2x3
-/// \brief Returns a bool2x3 where each component is true if the component of the left-hand type is less than or equal to the corresponding right-hand type component.
-inline bool2x3 uint2x3_cmple( const uint2x3* lhs, const uint2x3* rhs )
+bool2x3 uint2x3_cmple( const uint2x3* lhs, const uint2x3* rhs )
 {
 	return HLML_CONSTRUCT( bool2x3 ) {
 		uint3_cmple( &lhs->rows[0], &rhs->rows[0] ),
@@ -3549,9 +6335,7 @@ inline bool2x3 uint2x3_cmple( const uint2x3* lhs, const uint2x3* rhs )
 	};
 }
 
-/// \relates uint2x3
-/// \brief Returns a bool2x3 where each component is true if the component of the left-hand type is greater than the corresponding right-hand type component.
-inline bool2x3 uint2x3_cmpg( const uint2x3* lhs, const uint2x3* rhs )
+bool2x3 uint2x3_cmpg( const uint2x3* lhs, const uint2x3* rhs )
 {
 	return HLML_CONSTRUCT( bool2x3 ) {
 		uint3_cmpg( &lhs->rows[0], &rhs->rows[0] ),
@@ -3559,9 +6343,7 @@ inline bool2x3 uint2x3_cmpg( const uint2x3* lhs, const uint2x3* rhs )
 	};
 }
 
-/// \relates uint2x3
-/// \brief Returns a bool2x3 where each component is true if the component of the left-hand type is greater than or equal to the corresponding right-hand type component.
-inline bool2x3 uint2x3_cmpge( const uint2x3* lhs, const uint2x3* rhs )
+bool2x3 uint2x3_cmpge( const uint2x3* lhs, const uint2x3* rhs )
 {
 	return HLML_CONSTRUCT( bool2x3 ) {
 		uint3_cmpge( &lhs->rows[0], &rhs->rows[0] ),
@@ -3569,17 +6351,13 @@ inline bool2x3 uint2x3_cmpge( const uint2x3* lhs, const uint2x3* rhs )
 	};
 }
 
-/// \relates uint2x3
-/// \brief Sets the matrix to an identity matrix.
-inline void uint2x3_identity( uint2x3* mat )
+void uint2x3_identity( uint2x3* mat )
 {
 	mat->rows[0] = HLML_CONSTRUCT( uint3 ) { 1U, 0U, 0U };
 	mat->rows[1] = HLML_CONSTRUCT( uint3 ) { 0U, 1U, 0U };
 }
 
-/// \relates uint2x3
-/// \brief Returns a copy of the matrix that is transposed, where the value of each row is set to the value of each column and vice versa.
-inline uint3x2 uint2x3_transpose( const uint2x3* mat )
+uint3x2 uint2x3_transpose( const uint2x3* mat )
 {
 	return HLML_CONSTRUCT( uint3x2 ) {
 		mat->rows[0].x, mat->rows[1].x,
@@ -3588,9 +6366,7 @@ inline uint3x2 uint2x3_transpose( const uint2x3* mat )
 	};
 }
 
-/// \relates uint2x3
-/// \brief Returns a copy of the matrix where each row of the left-hand matrix has been dot-producted by the corresponding column of the right-hand matrix.
-inline uint2x2 uint2x3_mulm( const uint2x3* lhs, const uint3x2* rhs )
+uint2x2 uint2x3_mulm( const uint2x3* lhs, const uint3x2* rhs )
 {
 	uint3 row0 = lhs->rows[0];
 	uint3 row1 = lhs->rows[1];
@@ -3607,9 +6383,7 @@ inline uint2x2 uint2x3_mulm( const uint2x3* lhs, const uint3x2* rhs )
 	};
 }
 
-/// \relates uint2x3
-/// \brief Returns a copy of the matrix that has had a non-uniform scale applied to it.
-inline uint2x3 uint2x3_scale( const uint2x3* mat, const uint2* vec )
+uint2x3 uint2x3_scale( const uint2x3* mat, const uint2* vec )
 {
 	return HLML_CONSTRUCT( uint2x3 ) {
 		mat->rows[0].x * vec->x,
@@ -3622,26 +6396,18 @@ inline uint2x3 uint2x3_scale( const uint2x3* mat, const uint2* vec )
 	};
 }
 
-
-// uint2x4
-/// \relates uint2x4
-/// \brief Returns true if the all the components of the left-hand-side uint2x4 match the other one, otherwise returns false.
-inline bool uint2x4_cmpe( const uint2x4* lhs, const uint2x4* rhs )
+bool uint2x4_cmpe( const uint2x4* lhs, const uint2x4* rhs )
 {
 	return uint4_cmpe( &lhs->rows[0], &rhs->rows[0] )
 		&& uint4_cmpe( &lhs->rows[1], &rhs->rows[1] );
 }
 
-/// \relates uint2x4
-/// \brief Returns true if not all of the components of the left-hand-side uint2x4 match the other one, otherwise returns false.
-inline bool uint2x4_cmpne( const uint2x4* lhs, const uint2x4* rhs )
+bool uint2x4_cmpne( const uint2x4* lhs, const uint2x4* rhs )
 {
 	return !( uint2x4_cmpe( lhs, rhs ) );
 }
 
-/// \relates uint2x4
-/// \brief Returns a copy of the uint2x4 that has been component-wise added by the given scalar value.
-inline uint2x4 uint2x4_comp_adds( const uint2x4* lhs, const uint32_t scalar )
+uint2x4 uint2x4_comp_adds( const uint2x4* lhs, const uint32_t scalar )
 {
 	return HLML_CONSTRUCT( uint2x4 ) {
 		lhs->rows[0].x + scalar, lhs->rows[0].y + scalar, lhs->rows[0].z + scalar, lhs->rows[0].w + scalar,
@@ -3649,9 +6415,7 @@ inline uint2x4 uint2x4_comp_adds( const uint2x4* lhs, const uint32_t scalar )
 	};
 }
 
-/// \relates uint2x4
-/// \brief Returns a copy of the uint2x4 that has been component-wise added by the corresponding component of the right-hand uint2x4.
-inline uint2x4 uint2x4_comp_addm( const uint2x4* lhs, const uint2x4* rhs )
+uint2x4 uint2x4_comp_addm( const uint2x4* lhs, const uint2x4* rhs )
 {
 	return HLML_CONSTRUCT( uint2x4 ) {
 		uint4_comp_addv( &lhs->rows[0], &rhs->rows[0] ),
@@ -3659,9 +6423,7 @@ inline uint2x4 uint2x4_comp_addm( const uint2x4* lhs, const uint2x4* rhs )
 	};
 }
 
-/// \relates uint2x4
-/// \brief Returns a copy of the uint2x4 that has been component-wise subtracted by the given scalar value.
-inline uint2x4 uint2x4_comp_subs( const uint2x4* lhs, const uint32_t scalar )
+uint2x4 uint2x4_comp_subs( const uint2x4* lhs, const uint32_t scalar )
 {
 	return HLML_CONSTRUCT( uint2x4 ) {
 		lhs->rows[0].x - scalar, lhs->rows[0].y - scalar, lhs->rows[0].z - scalar, lhs->rows[0].w - scalar,
@@ -3669,9 +6431,7 @@ inline uint2x4 uint2x4_comp_subs( const uint2x4* lhs, const uint32_t scalar )
 	};
 }
 
-/// \relates uint2x4
-/// \brief Returns a copy of the uint2x4 that has been component-wise subtracted by the corresponding component of the right-hand uint2x4.
-inline uint2x4 uint2x4_comp_subm( const uint2x4* lhs, const uint2x4* rhs )
+uint2x4 uint2x4_comp_subm( const uint2x4* lhs, const uint2x4* rhs )
 {
 	return HLML_CONSTRUCT( uint2x4 ) {
 		uint4_comp_subv( &lhs->rows[0], &rhs->rows[0] ),
@@ -3679,9 +6439,7 @@ inline uint2x4 uint2x4_comp_subm( const uint2x4* lhs, const uint2x4* rhs )
 	};
 }
 
-/// \relates uint2x4
-/// \brief Returns a copy of the uint2x4 that has been component-wise multiplied by the given scalar value.
-inline uint2x4 uint2x4_comp_muls( const uint2x4* lhs, const uint32_t scalar )
+uint2x4 uint2x4_comp_muls( const uint2x4* lhs, const uint32_t scalar )
 {
 	return HLML_CONSTRUCT( uint2x4 ) {
 		lhs->rows[0].x * scalar, lhs->rows[0].y * scalar, lhs->rows[0].z * scalar, lhs->rows[0].w * scalar,
@@ -3689,9 +6447,7 @@ inline uint2x4 uint2x4_comp_muls( const uint2x4* lhs, const uint32_t scalar )
 	};
 }
 
-/// \relates uint2x4
-/// \brief Returns a copy of the uint2x4 that has been component-wise multiplied by the corresponding component of the right-hand uint2x4.
-inline uint2x4 uint2x4_comp_mulm( const uint2x4* lhs, const uint2x4* rhs )
+uint2x4 uint2x4_comp_mulm( const uint2x4* lhs, const uint2x4* rhs )
 {
 	return HLML_CONSTRUCT( uint2x4 ) {
 		uint4_comp_mulv( &lhs->rows[0], &rhs->rows[0] ),
@@ -3699,9 +6455,7 @@ inline uint2x4 uint2x4_comp_mulm( const uint2x4* lhs, const uint2x4* rhs )
 	};
 }
 
-/// \relates uint2x4
-/// \brief Returns a copy of the uint2x4 that has been component-wise divided by the given scalar value.
-inline uint2x4 uint2x4_comp_divs( const uint2x4* lhs, const uint32_t scalar )
+uint2x4 uint2x4_comp_divs( const uint2x4* lhs, const uint32_t scalar )
 {
 	return HLML_CONSTRUCT( uint2x4 ) {
 		lhs->rows[0].x / scalar, lhs->rows[0].y / scalar, lhs->rows[0].z / scalar, lhs->rows[0].w / scalar,
@@ -3709,9 +6463,7 @@ inline uint2x4 uint2x4_comp_divs( const uint2x4* lhs, const uint32_t scalar )
 	};
 }
 
-/// \relates uint2x4
-/// \brief Returns a copy of the uint2x4 that has been component-wise divided by the corresponding component of the right-hand uint2x4.
-inline uint2x4 uint2x4_comp_divm( const uint2x4* lhs, const uint2x4* rhs )
+uint2x4 uint2x4_comp_divm( const uint2x4* lhs, const uint2x4* rhs )
 {
 	return HLML_CONSTRUCT( uint2x4 ) {
 		uint4_comp_divv( &lhs->rows[0], &rhs->rows[0] ),
@@ -3719,9 +6471,7 @@ inline uint2x4 uint2x4_comp_divm( const uint2x4* lhs, const uint2x4* rhs )
 	};
 }
 
-/// \relates uint2x4
-/// \brief Returns a copy of the uint2x4 where each component of the left-hand uint2x4 has been bitwise AND'd against the corresponding component of the right-hand side uint2x4.
-inline uint2x4 uint2x4_comp_and( const uint2x4* lhs, const uint2x4* rhs )
+uint2x4 uint2x4_comp_and( const uint2x4* lhs, const uint2x4* rhs )
 {
 	return HLML_CONSTRUCT( uint2x4 ) {
 		uint4_comp_and( &lhs->rows[0], &rhs->rows[0] ),
@@ -3729,9 +6479,7 @@ inline uint2x4 uint2x4_comp_and( const uint2x4* lhs, const uint2x4* rhs )
 	};
 }
 
-/// \relates uint2x4
-/// \brief Returns a copy of the uint2x4 where each component of the left-hand uint2x4 has been bitwise OR'd against the corresponding component of the right-hand side uint2x4.
-inline uint2x4 uint2x4_comp_or( const uint2x4* lhs, const uint2x4* rhs )
+uint2x4 uint2x4_comp_or( const uint2x4* lhs, const uint2x4* rhs )
 {
 	return HLML_CONSTRUCT( uint2x4 ) {
 		uint4_comp_or( &lhs->rows[0], &rhs->rows[0] ),
@@ -3739,9 +6487,7 @@ inline uint2x4 uint2x4_comp_or( const uint2x4* lhs, const uint2x4* rhs )
 	};
 }
 
-/// \relates uint2x4
-/// \brief Returns a copy of the uint2x4 where each component of the left-hand uint2x4 has been bitwise XOR'd against the corresponding component of the right-hand side uint2x4.
-inline uint2x4 uint2x4_comp_xor( const uint2x4* lhs, const uint2x4* rhs )
+uint2x4 uint2x4_comp_xor( const uint2x4* lhs, const uint2x4* rhs )
 {
 	return HLML_CONSTRUCT( uint2x4 ) {
 		uint4_comp_xor( &lhs->rows[0], &rhs->rows[0] ),
@@ -3749,9 +6495,7 @@ inline uint2x4 uint2x4_comp_xor( const uint2x4* lhs, const uint2x4* rhs )
 	};
 }
 
-/// \relates uint2x4
-/// \brief Performs a unary bitwise operation on all components of the given uint2x4.
-inline uint2x4 uint2x4_comp_unary( const uint2x4* lhs )
+uint2x4 uint2x4_comp_unary( const uint2x4* lhs )
 {
 	return HLML_CONSTRUCT( uint2x4 ) {
 		~lhs->rows[0].x,
@@ -3767,9 +6511,7 @@ inline uint2x4 uint2x4_comp_unary( const uint2x4* lhs )
 	};
 }
 
-/// \relates uint2x4
-/// \brief Returns a copy of the uint2x4 where each component of the left-hand uint2x4 has been bitwise left-shifted by the corresponding component of the right-hand side uint2x4.
-inline uint2x4 uint2x4_comp_shift_left( const uint2x4* lhs, const uint2x4* rhs )
+uint2x4 uint2x4_comp_shift_left( const uint2x4* lhs, const uint2x4* rhs )
 {
 	return HLML_CONSTRUCT( uint2x4 ) {
 		uint4_comp_shift_left( &lhs->rows[0], &rhs->rows[0] ),
@@ -3777,9 +6519,7 @@ inline uint2x4 uint2x4_comp_shift_left( const uint2x4* lhs, const uint2x4* rhs )
 	};
 }
 
-/// \relates uint2x4
-/// \brief Returns a copy of the uint2x4 where each component of the left-hand uint2x4 has been bitwise right-shifted by the corresponding component of the right-hand side uint2x4.
-inline uint2x4 uint2x4_comp_shift_right( const uint2x4* lhs, const uint2x4* rhs )
+uint2x4 uint2x4_comp_shift_right( const uint2x4* lhs, const uint2x4* rhs )
 {
 	return HLML_CONSTRUCT( uint2x4 ) {
 		uint4_comp_shift_right( &lhs->rows[0], &rhs->rows[0] ),
@@ -3787,9 +6527,7 @@ inline uint2x4 uint2x4_comp_shift_right( const uint2x4* lhs, const uint2x4* rhs 
 	};
 }
 
-/// \relates uint2x4
-/// \brief Returns a bool2x4 where each component is true if the component of the left-hand type is less than the corresponding right-hand type component.
-inline bool2x4 uint2x4_cmpl( const uint2x4* lhs, const uint2x4* rhs )
+bool2x4 uint2x4_cmpl( const uint2x4* lhs, const uint2x4* rhs )
 {
 	return HLML_CONSTRUCT( bool2x4 ) {
 		uint4_cmpl( &lhs->rows[0], &rhs->rows[0] ),
@@ -3797,9 +6535,7 @@ inline bool2x4 uint2x4_cmpl( const uint2x4* lhs, const uint2x4* rhs )
 	};
 }
 
-/// \relates uint2x4
-/// \brief Returns a bool2x4 where each component is true if the component of the left-hand type is less than or equal to the corresponding right-hand type component.
-inline bool2x4 uint2x4_cmple( const uint2x4* lhs, const uint2x4* rhs )
+bool2x4 uint2x4_cmple( const uint2x4* lhs, const uint2x4* rhs )
 {
 	return HLML_CONSTRUCT( bool2x4 ) {
 		uint4_cmple( &lhs->rows[0], &rhs->rows[0] ),
@@ -3807,9 +6543,7 @@ inline bool2x4 uint2x4_cmple( const uint2x4* lhs, const uint2x4* rhs )
 	};
 }
 
-/// \relates uint2x4
-/// \brief Returns a bool2x4 where each component is true if the component of the left-hand type is greater than the corresponding right-hand type component.
-inline bool2x4 uint2x4_cmpg( const uint2x4* lhs, const uint2x4* rhs )
+bool2x4 uint2x4_cmpg( const uint2x4* lhs, const uint2x4* rhs )
 {
 	return HLML_CONSTRUCT( bool2x4 ) {
 		uint4_cmpg( &lhs->rows[0], &rhs->rows[0] ),
@@ -3817,9 +6551,7 @@ inline bool2x4 uint2x4_cmpg( const uint2x4* lhs, const uint2x4* rhs )
 	};
 }
 
-/// \relates uint2x4
-/// \brief Returns a bool2x4 where each component is true if the component of the left-hand type is greater than or equal to the corresponding right-hand type component.
-inline bool2x4 uint2x4_cmpge( const uint2x4* lhs, const uint2x4* rhs )
+bool2x4 uint2x4_cmpge( const uint2x4* lhs, const uint2x4* rhs )
 {
 	return HLML_CONSTRUCT( bool2x4 ) {
 		uint4_cmpge( &lhs->rows[0], &rhs->rows[0] ),
@@ -3827,17 +6559,13 @@ inline bool2x4 uint2x4_cmpge( const uint2x4* lhs, const uint2x4* rhs )
 	};
 }
 
-/// \relates uint2x4
-/// \brief Sets the matrix to an identity matrix.
-inline void uint2x4_identity( uint2x4* mat )
+void uint2x4_identity( uint2x4* mat )
 {
 	mat->rows[0] = HLML_CONSTRUCT( uint4 ) { 1U, 0U, 0U, 0U };
 	mat->rows[1] = HLML_CONSTRUCT( uint4 ) { 0U, 1U, 0U, 0U };
 }
 
-/// \relates uint2x4
-/// \brief Returns a copy of the matrix that is transposed, where the value of each row is set to the value of each column and vice versa.
-inline uint4x2 uint2x4_transpose( const uint2x4* mat )
+uint4x2 uint2x4_transpose( const uint2x4* mat )
 {
 	return HLML_CONSTRUCT( uint4x2 ) {
 		mat->rows[0].x, mat->rows[1].x,
@@ -3847,9 +6575,7 @@ inline uint4x2 uint2x4_transpose( const uint2x4* mat )
 	};
 }
 
-/// \relates uint2x4
-/// \brief Returns a copy of the matrix where each row of the left-hand matrix has been dot-producted by the corresponding column of the right-hand matrix.
-inline uint2x2 uint2x4_mulm( const uint2x4* lhs, const uint4x2* rhs )
+uint2x2 uint2x4_mulm( const uint2x4* lhs, const uint4x2* rhs )
 {
 	uint4 row0 = lhs->rows[0];
 	uint4 row1 = lhs->rows[1];
@@ -3866,9 +6592,7 @@ inline uint2x2 uint2x4_mulm( const uint2x4* lhs, const uint4x2* rhs )
 	};
 }
 
-/// \relates uint2x4
-/// \brief Returns a copy of the matrix that has had a non-uniform scale applied to it.
-inline uint2x4 uint2x4_scale( const uint2x4* mat, const uint2* vec )
+uint2x4 uint2x4_scale( const uint2x4* mat, const uint2* vec )
 {
 	return HLML_CONSTRUCT( uint2x4 ) {
 		mat->rows[0].x * vec->x,
@@ -3883,27 +6607,19 @@ inline uint2x4 uint2x4_scale( const uint2x4* mat, const uint2* vec )
 	};
 }
 
-
-// uint3x2
-/// \relates uint3x2
-/// \brief Returns true if the all the components of the left-hand-side uint3x2 match the other one, otherwise returns false.
-inline bool uint3x2_cmpe( const uint3x2* lhs, const uint3x2* rhs )
+bool uint3x2_cmpe( const uint3x2* lhs, const uint3x2* rhs )
 {
 	return uint2_cmpe( &lhs->rows[0], &rhs->rows[0] )
 		&& uint2_cmpe( &lhs->rows[1], &rhs->rows[1] )
 		&& uint2_cmpe( &lhs->rows[2], &rhs->rows[2] );
 }
 
-/// \relates uint3x2
-/// \brief Returns true if not all of the components of the left-hand-side uint3x2 match the other one, otherwise returns false.
-inline bool uint3x2_cmpne( const uint3x2* lhs, const uint3x2* rhs )
+bool uint3x2_cmpne( const uint3x2* lhs, const uint3x2* rhs )
 {
 	return !( uint3x2_cmpe( lhs, rhs ) );
 }
 
-/// \relates uint3x2
-/// \brief Returns a copy of the uint3x2 that has been component-wise added by the given scalar value.
-inline uint3x2 uint3x2_comp_adds( const uint3x2* lhs, const uint32_t scalar )
+uint3x2 uint3x2_comp_adds( const uint3x2* lhs, const uint32_t scalar )
 {
 	return HLML_CONSTRUCT( uint3x2 ) {
 		lhs->rows[0].x + scalar, lhs->rows[0].y + scalar,
@@ -3912,9 +6628,7 @@ inline uint3x2 uint3x2_comp_adds( const uint3x2* lhs, const uint32_t scalar )
 	};
 }
 
-/// \relates uint3x2
-/// \brief Returns a copy of the uint3x2 that has been component-wise added by the corresponding component of the right-hand uint3x2.
-inline uint3x2 uint3x2_comp_addm( const uint3x2* lhs, const uint3x2* rhs )
+uint3x2 uint3x2_comp_addm( const uint3x2* lhs, const uint3x2* rhs )
 {
 	return HLML_CONSTRUCT( uint3x2 ) {
 		uint2_comp_addv( &lhs->rows[0], &rhs->rows[0] ),
@@ -3923,9 +6637,7 @@ inline uint3x2 uint3x2_comp_addm( const uint3x2* lhs, const uint3x2* rhs )
 	};
 }
 
-/// \relates uint3x2
-/// \brief Returns a copy of the uint3x2 that has been component-wise subtracted by the given scalar value.
-inline uint3x2 uint3x2_comp_subs( const uint3x2* lhs, const uint32_t scalar )
+uint3x2 uint3x2_comp_subs( const uint3x2* lhs, const uint32_t scalar )
 {
 	return HLML_CONSTRUCT( uint3x2 ) {
 		lhs->rows[0].x - scalar, lhs->rows[0].y - scalar,
@@ -3934,9 +6646,7 @@ inline uint3x2 uint3x2_comp_subs( const uint3x2* lhs, const uint32_t scalar )
 	};
 }
 
-/// \relates uint3x2
-/// \brief Returns a copy of the uint3x2 that has been component-wise subtracted by the corresponding component of the right-hand uint3x2.
-inline uint3x2 uint3x2_comp_subm( const uint3x2* lhs, const uint3x2* rhs )
+uint3x2 uint3x2_comp_subm( const uint3x2* lhs, const uint3x2* rhs )
 {
 	return HLML_CONSTRUCT( uint3x2 ) {
 		uint2_comp_subv( &lhs->rows[0], &rhs->rows[0] ),
@@ -3945,9 +6655,7 @@ inline uint3x2 uint3x2_comp_subm( const uint3x2* lhs, const uint3x2* rhs )
 	};
 }
 
-/// \relates uint3x2
-/// \brief Returns a copy of the uint3x2 that has been component-wise multiplied by the given scalar value.
-inline uint3x2 uint3x2_comp_muls( const uint3x2* lhs, const uint32_t scalar )
+uint3x2 uint3x2_comp_muls( const uint3x2* lhs, const uint32_t scalar )
 {
 	return HLML_CONSTRUCT( uint3x2 ) {
 		lhs->rows[0].x * scalar, lhs->rows[0].y * scalar,
@@ -3956,9 +6664,7 @@ inline uint3x2 uint3x2_comp_muls( const uint3x2* lhs, const uint32_t scalar )
 	};
 }
 
-/// \relates uint3x2
-/// \brief Returns a copy of the uint3x2 that has been component-wise multiplied by the corresponding component of the right-hand uint3x2.
-inline uint3x2 uint3x2_comp_mulm( const uint3x2* lhs, const uint3x2* rhs )
+uint3x2 uint3x2_comp_mulm( const uint3x2* lhs, const uint3x2* rhs )
 {
 	return HLML_CONSTRUCT( uint3x2 ) {
 		uint2_comp_mulv( &lhs->rows[0], &rhs->rows[0] ),
@@ -3967,9 +6673,7 @@ inline uint3x2 uint3x2_comp_mulm( const uint3x2* lhs, const uint3x2* rhs )
 	};
 }
 
-/// \relates uint3x2
-/// \brief Returns a copy of the uint3x2 that has been component-wise divided by the given scalar value.
-inline uint3x2 uint3x2_comp_divs( const uint3x2* lhs, const uint32_t scalar )
+uint3x2 uint3x2_comp_divs( const uint3x2* lhs, const uint32_t scalar )
 {
 	return HLML_CONSTRUCT( uint3x2 ) {
 		lhs->rows[0].x / scalar, lhs->rows[0].y / scalar,
@@ -3978,9 +6682,7 @@ inline uint3x2 uint3x2_comp_divs( const uint3x2* lhs, const uint32_t scalar )
 	};
 }
 
-/// \relates uint3x2
-/// \brief Returns a copy of the uint3x2 that has been component-wise divided by the corresponding component of the right-hand uint3x2.
-inline uint3x2 uint3x2_comp_divm( const uint3x2* lhs, const uint3x2* rhs )
+uint3x2 uint3x2_comp_divm( const uint3x2* lhs, const uint3x2* rhs )
 {
 	return HLML_CONSTRUCT( uint3x2 ) {
 		uint2_comp_divv( &lhs->rows[0], &rhs->rows[0] ),
@@ -3989,9 +6691,7 @@ inline uint3x2 uint3x2_comp_divm( const uint3x2* lhs, const uint3x2* rhs )
 	};
 }
 
-/// \relates uint3x2
-/// \brief Returns a copy of the uint3x2 where each component of the left-hand uint3x2 has been bitwise AND'd against the corresponding component of the right-hand side uint3x2.
-inline uint3x2 uint3x2_comp_and( const uint3x2* lhs, const uint3x2* rhs )
+uint3x2 uint3x2_comp_and( const uint3x2* lhs, const uint3x2* rhs )
 {
 	return HLML_CONSTRUCT( uint3x2 ) {
 		uint2_comp_and( &lhs->rows[0], &rhs->rows[0] ),
@@ -4000,9 +6700,7 @@ inline uint3x2 uint3x2_comp_and( const uint3x2* lhs, const uint3x2* rhs )
 	};
 }
 
-/// \relates uint3x2
-/// \brief Returns a copy of the uint3x2 where each component of the left-hand uint3x2 has been bitwise OR'd against the corresponding component of the right-hand side uint3x2.
-inline uint3x2 uint3x2_comp_or( const uint3x2* lhs, const uint3x2* rhs )
+uint3x2 uint3x2_comp_or( const uint3x2* lhs, const uint3x2* rhs )
 {
 	return HLML_CONSTRUCT( uint3x2 ) {
 		uint2_comp_or( &lhs->rows[0], &rhs->rows[0] ),
@@ -4011,9 +6709,7 @@ inline uint3x2 uint3x2_comp_or( const uint3x2* lhs, const uint3x2* rhs )
 	};
 }
 
-/// \relates uint3x2
-/// \brief Returns a copy of the uint3x2 where each component of the left-hand uint3x2 has been bitwise XOR'd against the corresponding component of the right-hand side uint3x2.
-inline uint3x2 uint3x2_comp_xor( const uint3x2* lhs, const uint3x2* rhs )
+uint3x2 uint3x2_comp_xor( const uint3x2* lhs, const uint3x2* rhs )
 {
 	return HLML_CONSTRUCT( uint3x2 ) {
 		uint2_comp_xor( &lhs->rows[0], &rhs->rows[0] ),
@@ -4022,9 +6718,7 @@ inline uint3x2 uint3x2_comp_xor( const uint3x2* lhs, const uint3x2* rhs )
 	};
 }
 
-/// \relates uint3x2
-/// \brief Performs a unary bitwise operation on all components of the given uint3x2.
-inline uint3x2 uint3x2_comp_unary( const uint3x2* lhs )
+uint3x2 uint3x2_comp_unary( const uint3x2* lhs )
 {
 	return HLML_CONSTRUCT( uint3x2 ) {
 		~lhs->rows[0].x,
@@ -4039,9 +6733,7 @@ inline uint3x2 uint3x2_comp_unary( const uint3x2* lhs )
 	};
 }
 
-/// \relates uint3x2
-/// \brief Returns a copy of the uint3x2 where each component of the left-hand uint3x2 has been bitwise left-shifted by the corresponding component of the right-hand side uint3x2.
-inline uint3x2 uint3x2_comp_shift_left( const uint3x2* lhs, const uint3x2* rhs )
+uint3x2 uint3x2_comp_shift_left( const uint3x2* lhs, const uint3x2* rhs )
 {
 	return HLML_CONSTRUCT( uint3x2 ) {
 		uint2_comp_shift_left( &lhs->rows[0], &rhs->rows[0] ),
@@ -4050,9 +6742,7 @@ inline uint3x2 uint3x2_comp_shift_left( const uint3x2* lhs, const uint3x2* rhs )
 	};
 }
 
-/// \relates uint3x2
-/// \brief Returns a copy of the uint3x2 where each component of the left-hand uint3x2 has been bitwise right-shifted by the corresponding component of the right-hand side uint3x2.
-inline uint3x2 uint3x2_comp_shift_right( const uint3x2* lhs, const uint3x2* rhs )
+uint3x2 uint3x2_comp_shift_right( const uint3x2* lhs, const uint3x2* rhs )
 {
 	return HLML_CONSTRUCT( uint3x2 ) {
 		uint2_comp_shift_right( &lhs->rows[0], &rhs->rows[0] ),
@@ -4061,9 +6751,7 @@ inline uint3x2 uint3x2_comp_shift_right( const uint3x2* lhs, const uint3x2* rhs 
 	};
 }
 
-/// \relates uint3x2
-/// \brief Returns a bool3x2 where each component is true if the component of the left-hand type is less than the corresponding right-hand type component.
-inline bool3x2 uint3x2_cmpl( const uint3x2* lhs, const uint3x2* rhs )
+bool3x2 uint3x2_cmpl( const uint3x2* lhs, const uint3x2* rhs )
 {
 	return HLML_CONSTRUCT( bool3x2 ) {
 		uint2_cmpl( &lhs->rows[0], &rhs->rows[0] ),
@@ -4072,9 +6760,7 @@ inline bool3x2 uint3x2_cmpl( const uint3x2* lhs, const uint3x2* rhs )
 	};
 }
 
-/// \relates uint3x2
-/// \brief Returns a bool3x2 where each component is true if the component of the left-hand type is less than or equal to the corresponding right-hand type component.
-inline bool3x2 uint3x2_cmple( const uint3x2* lhs, const uint3x2* rhs )
+bool3x2 uint3x2_cmple( const uint3x2* lhs, const uint3x2* rhs )
 {
 	return HLML_CONSTRUCT( bool3x2 ) {
 		uint2_cmple( &lhs->rows[0], &rhs->rows[0] ),
@@ -4083,9 +6769,7 @@ inline bool3x2 uint3x2_cmple( const uint3x2* lhs, const uint3x2* rhs )
 	};
 }
 
-/// \relates uint3x2
-/// \brief Returns a bool3x2 where each component is true if the component of the left-hand type is greater than the corresponding right-hand type component.
-inline bool3x2 uint3x2_cmpg( const uint3x2* lhs, const uint3x2* rhs )
+bool3x2 uint3x2_cmpg( const uint3x2* lhs, const uint3x2* rhs )
 {
 	return HLML_CONSTRUCT( bool3x2 ) {
 		uint2_cmpg( &lhs->rows[0], &rhs->rows[0] ),
@@ -4094,9 +6778,7 @@ inline bool3x2 uint3x2_cmpg( const uint3x2* lhs, const uint3x2* rhs )
 	};
 }
 
-/// \relates uint3x2
-/// \brief Returns a bool3x2 where each component is true if the component of the left-hand type is greater than or equal to the corresponding right-hand type component.
-inline bool3x2 uint3x2_cmpge( const uint3x2* lhs, const uint3x2* rhs )
+bool3x2 uint3x2_cmpge( const uint3x2* lhs, const uint3x2* rhs )
 {
 	return HLML_CONSTRUCT( bool3x2 ) {
 		uint2_cmpge( &lhs->rows[0], &rhs->rows[0] ),
@@ -4105,18 +6787,14 @@ inline bool3x2 uint3x2_cmpge( const uint3x2* lhs, const uint3x2* rhs )
 	};
 }
 
-/// \relates uint3x2
-/// \brief Sets the matrix to an identity matrix.
-inline void uint3x2_identity( uint3x2* mat )
+void uint3x2_identity( uint3x2* mat )
 {
 	mat->rows[0] = HLML_CONSTRUCT( uint2 ) { 1U, 0U };
 	mat->rows[1] = HLML_CONSTRUCT( uint2 ) { 0U, 1U };
 	mat->rows[2] = HLML_CONSTRUCT( uint2 ) { 0U, 0U };
 }
 
-/// \relates uint3x2
-/// \brief Returns a copy of the matrix that is transposed, where the value of each row is set to the value of each column and vice versa.
-inline uint2x3 uint3x2_transpose( const uint3x2* mat )
+uint2x3 uint3x2_transpose( const uint3x2* mat )
 {
 	return HLML_CONSTRUCT( uint2x3 ) {
 		mat->rows[0].x, mat->rows[1].x, mat->rows[2].x,
@@ -4124,9 +6802,7 @@ inline uint2x3 uint3x2_transpose( const uint3x2* mat )
 	};
 }
 
-/// \relates uint3x2
-/// \brief Returns a copy of the matrix where each row of the left-hand matrix has been dot-producted by the corresponding column of the right-hand matrix.
-inline uint3x3 uint3x2_mulm( const uint3x2* lhs, const uint2x3* rhs )
+uint3x3 uint3x2_mulm( const uint3x2* lhs, const uint2x3* rhs )
 {
 	uint2 row0 = lhs->rows[0];
 	uint2 row1 = lhs->rows[1];
@@ -4151,27 +6827,19 @@ inline uint3x3 uint3x2_mulm( const uint3x2* lhs, const uint2x3* rhs )
 	};
 }
 
-
-// uint3x3
-/// \relates uint3x3
-/// \brief Returns true if the all the components of the left-hand-side uint3x3 match the other one, otherwise returns false.
-inline bool uint3x3_cmpe( const uint3x3* lhs, const uint3x3* rhs )
+bool uint3x3_cmpe( const uint3x3* lhs, const uint3x3* rhs )
 {
 	return uint3_cmpe( &lhs->rows[0], &rhs->rows[0] )
 		&& uint3_cmpe( &lhs->rows[1], &rhs->rows[1] )
 		&& uint3_cmpe( &lhs->rows[2], &rhs->rows[2] );
 }
 
-/// \relates uint3x3
-/// \brief Returns true if not all of the components of the left-hand-side uint3x3 match the other one, otherwise returns false.
-inline bool uint3x3_cmpne( const uint3x3* lhs, const uint3x3* rhs )
+bool uint3x3_cmpne( const uint3x3* lhs, const uint3x3* rhs )
 {
 	return !( uint3x3_cmpe( lhs, rhs ) );
 }
 
-/// \relates uint3x3
-/// \brief Returns a copy of the uint3x3 that has been component-wise added by the given scalar value.
-inline uint3x3 uint3x3_comp_adds( const uint3x3* lhs, const uint32_t scalar )
+uint3x3 uint3x3_comp_adds( const uint3x3* lhs, const uint32_t scalar )
 {
 	return HLML_CONSTRUCT( uint3x3 ) {
 		lhs->rows[0].x + scalar, lhs->rows[0].y + scalar, lhs->rows[0].z + scalar,
@@ -4180,9 +6848,7 @@ inline uint3x3 uint3x3_comp_adds( const uint3x3* lhs, const uint32_t scalar )
 	};
 }
 
-/// \relates uint3x3
-/// \brief Returns a copy of the uint3x3 that has been component-wise added by the corresponding component of the right-hand uint3x3.
-inline uint3x3 uint3x3_comp_addm( const uint3x3* lhs, const uint3x3* rhs )
+uint3x3 uint3x3_comp_addm( const uint3x3* lhs, const uint3x3* rhs )
 {
 	return HLML_CONSTRUCT( uint3x3 ) {
 		uint3_comp_addv( &lhs->rows[0], &rhs->rows[0] ),
@@ -4191,9 +6857,7 @@ inline uint3x3 uint3x3_comp_addm( const uint3x3* lhs, const uint3x3* rhs )
 	};
 }
 
-/// \relates uint3x3
-/// \brief Returns a copy of the uint3x3 that has been component-wise subtracted by the given scalar value.
-inline uint3x3 uint3x3_comp_subs( const uint3x3* lhs, const uint32_t scalar )
+uint3x3 uint3x3_comp_subs( const uint3x3* lhs, const uint32_t scalar )
 {
 	return HLML_CONSTRUCT( uint3x3 ) {
 		lhs->rows[0].x - scalar, lhs->rows[0].y - scalar, lhs->rows[0].z - scalar,
@@ -4202,9 +6866,7 @@ inline uint3x3 uint3x3_comp_subs( const uint3x3* lhs, const uint32_t scalar )
 	};
 }
 
-/// \relates uint3x3
-/// \brief Returns a copy of the uint3x3 that has been component-wise subtracted by the corresponding component of the right-hand uint3x3.
-inline uint3x3 uint3x3_comp_subm( const uint3x3* lhs, const uint3x3* rhs )
+uint3x3 uint3x3_comp_subm( const uint3x3* lhs, const uint3x3* rhs )
 {
 	return HLML_CONSTRUCT( uint3x3 ) {
 		uint3_comp_subv( &lhs->rows[0], &rhs->rows[0] ),
@@ -4213,9 +6875,7 @@ inline uint3x3 uint3x3_comp_subm( const uint3x3* lhs, const uint3x3* rhs )
 	};
 }
 
-/// \relates uint3x3
-/// \brief Returns a copy of the uint3x3 that has been component-wise multiplied by the given scalar value.
-inline uint3x3 uint3x3_comp_muls( const uint3x3* lhs, const uint32_t scalar )
+uint3x3 uint3x3_comp_muls( const uint3x3* lhs, const uint32_t scalar )
 {
 	return HLML_CONSTRUCT( uint3x3 ) {
 		lhs->rows[0].x * scalar, lhs->rows[0].y * scalar, lhs->rows[0].z * scalar,
@@ -4224,9 +6884,7 @@ inline uint3x3 uint3x3_comp_muls( const uint3x3* lhs, const uint32_t scalar )
 	};
 }
 
-/// \relates uint3x3
-/// \brief Returns a copy of the uint3x3 that has been component-wise multiplied by the corresponding component of the right-hand uint3x3.
-inline uint3x3 uint3x3_comp_mulm( const uint3x3* lhs, const uint3x3* rhs )
+uint3x3 uint3x3_comp_mulm( const uint3x3* lhs, const uint3x3* rhs )
 {
 	return HLML_CONSTRUCT( uint3x3 ) {
 		uint3_comp_mulv( &lhs->rows[0], &rhs->rows[0] ),
@@ -4235,9 +6893,7 @@ inline uint3x3 uint3x3_comp_mulm( const uint3x3* lhs, const uint3x3* rhs )
 	};
 }
 
-/// \relates uint3x3
-/// \brief Returns a copy of the uint3x3 that has been component-wise divided by the given scalar value.
-inline uint3x3 uint3x3_comp_divs( const uint3x3* lhs, const uint32_t scalar )
+uint3x3 uint3x3_comp_divs( const uint3x3* lhs, const uint32_t scalar )
 {
 	return HLML_CONSTRUCT( uint3x3 ) {
 		lhs->rows[0].x / scalar, lhs->rows[0].y / scalar, lhs->rows[0].z / scalar,
@@ -4246,9 +6902,7 @@ inline uint3x3 uint3x3_comp_divs( const uint3x3* lhs, const uint32_t scalar )
 	};
 }
 
-/// \relates uint3x3
-/// \brief Returns a copy of the uint3x3 that has been component-wise divided by the corresponding component of the right-hand uint3x3.
-inline uint3x3 uint3x3_comp_divm( const uint3x3* lhs, const uint3x3* rhs )
+uint3x3 uint3x3_comp_divm( const uint3x3* lhs, const uint3x3* rhs )
 {
 	return HLML_CONSTRUCT( uint3x3 ) {
 		uint3_comp_divv( &lhs->rows[0], &rhs->rows[0] ),
@@ -4257,9 +6911,7 @@ inline uint3x3 uint3x3_comp_divm( const uint3x3* lhs, const uint3x3* rhs )
 	};
 }
 
-/// \relates uint3x3
-/// \brief Returns a copy of the uint3x3 where each component of the left-hand uint3x3 has been bitwise AND'd against the corresponding component of the right-hand side uint3x3.
-inline uint3x3 uint3x3_comp_and( const uint3x3* lhs, const uint3x3* rhs )
+uint3x3 uint3x3_comp_and( const uint3x3* lhs, const uint3x3* rhs )
 {
 	return HLML_CONSTRUCT( uint3x3 ) {
 		uint3_comp_and( &lhs->rows[0], &rhs->rows[0] ),
@@ -4268,9 +6920,7 @@ inline uint3x3 uint3x3_comp_and( const uint3x3* lhs, const uint3x3* rhs )
 	};
 }
 
-/// \relates uint3x3
-/// \brief Returns a copy of the uint3x3 where each component of the left-hand uint3x3 has been bitwise OR'd against the corresponding component of the right-hand side uint3x3.
-inline uint3x3 uint3x3_comp_or( const uint3x3* lhs, const uint3x3* rhs )
+uint3x3 uint3x3_comp_or( const uint3x3* lhs, const uint3x3* rhs )
 {
 	return HLML_CONSTRUCT( uint3x3 ) {
 		uint3_comp_or( &lhs->rows[0], &rhs->rows[0] ),
@@ -4279,9 +6929,7 @@ inline uint3x3 uint3x3_comp_or( const uint3x3* lhs, const uint3x3* rhs )
 	};
 }
 
-/// \relates uint3x3
-/// \brief Returns a copy of the uint3x3 where each component of the left-hand uint3x3 has been bitwise XOR'd against the corresponding component of the right-hand side uint3x3.
-inline uint3x3 uint3x3_comp_xor( const uint3x3* lhs, const uint3x3* rhs )
+uint3x3 uint3x3_comp_xor( const uint3x3* lhs, const uint3x3* rhs )
 {
 	return HLML_CONSTRUCT( uint3x3 ) {
 		uint3_comp_xor( &lhs->rows[0], &rhs->rows[0] ),
@@ -4290,9 +6938,7 @@ inline uint3x3 uint3x3_comp_xor( const uint3x3* lhs, const uint3x3* rhs )
 	};
 }
 
-/// \relates uint3x3
-/// \brief Performs a unary bitwise operation on all components of the given uint3x3.
-inline uint3x3 uint3x3_comp_unary( const uint3x3* lhs )
+uint3x3 uint3x3_comp_unary( const uint3x3* lhs )
 {
 	return HLML_CONSTRUCT( uint3x3 ) {
 		~lhs->rows[0].x,
@@ -4310,9 +6956,7 @@ inline uint3x3 uint3x3_comp_unary( const uint3x3* lhs )
 	};
 }
 
-/// \relates uint3x3
-/// \brief Returns a copy of the uint3x3 where each component of the left-hand uint3x3 has been bitwise left-shifted by the corresponding component of the right-hand side uint3x3.
-inline uint3x3 uint3x3_comp_shift_left( const uint3x3* lhs, const uint3x3* rhs )
+uint3x3 uint3x3_comp_shift_left( const uint3x3* lhs, const uint3x3* rhs )
 {
 	return HLML_CONSTRUCT( uint3x3 ) {
 		uint3_comp_shift_left( &lhs->rows[0], &rhs->rows[0] ),
@@ -4321,9 +6965,7 @@ inline uint3x3 uint3x3_comp_shift_left( const uint3x3* lhs, const uint3x3* rhs )
 	};
 }
 
-/// \relates uint3x3
-/// \brief Returns a copy of the uint3x3 where each component of the left-hand uint3x3 has been bitwise right-shifted by the corresponding component of the right-hand side uint3x3.
-inline uint3x3 uint3x3_comp_shift_right( const uint3x3* lhs, const uint3x3* rhs )
+uint3x3 uint3x3_comp_shift_right( const uint3x3* lhs, const uint3x3* rhs )
 {
 	return HLML_CONSTRUCT( uint3x3 ) {
 		uint3_comp_shift_right( &lhs->rows[0], &rhs->rows[0] ),
@@ -4332,9 +6974,7 @@ inline uint3x3 uint3x3_comp_shift_right( const uint3x3* lhs, const uint3x3* rhs 
 	};
 }
 
-/// \relates uint3x3
-/// \brief Returns a bool3x3 where each component is true if the component of the left-hand type is less than the corresponding right-hand type component.
-inline bool3x3 uint3x3_cmpl( const uint3x3* lhs, const uint3x3* rhs )
+bool3x3 uint3x3_cmpl( const uint3x3* lhs, const uint3x3* rhs )
 {
 	return HLML_CONSTRUCT( bool3x3 ) {
 		uint3_cmpl( &lhs->rows[0], &rhs->rows[0] ),
@@ -4343,9 +6983,7 @@ inline bool3x3 uint3x3_cmpl( const uint3x3* lhs, const uint3x3* rhs )
 	};
 }
 
-/// \relates uint3x3
-/// \brief Returns a bool3x3 where each component is true if the component of the left-hand type is less than or equal to the corresponding right-hand type component.
-inline bool3x3 uint3x3_cmple( const uint3x3* lhs, const uint3x3* rhs )
+bool3x3 uint3x3_cmple( const uint3x3* lhs, const uint3x3* rhs )
 {
 	return HLML_CONSTRUCT( bool3x3 ) {
 		uint3_cmple( &lhs->rows[0], &rhs->rows[0] ),
@@ -4354,9 +6992,7 @@ inline bool3x3 uint3x3_cmple( const uint3x3* lhs, const uint3x3* rhs )
 	};
 }
 
-/// \relates uint3x3
-/// \brief Returns a bool3x3 where each component is true if the component of the left-hand type is greater than the corresponding right-hand type component.
-inline bool3x3 uint3x3_cmpg( const uint3x3* lhs, const uint3x3* rhs )
+bool3x3 uint3x3_cmpg( const uint3x3* lhs, const uint3x3* rhs )
 {
 	return HLML_CONSTRUCT( bool3x3 ) {
 		uint3_cmpg( &lhs->rows[0], &rhs->rows[0] ),
@@ -4365,9 +7001,7 @@ inline bool3x3 uint3x3_cmpg( const uint3x3* lhs, const uint3x3* rhs )
 	};
 }
 
-/// \relates uint3x3
-/// \brief Returns a bool3x3 where each component is true if the component of the left-hand type is greater than or equal to the corresponding right-hand type component.
-inline bool3x3 uint3x3_cmpge( const uint3x3* lhs, const uint3x3* rhs )
+bool3x3 uint3x3_cmpge( const uint3x3* lhs, const uint3x3* rhs )
 {
 	return HLML_CONSTRUCT( bool3x3 ) {
 		uint3_cmpge( &lhs->rows[0], &rhs->rows[0] ),
@@ -4376,18 +7010,14 @@ inline bool3x3 uint3x3_cmpge( const uint3x3* lhs, const uint3x3* rhs )
 	};
 }
 
-/// \relates uint3x3
-/// \brief Sets the matrix to an identity matrix.
-inline void uint3x3_identity( uint3x3* mat )
+void uint3x3_identity( uint3x3* mat )
 {
 	mat->rows[0] = HLML_CONSTRUCT( uint3 ) { 1U, 0U, 0U };
 	mat->rows[1] = HLML_CONSTRUCT( uint3 ) { 0U, 1U, 0U };
 	mat->rows[2] = HLML_CONSTRUCT( uint3 ) { 0U, 0U, 1U };
 }
 
-/// \relates uint3x3
-/// \brief Returns a copy of the matrix that is transposed, where the value of each row is set to the value of each column and vice versa.
-inline uint3x3 uint3x3_transpose( const uint3x3* mat )
+uint3x3 uint3x3_transpose( const uint3x3* mat )
 {
 	return HLML_CONSTRUCT( uint3x3 ) {
 		mat->rows[0].x, mat->rows[1].x, mat->rows[2].x,
@@ -4396,9 +7026,7 @@ inline uint3x3 uint3x3_transpose( const uint3x3* mat )
 	};
 }
 
-/// \relates uint3x3
-/// \brief Returns a copy of the matrix where each row of the left-hand matrix has been dot-producted by the corresponding column of the right-hand matrix.
-inline uint3x3 uint3x3_mulm( const uint3x3* lhs, const uint3x3* rhs )
+uint3x3 uint3x3_mulm( const uint3x3* lhs, const uint3x3* rhs )
 {
 	uint3 row0 = lhs->rows[0];
 	uint3 row1 = lhs->rows[1];
@@ -4423,9 +7051,7 @@ inline uint3x3 uint3x3_mulm( const uint3x3* lhs, const uint3x3* rhs )
 	};
 }
 
-/// \relates uint3x3
-/// \brief Returns the right-hand vector multiplied by the left-hand matrix.
-inline uint3 uint3x3_mulv( const uint3x3* lhs, const uint3* rhs )
+uint3 uint3x3_mulv( const uint3x3* lhs, const uint3* rhs )
 {
 	return HLML_CONSTRUCT( uint3 ) {
 		lhs->rows[0].x * rhs->x + lhs->rows[0].y * rhs->y + lhs->rows[0].z * rhs->z,
@@ -4434,9 +7060,7 @@ inline uint3 uint3x3_mulv( const uint3x3* lhs, const uint3* rhs )
 	};
 }
 
-/// \relates uint3x3
-/// \brief Returns a copy of the matrix where each component of the 3rd column has been added by the given vector.
-inline uint3x3 uint3x3_translate( const uint3x3* mat, const uint2* vec )
+uint3x3 uint3x3_translate( const uint3x3* mat, const uint2* vec )
 {
 	return HLML_CONSTRUCT( uint3x3 ) {
 		mat->rows[0].x, mat->rows[0].y, mat->rows[0].z + vec->x,
@@ -4445,9 +7069,7 @@ inline uint3x3 uint3x3_translate( const uint3x3* mat, const uint2* vec )
 	};
 }
 
-/// \relates uint3x3
-/// \brief Returns a copy of the matrix that has had a non-uniform scale applied to it.
-inline uint3x3 uint3x3_scale( const uint3x3* mat, const uint2* vec )
+uint3x3 uint3x3_scale( const uint3x3* mat, const uint2* vec )
 {
 	return HLML_CONSTRUCT( uint3x3 ) {
 		mat->rows[0].x * vec->x,
@@ -4464,27 +7086,19 @@ inline uint3x3 uint3x3_scale( const uint3x3* mat, const uint2* vec )
 	};
 }
 
-
-// uint3x4
-/// \relates uint3x4
-/// \brief Returns true if the all the components of the left-hand-side uint3x4 match the other one, otherwise returns false.
-inline bool uint3x4_cmpe( const uint3x4* lhs, const uint3x4* rhs )
+bool uint3x4_cmpe( const uint3x4* lhs, const uint3x4* rhs )
 {
 	return uint4_cmpe( &lhs->rows[0], &rhs->rows[0] )
 		&& uint4_cmpe( &lhs->rows[1], &rhs->rows[1] )
 		&& uint4_cmpe( &lhs->rows[2], &rhs->rows[2] );
 }
 
-/// \relates uint3x4
-/// \brief Returns true if not all of the components of the left-hand-side uint3x4 match the other one, otherwise returns false.
-inline bool uint3x4_cmpne( const uint3x4* lhs, const uint3x4* rhs )
+bool uint3x4_cmpne( const uint3x4* lhs, const uint3x4* rhs )
 {
 	return !( uint3x4_cmpe( lhs, rhs ) );
 }
 
-/// \relates uint3x4
-/// \brief Returns a copy of the uint3x4 that has been component-wise added by the given scalar value.
-inline uint3x4 uint3x4_comp_adds( const uint3x4* lhs, const uint32_t scalar )
+uint3x4 uint3x4_comp_adds( const uint3x4* lhs, const uint32_t scalar )
 {
 	return HLML_CONSTRUCT( uint3x4 ) {
 		lhs->rows[0].x + scalar, lhs->rows[0].y + scalar, lhs->rows[0].z + scalar, lhs->rows[0].w + scalar,
@@ -4493,9 +7107,7 @@ inline uint3x4 uint3x4_comp_adds( const uint3x4* lhs, const uint32_t scalar )
 	};
 }
 
-/// \relates uint3x4
-/// \brief Returns a copy of the uint3x4 that has been component-wise added by the corresponding component of the right-hand uint3x4.
-inline uint3x4 uint3x4_comp_addm( const uint3x4* lhs, const uint3x4* rhs )
+uint3x4 uint3x4_comp_addm( const uint3x4* lhs, const uint3x4* rhs )
 {
 	return HLML_CONSTRUCT( uint3x4 ) {
 		uint4_comp_addv( &lhs->rows[0], &rhs->rows[0] ),
@@ -4504,9 +7116,7 @@ inline uint3x4 uint3x4_comp_addm( const uint3x4* lhs, const uint3x4* rhs )
 	};
 }
 
-/// \relates uint3x4
-/// \brief Returns a copy of the uint3x4 that has been component-wise subtracted by the given scalar value.
-inline uint3x4 uint3x4_comp_subs( const uint3x4* lhs, const uint32_t scalar )
+uint3x4 uint3x4_comp_subs( const uint3x4* lhs, const uint32_t scalar )
 {
 	return HLML_CONSTRUCT( uint3x4 ) {
 		lhs->rows[0].x - scalar, lhs->rows[0].y - scalar, lhs->rows[0].z - scalar, lhs->rows[0].w - scalar,
@@ -4515,9 +7125,7 @@ inline uint3x4 uint3x4_comp_subs( const uint3x4* lhs, const uint32_t scalar )
 	};
 }
 
-/// \relates uint3x4
-/// \brief Returns a copy of the uint3x4 that has been component-wise subtracted by the corresponding component of the right-hand uint3x4.
-inline uint3x4 uint3x4_comp_subm( const uint3x4* lhs, const uint3x4* rhs )
+uint3x4 uint3x4_comp_subm( const uint3x4* lhs, const uint3x4* rhs )
 {
 	return HLML_CONSTRUCT( uint3x4 ) {
 		uint4_comp_subv( &lhs->rows[0], &rhs->rows[0] ),
@@ -4526,9 +7134,7 @@ inline uint3x4 uint3x4_comp_subm( const uint3x4* lhs, const uint3x4* rhs )
 	};
 }
 
-/// \relates uint3x4
-/// \brief Returns a copy of the uint3x4 that has been component-wise multiplied by the given scalar value.
-inline uint3x4 uint3x4_comp_muls( const uint3x4* lhs, const uint32_t scalar )
+uint3x4 uint3x4_comp_muls( const uint3x4* lhs, const uint32_t scalar )
 {
 	return HLML_CONSTRUCT( uint3x4 ) {
 		lhs->rows[0].x * scalar, lhs->rows[0].y * scalar, lhs->rows[0].z * scalar, lhs->rows[0].w * scalar,
@@ -4537,9 +7143,7 @@ inline uint3x4 uint3x4_comp_muls( const uint3x4* lhs, const uint32_t scalar )
 	};
 }
 
-/// \relates uint3x4
-/// \brief Returns a copy of the uint3x4 that has been component-wise multiplied by the corresponding component of the right-hand uint3x4.
-inline uint3x4 uint3x4_comp_mulm( const uint3x4* lhs, const uint3x4* rhs )
+uint3x4 uint3x4_comp_mulm( const uint3x4* lhs, const uint3x4* rhs )
 {
 	return HLML_CONSTRUCT( uint3x4 ) {
 		uint4_comp_mulv( &lhs->rows[0], &rhs->rows[0] ),
@@ -4548,9 +7152,7 @@ inline uint3x4 uint3x4_comp_mulm( const uint3x4* lhs, const uint3x4* rhs )
 	};
 }
 
-/// \relates uint3x4
-/// \brief Returns a copy of the uint3x4 that has been component-wise divided by the given scalar value.
-inline uint3x4 uint3x4_comp_divs( const uint3x4* lhs, const uint32_t scalar )
+uint3x4 uint3x4_comp_divs( const uint3x4* lhs, const uint32_t scalar )
 {
 	return HLML_CONSTRUCT( uint3x4 ) {
 		lhs->rows[0].x / scalar, lhs->rows[0].y / scalar, lhs->rows[0].z / scalar, lhs->rows[0].w / scalar,
@@ -4559,9 +7161,7 @@ inline uint3x4 uint3x4_comp_divs( const uint3x4* lhs, const uint32_t scalar )
 	};
 }
 
-/// \relates uint3x4
-/// \brief Returns a copy of the uint3x4 that has been component-wise divided by the corresponding component of the right-hand uint3x4.
-inline uint3x4 uint3x4_comp_divm( const uint3x4* lhs, const uint3x4* rhs )
+uint3x4 uint3x4_comp_divm( const uint3x4* lhs, const uint3x4* rhs )
 {
 	return HLML_CONSTRUCT( uint3x4 ) {
 		uint4_comp_divv( &lhs->rows[0], &rhs->rows[0] ),
@@ -4570,9 +7170,7 @@ inline uint3x4 uint3x4_comp_divm( const uint3x4* lhs, const uint3x4* rhs )
 	};
 }
 
-/// \relates uint3x4
-/// \brief Returns a copy of the uint3x4 where each component of the left-hand uint3x4 has been bitwise AND'd against the corresponding component of the right-hand side uint3x4.
-inline uint3x4 uint3x4_comp_and( const uint3x4* lhs, const uint3x4* rhs )
+uint3x4 uint3x4_comp_and( const uint3x4* lhs, const uint3x4* rhs )
 {
 	return HLML_CONSTRUCT( uint3x4 ) {
 		uint4_comp_and( &lhs->rows[0], &rhs->rows[0] ),
@@ -4581,9 +7179,7 @@ inline uint3x4 uint3x4_comp_and( const uint3x4* lhs, const uint3x4* rhs )
 	};
 }
 
-/// \relates uint3x4
-/// \brief Returns a copy of the uint3x4 where each component of the left-hand uint3x4 has been bitwise OR'd against the corresponding component of the right-hand side uint3x4.
-inline uint3x4 uint3x4_comp_or( const uint3x4* lhs, const uint3x4* rhs )
+uint3x4 uint3x4_comp_or( const uint3x4* lhs, const uint3x4* rhs )
 {
 	return HLML_CONSTRUCT( uint3x4 ) {
 		uint4_comp_or( &lhs->rows[0], &rhs->rows[0] ),
@@ -4592,9 +7188,7 @@ inline uint3x4 uint3x4_comp_or( const uint3x4* lhs, const uint3x4* rhs )
 	};
 }
 
-/// \relates uint3x4
-/// \brief Returns a copy of the uint3x4 where each component of the left-hand uint3x4 has been bitwise XOR'd against the corresponding component of the right-hand side uint3x4.
-inline uint3x4 uint3x4_comp_xor( const uint3x4* lhs, const uint3x4* rhs )
+uint3x4 uint3x4_comp_xor( const uint3x4* lhs, const uint3x4* rhs )
 {
 	return HLML_CONSTRUCT( uint3x4 ) {
 		uint4_comp_xor( &lhs->rows[0], &rhs->rows[0] ),
@@ -4603,9 +7197,7 @@ inline uint3x4 uint3x4_comp_xor( const uint3x4* lhs, const uint3x4* rhs )
 	};
 }
 
-/// \relates uint3x4
-/// \brief Performs a unary bitwise operation on all components of the given uint3x4.
-inline uint3x4 uint3x4_comp_unary( const uint3x4* lhs )
+uint3x4 uint3x4_comp_unary( const uint3x4* lhs )
 {
 	return HLML_CONSTRUCT( uint3x4 ) {
 		~lhs->rows[0].x,
@@ -4626,9 +7218,7 @@ inline uint3x4 uint3x4_comp_unary( const uint3x4* lhs )
 	};
 }
 
-/// \relates uint3x4
-/// \brief Returns a copy of the uint3x4 where each component of the left-hand uint3x4 has been bitwise left-shifted by the corresponding component of the right-hand side uint3x4.
-inline uint3x4 uint3x4_comp_shift_left( const uint3x4* lhs, const uint3x4* rhs )
+uint3x4 uint3x4_comp_shift_left( const uint3x4* lhs, const uint3x4* rhs )
 {
 	return HLML_CONSTRUCT( uint3x4 ) {
 		uint4_comp_shift_left( &lhs->rows[0], &rhs->rows[0] ),
@@ -4637,9 +7227,7 @@ inline uint3x4 uint3x4_comp_shift_left( const uint3x4* lhs, const uint3x4* rhs )
 	};
 }
 
-/// \relates uint3x4
-/// \brief Returns a copy of the uint3x4 where each component of the left-hand uint3x4 has been bitwise right-shifted by the corresponding component of the right-hand side uint3x4.
-inline uint3x4 uint3x4_comp_shift_right( const uint3x4* lhs, const uint3x4* rhs )
+uint3x4 uint3x4_comp_shift_right( const uint3x4* lhs, const uint3x4* rhs )
 {
 	return HLML_CONSTRUCT( uint3x4 ) {
 		uint4_comp_shift_right( &lhs->rows[0], &rhs->rows[0] ),
@@ -4648,9 +7236,7 @@ inline uint3x4 uint3x4_comp_shift_right( const uint3x4* lhs, const uint3x4* rhs 
 	};
 }
 
-/// \relates uint3x4
-/// \brief Returns a bool3x4 where each component is true if the component of the left-hand type is less than the corresponding right-hand type component.
-inline bool3x4 uint3x4_cmpl( const uint3x4* lhs, const uint3x4* rhs )
+bool3x4 uint3x4_cmpl( const uint3x4* lhs, const uint3x4* rhs )
 {
 	return HLML_CONSTRUCT( bool3x4 ) {
 		uint4_cmpl( &lhs->rows[0], &rhs->rows[0] ),
@@ -4659,9 +7245,7 @@ inline bool3x4 uint3x4_cmpl( const uint3x4* lhs, const uint3x4* rhs )
 	};
 }
 
-/// \relates uint3x4
-/// \brief Returns a bool3x4 where each component is true if the component of the left-hand type is less than or equal to the corresponding right-hand type component.
-inline bool3x4 uint3x4_cmple( const uint3x4* lhs, const uint3x4* rhs )
+bool3x4 uint3x4_cmple( const uint3x4* lhs, const uint3x4* rhs )
 {
 	return HLML_CONSTRUCT( bool3x4 ) {
 		uint4_cmple( &lhs->rows[0], &rhs->rows[0] ),
@@ -4670,9 +7254,7 @@ inline bool3x4 uint3x4_cmple( const uint3x4* lhs, const uint3x4* rhs )
 	};
 }
 
-/// \relates uint3x4
-/// \brief Returns a bool3x4 where each component is true if the component of the left-hand type is greater than the corresponding right-hand type component.
-inline bool3x4 uint3x4_cmpg( const uint3x4* lhs, const uint3x4* rhs )
+bool3x4 uint3x4_cmpg( const uint3x4* lhs, const uint3x4* rhs )
 {
 	return HLML_CONSTRUCT( bool3x4 ) {
 		uint4_cmpg( &lhs->rows[0], &rhs->rows[0] ),
@@ -4681,9 +7263,7 @@ inline bool3x4 uint3x4_cmpg( const uint3x4* lhs, const uint3x4* rhs )
 	};
 }
 
-/// \relates uint3x4
-/// \brief Returns a bool3x4 where each component is true if the component of the left-hand type is greater than or equal to the corresponding right-hand type component.
-inline bool3x4 uint3x4_cmpge( const uint3x4* lhs, const uint3x4* rhs )
+bool3x4 uint3x4_cmpge( const uint3x4* lhs, const uint3x4* rhs )
 {
 	return HLML_CONSTRUCT( bool3x4 ) {
 		uint4_cmpge( &lhs->rows[0], &rhs->rows[0] ),
@@ -4692,18 +7272,14 @@ inline bool3x4 uint3x4_cmpge( const uint3x4* lhs, const uint3x4* rhs )
 	};
 }
 
-/// \relates uint3x4
-/// \brief Sets the matrix to an identity matrix.
-inline void uint3x4_identity( uint3x4* mat )
+void uint3x4_identity( uint3x4* mat )
 {
 	mat->rows[0] = HLML_CONSTRUCT( uint4 ) { 1U, 0U, 0U, 0U };
 	mat->rows[1] = HLML_CONSTRUCT( uint4 ) { 0U, 1U, 0U, 0U };
 	mat->rows[2] = HLML_CONSTRUCT( uint4 ) { 0U, 0U, 1U, 0U };
 }
 
-/// \relates uint3x4
-/// \brief Returns a copy of the matrix that is transposed, where the value of each row is set to the value of each column and vice versa.
-inline uint4x3 uint3x4_transpose( const uint3x4* mat )
+uint4x3 uint3x4_transpose( const uint3x4* mat )
 {
 	return HLML_CONSTRUCT( uint4x3 ) {
 		mat->rows[0].x, mat->rows[1].x, mat->rows[2].x,
@@ -4713,9 +7289,7 @@ inline uint4x3 uint3x4_transpose( const uint3x4* mat )
 	};
 }
 
-/// \relates uint3x4
-/// \brief Returns a copy of the matrix where each row of the left-hand matrix has been dot-producted by the corresponding column of the right-hand matrix.
-inline uint3x3 uint3x4_mulm( const uint3x4* lhs, const uint4x3* rhs )
+uint3x3 uint3x4_mulm( const uint3x4* lhs, const uint4x3* rhs )
 {
 	uint4 row0 = lhs->rows[0];
 	uint4 row1 = lhs->rows[1];
@@ -4740,9 +7314,7 @@ inline uint3x3 uint3x4_mulm( const uint3x4* lhs, const uint4x3* rhs )
 	};
 }
 
-/// \relates uint3x4
-/// \brief Returns a copy of the matrix where each component of the 3rd column has been added by the given vector.
-inline uint3x4 uint3x4_translate( const uint3x4* mat, const uint3* vec )
+uint3x4 uint3x4_translate( const uint3x4* mat, const uint3* vec )
 {
 	return HLML_CONSTRUCT( uint3x4 ) {
 		mat->rows[0].x, mat->rows[0].y, mat->rows[0].z, mat->rows[0].w + vec->x,
@@ -4751,9 +7323,7 @@ inline uint3x4 uint3x4_translate( const uint3x4* mat, const uint3* vec )
 	};
 }
 
-/// \relates uint3x4
-/// \brief Returns a copy of the matrix that has had a non-uniform scale applied to it.
-inline uint3x4 uint3x4_scale( const uint3x4* mat, const uint2* vec )
+uint3x4 uint3x4_scale( const uint3x4* mat, const uint2* vec )
 {
 	return HLML_CONSTRUCT( uint3x4 ) {
 		mat->rows[0].x * vec->x,
@@ -4773,11 +7343,7 @@ inline uint3x4 uint3x4_scale( const uint3x4* mat, const uint2* vec )
 	};
 }
 
-
-// uint4x2
-/// \relates uint4x2
-/// \brief Returns true if the all the components of the left-hand-side uint4x2 match the other one, otherwise returns false.
-inline bool uint4x2_cmpe( const uint4x2* lhs, const uint4x2* rhs )
+bool uint4x2_cmpe( const uint4x2* lhs, const uint4x2* rhs )
 {
 	return uint2_cmpe( &lhs->rows[0], &rhs->rows[0] )
 		&& uint2_cmpe( &lhs->rows[1], &rhs->rows[1] )
@@ -4785,16 +7351,12 @@ inline bool uint4x2_cmpe( const uint4x2* lhs, const uint4x2* rhs )
 		&& uint2_cmpe( &lhs->rows[3], &rhs->rows[3] );
 }
 
-/// \relates uint4x2
-/// \brief Returns true if not all of the components of the left-hand-side uint4x2 match the other one, otherwise returns false.
-inline bool uint4x2_cmpne( const uint4x2* lhs, const uint4x2* rhs )
+bool uint4x2_cmpne( const uint4x2* lhs, const uint4x2* rhs )
 {
 	return !( uint4x2_cmpe( lhs, rhs ) );
 }
 
-/// \relates uint4x2
-/// \brief Returns a copy of the uint4x2 that has been component-wise added by the given scalar value.
-inline uint4x2 uint4x2_comp_adds( const uint4x2* lhs, const uint32_t scalar )
+uint4x2 uint4x2_comp_adds( const uint4x2* lhs, const uint32_t scalar )
 {
 	return HLML_CONSTRUCT( uint4x2 ) {
 		lhs->rows[0].x + scalar, lhs->rows[0].y + scalar,
@@ -4804,9 +7366,7 @@ inline uint4x2 uint4x2_comp_adds( const uint4x2* lhs, const uint32_t scalar )
 	};
 }
 
-/// \relates uint4x2
-/// \brief Returns a copy of the uint4x2 that has been component-wise added by the corresponding component of the right-hand uint4x2.
-inline uint4x2 uint4x2_comp_addm( const uint4x2* lhs, const uint4x2* rhs )
+uint4x2 uint4x2_comp_addm( const uint4x2* lhs, const uint4x2* rhs )
 {
 	return HLML_CONSTRUCT( uint4x2 ) {
 		uint2_comp_addv( &lhs->rows[0], &rhs->rows[0] ),
@@ -4816,9 +7376,7 @@ inline uint4x2 uint4x2_comp_addm( const uint4x2* lhs, const uint4x2* rhs )
 	};
 }
 
-/// \relates uint4x2
-/// \brief Returns a copy of the uint4x2 that has been component-wise subtracted by the given scalar value.
-inline uint4x2 uint4x2_comp_subs( const uint4x2* lhs, const uint32_t scalar )
+uint4x2 uint4x2_comp_subs( const uint4x2* lhs, const uint32_t scalar )
 {
 	return HLML_CONSTRUCT( uint4x2 ) {
 		lhs->rows[0].x - scalar, lhs->rows[0].y - scalar,
@@ -4828,9 +7386,7 @@ inline uint4x2 uint4x2_comp_subs( const uint4x2* lhs, const uint32_t scalar )
 	};
 }
 
-/// \relates uint4x2
-/// \brief Returns a copy of the uint4x2 that has been component-wise subtracted by the corresponding component of the right-hand uint4x2.
-inline uint4x2 uint4x2_comp_subm( const uint4x2* lhs, const uint4x2* rhs )
+uint4x2 uint4x2_comp_subm( const uint4x2* lhs, const uint4x2* rhs )
 {
 	return HLML_CONSTRUCT( uint4x2 ) {
 		uint2_comp_subv( &lhs->rows[0], &rhs->rows[0] ),
@@ -4840,9 +7396,7 @@ inline uint4x2 uint4x2_comp_subm( const uint4x2* lhs, const uint4x2* rhs )
 	};
 }
 
-/// \relates uint4x2
-/// \brief Returns a copy of the uint4x2 that has been component-wise multiplied by the given scalar value.
-inline uint4x2 uint4x2_comp_muls( const uint4x2* lhs, const uint32_t scalar )
+uint4x2 uint4x2_comp_muls( const uint4x2* lhs, const uint32_t scalar )
 {
 	return HLML_CONSTRUCT( uint4x2 ) {
 		lhs->rows[0].x * scalar, lhs->rows[0].y * scalar,
@@ -4852,9 +7406,7 @@ inline uint4x2 uint4x2_comp_muls( const uint4x2* lhs, const uint32_t scalar )
 	};
 }
 
-/// \relates uint4x2
-/// \brief Returns a copy of the uint4x2 that has been component-wise multiplied by the corresponding component of the right-hand uint4x2.
-inline uint4x2 uint4x2_comp_mulm( const uint4x2* lhs, const uint4x2* rhs )
+uint4x2 uint4x2_comp_mulm( const uint4x2* lhs, const uint4x2* rhs )
 {
 	return HLML_CONSTRUCT( uint4x2 ) {
 		uint2_comp_mulv( &lhs->rows[0], &rhs->rows[0] ),
@@ -4864,9 +7416,7 @@ inline uint4x2 uint4x2_comp_mulm( const uint4x2* lhs, const uint4x2* rhs )
 	};
 }
 
-/// \relates uint4x2
-/// \brief Returns a copy of the uint4x2 that has been component-wise divided by the given scalar value.
-inline uint4x2 uint4x2_comp_divs( const uint4x2* lhs, const uint32_t scalar )
+uint4x2 uint4x2_comp_divs( const uint4x2* lhs, const uint32_t scalar )
 {
 	return HLML_CONSTRUCT( uint4x2 ) {
 		lhs->rows[0].x / scalar, lhs->rows[0].y / scalar,
@@ -4876,9 +7426,7 @@ inline uint4x2 uint4x2_comp_divs( const uint4x2* lhs, const uint32_t scalar )
 	};
 }
 
-/// \relates uint4x2
-/// \brief Returns a copy of the uint4x2 that has been component-wise divided by the corresponding component of the right-hand uint4x2.
-inline uint4x2 uint4x2_comp_divm( const uint4x2* lhs, const uint4x2* rhs )
+uint4x2 uint4x2_comp_divm( const uint4x2* lhs, const uint4x2* rhs )
 {
 	return HLML_CONSTRUCT( uint4x2 ) {
 		uint2_comp_divv( &lhs->rows[0], &rhs->rows[0] ),
@@ -4888,9 +7436,7 @@ inline uint4x2 uint4x2_comp_divm( const uint4x2* lhs, const uint4x2* rhs )
 	};
 }
 
-/// \relates uint4x2
-/// \brief Returns a copy of the uint4x2 where each component of the left-hand uint4x2 has been bitwise AND'd against the corresponding component of the right-hand side uint4x2.
-inline uint4x2 uint4x2_comp_and( const uint4x2* lhs, const uint4x2* rhs )
+uint4x2 uint4x2_comp_and( const uint4x2* lhs, const uint4x2* rhs )
 {
 	return HLML_CONSTRUCT( uint4x2 ) {
 		uint2_comp_and( &lhs->rows[0], &rhs->rows[0] ),
@@ -4900,9 +7446,7 @@ inline uint4x2 uint4x2_comp_and( const uint4x2* lhs, const uint4x2* rhs )
 	};
 }
 
-/// \relates uint4x2
-/// \brief Returns a copy of the uint4x2 where each component of the left-hand uint4x2 has been bitwise OR'd against the corresponding component of the right-hand side uint4x2.
-inline uint4x2 uint4x2_comp_or( const uint4x2* lhs, const uint4x2* rhs )
+uint4x2 uint4x2_comp_or( const uint4x2* lhs, const uint4x2* rhs )
 {
 	return HLML_CONSTRUCT( uint4x2 ) {
 		uint2_comp_or( &lhs->rows[0], &rhs->rows[0] ),
@@ -4912,9 +7456,7 @@ inline uint4x2 uint4x2_comp_or( const uint4x2* lhs, const uint4x2* rhs )
 	};
 }
 
-/// \relates uint4x2
-/// \brief Returns a copy of the uint4x2 where each component of the left-hand uint4x2 has been bitwise XOR'd against the corresponding component of the right-hand side uint4x2.
-inline uint4x2 uint4x2_comp_xor( const uint4x2* lhs, const uint4x2* rhs )
+uint4x2 uint4x2_comp_xor( const uint4x2* lhs, const uint4x2* rhs )
 {
 	return HLML_CONSTRUCT( uint4x2 ) {
 		uint2_comp_xor( &lhs->rows[0], &rhs->rows[0] ),
@@ -4924,9 +7466,7 @@ inline uint4x2 uint4x2_comp_xor( const uint4x2* lhs, const uint4x2* rhs )
 	};
 }
 
-/// \relates uint4x2
-/// \brief Performs a unary bitwise operation on all components of the given uint4x2.
-inline uint4x2 uint4x2_comp_unary( const uint4x2* lhs )
+uint4x2 uint4x2_comp_unary( const uint4x2* lhs )
 {
 	return HLML_CONSTRUCT( uint4x2 ) {
 		~lhs->rows[0].x,
@@ -4944,9 +7484,7 @@ inline uint4x2 uint4x2_comp_unary( const uint4x2* lhs )
 	};
 }
 
-/// \relates uint4x2
-/// \brief Returns a copy of the uint4x2 where each component of the left-hand uint4x2 has been bitwise left-shifted by the corresponding component of the right-hand side uint4x2.
-inline uint4x2 uint4x2_comp_shift_left( const uint4x2* lhs, const uint4x2* rhs )
+uint4x2 uint4x2_comp_shift_left( const uint4x2* lhs, const uint4x2* rhs )
 {
 	return HLML_CONSTRUCT( uint4x2 ) {
 		uint2_comp_shift_left( &lhs->rows[0], &rhs->rows[0] ),
@@ -4956,9 +7494,7 @@ inline uint4x2 uint4x2_comp_shift_left( const uint4x2* lhs, const uint4x2* rhs )
 	};
 }
 
-/// \relates uint4x2
-/// \brief Returns a copy of the uint4x2 where each component of the left-hand uint4x2 has been bitwise right-shifted by the corresponding component of the right-hand side uint4x2.
-inline uint4x2 uint4x2_comp_shift_right( const uint4x2* lhs, const uint4x2* rhs )
+uint4x2 uint4x2_comp_shift_right( const uint4x2* lhs, const uint4x2* rhs )
 {
 	return HLML_CONSTRUCT( uint4x2 ) {
 		uint2_comp_shift_right( &lhs->rows[0], &rhs->rows[0] ),
@@ -4968,9 +7504,7 @@ inline uint4x2 uint4x2_comp_shift_right( const uint4x2* lhs, const uint4x2* rhs 
 	};
 }
 
-/// \relates uint4x2
-/// \brief Returns a bool4x2 where each component is true if the component of the left-hand type is less than the corresponding right-hand type component.
-inline bool4x2 uint4x2_cmpl( const uint4x2* lhs, const uint4x2* rhs )
+bool4x2 uint4x2_cmpl( const uint4x2* lhs, const uint4x2* rhs )
 {
 	return HLML_CONSTRUCT( bool4x2 ) {
 		uint2_cmpl( &lhs->rows[0], &rhs->rows[0] ),
@@ -4980,9 +7514,7 @@ inline bool4x2 uint4x2_cmpl( const uint4x2* lhs, const uint4x2* rhs )
 	};
 }
 
-/// \relates uint4x2
-/// \brief Returns a bool4x2 where each component is true if the component of the left-hand type is less than or equal to the corresponding right-hand type component.
-inline bool4x2 uint4x2_cmple( const uint4x2* lhs, const uint4x2* rhs )
+bool4x2 uint4x2_cmple( const uint4x2* lhs, const uint4x2* rhs )
 {
 	return HLML_CONSTRUCT( bool4x2 ) {
 		uint2_cmple( &lhs->rows[0], &rhs->rows[0] ),
@@ -4992,9 +7524,7 @@ inline bool4x2 uint4x2_cmple( const uint4x2* lhs, const uint4x2* rhs )
 	};
 }
 
-/// \relates uint4x2
-/// \brief Returns a bool4x2 where each component is true if the component of the left-hand type is greater than the corresponding right-hand type component.
-inline bool4x2 uint4x2_cmpg( const uint4x2* lhs, const uint4x2* rhs )
+bool4x2 uint4x2_cmpg( const uint4x2* lhs, const uint4x2* rhs )
 {
 	return HLML_CONSTRUCT( bool4x2 ) {
 		uint2_cmpg( &lhs->rows[0], &rhs->rows[0] ),
@@ -5004,9 +7534,7 @@ inline bool4x2 uint4x2_cmpg( const uint4x2* lhs, const uint4x2* rhs )
 	};
 }
 
-/// \relates uint4x2
-/// \brief Returns a bool4x2 where each component is true if the component of the left-hand type is greater than or equal to the corresponding right-hand type component.
-inline bool4x2 uint4x2_cmpge( const uint4x2* lhs, const uint4x2* rhs )
+bool4x2 uint4x2_cmpge( const uint4x2* lhs, const uint4x2* rhs )
 {
 	return HLML_CONSTRUCT( bool4x2 ) {
 		uint2_cmpge( &lhs->rows[0], &rhs->rows[0] ),
@@ -5016,9 +7544,7 @@ inline bool4x2 uint4x2_cmpge( const uint4x2* lhs, const uint4x2* rhs )
 	};
 }
 
-/// \relates uint4x2
-/// \brief Sets the matrix to an identity matrix.
-inline void uint4x2_identity( uint4x2* mat )
+void uint4x2_identity( uint4x2* mat )
 {
 	mat->rows[0] = HLML_CONSTRUCT( uint2 ) { 1U, 0U };
 	mat->rows[1] = HLML_CONSTRUCT( uint2 ) { 0U, 1U };
@@ -5026,9 +7552,7 @@ inline void uint4x2_identity( uint4x2* mat )
 	mat->rows[3] = HLML_CONSTRUCT( uint2 ) { 0U, 0U };
 }
 
-/// \relates uint4x2
-/// \brief Returns a copy of the matrix that is transposed, where the value of each row is set to the value of each column and vice versa.
-inline uint2x4 uint4x2_transpose( const uint4x2* mat )
+uint2x4 uint4x2_transpose( const uint4x2* mat )
 {
 	return HLML_CONSTRUCT( uint2x4 ) {
 		mat->rows[0].x, mat->rows[1].x, mat->rows[2].x, mat->rows[3].x,
@@ -5036,9 +7560,7 @@ inline uint2x4 uint4x2_transpose( const uint4x2* mat )
 	};
 }
 
-/// \relates uint4x2
-/// \brief Returns a copy of the matrix where each row of the left-hand matrix has been dot-producted by the corresponding column of the right-hand matrix.
-inline uint4x4 uint4x2_mulm( const uint4x2* lhs, const uint2x4* rhs )
+uint4x4 uint4x2_mulm( const uint4x2* lhs, const uint2x4* rhs )
 {
 	uint2 row0 = lhs->rows[0];
 	uint2 row1 = lhs->rows[1];
@@ -5073,11 +7595,7 @@ inline uint4x4 uint4x2_mulm( const uint4x2* lhs, const uint2x4* rhs )
 	};
 }
 
-
-// uint4x3
-/// \relates uint4x3
-/// \brief Returns true if the all the components of the left-hand-side uint4x3 match the other one, otherwise returns false.
-inline bool uint4x3_cmpe( const uint4x3* lhs, const uint4x3* rhs )
+bool uint4x3_cmpe( const uint4x3* lhs, const uint4x3* rhs )
 {
 	return uint3_cmpe( &lhs->rows[0], &rhs->rows[0] )
 		&& uint3_cmpe( &lhs->rows[1], &rhs->rows[1] )
@@ -5085,16 +7603,12 @@ inline bool uint4x3_cmpe( const uint4x3* lhs, const uint4x3* rhs )
 		&& uint3_cmpe( &lhs->rows[3], &rhs->rows[3] );
 }
 
-/// \relates uint4x3
-/// \brief Returns true if not all of the components of the left-hand-side uint4x3 match the other one, otherwise returns false.
-inline bool uint4x3_cmpne( const uint4x3* lhs, const uint4x3* rhs )
+bool uint4x3_cmpne( const uint4x3* lhs, const uint4x3* rhs )
 {
 	return !( uint4x3_cmpe( lhs, rhs ) );
 }
 
-/// \relates uint4x3
-/// \brief Returns a copy of the uint4x3 that has been component-wise added by the given scalar value.
-inline uint4x3 uint4x3_comp_adds( const uint4x3* lhs, const uint32_t scalar )
+uint4x3 uint4x3_comp_adds( const uint4x3* lhs, const uint32_t scalar )
 {
 	return HLML_CONSTRUCT( uint4x3 ) {
 		lhs->rows[0].x + scalar, lhs->rows[0].y + scalar, lhs->rows[0].z + scalar,
@@ -5104,9 +7618,7 @@ inline uint4x3 uint4x3_comp_adds( const uint4x3* lhs, const uint32_t scalar )
 	};
 }
 
-/// \relates uint4x3
-/// \brief Returns a copy of the uint4x3 that has been component-wise added by the corresponding component of the right-hand uint4x3.
-inline uint4x3 uint4x3_comp_addm( const uint4x3* lhs, const uint4x3* rhs )
+uint4x3 uint4x3_comp_addm( const uint4x3* lhs, const uint4x3* rhs )
 {
 	return HLML_CONSTRUCT( uint4x3 ) {
 		uint3_comp_addv( &lhs->rows[0], &rhs->rows[0] ),
@@ -5116,9 +7628,7 @@ inline uint4x3 uint4x3_comp_addm( const uint4x3* lhs, const uint4x3* rhs )
 	};
 }
 
-/// \relates uint4x3
-/// \brief Returns a copy of the uint4x3 that has been component-wise subtracted by the given scalar value.
-inline uint4x3 uint4x3_comp_subs( const uint4x3* lhs, const uint32_t scalar )
+uint4x3 uint4x3_comp_subs( const uint4x3* lhs, const uint32_t scalar )
 {
 	return HLML_CONSTRUCT( uint4x3 ) {
 		lhs->rows[0].x - scalar, lhs->rows[0].y - scalar, lhs->rows[0].z - scalar,
@@ -5128,9 +7638,7 @@ inline uint4x3 uint4x3_comp_subs( const uint4x3* lhs, const uint32_t scalar )
 	};
 }
 
-/// \relates uint4x3
-/// \brief Returns a copy of the uint4x3 that has been component-wise subtracted by the corresponding component of the right-hand uint4x3.
-inline uint4x3 uint4x3_comp_subm( const uint4x3* lhs, const uint4x3* rhs )
+uint4x3 uint4x3_comp_subm( const uint4x3* lhs, const uint4x3* rhs )
 {
 	return HLML_CONSTRUCT( uint4x3 ) {
 		uint3_comp_subv( &lhs->rows[0], &rhs->rows[0] ),
@@ -5140,9 +7648,7 @@ inline uint4x3 uint4x3_comp_subm( const uint4x3* lhs, const uint4x3* rhs )
 	};
 }
 
-/// \relates uint4x3
-/// \brief Returns a copy of the uint4x3 that has been component-wise multiplied by the given scalar value.
-inline uint4x3 uint4x3_comp_muls( const uint4x3* lhs, const uint32_t scalar )
+uint4x3 uint4x3_comp_muls( const uint4x3* lhs, const uint32_t scalar )
 {
 	return HLML_CONSTRUCT( uint4x3 ) {
 		lhs->rows[0].x * scalar, lhs->rows[0].y * scalar, lhs->rows[0].z * scalar,
@@ -5152,9 +7658,7 @@ inline uint4x3 uint4x3_comp_muls( const uint4x3* lhs, const uint32_t scalar )
 	};
 }
 
-/// \relates uint4x3
-/// \brief Returns a copy of the uint4x3 that has been component-wise multiplied by the corresponding component of the right-hand uint4x3.
-inline uint4x3 uint4x3_comp_mulm( const uint4x3* lhs, const uint4x3* rhs )
+uint4x3 uint4x3_comp_mulm( const uint4x3* lhs, const uint4x3* rhs )
 {
 	return HLML_CONSTRUCT( uint4x3 ) {
 		uint3_comp_mulv( &lhs->rows[0], &rhs->rows[0] ),
@@ -5164,9 +7668,7 @@ inline uint4x3 uint4x3_comp_mulm( const uint4x3* lhs, const uint4x3* rhs )
 	};
 }
 
-/// \relates uint4x3
-/// \brief Returns a copy of the uint4x3 that has been component-wise divided by the given scalar value.
-inline uint4x3 uint4x3_comp_divs( const uint4x3* lhs, const uint32_t scalar )
+uint4x3 uint4x3_comp_divs( const uint4x3* lhs, const uint32_t scalar )
 {
 	return HLML_CONSTRUCT( uint4x3 ) {
 		lhs->rows[0].x / scalar, lhs->rows[0].y / scalar, lhs->rows[0].z / scalar,
@@ -5176,9 +7678,7 @@ inline uint4x3 uint4x3_comp_divs( const uint4x3* lhs, const uint32_t scalar )
 	};
 }
 
-/// \relates uint4x3
-/// \brief Returns a copy of the uint4x3 that has been component-wise divided by the corresponding component of the right-hand uint4x3.
-inline uint4x3 uint4x3_comp_divm( const uint4x3* lhs, const uint4x3* rhs )
+uint4x3 uint4x3_comp_divm( const uint4x3* lhs, const uint4x3* rhs )
 {
 	return HLML_CONSTRUCT( uint4x3 ) {
 		uint3_comp_divv( &lhs->rows[0], &rhs->rows[0] ),
@@ -5188,9 +7688,7 @@ inline uint4x3 uint4x3_comp_divm( const uint4x3* lhs, const uint4x3* rhs )
 	};
 }
 
-/// \relates uint4x3
-/// \brief Returns a copy of the uint4x3 where each component of the left-hand uint4x3 has been bitwise AND'd against the corresponding component of the right-hand side uint4x3.
-inline uint4x3 uint4x3_comp_and( const uint4x3* lhs, const uint4x3* rhs )
+uint4x3 uint4x3_comp_and( const uint4x3* lhs, const uint4x3* rhs )
 {
 	return HLML_CONSTRUCT( uint4x3 ) {
 		uint3_comp_and( &lhs->rows[0], &rhs->rows[0] ),
@@ -5200,9 +7698,7 @@ inline uint4x3 uint4x3_comp_and( const uint4x3* lhs, const uint4x3* rhs )
 	};
 }
 
-/// \relates uint4x3
-/// \brief Returns a copy of the uint4x3 where each component of the left-hand uint4x3 has been bitwise OR'd against the corresponding component of the right-hand side uint4x3.
-inline uint4x3 uint4x3_comp_or( const uint4x3* lhs, const uint4x3* rhs )
+uint4x3 uint4x3_comp_or( const uint4x3* lhs, const uint4x3* rhs )
 {
 	return HLML_CONSTRUCT( uint4x3 ) {
 		uint3_comp_or( &lhs->rows[0], &rhs->rows[0] ),
@@ -5212,9 +7708,7 @@ inline uint4x3 uint4x3_comp_or( const uint4x3* lhs, const uint4x3* rhs )
 	};
 }
 
-/// \relates uint4x3
-/// \brief Returns a copy of the uint4x3 where each component of the left-hand uint4x3 has been bitwise XOR'd against the corresponding component of the right-hand side uint4x3.
-inline uint4x3 uint4x3_comp_xor( const uint4x3* lhs, const uint4x3* rhs )
+uint4x3 uint4x3_comp_xor( const uint4x3* lhs, const uint4x3* rhs )
 {
 	return HLML_CONSTRUCT( uint4x3 ) {
 		uint3_comp_xor( &lhs->rows[0], &rhs->rows[0] ),
@@ -5224,9 +7718,7 @@ inline uint4x3 uint4x3_comp_xor( const uint4x3* lhs, const uint4x3* rhs )
 	};
 }
 
-/// \relates uint4x3
-/// \brief Performs a unary bitwise operation on all components of the given uint4x3.
-inline uint4x3 uint4x3_comp_unary( const uint4x3* lhs )
+uint4x3 uint4x3_comp_unary( const uint4x3* lhs )
 {
 	return HLML_CONSTRUCT( uint4x3 ) {
 		~lhs->rows[0].x,
@@ -5248,9 +7740,7 @@ inline uint4x3 uint4x3_comp_unary( const uint4x3* lhs )
 	};
 }
 
-/// \relates uint4x3
-/// \brief Returns a copy of the uint4x3 where each component of the left-hand uint4x3 has been bitwise left-shifted by the corresponding component of the right-hand side uint4x3.
-inline uint4x3 uint4x3_comp_shift_left( const uint4x3* lhs, const uint4x3* rhs )
+uint4x3 uint4x3_comp_shift_left( const uint4x3* lhs, const uint4x3* rhs )
 {
 	return HLML_CONSTRUCT( uint4x3 ) {
 		uint3_comp_shift_left( &lhs->rows[0], &rhs->rows[0] ),
@@ -5260,9 +7750,7 @@ inline uint4x3 uint4x3_comp_shift_left( const uint4x3* lhs, const uint4x3* rhs )
 	};
 }
 
-/// \relates uint4x3
-/// \brief Returns a copy of the uint4x3 where each component of the left-hand uint4x3 has been bitwise right-shifted by the corresponding component of the right-hand side uint4x3.
-inline uint4x3 uint4x3_comp_shift_right( const uint4x3* lhs, const uint4x3* rhs )
+uint4x3 uint4x3_comp_shift_right( const uint4x3* lhs, const uint4x3* rhs )
 {
 	return HLML_CONSTRUCT( uint4x3 ) {
 		uint3_comp_shift_right( &lhs->rows[0], &rhs->rows[0] ),
@@ -5272,9 +7760,7 @@ inline uint4x3 uint4x3_comp_shift_right( const uint4x3* lhs, const uint4x3* rhs 
 	};
 }
 
-/// \relates uint4x3
-/// \brief Returns a bool4x3 where each component is true if the component of the left-hand type is less than the corresponding right-hand type component.
-inline bool4x3 uint4x3_cmpl( const uint4x3* lhs, const uint4x3* rhs )
+bool4x3 uint4x3_cmpl( const uint4x3* lhs, const uint4x3* rhs )
 {
 	return HLML_CONSTRUCT( bool4x3 ) {
 		uint3_cmpl( &lhs->rows[0], &rhs->rows[0] ),
@@ -5284,9 +7770,7 @@ inline bool4x3 uint4x3_cmpl( const uint4x3* lhs, const uint4x3* rhs )
 	};
 }
 
-/// \relates uint4x3
-/// \brief Returns a bool4x3 where each component is true if the component of the left-hand type is less than or equal to the corresponding right-hand type component.
-inline bool4x3 uint4x3_cmple( const uint4x3* lhs, const uint4x3* rhs )
+bool4x3 uint4x3_cmple( const uint4x3* lhs, const uint4x3* rhs )
 {
 	return HLML_CONSTRUCT( bool4x3 ) {
 		uint3_cmple( &lhs->rows[0], &rhs->rows[0] ),
@@ -5296,9 +7780,7 @@ inline bool4x3 uint4x3_cmple( const uint4x3* lhs, const uint4x3* rhs )
 	};
 }
 
-/// \relates uint4x3
-/// \brief Returns a bool4x3 where each component is true if the component of the left-hand type is greater than the corresponding right-hand type component.
-inline bool4x3 uint4x3_cmpg( const uint4x3* lhs, const uint4x3* rhs )
+bool4x3 uint4x3_cmpg( const uint4x3* lhs, const uint4x3* rhs )
 {
 	return HLML_CONSTRUCT( bool4x3 ) {
 		uint3_cmpg( &lhs->rows[0], &rhs->rows[0] ),
@@ -5308,9 +7790,7 @@ inline bool4x3 uint4x3_cmpg( const uint4x3* lhs, const uint4x3* rhs )
 	};
 }
 
-/// \relates uint4x3
-/// \brief Returns a bool4x3 where each component is true if the component of the left-hand type is greater than or equal to the corresponding right-hand type component.
-inline bool4x3 uint4x3_cmpge( const uint4x3* lhs, const uint4x3* rhs )
+bool4x3 uint4x3_cmpge( const uint4x3* lhs, const uint4x3* rhs )
 {
 	return HLML_CONSTRUCT( bool4x3 ) {
 		uint3_cmpge( &lhs->rows[0], &rhs->rows[0] ),
@@ -5320,9 +7800,7 @@ inline bool4x3 uint4x3_cmpge( const uint4x3* lhs, const uint4x3* rhs )
 	};
 }
 
-/// \relates uint4x3
-/// \brief Sets the matrix to an identity matrix.
-inline void uint4x3_identity( uint4x3* mat )
+void uint4x3_identity( uint4x3* mat )
 {
 	mat->rows[0] = HLML_CONSTRUCT( uint3 ) { 1U, 0U, 0U };
 	mat->rows[1] = HLML_CONSTRUCT( uint3 ) { 0U, 1U, 0U };
@@ -5330,9 +7808,7 @@ inline void uint4x3_identity( uint4x3* mat )
 	mat->rows[3] = HLML_CONSTRUCT( uint3 ) { 0U, 0U, 0U };
 }
 
-/// \relates uint4x3
-/// \brief Returns a copy of the matrix that is transposed, where the value of each row is set to the value of each column and vice versa.
-inline uint3x4 uint4x3_transpose( const uint4x3* mat )
+uint3x4 uint4x3_transpose( const uint4x3* mat )
 {
 	return HLML_CONSTRUCT( uint3x4 ) {
 		mat->rows[0].x, mat->rows[1].x, mat->rows[2].x, mat->rows[3].x,
@@ -5341,9 +7817,7 @@ inline uint3x4 uint4x3_transpose( const uint4x3* mat )
 	};
 }
 
-/// \relates uint4x3
-/// \brief Returns a copy of the matrix where each row of the left-hand matrix has been dot-producted by the corresponding column of the right-hand matrix.
-inline uint4x4 uint4x3_mulm( const uint4x3* lhs, const uint3x4* rhs )
+uint4x4 uint4x3_mulm( const uint4x3* lhs, const uint3x4* rhs )
 {
 	uint3 row0 = lhs->rows[0];
 	uint3 row1 = lhs->rows[1];
@@ -5378,9 +7852,7 @@ inline uint4x4 uint4x3_mulm( const uint4x3* lhs, const uint3x4* rhs )
 	};
 }
 
-/// \relates uint4x3
-/// \brief Returns a copy of the matrix that has had a non-uniform scale applied to it.
-inline uint4x3 uint4x3_scale( const uint4x3* mat, const uint2* vec )
+uint4x3 uint4x3_scale( const uint4x3* mat, const uint2* vec )
 {
 	return HLML_CONSTRUCT( uint4x3 ) {
 		mat->rows[0].x * vec->x,
@@ -5401,11 +7873,7 @@ inline uint4x3 uint4x3_scale( const uint4x3* mat, const uint2* vec )
 	};
 }
 
-
-// uint4x4
-/// \relates uint4x4
-/// \brief Returns true if the all the components of the left-hand-side uint4x4 match the other one, otherwise returns false.
-inline bool uint4x4_cmpe( const uint4x4* lhs, const uint4x4* rhs )
+bool uint4x4_cmpe( const uint4x4* lhs, const uint4x4* rhs )
 {
 	return uint4_cmpe( &lhs->rows[0], &rhs->rows[0] )
 		&& uint4_cmpe( &lhs->rows[1], &rhs->rows[1] )
@@ -5413,16 +7881,12 @@ inline bool uint4x4_cmpe( const uint4x4* lhs, const uint4x4* rhs )
 		&& uint4_cmpe( &lhs->rows[3], &rhs->rows[3] );
 }
 
-/// \relates uint4x4
-/// \brief Returns true if not all of the components of the left-hand-side uint4x4 match the other one, otherwise returns false.
-inline bool uint4x4_cmpne( const uint4x4* lhs, const uint4x4* rhs )
+bool uint4x4_cmpne( const uint4x4* lhs, const uint4x4* rhs )
 {
 	return !( uint4x4_cmpe( lhs, rhs ) );
 }
 
-/// \relates uint4x4
-/// \brief Returns a copy of the uint4x4 that has been component-wise added by the given scalar value.
-inline uint4x4 uint4x4_comp_adds( const uint4x4* lhs, const uint32_t scalar )
+uint4x4 uint4x4_comp_adds( const uint4x4* lhs, const uint32_t scalar )
 {
 	return HLML_CONSTRUCT( uint4x4 ) {
 		lhs->rows[0].x + scalar, lhs->rows[0].y + scalar, lhs->rows[0].z + scalar, lhs->rows[0].w + scalar,
@@ -5432,9 +7896,7 @@ inline uint4x4 uint4x4_comp_adds( const uint4x4* lhs, const uint32_t scalar )
 	};
 }
 
-/// \relates uint4x4
-/// \brief Returns a copy of the uint4x4 that has been component-wise added by the corresponding component of the right-hand uint4x4.
-inline uint4x4 uint4x4_comp_addm( const uint4x4* lhs, const uint4x4* rhs )
+uint4x4 uint4x4_comp_addm( const uint4x4* lhs, const uint4x4* rhs )
 {
 	return HLML_CONSTRUCT( uint4x4 ) {
 		uint4_comp_addv( &lhs->rows[0], &rhs->rows[0] ),
@@ -5444,9 +7906,7 @@ inline uint4x4 uint4x4_comp_addm( const uint4x4* lhs, const uint4x4* rhs )
 	};
 }
 
-/// \relates uint4x4
-/// \brief Returns a copy of the uint4x4 that has been component-wise subtracted by the given scalar value.
-inline uint4x4 uint4x4_comp_subs( const uint4x4* lhs, const uint32_t scalar )
+uint4x4 uint4x4_comp_subs( const uint4x4* lhs, const uint32_t scalar )
 {
 	return HLML_CONSTRUCT( uint4x4 ) {
 		lhs->rows[0].x - scalar, lhs->rows[0].y - scalar, lhs->rows[0].z - scalar, lhs->rows[0].w - scalar,
@@ -5456,9 +7916,7 @@ inline uint4x4 uint4x4_comp_subs( const uint4x4* lhs, const uint32_t scalar )
 	};
 }
 
-/// \relates uint4x4
-/// \brief Returns a copy of the uint4x4 that has been component-wise subtracted by the corresponding component of the right-hand uint4x4.
-inline uint4x4 uint4x4_comp_subm( const uint4x4* lhs, const uint4x4* rhs )
+uint4x4 uint4x4_comp_subm( const uint4x4* lhs, const uint4x4* rhs )
 {
 	return HLML_CONSTRUCT( uint4x4 ) {
 		uint4_comp_subv( &lhs->rows[0], &rhs->rows[0] ),
@@ -5468,9 +7926,7 @@ inline uint4x4 uint4x4_comp_subm( const uint4x4* lhs, const uint4x4* rhs )
 	};
 }
 
-/// \relates uint4x4
-/// \brief Returns a copy of the uint4x4 that has been component-wise multiplied by the given scalar value.
-inline uint4x4 uint4x4_comp_muls( const uint4x4* lhs, const uint32_t scalar )
+uint4x4 uint4x4_comp_muls( const uint4x4* lhs, const uint32_t scalar )
 {
 	return HLML_CONSTRUCT( uint4x4 ) {
 		lhs->rows[0].x * scalar, lhs->rows[0].y * scalar, lhs->rows[0].z * scalar, lhs->rows[0].w * scalar,
@@ -5480,9 +7936,7 @@ inline uint4x4 uint4x4_comp_muls( const uint4x4* lhs, const uint32_t scalar )
 	};
 }
 
-/// \relates uint4x4
-/// \brief Returns a copy of the uint4x4 that has been component-wise multiplied by the corresponding component of the right-hand uint4x4.
-inline uint4x4 uint4x4_comp_mulm( const uint4x4* lhs, const uint4x4* rhs )
+uint4x4 uint4x4_comp_mulm( const uint4x4* lhs, const uint4x4* rhs )
 {
 	return HLML_CONSTRUCT( uint4x4 ) {
 		uint4_comp_mulv( &lhs->rows[0], &rhs->rows[0] ),
@@ -5492,9 +7946,7 @@ inline uint4x4 uint4x4_comp_mulm( const uint4x4* lhs, const uint4x4* rhs )
 	};
 }
 
-/// \relates uint4x4
-/// \brief Returns a copy of the uint4x4 that has been component-wise divided by the given scalar value.
-inline uint4x4 uint4x4_comp_divs( const uint4x4* lhs, const uint32_t scalar )
+uint4x4 uint4x4_comp_divs( const uint4x4* lhs, const uint32_t scalar )
 {
 	return HLML_CONSTRUCT( uint4x4 ) {
 		lhs->rows[0].x / scalar, lhs->rows[0].y / scalar, lhs->rows[0].z / scalar, lhs->rows[0].w / scalar,
@@ -5504,9 +7956,7 @@ inline uint4x4 uint4x4_comp_divs( const uint4x4* lhs, const uint32_t scalar )
 	};
 }
 
-/// \relates uint4x4
-/// \brief Returns a copy of the uint4x4 that has been component-wise divided by the corresponding component of the right-hand uint4x4.
-inline uint4x4 uint4x4_comp_divm( const uint4x4* lhs, const uint4x4* rhs )
+uint4x4 uint4x4_comp_divm( const uint4x4* lhs, const uint4x4* rhs )
 {
 	return HLML_CONSTRUCT( uint4x4 ) {
 		uint4_comp_divv( &lhs->rows[0], &rhs->rows[0] ),
@@ -5516,9 +7966,7 @@ inline uint4x4 uint4x4_comp_divm( const uint4x4* lhs, const uint4x4* rhs )
 	};
 }
 
-/// \relates uint4x4
-/// \brief Returns a copy of the uint4x4 where each component of the left-hand uint4x4 has been bitwise AND'd against the corresponding component of the right-hand side uint4x4.
-inline uint4x4 uint4x4_comp_and( const uint4x4* lhs, const uint4x4* rhs )
+uint4x4 uint4x4_comp_and( const uint4x4* lhs, const uint4x4* rhs )
 {
 	return HLML_CONSTRUCT( uint4x4 ) {
 		uint4_comp_and( &lhs->rows[0], &rhs->rows[0] ),
@@ -5528,9 +7976,7 @@ inline uint4x4 uint4x4_comp_and( const uint4x4* lhs, const uint4x4* rhs )
 	};
 }
 
-/// \relates uint4x4
-/// \brief Returns a copy of the uint4x4 where each component of the left-hand uint4x4 has been bitwise OR'd against the corresponding component of the right-hand side uint4x4.
-inline uint4x4 uint4x4_comp_or( const uint4x4* lhs, const uint4x4* rhs )
+uint4x4 uint4x4_comp_or( const uint4x4* lhs, const uint4x4* rhs )
 {
 	return HLML_CONSTRUCT( uint4x4 ) {
 		uint4_comp_or( &lhs->rows[0], &rhs->rows[0] ),
@@ -5540,9 +7986,7 @@ inline uint4x4 uint4x4_comp_or( const uint4x4* lhs, const uint4x4* rhs )
 	};
 }
 
-/// \relates uint4x4
-/// \brief Returns a copy of the uint4x4 where each component of the left-hand uint4x4 has been bitwise XOR'd against the corresponding component of the right-hand side uint4x4.
-inline uint4x4 uint4x4_comp_xor( const uint4x4* lhs, const uint4x4* rhs )
+uint4x4 uint4x4_comp_xor( const uint4x4* lhs, const uint4x4* rhs )
 {
 	return HLML_CONSTRUCT( uint4x4 ) {
 		uint4_comp_xor( &lhs->rows[0], &rhs->rows[0] ),
@@ -5552,9 +7996,7 @@ inline uint4x4 uint4x4_comp_xor( const uint4x4* lhs, const uint4x4* rhs )
 	};
 }
 
-/// \relates uint4x4
-/// \brief Performs a unary bitwise operation on all components of the given uint4x4.
-inline uint4x4 uint4x4_comp_unary( const uint4x4* lhs )
+uint4x4 uint4x4_comp_unary( const uint4x4* lhs )
 {
 	return HLML_CONSTRUCT( uint4x4 ) {
 		~lhs->rows[0].x,
@@ -5580,9 +8022,7 @@ inline uint4x4 uint4x4_comp_unary( const uint4x4* lhs )
 	};
 }
 
-/// \relates uint4x4
-/// \brief Returns a copy of the uint4x4 where each component of the left-hand uint4x4 has been bitwise left-shifted by the corresponding component of the right-hand side uint4x4.
-inline uint4x4 uint4x4_comp_shift_left( const uint4x4* lhs, const uint4x4* rhs )
+uint4x4 uint4x4_comp_shift_left( const uint4x4* lhs, const uint4x4* rhs )
 {
 	return HLML_CONSTRUCT( uint4x4 ) {
 		uint4_comp_shift_left( &lhs->rows[0], &rhs->rows[0] ),
@@ -5592,9 +8032,7 @@ inline uint4x4 uint4x4_comp_shift_left( const uint4x4* lhs, const uint4x4* rhs )
 	};
 }
 
-/// \relates uint4x4
-/// \brief Returns a copy of the uint4x4 where each component of the left-hand uint4x4 has been bitwise right-shifted by the corresponding component of the right-hand side uint4x4.
-inline uint4x4 uint4x4_comp_shift_right( const uint4x4* lhs, const uint4x4* rhs )
+uint4x4 uint4x4_comp_shift_right( const uint4x4* lhs, const uint4x4* rhs )
 {
 	return HLML_CONSTRUCT( uint4x4 ) {
 		uint4_comp_shift_right( &lhs->rows[0], &rhs->rows[0] ),
@@ -5604,9 +8042,7 @@ inline uint4x4 uint4x4_comp_shift_right( const uint4x4* lhs, const uint4x4* rhs 
 	};
 }
 
-/// \relates uint4x4
-/// \brief Returns a bool4x4 where each component is true if the component of the left-hand type is less than the corresponding right-hand type component.
-inline bool4x4 uint4x4_cmpl( const uint4x4* lhs, const uint4x4* rhs )
+bool4x4 uint4x4_cmpl( const uint4x4* lhs, const uint4x4* rhs )
 {
 	return HLML_CONSTRUCT( bool4x4 ) {
 		uint4_cmpl( &lhs->rows[0], &rhs->rows[0] ),
@@ -5616,9 +8052,7 @@ inline bool4x4 uint4x4_cmpl( const uint4x4* lhs, const uint4x4* rhs )
 	};
 }
 
-/// \relates uint4x4
-/// \brief Returns a bool4x4 where each component is true if the component of the left-hand type is less than or equal to the corresponding right-hand type component.
-inline bool4x4 uint4x4_cmple( const uint4x4* lhs, const uint4x4* rhs )
+bool4x4 uint4x4_cmple( const uint4x4* lhs, const uint4x4* rhs )
 {
 	return HLML_CONSTRUCT( bool4x4 ) {
 		uint4_cmple( &lhs->rows[0], &rhs->rows[0] ),
@@ -5628,9 +8062,7 @@ inline bool4x4 uint4x4_cmple( const uint4x4* lhs, const uint4x4* rhs )
 	};
 }
 
-/// \relates uint4x4
-/// \brief Returns a bool4x4 where each component is true if the component of the left-hand type is greater than the corresponding right-hand type component.
-inline bool4x4 uint4x4_cmpg( const uint4x4* lhs, const uint4x4* rhs )
+bool4x4 uint4x4_cmpg( const uint4x4* lhs, const uint4x4* rhs )
 {
 	return HLML_CONSTRUCT( bool4x4 ) {
 		uint4_cmpg( &lhs->rows[0], &rhs->rows[0] ),
@@ -5640,9 +8072,7 @@ inline bool4x4 uint4x4_cmpg( const uint4x4* lhs, const uint4x4* rhs )
 	};
 }
 
-/// \relates uint4x4
-/// \brief Returns a bool4x4 where each component is true if the component of the left-hand type is greater than or equal to the corresponding right-hand type component.
-inline bool4x4 uint4x4_cmpge( const uint4x4* lhs, const uint4x4* rhs )
+bool4x4 uint4x4_cmpge( const uint4x4* lhs, const uint4x4* rhs )
 {
 	return HLML_CONSTRUCT( bool4x4 ) {
 		uint4_cmpge( &lhs->rows[0], &rhs->rows[0] ),
@@ -5652,9 +8082,7 @@ inline bool4x4 uint4x4_cmpge( const uint4x4* lhs, const uint4x4* rhs )
 	};
 }
 
-/// \relates uint4x4
-/// \brief Sets the matrix to an identity matrix.
-inline void uint4x4_identity( uint4x4* mat )
+void uint4x4_identity( uint4x4* mat )
 {
 	mat->rows[0] = HLML_CONSTRUCT( uint4 ) { 1U, 0U, 0U, 0U };
 	mat->rows[1] = HLML_CONSTRUCT( uint4 ) { 0U, 1U, 0U, 0U };
@@ -5662,9 +8090,7 @@ inline void uint4x4_identity( uint4x4* mat )
 	mat->rows[3] = HLML_CONSTRUCT( uint4 ) { 0U, 0U, 0U, 1U };
 }
 
-/// \relates uint4x4
-/// \brief Returns a copy of the matrix that is transposed, where the value of each row is set to the value of each column and vice versa.
-inline uint4x4 uint4x4_transpose( const uint4x4* mat )
+uint4x4 uint4x4_transpose( const uint4x4* mat )
 {
 	return HLML_CONSTRUCT( uint4x4 ) {
 		mat->rows[0].x, mat->rows[1].x, mat->rows[2].x, mat->rows[3].x,
@@ -5674,9 +8100,7 @@ inline uint4x4 uint4x4_transpose( const uint4x4* mat )
 	};
 }
 
-/// \relates uint4x4
-/// \brief Returns a copy of the matrix where each row of the left-hand matrix has been dot-producted by the corresponding column of the right-hand matrix.
-inline uint4x4 uint4x4_mulm( const uint4x4* lhs, const uint4x4* rhs )
+uint4x4 uint4x4_mulm( const uint4x4* lhs, const uint4x4* rhs )
 {
 	uint4 row0 = lhs->rows[0];
 	uint4 row1 = lhs->rows[1];
@@ -5711,9 +8135,7 @@ inline uint4x4 uint4x4_mulm( const uint4x4* lhs, const uint4x4* rhs )
 	};
 }
 
-/// \relates uint4x4
-/// \brief Returns the right-hand vector multiplied by the left-hand matrix.
-inline uint4 uint4x4_mulv( const uint4x4* lhs, const uint4* rhs )
+uint4 uint4x4_mulv( const uint4x4* lhs, const uint4* rhs )
 {
 	return HLML_CONSTRUCT( uint4 ) {
 		lhs->rows[0].x * rhs->x + lhs->rows[0].y * rhs->y + lhs->rows[0].z * rhs->z + lhs->rows[0].w * rhs->w,
@@ -5723,9 +8145,7 @@ inline uint4 uint4x4_mulv( const uint4x4* lhs, const uint4* rhs )
 	};
 }
 
-/// \relates uint4x4
-/// \brief Returns a copy of the matrix where each component of the 3rd column has been added by the given vector.
-inline uint4x4 uint4x4_translate( const uint4x4* mat, const uint3* vec )
+uint4x4 uint4x4_translate( const uint4x4* mat, const uint3* vec )
 {
 	return HLML_CONSTRUCT( uint4x4 ) {
 		mat->rows[0].x, mat->rows[0].y, mat->rows[0].z, mat->rows[0].w + vec->x,
@@ -5735,9 +8155,7 @@ inline uint4x4 uint4x4_translate( const uint4x4* mat, const uint3* vec )
 	};
 }
 
-/// \relates uint4x4
-/// \brief Returns a copy of the matrix that has had a non-uniform scale applied to it.
-inline uint4x4 uint4x4_scale( const uint4x4* mat, const uint3* vec )
+uint4x4 uint4x4_scale( const uint4x4* mat, const uint3* vec )
 {
 	return HLML_CONSTRUCT( uint4x4 ) {
 		mat->rows[0].x * vec->x,
@@ -5762,26 +8180,18 @@ inline uint4x4 uint4x4_scale( const uint4x4* mat, const uint3* vec )
 	};
 }
 
-
-// float2x2
-/// \relates float2x2
-/// \brief Returns true if the all the components of the left-hand-side float2x2 match the other one, otherwise returns false.
-inline bool float2x2_cmpe( const float2x2* lhs, const float2x2* rhs )
+bool float2x2_cmpe( const float2x2* lhs, const float2x2* rhs )
 {
 	return float2_cmpe( &lhs->rows[0], &rhs->rows[0] )
 		&& float2_cmpe( &lhs->rows[1], &rhs->rows[1] );
 }
 
-/// \relates float2x2
-/// \brief Returns true if not all of the components of the left-hand-side float2x2 match the other one, otherwise returns false.
-inline bool float2x2_cmpne( const float2x2* lhs, const float2x2* rhs )
+bool float2x2_cmpne( const float2x2* lhs, const float2x2* rhs )
 {
 	return !( float2x2_cmpe( lhs, rhs ) );
 }
 
-/// \relates float2x2
-/// \brief Returns a copy of the float2x2 that has been component-wise added by the given scalar value.
-inline float2x2 float2x2_comp_adds( const float2x2* lhs, const float scalar )
+float2x2 float2x2_comp_adds( const float2x2* lhs, const float scalar )
 {
 	return HLML_CONSTRUCT( float2x2 ) {
 		lhs->rows[0].x + scalar, lhs->rows[0].y + scalar,
@@ -5789,9 +8199,7 @@ inline float2x2 float2x2_comp_adds( const float2x2* lhs, const float scalar )
 	};
 }
 
-/// \relates float2x2
-/// \brief Returns a copy of the float2x2 that has been component-wise added by the corresponding component of the right-hand float2x2.
-inline float2x2 float2x2_comp_addm( const float2x2* lhs, const float2x2* rhs )
+float2x2 float2x2_comp_addm( const float2x2* lhs, const float2x2* rhs )
 {
 	return HLML_CONSTRUCT( float2x2 ) {
 		float2_comp_addv( &lhs->rows[0], &rhs->rows[0] ),
@@ -5799,9 +8207,7 @@ inline float2x2 float2x2_comp_addm( const float2x2* lhs, const float2x2* rhs )
 	};
 }
 
-/// \relates float2x2
-/// \brief Returns a copy of the float2x2 that has been component-wise subtracted by the given scalar value.
-inline float2x2 float2x2_comp_subs( const float2x2* lhs, const float scalar )
+float2x2 float2x2_comp_subs( const float2x2* lhs, const float scalar )
 {
 	return HLML_CONSTRUCT( float2x2 ) {
 		lhs->rows[0].x - scalar, lhs->rows[0].y - scalar,
@@ -5809,9 +8215,7 @@ inline float2x2 float2x2_comp_subs( const float2x2* lhs, const float scalar )
 	};
 }
 
-/// \relates float2x2
-/// \brief Returns a copy of the float2x2 that has been component-wise subtracted by the corresponding component of the right-hand float2x2.
-inline float2x2 float2x2_comp_subm( const float2x2* lhs, const float2x2* rhs )
+float2x2 float2x2_comp_subm( const float2x2* lhs, const float2x2* rhs )
 {
 	return HLML_CONSTRUCT( float2x2 ) {
 		float2_comp_subv( &lhs->rows[0], &rhs->rows[0] ),
@@ -5819,9 +8223,7 @@ inline float2x2 float2x2_comp_subm( const float2x2* lhs, const float2x2* rhs )
 	};
 }
 
-/// \relates float2x2
-/// \brief Returns a copy of the float2x2 that has been component-wise multiplied by the given scalar value.
-inline float2x2 float2x2_comp_muls( const float2x2* lhs, const float scalar )
+float2x2 float2x2_comp_muls( const float2x2* lhs, const float scalar )
 {
 	return HLML_CONSTRUCT( float2x2 ) {
 		lhs->rows[0].x * scalar, lhs->rows[0].y * scalar,
@@ -5829,9 +8231,7 @@ inline float2x2 float2x2_comp_muls( const float2x2* lhs, const float scalar )
 	};
 }
 
-/// \relates float2x2
-/// \brief Returns a copy of the float2x2 that has been component-wise multiplied by the corresponding component of the right-hand float2x2.
-inline float2x2 float2x2_comp_mulm( const float2x2* lhs, const float2x2* rhs )
+float2x2 float2x2_comp_mulm( const float2x2* lhs, const float2x2* rhs )
 {
 	return HLML_CONSTRUCT( float2x2 ) {
 		float2_comp_mulv( &lhs->rows[0], &rhs->rows[0] ),
@@ -5839,9 +8239,7 @@ inline float2x2 float2x2_comp_mulm( const float2x2* lhs, const float2x2* rhs )
 	};
 }
 
-/// \relates float2x2
-/// \brief Returns a copy of the float2x2 that has been component-wise divided by the given scalar value.
-inline float2x2 float2x2_comp_divs( const float2x2* lhs, const float scalar )
+float2x2 float2x2_comp_divs( const float2x2* lhs, const float scalar )
 {
 	return HLML_CONSTRUCT( float2x2 ) {
 		lhs->rows[0].x / scalar, lhs->rows[0].y / scalar,
@@ -5849,9 +8247,7 @@ inline float2x2 float2x2_comp_divs( const float2x2* lhs, const float scalar )
 	};
 }
 
-/// \relates float2x2
-/// \brief Returns a copy of the float2x2 that has been component-wise divided by the corresponding component of the right-hand float2x2.
-inline float2x2 float2x2_comp_divm( const float2x2* lhs, const float2x2* rhs )
+float2x2 float2x2_comp_divm( const float2x2* lhs, const float2x2* rhs )
 {
 	return HLML_CONSTRUCT( float2x2 ) {
 		float2_comp_divv( &lhs->rows[0], &rhs->rows[0] ),
@@ -5859,9 +8255,7 @@ inline float2x2 float2x2_comp_divm( const float2x2* lhs, const float2x2* rhs )
 	};
 }
 
-/// \relates float2x2
-/// \brief Returns a bool2x2 where each component is true if the component of the left-hand type is less than the corresponding right-hand type component.
-inline bool2x2 float2x2_cmpl( const float2x2* lhs, const float2x2* rhs )
+bool2x2 float2x2_cmpl( const float2x2* lhs, const float2x2* rhs )
 {
 	return HLML_CONSTRUCT( bool2x2 ) {
 		float2_cmpl( &lhs->rows[0], &rhs->rows[0] ),
@@ -5869,9 +8263,7 @@ inline bool2x2 float2x2_cmpl( const float2x2* lhs, const float2x2* rhs )
 	};
 }
 
-/// \relates float2x2
-/// \brief Returns a bool2x2 where each component is true if the component of the left-hand type is less than or equal to the corresponding right-hand type component.
-inline bool2x2 float2x2_cmple( const float2x2* lhs, const float2x2* rhs )
+bool2x2 float2x2_cmple( const float2x2* lhs, const float2x2* rhs )
 {
 	return HLML_CONSTRUCT( bool2x2 ) {
 		float2_cmple( &lhs->rows[0], &rhs->rows[0] ),
@@ -5879,9 +8271,7 @@ inline bool2x2 float2x2_cmple( const float2x2* lhs, const float2x2* rhs )
 	};
 }
 
-/// \relates float2x2
-/// \brief Returns a bool2x2 where each component is true if the component of the left-hand type is greater than the corresponding right-hand type component.
-inline bool2x2 float2x2_cmpg( const float2x2* lhs, const float2x2* rhs )
+bool2x2 float2x2_cmpg( const float2x2* lhs, const float2x2* rhs )
 {
 	return HLML_CONSTRUCT( bool2x2 ) {
 		float2_cmpg( &lhs->rows[0], &rhs->rows[0] ),
@@ -5889,9 +8279,7 @@ inline bool2x2 float2x2_cmpg( const float2x2* lhs, const float2x2* rhs )
 	};
 }
 
-/// \relates float2x2
-/// \brief Returns a bool2x2 where each component is true if the component of the left-hand type is greater than or equal to the corresponding right-hand type component.
-inline bool2x2 float2x2_cmpge( const float2x2* lhs, const float2x2* rhs )
+bool2x2 float2x2_cmpge( const float2x2* lhs, const float2x2* rhs )
 {
 	return HLML_CONSTRUCT( bool2x2 ) {
 		float2_cmpge( &lhs->rows[0], &rhs->rows[0] ),
@@ -5899,17 +8287,13 @@ inline bool2x2 float2x2_cmpge( const float2x2* lhs, const float2x2* rhs )
 	};
 }
 
-/// \relates float2x2
-/// \brief Sets the matrix to an identity matrix.
-inline void float2x2_identity( float2x2* mat )
+void float2x2_identity( float2x2* mat )
 {
 	mat->rows[0] = HLML_CONSTRUCT( float2 ) { 1.0f, 0.0f };
 	mat->rows[1] = HLML_CONSTRUCT( float2 ) { 0.0f, 1.0f };
 }
 
-/// \relates float2x2
-/// \brief Returns a copy of the matrix that is transposed, where the value of each row is set to the value of each column and vice versa.
-inline float2x2 float2x2_transpose( const float2x2* mat )
+float2x2 float2x2_transpose( const float2x2* mat )
 {
 	return HLML_CONSTRUCT( float2x2 ) {
 		mat->rows[0].x, mat->rows[1].x,
@@ -5917,17 +8301,12 @@ inline float2x2 float2x2_transpose( const float2x2* mat )
 	};
 }
 
-/// \relates float2x2
-/// \brief Returns the determinant of the matrix.
-inline float float2x2_determinant( const float2x2* mat )
+float float2x2_determinant( const float2x2* mat )
 {
 	return mat->rows[0].x * mat->rows[1].y - mat->rows[1].x * mat->rows[0].y;
 }
 
-/// \relates float2x2
-/// \brief Returns a copy of the matrix that is inversed.
-/// Currently this is only applicable for square matrices.  Pseudo-inverse support for non-square matrices is coming soon.
-inline float2x2 float2x2_inverse( const float2x2* mat )
+float2x2 float2x2_inverse( const float2x2* mat )
 {
 	const float invdet = 1.0f / float2x2_determinant( mat );
 	return HLML_CONSTRUCT( float2x2 ) {
@@ -5936,9 +8315,7 @@ inline float2x2 float2x2_inverse( const float2x2* mat )
 	};
 }
 
-/// \relates float2x2
-/// \brief Returns a copy of the matrix where each row of the left-hand matrix has been dot-producted by the corresponding column of the right-hand matrix.
-inline float2x2 float2x2_mulm( const float2x2* lhs, const float2x2* rhs )
+float2x2 float2x2_mulm( const float2x2* lhs, const float2x2* rhs )
 {
 	float2 row0 = lhs->rows[0];
 	float2 row1 = lhs->rows[1];
@@ -5955,9 +8332,7 @@ inline float2x2 float2x2_mulm( const float2x2* lhs, const float2x2* rhs )
 	};
 }
 
-/// \relates float2x2
-/// \brief Returns the right-hand vector multiplied by the left-hand matrix.
-inline float2 float2x2_mulv( const float2x2* lhs, const float2* rhs )
+float2 float2x2_mulv( const float2x2* lhs, const float2* rhs )
 {
 	return HLML_CONSTRUCT( float2 ) {
 		lhs->rows[0].x * rhs->x + lhs->rows[0].y * rhs->y,
@@ -5965,26 +8340,18 @@ inline float2 float2x2_mulv( const float2x2* lhs, const float2* rhs )
 	};
 }
 
-
-// float2x3
-/// \relates float2x3
-/// \brief Returns true if the all the components of the left-hand-side float2x3 match the other one, otherwise returns false.
-inline bool float2x3_cmpe( const float2x3* lhs, const float2x3* rhs )
+bool float2x3_cmpe( const float2x3* lhs, const float2x3* rhs )
 {
 	return float3_cmpe( &lhs->rows[0], &rhs->rows[0] )
 		&& float3_cmpe( &lhs->rows[1], &rhs->rows[1] );
 }
 
-/// \relates float2x3
-/// \brief Returns true if not all of the components of the left-hand-side float2x3 match the other one, otherwise returns false.
-inline bool float2x3_cmpne( const float2x3* lhs, const float2x3* rhs )
+bool float2x3_cmpne( const float2x3* lhs, const float2x3* rhs )
 {
 	return !( float2x3_cmpe( lhs, rhs ) );
 }
 
-/// \relates float2x3
-/// \brief Returns a copy of the float2x3 that has been component-wise added by the given scalar value.
-inline float2x3 float2x3_comp_adds( const float2x3* lhs, const float scalar )
+float2x3 float2x3_comp_adds( const float2x3* lhs, const float scalar )
 {
 	return HLML_CONSTRUCT( float2x3 ) {
 		lhs->rows[0].x + scalar, lhs->rows[0].y + scalar, lhs->rows[0].z + scalar,
@@ -5992,9 +8359,7 @@ inline float2x3 float2x3_comp_adds( const float2x3* lhs, const float scalar )
 	};
 }
 
-/// \relates float2x3
-/// \brief Returns a copy of the float2x3 that has been component-wise added by the corresponding component of the right-hand float2x3.
-inline float2x3 float2x3_comp_addm( const float2x3* lhs, const float2x3* rhs )
+float2x3 float2x3_comp_addm( const float2x3* lhs, const float2x3* rhs )
 {
 	return HLML_CONSTRUCT( float2x3 ) {
 		float3_comp_addv( &lhs->rows[0], &rhs->rows[0] ),
@@ -6002,9 +8367,7 @@ inline float2x3 float2x3_comp_addm( const float2x3* lhs, const float2x3* rhs )
 	};
 }
 
-/// \relates float2x3
-/// \brief Returns a copy of the float2x3 that has been component-wise subtracted by the given scalar value.
-inline float2x3 float2x3_comp_subs( const float2x3* lhs, const float scalar )
+float2x3 float2x3_comp_subs( const float2x3* lhs, const float scalar )
 {
 	return HLML_CONSTRUCT( float2x3 ) {
 		lhs->rows[0].x - scalar, lhs->rows[0].y - scalar, lhs->rows[0].z - scalar,
@@ -6012,9 +8375,7 @@ inline float2x3 float2x3_comp_subs( const float2x3* lhs, const float scalar )
 	};
 }
 
-/// \relates float2x3
-/// \brief Returns a copy of the float2x3 that has been component-wise subtracted by the corresponding component of the right-hand float2x3.
-inline float2x3 float2x3_comp_subm( const float2x3* lhs, const float2x3* rhs )
+float2x3 float2x3_comp_subm( const float2x3* lhs, const float2x3* rhs )
 {
 	return HLML_CONSTRUCT( float2x3 ) {
 		float3_comp_subv( &lhs->rows[0], &rhs->rows[0] ),
@@ -6022,9 +8383,7 @@ inline float2x3 float2x3_comp_subm( const float2x3* lhs, const float2x3* rhs )
 	};
 }
 
-/// \relates float2x3
-/// \brief Returns a copy of the float2x3 that has been component-wise multiplied by the given scalar value.
-inline float2x3 float2x3_comp_muls( const float2x3* lhs, const float scalar )
+float2x3 float2x3_comp_muls( const float2x3* lhs, const float scalar )
 {
 	return HLML_CONSTRUCT( float2x3 ) {
 		lhs->rows[0].x * scalar, lhs->rows[0].y * scalar, lhs->rows[0].z * scalar,
@@ -6032,9 +8391,7 @@ inline float2x3 float2x3_comp_muls( const float2x3* lhs, const float scalar )
 	};
 }
 
-/// \relates float2x3
-/// \brief Returns a copy of the float2x3 that has been component-wise multiplied by the corresponding component of the right-hand float2x3.
-inline float2x3 float2x3_comp_mulm( const float2x3* lhs, const float2x3* rhs )
+float2x3 float2x3_comp_mulm( const float2x3* lhs, const float2x3* rhs )
 {
 	return HLML_CONSTRUCT( float2x3 ) {
 		float3_comp_mulv( &lhs->rows[0], &rhs->rows[0] ),
@@ -6042,9 +8399,7 @@ inline float2x3 float2x3_comp_mulm( const float2x3* lhs, const float2x3* rhs )
 	};
 }
 
-/// \relates float2x3
-/// \brief Returns a copy of the float2x3 that has been component-wise divided by the given scalar value.
-inline float2x3 float2x3_comp_divs( const float2x3* lhs, const float scalar )
+float2x3 float2x3_comp_divs( const float2x3* lhs, const float scalar )
 {
 	return HLML_CONSTRUCT( float2x3 ) {
 		lhs->rows[0].x / scalar, lhs->rows[0].y / scalar, lhs->rows[0].z / scalar,
@@ -6052,9 +8407,7 @@ inline float2x3 float2x3_comp_divs( const float2x3* lhs, const float scalar )
 	};
 }
 
-/// \relates float2x3
-/// \brief Returns a copy of the float2x3 that has been component-wise divided by the corresponding component of the right-hand float2x3.
-inline float2x3 float2x3_comp_divm( const float2x3* lhs, const float2x3* rhs )
+float2x3 float2x3_comp_divm( const float2x3* lhs, const float2x3* rhs )
 {
 	return HLML_CONSTRUCT( float2x3 ) {
 		float3_comp_divv( &lhs->rows[0], &rhs->rows[0] ),
@@ -6062,9 +8415,7 @@ inline float2x3 float2x3_comp_divm( const float2x3* lhs, const float2x3* rhs )
 	};
 }
 
-/// \relates float2x3
-/// \brief Returns a bool2x3 where each component is true if the component of the left-hand type is less than the corresponding right-hand type component.
-inline bool2x3 float2x3_cmpl( const float2x3* lhs, const float2x3* rhs )
+bool2x3 float2x3_cmpl( const float2x3* lhs, const float2x3* rhs )
 {
 	return HLML_CONSTRUCT( bool2x3 ) {
 		float3_cmpl( &lhs->rows[0], &rhs->rows[0] ),
@@ -6072,9 +8423,7 @@ inline bool2x3 float2x3_cmpl( const float2x3* lhs, const float2x3* rhs )
 	};
 }
 
-/// \relates float2x3
-/// \brief Returns a bool2x3 where each component is true if the component of the left-hand type is less than or equal to the corresponding right-hand type component.
-inline bool2x3 float2x3_cmple( const float2x3* lhs, const float2x3* rhs )
+bool2x3 float2x3_cmple( const float2x3* lhs, const float2x3* rhs )
 {
 	return HLML_CONSTRUCT( bool2x3 ) {
 		float3_cmple( &lhs->rows[0], &rhs->rows[0] ),
@@ -6082,9 +8431,7 @@ inline bool2x3 float2x3_cmple( const float2x3* lhs, const float2x3* rhs )
 	};
 }
 
-/// \relates float2x3
-/// \brief Returns a bool2x3 where each component is true if the component of the left-hand type is greater than the corresponding right-hand type component.
-inline bool2x3 float2x3_cmpg( const float2x3* lhs, const float2x3* rhs )
+bool2x3 float2x3_cmpg( const float2x3* lhs, const float2x3* rhs )
 {
 	return HLML_CONSTRUCT( bool2x3 ) {
 		float3_cmpg( &lhs->rows[0], &rhs->rows[0] ),
@@ -6092,9 +8439,7 @@ inline bool2x3 float2x3_cmpg( const float2x3* lhs, const float2x3* rhs )
 	};
 }
 
-/// \relates float2x3
-/// \brief Returns a bool2x3 where each component is true if the component of the left-hand type is greater than or equal to the corresponding right-hand type component.
-inline bool2x3 float2x3_cmpge( const float2x3* lhs, const float2x3* rhs )
+bool2x3 float2x3_cmpge( const float2x3* lhs, const float2x3* rhs )
 {
 	return HLML_CONSTRUCT( bool2x3 ) {
 		float3_cmpge( &lhs->rows[0], &rhs->rows[0] ),
@@ -6102,17 +8447,13 @@ inline bool2x3 float2x3_cmpge( const float2x3* lhs, const float2x3* rhs )
 	};
 }
 
-/// \relates float2x3
-/// \brief Sets the matrix to an identity matrix.
-inline void float2x3_identity( float2x3* mat )
+void float2x3_identity( float2x3* mat )
 {
 	mat->rows[0] = HLML_CONSTRUCT( float3 ) { 1.0f, 0.0f, 0.0f };
 	mat->rows[1] = HLML_CONSTRUCT( float3 ) { 0.0f, 1.0f, 0.0f };
 }
 
-/// \relates float2x3
-/// \brief Returns a copy of the matrix that is transposed, where the value of each row is set to the value of each column and vice versa.
-inline float3x2 float2x3_transpose( const float2x3* mat )
+float3x2 float2x3_transpose( const float2x3* mat )
 {
 	return HLML_CONSTRUCT( float3x2 ) {
 		mat->rows[0].x, mat->rows[1].x,
@@ -6121,9 +8462,7 @@ inline float3x2 float2x3_transpose( const float2x3* mat )
 	};
 }
 
-/// \relates float2x3
-/// \brief Returns a copy of the matrix where each row of the left-hand matrix has been dot-producted by the corresponding column of the right-hand matrix.
-inline float2x2 float2x3_mulm( const float2x3* lhs, const float3x2* rhs )
+float2x2 float2x3_mulm( const float2x3* lhs, const float3x2* rhs )
 {
 	float3 row0 = lhs->rows[0];
 	float3 row1 = lhs->rows[1];
@@ -6140,9 +8479,7 @@ inline float2x2 float2x3_mulm( const float2x3* lhs, const float3x2* rhs )
 	};
 }
 
-/// \relates float2x3
-/// \brief Returns a copy of the matrix that has had a non-uniform scale applied to it.
-inline float2x3 float2x3_scale( const float2x3* mat, const float2* vec )
+float2x3 float2x3_scale( const float2x3* mat, const float2* vec )
 {
 	return HLML_CONSTRUCT( float2x3 ) {
 		mat->rows[0].x * vec->x,
@@ -6155,26 +8492,18 @@ inline float2x3 float2x3_scale( const float2x3* mat, const float2* vec )
 	};
 }
 
-
-// float2x4
-/// \relates float2x4
-/// \brief Returns true if the all the components of the left-hand-side float2x4 match the other one, otherwise returns false.
-inline bool float2x4_cmpe( const float2x4* lhs, const float2x4* rhs )
+bool float2x4_cmpe( const float2x4* lhs, const float2x4* rhs )
 {
 	return float4_cmpe( &lhs->rows[0], &rhs->rows[0] )
 		&& float4_cmpe( &lhs->rows[1], &rhs->rows[1] );
 }
 
-/// \relates float2x4
-/// \brief Returns true if not all of the components of the left-hand-side float2x4 match the other one, otherwise returns false.
-inline bool float2x4_cmpne( const float2x4* lhs, const float2x4* rhs )
+bool float2x4_cmpne( const float2x4* lhs, const float2x4* rhs )
 {
 	return !( float2x4_cmpe( lhs, rhs ) );
 }
 
-/// \relates float2x4
-/// \brief Returns a copy of the float2x4 that has been component-wise added by the given scalar value.
-inline float2x4 float2x4_comp_adds( const float2x4* lhs, const float scalar )
+float2x4 float2x4_comp_adds( const float2x4* lhs, const float scalar )
 {
 	return HLML_CONSTRUCT( float2x4 ) {
 		lhs->rows[0].x + scalar, lhs->rows[0].y + scalar, lhs->rows[0].z + scalar, lhs->rows[0].w + scalar,
@@ -6182,9 +8511,7 @@ inline float2x4 float2x4_comp_adds( const float2x4* lhs, const float scalar )
 	};
 }
 
-/// \relates float2x4
-/// \brief Returns a copy of the float2x4 that has been component-wise added by the corresponding component of the right-hand float2x4.
-inline float2x4 float2x4_comp_addm( const float2x4* lhs, const float2x4* rhs )
+float2x4 float2x4_comp_addm( const float2x4* lhs, const float2x4* rhs )
 {
 	return HLML_CONSTRUCT( float2x4 ) {
 		float4_comp_addv( &lhs->rows[0], &rhs->rows[0] ),
@@ -6192,9 +8519,7 @@ inline float2x4 float2x4_comp_addm( const float2x4* lhs, const float2x4* rhs )
 	};
 }
 
-/// \relates float2x4
-/// \brief Returns a copy of the float2x4 that has been component-wise subtracted by the given scalar value.
-inline float2x4 float2x4_comp_subs( const float2x4* lhs, const float scalar )
+float2x4 float2x4_comp_subs( const float2x4* lhs, const float scalar )
 {
 	return HLML_CONSTRUCT( float2x4 ) {
 		lhs->rows[0].x - scalar, lhs->rows[0].y - scalar, lhs->rows[0].z - scalar, lhs->rows[0].w - scalar,
@@ -6202,9 +8527,7 @@ inline float2x4 float2x4_comp_subs( const float2x4* lhs, const float scalar )
 	};
 }
 
-/// \relates float2x4
-/// \brief Returns a copy of the float2x4 that has been component-wise subtracted by the corresponding component of the right-hand float2x4.
-inline float2x4 float2x4_comp_subm( const float2x4* lhs, const float2x4* rhs )
+float2x4 float2x4_comp_subm( const float2x4* lhs, const float2x4* rhs )
 {
 	return HLML_CONSTRUCT( float2x4 ) {
 		float4_comp_subv( &lhs->rows[0], &rhs->rows[0] ),
@@ -6212,9 +8535,7 @@ inline float2x4 float2x4_comp_subm( const float2x4* lhs, const float2x4* rhs )
 	};
 }
 
-/// \relates float2x4
-/// \brief Returns a copy of the float2x4 that has been component-wise multiplied by the given scalar value.
-inline float2x4 float2x4_comp_muls( const float2x4* lhs, const float scalar )
+float2x4 float2x4_comp_muls( const float2x4* lhs, const float scalar )
 {
 	return HLML_CONSTRUCT( float2x4 ) {
 		lhs->rows[0].x * scalar, lhs->rows[0].y * scalar, lhs->rows[0].z * scalar, lhs->rows[0].w * scalar,
@@ -6222,9 +8543,7 @@ inline float2x4 float2x4_comp_muls( const float2x4* lhs, const float scalar )
 	};
 }
 
-/// \relates float2x4
-/// \brief Returns a copy of the float2x4 that has been component-wise multiplied by the corresponding component of the right-hand float2x4.
-inline float2x4 float2x4_comp_mulm( const float2x4* lhs, const float2x4* rhs )
+float2x4 float2x4_comp_mulm( const float2x4* lhs, const float2x4* rhs )
 {
 	return HLML_CONSTRUCT( float2x4 ) {
 		float4_comp_mulv( &lhs->rows[0], &rhs->rows[0] ),
@@ -6232,9 +8551,7 @@ inline float2x4 float2x4_comp_mulm( const float2x4* lhs, const float2x4* rhs )
 	};
 }
 
-/// \relates float2x4
-/// \brief Returns a copy of the float2x4 that has been component-wise divided by the given scalar value.
-inline float2x4 float2x4_comp_divs( const float2x4* lhs, const float scalar )
+float2x4 float2x4_comp_divs( const float2x4* lhs, const float scalar )
 {
 	return HLML_CONSTRUCT( float2x4 ) {
 		lhs->rows[0].x / scalar, lhs->rows[0].y / scalar, lhs->rows[0].z / scalar, lhs->rows[0].w / scalar,
@@ -6242,9 +8559,7 @@ inline float2x4 float2x4_comp_divs( const float2x4* lhs, const float scalar )
 	};
 }
 
-/// \relates float2x4
-/// \brief Returns a copy of the float2x4 that has been component-wise divided by the corresponding component of the right-hand float2x4.
-inline float2x4 float2x4_comp_divm( const float2x4* lhs, const float2x4* rhs )
+float2x4 float2x4_comp_divm( const float2x4* lhs, const float2x4* rhs )
 {
 	return HLML_CONSTRUCT( float2x4 ) {
 		float4_comp_divv( &lhs->rows[0], &rhs->rows[0] ),
@@ -6252,9 +8567,7 @@ inline float2x4 float2x4_comp_divm( const float2x4* lhs, const float2x4* rhs )
 	};
 }
 
-/// \relates float2x4
-/// \brief Returns a bool2x4 where each component is true if the component of the left-hand type is less than the corresponding right-hand type component.
-inline bool2x4 float2x4_cmpl( const float2x4* lhs, const float2x4* rhs )
+bool2x4 float2x4_cmpl( const float2x4* lhs, const float2x4* rhs )
 {
 	return HLML_CONSTRUCT( bool2x4 ) {
 		float4_cmpl( &lhs->rows[0], &rhs->rows[0] ),
@@ -6262,9 +8575,7 @@ inline bool2x4 float2x4_cmpl( const float2x4* lhs, const float2x4* rhs )
 	};
 }
 
-/// \relates float2x4
-/// \brief Returns a bool2x4 where each component is true if the component of the left-hand type is less than or equal to the corresponding right-hand type component.
-inline bool2x4 float2x4_cmple( const float2x4* lhs, const float2x4* rhs )
+bool2x4 float2x4_cmple( const float2x4* lhs, const float2x4* rhs )
 {
 	return HLML_CONSTRUCT( bool2x4 ) {
 		float4_cmple( &lhs->rows[0], &rhs->rows[0] ),
@@ -6272,9 +8583,7 @@ inline bool2x4 float2x4_cmple( const float2x4* lhs, const float2x4* rhs )
 	};
 }
 
-/// \relates float2x4
-/// \brief Returns a bool2x4 where each component is true if the component of the left-hand type is greater than the corresponding right-hand type component.
-inline bool2x4 float2x4_cmpg( const float2x4* lhs, const float2x4* rhs )
+bool2x4 float2x4_cmpg( const float2x4* lhs, const float2x4* rhs )
 {
 	return HLML_CONSTRUCT( bool2x4 ) {
 		float4_cmpg( &lhs->rows[0], &rhs->rows[0] ),
@@ -6282,9 +8591,7 @@ inline bool2x4 float2x4_cmpg( const float2x4* lhs, const float2x4* rhs )
 	};
 }
 
-/// \relates float2x4
-/// \brief Returns a bool2x4 where each component is true if the component of the left-hand type is greater than or equal to the corresponding right-hand type component.
-inline bool2x4 float2x4_cmpge( const float2x4* lhs, const float2x4* rhs )
+bool2x4 float2x4_cmpge( const float2x4* lhs, const float2x4* rhs )
 {
 	return HLML_CONSTRUCT( bool2x4 ) {
 		float4_cmpge( &lhs->rows[0], &rhs->rows[0] ),
@@ -6292,17 +8599,13 @@ inline bool2x4 float2x4_cmpge( const float2x4* lhs, const float2x4* rhs )
 	};
 }
 
-/// \relates float2x4
-/// \brief Sets the matrix to an identity matrix.
-inline void float2x4_identity( float2x4* mat )
+void float2x4_identity( float2x4* mat )
 {
 	mat->rows[0] = HLML_CONSTRUCT( float4 ) { 1.0f, 0.0f, 0.0f, 0.0f };
 	mat->rows[1] = HLML_CONSTRUCT( float4 ) { 0.0f, 1.0f, 0.0f, 0.0f };
 }
 
-/// \relates float2x4
-/// \brief Returns a copy of the matrix that is transposed, where the value of each row is set to the value of each column and vice versa.
-inline float4x2 float2x4_transpose( const float2x4* mat )
+float4x2 float2x4_transpose( const float2x4* mat )
 {
 	return HLML_CONSTRUCT( float4x2 ) {
 		mat->rows[0].x, mat->rows[1].x,
@@ -6312,9 +8615,7 @@ inline float4x2 float2x4_transpose( const float2x4* mat )
 	};
 }
 
-/// \relates float2x4
-/// \brief Returns a copy of the matrix where each row of the left-hand matrix has been dot-producted by the corresponding column of the right-hand matrix.
-inline float2x2 float2x4_mulm( const float2x4* lhs, const float4x2* rhs )
+float2x2 float2x4_mulm( const float2x4* lhs, const float4x2* rhs )
 {
 	float4 row0 = lhs->rows[0];
 	float4 row1 = lhs->rows[1];
@@ -6331,9 +8632,7 @@ inline float2x2 float2x4_mulm( const float2x4* lhs, const float4x2* rhs )
 	};
 }
 
-/// \relates float2x4
-/// \brief Returns a copy of the matrix that has had a non-uniform scale applied to it.
-inline float2x4 float2x4_scale( const float2x4* mat, const float2* vec )
+float2x4 float2x4_scale( const float2x4* mat, const float2* vec )
 {
 	return HLML_CONSTRUCT( float2x4 ) {
 		mat->rows[0].x * vec->x,
@@ -6348,27 +8647,19 @@ inline float2x4 float2x4_scale( const float2x4* mat, const float2* vec )
 	};
 }
 
-
-// float3x2
-/// \relates float3x2
-/// \brief Returns true if the all the components of the left-hand-side float3x2 match the other one, otherwise returns false.
-inline bool float3x2_cmpe( const float3x2* lhs, const float3x2* rhs )
+bool float3x2_cmpe( const float3x2* lhs, const float3x2* rhs )
 {
 	return float2_cmpe( &lhs->rows[0], &rhs->rows[0] )
 		&& float2_cmpe( &lhs->rows[1], &rhs->rows[1] )
 		&& float2_cmpe( &lhs->rows[2], &rhs->rows[2] );
 }
 
-/// \relates float3x2
-/// \brief Returns true if not all of the components of the left-hand-side float3x2 match the other one, otherwise returns false.
-inline bool float3x2_cmpne( const float3x2* lhs, const float3x2* rhs )
+bool float3x2_cmpne( const float3x2* lhs, const float3x2* rhs )
 {
 	return !( float3x2_cmpe( lhs, rhs ) );
 }
 
-/// \relates float3x2
-/// \brief Returns a copy of the float3x2 that has been component-wise added by the given scalar value.
-inline float3x2 float3x2_comp_adds( const float3x2* lhs, const float scalar )
+float3x2 float3x2_comp_adds( const float3x2* lhs, const float scalar )
 {
 	return HLML_CONSTRUCT( float3x2 ) {
 		lhs->rows[0].x + scalar, lhs->rows[0].y + scalar,
@@ -6377,9 +8668,7 @@ inline float3x2 float3x2_comp_adds( const float3x2* lhs, const float scalar )
 	};
 }
 
-/// \relates float3x2
-/// \brief Returns a copy of the float3x2 that has been component-wise added by the corresponding component of the right-hand float3x2.
-inline float3x2 float3x2_comp_addm( const float3x2* lhs, const float3x2* rhs )
+float3x2 float3x2_comp_addm( const float3x2* lhs, const float3x2* rhs )
 {
 	return HLML_CONSTRUCT( float3x2 ) {
 		float2_comp_addv( &lhs->rows[0], &rhs->rows[0] ),
@@ -6388,9 +8677,7 @@ inline float3x2 float3x2_comp_addm( const float3x2* lhs, const float3x2* rhs )
 	};
 }
 
-/// \relates float3x2
-/// \brief Returns a copy of the float3x2 that has been component-wise subtracted by the given scalar value.
-inline float3x2 float3x2_comp_subs( const float3x2* lhs, const float scalar )
+float3x2 float3x2_comp_subs( const float3x2* lhs, const float scalar )
 {
 	return HLML_CONSTRUCT( float3x2 ) {
 		lhs->rows[0].x - scalar, lhs->rows[0].y - scalar,
@@ -6399,9 +8686,7 @@ inline float3x2 float3x2_comp_subs( const float3x2* lhs, const float scalar )
 	};
 }
 
-/// \relates float3x2
-/// \brief Returns a copy of the float3x2 that has been component-wise subtracted by the corresponding component of the right-hand float3x2.
-inline float3x2 float3x2_comp_subm( const float3x2* lhs, const float3x2* rhs )
+float3x2 float3x2_comp_subm( const float3x2* lhs, const float3x2* rhs )
 {
 	return HLML_CONSTRUCT( float3x2 ) {
 		float2_comp_subv( &lhs->rows[0], &rhs->rows[0] ),
@@ -6410,9 +8695,7 @@ inline float3x2 float3x2_comp_subm( const float3x2* lhs, const float3x2* rhs )
 	};
 }
 
-/// \relates float3x2
-/// \brief Returns a copy of the float3x2 that has been component-wise multiplied by the given scalar value.
-inline float3x2 float3x2_comp_muls( const float3x2* lhs, const float scalar )
+float3x2 float3x2_comp_muls( const float3x2* lhs, const float scalar )
 {
 	return HLML_CONSTRUCT( float3x2 ) {
 		lhs->rows[0].x * scalar, lhs->rows[0].y * scalar,
@@ -6421,9 +8704,7 @@ inline float3x2 float3x2_comp_muls( const float3x2* lhs, const float scalar )
 	};
 }
 
-/// \relates float3x2
-/// \brief Returns a copy of the float3x2 that has been component-wise multiplied by the corresponding component of the right-hand float3x2.
-inline float3x2 float3x2_comp_mulm( const float3x2* lhs, const float3x2* rhs )
+float3x2 float3x2_comp_mulm( const float3x2* lhs, const float3x2* rhs )
 {
 	return HLML_CONSTRUCT( float3x2 ) {
 		float2_comp_mulv( &lhs->rows[0], &rhs->rows[0] ),
@@ -6432,9 +8713,7 @@ inline float3x2 float3x2_comp_mulm( const float3x2* lhs, const float3x2* rhs )
 	};
 }
 
-/// \relates float3x2
-/// \brief Returns a copy of the float3x2 that has been component-wise divided by the given scalar value.
-inline float3x2 float3x2_comp_divs( const float3x2* lhs, const float scalar )
+float3x2 float3x2_comp_divs( const float3x2* lhs, const float scalar )
 {
 	return HLML_CONSTRUCT( float3x2 ) {
 		lhs->rows[0].x / scalar, lhs->rows[0].y / scalar,
@@ -6443,9 +8722,7 @@ inline float3x2 float3x2_comp_divs( const float3x2* lhs, const float scalar )
 	};
 }
 
-/// \relates float3x2
-/// \brief Returns a copy of the float3x2 that has been component-wise divided by the corresponding component of the right-hand float3x2.
-inline float3x2 float3x2_comp_divm( const float3x2* lhs, const float3x2* rhs )
+float3x2 float3x2_comp_divm( const float3x2* lhs, const float3x2* rhs )
 {
 	return HLML_CONSTRUCT( float3x2 ) {
 		float2_comp_divv( &lhs->rows[0], &rhs->rows[0] ),
@@ -6454,9 +8731,7 @@ inline float3x2 float3x2_comp_divm( const float3x2* lhs, const float3x2* rhs )
 	};
 }
 
-/// \relates float3x2
-/// \brief Returns a bool3x2 where each component is true if the component of the left-hand type is less than the corresponding right-hand type component.
-inline bool3x2 float3x2_cmpl( const float3x2* lhs, const float3x2* rhs )
+bool3x2 float3x2_cmpl( const float3x2* lhs, const float3x2* rhs )
 {
 	return HLML_CONSTRUCT( bool3x2 ) {
 		float2_cmpl( &lhs->rows[0], &rhs->rows[0] ),
@@ -6465,9 +8740,7 @@ inline bool3x2 float3x2_cmpl( const float3x2* lhs, const float3x2* rhs )
 	};
 }
 
-/// \relates float3x2
-/// \brief Returns a bool3x2 where each component is true if the component of the left-hand type is less than or equal to the corresponding right-hand type component.
-inline bool3x2 float3x2_cmple( const float3x2* lhs, const float3x2* rhs )
+bool3x2 float3x2_cmple( const float3x2* lhs, const float3x2* rhs )
 {
 	return HLML_CONSTRUCT( bool3x2 ) {
 		float2_cmple( &lhs->rows[0], &rhs->rows[0] ),
@@ -6476,9 +8749,7 @@ inline bool3x2 float3x2_cmple( const float3x2* lhs, const float3x2* rhs )
 	};
 }
 
-/// \relates float3x2
-/// \brief Returns a bool3x2 where each component is true if the component of the left-hand type is greater than the corresponding right-hand type component.
-inline bool3x2 float3x2_cmpg( const float3x2* lhs, const float3x2* rhs )
+bool3x2 float3x2_cmpg( const float3x2* lhs, const float3x2* rhs )
 {
 	return HLML_CONSTRUCT( bool3x2 ) {
 		float2_cmpg( &lhs->rows[0], &rhs->rows[0] ),
@@ -6487,9 +8758,7 @@ inline bool3x2 float3x2_cmpg( const float3x2* lhs, const float3x2* rhs )
 	};
 }
 
-/// \relates float3x2
-/// \brief Returns a bool3x2 where each component is true if the component of the left-hand type is greater than or equal to the corresponding right-hand type component.
-inline bool3x2 float3x2_cmpge( const float3x2* lhs, const float3x2* rhs )
+bool3x2 float3x2_cmpge( const float3x2* lhs, const float3x2* rhs )
 {
 	return HLML_CONSTRUCT( bool3x2 ) {
 		float2_cmpge( &lhs->rows[0], &rhs->rows[0] ),
@@ -6498,18 +8767,14 @@ inline bool3x2 float3x2_cmpge( const float3x2* lhs, const float3x2* rhs )
 	};
 }
 
-/// \relates float3x2
-/// \brief Sets the matrix to an identity matrix.
-inline void float3x2_identity( float3x2* mat )
+void float3x2_identity( float3x2* mat )
 {
 	mat->rows[0] = HLML_CONSTRUCT( float2 ) { 1.0f, 0.0f };
 	mat->rows[1] = HLML_CONSTRUCT( float2 ) { 0.0f, 1.0f };
 	mat->rows[2] = HLML_CONSTRUCT( float2 ) { 0.0f, 0.0f };
 }
 
-/// \relates float3x2
-/// \brief Returns a copy of the matrix that is transposed, where the value of each row is set to the value of each column and vice versa.
-inline float2x3 float3x2_transpose( const float3x2* mat )
+float2x3 float3x2_transpose( const float3x2* mat )
 {
 	return HLML_CONSTRUCT( float2x3 ) {
 		mat->rows[0].x, mat->rows[1].x, mat->rows[2].x,
@@ -6517,9 +8782,7 @@ inline float2x3 float3x2_transpose( const float3x2* mat )
 	};
 }
 
-/// \relates float3x2
-/// \brief Returns a copy of the matrix where each row of the left-hand matrix has been dot-producted by the corresponding column of the right-hand matrix.
-inline float3x3 float3x2_mulm( const float3x2* lhs, const float2x3* rhs )
+float3x3 float3x2_mulm( const float3x2* lhs, const float2x3* rhs )
 {
 	float2 row0 = lhs->rows[0];
 	float2 row1 = lhs->rows[1];
@@ -6544,27 +8807,19 @@ inline float3x3 float3x2_mulm( const float3x2* lhs, const float2x3* rhs )
 	};
 }
 
-
-// float3x3
-/// \relates float3x3
-/// \brief Returns true if the all the components of the left-hand-side float3x3 match the other one, otherwise returns false.
-inline bool float3x3_cmpe( const float3x3* lhs, const float3x3* rhs )
+bool float3x3_cmpe( const float3x3* lhs, const float3x3* rhs )
 {
 	return float3_cmpe( &lhs->rows[0], &rhs->rows[0] )
 		&& float3_cmpe( &lhs->rows[1], &rhs->rows[1] )
 		&& float3_cmpe( &lhs->rows[2], &rhs->rows[2] );
 }
 
-/// \relates float3x3
-/// \brief Returns true if not all of the components of the left-hand-side float3x3 match the other one, otherwise returns false.
-inline bool float3x3_cmpne( const float3x3* lhs, const float3x3* rhs )
+bool float3x3_cmpne( const float3x3* lhs, const float3x3* rhs )
 {
 	return !( float3x3_cmpe( lhs, rhs ) );
 }
 
-/// \relates float3x3
-/// \brief Returns a copy of the float3x3 that has been component-wise added by the given scalar value.
-inline float3x3 float3x3_comp_adds( const float3x3* lhs, const float scalar )
+float3x3 float3x3_comp_adds( const float3x3* lhs, const float scalar )
 {
 	return HLML_CONSTRUCT( float3x3 ) {
 		lhs->rows[0].x + scalar, lhs->rows[0].y + scalar, lhs->rows[0].z + scalar,
@@ -6573,9 +8828,7 @@ inline float3x3 float3x3_comp_adds( const float3x3* lhs, const float scalar )
 	};
 }
 
-/// \relates float3x3
-/// \brief Returns a copy of the float3x3 that has been component-wise added by the corresponding component of the right-hand float3x3.
-inline float3x3 float3x3_comp_addm( const float3x3* lhs, const float3x3* rhs )
+float3x3 float3x3_comp_addm( const float3x3* lhs, const float3x3* rhs )
 {
 	return HLML_CONSTRUCT( float3x3 ) {
 		float3_comp_addv( &lhs->rows[0], &rhs->rows[0] ),
@@ -6584,9 +8837,7 @@ inline float3x3 float3x3_comp_addm( const float3x3* lhs, const float3x3* rhs )
 	};
 }
 
-/// \relates float3x3
-/// \brief Returns a copy of the float3x3 that has been component-wise subtracted by the given scalar value.
-inline float3x3 float3x3_comp_subs( const float3x3* lhs, const float scalar )
+float3x3 float3x3_comp_subs( const float3x3* lhs, const float scalar )
 {
 	return HLML_CONSTRUCT( float3x3 ) {
 		lhs->rows[0].x - scalar, lhs->rows[0].y - scalar, lhs->rows[0].z - scalar,
@@ -6595,9 +8846,7 @@ inline float3x3 float3x3_comp_subs( const float3x3* lhs, const float scalar )
 	};
 }
 
-/// \relates float3x3
-/// \brief Returns a copy of the float3x3 that has been component-wise subtracted by the corresponding component of the right-hand float3x3.
-inline float3x3 float3x3_comp_subm( const float3x3* lhs, const float3x3* rhs )
+float3x3 float3x3_comp_subm( const float3x3* lhs, const float3x3* rhs )
 {
 	return HLML_CONSTRUCT( float3x3 ) {
 		float3_comp_subv( &lhs->rows[0], &rhs->rows[0] ),
@@ -6606,9 +8855,7 @@ inline float3x3 float3x3_comp_subm( const float3x3* lhs, const float3x3* rhs )
 	};
 }
 
-/// \relates float3x3
-/// \brief Returns a copy of the float3x3 that has been component-wise multiplied by the given scalar value.
-inline float3x3 float3x3_comp_muls( const float3x3* lhs, const float scalar )
+float3x3 float3x3_comp_muls( const float3x3* lhs, const float scalar )
 {
 	return HLML_CONSTRUCT( float3x3 ) {
 		lhs->rows[0].x * scalar, lhs->rows[0].y * scalar, lhs->rows[0].z * scalar,
@@ -6617,9 +8864,7 @@ inline float3x3 float3x3_comp_muls( const float3x3* lhs, const float scalar )
 	};
 }
 
-/// \relates float3x3
-/// \brief Returns a copy of the float3x3 that has been component-wise multiplied by the corresponding component of the right-hand float3x3.
-inline float3x3 float3x3_comp_mulm( const float3x3* lhs, const float3x3* rhs )
+float3x3 float3x3_comp_mulm( const float3x3* lhs, const float3x3* rhs )
 {
 	return HLML_CONSTRUCT( float3x3 ) {
 		float3_comp_mulv( &lhs->rows[0], &rhs->rows[0] ),
@@ -6628,9 +8873,7 @@ inline float3x3 float3x3_comp_mulm( const float3x3* lhs, const float3x3* rhs )
 	};
 }
 
-/// \relates float3x3
-/// \brief Returns a copy of the float3x3 that has been component-wise divided by the given scalar value.
-inline float3x3 float3x3_comp_divs( const float3x3* lhs, const float scalar )
+float3x3 float3x3_comp_divs( const float3x3* lhs, const float scalar )
 {
 	return HLML_CONSTRUCT( float3x3 ) {
 		lhs->rows[0].x / scalar, lhs->rows[0].y / scalar, lhs->rows[0].z / scalar,
@@ -6639,9 +8882,7 @@ inline float3x3 float3x3_comp_divs( const float3x3* lhs, const float scalar )
 	};
 }
 
-/// \relates float3x3
-/// \brief Returns a copy of the float3x3 that has been component-wise divided by the corresponding component of the right-hand float3x3.
-inline float3x3 float3x3_comp_divm( const float3x3* lhs, const float3x3* rhs )
+float3x3 float3x3_comp_divm( const float3x3* lhs, const float3x3* rhs )
 {
 	return HLML_CONSTRUCT( float3x3 ) {
 		float3_comp_divv( &lhs->rows[0], &rhs->rows[0] ),
@@ -6650,9 +8891,7 @@ inline float3x3 float3x3_comp_divm( const float3x3* lhs, const float3x3* rhs )
 	};
 }
 
-/// \relates float3x3
-/// \brief Returns a bool3x3 where each component is true if the component of the left-hand type is less than the corresponding right-hand type component.
-inline bool3x3 float3x3_cmpl( const float3x3* lhs, const float3x3* rhs )
+bool3x3 float3x3_cmpl( const float3x3* lhs, const float3x3* rhs )
 {
 	return HLML_CONSTRUCT( bool3x3 ) {
 		float3_cmpl( &lhs->rows[0], &rhs->rows[0] ),
@@ -6661,9 +8900,7 @@ inline bool3x3 float3x3_cmpl( const float3x3* lhs, const float3x3* rhs )
 	};
 }
 
-/// \relates float3x3
-/// \brief Returns a bool3x3 where each component is true if the component of the left-hand type is less than or equal to the corresponding right-hand type component.
-inline bool3x3 float3x3_cmple( const float3x3* lhs, const float3x3* rhs )
+bool3x3 float3x3_cmple( const float3x3* lhs, const float3x3* rhs )
 {
 	return HLML_CONSTRUCT( bool3x3 ) {
 		float3_cmple( &lhs->rows[0], &rhs->rows[0] ),
@@ -6672,9 +8909,7 @@ inline bool3x3 float3x3_cmple( const float3x3* lhs, const float3x3* rhs )
 	};
 }
 
-/// \relates float3x3
-/// \brief Returns a bool3x3 where each component is true if the component of the left-hand type is greater than the corresponding right-hand type component.
-inline bool3x3 float3x3_cmpg( const float3x3* lhs, const float3x3* rhs )
+bool3x3 float3x3_cmpg( const float3x3* lhs, const float3x3* rhs )
 {
 	return HLML_CONSTRUCT( bool3x3 ) {
 		float3_cmpg( &lhs->rows[0], &rhs->rows[0] ),
@@ -6683,9 +8918,7 @@ inline bool3x3 float3x3_cmpg( const float3x3* lhs, const float3x3* rhs )
 	};
 }
 
-/// \relates float3x3
-/// \brief Returns a bool3x3 where each component is true if the component of the left-hand type is greater than or equal to the corresponding right-hand type component.
-inline bool3x3 float3x3_cmpge( const float3x3* lhs, const float3x3* rhs )
+bool3x3 float3x3_cmpge( const float3x3* lhs, const float3x3* rhs )
 {
 	return HLML_CONSTRUCT( bool3x3 ) {
 		float3_cmpge( &lhs->rows[0], &rhs->rows[0] ),
@@ -6694,18 +8927,14 @@ inline bool3x3 float3x3_cmpge( const float3x3* lhs, const float3x3* rhs )
 	};
 }
 
-/// \relates float3x3
-/// \brief Sets the matrix to an identity matrix.
-inline void float3x3_identity( float3x3* mat )
+void float3x3_identity( float3x3* mat )
 {
 	mat->rows[0] = HLML_CONSTRUCT( float3 ) { 1.0f, 0.0f, 0.0f };
 	mat->rows[1] = HLML_CONSTRUCT( float3 ) { 0.0f, 1.0f, 0.0f };
 	mat->rows[2] = HLML_CONSTRUCT( float3 ) { 0.0f, 0.0f, 1.0f };
 }
 
-/// \relates float3x3
-/// \brief Returns a copy of the matrix that is transposed, where the value of each row is set to the value of each column and vice versa.
-inline float3x3 float3x3_transpose( const float3x3* mat )
+float3x3 float3x3_transpose( const float3x3* mat )
 {
 	return HLML_CONSTRUCT( float3x3 ) {
 		mat->rows[0].x, mat->rows[1].x, mat->rows[2].x,
@@ -6714,9 +8943,7 @@ inline float3x3 float3x3_transpose( const float3x3* mat )
 	};
 }
 
-/// \relates float3x3
-/// \brief Returns the determinant of the matrix.
-inline float float3x3_determinant( const float3x3* mat )
+float float3x3_determinant( const float3x3* mat )
 {
 	return
 		+ mat->rows[0].x * ( mat->rows[1].y * mat->rows[2].z - mat->rows[2].y * mat->rows[1].z ) 
@@ -6724,10 +8951,7 @@ inline float float3x3_determinant( const float3x3* mat )
 		+ mat->rows[0].z * ( mat->rows[1].x * mat->rows[2].y - mat->rows[2].x * mat->rows[1].y );
 }
 
-/// \relates float3x3
-/// \brief Returns a copy of the matrix that is inversed.
-/// Currently this is only applicable for square matrices.  Pseudo-inverse support for non-square matrices is coming soon.
-inline float3x3 float3x3_inverse( const float3x3* mat )
+float3x3 float3x3_inverse( const float3x3* mat )
 {
 	const float invdet = 1.0f / float3x3_determinant( mat );
 	return HLML_CONSTRUCT( float3x3 ) {
@@ -6745,9 +8969,7 @@ inline float3x3 float3x3_inverse( const float3x3* mat )
 	};
 }
 
-/// \relates float3x3
-/// \brief Returns a copy of the matrix where each row of the left-hand matrix has been dot-producted by the corresponding column of the right-hand matrix.
-inline float3x3 float3x3_mulm( const float3x3* lhs, const float3x3* rhs )
+float3x3 float3x3_mulm( const float3x3* lhs, const float3x3* rhs )
 {
 	float3 row0 = lhs->rows[0];
 	float3 row1 = lhs->rows[1];
@@ -6772,9 +8994,7 @@ inline float3x3 float3x3_mulm( const float3x3* lhs, const float3x3* rhs )
 	};
 }
 
-/// \relates float3x3
-/// \brief Returns the right-hand vector multiplied by the left-hand matrix.
-inline float3 float3x3_mulv( const float3x3* lhs, const float3* rhs )
+float3 float3x3_mulv( const float3x3* lhs, const float3* rhs )
 {
 	return HLML_CONSTRUCT( float3 ) {
 		lhs->rows[0].x * rhs->x + lhs->rows[0].y * rhs->y + lhs->rows[0].z * rhs->z,
@@ -6783,9 +9003,7 @@ inline float3 float3x3_mulv( const float3x3* lhs, const float3* rhs )
 	};
 }
 
-/// \relates float3x3
-/// \brief Returns a copy of the matrix where each component of the 3rd column has been added by the given vector.
-inline float3x3 float3x3_translate( const float3x3* mat, const float2* vec )
+float3x3 float3x3_translate( const float3x3* mat, const float2* vec )
 {
 	return HLML_CONSTRUCT( float3x3 ) {
 		mat->rows[0].x, mat->rows[0].y, mat->rows[0].z + vec->x,
@@ -6794,9 +9012,7 @@ inline float3x3 float3x3_translate( const float3x3* mat, const float2* vec )
 	};
 }
 
-/// \relates float3x3
-/// \brief Returns a copy of the matrix that has had a rotation applied to it in radians on one or more of the following axes.
-inline float3x3 float3x3_rotate( const float3x3* mat, const float rad )
+float3x3 float3x3_rotate( const float3x3* mat, const float rad )
 {
 	const float c = cosf( rad );
 	const float s = sinf( rad );
@@ -6806,16 +9022,14 @@ inline float3x3 float3x3_rotate( const float3x3* mat, const float rad )
 	float3 row1_nsin = float3_comp_muls( &mat->rows[1], -s );
 	float3 row1_cos  = float3_comp_muls( &mat->rows[1], c );
 
-	return (float3x3) {
+	return HLML_CONSTRUCT( float3x3 ) {
 		float3_comp_addv( &row0_cos, &row1_nsin ),
 		float3_comp_addv( &row0_sin, &row1_cos  ),
 		mat->rows[2]
 	};
 }
 
-/// \relates float3x3
-/// \brief Returns a copy of the matrix that has had a non-uniform scale applied to it.
-inline float3x3 float3x3_scale( const float3x3* mat, const float2* vec )
+float3x3 float3x3_scale( const float3x3* mat, const float2* vec )
 {
 	return HLML_CONSTRUCT( float3x3 ) {
 		mat->rows[0].x * vec->x,
@@ -6832,27 +9046,19 @@ inline float3x3 float3x3_scale( const float3x3* mat, const float2* vec )
 	};
 }
 
-
-// float3x4
-/// \relates float3x4
-/// \brief Returns true if the all the components of the left-hand-side float3x4 match the other one, otherwise returns false.
-inline bool float3x4_cmpe( const float3x4* lhs, const float3x4* rhs )
+bool float3x4_cmpe( const float3x4* lhs, const float3x4* rhs )
 {
 	return float4_cmpe( &lhs->rows[0], &rhs->rows[0] )
 		&& float4_cmpe( &lhs->rows[1], &rhs->rows[1] )
 		&& float4_cmpe( &lhs->rows[2], &rhs->rows[2] );
 }
 
-/// \relates float3x4
-/// \brief Returns true if not all of the components of the left-hand-side float3x4 match the other one, otherwise returns false.
-inline bool float3x4_cmpne( const float3x4* lhs, const float3x4* rhs )
+bool float3x4_cmpne( const float3x4* lhs, const float3x4* rhs )
 {
 	return !( float3x4_cmpe( lhs, rhs ) );
 }
 
-/// \relates float3x4
-/// \brief Returns a copy of the float3x4 that has been component-wise added by the given scalar value.
-inline float3x4 float3x4_comp_adds( const float3x4* lhs, const float scalar )
+float3x4 float3x4_comp_adds( const float3x4* lhs, const float scalar )
 {
 	return HLML_CONSTRUCT( float3x4 ) {
 		lhs->rows[0].x + scalar, lhs->rows[0].y + scalar, lhs->rows[0].z + scalar, lhs->rows[0].w + scalar,
@@ -6861,9 +9067,7 @@ inline float3x4 float3x4_comp_adds( const float3x4* lhs, const float scalar )
 	};
 }
 
-/// \relates float3x4
-/// \brief Returns a copy of the float3x4 that has been component-wise added by the corresponding component of the right-hand float3x4.
-inline float3x4 float3x4_comp_addm( const float3x4* lhs, const float3x4* rhs )
+float3x4 float3x4_comp_addm( const float3x4* lhs, const float3x4* rhs )
 {
 	return HLML_CONSTRUCT( float3x4 ) {
 		float4_comp_addv( &lhs->rows[0], &rhs->rows[0] ),
@@ -6872,9 +9076,7 @@ inline float3x4 float3x4_comp_addm( const float3x4* lhs, const float3x4* rhs )
 	};
 }
 
-/// \relates float3x4
-/// \brief Returns a copy of the float3x4 that has been component-wise subtracted by the given scalar value.
-inline float3x4 float3x4_comp_subs( const float3x4* lhs, const float scalar )
+float3x4 float3x4_comp_subs( const float3x4* lhs, const float scalar )
 {
 	return HLML_CONSTRUCT( float3x4 ) {
 		lhs->rows[0].x - scalar, lhs->rows[0].y - scalar, lhs->rows[0].z - scalar, lhs->rows[0].w - scalar,
@@ -6883,9 +9085,7 @@ inline float3x4 float3x4_comp_subs( const float3x4* lhs, const float scalar )
 	};
 }
 
-/// \relates float3x4
-/// \brief Returns a copy of the float3x4 that has been component-wise subtracted by the corresponding component of the right-hand float3x4.
-inline float3x4 float3x4_comp_subm( const float3x4* lhs, const float3x4* rhs )
+float3x4 float3x4_comp_subm( const float3x4* lhs, const float3x4* rhs )
 {
 	return HLML_CONSTRUCT( float3x4 ) {
 		float4_comp_subv( &lhs->rows[0], &rhs->rows[0] ),
@@ -6894,9 +9094,7 @@ inline float3x4 float3x4_comp_subm( const float3x4* lhs, const float3x4* rhs )
 	};
 }
 
-/// \relates float3x4
-/// \brief Returns a copy of the float3x4 that has been component-wise multiplied by the given scalar value.
-inline float3x4 float3x4_comp_muls( const float3x4* lhs, const float scalar )
+float3x4 float3x4_comp_muls( const float3x4* lhs, const float scalar )
 {
 	return HLML_CONSTRUCT( float3x4 ) {
 		lhs->rows[0].x * scalar, lhs->rows[0].y * scalar, lhs->rows[0].z * scalar, lhs->rows[0].w * scalar,
@@ -6905,9 +9103,7 @@ inline float3x4 float3x4_comp_muls( const float3x4* lhs, const float scalar )
 	};
 }
 
-/// \relates float3x4
-/// \brief Returns a copy of the float3x4 that has been component-wise multiplied by the corresponding component of the right-hand float3x4.
-inline float3x4 float3x4_comp_mulm( const float3x4* lhs, const float3x4* rhs )
+float3x4 float3x4_comp_mulm( const float3x4* lhs, const float3x4* rhs )
 {
 	return HLML_CONSTRUCT( float3x4 ) {
 		float4_comp_mulv( &lhs->rows[0], &rhs->rows[0] ),
@@ -6916,9 +9112,7 @@ inline float3x4 float3x4_comp_mulm( const float3x4* lhs, const float3x4* rhs )
 	};
 }
 
-/// \relates float3x4
-/// \brief Returns a copy of the float3x4 that has been component-wise divided by the given scalar value.
-inline float3x4 float3x4_comp_divs( const float3x4* lhs, const float scalar )
+float3x4 float3x4_comp_divs( const float3x4* lhs, const float scalar )
 {
 	return HLML_CONSTRUCT( float3x4 ) {
 		lhs->rows[0].x / scalar, lhs->rows[0].y / scalar, lhs->rows[0].z / scalar, lhs->rows[0].w / scalar,
@@ -6927,9 +9121,7 @@ inline float3x4 float3x4_comp_divs( const float3x4* lhs, const float scalar )
 	};
 }
 
-/// \relates float3x4
-/// \brief Returns a copy of the float3x4 that has been component-wise divided by the corresponding component of the right-hand float3x4.
-inline float3x4 float3x4_comp_divm( const float3x4* lhs, const float3x4* rhs )
+float3x4 float3x4_comp_divm( const float3x4* lhs, const float3x4* rhs )
 {
 	return HLML_CONSTRUCT( float3x4 ) {
 		float4_comp_divv( &lhs->rows[0], &rhs->rows[0] ),
@@ -6938,9 +9130,7 @@ inline float3x4 float3x4_comp_divm( const float3x4* lhs, const float3x4* rhs )
 	};
 }
 
-/// \relates float3x4
-/// \brief Returns a bool3x4 where each component is true if the component of the left-hand type is less than the corresponding right-hand type component.
-inline bool3x4 float3x4_cmpl( const float3x4* lhs, const float3x4* rhs )
+bool3x4 float3x4_cmpl( const float3x4* lhs, const float3x4* rhs )
 {
 	return HLML_CONSTRUCT( bool3x4 ) {
 		float4_cmpl( &lhs->rows[0], &rhs->rows[0] ),
@@ -6949,9 +9139,7 @@ inline bool3x4 float3x4_cmpl( const float3x4* lhs, const float3x4* rhs )
 	};
 }
 
-/// \relates float3x4
-/// \brief Returns a bool3x4 where each component is true if the component of the left-hand type is less than or equal to the corresponding right-hand type component.
-inline bool3x4 float3x4_cmple( const float3x4* lhs, const float3x4* rhs )
+bool3x4 float3x4_cmple( const float3x4* lhs, const float3x4* rhs )
 {
 	return HLML_CONSTRUCT( bool3x4 ) {
 		float4_cmple( &lhs->rows[0], &rhs->rows[0] ),
@@ -6960,9 +9148,7 @@ inline bool3x4 float3x4_cmple( const float3x4* lhs, const float3x4* rhs )
 	};
 }
 
-/// \relates float3x4
-/// \brief Returns a bool3x4 where each component is true if the component of the left-hand type is greater than the corresponding right-hand type component.
-inline bool3x4 float3x4_cmpg( const float3x4* lhs, const float3x4* rhs )
+bool3x4 float3x4_cmpg( const float3x4* lhs, const float3x4* rhs )
 {
 	return HLML_CONSTRUCT( bool3x4 ) {
 		float4_cmpg( &lhs->rows[0], &rhs->rows[0] ),
@@ -6971,9 +9157,7 @@ inline bool3x4 float3x4_cmpg( const float3x4* lhs, const float3x4* rhs )
 	};
 }
 
-/// \relates float3x4
-/// \brief Returns a bool3x4 where each component is true if the component of the left-hand type is greater than or equal to the corresponding right-hand type component.
-inline bool3x4 float3x4_cmpge( const float3x4* lhs, const float3x4* rhs )
+bool3x4 float3x4_cmpge( const float3x4* lhs, const float3x4* rhs )
 {
 	return HLML_CONSTRUCT( bool3x4 ) {
 		float4_cmpge( &lhs->rows[0], &rhs->rows[0] ),
@@ -6982,18 +9166,14 @@ inline bool3x4 float3x4_cmpge( const float3x4* lhs, const float3x4* rhs )
 	};
 }
 
-/// \relates float3x4
-/// \brief Sets the matrix to an identity matrix.
-inline void float3x4_identity( float3x4* mat )
+void float3x4_identity( float3x4* mat )
 {
 	mat->rows[0] = HLML_CONSTRUCT( float4 ) { 1.0f, 0.0f, 0.0f, 0.0f };
 	mat->rows[1] = HLML_CONSTRUCT( float4 ) { 0.0f, 1.0f, 0.0f, 0.0f };
 	mat->rows[2] = HLML_CONSTRUCT( float4 ) { 0.0f, 0.0f, 1.0f, 0.0f };
 }
 
-/// \relates float3x4
-/// \brief Returns a copy of the matrix that is transposed, where the value of each row is set to the value of each column and vice versa.
-inline float4x3 float3x4_transpose( const float3x4* mat )
+float4x3 float3x4_transpose( const float3x4* mat )
 {
 	return HLML_CONSTRUCT( float4x3 ) {
 		mat->rows[0].x, mat->rows[1].x, mat->rows[2].x,
@@ -7003,9 +9183,7 @@ inline float4x3 float3x4_transpose( const float3x4* mat )
 	};
 }
 
-/// \relates float3x4
-/// \brief Returns a copy of the matrix where each row of the left-hand matrix has been dot-producted by the corresponding column of the right-hand matrix.
-inline float3x3 float3x4_mulm( const float3x4* lhs, const float4x3* rhs )
+float3x3 float3x4_mulm( const float3x4* lhs, const float4x3* rhs )
 {
 	float4 row0 = lhs->rows[0];
 	float4 row1 = lhs->rows[1];
@@ -7030,9 +9208,7 @@ inline float3x3 float3x4_mulm( const float3x4* lhs, const float4x3* rhs )
 	};
 }
 
-/// \relates float3x4
-/// \brief Returns a copy of the matrix where each component of the 3rd column has been added by the given vector.
-inline float3x4 float3x4_translate( const float3x4* mat, const float3* vec )
+float3x4 float3x4_translate( const float3x4* mat, const float3* vec )
 {
 	return HLML_CONSTRUCT( float3x4 ) {
 		mat->rows[0].x, mat->rows[0].y, mat->rows[0].z, mat->rows[0].w + vec->x,
@@ -7041,9 +9217,7 @@ inline float3x4 float3x4_translate( const float3x4* mat, const float3* vec )
 	};
 }
 
-/// \relates float3x4
-/// \brief Returns a copy of the matrix that has had a non-uniform scale applied to it.
-inline float3x4 float3x4_scale( const float3x4* mat, const float2* vec )
+float3x4 float3x4_scale( const float3x4* mat, const float2* vec )
 {
 	return HLML_CONSTRUCT( float3x4 ) {
 		mat->rows[0].x * vec->x,
@@ -7063,11 +9237,7 @@ inline float3x4 float3x4_scale( const float3x4* mat, const float2* vec )
 	};
 }
 
-
-// float4x2
-/// \relates float4x2
-/// \brief Returns true if the all the components of the left-hand-side float4x2 match the other one, otherwise returns false.
-inline bool float4x2_cmpe( const float4x2* lhs, const float4x2* rhs )
+bool float4x2_cmpe( const float4x2* lhs, const float4x2* rhs )
 {
 	return float2_cmpe( &lhs->rows[0], &rhs->rows[0] )
 		&& float2_cmpe( &lhs->rows[1], &rhs->rows[1] )
@@ -7075,16 +9245,12 @@ inline bool float4x2_cmpe( const float4x2* lhs, const float4x2* rhs )
 		&& float2_cmpe( &lhs->rows[3], &rhs->rows[3] );
 }
 
-/// \relates float4x2
-/// \brief Returns true if not all of the components of the left-hand-side float4x2 match the other one, otherwise returns false.
-inline bool float4x2_cmpne( const float4x2* lhs, const float4x2* rhs )
+bool float4x2_cmpne( const float4x2* lhs, const float4x2* rhs )
 {
 	return !( float4x2_cmpe( lhs, rhs ) );
 }
 
-/// \relates float4x2
-/// \brief Returns a copy of the float4x2 that has been component-wise added by the given scalar value.
-inline float4x2 float4x2_comp_adds( const float4x2* lhs, const float scalar )
+float4x2 float4x2_comp_adds( const float4x2* lhs, const float scalar )
 {
 	return HLML_CONSTRUCT( float4x2 ) {
 		lhs->rows[0].x + scalar, lhs->rows[0].y + scalar,
@@ -7094,9 +9260,7 @@ inline float4x2 float4x2_comp_adds( const float4x2* lhs, const float scalar )
 	};
 }
 
-/// \relates float4x2
-/// \brief Returns a copy of the float4x2 that has been component-wise added by the corresponding component of the right-hand float4x2.
-inline float4x2 float4x2_comp_addm( const float4x2* lhs, const float4x2* rhs )
+float4x2 float4x2_comp_addm( const float4x2* lhs, const float4x2* rhs )
 {
 	return HLML_CONSTRUCT( float4x2 ) {
 		float2_comp_addv( &lhs->rows[0], &rhs->rows[0] ),
@@ -7106,9 +9270,7 @@ inline float4x2 float4x2_comp_addm( const float4x2* lhs, const float4x2* rhs )
 	};
 }
 
-/// \relates float4x2
-/// \brief Returns a copy of the float4x2 that has been component-wise subtracted by the given scalar value.
-inline float4x2 float4x2_comp_subs( const float4x2* lhs, const float scalar )
+float4x2 float4x2_comp_subs( const float4x2* lhs, const float scalar )
 {
 	return HLML_CONSTRUCT( float4x2 ) {
 		lhs->rows[0].x - scalar, lhs->rows[0].y - scalar,
@@ -7118,9 +9280,7 @@ inline float4x2 float4x2_comp_subs( const float4x2* lhs, const float scalar )
 	};
 }
 
-/// \relates float4x2
-/// \brief Returns a copy of the float4x2 that has been component-wise subtracted by the corresponding component of the right-hand float4x2.
-inline float4x2 float4x2_comp_subm( const float4x2* lhs, const float4x2* rhs )
+float4x2 float4x2_comp_subm( const float4x2* lhs, const float4x2* rhs )
 {
 	return HLML_CONSTRUCT( float4x2 ) {
 		float2_comp_subv( &lhs->rows[0], &rhs->rows[0] ),
@@ -7130,9 +9290,7 @@ inline float4x2 float4x2_comp_subm( const float4x2* lhs, const float4x2* rhs )
 	};
 }
 
-/// \relates float4x2
-/// \brief Returns a copy of the float4x2 that has been component-wise multiplied by the given scalar value.
-inline float4x2 float4x2_comp_muls( const float4x2* lhs, const float scalar )
+float4x2 float4x2_comp_muls( const float4x2* lhs, const float scalar )
 {
 	return HLML_CONSTRUCT( float4x2 ) {
 		lhs->rows[0].x * scalar, lhs->rows[0].y * scalar,
@@ -7142,9 +9300,7 @@ inline float4x2 float4x2_comp_muls( const float4x2* lhs, const float scalar )
 	};
 }
 
-/// \relates float4x2
-/// \brief Returns a copy of the float4x2 that has been component-wise multiplied by the corresponding component of the right-hand float4x2.
-inline float4x2 float4x2_comp_mulm( const float4x2* lhs, const float4x2* rhs )
+float4x2 float4x2_comp_mulm( const float4x2* lhs, const float4x2* rhs )
 {
 	return HLML_CONSTRUCT( float4x2 ) {
 		float2_comp_mulv( &lhs->rows[0], &rhs->rows[0] ),
@@ -7154,9 +9310,7 @@ inline float4x2 float4x2_comp_mulm( const float4x2* lhs, const float4x2* rhs )
 	};
 }
 
-/// \relates float4x2
-/// \brief Returns a copy of the float4x2 that has been component-wise divided by the given scalar value.
-inline float4x2 float4x2_comp_divs( const float4x2* lhs, const float scalar )
+float4x2 float4x2_comp_divs( const float4x2* lhs, const float scalar )
 {
 	return HLML_CONSTRUCT( float4x2 ) {
 		lhs->rows[0].x / scalar, lhs->rows[0].y / scalar,
@@ -7166,9 +9320,7 @@ inline float4x2 float4x2_comp_divs( const float4x2* lhs, const float scalar )
 	};
 }
 
-/// \relates float4x2
-/// \brief Returns a copy of the float4x2 that has been component-wise divided by the corresponding component of the right-hand float4x2.
-inline float4x2 float4x2_comp_divm( const float4x2* lhs, const float4x2* rhs )
+float4x2 float4x2_comp_divm( const float4x2* lhs, const float4x2* rhs )
 {
 	return HLML_CONSTRUCT( float4x2 ) {
 		float2_comp_divv( &lhs->rows[0], &rhs->rows[0] ),
@@ -7178,9 +9330,7 @@ inline float4x2 float4x2_comp_divm( const float4x2* lhs, const float4x2* rhs )
 	};
 }
 
-/// \relates float4x2
-/// \brief Returns a bool4x2 where each component is true if the component of the left-hand type is less than the corresponding right-hand type component.
-inline bool4x2 float4x2_cmpl( const float4x2* lhs, const float4x2* rhs )
+bool4x2 float4x2_cmpl( const float4x2* lhs, const float4x2* rhs )
 {
 	return HLML_CONSTRUCT( bool4x2 ) {
 		float2_cmpl( &lhs->rows[0], &rhs->rows[0] ),
@@ -7190,9 +9340,7 @@ inline bool4x2 float4x2_cmpl( const float4x2* lhs, const float4x2* rhs )
 	};
 }
 
-/// \relates float4x2
-/// \brief Returns a bool4x2 where each component is true if the component of the left-hand type is less than or equal to the corresponding right-hand type component.
-inline bool4x2 float4x2_cmple( const float4x2* lhs, const float4x2* rhs )
+bool4x2 float4x2_cmple( const float4x2* lhs, const float4x2* rhs )
 {
 	return HLML_CONSTRUCT( bool4x2 ) {
 		float2_cmple( &lhs->rows[0], &rhs->rows[0] ),
@@ -7202,9 +9350,7 @@ inline bool4x2 float4x2_cmple( const float4x2* lhs, const float4x2* rhs )
 	};
 }
 
-/// \relates float4x2
-/// \brief Returns a bool4x2 where each component is true if the component of the left-hand type is greater than the corresponding right-hand type component.
-inline bool4x2 float4x2_cmpg( const float4x2* lhs, const float4x2* rhs )
+bool4x2 float4x2_cmpg( const float4x2* lhs, const float4x2* rhs )
 {
 	return HLML_CONSTRUCT( bool4x2 ) {
 		float2_cmpg( &lhs->rows[0], &rhs->rows[0] ),
@@ -7214,9 +9360,7 @@ inline bool4x2 float4x2_cmpg( const float4x2* lhs, const float4x2* rhs )
 	};
 }
 
-/// \relates float4x2
-/// \brief Returns a bool4x2 where each component is true if the component of the left-hand type is greater than or equal to the corresponding right-hand type component.
-inline bool4x2 float4x2_cmpge( const float4x2* lhs, const float4x2* rhs )
+bool4x2 float4x2_cmpge( const float4x2* lhs, const float4x2* rhs )
 {
 	return HLML_CONSTRUCT( bool4x2 ) {
 		float2_cmpge( &lhs->rows[0], &rhs->rows[0] ),
@@ -7226,9 +9370,7 @@ inline bool4x2 float4x2_cmpge( const float4x2* lhs, const float4x2* rhs )
 	};
 }
 
-/// \relates float4x2
-/// \brief Sets the matrix to an identity matrix.
-inline void float4x2_identity( float4x2* mat )
+void float4x2_identity( float4x2* mat )
 {
 	mat->rows[0] = HLML_CONSTRUCT( float2 ) { 1.0f, 0.0f };
 	mat->rows[1] = HLML_CONSTRUCT( float2 ) { 0.0f, 1.0f };
@@ -7236,9 +9378,7 @@ inline void float4x2_identity( float4x2* mat )
 	mat->rows[3] = HLML_CONSTRUCT( float2 ) { 0.0f, 0.0f };
 }
 
-/// \relates float4x2
-/// \brief Returns a copy of the matrix that is transposed, where the value of each row is set to the value of each column and vice versa.
-inline float2x4 float4x2_transpose( const float4x2* mat )
+float2x4 float4x2_transpose( const float4x2* mat )
 {
 	return HLML_CONSTRUCT( float2x4 ) {
 		mat->rows[0].x, mat->rows[1].x, mat->rows[2].x, mat->rows[3].x,
@@ -7246,9 +9386,7 @@ inline float2x4 float4x2_transpose( const float4x2* mat )
 	};
 }
 
-/// \relates float4x2
-/// \brief Returns a copy of the matrix where each row of the left-hand matrix has been dot-producted by the corresponding column of the right-hand matrix.
-inline float4x4 float4x2_mulm( const float4x2* lhs, const float2x4* rhs )
+float4x4 float4x2_mulm( const float4x2* lhs, const float2x4* rhs )
 {
 	float2 row0 = lhs->rows[0];
 	float2 row1 = lhs->rows[1];
@@ -7283,11 +9421,7 @@ inline float4x4 float4x2_mulm( const float4x2* lhs, const float2x4* rhs )
 	};
 }
 
-
-// float4x3
-/// \relates float4x3
-/// \brief Returns true if the all the components of the left-hand-side float4x3 match the other one, otherwise returns false.
-inline bool float4x3_cmpe( const float4x3* lhs, const float4x3* rhs )
+bool float4x3_cmpe( const float4x3* lhs, const float4x3* rhs )
 {
 	return float3_cmpe( &lhs->rows[0], &rhs->rows[0] )
 		&& float3_cmpe( &lhs->rows[1], &rhs->rows[1] )
@@ -7295,16 +9429,12 @@ inline bool float4x3_cmpe( const float4x3* lhs, const float4x3* rhs )
 		&& float3_cmpe( &lhs->rows[3], &rhs->rows[3] );
 }
 
-/// \relates float4x3
-/// \brief Returns true if not all of the components of the left-hand-side float4x3 match the other one, otherwise returns false.
-inline bool float4x3_cmpne( const float4x3* lhs, const float4x3* rhs )
+bool float4x3_cmpne( const float4x3* lhs, const float4x3* rhs )
 {
 	return !( float4x3_cmpe( lhs, rhs ) );
 }
 
-/// \relates float4x3
-/// \brief Returns a copy of the float4x3 that has been component-wise added by the given scalar value.
-inline float4x3 float4x3_comp_adds( const float4x3* lhs, const float scalar )
+float4x3 float4x3_comp_adds( const float4x3* lhs, const float scalar )
 {
 	return HLML_CONSTRUCT( float4x3 ) {
 		lhs->rows[0].x + scalar, lhs->rows[0].y + scalar, lhs->rows[0].z + scalar,
@@ -7314,9 +9444,7 @@ inline float4x3 float4x3_comp_adds( const float4x3* lhs, const float scalar )
 	};
 }
 
-/// \relates float4x3
-/// \brief Returns a copy of the float4x3 that has been component-wise added by the corresponding component of the right-hand float4x3.
-inline float4x3 float4x3_comp_addm( const float4x3* lhs, const float4x3* rhs )
+float4x3 float4x3_comp_addm( const float4x3* lhs, const float4x3* rhs )
 {
 	return HLML_CONSTRUCT( float4x3 ) {
 		float3_comp_addv( &lhs->rows[0], &rhs->rows[0] ),
@@ -7326,9 +9454,7 @@ inline float4x3 float4x3_comp_addm( const float4x3* lhs, const float4x3* rhs )
 	};
 }
 
-/// \relates float4x3
-/// \brief Returns a copy of the float4x3 that has been component-wise subtracted by the given scalar value.
-inline float4x3 float4x3_comp_subs( const float4x3* lhs, const float scalar )
+float4x3 float4x3_comp_subs( const float4x3* lhs, const float scalar )
 {
 	return HLML_CONSTRUCT( float4x3 ) {
 		lhs->rows[0].x - scalar, lhs->rows[0].y - scalar, lhs->rows[0].z - scalar,
@@ -7338,9 +9464,7 @@ inline float4x3 float4x3_comp_subs( const float4x3* lhs, const float scalar )
 	};
 }
 
-/// \relates float4x3
-/// \brief Returns a copy of the float4x3 that has been component-wise subtracted by the corresponding component of the right-hand float4x3.
-inline float4x3 float4x3_comp_subm( const float4x3* lhs, const float4x3* rhs )
+float4x3 float4x3_comp_subm( const float4x3* lhs, const float4x3* rhs )
 {
 	return HLML_CONSTRUCT( float4x3 ) {
 		float3_comp_subv( &lhs->rows[0], &rhs->rows[0] ),
@@ -7350,9 +9474,7 @@ inline float4x3 float4x3_comp_subm( const float4x3* lhs, const float4x3* rhs )
 	};
 }
 
-/// \relates float4x3
-/// \brief Returns a copy of the float4x3 that has been component-wise multiplied by the given scalar value.
-inline float4x3 float4x3_comp_muls( const float4x3* lhs, const float scalar )
+float4x3 float4x3_comp_muls( const float4x3* lhs, const float scalar )
 {
 	return HLML_CONSTRUCT( float4x3 ) {
 		lhs->rows[0].x * scalar, lhs->rows[0].y * scalar, lhs->rows[0].z * scalar,
@@ -7362,9 +9484,7 @@ inline float4x3 float4x3_comp_muls( const float4x3* lhs, const float scalar )
 	};
 }
 
-/// \relates float4x3
-/// \brief Returns a copy of the float4x3 that has been component-wise multiplied by the corresponding component of the right-hand float4x3.
-inline float4x3 float4x3_comp_mulm( const float4x3* lhs, const float4x3* rhs )
+float4x3 float4x3_comp_mulm( const float4x3* lhs, const float4x3* rhs )
 {
 	return HLML_CONSTRUCT( float4x3 ) {
 		float3_comp_mulv( &lhs->rows[0], &rhs->rows[0] ),
@@ -7374,9 +9494,7 @@ inline float4x3 float4x3_comp_mulm( const float4x3* lhs, const float4x3* rhs )
 	};
 }
 
-/// \relates float4x3
-/// \brief Returns a copy of the float4x3 that has been component-wise divided by the given scalar value.
-inline float4x3 float4x3_comp_divs( const float4x3* lhs, const float scalar )
+float4x3 float4x3_comp_divs( const float4x3* lhs, const float scalar )
 {
 	return HLML_CONSTRUCT( float4x3 ) {
 		lhs->rows[0].x / scalar, lhs->rows[0].y / scalar, lhs->rows[0].z / scalar,
@@ -7386,9 +9504,7 @@ inline float4x3 float4x3_comp_divs( const float4x3* lhs, const float scalar )
 	};
 }
 
-/// \relates float4x3
-/// \brief Returns a copy of the float4x3 that has been component-wise divided by the corresponding component of the right-hand float4x3.
-inline float4x3 float4x3_comp_divm( const float4x3* lhs, const float4x3* rhs )
+float4x3 float4x3_comp_divm( const float4x3* lhs, const float4x3* rhs )
 {
 	return HLML_CONSTRUCT( float4x3 ) {
 		float3_comp_divv( &lhs->rows[0], &rhs->rows[0] ),
@@ -7398,9 +9514,7 @@ inline float4x3 float4x3_comp_divm( const float4x3* lhs, const float4x3* rhs )
 	};
 }
 
-/// \relates float4x3
-/// \brief Returns a bool4x3 where each component is true if the component of the left-hand type is less than the corresponding right-hand type component.
-inline bool4x3 float4x3_cmpl( const float4x3* lhs, const float4x3* rhs )
+bool4x3 float4x3_cmpl( const float4x3* lhs, const float4x3* rhs )
 {
 	return HLML_CONSTRUCT( bool4x3 ) {
 		float3_cmpl( &lhs->rows[0], &rhs->rows[0] ),
@@ -7410,9 +9524,7 @@ inline bool4x3 float4x3_cmpl( const float4x3* lhs, const float4x3* rhs )
 	};
 }
 
-/// \relates float4x3
-/// \brief Returns a bool4x3 where each component is true if the component of the left-hand type is less than or equal to the corresponding right-hand type component.
-inline bool4x3 float4x3_cmple( const float4x3* lhs, const float4x3* rhs )
+bool4x3 float4x3_cmple( const float4x3* lhs, const float4x3* rhs )
 {
 	return HLML_CONSTRUCT( bool4x3 ) {
 		float3_cmple( &lhs->rows[0], &rhs->rows[0] ),
@@ -7422,9 +9534,7 @@ inline bool4x3 float4x3_cmple( const float4x3* lhs, const float4x3* rhs )
 	};
 }
 
-/// \relates float4x3
-/// \brief Returns a bool4x3 where each component is true if the component of the left-hand type is greater than the corresponding right-hand type component.
-inline bool4x3 float4x3_cmpg( const float4x3* lhs, const float4x3* rhs )
+bool4x3 float4x3_cmpg( const float4x3* lhs, const float4x3* rhs )
 {
 	return HLML_CONSTRUCT( bool4x3 ) {
 		float3_cmpg( &lhs->rows[0], &rhs->rows[0] ),
@@ -7434,9 +9544,7 @@ inline bool4x3 float4x3_cmpg( const float4x3* lhs, const float4x3* rhs )
 	};
 }
 
-/// \relates float4x3
-/// \brief Returns a bool4x3 where each component is true if the component of the left-hand type is greater than or equal to the corresponding right-hand type component.
-inline bool4x3 float4x3_cmpge( const float4x3* lhs, const float4x3* rhs )
+bool4x3 float4x3_cmpge( const float4x3* lhs, const float4x3* rhs )
 {
 	return HLML_CONSTRUCT( bool4x3 ) {
 		float3_cmpge( &lhs->rows[0], &rhs->rows[0] ),
@@ -7446,9 +9554,7 @@ inline bool4x3 float4x3_cmpge( const float4x3* lhs, const float4x3* rhs )
 	};
 }
 
-/// \relates float4x3
-/// \brief Sets the matrix to an identity matrix.
-inline void float4x3_identity( float4x3* mat )
+void float4x3_identity( float4x3* mat )
 {
 	mat->rows[0] = HLML_CONSTRUCT( float3 ) { 1.0f, 0.0f, 0.0f };
 	mat->rows[1] = HLML_CONSTRUCT( float3 ) { 0.0f, 1.0f, 0.0f };
@@ -7456,9 +9562,7 @@ inline void float4x3_identity( float4x3* mat )
 	mat->rows[3] = HLML_CONSTRUCT( float3 ) { 0.0f, 0.0f, 0.0f };
 }
 
-/// \relates float4x3
-/// \brief Returns a copy of the matrix that is transposed, where the value of each row is set to the value of each column and vice versa.
-inline float3x4 float4x3_transpose( const float4x3* mat )
+float3x4 float4x3_transpose( const float4x3* mat )
 {
 	return HLML_CONSTRUCT( float3x4 ) {
 		mat->rows[0].x, mat->rows[1].x, mat->rows[2].x, mat->rows[3].x,
@@ -7467,9 +9571,7 @@ inline float3x4 float4x3_transpose( const float4x3* mat )
 	};
 }
 
-/// \relates float4x3
-/// \brief Returns a copy of the matrix where each row of the left-hand matrix has been dot-producted by the corresponding column of the right-hand matrix.
-inline float4x4 float4x3_mulm( const float4x3* lhs, const float3x4* rhs )
+float4x4 float4x3_mulm( const float4x3* lhs, const float3x4* rhs )
 {
 	float3 row0 = lhs->rows[0];
 	float3 row1 = lhs->rows[1];
@@ -7504,9 +9606,7 @@ inline float4x4 float4x3_mulm( const float4x3* lhs, const float3x4* rhs )
 	};
 }
 
-/// \relates float4x3
-/// \brief Returns a copy of the matrix that has had a non-uniform scale applied to it.
-inline float4x3 float4x3_scale( const float4x3* mat, const float2* vec )
+float4x3 float4x3_scale( const float4x3* mat, const float2* vec )
 {
 	return HLML_CONSTRUCT( float4x3 ) {
 		mat->rows[0].x * vec->x,
@@ -7527,11 +9627,7 @@ inline float4x3 float4x3_scale( const float4x3* mat, const float2* vec )
 	};
 }
 
-
-// float4x4
-/// \relates float4x4
-/// \brief Returns true if the all the components of the left-hand-side float4x4 match the other one, otherwise returns false.
-inline bool float4x4_cmpe( const float4x4* lhs, const float4x4* rhs )
+bool float4x4_cmpe( const float4x4* lhs, const float4x4* rhs )
 {
 	return float4_cmpe( &lhs->rows[0], &rhs->rows[0] )
 		&& float4_cmpe( &lhs->rows[1], &rhs->rows[1] )
@@ -7539,16 +9635,12 @@ inline bool float4x4_cmpe( const float4x4* lhs, const float4x4* rhs )
 		&& float4_cmpe( &lhs->rows[3], &rhs->rows[3] );
 }
 
-/// \relates float4x4
-/// \brief Returns true if not all of the components of the left-hand-side float4x4 match the other one, otherwise returns false.
-inline bool float4x4_cmpne( const float4x4* lhs, const float4x4* rhs )
+bool float4x4_cmpne( const float4x4* lhs, const float4x4* rhs )
 {
 	return !( float4x4_cmpe( lhs, rhs ) );
 }
 
-/// \relates float4x4
-/// \brief Returns a copy of the float4x4 that has been component-wise added by the given scalar value.
-inline float4x4 float4x4_comp_adds( const float4x4* lhs, const float scalar )
+float4x4 float4x4_comp_adds( const float4x4* lhs, const float scalar )
 {
 	return HLML_CONSTRUCT( float4x4 ) {
 		lhs->rows[0].x + scalar, lhs->rows[0].y + scalar, lhs->rows[0].z + scalar, lhs->rows[0].w + scalar,
@@ -7558,9 +9650,7 @@ inline float4x4 float4x4_comp_adds( const float4x4* lhs, const float scalar )
 	};
 }
 
-/// \relates float4x4
-/// \brief Returns a copy of the float4x4 that has been component-wise added by the corresponding component of the right-hand float4x4.
-inline float4x4 float4x4_comp_addm( const float4x4* lhs, const float4x4* rhs )
+float4x4 float4x4_comp_addm( const float4x4* lhs, const float4x4* rhs )
 {
 	return HLML_CONSTRUCT( float4x4 ) {
 		float4_comp_addv( &lhs->rows[0], &rhs->rows[0] ),
@@ -7570,9 +9660,7 @@ inline float4x4 float4x4_comp_addm( const float4x4* lhs, const float4x4* rhs )
 	};
 }
 
-/// \relates float4x4
-/// \brief Returns a copy of the float4x4 that has been component-wise subtracted by the given scalar value.
-inline float4x4 float4x4_comp_subs( const float4x4* lhs, const float scalar )
+float4x4 float4x4_comp_subs( const float4x4* lhs, const float scalar )
 {
 	return HLML_CONSTRUCT( float4x4 ) {
 		lhs->rows[0].x - scalar, lhs->rows[0].y - scalar, lhs->rows[0].z - scalar, lhs->rows[0].w - scalar,
@@ -7582,9 +9670,7 @@ inline float4x4 float4x4_comp_subs( const float4x4* lhs, const float scalar )
 	};
 }
 
-/// \relates float4x4
-/// \brief Returns a copy of the float4x4 that has been component-wise subtracted by the corresponding component of the right-hand float4x4.
-inline float4x4 float4x4_comp_subm( const float4x4* lhs, const float4x4* rhs )
+float4x4 float4x4_comp_subm( const float4x4* lhs, const float4x4* rhs )
 {
 	return HLML_CONSTRUCT( float4x4 ) {
 		float4_comp_subv( &lhs->rows[0], &rhs->rows[0] ),
@@ -7594,9 +9680,7 @@ inline float4x4 float4x4_comp_subm( const float4x4* lhs, const float4x4* rhs )
 	};
 }
 
-/// \relates float4x4
-/// \brief Returns a copy of the float4x4 that has been component-wise multiplied by the given scalar value.
-inline float4x4 float4x4_comp_muls( const float4x4* lhs, const float scalar )
+float4x4 float4x4_comp_muls( const float4x4* lhs, const float scalar )
 {
 	return HLML_CONSTRUCT( float4x4 ) {
 		lhs->rows[0].x * scalar, lhs->rows[0].y * scalar, lhs->rows[0].z * scalar, lhs->rows[0].w * scalar,
@@ -7606,9 +9690,7 @@ inline float4x4 float4x4_comp_muls( const float4x4* lhs, const float scalar )
 	};
 }
 
-/// \relates float4x4
-/// \brief Returns a copy of the float4x4 that has been component-wise multiplied by the corresponding component of the right-hand float4x4.
-inline float4x4 float4x4_comp_mulm( const float4x4* lhs, const float4x4* rhs )
+float4x4 float4x4_comp_mulm( const float4x4* lhs, const float4x4* rhs )
 {
 	return HLML_CONSTRUCT( float4x4 ) {
 		float4_comp_mulv( &lhs->rows[0], &rhs->rows[0] ),
@@ -7618,9 +9700,7 @@ inline float4x4 float4x4_comp_mulm( const float4x4* lhs, const float4x4* rhs )
 	};
 }
 
-/// \relates float4x4
-/// \brief Returns a copy of the float4x4 that has been component-wise divided by the given scalar value.
-inline float4x4 float4x4_comp_divs( const float4x4* lhs, const float scalar )
+float4x4 float4x4_comp_divs( const float4x4* lhs, const float scalar )
 {
 	return HLML_CONSTRUCT( float4x4 ) {
 		lhs->rows[0].x / scalar, lhs->rows[0].y / scalar, lhs->rows[0].z / scalar, lhs->rows[0].w / scalar,
@@ -7630,9 +9710,7 @@ inline float4x4 float4x4_comp_divs( const float4x4* lhs, const float scalar )
 	};
 }
 
-/// \relates float4x4
-/// \brief Returns a copy of the float4x4 that has been component-wise divided by the corresponding component of the right-hand float4x4.
-inline float4x4 float4x4_comp_divm( const float4x4* lhs, const float4x4* rhs )
+float4x4 float4x4_comp_divm( const float4x4* lhs, const float4x4* rhs )
 {
 	return HLML_CONSTRUCT( float4x4 ) {
 		float4_comp_divv( &lhs->rows[0], &rhs->rows[0] ),
@@ -7642,9 +9720,7 @@ inline float4x4 float4x4_comp_divm( const float4x4* lhs, const float4x4* rhs )
 	};
 }
 
-/// \relates float4x4
-/// \brief Returns a bool4x4 where each component is true if the component of the left-hand type is less than the corresponding right-hand type component.
-inline bool4x4 float4x4_cmpl( const float4x4* lhs, const float4x4* rhs )
+bool4x4 float4x4_cmpl( const float4x4* lhs, const float4x4* rhs )
 {
 	return HLML_CONSTRUCT( bool4x4 ) {
 		float4_cmpl( &lhs->rows[0], &rhs->rows[0] ),
@@ -7654,9 +9730,7 @@ inline bool4x4 float4x4_cmpl( const float4x4* lhs, const float4x4* rhs )
 	};
 }
 
-/// \relates float4x4
-/// \brief Returns a bool4x4 where each component is true if the component of the left-hand type is less than or equal to the corresponding right-hand type component.
-inline bool4x4 float4x4_cmple( const float4x4* lhs, const float4x4* rhs )
+bool4x4 float4x4_cmple( const float4x4* lhs, const float4x4* rhs )
 {
 	return HLML_CONSTRUCT( bool4x4 ) {
 		float4_cmple( &lhs->rows[0], &rhs->rows[0] ),
@@ -7666,9 +9740,7 @@ inline bool4x4 float4x4_cmple( const float4x4* lhs, const float4x4* rhs )
 	};
 }
 
-/// \relates float4x4
-/// \brief Returns a bool4x4 where each component is true if the component of the left-hand type is greater than the corresponding right-hand type component.
-inline bool4x4 float4x4_cmpg( const float4x4* lhs, const float4x4* rhs )
+bool4x4 float4x4_cmpg( const float4x4* lhs, const float4x4* rhs )
 {
 	return HLML_CONSTRUCT( bool4x4 ) {
 		float4_cmpg( &lhs->rows[0], &rhs->rows[0] ),
@@ -7678,9 +9750,7 @@ inline bool4x4 float4x4_cmpg( const float4x4* lhs, const float4x4* rhs )
 	};
 }
 
-/// \relates float4x4
-/// \brief Returns a bool4x4 where each component is true if the component of the left-hand type is greater than or equal to the corresponding right-hand type component.
-inline bool4x4 float4x4_cmpge( const float4x4* lhs, const float4x4* rhs )
+bool4x4 float4x4_cmpge( const float4x4* lhs, const float4x4* rhs )
 {
 	return HLML_CONSTRUCT( bool4x4 ) {
 		float4_cmpge( &lhs->rows[0], &rhs->rows[0] ),
@@ -7690,9 +9760,7 @@ inline bool4x4 float4x4_cmpge( const float4x4* lhs, const float4x4* rhs )
 	};
 }
 
-/// \relates float4x4
-/// \brief Sets the matrix to an identity matrix.
-inline void float4x4_identity( float4x4* mat )
+void float4x4_identity( float4x4* mat )
 {
 	mat->rows[0] = HLML_CONSTRUCT( float4 ) { 1.0f, 0.0f, 0.0f, 0.0f };
 	mat->rows[1] = HLML_CONSTRUCT( float4 ) { 0.0f, 1.0f, 0.0f, 0.0f };
@@ -7700,9 +9768,7 @@ inline void float4x4_identity( float4x4* mat )
 	mat->rows[3] = HLML_CONSTRUCT( float4 ) { 0.0f, 0.0f, 0.0f, 1.0f };
 }
 
-/// \relates float4x4
-/// \brief Returns a copy of the matrix that is transposed, where the value of each row is set to the value of each column and vice versa.
-inline float4x4 float4x4_transpose( const float4x4* mat )
+float4x4 float4x4_transpose( const float4x4* mat )
 {
 	return HLML_CONSTRUCT( float4x4 ) {
 		mat->rows[0].x, mat->rows[1].x, mat->rows[2].x, mat->rows[3].x,
@@ -7712,9 +9778,7 @@ inline float4x4 float4x4_transpose( const float4x4* mat )
 	};
 }
 
-/// \relates float4x4
-/// \brief Returns the determinant of the matrix.
-inline float float4x4_determinant( const float4x4* mat )
+float float4x4_determinant( const float4x4* mat )
 {
 	// using glm's method where you basically take determinants from each sub matrix and cache the repeat occurences
 	float sub00 = mat->rows[2].z * mat->rows[3].w - mat->rows[3].z * mat->rows[2].w;
@@ -7736,10 +9800,7 @@ inline float float4x4_determinant( const float4x4* mat )
 		mat->rows[0].z * cofactor.z + mat->rows[0].w * cofactor.w; 
 }
 
-/// \relates float4x4
-/// \brief Returns a copy of the matrix that is inversed.
-/// Currently this is only applicable for square matrices.  Pseudo-inverse support for non-square matrices is coming soon.
-inline float4x4 float4x4_inverse( const float4x4* mat )
+float4x4 float4x4_inverse( const float4x4* mat )
 {
 	// uses the glm version, which is basically just an optimised version of the adjugate formula
 	float sub00 = mat->rows[2].z * mat->rows[3].w - mat->rows[3].z * mat->rows[2].w;
@@ -7823,9 +9884,7 @@ inline float4x4 float4x4_inverse( const float4x4* mat )
 	return float4x4_comp_muls( &result, invdet );
 }
 
-/// \relates float4x4
-/// \brief Returns a copy of the matrix where each row of the left-hand matrix has been dot-producted by the corresponding column of the right-hand matrix.
-inline float4x4 float4x4_mulm( const float4x4* lhs, const float4x4* rhs )
+float4x4 float4x4_mulm( const float4x4* lhs, const float4x4* rhs )
 {
 	float4 row0 = lhs->rows[0];
 	float4 row1 = lhs->rows[1];
@@ -7860,9 +9919,7 @@ inline float4x4 float4x4_mulm( const float4x4* lhs, const float4x4* rhs )
 	};
 }
 
-/// \relates float4x4
-/// \brief Returns the right-hand vector multiplied by the left-hand matrix.
-inline float4 float4x4_mulv( const float4x4* lhs, const float4* rhs )
+float4 float4x4_mulv( const float4x4* lhs, const float4* rhs )
 {
 	return HLML_CONSTRUCT( float4 ) {
 		lhs->rows[0].x * rhs->x + lhs->rows[0].y * rhs->y + lhs->rows[0].z * rhs->z + lhs->rows[0].w * rhs->w,
@@ -7872,9 +9929,7 @@ inline float4 float4x4_mulv( const float4x4* lhs, const float4* rhs )
 	};
 }
 
-/// \relates float4x4
-/// \brief Returns a copy of the matrix where each component of the 3rd column has been added by the given vector.
-inline float4x4 float4x4_translate( const float4x4* mat, const float3* vec )
+float4x4 float4x4_translate( const float4x4* mat, const float3* vec )
 {
 	return HLML_CONSTRUCT( float4x4 ) {
 		mat->rows[0].x, mat->rows[0].y, mat->rows[0].z, mat->rows[0].w + vec->x,
@@ -7884,9 +9939,7 @@ inline float4x4 float4x4_translate( const float4x4* mat, const float3* vec )
 	};
 }
 
-/// \relates float4x4
-/// \brief Returns a copy of the matrix that has had a rotation applied to it in radians on one or more of the following axes.
-inline float4x4 float4x4_rotate( const float4x4* mat, const float rad, const float3* axis )
+float4x4 float4x4_rotate( const float4x4* mat, const float rad, const float3* axis )
 {
 	const float c = cosf( rad );
 	const float s = sinf( rad );
@@ -7910,9 +9963,7 @@ inline float4x4 float4x4_rotate( const float4x4* mat, const float rad, const flo
 	return float4x4_mulm( mat, &rotation );
 }
 
-/// \relates float4x4
-/// \brief Returns a copy of the matrix that has had a non-uniform scale applied to it.
-inline float4x4 float4x4_scale( const float4x4* mat, const float3* vec )
+float4x4 float4x4_scale( const float4x4* mat, const float3* vec )
 {
 	return HLML_CONSTRUCT( float4x4 ) {
 		mat->rows[0].x * vec->x,
@@ -7937,9 +9988,7 @@ inline float4x4 float4x4_scale( const float4x4* mat, const float3* vec )
 	};
 }
 
-/// \relates float4x4
-/// \brief Returns an left-handed orthographic projection matrix with the clip-space range zero to one.
-inline float4x4 float4x4_ortho_lh_zo( const float left, const float right, const float top, const float bottom, const float znear, const float zfar )
+float4x4 float4x4_ortho_lh_zo( const float left, const float right, const float top, const float bottom, const float znear, const float zfar )
 {
 	// left-handed, clip-space range: zero to one
 	const float right_minus_left = right - left;
@@ -7956,9 +10005,7 @@ inline float4x4 float4x4_ortho_lh_zo( const float left, const float right, const
 	};
 }
 
-/// \relates float4x4
-/// \brief Returns an left-handed orthographic projection matrix with the clip-space range minus-one to one.
-inline float4x4 float4x4_ortho_lh_no( const float left, const float right, const float top, const float bottom, const float znear, const float zfar )
+float4x4 float4x4_ortho_lh_no( const float left, const float right, const float top, const float bottom, const float znear, const float zfar )
 {
 	// left-handed, clip-space range: minus-one to one
 	const float right_minus_left = right - left;
@@ -7976,9 +10023,7 @@ inline float4x4 float4x4_ortho_lh_no( const float left, const float right, const
 	};
 }
 
-/// \relates float4x4
-/// \brief Returns an right-handed orthographic projection matrix with the clip-space range zero to one.
-inline float4x4 float4x4_ortho_rh_zo( const float left, const float right, const float top, const float bottom, const float znear, const float zfar )
+float4x4 float4x4_ortho_rh_zo( const float left, const float right, const float top, const float bottom, const float znear, const float zfar )
 {
 	// right-handed, clip-space range: zero to one
 	const float right_minus_left = right - left;
@@ -7995,9 +10040,7 @@ inline float4x4 float4x4_ortho_rh_zo( const float left, const float right, const
 	};
 }
 
-/// \relates float4x4
-/// \brief Returns an right-handed orthographic projection matrix with the clip-space range minus-one to one.
-inline float4x4 float4x4_ortho_rh_no( const float left, const float right, const float top, const float bottom, const float znear, const float zfar )
+float4x4 float4x4_ortho_rh_no( const float left, const float right, const float top, const float bottom, const float znear, const float zfar )
 {
 	// right-handed, clip-space range: minus-one to one
 	const float right_minus_left = right - left;
@@ -8015,9 +10058,7 @@ inline float4x4 float4x4_ortho_rh_no( const float left, const float right, const
 	};
 }
 
-/// \relates float4x4
-/// \brief Returns a left-handed perspective projection matrix based on a vertical field-of-view in degrees and an aspect ratio in the clip-space range of zero to one.
-inline float4x4 float4x4_perspective_lh_zo( const float fovdeg, const float aspect, const float znear, const float zfar )
+float4x4 float4x4_perspective_lh_zo( const float fovdeg, const float aspect, const float znear, const float zfar )
 {
 	// left-handed, clip space range: zero to one
 	const float far_minus_near = zfar - znear;
@@ -8031,9 +10072,7 @@ inline float4x4 float4x4_perspective_lh_zo( const float fovdeg, const float aspe
 	};
 }
 
-/// \relates float4x4
-/// \brief Returns a left-handed perspective projection matrix based on a vertical field-of-view in degrees and an aspect ratio in the clip-space range of minus-one to one.
-inline float4x4 float4x4_perspective_lh_no( const float fovdeg, const float aspect, const float znear, const float zfar )
+float4x4 float4x4_perspective_lh_no( const float fovdeg, const float aspect, const float znear, const float zfar )
 {
 	// left-handed, clip space range: minus-one to one
 	const float far_minus_near = zfar - znear;
@@ -8048,9 +10087,7 @@ inline float4x4 float4x4_perspective_lh_no( const float fovdeg, const float aspe
 	};
 }
 
-/// \relates float4x4
-/// \brief Returns a right-handed perspective projection matrix based on a vertical field-of-view in degrees and an aspect ratio in the clip-space range of zero to one.
-inline float4x4 float4x4_perspective_rh_zo( const float fovdeg, const float aspect, const float znear, const float zfar )
+float4x4 float4x4_perspective_rh_zo( const float fovdeg, const float aspect, const float znear, const float zfar )
 {
 	// right-handed, clip space range: zero to one
 	const float tan_half_fov = tanf( fovdeg * 0.5f );
@@ -8063,9 +10100,7 @@ inline float4x4 float4x4_perspective_rh_zo( const float fovdeg, const float aspe
 	};
 }
 
-/// \relates float4x4
-/// \brief Returns a right-handed perspective projection matrix based on a vertical field-of-view in degrees and an aspect ratio in the clip-space range of minus-one to one.
-inline float4x4 float4x4_perspective_rh_no( const float fovdeg, const float aspect, const float znear, const float zfar )
+float4x4 float4x4_perspective_rh_no( const float fovdeg, const float aspect, const float znear, const float zfar )
 {
 	// right-handed, clip space range: minus-one to one
 	const float far_minus_near = zfar - znear;
@@ -8080,9 +10115,7 @@ inline float4x4 float4x4_perspective_rh_no( const float fovdeg, const float aspe
 	};
 }
 
-/// \relates float4x4
-/// \brief Returns a left-handed orthonormal matrix that is oriented at position eye to look at position target.
-inline float4x4 float4x4_lookat_lh( const float3* eye, const float3* target, const float3* up )
+float4x4 float4x4_lookat_lh( const float3* eye, const float3* target, const float3* up )
 {
 	// left handed
 	const float3 eye_to_target = float3_comp_subv( target, eye );
@@ -8099,9 +10132,7 @@ inline float4x4 float4x4_lookat_lh( const float3* eye, const float3* target, con
 	};
 }
 
-/// \relates float4x4
-/// \brief Returns a right-handed orthonormal matrix that is oriented at position eye to look at position target.
-inline float4x4 float4x4_lookat_rh( const float3* eye, const float3* target, const float3* up )
+float4x4 float4x4_lookat_rh( const float3* eye, const float3* target, const float3* up )
 {
 	// right handed
 	const float3 eye_to_target = float3_comp_subv( target, eye );
@@ -8118,26 +10149,18 @@ inline float4x4 float4x4_lookat_rh( const float3* eye, const float3* target, con
 	};
 }
 
-
-// double2x2
-/// \relates double2x2
-/// \brief Returns true if the all the components of the left-hand-side double2x2 match the other one, otherwise returns false.
-inline bool double2x2_cmpe( const double2x2* lhs, const double2x2* rhs )
+bool double2x2_cmpe( const double2x2* lhs, const double2x2* rhs )
 {
 	return double2_cmpe( &lhs->rows[0], &rhs->rows[0] )
 		&& double2_cmpe( &lhs->rows[1], &rhs->rows[1] );
 }
 
-/// \relates double2x2
-/// \brief Returns true if not all of the components of the left-hand-side double2x2 match the other one, otherwise returns false.
-inline bool double2x2_cmpne( const double2x2* lhs, const double2x2* rhs )
+bool double2x2_cmpne( const double2x2* lhs, const double2x2* rhs )
 {
 	return !( double2x2_cmpe( lhs, rhs ) );
 }
 
-/// \relates double2x2
-/// \brief Returns a copy of the double2x2 that has been component-wise added by the given scalar value.
-inline double2x2 double2x2_comp_adds( const double2x2* lhs, const double scalar )
+double2x2 double2x2_comp_adds( const double2x2* lhs, const double scalar )
 {
 	return HLML_CONSTRUCT( double2x2 ) {
 		lhs->rows[0].x + scalar, lhs->rows[0].y + scalar,
@@ -8145,9 +10168,7 @@ inline double2x2 double2x2_comp_adds( const double2x2* lhs, const double scalar 
 	};
 }
 
-/// \relates double2x2
-/// \brief Returns a copy of the double2x2 that has been component-wise added by the corresponding component of the right-hand double2x2.
-inline double2x2 double2x2_comp_addm( const double2x2* lhs, const double2x2* rhs )
+double2x2 double2x2_comp_addm( const double2x2* lhs, const double2x2* rhs )
 {
 	return HLML_CONSTRUCT( double2x2 ) {
 		double2_comp_addv( &lhs->rows[0], &rhs->rows[0] ),
@@ -8155,9 +10176,7 @@ inline double2x2 double2x2_comp_addm( const double2x2* lhs, const double2x2* rhs
 	};
 }
 
-/// \relates double2x2
-/// \brief Returns a copy of the double2x2 that has been component-wise subtracted by the given scalar value.
-inline double2x2 double2x2_comp_subs( const double2x2* lhs, const double scalar )
+double2x2 double2x2_comp_subs( const double2x2* lhs, const double scalar )
 {
 	return HLML_CONSTRUCT( double2x2 ) {
 		lhs->rows[0].x - scalar, lhs->rows[0].y - scalar,
@@ -8165,9 +10184,7 @@ inline double2x2 double2x2_comp_subs( const double2x2* lhs, const double scalar 
 	};
 }
 
-/// \relates double2x2
-/// \brief Returns a copy of the double2x2 that has been component-wise subtracted by the corresponding component of the right-hand double2x2.
-inline double2x2 double2x2_comp_subm( const double2x2* lhs, const double2x2* rhs )
+double2x2 double2x2_comp_subm( const double2x2* lhs, const double2x2* rhs )
 {
 	return HLML_CONSTRUCT( double2x2 ) {
 		double2_comp_subv( &lhs->rows[0], &rhs->rows[0] ),
@@ -8175,9 +10192,7 @@ inline double2x2 double2x2_comp_subm( const double2x2* lhs, const double2x2* rhs
 	};
 }
 
-/// \relates double2x2
-/// \brief Returns a copy of the double2x2 that has been component-wise multiplied by the given scalar value.
-inline double2x2 double2x2_comp_muls( const double2x2* lhs, const double scalar )
+double2x2 double2x2_comp_muls( const double2x2* lhs, const double scalar )
 {
 	return HLML_CONSTRUCT( double2x2 ) {
 		lhs->rows[0].x * scalar, lhs->rows[0].y * scalar,
@@ -8185,9 +10200,7 @@ inline double2x2 double2x2_comp_muls( const double2x2* lhs, const double scalar 
 	};
 }
 
-/// \relates double2x2
-/// \brief Returns a copy of the double2x2 that has been component-wise multiplied by the corresponding component of the right-hand double2x2.
-inline double2x2 double2x2_comp_mulm( const double2x2* lhs, const double2x2* rhs )
+double2x2 double2x2_comp_mulm( const double2x2* lhs, const double2x2* rhs )
 {
 	return HLML_CONSTRUCT( double2x2 ) {
 		double2_comp_mulv( &lhs->rows[0], &rhs->rows[0] ),
@@ -8195,9 +10208,7 @@ inline double2x2 double2x2_comp_mulm( const double2x2* lhs, const double2x2* rhs
 	};
 }
 
-/// \relates double2x2
-/// \brief Returns a copy of the double2x2 that has been component-wise divided by the given scalar value.
-inline double2x2 double2x2_comp_divs( const double2x2* lhs, const double scalar )
+double2x2 double2x2_comp_divs( const double2x2* lhs, const double scalar )
 {
 	return HLML_CONSTRUCT( double2x2 ) {
 		lhs->rows[0].x / scalar, lhs->rows[0].y / scalar,
@@ -8205,9 +10216,7 @@ inline double2x2 double2x2_comp_divs( const double2x2* lhs, const double scalar 
 	};
 }
 
-/// \relates double2x2
-/// \brief Returns a copy of the double2x2 that has been component-wise divided by the corresponding component of the right-hand double2x2.
-inline double2x2 double2x2_comp_divm( const double2x2* lhs, const double2x2* rhs )
+double2x2 double2x2_comp_divm( const double2x2* lhs, const double2x2* rhs )
 {
 	return HLML_CONSTRUCT( double2x2 ) {
 		double2_comp_divv( &lhs->rows[0], &rhs->rows[0] ),
@@ -8215,9 +10224,7 @@ inline double2x2 double2x2_comp_divm( const double2x2* lhs, const double2x2* rhs
 	};
 }
 
-/// \relates double2x2
-/// \brief Returns a bool2x2 where each component is true if the component of the left-hand type is less than the corresponding right-hand type component.
-inline bool2x2 double2x2_cmpl( const double2x2* lhs, const double2x2* rhs )
+bool2x2 double2x2_cmpl( const double2x2* lhs, const double2x2* rhs )
 {
 	return HLML_CONSTRUCT( bool2x2 ) {
 		double2_cmpl( &lhs->rows[0], &rhs->rows[0] ),
@@ -8225,9 +10232,7 @@ inline bool2x2 double2x2_cmpl( const double2x2* lhs, const double2x2* rhs )
 	};
 }
 
-/// \relates double2x2
-/// \brief Returns a bool2x2 where each component is true if the component of the left-hand type is less than or equal to the corresponding right-hand type component.
-inline bool2x2 double2x2_cmple( const double2x2* lhs, const double2x2* rhs )
+bool2x2 double2x2_cmple( const double2x2* lhs, const double2x2* rhs )
 {
 	return HLML_CONSTRUCT( bool2x2 ) {
 		double2_cmple( &lhs->rows[0], &rhs->rows[0] ),
@@ -8235,9 +10240,7 @@ inline bool2x2 double2x2_cmple( const double2x2* lhs, const double2x2* rhs )
 	};
 }
 
-/// \relates double2x2
-/// \brief Returns a bool2x2 where each component is true if the component of the left-hand type is greater than the corresponding right-hand type component.
-inline bool2x2 double2x2_cmpg( const double2x2* lhs, const double2x2* rhs )
+bool2x2 double2x2_cmpg( const double2x2* lhs, const double2x2* rhs )
 {
 	return HLML_CONSTRUCT( bool2x2 ) {
 		double2_cmpg( &lhs->rows[0], &rhs->rows[0] ),
@@ -8245,9 +10248,7 @@ inline bool2x2 double2x2_cmpg( const double2x2* lhs, const double2x2* rhs )
 	};
 }
 
-/// \relates double2x2
-/// \brief Returns a bool2x2 where each component is true if the component of the left-hand type is greater than or equal to the corresponding right-hand type component.
-inline bool2x2 double2x2_cmpge( const double2x2* lhs, const double2x2* rhs )
+bool2x2 double2x2_cmpge( const double2x2* lhs, const double2x2* rhs )
 {
 	return HLML_CONSTRUCT( bool2x2 ) {
 		double2_cmpge( &lhs->rows[0], &rhs->rows[0] ),
@@ -8255,17 +10256,13 @@ inline bool2x2 double2x2_cmpge( const double2x2* lhs, const double2x2* rhs )
 	};
 }
 
-/// \relates double2x2
-/// \brief Sets the matrix to an identity matrix.
-inline void double2x2_identity( double2x2* mat )
+void double2x2_identity( double2x2* mat )
 {
 	mat->rows[0] = HLML_CONSTRUCT( double2 ) { 1.0, 0.0 };
 	mat->rows[1] = HLML_CONSTRUCT( double2 ) { 0.0, 1.0 };
 }
 
-/// \relates double2x2
-/// \brief Returns a copy of the matrix that is transposed, where the value of each row is set to the value of each column and vice versa.
-inline double2x2 double2x2_transpose( const double2x2* mat )
+double2x2 double2x2_transpose( const double2x2* mat )
 {
 	return HLML_CONSTRUCT( double2x2 ) {
 		mat->rows[0].x, mat->rows[1].x,
@@ -8273,17 +10270,12 @@ inline double2x2 double2x2_transpose( const double2x2* mat )
 	};
 }
 
-/// \relates double2x2
-/// \brief Returns the determinant of the matrix.
-inline double double2x2_determinant( const double2x2* mat )
+double double2x2_determinant( const double2x2* mat )
 {
 	return mat->rows[0].x * mat->rows[1].y - mat->rows[1].x * mat->rows[0].y;
 }
 
-/// \relates double2x2
-/// \brief Returns a copy of the matrix that is inversed.
-/// Currently this is only applicable for square matrices.  Pseudo-inverse support for non-square matrices is coming soon.
-inline double2x2 double2x2_inverse( const double2x2* mat )
+double2x2 double2x2_inverse( const double2x2* mat )
 {
 	const double invdet = 1.0 / double2x2_determinant( mat );
 	return HLML_CONSTRUCT( double2x2 ) {
@@ -8292,9 +10284,7 @@ inline double2x2 double2x2_inverse( const double2x2* mat )
 	};
 }
 
-/// \relates double2x2
-/// \brief Returns a copy of the matrix where each row of the left-hand matrix has been dot-producted by the corresponding column of the right-hand matrix.
-inline double2x2 double2x2_mulm( const double2x2* lhs, const double2x2* rhs )
+double2x2 double2x2_mulm( const double2x2* lhs, const double2x2* rhs )
 {
 	double2 row0 = lhs->rows[0];
 	double2 row1 = lhs->rows[1];
@@ -8311,9 +10301,7 @@ inline double2x2 double2x2_mulm( const double2x2* lhs, const double2x2* rhs )
 	};
 }
 
-/// \relates double2x2
-/// \brief Returns the right-hand vector multiplied by the left-hand matrix.
-inline double2 double2x2_mulv( const double2x2* lhs, const double2* rhs )
+double2 double2x2_mulv( const double2x2* lhs, const double2* rhs )
 {
 	return HLML_CONSTRUCT( double2 ) {
 		lhs->rows[0].x * rhs->x + lhs->rows[0].y * rhs->y,
@@ -8321,26 +10309,18 @@ inline double2 double2x2_mulv( const double2x2* lhs, const double2* rhs )
 	};
 }
 
-
-// double2x3
-/// \relates double2x3
-/// \brief Returns true if the all the components of the left-hand-side double2x3 match the other one, otherwise returns false.
-inline bool double2x3_cmpe( const double2x3* lhs, const double2x3* rhs )
+bool double2x3_cmpe( const double2x3* lhs, const double2x3* rhs )
 {
 	return double3_cmpe( &lhs->rows[0], &rhs->rows[0] )
 		&& double3_cmpe( &lhs->rows[1], &rhs->rows[1] );
 }
 
-/// \relates double2x3
-/// \brief Returns true if not all of the components of the left-hand-side double2x3 match the other one, otherwise returns false.
-inline bool double2x3_cmpne( const double2x3* lhs, const double2x3* rhs )
+bool double2x3_cmpne( const double2x3* lhs, const double2x3* rhs )
 {
 	return !( double2x3_cmpe( lhs, rhs ) );
 }
 
-/// \relates double2x3
-/// \brief Returns a copy of the double2x3 that has been component-wise added by the given scalar value.
-inline double2x3 double2x3_comp_adds( const double2x3* lhs, const double scalar )
+double2x3 double2x3_comp_adds( const double2x3* lhs, const double scalar )
 {
 	return HLML_CONSTRUCT( double2x3 ) {
 		lhs->rows[0].x + scalar, lhs->rows[0].y + scalar, lhs->rows[0].z + scalar,
@@ -8348,9 +10328,7 @@ inline double2x3 double2x3_comp_adds( const double2x3* lhs, const double scalar 
 	};
 }
 
-/// \relates double2x3
-/// \brief Returns a copy of the double2x3 that has been component-wise added by the corresponding component of the right-hand double2x3.
-inline double2x3 double2x3_comp_addm( const double2x3* lhs, const double2x3* rhs )
+double2x3 double2x3_comp_addm( const double2x3* lhs, const double2x3* rhs )
 {
 	return HLML_CONSTRUCT( double2x3 ) {
 		double3_comp_addv( &lhs->rows[0], &rhs->rows[0] ),
@@ -8358,9 +10336,7 @@ inline double2x3 double2x3_comp_addm( const double2x3* lhs, const double2x3* rhs
 	};
 }
 
-/// \relates double2x3
-/// \brief Returns a copy of the double2x3 that has been component-wise subtracted by the given scalar value.
-inline double2x3 double2x3_comp_subs( const double2x3* lhs, const double scalar )
+double2x3 double2x3_comp_subs( const double2x3* lhs, const double scalar )
 {
 	return HLML_CONSTRUCT( double2x3 ) {
 		lhs->rows[0].x - scalar, lhs->rows[0].y - scalar, lhs->rows[0].z - scalar,
@@ -8368,9 +10344,7 @@ inline double2x3 double2x3_comp_subs( const double2x3* lhs, const double scalar 
 	};
 }
 
-/// \relates double2x3
-/// \brief Returns a copy of the double2x3 that has been component-wise subtracted by the corresponding component of the right-hand double2x3.
-inline double2x3 double2x3_comp_subm( const double2x3* lhs, const double2x3* rhs )
+double2x3 double2x3_comp_subm( const double2x3* lhs, const double2x3* rhs )
 {
 	return HLML_CONSTRUCT( double2x3 ) {
 		double3_comp_subv( &lhs->rows[0], &rhs->rows[0] ),
@@ -8378,9 +10352,7 @@ inline double2x3 double2x3_comp_subm( const double2x3* lhs, const double2x3* rhs
 	};
 }
 
-/// \relates double2x3
-/// \brief Returns a copy of the double2x3 that has been component-wise multiplied by the given scalar value.
-inline double2x3 double2x3_comp_muls( const double2x3* lhs, const double scalar )
+double2x3 double2x3_comp_muls( const double2x3* lhs, const double scalar )
 {
 	return HLML_CONSTRUCT( double2x3 ) {
 		lhs->rows[0].x * scalar, lhs->rows[0].y * scalar, lhs->rows[0].z * scalar,
@@ -8388,9 +10360,7 @@ inline double2x3 double2x3_comp_muls( const double2x3* lhs, const double scalar 
 	};
 }
 
-/// \relates double2x3
-/// \brief Returns a copy of the double2x3 that has been component-wise multiplied by the corresponding component of the right-hand double2x3.
-inline double2x3 double2x3_comp_mulm( const double2x3* lhs, const double2x3* rhs )
+double2x3 double2x3_comp_mulm( const double2x3* lhs, const double2x3* rhs )
 {
 	return HLML_CONSTRUCT( double2x3 ) {
 		double3_comp_mulv( &lhs->rows[0], &rhs->rows[0] ),
@@ -8398,9 +10368,7 @@ inline double2x3 double2x3_comp_mulm( const double2x3* lhs, const double2x3* rhs
 	};
 }
 
-/// \relates double2x3
-/// \brief Returns a copy of the double2x3 that has been component-wise divided by the given scalar value.
-inline double2x3 double2x3_comp_divs( const double2x3* lhs, const double scalar )
+double2x3 double2x3_comp_divs( const double2x3* lhs, const double scalar )
 {
 	return HLML_CONSTRUCT( double2x3 ) {
 		lhs->rows[0].x / scalar, lhs->rows[0].y / scalar, lhs->rows[0].z / scalar,
@@ -8408,9 +10376,7 @@ inline double2x3 double2x3_comp_divs( const double2x3* lhs, const double scalar 
 	};
 }
 
-/// \relates double2x3
-/// \brief Returns a copy of the double2x3 that has been component-wise divided by the corresponding component of the right-hand double2x3.
-inline double2x3 double2x3_comp_divm( const double2x3* lhs, const double2x3* rhs )
+double2x3 double2x3_comp_divm( const double2x3* lhs, const double2x3* rhs )
 {
 	return HLML_CONSTRUCT( double2x3 ) {
 		double3_comp_divv( &lhs->rows[0], &rhs->rows[0] ),
@@ -8418,9 +10384,7 @@ inline double2x3 double2x3_comp_divm( const double2x3* lhs, const double2x3* rhs
 	};
 }
 
-/// \relates double2x3
-/// \brief Returns a bool2x3 where each component is true if the component of the left-hand type is less than the corresponding right-hand type component.
-inline bool2x3 double2x3_cmpl( const double2x3* lhs, const double2x3* rhs )
+bool2x3 double2x3_cmpl( const double2x3* lhs, const double2x3* rhs )
 {
 	return HLML_CONSTRUCT( bool2x3 ) {
 		double3_cmpl( &lhs->rows[0], &rhs->rows[0] ),
@@ -8428,9 +10392,7 @@ inline bool2x3 double2x3_cmpl( const double2x3* lhs, const double2x3* rhs )
 	};
 }
 
-/// \relates double2x3
-/// \brief Returns a bool2x3 where each component is true if the component of the left-hand type is less than or equal to the corresponding right-hand type component.
-inline bool2x3 double2x3_cmple( const double2x3* lhs, const double2x3* rhs )
+bool2x3 double2x3_cmple( const double2x3* lhs, const double2x3* rhs )
 {
 	return HLML_CONSTRUCT( bool2x3 ) {
 		double3_cmple( &lhs->rows[0], &rhs->rows[0] ),
@@ -8438,9 +10400,7 @@ inline bool2x3 double2x3_cmple( const double2x3* lhs, const double2x3* rhs )
 	};
 }
 
-/// \relates double2x3
-/// \brief Returns a bool2x3 where each component is true if the component of the left-hand type is greater than the corresponding right-hand type component.
-inline bool2x3 double2x3_cmpg( const double2x3* lhs, const double2x3* rhs )
+bool2x3 double2x3_cmpg( const double2x3* lhs, const double2x3* rhs )
 {
 	return HLML_CONSTRUCT( bool2x3 ) {
 		double3_cmpg( &lhs->rows[0], &rhs->rows[0] ),
@@ -8448,9 +10408,7 @@ inline bool2x3 double2x3_cmpg( const double2x3* lhs, const double2x3* rhs )
 	};
 }
 
-/// \relates double2x3
-/// \brief Returns a bool2x3 where each component is true if the component of the left-hand type is greater than or equal to the corresponding right-hand type component.
-inline bool2x3 double2x3_cmpge( const double2x3* lhs, const double2x3* rhs )
+bool2x3 double2x3_cmpge( const double2x3* lhs, const double2x3* rhs )
 {
 	return HLML_CONSTRUCT( bool2x3 ) {
 		double3_cmpge( &lhs->rows[0], &rhs->rows[0] ),
@@ -8458,17 +10416,13 @@ inline bool2x3 double2x3_cmpge( const double2x3* lhs, const double2x3* rhs )
 	};
 }
 
-/// \relates double2x3
-/// \brief Sets the matrix to an identity matrix.
-inline void double2x3_identity( double2x3* mat )
+void double2x3_identity( double2x3* mat )
 {
 	mat->rows[0] = HLML_CONSTRUCT( double3 ) { 1.0, 0.0, 0.0 };
 	mat->rows[1] = HLML_CONSTRUCT( double3 ) { 0.0, 1.0, 0.0 };
 }
 
-/// \relates double2x3
-/// \brief Returns a copy of the matrix that is transposed, where the value of each row is set to the value of each column and vice versa.
-inline double3x2 double2x3_transpose( const double2x3* mat )
+double3x2 double2x3_transpose( const double2x3* mat )
 {
 	return HLML_CONSTRUCT( double3x2 ) {
 		mat->rows[0].x, mat->rows[1].x,
@@ -8477,9 +10431,7 @@ inline double3x2 double2x3_transpose( const double2x3* mat )
 	};
 }
 
-/// \relates double2x3
-/// \brief Returns a copy of the matrix where each row of the left-hand matrix has been dot-producted by the corresponding column of the right-hand matrix.
-inline double2x2 double2x3_mulm( const double2x3* lhs, const double3x2* rhs )
+double2x2 double2x3_mulm( const double2x3* lhs, const double3x2* rhs )
 {
 	double3 row0 = lhs->rows[0];
 	double3 row1 = lhs->rows[1];
@@ -8496,9 +10448,7 @@ inline double2x2 double2x3_mulm( const double2x3* lhs, const double3x2* rhs )
 	};
 }
 
-/// \relates double2x3
-/// \brief Returns a copy of the matrix that has had a non-uniform scale applied to it.
-inline double2x3 double2x3_scale( const double2x3* mat, const double2* vec )
+double2x3 double2x3_scale( const double2x3* mat, const double2* vec )
 {
 	return HLML_CONSTRUCT( double2x3 ) {
 		mat->rows[0].x * vec->x,
@@ -8511,26 +10461,18 @@ inline double2x3 double2x3_scale( const double2x3* mat, const double2* vec )
 	};
 }
 
-
-// double2x4
-/// \relates double2x4
-/// \brief Returns true if the all the components of the left-hand-side double2x4 match the other one, otherwise returns false.
-inline bool double2x4_cmpe( const double2x4* lhs, const double2x4* rhs )
+bool double2x4_cmpe( const double2x4* lhs, const double2x4* rhs )
 {
 	return double4_cmpe( &lhs->rows[0], &rhs->rows[0] )
 		&& double4_cmpe( &lhs->rows[1], &rhs->rows[1] );
 }
 
-/// \relates double2x4
-/// \brief Returns true if not all of the components of the left-hand-side double2x4 match the other one, otherwise returns false.
-inline bool double2x4_cmpne( const double2x4* lhs, const double2x4* rhs )
+bool double2x4_cmpne( const double2x4* lhs, const double2x4* rhs )
 {
 	return !( double2x4_cmpe( lhs, rhs ) );
 }
 
-/// \relates double2x4
-/// \brief Returns a copy of the double2x4 that has been component-wise added by the given scalar value.
-inline double2x4 double2x4_comp_adds( const double2x4* lhs, const double scalar )
+double2x4 double2x4_comp_adds( const double2x4* lhs, const double scalar )
 {
 	return HLML_CONSTRUCT( double2x4 ) {
 		lhs->rows[0].x + scalar, lhs->rows[0].y + scalar, lhs->rows[0].z + scalar, lhs->rows[0].w + scalar,
@@ -8538,9 +10480,7 @@ inline double2x4 double2x4_comp_adds( const double2x4* lhs, const double scalar 
 	};
 }
 
-/// \relates double2x4
-/// \brief Returns a copy of the double2x4 that has been component-wise added by the corresponding component of the right-hand double2x4.
-inline double2x4 double2x4_comp_addm( const double2x4* lhs, const double2x4* rhs )
+double2x4 double2x4_comp_addm( const double2x4* lhs, const double2x4* rhs )
 {
 	return HLML_CONSTRUCT( double2x4 ) {
 		double4_comp_addv( &lhs->rows[0], &rhs->rows[0] ),
@@ -8548,9 +10488,7 @@ inline double2x4 double2x4_comp_addm( const double2x4* lhs, const double2x4* rhs
 	};
 }
 
-/// \relates double2x4
-/// \brief Returns a copy of the double2x4 that has been component-wise subtracted by the given scalar value.
-inline double2x4 double2x4_comp_subs( const double2x4* lhs, const double scalar )
+double2x4 double2x4_comp_subs( const double2x4* lhs, const double scalar )
 {
 	return HLML_CONSTRUCT( double2x4 ) {
 		lhs->rows[0].x - scalar, lhs->rows[0].y - scalar, lhs->rows[0].z - scalar, lhs->rows[0].w - scalar,
@@ -8558,9 +10496,7 @@ inline double2x4 double2x4_comp_subs( const double2x4* lhs, const double scalar 
 	};
 }
 
-/// \relates double2x4
-/// \brief Returns a copy of the double2x4 that has been component-wise subtracted by the corresponding component of the right-hand double2x4.
-inline double2x4 double2x4_comp_subm( const double2x4* lhs, const double2x4* rhs )
+double2x4 double2x4_comp_subm( const double2x4* lhs, const double2x4* rhs )
 {
 	return HLML_CONSTRUCT( double2x4 ) {
 		double4_comp_subv( &lhs->rows[0], &rhs->rows[0] ),
@@ -8568,9 +10504,7 @@ inline double2x4 double2x4_comp_subm( const double2x4* lhs, const double2x4* rhs
 	};
 }
 
-/// \relates double2x4
-/// \brief Returns a copy of the double2x4 that has been component-wise multiplied by the given scalar value.
-inline double2x4 double2x4_comp_muls( const double2x4* lhs, const double scalar )
+double2x4 double2x4_comp_muls( const double2x4* lhs, const double scalar )
 {
 	return HLML_CONSTRUCT( double2x4 ) {
 		lhs->rows[0].x * scalar, lhs->rows[0].y * scalar, lhs->rows[0].z * scalar, lhs->rows[0].w * scalar,
@@ -8578,9 +10512,7 @@ inline double2x4 double2x4_comp_muls( const double2x4* lhs, const double scalar 
 	};
 }
 
-/// \relates double2x4
-/// \brief Returns a copy of the double2x4 that has been component-wise multiplied by the corresponding component of the right-hand double2x4.
-inline double2x4 double2x4_comp_mulm( const double2x4* lhs, const double2x4* rhs )
+double2x4 double2x4_comp_mulm( const double2x4* lhs, const double2x4* rhs )
 {
 	return HLML_CONSTRUCT( double2x4 ) {
 		double4_comp_mulv( &lhs->rows[0], &rhs->rows[0] ),
@@ -8588,9 +10520,7 @@ inline double2x4 double2x4_comp_mulm( const double2x4* lhs, const double2x4* rhs
 	};
 }
 
-/// \relates double2x4
-/// \brief Returns a copy of the double2x4 that has been component-wise divided by the given scalar value.
-inline double2x4 double2x4_comp_divs( const double2x4* lhs, const double scalar )
+double2x4 double2x4_comp_divs( const double2x4* lhs, const double scalar )
 {
 	return HLML_CONSTRUCT( double2x4 ) {
 		lhs->rows[0].x / scalar, lhs->rows[0].y / scalar, lhs->rows[0].z / scalar, lhs->rows[0].w / scalar,
@@ -8598,9 +10528,7 @@ inline double2x4 double2x4_comp_divs( const double2x4* lhs, const double scalar 
 	};
 }
 
-/// \relates double2x4
-/// \brief Returns a copy of the double2x4 that has been component-wise divided by the corresponding component of the right-hand double2x4.
-inline double2x4 double2x4_comp_divm( const double2x4* lhs, const double2x4* rhs )
+double2x4 double2x4_comp_divm( const double2x4* lhs, const double2x4* rhs )
 {
 	return HLML_CONSTRUCT( double2x4 ) {
 		double4_comp_divv( &lhs->rows[0], &rhs->rows[0] ),
@@ -8608,9 +10536,7 @@ inline double2x4 double2x4_comp_divm( const double2x4* lhs, const double2x4* rhs
 	};
 }
 
-/// \relates double2x4
-/// \brief Returns a bool2x4 where each component is true if the component of the left-hand type is less than the corresponding right-hand type component.
-inline bool2x4 double2x4_cmpl( const double2x4* lhs, const double2x4* rhs )
+bool2x4 double2x4_cmpl( const double2x4* lhs, const double2x4* rhs )
 {
 	return HLML_CONSTRUCT( bool2x4 ) {
 		double4_cmpl( &lhs->rows[0], &rhs->rows[0] ),
@@ -8618,9 +10544,7 @@ inline bool2x4 double2x4_cmpl( const double2x4* lhs, const double2x4* rhs )
 	};
 }
 
-/// \relates double2x4
-/// \brief Returns a bool2x4 where each component is true if the component of the left-hand type is less than or equal to the corresponding right-hand type component.
-inline bool2x4 double2x4_cmple( const double2x4* lhs, const double2x4* rhs )
+bool2x4 double2x4_cmple( const double2x4* lhs, const double2x4* rhs )
 {
 	return HLML_CONSTRUCT( bool2x4 ) {
 		double4_cmple( &lhs->rows[0], &rhs->rows[0] ),
@@ -8628,9 +10552,7 @@ inline bool2x4 double2x4_cmple( const double2x4* lhs, const double2x4* rhs )
 	};
 }
 
-/// \relates double2x4
-/// \brief Returns a bool2x4 where each component is true if the component of the left-hand type is greater than the corresponding right-hand type component.
-inline bool2x4 double2x4_cmpg( const double2x4* lhs, const double2x4* rhs )
+bool2x4 double2x4_cmpg( const double2x4* lhs, const double2x4* rhs )
 {
 	return HLML_CONSTRUCT( bool2x4 ) {
 		double4_cmpg( &lhs->rows[0], &rhs->rows[0] ),
@@ -8638,9 +10560,7 @@ inline bool2x4 double2x4_cmpg( const double2x4* lhs, const double2x4* rhs )
 	};
 }
 
-/// \relates double2x4
-/// \brief Returns a bool2x4 where each component is true if the component of the left-hand type is greater than or equal to the corresponding right-hand type component.
-inline bool2x4 double2x4_cmpge( const double2x4* lhs, const double2x4* rhs )
+bool2x4 double2x4_cmpge( const double2x4* lhs, const double2x4* rhs )
 {
 	return HLML_CONSTRUCT( bool2x4 ) {
 		double4_cmpge( &lhs->rows[0], &rhs->rows[0] ),
@@ -8648,17 +10568,13 @@ inline bool2x4 double2x4_cmpge( const double2x4* lhs, const double2x4* rhs )
 	};
 }
 
-/// \relates double2x4
-/// \brief Sets the matrix to an identity matrix.
-inline void double2x4_identity( double2x4* mat )
+void double2x4_identity( double2x4* mat )
 {
 	mat->rows[0] = HLML_CONSTRUCT( double4 ) { 1.0, 0.0, 0.0, 0.0 };
 	mat->rows[1] = HLML_CONSTRUCT( double4 ) { 0.0, 1.0, 0.0, 0.0 };
 }
 
-/// \relates double2x4
-/// \brief Returns a copy of the matrix that is transposed, where the value of each row is set to the value of each column and vice versa.
-inline double4x2 double2x4_transpose( const double2x4* mat )
+double4x2 double2x4_transpose( const double2x4* mat )
 {
 	return HLML_CONSTRUCT( double4x2 ) {
 		mat->rows[0].x, mat->rows[1].x,
@@ -8668,9 +10584,7 @@ inline double4x2 double2x4_transpose( const double2x4* mat )
 	};
 }
 
-/// \relates double2x4
-/// \brief Returns a copy of the matrix where each row of the left-hand matrix has been dot-producted by the corresponding column of the right-hand matrix.
-inline double2x2 double2x4_mulm( const double2x4* lhs, const double4x2* rhs )
+double2x2 double2x4_mulm( const double2x4* lhs, const double4x2* rhs )
 {
 	double4 row0 = lhs->rows[0];
 	double4 row1 = lhs->rows[1];
@@ -8687,9 +10601,7 @@ inline double2x2 double2x4_mulm( const double2x4* lhs, const double4x2* rhs )
 	};
 }
 
-/// \relates double2x4
-/// \brief Returns a copy of the matrix that has had a non-uniform scale applied to it.
-inline double2x4 double2x4_scale( const double2x4* mat, const double2* vec )
+double2x4 double2x4_scale( const double2x4* mat, const double2* vec )
 {
 	return HLML_CONSTRUCT( double2x4 ) {
 		mat->rows[0].x * vec->x,
@@ -8704,27 +10616,19 @@ inline double2x4 double2x4_scale( const double2x4* mat, const double2* vec )
 	};
 }
 
-
-// double3x2
-/// \relates double3x2
-/// \brief Returns true if the all the components of the left-hand-side double3x2 match the other one, otherwise returns false.
-inline bool double3x2_cmpe( const double3x2* lhs, const double3x2* rhs )
+bool double3x2_cmpe( const double3x2* lhs, const double3x2* rhs )
 {
 	return double2_cmpe( &lhs->rows[0], &rhs->rows[0] )
 		&& double2_cmpe( &lhs->rows[1], &rhs->rows[1] )
 		&& double2_cmpe( &lhs->rows[2], &rhs->rows[2] );
 }
 
-/// \relates double3x2
-/// \brief Returns true if not all of the components of the left-hand-side double3x2 match the other one, otherwise returns false.
-inline bool double3x2_cmpne( const double3x2* lhs, const double3x2* rhs )
+bool double3x2_cmpne( const double3x2* lhs, const double3x2* rhs )
 {
 	return !( double3x2_cmpe( lhs, rhs ) );
 }
 
-/// \relates double3x2
-/// \brief Returns a copy of the double3x2 that has been component-wise added by the given scalar value.
-inline double3x2 double3x2_comp_adds( const double3x2* lhs, const double scalar )
+double3x2 double3x2_comp_adds( const double3x2* lhs, const double scalar )
 {
 	return HLML_CONSTRUCT( double3x2 ) {
 		lhs->rows[0].x + scalar, lhs->rows[0].y + scalar,
@@ -8733,9 +10637,7 @@ inline double3x2 double3x2_comp_adds( const double3x2* lhs, const double scalar 
 	};
 }
 
-/// \relates double3x2
-/// \brief Returns a copy of the double3x2 that has been component-wise added by the corresponding component of the right-hand double3x2.
-inline double3x2 double3x2_comp_addm( const double3x2* lhs, const double3x2* rhs )
+double3x2 double3x2_comp_addm( const double3x2* lhs, const double3x2* rhs )
 {
 	return HLML_CONSTRUCT( double3x2 ) {
 		double2_comp_addv( &lhs->rows[0], &rhs->rows[0] ),
@@ -8744,9 +10646,7 @@ inline double3x2 double3x2_comp_addm( const double3x2* lhs, const double3x2* rhs
 	};
 }
 
-/// \relates double3x2
-/// \brief Returns a copy of the double3x2 that has been component-wise subtracted by the given scalar value.
-inline double3x2 double3x2_comp_subs( const double3x2* lhs, const double scalar )
+double3x2 double3x2_comp_subs( const double3x2* lhs, const double scalar )
 {
 	return HLML_CONSTRUCT( double3x2 ) {
 		lhs->rows[0].x - scalar, lhs->rows[0].y - scalar,
@@ -8755,9 +10655,7 @@ inline double3x2 double3x2_comp_subs( const double3x2* lhs, const double scalar 
 	};
 }
 
-/// \relates double3x2
-/// \brief Returns a copy of the double3x2 that has been component-wise subtracted by the corresponding component of the right-hand double3x2.
-inline double3x2 double3x2_comp_subm( const double3x2* lhs, const double3x2* rhs )
+double3x2 double3x2_comp_subm( const double3x2* lhs, const double3x2* rhs )
 {
 	return HLML_CONSTRUCT( double3x2 ) {
 		double2_comp_subv( &lhs->rows[0], &rhs->rows[0] ),
@@ -8766,9 +10664,7 @@ inline double3x2 double3x2_comp_subm( const double3x2* lhs, const double3x2* rhs
 	};
 }
 
-/// \relates double3x2
-/// \brief Returns a copy of the double3x2 that has been component-wise multiplied by the given scalar value.
-inline double3x2 double3x2_comp_muls( const double3x2* lhs, const double scalar )
+double3x2 double3x2_comp_muls( const double3x2* lhs, const double scalar )
 {
 	return HLML_CONSTRUCT( double3x2 ) {
 		lhs->rows[0].x * scalar, lhs->rows[0].y * scalar,
@@ -8777,9 +10673,7 @@ inline double3x2 double3x2_comp_muls( const double3x2* lhs, const double scalar 
 	};
 }
 
-/// \relates double3x2
-/// \brief Returns a copy of the double3x2 that has been component-wise multiplied by the corresponding component of the right-hand double3x2.
-inline double3x2 double3x2_comp_mulm( const double3x2* lhs, const double3x2* rhs )
+double3x2 double3x2_comp_mulm( const double3x2* lhs, const double3x2* rhs )
 {
 	return HLML_CONSTRUCT( double3x2 ) {
 		double2_comp_mulv( &lhs->rows[0], &rhs->rows[0] ),
@@ -8788,9 +10682,7 @@ inline double3x2 double3x2_comp_mulm( const double3x2* lhs, const double3x2* rhs
 	};
 }
 
-/// \relates double3x2
-/// \brief Returns a copy of the double3x2 that has been component-wise divided by the given scalar value.
-inline double3x2 double3x2_comp_divs( const double3x2* lhs, const double scalar )
+double3x2 double3x2_comp_divs( const double3x2* lhs, const double scalar )
 {
 	return HLML_CONSTRUCT( double3x2 ) {
 		lhs->rows[0].x / scalar, lhs->rows[0].y / scalar,
@@ -8799,9 +10691,7 @@ inline double3x2 double3x2_comp_divs( const double3x2* lhs, const double scalar 
 	};
 }
 
-/// \relates double3x2
-/// \brief Returns a copy of the double3x2 that has been component-wise divided by the corresponding component of the right-hand double3x2.
-inline double3x2 double3x2_comp_divm( const double3x2* lhs, const double3x2* rhs )
+double3x2 double3x2_comp_divm( const double3x2* lhs, const double3x2* rhs )
 {
 	return HLML_CONSTRUCT( double3x2 ) {
 		double2_comp_divv( &lhs->rows[0], &rhs->rows[0] ),
@@ -8810,9 +10700,7 @@ inline double3x2 double3x2_comp_divm( const double3x2* lhs, const double3x2* rhs
 	};
 }
 
-/// \relates double3x2
-/// \brief Returns a bool3x2 where each component is true if the component of the left-hand type is less than the corresponding right-hand type component.
-inline bool3x2 double3x2_cmpl( const double3x2* lhs, const double3x2* rhs )
+bool3x2 double3x2_cmpl( const double3x2* lhs, const double3x2* rhs )
 {
 	return HLML_CONSTRUCT( bool3x2 ) {
 		double2_cmpl( &lhs->rows[0], &rhs->rows[0] ),
@@ -8821,9 +10709,7 @@ inline bool3x2 double3x2_cmpl( const double3x2* lhs, const double3x2* rhs )
 	};
 }
 
-/// \relates double3x2
-/// \brief Returns a bool3x2 where each component is true if the component of the left-hand type is less than or equal to the corresponding right-hand type component.
-inline bool3x2 double3x2_cmple( const double3x2* lhs, const double3x2* rhs )
+bool3x2 double3x2_cmple( const double3x2* lhs, const double3x2* rhs )
 {
 	return HLML_CONSTRUCT( bool3x2 ) {
 		double2_cmple( &lhs->rows[0], &rhs->rows[0] ),
@@ -8832,9 +10718,7 @@ inline bool3x2 double3x2_cmple( const double3x2* lhs, const double3x2* rhs )
 	};
 }
 
-/// \relates double3x2
-/// \brief Returns a bool3x2 where each component is true if the component of the left-hand type is greater than the corresponding right-hand type component.
-inline bool3x2 double3x2_cmpg( const double3x2* lhs, const double3x2* rhs )
+bool3x2 double3x2_cmpg( const double3x2* lhs, const double3x2* rhs )
 {
 	return HLML_CONSTRUCT( bool3x2 ) {
 		double2_cmpg( &lhs->rows[0], &rhs->rows[0] ),
@@ -8843,9 +10727,7 @@ inline bool3x2 double3x2_cmpg( const double3x2* lhs, const double3x2* rhs )
 	};
 }
 
-/// \relates double3x2
-/// \brief Returns a bool3x2 where each component is true if the component of the left-hand type is greater than or equal to the corresponding right-hand type component.
-inline bool3x2 double3x2_cmpge( const double3x2* lhs, const double3x2* rhs )
+bool3x2 double3x2_cmpge( const double3x2* lhs, const double3x2* rhs )
 {
 	return HLML_CONSTRUCT( bool3x2 ) {
 		double2_cmpge( &lhs->rows[0], &rhs->rows[0] ),
@@ -8854,18 +10736,14 @@ inline bool3x2 double3x2_cmpge( const double3x2* lhs, const double3x2* rhs )
 	};
 }
 
-/// \relates double3x2
-/// \brief Sets the matrix to an identity matrix.
-inline void double3x2_identity( double3x2* mat )
+void double3x2_identity( double3x2* mat )
 {
 	mat->rows[0] = HLML_CONSTRUCT( double2 ) { 1.0, 0.0 };
 	mat->rows[1] = HLML_CONSTRUCT( double2 ) { 0.0, 1.0 };
 	mat->rows[2] = HLML_CONSTRUCT( double2 ) { 0.0, 0.0 };
 }
 
-/// \relates double3x2
-/// \brief Returns a copy of the matrix that is transposed, where the value of each row is set to the value of each column and vice versa.
-inline double2x3 double3x2_transpose( const double3x2* mat )
+double2x3 double3x2_transpose( const double3x2* mat )
 {
 	return HLML_CONSTRUCT( double2x3 ) {
 		mat->rows[0].x, mat->rows[1].x, mat->rows[2].x,
@@ -8873,9 +10751,7 @@ inline double2x3 double3x2_transpose( const double3x2* mat )
 	};
 }
 
-/// \relates double3x2
-/// \brief Returns a copy of the matrix where each row of the left-hand matrix has been dot-producted by the corresponding column of the right-hand matrix.
-inline double3x3 double3x2_mulm( const double3x2* lhs, const double2x3* rhs )
+double3x3 double3x2_mulm( const double3x2* lhs, const double2x3* rhs )
 {
 	double2 row0 = lhs->rows[0];
 	double2 row1 = lhs->rows[1];
@@ -8900,27 +10776,19 @@ inline double3x3 double3x2_mulm( const double3x2* lhs, const double2x3* rhs )
 	};
 }
 
-
-// double3x3
-/// \relates double3x3
-/// \brief Returns true if the all the components of the left-hand-side double3x3 match the other one, otherwise returns false.
-inline bool double3x3_cmpe( const double3x3* lhs, const double3x3* rhs )
+bool double3x3_cmpe( const double3x3* lhs, const double3x3* rhs )
 {
 	return double3_cmpe( &lhs->rows[0], &rhs->rows[0] )
 		&& double3_cmpe( &lhs->rows[1], &rhs->rows[1] )
 		&& double3_cmpe( &lhs->rows[2], &rhs->rows[2] );
 }
 
-/// \relates double3x3
-/// \brief Returns true if not all of the components of the left-hand-side double3x3 match the other one, otherwise returns false.
-inline bool double3x3_cmpne( const double3x3* lhs, const double3x3* rhs )
+bool double3x3_cmpne( const double3x3* lhs, const double3x3* rhs )
 {
 	return !( double3x3_cmpe( lhs, rhs ) );
 }
 
-/// \relates double3x3
-/// \brief Returns a copy of the double3x3 that has been component-wise added by the given scalar value.
-inline double3x3 double3x3_comp_adds( const double3x3* lhs, const double scalar )
+double3x3 double3x3_comp_adds( const double3x3* lhs, const double scalar )
 {
 	return HLML_CONSTRUCT( double3x3 ) {
 		lhs->rows[0].x + scalar, lhs->rows[0].y + scalar, lhs->rows[0].z + scalar,
@@ -8929,9 +10797,7 @@ inline double3x3 double3x3_comp_adds( const double3x3* lhs, const double scalar 
 	};
 }
 
-/// \relates double3x3
-/// \brief Returns a copy of the double3x3 that has been component-wise added by the corresponding component of the right-hand double3x3.
-inline double3x3 double3x3_comp_addm( const double3x3* lhs, const double3x3* rhs )
+double3x3 double3x3_comp_addm( const double3x3* lhs, const double3x3* rhs )
 {
 	return HLML_CONSTRUCT( double3x3 ) {
 		double3_comp_addv( &lhs->rows[0], &rhs->rows[0] ),
@@ -8940,9 +10806,7 @@ inline double3x3 double3x3_comp_addm( const double3x3* lhs, const double3x3* rhs
 	};
 }
 
-/// \relates double3x3
-/// \brief Returns a copy of the double3x3 that has been component-wise subtracted by the given scalar value.
-inline double3x3 double3x3_comp_subs( const double3x3* lhs, const double scalar )
+double3x3 double3x3_comp_subs( const double3x3* lhs, const double scalar )
 {
 	return HLML_CONSTRUCT( double3x3 ) {
 		lhs->rows[0].x - scalar, lhs->rows[0].y - scalar, lhs->rows[0].z - scalar,
@@ -8951,9 +10815,7 @@ inline double3x3 double3x3_comp_subs( const double3x3* lhs, const double scalar 
 	};
 }
 
-/// \relates double3x3
-/// \brief Returns a copy of the double3x3 that has been component-wise subtracted by the corresponding component of the right-hand double3x3.
-inline double3x3 double3x3_comp_subm( const double3x3* lhs, const double3x3* rhs )
+double3x3 double3x3_comp_subm( const double3x3* lhs, const double3x3* rhs )
 {
 	return HLML_CONSTRUCT( double3x3 ) {
 		double3_comp_subv( &lhs->rows[0], &rhs->rows[0] ),
@@ -8962,9 +10824,7 @@ inline double3x3 double3x3_comp_subm( const double3x3* lhs, const double3x3* rhs
 	};
 }
 
-/// \relates double3x3
-/// \brief Returns a copy of the double3x3 that has been component-wise multiplied by the given scalar value.
-inline double3x3 double3x3_comp_muls( const double3x3* lhs, const double scalar )
+double3x3 double3x3_comp_muls( const double3x3* lhs, const double scalar )
 {
 	return HLML_CONSTRUCT( double3x3 ) {
 		lhs->rows[0].x * scalar, lhs->rows[0].y * scalar, lhs->rows[0].z * scalar,
@@ -8973,9 +10833,7 @@ inline double3x3 double3x3_comp_muls( const double3x3* lhs, const double scalar 
 	};
 }
 
-/// \relates double3x3
-/// \brief Returns a copy of the double3x3 that has been component-wise multiplied by the corresponding component of the right-hand double3x3.
-inline double3x3 double3x3_comp_mulm( const double3x3* lhs, const double3x3* rhs )
+double3x3 double3x3_comp_mulm( const double3x3* lhs, const double3x3* rhs )
 {
 	return HLML_CONSTRUCT( double3x3 ) {
 		double3_comp_mulv( &lhs->rows[0], &rhs->rows[0] ),
@@ -8984,9 +10842,7 @@ inline double3x3 double3x3_comp_mulm( const double3x3* lhs, const double3x3* rhs
 	};
 }
 
-/// \relates double3x3
-/// \brief Returns a copy of the double3x3 that has been component-wise divided by the given scalar value.
-inline double3x3 double3x3_comp_divs( const double3x3* lhs, const double scalar )
+double3x3 double3x3_comp_divs( const double3x3* lhs, const double scalar )
 {
 	return HLML_CONSTRUCT( double3x3 ) {
 		lhs->rows[0].x / scalar, lhs->rows[0].y / scalar, lhs->rows[0].z / scalar,
@@ -8995,9 +10851,7 @@ inline double3x3 double3x3_comp_divs( const double3x3* lhs, const double scalar 
 	};
 }
 
-/// \relates double3x3
-/// \brief Returns a copy of the double3x3 that has been component-wise divided by the corresponding component of the right-hand double3x3.
-inline double3x3 double3x3_comp_divm( const double3x3* lhs, const double3x3* rhs )
+double3x3 double3x3_comp_divm( const double3x3* lhs, const double3x3* rhs )
 {
 	return HLML_CONSTRUCT( double3x3 ) {
 		double3_comp_divv( &lhs->rows[0], &rhs->rows[0] ),
@@ -9006,9 +10860,7 @@ inline double3x3 double3x3_comp_divm( const double3x3* lhs, const double3x3* rhs
 	};
 }
 
-/// \relates double3x3
-/// \brief Returns a bool3x3 where each component is true if the component of the left-hand type is less than the corresponding right-hand type component.
-inline bool3x3 double3x3_cmpl( const double3x3* lhs, const double3x3* rhs )
+bool3x3 double3x3_cmpl( const double3x3* lhs, const double3x3* rhs )
 {
 	return HLML_CONSTRUCT( bool3x3 ) {
 		double3_cmpl( &lhs->rows[0], &rhs->rows[0] ),
@@ -9017,9 +10869,7 @@ inline bool3x3 double3x3_cmpl( const double3x3* lhs, const double3x3* rhs )
 	};
 }
 
-/// \relates double3x3
-/// \brief Returns a bool3x3 where each component is true if the component of the left-hand type is less than or equal to the corresponding right-hand type component.
-inline bool3x3 double3x3_cmple( const double3x3* lhs, const double3x3* rhs )
+bool3x3 double3x3_cmple( const double3x3* lhs, const double3x3* rhs )
 {
 	return HLML_CONSTRUCT( bool3x3 ) {
 		double3_cmple( &lhs->rows[0], &rhs->rows[0] ),
@@ -9028,9 +10878,7 @@ inline bool3x3 double3x3_cmple( const double3x3* lhs, const double3x3* rhs )
 	};
 }
 
-/// \relates double3x3
-/// \brief Returns a bool3x3 where each component is true if the component of the left-hand type is greater than the corresponding right-hand type component.
-inline bool3x3 double3x3_cmpg( const double3x3* lhs, const double3x3* rhs )
+bool3x3 double3x3_cmpg( const double3x3* lhs, const double3x3* rhs )
 {
 	return HLML_CONSTRUCT( bool3x3 ) {
 		double3_cmpg( &lhs->rows[0], &rhs->rows[0] ),
@@ -9039,9 +10887,7 @@ inline bool3x3 double3x3_cmpg( const double3x3* lhs, const double3x3* rhs )
 	};
 }
 
-/// \relates double3x3
-/// \brief Returns a bool3x3 where each component is true if the component of the left-hand type is greater than or equal to the corresponding right-hand type component.
-inline bool3x3 double3x3_cmpge( const double3x3* lhs, const double3x3* rhs )
+bool3x3 double3x3_cmpge( const double3x3* lhs, const double3x3* rhs )
 {
 	return HLML_CONSTRUCT( bool3x3 ) {
 		double3_cmpge( &lhs->rows[0], &rhs->rows[0] ),
@@ -9050,18 +10896,14 @@ inline bool3x3 double3x3_cmpge( const double3x3* lhs, const double3x3* rhs )
 	};
 }
 
-/// \relates double3x3
-/// \brief Sets the matrix to an identity matrix.
-inline void double3x3_identity( double3x3* mat )
+void double3x3_identity( double3x3* mat )
 {
 	mat->rows[0] = HLML_CONSTRUCT( double3 ) { 1.0, 0.0, 0.0 };
 	mat->rows[1] = HLML_CONSTRUCT( double3 ) { 0.0, 1.0, 0.0 };
 	mat->rows[2] = HLML_CONSTRUCT( double3 ) { 0.0, 0.0, 1.0 };
 }
 
-/// \relates double3x3
-/// \brief Returns a copy of the matrix that is transposed, where the value of each row is set to the value of each column and vice versa.
-inline double3x3 double3x3_transpose( const double3x3* mat )
+double3x3 double3x3_transpose( const double3x3* mat )
 {
 	return HLML_CONSTRUCT( double3x3 ) {
 		mat->rows[0].x, mat->rows[1].x, mat->rows[2].x,
@@ -9070,9 +10912,7 @@ inline double3x3 double3x3_transpose( const double3x3* mat )
 	};
 }
 
-/// \relates double3x3
-/// \brief Returns the determinant of the matrix.
-inline double double3x3_determinant( const double3x3* mat )
+double double3x3_determinant( const double3x3* mat )
 {
 	return
 		+ mat->rows[0].x * ( mat->rows[1].y * mat->rows[2].z - mat->rows[2].y * mat->rows[1].z ) 
@@ -9080,10 +10920,7 @@ inline double double3x3_determinant( const double3x3* mat )
 		+ mat->rows[0].z * ( mat->rows[1].x * mat->rows[2].y - mat->rows[2].x * mat->rows[1].y );
 }
 
-/// \relates double3x3
-/// \brief Returns a copy of the matrix that is inversed.
-/// Currently this is only applicable for square matrices.  Pseudo-inverse support for non-square matrices is coming soon.
-inline double3x3 double3x3_inverse( const double3x3* mat )
+double3x3 double3x3_inverse( const double3x3* mat )
 {
 	const double invdet = 1.0 / double3x3_determinant( mat );
 	return HLML_CONSTRUCT( double3x3 ) {
@@ -9101,9 +10938,7 @@ inline double3x3 double3x3_inverse( const double3x3* mat )
 	};
 }
 
-/// \relates double3x3
-/// \brief Returns a copy of the matrix where each row of the left-hand matrix has been dot-producted by the corresponding column of the right-hand matrix.
-inline double3x3 double3x3_mulm( const double3x3* lhs, const double3x3* rhs )
+double3x3 double3x3_mulm( const double3x3* lhs, const double3x3* rhs )
 {
 	double3 row0 = lhs->rows[0];
 	double3 row1 = lhs->rows[1];
@@ -9128,9 +10963,7 @@ inline double3x3 double3x3_mulm( const double3x3* lhs, const double3x3* rhs )
 	};
 }
 
-/// \relates double3x3
-/// \brief Returns the right-hand vector multiplied by the left-hand matrix.
-inline double3 double3x3_mulv( const double3x3* lhs, const double3* rhs )
+double3 double3x3_mulv( const double3x3* lhs, const double3* rhs )
 {
 	return HLML_CONSTRUCT( double3 ) {
 		lhs->rows[0].x * rhs->x + lhs->rows[0].y * rhs->y + lhs->rows[0].z * rhs->z,
@@ -9139,9 +10972,7 @@ inline double3 double3x3_mulv( const double3x3* lhs, const double3* rhs )
 	};
 }
 
-/// \relates double3x3
-/// \brief Returns a copy of the matrix where each component of the 3rd column has been added by the given vector.
-inline double3x3 double3x3_translate( const double3x3* mat, const double2* vec )
+double3x3 double3x3_translate( const double3x3* mat, const double2* vec )
 {
 	return HLML_CONSTRUCT( double3x3 ) {
 		mat->rows[0].x, mat->rows[0].y, mat->rows[0].z + vec->x,
@@ -9150,9 +10981,7 @@ inline double3x3 double3x3_translate( const double3x3* mat, const double2* vec )
 	};
 }
 
-/// \relates double3x3
-/// \brief Returns a copy of the matrix that has had a rotation applied to it in radians on one or more of the following axes.
-inline double3x3 double3x3_rotate( const double3x3* mat, const double rad )
+double3x3 double3x3_rotate( const double3x3* mat, const double rad )
 {
 	const double c = cos( rad );
 	const double s = sin( rad );
@@ -9162,16 +10991,14 @@ inline double3x3 double3x3_rotate( const double3x3* mat, const double rad )
 	double3 row1_nsin = double3_comp_muls( &mat->rows[1], -s );
 	double3 row1_cos  = double3_comp_muls( &mat->rows[1], c );
 
-	return (double3x3) {
+	return HLML_CONSTRUCT( double3x3 ) {
 		double3_comp_addv( &row0_cos, &row1_nsin ),
 		double3_comp_addv( &row0_sin, &row1_cos  ),
 		mat->rows[2]
 	};
 }
 
-/// \relates double3x3
-/// \brief Returns a copy of the matrix that has had a non-uniform scale applied to it.
-inline double3x3 double3x3_scale( const double3x3* mat, const double2* vec )
+double3x3 double3x3_scale( const double3x3* mat, const double2* vec )
 {
 	return HLML_CONSTRUCT( double3x3 ) {
 		mat->rows[0].x * vec->x,
@@ -9188,27 +11015,19 @@ inline double3x3 double3x3_scale( const double3x3* mat, const double2* vec )
 	};
 }
 
-
-// double3x4
-/// \relates double3x4
-/// \brief Returns true if the all the components of the left-hand-side double3x4 match the other one, otherwise returns false.
-inline bool double3x4_cmpe( const double3x4* lhs, const double3x4* rhs )
+bool double3x4_cmpe( const double3x4* lhs, const double3x4* rhs )
 {
 	return double4_cmpe( &lhs->rows[0], &rhs->rows[0] )
 		&& double4_cmpe( &lhs->rows[1], &rhs->rows[1] )
 		&& double4_cmpe( &lhs->rows[2], &rhs->rows[2] );
 }
 
-/// \relates double3x4
-/// \brief Returns true if not all of the components of the left-hand-side double3x4 match the other one, otherwise returns false.
-inline bool double3x4_cmpne( const double3x4* lhs, const double3x4* rhs )
+bool double3x4_cmpne( const double3x4* lhs, const double3x4* rhs )
 {
 	return !( double3x4_cmpe( lhs, rhs ) );
 }
 
-/// \relates double3x4
-/// \brief Returns a copy of the double3x4 that has been component-wise added by the given scalar value.
-inline double3x4 double3x4_comp_adds( const double3x4* lhs, const double scalar )
+double3x4 double3x4_comp_adds( const double3x4* lhs, const double scalar )
 {
 	return HLML_CONSTRUCT( double3x4 ) {
 		lhs->rows[0].x + scalar, lhs->rows[0].y + scalar, lhs->rows[0].z + scalar, lhs->rows[0].w + scalar,
@@ -9217,9 +11036,7 @@ inline double3x4 double3x4_comp_adds( const double3x4* lhs, const double scalar 
 	};
 }
 
-/// \relates double3x4
-/// \brief Returns a copy of the double3x4 that has been component-wise added by the corresponding component of the right-hand double3x4.
-inline double3x4 double3x4_comp_addm( const double3x4* lhs, const double3x4* rhs )
+double3x4 double3x4_comp_addm( const double3x4* lhs, const double3x4* rhs )
 {
 	return HLML_CONSTRUCT( double3x4 ) {
 		double4_comp_addv( &lhs->rows[0], &rhs->rows[0] ),
@@ -9228,9 +11045,7 @@ inline double3x4 double3x4_comp_addm( const double3x4* lhs, const double3x4* rhs
 	};
 }
 
-/// \relates double3x4
-/// \brief Returns a copy of the double3x4 that has been component-wise subtracted by the given scalar value.
-inline double3x4 double3x4_comp_subs( const double3x4* lhs, const double scalar )
+double3x4 double3x4_comp_subs( const double3x4* lhs, const double scalar )
 {
 	return HLML_CONSTRUCT( double3x4 ) {
 		lhs->rows[0].x - scalar, lhs->rows[0].y - scalar, lhs->rows[0].z - scalar, lhs->rows[0].w - scalar,
@@ -9239,9 +11054,7 @@ inline double3x4 double3x4_comp_subs( const double3x4* lhs, const double scalar 
 	};
 }
 
-/// \relates double3x4
-/// \brief Returns a copy of the double3x4 that has been component-wise subtracted by the corresponding component of the right-hand double3x4.
-inline double3x4 double3x4_comp_subm( const double3x4* lhs, const double3x4* rhs )
+double3x4 double3x4_comp_subm( const double3x4* lhs, const double3x4* rhs )
 {
 	return HLML_CONSTRUCT( double3x4 ) {
 		double4_comp_subv( &lhs->rows[0], &rhs->rows[0] ),
@@ -9250,9 +11063,7 @@ inline double3x4 double3x4_comp_subm( const double3x4* lhs, const double3x4* rhs
 	};
 }
 
-/// \relates double3x4
-/// \brief Returns a copy of the double3x4 that has been component-wise multiplied by the given scalar value.
-inline double3x4 double3x4_comp_muls( const double3x4* lhs, const double scalar )
+double3x4 double3x4_comp_muls( const double3x4* lhs, const double scalar )
 {
 	return HLML_CONSTRUCT( double3x4 ) {
 		lhs->rows[0].x * scalar, lhs->rows[0].y * scalar, lhs->rows[0].z * scalar, lhs->rows[0].w * scalar,
@@ -9261,9 +11072,7 @@ inline double3x4 double3x4_comp_muls( const double3x4* lhs, const double scalar 
 	};
 }
 
-/// \relates double3x4
-/// \brief Returns a copy of the double3x4 that has been component-wise multiplied by the corresponding component of the right-hand double3x4.
-inline double3x4 double3x4_comp_mulm( const double3x4* lhs, const double3x4* rhs )
+double3x4 double3x4_comp_mulm( const double3x4* lhs, const double3x4* rhs )
 {
 	return HLML_CONSTRUCT( double3x4 ) {
 		double4_comp_mulv( &lhs->rows[0], &rhs->rows[0] ),
@@ -9272,9 +11081,7 @@ inline double3x4 double3x4_comp_mulm( const double3x4* lhs, const double3x4* rhs
 	};
 }
 
-/// \relates double3x4
-/// \brief Returns a copy of the double3x4 that has been component-wise divided by the given scalar value.
-inline double3x4 double3x4_comp_divs( const double3x4* lhs, const double scalar )
+double3x4 double3x4_comp_divs( const double3x4* lhs, const double scalar )
 {
 	return HLML_CONSTRUCT( double3x4 ) {
 		lhs->rows[0].x / scalar, lhs->rows[0].y / scalar, lhs->rows[0].z / scalar, lhs->rows[0].w / scalar,
@@ -9283,9 +11090,7 @@ inline double3x4 double3x4_comp_divs( const double3x4* lhs, const double scalar 
 	};
 }
 
-/// \relates double3x4
-/// \brief Returns a copy of the double3x4 that has been component-wise divided by the corresponding component of the right-hand double3x4.
-inline double3x4 double3x4_comp_divm( const double3x4* lhs, const double3x4* rhs )
+double3x4 double3x4_comp_divm( const double3x4* lhs, const double3x4* rhs )
 {
 	return HLML_CONSTRUCT( double3x4 ) {
 		double4_comp_divv( &lhs->rows[0], &rhs->rows[0] ),
@@ -9294,9 +11099,7 @@ inline double3x4 double3x4_comp_divm( const double3x4* lhs, const double3x4* rhs
 	};
 }
 
-/// \relates double3x4
-/// \brief Returns a bool3x4 where each component is true if the component of the left-hand type is less than the corresponding right-hand type component.
-inline bool3x4 double3x4_cmpl( const double3x4* lhs, const double3x4* rhs )
+bool3x4 double3x4_cmpl( const double3x4* lhs, const double3x4* rhs )
 {
 	return HLML_CONSTRUCT( bool3x4 ) {
 		double4_cmpl( &lhs->rows[0], &rhs->rows[0] ),
@@ -9305,9 +11108,7 @@ inline bool3x4 double3x4_cmpl( const double3x4* lhs, const double3x4* rhs )
 	};
 }
 
-/// \relates double3x4
-/// \brief Returns a bool3x4 where each component is true if the component of the left-hand type is less than or equal to the corresponding right-hand type component.
-inline bool3x4 double3x4_cmple( const double3x4* lhs, const double3x4* rhs )
+bool3x4 double3x4_cmple( const double3x4* lhs, const double3x4* rhs )
 {
 	return HLML_CONSTRUCT( bool3x4 ) {
 		double4_cmple( &lhs->rows[0], &rhs->rows[0] ),
@@ -9316,9 +11117,7 @@ inline bool3x4 double3x4_cmple( const double3x4* lhs, const double3x4* rhs )
 	};
 }
 
-/// \relates double3x4
-/// \brief Returns a bool3x4 where each component is true if the component of the left-hand type is greater than the corresponding right-hand type component.
-inline bool3x4 double3x4_cmpg( const double3x4* lhs, const double3x4* rhs )
+bool3x4 double3x4_cmpg( const double3x4* lhs, const double3x4* rhs )
 {
 	return HLML_CONSTRUCT( bool3x4 ) {
 		double4_cmpg( &lhs->rows[0], &rhs->rows[0] ),
@@ -9327,9 +11126,7 @@ inline bool3x4 double3x4_cmpg( const double3x4* lhs, const double3x4* rhs )
 	};
 }
 
-/// \relates double3x4
-/// \brief Returns a bool3x4 where each component is true if the component of the left-hand type is greater than or equal to the corresponding right-hand type component.
-inline bool3x4 double3x4_cmpge( const double3x4* lhs, const double3x4* rhs )
+bool3x4 double3x4_cmpge( const double3x4* lhs, const double3x4* rhs )
 {
 	return HLML_CONSTRUCT( bool3x4 ) {
 		double4_cmpge( &lhs->rows[0], &rhs->rows[0] ),
@@ -9338,18 +11135,14 @@ inline bool3x4 double3x4_cmpge( const double3x4* lhs, const double3x4* rhs )
 	};
 }
 
-/// \relates double3x4
-/// \brief Sets the matrix to an identity matrix.
-inline void double3x4_identity( double3x4* mat )
+void double3x4_identity( double3x4* mat )
 {
 	mat->rows[0] = HLML_CONSTRUCT( double4 ) { 1.0, 0.0, 0.0, 0.0 };
 	mat->rows[1] = HLML_CONSTRUCT( double4 ) { 0.0, 1.0, 0.0, 0.0 };
 	mat->rows[2] = HLML_CONSTRUCT( double4 ) { 0.0, 0.0, 1.0, 0.0 };
 }
 
-/// \relates double3x4
-/// \brief Returns a copy of the matrix that is transposed, where the value of each row is set to the value of each column and vice versa.
-inline double4x3 double3x4_transpose( const double3x4* mat )
+double4x3 double3x4_transpose( const double3x4* mat )
 {
 	return HLML_CONSTRUCT( double4x3 ) {
 		mat->rows[0].x, mat->rows[1].x, mat->rows[2].x,
@@ -9359,9 +11152,7 @@ inline double4x3 double3x4_transpose( const double3x4* mat )
 	};
 }
 
-/// \relates double3x4
-/// \brief Returns a copy of the matrix where each row of the left-hand matrix has been dot-producted by the corresponding column of the right-hand matrix.
-inline double3x3 double3x4_mulm( const double3x4* lhs, const double4x3* rhs )
+double3x3 double3x4_mulm( const double3x4* lhs, const double4x3* rhs )
 {
 	double4 row0 = lhs->rows[0];
 	double4 row1 = lhs->rows[1];
@@ -9386,9 +11177,7 @@ inline double3x3 double3x4_mulm( const double3x4* lhs, const double4x3* rhs )
 	};
 }
 
-/// \relates double3x4
-/// \brief Returns a copy of the matrix where each component of the 3rd column has been added by the given vector.
-inline double3x4 double3x4_translate( const double3x4* mat, const double3* vec )
+double3x4 double3x4_translate( const double3x4* mat, const double3* vec )
 {
 	return HLML_CONSTRUCT( double3x4 ) {
 		mat->rows[0].x, mat->rows[0].y, mat->rows[0].z, mat->rows[0].w + vec->x,
@@ -9397,9 +11186,7 @@ inline double3x4 double3x4_translate( const double3x4* mat, const double3* vec )
 	};
 }
 
-/// \relates double3x4
-/// \brief Returns a copy of the matrix that has had a non-uniform scale applied to it.
-inline double3x4 double3x4_scale( const double3x4* mat, const double2* vec )
+double3x4 double3x4_scale( const double3x4* mat, const double2* vec )
 {
 	return HLML_CONSTRUCT( double3x4 ) {
 		mat->rows[0].x * vec->x,
@@ -9419,11 +11206,7 @@ inline double3x4 double3x4_scale( const double3x4* mat, const double2* vec )
 	};
 }
 
-
-// double4x2
-/// \relates double4x2
-/// \brief Returns true if the all the components of the left-hand-side double4x2 match the other one, otherwise returns false.
-inline bool double4x2_cmpe( const double4x2* lhs, const double4x2* rhs )
+bool double4x2_cmpe( const double4x2* lhs, const double4x2* rhs )
 {
 	return double2_cmpe( &lhs->rows[0], &rhs->rows[0] )
 		&& double2_cmpe( &lhs->rows[1], &rhs->rows[1] )
@@ -9431,16 +11214,12 @@ inline bool double4x2_cmpe( const double4x2* lhs, const double4x2* rhs )
 		&& double2_cmpe( &lhs->rows[3], &rhs->rows[3] );
 }
 
-/// \relates double4x2
-/// \brief Returns true if not all of the components of the left-hand-side double4x2 match the other one, otherwise returns false.
-inline bool double4x2_cmpne( const double4x2* lhs, const double4x2* rhs )
+bool double4x2_cmpne( const double4x2* lhs, const double4x2* rhs )
 {
 	return !( double4x2_cmpe( lhs, rhs ) );
 }
 
-/// \relates double4x2
-/// \brief Returns a copy of the double4x2 that has been component-wise added by the given scalar value.
-inline double4x2 double4x2_comp_adds( const double4x2* lhs, const double scalar )
+double4x2 double4x2_comp_adds( const double4x2* lhs, const double scalar )
 {
 	return HLML_CONSTRUCT( double4x2 ) {
 		lhs->rows[0].x + scalar, lhs->rows[0].y + scalar,
@@ -9450,9 +11229,7 @@ inline double4x2 double4x2_comp_adds( const double4x2* lhs, const double scalar 
 	};
 }
 
-/// \relates double4x2
-/// \brief Returns a copy of the double4x2 that has been component-wise added by the corresponding component of the right-hand double4x2.
-inline double4x2 double4x2_comp_addm( const double4x2* lhs, const double4x2* rhs )
+double4x2 double4x2_comp_addm( const double4x2* lhs, const double4x2* rhs )
 {
 	return HLML_CONSTRUCT( double4x2 ) {
 		double2_comp_addv( &lhs->rows[0], &rhs->rows[0] ),
@@ -9462,9 +11239,7 @@ inline double4x2 double4x2_comp_addm( const double4x2* lhs, const double4x2* rhs
 	};
 }
 
-/// \relates double4x2
-/// \brief Returns a copy of the double4x2 that has been component-wise subtracted by the given scalar value.
-inline double4x2 double4x2_comp_subs( const double4x2* lhs, const double scalar )
+double4x2 double4x2_comp_subs( const double4x2* lhs, const double scalar )
 {
 	return HLML_CONSTRUCT( double4x2 ) {
 		lhs->rows[0].x - scalar, lhs->rows[0].y - scalar,
@@ -9474,9 +11249,7 @@ inline double4x2 double4x2_comp_subs( const double4x2* lhs, const double scalar 
 	};
 }
 
-/// \relates double4x2
-/// \brief Returns a copy of the double4x2 that has been component-wise subtracted by the corresponding component of the right-hand double4x2.
-inline double4x2 double4x2_comp_subm( const double4x2* lhs, const double4x2* rhs )
+double4x2 double4x2_comp_subm( const double4x2* lhs, const double4x2* rhs )
 {
 	return HLML_CONSTRUCT( double4x2 ) {
 		double2_comp_subv( &lhs->rows[0], &rhs->rows[0] ),
@@ -9486,9 +11259,7 @@ inline double4x2 double4x2_comp_subm( const double4x2* lhs, const double4x2* rhs
 	};
 }
 
-/// \relates double4x2
-/// \brief Returns a copy of the double4x2 that has been component-wise multiplied by the given scalar value.
-inline double4x2 double4x2_comp_muls( const double4x2* lhs, const double scalar )
+double4x2 double4x2_comp_muls( const double4x2* lhs, const double scalar )
 {
 	return HLML_CONSTRUCT( double4x2 ) {
 		lhs->rows[0].x * scalar, lhs->rows[0].y * scalar,
@@ -9498,9 +11269,7 @@ inline double4x2 double4x2_comp_muls( const double4x2* lhs, const double scalar 
 	};
 }
 
-/// \relates double4x2
-/// \brief Returns a copy of the double4x2 that has been component-wise multiplied by the corresponding component of the right-hand double4x2.
-inline double4x2 double4x2_comp_mulm( const double4x2* lhs, const double4x2* rhs )
+double4x2 double4x2_comp_mulm( const double4x2* lhs, const double4x2* rhs )
 {
 	return HLML_CONSTRUCT( double4x2 ) {
 		double2_comp_mulv( &lhs->rows[0], &rhs->rows[0] ),
@@ -9510,9 +11279,7 @@ inline double4x2 double4x2_comp_mulm( const double4x2* lhs, const double4x2* rhs
 	};
 }
 
-/// \relates double4x2
-/// \brief Returns a copy of the double4x2 that has been component-wise divided by the given scalar value.
-inline double4x2 double4x2_comp_divs( const double4x2* lhs, const double scalar )
+double4x2 double4x2_comp_divs( const double4x2* lhs, const double scalar )
 {
 	return HLML_CONSTRUCT( double4x2 ) {
 		lhs->rows[0].x / scalar, lhs->rows[0].y / scalar,
@@ -9522,9 +11289,7 @@ inline double4x2 double4x2_comp_divs( const double4x2* lhs, const double scalar 
 	};
 }
 
-/// \relates double4x2
-/// \brief Returns a copy of the double4x2 that has been component-wise divided by the corresponding component of the right-hand double4x2.
-inline double4x2 double4x2_comp_divm( const double4x2* lhs, const double4x2* rhs )
+double4x2 double4x2_comp_divm( const double4x2* lhs, const double4x2* rhs )
 {
 	return HLML_CONSTRUCT( double4x2 ) {
 		double2_comp_divv( &lhs->rows[0], &rhs->rows[0] ),
@@ -9534,9 +11299,7 @@ inline double4x2 double4x2_comp_divm( const double4x2* lhs, const double4x2* rhs
 	};
 }
 
-/// \relates double4x2
-/// \brief Returns a bool4x2 where each component is true if the component of the left-hand type is less than the corresponding right-hand type component.
-inline bool4x2 double4x2_cmpl( const double4x2* lhs, const double4x2* rhs )
+bool4x2 double4x2_cmpl( const double4x2* lhs, const double4x2* rhs )
 {
 	return HLML_CONSTRUCT( bool4x2 ) {
 		double2_cmpl( &lhs->rows[0], &rhs->rows[0] ),
@@ -9546,9 +11309,7 @@ inline bool4x2 double4x2_cmpl( const double4x2* lhs, const double4x2* rhs )
 	};
 }
 
-/// \relates double4x2
-/// \brief Returns a bool4x2 where each component is true if the component of the left-hand type is less than or equal to the corresponding right-hand type component.
-inline bool4x2 double4x2_cmple( const double4x2* lhs, const double4x2* rhs )
+bool4x2 double4x2_cmple( const double4x2* lhs, const double4x2* rhs )
 {
 	return HLML_CONSTRUCT( bool4x2 ) {
 		double2_cmple( &lhs->rows[0], &rhs->rows[0] ),
@@ -9558,9 +11319,7 @@ inline bool4x2 double4x2_cmple( const double4x2* lhs, const double4x2* rhs )
 	};
 }
 
-/// \relates double4x2
-/// \brief Returns a bool4x2 where each component is true if the component of the left-hand type is greater than the corresponding right-hand type component.
-inline bool4x2 double4x2_cmpg( const double4x2* lhs, const double4x2* rhs )
+bool4x2 double4x2_cmpg( const double4x2* lhs, const double4x2* rhs )
 {
 	return HLML_CONSTRUCT( bool4x2 ) {
 		double2_cmpg( &lhs->rows[0], &rhs->rows[0] ),
@@ -9570,9 +11329,7 @@ inline bool4x2 double4x2_cmpg( const double4x2* lhs, const double4x2* rhs )
 	};
 }
 
-/// \relates double4x2
-/// \brief Returns a bool4x2 where each component is true if the component of the left-hand type is greater than or equal to the corresponding right-hand type component.
-inline bool4x2 double4x2_cmpge( const double4x2* lhs, const double4x2* rhs )
+bool4x2 double4x2_cmpge( const double4x2* lhs, const double4x2* rhs )
 {
 	return HLML_CONSTRUCT( bool4x2 ) {
 		double2_cmpge( &lhs->rows[0], &rhs->rows[0] ),
@@ -9582,9 +11339,7 @@ inline bool4x2 double4x2_cmpge( const double4x2* lhs, const double4x2* rhs )
 	};
 }
 
-/// \relates double4x2
-/// \brief Sets the matrix to an identity matrix.
-inline void double4x2_identity( double4x2* mat )
+void double4x2_identity( double4x2* mat )
 {
 	mat->rows[0] = HLML_CONSTRUCT( double2 ) { 1.0, 0.0 };
 	mat->rows[1] = HLML_CONSTRUCT( double2 ) { 0.0, 1.0 };
@@ -9592,9 +11347,7 @@ inline void double4x2_identity( double4x2* mat )
 	mat->rows[3] = HLML_CONSTRUCT( double2 ) { 0.0, 0.0 };
 }
 
-/// \relates double4x2
-/// \brief Returns a copy of the matrix that is transposed, where the value of each row is set to the value of each column and vice versa.
-inline double2x4 double4x2_transpose( const double4x2* mat )
+double2x4 double4x2_transpose( const double4x2* mat )
 {
 	return HLML_CONSTRUCT( double2x4 ) {
 		mat->rows[0].x, mat->rows[1].x, mat->rows[2].x, mat->rows[3].x,
@@ -9602,9 +11355,7 @@ inline double2x4 double4x2_transpose( const double4x2* mat )
 	};
 }
 
-/// \relates double4x2
-/// \brief Returns a copy of the matrix where each row of the left-hand matrix has been dot-producted by the corresponding column of the right-hand matrix.
-inline double4x4 double4x2_mulm( const double4x2* lhs, const double2x4* rhs )
+double4x4 double4x2_mulm( const double4x2* lhs, const double2x4* rhs )
 {
 	double2 row0 = lhs->rows[0];
 	double2 row1 = lhs->rows[1];
@@ -9639,11 +11390,7 @@ inline double4x4 double4x2_mulm( const double4x2* lhs, const double2x4* rhs )
 	};
 }
 
-
-// double4x3
-/// \relates double4x3
-/// \brief Returns true if the all the components of the left-hand-side double4x3 match the other one, otherwise returns false.
-inline bool double4x3_cmpe( const double4x3* lhs, const double4x3* rhs )
+bool double4x3_cmpe( const double4x3* lhs, const double4x3* rhs )
 {
 	return double3_cmpe( &lhs->rows[0], &rhs->rows[0] )
 		&& double3_cmpe( &lhs->rows[1], &rhs->rows[1] )
@@ -9651,16 +11398,12 @@ inline bool double4x3_cmpe( const double4x3* lhs, const double4x3* rhs )
 		&& double3_cmpe( &lhs->rows[3], &rhs->rows[3] );
 }
 
-/// \relates double4x3
-/// \brief Returns true if not all of the components of the left-hand-side double4x3 match the other one, otherwise returns false.
-inline bool double4x3_cmpne( const double4x3* lhs, const double4x3* rhs )
+bool double4x3_cmpne( const double4x3* lhs, const double4x3* rhs )
 {
 	return !( double4x3_cmpe( lhs, rhs ) );
 }
 
-/// \relates double4x3
-/// \brief Returns a copy of the double4x3 that has been component-wise added by the given scalar value.
-inline double4x3 double4x3_comp_adds( const double4x3* lhs, const double scalar )
+double4x3 double4x3_comp_adds( const double4x3* lhs, const double scalar )
 {
 	return HLML_CONSTRUCT( double4x3 ) {
 		lhs->rows[0].x + scalar, lhs->rows[0].y + scalar, lhs->rows[0].z + scalar,
@@ -9670,9 +11413,7 @@ inline double4x3 double4x3_comp_adds( const double4x3* lhs, const double scalar 
 	};
 }
 
-/// \relates double4x3
-/// \brief Returns a copy of the double4x3 that has been component-wise added by the corresponding component of the right-hand double4x3.
-inline double4x3 double4x3_comp_addm( const double4x3* lhs, const double4x3* rhs )
+double4x3 double4x3_comp_addm( const double4x3* lhs, const double4x3* rhs )
 {
 	return HLML_CONSTRUCT( double4x3 ) {
 		double3_comp_addv( &lhs->rows[0], &rhs->rows[0] ),
@@ -9682,9 +11423,7 @@ inline double4x3 double4x3_comp_addm( const double4x3* lhs, const double4x3* rhs
 	};
 }
 
-/// \relates double4x3
-/// \brief Returns a copy of the double4x3 that has been component-wise subtracted by the given scalar value.
-inline double4x3 double4x3_comp_subs( const double4x3* lhs, const double scalar )
+double4x3 double4x3_comp_subs( const double4x3* lhs, const double scalar )
 {
 	return HLML_CONSTRUCT( double4x3 ) {
 		lhs->rows[0].x - scalar, lhs->rows[0].y - scalar, lhs->rows[0].z - scalar,
@@ -9694,9 +11433,7 @@ inline double4x3 double4x3_comp_subs( const double4x3* lhs, const double scalar 
 	};
 }
 
-/// \relates double4x3
-/// \brief Returns a copy of the double4x3 that has been component-wise subtracted by the corresponding component of the right-hand double4x3.
-inline double4x3 double4x3_comp_subm( const double4x3* lhs, const double4x3* rhs )
+double4x3 double4x3_comp_subm( const double4x3* lhs, const double4x3* rhs )
 {
 	return HLML_CONSTRUCT( double4x3 ) {
 		double3_comp_subv( &lhs->rows[0], &rhs->rows[0] ),
@@ -9706,9 +11443,7 @@ inline double4x3 double4x3_comp_subm( const double4x3* lhs, const double4x3* rhs
 	};
 }
 
-/// \relates double4x3
-/// \brief Returns a copy of the double4x3 that has been component-wise multiplied by the given scalar value.
-inline double4x3 double4x3_comp_muls( const double4x3* lhs, const double scalar )
+double4x3 double4x3_comp_muls( const double4x3* lhs, const double scalar )
 {
 	return HLML_CONSTRUCT( double4x3 ) {
 		lhs->rows[0].x * scalar, lhs->rows[0].y * scalar, lhs->rows[0].z * scalar,
@@ -9718,9 +11453,7 @@ inline double4x3 double4x3_comp_muls( const double4x3* lhs, const double scalar 
 	};
 }
 
-/// \relates double4x3
-/// \brief Returns a copy of the double4x3 that has been component-wise multiplied by the corresponding component of the right-hand double4x3.
-inline double4x3 double4x3_comp_mulm( const double4x3* lhs, const double4x3* rhs )
+double4x3 double4x3_comp_mulm( const double4x3* lhs, const double4x3* rhs )
 {
 	return HLML_CONSTRUCT( double4x3 ) {
 		double3_comp_mulv( &lhs->rows[0], &rhs->rows[0] ),
@@ -9730,9 +11463,7 @@ inline double4x3 double4x3_comp_mulm( const double4x3* lhs, const double4x3* rhs
 	};
 }
 
-/// \relates double4x3
-/// \brief Returns a copy of the double4x3 that has been component-wise divided by the given scalar value.
-inline double4x3 double4x3_comp_divs( const double4x3* lhs, const double scalar )
+double4x3 double4x3_comp_divs( const double4x3* lhs, const double scalar )
 {
 	return HLML_CONSTRUCT( double4x3 ) {
 		lhs->rows[0].x / scalar, lhs->rows[0].y / scalar, lhs->rows[0].z / scalar,
@@ -9742,9 +11473,7 @@ inline double4x3 double4x3_comp_divs( const double4x3* lhs, const double scalar 
 	};
 }
 
-/// \relates double4x3
-/// \brief Returns a copy of the double4x3 that has been component-wise divided by the corresponding component of the right-hand double4x3.
-inline double4x3 double4x3_comp_divm( const double4x3* lhs, const double4x3* rhs )
+double4x3 double4x3_comp_divm( const double4x3* lhs, const double4x3* rhs )
 {
 	return HLML_CONSTRUCT( double4x3 ) {
 		double3_comp_divv( &lhs->rows[0], &rhs->rows[0] ),
@@ -9754,9 +11483,7 @@ inline double4x3 double4x3_comp_divm( const double4x3* lhs, const double4x3* rhs
 	};
 }
 
-/// \relates double4x3
-/// \brief Returns a bool4x3 where each component is true if the component of the left-hand type is less than the corresponding right-hand type component.
-inline bool4x3 double4x3_cmpl( const double4x3* lhs, const double4x3* rhs )
+bool4x3 double4x3_cmpl( const double4x3* lhs, const double4x3* rhs )
 {
 	return HLML_CONSTRUCT( bool4x3 ) {
 		double3_cmpl( &lhs->rows[0], &rhs->rows[0] ),
@@ -9766,9 +11493,7 @@ inline bool4x3 double4x3_cmpl( const double4x3* lhs, const double4x3* rhs )
 	};
 }
 
-/// \relates double4x3
-/// \brief Returns a bool4x3 where each component is true if the component of the left-hand type is less than or equal to the corresponding right-hand type component.
-inline bool4x3 double4x3_cmple( const double4x3* lhs, const double4x3* rhs )
+bool4x3 double4x3_cmple( const double4x3* lhs, const double4x3* rhs )
 {
 	return HLML_CONSTRUCT( bool4x3 ) {
 		double3_cmple( &lhs->rows[0], &rhs->rows[0] ),
@@ -9778,9 +11503,7 @@ inline bool4x3 double4x3_cmple( const double4x3* lhs, const double4x3* rhs )
 	};
 }
 
-/// \relates double4x3
-/// \brief Returns a bool4x3 where each component is true if the component of the left-hand type is greater than the corresponding right-hand type component.
-inline bool4x3 double4x3_cmpg( const double4x3* lhs, const double4x3* rhs )
+bool4x3 double4x3_cmpg( const double4x3* lhs, const double4x3* rhs )
 {
 	return HLML_CONSTRUCT( bool4x3 ) {
 		double3_cmpg( &lhs->rows[0], &rhs->rows[0] ),
@@ -9790,9 +11513,7 @@ inline bool4x3 double4x3_cmpg( const double4x3* lhs, const double4x3* rhs )
 	};
 }
 
-/// \relates double4x3
-/// \brief Returns a bool4x3 where each component is true if the component of the left-hand type is greater than or equal to the corresponding right-hand type component.
-inline bool4x3 double4x3_cmpge( const double4x3* lhs, const double4x3* rhs )
+bool4x3 double4x3_cmpge( const double4x3* lhs, const double4x3* rhs )
 {
 	return HLML_CONSTRUCT( bool4x3 ) {
 		double3_cmpge( &lhs->rows[0], &rhs->rows[0] ),
@@ -9802,9 +11523,7 @@ inline bool4x3 double4x3_cmpge( const double4x3* lhs, const double4x3* rhs )
 	};
 }
 
-/// \relates double4x3
-/// \brief Sets the matrix to an identity matrix.
-inline void double4x3_identity( double4x3* mat )
+void double4x3_identity( double4x3* mat )
 {
 	mat->rows[0] = HLML_CONSTRUCT( double3 ) { 1.0, 0.0, 0.0 };
 	mat->rows[1] = HLML_CONSTRUCT( double3 ) { 0.0, 1.0, 0.0 };
@@ -9812,9 +11531,7 @@ inline void double4x3_identity( double4x3* mat )
 	mat->rows[3] = HLML_CONSTRUCT( double3 ) { 0.0, 0.0, 0.0 };
 }
 
-/// \relates double4x3
-/// \brief Returns a copy of the matrix that is transposed, where the value of each row is set to the value of each column and vice versa.
-inline double3x4 double4x3_transpose( const double4x3* mat )
+double3x4 double4x3_transpose( const double4x3* mat )
 {
 	return HLML_CONSTRUCT( double3x4 ) {
 		mat->rows[0].x, mat->rows[1].x, mat->rows[2].x, mat->rows[3].x,
@@ -9823,9 +11540,7 @@ inline double3x4 double4x3_transpose( const double4x3* mat )
 	};
 }
 
-/// \relates double4x3
-/// \brief Returns a copy of the matrix where each row of the left-hand matrix has been dot-producted by the corresponding column of the right-hand matrix.
-inline double4x4 double4x3_mulm( const double4x3* lhs, const double3x4* rhs )
+double4x4 double4x3_mulm( const double4x3* lhs, const double3x4* rhs )
 {
 	double3 row0 = lhs->rows[0];
 	double3 row1 = lhs->rows[1];
@@ -9860,9 +11575,7 @@ inline double4x4 double4x3_mulm( const double4x3* lhs, const double3x4* rhs )
 	};
 }
 
-/// \relates double4x3
-/// \brief Returns a copy of the matrix that has had a non-uniform scale applied to it.
-inline double4x3 double4x3_scale( const double4x3* mat, const double2* vec )
+double4x3 double4x3_scale( const double4x3* mat, const double2* vec )
 {
 	return HLML_CONSTRUCT( double4x3 ) {
 		mat->rows[0].x * vec->x,
@@ -9883,11 +11596,7 @@ inline double4x3 double4x3_scale( const double4x3* mat, const double2* vec )
 	};
 }
 
-
-// double4x4
-/// \relates double4x4
-/// \brief Returns true if the all the components of the left-hand-side double4x4 match the other one, otherwise returns false.
-inline bool double4x4_cmpe( const double4x4* lhs, const double4x4* rhs )
+bool double4x4_cmpe( const double4x4* lhs, const double4x4* rhs )
 {
 	return double4_cmpe( &lhs->rows[0], &rhs->rows[0] )
 		&& double4_cmpe( &lhs->rows[1], &rhs->rows[1] )
@@ -9895,16 +11604,12 @@ inline bool double4x4_cmpe( const double4x4* lhs, const double4x4* rhs )
 		&& double4_cmpe( &lhs->rows[3], &rhs->rows[3] );
 }
 
-/// \relates double4x4
-/// \brief Returns true if not all of the components of the left-hand-side double4x4 match the other one, otherwise returns false.
-inline bool double4x4_cmpne( const double4x4* lhs, const double4x4* rhs )
+bool double4x4_cmpne( const double4x4* lhs, const double4x4* rhs )
 {
 	return !( double4x4_cmpe( lhs, rhs ) );
 }
 
-/// \relates double4x4
-/// \brief Returns a copy of the double4x4 that has been component-wise added by the given scalar value.
-inline double4x4 double4x4_comp_adds( const double4x4* lhs, const double scalar )
+double4x4 double4x4_comp_adds( const double4x4* lhs, const double scalar )
 {
 	return HLML_CONSTRUCT( double4x4 ) {
 		lhs->rows[0].x + scalar, lhs->rows[0].y + scalar, lhs->rows[0].z + scalar, lhs->rows[0].w + scalar,
@@ -9914,9 +11619,7 @@ inline double4x4 double4x4_comp_adds( const double4x4* lhs, const double scalar 
 	};
 }
 
-/// \relates double4x4
-/// \brief Returns a copy of the double4x4 that has been component-wise added by the corresponding component of the right-hand double4x4.
-inline double4x4 double4x4_comp_addm( const double4x4* lhs, const double4x4* rhs )
+double4x4 double4x4_comp_addm( const double4x4* lhs, const double4x4* rhs )
 {
 	return HLML_CONSTRUCT( double4x4 ) {
 		double4_comp_addv( &lhs->rows[0], &rhs->rows[0] ),
@@ -9926,9 +11629,7 @@ inline double4x4 double4x4_comp_addm( const double4x4* lhs, const double4x4* rhs
 	};
 }
 
-/// \relates double4x4
-/// \brief Returns a copy of the double4x4 that has been component-wise subtracted by the given scalar value.
-inline double4x4 double4x4_comp_subs( const double4x4* lhs, const double scalar )
+double4x4 double4x4_comp_subs( const double4x4* lhs, const double scalar )
 {
 	return HLML_CONSTRUCT( double4x4 ) {
 		lhs->rows[0].x - scalar, lhs->rows[0].y - scalar, lhs->rows[0].z - scalar, lhs->rows[0].w - scalar,
@@ -9938,9 +11639,7 @@ inline double4x4 double4x4_comp_subs( const double4x4* lhs, const double scalar 
 	};
 }
 
-/// \relates double4x4
-/// \brief Returns a copy of the double4x4 that has been component-wise subtracted by the corresponding component of the right-hand double4x4.
-inline double4x4 double4x4_comp_subm( const double4x4* lhs, const double4x4* rhs )
+double4x4 double4x4_comp_subm( const double4x4* lhs, const double4x4* rhs )
 {
 	return HLML_CONSTRUCT( double4x4 ) {
 		double4_comp_subv( &lhs->rows[0], &rhs->rows[0] ),
@@ -9950,9 +11649,7 @@ inline double4x4 double4x4_comp_subm( const double4x4* lhs, const double4x4* rhs
 	};
 }
 
-/// \relates double4x4
-/// \brief Returns a copy of the double4x4 that has been component-wise multiplied by the given scalar value.
-inline double4x4 double4x4_comp_muls( const double4x4* lhs, const double scalar )
+double4x4 double4x4_comp_muls( const double4x4* lhs, const double scalar )
 {
 	return HLML_CONSTRUCT( double4x4 ) {
 		lhs->rows[0].x * scalar, lhs->rows[0].y * scalar, lhs->rows[0].z * scalar, lhs->rows[0].w * scalar,
@@ -9962,9 +11659,7 @@ inline double4x4 double4x4_comp_muls( const double4x4* lhs, const double scalar 
 	};
 }
 
-/// \relates double4x4
-/// \brief Returns a copy of the double4x4 that has been component-wise multiplied by the corresponding component of the right-hand double4x4.
-inline double4x4 double4x4_comp_mulm( const double4x4* lhs, const double4x4* rhs )
+double4x4 double4x4_comp_mulm( const double4x4* lhs, const double4x4* rhs )
 {
 	return HLML_CONSTRUCT( double4x4 ) {
 		double4_comp_mulv( &lhs->rows[0], &rhs->rows[0] ),
@@ -9974,9 +11669,7 @@ inline double4x4 double4x4_comp_mulm( const double4x4* lhs, const double4x4* rhs
 	};
 }
 
-/// \relates double4x4
-/// \brief Returns a copy of the double4x4 that has been component-wise divided by the given scalar value.
-inline double4x4 double4x4_comp_divs( const double4x4* lhs, const double scalar )
+double4x4 double4x4_comp_divs( const double4x4* lhs, const double scalar )
 {
 	return HLML_CONSTRUCT( double4x4 ) {
 		lhs->rows[0].x / scalar, lhs->rows[0].y / scalar, lhs->rows[0].z / scalar, lhs->rows[0].w / scalar,
@@ -9986,9 +11679,7 @@ inline double4x4 double4x4_comp_divs( const double4x4* lhs, const double scalar 
 	};
 }
 
-/// \relates double4x4
-/// \brief Returns a copy of the double4x4 that has been component-wise divided by the corresponding component of the right-hand double4x4.
-inline double4x4 double4x4_comp_divm( const double4x4* lhs, const double4x4* rhs )
+double4x4 double4x4_comp_divm( const double4x4* lhs, const double4x4* rhs )
 {
 	return HLML_CONSTRUCT( double4x4 ) {
 		double4_comp_divv( &lhs->rows[0], &rhs->rows[0] ),
@@ -9998,9 +11689,7 @@ inline double4x4 double4x4_comp_divm( const double4x4* lhs, const double4x4* rhs
 	};
 }
 
-/// \relates double4x4
-/// \brief Returns a bool4x4 where each component is true if the component of the left-hand type is less than the corresponding right-hand type component.
-inline bool4x4 double4x4_cmpl( const double4x4* lhs, const double4x4* rhs )
+bool4x4 double4x4_cmpl( const double4x4* lhs, const double4x4* rhs )
 {
 	return HLML_CONSTRUCT( bool4x4 ) {
 		double4_cmpl( &lhs->rows[0], &rhs->rows[0] ),
@@ -10010,9 +11699,7 @@ inline bool4x4 double4x4_cmpl( const double4x4* lhs, const double4x4* rhs )
 	};
 }
 
-/// \relates double4x4
-/// \brief Returns a bool4x4 where each component is true if the component of the left-hand type is less than or equal to the corresponding right-hand type component.
-inline bool4x4 double4x4_cmple( const double4x4* lhs, const double4x4* rhs )
+bool4x4 double4x4_cmple( const double4x4* lhs, const double4x4* rhs )
 {
 	return HLML_CONSTRUCT( bool4x4 ) {
 		double4_cmple( &lhs->rows[0], &rhs->rows[0] ),
@@ -10022,9 +11709,7 @@ inline bool4x4 double4x4_cmple( const double4x4* lhs, const double4x4* rhs )
 	};
 }
 
-/// \relates double4x4
-/// \brief Returns a bool4x4 where each component is true if the component of the left-hand type is greater than the corresponding right-hand type component.
-inline bool4x4 double4x4_cmpg( const double4x4* lhs, const double4x4* rhs )
+bool4x4 double4x4_cmpg( const double4x4* lhs, const double4x4* rhs )
 {
 	return HLML_CONSTRUCT( bool4x4 ) {
 		double4_cmpg( &lhs->rows[0], &rhs->rows[0] ),
@@ -10034,9 +11719,7 @@ inline bool4x4 double4x4_cmpg( const double4x4* lhs, const double4x4* rhs )
 	};
 }
 
-/// \relates double4x4
-/// \brief Returns a bool4x4 where each component is true if the component of the left-hand type is greater than or equal to the corresponding right-hand type component.
-inline bool4x4 double4x4_cmpge( const double4x4* lhs, const double4x4* rhs )
+bool4x4 double4x4_cmpge( const double4x4* lhs, const double4x4* rhs )
 {
 	return HLML_CONSTRUCT( bool4x4 ) {
 		double4_cmpge( &lhs->rows[0], &rhs->rows[0] ),
@@ -10046,9 +11729,7 @@ inline bool4x4 double4x4_cmpge( const double4x4* lhs, const double4x4* rhs )
 	};
 }
 
-/// \relates double4x4
-/// \brief Sets the matrix to an identity matrix.
-inline void double4x4_identity( double4x4* mat )
+void double4x4_identity( double4x4* mat )
 {
 	mat->rows[0] = HLML_CONSTRUCT( double4 ) { 1.0, 0.0, 0.0, 0.0 };
 	mat->rows[1] = HLML_CONSTRUCT( double4 ) { 0.0, 1.0, 0.0, 0.0 };
@@ -10056,9 +11737,7 @@ inline void double4x4_identity( double4x4* mat )
 	mat->rows[3] = HLML_CONSTRUCT( double4 ) { 0.0, 0.0, 0.0, 1.0 };
 }
 
-/// \relates double4x4
-/// \brief Returns a copy of the matrix that is transposed, where the value of each row is set to the value of each column and vice versa.
-inline double4x4 double4x4_transpose( const double4x4* mat )
+double4x4 double4x4_transpose( const double4x4* mat )
 {
 	return HLML_CONSTRUCT( double4x4 ) {
 		mat->rows[0].x, mat->rows[1].x, mat->rows[2].x, mat->rows[3].x,
@@ -10068,9 +11747,7 @@ inline double4x4 double4x4_transpose( const double4x4* mat )
 	};
 }
 
-/// \relates double4x4
-/// \brief Returns the determinant of the matrix.
-inline double double4x4_determinant( const double4x4* mat )
+double double4x4_determinant( const double4x4* mat )
 {
 	// using glm's method where you basically take determinants from each sub matrix and cache the repeat occurences
 	double sub00 = mat->rows[2].z * mat->rows[3].w - mat->rows[3].z * mat->rows[2].w;
@@ -10092,10 +11769,7 @@ inline double double4x4_determinant( const double4x4* mat )
 		mat->rows[0].z * cofactor.z + mat->rows[0].w * cofactor.w; 
 }
 
-/// \relates double4x4
-/// \brief Returns a copy of the matrix that is inversed.
-/// Currently this is only applicable for square matrices.  Pseudo-inverse support for non-square matrices is coming soon.
-inline double4x4 double4x4_inverse( const double4x4* mat )
+double4x4 double4x4_inverse( const double4x4* mat )
 {
 	// uses the glm version, which is basically just an optimised version of the adjugate formula
 	double sub00 = mat->rows[2].z * mat->rows[3].w - mat->rows[3].z * mat->rows[2].w;
@@ -10179,9 +11853,7 @@ inline double4x4 double4x4_inverse( const double4x4* mat )
 	return double4x4_comp_muls( &result, invdet );
 }
 
-/// \relates double4x4
-/// \brief Returns a copy of the matrix where each row of the left-hand matrix has been dot-producted by the corresponding column of the right-hand matrix.
-inline double4x4 double4x4_mulm( const double4x4* lhs, const double4x4* rhs )
+double4x4 double4x4_mulm( const double4x4* lhs, const double4x4* rhs )
 {
 	double4 row0 = lhs->rows[0];
 	double4 row1 = lhs->rows[1];
@@ -10216,9 +11888,7 @@ inline double4x4 double4x4_mulm( const double4x4* lhs, const double4x4* rhs )
 	};
 }
 
-/// \relates double4x4
-/// \brief Returns the right-hand vector multiplied by the left-hand matrix.
-inline double4 double4x4_mulv( const double4x4* lhs, const double4* rhs )
+double4 double4x4_mulv( const double4x4* lhs, const double4* rhs )
 {
 	return HLML_CONSTRUCT( double4 ) {
 		lhs->rows[0].x * rhs->x + lhs->rows[0].y * rhs->y + lhs->rows[0].z * rhs->z + lhs->rows[0].w * rhs->w,
@@ -10228,9 +11898,7 @@ inline double4 double4x4_mulv( const double4x4* lhs, const double4* rhs )
 	};
 }
 
-/// \relates double4x4
-/// \brief Returns a copy of the matrix where each component of the 3rd column has been added by the given vector.
-inline double4x4 double4x4_translate( const double4x4* mat, const double3* vec )
+double4x4 double4x4_translate( const double4x4* mat, const double3* vec )
 {
 	return HLML_CONSTRUCT( double4x4 ) {
 		mat->rows[0].x, mat->rows[0].y, mat->rows[0].z, mat->rows[0].w + vec->x,
@@ -10240,9 +11908,7 @@ inline double4x4 double4x4_translate( const double4x4* mat, const double3* vec )
 	};
 }
 
-/// \relates double4x4
-/// \brief Returns a copy of the matrix that has had a rotation applied to it in radians on one or more of the following axes.
-inline double4x4 double4x4_rotate( const double4x4* mat, const double rad, const double3* axis )
+double4x4 double4x4_rotate( const double4x4* mat, const double rad, const double3* axis )
 {
 	const double c = cos( rad );
 	const double s = sin( rad );
@@ -10266,9 +11932,7 @@ inline double4x4 double4x4_rotate( const double4x4* mat, const double rad, const
 	return double4x4_mulm( mat, &rotation );
 }
 
-/// \relates double4x4
-/// \brief Returns a copy of the matrix that has had a non-uniform scale applied to it.
-inline double4x4 double4x4_scale( const double4x4* mat, const double3* vec )
+double4x4 double4x4_scale( const double4x4* mat, const double3* vec )
 {
 	return HLML_CONSTRUCT( double4x4 ) {
 		mat->rows[0].x * vec->x,
@@ -10293,9 +11957,7 @@ inline double4x4 double4x4_scale( const double4x4* mat, const double3* vec )
 	};
 }
 
-/// \relates double4x4
-/// \brief Returns an left-handed orthographic projection matrix with the clip-space range zero to one.
-inline double4x4 double4x4_ortho_lh_zo( const double left, const double right, const double top, const double bottom, const double znear, const double zfar )
+double4x4 double4x4_ortho_lh_zo( const double left, const double right, const double top, const double bottom, const double znear, const double zfar )
 {
 	// left-handed, clip-space range: zero to one
 	const double right_minus_left = right - left;
@@ -10312,9 +11974,7 @@ inline double4x4 double4x4_ortho_lh_zo( const double left, const double right, c
 	};
 }
 
-/// \relates double4x4
-/// \brief Returns an left-handed orthographic projection matrix with the clip-space range minus-one to one.
-inline double4x4 double4x4_ortho_lh_no( const double left, const double right, const double top, const double bottom, const double znear, const double zfar )
+double4x4 double4x4_ortho_lh_no( const double left, const double right, const double top, const double bottom, const double znear, const double zfar )
 {
 	// left-handed, clip-space range: minus-one to one
 	const double right_minus_left = right - left;
@@ -10332,9 +11992,7 @@ inline double4x4 double4x4_ortho_lh_no( const double left, const double right, c
 	};
 }
 
-/// \relates double4x4
-/// \brief Returns an right-handed orthographic projection matrix with the clip-space range zero to one.
-inline double4x4 double4x4_ortho_rh_zo( const double left, const double right, const double top, const double bottom, const double znear, const double zfar )
+double4x4 double4x4_ortho_rh_zo( const double left, const double right, const double top, const double bottom, const double znear, const double zfar )
 {
 	// right-handed, clip-space range: zero to one
 	const double right_minus_left = right - left;
@@ -10351,9 +12009,7 @@ inline double4x4 double4x4_ortho_rh_zo( const double left, const double right, c
 	};
 }
 
-/// \relates double4x4
-/// \brief Returns an right-handed orthographic projection matrix with the clip-space range minus-one to one.
-inline double4x4 double4x4_ortho_rh_no( const double left, const double right, const double top, const double bottom, const double znear, const double zfar )
+double4x4 double4x4_ortho_rh_no( const double left, const double right, const double top, const double bottom, const double znear, const double zfar )
 {
 	// right-handed, clip-space range: minus-one to one
 	const double right_minus_left = right - left;
@@ -10371,9 +12027,7 @@ inline double4x4 double4x4_ortho_rh_no( const double left, const double right, c
 	};
 }
 
-/// \relates double4x4
-/// \brief Returns a left-handed perspective projection matrix based on a vertical field-of-view in degrees and an aspect ratio in the clip-space range of zero to one.
-inline double4x4 double4x4_perspective_lh_zo( const double fovdeg, const double aspect, const double znear, const double zfar )
+double4x4 double4x4_perspective_lh_zo( const double fovdeg, const double aspect, const double znear, const double zfar )
 {
 	// left-handed, clip space range: zero to one
 	const double far_minus_near = zfar - znear;
@@ -10387,9 +12041,7 @@ inline double4x4 double4x4_perspective_lh_zo( const double fovdeg, const double 
 	};
 }
 
-/// \relates double4x4
-/// \brief Returns a left-handed perspective projection matrix based on a vertical field-of-view in degrees and an aspect ratio in the clip-space range of minus-one to one.
-inline double4x4 double4x4_perspective_lh_no( const double fovdeg, const double aspect, const double znear, const double zfar )
+double4x4 double4x4_perspective_lh_no( const double fovdeg, const double aspect, const double znear, const double zfar )
 {
 	// left-handed, clip space range: minus-one to one
 	const double far_minus_near = zfar - znear;
@@ -10404,9 +12056,7 @@ inline double4x4 double4x4_perspective_lh_no( const double fovdeg, const double 
 	};
 }
 
-/// \relates double4x4
-/// \brief Returns a right-handed perspective projection matrix based on a vertical field-of-view in degrees and an aspect ratio in the clip-space range of zero to one.
-inline double4x4 double4x4_perspective_rh_zo( const double fovdeg, const double aspect, const double znear, const double zfar )
+double4x4 double4x4_perspective_rh_zo( const double fovdeg, const double aspect, const double znear, const double zfar )
 {
 	// right-handed, clip space range: zero to one
 	const double tan_half_fov = tan( fovdeg * 0.5 );
@@ -10419,9 +12069,7 @@ inline double4x4 double4x4_perspective_rh_zo( const double fovdeg, const double 
 	};
 }
 
-/// \relates double4x4
-/// \brief Returns a right-handed perspective projection matrix based on a vertical field-of-view in degrees and an aspect ratio in the clip-space range of minus-one to one.
-inline double4x4 double4x4_perspective_rh_no( const double fovdeg, const double aspect, const double znear, const double zfar )
+double4x4 double4x4_perspective_rh_no( const double fovdeg, const double aspect, const double znear, const double zfar )
 {
 	// right-handed, clip space range: minus-one to one
 	const double far_minus_near = zfar - znear;
@@ -10436,9 +12084,7 @@ inline double4x4 double4x4_perspective_rh_no( const double fovdeg, const double 
 	};
 }
 
-/// \relates double4x4
-/// \brief Returns a left-handed orthonormal matrix that is oriented at position eye to look at position target.
-inline double4x4 double4x4_lookat_lh( const double3* eye, const double3* target, const double3* up )
+double4x4 double4x4_lookat_lh( const double3* eye, const double3* target, const double3* up )
 {
 	// left handed
 	const double3 eye_to_target = double3_comp_subv( target, eye );
@@ -10455,9 +12101,7 @@ inline double4x4 double4x4_lookat_lh( const double3* eye, const double3* target,
 	};
 }
 
-/// \relates double4x4
-/// \brief Returns a right-handed orthonormal matrix that is oriented at position eye to look at position target.
-inline double4x4 double4x4_lookat_rh( const double3* eye, const double3* target, const double3* up )
+double4x4 double4x4_lookat_rh( const double3* eye, const double3* target, const double3* up )
 {
 	// right handed
 	const double3 eye_to_target = double3_comp_subv( target, eye );
@@ -10474,7 +12118,7 @@ inline double4x4 double4x4_lookat_rh( const double3* eye, const double3* target,
 	};
 }
 
-
 #if defined( __GNUC__ ) || defined( __clang__ )
 #pragma GCC diagnostic pop
 #endif
+#endif // HLML_IMPLEMENTATION

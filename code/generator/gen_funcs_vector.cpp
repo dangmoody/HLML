@@ -28,10 +28,11 @@ along with The HLML Generator.  If not, see <http://www.gnu.org/licenses/>.
 
 #include <assert.h>
 
-static void GenerateFunctionComponentWiseArithmeticScalar( const genLanguage_t language, const genType_t type, const u32 numComponents, const genOpArithmetic_t op, stringBuilder_t* sbHeader ) {
+static void GenerateFunctionComponentWiseArithmeticScalar( const genLanguage_t language, const genType_t type, const u32 numComponents, const genOpArithmetic_t op, stringBuilder_t* sbFwdDec, stringBuilder_t* sbImpl ) {
 	assert( numComponents >= GEN_COMPONENT_COUNT_MIN );
 	assert( numComponents <= GEN_COMPONENT_COUNT_MAX );
-	assert( sbHeader );
+	assert( sbFwdDec );
+	assert( sbImpl );
 
 	if ( type == GEN_TYPE_BOOL ) {
 		return;
@@ -48,18 +49,22 @@ static void GenerateFunctionComponentWiseArithmeticScalar( const genLanguage_t l
 	char compFuncStr[GEN_STRING_LENGTH_FUNCTION_NAME];
 	Gen_GetFuncNameComponentWiseArithmeticScalar( language, type, 1, numComponents, op, compFuncStr );
 
-	Doc_ComponentWiseArithmeticScalar( sbHeader, fullTypeName, op );
-	String_Appendf( sbHeader, "inline %s %s( const %s lhs, const %s scalar )\n", fullTypeName, compFuncStr, parmTypeName, memberTypeString );
-	String_Append(  sbHeader, "{\n" );
-	Gen_VectorGetCodeComponentWiseArithmeticScalar( language, type, numComponents, op, sbHeader );
-	String_Append( sbHeader, "}\n" );
-	String_Append( sbHeader, "\n" );
+	Doc_ComponentWiseArithmeticScalar( sbFwdDec, fullTypeName, op );
+	String_Appendf( sbFwdDec, "inline %s %s( const %s lhs, const %s scalar );\n", fullTypeName, compFuncStr, parmTypeName, memberTypeString );
+	String_Append(  sbFwdDec, "\n" );
+
+	String_Appendf( sbImpl, "%s %s( const %s lhs, const %s scalar )\n", fullTypeName, compFuncStr, parmTypeName, memberTypeString );
+	String_Append(  sbImpl, "{\n" );
+	Gen_VectorGetCodeComponentWiseArithmeticScalar( language, type, numComponents, op, sbImpl );
+	String_Append(  sbImpl, "}\n" );
+	String_Append(  sbImpl, "\n" );
 }
 
-static void GenerateFunctionComponentWiseArithmeticVector( const genLanguage_t language, const genType_t type, const u32 numComponents, const genOpArithmetic_t op, stringBuilder_t* sbHeader ) {
+static void GenerateFunctionComponentWiseArithmeticVector( const genLanguage_t language, const genType_t type, const u32 numComponents, const genOpArithmetic_t op, stringBuilder_t* sbFwdDec, stringBuilder_t* sbImpl ) {
 	assert( numComponents >= GEN_COMPONENT_COUNT_MIN );
 	assert( numComponents <= GEN_COMPONENT_COUNT_MAX );
-	assert( sbHeader );
+	assert( sbFwdDec );
+	assert( sbImpl );
 
 	if ( type == GEN_TYPE_BOOL ) {
 		return;
@@ -74,18 +79,22 @@ static void GenerateFunctionComponentWiseArithmeticVector( const genLanguage_t l
 	char compFuncStr[GEN_STRING_LENGTH_FUNCTION_NAME];
 	Gen_GetFuncNameComponentWiseArithmeticVector( language, type, 1, numComponents, op, compFuncStr );
 
-	Doc_ComponentWiseArithmeticRhsType( sbHeader, fullTypeName, fullTypeName, op );
-	String_Appendf( sbHeader, "inline %s %s( const %s lhs, const %s rhs )\n", fullTypeName, compFuncStr, parmTypeName, parmTypeName );
-	String_Append(  sbHeader, "{\n" );
-	Gen_VectorGetCodeComponentWiseArithmeticRhsType( language, type, numComponents, op, sbHeader );
-	String_Append( sbHeader, "}\n" );
-	String_Append( sbHeader, "\n" );
+	Doc_ComponentWiseArithmeticRhsType( sbFwdDec, fullTypeName, fullTypeName, op );
+	String_Appendf( sbFwdDec, "inline %s %s( const %s lhs, const %s rhs );\n", fullTypeName, compFuncStr, parmTypeName, parmTypeName );
+	String_Append(  sbFwdDec, "\n" );
+
+	String_Appendf( sbImpl, "%s %s( const %s lhs, const %s rhs )\n", fullTypeName, compFuncStr, parmTypeName, parmTypeName );
+	String_Append(  sbImpl, "{\n" );
+	Gen_VectorGetCodeComponentWiseArithmeticRhsType( language, type, numComponents, op, sbImpl );
+	String_Append(  sbImpl, "}\n" );
+	String_Append(  sbImpl, "\n" );
 }
 
-static void GenerateFunctionComponentWiseBitwiseRhsType( const genLanguage_t language, const genType_t type, const u32 numComponents, const genOpBitwise_t op, stringBuilder_t* sbHeader ) {
+static void GenerateFunctionComponentWiseBitwiseRhsType( const genLanguage_t language, const genType_t type, const u32 numComponents, const genOpBitwise_t op, stringBuilder_t* sbFwdDec, stringBuilder_t* sbImpl ) {
 	assert( numComponents >= 1 );	// pass through > 1 for vectors
 	assert( numComponents <= GEN_COMPONENT_COUNT_MAX );
-	assert( sbHeader );
+	assert( sbFwdDec );
+	assert( sbImpl );
 
 	if ( !Gen_TypeIsInteger( type ) ) {
 		return;
@@ -101,26 +110,33 @@ static void GenerateFunctionComponentWiseBitwiseRhsType( const genLanguage_t lan
 	Gen_GetFuncNameBitwise( language, type, 1, numComponents, op, bitwiseFuncStr );
 
 	if ( op == GEN_OP_BITWISE_UNARY ) {
-		Doc_OperatorBitwiseUnary( sbHeader, fullTypeName );
-		String_Appendf( sbHeader, "inline %s %s( const %s lhs )\n", fullTypeName, bitwiseFuncStr, parmTypeName );
-		String_Append(  sbHeader, "{\n" );
-		Gen_VectorGetCodeComponentWiseBitwise( language, type, numComponents, op, sbHeader );
-		String_Append(  sbHeader, "}\n" );
-		String_Append(  sbHeader, "\n" );
+		Doc_OperatorBitwiseUnary( sbFwdDec, fullTypeName );
+		String_Appendf( sbFwdDec, "inline %s %s( const %s lhs );\n", fullTypeName, bitwiseFuncStr, parmTypeName );
+		String_Append(  sbFwdDec, "\n" );
+
+		String_Appendf( sbImpl, "%s %s( const %s lhs )\n", fullTypeName, bitwiseFuncStr, parmTypeName );
+		String_Append(  sbImpl, "{\n" );
+		Gen_VectorGetCodeComponentWiseBitwise( language, type, numComponents, op, sbImpl );
+		String_Append(  sbImpl, "}\n" );
+		String_Append(  sbImpl, "\n" );
 	} else {
-		Doc_OperatorBitwiseRhsType( sbHeader, fullTypeName, op );
-		String_Appendf( sbHeader, "inline %s %s( const %s lhs, const %s rhs )\n", fullTypeName, bitwiseFuncStr, parmTypeName, parmTypeName );
-		String_Append(  sbHeader, "{\n" );
-		Gen_VectorGetCodeComponentWiseBitwise( language, type, numComponents, op, sbHeader );
-		String_Append( sbHeader, "}\n" );
-		String_Append( sbHeader, "\n" );
+		Doc_OperatorBitwiseRhsType( sbFwdDec, fullTypeName, op );
+		String_Appendf( sbFwdDec, "inline %s %s( const %s lhs, const %s rhs );\n", fullTypeName, bitwiseFuncStr, parmTypeName, parmTypeName );
+		String_Append( sbFwdDec, "\n" );
+
+		String_Appendf( sbImpl, "%s %s( const %s lhs, const %s rhs )\n", fullTypeName, bitwiseFuncStr, parmTypeName, parmTypeName );
+		String_Append(  sbImpl, "{\n" );
+		Gen_VectorGetCodeComponentWiseBitwise( language, type, numComponents, op, sbImpl );
+		String_Append(  sbImpl, "}\n" );
+		String_Append(  sbImpl, "\n" );
 	}
 }
 
-static void GenerateFunctionComponentWiseRelational( const genLanguage_t language, const genType_t type, const u32 numComponents, const genOpRelational_t op, stringBuilder_t* sbHeader ) {
+static void GenerateFunctionComponentWiseRelational( const genLanguage_t language, const genType_t type, const u32 numComponents, const genOpRelational_t op, stringBuilder_t* sbFwdDec, stringBuilder_t* sbImpl ) {
 	assert( numComponents >= 1 );	// pass through > 1 for vectors
 	assert( numComponents <= GEN_COMPONENT_COUNT_MAX );
-	assert( sbHeader );
+	assert( sbFwdDec );
+	assert( sbImpl );
 
 	if ( type == GEN_TYPE_BOOL ) {
 		return;
@@ -138,12 +154,15 @@ static void GenerateFunctionComponentWiseRelational( const genLanguage_t languag
 	char cmpFuncStr[GEN_STRING_LENGTH_FUNCTION_NAME];
 	Gen_GetFuncNameRelational( language, type, 1, numComponents, op, cmpFuncStr );
 
-	Doc_ComponentWiseRelational( sbHeader, fullTypeName, 1, numComponents, op );
-	String_Appendf( sbHeader, "inline %s %s( const %s lhs, const %s rhs )\n", boolReturnType, cmpFuncStr, parmTypeName, parmTypeName );
-	String_Append(  sbHeader, "{\n" );
-	Gen_VectorGetCodeComponentWiseRelational( language, numComponents, op, sbHeader );
-	String_Append(  sbHeader, "}\n" );
-	String_Append(  sbHeader, "\n" );
+	Doc_ComponentWiseRelational( sbFwdDec, fullTypeName, 1, numComponents, op );
+	String_Appendf( sbFwdDec, "inline %s %s( const %s lhs, const %s rhs );\n", boolReturnType, cmpFuncStr, parmTypeName, parmTypeName );
+	String_Append(  sbFwdDec, "\n" );
+
+	String_Appendf( sbImpl, "%s %s( const %s lhs, const %s rhs )\n", boolReturnType, cmpFuncStr, parmTypeName, parmTypeName );
+	String_Append(  sbImpl, "{\n" );
+	Gen_VectorGetCodeComponentWiseRelational( language, numComponents, op, sbImpl );
+	String_Append(  sbImpl, "}\n" );
+	String_Append(  sbImpl, "\n" );
 }
 
 void Gen_GetParmListVector( const genType_t type, const u32 numComponents, const float* values, char* outParmListStr ) {
@@ -314,10 +333,11 @@ void Gen_VectorGetCodeEquals( const genLanguage_t language, const genType_t type
 	String_Append( sbHeader, ";\n" );
 }
 
-void Gen_VectorFunctionsEquals( const genLanguage_t language, const genType_t type, const u32 numComponents, stringBuilder_t* sbHeader ) {
+void Gen_VectorFunctionsEquals( const genLanguage_t language, const genType_t type, const u32 numComponents, stringBuilder_t* sbFwdDec, stringBuilder_t* sbImpl ) {
 	assert( numComponents >= GEN_COMPONENT_COUNT_MIN );
 	assert( numComponents <= GEN_COMPONENT_COUNT_MAX );
-	assert( sbHeader );
+	assert( sbFwdDec );
+	assert( sbImpl );
 
 	char fullTypeName[GEN_STRING_LENGTH_TYPE_NAME];
 	Gen_GetFullTypeName( type, 1, numComponents, fullTypeName );
@@ -328,20 +348,24 @@ void Gen_VectorFunctionsEquals( const genLanguage_t language, const genType_t ty
 	char cmpFuncStr[GEN_STRING_LENGTH_FUNCTION_NAME];
 	Gen_GetFuncNameEquals( language, type, 1, numComponents, cmpFuncStr );
 
-	Doc_OperatorEquals( sbHeader, fullTypeName );
-	String_Appendf( sbHeader, "inline bool %s( const %s lhs, const %s rhs )\n", cmpFuncStr, parmTypeName, parmTypeName );
-	String_Append(  sbHeader, "{\n" );
-	Gen_VectorGetCodeEquals( language, type, numComponents, sbHeader );
-	String_Append( sbHeader, "}\n" );
-	String_Append( sbHeader, "\n" );
+	Doc_OperatorEquals( sbFwdDec, fullTypeName );
+	String_Appendf( sbFwdDec, "inline bool %s( const %s lhs, const %s rhs );\n", cmpFuncStr, parmTypeName, parmTypeName );
+	String_Append(  sbFwdDec, "\n" );
 
-	Gen_NotEquals( language, type, 1, numComponents, sbHeader );
+	String_Appendf( sbImpl, "bool %s( const %s lhs, const %s rhs )\n", cmpFuncStr, parmTypeName, parmTypeName );
+	String_Append(  sbImpl, "{\n" );
+	Gen_VectorGetCodeEquals( language, type, numComponents, sbImpl );
+	String_Append(  sbImpl, "}\n" );
+	String_Append(  sbImpl, "\n" );
+
+	Gen_NotEquals( language, type, 1, numComponents, sbFwdDec, sbImpl );
 }
 
-void Gen_VectorFunctionsComponentWiseArithmetic( const genLanguage_t language, const genType_t type, const u32 numComponents, stringBuilder_t* sbHeader ) {
+void Gen_VectorFunctionsComponentWiseArithmetic( const genLanguage_t language, const genType_t type, const u32 numComponents, stringBuilder_t* sbFwdDec, stringBuilder_t* sbImpl ) {
 	assert( numComponents >= GEN_COMPONENT_COUNT_MIN );
 	assert( numComponents <= GEN_COMPONENT_COUNT_MAX );
-	assert( sbHeader );
+	assert( sbFwdDec );
+	assert( sbImpl );
 
 	if ( type == GEN_TYPE_BOOL ) {
 		return;
@@ -350,15 +374,16 @@ void Gen_VectorFunctionsComponentWiseArithmetic( const genLanguage_t language, c
 	for ( u32 opIndex = 0; opIndex < GEN_OP_ARITHMETIC_COUNT; opIndex++ ) {
 		genOpArithmetic_t op = (genOpArithmetic_t) opIndex;
 
-		GenerateFunctionComponentWiseArithmeticScalar( language, type, numComponents, op, sbHeader );
-		GenerateFunctionComponentWiseArithmeticVector( language, type, numComponents, op, sbHeader );
+		GenerateFunctionComponentWiseArithmeticScalar( language, type, numComponents, op, sbFwdDec, sbImpl );
+		GenerateFunctionComponentWiseArithmeticVector( language, type, numComponents, op, sbFwdDec, sbImpl );
 	}
 }
 
-void Gen_VectorFunctionsComponentWiseBitwise( const genLanguage_t language, const genType_t type, const u32 numComponents, stringBuilder_t* sbHeader ) {
+void Gen_VectorFunctionsComponentWiseBitwise( const genLanguage_t language, const genType_t type, const u32 numComponents, stringBuilder_t* sbFwdDec, stringBuilder_t* sbImpl ) {
 	assert( numComponents >= GEN_COMPONENT_COUNT_MIN );
 	assert( numComponents <= GEN_COMPONENT_COUNT_MAX );
-	assert( sbHeader );
+	assert( sbFwdDec );
+	assert( sbImpl );
 
 	if ( !Gen_TypeIsInteger( type ) ) {
 		return;
@@ -367,14 +392,15 @@ void Gen_VectorFunctionsComponentWiseBitwise( const genLanguage_t language, cons
 	for ( u32 opIndex = 0; opIndex < GEN_OP_BITWISE_COUNT; opIndex++ ) {
 		genOpBitwise_t op = (genOpBitwise_t) opIndex;
 
-		GenerateFunctionComponentWiseBitwiseRhsType( language, type, numComponents, op, sbHeader );
+		GenerateFunctionComponentWiseBitwiseRhsType( language, type, numComponents, op, sbFwdDec, sbImpl );
 	}
 }
 
-void Gen_VectorFunctionsComponentWiseRelational( const genLanguage_t language, const genType_t type, const u32 numComponents, stringBuilder_t* sbHeader ) {
+void Gen_VectorFunctionsComponentWiseRelational( const genLanguage_t language, const genType_t type, const u32 numComponents, stringBuilder_t* sbFwdDec, stringBuilder_t* sbImpl ) {
 	assert( numComponents >= GEN_COMPONENT_COUNT_MIN );
 	assert( numComponents <= GEN_COMPONENT_COUNT_MAX );
-	assert( sbHeader );
+	assert( sbFwdDec );
+	assert( sbImpl );
 
 	if ( type == GEN_TYPE_BOOL ) {
 		return;
@@ -383,11 +409,11 @@ void Gen_VectorFunctionsComponentWiseRelational( const genLanguage_t language, c
 	for ( u32 opIndex = 0; opIndex < GEN_OP_RELATIONAL_COUNT; opIndex++ ) {
 		genOpRelational_t op = (genOpRelational_t) opIndex;
 
-		GenerateFunctionComponentWiseRelational( language, type, numComponents, op, sbHeader );
+		GenerateFunctionComponentWiseRelational( language, type, numComponents, op, sbFwdDec, sbImpl );
 	}
 }
 
-void Gen_VectorLength( const genLanguage_t language, const genType_t type, const u32 numComponents, stringBuilder_t* sbHeader ) {
+void Gen_VectorLength( const genLanguage_t language, const genType_t type, const u32 numComponents, stringBuilder_t* sbFwdDec, stringBuilder_t* sbImpl ) {
 	assert( numComponents >= GEN_COMPONENT_COUNT_MIN );
 	assert( numComponents <= GEN_COMPONENT_COUNT_MAX );
 
@@ -417,44 +443,54 @@ void Gen_VectorLength( const genLanguage_t language, const genType_t type, const
 
 	const char* parmAccessStr = GEN_TYPE_ACCESS_OPERATORS[language];
 
-	Doc_VectorLengthSqr( sbHeader, fullTypeName );
-	String_Appendf( sbHeader, "inline %s %s( const %s vec )\n", returnTypeString, lengthsqrFuncStr, parmTypeName );
-	String_Append(  sbHeader, "{\n" );
-	String_Append(  sbHeader, "\treturn " );
+	// lengthsqr
+	Doc_VectorLengthSqr( sbFwdDec, fullTypeName );
+	String_Appendf( sbFwdDec, "inline %s %s( const %s vec );\n", returnTypeString, lengthsqrFuncStr, parmTypeName );
+	String_Append( sbFwdDec, "\n" );
+
+	String_Appendf( sbImpl, "%s %s( const %s vec )\n", returnTypeString, lengthsqrFuncStr, parmTypeName );
+	String_Append(  sbImpl, "{\n" );
+	String_Append(  sbImpl, "\treturn " );
 
 	if ( shouldTypecast ) {
-		String_Appendf( sbHeader, "(%s)( ", returnTypeString );
+		String_Appendf( sbImpl, "(%s)( ", returnTypeString );
 	}
 
 	for ( u32 i = 0; i < numComponents; i++ ) {
 		char componentName = GEN_COMPONENT_NAMES_VECTOR[i];
 
-		String_Appendf( sbHeader, "( vec%s%c * vec%s%c )", parmAccessStr, componentName, parmAccessStr, componentName );
+		String_Appendf( sbImpl, "( vec%s%c * vec%s%c )", parmAccessStr, componentName, parmAccessStr, componentName );
 
 		if ( i != numComponents - 1 ) {
-			String_Append( sbHeader, " + " );
+			String_Append( sbImpl, " + " );
 		}
 	}
 
 	if ( shouldTypecast ) {
-		String_Append( sbHeader, " )" );
+		String_Append( sbImpl, " )" );
 	}
 
-	String_Append( sbHeader, ";\n" );
-	String_Append( sbHeader, "}\n" );
-	String_Append( sbHeader, "\n" );
+	String_Append( sbImpl, ";\n" );
+	String_Append( sbImpl, "}\n" );
+	String_Append( sbImpl, "\n" );
 
-	Doc_VectorLength( sbHeader, fullTypeName );
-	String_Appendf( sbHeader, "inline %s %s( const %s vec )\n", returnTypeString, lengthFuncStr, parmTypeName );
-	String_Append(  sbHeader, "{\n" );
-	String_Appendf( sbHeader, "\treturn %s( %s( vec ) );\n", sqrtFuncStr, lengthsqrFuncStr );
-	String_Append(  sbHeader, "}\n" );
-	String_Append(  sbHeader, "\n" );
+	// length
+	Doc_VectorLength( sbFwdDec, fullTypeName );
+	String_Appendf( sbFwdDec, "inline %s %s( const %s vec );\n", returnTypeString, lengthFuncStr, parmTypeName );
+	String_Append(  sbFwdDec, "\n" );
+
+	String_Appendf( sbImpl, "%s %s( const %s vec )\n", returnTypeString, lengthFuncStr, parmTypeName );
+	String_Append(  sbImpl, "{\n" );
+	String_Appendf( sbImpl, "\treturn %s( %s( vec ) );\n", sqrtFuncStr, lengthsqrFuncStr );
+	String_Append(  sbImpl, "}\n" );
+	String_Append(  sbImpl, "\n" );
 }
 
-void Gen_VectorNormalize( const genLanguage_t language, const genType_t type, const u32 numComponents, stringBuilder_t* sbHeader ) {
+void Gen_VectorNormalize( const genLanguage_t language, const genType_t type, const u32 numComponents, stringBuilder_t* sbFwdDec, stringBuilder_t* sbImpl ) {
 	assert( numComponents >= GEN_COMPONENT_COUNT_MIN );
 	assert( numComponents <= GEN_COMPONENT_COUNT_MAX );
+	assert( sbFwdDec );
+	assert( sbImpl );
 
 	if ( !Gen_TypeIsFloatingPoint( type ) ) {
 		return;
@@ -489,51 +525,59 @@ void Gen_VectorNormalize( const genLanguage_t language, const genType_t type, co
 	Gen_GetFuncNameComponentWiseArithmeticVector( language, type, 1, numComponents, GEN_OP_ARITHMETIC_DIV, compDivStr );
 
 	// normalize
-	Doc_VectorNormalize( sbHeader, fullTypeName );
-	String_Appendf( sbHeader, "inline void %s( %s vec )\n", normalizeFuncStr, parmTypeName );
-	String_Append(  sbHeader, "{\n" );
-	String_Appendf( sbHeader, "\t%s len = %s( vec );\n", typeString, lengthFuncStr );
-	String_Appendf( sbHeader, "\t%s invlen = HLML_CONSTRUCT( %s ) {\n", fullTypeName, fullTypeName );
+	Doc_VectorNormalize( sbFwdDec, fullTypeName );
+	String_Appendf( sbFwdDec, "inline void %s( %s vec );\n", normalizeFuncStr, parmTypeName );
+	String_Append(  sbFwdDec, "\n" );
+
+	String_Appendf( sbImpl, "void %s( %s vec )\n", normalizeFuncStr, parmTypeName );
+	String_Append(  sbImpl, "{\n" );
+	String_Appendf( sbImpl, "\t%s len = %s( vec );\n", typeString, lengthFuncStr );
+	String_Appendf( sbImpl, "\t%s invlen = HLML_CONSTRUCT( %s ) {\n", fullTypeName, fullTypeName );
 	for ( u32 i = 0; i < numComponents; i++ ) {
-		String_Appendf( sbHeader, "\t\t%s / len", oneStr );
+		String_Appendf( sbImpl, "\t\t%s / len", oneStr );
 
 		if ( i != numComponents - 1 ) {
-			String_Append( sbHeader, "," );
+			String_Append( sbImpl, "," );
 		}
 
-		String_Append( sbHeader, "\n" );
+		String_Append( sbImpl, "\n" );
 	}
-	String_Append(  sbHeader, "\t};\n" );
-	String_Append(  sbHeader, "\n" );
-	String_Appendf( sbHeader, "\t%svec = %s( vec, %sinvlen );\n", GEN_TYPE_PARM_DEREFERENCE_MODIFIERS[language], compMulStr, parmRefStr );
-	String_Append(  sbHeader, "}\n" );
-	String_Append(  sbHeader, "\n" );
+	String_Append(  sbImpl, "\t};\n" );
+	String_Append(  sbImpl, "\n" );
+	String_Appendf( sbImpl, "\t%svec = %s( vec, %sinvlen );\n", GEN_TYPE_PARM_DEREFERENCE_MODIFIERS[language], compMulStr, parmRefStr );
+	String_Append(  sbImpl, "}\n" );
+	String_Append(  sbImpl, "\n" );
 
 	// normalized
-	Doc_VectorNormalized( sbHeader, fullTypeName );
-	String_Appendf( sbHeader, "inline %s %s( const %s vec )\n", fullTypeName, normalizedFuncStr, parmTypeName );
-	String_Append(  sbHeader, "{\n" );
-	String_Appendf( sbHeader, "\t%s len = %s( vec );\n", typeString, lengthFuncStr );
-	String_Appendf( sbHeader, "\t%s invlen = HLML_CONSTRUCT( %s ) {\n", fullTypeName, fullTypeName );
+	Doc_VectorNormalized( sbFwdDec, fullTypeName );
+	String_Appendf( sbFwdDec, "inline %s %s( const %s vec );\n", fullTypeName, normalizedFuncStr, parmTypeName );
+	String_Append(  sbFwdDec, "\n" );
+
+	String_Appendf( sbImpl, "%s %s( const %s vec )\n", fullTypeName, normalizedFuncStr, parmTypeName );
+	String_Append(  sbImpl, "{\n" );
+	String_Appendf( sbImpl, "\t%s len = %s( vec );\n", typeString, lengthFuncStr );
+	String_Appendf( sbImpl, "\t%s invlen = HLML_CONSTRUCT( %s ) {\n", fullTypeName, fullTypeName );
 	for ( u32 i = 0; i < numComponents; i++ ) {
-		String_Appendf( sbHeader, "\t\t%s / len", oneStr );
+		String_Appendf( sbImpl, "\t\t%s / len", oneStr );
 
 		if ( i != numComponents - 1 ) {
-			String_Append( sbHeader, "," );
+			String_Append( sbImpl, "," );
 		}
 
-		String_Append( sbHeader, "\n" );
+		String_Append( sbImpl, "\n" );
 	}
-	String_Append(  sbHeader, "\t};\n" );
-	String_Append(  sbHeader, "\n" );
-	String_Appendf( sbHeader, "\treturn %s( vec, %sinvlen );\n", compMulStr, parmRefStr);
-	String_Append(  sbHeader, "}\n" );
-	String_Append(  sbHeader, "\n" );
+	String_Append(  sbImpl, "\t};\n" );
+	String_Append(  sbImpl, "\n" );
+	String_Appendf( sbImpl, "\treturn %s( vec, %sinvlen );\n", compMulStr, parmRefStr);
+	String_Append(  sbImpl, "}\n" );
+	String_Append(  sbImpl, "\n" );
 }
 
-void Gen_VectorDot( const genLanguage_t language, const genType_t type, const u32 numComponents, stringBuilder_t* sbHeader ) {
+void Gen_VectorDot( const genLanguage_t language, const genType_t type, const u32 numComponents, stringBuilder_t* sbFwdDec, stringBuilder_t* sbImpl ) {
 	assert( numComponents >= GEN_COMPONENT_COUNT_MIN );
 	assert( numComponents <= GEN_COMPONENT_COUNT_MAX );
+	assert( sbFwdDec );
+	assert( sbImpl );
 
 	if ( type == GEN_TYPE_BOOL ) {
 		return;
@@ -554,37 +598,42 @@ void Gen_VectorDot( const genLanguage_t language, const genType_t type, const u3
 	const char parmRefStr = GEN_TYPE_PARM_MODIFIERS[language];
 	const char* parmAccessStr = GEN_TYPE_ACCESS_OPERATORS[language];
 
-	Doc_VectorDot( sbHeader, fullTypeName );
-	String_Appendf( sbHeader, "inline %s %s( const %s%c lhs, const %s%c rhs )\n", returnTypeString, dotFuncStr, fullTypeName, parmRefStr, fullTypeName, parmRefStr );
-	String_Append(  sbHeader, "{\n" );
-	String_Append(  sbHeader, "\treturn " );
+	Doc_VectorDot( sbFwdDec, fullTypeName );
+	String_Appendf( sbFwdDec, "inline %s %s( const %s%c lhs, const %s%c rhs );\n", returnTypeString, dotFuncStr, fullTypeName, parmRefStr, fullTypeName, parmRefStr );
+	String_Append(  sbFwdDec, "\n" );
+
+	String_Appendf( sbImpl, "%s %s( const %s%c lhs, const %s%c rhs )\n", returnTypeString, dotFuncStr, fullTypeName, parmRefStr, fullTypeName, parmRefStr );
+	String_Append(  sbImpl, "{\n" );
+	String_Append(  sbImpl, "\treturn " );
 
 	if ( shouldTypeCast ) {
-		String_Appendf( sbHeader, "(%s)( ", returnTypeString );
+		String_Appendf( sbImpl, "(%s)( ", returnTypeString );
 	}
 
 	for ( u32 i = 0; i < numComponents; i++ ) {
 		char componentName = GEN_COMPONENT_NAMES_VECTOR[i];
 
-		String_Appendf( sbHeader, "( lhs%s%c * rhs%s%c )", parmAccessStr, componentName, parmAccessStr, componentName );
+		String_Appendf( sbImpl, "( lhs%s%c * rhs%s%c )", parmAccessStr, componentName, parmAccessStr, componentName );
 
 		if ( i != numComponents - 1 ) {
-			String_Append( sbHeader, " + " );
+			String_Append( sbImpl, " + " );
 		}
 	}
 
 	if ( shouldTypeCast ) {
-		String_Append( sbHeader, " )" );
+		String_Append( sbImpl, " )" );
 	}
 
-	String_Append( sbHeader, ";\n" );
-	String_Append( sbHeader, "}\n" );
-	String_Append( sbHeader, "\n" );
+	String_Append( sbImpl, ";\n" );
+	String_Append( sbImpl, "}\n" );
+	String_Append( sbImpl, "\n" );
 }
 
-void Gen_VectorCross( const genLanguage_t language, const genType_t type, const u32 numComponents, stringBuilder_t* sbHeader ) {
+void Gen_VectorCross( const genLanguage_t language, const genType_t type, const u32 numComponents, stringBuilder_t* sbFwdDec, stringBuilder_t* sbImpl ) {
 	assert( numComponents >= GEN_COMPONENT_COUNT_MIN );
 	assert( numComponents <= GEN_COMPONENT_COUNT_MAX );
+	assert( sbFwdDec );
+	assert( sbImpl );
 
 	if ( !Gen_TypeIsFloatingPoint( type ) ) {
 		return;
@@ -605,26 +654,31 @@ void Gen_VectorCross( const genLanguage_t language, const genType_t type, const 
 
 	const char* parmAccessStr = GEN_TYPE_ACCESS_OPERATORS[language];
 
-	Doc_VectorCross( sbHeader, fullTypeName );
-	String_Appendf( sbHeader, "inline %s %s( const %s lhs, const %s rhs )\n", fullTypeName, crossFuncStr, parmTypeName, parmTypeName );
-	String_Append(  sbHeader, "{\n" );
-	String_Appendf( sbHeader, "\treturn HLML_CONSTRUCT( %s ) {\n", fullTypeName );
-	String_Appendf( sbHeader, "\t\t( lhs%sy * rhs%sz ) - ( lhs%sz * rhs%sy ),\n", parmAccessStr, parmAccessStr, parmAccessStr, parmAccessStr );
-	String_Appendf( sbHeader, "\t\t( lhs%sz * rhs%sx ) - ( lhs%sx * rhs%sz ),\n", parmAccessStr, parmAccessStr, parmAccessStr, parmAccessStr );
-	String_Appendf( sbHeader, "\t\t( lhs%sx * rhs%sy ) - ( lhs%sy * rhs%sx )", parmAccessStr, parmAccessStr, parmAccessStr, parmAccessStr );
+	Doc_VectorCross( sbFwdDec, fullTypeName );
+	String_Appendf( sbFwdDec, "inline %s %s( const %s lhs, const %s rhs );\n", fullTypeName, crossFuncStr, parmTypeName, parmTypeName );
+	String_Append(  sbFwdDec, "\n" );
+
+	String_Appendf( sbImpl, "%s %s( const %s lhs, const %s rhs )\n", fullTypeName, crossFuncStr, parmTypeName, parmTypeName );
+	String_Append(  sbImpl, "{\n" );
+	String_Appendf( sbImpl, "\treturn HLML_CONSTRUCT( %s ) {\n", fullTypeName );
+	String_Appendf( sbImpl, "\t\t( lhs%sy * rhs%sz ) - ( lhs%sz * rhs%sy ),\n", parmAccessStr, parmAccessStr, parmAccessStr, parmAccessStr );
+	String_Appendf( sbImpl, "\t\t( lhs%sz * rhs%sx ) - ( lhs%sx * rhs%sz ),\n", parmAccessStr, parmAccessStr, parmAccessStr, parmAccessStr );
+	String_Appendf( sbImpl, "\t\t( lhs%sx * rhs%sy ) - ( lhs%sy * rhs%sx )", parmAccessStr, parmAccessStr, parmAccessStr, parmAccessStr );
 	if ( numComponents > 3 ) {
-		String_Appendf( sbHeader, ",\n\t\t%s\n", Gen_GetDefaultLiteralValue( type ) );
+		String_Appendf( sbImpl, ",\n\t\t%s\n", Gen_GetDefaultLiteralValue( type ) );
 	} else {
-		String_Append( sbHeader, "\n" );
+		String_Append( sbImpl, "\n" );
 	}
-	String_Append( sbHeader, "\t};\n" );
-	String_Append( sbHeader, "}\n" );
-	String_Append( sbHeader, "\n" );
+	String_Append( sbImpl, "\t};\n" );
+	String_Append( sbImpl, "}\n" );
+	String_Append( sbImpl, "\n" );
 }
 
-void Gen_VectorAngle( const genLanguage_t language, const genType_t type, const u32 numComponents, stringBuilder_t* sbHeader ) {
+void Gen_VectorAngle( const genLanguage_t language, const genType_t type, const u32 numComponents, stringBuilder_t* sbFwdDec, stringBuilder_t* sbImpl ) {
 	assert( numComponents >= GEN_COMPONENT_COUNT_MIN );
 	assert( numComponents <= GEN_COMPONENT_COUNT_MAX );
+	assert( sbFwdDec );
+	assert( sbImpl );
 
 	if ( !Gen_TypeIsFloatingPoint( type ) ) {
 		return;
@@ -653,23 +707,28 @@ void Gen_VectorAngle( const genLanguage_t language, const genType_t type, const 
 	char normalizedFuncStr[GEN_STRING_LENGTH_FUNCTION_NAME];
 	Gen_GetFuncNameNormalized( language, type, numComponents, normalizedFuncStr );
 
-	Doc_VectorAngle( sbHeader, fullTypeName );
-	String_Appendf( sbHeader, "inline %s %s( const %s lhs, const %s rhs )\n", returnTypeString, angleFuncStr, parmTypeName, parmTypeName );
-	String_Append(  sbHeader, "{\n" );
+	Doc_VectorAngle( sbFwdDec, fullTypeName );
+	String_Appendf( sbFwdDec, "inline %s %s( const %s lhs, const %s rhs );\n", returnTypeString, angleFuncStr, parmTypeName, parmTypeName );
+	String_Append(  sbFwdDec, "\n" );
+
+	String_Appendf( sbImpl, "%s %s( const %s lhs, const %s rhs )\n", returnTypeString, angleFuncStr, parmTypeName, parmTypeName );
+	String_Append(  sbImpl, "{\n" );
 	if ( language == GEN_LANGUAGE_C ) {
-		String_Appendf( sbHeader, "\t%s lhs_unit = %s( lhs );\n", fullTypeName, normalizedFuncStr );
-		String_Appendf( sbHeader, "\t%s rhs_unit = %s( rhs );\n", fullTypeName, normalizedFuncStr );
-		String_Appendf( sbHeader, "\treturn %s( %s( %s( &lhs_unit, &rhs_unit ) ) );\n", degreesFuncStr, acosString, dotFuncStr );
+		String_Appendf( sbImpl, "\t%s lhs_unit = %s( lhs );\n", fullTypeName, normalizedFuncStr );
+		String_Appendf( sbImpl, "\t%s rhs_unit = %s( rhs );\n", fullTypeName, normalizedFuncStr );
+		String_Appendf( sbImpl, "\treturn %s( %s( %s( &lhs_unit, &rhs_unit ) ) );\n", degreesFuncStr, acosString, dotFuncStr );
 	} else {
-		String_Appendf( sbHeader, "\treturn %s( %s( %s( %s( lhs ), %s( rhs ) ) ) );\n", degreesFuncStr, acosString, dotFuncStr, normalizedFuncStr, normalizedFuncStr );
+		String_Appendf( sbImpl, "\treturn %s( %s( %s( %s( lhs ), %s( rhs ) ) ) );\n", degreesFuncStr, acosString, dotFuncStr, normalizedFuncStr, normalizedFuncStr );
 	}
-	String_Append(  sbHeader, "}\n" );
-	String_Append(  sbHeader, "\n" );
+	String_Append(  sbImpl, "}\n" );
+	String_Append(  sbImpl, "\n" );
 }
 
-void Gen_VectorDistance( const genLanguage_t language, const genType_t type, const u32 numComponents, stringBuilder_t* sbHeader ) {
+void Gen_VectorDistance( const genLanguage_t language, const genType_t type, const u32 numComponents, stringBuilder_t* sbFwdDec, stringBuilder_t* sbImpl ) {
 	assert( numComponents >= GEN_COMPONENT_COUNT_MIN );
 	assert( numComponents <= GEN_COMPONENT_COUNT_MAX );
+	assert( sbFwdDec );
+	assert( sbImpl );
 
 	if ( type == GEN_TYPE_BOOL ) {
 		return;
@@ -706,30 +765,38 @@ void Gen_VectorDistance( const genLanguage_t language, const genType_t type, con
 
 	// distancesq
 	{
-		Doc_VectorDistanceSq( sbHeader, fullTypeName );
-		String_Appendf( sbHeader, "inline %s %s( const %s lhs, const %s rhs )\n", returnTypeString, distancesqrFuncStr, parmTypeName, parmTypeName );
-		String_Append(  sbHeader, "{\n" );
-		String_Appendf( sbHeader, "\t%s delta = %s( lhs, rhs );\n", fullTypeName, subRhsTypeFuncStr );
-		String_Appendf( sbHeader, "\treturn %s( %sdelta );\n", lengthsqrFuncStr, parmRefStr );
-		String_Append(  sbHeader, "}\n" );
-		String_Append(  sbHeader, "\n" );
+		Doc_VectorDistanceSq( sbFwdDec, fullTypeName );
+		String_Appendf( sbFwdDec, "inline %s %s( const %s lhs, const %s rhs );\n", returnTypeString, distancesqrFuncStr, parmTypeName, parmTypeName );
+		String_Append(  sbFwdDec, "\n" );
+
+		String_Appendf( sbImpl, "%s %s( const %s lhs, const %s rhs )\n", returnTypeString, distancesqrFuncStr, parmTypeName, parmTypeName );
+		String_Append(  sbImpl, "{\n" );
+		String_Appendf( sbImpl, "\t%s delta = %s( lhs, rhs );\n", fullTypeName, subRhsTypeFuncStr );
+		String_Appendf( sbImpl, "\treturn %s( %sdelta );\n", lengthsqrFuncStr, parmRefStr );
+		String_Append(  sbImpl, "}\n" );
+		String_Append(  sbImpl, "\n" );
 	}
 
 	// distance
 	{
-		Doc_VectorDistance( sbHeader, fullTypeName );
-		String_Appendf( sbHeader, "inline %s %s( const %s lhs, const %s rhs )\n", returnTypeString, distanceFuncStr, parmTypeName, parmTypeName );
-		String_Append(  sbHeader, "{\n" );
-		String_Appendf( sbHeader, "\t%s delta = %s( lhs, rhs );\n", fullTypeName, subRhsTypeFuncStr );
-		String_Appendf( sbHeader, "\treturn %s( %sdelta );\n", lengthFuncStr, parmRefStr );
-		String_Append(  sbHeader, "}\n" );
-		String_Append(  sbHeader, "\n" );
+		Doc_VectorDistance( sbFwdDec, fullTypeName );
+		String_Appendf( sbFwdDec, "inline %s %s( const %s lhs, const %s rhs );\n", returnTypeString, distanceFuncStr, parmTypeName, parmTypeName );
+		String_Append(  sbFwdDec, "\n" );
+
+		String_Appendf( sbImpl, "%s %s( const %s lhs, const %s rhs )\n", returnTypeString, distanceFuncStr, parmTypeName, parmTypeName );
+		String_Append(  sbImpl, "{\n" );
+		String_Appendf( sbImpl, "\t%s delta = %s( lhs, rhs );\n", fullTypeName, subRhsTypeFuncStr );
+		String_Appendf( sbImpl, "\treturn %s( %sdelta );\n", lengthFuncStr, parmRefStr );
+		String_Append(  sbImpl, "}\n" );
+		String_Append(  sbImpl, "\n" );
 	}
 }
 
-void Gen_VectorPack( const genLanguage_t language, const genType_t type, const u32 numComponents, stringBuilder_t* sbHeader ) {
+void Gen_VectorPack( const genLanguage_t language, const genType_t type, const u32 numComponents, stringBuilder_t* sbFwdDec, stringBuilder_t* sbImpl ) {
 	assert( numComponents >= GEN_COMPONENT_COUNT_MIN );
 	assert( numComponents <= GEN_COMPONENT_COUNT_MAX );
+	assert( sbFwdDec );
+	assert( sbImpl );
 
 	if ( type != GEN_TYPE_UINT ) {
 		return;
@@ -753,27 +820,30 @@ void Gen_VectorPack( const genLanguage_t language, const genType_t type, const u
 
 	const char* parmAccessStr = GEN_TYPE_ACCESS_OPERATORS[language];
 
-	Doc_VectorPack( sbHeader, fullTypeName );
-	String_Appendf( sbHeader, "inline %s pack( const %s vec )\n", memberTypeString, parmTypeName );
-	String_Append(  sbHeader, "{\n" );
-	String_Append(  sbHeader, "\treturn " );
+	Doc_VectorPack( sbFwdDec, fullTypeName );
+	String_Appendf( sbFwdDec, "inline %s pack( const %s vec );\n", memberTypeString, parmTypeName );
+	String_Append(  sbFwdDec, "\n" );
+
+	String_Appendf( sbImpl, "%s pack( const %s vec )\n", memberTypeString, parmTypeName );
+	String_Append(  sbImpl, "{\n" );
+	String_Append(  sbImpl, "\treturn " );
 	for ( u32 i = 0; i < numComponents; i++ ) {
-		String_Appendf( sbHeader, "( vec%s%c << %d )", parmAccessStr, GEN_COMPONENT_NAMES_VECTOR[i], shiftVals[i] );
+		String_Appendf( sbImpl, "( vec%s%c << %d )", parmAccessStr, GEN_COMPONENT_NAMES_VECTOR[i], shiftVals[i] );
 
 		if ( i != numComponents - 1 ) {
-			String_Append( sbHeader, " | " );
+			String_Append( sbImpl, " | " );
 		}
 	}
-	String_Append( sbHeader, ";\n" );
-	String_Append( sbHeader, "}\n" );
-	String_Append( sbHeader, "\n" );
+	String_Append( sbImpl, ";\n" );
+	String_Append( sbImpl, "}\n" );
+	String_Append( sbImpl, "\n" );
 }
 
-void Gen_VectorUnpack( const genLanguage_t language, const genType_t type, const u32 numComponents, stringBuilder_t* sbHeader ) {
+void Gen_VectorUnpack( const genType_t type, const u32 numComponents, stringBuilder_t* sbFwdDec, stringBuilder_t* sbImpl ) {
 	assert( numComponents >= GEN_COMPONENT_COUNT_MIN );
 	assert( numComponents <= GEN_COMPONENT_COUNT_MAX );
-
-	( (void) language );
+	assert( sbFwdDec );
+	assert( sbImpl );
 
 	if ( type != GEN_TYPE_UINT ) {
 		return;
@@ -792,20 +862,23 @@ void Gen_VectorUnpack( const genLanguage_t language, const genType_t type, const
 
 	const char* memberTypeString = Gen_GetMemberTypeString( type );
 
-	Doc_VectorUnpack( sbHeader, fullTypeName );
-	String_Appendf( sbHeader, "inline %s unpack( const %s x )\n", fullTypeName, memberTypeString );
-	String_Append(  sbHeader, "{\n" );
-	String_Appendf( sbHeader, "\treturn HLML_CONSTRUCT( %s ) {\n", fullTypeName );
+	Doc_VectorUnpack( sbFwdDec, fullTypeName );
+	String_Appendf( sbFwdDec, "inline %s unpack( const %s x );\n", fullTypeName, memberTypeString );
+	String_Append( sbFwdDec, "\n" );
+
+	String_Appendf( sbImpl, "%s unpack( const %s x )\n", fullTypeName, memberTypeString );
+	String_Append(  sbImpl, "{\n" );
+	String_Appendf( sbImpl, "\treturn HLML_CONSTRUCT( %s ) {\n", fullTypeName );
 	for ( u32 i = 0; i < numComponents; i++ ) {
-		String_Appendf( sbHeader, "\t\t( x >> %d ) & 0xFF", shiftVals[i] );
+		String_Appendf( sbImpl, "\t\t( x >> %d ) & 0xFF", shiftVals[i] );
 
 		if ( i != numComponents - 1 ) {
-			String_Append( sbHeader, "," );
+			String_Append( sbImpl, "," );
 		}
 
-		String_Append( sbHeader, "\n" );
+		String_Append( sbImpl, "\n" );
 	}
-	String_Append( sbHeader, "\t};\n" );
-	String_Append( sbHeader, "}\n" );
-	String_Append( sbHeader, "\n" );
+	String_Append( sbImpl, "\t};\n" );
+	String_Append( sbImpl, "}\n" );
+	String_Append( sbImpl, "\n" );
 }

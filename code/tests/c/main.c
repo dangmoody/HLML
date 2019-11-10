@@ -34,6 +34,7 @@ SOFTWARE.
 
 #define NOMINMAX
 
+#define HLML_IMPLEMENTATION
 #include "../../../code/out/c/hlml.h"
 
 #include <temper/temper.h>

@@ -244,45 +244,6 @@ static void GenerateOperatorsArray( stringBuilder_t* codeHeader, stringBuilder_t
 	String_Append(  codeInl, "\n" );
 }
 
-// static void GenerateOperatorsEquality( stringBuilder_t* codeHeader, stringBuilder_t* codeInl, const genType_t type, const u32 numComponents, const char* fullTypeName ) {
-// 	assert( codeHeader );
-// 	assert( codeInl );
-// 	assert( numComponents >= GEN_COMPONENT_COUNT_MIN );
-// 	assert( numComponents <= GEN_COMPONENT_COUNT_MAX );
-// 	assert( fullTypeName );
-
-// 	// operator==
-// 	{
-// 		Doc_OperatorEquals( codeHeader, fullTypeName );
-// 		String_Appendf( codeHeader, "inline bool operator==( const %s& lhs, const %s& rhs );\n", fullTypeName, fullTypeName );
-// 		String_Append(  codeHeader, "\n" );
-
-// 		String_Appendf( codeInl, "bool operator==( const %s& lhs, const %s& rhs )\n", fullTypeName, fullTypeName );
-// 		String_Append(  codeInl, "{\n" );
-// 		String_Append(  codeInl, "\treturn " );
-// 		for ( u32 i = 0; i < numComponents; i++ ) {
-// 			char component = GEN_COMPONENT_NAMES_VECTOR[i];
-
-// 			if ( Gen_TypeIsFloatingPoint( type ) ) {
-// 				const char* floateqStr = Gen_GetFuncNameFloateq( type );
-
-// 				String_Appendf( codeInl, "%s( lhs.%c, rhs.%c )", floateqStr, component, component );
-// 			} else {
-// 				String_Appendf( codeInl, "( lhs.%c == rhs.%c )", component, component );
-// 			}
-
-// 			if ( i != numComponents - 1 ) {
-// 				String_Append( codeInl, " && " );
-// 			}
-// 		}
-// 		String_Append( codeInl, ";\n" );
-// 		String_Append( codeInl, "}\n" );
-// 		String_Append( codeInl, "\n" );
-// 	}
-
-// 	Gen_OperatorNotEquals( type, 1, numComponents, codeHeader, codeInl );
-// }
-
 static void GenerateSwizzleFuncs( stringBuilder_t* codeHeader, stringBuilder_t* codeInl, const u32 numComponents, const char* typeString, const char* fullTypeName ) {
 	assert( codeHeader );
 	assert( codeInl );
@@ -436,7 +397,7 @@ void Gen_VectorType_CPP( const genType_t type, const u32 numComponents ) {
 		String_Append( &codeInl, "\n" );
 
 		if ( type == GEN_TYPE_FLOAT ) {
-			String_Append( &codeInl, "#include \"" GEN_HEADER_FUNCTIONS_SCALAR "\"\n" );
+			String_Append( &codeInl, "#include \"" GEN_FILENAME_FUNCTIONS_SCALAR ".h\"\n" );
 			String_Append( &codeInl, "\n" );
 		}
 

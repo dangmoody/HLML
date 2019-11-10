@@ -23,7 +23,7 @@ fi
 # copy doxygen
 cp -rf ./doxygen ./build/${compiler_folder_name}/${config}
 
-# start building!
+# build the generator
 echo ------- Building generator -------
 source_files="code/generator/"
 source build_linux_clang_gcc.sh ${compiler} ${config} C++ hlml-gen.exe ${source_files} *.cpp
@@ -35,6 +35,7 @@ build/${compiler_folder_name}/${config}/hlml-gen.exe
 echo ------- Done -------
 echo ""
 
+# C tests
 echo ------- Building C tests -------
 source_files="code/tests/c/"
 source build_linux_clang_gcc.sh ${compiler} ${config} C hlml-gen-tests-c.exe ${source_files} main.c
@@ -46,6 +47,7 @@ build/${compiler_folder_name}/${config}/hlml-gen-tests-c.exe -c --time-unit=us
 echo ------- C Tests Finished -------
 echo ""
 
+# C++ tests
 echo ------- Building C++ tests -------
 source_files="code/tests/cpp/"
 source build_linux_clang_gcc.sh ${compiler} ${config} C++ hlml-gen-tests-cpp.exe ${source_files} main.cpp

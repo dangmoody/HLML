@@ -45,7 +45,7 @@ int main( int argc, char** argv ) {
 		"\n"
 	);
 
-	Mem_Init( 2 * MB_TO_BYTES );
+	Mem_Init( 3 * MB_TO_BYTES );
 
 	Time_Init();
 

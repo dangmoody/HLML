@@ -36,17 +36,17 @@ extern void		Gen_VectorGetCodeComponentWiseBitwise( const genLanguage_t language
 
 extern void		Gen_VectorGetCodeComponentWiseRelational( const genLanguage_t language, const u32 numComponents, const genOpRelational_t op, stringBuilder_t* sbHeader );
 
-extern void		Gen_VectorFunctionsEquals( const genLanguage_t language, const genType_t type, const u32 numComponents, stringBuilder_t* sbHeader );
-extern void		Gen_VectorFunctionsComponentWiseArithmetic( const genLanguage_t language, const genType_t type, const u32 numComponents, stringBuilder_t* sbHeader );
-extern void		Gen_VectorFunctionsComponentWiseBitwise( const genLanguage_t language, const genType_t type, const u32 numComponents, stringBuilder_t* sbHeader );
-extern void		Gen_VectorFunctionsComponentWiseRelational( const genLanguage_t language, const genType_t type, const u32 numComponents, stringBuilder_t* sbHeader );
+extern void		Gen_VectorFunctionsEquals( const genLanguage_t language, const genType_t type, const u32 numComponents, stringBuilder_t* sbFwdDec, stringBuilder_t* sbImpl );
+extern void		Gen_VectorFunctionsComponentWiseArithmetic( const genLanguage_t language, const genType_t type, const u32 numComponents, stringBuilder_t* sbFwdDec, stringBuilder_t* sbImpl );
+extern void		Gen_VectorFunctionsComponentWiseBitwise( const genLanguage_t language, const genType_t type, const u32 numComponents, stringBuilder_t* sbFwdDec, stringBuilder_t* sbImpl );
+extern void		Gen_VectorFunctionsComponentWiseRelational( const genLanguage_t language, const genType_t type, const u32 numComponents, stringBuilder_t* sbFwdDec, stringBuilder_t* sbImpl );
 
-extern void		Gen_VectorLength( const genLanguage_t language, const genType_t type, const u32 numComponents, stringBuilder_t* sbHeader );
-extern void		Gen_VectorNormalize( const genLanguage_t language, const genType_t type, const u32 numComponents, stringBuilder_t* sbHeader );
-extern void		Gen_VectorDot( const genLanguage_t language, const genType_t type, const u32 numComponents, stringBuilder_t* sbHeader );
-extern void		Gen_VectorCross( const genLanguage_t language, const genType_t type, const u32 numComponents, stringBuilder_t* sbHeader );
-extern void		Gen_VectorAngle( const genLanguage_t language, const genType_t type, const u32 numComponents, stringBuilder_t* sbHeader );
-extern void		Gen_VectorDistance( const genLanguage_t language, const genType_t type, const u32 numComponents, stringBuilder_t* sbHeader );
+extern void		Gen_VectorLength( const genLanguage_t language, const genType_t type, const u32 numComponents, stringBuilder_t* sbFwdDec, stringBuilder_t* sbImpl );
+extern void		Gen_VectorNormalize( const genLanguage_t language, const genType_t type, const u32 numComponents, stringBuilder_t* sbFwdDec, stringBuilder_t* sbImpl );
+extern void		Gen_VectorDot( const genLanguage_t language, const genType_t type, const u32 numComponents, stringBuilder_t* sbFwdDec, stringBuilder_t* sbImpl );
+extern void		Gen_VectorCross( const genLanguage_t language, const genType_t type, const u32 numComponents, stringBuilder_t* sbFwdDec, stringBuilder_t* sbImpl );
+extern void		Gen_VectorAngle( const genLanguage_t language, const genType_t type, const u32 numComponents, stringBuilder_t* sbFwdDec, stringBuilder_t* sbImpl );
+extern void		Gen_VectorDistance( const genLanguage_t language, const genType_t type, const u32 numComponents, stringBuilder_t* sbFwdDec, stringBuilder_t* sbImpl );
 
-extern void		Gen_VectorPack( const genLanguage_t language, const genType_t type, const u32 numComponents, stringBuilder_t* sbHeader );
-extern void		Gen_VectorUnpack( const genLanguage_t language, const genType_t type, const u32 numComponents, stringBuilder_t* sbHeader );
+extern void		Gen_VectorPack( const genLanguage_t language, const genType_t type, const u32 numComponents, stringBuilder_t* sbFwdDec, stringBuilder_t* sbImpl );
+extern void		Gen_VectorUnpack( const genType_t type, const u32 numComponents, stringBuilder_t* sbFwdDec, stringBuilder_t* sbImpl );

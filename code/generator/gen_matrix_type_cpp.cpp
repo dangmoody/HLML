@@ -101,8 +101,8 @@ static void GenerateDocOperatorArray( stringBuilder_t* codeHeader, const u32 num
 		"\t/// Index CANNOT be lower than 0 or higher than %d.\n", numRows - 1 );
 }
 
-static void GenerateConstructors( stringBuilder_t* codeHeader, stringBuilder_t* codeInl, const u32 numRows, const u32 numCols, const char* fullTypeName, const char* memberTypeString, const char* vectorMemberTypeString ) {
-	assert( codeHeader );
+static void GenerateConstructors( stringBuilder_t* codeFwdDec, stringBuilder_t* codeInl, const u32 numRows, const u32 numCols, const char* fullTypeName, const char* memberTypeString, const char* vectorMemberTypeString ) {
+	assert( codeFwdDec );
 	assert( codeInl );
 	assert( numRows >= GEN_COMPONENT_COUNT_MIN );
 	assert( numRows <= GEN_COMPONENT_COUNT_MAX );
@@ -113,9 +113,9 @@ static void GenerateConstructors( stringBuilder_t* codeHeader, stringBuilder_t* 
 
 	// default ctor
 	{
-		GenerateDocCtorDefault( codeHeader );
-		String_Appendf( codeHeader, "\tinline %s();\n", fullTypeName );
-		String_Append(  codeHeader, "\n" );
+		GenerateDocCtorDefault( codeFwdDec );
+		String_Appendf( codeFwdDec, "\tinline %s();\n", fullTypeName );
+		String_Append(  codeFwdDec, "\n" );
 
 		String_Appendf( codeInl, "%s::%s()\n", fullTypeName, fullTypeName );
 		String_Append(  codeInl, "{\n" );
@@ -135,9 +135,9 @@ static void GenerateConstructors( stringBuilder_t* codeHeader, stringBuilder_t* 
 
 	// "diagonal" scaled uniform identity ctor
 	{
-		GenerateDocCtorDiagonalScalar( codeHeader );
-		String_Appendf( codeHeader, "\tinline %s( const %s diagonal );\n", fullTypeName, memberTypeString );
-		String_Append(  codeHeader, "\n" );
+		GenerateDocCtorDiagonalScalar( codeFwdDec );
+		String_Appendf( codeFwdDec, "\tinline %s( const %s diagonal );\n", fullTypeName, memberTypeString );
+		String_Append(  codeFwdDec, "\n" );
 
 		String_Appendf( codeInl, "%s::%s( const %s diagonal )\n", fullTypeName, fullTypeName, memberTypeString );
 		String_Append(  codeInl, "{\n" );
@@ -157,9 +157,9 @@ static void GenerateConstructors( stringBuilder_t* codeHeader, stringBuilder_t* 
 
 	// "diagonal" scaled non-uniform identity ctor
 	{
-		GenerateDocCtorDiagonalVector( codeHeader );
-		String_Appendf( codeHeader, "\tinline %s( const %s& diagonal );\n", fullTypeName, vectorMemberTypeString );
-		String_Append(  codeHeader, "\n" );
+		GenerateDocCtorDiagonalVector( codeFwdDec );
+		String_Appendf( codeFwdDec, "\tinline %s( const %s& diagonal );\n", fullTypeName, vectorMemberTypeString );
+		String_Append(  codeFwdDec, "\n" );
 
 		String_Appendf( codeInl, "%s::%s( const %s& diagonal )\n", fullTypeName, fullTypeName, vectorMemberTypeString );
 		String_Append(  codeInl, "{\n" );
@@ -183,17 +183,17 @@ static void GenerateConstructors( stringBuilder_t* codeHeader, stringBuilder_t* 
 
 	// row memberwise ctor
 	{
-		GenerateDocCtorRow( codeHeader );
-		String_Appendf( codeHeader, "\tinline %s( ", fullTypeName );
+		GenerateDocCtorRow( codeFwdDec );
+		String_Appendf( codeFwdDec, "\tinline %s( ", fullTypeName );
 		for ( u32 i = 0; i < numRows; i++ ) {
-			String_Appendf( codeHeader, "const %s& row%d", vectorMemberTypeString, i );
+			String_Appendf( codeFwdDec, "const %s& row%d", vectorMemberTypeString, i );
 
 			if ( i != numRows - 1 ) {
-				String_Append( codeHeader, ", " );
+				String_Append( codeFwdDec, ", " );
 			}
 		}
-		String_Append( codeHeader, " );\n" );
-		String_Append( codeHeader, "\n" );
+		String_Append( codeFwdDec, " );\n" );
+		String_Append( codeFwdDec, "\n" );
 
 		String_Appendf( codeInl, "%s::%s( ", fullTypeName, fullTypeName );
 		for ( u32 i = 0; i < numRows; i++ ) {
@@ -213,9 +213,9 @@ static void GenerateConstructors( stringBuilder_t* codeHeader, stringBuilder_t* 
 
 	// array of rows ctor
 	{
-		GenerateDocCtorRowArray( codeHeader );
-		String_Appendf( codeHeader, "\tinline %s( const %s rows[%d] );\n", fullTypeName, vectorMemberTypeString, numRows );
-		String_Append(  codeHeader, "\n" );
+		GenerateDocCtorRowArray( codeFwdDec );
+		String_Appendf( codeFwdDec, "\tinline %s( const %s rows[%d] );\n", fullTypeName, vectorMemberTypeString, numRows );
+		String_Append(  codeFwdDec, "\n" );
 
 		String_Appendf( codeInl, "%s::%s( const %s rows[%d] )\n", fullTypeName, fullTypeName, vectorMemberTypeString, numRows );
 		String_Append(  codeInl, "{\n" );
@@ -227,23 +227,23 @@ static void GenerateConstructors( stringBuilder_t* codeHeader, stringBuilder_t* 
 
 	// memberwise rows * cols ctor
 	{
-		GenerateDocCtorRowsAndCols( codeHeader );
-		String_Appendf( codeHeader, "\tinline %s( ", fullTypeName );
+		GenerateDocCtorRowsAndCols( codeFwdDec );
+		String_Appendf( codeFwdDec, "\tinline %s( ", fullTypeName );
 		for ( u32 row = 0; row < numRows; row++ ) {
 			for ( u32 col = 0; col < numCols; col++ ) {
-				String_Appendf( codeHeader, "const %s m%d%d", memberTypeString, row, col );
+				String_Appendf( codeFwdDec, "const %s m%d%d", memberTypeString, row, col );
 
 				if ( col != numCols - 1 ) {
-					String_Append( codeHeader, ", " );
+					String_Append( codeFwdDec, ", " );
 				}
 			}
 
 			if ( row != numRows - 1 ) {
-				String_Append( codeHeader, ", " );
+				String_Append( codeFwdDec, ", " );
 			}
 		}
-		String_Append( codeHeader, " );\n" );
-		String_Append( codeHeader, "\n" );
+		String_Append( codeFwdDec, " );\n" );
+		String_Append( codeFwdDec, "\n" );
 
 		String_Appendf( codeInl, "%s::%s( ", fullTypeName, fullTypeName );
 		for ( u32 row = 0; row < numRows; row++ ) {
@@ -278,9 +278,9 @@ static void GenerateConstructors( stringBuilder_t* codeHeader, stringBuilder_t* 
 
 	// copy ctor
 	{
-		GenerateDocCtorCopy( codeHeader );
-		String_Appendf( codeHeader, "\tinline %s( const %s& other );\n", fullTypeName, fullTypeName );
-		String_Append(  codeHeader, "\n" );
+		GenerateDocCtorCopy( codeFwdDec );
+		String_Appendf( codeFwdDec, "\tinline %s( const %s& other );\n", fullTypeName, fullTypeName );
+		String_Append(  codeFwdDec, "\n" );
 
 		String_Appendf( codeInl, "%s::%s( const %s& other )\n", fullTypeName, fullTypeName, fullTypeName );
 		String_Append(  codeInl, "{\n" );
@@ -290,8 +290,8 @@ static void GenerateConstructors( stringBuilder_t* codeHeader, stringBuilder_t* 
 	}
 
 	// dtor
-	String_Appendf( codeHeader, "\tinline ~%s() {}\n", fullTypeName );
-	String_Append(  codeHeader, "\n" );
+	String_Appendf( codeFwdDec, "\tinline ~%s() {}\n", fullTypeName );
+	String_Append(  codeFwdDec, "\n" );
 }
 
 static void GenerateOperatorsAssignment( stringBuilder_t* codeHeader, stringBuilder_t* codeInl, const char* fullTypeName ) {
@@ -341,39 +341,6 @@ static void GenerateOperatorsArray( stringBuilder_t* codeHeader, stringBuilder_t
 	String_Append(  codeInl, "}\n" );
 	String_Append(  codeInl, "\n" );
 }
-
-// static void GenerateOperatorsEquality( stringBuilder_t* codeHeader, stringBuilder_t* codeInl, const genType_t type, const u32 numRows, const u32 numCols, const char* fullTypeName ) {
-// 	assert( codeHeader );
-// 	assert( codeInl );
-// 	assert( numRows >= GEN_COMPONENT_COUNT_MIN );
-// 	assert( numRows <= GEN_COMPONENT_COUNT_MAX );
-// 	assert( numCols >= GEN_COMPONENT_COUNT_MIN );
-// 	assert( numCols <= GEN_COMPONENT_COUNT_MAX );
-// 	assert( fullTypeName );
-
-// 	// operator==
-// 	{
-// 		Doc_OperatorEquals( codeHeader, fullTypeName );
-// 		String_Appendf( codeHeader, "inline bool operator==( const %s& lhs, const %s& rhs );\n", fullTypeName, fullTypeName );
-// 		String_Append(  codeHeader, "\n" );
-
-// 		String_Appendf( codeInl, "bool operator==( const %s& lhs, const %s& rhs )\n", fullTypeName, fullTypeName );
-// 		String_Append(  codeInl, "{\n" );
-// 		String_Append(  codeInl, "\treturn " );
-// 		for ( u32 i = 0; i < numRows; i++ ) {
-// 			String_Appendf( codeInl, "lhs%s%c == rhs%s%c", i, i );
-
-// 			if ( i != numRows - 1 ) {
-// 				String_Append( codeInl, "\n\t\t&& " );
-// 			}
-// 		}
-// 		String_Append( codeInl, ";\n" );
-// 		String_Append( codeInl, "}\n" );
-// 		String_Append( codeInl, "\n" );
-// 	}
-
-// 	Gen_OperatorNotEquals( type, numRows, numCols, codeHeader, codeInl );
-// }
 
 void Gen_MatrixType_CPP( const genType_t type, const u32 numRows, const u32 numCols ) {
 	assert( numRows >= GEN_COMPONENT_COUNT_MIN );
@@ -425,7 +392,6 @@ void Gen_MatrixType_CPP( const genType_t type, const u32 numRows, const u32 numC
 
 		String_Append(  &codeInl, "// hlml includes\n" );
 		String_Appendf( &codeInl, "#include \"%s.h\"\n", fullTypeName );
-//		String_Append(  &codeInl, "#include \"../" GEN_HEADER_CONSTANTS "\"\n" );
 		String_Append(  &codeInl, "\n" );
 
 		String_Append(  &codeInl, "// others\n" );

@@ -62,946 +62,1437 @@ SOFTWARE.
 // bool2
 /// \relates bool2
 /// \brief Returns true if the all the components of the left-hand-side bool2 match the other one, otherwise returns false.
-inline bool cmpe( const bool2& lhs, const bool2& rhs )
-{
-	return ( lhs.x == rhs.x ) && ( lhs.y == rhs.y );
-}
+inline bool cmpe( const bool2& lhs, const bool2& rhs );
 
 /// \relates bool2
 /// \brief Returns true if not all of the components of the left-hand-side bool2 match the other one, otherwise returns false.
-inline bool cmpne( const bool2& lhs, const bool2& rhs )
-{
-	return !( cmpe( lhs, rhs ) );
-}
-
+inline bool cmpne( const bool2& lhs, const bool2& rhs );
 
 // bool3
 /// \relates bool3
 /// \brief Returns true if the all the components of the left-hand-side bool3 match the other one, otherwise returns false.
-inline bool cmpe( const bool3& lhs, const bool3& rhs )
-{
-	return ( lhs.x == rhs.x ) && ( lhs.y == rhs.y ) && ( lhs.z == rhs.z );
-}
+inline bool cmpe( const bool3& lhs, const bool3& rhs );
 
 /// \relates bool3
 /// \brief Returns true if not all of the components of the left-hand-side bool3 match the other one, otherwise returns false.
-inline bool cmpne( const bool3& lhs, const bool3& rhs )
-{
-	return !( cmpe( lhs, rhs ) );
-}
-
+inline bool cmpne( const bool3& lhs, const bool3& rhs );
 
 // bool4
 /// \relates bool4
 /// \brief Returns true if the all the components of the left-hand-side bool4 match the other one, otherwise returns false.
-inline bool cmpe( const bool4& lhs, const bool4& rhs )
-{
-	return ( lhs.x == rhs.x ) && ( lhs.y == rhs.y ) && ( lhs.z == rhs.z ) && ( lhs.w == rhs.w );
-}
+inline bool cmpe( const bool4& lhs, const bool4& rhs );
 
 /// \relates bool4
 /// \brief Returns true if not all of the components of the left-hand-side bool4 match the other one, otherwise returns false.
-inline bool cmpne( const bool4& lhs, const bool4& rhs )
-{
-	return !( cmpe( lhs, rhs ) );
-}
-
+inline bool cmpne( const bool4& lhs, const bool4& rhs );
 
 // int2
 /// \relates int2
 /// \brief Returns true if the all the components of the left-hand-side int2 match the other one, otherwise returns false.
-inline bool cmpe( const int2& lhs, const int2& rhs )
-{
-	return ( lhs.x == rhs.x ) && ( lhs.y == rhs.y );
-}
+inline bool cmpe( const int2& lhs, const int2& rhs );
 
 /// \relates int2
 /// \brief Returns true if not all of the components of the left-hand-side int2 match the other one, otherwise returns false.
-inline bool cmpne( const int2& lhs, const int2& rhs )
-{
-	return !( cmpe( lhs, rhs ) );
-}
-
+inline bool cmpne( const int2& lhs, const int2& rhs );
 /// \relates int2
 /// \brief Returns a copy of the int2 that has been component-wise added by the given scalar value.
-inline int2 comp_adds( const int2& lhs, const int32_t scalar )
-{
-	return HLML_CONSTRUCT( int2 ) {
-		lhs.x + scalar,
-		lhs.y + scalar
-	};
-}
+inline int2 comp_adds( const int2& lhs, const int32_t scalar );
 
 /// \relates int2
 /// \brief Returns a copy of the int2 that has been component-wise added by the corresponding component of the right-hand int2.
-inline int2 comp_addv( const int2& lhs, const int2& rhs )
-{
-	return HLML_CONSTRUCT( int2 ) {
-		lhs.x + rhs.x,
-		lhs.y + rhs.y
-	};
-}
+inline int2 comp_addv( const int2& lhs, const int2& rhs );
 
 /// \relates int2
 /// \brief Returns a copy of the int2 that has been component-wise subtracted by the given scalar value.
-inline int2 comp_subs( const int2& lhs, const int32_t scalar )
-{
-	return HLML_CONSTRUCT( int2 ) {
-		lhs.x - scalar,
-		lhs.y - scalar
-	};
-}
+inline int2 comp_subs( const int2& lhs, const int32_t scalar );
 
 /// \relates int2
 /// \brief Returns a copy of the int2 that has been component-wise subtracted by the corresponding component of the right-hand int2.
-inline int2 comp_subv( const int2& lhs, const int2& rhs )
-{
-	return HLML_CONSTRUCT( int2 ) {
-		lhs.x - rhs.x,
-		lhs.y - rhs.y
-	};
-}
+inline int2 comp_subv( const int2& lhs, const int2& rhs );
 
 /// \relates int2
 /// \brief Returns a copy of the int2 that has been component-wise multiplied by the given scalar value.
-inline int2 comp_muls( const int2& lhs, const int32_t scalar )
-{
-	return HLML_CONSTRUCT( int2 ) {
-		lhs.x * scalar,
-		lhs.y * scalar
-	};
-}
+inline int2 comp_muls( const int2& lhs, const int32_t scalar );
 
 /// \relates int2
 /// \brief Returns a copy of the int2 that has been component-wise multiplied by the corresponding component of the right-hand int2.
-inline int2 comp_mulv( const int2& lhs, const int2& rhs )
-{
-	return HLML_CONSTRUCT( int2 ) {
-		lhs.x * rhs.x,
-		lhs.y * rhs.y
-	};
-}
+inline int2 comp_mulv( const int2& lhs, const int2& rhs );
 
 /// \relates int2
 /// \brief Returns a copy of the int2 that has been component-wise divided by the given scalar value.
-inline int2 comp_divs( const int2& lhs, const int32_t scalar )
-{
-	return HLML_CONSTRUCT( int2 ) {
-		lhs.x / scalar,
-		lhs.y / scalar
-	};
-}
+inline int2 comp_divs( const int2& lhs, const int32_t scalar );
 
 /// \relates int2
 /// \brief Returns a copy of the int2 that has been component-wise divided by the corresponding component of the right-hand int2.
-inline int2 comp_divv( const int2& lhs, const int2& rhs )
-{
-	return HLML_CONSTRUCT( int2 ) {
-		lhs.x / rhs.x,
-		lhs.y / rhs.y
-	};
-}
+inline int2 comp_divv( const int2& lhs, const int2& rhs );
 
 /// \relates int2
 /// \brief Returns a copy of the int2 where each component of the left-hand int2 has been bitwise AND'd against the corresponding component of the right-hand side int2.
-inline int2 comp_and( const int2& lhs, const int2& rhs )
-{
-	return HLML_CONSTRUCT( int2 ) {
-		lhs.x & rhs.x,
-		lhs.y & rhs.y
-	};
-}
+inline int2 comp_and( const int2& lhs, const int2& rhs );
 
 /// \relates int2
 /// \brief Returns a copy of the int2 where each component of the left-hand int2 has been bitwise OR'd against the corresponding component of the right-hand side int2.
-inline int2 comp_or( const int2& lhs, const int2& rhs )
-{
-	return HLML_CONSTRUCT( int2 ) {
-		lhs.x | rhs.x,
-		lhs.y | rhs.y
-	};
-}
+inline int2 comp_or( const int2& lhs, const int2& rhs );
 
 /// \relates int2
 /// \brief Returns a copy of the int2 where each component of the left-hand int2 has been bitwise XOR'd against the corresponding component of the right-hand side int2.
-inline int2 comp_xor( const int2& lhs, const int2& rhs )
-{
-	return HLML_CONSTRUCT( int2 ) {
-		lhs.x ^ rhs.x,
-		lhs.y ^ rhs.y
-	};
-}
+inline int2 comp_xor( const int2& lhs, const int2& rhs );
 
 /// \relates int2
 /// \brief Performs a unary bitwise operation on all components of the given int2.
-inline int2 comp_unary( const int2& lhs )
-{
-	return HLML_CONSTRUCT( int2 ) {
-		~lhs.x,
-		~lhs.y
-	};
-}
+inline int2 comp_unary( const int2& lhs );
 
 /// \relates int2
 /// \brief Returns a copy of the int2 where each component of the left-hand int2 has been bitwise left-shifted by the corresponding component of the right-hand side int2.
-inline int2 comp_shift_left( const int2& lhs, const int2& rhs )
-{
-	return HLML_CONSTRUCT( int2 ) {
-		lhs.x << rhs.x,
-		lhs.y << rhs.y
-	};
-}
+inline int2 comp_shift_left( const int2& lhs, const int2& rhs );
 
 /// \relates int2
 /// \brief Returns a copy of the int2 where each component of the left-hand int2 has been bitwise right-shifted by the corresponding component of the right-hand side int2.
-inline int2 comp_shift_right( const int2& lhs, const int2& rhs )
-{
-	return HLML_CONSTRUCT( int2 ) {
-		lhs.x >> rhs.x,
-		lhs.y >> rhs.y
-	};
-}
+inline int2 comp_shift_right( const int2& lhs, const int2& rhs );
 
 /// \relates int2
 /// \brief Returns a bool2 where each component is true if the component of the left-hand type is less than the corresponding right-hand type component.
-inline bool2 cmpl( const int2& lhs, const int2& rhs )
-{
-	return HLML_CONSTRUCT( bool2 ) {
-		lhs.x < rhs.x,
-		lhs.y < rhs.y
-	};
-}
+inline bool2 cmpl( const int2& lhs, const int2& rhs );
 
 /// \relates int2
 /// \brief Returns a bool2 where each component is true if the component of the left-hand type is less than or equal to the corresponding right-hand type component.
-inline bool2 cmple( const int2& lhs, const int2& rhs )
-{
-	return HLML_CONSTRUCT( bool2 ) {
-		lhs.x <= rhs.x,
-		lhs.y <= rhs.y
-	};
-}
+inline bool2 cmple( const int2& lhs, const int2& rhs );
 
 /// \relates int2
 /// \brief Returns a bool2 where each component is true if the component of the left-hand type is greater than the corresponding right-hand type component.
-inline bool2 cmpg( const int2& lhs, const int2& rhs )
-{
-	return HLML_CONSTRUCT( bool2 ) {
-		lhs.x > rhs.x,
-		lhs.y > rhs.y
-	};
-}
+inline bool2 cmpg( const int2& lhs, const int2& rhs );
 
 /// \relates int2
 /// \brief Returns a bool2 where each component is true if the component of the left-hand type is greater than or equal to the corresponding right-hand type component.
-inline bool2 cmpge( const int2& lhs, const int2& rhs )
-{
-	return HLML_CONSTRUCT( bool2 ) {
-		lhs.x >= rhs.x,
-		lhs.y >= rhs.y
-	};
-}
+inline bool2 cmpge( const int2& lhs, const int2& rhs );
 
 /// \relates int2
 /// \brief Returns the magnitude of the vector squared.
-inline float lengthsqr( const int2& vec )
-{
-	return (float)( ( vec.x * vec.x ) + ( vec.y * vec.y ) );
-}
+inline float lengthsqr( const int2& vec );
 
 /// \relates int2
 /// \brief Returns the magnitude of the vector.
-inline float length( const int2& vec )
-{
-	return sqrtf( lengthsqr( vec ) );
-}
+inline float length( const int2& vec );
 
 /// \relates int2
 /// \brief Returns the dot product of the two vectors.
-inline int32_t dot( const int2& lhs, const int2& rhs )
-{
-	return ( lhs.x * rhs.x ) + ( lhs.y * rhs.y );
-}
+inline int32_t dot( const int2& lhs, const int2& rhs );
 
 /// \relates int2
 /// \brief Returns the squared distance between the two vectors.
-inline float distancesqr( const int2& lhs, const int2& rhs )
-{
-	int2 delta = comp_subv( lhs, rhs );
-	return lengthsqr( delta );
-}
+inline float distancesqr( const int2& lhs, const int2& rhs );
 
 /// \relates int2
 /// \brief Returns the distance between the two vectors.
-inline float distance( const int2& lhs, const int2& rhs )
-{
-	int2 delta = comp_subv( lhs, rhs );
-	return length( delta );
-}
+inline float distance( const int2& lhs, const int2& rhs );
 
 
 // int3
 /// \relates int3
 /// \brief Returns true if the all the components of the left-hand-side int3 match the other one, otherwise returns false.
-inline bool cmpe( const int3& lhs, const int3& rhs )
-{
-	return ( lhs.x == rhs.x ) && ( lhs.y == rhs.y ) && ( lhs.z == rhs.z );
-}
+inline bool cmpe( const int3& lhs, const int3& rhs );
 
 /// \relates int3
 /// \brief Returns true if not all of the components of the left-hand-side int3 match the other one, otherwise returns false.
-inline bool cmpne( const int3& lhs, const int3& rhs )
-{
-	return !( cmpe( lhs, rhs ) );
-}
-
+inline bool cmpne( const int3& lhs, const int3& rhs );
 /// \relates int3
 /// \brief Returns a copy of the int3 that has been component-wise added by the given scalar value.
-inline int3 comp_adds( const int3& lhs, const int32_t scalar )
-{
-	return HLML_CONSTRUCT( int3 ) {
-		lhs.x + scalar,
-		lhs.y + scalar,
-		lhs.z + scalar
-	};
-}
+inline int3 comp_adds( const int3& lhs, const int32_t scalar );
 
 /// \relates int3
 /// \brief Returns a copy of the int3 that has been component-wise added by the corresponding component of the right-hand int3.
-inline int3 comp_addv( const int3& lhs, const int3& rhs )
-{
-	return HLML_CONSTRUCT( int3 ) {
-		lhs.x + rhs.x,
-		lhs.y + rhs.y,
-		lhs.z + rhs.z
-	};
-}
+inline int3 comp_addv( const int3& lhs, const int3& rhs );
 
 /// \relates int3
 /// \brief Returns a copy of the int3 that has been component-wise subtracted by the given scalar value.
-inline int3 comp_subs( const int3& lhs, const int32_t scalar )
-{
-	return HLML_CONSTRUCT( int3 ) {
-		lhs.x - scalar,
-		lhs.y - scalar,
-		lhs.z - scalar
-	};
-}
+inline int3 comp_subs( const int3& lhs, const int32_t scalar );
 
 /// \relates int3
 /// \brief Returns a copy of the int3 that has been component-wise subtracted by the corresponding component of the right-hand int3.
-inline int3 comp_subv( const int3& lhs, const int3& rhs )
-{
-	return HLML_CONSTRUCT( int3 ) {
-		lhs.x - rhs.x,
-		lhs.y - rhs.y,
-		lhs.z - rhs.z
-	};
-}
+inline int3 comp_subv( const int3& lhs, const int3& rhs );
 
 /// \relates int3
 /// \brief Returns a copy of the int3 that has been component-wise multiplied by the given scalar value.
-inline int3 comp_muls( const int3& lhs, const int32_t scalar )
-{
-	return HLML_CONSTRUCT( int3 ) {
-		lhs.x * scalar,
-		lhs.y * scalar,
-		lhs.z * scalar
-	};
-}
+inline int3 comp_muls( const int3& lhs, const int32_t scalar );
 
 /// \relates int3
 /// \brief Returns a copy of the int3 that has been component-wise multiplied by the corresponding component of the right-hand int3.
-inline int3 comp_mulv( const int3& lhs, const int3& rhs )
-{
-	return HLML_CONSTRUCT( int3 ) {
-		lhs.x * rhs.x,
-		lhs.y * rhs.y,
-		lhs.z * rhs.z
-	};
-}
+inline int3 comp_mulv( const int3& lhs, const int3& rhs );
 
 /// \relates int3
 /// \brief Returns a copy of the int3 that has been component-wise divided by the given scalar value.
-inline int3 comp_divs( const int3& lhs, const int32_t scalar )
-{
-	return HLML_CONSTRUCT( int3 ) {
-		lhs.x / scalar,
-		lhs.y / scalar,
-		lhs.z / scalar
-	};
-}
+inline int3 comp_divs( const int3& lhs, const int32_t scalar );
 
 /// \relates int3
 /// \brief Returns a copy of the int3 that has been component-wise divided by the corresponding component of the right-hand int3.
-inline int3 comp_divv( const int3& lhs, const int3& rhs )
-{
-	return HLML_CONSTRUCT( int3 ) {
-		lhs.x / rhs.x,
-		lhs.y / rhs.y,
-		lhs.z / rhs.z
-	};
-}
+inline int3 comp_divv( const int3& lhs, const int3& rhs );
 
 /// \relates int3
 /// \brief Returns a copy of the int3 where each component of the left-hand int3 has been bitwise AND'd against the corresponding component of the right-hand side int3.
-inline int3 comp_and( const int3& lhs, const int3& rhs )
-{
-	return HLML_CONSTRUCT( int3 ) {
-		lhs.x & rhs.x,
-		lhs.y & rhs.y,
-		lhs.z & rhs.z
-	};
-}
+inline int3 comp_and( const int3& lhs, const int3& rhs );
 
 /// \relates int3
 /// \brief Returns a copy of the int3 where each component of the left-hand int3 has been bitwise OR'd against the corresponding component of the right-hand side int3.
-inline int3 comp_or( const int3& lhs, const int3& rhs )
-{
-	return HLML_CONSTRUCT( int3 ) {
-		lhs.x | rhs.x,
-		lhs.y | rhs.y,
-		lhs.z | rhs.z
-	};
-}
+inline int3 comp_or( const int3& lhs, const int3& rhs );
 
 /// \relates int3
 /// \brief Returns a copy of the int3 where each component of the left-hand int3 has been bitwise XOR'd against the corresponding component of the right-hand side int3.
-inline int3 comp_xor( const int3& lhs, const int3& rhs )
-{
-	return HLML_CONSTRUCT( int3 ) {
-		lhs.x ^ rhs.x,
-		lhs.y ^ rhs.y,
-		lhs.z ^ rhs.z
-	};
-}
+inline int3 comp_xor( const int3& lhs, const int3& rhs );
 
 /// \relates int3
 /// \brief Performs a unary bitwise operation on all components of the given int3.
-inline int3 comp_unary( const int3& lhs )
-{
-	return HLML_CONSTRUCT( int3 ) {
-		~lhs.x,
-		~lhs.y,
-		~lhs.z
-	};
-}
+inline int3 comp_unary( const int3& lhs );
 
 /// \relates int3
 /// \brief Returns a copy of the int3 where each component of the left-hand int3 has been bitwise left-shifted by the corresponding component of the right-hand side int3.
-inline int3 comp_shift_left( const int3& lhs, const int3& rhs )
-{
-	return HLML_CONSTRUCT( int3 ) {
-		lhs.x << rhs.x,
-		lhs.y << rhs.y,
-		lhs.z << rhs.z
-	};
-}
+inline int3 comp_shift_left( const int3& lhs, const int3& rhs );
 
 /// \relates int3
 /// \brief Returns a copy of the int3 where each component of the left-hand int3 has been bitwise right-shifted by the corresponding component of the right-hand side int3.
-inline int3 comp_shift_right( const int3& lhs, const int3& rhs )
-{
-	return HLML_CONSTRUCT( int3 ) {
-		lhs.x >> rhs.x,
-		lhs.y >> rhs.y,
-		lhs.z >> rhs.z
-	};
-}
+inline int3 comp_shift_right( const int3& lhs, const int3& rhs );
 
 /// \relates int3
 /// \brief Returns a bool3 where each component is true if the component of the left-hand type is less than the corresponding right-hand type component.
-inline bool3 cmpl( const int3& lhs, const int3& rhs )
-{
-	return HLML_CONSTRUCT( bool3 ) {
-		lhs.x < rhs.x,
-		lhs.y < rhs.y,
-		lhs.z < rhs.z
-	};
-}
+inline bool3 cmpl( const int3& lhs, const int3& rhs );
 
 /// \relates int3
 /// \brief Returns a bool3 where each component is true if the component of the left-hand type is less than or equal to the corresponding right-hand type component.
-inline bool3 cmple( const int3& lhs, const int3& rhs )
-{
-	return HLML_CONSTRUCT( bool3 ) {
-		lhs.x <= rhs.x,
-		lhs.y <= rhs.y,
-		lhs.z <= rhs.z
-	};
-}
+inline bool3 cmple( const int3& lhs, const int3& rhs );
 
 /// \relates int3
 /// \brief Returns a bool3 where each component is true if the component of the left-hand type is greater than the corresponding right-hand type component.
-inline bool3 cmpg( const int3& lhs, const int3& rhs )
-{
-	return HLML_CONSTRUCT( bool3 ) {
-		lhs.x > rhs.x,
-		lhs.y > rhs.y,
-		lhs.z > rhs.z
-	};
-}
+inline bool3 cmpg( const int3& lhs, const int3& rhs );
 
 /// \relates int3
 /// \brief Returns a bool3 where each component is true if the component of the left-hand type is greater than or equal to the corresponding right-hand type component.
-inline bool3 cmpge( const int3& lhs, const int3& rhs )
-{
-	return HLML_CONSTRUCT( bool3 ) {
-		lhs.x >= rhs.x,
-		lhs.y >= rhs.y,
-		lhs.z >= rhs.z
-	};
-}
+inline bool3 cmpge( const int3& lhs, const int3& rhs );
 
 /// \relates int3
 /// \brief Returns the magnitude of the vector squared.
-inline float lengthsqr( const int3& vec )
-{
-	return (float)( ( vec.x * vec.x ) + ( vec.y * vec.y ) + ( vec.z * vec.z ) );
-}
+inline float lengthsqr( const int3& vec );
 
 /// \relates int3
 /// \brief Returns the magnitude of the vector.
-inline float length( const int3& vec )
-{
-	return sqrtf( lengthsqr( vec ) );
-}
+inline float length( const int3& vec );
 
 /// \relates int3
 /// \brief Returns the dot product of the two vectors.
-inline int32_t dot( const int3& lhs, const int3& rhs )
-{
-	return ( lhs.x * rhs.x ) + ( lhs.y * rhs.y ) + ( lhs.z * rhs.z );
-}
+inline int32_t dot( const int3& lhs, const int3& rhs );
 
 /// \relates int3
 /// \brief Returns the squared distance between the two vectors.
-inline float distancesqr( const int3& lhs, const int3& rhs )
-{
-	int3 delta = comp_subv( lhs, rhs );
-	return lengthsqr( delta );
-}
+inline float distancesqr( const int3& lhs, const int3& rhs );
 
 /// \relates int3
 /// \brief Returns the distance between the two vectors.
-inline float distance( const int3& lhs, const int3& rhs )
-{
-	int3 delta = comp_subv( lhs, rhs );
-	return length( delta );
-}
+inline float distance( const int3& lhs, const int3& rhs );
 
 
 // int4
 /// \relates int4
 /// \brief Returns true if the all the components of the left-hand-side int4 match the other one, otherwise returns false.
-inline bool cmpe( const int4& lhs, const int4& rhs )
-{
-	return ( lhs.x == rhs.x ) && ( lhs.y == rhs.y ) && ( lhs.z == rhs.z ) && ( lhs.w == rhs.w );
-}
+inline bool cmpe( const int4& lhs, const int4& rhs );
 
 /// \relates int4
 /// \brief Returns true if not all of the components of the left-hand-side int4 match the other one, otherwise returns false.
-inline bool cmpne( const int4& lhs, const int4& rhs )
-{
-	return !( cmpe( lhs, rhs ) );
-}
-
+inline bool cmpne( const int4& lhs, const int4& rhs );
 /// \relates int4
 /// \brief Returns a copy of the int4 that has been component-wise added by the given scalar value.
-inline int4 comp_adds( const int4& lhs, const int32_t scalar )
-{
-	return HLML_CONSTRUCT( int4 ) {
-		lhs.x + scalar,
-		lhs.y + scalar,
-		lhs.z + scalar,
-		lhs.w + scalar
-	};
-}
+inline int4 comp_adds( const int4& lhs, const int32_t scalar );
 
 /// \relates int4
 /// \brief Returns a copy of the int4 that has been component-wise added by the corresponding component of the right-hand int4.
-inline int4 comp_addv( const int4& lhs, const int4& rhs )
-{
-	return HLML_CONSTRUCT( int4 ) {
-		lhs.x + rhs.x,
-		lhs.y + rhs.y,
-		lhs.z + rhs.z,
-		lhs.w + rhs.w
-	};
-}
+inline int4 comp_addv( const int4& lhs, const int4& rhs );
 
 /// \relates int4
 /// \brief Returns a copy of the int4 that has been component-wise subtracted by the given scalar value.
-inline int4 comp_subs( const int4& lhs, const int32_t scalar )
-{
-	return HLML_CONSTRUCT( int4 ) {
-		lhs.x - scalar,
-		lhs.y - scalar,
-		lhs.z - scalar,
-		lhs.w - scalar
-	};
-}
+inline int4 comp_subs( const int4& lhs, const int32_t scalar );
 
 /// \relates int4
 /// \brief Returns a copy of the int4 that has been component-wise subtracted by the corresponding component of the right-hand int4.
-inline int4 comp_subv( const int4& lhs, const int4& rhs )
-{
-	return HLML_CONSTRUCT( int4 ) {
-		lhs.x - rhs.x,
-		lhs.y - rhs.y,
-		lhs.z - rhs.z,
-		lhs.w - rhs.w
-	};
-}
+inline int4 comp_subv( const int4& lhs, const int4& rhs );
 
 /// \relates int4
 /// \brief Returns a copy of the int4 that has been component-wise multiplied by the given scalar value.
-inline int4 comp_muls( const int4& lhs, const int32_t scalar )
-{
-	return HLML_CONSTRUCT( int4 ) {
-		lhs.x * scalar,
-		lhs.y * scalar,
-		lhs.z * scalar,
-		lhs.w * scalar
-	};
-}
+inline int4 comp_muls( const int4& lhs, const int32_t scalar );
 
 /// \relates int4
 /// \brief Returns a copy of the int4 that has been component-wise multiplied by the corresponding component of the right-hand int4.
-inline int4 comp_mulv( const int4& lhs, const int4& rhs )
-{
-	return HLML_CONSTRUCT( int4 ) {
-		lhs.x * rhs.x,
-		lhs.y * rhs.y,
-		lhs.z * rhs.z,
-		lhs.w * rhs.w
-	};
-}
+inline int4 comp_mulv( const int4& lhs, const int4& rhs );
 
 /// \relates int4
 /// \brief Returns a copy of the int4 that has been component-wise divided by the given scalar value.
-inline int4 comp_divs( const int4& lhs, const int32_t scalar )
-{
-	return HLML_CONSTRUCT( int4 ) {
-		lhs.x / scalar,
-		lhs.y / scalar,
-		lhs.z / scalar,
-		lhs.w / scalar
-	};
-}
+inline int4 comp_divs( const int4& lhs, const int32_t scalar );
 
 /// \relates int4
 /// \brief Returns a copy of the int4 that has been component-wise divided by the corresponding component of the right-hand int4.
-inline int4 comp_divv( const int4& lhs, const int4& rhs )
-{
-	return HLML_CONSTRUCT( int4 ) {
-		lhs.x / rhs.x,
-		lhs.y / rhs.y,
-		lhs.z / rhs.z,
-		lhs.w / rhs.w
-	};
-}
+inline int4 comp_divv( const int4& lhs, const int4& rhs );
 
 /// \relates int4
 /// \brief Returns a copy of the int4 where each component of the left-hand int4 has been bitwise AND'd against the corresponding component of the right-hand side int4.
-inline int4 comp_and( const int4& lhs, const int4& rhs )
-{
-	return HLML_CONSTRUCT( int4 ) {
-		lhs.x & rhs.x,
-		lhs.y & rhs.y,
-		lhs.z & rhs.z,
-		lhs.w & rhs.w
-	};
-}
+inline int4 comp_and( const int4& lhs, const int4& rhs );
 
 /// \relates int4
 /// \brief Returns a copy of the int4 where each component of the left-hand int4 has been bitwise OR'd against the corresponding component of the right-hand side int4.
-inline int4 comp_or( const int4& lhs, const int4& rhs )
-{
-	return HLML_CONSTRUCT( int4 ) {
-		lhs.x | rhs.x,
-		lhs.y | rhs.y,
-		lhs.z | rhs.z,
-		lhs.w | rhs.w
-	};
-}
+inline int4 comp_or( const int4& lhs, const int4& rhs );
 
 /// \relates int4
 /// \brief Returns a copy of the int4 where each component of the left-hand int4 has been bitwise XOR'd against the corresponding component of the right-hand side int4.
-inline int4 comp_xor( const int4& lhs, const int4& rhs )
-{
-	return HLML_CONSTRUCT( int4 ) {
-		lhs.x ^ rhs.x,
-		lhs.y ^ rhs.y,
-		lhs.z ^ rhs.z,
-		lhs.w ^ rhs.w
-	};
-}
+inline int4 comp_xor( const int4& lhs, const int4& rhs );
 
 /// \relates int4
 /// \brief Performs a unary bitwise operation on all components of the given int4.
-inline int4 comp_unary( const int4& lhs )
-{
-	return HLML_CONSTRUCT( int4 ) {
-		~lhs.x,
-		~lhs.y,
-		~lhs.z,
-		~lhs.w
-	};
-}
+inline int4 comp_unary( const int4& lhs );
 
 /// \relates int4
 /// \brief Returns a copy of the int4 where each component of the left-hand int4 has been bitwise left-shifted by the corresponding component of the right-hand side int4.
-inline int4 comp_shift_left( const int4& lhs, const int4& rhs )
-{
-	return HLML_CONSTRUCT( int4 ) {
-		lhs.x << rhs.x,
-		lhs.y << rhs.y,
-		lhs.z << rhs.z,
-		lhs.w << rhs.w
-	};
-}
+inline int4 comp_shift_left( const int4& lhs, const int4& rhs );
 
 /// \relates int4
 /// \brief Returns a copy of the int4 where each component of the left-hand int4 has been bitwise right-shifted by the corresponding component of the right-hand side int4.
-inline int4 comp_shift_right( const int4& lhs, const int4& rhs )
-{
-	return HLML_CONSTRUCT( int4 ) {
-		lhs.x >> rhs.x,
-		lhs.y >> rhs.y,
-		lhs.z >> rhs.z,
-		lhs.w >> rhs.w
-	};
-}
+inline int4 comp_shift_right( const int4& lhs, const int4& rhs );
 
 /// \relates int4
 /// \brief Returns a bool4 where each component is true if the component of the left-hand type is less than the corresponding right-hand type component.
-inline bool4 cmpl( const int4& lhs, const int4& rhs )
-{
-	return HLML_CONSTRUCT( bool4 ) {
-		lhs.x < rhs.x,
-		lhs.y < rhs.y,
-		lhs.z < rhs.z,
-		lhs.w < rhs.w
-	};
-}
+inline bool4 cmpl( const int4& lhs, const int4& rhs );
 
 /// \relates int4
 /// \brief Returns a bool4 where each component is true if the component of the left-hand type is less than or equal to the corresponding right-hand type component.
-inline bool4 cmple( const int4& lhs, const int4& rhs )
-{
-	return HLML_CONSTRUCT( bool4 ) {
-		lhs.x <= rhs.x,
-		lhs.y <= rhs.y,
-		lhs.z <= rhs.z,
-		lhs.w <= rhs.w
-	};
-}
+inline bool4 cmple( const int4& lhs, const int4& rhs );
 
 /// \relates int4
 /// \brief Returns a bool4 where each component is true if the component of the left-hand type is greater than the corresponding right-hand type component.
-inline bool4 cmpg( const int4& lhs, const int4& rhs )
-{
-	return HLML_CONSTRUCT( bool4 ) {
-		lhs.x > rhs.x,
-		lhs.y > rhs.y,
-		lhs.z > rhs.z,
-		lhs.w > rhs.w
-	};
-}
+inline bool4 cmpg( const int4& lhs, const int4& rhs );
 
 /// \relates int4
 /// \brief Returns a bool4 where each component is true if the component of the left-hand type is greater than or equal to the corresponding right-hand type component.
-inline bool4 cmpge( const int4& lhs, const int4& rhs )
-{
-	return HLML_CONSTRUCT( bool4 ) {
-		lhs.x >= rhs.x,
-		lhs.y >= rhs.y,
-		lhs.z >= rhs.z,
-		lhs.w >= rhs.w
-	};
-}
+inline bool4 cmpge( const int4& lhs, const int4& rhs );
 
 /// \relates int4
 /// \brief Returns the magnitude of the vector squared.
-inline float lengthsqr( const int4& vec )
-{
-	return (float)( ( vec.x * vec.x ) + ( vec.y * vec.y ) + ( vec.z * vec.z ) + ( vec.w * vec.w ) );
-}
+inline float lengthsqr( const int4& vec );
 
 /// \relates int4
 /// \brief Returns the magnitude of the vector.
-inline float length( const int4& vec )
-{
-	return sqrtf( lengthsqr( vec ) );
-}
+inline float length( const int4& vec );
 
 /// \relates int4
 /// \brief Returns the dot product of the two vectors.
-inline int32_t dot( const int4& lhs, const int4& rhs )
-{
-	return ( lhs.x * rhs.x ) + ( lhs.y * rhs.y ) + ( lhs.z * rhs.z ) + ( lhs.w * rhs.w );
-}
+inline int32_t dot( const int4& lhs, const int4& rhs );
 
 
 // uint2
 /// \relates uint2
 /// \brief Returns true if the all the components of the left-hand-side uint2 match the other one, otherwise returns false.
-inline bool cmpe( const uint2& lhs, const uint2& rhs )
+inline bool cmpe( const uint2& lhs, const uint2& rhs );
+
+/// \relates uint2
+/// \brief Returns true if not all of the components of the left-hand-side uint2 match the other one, otherwise returns false.
+inline bool cmpne( const uint2& lhs, const uint2& rhs );
+/// \relates uint2
+/// \brief Returns a copy of the uint2 that has been component-wise added by the given scalar value.
+inline uint2 comp_adds( const uint2& lhs, const uint32_t scalar );
+
+/// \relates uint2
+/// \brief Returns a copy of the uint2 that has been component-wise added by the corresponding component of the right-hand uint2.
+inline uint2 comp_addv( const uint2& lhs, const uint2& rhs );
+
+/// \relates uint2
+/// \brief Returns a copy of the uint2 that has been component-wise subtracted by the given scalar value.
+inline uint2 comp_subs( const uint2& lhs, const uint32_t scalar );
+
+/// \relates uint2
+/// \brief Returns a copy of the uint2 that has been component-wise subtracted by the corresponding component of the right-hand uint2.
+inline uint2 comp_subv( const uint2& lhs, const uint2& rhs );
+
+/// \relates uint2
+/// \brief Returns a copy of the uint2 that has been component-wise multiplied by the given scalar value.
+inline uint2 comp_muls( const uint2& lhs, const uint32_t scalar );
+
+/// \relates uint2
+/// \brief Returns a copy of the uint2 that has been component-wise multiplied by the corresponding component of the right-hand uint2.
+inline uint2 comp_mulv( const uint2& lhs, const uint2& rhs );
+
+/// \relates uint2
+/// \brief Returns a copy of the uint2 that has been component-wise divided by the given scalar value.
+inline uint2 comp_divs( const uint2& lhs, const uint32_t scalar );
+
+/// \relates uint2
+/// \brief Returns a copy of the uint2 that has been component-wise divided by the corresponding component of the right-hand uint2.
+inline uint2 comp_divv( const uint2& lhs, const uint2& rhs );
+
+/// \relates uint2
+/// \brief Returns a copy of the uint2 where each component of the left-hand uint2 has been bitwise AND'd against the corresponding component of the right-hand side uint2.
+inline uint2 comp_and( const uint2& lhs, const uint2& rhs );
+
+/// \relates uint2
+/// \brief Returns a copy of the uint2 where each component of the left-hand uint2 has been bitwise OR'd against the corresponding component of the right-hand side uint2.
+inline uint2 comp_or( const uint2& lhs, const uint2& rhs );
+
+/// \relates uint2
+/// \brief Returns a copy of the uint2 where each component of the left-hand uint2 has been bitwise XOR'd against the corresponding component of the right-hand side uint2.
+inline uint2 comp_xor( const uint2& lhs, const uint2& rhs );
+
+/// \relates uint2
+/// \brief Performs a unary bitwise operation on all components of the given uint2.
+inline uint2 comp_unary( const uint2& lhs );
+
+/// \relates uint2
+/// \brief Returns a copy of the uint2 where each component of the left-hand uint2 has been bitwise left-shifted by the corresponding component of the right-hand side uint2.
+inline uint2 comp_shift_left( const uint2& lhs, const uint2& rhs );
+
+/// \relates uint2
+/// \brief Returns a copy of the uint2 where each component of the left-hand uint2 has been bitwise right-shifted by the corresponding component of the right-hand side uint2.
+inline uint2 comp_shift_right( const uint2& lhs, const uint2& rhs );
+
+/// \relates uint2
+/// \brief Returns a bool2 where each component is true if the component of the left-hand type is less than the corresponding right-hand type component.
+inline bool2 cmpl( const uint2& lhs, const uint2& rhs );
+
+/// \relates uint2
+/// \brief Returns a bool2 where each component is true if the component of the left-hand type is less than or equal to the corresponding right-hand type component.
+inline bool2 cmple( const uint2& lhs, const uint2& rhs );
+
+/// \relates uint2
+/// \brief Returns a bool2 where each component is true if the component of the left-hand type is greater than the corresponding right-hand type component.
+inline bool2 cmpg( const uint2& lhs, const uint2& rhs );
+
+/// \relates uint2
+/// \brief Returns a bool2 where each component is true if the component of the left-hand type is greater than or equal to the corresponding right-hand type component.
+inline bool2 cmpge( const uint2& lhs, const uint2& rhs );
+
+/// \relates uint2
+/// \brief Returns the magnitude of the vector squared.
+inline float lengthsqr( const uint2& vec );
+
+/// \relates uint2
+/// \brief Returns the magnitude of the vector.
+inline float length( const uint2& vec );
+
+/// \relates uint2
+/// \brief Returns the dot product of the two vectors.
+inline int32_t dot( const uint2& lhs, const uint2& rhs );
+
+/// \relates uint2
+/// \brief Returns the squared distance between the two vectors.
+inline float distancesqr( const uint2& lhs, const uint2& rhs );
+
+/// \relates uint2
+/// \brief Returns the distance between the two vectors.
+inline float distance( const uint2& lhs, const uint2& rhs );
+
+
+// uint3
+/// \relates uint3
+/// \brief Returns true if the all the components of the left-hand-side uint3 match the other one, otherwise returns false.
+inline bool cmpe( const uint3& lhs, const uint3& rhs );
+
+/// \relates uint3
+/// \brief Returns true if not all of the components of the left-hand-side uint3 match the other one, otherwise returns false.
+inline bool cmpne( const uint3& lhs, const uint3& rhs );
+/// \relates uint3
+/// \brief Returns a copy of the uint3 that has been component-wise added by the given scalar value.
+inline uint3 comp_adds( const uint3& lhs, const uint32_t scalar );
+
+/// \relates uint3
+/// \brief Returns a copy of the uint3 that has been component-wise added by the corresponding component of the right-hand uint3.
+inline uint3 comp_addv( const uint3& lhs, const uint3& rhs );
+
+/// \relates uint3
+/// \brief Returns a copy of the uint3 that has been component-wise subtracted by the given scalar value.
+inline uint3 comp_subs( const uint3& lhs, const uint32_t scalar );
+
+/// \relates uint3
+/// \brief Returns a copy of the uint3 that has been component-wise subtracted by the corresponding component of the right-hand uint3.
+inline uint3 comp_subv( const uint3& lhs, const uint3& rhs );
+
+/// \relates uint3
+/// \brief Returns a copy of the uint3 that has been component-wise multiplied by the given scalar value.
+inline uint3 comp_muls( const uint3& lhs, const uint32_t scalar );
+
+/// \relates uint3
+/// \brief Returns a copy of the uint3 that has been component-wise multiplied by the corresponding component of the right-hand uint3.
+inline uint3 comp_mulv( const uint3& lhs, const uint3& rhs );
+
+/// \relates uint3
+/// \brief Returns a copy of the uint3 that has been component-wise divided by the given scalar value.
+inline uint3 comp_divs( const uint3& lhs, const uint32_t scalar );
+
+/// \relates uint3
+/// \brief Returns a copy of the uint3 that has been component-wise divided by the corresponding component of the right-hand uint3.
+inline uint3 comp_divv( const uint3& lhs, const uint3& rhs );
+
+/// \relates uint3
+/// \brief Returns a copy of the uint3 where each component of the left-hand uint3 has been bitwise AND'd against the corresponding component of the right-hand side uint3.
+inline uint3 comp_and( const uint3& lhs, const uint3& rhs );
+
+/// \relates uint3
+/// \brief Returns a copy of the uint3 where each component of the left-hand uint3 has been bitwise OR'd against the corresponding component of the right-hand side uint3.
+inline uint3 comp_or( const uint3& lhs, const uint3& rhs );
+
+/// \relates uint3
+/// \brief Returns a copy of the uint3 where each component of the left-hand uint3 has been bitwise XOR'd against the corresponding component of the right-hand side uint3.
+inline uint3 comp_xor( const uint3& lhs, const uint3& rhs );
+
+/// \relates uint3
+/// \brief Performs a unary bitwise operation on all components of the given uint3.
+inline uint3 comp_unary( const uint3& lhs );
+
+/// \relates uint3
+/// \brief Returns a copy of the uint3 where each component of the left-hand uint3 has been bitwise left-shifted by the corresponding component of the right-hand side uint3.
+inline uint3 comp_shift_left( const uint3& lhs, const uint3& rhs );
+
+/// \relates uint3
+/// \brief Returns a copy of the uint3 where each component of the left-hand uint3 has been bitwise right-shifted by the corresponding component of the right-hand side uint3.
+inline uint3 comp_shift_right( const uint3& lhs, const uint3& rhs );
+
+/// \relates uint3
+/// \brief Returns a bool3 where each component is true if the component of the left-hand type is less than the corresponding right-hand type component.
+inline bool3 cmpl( const uint3& lhs, const uint3& rhs );
+
+/// \relates uint3
+/// \brief Returns a bool3 where each component is true if the component of the left-hand type is less than or equal to the corresponding right-hand type component.
+inline bool3 cmple( const uint3& lhs, const uint3& rhs );
+
+/// \relates uint3
+/// \brief Returns a bool3 where each component is true if the component of the left-hand type is greater than the corresponding right-hand type component.
+inline bool3 cmpg( const uint3& lhs, const uint3& rhs );
+
+/// \relates uint3
+/// \brief Returns a bool3 where each component is true if the component of the left-hand type is greater than or equal to the corresponding right-hand type component.
+inline bool3 cmpge( const uint3& lhs, const uint3& rhs );
+
+/// \relates uint3
+/// \brief Returns the magnitude of the vector squared.
+inline float lengthsqr( const uint3& vec );
+
+/// \relates uint3
+/// \brief Returns the magnitude of the vector.
+inline float length( const uint3& vec );
+
+/// \relates uint3
+/// \brief Returns the dot product of the two vectors.
+inline int32_t dot( const uint3& lhs, const uint3& rhs );
+
+/// \relates uint3
+/// \brief Returns the squared distance between the two vectors.
+inline float distancesqr( const uint3& lhs, const uint3& rhs );
+
+/// \relates uint3
+/// \brief Returns the distance between the two vectors.
+inline float distance( const uint3& lhs, const uint3& rhs );
+
+
+// uint4
+/// \relates uint4
+/// \brief Returns true if the all the components of the left-hand-side uint4 match the other one, otherwise returns false.
+inline bool cmpe( const uint4& lhs, const uint4& rhs );
+
+/// \relates uint4
+/// \brief Returns true if not all of the components of the left-hand-side uint4 match the other one, otherwise returns false.
+inline bool cmpne( const uint4& lhs, const uint4& rhs );
+/// \relates uint4
+/// \brief Returns a copy of the uint4 that has been component-wise added by the given scalar value.
+inline uint4 comp_adds( const uint4& lhs, const uint32_t scalar );
+
+/// \relates uint4
+/// \brief Returns a copy of the uint4 that has been component-wise added by the corresponding component of the right-hand uint4.
+inline uint4 comp_addv( const uint4& lhs, const uint4& rhs );
+
+/// \relates uint4
+/// \brief Returns a copy of the uint4 that has been component-wise subtracted by the given scalar value.
+inline uint4 comp_subs( const uint4& lhs, const uint32_t scalar );
+
+/// \relates uint4
+/// \brief Returns a copy of the uint4 that has been component-wise subtracted by the corresponding component of the right-hand uint4.
+inline uint4 comp_subv( const uint4& lhs, const uint4& rhs );
+
+/// \relates uint4
+/// \brief Returns a copy of the uint4 that has been component-wise multiplied by the given scalar value.
+inline uint4 comp_muls( const uint4& lhs, const uint32_t scalar );
+
+/// \relates uint4
+/// \brief Returns a copy of the uint4 that has been component-wise multiplied by the corresponding component of the right-hand uint4.
+inline uint4 comp_mulv( const uint4& lhs, const uint4& rhs );
+
+/// \relates uint4
+/// \brief Returns a copy of the uint4 that has been component-wise divided by the given scalar value.
+inline uint4 comp_divs( const uint4& lhs, const uint32_t scalar );
+
+/// \relates uint4
+/// \brief Returns a copy of the uint4 that has been component-wise divided by the corresponding component of the right-hand uint4.
+inline uint4 comp_divv( const uint4& lhs, const uint4& rhs );
+
+/// \relates uint4
+/// \brief Returns a copy of the uint4 where each component of the left-hand uint4 has been bitwise AND'd against the corresponding component of the right-hand side uint4.
+inline uint4 comp_and( const uint4& lhs, const uint4& rhs );
+
+/// \relates uint4
+/// \brief Returns a copy of the uint4 where each component of the left-hand uint4 has been bitwise OR'd against the corresponding component of the right-hand side uint4.
+inline uint4 comp_or( const uint4& lhs, const uint4& rhs );
+
+/// \relates uint4
+/// \brief Returns a copy of the uint4 where each component of the left-hand uint4 has been bitwise XOR'd against the corresponding component of the right-hand side uint4.
+inline uint4 comp_xor( const uint4& lhs, const uint4& rhs );
+
+/// \relates uint4
+/// \brief Performs a unary bitwise operation on all components of the given uint4.
+inline uint4 comp_unary( const uint4& lhs );
+
+/// \relates uint4
+/// \brief Returns a copy of the uint4 where each component of the left-hand uint4 has been bitwise left-shifted by the corresponding component of the right-hand side uint4.
+inline uint4 comp_shift_left( const uint4& lhs, const uint4& rhs );
+
+/// \relates uint4
+/// \brief Returns a copy of the uint4 where each component of the left-hand uint4 has been bitwise right-shifted by the corresponding component of the right-hand side uint4.
+inline uint4 comp_shift_right( const uint4& lhs, const uint4& rhs );
+
+/// \relates uint4
+/// \brief Returns a bool4 where each component is true if the component of the left-hand type is less than the corresponding right-hand type component.
+inline bool4 cmpl( const uint4& lhs, const uint4& rhs );
+
+/// \relates uint4
+/// \brief Returns a bool4 where each component is true if the component of the left-hand type is less than or equal to the corresponding right-hand type component.
+inline bool4 cmple( const uint4& lhs, const uint4& rhs );
+
+/// \relates uint4
+/// \brief Returns a bool4 where each component is true if the component of the left-hand type is greater than the corresponding right-hand type component.
+inline bool4 cmpg( const uint4& lhs, const uint4& rhs );
+
+/// \relates uint4
+/// \brief Returns a bool4 where each component is true if the component of the left-hand type is greater than or equal to the corresponding right-hand type component.
+inline bool4 cmpge( const uint4& lhs, const uint4& rhs );
+
+/// \relates uint4
+/// \brief Returns the magnitude of the vector squared.
+inline float lengthsqr( const uint4& vec );
+
+/// \relates uint4
+/// \brief Returns the magnitude of the vector.
+inline float length( const uint4& vec );
+
+/// \relates uint4
+/// \brief Returns the dot product of the two vectors.
+inline int32_t dot( const uint4& lhs, const uint4& rhs );
+
+/// \relates uint4
+/// \brief Returns a 32 bit integer containing each component of the vector (starting with x) at each byte.
+inline uint32_t pack( const uint4& vec );
+
+/// \relates uint4
+/// \brief Returns a 4-component integer vector containing each byte of the given integer.
+inline uint4 unpack( const uint32_t x );
+
+
+// float2
+/// \relates float2
+/// \brief Returns a copy of the float2 with each component clamped between the range 0 and 1.
+inline float2 saturate( const float2& x );
+/// \relates float2
+/// \brief Returns a linearly interpolated float2 between types "a" and "b".
+inline float2 lerp( const float2& a, const float2& b, const float t );
+
+/// \relates float2
+/// \brief Returns 1 if y is greater than x, otherwise returns 0.
+inline float2 step( const float2& x, const float2& y );
+
+/// \relates float2
+/// \brief Performs a sigmoid-like interpolation and clamp.
+inline float2 smoothstep( const float2& low, const float2& high, const float2& x );
+
+/// \relates float2
+/// \brief Performs a 'smoother' version of smoothstep, as design by Ken Perlin.
+/// https://en.wikipedia.org/wiki/Smoothstep#Variations
+inline float2 smootherstep( const float2& low, const float2& high, const float2& x );
+
+/// \relates float2
+/// \brief Returns true if the all the components of the left-hand-side float2 match the other one, otherwise returns false.
+inline bool cmpe( const float2& lhs, const float2& rhs );
+
+/// \relates float2
+/// \brief Returns true if not all of the components of the left-hand-side float2 match the other one, otherwise returns false.
+inline bool cmpne( const float2& lhs, const float2& rhs );
+/// \relates float2
+/// \brief Returns a copy of the float2 that has been component-wise added by the given scalar value.
+inline float2 comp_adds( const float2& lhs, const float scalar );
+
+/// \relates float2
+/// \brief Returns a copy of the float2 that has been component-wise added by the corresponding component of the right-hand float2.
+inline float2 comp_addv( const float2& lhs, const float2& rhs );
+
+/// \relates float2
+/// \brief Returns a copy of the float2 that has been component-wise subtracted by the given scalar value.
+inline float2 comp_subs( const float2& lhs, const float scalar );
+
+/// \relates float2
+/// \brief Returns a copy of the float2 that has been component-wise subtracted by the corresponding component of the right-hand float2.
+inline float2 comp_subv( const float2& lhs, const float2& rhs );
+
+/// \relates float2
+/// \brief Returns a copy of the float2 that has been component-wise multiplied by the given scalar value.
+inline float2 comp_muls( const float2& lhs, const float scalar );
+
+/// \relates float2
+/// \brief Returns a copy of the float2 that has been component-wise multiplied by the corresponding component of the right-hand float2.
+inline float2 comp_mulv( const float2& lhs, const float2& rhs );
+
+/// \relates float2
+/// \brief Returns a copy of the float2 that has been component-wise divided by the given scalar value.
+inline float2 comp_divs( const float2& lhs, const float scalar );
+
+/// \relates float2
+/// \brief Returns a copy of the float2 that has been component-wise divided by the corresponding component of the right-hand float2.
+inline float2 comp_divv( const float2& lhs, const float2& rhs );
+
+/// \relates float2
+/// \brief Returns a bool2 where each component is true if the component of the left-hand type is less than the corresponding right-hand type component.
+inline bool2 cmpl( const float2& lhs, const float2& rhs );
+
+/// \relates float2
+/// \brief Returns a bool2 where each component is true if the component of the left-hand type is less than or equal to the corresponding right-hand type component.
+inline bool2 cmple( const float2& lhs, const float2& rhs );
+
+/// \relates float2
+/// \brief Returns a bool2 where each component is true if the component of the left-hand type is greater than the corresponding right-hand type component.
+inline bool2 cmpg( const float2& lhs, const float2& rhs );
+
+/// \relates float2
+/// \brief Returns a bool2 where each component is true if the component of the left-hand type is greater than or equal to the corresponding right-hand type component.
+inline bool2 cmpge( const float2& lhs, const float2& rhs );
+
+/// \relates float2
+/// \brief Returns the magnitude of the vector squared.
+inline float lengthsqr( const float2& vec );
+
+/// \relates float2
+/// \brief Returns the magnitude of the vector.
+inline float length( const float2& vec );
+
+/// \relates float2
+/// \brief Normalizes the vector.
+inline void normalize( float2& vec );
+
+/// \relates float2
+/// \brief Returns a normalized copy of the vector.
+inline float2 normalized( const float2& vec );
+
+/// \relates float2
+/// \brief Returns the dot product of the two vectors.
+inline float dot( const float2& lhs, const float2& rhs );
+
+/// \relates float2
+/// \brief Returns the angle in degrees between the two vectors.
+inline float angle( const float2& lhs, const float2& rhs );
+
+/// \relates float2
+/// \brief Returns the squared distance between the two vectors.
+inline float distancesqr( const float2& lhs, const float2& rhs );
+
+/// \relates float2
+/// \brief Returns the distance between the two vectors.
+inline float distance( const float2& lhs, const float2& rhs );
+
+
+// float3
+/// \relates float3
+/// \brief Returns a copy of the float3 with each component clamped between the range 0 and 1.
+inline float3 saturate( const float3& x );
+/// \relates float3
+/// \brief Returns a linearly interpolated float3 between types "a" and "b".
+inline float3 lerp( const float3& a, const float3& b, const float t );
+
+/// \relates float3
+/// \brief Returns 1 if y is greater than x, otherwise returns 0.
+inline float3 step( const float3& x, const float3& y );
+
+/// \relates float3
+/// \brief Performs a sigmoid-like interpolation and clamp.
+inline float3 smoothstep( const float3& low, const float3& high, const float3& x );
+
+/// \relates float3
+/// \brief Performs a 'smoother' version of smoothstep, as design by Ken Perlin.
+/// https://en.wikipedia.org/wiki/Smoothstep#Variations
+inline float3 smootherstep( const float3& low, const float3& high, const float3& x );
+
+/// \relates float3
+/// \brief Returns true if the all the components of the left-hand-side float3 match the other one, otherwise returns false.
+inline bool cmpe( const float3& lhs, const float3& rhs );
+
+/// \relates float3
+/// \brief Returns true if not all of the components of the left-hand-side float3 match the other one, otherwise returns false.
+inline bool cmpne( const float3& lhs, const float3& rhs );
+/// \relates float3
+/// \brief Returns a copy of the float3 that has been component-wise added by the given scalar value.
+inline float3 comp_adds( const float3& lhs, const float scalar );
+
+/// \relates float3
+/// \brief Returns a copy of the float3 that has been component-wise added by the corresponding component of the right-hand float3.
+inline float3 comp_addv( const float3& lhs, const float3& rhs );
+
+/// \relates float3
+/// \brief Returns a copy of the float3 that has been component-wise subtracted by the given scalar value.
+inline float3 comp_subs( const float3& lhs, const float scalar );
+
+/// \relates float3
+/// \brief Returns a copy of the float3 that has been component-wise subtracted by the corresponding component of the right-hand float3.
+inline float3 comp_subv( const float3& lhs, const float3& rhs );
+
+/// \relates float3
+/// \brief Returns a copy of the float3 that has been component-wise multiplied by the given scalar value.
+inline float3 comp_muls( const float3& lhs, const float scalar );
+
+/// \relates float3
+/// \brief Returns a copy of the float3 that has been component-wise multiplied by the corresponding component of the right-hand float3.
+inline float3 comp_mulv( const float3& lhs, const float3& rhs );
+
+/// \relates float3
+/// \brief Returns a copy of the float3 that has been component-wise divided by the given scalar value.
+inline float3 comp_divs( const float3& lhs, const float scalar );
+
+/// \relates float3
+/// \brief Returns a copy of the float3 that has been component-wise divided by the corresponding component of the right-hand float3.
+inline float3 comp_divv( const float3& lhs, const float3& rhs );
+
+/// \relates float3
+/// \brief Returns a bool3 where each component is true if the component of the left-hand type is less than the corresponding right-hand type component.
+inline bool3 cmpl( const float3& lhs, const float3& rhs );
+
+/// \relates float3
+/// \brief Returns a bool3 where each component is true if the component of the left-hand type is less than or equal to the corresponding right-hand type component.
+inline bool3 cmple( const float3& lhs, const float3& rhs );
+
+/// \relates float3
+/// \brief Returns a bool3 where each component is true if the component of the left-hand type is greater than the corresponding right-hand type component.
+inline bool3 cmpg( const float3& lhs, const float3& rhs );
+
+/// \relates float3
+/// \brief Returns a bool3 where each component is true if the component of the left-hand type is greater than or equal to the corresponding right-hand type component.
+inline bool3 cmpge( const float3& lhs, const float3& rhs );
+
+/// \relates float3
+/// \brief Returns the magnitude of the vector squared.
+inline float lengthsqr( const float3& vec );
+
+/// \relates float3
+/// \brief Returns the magnitude of the vector.
+inline float length( const float3& vec );
+
+/// \relates float3
+/// \brief Normalizes the vector.
+inline void normalize( float3& vec );
+
+/// \relates float3
+/// \brief Returns a normalized copy of the vector.
+inline float3 normalized( const float3& vec );
+
+/// \relates float3
+/// \brief Returns the dot product of the two vectors.
+inline float dot( const float3& lhs, const float3& rhs );
+
+/// \relates float3
+/// \brief Returns a vector perpendicular (normal) to the two vectors.
+inline float3 cross( const float3& lhs, const float3& rhs );
+
+/// \relates float3
+/// \brief Returns the angle in degrees between the two vectors.
+inline float angle( const float3& lhs, const float3& rhs );
+
+/// \relates float3
+/// \brief Returns the squared distance between the two vectors.
+inline float distancesqr( const float3& lhs, const float3& rhs );
+
+/// \relates float3
+/// \brief Returns the distance between the two vectors.
+inline float distance( const float3& lhs, const float3& rhs );
+
+
+// float4
+/// \relates float4
+/// \brief Returns a copy of the float4 with each component clamped between the range 0 and 1.
+inline float4 saturate( const float4& x );
+/// \relates float4
+/// \brief Returns a linearly interpolated float4 between types "a" and "b".
+inline float4 lerp( const float4& a, const float4& b, const float t );
+
+/// \relates float4
+/// \brief Returns 1 if y is greater than x, otherwise returns 0.
+inline float4 step( const float4& x, const float4& y );
+
+/// \relates float4
+/// \brief Performs a sigmoid-like interpolation and clamp.
+inline float4 smoothstep( const float4& low, const float4& high, const float4& x );
+
+/// \relates float4
+/// \brief Performs a 'smoother' version of smoothstep, as design by Ken Perlin.
+/// https://en.wikipedia.org/wiki/Smoothstep#Variations
+inline float4 smootherstep( const float4& low, const float4& high, const float4& x );
+
+/// \relates float4
+/// \brief Returns true if the all the components of the left-hand-side float4 match the other one, otherwise returns false.
+inline bool cmpe( const float4& lhs, const float4& rhs );
+
+/// \relates float4
+/// \brief Returns true if not all of the components of the left-hand-side float4 match the other one, otherwise returns false.
+inline bool cmpne( const float4& lhs, const float4& rhs );
+/// \relates float4
+/// \brief Returns a copy of the float4 that has been component-wise added by the given scalar value.
+inline float4 comp_adds( const float4& lhs, const float scalar );
+
+/// \relates float4
+/// \brief Returns a copy of the float4 that has been component-wise added by the corresponding component of the right-hand float4.
+inline float4 comp_addv( const float4& lhs, const float4& rhs );
+
+/// \relates float4
+/// \brief Returns a copy of the float4 that has been component-wise subtracted by the given scalar value.
+inline float4 comp_subs( const float4& lhs, const float scalar );
+
+/// \relates float4
+/// \brief Returns a copy of the float4 that has been component-wise subtracted by the corresponding component of the right-hand float4.
+inline float4 comp_subv( const float4& lhs, const float4& rhs );
+
+/// \relates float4
+/// \brief Returns a copy of the float4 that has been component-wise multiplied by the given scalar value.
+inline float4 comp_muls( const float4& lhs, const float scalar );
+
+/// \relates float4
+/// \brief Returns a copy of the float4 that has been component-wise multiplied by the corresponding component of the right-hand float4.
+inline float4 comp_mulv( const float4& lhs, const float4& rhs );
+
+/// \relates float4
+/// \brief Returns a copy of the float4 that has been component-wise divided by the given scalar value.
+inline float4 comp_divs( const float4& lhs, const float scalar );
+
+/// \relates float4
+/// \brief Returns a copy of the float4 that has been component-wise divided by the corresponding component of the right-hand float4.
+inline float4 comp_divv( const float4& lhs, const float4& rhs );
+
+/// \relates float4
+/// \brief Returns a bool4 where each component is true if the component of the left-hand type is less than the corresponding right-hand type component.
+inline bool4 cmpl( const float4& lhs, const float4& rhs );
+
+/// \relates float4
+/// \brief Returns a bool4 where each component is true if the component of the left-hand type is less than or equal to the corresponding right-hand type component.
+inline bool4 cmple( const float4& lhs, const float4& rhs );
+
+/// \relates float4
+/// \brief Returns a bool4 where each component is true if the component of the left-hand type is greater than the corresponding right-hand type component.
+inline bool4 cmpg( const float4& lhs, const float4& rhs );
+
+/// \relates float4
+/// \brief Returns a bool4 where each component is true if the component of the left-hand type is greater than or equal to the corresponding right-hand type component.
+inline bool4 cmpge( const float4& lhs, const float4& rhs );
+
+/// \relates float4
+/// \brief Returns the magnitude of the vector squared.
+inline float lengthsqr( const float4& vec );
+
+/// \relates float4
+/// \brief Returns the magnitude of the vector.
+inline float length( const float4& vec );
+
+/// \relates float4
+/// \brief Normalizes the vector.
+inline void normalize( float4& vec );
+
+/// \relates float4
+/// \brief Returns a normalized copy of the vector.
+inline float4 normalized( const float4& vec );
+
+/// \relates float4
+/// \brief Returns the dot product of the two vectors.
+inline float dot( const float4& lhs, const float4& rhs );
+
+/// \relates float4
+/// \brief Returns a vector perpendicular (normal) to the two vectors.
+inline float4 cross( const float4& lhs, const float4& rhs );
+
+/// \relates float4
+/// \brief Returns the angle in degrees between the two vectors.
+inline float angle( const float4& lhs, const float4& rhs );
+
+
+// double2
+/// \relates double2
+/// \brief Returns a copy of the double2 with each component clamped between the range 0 and 1.
+inline double2 saturate( const double2& x );
+/// \relates double2
+/// \brief Returns a linearly interpolated double2 between types "a" and "b".
+inline double2 lerp( const double2& a, const double2& b, const double t );
+
+/// \relates double2
+/// \brief Returns 1 if y is greater than x, otherwise returns 0.
+inline double2 step( const double2& x, const double2& y );
+
+/// \relates double2
+/// \brief Performs a sigmoid-like interpolation and clamp.
+inline double2 smoothstep( const double2& low, const double2& high, const double2& x );
+
+/// \relates double2
+/// \brief Performs a 'smoother' version of smoothstep, as design by Ken Perlin.
+/// https://en.wikipedia.org/wiki/Smoothstep#Variations
+inline double2 smootherstep( const double2& low, const double2& high, const double2& x );
+
+/// \relates double2
+/// \brief Returns true if the all the components of the left-hand-side double2 match the other one, otherwise returns false.
+inline bool cmpe( const double2& lhs, const double2& rhs );
+
+/// \relates double2
+/// \brief Returns true if not all of the components of the left-hand-side double2 match the other one, otherwise returns false.
+inline bool cmpne( const double2& lhs, const double2& rhs );
+/// \relates double2
+/// \brief Returns a copy of the double2 that has been component-wise added by the given scalar value.
+inline double2 comp_adds( const double2& lhs, const double scalar );
+
+/// \relates double2
+/// \brief Returns a copy of the double2 that has been component-wise added by the corresponding component of the right-hand double2.
+inline double2 comp_addv( const double2& lhs, const double2& rhs );
+
+/// \relates double2
+/// \brief Returns a copy of the double2 that has been component-wise subtracted by the given scalar value.
+inline double2 comp_subs( const double2& lhs, const double scalar );
+
+/// \relates double2
+/// \brief Returns a copy of the double2 that has been component-wise subtracted by the corresponding component of the right-hand double2.
+inline double2 comp_subv( const double2& lhs, const double2& rhs );
+
+/// \relates double2
+/// \brief Returns a copy of the double2 that has been component-wise multiplied by the given scalar value.
+inline double2 comp_muls( const double2& lhs, const double scalar );
+
+/// \relates double2
+/// \brief Returns a copy of the double2 that has been component-wise multiplied by the corresponding component of the right-hand double2.
+inline double2 comp_mulv( const double2& lhs, const double2& rhs );
+
+/// \relates double2
+/// \brief Returns a copy of the double2 that has been component-wise divided by the given scalar value.
+inline double2 comp_divs( const double2& lhs, const double scalar );
+
+/// \relates double2
+/// \brief Returns a copy of the double2 that has been component-wise divided by the corresponding component of the right-hand double2.
+inline double2 comp_divv( const double2& lhs, const double2& rhs );
+
+/// \relates double2
+/// \brief Returns a bool2 where each component is true if the component of the left-hand type is less than the corresponding right-hand type component.
+inline bool2 cmpl( const double2& lhs, const double2& rhs );
+
+/// \relates double2
+/// \brief Returns a bool2 where each component is true if the component of the left-hand type is less than or equal to the corresponding right-hand type component.
+inline bool2 cmple( const double2& lhs, const double2& rhs );
+
+/// \relates double2
+/// \brief Returns a bool2 where each component is true if the component of the left-hand type is greater than the corresponding right-hand type component.
+inline bool2 cmpg( const double2& lhs, const double2& rhs );
+
+/// \relates double2
+/// \brief Returns a bool2 where each component is true if the component of the left-hand type is greater than or equal to the corresponding right-hand type component.
+inline bool2 cmpge( const double2& lhs, const double2& rhs );
+
+/// \relates double2
+/// \brief Returns the magnitude of the vector squared.
+inline double lengthsqr( const double2& vec );
+
+/// \relates double2
+/// \brief Returns the magnitude of the vector.
+inline double length( const double2& vec );
+
+/// \relates double2
+/// \brief Normalizes the vector.
+inline void normalize( double2& vec );
+
+/// \relates double2
+/// \brief Returns a normalized copy of the vector.
+inline double2 normalized( const double2& vec );
+
+/// \relates double2
+/// \brief Returns the dot product of the two vectors.
+inline double dot( const double2& lhs, const double2& rhs );
+
+/// \relates double2
+/// \brief Returns the angle in degrees between the two vectors.
+inline double angle( const double2& lhs, const double2& rhs );
+
+/// \relates double2
+/// \brief Returns the squared distance between the two vectors.
+inline double distancesqr( const double2& lhs, const double2& rhs );
+
+/// \relates double2
+/// \brief Returns the distance between the two vectors.
+inline double distance( const double2& lhs, const double2& rhs );
+
+
+// double3
+/// \relates double3
+/// \brief Returns a copy of the double3 with each component clamped between the range 0 and 1.
+inline double3 saturate( const double3& x );
+/// \relates double3
+/// \brief Returns a linearly interpolated double3 between types "a" and "b".
+inline double3 lerp( const double3& a, const double3& b, const double t );
+
+/// \relates double3
+/// \brief Returns 1 if y is greater than x, otherwise returns 0.
+inline double3 step( const double3& x, const double3& y );
+
+/// \relates double3
+/// \brief Performs a sigmoid-like interpolation and clamp.
+inline double3 smoothstep( const double3& low, const double3& high, const double3& x );
+
+/// \relates double3
+/// \brief Performs a 'smoother' version of smoothstep, as design by Ken Perlin.
+/// https://en.wikipedia.org/wiki/Smoothstep#Variations
+inline double3 smootherstep( const double3& low, const double3& high, const double3& x );
+
+/// \relates double3
+/// \brief Returns true if the all the components of the left-hand-side double3 match the other one, otherwise returns false.
+inline bool cmpe( const double3& lhs, const double3& rhs );
+
+/// \relates double3
+/// \brief Returns true if not all of the components of the left-hand-side double3 match the other one, otherwise returns false.
+inline bool cmpne( const double3& lhs, const double3& rhs );
+/// \relates double3
+/// \brief Returns a copy of the double3 that has been component-wise added by the given scalar value.
+inline double3 comp_adds( const double3& lhs, const double scalar );
+
+/// \relates double3
+/// \brief Returns a copy of the double3 that has been component-wise added by the corresponding component of the right-hand double3.
+inline double3 comp_addv( const double3& lhs, const double3& rhs );
+
+/// \relates double3
+/// \brief Returns a copy of the double3 that has been component-wise subtracted by the given scalar value.
+inline double3 comp_subs( const double3& lhs, const double scalar );
+
+/// \relates double3
+/// \brief Returns a copy of the double3 that has been component-wise subtracted by the corresponding component of the right-hand double3.
+inline double3 comp_subv( const double3& lhs, const double3& rhs );
+
+/// \relates double3
+/// \brief Returns a copy of the double3 that has been component-wise multiplied by the given scalar value.
+inline double3 comp_muls( const double3& lhs, const double scalar );
+
+/// \relates double3
+/// \brief Returns a copy of the double3 that has been component-wise multiplied by the corresponding component of the right-hand double3.
+inline double3 comp_mulv( const double3& lhs, const double3& rhs );
+
+/// \relates double3
+/// \brief Returns a copy of the double3 that has been component-wise divided by the given scalar value.
+inline double3 comp_divs( const double3& lhs, const double scalar );
+
+/// \relates double3
+/// \brief Returns a copy of the double3 that has been component-wise divided by the corresponding component of the right-hand double3.
+inline double3 comp_divv( const double3& lhs, const double3& rhs );
+
+/// \relates double3
+/// \brief Returns a bool3 where each component is true if the component of the left-hand type is less than the corresponding right-hand type component.
+inline bool3 cmpl( const double3& lhs, const double3& rhs );
+
+/// \relates double3
+/// \brief Returns a bool3 where each component is true if the component of the left-hand type is less than or equal to the corresponding right-hand type component.
+inline bool3 cmple( const double3& lhs, const double3& rhs );
+
+/// \relates double3
+/// \brief Returns a bool3 where each component is true if the component of the left-hand type is greater than the corresponding right-hand type component.
+inline bool3 cmpg( const double3& lhs, const double3& rhs );
+
+/// \relates double3
+/// \brief Returns a bool3 where each component is true if the component of the left-hand type is greater than or equal to the corresponding right-hand type component.
+inline bool3 cmpge( const double3& lhs, const double3& rhs );
+
+/// \relates double3
+/// \brief Returns the magnitude of the vector squared.
+inline double lengthsqr( const double3& vec );
+
+/// \relates double3
+/// \brief Returns the magnitude of the vector.
+inline double length( const double3& vec );
+
+/// \relates double3
+/// \brief Normalizes the vector.
+inline void normalize( double3& vec );
+
+/// \relates double3
+/// \brief Returns a normalized copy of the vector.
+inline double3 normalized( const double3& vec );
+
+/// \relates double3
+/// \brief Returns the dot product of the two vectors.
+inline double dot( const double3& lhs, const double3& rhs );
+
+/// \relates double3
+/// \brief Returns a vector perpendicular (normal) to the two vectors.
+inline double3 cross( const double3& lhs, const double3& rhs );
+
+/// \relates double3
+/// \brief Returns the angle in degrees between the two vectors.
+inline double angle( const double3& lhs, const double3& rhs );
+
+/// \relates double3
+/// \brief Returns the squared distance between the two vectors.
+inline double distancesqr( const double3& lhs, const double3& rhs );
+
+/// \relates double3
+/// \brief Returns the distance between the two vectors.
+inline double distance( const double3& lhs, const double3& rhs );
+
+
+// double4
+/// \relates double4
+/// \brief Returns a copy of the double4 with each component clamped between the range 0 and 1.
+inline double4 saturate( const double4& x );
+/// \relates double4
+/// \brief Returns a linearly interpolated double4 between types "a" and "b".
+inline double4 lerp( const double4& a, const double4& b, const double t );
+
+/// \relates double4
+/// \brief Returns 1 if y is greater than x, otherwise returns 0.
+inline double4 step( const double4& x, const double4& y );
+
+/// \relates double4
+/// \brief Performs a sigmoid-like interpolation and clamp.
+inline double4 smoothstep( const double4& low, const double4& high, const double4& x );
+
+/// \relates double4
+/// \brief Performs a 'smoother' version of smoothstep, as design by Ken Perlin.
+/// https://en.wikipedia.org/wiki/Smoothstep#Variations
+inline double4 smootherstep( const double4& low, const double4& high, const double4& x );
+
+/// \relates double4
+/// \brief Returns true if the all the components of the left-hand-side double4 match the other one, otherwise returns false.
+inline bool cmpe( const double4& lhs, const double4& rhs );
+
+/// \relates double4
+/// \brief Returns true if not all of the components of the left-hand-side double4 match the other one, otherwise returns false.
+inline bool cmpne( const double4& lhs, const double4& rhs );
+/// \relates double4
+/// \brief Returns a copy of the double4 that has been component-wise added by the given scalar value.
+inline double4 comp_adds( const double4& lhs, const double scalar );
+
+/// \relates double4
+/// \brief Returns a copy of the double4 that has been component-wise added by the corresponding component of the right-hand double4.
+inline double4 comp_addv( const double4& lhs, const double4& rhs );
+
+/// \relates double4
+/// \brief Returns a copy of the double4 that has been component-wise subtracted by the given scalar value.
+inline double4 comp_subs( const double4& lhs, const double scalar );
+
+/// \relates double4
+/// \brief Returns a copy of the double4 that has been component-wise subtracted by the corresponding component of the right-hand double4.
+inline double4 comp_subv( const double4& lhs, const double4& rhs );
+
+/// \relates double4
+/// \brief Returns a copy of the double4 that has been component-wise multiplied by the given scalar value.
+inline double4 comp_muls( const double4& lhs, const double scalar );
+
+/// \relates double4
+/// \brief Returns a copy of the double4 that has been component-wise multiplied by the corresponding component of the right-hand double4.
+inline double4 comp_mulv( const double4& lhs, const double4& rhs );
+
+/// \relates double4
+/// \brief Returns a copy of the double4 that has been component-wise divided by the given scalar value.
+inline double4 comp_divs( const double4& lhs, const double scalar );
+
+/// \relates double4
+/// \brief Returns a copy of the double4 that has been component-wise divided by the corresponding component of the right-hand double4.
+inline double4 comp_divv( const double4& lhs, const double4& rhs );
+
+/// \relates double4
+/// \brief Returns a bool4 where each component is true if the component of the left-hand type is less than the corresponding right-hand type component.
+inline bool4 cmpl( const double4& lhs, const double4& rhs );
+
+/// \relates double4
+/// \brief Returns a bool4 where each component is true if the component of the left-hand type is less than or equal to the corresponding right-hand type component.
+inline bool4 cmple( const double4& lhs, const double4& rhs );
+
+/// \relates double4
+/// \brief Returns a bool4 where each component is true if the component of the left-hand type is greater than the corresponding right-hand type component.
+inline bool4 cmpg( const double4& lhs, const double4& rhs );
+
+/// \relates double4
+/// \brief Returns a bool4 where each component is true if the component of the left-hand type is greater than or equal to the corresponding right-hand type component.
+inline bool4 cmpge( const double4& lhs, const double4& rhs );
+
+/// \relates double4
+/// \brief Returns the magnitude of the vector squared.
+inline double lengthsqr( const double4& vec );
+
+/// \relates double4
+/// \brief Returns the magnitude of the vector.
+inline double length( const double4& vec );
+
+/// \relates double4
+/// \brief Normalizes the vector.
+inline void normalize( double4& vec );
+
+/// \relates double4
+/// \brief Returns a normalized copy of the vector.
+inline double4 normalized( const double4& vec );
+
+/// \relates double4
+/// \brief Returns the dot product of the two vectors.
+inline double dot( const double4& lhs, const double4& rhs );
+
+/// \relates double4
+/// \brief Returns a vector perpendicular (normal) to the two vectors.
+inline double4 cross( const double4& lhs, const double4& rhs );
+
+/// \relates double4
+/// \brief Returns the angle in degrees between the two vectors.
+inline double angle( const double4& lhs, const double4& rhs );
+
+
+#ifdef HLML_IMPLEMENTATION
+
+bool cmpe( const bool2& lhs, const bool2& rhs )
 {
 	return ( lhs.x == rhs.x ) && ( lhs.y == rhs.y );
 }
 
-/// \relates uint2
-/// \brief Returns true if not all of the components of the left-hand-side uint2 match the other one, otherwise returns false.
-inline bool cmpne( const uint2& lhs, const uint2& rhs )
+bool cmpne( const bool2& lhs, const bool2& rhs )
 {
 	return !( cmpe( lhs, rhs ) );
 }
 
-/// \relates uint2
-/// \brief Returns a copy of the uint2 that has been component-wise added by the given scalar value.
-inline uint2 comp_adds( const uint2& lhs, const uint32_t scalar )
+bool cmpe( const bool3& lhs, const bool3& rhs )
 {
-	return HLML_CONSTRUCT( uint2 ) {
+	return ( lhs.x == rhs.x ) && ( lhs.y == rhs.y ) && ( lhs.z == rhs.z );
+}
+
+bool cmpne( const bool3& lhs, const bool3& rhs )
+{
+	return !( cmpe( lhs, rhs ) );
+}
+
+bool cmpe( const bool4& lhs, const bool4& rhs )
+{
+	return ( lhs.x == rhs.x ) && ( lhs.y == rhs.y ) && ( lhs.z == rhs.z ) && ( lhs.w == rhs.w );
+}
+
+bool cmpne( const bool4& lhs, const bool4& rhs )
+{
+	return !( cmpe( lhs, rhs ) );
+}
+
+bool cmpe( const int2& lhs, const int2& rhs )
+{
+	return ( lhs.x == rhs.x ) && ( lhs.y == rhs.y );
+}
+
+bool cmpne( const int2& lhs, const int2& rhs )
+{
+	return !( cmpe( lhs, rhs ) );
+}
+
+int2 comp_adds( const int2& lhs, const int32_t scalar )
+{
+	return HLML_CONSTRUCT( int2 ) {
 		lhs.x + scalar,
 		lhs.y + scalar
 	};
 }
 
-/// \relates uint2
-/// \brief Returns a copy of the uint2 that has been component-wise added by the corresponding component of the right-hand uint2.
-inline uint2 comp_addv( const uint2& lhs, const uint2& rhs )
+int2 comp_addv( const int2& lhs, const int2& rhs )
 {
-	return HLML_CONSTRUCT( uint2 ) {
+	return HLML_CONSTRUCT( int2 ) {
 		lhs.x + rhs.x,
 		lhs.y + rhs.y
 	};
 }
 
-/// \relates uint2
-/// \brief Returns a copy of the uint2 that has been component-wise subtracted by the given scalar value.
-inline uint2 comp_subs( const uint2& lhs, const uint32_t scalar )
+int2 comp_subs( const int2& lhs, const int32_t scalar )
 {
-	return HLML_CONSTRUCT( uint2 ) {
+	return HLML_CONSTRUCT( int2 ) {
 		lhs.x - scalar,
 		lhs.y - scalar
 	};
 }
 
-/// \relates uint2
-/// \brief Returns a copy of the uint2 that has been component-wise subtracted by the corresponding component of the right-hand uint2.
-inline uint2 comp_subv( const uint2& lhs, const uint2& rhs )
+int2 comp_subv( const int2& lhs, const int2& rhs )
 {
-	return HLML_CONSTRUCT( uint2 ) {
+	return HLML_CONSTRUCT( int2 ) {
 		lhs.x - rhs.x,
 		lhs.y - rhs.y
 	};
 }
 
-/// \relates uint2
-/// \brief Returns a copy of the uint2 that has been component-wise multiplied by the given scalar value.
-inline uint2 comp_muls( const uint2& lhs, const uint32_t scalar )
+int2 comp_muls( const int2& lhs, const int32_t scalar )
 {
-	return HLML_CONSTRUCT( uint2 ) {
+	return HLML_CONSTRUCT( int2 ) {
 		lhs.x * scalar,
 		lhs.y * scalar
 	};
 }
 
-/// \relates uint2
-/// \brief Returns a copy of the uint2 that has been component-wise multiplied by the corresponding component of the right-hand uint2.
-inline uint2 comp_mulv( const uint2& lhs, const uint2& rhs )
+int2 comp_mulv( const int2& lhs, const int2& rhs )
 {
-	return HLML_CONSTRUCT( uint2 ) {
+	return HLML_CONSTRUCT( int2 ) {
 		lhs.x * rhs.x,
 		lhs.y * rhs.y
 	};
 }
 
-/// \relates uint2
-/// \brief Returns a copy of the uint2 that has been component-wise divided by the given scalar value.
-inline uint2 comp_divs( const uint2& lhs, const uint32_t scalar )
+int2 comp_divs( const int2& lhs, const int32_t scalar )
 {
-	return HLML_CONSTRUCT( uint2 ) {
+	return HLML_CONSTRUCT( int2 ) {
 		lhs.x / scalar,
 		lhs.y / scalar
 	};
 }
 
-/// \relates uint2
-/// \brief Returns a copy of the uint2 that has been component-wise divided by the corresponding component of the right-hand uint2.
-inline uint2 comp_divv( const uint2& lhs, const uint2& rhs )
+int2 comp_divv( const int2& lhs, const int2& rhs )
 {
-	return HLML_CONSTRUCT( uint2 ) {
+	return HLML_CONSTRUCT( int2 ) {
 		lhs.x / rhs.x,
 		lhs.y / rhs.y
 	};
 }
 
-/// \relates uint2
-/// \brief Returns a copy of the uint2 where each component of the left-hand uint2 has been bitwise AND'd against the corresponding component of the right-hand side uint2.
-inline uint2 comp_and( const uint2& lhs, const uint2& rhs )
+int2 comp_and( const int2& lhs, const int2& rhs )
 {
-	return HLML_CONSTRUCT( uint2 ) {
+	return HLML_CONSTRUCT( int2 ) {
 		lhs.x & rhs.x,
 		lhs.y & rhs.y
 	};
 }
 
-/// \relates uint2
-/// \brief Returns a copy of the uint2 where each component of the left-hand uint2 has been bitwise OR'd against the corresponding component of the right-hand side uint2.
-inline uint2 comp_or( const uint2& lhs, const uint2& rhs )
+int2 comp_or( const int2& lhs, const int2& rhs )
 {
-	return HLML_CONSTRUCT( uint2 ) {
+	return HLML_CONSTRUCT( int2 ) {
 		lhs.x | rhs.x,
 		lhs.y | rhs.y
 	};
 }
 
-/// \relates uint2
-/// \brief Returns a copy of the uint2 where each component of the left-hand uint2 has been bitwise XOR'd against the corresponding component of the right-hand side uint2.
-inline uint2 comp_xor( const uint2& lhs, const uint2& rhs )
+int2 comp_xor( const int2& lhs, const int2& rhs )
 {
-	return HLML_CONSTRUCT( uint2 ) {
+	return HLML_CONSTRUCT( int2 ) {
 		lhs.x ^ rhs.x,
 		lhs.y ^ rhs.y
 	};
 }
 
-/// \relates uint2
-/// \brief Performs a unary bitwise operation on all components of the given uint2.
-inline uint2 comp_unary( const uint2& lhs )
+int2 comp_unary( const int2& lhs )
 {
-	return HLML_CONSTRUCT( uint2 ) {
+	return HLML_CONSTRUCT( int2 ) {
 		~lhs.x,
 		~lhs.y
 	};
 }
 
-/// \relates uint2
-/// \brief Returns a copy of the uint2 where each component of the left-hand uint2 has been bitwise left-shifted by the corresponding component of the right-hand side uint2.
-inline uint2 comp_shift_left( const uint2& lhs, const uint2& rhs )
+int2 comp_shift_left( const int2& lhs, const int2& rhs )
 {
-	return HLML_CONSTRUCT( uint2 ) {
+	return HLML_CONSTRUCT( int2 ) {
 		lhs.x << rhs.x,
 		lhs.y << rhs.y
 	};
 }
 
-/// \relates uint2
-/// \brief Returns a copy of the uint2 where each component of the left-hand uint2 has been bitwise right-shifted by the corresponding component of the right-hand side uint2.
-inline uint2 comp_shift_right( const uint2& lhs, const uint2& rhs )
+int2 comp_shift_right( const int2& lhs, const int2& rhs )
 {
-	return HLML_CONSTRUCT( uint2 ) {
+	return HLML_CONSTRUCT( int2 ) {
 		lhs.x >> rhs.x,
 		lhs.y >> rhs.y
 	};
 }
 
-/// \relates uint2
-/// \brief Returns a bool2 where each component is true if the component of the left-hand type is less than the corresponding right-hand type component.
-inline bool2 cmpl( const uint2& lhs, const uint2& rhs )
+bool2 cmpl( const int2& lhs, const int2& rhs )
 {
 	return HLML_CONSTRUCT( bool2 ) {
 		lhs.x < rhs.x,
@@ -1009,9 +1500,7 @@ inline bool2 cmpl( const uint2& lhs, const uint2& rhs )
 	};
 }
 
-/// \relates uint2
-/// \brief Returns a bool2 where each component is true if the component of the left-hand type is less than or equal to the corresponding right-hand type component.
-inline bool2 cmple( const uint2& lhs, const uint2& rhs )
+bool2 cmple( const int2& lhs, const int2& rhs )
 {
 	return HLML_CONSTRUCT( bool2 ) {
 		lhs.x <= rhs.x,
@@ -1019,9 +1508,7 @@ inline bool2 cmple( const uint2& lhs, const uint2& rhs )
 	};
 }
 
-/// \relates uint2
-/// \brief Returns a bool2 where each component is true if the component of the left-hand type is greater than the corresponding right-hand type component.
-inline bool2 cmpg( const uint2& lhs, const uint2& rhs )
+bool2 cmpg( const int2& lhs, const int2& rhs )
 {
 	return HLML_CONSTRUCT( bool2 ) {
 		lhs.x > rhs.x,
@@ -1029,9 +1516,7 @@ inline bool2 cmpg( const uint2& lhs, const uint2& rhs )
 	};
 }
 
-/// \relates uint2
-/// \brief Returns a bool2 where each component is true if the component of the left-hand type is greater than or equal to the corresponding right-hand type component.
-inline bool2 cmpge( const uint2& lhs, const uint2& rhs )
+bool2 cmpge( const int2& lhs, const int2& rhs )
 {
 	return HLML_CONSTRUCT( bool2 ) {
 		lhs.x >= rhs.x,
@@ -1039,216 +1524,170 @@ inline bool2 cmpge( const uint2& lhs, const uint2& rhs )
 	};
 }
 
-/// \relates uint2
-/// \brief Returns the magnitude of the vector squared.
-inline float lengthsqr( const uint2& vec )
+float lengthsqr( const int2& vec )
 {
 	return (float)( ( vec.x * vec.x ) + ( vec.y * vec.y ) );
 }
 
-/// \relates uint2
-/// \brief Returns the magnitude of the vector.
-inline float length( const uint2& vec )
+float length( const int2& vec )
 {
 	return sqrtf( lengthsqr( vec ) );
 }
 
-/// \relates uint2
-/// \brief Returns the dot product of the two vectors.
-inline int32_t dot( const uint2& lhs, const uint2& rhs )
+int32_t dot( const int2& lhs, const int2& rhs )
 {
-	return (int32_t)( ( lhs.x * rhs.x ) + ( lhs.y * rhs.y ) );
+	return ( lhs.x * rhs.x ) + ( lhs.y * rhs.y );
 }
 
-/// \relates uint2
-/// \brief Returns the squared distance between the two vectors.
-inline float distancesqr( const uint2& lhs, const uint2& rhs )
+float distancesqr( const int2& lhs, const int2& rhs )
 {
-	uint2 delta = comp_subv( lhs, rhs );
+	int2 delta = comp_subv( lhs, rhs );
 	return lengthsqr( delta );
 }
 
-/// \relates uint2
-/// \brief Returns the distance between the two vectors.
-inline float distance( const uint2& lhs, const uint2& rhs )
+float distance( const int2& lhs, const int2& rhs )
 {
-	uint2 delta = comp_subv( lhs, rhs );
+	int2 delta = comp_subv( lhs, rhs );
 	return length( delta );
 }
 
-
-// uint3
-/// \relates uint3
-/// \brief Returns true if the all the components of the left-hand-side uint3 match the other one, otherwise returns false.
-inline bool cmpe( const uint3& lhs, const uint3& rhs )
+bool cmpe( const int3& lhs, const int3& rhs )
 {
 	return ( lhs.x == rhs.x ) && ( lhs.y == rhs.y ) && ( lhs.z == rhs.z );
 }
 
-/// \relates uint3
-/// \brief Returns true if not all of the components of the left-hand-side uint3 match the other one, otherwise returns false.
-inline bool cmpne( const uint3& lhs, const uint3& rhs )
+bool cmpne( const int3& lhs, const int3& rhs )
 {
 	return !( cmpe( lhs, rhs ) );
 }
 
-/// \relates uint3
-/// \brief Returns a copy of the uint3 that has been component-wise added by the given scalar value.
-inline uint3 comp_adds( const uint3& lhs, const uint32_t scalar )
+int3 comp_adds( const int3& lhs, const int32_t scalar )
 {
-	return HLML_CONSTRUCT( uint3 ) {
+	return HLML_CONSTRUCT( int3 ) {
 		lhs.x + scalar,
 		lhs.y + scalar,
 		lhs.z + scalar
 	};
 }
 
-/// \relates uint3
-/// \brief Returns a copy of the uint3 that has been component-wise added by the corresponding component of the right-hand uint3.
-inline uint3 comp_addv( const uint3& lhs, const uint3& rhs )
+int3 comp_addv( const int3& lhs, const int3& rhs )
 {
-	return HLML_CONSTRUCT( uint3 ) {
+	return HLML_CONSTRUCT( int3 ) {
 		lhs.x + rhs.x,
 		lhs.y + rhs.y,
 		lhs.z + rhs.z
 	};
 }
 
-/// \relates uint3
-/// \brief Returns a copy of the uint3 that has been component-wise subtracted by the given scalar value.
-inline uint3 comp_subs( const uint3& lhs, const uint32_t scalar )
+int3 comp_subs( const int3& lhs, const int32_t scalar )
 {
-	return HLML_CONSTRUCT( uint3 ) {
+	return HLML_CONSTRUCT( int3 ) {
 		lhs.x - scalar,
 		lhs.y - scalar,
 		lhs.z - scalar
 	};
 }
 
-/// \relates uint3
-/// \brief Returns a copy of the uint3 that has been component-wise subtracted by the corresponding component of the right-hand uint3.
-inline uint3 comp_subv( const uint3& lhs, const uint3& rhs )
+int3 comp_subv( const int3& lhs, const int3& rhs )
 {
-	return HLML_CONSTRUCT( uint3 ) {
+	return HLML_CONSTRUCT( int3 ) {
 		lhs.x - rhs.x,
 		lhs.y - rhs.y,
 		lhs.z - rhs.z
 	};
 }
 
-/// \relates uint3
-/// \brief Returns a copy of the uint3 that has been component-wise multiplied by the given scalar value.
-inline uint3 comp_muls( const uint3& lhs, const uint32_t scalar )
+int3 comp_muls( const int3& lhs, const int32_t scalar )
 {
-	return HLML_CONSTRUCT( uint3 ) {
+	return HLML_CONSTRUCT( int3 ) {
 		lhs.x * scalar,
 		lhs.y * scalar,
 		lhs.z * scalar
 	};
 }
 
-/// \relates uint3
-/// \brief Returns a copy of the uint3 that has been component-wise multiplied by the corresponding component of the right-hand uint3.
-inline uint3 comp_mulv( const uint3& lhs, const uint3& rhs )
+int3 comp_mulv( const int3& lhs, const int3& rhs )
 {
-	return HLML_CONSTRUCT( uint3 ) {
+	return HLML_CONSTRUCT( int3 ) {
 		lhs.x * rhs.x,
 		lhs.y * rhs.y,
 		lhs.z * rhs.z
 	};
 }
 
-/// \relates uint3
-/// \brief Returns a copy of the uint3 that has been component-wise divided by the given scalar value.
-inline uint3 comp_divs( const uint3& lhs, const uint32_t scalar )
+int3 comp_divs( const int3& lhs, const int32_t scalar )
 {
-	return HLML_CONSTRUCT( uint3 ) {
+	return HLML_CONSTRUCT( int3 ) {
 		lhs.x / scalar,
 		lhs.y / scalar,
 		lhs.z / scalar
 	};
 }
 
-/// \relates uint3
-/// \brief Returns a copy of the uint3 that has been component-wise divided by the corresponding component of the right-hand uint3.
-inline uint3 comp_divv( const uint3& lhs, const uint3& rhs )
+int3 comp_divv( const int3& lhs, const int3& rhs )
 {
-	return HLML_CONSTRUCT( uint3 ) {
+	return HLML_CONSTRUCT( int3 ) {
 		lhs.x / rhs.x,
 		lhs.y / rhs.y,
 		lhs.z / rhs.z
 	};
 }
 
-/// \relates uint3
-/// \brief Returns a copy of the uint3 where each component of the left-hand uint3 has been bitwise AND'd against the corresponding component of the right-hand side uint3.
-inline uint3 comp_and( const uint3& lhs, const uint3& rhs )
+int3 comp_and( const int3& lhs, const int3& rhs )
 {
-	return HLML_CONSTRUCT( uint3 ) {
+	return HLML_CONSTRUCT( int3 ) {
 		lhs.x & rhs.x,
 		lhs.y & rhs.y,
 		lhs.z & rhs.z
 	};
 }
 
-/// \relates uint3
-/// \brief Returns a copy of the uint3 where each component of the left-hand uint3 has been bitwise OR'd against the corresponding component of the right-hand side uint3.
-inline uint3 comp_or( const uint3& lhs, const uint3& rhs )
+int3 comp_or( const int3& lhs, const int3& rhs )
 {
-	return HLML_CONSTRUCT( uint3 ) {
+	return HLML_CONSTRUCT( int3 ) {
 		lhs.x | rhs.x,
 		lhs.y | rhs.y,
 		lhs.z | rhs.z
 	};
 }
 
-/// \relates uint3
-/// \brief Returns a copy of the uint3 where each component of the left-hand uint3 has been bitwise XOR'd against the corresponding component of the right-hand side uint3.
-inline uint3 comp_xor( const uint3& lhs, const uint3& rhs )
+int3 comp_xor( const int3& lhs, const int3& rhs )
 {
-	return HLML_CONSTRUCT( uint3 ) {
+	return HLML_CONSTRUCT( int3 ) {
 		lhs.x ^ rhs.x,
 		lhs.y ^ rhs.y,
 		lhs.z ^ rhs.z
 	};
 }
 
-/// \relates uint3
-/// \brief Performs a unary bitwise operation on all components of the given uint3.
-inline uint3 comp_unary( const uint3& lhs )
+int3 comp_unary( const int3& lhs )
 {
-	return HLML_CONSTRUCT( uint3 ) {
+	return HLML_CONSTRUCT( int3 ) {
 		~lhs.x,
 		~lhs.y,
 		~lhs.z
 	};
 }
 
-/// \relates uint3
-/// \brief Returns a copy of the uint3 where each component of the left-hand uint3 has been bitwise left-shifted by the corresponding component of the right-hand side uint3.
-inline uint3 comp_shift_left( const uint3& lhs, const uint3& rhs )
+int3 comp_shift_left( const int3& lhs, const int3& rhs )
 {
-	return HLML_CONSTRUCT( uint3 ) {
+	return HLML_CONSTRUCT( int3 ) {
 		lhs.x << rhs.x,
 		lhs.y << rhs.y,
 		lhs.z << rhs.z
 	};
 }
 
-/// \relates uint3
-/// \brief Returns a copy of the uint3 where each component of the left-hand uint3 has been bitwise right-shifted by the corresponding component of the right-hand side uint3.
-inline uint3 comp_shift_right( const uint3& lhs, const uint3& rhs )
+int3 comp_shift_right( const int3& lhs, const int3& rhs )
 {
-	return HLML_CONSTRUCT( uint3 ) {
+	return HLML_CONSTRUCT( int3 ) {
 		lhs.x >> rhs.x,
 		lhs.y >> rhs.y,
 		lhs.z >> rhs.z
 	};
 }
 
-/// \relates uint3
-/// \brief Returns a bool3 where each component is true if the component of the left-hand type is less than the corresponding right-hand type component.
-inline bool3 cmpl( const uint3& lhs, const uint3& rhs )
+bool3 cmpl( const int3& lhs, const int3& rhs )
 {
 	return HLML_CONSTRUCT( bool3 ) {
 		lhs.x < rhs.x,
@@ -1257,9 +1696,7 @@ inline bool3 cmpl( const uint3& lhs, const uint3& rhs )
 	};
 }
 
-/// \relates uint3
-/// \brief Returns a bool3 where each component is true if the component of the left-hand type is less than or equal to the corresponding right-hand type component.
-inline bool3 cmple( const uint3& lhs, const uint3& rhs )
+bool3 cmple( const int3& lhs, const int3& rhs )
 {
 	return HLML_CONSTRUCT( bool3 ) {
 		lhs.x <= rhs.x,
@@ -1268,9 +1705,7 @@ inline bool3 cmple( const uint3& lhs, const uint3& rhs )
 	};
 }
 
-/// \relates uint3
-/// \brief Returns a bool3 where each component is true if the component of the left-hand type is greater than the corresponding right-hand type component.
-inline bool3 cmpg( const uint3& lhs, const uint3& rhs )
+bool3 cmpg( const int3& lhs, const int3& rhs )
 {
 	return HLML_CONSTRUCT( bool3 ) {
 		lhs.x > rhs.x,
@@ -1279,9 +1714,7 @@ inline bool3 cmpg( const uint3& lhs, const uint3& rhs )
 	};
 }
 
-/// \relates uint3
-/// \brief Returns a bool3 where each component is true if the component of the left-hand type is greater than or equal to the corresponding right-hand type component.
-inline bool3 cmpge( const uint3& lhs, const uint3& rhs )
+bool3 cmpge( const int3& lhs, const int3& rhs )
 {
 	return HLML_CONSTRUCT( bool3 ) {
 		lhs.x >= rhs.x,
@@ -1290,64 +1723,46 @@ inline bool3 cmpge( const uint3& lhs, const uint3& rhs )
 	};
 }
 
-/// \relates uint3
-/// \brief Returns the magnitude of the vector squared.
-inline float lengthsqr( const uint3& vec )
+float lengthsqr( const int3& vec )
 {
 	return (float)( ( vec.x * vec.x ) + ( vec.y * vec.y ) + ( vec.z * vec.z ) );
 }
 
-/// \relates uint3
-/// \brief Returns the magnitude of the vector.
-inline float length( const uint3& vec )
+float length( const int3& vec )
 {
 	return sqrtf( lengthsqr( vec ) );
 }
 
-/// \relates uint3
-/// \brief Returns the dot product of the two vectors.
-inline int32_t dot( const uint3& lhs, const uint3& rhs )
+int32_t dot( const int3& lhs, const int3& rhs )
 {
-	return (int32_t)( ( lhs.x * rhs.x ) + ( lhs.y * rhs.y ) + ( lhs.z * rhs.z ) );
+	return ( lhs.x * rhs.x ) + ( lhs.y * rhs.y ) + ( lhs.z * rhs.z );
 }
 
-/// \relates uint3
-/// \brief Returns the squared distance between the two vectors.
-inline float distancesqr( const uint3& lhs, const uint3& rhs )
+float distancesqr( const int3& lhs, const int3& rhs )
 {
-	uint3 delta = comp_subv( lhs, rhs );
+	int3 delta = comp_subv( lhs, rhs );
 	return lengthsqr( delta );
 }
 
-/// \relates uint3
-/// \brief Returns the distance between the two vectors.
-inline float distance( const uint3& lhs, const uint3& rhs )
+float distance( const int3& lhs, const int3& rhs )
 {
-	uint3 delta = comp_subv( lhs, rhs );
+	int3 delta = comp_subv( lhs, rhs );
 	return length( delta );
 }
 
-
-// uint4
-/// \relates uint4
-/// \brief Returns true if the all the components of the left-hand-side uint4 match the other one, otherwise returns false.
-inline bool cmpe( const uint4& lhs, const uint4& rhs )
+bool cmpe( const int4& lhs, const int4& rhs )
 {
 	return ( lhs.x == rhs.x ) && ( lhs.y == rhs.y ) && ( lhs.z == rhs.z ) && ( lhs.w == rhs.w );
 }
 
-/// \relates uint4
-/// \brief Returns true if not all of the components of the left-hand-side uint4 match the other one, otherwise returns false.
-inline bool cmpne( const uint4& lhs, const uint4& rhs )
+bool cmpne( const int4& lhs, const int4& rhs )
 {
 	return !( cmpe( lhs, rhs ) );
 }
 
-/// \relates uint4
-/// \brief Returns a copy of the uint4 that has been component-wise added by the given scalar value.
-inline uint4 comp_adds( const uint4& lhs, const uint32_t scalar )
+int4 comp_adds( const int4& lhs, const int32_t scalar )
 {
-	return HLML_CONSTRUCT( uint4 ) {
+	return HLML_CONSTRUCT( int4 ) {
 		lhs.x + scalar,
 		lhs.y + scalar,
 		lhs.z + scalar,
@@ -1355,11 +1770,9 @@ inline uint4 comp_adds( const uint4& lhs, const uint32_t scalar )
 	};
 }
 
-/// \relates uint4
-/// \brief Returns a copy of the uint4 that has been component-wise added by the corresponding component of the right-hand uint4.
-inline uint4 comp_addv( const uint4& lhs, const uint4& rhs )
+int4 comp_addv( const int4& lhs, const int4& rhs )
 {
-	return HLML_CONSTRUCT( uint4 ) {
+	return HLML_CONSTRUCT( int4 ) {
 		lhs.x + rhs.x,
 		lhs.y + rhs.y,
 		lhs.z + rhs.z,
@@ -1367,11 +1780,9 @@ inline uint4 comp_addv( const uint4& lhs, const uint4& rhs )
 	};
 }
 
-/// \relates uint4
-/// \brief Returns a copy of the uint4 that has been component-wise subtracted by the given scalar value.
-inline uint4 comp_subs( const uint4& lhs, const uint32_t scalar )
+int4 comp_subs( const int4& lhs, const int32_t scalar )
 {
-	return HLML_CONSTRUCT( uint4 ) {
+	return HLML_CONSTRUCT( int4 ) {
 		lhs.x - scalar,
 		lhs.y - scalar,
 		lhs.z - scalar,
@@ -1379,11 +1790,9 @@ inline uint4 comp_subs( const uint4& lhs, const uint32_t scalar )
 	};
 }
 
-/// \relates uint4
-/// \brief Returns a copy of the uint4 that has been component-wise subtracted by the corresponding component of the right-hand uint4.
-inline uint4 comp_subv( const uint4& lhs, const uint4& rhs )
+int4 comp_subv( const int4& lhs, const int4& rhs )
 {
-	return HLML_CONSTRUCT( uint4 ) {
+	return HLML_CONSTRUCT( int4 ) {
 		lhs.x - rhs.x,
 		lhs.y - rhs.y,
 		lhs.z - rhs.z,
@@ -1391,11 +1800,9 @@ inline uint4 comp_subv( const uint4& lhs, const uint4& rhs )
 	};
 }
 
-/// \relates uint4
-/// \brief Returns a copy of the uint4 that has been component-wise multiplied by the given scalar value.
-inline uint4 comp_muls( const uint4& lhs, const uint32_t scalar )
+int4 comp_muls( const int4& lhs, const int32_t scalar )
 {
-	return HLML_CONSTRUCT( uint4 ) {
+	return HLML_CONSTRUCT( int4 ) {
 		lhs.x * scalar,
 		lhs.y * scalar,
 		lhs.z * scalar,
@@ -1403,11 +1810,9 @@ inline uint4 comp_muls( const uint4& lhs, const uint32_t scalar )
 	};
 }
 
-/// \relates uint4
-/// \brief Returns a copy of the uint4 that has been component-wise multiplied by the corresponding component of the right-hand uint4.
-inline uint4 comp_mulv( const uint4& lhs, const uint4& rhs )
+int4 comp_mulv( const int4& lhs, const int4& rhs )
 {
-	return HLML_CONSTRUCT( uint4 ) {
+	return HLML_CONSTRUCT( int4 ) {
 		lhs.x * rhs.x,
 		lhs.y * rhs.y,
 		lhs.z * rhs.z,
@@ -1415,11 +1820,9 @@ inline uint4 comp_mulv( const uint4& lhs, const uint4& rhs )
 	};
 }
 
-/// \relates uint4
-/// \brief Returns a copy of the uint4 that has been component-wise divided by the given scalar value.
-inline uint4 comp_divs( const uint4& lhs, const uint32_t scalar )
+int4 comp_divs( const int4& lhs, const int32_t scalar )
 {
-	return HLML_CONSTRUCT( uint4 ) {
+	return HLML_CONSTRUCT( int4 ) {
 		lhs.x / scalar,
 		lhs.y / scalar,
 		lhs.z / scalar,
@@ -1427,11 +1830,9 @@ inline uint4 comp_divs( const uint4& lhs, const uint32_t scalar )
 	};
 }
 
-/// \relates uint4
-/// \brief Returns a copy of the uint4 that has been component-wise divided by the corresponding component of the right-hand uint4.
-inline uint4 comp_divv( const uint4& lhs, const uint4& rhs )
+int4 comp_divv( const int4& lhs, const int4& rhs )
 {
-	return HLML_CONSTRUCT( uint4 ) {
+	return HLML_CONSTRUCT( int4 ) {
 		lhs.x / rhs.x,
 		lhs.y / rhs.y,
 		lhs.z / rhs.z,
@@ -1439,11 +1840,9 @@ inline uint4 comp_divv( const uint4& lhs, const uint4& rhs )
 	};
 }
 
-/// \relates uint4
-/// \brief Returns a copy of the uint4 where each component of the left-hand uint4 has been bitwise AND'd against the corresponding component of the right-hand side uint4.
-inline uint4 comp_and( const uint4& lhs, const uint4& rhs )
+int4 comp_and( const int4& lhs, const int4& rhs )
 {
-	return HLML_CONSTRUCT( uint4 ) {
+	return HLML_CONSTRUCT( int4 ) {
 		lhs.x & rhs.x,
 		lhs.y & rhs.y,
 		lhs.z & rhs.z,
@@ -1451,11 +1850,9 @@ inline uint4 comp_and( const uint4& lhs, const uint4& rhs )
 	};
 }
 
-/// \relates uint4
-/// \brief Returns a copy of the uint4 where each component of the left-hand uint4 has been bitwise OR'd against the corresponding component of the right-hand side uint4.
-inline uint4 comp_or( const uint4& lhs, const uint4& rhs )
+int4 comp_or( const int4& lhs, const int4& rhs )
 {
-	return HLML_CONSTRUCT( uint4 ) {
+	return HLML_CONSTRUCT( int4 ) {
 		lhs.x | rhs.x,
 		lhs.y | rhs.y,
 		lhs.z | rhs.z,
@@ -1463,11 +1860,9 @@ inline uint4 comp_or( const uint4& lhs, const uint4& rhs )
 	};
 }
 
-/// \relates uint4
-/// \brief Returns a copy of the uint4 where each component of the left-hand uint4 has been bitwise XOR'd against the corresponding component of the right-hand side uint4.
-inline uint4 comp_xor( const uint4& lhs, const uint4& rhs )
+int4 comp_xor( const int4& lhs, const int4& rhs )
 {
-	return HLML_CONSTRUCT( uint4 ) {
+	return HLML_CONSTRUCT( int4 ) {
 		lhs.x ^ rhs.x,
 		lhs.y ^ rhs.y,
 		lhs.z ^ rhs.z,
@@ -1475,11 +1870,9 @@ inline uint4 comp_xor( const uint4& lhs, const uint4& rhs )
 	};
 }
 
-/// \relates uint4
-/// \brief Performs a unary bitwise operation on all components of the given uint4.
-inline uint4 comp_unary( const uint4& lhs )
+int4 comp_unary( const int4& lhs )
 {
-	return HLML_CONSTRUCT( uint4 ) {
+	return HLML_CONSTRUCT( int4 ) {
 		~lhs.x,
 		~lhs.y,
 		~lhs.z,
@@ -1487,11 +1880,9 @@ inline uint4 comp_unary( const uint4& lhs )
 	};
 }
 
-/// \relates uint4
-/// \brief Returns a copy of the uint4 where each component of the left-hand uint4 has been bitwise left-shifted by the corresponding component of the right-hand side uint4.
-inline uint4 comp_shift_left( const uint4& lhs, const uint4& rhs )
+int4 comp_shift_left( const int4& lhs, const int4& rhs )
 {
-	return HLML_CONSTRUCT( uint4 ) {
+	return HLML_CONSTRUCT( int4 ) {
 		lhs.x << rhs.x,
 		lhs.y << rhs.y,
 		lhs.z << rhs.z,
@@ -1499,11 +1890,9 @@ inline uint4 comp_shift_left( const uint4& lhs, const uint4& rhs )
 	};
 }
 
-/// \relates uint4
-/// \brief Returns a copy of the uint4 where each component of the left-hand uint4 has been bitwise right-shifted by the corresponding component of the right-hand side uint4.
-inline uint4 comp_shift_right( const uint4& lhs, const uint4& rhs )
+int4 comp_shift_right( const int4& lhs, const int4& rhs )
 {
-	return HLML_CONSTRUCT( uint4 ) {
+	return HLML_CONSTRUCT( int4 ) {
 		lhs.x >> rhs.x,
 		lhs.y >> rhs.y,
 		lhs.z >> rhs.z,
@@ -1511,9 +1900,7 @@ inline uint4 comp_shift_right( const uint4& lhs, const uint4& rhs )
 	};
 }
 
-/// \relates uint4
-/// \brief Returns a bool4 where each component is true if the component of the left-hand type is less than the corresponding right-hand type component.
-inline bool4 cmpl( const uint4& lhs, const uint4& rhs )
+bool4 cmpl( const int4& lhs, const int4& rhs )
 {
 	return HLML_CONSTRUCT( bool4 ) {
 		lhs.x < rhs.x,
@@ -1523,9 +1910,7 @@ inline bool4 cmpl( const uint4& lhs, const uint4& rhs )
 	};
 }
 
-/// \relates uint4
-/// \brief Returns a bool4 where each component is true if the component of the left-hand type is less than or equal to the corresponding right-hand type component.
-inline bool4 cmple( const uint4& lhs, const uint4& rhs )
+bool4 cmple( const int4& lhs, const int4& rhs )
 {
 	return HLML_CONSTRUCT( bool4 ) {
 		lhs.x <= rhs.x,
@@ -1535,9 +1920,7 @@ inline bool4 cmple( const uint4& lhs, const uint4& rhs )
 	};
 }
 
-/// \relates uint4
-/// \brief Returns a bool4 where each component is true if the component of the left-hand type is greater than the corresponding right-hand type component.
-inline bool4 cmpg( const uint4& lhs, const uint4& rhs )
+bool4 cmpg( const int4& lhs, const int4& rhs )
 {
 	return HLML_CONSTRUCT( bool4 ) {
 		lhs.x > rhs.x,
@@ -1547,9 +1930,7 @@ inline bool4 cmpg( const uint4& lhs, const uint4& rhs )
 	};
 }
 
-/// \relates uint4
-/// \brief Returns a bool4 where each component is true if the component of the left-hand type is greater than or equal to the corresponding right-hand type component.
-inline bool4 cmpge( const uint4& lhs, const uint4& rhs )
+bool4 cmpge( const int4& lhs, const int4& rhs )
 {
 	return HLML_CONSTRUCT( bool4 ) {
 		lhs.x >= rhs.x,
@@ -1559,37 +1940,612 @@ inline bool4 cmpge( const uint4& lhs, const uint4& rhs )
 	};
 }
 
-/// \relates uint4
-/// \brief Returns the magnitude of the vector squared.
-inline float lengthsqr( const uint4& vec )
+float lengthsqr( const int4& vec )
 {
 	return (float)( ( vec.x * vec.x ) + ( vec.y * vec.y ) + ( vec.z * vec.z ) + ( vec.w * vec.w ) );
 }
 
-/// \relates uint4
-/// \brief Returns the magnitude of the vector.
-inline float length( const uint4& vec )
+float length( const int4& vec )
 {
 	return sqrtf( lengthsqr( vec ) );
 }
 
-/// \relates uint4
-/// \brief Returns the dot product of the two vectors.
-inline int32_t dot( const uint4& lhs, const uint4& rhs )
+int32_t dot( const int4& lhs, const int4& rhs )
+{
+	return ( lhs.x * rhs.x ) + ( lhs.y * rhs.y ) + ( lhs.z * rhs.z ) + ( lhs.w * rhs.w );
+}
+
+bool cmpe( const uint2& lhs, const uint2& rhs )
+{
+	return ( lhs.x == rhs.x ) && ( lhs.y == rhs.y );
+}
+
+bool cmpne( const uint2& lhs, const uint2& rhs )
+{
+	return !( cmpe( lhs, rhs ) );
+}
+
+uint2 comp_adds( const uint2& lhs, const uint32_t scalar )
+{
+	return HLML_CONSTRUCT( uint2 ) {
+		lhs.x + scalar,
+		lhs.y + scalar
+	};
+}
+
+uint2 comp_addv( const uint2& lhs, const uint2& rhs )
+{
+	return HLML_CONSTRUCT( uint2 ) {
+		lhs.x + rhs.x,
+		lhs.y + rhs.y
+	};
+}
+
+uint2 comp_subs( const uint2& lhs, const uint32_t scalar )
+{
+	return HLML_CONSTRUCT( uint2 ) {
+		lhs.x - scalar,
+		lhs.y - scalar
+	};
+}
+
+uint2 comp_subv( const uint2& lhs, const uint2& rhs )
+{
+	return HLML_CONSTRUCT( uint2 ) {
+		lhs.x - rhs.x,
+		lhs.y - rhs.y
+	};
+}
+
+uint2 comp_muls( const uint2& lhs, const uint32_t scalar )
+{
+	return HLML_CONSTRUCT( uint2 ) {
+		lhs.x * scalar,
+		lhs.y * scalar
+	};
+}
+
+uint2 comp_mulv( const uint2& lhs, const uint2& rhs )
+{
+	return HLML_CONSTRUCT( uint2 ) {
+		lhs.x * rhs.x,
+		lhs.y * rhs.y
+	};
+}
+
+uint2 comp_divs( const uint2& lhs, const uint32_t scalar )
+{
+	return HLML_CONSTRUCT( uint2 ) {
+		lhs.x / scalar,
+		lhs.y / scalar
+	};
+}
+
+uint2 comp_divv( const uint2& lhs, const uint2& rhs )
+{
+	return HLML_CONSTRUCT( uint2 ) {
+		lhs.x / rhs.x,
+		lhs.y / rhs.y
+	};
+}
+
+uint2 comp_and( const uint2& lhs, const uint2& rhs )
+{
+	return HLML_CONSTRUCT( uint2 ) {
+		lhs.x & rhs.x,
+		lhs.y & rhs.y
+	};
+}
+
+uint2 comp_or( const uint2& lhs, const uint2& rhs )
+{
+	return HLML_CONSTRUCT( uint2 ) {
+		lhs.x | rhs.x,
+		lhs.y | rhs.y
+	};
+}
+
+uint2 comp_xor( const uint2& lhs, const uint2& rhs )
+{
+	return HLML_CONSTRUCT( uint2 ) {
+		lhs.x ^ rhs.x,
+		lhs.y ^ rhs.y
+	};
+}
+
+uint2 comp_unary( const uint2& lhs )
+{
+	return HLML_CONSTRUCT( uint2 ) {
+		~lhs.x,
+		~lhs.y
+	};
+}
+
+uint2 comp_shift_left( const uint2& lhs, const uint2& rhs )
+{
+	return HLML_CONSTRUCT( uint2 ) {
+		lhs.x << rhs.x,
+		lhs.y << rhs.y
+	};
+}
+
+uint2 comp_shift_right( const uint2& lhs, const uint2& rhs )
+{
+	return HLML_CONSTRUCT( uint2 ) {
+		lhs.x >> rhs.x,
+		lhs.y >> rhs.y
+	};
+}
+
+bool2 cmpl( const uint2& lhs, const uint2& rhs )
+{
+	return HLML_CONSTRUCT( bool2 ) {
+		lhs.x < rhs.x,
+		lhs.y < rhs.y
+	};
+}
+
+bool2 cmple( const uint2& lhs, const uint2& rhs )
+{
+	return HLML_CONSTRUCT( bool2 ) {
+		lhs.x <= rhs.x,
+		lhs.y <= rhs.y
+	};
+}
+
+bool2 cmpg( const uint2& lhs, const uint2& rhs )
+{
+	return HLML_CONSTRUCT( bool2 ) {
+		lhs.x > rhs.x,
+		lhs.y > rhs.y
+	};
+}
+
+bool2 cmpge( const uint2& lhs, const uint2& rhs )
+{
+	return HLML_CONSTRUCT( bool2 ) {
+		lhs.x >= rhs.x,
+		lhs.y >= rhs.y
+	};
+}
+
+float lengthsqr( const uint2& vec )
+{
+	return (float)( ( vec.x * vec.x ) + ( vec.y * vec.y ) );
+}
+
+float length( const uint2& vec )
+{
+	return sqrtf( lengthsqr( vec ) );
+}
+
+int32_t dot( const uint2& lhs, const uint2& rhs )
+{
+	return (int32_t)( ( lhs.x * rhs.x ) + ( lhs.y * rhs.y ) );
+}
+
+float distancesqr( const uint2& lhs, const uint2& rhs )
+{
+	uint2 delta = comp_subv( lhs, rhs );
+	return lengthsqr( delta );
+}
+
+float distance( const uint2& lhs, const uint2& rhs )
+{
+	uint2 delta = comp_subv( lhs, rhs );
+	return length( delta );
+}
+
+bool cmpe( const uint3& lhs, const uint3& rhs )
+{
+	return ( lhs.x == rhs.x ) && ( lhs.y == rhs.y ) && ( lhs.z == rhs.z );
+}
+
+bool cmpne( const uint3& lhs, const uint3& rhs )
+{
+	return !( cmpe( lhs, rhs ) );
+}
+
+uint3 comp_adds( const uint3& lhs, const uint32_t scalar )
+{
+	return HLML_CONSTRUCT( uint3 ) {
+		lhs.x + scalar,
+		lhs.y + scalar,
+		lhs.z + scalar
+	};
+}
+
+uint3 comp_addv( const uint3& lhs, const uint3& rhs )
+{
+	return HLML_CONSTRUCT( uint3 ) {
+		lhs.x + rhs.x,
+		lhs.y + rhs.y,
+		lhs.z + rhs.z
+	};
+}
+
+uint3 comp_subs( const uint3& lhs, const uint32_t scalar )
+{
+	return HLML_CONSTRUCT( uint3 ) {
+		lhs.x - scalar,
+		lhs.y - scalar,
+		lhs.z - scalar
+	};
+}
+
+uint3 comp_subv( const uint3& lhs, const uint3& rhs )
+{
+	return HLML_CONSTRUCT( uint3 ) {
+		lhs.x - rhs.x,
+		lhs.y - rhs.y,
+		lhs.z - rhs.z
+	};
+}
+
+uint3 comp_muls( const uint3& lhs, const uint32_t scalar )
+{
+	return HLML_CONSTRUCT( uint3 ) {
+		lhs.x * scalar,
+		lhs.y * scalar,
+		lhs.z * scalar
+	};
+}
+
+uint3 comp_mulv( const uint3& lhs, const uint3& rhs )
+{
+	return HLML_CONSTRUCT( uint3 ) {
+		lhs.x * rhs.x,
+		lhs.y * rhs.y,
+		lhs.z * rhs.z
+	};
+}
+
+uint3 comp_divs( const uint3& lhs, const uint32_t scalar )
+{
+	return HLML_CONSTRUCT( uint3 ) {
+		lhs.x / scalar,
+		lhs.y / scalar,
+		lhs.z / scalar
+	};
+}
+
+uint3 comp_divv( const uint3& lhs, const uint3& rhs )
+{
+	return HLML_CONSTRUCT( uint3 ) {
+		lhs.x / rhs.x,
+		lhs.y / rhs.y,
+		lhs.z / rhs.z
+	};
+}
+
+uint3 comp_and( const uint3& lhs, const uint3& rhs )
+{
+	return HLML_CONSTRUCT( uint3 ) {
+		lhs.x & rhs.x,
+		lhs.y & rhs.y,
+		lhs.z & rhs.z
+	};
+}
+
+uint3 comp_or( const uint3& lhs, const uint3& rhs )
+{
+	return HLML_CONSTRUCT( uint3 ) {
+		lhs.x | rhs.x,
+		lhs.y | rhs.y,
+		lhs.z | rhs.z
+	};
+}
+
+uint3 comp_xor( const uint3& lhs, const uint3& rhs )
+{
+	return HLML_CONSTRUCT( uint3 ) {
+		lhs.x ^ rhs.x,
+		lhs.y ^ rhs.y,
+		lhs.z ^ rhs.z
+	};
+}
+
+uint3 comp_unary( const uint3& lhs )
+{
+	return HLML_CONSTRUCT( uint3 ) {
+		~lhs.x,
+		~lhs.y,
+		~lhs.z
+	};
+}
+
+uint3 comp_shift_left( const uint3& lhs, const uint3& rhs )
+{
+	return HLML_CONSTRUCT( uint3 ) {
+		lhs.x << rhs.x,
+		lhs.y << rhs.y,
+		lhs.z << rhs.z
+	};
+}
+
+uint3 comp_shift_right( const uint3& lhs, const uint3& rhs )
+{
+	return HLML_CONSTRUCT( uint3 ) {
+		lhs.x >> rhs.x,
+		lhs.y >> rhs.y,
+		lhs.z >> rhs.z
+	};
+}
+
+bool3 cmpl( const uint3& lhs, const uint3& rhs )
+{
+	return HLML_CONSTRUCT( bool3 ) {
+		lhs.x < rhs.x,
+		lhs.y < rhs.y,
+		lhs.z < rhs.z
+	};
+}
+
+bool3 cmple( const uint3& lhs, const uint3& rhs )
+{
+	return HLML_CONSTRUCT( bool3 ) {
+		lhs.x <= rhs.x,
+		lhs.y <= rhs.y,
+		lhs.z <= rhs.z
+	};
+}
+
+bool3 cmpg( const uint3& lhs, const uint3& rhs )
+{
+	return HLML_CONSTRUCT( bool3 ) {
+		lhs.x > rhs.x,
+		lhs.y > rhs.y,
+		lhs.z > rhs.z
+	};
+}
+
+bool3 cmpge( const uint3& lhs, const uint3& rhs )
+{
+	return HLML_CONSTRUCT( bool3 ) {
+		lhs.x >= rhs.x,
+		lhs.y >= rhs.y,
+		lhs.z >= rhs.z
+	};
+}
+
+float lengthsqr( const uint3& vec )
+{
+	return (float)( ( vec.x * vec.x ) + ( vec.y * vec.y ) + ( vec.z * vec.z ) );
+}
+
+float length( const uint3& vec )
+{
+	return sqrtf( lengthsqr( vec ) );
+}
+
+int32_t dot( const uint3& lhs, const uint3& rhs )
+{
+	return (int32_t)( ( lhs.x * rhs.x ) + ( lhs.y * rhs.y ) + ( lhs.z * rhs.z ) );
+}
+
+float distancesqr( const uint3& lhs, const uint3& rhs )
+{
+	uint3 delta = comp_subv( lhs, rhs );
+	return lengthsqr( delta );
+}
+
+float distance( const uint3& lhs, const uint3& rhs )
+{
+	uint3 delta = comp_subv( lhs, rhs );
+	return length( delta );
+}
+
+bool cmpe( const uint4& lhs, const uint4& rhs )
+{
+	return ( lhs.x == rhs.x ) && ( lhs.y == rhs.y ) && ( lhs.z == rhs.z ) && ( lhs.w == rhs.w );
+}
+
+bool cmpne( const uint4& lhs, const uint4& rhs )
+{
+	return !( cmpe( lhs, rhs ) );
+}
+
+uint4 comp_adds( const uint4& lhs, const uint32_t scalar )
+{
+	return HLML_CONSTRUCT( uint4 ) {
+		lhs.x + scalar,
+		lhs.y + scalar,
+		lhs.z + scalar,
+		lhs.w + scalar
+	};
+}
+
+uint4 comp_addv( const uint4& lhs, const uint4& rhs )
+{
+	return HLML_CONSTRUCT( uint4 ) {
+		lhs.x + rhs.x,
+		lhs.y + rhs.y,
+		lhs.z + rhs.z,
+		lhs.w + rhs.w
+	};
+}
+
+uint4 comp_subs( const uint4& lhs, const uint32_t scalar )
+{
+	return HLML_CONSTRUCT( uint4 ) {
+		lhs.x - scalar,
+		lhs.y - scalar,
+		lhs.z - scalar,
+		lhs.w - scalar
+	};
+}
+
+uint4 comp_subv( const uint4& lhs, const uint4& rhs )
+{
+	return HLML_CONSTRUCT( uint4 ) {
+		lhs.x - rhs.x,
+		lhs.y - rhs.y,
+		lhs.z - rhs.z,
+		lhs.w - rhs.w
+	};
+}
+
+uint4 comp_muls( const uint4& lhs, const uint32_t scalar )
+{
+	return HLML_CONSTRUCT( uint4 ) {
+		lhs.x * scalar,
+		lhs.y * scalar,
+		lhs.z * scalar,
+		lhs.w * scalar
+	};
+}
+
+uint4 comp_mulv( const uint4& lhs, const uint4& rhs )
+{
+	return HLML_CONSTRUCT( uint4 ) {
+		lhs.x * rhs.x,
+		lhs.y * rhs.y,
+		lhs.z * rhs.z,
+		lhs.w * rhs.w
+	};
+}
+
+uint4 comp_divs( const uint4& lhs, const uint32_t scalar )
+{
+	return HLML_CONSTRUCT( uint4 ) {
+		lhs.x / scalar,
+		lhs.y / scalar,
+		lhs.z / scalar,
+		lhs.w / scalar
+	};
+}
+
+uint4 comp_divv( const uint4& lhs, const uint4& rhs )
+{
+	return HLML_CONSTRUCT( uint4 ) {
+		lhs.x / rhs.x,
+		lhs.y / rhs.y,
+		lhs.z / rhs.z,
+		lhs.w / rhs.w
+	};
+}
+
+uint4 comp_and( const uint4& lhs, const uint4& rhs )
+{
+	return HLML_CONSTRUCT( uint4 ) {
+		lhs.x & rhs.x,
+		lhs.y & rhs.y,
+		lhs.z & rhs.z,
+		lhs.w & rhs.w
+	};
+}
+
+uint4 comp_or( const uint4& lhs, const uint4& rhs )
+{
+	return HLML_CONSTRUCT( uint4 ) {
+		lhs.x | rhs.x,
+		lhs.y | rhs.y,
+		lhs.z | rhs.z,
+		lhs.w | rhs.w
+	};
+}
+
+uint4 comp_xor( const uint4& lhs, const uint4& rhs )
+{
+	return HLML_CONSTRUCT( uint4 ) {
+		lhs.x ^ rhs.x,
+		lhs.y ^ rhs.y,
+		lhs.z ^ rhs.z,
+		lhs.w ^ rhs.w
+	};
+}
+
+uint4 comp_unary( const uint4& lhs )
+{
+	return HLML_CONSTRUCT( uint4 ) {
+		~lhs.x,
+		~lhs.y,
+		~lhs.z,
+		~lhs.w
+	};
+}
+
+uint4 comp_shift_left( const uint4& lhs, const uint4& rhs )
+{
+	return HLML_CONSTRUCT( uint4 ) {
+		lhs.x << rhs.x,
+		lhs.y << rhs.y,
+		lhs.z << rhs.z,
+		lhs.w << rhs.w
+	};
+}
+
+uint4 comp_shift_right( const uint4& lhs, const uint4& rhs )
+{
+	return HLML_CONSTRUCT( uint4 ) {
+		lhs.x >> rhs.x,
+		lhs.y >> rhs.y,
+		lhs.z >> rhs.z,
+		lhs.w >> rhs.w
+	};
+}
+
+bool4 cmpl( const uint4& lhs, const uint4& rhs )
+{
+	return HLML_CONSTRUCT( bool4 ) {
+		lhs.x < rhs.x,
+		lhs.y < rhs.y,
+		lhs.z < rhs.z,
+		lhs.w < rhs.w
+	};
+}
+
+bool4 cmple( const uint4& lhs, const uint4& rhs )
+{
+	return HLML_CONSTRUCT( bool4 ) {
+		lhs.x <= rhs.x,
+		lhs.y <= rhs.y,
+		lhs.z <= rhs.z,
+		lhs.w <= rhs.w
+	};
+}
+
+bool4 cmpg( const uint4& lhs, const uint4& rhs )
+{
+	return HLML_CONSTRUCT( bool4 ) {
+		lhs.x > rhs.x,
+		lhs.y > rhs.y,
+		lhs.z > rhs.z,
+		lhs.w > rhs.w
+	};
+}
+
+bool4 cmpge( const uint4& lhs, const uint4& rhs )
+{
+	return HLML_CONSTRUCT( bool4 ) {
+		lhs.x >= rhs.x,
+		lhs.y >= rhs.y,
+		lhs.z >= rhs.z,
+		lhs.w >= rhs.w
+	};
+}
+
+float lengthsqr( const uint4& vec )
+{
+	return (float)( ( vec.x * vec.x ) + ( vec.y * vec.y ) + ( vec.z * vec.z ) + ( vec.w * vec.w ) );
+}
+
+float length( const uint4& vec )
+{
+	return sqrtf( lengthsqr( vec ) );
+}
+
+int32_t dot( const uint4& lhs, const uint4& rhs )
 {
 	return (int32_t)( ( lhs.x * rhs.x ) + ( lhs.y * rhs.y ) + ( lhs.z * rhs.z ) + ( lhs.w * rhs.w ) );
 }
 
-/// \relates uint4
-/// \brief Returns a 32 bit integer containing each component of the vector (starting with x) at each byte.
-inline uint32_t pack( const uint4& vec )
+uint32_t pack( const uint4& vec )
 {
 	return ( vec.x << 24 ) | ( vec.y << 16 ) | ( vec.z << 8 ) | ( vec.w << 0 );
 }
 
-/// \relates uint4
-/// \brief Returns a 4-component integer vector containing each byte of the given integer.
-inline uint4 unpack( const uint32_t x )
+uint4 unpack( const uint32_t x )
 {
 	return HLML_CONSTRUCT( uint4 ) {
 		( x >> 24 ) & 0xFF,
@@ -1599,11 +2555,7 @@ inline uint4 unpack( const uint32_t x )
 	};
 }
 
-
-// float2
-/// \relates float2
-/// \brief Returns a copy of the float2 with each component clamped between the range 0 and 1.
-inline float2 saturate( const float2& x )
+float2 saturate( const float2& x )
 {
 	return HLML_CONSTRUCT( float2 ) {
 		clampf( x.x, 0.0f, 1.0f ),
@@ -1611,9 +2563,7 @@ inline float2 saturate( const float2& x )
 	};
 }
 
-/// \relates float2
-/// \brief Returns a linearly interpolated float2 between types "a" and "b".
-inline float2 lerp( const float2& a, const float2& b, const float t )
+float2 lerp( const float2& a, const float2& b, const float t )
 {
 	return HLML_CONSTRUCT( float2 ) {
 		lerpf( a.x, b.x, t ),
@@ -1621,9 +2571,7 @@ inline float2 lerp( const float2& a, const float2& b, const float t )
 	};
 }
 
-/// \relates float2
-/// \brief Returns 1 if y is greater than x, otherwise returns 0.
-inline float2 step( const float2& x, const float2& y )
+float2 step( const float2& x, const float2& y )
 {
 	return HLML_CONSTRUCT( float2 ) {
 		stepf( x.x, y.x ),
@@ -1631,9 +2579,7 @@ inline float2 step( const float2& x, const float2& y )
 	};
 }
 
-/// \relates float2
-/// \brief Performs a sigmoid-like interpolation and clamp.
-inline float2 smoothstep( const float2& low, const float2& high, const float2& x )
+float2 smoothstep( const float2& low, const float2& high, const float2& x )
 {
 	return HLML_CONSTRUCT( float2 ) {
 		smoothstepf( low.x, high.x, x.x ),
@@ -1641,10 +2587,7 @@ inline float2 smoothstep( const float2& low, const float2& high, const float2& x
 	};
 }
 
-/// \relates float2
-/// \brief Performs a 'smoother' version of smoothstep, as design by Ken Perlin.
-/// https://en.wikipedia.org/wiki/Smoothstep#Variations
-inline float2 smootherstep( const float2& low, const float2& high, const float2& x )
+float2 smootherstep( const float2& low, const float2& high, const float2& x )
 {
 	return HLML_CONSTRUCT( float2 ) {
 		smootherstepf( low.x, high.x, x.x ),
@@ -1652,23 +2595,17 @@ inline float2 smootherstep( const float2& low, const float2& high, const float2&
 	};
 }
 
-/// \relates float2
-/// \brief Returns true if the all the components of the left-hand-side float2 match the other one, otherwise returns false.
-inline bool cmpe( const float2& lhs, const float2& rhs )
+bool cmpe( const float2& lhs, const float2& rhs )
 {
 	return floateq( lhs.x, rhs.x ) && floateq( lhs.y, rhs.y );
 }
 
-/// \relates float2
-/// \brief Returns true if not all of the components of the left-hand-side float2 match the other one, otherwise returns false.
-inline bool cmpne( const float2& lhs, const float2& rhs )
+bool cmpne( const float2& lhs, const float2& rhs )
 {
 	return !( cmpe( lhs, rhs ) );
 }
 
-/// \relates float2
-/// \brief Returns a copy of the float2 that has been component-wise added by the given scalar value.
-inline float2 comp_adds( const float2& lhs, const float scalar )
+float2 comp_adds( const float2& lhs, const float scalar )
 {
 	return HLML_CONSTRUCT( float2 ) {
 		lhs.x + scalar,
@@ -1676,9 +2613,7 @@ inline float2 comp_adds( const float2& lhs, const float scalar )
 	};
 }
 
-/// \relates float2
-/// \brief Returns a copy of the float2 that has been component-wise added by the corresponding component of the right-hand float2.
-inline float2 comp_addv( const float2& lhs, const float2& rhs )
+float2 comp_addv( const float2& lhs, const float2& rhs )
 {
 	return HLML_CONSTRUCT( float2 ) {
 		lhs.x + rhs.x,
@@ -1686,9 +2621,7 @@ inline float2 comp_addv( const float2& lhs, const float2& rhs )
 	};
 }
 
-/// \relates float2
-/// \brief Returns a copy of the float2 that has been component-wise subtracted by the given scalar value.
-inline float2 comp_subs( const float2& lhs, const float scalar )
+float2 comp_subs( const float2& lhs, const float scalar )
 {
 	return HLML_CONSTRUCT( float2 ) {
 		lhs.x - scalar,
@@ -1696,9 +2629,7 @@ inline float2 comp_subs( const float2& lhs, const float scalar )
 	};
 }
 
-/// \relates float2
-/// \brief Returns a copy of the float2 that has been component-wise subtracted by the corresponding component of the right-hand float2.
-inline float2 comp_subv( const float2& lhs, const float2& rhs )
+float2 comp_subv( const float2& lhs, const float2& rhs )
 {
 	return HLML_CONSTRUCT( float2 ) {
 		lhs.x - rhs.x,
@@ -1706,9 +2637,7 @@ inline float2 comp_subv( const float2& lhs, const float2& rhs )
 	};
 }
 
-/// \relates float2
-/// \brief Returns a copy of the float2 that has been component-wise multiplied by the given scalar value.
-inline float2 comp_muls( const float2& lhs, const float scalar )
+float2 comp_muls( const float2& lhs, const float scalar )
 {
 	return HLML_CONSTRUCT( float2 ) {
 		lhs.x * scalar,
@@ -1716,9 +2645,7 @@ inline float2 comp_muls( const float2& lhs, const float scalar )
 	};
 }
 
-/// \relates float2
-/// \brief Returns a copy of the float2 that has been component-wise multiplied by the corresponding component of the right-hand float2.
-inline float2 comp_mulv( const float2& lhs, const float2& rhs )
+float2 comp_mulv( const float2& lhs, const float2& rhs )
 {
 	return HLML_CONSTRUCT( float2 ) {
 		lhs.x * rhs.x,
@@ -1726,9 +2653,7 @@ inline float2 comp_mulv( const float2& lhs, const float2& rhs )
 	};
 }
 
-/// \relates float2
-/// \brief Returns a copy of the float2 that has been component-wise divided by the given scalar value.
-inline float2 comp_divs( const float2& lhs, const float scalar )
+float2 comp_divs( const float2& lhs, const float scalar )
 {
 	return HLML_CONSTRUCT( float2 ) {
 		lhs.x / scalar,
@@ -1736,9 +2661,7 @@ inline float2 comp_divs( const float2& lhs, const float scalar )
 	};
 }
 
-/// \relates float2
-/// \brief Returns a copy of the float2 that has been component-wise divided by the corresponding component of the right-hand float2.
-inline float2 comp_divv( const float2& lhs, const float2& rhs )
+float2 comp_divv( const float2& lhs, const float2& rhs )
 {
 	return HLML_CONSTRUCT( float2 ) {
 		lhs.x / rhs.x,
@@ -1746,9 +2669,7 @@ inline float2 comp_divv( const float2& lhs, const float2& rhs )
 	};
 }
 
-/// \relates float2
-/// \brief Returns a bool2 where each component is true if the component of the left-hand type is less than the corresponding right-hand type component.
-inline bool2 cmpl( const float2& lhs, const float2& rhs )
+bool2 cmpl( const float2& lhs, const float2& rhs )
 {
 	return HLML_CONSTRUCT( bool2 ) {
 		lhs.x < rhs.x,
@@ -1756,9 +2677,7 @@ inline bool2 cmpl( const float2& lhs, const float2& rhs )
 	};
 }
 
-/// \relates float2
-/// \brief Returns a bool2 where each component is true if the component of the left-hand type is less than or equal to the corresponding right-hand type component.
-inline bool2 cmple( const float2& lhs, const float2& rhs )
+bool2 cmple( const float2& lhs, const float2& rhs )
 {
 	return HLML_CONSTRUCT( bool2 ) {
 		lhs.x <= rhs.x,
@@ -1766,9 +2685,7 @@ inline bool2 cmple( const float2& lhs, const float2& rhs )
 	};
 }
 
-/// \relates float2
-/// \brief Returns a bool2 where each component is true if the component of the left-hand type is greater than the corresponding right-hand type component.
-inline bool2 cmpg( const float2& lhs, const float2& rhs )
+bool2 cmpg( const float2& lhs, const float2& rhs )
 {
 	return HLML_CONSTRUCT( bool2 ) {
 		lhs.x > rhs.x,
@@ -1776,9 +2693,7 @@ inline bool2 cmpg( const float2& lhs, const float2& rhs )
 	};
 }
 
-/// \relates float2
-/// \brief Returns a bool2 where each component is true if the component of the left-hand type is greater than or equal to the corresponding right-hand type component.
-inline bool2 cmpge( const float2& lhs, const float2& rhs )
+bool2 cmpge( const float2& lhs, const float2& rhs )
 {
 	return HLML_CONSTRUCT( bool2 ) {
 		lhs.x >= rhs.x,
@@ -1786,23 +2701,17 @@ inline bool2 cmpge( const float2& lhs, const float2& rhs )
 	};
 }
 
-/// \relates float2
-/// \brief Returns the magnitude of the vector squared.
-inline float lengthsqr( const float2& vec )
+float lengthsqr( const float2& vec )
 {
 	return ( vec.x * vec.x ) + ( vec.y * vec.y );
 }
 
-/// \relates float2
-/// \brief Returns the magnitude of the vector.
-inline float length( const float2& vec )
+float length( const float2& vec )
 {
 	return sqrtf( lengthsqr( vec ) );
 }
 
-/// \relates float2
-/// \brief Normalizes the vector.
-inline void normalize( float2& vec )
+void normalize( float2& vec )
 {
 	float len = length( vec );
 	float2 invlen = HLML_CONSTRUCT( float2 ) {
@@ -1813,9 +2722,7 @@ inline void normalize( float2& vec )
 	vec = comp_mulv( vec, invlen );
 }
 
-/// \relates float2
-/// \brief Returns a normalized copy of the vector.
-inline float2 normalized( const float2& vec )
+float2 normalized( const float2& vec )
 {
 	float len = length( vec );
 	float2 invlen = HLML_CONSTRUCT( float2 ) {
@@ -1826,41 +2733,29 @@ inline float2 normalized( const float2& vec )
 	return comp_mulv( vec, invlen );
 }
 
-/// \relates float2
-/// \brief Returns the dot product of the two vectors.
-inline float dot( const float2& lhs, const float2& rhs )
+float dot( const float2& lhs, const float2& rhs )
 {
 	return ( lhs.x * rhs.x ) + ( lhs.y * rhs.y );
 }
 
-/// \relates float2
-/// \brief Returns the angle in degrees between the two vectors.
-inline float angle( const float2& lhs, const float2& rhs )
+float angle( const float2& lhs, const float2& rhs )
 {
 	return degreesf( acosf( dot( normalized( lhs ), normalized( rhs ) ) ) );
 }
 
-/// \relates float2
-/// \brief Returns the squared distance between the two vectors.
-inline float distancesqr( const float2& lhs, const float2& rhs )
+float distancesqr( const float2& lhs, const float2& rhs )
 {
 	float2 delta = comp_subv( lhs, rhs );
 	return lengthsqr( delta );
 }
 
-/// \relates float2
-/// \brief Returns the distance between the two vectors.
-inline float distance( const float2& lhs, const float2& rhs )
+float distance( const float2& lhs, const float2& rhs )
 {
 	float2 delta = comp_subv( lhs, rhs );
 	return length( delta );
 }
 
-
-// float3
-/// \relates float3
-/// \brief Returns a copy of the float3 with each component clamped between the range 0 and 1.
-inline float3 saturate( const float3& x )
+float3 saturate( const float3& x )
 {
 	return HLML_CONSTRUCT( float3 ) {
 		clampf( x.x, 0.0f, 1.0f ),
@@ -1869,9 +2764,7 @@ inline float3 saturate( const float3& x )
 	};
 }
 
-/// \relates float3
-/// \brief Returns a linearly interpolated float3 between types "a" and "b".
-inline float3 lerp( const float3& a, const float3& b, const float t )
+float3 lerp( const float3& a, const float3& b, const float t )
 {
 	return HLML_CONSTRUCT( float3 ) {
 		lerpf( a.x, b.x, t ),
@@ -1880,9 +2773,7 @@ inline float3 lerp( const float3& a, const float3& b, const float t )
 	};
 }
 
-/// \relates float3
-/// \brief Returns 1 if y is greater than x, otherwise returns 0.
-inline float3 step( const float3& x, const float3& y )
+float3 step( const float3& x, const float3& y )
 {
 	return HLML_CONSTRUCT( float3 ) {
 		stepf( x.x, y.x ),
@@ -1891,9 +2782,7 @@ inline float3 step( const float3& x, const float3& y )
 	};
 }
 
-/// \relates float3
-/// \brief Performs a sigmoid-like interpolation and clamp.
-inline float3 smoothstep( const float3& low, const float3& high, const float3& x )
+float3 smoothstep( const float3& low, const float3& high, const float3& x )
 {
 	return HLML_CONSTRUCT( float3 ) {
 		smoothstepf( low.x, high.x, x.x ),
@@ -1902,10 +2791,7 @@ inline float3 smoothstep( const float3& low, const float3& high, const float3& x
 	};
 }
 
-/// \relates float3
-/// \brief Performs a 'smoother' version of smoothstep, as design by Ken Perlin.
-/// https://en.wikipedia.org/wiki/Smoothstep#Variations
-inline float3 smootherstep( const float3& low, const float3& high, const float3& x )
+float3 smootherstep( const float3& low, const float3& high, const float3& x )
 {
 	return HLML_CONSTRUCT( float3 ) {
 		smootherstepf( low.x, high.x, x.x ),
@@ -1914,23 +2800,17 @@ inline float3 smootherstep( const float3& low, const float3& high, const float3&
 	};
 }
 
-/// \relates float3
-/// \brief Returns true if the all the components of the left-hand-side float3 match the other one, otherwise returns false.
-inline bool cmpe( const float3& lhs, const float3& rhs )
+bool cmpe( const float3& lhs, const float3& rhs )
 {
 	return floateq( lhs.x, rhs.x ) && floateq( lhs.y, rhs.y ) && floateq( lhs.z, rhs.z );
 }
 
-/// \relates float3
-/// \brief Returns true if not all of the components of the left-hand-side float3 match the other one, otherwise returns false.
-inline bool cmpne( const float3& lhs, const float3& rhs )
+bool cmpne( const float3& lhs, const float3& rhs )
 {
 	return !( cmpe( lhs, rhs ) );
 }
 
-/// \relates float3
-/// \brief Returns a copy of the float3 that has been component-wise added by the given scalar value.
-inline float3 comp_adds( const float3& lhs, const float scalar )
+float3 comp_adds( const float3& lhs, const float scalar )
 {
 	return HLML_CONSTRUCT( float3 ) {
 		lhs.x + scalar,
@@ -1939,9 +2819,7 @@ inline float3 comp_adds( const float3& lhs, const float scalar )
 	};
 }
 
-/// \relates float3
-/// \brief Returns a copy of the float3 that has been component-wise added by the corresponding component of the right-hand float3.
-inline float3 comp_addv( const float3& lhs, const float3& rhs )
+float3 comp_addv( const float3& lhs, const float3& rhs )
 {
 	return HLML_CONSTRUCT( float3 ) {
 		lhs.x + rhs.x,
@@ -1950,9 +2828,7 @@ inline float3 comp_addv( const float3& lhs, const float3& rhs )
 	};
 }
 
-/// \relates float3
-/// \brief Returns a copy of the float3 that has been component-wise subtracted by the given scalar value.
-inline float3 comp_subs( const float3& lhs, const float scalar )
+float3 comp_subs( const float3& lhs, const float scalar )
 {
 	return HLML_CONSTRUCT( float3 ) {
 		lhs.x - scalar,
@@ -1961,9 +2837,7 @@ inline float3 comp_subs( const float3& lhs, const float scalar )
 	};
 }
 
-/// \relates float3
-/// \brief Returns a copy of the float3 that has been component-wise subtracted by the corresponding component of the right-hand float3.
-inline float3 comp_subv( const float3& lhs, const float3& rhs )
+float3 comp_subv( const float3& lhs, const float3& rhs )
 {
 	return HLML_CONSTRUCT( float3 ) {
 		lhs.x - rhs.x,
@@ -1972,9 +2846,7 @@ inline float3 comp_subv( const float3& lhs, const float3& rhs )
 	};
 }
 
-/// \relates float3
-/// \brief Returns a copy of the float3 that has been component-wise multiplied by the given scalar value.
-inline float3 comp_muls( const float3& lhs, const float scalar )
+float3 comp_muls( const float3& lhs, const float scalar )
 {
 	return HLML_CONSTRUCT( float3 ) {
 		lhs.x * scalar,
@@ -1983,9 +2855,7 @@ inline float3 comp_muls( const float3& lhs, const float scalar )
 	};
 }
 
-/// \relates float3
-/// \brief Returns a copy of the float3 that has been component-wise multiplied by the corresponding component of the right-hand float3.
-inline float3 comp_mulv( const float3& lhs, const float3& rhs )
+float3 comp_mulv( const float3& lhs, const float3& rhs )
 {
 	return HLML_CONSTRUCT( float3 ) {
 		lhs.x * rhs.x,
@@ -1994,9 +2864,7 @@ inline float3 comp_mulv( const float3& lhs, const float3& rhs )
 	};
 }
 
-/// \relates float3
-/// \brief Returns a copy of the float3 that has been component-wise divided by the given scalar value.
-inline float3 comp_divs( const float3& lhs, const float scalar )
+float3 comp_divs( const float3& lhs, const float scalar )
 {
 	return HLML_CONSTRUCT( float3 ) {
 		lhs.x / scalar,
@@ -2005,9 +2873,7 @@ inline float3 comp_divs( const float3& lhs, const float scalar )
 	};
 }
 
-/// \relates float3
-/// \brief Returns a copy of the float3 that has been component-wise divided by the corresponding component of the right-hand float3.
-inline float3 comp_divv( const float3& lhs, const float3& rhs )
+float3 comp_divv( const float3& lhs, const float3& rhs )
 {
 	return HLML_CONSTRUCT( float3 ) {
 		lhs.x / rhs.x,
@@ -2016,9 +2882,7 @@ inline float3 comp_divv( const float3& lhs, const float3& rhs )
 	};
 }
 
-/// \relates float3
-/// \brief Returns a bool3 where each component is true if the component of the left-hand type is less than the corresponding right-hand type component.
-inline bool3 cmpl( const float3& lhs, const float3& rhs )
+bool3 cmpl( const float3& lhs, const float3& rhs )
 {
 	return HLML_CONSTRUCT( bool3 ) {
 		lhs.x < rhs.x,
@@ -2027,9 +2891,7 @@ inline bool3 cmpl( const float3& lhs, const float3& rhs )
 	};
 }
 
-/// \relates float3
-/// \brief Returns a bool3 where each component is true if the component of the left-hand type is less than or equal to the corresponding right-hand type component.
-inline bool3 cmple( const float3& lhs, const float3& rhs )
+bool3 cmple( const float3& lhs, const float3& rhs )
 {
 	return HLML_CONSTRUCT( bool3 ) {
 		lhs.x <= rhs.x,
@@ -2038,9 +2900,7 @@ inline bool3 cmple( const float3& lhs, const float3& rhs )
 	};
 }
 
-/// \relates float3
-/// \brief Returns a bool3 where each component is true if the component of the left-hand type is greater than the corresponding right-hand type component.
-inline bool3 cmpg( const float3& lhs, const float3& rhs )
+bool3 cmpg( const float3& lhs, const float3& rhs )
 {
 	return HLML_CONSTRUCT( bool3 ) {
 		lhs.x > rhs.x,
@@ -2049,9 +2909,7 @@ inline bool3 cmpg( const float3& lhs, const float3& rhs )
 	};
 }
 
-/// \relates float3
-/// \brief Returns a bool3 where each component is true if the component of the left-hand type is greater than or equal to the corresponding right-hand type component.
-inline bool3 cmpge( const float3& lhs, const float3& rhs )
+bool3 cmpge( const float3& lhs, const float3& rhs )
 {
 	return HLML_CONSTRUCT( bool3 ) {
 		lhs.x >= rhs.x,
@@ -2060,23 +2918,17 @@ inline bool3 cmpge( const float3& lhs, const float3& rhs )
 	};
 }
 
-/// \relates float3
-/// \brief Returns the magnitude of the vector squared.
-inline float lengthsqr( const float3& vec )
+float lengthsqr( const float3& vec )
 {
 	return ( vec.x * vec.x ) + ( vec.y * vec.y ) + ( vec.z * vec.z );
 }
 
-/// \relates float3
-/// \brief Returns the magnitude of the vector.
-inline float length( const float3& vec )
+float length( const float3& vec )
 {
 	return sqrtf( lengthsqr( vec ) );
 }
 
-/// \relates float3
-/// \brief Normalizes the vector.
-inline void normalize( float3& vec )
+void normalize( float3& vec )
 {
 	float len = length( vec );
 	float3 invlen = HLML_CONSTRUCT( float3 ) {
@@ -2088,9 +2940,7 @@ inline void normalize( float3& vec )
 	vec = comp_mulv( vec, invlen );
 }
 
-/// \relates float3
-/// \brief Returns a normalized copy of the vector.
-inline float3 normalized( const float3& vec )
+float3 normalized( const float3& vec )
 {
 	float len = length( vec );
 	float3 invlen = HLML_CONSTRUCT( float3 ) {
@@ -2102,16 +2952,12 @@ inline float3 normalized( const float3& vec )
 	return comp_mulv( vec, invlen );
 }
 
-/// \relates float3
-/// \brief Returns the dot product of the two vectors.
-inline float dot( const float3& lhs, const float3& rhs )
+float dot( const float3& lhs, const float3& rhs )
 {
 	return ( lhs.x * rhs.x ) + ( lhs.y * rhs.y ) + ( lhs.z * rhs.z );
 }
 
-/// \relates float3
-/// \brief Returns a vector perpendicular (normal) to the two vectors.
-inline float3 cross( const float3& lhs, const float3& rhs )
+float3 cross( const float3& lhs, const float3& rhs )
 {
 	return HLML_CONSTRUCT( float3 ) {
 		( lhs.y * rhs.z ) - ( lhs.z * rhs.y ),
@@ -2120,34 +2966,24 @@ inline float3 cross( const float3& lhs, const float3& rhs )
 	};
 }
 
-/// \relates float3
-/// \brief Returns the angle in degrees between the two vectors.
-inline float angle( const float3& lhs, const float3& rhs )
+float angle( const float3& lhs, const float3& rhs )
 {
 	return degreesf( acosf( dot( normalized( lhs ), normalized( rhs ) ) ) );
 }
 
-/// \relates float3
-/// \brief Returns the squared distance between the two vectors.
-inline float distancesqr( const float3& lhs, const float3& rhs )
+float distancesqr( const float3& lhs, const float3& rhs )
 {
 	float3 delta = comp_subv( lhs, rhs );
 	return lengthsqr( delta );
 }
 
-/// \relates float3
-/// \brief Returns the distance between the two vectors.
-inline float distance( const float3& lhs, const float3& rhs )
+float distance( const float3& lhs, const float3& rhs )
 {
 	float3 delta = comp_subv( lhs, rhs );
 	return length( delta );
 }
 
-
-// float4
-/// \relates float4
-/// \brief Returns a copy of the float4 with each component clamped between the range 0 and 1.
-inline float4 saturate( const float4& x )
+float4 saturate( const float4& x )
 {
 	return HLML_CONSTRUCT( float4 ) {
 		clampf( x.x, 0.0f, 1.0f ),
@@ -2157,9 +2993,7 @@ inline float4 saturate( const float4& x )
 	};
 }
 
-/// \relates float4
-/// \brief Returns a linearly interpolated float4 between types "a" and "b".
-inline float4 lerp( const float4& a, const float4& b, const float t )
+float4 lerp( const float4& a, const float4& b, const float t )
 {
 	return HLML_CONSTRUCT( float4 ) {
 		lerpf( a.x, b.x, t ),
@@ -2169,9 +3003,7 @@ inline float4 lerp( const float4& a, const float4& b, const float t )
 	};
 }
 
-/// \relates float4
-/// \brief Returns 1 if y is greater than x, otherwise returns 0.
-inline float4 step( const float4& x, const float4& y )
+float4 step( const float4& x, const float4& y )
 {
 	return HLML_CONSTRUCT( float4 ) {
 		stepf( x.x, y.x ),
@@ -2181,9 +3013,7 @@ inline float4 step( const float4& x, const float4& y )
 	};
 }
 
-/// \relates float4
-/// \brief Performs a sigmoid-like interpolation and clamp.
-inline float4 smoothstep( const float4& low, const float4& high, const float4& x )
+float4 smoothstep( const float4& low, const float4& high, const float4& x )
 {
 	return HLML_CONSTRUCT( float4 ) {
 		smoothstepf( low.x, high.x, x.x ),
@@ -2193,10 +3023,7 @@ inline float4 smoothstep( const float4& low, const float4& high, const float4& x
 	};
 }
 
-/// \relates float4
-/// \brief Performs a 'smoother' version of smoothstep, as design by Ken Perlin.
-/// https://en.wikipedia.org/wiki/Smoothstep#Variations
-inline float4 smootherstep( const float4& low, const float4& high, const float4& x )
+float4 smootherstep( const float4& low, const float4& high, const float4& x )
 {
 	return HLML_CONSTRUCT( float4 ) {
 		smootherstepf( low.x, high.x, x.x ),
@@ -2206,23 +3033,17 @@ inline float4 smootherstep( const float4& low, const float4& high, const float4&
 	};
 }
 
-/// \relates float4
-/// \brief Returns true if the all the components of the left-hand-side float4 match the other one, otherwise returns false.
-inline bool cmpe( const float4& lhs, const float4& rhs )
+bool cmpe( const float4& lhs, const float4& rhs )
 {
 	return floateq( lhs.x, rhs.x ) && floateq( lhs.y, rhs.y ) && floateq( lhs.z, rhs.z ) && floateq( lhs.w, rhs.w );
 }
 
-/// \relates float4
-/// \brief Returns true if not all of the components of the left-hand-side float4 match the other one, otherwise returns false.
-inline bool cmpne( const float4& lhs, const float4& rhs )
+bool cmpne( const float4& lhs, const float4& rhs )
 {
 	return !( cmpe( lhs, rhs ) );
 }
 
-/// \relates float4
-/// \brief Returns a copy of the float4 that has been component-wise added by the given scalar value.
-inline float4 comp_adds( const float4& lhs, const float scalar )
+float4 comp_adds( const float4& lhs, const float scalar )
 {
 	return HLML_CONSTRUCT( float4 ) {
 		lhs.x + scalar,
@@ -2232,9 +3053,7 @@ inline float4 comp_adds( const float4& lhs, const float scalar )
 	};
 }
 
-/// \relates float4
-/// \brief Returns a copy of the float4 that has been component-wise added by the corresponding component of the right-hand float4.
-inline float4 comp_addv( const float4& lhs, const float4& rhs )
+float4 comp_addv( const float4& lhs, const float4& rhs )
 {
 	return HLML_CONSTRUCT( float4 ) {
 		lhs.x + rhs.x,
@@ -2244,9 +3063,7 @@ inline float4 comp_addv( const float4& lhs, const float4& rhs )
 	};
 }
 
-/// \relates float4
-/// \brief Returns a copy of the float4 that has been component-wise subtracted by the given scalar value.
-inline float4 comp_subs( const float4& lhs, const float scalar )
+float4 comp_subs( const float4& lhs, const float scalar )
 {
 	return HLML_CONSTRUCT( float4 ) {
 		lhs.x - scalar,
@@ -2256,9 +3073,7 @@ inline float4 comp_subs( const float4& lhs, const float scalar )
 	};
 }
 
-/// \relates float4
-/// \brief Returns a copy of the float4 that has been component-wise subtracted by the corresponding component of the right-hand float4.
-inline float4 comp_subv( const float4& lhs, const float4& rhs )
+float4 comp_subv( const float4& lhs, const float4& rhs )
 {
 	return HLML_CONSTRUCT( float4 ) {
 		lhs.x - rhs.x,
@@ -2268,9 +3083,7 @@ inline float4 comp_subv( const float4& lhs, const float4& rhs )
 	};
 }
 
-/// \relates float4
-/// \brief Returns a copy of the float4 that has been component-wise multiplied by the given scalar value.
-inline float4 comp_muls( const float4& lhs, const float scalar )
+float4 comp_muls( const float4& lhs, const float scalar )
 {
 	return HLML_CONSTRUCT( float4 ) {
 		lhs.x * scalar,
@@ -2280,9 +3093,7 @@ inline float4 comp_muls( const float4& lhs, const float scalar )
 	};
 }
 
-/// \relates float4
-/// \brief Returns a copy of the float4 that has been component-wise multiplied by the corresponding component of the right-hand float4.
-inline float4 comp_mulv( const float4& lhs, const float4& rhs )
+float4 comp_mulv( const float4& lhs, const float4& rhs )
 {
 	return HLML_CONSTRUCT( float4 ) {
 		lhs.x * rhs.x,
@@ -2292,9 +3103,7 @@ inline float4 comp_mulv( const float4& lhs, const float4& rhs )
 	};
 }
 
-/// \relates float4
-/// \brief Returns a copy of the float4 that has been component-wise divided by the given scalar value.
-inline float4 comp_divs( const float4& lhs, const float scalar )
+float4 comp_divs( const float4& lhs, const float scalar )
 {
 	return HLML_CONSTRUCT( float4 ) {
 		lhs.x / scalar,
@@ -2304,9 +3113,7 @@ inline float4 comp_divs( const float4& lhs, const float scalar )
 	};
 }
 
-/// \relates float4
-/// \brief Returns a copy of the float4 that has been component-wise divided by the corresponding component of the right-hand float4.
-inline float4 comp_divv( const float4& lhs, const float4& rhs )
+float4 comp_divv( const float4& lhs, const float4& rhs )
 {
 	return HLML_CONSTRUCT( float4 ) {
 		lhs.x / rhs.x,
@@ -2316,9 +3123,7 @@ inline float4 comp_divv( const float4& lhs, const float4& rhs )
 	};
 }
 
-/// \relates float4
-/// \brief Returns a bool4 where each component is true if the component of the left-hand type is less than the corresponding right-hand type component.
-inline bool4 cmpl( const float4& lhs, const float4& rhs )
+bool4 cmpl( const float4& lhs, const float4& rhs )
 {
 	return HLML_CONSTRUCT( bool4 ) {
 		lhs.x < rhs.x,
@@ -2328,9 +3133,7 @@ inline bool4 cmpl( const float4& lhs, const float4& rhs )
 	};
 }
 
-/// \relates float4
-/// \brief Returns a bool4 where each component is true if the component of the left-hand type is less than or equal to the corresponding right-hand type component.
-inline bool4 cmple( const float4& lhs, const float4& rhs )
+bool4 cmple( const float4& lhs, const float4& rhs )
 {
 	return HLML_CONSTRUCT( bool4 ) {
 		lhs.x <= rhs.x,
@@ -2340,9 +3143,7 @@ inline bool4 cmple( const float4& lhs, const float4& rhs )
 	};
 }
 
-/// \relates float4
-/// \brief Returns a bool4 where each component is true if the component of the left-hand type is greater than the corresponding right-hand type component.
-inline bool4 cmpg( const float4& lhs, const float4& rhs )
+bool4 cmpg( const float4& lhs, const float4& rhs )
 {
 	return HLML_CONSTRUCT( bool4 ) {
 		lhs.x > rhs.x,
@@ -2352,9 +3153,7 @@ inline bool4 cmpg( const float4& lhs, const float4& rhs )
 	};
 }
 
-/// \relates float4
-/// \brief Returns a bool4 where each component is true if the component of the left-hand type is greater than or equal to the corresponding right-hand type component.
-inline bool4 cmpge( const float4& lhs, const float4& rhs )
+bool4 cmpge( const float4& lhs, const float4& rhs )
 {
 	return HLML_CONSTRUCT( bool4 ) {
 		lhs.x >= rhs.x,
@@ -2364,23 +3163,17 @@ inline bool4 cmpge( const float4& lhs, const float4& rhs )
 	};
 }
 
-/// \relates float4
-/// \brief Returns the magnitude of the vector squared.
-inline float lengthsqr( const float4& vec )
+float lengthsqr( const float4& vec )
 {
 	return ( vec.x * vec.x ) + ( vec.y * vec.y ) + ( vec.z * vec.z ) + ( vec.w * vec.w );
 }
 
-/// \relates float4
-/// \brief Returns the magnitude of the vector.
-inline float length( const float4& vec )
+float length( const float4& vec )
 {
 	return sqrtf( lengthsqr( vec ) );
 }
 
-/// \relates float4
-/// \brief Normalizes the vector.
-inline void normalize( float4& vec )
+void normalize( float4& vec )
 {
 	float len = length( vec );
 	float4 invlen = HLML_CONSTRUCT( float4 ) {
@@ -2393,9 +3186,7 @@ inline void normalize( float4& vec )
 	vec = comp_mulv( vec, invlen );
 }
 
-/// \relates float4
-/// \brief Returns a normalized copy of the vector.
-inline float4 normalized( const float4& vec )
+float4 normalized( const float4& vec )
 {
 	float len = length( vec );
 	float4 invlen = HLML_CONSTRUCT( float4 ) {
@@ -2408,16 +3199,12 @@ inline float4 normalized( const float4& vec )
 	return comp_mulv( vec, invlen );
 }
 
-/// \relates float4
-/// \brief Returns the dot product of the two vectors.
-inline float dot( const float4& lhs, const float4& rhs )
+float dot( const float4& lhs, const float4& rhs )
 {
 	return ( lhs.x * rhs.x ) + ( lhs.y * rhs.y ) + ( lhs.z * rhs.z ) + ( lhs.w * rhs.w );
 }
 
-/// \relates float4
-/// \brief Returns a vector perpendicular (normal) to the two vectors.
-inline float4 cross( const float4& lhs, const float4& rhs )
+float4 cross( const float4& lhs, const float4& rhs )
 {
 	return HLML_CONSTRUCT( float4 ) {
 		( lhs.y * rhs.z ) - ( lhs.z * rhs.y ),
@@ -2427,18 +3214,12 @@ inline float4 cross( const float4& lhs, const float4& rhs )
 	};
 }
 
-/// \relates float4
-/// \brief Returns the angle in degrees between the two vectors.
-inline float angle( const float4& lhs, const float4& rhs )
+float angle( const float4& lhs, const float4& rhs )
 {
 	return degreesf( acosf( dot( normalized( lhs ), normalized( rhs ) ) ) );
 }
 
-
-// double2
-/// \relates double2
-/// \brief Returns a copy of the double2 with each component clamped between the range 0 and 1.
-inline double2 saturate( const double2& x )
+double2 saturate( const double2& x )
 {
 	return HLML_CONSTRUCT( double2 ) {
 		clampd( x.x, 0.0, 1.0 ),
@@ -2446,9 +3227,7 @@ inline double2 saturate( const double2& x )
 	};
 }
 
-/// \relates double2
-/// \brief Returns a linearly interpolated double2 between types "a" and "b".
-inline double2 lerp( const double2& a, const double2& b, const double t )
+double2 lerp( const double2& a, const double2& b, const double t )
 {
 	return HLML_CONSTRUCT( double2 ) {
 		lerp( a.x, b.x, t ),
@@ -2456,9 +3235,7 @@ inline double2 lerp( const double2& a, const double2& b, const double t )
 	};
 }
 
-/// \relates double2
-/// \brief Returns 1 if y is greater than x, otherwise returns 0.
-inline double2 step( const double2& x, const double2& y )
+double2 step( const double2& x, const double2& y )
 {
 	return HLML_CONSTRUCT( double2 ) {
 		step( x.x, y.x ),
@@ -2466,9 +3243,7 @@ inline double2 step( const double2& x, const double2& y )
 	};
 }
 
-/// \relates double2
-/// \brief Performs a sigmoid-like interpolation and clamp.
-inline double2 smoothstep( const double2& low, const double2& high, const double2& x )
+double2 smoothstep( const double2& low, const double2& high, const double2& x )
 {
 	return HLML_CONSTRUCT( double2 ) {
 		smoothstep( low.x, high.x, x.x ),
@@ -2476,10 +3251,7 @@ inline double2 smoothstep( const double2& low, const double2& high, const double
 	};
 }
 
-/// \relates double2
-/// \brief Performs a 'smoother' version of smoothstep, as design by Ken Perlin.
-/// https://en.wikipedia.org/wiki/Smoothstep#Variations
-inline double2 smootherstep( const double2& low, const double2& high, const double2& x )
+double2 smootherstep( const double2& low, const double2& high, const double2& x )
 {
 	return HLML_CONSTRUCT( double2 ) {
 		smootherstep( low.x, high.x, x.x ),
@@ -2487,23 +3259,17 @@ inline double2 smootherstep( const double2& low, const double2& high, const doub
 	};
 }
 
-/// \relates double2
-/// \brief Returns true if the all the components of the left-hand-side double2 match the other one, otherwise returns false.
-inline bool cmpe( const double2& lhs, const double2& rhs )
+bool cmpe( const double2& lhs, const double2& rhs )
 {
 	return doubleeq( lhs.x, rhs.x ) && doubleeq( lhs.y, rhs.y );
 }
 
-/// \relates double2
-/// \brief Returns true if not all of the components of the left-hand-side double2 match the other one, otherwise returns false.
-inline bool cmpne( const double2& lhs, const double2& rhs )
+bool cmpne( const double2& lhs, const double2& rhs )
 {
 	return !( cmpe( lhs, rhs ) );
 }
 
-/// \relates double2
-/// \brief Returns a copy of the double2 that has been component-wise added by the given scalar value.
-inline double2 comp_adds( const double2& lhs, const double scalar )
+double2 comp_adds( const double2& lhs, const double scalar )
 {
 	return HLML_CONSTRUCT( double2 ) {
 		lhs.x + scalar,
@@ -2511,9 +3277,7 @@ inline double2 comp_adds( const double2& lhs, const double scalar )
 	};
 }
 
-/// \relates double2
-/// \brief Returns a copy of the double2 that has been component-wise added by the corresponding component of the right-hand double2.
-inline double2 comp_addv( const double2& lhs, const double2& rhs )
+double2 comp_addv( const double2& lhs, const double2& rhs )
 {
 	return HLML_CONSTRUCT( double2 ) {
 		lhs.x + rhs.x,
@@ -2521,9 +3285,7 @@ inline double2 comp_addv( const double2& lhs, const double2& rhs )
 	};
 }
 
-/// \relates double2
-/// \brief Returns a copy of the double2 that has been component-wise subtracted by the given scalar value.
-inline double2 comp_subs( const double2& lhs, const double scalar )
+double2 comp_subs( const double2& lhs, const double scalar )
 {
 	return HLML_CONSTRUCT( double2 ) {
 		lhs.x - scalar,
@@ -2531,9 +3293,7 @@ inline double2 comp_subs( const double2& lhs, const double scalar )
 	};
 }
 
-/// \relates double2
-/// \brief Returns a copy of the double2 that has been component-wise subtracted by the corresponding component of the right-hand double2.
-inline double2 comp_subv( const double2& lhs, const double2& rhs )
+double2 comp_subv( const double2& lhs, const double2& rhs )
 {
 	return HLML_CONSTRUCT( double2 ) {
 		lhs.x - rhs.x,
@@ -2541,9 +3301,7 @@ inline double2 comp_subv( const double2& lhs, const double2& rhs )
 	};
 }
 
-/// \relates double2
-/// \brief Returns a copy of the double2 that has been component-wise multiplied by the given scalar value.
-inline double2 comp_muls( const double2& lhs, const double scalar )
+double2 comp_muls( const double2& lhs, const double scalar )
 {
 	return HLML_CONSTRUCT( double2 ) {
 		lhs.x * scalar,
@@ -2551,9 +3309,7 @@ inline double2 comp_muls( const double2& lhs, const double scalar )
 	};
 }
 
-/// \relates double2
-/// \brief Returns a copy of the double2 that has been component-wise multiplied by the corresponding component of the right-hand double2.
-inline double2 comp_mulv( const double2& lhs, const double2& rhs )
+double2 comp_mulv( const double2& lhs, const double2& rhs )
 {
 	return HLML_CONSTRUCT( double2 ) {
 		lhs.x * rhs.x,
@@ -2561,9 +3317,7 @@ inline double2 comp_mulv( const double2& lhs, const double2& rhs )
 	};
 }
 
-/// \relates double2
-/// \brief Returns a copy of the double2 that has been component-wise divided by the given scalar value.
-inline double2 comp_divs( const double2& lhs, const double scalar )
+double2 comp_divs( const double2& lhs, const double scalar )
 {
 	return HLML_CONSTRUCT( double2 ) {
 		lhs.x / scalar,
@@ -2571,9 +3325,7 @@ inline double2 comp_divs( const double2& lhs, const double scalar )
 	};
 }
 
-/// \relates double2
-/// \brief Returns a copy of the double2 that has been component-wise divided by the corresponding component of the right-hand double2.
-inline double2 comp_divv( const double2& lhs, const double2& rhs )
+double2 comp_divv( const double2& lhs, const double2& rhs )
 {
 	return HLML_CONSTRUCT( double2 ) {
 		lhs.x / rhs.x,
@@ -2581,9 +3333,7 @@ inline double2 comp_divv( const double2& lhs, const double2& rhs )
 	};
 }
 
-/// \relates double2
-/// \brief Returns a bool2 where each component is true if the component of the left-hand type is less than the corresponding right-hand type component.
-inline bool2 cmpl( const double2& lhs, const double2& rhs )
+bool2 cmpl( const double2& lhs, const double2& rhs )
 {
 	return HLML_CONSTRUCT( bool2 ) {
 		lhs.x < rhs.x,
@@ -2591,9 +3341,7 @@ inline bool2 cmpl( const double2& lhs, const double2& rhs )
 	};
 }
 
-/// \relates double2
-/// \brief Returns a bool2 where each component is true if the component of the left-hand type is less than or equal to the corresponding right-hand type component.
-inline bool2 cmple( const double2& lhs, const double2& rhs )
+bool2 cmple( const double2& lhs, const double2& rhs )
 {
 	return HLML_CONSTRUCT( bool2 ) {
 		lhs.x <= rhs.x,
@@ -2601,9 +3349,7 @@ inline bool2 cmple( const double2& lhs, const double2& rhs )
 	};
 }
 
-/// \relates double2
-/// \brief Returns a bool2 where each component is true if the component of the left-hand type is greater than the corresponding right-hand type component.
-inline bool2 cmpg( const double2& lhs, const double2& rhs )
+bool2 cmpg( const double2& lhs, const double2& rhs )
 {
 	return HLML_CONSTRUCT( bool2 ) {
 		lhs.x > rhs.x,
@@ -2611,9 +3357,7 @@ inline bool2 cmpg( const double2& lhs, const double2& rhs )
 	};
 }
 
-/// \relates double2
-/// \brief Returns a bool2 where each component is true if the component of the left-hand type is greater than or equal to the corresponding right-hand type component.
-inline bool2 cmpge( const double2& lhs, const double2& rhs )
+bool2 cmpge( const double2& lhs, const double2& rhs )
 {
 	return HLML_CONSTRUCT( bool2 ) {
 		lhs.x >= rhs.x,
@@ -2621,23 +3365,17 @@ inline bool2 cmpge( const double2& lhs, const double2& rhs )
 	};
 }
 
-/// \relates double2
-/// \brief Returns the magnitude of the vector squared.
-inline double lengthsqr( const double2& vec )
+double lengthsqr( const double2& vec )
 {
 	return ( vec.x * vec.x ) + ( vec.y * vec.y );
 }
 
-/// \relates double2
-/// \brief Returns the magnitude of the vector.
-inline double length( const double2& vec )
+double length( const double2& vec )
 {
 	return sqrt( lengthsqr( vec ) );
 }
 
-/// \relates double2
-/// \brief Normalizes the vector.
-inline void normalize( double2& vec )
+void normalize( double2& vec )
 {
 	double len = length( vec );
 	double2 invlen = HLML_CONSTRUCT( double2 ) {
@@ -2648,9 +3386,7 @@ inline void normalize( double2& vec )
 	vec = comp_mulv( vec, invlen );
 }
 
-/// \relates double2
-/// \brief Returns a normalized copy of the vector.
-inline double2 normalized( const double2& vec )
+double2 normalized( const double2& vec )
 {
 	double len = length( vec );
 	double2 invlen = HLML_CONSTRUCT( double2 ) {
@@ -2661,41 +3397,29 @@ inline double2 normalized( const double2& vec )
 	return comp_mulv( vec, invlen );
 }
 
-/// \relates double2
-/// \brief Returns the dot product of the two vectors.
-inline double dot( const double2& lhs, const double2& rhs )
+double dot( const double2& lhs, const double2& rhs )
 {
 	return ( lhs.x * rhs.x ) + ( lhs.y * rhs.y );
 }
 
-/// \relates double2
-/// \brief Returns the angle in degrees between the two vectors.
-inline double angle( const double2& lhs, const double2& rhs )
+double angle( const double2& lhs, const double2& rhs )
 {
 	return degrees( acos( dot( normalized( lhs ), normalized( rhs ) ) ) );
 }
 
-/// \relates double2
-/// \brief Returns the squared distance between the two vectors.
-inline double distancesqr( const double2& lhs, const double2& rhs )
+double distancesqr( const double2& lhs, const double2& rhs )
 {
 	double2 delta = comp_subv( lhs, rhs );
 	return lengthsqr( delta );
 }
 
-/// \relates double2
-/// \brief Returns the distance between the two vectors.
-inline double distance( const double2& lhs, const double2& rhs )
+double distance( const double2& lhs, const double2& rhs )
 {
 	double2 delta = comp_subv( lhs, rhs );
 	return length( delta );
 }
 
-
-// double3
-/// \relates double3
-/// \brief Returns a copy of the double3 with each component clamped between the range 0 and 1.
-inline double3 saturate( const double3& x )
+double3 saturate( const double3& x )
 {
 	return HLML_CONSTRUCT( double3 ) {
 		clampd( x.x, 0.0, 1.0 ),
@@ -2704,9 +3428,7 @@ inline double3 saturate( const double3& x )
 	};
 }
 
-/// \relates double3
-/// \brief Returns a linearly interpolated double3 between types "a" and "b".
-inline double3 lerp( const double3& a, const double3& b, const double t )
+double3 lerp( const double3& a, const double3& b, const double t )
 {
 	return HLML_CONSTRUCT( double3 ) {
 		lerp( a.x, b.x, t ),
@@ -2715,9 +3437,7 @@ inline double3 lerp( const double3& a, const double3& b, const double t )
 	};
 }
 
-/// \relates double3
-/// \brief Returns 1 if y is greater than x, otherwise returns 0.
-inline double3 step( const double3& x, const double3& y )
+double3 step( const double3& x, const double3& y )
 {
 	return HLML_CONSTRUCT( double3 ) {
 		step( x.x, y.x ),
@@ -2726,9 +3446,7 @@ inline double3 step( const double3& x, const double3& y )
 	};
 }
 
-/// \relates double3
-/// \brief Performs a sigmoid-like interpolation and clamp.
-inline double3 smoothstep( const double3& low, const double3& high, const double3& x )
+double3 smoothstep( const double3& low, const double3& high, const double3& x )
 {
 	return HLML_CONSTRUCT( double3 ) {
 		smoothstep( low.x, high.x, x.x ),
@@ -2737,10 +3455,7 @@ inline double3 smoothstep( const double3& low, const double3& high, const double
 	};
 }
 
-/// \relates double3
-/// \brief Performs a 'smoother' version of smoothstep, as design by Ken Perlin.
-/// https://en.wikipedia.org/wiki/Smoothstep#Variations
-inline double3 smootherstep( const double3& low, const double3& high, const double3& x )
+double3 smootherstep( const double3& low, const double3& high, const double3& x )
 {
 	return HLML_CONSTRUCT( double3 ) {
 		smootherstep( low.x, high.x, x.x ),
@@ -2749,23 +3464,17 @@ inline double3 smootherstep( const double3& low, const double3& high, const doub
 	};
 }
 
-/// \relates double3
-/// \brief Returns true if the all the components of the left-hand-side double3 match the other one, otherwise returns false.
-inline bool cmpe( const double3& lhs, const double3& rhs )
+bool cmpe( const double3& lhs, const double3& rhs )
 {
 	return doubleeq( lhs.x, rhs.x ) && doubleeq( lhs.y, rhs.y ) && doubleeq( lhs.z, rhs.z );
 }
 
-/// \relates double3
-/// \brief Returns true if not all of the components of the left-hand-side double3 match the other one, otherwise returns false.
-inline bool cmpne( const double3& lhs, const double3& rhs )
+bool cmpne( const double3& lhs, const double3& rhs )
 {
 	return !( cmpe( lhs, rhs ) );
 }
 
-/// \relates double3
-/// \brief Returns a copy of the double3 that has been component-wise added by the given scalar value.
-inline double3 comp_adds( const double3& lhs, const double scalar )
+double3 comp_adds( const double3& lhs, const double scalar )
 {
 	return HLML_CONSTRUCT( double3 ) {
 		lhs.x + scalar,
@@ -2774,9 +3483,7 @@ inline double3 comp_adds( const double3& lhs, const double scalar )
 	};
 }
 
-/// \relates double3
-/// \brief Returns a copy of the double3 that has been component-wise added by the corresponding component of the right-hand double3.
-inline double3 comp_addv( const double3& lhs, const double3& rhs )
+double3 comp_addv( const double3& lhs, const double3& rhs )
 {
 	return HLML_CONSTRUCT( double3 ) {
 		lhs.x + rhs.x,
@@ -2785,9 +3492,7 @@ inline double3 comp_addv( const double3& lhs, const double3& rhs )
 	};
 }
 
-/// \relates double3
-/// \brief Returns a copy of the double3 that has been component-wise subtracted by the given scalar value.
-inline double3 comp_subs( const double3& lhs, const double scalar )
+double3 comp_subs( const double3& lhs, const double scalar )
 {
 	return HLML_CONSTRUCT( double3 ) {
 		lhs.x - scalar,
@@ -2796,9 +3501,7 @@ inline double3 comp_subs( const double3& lhs, const double scalar )
 	};
 }
 
-/// \relates double3
-/// \brief Returns a copy of the double3 that has been component-wise subtracted by the corresponding component of the right-hand double3.
-inline double3 comp_subv( const double3& lhs, const double3& rhs )
+double3 comp_subv( const double3& lhs, const double3& rhs )
 {
 	return HLML_CONSTRUCT( double3 ) {
 		lhs.x - rhs.x,
@@ -2807,9 +3510,7 @@ inline double3 comp_subv( const double3& lhs, const double3& rhs )
 	};
 }
 
-/// \relates double3
-/// \brief Returns a copy of the double3 that has been component-wise multiplied by the given scalar value.
-inline double3 comp_muls( const double3& lhs, const double scalar )
+double3 comp_muls( const double3& lhs, const double scalar )
 {
 	return HLML_CONSTRUCT( double3 ) {
 		lhs.x * scalar,
@@ -2818,9 +3519,7 @@ inline double3 comp_muls( const double3& lhs, const double scalar )
 	};
 }
 
-/// \relates double3
-/// \brief Returns a copy of the double3 that has been component-wise multiplied by the corresponding component of the right-hand double3.
-inline double3 comp_mulv( const double3& lhs, const double3& rhs )
+double3 comp_mulv( const double3& lhs, const double3& rhs )
 {
 	return HLML_CONSTRUCT( double3 ) {
 		lhs.x * rhs.x,
@@ -2829,9 +3528,7 @@ inline double3 comp_mulv( const double3& lhs, const double3& rhs )
 	};
 }
 
-/// \relates double3
-/// \brief Returns a copy of the double3 that has been component-wise divided by the given scalar value.
-inline double3 comp_divs( const double3& lhs, const double scalar )
+double3 comp_divs( const double3& lhs, const double scalar )
 {
 	return HLML_CONSTRUCT( double3 ) {
 		lhs.x / scalar,
@@ -2840,9 +3537,7 @@ inline double3 comp_divs( const double3& lhs, const double scalar )
 	};
 }
 
-/// \relates double3
-/// \brief Returns a copy of the double3 that has been component-wise divided by the corresponding component of the right-hand double3.
-inline double3 comp_divv( const double3& lhs, const double3& rhs )
+double3 comp_divv( const double3& lhs, const double3& rhs )
 {
 	return HLML_CONSTRUCT( double3 ) {
 		lhs.x / rhs.x,
@@ -2851,9 +3546,7 @@ inline double3 comp_divv( const double3& lhs, const double3& rhs )
 	};
 }
 
-/// \relates double3
-/// \brief Returns a bool3 where each component is true if the component of the left-hand type is less than the corresponding right-hand type component.
-inline bool3 cmpl( const double3& lhs, const double3& rhs )
+bool3 cmpl( const double3& lhs, const double3& rhs )
 {
 	return HLML_CONSTRUCT( bool3 ) {
 		lhs.x < rhs.x,
@@ -2862,9 +3555,7 @@ inline bool3 cmpl( const double3& lhs, const double3& rhs )
 	};
 }
 
-/// \relates double3
-/// \brief Returns a bool3 where each component is true if the component of the left-hand type is less than or equal to the corresponding right-hand type component.
-inline bool3 cmple( const double3& lhs, const double3& rhs )
+bool3 cmple( const double3& lhs, const double3& rhs )
 {
 	return HLML_CONSTRUCT( bool3 ) {
 		lhs.x <= rhs.x,
@@ -2873,9 +3564,7 @@ inline bool3 cmple( const double3& lhs, const double3& rhs )
 	};
 }
 
-/// \relates double3
-/// \brief Returns a bool3 where each component is true if the component of the left-hand type is greater than the corresponding right-hand type component.
-inline bool3 cmpg( const double3& lhs, const double3& rhs )
+bool3 cmpg( const double3& lhs, const double3& rhs )
 {
 	return HLML_CONSTRUCT( bool3 ) {
 		lhs.x > rhs.x,
@@ -2884,9 +3573,7 @@ inline bool3 cmpg( const double3& lhs, const double3& rhs )
 	};
 }
 
-/// \relates double3
-/// \brief Returns a bool3 where each component is true if the component of the left-hand type is greater than or equal to the corresponding right-hand type component.
-inline bool3 cmpge( const double3& lhs, const double3& rhs )
+bool3 cmpge( const double3& lhs, const double3& rhs )
 {
 	return HLML_CONSTRUCT( bool3 ) {
 		lhs.x >= rhs.x,
@@ -2895,23 +3582,17 @@ inline bool3 cmpge( const double3& lhs, const double3& rhs )
 	};
 }
 
-/// \relates double3
-/// \brief Returns the magnitude of the vector squared.
-inline double lengthsqr( const double3& vec )
+double lengthsqr( const double3& vec )
 {
 	return ( vec.x * vec.x ) + ( vec.y * vec.y ) + ( vec.z * vec.z );
 }
 
-/// \relates double3
-/// \brief Returns the magnitude of the vector.
-inline double length( const double3& vec )
+double length( const double3& vec )
 {
 	return sqrt( lengthsqr( vec ) );
 }
 
-/// \relates double3
-/// \brief Normalizes the vector.
-inline void normalize( double3& vec )
+void normalize( double3& vec )
 {
 	double len = length( vec );
 	double3 invlen = HLML_CONSTRUCT( double3 ) {
@@ -2923,9 +3604,7 @@ inline void normalize( double3& vec )
 	vec = comp_mulv( vec, invlen );
 }
 
-/// \relates double3
-/// \brief Returns a normalized copy of the vector.
-inline double3 normalized( const double3& vec )
+double3 normalized( const double3& vec )
 {
 	double len = length( vec );
 	double3 invlen = HLML_CONSTRUCT( double3 ) {
@@ -2937,16 +3616,12 @@ inline double3 normalized( const double3& vec )
 	return comp_mulv( vec, invlen );
 }
 
-/// \relates double3
-/// \brief Returns the dot product of the two vectors.
-inline double dot( const double3& lhs, const double3& rhs )
+double dot( const double3& lhs, const double3& rhs )
 {
 	return ( lhs.x * rhs.x ) + ( lhs.y * rhs.y ) + ( lhs.z * rhs.z );
 }
 
-/// \relates double3
-/// \brief Returns a vector perpendicular (normal) to the two vectors.
-inline double3 cross( const double3& lhs, const double3& rhs )
+double3 cross( const double3& lhs, const double3& rhs )
 {
 	return HLML_CONSTRUCT( double3 ) {
 		( lhs.y * rhs.z ) - ( lhs.z * rhs.y ),
@@ -2955,34 +3630,24 @@ inline double3 cross( const double3& lhs, const double3& rhs )
 	};
 }
 
-/// \relates double3
-/// \brief Returns the angle in degrees between the two vectors.
-inline double angle( const double3& lhs, const double3& rhs )
+double angle( const double3& lhs, const double3& rhs )
 {
 	return degrees( acos( dot( normalized( lhs ), normalized( rhs ) ) ) );
 }
 
-/// \relates double3
-/// \brief Returns the squared distance between the two vectors.
-inline double distancesqr( const double3& lhs, const double3& rhs )
+double distancesqr( const double3& lhs, const double3& rhs )
 {
 	double3 delta = comp_subv( lhs, rhs );
 	return lengthsqr( delta );
 }
 
-/// \relates double3
-/// \brief Returns the distance between the two vectors.
-inline double distance( const double3& lhs, const double3& rhs )
+double distance( const double3& lhs, const double3& rhs )
 {
 	double3 delta = comp_subv( lhs, rhs );
 	return length( delta );
 }
 
-
-// double4
-/// \relates double4
-/// \brief Returns a copy of the double4 with each component clamped between the range 0 and 1.
-inline double4 saturate( const double4& x )
+double4 saturate( const double4& x )
 {
 	return HLML_CONSTRUCT( double4 ) {
 		clampd( x.x, 0.0, 1.0 ),
@@ -2992,9 +3657,7 @@ inline double4 saturate( const double4& x )
 	};
 }
 
-/// \relates double4
-/// \brief Returns a linearly interpolated double4 between types "a" and "b".
-inline double4 lerp( const double4& a, const double4& b, const double t )
+double4 lerp( const double4& a, const double4& b, const double t )
 {
 	return HLML_CONSTRUCT( double4 ) {
 		lerp( a.x, b.x, t ),
@@ -3004,9 +3667,7 @@ inline double4 lerp( const double4& a, const double4& b, const double t )
 	};
 }
 
-/// \relates double4
-/// \brief Returns 1 if y is greater than x, otherwise returns 0.
-inline double4 step( const double4& x, const double4& y )
+double4 step( const double4& x, const double4& y )
 {
 	return HLML_CONSTRUCT( double4 ) {
 		step( x.x, y.x ),
@@ -3016,9 +3677,7 @@ inline double4 step( const double4& x, const double4& y )
 	};
 }
 
-/// \relates double4
-/// \brief Performs a sigmoid-like interpolation and clamp.
-inline double4 smoothstep( const double4& low, const double4& high, const double4& x )
+double4 smoothstep( const double4& low, const double4& high, const double4& x )
 {
 	return HLML_CONSTRUCT( double4 ) {
 		smoothstep( low.x, high.x, x.x ),
@@ -3028,10 +3687,7 @@ inline double4 smoothstep( const double4& low, const double4& high, const double
 	};
 }
 
-/// \relates double4
-/// \brief Performs a 'smoother' version of smoothstep, as design by Ken Perlin.
-/// https://en.wikipedia.org/wiki/Smoothstep#Variations
-inline double4 smootherstep( const double4& low, const double4& high, const double4& x )
+double4 smootherstep( const double4& low, const double4& high, const double4& x )
 {
 	return HLML_CONSTRUCT( double4 ) {
 		smootherstep( low.x, high.x, x.x ),
@@ -3041,23 +3697,17 @@ inline double4 smootherstep( const double4& low, const double4& high, const doub
 	};
 }
 
-/// \relates double4
-/// \brief Returns true if the all the components of the left-hand-side double4 match the other one, otherwise returns false.
-inline bool cmpe( const double4& lhs, const double4& rhs )
+bool cmpe( const double4& lhs, const double4& rhs )
 {
 	return doubleeq( lhs.x, rhs.x ) && doubleeq( lhs.y, rhs.y ) && doubleeq( lhs.z, rhs.z ) && doubleeq( lhs.w, rhs.w );
 }
 
-/// \relates double4
-/// \brief Returns true if not all of the components of the left-hand-side double4 match the other one, otherwise returns false.
-inline bool cmpne( const double4& lhs, const double4& rhs )
+bool cmpne( const double4& lhs, const double4& rhs )
 {
 	return !( cmpe( lhs, rhs ) );
 }
 
-/// \relates double4
-/// \brief Returns a copy of the double4 that has been component-wise added by the given scalar value.
-inline double4 comp_adds( const double4& lhs, const double scalar )
+double4 comp_adds( const double4& lhs, const double scalar )
 {
 	return HLML_CONSTRUCT( double4 ) {
 		lhs.x + scalar,
@@ -3067,9 +3717,7 @@ inline double4 comp_adds( const double4& lhs, const double scalar )
 	};
 }
 
-/// \relates double4
-/// \brief Returns a copy of the double4 that has been component-wise added by the corresponding component of the right-hand double4.
-inline double4 comp_addv( const double4& lhs, const double4& rhs )
+double4 comp_addv( const double4& lhs, const double4& rhs )
 {
 	return HLML_CONSTRUCT( double4 ) {
 		lhs.x + rhs.x,
@@ -3079,9 +3727,7 @@ inline double4 comp_addv( const double4& lhs, const double4& rhs )
 	};
 }
 
-/// \relates double4
-/// \brief Returns a copy of the double4 that has been component-wise subtracted by the given scalar value.
-inline double4 comp_subs( const double4& lhs, const double scalar )
+double4 comp_subs( const double4& lhs, const double scalar )
 {
 	return HLML_CONSTRUCT( double4 ) {
 		lhs.x - scalar,
@@ -3091,9 +3737,7 @@ inline double4 comp_subs( const double4& lhs, const double scalar )
 	};
 }
 
-/// \relates double4
-/// \brief Returns a copy of the double4 that has been component-wise subtracted by the corresponding component of the right-hand double4.
-inline double4 comp_subv( const double4& lhs, const double4& rhs )
+double4 comp_subv( const double4& lhs, const double4& rhs )
 {
 	return HLML_CONSTRUCT( double4 ) {
 		lhs.x - rhs.x,
@@ -3103,9 +3747,7 @@ inline double4 comp_subv( const double4& lhs, const double4& rhs )
 	};
 }
 
-/// \relates double4
-/// \brief Returns a copy of the double4 that has been component-wise multiplied by the given scalar value.
-inline double4 comp_muls( const double4& lhs, const double scalar )
+double4 comp_muls( const double4& lhs, const double scalar )
 {
 	return HLML_CONSTRUCT( double4 ) {
 		lhs.x * scalar,
@@ -3115,9 +3757,7 @@ inline double4 comp_muls( const double4& lhs, const double scalar )
 	};
 }
 
-/// \relates double4
-/// \brief Returns a copy of the double4 that has been component-wise multiplied by the corresponding component of the right-hand double4.
-inline double4 comp_mulv( const double4& lhs, const double4& rhs )
+double4 comp_mulv( const double4& lhs, const double4& rhs )
 {
 	return HLML_CONSTRUCT( double4 ) {
 		lhs.x * rhs.x,
@@ -3127,9 +3767,7 @@ inline double4 comp_mulv( const double4& lhs, const double4& rhs )
 	};
 }
 
-/// \relates double4
-/// \brief Returns a copy of the double4 that has been component-wise divided by the given scalar value.
-inline double4 comp_divs( const double4& lhs, const double scalar )
+double4 comp_divs( const double4& lhs, const double scalar )
 {
 	return HLML_CONSTRUCT( double4 ) {
 		lhs.x / scalar,
@@ -3139,9 +3777,7 @@ inline double4 comp_divs( const double4& lhs, const double scalar )
 	};
 }
 
-/// \relates double4
-/// \brief Returns a copy of the double4 that has been component-wise divided by the corresponding component of the right-hand double4.
-inline double4 comp_divv( const double4& lhs, const double4& rhs )
+double4 comp_divv( const double4& lhs, const double4& rhs )
 {
 	return HLML_CONSTRUCT( double4 ) {
 		lhs.x / rhs.x,
@@ -3151,9 +3787,7 @@ inline double4 comp_divv( const double4& lhs, const double4& rhs )
 	};
 }
 
-/// \relates double4
-/// \brief Returns a bool4 where each component is true if the component of the left-hand type is less than the corresponding right-hand type component.
-inline bool4 cmpl( const double4& lhs, const double4& rhs )
+bool4 cmpl( const double4& lhs, const double4& rhs )
 {
 	return HLML_CONSTRUCT( bool4 ) {
 		lhs.x < rhs.x,
@@ -3163,9 +3797,7 @@ inline bool4 cmpl( const double4& lhs, const double4& rhs )
 	};
 }
 
-/// \relates double4
-/// \brief Returns a bool4 where each component is true if the component of the left-hand type is less than or equal to the corresponding right-hand type component.
-inline bool4 cmple( const double4& lhs, const double4& rhs )
+bool4 cmple( const double4& lhs, const double4& rhs )
 {
 	return HLML_CONSTRUCT( bool4 ) {
 		lhs.x <= rhs.x,
@@ -3175,9 +3807,7 @@ inline bool4 cmple( const double4& lhs, const double4& rhs )
 	};
 }
 
-/// \relates double4
-/// \brief Returns a bool4 where each component is true if the component of the left-hand type is greater than the corresponding right-hand type component.
-inline bool4 cmpg( const double4& lhs, const double4& rhs )
+bool4 cmpg( const double4& lhs, const double4& rhs )
 {
 	return HLML_CONSTRUCT( bool4 ) {
 		lhs.x > rhs.x,
@@ -3187,9 +3817,7 @@ inline bool4 cmpg( const double4& lhs, const double4& rhs )
 	};
 }
 
-/// \relates double4
-/// \brief Returns a bool4 where each component is true if the component of the left-hand type is greater than or equal to the corresponding right-hand type component.
-inline bool4 cmpge( const double4& lhs, const double4& rhs )
+bool4 cmpge( const double4& lhs, const double4& rhs )
 {
 	return HLML_CONSTRUCT( bool4 ) {
 		lhs.x >= rhs.x,
@@ -3199,23 +3827,17 @@ inline bool4 cmpge( const double4& lhs, const double4& rhs )
 	};
 }
 
-/// \relates double4
-/// \brief Returns the magnitude of the vector squared.
-inline double lengthsqr( const double4& vec )
+double lengthsqr( const double4& vec )
 {
 	return ( vec.x * vec.x ) + ( vec.y * vec.y ) + ( vec.z * vec.z ) + ( vec.w * vec.w );
 }
 
-/// \relates double4
-/// \brief Returns the magnitude of the vector.
-inline double length( const double4& vec )
+double length( const double4& vec )
 {
 	return sqrt( lengthsqr( vec ) );
 }
 
-/// \relates double4
-/// \brief Normalizes the vector.
-inline void normalize( double4& vec )
+void normalize( double4& vec )
 {
 	double len = length( vec );
 	double4 invlen = HLML_CONSTRUCT( double4 ) {
@@ -3228,9 +3850,7 @@ inline void normalize( double4& vec )
 	vec = comp_mulv( vec, invlen );
 }
 
-/// \relates double4
-/// \brief Returns a normalized copy of the vector.
-inline double4 normalized( const double4& vec )
+double4 normalized( const double4& vec )
 {
 	double len = length( vec );
 	double4 invlen = HLML_CONSTRUCT( double4 ) {
@@ -3243,16 +3863,12 @@ inline double4 normalized( const double4& vec )
 	return comp_mulv( vec, invlen );
 }
 
-/// \relates double4
-/// \brief Returns the dot product of the two vectors.
-inline double dot( const double4& lhs, const double4& rhs )
+double dot( const double4& lhs, const double4& rhs )
 {
 	return ( lhs.x * rhs.x ) + ( lhs.y * rhs.y ) + ( lhs.z * rhs.z ) + ( lhs.w * rhs.w );
 }
 
-/// \relates double4
-/// \brief Returns a vector perpendicular (normal) to the two vectors.
-inline double4 cross( const double4& lhs, const double4& rhs )
+double4 cross( const double4& lhs, const double4& rhs )
 {
 	return HLML_CONSTRUCT( double4 ) {
 		( lhs.y * rhs.z ) - ( lhs.z * rhs.y ),
@@ -3262,11 +3878,9 @@ inline double4 cross( const double4& lhs, const double4& rhs )
 	};
 }
 
-/// \relates double4
-/// \brief Returns the angle in degrees between the two vectors.
-inline double angle( const double4& lhs, const double4& rhs )
+double angle( const double4& lhs, const double4& rhs )
 {
 	return degrees( acos( dot( normalized( lhs ), normalized( rhs ) ) ) );
 }
 
-
+#endif // HLML_IMPLEMENTATION
