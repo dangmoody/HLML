@@ -54,7 +54,7 @@ else
 	options_clangpp="-std=c99"
 
 	if [[ "$OSTYPE" == "linux-gnu" ]]; then
-		options_clangpp="${options_clangpp} -lm"
+		options_linker="-lm"
 	fi
 fi
 
@@ -102,6 +102,7 @@ echo Building source file\(s\) : ${source_files_path}${source_files}
 echo Building with options     : ${options_compiler}
 echo Enabled errors            : ${options_error}
 echo Ignoring options          : ${ignore_warnings}
+echo Linker settings           : ${options_linker}
 echo ""
 
-${compiler_proc} ${options_std} ${options_compiler} -o build/${compiler_folder_name}/${config}/${output_file} ${source_files_path}${source_files} ${options_error} ${ignore_warnings}
+${compiler_proc} ${options_std} ${options_compiler} -o build/${compiler_folder_name}/${config}/${output_file} ${source_files_path}${source_files} ${options_error} ${ignore_warnings} ${options_linker}
