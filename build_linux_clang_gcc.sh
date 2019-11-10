@@ -51,7 +51,11 @@ if [[ ${language} == C++ ]]; then
 		options_clangpp=""
 	fi
 else
-	options_clangpp="-std=c99 -lm"
+	options_clangpp="-std=c99"
+
+	if [[ "$OSTYPE" == "linux-gnu" ]]; then
+		options_clangpp="${options_clangpp} -lm"
+	fi
 fi
 
 options_compiler="${options_clangpp}"
