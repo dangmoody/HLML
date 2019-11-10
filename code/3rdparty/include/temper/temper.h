@@ -209,7 +209,6 @@ extern "C" {
 #endif // defined( __clang__ )
 
 #if defined( __linux__ ) || defined( __APPLE__ )
-#warning Travis hit this!
 #pragma push_macro( "_POSIX_C_SOURCE" )
 #undef _POSIX_C_SOURCE
 #define _POSIX_C_SOURCE 199309L

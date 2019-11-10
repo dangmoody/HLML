@@ -34,10 +34,10 @@ SOFTWARE.
 
 #define NOMINMAX
 
+#include <temper/temper.h>
+
 #define HLML_IMPLEMENTATION
 #include "../../../code/out/cpp/hlml.h"
-
-#include <temper/temper.h>
 
 #include "test_scalar_int32_t.cpp"
 #include "test_scalar_uint32_t.cpp"

@@ -732,12 +732,12 @@ void Gen_TestsMain( const genLanguage_t language ) {
 	String_Append( &sb, "#define NOMINMAX\n" );
 	String_Append( &sb, "\n" );
 
+	String_Append( &sb, "#include <temper/temper.h>\n" );
+	String_Append( &sb, "\n" );
+
 	String_Append(  &sb, "#define HLML_IMPLEMENTATION\n" );
 	String_Appendf( &sb, "#include \"%s%s\"\n", outGenInclude, GEN_HEADER_MAIN );
 	String_Append(  &sb, "\n" );
-
-	String_Append( &sb, "#include <temper/temper.h>\n" );
-	String_Append( &sb, "\n" );
 
 	// scalar tests
 	for ( u32 typeIndex = 0; typeIndex < GEN_TYPE_COUNT; typeIndex++ ) {
