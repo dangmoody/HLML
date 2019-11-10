@@ -44,10 +44,14 @@ else
 fi
 
 # clang++ requires extra weird c++ settings
-if [[ ${language} == C++ && ${compiler} == clang ]]; then
-	options_clangpp="-Xclang -flto-visibility-public-std"
+if [[ ${language} == C++ ]]; then
+	if [[ ${compiler} == clang ]]; then
+		options_clangpp="-Xclang -flto-visibility-public-std"
+	else
+		options_clangpp=""
+	fi
 else
-	options_clangpp=""
+	options_clangpp="-std=c99"
 fi
 
 options_compiler="${options_clangpp}"
