@@ -43,7 +43,7 @@ else
 	options_std="-std=c99"
 fi
 
-# clang++ requires extra weird c++ settings
+# other language/compiler-specific settings
 if [[ ${language} == C++ ]]; then
 	if [[ ${compiler} == clang ]]; then
 		options_clangpp="-Xclang -flto-visibility-public-std"
@@ -51,7 +51,7 @@ if [[ ${language} == C++ ]]; then
 		options_clangpp=""
 	fi
 else
-	options_clangpp="-std=c99"
+	options_clangpp="-std=c99 -lm"
 fi
 
 options_compiler="${options_clangpp}"
