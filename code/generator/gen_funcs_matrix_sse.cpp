@@ -799,7 +799,7 @@ void Gen_SSE_MatrixScale( const genLanguage_t language, const genType_t type, co
 
 	const u32 numScaleComponents = numRows - 1;
 
-	char sseTypeName[GEN_STRING_LENGTH_TYPE_NAME];
+	char sseTypeName[GEN_STRING_LENGTH_SSE_INPUT_NAME];
 	Gen_SSE_GetFullTypeName( type, numRows, numCols, sseTypeName );
 
 	char scaleVecTypeName[GEN_STRING_LENGTH_TYPE_NAME];
