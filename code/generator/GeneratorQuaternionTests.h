@@ -51,4 +51,5 @@ private:
 	void			GenerateTestLength();
 	void			GenerateTestNormalize();
 	void			GenerateTestConjugate();
+	void			GenerateTestInverse();
 };

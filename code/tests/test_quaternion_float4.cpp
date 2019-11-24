@@ -92,6 +92,17 @@ TEMPER_TEST( TestArithmeticConjugate_float4 )
 	TEMPER_PASS();
 }
 
+TEMPER_TEST( TestArithmeticInverse_float4 )
+{
+	const float4 a = float4( ( 2.0f ), ( 3.0f ), ( 4.0f ), ( 5.0f ) );
+
+	float4 b = quaternion_inverse( a );
+
+	TEMPER_EXPECT_TRUE( b == float4( ( -0.037037f ), ( -0.0555556f ), ( -0.0740741f ), ( 0.092593f ) ) );
+
+	TEMPER_PASS();
+}
+
 TEMPER_SUITE( Test_quaternion_float4 )
 {
 	TEMPER_RUN_TEST( TestArithmeticMultiplyScalar_float4 );
@@ -99,4 +110,5 @@ TEMPER_SUITE( Test_quaternion_float4 )
 	TEMPER_RUN_TEST( TestArithmeticLength_float4 );
 	TEMPER_RUN_TEST( TestArithmeticNormalize_float4 );
 	TEMPER_RUN_TEST( TestArithmeticConjugate_float4 );
+	TEMPER_RUN_TEST( TestArithmeticInverse_float4 );
 }
