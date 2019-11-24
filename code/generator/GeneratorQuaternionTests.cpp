@@ -60,6 +60,7 @@ bool GeneratorQuaternionTests::Generate( const genType_t type ) {
 	GenerateTestMultiplyQuaternion();
 	GenerateTestLength();
 	GenerateTestNormalize();
+	GenerateTestConjugate();
 
 	String_Append( &m_codeSuite, "}\n" );
 
@@ -289,6 +290,60 @@ void GeneratorQuaternionTests::GenerateTestNormalize() {
 	String_Appendf( &m_codeTests, "\tconst %s a = %s( %s, %s, %s, %s );\n", m_fullTypeName, m_fullTypeName, parmListRhsValues[0], parmListRhsValues[1], parmListRhsValues[2], parmListRhsValues[3] );
 	String_Append( &m_codeTests, "\n" );
 	String_Appendf( &m_codeTests, "\t%s b = quaternion_normalize( a );\n", m_fullTypeName );
+	String_Append( &m_codeTests, "\n" );
+	String_Appendf( &m_codeTests, "\tTEMPER_EXPECT_TRUE( b == %s( %s, %s, %s, %s ) );\n", m_fullTypeName, parmListAnswers[0], parmListAnswers[1], parmListAnswers[2], parmListAnswers[3] );
+	String_Append( &m_codeTests, "\n" );
+	String_Append( &m_codeTests, "\tTEMPER_PASS();\n" );
+	String_Append( &m_codeTests, "}\n" );
+	String_Append( &m_codeTests, "\n" );
+
+	String_Appendf( &m_codeSuite, "\tTEMPER_RUN_TEST( %s );\n", testName );
+}
+
+void GeneratorQuaternionTests::GenerateTestConjugate() {
+	if ( Gen_TypeIsFloatingPoint( m_type ) == false ) {
+		return;
+	}
+
+	// number picked at random
+	char twoStr[GEN_STRING_LENGTH_NUMERIC_LITERAL];
+	char threeStr[GEN_STRING_LENGTH_NUMERIC_LITERAL];
+	char fourStr[GEN_STRING_LENGTH_NUMERIC_LITERAL];
+	char fiveStr[GEN_STRING_LENGTH_NUMERIC_LITERAL];
+	char answerXStr[GEN_STRING_LENGTH_NUMERIC_LITERAL];
+	char answerYStr[GEN_STRING_LENGTH_NUMERIC_LITERAL];
+	char answerZStr[GEN_STRING_LENGTH_NUMERIC_LITERAL];
+	char answerWStr[GEN_STRING_LENGTH_NUMERIC_LITERAL];
+
+	Gen_GetNumericLiteral( m_type, 2, twoStr, 1 );
+	Gen_GetNumericLiteral( m_type, 3, threeStr, 1 );
+	Gen_GetNumericLiteral( m_type, 4, fourStr, 1 );
+	Gen_GetNumericLiteral( m_type, 5, fiveStr, 1 );
+	Gen_GetNumericLiteral( m_type, -2, answerXStr, 6 );
+	Gen_GetNumericLiteral( m_type, -3, answerYStr, 6 );
+	Gen_GetNumericLiteral( m_type, -4, answerZStr, 6 );
+	Gen_GetNumericLiteral( m_type, 5, answerWStr, 6 );
+
+	char parmListRhsValues[4][GEN_STRING_LENGTH_PARM_LIST_VECTOR];
+	snprintf( parmListRhsValues[0], 64, "( %s )", twoStr );
+	snprintf( parmListRhsValues[1], 64, "( %s )", threeStr );
+	snprintf( parmListRhsValues[2], 64, "( %s )", fourStr );
+	snprintf( parmListRhsValues[3], 64, "( %s )", fiveStr );
+
+	char parmListAnswers[4][GEN_STRING_LENGTH_PARM_LIST_VECTOR];
+	snprintf( parmListAnswers[0], 64, "( %s )", answerXStr );
+	snprintf( parmListAnswers[1], 64, "( %s )", answerYStr );
+	snprintf( parmListAnswers[2], 64, "( %s )", answerZStr );
+	snprintf( parmListAnswers[3], 64, "( %s )", answerWStr );
+
+	char testName[GEN_STRING_LENGTH_TEST_NAME] = { 0 };
+	snprintf( testName, GEN_STRING_LENGTH_TEST_NAME, "TestArithmetic%s_%s", "Conjugate", m_fullTypeName );
+
+	String_Appendf( &m_codeTests, "TEMPER_TEST( %s )\n", testName );
+	String_Append( &m_codeTests, "{\n" );
+	String_Appendf( &m_codeTests, "\tconst %s a = %s( %s, %s, %s, %s );\n", m_fullTypeName, m_fullTypeName, parmListRhsValues[0], parmListRhsValues[1], parmListRhsValues[2], parmListRhsValues[3] );
+	String_Append( &m_codeTests, "\n" );
+	String_Appendf( &m_codeTests, "\t%s b = quaternion_conjugate( a );\n", m_fullTypeName );
 	String_Append( &m_codeTests, "\n" );
 	String_Appendf( &m_codeTests, "\tTEMPER_EXPECT_TRUE( b == %s( %s, %s, %s, %s ) );\n", m_fullTypeName, parmListAnswers[0], parmListAnswers[1], parmListAnswers[2], parmListAnswers[3] );
 	String_Append( &m_codeTests, "\n" );

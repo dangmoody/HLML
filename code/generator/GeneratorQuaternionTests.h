@@ -50,4 +50,5 @@ private:
 	void			GenerateTestMultiplyQuaternion();
 	void			GenerateTestLength();
 	void			GenerateTestNormalize();
+	void			GenerateTestConjugate();
 };
