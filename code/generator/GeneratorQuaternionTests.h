@@ -46,6 +46,7 @@ private:
 	const char*		m_memberTypeString;
 
 private:
-	void			GenerateTestMultiplyScalarQuaternion();
+	void			GenerateTestMultiplyScalar();
 	void			GenerateTestMultiplyQuaternion();
+	void			GenerateTestLength();
 };
