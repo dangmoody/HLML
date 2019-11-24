@@ -49,4 +49,5 @@ private:
 	void			GenerateTestMultiplyScalar();
 	void			GenerateTestMultiplyQuaternion();
 	void			GenerateTestLength();
+	void			GenerateTestNormalize();
 };

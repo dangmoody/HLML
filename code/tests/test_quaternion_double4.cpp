@@ -70,9 +70,21 @@ TEMPER_TEST( TestArithmeticLength_double4 )
 	TEMPER_PASS();
 }
 
+TEMPER_TEST( TestArithmeticNormalize_double4 )
+{
+	const double4 a = double4( ( 2.0 ), ( 3.0 ), ( 4.0 ), ( 5.0 ) );
+
+	double4 b = quaternion_normalize( a );
+
+	TEMPER_EXPECT_TRUE( b == double4( ( 0.272166 ), ( 0.408248 ), ( 0.544331 ), ( 0.680414 ) ) );
+
+	TEMPER_PASS();
+}
+
 TEMPER_SUITE( Test_quaternion_double4 )
 {
 	TEMPER_RUN_TEST( TestArithmeticMultiplyScalar_double4 );
 	TEMPER_RUN_TEST( TestArithmeticMultiply_double4 );
 	TEMPER_RUN_TEST( TestArithmeticLength_double4 );
+	TEMPER_RUN_TEST( TestArithmeticNormalize_double4 );
 }
