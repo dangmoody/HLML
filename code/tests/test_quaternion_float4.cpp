@@ -103,6 +103,19 @@ TEMPER_TEST( TestArithmeticInverse_float4 )
 	TEMPER_PASS();
 }
 
+TEMPER_TEST( TestArithmeticVectorRotationByAngleAxis_float4 )
+{
+	const float3 vector = float3( 0.0f, 1.0f, 0.0f );
+	const float3 axis = float3( 1.0f, 0.0f, 0.0f );
+	const float angle = 1.570800f;
+
+	float3 rotated_vector = quaternion_rotate_vector_about_angle_axis( vector, angle, axis );
+
+	TEMPER_EXPECT_TRUE( rotated_vector == float3( ( 0.0f ), ( 0.0f ), ( 1.0f ) ) );
+
+	TEMPER_PASS();
+}
+
 TEMPER_SUITE( Test_quaternion_float4 )
 {
 	TEMPER_RUN_TEST( TestArithmeticMultiplyScalar_float4 );
@@ -111,4 +124,5 @@ TEMPER_SUITE( Test_quaternion_float4 )
 	TEMPER_RUN_TEST( TestArithmeticNormalize_float4 );
 	TEMPER_RUN_TEST( TestArithmeticConjugate_float4 );
 	TEMPER_RUN_TEST( TestArithmeticInverse_float4 );
+	TEMPER_RUN_TEST( TestArithmeticVectorRotationByAngleAxis_float4 );
 }

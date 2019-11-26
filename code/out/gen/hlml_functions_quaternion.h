@@ -92,9 +92,9 @@ inline float4 quaternion_inverse( const float4& quat )
 	return float4( imaginary.x, imaginary.y, imaginary.z, scalar );
 }
 
-inline float3 quaternion_rotate_vector_about_angle_axis( const float4& quat, const float angle, const float3 axis )
+inline float3 quaternion_rotate_vector_about_angle_axis( const float3& vect, const float angle, const float3 axis )
 {
-	float4 pureQuat = float4( quat.x, quat.y, quat.z, 0 );
+	float4 pureQuat = float4( vect.x, vect.y, vect.z, 0 );
 	float3 normalizedAxis = axis;
 	normalize(normalizedAxis);
 	float4 realQuat = float4( normalizedAxis.x, normalizedAxis.y, normalizedAxis.z, angle );
@@ -103,11 +103,11 @@ inline float3 quaternion_rotate_vector_about_angle_axis( const float4& quat, con
 	float3 normalizedImaginary = imaginary;
 	normalize(normalizedImaginary);
 	float unitNormScalar = cosf( realQuat.w * 0.5f );
-	float3 unitNormImaginary = normalizedImaginary * sinf( quat.w * 0.5f );
+	float3 unitNormImaginary = normalizedImaginary * sinf( realQuat.w * 0.5f );
 	float4 unitNormQuat = float4( unitNormImaginary.x, unitNormImaginary.y, unitNormImaginary.z, unitNormScalar );
 
 	float4 inverseQuat = quaternion_inverse( unitNormQuat );
-	float4 rotatedVector = unitNormQuat * pureQuat * inverseQuat;
+	float4 rotatedVector = quaternion_mul( quaternion_mul( unitNormQuat, pureQuat ), inverseQuat );
 	return float3( rotatedVector.x, rotatedVector.y, rotatedVector.z );
 }
 
@@ -191,9 +191,9 @@ inline double4 quaternion_inverse( const double4& quat )
 	return double4( imaginary.x, imaginary.y, imaginary.z, scalar );
 }
 
-inline double3 quaternion_rotate_vector_about_angle_axis( const double4& quat, const double angle, const double3 axis )
+inline double3 quaternion_rotate_vector_about_angle_axis( const double3& vect, const double angle, const double3 axis )
 {
-	double4 pureQuat = double4( quat.x, quat.y, quat.z, 0 );
+	double4 pureQuat = double4( vect.x, vect.y, vect.z, 0 );
 	double3 normalizedAxis = axis;
 	normalize(normalizedAxis);
 	double4 realQuat = double4( normalizedAxis.x, normalizedAxis.y, normalizedAxis.z, angle );
@@ -202,11 +202,11 @@ inline double3 quaternion_rotate_vector_about_angle_axis( const double4& quat, c
 	double3 normalizedImaginary = imaginary;
 	normalize(normalizedImaginary);
 	double unitNormScalar = cos( realQuat.w * 0.5 );
-	double3 unitNormImaginary = normalizedImaginary * sin( quat.w * 0.5 );
+	double3 unitNormImaginary = normalizedImaginary * sin( realQuat.w * 0.5 );
 	double4 unitNormQuat = double4( unitNormImaginary.x, unitNormImaginary.y, unitNormImaginary.z, unitNormScalar );
 
 	double4 inverseQuat = quaternion_inverse( unitNormQuat );
-	double4 rotatedVector = unitNormQuat * pureQuat * inverseQuat;
+	double4 rotatedVector = quaternion_mul( quaternion_mul( unitNormQuat, pureQuat ), inverseQuat );
 	return double3( rotatedVector.x, rotatedVector.y, rotatedVector.z );
 }
 

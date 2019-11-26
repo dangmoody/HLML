@@ -52,4 +52,5 @@ private:
 	void			GenerateTestNormalize();
 	void			GenerateTestConjugate();
 	void			GenerateTestInverse();
+	void			GenerateTestQuaternionVectorRotationByAngleAxis();
 };

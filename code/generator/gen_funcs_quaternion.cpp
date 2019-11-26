@@ -207,10 +207,10 @@ void Gen_QuaternionRotationAxis(const genType_t type, stringBuilder_t* sbHeader)
 	const char* sinFunc = Gen_GetFuncNameSin( type );
 	const char* cosFunc = Gen_GetFuncNameCos( type );
 
-	String_Appendf(sbHeader, "inline %s3 quaternion_rotate_vector_about_angle_axis( const %s4& quat, const %s angle, const %s3 axis )\n", returnTypeString, typeName, typeName, typeName);
+	String_Appendf(sbHeader, "inline %s3 quaternion_rotate_vector_about_angle_axis( const %s3& vect, const %s angle, const %s3 axis )\n", returnTypeString, typeName, typeName, typeName);
 	String_Append(sbHeader, "{\n");
 
-	String_Appendf(sbHeader, "\t%s4 pureQuat = %s4( quat.x, quat.y, quat.z, 0 );\n", typeName, typeName);
+	String_Appendf(sbHeader, "\t%s4 pureQuat = %s4( vect.x, vect.y, vect.z, 0 );\n", typeName, typeName);
 	String_Appendf(sbHeader, "\t%s3 normalizedAxis = axis;\n", typeName );
 	String_Append(sbHeader, "\tnormalize(normalizedAxis);\n");
 	String_Appendf(sbHeader, "\t%s4 realQuat = %s4( normalizedAxis.x, normalizedAxis.y, normalizedAxis.z, angle );\n", typeName, typeName);
@@ -221,12 +221,12 @@ void Gen_QuaternionRotationAxis(const genType_t type, stringBuilder_t* sbHeader)
 	String_Appendf(sbHeader, "\t%s3 normalizedImaginary = imaginary;\n", typeName);
 	String_Append(sbHeader, "\tnormalize(normalizedImaginary);\n");
 	String_Appendf(sbHeader, "\t%s unitNormScalar = %s( realQuat.w * %s );\n", typeName, cosFunc, halfStr);
-	String_Appendf(sbHeader, "\t%s3 unitNormImaginary = normalizedImaginary * %s( quat.w * %s );\n", typeName, sinFunc, halfStr);
+	String_Appendf(sbHeader, "\t%s3 unitNormImaginary = normalizedImaginary * %s( realQuat.w * %s );\n", typeName, sinFunc, halfStr);
 	String_Appendf(sbHeader, "\t%s4 unitNormQuat = %s4( unitNormImaginary.x, unitNormImaginary.y, unitNormImaginary.z, unitNormScalar );\n", typeName, typeName);
 	String_Append(sbHeader, "\n");
 	
 	String_Appendf(sbHeader, "\t%s4 inverseQuat = quaternion_inverse( unitNormQuat );\n", typeName);
-	String_Appendf(sbHeader, "\t%s4 rotatedVector = unitNormQuat * pureQuat * inverseQuat;\n", typeName);
+	String_Appendf(sbHeader, "\t%s4 rotatedVector = quaternion_mul( quaternion_mul( unitNormQuat, pureQuat ), inverseQuat );\n", typeName);
 	String_Appendf(sbHeader, "\treturn %s3( rotatedVector.x, rotatedVector.y, rotatedVector.z );\n", typeName);
 
 	String_Append(sbHeader, "}\n");

@@ -62,6 +62,7 @@ bool GeneratorQuaternionTests::Generate( const genType_t type ) {
 	GenerateTestNormalize();
 	GenerateTestConjugate();
 	GenerateTestInverse();
+	GenerateTestQuaternionVectorRotationByAngleAxis();
 
 	String_Append( &m_codeSuite, "}\n" );
 
@@ -401,6 +402,45 @@ void GeneratorQuaternionTests::GenerateTestInverse() {
 	String_Appendf( &m_codeTests, "\t%s b = quaternion_inverse( a );\n", m_fullTypeName );
 	String_Append( &m_codeTests, "\n" );
 	String_Appendf( &m_codeTests, "\tTEMPER_EXPECT_TRUE( b == %s( %s, %s, %s, %s ) );\n", m_fullTypeName, parmListAnswers[0], parmListAnswers[1], parmListAnswers[2], parmListAnswers[3] );
+	String_Append( &m_codeTests, "\n" );
+	String_Append( &m_codeTests, "\tTEMPER_PASS();\n" );
+	String_Append( &m_codeTests, "}\n" );
+	String_Append( &m_codeTests, "\n" );
+
+	String_Appendf( &m_codeSuite, "\tTEMPER_RUN_TEST( %s );\n", testName );
+}
+
+void GeneratorQuaternionTests::GenerateTestQuaternionVectorRotationByAngleAxis() {
+	if ( Gen_TypeIsFloatingPoint( m_type ) == false ) {
+		return;
+	}
+
+	// number picked at random
+	char zeroStr[GEN_STRING_LENGTH_NUMERIC_LITERAL];
+	char oneStr[GEN_STRING_LENGTH_NUMERIC_LITERAL];
+	char angleStr[GEN_STRING_LENGTH_NUMERIC_LITERAL];
+
+	Gen_GetNumericLiteral( m_type, 0, zeroStr, 1 );
+	Gen_GetNumericLiteral( m_type, 1, oneStr, 1 );	
+	Gen_GetNumericLiteral( m_type, 1.5708f, angleStr, 6 );
+
+	char parmListAnswers[3][GEN_STRING_LENGTH_PARM_LIST_VECTOR];
+	snprintf( parmListAnswers[0], 64, "( %s )", zeroStr );
+	snprintf( parmListAnswers[1], 64, "( %s )", zeroStr );
+	snprintf( parmListAnswers[2], 64, "( %s )", oneStr );
+
+	char testName[GEN_STRING_LENGTH_TEST_NAME] = { 0 };
+	snprintf( testName, GEN_STRING_LENGTH_TEST_NAME, "TestArithmetic%s_%s", "VectorRotationByAngleAxis", m_fullTypeName );
+
+	String_Appendf( &m_codeTests, "TEMPER_TEST( %s )\n", testName );
+	String_Append( &m_codeTests, "{\n" );
+	String_Appendf( &m_codeTests, "\tconst %s3 vector = %s3( %s, %s, %s );\n", m_baseTypeName, m_baseTypeName, zeroStr, oneStr, zeroStr );
+	String_Appendf( &m_codeTests, "\tconst %s3 axis = %s3( %s, %s, %s );\n", m_baseTypeName, m_baseTypeName, oneStr, zeroStr, zeroStr );
+	String_Appendf( &m_codeTests, "\tconst %s angle = %s;\n", m_baseTypeName, angleStr );
+	String_Append( &m_codeTests, "\n" );
+	String_Appendf( &m_codeTests, "\t%s3 rotated_vector = quaternion_rotate_vector_about_angle_axis( vector, angle, axis );\n", m_baseTypeName );
+	String_Append( &m_codeTests, "\n" );
+	String_Appendf( &m_codeTests, "\tTEMPER_EXPECT_TRUE( rotated_vector == %s3( %s, %s, %s ) );\n", m_baseTypeName, parmListAnswers[0], parmListAnswers[1], parmListAnswers[2] );
 	String_Append( &m_codeTests, "\n" );
 	String_Append( &m_codeTests, "\tTEMPER_PASS();\n" );
 	String_Append( &m_codeTests, "}\n" );
