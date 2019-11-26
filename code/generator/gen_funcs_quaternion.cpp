@@ -207,7 +207,7 @@ void Gen_QuaternionRotationAxis(const genType_t type, stringBuilder_t* sbHeader)
 	const char* sinFunc = Gen_GetFuncNameSin( type );
 	const char* cosFunc = Gen_GetFuncNameCos( type );
 
-	String_Appendf(sbHeader, "inline %s3 quaternion_rotate_axis( const %s4& quat, const %s angle, const %s3 axis )\n", returnTypeString, typeName, typeName, typeName);
+	String_Appendf(sbHeader, "inline %s3 quaternion_rotate_vector_about_angle_axis( const %s4& quat, const %s angle, const %s3 axis )\n", returnTypeString, typeName, typeName, typeName);
 	String_Append(sbHeader, "{\n");
 
 	String_Appendf(sbHeader, "\t%s4 pureQuat = %s4( quat.x, quat.y, quat.z, 0 );\n", typeName, typeName);

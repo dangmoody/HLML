@@ -92,7 +92,7 @@ inline float4 quaternion_inverse( const float4& quat )
 	return float4( imaginary.x, imaginary.y, imaginary.z, scalar );
 }
 
-inline float3 quaternion_rotate_axis( const float4& quat, const float angle, const float3 axis )
+inline float3 quaternion_rotate_vector_about_angle_axis( const float4& quat, const float angle, const float3 axis )
 {
 	float4 pureQuat = float4( quat.x, quat.y, quat.z, 0 );
 	float3 normalizedAxis = axis;
@@ -191,7 +191,7 @@ inline double4 quaternion_inverse( const double4& quat )
 	return double4( imaginary.x, imaginary.y, imaginary.z, scalar );
 }
 
-inline double3 quaternion_rotate_axis( const double4& quat, const double angle, const double3 axis )
+inline double3 quaternion_rotate_vector_about_angle_axis( const double4& quat, const double angle, const double3 axis )
 {
 	double4 pureQuat = double4( quat.x, quat.y, quat.z, 0 );
 	double3 normalizedAxis = axis;
