@@ -1493,6 +1493,7 @@ void Gen_NotEquals( const genLanguage_t language, const genType_t type, const u3
 
 	Doc_OperatorNotEquals( sbFwdDec, fullTypeName );
 	String_Appendf( sbFwdDec, "inline bool %s( const %s lhs, const %s rhs );\n", notEqualsFuncStr, parmTypeName, parmTypeName );
+	String_Append(  sbFwdDec, "\n" );
 
 	String_Appendf( sbImpl, "bool %s( const %s lhs, const %s rhs )\n", notEqualsFuncStr, parmTypeName, parmTypeName );
 	String_Append(  sbImpl, "{\n" );
