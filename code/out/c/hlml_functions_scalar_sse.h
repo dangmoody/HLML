@@ -42,6 +42,7 @@ SOFTWARE.
 #include <assert.h>
 
 // float
+/// \brief Converts each component of the given __m128 from degrees to radians.
 inline static void radiansf_sse( const __m128 deg, __m128* out_radians )
 {
 	assert( out_radians );
@@ -49,6 +50,7 @@ inline static void radiansf_sse( const __m128 deg, __m128* out_radians )
 	*out_radians = _mm_mul_ps( deg, HLML_DEG_TO_RAD_SSE );
 }
 
+/// \brief Converts each component of the given __m128 from radians to degrees.
 inline static void degreesf_sse( const __m128 rad, __m128* out_degrees )
 {
 	assert( out_degrees );
@@ -56,6 +58,7 @@ inline static void degreesf_sse( const __m128 rad, __m128* out_degrees )
 	*out_degrees = _mm_mul_ps( rad, HLML_RAD_TO_DEG_SSE );
 }
 
+/// \brief Lerps each component of register 'lhs' against the corresponding component of register 'rhs' by the corresponding component of register 't'.
 inline static void lerpf_sse( const __m128 lhs, const __m128 rhs, const __m128 t, __m128* out_results )
 {
 	assert( out_results );

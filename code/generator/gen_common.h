@@ -307,7 +307,7 @@ extern void			Gen_Tests( const genLanguage_t language );
 extern void			Gen_TestsMain( const genLanguage_t language );
 
 // generates the doxygen documentation pages
-extern bool32		Gen_DoxygenPages( const char* configPath );
+extern bool32		Gen_DocumentationPages( const char* configPath );
 
 // parm list/array helpers
 // TODO(DM): allow specify prefix for each initialiser list

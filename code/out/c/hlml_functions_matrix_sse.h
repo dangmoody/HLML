@@ -41,46 +41,64 @@ SOFTWARE.
 /// \brief Changes the sign of the values in the register.
 #define NEGATE_PS( reg ) _mm_sub_ps( HLML_ZERO_SSE, (reg) )
 
+/// \brief Holds 2 x 2 __m128s where each regster is a vertical stream of that matrix component.
+/// Basically, this struct holds 4 matrices.
 typedef struct float2x2_sse_t
 {
 	__m128 m[2][2];
 } float2x2_sse_t;
 
+/// \brief Holds 2 x 3 __m128s where each regster is a vertical stream of that matrix component.
+/// Basically, this struct holds 4 matrices.
 typedef struct float2x3_sse_t
 {
 	__m128 m[2][3];
 } float2x3_sse_t;
 
+/// \brief Holds 2 x 4 __m128s where each regster is a vertical stream of that matrix component.
+/// Basically, this struct holds 4 matrices.
 typedef struct float2x4_sse_t
 {
 	__m128 m[2][4];
 } float2x4_sse_t;
 
+/// \brief Holds 3 x 2 __m128s where each regster is a vertical stream of that matrix component.
+/// Basically, this struct holds 4 matrices.
 typedef struct float3x2_sse_t
 {
 	__m128 m[3][2];
 } float3x2_sse_t;
 
+/// \brief Holds 3 x 3 __m128s where each regster is a vertical stream of that matrix component.
+/// Basically, this struct holds 4 matrices.
 typedef struct float3x3_sse_t
 {
 	__m128 m[3][3];
 } float3x3_sse_t;
 
+/// \brief Holds 3 x 4 __m128s where each regster is a vertical stream of that matrix component.
+/// Basically, this struct holds 4 matrices.
 typedef struct float3x4_sse_t
 {
 	__m128 m[3][4];
 } float3x4_sse_t;
 
+/// \brief Holds 4 x 2 __m128s where each regster is a vertical stream of that matrix component.
+/// Basically, this struct holds 4 matrices.
 typedef struct float4x2_sse_t
 {
 	__m128 m[4][2];
 } float4x2_sse_t;
 
+/// \brief Holds 4 x 3 __m128s where each regster is a vertical stream of that matrix component.
+/// Basically, this struct holds 4 matrices.
 typedef struct float4x3_sse_t
 {
 	__m128 m[4][3];
 } float4x3_sse_t;
 
+/// \brief Holds 4 x 4 __m128s where each regster is a vertical stream of that matrix component.
+/// Basically, this struct holds 4 matrices.
 typedef struct float4x4_sse_t
 {
 	__m128 m[4][4];

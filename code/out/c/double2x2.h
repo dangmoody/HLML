@@ -34,6 +34,7 @@ SOFTWARE.
 
 #pragma once
 
+/// A matrix of 2 double2s.
 typedef struct double2x2
 {
 	double2 rows[2];

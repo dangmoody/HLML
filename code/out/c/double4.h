@@ -34,6 +34,8 @@ SOFTWARE.
 
 #pragma once
 
+/// \brief A vector of 4 doubles with components xyzw.
+/// Components are also stored as elements in an array via a union.
 typedef struct double4
 {
 	double x;

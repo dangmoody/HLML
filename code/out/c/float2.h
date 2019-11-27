@@ -34,6 +34,8 @@ SOFTWARE.
 
 #pragma once
 
+/// \brief A vector of 2 floats with components xy.
+/// Components are also stored as elements in an array via a union.
 typedef struct float2
 {
 	float x;

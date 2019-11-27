@@ -68,6 +68,7 @@ inline bool cmpe( const bool2& lhs, const bool2& rhs );
 /// \brief Returns true if not all of the components of the left-hand-side bool2 match the other one, otherwise returns false.
 inline bool cmpne( const bool2& lhs, const bool2& rhs );
 
+
 // bool3
 /// \relates bool3
 /// \brief Returns true if the all the components of the left-hand-side bool3 match the other one, otherwise returns false.
@@ -76,6 +77,7 @@ inline bool cmpe( const bool3& lhs, const bool3& rhs );
 /// \relates bool3
 /// \brief Returns true if not all of the components of the left-hand-side bool3 match the other one, otherwise returns false.
 inline bool cmpne( const bool3& lhs, const bool3& rhs );
+
 
 // bool4
 /// \relates bool4
@@ -86,6 +88,7 @@ inline bool cmpe( const bool4& lhs, const bool4& rhs );
 /// \brief Returns true if not all of the components of the left-hand-side bool4 match the other one, otherwise returns false.
 inline bool cmpne( const bool4& lhs, const bool4& rhs );
 
+
 // int2
 /// \relates int2
 /// \brief Returns true if the all the components of the left-hand-side int2 match the other one, otherwise returns false.
@@ -94,6 +97,7 @@ inline bool cmpe( const int2& lhs, const int2& rhs );
 /// \relates int2
 /// \brief Returns true if not all of the components of the left-hand-side int2 match the other one, otherwise returns false.
 inline bool cmpne( const int2& lhs, const int2& rhs );
+
 /// \relates int2
 /// \brief Returns a copy of the int2 that has been component-wise added by the given scalar value.
 inline int2 comp_adds( const int2& lhs, const int32_t scalar );
@@ -195,6 +199,7 @@ inline bool cmpe( const int3& lhs, const int3& rhs );
 /// \relates int3
 /// \brief Returns true if not all of the components of the left-hand-side int3 match the other one, otherwise returns false.
 inline bool cmpne( const int3& lhs, const int3& rhs );
+
 /// \relates int3
 /// \brief Returns a copy of the int3 that has been component-wise added by the given scalar value.
 inline int3 comp_adds( const int3& lhs, const int32_t scalar );
@@ -296,6 +301,7 @@ inline bool cmpe( const int4& lhs, const int4& rhs );
 /// \relates int4
 /// \brief Returns true if not all of the components of the left-hand-side int4 match the other one, otherwise returns false.
 inline bool cmpne( const int4& lhs, const int4& rhs );
+
 /// \relates int4
 /// \brief Returns a copy of the int4 that has been component-wise added by the given scalar value.
 inline int4 comp_adds( const int4& lhs, const int32_t scalar );
@@ -389,6 +395,7 @@ inline bool cmpe( const uint2& lhs, const uint2& rhs );
 /// \relates uint2
 /// \brief Returns true if not all of the components of the left-hand-side uint2 match the other one, otherwise returns false.
 inline bool cmpne( const uint2& lhs, const uint2& rhs );
+
 /// \relates uint2
 /// \brief Returns a copy of the uint2 that has been component-wise added by the given scalar value.
 inline uint2 comp_adds( const uint2& lhs, const uint32_t scalar );
@@ -490,6 +497,7 @@ inline bool cmpe( const uint3& lhs, const uint3& rhs );
 /// \relates uint3
 /// \brief Returns true if not all of the components of the left-hand-side uint3 match the other one, otherwise returns false.
 inline bool cmpne( const uint3& lhs, const uint3& rhs );
+
 /// \relates uint3
 /// \brief Returns a copy of the uint3 that has been component-wise added by the given scalar value.
 inline uint3 comp_adds( const uint3& lhs, const uint32_t scalar );
@@ -591,6 +599,7 @@ inline bool cmpe( const uint4& lhs, const uint4& rhs );
 /// \relates uint4
 /// \brief Returns true if not all of the components of the left-hand-side uint4 match the other one, otherwise returns false.
 inline bool cmpne( const uint4& lhs, const uint4& rhs );
+
 /// \relates uint4
 /// \brief Returns a copy of the uint4 that has been component-wise added by the given scalar value.
 inline uint4 comp_adds( const uint4& lhs, const uint32_t scalar );
@@ -712,6 +721,7 @@ inline bool cmpe( const float2& lhs, const float2& rhs );
 /// \relates float2
 /// \brief Returns true if not all of the components of the left-hand-side float2 match the other one, otherwise returns false.
 inline bool cmpne( const float2& lhs, const float2& rhs );
+
 /// \relates float2
 /// \brief Returns a copy of the float2 that has been component-wise added by the given scalar value.
 inline float2 comp_adds( const float2& lhs, const float scalar );
@@ -821,6 +831,7 @@ inline bool cmpe( const float3& lhs, const float3& rhs );
 /// \relates float3
 /// \brief Returns true if not all of the components of the left-hand-side float3 match the other one, otherwise returns false.
 inline bool cmpne( const float3& lhs, const float3& rhs );
+
 /// \relates float3
 /// \brief Returns a copy of the float3 that has been component-wise added by the given scalar value.
 inline float3 comp_adds( const float3& lhs, const float scalar );
@@ -934,6 +945,7 @@ inline bool cmpe( const float4& lhs, const float4& rhs );
 /// \relates float4
 /// \brief Returns true if not all of the components of the left-hand-side float4 match the other one, otherwise returns false.
 inline bool cmpne( const float4& lhs, const float4& rhs );
+
 /// \relates float4
 /// \brief Returns a copy of the float4 that has been component-wise added by the given scalar value.
 inline float4 comp_adds( const float4& lhs, const float scalar );
@@ -1039,6 +1051,7 @@ inline bool cmpe( const double2& lhs, const double2& rhs );
 /// \relates double2
 /// \brief Returns true if not all of the components of the left-hand-side double2 match the other one, otherwise returns false.
 inline bool cmpne( const double2& lhs, const double2& rhs );
+
 /// \relates double2
 /// \brief Returns a copy of the double2 that has been component-wise added by the given scalar value.
 inline double2 comp_adds( const double2& lhs, const double scalar );
@@ -1148,6 +1161,7 @@ inline bool cmpe( const double3& lhs, const double3& rhs );
 /// \relates double3
 /// \brief Returns true if not all of the components of the left-hand-side double3 match the other one, otherwise returns false.
 inline bool cmpne( const double3& lhs, const double3& rhs );
+
 /// \relates double3
 /// \brief Returns a copy of the double3 that has been component-wise added by the given scalar value.
 inline double3 comp_adds( const double3& lhs, const double scalar );
@@ -1261,6 +1275,7 @@ inline bool cmpe( const double4& lhs, const double4& rhs );
 /// \relates double4
 /// \brief Returns true if not all of the components of the left-hand-side double4 match the other one, otherwise returns false.
 inline bool cmpne( const double4& lhs, const double4& rhs );
+
 /// \relates double4
 /// \brief Returns a copy of the double4 that has been component-wise added by the given scalar value.
 inline double4 comp_adds( const double4& lhs, const double scalar );

@@ -34,6 +34,8 @@ SOFTWARE.
 
 #pragma once
 
+/// \brief A vector of 4 uint32_ts with components xyzw.
+/// Components are also stored as elements in an array via a union.
 typedef struct uint4
 {
 	uint32_t x;

@@ -36,6 +36,8 @@ SOFTWARE.
 
 #include "../hlml_types.h"
 
+/// \brief A vector of 2 bool32_ts with components xy.
+/// Components are also stored as elements in an array via a union.
 typedef struct bool2
 {
 	bool32_t x;

@@ -28,6 +28,8 @@ along with The HLML Generator.  If not, see <http://www.gnu.org/licenses/>.
 #include "gen_common.h"
 #include "gen_common_sse.h"
 
+#include "gen_doc_common.h"
+
 #include "gen_funcs_vector_sse.h"
 #include "gen_funcs_matrix_sse.h"
 
@@ -58,6 +60,7 @@ static void Gen_VectorType_C( const genType_t type, const u32 numComponents ) {
 		String_Append(  &codeHeader, "\n" );
 	}
 
+	Doc_Vector( &codeHeader, numComponents, memberTypeString );
 	String_Appendf( &codeHeader, "typedef struct %s\n", fullTypeName );
 	String_Append(  &codeHeader, "{\n" );
 	for ( u32 i = 0; i < numComponents; i++ ) {
@@ -96,6 +99,7 @@ static void Gen_MatrixType_C( const genType_t type, const u32 numRows, const u32
 		"\n"
 	);
 
+	Doc_Matrix( &codeHeader, numRows, vectorMemberTypeString );
 	String_Appendf( &codeHeader, "typedef struct %s\n", fullTypeName );
 	String_Append(  &codeHeader, "{\n" );
 	String_Appendf( &codeHeader, "\t%s rows[%d];\n", vectorMemberTypeString, numRows );

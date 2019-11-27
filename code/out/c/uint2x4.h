@@ -34,6 +34,7 @@ SOFTWARE.
 
 #pragma once
 
+/// A matrix of 2 uint4s.
 typedef struct uint2x4
 {
 	uint4 rows[2];

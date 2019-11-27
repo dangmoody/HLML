@@ -34,21 +34,6 @@ along with The HLML Generator.  If not, see <http://www.gnu.org/licenses/>.
 
 #include <math.h>
 
-static void GenerateDocStruct( stringBuilder_t* codeHeader, const u32 numComponents, const char* memberTypeString ) {
-	assert( codeHeader );
-	assert( numComponents >= GEN_COMPONENT_COUNT_MIN );
-	assert( numComponents <= GEN_COMPONENT_COUNT_MAX );
-	assert( memberTypeString );
-
-	char componentsStr[GEN_COMPONENT_COUNT_MAX + 1];
-	strncpy( componentsStr, GEN_COMPONENT_NAMES_VECTOR, numComponents );
-	componentsStr[numComponents] = 0;
-
-	String_Appendf( codeHeader,
-		"/// \\brief A vector of %d %ss with components %s.\n" \
-		"/// Components are also stored as elements in an array via a union.\n", numComponents, memberTypeString, componentsStr );
-}
-
 static void GenerateDocCtorDefault( stringBuilder_t* codeHeader ) {
 	assert( codeHeader );
 
@@ -353,7 +338,7 @@ void Gen_VectorType_CPP( const genType_t type, const u32 numComponents ) {
 			"#endif\n" \
 			"\n" );
 
-		GenerateDocStruct( &codeHeader, numComponents, memberTypeString );
+		Doc_Vector( &codeHeader, numComponents, memberTypeString );
 		String_Appendf( &codeHeader, "struct %s\n", fullTypeName );
 		String_Append(  &codeHeader, "{\n" );
 		String_Append(  &codeHeader, "\tunion\n" );

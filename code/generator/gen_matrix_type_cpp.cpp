@@ -30,15 +30,6 @@ along with The HLML Generator.  If not, see <http://www.gnu.org/licenses/>.
 #include "allocator.h"
 #include "file_io.h"
 
-static void GenerateDocStruct( stringBuilder_t* codeHeader, const u32 numRows, const char* vectorMemberTypeString ) {
-	assert( codeHeader );
-	assert( numRows >= GEN_COMPONENT_COUNT_MIN );
-	assert( numRows <= GEN_COMPONENT_COUNT_MAX );
-	assert( vectorMemberTypeString );
-
-	String_Appendf( codeHeader, "/// A matrix of %d %ss.\n", numRows, vectorMemberTypeString );
-}
-
 static void GenerateDocCtorDefault( stringBuilder_t* codeHeader ) {
 	assert( codeHeader );
 
@@ -377,7 +368,7 @@ void Gen_MatrixType_CPP( const genType_t type, const u32 numRows, const u32 numC
 		}
 		String_Append( &codeHeader, "\n" );
 
-		GenerateDocStruct( &codeHeader, numRows, vectorMemberTypeString );
+		Doc_Matrix( &codeHeader, numRows, vectorMemberTypeString );
 		String_Appendf( &codeHeader, "struct %s\n", fullTypeName );
 		String_Append(  &codeHeader, "{\n" );
 		String_Appendf( &codeHeader, "\t%s rows[%d];\n", vectorMemberTypeString, numRows );

@@ -34,6 +34,7 @@ SOFTWARE.
 
 #pragma once
 
+/// A matrix of 2 bool2s.
 typedef struct bool2x2
 {
 	bool2 rows[2];

@@ -25,6 +25,30 @@ along with The HLML Generator.  If not, see <http://www.gnu.org/licenses/>.
 
 #include "string_builder.h"
 
+inline void Doc_Vector( stringBuilder_t* codeHeader, const u32 numComponents, const char* memberTypeString ) {
+	assert( codeHeader );
+	assert( numComponents >= GEN_COMPONENT_COUNT_MIN );
+	assert( numComponents <= GEN_COMPONENT_COUNT_MAX );
+	assert( memberTypeString );
+
+	char componentsStr[GEN_COMPONENT_COUNT_MAX + 1];
+	strncpy( componentsStr, GEN_COMPONENT_NAMES_VECTOR, numComponents );
+	componentsStr[numComponents] = 0;
+
+	String_Appendf( codeHeader,
+		"/// \\brief A vector of %d %ss with components %s.\n" \
+		"/// Components are also stored as elements in an array via a union.\n", numComponents, memberTypeString, componentsStr );
+}
+
+inline void Doc_Matrix( stringBuilder_t* codeHeader, const u32 numRows, const char* vectorMemberTypeString ) {
+	assert( codeHeader );
+	assert( numRows >= GEN_COMPONENT_COUNT_MIN );
+	assert( numRows <= GEN_COMPONENT_COUNT_MAX );
+	assert( vectorMemberTypeString );
+
+	String_Appendf( codeHeader, "/// A matrix of %d %ss.\n", numRows, vectorMemberTypeString );
+}
+
 inline void Doc_Floateq( stringBuilder_t* sb ) {
 	String_Append( sb,
 		"/// \\brief Returns true if the two given floating-point numbers are within a small enough epsilon range of each other that takes into account floating-point inaccuracy.\n"

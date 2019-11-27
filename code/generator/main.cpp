@@ -118,7 +118,13 @@ int main( int argc, char** argv ) {
 	// TODO(DM): turn this back on when a solution for that gets found
 #ifdef _WIN32
 	printf( "======= Generating doxygen documentation pages. =======\n" );
-	if ( !Gen_DoxygenPages( "doxygen/cpp.conf" ) ) {
+	// c
+	if ( !Gen_DocumentationPages( "doxygen/c.conf" ) ) {
+		return 1;
+	}
+
+	// cpp
+	if ( !Gen_DocumentationPages( "doxygen/cpp.conf" ) ) {
 		return 1;
 	}
 	printf( "======= Done. =======\n\n" );

@@ -40,12 +40,16 @@ SOFTWARE.
 
 #include <immintrin.h>
 
+/// \brief Holds 2 __m128s where each register is a vertical stream of that vector component.
+/// Basically, this struct holds 4 vectors.
 typedef struct float2_sse_t
 {
 	__m128 x;
 	__m128 y;
 } float2_sse_t;
 
+/// \brief Holds 3 __m128s where each register is a vertical stream of that vector component.
+/// Basically, this struct holds 4 vectors.
 typedef struct float3_sse_t
 {
 	__m128 x;
@@ -53,6 +57,8 @@ typedef struct float3_sse_t
 	__m128 z;
 } float3_sse_t;
 
+/// \brief Holds 4 __m128s where each register is a vertical stream of that vector component.
+/// Basically, this struct holds 4 vectors.
 typedef struct float4_sse_t
 {
 	__m128 x;
