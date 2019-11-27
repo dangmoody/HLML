@@ -29,8 +29,10 @@ along with The HLML Generator.  If not, see <http://www.gnu.org/licenses/>.
 #include "gen_matrix_cpp.h"
 #include "gen_funcs_vector.h"
 #include "gen_funcs_matrix.h"
+#include "gen_funcs_quaternion.h"
 #include "gen_funcs_vector_sse.h"
 #include "gen_funcs_matrix_sse.h"
+#include "gen_quaternion_tests_cpp.h"
 
 #include "defines.h"
 #include "string_builder.h"
@@ -450,6 +452,88 @@ void Gen_FunctionsMatrix( const genLanguage_t language ) {
 	Mem_Reset();
 }
 
+void Gen_FunctionsQuaternion( const genLanguage_t language ) {
+	char filePathHeader[64] = { 0 };
+	snprintf( filePathHeader, 64, "%s%s.h", GEN_FOLDER_PATHS_OUT_GEN[language], GEN_FILENAME_FUNCTIONS_QUATERNION );
+
+	stringBuilder_t contentFwdDec = String_Create( 512 * KB_TO_BYTES );
+	stringBuilder_t contentImpl = String_Create( 512 * KB_TO_BYTES );
+
+	stringBuilder_t content = String_Create( contentFwdDec.alloc + contentImpl.alloc );
+
+	String_Append( &contentFwdDec, GEN_FILE_HEADER );
+	String_Append( &contentFwdDec,
+		"#pragma once\n"
+		"\n"
+		"// ignore missing brace initializers\n"
+		"#if defined( __GNUC__ ) || defined( __clang__ )\n"
+		"#pragma GCC diagnostic push\n"
+		"#pragma GCC diagnostic ignored \"-Wmissing-braces\"\n"
+		"#endif\n"
+		"\n"
+	);
+
+	for ( u32 typeIndex = 0; typeIndex < GEN_TYPE_COUNT; typeIndex++ ) {
+		genType_t type = (genType_t) typeIndex;
+
+		const char* typeString = Gen_GetTypeString( type );
+
+		for ( u32 row = GEN_COMPONENT_COUNT_MIN; row <= GEN_COMPONENT_COUNT_MAX; row++ ) {
+			for ( u32 col = GEN_COMPONENT_COUNT_MIN; col <= GEN_COMPONENT_COUNT_MAX; col++ ) {
+				String_Appendf( &contentFwdDec, "#include \"%s%dx%d.h\"\n", typeString, row, col );
+			}
+		}
+
+		String_Appendf( &contentFwdDec, "\n" );
+	}
+
+	String_Appendf( &contentFwdDec, "#include \"" GEN_FILENAME_FUNCTIONS_VECTOR ".h\"\n" );
+	String_Appendf( &contentFwdDec, "\n" );
+
+	for ( u32 typeIndex = 0; typeIndex < GEN_TYPE_COUNT; typeIndex++ ) {
+		genType_t type = (genType_t) typeIndex;
+		if (Gen_TypeIsFloatingPoint(type) == false) {
+			continue;
+		}
+		
+		char fullTypeName[GEN_STRING_LENGTH_TYPE_NAME];
+		Gen_GetFullTypeName(type, 1, 4, fullTypeName);
+
+		printf("Basic functions %s...", fullTypeName);
+
+		String_Appendf(&contentFwdDec, "// %s\n", fullTypeName);
+
+		Gen_QuaternionMultiply(type, &contentFwdDec);
+		Gen_QuaternionMultiplyScalar(type, &contentFwdDec);
+		Gen_QuaternionLength(type, &contentFwdDec);
+		Gen_QuaternionNormalize(type, &contentFwdDec);
+		Gen_QuaternionConjugate(type, &contentFwdDec);
+		Gen_QuaternionInverse(type, &contentFwdDec);
+		Gen_QuaternionRotationAxis(type, &contentFwdDec);
+		Gen_QuaternionLerp(type, &contentFwdDec);
+		Gen_QuaternionSlerp(type, &contentFwdDec);
+
+		String_Append(&contentFwdDec, "\n");
+		printf("OK.\n");
+	}
+
+	String_Append( &contentImpl,
+		"#if defined( __GNUC__ ) || defined( __clang__ )\n"
+		"#pragma GCC diagnostic pop\n"
+		"#endif\n"
+	);
+
+	String_Append( &content, contentFwdDec.str );
+	String_Append( &content, "#ifdef HLML_IMPLEMENTATION\n" );
+	String_Append( &content, "\n" );
+	String_Append( &content, contentImpl.str );
+	String_Append( &content, "#endif // HLML_IMPLEMENTATION\n" );
+
+	FS_WriteEntireFile( filePathHeader, content.str, content.length );
+
+	Mem_Reset();
+}
+
 void Gen_FunctionsScalarSSE( const genLanguage_t language ) {
 	const char* folder = GEN_FOLDER_PATHS_OUT_GEN[language];
 
@@ -712,6 +796,22 @@ void Gen_Tests( const genLanguage_t language ) {
 				printf( "OK.\n" );
 			}
 		}
+	}
+
+	// quaternion tests
+	for ( u32 typeIndex = 0; typeIndex < GEN_TYPE_COUNT; typeIndex++ ) {
+		genType_t type = (genType_t) typeIndex;
+		if (Gen_TypeIsFloatingPoint( type ) == false) {
+			continue;
+		}
+
+		const char* typeString = Gen_GetTypeString( type );
+
+		printf( "Generating test_quaternion_%s.%s...", typeString, fileExtension );
+
+		Gen_QuaternionTests( language, type );
+
+		printf( "OK.\n" );
 	}
 }
 

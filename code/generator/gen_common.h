@@ -61,11 +61,11 @@ along with The HLML Generator.  If not, see <http://www.gnu.org/licenses/>.
 #define GEN_FILENAME_FUNCTIONS_SCALAR		"hlml_functions_scalar"
 #define GEN_FILENAME_FUNCTIONS_VECTOR		"hlml_functions_vector"
 #define GEN_FILENAME_FUNCTIONS_MATRIX		"hlml_functions_matrix"
+#define GEN_FILENAME_FUNCTIONS_QUATERNION	"hlml_functions_quaternion"
 
 #define GEN_FILENAME_FUNCTIONS_SCALAR_SSE	"hlml_functions_scalar_sse"
 #define GEN_FILENAME_FUNCTIONS_VECTOR_SSE	"hlml_functions_vector_sse"
 #define GEN_FILENAME_FUNCTIONS_MATRIX_SSE	"hlml_functions_matrix_sse"
-#define GEN_FILENAME_FUNCTIONS_QUATERNION	"hlml_functions_quaternion"
 
 #define GEN_STRING_LENGTH_NUMERIC_LITERAL	16
 #define GEN_STRING_LENGTH_TYPE_NAME			16
@@ -295,6 +295,7 @@ extern void			Gen_HeaderMain( const genLanguage_t language );
 extern void			Gen_FunctionsScalar( const char* folder );
 extern void			Gen_FunctionsVector( const genLanguage_t language );
 extern void			Gen_FunctionsMatrix( const genLanguage_t language );
+extern void			Gen_FunctionsQuaternion( const genLanguage_t language );
 
 // generate the files containing the SSE functions for each type
 extern void			Gen_FunctionsScalarSSE( const genLanguage_t language );
