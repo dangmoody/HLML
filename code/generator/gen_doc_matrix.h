@@ -28,29 +28,36 @@ along with The HLML Generator.  If not, see <http://www.gnu.org/licenses/>.
 
 inline void Doc_MatrixMultiplication( stringBuilder_t* sb, const char* fullTypeName ) {
 	String_Appendf( sb,
-		"/// \\relates %s\n" \
+		"/// \\relates %s\n"
 		"/// \\brief Returns a copy of the matrix where each row of the left-hand matrix has been dot-producted by the corresponding column of the right-hand matrix.\n", fullTypeName
 	);
 }
 
 inline void Doc_MatrixMultiplicationCompound( stringBuilder_t* sb, const char* fullTypeName ) {
 	String_Appendf( sb,
-		"/// \\relates %s\n" \
+		"/// \\relates %s\n"
 		"/// \\brief Dot products each row of the left-hand matrix with the corresponding column of the right-hand matrix.\n", fullTypeName
 	);
 }
 
 inline void Doc_MatrixDivision( stringBuilder_t* sb, const char* fullTypeName ) {
 	String_Appendf( sb,
-		"/// \\relates %s\n" \
+		"/// \\relates %s\n"
 		"/// \\brief Returns a copy of the matrix where the left-hand matrix has been mathematically multiplied by the inverse of the right-hand matrix.\n", fullTypeName
 	);
 }
 
 inline void Doc_MatrixDivisionCompound( stringBuilder_t* sb, const char* fullTypeName ) {
 	String_Appendf( sb,
-		"/// \\relates %s\n" \
+		"/// \\relates %s\n"
 		"/// \\brief Multiplies the left-hand matrix by the right-hand matrix (dot product row/col style).\n", fullTypeName
+	);
+}
+
+inline void Doc_MatrixMultiplicationVector( stringBuilder_t* sb, const char* fullTypeName ) {
+	String_Appendf( sb,
+		"/// \\relates %s\n"
+		"/// \\brief Returns the right-hand vector multiplied by the left-hand matrix.\n", fullTypeName
 	);
 }
 

@@ -12,9 +12,8 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="allocator.cpp" />
-    <ClCompile Include="FileIO_common.cpp" />
-    <ClCompile Include="FileIO_unix.cpp" />
-    <ClCompile Include="FileIO_win64.cpp" />
+    <ClCompile Include="file_io_unix.cpp" />
+    <ClCompile Include="file_io_win64.cpp" />
     <ClCompile Include="GeneratorQuaternionTests.cpp" />
     <ClCompile Include="GeneratorScalarTests.cpp" />
     <ClCompile Include="gen_common.cpp" />
@@ -29,8 +28,8 @@
     <ClCompile Include="GeneratorVector.cpp" />
     <ClCompile Include="gen_funcs_vector_sse.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="os_helpers_unix.cpp" />
-    <ClCompile Include="os_helpers_win64.cpp" />
+    <ClCompile Include="os_process_unix.cpp" />
+    <ClCompile Include="os_process_win64.cpp" />
     <ClCompile Include="string_builder.cpp" />
     <ClCompile Include="timer_unix.cpp" />
     <ClCompile Include="timer_win64.cpp" />
@@ -38,7 +37,7 @@
   <ItemGroup>
     <ClInclude Include="allocator.h" />
     <ClInclude Include="defines.h" />
-    <ClInclude Include="FileIO.h" />
+    <ClInclude Include="file_io.h" />
     <ClInclude Include="GeneratorQuaternionTests.h" />
     <ClInclude Include="GeneratorScalarTests.h" />
     <ClInclude Include="gen_common.h" />
@@ -58,10 +57,11 @@
     <ClInclude Include="GeneratorVector.h" />
     <ClInclude Include="gen_funcs_vector_sse.h" />
     <ClInclude Include="int_types.h" />
-    <ClInclude Include="os_helpers.h" />
+    <ClInclude Include="os_process.h" />
     <ClInclude Include="string_builder.h" />
     <ClInclude Include="string_helpers.h" />
     <ClInclude Include="timer.h" />
+    <ClInclude Include="win64_helpers.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>

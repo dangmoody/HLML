@@ -42,15 +42,6 @@
     <ClCompile Include="GeneratorScalarTests.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="FileIO_common.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="FileIO_win64.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="FileIO_unix.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="allocator.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -63,10 +54,10 @@
     <ClCompile Include="gen_common_sse.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="os_helpers_win64.cpp">
+    <ClCompile Include="os_process_win64.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="os_helpers_unix.cpp">
+    <ClCompile Include="os_process_unix.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="gen_funcs_matrix_sse.cpp">
@@ -81,15 +72,18 @@
     <ClCompile Include="timer_win64.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="file_io_unix.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="file_io_win64.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="GeneratorQuaternionTests.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="gen_common.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="FileIO.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="gen_funcs_vector.h">
@@ -131,7 +125,7 @@
     <ClInclude Include="gen_common_sse.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="os_helpers.h">
+    <ClInclude Include="os_process.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="defines.h">
@@ -159,6 +153,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="int_types.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="file_io.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="win64_helpers.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="GeneratorQuaternionTests.h">

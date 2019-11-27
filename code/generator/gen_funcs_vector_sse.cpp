@@ -6,16 +6,13 @@
 
 #include "string_builder.h"
 
-void Gen_SSE_VectorNormalize( const genType_t type, const u32 numComponents, stringBuilder_t* sbHeader ) {
+void Gen_SSE_VectorNormalize( const genLanguage_t language, const genType_t type, const u32 numComponents, stringBuilder_t* sbHeader ) {
 	assert( numComponents >= GEN_COMPONENT_COUNT_MIN );
 	assert( numComponents <= GEN_COMPONENT_COUNT_MAX );
 
 	if ( !Gen_TypeSupportsSSE( type ) ) {
 		return;
 	}
-
-	char fullTypeName[GEN_STRING_LENGTH_TYPE_NAME];
-	Gen_GetFullTypeName( type, 1, numComponents, fullTypeName );
 
 	char oneStr[GEN_STRING_LENGTH_NUMERIC_LITERAL];
 	Gen_GetNumericLiteral( type, 1.0f, oneStr, 1 );
@@ -28,16 +25,22 @@ void Gen_SSE_VectorNormalize( const genType_t type, const u32 numComponents, str
 	const char* rcpFuncStr = Gen_SSE_GetIntrinsicRcp( type );
 
 	char sseTypeName[GEN_STRING_LENGTH_SSE_INPUT_NAME];
-	Gen_SSE_GetFullTypeName( fullTypeName, sseTypeName );
+	Gen_SSE_GetFullTypeName( type, 1, numComponents, sseTypeName );
 
-	Doc_SSE_VectorNormalize( sbHeader, fullTypeName );
-	String_Appendf( sbHeader, "inline void normalize_sse( const %s* in, %s* out )\n", sseTypeName, sseTypeName );
+	char normalizeFuncStr[GEN_STRING_LENGTH_FUNCTION_NAME];
+	Gen_SSE_GetFuncNameNormalize( language, type, numComponents, normalizeFuncStr );
+
+	char lengthFuncStr[GEN_STRING_LENGTH_FUNCTION_NAME];
+	Gen_SSE_GetFuncNameLength( language, type, numComponents, lengthFuncStr );
+
+	Doc_SSE_VectorNormalize( sbHeader, sseTypeName );
+	String_Appendf( sbHeader, "inline static void %s( const %s* in, %s* out )\n", normalizeFuncStr, sseTypeName, sseTypeName );
 	String_Append(  sbHeader, "{\n" );
 	String_Appendf( sbHeader, "\tassert( in );\n" );
 	String_Appendf( sbHeader, "\tassert( out );\n" );
 	String_Append(  sbHeader, "\n" );
 	String_Appendf( sbHeader, "\t%s len;\n", registerName );
-	String_Append(  sbHeader, "\tlength_sse( in, &len );\n" );
+	String_Appendf( sbHeader, "\t%s( in, &len );\n", lengthFuncStr );
 	String_Append(  sbHeader, "\n" );
 	String_Appendf( sbHeader, "\t%s invlen = %s( len );\n", registerName, rcpFuncStr );
 	String_Append(  sbHeader, "\n" );
@@ -50,7 +53,7 @@ void Gen_SSE_VectorNormalize( const genType_t type, const u32 numComponents, str
 	String_Append(  sbHeader, "\n" );
 }
 
-void Gen_SSE_VectorDot( const genType_t type, const u32 numComponents, stringBuilder_t* sbHeader ) {
+void Gen_SSE_VectorDot( const genLanguage_t language, const genType_t type, const u32 numComponents, stringBuilder_t* sbHeader ) {
 	assert( numComponents >= GEN_COMPONENT_COUNT_MIN );
 	assert( numComponents <= GEN_COMPONENT_COUNT_MAX );
 
@@ -58,22 +61,22 @@ void Gen_SSE_VectorDot( const genType_t type, const u32 numComponents, stringBui
 		return;
 	}
 
-	char fullTypeName[GEN_STRING_LENGTH_TYPE_NAME];
-	Gen_GetFullTypeName( type, 1, numComponents, fullTypeName );
-
 	char sseTypeName[GEN_STRING_LENGTH_SSE_INPUT_NAME];
-	Gen_SSE_GetFullTypeName( fullTypeName, sseTypeName );
+	Gen_SSE_GetFullTypeName( type, 1, numComponents, sseTypeName );
 
 	const char* registerName = Gen_SSE_GetRegisterName( type );
 
 	char addFuncStr[GEN_STRING_LENGTH_SSE_INPUT_NAME];
-	char mulFuncStr[GEN_STRING_LENGTH_SSE_INPUT_NAME];
-
 	Gen_SSE_GetIntrinsicArithmetic( type, GEN_OP_ARITHMETIC_ADD, addFuncStr );
+
+	char mulFuncStr[GEN_STRING_LENGTH_SSE_INPUT_NAME];
 	Gen_SSE_GetIntrinsicArithmetic( type, GEN_OP_ARITHMETIC_MUL, mulFuncStr );
 
-	Doc_SSE_VectorDot( sbHeader, fullTypeName );
-	String_Appendf( sbHeader, "inline void dot_sse( const %s* lhs, const %s* rhs, %s* out_results )\n", sseTypeName, sseTypeName, registerName );
+	char dotFuncStr[GEN_STRING_LENGTH_FUNCTION_NAME];
+	Gen_SSE_GetFuncNameDot( language, type, numComponents, dotFuncStr );
+
+	Doc_SSE_VectorDot( sbHeader, sseTypeName );
+	String_Appendf( sbHeader, "inline static void %s( const %s* lhs, const %s* rhs, %s* out_results )\n", dotFuncStr, sseTypeName, sseTypeName, registerName );
 	String_Append(  sbHeader, "{\n" );
 	String_Appendf( sbHeader, "\tassert( lhs );\n" );
 	String_Appendf( sbHeader, "\tassert( rhs );\n" );
@@ -113,7 +116,7 @@ void Gen_SSE_VectorDot( const genType_t type, const u32 numComponents, stringBui
 	String_Append(  sbHeader, "\n" );
 }
 
-void Gen_SSE_VectorCross( const genType_t type, const u32 numComponents, stringBuilder_t* sbHeader ) {
+void Gen_SSE_VectorCross( const genLanguage_t language, const genType_t type, const u32 numComponents, stringBuilder_t* sbHeader ) {
 	assert( numComponents >= GEN_COMPONENT_COUNT_MIN );
 	assert( numComponents <= GEN_COMPONENT_COUNT_MAX );
 
@@ -125,11 +128,8 @@ void Gen_SSE_VectorCross( const genType_t type, const u32 numComponents, stringB
 		return;
 	}
 
-	char fullTypeName[GEN_STRING_LENGTH_TYPE_NAME];
-	Gen_GetFullTypeName( type, 1, numComponents, fullTypeName );
-
 	char sseTypeName[GEN_STRING_LENGTH_SSE_INPUT_NAME];
-	Gen_SSE_GetFullTypeName( fullTypeName, sseTypeName );
+	Gen_SSE_GetFullTypeName( type, 1, numComponents, sseTypeName );
 
 	const char* registerName = Gen_SSE_GetRegisterName( type );
 
@@ -139,11 +139,11 @@ void Gen_SSE_VectorCross( const genType_t type, const u32 numComponents, stringB
 	char subFuncStr[GEN_STRING_LENGTH_SSE_INTRINSIC];
 	Gen_SSE_GetIntrinsicArithmetic( type, GEN_OP_ARITHMETIC_SUB, subFuncStr );
 
-	Doc_SSE_VectorCross( sbHeader, fullTypeName );
-	String_Appendf( sbHeader, "inline void cross_sse( const %s* lhs, const %s* rhs, %s* out_results );\n", sseTypeName, sseTypeName, sseTypeName );
-	String_Append(  sbHeader, "\n" );
+	char crossFuncStr[GEN_STRING_LENGTH_FUNCTION_NAME];
+	Gen_SSE_GetFuncNameCross( language, type, numComponents, crossFuncStr );
 
-	String_Appendf( sbHeader, "inline void cross_sse( const %s* lhs, const %s* rhs, %s* out_results )\n", sseTypeName, sseTypeName, sseTypeName );
+	Doc_SSE_VectorCross( sbHeader, sseTypeName );
+	String_Appendf( sbHeader, "inline static void %s( const %s* lhs, const %s* rhs, %s* out_results )\n", crossFuncStr, sseTypeName, sseTypeName, sseTypeName );
 	String_Append(  sbHeader, "{\n" );
 	String_Append(  sbHeader, "\tassert( lhs );\n" );
 	String_Append(  sbHeader, "\tassert( rhs );\n" );
@@ -168,7 +168,7 @@ void Gen_SSE_VectorCross( const genType_t type, const u32 numComponents, stringB
 	String_Append(  sbHeader, "\n" );
 }
 
-void Gen_SSE_VectorLength( const genType_t type, const u32 numComponents, stringBuilder_t* sbHeader ) {
+void Gen_SSE_VectorLength( const genLanguage_t language, const genType_t type, const u32 numComponents, stringBuilder_t* sbHeader ) {
 	assert( numComponents >= GEN_COMPONENT_COUNT_MIN );
 	assert( numComponents <= GEN_COMPONENT_COUNT_MAX );
 
@@ -176,45 +176,51 @@ void Gen_SSE_VectorLength( const genType_t type, const u32 numComponents, string
 		return;
 	}
 
-	char fullTypeName[GEN_STRING_LENGTH_TYPE_NAME];
-	Gen_GetFullTypeName( type, 1, numComponents, fullTypeName );
-
 	char sseTypeName[GEN_STRING_LENGTH_SSE_INPUT_NAME];
-	Gen_SSE_GetFullTypeName( fullTypeName, sseTypeName );
+	Gen_SSE_GetFullTypeName( type, 1, numComponents, sseTypeName );
 
 	const char* registerName = Gen_SSE_GetRegisterName( type );
 
-	const char* sqrtFuncStr = Gen_SSE_GetFuncStrSqrt( type );
+	const char* sqrtIntrinsic = Gen_SSE_GetIntrinsicSqrt( type );
+
+	char lengthsqFuncStr[GEN_STRING_LENGTH_FUNCTION_NAME];
+	Gen_SSE_GetFuncNameLengthsq( language, type, numComponents, lengthsqFuncStr );
 
 	// lengthsq
 	{
-		Doc_SSE_VectorLengthsq( sbHeader, fullTypeName );
-		String_Appendf( sbHeader, "inline void lengthsq_sse( const %s* in, %s* out_results )\n", sseTypeName, registerName );
+		char dotFuncStr[GEN_STRING_LENGTH_FUNCTION_NAME];
+		Gen_SSE_GetFuncNameDot( language, type, numComponents, dotFuncStr );
+
+		Doc_SSE_VectorLengthsq( sbHeader, sseTypeName );
+		String_Appendf( sbHeader, "inline static void %s( const %s* in, %s* out_results )\n", lengthsqFuncStr, sseTypeName, registerName );
 		String_Append(  sbHeader, "{\n" );
 		String_Appendf( sbHeader, "\tassert( in );\n" );
 		String_Appendf( sbHeader, "\tassert( out_results );\n" );
 		String_Append(  sbHeader, "\n" );
-		String_Appendf( sbHeader, "\tdot_sse( in, in, out_results );\n" );
+		String_Appendf( sbHeader, "\t%s( in, in, out_results );\n", dotFuncStr );
 		String_Append(  sbHeader, "}\n" );
 		String_Append(  sbHeader, "\n" );
 	}
 
 	// length
 	{
-		Doc_SSE_VectorLength( sbHeader, fullTypeName );
-		String_Appendf( sbHeader, "inline void length_sse( const %s* in, %s* out_results )\n", sseTypeName, registerName );
+		char lengthFuncStr[GEN_STRING_LENGTH_FUNCTION_NAME];
+		Gen_SSE_GetFuncNameLength( language, type, numComponents, lengthFuncStr );
+
+		Doc_SSE_VectorLength( sbHeader, sseTypeName );
+		String_Appendf( sbHeader, "inline static void %s( const %s* in, %s* out_results )\n", lengthFuncStr, sseTypeName, registerName );
 		String_Append(  sbHeader, "{\n" );
 		String_Appendf( sbHeader, "\tassert( in );\n" );
 		String_Appendf( sbHeader, "\tassert( out_results );\n" );
 		String_Append(  sbHeader, "\n" );
-		String_Appendf( sbHeader, "\tlengthsq_sse( in, out_results );\n" );
-		String_Appendf( sbHeader, "\t*out_results = %s( *out_results );\n", sqrtFuncStr );
+		String_Appendf( sbHeader, "\t%s( in, out_results );\n", lengthsqFuncStr );
+		String_Appendf( sbHeader, "\t*out_results = %s( *out_results );\n", sqrtIntrinsic );
 		String_Append(  sbHeader, "}\n" );
 		String_Append(  sbHeader, "\n" );
 	}
 }
 
-void Gen_SSE_VectorDistance( const genType_t type, const u32 numComponents, stringBuilder_t* sbHeader ) {
+void Gen_SSE_VectorDistance( const genLanguage_t language, const genType_t type, const u32 numComponents, stringBuilder_t* sbHeader ) {
 	assert( numComponents >= GEN_COMPONENT_COUNT_MIN );
 	assert( numComponents <= GEN_COMPONENT_COUNT_MAX );
 
@@ -222,11 +228,8 @@ void Gen_SSE_VectorDistance( const genType_t type, const u32 numComponents, stri
 		return;
 	}
 
-	char fullTypeName[GEN_STRING_LENGTH_TYPE_NAME];
-	Gen_GetFullTypeName( type, 1, numComponents, fullTypeName );
-
 	char sseTypeName[GEN_STRING_LENGTH_SSE_INPUT_NAME];
-	Gen_SSE_GetFullTypeName( fullTypeName, sseTypeName );
+	Gen_SSE_GetFullTypeName( type, 1, numComponents, sseTypeName );
 
 	const char* registerName = Gen_SSE_GetRegisterName( type );
 
@@ -235,8 +238,14 @@ void Gen_SSE_VectorDistance( const genType_t type, const u32 numComponents, stri
 
 	// distancesq
 	{
-		Doc_SSE_VectorDistancesq( sbHeader, fullTypeName );
-		String_Appendf( sbHeader, "inline void distancesq_sse( const %s* lhs, const %s* rhs, %s* out_results )\n", sseTypeName, sseTypeName, registerName );
+		char distancesqFuncStr[GEN_STRING_LENGTH_FUNCTION_NAME];
+		Gen_SSE_GetFuncNameDistancesq( language, type, numComponents, distancesqFuncStr );
+
+		char lengthsqFuncStr[GEN_STRING_LENGTH_FUNCTION_NAME];
+		Gen_SSE_GetFuncNameLengthsq( language, type, numComponents, lengthsqFuncStr );
+
+		Doc_SSE_VectorDistancesq( sbHeader, sseTypeName );
+		String_Appendf( sbHeader, "inline static void %s( const %s* lhs, const %s* rhs, %s* out_results )\n", distancesqFuncStr, sseTypeName, sseTypeName, registerName );
 		String_Append(  sbHeader, "{\n" );
 		String_Append(  sbHeader, "\tassert( lhs );\n" );
 		String_Append(  sbHeader, "\tassert( rhs );\n" );
@@ -249,15 +258,21 @@ void Gen_SSE_VectorDistance( const genType_t type, const u32 numComponents, stri
 			String_Appendf( sbHeader, "\tdata.%c = %s( lhs->%c, rhs->%c );\n", componentStr, subFuncStr, componentStr, componentStr );
 		}
 		String_Append(  sbHeader, "\n" );
-		String_Append(  sbHeader, "\tlengthsq_sse( &data, out_results );\n" );
+		String_Appendf( sbHeader, "\t%s( &data, out_results );\n", lengthsqFuncStr );
 		String_Append(  sbHeader, "}\n" );
 		String_Append(  sbHeader, "\n" );
 	}
 
 	// distance
 	{
-		Doc_SSE_VectorDistance( sbHeader, fullTypeName );
-		String_Appendf( sbHeader, "inline void distance_sse( const %s* lhs, const %s* rhs, %s* out_results )\n", sseTypeName, sseTypeName, registerName );
+		char distanceFuncStr[GEN_STRING_LENGTH_FUNCTION_NAME];
+		Gen_SSE_GetFuncNameDistance( language, type, numComponents, distanceFuncStr );
+
+		char lengthFuncStr[GEN_STRING_LENGTH_FUNCTION_NAME];
+		Gen_SSE_GetFuncNameLength( language, type, numComponents, lengthFuncStr );
+
+		Doc_SSE_VectorDistance( sbHeader, sseTypeName );
+		String_Appendf( sbHeader, "inline static void %s( const %s* lhs, const %s* rhs, %s* out_results )\n", distanceFuncStr, sseTypeName, sseTypeName, registerName );
 		String_Append(  sbHeader, "{\n" );
 		String_Append(  sbHeader, "\tassert( lhs );\n" );
 		String_Append(  sbHeader, "\tassert( rhs );\n" );
@@ -270,81 +285,8 @@ void Gen_SSE_VectorDistance( const genType_t type, const u32 numComponents, stri
 			String_Appendf( sbHeader, "\tdata.%c = %s( lhs->%c, rhs->%c );\n", componentStr, subFuncStr, componentStr, componentStr );
 		}
 		String_Append(  sbHeader, "\n" );
-		String_Append(  sbHeader, "\tlength_sse( &data, out_results );\n" );
+		String_Appendf( sbHeader, "\t%s( &data, out_results );\n", lengthFuncStr );
 		String_Append(  sbHeader, "}\n" );
 		String_Append(  sbHeader, "\n" );
 	}
 }
-
-#if 0
-void Gen_SSE_VectorAngle( const genType_t type, const u32 numComponents, stringBuilder_t* sbHeader ) {
-	assert( numComponents >= GEN_COMPONENT_COUNT_MIN );
-	assert( numComponents <= GEN_COMPONENT_COUNT_MAX );
-
-	if ( !Gen_TypeSupportsSSE( type ) ) {
-		return;
-	}
-
-	char inputDataNameAngle[GEN_STRING_LENGTH_SSE_INPUT_NAME];
-	Gen_SSE_GetInputDataNameAngle( type, numComponents, inputDataNameAngle );
-
-	char inputDataNameNormalize[GEN_STRING_LENGTH_SSE_INPUT_NAME];
-	Gen_SSE_GetInputDataName( type, 1, numComponents, "normalize", inputDataNameNormalize );
-
-	char inputDataNameDot[GEN_STRING_LENGTH_SSE_INPUT_NAME];
-	Gen_SSE_GetInputDataName( type, 1, numComponents, "normalize", inputDataNameDot );
-
-	char inputDataNameDegrees[GEN_STRING_LENGTH_SSE_INPUT_NAME];
-	Gen_SSE_GetInputDataName( type, 1, 1, "degrees" inputDataNameDegrees );
-
-	const char* registerName	= Gen_SSE_GetRegisterName( type );
-	const char* acosFuncStr		= Gen_SSE_GetFuncStrAcos( type );
-
-	String_Appendf( sbHeader, "struct %s\n", inputDataNameAngle );
-	String_Append(  sbHeader, "{\n" );
-	String_Appendf( sbHeader, "\t%s lhs[%d];\n", registerName, numComponents );
-	String_Appendf( sbHeader, "\t%s rhs[%d];\n", registerName, numComponents );
-	String_Append(  sbHeader, "};\n" );
-	String_Append(  sbHeader, "\n" );
-
-	String_Appendf( sbHeader, "inline void angle_sse( const %s* in, %s* out_results )\n", inputDataNameAngle, registerName );
-	String_Append(  sbHeader, "{\n" );
-	String_Appendf( sbHeader, "\tassert( in );\n" );
-	String_Appendf( sbHeader, "\tassert( out_results );\n" );
-	String_Append(  sbHeader, "\n" );
-	String_Appendf( sbHeader, "\t%s resultsLHS[%d];\n", registerName, numComponents );
-	String_Appendf( sbHeader, "\t%s resultsRHS[%d];\n", registerName, numComponents );
-	String_Appendf( sbHeader, "\t%s resultsDot;\n", registerName );
-	String_Append(  sbHeader, "\n" );
-	String_Appendf( sbHeader, "\t%s inNormalize;\n", inputDataNameNormalize );
-	String_Append(  sbHeader, "\n" );
-	for ( u32 i = 0; i < numComponents; i++ ) {
-		String_Appendf( sbHeader, "\tinNormalize.%c = in->lhs[%d];\n", i, i );
-	}
-	String_Appendf( sbHeader, "\tnormalize_sse( inNormalize, resultsLHS );\n" );
-	String_Append(  sbHeader, "\n" );
-	for ( u32 i = 0; i < numComponents; i++ ) {
-		String_Appendf( sbHeader, "\tinNormalize.%c = in->rhs[%d];\n", i, i );
-	}
-	String_Append(  sbHeader, "\tnormalize_sse( inNormalize, resultsRHS );\n" );
-	String_Append(  sbHeader, "\n" );
-	String_Appendf( sbHeader, "\t%s inDot;\n", inputDataNameDot );
-	String_Append(  sbHeader, "\n" );
-	for ( u32 i = 0; i < numComponents; i++ ) {
-		String_Appendf( sbHeader, "\tinDot.lhs[%d] = resultsLHS[%d];\n", i, i );
-	}
-	String_Append(  sbHeader, "\n" );
-	for ( u32 i = 0; i < numComponents; i++ ) {
-		String_Appendf( sbHeader, "\tinDot.rhs[%d] = resultsRHS[%d];\n", i, i );
-	}
-	String_Append(  sbHeader, "\n" );
-	String_Appendf( sbHeader, "\tdot_sse( &inDot, &resultsDot );\n" );
-	String_Append(  sbHeader, "\n" );
-	String_Appendf( sbHeader, "\t%s resultsAcos = %s( resultsDot );\n", registerName, acosFuncStr );
-	String_Append(  sbHeader, "\n" );
-	String_Appendf( sbHeader, "\t%s inDegrees = { resultsAcos };\n", inputDataNameDegrees );
-	String_Appendf( sbHeader, "\tdegrees_sse( &inDegrees, out_results );\n", inputDataNameDegrees );
-	String_Append(  sbHeader, "}\n" );
-	String_Append(  sbHeader, "\n" );
-}
-#endif
