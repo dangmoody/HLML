@@ -10,7 +10,7 @@ HLML is a maths library for C and C++ focused on games/graphics programming whic
 * Ability to forward declare types.
 
 As well as the above, HLML also offers the following:
-* SIMD helper maths functions (experimental: in progress).
+* SIMD helper maths functions (functionality is experimental and still potentially subject to change).
 * Non-uniform matrix types.
 * Boolean vectors to aid equality checking of vector types.
 
