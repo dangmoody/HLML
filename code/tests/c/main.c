@@ -124,6 +124,9 @@ SOFTWARE.
 #include "test_double4x3.c"
 #include "test_double4x4.c"
 
+#include "test_quaternion_float4.c"
+#include "test_quaternion_double4.c"
+
 static void OnSuiteEnd( void* userdata )
 {
 	( (void) userdata );
@@ -224,6 +227,9 @@ int main( int argc, char** argv )
 	TEMPER_RUN_SUITE( Test_double4x2 );
 	TEMPER_RUN_SUITE( Test_double4x3 );
 	TEMPER_RUN_SUITE( Test_double4x4 );
+
+	TEMPER_RUN_SUITE( Test_quaternion_float4 );
+	TEMPER_RUN_SUITE( Test_quaternion_double4 );
 
 	TEMPER_SHOW_STATS();
 

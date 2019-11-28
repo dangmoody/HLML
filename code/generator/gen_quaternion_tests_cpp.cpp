@@ -408,8 +408,10 @@ void Gen_QuaternionTests( const genLanguage_t language, const genType_t type ) {
 	String_Append( &code, codeTests.str );
 	String_Append( &code, codeSuite.str );
 
+	const char* fileExtension = GEN_SOURCE_FILE_EXTENSIONS[language];
+
 	char filename[1024] = { 0 };
-	snprintf( filename, 1024, "%stest_quaternion_%s.cpp", GEN_FOLDER_PATHS_TESTS[language], fullTypeString );
+	snprintf( filename, 1024, "%stest_quaternion_%s.%s", GEN_FOLDER_PATHS_TESTS[language], fullTypeString, fileExtension );
 
 	FS_WriteEntireFile( filename, code.str, code.length );
 

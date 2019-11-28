@@ -69,7 +69,7 @@ along with The HLML Generator.  If not, see <http://www.gnu.org/licenses/>.
 
 #define GEN_STRING_LENGTH_NUMERIC_LITERAL	16
 #define GEN_STRING_LENGTH_TYPE_NAME			16
-#define GEN_STRING_LENGTH_FUNCTION_NAME		32
+#define GEN_STRING_LENGTH_FUNCTION_NAME		50
 #define GEN_STRING_LENGTH_SSE_INPUT_NAME	34
 #define GEN_STRING_LENGTH_SSE_INTRINSIC		32
 
@@ -913,4 +913,66 @@ inline void Gen_GetFuncNameMatrixMultiplyVector( const genLanguage_t language, c
 	} else {
 		Gen_GetFuncNameInternal( language, type, numRows, numCols, "mul", outString );
 	}
+}
+
+inline void Gen_GetFuncNameQuaternionMultiplyQuaternion( const genLanguage_t language, const genType_t type, char* outString ) {
+	assert( outString );
+	
+	if ( language == GEN_LANGUAGE_C ) {
+		Gen_GetFuncNameInternal( language, type, 1, 4, "quaternion_mulq", outString );
+	} else {
+		Gen_GetFuncNameInternal( language, type, 1, 4, "quaternion_mul", outString );
+	}
+}
+
+inline void Gen_GetFuncNameQuaternionMultiplyScalar( const genLanguage_t language, const genType_t type, char* outString ) {
+	assert( outString );
+	
+	if ( language == GEN_LANGUAGE_C ) {
+		Gen_GetFuncNameInternal( language, type, 1, 4, "quaternion_mul", outString );
+	} else {
+		Gen_GetFuncNameInternal( language, type, 1, 4, "quaternion_mul", outString );
+	}
+}
+
+inline void Gen_GetFuncNameQuaternionLength( const genLanguage_t language, const genType_t type, char* outString ) {
+	assert( outString );
+	
+	Gen_GetFuncNameInternal( language, type, 1, 4, "quaternion_length", outString );
+}
+
+inline void Gen_GetFuncNameQuaternionNormalize( const genLanguage_t language, const genType_t type, char* outString ) {
+	assert( outString );
+	
+	Gen_GetFuncNameInternal( language, type, 1, 4, "quaternion_normalize", outString );
+}
+
+inline void Gen_GetFuncNameQuaternionConjugate( const genLanguage_t language, const genType_t type, char* outString ) {
+	assert( outString );
+	
+	Gen_GetFuncNameInternal( language, type, 1, 4, "quaternion_conjugate", outString );
+}
+
+inline void Gen_GetFuncNameQuaternionInverse( const genLanguage_t language, const genType_t type, char* outString ) {
+	assert( outString );
+	
+	Gen_GetFuncNameInternal( language, type, 1, 4, "quaternion_inverse", outString );
+}
+
+inline void Gen_GetFuncNameQuaternionRotateVectorAngleAxis( const genLanguage_t language, const genType_t type, char* outString ) {
+	assert( outString );
+	
+	Gen_GetFuncNameInternal( language, type, 1, 4, "quaternion_rotate_vector_about_angle_axis", outString );
+}
+
+inline void Gen_GetFuncNameQuaternionLerp( const genLanguage_t language, const genType_t type, char* outString ) {
+	assert( outString );
+	
+	Gen_GetFuncNameInternal( language, type, 1, 4, "quaternion_lerp", outString );
+}
+
+inline void Gen_GetFuncNameQuaternionSlerp( const genLanguage_t language, const genType_t type, char* outString ) {
+	assert( outString );
+	
+	Gen_GetFuncNameInternal( language, type, 1, 4, "quaternion_slerp", outString );
 }

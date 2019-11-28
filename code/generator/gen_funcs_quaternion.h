@@ -25,13 +25,13 @@ along with The HLML Generator.  If not, see <http://www.gnu.org/licenses/>.
 
 #include "gen_common.h"
 
-extern void		Gen_QuaternionMultiply(const genType_t type, stringBuilder_t* sbHeader);
-extern void		Gen_QuaternionMultiplyScalar(const genType_t type, stringBuilder_t* sbHeader);
-extern void		Gen_QuaternionLength(const genType_t type, stringBuilder_t* sbHeader);
-extern void		Gen_QuaternionNormalize(const genType_t type, stringBuilder_t* sbHeader);
-extern void		Gen_QuaternionConjugate(const genType_t type, stringBuilder_t* sbHeader);
-extern void		Gen_QuaternionInverse(const genType_t type, stringBuilder_t* sbHeader);
+extern void		Gen_QuaternionMultiply( const genLanguage_t language, const genType_t type, stringBuilder_t* sbFwdDec, stringBuilder_t* sbImpl );
+extern void		Gen_QuaternionMultiplyScalar( const genLanguage_t language, const genType_t type, stringBuilder_t* sbFwdDec, stringBuilder_t* sbImpl );
+extern void		Gen_QuaternionLength(  const genLanguage_t language, const genType_t type, stringBuilder_t* sbFwdDec, stringBuilder_t* sbImpl );
+extern void		Gen_QuaternionNormalize( const genLanguage_t language, const genType_t type, stringBuilder_t* sbFwdDec, stringBuilder_t* sbImpl );
+extern void		Gen_QuaternionConjugate( const genLanguage_t language, const genType_t type, stringBuilder_t* sbFwdDec, stringBuilder_t* sbImpl );
+extern void		Gen_QuaternionInverse( const genLanguage_t language, const genType_t type, stringBuilder_t* sbFwdDec, stringBuilder_t* sbImpl );
 
-extern void		Gen_QuaternionRotationAxis(const genType_t type, stringBuilder_t* sbHeader);
-extern void		Gen_QuaternionLerp(const genType_t type, stringBuilder_t* sbHeader);
-extern void		Gen_QuaternionSlerp(const genType_t type, stringBuilder_t* sbHeader);
+extern void		Gen_QuaternionRotationAxis( const genLanguage_t language, const genType_t type, stringBuilder_t* sbFwdDec, stringBuilder_t* sbImpl );
+extern void		Gen_QuaternionLerp( const genLanguage_t language, const genType_t type, stringBuilder_t* sbFwdDec, stringBuilder_t* sbImpl );
+extern void		Gen_QuaternionSlerp( const genLanguage_t language, const genType_t type, stringBuilder_t* sbFwdDec, stringBuilder_t* sbImpl );

@@ -183,6 +183,7 @@ void Gen_HeaderMain( const genLanguage_t language ) {
 	String_Appendf( &sb, "#include \"" GEN_FILENAME_FUNCTIONS_SCALAR ".h\"\n" );
 	String_Appendf( &sb, "#include \"" GEN_FILENAME_FUNCTIONS_VECTOR ".h\"\n" );
 	String_Appendf( &sb, "#include \"" GEN_FILENAME_FUNCTIONS_MATRIX ".h\"\n" );
+	String_Appendf( &sb, "#include \"" GEN_FILENAME_FUNCTIONS_QUATERNION ".h\"\n" );
 	String_Append(  &sb, "\n" );
 
 	// include SSE helpers
@@ -503,15 +504,15 @@ void Gen_FunctionsQuaternion( const genLanguage_t language ) {
 
 		String_Appendf(&contentFwdDec, "// %s\n", fullTypeName);
 
-		Gen_QuaternionMultiply(type, &contentFwdDec);
-		Gen_QuaternionMultiplyScalar(type, &contentFwdDec);
-		Gen_QuaternionLength(type, &contentFwdDec);
-		Gen_QuaternionNormalize(type, &contentFwdDec);
-		Gen_QuaternionConjugate(type, &contentFwdDec);
-		Gen_QuaternionInverse(type, &contentFwdDec);
-		Gen_QuaternionRotationAxis(type, &contentFwdDec);
-		Gen_QuaternionLerp(type, &contentFwdDec);
-		Gen_QuaternionSlerp(type, &contentFwdDec);
+		Gen_QuaternionMultiply( language, type, &contentFwdDec, &contentImpl );
+		Gen_QuaternionMultiplyScalar( language, type, &contentFwdDec, &contentImpl );
+		Gen_QuaternionLength( language, type, &contentFwdDec, &contentImpl );
+		Gen_QuaternionNormalize( language, type, &contentFwdDec, &contentImpl );
+		Gen_QuaternionConjugate( language, type, &contentFwdDec, &contentImpl );
+		Gen_QuaternionInverse( language, type, &contentFwdDec, &contentImpl );
+		Gen_QuaternionRotationAxis( language, type, &contentFwdDec, &contentImpl );
+		Gen_QuaternionLerp( language, type, &contentFwdDec, &contentImpl );
+		Gen_QuaternionSlerp( language, type, &contentFwdDec, &contentImpl );
 
 		String_Append(&contentFwdDec, "\n");
 		printf("OK.\n");
@@ -884,6 +885,20 @@ void Gen_TestsMain( const genLanguage_t language ) {
 		}
 	}
 
+	// quaternion tests
+	for ( u32 typeIndex = 0; typeIndex < GEN_TYPE_COUNT; typeIndex++ ) {
+		genType_t type = (genType_t) typeIndex;
+		if (Gen_TypeIsFloatingPoint(type) == false) {
+			continue;
+		}
+
+		char fullTypeName[GEN_STRING_LENGTH_TYPE_NAME] = { 0 };
+		Gen_GetFullTypeName( type, 1, 1, fullTypeName );
+
+		String_Appendf( &sb, "#include \"test_quaternion_%s4.%s\"\n", fullTypeName, fileExtension );
+	}
+	String_Append( &sb, "\n" );
+
 	String_Append( &sb, "static void OnSuiteEnd( void* userdata )\n" );
 	String_Append( &sb, "{\n" );
 	String_Append( &sb, "\t( (void) userdata );\n" );
@@ -947,6 +962,20 @@ void Gen_TestsMain( const genLanguage_t language ) {
 		String_Appendf( &sb, "\n" );
 	}
 #endif
+
+	// quaternion suites
+	for ( u32 typeIndex = 0; typeIndex < GEN_TYPE_COUNT; typeIndex++ ) {
+		genType_t type = (genType_t) typeIndex;
+		if (Gen_TypeIsFloatingPoint(type) == false) {
+			continue;
+		}
+
+		char fullTypeName[GEN_STRING_LENGTH_TYPE_NAME] = { 0 };
+		Gen_GetFullTypeName( type, 1, 1, fullTypeName );
+
+		String_Appendf( &sb, "\tTEMPER_RUN_SUITE( Test_quaternion_%s4 );\n", fullTypeName );
+	}
+	String_Appendf( &sb, "\n" );
 
 	String_Append( &sb, "\tTEMPER_SHOW_STATS();\n" );
 	String_Append( &sb, "\n" );
