@@ -319,22 +319,23 @@ void Gen_QuaternionRotationAxis( const genLanguage_t language, const genType_t t
 	char parmTypeName[GEN_STRING_LENGTH_TYPE_NAME];
 	Gen_GetParmTypeName( language, type, 1, 3, parmTypeName );
 	
-	String_Appendf( sbFwdDec, "inline %s3 %s( const %s vect, const %s angle, const %s3 axis );\n", returnTypeString, rotateQuaternionFuncStr, parmTypeName, typeName, typeName );
+	String_Appendf( sbFwdDec, "inline %s3 %s( const %s vect, const %s angle, const %s axis );\n", returnTypeString, rotateQuaternionFuncStr, parmTypeName, typeName, parmTypeName );
 	String_Append(  sbFwdDec, "\n" );
 
 	const char* sinFunc = Gen_GetFuncNameSin( type );
 	const char* cosFunc = Gen_GetFuncNameCos( type );
 
-	String_Appendf( sbImpl, "inline %s3 %s( const %s vect, const %s angle, const %s3 axis )\n", returnTypeString, rotateQuaternionFuncStr, parmTypeName, typeName, typeName );
+	String_Appendf( sbImpl, "inline %s3 %s( const %s vect, const %s angle, const %s axis )\n", returnTypeString, rotateQuaternionFuncStr, parmTypeName, typeName, parmTypeName );
 	String_Append(  sbImpl, "{\n" );
 
 	String_Appendf( sbImpl, "\t%s4 pureQuat = HLML_CONSTRUCT( %s4 ) { vect%sx, vect%sy, vect%sz, 0 };\n", typeName, typeName, parmAccessStr, parmAccessStr, parmAccessStr );
-	String_Appendf( sbImpl, "\t%s3 normalizedAxis = axis;\n", typeName );
 
 	if ( language == GEN_LANGUAGE_C ) {
+		String_Appendf( sbImpl, "\t%s3 normalizedAxis = *axis;\n", typeName );
 		String_Appendf( sbImpl, "\t%s( &normalizedAxis );\n", normVectorFuncStr );
 	}
 	else {
+		String_Appendf( sbImpl, "\t%s3 normalizedAxis = axis;\n", typeName );
 		String_Appendf( sbImpl, "\t%s( normalizedAxis );\n", normVectorFuncStr );
 	}
 

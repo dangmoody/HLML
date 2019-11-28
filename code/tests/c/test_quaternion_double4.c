@@ -36,33 +36,39 @@ SOFTWARE.
 
 TEMPER_TEST( TestArithmeticMultiplyScalar_double4 )
 {
-	const double4 a = double4( ( 2.0 ), ( 3.0 ), ( 4.0 ), ( 5.0 ) );
+	const double4 a = HLML_CONSTRUCT( double4 ) { ( 2.0 ), ( 3.0 ), ( 4.0 ), ( 5.0 ) };
 	const double b = 6.0;
 
-	double4 c = quaternion_mul(a, b);
+	double4 c = double4_quaternion_mul( &a, b );
 
-	TEMPER_EXPECT_TRUE( c == double4( ( 12.0 ), ( 18.0 ), ( 24.0 ), ( 30.0 ) ) );
+	TEMPER_EXPECT_TRUE( c.x == ( 12.0 ) );
+	TEMPER_EXPECT_TRUE( c.y == ( 18.0 ) );
+	TEMPER_EXPECT_TRUE( c.z == ( 24.0 ) );
+	TEMPER_EXPECT_TRUE( c.w == ( 30.0 ) );
 
 	TEMPER_PASS();
 }
 
 TEMPER_TEST( TestArithmeticMultiply_double4 )
 {
-	const double4 a = double4( ( 2.0 ), ( 3.0 ), ( 4.0 ), ( 5.0 ) );
-	const double4 b = double4( ( 1.0 ), ( 3.0 ), ( 5.0 ), ( 7.0 ) );
+	const double4 a = HLML_CONSTRUCT( double4 ) { ( 2.0 ), ( 3.0 ), ( 4.0 ), ( 5.0 ) };
+	const double4 b = HLML_CONSTRUCT( double4 ) { ( 1.0 ), ( 3.0 ), ( 5.0 ), ( 7.0 ) };
 
-	double4 c = quaternion_mul( a, b );
+	double4 c = double4_quaternion_mulq( &a, &b );
 
-	TEMPER_EXPECT_TRUE( c == double4( ( 22.0 ), ( 30.0 ), ( 56.0 ), ( 4.0 ) ) );
+	TEMPER_EXPECT_TRUE( c.x == ( 22.0 ) );
+	TEMPER_EXPECT_TRUE( c.y == ( 30.0 ) );
+	TEMPER_EXPECT_TRUE( c.z == ( 56.0 ) );
+	TEMPER_EXPECT_TRUE( c.w == ( 4.0 ) );
 
 	TEMPER_PASS();
 }
 
 TEMPER_TEST( TestArithmeticLength_double4 )
 {
-	const double4 a = double4( ( 2.0 ), ( 3.0 ), ( 4.0 ), ( 5.0 ) );
+	const double4 a = HLML_CONSTRUCT( double4 ) { ( 2.0 ), ( 3.0 ), ( 4.0 ), ( 5.0 ) };
 
-	double b = quaternion_length( a );
+	double b = double4_quaternion_length( &a );
 
 	TEMPER_EXPECT_TRUE( doubleeq( b, ( 7.34846925735 ) ) );
 
@@ -71,46 +77,57 @@ TEMPER_TEST( TestArithmeticLength_double4 )
 
 TEMPER_TEST( TestArithmeticNormalize_double4 )
 {
-	const double4 a = double4( ( 2.0 ), ( 3.0 ), ( 4.0 ), ( 5.0 ) );
+	const double4 a = HLML_CONSTRUCT( double4 ) { ( 2.0 ), ( 3.0 ), ( 4.0 ), ( 5.0 ) };
 
-	double4 b = quaternion_normalize( a );
+	double4 b = double4_quaternion_normalize( &a );
 
-	TEMPER_EXPECT_TRUE( b == double4( ( 0.272166 ), ( 0.408248 ), ( 0.544331 ), ( 0.680414 ) ) );
+	TEMPER_EXPECT_TRUE( doubleeq( b.x, ( 0.272166 ) ) );
+	TEMPER_EXPECT_TRUE( doubleeq( b.y, ( 0.408248 ) ) );
+	TEMPER_EXPECT_TRUE( doubleeq( b.z, ( 0.544331 ) ) );
+	TEMPER_EXPECT_TRUE( doubleeq( b.w, ( 0.680414 ) ) );
 
 	TEMPER_PASS();
 }
 
 TEMPER_TEST( TestArithmeticConjugate_double4 )
 {
-	const double4 a = double4( ( 2.0 ), ( 3.0 ), ( 4.0 ), ( 5.0 ) );
+	const double4 a = HLML_CONSTRUCT( double4 ) { ( 2.0 ), ( 3.0 ), ( 4.0 ), ( 5.0 ) };
 
-	double4 b = quaternion_conjugate( a );
+	double4 b = double4_quaternion_conjugate( &a );
 
-	TEMPER_EXPECT_TRUE( b == double4( ( -2.000000 ), ( -3.000000 ), ( -4.000000 ), ( 5.000000 ) ) );
+	TEMPER_EXPECT_TRUE( doubleeq( b.x, ( -2.000000 ) ) );
+	TEMPER_EXPECT_TRUE( doubleeq( b.y, ( -3.000000 ) ) );
+	TEMPER_EXPECT_TRUE( doubleeq( b.z, ( -4.000000 ) ) );
+	TEMPER_EXPECT_TRUE( doubleeq( b.w, ( 5.000000 ) ) );
 
 	TEMPER_PASS();
 }
 
 TEMPER_TEST( TestArithmeticInverse_double4 )
 {
-	const double4 a = double4( ( 2.0 ), ( 3.0 ), ( 4.0 ), ( 5.0 ) );
+	const double4 a = HLML_CONSTRUCT( double4 ) { ( 2.0 ), ( 3.0 ), ( 4.0 ), ( 5.0 ) };
 
-	double4 b = quaternion_inverse( a );
+	double4 b = double4_quaternion_inverse( &a );
 
-	TEMPER_EXPECT_TRUE( b == double4( ( -0.037037 ), ( -0.0555556 ), ( -0.0740741 ), ( 0.092593 ) ) );
+	TEMPER_EXPECT_TRUE( doubleeq( b.x, ( -0.037037 ) ) );
+	TEMPER_EXPECT_TRUE( doubleeq( b.y, ( -0.0555556 ) ) );
+	TEMPER_EXPECT_TRUE( doubleeq( b.z, ( -0.0740741 ) ) );
+	TEMPER_EXPECT_TRUE( doubleeq( b.w, ( 0.092593 ) ) );
 
 	TEMPER_PASS();
 }
 
 TEMPER_TEST( TestArithmeticVectorRotationByAngleAxis_double4 )
 {
-	const double3 vector = double3( 0.0, 1.0, 0.0 );
-	const double3 axis = double3( 1.0, 0.0, 0.0 );
+	const double3 vector = HLML_CONSTRUCT( double3 ) { 0.0, 1.0, 0.0 };
+	const double3 axis = HLML_CONSTRUCT( double3 ) { 1.0, 0.0, 0.0 };
 	const double angle = 1.570800;
 
-	double3 rotated_vector = quaternion_rotate_vector_about_angle_axis( vector, angle, axis );
+	double3 rotated_vector = double4_quaternion_rotate_vector_about_angle_axis( &vector, angle, &axis );
 
-	TEMPER_EXPECT_TRUE( rotated_vector == double3( ( 0.0 ), ( 0.0 ), ( 1.0 ) ) );
+	TEMPER_EXPECT_TRUE( doubleeq( rotated_vector.x, ( 0.0 ) ) );
+	TEMPER_EXPECT_TRUE( doubleeq( rotated_vector.y, ( 0.0 ) ) );
+	TEMPER_EXPECT_TRUE( doubleeq( rotated_vector.z, ( 1.0 ) ) );
 
 	TEMPER_PASS();
 }

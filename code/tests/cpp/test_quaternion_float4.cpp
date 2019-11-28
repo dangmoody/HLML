@@ -36,31 +36,37 @@ SOFTWARE.
 
 TEMPER_TEST( TestArithmeticMultiplyScalar_float4 )
 {
-	const float4 a = float4( ( 2.0f ), ( 3.0f ), ( 4.0f ), ( 5.0f ) );
+	const float4 a = HLML_CONSTRUCT( float4 ) { ( 2.0f ), ( 3.0f ), ( 4.0f ), ( 5.0f ) };
 	const float b = 6.0f;
 
-	float4 c = quaternion_mul(a, b);
+	float4 c = quaternion_mul( a, b );
 
-	TEMPER_EXPECT_TRUE( c == float4( ( 12.0f ), ( 18.0f ), ( 24.0f ), ( 30.0f ) ) );
+	TEMPER_EXPECT_TRUE( c.x == ( 12.0f ) );
+	TEMPER_EXPECT_TRUE( c.y == ( 18.0f ) );
+	TEMPER_EXPECT_TRUE( c.z == ( 24.0f ) );
+	TEMPER_EXPECT_TRUE( c.w == ( 30.0f ) );
 
 	TEMPER_PASS();
 }
 
 TEMPER_TEST( TestArithmeticMultiply_float4 )
 {
-	const float4 a = float4( ( 2.0f ), ( 3.0f ), ( 4.0f ), ( 5.0f ) );
-	const float4 b = float4( ( 1.0f ), ( 3.0f ), ( 5.0f ), ( 7.0f ) );
+	const float4 a = HLML_CONSTRUCT( float4 ) { ( 2.0f ), ( 3.0f ), ( 4.0f ), ( 5.0f ) };
+	const float4 b = HLML_CONSTRUCT( float4 ) { ( 1.0f ), ( 3.0f ), ( 5.0f ), ( 7.0f ) };
 
 	float4 c = quaternion_mul( a, b );
 
-	TEMPER_EXPECT_TRUE( c == float4( ( 22.0f ), ( 30.0f ), ( 56.0f ), ( 4.0f ) ) );
+	TEMPER_EXPECT_TRUE( c.x == ( 22.0f ) );
+	TEMPER_EXPECT_TRUE( c.y == ( 30.0f ) );
+	TEMPER_EXPECT_TRUE( c.z == ( 56.0f ) );
+	TEMPER_EXPECT_TRUE( c.w == ( 4.0f ) );
 
 	TEMPER_PASS();
 }
 
 TEMPER_TEST( TestArithmeticLength_float4 )
 {
-	const float4 a = float4( ( 2.0f ), ( 3.0f ), ( 4.0f ), ( 5.0f ) );
+	const float4 a = HLML_CONSTRUCT( float4 ) { ( 2.0f ), ( 3.0f ), ( 4.0f ), ( 5.0f ) };
 
 	float b = quaternion_length( a );
 
@@ -71,46 +77,57 @@ TEMPER_TEST( TestArithmeticLength_float4 )
 
 TEMPER_TEST( TestArithmeticNormalize_float4 )
 {
-	const float4 a = float4( ( 2.0f ), ( 3.0f ), ( 4.0f ), ( 5.0f ) );
+	const float4 a = HLML_CONSTRUCT( float4 ) { ( 2.0f ), ( 3.0f ), ( 4.0f ), ( 5.0f ) };
 
 	float4 b = quaternion_normalize( a );
 
-	TEMPER_EXPECT_TRUE( b == float4( ( 0.272166f ), ( 0.408248f ), ( 0.544331f ), ( 0.680414f ) ) );
+	TEMPER_EXPECT_TRUE( floateq( b.x, ( 0.272166f ) ) );
+	TEMPER_EXPECT_TRUE( floateq( b.y, ( 0.408248f ) ) );
+	TEMPER_EXPECT_TRUE( floateq( b.z, ( 0.544331f ) ) );
+	TEMPER_EXPECT_TRUE( floateq( b.w, ( 0.680414f ) ) );
 
 	TEMPER_PASS();
 }
 
 TEMPER_TEST( TestArithmeticConjugate_float4 )
 {
-	const float4 a = float4( ( 2.0f ), ( 3.0f ), ( 4.0f ), ( 5.0f ) );
+	const float4 a = HLML_CONSTRUCT( float4 ) { ( 2.0f ), ( 3.0f ), ( 4.0f ), ( 5.0f ) };
 
 	float4 b = quaternion_conjugate( a );
 
-	TEMPER_EXPECT_TRUE( b == float4( ( -2.000000f ), ( -3.000000f ), ( -4.000000f ), ( 5.000000f ) ) );
+	TEMPER_EXPECT_TRUE( floateq( b.x, ( -2.000000f ) ) );
+	TEMPER_EXPECT_TRUE( floateq( b.y, ( -3.000000f ) ) );
+	TEMPER_EXPECT_TRUE( floateq( b.z, ( -4.000000f ) ) );
+	TEMPER_EXPECT_TRUE( floateq( b.w, ( 5.000000f ) ) );
 
 	TEMPER_PASS();
 }
 
 TEMPER_TEST( TestArithmeticInverse_float4 )
 {
-	const float4 a = float4( ( 2.0f ), ( 3.0f ), ( 4.0f ), ( 5.0f ) );
+	const float4 a = HLML_CONSTRUCT( float4 ) { ( 2.0f ), ( 3.0f ), ( 4.0f ), ( 5.0f ) };
 
 	float4 b = quaternion_inverse( a );
 
-	TEMPER_EXPECT_TRUE( b == float4( ( -0.037037f ), ( -0.0555556f ), ( -0.0740741f ), ( 0.092593f ) ) );
+	TEMPER_EXPECT_TRUE( floateq( b.x, ( -0.037037f ) ) );
+	TEMPER_EXPECT_TRUE( floateq( b.y, ( -0.0555556f ) ) );
+	TEMPER_EXPECT_TRUE( floateq( b.z, ( -0.0740741f ) ) );
+	TEMPER_EXPECT_TRUE( floateq( b.w, ( 0.092593f ) ) );
 
 	TEMPER_PASS();
 }
 
 TEMPER_TEST( TestArithmeticVectorRotationByAngleAxis_float4 )
 {
-	const float3 vector = float3( 0.0f, 1.0f, 0.0f );
-	const float3 axis = float3( 1.0f, 0.0f, 0.0f );
+	const float3 vector = HLML_CONSTRUCT( float3 ) { 0.0f, 1.0f, 0.0f };
+	const float3 axis = HLML_CONSTRUCT( float3 ) { 1.0f, 0.0f, 0.0f };
 	const float angle = 1.570800f;
 
 	float3 rotated_vector = quaternion_rotate_vector_about_angle_axis( vector, angle, axis );
 
-	TEMPER_EXPECT_TRUE( rotated_vector == float3( ( 0.0f ), ( 0.0f ), ( 1.0f ) ) );
+	TEMPER_EXPECT_TRUE( floateq( rotated_vector.x, ( 0.0f ) ) );
+	TEMPER_EXPECT_TRUE( floateq( rotated_vector.y, ( 0.0f ) ) );
+	TEMPER_EXPECT_TRUE( floateq( rotated_vector.z, ( 1.0f ) ) );
 
 	TEMPER_PASS();
 }

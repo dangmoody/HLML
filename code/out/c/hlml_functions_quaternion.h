@@ -105,7 +105,7 @@ inline float4 float4_quaternion_conjugate( const float4* quat );
 
 inline float4 float4_quaternion_inverse( const float4* quat );
 
-inline float3 float4_quaternion_rotate_vector_about_angle_axis( const float3* vect, const float angle, const float3 axis );
+inline float3 float4_quaternion_rotate_vector_about_angle_axis( const float3* vect, const float angle, const float3* axis );
 
 inline float4 float4_quaternion_lerp( const float4* lhs, const float4* rhs, const float percent );
 
@@ -125,7 +125,7 @@ inline double4 double4_quaternion_conjugate( const double4* quat );
 
 inline double4 double4_quaternion_inverse( const double4* quat );
 
-inline double3 double4_quaternion_rotate_vector_about_angle_axis( const double3* vect, const double angle, const double3 axis );
+inline double3 double4_quaternion_rotate_vector_about_angle_axis( const double3* vect, const double angle, const double3* axis );
 
 inline double4 double4_quaternion_lerp( const double4* lhs, const double4* rhs, const double percent );
 
@@ -187,10 +187,10 @@ inline float4 float4_quaternion_inverse( const float4* quat )
 	return HLML_CONSTRUCT (float4) { imaginary.x, imaginary.y, imaginary.z, scalar };
 }
 
-inline float3 float4_quaternion_rotate_vector_about_angle_axis( const float3* vect, const float angle, const float3 axis )
+inline float3 float4_quaternion_rotate_vector_about_angle_axis( const float3* vect, const float angle, const float3* axis )
 {
 	float4 pureQuat = HLML_CONSTRUCT( float4 ) { vect->x, vect->y, vect->z, 0 };
-	float3 normalizedAxis = axis;
+	float3 normalizedAxis = *axis;
 	float3_normalize( &normalizedAxis );
 	float4 realQuat = HLML_CONSTRUCT( float4 ) { normalizedAxis.x, normalizedAxis.y, normalizedAxis.z, angle };
 
@@ -287,10 +287,10 @@ inline double4 double4_quaternion_inverse( const double4* quat )
 	return HLML_CONSTRUCT (double4) { imaginary.x, imaginary.y, imaginary.z, scalar };
 }
 
-inline double3 double4_quaternion_rotate_vector_about_angle_axis( const double3* vect, const double angle, const double3 axis )
+inline double3 double4_quaternion_rotate_vector_about_angle_axis( const double3* vect, const double angle, const double3* axis )
 {
 	double4 pureQuat = HLML_CONSTRUCT( double4 ) { vect->x, vect->y, vect->z, 0 };
-	double3 normalizedAxis = axis;
+	double3 normalizedAxis = *axis;
 	double3_normalize( &normalizedAxis );
 	double4 realQuat = HLML_CONSTRUCT( double4 ) { normalizedAxis.x, normalizedAxis.y, normalizedAxis.z, angle };
 
