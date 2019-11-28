@@ -41,10 +41,10 @@ TEMPER_TEST( TestArithmeticMultiplyScalar_double4 )
 
 	double4 c = double4_quaternion_mul( &a, b );
 
-	TEMPER_EXPECT_TRUE( c.x == ( 12.0 ) );
-	TEMPER_EXPECT_TRUE( c.y == ( 18.0 ) );
-	TEMPER_EXPECT_TRUE( c.z == ( 24.0 ) );
-	TEMPER_EXPECT_TRUE( c.w == ( 30.0 ) );
+	TEMPER_EXPECT_TRUE( doubleeq( c.x, ( 12.0 ) ) );
+	TEMPER_EXPECT_TRUE( doubleeq( c.y, ( 18.0 ) ) );
+	TEMPER_EXPECT_TRUE( doubleeq( c.z, ( 24.0 ) ) );
+	TEMPER_EXPECT_TRUE( doubleeq( c.w, ( 30.0 ) ) );
 
 	TEMPER_PASS();
 }
@@ -60,6 +60,10 @@ TEMPER_TEST( TestArithmeticMultiply_double4 )
 	TEMPER_EXPECT_TRUE( c.y == ( 30.0 ) );
 	TEMPER_EXPECT_TRUE( c.z == ( 56.0 ) );
 	TEMPER_EXPECT_TRUE( c.w == ( 4.0 ) );
+	TEMPER_EXPECT_TRUE( doubleeq( c.x, ( 22.0 ) ) );
+	TEMPER_EXPECT_TRUE( doubleeq( c.y, ( 30.0 ) ) );
+	TEMPER_EXPECT_TRUE( doubleeq( c.z, ( 56.0 ) ) );
+	TEMPER_EXPECT_TRUE( doubleeq( c.w, ( 4.0 ) ) );
 
 	TEMPER_PASS();
 }

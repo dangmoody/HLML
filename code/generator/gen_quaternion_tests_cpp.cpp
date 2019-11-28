@@ -85,10 +85,10 @@ static void GenerateTestMultiplyScalar( stringBuilder_t* codeTests, stringBuilde
 	}
 
 	String_Append( codeTests, "\n" );
-	String_Appendf( codeTests, "\tTEMPER_EXPECT_TRUE( c.x == %s );\n", parmListAnswers[0] );
-	String_Appendf( codeTests, "\tTEMPER_EXPECT_TRUE( c.y == %s );\n", parmListAnswers[1] );
-	String_Appendf( codeTests, "\tTEMPER_EXPECT_TRUE( c.z == %s );\n", parmListAnswers[2] );
-	String_Appendf( codeTests, "\tTEMPER_EXPECT_TRUE( c.w == %s );\n", parmListAnswers[3] );
+	String_Appendf( codeTests, "\tTEMPER_EXPECT_TRUE( %s%s( c.x, %s ) );\n", baseTypeString, "eq", parmListAnswers[0] );
+	String_Appendf( codeTests, "\tTEMPER_EXPECT_TRUE( %s%s( c.y, %s ) );\n", baseTypeString, "eq", parmListAnswers[1] );
+	String_Appendf( codeTests, "\tTEMPER_EXPECT_TRUE( %s%s( c.z, %s ) );\n", baseTypeString, "eq", parmListAnswers[2] );
+	String_Appendf( codeTests, "\tTEMPER_EXPECT_TRUE( %s%s( c.w, %s ) );\n", baseTypeString, "eq", parmListAnswers[3] );
 	String_Append( codeTests, "\n" );
 	String_Append( codeTests, "\tTEMPER_PASS();\n" );
 	String_Append( codeTests, "}\n" );
@@ -97,7 +97,7 @@ static void GenerateTestMultiplyScalar( stringBuilder_t* codeTests, stringBuilde
 	String_Appendf( codeSuite, "\tTEMPER_RUN_TEST( %s );\n", testName );
 }
 
-static void GenerateTestMultiplyQuaternion(  stringBuilder_t* codeTests, stringBuilder_t* codeSuite, const genLanguage_t language, const genType_t type, const char* fullTypeName ) {
+static void GenerateTestMultiplyQuaternion(  stringBuilder_t* codeTests, stringBuilder_t* codeSuite, const genLanguage_t language, const genType_t type, const char* fullTypeName, const char* baseTypeString ) {
 	// number picked at random
 	char oneStr[GEN_STRING_LENGTH_NUMERIC_LITERAL];
 	char twoStr[GEN_STRING_LENGTH_NUMERIC_LITERAL];
@@ -161,6 +161,10 @@ static void GenerateTestMultiplyQuaternion(  stringBuilder_t* codeTests, stringB
 	String_Appendf( codeTests, "\tTEMPER_EXPECT_TRUE( c.y == %s );\n", parmListAnswers[1] );
 	String_Appendf( codeTests, "\tTEMPER_EXPECT_TRUE( c.z == %s );\n", parmListAnswers[2] );
 	String_Appendf( codeTests, "\tTEMPER_EXPECT_TRUE( c.w == %s );\n", parmListAnswers[3] );
+	String_Appendf( codeTests, "\tTEMPER_EXPECT_TRUE( %s%s( c.x, %s ) );\n", baseTypeString, "eq", parmListAnswers[0] );
+	String_Appendf( codeTests, "\tTEMPER_EXPECT_TRUE( %s%s( c.y, %s ) );\n", baseTypeString, "eq", parmListAnswers[1] );
+	String_Appendf( codeTests, "\tTEMPER_EXPECT_TRUE( %s%s( c.z, %s ) );\n", baseTypeString, "eq", parmListAnswers[2] );
+	String_Appendf( codeTests, "\tTEMPER_EXPECT_TRUE( %s%s( c.w, %s ) );\n", baseTypeString, "eq", parmListAnswers[3] );
 	String_Append( codeTests, "\n" );
 	String_Append( codeTests, "\tTEMPER_PASS();\n" );
 	String_Append( codeTests, "}\n" );
@@ -483,7 +487,7 @@ void Gen_QuaternionTests( const genLanguage_t language, const genType_t type ) {
 	String_Append( &codeSuite, "{\n" );
 
 	GenerateTestMultiplyScalar( &codeTests, &codeSuite, language, type, fullTypeString, typeString );
-	GenerateTestMultiplyQuaternion( &codeTests, &codeSuite, language, type, fullTypeString );
+	GenerateTestMultiplyQuaternion( &codeTests, &codeSuite, language, type, fullTypeString, typeString );
 	GenerateTestLength( &codeTests, &codeSuite, language, type, fullTypeString, typeString );
 	GenerateTestNormalize( &codeTests, &codeSuite, language, type, fullTypeString, typeString );
 	GenerateTestConjugate( &codeTests, &codeSuite, language, type, fullTypeString, typeString );
