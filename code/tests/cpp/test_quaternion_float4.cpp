@@ -136,6 +136,21 @@ TEMPER_TEST( TestArithmeticVectorRotationByAngleAxis_float4 )
 	TEMPER_PASS();
 }
 
+TEMPER_TEST( TestArithmeticLerp_float4 )
+{
+	const float4 a = HLML_CONSTRUCT( float4 ) { ( 0.0f ), ( 0.0f ), ( 0.0f ), ( 0.0f ) };
+	const float4 b = HLML_CONSTRUCT( float4 ) { ( 1.0f ), ( 1.0f ), ( 1.0f ), ( 1.0f ) };
+
+	float4 c = quaternion_lerp( a, b, 0.5f );
+
+	TEMPER_EXPECT_TRUE( floateq( c.x, ( 0.5f ) ) );
+	TEMPER_EXPECT_TRUE( floateq( c.y, ( 0.5f ) ) );
+	TEMPER_EXPECT_TRUE( floateq( c.z, ( 0.5f ) ) );
+	TEMPER_EXPECT_TRUE( floateq( c.w, ( 0.5f ) ) );
+
+	TEMPER_PASS();
+}
+
 TEMPER_SUITE( Test_quaternion_float4 )
 {
 	TEMPER_RUN_TEST( TestArithmeticMultiplyScalar_float4 );
@@ -145,4 +160,5 @@ TEMPER_SUITE( Test_quaternion_float4 )
 	TEMPER_RUN_TEST( TestArithmeticConjugate_float4 );
 	TEMPER_RUN_TEST( TestArithmeticInverse_float4 );
 	TEMPER_RUN_TEST( TestArithmeticVectorRotationByAngleAxis_float4 );
+	TEMPER_RUN_TEST( TestArithmeticLerp_float4 );
 }
