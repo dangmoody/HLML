@@ -128,6 +128,23 @@ If this is a project you'd like to contribute to, I'm open to pull requests.  Th
 Performance and usability are the two primary goals of the API.  If at any time those two goals are in confliction with each other, default to common sense.  =)
 
 
+Credits
+=======
+
+I'd like to extend credit to the following:
+
+- [GLM](https://github.com/g-truc/glm) - I use some of their solutions for a couple of functions, therefore I take no credit for those.
+- [Unity.Mathematics](https://github.com/Unity-Technologies/Unity.Mathematics) - The idea of using a generator comes from this.
+
+I'd also like to give a special thanks to the following people:
+
+- David 'Flave' Smith
+- Antony Bowler
+- Tom Whitcombe
+
+Your help is very much appreciated.  Thank you.  =)
+
+
 Motivation
 ==========
 
