@@ -216,22 +216,23 @@ inline float4 float4_quaternion_lerp( const float4* lhs, const float4* rhs, cons
 	quat.y = t * lhs->y + percent * rhs->y;
 	quat.z = t * lhs->z + percent * rhs->z;
 	quat.w = t * lhs->w + percent * rhs->w;
-	return float4_quaternion_normalize( &quat );
+	return quat;
 }
 
 inline float4 float4_quaternion_slerp( const float4* lhs, const float4* rhs, const float percent )
 {
 	float4 quat;
 	float t = 1 - percent;
-	float theta = acosf( ( lhs->x * rhs->x ) + ( lhs->y * rhs->y ) + ( lhs->z * rhs->z ) + ( lhs->w * rhs->w ) );
-	float sn = sinf( theta );
+	float cosTheta = ( lhs->x * rhs->x ) + ( lhs->y * rhs->y ) + ( lhs->z * rhs->z ) + ( lhs->w * rhs->w );
+	float theta = acosf( cosTheta );
+	float sn = sqrtf( 1 - cosTheta * cosTheta );
 	float Wa = sinf( t * theta ) / sn;
 	float Wb = sinf( percent * theta ) / sn;
 	quat.x = Wa * rhs->x + Wb * lhs->x;
 	quat.y = Wa * rhs->y + Wb * lhs->y;
 	quat.z = Wa * rhs->z + Wb * lhs->z;
 	quat.w = Wa * rhs->w + Wb * lhs->w;
-	return float4_quaternion_normalize( &quat );
+	return quat;
 }
 
 inline double4 double4_quaternion_mulq( const double4* lhs, const double4* rhs )
@@ -316,22 +317,23 @@ inline double4 double4_quaternion_lerp( const double4* lhs, const double4* rhs, 
 	quat.y = t * lhs->y + percent * rhs->y;
 	quat.z = t * lhs->z + percent * rhs->z;
 	quat.w = t * lhs->w + percent * rhs->w;
-	return double4_quaternion_normalize( &quat );
+	return quat;
 }
 
 inline double4 double4_quaternion_slerp( const double4* lhs, const double4* rhs, const double percent )
 {
 	double4 quat;
 	double t = 1 - percent;
-	double theta = acos( ( lhs->x * rhs->x ) + ( lhs->y * rhs->y ) + ( lhs->z * rhs->z ) + ( lhs->w * rhs->w ) );
-	double sn = sin( theta );
+	double cosTheta = ( lhs->x * rhs->x ) + ( lhs->y * rhs->y ) + ( lhs->z * rhs->z ) + ( lhs->w * rhs->w );
+	double theta = acos( cosTheta );
+	double sn = sqrt( 1 - cosTheta * cosTheta );
 	double Wa = sin( t * theta ) / sn;
 	double Wb = sin( percent * theta ) / sn;
 	quat.x = Wa * rhs->x + Wb * lhs->x;
 	quat.y = Wa * rhs->y + Wb * lhs->y;
 	quat.z = Wa * rhs->z + Wb * lhs->z;
 	quat.w = Wa * rhs->w + Wb * lhs->w;
-	return double4_quaternion_normalize( &quat );
+	return quat;
 }
 
 #if defined( __GNUC__ ) || defined( __clang__ )

@@ -472,6 +472,68 @@ static void GenerateTestLerp(  stringBuilder_t* codeTests, stringBuilder_t* code
 	String_Appendf( codeSuite, "\tTEMPER_RUN_TEST( %s );\n", testName );
 }
 
+static void GenerateTestSlerp(  stringBuilder_t* codeTests, stringBuilder_t* codeSuite, const genLanguage_t language, const genType_t type, const char* fullTypeName, const char* baseTypeString ) {
+	// number picked at random
+	char answerStr[GEN_STRING_LENGTH_NUMERIC_LITERAL];
+	char halfStr[GEN_STRING_LENGTH_NUMERIC_LITERAL];
+	char zeroStr[GEN_STRING_LENGTH_NUMERIC_LITERAL];
+	char oneStr[GEN_STRING_LENGTH_NUMERIC_LITERAL];
+	
+	Gen_GetNumericLiteral( type, 0.707106781f, answerStr, 9 );
+	Gen_GetNumericLiteral( type, 0.5f, halfStr, 1 );
+	Gen_GetNumericLiteral( type, 0, zeroStr, 1 );
+	Gen_GetNumericLiteral( type, 1, oneStr, 1 );
+
+	char parmListLhsValues[4][GEN_STRING_LENGTH_PARM_LIST_VECTOR];
+	snprintf( parmListLhsValues[0], 64, "( %s )", zeroStr );
+	snprintf( parmListLhsValues[1], 64, "( %s )", zeroStr );
+	snprintf( parmListLhsValues[2], 64, "( %s )", zeroStr );
+	snprintf( parmListLhsValues[3], 64, "( %s )", zeroStr );
+
+	char parmListRhsValues[4][GEN_STRING_LENGTH_PARM_LIST_VECTOR];
+	snprintf( parmListRhsValues[0], 64, "( %s )", oneStr );
+	snprintf( parmListRhsValues[1], 64, "( %s )", oneStr );
+	snprintf( parmListRhsValues[2], 64, "( %s )", oneStr );
+	snprintf( parmListRhsValues[3], 64, "( %s )", oneStr );
+
+	char parmListAnswers[4][GEN_STRING_LENGTH_PARM_LIST_VECTOR];
+	snprintf( parmListAnswers[0], 64, "( %s )", answerStr );
+	snprintf( parmListAnswers[1], 64, "( %s )", answerStr );
+	snprintf( parmListAnswers[2], 64, "( %s )", answerStr );
+	snprintf( parmListAnswers[3], 64, "( %s )", answerStr );
+
+	char slerpQuaternionFuncStr[GEN_STRING_LENGTH_FUNCTION_NAME];
+	Gen_GetFuncNameQuaternionSlerp( language, type, slerpQuaternionFuncStr );
+
+	char testName[GEN_STRING_LENGTH_TEST_NAME] = { 0 };
+	snprintf( testName, GEN_STRING_LENGTH_TEST_NAME, "TestArithmetic%s_%s", "Slerp", fullTypeName );
+
+	String_Appendf( codeTests, "TEMPER_TEST( %s )\n", testName );
+	String_Append( codeTests, "{\n" );
+	String_Appendf( codeTests, "\tconst %s a = HLML_CONSTRUCT( %s ) { %s, %s, %s, %s };\n", fullTypeName, fullTypeName, parmListLhsValues[0], parmListLhsValues[1], parmListLhsValues[2], parmListLhsValues[3] );
+	String_Appendf( codeTests, "\tconst %s b = HLML_CONSTRUCT( %s ) { %s, %s, %s, %s };\n", fullTypeName, fullTypeName, parmListRhsValues[0], parmListRhsValues[1], parmListRhsValues[2], parmListRhsValues[3] );
+	String_Append( codeTests, "\n" );
+
+	if ( language == GEN_LANGUAGE_C ) {
+		String_Appendf( codeTests, "\t%s c = %s( &a, &b, %s );\n", fullTypeName, slerpQuaternionFuncStr, halfStr );
+	}
+	else {
+		String_Appendf( codeTests, "\t%s c = %s( a, b, %s );\n", fullTypeName, slerpQuaternionFuncStr, halfStr );
+	}
+
+	String_Append( codeTests, "\n" );
+	String_Appendf( codeTests, "\tTEMPER_EXPECT_TRUE( %s%s( c.x, %s ) );\n", baseTypeString, "eq", parmListAnswers[0] );
+	String_Appendf( codeTests, "\tTEMPER_EXPECT_TRUE( %s%s( c.y, %s ) );\n", baseTypeString, "eq", parmListAnswers[1] );
+	String_Appendf( codeTests, "\tTEMPER_EXPECT_TRUE( %s%s( c.z, %s ) );\n", baseTypeString, "eq", parmListAnswers[2] );
+	String_Appendf( codeTests, "\tTEMPER_EXPECT_TRUE( %s%s( c.w, %s ) );\n", baseTypeString, "eq", parmListAnswers[3] );
+	String_Append( codeTests, "\n" );
+	String_Append( codeTests, "\tTEMPER_PASS();\n" );
+	String_Append( codeTests, "}\n" );
+	String_Append( codeTests, "\n" );
+
+	String_Appendf( codeSuite, "\tTEMPER_RUN_TEST( %s );\n", testName );
+}
+
 static void GenerateTestQuaternionVectorRotationByAngleAxis(  stringBuilder_t* codeTests, stringBuilder_t* codeSuite, const genLanguage_t language, const genType_t type, const char* fullTypeName, const char* baseTypeString ) {
 	// number picked at random
 	char zeroStr[GEN_STRING_LENGTH_NUMERIC_LITERAL];
@@ -554,6 +616,7 @@ void Gen_QuaternionTests( const genLanguage_t language, const genType_t type ) {
 	GenerateTestInverse( &codeTests, &codeSuite, language, type, fullTypeString, typeString );
 	GenerateTestQuaternionVectorRotationByAngleAxis( &codeTests, &codeSuite, language, type, fullTypeString, typeString );
 	GenerateTestLerp( &codeTests, &codeSuite, language, type, fullTypeString, typeString );
+	GenerateTestSlerp( &codeTests, &codeSuite, language, type, fullTypeString, typeString );
 
 	String_Append( &codeSuite, "}\n" );
 

@@ -420,13 +420,7 @@ void Gen_QuaternionLerp( const genLanguage_t language, const genType_t type, str
 		String_Appendf( sbImpl, "\tquat.%c = t * lhs%s%c + percent * rhs%s%c;\n", componentName, parmAccessStr, componentName, parmAccessStr, componentName );
 	}
 
-	if ( language == GEN_LANGUAGE_C ) {
-		String_Appendf( sbImpl, "\treturn %s( &quat );\n", normQuaternionFuncStr );
-	}
-	else {
-		String_Appendf( sbImpl, "\treturn %s( quat );\n", normQuaternionFuncStr );
-	}
-
+	String_Append( sbImpl, "\treturn quat;\n" );
 	String_Append( sbImpl, "}\n" );
 	String_Append( sbImpl, "\n" );
 }
@@ -462,8 +456,8 @@ void Gen_QuaternionSlerp( const genLanguage_t language, const genType_t type, st
 
 	String_Appendf( sbImpl, "\t%s4 quat;\n", typeName, typeName );
 	String_Appendf( sbImpl, "\t%s t = 1 - percent;\n", typeName );
-
-	String_Appendf( sbImpl, "\t%s theta = %s( ", typeName, Gen_GetFuncNameAcos( type ) );
+	
+	String_Appendf( sbImpl, "\t%s cosTheta = ", typeName );
 
 	const int numComponents = GEN_COMPONENT_COUNT_MAX;
 	for (u32 i = 0; i < numComponents; i++) {
@@ -476,8 +470,9 @@ void Gen_QuaternionSlerp( const genLanguage_t language, const genType_t type, st
 		}
 	}
 
-	String_Append(  sbImpl, " );\n" );
-	String_Appendf( sbImpl, "\t%s sn = %s( theta );\n", typeName, sinFunc );
+	String_Append(  sbImpl, ";\n" );
+	String_Appendf( sbImpl, "\t%s theta = %s( cosTheta );\n", typeName, Gen_GetFuncNameAcos( type ) );
+	String_Appendf( sbImpl, "\t%s sn = %s( 1 - cosTheta * cosTheta );\n", typeName, Gen_GetFuncNameSqrt( type ) );
 
 	String_Appendf( sbImpl, "\t%s Wa = %s( t * theta ) / sn;\n", typeName, sinFunc );
 	String_Appendf( sbImpl, "\t%s Wb = %s( percent * theta ) / sn;\n", typeName, sinFunc );
@@ -488,13 +483,7 @@ void Gen_QuaternionSlerp( const genLanguage_t language, const genType_t type, st
 		String_Appendf( sbImpl, "\tquat.%c = Wa * rhs%s%c + Wb * lhs%s%c;\n", componentName, parmAccessStr, componentName, parmAccessStr, componentName );
 	}
 	
-	if ( language == GEN_LANGUAGE_C ) {
-		String_Appendf( sbImpl, "\treturn %s( &quat );\n", normQuaternionFuncStr );
-	}
-	else {
-		String_Appendf( sbImpl, "\treturn %s( quat );\n", normQuaternionFuncStr );
-	}
-
+	String_Append( sbImpl, "\treturn quat;\n" );
 	String_Append( sbImpl, "}\n" );
 	String_Append( sbImpl, "\n" );
 }
