@@ -311,7 +311,7 @@ void Gen_QuaternionRotationAxis( const genLanguage_t language, const genType_t t
 	Gen_GetFuncNameQuaternionMultiplyQuaternion( language, type, mulQuaternionFuncStr );
 	
 	char rotateQuaternionFuncStr[GEN_STRING_LENGTH_FUNCTION_NAME];
-	Gen_GetFuncNameQuaternionRotateVectorAngleAxis( language, type, rotateQuaternionFuncStr );
+	Gen_GetFuncNameQuaternionRotate( language, type, rotateQuaternionFuncStr );
 
 	char normVectorFuncStr[GEN_STRING_LENGTH_FUNCTION_NAME];
 	Gen_GetFuncNameNormalize( language, type, 3, normVectorFuncStr );

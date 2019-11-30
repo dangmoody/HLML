@@ -367,16 +367,6 @@ void Gen_FunctionsMatrix( const genLanguage_t language ) {
 	stringBuilder_t content = String_Create( contentFwdDec.alloc + contentImpl.alloc );
 
 	String_Append( &contentFwdDec, GEN_FILE_HEADER );
-	String_Append( &contentFwdDec,
-		"#pragma once\n"
-		"\n"
-		"// ignore missing brace initializers\n"
-		"#if defined( __GNUC__ ) || defined( __clang__ )\n"
-		"#pragma GCC diagnostic push\n"
-		"#pragma GCC diagnostic ignored \"-Wmissing-braces\"\n"
-		"#endif\n"
-		"\n"
-	);
 
 	for ( u32 typeIndex = 0; typeIndex < GEN_TYPE_COUNT; typeIndex++ ) {
 		genType_t type = (genType_t) typeIndex;
@@ -445,6 +435,16 @@ void Gen_FunctionsMatrix( const genLanguage_t language ) {
 	String_Append( &content, contentFwdDec.str );
 	String_Append( &content, "#ifdef HLML_IMPLEMENTATION\n" );
 	String_Append( &content, "\n" );
+	String_Append( &content,
+		"#pragma once\n"
+		"\n"
+		"// ignore missing brace initializers\n"
+		"#if defined( __GNUC__ ) || defined( __clang__ )\n"
+		"#pragma GCC diagnostic push\n"
+		"#pragma GCC diagnostic ignored \"-Wmissing-braces\"\n"
+		"#endif\n"
+		"\n"
+	);
 	String_Append( &content, contentImpl.str );
 	String_Append( &content, "#endif // HLML_IMPLEMENTATION\n" );
 
@@ -463,16 +463,6 @@ void Gen_FunctionsQuaternion( const genLanguage_t language ) {
 	stringBuilder_t content = String_Create( contentFwdDec.alloc + contentImpl.alloc );
 
 	String_Append( &contentFwdDec, GEN_FILE_HEADER );
-	String_Append( &contentFwdDec,
-		"#pragma once\n"
-		"\n"
-		"// ignore missing brace initializers\n"
-		"#if defined( __GNUC__ ) || defined( __clang__ )\n"
-		"#pragma GCC diagnostic push\n"
-		"#pragma GCC diagnostic ignored \"-Wmissing-braces\"\n"
-		"#endif\n"
-		"\n"
-	);
 
 	for ( u32 typeIndex = 0; typeIndex < GEN_TYPE_COUNT; typeIndex++ ) {
 		genType_t type = (genType_t) typeIndex;
@@ -527,6 +517,16 @@ void Gen_FunctionsQuaternion( const genLanguage_t language ) {
 	String_Append( &content, contentFwdDec.str );
 	String_Append( &content, "#ifdef HLML_IMPLEMENTATION\n" );
 	String_Append( &content, "\n" );
+	String_Append( &content,
+		"#pragma once\n"
+		"\n"
+		"// ignore missing brace initializers\n"
+		"#if defined( __GNUC__ ) || defined( __clang__ )\n"
+		"#pragma GCC diagnostic push\n"
+		"#pragma GCC diagnostic ignored \"-Wmissing-braces\"\n"
+		"#endif\n"
+		"\n"
+	);
 	String_Append( &content, contentImpl.str );
 	String_Append( &content, "#endif // HLML_IMPLEMENTATION\n" );
 

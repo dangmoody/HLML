@@ -71,20 +71,16 @@ static void GenerateTestMultiplyScalar( stringBuilder_t* codeTests, stringBuilde
 	char testName[GEN_STRING_LENGTH_TEST_NAME] = { 0 };
 	snprintf( testName, GEN_STRING_LENGTH_TEST_NAME, "TestArithmetic%s_%s", "MultiplyScalar", fullTypeName );
 
+	const char* parmRefStr = GEN_TYPE_PARM_REFERENCE_MODIFIERS[language];
+
 	String_Appendf( codeTests, "TEMPER_TEST( %s )\n", testName );
 	String_Append( codeTests, "{\n" );
 	String_Appendf( codeTests, "\tconst %s a = HLML_CONSTRUCT( %s ) { %s, %s, %s, %s };\n", fullTypeName, fullTypeName, parmListValues[0], parmListValues[1], parmListValues[2], parmListValues[3] );
 	String_Appendf( codeTests, "\tconst %s b = %s;\n", baseTypeString, scalar );
 	String_Append( codeTests, "\n" );
-
-	if ( language == GEN_LANGUAGE_C ) {
-		String_Appendf( codeTests, "\t%s c = %s( &a, b );\n", fullTypeName, mulQuaternionFuncStr );
-	}
-	else {
-		String_Appendf( codeTests, "\t%s c = %s( a, b );\n", fullTypeName, mulQuaternionFuncStr );
-	}
-
+	String_Appendf( codeTests, "\t%s c = %s( %sa, b );\n", fullTypeName, mulQuaternionFuncStr, parmRefStr );
 	String_Append( codeTests, "\n" );
+
 	String_Appendf( codeTests, "\tTEMPER_EXPECT_TRUE( %s%s( c.x, %s ) );\n", baseTypeString, "eq", parmListAnswers[0] );
 	String_Appendf( codeTests, "\tTEMPER_EXPECT_TRUE( %s%s( c.y, %s ) );\n", baseTypeString, "eq", parmListAnswers[1] );
 	String_Appendf( codeTests, "\tTEMPER_EXPECT_TRUE( %s%s( c.z, %s ) );\n", baseTypeString, "eq", parmListAnswers[2] );
@@ -140,6 +136,8 @@ static void GenerateTestMultiplyQuaternion(  stringBuilder_t* codeTests, stringB
 	char mulQuaternionFuncStr[GEN_STRING_LENGTH_FUNCTION_NAME];
 	Gen_GetFuncNameQuaternionMultiplyQuaternion( language, type, mulQuaternionFuncStr );
 
+	const char* parmRefStr = GEN_TYPE_PARM_REFERENCE_MODIFIERS[language];
+
 	char testName[GEN_STRING_LENGTH_TEST_NAME] = { 0 };
 	snprintf( testName, GEN_STRING_LENGTH_TEST_NAME, "TestArithmetic%s_%s", "Multiply", fullTypeName );
 
@@ -148,13 +146,7 @@ static void GenerateTestMultiplyQuaternion(  stringBuilder_t* codeTests, stringB
 	String_Appendf( codeTests, "\tconst %s a = HLML_CONSTRUCT( %s ) { %s, %s, %s, %s };\n", fullTypeName, fullTypeName, parmListRhsValues[0], parmListRhsValues[1], parmListRhsValues[2], parmListRhsValues[3] );
 	String_Appendf( codeTests, "\tconst %s b = HLML_CONSTRUCT( %s ) { %s, %s, %s, %s };\n", fullTypeName, fullTypeName, parmListLhsValues[0], parmListLhsValues[1], parmListLhsValues[2], parmListLhsValues[3] );
 	String_Append( codeTests, "\n" );
-
-	if ( language == GEN_LANGUAGE_C ) {
-		String_Appendf( codeTests, "\t%s c = %s( &a, &b );\n", fullTypeName, mulQuaternionFuncStr );
-	}
-	else {
-		String_Appendf( codeTests, "\t%s c = %s( a, b );\n", fullTypeName, mulQuaternionFuncStr );
-	}
+	String_Appendf( codeTests, "\t%s c = %s( %sa, %sb );\n", fullTypeName, mulQuaternionFuncStr, parmRefStr, parmRefStr );
 
 	String_Append( codeTests, "\n" );
 	String_Appendf( codeTests, "\tTEMPER_EXPECT_TRUE( c.x == %s );\n", parmListAnswers[0] );
@@ -201,17 +193,13 @@ static void GenerateTestLength(  stringBuilder_t* codeTests, stringBuilder_t* co
 	char testName[GEN_STRING_LENGTH_TEST_NAME] = { 0 };
 	snprintf( testName, GEN_STRING_LENGTH_TEST_NAME, "TestArithmetic%s_%s", "Length", fullTypeName );
 
+	const char* parmRefStr = GEN_TYPE_PARM_REFERENCE_MODIFIERS[language];
+
 	String_Appendf( codeTests, "TEMPER_TEST( %s )\n", testName );
 	String_Append( codeTests, "{\n" );
 	String_Appendf( codeTests, "\tconst %s a = HLML_CONSTRUCT( %s ) { %s, %s, %s, %s };\n", fullTypeName, fullTypeName, parmListValues[0], parmListValues[1], parmListValues[2], parmListValues[3] );
 	String_Append( codeTests, "\n" );
-
-	if ( language == GEN_LANGUAGE_C ) {
-		String_Appendf( codeTests, "\t%s b = %s( &a );\n", baseTypeString, lengthQuaternionFuncStr );
-	}
-	else {
-		String_Appendf( codeTests, "\t%s b = %s( a );\n", baseTypeString, lengthQuaternionFuncStr );
-	}
+	String_Appendf( codeTests, "\t%s b = %s( %sa );\n", baseTypeString, lengthQuaternionFuncStr, parmRefStr );
 
 	String_Append( codeTests, "\n");
 	String_Appendf( codeTests, "\tTEMPER_EXPECT_TRUE( %s%s( b, %s ) );\n", baseTypeString, "eq", parmListAnswer );
@@ -261,17 +249,13 @@ static void GenerateTestNormalize(  stringBuilder_t* codeTests, stringBuilder_t*
 	char testName[GEN_STRING_LENGTH_TEST_NAME] = { 0 };
 	snprintf( testName, GEN_STRING_LENGTH_TEST_NAME, "TestArithmetic%s_%s", "Normalize", fullTypeName );
 
+	const char* parmRefStr = GEN_TYPE_PARM_REFERENCE_MODIFIERS[language];
+
 	String_Appendf( codeTests, "TEMPER_TEST( %s )\n", testName );
 	String_Append( codeTests, "{\n" );
 	String_Appendf( codeTests, "\tconst %s a = HLML_CONSTRUCT( %s ) { %s, %s, %s, %s };\n", fullTypeName, fullTypeName, parmListRhsValues[0], parmListRhsValues[1], parmListRhsValues[2], parmListRhsValues[3] );
 	String_Append( codeTests, "\n" );
-
-	if ( language == GEN_LANGUAGE_C ) {
-		String_Appendf( codeTests, "\t%s b = %s( &a );\n", fullTypeName, normQuaternionFuncStr );
-	}
-	else {
-		String_Appendf( codeTests, "\t%s b = %s( a );\n", fullTypeName, normQuaternionFuncStr );
-	}
+	String_Appendf( codeTests, "\t%s b = %s( %sa );\n", fullTypeName, normQuaternionFuncStr, parmRefStr );
 
 	String_Append( codeTests, "\n" );
 	String_Appendf( codeTests, "\tTEMPER_EXPECT_TRUE( %s%s( b.x, %s ) );\n", baseTypeString, "eq", parmListAnswers[0] );
@@ -324,17 +308,13 @@ static void GenerateTestConjugate(  stringBuilder_t* codeTests, stringBuilder_t*
 	char testName[GEN_STRING_LENGTH_TEST_NAME] = { 0 };
 	snprintf( testName, GEN_STRING_LENGTH_TEST_NAME, "TestArithmetic%s_%s", "Conjugate", fullTypeName );
 
+	const char* parmRefStr = GEN_TYPE_PARM_REFERENCE_MODIFIERS[language];
+
 	String_Appendf( codeTests, "TEMPER_TEST( %s )\n", testName );
 	String_Append( codeTests, "{\n" );
 	String_Appendf( codeTests, "\tconst %s a = HLML_CONSTRUCT( %s ) { %s, %s, %s, %s };\n", fullTypeName, fullTypeName, parmListRhsValues[0], parmListRhsValues[1], parmListRhsValues[2], parmListRhsValues[3] );
 	String_Append( codeTests, "\n" );
-
-	if ( language == GEN_LANGUAGE_C ) {
-		String_Appendf( codeTests, "\t%s b = %s( &a );\n", fullTypeName, conjugateQuaternionFuncStr );
-	}
-	else {
-		String_Appendf( codeTests, "\t%s b = %s( a );\n", fullTypeName, conjugateQuaternionFuncStr );
-	}
+	String_Appendf( codeTests, "\t%s b = %s( %sa );\n", fullTypeName, conjugateQuaternionFuncStr,  parmRefStr);
 
 	String_Append( codeTests, "\n" );
 	String_Appendf( codeTests, "\tTEMPER_EXPECT_TRUE( %s%s( b.x, %s ) );\n", baseTypeString, "eq", parmListAnswers[0] );
@@ -387,17 +367,13 @@ static void GenerateTestInverse(  stringBuilder_t* codeTests, stringBuilder_t* c
 	char testName[GEN_STRING_LENGTH_TEST_NAME] = { 0 };
 	snprintf( testName, GEN_STRING_LENGTH_TEST_NAME, "TestArithmetic%s_%s", "Inverse", fullTypeName );
 
+	const char* parmRefStr = GEN_TYPE_PARM_REFERENCE_MODIFIERS[language];
+
 	String_Appendf( codeTests, "TEMPER_TEST( %s )\n", testName );
 	String_Append( codeTests, "{\n" );
 	String_Appendf( codeTests, "\tconst %s a = HLML_CONSTRUCT( %s ) { %s, %s, %s, %s };\n", fullTypeName, fullTypeName, parmListRhsValues[0], parmListRhsValues[1], parmListRhsValues[2], parmListRhsValues[3] );
 	String_Append( codeTests, "\n" );
-
-	if ( language == GEN_LANGUAGE_C ) {
-		String_Appendf( codeTests, "\t%s b = %s( &a );\n", fullTypeName, inverseQuaternionFuncStr );
-	}
-	else {
-		String_Appendf( codeTests, "\t%s b = %s( a );\n", fullTypeName, inverseQuaternionFuncStr );
-	}
+	String_Appendf( codeTests, "\t%s b = %s( %sa );\n", fullTypeName, inverseQuaternionFuncStr, parmRefStr );
 
 	String_Append( codeTests, "\n" );
 	String_Appendf( codeTests, "\tTEMPER_EXPECT_TRUE( %s%s( b.x, %s ) );\n", baseTypeString, "eq", parmListAnswers[0] );
@@ -446,18 +422,14 @@ static void GenerateTestLerp(  stringBuilder_t* codeTests, stringBuilder_t* code
 	char testName[GEN_STRING_LENGTH_TEST_NAME] = { 0 };
 	snprintf( testName, GEN_STRING_LENGTH_TEST_NAME, "TestArithmetic%s_%s", "Lerp", fullTypeName );
 
+	const char* parmRefStr = GEN_TYPE_PARM_REFERENCE_MODIFIERS[language];
+
 	String_Appendf( codeTests, "TEMPER_TEST( %s )\n", testName );
 	String_Append( codeTests, "{\n" );
 	String_Appendf( codeTests, "\tconst %s a = HLML_CONSTRUCT( %s ) { %s, %s, %s, %s };\n", fullTypeName, fullTypeName, parmListLhsValues[0], parmListLhsValues[1], parmListLhsValues[2], parmListLhsValues[3] );
 	String_Appendf( codeTests, "\tconst %s b = HLML_CONSTRUCT( %s ) { %s, %s, %s, %s };\n", fullTypeName, fullTypeName, parmListRhsValues[0], parmListRhsValues[1], parmListRhsValues[2], parmListRhsValues[3] );
 	String_Append( codeTests, "\n" );
-
-	if ( language == GEN_LANGUAGE_C ) {
-		String_Appendf( codeTests, "\t%s c = %s( &a, &b, %s );\n", fullTypeName, lerpQuaternionFuncStr, halfStr );
-	}
-	else {
-		String_Appendf( codeTests, "\t%s c = %s( a, b, %s );\n", fullTypeName, lerpQuaternionFuncStr, halfStr );
-	}
+	String_Appendf( codeTests, "\t%s c = %s( %sa, %sb, %s );\n", fullTypeName, lerpQuaternionFuncStr, parmRefStr, parmRefStr, halfStr );
 
 	String_Append( codeTests, "\n" );
 	String_Appendf( codeTests, "\tTEMPER_EXPECT_TRUE( %s%s( c.x, %s ) );\n", baseTypeString, "eq", parmListAnswers[0] );
@@ -508,18 +480,14 @@ static void GenerateTestSlerp(  stringBuilder_t* codeTests, stringBuilder_t* cod
 	char testName[GEN_STRING_LENGTH_TEST_NAME] = { 0 };
 	snprintf( testName, GEN_STRING_LENGTH_TEST_NAME, "TestArithmetic%s_%s", "Slerp", fullTypeName );
 
+	const char* parmRefStr = GEN_TYPE_PARM_REFERENCE_MODIFIERS[language];
+
 	String_Appendf( codeTests, "TEMPER_TEST( %s )\n", testName );
 	String_Append( codeTests, "{\n" );
 	String_Appendf( codeTests, "\tconst %s a = HLML_CONSTRUCT( %s ) { %s, %s, %s, %s };\n", fullTypeName, fullTypeName, parmListLhsValues[0], parmListLhsValues[1], parmListLhsValues[2], parmListLhsValues[3] );
 	String_Appendf( codeTests, "\tconst %s b = HLML_CONSTRUCT( %s ) { %s, %s, %s, %s };\n", fullTypeName, fullTypeName, parmListRhsValues[0], parmListRhsValues[1], parmListRhsValues[2], parmListRhsValues[3] );
 	String_Append( codeTests, "\n" );
-
-	if ( language == GEN_LANGUAGE_C ) {
-		String_Appendf( codeTests, "\t%s c = %s( &a, &b, %s );\n", fullTypeName, slerpQuaternionFuncStr, halfStr );
-	}
-	else {
-		String_Appendf( codeTests, "\t%s c = %s( a, b, %s );\n", fullTypeName, slerpQuaternionFuncStr, halfStr );
-	}
+	String_Appendf( codeTests, "\t%s c = %s( %sa, %sb, %s );\n", fullTypeName, slerpQuaternionFuncStr, parmRefStr, parmRefStr, halfStr );
 
 	String_Append( codeTests, "\n" );
 	String_Appendf( codeTests, "\tTEMPER_EXPECT_TRUE( %s%s( c.x, %s ) );\n", baseTypeString, "eq", parmListAnswers[0] );
@@ -550,10 +518,12 @@ static void GenerateTestQuaternionVectorRotationByAngleAxis(  stringBuilder_t* c
 	snprintf( parmListAnswers[2], 64, "( %s )", oneStr );
 
 	char rotateQuaternionFuncStr[GEN_STRING_LENGTH_FUNCTION_NAME];
-	Gen_GetFuncNameQuaternionRotateVectorAngleAxis( language, type, rotateQuaternionFuncStr );
+	Gen_GetFuncNameQuaternionRotate( language, type, rotateQuaternionFuncStr );
 
 	char testName[GEN_STRING_LENGTH_TEST_NAME] = { 0 };
 	snprintf( testName, GEN_STRING_LENGTH_TEST_NAME, "TestArithmetic%s_%s", "VectorRotationByAngleAxis", fullTypeName );
+
+	const char* parmRefStr = GEN_TYPE_PARM_REFERENCE_MODIFIERS[language];
 
 	String_Appendf( codeTests, "TEMPER_TEST( %s )\n", testName );
 	String_Append( codeTests, "{\n" );
@@ -561,13 +531,7 @@ static void GenerateTestQuaternionVectorRotationByAngleAxis(  stringBuilder_t* c
 	String_Appendf( codeTests, "\tconst %s3 axis = HLML_CONSTRUCT( %s3 ) { %s, %s, %s };\n", baseTypeString, baseTypeString, oneStr, zeroStr, zeroStr );
 	String_Appendf( codeTests, "\tconst %s angle = %s;\n", baseTypeString, angleStr );
 	String_Append( codeTests, "\n" );
-
-	if ( language == GEN_LANGUAGE_C ) {
-		String_Appendf( codeTests, "\t%s3 rotated_vector = %s( &vector, angle, &axis );\n", baseTypeString, rotateQuaternionFuncStr );
-	}
-	else {
-		String_Appendf( codeTests, "\t%s3 rotated_vector = %s( vector, angle, axis );\n", baseTypeString, rotateQuaternionFuncStr );
-	}
+	String_Appendf( codeTests, "\t%s3 rotated_vector = %s( %svector, angle, %saxis );\n", baseTypeString, rotateQuaternionFuncStr, parmRefStr, parmRefStr );
 
 	String_Append( codeTests, "\n" );
 	String_Appendf( codeTests, "\tTEMPER_EXPECT_TRUE( %s%s( rotated_vector.x, %s ) );\n", baseTypeString, "eq", parmListAnswers[0] );

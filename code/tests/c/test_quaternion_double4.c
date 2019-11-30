@@ -127,7 +127,7 @@ TEMPER_TEST( TestArithmeticVectorRotationByAngleAxis_double4 )
 	const double3 axis = HLML_CONSTRUCT( double3 ) { 1.0, 0.0, 0.0 };
 	const double angle = 1.570800;
 
-	double3 rotated_vector = double4_quaternion_rotate_vector_about_angle_axis( &vector, angle, &axis );
+	double3 rotated_vector = double4_quaternion_rotate( &vector, angle, &axis );
 
 	TEMPER_EXPECT_TRUE( doubleeq( rotated_vector.x, ( 0.0 ) ) );
 	TEMPER_EXPECT_TRUE( doubleeq( rotated_vector.y, ( 0.0 ) ) );

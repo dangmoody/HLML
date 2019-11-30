@@ -959,10 +959,10 @@ inline void Gen_GetFuncNameQuaternionInverse( const genLanguage_t language, cons
 	Gen_GetFuncNameInternal( language, type, 1, 4, "quaternion_inverse", outString );
 }
 
-inline void Gen_GetFuncNameQuaternionRotateVectorAngleAxis( const genLanguage_t language, const genType_t type, char* outString ) {
+inline void Gen_GetFuncNameQuaternionRotate( const genLanguage_t language, const genType_t type, char* outString ) {
 	assert( outString );
 	
-	Gen_GetFuncNameInternal( language, type, 1, 4, "quaternion_rotate_vector_about_angle_axis", outString );
+	Gen_GetFuncNameInternal( language, type, 1, 4, "quaternion_rotate", outString );
 }
 
 inline void Gen_GetFuncNameQuaternionLerp( const genLanguage_t language, const genType_t type, char* outString ) {
