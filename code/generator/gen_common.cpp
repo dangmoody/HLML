@@ -30,8 +30,10 @@ along with The HLML Generator.  If not, see <http://www.gnu.org/licenses/>.
 #include "gen_matrix_cpp.h"
 #include "gen_funcs_vector.h"
 #include "gen_funcs_matrix.h"
+#include "gen_funcs_quaternion.h"
 #include "gen_funcs_vector_sse.h"
 #include "gen_funcs_matrix_sse.h"
+#include "gen_quaternion_tests_cpp.h"
 
 #include "defines.h"
 #include "string_builder.h"
@@ -182,6 +184,7 @@ void Gen_HeaderMain( const genLanguage_t language ) {
 	String_Appendf( &sb, "#include \"" GEN_FILENAME_FUNCTIONS_SCALAR ".h\"\n" );
 	String_Appendf( &sb, "#include \"" GEN_FILENAME_FUNCTIONS_VECTOR ".h\"\n" );
 	String_Appendf( &sb, "#include \"" GEN_FILENAME_FUNCTIONS_MATRIX ".h\"\n" );
+	String_Appendf( &sb, "#include \"" GEN_FILENAME_FUNCTIONS_QUATERNION ".h\"\n" );
 	String_Append(  &sb, "\n" );
 
 	// include SSE helpers
@@ -365,16 +368,6 @@ void Gen_FunctionsMatrix( const genLanguage_t language ) {
 	stringBuilder_t content = String_Create( contentFwdDec.alloc + contentImpl.alloc );
 
 	String_Append( &contentFwdDec, GEN_FILE_HEADER );
-	String_Append( &contentFwdDec,
-		"#pragma once\n"
-		"\n"
-		"// ignore missing brace initializers\n"
-		"#if defined( __GNUC__ ) || defined( __clang__ )\n"
-		"#pragma GCC diagnostic push\n"
-		"#pragma GCC diagnostic ignored \"-Wmissing-braces\"\n"
-		"#endif\n"
-		"\n"
-	);
 
 	for ( u32 typeIndex = 0; typeIndex < GEN_TYPE_COUNT; typeIndex++ ) {
 		genType_t type = (genType_t) typeIndex;
@@ -443,6 +436,98 @@ void Gen_FunctionsMatrix( const genLanguage_t language ) {
 	String_Append( &content, contentFwdDec.str );
 	String_Append( &content, "#ifdef HLML_IMPLEMENTATION\n" );
 	String_Append( &content, "\n" );
+	String_Append( &content,
+		"#pragma once\n"
+		"\n"
+		"// ignore missing brace initializers\n"
+		"#if defined( __GNUC__ ) || defined( __clang__ )\n"
+		"#pragma GCC diagnostic push\n"
+		"#pragma GCC diagnostic ignored \"-Wmissing-braces\"\n"
+		"#endif\n"
+		"\n"
+	);
+	String_Append( &content, contentImpl.str );
+	String_Append( &content, "#endif // HLML_IMPLEMENTATION\n" );
+
+	FS_WriteEntireFile( filePathHeader, content.str, content.length );
+
+	Mem_Reset();
+}
+
+void Gen_FunctionsQuaternion( const genLanguage_t language ) {
+	char filePathHeader[64] = { 0 };
+	snprintf( filePathHeader, 64, "%s%s.h", GEN_FOLDER_PATHS_OUT_GEN[language], GEN_FILENAME_FUNCTIONS_QUATERNION );
+
+	stringBuilder_t contentFwdDec = String_Create( 512 * KB_TO_BYTES );
+	stringBuilder_t contentImpl = String_Create( 512 * KB_TO_BYTES );
+
+	stringBuilder_t content = String_Create( contentFwdDec.alloc + contentImpl.alloc );
+
+	String_Append( &contentFwdDec, GEN_FILE_HEADER );
+
+	for ( u32 typeIndex = 0; typeIndex < GEN_TYPE_COUNT; typeIndex++ ) {
+		genType_t type = (genType_t) typeIndex;
+
+		const char* typeString = Gen_GetTypeString( type );
+
+		for ( u32 row = GEN_COMPONENT_COUNT_MIN; row <= GEN_COMPONENT_COUNT_MAX; row++ ) {
+			for ( u32 col = GEN_COMPONENT_COUNT_MIN; col <= GEN_COMPONENT_COUNT_MAX; col++ ) {
+				String_Appendf( &contentFwdDec, "#include \"%s%dx%d.h\"\n", typeString, row, col );
+			}
+		}
+
+		String_Appendf( &contentFwdDec, "\n" );
+	}
+
+	String_Appendf( &contentFwdDec, "#include \"" GEN_FILENAME_FUNCTIONS_VECTOR ".h\"\n" );
+	String_Appendf( &contentFwdDec, "\n" );
+
+	for ( u32 typeIndex = 0; typeIndex < GEN_TYPE_COUNT; typeIndex++ ) {
+		genType_t type = (genType_t) typeIndex;
+		if (Gen_TypeIsFloatingPoint(type) == false) {
+			continue;
+		}
+		
+		char fullTypeName[GEN_STRING_LENGTH_TYPE_NAME];
+		Gen_GetFullTypeName(type, 1, 4, fullTypeName);
+
+		printf("Basic functions %s...", fullTypeName);
+
+		String_Appendf(&contentFwdDec, "// %s\n", fullTypeName);
+
+		Gen_QuaternionMultiply( language, type, &contentFwdDec, &contentImpl );
+		Gen_QuaternionMultiplyScalar( language, type, &contentFwdDec, &contentImpl );
+		Gen_QuaternionLength( language, type, &contentFwdDec, &contentImpl );
+		Gen_QuaternionNormalize( language, type, &contentFwdDec, &contentImpl );
+		Gen_QuaternionConjugate( language, type, &contentFwdDec, &contentImpl );
+		Gen_QuaternionInverse( language, type, &contentFwdDec, &contentImpl );
+		Gen_QuaternionRotationAxis( language, type, &contentFwdDec, &contentImpl );
+		Gen_QuaternionLerp( language, type, &contentFwdDec, &contentImpl );
+		Gen_QuaternionSlerp( language, type, &contentFwdDec, &contentImpl );
+
+		String_Append(&contentFwdDec, "\n");
+		printf("OK.\n");
+	}
+
+	String_Append( &contentImpl,
+		"#if defined( __GNUC__ ) || defined( __clang__ )\n"
+		"#pragma GCC diagnostic pop\n"
+		"#endif\n"
+	);
+
+	String_Append( &content, contentFwdDec.str );
+	String_Append( &content, "#ifdef HLML_IMPLEMENTATION\n" );
+	String_Append( &content, "\n" );
+	String_Append( &content,
+		"#pragma once\n"
+		"\n"
+		"// ignore missing brace initializers\n"
+		"#if defined( __GNUC__ ) || defined( __clang__ )\n"
+		"#pragma GCC diagnostic push\n"
+		"#pragma GCC diagnostic ignored \"-Wmissing-braces\"\n"
+		"#endif\n"
+		"\n"
+	);
 	String_Append( &content, contentImpl.str );
 	String_Append( &content, "#endif // HLML_IMPLEMENTATION\n" );
 
@@ -716,6 +801,22 @@ void Gen_Tests( const genLanguage_t language ) {
 			}
 		}
 	}
+
+	// quaternion tests
+	for ( u32 typeIndex = 0; typeIndex < GEN_TYPE_COUNT; typeIndex++ ) {
+		genType_t type = (genType_t) typeIndex;
+		if (Gen_TypeIsFloatingPoint( type ) == false) {
+			continue;
+		}
+
+		const char* typeString = Gen_GetTypeString( type );
+
+		printf( "Generating test_quaternion_%s.%s...", typeString, fileExtension );
+
+		Gen_QuaternionTests( language, type );
+
+		printf( "OK.\n" );
+	}
 }
 
 void Gen_TestsMain( const genLanguage_t language ) {
@@ -787,6 +888,20 @@ void Gen_TestsMain( const genLanguage_t language ) {
 		}
 	}
 
+	// quaternion tests
+	for ( u32 typeIndex = 0; typeIndex < GEN_TYPE_COUNT; typeIndex++ ) {
+		genType_t type = (genType_t) typeIndex;
+		if (Gen_TypeIsFloatingPoint(type) == false) {
+			continue;
+		}
+
+		char fullTypeName[GEN_STRING_LENGTH_TYPE_NAME] = { 0 };
+		Gen_GetFullTypeName( type, 1, 1, fullTypeName );
+
+		String_Appendf( &sb, "#include \"test_quaternion_%s4.%s\"\n", fullTypeName, fileExtension );
+	}
+	String_Append( &sb, "\n" );
+
 	String_Append( &sb, "static void OnSuiteEnd( void* userdata )\n" );
 	String_Append( &sb, "{\n" );
 	String_Append( &sb, "\t( (void) userdata );\n" );
@@ -850,6 +965,20 @@ void Gen_TestsMain( const genLanguage_t language ) {
 		String_Appendf( &sb, "\n" );
 	}
 #endif
+
+	// quaternion suites
+	for ( u32 typeIndex = 0; typeIndex < GEN_TYPE_COUNT; typeIndex++ ) {
+		genType_t type = (genType_t) typeIndex;
+		if (Gen_TypeIsFloatingPoint(type) == false) {
+			continue;
+		}
+
+		char fullTypeName[GEN_STRING_LENGTH_TYPE_NAME] = { 0 };
+		Gen_GetFullTypeName( type, 1, 1, fullTypeName );
+
+		String_Appendf( &sb, "\tTEMPER_RUN_SUITE( Test_quaternion_%s4 );\n", fullTypeName );
+	}
+	String_Appendf( &sb, "\n" );
 
 	String_Append( &sb, "\tTEMPER_SHOW_STATS();\n" );
 	String_Append( &sb, "\n" );

@@ -32,14 +32,6 @@ SOFTWARE.
 // EDITING THIS FILE MAY CAUSE SIDE EFFECTS.
 // DO SO AT YOUR OWN RISK.
 
-#pragma once
-
-// ignore missing brace initializers
-#if defined( __GNUC__ ) || defined( __clang__ )
-#pragma GCC diagnostic push
-#pragma GCC diagnostic ignored "-Wmissing-braces"
-#endif
-
 #include "bool2x2.h"
 #include "bool2x3.h"
 #include "bool2x4.h"
@@ -3561,6 +3553,14 @@ inline double4x4 lookat_rh( const double3& eye, const double3& target, const dou
 
 
 #ifdef HLML_IMPLEMENTATION
+
+#pragma once
+
+// ignore missing brace initializers
+#if defined( __GNUC__ ) || defined( __clang__ )
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wmissing-braces"
+#endif
 
 bool cmpe( const bool2x2& lhs, const bool2x2& rhs )
 {
