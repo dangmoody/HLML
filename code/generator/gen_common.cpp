@@ -826,7 +826,7 @@ void Gen_TestsMain( const genLanguage_t language ) {
 	char filePathMain[1024] = { 0 };
 	snprintf( filePathMain, 1024, "%smain.%s", testsFolder, fileExtension );
 
-	stringBuilder_t sb = String_Create( 8 * KB_TO_BYTES );
+	stringBuilder_t sb = String_Create( 10 * KB_TO_BYTES );
 
 	String_Append( &sb, GEN_FILE_HEADER );
 
