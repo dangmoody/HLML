@@ -147,7 +147,7 @@ inline float4 quaternion_mul( const float4& lhs, const float4& rhs )
 inline float4 quaternion_mul( const float4& lhs, const float rhs )
 {
 	float scalar = lhs.w * rhs;
-	float3 imaginary = float3( lhs ) * rhs;
+	float3 imaginary = float3( lhs.x, lhs.y, lhs.z ) * rhs;
 	return HLML_CONSTRUCT( float4 ) { imaginary.x, imaginary.y, imaginary.z, scalar };
 }
 
@@ -245,7 +245,7 @@ inline double4 quaternion_mul( const double4& lhs, const double4& rhs )
 inline double4 quaternion_mul( const double4& lhs, const double rhs )
 {
 	double scalar = lhs.w * rhs;
-	double3 imaginary = double3( lhs ) * rhs;
+	double3 imaginary = double3( lhs.x, lhs.y, lhs.z ) * rhs;
 	return HLML_CONSTRUCT( double4 ) { imaginary.x, imaginary.y, imaginary.z, scalar };
 }
 

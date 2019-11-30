@@ -101,7 +101,7 @@ void Gen_QuaternionMultiplyScalar( const genLanguage_t language, const genType_t
 		String_Appendf( sbImpl, "\timaginary = %s( &imaginary, rhs );\n", compFuncStr);
 	}
 	else {
-		String_Appendf( sbImpl, "\t%s3 imaginary = %s3( lhs ) * rhs;\n", typeName, typeName );
+		String_Appendf( sbImpl, "\t%s3 imaginary = %s3( lhs.x, lhs.y, lhs.z ) * rhs;\n", typeName, typeName );
 	}
 
 	String_Appendf( sbImpl, "\treturn HLML_CONSTRUCT( %s4 ) { imaginary.x, imaginary.y, imaginary.z, scalar };\n", typeName );
