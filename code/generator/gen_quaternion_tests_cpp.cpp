@@ -547,8 +547,8 @@ static void GenerateTestQuaternionVectorRotationByAngleAxis(  stringBuilder_t* c
 
 void Gen_QuaternionTests( const genLanguage_t language, const genType_t type ) {
 
-	const u32 testsCodeBytes = 16 * KB_TO_BYTES;
-	const u32 suiteCodeBytes = 2 * KB_TO_BYTES;
+	const u32 testsCodeBytes = 24 * KB_TO_BYTES;
+	const u32 suiteCodeBytes = 4 * KB_TO_BYTES;
 	
 	stringBuilder_t codeTests = String_Create( testsCodeBytes );
 	stringBuilder_t codeSuite = String_Create( suiteCodeBytes );

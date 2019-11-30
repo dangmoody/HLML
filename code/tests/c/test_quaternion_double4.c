@@ -32,8 +32,6 @@ SOFTWARE.
 // EDITING THIS FILE MAY CAUSE SIDE EFFECTS.
 // DO SO AT YOUR OWN RISK.
 
-#include <temper/temper.h>
-
 TEMPER_TEST( TestArithmeticMultiplyScalar_double4 )
 {
 	const double4 a = HLML_CONSTRUCT( double4 ) { ( 2.0 ), ( 3.0 ), ( 4.0 ), ( 5.0 ) };

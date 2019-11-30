@@ -32,8 +32,6 @@ SOFTWARE.
 // EDITING THIS FILE MAY CAUSE SIDE EFFECTS.
 // DO SO AT YOUR OWN RISK.
 
-#include <temper/temper.h>
-
 TEMPER_TEST( TestArithmeticMultiplyScalar_float4 )
 {
 	const float4 a = HLML_CONSTRUCT( float4 ) { ( 2.0f ), ( 3.0f ), ( 4.0f ), ( 5.0f ) };
