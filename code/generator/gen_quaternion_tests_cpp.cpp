@@ -565,10 +565,6 @@ void Gen_QuaternionTests( const genLanguage_t language, const genType_t type ) {
 
 	String_Appendf( &code, GEN_FILE_HEADER );
 
-	// TODO: Need this?
-	String_Append( &code, "#include <temper/temper.h>\n" );
-	String_Append( &code, "\n" );
-
 	String_Appendf( &codeSuite, "TEMPER_SUITE( Test_%s_%s )\n", "quaternion", fullTypeString );
 	String_Append( &codeSuite, "{\n" );
 
