@@ -42,6 +42,7 @@
     <ClInclude Include="file_io.h" />
     <ClInclude Include="gen_c.h" />
     <ClInclude Include="gen_cpp.h" />
+    <ClInclude Include="gen_doc_common_sse.h" />
     <ClInclude Include="gen_quaternion_tests_cpp.h" />
     <ClInclude Include="gen_common.h" />
     <ClInclude Include="gen_common_sse.h" />

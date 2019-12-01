@@ -170,5 +170,8 @@
     <ClInclude Include="gen_c.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="gen_doc_common_sse.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
