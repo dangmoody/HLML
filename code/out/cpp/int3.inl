@@ -75,7 +75,7 @@ int3::int3( const int3& other )
 
 int3::int3( const int4& other )
 {
-	memcpy( data, other.data, sizeof( other.data ) );
+	memcpy( data, other.data, sizeof( data ) );
 }
 
 int3 int3::operator=( const int2& rhs )

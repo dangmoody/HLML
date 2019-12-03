@@ -75,7 +75,7 @@ uint3::uint3( const uint3& other )
 
 uint3::uint3( const uint4& other )
 {
-	memcpy( data, other.data, sizeof( other.data ) );
+	memcpy( data, other.data, sizeof( data ) );
 }
 
 uint3 uint3::operator=( const uint2& rhs )

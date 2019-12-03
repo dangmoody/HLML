@@ -68,12 +68,12 @@ bool2::bool2( const bool2& other )
 
 bool2::bool2( const bool3& other )
 {
-	memcpy( data, other.data, sizeof( other.data ) );
+	memcpy( data, other.data, sizeof( data ) );
 }
 
 bool2::bool2( const bool4& other )
 {
-	memcpy( data, other.data, sizeof( other.data ) );
+	memcpy( data, other.data, sizeof( data ) );
 }
 
 bool2 bool2::operator=( const bool2& rhs )

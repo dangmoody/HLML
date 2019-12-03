@@ -80,7 +80,6 @@ static void GenerateTestAssignment( stringBuilder_t* codeTests, stringBuilder_t*
 	String_Appendf( codeSuite, "\tTEMPER_RUN_TEST( %s );\n", testName );
 }
 
-// DM!!! test all ctors
 static void GenerateTestConstruct( stringBuilder_t* codeTests, stringBuilder_t* codeSuite, const genType_t type, const u32 numComponents, const char* fullTypeName ) {
 	assert( codeTests );
 	assert( codeSuite );
@@ -88,30 +87,69 @@ static void GenerateTestConstruct( stringBuilder_t* codeTests, stringBuilder_t* 
 	assert( numComponents <= GEN_COMPONENT_COUNT_MAX );
 	assert( fullTypeName );
 
-	char testName[GEN_STRING_LENGTH_TEST_NAME] = { 0 };
+	char testName[GEN_STRING_LENGTH_TEST_NAME];
 	snprintf( testName, GEN_STRING_LENGTH_TEST_NAME, "TestCtor_%s", fullTypeName );
 
 	char oneStr[GEN_STRING_LENGTH_NUMERIC_LITERAL];
 	Gen_GetNumericLiteral( type, 1, oneStr, 1 );
 
-	float values[] = { 0.0f, 1.0f, 2.0f, 3.0f };
+	float valuesVarying[] = { 0.0f, 1.0f, 2.0f, 3.0f };
+	char parmListVarying[GEN_STRING_LENGTH_PARM_LIST_VECTOR];
+	Gen_GetParmListVector( type, numComponents, valuesVarying, parmListVarying );
 
-	char parmListVarying[64] = { 0 };
-	Gen_GetParmListVector( type, numComponents, values, parmListVarying );
+	// DM: values picked at random
+	float valuesRhsCopy[] = { 10.0f, 11.0f, 14.0f, 15.0f };
+	char parmListRhsCopy[GEN_STRING_LENGTH_PARM_LIST_VECTOR];
+
+	const char* floateqStr = Gen_GetFuncNameFloateq( type );
 
 	String_Append(  codeTests, "// also tests equality operators\n" );
 	String_Appendf( codeTests, "TEMPER_TEST( %s )\n", testName );
 	String_Append(  codeTests, "{\n" );
 	String_Appendf( codeTests, "\t%s vec;\n", fullTypeName );
 	String_Append(  codeTests, "\n" );
+	String_Append(  codeTests, "\t// single value\n" );
 	String_Appendf( codeTests, "\tvec = %s( %s );\n", fullTypeName, oneStr );
 	String_Appendf( codeTests, "\tTEMPER_EXPECT_TRUE( vec == %s( %s ) );\n", fullTypeName, oneStr );
 	String_Appendf( codeTests, "\tTEMPER_EXPECT_TRUE( vec != %s( %s ) );\n", fullTypeName, parmListVarying );
 	String_Append(  codeTests, "\n" );
+	String_Append(  codeTests, "\t// all values set\n" );
 	String_Appendf( codeTests, "\tvec = %s( %s );\n", fullTypeName, parmListVarying );
 	String_Appendf( codeTests, "\tTEMPER_EXPECT_TRUE( vec == %s( %s ) );\n", fullTypeName, parmListVarying );
 	String_Appendf( codeTests, "\tTEMPER_EXPECT_TRUE( vec != %s( %s ) );\n", fullTypeName, oneStr );
 	String_Append(  codeTests, "\n" );
+	String_Append(  codeTests, "\t// copy ctors of other vector types\n" );
+	for ( u32 componentIndex = GEN_COMPONENT_COUNT_MIN; componentIndex <= GEN_COMPONENT_COUNT_MAX; componentIndex++ ) {
+		char rhsVecTypeString[GEN_STRING_LENGTH_TYPE_NAME];
+		Gen_GetFullTypeName( type, 1, componentIndex, rhsVecTypeString );
+
+		Gen_GetParmListVector( type, componentIndex, valuesRhsCopy, parmListRhsCopy );
+
+		char parmListAnswer[GEN_STRING_LENGTH_PARM_LIST_VECTOR];
+		Gen_GetParmListVector( type, numComponents, valuesRhsCopy, parmListAnswer );
+
+		String_Appendf( codeTests, "\t%s other%d = { %s };\n", rhsVecTypeString, componentIndex, parmListRhsCopy );
+		String_Appendf( codeTests, "\tvec = %s( other%d );\n", fullTypeName, componentIndex );
+
+		for ( u32 componentIndex2 = 0; componentIndex2 < numComponents; componentIndex2++ ) {
+			if ( componentIndex2 >= componentIndex ) {
+				break;
+			}
+
+			char componentStr = GEN_COMPONENT_NAMES_VECTOR[componentIndex2];
+
+			char valueStr[GEN_STRING_LENGTH_NUMERIC_LITERAL];
+			Gen_GetNumericLiteral( type, valuesRhsCopy[componentIndex2], valueStr, 1 );
+
+			if ( Gen_TypeIsFloatingPoint( type ) ) {
+				String_Appendf( codeTests, "\tTEMPER_EXPECT_TRUE( %s( vec.%c, %s ) );\n", floateqStr, componentStr, valueStr );
+			} else {
+				String_Appendf( codeTests, "\tTEMPER_EXPECT_TRUE( vec.%c == %s );\n", componentStr, valueStr );
+			}
+		}
+
+		String_Append(  codeTests, "\n" );
+	}
 	String_Append(  codeTests, "\tTEMPER_PASS();\n" );
 	String_Append(  codeTests, "}\n" );
 	String_Append(  codeTests, "\n" );

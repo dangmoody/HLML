@@ -62,13 +62,34 @@ TEMPER_TEST( TestCtor_bool4 )
 {
 	bool4 vec;
 
+	// single value
 	vec = bool4( true );
 	TEMPER_EXPECT_TRUE( vec == bool4( true ) );
 	TEMPER_EXPECT_TRUE( vec != bool4( false, true, true, true ) );
 
+	// all values set
 	vec = bool4( false, true, true, true );
 	TEMPER_EXPECT_TRUE( vec == bool4( false, true, true, true ) );
 	TEMPER_EXPECT_TRUE( vec != bool4( true ) );
+
+	// copy ctors of other vector types
+	bool2 other2 = { true, true };
+	vec = bool4( other2 );
+	TEMPER_EXPECT_TRUE( vec.x == true );
+	TEMPER_EXPECT_TRUE( vec.y == true );
+
+	bool3 other3 = { true, true, true };
+	vec = bool4( other3 );
+	TEMPER_EXPECT_TRUE( vec.x == true );
+	TEMPER_EXPECT_TRUE( vec.y == true );
+	TEMPER_EXPECT_TRUE( vec.z == true );
+
+	bool4 other4 = { true, true, true, true };
+	vec = bool4( other4 );
+	TEMPER_EXPECT_TRUE( vec.x == true );
+	TEMPER_EXPECT_TRUE( vec.y == true );
+	TEMPER_EXPECT_TRUE( vec.z == true );
+	TEMPER_EXPECT_TRUE( vec.w == true );
 
 	TEMPER_PASS();
 }

@@ -68,12 +68,12 @@ int2::int2( const int2& other )
 
 int2::int2( const int3& other )
 {
-	memcpy( data, other.data, sizeof( other.data ) );
+	memcpy( data, other.data, sizeof( data ) );
 }
 
 int2::int2( const int4& other )
 {
-	memcpy( data, other.data, sizeof( other.data ) );
+	memcpy( data, other.data, sizeof( data ) );
 }
 
 int2 int2::operator=( const int2& rhs )

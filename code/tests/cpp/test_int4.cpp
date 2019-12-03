@@ -62,13 +62,34 @@ TEMPER_TEST( TestCtor_int4 )
 {
 	int4 vec;
 
+	// single value
 	vec = int4( 1 );
 	TEMPER_EXPECT_TRUE( vec == int4( 1 ) );
 	TEMPER_EXPECT_TRUE( vec != int4( 0, 1, 2, 3 ) );
 
+	// all values set
 	vec = int4( 0, 1, 2, 3 );
 	TEMPER_EXPECT_TRUE( vec == int4( 0, 1, 2, 3 ) );
 	TEMPER_EXPECT_TRUE( vec != int4( 1 ) );
+
+	// copy ctors of other vector types
+	int2 other2 = { 10, 11 };
+	vec = int4( other2 );
+	TEMPER_EXPECT_TRUE( vec.x == 10 );
+	TEMPER_EXPECT_TRUE( vec.y == 11 );
+
+	int3 other3 = { 10, 11, 14 };
+	vec = int4( other3 );
+	TEMPER_EXPECT_TRUE( vec.x == 10 );
+	TEMPER_EXPECT_TRUE( vec.y == 11 );
+	TEMPER_EXPECT_TRUE( vec.z == 14 );
+
+	int4 other4 = { 10, 11, 14, 15 };
+	vec = int4( other4 );
+	TEMPER_EXPECT_TRUE( vec.x == 10 );
+	TEMPER_EXPECT_TRUE( vec.y == 11 );
+	TEMPER_EXPECT_TRUE( vec.z == 14 );
+	TEMPER_EXPECT_TRUE( vec.w == 15 );
 
 	TEMPER_PASS();
 }
