@@ -68,12 +68,12 @@ double2::double2( const double2& other )
 
 double2::double2( const double3& other )
 {
-	memcpy( data, other.data, sizeof( other.data ) );
+	memcpy( data, other.data, sizeof( data ) );
 }
 
 double2::double2( const double4& other )
 {
-	memcpy( data, other.data, sizeof( other.data ) );
+	memcpy( data, other.data, sizeof( data ) );
 }
 
 double2 double2::operator=( const double2& rhs )

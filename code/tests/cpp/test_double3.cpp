@@ -58,13 +58,33 @@ TEMPER_TEST( TestCtor_double3 )
 {
 	double3 vec;
 
+	// single value
 	vec = double3( 1.0 );
 	TEMPER_EXPECT_TRUE( vec == double3( 1.0 ) );
 	TEMPER_EXPECT_TRUE( vec != double3( 0.000000, 1.000000, 2.000000 ) );
 
+	// all values set
 	vec = double3( 0.000000, 1.000000, 2.000000 );
 	TEMPER_EXPECT_TRUE( vec == double3( 0.000000, 1.000000, 2.000000 ) );
 	TEMPER_EXPECT_TRUE( vec != double3( 1.0 ) );
+
+	// copy ctors of other vector types
+	double2 other2 = { 10.000000, 11.000000 };
+	vec = double3( other2 );
+	TEMPER_EXPECT_TRUE( doubleeq( vec.x, 10.0 ) );
+	TEMPER_EXPECT_TRUE( doubleeq( vec.y, 11.0 ) );
+
+	double3 other3 = { 10.000000, 11.000000, 14.000000 };
+	vec = double3( other3 );
+	TEMPER_EXPECT_TRUE( doubleeq( vec.x, 10.0 ) );
+	TEMPER_EXPECT_TRUE( doubleeq( vec.y, 11.0 ) );
+	TEMPER_EXPECT_TRUE( doubleeq( vec.z, 14.0 ) );
+
+	double4 other4 = { 10.000000, 11.000000, 14.000000, 15.000000 };
+	vec = double3( other4 );
+	TEMPER_EXPECT_TRUE( doubleeq( vec.x, 10.0 ) );
+	TEMPER_EXPECT_TRUE( doubleeq( vec.y, 11.0 ) );
+	TEMPER_EXPECT_TRUE( doubleeq( vec.z, 14.0 ) );
 
 	TEMPER_PASS();
 }

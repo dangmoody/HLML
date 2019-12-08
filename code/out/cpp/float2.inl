@@ -70,12 +70,12 @@ float2::float2( const float2& other )
 
 float2::float2( const float3& other )
 {
-	memcpy( data, other.data, sizeof( other.data ) );
+	memcpy( data, other.data, sizeof( data ) );
 }
 
 float2::float2( const float4& other )
 {
-	memcpy( data, other.data, sizeof( other.data ) );
+	memcpy( data, other.data, sizeof( data ) );
 }
 
 float2 float2::operator=( const float2& rhs )

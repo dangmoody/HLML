@@ -54,13 +54,31 @@ TEMPER_TEST( TestCtor_float2 )
 {
 	float2 vec;
 
+	// single value
 	vec = float2( 1.0f );
 	TEMPER_EXPECT_TRUE( vec == float2( 1.0f ) );
 	TEMPER_EXPECT_TRUE( vec != float2( 0.000000f, 1.000000f ) );
 
+	// all values set
 	vec = float2( 0.000000f, 1.000000f );
 	TEMPER_EXPECT_TRUE( vec == float2( 0.000000f, 1.000000f ) );
 	TEMPER_EXPECT_TRUE( vec != float2( 1.0f ) );
+
+	// copy ctors of other vector types
+	float2 other2 = { 10.000000f, 11.000000f };
+	vec = float2( other2 );
+	TEMPER_EXPECT_TRUE( floateq( vec.x, 10.0f ) );
+	TEMPER_EXPECT_TRUE( floateq( vec.y, 11.0f ) );
+
+	float3 other3 = { 10.000000f, 11.000000f, 14.000000f };
+	vec = float2( other3 );
+	TEMPER_EXPECT_TRUE( floateq( vec.x, 10.0f ) );
+	TEMPER_EXPECT_TRUE( floateq( vec.y, 11.0f ) );
+
+	float4 other4 = { 10.000000f, 11.000000f, 14.000000f, 15.000000f };
+	vec = float2( other4 );
+	TEMPER_EXPECT_TRUE( floateq( vec.x, 10.0f ) );
+	TEMPER_EXPECT_TRUE( floateq( vec.y, 11.0f ) );
 
 	TEMPER_PASS();
 }

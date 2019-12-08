@@ -58,13 +58,33 @@ TEMPER_TEST( TestCtor_uint3 )
 {
 	uint3 vec;
 
+	// single value
 	vec = uint3( 1U );
 	TEMPER_EXPECT_TRUE( vec == uint3( 1U ) );
 	TEMPER_EXPECT_TRUE( vec != uint3( 0U, 1U, 2U ) );
 
+	// all values set
 	vec = uint3( 0U, 1U, 2U );
 	TEMPER_EXPECT_TRUE( vec == uint3( 0U, 1U, 2U ) );
 	TEMPER_EXPECT_TRUE( vec != uint3( 1U ) );
+
+	// copy ctors of other vector types
+	uint2 other2 = { 10U, 11U };
+	vec = uint3( other2 );
+	TEMPER_EXPECT_TRUE( vec.x == 10U );
+	TEMPER_EXPECT_TRUE( vec.y == 11U );
+
+	uint3 other3 = { 10U, 11U, 14U };
+	vec = uint3( other3 );
+	TEMPER_EXPECT_TRUE( vec.x == 10U );
+	TEMPER_EXPECT_TRUE( vec.y == 11U );
+	TEMPER_EXPECT_TRUE( vec.z == 14U );
+
+	uint4 other4 = { 10U, 11U, 14U, 15U };
+	vec = uint3( other4 );
+	TEMPER_EXPECT_TRUE( vec.x == 10U );
+	TEMPER_EXPECT_TRUE( vec.y == 11U );
+	TEMPER_EXPECT_TRUE( vec.z == 14U );
 
 	TEMPER_PASS();
 }

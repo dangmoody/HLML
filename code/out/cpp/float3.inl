@@ -77,7 +77,7 @@ float3::float3( const float3& other )
 
 float3::float3( const float4& other )
 {
-	memcpy( data, other.data, sizeof( other.data ) );
+	memcpy( data, other.data, sizeof( data ) );
 }
 
 float3 float3::operator=( const float2& rhs )

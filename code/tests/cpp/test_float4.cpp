@@ -62,13 +62,34 @@ TEMPER_TEST( TestCtor_float4 )
 {
 	float4 vec;
 
+	// single value
 	vec = float4( 1.0f );
 	TEMPER_EXPECT_TRUE( vec == float4( 1.0f ) );
 	TEMPER_EXPECT_TRUE( vec != float4( 0.000000f, 1.000000f, 2.000000f, 3.000000f ) );
 
+	// all values set
 	vec = float4( 0.000000f, 1.000000f, 2.000000f, 3.000000f );
 	TEMPER_EXPECT_TRUE( vec == float4( 0.000000f, 1.000000f, 2.000000f, 3.000000f ) );
 	TEMPER_EXPECT_TRUE( vec != float4( 1.0f ) );
+
+	// copy ctors of other vector types
+	float2 other2 = { 10.000000f, 11.000000f };
+	vec = float4( other2 );
+	TEMPER_EXPECT_TRUE( floateq( vec.x, 10.0f ) );
+	TEMPER_EXPECT_TRUE( floateq( vec.y, 11.0f ) );
+
+	float3 other3 = { 10.000000f, 11.000000f, 14.000000f };
+	vec = float4( other3 );
+	TEMPER_EXPECT_TRUE( floateq( vec.x, 10.0f ) );
+	TEMPER_EXPECT_TRUE( floateq( vec.y, 11.0f ) );
+	TEMPER_EXPECT_TRUE( floateq( vec.z, 14.0f ) );
+
+	float4 other4 = { 10.000000f, 11.000000f, 14.000000f, 15.000000f };
+	vec = float4( other4 );
+	TEMPER_EXPECT_TRUE( floateq( vec.x, 10.0f ) );
+	TEMPER_EXPECT_TRUE( floateq( vec.y, 11.0f ) );
+	TEMPER_EXPECT_TRUE( floateq( vec.z, 14.0f ) );
+	TEMPER_EXPECT_TRUE( floateq( vec.w, 15.0f ) );
 
 	TEMPER_PASS();
 }

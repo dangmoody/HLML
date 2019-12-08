@@ -75,7 +75,7 @@ double3::double3( const double3& other )
 
 double3::double3( const double4& other )
 {
-	memcpy( data, other.data, sizeof( other.data ) );
+	memcpy( data, other.data, sizeof( data ) );
 }
 
 double3 double3::operator=( const double2& rhs )

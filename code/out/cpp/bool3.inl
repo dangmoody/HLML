@@ -75,7 +75,7 @@ bool3::bool3( const bool3& other )
 
 bool3::bool3( const bool4& other )
 {
-	memcpy( data, other.data, sizeof( other.data ) );
+	memcpy( data, other.data, sizeof( data ) );
 }
 
 bool3 bool3::operator=( const bool2& rhs )

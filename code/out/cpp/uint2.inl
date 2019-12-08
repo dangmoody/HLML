@@ -68,12 +68,12 @@ uint2::uint2( const uint2& other )
 
 uint2::uint2( const uint3& other )
 {
-	memcpy( data, other.data, sizeof( other.data ) );
+	memcpy( data, other.data, sizeof( data ) );
 }
 
 uint2::uint2( const uint4& other )
 {
-	memcpy( data, other.data, sizeof( other.data ) );
+	memcpy( data, other.data, sizeof( data ) );
 }
 
 uint2 uint2::operator=( const uint2& rhs )

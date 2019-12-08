@@ -167,7 +167,11 @@ static void GenerateConstructors( stringBuilder_t* codeHeader, stringBuilder_t* 
 
 			String_Appendf( codeInl, "%s::%s( const %s%d& other )\n", fullTypeName, fullTypeName, typeString, i );
 			String_Append(  codeInl, "{\n" );
-			String_Append(  codeInl, "\tmemcpy( data, other.data, sizeof( other.data ) );\n" );
+			if ( i <= numComponents ) {
+				String_Append( codeInl, "\tmemcpy( data, other.data, sizeof( other.data ) );\n" );
+			} else {
+				String_Append( codeInl, "\tmemcpy( data, other.data, sizeof( data ) );\n" );
+			}
 			String_Append(  codeInl, "}\n" );
 			String_Append(  codeInl, "\n" );
 		}
