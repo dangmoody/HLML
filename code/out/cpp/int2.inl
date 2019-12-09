@@ -44,12 +44,6 @@ SOFTWARE.
 #include <memory.h>
 #include <assert.h>
 
-int2::int2()
-{
-	x = 0;
-	y = 0;
-}
-
 int2::int2( const int32_t x )
 {
 	this->x = this->y = x;

@@ -44,12 +44,6 @@ SOFTWARE.
 #include <memory.h>
 #include <assert.h>
 
-double2::double2()
-{
-	x = 0.0;
-	y = 0.0;
-}
-
 double2::double2( const double x )
 {
 	this->x = this->y = x;

@@ -80,7 +80,7 @@ static void GenerateDocOperatorArray( stringBuilder_t* codeHeader, const u32 num
 		"\t/// Index CANNOT be lower than 0 or higher than %d.\n", numComponents - 1 );
 }
 
-static void GenerateConstructors( stringBuilder_t* codeHeader, stringBuilder_t* codeInl, const genType_t type, const u32 numComponents, const char* fullTypeName, const char* memberTypeString, const char* typeString ) {
+static void GenerateConstructors( stringBuilder_t* codeHeader, stringBuilder_t* codeInl, const u32 numComponents, const char* fullTypeName, const char* memberTypeString, const char* typeString ) {
 	assert( codeHeader );
 	assert( codeInl );
 	assert( numComponents >= GEN_COMPONENT_COUNT_MIN );
@@ -91,19 +91,9 @@ static void GenerateConstructors( stringBuilder_t* codeHeader, stringBuilder_t* 
 
 	// default ctor
 	{
-		const char* defaultValueStr = Gen_GetDefaultLiteralValue( type );
-
 		GenerateDocCtorDefault( codeHeader );
-		String_Appendf( codeHeader, "\tinline %s();\n", fullTypeName );
+		String_Appendf( codeHeader, "\tinline %s() {}\n", fullTypeName );
 		String_Append(  codeHeader, "\n" );
-
-		String_Appendf( codeInl, "%s::%s()\n", fullTypeName, fullTypeName );
-		String_Append(  codeInl, "{\n" );
-		for ( u32 i = 0; i < numComponents; i++ ) {
-			String_Appendf( codeInl, "\t%c = %s;\n", GEN_COMPONENT_NAMES_VECTOR[i], defaultValueStr );
-		}
-		String_Append(  codeInl, "}\n" );
-		String_Append(  codeInl, "\n" );
 	}
 
 	// single scalar ctor
@@ -398,7 +388,7 @@ void Gen_VectorType_CPP( const genType_t type, const u32 numComponents ) {
 			"\n" );
 	}
 
-	GenerateConstructors( &codeHeader, &codeInl, type, numComponents, fullTypeName, memberTypeString, typeString );
+	GenerateConstructors( &codeHeader, &codeInl, numComponents, fullTypeName, memberTypeString, typeString );
 
 	GenerateOperatorsAssignment( &codeHeader, &codeInl, fullTypeName, typeString );
 

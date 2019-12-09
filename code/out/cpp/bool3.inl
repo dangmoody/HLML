@@ -44,13 +44,6 @@ SOFTWARE.
 #include <memory.h>
 #include <assert.h>
 
-bool3::bool3()
-{
-	x = false;
-	y = false;
-	z = false;
-}
-
 bool3::bool3( const bool32_t x )
 {
 	this->x = this->y = this->z = x;

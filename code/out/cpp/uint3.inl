@@ -44,13 +44,6 @@ SOFTWARE.
 #include <memory.h>
 #include <assert.h>
 
-uint3::uint3()
-{
-	x = 0;
-	y = 0;
-	z = 0;
-}
-
 uint3::uint3( const uint32_t x )
 {
 	this->x = this->y = this->z = x;

@@ -479,6 +479,7 @@ TEMPER_TEST( TestTranslate_Scalar_int3x3 )
 	int3x3_identity( &mat );
 
 	int2 translation = { 2, 3 };
+
 	mat = int3x3_translate( &mat, &translation );
 
 	TEMPER_EXPECT_TRUE( mat.rows[0].z == 2 );

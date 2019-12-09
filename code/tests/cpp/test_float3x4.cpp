@@ -109,6 +109,7 @@ TEMPER_TEST( TestCtor_float3x4 )
 TEMPER_TEST( TestArray_float3x4 )
 {
 	float3x4 mat;
+	identity( mat );
 
 	TEMPER_EXPECT_TRUE( mat[0] == float4( 1.0f, 0.0f, 0.0f, 0.0f ) );
 	TEMPER_EXPECT_TRUE( mat[1] == float4( 0.0f, 1.0f, 0.0f, 0.0f ) );
@@ -1064,7 +1065,6 @@ TEMPER_TEST( TestIdentity_Scalar_float3x4 )
 	id[2] = float4( 0.000000f, 0.000000f, 1.000000f, 0.000000f );
 
 	float3x4 mat;
-	TEMPER_EXPECT_TRUE( mat == id );
 
 	identity( mat );
 	TEMPER_EXPECT_TRUE( mat == id );
@@ -1278,6 +1278,8 @@ TEMPER_TEST( TestTranspose_SSE_float3x4 )
 TEMPER_TEST( TestTranslate_Scalar_float3x4 )
 {
 	float3x4 mat;
+	identity( mat );
+
 	float3 translation = float3( 2.000000f, 3.000000f, 4.000000f );
 
 	mat = translate( mat, translation );

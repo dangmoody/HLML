@@ -91,6 +91,7 @@ TEMPER_TEST( TestCtor_int2x2 )
 TEMPER_TEST( TestArray_int2x2 )
 {
 	int2x2 mat;
+	identity( mat );
 
 	TEMPER_EXPECT_TRUE( mat[0] == int2( 1, 0 ) );
 	TEMPER_EXPECT_TRUE( mat[1] == int2( 0, 1 ) );
@@ -500,7 +501,6 @@ TEMPER_TEST( TestIdentity_Scalar_int2x2 )
 	id[1] = int2( 0, 1 );
 
 	int2x2 mat;
-	TEMPER_EXPECT_TRUE( mat == id );
 
 	identity( mat );
 	TEMPER_EXPECT_TRUE( mat == id );

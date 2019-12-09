@@ -79,7 +79,7 @@ struct int4
 
 
 	/// Default constructor.  Initializes all values to zero.
-	inline int4();
+	inline int4() {}
 
 	/// Initializes all components of the vector to the given scalar value.
 	inline explicit int4( const int32_t x );

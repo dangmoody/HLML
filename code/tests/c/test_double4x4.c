@@ -392,6 +392,7 @@ TEMPER_TEST( TestTranslate_Scalar_double4x4 )
 	double4x4_identity( &mat );
 
 	double3 translation = { 2.000000, 3.000000, 4.000000 };
+
 	mat = double4x4_translate( &mat, &translation );
 
 	TEMPER_EXPECT_TRUE( doubleeq( mat.rows[0].w, 2.0 ) );

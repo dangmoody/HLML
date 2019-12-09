@@ -74,7 +74,7 @@ struct int2
 
 
 	/// Default constructor.  Initializes all values to zero.
-	inline int2();
+	inline int2() {}
 
 	/// Initializes all components of the vector to the given scalar value.
 	inline explicit int2( const int32_t x );

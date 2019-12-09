@@ -1706,6 +1706,7 @@ TEMPER_TEST( TestTranslate_Scalar_float4x4 )
 	float4x4_identity( &mat );
 
 	float3 translation = { 2.000000f, 3.000000f, 4.000000f };
+
 	mat = float4x4_translate( &mat, &translation );
 
 	TEMPER_EXPECT_TRUE( floateq( mat.rows[0].w, 2.0f ) );

@@ -94,6 +94,7 @@ TEMPER_TEST( TestCtor_uint2x3 )
 TEMPER_TEST( TestArray_uint2x3 )
 {
 	uint2x3 mat;
+	identity( mat );
 
 	TEMPER_EXPECT_TRUE( mat[0] == uint3( 1U, 0U, 0U ) );
 	TEMPER_EXPECT_TRUE( mat[1] == uint3( 0U, 1U, 0U ) );
@@ -487,7 +488,6 @@ TEMPER_TEST( TestIdentity_Scalar_uint2x3 )
 	id[1] = uint3( 0U, 1U, 0U );
 
 	uint2x3 mat;
-	TEMPER_EXPECT_TRUE( mat == id );
 
 	identity( mat );
 	TEMPER_EXPECT_TRUE( mat == id );

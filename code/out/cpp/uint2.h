@@ -74,7 +74,7 @@ struct uint2
 
 
 	/// Default constructor.  Initializes all values to zero.
-	inline uint2();
+	inline uint2() {}
 
 	/// Initializes all components of the vector to the given scalar value.
 	inline explicit uint2( const uint32_t x );

@@ -45,13 +45,6 @@ SOFTWARE.
 // forward declares
 float3x2 inverse( const float3x2& mat );
 
-float3x2::float3x2()
-{
-	rows[0] = { 1, 0 };
-	rows[1] = { 0, 1 };
-	rows[2] = { 0, 0 };
-}
-
 float3x2::float3x2( const float diagonal )
 {
 	rows[0] = { diagonal, 0 };

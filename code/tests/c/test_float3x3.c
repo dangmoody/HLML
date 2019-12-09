@@ -1159,6 +1159,7 @@ TEMPER_TEST( TestTranslate_Scalar_float3x3 )
 	float3x3_identity( &mat );
 
 	float2 translation = { 2.000000f, 3.000000f };
+
 	mat = float3x3_translate( &mat, &translation );
 
 	TEMPER_EXPECT_TRUE( floateq( mat.rows[0].z, 2.0f ) );

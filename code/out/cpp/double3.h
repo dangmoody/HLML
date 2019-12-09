@@ -77,7 +77,7 @@ struct double3
 
 
 	/// Default constructor.  Initializes all values to zero.
-	inline double3();
+	inline double3() {}
 
 	/// Initializes all components of the vector to the given scalar value.
 	inline explicit double3( const double x );

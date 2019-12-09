@@ -79,7 +79,7 @@ struct float4
 
 
 	/// Default constructor.  Initializes all values to zero.
-	inline float4();
+	inline float4() {}
 
 	/// Initializes all components of the vector to the given scalar value.
 	inline explicit float4( const float x );
