@@ -1730,8 +1730,6 @@ inline bool4 operator>( double4& lhs, const double4& rhs );
 inline bool4 operator>=( double4& lhs, const double4& rhs );
 
 
-#ifdef HLML_IMPLEMENTATION
-
 bool operator==( const bool2& lhs, const bool2& rhs )
 {
 	return ( lhs.x == rhs.x ) && ( lhs.y == rhs.y );
@@ -4792,4 +4790,3 @@ bool4 operator>=( double4& lhs, const double4& rhs )
 	};
 }
 
-#endif // HLML_IMPLEMENTATION

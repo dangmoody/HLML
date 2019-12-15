@@ -161,8 +161,6 @@ inline double smoothstep( const double low, const double high, const double x );
 inline double smootherstep( const double low, const double high, const double x );
 
 
-#ifdef HLML_IMPLEMENTATION
-
 int32_t signi( const int32_t x )
 {
 	return ( 0 < x ) - ( x < 0 );
@@ -332,4 +330,3 @@ double smootherstep( const double low, const double high, const double x )
 	return t * t * t * ( t * ( t * 6.0 - 15.0 ) + 10.0 );
 }
 
-#endif // HLML_IMPLEMENTATION

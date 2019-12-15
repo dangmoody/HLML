@@ -104,7 +104,6 @@ SOFTWARE.
 #include "double4x3.h"
 #include "double4x4.h"
 
-#ifdef HLML_IMPLEMENTATION
 
 #include "bool2.inl"
 #include "bool3.inl"
@@ -175,8 +174,6 @@ SOFTWARE.
 #include "double4x2.inl"
 #include "double4x3.inl"
 #include "double4x4.inl"
-
-#endif // HLML_IMPLEMENTATION
 
 #include "hlml_operators_vector.h"
 #include "hlml_operators_matrix.h"

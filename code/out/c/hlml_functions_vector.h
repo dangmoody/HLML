@@ -1352,8 +1352,6 @@ inline double4 double4_cross( const double4* lhs, const double4* rhs );
 inline double double4_angle( const double4* lhs, const double4* rhs );
 
 
-#ifdef HLML_IMPLEMENTATION
-
 bool bool2_cmpe( const bool2* lhs, const bool2* rhs )
 {
 	return ( lhs->x == rhs->x ) && ( lhs->y == rhs->y );
@@ -3909,4 +3907,3 @@ double double4_angle( const double4* lhs, const double4* rhs )
 	return degrees( acos( double4_dot( &lhs_unit, &rhs_unit ) ) );
 }
 
-#endif // HLML_IMPLEMENTATION

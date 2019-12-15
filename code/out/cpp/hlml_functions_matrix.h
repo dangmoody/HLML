@@ -3552,7 +3552,6 @@ inline double4x4 lookat_lh( const double3& eye, const double3& target, const dou
 inline double4x4 lookat_rh( const double3& eye, const double3& target, const double3& up );
 
 
-#ifdef HLML_IMPLEMENTATION
 
 #pragma once
 
@@ -12118,4 +12117,3 @@ double4x4 lookat_rh( const double3& eye, const double3& target, const double3& u
 #if defined( __GNUC__ ) || defined( __clang__ )
 #pragma GCC diagnostic pop
 #endif
-#endif // HLML_IMPLEMENTATION

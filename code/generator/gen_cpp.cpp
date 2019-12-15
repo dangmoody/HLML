@@ -608,10 +608,7 @@ void Gen_OperatorsVector( void ) {
 	}
 
 	String_Append( &content, contentFwdDec.str );
-	String_Append( &content, "#ifdef HLML_IMPLEMENTATION\n" );
-	String_Append( &content, "\n" );
 	String_Append( &content, contentImpl.str );
-	String_Append( &content, "#endif // HLML_IMPLEMENTATION\n" );
 
 	FS_WriteEntireFile( filePathHeader, content.str, content.length );
 
@@ -677,10 +674,7 @@ void Gen_OperatorsMatrix( void ) {
 	}
 
 	String_Append( &content, contentFwdDec.str );
-	String_Append( &content, "#ifdef HLML_IMPLEMENTATION\n" );
-	String_Append( &content, "\n" );
 	String_Append( &content, contentImpl.str );
-	String_Append( &content, "#endif // HLML_IMPLEMENTATION\n" );
 
 	FS_WriteEntireFile( filePathHeader, content.str, content.length );
 
