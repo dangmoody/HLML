@@ -3501,8 +3501,6 @@ inline bool4x4 operator>( const double4x4& lhs, const double4x4& rhs );
 inline bool4x4 operator>=( const double4x4& lhs, const double4x4& rhs );
 
 
-#ifdef HLML_IMPLEMENTATION
-
 bool operator==( const bool2x2& lhs, const bool2x2& rhs )
 {
 	return ( lhs[0] == rhs[0] )
@@ -10973,4 +10971,3 @@ bool4x4 operator>=( const double4x4& lhs, const double4x4& rhs )
 	};
 }
 
-#endif // HLML_IMPLEMENTATION

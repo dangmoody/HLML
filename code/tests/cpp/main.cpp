@@ -36,7 +36,6 @@ SOFTWARE.
 
 #include <temper/temper.h>
 
-#define HLML_IMPLEMENTATION
 #include "../../../code/out/cpp/hlml.h"
 
 #include "test_scalar_int32_t.cpp"

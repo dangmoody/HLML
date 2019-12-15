@@ -124,7 +124,6 @@ inline double4 double4_quaternion_lerp( const double4* lhs, const double4* rhs, 
 inline double4 double4_quaternion_slerp( const double4* lhs, const double4* rhs, const double percent );
 
 
-#ifdef HLML_IMPLEMENTATION
 
 #pragma once
 
@@ -339,4 +338,3 @@ inline double4 double4_quaternion_slerp( const double4* lhs, const double4* rhs,
 #if defined( __GNUC__ ) || defined( __clang__ )
 #pragma GCC diagnostic pop
 #endif
-#endif // HLML_IMPLEMENTATION

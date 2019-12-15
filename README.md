@@ -32,8 +32,7 @@ Installation
 
 Usage
 =====
-1. Include ```hlml.h```.
-2. Define `HLML_IMPLEMENTATION` in one place before including `hlml.h` (this works the same way as [the STB libraries](https://github.com/nothings/stb)).
+Include ```hlml.h```.
 
 For more detailed documentation on how to use HLML's experimental SSE functionality, please refer to [the SSE document](https://github.com/floorman/HLML/blob/simd/doc/SSE.md).
 
@@ -114,9 +113,8 @@ Common Pitfalls
 * All vector types are union of ```struct```/fixed-size array.
 * HLML is focused on mathemetical expressive power where possible, therefore:
 	* All matrices have the ```*``` operator overloaded to do matrix multiplication, **NOT** a component-wise multiplication.
-	* All square matrices with floating point types have the ```/``` operator overloaded to multiply the light-hand matrix by the inverse of the right-hand matrix, it does **NOT** do a component-wise divide.
-		* If you want to do a component-wise multiply or divide with matrices, you will need the functions `comp_mul` and `comp_div`, respectively.
-* Make sure you've defined `HLML_IMPLEMENTATION` in **ONLY ONE PLACE** before including `hlml.h`.
+	* All square matrices with floating point types have the ```/``` operator overloaded to multiply the left-hand matrix by the inverse of the right-hand matrix, it does **NOT** do a component-wise divide.
+		* If you want to do a component-wise multiply or divide with matrices, you will need the functions `comp_mulm` and `comp_divm`, respectively.
 * To avoid conflicts with Windows ```min```/```max``` macros, you can define ```NOMINMAX``` before including HLML.
 
 

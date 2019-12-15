@@ -136,7 +136,6 @@ void Gen_HeaderMain( const genLanguage_t language ) {
 	}
 
 	if ( language == GEN_LANGUAGE_CPP ) {
-		String_Append( &sb, "#ifdef HLML_IMPLEMENTATION\n" );
 		String_Append( &sb, "\n" );
 
 		// include vectors
@@ -168,9 +167,6 @@ void Gen_HeaderMain( const genLanguage_t language ) {
 
 			String_Append( &sb, "\n" );
 		}
-
-		String_Append( &sb, "#endif // HLML_IMPLEMENTATION\n" );
-		String_Append( &sb, "\n" );
 	}
 
 	// include operators
@@ -263,10 +259,7 @@ void Gen_FunctionsScalar( const char* folder ) {
 	}
 
 	String_Append( &sb, sbFwdDec.str );
-	String_Append( &sb, "#ifdef HLML_IMPLEMENTATION\n" );
-	String_Append( &sb, "\n" );
 	String_Append( &sb, sbImpl.str );
-	String_Append( &sb, "#endif // HLML_IMPLEMENTATION\n" );
 
 	FS_WriteEntireFile( fileNameHeader, sb.str, sb.length );
 
@@ -348,10 +341,7 @@ void Gen_FunctionsVector( const genLanguage_t language ) {
 	}
 
 	String_Append( &content, contentFwdDec.str );
-	String_Append( &content, "#ifdef HLML_IMPLEMENTATION\n" );
-	String_Append( &content, "\n" );
 	String_Append( &content, contentImpl.str );
-	String_Append( &content, "#endif // HLML_IMPLEMENTATION\n" );
 
 	FS_WriteEntireFile( filePathHeader, content.str, content.length );
 
@@ -434,7 +424,6 @@ void Gen_FunctionsMatrix( const genLanguage_t language ) {
 	);
 
 	String_Append( &content, contentFwdDec.str );
-	String_Append( &content, "#ifdef HLML_IMPLEMENTATION\n" );
 	String_Append( &content, "\n" );
 	String_Append( &content,
 		"#pragma once\n"
@@ -447,7 +436,6 @@ void Gen_FunctionsMatrix( const genLanguage_t language ) {
 		"\n"
 	);
 	String_Append( &content, contentImpl.str );
-	String_Append( &content, "#endif // HLML_IMPLEMENTATION\n" );
 
 	FS_WriteEntireFile( filePathHeader, content.str, content.length );
 
@@ -516,7 +504,6 @@ void Gen_FunctionsQuaternion( const genLanguage_t language ) {
 	);
 
 	String_Append( &content, contentFwdDec.str );
-	String_Append( &content, "#ifdef HLML_IMPLEMENTATION\n" );
 	String_Append( &content, "\n" );
 	String_Append( &content,
 		"#pragma once\n"
@@ -529,7 +516,6 @@ void Gen_FunctionsQuaternion( const genLanguage_t language ) {
 		"\n"
 	);
 	String_Append( &content, contentImpl.str );
-	String_Append( &content, "#endif // HLML_IMPLEMENTATION\n" );
 
 	FS_WriteEntireFile( filePathHeader, content.str, content.length );
 
@@ -839,7 +825,6 @@ void Gen_TestsMain( const genLanguage_t language ) {
 	String_Append( &sb, "#include <temper/temper.h>\n" );
 	String_Append( &sb, "\n" );
 
-	String_Append(  &sb, "#define HLML_IMPLEMENTATION\n" );
 	String_Appendf( &sb, "#include \"%s%s\"\n", outGenInclude, GEN_HEADER_MAIN );
 	String_Append(  &sb, "\n" );
 
