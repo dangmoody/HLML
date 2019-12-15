@@ -1327,9 +1327,13 @@ static void GenerateTestArray( stringBuilder_t* codeTests, stringBuilder_t* code
 	char testName[GEN_STRING_LENGTH_TEST_NAME] = { 0 };
 	snprintf( testName, GEN_STRING_LENGTH_TEST_NAME, "TestArray_%s", fullTypeName );
 
+	char identityFuncStr[GEN_STRING_LENGTH_FUNCTION_NAME];
+	Gen_GetFuncNameIdentity( GEN_LANGUAGE_CPP, type, numRows, numCols, identityFuncStr );
+
 	String_Appendf( codeTests, "TEMPER_TEST( %s )\n", testName );
 	String_Append(  codeTests, "{\n" );
 	String_Appendf( codeTests, "\t%s mat;\n", fullTypeName );
+	String_Appendf( codeTests, "\t%s( mat );\n", identityFuncStr );
 	String_Append(  codeTests, "\n" );
 	for ( u32 row = 0; row < numRows; row++ ) {
 		String_Appendf( codeTests, "\tTEMPER_EXPECT_TRUE( mat[%d] == %s( ", row, vectorTypeString );
@@ -1412,8 +1416,6 @@ static void GenerateTestIdentity( stringBuilder_t* codeTests, stringBuilder_t* c
 		String_Appendf( codeTests, "\t%s( &mat );\n", identityFuncStr );
 		String_Appendf( codeTests, "\tTEMPER_EXPECT_TRUE( %s( &mat, &id ) );\n", cmpeFuncStr );
 	} else {
-		// do an additional test for C++ to check that default ctor also sets to identity
-		String_Append(  codeTests, "\tTEMPER_EXPECT_TRUE( mat == id );\n" );
 		String_Append(  codeTests, "\n" );
 		String_Appendf( codeTests, "\t%s( mat );\n", identityFuncStr );
 		String_Append(  codeTests, "\tTEMPER_EXPECT_TRUE( mat == id );\n" );
@@ -2007,13 +2009,16 @@ static void GenerateTestTranslate( stringBuilder_t* codeTests, stringBuilder_t* 
 	char identityFuncStr[GEN_STRING_LENGTH_FUNCTION_NAME];
 	Gen_GetFuncNameIdentity( language, type, numRows, numCols, identityFuncStr );
 
+	const char* parmRefStr = GEN_TYPE_PARM_REFERENCE_MODIFIERS[language];
+
 	String_Appendf( codeTests, "TEMPER_TEST( %s )\n", testName );
 	String_Append(  codeTests, "{\n" );
 	String_Appendf( codeTests, "\t%s mat;\n", fullTypeName );
+	String_Appendf( codeTests, "\t%s( %smat );\n", identityFuncStr, parmRefStr );
+	String_Append(  codeTests, "\n" );
 	if ( language == GEN_LANGUAGE_C ) {
-		String_Appendf( codeTests, "\t%s( &mat );\n", identityFuncStr );
-		String_Append(  codeTests, "\n" );
 		String_Appendf( codeTests, "\t%s translation = { %s };\n", translateVectorTypeString, parmListTranslateVec );
+		String_Append(  codeTests, "\n" );
 		String_Appendf( codeTests, "\tmat = %s( &mat, &translation );\n", translateVecStr );
 	} else {
 		String_Appendf( codeTests, "\t%s translation = %s( %s );\n", translateVectorTypeString, translateVectorTypeString, parmListTranslateVec );

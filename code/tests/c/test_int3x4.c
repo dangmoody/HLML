@@ -453,6 +453,7 @@ TEMPER_TEST( TestTranslate_Scalar_int3x4 )
 	int3x4_identity( &mat );
 
 	int3 translation = { 2, 3, 4 };
+
 	mat = int3x4_translate( &mat, &translation );
 
 	TEMPER_EXPECT_TRUE( mat.rows[0].w == 2 );

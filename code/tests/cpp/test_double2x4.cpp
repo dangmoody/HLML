@@ -97,6 +97,7 @@ TEMPER_TEST( TestCtor_double2x4 )
 TEMPER_TEST( TestArray_double2x4 )
 {
 	double2x4 mat;
+	identity( mat );
 
 	TEMPER_EXPECT_TRUE( mat[0] == double4( 1.0, 0.0, 0.0, 0.0 ) );
 	TEMPER_EXPECT_TRUE( mat[1] == double4( 0.0, 1.0, 0.0, 0.0 ) );
@@ -362,7 +363,6 @@ TEMPER_TEST( TestIdentity_Scalar_double2x4 )
 	id[1] = double4( 0.000000, 1.000000, 0.000000, 0.000000 );
 
 	double2x4 mat;
-	TEMPER_EXPECT_TRUE( mat == id );
 
 	identity( mat );
 	TEMPER_EXPECT_TRUE( mat == id );

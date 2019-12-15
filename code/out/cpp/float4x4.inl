@@ -45,14 +45,6 @@ SOFTWARE.
 // forward declares
 float4x4 inverse( const float4x4& mat );
 
-float4x4::float4x4()
-{
-	rows[0] = { 1, 0, 0, 0 };
-	rows[1] = { 0, 1, 0, 0 };
-	rows[2] = { 0, 0, 1, 0 };
-	rows[3] = { 0, 0, 0, 1 };
-}
-
 float4x4::float4x4( const float diagonal )
 {
 	rows[0] = { diagonal, 0, 0, 0 };

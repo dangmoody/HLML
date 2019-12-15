@@ -45,13 +45,6 @@ SOFTWARE.
 // forward declares
 int3x3 inverse( const int3x3& mat );
 
-int3x3::int3x3()
-{
-	rows[0] = { 1, 0, 0 };
-	rows[1] = { 0, 1, 0 };
-	rows[2] = { 0, 0, 1 };
-}
-
 int3x3::int3x3( const int32_t diagonal )
 {
 	rows[0] = { diagonal, 0, 0 };

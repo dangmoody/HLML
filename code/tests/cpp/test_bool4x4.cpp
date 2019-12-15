@@ -102,6 +102,7 @@ TEMPER_TEST( TestCtor_bool4x4 )
 TEMPER_TEST( TestArray_bool4x4 )
 {
 	bool4x4 mat;
+	identity( mat );
 
 	TEMPER_EXPECT_TRUE( mat[0] == bool4( true, false, false, false ) );
 	TEMPER_EXPECT_TRUE( mat[1] == bool4( false, true, false, false ) );
@@ -120,7 +121,6 @@ TEMPER_TEST( TestIdentity_Scalar_bool4x4 )
 	id[3] = bool4( false, false, false, true );
 
 	bool4x4 mat;
-	TEMPER_EXPECT_TRUE( mat == id );
 
 	identity( mat );
 	TEMPER_EXPECT_TRUE( mat == id );

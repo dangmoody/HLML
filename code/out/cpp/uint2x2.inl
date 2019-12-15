@@ -45,12 +45,6 @@ SOFTWARE.
 // forward declares
 uint2x2 inverse( const uint2x2& mat );
 
-uint2x2::uint2x2()
-{
-	rows[0] = { 1, 0 };
-	rows[1] = { 0, 1 };
-}
-
 uint2x2::uint2x2( const uint32_t diagonal )
 {
 	rows[0] = { diagonal, 0 };

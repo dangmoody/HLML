@@ -68,7 +68,7 @@ struct bool3
 
 
 	/// Default constructor.  Initializes all values to zero.
-	inline bool3();
+	inline bool3() {}
 
 	/// Initializes all components of the vector to the given scalar value.
 	inline explicit bool3( const bool32_t x );

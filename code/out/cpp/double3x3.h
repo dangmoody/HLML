@@ -42,7 +42,7 @@ struct double3x3
 	double3 rows[3];
 
 	/// Default constructor.  Sets the matrix to an identity matrix.
-	inline double3x3();
+	inline double3x3() {}
 
 	/// \brief Sets each of the diagonal values of the matrix to the given scalar value.
 	/// Setting the scalar to 1 will give an identity matrix.

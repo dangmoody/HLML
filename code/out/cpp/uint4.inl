@@ -44,14 +44,6 @@ SOFTWARE.
 #include <memory.h>
 #include <assert.h>
 
-uint4::uint4()
-{
-	x = 0;
-	y = 0;
-	z = 0;
-	w = 0;
-}
-
 uint4::uint4( const uint32_t x )
 {
 	this->x = this->y = this->z = this->w = x;

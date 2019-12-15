@@ -45,14 +45,6 @@ SOFTWARE.
 // forward declares
 uint4x4 inverse( const uint4x4& mat );
 
-uint4x4::uint4x4()
-{
-	rows[0] = { 1, 0, 0, 0 };
-	rows[1] = { 0, 1, 0, 0 };
-	rows[2] = { 0, 0, 1, 0 };
-	rows[3] = { 0, 0, 0, 1 };
-}
-
 uint4x4::uint4x4( const uint32_t diagonal )
 {
 	rows[0] = { diagonal, 0, 0, 0 };

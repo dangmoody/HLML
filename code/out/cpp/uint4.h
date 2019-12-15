@@ -79,7 +79,7 @@ struct uint4
 
 
 	/// Default constructor.  Initializes all values to zero.
-	inline uint4();
+	inline uint4() {}
 
 	/// Initializes all components of the vector to the given scalar value.
 	inline explicit uint4( const uint32_t x );

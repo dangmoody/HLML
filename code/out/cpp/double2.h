@@ -74,7 +74,7 @@ struct double2
 
 
 	/// Default constructor.  Initializes all values to zero.
-	inline double2();
+	inline double2() {}
 
 	/// Initializes all components of the vector to the given scalar value.
 	inline explicit double2( const double x );

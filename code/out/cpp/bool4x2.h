@@ -44,7 +44,7 @@ struct bool4x2
 	bool2 rows[4];
 
 	/// Default constructor.  Sets the matrix to an identity matrix.
-	inline bool4x2();
+	inline bool4x2() {}
 
 	/// \brief Sets each of the diagonal values of the matrix to the given scalar value.
 	/// Setting the scalar to 1 will give an identity matrix.

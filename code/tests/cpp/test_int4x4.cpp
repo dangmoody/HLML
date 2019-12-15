@@ -121,6 +121,7 @@ TEMPER_TEST( TestCtor_int4x4 )
 TEMPER_TEST( TestArray_int4x4 )
 {
 	int4x4 mat;
+	identity( mat );
 
 	TEMPER_EXPECT_TRUE( mat[0] == int4( 1, 0, 0, 0 ) );
 	TEMPER_EXPECT_TRUE( mat[1] == int4( 0, 1, 0, 0 ) );
@@ -620,7 +621,6 @@ TEMPER_TEST( TestIdentity_Scalar_int4x4 )
 	id[3] = int4( 0, 0, 0, 1 );
 
 	int4x4 mat;
-	TEMPER_EXPECT_TRUE( mat == id );
 
 	identity( mat );
 	TEMPER_EXPECT_TRUE( mat == id );
@@ -669,6 +669,8 @@ TEMPER_TEST( TestDeterminant_Scalar_int4x4 )
 TEMPER_TEST( TestTranslate_Scalar_int4x4 )
 {
 	int4x4 mat;
+	identity( mat );
+
 	int3 translation = int3( 2, 3, 4 );
 
 	mat = translate( mat, translation );

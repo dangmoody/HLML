@@ -44,14 +44,6 @@ SOFTWARE.
 #include <memory.h>
 #include <assert.h>
 
-bool4::bool4()
-{
-	x = false;
-	y = false;
-	z = false;
-	w = false;
-}
-
 bool4::bool4( const bool32_t x )
 {
 	this->x = this->y = this->z = this->w = x;

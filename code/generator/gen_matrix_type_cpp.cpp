@@ -105,23 +105,8 @@ static void GenerateConstructors( stringBuilder_t* codeFwdDec, stringBuilder_t* 
 	// default ctor
 	{
 		GenerateDocCtorDefault( codeFwdDec );
-		String_Appendf( codeFwdDec, "\tinline %s();\n", fullTypeName );
+		String_Appendf( codeFwdDec, "\tinline %s() {}\n", fullTypeName );
 		String_Append(  codeFwdDec, "\n" );
-
-		String_Appendf( codeInl, "%s::%s()\n", fullTypeName, fullTypeName );
-		String_Append(  codeInl, "{\n" );
-		for ( u32 row = 0; row < numRows; row++ ) {
-			String_Appendf( codeInl, "\trows[%d] = { ", row );
-			for ( u32 col = 0; col < numCols; col++ ) {
-				String_Append( codeInl, ( row == col ) ? "1" : "0" );
-
-				if ( col != numCols - 1 ) {
-					String_Append( codeInl, ", " );
-				}
-			}
-			String_Append( codeInl, " };\n" );
-		}
-		String_Append( codeInl, "}\n\n" );
 	}
 
 	// "diagonal" scaled uniform identity ctor

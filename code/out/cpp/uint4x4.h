@@ -42,7 +42,7 @@ struct uint4x4
 	uint4 rows[4];
 
 	/// Default constructor.  Sets the matrix to an identity matrix.
-	inline uint4x4();
+	inline uint4x4() {}
 
 	/// \brief Sets each of the diagonal values of the matrix to the given scalar value.
 	/// Setting the scalar to 1 will give an identity matrix.

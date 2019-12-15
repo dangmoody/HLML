@@ -44,14 +44,6 @@ SOFTWARE.
 #include <memory.h>
 #include <assert.h>
 
-int4::int4()
-{
-	x = 0;
-	y = 0;
-	z = 0;
-	w = 0;
-}
-
 int4::int4( const int32_t x )
 {
 	this->x = this->y = this->z = this->w = x;

@@ -46,14 +46,6 @@ SOFTWARE.
 #include <memory.h>
 #include <assert.h>
 
-float4::float4()
-{
-	x = 0.0f;
-	y = 0.0f;
-	z = 0.0f;
-	w = 0.0f;
-}
-
 float4::float4( const float x )
 {
 	this->x = this->y = this->z = this->w = x;

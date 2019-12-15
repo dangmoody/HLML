@@ -44,7 +44,7 @@ struct double3x4
 	double4 rows[3];
 
 	/// Default constructor.  Sets the matrix to an identity matrix.
-	inline double3x4();
+	inline double3x4() {}
 
 	/// \brief Sets each of the diagonal values of the matrix to the given scalar value.
 	/// Setting the scalar to 1 will give an identity matrix.

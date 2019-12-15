@@ -86,6 +86,7 @@ TEMPER_TEST( TestCtor_bool3x2 )
 TEMPER_TEST( TestArray_bool3x2 )
 {
 	bool3x2 mat;
+	identity( mat );
 
 	TEMPER_EXPECT_TRUE( mat[0] == bool2( true, false ) );
 	TEMPER_EXPECT_TRUE( mat[1] == bool2( false, true ) );
@@ -102,7 +103,6 @@ TEMPER_TEST( TestIdentity_Scalar_bool3x2 )
 	id[2] = bool2( false, false );
 
 	bool3x2 mat;
-	TEMPER_EXPECT_TRUE( mat == id );
 
 	identity( mat );
 	TEMPER_EXPECT_TRUE( mat == id );

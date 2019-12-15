@@ -42,7 +42,7 @@ struct bool2x2
 	bool2 rows[2];
 
 	/// Default constructor.  Sets the matrix to an identity matrix.
-	inline bool2x2();
+	inline bool2x2() {}
 
 	/// \brief Sets each of the diagonal values of the matrix to the given scalar value.
 	/// Setting the scalar to 1 will give an identity matrix.

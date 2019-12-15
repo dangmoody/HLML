@@ -44,13 +44,6 @@ SOFTWARE.
 #include <memory.h>
 #include <assert.h>
 
-double3::double3()
-{
-	x = 0.0;
-	y = 0.0;
-	z = 0.0;
-}
-
 double3::double3( const double x )
 {
 	this->x = this->y = this->z = x;

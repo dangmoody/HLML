@@ -44,7 +44,7 @@ struct float3x4
 	float4 rows[3];
 
 	/// Default constructor.  Sets the matrix to an identity matrix.
-	inline float3x4();
+	inline float3x4() {}
 
 	/// \brief Sets each of the diagonal values of the matrix to the given scalar value.
 	/// Setting the scalar to 1 will give an identity matrix.

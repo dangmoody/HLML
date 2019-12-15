@@ -44,14 +44,6 @@ SOFTWARE.
 #include <memory.h>
 #include <assert.h>
 
-double4::double4()
-{
-	x = 0.0;
-	y = 0.0;
-	z = 0.0;
-	w = 0.0;
-}
-
 double4::double4( const double x )
 {
 	this->x = this->y = this->z = this->w = x;

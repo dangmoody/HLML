@@ -66,7 +66,7 @@ struct bool2
 
 
 	/// Default constructor.  Initializes all values to zero.
-	inline bool2();
+	inline bool2() {}
 
 	/// Initializes all components of the vector to the given scalar value.
 	inline explicit bool2( const bool32_t x );

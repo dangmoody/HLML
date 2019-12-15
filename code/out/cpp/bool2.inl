@@ -44,12 +44,6 @@ SOFTWARE.
 #include <memory.h>
 #include <assert.h>
 
-bool2::bool2()
-{
-	x = false;
-	y = false;
-}
-
 bool2::bool2( const bool32_t x )
 {
 	this->x = this->y = x;

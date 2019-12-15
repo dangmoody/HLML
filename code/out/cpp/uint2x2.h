@@ -42,7 +42,7 @@ struct uint2x2
 	uint2 rows[2];
 
 	/// Default constructor.  Sets the matrix to an identity matrix.
-	inline uint2x2();
+	inline uint2x2() {}
 
 	/// \brief Sets each of the diagonal values of the matrix to the given scalar value.
 	/// Setting the scalar to 1 will give an identity matrix.

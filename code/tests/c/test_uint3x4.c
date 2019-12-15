@@ -453,6 +453,7 @@ TEMPER_TEST( TestTranslate_Scalar_uint3x4 )
 	uint3x4_identity( &mat );
 
 	uint3 translation = { 2U, 3U, 4U };
+
 	mat = uint3x4_translate( &mat, &translation );
 
 	TEMPER_EXPECT_TRUE( mat.rows[0].w == 2U );

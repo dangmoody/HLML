@@ -77,7 +77,7 @@ struct uint3
 
 
 	/// Default constructor.  Initializes all values to zero.
-	inline uint3();
+	inline uint3() {}
 
 	/// Initializes all components of the vector to the given scalar value.
 	inline explicit uint3( const uint32_t x );

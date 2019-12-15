@@ -79,7 +79,7 @@ struct double4
 
 
 	/// Default constructor.  Initializes all values to zero.
-	inline double4();
+	inline double4() {}
 
 	/// Initializes all components of the vector to the given scalar value.
 	inline explicit double4( const double x );

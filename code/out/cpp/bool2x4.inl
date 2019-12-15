@@ -42,12 +42,6 @@ SOFTWARE.
 #include <memory.h>
 #include <assert.h>
 
-bool2x4::bool2x4()
-{
-	rows[0] = { 1, 0, 0, 0 };
-	rows[1] = { 0, 1, 0, 0 };
-}
-
 bool2x4::bool2x4( const bool32_t diagonal )
 {
 	rows[0] = { diagonal, 0, 0, 0 };

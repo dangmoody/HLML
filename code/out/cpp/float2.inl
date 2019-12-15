@@ -46,12 +46,6 @@ SOFTWARE.
 #include <memory.h>
 #include <assert.h>
 
-float2::float2()
-{
-	x = 0.0f;
-	y = 0.0f;
-}
-
 float2::float2( const float x )
 {
 	this->x = this->y = x;

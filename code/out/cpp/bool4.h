@@ -69,7 +69,7 @@ struct bool4
 
 
 	/// Default constructor.  Initializes all values to zero.
-	inline bool4();
+	inline bool4() {}
 
 	/// Initializes all components of the vector to the given scalar value.
 	inline explicit bool4( const bool32_t x );
