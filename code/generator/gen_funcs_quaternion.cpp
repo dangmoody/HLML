@@ -115,12 +115,12 @@ void Gen_QuaternionLength( const genLanguage_t language, const genType_t type, s
 		return;
 	}
 
-	const char* returnTypeString = Gen_GetMemberTypeString( type );
+	const char* typeString = Gen_GetTypeString( type );
 
 	const char* parmAccessStr = GEN_TYPE_ACCESS_OPERATORS[language];
 
-	char typeName[GEN_STRING_LENGTH_TYPE_NAME];
-	Gen_GetFullTypeName( type, 1, 1, typeName );
+	char fullTypeName[GEN_STRING_LENGTH_TYPE_NAME];
+	Gen_GetFullTypeName( type, 1, 4, fullTypeName );
 	
 	char lengthQuaternionFuncStr[GEN_STRING_LENGTH_FUNCTION_NAME];
 	Gen_GetFuncNameQuaternionLength( language, type, lengthQuaternionFuncStr );
@@ -128,11 +128,11 @@ void Gen_QuaternionLength( const genLanguage_t language, const genType_t type, s
 	char parmTypeName[GEN_STRING_LENGTH_TYPE_NAME];
 	Gen_GetParmTypeName( language, type, 1, 4, parmTypeName );
 	
-	Doc_QuaternionLength( sbFwdDec, typeName );
-	String_Appendf( sbFwdDec, "inline %s %s( const %s quat );\n", returnTypeString, lengthQuaternionFuncStr, parmTypeName );
+	Doc_QuaternionLength( sbFwdDec, fullTypeName );
+	String_Appendf( sbFwdDec, "inline %s %s( const %s quat );\n", typeString, lengthQuaternionFuncStr, parmTypeName );
 	String_Append(  sbFwdDec, "\n" );
 
-	String_Appendf( sbImpl, "inline %s %s( const %s quat )\n", returnTypeString, lengthQuaternionFuncStr, parmTypeName );
+	String_Appendf( sbImpl, "inline %s %s( const %s quat )\n", typeString, lengthQuaternionFuncStr, parmTypeName );
 	String_Append(  sbImpl, "{\n" );
 
 	String_Appendf( sbImpl, "\treturn %s( ", Gen_GetFuncNameSqrt( type ) );

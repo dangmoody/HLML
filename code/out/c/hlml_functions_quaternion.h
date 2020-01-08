@@ -93,7 +93,7 @@ inline float4 float4_quaternion_mulq( const float4* lhs, const float4* rhs );
 /// \brief Multiplies the given quaternion by the given scalar.
 inline float4 float4_quaternion_mul( const float4* lhs, const float rhs );
 
-/// \relates float
+/// \relates float4
 /// \brief Returns the length of the quaternion.
 inline float float4_quaternion_length( const float4* quat );
 
@@ -131,7 +131,7 @@ inline double4 double4_quaternion_mulq( const double4* lhs, const double4* rhs )
 /// \brief Multiplies the given quaternion by the given scalar.
 inline double4 double4_quaternion_mul( const double4* lhs, const double rhs );
 
-/// \relates double
+/// \relates double4
 /// \brief Returns the length of the quaternion.
 inline double double4_quaternion_length( const double4* quat );
 
