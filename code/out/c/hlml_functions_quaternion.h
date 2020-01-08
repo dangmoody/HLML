@@ -85,42 +85,78 @@ SOFTWARE.
 #include "hlml_functions_vector.h"
 
 // float4
+/// \relates float4
+/// \brief Performs a quaternion multiplication of the two given quaternions.
 inline float4 float4_quaternion_mulq( const float4* lhs, const float4* rhs );
 
+/// \relates float4
+/// \brief Multiplies the given quaternion by the given scalar.
 inline float4 float4_quaternion_mul( const float4* lhs, const float rhs );
 
+/// \relates float
+/// \brief Returns the length of the quaternion.
 inline float float4_quaternion_length( const float4* quat );
 
+/// \relates float4
+/// \brief Normalizes the quaternion.
 inline float4 float4_quaternion_normalize( const float4* quat );
 
+/// \relates float4
+/// \brief Returns the conjugate of the quaternion.
 inline float4 float4_quaternion_conjugate( const float4* quat );
 
+/// \relates float4
+/// \brief Returns the inverse of the quaternion.
 inline float4 float4_quaternion_inverse( const float4* quat );
 
+/// \relates float4
+/// \brief Performs a rotation on the quaternion by the given axis-angle and angle (in degrees).
 inline float3 float4_quaternion_rotate( const float3* vect, const float angle, const float3* axis );
 
+/// \relates float4
+/// \brief Returns a linearly interpolated float4 between types "a" and "b".
 inline float4 float4_quaternion_lerp( const float4* lhs, const float4* rhs, const float percent );
 
+/// \relates float4
+/// \brief Returns a 'slowly' linearly interpolated float4 between "a" and "b".
 inline float4 float4_quaternion_slerp( const float4* lhs, const float4* rhs, const float percent );
 
 
 // double4
+/// \relates double4
+/// \brief Performs a quaternion multiplication of the two given quaternions.
 inline double4 double4_quaternion_mulq( const double4* lhs, const double4* rhs );
 
+/// \relates double4
+/// \brief Multiplies the given quaternion by the given scalar.
 inline double4 double4_quaternion_mul( const double4* lhs, const double rhs );
 
+/// \relates double
+/// \brief Returns the length of the quaternion.
 inline double double4_quaternion_length( const double4* quat );
 
+/// \relates double4
+/// \brief Normalizes the quaternion.
 inline double4 double4_quaternion_normalize( const double4* quat );
 
+/// \relates double4
+/// \brief Returns the conjugate of the quaternion.
 inline double4 double4_quaternion_conjugate( const double4* quat );
 
+/// \relates double4
+/// \brief Returns the inverse of the quaternion.
 inline double4 double4_quaternion_inverse( const double4* quat );
 
+/// \relates double4
+/// \brief Performs a rotation on the quaternion by the given axis-angle and angle (in degrees).
 inline double3 double4_quaternion_rotate( const double3* vect, const double angle, const double3* axis );
 
+/// \relates double4
+/// \brief Returns a linearly interpolated double4 between types "a" and "b".
 inline double4 double4_quaternion_lerp( const double4* lhs, const double4* rhs, const double percent );
 
+/// \relates double4
+/// \brief Returns a 'slowly' linearly interpolated double4 between "a" and "b".
 inline double4 double4_quaternion_slerp( const double4* lhs, const double4* rhs, const double percent );
 
 
@@ -172,7 +208,7 @@ inline float4 float4_quaternion_normalize( const float4* quat )
 
 inline float4 float4_quaternion_conjugate( const float4* quat )
 {
-	return HLML_CONSTRUCT (float4) { ( quat->x * ( -1 ) ), ( quat->y * ( -1 ) ), ( quat->z * ( -1 ) ), quat->w };
+	return HLML_CONSTRUCT( float4 ) { ( quat->x * ( -1 ) ), ( quat->y * ( -1 ) ), ( quat->z * ( -1 ) ), quat->w };
 }
 
 inline float4 float4_quaternion_inverse( const float4* quat )
@@ -183,7 +219,7 @@ inline float4 float4_quaternion_inverse( const float4* quat )
 	float4 conjugate = float4_quaternion_conjugate( quat );
 	float scalar = conjugate.w * magnitude;
 	float3 imaginary = HLML_CONSTRUCT( float3 ) { conjugate.x * magnitude, conjugate.y * magnitude, conjugate.z * magnitude };
-	return HLML_CONSTRUCT (float4) { imaginary.x, imaginary.y, imaginary.z, scalar };
+	return HLML_CONSTRUCT( float4 ) { imaginary.x, imaginary.y, imaginary.z, scalar };
 }
 
 inline float3 float4_quaternion_rotate( const float3* vect, const float angle, const float3* axis )
@@ -273,7 +309,7 @@ inline double4 double4_quaternion_normalize( const double4* quat )
 
 inline double4 double4_quaternion_conjugate( const double4* quat )
 {
-	return HLML_CONSTRUCT (double4) { ( quat->x * ( -1 ) ), ( quat->y * ( -1 ) ), ( quat->z * ( -1 ) ), quat->w };
+	return HLML_CONSTRUCT( double4 ) { ( quat->x * ( -1 ) ), ( quat->y * ( -1 ) ), ( quat->z * ( -1 ) ), quat->w };
 }
 
 inline double4 double4_quaternion_inverse( const double4* quat )
@@ -284,7 +320,7 @@ inline double4 double4_quaternion_inverse( const double4* quat )
 	double4 conjugate = double4_quaternion_conjugate( quat );
 	double scalar = conjugate.w * magnitude;
 	double3 imaginary = HLML_CONSTRUCT( double3 ) { conjugate.x * magnitude, conjugate.y * magnitude, conjugate.z * magnitude };
-	return HLML_CONSTRUCT (double4) { imaginary.x, imaginary.y, imaginary.z, scalar };
+	return HLML_CONSTRUCT( double4 ) { imaginary.x, imaginary.y, imaginary.z, scalar };
 }
 
 inline double3 double4_quaternion_rotate( const double3* vect, const double angle, const double3* axis )
