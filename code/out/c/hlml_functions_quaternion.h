@@ -110,7 +110,7 @@ inline float4 float4_quaternion_conjugate( const float4* quat );
 inline float4 float4_quaternion_inverse( const float4* quat );
 
 /// \relates float4
-/// \brief Performs a rotation on the quaternion by the given axis-angle and angle (in degrees).
+/// \brief Performs a rotation on the quaternion by the given axis-angle and angle (in radians).
 inline float3 float4_quaternion_rotate( const float3* vect, const float angle, const float3* axis );
 
 /// \relates float4
@@ -118,7 +118,7 @@ inline float3 float4_quaternion_rotate( const float3* vect, const float angle, c
 inline float4 float4_quaternion_lerp( const float4* lhs, const float4* rhs, const float percent );
 
 /// \relates float4
-/// \brief Returns a 'slowly' linearly interpolated float4 between "a" and "b".
+/// \brief Returns a spherically interpolated float4 between "a" and "b".
 inline float4 float4_quaternion_slerp( const float4* lhs, const float4* rhs, const float percent );
 
 
@@ -148,7 +148,7 @@ inline double4 double4_quaternion_conjugate( const double4* quat );
 inline double4 double4_quaternion_inverse( const double4* quat );
 
 /// \relates double4
-/// \brief Performs a rotation on the quaternion by the given axis-angle and angle (in degrees).
+/// \brief Performs a rotation on the quaternion by the given axis-angle and angle (in radians).
 inline double3 double4_quaternion_rotate( const double3* vect, const double angle, const double3* axis );
 
 /// \relates double4
@@ -156,7 +156,7 @@ inline double3 double4_quaternion_rotate( const double3* vect, const double angl
 inline double4 double4_quaternion_lerp( const double4* lhs, const double4* rhs, const double percent );
 
 /// \relates double4
-/// \brief Returns a 'slowly' linearly interpolated double4 between "a" and "b".
+/// \brief Returns a spherically interpolated double4 between "a" and "b".
 inline double4 double4_quaternion_slerp( const double4* lhs, const double4* rhs, const double percent );
 
 

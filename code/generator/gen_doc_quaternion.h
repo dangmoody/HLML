@@ -71,13 +71,13 @@ inline void Doc_QuaternionInverse( stringBuilder_t* sb, const char* fullTypeName
 inline void Doc_QuaternionRotateAxis( stringBuilder_t* sb, const char* fullTypeName ) {
 	String_Appendf( sb,
 		"/// \\relates %s\n"
-		"/// \\brief Performs a rotation on the quaternion by the given axis-angle and angle (in degrees).\n", fullTypeName
+		"/// \\brief Performs a rotation on the quaternion by the given axis-angle and angle (in radians).\n", fullTypeName
 	);
 }
 
 inline void Doc_QuaternionSlerp( stringBuilder_t* sb, const char* fullTypeName ) {
 	String_Appendf( sb,
 		"/// \\relates %s\n"
-		"/// \\brief Returns a 'slowly' linearly interpolated %s between \"a\" and \"b\".\n", fullTypeName, fullTypeName
+		"/// \\brief Returns a spherically interpolated %s between \"a\" and \"b\".\n", fullTypeName, fullTypeName
 	);
 }
