@@ -258,7 +258,7 @@ inline float4 quaternion_slerp( const float4& lhs, const float4& rhs, const floa
 	float cosTheta = ( lhs.x * rhs.x ) + ( lhs.y * rhs.y ) + ( lhs.z * rhs.z ) + ( lhs.w * rhs.w );
 	if ( cosTheta >= 1.0f )
 	{
-		return lhs;
+		return HLML_CONSTRUCT( float4 ) { lhs.x, lhs.y, lhs.z, lhs.w };
 	}
 	float theta = acosf( cosTheta );
 	float sn = sqrtf( 1.0f - cosTheta * cosTheta );
@@ -360,7 +360,7 @@ inline double4 quaternion_slerp( const double4& lhs, const double4& rhs, const d
 	double cosTheta = ( lhs.x * rhs.x ) + ( lhs.y * rhs.y ) + ( lhs.z * rhs.z ) + ( lhs.w * rhs.w );
 	if ( cosTheta >= 1.0 )
 	{
-		return lhs;
+		return HLML_CONSTRUCT( double4 ) { lhs.x, lhs.y, lhs.z, lhs.w };
 	}
 	double theta = acos( cosTheta );
 	double sn = sqrt( 1.0 - cosTheta * cosTheta );

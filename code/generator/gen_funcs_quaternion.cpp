@@ -485,7 +485,17 @@ void Gen_QuaternionSlerp( const genLanguage_t language, const genType_t type, st
 	String_Append(  sbImpl, ";\n" );
 	String_Appendf( sbImpl, "\tif ( cosTheta >= %s )\n", oneStr );
 	String_Append(  sbImpl, "\t{\n" );
-	String_Append(  sbImpl, "\t\treturn lhs;\n" );
+	String_Appendf( sbImpl, "\t\treturn HLML_CONSTRUCT( %s ) { ", fullTypeName );
+	for (u32 i = 0; i < numComponents; i++) {
+		const char componentName = GEN_COMPONENT_NAMES_VECTOR[i];
+
+		String_Appendf( sbImpl, "lhs%s%c", parmAccessStr, componentName );
+
+		if (i != numComponents - 1) {
+			String_Append( sbImpl, ", " );
+		}
+	}
+	String_Append(  sbImpl, " };\n" );
 	String_Append(  sbImpl, "\t}\n" );
 
 	String_Appendf( sbImpl, "\t%s theta = %s( cosTheta );\n", typeString, Gen_GetFuncNameAcos( type ) );
