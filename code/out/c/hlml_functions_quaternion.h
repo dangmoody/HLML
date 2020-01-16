@@ -246,7 +246,7 @@ inline float3 float4_quaternion_rotate( const float3* vect, const float angle, c
 inline float4 float4_quaternion_lerp( const float4* lhs, const float4* rhs, const float percent )
 {
 	float4 quat;
-	float t = 1 - percent;
+	float t = 1.0f - percent;
 	quat.x = t * lhs->x + percent * rhs->x;
 	quat.y = t * lhs->y + percent * rhs->y;
 	quat.z = t * lhs->z + percent * rhs->z;
@@ -257,10 +257,14 @@ inline float4 float4_quaternion_lerp( const float4* lhs, const float4* rhs, cons
 inline float4 float4_quaternion_slerp( const float4* lhs, const float4* rhs, const float percent )
 {
 	float4 quat;
-	float t = 1 - percent;
+	float t = 1.0f - percent;
 	float cosTheta = ( lhs->x * rhs->x ) + ( lhs->y * rhs->y ) + ( lhs->z * rhs->z ) + ( lhs->w * rhs->w );
+	if ( cosTheta >= 1.0f )
+	{
+		return lhs;
+	}
 	float theta = acosf( cosTheta );
-	float sn = sqrtf( 1 - cosTheta * cosTheta );
+	float sn = sqrtf( 1.0f - cosTheta * cosTheta );
 	float Wa = sinf( t * theta ) / sn;
 	float Wb = sinf( percent * theta ) / sn;
 	quat.x = Wa * rhs->x + Wb * lhs->x;
@@ -347,7 +351,7 @@ inline double3 double4_quaternion_rotate( const double3* vect, const double angl
 inline double4 double4_quaternion_lerp( const double4* lhs, const double4* rhs, const double percent )
 {
 	double4 quat;
-	double t = 1 - percent;
+	double t = 1.0 - percent;
 	quat.x = t * lhs->x + percent * rhs->x;
 	quat.y = t * lhs->y + percent * rhs->y;
 	quat.z = t * lhs->z + percent * rhs->z;
@@ -358,10 +362,14 @@ inline double4 double4_quaternion_lerp( const double4* lhs, const double4* rhs, 
 inline double4 double4_quaternion_slerp( const double4* lhs, const double4* rhs, const double percent )
 {
 	double4 quat;
-	double t = 1 - percent;
+	double t = 1.0 - percent;
 	double cosTheta = ( lhs->x * rhs->x ) + ( lhs->y * rhs->y ) + ( lhs->z * rhs->z ) + ( lhs->w * rhs->w );
+	if ( cosTheta >= 1.0 )
+	{
+		return lhs;
+	}
 	double theta = acos( cosTheta );
-	double sn = sqrt( 1 - cosTheta * cosTheta );
+	double sn = sqrt( 1.0 - cosTheta * cosTheta );
 	double Wa = sin( t * theta ) / sn;
 	double Wb = sin( percent * theta ) / sn;
 	quat.x = Wa * rhs->x + Wb * lhs->x;
