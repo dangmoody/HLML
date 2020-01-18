@@ -396,6 +396,9 @@ void Gen_QuaternionLerp( const genLanguage_t language, const genType_t type, str
 	const char* typeString = Gen_GetTypeString( type );
 
 	const char* parmAccessStr = GEN_TYPE_ACCESS_OPERATORS[language];
+		
+	char oneStr[GEN_STRING_LENGTH_NUMERIC_LITERAL];
+	Gen_GetNumericLiteral( type, 1, oneStr, 1 );
 
 	char fullTypeName[GEN_STRING_LENGTH_TYPE_NAME];
 	Gen_GetFullTypeName( type, 1, 4, fullTypeName );
@@ -417,7 +420,7 @@ void Gen_QuaternionLerp( const genLanguage_t language, const genType_t type, str
 	String_Append(  sbImpl, "{\n" );
 
 	String_Appendf( sbImpl, "\t%s quat;\n", fullTypeName );
-	String_Appendf( sbImpl, "\t%s t = 1 - percent;\n", typeString );
+	String_Appendf( sbImpl, "\t%s t = %s - percent;\n", typeString, oneStr );
 	
 	for ( u32 i = 0; i < GEN_COMPONENT_COUNT_MAX; i++ ) {
 		const char componentName = GEN_COMPONENT_NAMES_VECTOR[i];
@@ -438,6 +441,9 @@ void Gen_QuaternionSlerp( const genLanguage_t language, const genType_t type, st
 	const char* typeString = Gen_GetTypeString(type);
 
 	const char* parmAccessStr = GEN_TYPE_ACCESS_OPERATORS[language];
+	
+	char oneStr[GEN_STRING_LENGTH_NUMERIC_LITERAL];
+	Gen_GetNumericLiteral( type, 1, oneStr, 1 );
 
 	char fullTypeName[GEN_STRING_LENGTH_TYPE_NAME];
 	Gen_GetFullTypeName( type, 1, 4, fullTypeName );
@@ -461,7 +467,7 @@ void Gen_QuaternionSlerp( const genLanguage_t language, const genType_t type, st
 	String_Append(  sbImpl, "{\n" );
 
 	String_Appendf( sbImpl, "\t%s quat;\n", fullTypeName );
-	String_Appendf( sbImpl, "\t%s t = 1 - percent;\n", typeString );
+	String_Appendf( sbImpl, "\t%s t = %s - percent;\n", typeString, oneStr );
 	
 	String_Appendf( sbImpl, "\t%s cosTheta = ", typeString );
 
@@ -477,8 +483,23 @@ void Gen_QuaternionSlerp( const genLanguage_t language, const genType_t type, st
 	}
 
 	String_Append(  sbImpl, ";\n" );
+	String_Appendf( sbImpl, "\tif ( cosTheta >= %s )\n", oneStr );
+	String_Append(  sbImpl, "\t{\n" );
+	String_Appendf( sbImpl, "\t\treturn HLML_CONSTRUCT( %s ) { ", fullTypeName );
+	for (u32 i = 0; i < numComponents; i++) {
+		const char componentName = GEN_COMPONENT_NAMES_VECTOR[i];
+
+		String_Appendf( sbImpl, "lhs%s%c", parmAccessStr, componentName );
+
+		if (i != numComponents - 1) {
+			String_Append( sbImpl, ", " );
+		}
+	}
+	String_Append(  sbImpl, " };\n" );
+	String_Append(  sbImpl, "\t}\n" );
+
 	String_Appendf( sbImpl, "\t%s theta = %s( cosTheta );\n", typeString, Gen_GetFuncNameAcos( type ) );
-	String_Appendf( sbImpl, "\t%s sn = %s( 1 - cosTheta * cosTheta );\n", typeString, Gen_GetFuncNameSqrt( type ) );
+	String_Appendf( sbImpl, "\t%s sn = %s( %s - cosTheta * cosTheta );\n", typeString, Gen_GetFuncNameSqrt( type ), oneStr );
 
 	String_Appendf( sbImpl, "\t%s Wa = %s( t * theta ) / sn;\n", typeString, sinFunc );
 	String_Appendf( sbImpl, "\t%s Wb = %s( percent * theta ) / sn;\n", typeString, sinFunc );
