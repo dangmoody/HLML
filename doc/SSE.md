@@ -27,30 +27,33 @@ Therefore an example of doing the dot product via SSE in HLML looks like this (f
 ```C
 #include <hlml/hlml.h>
 
-// here you fill the registers
-// index 0 corresponds to X, index 1 corresponds to Y, etc.
+// in scalar the x member of a float4 is a scalar
+// but here the x component is an SSE register
+// meaning that the x component of a float4_sse_t holds 4 values at a time
 float4_sse_t a;
-a.comp[0] = _mm_load_ps( lhs_xs );	// x
-a.comp[1] = _mm_load_ps( lhs_ys );	// y
-a.comp[2] = _mm_load_ps( lhs_zs );	// z
-a.comp[3] = _mm_load_ps( lhs_ws );	// w
+a.x = _mm_load_ps( lhs_xs );	// 4 x values
+a.y = _mm_load_ps( lhs_ys );	// 4 y values
+a.z = _mm_load_ps( lhs_zs );	// 4 z values
+a.w = _mm_load_ps( lhs_ws );	// 4 w values
 
 float4_sse_t b;
-b.comp[0] = _mm_load_ps( rhs_xs );	// x
-b.comp[1] = _mm_load_ps( rhs_ys );	// y
-b.comp[2] = _mm_load_ps( rhs_zs );	// z
-b.comp[3] = _mm_load_ps( rhs_ws );	// w
+b.x = _mm_load_ps( rhs_xs );	// 4 x values
+b.y = _mm_load_ps( rhs_ys );	// 4 y values
+b.z = _mm_load_ps( rhs_zs );	// 4 z values
+b.w = _mm_load_ps( rhs_ws );	// 4 w values
 
 __m128 results;
 dot_sse( &a, &b, &results );
 ```
 
-In the above example, all the X components (element 0) of `a` will get multiplied by all the X components in `b` and so on.  The resulting mutliplications will then get added together with each result put into each register.
+The above example is doing the dot product of 4 vectors using only 7 operations.  Meaning that 4 dot products are calculated using 7 operations, which is a lot quicker than doing 4 `dot` calls in scalar.
 
-Currently all HLML SSE functions work in chunks of 4 for each component (that is: each component array holds 4 components at a time).
+All HLML SIMD vector types (`float3_sse_t`, `float4_sse_t` and so on) contain a register for each component instead of a single scalar.
 
-If you wanted to do the same for, say, just X and Y components, then all you'd need to do is remove the the Z and W component arrays, and change the input struct name to `float2_sse_t`.
+If you wanted to do the same for, say, just X and Y components, then all you'd need to do is change the `float4_sse_t` vectors to `float2_sse_t` vectors and remove the `z` and `w` members.
 
-This naming convention repeats across all SIMD functions in HLML.  It is written this way so that programmers can figure out the names of the input struct and function call they need without having to look it up constantly (however you can always find everything in your locally generated documentation).
+You will also notice that the SSE version of the dot product is called `dot_sse`, whereas the scalar version is called `dot`.  This naming convention applies for all functions in HLML for ease of porting code from scalar to SSE.
 
-For a `float4` HLML's `dot_sse` function does 4 multiplications and 3 additions and puts through 32 floats, which is 7 operations total on 128 bytes at a time, compared to the scalar version which does 7 arithmetic operations on 8 floats (32 bytes) at a time.
+This general ideas/concepts shown here repeat across all SIMD functionality in HLML.  It is written this way so that programmers can figure out the names of the input struct and function call they need without having to look it up constantly (however you can always find everything in your locally generated documentation).
+
+It is intended that this system will provide an easier way for programmers to translate their maths code written in scalar to SIMD.  If you have a gripe with this system, or think that it could be improved feel free to open an issue on the GitHub issue tracker.
