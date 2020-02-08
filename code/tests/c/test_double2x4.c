@@ -32,19 +32,19 @@ SOFTWARE.
 // EDITING THIS FILE MAY CAUSE SIDE EFFECTS.
 // DO SO AT YOUR OWN RISK.
 
-static double2x4 g_matrixMulLHS_double2x4    = (double2x4) {
+static double2x4 g_matrixMulLHS_double2x4    = {
 		6.000000, 6.000000, 6.000000, 6.000000,
 		6.000000, 6.000000, 6.000000, 6.000000
 };
 
-static double4x2 g_matrixMulRHS_double2x4    = (double4x2) {
+static double4x2 g_matrixMulRHS_double2x4    = {
 		1.000000, 1.000000,
 		2.000000, 2.000000,
 		3.000000, 3.000000,
 		6.000000, 6.000000
 };
 
-static double2x2 g_matrixMulAnswer_double2x4 = (double2x2) {
+static double2x2 g_matrixMulAnswer_double2x4 = {
 		72.000000, 72.000000,
 		72.000000, 72.000000
 };

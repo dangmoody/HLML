@@ -99,7 +99,7 @@ void FS_CreateFolder( const char* path ) {
 		}
 
 		char name[1024] = { 0 };
-		strncpy( name, path, i );
+		strncpy_s( name, 1024, path, i );
 
 		CreateFolderInternal( name );
 	}

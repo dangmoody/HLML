@@ -32,19 +32,19 @@ SOFTWARE.
 // EDITING THIS FILE MAY CAUSE SIDE EFFECTS.
 // DO SO AT YOUR OWN RISK.
 
-static float4x2 g_matrixMulLHS_float4x2    = (float4x2) {
+static float4x2 g_matrixMulLHS_float4x2    = {
 		6.000000f, 6.000000f,
 		6.000000f, 6.000000f,
 		12.000000f, 12.000000f,
 		18.000000f, 18.000000f
 };
 
-static float2x4 g_matrixMulRHS_float4x2    = (float2x4) {
+static float2x4 g_matrixMulRHS_float4x2    = {
 		1.000000f, 1.000000f, 1.000000f, 1.000000f,
 		2.000000f, 2.000000f, 2.000000f, 2.000000f
 };
 
-static float4x4 g_matrixMulAnswer_float4x2 = (float4x4) {
+static float4x4 g_matrixMulAnswer_float4x2 = {
 		18.000000f, 18.000000f, 18.000000f, 18.000000f,
 		18.000000f, 18.000000f, 18.000000f, 18.000000f,
 		36.000000f, 36.000000f, 36.000000f, 36.000000f,

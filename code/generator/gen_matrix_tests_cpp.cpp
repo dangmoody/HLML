@@ -309,7 +309,7 @@ static void GetParmListMatrixMultiply( const genType_t type, const u32 numCols, 
 	int pos = 0;
 
 	for ( u32 row = 0; row < returnTypeRows; row++ ) {
-		pos += sprintf( outString + pos, "\t\t" );
+		pos += snprintf( outString + pos, GEN_STRING_LENGTH_NUMERIC_LITERAL, "\t\t" );
 
 		for ( u32 col = 0; col < returnTypeCols; col++ ) {
 			// get the left-hand row
@@ -337,18 +337,18 @@ static void GetParmListMatrixMultiply( const genType_t type, const u32 numCols, 
 
 			Gen_GetNumericLiteral( type, dot, valueStr );
 
-			pos += sprintf( outString + pos, "%s", valueStr );
+			pos += snprintf( outString + pos, GEN_STRING_LENGTH_NUMERIC_LITERAL, "%s", valueStr );
 
 			if ( row + col != ( returnTypeRows - 1 ) + ( returnTypeCols - 1 ) ) {
-				pos += sprintf( outString + pos, "," );
+				pos += snprintf( outString + pos, GEN_STRING_LENGTH_NUMERIC_LITERAL, "," );
 			}
 
 			if ( col != returnTypeCols - 1 ) {
-				pos += sprintf( outString + pos, " " );
+				pos += snprintf( outString + pos, GEN_STRING_LENGTH_NUMERIC_LITERAL, " " );
 			}
 		}
 
-		pos += sprintf( outString + pos, "\n" );
+		pos += snprintf( outString + pos, GEN_STRING_LENGTH_NUMERIC_LITERAL, "\n" );
 	}
 }
 
@@ -650,10 +650,10 @@ static void GenerateTestMultiplyVector( stringBuilder_t* codeTests, stringBuilde
 		char dotStr[GEN_STRING_LENGTH_NUMERIC_LITERAL];
 		Gen_GetNumericLiteral( type, dot, dotStr );
 
-		pos += sprintf( parmListVecAnswer + pos, "%s", dotStr );
+		pos += snprintf( parmListVecAnswer + pos, GEN_STRING_LENGTH_NUMERIC_LITERAL, "%s", dotStr );
 
 		if ( col != ( numCols - 1 ) ) {
-			pos += sprintf( parmListVecAnswer + pos, ", " );
+			pos += snprintf( parmListVecAnswer + pos, GEN_STRING_LENGTH_NUMERIC_LITERAL, ", " );
 		}
 	}
 
@@ -2230,9 +2230,9 @@ static void GenerateTestRotate( stringBuilder_t* codeTests, stringBuilder_t* cod
 	// matrices where cols == 3 only have roll rotation support
 	char parmListRotateRoll[GEN_STRING_LENGTH_PARM_LIST_MATRIX] = { 0 };
 	int pos = 0;
-	pos += sprintf( parmListRotateRoll + pos, "%smat, %s( %s )", parmRefStr, radiansFuncStr, rotDegreesStr );
+	pos += snprintf( parmListRotateRoll + pos, GEN_STRING_LENGTH_PARM_LIST_MATRIX, "%smat, %s( %s )", parmRefStr, radiansFuncStr, rotDegreesStr );
 	if ( numCols > 3 ) {
-		pos += sprintf( parmListRotateRoll + pos, ", %srollVec", parmRefStr );
+		pos += snprintf( parmListRotateRoll + pos, GEN_STRING_LENGTH_PARM_LIST_MATRIX, ", %srollVec", parmRefStr );
 	}
 
 	char identityFuncStr[GEN_STRING_LENGTH_FUNCTION_NAME];
@@ -2934,15 +2934,15 @@ void Gen_MatrixTests( const genLanguage_t language, const genType_t type, const 
 		GetParmListMatrixMultiply( type, numCols, numRows, numRows, g_matrixMultiplyTestLHS, g_matrixMultiplyTestRHS, matrixMultiplyParmListAnswer );
 
 		if ( language == GEN_LANGUAGE_C ) {
-			String_Appendf( &code, "static %s g_matrixMulLHS_%s    = (%s) {\n", fullTypeName, fullTypeName, fullTypeName );
+			String_Appendf( &code, "static %s g_matrixMulLHS_%s    = {\n", fullTypeName, fullTypeName, fullTypeName );
 			String_Appendf( &code, "%s", matrixMultiplyParmListLHS );
 			String_Appendf( &code, "};\n" );
 			String_Appendf( &code, "\n" );
-			String_Appendf( &code, "static %s g_matrixMulRHS_%s    = (%s) {\n", mulTypeNameRHS, fullTypeName, mulTypeNameRHS );
+			String_Appendf( &code, "static %s g_matrixMulRHS_%s    = {\n", mulTypeNameRHS, fullTypeName, mulTypeNameRHS );
 			String_Appendf( &code, "%s", matrixMultiplyParmListRHS );
 			String_Appendf( &code, "};\n" );
 			String_Appendf( &code, "\n" );
-			String_Appendf( &code, "static %s g_matrixMulAnswer_%s = (%s) {\n", mulTypeNameReturn, fullTypeName, mulTypeNameReturn );
+			String_Appendf( &code, "static %s g_matrixMulAnswer_%s = {\n", mulTypeNameReturn, fullTypeName, mulTypeNameReturn );
 			String_Appendf( &code, "%s", matrixMultiplyParmListAnswer );
 			String_Appendf( &code, "};\n" );
 			String_Appendf( &code, "\n" );

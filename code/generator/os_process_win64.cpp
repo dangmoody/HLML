@@ -75,8 +75,8 @@ process_t OS_StartProcess( const char* name, const char** args, const u32 argCou
 	for ( u32 i = 0; i < argCount; i++ ) {
 		const char* arg = args[i];
 
-		strncat( fullCmdLine, arg, strlen( arg ) );
-		strcat( fullCmdLine, " " );
+		strncat_s( fullCmdLine, fullCmdLen, arg, strlen( arg ) );
+		strncat_s( fullCmdLine, fullCmdLen, " ", 1 );
 	}
 
 	fullCmdLine[fullCmdLen - 1] = 0;

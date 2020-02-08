@@ -9,7 +9,7 @@ set output_file=%2
 REM path to source of files to build, must NOT include ".cpp"
 set source_files_path=%3
 
-set ignore_warnings=/wd4805
+set ignore_warnings=/wd4805 /wd4204 /wd4996
 set options_compiler=/W4 /WX %ignore_warnings% /MT /Od /MP /Gm- /EHsc /U "_UNICODE" /Fo"build\\msvc\\%config%\\intermediate\%output_file%\\"
 set options_linker=/OUT:build\\msvc\\%config%\\%output_file%.exe /NOLOGO /opt:ref
 set libs=User32.lib gdi32.lib winmm.lib

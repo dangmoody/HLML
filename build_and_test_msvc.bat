@@ -1,13 +1,15 @@
 @echo off
 
+SETLOCAL EnableDelayedExpansion
+
 REM can be "debug" or "release"
 set config=%1
 
 REM path to vcvars64.bat, MUST include file name
 set vcvars64_path=%2
 
-if [%config%] == [] GOTO bail
-if [%vcvars64_path%] == [] GOTO bail
+if [%config%]==[] GOTO bail
+if [%vcvars64_path%]==[] GOTO bail
 
 call %vcvars64_path%
 
@@ -22,16 +24,28 @@ build\msvc\%config%\hlml-gen.exe
 echo ------- Done -------
 echo.
 
-echo ------- Building tests -------
-set source_files=code\tests\*.cpp
-call build_msvc.bat %config% hlml-gen-tests %source_files%
+echo ------- Building C tests -------
+set source_files=code\tests\c\main.c
+call build_msvc.bat %config% hlml-gen-tests-c %source_files%
 echo ------- Done -------
 echo.
 
-echo ------- Running tests -------
-build\msvc\%config%\hlml-gen-tests.exe -c
+echo ------- Running C tests -------
+build\msvc\%config%\hlml-gen-tests-c.exe -c --time-unit=us
 echo ------- Done -------
 echo.
+
+echo ------- Building C++ tests -------
+set source_files=code\tests\cpp\main.cpp
+call build_msvc.bat %config% hlml-gen-tests-cpp %source_files%
+echo ------- Done -------
+echo.
+
+echo ------- Running C++ tests -------
+build\msvc\%config%\hlml-gen-tests-cpp.exe -c --time-unit=us
+echo ------- Done -------
+echo.
+
 
 goto exit
 

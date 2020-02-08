@@ -32,20 +32,20 @@ SOFTWARE.
 // EDITING THIS FILE MAY CAUSE SIDE EFFECTS.
 // DO SO AT YOUR OWN RISK.
 
-static float3x4 g_matrixMulLHS_float3x4    = (float3x4) {
+static float3x4 g_matrixMulLHS_float3x4    = {
 		6.000000f, 6.000000f, 6.000000f, 6.000000f,
 		6.000000f, 6.000000f, 6.000000f, 6.000000f,
 		12.000000f, 12.000000f, 12.000000f, 12.000000f
 };
 
-static float4x3 g_matrixMulRHS_float3x4    = (float4x3) {
+static float4x3 g_matrixMulRHS_float3x4    = {
 		1.000000f, 1.000000f, 1.000000f,
 		2.000000f, 2.000000f, 2.000000f,
 		3.000000f, 3.000000f, 3.000000f,
 		6.000000f, 6.000000f, 6.000000f
 };
 
-static float3x3 g_matrixMulAnswer_float3x4 = (float3x3) {
+static float3x3 g_matrixMulAnswer_float3x4 = {
 		72.000000f, 72.000000f, 72.000000f,
 		72.000000f, 72.000000f, 72.000000f,
 		144.000000f, 144.000000f, 144.000000f

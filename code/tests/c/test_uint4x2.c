@@ -32,19 +32,19 @@ SOFTWARE.
 // EDITING THIS FILE MAY CAUSE SIDE EFFECTS.
 // DO SO AT YOUR OWN RISK.
 
-static uint4x2 g_matrixMulLHS_uint4x2    = (uint4x2) {
+static uint4x2 g_matrixMulLHS_uint4x2    = {
 		6U, 6U,
 		6U, 6U,
 		12U, 12U,
 		18U, 18U
 };
 
-static uint2x4 g_matrixMulRHS_uint4x2    = (uint2x4) {
+static uint2x4 g_matrixMulRHS_uint4x2    = {
 		1U, 1U, 1U, 1U,
 		2U, 2U, 2U, 2U
 };
 
-static uint4x4 g_matrixMulAnswer_uint4x2 = (uint4x4) {
+static uint4x4 g_matrixMulAnswer_uint4x2 = {
 		18U, 18U, 18U, 18U,
 		18U, 18U, 18U, 18U,
 		36U, 36U, 36U, 36U,

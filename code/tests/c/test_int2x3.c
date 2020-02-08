@@ -32,18 +32,18 @@ SOFTWARE.
 // EDITING THIS FILE MAY CAUSE SIDE EFFECTS.
 // DO SO AT YOUR OWN RISK.
 
-static int2x3 g_matrixMulLHS_int2x3    = (int2x3) {
+static int2x3 g_matrixMulLHS_int2x3    = {
 		6, 6, 6,
 		6, 6, 6
 };
 
-static int3x2 g_matrixMulRHS_int2x3    = (int3x2) {
+static int3x2 g_matrixMulRHS_int2x3    = {
 		1, 1,
 		2, 2,
 		3, 3
 };
 
-static int2x2 g_matrixMulAnswer_int2x3 = (int2x2) {
+static int2x2 g_matrixMulAnswer_int2x3 = {
 		36, 36,
 		36, 36
 };

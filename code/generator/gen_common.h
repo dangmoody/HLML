@@ -407,7 +407,7 @@ inline void Gen_GetParmTypeName( const genLanguage_t language, const genType_t t
 	if ( numCols == 1 ) {
 		// scalar
 		const char* memberTypeString = Gen_GetMemberTypeString( type );
-		strncpy( outString, memberTypeString, GEN_STRING_LENGTH_TYPE_NAME );
+		strncpy_s( outString, GEN_STRING_LENGTH_TYPE_NAME, memberTypeString, GEN_STRING_LENGTH_TYPE_NAME );
 	} else {
 		// vector of some kind
 		char fullTypeName[GEN_STRING_LENGTH_TYPE_NAME];
@@ -581,7 +581,7 @@ inline void Gen_GetFuncNameInternal( const genLanguage_t language, const genType
 
 			snprintf( outString, GEN_STRING_LENGTH_FUNCTION_NAME, "%s_%s", fullTypeName, funcName );
 		} else {
-			strncpy( outString, funcName, GEN_STRING_LENGTH_FUNCTION_NAME );
+			strncpy_s( outString, GEN_STRING_LENGTH_FUNCTION_NAME, funcName, GEN_STRING_LENGTH_FUNCTION_NAME );
 		}
 	} else {
 		assert( numCols == 1 );

@@ -32,21 +32,21 @@ SOFTWARE.
 // EDITING THIS FILE MAY CAUSE SIDE EFFECTS.
 // DO SO AT YOUR OWN RISK.
 
-static int4x4 g_matrixMulLHS_int4x4    = (int4x4) {
+static int4x4 g_matrixMulLHS_int4x4    = {
 		6, 6, 6, 6,
 		6, 6, 6, 6,
 		12, 12, 12, 12,
 		18, 18, 18, 18
 };
 
-static int4x4 g_matrixMulRHS_int4x4    = (int4x4) {
+static int4x4 g_matrixMulRHS_int4x4    = {
 		1, 1, 1, 1,
 		2, 2, 2, 2,
 		3, 3, 3, 3,
 		6, 6, 6, 6
 };
 
-static int4x4 g_matrixMulAnswer_int4x4 = (int4x4) {
+static int4x4 g_matrixMulAnswer_int4x4 = {
 		72, 72, 72, 72,
 		72, 72, 72, 72,
 		144, 144, 144, 144,

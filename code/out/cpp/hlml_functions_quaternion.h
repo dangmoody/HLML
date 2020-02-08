@@ -169,7 +169,7 @@ inline double4 quaternion_slerp( const double4& lhs, const double4& rhs, const d
 #pragma GCC diagnostic ignored "-Wmissing-braces"
 #endif
 
-inline float4 quaternion_mul( const float4& lhs, const float4& rhs )
+float4 quaternion_mul( const float4& lhs, const float4& rhs )
 {
 	float4 quat;
 	quat.x = lhs.x * rhs.w + lhs.y * rhs.z - lhs.z * rhs.y + lhs.w * rhs.x;
@@ -179,19 +179,19 @@ inline float4 quaternion_mul( const float4& lhs, const float4& rhs )
 	return quat;
 }
 
-inline float4 quaternion_mul( const float4& lhs, const float rhs )
+float4 quaternion_mul( const float4& lhs, const float rhs )
 {
 	float scalar = lhs.w * rhs;
 	float3 imaginary = float3( lhs.x, lhs.y, lhs.z ) * rhs;
 	return HLML_CONSTRUCT( float4 ) { imaginary.x, imaginary.y, imaginary.z, scalar };
 }
 
-inline float quaternion_length( const float4& quat )
+float quaternion_length( const float4& quat )
 {
 	return sqrtf( ( quat.x * quat.x ) + ( quat.y * quat.y ) + ( quat.z * quat.z ) + ( quat.w * quat.w ) );
 }
 
-inline float4 quaternion_normalize( const float4& quat )
+float4 quaternion_normalize( const float4& quat )
 {
 	float3 normV = HLML_CONSTRUCT( float3 ) { quat.x, quat.y, quat.z };
 	float normS = quat.w;
@@ -205,12 +205,12 @@ inline float4 quaternion_normalize( const float4& quat )
 	return HLML_CONSTRUCT( float4 ) { normV.x, normV.y, normV.z, normS };
 }
 
-inline float4 quaternion_conjugate( const float4& quat )
+float4 quaternion_conjugate( const float4& quat )
 {
 	return HLML_CONSTRUCT( float4 ) { ( quat.x * ( -1 ) ), ( quat.y * ( -1 ) ), ( quat.z * ( -1 ) ), quat.w };
 }
 
-inline float4 quaternion_inverse( const float4& quat )
+float4 quaternion_inverse( const float4& quat )
 {
 	float magnitude = quaternion_length( quat );
 	magnitude *= magnitude;
@@ -221,7 +221,7 @@ inline float4 quaternion_inverse( const float4& quat )
 	return HLML_CONSTRUCT( float4 ) { imaginary.x, imaginary.y, imaginary.z, scalar };
 }
 
-inline float3 quaternion_rotate( const float3& vect, const float angle, const float3& axis )
+float3 quaternion_rotate( const float3& vect, const float angle, const float3& axis )
 {
 	float4 pureQuat = HLML_CONSTRUCT( float4 ) { vect.x, vect.y, vect.z, 0 };
 	float3 normalizedAxis = axis;
@@ -240,7 +240,7 @@ inline float3 quaternion_rotate( const float3& vect, const float angle, const fl
 	return HLML_CONSTRUCT( float3 ) { rotatedVector.x, rotatedVector.y, rotatedVector.z };
 }
 
-inline float4 quaternion_lerp( const float4& lhs, const float4& rhs, const float percent )
+float4 quaternion_lerp( const float4& lhs, const float4& rhs, const float percent )
 {
 	float4 quat;
 	float t = 1.0f - percent;
@@ -251,7 +251,7 @@ inline float4 quaternion_lerp( const float4& lhs, const float4& rhs, const float
 	return quat;
 }
 
-inline float4 quaternion_slerp( const float4& lhs, const float4& rhs, const float percent )
+float4 quaternion_slerp( const float4& lhs, const float4& rhs, const float percent )
 {
 	float4 quat;
 	float t = 1.0f - percent;
@@ -271,7 +271,7 @@ inline float4 quaternion_slerp( const float4& lhs, const float4& rhs, const floa
 	return quat;
 }
 
-inline double4 quaternion_mul( const double4& lhs, const double4& rhs )
+double4 quaternion_mul( const double4& lhs, const double4& rhs )
 {
 	double4 quat;
 	quat.x = lhs.x * rhs.w + lhs.y * rhs.z - lhs.z * rhs.y + lhs.w * rhs.x;
@@ -281,19 +281,19 @@ inline double4 quaternion_mul( const double4& lhs, const double4& rhs )
 	return quat;
 }
 
-inline double4 quaternion_mul( const double4& lhs, const double rhs )
+double4 quaternion_mul( const double4& lhs, const double rhs )
 {
 	double scalar = lhs.w * rhs;
 	double3 imaginary = double3( lhs.x, lhs.y, lhs.z ) * rhs;
 	return HLML_CONSTRUCT( double4 ) { imaginary.x, imaginary.y, imaginary.z, scalar };
 }
 
-inline double quaternion_length( const double4& quat )
+double quaternion_length( const double4& quat )
 {
 	return sqrt( ( quat.x * quat.x ) + ( quat.y * quat.y ) + ( quat.z * quat.z ) + ( quat.w * quat.w ) );
 }
 
-inline double4 quaternion_normalize( const double4& quat )
+double4 quaternion_normalize( const double4& quat )
 {
 	double3 normV = HLML_CONSTRUCT( double3 ) { quat.x, quat.y, quat.z };
 	double normS = quat.w;
@@ -307,12 +307,12 @@ inline double4 quaternion_normalize( const double4& quat )
 	return HLML_CONSTRUCT( double4 ) { normV.x, normV.y, normV.z, normS };
 }
 
-inline double4 quaternion_conjugate( const double4& quat )
+double4 quaternion_conjugate( const double4& quat )
 {
 	return HLML_CONSTRUCT( double4 ) { ( quat.x * ( -1 ) ), ( quat.y * ( -1 ) ), ( quat.z * ( -1 ) ), quat.w };
 }
 
-inline double4 quaternion_inverse( const double4& quat )
+double4 quaternion_inverse( const double4& quat )
 {
 	double magnitude = quaternion_length( quat );
 	magnitude *= magnitude;
@@ -323,7 +323,7 @@ inline double4 quaternion_inverse( const double4& quat )
 	return HLML_CONSTRUCT( double4 ) { imaginary.x, imaginary.y, imaginary.z, scalar };
 }
 
-inline double3 quaternion_rotate( const double3& vect, const double angle, const double3& axis )
+double3 quaternion_rotate( const double3& vect, const double angle, const double3& axis )
 {
 	double4 pureQuat = HLML_CONSTRUCT( double4 ) { vect.x, vect.y, vect.z, 0 };
 	double3 normalizedAxis = axis;
@@ -342,7 +342,7 @@ inline double3 quaternion_rotate( const double3& vect, const double angle, const
 	return HLML_CONSTRUCT( double3 ) { rotatedVector.x, rotatedVector.y, rotatedVector.z };
 }
 
-inline double4 quaternion_lerp( const double4& lhs, const double4& rhs, const double percent )
+double4 quaternion_lerp( const double4& lhs, const double4& rhs, const double percent )
 {
 	double4 quat;
 	double t = 1.0 - percent;
@@ -353,7 +353,7 @@ inline double4 quaternion_lerp( const double4& lhs, const double4& rhs, const do
 	return quat;
 }
 
-inline double4 quaternion_slerp( const double4& lhs, const double4& rhs, const double percent )
+double4 quaternion_slerp( const double4& lhs, const double4& rhs, const double percent )
 {
 	double4 quat;
 	double t = 1.0 - percent;

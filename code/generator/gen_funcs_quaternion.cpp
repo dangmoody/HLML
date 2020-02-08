@@ -48,7 +48,7 @@ void Gen_QuaternionMultiply( const genLanguage_t language, const genType_t type,
 	String_Appendf( sbFwdDec, "inline %s %s( const %s lhs, const %s rhs );\n", fullTypeName, mulQuaternionFuncStr, parmTypeName, parmTypeName );
 	String_Append(  sbFwdDec, "\n" );
 
-	String_Appendf( sbImpl, "inline %s %s( const %s lhs, const %s rhs )\n", fullTypeName, mulQuaternionFuncStr, parmTypeName, parmTypeName );
+	String_Appendf( sbImpl, "%s %s( const %s lhs, const %s rhs )\n", fullTypeName, mulQuaternionFuncStr, parmTypeName, parmTypeName );
 	String_Append(  sbImpl, "{\n" );
 
 	String_Appendf( sbImpl, "\t%s quat;\n", fullTypeName );
@@ -88,7 +88,7 @@ void Gen_QuaternionMultiplyScalar( const genLanguage_t language, const genType_t
 	String_Appendf( sbFwdDec, "inline %s %s( const %s lhs, const %s rhs );\n", fullTypeName, mulQuaternionFuncStr, lhsParmTypeName, rhsParmTypeName );
 	String_Append(  sbFwdDec, "\n" );
 
-	String_Appendf( sbImpl, "inline %s %s( const %s lhs, const %s rhs )\n", fullTypeName, mulQuaternionFuncStr, lhsParmTypeName, rhsParmTypeName );
+	String_Appendf( sbImpl, "%s %s( const %s lhs, const %s rhs )\n", fullTypeName, mulQuaternionFuncStr, lhsParmTypeName, rhsParmTypeName );
 	String_Append(  sbImpl, "{\n" );
 
 	String_Appendf( sbImpl, "\t%s scalar = lhs%sw * rhs;\n", typeString, parmAccessStr );
@@ -132,7 +132,7 @@ void Gen_QuaternionLength( const genLanguage_t language, const genType_t type, s
 	String_Appendf( sbFwdDec, "inline %s %s( const %s quat );\n", typeString, lengthQuaternionFuncStr, parmTypeName );
 	String_Append(  sbFwdDec, "\n" );
 
-	String_Appendf( sbImpl, "inline %s %s( const %s quat )\n", typeString, lengthQuaternionFuncStr, parmTypeName );
+	String_Appendf( sbImpl, "%s %s( const %s quat )\n", typeString, lengthQuaternionFuncStr, parmTypeName );
 	String_Append(  sbImpl, "{\n" );
 
 	String_Appendf( sbImpl, "\treturn %s( ", Gen_GetFuncNameSqrt( type ) );
@@ -184,7 +184,7 @@ void Gen_QuaternionNormalize( const genLanguage_t language, const genType_t type
 	String_Appendf( sbFwdDec, "inline %s4 %s( const %s quat );\n", returnTypeString, normalizeQuaternionFuncStr, parmTypeName );
 	String_Append(  sbFwdDec, "\n" );
 
-	String_Appendf( sbImpl, "inline %s4 %s( const %s quat )\n", returnTypeString, normalizeQuaternionFuncStr, parmTypeName );
+	String_Appendf( sbImpl, "%s4 %s( const %s quat )\n", returnTypeString, normalizeQuaternionFuncStr, parmTypeName );
 	String_Append(  sbImpl, "{\n");
 
 	String_Appendf( sbImpl, "\t%s3 normV = HLML_CONSTRUCT( %s3 ) { quat%sx, quat%sy, quat%sz };\n", typeString, typeString, parmAccessStr, parmAccessStr, parmAccessStr );
@@ -232,7 +232,7 @@ void Gen_QuaternionConjugate( const genLanguage_t language, const genType_t type
 	String_Appendf( sbFwdDec, "inline %s %s( const %s quat );\n", fullTypeName, conjugateQuaternionFuncStr, parmTypeName );
 	String_Append(  sbFwdDec, "\n" );
 
-	String_Appendf( sbImpl, "inline %s %s( const %s quat )\n", fullTypeName, conjugateQuaternionFuncStr, parmTypeName );
+	String_Appendf( sbImpl, "%s %s( const %s quat )\n", fullTypeName, conjugateQuaternionFuncStr, parmTypeName );
 	String_Append(  sbImpl, "{\n" );
 
 	String_Appendf( sbImpl, "\treturn HLML_CONSTRUCT( %s ) { ", fullTypeName );
@@ -277,7 +277,7 @@ void Gen_QuaternionInverse( const genLanguage_t language, const genType_t type, 
 	String_Appendf( sbFwdDec, "inline %s %s( const %s quat );\n", fullTypeName, inverseQuaternionFuncStr, parmTypeName );
 	String_Append(  sbFwdDec, "\n" );
 
-	String_Appendf( sbImpl, "inline %s %s( const %s quat )\n", fullTypeName, inverseQuaternionFuncStr, parmTypeName );
+	String_Appendf( sbImpl, "%s %s( const %s quat )\n", fullTypeName, inverseQuaternionFuncStr, parmTypeName );
 	String_Append(  sbImpl, "{\n");
 
 	String_Appendf( sbImpl, "\t%s magnitude = %s( quat );\n", typeString, lengthQuaternionFuncStr );
@@ -329,7 +329,7 @@ void Gen_QuaternionRotationAxis( const genLanguage_t language, const genType_t t
 	String_Appendf( sbFwdDec, "inline %s3 %s( const %s vect, const %s angle, const %s axis );\n", typeString, rotateQuaternionFuncStr, parmTypeName, typeString, parmTypeName );
 	String_Append(  sbFwdDec, "\n" );
 
-	String_Appendf( sbImpl, "inline %s3 %s( const %s vect, const %s angle, const %s axis )\n", typeString, rotateQuaternionFuncStr, parmTypeName, typeString, parmTypeName );
+	String_Appendf( sbImpl, "%s3 %s( const %s vect, const %s angle, const %s axis )\n", typeString, rotateQuaternionFuncStr, parmTypeName, typeString, parmTypeName );
 	String_Append(  sbImpl, "{\n" );
 
 	String_Appendf( sbImpl, "\t%s pureQuat = HLML_CONSTRUCT( %s ) { vect%sx, vect%sy, vect%sz, 0 };\n", fullTypeName, fullTypeName, parmAccessStr, parmAccessStr, parmAccessStr );
@@ -416,7 +416,7 @@ void Gen_QuaternionLerp( const genLanguage_t language, const genType_t type, str
 	String_Appendf( sbFwdDec, "inline %s %s( const %s lhs, const %s rhs, const %s percent );\n", fullTypeName, lerpQuaternionFuncStr, parmTypeName, parmTypeName, typeString );
 	String_Append(  sbFwdDec, "\n" );
 
-	String_Appendf( sbImpl, "inline %s %s( const %s lhs, const %s rhs, const %s percent )\n", fullTypeName, lerpQuaternionFuncStr, parmTypeName, parmTypeName, typeString );
+	String_Appendf( sbImpl, "%s %s( const %s lhs, const %s rhs, const %s percent )\n", fullTypeName, lerpQuaternionFuncStr, parmTypeName, parmTypeName, typeString );
 	String_Append(  sbImpl, "{\n" );
 
 	String_Appendf( sbImpl, "\t%s quat;\n", fullTypeName );
@@ -463,7 +463,7 @@ void Gen_QuaternionSlerp( const genLanguage_t language, const genType_t type, st
 	String_Appendf( sbFwdDec, "inline %s %s( const %s lhs, const %s rhs, const %s percent );\n", fullTypeName, slerpQuaternionFuncStr, parmTypeName, parmTypeName, typeString );
 	String_Append(  sbFwdDec, "\n" );
 
-	String_Appendf( sbImpl, "inline %s %s( const %s lhs, const %s rhs, const %s percent )\n", fullTypeName, slerpQuaternionFuncStr, parmTypeName, parmTypeName, typeString );
+	String_Appendf( sbImpl, "%s %s( const %s lhs, const %s rhs, const %s percent )\n", fullTypeName, slerpQuaternionFuncStr, parmTypeName, parmTypeName, typeString );
 	String_Append(  sbImpl, "{\n" );
 
 	String_Appendf( sbImpl, "\t%s quat;\n", fullTypeName );
