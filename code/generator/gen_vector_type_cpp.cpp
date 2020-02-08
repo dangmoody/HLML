@@ -52,7 +52,7 @@ static void GenerateDocCtorMemberwise( stringBuilder_t* codeHeader, const u32 nu
 	assert( numComponents <= GEN_COMPONENT_COUNT_MAX );
 
 	char componentsStr[GEN_COMPONENT_COUNT_MAX + 1];
-	strncpy_s( componentsStr, GEN_COMPONENT_COUNT_MAX + 1, GEN_COMPONENT_NAMES_VECTOR, numComponents );
+	strncpy( componentsStr, GEN_COMPONENT_NAMES_VECTOR, numComponents );
 	componentsStr[numComponents] = 0;
 
 	String_Appendf( codeHeader, "\t/// Sets the %s members of the vector to the corresponding parameters.\n", componentsStr );
