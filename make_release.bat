@@ -5,11 +5,16 @@ REM 1. do a release build of the generator
 REM 2. run the generator
 REM then build the tests
 
-if [%1]==[] (
-	goto :bad_arg
-)
+setlocal EnableDelayedExpansion
+
+pushd %~dp0
 
 set version=%1
+
+if [%version%]==[] (
+	echo ERROR: Release version was not set!  Please specify a release version
+	goto :ShowUsage
+)
 
 echo Packing build...
 
@@ -18,7 +23,7 @@ REM these will be deleted later
 robocopy /s /e doxygen\ releases\doxygen\
 robocopy /s /e code\out\ releases\code\
 
-7z a -t7z releases\hlml_%version%.zip .\releases\code\ .\releases\doxygen\ generate_documentation.bat .\build\Release\hlml-gen-tests.exe
+tools\\7zip\\7za.exe a -tzip releases\hlml_%version%.zip .\releases\code\ .\releases\doxygen\ generate_documentation.bat .\build\Release\hlml-gen-tests.exe
 
 REM delete temp destinations
 rd /s /Q releases\doxygen\
@@ -29,13 +34,17 @@ echo Done.
 echo.
 
 pause
-goto :quit
+goto :EOF
 
 
-:bad_arg
-echo ERROR: Must set a version parameter! (for example: script.bat 0.1.0)
-goto :quit
+:ShowUsage
+echo Usage:
+echo make_release.bat ^<version^>
+echo.
+echo Arguments:
+echo     ^<version^> (required):
+echo         The version of the release that you are making (for example: 1.0.2 - where 1 is the major version, 0 is the minor version, and 2 is the patch version)
+goto :EOF
 
 
-:quit
-echo quit
+popd
