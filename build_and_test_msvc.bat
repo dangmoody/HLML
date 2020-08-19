@@ -4,12 +4,17 @@ SETLOCAL EnableDelayedExpansion
 
 REM can be "debug" or "release"
 set config=%1
+if [%config%]==[] (
+	echo ERROR: Config not specified.
+	GOTO :bail
+)
 
 REM path to vcvars64.bat, MUST include file name
 set vcvars64_path=%2
-
-if [%config%]==[] GOTO bail
-if [%vcvars64_path%]==[] GOTO bail
+if [%vcvars64_path%]==[] (
+	echo ERROR: Path to vcvars64.bat not specified.
+	GOTO :bail
+)
 
 call %vcvars64_path%
 
@@ -46,14 +51,15 @@ build\msvc\%config%\hlml-gen-tests-cpp.exe -c --time-unit=us
 echo ------- Done -------
 echo.
 
+goto :exit
 
-goto exit
 
 :bail
 echo ERROR: Not all arguments are set.  Please check the arguments you are passing.
 echo Usage:
 echo "build_and_test_msvc.bat <config> <vcvars64 path>"
-goto exit
+goto :EOF
+
 
 :exit
 
