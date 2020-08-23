@@ -9,7 +9,7 @@ if [%config%]==[] (
 	GOTO :bail
 )
 
-call "C:\Program Files (x86)\Microsoft Visual Studio\2017\BuildTools\VC\Auxiliary\Build\vcvars64.bat"
+REM call "C:\Program Files (x86)\Microsoft Visual Studio\2017\BuildTools\VC\Auxiliary\Build\vcvars64.bat"
 
 echo ------- Building generator -------
 set source_files=code\generator\*.cpp
