@@ -34,6 +34,10 @@ SOFTWARE.
 
 #pragma once
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 #include "bool2.h"
 #include "bool3.h"
 #include "bool4.h"
@@ -113,3 +117,6 @@ SOFTWARE.
 #include "hlml_functions_vector_sse.h"
 #include "hlml_functions_matrix_sse.h"
 
+#ifdef __cplusplus
+}
+#endif

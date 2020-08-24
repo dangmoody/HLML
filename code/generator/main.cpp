@@ -78,8 +78,8 @@ int main( int argc, char** argv ) {
 	printf( "======= Done. =======\n\n" );
 
 	printf( "======= Generating functions. =======\n" );
-	Gen_FunctionsScalar( GEN_FOLDER_PATHS_OUT_GEN[GEN_LANGUAGE_C] );
-	Gen_FunctionsScalar( GEN_FOLDER_PATHS_OUT_GEN[GEN_LANGUAGE_CPP] );
+	Gen_FunctionsScalar( GEN_LANGUAGE_C );
+	Gen_FunctionsScalar( GEN_LANGUAGE_CPP );
 
 	Gen_FunctionsVector( GEN_LANGUAGE_C );
 	Gen_FunctionsMatrix( GEN_LANGUAGE_C );

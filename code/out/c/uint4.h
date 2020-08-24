@@ -34,6 +34,10 @@ SOFTWARE.
 
 #pragma once
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 /// \brief A vector of 4 uint32_ts with components xyzw.
 /// Components are also stored as elements in an array via a union.
 typedef struct uint4
@@ -43,3 +47,7 @@ typedef struct uint4
 	uint32_t z;
 	uint32_t w;
 } uint4;
+
+#ifdef __cplusplus
+}
+#endif

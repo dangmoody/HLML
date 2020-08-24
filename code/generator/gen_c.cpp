@@ -53,6 +53,10 @@ static void Gen_VectorType_C( const genType_t type, const u32 numComponents ) {
 	String_Append(  &codeHeader,
 		"#pragma once\n"
 		"\n"
+		"#ifdef __cplusplus\n"
+		"extern \"C\" {\n"
+		"#endif\n"
+		"\n"
 	);
 
 	if ( type == GEN_TYPE_BOOL ) {
@@ -67,6 +71,12 @@ static void Gen_VectorType_C( const genType_t type, const u32 numComponents ) {
 		String_Appendf( &codeHeader, "\t%s %c;\n", memberTypeString, GEN_COMPONENT_NAMES_VECTOR[i] );
 	}
 	String_Appendf( &codeHeader, "} %s;\n", fullTypeName );
+	String_Append(  &codeHeader,
+		"\n"
+		"#ifdef __cplusplus\n"
+		"}\n"
+		"#endif\n"
+	);
 
 	char fileNameHeader[64] = {};
 	snprintf( fileNameHeader, 64, "%s%s.h", GEN_FOLDER_PATHS_OUT_GEN[GEN_LANGUAGE_C], fullTypeName );
@@ -97,6 +107,10 @@ static void Gen_MatrixType_C( const genType_t type, const u32 numRows, const u32
 	String_Append(  &codeHeader,
 		"#pragma once\n"
 		"\n"
+		"#ifdef __cplusplus\n"
+		"extern \"C\" {\n"
+		"#endif\n"
+		"\n"
 	);
 
 	Doc_Matrix( &codeHeader, numRows, vectorMemberTypeString );
@@ -104,6 +118,13 @@ static void Gen_MatrixType_C( const genType_t type, const u32 numRows, const u32
 	String_Append(  &codeHeader, "{\n" );
 	String_Appendf( &codeHeader, "\t%s rows[%d];\n", vectorMemberTypeString, numRows );
 	String_Appendf( &codeHeader, "} %s;\n", fullTypeName );
+
+	String_Append(  &codeHeader,
+		"\n"
+		"#ifdef __cplusplus\n"
+		"}\n"
+		"#endif\n"
+	);
 
 	char fileNameHeader[64] = {};
 	snprintf( fileNameHeader, 64, "%s%s.h", GEN_FOLDER_PATHS_OUT_GEN[GEN_LANGUAGE_C], fullTypeName );

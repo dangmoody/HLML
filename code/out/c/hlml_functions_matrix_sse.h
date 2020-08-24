@@ -34,6 +34,10 @@ SOFTWARE.
 
 #pragma once
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 #include <immintrin.h>
 
 #include "hlml_functions_vector_sse.h"
@@ -2769,3 +2773,6 @@ inline static void float4x4_scale_sse( const float3_sse_t* diagonal, const float
 }
 
 
+#ifdef __cplusplus
+}
+#endif

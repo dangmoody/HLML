@@ -34,6 +34,10 @@ SOFTWARE.
 
 #pragma once
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 #include "../hlml_defines.h"
 
 #include "bool2.h"
@@ -3906,4 +3910,8 @@ double double4_angle( const double4* lhs, const double4* rhs )
 	double4 rhs_unit = double4_normalized( rhs );
 	return degrees( acos( double4_dot( &lhs_unit, &rhs_unit ) ) );
 }
+
+#ifdef __cplusplus
+}
+#endif
 

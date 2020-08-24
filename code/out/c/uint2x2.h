@@ -34,8 +34,16 @@ SOFTWARE.
 
 #pragma once
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 /// A matrix of 2 uint2s.
 typedef struct uint2x2
 {
 	uint2 rows[2];
 } uint2x2;
+
+#ifdef __cplusplus
+}
+#endif

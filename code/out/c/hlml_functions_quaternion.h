@@ -32,6 +32,10 @@ SOFTWARE.
 // EDITING THIS FILE MAY CAUSE SIDE EFFECTS.
 // DO SO AT YOUR OWN RISK.
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 #include "bool2x2.h"
 #include "bool2x3.h"
 #include "bool2x4.h"
@@ -381,4 +385,8 @@ double4 double4_quaternion_slerp( const double4* lhs, const double4* rhs, const 
 
 #if defined( __GNUC__ ) || defined( __clang__ )
 #pragma GCC diagnostic pop
+#endif
+
+#ifdef __cplusplus
+}
 #endif

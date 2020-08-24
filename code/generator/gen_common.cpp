@@ -105,6 +105,15 @@ void Gen_HeaderMain( const genLanguage_t language ) {
 		"\n"
 	);
 
+	if ( language == GEN_LANGUAGE_C ) {
+		String_Append( &sb,
+			"#ifdef __cplusplus\n"
+			"extern \"C\" {\n"
+			"#endif\n"
+			"\n"
+		);
+	}
+
 	// include vectors
 	for ( u32 typeIndex = 0; typeIndex < GEN_TYPE_COUNT; typeIndex++ ) {
 		const genType_t type = (genType_t) typeIndex;
@@ -189,6 +198,14 @@ void Gen_HeaderMain( const genLanguage_t language ) {
 	String_Appendf( &sb, "#include \"" GEN_FILENAME_FUNCTIONS_MATRIX_SSE ".h\"\n" );
 	String_Append( &sb, "\n" );
 
+	if ( language == GEN_LANGUAGE_C ) {
+		String_Append( &sb,
+			"#ifdef __cplusplus\n"
+			"}\n"
+			"#endif\n"
+		);
+	}
+
 	FS_WriteEntireFile( headerFilePath, sb.str, sb.length );
 
 	Mem_Reset();
@@ -196,12 +213,9 @@ void Gen_HeaderMain( const genLanguage_t language ) {
 	printf( "OK.\n" );
 }
 
-void Gen_FunctionsScalar( const char* folder ) {
-	assert( folder );
-	assert( folder[strlen( folder ) - 1] == '/' );
-
+void Gen_FunctionsScalar( const genLanguage_t language ) {
 	char fileNameHeader[1024];
-	snprintf( fileNameHeader, 1024, "%s%s.h", folder, GEN_FILENAME_FUNCTIONS_SCALAR );
+	snprintf( fileNameHeader, 1024, "%s%s.h", GEN_FOLDER_PATHS_OUT_GEN[language], GEN_FILENAME_FUNCTIONS_SCALAR );
 
 	stringBuilder_t sbFwdDec = String_Create( 9 * KB_TO_BYTES );
 	stringBuilder_t sbImpl = String_Create( 9 * KB_TO_BYTES );
@@ -212,6 +226,18 @@ void Gen_FunctionsScalar( const char* folder ) {
 	String_Append( &sbFwdDec,
 		"#pragma once\n"
 		"\n"
+	);
+
+	if ( language == GEN_LANGUAGE_C ) {
+		String_Append( &sbFwdDec,
+			"#ifdef __cplusplus\n"
+			"extern \"C\" {\n"
+			"#endif\n"
+			"\n"
+		);
+	}
+
+	String_Append( &sbFwdDec,
 		"#include \"../" GEN_HEADER_CONSTANTS "\"\n"
 		"\n"
 		"#include <math.h>\n"
@@ -259,6 +285,15 @@ void Gen_FunctionsScalar( const char* folder ) {
 	}
 
 	String_Append( &sb, sbFwdDec.str );
+
+	if ( language == GEN_LANGUAGE_C ) {
+		String_Append( &sbImpl,
+			"#ifdef __cplusplus\n"
+			"}\n"
+			"#endif\n"
+		);
+	}
+
 	String_Append( &sb, sbImpl.str );
 
 	FS_WriteEntireFile( fileNameHeader, sb.str, sb.length );
@@ -279,8 +314,21 @@ void Gen_FunctionsVector( const genLanguage_t language ) {
 	String_Append( &contentFwdDec,
 		"#pragma once\n"
 		"\n"
+	);
+
+	if ( language == GEN_LANGUAGE_C ) {
+		String_Append( &contentFwdDec,
+			"#ifdef __cplusplus\n"
+			"extern \"C\" {\n"
+			"#endif\n"
+			"\n"
+		);
+	}
+
+	String_Append( &contentFwdDec,
 		"#include \"../" GEN_HEADER_DEFINES "\"\n"
-		"\n" );
+		"\n"
+	);
 
 	// includes
 	for ( u32 typeIndex = 0; typeIndex < GEN_TYPE_COUNT; typeIndex++ ) {
@@ -343,6 +391,15 @@ void Gen_FunctionsVector( const genLanguage_t language ) {
 	String_Append( &content, contentFwdDec.str );
 	String_Append( &content, contentImpl.str );
 
+	if ( language == GEN_LANGUAGE_C ) {
+		String_Append( &content,
+			"#ifdef __cplusplus\n"
+			"}\n"
+			"#endif\n"
+			"\n"
+		);
+	}
+
 	FS_WriteEntireFile( filePathHeader, content.str, content.length );
 
 	Mem_Reset();
@@ -358,6 +415,15 @@ void Gen_FunctionsMatrix( const genLanguage_t language ) {
 	stringBuilder_t content = String_Create( contentFwdDec.alloc + contentImpl.alloc );
 
 	String_Append( &contentFwdDec, GEN_FILE_HEADER );
+
+	if ( language == GEN_LANGUAGE_C ) {
+		String_Append( &contentFwdDec,
+			"#ifdef __cplusplus\n"
+			"extern \"C\" {\n"
+			"#endif\n"
+			"\n"
+		);
+	}
 
 	for ( u32 typeIndex = 0; typeIndex < GEN_TYPE_COUNT; typeIndex++ ) {
 		genType_t type = (genType_t) typeIndex;
@@ -435,6 +501,16 @@ void Gen_FunctionsMatrix( const genLanguage_t language ) {
 		"#endif\n"
 		"\n"
 	);
+
+	if ( language == GEN_LANGUAGE_C ) {
+		String_Append( &contentImpl,
+			"\n"
+			"#ifdef __cplusplus\n"
+			"}\n"
+			"#endif\n"
+		);
+	}
+
 	String_Append( &content, contentImpl.str );
 
 	FS_WriteEntireFile( filePathHeader, content.str, content.length );
@@ -452,6 +528,15 @@ void Gen_FunctionsQuaternion( const genLanguage_t language ) {
 	stringBuilder_t content = String_Create( contentFwdDec.alloc + contentImpl.alloc );
 
 	String_Append( &contentFwdDec, GEN_FILE_HEADER );
+
+	if ( language == GEN_LANGUAGE_C ) {
+		String_Append( &contentFwdDec,
+			"#ifdef __cplusplus\n"
+			"extern \"C\" {\n"
+			"#endif\n"
+			"\n"
+		);
+	}
 
 	for ( u32 typeIndex = 0; typeIndex < GEN_TYPE_COUNT; typeIndex++ ) {
 		genType_t type = (genType_t) typeIndex;
@@ -515,6 +600,16 @@ void Gen_FunctionsQuaternion( const genLanguage_t language ) {
 		"#endif\n"
 		"\n"
 	);
+
+	if ( language == GEN_LANGUAGE_C ) {
+		String_Append( &contentImpl,
+			"\n"
+			"#ifdef __cplusplus\n"
+			"}\n"
+			"#endif\n"
+		);
+	}
+
 	String_Append( &content, contentImpl.str );
 
 	FS_WriteEntireFile( filePathHeader, content.str, content.length );
@@ -533,6 +628,18 @@ void Gen_FunctionsScalarSSE( const genLanguage_t language ) {
 	String_Append( &contentFwdDec,
 		"#pragma once\n"
 		"\n"
+	);
+
+	if ( language == GEN_LANGUAGE_C ) {
+		String_Append( &contentFwdDec,
+			"#ifdef __cplusplus\n"
+			"extern \"C\" {\n"
+			"#endif\n"
+			"\n"
+		);
+	}
+
+	String_Append( &contentFwdDec,
 		"// HLML includes\n"
 		"#include \"../hlml_constants_sse.h\"\n"
 		"\n"
@@ -565,6 +672,15 @@ void Gen_FunctionsScalarSSE( const genLanguage_t language ) {
 		printf( "OK.\n" );
 	}
 
+	if ( language == GEN_LANGUAGE_C ) {
+		String_Append( &contentFwdDec,
+			"#ifdef __cplusplus\n"
+			"}\n"
+			"#endif\n"
+			"\n"
+		);
+	}
+
 	FS_WriteEntireFile( filePathHeader, contentFwdDec.str, contentFwdDec.length );
 
 	Mem_Reset();
@@ -582,6 +698,18 @@ void Gen_FunctionsVectorSSE( const genLanguage_t language ) {
 	String_Append( &contentFwdDec,
 		"#pragma once\n"
 		"\n"
+	);
+
+	if ( language == GEN_LANGUAGE_C ) {
+		String_Append( &contentFwdDec,
+			"#ifdef __cplusplus\n"
+			"extern \"C\" {\n"
+			"#endif\n"
+			"\n"
+		);
+	}
+
+	String_Append( &contentFwdDec,
 		"// HLML includes\n"
 		"#include \"" GEN_FILENAME_FUNCTIONS_VECTOR_SSE ".h\"\n"
 		"#include \"../" GEN_HEADER_CONSTANTS_SSE "\"\n"
@@ -640,6 +768,14 @@ void Gen_FunctionsVectorSSE( const genLanguage_t language ) {
 		}
 	}
 
+	if ( language == GEN_LANGUAGE_C ) {
+		String_Append( &contentFwdDec,
+			"#ifdef __cplusplus\n"
+			"}\n"
+			"#endif\n"
+		);
+	}
+
 	FS_WriteEntireFile( filePathHeader, contentFwdDec.str, contentFwdDec.length );
 
 	Mem_Reset();
@@ -657,6 +793,18 @@ void Gen_FunctionsMatrixSSE( const genLanguage_t language ) {
 	String_Append( &contentFwdDec,
 		"#pragma once\n"
 		"\n"
+	);
+
+	if ( language == GEN_LANGUAGE_C ) {
+		String_Append( &contentFwdDec,
+			"#ifdef __cplusplus\n"
+			"extern \"C\" {\n"
+			"#endif\n"
+			"\n"
+		);
+	}
+
+	String_Append( &contentFwdDec,
 		"#include <immintrin.h>\n"
 		"\n"
 		"#include \"" GEN_FILENAME_FUNCTIONS_VECTOR_SSE ".h\"\n"
@@ -729,6 +877,14 @@ void Gen_FunctionsMatrixSSE( const genLanguage_t language ) {
 				printf( "OK.\n" );
 			}
 		}
+	}
+
+	if ( language == GEN_LANGUAGE_C ) {
+		String_Append( &contentFwdDec,
+			"#ifdef __cplusplus\n"
+			"}\n"
+			"#endif\n"
+		);
 	}
 
 	FS_WriteEntireFile( filePathHeader, contentFwdDec.str, contentFwdDec.length );

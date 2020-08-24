@@ -34,8 +34,16 @@ SOFTWARE.
 
 #pragma once
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 /// A matrix of 3 int3s.
 typedef struct int3x3
 {
 	int3 rows[3];
 } int3x3;
+
+#ifdef __cplusplus
+}
+#endif

@@ -34,8 +34,16 @@ SOFTWARE.
 
 #pragma once
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 /// A matrix of 4 double2s.
 typedef struct double4x2
 {
 	double2 rows[4];
 } double4x2;
+
+#ifdef __cplusplus
+}
+#endif
