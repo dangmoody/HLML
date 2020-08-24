@@ -31,6 +31,10 @@ SOFTWARE.
 #pragma once
 
 #ifdef __cplusplus
+extern "C" {
+#endif
+
+#ifdef __cplusplus
 #define HLML_CONSTRUCT( type ) type
 #else
 #define HLML_CONSTRUCT( type ) (type)
@@ -38,4 +42,8 @@ SOFTWARE.
 
 #ifndef HLML_ASSERT
 #define HLML_ASSERT( x ) assert( x )
+#endif
+
+#ifdef __cplusplus
+}
 #endif

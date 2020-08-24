@@ -29,6 +29,14 @@ SOFTWARE.
 */
 #pragma once
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 #define HLML_VERSION_MAJOR	1
 #define HLML_VERSION_MINOR	1
-#define HLML_VERSION_PATCH	0
+#define HLML_VERSION_PATCH	1
+
+#ifdef __cplusplus
+}
+#endif
