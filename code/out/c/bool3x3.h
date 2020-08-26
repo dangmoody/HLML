@@ -34,8 +34,16 @@ SOFTWARE.
 
 #pragma once
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 /// A matrix of 3 bool3s.
 typedef struct bool3x3
 {
 	bool3 rows[3];
 } bool3x3;
+
+#ifdef __cplusplus
+}
+#endif

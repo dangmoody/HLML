@@ -34,6 +34,10 @@ SOFTWARE.
 
 #pragma once
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 /// \brief A vector of 3 doubles with components xyz.
 /// Components are also stored as elements in an array via a union.
 typedef struct double3
@@ -42,3 +46,7 @@ typedef struct double3
 	double y;
 	double z;
 } double3;
+
+#ifdef __cplusplus
+}
+#endif

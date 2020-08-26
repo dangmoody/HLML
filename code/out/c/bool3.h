@@ -34,6 +34,10 @@ SOFTWARE.
 
 #pragma once
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 #include "../hlml_types.h"
 
 /// \brief A vector of 3 bool32_ts with components xyz.
@@ -44,3 +48,7 @@ typedef struct bool3
 	bool32_t y;
 	bool32_t z;
 } bool3;
+
+#ifdef __cplusplus
+}
+#endif

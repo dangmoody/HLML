@@ -292,7 +292,7 @@ inline const char*	Gen_GetConstantNameEpsilon( const genType_t type ) { return (
 extern void			Gen_HeaderMain( const genLanguage_t language );
 
 // generate the files containing the arithmetic functions for each type
-extern void			Gen_FunctionsScalar( const char* folder );
+extern void			Gen_FunctionsScalar( const genLanguage_t language );
 extern void			Gen_FunctionsVector( const genLanguage_t language );
 extern void			Gen_FunctionsMatrix( const genLanguage_t language );
 extern void			Gen_FunctionsQuaternion( const genLanguage_t language );

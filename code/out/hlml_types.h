@@ -29,7 +29,15 @@ SOFTWARE.
 */
 #pragma once
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 #include <stdint.h>
 
 // ensure that a bool is 4 bytes
 typedef uint32_t bool32_t;
+
+#ifdef __cplusplus
+}
+#endif

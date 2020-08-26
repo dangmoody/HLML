@@ -34,6 +34,10 @@ SOFTWARE.
 
 #pragma once
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 #include "../hlml_constants.h"
 
 #include <math.h>
@@ -330,3 +334,6 @@ double smootherstep( const double low, const double high, const double x )
 	return t * t * t * ( t * ( t * 6.0 - 15.0 ) + 10.0 );
 }
 
+#ifdef __cplusplus
+}
+#endif

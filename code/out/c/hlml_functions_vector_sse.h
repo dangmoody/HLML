@@ -34,6 +34,10 @@ SOFTWARE.
 
 #pragma once
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 // HLML includes
 #include "hlml_functions_vector_sse.h"
 #include "../hlml_constants_sse.h"
@@ -377,3 +381,6 @@ inline static void float4_distance_sse( const float4_sse_t* lhs, const float4_ss
 }
 
 
+#ifdef __cplusplus
+}
+#endif

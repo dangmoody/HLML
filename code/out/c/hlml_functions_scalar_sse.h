@@ -34,6 +34,10 @@ SOFTWARE.
 
 #pragma once
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 // HLML includes
 #include "../hlml_constants_sse.h"
 
@@ -71,4 +75,8 @@ inline static void lerpf_sse( const __m128 lhs, const __m128 rhs, const __m128 t
 	*out_results = _mm_add_ps( mul0, mul1 );
 }
 
+
+#ifdef __cplusplus
+}
+#endif
 
