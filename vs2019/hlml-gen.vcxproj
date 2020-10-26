@@ -1,0 +1,189 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="debug win64-msvc|x64">
+      <Configuration>debug win64-msvc</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="debug win64-clang|x64">
+      <Configuration>debug win64-clang</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="debug win64-gcc|x64">
+      <Configuration>debug win64-gcc</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="release win64-msvc|x64">
+      <Configuration>release win64-msvc</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="release win64-clang|x64">
+      <Configuration>release win64-clang</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="release win64-gcc|x64">
+      <Configuration>release win64-gcc</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{797A02F6-6547-5D01-8E60-4BA97A8C928F}</ProjectGuid>
+    <IgnoreWarnCompileDuplicatedFilename>true</IgnoreWarnCompileDuplicatedFilename>
+    <Keyword>MakeFileProj</Keyword>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='debug win64-msvc|x64'" Label="Configuration">
+    <ConfigurationType>Makefile</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v142</PlatformToolset>
+    <OutDir>..\build\msvc\debug\</OutDir>
+    <IntDir>..\build\msvc\debug\intermediate\hlml-gen\</IntDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='debug win64-clang|x64'" Label="Configuration">
+    <ConfigurationType>Makefile</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v142</PlatformToolset>
+    <OutDir>bin\win64-clang\debug\</OutDir>
+    <IntDir>obj\win64-clang\debug\hlml-gen\</IntDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='debug win64-gcc|x64'" Label="Configuration">
+    <ConfigurationType>Makefile</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v142</PlatformToolset>
+    <OutDir>bin\win64-gcc\debug\</OutDir>
+    <IntDir>obj\win64-gcc\debug\hlml-gen\</IntDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='release win64-msvc|x64'" Label="Configuration">
+    <ConfigurationType>Makefile</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v142</PlatformToolset>
+    <OutDir>..\build\msvc\release\</OutDir>
+    <IntDir>..\build\msvc\release\intermediate\hlml-gen\</IntDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='release win64-clang|x64'" Label="Configuration">
+    <ConfigurationType>Makefile</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v142</PlatformToolset>
+    <OutDir>bin\win64-clang\release\</OutDir>
+    <IntDir>obj\win64-clang\release\hlml-gen\</IntDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='release win64-gcc|x64'" Label="Configuration">
+    <ConfigurationType>Makefile</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v142</PlatformToolset>
+    <OutDir>bin\win64-gcc\release\</OutDir>
+    <IntDir>obj\win64-gcc\release\hlml-gen\</IntDir>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='debug win64-msvc|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='debug win64-clang|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='debug win64-gcc|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='release win64-msvc|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='release win64-clang|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='release win64-gcc|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='debug win64-msvc|x64'">
+    <NMakeOutput>$(OutDir)hlml-gen</NMakeOutput>
+    <NMakeBuildCommandLine>..\scripts\build_generator_msvc.bat debug</NMakeBuildCommandLine>
+    <NMakeReBuildCommandLine>..\scripts\build_generator_msvc.bat debug</NMakeReBuildCommandLine>
+    <NMakeCleanCommandLine>..\..\scripts\clean_generator.bat</NMakeCleanCommandLine>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='debug win64-clang|x64'">
+    <NMakeOutput>$(OutDir)hlml-gen</NMakeOutput>
+    <NMakeCleanCommandLine>..\..\scripts\clean_generator.bat</NMakeCleanCommandLine>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='debug win64-gcc|x64'">
+    <NMakeOutput>$(OutDir)hlml-gen</NMakeOutput>
+    <NMakeCleanCommandLine>..\..\scripts\clean_generator.bat</NMakeCleanCommandLine>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='release win64-msvc|x64'">
+    <NMakeOutput>$(OutDir)hlml-gen</NMakeOutput>
+    <NMakeBuildCommandLine>..\scripts\build_generator_msvc.bat release</NMakeBuildCommandLine>
+    <NMakeReBuildCommandLine>..\scripts\build_generator_msvc.bat release</NMakeReBuildCommandLine>
+    <NMakeCleanCommandLine>..\..\scripts\clean_generator.bat</NMakeCleanCommandLine>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='release win64-clang|x64'">
+    <NMakeOutput>$(OutDir)hlml-gen</NMakeOutput>
+    <NMakeCleanCommandLine>..\..\scripts\clean_generator.bat</NMakeCleanCommandLine>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='release win64-gcc|x64'">
+    <NMakeOutput>$(OutDir)hlml-gen</NMakeOutput>
+    <NMakeCleanCommandLine>..\..\scripts\clean_generator.bat</NMakeCleanCommandLine>
+  </PropertyGroup>
+  <ItemDefinitionGroup>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClInclude Include="..\code\generator\allocator.h" />
+    <ClInclude Include="..\code\generator\defines.h" />
+    <ClInclude Include="..\code\generator\file_io.h" />
+    <ClInclude Include="..\code\generator\gen_c.h" />
+    <ClInclude Include="..\code\generator\gen_common.h" />
+    <ClInclude Include="..\code\generator\gen_common_sse.h" />
+    <ClInclude Include="..\code\generator\gen_cpp.h" />
+    <ClInclude Include="..\code\generator\gen_doc_common.h" />
+    <ClInclude Include="..\code\generator\gen_doc_common_sse.h" />
+    <ClInclude Include="..\code\generator\gen_doc_matrix.h" />
+    <ClInclude Include="..\code\generator\gen_doc_matrix_sse.h" />
+    <ClInclude Include="..\code\generator\gen_doc_quaternion.h" />
+    <ClInclude Include="..\code\generator\gen_doc_vector.h" />
+    <ClInclude Include="..\code\generator\gen_doc_vector_sse.h" />
+    <ClInclude Include="..\code\generator\gen_funcs_matrix.h" />
+    <ClInclude Include="..\code\generator\gen_funcs_matrix_sse.h" />
+    <ClInclude Include="..\code\generator\gen_funcs_quaternion.h" />
+    <ClInclude Include="..\code\generator\gen_funcs_vector.h" />
+    <ClInclude Include="..\code\generator\gen_funcs_vector_sse.h" />
+    <ClInclude Include="..\code\generator\gen_matrix_cpp.h" />
+    <ClInclude Include="..\code\generator\gen_quaternion_tests_cpp.h" />
+    <ClInclude Include="..\code\generator\gen_scalar_cpp.h" />
+    <ClInclude Include="..\code\generator\gen_vector_cpp.h" />
+    <ClInclude Include="..\code\generator\int_types.h" />
+    <ClInclude Include="..\code\generator\os_process.h" />
+    <ClInclude Include="..\code\generator\string_builder.h" />
+    <ClInclude Include="..\code\generator\string_helpers.h" />
+    <ClInclude Include="..\code\generator\timer.h" />
+    <ClInclude Include="..\code\generator\win64_helpers.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\code\generator\allocator.cpp" />
+    <ClCompile Include="..\code\generator\file_io_unix.cpp" />
+    <ClCompile Include="..\code\generator\file_io_win64.cpp" />
+    <ClCompile Include="..\code\generator\gen_c.cpp" />
+    <ClCompile Include="..\code\generator\gen_common.cpp" />
+    <ClCompile Include="..\code\generator\gen_common_sse.cpp" />
+    <ClCompile Include="..\code\generator\gen_cpp.cpp" />
+    <ClCompile Include="..\code\generator\gen_funcs_matrix.cpp" />
+    <ClCompile Include="..\code\generator\gen_funcs_matrix_sse.cpp" />
+    <ClCompile Include="..\code\generator\gen_funcs_quaternion.cpp" />
+    <ClCompile Include="..\code\generator\gen_funcs_vector.cpp" />
+    <ClCompile Include="..\code\generator\gen_funcs_vector_sse.cpp" />
+    <ClCompile Include="..\code\generator\gen_matrix_tests_cpp.cpp" />
+    <ClCompile Include="..\code\generator\gen_matrix_type_cpp.cpp" />
+    <ClCompile Include="..\code\generator\gen_quaternion_tests_cpp.cpp" />
+    <ClCompile Include="..\code\generator\gen_scalar_tests_cpp.cpp" />
+    <ClCompile Include="..\code\generator\gen_vector_tests_cpp.cpp" />
+    <ClCompile Include="..\code\generator\gen_vector_type_cpp.cpp" />
+    <ClCompile Include="..\code\generator\main.cpp" />
+    <ClCompile Include="..\code\generator\os_process_unix.cpp" />
+    <ClCompile Include="..\code\generator\os_process_win64.cpp" />
+    <ClCompile Include="..\code\generator\string_builder.cpp" />
+    <ClCompile Include="..\code\generator\timer_unix.cpp" />
+    <ClCompile Include="..\code\generator\timer_win64.cpp" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

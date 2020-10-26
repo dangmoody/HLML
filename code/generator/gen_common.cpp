@@ -1142,11 +1142,11 @@ bool32 Gen_DocumentationPages( const char* configPath ) {
 
 	const char* doxygenPath = NULL;
 #if defined( _WIN32 )
-	doxygenPath = "doxygen/windows/doxygen.exe";
+	doxygenPath = "tools/doxygen/windows/doxygen.exe";
 #elif defined( __linux__ )
-	doxygenPath = "doxygen/linux/doxygen";
+	doxygenPath = "tools/doxygen/linux/doxygen";
 #elif defined( __APPLE__ )
-	doxygenPath = "doxygen/macos/doxygen";
+	doxygenPath = "tools/doxygen/macos/doxygen";
 #endif // defined( _WIN32 )
 
 	const char* args[] = {

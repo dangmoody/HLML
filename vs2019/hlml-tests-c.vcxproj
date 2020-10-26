@@ -1,0 +1,201 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="debug win64-msvc|x64">
+      <Configuration>debug win64-msvc</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="debug win64-clang|x64">
+      <Configuration>debug win64-clang</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="debug win64-gcc|x64">
+      <Configuration>debug win64-gcc</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="release win64-msvc|x64">
+      <Configuration>release win64-msvc</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="release win64-clang|x64">
+      <Configuration>release win64-clang</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="release win64-gcc|x64">
+      <Configuration>release win64-gcc</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{A22A8EB8-8E8D-1D5D-3713-56132355E9DF}</ProjectGuid>
+    <IgnoreWarnCompileDuplicatedFilename>true</IgnoreWarnCompileDuplicatedFilename>
+    <Keyword>MakeFileProj</Keyword>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='debug win64-msvc|x64'" Label="Configuration">
+    <ConfigurationType>Makefile</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v142</PlatformToolset>
+    <OutDir>$(SolutionDir)..\build\msvc\debug\</OutDir>
+    <IntDir>$(SolutionDir)..\build\msvc\debug\intermediate\hlml-gen-tests-c\</IntDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='debug win64-clang|x64'" Label="Configuration">
+    <ConfigurationType>Makefile</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v142</PlatformToolset>
+    <OutDir>bin\win64-clang\debug\</OutDir>
+    <IntDir>obj\win64-clang\debug\hlml-tests-c\</IntDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='debug win64-gcc|x64'" Label="Configuration">
+    <ConfigurationType>Makefile</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v142</PlatformToolset>
+    <OutDir>bin\win64-gcc\debug\</OutDir>
+    <IntDir>obj\win64-gcc\debug\hlml-tests-c\</IntDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='release win64-msvc|x64'" Label="Configuration">
+    <ConfigurationType>Makefile</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v142</PlatformToolset>
+    <OutDir>..\build\msvc\release\</OutDir>
+    <IntDir>..\build\msvc\release\intermediate\hlml-gen-tests-c\</IntDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='release win64-clang|x64'" Label="Configuration">
+    <ConfigurationType>Makefile</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v142</PlatformToolset>
+    <OutDir>bin\win64-clang\release\</OutDir>
+    <IntDir>obj\win64-clang\release\hlml-tests-c\</IntDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='release win64-gcc|x64'" Label="Configuration">
+    <ConfigurationType>Makefile</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v142</PlatformToolset>
+    <OutDir>bin\win64-gcc\release\</OutDir>
+    <IntDir>obj\win64-gcc\release\hlml-tests-c\</IntDir>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='debug win64-msvc|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='debug win64-clang|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='debug win64-gcc|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='release win64-msvc|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='release win64-clang|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='release win64-gcc|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='debug win64-msvc|x64'">
+    <NMakeOutput>$(OutDir)hlml-tests-c</NMakeOutput>
+    <NMakeBuildCommandLine>..\scripts\build_tests_msvc.bat debug code\tests\c\main.c</NMakeBuildCommandLine>
+    <NMakeReBuildCommandLine>..\scripts\build_tests_msvc.bat debug code\tests\c\main.c</NMakeReBuildCommandLine>
+    <NMakeCleanCommandLine>..\..\scripts\clean_tests.bat</NMakeCleanCommandLine>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='debug win64-clang|x64'">
+    <NMakeOutput>$(OutDir)hlml-tests-c</NMakeOutput>
+    <NMakeCleanCommandLine>..\..\scripts\clean_tests.bat</NMakeCleanCommandLine>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='debug win64-gcc|x64'">
+    <NMakeOutput>$(OutDir)hlml-tests-c</NMakeOutput>
+    <NMakeCleanCommandLine>..\..\scripts\clean_tests.bat</NMakeCleanCommandLine>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='release win64-msvc|x64'">
+    <NMakeOutput>$(OutDir)hlml-tests-c</NMakeOutput>
+    <NMakeBuildCommandLine>..\scripts\build_tests_msvc.bat release code\tests\c\main.c</NMakeBuildCommandLine>
+    <NMakeReBuildCommandLine>..\scripts\build_tests_msvc.bat release code\tests\c\main.c</NMakeReBuildCommandLine>
+    <NMakeCleanCommandLine>..\..\scripts\clean_tests.bat</NMakeCleanCommandLine>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='release win64-clang|x64'">
+    <NMakeOutput>$(OutDir)hlml-tests-c</NMakeOutput>
+    <NMakeCleanCommandLine>..\..\scripts\clean_tests.bat</NMakeCleanCommandLine>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='release win64-gcc|x64'">
+    <NMakeOutput>$(OutDir)hlml-tests-c</NMakeOutput>
+    <NMakeCleanCommandLine>..\..\scripts\clean_tests.bat</NMakeCleanCommandLine>
+  </PropertyGroup>
+  <ItemDefinitionGroup>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="..\code\tests\c\main.c" />
+    <ClCompile Include="..\code\tests\c\test_bool2.c" />
+    <ClCompile Include="..\code\tests\c\test_bool2x2.c" />
+    <ClCompile Include="..\code\tests\c\test_bool2x3.c" />
+    <ClCompile Include="..\code\tests\c\test_bool2x4.c" />
+    <ClCompile Include="..\code\tests\c\test_bool3.c" />
+    <ClCompile Include="..\code\tests\c\test_bool3x2.c" />
+    <ClCompile Include="..\code\tests\c\test_bool3x3.c" />
+    <ClCompile Include="..\code\tests\c\test_bool3x4.c" />
+    <ClCompile Include="..\code\tests\c\test_bool4.c" />
+    <ClCompile Include="..\code\tests\c\test_bool4x2.c" />
+    <ClCompile Include="..\code\tests\c\test_bool4x3.c" />
+    <ClCompile Include="..\code\tests\c\test_bool4x4.c" />
+    <ClCompile Include="..\code\tests\c\test_double2.c" />
+    <ClCompile Include="..\code\tests\c\test_double2x2.c" />
+    <ClCompile Include="..\code\tests\c\test_double2x3.c" />
+    <ClCompile Include="..\code\tests\c\test_double2x4.c" />
+    <ClCompile Include="..\code\tests\c\test_double3.c" />
+    <ClCompile Include="..\code\tests\c\test_double3x2.c" />
+    <ClCompile Include="..\code\tests\c\test_double3x3.c" />
+    <ClCompile Include="..\code\tests\c\test_double3x4.c" />
+    <ClCompile Include="..\code\tests\c\test_double4.c" />
+    <ClCompile Include="..\code\tests\c\test_double4x2.c" />
+    <ClCompile Include="..\code\tests\c\test_double4x3.c" />
+    <ClCompile Include="..\code\tests\c\test_double4x4.c" />
+    <ClCompile Include="..\code\tests\c\test_float2.c" />
+    <ClCompile Include="..\code\tests\c\test_float2x2.c" />
+    <ClCompile Include="..\code\tests\c\test_float2x3.c" />
+    <ClCompile Include="..\code\tests\c\test_float2x4.c" />
+    <ClCompile Include="..\code\tests\c\test_float3.c" />
+    <ClCompile Include="..\code\tests\c\test_float3x2.c" />
+    <ClCompile Include="..\code\tests\c\test_float3x3.c" />
+    <ClCompile Include="..\code\tests\c\test_float3x4.c" />
+    <ClCompile Include="..\code\tests\c\test_float4.c" />
+    <ClCompile Include="..\code\tests\c\test_float4x2.c" />
+    <ClCompile Include="..\code\tests\c\test_float4x3.c" />
+    <ClCompile Include="..\code\tests\c\test_float4x4.c" />
+    <ClCompile Include="..\code\tests\c\test_int2.c" />
+    <ClCompile Include="..\code\tests\c\test_int2x2.c" />
+    <ClCompile Include="..\code\tests\c\test_int2x3.c" />
+    <ClCompile Include="..\code\tests\c\test_int2x4.c" />
+    <ClCompile Include="..\code\tests\c\test_int3.c" />
+    <ClCompile Include="..\code\tests\c\test_int3x2.c" />
+    <ClCompile Include="..\code\tests\c\test_int3x3.c" />
+    <ClCompile Include="..\code\tests\c\test_int3x4.c" />
+    <ClCompile Include="..\code\tests\c\test_int4.c" />
+    <ClCompile Include="..\code\tests\c\test_int4x2.c" />
+    <ClCompile Include="..\code\tests\c\test_int4x3.c" />
+    <ClCompile Include="..\code\tests\c\test_int4x4.c" />
+    <ClCompile Include="..\code\tests\c\test_quaternion_double4.c" />
+    <ClCompile Include="..\code\tests\c\test_quaternion_float4.c" />
+    <ClCompile Include="..\code\tests\c\test_scalar_double.c" />
+    <ClCompile Include="..\code\tests\c\test_scalar_float.c" />
+    <ClCompile Include="..\code\tests\c\test_scalar_int32_t.c" />
+    <ClCompile Include="..\code\tests\c\test_scalar_uint32_t.c" />
+    <ClCompile Include="..\code\tests\c\test_uint2.c" />
+    <ClCompile Include="..\code\tests\c\test_uint2x2.c" />
+    <ClCompile Include="..\code\tests\c\test_uint2x3.c" />
+    <ClCompile Include="..\code\tests\c\test_uint2x4.c" />
+    <ClCompile Include="..\code\tests\c\test_uint3.c" />
+    <ClCompile Include="..\code\tests\c\test_uint3x2.c" />
+    <ClCompile Include="..\code\tests\c\test_uint3x3.c" />
+    <ClCompile Include="..\code\tests\c\test_uint3x4.c" />
+    <ClCompile Include="..\code\tests\c\test_uint4.c" />
+    <ClCompile Include="..\code\tests\c\test_uint4x2.c" />
+    <ClCompile Include="..\code\tests\c\test_uint4x3.c" />
+    <ClCompile Include="..\code\tests\c\test_uint4x4.c" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

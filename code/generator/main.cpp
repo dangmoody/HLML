@@ -83,11 +83,11 @@ int main( int argc, char** argv ) {
 
 	Gen_FunctionsVector( GEN_LANGUAGE_C );
 	Gen_FunctionsMatrix( GEN_LANGUAGE_C );
-    Gen_FunctionsQuaternion( GEN_LANGUAGE_C );
+	Gen_FunctionsQuaternion( GEN_LANGUAGE_C );
 
 	Gen_FunctionsVector( GEN_LANGUAGE_CPP );
-	Gen_FunctionsMatrix( GEN_LANGUAGE_CPP );    
-    Gen_FunctionsQuaternion( GEN_LANGUAGE_CPP );
+	Gen_FunctionsMatrix( GEN_LANGUAGE_CPP );
+	Gen_FunctionsQuaternion( GEN_LANGUAGE_CPP );
 	printf( "======= Done. =======\n\n" );
 
 	printf( "======= Generating C++ operator overloads. =======\n" );
