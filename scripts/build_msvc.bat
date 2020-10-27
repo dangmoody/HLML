@@ -14,15 +14,15 @@ if [%output_file%]==[] (
 	goto :ShowUsage
 )
 
-pushd %~dp0
-pushd ..
-
 REM path to source of files to build, must NOT include ".cpp"
 set source_files_path=%3
 if [%source_files_path%]==[] (
 	echo ERROR: Source files path was not specified.
 	goto :ShowUsage
 )
+
+pushd %~dp0
+pushd ..
 
 set ignore_warnings=/wd4805 /wd4204 /wd4996
 set options_compiler=/W4 /WX %ignore_warnings% /MT /Od /MP /Gm- /EHsc /U "_UNICODE" /Fo"bin\\msvc\\%config%\\intermediate\\%output_file%\\" /Zi /Fd"bin\\msvc\\%config%\\intermediate\\%output_file%\\%output_file%.pdb"
