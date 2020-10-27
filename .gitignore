@@ -1,21 +1,21 @@
 # visual studio folders
-.vs/
+.vs/*
 
 # generated vs solution folders
-vs2017/
-vs2019/
+vs2017/*
+vs2019/*
 
 # vs code ipch folder
-.vscode/ipch/
+.vscode/ipch/*
 
 # generated binaries
-bin/
+bin/*
 
 # documentation generated files
-documentation/
+documentation/*
 
 # locally packaged releases
-releases/
+releases/*
 
 # remedybg files
 *.rdbg
