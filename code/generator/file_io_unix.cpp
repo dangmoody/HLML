@@ -45,6 +45,7 @@ static void DeleteAllFilesInFolderInternal( DIR* dir, const char* dirName ) {
 	assert( dirName );
 
 	int osResult = 0;
+	int err = 0;
 
 	struct dirent* dirEntry = nullptr;
 
@@ -59,8 +60,8 @@ static void DeleteAllFilesInFolderInternal( DIR* dir, const char* dirName ) {
 		struct stat info;
 
 		osResult = stat( buffer, &info );
+		err = errno;
 		if ( osResult != 0 ) {
-			int err = errno;
 			printf( "ERROR: Failed to get stat on \"%s\": %s\n", dirName, strerror( err ) );
 			assert( false );
 		}
@@ -116,6 +117,7 @@ void FS_CreateFolder( const char* name ) {
 	assert( name );
 
 	int result = 0;
+	int err = 0;
 
 	size_t length = strlen( name );
 
@@ -133,8 +135,8 @@ void FS_CreateFolder( const char* name ) {
 			*p = 0;
 
 			result = mkdir( path, ACCESSPERMS );
+			err = errno;
 			if ( result != 0 ) {
-				int err = errno;
 				if ( err != EEXIST ) {
 					printf( "ERROR: Failed to create directory \"%s\": %s\n", path, strerror( err ) );
 					assert( false );
@@ -146,8 +148,8 @@ void FS_CreateFolder( const char* name ) {
 	}
 
 	result = mkdir( path, ACCESSPERMS );
+	err = errno;
 	if ( result != 0 ) {
-		int err = errno;
 		if ( err != EEXIST ) {
 			printf( "ERROR: Failed to create directory \"%s\": %s\n", path, strerror( err ) );
 			assert( false );
@@ -161,11 +163,13 @@ void FS_DeleteFolder( const char* name ) {
 //	printf( "Deleting folder %s...\n", name );
 
 	int osResult = 0;
+	int err = 0;
+
 	bool result = false;
 
 	DIR* dir = opendir( name );
+	err = errno;
 	if ( !dir ) {
-		int err = errno;
 		printf( "ERROR: Failed to find directory \"%s\": %s\n", name, strerror( err ) );
 		assert( false );
 	}
@@ -173,8 +177,8 @@ void FS_DeleteFolder( const char* name ) {
 	DeleteAllFilesInFolderInternal( dir, name );
 
 	osResult = closedir( dir );
+	err = errno;
 	if ( osResult != 0 ) {
-		int err = errno;
 		printf( "ERROR: Failed to close directory \"%s\": %s\n", name, strerror( err ) );
 		assert( false );
 	}
@@ -187,12 +191,14 @@ void FS_DeleteFolder( const char* name ) {
 bool32 FS_FolderExists( const char* name ) {
 	assert( name );
 
+	int err = 0;
+
 	struct stat info;
 
 	int result = stat( name, &info );
+	err = errno;
 
 	if ( result != 0 ) {
-		int err = errno;
 		printf( "ERROR: Failed to get stat on \"%s\": %s\n", name, strerror( err ) );
 		return false;
 	}
@@ -203,9 +209,11 @@ bool32 FS_FolderExists( const char* name ) {
 void FS_DeleteAllFilesInFolder( const char* name ) {
 	assert( name );
 
+	int err = 0;
+
 	DIR* dir = opendir( name );
+	err = errno;
 	if ( !dir ) {
-		int err = errno;
 		printf( "ERROR: Failed to find directory \"%s\": %s\n", name, strerror( err ) );
 		assert( false );
 	}
@@ -213,8 +221,8 @@ void FS_DeleteAllFilesInFolder( const char* name ) {
 	DeleteAllFilesInFolderInternal( dir, name );
 
 	int osResult = closedir( dir );
+	err = errno;
 	if ( osResult != 0 ) {
-		int err = errno;
 		printf( "ERROR: Failed to close directory \"%s\": %s\n", name, strerror( err ) );
 		assert( false );
 	}
