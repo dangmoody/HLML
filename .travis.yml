@@ -18,8 +18,8 @@ matrix:
         - CXX=clang++
         - COMPILER=clang
       before_script:
-        - chmod +x build_linux_clang_gcc.sh
-        - chmod +x build_and_test.sh
+        - chmod +x scripts/build_linux_clang_gcc.sh
+        - chmod +x scripts/build_and_test.sh
       script: ./scripts/build_and_test.sh ${COMPILER} release
 
     # windows gcc
@@ -31,8 +31,8 @@ matrix:
         - CXX=g++
         - COMPILER=gcc
       before_script:
-        - chmod +x build_linux_clang_gcc.sh
-        - chmod +x build_and_test.sh
+        - chmod +x scripts/build_linux_clang_gcc.sh
+        - chmod +x scripts/build_and_test.sh
       script: ./scripts/build_and_test.sh ${COMPILER} release
 
     # linux clang
@@ -53,8 +53,8 @@ matrix:
       install:
         - ${CC} --version
       before_script:
-        - chmod +x build_linux_clang_gcc.sh
-        - chmod +x build_and_test.sh
+        - chmod +x scripts/build_linux_clang_gcc.sh
+        - chmod +x scripts/build_and_test.sh
       script: ./scripts/build_and_test.sh ${COMPILER} release
 
     # linux gcc
@@ -74,8 +74,8 @@ matrix:
       install:
         - ${CC} --version
       before_script:
-        - chmod +x build_linux_clang_gcc.sh
-        - chmod +x build_and_test.sh
+        - chmod +x scripts/build_linux_clang_gcc.sh
+        - chmod +x scripts/build_and_test.sh
       script: ./scripts/build_and_test.sh ${COMPILER} release
 
     # macOS
@@ -84,6 +84,6 @@ matrix:
       osx_image: xcode10.1
       compiler: clang
       before_script:
-        - chmod +x build_linux_clang_gcc.sh
-        - chmod +x build_and_test.sh
+        - chmod +x scripts/build_linux_clang_gcc.sh
+        - chmod +x scripts/build_and_test.sh
       script: ./scripts/build_and_test.sh clang release
