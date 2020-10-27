@@ -7,7 +7,7 @@ matrix:
       os: windows
       compiler: msvc
       script:
-        - cmd.exe //C 'travis_build_and_test_msvc.bat' release
+        - cmd.exe //C 'scripts/travis_build_and_test_msvc.bat' release
 
     # windows clang
     - name: "Win64 / Clang"
@@ -20,7 +20,7 @@ matrix:
       before_script:
         - chmod +x build_linux_clang_gcc.sh
         - chmod +x build_and_test.sh
-      script: ./build_and_test.sh ${COMPILER} release
+      script: ./scripts/build_and_test.sh ${COMPILER} release
 
     # windows gcc
     - name: "Win64 / GCC"
@@ -33,7 +33,7 @@ matrix:
       before_script:
         - chmod +x build_linux_clang_gcc.sh
         - chmod +x build_and_test.sh
-      script: ./build_and_test.sh ${COMPILER} release
+      script: ./scripts/build_and_test.sh ${COMPILER} release
 
     # linux clang
     - name: "Linux / Clang"
@@ -55,7 +55,7 @@ matrix:
       before_script:
         - chmod +x build_linux_clang_gcc.sh
         - chmod +x build_and_test.sh
-      script: ./build_and_test.sh ${COMPILER} release
+      script: ./scripts/build_and_test.sh ${COMPILER} release
 
     # linux gcc
     - name: "Linux / GCC"
@@ -76,7 +76,7 @@ matrix:
       before_script:
         - chmod +x build_linux_clang_gcc.sh
         - chmod +x build_and_test.sh
-      script: ./build_and_test.sh ${COMPILER} release
+      script: ./scripts/build_and_test.sh ${COMPILER} release
 
     # macOS
     - name: "macOS"
@@ -86,4 +86,4 @@ matrix:
       before_script:
         - chmod +x build_linux_clang_gcc.sh
         - chmod +x build_and_test.sh
-      script: ./build_and_test.sh clang release
+      script: ./scripts/build_and_test.sh clang release
