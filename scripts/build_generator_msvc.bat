@@ -4,10 +4,8 @@ pushd %~dp0
 
 set config=%1
 
-set source_files=code\generator\*.cpp
-
 echo ------- Building generator -------
-call build_msvc.bat %config% hlml-gen %source_files%
+call build_msvc.bat %config% hlml-gen code\generator\*.cpp
 echo ------- Done -------
 echo.
 

@@ -25,20 +25,20 @@ if [%source_files_path%]==[] (
 )
 
 set ignore_warnings=/wd4805 /wd4204 /wd4996
-set options_compiler=/W4 /WX %ignore_warnings% /MT /Od /MP /Gm- /EHsc /U "_UNICODE" /Fo"build\\msvc\\%config%\\intermediate\\%output_file%\\" /Zi
-set options_linker=/OUT:build\\msvc\\%config%\\%output_file%.exe /PDB:"build\\msvc\\%config%\\intermediate\\%output_file%\\%output_file%.pdb" /NOLOGO /opt:ref
+set options_compiler=/W4 /WX %ignore_warnings% /MT /Od /MP /Gm- /EHsc /U "_UNICODE" /Fo"bin\\msvc\\%config%\\intermediate\\%output_file%\\" /Zi /Fd"bin\\msvc\\%config%\\intermediate\\%output_file%\\%output_file%.pdb"
+set options_linker=/OUT:bin\\msvc\\%config%\\%output_file%.exe /NOLOGO /opt:ref
 set libs=User32.lib gdi32.lib winmm.lib
 
 set additional_includes=/I"code/3rdparty/include/"
 
 REM if the output folder doesn't exist, create it
-IF NOT EXIST "build\\msvc\\%config%\\" (
-	mkdir "build\\msvc\\%config%\\"
+IF NOT EXIST "bin\\msvc\\%config%\\" (
+	mkdir "bin\\msvc\\%config%\\"
 )
 
 REM if the intermediate output folder doesn't exist, create it
-IF NOT EXIST "build\\msvc\\%config%\\intermediate\\%output_file%" (
-	mkdir "build\\msvc\\%config%\\intermediate\\%output_file%"
+IF NOT EXIST "bin\\msvc\\%config%\\intermediate\\%output_file%" (
+	mkdir "bin\\msvc\\%config%\\intermediate\\%output_file%"
 )
 
 cl.exe %source_files_path% %additional_includes% %options_compiler% /link %options_linker% %libs%
