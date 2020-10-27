@@ -47,8 +47,6 @@ int main( int argc, char** argv ) {
 
 	Mem_Init( 3 * MB_TO_BYTES );
 
-	Time_Init();
-
 	for ( u32 i = 0; i < GEN_LANGUAGE_COUNT; i++ ) {
 		const genLanguage_t language = (genLanguage_t) i;
 
