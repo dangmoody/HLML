@@ -3,7 +3,7 @@ folder_code = "code/"
 folder_bin = "$(SolutionDir)../bin/"
 folder_scripts = "$(SolutionDir)../scripts/"
 
-vs_project_folder = "../../" .. _ACTION .. "/"	-- relative to premake5.lua file
+vs_project_folder = "../../" .. _ACTION .. "/"	-- path must be relative to premake5.lua file
 
 workspace( "hlml-gen" )
 	location( vs_project_folder )
