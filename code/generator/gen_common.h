@@ -308,9 +308,6 @@ extern void			Gen_Tests( const genLanguage_t language );
 // generates the tests "main" file
 extern void			Gen_TestsMain( const genLanguage_t language );
 
-// generates the doxygen documentation pages
-extern bool32		Gen_DocumentationPages( const char* configPath );
-
 // parm list/array helpers
 // TODO(DM): allow specify prefix for each initialiser list
 extern void			Gen_GetValuesArray1D( const genType_t type, const u32 numValues, const float* values, stringBuilder_t* sb );

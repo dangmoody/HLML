@@ -112,23 +112,6 @@ int main( int argc, char** argv ) {
 
 	float64 end = Time_NowMS();
 
-	// DM: temporarily turning off documentation generation for all non-windows configs
-	// because GitHub has a limit on LFS space, which the doxygen executable for linux exceeds
-	// TODO(DM): turn this back on when a solution for that gets found
-#ifdef _WIN32
-	printf( "======= Generating doxygen documentation pages. =======\n" );
-	// c
-	if ( !Gen_DocumentationPages( "doxygen/c.conf" ) ) {
-		return 1;
-	}
-
-	// cpp
-	if ( !Gen_DocumentationPages( "doxygen/cpp.conf" ) ) {
-		return 1;
-	}
-	printf( "======= Done. =======\n\n" );
-#endif
-
 	printf( "Code generation time taken: %f ms\n\n", end - start );
 
 	printf(
