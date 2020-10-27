@@ -20,9 +20,6 @@ if [ ! -d "build/${config}" ]; then
 	mkdir -p build/${compiler_folder_name}/${config}
 fi
 
-# copy doxygen
-cp -rf ./doxygen ./build/${compiler_folder_name}/${config}
-
 # build the generator
 echo ------- Building generator -------
 source_files="code/generator/"
