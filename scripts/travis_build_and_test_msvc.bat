@@ -13,7 +13,7 @@ call "C:\Program Files (x86)\Microsoft Visual Studio\2017\BuildTools\VC\Auxiliar
 
 echo ------- Building generator -------
 set source_files=code\generator\*.cpp
-call build_msvc.bat %config% hlml-gen %source_files%
+call .\scripts\build_msvc.bat %config% hlml-gen %source_files%
 echo ------- Done -------
 echo.
 
@@ -24,7 +24,7 @@ echo.
 
 echo ------- Building C tests -------
 set source_files=code\tests\c\main.c
-call build_msvc.bat %config% hlml-gen-tests-c %source_files%
+call .\scripts\build_msvc.bat %config% hlml-gen-tests-c %source_files%
 echo ------- Done -------
 echo.
 
@@ -35,7 +35,7 @@ echo.
 
 echo ------- Building C++ tests -------
 set source_files=code\tests\cpp\main.cpp
-call build_msvc.bat %config% hlml-gen-tests-cpp %source_files%
+call .\scripts\build_msvc.bat %config% hlml-gen-tests-cpp %source_files%
 echo ------- Done -------
 echo.
 
