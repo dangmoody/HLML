@@ -18,7 +18,7 @@ echo ------- Done -------
 echo.
 
 echo ------- Running generator -------
-build\msvc\%config%\hlml-gen.exe
+bin\msvc\%config%\hlml-gen.exe
 echo ------- Done -------
 echo.
 
@@ -29,7 +29,7 @@ echo ------- Done -------
 echo.
 
 echo ------- Running C tests -------
-build\msvc\%config%\hlml-gen-tests-c.exe -c --time-unit=us
+bin\msvc\%config%\hlml-gen-tests-c.exe -c --time-unit=us
 echo ------- Done -------
 echo.
 
@@ -40,7 +40,7 @@ echo ------- Done -------
 echo.
 
 echo ------- Running C++ tests -------
-build\msvc\%config%\hlml-gen-tests-cpp.exe -c --time-unit=us
+bin\msvc\%config%\hlml-gen-tests-cpp.exe -c --time-unit=us
 echo ------- Done -------
 echo.
 
