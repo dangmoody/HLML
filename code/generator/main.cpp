@@ -47,8 +47,6 @@ int main( int argc, char** argv ) {
 
 	Mem_Init( 3 * MB_TO_BYTES );
 
-	Time_Init();
-
 	for ( u32 i = 0; i < GEN_LANGUAGE_COUNT; i++ ) {
 		const genLanguage_t language = (genLanguage_t) i;
 
@@ -83,11 +81,11 @@ int main( int argc, char** argv ) {
 
 	Gen_FunctionsVector( GEN_LANGUAGE_C );
 	Gen_FunctionsMatrix( GEN_LANGUAGE_C );
-    Gen_FunctionsQuaternion( GEN_LANGUAGE_C );
+	Gen_FunctionsQuaternion( GEN_LANGUAGE_C );
 
 	Gen_FunctionsVector( GEN_LANGUAGE_CPP );
-	Gen_FunctionsMatrix( GEN_LANGUAGE_CPP );    
-    Gen_FunctionsQuaternion( GEN_LANGUAGE_CPP );
+	Gen_FunctionsMatrix( GEN_LANGUAGE_CPP );
+	Gen_FunctionsQuaternion( GEN_LANGUAGE_CPP );
 	printf( "======= Done. =======\n\n" );
 
 	printf( "======= Generating C++ operator overloads. =======\n" );
@@ -113,23 +111,6 @@ int main( int argc, char** argv ) {
 	printf( "======= Done. =======\n\n" );
 
 	float64 end = Time_NowMS();
-
-	// DM: temporarily turning off documentation generation for all non-windows configs
-	// because GitHub has a limit on LFS space, which the doxygen executable for linux exceeds
-	// TODO(DM): turn this back on when a solution for that gets found
-#ifdef _WIN32
-	printf( "======= Generating doxygen documentation pages. =======\n" );
-	// c
-	if ( !Gen_DocumentationPages( "doxygen/c.conf" ) ) {
-		return 1;
-	}
-
-	// cpp
-	if ( !Gen_DocumentationPages( "doxygen/cpp.conf" ) ) {
-		return 1;
-	}
-	printf( "======= Done. =======\n\n" );
-#endif
 
 	printf( "Code generation time taken: %f ms\n\n", end - start );
 

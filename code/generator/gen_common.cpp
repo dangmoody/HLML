@@ -39,7 +39,6 @@ along with The HLML Generator.  If not, see <http://www.gnu.org/licenses/>.
 #include "string_builder.h"
 #include "allocator.h"
 #include "file_io.h"
-#include "os_process.h"
 
 #include <assert.h>
 
@@ -1131,43 +1130,6 @@ void Gen_TestsMain( const genLanguage_t language ) {
 
 	Mem_Reset();
 }
-
-// DM: running doxygen on MacOS isn't supported yet because I don't have access to a Mac
-// when I get access to one, I'll get it working
-#ifdef _WIN32
-bool32 Gen_DocumentationPages( const char* configPath ) {
-	assert( configPath );
-
-	printf( "Generating doxygen documentation..." );
-
-	const char* doxygenPath = NULL;
-#if defined( _WIN32 )
-	doxygenPath = "doxygen/windows/doxygen.exe";
-#elif defined( __linux__ )
-	doxygenPath = "doxygen/linux/doxygen";
-#elif defined( __APPLE__ )
-	doxygenPath = "doxygen/macos/doxygen";
-#endif // defined( _WIN32 )
-
-	const char* args[] = {
-		configPath
-	};
-
-	process_t doxygenProc = OS_StartProcess( doxygenPath, args, _countof( args ) );
-
-	if ( !doxygenProc.ptr ) {
-		return false;
-	}
-
-	if ( OS_WaitForProcess( doxygenProc ) != 0 ) {
-		return false;
-	}
-
-	printf( "OK.\n" );
-
-	return true;
-}
-#endif // _WIN32
 
 void Gen_GetValuesArray1D( const genType_t type, const u32 numValues, const float* values, stringBuilder_t* sb ) {
 	String_Append(  sb, "\t{ " );

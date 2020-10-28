@@ -28,34 +28,35 @@ along with The HLML Generator.  If not, see <http://www.gnu.org/licenses/>.
 #define WIN32_LEAN_AND_MEAN 1
 #include <Windows.h>
 
-static s64 g_frequency = 0;
-static LARGE_INTEGER g_now = {};
-
-void Time_Init( void ) {
+// DM: I dont like this for obvious reasons
+// QueryPerformanceFrequency() only needs to be called once
+// but doing that means we end up having an init function which would be completely unecessary on any other platform
+static s64 Frequency( void ) {
 	LARGE_INTEGER frequency = {};
 	QueryPerformanceFrequency( &frequency );
-	g_frequency = frequency.QuadPart;
+	return frequency.QuadPart;
 }
 
 s64 Time_Now( void ) {
-	QueryPerformanceCounter( &g_now );
-	return g_now.QuadPart;
+	LARGE_INTEGER now = {};
+	QueryPerformanceCounter( &now );
+	return now.QuadPart;
 }
 
 float64 Time_NowSeconds( void ) {
-	return (float64) Time_Now() / g_frequency;
+	return (float64) Time_Now() / (float64) Frequency();
 }
 
 float64 Time_NowMS( void ) {
-	return (float64) ( ( Time_Now() * 1000 ) / g_frequency );
+	return (float64) ( Time_Now() * 1000 ) / (float64) Frequency();
 }
 
 float64 Time_NowUS( void ) {
-	return (float64) ( ( Time_Now() * 1000000 ) / g_frequency );
+	return (float64) ( Time_Now() * 1000000 ) / (float64) Frequency();
 }
 
 float64 Time_NowNS( void ) {
-	return (float64) ( ( Time_Now() * 1000000000 ) / g_frequency );
+	return (float64) ( Time_Now() * 1000000000 ) / (float64) Frequency();
 }
 
 #endif // _WIN32
