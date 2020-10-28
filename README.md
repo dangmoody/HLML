@@ -33,7 +33,7 @@ Usage
 =====
 Include ```hlml.h```.
 
-For more detailed documentation on how to use HLML's experimental SSE functionality, please refer to [the SSE document](https://github.com/dangmoody/HLML/doc/SSE.md).
+For more detailed documentation on how to use HLML's experimental SSE functionality, please refer to [the SSE document](https://github.com/dangmoody/HLML/blob/master/doc/SSE.md).
 
 
 Code Examples
@@ -119,7 +119,7 @@ Common Pitfalls
 Contributing
 ============
 
-If this is a project you'd like to contribute to, I'm open to pull requests.  See [doc/contribute.md](https://github.com/dangmoody/HLML/doc/contribute.md).
+If this is a project you'd like to contribute to, I'm open to pull requests.  See the [contribution documentation](https://github.com/dangmoody/HLML/blob/master/doc/contribute.md).
 
 
 Credits
