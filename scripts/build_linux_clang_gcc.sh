@@ -33,8 +33,8 @@ else
 fi
 
 # make build folder if it doesn't already exist
-if [ ! -d "build/${config}" ]; then
-	mkdir -p build/${compiler_folder_name}/${config}
+if [ ! -d "bin/${config}" ]; then
+	mkdir -p bin/${compiler_folder_name}/${config}
 fi
 
 if [[ ${language} == C++ ]]; then
@@ -105,4 +105,4 @@ echo Ignoring options          : ${ignore_warnings}
 echo Linker settings           : ${options_linker}
 echo ""
 
-${compiler_proc} ${options_std} ${options_compiler} -o build/${compiler_folder_name}/${config}/${output_file} ${source_files_path}${source_files} ${options_error} ${ignore_warnings} ${options_linker}
+${compiler_proc} ${options_std} ${options_compiler} -o bin/${compiler_folder_name}/${config}/${output_file} ${source_files_path}${source_files} ${options_error} ${ignore_warnings} ${options_linker}
