@@ -26,15 +26,14 @@ Installation
 
 1. Go to the [releases](https://github.com/dangmoody/HLML/releases) page and download the latest version.
 2. Unzip the header files into your project (you can use either the C or C++ files, or both).
-3. **OPTIONAL:** Run ```hlm-gen-tests.exe``` (you shouldn't need to have a reason to run this and everything 'should just work', but you never know...).
-4. Done!
+3. Done!
 
 
 Usage
 =====
 Include ```hlml.h```.
 
-For more detailed documentation on how to use HLML's experimental SSE functionality, please refer to [the SSE document](https://github.com/dangmoody/HLML/blob/simd/doc/SSE.md).
+For more detailed documentation on how to use HLML's experimental SSE functionality, please refer to [the SSE document](https://github.com/dangmoody/HLML/doc/SSE.md).
 
 
 Code Examples
@@ -108,9 +107,8 @@ Common Pitfalls
 
 **READ THIS BEFORE USING HLML:**
 
-* All library functions and tests using floating point were written to be as respective to the IEEE-754 standard as possible.
 * All matrix types are row-major, so a ```float3x4``` is a matrix that holds 3 ```float4```s (or, in other words: a ```float4``` array of size 3).
-* All vector types are union of ```struct```/fixed-size array.
+* All vector types are a union of ```struct```/fixed-size array.
 * HLML is focused on mathemetical expressive power where possible, therefore:
 	* All matrices have the ```*``` operator overloaded to do matrix multiplication, **NOT** a component-wise multiplication.
 	* All square matrices with floating point types have the ```/``` operator overloaded to multiply the left-hand matrix by the inverse of the right-hand matrix, it does **NOT** do a component-wise divide.
@@ -121,9 +119,7 @@ Common Pitfalls
 Contributing
 ============
 
-If this is a project you'd like to contribute to, I'm open to pull requests.  The GitHub issue tracker is being used.
-
-Performance and usability are the two primary goals of the API.  If at any time those two goals are in confliction with each other, default to common sense.  =)
+If this is a project you'd like to contribute to, I'm open to pull requests.  See [doc/contribute.md](https://github.com/dangmoody/HLML/doc/contribute.md).
 
 
 Credits
