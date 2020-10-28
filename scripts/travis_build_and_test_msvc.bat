@@ -48,7 +48,11 @@ goto :EOF
 
 
 :ShowUsage
-echo ERROR: Not all arguments are set.  Please check the arguments you are passing.
 echo Usage:
-echo "build_and_test_msvc.bat <config> <vcvars64 path>"
+echo build_and_test_msvc.bat <config>
+echo.
+echo Arguments:
+echo     ^<config^>
+echo         Must be either "debug" or "release"
+echo.
 goto :EOF
