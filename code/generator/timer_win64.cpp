@@ -44,19 +44,19 @@ s64 Time_Now( void ) {
 }
 
 float64 Time_NowSeconds( void ) {
-	return (float64) Time_Now() / Frequency();
+	return (float64) Time_Now() / (float64) Frequency();
 }
 
 float64 Time_NowMS( void ) {
-	return (float64) ( Time_Now() * 1000 ) / Frequency();
+	return (float64) ( Time_Now() * 1000 ) / (float64) Frequency();
 }
 
 float64 Time_NowUS( void ) {
-	return (float64) ( Time_Now() * 1000000 ) / Frequency();
+	return (float64) ( Time_Now() * 1000000 ) / (float64) Frequency();
 }
 
 float64 Time_NowNS( void ) {
-	return (float64) ( Time_Now() * 1000000000 ) / Frequency();
+	return (float64) ( Time_Now() * 1000000000 ) / (float64) Frequency();
 }
 
 #endif // _WIN32
