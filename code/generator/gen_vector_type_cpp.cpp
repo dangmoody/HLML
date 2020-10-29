@@ -272,7 +272,8 @@ static void GenerateSwizzleFuncs( stringBuilder_t* codeHeader, stringBuilder_t* 
 	}
 }
 
-void Gen_VectorType_CPP( const genType_t type, const u32 numComponents ) {
+void Gen_VectorType_CPP( allocatorLinear_t* allocator, const genType_t type, const u32 numComponents ) {
+	assert( allocator );
 	assert( numComponents >= GEN_COMPONENT_COUNT_MIN );
 	assert( numComponents <= GEN_COMPONENT_COUNT_MAX );
 
@@ -282,8 +283,8 @@ void Gen_VectorType_CPP( const genType_t type, const u32 numComponents ) {
 	char fullTypeName[GEN_STRING_LENGTH_TYPE_NAME];
 	snprintf( fullTypeName, GEN_STRING_LENGTH_TYPE_NAME, "%s%d", typeString, numComponents );
 
-	stringBuilder_t codeHeader = String_Create( 32 * KB_TO_BYTES );
-	stringBuilder_t codeInl = String_Create( 32 * KB_TO_BYTES );
+	stringBuilder_t codeHeader = String_Create( allocator, 32 * KB_TO_BYTES );
+	stringBuilder_t codeInl = String_Create( allocator, 32 * KB_TO_BYTES );
 
 	// header pre-functions
 	{
@@ -419,5 +420,5 @@ void Gen_VectorType_CPP( const genType_t type, const u32 numComponents ) {
 	FS_WriteEntireFile( fileNameHeader, codeHeader.str, codeHeader.length );
 	FS_WriteEntireFile( fileNameInl, codeInl.str, codeInl.length );
 
-	Mem_Reset();
+	Mem_Reset( allocator );
 }

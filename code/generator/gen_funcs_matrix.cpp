@@ -1186,7 +1186,8 @@ void Gen_MatrixTranslate( const genLanguage_t language, const genType_t type, co
 	String_Append( sbImpl, "\n" );
 }
 
-void Gen_MatrixRotate( const genLanguage_t language, const genType_t type, const u32 numRows, const u32 numCols, stringBuilder_t* sbFwdDec, stringBuilder_t* sbImpl ) {
+void Gen_MatrixRotate( allocatorLinear_t* allocator, const genLanguage_t language, const genType_t type, const u32 numRows, const u32 numCols, stringBuilder_t* sbFwdDec, stringBuilder_t* sbImpl ) {
+	assert( allocator );
 	assert( numRows >= GEN_COMPONENT_COUNT_MIN );
 	assert( numRows <= GEN_COMPONENT_COUNT_MAX );
 	assert( numCols >= GEN_COMPONENT_COUNT_MIN );
@@ -1225,7 +1226,7 @@ void Gen_MatrixRotate( const genLanguage_t language, const genType_t type, const
 
 	const char* derefStr = ( language == GEN_LANGUAGE_C ) ? "*" : "";
 
-	stringBuilder_t parmListStr = String_Create( 64 );
+	stringBuilder_t parmListStr = String_Create( allocator, 64 );
 	String_Appendf( &parmListStr, "const %s%c mat, const %s rad", fullTypeName, parmTypeModifierStr, typeString );
 	if ( numCols > 3 ) {
 		String_Appendf( &parmListStr, ", const %s%c axis", vectorTypeName, parmTypeModifierStr );

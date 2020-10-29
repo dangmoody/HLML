@@ -23,13 +23,15 @@ along with The HLML Generator.  If not, see <http://www.gnu.org/licenses/>.
 */
 #pragma once
 
-extern void	Gen_Vectors_CPP( void );
-extern void	Gen_Matrices_CPP( void );
+typedef struct allocatorLinear_t allocatorLinear_t;
 
-extern void	Gen_FunctionsVector_CPP( void );
-extern void	Gen_FunctionsMatrix_CPP( void );
+void	Gen_Vectors_CPP( allocatorLinear_t* allocator );
+void	Gen_Matrices_CPP( allocatorLinear_t* allocator );
 
-extern void	Gen_OperatorsVector( void );
-extern void	Gen_OperatorsMatrix( void );
+void	Gen_FunctionsVector_CPP( allocatorLinear_t* allocator );
+void	Gen_FunctionsMatrix_CPP( allocatorLinear_t* allocator );
 
-extern void	Gen_Tests_CPP( void );
+void	Gen_OperatorsVector( allocatorLinear_t* allocator );
+void	Gen_OperatorsMatrix( allocatorLinear_t* allocator );
+
+void	Gen_Tests_CPP( allocatorLinear_t* allocator );

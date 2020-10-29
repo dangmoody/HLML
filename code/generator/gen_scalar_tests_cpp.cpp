@@ -422,17 +422,19 @@ static void GenerateTestLerp( stringBuilder_t* codeTests, stringBuilder_t* codeS
 	}
 }
 
-void Gen_ScalarTests( const genLanguage_t language, const genType_t type ) {
+void Gen_ScalarTests( allocatorLinear_t* allocator, const genLanguage_t language, const genType_t type ) {
+	assert( allocator );
+
 	const u32 testsCodeBytes = 4 * KB_TO_BYTES;
 	const u32 suiteCodeBytes = 2 * KB_TO_BYTES;
 
-	stringBuilder_t codeTests = String_Create( testsCodeBytes );
-	stringBuilder_t codeSuite = String_Create( suiteCodeBytes );
+	stringBuilder_t codeTests = String_Create( allocator, testsCodeBytes );
+	stringBuilder_t codeSuite = String_Create( allocator, suiteCodeBytes );
 
 	const char* memberTypeString = Gen_GetMemberTypeString( type );
 	const char* registerName = Gen_SSE_GetRegisterName( type );
 
-	stringBuilder_t code = String_Create( testsCodeBytes + suiteCodeBytes );
+	stringBuilder_t code = String_Create( allocator, testsCodeBytes + suiteCodeBytes );
 	String_Append( &code, GEN_FILE_HEADER );
 
 	if ( Gen_TypeIsFloatingPoint( type ) ) {
@@ -476,5 +478,5 @@ void Gen_ScalarTests( const genLanguage_t language, const genType_t type ) {
 
 	FS_WriteEntireFile( filename, code.str, code.length );
 
-	Mem_Reset();
+	Mem_Reset( allocator );
 }

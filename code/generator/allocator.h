@@ -28,8 +28,14 @@ along with The HLML Generator.  If not, see <http://www.gnu.org/licenses/>.
 #define MB_TO_BYTES	( 1024 * 1024 )
 #define KB_TO_BYTES	( 1024 )
 
-extern void			Mem_Init( const u32 size );
-extern void			Mem_Shutdown( void );
+typedef struct allocatorLinear_t {
+	u32				size;
+	u32				offset;
+	u8*				ptr;
+} allocatorLinear_t;
 
-extern u8*			Mem_Alloc( const u32 size );
-extern void			Mem_Reset( void );
+allocatorLinear_t*	Mem_CreateLinear( const u32 size );
+void				Mem_DestroyLinear( allocatorLinear_t** allocator );
+
+u8*					Mem_Alloc( allocatorLinear_t* allocator, const u32 size );
+void				Mem_Reset( allocatorLinear_t* allocator );

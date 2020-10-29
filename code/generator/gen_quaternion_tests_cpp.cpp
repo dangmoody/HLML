@@ -545,13 +545,14 @@ static void GenerateTestQuaternionVectorRotationByAngleAxis(  stringBuilder_t* c
 	String_Appendf( codeSuite, "\tTEMPER_RUN_TEST( %s );\n", testName );
 }
 
-void Gen_QuaternionTests( const genLanguage_t language, const genType_t type ) {
+void Gen_QuaternionTests( allocatorLinear_t* allocator, const genLanguage_t language, const genType_t type ) {
+	assert( allocator );
 
 	const u32 testsCodeBytes = 16 * KB_TO_BYTES;
 	const u32 suiteCodeBytes = 2 * KB_TO_BYTES;
 	
-	stringBuilder_t codeTests = String_Create( testsCodeBytes );
-	stringBuilder_t codeSuite = String_Create( suiteCodeBytes );
+	stringBuilder_t codeTests = String_Create( allocator, testsCodeBytes );
+	stringBuilder_t codeSuite = String_Create( allocator, suiteCodeBytes );
 
 	const char* typeString = Gen_GetTypeString( type );
 	
@@ -561,7 +562,7 @@ void Gen_QuaternionTests( const genLanguage_t language, const genType_t type ) {
 	char fullTypeString[GEN_STRING_LENGTH_TYPE_NAME];
 	snprintf( fullTypeString, GEN_STRING_LENGTH_TYPE_NAME, "%s%d", typeString, GEN_COMPONENT_COUNT_MAX );
 
-	stringBuilder_t code = String_Create( testsCodeBytes + suiteCodeBytes );
+	stringBuilder_t code = String_Create( allocator, testsCodeBytes + suiteCodeBytes );
 
 	String_Appendf( &code, GEN_FILE_HEADER );
 
@@ -590,5 +591,5 @@ void Gen_QuaternionTests( const genLanguage_t language, const genType_t type ) {
 
 	FS_WriteEntireFile( filename, code.str, code.length );
 
-	Mem_Reset();
+	Mem_Reset( allocator );
 }

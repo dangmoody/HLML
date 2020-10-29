@@ -518,7 +518,9 @@ static void GenerateMatrixOperatorsRelational( const genType_t type, const u32 n
 }
 
 
-void Gen_Vectors_CPP( void ) {
+void Gen_Vectors_CPP( allocatorLinear_t* allocator ) {
+	assert( allocator );
+
 	for ( u32 typeIndex = 0; typeIndex < GEN_TYPE_COUNT; typeIndex++ ) {
 		genType_t type = (genType_t) typeIndex;
 
@@ -527,14 +529,16 @@ void Gen_Vectors_CPP( void ) {
 		for ( u32 componentIndex = GEN_COMPONENT_COUNT_MIN; componentIndex <= GEN_COMPONENT_COUNT_MAX; componentIndex++ ) {
 			printf( "Generating %s%d...", typeString, componentIndex );
 
-			Gen_VectorType_CPP( type, componentIndex );
+			Gen_VectorType_CPP( allocator, type, componentIndex );
 
 			printf( "OK.\n" );
 		}
 	}
 }
 
-void Gen_Matrices_CPP( void ) {
+void Gen_Matrices_CPP( allocatorLinear_t* allocator ) {
+	assert( allocator );
+
 	for ( u32 typeIndex = 0; typeIndex < GEN_TYPE_COUNT; typeIndex++ ) {
 		genType_t type = (genType_t) typeIndex;
 
@@ -544,7 +548,7 @@ void Gen_Matrices_CPP( void ) {
 			for ( u32 col = GEN_COMPONENT_COUNT_MIN; col <= GEN_COMPONENT_COUNT_MAX; col++ ) {
 				printf( "Generating %s%dx%d...", typeString, row, col );
 
-				Gen_MatrixType_CPP( type, row, col );
+				Gen_MatrixType_CPP( allocator, type, row, col );
 
 				printf( "OK.\n" );
 			}
@@ -552,14 +556,16 @@ void Gen_Matrices_CPP( void ) {
 	}
 }
 
-void Gen_OperatorsVector( void ) {
+void Gen_OperatorsVector( allocatorLinear_t* allocator ) {
+	assert( allocator );
+
 	char filePathHeader[64] = { 0 };
 	snprintf( filePathHeader, 64, "%s%s.h", GEN_FOLDER_PATHS_OUT_GEN[GEN_LANGUAGE_CPP], GEN_FILENAME_OPERATORS_VECTOR );
 
-	stringBuilder_t contentFwdDec = String_Create( 128 * KB_TO_BYTES );
-	stringBuilder_t contentImpl = String_Create( 128 * KB_TO_BYTES );
+	stringBuilder_t contentFwdDec = String_Create( allocator, 128 * KB_TO_BYTES );
+	stringBuilder_t contentImpl = String_Create( allocator, 128 * KB_TO_BYTES );
 
-	stringBuilder_t content = String_Create( contentFwdDec.alloc + contentImpl.alloc );
+	stringBuilder_t content = String_Create( allocator, contentFwdDec.alloc + contentImpl.alloc );
 
 	String_Append( &contentFwdDec, GEN_FILE_HEADER );
 	String_Append( &contentFwdDec,
@@ -612,17 +618,19 @@ void Gen_OperatorsVector( void ) {
 
 	FS_WriteEntireFile( filePathHeader, content.str, content.length );
 
-	Mem_Reset();
+	Mem_Reset( allocator );
 }
 
-void Gen_OperatorsMatrix( void ) {
+void Gen_OperatorsMatrix( allocatorLinear_t* allocator ) {
+	assert( allocator );
+
 	char filePathHeader[64];
 	snprintf( filePathHeader, 64, "%s%s.h", GEN_FOLDER_PATHS_OUT_GEN[GEN_LANGUAGE_CPP], GEN_FILENAME_OPERATORS_MATRIX );
 
-	stringBuilder_t contentFwdDec = String_Create( 512 * KB_TO_BYTES );
-	stringBuilder_t contentImpl = String_Create( 512 * KB_TO_BYTES );
+	stringBuilder_t contentFwdDec = String_Create( allocator, 512 * KB_TO_BYTES );
+	stringBuilder_t contentImpl = String_Create( allocator, 512 * KB_TO_BYTES );
 
-	stringBuilder_t content = String_Create( contentFwdDec.alloc + contentImpl.alloc );	
+	stringBuilder_t content = String_Create( allocator, contentFwdDec.alloc + contentImpl.alloc );	
 
 	String_Append( &contentFwdDec, GEN_FILE_HEADER );
 	String_Append( &contentFwdDec, "#pragma once\n" );
@@ -678,5 +686,5 @@ void Gen_OperatorsMatrix( void ) {
 
 	FS_WriteEntireFile( filePathHeader, content.str, content.length );
 
-	Mem_Reset();
+	Mem_Reset( allocator );
 }

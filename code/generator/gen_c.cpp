@@ -37,7 +37,8 @@ along with The HLML Generator.  If not, see <http://www.gnu.org/licenses/>.
 #include "string_builder.h"
 #include "file_io.h"
 
-static void Gen_VectorType_C( const genType_t type, const u32 numComponents ) {
+static void Gen_VectorType_C( allocatorLinear_t* allocator, const genType_t type, const u32 numComponents ) {
+	assert( allocator );
 	assert( numComponents >= GEN_COMPONENT_COUNT_MIN );
 	assert( numComponents <= GEN_COMPONENT_COUNT_MAX );
 
@@ -47,7 +48,7 @@ static void Gen_VectorType_C( const genType_t type, const u32 numComponents ) {
 	char fullTypeName[GEN_STRING_LENGTH_TYPE_NAME];
 	snprintf( fullTypeName, GEN_STRING_LENGTH_TYPE_NAME, "%s%d", typeString, numComponents );
 
-	stringBuilder_t codeHeader = String_Create( 3 * KB_TO_BYTES );
+	stringBuilder_t codeHeader = String_Create( allocator, 3 * KB_TO_BYTES );
 
 	String_Append(  &codeHeader, GEN_FILE_HEADER );
 	String_Append(  &codeHeader,
@@ -83,10 +84,11 @@ static void Gen_VectorType_C( const genType_t type, const u32 numComponents ) {
 
 	FS_WriteEntireFile( fileNameHeader, codeHeader.str, codeHeader.length );
 
-	Mem_Reset();
+	Mem_Reset( allocator );
 }
 
-static void Gen_MatrixType_C( const genType_t type, const u32 numRows, const u32 numCols ) {
+static void Gen_MatrixType_C( allocatorLinear_t* allocator, const genType_t type, const u32 numRows, const u32 numCols ) {
+	assert( allocator );
 	assert( numRows >= GEN_COMPONENT_COUNT_MIN );
 	assert( numRows <= GEN_COMPONENT_COUNT_MAX );
 	assert( numCols >= GEN_COMPONENT_COUNT_MIN );
@@ -100,7 +102,7 @@ static void Gen_MatrixType_C( const genType_t type, const u32 numRows, const u32
 	char fullTypeName[GEN_STRING_LENGTH_TYPE_NAME];
 	snprintf( fullTypeName, GEN_STRING_LENGTH_TYPE_NAME, "%s%dx%d", typeString, numRows, numCols );
 
-	stringBuilder_t codeHeader = String_Create( 3 * KB_TO_BYTES );
+	stringBuilder_t codeHeader = String_Create( allocator, 3 * KB_TO_BYTES );
 
 	String_Append(  &codeHeader, GEN_FILE_HEADER );
 
@@ -131,10 +133,12 @@ static void Gen_MatrixType_C( const genType_t type, const u32 numRows, const u32
 
 	FS_WriteEntireFile( fileNameHeader, codeHeader.str, codeHeader.length );
 
-	Mem_Reset();
+	Mem_Reset( allocator );
 }
 
-void Gen_Vectors_C( void ) {
+void Gen_Vectors_C( allocatorLinear_t* allocator ) {
+	assert( allocator );
+
 	for ( u32 typeIndex = 0; typeIndex < GEN_TYPE_COUNT; typeIndex++ ) {
 		genType_t type = (genType_t) typeIndex;
 
@@ -143,14 +147,16 @@ void Gen_Vectors_C( void ) {
 		for ( u32 componentIndex = GEN_COMPONENT_COUNT_MIN; componentIndex <= GEN_COMPONENT_COUNT_MAX; componentIndex++ ) {
 			printf( "Generating %s%d...", typeString, componentIndex );
 
-			Gen_VectorType_C( type, componentIndex );
+			Gen_VectorType_C( allocator, type, componentIndex );
 
 			printf( "OK.\n" );
 		}
 	}
 }
 
-void Gen_Matrices_C( void ) {
+void Gen_Matrices_C( allocatorLinear_t* allocator ) {
+	assert( allocator );
+
 	for ( u32 typeIndex = 0; typeIndex < GEN_TYPE_COUNT; typeIndex++ ) {
 		genType_t type = (genType_t) typeIndex;
 
@@ -160,7 +166,7 @@ void Gen_Matrices_C( void ) {
 			for ( u32 col = GEN_COMPONENT_COUNT_MIN; col <= GEN_COMPONENT_COUNT_MAX; col++ ) {
 				printf( "Generating %s%dx%d...", typeString, row, col );
 
-				Gen_MatrixType_C( type, row, col );
+				Gen_MatrixType_C( allocator, type, row, col );
 
 				printf( "OK.\n" );
 			}

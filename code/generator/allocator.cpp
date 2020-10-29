@@ -27,37 +27,36 @@ along with The HLML Generator.  If not, see <http://www.gnu.org/licenses/>.
 #include <assert.h>
 #include <memory.h>
 
-typedef struct allocatorInfo_t {
-	u32	size;
-	u32	offset;
-	u8*	ptr;
-} allocatorInfo_t;
-
-static allocatorInfo_t g_allocatorInfo;
-
-void Mem_Init( const u32 size ) {
+allocatorLinear_t* Mem_CreateLinear( const u32 size ) {
 	assert( size > 0 );
 
-	g_allocatorInfo.size = size;
-	g_allocatorInfo.offset = 0;
-	g_allocatorInfo.ptr = (u8*) calloc( size + sizeof( allocatorInfo_t ), sizeof( u8 ) );
+	allocatorLinear_t* allocator = (allocatorLinear_t*) malloc( sizeof( allocatorLinear_t ) );
+
+	allocator->size = size;
+	allocator->offset = 0;
+	allocator->ptr = (u8*) calloc( size + sizeof( allocatorLinear_t ), sizeof( u8 ) );
+
+	return allocator;
 }
 
-void Mem_Shutdown( void ) {
-	free( g_allocatorInfo.ptr );
-	g_allocatorInfo.ptr = NULL;
+void Mem_DestroyLinear( allocatorLinear_t** allocator ) {
+	assert( *allocator );
+
+	free( ( *allocator )->ptr );
+	( *allocator )->ptr = NULL;
 }
 
-u8* Mem_Alloc( const u32 size ) {
-	assert( g_allocatorInfo.offset + size <= g_allocatorInfo.size );
+u8* Mem_Alloc( allocatorLinear_t* allocator, const u32 size ) {
+	assert( allocator && allocator->ptr );
+	assert( allocator->offset + size <= allocator->size );
 
-	u8* ptr = g_allocatorInfo.ptr + g_allocatorInfo.offset;
+	u8* ptr = allocator->ptr + allocator->offset;
 
-	g_allocatorInfo.offset += size;
+	allocator->offset += size;
 
 	return ptr;
 }
 
-void Mem_Reset( void ) {
-	g_allocatorInfo.offset = 0;
+void Mem_Reset( allocatorLinear_t* allocator ) {
+	allocator->offset = 0;
 }
