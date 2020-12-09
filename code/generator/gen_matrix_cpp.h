@@ -26,5 +26,7 @@ along with The HLML Generator.  If not, see <http://www.gnu.org/licenses/>.
 #include "int_types.h"
 #include "gen_common.h"
 
-extern void	Gen_MatrixType_CPP( const genType_t type, const u32 numRows, const u32 numCols );
-extern void	Gen_MatrixTests( const genLanguage_t language, const genType_t type, const u32 numRows, const u32 numCols );
+typedef struct allocatorLinear_t allocatorLinear_t;
+
+extern void	Gen_MatrixType_CPP( allocatorLinear_t* allocator, const genType_t type, const u32 numRows, const u32 numCols );
+extern void	Gen_MatrixTests( allocatorLinear_t* allocator, const genLanguage_t language, const genType_t type, const u32 numRows, const u32 numCols );

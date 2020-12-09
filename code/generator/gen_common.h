@@ -78,7 +78,8 @@ along with The HLML Generator.  If not, see <http://www.gnu.org/licenses/>.
 
 #define GEN_STRING_LENGTH_TEST_NAME			64
 
-struct stringBuilder_t;
+typedef struct allocatorLinear_t allocatorLinear_t;
+typedef struct stringBuilder_t stringBuilder_t;
 
 enum genLanguage_t {
 	GEN_LANGUAGE_C							= 0,
@@ -289,50 +290,50 @@ inline const char*	Gen_GetConstantNameEpsilon( const genType_t type ) { return (
 // generic helper functions
 
 // generates the primary include header (hlml.h)
-extern void			Gen_HeaderMain( const genLanguage_t language );
+void				Gen_HeaderMain( allocatorLinear_t* allocator, const genLanguage_t language );
 
 // generate the files containing the arithmetic functions for each type
-extern void			Gen_FunctionsScalar( const genLanguage_t language );
-extern void			Gen_FunctionsVector( const genLanguage_t language );
-extern void			Gen_FunctionsMatrix( const genLanguage_t language );
-extern void			Gen_FunctionsQuaternion( const genLanguage_t language );
+void				Gen_FunctionsScalar( allocatorLinear_t* allocator, const genLanguage_t language );
+void				Gen_FunctionsVector( allocatorLinear_t* allocator, const genLanguage_t language );
+void				Gen_FunctionsMatrix( allocatorLinear_t* allocator, const genLanguage_t language );
+void				Gen_FunctionsQuaternion( allocatorLinear_t* allocator, const genLanguage_t language );
 
 // generate the files containing the SSE functions for each type
-extern void			Gen_FunctionsScalarSSE( const genLanguage_t language );
-extern void			Gen_FunctionsVectorSSE( const genLanguage_t language );
-extern void			Gen_FunctionsMatrixSSE( const genLanguage_t language );
+void				Gen_FunctionsScalarSSE( allocatorLinear_t* allocator, const genLanguage_t language );
+void				Gen_FunctionsVectorSSE( allocatorLinear_t* allocator, const genLanguage_t language );
+void				Gen_FunctionsMatrixSSE( allocatorLinear_t* allocator, const genLanguage_t language );
 
 // generates the tests for the specified language
-extern void			Gen_Tests( const genLanguage_t language );
+void				Gen_Tests( allocatorLinear_t* allocator, const genLanguage_t language );
 
 // generates the tests "main" file
-extern void			Gen_TestsMain( const genLanguage_t language );
+void				Gen_TestsMain( allocatorLinear_t* allocator, const genLanguage_t language );
 
 // parm list/array helpers
 // TODO(DM): allow specify prefix for each initialiser list
-extern void			Gen_GetValuesArray1D( const genType_t type, const u32 numValues, const float* values, stringBuilder_t* sb );
-extern void			Gen_GetValuesArray2D( const genType_t type, const u32 rows, const u32 cols, const float* values, stringBuilder_t* sb );
+void				Gen_GetValuesArray1D( const genType_t type, const u32 numValues, const float* values, stringBuilder_t* sb );
+void				Gen_GetValuesArray2D( const genType_t type, const u32 rows, const u32 cols, const float* values, stringBuilder_t* sb );
 
 // scalar functions
-extern void			Gen_Floateq( const genType_t type, stringBuilder_t* sbFwdDec, stringBuilder_t* sbImpl );
-extern void			Gen_Sign( const genType_t type, stringBuilder_t* sbFwdDec, stringBuilder_t* sbImpl );
+void				Gen_Floateq( const genType_t type, stringBuilder_t* sbFwdDec, stringBuilder_t* sbImpl );
+void				Gen_Sign( const genType_t type, stringBuilder_t* sbFwdDec, stringBuilder_t* sbImpl );
 
-extern void			Gen_Radians( const genType_t type, stringBuilder_t* sbFwdDec, stringBuilder_t* sbImpl );
-extern void			Gen_Degrees( const genType_t type, stringBuilder_t* sbFwdDec, stringBuilder_t* sbImpl );
-extern void			Gen_MinMax( const genType_t type, stringBuilder_t* sbFwdDec, stringBuilder_t* sbImpl );
-extern void			Gen_Clamp( const genType_t type, stringBuilder_t* sbFwdDec, stringBuilder_t* sbImpl );
+void				Gen_Radians( const genType_t type, stringBuilder_t* sbFwdDec, stringBuilder_t* sbImpl );
+void				Gen_Degrees( const genType_t type, stringBuilder_t* sbFwdDec, stringBuilder_t* sbImpl );
+void				Gen_MinMax( const genType_t type, stringBuilder_t* sbFwdDec, stringBuilder_t* sbImpl );
+void				Gen_Clamp( const genType_t type, stringBuilder_t* sbFwdDec, stringBuilder_t* sbImpl );
 
 // scalar/vector functions
-extern void			Gen_Saturate( const genLanguage_t language, const genType_t type, const u32 numComponents, stringBuilder_t* sbFwdDec, stringBuilder_t* sbImpl );
-extern void			Gen_Lerp( const genLanguage_t language, const genType_t type, const u32 numComponents, stringBuilder_t* sbFwdDec, stringBuilder_t* sbImpl );
-extern void			Gen_Step( const genLanguage_t language, const genType_t type, const u32 numComponents, stringBuilder_t* sbFwdDec, stringBuilder_t* sbImpl );
-extern void			Gen_Smoothstep( const genLanguage_t language, const genType_t type, const u32 numComponents, stringBuilder_t* sbFwdDec, stringBuilder_t* sbImpl );
+void				Gen_Saturate( const genLanguage_t language, const genType_t type, const u32 numComponents, stringBuilder_t* sbFwdDec, stringBuilder_t* sbImpl );
+void				Gen_Lerp( const genLanguage_t language, const genType_t type, const u32 numComponents, stringBuilder_t* sbFwdDec, stringBuilder_t* sbImpl );
+void				Gen_Step( const genLanguage_t language, const genType_t type, const u32 numComponents, stringBuilder_t* sbFwdDec, stringBuilder_t* sbImpl );
+void				Gen_Smoothstep( const genLanguage_t language, const genType_t type, const u32 numComponents, stringBuilder_t* sbFwdDec, stringBuilder_t* sbImpl );
 
 // C++ operator overloads for vectors and matrices
-extern void			Gen_OperatorsEquality( const genType_t type, const u32 numRows, const u32 numCols, stringBuilder_t* sbFwdDec, stringBuilder_t* sbImpl );
-extern void			Gen_OperatorsIncrement( const genType_t type, const u32 numRows, const u32 numCols, stringBuilder_t* sbFwdDec, stringBuilder_t* sbImpl );
+void				Gen_OperatorsEquality( const genType_t type, const u32 numRows, const u32 numCols, stringBuilder_t* sbFwdDec, stringBuilder_t* sbImpl );
+void				Gen_OperatorsIncrement( const genType_t type, const u32 numRows, const u32 numCols, stringBuilder_t* sbFwdDec, stringBuilder_t* sbImpl );
 
-extern void			Gen_NotEquals( const genLanguage_t language, const genType_t type, const u32 numRows, const u32 numCols, stringBuilder_t* sbFwdDec, stringBuilder_t* sbImpl );
+void				Gen_NotEquals( const genLanguage_t language, const genType_t type, const u32 numRows, const u32 numCols, stringBuilder_t* sbFwdDec, stringBuilder_t* sbImpl );
 
 
 // type-to-string functions

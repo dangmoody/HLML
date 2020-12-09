@@ -1805,15 +1805,16 @@ static void GenerateTestSmoothstep( stringBuilder_t* codeTests, stringBuilder_t*
 	String_Appendf( codeSuite, "\tTEMPER_RUN_TEST( %s );\n", testName );
 }
 
-void Gen_VectorTests( const genLanguage_t language, const genType_t type, const u32 numComponents ) {
+void Gen_VectorTests( allocatorLinear_t* allocator, const genLanguage_t language, const genType_t type, const u32 numComponents ) {
+	assert( allocator );
 	assert( numComponents >= GEN_COMPONENT_COUNT_MIN );
 	assert( numComponents <= GEN_COMPONENT_COUNT_MAX );
 
 	const u32 testsCodeBytes = 16 * KB_TO_BYTES;
 	const u32 suiteCodeBytes = 2 * KB_TO_BYTES;
 
-	stringBuilder_t codeTests = String_Create( testsCodeBytes );
-	stringBuilder_t codeSuite = String_Create( suiteCodeBytes );
+	stringBuilder_t codeTests = String_Create( allocator, testsCodeBytes );
+	stringBuilder_t codeSuite = String_Create( allocator, suiteCodeBytes );
 
 	const char* typeString = Gen_GetTypeString( type );
 	const char* memberTypeString = Gen_GetMemberTypeString( type );
@@ -1825,7 +1826,7 @@ void Gen_VectorTests( const genLanguage_t language, const genType_t type, const 
 	char fullTypeName[GEN_STRING_LENGTH_TYPE_NAME];
 	snprintf( fullTypeName, GEN_STRING_LENGTH_TYPE_NAME, "%s%d", typeString, numComponents );
 
-	stringBuilder_t code = String_Create( testsCodeBytes + suiteCodeBytes );
+	stringBuilder_t code = String_Create( allocator, testsCodeBytes + suiteCodeBytes );
 
 	String_Appendf( &code, GEN_FILE_HEADER );
 
@@ -1880,5 +1881,5 @@ void Gen_VectorTests( const genLanguage_t language, const genType_t type, const 
 
 	FS_WriteEntireFile( filename, code.str, code.length );
 
-	Mem_Reset();
+	Mem_Reset( allocator );
 }

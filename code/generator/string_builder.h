@@ -25,13 +25,15 @@ along with The HLML Generator.  If not, see <http://www.gnu.org/licenses/>.
 
 #include "int_types.h"
 
+typedef struct allocatorLinear_t allocatorLinear_t;
+
 struct stringBuilder_t {
-	char*				str;
-	u32					length;
-	u32					alloc;
+	char*		str;
+	u32			length;
+	u32			alloc;
 };
 
-extern stringBuilder_t	String_Create( const u32 size );
+stringBuilder_t	String_Create( allocatorLinear_t* allocator, const u32 size );
 
-extern void				String_Append( stringBuilder_t* sb, const char* msg );
-extern void				String_Appendf( stringBuilder_t* sb, const char* fmt, ... );
+void			String_Append( stringBuilder_t* sb, const char* msg );
+void			String_Appendf( stringBuilder_t* sb, const char* fmt, ... );

@@ -318,7 +318,8 @@ static void GenerateOperatorsArray( stringBuilder_t* codeHeader, stringBuilder_t
 	String_Append(  codeInl, "\n" );
 }
 
-void Gen_MatrixType_CPP( const genType_t type, const u32 numRows, const u32 numCols ) {
+void Gen_MatrixType_CPP( allocatorLinear_t* allocator, const genType_t type, const u32 numRows, const u32 numCols ) {
+	assert( allocator );
 	assert( numRows >= GEN_COMPONENT_COUNT_MIN );
 	assert( numRows <= GEN_COMPONENT_COUNT_MAX );
 	assert( numCols >= GEN_COMPONENT_COUNT_MIN );
@@ -336,8 +337,8 @@ void Gen_MatrixType_CPP( const genType_t type, const u32 numRows, const u32 numC
 	char vectorMemberTypeString[GEN_STRING_LENGTH_TYPE_NAME];
 	snprintf( vectorMemberTypeString, GEN_STRING_LENGTH_TYPE_NAME, "%s%d", typeString, numCols );
 
-	stringBuilder_t codeHeader = String_Create( 8 * KB_TO_BYTES );
-	stringBuilder_t codeInl = String_Create( 8 * KB_TO_BYTES );
+	stringBuilder_t codeHeader = String_Create( allocator, 8 * KB_TO_BYTES );
+	stringBuilder_t codeInl = String_Create( allocator, 8 * KB_TO_BYTES );
 
 	// header pre-functions
 	{
@@ -405,5 +406,5 @@ void Gen_MatrixType_CPP( const genType_t type, const u32 numRows, const u32 numC
 	FS_WriteEntireFile( fileNameHeader, codeHeader.str, codeHeader.length );
 	FS_WriteEntireFile( fileNameInl, codeInl.str, codeInl.length );
 
-	Mem_Reset();
+	Mem_Reset( allocator );
 }

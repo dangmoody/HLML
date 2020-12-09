@@ -26,5 +26,7 @@ along with The HLML Generator.  If not, see <http://www.gnu.org/licenses/>.
 #include "int_types.h"
 #include "gen_common.h"
 
-extern void	Gen_VectorType_CPP( const genType_t type, const u32 numComponents );
-extern void	Gen_VectorTests( const genLanguage_t language, const genType_t type, const u32 numComponents );
+typedef struct allocatorLinear_t allocatorLinear_t;
+
+extern void	Gen_VectorType_CPP( allocatorLinear_t* allocator, const genType_t type, const u32 numComponents );
+extern void	Gen_VectorTests( allocatorLinear_t* allocator, const genLanguage_t language, const genType_t type, const u32 numComponents );

@@ -45,7 +45,7 @@ int main( int argc, char** argv ) {
 		"\n"
 	);
 
-	Mem_Init( 3 * MB_TO_BYTES );
+	allocatorLinear_t* allocator = Mem_CreateLinear( 3 * MB_TO_BYTES );
 
 	for ( u32 i = 0; i < GEN_LANGUAGE_COUNT; i++ ) {
 		const genLanguage_t language = (genLanguage_t) i;
@@ -63,51 +63,51 @@ int main( int argc, char** argv ) {
 	float64 start = Time_NowMS();
 
 	printf( "======= Generating core headers. =======\n" );
-	Gen_HeaderMain( GEN_LANGUAGE_C );
-	Gen_HeaderMain( GEN_LANGUAGE_CPP );
+	Gen_HeaderMain( allocator, GEN_LANGUAGE_C );
+	Gen_HeaderMain( allocator, GEN_LANGUAGE_CPP );
 	printf( "======= Done. =======\n\n" );
 
 	printf( "======= Generating types. =======\n" );
-	Gen_Vectors_C();
-	Gen_Matrices_C();
+	Gen_Vectors_C( allocator );
+	Gen_Matrices_C( allocator );
 
-	Gen_Vectors_CPP();
-	Gen_Matrices_CPP();
+	Gen_Vectors_CPP( allocator );
+	Gen_Matrices_CPP( allocator );
 	printf( "======= Done. =======\n\n" );
 
 	printf( "======= Generating functions. =======\n" );
-	Gen_FunctionsScalar( GEN_LANGUAGE_C );
-	Gen_FunctionsScalar( GEN_LANGUAGE_CPP );
+	Gen_FunctionsScalar( allocator, GEN_LANGUAGE_C );
+	Gen_FunctionsScalar( allocator, GEN_LANGUAGE_CPP );
 
-	Gen_FunctionsVector( GEN_LANGUAGE_C );
-	Gen_FunctionsMatrix( GEN_LANGUAGE_C );
-	Gen_FunctionsQuaternion( GEN_LANGUAGE_C );
+	Gen_FunctionsVector( allocator, GEN_LANGUAGE_C );
+	Gen_FunctionsMatrix( allocator, GEN_LANGUAGE_C );
+	Gen_FunctionsQuaternion( allocator, GEN_LANGUAGE_C );
 
-	Gen_FunctionsVector( GEN_LANGUAGE_CPP );
-	Gen_FunctionsMatrix( GEN_LANGUAGE_CPP );
-	Gen_FunctionsQuaternion( GEN_LANGUAGE_CPP );
+	Gen_FunctionsVector( allocator, GEN_LANGUAGE_CPP );
+	Gen_FunctionsMatrix( allocator, GEN_LANGUAGE_CPP );
+	Gen_FunctionsQuaternion( allocator, GEN_LANGUAGE_CPP );
 	printf( "======= Done. =======\n\n" );
 
 	printf( "======= Generating C++ operator overloads. =======\n" );
-	Gen_OperatorsVector();
-	Gen_OperatorsMatrix();
+	Gen_OperatorsVector( allocator );
+	Gen_OperatorsMatrix( allocator );
 	printf( "======= Done. =======\n\n" );
 
 	printf( "======= Generating SSE helpers. =======\n" );
-	Gen_FunctionsScalarSSE( GEN_LANGUAGE_C );
-	Gen_FunctionsVectorSSE( GEN_LANGUAGE_C );
-	Gen_FunctionsMatrixSSE( GEN_LANGUAGE_C );
+	Gen_FunctionsScalarSSE( allocator, GEN_LANGUAGE_C );
+	Gen_FunctionsVectorSSE( allocator, GEN_LANGUAGE_C );
+	Gen_FunctionsMatrixSSE( allocator, GEN_LANGUAGE_C );
 
-	Gen_FunctionsScalarSSE( GEN_LANGUAGE_CPP );
-	Gen_FunctionsVectorSSE( GEN_LANGUAGE_CPP );
-	Gen_FunctionsMatrixSSE( GEN_LANGUAGE_CPP );
+	Gen_FunctionsScalarSSE( allocator, GEN_LANGUAGE_CPP );
+	Gen_FunctionsVectorSSE( allocator, GEN_LANGUAGE_CPP );
+	Gen_FunctionsMatrixSSE( allocator, GEN_LANGUAGE_CPP );
 	printf( "======= Done. =======\n\n" );
 
 	printf( "======= Generating tests. =======\n" );
-	Gen_Tests( GEN_LANGUAGE_C );
-	Gen_Tests( GEN_LANGUAGE_CPP );
-	Gen_TestsMain( GEN_LANGUAGE_C );
-	Gen_TestsMain( GEN_LANGUAGE_CPP );
+	Gen_Tests( allocator, GEN_LANGUAGE_C );
+	Gen_Tests( allocator, GEN_LANGUAGE_CPP );
+	Gen_TestsMain( allocator, GEN_LANGUAGE_C );
+	Gen_TestsMain( allocator, GEN_LANGUAGE_CPP );
 	printf( "======= Done. =======\n\n" );
 
 	float64 end = Time_NowMS();
@@ -119,7 +119,7 @@ int main( int argc, char** argv ) {
 		"Goodbye.\n"
 	);
 
-	Mem_Shutdown();
+	Mem_DestroyLinear( &allocator );
 
 	return 0;
 }

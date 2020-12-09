@@ -29,11 +29,11 @@ along with The HLML Generator.  If not, see <http://www.gnu.org/licenses/>.
 #include <stdarg.h>
 #include <assert.h>
 
-stringBuilder_t String_Create( const u32 size ) {
+stringBuilder_t String_Create( allocatorLinear_t* allocator, const u32 size ) {
 	assert( size > 0 );
 
 	return {
-		(char*) Mem_Alloc( size ),
+		(char*) Mem_Alloc( allocator, size ),
 		0,
 		size
 	};

@@ -88,7 +88,9 @@ static void GenerateOperatorIncrementInl( const genType_t type, const u32 numRow
 }
 
 
-void Gen_HeaderMain( const genLanguage_t language ) {
+void Gen_HeaderMain( allocatorLinear_t* allocator, const genLanguage_t language ) {
+	assert( allocator );
+
 	const char* outGenFolder = GEN_FOLDER_PATHS_OUT_GEN[language];
 
 	printf( "%s%s...", outGenFolder, GEN_HEADER_MAIN );
@@ -96,7 +98,7 @@ void Gen_HeaderMain( const genLanguage_t language ) {
 	char headerFilePath[1024] = { 0 };
 	snprintf( headerFilePath, 1024, "%s%s", outGenFolder, GEN_HEADER_MAIN );
 
-	stringBuilder_t sb = String_Create( 8 * KB_TO_BYTES );
+	stringBuilder_t sb = String_Create( allocator, 8 * KB_TO_BYTES );
 
 	String_Append( &sb, GEN_FILE_HEADER );
 	String_Append( &sb,
@@ -207,19 +209,19 @@ void Gen_HeaderMain( const genLanguage_t language ) {
 
 	FS_WriteEntireFile( headerFilePath, sb.str, sb.length );
 
-	Mem_Reset();
+	Mem_Reset( allocator );
 
 	printf( "OK.\n" );
 }
 
-void Gen_FunctionsScalar( const genLanguage_t language ) {
+void Gen_FunctionsScalar( allocatorLinear_t* allocator, const genLanguage_t language ) {
 	char fileNameHeader[1024];
 	snprintf( fileNameHeader, 1024, "%s%s.h", GEN_FOLDER_PATHS_OUT_GEN[language], GEN_FILENAME_FUNCTIONS_SCALAR );
 
-	stringBuilder_t sbFwdDec = String_Create( 9 * KB_TO_BYTES );
-	stringBuilder_t sbImpl = String_Create( 9 * KB_TO_BYTES );
+	stringBuilder_t sbFwdDec = String_Create( allocator, 9 * KB_TO_BYTES );
+	stringBuilder_t sbImpl = String_Create( allocator, 9 * KB_TO_BYTES );
 
-	stringBuilder_t sb = String_Create( sbFwdDec.alloc + sbImpl.alloc );
+	stringBuilder_t sb = String_Create( allocator, sbFwdDec.alloc + sbImpl.alloc );
 
 	String_Append( &sbFwdDec, GEN_FILE_HEADER );
 	String_Append( &sbFwdDec,
@@ -297,17 +299,19 @@ void Gen_FunctionsScalar( const genLanguage_t language ) {
 
 	FS_WriteEntireFile( fileNameHeader, sb.str, sb.length );
 
-	Mem_Reset();
+	Mem_Reset( allocator );
 }
 
-void Gen_FunctionsVector( const genLanguage_t language ) {
+void Gen_FunctionsVector( allocatorLinear_t* allocator, const genLanguage_t language ) {
+	assert( allocator );
+
 	char filePathHeader[64] = { 0 };
 	snprintf( filePathHeader, 64, "%s%s.h", GEN_FOLDER_PATHS_OUT_GEN[language], GEN_FILENAME_FUNCTIONS_VECTOR );
 
-	stringBuilder_t contentFwdDec = String_Create( 128 * KB_TO_BYTES );
-	stringBuilder_t contentImpl = String_Create( 128 * KB_TO_BYTES );
+	stringBuilder_t contentFwdDec = String_Create( allocator, 128 * KB_TO_BYTES );
+	stringBuilder_t contentImpl = String_Create( allocator, 128 * KB_TO_BYTES );
 
-	stringBuilder_t content = String_Create( contentFwdDec.alloc + contentImpl.alloc );
+	stringBuilder_t content = String_Create( allocator, contentFwdDec.alloc + contentImpl.alloc );
 
 	String_Append( &contentFwdDec, GEN_FILE_HEADER );
 	String_Append( &contentFwdDec,
@@ -401,17 +405,19 @@ void Gen_FunctionsVector( const genLanguage_t language ) {
 
 	FS_WriteEntireFile( filePathHeader, content.str, content.length );
 
-	Mem_Reset();
+	Mem_Reset( allocator );
 }
 
-void Gen_FunctionsMatrix( const genLanguage_t language ) {
+void Gen_FunctionsMatrix( allocatorLinear_t* allocator, const genLanguage_t language ) {
+	assert( allocator );
+
 	char filePathHeader[64] = { 0 };
 	snprintf( filePathHeader, 64, "%s%s.h", GEN_FOLDER_PATHS_OUT_GEN[language], GEN_FILENAME_FUNCTIONS_MATRIX );
 
-	stringBuilder_t contentFwdDec = String_Create( 512 * KB_TO_BYTES );
-	stringBuilder_t contentImpl = String_Create( 512 * KB_TO_BYTES );
+	stringBuilder_t contentFwdDec = String_Create( allocator, 512 * KB_TO_BYTES );
+	stringBuilder_t contentImpl = String_Create( allocator, 512 * KB_TO_BYTES );
 
-	stringBuilder_t content = String_Create( contentFwdDec.alloc + contentImpl.alloc );
+	stringBuilder_t content = String_Create( allocator, contentFwdDec.alloc + contentImpl.alloc );
 
 	String_Append( &contentFwdDec, GEN_FILE_HEADER );
 
@@ -468,7 +474,7 @@ void Gen_FunctionsMatrix( const genLanguage_t language ) {
 				Gen_MatrixMultiplyVector( language, type, row, col, &contentFwdDec, &contentImpl );
 
 				Gen_MatrixTranslate( language, type, row, col, &contentFwdDec, &contentImpl );
-				Gen_MatrixRotate( language, type, row, col, &contentFwdDec, &contentImpl );
+				Gen_MatrixRotate( allocator, language, type, row, col, &contentFwdDec, &contentImpl );
 				Gen_MatrixScale( language, type, row, col, &contentFwdDec, &contentImpl );
 
 				Gen_MatrixOrtho( language, type, row, col, &contentFwdDec, &contentImpl );
@@ -514,17 +520,19 @@ void Gen_FunctionsMatrix( const genLanguage_t language ) {
 
 	FS_WriteEntireFile( filePathHeader, content.str, content.length );
 
-	Mem_Reset();
+	Mem_Reset( allocator );
 }
 
-void Gen_FunctionsQuaternion( const genLanguage_t language ) {
+void Gen_FunctionsQuaternion( allocatorLinear_t* allocator, const genLanguage_t language ) {
+	assert( allocator );
+
 	char filePathHeader[64] = { 0 };
 	snprintf( filePathHeader, 64, "%s%s.h", GEN_FOLDER_PATHS_OUT_GEN[language], GEN_FILENAME_FUNCTIONS_QUATERNION );
 
-	stringBuilder_t contentFwdDec = String_Create( 512 * KB_TO_BYTES );
-	stringBuilder_t contentImpl = String_Create( 512 * KB_TO_BYTES );
+	stringBuilder_t contentFwdDec = String_Create( allocator, 512 * KB_TO_BYTES );
+	stringBuilder_t contentImpl = String_Create( allocator, 512 * KB_TO_BYTES );
 
-	stringBuilder_t content = String_Create( contentFwdDec.alloc + contentImpl.alloc );
+	stringBuilder_t content = String_Create( allocator, contentFwdDec.alloc + contentImpl.alloc );
 
 	String_Append( &contentFwdDec, GEN_FILE_HEADER );
 
@@ -613,16 +621,18 @@ void Gen_FunctionsQuaternion( const genLanguage_t language ) {
 
 	FS_WriteEntireFile( filePathHeader, content.str, content.length );
 
-	Mem_Reset();
+	Mem_Reset( allocator );
 }
 
-void Gen_FunctionsScalarSSE( const genLanguage_t language ) {
+void Gen_FunctionsScalarSSE( allocatorLinear_t* allocator, const genLanguage_t language ) {
+	assert( allocator );
+
 	const char* folder = GEN_FOLDER_PATHS_OUT_GEN[language];
 
 	char filePathHeader[64] = { 0 };
 	snprintf( filePathHeader, 64, "%s%s.h", folder, GEN_FILENAME_FUNCTIONS_SCALAR_SSE );
 
-	stringBuilder_t contentFwdDec = String_Create( 4 * KB_TO_BYTES );
+	stringBuilder_t contentFwdDec = String_Create( allocator, 4 * KB_TO_BYTES );
 	String_Append( &contentFwdDec, GEN_FILE_HEADER );
 	String_Append( &contentFwdDec,
 		"#pragma once\n"
@@ -682,16 +692,18 @@ void Gen_FunctionsScalarSSE( const genLanguage_t language ) {
 
 	FS_WriteEntireFile( filePathHeader, contentFwdDec.str, contentFwdDec.length );
 
-	Mem_Reset();
+	Mem_Reset( allocator );
 }
 
-void Gen_FunctionsVectorSSE( const genLanguage_t language ) {
+void Gen_FunctionsVectorSSE( allocatorLinear_t* allocator, const genLanguage_t language ) {
+	assert( allocator );
+
 	const char* folder = GEN_FOLDER_PATHS_OUT_GEN[language];
 
 	char filePathHeader[64] = { 0 };
 	snprintf( filePathHeader, 64, "%s%s.h", folder, GEN_FILENAME_FUNCTIONS_VECTOR_SSE );
 
-	stringBuilder_t contentFwdDec = String_Create( 16 * KB_TO_BYTES );
+	stringBuilder_t contentFwdDec = String_Create( allocator, 16 * KB_TO_BYTES );
 
 	String_Append( &contentFwdDec, GEN_FILE_HEADER );
 	String_Append( &contentFwdDec,
@@ -777,16 +789,18 @@ void Gen_FunctionsVectorSSE( const genLanguage_t language ) {
 
 	FS_WriteEntireFile( filePathHeader, contentFwdDec.str, contentFwdDec.length );
 
-	Mem_Reset();
+	Mem_Reset( allocator );
 }
 
-void Gen_FunctionsMatrixSSE( const genLanguage_t language ) {
+void Gen_FunctionsMatrixSSE( allocatorLinear_t* allocator, const genLanguage_t language ) {
+	assert( allocator );
+
 	const char* folder = GEN_FOLDER_PATHS_OUT_GEN[language];
 
 	char filePathHeader[64] = { 0 };
 	snprintf( filePathHeader, 64, "%s%s.h", folder, GEN_FILENAME_FUNCTIONS_MATRIX_SSE );
 
-	stringBuilder_t contentFwdDec = String_Create( 84 * KB_TO_BYTES );
+	stringBuilder_t contentFwdDec = String_Create( allocator, 84 * KB_TO_BYTES );
 
 	String_Append( &contentFwdDec, GEN_FILE_HEADER );
 	String_Append( &contentFwdDec,
@@ -888,10 +902,12 @@ void Gen_FunctionsMatrixSSE( const genLanguage_t language ) {
 
 	FS_WriteEntireFile( filePathHeader, contentFwdDec.str, contentFwdDec.length );
 
-	Mem_Reset();
+	Mem_Reset( allocator );
 }
 
-void Gen_Tests( const genLanguage_t language ) {
+void Gen_Tests( allocatorLinear_t* allocator, const genLanguage_t language ) {
+	assert( allocator );
+
 	const char* fileExtension = GEN_SOURCE_FILE_EXTENSIONS[language];
 
 	// scalar tests
@@ -906,7 +922,7 @@ void Gen_Tests( const genLanguage_t language ) {
 
 		printf( "Generating test_scalar_%s.%s...", typeString, fileExtension );
 
-		Gen_ScalarTests( language, type );
+		Gen_ScalarTests( allocator, language, type );
 
 		printf( "OK.\n" );
 	}
@@ -920,7 +936,7 @@ void Gen_Tests( const genLanguage_t language ) {
 		for ( u32 componentIndex = GEN_COMPONENT_COUNT_MIN; componentIndex <= GEN_COMPONENT_COUNT_MAX; componentIndex++ ) {
 			printf( "Generating test_%s%d.%s...", typeString, componentIndex, fileExtension );
 
-			Gen_VectorTests( language, type, componentIndex );
+			Gen_VectorTests( allocator, language, type, componentIndex );
 
 			printf( "OK.\n" );
 		}
@@ -936,7 +952,7 @@ void Gen_Tests( const genLanguage_t language ) {
 			for ( u32 col = GEN_COMPONENT_COUNT_MIN; col <= GEN_COMPONENT_COUNT_MAX; col++ ) {
 				printf( "Generating test_%s%dx%d.%s...", typeString, row, col, fileExtension );
 
-				Gen_MatrixTests( language, type, row, col );
+				Gen_MatrixTests( allocator, language, type, row, col );
 
 				printf( "OK.\n" );
 			}
@@ -954,13 +970,15 @@ void Gen_Tests( const genLanguage_t language ) {
 
 		printf( "Generating test_quaternion_%s.%s...", typeString, fileExtension );
 
-		Gen_QuaternionTests( language, type );
+		Gen_QuaternionTests( allocator, language, type );
 
 		printf( "OK.\n" );
 	}
 }
 
-void Gen_TestsMain( const genLanguage_t language ) {
+void Gen_TestsMain( allocatorLinear_t* allocator, const genLanguage_t language ) {
+	assert( allocator );
+
 	const char* testsFolder = GEN_FOLDER_PATHS_TESTS[language];
 	const char* fileExtension = GEN_SOURCE_FILE_EXTENSIONS[language];
 
@@ -970,7 +988,7 @@ void Gen_TestsMain( const genLanguage_t language ) {
 	char filePathMain[1024] = { 0 };
 	snprintf( filePathMain, 1024, "%smain.%s", testsFolder, fileExtension );
 
-	stringBuilder_t sb = String_Create( 8 * KB_TO_BYTES );
+	stringBuilder_t sb = String_Create( allocator, 8 * KB_TO_BYTES );
 
 	String_Append( &sb, GEN_FILE_HEADER );
 
@@ -1076,7 +1094,6 @@ void Gen_TestsMain( const genLanguage_t language ) {
 	String_Append( &sb, "\n" );
 
 	// now do vector and matrix types
-#if 1
 	String_Appendf( &sb, "\t// vector/matrix tests\n" );
 	for ( u32 typeIndex = 0; typeIndex < GEN_TYPE_COUNT; typeIndex++ ) {
 		genType_t type = (genType_t) typeIndex;
@@ -1091,20 +1108,6 @@ void Gen_TestsMain( const genLanguage_t language ) {
 			String_Appendf( &sb, "\n" );
 		}
 	}
-#else
-	for ( u32 typeIndex = 0; typeIndex < GEN_TYPE_COUNT; typeIndex++ ) {
-		genType_t type = (genType_t) typeIndex;
-
-		for ( u32 componentIndex = GEN_COMPONENT_COUNT_MIN; componentIndex <= GEN_COMPONENT_COUNT_MAX; componentIndex++ ) {
-			char fullTypeName[GEN_STRING_LENGTH_TYPE_NAME] = { 0 };
-			Gen_GetFullTypeName( type, 1, componentIndex, fullTypeName );
-
-			String_Appendf( &sb, "\tTEMPER_RUN_SUITE( Test_%s );\n", fullTypeName );
-		}
-
-		String_Appendf( &sb, "\n" );
-	}
-#endif
 
 	// quaternion suites
 	for ( u32 typeIndex = 0; typeIndex < GEN_TYPE_COUNT; typeIndex++ ) {
@@ -1128,7 +1131,7 @@ void Gen_TestsMain( const genLanguage_t language ) {
 
 	FS_WriteEntireFile( filePathMain, sb.str, sb.length );
 
-	Mem_Reset();
+	Mem_Reset( allocator );
 }
 
 void Gen_GetValuesArray1D( const genType_t type, const u32 numValues, const float* values, stringBuilder_t* sb ) {

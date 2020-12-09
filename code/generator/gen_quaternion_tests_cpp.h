@@ -25,4 +25,4 @@ along with The HLML Generator.  If not, see <http://www.gnu.org/licenses/>.
 
 #include "gen_common.h"
 
-extern void	Gen_QuaternionTests( const genLanguage_t language, const genType_t type );
+extern void	Gen_QuaternionTests( allocatorLinear_t* allocator, const genLanguage_t language, const genType_t type );
