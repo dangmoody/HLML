@@ -370,6 +370,7 @@ void Gen_FunctionsVector( allocatorLinear_t* allocator, const genLanguage_t lang
 			Gen_Smoothstep( language, type, componentIndex, &contentFwdDec, &contentImpl );
 
 			// generic vector funcs
+			Gen_FunctionAll( language, type, 1, componentIndex, &contentFwdDec, &contentImpl );
 			Gen_VectorFunctionsEquals( language, type, componentIndex, &contentFwdDec, &contentImpl );
 			Gen_VectorFunctionsComponentWiseArithmetic( language, type, componentIndex, &contentFwdDec, &contentImpl );
 			Gen_VectorFunctionsComponentWiseBitwise( language, type, componentIndex, &contentFwdDec, &contentImpl );
@@ -459,6 +460,7 @@ void Gen_FunctionsMatrix( allocatorLinear_t* allocator, const genLanguage_t lang
 
 				String_Appendf( &contentFwdDec, "// %s\n", fullTypeName );
 
+				Gen_FunctionAll( language, type, row, col, &contentFwdDec, &contentImpl );
 				Gen_MatrixEquals( language, type, row, col, &contentFwdDec, &contentImpl );
 				Gen_MatrixComponentWiseArithmetic( language, type, row, col, &contentFwdDec, &contentImpl );
 				Gen_MatrixComponentWiseBitwise( language, type, row, col, &contentFwdDec, &contentImpl );
@@ -1649,6 +1651,64 @@ void Gen_Smoothstep( const genLanguage_t language, const genType_t type, const u
 			String_Append(  sbImpl, "\n" );
 		}
 	}
+}
+
+void Gen_FunctionAll( const genLanguage_t language, const genType_t type, const u32 numRows, const u32 numCols, stringBuilder_t* sbFwdDec, stringBuilder_t* sbImpl ) {
+	assert( numRows >= 1 );	// 1 for vector
+	assert( numRows <= GEN_COMPONENT_COUNT_MAX );
+	assert( numCols >= GEN_COMPONENT_COUNT_MIN );
+	assert( numCols <= GEN_COMPONENT_COUNT_MAX );
+	assert( sbFwdDec );
+	assert( sbImpl );
+
+	if ( type != GEN_TYPE_BOOL ) {
+		return;
+	}
+
+	char fullTypeName[GEN_STRING_LENGTH_TYPE_NAME];
+	Gen_GetFullTypeName( type, numRows, numCols, fullTypeName );
+
+	char parmTypeName[GEN_STRING_LENGTH_TYPE_NAME];
+	Gen_GetParmTypeName( language, type, numRows, numCols, parmTypeName );
+
+	char allFuncStr[GEN_STRING_LENGTH_FUNCTION_NAME];
+	Gen_GetFuncNameAll( language, type, numRows, numCols, allFuncStr );
+
+	const char* parmAccessStr = GEN_TYPE_ACCESS_OPERATORS[language];
+
+	Doc_FunctionAll( sbFwdDec, fullTypeName );
+	String_Appendf( sbFwdDec, "inline bool %s( const %s x );\n", allFuncStr, parmTypeName );
+	String_Append(  sbFwdDec, "\n" );
+
+	String_Appendf( sbImpl, "bool %s( const %s x )\n", allFuncStr, parmTypeName );
+	String_Append(  sbImpl, "{\n" );
+	String_Append(  sbImpl, "\treturn " );
+	if ( numRows == 1 ) {
+		for ( u32 componentIndex = 0; componentIndex < numCols; componentIndex++ ) {
+			String_Appendf( sbImpl, "x%s%c", parmAccessStr, GEN_COMPONENT_NAMES_VECTOR[componentIndex] );
+
+			if ( componentIndex != numCols - 1 ) {
+				String_Append( sbImpl, " && " );
+			}
+		}
+	} else {
+		for ( u32 row = 0; row < numRows; row++ ) {
+			for ( u32 col = 0; col < numCols; col++ ) {
+				String_Appendf( sbImpl, "x%srows[%d].%c", parmAccessStr, row, GEN_COMPONENT_NAMES_VECTOR[col] );
+
+				if ( col != numCols - 1 ) {
+					String_Append( sbImpl, " && " );
+				}
+			}
+
+			if ( row != numRows - 1 ) {
+				String_Append( sbImpl, " && " );
+			}
+		}
+	}
+	String_Append(  sbImpl, ";\n" );
+	String_Append(  sbImpl, "}\n" );
+	String_Append(  sbImpl, "\n" );
 }
 
 void Gen_OperatorsEquality( const genType_t type, const u32 numRows, const u32 numCols, stringBuilder_t* sbFwdDec, stringBuilder_t* sbImpl ) {

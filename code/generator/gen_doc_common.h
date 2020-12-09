@@ -118,6 +118,13 @@ inline void Doc_Smootherstep( stringBuilder_t* sb, const char* fullTypeName ) {
 	);
 }
 
+inline void Doc_FunctionAll( stringBuilder_t* sb, const char* fullTypeName ) {
+	String_Appendf( sb,
+		"/// \\relates %s\n"
+		"/// \\brief Returns true if all components of the %s are true, otherwise returns false.\n", fullTypeName, fullTypeName
+	);
+}
+
 inline void Doc_OperatorEquals( stringBuilder_t* sb, const char* fullTypeName ) {
 	String_Appendf( sb,
 		"/// \\relates %s\n"

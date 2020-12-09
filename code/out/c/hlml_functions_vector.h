@@ -64,6 +64,10 @@ extern "C" {
 
 // bool2
 /// \relates bool2
+/// \brief Returns true if all components of the bool2 are true, otherwise returns false.
+inline bool bool2_all( const bool2* x );
+
+/// \relates bool2
 /// \brief Returns true if the all the components of the left-hand-side bool2 match the other one, otherwise returns false.
 inline bool bool2_cmpe( const bool2* lhs, const bool2* rhs );
 
@@ -74,6 +78,10 @@ inline bool bool2_cmpne( const bool2* lhs, const bool2* rhs );
 
 // bool3
 /// \relates bool3
+/// \brief Returns true if all components of the bool3 are true, otherwise returns false.
+inline bool bool3_all( const bool3* x );
+
+/// \relates bool3
 /// \brief Returns true if the all the components of the left-hand-side bool3 match the other one, otherwise returns false.
 inline bool bool3_cmpe( const bool3* lhs, const bool3* rhs );
 
@@ -83,6 +91,10 @@ inline bool bool3_cmpne( const bool3* lhs, const bool3* rhs );
 
 
 // bool4
+/// \relates bool4
+/// \brief Returns true if all components of the bool4 are true, otherwise returns false.
+inline bool bool4_all( const bool4* x );
+
 /// \relates bool4
 /// \brief Returns true if the all the components of the left-hand-side bool4 match the other one, otherwise returns false.
 inline bool bool4_cmpe( const bool4* lhs, const bool4* rhs );
@@ -1356,6 +1368,11 @@ inline double4 double4_cross( const double4* lhs, const double4* rhs );
 inline double double4_angle( const double4* lhs, const double4* rhs );
 
 
+bool bool2_all( const bool2* x )
+{
+	return x->x && x->y;
+}
+
 bool bool2_cmpe( const bool2* lhs, const bool2* rhs )
 {
 	return ( lhs->x == rhs->x ) && ( lhs->y == rhs->y );
@@ -1366,6 +1383,11 @@ bool bool2_cmpne( const bool2* lhs, const bool2* rhs )
 	return !( bool2_cmpe( lhs, rhs ) );
 }
 
+bool bool3_all( const bool3* x )
+{
+	return x->x && x->y && x->z;
+}
+
 bool bool3_cmpe( const bool3* lhs, const bool3* rhs )
 {
 	return ( lhs->x == rhs->x ) && ( lhs->y == rhs->y ) && ( lhs->z == rhs->z );
@@ -1374,6 +1396,11 @@ bool bool3_cmpe( const bool3* lhs, const bool3* rhs )
 bool bool3_cmpne( const bool3* lhs, const bool3* rhs )
 {
 	return !( bool3_cmpe( lhs, rhs ) );
+}
+
+bool bool4_all( const bool4* x )
+{
+	return x->x && x->y && x->z && x->w;
 }
 
 bool bool4_cmpe( const bool4* lhs, const bool4* rhs )

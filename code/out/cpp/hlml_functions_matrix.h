@@ -86,6 +86,10 @@ SOFTWARE.
 
 // bool2x2
 /// \relates bool2x2
+/// \brief Returns true if all components of the bool2x2 are true, otherwise returns false.
+inline bool all( const bool2x2& x );
+
+/// \relates bool2x2
 /// \brief Returns true if the all the components of the left-hand-side bool2x2 match the other one, otherwise returns false.
 inline bool cmpe( const bool2x2& lhs, const bool2x2& rhs );
 
@@ -103,6 +107,10 @@ inline bool2x2 transpose( const bool2x2& mat );
 
 
 // bool2x3
+/// \relates bool2x3
+/// \brief Returns true if all components of the bool2x3 are true, otherwise returns false.
+inline bool all( const bool2x3& x );
+
 /// \relates bool2x3
 /// \brief Returns true if the all the components of the left-hand-side bool2x3 match the other one, otherwise returns false.
 inline bool cmpe( const bool2x3& lhs, const bool2x3& rhs );
@@ -122,6 +130,10 @@ inline bool3x2 transpose( const bool2x3& mat );
 
 // bool2x4
 /// \relates bool2x4
+/// \brief Returns true if all components of the bool2x4 are true, otherwise returns false.
+inline bool all( const bool2x4& x );
+
+/// \relates bool2x4
 /// \brief Returns true if the all the components of the left-hand-side bool2x4 match the other one, otherwise returns false.
 inline bool cmpe( const bool2x4& lhs, const bool2x4& rhs );
 
@@ -139,6 +151,10 @@ inline bool4x2 transpose( const bool2x4& mat );
 
 
 // bool3x2
+/// \relates bool3x2
+/// \brief Returns true if all components of the bool3x2 are true, otherwise returns false.
+inline bool all( const bool3x2& x );
+
 /// \relates bool3x2
 /// \brief Returns true if the all the components of the left-hand-side bool3x2 match the other one, otherwise returns false.
 inline bool cmpe( const bool3x2& lhs, const bool3x2& rhs );
@@ -158,6 +174,10 @@ inline bool2x3 transpose( const bool3x2& mat );
 
 // bool3x3
 /// \relates bool3x3
+/// \brief Returns true if all components of the bool3x3 are true, otherwise returns false.
+inline bool all( const bool3x3& x );
+
+/// \relates bool3x3
 /// \brief Returns true if the all the components of the left-hand-side bool3x3 match the other one, otherwise returns false.
 inline bool cmpe( const bool3x3& lhs, const bool3x3& rhs );
 
@@ -175,6 +195,10 @@ inline bool3x3 transpose( const bool3x3& mat );
 
 
 // bool3x4
+/// \relates bool3x4
+/// \brief Returns true if all components of the bool3x4 are true, otherwise returns false.
+inline bool all( const bool3x4& x );
+
 /// \relates bool3x4
 /// \brief Returns true if the all the components of the left-hand-side bool3x4 match the other one, otherwise returns false.
 inline bool cmpe( const bool3x4& lhs, const bool3x4& rhs );
@@ -194,6 +218,10 @@ inline bool4x3 transpose( const bool3x4& mat );
 
 // bool4x2
 /// \relates bool4x2
+/// \brief Returns true if all components of the bool4x2 are true, otherwise returns false.
+inline bool all( const bool4x2& x );
+
+/// \relates bool4x2
 /// \brief Returns true if the all the components of the left-hand-side bool4x2 match the other one, otherwise returns false.
 inline bool cmpe( const bool4x2& lhs, const bool4x2& rhs );
 
@@ -212,6 +240,10 @@ inline bool2x4 transpose( const bool4x2& mat );
 
 // bool4x3
 /// \relates bool4x3
+/// \brief Returns true if all components of the bool4x3 are true, otherwise returns false.
+inline bool all( const bool4x3& x );
+
+/// \relates bool4x3
 /// \brief Returns true if the all the components of the left-hand-side bool4x3 match the other one, otherwise returns false.
 inline bool cmpe( const bool4x3& lhs, const bool4x3& rhs );
 
@@ -229,6 +261,10 @@ inline bool3x4 transpose( const bool4x3& mat );
 
 
 // bool4x4
+/// \relates bool4x4
+/// \brief Returns true if all components of the bool4x4 are true, otherwise returns false.
+inline bool all( const bool4x4& x );
+
 /// \relates bool4x4
 /// \brief Returns true if the all the components of the left-hand-side bool4x4 match the other one, otherwise returns false.
 inline bool cmpe( const bool4x4& lhs, const bool4x4& rhs );
@@ -3561,6 +3597,11 @@ inline double4x4 lookat_rh( const double3& eye, const double3& target, const dou
 #pragma GCC diagnostic ignored "-Wmissing-braces"
 #endif
 
+bool all( const bool2x2& x )
+{
+	return x.rows[0].x && x.rows[0].y && x.rows[1].x && x.rows[1].y;
+}
+
 bool cmpe( const bool2x2& lhs, const bool2x2& rhs )
 {
 	return ( lhs[0] == rhs[0] )
@@ -3584,6 +3625,11 @@ bool2x2 transpose( const bool2x2& mat )
 		mat.rows[0].x, mat.rows[1].x,
 		mat.rows[0].y, mat.rows[1].y
 	};
+}
+
+bool all( const bool2x3& x )
+{
+	return x.rows[0].x && x.rows[0].y && x.rows[0].z && x.rows[1].x && x.rows[1].y && x.rows[1].z;
 }
 
 bool cmpe( const bool2x3& lhs, const bool2x3& rhs )
@@ -3610,6 +3656,11 @@ bool3x2 transpose( const bool2x3& mat )
 		mat.rows[0].y, mat.rows[1].y,
 		mat.rows[0].z, mat.rows[1].z
 	};
+}
+
+bool all( const bool2x4& x )
+{
+	return x.rows[0].x && x.rows[0].y && x.rows[0].z && x.rows[0].w && x.rows[1].x && x.rows[1].y && x.rows[1].z && x.rows[1].w;
 }
 
 bool cmpe( const bool2x4& lhs, const bool2x4& rhs )
@@ -3639,6 +3690,11 @@ bool4x2 transpose( const bool2x4& mat )
 	};
 }
 
+bool all( const bool3x2& x )
+{
+	return x.rows[0].x && x.rows[0].y && x.rows[1].x && x.rows[1].y && x.rows[2].x && x.rows[2].y;
+}
+
 bool cmpe( const bool3x2& lhs, const bool3x2& rhs )
 {
 	return ( lhs[0] == rhs[0] )
@@ -3664,6 +3720,11 @@ bool2x3 transpose( const bool3x2& mat )
 		mat.rows[0].x, mat.rows[1].x, mat.rows[2].x,
 		mat.rows[0].y, mat.rows[1].y, mat.rows[2].y
 	};
+}
+
+bool all( const bool3x3& x )
+{
+	return x.rows[0].x && x.rows[0].y && x.rows[0].z && x.rows[1].x && x.rows[1].y && x.rows[1].z && x.rows[2].x && x.rows[2].y && x.rows[2].z;
 }
 
 bool cmpe( const bool3x3& lhs, const bool3x3& rhs )
@@ -3692,6 +3753,11 @@ bool3x3 transpose( const bool3x3& mat )
 		mat.rows[0].y, mat.rows[1].y, mat.rows[2].y,
 		mat.rows[0].z, mat.rows[1].z, mat.rows[2].z
 	};
+}
+
+bool all( const bool3x4& x )
+{
+	return x.rows[0].x && x.rows[0].y && x.rows[0].z && x.rows[0].w && x.rows[1].x && x.rows[1].y && x.rows[1].z && x.rows[1].w && x.rows[2].x && x.rows[2].y && x.rows[2].z && x.rows[2].w;
 }
 
 bool cmpe( const bool3x4& lhs, const bool3x4& rhs )
@@ -3723,6 +3789,11 @@ bool4x3 transpose( const bool3x4& mat )
 	};
 }
 
+bool all( const bool4x2& x )
+{
+	return x.rows[0].x && x.rows[0].y && x.rows[1].x && x.rows[1].y && x.rows[2].x && x.rows[2].y && x.rows[3].x && x.rows[3].y;
+}
+
 bool cmpe( const bool4x2& lhs, const bool4x2& rhs )
 {
 	return ( lhs[0] == rhs[0] )
@@ -3750,6 +3821,11 @@ bool2x4 transpose( const bool4x2& mat )
 		mat.rows[0].x, mat.rows[1].x, mat.rows[2].x, mat.rows[3].x,
 		mat.rows[0].y, mat.rows[1].y, mat.rows[2].y, mat.rows[3].y
 	};
+}
+
+bool all( const bool4x3& x )
+{
+	return x.rows[0].x && x.rows[0].y && x.rows[0].z && x.rows[1].x && x.rows[1].y && x.rows[1].z && x.rows[2].x && x.rows[2].y && x.rows[2].z && x.rows[3].x && x.rows[3].y && x.rows[3].z;
 }
 
 bool cmpe( const bool4x3& lhs, const bool4x3& rhs )
@@ -3780,6 +3856,11 @@ bool3x4 transpose( const bool4x3& mat )
 		mat.rows[0].y, mat.rows[1].y, mat.rows[2].y, mat.rows[3].y,
 		mat.rows[0].z, mat.rows[1].z, mat.rows[2].z, mat.rows[3].z
 	};
+}
+
+bool all( const bool4x4& x )
+{
+	return x.rows[0].x && x.rows[0].y && x.rows[0].z && x.rows[0].w && x.rows[1].x && x.rows[1].y && x.rows[1].z && x.rows[1].w && x.rows[2].x && x.rows[2].y && x.rows[2].z && x.rows[2].w && x.rows[3].x && x.rows[3].y && x.rows[3].z && x.rows[3].w;
 }
 
 bool cmpe( const bool4x4& lhs, const bool4x4& rhs )

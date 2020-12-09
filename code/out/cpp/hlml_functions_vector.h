@@ -61,6 +61,10 @@ SOFTWARE.
 
 // bool2
 /// \relates bool2
+/// \brief Returns true if all components of the bool2 are true, otherwise returns false.
+inline bool all( const bool2& x );
+
+/// \relates bool2
 /// \brief Returns true if the all the components of the left-hand-side bool2 match the other one, otherwise returns false.
 inline bool cmpe( const bool2& lhs, const bool2& rhs );
 
@@ -71,6 +75,10 @@ inline bool cmpne( const bool2& lhs, const bool2& rhs );
 
 // bool3
 /// \relates bool3
+/// \brief Returns true if all components of the bool3 are true, otherwise returns false.
+inline bool all( const bool3& x );
+
+/// \relates bool3
 /// \brief Returns true if the all the components of the left-hand-side bool3 match the other one, otherwise returns false.
 inline bool cmpe( const bool3& lhs, const bool3& rhs );
 
@@ -80,6 +88,10 @@ inline bool cmpne( const bool3& lhs, const bool3& rhs );
 
 
 // bool4
+/// \relates bool4
+/// \brief Returns true if all components of the bool4 are true, otherwise returns false.
+inline bool all( const bool4& x );
+
 /// \relates bool4
 /// \brief Returns true if the all the components of the left-hand-side bool4 match the other one, otherwise returns false.
 inline bool cmpe( const bool4& lhs, const bool4& rhs );
@@ -1353,6 +1365,11 @@ inline double4 cross( const double4& lhs, const double4& rhs );
 inline double angle( const double4& lhs, const double4& rhs );
 
 
+bool all( const bool2& x )
+{
+	return x.x && x.y;
+}
+
 bool cmpe( const bool2& lhs, const bool2& rhs )
 {
 	return ( lhs.x == rhs.x ) && ( lhs.y == rhs.y );
@@ -1363,6 +1380,11 @@ bool cmpne( const bool2& lhs, const bool2& rhs )
 	return !( cmpe( lhs, rhs ) );
 }
 
+bool all( const bool3& x )
+{
+	return x.x && x.y && x.z;
+}
+
 bool cmpe( const bool3& lhs, const bool3& rhs )
 {
 	return ( lhs.x == rhs.x ) && ( lhs.y == rhs.y ) && ( lhs.z == rhs.z );
@@ -1371,6 +1393,11 @@ bool cmpe( const bool3& lhs, const bool3& rhs )
 bool cmpne( const bool3& lhs, const bool3& rhs )
 {
 	return !( cmpe( lhs, rhs ) );
+}
+
+bool all( const bool4& x )
+{
+	return x.x && x.y && x.z && x.w;
 }
 
 bool cmpe( const bool4& lhs, const bool4& rhs )

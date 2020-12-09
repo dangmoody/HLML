@@ -329,6 +329,9 @@ void				Gen_Lerp( const genLanguage_t language, const genType_t type, const u32 
 void				Gen_Step( const genLanguage_t language, const genType_t type, const u32 numComponents, stringBuilder_t* sbFwdDec, stringBuilder_t* sbImpl );
 void				Gen_Smoothstep( const genLanguage_t language, const genType_t type, const u32 numComponents, stringBuilder_t* sbFwdDec, stringBuilder_t* sbImpl );
 
+// vector/matrix common functions
+void				Gen_FunctionAll( const genLanguage_t language, const genType_t type, const u32 numRows, const u32 numCols, stringBuilder_t* sbFwdDec, stringBuilder_t* sbImpl );
+
 // C++ operator overloads for vectors and matrices
 void				Gen_OperatorsEquality( const genType_t type, const u32 numRows, const u32 numCols, stringBuilder_t* sbFwdDec, stringBuilder_t* sbImpl );
 void				Gen_OperatorsIncrement( const genType_t type, const u32 numRows, const u32 numCols, stringBuilder_t* sbFwdDec, stringBuilder_t* sbImpl );
@@ -588,6 +591,15 @@ inline void Gen_GetFuncNameInternal( const genLanguage_t language, const genType
 		const char* modifier = ( type == GEN_TYPE_FLOAT ) ? "f" : "";
 		snprintf( outString, GEN_STRING_LENGTH_FUNCTION_NAME, "%s%s", funcName, modifier );
 	}
+}
+
+inline void Gen_GetFuncNameAll( const genLanguage_t language, const genType_t type, const u32 numRows, const u32 numCols, char* outString ) {
+	assert( numRows >= 1 );	// 1 for vectors
+	assert( numRows <= GEN_COMPONENT_COUNT_MAX );
+	assert( numCols >= GEN_COMPONENT_COUNT_MIN );
+	assert( numCols <= GEN_COMPONENT_COUNT_MAX );
+
+	Gen_GetFuncNameInternal( language, type, numRows, numCols, "all", outString );
 }
 
 inline void Gen_GetFuncNameEquals( const genLanguage_t language, const genType_t type, const u32 numRows, const u32 numCols, char* outString ) {
