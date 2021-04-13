@@ -39,7 +39,6 @@ extern "C" {
 #endif
 
 /// \brief A vector of 4 int32_ts with components xyzw.
-/// Components are also stored as elements in an array via a union.
 typedef struct int4
 {
 	int32_t x;

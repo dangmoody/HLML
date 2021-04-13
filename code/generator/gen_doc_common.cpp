@@ -23,6 +23,8 @@ along with The HLML Generator.  If not, see <http://www.gnu.org/licenses/>.
 */
 #include "gen_doc_common.h"
 
+#include "gen_common.h"
+
 #include "string_builder.h"
 
 #include <string.h>

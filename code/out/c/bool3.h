@@ -41,7 +41,6 @@ extern "C" {
 #include "../hlml_types.h"
 
 /// \brief A vector of 3 bool32_ts with components xyz.
-/// Components are also stored as elements in an array via a union.
 typedef struct bool3
 {
 	bool32_t x;

@@ -65,7 +65,7 @@ static void Gen_VectorType_C( allocatorLinear_t* allocator, const genType_t type
 		String_Append(  &codeHeader, "\n" );
 	}
 
-	Doc_Vector( &codeHeader, numComponents, memberTypeString );
+	Doc_Vector( &codeHeader, GEN_LANGUAGE_C, numComponents, memberTypeString );
 	String_Appendf( &codeHeader, "typedef struct %s\n", fullTypeName );
 	String_Append(  &codeHeader, "{\n" );
 	for ( u32 i = 0; i < numComponents; i++ ) {

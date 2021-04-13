@@ -333,7 +333,7 @@ void Gen_VectorType_CPP( allocatorLinear_t* allocator, const genType_t type, con
 			"#endif\n" \
 			"\n" );
 
-		Doc_Vector( &codeHeader, numComponents, memberTypeString );
+		Doc_Vector( &codeHeader, GEN_LANGUAGE_CPP, numComponents, memberTypeString );
 		String_Appendf( &codeHeader, "struct %s\n", fullTypeName );
 		String_Append(  &codeHeader, "{\n" );
 		String_Append(  &codeHeader, "\tunion\n" );
