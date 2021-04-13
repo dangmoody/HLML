@@ -21,11 +21,14 @@ along with The HLML Generator.  If not, see <http://www.gnu.org/licenses/>.
 
 ===========================================================================
 */
-#pragma once
+#include "gen_doc_common.h"
 
 #include "string_builder.h"
 
-inline void Doc_Vector( stringBuilder_t* codeHeader, const u32 numComponents, const char* memberTypeString ) {
+#include <string.h>
+#include <assert.h>
+
+void Doc_Vector( stringBuilder_t* codeHeader, const genLanguage_t language, const u32 numComponents, const char* memberTypeString ) {
 	assert( codeHeader );
 	assert( numComponents >= GEN_COMPONENT_COUNT_MIN );
 	assert( numComponents <= GEN_COMPONENT_COUNT_MAX );
@@ -41,7 +44,7 @@ inline void Doc_Vector( stringBuilder_t* codeHeader, const u32 numComponents, co
 	}
 }
 
-inline void Doc_Matrix( stringBuilder_t* codeHeader, const u32 numRows, const char* vectorMemberTypeString ) {
+void Doc_Matrix( stringBuilder_t* codeHeader, const u32 numRows, const char* vectorMemberTypeString ) {
 	assert( codeHeader );
 	assert( numRows >= GEN_COMPONENT_COUNT_MIN );
 	assert( numRows <= GEN_COMPONENT_COUNT_MAX );
@@ -50,68 +53,97 @@ inline void Doc_Matrix( stringBuilder_t* codeHeader, const u32 numRows, const ch
 	String_Appendf( codeHeader, "/// A matrix of %d %ss.\n", numRows, vectorMemberTypeString );
 }
 
-inline void Doc_Floateq( stringBuilder_t* sb ) {
+void Doc_Floateq( stringBuilder_t* sb ) {
+	assert( sb );
+
 	String_Append( sb,
 		"/// \\brief Returns true if the two given floating-point numbers are within a small enough epsilon range of each other that takes into account floating-point inaccuracy.\n"
 	);
 }
 
-inline void Doc_Sign( stringBuilder_t* sb ) {
+void Doc_Sign( stringBuilder_t* sb ) {
+	assert( sb );
+
 	String_Append( sb,
 		"/// \\brief Returns -1 if x is < 0, 0 if x == 0, or 1 if x > 1.\n"
 		"/// This function does no branching.\n"
 	);
 }
 
-inline void Doc_Radians( stringBuilder_t* sb ) {
+void Doc_Radians( stringBuilder_t* sb ) {
+	assert( sb );
+
 	String_Append( sb, "/// \\brief Returns the given degrees to radians.\n" );
 }
 
-inline void Doc_Degrees( stringBuilder_t* sb ) {
+void Doc_Degrees( stringBuilder_t* sb ) {
+	assert( sb );
+
 	String_Append( sb, "/// \\brief Returns the given radians to degrees.\n" );
 }
 
-inline void Doc_Min( stringBuilder_t* sb ) {
+void Doc_Min( stringBuilder_t* sb ) {
+	assert( sb );
+
 	String_Append( sb, "/// \\brief Returns x if its smaller than y, otherwise returns y.\n" );
 }
 
-inline void Doc_Max( stringBuilder_t* sb ) {
+void Doc_Max( stringBuilder_t* sb ) {
+	assert( sb );
+
 	String_Append( sb, "/// \\brief Returns x if its bigger than y, otherwise returns y.\n" );
 }
 
-inline void Doc_Clamp( stringBuilder_t* sb ) {
+void Doc_Clamp( stringBuilder_t* sb ) {
+	assert( sb );
+
 	String_Append( sb, "/// \\brief If x is lower than low or higher than high then returns low or high respectively, otherwise returns x.\n" );
 }
 
-inline void Doc_Saturate( stringBuilder_t* sb, const char* fullTypeName ) {
+void Doc_Saturate( stringBuilder_t* sb, const char* fullTypeName ) {
+	assert( sb );
+	assert( fullTypeName );
+
 	String_Appendf( sb,
 		"/// \\relates %s\n"
 		"/// \\brief Returns a copy of the %s with each component clamped between the range 0 and 1.\n", fullTypeName, fullTypeName
 	);
 }
 
-inline void Doc_Lerp( stringBuilder_t* sb, const char* fullTypeName ) {
+void Doc_Lerp( stringBuilder_t* sb, const char* fullTypeName ) {
+	assert( sb );
+	assert( fullTypeName );
+
 	String_Appendf( sb,
 		"/// \\relates %s\n"
 		"/// \\brief Returns a linearly interpolated %s between types \"a\" and \"b\".\n", fullTypeName, fullTypeName
 	);
 }
 
-inline void Doc_Step( stringBuilder_t* sb, const char* fullTypeName ) {
+void Doc_Step( stringBuilder_t* sb, const char* fullTypeName ) {
+	assert( sb );
+	assert( fullTypeName );
+
 	String_Appendf( sb,
 		"/// \\relates %s\n"
 		"/// \\brief Returns 1 if y is greater than x, otherwise returns 0.\n", fullTypeName
 	);
 }
 
-inline void Doc_Smoothstep( stringBuilder_t* sb, const char* fullTypeName ) {
+void Doc_Smoothstep( stringBuilder_t* sb, const char* fullTypeName ) {
+	assert( sb );
+	assert( fullTypeName );
+
 	String_Appendf( sb,
 		"/// \\relates %s\n"
 		"/// \\brief Performs a sigmoid-like interpolation and clamp.\n", fullTypeName
 	);
 }
 
-inline void Doc_Smootherstep( stringBuilder_t* sb, const char* fullTypeName ) {
+void Doc_Smootherstep( stringBuilder_t* sb, const char* fullTypeName ) {
+	assert( sb );
+	assert( fullTypeName );
+
 	String_Appendf( sb,
 		"/// \\relates %s\n"
 		"/// \\brief Performs a 'smoother' version of smoothstep, as design by Ken Perlin.\n"
@@ -119,14 +151,20 @@ inline void Doc_Smootherstep( stringBuilder_t* sb, const char* fullTypeName ) {
 	);
 }
 
-inline void Doc_FunctionAll( stringBuilder_t* sb, const char* fullTypeName ) {
+void Doc_FunctionAll( stringBuilder_t* sb, const char* fullTypeName ) {
+	assert( sb );
+	assert( fullTypeName );
+
 	String_Appendf( sb,
 		"/// \\relates %s\n"
 		"/// \\brief Returns true if all components of the %s are true, otherwise returns false.\n", fullTypeName, fullTypeName
 	);
 }
 
-inline void Doc_OperatorEquals( stringBuilder_t* sb, const char* fullTypeName ) {
+void Doc_OperatorEquals( stringBuilder_t* sb, const char* fullTypeName ) {
+	assert( sb );
+	assert( fullTypeName );
+
 	String_Appendf( sb,
 		"/// \\relates %s\n"
 		"/// \\brief Returns true if the all the components of the left-hand-side %s match the other one, "
@@ -134,7 +172,10 @@ inline void Doc_OperatorEquals( stringBuilder_t* sb, const char* fullTypeName ) 
 	);
 }
 
-inline void Doc_OperatorNotEquals( stringBuilder_t* sb, const char* fullTypeName ) {
+void Doc_OperatorNotEquals( stringBuilder_t* sb, const char* fullTypeName ) {
+	assert( sb );
+	assert( fullTypeName );
+
 	String_Appendf( sb,
 		"/// \\relates %s\n"
 		"/// \\brief Returns true if not all of the components of the left-hand-side %s match the other one, "
@@ -142,8 +183,13 @@ inline void Doc_OperatorNotEquals( stringBuilder_t* sb, const char* fullTypeName
 	);
 }
 
-inline void Doc_ComponentWiseArithmeticScalar( stringBuilder_t* sb, const char* fullTypeName, const genOpArithmetic_t op ) {
-	const char* adjective;
+void Doc_ComponentWiseArithmeticScalar( stringBuilder_t* sb, const char* fullTypeName, const genOpArithmetic_t op ) {
+	assert( sb );
+	assert( fullTypeName );
+	assert( op >= GEN_OP_ARITHMETIC_ADD && op < GEN_OP_ARITHMETIC_COUNT );
+
+	const char* adjective = NULL;
+
 	switch ( op ) {
 		case GEN_OP_ARITHMETIC_ADD:	adjective = "added";		break;
 		case GEN_OP_ARITHMETIC_SUB:	adjective = "subtracted";	break;
@@ -151,8 +197,6 @@ inline void Doc_ComponentWiseArithmeticScalar( stringBuilder_t* sb, const char* 
 		case GEN_OP_ARITHMETIC_DIV:	adjective = "divided";		break;
 
 		case GEN_OP_ARITHMETIC_COUNT:
-		default:
-			printf( "ERROR: Bad genOpArithmetic_t enum passed into %s.\n", __FUNCTION__ );
 			return;
 	}
 
@@ -162,8 +206,13 @@ inline void Doc_ComponentWiseArithmeticScalar( stringBuilder_t* sb, const char* 
 	);
 }
 
-inline void Doc_OperatorCompoundArithmeticScalar( stringBuilder_t* sb, const char* fullTypeName, const genOpArithmetic_t op ) {
-	const char* verb;
+void Doc_OperatorCompoundArithmeticScalar( stringBuilder_t* sb, const char* fullTypeName, const genOpArithmetic_t op ) {
+	assert( sb );
+	assert( fullTypeName );
+	assert( op >= GEN_OP_ARITHMETIC_ADD && op < GEN_OP_ARITHMETIC_COUNT );
+
+	const char* verb = NULL;
+
 	switch ( op ) {
 		case GEN_OP_ARITHMETIC_ADD:	verb = "Adds";			break;
 		case GEN_OP_ARITHMETIC_SUB:	verb = "Subtracts";		break;
@@ -171,8 +220,6 @@ inline void Doc_OperatorCompoundArithmeticScalar( stringBuilder_t* sb, const cha
 		case GEN_OP_ARITHMETIC_DIV:	verb = "Divides";		break;
 
 		case GEN_OP_ARITHMETIC_COUNT:
-		default:
-			printf( "ERROR: Bad genOpArithmetic_t enum passed into %s.\n", __FUNCTION__ );
 			return;
 	}
 
@@ -182,8 +229,14 @@ inline void Doc_OperatorCompoundArithmeticScalar( stringBuilder_t* sb, const cha
 	);
 }
 
-inline void Doc_ComponentWiseArithmeticRhsType( stringBuilder_t* sb, const char* lhsTypeName, const char* rhsTypeName, const genOpArithmetic_t op ) {
-	const char* adjective;
+void Doc_ComponentWiseArithmeticRhsType( stringBuilder_t* sb, const char* lhsTypeName, const char* rhsTypeName, const genOpArithmetic_t op ) {
+	assert( sb );
+	assert( lhsTypeName );
+	assert( rhsTypeName );
+	assert( op >= GEN_OP_ARITHMETIC_ADD && op < GEN_OP_ARITHMETIC_COUNT );
+
+	const char* adjective = NULL;
+
 	switch ( op ) {
 		case GEN_OP_ARITHMETIC_ADD:	adjective = "added";		break;
 		case GEN_OP_ARITHMETIC_SUB:	adjective = "subtracted";	break;
@@ -191,8 +244,6 @@ inline void Doc_ComponentWiseArithmeticRhsType( stringBuilder_t* sb, const char*
 		case GEN_OP_ARITHMETIC_DIV:	adjective = "divided";		break;
 
 		case GEN_OP_ARITHMETIC_COUNT:
-		default:
-			printf( "ERROR: Bad genOpArithmetic_t enum passed into %s.\n", __FUNCTION__ );
 			return;
 	}
 
@@ -203,8 +254,14 @@ inline void Doc_ComponentWiseArithmeticRhsType( stringBuilder_t* sb, const char*
 	);
 }
 
-inline void Doc_OperatorCompoundComponentWiseArithmeticRhsType( stringBuilder_t* sb, const char* lhsTypeName, const char* rhsTypeName, const genOpArithmetic_t op ) {
-	const char* verb;
+void Doc_OperatorCompoundComponentWiseArithmeticRhsType( stringBuilder_t* sb, const char* lhsTypeName, const char* rhsTypeName, const genOpArithmetic_t op ) {
+	assert( sb );
+	assert( lhsTypeName );
+	assert( rhsTypeName );
+	assert( op >= GEN_OP_ARITHMETIC_ADD && op < GEN_OP_ARITHMETIC_COUNT );
+
+	const char* verb = NULL;
+
 	switch ( op ) {
 		case GEN_OP_ARITHMETIC_ADD:	verb = "Adds";			break;
 		case GEN_OP_ARITHMETIC_SUB:	verb = "Subtracts";		break;
@@ -212,8 +269,6 @@ inline void Doc_OperatorCompoundComponentWiseArithmeticRhsType( stringBuilder_t*
 		case GEN_OP_ARITHMETIC_DIV:	verb = "Divides";		break;
 
 		case GEN_OP_ARITHMETIC_COUNT:
-		default:
-			printf( "ERROR: Bad genOpArithmetic_t enum passed into %s.\n", __FUNCTION__ );
 			return;
 	}
 
@@ -223,9 +278,14 @@ inline void Doc_OperatorCompoundComponentWiseArithmeticRhsType( stringBuilder_t*
 	);
 }
 
-inline void Doc_OperatorIncrementPrefix( stringBuilder_t* sb, const char* fullTypeName, const genOpIncrement_t op ) {
-	const char* verb;
-	const char* noun;
+void Doc_OperatorIncrementPrefix( stringBuilder_t* sb, const char* fullTypeName, const genOpIncrement_t op ) {
+	assert( sb );
+	assert( fullTypeName );
+	assert( op >= GEN_OP_INCREMENT_INCREMENT && op < GEN_OP_INCREMENT_COUNT );
+
+	const char* verb = NULL;
+	const char* noun = NULL;
+
 	switch ( op ) {
 		case GEN_OP_INCREMENT_INCREMENT:
 			noun = "increment";
@@ -238,8 +298,6 @@ inline void Doc_OperatorIncrementPrefix( stringBuilder_t* sb, const char* fullTy
 			break;
 
 		case GEN_OP_INCREMENT_COUNT:
-		default:
-			printf( "ERROR: Bad genOpIncrement_t enum passed into %s.\n", __FUNCTION__ );
 			return;
 	}
 
@@ -249,9 +307,14 @@ inline void Doc_OperatorIncrementPrefix( stringBuilder_t* sb, const char* fullTy
 	);
 }
 
-inline void Doc_OperatorIncrementPostfix( stringBuilder_t* sb, const char* fullTypeName, const genOpIncrement_t op ) {
-	const char* verb;
-	const char* noun;
+void Doc_OperatorIncrementPostfix( stringBuilder_t* sb, const char* fullTypeName, const genOpIncrement_t op ) {
+	assert( sb );
+	assert( fullTypeName );
+	assert( op >= GEN_OP_INCREMENT_INCREMENT && op < GEN_OP_INCREMENT_COUNT );
+
+	const char* verb = NULL;
+	const char* noun = NULL;
+
 	switch ( op ) {
 		case GEN_OP_INCREMENT_INCREMENT:
 			noun = "increment";
@@ -264,8 +327,6 @@ inline void Doc_OperatorIncrementPostfix( stringBuilder_t* sb, const char* fullT
 			break;
 
 		case GEN_OP_INCREMENT_COUNT:
-		default:
-			printf( "ERROR: Bad genOpIncrement_t enum passed into %s.\n", __FUNCTION__ );
 			return;
 	}
 
@@ -275,13 +336,17 @@ inline void Doc_OperatorIncrementPostfix( stringBuilder_t* sb, const char* fullT
 	);
 }
 
-inline void Doc_ComponentWiseRelational( stringBuilder_t* sb, const char* fullTypeName, const u32 numRows, const u32 numCols, const genOpRelational_t op ) {
+void Doc_ComponentWiseRelational( stringBuilder_t* sb, const char* fullTypeName, const u32 numRows, const u32 numCols, const genOpRelational_t op ) {
+	assert( sb );
+	assert( fullTypeName );
 	assert( numRows >= 1 );	// pass through 1 for vectors
 	assert( numRows <= GEN_COMPONENT_COUNT_MAX );
 	assert( numCols >= GEN_COMPONENT_COUNT_MIN );
 	assert( numCols <= GEN_COMPONENT_COUNT_MAX );
+	assert( op >= GEN_OP_RELATIONAL_LESS && op < GEN_OP_RELATIONAL_COUNT );
 
-	const char* noun;
+	const char* noun = NULL;
+
 	switch ( op ) {
 		case GEN_OP_RELATIONAL_LESS:			noun = "less than";					break;
 		case GEN_OP_RELATIONAL_LESS_EQUAL:		noun = "less than or equal to";		break;
@@ -289,8 +354,6 @@ inline void Doc_ComponentWiseRelational( stringBuilder_t* sb, const char* fullTy
 		case GEN_OP_RELATIONAL_GREATER_EQUAL:	noun = "greater than or equal to";	break;
 
 		case GEN_OP_RELATIONAL_COUNT:
-		default:
-			printf( "ERROR: Bad genOpRelational_t enum passed into %s.\n", __FUNCTION__ );
 			return;
 	}
 
@@ -304,9 +367,14 @@ inline void Doc_ComponentWiseRelational( stringBuilder_t* sb, const char* fullTy
 	);
 }
 
-inline void Doc_OperatorBitwiseRhsType( stringBuilder_t* sb, const char* fullTypeName, const genOpBitwise_t op ) {
-	const char* adjective;
-	const char* preposition;
+void Doc_OperatorBitwiseRhsType( stringBuilder_t* sb, const char* fullTypeName, const genOpBitwise_t op ) {
+	assert( sb );
+	assert( fullTypeName );
+	assert( op >= GEN_OP_BITWISE_AND && op < GEN_OP_BITWISE_COUNT );
+
+	const char* adjective = NULL;
+	const char* preposition = NULL;
+
 	switch ( op ) {
 		case GEN_OP_BITWISE_AND:
 			adjective = "bitwise AND'd";
@@ -324,7 +392,7 @@ inline void Doc_OperatorBitwiseRhsType( stringBuilder_t* sb, const char* fullTyp
 			break;
 
 		case GEN_OP_BITWISE_UNARY:
-			printf( "ERROR: For bitwise unary documentation, call Doc_OperatorBitwiseUnary().\n" );
+			assert( false && "ERROR: For bitwise unary documentation, call Doc_OperatorBitwiseUnary().\n" );
 			return;
 
 		case GEN_OP_BITWISE_SHIFT_LEFT:
@@ -338,8 +406,6 @@ inline void Doc_OperatorBitwiseRhsType( stringBuilder_t* sb, const char* fullTyp
 			break;
 
 		case GEN_OP_BITWISE_COUNT:
-		default:
-			printf( "ERROR: Bad genOpArithmetic_t enum passed into %s.\n", __FUNCTION__ );
 			return;
 	}
 
@@ -350,9 +416,14 @@ inline void Doc_OperatorBitwiseRhsType( stringBuilder_t* sb, const char* fullTyp
 	);
 }
 
-inline void Doc_OperatorCompoundBitwiseScalar( stringBuilder_t* sb, const char* fullTypeName, const genOpBitwise_t op ) {
-	const char* opDesc;
-	const char* preposition;
+void Doc_OperatorCompoundBitwiseScalar( stringBuilder_t* sb, const char* fullTypeName, const genOpBitwise_t op ) {
+	assert( sb );
+	assert( fullTypeName );
+	assert( op >= GEN_OP_BITWISE_AND && op < GEN_OP_BITWISE_COUNT );
+
+	const char* opDesc = NULL;
+	const char* preposition = NULL;
+
 	switch ( op ) {
 		case GEN_OP_BITWISE_AND:
 			opDesc = "bitwise AND";
@@ -370,7 +441,7 @@ inline void Doc_OperatorCompoundBitwiseScalar( stringBuilder_t* sb, const char* 
 			break;
 
 		case GEN_OP_BITWISE_UNARY:
-			printf( "ERROR: For bitwise unary documentation, call Doc_OperatorBitwiseUnary().\n" );
+			assert( false && "ERROR: For bitwise unary documentation, call Doc_OperatorBitwiseUnary().\n" );
 			return;
 
 		case GEN_OP_BITWISE_SHIFT_LEFT:
@@ -384,8 +455,6 @@ inline void Doc_OperatorCompoundBitwiseScalar( stringBuilder_t* sb, const char* 
 			break;
 
 		case GEN_OP_BITWISE_COUNT:
-		default:
-			printf( "ERROR: Bad genOpArithmetic_t enum passed into %s.\n", __FUNCTION__ );
 			return;
 	}
 
@@ -395,9 +464,14 @@ inline void Doc_OperatorCompoundBitwiseScalar( stringBuilder_t* sb, const char* 
 	);
 }
 
-inline void Doc_OperatorCompoundBitwiseRhsType( stringBuilder_t* sb, const char* fullTypeName, const genOpBitwise_t op ) {
-	const char* opDesc;
-	const char* preposition;
+void Doc_OperatorCompoundBitwiseRhsType( stringBuilder_t* sb, const char* fullTypeName, const genOpBitwise_t op ) {
+	assert( sb );
+	assert( fullTypeName );
+	assert( op >= GEN_OP_BITWISE_AND && op < GEN_OP_BITWISE_COUNT );
+
+	const char* opDesc = NULL;
+	const char* preposition = NULL;
+
 	switch ( op ) {
 		case GEN_OP_BITWISE_AND:
 			opDesc = "bitwise AND";
@@ -415,7 +489,7 @@ inline void Doc_OperatorCompoundBitwiseRhsType( stringBuilder_t* sb, const char*
 			break;
 
 		case GEN_OP_BITWISE_UNARY:
-			printf( "ERROR: For bitwise unary documentation, call Doc_OperatorBitwiseUnary().\n" );
+			assert( false && "ERROR: For bitwise unary documentation, call Doc_OperatorBitwiseUnary().\n" );
 			return;
 
 		case GEN_OP_BITWISE_SHIFT_LEFT:
@@ -429,8 +503,6 @@ inline void Doc_OperatorCompoundBitwiseRhsType( stringBuilder_t* sb, const char*
 			break;
 
 		case GEN_OP_BITWISE_COUNT:
-		default:
-			printf( "ERROR: Bad genOpArithmetic_t enum passed into %s.\n", __FUNCTION__ );
 			return;
 	}
 
@@ -441,7 +513,10 @@ inline void Doc_OperatorCompoundBitwiseRhsType( stringBuilder_t* sb, const char*
 	);
 }
 
-inline void Doc_OperatorBitwiseUnary( stringBuilder_t* sb, const char* fullTypeName ) {
+void Doc_OperatorBitwiseUnary( stringBuilder_t* sb, const char* fullTypeName ) {
+	assert( sb );
+	assert( fullTypeName );
+
 	String_Appendf( sb,
 		"/// \\relates %s\n"
 		"/// \\brief Performs a unary bitwise operation on all components of the given %s.\n", fullTypeName, fullTypeName
