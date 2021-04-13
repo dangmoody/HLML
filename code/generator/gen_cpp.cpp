@@ -122,7 +122,7 @@ static void GenerateVectorOperatorComponentWiseArithmeticRhsType( const genType_
 	String_Appendf( sbFwdDec, "inline %s operator%c=( %s& lhs, const %s& rhs );\n", fullTypeName, opStr, fullTypeName, fullTypeName );
 	String_Append(  sbFwdDec, "\n" );
 
-	String_Appendf( sbImpl, "%s operator%c=( %s& lhs, const %s rhs )\n", fullTypeName, opStr, fullTypeName, fullTypeName );
+	String_Appendf( sbImpl, "%s operator%c=( %s& lhs, const %s& rhs )\n", fullTypeName, opStr, fullTypeName, fullTypeName );
 	String_Append(  sbImpl, "{\n" );
 	String_Appendf( sbImpl, "\treturn ( lhs = lhs %c rhs );\n", opStr );
 	String_Append(  sbImpl, "}\n" );
