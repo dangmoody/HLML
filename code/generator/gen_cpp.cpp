@@ -104,17 +104,14 @@ static void GenerateVectorOperatorComponentWiseArithmeticRhsType( const genType_
 	char fullTypeName[GEN_STRING_LENGTH_TYPE_NAME];
 	Gen_GetFullTypeName( type, 1, numComponents, fullTypeName );
 
-	char parmTypeName[GEN_STRING_LENGTH_TYPE_NAME];
-	Gen_GetParmTypeName( GEN_LANGUAGE_CPP, type, 1, numComponents, parmTypeName );
-
 	char opStr = GEN_OPERATORS_ARITHMETIC[op];
 
 	// main arithmetic func
 	Doc_ComponentWiseArithmeticRhsType( sbFwdDec, fullTypeName, fullTypeName, op );
-	String_Appendf( sbFwdDec, "inline %s operator%c( const %s lhs, const %s rhs );\n", fullTypeName, opStr, parmTypeName, parmTypeName );
+	String_Appendf( sbFwdDec, "inline %s operator%c( const %s lhs, const %s rhs );\n", fullTypeName, opStr, fullTypeName, fullTypeName );
 	String_Append(  sbFwdDec, "\n" );
 
-	String_Appendf( sbImpl, "%s operator%c( const %s lhs, const %s rhs )\n", fullTypeName, opStr, parmTypeName, parmTypeName );
+	String_Appendf( sbImpl, "%s operator%c( const %s lhs, const %s rhs )\n", fullTypeName, opStr, fullTypeName, fullTypeName );
 	String_Append(  sbImpl, "{\n" );
 	Gen_VectorGetCodeComponentWiseArithmeticRhsType( GEN_LANGUAGE_CPP, type, numComponents, op, sbImpl );
 	String_Append( sbImpl, "}\n" );
@@ -122,10 +119,10 @@ static void GenerateVectorOperatorComponentWiseArithmeticRhsType( const genType_
 
 	// compound arithmetic func
 	Doc_OperatorCompoundComponentWiseArithmeticRhsType( sbFwdDec, fullTypeName, fullTypeName, op );
-	String_Appendf( sbFwdDec, "inline %s operator%c=( %s& lhs, const %s rhs );\n", fullTypeName, opStr, parmTypeName, parmTypeName );
+	String_Appendf( sbFwdDec, "inline %s operator%c=( %s& lhs, const %s rhs );\n", fullTypeName, opStr, fullTypeName, fullTypeName );
 	String_Append(  sbFwdDec, "\n" );
 
-	String_Appendf( sbImpl, "%s operator%c=( %s& lhs, const %s rhs )\n", fullTypeName, opStr, parmTypeName, parmTypeName );
+	String_Appendf( sbImpl, "%s operator%c=( %s& lhs, const %s rhs )\n", fullTypeName, opStr, fullTypeName, fullTypeName );
 	String_Append(  sbImpl, "{\n" );
 	String_Appendf( sbImpl, "\treturn ( lhs = lhs %c rhs );\n", opStr );
 	String_Append(  sbImpl, "}\n" );
