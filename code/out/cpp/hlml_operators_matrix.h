@@ -3631,8 +3631,8 @@ int2x2 operator+( const int2x2& lhs, const int32_t scalar )
 int2x2 operator+( const int2x2& lhs, const int2x2& rhs )
 {
 	return HLML_CONSTRUCT( int2x2 ) {
-		comp_addv( lhs.rows[0], rhs.rows[0] ),
-		comp_addv( lhs.rows[1], rhs.rows[1] )
+		caddv( lhs.rows[0], rhs.rows[0] ),
+		caddv( lhs.rows[1], rhs.rows[1] )
 	};
 }
 
@@ -3647,8 +3647,8 @@ int2x2 operator-( const int2x2& lhs, const int32_t scalar )
 int2x2 operator-( const int2x2& lhs, const int2x2& rhs )
 {
 	return HLML_CONSTRUCT( int2x2 ) {
-		comp_subv( lhs.rows[0], rhs.rows[0] ),
-		comp_subv( lhs.rows[1], rhs.rows[1] )
+		csubv( lhs.rows[0], rhs.rows[0] ),
+		csubv( lhs.rows[1], rhs.rows[1] )
 	};
 }
 
@@ -3685,8 +3685,8 @@ int2x2 operator/( const int2x2& lhs, const int32_t scalar )
 int2x2 operator/( const int2x2& lhs, const int2x2& rhs )
 {
 	return HLML_CONSTRUCT( int2x2 ) {
-		comp_divv( lhs.rows[0], rhs.rows[0] ),
-		comp_divv( lhs.rows[1], rhs.rows[1] )
+		cdivv( lhs.rows[0], rhs.rows[0] ),
+		cdivv( lhs.rows[1], rhs.rows[1] )
 	};
 }
 
@@ -3734,8 +3734,8 @@ int2x2& operator--( int2x2& lhs, const int )
 int2x2 operator&( int2x2& lhs, const int2x2& rhs )
 {
 	return HLML_CONSTRUCT( int2x2 ) {
-		comp_and( lhs.rows[0], rhs.rows[0] ),
-		comp_and( lhs.rows[1], rhs.rows[1] )
+		cand( lhs.rows[0], rhs.rows[0] ),
+		cand( lhs.rows[1], rhs.rows[1] )
 	};
 }
 
@@ -3747,8 +3747,8 @@ int2x2 operator&=( int2x2& lhs, const int2x2& rhs )
 int2x2 operator|( int2x2& lhs, const int2x2& rhs )
 {
 	return HLML_CONSTRUCT( int2x2 ) {
-		comp_or( lhs.rows[0], rhs.rows[0] ),
-		comp_or( lhs.rows[1], rhs.rows[1] )
+		cor( lhs.rows[0], rhs.rows[0] ),
+		cor( lhs.rows[1], rhs.rows[1] )
 	};
 }
 
@@ -3760,8 +3760,8 @@ int2x2 operator|=( int2x2& lhs, const int2x2& rhs )
 int2x2 operator^( int2x2& lhs, const int2x2& rhs )
 {
 	return HLML_CONSTRUCT( int2x2 ) {
-		comp_xor( lhs.rows[0], rhs.rows[0] ),
-		comp_xor( lhs.rows[1], rhs.rows[1] )
+		cxor( lhs.rows[0], rhs.rows[0] ),
+		cxor( lhs.rows[1], rhs.rows[1] )
 	};
 }
 
@@ -3773,8 +3773,8 @@ int2x2 operator^=( int2x2& lhs, const int2x2& rhs )
 int2x2 operator<<( int2x2& lhs, const int2x2& rhs )
 {
 	return HLML_CONSTRUCT( int2x2 ) {
-		comp_shift_left( lhs.rows[0], rhs.rows[0] ),
-		comp_shift_left( lhs.rows[1], rhs.rows[1] )
+		cshift_left( lhs.rows[0], rhs.rows[0] ),
+		cshift_left( lhs.rows[1], rhs.rows[1] )
 	};
 }
 
@@ -3786,8 +3786,8 @@ int2x2 operator<<=( int2x2& lhs, const int2x2& rhs )
 int2x2 operator>>( int2x2& lhs, const int2x2& rhs )
 {
 	return HLML_CONSTRUCT( int2x2 ) {
-		comp_shift_right( lhs.rows[0], rhs.rows[0] ),
-		comp_shift_right( lhs.rows[1], rhs.rows[1] )
+		cshift_right( lhs.rows[0], rhs.rows[0] ),
+		cshift_right( lhs.rows[1], rhs.rows[1] )
 	};
 }
 
@@ -3799,8 +3799,8 @@ int2x2 operator>>=( int2x2& lhs, const int2x2& rhs )
 int2x2 operator~( int2x2& lhs )
 {
 	return HLML_CONSTRUCT( int2x2 ) {
-		comp_unary( lhs.rows[0] ),
-		comp_unary( lhs.rows[1] )
+		cunary( lhs.rows[0] ),
+		cunary( lhs.rows[1] )
 	};
 }
 
@@ -3858,8 +3858,8 @@ int2x3 operator+( const int2x3& lhs, const int32_t scalar )
 int2x3 operator+( const int2x3& lhs, const int2x3& rhs )
 {
 	return HLML_CONSTRUCT( int2x3 ) {
-		comp_addv( lhs.rows[0], rhs.rows[0] ),
-		comp_addv( lhs.rows[1], rhs.rows[1] )
+		caddv( lhs.rows[0], rhs.rows[0] ),
+		caddv( lhs.rows[1], rhs.rows[1] )
 	};
 }
 
@@ -3874,8 +3874,8 @@ int2x3 operator-( const int2x3& lhs, const int32_t scalar )
 int2x3 operator-( const int2x3& lhs, const int2x3& rhs )
 {
 	return HLML_CONSTRUCT( int2x3 ) {
-		comp_subv( lhs.rows[0], rhs.rows[0] ),
-		comp_subv( lhs.rows[1], rhs.rows[1] )
+		csubv( lhs.rows[0], rhs.rows[0] ),
+		csubv( lhs.rows[1], rhs.rows[1] )
 	};
 }
 
@@ -3907,8 +3907,8 @@ int2x3 operator/( const int2x3& lhs, const int32_t scalar )
 int2x3 operator/( const int2x3& lhs, const int2x3& rhs )
 {
 	return HLML_CONSTRUCT( int2x3 ) {
-		comp_divv( lhs.rows[0], rhs.rows[0] ),
-		comp_divv( lhs.rows[1], rhs.rows[1] )
+		cdivv( lhs.rows[0], rhs.rows[0] ),
+		cdivv( lhs.rows[1], rhs.rows[1] )
 	};
 }
 
@@ -3943,8 +3943,8 @@ int2x3& operator--( int2x3& lhs, const int )
 int2x3 operator&( int2x3& lhs, const int2x3& rhs )
 {
 	return HLML_CONSTRUCT( int2x3 ) {
-		comp_and( lhs.rows[0], rhs.rows[0] ),
-		comp_and( lhs.rows[1], rhs.rows[1] )
+		cand( lhs.rows[0], rhs.rows[0] ),
+		cand( lhs.rows[1], rhs.rows[1] )
 	};
 }
 
@@ -3956,8 +3956,8 @@ int2x3 operator&=( int2x3& lhs, const int2x3& rhs )
 int2x3 operator|( int2x3& lhs, const int2x3& rhs )
 {
 	return HLML_CONSTRUCT( int2x3 ) {
-		comp_or( lhs.rows[0], rhs.rows[0] ),
-		comp_or( lhs.rows[1], rhs.rows[1] )
+		cor( lhs.rows[0], rhs.rows[0] ),
+		cor( lhs.rows[1], rhs.rows[1] )
 	};
 }
 
@@ -3969,8 +3969,8 @@ int2x3 operator|=( int2x3& lhs, const int2x3& rhs )
 int2x3 operator^( int2x3& lhs, const int2x3& rhs )
 {
 	return HLML_CONSTRUCT( int2x3 ) {
-		comp_xor( lhs.rows[0], rhs.rows[0] ),
-		comp_xor( lhs.rows[1], rhs.rows[1] )
+		cxor( lhs.rows[0], rhs.rows[0] ),
+		cxor( lhs.rows[1], rhs.rows[1] )
 	};
 }
 
@@ -3982,8 +3982,8 @@ int2x3 operator^=( int2x3& lhs, const int2x3& rhs )
 int2x3 operator<<( int2x3& lhs, const int2x3& rhs )
 {
 	return HLML_CONSTRUCT( int2x3 ) {
-		comp_shift_left( lhs.rows[0], rhs.rows[0] ),
-		comp_shift_left( lhs.rows[1], rhs.rows[1] )
+		cshift_left( lhs.rows[0], rhs.rows[0] ),
+		cshift_left( lhs.rows[1], rhs.rows[1] )
 	};
 }
 
@@ -3995,8 +3995,8 @@ int2x3 operator<<=( int2x3& lhs, const int2x3& rhs )
 int2x3 operator>>( int2x3& lhs, const int2x3& rhs )
 {
 	return HLML_CONSTRUCT( int2x3 ) {
-		comp_shift_right( lhs.rows[0], rhs.rows[0] ),
-		comp_shift_right( lhs.rows[1], rhs.rows[1] )
+		cshift_right( lhs.rows[0], rhs.rows[0] ),
+		cshift_right( lhs.rows[1], rhs.rows[1] )
 	};
 }
 
@@ -4008,8 +4008,8 @@ int2x3 operator>>=( int2x3& lhs, const int2x3& rhs )
 int2x3 operator~( int2x3& lhs )
 {
 	return HLML_CONSTRUCT( int2x3 ) {
-		comp_unary( lhs.rows[0] ),
-		comp_unary( lhs.rows[1] )
+		cunary( lhs.rows[0] ),
+		cunary( lhs.rows[1] )
 	};
 }
 
@@ -4067,8 +4067,8 @@ int2x4 operator+( const int2x4& lhs, const int32_t scalar )
 int2x4 operator+( const int2x4& lhs, const int2x4& rhs )
 {
 	return HLML_CONSTRUCT( int2x4 ) {
-		comp_addv( lhs.rows[0], rhs.rows[0] ),
-		comp_addv( lhs.rows[1], rhs.rows[1] )
+		caddv( lhs.rows[0], rhs.rows[0] ),
+		caddv( lhs.rows[1], rhs.rows[1] )
 	};
 }
 
@@ -4083,8 +4083,8 @@ int2x4 operator-( const int2x4& lhs, const int32_t scalar )
 int2x4 operator-( const int2x4& lhs, const int2x4& rhs )
 {
 	return HLML_CONSTRUCT( int2x4 ) {
-		comp_subv( lhs.rows[0], rhs.rows[0] ),
-		comp_subv( lhs.rows[1], rhs.rows[1] )
+		csubv( lhs.rows[0], rhs.rows[0] ),
+		csubv( lhs.rows[1], rhs.rows[1] )
 	};
 }
 
@@ -4116,8 +4116,8 @@ int2x4 operator/( const int2x4& lhs, const int32_t scalar )
 int2x4 operator/( const int2x4& lhs, const int2x4& rhs )
 {
 	return HLML_CONSTRUCT( int2x4 ) {
-		comp_divv( lhs.rows[0], rhs.rows[0] ),
-		comp_divv( lhs.rows[1], rhs.rows[1] )
+		cdivv( lhs.rows[0], rhs.rows[0] ),
+		cdivv( lhs.rows[1], rhs.rows[1] )
 	};
 }
 
@@ -4152,8 +4152,8 @@ int2x4& operator--( int2x4& lhs, const int )
 int2x4 operator&( int2x4& lhs, const int2x4& rhs )
 {
 	return HLML_CONSTRUCT( int2x4 ) {
-		comp_and( lhs.rows[0], rhs.rows[0] ),
-		comp_and( lhs.rows[1], rhs.rows[1] )
+		cand( lhs.rows[0], rhs.rows[0] ),
+		cand( lhs.rows[1], rhs.rows[1] )
 	};
 }
 
@@ -4165,8 +4165,8 @@ int2x4 operator&=( int2x4& lhs, const int2x4& rhs )
 int2x4 operator|( int2x4& lhs, const int2x4& rhs )
 {
 	return HLML_CONSTRUCT( int2x4 ) {
-		comp_or( lhs.rows[0], rhs.rows[0] ),
-		comp_or( lhs.rows[1], rhs.rows[1] )
+		cor( lhs.rows[0], rhs.rows[0] ),
+		cor( lhs.rows[1], rhs.rows[1] )
 	};
 }
 
@@ -4178,8 +4178,8 @@ int2x4 operator|=( int2x4& lhs, const int2x4& rhs )
 int2x4 operator^( int2x4& lhs, const int2x4& rhs )
 {
 	return HLML_CONSTRUCT( int2x4 ) {
-		comp_xor( lhs.rows[0], rhs.rows[0] ),
-		comp_xor( lhs.rows[1], rhs.rows[1] )
+		cxor( lhs.rows[0], rhs.rows[0] ),
+		cxor( lhs.rows[1], rhs.rows[1] )
 	};
 }
 
@@ -4191,8 +4191,8 @@ int2x4 operator^=( int2x4& lhs, const int2x4& rhs )
 int2x4 operator<<( int2x4& lhs, const int2x4& rhs )
 {
 	return HLML_CONSTRUCT( int2x4 ) {
-		comp_shift_left( lhs.rows[0], rhs.rows[0] ),
-		comp_shift_left( lhs.rows[1], rhs.rows[1] )
+		cshift_left( lhs.rows[0], rhs.rows[0] ),
+		cshift_left( lhs.rows[1], rhs.rows[1] )
 	};
 }
 
@@ -4204,8 +4204,8 @@ int2x4 operator<<=( int2x4& lhs, const int2x4& rhs )
 int2x4 operator>>( int2x4& lhs, const int2x4& rhs )
 {
 	return HLML_CONSTRUCT( int2x4 ) {
-		comp_shift_right( lhs.rows[0], rhs.rows[0] ),
-		comp_shift_right( lhs.rows[1], rhs.rows[1] )
+		cshift_right( lhs.rows[0], rhs.rows[0] ),
+		cshift_right( lhs.rows[1], rhs.rows[1] )
 	};
 }
 
@@ -4217,8 +4217,8 @@ int2x4 operator>>=( int2x4& lhs, const int2x4& rhs )
 int2x4 operator~( int2x4& lhs )
 {
 	return HLML_CONSTRUCT( int2x4 ) {
-		comp_unary( lhs.rows[0] ),
-		comp_unary( lhs.rows[1] )
+		cunary( lhs.rows[0] ),
+		cunary( lhs.rows[1] )
 	};
 }
 
@@ -4278,9 +4278,9 @@ int3x2 operator+( const int3x2& lhs, const int32_t scalar )
 int3x2 operator+( const int3x2& lhs, const int3x2& rhs )
 {
 	return HLML_CONSTRUCT( int3x2 ) {
-		comp_addv( lhs.rows[0], rhs.rows[0] ),
-		comp_addv( lhs.rows[1], rhs.rows[1] ),
-		comp_addv( lhs.rows[2], rhs.rows[2] )
+		caddv( lhs.rows[0], rhs.rows[0] ),
+		caddv( lhs.rows[1], rhs.rows[1] ),
+		caddv( lhs.rows[2], rhs.rows[2] )
 	};
 }
 
@@ -4296,9 +4296,9 @@ int3x2 operator-( const int3x2& lhs, const int32_t scalar )
 int3x2 operator-( const int3x2& lhs, const int3x2& rhs )
 {
 	return HLML_CONSTRUCT( int3x2 ) {
-		comp_subv( lhs.rows[0], rhs.rows[0] ),
-		comp_subv( lhs.rows[1], rhs.rows[1] ),
-		comp_subv( lhs.rows[2], rhs.rows[2] )
+		csubv( lhs.rows[0], rhs.rows[0] ),
+		csubv( lhs.rows[1], rhs.rows[1] ),
+		csubv( lhs.rows[2], rhs.rows[2] )
 	};
 }
 
@@ -4339,9 +4339,9 @@ int3x2 operator/( const int3x2& lhs, const int32_t scalar )
 int3x2 operator/( const int3x2& lhs, const int3x2& rhs )
 {
 	return HLML_CONSTRUCT( int3x2 ) {
-		comp_divv( lhs.rows[0], rhs.rows[0] ),
-		comp_divv( lhs.rows[1], rhs.rows[1] ),
-		comp_divv( lhs.rows[2], rhs.rows[2] )
+		cdivv( lhs.rows[0], rhs.rows[0] ),
+		cdivv( lhs.rows[1], rhs.rows[1] ),
+		cdivv( lhs.rows[2], rhs.rows[2] )
 	};
 }
 
@@ -4380,9 +4380,9 @@ int3x2& operator--( int3x2& lhs, const int )
 int3x2 operator&( int3x2& lhs, const int3x2& rhs )
 {
 	return HLML_CONSTRUCT( int3x2 ) {
-		comp_and( lhs.rows[0], rhs.rows[0] ),
-		comp_and( lhs.rows[1], rhs.rows[1] ),
-		comp_and( lhs.rows[2], rhs.rows[2] )
+		cand( lhs.rows[0], rhs.rows[0] ),
+		cand( lhs.rows[1], rhs.rows[1] ),
+		cand( lhs.rows[2], rhs.rows[2] )
 	};
 }
 
@@ -4394,9 +4394,9 @@ int3x2 operator&=( int3x2& lhs, const int3x2& rhs )
 int3x2 operator|( int3x2& lhs, const int3x2& rhs )
 {
 	return HLML_CONSTRUCT( int3x2 ) {
-		comp_or( lhs.rows[0], rhs.rows[0] ),
-		comp_or( lhs.rows[1], rhs.rows[1] ),
-		comp_or( lhs.rows[2], rhs.rows[2] )
+		cor( lhs.rows[0], rhs.rows[0] ),
+		cor( lhs.rows[1], rhs.rows[1] ),
+		cor( lhs.rows[2], rhs.rows[2] )
 	};
 }
 
@@ -4408,9 +4408,9 @@ int3x2 operator|=( int3x2& lhs, const int3x2& rhs )
 int3x2 operator^( int3x2& lhs, const int3x2& rhs )
 {
 	return HLML_CONSTRUCT( int3x2 ) {
-		comp_xor( lhs.rows[0], rhs.rows[0] ),
-		comp_xor( lhs.rows[1], rhs.rows[1] ),
-		comp_xor( lhs.rows[2], rhs.rows[2] )
+		cxor( lhs.rows[0], rhs.rows[0] ),
+		cxor( lhs.rows[1], rhs.rows[1] ),
+		cxor( lhs.rows[2], rhs.rows[2] )
 	};
 }
 
@@ -4422,9 +4422,9 @@ int3x2 operator^=( int3x2& lhs, const int3x2& rhs )
 int3x2 operator<<( int3x2& lhs, const int3x2& rhs )
 {
 	return HLML_CONSTRUCT( int3x2 ) {
-		comp_shift_left( lhs.rows[0], rhs.rows[0] ),
-		comp_shift_left( lhs.rows[1], rhs.rows[1] ),
-		comp_shift_left( lhs.rows[2], rhs.rows[2] )
+		cshift_left( lhs.rows[0], rhs.rows[0] ),
+		cshift_left( lhs.rows[1], rhs.rows[1] ),
+		cshift_left( lhs.rows[2], rhs.rows[2] )
 	};
 }
 
@@ -4436,9 +4436,9 @@ int3x2 operator<<=( int3x2& lhs, const int3x2& rhs )
 int3x2 operator>>( int3x2& lhs, const int3x2& rhs )
 {
 	return HLML_CONSTRUCT( int3x2 ) {
-		comp_shift_right( lhs.rows[0], rhs.rows[0] ),
-		comp_shift_right( lhs.rows[1], rhs.rows[1] ),
-		comp_shift_right( lhs.rows[2], rhs.rows[2] )
+		cshift_right( lhs.rows[0], rhs.rows[0] ),
+		cshift_right( lhs.rows[1], rhs.rows[1] ),
+		cshift_right( lhs.rows[2], rhs.rows[2] )
 	};
 }
 
@@ -4450,9 +4450,9 @@ int3x2 operator>>=( int3x2& lhs, const int3x2& rhs )
 int3x2 operator~( int3x2& lhs )
 {
 	return HLML_CONSTRUCT( int3x2 ) {
-		comp_unary( lhs.rows[0] ),
-		comp_unary( lhs.rows[1] ),
-		comp_unary( lhs.rows[2] )
+		cunary( lhs.rows[0] ),
+		cunary( lhs.rows[1] ),
+		cunary( lhs.rows[2] )
 	};
 }
 
@@ -4516,9 +4516,9 @@ int3x3 operator+( const int3x3& lhs, const int32_t scalar )
 int3x3 operator+( const int3x3& lhs, const int3x3& rhs )
 {
 	return HLML_CONSTRUCT( int3x3 ) {
-		comp_addv( lhs.rows[0], rhs.rows[0] ),
-		comp_addv( lhs.rows[1], rhs.rows[1] ),
-		comp_addv( lhs.rows[2], rhs.rows[2] )
+		caddv( lhs.rows[0], rhs.rows[0] ),
+		caddv( lhs.rows[1], rhs.rows[1] ),
+		caddv( lhs.rows[2], rhs.rows[2] )
 	};
 }
 
@@ -4534,9 +4534,9 @@ int3x3 operator-( const int3x3& lhs, const int32_t scalar )
 int3x3 operator-( const int3x3& lhs, const int3x3& rhs )
 {
 	return HLML_CONSTRUCT( int3x3 ) {
-		comp_subv( lhs.rows[0], rhs.rows[0] ),
-		comp_subv( lhs.rows[1], rhs.rows[1] ),
-		comp_subv( lhs.rows[2], rhs.rows[2] )
+		csubv( lhs.rows[0], rhs.rows[0] ),
+		csubv( lhs.rows[1], rhs.rows[1] ),
+		csubv( lhs.rows[2], rhs.rows[2] )
 	};
 }
 
@@ -4582,9 +4582,9 @@ int3x3 operator/( const int3x3& lhs, const int32_t scalar )
 int3x3 operator/( const int3x3& lhs, const int3x3& rhs )
 {
 	return HLML_CONSTRUCT( int3x3 ) {
-		comp_divv( lhs.rows[0], rhs.rows[0] ),
-		comp_divv( lhs.rows[1], rhs.rows[1] ),
-		comp_divv( lhs.rows[2], rhs.rows[2] )
+		cdivv( lhs.rows[0], rhs.rows[0] ),
+		cdivv( lhs.rows[1], rhs.rows[1] ),
+		cdivv( lhs.rows[2], rhs.rows[2] )
 	};
 }
 
@@ -4637,9 +4637,9 @@ int3x3& operator--( int3x3& lhs, const int )
 int3x3 operator&( int3x3& lhs, const int3x3& rhs )
 {
 	return HLML_CONSTRUCT( int3x3 ) {
-		comp_and( lhs.rows[0], rhs.rows[0] ),
-		comp_and( lhs.rows[1], rhs.rows[1] ),
-		comp_and( lhs.rows[2], rhs.rows[2] )
+		cand( lhs.rows[0], rhs.rows[0] ),
+		cand( lhs.rows[1], rhs.rows[1] ),
+		cand( lhs.rows[2], rhs.rows[2] )
 	};
 }
 
@@ -4651,9 +4651,9 @@ int3x3 operator&=( int3x3& lhs, const int3x3& rhs )
 int3x3 operator|( int3x3& lhs, const int3x3& rhs )
 {
 	return HLML_CONSTRUCT( int3x3 ) {
-		comp_or( lhs.rows[0], rhs.rows[0] ),
-		comp_or( lhs.rows[1], rhs.rows[1] ),
-		comp_or( lhs.rows[2], rhs.rows[2] )
+		cor( lhs.rows[0], rhs.rows[0] ),
+		cor( lhs.rows[1], rhs.rows[1] ),
+		cor( lhs.rows[2], rhs.rows[2] )
 	};
 }
 
@@ -4665,9 +4665,9 @@ int3x3 operator|=( int3x3& lhs, const int3x3& rhs )
 int3x3 operator^( int3x3& lhs, const int3x3& rhs )
 {
 	return HLML_CONSTRUCT( int3x3 ) {
-		comp_xor( lhs.rows[0], rhs.rows[0] ),
-		comp_xor( lhs.rows[1], rhs.rows[1] ),
-		comp_xor( lhs.rows[2], rhs.rows[2] )
+		cxor( lhs.rows[0], rhs.rows[0] ),
+		cxor( lhs.rows[1], rhs.rows[1] ),
+		cxor( lhs.rows[2], rhs.rows[2] )
 	};
 }
 
@@ -4679,9 +4679,9 @@ int3x3 operator^=( int3x3& lhs, const int3x3& rhs )
 int3x3 operator<<( int3x3& lhs, const int3x3& rhs )
 {
 	return HLML_CONSTRUCT( int3x3 ) {
-		comp_shift_left( lhs.rows[0], rhs.rows[0] ),
-		comp_shift_left( lhs.rows[1], rhs.rows[1] ),
-		comp_shift_left( lhs.rows[2], rhs.rows[2] )
+		cshift_left( lhs.rows[0], rhs.rows[0] ),
+		cshift_left( lhs.rows[1], rhs.rows[1] ),
+		cshift_left( lhs.rows[2], rhs.rows[2] )
 	};
 }
 
@@ -4693,9 +4693,9 @@ int3x3 operator<<=( int3x3& lhs, const int3x3& rhs )
 int3x3 operator>>( int3x3& lhs, const int3x3& rhs )
 {
 	return HLML_CONSTRUCT( int3x3 ) {
-		comp_shift_right( lhs.rows[0], rhs.rows[0] ),
-		comp_shift_right( lhs.rows[1], rhs.rows[1] ),
-		comp_shift_right( lhs.rows[2], rhs.rows[2] )
+		cshift_right( lhs.rows[0], rhs.rows[0] ),
+		cshift_right( lhs.rows[1], rhs.rows[1] ),
+		cshift_right( lhs.rows[2], rhs.rows[2] )
 	};
 }
 
@@ -4707,9 +4707,9 @@ int3x3 operator>>=( int3x3& lhs, const int3x3& rhs )
 int3x3 operator~( int3x3& lhs )
 {
 	return HLML_CONSTRUCT( int3x3 ) {
-		comp_unary( lhs.rows[0] ),
-		comp_unary( lhs.rows[1] ),
-		comp_unary( lhs.rows[2] )
+		cunary( lhs.rows[0] ),
+		cunary( lhs.rows[1] ),
+		cunary( lhs.rows[2] )
 	};
 }
 
@@ -4773,9 +4773,9 @@ int3x4 operator+( const int3x4& lhs, const int32_t scalar )
 int3x4 operator+( const int3x4& lhs, const int3x4& rhs )
 {
 	return HLML_CONSTRUCT( int3x4 ) {
-		comp_addv( lhs.rows[0], rhs.rows[0] ),
-		comp_addv( lhs.rows[1], rhs.rows[1] ),
-		comp_addv( lhs.rows[2], rhs.rows[2] )
+		caddv( lhs.rows[0], rhs.rows[0] ),
+		caddv( lhs.rows[1], rhs.rows[1] ),
+		caddv( lhs.rows[2], rhs.rows[2] )
 	};
 }
 
@@ -4791,9 +4791,9 @@ int3x4 operator-( const int3x4& lhs, const int32_t scalar )
 int3x4 operator-( const int3x4& lhs, const int3x4& rhs )
 {
 	return HLML_CONSTRUCT( int3x4 ) {
-		comp_subv( lhs.rows[0], rhs.rows[0] ),
-		comp_subv( lhs.rows[1], rhs.rows[1] ),
-		comp_subv( lhs.rows[2], rhs.rows[2] )
+		csubv( lhs.rows[0], rhs.rows[0] ),
+		csubv( lhs.rows[1], rhs.rows[1] ),
+		csubv( lhs.rows[2], rhs.rows[2] )
 	};
 }
 
@@ -4834,9 +4834,9 @@ int3x4 operator/( const int3x4& lhs, const int32_t scalar )
 int3x4 operator/( const int3x4& lhs, const int3x4& rhs )
 {
 	return HLML_CONSTRUCT( int3x4 ) {
-		comp_divv( lhs.rows[0], rhs.rows[0] ),
-		comp_divv( lhs.rows[1], rhs.rows[1] ),
-		comp_divv( lhs.rows[2], rhs.rows[2] )
+		cdivv( lhs.rows[0], rhs.rows[0] ),
+		cdivv( lhs.rows[1], rhs.rows[1] ),
+		cdivv( lhs.rows[2], rhs.rows[2] )
 	};
 }
 
@@ -4875,9 +4875,9 @@ int3x4& operator--( int3x4& lhs, const int )
 int3x4 operator&( int3x4& lhs, const int3x4& rhs )
 {
 	return HLML_CONSTRUCT( int3x4 ) {
-		comp_and( lhs.rows[0], rhs.rows[0] ),
-		comp_and( lhs.rows[1], rhs.rows[1] ),
-		comp_and( lhs.rows[2], rhs.rows[2] )
+		cand( lhs.rows[0], rhs.rows[0] ),
+		cand( lhs.rows[1], rhs.rows[1] ),
+		cand( lhs.rows[2], rhs.rows[2] )
 	};
 }
 
@@ -4889,9 +4889,9 @@ int3x4 operator&=( int3x4& lhs, const int3x4& rhs )
 int3x4 operator|( int3x4& lhs, const int3x4& rhs )
 {
 	return HLML_CONSTRUCT( int3x4 ) {
-		comp_or( lhs.rows[0], rhs.rows[0] ),
-		comp_or( lhs.rows[1], rhs.rows[1] ),
-		comp_or( lhs.rows[2], rhs.rows[2] )
+		cor( lhs.rows[0], rhs.rows[0] ),
+		cor( lhs.rows[1], rhs.rows[1] ),
+		cor( lhs.rows[2], rhs.rows[2] )
 	};
 }
 
@@ -4903,9 +4903,9 @@ int3x4 operator|=( int3x4& lhs, const int3x4& rhs )
 int3x4 operator^( int3x4& lhs, const int3x4& rhs )
 {
 	return HLML_CONSTRUCT( int3x4 ) {
-		comp_xor( lhs.rows[0], rhs.rows[0] ),
-		comp_xor( lhs.rows[1], rhs.rows[1] ),
-		comp_xor( lhs.rows[2], rhs.rows[2] )
+		cxor( lhs.rows[0], rhs.rows[0] ),
+		cxor( lhs.rows[1], rhs.rows[1] ),
+		cxor( lhs.rows[2], rhs.rows[2] )
 	};
 }
 
@@ -4917,9 +4917,9 @@ int3x4 operator^=( int3x4& lhs, const int3x4& rhs )
 int3x4 operator<<( int3x4& lhs, const int3x4& rhs )
 {
 	return HLML_CONSTRUCT( int3x4 ) {
-		comp_shift_left( lhs.rows[0], rhs.rows[0] ),
-		comp_shift_left( lhs.rows[1], rhs.rows[1] ),
-		comp_shift_left( lhs.rows[2], rhs.rows[2] )
+		cshift_left( lhs.rows[0], rhs.rows[0] ),
+		cshift_left( lhs.rows[1], rhs.rows[1] ),
+		cshift_left( lhs.rows[2], rhs.rows[2] )
 	};
 }
 
@@ -4931,9 +4931,9 @@ int3x4 operator<<=( int3x4& lhs, const int3x4& rhs )
 int3x4 operator>>( int3x4& lhs, const int3x4& rhs )
 {
 	return HLML_CONSTRUCT( int3x4 ) {
-		comp_shift_right( lhs.rows[0], rhs.rows[0] ),
-		comp_shift_right( lhs.rows[1], rhs.rows[1] ),
-		comp_shift_right( lhs.rows[2], rhs.rows[2] )
+		cshift_right( lhs.rows[0], rhs.rows[0] ),
+		cshift_right( lhs.rows[1], rhs.rows[1] ),
+		cshift_right( lhs.rows[2], rhs.rows[2] )
 	};
 }
 
@@ -4945,9 +4945,9 @@ int3x4 operator>>=( int3x4& lhs, const int3x4& rhs )
 int3x4 operator~( int3x4& lhs )
 {
 	return HLML_CONSTRUCT( int3x4 ) {
-		comp_unary( lhs.rows[0] ),
-		comp_unary( lhs.rows[1] ),
-		comp_unary( lhs.rows[2] )
+		cunary( lhs.rows[0] ),
+		cunary( lhs.rows[1] ),
+		cunary( lhs.rows[2] )
 	};
 }
 
@@ -5013,10 +5013,10 @@ int4x2 operator+( const int4x2& lhs, const int32_t scalar )
 int4x2 operator+( const int4x2& lhs, const int4x2& rhs )
 {
 	return HLML_CONSTRUCT( int4x2 ) {
-		comp_addv( lhs.rows[0], rhs.rows[0] ),
-		comp_addv( lhs.rows[1], rhs.rows[1] ),
-		comp_addv( lhs.rows[2], rhs.rows[2] ),
-		comp_addv( lhs.rows[3], rhs.rows[3] )
+		caddv( lhs.rows[0], rhs.rows[0] ),
+		caddv( lhs.rows[1], rhs.rows[1] ),
+		caddv( lhs.rows[2], rhs.rows[2] ),
+		caddv( lhs.rows[3], rhs.rows[3] )
 	};
 }
 
@@ -5033,10 +5033,10 @@ int4x2 operator-( const int4x2& lhs, const int32_t scalar )
 int4x2 operator-( const int4x2& lhs, const int4x2& rhs )
 {
 	return HLML_CONSTRUCT( int4x2 ) {
-		comp_subv( lhs.rows[0], rhs.rows[0] ),
-		comp_subv( lhs.rows[1], rhs.rows[1] ),
-		comp_subv( lhs.rows[2], rhs.rows[2] ),
-		comp_subv( lhs.rows[3], rhs.rows[3] )
+		csubv( lhs.rows[0], rhs.rows[0] ),
+		csubv( lhs.rows[1], rhs.rows[1] ),
+		csubv( lhs.rows[2], rhs.rows[2] ),
+		csubv( lhs.rows[3], rhs.rows[3] )
 	};
 }
 
@@ -5088,10 +5088,10 @@ int4x2 operator/( const int4x2& lhs, const int32_t scalar )
 int4x2 operator/( const int4x2& lhs, const int4x2& rhs )
 {
 	return HLML_CONSTRUCT( int4x2 ) {
-		comp_divv( lhs.rows[0], rhs.rows[0] ),
-		comp_divv( lhs.rows[1], rhs.rows[1] ),
-		comp_divv( lhs.rows[2], rhs.rows[2] ),
-		comp_divv( lhs.rows[3], rhs.rows[3] )
+		cdivv( lhs.rows[0], rhs.rows[0] ),
+		cdivv( lhs.rows[1], rhs.rows[1] ),
+		cdivv( lhs.rows[2], rhs.rows[2] ),
+		cdivv( lhs.rows[3], rhs.rows[3] )
 	};
 }
 
@@ -5134,10 +5134,10 @@ int4x2& operator--( int4x2& lhs, const int )
 int4x2 operator&( int4x2& lhs, const int4x2& rhs )
 {
 	return HLML_CONSTRUCT( int4x2 ) {
-		comp_and( lhs.rows[0], rhs.rows[0] ),
-		comp_and( lhs.rows[1], rhs.rows[1] ),
-		comp_and( lhs.rows[2], rhs.rows[2] ),
-		comp_and( lhs.rows[3], rhs.rows[3] )
+		cand( lhs.rows[0], rhs.rows[0] ),
+		cand( lhs.rows[1], rhs.rows[1] ),
+		cand( lhs.rows[2], rhs.rows[2] ),
+		cand( lhs.rows[3], rhs.rows[3] )
 	};
 }
 
@@ -5149,10 +5149,10 @@ int4x2 operator&=( int4x2& lhs, const int4x2& rhs )
 int4x2 operator|( int4x2& lhs, const int4x2& rhs )
 {
 	return HLML_CONSTRUCT( int4x2 ) {
-		comp_or( lhs.rows[0], rhs.rows[0] ),
-		comp_or( lhs.rows[1], rhs.rows[1] ),
-		comp_or( lhs.rows[2], rhs.rows[2] ),
-		comp_or( lhs.rows[3], rhs.rows[3] )
+		cor( lhs.rows[0], rhs.rows[0] ),
+		cor( lhs.rows[1], rhs.rows[1] ),
+		cor( lhs.rows[2], rhs.rows[2] ),
+		cor( lhs.rows[3], rhs.rows[3] )
 	};
 }
 
@@ -5164,10 +5164,10 @@ int4x2 operator|=( int4x2& lhs, const int4x2& rhs )
 int4x2 operator^( int4x2& lhs, const int4x2& rhs )
 {
 	return HLML_CONSTRUCT( int4x2 ) {
-		comp_xor( lhs.rows[0], rhs.rows[0] ),
-		comp_xor( lhs.rows[1], rhs.rows[1] ),
-		comp_xor( lhs.rows[2], rhs.rows[2] ),
-		comp_xor( lhs.rows[3], rhs.rows[3] )
+		cxor( lhs.rows[0], rhs.rows[0] ),
+		cxor( lhs.rows[1], rhs.rows[1] ),
+		cxor( lhs.rows[2], rhs.rows[2] ),
+		cxor( lhs.rows[3], rhs.rows[3] )
 	};
 }
 
@@ -5179,10 +5179,10 @@ int4x2 operator^=( int4x2& lhs, const int4x2& rhs )
 int4x2 operator<<( int4x2& lhs, const int4x2& rhs )
 {
 	return HLML_CONSTRUCT( int4x2 ) {
-		comp_shift_left( lhs.rows[0], rhs.rows[0] ),
-		comp_shift_left( lhs.rows[1], rhs.rows[1] ),
-		comp_shift_left( lhs.rows[2], rhs.rows[2] ),
-		comp_shift_left( lhs.rows[3], rhs.rows[3] )
+		cshift_left( lhs.rows[0], rhs.rows[0] ),
+		cshift_left( lhs.rows[1], rhs.rows[1] ),
+		cshift_left( lhs.rows[2], rhs.rows[2] ),
+		cshift_left( lhs.rows[3], rhs.rows[3] )
 	};
 }
 
@@ -5194,10 +5194,10 @@ int4x2 operator<<=( int4x2& lhs, const int4x2& rhs )
 int4x2 operator>>( int4x2& lhs, const int4x2& rhs )
 {
 	return HLML_CONSTRUCT( int4x2 ) {
-		comp_shift_right( lhs.rows[0], rhs.rows[0] ),
-		comp_shift_right( lhs.rows[1], rhs.rows[1] ),
-		comp_shift_right( lhs.rows[2], rhs.rows[2] ),
-		comp_shift_right( lhs.rows[3], rhs.rows[3] )
+		cshift_right( lhs.rows[0], rhs.rows[0] ),
+		cshift_right( lhs.rows[1], rhs.rows[1] ),
+		cshift_right( lhs.rows[2], rhs.rows[2] ),
+		cshift_right( lhs.rows[3], rhs.rows[3] )
 	};
 }
 
@@ -5209,10 +5209,10 @@ int4x2 operator>>=( int4x2& lhs, const int4x2& rhs )
 int4x2 operator~( int4x2& lhs )
 {
 	return HLML_CONSTRUCT( int4x2 ) {
-		comp_unary( lhs.rows[0] ),
-		comp_unary( lhs.rows[1] ),
-		comp_unary( lhs.rows[2] ),
-		comp_unary( lhs.rows[3] )
+		cunary( lhs.rows[0] ),
+		cunary( lhs.rows[1] ),
+		cunary( lhs.rows[2] ),
+		cunary( lhs.rows[3] )
 	};
 }
 
@@ -5282,10 +5282,10 @@ int4x3 operator+( const int4x3& lhs, const int32_t scalar )
 int4x3 operator+( const int4x3& lhs, const int4x3& rhs )
 {
 	return HLML_CONSTRUCT( int4x3 ) {
-		comp_addv( lhs.rows[0], rhs.rows[0] ),
-		comp_addv( lhs.rows[1], rhs.rows[1] ),
-		comp_addv( lhs.rows[2], rhs.rows[2] ),
-		comp_addv( lhs.rows[3], rhs.rows[3] )
+		caddv( lhs.rows[0], rhs.rows[0] ),
+		caddv( lhs.rows[1], rhs.rows[1] ),
+		caddv( lhs.rows[2], rhs.rows[2] ),
+		caddv( lhs.rows[3], rhs.rows[3] )
 	};
 }
 
@@ -5302,10 +5302,10 @@ int4x3 operator-( const int4x3& lhs, const int32_t scalar )
 int4x3 operator-( const int4x3& lhs, const int4x3& rhs )
 {
 	return HLML_CONSTRUCT( int4x3 ) {
-		comp_subv( lhs.rows[0], rhs.rows[0] ),
-		comp_subv( lhs.rows[1], rhs.rows[1] ),
-		comp_subv( lhs.rows[2], rhs.rows[2] ),
-		comp_subv( lhs.rows[3], rhs.rows[3] )
+		csubv( lhs.rows[0], rhs.rows[0] ),
+		csubv( lhs.rows[1], rhs.rows[1] ),
+		csubv( lhs.rows[2], rhs.rows[2] ),
+		csubv( lhs.rows[3], rhs.rows[3] )
 	};
 }
 
@@ -5357,10 +5357,10 @@ int4x3 operator/( const int4x3& lhs, const int32_t scalar )
 int4x3 operator/( const int4x3& lhs, const int4x3& rhs )
 {
 	return HLML_CONSTRUCT( int4x3 ) {
-		comp_divv( lhs.rows[0], rhs.rows[0] ),
-		comp_divv( lhs.rows[1], rhs.rows[1] ),
-		comp_divv( lhs.rows[2], rhs.rows[2] ),
-		comp_divv( lhs.rows[3], rhs.rows[3] )
+		cdivv( lhs.rows[0], rhs.rows[0] ),
+		cdivv( lhs.rows[1], rhs.rows[1] ),
+		cdivv( lhs.rows[2], rhs.rows[2] ),
+		cdivv( lhs.rows[3], rhs.rows[3] )
 	};
 }
 
@@ -5403,10 +5403,10 @@ int4x3& operator--( int4x3& lhs, const int )
 int4x3 operator&( int4x3& lhs, const int4x3& rhs )
 {
 	return HLML_CONSTRUCT( int4x3 ) {
-		comp_and( lhs.rows[0], rhs.rows[0] ),
-		comp_and( lhs.rows[1], rhs.rows[1] ),
-		comp_and( lhs.rows[2], rhs.rows[2] ),
-		comp_and( lhs.rows[3], rhs.rows[3] )
+		cand( lhs.rows[0], rhs.rows[0] ),
+		cand( lhs.rows[1], rhs.rows[1] ),
+		cand( lhs.rows[2], rhs.rows[2] ),
+		cand( lhs.rows[3], rhs.rows[3] )
 	};
 }
 
@@ -5418,10 +5418,10 @@ int4x3 operator&=( int4x3& lhs, const int4x3& rhs )
 int4x3 operator|( int4x3& lhs, const int4x3& rhs )
 {
 	return HLML_CONSTRUCT( int4x3 ) {
-		comp_or( lhs.rows[0], rhs.rows[0] ),
-		comp_or( lhs.rows[1], rhs.rows[1] ),
-		comp_or( lhs.rows[2], rhs.rows[2] ),
-		comp_or( lhs.rows[3], rhs.rows[3] )
+		cor( lhs.rows[0], rhs.rows[0] ),
+		cor( lhs.rows[1], rhs.rows[1] ),
+		cor( lhs.rows[2], rhs.rows[2] ),
+		cor( lhs.rows[3], rhs.rows[3] )
 	};
 }
 
@@ -5433,10 +5433,10 @@ int4x3 operator|=( int4x3& lhs, const int4x3& rhs )
 int4x3 operator^( int4x3& lhs, const int4x3& rhs )
 {
 	return HLML_CONSTRUCT( int4x3 ) {
-		comp_xor( lhs.rows[0], rhs.rows[0] ),
-		comp_xor( lhs.rows[1], rhs.rows[1] ),
-		comp_xor( lhs.rows[2], rhs.rows[2] ),
-		comp_xor( lhs.rows[3], rhs.rows[3] )
+		cxor( lhs.rows[0], rhs.rows[0] ),
+		cxor( lhs.rows[1], rhs.rows[1] ),
+		cxor( lhs.rows[2], rhs.rows[2] ),
+		cxor( lhs.rows[3], rhs.rows[3] )
 	};
 }
 
@@ -5448,10 +5448,10 @@ int4x3 operator^=( int4x3& lhs, const int4x3& rhs )
 int4x3 operator<<( int4x3& lhs, const int4x3& rhs )
 {
 	return HLML_CONSTRUCT( int4x3 ) {
-		comp_shift_left( lhs.rows[0], rhs.rows[0] ),
-		comp_shift_left( lhs.rows[1], rhs.rows[1] ),
-		comp_shift_left( lhs.rows[2], rhs.rows[2] ),
-		comp_shift_left( lhs.rows[3], rhs.rows[3] )
+		cshift_left( lhs.rows[0], rhs.rows[0] ),
+		cshift_left( lhs.rows[1], rhs.rows[1] ),
+		cshift_left( lhs.rows[2], rhs.rows[2] ),
+		cshift_left( lhs.rows[3], rhs.rows[3] )
 	};
 }
 
@@ -5463,10 +5463,10 @@ int4x3 operator<<=( int4x3& lhs, const int4x3& rhs )
 int4x3 operator>>( int4x3& lhs, const int4x3& rhs )
 {
 	return HLML_CONSTRUCT( int4x3 ) {
-		comp_shift_right( lhs.rows[0], rhs.rows[0] ),
-		comp_shift_right( lhs.rows[1], rhs.rows[1] ),
-		comp_shift_right( lhs.rows[2], rhs.rows[2] ),
-		comp_shift_right( lhs.rows[3], rhs.rows[3] )
+		cshift_right( lhs.rows[0], rhs.rows[0] ),
+		cshift_right( lhs.rows[1], rhs.rows[1] ),
+		cshift_right( lhs.rows[2], rhs.rows[2] ),
+		cshift_right( lhs.rows[3], rhs.rows[3] )
 	};
 }
 
@@ -5478,10 +5478,10 @@ int4x3 operator>>=( int4x3& lhs, const int4x3& rhs )
 int4x3 operator~( int4x3& lhs )
 {
 	return HLML_CONSTRUCT( int4x3 ) {
-		comp_unary( lhs.rows[0] ),
-		comp_unary( lhs.rows[1] ),
-		comp_unary( lhs.rows[2] ),
-		comp_unary( lhs.rows[3] )
+		cunary( lhs.rows[0] ),
+		cunary( lhs.rows[1] ),
+		cunary( lhs.rows[2] ),
+		cunary( lhs.rows[3] )
 	};
 }
 
@@ -5551,10 +5551,10 @@ int4x4 operator+( const int4x4& lhs, const int32_t scalar )
 int4x4 operator+( const int4x4& lhs, const int4x4& rhs )
 {
 	return HLML_CONSTRUCT( int4x4 ) {
-		comp_addv( lhs.rows[0], rhs.rows[0] ),
-		comp_addv( lhs.rows[1], rhs.rows[1] ),
-		comp_addv( lhs.rows[2], rhs.rows[2] ),
-		comp_addv( lhs.rows[3], rhs.rows[3] )
+		caddv( lhs.rows[0], rhs.rows[0] ),
+		caddv( lhs.rows[1], rhs.rows[1] ),
+		caddv( lhs.rows[2], rhs.rows[2] ),
+		caddv( lhs.rows[3], rhs.rows[3] )
 	};
 }
 
@@ -5571,10 +5571,10 @@ int4x4 operator-( const int4x4& lhs, const int32_t scalar )
 int4x4 operator-( const int4x4& lhs, const int4x4& rhs )
 {
 	return HLML_CONSTRUCT( int4x4 ) {
-		comp_subv( lhs.rows[0], rhs.rows[0] ),
-		comp_subv( lhs.rows[1], rhs.rows[1] ),
-		comp_subv( lhs.rows[2], rhs.rows[2] ),
-		comp_subv( lhs.rows[3], rhs.rows[3] )
+		csubv( lhs.rows[0], rhs.rows[0] ),
+		csubv( lhs.rows[1], rhs.rows[1] ),
+		csubv( lhs.rows[2], rhs.rows[2] ),
+		csubv( lhs.rows[3], rhs.rows[3] )
 	};
 }
 
@@ -5631,10 +5631,10 @@ int4x4 operator/( const int4x4& lhs, const int32_t scalar )
 int4x4 operator/( const int4x4& lhs, const int4x4& rhs )
 {
 	return HLML_CONSTRUCT( int4x4 ) {
-		comp_divv( lhs.rows[0], rhs.rows[0] ),
-		comp_divv( lhs.rows[1], rhs.rows[1] ),
-		comp_divv( lhs.rows[2], rhs.rows[2] ),
-		comp_divv( lhs.rows[3], rhs.rows[3] )
+		cdivv( lhs.rows[0], rhs.rows[0] ),
+		cdivv( lhs.rows[1], rhs.rows[1] ),
+		cdivv( lhs.rows[2], rhs.rows[2] ),
+		cdivv( lhs.rows[3], rhs.rows[3] )
 	};
 }
 
@@ -5692,10 +5692,10 @@ int4x4& operator--( int4x4& lhs, const int )
 int4x4 operator&( int4x4& lhs, const int4x4& rhs )
 {
 	return HLML_CONSTRUCT( int4x4 ) {
-		comp_and( lhs.rows[0], rhs.rows[0] ),
-		comp_and( lhs.rows[1], rhs.rows[1] ),
-		comp_and( lhs.rows[2], rhs.rows[2] ),
-		comp_and( lhs.rows[3], rhs.rows[3] )
+		cand( lhs.rows[0], rhs.rows[0] ),
+		cand( lhs.rows[1], rhs.rows[1] ),
+		cand( lhs.rows[2], rhs.rows[2] ),
+		cand( lhs.rows[3], rhs.rows[3] )
 	};
 }
 
@@ -5707,10 +5707,10 @@ int4x4 operator&=( int4x4& lhs, const int4x4& rhs )
 int4x4 operator|( int4x4& lhs, const int4x4& rhs )
 {
 	return HLML_CONSTRUCT( int4x4 ) {
-		comp_or( lhs.rows[0], rhs.rows[0] ),
-		comp_or( lhs.rows[1], rhs.rows[1] ),
-		comp_or( lhs.rows[2], rhs.rows[2] ),
-		comp_or( lhs.rows[3], rhs.rows[3] )
+		cor( lhs.rows[0], rhs.rows[0] ),
+		cor( lhs.rows[1], rhs.rows[1] ),
+		cor( lhs.rows[2], rhs.rows[2] ),
+		cor( lhs.rows[3], rhs.rows[3] )
 	};
 }
 
@@ -5722,10 +5722,10 @@ int4x4 operator|=( int4x4& lhs, const int4x4& rhs )
 int4x4 operator^( int4x4& lhs, const int4x4& rhs )
 {
 	return HLML_CONSTRUCT( int4x4 ) {
-		comp_xor( lhs.rows[0], rhs.rows[0] ),
-		comp_xor( lhs.rows[1], rhs.rows[1] ),
-		comp_xor( lhs.rows[2], rhs.rows[2] ),
-		comp_xor( lhs.rows[3], rhs.rows[3] )
+		cxor( lhs.rows[0], rhs.rows[0] ),
+		cxor( lhs.rows[1], rhs.rows[1] ),
+		cxor( lhs.rows[2], rhs.rows[2] ),
+		cxor( lhs.rows[3], rhs.rows[3] )
 	};
 }
 
@@ -5737,10 +5737,10 @@ int4x4 operator^=( int4x4& lhs, const int4x4& rhs )
 int4x4 operator<<( int4x4& lhs, const int4x4& rhs )
 {
 	return HLML_CONSTRUCT( int4x4 ) {
-		comp_shift_left( lhs.rows[0], rhs.rows[0] ),
-		comp_shift_left( lhs.rows[1], rhs.rows[1] ),
-		comp_shift_left( lhs.rows[2], rhs.rows[2] ),
-		comp_shift_left( lhs.rows[3], rhs.rows[3] )
+		cshift_left( lhs.rows[0], rhs.rows[0] ),
+		cshift_left( lhs.rows[1], rhs.rows[1] ),
+		cshift_left( lhs.rows[2], rhs.rows[2] ),
+		cshift_left( lhs.rows[3], rhs.rows[3] )
 	};
 }
 
@@ -5752,10 +5752,10 @@ int4x4 operator<<=( int4x4& lhs, const int4x4& rhs )
 int4x4 operator>>( int4x4& lhs, const int4x4& rhs )
 {
 	return HLML_CONSTRUCT( int4x4 ) {
-		comp_shift_right( lhs.rows[0], rhs.rows[0] ),
-		comp_shift_right( lhs.rows[1], rhs.rows[1] ),
-		comp_shift_right( lhs.rows[2], rhs.rows[2] ),
-		comp_shift_right( lhs.rows[3], rhs.rows[3] )
+		cshift_right( lhs.rows[0], rhs.rows[0] ),
+		cshift_right( lhs.rows[1], rhs.rows[1] ),
+		cshift_right( lhs.rows[2], rhs.rows[2] ),
+		cshift_right( lhs.rows[3], rhs.rows[3] )
 	};
 }
 
@@ -5767,10 +5767,10 @@ int4x4 operator>>=( int4x4& lhs, const int4x4& rhs )
 int4x4 operator~( int4x4& lhs )
 {
 	return HLML_CONSTRUCT( int4x4 ) {
-		comp_unary( lhs.rows[0] ),
-		comp_unary( lhs.rows[1] ),
-		comp_unary( lhs.rows[2] ),
-		comp_unary( lhs.rows[3] )
+		cunary( lhs.rows[0] ),
+		cunary( lhs.rows[1] ),
+		cunary( lhs.rows[2] ),
+		cunary( lhs.rows[3] )
 	};
 }
 
@@ -5836,8 +5836,8 @@ uint2x2 operator+( const uint2x2& lhs, const uint32_t scalar )
 uint2x2 operator+( const uint2x2& lhs, const uint2x2& rhs )
 {
 	return HLML_CONSTRUCT( uint2x2 ) {
-		comp_addv( lhs.rows[0], rhs.rows[0] ),
-		comp_addv( lhs.rows[1], rhs.rows[1] )
+		caddv( lhs.rows[0], rhs.rows[0] ),
+		caddv( lhs.rows[1], rhs.rows[1] )
 	};
 }
 
@@ -5852,8 +5852,8 @@ uint2x2 operator-( const uint2x2& lhs, const uint32_t scalar )
 uint2x2 operator-( const uint2x2& lhs, const uint2x2& rhs )
 {
 	return HLML_CONSTRUCT( uint2x2 ) {
-		comp_subv( lhs.rows[0], rhs.rows[0] ),
-		comp_subv( lhs.rows[1], rhs.rows[1] )
+		csubv( lhs.rows[0], rhs.rows[0] ),
+		csubv( lhs.rows[1], rhs.rows[1] )
 	};
 }
 
@@ -5890,8 +5890,8 @@ uint2x2 operator/( const uint2x2& lhs, const uint32_t scalar )
 uint2x2 operator/( const uint2x2& lhs, const uint2x2& rhs )
 {
 	return HLML_CONSTRUCT( uint2x2 ) {
-		comp_divv( lhs.rows[0], rhs.rows[0] ),
-		comp_divv( lhs.rows[1], rhs.rows[1] )
+		cdivv( lhs.rows[0], rhs.rows[0] ),
+		cdivv( lhs.rows[1], rhs.rows[1] )
 	};
 }
 
@@ -5939,8 +5939,8 @@ uint2x2& operator--( uint2x2& lhs, const int )
 uint2x2 operator&( uint2x2& lhs, const uint2x2& rhs )
 {
 	return HLML_CONSTRUCT( uint2x2 ) {
-		comp_and( lhs.rows[0], rhs.rows[0] ),
-		comp_and( lhs.rows[1], rhs.rows[1] )
+		cand( lhs.rows[0], rhs.rows[0] ),
+		cand( lhs.rows[1], rhs.rows[1] )
 	};
 }
 
@@ -5952,8 +5952,8 @@ uint2x2 operator&=( uint2x2& lhs, const uint2x2& rhs )
 uint2x2 operator|( uint2x2& lhs, const uint2x2& rhs )
 {
 	return HLML_CONSTRUCT( uint2x2 ) {
-		comp_or( lhs.rows[0], rhs.rows[0] ),
-		comp_or( lhs.rows[1], rhs.rows[1] )
+		cor( lhs.rows[0], rhs.rows[0] ),
+		cor( lhs.rows[1], rhs.rows[1] )
 	};
 }
 
@@ -5965,8 +5965,8 @@ uint2x2 operator|=( uint2x2& lhs, const uint2x2& rhs )
 uint2x2 operator^( uint2x2& lhs, const uint2x2& rhs )
 {
 	return HLML_CONSTRUCT( uint2x2 ) {
-		comp_xor( lhs.rows[0], rhs.rows[0] ),
-		comp_xor( lhs.rows[1], rhs.rows[1] )
+		cxor( lhs.rows[0], rhs.rows[0] ),
+		cxor( lhs.rows[1], rhs.rows[1] )
 	};
 }
 
@@ -5978,8 +5978,8 @@ uint2x2 operator^=( uint2x2& lhs, const uint2x2& rhs )
 uint2x2 operator<<( uint2x2& lhs, const uint2x2& rhs )
 {
 	return HLML_CONSTRUCT( uint2x2 ) {
-		comp_shift_left( lhs.rows[0], rhs.rows[0] ),
-		comp_shift_left( lhs.rows[1], rhs.rows[1] )
+		cshift_left( lhs.rows[0], rhs.rows[0] ),
+		cshift_left( lhs.rows[1], rhs.rows[1] )
 	};
 }
 
@@ -5991,8 +5991,8 @@ uint2x2 operator<<=( uint2x2& lhs, const uint2x2& rhs )
 uint2x2 operator>>( uint2x2& lhs, const uint2x2& rhs )
 {
 	return HLML_CONSTRUCT( uint2x2 ) {
-		comp_shift_right( lhs.rows[0], rhs.rows[0] ),
-		comp_shift_right( lhs.rows[1], rhs.rows[1] )
+		cshift_right( lhs.rows[0], rhs.rows[0] ),
+		cshift_right( lhs.rows[1], rhs.rows[1] )
 	};
 }
 
@@ -6004,8 +6004,8 @@ uint2x2 operator>>=( uint2x2& lhs, const uint2x2& rhs )
 uint2x2 operator~( uint2x2& lhs )
 {
 	return HLML_CONSTRUCT( uint2x2 ) {
-		comp_unary( lhs.rows[0] ),
-		comp_unary( lhs.rows[1] )
+		cunary( lhs.rows[0] ),
+		cunary( lhs.rows[1] )
 	};
 }
 
@@ -6063,8 +6063,8 @@ uint2x3 operator+( const uint2x3& lhs, const uint32_t scalar )
 uint2x3 operator+( const uint2x3& lhs, const uint2x3& rhs )
 {
 	return HLML_CONSTRUCT( uint2x3 ) {
-		comp_addv( lhs.rows[0], rhs.rows[0] ),
-		comp_addv( lhs.rows[1], rhs.rows[1] )
+		caddv( lhs.rows[0], rhs.rows[0] ),
+		caddv( lhs.rows[1], rhs.rows[1] )
 	};
 }
 
@@ -6079,8 +6079,8 @@ uint2x3 operator-( const uint2x3& lhs, const uint32_t scalar )
 uint2x3 operator-( const uint2x3& lhs, const uint2x3& rhs )
 {
 	return HLML_CONSTRUCT( uint2x3 ) {
-		comp_subv( lhs.rows[0], rhs.rows[0] ),
-		comp_subv( lhs.rows[1], rhs.rows[1] )
+		csubv( lhs.rows[0], rhs.rows[0] ),
+		csubv( lhs.rows[1], rhs.rows[1] )
 	};
 }
 
@@ -6112,8 +6112,8 @@ uint2x3 operator/( const uint2x3& lhs, const uint32_t scalar )
 uint2x3 operator/( const uint2x3& lhs, const uint2x3& rhs )
 {
 	return HLML_CONSTRUCT( uint2x3 ) {
-		comp_divv( lhs.rows[0], rhs.rows[0] ),
-		comp_divv( lhs.rows[1], rhs.rows[1] )
+		cdivv( lhs.rows[0], rhs.rows[0] ),
+		cdivv( lhs.rows[1], rhs.rows[1] )
 	};
 }
 
@@ -6148,8 +6148,8 @@ uint2x3& operator--( uint2x3& lhs, const int )
 uint2x3 operator&( uint2x3& lhs, const uint2x3& rhs )
 {
 	return HLML_CONSTRUCT( uint2x3 ) {
-		comp_and( lhs.rows[0], rhs.rows[0] ),
-		comp_and( lhs.rows[1], rhs.rows[1] )
+		cand( lhs.rows[0], rhs.rows[0] ),
+		cand( lhs.rows[1], rhs.rows[1] )
 	};
 }
 
@@ -6161,8 +6161,8 @@ uint2x3 operator&=( uint2x3& lhs, const uint2x3& rhs )
 uint2x3 operator|( uint2x3& lhs, const uint2x3& rhs )
 {
 	return HLML_CONSTRUCT( uint2x3 ) {
-		comp_or( lhs.rows[0], rhs.rows[0] ),
-		comp_or( lhs.rows[1], rhs.rows[1] )
+		cor( lhs.rows[0], rhs.rows[0] ),
+		cor( lhs.rows[1], rhs.rows[1] )
 	};
 }
 
@@ -6174,8 +6174,8 @@ uint2x3 operator|=( uint2x3& lhs, const uint2x3& rhs )
 uint2x3 operator^( uint2x3& lhs, const uint2x3& rhs )
 {
 	return HLML_CONSTRUCT( uint2x3 ) {
-		comp_xor( lhs.rows[0], rhs.rows[0] ),
-		comp_xor( lhs.rows[1], rhs.rows[1] )
+		cxor( lhs.rows[0], rhs.rows[0] ),
+		cxor( lhs.rows[1], rhs.rows[1] )
 	};
 }
 
@@ -6187,8 +6187,8 @@ uint2x3 operator^=( uint2x3& lhs, const uint2x3& rhs )
 uint2x3 operator<<( uint2x3& lhs, const uint2x3& rhs )
 {
 	return HLML_CONSTRUCT( uint2x3 ) {
-		comp_shift_left( lhs.rows[0], rhs.rows[0] ),
-		comp_shift_left( lhs.rows[1], rhs.rows[1] )
+		cshift_left( lhs.rows[0], rhs.rows[0] ),
+		cshift_left( lhs.rows[1], rhs.rows[1] )
 	};
 }
 
@@ -6200,8 +6200,8 @@ uint2x3 operator<<=( uint2x3& lhs, const uint2x3& rhs )
 uint2x3 operator>>( uint2x3& lhs, const uint2x3& rhs )
 {
 	return HLML_CONSTRUCT( uint2x3 ) {
-		comp_shift_right( lhs.rows[0], rhs.rows[0] ),
-		comp_shift_right( lhs.rows[1], rhs.rows[1] )
+		cshift_right( lhs.rows[0], rhs.rows[0] ),
+		cshift_right( lhs.rows[1], rhs.rows[1] )
 	};
 }
 
@@ -6213,8 +6213,8 @@ uint2x3 operator>>=( uint2x3& lhs, const uint2x3& rhs )
 uint2x3 operator~( uint2x3& lhs )
 {
 	return HLML_CONSTRUCT( uint2x3 ) {
-		comp_unary( lhs.rows[0] ),
-		comp_unary( lhs.rows[1] )
+		cunary( lhs.rows[0] ),
+		cunary( lhs.rows[1] )
 	};
 }
 
@@ -6272,8 +6272,8 @@ uint2x4 operator+( const uint2x4& lhs, const uint32_t scalar )
 uint2x4 operator+( const uint2x4& lhs, const uint2x4& rhs )
 {
 	return HLML_CONSTRUCT( uint2x4 ) {
-		comp_addv( lhs.rows[0], rhs.rows[0] ),
-		comp_addv( lhs.rows[1], rhs.rows[1] )
+		caddv( lhs.rows[0], rhs.rows[0] ),
+		caddv( lhs.rows[1], rhs.rows[1] )
 	};
 }
 
@@ -6288,8 +6288,8 @@ uint2x4 operator-( const uint2x4& lhs, const uint32_t scalar )
 uint2x4 operator-( const uint2x4& lhs, const uint2x4& rhs )
 {
 	return HLML_CONSTRUCT( uint2x4 ) {
-		comp_subv( lhs.rows[0], rhs.rows[0] ),
-		comp_subv( lhs.rows[1], rhs.rows[1] )
+		csubv( lhs.rows[0], rhs.rows[0] ),
+		csubv( lhs.rows[1], rhs.rows[1] )
 	};
 }
 
@@ -6321,8 +6321,8 @@ uint2x4 operator/( const uint2x4& lhs, const uint32_t scalar )
 uint2x4 operator/( const uint2x4& lhs, const uint2x4& rhs )
 {
 	return HLML_CONSTRUCT( uint2x4 ) {
-		comp_divv( lhs.rows[0], rhs.rows[0] ),
-		comp_divv( lhs.rows[1], rhs.rows[1] )
+		cdivv( lhs.rows[0], rhs.rows[0] ),
+		cdivv( lhs.rows[1], rhs.rows[1] )
 	};
 }
 
@@ -6357,8 +6357,8 @@ uint2x4& operator--( uint2x4& lhs, const int )
 uint2x4 operator&( uint2x4& lhs, const uint2x4& rhs )
 {
 	return HLML_CONSTRUCT( uint2x4 ) {
-		comp_and( lhs.rows[0], rhs.rows[0] ),
-		comp_and( lhs.rows[1], rhs.rows[1] )
+		cand( lhs.rows[0], rhs.rows[0] ),
+		cand( lhs.rows[1], rhs.rows[1] )
 	};
 }
 
@@ -6370,8 +6370,8 @@ uint2x4 operator&=( uint2x4& lhs, const uint2x4& rhs )
 uint2x4 operator|( uint2x4& lhs, const uint2x4& rhs )
 {
 	return HLML_CONSTRUCT( uint2x4 ) {
-		comp_or( lhs.rows[0], rhs.rows[0] ),
-		comp_or( lhs.rows[1], rhs.rows[1] )
+		cor( lhs.rows[0], rhs.rows[0] ),
+		cor( lhs.rows[1], rhs.rows[1] )
 	};
 }
 
@@ -6383,8 +6383,8 @@ uint2x4 operator|=( uint2x4& lhs, const uint2x4& rhs )
 uint2x4 operator^( uint2x4& lhs, const uint2x4& rhs )
 {
 	return HLML_CONSTRUCT( uint2x4 ) {
-		comp_xor( lhs.rows[0], rhs.rows[0] ),
-		comp_xor( lhs.rows[1], rhs.rows[1] )
+		cxor( lhs.rows[0], rhs.rows[0] ),
+		cxor( lhs.rows[1], rhs.rows[1] )
 	};
 }
 
@@ -6396,8 +6396,8 @@ uint2x4 operator^=( uint2x4& lhs, const uint2x4& rhs )
 uint2x4 operator<<( uint2x4& lhs, const uint2x4& rhs )
 {
 	return HLML_CONSTRUCT( uint2x4 ) {
-		comp_shift_left( lhs.rows[0], rhs.rows[0] ),
-		comp_shift_left( lhs.rows[1], rhs.rows[1] )
+		cshift_left( lhs.rows[0], rhs.rows[0] ),
+		cshift_left( lhs.rows[1], rhs.rows[1] )
 	};
 }
 
@@ -6409,8 +6409,8 @@ uint2x4 operator<<=( uint2x4& lhs, const uint2x4& rhs )
 uint2x4 operator>>( uint2x4& lhs, const uint2x4& rhs )
 {
 	return HLML_CONSTRUCT( uint2x4 ) {
-		comp_shift_right( lhs.rows[0], rhs.rows[0] ),
-		comp_shift_right( lhs.rows[1], rhs.rows[1] )
+		cshift_right( lhs.rows[0], rhs.rows[0] ),
+		cshift_right( lhs.rows[1], rhs.rows[1] )
 	};
 }
 
@@ -6422,8 +6422,8 @@ uint2x4 operator>>=( uint2x4& lhs, const uint2x4& rhs )
 uint2x4 operator~( uint2x4& lhs )
 {
 	return HLML_CONSTRUCT( uint2x4 ) {
-		comp_unary( lhs.rows[0] ),
-		comp_unary( lhs.rows[1] )
+		cunary( lhs.rows[0] ),
+		cunary( lhs.rows[1] )
 	};
 }
 
@@ -6483,9 +6483,9 @@ uint3x2 operator+( const uint3x2& lhs, const uint32_t scalar )
 uint3x2 operator+( const uint3x2& lhs, const uint3x2& rhs )
 {
 	return HLML_CONSTRUCT( uint3x2 ) {
-		comp_addv( lhs.rows[0], rhs.rows[0] ),
-		comp_addv( lhs.rows[1], rhs.rows[1] ),
-		comp_addv( lhs.rows[2], rhs.rows[2] )
+		caddv( lhs.rows[0], rhs.rows[0] ),
+		caddv( lhs.rows[1], rhs.rows[1] ),
+		caddv( lhs.rows[2], rhs.rows[2] )
 	};
 }
 
@@ -6501,9 +6501,9 @@ uint3x2 operator-( const uint3x2& lhs, const uint32_t scalar )
 uint3x2 operator-( const uint3x2& lhs, const uint3x2& rhs )
 {
 	return HLML_CONSTRUCT( uint3x2 ) {
-		comp_subv( lhs.rows[0], rhs.rows[0] ),
-		comp_subv( lhs.rows[1], rhs.rows[1] ),
-		comp_subv( lhs.rows[2], rhs.rows[2] )
+		csubv( lhs.rows[0], rhs.rows[0] ),
+		csubv( lhs.rows[1], rhs.rows[1] ),
+		csubv( lhs.rows[2], rhs.rows[2] )
 	};
 }
 
@@ -6544,9 +6544,9 @@ uint3x2 operator/( const uint3x2& lhs, const uint32_t scalar )
 uint3x2 operator/( const uint3x2& lhs, const uint3x2& rhs )
 {
 	return HLML_CONSTRUCT( uint3x2 ) {
-		comp_divv( lhs.rows[0], rhs.rows[0] ),
-		comp_divv( lhs.rows[1], rhs.rows[1] ),
-		comp_divv( lhs.rows[2], rhs.rows[2] )
+		cdivv( lhs.rows[0], rhs.rows[0] ),
+		cdivv( lhs.rows[1], rhs.rows[1] ),
+		cdivv( lhs.rows[2], rhs.rows[2] )
 	};
 }
 
@@ -6585,9 +6585,9 @@ uint3x2& operator--( uint3x2& lhs, const int )
 uint3x2 operator&( uint3x2& lhs, const uint3x2& rhs )
 {
 	return HLML_CONSTRUCT( uint3x2 ) {
-		comp_and( lhs.rows[0], rhs.rows[0] ),
-		comp_and( lhs.rows[1], rhs.rows[1] ),
-		comp_and( lhs.rows[2], rhs.rows[2] )
+		cand( lhs.rows[0], rhs.rows[0] ),
+		cand( lhs.rows[1], rhs.rows[1] ),
+		cand( lhs.rows[2], rhs.rows[2] )
 	};
 }
 
@@ -6599,9 +6599,9 @@ uint3x2 operator&=( uint3x2& lhs, const uint3x2& rhs )
 uint3x2 operator|( uint3x2& lhs, const uint3x2& rhs )
 {
 	return HLML_CONSTRUCT( uint3x2 ) {
-		comp_or( lhs.rows[0], rhs.rows[0] ),
-		comp_or( lhs.rows[1], rhs.rows[1] ),
-		comp_or( lhs.rows[2], rhs.rows[2] )
+		cor( lhs.rows[0], rhs.rows[0] ),
+		cor( lhs.rows[1], rhs.rows[1] ),
+		cor( lhs.rows[2], rhs.rows[2] )
 	};
 }
 
@@ -6613,9 +6613,9 @@ uint3x2 operator|=( uint3x2& lhs, const uint3x2& rhs )
 uint3x2 operator^( uint3x2& lhs, const uint3x2& rhs )
 {
 	return HLML_CONSTRUCT( uint3x2 ) {
-		comp_xor( lhs.rows[0], rhs.rows[0] ),
-		comp_xor( lhs.rows[1], rhs.rows[1] ),
-		comp_xor( lhs.rows[2], rhs.rows[2] )
+		cxor( lhs.rows[0], rhs.rows[0] ),
+		cxor( lhs.rows[1], rhs.rows[1] ),
+		cxor( lhs.rows[2], rhs.rows[2] )
 	};
 }
 
@@ -6627,9 +6627,9 @@ uint3x2 operator^=( uint3x2& lhs, const uint3x2& rhs )
 uint3x2 operator<<( uint3x2& lhs, const uint3x2& rhs )
 {
 	return HLML_CONSTRUCT( uint3x2 ) {
-		comp_shift_left( lhs.rows[0], rhs.rows[0] ),
-		comp_shift_left( lhs.rows[1], rhs.rows[1] ),
-		comp_shift_left( lhs.rows[2], rhs.rows[2] )
+		cshift_left( lhs.rows[0], rhs.rows[0] ),
+		cshift_left( lhs.rows[1], rhs.rows[1] ),
+		cshift_left( lhs.rows[2], rhs.rows[2] )
 	};
 }
 
@@ -6641,9 +6641,9 @@ uint3x2 operator<<=( uint3x2& lhs, const uint3x2& rhs )
 uint3x2 operator>>( uint3x2& lhs, const uint3x2& rhs )
 {
 	return HLML_CONSTRUCT( uint3x2 ) {
-		comp_shift_right( lhs.rows[0], rhs.rows[0] ),
-		comp_shift_right( lhs.rows[1], rhs.rows[1] ),
-		comp_shift_right( lhs.rows[2], rhs.rows[2] )
+		cshift_right( lhs.rows[0], rhs.rows[0] ),
+		cshift_right( lhs.rows[1], rhs.rows[1] ),
+		cshift_right( lhs.rows[2], rhs.rows[2] )
 	};
 }
 
@@ -6655,9 +6655,9 @@ uint3x2 operator>>=( uint3x2& lhs, const uint3x2& rhs )
 uint3x2 operator~( uint3x2& lhs )
 {
 	return HLML_CONSTRUCT( uint3x2 ) {
-		comp_unary( lhs.rows[0] ),
-		comp_unary( lhs.rows[1] ),
-		comp_unary( lhs.rows[2] )
+		cunary( lhs.rows[0] ),
+		cunary( lhs.rows[1] ),
+		cunary( lhs.rows[2] )
 	};
 }
 
@@ -6721,9 +6721,9 @@ uint3x3 operator+( const uint3x3& lhs, const uint32_t scalar )
 uint3x3 operator+( const uint3x3& lhs, const uint3x3& rhs )
 {
 	return HLML_CONSTRUCT( uint3x3 ) {
-		comp_addv( lhs.rows[0], rhs.rows[0] ),
-		comp_addv( lhs.rows[1], rhs.rows[1] ),
-		comp_addv( lhs.rows[2], rhs.rows[2] )
+		caddv( lhs.rows[0], rhs.rows[0] ),
+		caddv( lhs.rows[1], rhs.rows[1] ),
+		caddv( lhs.rows[2], rhs.rows[2] )
 	};
 }
 
@@ -6739,9 +6739,9 @@ uint3x3 operator-( const uint3x3& lhs, const uint32_t scalar )
 uint3x3 operator-( const uint3x3& lhs, const uint3x3& rhs )
 {
 	return HLML_CONSTRUCT( uint3x3 ) {
-		comp_subv( lhs.rows[0], rhs.rows[0] ),
-		comp_subv( lhs.rows[1], rhs.rows[1] ),
-		comp_subv( lhs.rows[2], rhs.rows[2] )
+		csubv( lhs.rows[0], rhs.rows[0] ),
+		csubv( lhs.rows[1], rhs.rows[1] ),
+		csubv( lhs.rows[2], rhs.rows[2] )
 	};
 }
 
@@ -6787,9 +6787,9 @@ uint3x3 operator/( const uint3x3& lhs, const uint32_t scalar )
 uint3x3 operator/( const uint3x3& lhs, const uint3x3& rhs )
 {
 	return HLML_CONSTRUCT( uint3x3 ) {
-		comp_divv( lhs.rows[0], rhs.rows[0] ),
-		comp_divv( lhs.rows[1], rhs.rows[1] ),
-		comp_divv( lhs.rows[2], rhs.rows[2] )
+		cdivv( lhs.rows[0], rhs.rows[0] ),
+		cdivv( lhs.rows[1], rhs.rows[1] ),
+		cdivv( lhs.rows[2], rhs.rows[2] )
 	};
 }
 
@@ -6842,9 +6842,9 @@ uint3x3& operator--( uint3x3& lhs, const int )
 uint3x3 operator&( uint3x3& lhs, const uint3x3& rhs )
 {
 	return HLML_CONSTRUCT( uint3x3 ) {
-		comp_and( lhs.rows[0], rhs.rows[0] ),
-		comp_and( lhs.rows[1], rhs.rows[1] ),
-		comp_and( lhs.rows[2], rhs.rows[2] )
+		cand( lhs.rows[0], rhs.rows[0] ),
+		cand( lhs.rows[1], rhs.rows[1] ),
+		cand( lhs.rows[2], rhs.rows[2] )
 	};
 }
 
@@ -6856,9 +6856,9 @@ uint3x3 operator&=( uint3x3& lhs, const uint3x3& rhs )
 uint3x3 operator|( uint3x3& lhs, const uint3x3& rhs )
 {
 	return HLML_CONSTRUCT( uint3x3 ) {
-		comp_or( lhs.rows[0], rhs.rows[0] ),
-		comp_or( lhs.rows[1], rhs.rows[1] ),
-		comp_or( lhs.rows[2], rhs.rows[2] )
+		cor( lhs.rows[0], rhs.rows[0] ),
+		cor( lhs.rows[1], rhs.rows[1] ),
+		cor( lhs.rows[2], rhs.rows[2] )
 	};
 }
 
@@ -6870,9 +6870,9 @@ uint3x3 operator|=( uint3x3& lhs, const uint3x3& rhs )
 uint3x3 operator^( uint3x3& lhs, const uint3x3& rhs )
 {
 	return HLML_CONSTRUCT( uint3x3 ) {
-		comp_xor( lhs.rows[0], rhs.rows[0] ),
-		comp_xor( lhs.rows[1], rhs.rows[1] ),
-		comp_xor( lhs.rows[2], rhs.rows[2] )
+		cxor( lhs.rows[0], rhs.rows[0] ),
+		cxor( lhs.rows[1], rhs.rows[1] ),
+		cxor( lhs.rows[2], rhs.rows[2] )
 	};
 }
 
@@ -6884,9 +6884,9 @@ uint3x3 operator^=( uint3x3& lhs, const uint3x3& rhs )
 uint3x3 operator<<( uint3x3& lhs, const uint3x3& rhs )
 {
 	return HLML_CONSTRUCT( uint3x3 ) {
-		comp_shift_left( lhs.rows[0], rhs.rows[0] ),
-		comp_shift_left( lhs.rows[1], rhs.rows[1] ),
-		comp_shift_left( lhs.rows[2], rhs.rows[2] )
+		cshift_left( lhs.rows[0], rhs.rows[0] ),
+		cshift_left( lhs.rows[1], rhs.rows[1] ),
+		cshift_left( lhs.rows[2], rhs.rows[2] )
 	};
 }
 
@@ -6898,9 +6898,9 @@ uint3x3 operator<<=( uint3x3& lhs, const uint3x3& rhs )
 uint3x3 operator>>( uint3x3& lhs, const uint3x3& rhs )
 {
 	return HLML_CONSTRUCT( uint3x3 ) {
-		comp_shift_right( lhs.rows[0], rhs.rows[0] ),
-		comp_shift_right( lhs.rows[1], rhs.rows[1] ),
-		comp_shift_right( lhs.rows[2], rhs.rows[2] )
+		cshift_right( lhs.rows[0], rhs.rows[0] ),
+		cshift_right( lhs.rows[1], rhs.rows[1] ),
+		cshift_right( lhs.rows[2], rhs.rows[2] )
 	};
 }
 
@@ -6912,9 +6912,9 @@ uint3x3 operator>>=( uint3x3& lhs, const uint3x3& rhs )
 uint3x3 operator~( uint3x3& lhs )
 {
 	return HLML_CONSTRUCT( uint3x3 ) {
-		comp_unary( lhs.rows[0] ),
-		comp_unary( lhs.rows[1] ),
-		comp_unary( lhs.rows[2] )
+		cunary( lhs.rows[0] ),
+		cunary( lhs.rows[1] ),
+		cunary( lhs.rows[2] )
 	};
 }
 
@@ -6978,9 +6978,9 @@ uint3x4 operator+( const uint3x4& lhs, const uint32_t scalar )
 uint3x4 operator+( const uint3x4& lhs, const uint3x4& rhs )
 {
 	return HLML_CONSTRUCT( uint3x4 ) {
-		comp_addv( lhs.rows[0], rhs.rows[0] ),
-		comp_addv( lhs.rows[1], rhs.rows[1] ),
-		comp_addv( lhs.rows[2], rhs.rows[2] )
+		caddv( lhs.rows[0], rhs.rows[0] ),
+		caddv( lhs.rows[1], rhs.rows[1] ),
+		caddv( lhs.rows[2], rhs.rows[2] )
 	};
 }
 
@@ -6996,9 +6996,9 @@ uint3x4 operator-( const uint3x4& lhs, const uint32_t scalar )
 uint3x4 operator-( const uint3x4& lhs, const uint3x4& rhs )
 {
 	return HLML_CONSTRUCT( uint3x4 ) {
-		comp_subv( lhs.rows[0], rhs.rows[0] ),
-		comp_subv( lhs.rows[1], rhs.rows[1] ),
-		comp_subv( lhs.rows[2], rhs.rows[2] )
+		csubv( lhs.rows[0], rhs.rows[0] ),
+		csubv( lhs.rows[1], rhs.rows[1] ),
+		csubv( lhs.rows[2], rhs.rows[2] )
 	};
 }
 
@@ -7039,9 +7039,9 @@ uint3x4 operator/( const uint3x4& lhs, const uint32_t scalar )
 uint3x4 operator/( const uint3x4& lhs, const uint3x4& rhs )
 {
 	return HLML_CONSTRUCT( uint3x4 ) {
-		comp_divv( lhs.rows[0], rhs.rows[0] ),
-		comp_divv( lhs.rows[1], rhs.rows[1] ),
-		comp_divv( lhs.rows[2], rhs.rows[2] )
+		cdivv( lhs.rows[0], rhs.rows[0] ),
+		cdivv( lhs.rows[1], rhs.rows[1] ),
+		cdivv( lhs.rows[2], rhs.rows[2] )
 	};
 }
 
@@ -7080,9 +7080,9 @@ uint3x4& operator--( uint3x4& lhs, const int )
 uint3x4 operator&( uint3x4& lhs, const uint3x4& rhs )
 {
 	return HLML_CONSTRUCT( uint3x4 ) {
-		comp_and( lhs.rows[0], rhs.rows[0] ),
-		comp_and( lhs.rows[1], rhs.rows[1] ),
-		comp_and( lhs.rows[2], rhs.rows[2] )
+		cand( lhs.rows[0], rhs.rows[0] ),
+		cand( lhs.rows[1], rhs.rows[1] ),
+		cand( lhs.rows[2], rhs.rows[2] )
 	};
 }
 
@@ -7094,9 +7094,9 @@ uint3x4 operator&=( uint3x4& lhs, const uint3x4& rhs )
 uint3x4 operator|( uint3x4& lhs, const uint3x4& rhs )
 {
 	return HLML_CONSTRUCT( uint3x4 ) {
-		comp_or( lhs.rows[0], rhs.rows[0] ),
-		comp_or( lhs.rows[1], rhs.rows[1] ),
-		comp_or( lhs.rows[2], rhs.rows[2] )
+		cor( lhs.rows[0], rhs.rows[0] ),
+		cor( lhs.rows[1], rhs.rows[1] ),
+		cor( lhs.rows[2], rhs.rows[2] )
 	};
 }
 
@@ -7108,9 +7108,9 @@ uint3x4 operator|=( uint3x4& lhs, const uint3x4& rhs )
 uint3x4 operator^( uint3x4& lhs, const uint3x4& rhs )
 {
 	return HLML_CONSTRUCT( uint3x4 ) {
-		comp_xor( lhs.rows[0], rhs.rows[0] ),
-		comp_xor( lhs.rows[1], rhs.rows[1] ),
-		comp_xor( lhs.rows[2], rhs.rows[2] )
+		cxor( lhs.rows[0], rhs.rows[0] ),
+		cxor( lhs.rows[1], rhs.rows[1] ),
+		cxor( lhs.rows[2], rhs.rows[2] )
 	};
 }
 
@@ -7122,9 +7122,9 @@ uint3x4 operator^=( uint3x4& lhs, const uint3x4& rhs )
 uint3x4 operator<<( uint3x4& lhs, const uint3x4& rhs )
 {
 	return HLML_CONSTRUCT( uint3x4 ) {
-		comp_shift_left( lhs.rows[0], rhs.rows[0] ),
-		comp_shift_left( lhs.rows[1], rhs.rows[1] ),
-		comp_shift_left( lhs.rows[2], rhs.rows[2] )
+		cshift_left( lhs.rows[0], rhs.rows[0] ),
+		cshift_left( lhs.rows[1], rhs.rows[1] ),
+		cshift_left( lhs.rows[2], rhs.rows[2] )
 	};
 }
 
@@ -7136,9 +7136,9 @@ uint3x4 operator<<=( uint3x4& lhs, const uint3x4& rhs )
 uint3x4 operator>>( uint3x4& lhs, const uint3x4& rhs )
 {
 	return HLML_CONSTRUCT( uint3x4 ) {
-		comp_shift_right( lhs.rows[0], rhs.rows[0] ),
-		comp_shift_right( lhs.rows[1], rhs.rows[1] ),
-		comp_shift_right( lhs.rows[2], rhs.rows[2] )
+		cshift_right( lhs.rows[0], rhs.rows[0] ),
+		cshift_right( lhs.rows[1], rhs.rows[1] ),
+		cshift_right( lhs.rows[2], rhs.rows[2] )
 	};
 }
 
@@ -7150,9 +7150,9 @@ uint3x4 operator>>=( uint3x4& lhs, const uint3x4& rhs )
 uint3x4 operator~( uint3x4& lhs )
 {
 	return HLML_CONSTRUCT( uint3x4 ) {
-		comp_unary( lhs.rows[0] ),
-		comp_unary( lhs.rows[1] ),
-		comp_unary( lhs.rows[2] )
+		cunary( lhs.rows[0] ),
+		cunary( lhs.rows[1] ),
+		cunary( lhs.rows[2] )
 	};
 }
 
@@ -7218,10 +7218,10 @@ uint4x2 operator+( const uint4x2& lhs, const uint32_t scalar )
 uint4x2 operator+( const uint4x2& lhs, const uint4x2& rhs )
 {
 	return HLML_CONSTRUCT( uint4x2 ) {
-		comp_addv( lhs.rows[0], rhs.rows[0] ),
-		comp_addv( lhs.rows[1], rhs.rows[1] ),
-		comp_addv( lhs.rows[2], rhs.rows[2] ),
-		comp_addv( lhs.rows[3], rhs.rows[3] )
+		caddv( lhs.rows[0], rhs.rows[0] ),
+		caddv( lhs.rows[1], rhs.rows[1] ),
+		caddv( lhs.rows[2], rhs.rows[2] ),
+		caddv( lhs.rows[3], rhs.rows[3] )
 	};
 }
 
@@ -7238,10 +7238,10 @@ uint4x2 operator-( const uint4x2& lhs, const uint32_t scalar )
 uint4x2 operator-( const uint4x2& lhs, const uint4x2& rhs )
 {
 	return HLML_CONSTRUCT( uint4x2 ) {
-		comp_subv( lhs.rows[0], rhs.rows[0] ),
-		comp_subv( lhs.rows[1], rhs.rows[1] ),
-		comp_subv( lhs.rows[2], rhs.rows[2] ),
-		comp_subv( lhs.rows[3], rhs.rows[3] )
+		csubv( lhs.rows[0], rhs.rows[0] ),
+		csubv( lhs.rows[1], rhs.rows[1] ),
+		csubv( lhs.rows[2], rhs.rows[2] ),
+		csubv( lhs.rows[3], rhs.rows[3] )
 	};
 }
 
@@ -7293,10 +7293,10 @@ uint4x2 operator/( const uint4x2& lhs, const uint32_t scalar )
 uint4x2 operator/( const uint4x2& lhs, const uint4x2& rhs )
 {
 	return HLML_CONSTRUCT( uint4x2 ) {
-		comp_divv( lhs.rows[0], rhs.rows[0] ),
-		comp_divv( lhs.rows[1], rhs.rows[1] ),
-		comp_divv( lhs.rows[2], rhs.rows[2] ),
-		comp_divv( lhs.rows[3], rhs.rows[3] )
+		cdivv( lhs.rows[0], rhs.rows[0] ),
+		cdivv( lhs.rows[1], rhs.rows[1] ),
+		cdivv( lhs.rows[2], rhs.rows[2] ),
+		cdivv( lhs.rows[3], rhs.rows[3] )
 	};
 }
 
@@ -7339,10 +7339,10 @@ uint4x2& operator--( uint4x2& lhs, const int )
 uint4x2 operator&( uint4x2& lhs, const uint4x2& rhs )
 {
 	return HLML_CONSTRUCT( uint4x2 ) {
-		comp_and( lhs.rows[0], rhs.rows[0] ),
-		comp_and( lhs.rows[1], rhs.rows[1] ),
-		comp_and( lhs.rows[2], rhs.rows[2] ),
-		comp_and( lhs.rows[3], rhs.rows[3] )
+		cand( lhs.rows[0], rhs.rows[0] ),
+		cand( lhs.rows[1], rhs.rows[1] ),
+		cand( lhs.rows[2], rhs.rows[2] ),
+		cand( lhs.rows[3], rhs.rows[3] )
 	};
 }
 
@@ -7354,10 +7354,10 @@ uint4x2 operator&=( uint4x2& lhs, const uint4x2& rhs )
 uint4x2 operator|( uint4x2& lhs, const uint4x2& rhs )
 {
 	return HLML_CONSTRUCT( uint4x2 ) {
-		comp_or( lhs.rows[0], rhs.rows[0] ),
-		comp_or( lhs.rows[1], rhs.rows[1] ),
-		comp_or( lhs.rows[2], rhs.rows[2] ),
-		comp_or( lhs.rows[3], rhs.rows[3] )
+		cor( lhs.rows[0], rhs.rows[0] ),
+		cor( lhs.rows[1], rhs.rows[1] ),
+		cor( lhs.rows[2], rhs.rows[2] ),
+		cor( lhs.rows[3], rhs.rows[3] )
 	};
 }
 
@@ -7369,10 +7369,10 @@ uint4x2 operator|=( uint4x2& lhs, const uint4x2& rhs )
 uint4x2 operator^( uint4x2& lhs, const uint4x2& rhs )
 {
 	return HLML_CONSTRUCT( uint4x2 ) {
-		comp_xor( lhs.rows[0], rhs.rows[0] ),
-		comp_xor( lhs.rows[1], rhs.rows[1] ),
-		comp_xor( lhs.rows[2], rhs.rows[2] ),
-		comp_xor( lhs.rows[3], rhs.rows[3] )
+		cxor( lhs.rows[0], rhs.rows[0] ),
+		cxor( lhs.rows[1], rhs.rows[1] ),
+		cxor( lhs.rows[2], rhs.rows[2] ),
+		cxor( lhs.rows[3], rhs.rows[3] )
 	};
 }
 
@@ -7384,10 +7384,10 @@ uint4x2 operator^=( uint4x2& lhs, const uint4x2& rhs )
 uint4x2 operator<<( uint4x2& lhs, const uint4x2& rhs )
 {
 	return HLML_CONSTRUCT( uint4x2 ) {
-		comp_shift_left( lhs.rows[0], rhs.rows[0] ),
-		comp_shift_left( lhs.rows[1], rhs.rows[1] ),
-		comp_shift_left( lhs.rows[2], rhs.rows[2] ),
-		comp_shift_left( lhs.rows[3], rhs.rows[3] )
+		cshift_left( lhs.rows[0], rhs.rows[0] ),
+		cshift_left( lhs.rows[1], rhs.rows[1] ),
+		cshift_left( lhs.rows[2], rhs.rows[2] ),
+		cshift_left( lhs.rows[3], rhs.rows[3] )
 	};
 }
 
@@ -7399,10 +7399,10 @@ uint4x2 operator<<=( uint4x2& lhs, const uint4x2& rhs )
 uint4x2 operator>>( uint4x2& lhs, const uint4x2& rhs )
 {
 	return HLML_CONSTRUCT( uint4x2 ) {
-		comp_shift_right( lhs.rows[0], rhs.rows[0] ),
-		comp_shift_right( lhs.rows[1], rhs.rows[1] ),
-		comp_shift_right( lhs.rows[2], rhs.rows[2] ),
-		comp_shift_right( lhs.rows[3], rhs.rows[3] )
+		cshift_right( lhs.rows[0], rhs.rows[0] ),
+		cshift_right( lhs.rows[1], rhs.rows[1] ),
+		cshift_right( lhs.rows[2], rhs.rows[2] ),
+		cshift_right( lhs.rows[3], rhs.rows[3] )
 	};
 }
 
@@ -7414,10 +7414,10 @@ uint4x2 operator>>=( uint4x2& lhs, const uint4x2& rhs )
 uint4x2 operator~( uint4x2& lhs )
 {
 	return HLML_CONSTRUCT( uint4x2 ) {
-		comp_unary( lhs.rows[0] ),
-		comp_unary( lhs.rows[1] ),
-		comp_unary( lhs.rows[2] ),
-		comp_unary( lhs.rows[3] )
+		cunary( lhs.rows[0] ),
+		cunary( lhs.rows[1] ),
+		cunary( lhs.rows[2] ),
+		cunary( lhs.rows[3] )
 	};
 }
 
@@ -7487,10 +7487,10 @@ uint4x3 operator+( const uint4x3& lhs, const uint32_t scalar )
 uint4x3 operator+( const uint4x3& lhs, const uint4x3& rhs )
 {
 	return HLML_CONSTRUCT( uint4x3 ) {
-		comp_addv( lhs.rows[0], rhs.rows[0] ),
-		comp_addv( lhs.rows[1], rhs.rows[1] ),
-		comp_addv( lhs.rows[2], rhs.rows[2] ),
-		comp_addv( lhs.rows[3], rhs.rows[3] )
+		caddv( lhs.rows[0], rhs.rows[0] ),
+		caddv( lhs.rows[1], rhs.rows[1] ),
+		caddv( lhs.rows[2], rhs.rows[2] ),
+		caddv( lhs.rows[3], rhs.rows[3] )
 	};
 }
 
@@ -7507,10 +7507,10 @@ uint4x3 operator-( const uint4x3& lhs, const uint32_t scalar )
 uint4x3 operator-( const uint4x3& lhs, const uint4x3& rhs )
 {
 	return HLML_CONSTRUCT( uint4x3 ) {
-		comp_subv( lhs.rows[0], rhs.rows[0] ),
-		comp_subv( lhs.rows[1], rhs.rows[1] ),
-		comp_subv( lhs.rows[2], rhs.rows[2] ),
-		comp_subv( lhs.rows[3], rhs.rows[3] )
+		csubv( lhs.rows[0], rhs.rows[0] ),
+		csubv( lhs.rows[1], rhs.rows[1] ),
+		csubv( lhs.rows[2], rhs.rows[2] ),
+		csubv( lhs.rows[3], rhs.rows[3] )
 	};
 }
 
@@ -7562,10 +7562,10 @@ uint4x3 operator/( const uint4x3& lhs, const uint32_t scalar )
 uint4x3 operator/( const uint4x3& lhs, const uint4x3& rhs )
 {
 	return HLML_CONSTRUCT( uint4x3 ) {
-		comp_divv( lhs.rows[0], rhs.rows[0] ),
-		comp_divv( lhs.rows[1], rhs.rows[1] ),
-		comp_divv( lhs.rows[2], rhs.rows[2] ),
-		comp_divv( lhs.rows[3], rhs.rows[3] )
+		cdivv( lhs.rows[0], rhs.rows[0] ),
+		cdivv( lhs.rows[1], rhs.rows[1] ),
+		cdivv( lhs.rows[2], rhs.rows[2] ),
+		cdivv( lhs.rows[3], rhs.rows[3] )
 	};
 }
 
@@ -7608,10 +7608,10 @@ uint4x3& operator--( uint4x3& lhs, const int )
 uint4x3 operator&( uint4x3& lhs, const uint4x3& rhs )
 {
 	return HLML_CONSTRUCT( uint4x3 ) {
-		comp_and( lhs.rows[0], rhs.rows[0] ),
-		comp_and( lhs.rows[1], rhs.rows[1] ),
-		comp_and( lhs.rows[2], rhs.rows[2] ),
-		comp_and( lhs.rows[3], rhs.rows[3] )
+		cand( lhs.rows[0], rhs.rows[0] ),
+		cand( lhs.rows[1], rhs.rows[1] ),
+		cand( lhs.rows[2], rhs.rows[2] ),
+		cand( lhs.rows[3], rhs.rows[3] )
 	};
 }
 
@@ -7623,10 +7623,10 @@ uint4x3 operator&=( uint4x3& lhs, const uint4x3& rhs )
 uint4x3 operator|( uint4x3& lhs, const uint4x3& rhs )
 {
 	return HLML_CONSTRUCT( uint4x3 ) {
-		comp_or( lhs.rows[0], rhs.rows[0] ),
-		comp_or( lhs.rows[1], rhs.rows[1] ),
-		comp_or( lhs.rows[2], rhs.rows[2] ),
-		comp_or( lhs.rows[3], rhs.rows[3] )
+		cor( lhs.rows[0], rhs.rows[0] ),
+		cor( lhs.rows[1], rhs.rows[1] ),
+		cor( lhs.rows[2], rhs.rows[2] ),
+		cor( lhs.rows[3], rhs.rows[3] )
 	};
 }
 
@@ -7638,10 +7638,10 @@ uint4x3 operator|=( uint4x3& lhs, const uint4x3& rhs )
 uint4x3 operator^( uint4x3& lhs, const uint4x3& rhs )
 {
 	return HLML_CONSTRUCT( uint4x3 ) {
-		comp_xor( lhs.rows[0], rhs.rows[0] ),
-		comp_xor( lhs.rows[1], rhs.rows[1] ),
-		comp_xor( lhs.rows[2], rhs.rows[2] ),
-		comp_xor( lhs.rows[3], rhs.rows[3] )
+		cxor( lhs.rows[0], rhs.rows[0] ),
+		cxor( lhs.rows[1], rhs.rows[1] ),
+		cxor( lhs.rows[2], rhs.rows[2] ),
+		cxor( lhs.rows[3], rhs.rows[3] )
 	};
 }
 
@@ -7653,10 +7653,10 @@ uint4x3 operator^=( uint4x3& lhs, const uint4x3& rhs )
 uint4x3 operator<<( uint4x3& lhs, const uint4x3& rhs )
 {
 	return HLML_CONSTRUCT( uint4x3 ) {
-		comp_shift_left( lhs.rows[0], rhs.rows[0] ),
-		comp_shift_left( lhs.rows[1], rhs.rows[1] ),
-		comp_shift_left( lhs.rows[2], rhs.rows[2] ),
-		comp_shift_left( lhs.rows[3], rhs.rows[3] )
+		cshift_left( lhs.rows[0], rhs.rows[0] ),
+		cshift_left( lhs.rows[1], rhs.rows[1] ),
+		cshift_left( lhs.rows[2], rhs.rows[2] ),
+		cshift_left( lhs.rows[3], rhs.rows[3] )
 	};
 }
 
@@ -7668,10 +7668,10 @@ uint4x3 operator<<=( uint4x3& lhs, const uint4x3& rhs )
 uint4x3 operator>>( uint4x3& lhs, const uint4x3& rhs )
 {
 	return HLML_CONSTRUCT( uint4x3 ) {
-		comp_shift_right( lhs.rows[0], rhs.rows[0] ),
-		comp_shift_right( lhs.rows[1], rhs.rows[1] ),
-		comp_shift_right( lhs.rows[2], rhs.rows[2] ),
-		comp_shift_right( lhs.rows[3], rhs.rows[3] )
+		cshift_right( lhs.rows[0], rhs.rows[0] ),
+		cshift_right( lhs.rows[1], rhs.rows[1] ),
+		cshift_right( lhs.rows[2], rhs.rows[2] ),
+		cshift_right( lhs.rows[3], rhs.rows[3] )
 	};
 }
 
@@ -7683,10 +7683,10 @@ uint4x3 operator>>=( uint4x3& lhs, const uint4x3& rhs )
 uint4x3 operator~( uint4x3& lhs )
 {
 	return HLML_CONSTRUCT( uint4x3 ) {
-		comp_unary( lhs.rows[0] ),
-		comp_unary( lhs.rows[1] ),
-		comp_unary( lhs.rows[2] ),
-		comp_unary( lhs.rows[3] )
+		cunary( lhs.rows[0] ),
+		cunary( lhs.rows[1] ),
+		cunary( lhs.rows[2] ),
+		cunary( lhs.rows[3] )
 	};
 }
 
@@ -7756,10 +7756,10 @@ uint4x4 operator+( const uint4x4& lhs, const uint32_t scalar )
 uint4x4 operator+( const uint4x4& lhs, const uint4x4& rhs )
 {
 	return HLML_CONSTRUCT( uint4x4 ) {
-		comp_addv( lhs.rows[0], rhs.rows[0] ),
-		comp_addv( lhs.rows[1], rhs.rows[1] ),
-		comp_addv( lhs.rows[2], rhs.rows[2] ),
-		comp_addv( lhs.rows[3], rhs.rows[3] )
+		caddv( lhs.rows[0], rhs.rows[0] ),
+		caddv( lhs.rows[1], rhs.rows[1] ),
+		caddv( lhs.rows[2], rhs.rows[2] ),
+		caddv( lhs.rows[3], rhs.rows[3] )
 	};
 }
 
@@ -7776,10 +7776,10 @@ uint4x4 operator-( const uint4x4& lhs, const uint32_t scalar )
 uint4x4 operator-( const uint4x4& lhs, const uint4x4& rhs )
 {
 	return HLML_CONSTRUCT( uint4x4 ) {
-		comp_subv( lhs.rows[0], rhs.rows[0] ),
-		comp_subv( lhs.rows[1], rhs.rows[1] ),
-		comp_subv( lhs.rows[2], rhs.rows[2] ),
-		comp_subv( lhs.rows[3], rhs.rows[3] )
+		csubv( lhs.rows[0], rhs.rows[0] ),
+		csubv( lhs.rows[1], rhs.rows[1] ),
+		csubv( lhs.rows[2], rhs.rows[2] ),
+		csubv( lhs.rows[3], rhs.rows[3] )
 	};
 }
 
@@ -7836,10 +7836,10 @@ uint4x4 operator/( const uint4x4& lhs, const uint32_t scalar )
 uint4x4 operator/( const uint4x4& lhs, const uint4x4& rhs )
 {
 	return HLML_CONSTRUCT( uint4x4 ) {
-		comp_divv( lhs.rows[0], rhs.rows[0] ),
-		comp_divv( lhs.rows[1], rhs.rows[1] ),
-		comp_divv( lhs.rows[2], rhs.rows[2] ),
-		comp_divv( lhs.rows[3], rhs.rows[3] )
+		cdivv( lhs.rows[0], rhs.rows[0] ),
+		cdivv( lhs.rows[1], rhs.rows[1] ),
+		cdivv( lhs.rows[2], rhs.rows[2] ),
+		cdivv( lhs.rows[3], rhs.rows[3] )
 	};
 }
 
@@ -7897,10 +7897,10 @@ uint4x4& operator--( uint4x4& lhs, const int )
 uint4x4 operator&( uint4x4& lhs, const uint4x4& rhs )
 {
 	return HLML_CONSTRUCT( uint4x4 ) {
-		comp_and( lhs.rows[0], rhs.rows[0] ),
-		comp_and( lhs.rows[1], rhs.rows[1] ),
-		comp_and( lhs.rows[2], rhs.rows[2] ),
-		comp_and( lhs.rows[3], rhs.rows[3] )
+		cand( lhs.rows[0], rhs.rows[0] ),
+		cand( lhs.rows[1], rhs.rows[1] ),
+		cand( lhs.rows[2], rhs.rows[2] ),
+		cand( lhs.rows[3], rhs.rows[3] )
 	};
 }
 
@@ -7912,10 +7912,10 @@ uint4x4 operator&=( uint4x4& lhs, const uint4x4& rhs )
 uint4x4 operator|( uint4x4& lhs, const uint4x4& rhs )
 {
 	return HLML_CONSTRUCT( uint4x4 ) {
-		comp_or( lhs.rows[0], rhs.rows[0] ),
-		comp_or( lhs.rows[1], rhs.rows[1] ),
-		comp_or( lhs.rows[2], rhs.rows[2] ),
-		comp_or( lhs.rows[3], rhs.rows[3] )
+		cor( lhs.rows[0], rhs.rows[0] ),
+		cor( lhs.rows[1], rhs.rows[1] ),
+		cor( lhs.rows[2], rhs.rows[2] ),
+		cor( lhs.rows[3], rhs.rows[3] )
 	};
 }
 
@@ -7927,10 +7927,10 @@ uint4x4 operator|=( uint4x4& lhs, const uint4x4& rhs )
 uint4x4 operator^( uint4x4& lhs, const uint4x4& rhs )
 {
 	return HLML_CONSTRUCT( uint4x4 ) {
-		comp_xor( lhs.rows[0], rhs.rows[0] ),
-		comp_xor( lhs.rows[1], rhs.rows[1] ),
-		comp_xor( lhs.rows[2], rhs.rows[2] ),
-		comp_xor( lhs.rows[3], rhs.rows[3] )
+		cxor( lhs.rows[0], rhs.rows[0] ),
+		cxor( lhs.rows[1], rhs.rows[1] ),
+		cxor( lhs.rows[2], rhs.rows[2] ),
+		cxor( lhs.rows[3], rhs.rows[3] )
 	};
 }
 
@@ -7942,10 +7942,10 @@ uint4x4 operator^=( uint4x4& lhs, const uint4x4& rhs )
 uint4x4 operator<<( uint4x4& lhs, const uint4x4& rhs )
 {
 	return HLML_CONSTRUCT( uint4x4 ) {
-		comp_shift_left( lhs.rows[0], rhs.rows[0] ),
-		comp_shift_left( lhs.rows[1], rhs.rows[1] ),
-		comp_shift_left( lhs.rows[2], rhs.rows[2] ),
-		comp_shift_left( lhs.rows[3], rhs.rows[3] )
+		cshift_left( lhs.rows[0], rhs.rows[0] ),
+		cshift_left( lhs.rows[1], rhs.rows[1] ),
+		cshift_left( lhs.rows[2], rhs.rows[2] ),
+		cshift_left( lhs.rows[3], rhs.rows[3] )
 	};
 }
 
@@ -7957,10 +7957,10 @@ uint4x4 operator<<=( uint4x4& lhs, const uint4x4& rhs )
 uint4x4 operator>>( uint4x4& lhs, const uint4x4& rhs )
 {
 	return HLML_CONSTRUCT( uint4x4 ) {
-		comp_shift_right( lhs.rows[0], rhs.rows[0] ),
-		comp_shift_right( lhs.rows[1], rhs.rows[1] ),
-		comp_shift_right( lhs.rows[2], rhs.rows[2] ),
-		comp_shift_right( lhs.rows[3], rhs.rows[3] )
+		cshift_right( lhs.rows[0], rhs.rows[0] ),
+		cshift_right( lhs.rows[1], rhs.rows[1] ),
+		cshift_right( lhs.rows[2], rhs.rows[2] ),
+		cshift_right( lhs.rows[3], rhs.rows[3] )
 	};
 }
 
@@ -7972,10 +7972,10 @@ uint4x4 operator>>=( uint4x4& lhs, const uint4x4& rhs )
 uint4x4 operator~( uint4x4& lhs )
 {
 	return HLML_CONSTRUCT( uint4x4 ) {
-		comp_unary( lhs.rows[0] ),
-		comp_unary( lhs.rows[1] ),
-		comp_unary( lhs.rows[2] ),
-		comp_unary( lhs.rows[3] )
+		cunary( lhs.rows[0] ),
+		cunary( lhs.rows[1] ),
+		cunary( lhs.rows[2] ),
+		cunary( lhs.rows[3] )
 	};
 }
 
@@ -8041,8 +8041,8 @@ float2x2 operator+( const float2x2& lhs, const float scalar )
 float2x2 operator+( const float2x2& lhs, const float2x2& rhs )
 {
 	return HLML_CONSTRUCT( float2x2 ) {
-		comp_addv( lhs.rows[0], rhs.rows[0] ),
-		comp_addv( lhs.rows[1], rhs.rows[1] )
+		caddv( lhs.rows[0], rhs.rows[0] ),
+		caddv( lhs.rows[1], rhs.rows[1] )
 	};
 }
 
@@ -8057,8 +8057,8 @@ float2x2 operator-( const float2x2& lhs, const float scalar )
 float2x2 operator-( const float2x2& lhs, const float2x2& rhs )
 {
 	return HLML_CONSTRUCT( float2x2 ) {
-		comp_subv( lhs.rows[0], rhs.rows[0] ),
-		comp_subv( lhs.rows[1], rhs.rows[1] )
+		csubv( lhs.rows[0], rhs.rows[0] ),
+		csubv( lhs.rows[1], rhs.rows[1] )
 	};
 }
 
@@ -8191,8 +8191,8 @@ float2x3 operator+( const float2x3& lhs, const float scalar )
 float2x3 operator+( const float2x3& lhs, const float2x3& rhs )
 {
 	return HLML_CONSTRUCT( float2x3 ) {
-		comp_addv( lhs.rows[0], rhs.rows[0] ),
-		comp_addv( lhs.rows[1], rhs.rows[1] )
+		caddv( lhs.rows[0], rhs.rows[0] ),
+		caddv( lhs.rows[1], rhs.rows[1] )
 	};
 }
 
@@ -8207,8 +8207,8 @@ float2x3 operator-( const float2x3& lhs, const float scalar )
 float2x3 operator-( const float2x3& lhs, const float2x3& rhs )
 {
 	return HLML_CONSTRUCT( float2x3 ) {
-		comp_subv( lhs.rows[0], rhs.rows[0] ),
-		comp_subv( lhs.rows[1], rhs.rows[1] )
+		csubv( lhs.rows[0], rhs.rows[0] ),
+		csubv( lhs.rows[1], rhs.rows[1] )
 	};
 }
 
@@ -8240,8 +8240,8 @@ float2x3 operator/( const float2x3& lhs, const float scalar )
 float2x3 operator/( const float2x3& lhs, const float2x3& rhs )
 {
 	return HLML_CONSTRUCT( float2x3 ) {
-		comp_divv( lhs.rows[0], rhs.rows[0] ),
-		comp_divv( lhs.rows[1], rhs.rows[1] )
+		cdivv( lhs.rows[0], rhs.rows[0] ),
+		cdivv( lhs.rows[1], rhs.rows[1] )
 	};
 }
 
@@ -8327,8 +8327,8 @@ float2x4 operator+( const float2x4& lhs, const float scalar )
 float2x4 operator+( const float2x4& lhs, const float2x4& rhs )
 {
 	return HLML_CONSTRUCT( float2x4 ) {
-		comp_addv( lhs.rows[0], rhs.rows[0] ),
-		comp_addv( lhs.rows[1], rhs.rows[1] )
+		caddv( lhs.rows[0], rhs.rows[0] ),
+		caddv( lhs.rows[1], rhs.rows[1] )
 	};
 }
 
@@ -8343,8 +8343,8 @@ float2x4 operator-( const float2x4& lhs, const float scalar )
 float2x4 operator-( const float2x4& lhs, const float2x4& rhs )
 {
 	return HLML_CONSTRUCT( float2x4 ) {
-		comp_subv( lhs.rows[0], rhs.rows[0] ),
-		comp_subv( lhs.rows[1], rhs.rows[1] )
+		csubv( lhs.rows[0], rhs.rows[0] ),
+		csubv( lhs.rows[1], rhs.rows[1] )
 	};
 }
 
@@ -8376,8 +8376,8 @@ float2x4 operator/( const float2x4& lhs, const float scalar )
 float2x4 operator/( const float2x4& lhs, const float2x4& rhs )
 {
 	return HLML_CONSTRUCT( float2x4 ) {
-		comp_divv( lhs.rows[0], rhs.rows[0] ),
-		comp_divv( lhs.rows[1], rhs.rows[1] )
+		cdivv( lhs.rows[0], rhs.rows[0] ),
+		cdivv( lhs.rows[1], rhs.rows[1] )
 	};
 }
 
@@ -8465,9 +8465,9 @@ float3x2 operator+( const float3x2& lhs, const float scalar )
 float3x2 operator+( const float3x2& lhs, const float3x2& rhs )
 {
 	return HLML_CONSTRUCT( float3x2 ) {
-		comp_addv( lhs.rows[0], rhs.rows[0] ),
-		comp_addv( lhs.rows[1], rhs.rows[1] ),
-		comp_addv( lhs.rows[2], rhs.rows[2] )
+		caddv( lhs.rows[0], rhs.rows[0] ),
+		caddv( lhs.rows[1], rhs.rows[1] ),
+		caddv( lhs.rows[2], rhs.rows[2] )
 	};
 }
 
@@ -8483,9 +8483,9 @@ float3x2 operator-( const float3x2& lhs, const float scalar )
 float3x2 operator-( const float3x2& lhs, const float3x2& rhs )
 {
 	return HLML_CONSTRUCT( float3x2 ) {
-		comp_subv( lhs.rows[0], rhs.rows[0] ),
-		comp_subv( lhs.rows[1], rhs.rows[1] ),
-		comp_subv( lhs.rows[2], rhs.rows[2] )
+		csubv( lhs.rows[0], rhs.rows[0] ),
+		csubv( lhs.rows[1], rhs.rows[1] ),
+		csubv( lhs.rows[2], rhs.rows[2] )
 	};
 }
 
@@ -8526,9 +8526,9 @@ float3x2 operator/( const float3x2& lhs, const float scalar )
 float3x2 operator/( const float3x2& lhs, const float3x2& rhs )
 {
 	return HLML_CONSTRUCT( float3x2 ) {
-		comp_divv( lhs.rows[0], rhs.rows[0] ),
-		comp_divv( lhs.rows[1], rhs.rows[1] ),
-		comp_divv( lhs.rows[2], rhs.rows[2] )
+		cdivv( lhs.rows[0], rhs.rows[0] ),
+		cdivv( lhs.rows[1], rhs.rows[1] ),
+		cdivv( lhs.rows[2], rhs.rows[2] )
 	};
 }
 
@@ -8624,9 +8624,9 @@ float3x3 operator+( const float3x3& lhs, const float scalar )
 float3x3 operator+( const float3x3& lhs, const float3x3& rhs )
 {
 	return HLML_CONSTRUCT( float3x3 ) {
-		comp_addv( lhs.rows[0], rhs.rows[0] ),
-		comp_addv( lhs.rows[1], rhs.rows[1] ),
-		comp_addv( lhs.rows[2], rhs.rows[2] )
+		caddv( lhs.rows[0], rhs.rows[0] ),
+		caddv( lhs.rows[1], rhs.rows[1] ),
+		caddv( lhs.rows[2], rhs.rows[2] )
 	};
 }
 
@@ -8642,9 +8642,9 @@ float3x3 operator-( const float3x3& lhs, const float scalar )
 float3x3 operator-( const float3x3& lhs, const float3x3& rhs )
 {
 	return HLML_CONSTRUCT( float3x3 ) {
-		comp_subv( lhs.rows[0], rhs.rows[0] ),
-		comp_subv( lhs.rows[1], rhs.rows[1] ),
-		comp_subv( lhs.rows[2], rhs.rows[2] )
+		csubv( lhs.rows[0], rhs.rows[0] ),
+		csubv( lhs.rows[1], rhs.rows[1] ),
+		csubv( lhs.rows[2], rhs.rows[2] )
 	};
 }
 
@@ -8796,9 +8796,9 @@ float3x4 operator+( const float3x4& lhs, const float scalar )
 float3x4 operator+( const float3x4& lhs, const float3x4& rhs )
 {
 	return HLML_CONSTRUCT( float3x4 ) {
-		comp_addv( lhs.rows[0], rhs.rows[0] ),
-		comp_addv( lhs.rows[1], rhs.rows[1] ),
-		comp_addv( lhs.rows[2], rhs.rows[2] )
+		caddv( lhs.rows[0], rhs.rows[0] ),
+		caddv( lhs.rows[1], rhs.rows[1] ),
+		caddv( lhs.rows[2], rhs.rows[2] )
 	};
 }
 
@@ -8814,9 +8814,9 @@ float3x4 operator-( const float3x4& lhs, const float scalar )
 float3x4 operator-( const float3x4& lhs, const float3x4& rhs )
 {
 	return HLML_CONSTRUCT( float3x4 ) {
-		comp_subv( lhs.rows[0], rhs.rows[0] ),
-		comp_subv( lhs.rows[1], rhs.rows[1] ),
-		comp_subv( lhs.rows[2], rhs.rows[2] )
+		csubv( lhs.rows[0], rhs.rows[0] ),
+		csubv( lhs.rows[1], rhs.rows[1] ),
+		csubv( lhs.rows[2], rhs.rows[2] )
 	};
 }
 
@@ -8857,9 +8857,9 @@ float3x4 operator/( const float3x4& lhs, const float scalar )
 float3x4 operator/( const float3x4& lhs, const float3x4& rhs )
 {
 	return HLML_CONSTRUCT( float3x4 ) {
-		comp_divv( lhs.rows[0], rhs.rows[0] ),
-		comp_divv( lhs.rows[1], rhs.rows[1] ),
-		comp_divv( lhs.rows[2], rhs.rows[2] )
+		cdivv( lhs.rows[0], rhs.rows[0] ),
+		cdivv( lhs.rows[1], rhs.rows[1] ),
+		cdivv( lhs.rows[2], rhs.rows[2] )
 	};
 }
 
@@ -8957,10 +8957,10 @@ float4x2 operator+( const float4x2& lhs, const float scalar )
 float4x2 operator+( const float4x2& lhs, const float4x2& rhs )
 {
 	return HLML_CONSTRUCT( float4x2 ) {
-		comp_addv( lhs.rows[0], rhs.rows[0] ),
-		comp_addv( lhs.rows[1], rhs.rows[1] ),
-		comp_addv( lhs.rows[2], rhs.rows[2] ),
-		comp_addv( lhs.rows[3], rhs.rows[3] )
+		caddv( lhs.rows[0], rhs.rows[0] ),
+		caddv( lhs.rows[1], rhs.rows[1] ),
+		caddv( lhs.rows[2], rhs.rows[2] ),
+		caddv( lhs.rows[3], rhs.rows[3] )
 	};
 }
 
@@ -8977,10 +8977,10 @@ float4x2 operator-( const float4x2& lhs, const float scalar )
 float4x2 operator-( const float4x2& lhs, const float4x2& rhs )
 {
 	return HLML_CONSTRUCT( float4x2 ) {
-		comp_subv( lhs.rows[0], rhs.rows[0] ),
-		comp_subv( lhs.rows[1], rhs.rows[1] ),
-		comp_subv( lhs.rows[2], rhs.rows[2] ),
-		comp_subv( lhs.rows[3], rhs.rows[3] )
+		csubv( lhs.rows[0], rhs.rows[0] ),
+		csubv( lhs.rows[1], rhs.rows[1] ),
+		csubv( lhs.rows[2], rhs.rows[2] ),
+		csubv( lhs.rows[3], rhs.rows[3] )
 	};
 }
 
@@ -9032,10 +9032,10 @@ float4x2 operator/( const float4x2& lhs, const float scalar )
 float4x2 operator/( const float4x2& lhs, const float4x2& rhs )
 {
 	return HLML_CONSTRUCT( float4x2 ) {
-		comp_divv( lhs.rows[0], rhs.rows[0] ),
-		comp_divv( lhs.rows[1], rhs.rows[1] ),
-		comp_divv( lhs.rows[2], rhs.rows[2] ),
-		comp_divv( lhs.rows[3], rhs.rows[3] )
+		cdivv( lhs.rows[0], rhs.rows[0] ),
+		cdivv( lhs.rows[1], rhs.rows[1] ),
+		cdivv( lhs.rows[2], rhs.rows[2] ),
+		cdivv( lhs.rows[3], rhs.rows[3] )
 	};
 }
 
@@ -9141,10 +9141,10 @@ float4x3 operator+( const float4x3& lhs, const float scalar )
 float4x3 operator+( const float4x3& lhs, const float4x3& rhs )
 {
 	return HLML_CONSTRUCT( float4x3 ) {
-		comp_addv( lhs.rows[0], rhs.rows[0] ),
-		comp_addv( lhs.rows[1], rhs.rows[1] ),
-		comp_addv( lhs.rows[2], rhs.rows[2] ),
-		comp_addv( lhs.rows[3], rhs.rows[3] )
+		caddv( lhs.rows[0], rhs.rows[0] ),
+		caddv( lhs.rows[1], rhs.rows[1] ),
+		caddv( lhs.rows[2], rhs.rows[2] ),
+		caddv( lhs.rows[3], rhs.rows[3] )
 	};
 }
 
@@ -9161,10 +9161,10 @@ float4x3 operator-( const float4x3& lhs, const float scalar )
 float4x3 operator-( const float4x3& lhs, const float4x3& rhs )
 {
 	return HLML_CONSTRUCT( float4x3 ) {
-		comp_subv( lhs.rows[0], rhs.rows[0] ),
-		comp_subv( lhs.rows[1], rhs.rows[1] ),
-		comp_subv( lhs.rows[2], rhs.rows[2] ),
-		comp_subv( lhs.rows[3], rhs.rows[3] )
+		csubv( lhs.rows[0], rhs.rows[0] ),
+		csubv( lhs.rows[1], rhs.rows[1] ),
+		csubv( lhs.rows[2], rhs.rows[2] ),
+		csubv( lhs.rows[3], rhs.rows[3] )
 	};
 }
 
@@ -9216,10 +9216,10 @@ float4x3 operator/( const float4x3& lhs, const float scalar )
 float4x3 operator/( const float4x3& lhs, const float4x3& rhs )
 {
 	return HLML_CONSTRUCT( float4x3 ) {
-		comp_divv( lhs.rows[0], rhs.rows[0] ),
-		comp_divv( lhs.rows[1], rhs.rows[1] ),
-		comp_divv( lhs.rows[2], rhs.rows[2] ),
-		comp_divv( lhs.rows[3], rhs.rows[3] )
+		cdivv( lhs.rows[0], rhs.rows[0] ),
+		cdivv( lhs.rows[1], rhs.rows[1] ),
+		cdivv( lhs.rows[2], rhs.rows[2] ),
+		cdivv( lhs.rows[3], rhs.rows[3] )
 	};
 }
 
@@ -9325,10 +9325,10 @@ float4x4 operator+( const float4x4& lhs, const float scalar )
 float4x4 operator+( const float4x4& lhs, const float4x4& rhs )
 {
 	return HLML_CONSTRUCT( float4x4 ) {
-		comp_addv( lhs.rows[0], rhs.rows[0] ),
-		comp_addv( lhs.rows[1], rhs.rows[1] ),
-		comp_addv( lhs.rows[2], rhs.rows[2] ),
-		comp_addv( lhs.rows[3], rhs.rows[3] )
+		caddv( lhs.rows[0], rhs.rows[0] ),
+		caddv( lhs.rows[1], rhs.rows[1] ),
+		caddv( lhs.rows[2], rhs.rows[2] ),
+		caddv( lhs.rows[3], rhs.rows[3] )
 	};
 }
 
@@ -9345,10 +9345,10 @@ float4x4 operator-( const float4x4& lhs, const float scalar )
 float4x4 operator-( const float4x4& lhs, const float4x4& rhs )
 {
 	return HLML_CONSTRUCT( float4x4 ) {
-		comp_subv( lhs.rows[0], rhs.rows[0] ),
-		comp_subv( lhs.rows[1], rhs.rows[1] ),
-		comp_subv( lhs.rows[2], rhs.rows[2] ),
-		comp_subv( lhs.rows[3], rhs.rows[3] )
+		csubv( lhs.rows[0], rhs.rows[0] ),
+		csubv( lhs.rows[1], rhs.rows[1] ),
+		csubv( lhs.rows[2], rhs.rows[2] ),
+		csubv( lhs.rows[3], rhs.rows[3] )
 	};
 }
 
@@ -9517,8 +9517,8 @@ double2x2 operator+( const double2x2& lhs, const double scalar )
 double2x2 operator+( const double2x2& lhs, const double2x2& rhs )
 {
 	return HLML_CONSTRUCT( double2x2 ) {
-		comp_addv( lhs.rows[0], rhs.rows[0] ),
-		comp_addv( lhs.rows[1], rhs.rows[1] )
+		caddv( lhs.rows[0], rhs.rows[0] ),
+		caddv( lhs.rows[1], rhs.rows[1] )
 	};
 }
 
@@ -9533,8 +9533,8 @@ double2x2 operator-( const double2x2& lhs, const double scalar )
 double2x2 operator-( const double2x2& lhs, const double2x2& rhs )
 {
 	return HLML_CONSTRUCT( double2x2 ) {
-		comp_subv( lhs.rows[0], rhs.rows[0] ),
-		comp_subv( lhs.rows[1], rhs.rows[1] )
+		csubv( lhs.rows[0], rhs.rows[0] ),
+		csubv( lhs.rows[1], rhs.rows[1] )
 	};
 }
 
@@ -9667,8 +9667,8 @@ double2x3 operator+( const double2x3& lhs, const double scalar )
 double2x3 operator+( const double2x3& lhs, const double2x3& rhs )
 {
 	return HLML_CONSTRUCT( double2x3 ) {
-		comp_addv( lhs.rows[0], rhs.rows[0] ),
-		comp_addv( lhs.rows[1], rhs.rows[1] )
+		caddv( lhs.rows[0], rhs.rows[0] ),
+		caddv( lhs.rows[1], rhs.rows[1] )
 	};
 }
 
@@ -9683,8 +9683,8 @@ double2x3 operator-( const double2x3& lhs, const double scalar )
 double2x3 operator-( const double2x3& lhs, const double2x3& rhs )
 {
 	return HLML_CONSTRUCT( double2x3 ) {
-		comp_subv( lhs.rows[0], rhs.rows[0] ),
-		comp_subv( lhs.rows[1], rhs.rows[1] )
+		csubv( lhs.rows[0], rhs.rows[0] ),
+		csubv( lhs.rows[1], rhs.rows[1] )
 	};
 }
 
@@ -9716,8 +9716,8 @@ double2x3 operator/( const double2x3& lhs, const double scalar )
 double2x3 operator/( const double2x3& lhs, const double2x3& rhs )
 {
 	return HLML_CONSTRUCT( double2x3 ) {
-		comp_divv( lhs.rows[0], rhs.rows[0] ),
-		comp_divv( lhs.rows[1], rhs.rows[1] )
+		cdivv( lhs.rows[0], rhs.rows[0] ),
+		cdivv( lhs.rows[1], rhs.rows[1] )
 	};
 }
 
@@ -9803,8 +9803,8 @@ double2x4 operator+( const double2x4& lhs, const double scalar )
 double2x4 operator+( const double2x4& lhs, const double2x4& rhs )
 {
 	return HLML_CONSTRUCT( double2x4 ) {
-		comp_addv( lhs.rows[0], rhs.rows[0] ),
-		comp_addv( lhs.rows[1], rhs.rows[1] )
+		caddv( lhs.rows[0], rhs.rows[0] ),
+		caddv( lhs.rows[1], rhs.rows[1] )
 	};
 }
 
@@ -9819,8 +9819,8 @@ double2x4 operator-( const double2x4& lhs, const double scalar )
 double2x4 operator-( const double2x4& lhs, const double2x4& rhs )
 {
 	return HLML_CONSTRUCT( double2x4 ) {
-		comp_subv( lhs.rows[0], rhs.rows[0] ),
-		comp_subv( lhs.rows[1], rhs.rows[1] )
+		csubv( lhs.rows[0], rhs.rows[0] ),
+		csubv( lhs.rows[1], rhs.rows[1] )
 	};
 }
 
@@ -9852,8 +9852,8 @@ double2x4 operator/( const double2x4& lhs, const double scalar )
 double2x4 operator/( const double2x4& lhs, const double2x4& rhs )
 {
 	return HLML_CONSTRUCT( double2x4 ) {
-		comp_divv( lhs.rows[0], rhs.rows[0] ),
-		comp_divv( lhs.rows[1], rhs.rows[1] )
+		cdivv( lhs.rows[0], rhs.rows[0] ),
+		cdivv( lhs.rows[1], rhs.rows[1] )
 	};
 }
 
@@ -9941,9 +9941,9 @@ double3x2 operator+( const double3x2& lhs, const double scalar )
 double3x2 operator+( const double3x2& lhs, const double3x2& rhs )
 {
 	return HLML_CONSTRUCT( double3x2 ) {
-		comp_addv( lhs.rows[0], rhs.rows[0] ),
-		comp_addv( lhs.rows[1], rhs.rows[1] ),
-		comp_addv( lhs.rows[2], rhs.rows[2] )
+		caddv( lhs.rows[0], rhs.rows[0] ),
+		caddv( lhs.rows[1], rhs.rows[1] ),
+		caddv( lhs.rows[2], rhs.rows[2] )
 	};
 }
 
@@ -9959,9 +9959,9 @@ double3x2 operator-( const double3x2& lhs, const double scalar )
 double3x2 operator-( const double3x2& lhs, const double3x2& rhs )
 {
 	return HLML_CONSTRUCT( double3x2 ) {
-		comp_subv( lhs.rows[0], rhs.rows[0] ),
-		comp_subv( lhs.rows[1], rhs.rows[1] ),
-		comp_subv( lhs.rows[2], rhs.rows[2] )
+		csubv( lhs.rows[0], rhs.rows[0] ),
+		csubv( lhs.rows[1], rhs.rows[1] ),
+		csubv( lhs.rows[2], rhs.rows[2] )
 	};
 }
 
@@ -10002,9 +10002,9 @@ double3x2 operator/( const double3x2& lhs, const double scalar )
 double3x2 operator/( const double3x2& lhs, const double3x2& rhs )
 {
 	return HLML_CONSTRUCT( double3x2 ) {
-		comp_divv( lhs.rows[0], rhs.rows[0] ),
-		comp_divv( lhs.rows[1], rhs.rows[1] ),
-		comp_divv( lhs.rows[2], rhs.rows[2] )
+		cdivv( lhs.rows[0], rhs.rows[0] ),
+		cdivv( lhs.rows[1], rhs.rows[1] ),
+		cdivv( lhs.rows[2], rhs.rows[2] )
 	};
 }
 
@@ -10100,9 +10100,9 @@ double3x3 operator+( const double3x3& lhs, const double scalar )
 double3x3 operator+( const double3x3& lhs, const double3x3& rhs )
 {
 	return HLML_CONSTRUCT( double3x3 ) {
-		comp_addv( lhs.rows[0], rhs.rows[0] ),
-		comp_addv( lhs.rows[1], rhs.rows[1] ),
-		comp_addv( lhs.rows[2], rhs.rows[2] )
+		caddv( lhs.rows[0], rhs.rows[0] ),
+		caddv( lhs.rows[1], rhs.rows[1] ),
+		caddv( lhs.rows[2], rhs.rows[2] )
 	};
 }
 
@@ -10118,9 +10118,9 @@ double3x3 operator-( const double3x3& lhs, const double scalar )
 double3x3 operator-( const double3x3& lhs, const double3x3& rhs )
 {
 	return HLML_CONSTRUCT( double3x3 ) {
-		comp_subv( lhs.rows[0], rhs.rows[0] ),
-		comp_subv( lhs.rows[1], rhs.rows[1] ),
-		comp_subv( lhs.rows[2], rhs.rows[2] )
+		csubv( lhs.rows[0], rhs.rows[0] ),
+		csubv( lhs.rows[1], rhs.rows[1] ),
+		csubv( lhs.rows[2], rhs.rows[2] )
 	};
 }
 
@@ -10272,9 +10272,9 @@ double3x4 operator+( const double3x4& lhs, const double scalar )
 double3x4 operator+( const double3x4& lhs, const double3x4& rhs )
 {
 	return HLML_CONSTRUCT( double3x4 ) {
-		comp_addv( lhs.rows[0], rhs.rows[0] ),
-		comp_addv( lhs.rows[1], rhs.rows[1] ),
-		comp_addv( lhs.rows[2], rhs.rows[2] )
+		caddv( lhs.rows[0], rhs.rows[0] ),
+		caddv( lhs.rows[1], rhs.rows[1] ),
+		caddv( lhs.rows[2], rhs.rows[2] )
 	};
 }
 
@@ -10290,9 +10290,9 @@ double3x4 operator-( const double3x4& lhs, const double scalar )
 double3x4 operator-( const double3x4& lhs, const double3x4& rhs )
 {
 	return HLML_CONSTRUCT( double3x4 ) {
-		comp_subv( lhs.rows[0], rhs.rows[0] ),
-		comp_subv( lhs.rows[1], rhs.rows[1] ),
-		comp_subv( lhs.rows[2], rhs.rows[2] )
+		csubv( lhs.rows[0], rhs.rows[0] ),
+		csubv( lhs.rows[1], rhs.rows[1] ),
+		csubv( lhs.rows[2], rhs.rows[2] )
 	};
 }
 
@@ -10333,9 +10333,9 @@ double3x4 operator/( const double3x4& lhs, const double scalar )
 double3x4 operator/( const double3x4& lhs, const double3x4& rhs )
 {
 	return HLML_CONSTRUCT( double3x4 ) {
-		comp_divv( lhs.rows[0], rhs.rows[0] ),
-		comp_divv( lhs.rows[1], rhs.rows[1] ),
-		comp_divv( lhs.rows[2], rhs.rows[2] )
+		cdivv( lhs.rows[0], rhs.rows[0] ),
+		cdivv( lhs.rows[1], rhs.rows[1] ),
+		cdivv( lhs.rows[2], rhs.rows[2] )
 	};
 }
 
@@ -10433,10 +10433,10 @@ double4x2 operator+( const double4x2& lhs, const double scalar )
 double4x2 operator+( const double4x2& lhs, const double4x2& rhs )
 {
 	return HLML_CONSTRUCT( double4x2 ) {
-		comp_addv( lhs.rows[0], rhs.rows[0] ),
-		comp_addv( lhs.rows[1], rhs.rows[1] ),
-		comp_addv( lhs.rows[2], rhs.rows[2] ),
-		comp_addv( lhs.rows[3], rhs.rows[3] )
+		caddv( lhs.rows[0], rhs.rows[0] ),
+		caddv( lhs.rows[1], rhs.rows[1] ),
+		caddv( lhs.rows[2], rhs.rows[2] ),
+		caddv( lhs.rows[3], rhs.rows[3] )
 	};
 }
 
@@ -10453,10 +10453,10 @@ double4x2 operator-( const double4x2& lhs, const double scalar )
 double4x2 operator-( const double4x2& lhs, const double4x2& rhs )
 {
 	return HLML_CONSTRUCT( double4x2 ) {
-		comp_subv( lhs.rows[0], rhs.rows[0] ),
-		comp_subv( lhs.rows[1], rhs.rows[1] ),
-		comp_subv( lhs.rows[2], rhs.rows[2] ),
-		comp_subv( lhs.rows[3], rhs.rows[3] )
+		csubv( lhs.rows[0], rhs.rows[0] ),
+		csubv( lhs.rows[1], rhs.rows[1] ),
+		csubv( lhs.rows[2], rhs.rows[2] ),
+		csubv( lhs.rows[3], rhs.rows[3] )
 	};
 }
 
@@ -10508,10 +10508,10 @@ double4x2 operator/( const double4x2& lhs, const double scalar )
 double4x2 operator/( const double4x2& lhs, const double4x2& rhs )
 {
 	return HLML_CONSTRUCT( double4x2 ) {
-		comp_divv( lhs.rows[0], rhs.rows[0] ),
-		comp_divv( lhs.rows[1], rhs.rows[1] ),
-		comp_divv( lhs.rows[2], rhs.rows[2] ),
-		comp_divv( lhs.rows[3], rhs.rows[3] )
+		cdivv( lhs.rows[0], rhs.rows[0] ),
+		cdivv( lhs.rows[1], rhs.rows[1] ),
+		cdivv( lhs.rows[2], rhs.rows[2] ),
+		cdivv( lhs.rows[3], rhs.rows[3] )
 	};
 }
 
@@ -10617,10 +10617,10 @@ double4x3 operator+( const double4x3& lhs, const double scalar )
 double4x3 operator+( const double4x3& lhs, const double4x3& rhs )
 {
 	return HLML_CONSTRUCT( double4x3 ) {
-		comp_addv( lhs.rows[0], rhs.rows[0] ),
-		comp_addv( lhs.rows[1], rhs.rows[1] ),
-		comp_addv( lhs.rows[2], rhs.rows[2] ),
-		comp_addv( lhs.rows[3], rhs.rows[3] )
+		caddv( lhs.rows[0], rhs.rows[0] ),
+		caddv( lhs.rows[1], rhs.rows[1] ),
+		caddv( lhs.rows[2], rhs.rows[2] ),
+		caddv( lhs.rows[3], rhs.rows[3] )
 	};
 }
 
@@ -10637,10 +10637,10 @@ double4x3 operator-( const double4x3& lhs, const double scalar )
 double4x3 operator-( const double4x3& lhs, const double4x3& rhs )
 {
 	return HLML_CONSTRUCT( double4x3 ) {
-		comp_subv( lhs.rows[0], rhs.rows[0] ),
-		comp_subv( lhs.rows[1], rhs.rows[1] ),
-		comp_subv( lhs.rows[2], rhs.rows[2] ),
-		comp_subv( lhs.rows[3], rhs.rows[3] )
+		csubv( lhs.rows[0], rhs.rows[0] ),
+		csubv( lhs.rows[1], rhs.rows[1] ),
+		csubv( lhs.rows[2], rhs.rows[2] ),
+		csubv( lhs.rows[3], rhs.rows[3] )
 	};
 }
 
@@ -10692,10 +10692,10 @@ double4x3 operator/( const double4x3& lhs, const double scalar )
 double4x3 operator/( const double4x3& lhs, const double4x3& rhs )
 {
 	return HLML_CONSTRUCT( double4x3 ) {
-		comp_divv( lhs.rows[0], rhs.rows[0] ),
-		comp_divv( lhs.rows[1], rhs.rows[1] ),
-		comp_divv( lhs.rows[2], rhs.rows[2] ),
-		comp_divv( lhs.rows[3], rhs.rows[3] )
+		cdivv( lhs.rows[0], rhs.rows[0] ),
+		cdivv( lhs.rows[1], rhs.rows[1] ),
+		cdivv( lhs.rows[2], rhs.rows[2] ),
+		cdivv( lhs.rows[3], rhs.rows[3] )
 	};
 }
 
@@ -10801,10 +10801,10 @@ double4x4 operator+( const double4x4& lhs, const double scalar )
 double4x4 operator+( const double4x4& lhs, const double4x4& rhs )
 {
 	return HLML_CONSTRUCT( double4x4 ) {
-		comp_addv( lhs.rows[0], rhs.rows[0] ),
-		comp_addv( lhs.rows[1], rhs.rows[1] ),
-		comp_addv( lhs.rows[2], rhs.rows[2] ),
-		comp_addv( lhs.rows[3], rhs.rows[3] )
+		caddv( lhs.rows[0], rhs.rows[0] ),
+		caddv( lhs.rows[1], rhs.rows[1] ),
+		caddv( lhs.rows[2], rhs.rows[2] ),
+		caddv( lhs.rows[3], rhs.rows[3] )
 	};
 }
 
@@ -10821,10 +10821,10 @@ double4x4 operator-( const double4x4& lhs, const double scalar )
 double4x4 operator-( const double4x4& lhs, const double4x4& rhs )
 {
 	return HLML_CONSTRUCT( double4x4 ) {
-		comp_subv( lhs.rows[0], rhs.rows[0] ),
-		comp_subv( lhs.rows[1], rhs.rows[1] ),
-		comp_subv( lhs.rows[2], rhs.rows[2] ),
-		comp_subv( lhs.rows[3], rhs.rows[3] )
+		csubv( lhs.rows[0], rhs.rows[0] ),
+		csubv( lhs.rows[1], rhs.rows[1] ),
+		csubv( lhs.rows[2], rhs.rows[2] ),
+		csubv( lhs.rows[3], rhs.rows[3] )
 	};
 }
 

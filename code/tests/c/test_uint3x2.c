@@ -88,7 +88,7 @@ TEMPER_TEST( TestComponentWiseArithmetic_Scalar_Addition_uint3x2 )
 		3U, 3U
 	};
 
-	uint3x2 c = uint3x2_comp_addm( &a, &b );
+	uint3x2 c = uint3x2_caddm( &a, &b );
 
 	TEMPER_EXPECT_TRUE( uint3x2_cmpe( &c, &answer ) );
 
@@ -115,7 +115,7 @@ TEMPER_TEST( TestComponentWiseArithmetic_Scalar_Subtraction_uint3x2 )
 		3U, 3U
 	};
 
-	uint3x2 c = uint3x2_comp_subm( &a, &b );
+	uint3x2 c = uint3x2_csubm( &a, &b );
 
 	TEMPER_EXPECT_TRUE( uint3x2_cmpe( &c, &answer ) );
 
@@ -142,7 +142,7 @@ TEMPER_TEST( TestComponentWiseArithmetic_Scalar_Multiplication_uint3x2 )
 		3U, 3U
 	};
 
-	uint3x2 c = uint3x2_comp_mulm( &a, &b );
+	uint3x2 c = uint3x2_cmulm( &a, &b );
 
 	TEMPER_EXPECT_TRUE( uint3x2_cmpe( &c, &answer ) );
 
@@ -169,7 +169,7 @@ TEMPER_TEST( TestComponentWiseArithmetic_Scalar_Division_uint3x2 )
 		3U, 3U
 	};
 
-	uint3x2 c = uint3x2_comp_divm( &a, &b );
+	uint3x2 c = uint3x2_cdivm( &a, &b );
 
 	TEMPER_EXPECT_TRUE( uint3x2_cmpe( &c, &answer ) );
 
@@ -281,7 +281,7 @@ TEMPER_TEST( TestBitwise_And_uint3x2 )
 		7U, 7U,
 		7U, 7U
 	};
-	uint3x2 c = uint3x2_comp_and( &a, &b );
+	uint3x2 c = uint3x2_cand( &a, &b );
 
 	TEMPER_EXPECT_TRUE( uint3x2_cmpe( &c, &answer ) );
 
@@ -305,7 +305,7 @@ TEMPER_TEST( TestBitwise_Or_uint3x2 )
 		7U, 7U,
 		7U, 7U
 	};
-	uint3x2 c = uint3x2_comp_or( &a, &b );
+	uint3x2 c = uint3x2_cor( &a, &b );
 
 	TEMPER_EXPECT_TRUE( uint3x2_cmpe( &c, &answer ) );
 
@@ -329,7 +329,7 @@ TEMPER_TEST( TestBitwise_Xor_uint3x2 )
 		7U, 7U,
 		7U, 7U
 	};
-	uint3x2 c = uint3x2_comp_xor( &a, &b );
+	uint3x2 c = uint3x2_cxor( &a, &b );
 
 	TEMPER_EXPECT_TRUE( uint3x2_cmpe( &c, &answer ) );
 
@@ -353,7 +353,7 @@ TEMPER_TEST( TestBitwise_ShiftLeft_uint3x2 )
 		2U, 2U,
 		2U, 2U
 	};
-	uint3x2 c = uint3x2_comp_shift_left( &a, &b );
+	uint3x2 c = uint3x2_cshift_left( &a, &b );
 
 	TEMPER_EXPECT_TRUE( uint3x2_cmpe( &c, &answer ) );
 
@@ -377,7 +377,7 @@ TEMPER_TEST( TestBitwise_ShiftRight_uint3x2 )
 		4U, 4U,
 		4U, 4U
 	};
-	uint3x2 c = uint3x2_comp_shift_right( &a, &b );
+	uint3x2 c = uint3x2_cshift_right( &a, &b );
 
 	TEMPER_EXPECT_TRUE( uint3x2_cmpe( &c, &answer ) );
 
@@ -397,7 +397,7 @@ TEMPER_TEST( TestBitwise_Unary_uint3x2 )
 		0U, 0U
 	};
 
-	uint3x2 b = uint3x2_comp_unary( &a );
+	uint3x2 b = uint3x2_cunary( &a );
 
 	TEMPER_EXPECT_TRUE( uint3x2_cmpe( &b, &answer ) );
 

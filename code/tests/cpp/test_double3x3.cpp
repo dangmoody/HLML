@@ -214,7 +214,7 @@ TEMPER_TEST( TestComponentWiseArithmetic_Scalar_Addition_double3x3 )
 		3.000000, 3.000000, 3.000000
 	);
 
-	double3x3 c = comp_addm( a, b );
+	double3x3 c = caddm( a, b );
 
 	TEMPER_EXPECT_TRUE( c == answer );
 
@@ -241,7 +241,7 @@ TEMPER_TEST( TestComponentWiseArithmetic_Scalar_Subtraction_double3x3 )
 		3.000000, 3.000000, 3.000000
 	);
 
-	double3x3 c = comp_subm( a, b );
+	double3x3 c = csubm( a, b );
 
 	TEMPER_EXPECT_TRUE( c == answer );
 
@@ -268,7 +268,7 @@ TEMPER_TEST( TestComponentWiseArithmetic_Scalar_Multiplication_double3x3 )
 		3.000000, 3.000000, 3.000000
 	);
 
-	double3x3 c = comp_mulm( a, b );
+	double3x3 c = cmulm( a, b );
 
 	TEMPER_EXPECT_TRUE( c == answer );
 
@@ -295,7 +295,7 @@ TEMPER_TEST( TestComponentWiseArithmetic_Scalar_Division_double3x3 )
 		3.000000, 3.000000, 3.000000
 	);
 
-	double3x3 c = comp_divm( a, b );
+	double3x3 c = cdivm( a, b );
 
 	TEMPER_EXPECT_TRUE( c == answer );
 

@@ -61,7 +61,7 @@ TEMPER_TEST( TestArithmeticAddition_float4 )
 {
 	float4 a = (float4)	{ 6.000000f, 6.000000f, 6.000000f, 6.000000f };
 	float4 b = (float4)	{ 2.000000f, 3.000000f, 4.000000f, 5.000000f };
-	float4 c = float4_comp_addv( &a, &b );
+	float4 c = float4_caddv( &a, &b );
 
 	TEMPER_EXPECT_TRUE( c.x == 8.0f );
 	TEMPER_EXPECT_TRUE( c.y == 9.0f );
@@ -75,7 +75,7 @@ TEMPER_TEST( TestArithmeticSubtraction_float4 )
 {
 	float4 a = (float4)	{ 6.000000f, 6.000000f, 6.000000f, 6.000000f };
 	float4 b = (float4)	{ 2.000000f, 3.000000f, 4.000000f, 5.000000f };
-	float4 c = float4_comp_subv( &a, &b );
+	float4 c = float4_csubv( &a, &b );
 
 	TEMPER_EXPECT_TRUE( c.x == 4.0f );
 	TEMPER_EXPECT_TRUE( c.y == 3.0f );
@@ -89,7 +89,7 @@ TEMPER_TEST( TestArithmeticMultiplication_float4 )
 {
 	float4 a = (float4)	{ 6.000000f, 6.000000f, 6.000000f, 6.000000f };
 	float4 b = (float4)	{ 2.000000f, 3.000000f, 4.000000f, 5.000000f };
-	float4 c = float4_comp_mulv( &a, &b );
+	float4 c = float4_cmulv( &a, &b );
 
 	TEMPER_EXPECT_TRUE( c.x == 12.0f );
 	TEMPER_EXPECT_TRUE( c.y == 18.0f );
@@ -103,7 +103,7 @@ TEMPER_TEST( TestArithmeticDivision_float4 )
 {
 	float4 a = (float4)	{ 6.000000f, 6.000000f, 6.000000f, 6.000000f };
 	float4 b = (float4)	{ 2.000000f, 2.000000f, 3.000000f, 6.000000f };
-	float4 c = float4_comp_divv( &a, &b );
+	float4 c = float4_cdivv( &a, &b );
 
 	TEMPER_EXPECT_TRUE( c.x == 3.0f );
 	TEMPER_EXPECT_TRUE( c.y == 3.0f );

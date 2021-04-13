@@ -101,7 +101,7 @@ TEMPER_TEST( TestComponentWiseArithmetic_Scalar_Addition_float4x3 )
 		6.000000f, 6.000000f, 6.000000f
 	};
 
-	float4x3 c = float4x3_comp_addm( &a, &b );
+	float4x3 c = float4x3_caddm( &a, &b );
 
 	TEMPER_EXPECT_TRUE( float4x3_cmpe( &c, &answer ) );
 
@@ -131,7 +131,7 @@ TEMPER_TEST( TestComponentWiseArithmetic_Scalar_Subtraction_float4x3 )
 		6.000000f, 6.000000f, 6.000000f
 	};
 
-	float4x3 c = float4x3_comp_subm( &a, &b );
+	float4x3 c = float4x3_csubm( &a, &b );
 
 	TEMPER_EXPECT_TRUE( float4x3_cmpe( &c, &answer ) );
 
@@ -161,7 +161,7 @@ TEMPER_TEST( TestComponentWiseArithmetic_Scalar_Multiplication_float4x3 )
 		6.000000f, 6.000000f, 6.000000f
 	};
 
-	float4x3 c = float4x3_comp_mulm( &a, &b );
+	float4x3 c = float4x3_cmulm( &a, &b );
 
 	TEMPER_EXPECT_TRUE( float4x3_cmpe( &c, &answer ) );
 
@@ -191,7 +191,7 @@ TEMPER_TEST( TestComponentWiseArithmetic_Scalar_Division_float4x3 )
 		6.000000f, 6.000000f, 6.000000f
 	};
 
-	float4x3 c = float4x3_comp_divm( &a, &b );
+	float4x3 c = float4x3_cdivm( &a, &b );
 
 	TEMPER_EXPECT_TRUE( float4x3_cmpe( &c, &answer ) );
 
@@ -255,7 +255,7 @@ TEMPER_TEST( TestComponentWiseArithmetic_SSE_Addition_float4x3 )
 	rhs.m[3][1] = _mm_load_ps( b31 );
 	rhs.m[3][2] = _mm_load_ps( b32 );
 
-	float4x3_comp_addm_sse( &lhs, &rhs, &results );
+	float4x3_caddm_sse( &lhs, &rhs, &results );
 
 	float arithmeticResults[4];
 
@@ -391,7 +391,7 @@ TEMPER_TEST( TestComponentWiseArithmetic_SSE_Subtraction_float4x3 )
 	rhs.m[3][1] = _mm_load_ps( b31 );
 	rhs.m[3][2] = _mm_load_ps( b32 );
 
-	float4x3_comp_subm_sse( &lhs, &rhs, &results );
+	float4x3_csubm_sse( &lhs, &rhs, &results );
 
 	float arithmeticResults[4];
 
@@ -527,7 +527,7 @@ TEMPER_TEST( TestComponentWiseArithmetic_SSE_Multiplication_float4x3 )
 	rhs.m[3][1] = _mm_load_ps( b31 );
 	rhs.m[3][2] = _mm_load_ps( b32 );
 
-	float4x3_comp_mulm_sse( &lhs, &rhs, &results );
+	float4x3_cmulm_sse( &lhs, &rhs, &results );
 
 	float arithmeticResults[4];
 
@@ -663,7 +663,7 @@ TEMPER_TEST( TestComponentWiseArithmetic_SSE_Division_float4x3 )
 	rhs.m[3][1] = _mm_load_ps( b31 );
 	rhs.m[3][2] = _mm_load_ps( b32 );
 
-	float4x3_comp_divm_sse( &lhs, &rhs, &results );
+	float4x3_cdivm_sse( &lhs, &rhs, &results );
 
 	float arithmeticResults[4];
 

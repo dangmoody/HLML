@@ -86,7 +86,7 @@ TEMPER_TEST( TestComponentWiseArithmetic_Scalar_Addition_float2x4 )
 		2.000000f, 2.000000f, 2.000000f, 2.000000f
 	};
 
-	float2x4 c = float2x4_comp_addm( &a, &b );
+	float2x4 c = float2x4_caddm( &a, &b );
 
 	TEMPER_EXPECT_TRUE( float2x4_cmpe( &c, &answer ) );
 
@@ -110,7 +110,7 @@ TEMPER_TEST( TestComponentWiseArithmetic_Scalar_Subtraction_float2x4 )
 		2.000000f, 2.000000f, 2.000000f, 2.000000f
 	};
 
-	float2x4 c = float2x4_comp_subm( &a, &b );
+	float2x4 c = float2x4_csubm( &a, &b );
 
 	TEMPER_EXPECT_TRUE( float2x4_cmpe( &c, &answer ) );
 
@@ -134,7 +134,7 @@ TEMPER_TEST( TestComponentWiseArithmetic_Scalar_Multiplication_float2x4 )
 		2.000000f, 2.000000f, 2.000000f, 2.000000f
 	};
 
-	float2x4 c = float2x4_comp_mulm( &a, &b );
+	float2x4 c = float2x4_cmulm( &a, &b );
 
 	TEMPER_EXPECT_TRUE( float2x4_cmpe( &c, &answer ) );
 
@@ -158,7 +158,7 @@ TEMPER_TEST( TestComponentWiseArithmetic_Scalar_Division_float2x4 )
 		2.000000f, 2.000000f, 2.000000f, 2.000000f
 	};
 
-	float2x4 c = float2x4_comp_divm( &a, &b );
+	float2x4 c = float2x4_cdivm( &a, &b );
 
 	TEMPER_EXPECT_TRUE( float2x4_cmpe( &c, &answer ) );
 
@@ -206,7 +206,7 @@ TEMPER_TEST( TestComponentWiseArithmetic_SSE_Addition_float2x4 )
 	rhs.m[1][2] = _mm_load_ps( b12 );
 	rhs.m[1][3] = _mm_load_ps( b13 );
 
-	float2x4_comp_addm_sse( &lhs, &rhs, &results );
+	float2x4_caddm_sse( &lhs, &rhs, &results );
 
 	float arithmeticResults[4];
 
@@ -302,7 +302,7 @@ TEMPER_TEST( TestComponentWiseArithmetic_SSE_Subtraction_float2x4 )
 	rhs.m[1][2] = _mm_load_ps( b12 );
 	rhs.m[1][3] = _mm_load_ps( b13 );
 
-	float2x4_comp_subm_sse( &lhs, &rhs, &results );
+	float2x4_csubm_sse( &lhs, &rhs, &results );
 
 	float arithmeticResults[4];
 
@@ -398,7 +398,7 @@ TEMPER_TEST( TestComponentWiseArithmetic_SSE_Multiplication_float2x4 )
 	rhs.m[1][2] = _mm_load_ps( b12 );
 	rhs.m[1][3] = _mm_load_ps( b13 );
 
-	float2x4_comp_mulm_sse( &lhs, &rhs, &results );
+	float2x4_cmulm_sse( &lhs, &rhs, &results );
 
 	float arithmeticResults[4];
 
@@ -494,7 +494,7 @@ TEMPER_TEST( TestComponentWiseArithmetic_SSE_Division_float2x4 )
 	rhs.m[1][2] = _mm_load_ps( b12 );
 	rhs.m[1][3] = _mm_load_ps( b13 );
 
-	float2x4_comp_divm_sse( &lhs, &rhs, &results );
+	float2x4_cdivm_sse( &lhs, &rhs, &results );
 
 	float arithmeticResults[4];
 

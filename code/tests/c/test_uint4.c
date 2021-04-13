@@ -61,7 +61,7 @@ TEMPER_TEST( TestArithmeticAddition_uint4 )
 {
 	uint4 a = (uint4)	{ 6U, 6U, 6U, 6U };
 	uint4 b = (uint4)	{ 2U, 3U, 4U, 5U };
-	uint4 c = uint4_comp_addv( &a, &b );
+	uint4 c = uint4_caddv( &a, &b );
 
 	TEMPER_EXPECT_TRUE( c.x == 8U );
 	TEMPER_EXPECT_TRUE( c.y == 9U );
@@ -75,7 +75,7 @@ TEMPER_TEST( TestArithmeticSubtraction_uint4 )
 {
 	uint4 a = (uint4)	{ 6U, 6U, 6U, 6U };
 	uint4 b = (uint4)	{ 2U, 3U, 4U, 5U };
-	uint4 c = uint4_comp_subv( &a, &b );
+	uint4 c = uint4_csubv( &a, &b );
 
 	TEMPER_EXPECT_TRUE( c.x == 4U );
 	TEMPER_EXPECT_TRUE( c.y == 3U );
@@ -89,7 +89,7 @@ TEMPER_TEST( TestArithmeticMultiplication_uint4 )
 {
 	uint4 a = (uint4)	{ 6U, 6U, 6U, 6U };
 	uint4 b = (uint4)	{ 2U, 3U, 4U, 5U };
-	uint4 c = uint4_comp_mulv( &a, &b );
+	uint4 c = uint4_cmulv( &a, &b );
 
 	TEMPER_EXPECT_TRUE( c.x == 12U );
 	TEMPER_EXPECT_TRUE( c.y == 18U );
@@ -103,7 +103,7 @@ TEMPER_TEST( TestArithmeticDivision_uint4 )
 {
 	uint4 a = (uint4)	{ 6U, 6U, 6U, 6U };
 	uint4 b = (uint4)	{ 2U, 2U, 3U, 6U };
-	uint4 c = uint4_comp_divv( &a, &b );
+	uint4 c = uint4_cdivv( &a, &b );
 
 	TEMPER_EXPECT_TRUE( c.x == 3U );
 	TEMPER_EXPECT_TRUE( c.y == 3U );
@@ -180,7 +180,7 @@ TEMPER_TEST( TestBitwise_And_uint4 )
 	uint4 a = (uint4) { 21U, 21U, 21U, 21U };
 	uint4 b = (uint4) { 7U, 7U, 7U, 7U };
 
-	uint4 c = uint4_comp_and( &a, &b );
+	uint4 c = uint4_cand( &a, &b );
 
 	TEMPER_EXPECT_TRUE( uint4_cmpe( &c, &answer ) );
 
@@ -194,7 +194,7 @@ TEMPER_TEST( TestBitwise_Or_uint4 )
 	uint4 a = (uint4) { 21U, 21U, 21U, 21U };
 	uint4 b = (uint4) { 7U, 7U, 7U, 7U };
 
-	uint4 c = uint4_comp_or( &a, &b );
+	uint4 c = uint4_cor( &a, &b );
 
 	TEMPER_EXPECT_TRUE( uint4_cmpe( &c, &answer ) );
 
@@ -208,7 +208,7 @@ TEMPER_TEST( TestBitwise_Xor_uint4 )
 	uint4 a = (uint4) { 21U, 21U, 21U, 21U };
 	uint4 b = (uint4) { 7U, 7U, 7U, 7U };
 
-	uint4 c = uint4_comp_xor( &a, &b );
+	uint4 c = uint4_cxor( &a, &b );
 
 	TEMPER_EXPECT_TRUE( uint4_cmpe( &c, &answer ) );
 
@@ -222,7 +222,7 @@ TEMPER_TEST( TestBitwise_ShiftLeft_uint4 )
 	uint4 a = (uint4) { 1U, 1U, 1U, 1U };
 	uint4 b = (uint4) { 2U, 2U, 2U, 2U };
 
-	uint4 c = uint4_comp_shift_left( &a, &b );
+	uint4 c = uint4_cshift_left( &a, &b );
 
 	TEMPER_EXPECT_TRUE( uint4_cmpe( &c, &answer ) );
 
@@ -236,7 +236,7 @@ TEMPER_TEST( TestBitwise_ShiftRight_uint4 )
 	uint4 a = (uint4) { 16U, 16U, 16U, 16U };
 	uint4 b = (uint4) { 4U, 4U, 4U, 4U };
 
-	uint4 c = uint4_comp_shift_right( &a, &b );
+	uint4 c = uint4_cshift_right( &a, &b );
 
 	TEMPER_EXPECT_TRUE( uint4_cmpe( &c, &answer ) );
 
@@ -249,7 +249,7 @@ TEMPER_TEST( TestBitwise_Unary_uint4 )
 
 	uint4 a = (uint4) { 0U, 0U, 0U, 0U };
 
-	uint4 b = uint4_comp_unary( &a );
+	uint4 b = uint4_cunary( &a );
 
 	TEMPER_EXPECT_TRUE( uint4_cmpe( &b, &answer ) );
 

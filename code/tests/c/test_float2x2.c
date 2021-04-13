@@ -80,7 +80,7 @@ TEMPER_TEST( TestComponentWiseArithmetic_Scalar_Addition_float2x2 )
 		2.000000f, 2.000000f
 	};
 
-	float2x2 c = float2x2_comp_addm( &a, &b );
+	float2x2 c = float2x2_caddm( &a, &b );
 
 	TEMPER_EXPECT_TRUE( float2x2_cmpe( &c, &answer ) );
 
@@ -104,7 +104,7 @@ TEMPER_TEST( TestComponentWiseArithmetic_Scalar_Subtraction_float2x2 )
 		2.000000f, 2.000000f
 	};
 
-	float2x2 c = float2x2_comp_subm( &a, &b );
+	float2x2 c = float2x2_csubm( &a, &b );
 
 	TEMPER_EXPECT_TRUE( float2x2_cmpe( &c, &answer ) );
 
@@ -128,7 +128,7 @@ TEMPER_TEST( TestComponentWiseArithmetic_Scalar_Multiplication_float2x2 )
 		2.000000f, 2.000000f
 	};
 
-	float2x2 c = float2x2_comp_mulm( &a, &b );
+	float2x2 c = float2x2_cmulm( &a, &b );
 
 	TEMPER_EXPECT_TRUE( float2x2_cmpe( &c, &answer ) );
 
@@ -152,7 +152,7 @@ TEMPER_TEST( TestComponentWiseArithmetic_Scalar_Division_float2x2 )
 		2.000000f, 2.000000f
 	};
 
-	float2x2 c = float2x2_comp_divm( &a, &b );
+	float2x2 c = float2x2_cdivm( &a, &b );
 
 	TEMPER_EXPECT_TRUE( float2x2_cmpe( &c, &answer ) );
 
@@ -184,7 +184,7 @@ TEMPER_TEST( TestComponentWiseArithmetic_SSE_Addition_float2x2 )
 	rhs.m[1][0] = _mm_load_ps( b10 );
 	rhs.m[1][1] = _mm_load_ps( b11 );
 
-	float2x2_comp_addm_sse( &lhs, &rhs, &results );
+	float2x2_caddm_sse( &lhs, &rhs, &results );
 
 	float arithmeticResults[4];
 
@@ -240,7 +240,7 @@ TEMPER_TEST( TestComponentWiseArithmetic_SSE_Subtraction_float2x2 )
 	rhs.m[1][0] = _mm_load_ps( b10 );
 	rhs.m[1][1] = _mm_load_ps( b11 );
 
-	float2x2_comp_subm_sse( &lhs, &rhs, &results );
+	float2x2_csubm_sse( &lhs, &rhs, &results );
 
 	float arithmeticResults[4];
 
@@ -296,7 +296,7 @@ TEMPER_TEST( TestComponentWiseArithmetic_SSE_Multiplication_float2x2 )
 	rhs.m[1][0] = _mm_load_ps( b10 );
 	rhs.m[1][1] = _mm_load_ps( b11 );
 
-	float2x2_comp_mulm_sse( &lhs, &rhs, &results );
+	float2x2_cmulm_sse( &lhs, &rhs, &results );
 
 	float arithmeticResults[4];
 
@@ -352,7 +352,7 @@ TEMPER_TEST( TestComponentWiseArithmetic_SSE_Division_float2x2 )
 	rhs.m[1][0] = _mm_load_ps( b10 );
 	rhs.m[1][1] = _mm_load_ps( b11 );
 
-	float2x2_comp_divm_sse( &lhs, &rhs, &results );
+	float2x2_cdivm_sse( &lhs, &rhs, &results );
 
 	float arithmeticResults[4];
 

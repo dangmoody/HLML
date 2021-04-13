@@ -115,59 +115,59 @@ inline bool int2_cmpne( const int2* lhs, const int2* rhs );
 
 /// \relates int2
 /// \brief Returns a copy of the int2 that has been component-wise added by the given scalar value.
-inline int2 int2_comp_adds( const int2* lhs, const int32_t scalar );
+inline int2 int2_cadds( const int2* lhs, const int32_t scalar );
 
 /// \relates int2
 /// \brief Returns a copy of the int2 that has been component-wise added by the corresponding component of the right-hand int2.
-inline int2 int2_comp_addv( const int2* lhs, const int2* rhs );
+inline int2 int2_caddv( const int2* lhs, const int2* rhs );
 
 /// \relates int2
 /// \brief Returns a copy of the int2 that has been component-wise subtracted by the given scalar value.
-inline int2 int2_comp_subs( const int2* lhs, const int32_t scalar );
+inline int2 int2_csubs( const int2* lhs, const int32_t scalar );
 
 /// \relates int2
 /// \brief Returns a copy of the int2 that has been component-wise subtracted by the corresponding component of the right-hand int2.
-inline int2 int2_comp_subv( const int2* lhs, const int2* rhs );
+inline int2 int2_csubv( const int2* lhs, const int2* rhs );
 
 /// \relates int2
 /// \brief Returns a copy of the int2 that has been component-wise multiplied by the given scalar value.
-inline int2 int2_comp_muls( const int2* lhs, const int32_t scalar );
+inline int2 int2_cmuls( const int2* lhs, const int32_t scalar );
 
 /// \relates int2
 /// \brief Returns a copy of the int2 that has been component-wise multiplied by the corresponding component of the right-hand int2.
-inline int2 int2_comp_mulv( const int2* lhs, const int2* rhs );
+inline int2 int2_cmulv( const int2* lhs, const int2* rhs );
 
 /// \relates int2
 /// \brief Returns a copy of the int2 that has been component-wise divided by the given scalar value.
-inline int2 int2_comp_divs( const int2* lhs, const int32_t scalar );
+inline int2 int2_cdivs( const int2* lhs, const int32_t scalar );
 
 /// \relates int2
 /// \brief Returns a copy of the int2 that has been component-wise divided by the corresponding component of the right-hand int2.
-inline int2 int2_comp_divv( const int2* lhs, const int2* rhs );
+inline int2 int2_cdivv( const int2* lhs, const int2* rhs );
 
 /// \relates int2
 /// \brief Returns a copy of the int2 where each component of the left-hand int2 has been bitwise AND'd against the corresponding component of the right-hand side int2.
-inline int2 int2_comp_and( const int2* lhs, const int2* rhs );
+inline int2 int2_cand( const int2* lhs, const int2* rhs );
 
 /// \relates int2
 /// \brief Returns a copy of the int2 where each component of the left-hand int2 has been bitwise OR'd against the corresponding component of the right-hand side int2.
-inline int2 int2_comp_or( const int2* lhs, const int2* rhs );
+inline int2 int2_cor( const int2* lhs, const int2* rhs );
 
 /// \relates int2
 /// \brief Returns a copy of the int2 where each component of the left-hand int2 has been bitwise XOR'd against the corresponding component of the right-hand side int2.
-inline int2 int2_comp_xor( const int2* lhs, const int2* rhs );
+inline int2 int2_cxor( const int2* lhs, const int2* rhs );
 
 /// \relates int2
 /// \brief Performs a unary bitwise operation on all components of the given int2.
-inline int2 int2_comp_unary( const int2* lhs );
+inline int2 int2_cunary( const int2* lhs );
 
 /// \relates int2
 /// \brief Returns a copy of the int2 where each component of the left-hand int2 has been bitwise left-shifted by the corresponding component of the right-hand side int2.
-inline int2 int2_comp_shift_left( const int2* lhs, const int2* rhs );
+inline int2 int2_cshift_left( const int2* lhs, const int2* rhs );
 
 /// \relates int2
 /// \brief Returns a copy of the int2 where each component of the left-hand int2 has been bitwise right-shifted by the corresponding component of the right-hand side int2.
-inline int2 int2_comp_shift_right( const int2* lhs, const int2* rhs );
+inline int2 int2_cshift_right( const int2* lhs, const int2* rhs );
 
 /// \relates int2
 /// \brief Returns a bool2 where each component is true if the component of the left-hand type is less than the corresponding right-hand type component.
@@ -217,59 +217,59 @@ inline bool int3_cmpne( const int3* lhs, const int3* rhs );
 
 /// \relates int3
 /// \brief Returns a copy of the int3 that has been component-wise added by the given scalar value.
-inline int3 int3_comp_adds( const int3* lhs, const int32_t scalar );
+inline int3 int3_cadds( const int3* lhs, const int32_t scalar );
 
 /// \relates int3
 /// \brief Returns a copy of the int3 that has been component-wise added by the corresponding component of the right-hand int3.
-inline int3 int3_comp_addv( const int3* lhs, const int3* rhs );
+inline int3 int3_caddv( const int3* lhs, const int3* rhs );
 
 /// \relates int3
 /// \brief Returns a copy of the int3 that has been component-wise subtracted by the given scalar value.
-inline int3 int3_comp_subs( const int3* lhs, const int32_t scalar );
+inline int3 int3_csubs( const int3* lhs, const int32_t scalar );
 
 /// \relates int3
 /// \brief Returns a copy of the int3 that has been component-wise subtracted by the corresponding component of the right-hand int3.
-inline int3 int3_comp_subv( const int3* lhs, const int3* rhs );
+inline int3 int3_csubv( const int3* lhs, const int3* rhs );
 
 /// \relates int3
 /// \brief Returns a copy of the int3 that has been component-wise multiplied by the given scalar value.
-inline int3 int3_comp_muls( const int3* lhs, const int32_t scalar );
+inline int3 int3_cmuls( const int3* lhs, const int32_t scalar );
 
 /// \relates int3
 /// \brief Returns a copy of the int3 that has been component-wise multiplied by the corresponding component of the right-hand int3.
-inline int3 int3_comp_mulv( const int3* lhs, const int3* rhs );
+inline int3 int3_cmulv( const int3* lhs, const int3* rhs );
 
 /// \relates int3
 /// \brief Returns a copy of the int3 that has been component-wise divided by the given scalar value.
-inline int3 int3_comp_divs( const int3* lhs, const int32_t scalar );
+inline int3 int3_cdivs( const int3* lhs, const int32_t scalar );
 
 /// \relates int3
 /// \brief Returns a copy of the int3 that has been component-wise divided by the corresponding component of the right-hand int3.
-inline int3 int3_comp_divv( const int3* lhs, const int3* rhs );
+inline int3 int3_cdivv( const int3* lhs, const int3* rhs );
 
 /// \relates int3
 /// \brief Returns a copy of the int3 where each component of the left-hand int3 has been bitwise AND'd against the corresponding component of the right-hand side int3.
-inline int3 int3_comp_and( const int3* lhs, const int3* rhs );
+inline int3 int3_cand( const int3* lhs, const int3* rhs );
 
 /// \relates int3
 /// \brief Returns a copy of the int3 where each component of the left-hand int3 has been bitwise OR'd against the corresponding component of the right-hand side int3.
-inline int3 int3_comp_or( const int3* lhs, const int3* rhs );
+inline int3 int3_cor( const int3* lhs, const int3* rhs );
 
 /// \relates int3
 /// \brief Returns a copy of the int3 where each component of the left-hand int3 has been bitwise XOR'd against the corresponding component of the right-hand side int3.
-inline int3 int3_comp_xor( const int3* lhs, const int3* rhs );
+inline int3 int3_cxor( const int3* lhs, const int3* rhs );
 
 /// \relates int3
 /// \brief Performs a unary bitwise operation on all components of the given int3.
-inline int3 int3_comp_unary( const int3* lhs );
+inline int3 int3_cunary( const int3* lhs );
 
 /// \relates int3
 /// \brief Returns a copy of the int3 where each component of the left-hand int3 has been bitwise left-shifted by the corresponding component of the right-hand side int3.
-inline int3 int3_comp_shift_left( const int3* lhs, const int3* rhs );
+inline int3 int3_cshift_left( const int3* lhs, const int3* rhs );
 
 /// \relates int3
 /// \brief Returns a copy of the int3 where each component of the left-hand int3 has been bitwise right-shifted by the corresponding component of the right-hand side int3.
-inline int3 int3_comp_shift_right( const int3* lhs, const int3* rhs );
+inline int3 int3_cshift_right( const int3* lhs, const int3* rhs );
 
 /// \relates int3
 /// \brief Returns a bool3 where each component is true if the component of the left-hand type is less than the corresponding right-hand type component.
@@ -319,59 +319,59 @@ inline bool int4_cmpne( const int4* lhs, const int4* rhs );
 
 /// \relates int4
 /// \brief Returns a copy of the int4 that has been component-wise added by the given scalar value.
-inline int4 int4_comp_adds( const int4* lhs, const int32_t scalar );
+inline int4 int4_cadds( const int4* lhs, const int32_t scalar );
 
 /// \relates int4
 /// \brief Returns a copy of the int4 that has been component-wise added by the corresponding component of the right-hand int4.
-inline int4 int4_comp_addv( const int4* lhs, const int4* rhs );
+inline int4 int4_caddv( const int4* lhs, const int4* rhs );
 
 /// \relates int4
 /// \brief Returns a copy of the int4 that has been component-wise subtracted by the given scalar value.
-inline int4 int4_comp_subs( const int4* lhs, const int32_t scalar );
+inline int4 int4_csubs( const int4* lhs, const int32_t scalar );
 
 /// \relates int4
 /// \brief Returns a copy of the int4 that has been component-wise subtracted by the corresponding component of the right-hand int4.
-inline int4 int4_comp_subv( const int4* lhs, const int4* rhs );
+inline int4 int4_csubv( const int4* lhs, const int4* rhs );
 
 /// \relates int4
 /// \brief Returns a copy of the int4 that has been component-wise multiplied by the given scalar value.
-inline int4 int4_comp_muls( const int4* lhs, const int32_t scalar );
+inline int4 int4_cmuls( const int4* lhs, const int32_t scalar );
 
 /// \relates int4
 /// \brief Returns a copy of the int4 that has been component-wise multiplied by the corresponding component of the right-hand int4.
-inline int4 int4_comp_mulv( const int4* lhs, const int4* rhs );
+inline int4 int4_cmulv( const int4* lhs, const int4* rhs );
 
 /// \relates int4
 /// \brief Returns a copy of the int4 that has been component-wise divided by the given scalar value.
-inline int4 int4_comp_divs( const int4* lhs, const int32_t scalar );
+inline int4 int4_cdivs( const int4* lhs, const int32_t scalar );
 
 /// \relates int4
 /// \brief Returns a copy of the int4 that has been component-wise divided by the corresponding component of the right-hand int4.
-inline int4 int4_comp_divv( const int4* lhs, const int4* rhs );
+inline int4 int4_cdivv( const int4* lhs, const int4* rhs );
 
 /// \relates int4
 /// \brief Returns a copy of the int4 where each component of the left-hand int4 has been bitwise AND'd against the corresponding component of the right-hand side int4.
-inline int4 int4_comp_and( const int4* lhs, const int4* rhs );
+inline int4 int4_cand( const int4* lhs, const int4* rhs );
 
 /// \relates int4
 /// \brief Returns a copy of the int4 where each component of the left-hand int4 has been bitwise OR'd against the corresponding component of the right-hand side int4.
-inline int4 int4_comp_or( const int4* lhs, const int4* rhs );
+inline int4 int4_cor( const int4* lhs, const int4* rhs );
 
 /// \relates int4
 /// \brief Returns a copy of the int4 where each component of the left-hand int4 has been bitwise XOR'd against the corresponding component of the right-hand side int4.
-inline int4 int4_comp_xor( const int4* lhs, const int4* rhs );
+inline int4 int4_cxor( const int4* lhs, const int4* rhs );
 
 /// \relates int4
 /// \brief Performs a unary bitwise operation on all components of the given int4.
-inline int4 int4_comp_unary( const int4* lhs );
+inline int4 int4_cunary( const int4* lhs );
 
 /// \relates int4
 /// \brief Returns a copy of the int4 where each component of the left-hand int4 has been bitwise left-shifted by the corresponding component of the right-hand side int4.
-inline int4 int4_comp_shift_left( const int4* lhs, const int4* rhs );
+inline int4 int4_cshift_left( const int4* lhs, const int4* rhs );
 
 /// \relates int4
 /// \brief Returns a copy of the int4 where each component of the left-hand int4 has been bitwise right-shifted by the corresponding component of the right-hand side int4.
-inline int4 int4_comp_shift_right( const int4* lhs, const int4* rhs );
+inline int4 int4_cshift_right( const int4* lhs, const int4* rhs );
 
 /// \relates int4
 /// \brief Returns a bool4 where each component is true if the component of the left-hand type is less than the corresponding right-hand type component.
@@ -413,59 +413,59 @@ inline bool uint2_cmpne( const uint2* lhs, const uint2* rhs );
 
 /// \relates uint2
 /// \brief Returns a copy of the uint2 that has been component-wise added by the given scalar value.
-inline uint2 uint2_comp_adds( const uint2* lhs, const uint32_t scalar );
+inline uint2 uint2_cadds( const uint2* lhs, const uint32_t scalar );
 
 /// \relates uint2
 /// \brief Returns a copy of the uint2 that has been component-wise added by the corresponding component of the right-hand uint2.
-inline uint2 uint2_comp_addv( const uint2* lhs, const uint2* rhs );
+inline uint2 uint2_caddv( const uint2* lhs, const uint2* rhs );
 
 /// \relates uint2
 /// \brief Returns a copy of the uint2 that has been component-wise subtracted by the given scalar value.
-inline uint2 uint2_comp_subs( const uint2* lhs, const uint32_t scalar );
+inline uint2 uint2_csubs( const uint2* lhs, const uint32_t scalar );
 
 /// \relates uint2
 /// \brief Returns a copy of the uint2 that has been component-wise subtracted by the corresponding component of the right-hand uint2.
-inline uint2 uint2_comp_subv( const uint2* lhs, const uint2* rhs );
+inline uint2 uint2_csubv( const uint2* lhs, const uint2* rhs );
 
 /// \relates uint2
 /// \brief Returns a copy of the uint2 that has been component-wise multiplied by the given scalar value.
-inline uint2 uint2_comp_muls( const uint2* lhs, const uint32_t scalar );
+inline uint2 uint2_cmuls( const uint2* lhs, const uint32_t scalar );
 
 /// \relates uint2
 /// \brief Returns a copy of the uint2 that has been component-wise multiplied by the corresponding component of the right-hand uint2.
-inline uint2 uint2_comp_mulv( const uint2* lhs, const uint2* rhs );
+inline uint2 uint2_cmulv( const uint2* lhs, const uint2* rhs );
 
 /// \relates uint2
 /// \brief Returns a copy of the uint2 that has been component-wise divided by the given scalar value.
-inline uint2 uint2_comp_divs( const uint2* lhs, const uint32_t scalar );
+inline uint2 uint2_cdivs( const uint2* lhs, const uint32_t scalar );
 
 /// \relates uint2
 /// \brief Returns a copy of the uint2 that has been component-wise divided by the corresponding component of the right-hand uint2.
-inline uint2 uint2_comp_divv( const uint2* lhs, const uint2* rhs );
+inline uint2 uint2_cdivv( const uint2* lhs, const uint2* rhs );
 
 /// \relates uint2
 /// \brief Returns a copy of the uint2 where each component of the left-hand uint2 has been bitwise AND'd against the corresponding component of the right-hand side uint2.
-inline uint2 uint2_comp_and( const uint2* lhs, const uint2* rhs );
+inline uint2 uint2_cand( const uint2* lhs, const uint2* rhs );
 
 /// \relates uint2
 /// \brief Returns a copy of the uint2 where each component of the left-hand uint2 has been bitwise OR'd against the corresponding component of the right-hand side uint2.
-inline uint2 uint2_comp_or( const uint2* lhs, const uint2* rhs );
+inline uint2 uint2_cor( const uint2* lhs, const uint2* rhs );
 
 /// \relates uint2
 /// \brief Returns a copy of the uint2 where each component of the left-hand uint2 has been bitwise XOR'd against the corresponding component of the right-hand side uint2.
-inline uint2 uint2_comp_xor( const uint2* lhs, const uint2* rhs );
+inline uint2 uint2_cxor( const uint2* lhs, const uint2* rhs );
 
 /// \relates uint2
 /// \brief Performs a unary bitwise operation on all components of the given uint2.
-inline uint2 uint2_comp_unary( const uint2* lhs );
+inline uint2 uint2_cunary( const uint2* lhs );
 
 /// \relates uint2
 /// \brief Returns a copy of the uint2 where each component of the left-hand uint2 has been bitwise left-shifted by the corresponding component of the right-hand side uint2.
-inline uint2 uint2_comp_shift_left( const uint2* lhs, const uint2* rhs );
+inline uint2 uint2_cshift_left( const uint2* lhs, const uint2* rhs );
 
 /// \relates uint2
 /// \brief Returns a copy of the uint2 where each component of the left-hand uint2 has been bitwise right-shifted by the corresponding component of the right-hand side uint2.
-inline uint2 uint2_comp_shift_right( const uint2* lhs, const uint2* rhs );
+inline uint2 uint2_cshift_right( const uint2* lhs, const uint2* rhs );
 
 /// \relates uint2
 /// \brief Returns a bool2 where each component is true if the component of the left-hand type is less than the corresponding right-hand type component.
@@ -515,59 +515,59 @@ inline bool uint3_cmpne( const uint3* lhs, const uint3* rhs );
 
 /// \relates uint3
 /// \brief Returns a copy of the uint3 that has been component-wise added by the given scalar value.
-inline uint3 uint3_comp_adds( const uint3* lhs, const uint32_t scalar );
+inline uint3 uint3_cadds( const uint3* lhs, const uint32_t scalar );
 
 /// \relates uint3
 /// \brief Returns a copy of the uint3 that has been component-wise added by the corresponding component of the right-hand uint3.
-inline uint3 uint3_comp_addv( const uint3* lhs, const uint3* rhs );
+inline uint3 uint3_caddv( const uint3* lhs, const uint3* rhs );
 
 /// \relates uint3
 /// \brief Returns a copy of the uint3 that has been component-wise subtracted by the given scalar value.
-inline uint3 uint3_comp_subs( const uint3* lhs, const uint32_t scalar );
+inline uint3 uint3_csubs( const uint3* lhs, const uint32_t scalar );
 
 /// \relates uint3
 /// \brief Returns a copy of the uint3 that has been component-wise subtracted by the corresponding component of the right-hand uint3.
-inline uint3 uint3_comp_subv( const uint3* lhs, const uint3* rhs );
+inline uint3 uint3_csubv( const uint3* lhs, const uint3* rhs );
 
 /// \relates uint3
 /// \brief Returns a copy of the uint3 that has been component-wise multiplied by the given scalar value.
-inline uint3 uint3_comp_muls( const uint3* lhs, const uint32_t scalar );
+inline uint3 uint3_cmuls( const uint3* lhs, const uint32_t scalar );
 
 /// \relates uint3
 /// \brief Returns a copy of the uint3 that has been component-wise multiplied by the corresponding component of the right-hand uint3.
-inline uint3 uint3_comp_mulv( const uint3* lhs, const uint3* rhs );
+inline uint3 uint3_cmulv( const uint3* lhs, const uint3* rhs );
 
 /// \relates uint3
 /// \brief Returns a copy of the uint3 that has been component-wise divided by the given scalar value.
-inline uint3 uint3_comp_divs( const uint3* lhs, const uint32_t scalar );
+inline uint3 uint3_cdivs( const uint3* lhs, const uint32_t scalar );
 
 /// \relates uint3
 /// \brief Returns a copy of the uint3 that has been component-wise divided by the corresponding component of the right-hand uint3.
-inline uint3 uint3_comp_divv( const uint3* lhs, const uint3* rhs );
+inline uint3 uint3_cdivv( const uint3* lhs, const uint3* rhs );
 
 /// \relates uint3
 /// \brief Returns a copy of the uint3 where each component of the left-hand uint3 has been bitwise AND'd against the corresponding component of the right-hand side uint3.
-inline uint3 uint3_comp_and( const uint3* lhs, const uint3* rhs );
+inline uint3 uint3_cand( const uint3* lhs, const uint3* rhs );
 
 /// \relates uint3
 /// \brief Returns a copy of the uint3 where each component of the left-hand uint3 has been bitwise OR'd against the corresponding component of the right-hand side uint3.
-inline uint3 uint3_comp_or( const uint3* lhs, const uint3* rhs );
+inline uint3 uint3_cor( const uint3* lhs, const uint3* rhs );
 
 /// \relates uint3
 /// \brief Returns a copy of the uint3 where each component of the left-hand uint3 has been bitwise XOR'd against the corresponding component of the right-hand side uint3.
-inline uint3 uint3_comp_xor( const uint3* lhs, const uint3* rhs );
+inline uint3 uint3_cxor( const uint3* lhs, const uint3* rhs );
 
 /// \relates uint3
 /// \brief Performs a unary bitwise operation on all components of the given uint3.
-inline uint3 uint3_comp_unary( const uint3* lhs );
+inline uint3 uint3_cunary( const uint3* lhs );
 
 /// \relates uint3
 /// \brief Returns a copy of the uint3 where each component of the left-hand uint3 has been bitwise left-shifted by the corresponding component of the right-hand side uint3.
-inline uint3 uint3_comp_shift_left( const uint3* lhs, const uint3* rhs );
+inline uint3 uint3_cshift_left( const uint3* lhs, const uint3* rhs );
 
 /// \relates uint3
 /// \brief Returns a copy of the uint3 where each component of the left-hand uint3 has been bitwise right-shifted by the corresponding component of the right-hand side uint3.
-inline uint3 uint3_comp_shift_right( const uint3* lhs, const uint3* rhs );
+inline uint3 uint3_cshift_right( const uint3* lhs, const uint3* rhs );
 
 /// \relates uint3
 /// \brief Returns a bool3 where each component is true if the component of the left-hand type is less than the corresponding right-hand type component.
@@ -617,59 +617,59 @@ inline bool uint4_cmpne( const uint4* lhs, const uint4* rhs );
 
 /// \relates uint4
 /// \brief Returns a copy of the uint4 that has been component-wise added by the given scalar value.
-inline uint4 uint4_comp_adds( const uint4* lhs, const uint32_t scalar );
+inline uint4 uint4_cadds( const uint4* lhs, const uint32_t scalar );
 
 /// \relates uint4
 /// \brief Returns a copy of the uint4 that has been component-wise added by the corresponding component of the right-hand uint4.
-inline uint4 uint4_comp_addv( const uint4* lhs, const uint4* rhs );
+inline uint4 uint4_caddv( const uint4* lhs, const uint4* rhs );
 
 /// \relates uint4
 /// \brief Returns a copy of the uint4 that has been component-wise subtracted by the given scalar value.
-inline uint4 uint4_comp_subs( const uint4* lhs, const uint32_t scalar );
+inline uint4 uint4_csubs( const uint4* lhs, const uint32_t scalar );
 
 /// \relates uint4
 /// \brief Returns a copy of the uint4 that has been component-wise subtracted by the corresponding component of the right-hand uint4.
-inline uint4 uint4_comp_subv( const uint4* lhs, const uint4* rhs );
+inline uint4 uint4_csubv( const uint4* lhs, const uint4* rhs );
 
 /// \relates uint4
 /// \brief Returns a copy of the uint4 that has been component-wise multiplied by the given scalar value.
-inline uint4 uint4_comp_muls( const uint4* lhs, const uint32_t scalar );
+inline uint4 uint4_cmuls( const uint4* lhs, const uint32_t scalar );
 
 /// \relates uint4
 /// \brief Returns a copy of the uint4 that has been component-wise multiplied by the corresponding component of the right-hand uint4.
-inline uint4 uint4_comp_mulv( const uint4* lhs, const uint4* rhs );
+inline uint4 uint4_cmulv( const uint4* lhs, const uint4* rhs );
 
 /// \relates uint4
 /// \brief Returns a copy of the uint4 that has been component-wise divided by the given scalar value.
-inline uint4 uint4_comp_divs( const uint4* lhs, const uint32_t scalar );
+inline uint4 uint4_cdivs( const uint4* lhs, const uint32_t scalar );
 
 /// \relates uint4
 /// \brief Returns a copy of the uint4 that has been component-wise divided by the corresponding component of the right-hand uint4.
-inline uint4 uint4_comp_divv( const uint4* lhs, const uint4* rhs );
+inline uint4 uint4_cdivv( const uint4* lhs, const uint4* rhs );
 
 /// \relates uint4
 /// \brief Returns a copy of the uint4 where each component of the left-hand uint4 has been bitwise AND'd against the corresponding component of the right-hand side uint4.
-inline uint4 uint4_comp_and( const uint4* lhs, const uint4* rhs );
+inline uint4 uint4_cand( const uint4* lhs, const uint4* rhs );
 
 /// \relates uint4
 /// \brief Returns a copy of the uint4 where each component of the left-hand uint4 has been bitwise OR'd against the corresponding component of the right-hand side uint4.
-inline uint4 uint4_comp_or( const uint4* lhs, const uint4* rhs );
+inline uint4 uint4_cor( const uint4* lhs, const uint4* rhs );
 
 /// \relates uint4
 /// \brief Returns a copy of the uint4 where each component of the left-hand uint4 has been bitwise XOR'd against the corresponding component of the right-hand side uint4.
-inline uint4 uint4_comp_xor( const uint4* lhs, const uint4* rhs );
+inline uint4 uint4_cxor( const uint4* lhs, const uint4* rhs );
 
 /// \relates uint4
 /// \brief Performs a unary bitwise operation on all components of the given uint4.
-inline uint4 uint4_comp_unary( const uint4* lhs );
+inline uint4 uint4_cunary( const uint4* lhs );
 
 /// \relates uint4
 /// \brief Returns a copy of the uint4 where each component of the left-hand uint4 has been bitwise left-shifted by the corresponding component of the right-hand side uint4.
-inline uint4 uint4_comp_shift_left( const uint4* lhs, const uint4* rhs );
+inline uint4 uint4_cshift_left( const uint4* lhs, const uint4* rhs );
 
 /// \relates uint4
 /// \brief Returns a copy of the uint4 where each component of the left-hand uint4 has been bitwise right-shifted by the corresponding component of the right-hand side uint4.
-inline uint4 uint4_comp_shift_right( const uint4* lhs, const uint4* rhs );
+inline uint4 uint4_cshift_right( const uint4* lhs, const uint4* rhs );
 
 /// \relates uint4
 /// \brief Returns a bool4 where each component is true if the component of the left-hand type is less than the corresponding right-hand type component.
@@ -739,35 +739,35 @@ inline bool float2_cmpne( const float2* lhs, const float2* rhs );
 
 /// \relates float2
 /// \brief Returns a copy of the float2 that has been component-wise added by the given scalar value.
-inline float2 float2_comp_adds( const float2* lhs, const float scalar );
+inline float2 float2_cadds( const float2* lhs, const float scalar );
 
 /// \relates float2
 /// \brief Returns a copy of the float2 that has been component-wise added by the corresponding component of the right-hand float2.
-inline float2 float2_comp_addv( const float2* lhs, const float2* rhs );
+inline float2 float2_caddv( const float2* lhs, const float2* rhs );
 
 /// \relates float2
 /// \brief Returns a copy of the float2 that has been component-wise subtracted by the given scalar value.
-inline float2 float2_comp_subs( const float2* lhs, const float scalar );
+inline float2 float2_csubs( const float2* lhs, const float scalar );
 
 /// \relates float2
 /// \brief Returns a copy of the float2 that has been component-wise subtracted by the corresponding component of the right-hand float2.
-inline float2 float2_comp_subv( const float2* lhs, const float2* rhs );
+inline float2 float2_csubv( const float2* lhs, const float2* rhs );
 
 /// \relates float2
 /// \brief Returns a copy of the float2 that has been component-wise multiplied by the given scalar value.
-inline float2 float2_comp_muls( const float2* lhs, const float scalar );
+inline float2 float2_cmuls( const float2* lhs, const float scalar );
 
 /// \relates float2
 /// \brief Returns a copy of the float2 that has been component-wise multiplied by the corresponding component of the right-hand float2.
-inline float2 float2_comp_mulv( const float2* lhs, const float2* rhs );
+inline float2 float2_cmulv( const float2* lhs, const float2* rhs );
 
 /// \relates float2
 /// \brief Returns a copy of the float2 that has been component-wise divided by the given scalar value.
-inline float2 float2_comp_divs( const float2* lhs, const float scalar );
+inline float2 float2_cdivs( const float2* lhs, const float scalar );
 
 /// \relates float2
 /// \brief Returns a copy of the float2 that has been component-wise divided by the corresponding component of the right-hand float2.
-inline float2 float2_comp_divv( const float2* lhs, const float2* rhs );
+inline float2 float2_cdivv( const float2* lhs, const float2* rhs );
 
 /// \relates float2
 /// \brief Returns a bool2 where each component is true if the component of the left-hand type is less than the corresponding right-hand type component.
@@ -849,35 +849,35 @@ inline bool float3_cmpne( const float3* lhs, const float3* rhs );
 
 /// \relates float3
 /// \brief Returns a copy of the float3 that has been component-wise added by the given scalar value.
-inline float3 float3_comp_adds( const float3* lhs, const float scalar );
+inline float3 float3_cadds( const float3* lhs, const float scalar );
 
 /// \relates float3
 /// \brief Returns a copy of the float3 that has been component-wise added by the corresponding component of the right-hand float3.
-inline float3 float3_comp_addv( const float3* lhs, const float3* rhs );
+inline float3 float3_caddv( const float3* lhs, const float3* rhs );
 
 /// \relates float3
 /// \brief Returns a copy of the float3 that has been component-wise subtracted by the given scalar value.
-inline float3 float3_comp_subs( const float3* lhs, const float scalar );
+inline float3 float3_csubs( const float3* lhs, const float scalar );
 
 /// \relates float3
 /// \brief Returns a copy of the float3 that has been component-wise subtracted by the corresponding component of the right-hand float3.
-inline float3 float3_comp_subv( const float3* lhs, const float3* rhs );
+inline float3 float3_csubv( const float3* lhs, const float3* rhs );
 
 /// \relates float3
 /// \brief Returns a copy of the float3 that has been component-wise multiplied by the given scalar value.
-inline float3 float3_comp_muls( const float3* lhs, const float scalar );
+inline float3 float3_cmuls( const float3* lhs, const float scalar );
 
 /// \relates float3
 /// \brief Returns a copy of the float3 that has been component-wise multiplied by the corresponding component of the right-hand float3.
-inline float3 float3_comp_mulv( const float3* lhs, const float3* rhs );
+inline float3 float3_cmulv( const float3* lhs, const float3* rhs );
 
 /// \relates float3
 /// \brief Returns a copy of the float3 that has been component-wise divided by the given scalar value.
-inline float3 float3_comp_divs( const float3* lhs, const float scalar );
+inline float3 float3_cdivs( const float3* lhs, const float scalar );
 
 /// \relates float3
 /// \brief Returns a copy of the float3 that has been component-wise divided by the corresponding component of the right-hand float3.
-inline float3 float3_comp_divv( const float3* lhs, const float3* rhs );
+inline float3 float3_cdivv( const float3* lhs, const float3* rhs );
 
 /// \relates float3
 /// \brief Returns a bool3 where each component is true if the component of the left-hand type is less than the corresponding right-hand type component.
@@ -963,35 +963,35 @@ inline bool float4_cmpne( const float4* lhs, const float4* rhs );
 
 /// \relates float4
 /// \brief Returns a copy of the float4 that has been component-wise added by the given scalar value.
-inline float4 float4_comp_adds( const float4* lhs, const float scalar );
+inline float4 float4_cadds( const float4* lhs, const float scalar );
 
 /// \relates float4
 /// \brief Returns a copy of the float4 that has been component-wise added by the corresponding component of the right-hand float4.
-inline float4 float4_comp_addv( const float4* lhs, const float4* rhs );
+inline float4 float4_caddv( const float4* lhs, const float4* rhs );
 
 /// \relates float4
 /// \brief Returns a copy of the float4 that has been component-wise subtracted by the given scalar value.
-inline float4 float4_comp_subs( const float4* lhs, const float scalar );
+inline float4 float4_csubs( const float4* lhs, const float scalar );
 
 /// \relates float4
 /// \brief Returns a copy of the float4 that has been component-wise subtracted by the corresponding component of the right-hand float4.
-inline float4 float4_comp_subv( const float4* lhs, const float4* rhs );
+inline float4 float4_csubv( const float4* lhs, const float4* rhs );
 
 /// \relates float4
 /// \brief Returns a copy of the float4 that has been component-wise multiplied by the given scalar value.
-inline float4 float4_comp_muls( const float4* lhs, const float scalar );
+inline float4 float4_cmuls( const float4* lhs, const float scalar );
 
 /// \relates float4
 /// \brief Returns a copy of the float4 that has been component-wise multiplied by the corresponding component of the right-hand float4.
-inline float4 float4_comp_mulv( const float4* lhs, const float4* rhs );
+inline float4 float4_cmulv( const float4* lhs, const float4* rhs );
 
 /// \relates float4
 /// \brief Returns a copy of the float4 that has been component-wise divided by the given scalar value.
-inline float4 float4_comp_divs( const float4* lhs, const float scalar );
+inline float4 float4_cdivs( const float4* lhs, const float scalar );
 
 /// \relates float4
 /// \brief Returns a copy of the float4 that has been component-wise divided by the corresponding component of the right-hand float4.
-inline float4 float4_comp_divv( const float4* lhs, const float4* rhs );
+inline float4 float4_cdivv( const float4* lhs, const float4* rhs );
 
 /// \relates float4
 /// \brief Returns a bool4 where each component is true if the component of the left-hand type is less than the corresponding right-hand type component.
@@ -1069,35 +1069,35 @@ inline bool double2_cmpne( const double2* lhs, const double2* rhs );
 
 /// \relates double2
 /// \brief Returns a copy of the double2 that has been component-wise added by the given scalar value.
-inline double2 double2_comp_adds( const double2* lhs, const double scalar );
+inline double2 double2_cadds( const double2* lhs, const double scalar );
 
 /// \relates double2
 /// \brief Returns a copy of the double2 that has been component-wise added by the corresponding component of the right-hand double2.
-inline double2 double2_comp_addv( const double2* lhs, const double2* rhs );
+inline double2 double2_caddv( const double2* lhs, const double2* rhs );
 
 /// \relates double2
 /// \brief Returns a copy of the double2 that has been component-wise subtracted by the given scalar value.
-inline double2 double2_comp_subs( const double2* lhs, const double scalar );
+inline double2 double2_csubs( const double2* lhs, const double scalar );
 
 /// \relates double2
 /// \brief Returns a copy of the double2 that has been component-wise subtracted by the corresponding component of the right-hand double2.
-inline double2 double2_comp_subv( const double2* lhs, const double2* rhs );
+inline double2 double2_csubv( const double2* lhs, const double2* rhs );
 
 /// \relates double2
 /// \brief Returns a copy of the double2 that has been component-wise multiplied by the given scalar value.
-inline double2 double2_comp_muls( const double2* lhs, const double scalar );
+inline double2 double2_cmuls( const double2* lhs, const double scalar );
 
 /// \relates double2
 /// \brief Returns a copy of the double2 that has been component-wise multiplied by the corresponding component of the right-hand double2.
-inline double2 double2_comp_mulv( const double2* lhs, const double2* rhs );
+inline double2 double2_cmulv( const double2* lhs, const double2* rhs );
 
 /// \relates double2
 /// \brief Returns a copy of the double2 that has been component-wise divided by the given scalar value.
-inline double2 double2_comp_divs( const double2* lhs, const double scalar );
+inline double2 double2_cdivs( const double2* lhs, const double scalar );
 
 /// \relates double2
 /// \brief Returns a copy of the double2 that has been component-wise divided by the corresponding component of the right-hand double2.
-inline double2 double2_comp_divv( const double2* lhs, const double2* rhs );
+inline double2 double2_cdivv( const double2* lhs, const double2* rhs );
 
 /// \relates double2
 /// \brief Returns a bool2 where each component is true if the component of the left-hand type is less than the corresponding right-hand type component.
@@ -1179,35 +1179,35 @@ inline bool double3_cmpne( const double3* lhs, const double3* rhs );
 
 /// \relates double3
 /// \brief Returns a copy of the double3 that has been component-wise added by the given scalar value.
-inline double3 double3_comp_adds( const double3* lhs, const double scalar );
+inline double3 double3_cadds( const double3* lhs, const double scalar );
 
 /// \relates double3
 /// \brief Returns a copy of the double3 that has been component-wise added by the corresponding component of the right-hand double3.
-inline double3 double3_comp_addv( const double3* lhs, const double3* rhs );
+inline double3 double3_caddv( const double3* lhs, const double3* rhs );
 
 /// \relates double3
 /// \brief Returns a copy of the double3 that has been component-wise subtracted by the given scalar value.
-inline double3 double3_comp_subs( const double3* lhs, const double scalar );
+inline double3 double3_csubs( const double3* lhs, const double scalar );
 
 /// \relates double3
 /// \brief Returns a copy of the double3 that has been component-wise subtracted by the corresponding component of the right-hand double3.
-inline double3 double3_comp_subv( const double3* lhs, const double3* rhs );
+inline double3 double3_csubv( const double3* lhs, const double3* rhs );
 
 /// \relates double3
 /// \brief Returns a copy of the double3 that has been component-wise multiplied by the given scalar value.
-inline double3 double3_comp_muls( const double3* lhs, const double scalar );
+inline double3 double3_cmuls( const double3* lhs, const double scalar );
 
 /// \relates double3
 /// \brief Returns a copy of the double3 that has been component-wise multiplied by the corresponding component of the right-hand double3.
-inline double3 double3_comp_mulv( const double3* lhs, const double3* rhs );
+inline double3 double3_cmulv( const double3* lhs, const double3* rhs );
 
 /// \relates double3
 /// \brief Returns a copy of the double3 that has been component-wise divided by the given scalar value.
-inline double3 double3_comp_divs( const double3* lhs, const double scalar );
+inline double3 double3_cdivs( const double3* lhs, const double scalar );
 
 /// \relates double3
 /// \brief Returns a copy of the double3 that has been component-wise divided by the corresponding component of the right-hand double3.
-inline double3 double3_comp_divv( const double3* lhs, const double3* rhs );
+inline double3 double3_cdivv( const double3* lhs, const double3* rhs );
 
 /// \relates double3
 /// \brief Returns a bool3 where each component is true if the component of the left-hand type is less than the corresponding right-hand type component.
@@ -1293,35 +1293,35 @@ inline bool double4_cmpne( const double4* lhs, const double4* rhs );
 
 /// \relates double4
 /// \brief Returns a copy of the double4 that has been component-wise added by the given scalar value.
-inline double4 double4_comp_adds( const double4* lhs, const double scalar );
+inline double4 double4_cadds( const double4* lhs, const double scalar );
 
 /// \relates double4
 /// \brief Returns a copy of the double4 that has been component-wise added by the corresponding component of the right-hand double4.
-inline double4 double4_comp_addv( const double4* lhs, const double4* rhs );
+inline double4 double4_caddv( const double4* lhs, const double4* rhs );
 
 /// \relates double4
 /// \brief Returns a copy of the double4 that has been component-wise subtracted by the given scalar value.
-inline double4 double4_comp_subs( const double4* lhs, const double scalar );
+inline double4 double4_csubs( const double4* lhs, const double scalar );
 
 /// \relates double4
 /// \brief Returns a copy of the double4 that has been component-wise subtracted by the corresponding component of the right-hand double4.
-inline double4 double4_comp_subv( const double4* lhs, const double4* rhs );
+inline double4 double4_csubv( const double4* lhs, const double4* rhs );
 
 /// \relates double4
 /// \brief Returns a copy of the double4 that has been component-wise multiplied by the given scalar value.
-inline double4 double4_comp_muls( const double4* lhs, const double scalar );
+inline double4 double4_cmuls( const double4* lhs, const double scalar );
 
 /// \relates double4
 /// \brief Returns a copy of the double4 that has been component-wise multiplied by the corresponding component of the right-hand double4.
-inline double4 double4_comp_mulv( const double4* lhs, const double4* rhs );
+inline double4 double4_cmulv( const double4* lhs, const double4* rhs );
 
 /// \relates double4
 /// \brief Returns a copy of the double4 that has been component-wise divided by the given scalar value.
-inline double4 double4_comp_divs( const double4* lhs, const double scalar );
+inline double4 double4_cdivs( const double4* lhs, const double scalar );
 
 /// \relates double4
 /// \brief Returns a copy of the double4 that has been component-wise divided by the corresponding component of the right-hand double4.
-inline double4 double4_comp_divv( const double4* lhs, const double4* rhs );
+inline double4 double4_cdivv( const double4* lhs, const double4* rhs );
 
 /// \relates double4
 /// \brief Returns a bool4 where each component is true if the component of the left-hand type is less than the corresponding right-hand type component.
@@ -1423,7 +1423,7 @@ bool int2_cmpne( const int2* lhs, const int2* rhs )
 	return !( int2_cmpe( lhs, rhs ) );
 }
 
-int2 int2_comp_adds( const int2* lhs, const int32_t scalar )
+int2 int2_cadds( const int2* lhs, const int32_t scalar )
 {
 	return HLML_CONSTRUCT( int2 ) {
 		lhs->x + scalar,
@@ -1431,7 +1431,7 @@ int2 int2_comp_adds( const int2* lhs, const int32_t scalar )
 	};
 }
 
-int2 int2_comp_addv( const int2* lhs, const int2* rhs )
+int2 int2_caddv( const int2* lhs, const int2* rhs )
 {
 	return HLML_CONSTRUCT( int2 ) {
 		lhs->x + rhs->x,
@@ -1439,7 +1439,7 @@ int2 int2_comp_addv( const int2* lhs, const int2* rhs )
 	};
 }
 
-int2 int2_comp_subs( const int2* lhs, const int32_t scalar )
+int2 int2_csubs( const int2* lhs, const int32_t scalar )
 {
 	return HLML_CONSTRUCT( int2 ) {
 		lhs->x - scalar,
@@ -1447,7 +1447,7 @@ int2 int2_comp_subs( const int2* lhs, const int32_t scalar )
 	};
 }
 
-int2 int2_comp_subv( const int2* lhs, const int2* rhs )
+int2 int2_csubv( const int2* lhs, const int2* rhs )
 {
 	return HLML_CONSTRUCT( int2 ) {
 		lhs->x - rhs->x,
@@ -1455,7 +1455,7 @@ int2 int2_comp_subv( const int2* lhs, const int2* rhs )
 	};
 }
 
-int2 int2_comp_muls( const int2* lhs, const int32_t scalar )
+int2 int2_cmuls( const int2* lhs, const int32_t scalar )
 {
 	return HLML_CONSTRUCT( int2 ) {
 		lhs->x * scalar,
@@ -1463,7 +1463,7 @@ int2 int2_comp_muls( const int2* lhs, const int32_t scalar )
 	};
 }
 
-int2 int2_comp_mulv( const int2* lhs, const int2* rhs )
+int2 int2_cmulv( const int2* lhs, const int2* rhs )
 {
 	return HLML_CONSTRUCT( int2 ) {
 		lhs->x * rhs->x,
@@ -1471,7 +1471,7 @@ int2 int2_comp_mulv( const int2* lhs, const int2* rhs )
 	};
 }
 
-int2 int2_comp_divs( const int2* lhs, const int32_t scalar )
+int2 int2_cdivs( const int2* lhs, const int32_t scalar )
 {
 	return HLML_CONSTRUCT( int2 ) {
 		lhs->x / scalar,
@@ -1479,7 +1479,7 @@ int2 int2_comp_divs( const int2* lhs, const int32_t scalar )
 	};
 }
 
-int2 int2_comp_divv( const int2* lhs, const int2* rhs )
+int2 int2_cdivv( const int2* lhs, const int2* rhs )
 {
 	return HLML_CONSTRUCT( int2 ) {
 		lhs->x / rhs->x,
@@ -1487,7 +1487,7 @@ int2 int2_comp_divv( const int2* lhs, const int2* rhs )
 	};
 }
 
-int2 int2_comp_and( const int2* lhs, const int2* rhs )
+int2 int2_cand( const int2* lhs, const int2* rhs )
 {
 	return HLML_CONSTRUCT( int2 ) {
 		lhs->x & rhs->x,
@@ -1495,7 +1495,7 @@ int2 int2_comp_and( const int2* lhs, const int2* rhs )
 	};
 }
 
-int2 int2_comp_or( const int2* lhs, const int2* rhs )
+int2 int2_cor( const int2* lhs, const int2* rhs )
 {
 	return HLML_CONSTRUCT( int2 ) {
 		lhs->x | rhs->x,
@@ -1503,7 +1503,7 @@ int2 int2_comp_or( const int2* lhs, const int2* rhs )
 	};
 }
 
-int2 int2_comp_xor( const int2* lhs, const int2* rhs )
+int2 int2_cxor( const int2* lhs, const int2* rhs )
 {
 	return HLML_CONSTRUCT( int2 ) {
 		lhs->x ^ rhs->x,
@@ -1511,7 +1511,7 @@ int2 int2_comp_xor( const int2* lhs, const int2* rhs )
 	};
 }
 
-int2 int2_comp_unary( const int2* lhs )
+int2 int2_cunary( const int2* lhs )
 {
 	return HLML_CONSTRUCT( int2 ) {
 		~lhs->x,
@@ -1519,7 +1519,7 @@ int2 int2_comp_unary( const int2* lhs )
 	};
 }
 
-int2 int2_comp_shift_left( const int2* lhs, const int2* rhs )
+int2 int2_cshift_left( const int2* lhs, const int2* rhs )
 {
 	return HLML_CONSTRUCT( int2 ) {
 		lhs->x << rhs->x,
@@ -1527,7 +1527,7 @@ int2 int2_comp_shift_left( const int2* lhs, const int2* rhs )
 	};
 }
 
-int2 int2_comp_shift_right( const int2* lhs, const int2* rhs )
+int2 int2_cshift_right( const int2* lhs, const int2* rhs )
 {
 	return HLML_CONSTRUCT( int2 ) {
 		lhs->x >> rhs->x,
@@ -1584,13 +1584,13 @@ int32_t int2_dot( const int2* lhs, const int2* rhs )
 
 float int2_distancesqr( const int2* lhs, const int2* rhs )
 {
-	int2 delta = int2_comp_subv( lhs, rhs );
+	int2 delta = int2_csubv( lhs, rhs );
 	return int2_lengthsqr( &delta );
 }
 
 float int2_distance( const int2* lhs, const int2* rhs )
 {
-	int2 delta = int2_comp_subv( lhs, rhs );
+	int2 delta = int2_csubv( lhs, rhs );
 	return int2_length( &delta );
 }
 
@@ -1604,7 +1604,7 @@ bool int3_cmpne( const int3* lhs, const int3* rhs )
 	return !( int3_cmpe( lhs, rhs ) );
 }
 
-int3 int3_comp_adds( const int3* lhs, const int32_t scalar )
+int3 int3_cadds( const int3* lhs, const int32_t scalar )
 {
 	return HLML_CONSTRUCT( int3 ) {
 		lhs->x + scalar,
@@ -1613,7 +1613,7 @@ int3 int3_comp_adds( const int3* lhs, const int32_t scalar )
 	};
 }
 
-int3 int3_comp_addv( const int3* lhs, const int3* rhs )
+int3 int3_caddv( const int3* lhs, const int3* rhs )
 {
 	return HLML_CONSTRUCT( int3 ) {
 		lhs->x + rhs->x,
@@ -1622,7 +1622,7 @@ int3 int3_comp_addv( const int3* lhs, const int3* rhs )
 	};
 }
 
-int3 int3_comp_subs( const int3* lhs, const int32_t scalar )
+int3 int3_csubs( const int3* lhs, const int32_t scalar )
 {
 	return HLML_CONSTRUCT( int3 ) {
 		lhs->x - scalar,
@@ -1631,7 +1631,7 @@ int3 int3_comp_subs( const int3* lhs, const int32_t scalar )
 	};
 }
 
-int3 int3_comp_subv( const int3* lhs, const int3* rhs )
+int3 int3_csubv( const int3* lhs, const int3* rhs )
 {
 	return HLML_CONSTRUCT( int3 ) {
 		lhs->x - rhs->x,
@@ -1640,7 +1640,7 @@ int3 int3_comp_subv( const int3* lhs, const int3* rhs )
 	};
 }
 
-int3 int3_comp_muls( const int3* lhs, const int32_t scalar )
+int3 int3_cmuls( const int3* lhs, const int32_t scalar )
 {
 	return HLML_CONSTRUCT( int3 ) {
 		lhs->x * scalar,
@@ -1649,7 +1649,7 @@ int3 int3_comp_muls( const int3* lhs, const int32_t scalar )
 	};
 }
 
-int3 int3_comp_mulv( const int3* lhs, const int3* rhs )
+int3 int3_cmulv( const int3* lhs, const int3* rhs )
 {
 	return HLML_CONSTRUCT( int3 ) {
 		lhs->x * rhs->x,
@@ -1658,7 +1658,7 @@ int3 int3_comp_mulv( const int3* lhs, const int3* rhs )
 	};
 }
 
-int3 int3_comp_divs( const int3* lhs, const int32_t scalar )
+int3 int3_cdivs( const int3* lhs, const int32_t scalar )
 {
 	return HLML_CONSTRUCT( int3 ) {
 		lhs->x / scalar,
@@ -1667,7 +1667,7 @@ int3 int3_comp_divs( const int3* lhs, const int32_t scalar )
 	};
 }
 
-int3 int3_comp_divv( const int3* lhs, const int3* rhs )
+int3 int3_cdivv( const int3* lhs, const int3* rhs )
 {
 	return HLML_CONSTRUCT( int3 ) {
 		lhs->x / rhs->x,
@@ -1676,7 +1676,7 @@ int3 int3_comp_divv( const int3* lhs, const int3* rhs )
 	};
 }
 
-int3 int3_comp_and( const int3* lhs, const int3* rhs )
+int3 int3_cand( const int3* lhs, const int3* rhs )
 {
 	return HLML_CONSTRUCT( int3 ) {
 		lhs->x & rhs->x,
@@ -1685,7 +1685,7 @@ int3 int3_comp_and( const int3* lhs, const int3* rhs )
 	};
 }
 
-int3 int3_comp_or( const int3* lhs, const int3* rhs )
+int3 int3_cor( const int3* lhs, const int3* rhs )
 {
 	return HLML_CONSTRUCT( int3 ) {
 		lhs->x | rhs->x,
@@ -1694,7 +1694,7 @@ int3 int3_comp_or( const int3* lhs, const int3* rhs )
 	};
 }
 
-int3 int3_comp_xor( const int3* lhs, const int3* rhs )
+int3 int3_cxor( const int3* lhs, const int3* rhs )
 {
 	return HLML_CONSTRUCT( int3 ) {
 		lhs->x ^ rhs->x,
@@ -1703,7 +1703,7 @@ int3 int3_comp_xor( const int3* lhs, const int3* rhs )
 	};
 }
 
-int3 int3_comp_unary( const int3* lhs )
+int3 int3_cunary( const int3* lhs )
 {
 	return HLML_CONSTRUCT( int3 ) {
 		~lhs->x,
@@ -1712,7 +1712,7 @@ int3 int3_comp_unary( const int3* lhs )
 	};
 }
 
-int3 int3_comp_shift_left( const int3* lhs, const int3* rhs )
+int3 int3_cshift_left( const int3* lhs, const int3* rhs )
 {
 	return HLML_CONSTRUCT( int3 ) {
 		lhs->x << rhs->x,
@@ -1721,7 +1721,7 @@ int3 int3_comp_shift_left( const int3* lhs, const int3* rhs )
 	};
 }
 
-int3 int3_comp_shift_right( const int3* lhs, const int3* rhs )
+int3 int3_cshift_right( const int3* lhs, const int3* rhs )
 {
 	return HLML_CONSTRUCT( int3 ) {
 		lhs->x >> rhs->x,
@@ -1783,13 +1783,13 @@ int32_t int3_dot( const int3* lhs, const int3* rhs )
 
 float int3_distancesqr( const int3* lhs, const int3* rhs )
 {
-	int3 delta = int3_comp_subv( lhs, rhs );
+	int3 delta = int3_csubv( lhs, rhs );
 	return int3_lengthsqr( &delta );
 }
 
 float int3_distance( const int3* lhs, const int3* rhs )
 {
-	int3 delta = int3_comp_subv( lhs, rhs );
+	int3 delta = int3_csubv( lhs, rhs );
 	return int3_length( &delta );
 }
 
@@ -1803,7 +1803,7 @@ bool int4_cmpne( const int4* lhs, const int4* rhs )
 	return !( int4_cmpe( lhs, rhs ) );
 }
 
-int4 int4_comp_adds( const int4* lhs, const int32_t scalar )
+int4 int4_cadds( const int4* lhs, const int32_t scalar )
 {
 	return HLML_CONSTRUCT( int4 ) {
 		lhs->x + scalar,
@@ -1813,7 +1813,7 @@ int4 int4_comp_adds( const int4* lhs, const int32_t scalar )
 	};
 }
 
-int4 int4_comp_addv( const int4* lhs, const int4* rhs )
+int4 int4_caddv( const int4* lhs, const int4* rhs )
 {
 	return HLML_CONSTRUCT( int4 ) {
 		lhs->x + rhs->x,
@@ -1823,7 +1823,7 @@ int4 int4_comp_addv( const int4* lhs, const int4* rhs )
 	};
 }
 
-int4 int4_comp_subs( const int4* lhs, const int32_t scalar )
+int4 int4_csubs( const int4* lhs, const int32_t scalar )
 {
 	return HLML_CONSTRUCT( int4 ) {
 		lhs->x - scalar,
@@ -1833,7 +1833,7 @@ int4 int4_comp_subs( const int4* lhs, const int32_t scalar )
 	};
 }
 
-int4 int4_comp_subv( const int4* lhs, const int4* rhs )
+int4 int4_csubv( const int4* lhs, const int4* rhs )
 {
 	return HLML_CONSTRUCT( int4 ) {
 		lhs->x - rhs->x,
@@ -1843,7 +1843,7 @@ int4 int4_comp_subv( const int4* lhs, const int4* rhs )
 	};
 }
 
-int4 int4_comp_muls( const int4* lhs, const int32_t scalar )
+int4 int4_cmuls( const int4* lhs, const int32_t scalar )
 {
 	return HLML_CONSTRUCT( int4 ) {
 		lhs->x * scalar,
@@ -1853,7 +1853,7 @@ int4 int4_comp_muls( const int4* lhs, const int32_t scalar )
 	};
 }
 
-int4 int4_comp_mulv( const int4* lhs, const int4* rhs )
+int4 int4_cmulv( const int4* lhs, const int4* rhs )
 {
 	return HLML_CONSTRUCT( int4 ) {
 		lhs->x * rhs->x,
@@ -1863,7 +1863,7 @@ int4 int4_comp_mulv( const int4* lhs, const int4* rhs )
 	};
 }
 
-int4 int4_comp_divs( const int4* lhs, const int32_t scalar )
+int4 int4_cdivs( const int4* lhs, const int32_t scalar )
 {
 	return HLML_CONSTRUCT( int4 ) {
 		lhs->x / scalar,
@@ -1873,7 +1873,7 @@ int4 int4_comp_divs( const int4* lhs, const int32_t scalar )
 	};
 }
 
-int4 int4_comp_divv( const int4* lhs, const int4* rhs )
+int4 int4_cdivv( const int4* lhs, const int4* rhs )
 {
 	return HLML_CONSTRUCT( int4 ) {
 		lhs->x / rhs->x,
@@ -1883,7 +1883,7 @@ int4 int4_comp_divv( const int4* lhs, const int4* rhs )
 	};
 }
 
-int4 int4_comp_and( const int4* lhs, const int4* rhs )
+int4 int4_cand( const int4* lhs, const int4* rhs )
 {
 	return HLML_CONSTRUCT( int4 ) {
 		lhs->x & rhs->x,
@@ -1893,7 +1893,7 @@ int4 int4_comp_and( const int4* lhs, const int4* rhs )
 	};
 }
 
-int4 int4_comp_or( const int4* lhs, const int4* rhs )
+int4 int4_cor( const int4* lhs, const int4* rhs )
 {
 	return HLML_CONSTRUCT( int4 ) {
 		lhs->x | rhs->x,
@@ -1903,7 +1903,7 @@ int4 int4_comp_or( const int4* lhs, const int4* rhs )
 	};
 }
 
-int4 int4_comp_xor( const int4* lhs, const int4* rhs )
+int4 int4_cxor( const int4* lhs, const int4* rhs )
 {
 	return HLML_CONSTRUCT( int4 ) {
 		lhs->x ^ rhs->x,
@@ -1913,7 +1913,7 @@ int4 int4_comp_xor( const int4* lhs, const int4* rhs )
 	};
 }
 
-int4 int4_comp_unary( const int4* lhs )
+int4 int4_cunary( const int4* lhs )
 {
 	return HLML_CONSTRUCT( int4 ) {
 		~lhs->x,
@@ -1923,7 +1923,7 @@ int4 int4_comp_unary( const int4* lhs )
 	};
 }
 
-int4 int4_comp_shift_left( const int4* lhs, const int4* rhs )
+int4 int4_cshift_left( const int4* lhs, const int4* rhs )
 {
 	return HLML_CONSTRUCT( int4 ) {
 		lhs->x << rhs->x,
@@ -1933,7 +1933,7 @@ int4 int4_comp_shift_left( const int4* lhs, const int4* rhs )
 	};
 }
 
-int4 int4_comp_shift_right( const int4* lhs, const int4* rhs )
+int4 int4_cshift_right( const int4* lhs, const int4* rhs )
 {
 	return HLML_CONSTRUCT( int4 ) {
 		lhs->x >> rhs->x,
@@ -2008,7 +2008,7 @@ bool uint2_cmpne( const uint2* lhs, const uint2* rhs )
 	return !( uint2_cmpe( lhs, rhs ) );
 }
 
-uint2 uint2_comp_adds( const uint2* lhs, const uint32_t scalar )
+uint2 uint2_cadds( const uint2* lhs, const uint32_t scalar )
 {
 	return HLML_CONSTRUCT( uint2 ) {
 		lhs->x + scalar,
@@ -2016,7 +2016,7 @@ uint2 uint2_comp_adds( const uint2* lhs, const uint32_t scalar )
 	};
 }
 
-uint2 uint2_comp_addv( const uint2* lhs, const uint2* rhs )
+uint2 uint2_caddv( const uint2* lhs, const uint2* rhs )
 {
 	return HLML_CONSTRUCT( uint2 ) {
 		lhs->x + rhs->x,
@@ -2024,7 +2024,7 @@ uint2 uint2_comp_addv( const uint2* lhs, const uint2* rhs )
 	};
 }
 
-uint2 uint2_comp_subs( const uint2* lhs, const uint32_t scalar )
+uint2 uint2_csubs( const uint2* lhs, const uint32_t scalar )
 {
 	return HLML_CONSTRUCT( uint2 ) {
 		lhs->x - scalar,
@@ -2032,7 +2032,7 @@ uint2 uint2_comp_subs( const uint2* lhs, const uint32_t scalar )
 	};
 }
 
-uint2 uint2_comp_subv( const uint2* lhs, const uint2* rhs )
+uint2 uint2_csubv( const uint2* lhs, const uint2* rhs )
 {
 	return HLML_CONSTRUCT( uint2 ) {
 		lhs->x - rhs->x,
@@ -2040,7 +2040,7 @@ uint2 uint2_comp_subv( const uint2* lhs, const uint2* rhs )
 	};
 }
 
-uint2 uint2_comp_muls( const uint2* lhs, const uint32_t scalar )
+uint2 uint2_cmuls( const uint2* lhs, const uint32_t scalar )
 {
 	return HLML_CONSTRUCT( uint2 ) {
 		lhs->x * scalar,
@@ -2048,7 +2048,7 @@ uint2 uint2_comp_muls( const uint2* lhs, const uint32_t scalar )
 	};
 }
 
-uint2 uint2_comp_mulv( const uint2* lhs, const uint2* rhs )
+uint2 uint2_cmulv( const uint2* lhs, const uint2* rhs )
 {
 	return HLML_CONSTRUCT( uint2 ) {
 		lhs->x * rhs->x,
@@ -2056,7 +2056,7 @@ uint2 uint2_comp_mulv( const uint2* lhs, const uint2* rhs )
 	};
 }
 
-uint2 uint2_comp_divs( const uint2* lhs, const uint32_t scalar )
+uint2 uint2_cdivs( const uint2* lhs, const uint32_t scalar )
 {
 	return HLML_CONSTRUCT( uint2 ) {
 		lhs->x / scalar,
@@ -2064,7 +2064,7 @@ uint2 uint2_comp_divs( const uint2* lhs, const uint32_t scalar )
 	};
 }
 
-uint2 uint2_comp_divv( const uint2* lhs, const uint2* rhs )
+uint2 uint2_cdivv( const uint2* lhs, const uint2* rhs )
 {
 	return HLML_CONSTRUCT( uint2 ) {
 		lhs->x / rhs->x,
@@ -2072,7 +2072,7 @@ uint2 uint2_comp_divv( const uint2* lhs, const uint2* rhs )
 	};
 }
 
-uint2 uint2_comp_and( const uint2* lhs, const uint2* rhs )
+uint2 uint2_cand( const uint2* lhs, const uint2* rhs )
 {
 	return HLML_CONSTRUCT( uint2 ) {
 		lhs->x & rhs->x,
@@ -2080,7 +2080,7 @@ uint2 uint2_comp_and( const uint2* lhs, const uint2* rhs )
 	};
 }
 
-uint2 uint2_comp_or( const uint2* lhs, const uint2* rhs )
+uint2 uint2_cor( const uint2* lhs, const uint2* rhs )
 {
 	return HLML_CONSTRUCT( uint2 ) {
 		lhs->x | rhs->x,
@@ -2088,7 +2088,7 @@ uint2 uint2_comp_or( const uint2* lhs, const uint2* rhs )
 	};
 }
 
-uint2 uint2_comp_xor( const uint2* lhs, const uint2* rhs )
+uint2 uint2_cxor( const uint2* lhs, const uint2* rhs )
 {
 	return HLML_CONSTRUCT( uint2 ) {
 		lhs->x ^ rhs->x,
@@ -2096,7 +2096,7 @@ uint2 uint2_comp_xor( const uint2* lhs, const uint2* rhs )
 	};
 }
 
-uint2 uint2_comp_unary( const uint2* lhs )
+uint2 uint2_cunary( const uint2* lhs )
 {
 	return HLML_CONSTRUCT( uint2 ) {
 		~lhs->x,
@@ -2104,7 +2104,7 @@ uint2 uint2_comp_unary( const uint2* lhs )
 	};
 }
 
-uint2 uint2_comp_shift_left( const uint2* lhs, const uint2* rhs )
+uint2 uint2_cshift_left( const uint2* lhs, const uint2* rhs )
 {
 	return HLML_CONSTRUCT( uint2 ) {
 		lhs->x << rhs->x,
@@ -2112,7 +2112,7 @@ uint2 uint2_comp_shift_left( const uint2* lhs, const uint2* rhs )
 	};
 }
 
-uint2 uint2_comp_shift_right( const uint2* lhs, const uint2* rhs )
+uint2 uint2_cshift_right( const uint2* lhs, const uint2* rhs )
 {
 	return HLML_CONSTRUCT( uint2 ) {
 		lhs->x >> rhs->x,
@@ -2169,13 +2169,13 @@ int32_t uint2_dot( const uint2* lhs, const uint2* rhs )
 
 float uint2_distancesqr( const uint2* lhs, const uint2* rhs )
 {
-	uint2 delta = uint2_comp_subv( lhs, rhs );
+	uint2 delta = uint2_csubv( lhs, rhs );
 	return uint2_lengthsqr( &delta );
 }
 
 float uint2_distance( const uint2* lhs, const uint2* rhs )
 {
-	uint2 delta = uint2_comp_subv( lhs, rhs );
+	uint2 delta = uint2_csubv( lhs, rhs );
 	return uint2_length( &delta );
 }
 
@@ -2189,7 +2189,7 @@ bool uint3_cmpne( const uint3* lhs, const uint3* rhs )
 	return !( uint3_cmpe( lhs, rhs ) );
 }
 
-uint3 uint3_comp_adds( const uint3* lhs, const uint32_t scalar )
+uint3 uint3_cadds( const uint3* lhs, const uint32_t scalar )
 {
 	return HLML_CONSTRUCT( uint3 ) {
 		lhs->x + scalar,
@@ -2198,7 +2198,7 @@ uint3 uint3_comp_adds( const uint3* lhs, const uint32_t scalar )
 	};
 }
 
-uint3 uint3_comp_addv( const uint3* lhs, const uint3* rhs )
+uint3 uint3_caddv( const uint3* lhs, const uint3* rhs )
 {
 	return HLML_CONSTRUCT( uint3 ) {
 		lhs->x + rhs->x,
@@ -2207,7 +2207,7 @@ uint3 uint3_comp_addv( const uint3* lhs, const uint3* rhs )
 	};
 }
 
-uint3 uint3_comp_subs( const uint3* lhs, const uint32_t scalar )
+uint3 uint3_csubs( const uint3* lhs, const uint32_t scalar )
 {
 	return HLML_CONSTRUCT( uint3 ) {
 		lhs->x - scalar,
@@ -2216,7 +2216,7 @@ uint3 uint3_comp_subs( const uint3* lhs, const uint32_t scalar )
 	};
 }
 
-uint3 uint3_comp_subv( const uint3* lhs, const uint3* rhs )
+uint3 uint3_csubv( const uint3* lhs, const uint3* rhs )
 {
 	return HLML_CONSTRUCT( uint3 ) {
 		lhs->x - rhs->x,
@@ -2225,7 +2225,7 @@ uint3 uint3_comp_subv( const uint3* lhs, const uint3* rhs )
 	};
 }
 
-uint3 uint3_comp_muls( const uint3* lhs, const uint32_t scalar )
+uint3 uint3_cmuls( const uint3* lhs, const uint32_t scalar )
 {
 	return HLML_CONSTRUCT( uint3 ) {
 		lhs->x * scalar,
@@ -2234,7 +2234,7 @@ uint3 uint3_comp_muls( const uint3* lhs, const uint32_t scalar )
 	};
 }
 
-uint3 uint3_comp_mulv( const uint3* lhs, const uint3* rhs )
+uint3 uint3_cmulv( const uint3* lhs, const uint3* rhs )
 {
 	return HLML_CONSTRUCT( uint3 ) {
 		lhs->x * rhs->x,
@@ -2243,7 +2243,7 @@ uint3 uint3_comp_mulv( const uint3* lhs, const uint3* rhs )
 	};
 }
 
-uint3 uint3_comp_divs( const uint3* lhs, const uint32_t scalar )
+uint3 uint3_cdivs( const uint3* lhs, const uint32_t scalar )
 {
 	return HLML_CONSTRUCT( uint3 ) {
 		lhs->x / scalar,
@@ -2252,7 +2252,7 @@ uint3 uint3_comp_divs( const uint3* lhs, const uint32_t scalar )
 	};
 }
 
-uint3 uint3_comp_divv( const uint3* lhs, const uint3* rhs )
+uint3 uint3_cdivv( const uint3* lhs, const uint3* rhs )
 {
 	return HLML_CONSTRUCT( uint3 ) {
 		lhs->x / rhs->x,
@@ -2261,7 +2261,7 @@ uint3 uint3_comp_divv( const uint3* lhs, const uint3* rhs )
 	};
 }
 
-uint3 uint3_comp_and( const uint3* lhs, const uint3* rhs )
+uint3 uint3_cand( const uint3* lhs, const uint3* rhs )
 {
 	return HLML_CONSTRUCT( uint3 ) {
 		lhs->x & rhs->x,
@@ -2270,7 +2270,7 @@ uint3 uint3_comp_and( const uint3* lhs, const uint3* rhs )
 	};
 }
 
-uint3 uint3_comp_or( const uint3* lhs, const uint3* rhs )
+uint3 uint3_cor( const uint3* lhs, const uint3* rhs )
 {
 	return HLML_CONSTRUCT( uint3 ) {
 		lhs->x | rhs->x,
@@ -2279,7 +2279,7 @@ uint3 uint3_comp_or( const uint3* lhs, const uint3* rhs )
 	};
 }
 
-uint3 uint3_comp_xor( const uint3* lhs, const uint3* rhs )
+uint3 uint3_cxor( const uint3* lhs, const uint3* rhs )
 {
 	return HLML_CONSTRUCT( uint3 ) {
 		lhs->x ^ rhs->x,
@@ -2288,7 +2288,7 @@ uint3 uint3_comp_xor( const uint3* lhs, const uint3* rhs )
 	};
 }
 
-uint3 uint3_comp_unary( const uint3* lhs )
+uint3 uint3_cunary( const uint3* lhs )
 {
 	return HLML_CONSTRUCT( uint3 ) {
 		~lhs->x,
@@ -2297,7 +2297,7 @@ uint3 uint3_comp_unary( const uint3* lhs )
 	};
 }
 
-uint3 uint3_comp_shift_left( const uint3* lhs, const uint3* rhs )
+uint3 uint3_cshift_left( const uint3* lhs, const uint3* rhs )
 {
 	return HLML_CONSTRUCT( uint3 ) {
 		lhs->x << rhs->x,
@@ -2306,7 +2306,7 @@ uint3 uint3_comp_shift_left( const uint3* lhs, const uint3* rhs )
 	};
 }
 
-uint3 uint3_comp_shift_right( const uint3* lhs, const uint3* rhs )
+uint3 uint3_cshift_right( const uint3* lhs, const uint3* rhs )
 {
 	return HLML_CONSTRUCT( uint3 ) {
 		lhs->x >> rhs->x,
@@ -2368,13 +2368,13 @@ int32_t uint3_dot( const uint3* lhs, const uint3* rhs )
 
 float uint3_distancesqr( const uint3* lhs, const uint3* rhs )
 {
-	uint3 delta = uint3_comp_subv( lhs, rhs );
+	uint3 delta = uint3_csubv( lhs, rhs );
 	return uint3_lengthsqr( &delta );
 }
 
 float uint3_distance( const uint3* lhs, const uint3* rhs )
 {
-	uint3 delta = uint3_comp_subv( lhs, rhs );
+	uint3 delta = uint3_csubv( lhs, rhs );
 	return uint3_length( &delta );
 }
 
@@ -2388,7 +2388,7 @@ bool uint4_cmpne( const uint4* lhs, const uint4* rhs )
 	return !( uint4_cmpe( lhs, rhs ) );
 }
 
-uint4 uint4_comp_adds( const uint4* lhs, const uint32_t scalar )
+uint4 uint4_cadds( const uint4* lhs, const uint32_t scalar )
 {
 	return HLML_CONSTRUCT( uint4 ) {
 		lhs->x + scalar,
@@ -2398,7 +2398,7 @@ uint4 uint4_comp_adds( const uint4* lhs, const uint32_t scalar )
 	};
 }
 
-uint4 uint4_comp_addv( const uint4* lhs, const uint4* rhs )
+uint4 uint4_caddv( const uint4* lhs, const uint4* rhs )
 {
 	return HLML_CONSTRUCT( uint4 ) {
 		lhs->x + rhs->x,
@@ -2408,7 +2408,7 @@ uint4 uint4_comp_addv( const uint4* lhs, const uint4* rhs )
 	};
 }
 
-uint4 uint4_comp_subs( const uint4* lhs, const uint32_t scalar )
+uint4 uint4_csubs( const uint4* lhs, const uint32_t scalar )
 {
 	return HLML_CONSTRUCT( uint4 ) {
 		lhs->x - scalar,
@@ -2418,7 +2418,7 @@ uint4 uint4_comp_subs( const uint4* lhs, const uint32_t scalar )
 	};
 }
 
-uint4 uint4_comp_subv( const uint4* lhs, const uint4* rhs )
+uint4 uint4_csubv( const uint4* lhs, const uint4* rhs )
 {
 	return HLML_CONSTRUCT( uint4 ) {
 		lhs->x - rhs->x,
@@ -2428,7 +2428,7 @@ uint4 uint4_comp_subv( const uint4* lhs, const uint4* rhs )
 	};
 }
 
-uint4 uint4_comp_muls( const uint4* lhs, const uint32_t scalar )
+uint4 uint4_cmuls( const uint4* lhs, const uint32_t scalar )
 {
 	return HLML_CONSTRUCT( uint4 ) {
 		lhs->x * scalar,
@@ -2438,7 +2438,7 @@ uint4 uint4_comp_muls( const uint4* lhs, const uint32_t scalar )
 	};
 }
 
-uint4 uint4_comp_mulv( const uint4* lhs, const uint4* rhs )
+uint4 uint4_cmulv( const uint4* lhs, const uint4* rhs )
 {
 	return HLML_CONSTRUCT( uint4 ) {
 		lhs->x * rhs->x,
@@ -2448,7 +2448,7 @@ uint4 uint4_comp_mulv( const uint4* lhs, const uint4* rhs )
 	};
 }
 
-uint4 uint4_comp_divs( const uint4* lhs, const uint32_t scalar )
+uint4 uint4_cdivs( const uint4* lhs, const uint32_t scalar )
 {
 	return HLML_CONSTRUCT( uint4 ) {
 		lhs->x / scalar,
@@ -2458,7 +2458,7 @@ uint4 uint4_comp_divs( const uint4* lhs, const uint32_t scalar )
 	};
 }
 
-uint4 uint4_comp_divv( const uint4* lhs, const uint4* rhs )
+uint4 uint4_cdivv( const uint4* lhs, const uint4* rhs )
 {
 	return HLML_CONSTRUCT( uint4 ) {
 		lhs->x / rhs->x,
@@ -2468,7 +2468,7 @@ uint4 uint4_comp_divv( const uint4* lhs, const uint4* rhs )
 	};
 }
 
-uint4 uint4_comp_and( const uint4* lhs, const uint4* rhs )
+uint4 uint4_cand( const uint4* lhs, const uint4* rhs )
 {
 	return HLML_CONSTRUCT( uint4 ) {
 		lhs->x & rhs->x,
@@ -2478,7 +2478,7 @@ uint4 uint4_comp_and( const uint4* lhs, const uint4* rhs )
 	};
 }
 
-uint4 uint4_comp_or( const uint4* lhs, const uint4* rhs )
+uint4 uint4_cor( const uint4* lhs, const uint4* rhs )
 {
 	return HLML_CONSTRUCT( uint4 ) {
 		lhs->x | rhs->x,
@@ -2488,7 +2488,7 @@ uint4 uint4_comp_or( const uint4* lhs, const uint4* rhs )
 	};
 }
 
-uint4 uint4_comp_xor( const uint4* lhs, const uint4* rhs )
+uint4 uint4_cxor( const uint4* lhs, const uint4* rhs )
 {
 	return HLML_CONSTRUCT( uint4 ) {
 		lhs->x ^ rhs->x,
@@ -2498,7 +2498,7 @@ uint4 uint4_comp_xor( const uint4* lhs, const uint4* rhs )
 	};
 }
 
-uint4 uint4_comp_unary( const uint4* lhs )
+uint4 uint4_cunary( const uint4* lhs )
 {
 	return HLML_CONSTRUCT( uint4 ) {
 		~lhs->x,
@@ -2508,7 +2508,7 @@ uint4 uint4_comp_unary( const uint4* lhs )
 	};
 }
 
-uint4 uint4_comp_shift_left( const uint4* lhs, const uint4* rhs )
+uint4 uint4_cshift_left( const uint4* lhs, const uint4* rhs )
 {
 	return HLML_CONSTRUCT( uint4 ) {
 		lhs->x << rhs->x,
@@ -2518,7 +2518,7 @@ uint4 uint4_comp_shift_left( const uint4* lhs, const uint4* rhs )
 	};
 }
 
-uint4 uint4_comp_shift_right( const uint4* lhs, const uint4* rhs )
+uint4 uint4_cshift_right( const uint4* lhs, const uint4* rhs )
 {
 	return HLML_CONSTRUCT( uint4 ) {
 		lhs->x >> rhs->x,
@@ -2648,7 +2648,7 @@ bool float2_cmpne( const float2* lhs, const float2* rhs )
 	return !( float2_cmpe( lhs, rhs ) );
 }
 
-float2 float2_comp_adds( const float2* lhs, const float scalar )
+float2 float2_cadds( const float2* lhs, const float scalar )
 {
 	return HLML_CONSTRUCT( float2 ) {
 		lhs->x + scalar,
@@ -2656,7 +2656,7 @@ float2 float2_comp_adds( const float2* lhs, const float scalar )
 	};
 }
 
-float2 float2_comp_addv( const float2* lhs, const float2* rhs )
+float2 float2_caddv( const float2* lhs, const float2* rhs )
 {
 	return HLML_CONSTRUCT( float2 ) {
 		lhs->x + rhs->x,
@@ -2664,7 +2664,7 @@ float2 float2_comp_addv( const float2* lhs, const float2* rhs )
 	};
 }
 
-float2 float2_comp_subs( const float2* lhs, const float scalar )
+float2 float2_csubs( const float2* lhs, const float scalar )
 {
 	return HLML_CONSTRUCT( float2 ) {
 		lhs->x - scalar,
@@ -2672,7 +2672,7 @@ float2 float2_comp_subs( const float2* lhs, const float scalar )
 	};
 }
 
-float2 float2_comp_subv( const float2* lhs, const float2* rhs )
+float2 float2_csubv( const float2* lhs, const float2* rhs )
 {
 	return HLML_CONSTRUCT( float2 ) {
 		lhs->x - rhs->x,
@@ -2680,7 +2680,7 @@ float2 float2_comp_subv( const float2* lhs, const float2* rhs )
 	};
 }
 
-float2 float2_comp_muls( const float2* lhs, const float scalar )
+float2 float2_cmuls( const float2* lhs, const float scalar )
 {
 	return HLML_CONSTRUCT( float2 ) {
 		lhs->x * scalar,
@@ -2688,7 +2688,7 @@ float2 float2_comp_muls( const float2* lhs, const float scalar )
 	};
 }
 
-float2 float2_comp_mulv( const float2* lhs, const float2* rhs )
+float2 float2_cmulv( const float2* lhs, const float2* rhs )
 {
 	return HLML_CONSTRUCT( float2 ) {
 		lhs->x * rhs->x,
@@ -2696,7 +2696,7 @@ float2 float2_comp_mulv( const float2* lhs, const float2* rhs )
 	};
 }
 
-float2 float2_comp_divs( const float2* lhs, const float scalar )
+float2 float2_cdivs( const float2* lhs, const float scalar )
 {
 	return HLML_CONSTRUCT( float2 ) {
 		lhs->x / scalar,
@@ -2704,7 +2704,7 @@ float2 float2_comp_divs( const float2* lhs, const float scalar )
 	};
 }
 
-float2 float2_comp_divv( const float2* lhs, const float2* rhs )
+float2 float2_cdivv( const float2* lhs, const float2* rhs )
 {
 	return HLML_CONSTRUCT( float2 ) {
 		lhs->x / rhs->x,
@@ -2762,7 +2762,7 @@ void float2_normalize( float2* vec )
 		1.0f / len
 	};
 
-	*vec = float2_comp_mulv( vec, &invlen );
+	*vec = float2_cmulv( vec, &invlen );
 }
 
 float2 float2_normalized( const float2* vec )
@@ -2773,7 +2773,7 @@ float2 float2_normalized( const float2* vec )
 		1.0f / len
 	};
 
-	return float2_comp_mulv( vec, &invlen );
+	return float2_cmulv( vec, &invlen );
 }
 
 float float2_dot( const float2* lhs, const float2* rhs )
@@ -2790,13 +2790,13 @@ float float2_angle( const float2* lhs, const float2* rhs )
 
 float float2_distancesqr( const float2* lhs, const float2* rhs )
 {
-	float2 delta = float2_comp_subv( lhs, rhs );
+	float2 delta = float2_csubv( lhs, rhs );
 	return float2_lengthsqr( &delta );
 }
 
 float float2_distance( const float2* lhs, const float2* rhs )
 {
-	float2 delta = float2_comp_subv( lhs, rhs );
+	float2 delta = float2_csubv( lhs, rhs );
 	return float2_length( &delta );
 }
 
@@ -2855,7 +2855,7 @@ bool float3_cmpne( const float3* lhs, const float3* rhs )
 	return !( float3_cmpe( lhs, rhs ) );
 }
 
-float3 float3_comp_adds( const float3* lhs, const float scalar )
+float3 float3_cadds( const float3* lhs, const float scalar )
 {
 	return HLML_CONSTRUCT( float3 ) {
 		lhs->x + scalar,
@@ -2864,7 +2864,7 @@ float3 float3_comp_adds( const float3* lhs, const float scalar )
 	};
 }
 
-float3 float3_comp_addv( const float3* lhs, const float3* rhs )
+float3 float3_caddv( const float3* lhs, const float3* rhs )
 {
 	return HLML_CONSTRUCT( float3 ) {
 		lhs->x + rhs->x,
@@ -2873,7 +2873,7 @@ float3 float3_comp_addv( const float3* lhs, const float3* rhs )
 	};
 }
 
-float3 float3_comp_subs( const float3* lhs, const float scalar )
+float3 float3_csubs( const float3* lhs, const float scalar )
 {
 	return HLML_CONSTRUCT( float3 ) {
 		lhs->x - scalar,
@@ -2882,7 +2882,7 @@ float3 float3_comp_subs( const float3* lhs, const float scalar )
 	};
 }
 
-float3 float3_comp_subv( const float3* lhs, const float3* rhs )
+float3 float3_csubv( const float3* lhs, const float3* rhs )
 {
 	return HLML_CONSTRUCT( float3 ) {
 		lhs->x - rhs->x,
@@ -2891,7 +2891,7 @@ float3 float3_comp_subv( const float3* lhs, const float3* rhs )
 	};
 }
 
-float3 float3_comp_muls( const float3* lhs, const float scalar )
+float3 float3_cmuls( const float3* lhs, const float scalar )
 {
 	return HLML_CONSTRUCT( float3 ) {
 		lhs->x * scalar,
@@ -2900,7 +2900,7 @@ float3 float3_comp_muls( const float3* lhs, const float scalar )
 	};
 }
 
-float3 float3_comp_mulv( const float3* lhs, const float3* rhs )
+float3 float3_cmulv( const float3* lhs, const float3* rhs )
 {
 	return HLML_CONSTRUCT( float3 ) {
 		lhs->x * rhs->x,
@@ -2909,7 +2909,7 @@ float3 float3_comp_mulv( const float3* lhs, const float3* rhs )
 	};
 }
 
-float3 float3_comp_divs( const float3* lhs, const float scalar )
+float3 float3_cdivs( const float3* lhs, const float scalar )
 {
 	return HLML_CONSTRUCT( float3 ) {
 		lhs->x / scalar,
@@ -2918,7 +2918,7 @@ float3 float3_comp_divs( const float3* lhs, const float scalar )
 	};
 }
 
-float3 float3_comp_divv( const float3* lhs, const float3* rhs )
+float3 float3_cdivv( const float3* lhs, const float3* rhs )
 {
 	return HLML_CONSTRUCT( float3 ) {
 		lhs->x / rhs->x,
@@ -2982,7 +2982,7 @@ void float3_normalize( float3* vec )
 		1.0f / len
 	};
 
-	*vec = float3_comp_mulv( vec, &invlen );
+	*vec = float3_cmulv( vec, &invlen );
 }
 
 float3 float3_normalized( const float3* vec )
@@ -2994,7 +2994,7 @@ float3 float3_normalized( const float3* vec )
 		1.0f / len
 	};
 
-	return float3_comp_mulv( vec, &invlen );
+	return float3_cmulv( vec, &invlen );
 }
 
 float float3_dot( const float3* lhs, const float3* rhs )
@@ -3020,13 +3020,13 @@ float float3_angle( const float3* lhs, const float3* rhs )
 
 float float3_distancesqr( const float3* lhs, const float3* rhs )
 {
-	float3 delta = float3_comp_subv( lhs, rhs );
+	float3 delta = float3_csubv( lhs, rhs );
 	return float3_lengthsqr( &delta );
 }
 
 float float3_distance( const float3* lhs, const float3* rhs )
 {
-	float3 delta = float3_comp_subv( lhs, rhs );
+	float3 delta = float3_csubv( lhs, rhs );
 	return float3_length( &delta );
 }
 
@@ -3090,7 +3090,7 @@ bool float4_cmpne( const float4* lhs, const float4* rhs )
 	return !( float4_cmpe( lhs, rhs ) );
 }
 
-float4 float4_comp_adds( const float4* lhs, const float scalar )
+float4 float4_cadds( const float4* lhs, const float scalar )
 {
 	return HLML_CONSTRUCT( float4 ) {
 		lhs->x + scalar,
@@ -3100,7 +3100,7 @@ float4 float4_comp_adds( const float4* lhs, const float scalar )
 	};
 }
 
-float4 float4_comp_addv( const float4* lhs, const float4* rhs )
+float4 float4_caddv( const float4* lhs, const float4* rhs )
 {
 	return HLML_CONSTRUCT( float4 ) {
 		lhs->x + rhs->x,
@@ -3110,7 +3110,7 @@ float4 float4_comp_addv( const float4* lhs, const float4* rhs )
 	};
 }
 
-float4 float4_comp_subs( const float4* lhs, const float scalar )
+float4 float4_csubs( const float4* lhs, const float scalar )
 {
 	return HLML_CONSTRUCT( float4 ) {
 		lhs->x - scalar,
@@ -3120,7 +3120,7 @@ float4 float4_comp_subs( const float4* lhs, const float scalar )
 	};
 }
 
-float4 float4_comp_subv( const float4* lhs, const float4* rhs )
+float4 float4_csubv( const float4* lhs, const float4* rhs )
 {
 	return HLML_CONSTRUCT( float4 ) {
 		lhs->x - rhs->x,
@@ -3130,7 +3130,7 @@ float4 float4_comp_subv( const float4* lhs, const float4* rhs )
 	};
 }
 
-float4 float4_comp_muls( const float4* lhs, const float scalar )
+float4 float4_cmuls( const float4* lhs, const float scalar )
 {
 	return HLML_CONSTRUCT( float4 ) {
 		lhs->x * scalar,
@@ -3140,7 +3140,7 @@ float4 float4_comp_muls( const float4* lhs, const float scalar )
 	};
 }
 
-float4 float4_comp_mulv( const float4* lhs, const float4* rhs )
+float4 float4_cmulv( const float4* lhs, const float4* rhs )
 {
 	return HLML_CONSTRUCT( float4 ) {
 		lhs->x * rhs->x,
@@ -3150,7 +3150,7 @@ float4 float4_comp_mulv( const float4* lhs, const float4* rhs )
 	};
 }
 
-float4 float4_comp_divs( const float4* lhs, const float scalar )
+float4 float4_cdivs( const float4* lhs, const float scalar )
 {
 	return HLML_CONSTRUCT( float4 ) {
 		lhs->x / scalar,
@@ -3160,7 +3160,7 @@ float4 float4_comp_divs( const float4* lhs, const float scalar )
 	};
 }
 
-float4 float4_comp_divv( const float4* lhs, const float4* rhs )
+float4 float4_cdivv( const float4* lhs, const float4* rhs )
 {
 	return HLML_CONSTRUCT( float4 ) {
 		lhs->x / rhs->x,
@@ -3230,7 +3230,7 @@ void float4_normalize( float4* vec )
 		1.0f / len
 	};
 
-	*vec = float4_comp_mulv( vec, &invlen );
+	*vec = float4_cmulv( vec, &invlen );
 }
 
 float4 float4_normalized( const float4* vec )
@@ -3243,7 +3243,7 @@ float4 float4_normalized( const float4* vec )
 		1.0f / len
 	};
 
-	return float4_comp_mulv( vec, &invlen );
+	return float4_cmulv( vec, &invlen );
 }
 
 float float4_dot( const float4* lhs, const float4* rhs )
@@ -3318,7 +3318,7 @@ bool double2_cmpne( const double2* lhs, const double2* rhs )
 	return !( double2_cmpe( lhs, rhs ) );
 }
 
-double2 double2_comp_adds( const double2* lhs, const double scalar )
+double2 double2_cadds( const double2* lhs, const double scalar )
 {
 	return HLML_CONSTRUCT( double2 ) {
 		lhs->x + scalar,
@@ -3326,7 +3326,7 @@ double2 double2_comp_adds( const double2* lhs, const double scalar )
 	};
 }
 
-double2 double2_comp_addv( const double2* lhs, const double2* rhs )
+double2 double2_caddv( const double2* lhs, const double2* rhs )
 {
 	return HLML_CONSTRUCT( double2 ) {
 		lhs->x + rhs->x,
@@ -3334,7 +3334,7 @@ double2 double2_comp_addv( const double2* lhs, const double2* rhs )
 	};
 }
 
-double2 double2_comp_subs( const double2* lhs, const double scalar )
+double2 double2_csubs( const double2* lhs, const double scalar )
 {
 	return HLML_CONSTRUCT( double2 ) {
 		lhs->x - scalar,
@@ -3342,7 +3342,7 @@ double2 double2_comp_subs( const double2* lhs, const double scalar )
 	};
 }
 
-double2 double2_comp_subv( const double2* lhs, const double2* rhs )
+double2 double2_csubv( const double2* lhs, const double2* rhs )
 {
 	return HLML_CONSTRUCT( double2 ) {
 		lhs->x - rhs->x,
@@ -3350,7 +3350,7 @@ double2 double2_comp_subv( const double2* lhs, const double2* rhs )
 	};
 }
 
-double2 double2_comp_muls( const double2* lhs, const double scalar )
+double2 double2_cmuls( const double2* lhs, const double scalar )
 {
 	return HLML_CONSTRUCT( double2 ) {
 		lhs->x * scalar,
@@ -3358,7 +3358,7 @@ double2 double2_comp_muls( const double2* lhs, const double scalar )
 	};
 }
 
-double2 double2_comp_mulv( const double2* lhs, const double2* rhs )
+double2 double2_cmulv( const double2* lhs, const double2* rhs )
 {
 	return HLML_CONSTRUCT( double2 ) {
 		lhs->x * rhs->x,
@@ -3366,7 +3366,7 @@ double2 double2_comp_mulv( const double2* lhs, const double2* rhs )
 	};
 }
 
-double2 double2_comp_divs( const double2* lhs, const double scalar )
+double2 double2_cdivs( const double2* lhs, const double scalar )
 {
 	return HLML_CONSTRUCT( double2 ) {
 		lhs->x / scalar,
@@ -3374,7 +3374,7 @@ double2 double2_comp_divs( const double2* lhs, const double scalar )
 	};
 }
 
-double2 double2_comp_divv( const double2* lhs, const double2* rhs )
+double2 double2_cdivv( const double2* lhs, const double2* rhs )
 {
 	return HLML_CONSTRUCT( double2 ) {
 		lhs->x / rhs->x,
@@ -3432,7 +3432,7 @@ void double2_normalize( double2* vec )
 		1.0 / len
 	};
 
-	*vec = double2_comp_mulv( vec, &invlen );
+	*vec = double2_cmulv( vec, &invlen );
 }
 
 double2 double2_normalized( const double2* vec )
@@ -3443,7 +3443,7 @@ double2 double2_normalized( const double2* vec )
 		1.0 / len
 	};
 
-	return double2_comp_mulv( vec, &invlen );
+	return double2_cmulv( vec, &invlen );
 }
 
 double double2_dot( const double2* lhs, const double2* rhs )
@@ -3460,13 +3460,13 @@ double double2_angle( const double2* lhs, const double2* rhs )
 
 double double2_distancesqr( const double2* lhs, const double2* rhs )
 {
-	double2 delta = double2_comp_subv( lhs, rhs );
+	double2 delta = double2_csubv( lhs, rhs );
 	return double2_lengthsqr( &delta );
 }
 
 double double2_distance( const double2* lhs, const double2* rhs )
 {
-	double2 delta = double2_comp_subv( lhs, rhs );
+	double2 delta = double2_csubv( lhs, rhs );
 	return double2_length( &delta );
 }
 
@@ -3525,7 +3525,7 @@ bool double3_cmpne( const double3* lhs, const double3* rhs )
 	return !( double3_cmpe( lhs, rhs ) );
 }
 
-double3 double3_comp_adds( const double3* lhs, const double scalar )
+double3 double3_cadds( const double3* lhs, const double scalar )
 {
 	return HLML_CONSTRUCT( double3 ) {
 		lhs->x + scalar,
@@ -3534,7 +3534,7 @@ double3 double3_comp_adds( const double3* lhs, const double scalar )
 	};
 }
 
-double3 double3_comp_addv( const double3* lhs, const double3* rhs )
+double3 double3_caddv( const double3* lhs, const double3* rhs )
 {
 	return HLML_CONSTRUCT( double3 ) {
 		lhs->x + rhs->x,
@@ -3543,7 +3543,7 @@ double3 double3_comp_addv( const double3* lhs, const double3* rhs )
 	};
 }
 
-double3 double3_comp_subs( const double3* lhs, const double scalar )
+double3 double3_csubs( const double3* lhs, const double scalar )
 {
 	return HLML_CONSTRUCT( double3 ) {
 		lhs->x - scalar,
@@ -3552,7 +3552,7 @@ double3 double3_comp_subs( const double3* lhs, const double scalar )
 	};
 }
 
-double3 double3_comp_subv( const double3* lhs, const double3* rhs )
+double3 double3_csubv( const double3* lhs, const double3* rhs )
 {
 	return HLML_CONSTRUCT( double3 ) {
 		lhs->x - rhs->x,
@@ -3561,7 +3561,7 @@ double3 double3_comp_subv( const double3* lhs, const double3* rhs )
 	};
 }
 
-double3 double3_comp_muls( const double3* lhs, const double scalar )
+double3 double3_cmuls( const double3* lhs, const double scalar )
 {
 	return HLML_CONSTRUCT( double3 ) {
 		lhs->x * scalar,
@@ -3570,7 +3570,7 @@ double3 double3_comp_muls( const double3* lhs, const double scalar )
 	};
 }
 
-double3 double3_comp_mulv( const double3* lhs, const double3* rhs )
+double3 double3_cmulv( const double3* lhs, const double3* rhs )
 {
 	return HLML_CONSTRUCT( double3 ) {
 		lhs->x * rhs->x,
@@ -3579,7 +3579,7 @@ double3 double3_comp_mulv( const double3* lhs, const double3* rhs )
 	};
 }
 
-double3 double3_comp_divs( const double3* lhs, const double scalar )
+double3 double3_cdivs( const double3* lhs, const double scalar )
 {
 	return HLML_CONSTRUCT( double3 ) {
 		lhs->x / scalar,
@@ -3588,7 +3588,7 @@ double3 double3_comp_divs( const double3* lhs, const double scalar )
 	};
 }
 
-double3 double3_comp_divv( const double3* lhs, const double3* rhs )
+double3 double3_cdivv( const double3* lhs, const double3* rhs )
 {
 	return HLML_CONSTRUCT( double3 ) {
 		lhs->x / rhs->x,
@@ -3652,7 +3652,7 @@ void double3_normalize( double3* vec )
 		1.0 / len
 	};
 
-	*vec = double3_comp_mulv( vec, &invlen );
+	*vec = double3_cmulv( vec, &invlen );
 }
 
 double3 double3_normalized( const double3* vec )
@@ -3664,7 +3664,7 @@ double3 double3_normalized( const double3* vec )
 		1.0 / len
 	};
 
-	return double3_comp_mulv( vec, &invlen );
+	return double3_cmulv( vec, &invlen );
 }
 
 double double3_dot( const double3* lhs, const double3* rhs )
@@ -3690,13 +3690,13 @@ double double3_angle( const double3* lhs, const double3* rhs )
 
 double double3_distancesqr( const double3* lhs, const double3* rhs )
 {
-	double3 delta = double3_comp_subv( lhs, rhs );
+	double3 delta = double3_csubv( lhs, rhs );
 	return double3_lengthsqr( &delta );
 }
 
 double double3_distance( const double3* lhs, const double3* rhs )
 {
-	double3 delta = double3_comp_subv( lhs, rhs );
+	double3 delta = double3_csubv( lhs, rhs );
 	return double3_length( &delta );
 }
 
@@ -3760,7 +3760,7 @@ bool double4_cmpne( const double4* lhs, const double4* rhs )
 	return !( double4_cmpe( lhs, rhs ) );
 }
 
-double4 double4_comp_adds( const double4* lhs, const double scalar )
+double4 double4_cadds( const double4* lhs, const double scalar )
 {
 	return HLML_CONSTRUCT( double4 ) {
 		lhs->x + scalar,
@@ -3770,7 +3770,7 @@ double4 double4_comp_adds( const double4* lhs, const double scalar )
 	};
 }
 
-double4 double4_comp_addv( const double4* lhs, const double4* rhs )
+double4 double4_caddv( const double4* lhs, const double4* rhs )
 {
 	return HLML_CONSTRUCT( double4 ) {
 		lhs->x + rhs->x,
@@ -3780,7 +3780,7 @@ double4 double4_comp_addv( const double4* lhs, const double4* rhs )
 	};
 }
 
-double4 double4_comp_subs( const double4* lhs, const double scalar )
+double4 double4_csubs( const double4* lhs, const double scalar )
 {
 	return HLML_CONSTRUCT( double4 ) {
 		lhs->x - scalar,
@@ -3790,7 +3790,7 @@ double4 double4_comp_subs( const double4* lhs, const double scalar )
 	};
 }
 
-double4 double4_comp_subv( const double4* lhs, const double4* rhs )
+double4 double4_csubv( const double4* lhs, const double4* rhs )
 {
 	return HLML_CONSTRUCT( double4 ) {
 		lhs->x - rhs->x,
@@ -3800,7 +3800,7 @@ double4 double4_comp_subv( const double4* lhs, const double4* rhs )
 	};
 }
 
-double4 double4_comp_muls( const double4* lhs, const double scalar )
+double4 double4_cmuls( const double4* lhs, const double scalar )
 {
 	return HLML_CONSTRUCT( double4 ) {
 		lhs->x * scalar,
@@ -3810,7 +3810,7 @@ double4 double4_comp_muls( const double4* lhs, const double scalar )
 	};
 }
 
-double4 double4_comp_mulv( const double4* lhs, const double4* rhs )
+double4 double4_cmulv( const double4* lhs, const double4* rhs )
 {
 	return HLML_CONSTRUCT( double4 ) {
 		lhs->x * rhs->x,
@@ -3820,7 +3820,7 @@ double4 double4_comp_mulv( const double4* lhs, const double4* rhs )
 	};
 }
 
-double4 double4_comp_divs( const double4* lhs, const double scalar )
+double4 double4_cdivs( const double4* lhs, const double scalar )
 {
 	return HLML_CONSTRUCT( double4 ) {
 		lhs->x / scalar,
@@ -3830,7 +3830,7 @@ double4 double4_comp_divs( const double4* lhs, const double scalar )
 	};
 }
 
-double4 double4_comp_divv( const double4* lhs, const double4* rhs )
+double4 double4_cdivv( const double4* lhs, const double4* rhs )
 {
 	return HLML_CONSTRUCT( double4 ) {
 		lhs->x / rhs->x,
@@ -3900,7 +3900,7 @@ void double4_normalize( double4* vec )
 		1.0 / len
 	};
 
-	*vec = double4_comp_mulv( vec, &invlen );
+	*vec = double4_cmulv( vec, &invlen );
 }
 
 double4 double4_normalized( const double4* vec )
@@ -3913,7 +3913,7 @@ double4 double4_normalized( const double4* vec )
 		1.0 / len
 	};
 
-	return double4_comp_mulv( vec, &invlen );
+	return double4_cmulv( vec, &invlen );
 }
 
 double double4_dot( const double4* lhs, const double4* rhs )

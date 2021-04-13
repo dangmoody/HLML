@@ -187,7 +187,7 @@ float4 float4_quaternion_mul( const float4* lhs, const float rhs )
 {
 	float scalar = lhs->w * rhs;
 	float3 imaginary = (float3) { lhs->x, lhs->y, lhs->z };
-	imaginary = float3_comp_muls( &imaginary, rhs );
+	imaginary = float3_cmuls( &imaginary, rhs );
 	return HLML_CONSTRUCT( float4 ) { imaginary.x, imaginary.y, imaginary.z, scalar };
 }
 
@@ -204,7 +204,7 @@ float4 float4_quaternion_normalize( const float4* quat )
 	if ( mag >= 0 )
 	{
 		float magInverse = 1.0f / mag;
-		normV = float3_comp_muls( &normV, magInverse );
+		normV = float3_cmuls( &normV, magInverse );
 		normS *= magInverse;
 	}
 	return HLML_CONSTRUCT( float4 ) { normV.x, normV.y, normV.z, normS };
@@ -238,7 +238,7 @@ float3 float4_quaternion_rotate( const float3* vect, const float angle, const fl
 	float3_normalize( &normalizedImaginary );
 	float unitNormScalar = cosf( realQuat.w * 0.5f );
 	float sinResult = sinf( realQuat.w * 0.5f );
-	float3 unitNormImaginary = float3_comp_muls( &normalizedImaginary, sinResult );
+	float3 unitNormImaginary = float3_cmuls( &normalizedImaginary, sinResult );
 	float4 unitNormQuat = HLML_CONSTRUCT( float4 ) { unitNormImaginary.x, unitNormImaginary.y, unitNormImaginary.z, unitNormScalar };
 
 	float4 inverseQuat = float4_quaternion_inverse( &unitNormQuat );
@@ -292,7 +292,7 @@ double4 double4_quaternion_mul( const double4* lhs, const double rhs )
 {
 	double scalar = lhs->w * rhs;
 	double3 imaginary = (double3) { lhs->x, lhs->y, lhs->z };
-	imaginary = double3_comp_muls( &imaginary, rhs );
+	imaginary = double3_cmuls( &imaginary, rhs );
 	return HLML_CONSTRUCT( double4 ) { imaginary.x, imaginary.y, imaginary.z, scalar };
 }
 
@@ -309,7 +309,7 @@ double4 double4_quaternion_normalize( const double4* quat )
 	if ( mag >= 0 )
 	{
 		double magInverse = 1.0 / mag;
-		normV = double3_comp_muls( &normV, magInverse );
+		normV = double3_cmuls( &normV, magInverse );
 		normS *= magInverse;
 	}
 	return HLML_CONSTRUCT( double4 ) { normV.x, normV.y, normV.z, normS };
@@ -343,7 +343,7 @@ double3 double4_quaternion_rotate( const double3* vect, const double angle, cons
 	double3_normalize( &normalizedImaginary );
 	double unitNormScalar = cos( realQuat.w * 0.5 );
 	double sinResult = sin( realQuat.w * 0.5 );
-	double3 unitNormImaginary = double3_comp_muls( &normalizedImaginary, sinResult );
+	double3 unitNormImaginary = double3_cmuls( &normalizedImaginary, sinResult );
 	double4 unitNormQuat = HLML_CONSTRUCT( double4 ) { unitNormImaginary.x, unitNormImaginary.y, unitNormImaginary.z, unitNormScalar };
 
 	double4 inverseQuat = double4_quaternion_inverse( &unitNormQuat );

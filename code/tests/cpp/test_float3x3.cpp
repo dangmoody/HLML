@@ -214,7 +214,7 @@ TEMPER_TEST( TestComponentWiseArithmetic_Scalar_Addition_float3x3 )
 		3.000000f, 3.000000f, 3.000000f
 	);
 
-	float3x3 c = comp_addm( a, b );
+	float3x3 c = caddm( a, b );
 
 	TEMPER_EXPECT_TRUE( c == answer );
 
@@ -241,7 +241,7 @@ TEMPER_TEST( TestComponentWiseArithmetic_Scalar_Subtraction_float3x3 )
 		3.000000f, 3.000000f, 3.000000f
 	);
 
-	float3x3 c = comp_subm( a, b );
+	float3x3 c = csubm( a, b );
 
 	TEMPER_EXPECT_TRUE( c == answer );
 
@@ -268,7 +268,7 @@ TEMPER_TEST( TestComponentWiseArithmetic_Scalar_Multiplication_float3x3 )
 		3.000000f, 3.000000f, 3.000000f
 	);
 
-	float3x3 c = comp_mulm( a, b );
+	float3x3 c = cmulm( a, b );
 
 	TEMPER_EXPECT_TRUE( c == answer );
 
@@ -295,7 +295,7 @@ TEMPER_TEST( TestComponentWiseArithmetic_Scalar_Division_float3x3 )
 		3.000000f, 3.000000f, 3.000000f
 	);
 
-	float3x3 c = comp_divm( a, b );
+	float3x3 c = cdivm( a, b );
 
 	TEMPER_EXPECT_TRUE( c == answer );
 
@@ -347,7 +347,7 @@ TEMPER_TEST( TestComponentWiseArithmetic_SSE_Addition_float3x3 )
 	rhs.m[2][1] = _mm_load_ps( b21 );
 	rhs.m[2][2] = _mm_load_ps( b22 );
 
-	comp_addm_sse( &lhs, &rhs, &results );
+	caddm_sse( &lhs, &rhs, &results );
 
 	float arithmeticResults[4];
 
@@ -453,7 +453,7 @@ TEMPER_TEST( TestComponentWiseArithmetic_SSE_Subtraction_float3x3 )
 	rhs.m[2][1] = _mm_load_ps( b21 );
 	rhs.m[2][2] = _mm_load_ps( b22 );
 
-	comp_subm_sse( &lhs, &rhs, &results );
+	csubm_sse( &lhs, &rhs, &results );
 
 	float arithmeticResults[4];
 
@@ -559,7 +559,7 @@ TEMPER_TEST( TestComponentWiseArithmetic_SSE_Multiplication_float3x3 )
 	rhs.m[2][1] = _mm_load_ps( b21 );
 	rhs.m[2][2] = _mm_load_ps( b22 );
 
-	comp_mulm_sse( &lhs, &rhs, &results );
+	cmulm_sse( &lhs, &rhs, &results );
 
 	float arithmeticResults[4];
 
@@ -665,7 +665,7 @@ TEMPER_TEST( TestComponentWiseArithmetic_SSE_Division_float3x3 )
 	rhs.m[2][1] = _mm_load_ps( b21 );
 	rhs.m[2][2] = _mm_load_ps( b22 );
 
-	comp_divm_sse( &lhs, &rhs, &results );
+	cdivm_sse( &lhs, &rhs, &results );
 
 	float arithmeticResults[4];
 

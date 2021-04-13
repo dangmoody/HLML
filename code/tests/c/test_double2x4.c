@@ -86,7 +86,7 @@ TEMPER_TEST( TestComponentWiseArithmetic_Scalar_Addition_double2x4 )
 		2.000000, 2.000000, 2.000000, 2.000000
 	};
 
-	double2x4 c = double2x4_comp_addm( &a, &b );
+	double2x4 c = double2x4_caddm( &a, &b );
 
 	TEMPER_EXPECT_TRUE( double2x4_cmpe( &c, &answer ) );
 
@@ -110,7 +110,7 @@ TEMPER_TEST( TestComponentWiseArithmetic_Scalar_Subtraction_double2x4 )
 		2.000000, 2.000000, 2.000000, 2.000000
 	};
 
-	double2x4 c = double2x4_comp_subm( &a, &b );
+	double2x4 c = double2x4_csubm( &a, &b );
 
 	TEMPER_EXPECT_TRUE( double2x4_cmpe( &c, &answer ) );
 
@@ -134,7 +134,7 @@ TEMPER_TEST( TestComponentWiseArithmetic_Scalar_Multiplication_double2x4 )
 		2.000000, 2.000000, 2.000000, 2.000000
 	};
 
-	double2x4 c = double2x4_comp_mulm( &a, &b );
+	double2x4 c = double2x4_cmulm( &a, &b );
 
 	TEMPER_EXPECT_TRUE( double2x4_cmpe( &c, &answer ) );
 
@@ -158,7 +158,7 @@ TEMPER_TEST( TestComponentWiseArithmetic_Scalar_Division_double2x4 )
 		2.000000, 2.000000, 2.000000, 2.000000
 	};
 
-	double2x4 c = double2x4_comp_divm( &a, &b );
+	double2x4 c = double2x4_cdivm( &a, &b );
 
 	TEMPER_EXPECT_TRUE( double2x4_cmpe( &c, &answer ) );
 

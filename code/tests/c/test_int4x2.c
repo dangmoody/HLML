@@ -96,7 +96,7 @@ TEMPER_TEST( TestComponentWiseArithmetic_Scalar_Addition_int4x2 )
 		6, 6
 	};
 
-	int4x2 c = int4x2_comp_addm( &a, &b );
+	int4x2 c = int4x2_caddm( &a, &b );
 
 	TEMPER_EXPECT_TRUE( int4x2_cmpe( &c, &answer ) );
 
@@ -126,7 +126,7 @@ TEMPER_TEST( TestComponentWiseArithmetic_Scalar_Subtraction_int4x2 )
 		6, 6
 	};
 
-	int4x2 c = int4x2_comp_subm( &a, &b );
+	int4x2 c = int4x2_csubm( &a, &b );
 
 	TEMPER_EXPECT_TRUE( int4x2_cmpe( &c, &answer ) );
 
@@ -156,7 +156,7 @@ TEMPER_TEST( TestComponentWiseArithmetic_Scalar_Multiplication_int4x2 )
 		6, 6
 	};
 
-	int4x2 c = int4x2_comp_mulm( &a, &b );
+	int4x2 c = int4x2_cmulm( &a, &b );
 
 	TEMPER_EXPECT_TRUE( int4x2_cmpe( &c, &answer ) );
 
@@ -186,7 +186,7 @@ TEMPER_TEST( TestComponentWiseArithmetic_Scalar_Division_int4x2 )
 		6, 6
 	};
 
-	int4x2 c = int4x2_comp_divm( &a, &b );
+	int4x2 c = int4x2_cdivm( &a, &b );
 
 	TEMPER_EXPECT_TRUE( int4x2_cmpe( &c, &answer ) );
 
@@ -306,7 +306,7 @@ TEMPER_TEST( TestBitwise_And_int4x2 )
 		7, 7,
 		7, 7
 	};
-	int4x2 c = int4x2_comp_and( &a, &b );
+	int4x2 c = int4x2_cand( &a, &b );
 
 	TEMPER_EXPECT_TRUE( int4x2_cmpe( &c, &answer ) );
 
@@ -333,7 +333,7 @@ TEMPER_TEST( TestBitwise_Or_int4x2 )
 		7, 7,
 		7, 7
 	};
-	int4x2 c = int4x2_comp_or( &a, &b );
+	int4x2 c = int4x2_cor( &a, &b );
 
 	TEMPER_EXPECT_TRUE( int4x2_cmpe( &c, &answer ) );
 
@@ -360,7 +360,7 @@ TEMPER_TEST( TestBitwise_Xor_int4x2 )
 		7, 7,
 		7, 7
 	};
-	int4x2 c = int4x2_comp_xor( &a, &b );
+	int4x2 c = int4x2_cxor( &a, &b );
 
 	TEMPER_EXPECT_TRUE( int4x2_cmpe( &c, &answer ) );
 
@@ -387,7 +387,7 @@ TEMPER_TEST( TestBitwise_ShiftLeft_int4x2 )
 		2, 2,
 		2, 2
 	};
-	int4x2 c = int4x2_comp_shift_left( &a, &b );
+	int4x2 c = int4x2_cshift_left( &a, &b );
 
 	TEMPER_EXPECT_TRUE( int4x2_cmpe( &c, &answer ) );
 
@@ -414,7 +414,7 @@ TEMPER_TEST( TestBitwise_ShiftRight_int4x2 )
 		4, 4,
 		4, 4
 	};
-	int4x2 c = int4x2_comp_shift_right( &a, &b );
+	int4x2 c = int4x2_cshift_right( &a, &b );
 
 	TEMPER_EXPECT_TRUE( int4x2_cmpe( &c, &answer ) );
 
@@ -436,7 +436,7 @@ TEMPER_TEST( TestBitwise_Unary_int4x2 )
 		0, 0
 	};
 
-	int4x2 b = int4x2_comp_unary( &a );
+	int4x2 b = int4x2_cunary( &a );
 
 	TEMPER_EXPECT_TRUE( int4x2_cmpe( &b, &answer ) );
 

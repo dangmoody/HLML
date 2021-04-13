@@ -627,7 +627,7 @@ inline void Gen_GetFuncNameComponentWiseArithmeticScalar( const genLanguage_t la
 	assert( numCols <= GEN_COMPONENT_COUNT_MAX );
 
 	char prefix[GEN_STRING_LENGTH_FUNCTION_NAME];
-	snprintf( prefix, GEN_STRING_LENGTH_FUNCTION_NAME, "comp_%ss", GEN_OPERATOR_STRINGS_ARITHMETIC[op] );
+	snprintf( prefix, GEN_STRING_LENGTH_FUNCTION_NAME, "c%ss", GEN_OPERATOR_STRINGS_ARITHMETIC[op] );
 
 	Gen_GetFuncNameInternal( language, type, numRows, numCols, prefix, outString );
 }
@@ -639,7 +639,7 @@ inline void Gen_GetFuncNameComponentWiseArithmeticVector( const genLanguage_t la
 	assert( numCols <= GEN_COMPONENT_COUNT_MAX );
 
 	char prefix[GEN_STRING_LENGTH_FUNCTION_NAME];
-	snprintf( prefix, GEN_STRING_LENGTH_FUNCTION_NAME, "comp_%sv", GEN_OPERATOR_STRINGS_ARITHMETIC[op] );
+	snprintf( prefix, GEN_STRING_LENGTH_FUNCTION_NAME, "c%sv", GEN_OPERATOR_STRINGS_ARITHMETIC[op] );
 
 	Gen_GetFuncNameInternal( language, type, numRows, numCols, prefix, outString );
 }
@@ -651,7 +651,7 @@ inline void Gen_GetFuncNameComponentWiseArithmeticMatrix( const genLanguage_t la
 	assert( numCols <= GEN_COMPONENT_COUNT_MAX );
 
 	char prefix[GEN_STRING_LENGTH_FUNCTION_NAME];
-	snprintf( prefix, GEN_STRING_LENGTH_FUNCTION_NAME, "comp_%sm", GEN_OPERATOR_STRINGS_ARITHMETIC[op] );
+	snprintf( prefix, GEN_STRING_LENGTH_FUNCTION_NAME, "c%sm", GEN_OPERATOR_STRINGS_ARITHMETIC[op] );
 
 	Gen_GetFuncNameInternal( language, type, numRows, numCols, prefix, outString );
 }
@@ -678,7 +678,7 @@ inline void Gen_GetFuncNameBitwise( const genLanguage_t language, const genType_
 	}
 
 	char prefix[GEN_STRING_LENGTH_FUNCTION_NAME];
-	snprintf( prefix, GEN_STRING_LENGTH_FUNCTION_NAME, "comp_%s", opStr );
+	snprintf( prefix, GEN_STRING_LENGTH_FUNCTION_NAME, "c%s", opStr );
 
 	Gen_GetFuncNameInternal( language, type, numRows, numCols, prefix, outString );
 }

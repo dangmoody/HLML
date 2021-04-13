@@ -210,7 +210,7 @@ TEMPER_TEST( TestComponentWiseArithmetic_Scalar_Addition_int3x2 )
 		3, 3
 	);
 
-	int3x2 c = comp_addm( a, b );
+	int3x2 c = caddm( a, b );
 
 	TEMPER_EXPECT_TRUE( c == answer );
 
@@ -237,7 +237,7 @@ TEMPER_TEST( TestComponentWiseArithmetic_Scalar_Subtraction_int3x2 )
 		3, 3
 	);
 
-	int3x2 c = comp_subm( a, b );
+	int3x2 c = csubm( a, b );
 
 	TEMPER_EXPECT_TRUE( c == answer );
 
@@ -264,7 +264,7 @@ TEMPER_TEST( TestComponentWiseArithmetic_Scalar_Multiplication_int3x2 )
 		3, 3
 	);
 
-	int3x2 c = comp_mulm( a, b );
+	int3x2 c = cmulm( a, b );
 
 	TEMPER_EXPECT_TRUE( c == answer );
 
@@ -291,7 +291,7 @@ TEMPER_TEST( TestComponentWiseArithmetic_Scalar_Division_int3x2 )
 		3, 3
 	);
 
-	int3x2 c = comp_divm( a, b );
+	int3x2 c = cdivm( a, b );
 
 	TEMPER_EXPECT_TRUE( c == answer );
 

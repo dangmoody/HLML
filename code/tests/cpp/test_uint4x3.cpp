@@ -237,7 +237,7 @@ TEMPER_TEST( TestComponentWiseArithmetic_Scalar_Addition_uint4x3 )
 		6U, 6U, 6U
 	);
 
-	uint4x3 c = comp_addm( a, b );
+	uint4x3 c = caddm( a, b );
 
 	TEMPER_EXPECT_TRUE( c == answer );
 
@@ -267,7 +267,7 @@ TEMPER_TEST( TestComponentWiseArithmetic_Scalar_Subtraction_uint4x3 )
 		6U, 6U, 6U
 	);
 
-	uint4x3 c = comp_subm( a, b );
+	uint4x3 c = csubm( a, b );
 
 	TEMPER_EXPECT_TRUE( c == answer );
 
@@ -297,7 +297,7 @@ TEMPER_TEST( TestComponentWiseArithmetic_Scalar_Multiplication_uint4x3 )
 		6U, 6U, 6U
 	);
 
-	uint4x3 c = comp_mulm( a, b );
+	uint4x3 c = cmulm( a, b );
 
 	TEMPER_EXPECT_TRUE( c == answer );
 
@@ -327,7 +327,7 @@ TEMPER_TEST( TestComponentWiseArithmetic_Scalar_Division_uint4x3 )
 		6U, 6U, 6U
 	);
 
-	uint4x3 c = comp_divm( a, b );
+	uint4x3 c = cdivm( a, b );
 
 	TEMPER_EXPECT_TRUE( c == answer );
 

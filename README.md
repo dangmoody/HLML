@@ -46,10 +46,10 @@ Adding 2 vectors:
 float3 a = { 1.0f, 2.0f, 3.0f };
 float3 b = { 4.0f, 5.0f, 6.0f };
 
-// the "comp" part means "component-wise"
+// the "c" part means "component-wise"
 // the "v" part means vector
 // there are also component-wise arithmetic functions for scalar ("s"), and matrix ("m" - for matrix types only)
-float3 c = float3_comp_addv( &a, &b );
+float3 c = float3_caddv( &a, &b );
 
 printf( "c is: (%f, %f, %f)", c.x, c.y, c.z );
 ```
@@ -63,7 +63,7 @@ float4x4 view = float4x4_lookat_lh_zo( &eye, &forward, &world_up );
 float4x4 projection = float4x4_perspective_lh_zo( fov, aspect, znear, zfar );
 
 // "float4_mulm" will do matrix multiplication
-// "float4_comp_mulm" will do component-wise multiplication
+// "float4_cmulm" will do component-wise multiplication
 float4x4 view_projection = float4x4_mulm( &view, &projection );
 float4x4 mvp = float4x4_mulm( &model, &view_projection );
 ```
@@ -112,7 +112,7 @@ Common Pitfalls
 * HLML is focused on mathemetical expressive power where possible, therefore:
 	* All matrices have the ```*``` operator overloaded to do matrix multiplication, **NOT** a component-wise multiplication.
 	* All square matrices with floating point types have the ```/``` operator overloaded to multiply the left-hand matrix by the inverse of the right-hand matrix, it does **NOT** do a component-wise divide.
-		* If you want to do a component-wise multiply or divide with matrices, you will need the functions `comp_mulm` and `comp_divm`, respectively.
+		* If you want to do a component-wise multiply or divide with matrices, you will need the functions `cmulm` and `cdivm`, respectively.
 * To avoid conflicts with Windows ```min```/```max``` macros, you can define ```NOMINMAX``` before including HLML.
 
 

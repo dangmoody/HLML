@@ -53,7 +53,7 @@ TEMPER_TEST( TestArithmeticAddition_int2 )
 {
 	int2 a = (int2)	{ 6, 6 };
 	int2 b = (int2)	{ 2, 3 };
-	int2 c = int2_comp_addv( &a, &b );
+	int2 c = int2_caddv( &a, &b );
 
 	TEMPER_EXPECT_TRUE( c.x == 8 );
 	TEMPER_EXPECT_TRUE( c.y == 9 );
@@ -65,7 +65,7 @@ TEMPER_TEST( TestArithmeticSubtraction_int2 )
 {
 	int2 a = (int2)	{ 6, 6 };
 	int2 b = (int2)	{ 2, 3 };
-	int2 c = int2_comp_subv( &a, &b );
+	int2 c = int2_csubv( &a, &b );
 
 	TEMPER_EXPECT_TRUE( c.x == 4 );
 	TEMPER_EXPECT_TRUE( c.y == 3 );
@@ -77,7 +77,7 @@ TEMPER_TEST( TestArithmeticMultiplication_int2 )
 {
 	int2 a = (int2)	{ 6, 6 };
 	int2 b = (int2)	{ 2, 3 };
-	int2 c = int2_comp_mulv( &a, &b );
+	int2 c = int2_cmulv( &a, &b );
 
 	TEMPER_EXPECT_TRUE( c.x == 12 );
 	TEMPER_EXPECT_TRUE( c.y == 18 );
@@ -89,7 +89,7 @@ TEMPER_TEST( TestArithmeticDivision_int2 )
 {
 	int2 a = (int2)	{ 6, 6 };
 	int2 b = (int2)	{ 2, 2 };
-	int2 c = int2_comp_divv( &a, &b );
+	int2 c = int2_cdivv( &a, &b );
 
 	TEMPER_EXPECT_TRUE( c.x == 3 );
 	TEMPER_EXPECT_TRUE( c.y == 3 );
@@ -164,7 +164,7 @@ TEMPER_TEST( TestBitwise_And_int2 )
 	int2 a = (int2) { 21, 21 };
 	int2 b = (int2) { 7, 7 };
 
-	int2 c = int2_comp_and( &a, &b );
+	int2 c = int2_cand( &a, &b );
 
 	TEMPER_EXPECT_TRUE( int2_cmpe( &c, &answer ) );
 
@@ -178,7 +178,7 @@ TEMPER_TEST( TestBitwise_Or_int2 )
 	int2 a = (int2) { 21, 21 };
 	int2 b = (int2) { 7, 7 };
 
-	int2 c = int2_comp_or( &a, &b );
+	int2 c = int2_cor( &a, &b );
 
 	TEMPER_EXPECT_TRUE( int2_cmpe( &c, &answer ) );
 
@@ -192,7 +192,7 @@ TEMPER_TEST( TestBitwise_Xor_int2 )
 	int2 a = (int2) { 21, 21 };
 	int2 b = (int2) { 7, 7 };
 
-	int2 c = int2_comp_xor( &a, &b );
+	int2 c = int2_cxor( &a, &b );
 
 	TEMPER_EXPECT_TRUE( int2_cmpe( &c, &answer ) );
 
@@ -206,7 +206,7 @@ TEMPER_TEST( TestBitwise_ShiftLeft_int2 )
 	int2 a = (int2) { 1, 1 };
 	int2 b = (int2) { 2, 2 };
 
-	int2 c = int2_comp_shift_left( &a, &b );
+	int2 c = int2_cshift_left( &a, &b );
 
 	TEMPER_EXPECT_TRUE( int2_cmpe( &c, &answer ) );
 
@@ -220,7 +220,7 @@ TEMPER_TEST( TestBitwise_ShiftRight_int2 )
 	int2 a = (int2) { 16, 16 };
 	int2 b = (int2) { 4, 4 };
 
-	int2 c = int2_comp_shift_right( &a, &b );
+	int2 c = int2_cshift_right( &a, &b );
 
 	TEMPER_EXPECT_TRUE( int2_cmpe( &c, &answer ) );
 
@@ -233,7 +233,7 @@ TEMPER_TEST( TestBitwise_Unary_int2 )
 
 	int2 a = (int2) { 0, 0 };
 
-	int2 b = int2_comp_unary( &a );
+	int2 b = int2_cunary( &a );
 
 	TEMPER_EXPECT_TRUE( int2_cmpe( &b, &answer ) );
 

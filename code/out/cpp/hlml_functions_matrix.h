@@ -293,59 +293,59 @@ inline bool cmpne( const int2x2& lhs, const int2x2& rhs );
 
 /// \relates int2x2
 /// \brief Returns a copy of the int2x2 that has been component-wise added by the given scalar value.
-inline int2x2 comp_adds( const int2x2& lhs, const int32_t scalar );
+inline int2x2 cadds( const int2x2& lhs, const int32_t scalar );
 
 /// \relates int2x2
 /// \brief Returns a copy of the int2x2 that has been component-wise added by the corresponding component of the right-hand int2x2.
-inline int2x2 comp_addm( const int2x2& lhs, const int2x2& rhs );
+inline int2x2 caddm( const int2x2& lhs, const int2x2& rhs );
 
 /// \relates int2x2
 /// \brief Returns a copy of the int2x2 that has been component-wise subtracted by the given scalar value.
-inline int2x2 comp_subs( const int2x2& lhs, const int32_t scalar );
+inline int2x2 csubs( const int2x2& lhs, const int32_t scalar );
 
 /// \relates int2x2
 /// \brief Returns a copy of the int2x2 that has been component-wise subtracted by the corresponding component of the right-hand int2x2.
-inline int2x2 comp_subm( const int2x2& lhs, const int2x2& rhs );
+inline int2x2 csubm( const int2x2& lhs, const int2x2& rhs );
 
 /// \relates int2x2
 /// \brief Returns a copy of the int2x2 that has been component-wise multiplied by the given scalar value.
-inline int2x2 comp_muls( const int2x2& lhs, const int32_t scalar );
+inline int2x2 cmuls( const int2x2& lhs, const int32_t scalar );
 
 /// \relates int2x2
 /// \brief Returns a copy of the int2x2 that has been component-wise multiplied by the corresponding component of the right-hand int2x2.
-inline int2x2 comp_mulm( const int2x2& lhs, const int2x2& rhs );
+inline int2x2 cmulm( const int2x2& lhs, const int2x2& rhs );
 
 /// \relates int2x2
 /// \brief Returns a copy of the int2x2 that has been component-wise divided by the given scalar value.
-inline int2x2 comp_divs( const int2x2& lhs, const int32_t scalar );
+inline int2x2 cdivs( const int2x2& lhs, const int32_t scalar );
 
 /// \relates int2x2
 /// \brief Returns a copy of the int2x2 that has been component-wise divided by the corresponding component of the right-hand int2x2.
-inline int2x2 comp_divm( const int2x2& lhs, const int2x2& rhs );
+inline int2x2 cdivm( const int2x2& lhs, const int2x2& rhs );
 
 /// \relates int2x2
 /// \brief Returns a copy of the int2x2 where each component of the left-hand int2x2 has been bitwise AND'd against the corresponding component of the right-hand side int2x2.
-inline int2x2 comp_and( const int2x2& lhs, const int2x2& rhs );
+inline int2x2 cand( const int2x2& lhs, const int2x2& rhs );
 
 /// \relates int2x2
 /// \brief Returns a copy of the int2x2 where each component of the left-hand int2x2 has been bitwise OR'd against the corresponding component of the right-hand side int2x2.
-inline int2x2 comp_or( const int2x2& lhs, const int2x2& rhs );
+inline int2x2 cor( const int2x2& lhs, const int2x2& rhs );
 
 /// \relates int2x2
 /// \brief Returns a copy of the int2x2 where each component of the left-hand int2x2 has been bitwise XOR'd against the corresponding component of the right-hand side int2x2.
-inline int2x2 comp_xor( const int2x2& lhs, const int2x2& rhs );
+inline int2x2 cxor( const int2x2& lhs, const int2x2& rhs );
 
 /// \relates int2x2
 /// \brief Performs a unary bitwise operation on all components of the given int2x2.
-inline int2x2 comp_unary( const int2x2& lhs );
+inline int2x2 cunary( const int2x2& lhs );
 
 /// \relates int2x2
 /// \brief Returns a copy of the int2x2 where each component of the left-hand int2x2 has been bitwise left-shifted by the corresponding component of the right-hand side int2x2.
-inline int2x2 comp_shift_left( const int2x2& lhs, const int2x2& rhs );
+inline int2x2 cshift_left( const int2x2& lhs, const int2x2& rhs );
 
 /// \relates int2x2
 /// \brief Returns a copy of the int2x2 where each component of the left-hand int2x2 has been bitwise right-shifted by the corresponding component of the right-hand side int2x2.
-inline int2x2 comp_shift_right( const int2x2& lhs, const int2x2& rhs );
+inline int2x2 cshift_right( const int2x2& lhs, const int2x2& rhs );
 
 /// \relates int2x2
 /// \brief Returns a bool2x2 where each component is true if the component of the left-hand type is less than the corresponding right-hand type component.
@@ -395,59 +395,59 @@ inline bool cmpne( const int2x3& lhs, const int2x3& rhs );
 
 /// \relates int2x3
 /// \brief Returns a copy of the int2x3 that has been component-wise added by the given scalar value.
-inline int2x3 comp_adds( const int2x3& lhs, const int32_t scalar );
+inline int2x3 cadds( const int2x3& lhs, const int32_t scalar );
 
 /// \relates int2x3
 /// \brief Returns a copy of the int2x3 that has been component-wise added by the corresponding component of the right-hand int2x3.
-inline int2x3 comp_addm( const int2x3& lhs, const int2x3& rhs );
+inline int2x3 caddm( const int2x3& lhs, const int2x3& rhs );
 
 /// \relates int2x3
 /// \brief Returns a copy of the int2x3 that has been component-wise subtracted by the given scalar value.
-inline int2x3 comp_subs( const int2x3& lhs, const int32_t scalar );
+inline int2x3 csubs( const int2x3& lhs, const int32_t scalar );
 
 /// \relates int2x3
 /// \brief Returns a copy of the int2x3 that has been component-wise subtracted by the corresponding component of the right-hand int2x3.
-inline int2x3 comp_subm( const int2x3& lhs, const int2x3& rhs );
+inline int2x3 csubm( const int2x3& lhs, const int2x3& rhs );
 
 /// \relates int2x3
 /// \brief Returns a copy of the int2x3 that has been component-wise multiplied by the given scalar value.
-inline int2x3 comp_muls( const int2x3& lhs, const int32_t scalar );
+inline int2x3 cmuls( const int2x3& lhs, const int32_t scalar );
 
 /// \relates int2x3
 /// \brief Returns a copy of the int2x3 that has been component-wise multiplied by the corresponding component of the right-hand int2x3.
-inline int2x3 comp_mulm( const int2x3& lhs, const int2x3& rhs );
+inline int2x3 cmulm( const int2x3& lhs, const int2x3& rhs );
 
 /// \relates int2x3
 /// \brief Returns a copy of the int2x3 that has been component-wise divided by the given scalar value.
-inline int2x3 comp_divs( const int2x3& lhs, const int32_t scalar );
+inline int2x3 cdivs( const int2x3& lhs, const int32_t scalar );
 
 /// \relates int2x3
 /// \brief Returns a copy of the int2x3 that has been component-wise divided by the corresponding component of the right-hand int2x3.
-inline int2x3 comp_divm( const int2x3& lhs, const int2x3& rhs );
+inline int2x3 cdivm( const int2x3& lhs, const int2x3& rhs );
 
 /// \relates int2x3
 /// \brief Returns a copy of the int2x3 where each component of the left-hand int2x3 has been bitwise AND'd against the corresponding component of the right-hand side int2x3.
-inline int2x3 comp_and( const int2x3& lhs, const int2x3& rhs );
+inline int2x3 cand( const int2x3& lhs, const int2x3& rhs );
 
 /// \relates int2x3
 /// \brief Returns a copy of the int2x3 where each component of the left-hand int2x3 has been bitwise OR'd against the corresponding component of the right-hand side int2x3.
-inline int2x3 comp_or( const int2x3& lhs, const int2x3& rhs );
+inline int2x3 cor( const int2x3& lhs, const int2x3& rhs );
 
 /// \relates int2x3
 /// \brief Returns a copy of the int2x3 where each component of the left-hand int2x3 has been bitwise XOR'd against the corresponding component of the right-hand side int2x3.
-inline int2x3 comp_xor( const int2x3& lhs, const int2x3& rhs );
+inline int2x3 cxor( const int2x3& lhs, const int2x3& rhs );
 
 /// \relates int2x3
 /// \brief Performs a unary bitwise operation on all components of the given int2x3.
-inline int2x3 comp_unary( const int2x3& lhs );
+inline int2x3 cunary( const int2x3& lhs );
 
 /// \relates int2x3
 /// \brief Returns a copy of the int2x3 where each component of the left-hand int2x3 has been bitwise left-shifted by the corresponding component of the right-hand side int2x3.
-inline int2x3 comp_shift_left( const int2x3& lhs, const int2x3& rhs );
+inline int2x3 cshift_left( const int2x3& lhs, const int2x3& rhs );
 
 /// \relates int2x3
 /// \brief Returns a copy of the int2x3 where each component of the left-hand int2x3 has been bitwise right-shifted by the corresponding component of the right-hand side int2x3.
-inline int2x3 comp_shift_right( const int2x3& lhs, const int2x3& rhs );
+inline int2x3 cshift_right( const int2x3& lhs, const int2x3& rhs );
 
 /// \relates int2x3
 /// \brief Returns a bool2x3 where each component is true if the component of the left-hand type is less than the corresponding right-hand type component.
@@ -493,59 +493,59 @@ inline bool cmpne( const int2x4& lhs, const int2x4& rhs );
 
 /// \relates int2x4
 /// \brief Returns a copy of the int2x4 that has been component-wise added by the given scalar value.
-inline int2x4 comp_adds( const int2x4& lhs, const int32_t scalar );
+inline int2x4 cadds( const int2x4& lhs, const int32_t scalar );
 
 /// \relates int2x4
 /// \brief Returns a copy of the int2x4 that has been component-wise added by the corresponding component of the right-hand int2x4.
-inline int2x4 comp_addm( const int2x4& lhs, const int2x4& rhs );
+inline int2x4 caddm( const int2x4& lhs, const int2x4& rhs );
 
 /// \relates int2x4
 /// \brief Returns a copy of the int2x4 that has been component-wise subtracted by the given scalar value.
-inline int2x4 comp_subs( const int2x4& lhs, const int32_t scalar );
+inline int2x4 csubs( const int2x4& lhs, const int32_t scalar );
 
 /// \relates int2x4
 /// \brief Returns a copy of the int2x4 that has been component-wise subtracted by the corresponding component of the right-hand int2x4.
-inline int2x4 comp_subm( const int2x4& lhs, const int2x4& rhs );
+inline int2x4 csubm( const int2x4& lhs, const int2x4& rhs );
 
 /// \relates int2x4
 /// \brief Returns a copy of the int2x4 that has been component-wise multiplied by the given scalar value.
-inline int2x4 comp_muls( const int2x4& lhs, const int32_t scalar );
+inline int2x4 cmuls( const int2x4& lhs, const int32_t scalar );
 
 /// \relates int2x4
 /// \brief Returns a copy of the int2x4 that has been component-wise multiplied by the corresponding component of the right-hand int2x4.
-inline int2x4 comp_mulm( const int2x4& lhs, const int2x4& rhs );
+inline int2x4 cmulm( const int2x4& lhs, const int2x4& rhs );
 
 /// \relates int2x4
 /// \brief Returns a copy of the int2x4 that has been component-wise divided by the given scalar value.
-inline int2x4 comp_divs( const int2x4& lhs, const int32_t scalar );
+inline int2x4 cdivs( const int2x4& lhs, const int32_t scalar );
 
 /// \relates int2x4
 /// \brief Returns a copy of the int2x4 that has been component-wise divided by the corresponding component of the right-hand int2x4.
-inline int2x4 comp_divm( const int2x4& lhs, const int2x4& rhs );
+inline int2x4 cdivm( const int2x4& lhs, const int2x4& rhs );
 
 /// \relates int2x4
 /// \brief Returns a copy of the int2x4 where each component of the left-hand int2x4 has been bitwise AND'd against the corresponding component of the right-hand side int2x4.
-inline int2x4 comp_and( const int2x4& lhs, const int2x4& rhs );
+inline int2x4 cand( const int2x4& lhs, const int2x4& rhs );
 
 /// \relates int2x4
 /// \brief Returns a copy of the int2x4 where each component of the left-hand int2x4 has been bitwise OR'd against the corresponding component of the right-hand side int2x4.
-inline int2x4 comp_or( const int2x4& lhs, const int2x4& rhs );
+inline int2x4 cor( const int2x4& lhs, const int2x4& rhs );
 
 /// \relates int2x4
 /// \brief Returns a copy of the int2x4 where each component of the left-hand int2x4 has been bitwise XOR'd against the corresponding component of the right-hand side int2x4.
-inline int2x4 comp_xor( const int2x4& lhs, const int2x4& rhs );
+inline int2x4 cxor( const int2x4& lhs, const int2x4& rhs );
 
 /// \relates int2x4
 /// \brief Performs a unary bitwise operation on all components of the given int2x4.
-inline int2x4 comp_unary( const int2x4& lhs );
+inline int2x4 cunary( const int2x4& lhs );
 
 /// \relates int2x4
 /// \brief Returns a copy of the int2x4 where each component of the left-hand int2x4 has been bitwise left-shifted by the corresponding component of the right-hand side int2x4.
-inline int2x4 comp_shift_left( const int2x4& lhs, const int2x4& rhs );
+inline int2x4 cshift_left( const int2x4& lhs, const int2x4& rhs );
 
 /// \relates int2x4
 /// \brief Returns a copy of the int2x4 where each component of the left-hand int2x4 has been bitwise right-shifted by the corresponding component of the right-hand side int2x4.
-inline int2x4 comp_shift_right( const int2x4& lhs, const int2x4& rhs );
+inline int2x4 cshift_right( const int2x4& lhs, const int2x4& rhs );
 
 /// \relates int2x4
 /// \brief Returns a bool2x4 where each component is true if the component of the left-hand type is less than the corresponding right-hand type component.
@@ -591,59 +591,59 @@ inline bool cmpne( const int3x2& lhs, const int3x2& rhs );
 
 /// \relates int3x2
 /// \brief Returns a copy of the int3x2 that has been component-wise added by the given scalar value.
-inline int3x2 comp_adds( const int3x2& lhs, const int32_t scalar );
+inline int3x2 cadds( const int3x2& lhs, const int32_t scalar );
 
 /// \relates int3x2
 /// \brief Returns a copy of the int3x2 that has been component-wise added by the corresponding component of the right-hand int3x2.
-inline int3x2 comp_addm( const int3x2& lhs, const int3x2& rhs );
+inline int3x2 caddm( const int3x2& lhs, const int3x2& rhs );
 
 /// \relates int3x2
 /// \brief Returns a copy of the int3x2 that has been component-wise subtracted by the given scalar value.
-inline int3x2 comp_subs( const int3x2& lhs, const int32_t scalar );
+inline int3x2 csubs( const int3x2& lhs, const int32_t scalar );
 
 /// \relates int3x2
 /// \brief Returns a copy of the int3x2 that has been component-wise subtracted by the corresponding component of the right-hand int3x2.
-inline int3x2 comp_subm( const int3x2& lhs, const int3x2& rhs );
+inline int3x2 csubm( const int3x2& lhs, const int3x2& rhs );
 
 /// \relates int3x2
 /// \brief Returns a copy of the int3x2 that has been component-wise multiplied by the given scalar value.
-inline int3x2 comp_muls( const int3x2& lhs, const int32_t scalar );
+inline int3x2 cmuls( const int3x2& lhs, const int32_t scalar );
 
 /// \relates int3x2
 /// \brief Returns a copy of the int3x2 that has been component-wise multiplied by the corresponding component of the right-hand int3x2.
-inline int3x2 comp_mulm( const int3x2& lhs, const int3x2& rhs );
+inline int3x2 cmulm( const int3x2& lhs, const int3x2& rhs );
 
 /// \relates int3x2
 /// \brief Returns a copy of the int3x2 that has been component-wise divided by the given scalar value.
-inline int3x2 comp_divs( const int3x2& lhs, const int32_t scalar );
+inline int3x2 cdivs( const int3x2& lhs, const int32_t scalar );
 
 /// \relates int3x2
 /// \brief Returns a copy of the int3x2 that has been component-wise divided by the corresponding component of the right-hand int3x2.
-inline int3x2 comp_divm( const int3x2& lhs, const int3x2& rhs );
+inline int3x2 cdivm( const int3x2& lhs, const int3x2& rhs );
 
 /// \relates int3x2
 /// \brief Returns a copy of the int3x2 where each component of the left-hand int3x2 has been bitwise AND'd against the corresponding component of the right-hand side int3x2.
-inline int3x2 comp_and( const int3x2& lhs, const int3x2& rhs );
+inline int3x2 cand( const int3x2& lhs, const int3x2& rhs );
 
 /// \relates int3x2
 /// \brief Returns a copy of the int3x2 where each component of the left-hand int3x2 has been bitwise OR'd against the corresponding component of the right-hand side int3x2.
-inline int3x2 comp_or( const int3x2& lhs, const int3x2& rhs );
+inline int3x2 cor( const int3x2& lhs, const int3x2& rhs );
 
 /// \relates int3x2
 /// \brief Returns a copy of the int3x2 where each component of the left-hand int3x2 has been bitwise XOR'd against the corresponding component of the right-hand side int3x2.
-inline int3x2 comp_xor( const int3x2& lhs, const int3x2& rhs );
+inline int3x2 cxor( const int3x2& lhs, const int3x2& rhs );
 
 /// \relates int3x2
 /// \brief Performs a unary bitwise operation on all components of the given int3x2.
-inline int3x2 comp_unary( const int3x2& lhs );
+inline int3x2 cunary( const int3x2& lhs );
 
 /// \relates int3x2
 /// \brief Returns a copy of the int3x2 where each component of the left-hand int3x2 has been bitwise left-shifted by the corresponding component of the right-hand side int3x2.
-inline int3x2 comp_shift_left( const int3x2& lhs, const int3x2& rhs );
+inline int3x2 cshift_left( const int3x2& lhs, const int3x2& rhs );
 
 /// \relates int3x2
 /// \brief Returns a copy of the int3x2 where each component of the left-hand int3x2 has been bitwise right-shifted by the corresponding component of the right-hand side int3x2.
-inline int3x2 comp_shift_right( const int3x2& lhs, const int3x2& rhs );
+inline int3x2 cshift_right( const int3x2& lhs, const int3x2& rhs );
 
 /// \relates int3x2
 /// \brief Returns a bool3x2 where each component is true if the component of the left-hand type is less than the corresponding right-hand type component.
@@ -685,59 +685,59 @@ inline bool cmpne( const int3x3& lhs, const int3x3& rhs );
 
 /// \relates int3x3
 /// \brief Returns a copy of the int3x3 that has been component-wise added by the given scalar value.
-inline int3x3 comp_adds( const int3x3& lhs, const int32_t scalar );
+inline int3x3 cadds( const int3x3& lhs, const int32_t scalar );
 
 /// \relates int3x3
 /// \brief Returns a copy of the int3x3 that has been component-wise added by the corresponding component of the right-hand int3x3.
-inline int3x3 comp_addm( const int3x3& lhs, const int3x3& rhs );
+inline int3x3 caddm( const int3x3& lhs, const int3x3& rhs );
 
 /// \relates int3x3
 /// \brief Returns a copy of the int3x3 that has been component-wise subtracted by the given scalar value.
-inline int3x3 comp_subs( const int3x3& lhs, const int32_t scalar );
+inline int3x3 csubs( const int3x3& lhs, const int32_t scalar );
 
 /// \relates int3x3
 /// \brief Returns a copy of the int3x3 that has been component-wise subtracted by the corresponding component of the right-hand int3x3.
-inline int3x3 comp_subm( const int3x3& lhs, const int3x3& rhs );
+inline int3x3 csubm( const int3x3& lhs, const int3x3& rhs );
 
 /// \relates int3x3
 /// \brief Returns a copy of the int3x3 that has been component-wise multiplied by the given scalar value.
-inline int3x3 comp_muls( const int3x3& lhs, const int32_t scalar );
+inline int3x3 cmuls( const int3x3& lhs, const int32_t scalar );
 
 /// \relates int3x3
 /// \brief Returns a copy of the int3x3 that has been component-wise multiplied by the corresponding component of the right-hand int3x3.
-inline int3x3 comp_mulm( const int3x3& lhs, const int3x3& rhs );
+inline int3x3 cmulm( const int3x3& lhs, const int3x3& rhs );
 
 /// \relates int3x3
 /// \brief Returns a copy of the int3x3 that has been component-wise divided by the given scalar value.
-inline int3x3 comp_divs( const int3x3& lhs, const int32_t scalar );
+inline int3x3 cdivs( const int3x3& lhs, const int32_t scalar );
 
 /// \relates int3x3
 /// \brief Returns a copy of the int3x3 that has been component-wise divided by the corresponding component of the right-hand int3x3.
-inline int3x3 comp_divm( const int3x3& lhs, const int3x3& rhs );
+inline int3x3 cdivm( const int3x3& lhs, const int3x3& rhs );
 
 /// \relates int3x3
 /// \brief Returns a copy of the int3x3 where each component of the left-hand int3x3 has been bitwise AND'd against the corresponding component of the right-hand side int3x3.
-inline int3x3 comp_and( const int3x3& lhs, const int3x3& rhs );
+inline int3x3 cand( const int3x3& lhs, const int3x3& rhs );
 
 /// \relates int3x3
 /// \brief Returns a copy of the int3x3 where each component of the left-hand int3x3 has been bitwise OR'd against the corresponding component of the right-hand side int3x3.
-inline int3x3 comp_or( const int3x3& lhs, const int3x3& rhs );
+inline int3x3 cor( const int3x3& lhs, const int3x3& rhs );
 
 /// \relates int3x3
 /// \brief Returns a copy of the int3x3 where each component of the left-hand int3x3 has been bitwise XOR'd against the corresponding component of the right-hand side int3x3.
-inline int3x3 comp_xor( const int3x3& lhs, const int3x3& rhs );
+inline int3x3 cxor( const int3x3& lhs, const int3x3& rhs );
 
 /// \relates int3x3
 /// \brief Performs a unary bitwise operation on all components of the given int3x3.
-inline int3x3 comp_unary( const int3x3& lhs );
+inline int3x3 cunary( const int3x3& lhs );
 
 /// \relates int3x3
 /// \brief Returns a copy of the int3x3 where each component of the left-hand int3x3 has been bitwise left-shifted by the corresponding component of the right-hand side int3x3.
-inline int3x3 comp_shift_left( const int3x3& lhs, const int3x3& rhs );
+inline int3x3 cshift_left( const int3x3& lhs, const int3x3& rhs );
 
 /// \relates int3x3
 /// \brief Returns a copy of the int3x3 where each component of the left-hand int3x3 has been bitwise right-shifted by the corresponding component of the right-hand side int3x3.
-inline int3x3 comp_shift_right( const int3x3& lhs, const int3x3& rhs );
+inline int3x3 cshift_right( const int3x3& lhs, const int3x3& rhs );
 
 /// \relates int3x3
 /// \brief Returns a bool3x3 where each component is true if the component of the left-hand type is less than the corresponding right-hand type component.
@@ -795,59 +795,59 @@ inline bool cmpne( const int3x4& lhs, const int3x4& rhs );
 
 /// \relates int3x4
 /// \brief Returns a copy of the int3x4 that has been component-wise added by the given scalar value.
-inline int3x4 comp_adds( const int3x4& lhs, const int32_t scalar );
+inline int3x4 cadds( const int3x4& lhs, const int32_t scalar );
 
 /// \relates int3x4
 /// \brief Returns a copy of the int3x4 that has been component-wise added by the corresponding component of the right-hand int3x4.
-inline int3x4 comp_addm( const int3x4& lhs, const int3x4& rhs );
+inline int3x4 caddm( const int3x4& lhs, const int3x4& rhs );
 
 /// \relates int3x4
 /// \brief Returns a copy of the int3x4 that has been component-wise subtracted by the given scalar value.
-inline int3x4 comp_subs( const int3x4& lhs, const int32_t scalar );
+inline int3x4 csubs( const int3x4& lhs, const int32_t scalar );
 
 /// \relates int3x4
 /// \brief Returns a copy of the int3x4 that has been component-wise subtracted by the corresponding component of the right-hand int3x4.
-inline int3x4 comp_subm( const int3x4& lhs, const int3x4& rhs );
+inline int3x4 csubm( const int3x4& lhs, const int3x4& rhs );
 
 /// \relates int3x4
 /// \brief Returns a copy of the int3x4 that has been component-wise multiplied by the given scalar value.
-inline int3x4 comp_muls( const int3x4& lhs, const int32_t scalar );
+inline int3x4 cmuls( const int3x4& lhs, const int32_t scalar );
 
 /// \relates int3x4
 /// \brief Returns a copy of the int3x4 that has been component-wise multiplied by the corresponding component of the right-hand int3x4.
-inline int3x4 comp_mulm( const int3x4& lhs, const int3x4& rhs );
+inline int3x4 cmulm( const int3x4& lhs, const int3x4& rhs );
 
 /// \relates int3x4
 /// \brief Returns a copy of the int3x4 that has been component-wise divided by the given scalar value.
-inline int3x4 comp_divs( const int3x4& lhs, const int32_t scalar );
+inline int3x4 cdivs( const int3x4& lhs, const int32_t scalar );
 
 /// \relates int3x4
 /// \brief Returns a copy of the int3x4 that has been component-wise divided by the corresponding component of the right-hand int3x4.
-inline int3x4 comp_divm( const int3x4& lhs, const int3x4& rhs );
+inline int3x4 cdivm( const int3x4& lhs, const int3x4& rhs );
 
 /// \relates int3x4
 /// \brief Returns a copy of the int3x4 where each component of the left-hand int3x4 has been bitwise AND'd against the corresponding component of the right-hand side int3x4.
-inline int3x4 comp_and( const int3x4& lhs, const int3x4& rhs );
+inline int3x4 cand( const int3x4& lhs, const int3x4& rhs );
 
 /// \relates int3x4
 /// \brief Returns a copy of the int3x4 where each component of the left-hand int3x4 has been bitwise OR'd against the corresponding component of the right-hand side int3x4.
-inline int3x4 comp_or( const int3x4& lhs, const int3x4& rhs );
+inline int3x4 cor( const int3x4& lhs, const int3x4& rhs );
 
 /// \relates int3x4
 /// \brief Returns a copy of the int3x4 where each component of the left-hand int3x4 has been bitwise XOR'd against the corresponding component of the right-hand side int3x4.
-inline int3x4 comp_xor( const int3x4& lhs, const int3x4& rhs );
+inline int3x4 cxor( const int3x4& lhs, const int3x4& rhs );
 
 /// \relates int3x4
 /// \brief Performs a unary bitwise operation on all components of the given int3x4.
-inline int3x4 comp_unary( const int3x4& lhs );
+inline int3x4 cunary( const int3x4& lhs );
 
 /// \relates int3x4
 /// \brief Returns a copy of the int3x4 where each component of the left-hand int3x4 has been bitwise left-shifted by the corresponding component of the right-hand side int3x4.
-inline int3x4 comp_shift_left( const int3x4& lhs, const int3x4& rhs );
+inline int3x4 cshift_left( const int3x4& lhs, const int3x4& rhs );
 
 /// \relates int3x4
 /// \brief Returns a copy of the int3x4 where each component of the left-hand int3x4 has been bitwise right-shifted by the corresponding component of the right-hand side int3x4.
-inline int3x4 comp_shift_right( const int3x4& lhs, const int3x4& rhs );
+inline int3x4 cshift_right( const int3x4& lhs, const int3x4& rhs );
 
 /// \relates int3x4
 /// \brief Returns a bool3x4 where each component is true if the component of the left-hand type is less than the corresponding right-hand type component.
@@ -897,59 +897,59 @@ inline bool cmpne( const int4x2& lhs, const int4x2& rhs );
 
 /// \relates int4x2
 /// \brief Returns a copy of the int4x2 that has been component-wise added by the given scalar value.
-inline int4x2 comp_adds( const int4x2& lhs, const int32_t scalar );
+inline int4x2 cadds( const int4x2& lhs, const int32_t scalar );
 
 /// \relates int4x2
 /// \brief Returns a copy of the int4x2 that has been component-wise added by the corresponding component of the right-hand int4x2.
-inline int4x2 comp_addm( const int4x2& lhs, const int4x2& rhs );
+inline int4x2 caddm( const int4x2& lhs, const int4x2& rhs );
 
 /// \relates int4x2
 /// \brief Returns a copy of the int4x2 that has been component-wise subtracted by the given scalar value.
-inline int4x2 comp_subs( const int4x2& lhs, const int32_t scalar );
+inline int4x2 csubs( const int4x2& lhs, const int32_t scalar );
 
 /// \relates int4x2
 /// \brief Returns a copy of the int4x2 that has been component-wise subtracted by the corresponding component of the right-hand int4x2.
-inline int4x2 comp_subm( const int4x2& lhs, const int4x2& rhs );
+inline int4x2 csubm( const int4x2& lhs, const int4x2& rhs );
 
 /// \relates int4x2
 /// \brief Returns a copy of the int4x2 that has been component-wise multiplied by the given scalar value.
-inline int4x2 comp_muls( const int4x2& lhs, const int32_t scalar );
+inline int4x2 cmuls( const int4x2& lhs, const int32_t scalar );
 
 /// \relates int4x2
 /// \brief Returns a copy of the int4x2 that has been component-wise multiplied by the corresponding component of the right-hand int4x2.
-inline int4x2 comp_mulm( const int4x2& lhs, const int4x2& rhs );
+inline int4x2 cmulm( const int4x2& lhs, const int4x2& rhs );
 
 /// \relates int4x2
 /// \brief Returns a copy of the int4x2 that has been component-wise divided by the given scalar value.
-inline int4x2 comp_divs( const int4x2& lhs, const int32_t scalar );
+inline int4x2 cdivs( const int4x2& lhs, const int32_t scalar );
 
 /// \relates int4x2
 /// \brief Returns a copy of the int4x2 that has been component-wise divided by the corresponding component of the right-hand int4x2.
-inline int4x2 comp_divm( const int4x2& lhs, const int4x2& rhs );
+inline int4x2 cdivm( const int4x2& lhs, const int4x2& rhs );
 
 /// \relates int4x2
 /// \brief Returns a copy of the int4x2 where each component of the left-hand int4x2 has been bitwise AND'd against the corresponding component of the right-hand side int4x2.
-inline int4x2 comp_and( const int4x2& lhs, const int4x2& rhs );
+inline int4x2 cand( const int4x2& lhs, const int4x2& rhs );
 
 /// \relates int4x2
 /// \brief Returns a copy of the int4x2 where each component of the left-hand int4x2 has been bitwise OR'd against the corresponding component of the right-hand side int4x2.
-inline int4x2 comp_or( const int4x2& lhs, const int4x2& rhs );
+inline int4x2 cor( const int4x2& lhs, const int4x2& rhs );
 
 /// \relates int4x2
 /// \brief Returns a copy of the int4x2 where each component of the left-hand int4x2 has been bitwise XOR'd against the corresponding component of the right-hand side int4x2.
-inline int4x2 comp_xor( const int4x2& lhs, const int4x2& rhs );
+inline int4x2 cxor( const int4x2& lhs, const int4x2& rhs );
 
 /// \relates int4x2
 /// \brief Performs a unary bitwise operation on all components of the given int4x2.
-inline int4x2 comp_unary( const int4x2& lhs );
+inline int4x2 cunary( const int4x2& lhs );
 
 /// \relates int4x2
 /// \brief Returns a copy of the int4x2 where each component of the left-hand int4x2 has been bitwise left-shifted by the corresponding component of the right-hand side int4x2.
-inline int4x2 comp_shift_left( const int4x2& lhs, const int4x2& rhs );
+inline int4x2 cshift_left( const int4x2& lhs, const int4x2& rhs );
 
 /// \relates int4x2
 /// \brief Returns a copy of the int4x2 where each component of the left-hand int4x2 has been bitwise right-shifted by the corresponding component of the right-hand side int4x2.
-inline int4x2 comp_shift_right( const int4x2& lhs, const int4x2& rhs );
+inline int4x2 cshift_right( const int4x2& lhs, const int4x2& rhs );
 
 /// \relates int4x2
 /// \brief Returns a bool4x2 where each component is true if the component of the left-hand type is less than the corresponding right-hand type component.
@@ -991,59 +991,59 @@ inline bool cmpne( const int4x3& lhs, const int4x3& rhs );
 
 /// \relates int4x3
 /// \brief Returns a copy of the int4x3 that has been component-wise added by the given scalar value.
-inline int4x3 comp_adds( const int4x3& lhs, const int32_t scalar );
+inline int4x3 cadds( const int4x3& lhs, const int32_t scalar );
 
 /// \relates int4x3
 /// \brief Returns a copy of the int4x3 that has been component-wise added by the corresponding component of the right-hand int4x3.
-inline int4x3 comp_addm( const int4x3& lhs, const int4x3& rhs );
+inline int4x3 caddm( const int4x3& lhs, const int4x3& rhs );
 
 /// \relates int4x3
 /// \brief Returns a copy of the int4x3 that has been component-wise subtracted by the given scalar value.
-inline int4x3 comp_subs( const int4x3& lhs, const int32_t scalar );
+inline int4x3 csubs( const int4x3& lhs, const int32_t scalar );
 
 /// \relates int4x3
 /// \brief Returns a copy of the int4x3 that has been component-wise subtracted by the corresponding component of the right-hand int4x3.
-inline int4x3 comp_subm( const int4x3& lhs, const int4x3& rhs );
+inline int4x3 csubm( const int4x3& lhs, const int4x3& rhs );
 
 /// \relates int4x3
 /// \brief Returns a copy of the int4x3 that has been component-wise multiplied by the given scalar value.
-inline int4x3 comp_muls( const int4x3& lhs, const int32_t scalar );
+inline int4x3 cmuls( const int4x3& lhs, const int32_t scalar );
 
 /// \relates int4x3
 /// \brief Returns a copy of the int4x3 that has been component-wise multiplied by the corresponding component of the right-hand int4x3.
-inline int4x3 comp_mulm( const int4x3& lhs, const int4x3& rhs );
+inline int4x3 cmulm( const int4x3& lhs, const int4x3& rhs );
 
 /// \relates int4x3
 /// \brief Returns a copy of the int4x3 that has been component-wise divided by the given scalar value.
-inline int4x3 comp_divs( const int4x3& lhs, const int32_t scalar );
+inline int4x3 cdivs( const int4x3& lhs, const int32_t scalar );
 
 /// \relates int4x3
 /// \brief Returns a copy of the int4x3 that has been component-wise divided by the corresponding component of the right-hand int4x3.
-inline int4x3 comp_divm( const int4x3& lhs, const int4x3& rhs );
+inline int4x3 cdivm( const int4x3& lhs, const int4x3& rhs );
 
 /// \relates int4x3
 /// \brief Returns a copy of the int4x3 where each component of the left-hand int4x3 has been bitwise AND'd against the corresponding component of the right-hand side int4x3.
-inline int4x3 comp_and( const int4x3& lhs, const int4x3& rhs );
+inline int4x3 cand( const int4x3& lhs, const int4x3& rhs );
 
 /// \relates int4x3
 /// \brief Returns a copy of the int4x3 where each component of the left-hand int4x3 has been bitwise OR'd against the corresponding component of the right-hand side int4x3.
-inline int4x3 comp_or( const int4x3& lhs, const int4x3& rhs );
+inline int4x3 cor( const int4x3& lhs, const int4x3& rhs );
 
 /// \relates int4x3
 /// \brief Returns a copy of the int4x3 where each component of the left-hand int4x3 has been bitwise XOR'd against the corresponding component of the right-hand side int4x3.
-inline int4x3 comp_xor( const int4x3& lhs, const int4x3& rhs );
+inline int4x3 cxor( const int4x3& lhs, const int4x3& rhs );
 
 /// \relates int4x3
 /// \brief Performs a unary bitwise operation on all components of the given int4x3.
-inline int4x3 comp_unary( const int4x3& lhs );
+inline int4x3 cunary( const int4x3& lhs );
 
 /// \relates int4x3
 /// \brief Returns a copy of the int4x3 where each component of the left-hand int4x3 has been bitwise left-shifted by the corresponding component of the right-hand side int4x3.
-inline int4x3 comp_shift_left( const int4x3& lhs, const int4x3& rhs );
+inline int4x3 cshift_left( const int4x3& lhs, const int4x3& rhs );
 
 /// \relates int4x3
 /// \brief Returns a copy of the int4x3 where each component of the left-hand int4x3 has been bitwise right-shifted by the corresponding component of the right-hand side int4x3.
-inline int4x3 comp_shift_right( const int4x3& lhs, const int4x3& rhs );
+inline int4x3 cshift_right( const int4x3& lhs, const int4x3& rhs );
 
 /// \relates int4x3
 /// \brief Returns a bool4x3 where each component is true if the component of the left-hand type is less than the corresponding right-hand type component.
@@ -1089,59 +1089,59 @@ inline bool cmpne( const int4x4& lhs, const int4x4& rhs );
 
 /// \relates int4x4
 /// \brief Returns a copy of the int4x4 that has been component-wise added by the given scalar value.
-inline int4x4 comp_adds( const int4x4& lhs, const int32_t scalar );
+inline int4x4 cadds( const int4x4& lhs, const int32_t scalar );
 
 /// \relates int4x4
 /// \brief Returns a copy of the int4x4 that has been component-wise added by the corresponding component of the right-hand int4x4.
-inline int4x4 comp_addm( const int4x4& lhs, const int4x4& rhs );
+inline int4x4 caddm( const int4x4& lhs, const int4x4& rhs );
 
 /// \relates int4x4
 /// \brief Returns a copy of the int4x4 that has been component-wise subtracted by the given scalar value.
-inline int4x4 comp_subs( const int4x4& lhs, const int32_t scalar );
+inline int4x4 csubs( const int4x4& lhs, const int32_t scalar );
 
 /// \relates int4x4
 /// \brief Returns a copy of the int4x4 that has been component-wise subtracted by the corresponding component of the right-hand int4x4.
-inline int4x4 comp_subm( const int4x4& lhs, const int4x4& rhs );
+inline int4x4 csubm( const int4x4& lhs, const int4x4& rhs );
 
 /// \relates int4x4
 /// \brief Returns a copy of the int4x4 that has been component-wise multiplied by the given scalar value.
-inline int4x4 comp_muls( const int4x4& lhs, const int32_t scalar );
+inline int4x4 cmuls( const int4x4& lhs, const int32_t scalar );
 
 /// \relates int4x4
 /// \brief Returns a copy of the int4x4 that has been component-wise multiplied by the corresponding component of the right-hand int4x4.
-inline int4x4 comp_mulm( const int4x4& lhs, const int4x4& rhs );
+inline int4x4 cmulm( const int4x4& lhs, const int4x4& rhs );
 
 /// \relates int4x4
 /// \brief Returns a copy of the int4x4 that has been component-wise divided by the given scalar value.
-inline int4x4 comp_divs( const int4x4& lhs, const int32_t scalar );
+inline int4x4 cdivs( const int4x4& lhs, const int32_t scalar );
 
 /// \relates int4x4
 /// \brief Returns a copy of the int4x4 that has been component-wise divided by the corresponding component of the right-hand int4x4.
-inline int4x4 comp_divm( const int4x4& lhs, const int4x4& rhs );
+inline int4x4 cdivm( const int4x4& lhs, const int4x4& rhs );
 
 /// \relates int4x4
 /// \brief Returns a copy of the int4x4 where each component of the left-hand int4x4 has been bitwise AND'd against the corresponding component of the right-hand side int4x4.
-inline int4x4 comp_and( const int4x4& lhs, const int4x4& rhs );
+inline int4x4 cand( const int4x4& lhs, const int4x4& rhs );
 
 /// \relates int4x4
 /// \brief Returns a copy of the int4x4 where each component of the left-hand int4x4 has been bitwise OR'd against the corresponding component of the right-hand side int4x4.
-inline int4x4 comp_or( const int4x4& lhs, const int4x4& rhs );
+inline int4x4 cor( const int4x4& lhs, const int4x4& rhs );
 
 /// \relates int4x4
 /// \brief Returns a copy of the int4x4 where each component of the left-hand int4x4 has been bitwise XOR'd against the corresponding component of the right-hand side int4x4.
-inline int4x4 comp_xor( const int4x4& lhs, const int4x4& rhs );
+inline int4x4 cxor( const int4x4& lhs, const int4x4& rhs );
 
 /// \relates int4x4
 /// \brief Performs a unary bitwise operation on all components of the given int4x4.
-inline int4x4 comp_unary( const int4x4& lhs );
+inline int4x4 cunary( const int4x4& lhs );
 
 /// \relates int4x4
 /// \brief Returns a copy of the int4x4 where each component of the left-hand int4x4 has been bitwise left-shifted by the corresponding component of the right-hand side int4x4.
-inline int4x4 comp_shift_left( const int4x4& lhs, const int4x4& rhs );
+inline int4x4 cshift_left( const int4x4& lhs, const int4x4& rhs );
 
 /// \relates int4x4
 /// \brief Returns a copy of the int4x4 where each component of the left-hand int4x4 has been bitwise right-shifted by the corresponding component of the right-hand side int4x4.
-inline int4x4 comp_shift_right( const int4x4& lhs, const int4x4& rhs );
+inline int4x4 cshift_right( const int4x4& lhs, const int4x4& rhs );
 
 /// \relates int4x4
 /// \brief Returns a bool4x4 where each component is true if the component of the left-hand type is less than the corresponding right-hand type component.
@@ -1199,59 +1199,59 @@ inline bool cmpne( const uint2x2& lhs, const uint2x2& rhs );
 
 /// \relates uint2x2
 /// \brief Returns a copy of the uint2x2 that has been component-wise added by the given scalar value.
-inline uint2x2 comp_adds( const uint2x2& lhs, const uint32_t scalar );
+inline uint2x2 cadds( const uint2x2& lhs, const uint32_t scalar );
 
 /// \relates uint2x2
 /// \brief Returns a copy of the uint2x2 that has been component-wise added by the corresponding component of the right-hand uint2x2.
-inline uint2x2 comp_addm( const uint2x2& lhs, const uint2x2& rhs );
+inline uint2x2 caddm( const uint2x2& lhs, const uint2x2& rhs );
 
 /// \relates uint2x2
 /// \brief Returns a copy of the uint2x2 that has been component-wise subtracted by the given scalar value.
-inline uint2x2 comp_subs( const uint2x2& lhs, const uint32_t scalar );
+inline uint2x2 csubs( const uint2x2& lhs, const uint32_t scalar );
 
 /// \relates uint2x2
 /// \brief Returns a copy of the uint2x2 that has been component-wise subtracted by the corresponding component of the right-hand uint2x2.
-inline uint2x2 comp_subm( const uint2x2& lhs, const uint2x2& rhs );
+inline uint2x2 csubm( const uint2x2& lhs, const uint2x2& rhs );
 
 /// \relates uint2x2
 /// \brief Returns a copy of the uint2x2 that has been component-wise multiplied by the given scalar value.
-inline uint2x2 comp_muls( const uint2x2& lhs, const uint32_t scalar );
+inline uint2x2 cmuls( const uint2x2& lhs, const uint32_t scalar );
 
 /// \relates uint2x2
 /// \brief Returns a copy of the uint2x2 that has been component-wise multiplied by the corresponding component of the right-hand uint2x2.
-inline uint2x2 comp_mulm( const uint2x2& lhs, const uint2x2& rhs );
+inline uint2x2 cmulm( const uint2x2& lhs, const uint2x2& rhs );
 
 /// \relates uint2x2
 /// \brief Returns a copy of the uint2x2 that has been component-wise divided by the given scalar value.
-inline uint2x2 comp_divs( const uint2x2& lhs, const uint32_t scalar );
+inline uint2x2 cdivs( const uint2x2& lhs, const uint32_t scalar );
 
 /// \relates uint2x2
 /// \brief Returns a copy of the uint2x2 that has been component-wise divided by the corresponding component of the right-hand uint2x2.
-inline uint2x2 comp_divm( const uint2x2& lhs, const uint2x2& rhs );
+inline uint2x2 cdivm( const uint2x2& lhs, const uint2x2& rhs );
 
 /// \relates uint2x2
 /// \brief Returns a copy of the uint2x2 where each component of the left-hand uint2x2 has been bitwise AND'd against the corresponding component of the right-hand side uint2x2.
-inline uint2x2 comp_and( const uint2x2& lhs, const uint2x2& rhs );
+inline uint2x2 cand( const uint2x2& lhs, const uint2x2& rhs );
 
 /// \relates uint2x2
 /// \brief Returns a copy of the uint2x2 where each component of the left-hand uint2x2 has been bitwise OR'd against the corresponding component of the right-hand side uint2x2.
-inline uint2x2 comp_or( const uint2x2& lhs, const uint2x2& rhs );
+inline uint2x2 cor( const uint2x2& lhs, const uint2x2& rhs );
 
 /// \relates uint2x2
 /// \brief Returns a copy of the uint2x2 where each component of the left-hand uint2x2 has been bitwise XOR'd against the corresponding component of the right-hand side uint2x2.
-inline uint2x2 comp_xor( const uint2x2& lhs, const uint2x2& rhs );
+inline uint2x2 cxor( const uint2x2& lhs, const uint2x2& rhs );
 
 /// \relates uint2x2
 /// \brief Performs a unary bitwise operation on all components of the given uint2x2.
-inline uint2x2 comp_unary( const uint2x2& lhs );
+inline uint2x2 cunary( const uint2x2& lhs );
 
 /// \relates uint2x2
 /// \brief Returns a copy of the uint2x2 where each component of the left-hand uint2x2 has been bitwise left-shifted by the corresponding component of the right-hand side uint2x2.
-inline uint2x2 comp_shift_left( const uint2x2& lhs, const uint2x2& rhs );
+inline uint2x2 cshift_left( const uint2x2& lhs, const uint2x2& rhs );
 
 /// \relates uint2x2
 /// \brief Returns a copy of the uint2x2 where each component of the left-hand uint2x2 has been bitwise right-shifted by the corresponding component of the right-hand side uint2x2.
-inline uint2x2 comp_shift_right( const uint2x2& lhs, const uint2x2& rhs );
+inline uint2x2 cshift_right( const uint2x2& lhs, const uint2x2& rhs );
 
 /// \relates uint2x2
 /// \brief Returns a bool2x2 where each component is true if the component of the left-hand type is less than the corresponding right-hand type component.
@@ -1297,59 +1297,59 @@ inline bool cmpne( const uint2x3& lhs, const uint2x3& rhs );
 
 /// \relates uint2x3
 /// \brief Returns a copy of the uint2x3 that has been component-wise added by the given scalar value.
-inline uint2x3 comp_adds( const uint2x3& lhs, const uint32_t scalar );
+inline uint2x3 cadds( const uint2x3& lhs, const uint32_t scalar );
 
 /// \relates uint2x3
 /// \brief Returns a copy of the uint2x3 that has been component-wise added by the corresponding component of the right-hand uint2x3.
-inline uint2x3 comp_addm( const uint2x3& lhs, const uint2x3& rhs );
+inline uint2x3 caddm( const uint2x3& lhs, const uint2x3& rhs );
 
 /// \relates uint2x3
 /// \brief Returns a copy of the uint2x3 that has been component-wise subtracted by the given scalar value.
-inline uint2x3 comp_subs( const uint2x3& lhs, const uint32_t scalar );
+inline uint2x3 csubs( const uint2x3& lhs, const uint32_t scalar );
 
 /// \relates uint2x3
 /// \brief Returns a copy of the uint2x3 that has been component-wise subtracted by the corresponding component of the right-hand uint2x3.
-inline uint2x3 comp_subm( const uint2x3& lhs, const uint2x3& rhs );
+inline uint2x3 csubm( const uint2x3& lhs, const uint2x3& rhs );
 
 /// \relates uint2x3
 /// \brief Returns a copy of the uint2x3 that has been component-wise multiplied by the given scalar value.
-inline uint2x3 comp_muls( const uint2x3& lhs, const uint32_t scalar );
+inline uint2x3 cmuls( const uint2x3& lhs, const uint32_t scalar );
 
 /// \relates uint2x3
 /// \brief Returns a copy of the uint2x3 that has been component-wise multiplied by the corresponding component of the right-hand uint2x3.
-inline uint2x3 comp_mulm( const uint2x3& lhs, const uint2x3& rhs );
+inline uint2x3 cmulm( const uint2x3& lhs, const uint2x3& rhs );
 
 /// \relates uint2x3
 /// \brief Returns a copy of the uint2x3 that has been component-wise divided by the given scalar value.
-inline uint2x3 comp_divs( const uint2x3& lhs, const uint32_t scalar );
+inline uint2x3 cdivs( const uint2x3& lhs, const uint32_t scalar );
 
 /// \relates uint2x3
 /// \brief Returns a copy of the uint2x3 that has been component-wise divided by the corresponding component of the right-hand uint2x3.
-inline uint2x3 comp_divm( const uint2x3& lhs, const uint2x3& rhs );
+inline uint2x3 cdivm( const uint2x3& lhs, const uint2x3& rhs );
 
 /// \relates uint2x3
 /// \brief Returns a copy of the uint2x3 where each component of the left-hand uint2x3 has been bitwise AND'd against the corresponding component of the right-hand side uint2x3.
-inline uint2x3 comp_and( const uint2x3& lhs, const uint2x3& rhs );
+inline uint2x3 cand( const uint2x3& lhs, const uint2x3& rhs );
 
 /// \relates uint2x3
 /// \brief Returns a copy of the uint2x3 where each component of the left-hand uint2x3 has been bitwise OR'd against the corresponding component of the right-hand side uint2x3.
-inline uint2x3 comp_or( const uint2x3& lhs, const uint2x3& rhs );
+inline uint2x3 cor( const uint2x3& lhs, const uint2x3& rhs );
 
 /// \relates uint2x3
 /// \brief Returns a copy of the uint2x3 where each component of the left-hand uint2x3 has been bitwise XOR'd against the corresponding component of the right-hand side uint2x3.
-inline uint2x3 comp_xor( const uint2x3& lhs, const uint2x3& rhs );
+inline uint2x3 cxor( const uint2x3& lhs, const uint2x3& rhs );
 
 /// \relates uint2x3
 /// \brief Performs a unary bitwise operation on all components of the given uint2x3.
-inline uint2x3 comp_unary( const uint2x3& lhs );
+inline uint2x3 cunary( const uint2x3& lhs );
 
 /// \relates uint2x3
 /// \brief Returns a copy of the uint2x3 where each component of the left-hand uint2x3 has been bitwise left-shifted by the corresponding component of the right-hand side uint2x3.
-inline uint2x3 comp_shift_left( const uint2x3& lhs, const uint2x3& rhs );
+inline uint2x3 cshift_left( const uint2x3& lhs, const uint2x3& rhs );
 
 /// \relates uint2x3
 /// \brief Returns a copy of the uint2x3 where each component of the left-hand uint2x3 has been bitwise right-shifted by the corresponding component of the right-hand side uint2x3.
-inline uint2x3 comp_shift_right( const uint2x3& lhs, const uint2x3& rhs );
+inline uint2x3 cshift_right( const uint2x3& lhs, const uint2x3& rhs );
 
 /// \relates uint2x3
 /// \brief Returns a bool2x3 where each component is true if the component of the left-hand type is less than the corresponding right-hand type component.
@@ -1395,59 +1395,59 @@ inline bool cmpne( const uint2x4& lhs, const uint2x4& rhs );
 
 /// \relates uint2x4
 /// \brief Returns a copy of the uint2x4 that has been component-wise added by the given scalar value.
-inline uint2x4 comp_adds( const uint2x4& lhs, const uint32_t scalar );
+inline uint2x4 cadds( const uint2x4& lhs, const uint32_t scalar );
 
 /// \relates uint2x4
 /// \brief Returns a copy of the uint2x4 that has been component-wise added by the corresponding component of the right-hand uint2x4.
-inline uint2x4 comp_addm( const uint2x4& lhs, const uint2x4& rhs );
+inline uint2x4 caddm( const uint2x4& lhs, const uint2x4& rhs );
 
 /// \relates uint2x4
 /// \brief Returns a copy of the uint2x4 that has been component-wise subtracted by the given scalar value.
-inline uint2x4 comp_subs( const uint2x4& lhs, const uint32_t scalar );
+inline uint2x4 csubs( const uint2x4& lhs, const uint32_t scalar );
 
 /// \relates uint2x4
 /// \brief Returns a copy of the uint2x4 that has been component-wise subtracted by the corresponding component of the right-hand uint2x4.
-inline uint2x4 comp_subm( const uint2x4& lhs, const uint2x4& rhs );
+inline uint2x4 csubm( const uint2x4& lhs, const uint2x4& rhs );
 
 /// \relates uint2x4
 /// \brief Returns a copy of the uint2x4 that has been component-wise multiplied by the given scalar value.
-inline uint2x4 comp_muls( const uint2x4& lhs, const uint32_t scalar );
+inline uint2x4 cmuls( const uint2x4& lhs, const uint32_t scalar );
 
 /// \relates uint2x4
 /// \brief Returns a copy of the uint2x4 that has been component-wise multiplied by the corresponding component of the right-hand uint2x4.
-inline uint2x4 comp_mulm( const uint2x4& lhs, const uint2x4& rhs );
+inline uint2x4 cmulm( const uint2x4& lhs, const uint2x4& rhs );
 
 /// \relates uint2x4
 /// \brief Returns a copy of the uint2x4 that has been component-wise divided by the given scalar value.
-inline uint2x4 comp_divs( const uint2x4& lhs, const uint32_t scalar );
+inline uint2x4 cdivs( const uint2x4& lhs, const uint32_t scalar );
 
 /// \relates uint2x4
 /// \brief Returns a copy of the uint2x4 that has been component-wise divided by the corresponding component of the right-hand uint2x4.
-inline uint2x4 comp_divm( const uint2x4& lhs, const uint2x4& rhs );
+inline uint2x4 cdivm( const uint2x4& lhs, const uint2x4& rhs );
 
 /// \relates uint2x4
 /// \brief Returns a copy of the uint2x4 where each component of the left-hand uint2x4 has been bitwise AND'd against the corresponding component of the right-hand side uint2x4.
-inline uint2x4 comp_and( const uint2x4& lhs, const uint2x4& rhs );
+inline uint2x4 cand( const uint2x4& lhs, const uint2x4& rhs );
 
 /// \relates uint2x4
 /// \brief Returns a copy of the uint2x4 where each component of the left-hand uint2x4 has been bitwise OR'd against the corresponding component of the right-hand side uint2x4.
-inline uint2x4 comp_or( const uint2x4& lhs, const uint2x4& rhs );
+inline uint2x4 cor( const uint2x4& lhs, const uint2x4& rhs );
 
 /// \relates uint2x4
 /// \brief Returns a copy of the uint2x4 where each component of the left-hand uint2x4 has been bitwise XOR'd against the corresponding component of the right-hand side uint2x4.
-inline uint2x4 comp_xor( const uint2x4& lhs, const uint2x4& rhs );
+inline uint2x4 cxor( const uint2x4& lhs, const uint2x4& rhs );
 
 /// \relates uint2x4
 /// \brief Performs a unary bitwise operation on all components of the given uint2x4.
-inline uint2x4 comp_unary( const uint2x4& lhs );
+inline uint2x4 cunary( const uint2x4& lhs );
 
 /// \relates uint2x4
 /// \brief Returns a copy of the uint2x4 where each component of the left-hand uint2x4 has been bitwise left-shifted by the corresponding component of the right-hand side uint2x4.
-inline uint2x4 comp_shift_left( const uint2x4& lhs, const uint2x4& rhs );
+inline uint2x4 cshift_left( const uint2x4& lhs, const uint2x4& rhs );
 
 /// \relates uint2x4
 /// \brief Returns a copy of the uint2x4 where each component of the left-hand uint2x4 has been bitwise right-shifted by the corresponding component of the right-hand side uint2x4.
-inline uint2x4 comp_shift_right( const uint2x4& lhs, const uint2x4& rhs );
+inline uint2x4 cshift_right( const uint2x4& lhs, const uint2x4& rhs );
 
 /// \relates uint2x4
 /// \brief Returns a bool2x4 where each component is true if the component of the left-hand type is less than the corresponding right-hand type component.
@@ -1493,59 +1493,59 @@ inline bool cmpne( const uint3x2& lhs, const uint3x2& rhs );
 
 /// \relates uint3x2
 /// \brief Returns a copy of the uint3x2 that has been component-wise added by the given scalar value.
-inline uint3x2 comp_adds( const uint3x2& lhs, const uint32_t scalar );
+inline uint3x2 cadds( const uint3x2& lhs, const uint32_t scalar );
 
 /// \relates uint3x2
 /// \brief Returns a copy of the uint3x2 that has been component-wise added by the corresponding component of the right-hand uint3x2.
-inline uint3x2 comp_addm( const uint3x2& lhs, const uint3x2& rhs );
+inline uint3x2 caddm( const uint3x2& lhs, const uint3x2& rhs );
 
 /// \relates uint3x2
 /// \brief Returns a copy of the uint3x2 that has been component-wise subtracted by the given scalar value.
-inline uint3x2 comp_subs( const uint3x2& lhs, const uint32_t scalar );
+inline uint3x2 csubs( const uint3x2& lhs, const uint32_t scalar );
 
 /// \relates uint3x2
 /// \brief Returns a copy of the uint3x2 that has been component-wise subtracted by the corresponding component of the right-hand uint3x2.
-inline uint3x2 comp_subm( const uint3x2& lhs, const uint3x2& rhs );
+inline uint3x2 csubm( const uint3x2& lhs, const uint3x2& rhs );
 
 /// \relates uint3x2
 /// \brief Returns a copy of the uint3x2 that has been component-wise multiplied by the given scalar value.
-inline uint3x2 comp_muls( const uint3x2& lhs, const uint32_t scalar );
+inline uint3x2 cmuls( const uint3x2& lhs, const uint32_t scalar );
 
 /// \relates uint3x2
 /// \brief Returns a copy of the uint3x2 that has been component-wise multiplied by the corresponding component of the right-hand uint3x2.
-inline uint3x2 comp_mulm( const uint3x2& lhs, const uint3x2& rhs );
+inline uint3x2 cmulm( const uint3x2& lhs, const uint3x2& rhs );
 
 /// \relates uint3x2
 /// \brief Returns a copy of the uint3x2 that has been component-wise divided by the given scalar value.
-inline uint3x2 comp_divs( const uint3x2& lhs, const uint32_t scalar );
+inline uint3x2 cdivs( const uint3x2& lhs, const uint32_t scalar );
 
 /// \relates uint3x2
 /// \brief Returns a copy of the uint3x2 that has been component-wise divided by the corresponding component of the right-hand uint3x2.
-inline uint3x2 comp_divm( const uint3x2& lhs, const uint3x2& rhs );
+inline uint3x2 cdivm( const uint3x2& lhs, const uint3x2& rhs );
 
 /// \relates uint3x2
 /// \brief Returns a copy of the uint3x2 where each component of the left-hand uint3x2 has been bitwise AND'd against the corresponding component of the right-hand side uint3x2.
-inline uint3x2 comp_and( const uint3x2& lhs, const uint3x2& rhs );
+inline uint3x2 cand( const uint3x2& lhs, const uint3x2& rhs );
 
 /// \relates uint3x2
 /// \brief Returns a copy of the uint3x2 where each component of the left-hand uint3x2 has been bitwise OR'd against the corresponding component of the right-hand side uint3x2.
-inline uint3x2 comp_or( const uint3x2& lhs, const uint3x2& rhs );
+inline uint3x2 cor( const uint3x2& lhs, const uint3x2& rhs );
 
 /// \relates uint3x2
 /// \brief Returns a copy of the uint3x2 where each component of the left-hand uint3x2 has been bitwise XOR'd against the corresponding component of the right-hand side uint3x2.
-inline uint3x2 comp_xor( const uint3x2& lhs, const uint3x2& rhs );
+inline uint3x2 cxor( const uint3x2& lhs, const uint3x2& rhs );
 
 /// \relates uint3x2
 /// \brief Performs a unary bitwise operation on all components of the given uint3x2.
-inline uint3x2 comp_unary( const uint3x2& lhs );
+inline uint3x2 cunary( const uint3x2& lhs );
 
 /// \relates uint3x2
 /// \brief Returns a copy of the uint3x2 where each component of the left-hand uint3x2 has been bitwise left-shifted by the corresponding component of the right-hand side uint3x2.
-inline uint3x2 comp_shift_left( const uint3x2& lhs, const uint3x2& rhs );
+inline uint3x2 cshift_left( const uint3x2& lhs, const uint3x2& rhs );
 
 /// \relates uint3x2
 /// \brief Returns a copy of the uint3x2 where each component of the left-hand uint3x2 has been bitwise right-shifted by the corresponding component of the right-hand side uint3x2.
-inline uint3x2 comp_shift_right( const uint3x2& lhs, const uint3x2& rhs );
+inline uint3x2 cshift_right( const uint3x2& lhs, const uint3x2& rhs );
 
 /// \relates uint3x2
 /// \brief Returns a bool3x2 where each component is true if the component of the left-hand type is less than the corresponding right-hand type component.
@@ -1587,59 +1587,59 @@ inline bool cmpne( const uint3x3& lhs, const uint3x3& rhs );
 
 /// \relates uint3x3
 /// \brief Returns a copy of the uint3x3 that has been component-wise added by the given scalar value.
-inline uint3x3 comp_adds( const uint3x3& lhs, const uint32_t scalar );
+inline uint3x3 cadds( const uint3x3& lhs, const uint32_t scalar );
 
 /// \relates uint3x3
 /// \brief Returns a copy of the uint3x3 that has been component-wise added by the corresponding component of the right-hand uint3x3.
-inline uint3x3 comp_addm( const uint3x3& lhs, const uint3x3& rhs );
+inline uint3x3 caddm( const uint3x3& lhs, const uint3x3& rhs );
 
 /// \relates uint3x3
 /// \brief Returns a copy of the uint3x3 that has been component-wise subtracted by the given scalar value.
-inline uint3x3 comp_subs( const uint3x3& lhs, const uint32_t scalar );
+inline uint3x3 csubs( const uint3x3& lhs, const uint32_t scalar );
 
 /// \relates uint3x3
 /// \brief Returns a copy of the uint3x3 that has been component-wise subtracted by the corresponding component of the right-hand uint3x3.
-inline uint3x3 comp_subm( const uint3x3& lhs, const uint3x3& rhs );
+inline uint3x3 csubm( const uint3x3& lhs, const uint3x3& rhs );
 
 /// \relates uint3x3
 /// \brief Returns a copy of the uint3x3 that has been component-wise multiplied by the given scalar value.
-inline uint3x3 comp_muls( const uint3x3& lhs, const uint32_t scalar );
+inline uint3x3 cmuls( const uint3x3& lhs, const uint32_t scalar );
 
 /// \relates uint3x3
 /// \brief Returns a copy of the uint3x3 that has been component-wise multiplied by the corresponding component of the right-hand uint3x3.
-inline uint3x3 comp_mulm( const uint3x3& lhs, const uint3x3& rhs );
+inline uint3x3 cmulm( const uint3x3& lhs, const uint3x3& rhs );
 
 /// \relates uint3x3
 /// \brief Returns a copy of the uint3x3 that has been component-wise divided by the given scalar value.
-inline uint3x3 comp_divs( const uint3x3& lhs, const uint32_t scalar );
+inline uint3x3 cdivs( const uint3x3& lhs, const uint32_t scalar );
 
 /// \relates uint3x3
 /// \brief Returns a copy of the uint3x3 that has been component-wise divided by the corresponding component of the right-hand uint3x3.
-inline uint3x3 comp_divm( const uint3x3& lhs, const uint3x3& rhs );
+inline uint3x3 cdivm( const uint3x3& lhs, const uint3x3& rhs );
 
 /// \relates uint3x3
 /// \brief Returns a copy of the uint3x3 where each component of the left-hand uint3x3 has been bitwise AND'd against the corresponding component of the right-hand side uint3x3.
-inline uint3x3 comp_and( const uint3x3& lhs, const uint3x3& rhs );
+inline uint3x3 cand( const uint3x3& lhs, const uint3x3& rhs );
 
 /// \relates uint3x3
 /// \brief Returns a copy of the uint3x3 where each component of the left-hand uint3x3 has been bitwise OR'd against the corresponding component of the right-hand side uint3x3.
-inline uint3x3 comp_or( const uint3x3& lhs, const uint3x3& rhs );
+inline uint3x3 cor( const uint3x3& lhs, const uint3x3& rhs );
 
 /// \relates uint3x3
 /// \brief Returns a copy of the uint3x3 where each component of the left-hand uint3x3 has been bitwise XOR'd against the corresponding component of the right-hand side uint3x3.
-inline uint3x3 comp_xor( const uint3x3& lhs, const uint3x3& rhs );
+inline uint3x3 cxor( const uint3x3& lhs, const uint3x3& rhs );
 
 /// \relates uint3x3
 /// \brief Performs a unary bitwise operation on all components of the given uint3x3.
-inline uint3x3 comp_unary( const uint3x3& lhs );
+inline uint3x3 cunary( const uint3x3& lhs );
 
 /// \relates uint3x3
 /// \brief Returns a copy of the uint3x3 where each component of the left-hand uint3x3 has been bitwise left-shifted by the corresponding component of the right-hand side uint3x3.
-inline uint3x3 comp_shift_left( const uint3x3& lhs, const uint3x3& rhs );
+inline uint3x3 cshift_left( const uint3x3& lhs, const uint3x3& rhs );
 
 /// \relates uint3x3
 /// \brief Returns a copy of the uint3x3 where each component of the left-hand uint3x3 has been bitwise right-shifted by the corresponding component of the right-hand side uint3x3.
-inline uint3x3 comp_shift_right( const uint3x3& lhs, const uint3x3& rhs );
+inline uint3x3 cshift_right( const uint3x3& lhs, const uint3x3& rhs );
 
 /// \relates uint3x3
 /// \brief Returns a bool3x3 where each component is true if the component of the left-hand type is less than the corresponding right-hand type component.
@@ -1693,59 +1693,59 @@ inline bool cmpne( const uint3x4& lhs, const uint3x4& rhs );
 
 /// \relates uint3x4
 /// \brief Returns a copy of the uint3x4 that has been component-wise added by the given scalar value.
-inline uint3x4 comp_adds( const uint3x4& lhs, const uint32_t scalar );
+inline uint3x4 cadds( const uint3x4& lhs, const uint32_t scalar );
 
 /// \relates uint3x4
 /// \brief Returns a copy of the uint3x4 that has been component-wise added by the corresponding component of the right-hand uint3x4.
-inline uint3x4 comp_addm( const uint3x4& lhs, const uint3x4& rhs );
+inline uint3x4 caddm( const uint3x4& lhs, const uint3x4& rhs );
 
 /// \relates uint3x4
 /// \brief Returns a copy of the uint3x4 that has been component-wise subtracted by the given scalar value.
-inline uint3x4 comp_subs( const uint3x4& lhs, const uint32_t scalar );
+inline uint3x4 csubs( const uint3x4& lhs, const uint32_t scalar );
 
 /// \relates uint3x4
 /// \brief Returns a copy of the uint3x4 that has been component-wise subtracted by the corresponding component of the right-hand uint3x4.
-inline uint3x4 comp_subm( const uint3x4& lhs, const uint3x4& rhs );
+inline uint3x4 csubm( const uint3x4& lhs, const uint3x4& rhs );
 
 /// \relates uint3x4
 /// \brief Returns a copy of the uint3x4 that has been component-wise multiplied by the given scalar value.
-inline uint3x4 comp_muls( const uint3x4& lhs, const uint32_t scalar );
+inline uint3x4 cmuls( const uint3x4& lhs, const uint32_t scalar );
 
 /// \relates uint3x4
 /// \brief Returns a copy of the uint3x4 that has been component-wise multiplied by the corresponding component of the right-hand uint3x4.
-inline uint3x4 comp_mulm( const uint3x4& lhs, const uint3x4& rhs );
+inline uint3x4 cmulm( const uint3x4& lhs, const uint3x4& rhs );
 
 /// \relates uint3x4
 /// \brief Returns a copy of the uint3x4 that has been component-wise divided by the given scalar value.
-inline uint3x4 comp_divs( const uint3x4& lhs, const uint32_t scalar );
+inline uint3x4 cdivs( const uint3x4& lhs, const uint32_t scalar );
 
 /// \relates uint3x4
 /// \brief Returns a copy of the uint3x4 that has been component-wise divided by the corresponding component of the right-hand uint3x4.
-inline uint3x4 comp_divm( const uint3x4& lhs, const uint3x4& rhs );
+inline uint3x4 cdivm( const uint3x4& lhs, const uint3x4& rhs );
 
 /// \relates uint3x4
 /// \brief Returns a copy of the uint3x4 where each component of the left-hand uint3x4 has been bitwise AND'd against the corresponding component of the right-hand side uint3x4.
-inline uint3x4 comp_and( const uint3x4& lhs, const uint3x4& rhs );
+inline uint3x4 cand( const uint3x4& lhs, const uint3x4& rhs );
 
 /// \relates uint3x4
 /// \brief Returns a copy of the uint3x4 where each component of the left-hand uint3x4 has been bitwise OR'd against the corresponding component of the right-hand side uint3x4.
-inline uint3x4 comp_or( const uint3x4& lhs, const uint3x4& rhs );
+inline uint3x4 cor( const uint3x4& lhs, const uint3x4& rhs );
 
 /// \relates uint3x4
 /// \brief Returns a copy of the uint3x4 where each component of the left-hand uint3x4 has been bitwise XOR'd against the corresponding component of the right-hand side uint3x4.
-inline uint3x4 comp_xor( const uint3x4& lhs, const uint3x4& rhs );
+inline uint3x4 cxor( const uint3x4& lhs, const uint3x4& rhs );
 
 /// \relates uint3x4
 /// \brief Performs a unary bitwise operation on all components of the given uint3x4.
-inline uint3x4 comp_unary( const uint3x4& lhs );
+inline uint3x4 cunary( const uint3x4& lhs );
 
 /// \relates uint3x4
 /// \brief Returns a copy of the uint3x4 where each component of the left-hand uint3x4 has been bitwise left-shifted by the corresponding component of the right-hand side uint3x4.
-inline uint3x4 comp_shift_left( const uint3x4& lhs, const uint3x4& rhs );
+inline uint3x4 cshift_left( const uint3x4& lhs, const uint3x4& rhs );
 
 /// \relates uint3x4
 /// \brief Returns a copy of the uint3x4 where each component of the left-hand uint3x4 has been bitwise right-shifted by the corresponding component of the right-hand side uint3x4.
-inline uint3x4 comp_shift_right( const uint3x4& lhs, const uint3x4& rhs );
+inline uint3x4 cshift_right( const uint3x4& lhs, const uint3x4& rhs );
 
 /// \relates uint3x4
 /// \brief Returns a bool3x4 where each component is true if the component of the left-hand type is less than the corresponding right-hand type component.
@@ -1795,59 +1795,59 @@ inline bool cmpne( const uint4x2& lhs, const uint4x2& rhs );
 
 /// \relates uint4x2
 /// \brief Returns a copy of the uint4x2 that has been component-wise added by the given scalar value.
-inline uint4x2 comp_adds( const uint4x2& lhs, const uint32_t scalar );
+inline uint4x2 cadds( const uint4x2& lhs, const uint32_t scalar );
 
 /// \relates uint4x2
 /// \brief Returns a copy of the uint4x2 that has been component-wise added by the corresponding component of the right-hand uint4x2.
-inline uint4x2 comp_addm( const uint4x2& lhs, const uint4x2& rhs );
+inline uint4x2 caddm( const uint4x2& lhs, const uint4x2& rhs );
 
 /// \relates uint4x2
 /// \brief Returns a copy of the uint4x2 that has been component-wise subtracted by the given scalar value.
-inline uint4x2 comp_subs( const uint4x2& lhs, const uint32_t scalar );
+inline uint4x2 csubs( const uint4x2& lhs, const uint32_t scalar );
 
 /// \relates uint4x2
 /// \brief Returns a copy of the uint4x2 that has been component-wise subtracted by the corresponding component of the right-hand uint4x2.
-inline uint4x2 comp_subm( const uint4x2& lhs, const uint4x2& rhs );
+inline uint4x2 csubm( const uint4x2& lhs, const uint4x2& rhs );
 
 /// \relates uint4x2
 /// \brief Returns a copy of the uint4x2 that has been component-wise multiplied by the given scalar value.
-inline uint4x2 comp_muls( const uint4x2& lhs, const uint32_t scalar );
+inline uint4x2 cmuls( const uint4x2& lhs, const uint32_t scalar );
 
 /// \relates uint4x2
 /// \brief Returns a copy of the uint4x2 that has been component-wise multiplied by the corresponding component of the right-hand uint4x2.
-inline uint4x2 comp_mulm( const uint4x2& lhs, const uint4x2& rhs );
+inline uint4x2 cmulm( const uint4x2& lhs, const uint4x2& rhs );
 
 /// \relates uint4x2
 /// \brief Returns a copy of the uint4x2 that has been component-wise divided by the given scalar value.
-inline uint4x2 comp_divs( const uint4x2& lhs, const uint32_t scalar );
+inline uint4x2 cdivs( const uint4x2& lhs, const uint32_t scalar );
 
 /// \relates uint4x2
 /// \brief Returns a copy of the uint4x2 that has been component-wise divided by the corresponding component of the right-hand uint4x2.
-inline uint4x2 comp_divm( const uint4x2& lhs, const uint4x2& rhs );
+inline uint4x2 cdivm( const uint4x2& lhs, const uint4x2& rhs );
 
 /// \relates uint4x2
 /// \brief Returns a copy of the uint4x2 where each component of the left-hand uint4x2 has been bitwise AND'd against the corresponding component of the right-hand side uint4x2.
-inline uint4x2 comp_and( const uint4x2& lhs, const uint4x2& rhs );
+inline uint4x2 cand( const uint4x2& lhs, const uint4x2& rhs );
 
 /// \relates uint4x2
 /// \brief Returns a copy of the uint4x2 where each component of the left-hand uint4x2 has been bitwise OR'd against the corresponding component of the right-hand side uint4x2.
-inline uint4x2 comp_or( const uint4x2& lhs, const uint4x2& rhs );
+inline uint4x2 cor( const uint4x2& lhs, const uint4x2& rhs );
 
 /// \relates uint4x2
 /// \brief Returns a copy of the uint4x2 where each component of the left-hand uint4x2 has been bitwise XOR'd against the corresponding component of the right-hand side uint4x2.
-inline uint4x2 comp_xor( const uint4x2& lhs, const uint4x2& rhs );
+inline uint4x2 cxor( const uint4x2& lhs, const uint4x2& rhs );
 
 /// \relates uint4x2
 /// \brief Performs a unary bitwise operation on all components of the given uint4x2.
-inline uint4x2 comp_unary( const uint4x2& lhs );
+inline uint4x2 cunary( const uint4x2& lhs );
 
 /// \relates uint4x2
 /// \brief Returns a copy of the uint4x2 where each component of the left-hand uint4x2 has been bitwise left-shifted by the corresponding component of the right-hand side uint4x2.
-inline uint4x2 comp_shift_left( const uint4x2& lhs, const uint4x2& rhs );
+inline uint4x2 cshift_left( const uint4x2& lhs, const uint4x2& rhs );
 
 /// \relates uint4x2
 /// \brief Returns a copy of the uint4x2 where each component of the left-hand uint4x2 has been bitwise right-shifted by the corresponding component of the right-hand side uint4x2.
-inline uint4x2 comp_shift_right( const uint4x2& lhs, const uint4x2& rhs );
+inline uint4x2 cshift_right( const uint4x2& lhs, const uint4x2& rhs );
 
 /// \relates uint4x2
 /// \brief Returns a bool4x2 where each component is true if the component of the left-hand type is less than the corresponding right-hand type component.
@@ -1889,59 +1889,59 @@ inline bool cmpne( const uint4x3& lhs, const uint4x3& rhs );
 
 /// \relates uint4x3
 /// \brief Returns a copy of the uint4x3 that has been component-wise added by the given scalar value.
-inline uint4x3 comp_adds( const uint4x3& lhs, const uint32_t scalar );
+inline uint4x3 cadds( const uint4x3& lhs, const uint32_t scalar );
 
 /// \relates uint4x3
 /// \brief Returns a copy of the uint4x3 that has been component-wise added by the corresponding component of the right-hand uint4x3.
-inline uint4x3 comp_addm( const uint4x3& lhs, const uint4x3& rhs );
+inline uint4x3 caddm( const uint4x3& lhs, const uint4x3& rhs );
 
 /// \relates uint4x3
 /// \brief Returns a copy of the uint4x3 that has been component-wise subtracted by the given scalar value.
-inline uint4x3 comp_subs( const uint4x3& lhs, const uint32_t scalar );
+inline uint4x3 csubs( const uint4x3& lhs, const uint32_t scalar );
 
 /// \relates uint4x3
 /// \brief Returns a copy of the uint4x3 that has been component-wise subtracted by the corresponding component of the right-hand uint4x3.
-inline uint4x3 comp_subm( const uint4x3& lhs, const uint4x3& rhs );
+inline uint4x3 csubm( const uint4x3& lhs, const uint4x3& rhs );
 
 /// \relates uint4x3
 /// \brief Returns a copy of the uint4x3 that has been component-wise multiplied by the given scalar value.
-inline uint4x3 comp_muls( const uint4x3& lhs, const uint32_t scalar );
+inline uint4x3 cmuls( const uint4x3& lhs, const uint32_t scalar );
 
 /// \relates uint4x3
 /// \brief Returns a copy of the uint4x3 that has been component-wise multiplied by the corresponding component of the right-hand uint4x3.
-inline uint4x3 comp_mulm( const uint4x3& lhs, const uint4x3& rhs );
+inline uint4x3 cmulm( const uint4x3& lhs, const uint4x3& rhs );
 
 /// \relates uint4x3
 /// \brief Returns a copy of the uint4x3 that has been component-wise divided by the given scalar value.
-inline uint4x3 comp_divs( const uint4x3& lhs, const uint32_t scalar );
+inline uint4x3 cdivs( const uint4x3& lhs, const uint32_t scalar );
 
 /// \relates uint4x3
 /// \brief Returns a copy of the uint4x3 that has been component-wise divided by the corresponding component of the right-hand uint4x3.
-inline uint4x3 comp_divm( const uint4x3& lhs, const uint4x3& rhs );
+inline uint4x3 cdivm( const uint4x3& lhs, const uint4x3& rhs );
 
 /// \relates uint4x3
 /// \brief Returns a copy of the uint4x3 where each component of the left-hand uint4x3 has been bitwise AND'd against the corresponding component of the right-hand side uint4x3.
-inline uint4x3 comp_and( const uint4x3& lhs, const uint4x3& rhs );
+inline uint4x3 cand( const uint4x3& lhs, const uint4x3& rhs );
 
 /// \relates uint4x3
 /// \brief Returns a copy of the uint4x3 where each component of the left-hand uint4x3 has been bitwise OR'd against the corresponding component of the right-hand side uint4x3.
-inline uint4x3 comp_or( const uint4x3& lhs, const uint4x3& rhs );
+inline uint4x3 cor( const uint4x3& lhs, const uint4x3& rhs );
 
 /// \relates uint4x3
 /// \brief Returns a copy of the uint4x3 where each component of the left-hand uint4x3 has been bitwise XOR'd against the corresponding component of the right-hand side uint4x3.
-inline uint4x3 comp_xor( const uint4x3& lhs, const uint4x3& rhs );
+inline uint4x3 cxor( const uint4x3& lhs, const uint4x3& rhs );
 
 /// \relates uint4x3
 /// \brief Performs a unary bitwise operation on all components of the given uint4x3.
-inline uint4x3 comp_unary( const uint4x3& lhs );
+inline uint4x3 cunary( const uint4x3& lhs );
 
 /// \relates uint4x3
 /// \brief Returns a copy of the uint4x3 where each component of the left-hand uint4x3 has been bitwise left-shifted by the corresponding component of the right-hand side uint4x3.
-inline uint4x3 comp_shift_left( const uint4x3& lhs, const uint4x3& rhs );
+inline uint4x3 cshift_left( const uint4x3& lhs, const uint4x3& rhs );
 
 /// \relates uint4x3
 /// \brief Returns a copy of the uint4x3 where each component of the left-hand uint4x3 has been bitwise right-shifted by the corresponding component of the right-hand side uint4x3.
-inline uint4x3 comp_shift_right( const uint4x3& lhs, const uint4x3& rhs );
+inline uint4x3 cshift_right( const uint4x3& lhs, const uint4x3& rhs );
 
 /// \relates uint4x3
 /// \brief Returns a bool4x3 where each component is true if the component of the left-hand type is less than the corresponding right-hand type component.
@@ -1987,59 +1987,59 @@ inline bool cmpne( const uint4x4& lhs, const uint4x4& rhs );
 
 /// \relates uint4x4
 /// \brief Returns a copy of the uint4x4 that has been component-wise added by the given scalar value.
-inline uint4x4 comp_adds( const uint4x4& lhs, const uint32_t scalar );
+inline uint4x4 cadds( const uint4x4& lhs, const uint32_t scalar );
 
 /// \relates uint4x4
 /// \brief Returns a copy of the uint4x4 that has been component-wise added by the corresponding component of the right-hand uint4x4.
-inline uint4x4 comp_addm( const uint4x4& lhs, const uint4x4& rhs );
+inline uint4x4 caddm( const uint4x4& lhs, const uint4x4& rhs );
 
 /// \relates uint4x4
 /// \brief Returns a copy of the uint4x4 that has been component-wise subtracted by the given scalar value.
-inline uint4x4 comp_subs( const uint4x4& lhs, const uint32_t scalar );
+inline uint4x4 csubs( const uint4x4& lhs, const uint32_t scalar );
 
 /// \relates uint4x4
 /// \brief Returns a copy of the uint4x4 that has been component-wise subtracted by the corresponding component of the right-hand uint4x4.
-inline uint4x4 comp_subm( const uint4x4& lhs, const uint4x4& rhs );
+inline uint4x4 csubm( const uint4x4& lhs, const uint4x4& rhs );
 
 /// \relates uint4x4
 /// \brief Returns a copy of the uint4x4 that has been component-wise multiplied by the given scalar value.
-inline uint4x4 comp_muls( const uint4x4& lhs, const uint32_t scalar );
+inline uint4x4 cmuls( const uint4x4& lhs, const uint32_t scalar );
 
 /// \relates uint4x4
 /// \brief Returns a copy of the uint4x4 that has been component-wise multiplied by the corresponding component of the right-hand uint4x4.
-inline uint4x4 comp_mulm( const uint4x4& lhs, const uint4x4& rhs );
+inline uint4x4 cmulm( const uint4x4& lhs, const uint4x4& rhs );
 
 /// \relates uint4x4
 /// \brief Returns a copy of the uint4x4 that has been component-wise divided by the given scalar value.
-inline uint4x4 comp_divs( const uint4x4& lhs, const uint32_t scalar );
+inline uint4x4 cdivs( const uint4x4& lhs, const uint32_t scalar );
 
 /// \relates uint4x4
 /// \brief Returns a copy of the uint4x4 that has been component-wise divided by the corresponding component of the right-hand uint4x4.
-inline uint4x4 comp_divm( const uint4x4& lhs, const uint4x4& rhs );
+inline uint4x4 cdivm( const uint4x4& lhs, const uint4x4& rhs );
 
 /// \relates uint4x4
 /// \brief Returns a copy of the uint4x4 where each component of the left-hand uint4x4 has been bitwise AND'd against the corresponding component of the right-hand side uint4x4.
-inline uint4x4 comp_and( const uint4x4& lhs, const uint4x4& rhs );
+inline uint4x4 cand( const uint4x4& lhs, const uint4x4& rhs );
 
 /// \relates uint4x4
 /// \brief Returns a copy of the uint4x4 where each component of the left-hand uint4x4 has been bitwise OR'd against the corresponding component of the right-hand side uint4x4.
-inline uint4x4 comp_or( const uint4x4& lhs, const uint4x4& rhs );
+inline uint4x4 cor( const uint4x4& lhs, const uint4x4& rhs );
 
 /// \relates uint4x4
 /// \brief Returns a copy of the uint4x4 where each component of the left-hand uint4x4 has been bitwise XOR'd against the corresponding component of the right-hand side uint4x4.
-inline uint4x4 comp_xor( const uint4x4& lhs, const uint4x4& rhs );
+inline uint4x4 cxor( const uint4x4& lhs, const uint4x4& rhs );
 
 /// \relates uint4x4
 /// \brief Performs a unary bitwise operation on all components of the given uint4x4.
-inline uint4x4 comp_unary( const uint4x4& lhs );
+inline uint4x4 cunary( const uint4x4& lhs );
 
 /// \relates uint4x4
 /// \brief Returns a copy of the uint4x4 where each component of the left-hand uint4x4 has been bitwise left-shifted by the corresponding component of the right-hand side uint4x4.
-inline uint4x4 comp_shift_left( const uint4x4& lhs, const uint4x4& rhs );
+inline uint4x4 cshift_left( const uint4x4& lhs, const uint4x4& rhs );
 
 /// \relates uint4x4
 /// \brief Returns a copy of the uint4x4 where each component of the left-hand uint4x4 has been bitwise right-shifted by the corresponding component of the right-hand side uint4x4.
-inline uint4x4 comp_shift_right( const uint4x4& lhs, const uint4x4& rhs );
+inline uint4x4 cshift_right( const uint4x4& lhs, const uint4x4& rhs );
 
 /// \relates uint4x4
 /// \brief Returns a bool4x4 where each component is true if the component of the left-hand type is less than the corresponding right-hand type component.
@@ -2093,35 +2093,35 @@ inline bool cmpne( const float2x2& lhs, const float2x2& rhs );
 
 /// \relates float2x2
 /// \brief Returns a copy of the float2x2 that has been component-wise added by the given scalar value.
-inline float2x2 comp_adds( const float2x2& lhs, const float scalar );
+inline float2x2 cadds( const float2x2& lhs, const float scalar );
 
 /// \relates float2x2
 /// \brief Returns a copy of the float2x2 that has been component-wise added by the corresponding component of the right-hand float2x2.
-inline float2x2 comp_addm( const float2x2& lhs, const float2x2& rhs );
+inline float2x2 caddm( const float2x2& lhs, const float2x2& rhs );
 
 /// \relates float2x2
 /// \brief Returns a copy of the float2x2 that has been component-wise subtracted by the given scalar value.
-inline float2x2 comp_subs( const float2x2& lhs, const float scalar );
+inline float2x2 csubs( const float2x2& lhs, const float scalar );
 
 /// \relates float2x2
 /// \brief Returns a copy of the float2x2 that has been component-wise subtracted by the corresponding component of the right-hand float2x2.
-inline float2x2 comp_subm( const float2x2& lhs, const float2x2& rhs );
+inline float2x2 csubm( const float2x2& lhs, const float2x2& rhs );
 
 /// \relates float2x2
 /// \brief Returns a copy of the float2x2 that has been component-wise multiplied by the given scalar value.
-inline float2x2 comp_muls( const float2x2& lhs, const float scalar );
+inline float2x2 cmuls( const float2x2& lhs, const float scalar );
 
 /// \relates float2x2
 /// \brief Returns a copy of the float2x2 that has been component-wise multiplied by the corresponding component of the right-hand float2x2.
-inline float2x2 comp_mulm( const float2x2& lhs, const float2x2& rhs );
+inline float2x2 cmulm( const float2x2& lhs, const float2x2& rhs );
 
 /// \relates float2x2
 /// \brief Returns a copy of the float2x2 that has been component-wise divided by the given scalar value.
-inline float2x2 comp_divs( const float2x2& lhs, const float scalar );
+inline float2x2 cdivs( const float2x2& lhs, const float scalar );
 
 /// \relates float2x2
 /// \brief Returns a copy of the float2x2 that has been component-wise divided by the corresponding component of the right-hand float2x2.
-inline float2x2 comp_divm( const float2x2& lhs, const float2x2& rhs );
+inline float2x2 cdivm( const float2x2& lhs, const float2x2& rhs );
 
 /// \relates float2x2
 /// \brief Returns a bool2x2 where each component is true if the component of the left-hand type is less than the corresponding right-hand type component.
@@ -2176,35 +2176,35 @@ inline bool cmpne( const float2x3& lhs, const float2x3& rhs );
 
 /// \relates float2x3
 /// \brief Returns a copy of the float2x3 that has been component-wise added by the given scalar value.
-inline float2x3 comp_adds( const float2x3& lhs, const float scalar );
+inline float2x3 cadds( const float2x3& lhs, const float scalar );
 
 /// \relates float2x3
 /// \brief Returns a copy of the float2x3 that has been component-wise added by the corresponding component of the right-hand float2x3.
-inline float2x3 comp_addm( const float2x3& lhs, const float2x3& rhs );
+inline float2x3 caddm( const float2x3& lhs, const float2x3& rhs );
 
 /// \relates float2x3
 /// \brief Returns a copy of the float2x3 that has been component-wise subtracted by the given scalar value.
-inline float2x3 comp_subs( const float2x3& lhs, const float scalar );
+inline float2x3 csubs( const float2x3& lhs, const float scalar );
 
 /// \relates float2x3
 /// \brief Returns a copy of the float2x3 that has been component-wise subtracted by the corresponding component of the right-hand float2x3.
-inline float2x3 comp_subm( const float2x3& lhs, const float2x3& rhs );
+inline float2x3 csubm( const float2x3& lhs, const float2x3& rhs );
 
 /// \relates float2x3
 /// \brief Returns a copy of the float2x3 that has been component-wise multiplied by the given scalar value.
-inline float2x3 comp_muls( const float2x3& lhs, const float scalar );
+inline float2x3 cmuls( const float2x3& lhs, const float scalar );
 
 /// \relates float2x3
 /// \brief Returns a copy of the float2x3 that has been component-wise multiplied by the corresponding component of the right-hand float2x3.
-inline float2x3 comp_mulm( const float2x3& lhs, const float2x3& rhs );
+inline float2x3 cmulm( const float2x3& lhs, const float2x3& rhs );
 
 /// \relates float2x3
 /// \brief Returns a copy of the float2x3 that has been component-wise divided by the given scalar value.
-inline float2x3 comp_divs( const float2x3& lhs, const float scalar );
+inline float2x3 cdivs( const float2x3& lhs, const float scalar );
 
 /// \relates float2x3
 /// \brief Returns a copy of the float2x3 that has been component-wise divided by the corresponding component of the right-hand float2x3.
-inline float2x3 comp_divm( const float2x3& lhs, const float2x3& rhs );
+inline float2x3 cdivm( const float2x3& lhs, const float2x3& rhs );
 
 /// \relates float2x3
 /// \brief Returns a bool2x3 where each component is true if the component of the left-hand type is less than the corresponding right-hand type component.
@@ -2250,35 +2250,35 @@ inline bool cmpne( const float2x4& lhs, const float2x4& rhs );
 
 /// \relates float2x4
 /// \brief Returns a copy of the float2x4 that has been component-wise added by the given scalar value.
-inline float2x4 comp_adds( const float2x4& lhs, const float scalar );
+inline float2x4 cadds( const float2x4& lhs, const float scalar );
 
 /// \relates float2x4
 /// \brief Returns a copy of the float2x4 that has been component-wise added by the corresponding component of the right-hand float2x4.
-inline float2x4 comp_addm( const float2x4& lhs, const float2x4& rhs );
+inline float2x4 caddm( const float2x4& lhs, const float2x4& rhs );
 
 /// \relates float2x4
 /// \brief Returns a copy of the float2x4 that has been component-wise subtracted by the given scalar value.
-inline float2x4 comp_subs( const float2x4& lhs, const float scalar );
+inline float2x4 csubs( const float2x4& lhs, const float scalar );
 
 /// \relates float2x4
 /// \brief Returns a copy of the float2x4 that has been component-wise subtracted by the corresponding component of the right-hand float2x4.
-inline float2x4 comp_subm( const float2x4& lhs, const float2x4& rhs );
+inline float2x4 csubm( const float2x4& lhs, const float2x4& rhs );
 
 /// \relates float2x4
 /// \brief Returns a copy of the float2x4 that has been component-wise multiplied by the given scalar value.
-inline float2x4 comp_muls( const float2x4& lhs, const float scalar );
+inline float2x4 cmuls( const float2x4& lhs, const float scalar );
 
 /// \relates float2x4
 /// \brief Returns a copy of the float2x4 that has been component-wise multiplied by the corresponding component of the right-hand float2x4.
-inline float2x4 comp_mulm( const float2x4& lhs, const float2x4& rhs );
+inline float2x4 cmulm( const float2x4& lhs, const float2x4& rhs );
 
 /// \relates float2x4
 /// \brief Returns a copy of the float2x4 that has been component-wise divided by the given scalar value.
-inline float2x4 comp_divs( const float2x4& lhs, const float scalar );
+inline float2x4 cdivs( const float2x4& lhs, const float scalar );
 
 /// \relates float2x4
 /// \brief Returns a copy of the float2x4 that has been component-wise divided by the corresponding component of the right-hand float2x4.
-inline float2x4 comp_divm( const float2x4& lhs, const float2x4& rhs );
+inline float2x4 cdivm( const float2x4& lhs, const float2x4& rhs );
 
 /// \relates float2x4
 /// \brief Returns a bool2x4 where each component is true if the component of the left-hand type is less than the corresponding right-hand type component.
@@ -2324,35 +2324,35 @@ inline bool cmpne( const float3x2& lhs, const float3x2& rhs );
 
 /// \relates float3x2
 /// \brief Returns a copy of the float3x2 that has been component-wise added by the given scalar value.
-inline float3x2 comp_adds( const float3x2& lhs, const float scalar );
+inline float3x2 cadds( const float3x2& lhs, const float scalar );
 
 /// \relates float3x2
 /// \brief Returns a copy of the float3x2 that has been component-wise added by the corresponding component of the right-hand float3x2.
-inline float3x2 comp_addm( const float3x2& lhs, const float3x2& rhs );
+inline float3x2 caddm( const float3x2& lhs, const float3x2& rhs );
 
 /// \relates float3x2
 /// \brief Returns a copy of the float3x2 that has been component-wise subtracted by the given scalar value.
-inline float3x2 comp_subs( const float3x2& lhs, const float scalar );
+inline float3x2 csubs( const float3x2& lhs, const float scalar );
 
 /// \relates float3x2
 /// \brief Returns a copy of the float3x2 that has been component-wise subtracted by the corresponding component of the right-hand float3x2.
-inline float3x2 comp_subm( const float3x2& lhs, const float3x2& rhs );
+inline float3x2 csubm( const float3x2& lhs, const float3x2& rhs );
 
 /// \relates float3x2
 /// \brief Returns a copy of the float3x2 that has been component-wise multiplied by the given scalar value.
-inline float3x2 comp_muls( const float3x2& lhs, const float scalar );
+inline float3x2 cmuls( const float3x2& lhs, const float scalar );
 
 /// \relates float3x2
 /// \brief Returns a copy of the float3x2 that has been component-wise multiplied by the corresponding component of the right-hand float3x2.
-inline float3x2 comp_mulm( const float3x2& lhs, const float3x2& rhs );
+inline float3x2 cmulm( const float3x2& lhs, const float3x2& rhs );
 
 /// \relates float3x2
 /// \brief Returns a copy of the float3x2 that has been component-wise divided by the given scalar value.
-inline float3x2 comp_divs( const float3x2& lhs, const float scalar );
+inline float3x2 cdivs( const float3x2& lhs, const float scalar );
 
 /// \relates float3x2
 /// \brief Returns a copy of the float3x2 that has been component-wise divided by the corresponding component of the right-hand float3x2.
-inline float3x2 comp_divm( const float3x2& lhs, const float3x2& rhs );
+inline float3x2 cdivm( const float3x2& lhs, const float3x2& rhs );
 
 /// \relates float3x2
 /// \brief Returns a bool3x2 where each component is true if the component of the left-hand type is less than the corresponding right-hand type component.
@@ -2394,35 +2394,35 @@ inline bool cmpne( const float3x3& lhs, const float3x3& rhs );
 
 /// \relates float3x3
 /// \brief Returns a copy of the float3x3 that has been component-wise added by the given scalar value.
-inline float3x3 comp_adds( const float3x3& lhs, const float scalar );
+inline float3x3 cadds( const float3x3& lhs, const float scalar );
 
 /// \relates float3x3
 /// \brief Returns a copy of the float3x3 that has been component-wise added by the corresponding component of the right-hand float3x3.
-inline float3x3 comp_addm( const float3x3& lhs, const float3x3& rhs );
+inline float3x3 caddm( const float3x3& lhs, const float3x3& rhs );
 
 /// \relates float3x3
 /// \brief Returns a copy of the float3x3 that has been component-wise subtracted by the given scalar value.
-inline float3x3 comp_subs( const float3x3& lhs, const float scalar );
+inline float3x3 csubs( const float3x3& lhs, const float scalar );
 
 /// \relates float3x3
 /// \brief Returns a copy of the float3x3 that has been component-wise subtracted by the corresponding component of the right-hand float3x3.
-inline float3x3 comp_subm( const float3x3& lhs, const float3x3& rhs );
+inline float3x3 csubm( const float3x3& lhs, const float3x3& rhs );
 
 /// \relates float3x3
 /// \brief Returns a copy of the float3x3 that has been component-wise multiplied by the given scalar value.
-inline float3x3 comp_muls( const float3x3& lhs, const float scalar );
+inline float3x3 cmuls( const float3x3& lhs, const float scalar );
 
 /// \relates float3x3
 /// \brief Returns a copy of the float3x3 that has been component-wise multiplied by the corresponding component of the right-hand float3x3.
-inline float3x3 comp_mulm( const float3x3& lhs, const float3x3& rhs );
+inline float3x3 cmulm( const float3x3& lhs, const float3x3& rhs );
 
 /// \relates float3x3
 /// \brief Returns a copy of the float3x3 that has been component-wise divided by the given scalar value.
-inline float3x3 comp_divs( const float3x3& lhs, const float scalar );
+inline float3x3 cdivs( const float3x3& lhs, const float scalar );
 
 /// \relates float3x3
 /// \brief Returns a copy of the float3x3 that has been component-wise divided by the corresponding component of the right-hand float3x3.
-inline float3x3 comp_divm( const float3x3& lhs, const float3x3& rhs );
+inline float3x3 cdivm( const float3x3& lhs, const float3x3& rhs );
 
 /// \relates float3x3
 /// \brief Returns a bool3x3 where each component is true if the component of the left-hand type is less than the corresponding right-hand type component.
@@ -2489,35 +2489,35 @@ inline bool cmpne( const float3x4& lhs, const float3x4& rhs );
 
 /// \relates float3x4
 /// \brief Returns a copy of the float3x4 that has been component-wise added by the given scalar value.
-inline float3x4 comp_adds( const float3x4& lhs, const float scalar );
+inline float3x4 cadds( const float3x4& lhs, const float scalar );
 
 /// \relates float3x4
 /// \brief Returns a copy of the float3x4 that has been component-wise added by the corresponding component of the right-hand float3x4.
-inline float3x4 comp_addm( const float3x4& lhs, const float3x4& rhs );
+inline float3x4 caddm( const float3x4& lhs, const float3x4& rhs );
 
 /// \relates float3x4
 /// \brief Returns a copy of the float3x4 that has been component-wise subtracted by the given scalar value.
-inline float3x4 comp_subs( const float3x4& lhs, const float scalar );
+inline float3x4 csubs( const float3x4& lhs, const float scalar );
 
 /// \relates float3x4
 /// \brief Returns a copy of the float3x4 that has been component-wise subtracted by the corresponding component of the right-hand float3x4.
-inline float3x4 comp_subm( const float3x4& lhs, const float3x4& rhs );
+inline float3x4 csubm( const float3x4& lhs, const float3x4& rhs );
 
 /// \relates float3x4
 /// \brief Returns a copy of the float3x4 that has been component-wise multiplied by the given scalar value.
-inline float3x4 comp_muls( const float3x4& lhs, const float scalar );
+inline float3x4 cmuls( const float3x4& lhs, const float scalar );
 
 /// \relates float3x4
 /// \brief Returns a copy of the float3x4 that has been component-wise multiplied by the corresponding component of the right-hand float3x4.
-inline float3x4 comp_mulm( const float3x4& lhs, const float3x4& rhs );
+inline float3x4 cmulm( const float3x4& lhs, const float3x4& rhs );
 
 /// \relates float3x4
 /// \brief Returns a copy of the float3x4 that has been component-wise divided by the given scalar value.
-inline float3x4 comp_divs( const float3x4& lhs, const float scalar );
+inline float3x4 cdivs( const float3x4& lhs, const float scalar );
 
 /// \relates float3x4
 /// \brief Returns a copy of the float3x4 that has been component-wise divided by the corresponding component of the right-hand float3x4.
-inline float3x4 comp_divm( const float3x4& lhs, const float3x4& rhs );
+inline float3x4 cdivm( const float3x4& lhs, const float3x4& rhs );
 
 /// \relates float3x4
 /// \brief Returns a bool3x4 where each component is true if the component of the left-hand type is less than the corresponding right-hand type component.
@@ -2567,35 +2567,35 @@ inline bool cmpne( const float4x2& lhs, const float4x2& rhs );
 
 /// \relates float4x2
 /// \brief Returns a copy of the float4x2 that has been component-wise added by the given scalar value.
-inline float4x2 comp_adds( const float4x2& lhs, const float scalar );
+inline float4x2 cadds( const float4x2& lhs, const float scalar );
 
 /// \relates float4x2
 /// \brief Returns a copy of the float4x2 that has been component-wise added by the corresponding component of the right-hand float4x2.
-inline float4x2 comp_addm( const float4x2& lhs, const float4x2& rhs );
+inline float4x2 caddm( const float4x2& lhs, const float4x2& rhs );
 
 /// \relates float4x2
 /// \brief Returns a copy of the float4x2 that has been component-wise subtracted by the given scalar value.
-inline float4x2 comp_subs( const float4x2& lhs, const float scalar );
+inline float4x2 csubs( const float4x2& lhs, const float scalar );
 
 /// \relates float4x2
 /// \brief Returns a copy of the float4x2 that has been component-wise subtracted by the corresponding component of the right-hand float4x2.
-inline float4x2 comp_subm( const float4x2& lhs, const float4x2& rhs );
+inline float4x2 csubm( const float4x2& lhs, const float4x2& rhs );
 
 /// \relates float4x2
 /// \brief Returns a copy of the float4x2 that has been component-wise multiplied by the given scalar value.
-inline float4x2 comp_muls( const float4x2& lhs, const float scalar );
+inline float4x2 cmuls( const float4x2& lhs, const float scalar );
 
 /// \relates float4x2
 /// \brief Returns a copy of the float4x2 that has been component-wise multiplied by the corresponding component of the right-hand float4x2.
-inline float4x2 comp_mulm( const float4x2& lhs, const float4x2& rhs );
+inline float4x2 cmulm( const float4x2& lhs, const float4x2& rhs );
 
 /// \relates float4x2
 /// \brief Returns a copy of the float4x2 that has been component-wise divided by the given scalar value.
-inline float4x2 comp_divs( const float4x2& lhs, const float scalar );
+inline float4x2 cdivs( const float4x2& lhs, const float scalar );
 
 /// \relates float4x2
 /// \brief Returns a copy of the float4x2 that has been component-wise divided by the corresponding component of the right-hand float4x2.
-inline float4x2 comp_divm( const float4x2& lhs, const float4x2& rhs );
+inline float4x2 cdivm( const float4x2& lhs, const float4x2& rhs );
 
 /// \relates float4x2
 /// \brief Returns a bool4x2 where each component is true if the component of the left-hand type is less than the corresponding right-hand type component.
@@ -2637,35 +2637,35 @@ inline bool cmpne( const float4x3& lhs, const float4x3& rhs );
 
 /// \relates float4x3
 /// \brief Returns a copy of the float4x3 that has been component-wise added by the given scalar value.
-inline float4x3 comp_adds( const float4x3& lhs, const float scalar );
+inline float4x3 cadds( const float4x3& lhs, const float scalar );
 
 /// \relates float4x3
 /// \brief Returns a copy of the float4x3 that has been component-wise added by the corresponding component of the right-hand float4x3.
-inline float4x3 comp_addm( const float4x3& lhs, const float4x3& rhs );
+inline float4x3 caddm( const float4x3& lhs, const float4x3& rhs );
 
 /// \relates float4x3
 /// \brief Returns a copy of the float4x3 that has been component-wise subtracted by the given scalar value.
-inline float4x3 comp_subs( const float4x3& lhs, const float scalar );
+inline float4x3 csubs( const float4x3& lhs, const float scalar );
 
 /// \relates float4x3
 /// \brief Returns a copy of the float4x3 that has been component-wise subtracted by the corresponding component of the right-hand float4x3.
-inline float4x3 comp_subm( const float4x3& lhs, const float4x3& rhs );
+inline float4x3 csubm( const float4x3& lhs, const float4x3& rhs );
 
 /// \relates float4x3
 /// \brief Returns a copy of the float4x3 that has been component-wise multiplied by the given scalar value.
-inline float4x3 comp_muls( const float4x3& lhs, const float scalar );
+inline float4x3 cmuls( const float4x3& lhs, const float scalar );
 
 /// \relates float4x3
 /// \brief Returns a copy of the float4x3 that has been component-wise multiplied by the corresponding component of the right-hand float4x3.
-inline float4x3 comp_mulm( const float4x3& lhs, const float4x3& rhs );
+inline float4x3 cmulm( const float4x3& lhs, const float4x3& rhs );
 
 /// \relates float4x3
 /// \brief Returns a copy of the float4x3 that has been component-wise divided by the given scalar value.
-inline float4x3 comp_divs( const float4x3& lhs, const float scalar );
+inline float4x3 cdivs( const float4x3& lhs, const float scalar );
 
 /// \relates float4x3
 /// \brief Returns a copy of the float4x3 that has been component-wise divided by the corresponding component of the right-hand float4x3.
-inline float4x3 comp_divm( const float4x3& lhs, const float4x3& rhs );
+inline float4x3 cdivm( const float4x3& lhs, const float4x3& rhs );
 
 /// \relates float4x3
 /// \brief Returns a bool4x3 where each component is true if the component of the left-hand type is less than the corresponding right-hand type component.
@@ -2711,35 +2711,35 @@ inline bool cmpne( const float4x4& lhs, const float4x4& rhs );
 
 /// \relates float4x4
 /// \brief Returns a copy of the float4x4 that has been component-wise added by the given scalar value.
-inline float4x4 comp_adds( const float4x4& lhs, const float scalar );
+inline float4x4 cadds( const float4x4& lhs, const float scalar );
 
 /// \relates float4x4
 /// \brief Returns a copy of the float4x4 that has been component-wise added by the corresponding component of the right-hand float4x4.
-inline float4x4 comp_addm( const float4x4& lhs, const float4x4& rhs );
+inline float4x4 caddm( const float4x4& lhs, const float4x4& rhs );
 
 /// \relates float4x4
 /// \brief Returns a copy of the float4x4 that has been component-wise subtracted by the given scalar value.
-inline float4x4 comp_subs( const float4x4& lhs, const float scalar );
+inline float4x4 csubs( const float4x4& lhs, const float scalar );
 
 /// \relates float4x4
 /// \brief Returns a copy of the float4x4 that has been component-wise subtracted by the corresponding component of the right-hand float4x4.
-inline float4x4 comp_subm( const float4x4& lhs, const float4x4& rhs );
+inline float4x4 csubm( const float4x4& lhs, const float4x4& rhs );
 
 /// \relates float4x4
 /// \brief Returns a copy of the float4x4 that has been component-wise multiplied by the given scalar value.
-inline float4x4 comp_muls( const float4x4& lhs, const float scalar );
+inline float4x4 cmuls( const float4x4& lhs, const float scalar );
 
 /// \relates float4x4
 /// \brief Returns a copy of the float4x4 that has been component-wise multiplied by the corresponding component of the right-hand float4x4.
-inline float4x4 comp_mulm( const float4x4& lhs, const float4x4& rhs );
+inline float4x4 cmulm( const float4x4& lhs, const float4x4& rhs );
 
 /// \relates float4x4
 /// \brief Returns a copy of the float4x4 that has been component-wise divided by the given scalar value.
-inline float4x4 comp_divs( const float4x4& lhs, const float scalar );
+inline float4x4 cdivs( const float4x4& lhs, const float scalar );
 
 /// \relates float4x4
 /// \brief Returns a copy of the float4x4 that has been component-wise divided by the corresponding component of the right-hand float4x4.
-inline float4x4 comp_divm( const float4x4& lhs, const float4x4& rhs );
+inline float4x4 cdivm( const float4x4& lhs, const float4x4& rhs );
 
 /// \relates float4x4
 /// \brief Returns a bool4x4 where each component is true if the component of the left-hand type is less than the corresponding right-hand type component.
@@ -2846,35 +2846,35 @@ inline bool cmpne( const double2x2& lhs, const double2x2& rhs );
 
 /// \relates double2x2
 /// \brief Returns a copy of the double2x2 that has been component-wise added by the given scalar value.
-inline double2x2 comp_adds( const double2x2& lhs, const double scalar );
+inline double2x2 cadds( const double2x2& lhs, const double scalar );
 
 /// \relates double2x2
 /// \brief Returns a copy of the double2x2 that has been component-wise added by the corresponding component of the right-hand double2x2.
-inline double2x2 comp_addm( const double2x2& lhs, const double2x2& rhs );
+inline double2x2 caddm( const double2x2& lhs, const double2x2& rhs );
 
 /// \relates double2x2
 /// \brief Returns a copy of the double2x2 that has been component-wise subtracted by the given scalar value.
-inline double2x2 comp_subs( const double2x2& lhs, const double scalar );
+inline double2x2 csubs( const double2x2& lhs, const double scalar );
 
 /// \relates double2x2
 /// \brief Returns a copy of the double2x2 that has been component-wise subtracted by the corresponding component of the right-hand double2x2.
-inline double2x2 comp_subm( const double2x2& lhs, const double2x2& rhs );
+inline double2x2 csubm( const double2x2& lhs, const double2x2& rhs );
 
 /// \relates double2x2
 /// \brief Returns a copy of the double2x2 that has been component-wise multiplied by the given scalar value.
-inline double2x2 comp_muls( const double2x2& lhs, const double scalar );
+inline double2x2 cmuls( const double2x2& lhs, const double scalar );
 
 /// \relates double2x2
 /// \brief Returns a copy of the double2x2 that has been component-wise multiplied by the corresponding component of the right-hand double2x2.
-inline double2x2 comp_mulm( const double2x2& lhs, const double2x2& rhs );
+inline double2x2 cmulm( const double2x2& lhs, const double2x2& rhs );
 
 /// \relates double2x2
 /// \brief Returns a copy of the double2x2 that has been component-wise divided by the given scalar value.
-inline double2x2 comp_divs( const double2x2& lhs, const double scalar );
+inline double2x2 cdivs( const double2x2& lhs, const double scalar );
 
 /// \relates double2x2
 /// \brief Returns a copy of the double2x2 that has been component-wise divided by the corresponding component of the right-hand double2x2.
-inline double2x2 comp_divm( const double2x2& lhs, const double2x2& rhs );
+inline double2x2 cdivm( const double2x2& lhs, const double2x2& rhs );
 
 /// \relates double2x2
 /// \brief Returns a bool2x2 where each component is true if the component of the left-hand type is less than the corresponding right-hand type component.
@@ -2929,35 +2929,35 @@ inline bool cmpne( const double2x3& lhs, const double2x3& rhs );
 
 /// \relates double2x3
 /// \brief Returns a copy of the double2x3 that has been component-wise added by the given scalar value.
-inline double2x3 comp_adds( const double2x3& lhs, const double scalar );
+inline double2x3 cadds( const double2x3& lhs, const double scalar );
 
 /// \relates double2x3
 /// \brief Returns a copy of the double2x3 that has been component-wise added by the corresponding component of the right-hand double2x3.
-inline double2x3 comp_addm( const double2x3& lhs, const double2x3& rhs );
+inline double2x3 caddm( const double2x3& lhs, const double2x3& rhs );
 
 /// \relates double2x3
 /// \brief Returns a copy of the double2x3 that has been component-wise subtracted by the given scalar value.
-inline double2x3 comp_subs( const double2x3& lhs, const double scalar );
+inline double2x3 csubs( const double2x3& lhs, const double scalar );
 
 /// \relates double2x3
 /// \brief Returns a copy of the double2x3 that has been component-wise subtracted by the corresponding component of the right-hand double2x3.
-inline double2x3 comp_subm( const double2x3& lhs, const double2x3& rhs );
+inline double2x3 csubm( const double2x3& lhs, const double2x3& rhs );
 
 /// \relates double2x3
 /// \brief Returns a copy of the double2x3 that has been component-wise multiplied by the given scalar value.
-inline double2x3 comp_muls( const double2x3& lhs, const double scalar );
+inline double2x3 cmuls( const double2x3& lhs, const double scalar );
 
 /// \relates double2x3
 /// \brief Returns a copy of the double2x3 that has been component-wise multiplied by the corresponding component of the right-hand double2x3.
-inline double2x3 comp_mulm( const double2x3& lhs, const double2x3& rhs );
+inline double2x3 cmulm( const double2x3& lhs, const double2x3& rhs );
 
 /// \relates double2x3
 /// \brief Returns a copy of the double2x3 that has been component-wise divided by the given scalar value.
-inline double2x3 comp_divs( const double2x3& lhs, const double scalar );
+inline double2x3 cdivs( const double2x3& lhs, const double scalar );
 
 /// \relates double2x3
 /// \brief Returns a copy of the double2x3 that has been component-wise divided by the corresponding component of the right-hand double2x3.
-inline double2x3 comp_divm( const double2x3& lhs, const double2x3& rhs );
+inline double2x3 cdivm( const double2x3& lhs, const double2x3& rhs );
 
 /// \relates double2x3
 /// \brief Returns a bool2x3 where each component is true if the component of the left-hand type is less than the corresponding right-hand type component.
@@ -3003,35 +3003,35 @@ inline bool cmpne( const double2x4& lhs, const double2x4& rhs );
 
 /// \relates double2x4
 /// \brief Returns a copy of the double2x4 that has been component-wise added by the given scalar value.
-inline double2x4 comp_adds( const double2x4& lhs, const double scalar );
+inline double2x4 cadds( const double2x4& lhs, const double scalar );
 
 /// \relates double2x4
 /// \brief Returns a copy of the double2x4 that has been component-wise added by the corresponding component of the right-hand double2x4.
-inline double2x4 comp_addm( const double2x4& lhs, const double2x4& rhs );
+inline double2x4 caddm( const double2x4& lhs, const double2x4& rhs );
 
 /// \relates double2x4
 /// \brief Returns a copy of the double2x4 that has been component-wise subtracted by the given scalar value.
-inline double2x4 comp_subs( const double2x4& lhs, const double scalar );
+inline double2x4 csubs( const double2x4& lhs, const double scalar );
 
 /// \relates double2x4
 /// \brief Returns a copy of the double2x4 that has been component-wise subtracted by the corresponding component of the right-hand double2x4.
-inline double2x4 comp_subm( const double2x4& lhs, const double2x4& rhs );
+inline double2x4 csubm( const double2x4& lhs, const double2x4& rhs );
 
 /// \relates double2x4
 /// \brief Returns a copy of the double2x4 that has been component-wise multiplied by the given scalar value.
-inline double2x4 comp_muls( const double2x4& lhs, const double scalar );
+inline double2x4 cmuls( const double2x4& lhs, const double scalar );
 
 /// \relates double2x4
 /// \brief Returns a copy of the double2x4 that has been component-wise multiplied by the corresponding component of the right-hand double2x4.
-inline double2x4 comp_mulm( const double2x4& lhs, const double2x4& rhs );
+inline double2x4 cmulm( const double2x4& lhs, const double2x4& rhs );
 
 /// \relates double2x4
 /// \brief Returns a copy of the double2x4 that has been component-wise divided by the given scalar value.
-inline double2x4 comp_divs( const double2x4& lhs, const double scalar );
+inline double2x4 cdivs( const double2x4& lhs, const double scalar );
 
 /// \relates double2x4
 /// \brief Returns a copy of the double2x4 that has been component-wise divided by the corresponding component of the right-hand double2x4.
-inline double2x4 comp_divm( const double2x4& lhs, const double2x4& rhs );
+inline double2x4 cdivm( const double2x4& lhs, const double2x4& rhs );
 
 /// \relates double2x4
 /// \brief Returns a bool2x4 where each component is true if the component of the left-hand type is less than the corresponding right-hand type component.
@@ -3077,35 +3077,35 @@ inline bool cmpne( const double3x2& lhs, const double3x2& rhs );
 
 /// \relates double3x2
 /// \brief Returns a copy of the double3x2 that has been component-wise added by the given scalar value.
-inline double3x2 comp_adds( const double3x2& lhs, const double scalar );
+inline double3x2 cadds( const double3x2& lhs, const double scalar );
 
 /// \relates double3x2
 /// \brief Returns a copy of the double3x2 that has been component-wise added by the corresponding component of the right-hand double3x2.
-inline double3x2 comp_addm( const double3x2& lhs, const double3x2& rhs );
+inline double3x2 caddm( const double3x2& lhs, const double3x2& rhs );
 
 /// \relates double3x2
 /// \brief Returns a copy of the double3x2 that has been component-wise subtracted by the given scalar value.
-inline double3x2 comp_subs( const double3x2& lhs, const double scalar );
+inline double3x2 csubs( const double3x2& lhs, const double scalar );
 
 /// \relates double3x2
 /// \brief Returns a copy of the double3x2 that has been component-wise subtracted by the corresponding component of the right-hand double3x2.
-inline double3x2 comp_subm( const double3x2& lhs, const double3x2& rhs );
+inline double3x2 csubm( const double3x2& lhs, const double3x2& rhs );
 
 /// \relates double3x2
 /// \brief Returns a copy of the double3x2 that has been component-wise multiplied by the given scalar value.
-inline double3x2 comp_muls( const double3x2& lhs, const double scalar );
+inline double3x2 cmuls( const double3x2& lhs, const double scalar );
 
 /// \relates double3x2
 /// \brief Returns a copy of the double3x2 that has been component-wise multiplied by the corresponding component of the right-hand double3x2.
-inline double3x2 comp_mulm( const double3x2& lhs, const double3x2& rhs );
+inline double3x2 cmulm( const double3x2& lhs, const double3x2& rhs );
 
 /// \relates double3x2
 /// \brief Returns a copy of the double3x2 that has been component-wise divided by the given scalar value.
-inline double3x2 comp_divs( const double3x2& lhs, const double scalar );
+inline double3x2 cdivs( const double3x2& lhs, const double scalar );
 
 /// \relates double3x2
 /// \brief Returns a copy of the double3x2 that has been component-wise divided by the corresponding component of the right-hand double3x2.
-inline double3x2 comp_divm( const double3x2& lhs, const double3x2& rhs );
+inline double3x2 cdivm( const double3x2& lhs, const double3x2& rhs );
 
 /// \relates double3x2
 /// \brief Returns a bool3x2 where each component is true if the component of the left-hand type is less than the corresponding right-hand type component.
@@ -3147,35 +3147,35 @@ inline bool cmpne( const double3x3& lhs, const double3x3& rhs );
 
 /// \relates double3x3
 /// \brief Returns a copy of the double3x3 that has been component-wise added by the given scalar value.
-inline double3x3 comp_adds( const double3x3& lhs, const double scalar );
+inline double3x3 cadds( const double3x3& lhs, const double scalar );
 
 /// \relates double3x3
 /// \brief Returns a copy of the double3x3 that has been component-wise added by the corresponding component of the right-hand double3x3.
-inline double3x3 comp_addm( const double3x3& lhs, const double3x3& rhs );
+inline double3x3 caddm( const double3x3& lhs, const double3x3& rhs );
 
 /// \relates double3x3
 /// \brief Returns a copy of the double3x3 that has been component-wise subtracted by the given scalar value.
-inline double3x3 comp_subs( const double3x3& lhs, const double scalar );
+inline double3x3 csubs( const double3x3& lhs, const double scalar );
 
 /// \relates double3x3
 /// \brief Returns a copy of the double3x3 that has been component-wise subtracted by the corresponding component of the right-hand double3x3.
-inline double3x3 comp_subm( const double3x3& lhs, const double3x3& rhs );
+inline double3x3 csubm( const double3x3& lhs, const double3x3& rhs );
 
 /// \relates double3x3
 /// \brief Returns a copy of the double3x3 that has been component-wise multiplied by the given scalar value.
-inline double3x3 comp_muls( const double3x3& lhs, const double scalar );
+inline double3x3 cmuls( const double3x3& lhs, const double scalar );
 
 /// \relates double3x3
 /// \brief Returns a copy of the double3x3 that has been component-wise multiplied by the corresponding component of the right-hand double3x3.
-inline double3x3 comp_mulm( const double3x3& lhs, const double3x3& rhs );
+inline double3x3 cmulm( const double3x3& lhs, const double3x3& rhs );
 
 /// \relates double3x3
 /// \brief Returns a copy of the double3x3 that has been component-wise divided by the given scalar value.
-inline double3x3 comp_divs( const double3x3& lhs, const double scalar );
+inline double3x3 cdivs( const double3x3& lhs, const double scalar );
 
 /// \relates double3x3
 /// \brief Returns a copy of the double3x3 that has been component-wise divided by the corresponding component of the right-hand double3x3.
-inline double3x3 comp_divm( const double3x3& lhs, const double3x3& rhs );
+inline double3x3 cdivm( const double3x3& lhs, const double3x3& rhs );
 
 /// \relates double3x3
 /// \brief Returns a bool3x3 where each component is true if the component of the left-hand type is less than the corresponding right-hand type component.
@@ -3242,35 +3242,35 @@ inline bool cmpne( const double3x4& lhs, const double3x4& rhs );
 
 /// \relates double3x4
 /// \brief Returns a copy of the double3x4 that has been component-wise added by the given scalar value.
-inline double3x4 comp_adds( const double3x4& lhs, const double scalar );
+inline double3x4 cadds( const double3x4& lhs, const double scalar );
 
 /// \relates double3x4
 /// \brief Returns a copy of the double3x4 that has been component-wise added by the corresponding component of the right-hand double3x4.
-inline double3x4 comp_addm( const double3x4& lhs, const double3x4& rhs );
+inline double3x4 caddm( const double3x4& lhs, const double3x4& rhs );
 
 /// \relates double3x4
 /// \brief Returns a copy of the double3x4 that has been component-wise subtracted by the given scalar value.
-inline double3x4 comp_subs( const double3x4& lhs, const double scalar );
+inline double3x4 csubs( const double3x4& lhs, const double scalar );
 
 /// \relates double3x4
 /// \brief Returns a copy of the double3x4 that has been component-wise subtracted by the corresponding component of the right-hand double3x4.
-inline double3x4 comp_subm( const double3x4& lhs, const double3x4& rhs );
+inline double3x4 csubm( const double3x4& lhs, const double3x4& rhs );
 
 /// \relates double3x4
 /// \brief Returns a copy of the double3x4 that has been component-wise multiplied by the given scalar value.
-inline double3x4 comp_muls( const double3x4& lhs, const double scalar );
+inline double3x4 cmuls( const double3x4& lhs, const double scalar );
 
 /// \relates double3x4
 /// \brief Returns a copy of the double3x4 that has been component-wise multiplied by the corresponding component of the right-hand double3x4.
-inline double3x4 comp_mulm( const double3x4& lhs, const double3x4& rhs );
+inline double3x4 cmulm( const double3x4& lhs, const double3x4& rhs );
 
 /// \relates double3x4
 /// \brief Returns a copy of the double3x4 that has been component-wise divided by the given scalar value.
-inline double3x4 comp_divs( const double3x4& lhs, const double scalar );
+inline double3x4 cdivs( const double3x4& lhs, const double scalar );
 
 /// \relates double3x4
 /// \brief Returns a copy of the double3x4 that has been component-wise divided by the corresponding component of the right-hand double3x4.
-inline double3x4 comp_divm( const double3x4& lhs, const double3x4& rhs );
+inline double3x4 cdivm( const double3x4& lhs, const double3x4& rhs );
 
 /// \relates double3x4
 /// \brief Returns a bool3x4 where each component is true if the component of the left-hand type is less than the corresponding right-hand type component.
@@ -3320,35 +3320,35 @@ inline bool cmpne( const double4x2& lhs, const double4x2& rhs );
 
 /// \relates double4x2
 /// \brief Returns a copy of the double4x2 that has been component-wise added by the given scalar value.
-inline double4x2 comp_adds( const double4x2& lhs, const double scalar );
+inline double4x2 cadds( const double4x2& lhs, const double scalar );
 
 /// \relates double4x2
 /// \brief Returns a copy of the double4x2 that has been component-wise added by the corresponding component of the right-hand double4x2.
-inline double4x2 comp_addm( const double4x2& lhs, const double4x2& rhs );
+inline double4x2 caddm( const double4x2& lhs, const double4x2& rhs );
 
 /// \relates double4x2
 /// \brief Returns a copy of the double4x2 that has been component-wise subtracted by the given scalar value.
-inline double4x2 comp_subs( const double4x2& lhs, const double scalar );
+inline double4x2 csubs( const double4x2& lhs, const double scalar );
 
 /// \relates double4x2
 /// \brief Returns a copy of the double4x2 that has been component-wise subtracted by the corresponding component of the right-hand double4x2.
-inline double4x2 comp_subm( const double4x2& lhs, const double4x2& rhs );
+inline double4x2 csubm( const double4x2& lhs, const double4x2& rhs );
 
 /// \relates double4x2
 /// \brief Returns a copy of the double4x2 that has been component-wise multiplied by the given scalar value.
-inline double4x2 comp_muls( const double4x2& lhs, const double scalar );
+inline double4x2 cmuls( const double4x2& lhs, const double scalar );
 
 /// \relates double4x2
 /// \brief Returns a copy of the double4x2 that has been component-wise multiplied by the corresponding component of the right-hand double4x2.
-inline double4x2 comp_mulm( const double4x2& lhs, const double4x2& rhs );
+inline double4x2 cmulm( const double4x2& lhs, const double4x2& rhs );
 
 /// \relates double4x2
 /// \brief Returns a copy of the double4x2 that has been component-wise divided by the given scalar value.
-inline double4x2 comp_divs( const double4x2& lhs, const double scalar );
+inline double4x2 cdivs( const double4x2& lhs, const double scalar );
 
 /// \relates double4x2
 /// \brief Returns a copy of the double4x2 that has been component-wise divided by the corresponding component of the right-hand double4x2.
-inline double4x2 comp_divm( const double4x2& lhs, const double4x2& rhs );
+inline double4x2 cdivm( const double4x2& lhs, const double4x2& rhs );
 
 /// \relates double4x2
 /// \brief Returns a bool4x2 where each component is true if the component of the left-hand type is less than the corresponding right-hand type component.
@@ -3390,35 +3390,35 @@ inline bool cmpne( const double4x3& lhs, const double4x3& rhs );
 
 /// \relates double4x3
 /// \brief Returns a copy of the double4x3 that has been component-wise added by the given scalar value.
-inline double4x3 comp_adds( const double4x3& lhs, const double scalar );
+inline double4x3 cadds( const double4x3& lhs, const double scalar );
 
 /// \relates double4x3
 /// \brief Returns a copy of the double4x3 that has been component-wise added by the corresponding component of the right-hand double4x3.
-inline double4x3 comp_addm( const double4x3& lhs, const double4x3& rhs );
+inline double4x3 caddm( const double4x3& lhs, const double4x3& rhs );
 
 /// \relates double4x3
 /// \brief Returns a copy of the double4x3 that has been component-wise subtracted by the given scalar value.
-inline double4x3 comp_subs( const double4x3& lhs, const double scalar );
+inline double4x3 csubs( const double4x3& lhs, const double scalar );
 
 /// \relates double4x3
 /// \brief Returns a copy of the double4x3 that has been component-wise subtracted by the corresponding component of the right-hand double4x3.
-inline double4x3 comp_subm( const double4x3& lhs, const double4x3& rhs );
+inline double4x3 csubm( const double4x3& lhs, const double4x3& rhs );
 
 /// \relates double4x3
 /// \brief Returns a copy of the double4x3 that has been component-wise multiplied by the given scalar value.
-inline double4x3 comp_muls( const double4x3& lhs, const double scalar );
+inline double4x3 cmuls( const double4x3& lhs, const double scalar );
 
 /// \relates double4x3
 /// \brief Returns a copy of the double4x3 that has been component-wise multiplied by the corresponding component of the right-hand double4x3.
-inline double4x3 comp_mulm( const double4x3& lhs, const double4x3& rhs );
+inline double4x3 cmulm( const double4x3& lhs, const double4x3& rhs );
 
 /// \relates double4x3
 /// \brief Returns a copy of the double4x3 that has been component-wise divided by the given scalar value.
-inline double4x3 comp_divs( const double4x3& lhs, const double scalar );
+inline double4x3 cdivs( const double4x3& lhs, const double scalar );
 
 /// \relates double4x3
 /// \brief Returns a copy of the double4x3 that has been component-wise divided by the corresponding component of the right-hand double4x3.
-inline double4x3 comp_divm( const double4x3& lhs, const double4x3& rhs );
+inline double4x3 cdivm( const double4x3& lhs, const double4x3& rhs );
 
 /// \relates double4x3
 /// \brief Returns a bool4x3 where each component is true if the component of the left-hand type is less than the corresponding right-hand type component.
@@ -3464,35 +3464,35 @@ inline bool cmpne( const double4x4& lhs, const double4x4& rhs );
 
 /// \relates double4x4
 /// \brief Returns a copy of the double4x4 that has been component-wise added by the given scalar value.
-inline double4x4 comp_adds( const double4x4& lhs, const double scalar );
+inline double4x4 cadds( const double4x4& lhs, const double scalar );
 
 /// \relates double4x4
 /// \brief Returns a copy of the double4x4 that has been component-wise added by the corresponding component of the right-hand double4x4.
-inline double4x4 comp_addm( const double4x4& lhs, const double4x4& rhs );
+inline double4x4 caddm( const double4x4& lhs, const double4x4& rhs );
 
 /// \relates double4x4
 /// \brief Returns a copy of the double4x4 that has been component-wise subtracted by the given scalar value.
-inline double4x4 comp_subs( const double4x4& lhs, const double scalar );
+inline double4x4 csubs( const double4x4& lhs, const double scalar );
 
 /// \relates double4x4
 /// \brief Returns a copy of the double4x4 that has been component-wise subtracted by the corresponding component of the right-hand double4x4.
-inline double4x4 comp_subm( const double4x4& lhs, const double4x4& rhs );
+inline double4x4 csubm( const double4x4& lhs, const double4x4& rhs );
 
 /// \relates double4x4
 /// \brief Returns a copy of the double4x4 that has been component-wise multiplied by the given scalar value.
-inline double4x4 comp_muls( const double4x4& lhs, const double scalar );
+inline double4x4 cmuls( const double4x4& lhs, const double scalar );
 
 /// \relates double4x4
 /// \brief Returns a copy of the double4x4 that has been component-wise multiplied by the corresponding component of the right-hand double4x4.
-inline double4x4 comp_mulm( const double4x4& lhs, const double4x4& rhs );
+inline double4x4 cmulm( const double4x4& lhs, const double4x4& rhs );
 
 /// \relates double4x4
 /// \brief Returns a copy of the double4x4 that has been component-wise divided by the given scalar value.
-inline double4x4 comp_divs( const double4x4& lhs, const double scalar );
+inline double4x4 cdivs( const double4x4& lhs, const double scalar );
 
 /// \relates double4x4
 /// \brief Returns a copy of the double4x4 that has been component-wise divided by the corresponding component of the right-hand double4x4.
-inline double4x4 comp_divm( const double4x4& lhs, const double4x4& rhs );
+inline double4x4 cdivm( const double4x4& lhs, const double4x4& rhs );
 
 /// \relates double4x4
 /// \brief Returns a bool4x4 where each component is true if the component of the left-hand type is less than the corresponding right-hand type component.
@@ -3905,7 +3905,7 @@ bool cmpne( const int2x2& lhs, const int2x2& rhs )
 	return !( cmpe( lhs, rhs ) );
 }
 
-int2x2 comp_adds( const int2x2& lhs, const int32_t scalar )
+int2x2 cadds( const int2x2& lhs, const int32_t scalar )
 {
 	return int2x2(
 		lhs[0] + scalar,
@@ -3913,15 +3913,15 @@ int2x2 comp_adds( const int2x2& lhs, const int32_t scalar )
 	);
 }
 
-int2x2 comp_addm( const int2x2& lhs, const int2x2& rhs )
+int2x2 caddm( const int2x2& lhs, const int2x2& rhs )
 {
 	return HLML_CONSTRUCT( int2x2 ) {
-		comp_addv( lhs.rows[0], rhs.rows[0] ),
-		comp_addv( lhs.rows[1], rhs.rows[1] )
+		caddv( lhs.rows[0], rhs.rows[0] ),
+		caddv( lhs.rows[1], rhs.rows[1] )
 	};
 }
 
-int2x2 comp_subs( const int2x2& lhs, const int32_t scalar )
+int2x2 csubs( const int2x2& lhs, const int32_t scalar )
 {
 	return int2x2(
 		lhs[0] - scalar,
@@ -3929,15 +3929,15 @@ int2x2 comp_subs( const int2x2& lhs, const int32_t scalar )
 	);
 }
 
-int2x2 comp_subm( const int2x2& lhs, const int2x2& rhs )
+int2x2 csubm( const int2x2& lhs, const int2x2& rhs )
 {
 	return HLML_CONSTRUCT( int2x2 ) {
-		comp_subv( lhs.rows[0], rhs.rows[0] ),
-		comp_subv( lhs.rows[1], rhs.rows[1] )
+		csubv( lhs.rows[0], rhs.rows[0] ),
+		csubv( lhs.rows[1], rhs.rows[1] )
 	};
 }
 
-int2x2 comp_muls( const int2x2& lhs, const int32_t scalar )
+int2x2 cmuls( const int2x2& lhs, const int32_t scalar )
 {
 	return int2x2(
 		lhs[0] * scalar,
@@ -3945,15 +3945,15 @@ int2x2 comp_muls( const int2x2& lhs, const int32_t scalar )
 	);
 }
 
-int2x2 comp_mulm( const int2x2& lhs, const int2x2& rhs )
+int2x2 cmulm( const int2x2& lhs, const int2x2& rhs )
 {
 	return HLML_CONSTRUCT( int2x2 ) {
-		comp_mulv( lhs.rows[0], rhs.rows[0] ),
-		comp_mulv( lhs.rows[1], rhs.rows[1] )
+		cmulv( lhs.rows[0], rhs.rows[0] ),
+		cmulv( lhs.rows[1], rhs.rows[1] )
 	};
 }
 
-int2x2 comp_divs( const int2x2& lhs, const int32_t scalar )
+int2x2 cdivs( const int2x2& lhs, const int32_t scalar )
 {
 	return int2x2(
 		lhs[0] / scalar,
@@ -3961,39 +3961,39 @@ int2x2 comp_divs( const int2x2& lhs, const int32_t scalar )
 	);
 }
 
-int2x2 comp_divm( const int2x2& lhs, const int2x2& rhs )
+int2x2 cdivm( const int2x2& lhs, const int2x2& rhs )
 {
 	return HLML_CONSTRUCT( int2x2 ) {
-		comp_divv( lhs.rows[0], rhs.rows[0] ),
-		comp_divv( lhs.rows[1], rhs.rows[1] )
+		cdivv( lhs.rows[0], rhs.rows[0] ),
+		cdivv( lhs.rows[1], rhs.rows[1] )
 	};
 }
 
-int2x2 comp_and( const int2x2& lhs, const int2x2& rhs )
+int2x2 cand( const int2x2& lhs, const int2x2& rhs )
 {
 	return HLML_CONSTRUCT( int2x2 ) {
-		comp_and( lhs.rows[0], rhs.rows[0] ),
-		comp_and( lhs.rows[1], rhs.rows[1] )
+		cand( lhs.rows[0], rhs.rows[0] ),
+		cand( lhs.rows[1], rhs.rows[1] )
 	};
 }
 
-int2x2 comp_or( const int2x2& lhs, const int2x2& rhs )
+int2x2 cor( const int2x2& lhs, const int2x2& rhs )
 {
 	return HLML_CONSTRUCT( int2x2 ) {
-		comp_or( lhs.rows[0], rhs.rows[0] ),
-		comp_or( lhs.rows[1], rhs.rows[1] )
+		cor( lhs.rows[0], rhs.rows[0] ),
+		cor( lhs.rows[1], rhs.rows[1] )
 	};
 }
 
-int2x2 comp_xor( const int2x2& lhs, const int2x2& rhs )
+int2x2 cxor( const int2x2& lhs, const int2x2& rhs )
 {
 	return HLML_CONSTRUCT( int2x2 ) {
-		comp_xor( lhs.rows[0], rhs.rows[0] ),
-		comp_xor( lhs.rows[1], rhs.rows[1] )
+		cxor( lhs.rows[0], rhs.rows[0] ),
+		cxor( lhs.rows[1], rhs.rows[1] )
 	};
 }
 
-int2x2 comp_unary( const int2x2& lhs )
+int2x2 cunary( const int2x2& lhs )
 {
 	return HLML_CONSTRUCT( int2x2 ) {
 		~lhs.rows[0].x,
@@ -4005,19 +4005,19 @@ int2x2 comp_unary( const int2x2& lhs )
 	};
 }
 
-int2x2 comp_shift_left( const int2x2& lhs, const int2x2& rhs )
+int2x2 cshift_left( const int2x2& lhs, const int2x2& rhs )
 {
 	return HLML_CONSTRUCT( int2x2 ) {
-		comp_shift_left( lhs.rows[0], rhs.rows[0] ),
-		comp_shift_left( lhs.rows[1], rhs.rows[1] )
+		cshift_left( lhs.rows[0], rhs.rows[0] ),
+		cshift_left( lhs.rows[1], rhs.rows[1] )
 	};
 }
 
-int2x2 comp_shift_right( const int2x2& lhs, const int2x2& rhs )
+int2x2 cshift_right( const int2x2& lhs, const int2x2& rhs )
 {
 	return HLML_CONSTRUCT( int2x2 ) {
-		comp_shift_right( lhs.rows[0], rhs.rows[0] ),
-		comp_shift_right( lhs.rows[1], rhs.rows[1] )
+		cshift_right( lhs.rows[0], rhs.rows[0] ),
+		cshift_right( lhs.rows[1], rhs.rows[1] )
 	};
 }
 
@@ -4108,7 +4108,7 @@ bool cmpne( const int2x3& lhs, const int2x3& rhs )
 	return !( cmpe( lhs, rhs ) );
 }
 
-int2x3 comp_adds( const int2x3& lhs, const int32_t scalar )
+int2x3 cadds( const int2x3& lhs, const int32_t scalar )
 {
 	return int2x3(
 		lhs[0] + scalar,
@@ -4116,15 +4116,15 @@ int2x3 comp_adds( const int2x3& lhs, const int32_t scalar )
 	);
 }
 
-int2x3 comp_addm( const int2x3& lhs, const int2x3& rhs )
+int2x3 caddm( const int2x3& lhs, const int2x3& rhs )
 {
 	return HLML_CONSTRUCT( int2x3 ) {
-		comp_addv( lhs.rows[0], rhs.rows[0] ),
-		comp_addv( lhs.rows[1], rhs.rows[1] )
+		caddv( lhs.rows[0], rhs.rows[0] ),
+		caddv( lhs.rows[1], rhs.rows[1] )
 	};
 }
 
-int2x3 comp_subs( const int2x3& lhs, const int32_t scalar )
+int2x3 csubs( const int2x3& lhs, const int32_t scalar )
 {
 	return int2x3(
 		lhs[0] - scalar,
@@ -4132,15 +4132,15 @@ int2x3 comp_subs( const int2x3& lhs, const int32_t scalar )
 	);
 }
 
-int2x3 comp_subm( const int2x3& lhs, const int2x3& rhs )
+int2x3 csubm( const int2x3& lhs, const int2x3& rhs )
 {
 	return HLML_CONSTRUCT( int2x3 ) {
-		comp_subv( lhs.rows[0], rhs.rows[0] ),
-		comp_subv( lhs.rows[1], rhs.rows[1] )
+		csubv( lhs.rows[0], rhs.rows[0] ),
+		csubv( lhs.rows[1], rhs.rows[1] )
 	};
 }
 
-int2x3 comp_muls( const int2x3& lhs, const int32_t scalar )
+int2x3 cmuls( const int2x3& lhs, const int32_t scalar )
 {
 	return int2x3(
 		lhs[0] * scalar,
@@ -4148,15 +4148,15 @@ int2x3 comp_muls( const int2x3& lhs, const int32_t scalar )
 	);
 }
 
-int2x3 comp_mulm( const int2x3& lhs, const int2x3& rhs )
+int2x3 cmulm( const int2x3& lhs, const int2x3& rhs )
 {
 	return HLML_CONSTRUCT( int2x3 ) {
-		comp_mulv( lhs.rows[0], rhs.rows[0] ),
-		comp_mulv( lhs.rows[1], rhs.rows[1] )
+		cmulv( lhs.rows[0], rhs.rows[0] ),
+		cmulv( lhs.rows[1], rhs.rows[1] )
 	};
 }
 
-int2x3 comp_divs( const int2x3& lhs, const int32_t scalar )
+int2x3 cdivs( const int2x3& lhs, const int32_t scalar )
 {
 	return int2x3(
 		lhs[0] / scalar,
@@ -4164,39 +4164,39 @@ int2x3 comp_divs( const int2x3& lhs, const int32_t scalar )
 	);
 }
 
-int2x3 comp_divm( const int2x3& lhs, const int2x3& rhs )
+int2x3 cdivm( const int2x3& lhs, const int2x3& rhs )
 {
 	return HLML_CONSTRUCT( int2x3 ) {
-		comp_divv( lhs.rows[0], rhs.rows[0] ),
-		comp_divv( lhs.rows[1], rhs.rows[1] )
+		cdivv( lhs.rows[0], rhs.rows[0] ),
+		cdivv( lhs.rows[1], rhs.rows[1] )
 	};
 }
 
-int2x3 comp_and( const int2x3& lhs, const int2x3& rhs )
+int2x3 cand( const int2x3& lhs, const int2x3& rhs )
 {
 	return HLML_CONSTRUCT( int2x3 ) {
-		comp_and( lhs.rows[0], rhs.rows[0] ),
-		comp_and( lhs.rows[1], rhs.rows[1] )
+		cand( lhs.rows[0], rhs.rows[0] ),
+		cand( lhs.rows[1], rhs.rows[1] )
 	};
 }
 
-int2x3 comp_or( const int2x3& lhs, const int2x3& rhs )
+int2x3 cor( const int2x3& lhs, const int2x3& rhs )
 {
 	return HLML_CONSTRUCT( int2x3 ) {
-		comp_or( lhs.rows[0], rhs.rows[0] ),
-		comp_or( lhs.rows[1], rhs.rows[1] )
+		cor( lhs.rows[0], rhs.rows[0] ),
+		cor( lhs.rows[1], rhs.rows[1] )
 	};
 }
 
-int2x3 comp_xor( const int2x3& lhs, const int2x3& rhs )
+int2x3 cxor( const int2x3& lhs, const int2x3& rhs )
 {
 	return HLML_CONSTRUCT( int2x3 ) {
-		comp_xor( lhs.rows[0], rhs.rows[0] ),
-		comp_xor( lhs.rows[1], rhs.rows[1] )
+		cxor( lhs.rows[0], rhs.rows[0] ),
+		cxor( lhs.rows[1], rhs.rows[1] )
 	};
 }
 
-int2x3 comp_unary( const int2x3& lhs )
+int2x3 cunary( const int2x3& lhs )
 {
 	return HLML_CONSTRUCT( int2x3 ) {
 		~lhs.rows[0].x,
@@ -4210,19 +4210,19 @@ int2x3 comp_unary( const int2x3& lhs )
 	};
 }
 
-int2x3 comp_shift_left( const int2x3& lhs, const int2x3& rhs )
+int2x3 cshift_left( const int2x3& lhs, const int2x3& rhs )
 {
 	return HLML_CONSTRUCT( int2x3 ) {
-		comp_shift_left( lhs.rows[0], rhs.rows[0] ),
-		comp_shift_left( lhs.rows[1], rhs.rows[1] )
+		cshift_left( lhs.rows[0], rhs.rows[0] ),
+		cshift_left( lhs.rows[1], rhs.rows[1] )
 	};
 }
 
-int2x3 comp_shift_right( const int2x3& lhs, const int2x3& rhs )
+int2x3 cshift_right( const int2x3& lhs, const int2x3& rhs )
 {
 	return HLML_CONSTRUCT( int2x3 ) {
-		comp_shift_right( lhs.rows[0], rhs.rows[0] ),
-		comp_shift_right( lhs.rows[1], rhs.rows[1] )
+		cshift_right( lhs.rows[0], rhs.rows[0] ),
+		cshift_right( lhs.rows[1], rhs.rows[1] )
 	};
 }
 
@@ -4314,7 +4314,7 @@ bool cmpne( const int2x4& lhs, const int2x4& rhs )
 	return !( cmpe( lhs, rhs ) );
 }
 
-int2x4 comp_adds( const int2x4& lhs, const int32_t scalar )
+int2x4 cadds( const int2x4& lhs, const int32_t scalar )
 {
 	return int2x4(
 		lhs[0] + scalar,
@@ -4322,15 +4322,15 @@ int2x4 comp_adds( const int2x4& lhs, const int32_t scalar )
 	);
 }
 
-int2x4 comp_addm( const int2x4& lhs, const int2x4& rhs )
+int2x4 caddm( const int2x4& lhs, const int2x4& rhs )
 {
 	return HLML_CONSTRUCT( int2x4 ) {
-		comp_addv( lhs.rows[0], rhs.rows[0] ),
-		comp_addv( lhs.rows[1], rhs.rows[1] )
+		caddv( lhs.rows[0], rhs.rows[0] ),
+		caddv( lhs.rows[1], rhs.rows[1] )
 	};
 }
 
-int2x4 comp_subs( const int2x4& lhs, const int32_t scalar )
+int2x4 csubs( const int2x4& lhs, const int32_t scalar )
 {
 	return int2x4(
 		lhs[0] - scalar,
@@ -4338,15 +4338,15 @@ int2x4 comp_subs( const int2x4& lhs, const int32_t scalar )
 	);
 }
 
-int2x4 comp_subm( const int2x4& lhs, const int2x4& rhs )
+int2x4 csubm( const int2x4& lhs, const int2x4& rhs )
 {
 	return HLML_CONSTRUCT( int2x4 ) {
-		comp_subv( lhs.rows[0], rhs.rows[0] ),
-		comp_subv( lhs.rows[1], rhs.rows[1] )
+		csubv( lhs.rows[0], rhs.rows[0] ),
+		csubv( lhs.rows[1], rhs.rows[1] )
 	};
 }
 
-int2x4 comp_muls( const int2x4& lhs, const int32_t scalar )
+int2x4 cmuls( const int2x4& lhs, const int32_t scalar )
 {
 	return int2x4(
 		lhs[0] * scalar,
@@ -4354,15 +4354,15 @@ int2x4 comp_muls( const int2x4& lhs, const int32_t scalar )
 	);
 }
 
-int2x4 comp_mulm( const int2x4& lhs, const int2x4& rhs )
+int2x4 cmulm( const int2x4& lhs, const int2x4& rhs )
 {
 	return HLML_CONSTRUCT( int2x4 ) {
-		comp_mulv( lhs.rows[0], rhs.rows[0] ),
-		comp_mulv( lhs.rows[1], rhs.rows[1] )
+		cmulv( lhs.rows[0], rhs.rows[0] ),
+		cmulv( lhs.rows[1], rhs.rows[1] )
 	};
 }
 
-int2x4 comp_divs( const int2x4& lhs, const int32_t scalar )
+int2x4 cdivs( const int2x4& lhs, const int32_t scalar )
 {
 	return int2x4(
 		lhs[0] / scalar,
@@ -4370,39 +4370,39 @@ int2x4 comp_divs( const int2x4& lhs, const int32_t scalar )
 	);
 }
 
-int2x4 comp_divm( const int2x4& lhs, const int2x4& rhs )
+int2x4 cdivm( const int2x4& lhs, const int2x4& rhs )
 {
 	return HLML_CONSTRUCT( int2x4 ) {
-		comp_divv( lhs.rows[0], rhs.rows[0] ),
-		comp_divv( lhs.rows[1], rhs.rows[1] )
+		cdivv( lhs.rows[0], rhs.rows[0] ),
+		cdivv( lhs.rows[1], rhs.rows[1] )
 	};
 }
 
-int2x4 comp_and( const int2x4& lhs, const int2x4& rhs )
+int2x4 cand( const int2x4& lhs, const int2x4& rhs )
 {
 	return HLML_CONSTRUCT( int2x4 ) {
-		comp_and( lhs.rows[0], rhs.rows[0] ),
-		comp_and( lhs.rows[1], rhs.rows[1] )
+		cand( lhs.rows[0], rhs.rows[0] ),
+		cand( lhs.rows[1], rhs.rows[1] )
 	};
 }
 
-int2x4 comp_or( const int2x4& lhs, const int2x4& rhs )
+int2x4 cor( const int2x4& lhs, const int2x4& rhs )
 {
 	return HLML_CONSTRUCT( int2x4 ) {
-		comp_or( lhs.rows[0], rhs.rows[0] ),
-		comp_or( lhs.rows[1], rhs.rows[1] )
+		cor( lhs.rows[0], rhs.rows[0] ),
+		cor( lhs.rows[1], rhs.rows[1] )
 	};
 }
 
-int2x4 comp_xor( const int2x4& lhs, const int2x4& rhs )
+int2x4 cxor( const int2x4& lhs, const int2x4& rhs )
 {
 	return HLML_CONSTRUCT( int2x4 ) {
-		comp_xor( lhs.rows[0], rhs.rows[0] ),
-		comp_xor( lhs.rows[1], rhs.rows[1] )
+		cxor( lhs.rows[0], rhs.rows[0] ),
+		cxor( lhs.rows[1], rhs.rows[1] )
 	};
 }
 
-int2x4 comp_unary( const int2x4& lhs )
+int2x4 cunary( const int2x4& lhs )
 {
 	return HLML_CONSTRUCT( int2x4 ) {
 		~lhs.rows[0].x,
@@ -4418,19 +4418,19 @@ int2x4 comp_unary( const int2x4& lhs )
 	};
 }
 
-int2x4 comp_shift_left( const int2x4& lhs, const int2x4& rhs )
+int2x4 cshift_left( const int2x4& lhs, const int2x4& rhs )
 {
 	return HLML_CONSTRUCT( int2x4 ) {
-		comp_shift_left( lhs.rows[0], rhs.rows[0] ),
-		comp_shift_left( lhs.rows[1], rhs.rows[1] )
+		cshift_left( lhs.rows[0], rhs.rows[0] ),
+		cshift_left( lhs.rows[1], rhs.rows[1] )
 	};
 }
 
-int2x4 comp_shift_right( const int2x4& lhs, const int2x4& rhs )
+int2x4 cshift_right( const int2x4& lhs, const int2x4& rhs )
 {
 	return HLML_CONSTRUCT( int2x4 ) {
-		comp_shift_right( lhs.rows[0], rhs.rows[0] ),
-		comp_shift_right( lhs.rows[1], rhs.rows[1] )
+		cshift_right( lhs.rows[0], rhs.rows[0] ),
+		cshift_right( lhs.rows[1], rhs.rows[1] )
 	};
 }
 
@@ -4526,7 +4526,7 @@ bool cmpne( const int3x2& lhs, const int3x2& rhs )
 	return !( cmpe( lhs, rhs ) );
 }
 
-int3x2 comp_adds( const int3x2& lhs, const int32_t scalar )
+int3x2 cadds( const int3x2& lhs, const int32_t scalar )
 {
 	return int3x2(
 		lhs[0] + scalar,
@@ -4535,16 +4535,16 @@ int3x2 comp_adds( const int3x2& lhs, const int32_t scalar )
 	);
 }
 
-int3x2 comp_addm( const int3x2& lhs, const int3x2& rhs )
+int3x2 caddm( const int3x2& lhs, const int3x2& rhs )
 {
 	return HLML_CONSTRUCT( int3x2 ) {
-		comp_addv( lhs.rows[0], rhs.rows[0] ),
-		comp_addv( lhs.rows[1], rhs.rows[1] ),
-		comp_addv( lhs.rows[2], rhs.rows[2] )
+		caddv( lhs.rows[0], rhs.rows[0] ),
+		caddv( lhs.rows[1], rhs.rows[1] ),
+		caddv( lhs.rows[2], rhs.rows[2] )
 	};
 }
 
-int3x2 comp_subs( const int3x2& lhs, const int32_t scalar )
+int3x2 csubs( const int3x2& lhs, const int32_t scalar )
 {
 	return int3x2(
 		lhs[0] - scalar,
@@ -4553,16 +4553,16 @@ int3x2 comp_subs( const int3x2& lhs, const int32_t scalar )
 	);
 }
 
-int3x2 comp_subm( const int3x2& lhs, const int3x2& rhs )
+int3x2 csubm( const int3x2& lhs, const int3x2& rhs )
 {
 	return HLML_CONSTRUCT( int3x2 ) {
-		comp_subv( lhs.rows[0], rhs.rows[0] ),
-		comp_subv( lhs.rows[1], rhs.rows[1] ),
-		comp_subv( lhs.rows[2], rhs.rows[2] )
+		csubv( lhs.rows[0], rhs.rows[0] ),
+		csubv( lhs.rows[1], rhs.rows[1] ),
+		csubv( lhs.rows[2], rhs.rows[2] )
 	};
 }
 
-int3x2 comp_muls( const int3x2& lhs, const int32_t scalar )
+int3x2 cmuls( const int3x2& lhs, const int32_t scalar )
 {
 	return int3x2(
 		lhs[0] * scalar,
@@ -4571,16 +4571,16 @@ int3x2 comp_muls( const int3x2& lhs, const int32_t scalar )
 	);
 }
 
-int3x2 comp_mulm( const int3x2& lhs, const int3x2& rhs )
+int3x2 cmulm( const int3x2& lhs, const int3x2& rhs )
 {
 	return HLML_CONSTRUCT( int3x2 ) {
-		comp_mulv( lhs.rows[0], rhs.rows[0] ),
-		comp_mulv( lhs.rows[1], rhs.rows[1] ),
-		comp_mulv( lhs.rows[2], rhs.rows[2] )
+		cmulv( lhs.rows[0], rhs.rows[0] ),
+		cmulv( lhs.rows[1], rhs.rows[1] ),
+		cmulv( lhs.rows[2], rhs.rows[2] )
 	};
 }
 
-int3x2 comp_divs( const int3x2& lhs, const int32_t scalar )
+int3x2 cdivs( const int3x2& lhs, const int32_t scalar )
 {
 	return int3x2(
 		lhs[0] / scalar,
@@ -4589,43 +4589,43 @@ int3x2 comp_divs( const int3x2& lhs, const int32_t scalar )
 	);
 }
 
-int3x2 comp_divm( const int3x2& lhs, const int3x2& rhs )
+int3x2 cdivm( const int3x2& lhs, const int3x2& rhs )
 {
 	return HLML_CONSTRUCT( int3x2 ) {
-		comp_divv( lhs.rows[0], rhs.rows[0] ),
-		comp_divv( lhs.rows[1], rhs.rows[1] ),
-		comp_divv( lhs.rows[2], rhs.rows[2] )
+		cdivv( lhs.rows[0], rhs.rows[0] ),
+		cdivv( lhs.rows[1], rhs.rows[1] ),
+		cdivv( lhs.rows[2], rhs.rows[2] )
 	};
 }
 
-int3x2 comp_and( const int3x2& lhs, const int3x2& rhs )
+int3x2 cand( const int3x2& lhs, const int3x2& rhs )
 {
 	return HLML_CONSTRUCT( int3x2 ) {
-		comp_and( lhs.rows[0], rhs.rows[0] ),
-		comp_and( lhs.rows[1], rhs.rows[1] ),
-		comp_and( lhs.rows[2], rhs.rows[2] )
+		cand( lhs.rows[0], rhs.rows[0] ),
+		cand( lhs.rows[1], rhs.rows[1] ),
+		cand( lhs.rows[2], rhs.rows[2] )
 	};
 }
 
-int3x2 comp_or( const int3x2& lhs, const int3x2& rhs )
+int3x2 cor( const int3x2& lhs, const int3x2& rhs )
 {
 	return HLML_CONSTRUCT( int3x2 ) {
-		comp_or( lhs.rows[0], rhs.rows[0] ),
-		comp_or( lhs.rows[1], rhs.rows[1] ),
-		comp_or( lhs.rows[2], rhs.rows[2] )
+		cor( lhs.rows[0], rhs.rows[0] ),
+		cor( lhs.rows[1], rhs.rows[1] ),
+		cor( lhs.rows[2], rhs.rows[2] )
 	};
 }
 
-int3x2 comp_xor( const int3x2& lhs, const int3x2& rhs )
+int3x2 cxor( const int3x2& lhs, const int3x2& rhs )
 {
 	return HLML_CONSTRUCT( int3x2 ) {
-		comp_xor( lhs.rows[0], rhs.rows[0] ),
-		comp_xor( lhs.rows[1], rhs.rows[1] ),
-		comp_xor( lhs.rows[2], rhs.rows[2] )
+		cxor( lhs.rows[0], rhs.rows[0] ),
+		cxor( lhs.rows[1], rhs.rows[1] ),
+		cxor( lhs.rows[2], rhs.rows[2] )
 	};
 }
 
-int3x2 comp_unary( const int3x2& lhs )
+int3x2 cunary( const int3x2& lhs )
 {
 	return HLML_CONSTRUCT( int3x2 ) {
 		~lhs.rows[0].x,
@@ -4640,21 +4640,21 @@ int3x2 comp_unary( const int3x2& lhs )
 	};
 }
 
-int3x2 comp_shift_left( const int3x2& lhs, const int3x2& rhs )
+int3x2 cshift_left( const int3x2& lhs, const int3x2& rhs )
 {
 	return HLML_CONSTRUCT( int3x2 ) {
-		comp_shift_left( lhs.rows[0], rhs.rows[0] ),
-		comp_shift_left( lhs.rows[1], rhs.rows[1] ),
-		comp_shift_left( lhs.rows[2], rhs.rows[2] )
+		cshift_left( lhs.rows[0], rhs.rows[0] ),
+		cshift_left( lhs.rows[1], rhs.rows[1] ),
+		cshift_left( lhs.rows[2], rhs.rows[2] )
 	};
 }
 
-int3x2 comp_shift_right( const int3x2& lhs, const int3x2& rhs )
+int3x2 cshift_right( const int3x2& lhs, const int3x2& rhs )
 {
 	return HLML_CONSTRUCT( int3x2 ) {
-		comp_shift_right( lhs.rows[0], rhs.rows[0] ),
-		comp_shift_right( lhs.rows[1], rhs.rows[1] ),
-		comp_shift_right( lhs.rows[2], rhs.rows[2] )
+		cshift_right( lhs.rows[0], rhs.rows[0] ),
+		cshift_right( lhs.rows[1], rhs.rows[1] ),
+		cshift_right( lhs.rows[2], rhs.rows[2] )
 	};
 }
 
@@ -4746,7 +4746,7 @@ bool cmpne( const int3x3& lhs, const int3x3& rhs )
 	return !( cmpe( lhs, rhs ) );
 }
 
-int3x3 comp_adds( const int3x3& lhs, const int32_t scalar )
+int3x3 cadds( const int3x3& lhs, const int32_t scalar )
 {
 	return int3x3(
 		lhs[0] + scalar,
@@ -4755,16 +4755,16 @@ int3x3 comp_adds( const int3x3& lhs, const int32_t scalar )
 	);
 }
 
-int3x3 comp_addm( const int3x3& lhs, const int3x3& rhs )
+int3x3 caddm( const int3x3& lhs, const int3x3& rhs )
 {
 	return HLML_CONSTRUCT( int3x3 ) {
-		comp_addv( lhs.rows[0], rhs.rows[0] ),
-		comp_addv( lhs.rows[1], rhs.rows[1] ),
-		comp_addv( lhs.rows[2], rhs.rows[2] )
+		caddv( lhs.rows[0], rhs.rows[0] ),
+		caddv( lhs.rows[1], rhs.rows[1] ),
+		caddv( lhs.rows[2], rhs.rows[2] )
 	};
 }
 
-int3x3 comp_subs( const int3x3& lhs, const int32_t scalar )
+int3x3 csubs( const int3x3& lhs, const int32_t scalar )
 {
 	return int3x3(
 		lhs[0] - scalar,
@@ -4773,16 +4773,16 @@ int3x3 comp_subs( const int3x3& lhs, const int32_t scalar )
 	);
 }
 
-int3x3 comp_subm( const int3x3& lhs, const int3x3& rhs )
+int3x3 csubm( const int3x3& lhs, const int3x3& rhs )
 {
 	return HLML_CONSTRUCT( int3x3 ) {
-		comp_subv( lhs.rows[0], rhs.rows[0] ),
-		comp_subv( lhs.rows[1], rhs.rows[1] ),
-		comp_subv( lhs.rows[2], rhs.rows[2] )
+		csubv( lhs.rows[0], rhs.rows[0] ),
+		csubv( lhs.rows[1], rhs.rows[1] ),
+		csubv( lhs.rows[2], rhs.rows[2] )
 	};
 }
 
-int3x3 comp_muls( const int3x3& lhs, const int32_t scalar )
+int3x3 cmuls( const int3x3& lhs, const int32_t scalar )
 {
 	return int3x3(
 		lhs[0] * scalar,
@@ -4791,16 +4791,16 @@ int3x3 comp_muls( const int3x3& lhs, const int32_t scalar )
 	);
 }
 
-int3x3 comp_mulm( const int3x3& lhs, const int3x3& rhs )
+int3x3 cmulm( const int3x3& lhs, const int3x3& rhs )
 {
 	return HLML_CONSTRUCT( int3x3 ) {
-		comp_mulv( lhs.rows[0], rhs.rows[0] ),
-		comp_mulv( lhs.rows[1], rhs.rows[1] ),
-		comp_mulv( lhs.rows[2], rhs.rows[2] )
+		cmulv( lhs.rows[0], rhs.rows[0] ),
+		cmulv( lhs.rows[1], rhs.rows[1] ),
+		cmulv( lhs.rows[2], rhs.rows[2] )
 	};
 }
 
-int3x3 comp_divs( const int3x3& lhs, const int32_t scalar )
+int3x3 cdivs( const int3x3& lhs, const int32_t scalar )
 {
 	return int3x3(
 		lhs[0] / scalar,
@@ -4809,43 +4809,43 @@ int3x3 comp_divs( const int3x3& lhs, const int32_t scalar )
 	);
 }
 
-int3x3 comp_divm( const int3x3& lhs, const int3x3& rhs )
+int3x3 cdivm( const int3x3& lhs, const int3x3& rhs )
 {
 	return HLML_CONSTRUCT( int3x3 ) {
-		comp_divv( lhs.rows[0], rhs.rows[0] ),
-		comp_divv( lhs.rows[1], rhs.rows[1] ),
-		comp_divv( lhs.rows[2], rhs.rows[2] )
+		cdivv( lhs.rows[0], rhs.rows[0] ),
+		cdivv( lhs.rows[1], rhs.rows[1] ),
+		cdivv( lhs.rows[2], rhs.rows[2] )
 	};
 }
 
-int3x3 comp_and( const int3x3& lhs, const int3x3& rhs )
+int3x3 cand( const int3x3& lhs, const int3x3& rhs )
 {
 	return HLML_CONSTRUCT( int3x3 ) {
-		comp_and( lhs.rows[0], rhs.rows[0] ),
-		comp_and( lhs.rows[1], rhs.rows[1] ),
-		comp_and( lhs.rows[2], rhs.rows[2] )
+		cand( lhs.rows[0], rhs.rows[0] ),
+		cand( lhs.rows[1], rhs.rows[1] ),
+		cand( lhs.rows[2], rhs.rows[2] )
 	};
 }
 
-int3x3 comp_or( const int3x3& lhs, const int3x3& rhs )
+int3x3 cor( const int3x3& lhs, const int3x3& rhs )
 {
 	return HLML_CONSTRUCT( int3x3 ) {
-		comp_or( lhs.rows[0], rhs.rows[0] ),
-		comp_or( lhs.rows[1], rhs.rows[1] ),
-		comp_or( lhs.rows[2], rhs.rows[2] )
+		cor( lhs.rows[0], rhs.rows[0] ),
+		cor( lhs.rows[1], rhs.rows[1] ),
+		cor( lhs.rows[2], rhs.rows[2] )
 	};
 }
 
-int3x3 comp_xor( const int3x3& lhs, const int3x3& rhs )
+int3x3 cxor( const int3x3& lhs, const int3x3& rhs )
 {
 	return HLML_CONSTRUCT( int3x3 ) {
-		comp_xor( lhs.rows[0], rhs.rows[0] ),
-		comp_xor( lhs.rows[1], rhs.rows[1] ),
-		comp_xor( lhs.rows[2], rhs.rows[2] )
+		cxor( lhs.rows[0], rhs.rows[0] ),
+		cxor( lhs.rows[1], rhs.rows[1] ),
+		cxor( lhs.rows[2], rhs.rows[2] )
 	};
 }
 
-int3x3 comp_unary( const int3x3& lhs )
+int3x3 cunary( const int3x3& lhs )
 {
 	return HLML_CONSTRUCT( int3x3 ) {
 		~lhs.rows[0].x,
@@ -4863,21 +4863,21 @@ int3x3 comp_unary( const int3x3& lhs )
 	};
 }
 
-int3x3 comp_shift_left( const int3x3& lhs, const int3x3& rhs )
+int3x3 cshift_left( const int3x3& lhs, const int3x3& rhs )
 {
 	return HLML_CONSTRUCT( int3x3 ) {
-		comp_shift_left( lhs.rows[0], rhs.rows[0] ),
-		comp_shift_left( lhs.rows[1], rhs.rows[1] ),
-		comp_shift_left( lhs.rows[2], rhs.rows[2] )
+		cshift_left( lhs.rows[0], rhs.rows[0] ),
+		cshift_left( lhs.rows[1], rhs.rows[1] ),
+		cshift_left( lhs.rows[2], rhs.rows[2] )
 	};
 }
 
-int3x3 comp_shift_right( const int3x3& lhs, const int3x3& rhs )
+int3x3 cshift_right( const int3x3& lhs, const int3x3& rhs )
 {
 	return HLML_CONSTRUCT( int3x3 ) {
-		comp_shift_right( lhs.rows[0], rhs.rows[0] ),
-		comp_shift_right( lhs.rows[1], rhs.rows[1] ),
-		comp_shift_right( lhs.rows[2], rhs.rows[2] )
+		cshift_right( lhs.rows[0], rhs.rows[0] ),
+		cshift_right( lhs.rows[1], rhs.rows[1] ),
+		cshift_right( lhs.rows[2], rhs.rows[2] )
 	};
 }
 
@@ -5013,7 +5013,7 @@ bool cmpne( const int3x4& lhs, const int3x4& rhs )
 	return !( cmpe( lhs, rhs ) );
 }
 
-int3x4 comp_adds( const int3x4& lhs, const int32_t scalar )
+int3x4 cadds( const int3x4& lhs, const int32_t scalar )
 {
 	return int3x4(
 		lhs[0] + scalar,
@@ -5022,16 +5022,16 @@ int3x4 comp_adds( const int3x4& lhs, const int32_t scalar )
 	);
 }
 
-int3x4 comp_addm( const int3x4& lhs, const int3x4& rhs )
+int3x4 caddm( const int3x4& lhs, const int3x4& rhs )
 {
 	return HLML_CONSTRUCT( int3x4 ) {
-		comp_addv( lhs.rows[0], rhs.rows[0] ),
-		comp_addv( lhs.rows[1], rhs.rows[1] ),
-		comp_addv( lhs.rows[2], rhs.rows[2] )
+		caddv( lhs.rows[0], rhs.rows[0] ),
+		caddv( lhs.rows[1], rhs.rows[1] ),
+		caddv( lhs.rows[2], rhs.rows[2] )
 	};
 }
 
-int3x4 comp_subs( const int3x4& lhs, const int32_t scalar )
+int3x4 csubs( const int3x4& lhs, const int32_t scalar )
 {
 	return int3x4(
 		lhs[0] - scalar,
@@ -5040,16 +5040,16 @@ int3x4 comp_subs( const int3x4& lhs, const int32_t scalar )
 	);
 }
 
-int3x4 comp_subm( const int3x4& lhs, const int3x4& rhs )
+int3x4 csubm( const int3x4& lhs, const int3x4& rhs )
 {
 	return HLML_CONSTRUCT( int3x4 ) {
-		comp_subv( lhs.rows[0], rhs.rows[0] ),
-		comp_subv( lhs.rows[1], rhs.rows[1] ),
-		comp_subv( lhs.rows[2], rhs.rows[2] )
+		csubv( lhs.rows[0], rhs.rows[0] ),
+		csubv( lhs.rows[1], rhs.rows[1] ),
+		csubv( lhs.rows[2], rhs.rows[2] )
 	};
 }
 
-int3x4 comp_muls( const int3x4& lhs, const int32_t scalar )
+int3x4 cmuls( const int3x4& lhs, const int32_t scalar )
 {
 	return int3x4(
 		lhs[0] * scalar,
@@ -5058,16 +5058,16 @@ int3x4 comp_muls( const int3x4& lhs, const int32_t scalar )
 	);
 }
 
-int3x4 comp_mulm( const int3x4& lhs, const int3x4& rhs )
+int3x4 cmulm( const int3x4& lhs, const int3x4& rhs )
 {
 	return HLML_CONSTRUCT( int3x4 ) {
-		comp_mulv( lhs.rows[0], rhs.rows[0] ),
-		comp_mulv( lhs.rows[1], rhs.rows[1] ),
-		comp_mulv( lhs.rows[2], rhs.rows[2] )
+		cmulv( lhs.rows[0], rhs.rows[0] ),
+		cmulv( lhs.rows[1], rhs.rows[1] ),
+		cmulv( lhs.rows[2], rhs.rows[2] )
 	};
 }
 
-int3x4 comp_divs( const int3x4& lhs, const int32_t scalar )
+int3x4 cdivs( const int3x4& lhs, const int32_t scalar )
 {
 	return int3x4(
 		lhs[0] / scalar,
@@ -5076,43 +5076,43 @@ int3x4 comp_divs( const int3x4& lhs, const int32_t scalar )
 	);
 }
 
-int3x4 comp_divm( const int3x4& lhs, const int3x4& rhs )
+int3x4 cdivm( const int3x4& lhs, const int3x4& rhs )
 {
 	return HLML_CONSTRUCT( int3x4 ) {
-		comp_divv( lhs.rows[0], rhs.rows[0] ),
-		comp_divv( lhs.rows[1], rhs.rows[1] ),
-		comp_divv( lhs.rows[2], rhs.rows[2] )
+		cdivv( lhs.rows[0], rhs.rows[0] ),
+		cdivv( lhs.rows[1], rhs.rows[1] ),
+		cdivv( lhs.rows[2], rhs.rows[2] )
 	};
 }
 
-int3x4 comp_and( const int3x4& lhs, const int3x4& rhs )
+int3x4 cand( const int3x4& lhs, const int3x4& rhs )
 {
 	return HLML_CONSTRUCT( int3x4 ) {
-		comp_and( lhs.rows[0], rhs.rows[0] ),
-		comp_and( lhs.rows[1], rhs.rows[1] ),
-		comp_and( lhs.rows[2], rhs.rows[2] )
+		cand( lhs.rows[0], rhs.rows[0] ),
+		cand( lhs.rows[1], rhs.rows[1] ),
+		cand( lhs.rows[2], rhs.rows[2] )
 	};
 }
 
-int3x4 comp_or( const int3x4& lhs, const int3x4& rhs )
+int3x4 cor( const int3x4& lhs, const int3x4& rhs )
 {
 	return HLML_CONSTRUCT( int3x4 ) {
-		comp_or( lhs.rows[0], rhs.rows[0] ),
-		comp_or( lhs.rows[1], rhs.rows[1] ),
-		comp_or( lhs.rows[2], rhs.rows[2] )
+		cor( lhs.rows[0], rhs.rows[0] ),
+		cor( lhs.rows[1], rhs.rows[1] ),
+		cor( lhs.rows[2], rhs.rows[2] )
 	};
 }
 
-int3x4 comp_xor( const int3x4& lhs, const int3x4& rhs )
+int3x4 cxor( const int3x4& lhs, const int3x4& rhs )
 {
 	return HLML_CONSTRUCT( int3x4 ) {
-		comp_xor( lhs.rows[0], rhs.rows[0] ),
-		comp_xor( lhs.rows[1], rhs.rows[1] ),
-		comp_xor( lhs.rows[2], rhs.rows[2] )
+		cxor( lhs.rows[0], rhs.rows[0] ),
+		cxor( lhs.rows[1], rhs.rows[1] ),
+		cxor( lhs.rows[2], rhs.rows[2] )
 	};
 }
 
-int3x4 comp_unary( const int3x4& lhs )
+int3x4 cunary( const int3x4& lhs )
 {
 	return HLML_CONSTRUCT( int3x4 ) {
 		~lhs.rows[0].x,
@@ -5133,21 +5133,21 @@ int3x4 comp_unary( const int3x4& lhs )
 	};
 }
 
-int3x4 comp_shift_left( const int3x4& lhs, const int3x4& rhs )
+int3x4 cshift_left( const int3x4& lhs, const int3x4& rhs )
 {
 	return HLML_CONSTRUCT( int3x4 ) {
-		comp_shift_left( lhs.rows[0], rhs.rows[0] ),
-		comp_shift_left( lhs.rows[1], rhs.rows[1] ),
-		comp_shift_left( lhs.rows[2], rhs.rows[2] )
+		cshift_left( lhs.rows[0], rhs.rows[0] ),
+		cshift_left( lhs.rows[1], rhs.rows[1] ),
+		cshift_left( lhs.rows[2], rhs.rows[2] )
 	};
 }
 
-int3x4 comp_shift_right( const int3x4& lhs, const int3x4& rhs )
+int3x4 cshift_right( const int3x4& lhs, const int3x4& rhs )
 {
 	return HLML_CONSTRUCT( int3x4 ) {
-		comp_shift_right( lhs.rows[0], rhs.rows[0] ),
-		comp_shift_right( lhs.rows[1], rhs.rows[1] ),
-		comp_shift_right( lhs.rows[2], rhs.rows[2] )
+		cshift_right( lhs.rows[0], rhs.rows[0] ),
+		cshift_right( lhs.rows[1], rhs.rows[1] ),
+		cshift_right( lhs.rows[2], rhs.rows[2] )
 	};
 }
 
@@ -5271,7 +5271,7 @@ bool cmpne( const int4x2& lhs, const int4x2& rhs )
 	return !( cmpe( lhs, rhs ) );
 }
 
-int4x2 comp_adds( const int4x2& lhs, const int32_t scalar )
+int4x2 cadds( const int4x2& lhs, const int32_t scalar )
 {
 	return int4x2(
 		lhs[0] + scalar,
@@ -5281,17 +5281,17 @@ int4x2 comp_adds( const int4x2& lhs, const int32_t scalar )
 	);
 }
 
-int4x2 comp_addm( const int4x2& lhs, const int4x2& rhs )
+int4x2 caddm( const int4x2& lhs, const int4x2& rhs )
 {
 	return HLML_CONSTRUCT( int4x2 ) {
-		comp_addv( lhs.rows[0], rhs.rows[0] ),
-		comp_addv( lhs.rows[1], rhs.rows[1] ),
-		comp_addv( lhs.rows[2], rhs.rows[2] ),
-		comp_addv( lhs.rows[3], rhs.rows[3] )
+		caddv( lhs.rows[0], rhs.rows[0] ),
+		caddv( lhs.rows[1], rhs.rows[1] ),
+		caddv( lhs.rows[2], rhs.rows[2] ),
+		caddv( lhs.rows[3], rhs.rows[3] )
 	};
 }
 
-int4x2 comp_subs( const int4x2& lhs, const int32_t scalar )
+int4x2 csubs( const int4x2& lhs, const int32_t scalar )
 {
 	return int4x2(
 		lhs[0] - scalar,
@@ -5301,17 +5301,17 @@ int4x2 comp_subs( const int4x2& lhs, const int32_t scalar )
 	);
 }
 
-int4x2 comp_subm( const int4x2& lhs, const int4x2& rhs )
+int4x2 csubm( const int4x2& lhs, const int4x2& rhs )
 {
 	return HLML_CONSTRUCT( int4x2 ) {
-		comp_subv( lhs.rows[0], rhs.rows[0] ),
-		comp_subv( lhs.rows[1], rhs.rows[1] ),
-		comp_subv( lhs.rows[2], rhs.rows[2] ),
-		comp_subv( lhs.rows[3], rhs.rows[3] )
+		csubv( lhs.rows[0], rhs.rows[0] ),
+		csubv( lhs.rows[1], rhs.rows[1] ),
+		csubv( lhs.rows[2], rhs.rows[2] ),
+		csubv( lhs.rows[3], rhs.rows[3] )
 	};
 }
 
-int4x2 comp_muls( const int4x2& lhs, const int32_t scalar )
+int4x2 cmuls( const int4x2& lhs, const int32_t scalar )
 {
 	return int4x2(
 		lhs[0] * scalar,
@@ -5321,17 +5321,17 @@ int4x2 comp_muls( const int4x2& lhs, const int32_t scalar )
 	);
 }
 
-int4x2 comp_mulm( const int4x2& lhs, const int4x2& rhs )
+int4x2 cmulm( const int4x2& lhs, const int4x2& rhs )
 {
 	return HLML_CONSTRUCT( int4x2 ) {
-		comp_mulv( lhs.rows[0], rhs.rows[0] ),
-		comp_mulv( lhs.rows[1], rhs.rows[1] ),
-		comp_mulv( lhs.rows[2], rhs.rows[2] ),
-		comp_mulv( lhs.rows[3], rhs.rows[3] )
+		cmulv( lhs.rows[0], rhs.rows[0] ),
+		cmulv( lhs.rows[1], rhs.rows[1] ),
+		cmulv( lhs.rows[2], rhs.rows[2] ),
+		cmulv( lhs.rows[3], rhs.rows[3] )
 	};
 }
 
-int4x2 comp_divs( const int4x2& lhs, const int32_t scalar )
+int4x2 cdivs( const int4x2& lhs, const int32_t scalar )
 {
 	return int4x2(
 		lhs[0] / scalar,
@@ -5341,47 +5341,47 @@ int4x2 comp_divs( const int4x2& lhs, const int32_t scalar )
 	);
 }
 
-int4x2 comp_divm( const int4x2& lhs, const int4x2& rhs )
+int4x2 cdivm( const int4x2& lhs, const int4x2& rhs )
 {
 	return HLML_CONSTRUCT( int4x2 ) {
-		comp_divv( lhs.rows[0], rhs.rows[0] ),
-		comp_divv( lhs.rows[1], rhs.rows[1] ),
-		comp_divv( lhs.rows[2], rhs.rows[2] ),
-		comp_divv( lhs.rows[3], rhs.rows[3] )
+		cdivv( lhs.rows[0], rhs.rows[0] ),
+		cdivv( lhs.rows[1], rhs.rows[1] ),
+		cdivv( lhs.rows[2], rhs.rows[2] ),
+		cdivv( lhs.rows[3], rhs.rows[3] )
 	};
 }
 
-int4x2 comp_and( const int4x2& lhs, const int4x2& rhs )
+int4x2 cand( const int4x2& lhs, const int4x2& rhs )
 {
 	return HLML_CONSTRUCT( int4x2 ) {
-		comp_and( lhs.rows[0], rhs.rows[0] ),
-		comp_and( lhs.rows[1], rhs.rows[1] ),
-		comp_and( lhs.rows[2], rhs.rows[2] ),
-		comp_and( lhs.rows[3], rhs.rows[3] )
+		cand( lhs.rows[0], rhs.rows[0] ),
+		cand( lhs.rows[1], rhs.rows[1] ),
+		cand( lhs.rows[2], rhs.rows[2] ),
+		cand( lhs.rows[3], rhs.rows[3] )
 	};
 }
 
-int4x2 comp_or( const int4x2& lhs, const int4x2& rhs )
+int4x2 cor( const int4x2& lhs, const int4x2& rhs )
 {
 	return HLML_CONSTRUCT( int4x2 ) {
-		comp_or( lhs.rows[0], rhs.rows[0] ),
-		comp_or( lhs.rows[1], rhs.rows[1] ),
-		comp_or( lhs.rows[2], rhs.rows[2] ),
-		comp_or( lhs.rows[3], rhs.rows[3] )
+		cor( lhs.rows[0], rhs.rows[0] ),
+		cor( lhs.rows[1], rhs.rows[1] ),
+		cor( lhs.rows[2], rhs.rows[2] ),
+		cor( lhs.rows[3], rhs.rows[3] )
 	};
 }
 
-int4x2 comp_xor( const int4x2& lhs, const int4x2& rhs )
+int4x2 cxor( const int4x2& lhs, const int4x2& rhs )
 {
 	return HLML_CONSTRUCT( int4x2 ) {
-		comp_xor( lhs.rows[0], rhs.rows[0] ),
-		comp_xor( lhs.rows[1], rhs.rows[1] ),
-		comp_xor( lhs.rows[2], rhs.rows[2] ),
-		comp_xor( lhs.rows[3], rhs.rows[3] )
+		cxor( lhs.rows[0], rhs.rows[0] ),
+		cxor( lhs.rows[1], rhs.rows[1] ),
+		cxor( lhs.rows[2], rhs.rows[2] ),
+		cxor( lhs.rows[3], rhs.rows[3] )
 	};
 }
 
-int4x2 comp_unary( const int4x2& lhs )
+int4x2 cunary( const int4x2& lhs )
 {
 	return HLML_CONSTRUCT( int4x2 ) {
 		~lhs.rows[0].x,
@@ -5399,23 +5399,23 @@ int4x2 comp_unary( const int4x2& lhs )
 	};
 }
 
-int4x2 comp_shift_left( const int4x2& lhs, const int4x2& rhs )
+int4x2 cshift_left( const int4x2& lhs, const int4x2& rhs )
 {
 	return HLML_CONSTRUCT( int4x2 ) {
-		comp_shift_left( lhs.rows[0], rhs.rows[0] ),
-		comp_shift_left( lhs.rows[1], rhs.rows[1] ),
-		comp_shift_left( lhs.rows[2], rhs.rows[2] ),
-		comp_shift_left( lhs.rows[3], rhs.rows[3] )
+		cshift_left( lhs.rows[0], rhs.rows[0] ),
+		cshift_left( lhs.rows[1], rhs.rows[1] ),
+		cshift_left( lhs.rows[2], rhs.rows[2] ),
+		cshift_left( lhs.rows[3], rhs.rows[3] )
 	};
 }
 
-int4x2 comp_shift_right( const int4x2& lhs, const int4x2& rhs )
+int4x2 cshift_right( const int4x2& lhs, const int4x2& rhs )
 {
 	return HLML_CONSTRUCT( int4x2 ) {
-		comp_shift_right( lhs.rows[0], rhs.rows[0] ),
-		comp_shift_right( lhs.rows[1], rhs.rows[1] ),
-		comp_shift_right( lhs.rows[2], rhs.rows[2] ),
-		comp_shift_right( lhs.rows[3], rhs.rows[3] )
+		cshift_right( lhs.rows[0], rhs.rows[0] ),
+		cshift_right( lhs.rows[1], rhs.rows[1] ),
+		cshift_right( lhs.rows[2], rhs.rows[2] ),
+		cshift_right( lhs.rows[3], rhs.rows[3] )
 	};
 }
 
@@ -5523,7 +5523,7 @@ bool cmpne( const int4x3& lhs, const int4x3& rhs )
 	return !( cmpe( lhs, rhs ) );
 }
 
-int4x3 comp_adds( const int4x3& lhs, const int32_t scalar )
+int4x3 cadds( const int4x3& lhs, const int32_t scalar )
 {
 	return int4x3(
 		lhs[0] + scalar,
@@ -5533,17 +5533,17 @@ int4x3 comp_adds( const int4x3& lhs, const int32_t scalar )
 	);
 }
 
-int4x3 comp_addm( const int4x3& lhs, const int4x3& rhs )
+int4x3 caddm( const int4x3& lhs, const int4x3& rhs )
 {
 	return HLML_CONSTRUCT( int4x3 ) {
-		comp_addv( lhs.rows[0], rhs.rows[0] ),
-		comp_addv( lhs.rows[1], rhs.rows[1] ),
-		comp_addv( lhs.rows[2], rhs.rows[2] ),
-		comp_addv( lhs.rows[3], rhs.rows[3] )
+		caddv( lhs.rows[0], rhs.rows[0] ),
+		caddv( lhs.rows[1], rhs.rows[1] ),
+		caddv( lhs.rows[2], rhs.rows[2] ),
+		caddv( lhs.rows[3], rhs.rows[3] )
 	};
 }
 
-int4x3 comp_subs( const int4x3& lhs, const int32_t scalar )
+int4x3 csubs( const int4x3& lhs, const int32_t scalar )
 {
 	return int4x3(
 		lhs[0] - scalar,
@@ -5553,17 +5553,17 @@ int4x3 comp_subs( const int4x3& lhs, const int32_t scalar )
 	);
 }
 
-int4x3 comp_subm( const int4x3& lhs, const int4x3& rhs )
+int4x3 csubm( const int4x3& lhs, const int4x3& rhs )
 {
 	return HLML_CONSTRUCT( int4x3 ) {
-		comp_subv( lhs.rows[0], rhs.rows[0] ),
-		comp_subv( lhs.rows[1], rhs.rows[1] ),
-		comp_subv( lhs.rows[2], rhs.rows[2] ),
-		comp_subv( lhs.rows[3], rhs.rows[3] )
+		csubv( lhs.rows[0], rhs.rows[0] ),
+		csubv( lhs.rows[1], rhs.rows[1] ),
+		csubv( lhs.rows[2], rhs.rows[2] ),
+		csubv( lhs.rows[3], rhs.rows[3] )
 	};
 }
 
-int4x3 comp_muls( const int4x3& lhs, const int32_t scalar )
+int4x3 cmuls( const int4x3& lhs, const int32_t scalar )
 {
 	return int4x3(
 		lhs[0] * scalar,
@@ -5573,17 +5573,17 @@ int4x3 comp_muls( const int4x3& lhs, const int32_t scalar )
 	);
 }
 
-int4x3 comp_mulm( const int4x3& lhs, const int4x3& rhs )
+int4x3 cmulm( const int4x3& lhs, const int4x3& rhs )
 {
 	return HLML_CONSTRUCT( int4x3 ) {
-		comp_mulv( lhs.rows[0], rhs.rows[0] ),
-		comp_mulv( lhs.rows[1], rhs.rows[1] ),
-		comp_mulv( lhs.rows[2], rhs.rows[2] ),
-		comp_mulv( lhs.rows[3], rhs.rows[3] )
+		cmulv( lhs.rows[0], rhs.rows[0] ),
+		cmulv( lhs.rows[1], rhs.rows[1] ),
+		cmulv( lhs.rows[2], rhs.rows[2] ),
+		cmulv( lhs.rows[3], rhs.rows[3] )
 	};
 }
 
-int4x3 comp_divs( const int4x3& lhs, const int32_t scalar )
+int4x3 cdivs( const int4x3& lhs, const int32_t scalar )
 {
 	return int4x3(
 		lhs[0] / scalar,
@@ -5593,47 +5593,47 @@ int4x3 comp_divs( const int4x3& lhs, const int32_t scalar )
 	);
 }
 
-int4x3 comp_divm( const int4x3& lhs, const int4x3& rhs )
+int4x3 cdivm( const int4x3& lhs, const int4x3& rhs )
 {
 	return HLML_CONSTRUCT( int4x3 ) {
-		comp_divv( lhs.rows[0], rhs.rows[0] ),
-		comp_divv( lhs.rows[1], rhs.rows[1] ),
-		comp_divv( lhs.rows[2], rhs.rows[2] ),
-		comp_divv( lhs.rows[3], rhs.rows[3] )
+		cdivv( lhs.rows[0], rhs.rows[0] ),
+		cdivv( lhs.rows[1], rhs.rows[1] ),
+		cdivv( lhs.rows[2], rhs.rows[2] ),
+		cdivv( lhs.rows[3], rhs.rows[3] )
 	};
 }
 
-int4x3 comp_and( const int4x3& lhs, const int4x3& rhs )
+int4x3 cand( const int4x3& lhs, const int4x3& rhs )
 {
 	return HLML_CONSTRUCT( int4x3 ) {
-		comp_and( lhs.rows[0], rhs.rows[0] ),
-		comp_and( lhs.rows[1], rhs.rows[1] ),
-		comp_and( lhs.rows[2], rhs.rows[2] ),
-		comp_and( lhs.rows[3], rhs.rows[3] )
+		cand( lhs.rows[0], rhs.rows[0] ),
+		cand( lhs.rows[1], rhs.rows[1] ),
+		cand( lhs.rows[2], rhs.rows[2] ),
+		cand( lhs.rows[3], rhs.rows[3] )
 	};
 }
 
-int4x3 comp_or( const int4x3& lhs, const int4x3& rhs )
+int4x3 cor( const int4x3& lhs, const int4x3& rhs )
 {
 	return HLML_CONSTRUCT( int4x3 ) {
-		comp_or( lhs.rows[0], rhs.rows[0] ),
-		comp_or( lhs.rows[1], rhs.rows[1] ),
-		comp_or( lhs.rows[2], rhs.rows[2] ),
-		comp_or( lhs.rows[3], rhs.rows[3] )
+		cor( lhs.rows[0], rhs.rows[0] ),
+		cor( lhs.rows[1], rhs.rows[1] ),
+		cor( lhs.rows[2], rhs.rows[2] ),
+		cor( lhs.rows[3], rhs.rows[3] )
 	};
 }
 
-int4x3 comp_xor( const int4x3& lhs, const int4x3& rhs )
+int4x3 cxor( const int4x3& lhs, const int4x3& rhs )
 {
 	return HLML_CONSTRUCT( int4x3 ) {
-		comp_xor( lhs.rows[0], rhs.rows[0] ),
-		comp_xor( lhs.rows[1], rhs.rows[1] ),
-		comp_xor( lhs.rows[2], rhs.rows[2] ),
-		comp_xor( lhs.rows[3], rhs.rows[3] )
+		cxor( lhs.rows[0], rhs.rows[0] ),
+		cxor( lhs.rows[1], rhs.rows[1] ),
+		cxor( lhs.rows[2], rhs.rows[2] ),
+		cxor( lhs.rows[3], rhs.rows[3] )
 	};
 }
 
-int4x3 comp_unary( const int4x3& lhs )
+int4x3 cunary( const int4x3& lhs )
 {
 	return HLML_CONSTRUCT( int4x3 ) {
 		~lhs.rows[0].x,
@@ -5655,23 +5655,23 @@ int4x3 comp_unary( const int4x3& lhs )
 	};
 }
 
-int4x3 comp_shift_left( const int4x3& lhs, const int4x3& rhs )
+int4x3 cshift_left( const int4x3& lhs, const int4x3& rhs )
 {
 	return HLML_CONSTRUCT( int4x3 ) {
-		comp_shift_left( lhs.rows[0], rhs.rows[0] ),
-		comp_shift_left( lhs.rows[1], rhs.rows[1] ),
-		comp_shift_left( lhs.rows[2], rhs.rows[2] ),
-		comp_shift_left( lhs.rows[3], rhs.rows[3] )
+		cshift_left( lhs.rows[0], rhs.rows[0] ),
+		cshift_left( lhs.rows[1], rhs.rows[1] ),
+		cshift_left( lhs.rows[2], rhs.rows[2] ),
+		cshift_left( lhs.rows[3], rhs.rows[3] )
 	};
 }
 
-int4x3 comp_shift_right( const int4x3& lhs, const int4x3& rhs )
+int4x3 cshift_right( const int4x3& lhs, const int4x3& rhs )
 {
 	return HLML_CONSTRUCT( int4x3 ) {
-		comp_shift_right( lhs.rows[0], rhs.rows[0] ),
-		comp_shift_right( lhs.rows[1], rhs.rows[1] ),
-		comp_shift_right( lhs.rows[2], rhs.rows[2] ),
-		comp_shift_right( lhs.rows[3], rhs.rows[3] )
+		cshift_right( lhs.rows[0], rhs.rows[0] ),
+		cshift_right( lhs.rows[1], rhs.rows[1] ),
+		cshift_right( lhs.rows[2], rhs.rows[2] ),
+		cshift_right( lhs.rows[3], rhs.rows[3] )
 	};
 }
 
@@ -5801,7 +5801,7 @@ bool cmpne( const int4x4& lhs, const int4x4& rhs )
 	return !( cmpe( lhs, rhs ) );
 }
 
-int4x4 comp_adds( const int4x4& lhs, const int32_t scalar )
+int4x4 cadds( const int4x4& lhs, const int32_t scalar )
 {
 	return int4x4(
 		lhs[0] + scalar,
@@ -5811,17 +5811,17 @@ int4x4 comp_adds( const int4x4& lhs, const int32_t scalar )
 	);
 }
 
-int4x4 comp_addm( const int4x4& lhs, const int4x4& rhs )
+int4x4 caddm( const int4x4& lhs, const int4x4& rhs )
 {
 	return HLML_CONSTRUCT( int4x4 ) {
-		comp_addv( lhs.rows[0], rhs.rows[0] ),
-		comp_addv( lhs.rows[1], rhs.rows[1] ),
-		comp_addv( lhs.rows[2], rhs.rows[2] ),
-		comp_addv( lhs.rows[3], rhs.rows[3] )
+		caddv( lhs.rows[0], rhs.rows[0] ),
+		caddv( lhs.rows[1], rhs.rows[1] ),
+		caddv( lhs.rows[2], rhs.rows[2] ),
+		caddv( lhs.rows[3], rhs.rows[3] )
 	};
 }
 
-int4x4 comp_subs( const int4x4& lhs, const int32_t scalar )
+int4x4 csubs( const int4x4& lhs, const int32_t scalar )
 {
 	return int4x4(
 		lhs[0] - scalar,
@@ -5831,17 +5831,17 @@ int4x4 comp_subs( const int4x4& lhs, const int32_t scalar )
 	);
 }
 
-int4x4 comp_subm( const int4x4& lhs, const int4x4& rhs )
+int4x4 csubm( const int4x4& lhs, const int4x4& rhs )
 {
 	return HLML_CONSTRUCT( int4x4 ) {
-		comp_subv( lhs.rows[0], rhs.rows[0] ),
-		comp_subv( lhs.rows[1], rhs.rows[1] ),
-		comp_subv( lhs.rows[2], rhs.rows[2] ),
-		comp_subv( lhs.rows[3], rhs.rows[3] )
+		csubv( lhs.rows[0], rhs.rows[0] ),
+		csubv( lhs.rows[1], rhs.rows[1] ),
+		csubv( lhs.rows[2], rhs.rows[2] ),
+		csubv( lhs.rows[3], rhs.rows[3] )
 	};
 }
 
-int4x4 comp_muls( const int4x4& lhs, const int32_t scalar )
+int4x4 cmuls( const int4x4& lhs, const int32_t scalar )
 {
 	return int4x4(
 		lhs[0] * scalar,
@@ -5851,17 +5851,17 @@ int4x4 comp_muls( const int4x4& lhs, const int32_t scalar )
 	);
 }
 
-int4x4 comp_mulm( const int4x4& lhs, const int4x4& rhs )
+int4x4 cmulm( const int4x4& lhs, const int4x4& rhs )
 {
 	return HLML_CONSTRUCT( int4x4 ) {
-		comp_mulv( lhs.rows[0], rhs.rows[0] ),
-		comp_mulv( lhs.rows[1], rhs.rows[1] ),
-		comp_mulv( lhs.rows[2], rhs.rows[2] ),
-		comp_mulv( lhs.rows[3], rhs.rows[3] )
+		cmulv( lhs.rows[0], rhs.rows[0] ),
+		cmulv( lhs.rows[1], rhs.rows[1] ),
+		cmulv( lhs.rows[2], rhs.rows[2] ),
+		cmulv( lhs.rows[3], rhs.rows[3] )
 	};
 }
 
-int4x4 comp_divs( const int4x4& lhs, const int32_t scalar )
+int4x4 cdivs( const int4x4& lhs, const int32_t scalar )
 {
 	return int4x4(
 		lhs[0] / scalar,
@@ -5871,47 +5871,47 @@ int4x4 comp_divs( const int4x4& lhs, const int32_t scalar )
 	);
 }
 
-int4x4 comp_divm( const int4x4& lhs, const int4x4& rhs )
+int4x4 cdivm( const int4x4& lhs, const int4x4& rhs )
 {
 	return HLML_CONSTRUCT( int4x4 ) {
-		comp_divv( lhs.rows[0], rhs.rows[0] ),
-		comp_divv( lhs.rows[1], rhs.rows[1] ),
-		comp_divv( lhs.rows[2], rhs.rows[2] ),
-		comp_divv( lhs.rows[3], rhs.rows[3] )
+		cdivv( lhs.rows[0], rhs.rows[0] ),
+		cdivv( lhs.rows[1], rhs.rows[1] ),
+		cdivv( lhs.rows[2], rhs.rows[2] ),
+		cdivv( lhs.rows[3], rhs.rows[3] )
 	};
 }
 
-int4x4 comp_and( const int4x4& lhs, const int4x4& rhs )
+int4x4 cand( const int4x4& lhs, const int4x4& rhs )
 {
 	return HLML_CONSTRUCT( int4x4 ) {
-		comp_and( lhs.rows[0], rhs.rows[0] ),
-		comp_and( lhs.rows[1], rhs.rows[1] ),
-		comp_and( lhs.rows[2], rhs.rows[2] ),
-		comp_and( lhs.rows[3], rhs.rows[3] )
+		cand( lhs.rows[0], rhs.rows[0] ),
+		cand( lhs.rows[1], rhs.rows[1] ),
+		cand( lhs.rows[2], rhs.rows[2] ),
+		cand( lhs.rows[3], rhs.rows[3] )
 	};
 }
 
-int4x4 comp_or( const int4x4& lhs, const int4x4& rhs )
+int4x4 cor( const int4x4& lhs, const int4x4& rhs )
 {
 	return HLML_CONSTRUCT( int4x4 ) {
-		comp_or( lhs.rows[0], rhs.rows[0] ),
-		comp_or( lhs.rows[1], rhs.rows[1] ),
-		comp_or( lhs.rows[2], rhs.rows[2] ),
-		comp_or( lhs.rows[3], rhs.rows[3] )
+		cor( lhs.rows[0], rhs.rows[0] ),
+		cor( lhs.rows[1], rhs.rows[1] ),
+		cor( lhs.rows[2], rhs.rows[2] ),
+		cor( lhs.rows[3], rhs.rows[3] )
 	};
 }
 
-int4x4 comp_xor( const int4x4& lhs, const int4x4& rhs )
+int4x4 cxor( const int4x4& lhs, const int4x4& rhs )
 {
 	return HLML_CONSTRUCT( int4x4 ) {
-		comp_xor( lhs.rows[0], rhs.rows[0] ),
-		comp_xor( lhs.rows[1], rhs.rows[1] ),
-		comp_xor( lhs.rows[2], rhs.rows[2] ),
-		comp_xor( lhs.rows[3], rhs.rows[3] )
+		cxor( lhs.rows[0], rhs.rows[0] ),
+		cxor( lhs.rows[1], rhs.rows[1] ),
+		cxor( lhs.rows[2], rhs.rows[2] ),
+		cxor( lhs.rows[3], rhs.rows[3] )
 	};
 }
 
-int4x4 comp_unary( const int4x4& lhs )
+int4x4 cunary( const int4x4& lhs )
 {
 	return HLML_CONSTRUCT( int4x4 ) {
 		~lhs.rows[0].x,
@@ -5937,23 +5937,23 @@ int4x4 comp_unary( const int4x4& lhs )
 	};
 }
 
-int4x4 comp_shift_left( const int4x4& lhs, const int4x4& rhs )
+int4x4 cshift_left( const int4x4& lhs, const int4x4& rhs )
 {
 	return HLML_CONSTRUCT( int4x4 ) {
-		comp_shift_left( lhs.rows[0], rhs.rows[0] ),
-		comp_shift_left( lhs.rows[1], rhs.rows[1] ),
-		comp_shift_left( lhs.rows[2], rhs.rows[2] ),
-		comp_shift_left( lhs.rows[3], rhs.rows[3] )
+		cshift_left( lhs.rows[0], rhs.rows[0] ),
+		cshift_left( lhs.rows[1], rhs.rows[1] ),
+		cshift_left( lhs.rows[2], rhs.rows[2] ),
+		cshift_left( lhs.rows[3], rhs.rows[3] )
 	};
 }
 
-int4x4 comp_shift_right( const int4x4& lhs, const int4x4& rhs )
+int4x4 cshift_right( const int4x4& lhs, const int4x4& rhs )
 {
 	return HLML_CONSTRUCT( int4x4 ) {
-		comp_shift_right( lhs.rows[0], rhs.rows[0] ),
-		comp_shift_right( lhs.rows[1], rhs.rows[1] ),
-		comp_shift_right( lhs.rows[2], rhs.rows[2] ),
-		comp_shift_right( lhs.rows[3], rhs.rows[3] )
+		cshift_right( lhs.rows[0], rhs.rows[0] ),
+		cshift_right( lhs.rows[1], rhs.rows[1] ),
+		cshift_right( lhs.rows[2], rhs.rows[2] ),
+		cshift_right( lhs.rows[3], rhs.rows[3] )
 	};
 }
 
@@ -6128,7 +6128,7 @@ bool cmpne( const uint2x2& lhs, const uint2x2& rhs )
 	return !( cmpe( lhs, rhs ) );
 }
 
-uint2x2 comp_adds( const uint2x2& lhs, const uint32_t scalar )
+uint2x2 cadds( const uint2x2& lhs, const uint32_t scalar )
 {
 	return uint2x2(
 		lhs[0] + scalar,
@@ -6136,15 +6136,15 @@ uint2x2 comp_adds( const uint2x2& lhs, const uint32_t scalar )
 	);
 }
 
-uint2x2 comp_addm( const uint2x2& lhs, const uint2x2& rhs )
+uint2x2 caddm( const uint2x2& lhs, const uint2x2& rhs )
 {
 	return HLML_CONSTRUCT( uint2x2 ) {
-		comp_addv( lhs.rows[0], rhs.rows[0] ),
-		comp_addv( lhs.rows[1], rhs.rows[1] )
+		caddv( lhs.rows[0], rhs.rows[0] ),
+		caddv( lhs.rows[1], rhs.rows[1] )
 	};
 }
 
-uint2x2 comp_subs( const uint2x2& lhs, const uint32_t scalar )
+uint2x2 csubs( const uint2x2& lhs, const uint32_t scalar )
 {
 	return uint2x2(
 		lhs[0] - scalar,
@@ -6152,15 +6152,15 @@ uint2x2 comp_subs( const uint2x2& lhs, const uint32_t scalar )
 	);
 }
 
-uint2x2 comp_subm( const uint2x2& lhs, const uint2x2& rhs )
+uint2x2 csubm( const uint2x2& lhs, const uint2x2& rhs )
 {
 	return HLML_CONSTRUCT( uint2x2 ) {
-		comp_subv( lhs.rows[0], rhs.rows[0] ),
-		comp_subv( lhs.rows[1], rhs.rows[1] )
+		csubv( lhs.rows[0], rhs.rows[0] ),
+		csubv( lhs.rows[1], rhs.rows[1] )
 	};
 }
 
-uint2x2 comp_muls( const uint2x2& lhs, const uint32_t scalar )
+uint2x2 cmuls( const uint2x2& lhs, const uint32_t scalar )
 {
 	return uint2x2(
 		lhs[0] * scalar,
@@ -6168,15 +6168,15 @@ uint2x2 comp_muls( const uint2x2& lhs, const uint32_t scalar )
 	);
 }
 
-uint2x2 comp_mulm( const uint2x2& lhs, const uint2x2& rhs )
+uint2x2 cmulm( const uint2x2& lhs, const uint2x2& rhs )
 {
 	return HLML_CONSTRUCT( uint2x2 ) {
-		comp_mulv( lhs.rows[0], rhs.rows[0] ),
-		comp_mulv( lhs.rows[1], rhs.rows[1] )
+		cmulv( lhs.rows[0], rhs.rows[0] ),
+		cmulv( lhs.rows[1], rhs.rows[1] )
 	};
 }
 
-uint2x2 comp_divs( const uint2x2& lhs, const uint32_t scalar )
+uint2x2 cdivs( const uint2x2& lhs, const uint32_t scalar )
 {
 	return uint2x2(
 		lhs[0] / scalar,
@@ -6184,39 +6184,39 @@ uint2x2 comp_divs( const uint2x2& lhs, const uint32_t scalar )
 	);
 }
 
-uint2x2 comp_divm( const uint2x2& lhs, const uint2x2& rhs )
+uint2x2 cdivm( const uint2x2& lhs, const uint2x2& rhs )
 {
 	return HLML_CONSTRUCT( uint2x2 ) {
-		comp_divv( lhs.rows[0], rhs.rows[0] ),
-		comp_divv( lhs.rows[1], rhs.rows[1] )
+		cdivv( lhs.rows[0], rhs.rows[0] ),
+		cdivv( lhs.rows[1], rhs.rows[1] )
 	};
 }
 
-uint2x2 comp_and( const uint2x2& lhs, const uint2x2& rhs )
+uint2x2 cand( const uint2x2& lhs, const uint2x2& rhs )
 {
 	return HLML_CONSTRUCT( uint2x2 ) {
-		comp_and( lhs.rows[0], rhs.rows[0] ),
-		comp_and( lhs.rows[1], rhs.rows[1] )
+		cand( lhs.rows[0], rhs.rows[0] ),
+		cand( lhs.rows[1], rhs.rows[1] )
 	};
 }
 
-uint2x2 comp_or( const uint2x2& lhs, const uint2x2& rhs )
+uint2x2 cor( const uint2x2& lhs, const uint2x2& rhs )
 {
 	return HLML_CONSTRUCT( uint2x2 ) {
-		comp_or( lhs.rows[0], rhs.rows[0] ),
-		comp_or( lhs.rows[1], rhs.rows[1] )
+		cor( lhs.rows[0], rhs.rows[0] ),
+		cor( lhs.rows[1], rhs.rows[1] )
 	};
 }
 
-uint2x2 comp_xor( const uint2x2& lhs, const uint2x2& rhs )
+uint2x2 cxor( const uint2x2& lhs, const uint2x2& rhs )
 {
 	return HLML_CONSTRUCT( uint2x2 ) {
-		comp_xor( lhs.rows[0], rhs.rows[0] ),
-		comp_xor( lhs.rows[1], rhs.rows[1] )
+		cxor( lhs.rows[0], rhs.rows[0] ),
+		cxor( lhs.rows[1], rhs.rows[1] )
 	};
 }
 
-uint2x2 comp_unary( const uint2x2& lhs )
+uint2x2 cunary( const uint2x2& lhs )
 {
 	return HLML_CONSTRUCT( uint2x2 ) {
 		~lhs.rows[0].x,
@@ -6228,19 +6228,19 @@ uint2x2 comp_unary( const uint2x2& lhs )
 	};
 }
 
-uint2x2 comp_shift_left( const uint2x2& lhs, const uint2x2& rhs )
+uint2x2 cshift_left( const uint2x2& lhs, const uint2x2& rhs )
 {
 	return HLML_CONSTRUCT( uint2x2 ) {
-		comp_shift_left( lhs.rows[0], rhs.rows[0] ),
-		comp_shift_left( lhs.rows[1], rhs.rows[1] )
+		cshift_left( lhs.rows[0], rhs.rows[0] ),
+		cshift_left( lhs.rows[1], rhs.rows[1] )
 	};
 }
 
-uint2x2 comp_shift_right( const uint2x2& lhs, const uint2x2& rhs )
+uint2x2 cshift_right( const uint2x2& lhs, const uint2x2& rhs )
 {
 	return HLML_CONSTRUCT( uint2x2 ) {
-		comp_shift_right( lhs.rows[0], rhs.rows[0] ),
-		comp_shift_right( lhs.rows[1], rhs.rows[1] )
+		cshift_right( lhs.rows[0], rhs.rows[0] ),
+		cshift_right( lhs.rows[1], rhs.rows[1] )
 	};
 }
 
@@ -6326,7 +6326,7 @@ bool cmpne( const uint2x3& lhs, const uint2x3& rhs )
 	return !( cmpe( lhs, rhs ) );
 }
 
-uint2x3 comp_adds( const uint2x3& lhs, const uint32_t scalar )
+uint2x3 cadds( const uint2x3& lhs, const uint32_t scalar )
 {
 	return uint2x3(
 		lhs[0] + scalar,
@@ -6334,15 +6334,15 @@ uint2x3 comp_adds( const uint2x3& lhs, const uint32_t scalar )
 	);
 }
 
-uint2x3 comp_addm( const uint2x3& lhs, const uint2x3& rhs )
+uint2x3 caddm( const uint2x3& lhs, const uint2x3& rhs )
 {
 	return HLML_CONSTRUCT( uint2x3 ) {
-		comp_addv( lhs.rows[0], rhs.rows[0] ),
-		comp_addv( lhs.rows[1], rhs.rows[1] )
+		caddv( lhs.rows[0], rhs.rows[0] ),
+		caddv( lhs.rows[1], rhs.rows[1] )
 	};
 }
 
-uint2x3 comp_subs( const uint2x3& lhs, const uint32_t scalar )
+uint2x3 csubs( const uint2x3& lhs, const uint32_t scalar )
 {
 	return uint2x3(
 		lhs[0] - scalar,
@@ -6350,15 +6350,15 @@ uint2x3 comp_subs( const uint2x3& lhs, const uint32_t scalar )
 	);
 }
 
-uint2x3 comp_subm( const uint2x3& lhs, const uint2x3& rhs )
+uint2x3 csubm( const uint2x3& lhs, const uint2x3& rhs )
 {
 	return HLML_CONSTRUCT( uint2x3 ) {
-		comp_subv( lhs.rows[0], rhs.rows[0] ),
-		comp_subv( lhs.rows[1], rhs.rows[1] )
+		csubv( lhs.rows[0], rhs.rows[0] ),
+		csubv( lhs.rows[1], rhs.rows[1] )
 	};
 }
 
-uint2x3 comp_muls( const uint2x3& lhs, const uint32_t scalar )
+uint2x3 cmuls( const uint2x3& lhs, const uint32_t scalar )
 {
 	return uint2x3(
 		lhs[0] * scalar,
@@ -6366,15 +6366,15 @@ uint2x3 comp_muls( const uint2x3& lhs, const uint32_t scalar )
 	);
 }
 
-uint2x3 comp_mulm( const uint2x3& lhs, const uint2x3& rhs )
+uint2x3 cmulm( const uint2x3& lhs, const uint2x3& rhs )
 {
 	return HLML_CONSTRUCT( uint2x3 ) {
-		comp_mulv( lhs.rows[0], rhs.rows[0] ),
-		comp_mulv( lhs.rows[1], rhs.rows[1] )
+		cmulv( lhs.rows[0], rhs.rows[0] ),
+		cmulv( lhs.rows[1], rhs.rows[1] )
 	};
 }
 
-uint2x3 comp_divs( const uint2x3& lhs, const uint32_t scalar )
+uint2x3 cdivs( const uint2x3& lhs, const uint32_t scalar )
 {
 	return uint2x3(
 		lhs[0] / scalar,
@@ -6382,39 +6382,39 @@ uint2x3 comp_divs( const uint2x3& lhs, const uint32_t scalar )
 	);
 }
 
-uint2x3 comp_divm( const uint2x3& lhs, const uint2x3& rhs )
+uint2x3 cdivm( const uint2x3& lhs, const uint2x3& rhs )
 {
 	return HLML_CONSTRUCT( uint2x3 ) {
-		comp_divv( lhs.rows[0], rhs.rows[0] ),
-		comp_divv( lhs.rows[1], rhs.rows[1] )
+		cdivv( lhs.rows[0], rhs.rows[0] ),
+		cdivv( lhs.rows[1], rhs.rows[1] )
 	};
 }
 
-uint2x3 comp_and( const uint2x3& lhs, const uint2x3& rhs )
+uint2x3 cand( const uint2x3& lhs, const uint2x3& rhs )
 {
 	return HLML_CONSTRUCT( uint2x3 ) {
-		comp_and( lhs.rows[0], rhs.rows[0] ),
-		comp_and( lhs.rows[1], rhs.rows[1] )
+		cand( lhs.rows[0], rhs.rows[0] ),
+		cand( lhs.rows[1], rhs.rows[1] )
 	};
 }
 
-uint2x3 comp_or( const uint2x3& lhs, const uint2x3& rhs )
+uint2x3 cor( const uint2x3& lhs, const uint2x3& rhs )
 {
 	return HLML_CONSTRUCT( uint2x3 ) {
-		comp_or( lhs.rows[0], rhs.rows[0] ),
-		comp_or( lhs.rows[1], rhs.rows[1] )
+		cor( lhs.rows[0], rhs.rows[0] ),
+		cor( lhs.rows[1], rhs.rows[1] )
 	};
 }
 
-uint2x3 comp_xor( const uint2x3& lhs, const uint2x3& rhs )
+uint2x3 cxor( const uint2x3& lhs, const uint2x3& rhs )
 {
 	return HLML_CONSTRUCT( uint2x3 ) {
-		comp_xor( lhs.rows[0], rhs.rows[0] ),
-		comp_xor( lhs.rows[1], rhs.rows[1] )
+		cxor( lhs.rows[0], rhs.rows[0] ),
+		cxor( lhs.rows[1], rhs.rows[1] )
 	};
 }
 
-uint2x3 comp_unary( const uint2x3& lhs )
+uint2x3 cunary( const uint2x3& lhs )
 {
 	return HLML_CONSTRUCT( uint2x3 ) {
 		~lhs.rows[0].x,
@@ -6428,19 +6428,19 @@ uint2x3 comp_unary( const uint2x3& lhs )
 	};
 }
 
-uint2x3 comp_shift_left( const uint2x3& lhs, const uint2x3& rhs )
+uint2x3 cshift_left( const uint2x3& lhs, const uint2x3& rhs )
 {
 	return HLML_CONSTRUCT( uint2x3 ) {
-		comp_shift_left( lhs.rows[0], rhs.rows[0] ),
-		comp_shift_left( lhs.rows[1], rhs.rows[1] )
+		cshift_left( lhs.rows[0], rhs.rows[0] ),
+		cshift_left( lhs.rows[1], rhs.rows[1] )
 	};
 }
 
-uint2x3 comp_shift_right( const uint2x3& lhs, const uint2x3& rhs )
+uint2x3 cshift_right( const uint2x3& lhs, const uint2x3& rhs )
 {
 	return HLML_CONSTRUCT( uint2x3 ) {
-		comp_shift_right( lhs.rows[0], rhs.rows[0] ),
-		comp_shift_right( lhs.rows[1], rhs.rows[1] )
+		cshift_right( lhs.rows[0], rhs.rows[0] ),
+		cshift_right( lhs.rows[1], rhs.rows[1] )
 	};
 }
 
@@ -6532,7 +6532,7 @@ bool cmpne( const uint2x4& lhs, const uint2x4& rhs )
 	return !( cmpe( lhs, rhs ) );
 }
 
-uint2x4 comp_adds( const uint2x4& lhs, const uint32_t scalar )
+uint2x4 cadds( const uint2x4& lhs, const uint32_t scalar )
 {
 	return uint2x4(
 		lhs[0] + scalar,
@@ -6540,15 +6540,15 @@ uint2x4 comp_adds( const uint2x4& lhs, const uint32_t scalar )
 	);
 }
 
-uint2x4 comp_addm( const uint2x4& lhs, const uint2x4& rhs )
+uint2x4 caddm( const uint2x4& lhs, const uint2x4& rhs )
 {
 	return HLML_CONSTRUCT( uint2x4 ) {
-		comp_addv( lhs.rows[0], rhs.rows[0] ),
-		comp_addv( lhs.rows[1], rhs.rows[1] )
+		caddv( lhs.rows[0], rhs.rows[0] ),
+		caddv( lhs.rows[1], rhs.rows[1] )
 	};
 }
 
-uint2x4 comp_subs( const uint2x4& lhs, const uint32_t scalar )
+uint2x4 csubs( const uint2x4& lhs, const uint32_t scalar )
 {
 	return uint2x4(
 		lhs[0] - scalar,
@@ -6556,15 +6556,15 @@ uint2x4 comp_subs( const uint2x4& lhs, const uint32_t scalar )
 	);
 }
 
-uint2x4 comp_subm( const uint2x4& lhs, const uint2x4& rhs )
+uint2x4 csubm( const uint2x4& lhs, const uint2x4& rhs )
 {
 	return HLML_CONSTRUCT( uint2x4 ) {
-		comp_subv( lhs.rows[0], rhs.rows[0] ),
-		comp_subv( lhs.rows[1], rhs.rows[1] )
+		csubv( lhs.rows[0], rhs.rows[0] ),
+		csubv( lhs.rows[1], rhs.rows[1] )
 	};
 }
 
-uint2x4 comp_muls( const uint2x4& lhs, const uint32_t scalar )
+uint2x4 cmuls( const uint2x4& lhs, const uint32_t scalar )
 {
 	return uint2x4(
 		lhs[0] * scalar,
@@ -6572,15 +6572,15 @@ uint2x4 comp_muls( const uint2x4& lhs, const uint32_t scalar )
 	);
 }
 
-uint2x4 comp_mulm( const uint2x4& lhs, const uint2x4& rhs )
+uint2x4 cmulm( const uint2x4& lhs, const uint2x4& rhs )
 {
 	return HLML_CONSTRUCT( uint2x4 ) {
-		comp_mulv( lhs.rows[0], rhs.rows[0] ),
-		comp_mulv( lhs.rows[1], rhs.rows[1] )
+		cmulv( lhs.rows[0], rhs.rows[0] ),
+		cmulv( lhs.rows[1], rhs.rows[1] )
 	};
 }
 
-uint2x4 comp_divs( const uint2x4& lhs, const uint32_t scalar )
+uint2x4 cdivs( const uint2x4& lhs, const uint32_t scalar )
 {
 	return uint2x4(
 		lhs[0] / scalar,
@@ -6588,39 +6588,39 @@ uint2x4 comp_divs( const uint2x4& lhs, const uint32_t scalar )
 	);
 }
 
-uint2x4 comp_divm( const uint2x4& lhs, const uint2x4& rhs )
+uint2x4 cdivm( const uint2x4& lhs, const uint2x4& rhs )
 {
 	return HLML_CONSTRUCT( uint2x4 ) {
-		comp_divv( lhs.rows[0], rhs.rows[0] ),
-		comp_divv( lhs.rows[1], rhs.rows[1] )
+		cdivv( lhs.rows[0], rhs.rows[0] ),
+		cdivv( lhs.rows[1], rhs.rows[1] )
 	};
 }
 
-uint2x4 comp_and( const uint2x4& lhs, const uint2x4& rhs )
+uint2x4 cand( const uint2x4& lhs, const uint2x4& rhs )
 {
 	return HLML_CONSTRUCT( uint2x4 ) {
-		comp_and( lhs.rows[0], rhs.rows[0] ),
-		comp_and( lhs.rows[1], rhs.rows[1] )
+		cand( lhs.rows[0], rhs.rows[0] ),
+		cand( lhs.rows[1], rhs.rows[1] )
 	};
 }
 
-uint2x4 comp_or( const uint2x4& lhs, const uint2x4& rhs )
+uint2x4 cor( const uint2x4& lhs, const uint2x4& rhs )
 {
 	return HLML_CONSTRUCT( uint2x4 ) {
-		comp_or( lhs.rows[0], rhs.rows[0] ),
-		comp_or( lhs.rows[1], rhs.rows[1] )
+		cor( lhs.rows[0], rhs.rows[0] ),
+		cor( lhs.rows[1], rhs.rows[1] )
 	};
 }
 
-uint2x4 comp_xor( const uint2x4& lhs, const uint2x4& rhs )
+uint2x4 cxor( const uint2x4& lhs, const uint2x4& rhs )
 {
 	return HLML_CONSTRUCT( uint2x4 ) {
-		comp_xor( lhs.rows[0], rhs.rows[0] ),
-		comp_xor( lhs.rows[1], rhs.rows[1] )
+		cxor( lhs.rows[0], rhs.rows[0] ),
+		cxor( lhs.rows[1], rhs.rows[1] )
 	};
 }
 
-uint2x4 comp_unary( const uint2x4& lhs )
+uint2x4 cunary( const uint2x4& lhs )
 {
 	return HLML_CONSTRUCT( uint2x4 ) {
 		~lhs.rows[0].x,
@@ -6636,19 +6636,19 @@ uint2x4 comp_unary( const uint2x4& lhs )
 	};
 }
 
-uint2x4 comp_shift_left( const uint2x4& lhs, const uint2x4& rhs )
+uint2x4 cshift_left( const uint2x4& lhs, const uint2x4& rhs )
 {
 	return HLML_CONSTRUCT( uint2x4 ) {
-		comp_shift_left( lhs.rows[0], rhs.rows[0] ),
-		comp_shift_left( lhs.rows[1], rhs.rows[1] )
+		cshift_left( lhs.rows[0], rhs.rows[0] ),
+		cshift_left( lhs.rows[1], rhs.rows[1] )
 	};
 }
 
-uint2x4 comp_shift_right( const uint2x4& lhs, const uint2x4& rhs )
+uint2x4 cshift_right( const uint2x4& lhs, const uint2x4& rhs )
 {
 	return HLML_CONSTRUCT( uint2x4 ) {
-		comp_shift_right( lhs.rows[0], rhs.rows[0] ),
-		comp_shift_right( lhs.rows[1], rhs.rows[1] )
+		cshift_right( lhs.rows[0], rhs.rows[0] ),
+		cshift_right( lhs.rows[1], rhs.rows[1] )
 	};
 }
 
@@ -6744,7 +6744,7 @@ bool cmpne( const uint3x2& lhs, const uint3x2& rhs )
 	return !( cmpe( lhs, rhs ) );
 }
 
-uint3x2 comp_adds( const uint3x2& lhs, const uint32_t scalar )
+uint3x2 cadds( const uint3x2& lhs, const uint32_t scalar )
 {
 	return uint3x2(
 		lhs[0] + scalar,
@@ -6753,16 +6753,16 @@ uint3x2 comp_adds( const uint3x2& lhs, const uint32_t scalar )
 	);
 }
 
-uint3x2 comp_addm( const uint3x2& lhs, const uint3x2& rhs )
+uint3x2 caddm( const uint3x2& lhs, const uint3x2& rhs )
 {
 	return HLML_CONSTRUCT( uint3x2 ) {
-		comp_addv( lhs.rows[0], rhs.rows[0] ),
-		comp_addv( lhs.rows[1], rhs.rows[1] ),
-		comp_addv( lhs.rows[2], rhs.rows[2] )
+		caddv( lhs.rows[0], rhs.rows[0] ),
+		caddv( lhs.rows[1], rhs.rows[1] ),
+		caddv( lhs.rows[2], rhs.rows[2] )
 	};
 }
 
-uint3x2 comp_subs( const uint3x2& lhs, const uint32_t scalar )
+uint3x2 csubs( const uint3x2& lhs, const uint32_t scalar )
 {
 	return uint3x2(
 		lhs[0] - scalar,
@@ -6771,16 +6771,16 @@ uint3x2 comp_subs( const uint3x2& lhs, const uint32_t scalar )
 	);
 }
 
-uint3x2 comp_subm( const uint3x2& lhs, const uint3x2& rhs )
+uint3x2 csubm( const uint3x2& lhs, const uint3x2& rhs )
 {
 	return HLML_CONSTRUCT( uint3x2 ) {
-		comp_subv( lhs.rows[0], rhs.rows[0] ),
-		comp_subv( lhs.rows[1], rhs.rows[1] ),
-		comp_subv( lhs.rows[2], rhs.rows[2] )
+		csubv( lhs.rows[0], rhs.rows[0] ),
+		csubv( lhs.rows[1], rhs.rows[1] ),
+		csubv( lhs.rows[2], rhs.rows[2] )
 	};
 }
 
-uint3x2 comp_muls( const uint3x2& lhs, const uint32_t scalar )
+uint3x2 cmuls( const uint3x2& lhs, const uint32_t scalar )
 {
 	return uint3x2(
 		lhs[0] * scalar,
@@ -6789,16 +6789,16 @@ uint3x2 comp_muls( const uint3x2& lhs, const uint32_t scalar )
 	);
 }
 
-uint3x2 comp_mulm( const uint3x2& lhs, const uint3x2& rhs )
+uint3x2 cmulm( const uint3x2& lhs, const uint3x2& rhs )
 {
 	return HLML_CONSTRUCT( uint3x2 ) {
-		comp_mulv( lhs.rows[0], rhs.rows[0] ),
-		comp_mulv( lhs.rows[1], rhs.rows[1] ),
-		comp_mulv( lhs.rows[2], rhs.rows[2] )
+		cmulv( lhs.rows[0], rhs.rows[0] ),
+		cmulv( lhs.rows[1], rhs.rows[1] ),
+		cmulv( lhs.rows[2], rhs.rows[2] )
 	};
 }
 
-uint3x2 comp_divs( const uint3x2& lhs, const uint32_t scalar )
+uint3x2 cdivs( const uint3x2& lhs, const uint32_t scalar )
 {
 	return uint3x2(
 		lhs[0] / scalar,
@@ -6807,43 +6807,43 @@ uint3x2 comp_divs( const uint3x2& lhs, const uint32_t scalar )
 	);
 }
 
-uint3x2 comp_divm( const uint3x2& lhs, const uint3x2& rhs )
+uint3x2 cdivm( const uint3x2& lhs, const uint3x2& rhs )
 {
 	return HLML_CONSTRUCT( uint3x2 ) {
-		comp_divv( lhs.rows[0], rhs.rows[0] ),
-		comp_divv( lhs.rows[1], rhs.rows[1] ),
-		comp_divv( lhs.rows[2], rhs.rows[2] )
+		cdivv( lhs.rows[0], rhs.rows[0] ),
+		cdivv( lhs.rows[1], rhs.rows[1] ),
+		cdivv( lhs.rows[2], rhs.rows[2] )
 	};
 }
 
-uint3x2 comp_and( const uint3x2& lhs, const uint3x2& rhs )
+uint3x2 cand( const uint3x2& lhs, const uint3x2& rhs )
 {
 	return HLML_CONSTRUCT( uint3x2 ) {
-		comp_and( lhs.rows[0], rhs.rows[0] ),
-		comp_and( lhs.rows[1], rhs.rows[1] ),
-		comp_and( lhs.rows[2], rhs.rows[2] )
+		cand( lhs.rows[0], rhs.rows[0] ),
+		cand( lhs.rows[1], rhs.rows[1] ),
+		cand( lhs.rows[2], rhs.rows[2] )
 	};
 }
 
-uint3x2 comp_or( const uint3x2& lhs, const uint3x2& rhs )
+uint3x2 cor( const uint3x2& lhs, const uint3x2& rhs )
 {
 	return HLML_CONSTRUCT( uint3x2 ) {
-		comp_or( lhs.rows[0], rhs.rows[0] ),
-		comp_or( lhs.rows[1], rhs.rows[1] ),
-		comp_or( lhs.rows[2], rhs.rows[2] )
+		cor( lhs.rows[0], rhs.rows[0] ),
+		cor( lhs.rows[1], rhs.rows[1] ),
+		cor( lhs.rows[2], rhs.rows[2] )
 	};
 }
 
-uint3x2 comp_xor( const uint3x2& lhs, const uint3x2& rhs )
+uint3x2 cxor( const uint3x2& lhs, const uint3x2& rhs )
 {
 	return HLML_CONSTRUCT( uint3x2 ) {
-		comp_xor( lhs.rows[0], rhs.rows[0] ),
-		comp_xor( lhs.rows[1], rhs.rows[1] ),
-		comp_xor( lhs.rows[2], rhs.rows[2] )
+		cxor( lhs.rows[0], rhs.rows[0] ),
+		cxor( lhs.rows[1], rhs.rows[1] ),
+		cxor( lhs.rows[2], rhs.rows[2] )
 	};
 }
 
-uint3x2 comp_unary( const uint3x2& lhs )
+uint3x2 cunary( const uint3x2& lhs )
 {
 	return HLML_CONSTRUCT( uint3x2 ) {
 		~lhs.rows[0].x,
@@ -6858,21 +6858,21 @@ uint3x2 comp_unary( const uint3x2& lhs )
 	};
 }
 
-uint3x2 comp_shift_left( const uint3x2& lhs, const uint3x2& rhs )
+uint3x2 cshift_left( const uint3x2& lhs, const uint3x2& rhs )
 {
 	return HLML_CONSTRUCT( uint3x2 ) {
-		comp_shift_left( lhs.rows[0], rhs.rows[0] ),
-		comp_shift_left( lhs.rows[1], rhs.rows[1] ),
-		comp_shift_left( lhs.rows[2], rhs.rows[2] )
+		cshift_left( lhs.rows[0], rhs.rows[0] ),
+		cshift_left( lhs.rows[1], rhs.rows[1] ),
+		cshift_left( lhs.rows[2], rhs.rows[2] )
 	};
 }
 
-uint3x2 comp_shift_right( const uint3x2& lhs, const uint3x2& rhs )
+uint3x2 cshift_right( const uint3x2& lhs, const uint3x2& rhs )
 {
 	return HLML_CONSTRUCT( uint3x2 ) {
-		comp_shift_right( lhs.rows[0], rhs.rows[0] ),
-		comp_shift_right( lhs.rows[1], rhs.rows[1] ),
-		comp_shift_right( lhs.rows[2], rhs.rows[2] )
+		cshift_right( lhs.rows[0], rhs.rows[0] ),
+		cshift_right( lhs.rows[1], rhs.rows[1] ),
+		cshift_right( lhs.rows[2], rhs.rows[2] )
 	};
 }
 
@@ -6964,7 +6964,7 @@ bool cmpne( const uint3x3& lhs, const uint3x3& rhs )
 	return !( cmpe( lhs, rhs ) );
 }
 
-uint3x3 comp_adds( const uint3x3& lhs, const uint32_t scalar )
+uint3x3 cadds( const uint3x3& lhs, const uint32_t scalar )
 {
 	return uint3x3(
 		lhs[0] + scalar,
@@ -6973,16 +6973,16 @@ uint3x3 comp_adds( const uint3x3& lhs, const uint32_t scalar )
 	);
 }
 
-uint3x3 comp_addm( const uint3x3& lhs, const uint3x3& rhs )
+uint3x3 caddm( const uint3x3& lhs, const uint3x3& rhs )
 {
 	return HLML_CONSTRUCT( uint3x3 ) {
-		comp_addv( lhs.rows[0], rhs.rows[0] ),
-		comp_addv( lhs.rows[1], rhs.rows[1] ),
-		comp_addv( lhs.rows[2], rhs.rows[2] )
+		caddv( lhs.rows[0], rhs.rows[0] ),
+		caddv( lhs.rows[1], rhs.rows[1] ),
+		caddv( lhs.rows[2], rhs.rows[2] )
 	};
 }
 
-uint3x3 comp_subs( const uint3x3& lhs, const uint32_t scalar )
+uint3x3 csubs( const uint3x3& lhs, const uint32_t scalar )
 {
 	return uint3x3(
 		lhs[0] - scalar,
@@ -6991,16 +6991,16 @@ uint3x3 comp_subs( const uint3x3& lhs, const uint32_t scalar )
 	);
 }
 
-uint3x3 comp_subm( const uint3x3& lhs, const uint3x3& rhs )
+uint3x3 csubm( const uint3x3& lhs, const uint3x3& rhs )
 {
 	return HLML_CONSTRUCT( uint3x3 ) {
-		comp_subv( lhs.rows[0], rhs.rows[0] ),
-		comp_subv( lhs.rows[1], rhs.rows[1] ),
-		comp_subv( lhs.rows[2], rhs.rows[2] )
+		csubv( lhs.rows[0], rhs.rows[0] ),
+		csubv( lhs.rows[1], rhs.rows[1] ),
+		csubv( lhs.rows[2], rhs.rows[2] )
 	};
 }
 
-uint3x3 comp_muls( const uint3x3& lhs, const uint32_t scalar )
+uint3x3 cmuls( const uint3x3& lhs, const uint32_t scalar )
 {
 	return uint3x3(
 		lhs[0] * scalar,
@@ -7009,16 +7009,16 @@ uint3x3 comp_muls( const uint3x3& lhs, const uint32_t scalar )
 	);
 }
 
-uint3x3 comp_mulm( const uint3x3& lhs, const uint3x3& rhs )
+uint3x3 cmulm( const uint3x3& lhs, const uint3x3& rhs )
 {
 	return HLML_CONSTRUCT( uint3x3 ) {
-		comp_mulv( lhs.rows[0], rhs.rows[0] ),
-		comp_mulv( lhs.rows[1], rhs.rows[1] ),
-		comp_mulv( lhs.rows[2], rhs.rows[2] )
+		cmulv( lhs.rows[0], rhs.rows[0] ),
+		cmulv( lhs.rows[1], rhs.rows[1] ),
+		cmulv( lhs.rows[2], rhs.rows[2] )
 	};
 }
 
-uint3x3 comp_divs( const uint3x3& lhs, const uint32_t scalar )
+uint3x3 cdivs( const uint3x3& lhs, const uint32_t scalar )
 {
 	return uint3x3(
 		lhs[0] / scalar,
@@ -7027,43 +7027,43 @@ uint3x3 comp_divs( const uint3x3& lhs, const uint32_t scalar )
 	);
 }
 
-uint3x3 comp_divm( const uint3x3& lhs, const uint3x3& rhs )
+uint3x3 cdivm( const uint3x3& lhs, const uint3x3& rhs )
 {
 	return HLML_CONSTRUCT( uint3x3 ) {
-		comp_divv( lhs.rows[0], rhs.rows[0] ),
-		comp_divv( lhs.rows[1], rhs.rows[1] ),
-		comp_divv( lhs.rows[2], rhs.rows[2] )
+		cdivv( lhs.rows[0], rhs.rows[0] ),
+		cdivv( lhs.rows[1], rhs.rows[1] ),
+		cdivv( lhs.rows[2], rhs.rows[2] )
 	};
 }
 
-uint3x3 comp_and( const uint3x3& lhs, const uint3x3& rhs )
+uint3x3 cand( const uint3x3& lhs, const uint3x3& rhs )
 {
 	return HLML_CONSTRUCT( uint3x3 ) {
-		comp_and( lhs.rows[0], rhs.rows[0] ),
-		comp_and( lhs.rows[1], rhs.rows[1] ),
-		comp_and( lhs.rows[2], rhs.rows[2] )
+		cand( lhs.rows[0], rhs.rows[0] ),
+		cand( lhs.rows[1], rhs.rows[1] ),
+		cand( lhs.rows[2], rhs.rows[2] )
 	};
 }
 
-uint3x3 comp_or( const uint3x3& lhs, const uint3x3& rhs )
+uint3x3 cor( const uint3x3& lhs, const uint3x3& rhs )
 {
 	return HLML_CONSTRUCT( uint3x3 ) {
-		comp_or( lhs.rows[0], rhs.rows[0] ),
-		comp_or( lhs.rows[1], rhs.rows[1] ),
-		comp_or( lhs.rows[2], rhs.rows[2] )
+		cor( lhs.rows[0], rhs.rows[0] ),
+		cor( lhs.rows[1], rhs.rows[1] ),
+		cor( lhs.rows[2], rhs.rows[2] )
 	};
 }
 
-uint3x3 comp_xor( const uint3x3& lhs, const uint3x3& rhs )
+uint3x3 cxor( const uint3x3& lhs, const uint3x3& rhs )
 {
 	return HLML_CONSTRUCT( uint3x3 ) {
-		comp_xor( lhs.rows[0], rhs.rows[0] ),
-		comp_xor( lhs.rows[1], rhs.rows[1] ),
-		comp_xor( lhs.rows[2], rhs.rows[2] )
+		cxor( lhs.rows[0], rhs.rows[0] ),
+		cxor( lhs.rows[1], rhs.rows[1] ),
+		cxor( lhs.rows[2], rhs.rows[2] )
 	};
 }
 
-uint3x3 comp_unary( const uint3x3& lhs )
+uint3x3 cunary( const uint3x3& lhs )
 {
 	return HLML_CONSTRUCT( uint3x3 ) {
 		~lhs.rows[0].x,
@@ -7081,21 +7081,21 @@ uint3x3 comp_unary( const uint3x3& lhs )
 	};
 }
 
-uint3x3 comp_shift_left( const uint3x3& lhs, const uint3x3& rhs )
+uint3x3 cshift_left( const uint3x3& lhs, const uint3x3& rhs )
 {
 	return HLML_CONSTRUCT( uint3x3 ) {
-		comp_shift_left( lhs.rows[0], rhs.rows[0] ),
-		comp_shift_left( lhs.rows[1], rhs.rows[1] ),
-		comp_shift_left( lhs.rows[2], rhs.rows[2] )
+		cshift_left( lhs.rows[0], rhs.rows[0] ),
+		cshift_left( lhs.rows[1], rhs.rows[1] ),
+		cshift_left( lhs.rows[2], rhs.rows[2] )
 	};
 }
 
-uint3x3 comp_shift_right( const uint3x3& lhs, const uint3x3& rhs )
+uint3x3 cshift_right( const uint3x3& lhs, const uint3x3& rhs )
 {
 	return HLML_CONSTRUCT( uint3x3 ) {
-		comp_shift_right( lhs.rows[0], rhs.rows[0] ),
-		comp_shift_right( lhs.rows[1], rhs.rows[1] ),
-		comp_shift_right( lhs.rows[2], rhs.rows[2] )
+		cshift_right( lhs.rows[0], rhs.rows[0] ),
+		cshift_right( lhs.rows[1], rhs.rows[1] ),
+		cshift_right( lhs.rows[2], rhs.rows[2] )
 	};
 }
 
@@ -7223,7 +7223,7 @@ bool cmpne( const uint3x4& lhs, const uint3x4& rhs )
 	return !( cmpe( lhs, rhs ) );
 }
 
-uint3x4 comp_adds( const uint3x4& lhs, const uint32_t scalar )
+uint3x4 cadds( const uint3x4& lhs, const uint32_t scalar )
 {
 	return uint3x4(
 		lhs[0] + scalar,
@@ -7232,16 +7232,16 @@ uint3x4 comp_adds( const uint3x4& lhs, const uint32_t scalar )
 	);
 }
 
-uint3x4 comp_addm( const uint3x4& lhs, const uint3x4& rhs )
+uint3x4 caddm( const uint3x4& lhs, const uint3x4& rhs )
 {
 	return HLML_CONSTRUCT( uint3x4 ) {
-		comp_addv( lhs.rows[0], rhs.rows[0] ),
-		comp_addv( lhs.rows[1], rhs.rows[1] ),
-		comp_addv( lhs.rows[2], rhs.rows[2] )
+		caddv( lhs.rows[0], rhs.rows[0] ),
+		caddv( lhs.rows[1], rhs.rows[1] ),
+		caddv( lhs.rows[2], rhs.rows[2] )
 	};
 }
 
-uint3x4 comp_subs( const uint3x4& lhs, const uint32_t scalar )
+uint3x4 csubs( const uint3x4& lhs, const uint32_t scalar )
 {
 	return uint3x4(
 		lhs[0] - scalar,
@@ -7250,16 +7250,16 @@ uint3x4 comp_subs( const uint3x4& lhs, const uint32_t scalar )
 	);
 }
 
-uint3x4 comp_subm( const uint3x4& lhs, const uint3x4& rhs )
+uint3x4 csubm( const uint3x4& lhs, const uint3x4& rhs )
 {
 	return HLML_CONSTRUCT( uint3x4 ) {
-		comp_subv( lhs.rows[0], rhs.rows[0] ),
-		comp_subv( lhs.rows[1], rhs.rows[1] ),
-		comp_subv( lhs.rows[2], rhs.rows[2] )
+		csubv( lhs.rows[0], rhs.rows[0] ),
+		csubv( lhs.rows[1], rhs.rows[1] ),
+		csubv( lhs.rows[2], rhs.rows[2] )
 	};
 }
 
-uint3x4 comp_muls( const uint3x4& lhs, const uint32_t scalar )
+uint3x4 cmuls( const uint3x4& lhs, const uint32_t scalar )
 {
 	return uint3x4(
 		lhs[0] * scalar,
@@ -7268,16 +7268,16 @@ uint3x4 comp_muls( const uint3x4& lhs, const uint32_t scalar )
 	);
 }
 
-uint3x4 comp_mulm( const uint3x4& lhs, const uint3x4& rhs )
+uint3x4 cmulm( const uint3x4& lhs, const uint3x4& rhs )
 {
 	return HLML_CONSTRUCT( uint3x4 ) {
-		comp_mulv( lhs.rows[0], rhs.rows[0] ),
-		comp_mulv( lhs.rows[1], rhs.rows[1] ),
-		comp_mulv( lhs.rows[2], rhs.rows[2] )
+		cmulv( lhs.rows[0], rhs.rows[0] ),
+		cmulv( lhs.rows[1], rhs.rows[1] ),
+		cmulv( lhs.rows[2], rhs.rows[2] )
 	};
 }
 
-uint3x4 comp_divs( const uint3x4& lhs, const uint32_t scalar )
+uint3x4 cdivs( const uint3x4& lhs, const uint32_t scalar )
 {
 	return uint3x4(
 		lhs[0] / scalar,
@@ -7286,43 +7286,43 @@ uint3x4 comp_divs( const uint3x4& lhs, const uint32_t scalar )
 	);
 }
 
-uint3x4 comp_divm( const uint3x4& lhs, const uint3x4& rhs )
+uint3x4 cdivm( const uint3x4& lhs, const uint3x4& rhs )
 {
 	return HLML_CONSTRUCT( uint3x4 ) {
-		comp_divv( lhs.rows[0], rhs.rows[0] ),
-		comp_divv( lhs.rows[1], rhs.rows[1] ),
-		comp_divv( lhs.rows[2], rhs.rows[2] )
+		cdivv( lhs.rows[0], rhs.rows[0] ),
+		cdivv( lhs.rows[1], rhs.rows[1] ),
+		cdivv( lhs.rows[2], rhs.rows[2] )
 	};
 }
 
-uint3x4 comp_and( const uint3x4& lhs, const uint3x4& rhs )
+uint3x4 cand( const uint3x4& lhs, const uint3x4& rhs )
 {
 	return HLML_CONSTRUCT( uint3x4 ) {
-		comp_and( lhs.rows[0], rhs.rows[0] ),
-		comp_and( lhs.rows[1], rhs.rows[1] ),
-		comp_and( lhs.rows[2], rhs.rows[2] )
+		cand( lhs.rows[0], rhs.rows[0] ),
+		cand( lhs.rows[1], rhs.rows[1] ),
+		cand( lhs.rows[2], rhs.rows[2] )
 	};
 }
 
-uint3x4 comp_or( const uint3x4& lhs, const uint3x4& rhs )
+uint3x4 cor( const uint3x4& lhs, const uint3x4& rhs )
 {
 	return HLML_CONSTRUCT( uint3x4 ) {
-		comp_or( lhs.rows[0], rhs.rows[0] ),
-		comp_or( lhs.rows[1], rhs.rows[1] ),
-		comp_or( lhs.rows[2], rhs.rows[2] )
+		cor( lhs.rows[0], rhs.rows[0] ),
+		cor( lhs.rows[1], rhs.rows[1] ),
+		cor( lhs.rows[2], rhs.rows[2] )
 	};
 }
 
-uint3x4 comp_xor( const uint3x4& lhs, const uint3x4& rhs )
+uint3x4 cxor( const uint3x4& lhs, const uint3x4& rhs )
 {
 	return HLML_CONSTRUCT( uint3x4 ) {
-		comp_xor( lhs.rows[0], rhs.rows[0] ),
-		comp_xor( lhs.rows[1], rhs.rows[1] ),
-		comp_xor( lhs.rows[2], rhs.rows[2] )
+		cxor( lhs.rows[0], rhs.rows[0] ),
+		cxor( lhs.rows[1], rhs.rows[1] ),
+		cxor( lhs.rows[2], rhs.rows[2] )
 	};
 }
 
-uint3x4 comp_unary( const uint3x4& lhs )
+uint3x4 cunary( const uint3x4& lhs )
 {
 	return HLML_CONSTRUCT( uint3x4 ) {
 		~lhs.rows[0].x,
@@ -7343,21 +7343,21 @@ uint3x4 comp_unary( const uint3x4& lhs )
 	};
 }
 
-uint3x4 comp_shift_left( const uint3x4& lhs, const uint3x4& rhs )
+uint3x4 cshift_left( const uint3x4& lhs, const uint3x4& rhs )
 {
 	return HLML_CONSTRUCT( uint3x4 ) {
-		comp_shift_left( lhs.rows[0], rhs.rows[0] ),
-		comp_shift_left( lhs.rows[1], rhs.rows[1] ),
-		comp_shift_left( lhs.rows[2], rhs.rows[2] )
+		cshift_left( lhs.rows[0], rhs.rows[0] ),
+		cshift_left( lhs.rows[1], rhs.rows[1] ),
+		cshift_left( lhs.rows[2], rhs.rows[2] )
 	};
 }
 
-uint3x4 comp_shift_right( const uint3x4& lhs, const uint3x4& rhs )
+uint3x4 cshift_right( const uint3x4& lhs, const uint3x4& rhs )
 {
 	return HLML_CONSTRUCT( uint3x4 ) {
-		comp_shift_right( lhs.rows[0], rhs.rows[0] ),
-		comp_shift_right( lhs.rows[1], rhs.rows[1] ),
-		comp_shift_right( lhs.rows[2], rhs.rows[2] )
+		cshift_right( lhs.rows[0], rhs.rows[0] ),
+		cshift_right( lhs.rows[1], rhs.rows[1] ),
+		cshift_right( lhs.rows[2], rhs.rows[2] )
 	};
 }
 
@@ -7481,7 +7481,7 @@ bool cmpne( const uint4x2& lhs, const uint4x2& rhs )
 	return !( cmpe( lhs, rhs ) );
 }
 
-uint4x2 comp_adds( const uint4x2& lhs, const uint32_t scalar )
+uint4x2 cadds( const uint4x2& lhs, const uint32_t scalar )
 {
 	return uint4x2(
 		lhs[0] + scalar,
@@ -7491,17 +7491,17 @@ uint4x2 comp_adds( const uint4x2& lhs, const uint32_t scalar )
 	);
 }
 
-uint4x2 comp_addm( const uint4x2& lhs, const uint4x2& rhs )
+uint4x2 caddm( const uint4x2& lhs, const uint4x2& rhs )
 {
 	return HLML_CONSTRUCT( uint4x2 ) {
-		comp_addv( lhs.rows[0], rhs.rows[0] ),
-		comp_addv( lhs.rows[1], rhs.rows[1] ),
-		comp_addv( lhs.rows[2], rhs.rows[2] ),
-		comp_addv( lhs.rows[3], rhs.rows[3] )
+		caddv( lhs.rows[0], rhs.rows[0] ),
+		caddv( lhs.rows[1], rhs.rows[1] ),
+		caddv( lhs.rows[2], rhs.rows[2] ),
+		caddv( lhs.rows[3], rhs.rows[3] )
 	};
 }
 
-uint4x2 comp_subs( const uint4x2& lhs, const uint32_t scalar )
+uint4x2 csubs( const uint4x2& lhs, const uint32_t scalar )
 {
 	return uint4x2(
 		lhs[0] - scalar,
@@ -7511,17 +7511,17 @@ uint4x2 comp_subs( const uint4x2& lhs, const uint32_t scalar )
 	);
 }
 
-uint4x2 comp_subm( const uint4x2& lhs, const uint4x2& rhs )
+uint4x2 csubm( const uint4x2& lhs, const uint4x2& rhs )
 {
 	return HLML_CONSTRUCT( uint4x2 ) {
-		comp_subv( lhs.rows[0], rhs.rows[0] ),
-		comp_subv( lhs.rows[1], rhs.rows[1] ),
-		comp_subv( lhs.rows[2], rhs.rows[2] ),
-		comp_subv( lhs.rows[3], rhs.rows[3] )
+		csubv( lhs.rows[0], rhs.rows[0] ),
+		csubv( lhs.rows[1], rhs.rows[1] ),
+		csubv( lhs.rows[2], rhs.rows[2] ),
+		csubv( lhs.rows[3], rhs.rows[3] )
 	};
 }
 
-uint4x2 comp_muls( const uint4x2& lhs, const uint32_t scalar )
+uint4x2 cmuls( const uint4x2& lhs, const uint32_t scalar )
 {
 	return uint4x2(
 		lhs[0] * scalar,
@@ -7531,17 +7531,17 @@ uint4x2 comp_muls( const uint4x2& lhs, const uint32_t scalar )
 	);
 }
 
-uint4x2 comp_mulm( const uint4x2& lhs, const uint4x2& rhs )
+uint4x2 cmulm( const uint4x2& lhs, const uint4x2& rhs )
 {
 	return HLML_CONSTRUCT( uint4x2 ) {
-		comp_mulv( lhs.rows[0], rhs.rows[0] ),
-		comp_mulv( lhs.rows[1], rhs.rows[1] ),
-		comp_mulv( lhs.rows[2], rhs.rows[2] ),
-		comp_mulv( lhs.rows[3], rhs.rows[3] )
+		cmulv( lhs.rows[0], rhs.rows[0] ),
+		cmulv( lhs.rows[1], rhs.rows[1] ),
+		cmulv( lhs.rows[2], rhs.rows[2] ),
+		cmulv( lhs.rows[3], rhs.rows[3] )
 	};
 }
 
-uint4x2 comp_divs( const uint4x2& lhs, const uint32_t scalar )
+uint4x2 cdivs( const uint4x2& lhs, const uint32_t scalar )
 {
 	return uint4x2(
 		lhs[0] / scalar,
@@ -7551,47 +7551,47 @@ uint4x2 comp_divs( const uint4x2& lhs, const uint32_t scalar )
 	);
 }
 
-uint4x2 comp_divm( const uint4x2& lhs, const uint4x2& rhs )
+uint4x2 cdivm( const uint4x2& lhs, const uint4x2& rhs )
 {
 	return HLML_CONSTRUCT( uint4x2 ) {
-		comp_divv( lhs.rows[0], rhs.rows[0] ),
-		comp_divv( lhs.rows[1], rhs.rows[1] ),
-		comp_divv( lhs.rows[2], rhs.rows[2] ),
-		comp_divv( lhs.rows[3], rhs.rows[3] )
+		cdivv( lhs.rows[0], rhs.rows[0] ),
+		cdivv( lhs.rows[1], rhs.rows[1] ),
+		cdivv( lhs.rows[2], rhs.rows[2] ),
+		cdivv( lhs.rows[3], rhs.rows[3] )
 	};
 }
 
-uint4x2 comp_and( const uint4x2& lhs, const uint4x2& rhs )
+uint4x2 cand( const uint4x2& lhs, const uint4x2& rhs )
 {
 	return HLML_CONSTRUCT( uint4x2 ) {
-		comp_and( lhs.rows[0], rhs.rows[0] ),
-		comp_and( lhs.rows[1], rhs.rows[1] ),
-		comp_and( lhs.rows[2], rhs.rows[2] ),
-		comp_and( lhs.rows[3], rhs.rows[3] )
+		cand( lhs.rows[0], rhs.rows[0] ),
+		cand( lhs.rows[1], rhs.rows[1] ),
+		cand( lhs.rows[2], rhs.rows[2] ),
+		cand( lhs.rows[3], rhs.rows[3] )
 	};
 }
 
-uint4x2 comp_or( const uint4x2& lhs, const uint4x2& rhs )
+uint4x2 cor( const uint4x2& lhs, const uint4x2& rhs )
 {
 	return HLML_CONSTRUCT( uint4x2 ) {
-		comp_or( lhs.rows[0], rhs.rows[0] ),
-		comp_or( lhs.rows[1], rhs.rows[1] ),
-		comp_or( lhs.rows[2], rhs.rows[2] ),
-		comp_or( lhs.rows[3], rhs.rows[3] )
+		cor( lhs.rows[0], rhs.rows[0] ),
+		cor( lhs.rows[1], rhs.rows[1] ),
+		cor( lhs.rows[2], rhs.rows[2] ),
+		cor( lhs.rows[3], rhs.rows[3] )
 	};
 }
 
-uint4x2 comp_xor( const uint4x2& lhs, const uint4x2& rhs )
+uint4x2 cxor( const uint4x2& lhs, const uint4x2& rhs )
 {
 	return HLML_CONSTRUCT( uint4x2 ) {
-		comp_xor( lhs.rows[0], rhs.rows[0] ),
-		comp_xor( lhs.rows[1], rhs.rows[1] ),
-		comp_xor( lhs.rows[2], rhs.rows[2] ),
-		comp_xor( lhs.rows[3], rhs.rows[3] )
+		cxor( lhs.rows[0], rhs.rows[0] ),
+		cxor( lhs.rows[1], rhs.rows[1] ),
+		cxor( lhs.rows[2], rhs.rows[2] ),
+		cxor( lhs.rows[3], rhs.rows[3] )
 	};
 }
 
-uint4x2 comp_unary( const uint4x2& lhs )
+uint4x2 cunary( const uint4x2& lhs )
 {
 	return HLML_CONSTRUCT( uint4x2 ) {
 		~lhs.rows[0].x,
@@ -7609,23 +7609,23 @@ uint4x2 comp_unary( const uint4x2& lhs )
 	};
 }
 
-uint4x2 comp_shift_left( const uint4x2& lhs, const uint4x2& rhs )
+uint4x2 cshift_left( const uint4x2& lhs, const uint4x2& rhs )
 {
 	return HLML_CONSTRUCT( uint4x2 ) {
-		comp_shift_left( lhs.rows[0], rhs.rows[0] ),
-		comp_shift_left( lhs.rows[1], rhs.rows[1] ),
-		comp_shift_left( lhs.rows[2], rhs.rows[2] ),
-		comp_shift_left( lhs.rows[3], rhs.rows[3] )
+		cshift_left( lhs.rows[0], rhs.rows[0] ),
+		cshift_left( lhs.rows[1], rhs.rows[1] ),
+		cshift_left( lhs.rows[2], rhs.rows[2] ),
+		cshift_left( lhs.rows[3], rhs.rows[3] )
 	};
 }
 
-uint4x2 comp_shift_right( const uint4x2& lhs, const uint4x2& rhs )
+uint4x2 cshift_right( const uint4x2& lhs, const uint4x2& rhs )
 {
 	return HLML_CONSTRUCT( uint4x2 ) {
-		comp_shift_right( lhs.rows[0], rhs.rows[0] ),
-		comp_shift_right( lhs.rows[1], rhs.rows[1] ),
-		comp_shift_right( lhs.rows[2], rhs.rows[2] ),
-		comp_shift_right( lhs.rows[3], rhs.rows[3] )
+		cshift_right( lhs.rows[0], rhs.rows[0] ),
+		cshift_right( lhs.rows[1], rhs.rows[1] ),
+		cshift_right( lhs.rows[2], rhs.rows[2] ),
+		cshift_right( lhs.rows[3], rhs.rows[3] )
 	};
 }
 
@@ -7733,7 +7733,7 @@ bool cmpne( const uint4x3& lhs, const uint4x3& rhs )
 	return !( cmpe( lhs, rhs ) );
 }
 
-uint4x3 comp_adds( const uint4x3& lhs, const uint32_t scalar )
+uint4x3 cadds( const uint4x3& lhs, const uint32_t scalar )
 {
 	return uint4x3(
 		lhs[0] + scalar,
@@ -7743,17 +7743,17 @@ uint4x3 comp_adds( const uint4x3& lhs, const uint32_t scalar )
 	);
 }
 
-uint4x3 comp_addm( const uint4x3& lhs, const uint4x3& rhs )
+uint4x3 caddm( const uint4x3& lhs, const uint4x3& rhs )
 {
 	return HLML_CONSTRUCT( uint4x3 ) {
-		comp_addv( lhs.rows[0], rhs.rows[0] ),
-		comp_addv( lhs.rows[1], rhs.rows[1] ),
-		comp_addv( lhs.rows[2], rhs.rows[2] ),
-		comp_addv( lhs.rows[3], rhs.rows[3] )
+		caddv( lhs.rows[0], rhs.rows[0] ),
+		caddv( lhs.rows[1], rhs.rows[1] ),
+		caddv( lhs.rows[2], rhs.rows[2] ),
+		caddv( lhs.rows[3], rhs.rows[3] )
 	};
 }
 
-uint4x3 comp_subs( const uint4x3& lhs, const uint32_t scalar )
+uint4x3 csubs( const uint4x3& lhs, const uint32_t scalar )
 {
 	return uint4x3(
 		lhs[0] - scalar,
@@ -7763,17 +7763,17 @@ uint4x3 comp_subs( const uint4x3& lhs, const uint32_t scalar )
 	);
 }
 
-uint4x3 comp_subm( const uint4x3& lhs, const uint4x3& rhs )
+uint4x3 csubm( const uint4x3& lhs, const uint4x3& rhs )
 {
 	return HLML_CONSTRUCT( uint4x3 ) {
-		comp_subv( lhs.rows[0], rhs.rows[0] ),
-		comp_subv( lhs.rows[1], rhs.rows[1] ),
-		comp_subv( lhs.rows[2], rhs.rows[2] ),
-		comp_subv( lhs.rows[3], rhs.rows[3] )
+		csubv( lhs.rows[0], rhs.rows[0] ),
+		csubv( lhs.rows[1], rhs.rows[1] ),
+		csubv( lhs.rows[2], rhs.rows[2] ),
+		csubv( lhs.rows[3], rhs.rows[3] )
 	};
 }
 
-uint4x3 comp_muls( const uint4x3& lhs, const uint32_t scalar )
+uint4x3 cmuls( const uint4x3& lhs, const uint32_t scalar )
 {
 	return uint4x3(
 		lhs[0] * scalar,
@@ -7783,17 +7783,17 @@ uint4x3 comp_muls( const uint4x3& lhs, const uint32_t scalar )
 	);
 }
 
-uint4x3 comp_mulm( const uint4x3& lhs, const uint4x3& rhs )
+uint4x3 cmulm( const uint4x3& lhs, const uint4x3& rhs )
 {
 	return HLML_CONSTRUCT( uint4x3 ) {
-		comp_mulv( lhs.rows[0], rhs.rows[0] ),
-		comp_mulv( lhs.rows[1], rhs.rows[1] ),
-		comp_mulv( lhs.rows[2], rhs.rows[2] ),
-		comp_mulv( lhs.rows[3], rhs.rows[3] )
+		cmulv( lhs.rows[0], rhs.rows[0] ),
+		cmulv( lhs.rows[1], rhs.rows[1] ),
+		cmulv( lhs.rows[2], rhs.rows[2] ),
+		cmulv( lhs.rows[3], rhs.rows[3] )
 	};
 }
 
-uint4x3 comp_divs( const uint4x3& lhs, const uint32_t scalar )
+uint4x3 cdivs( const uint4x3& lhs, const uint32_t scalar )
 {
 	return uint4x3(
 		lhs[0] / scalar,
@@ -7803,47 +7803,47 @@ uint4x3 comp_divs( const uint4x3& lhs, const uint32_t scalar )
 	);
 }
 
-uint4x3 comp_divm( const uint4x3& lhs, const uint4x3& rhs )
+uint4x3 cdivm( const uint4x3& lhs, const uint4x3& rhs )
 {
 	return HLML_CONSTRUCT( uint4x3 ) {
-		comp_divv( lhs.rows[0], rhs.rows[0] ),
-		comp_divv( lhs.rows[1], rhs.rows[1] ),
-		comp_divv( lhs.rows[2], rhs.rows[2] ),
-		comp_divv( lhs.rows[3], rhs.rows[3] )
+		cdivv( lhs.rows[0], rhs.rows[0] ),
+		cdivv( lhs.rows[1], rhs.rows[1] ),
+		cdivv( lhs.rows[2], rhs.rows[2] ),
+		cdivv( lhs.rows[3], rhs.rows[3] )
 	};
 }
 
-uint4x3 comp_and( const uint4x3& lhs, const uint4x3& rhs )
+uint4x3 cand( const uint4x3& lhs, const uint4x3& rhs )
 {
 	return HLML_CONSTRUCT( uint4x3 ) {
-		comp_and( lhs.rows[0], rhs.rows[0] ),
-		comp_and( lhs.rows[1], rhs.rows[1] ),
-		comp_and( lhs.rows[2], rhs.rows[2] ),
-		comp_and( lhs.rows[3], rhs.rows[3] )
+		cand( lhs.rows[0], rhs.rows[0] ),
+		cand( lhs.rows[1], rhs.rows[1] ),
+		cand( lhs.rows[2], rhs.rows[2] ),
+		cand( lhs.rows[3], rhs.rows[3] )
 	};
 }
 
-uint4x3 comp_or( const uint4x3& lhs, const uint4x3& rhs )
+uint4x3 cor( const uint4x3& lhs, const uint4x3& rhs )
 {
 	return HLML_CONSTRUCT( uint4x3 ) {
-		comp_or( lhs.rows[0], rhs.rows[0] ),
-		comp_or( lhs.rows[1], rhs.rows[1] ),
-		comp_or( lhs.rows[2], rhs.rows[2] ),
-		comp_or( lhs.rows[3], rhs.rows[3] )
+		cor( lhs.rows[0], rhs.rows[0] ),
+		cor( lhs.rows[1], rhs.rows[1] ),
+		cor( lhs.rows[2], rhs.rows[2] ),
+		cor( lhs.rows[3], rhs.rows[3] )
 	};
 }
 
-uint4x3 comp_xor( const uint4x3& lhs, const uint4x3& rhs )
+uint4x3 cxor( const uint4x3& lhs, const uint4x3& rhs )
 {
 	return HLML_CONSTRUCT( uint4x3 ) {
-		comp_xor( lhs.rows[0], rhs.rows[0] ),
-		comp_xor( lhs.rows[1], rhs.rows[1] ),
-		comp_xor( lhs.rows[2], rhs.rows[2] ),
-		comp_xor( lhs.rows[3], rhs.rows[3] )
+		cxor( lhs.rows[0], rhs.rows[0] ),
+		cxor( lhs.rows[1], rhs.rows[1] ),
+		cxor( lhs.rows[2], rhs.rows[2] ),
+		cxor( lhs.rows[3], rhs.rows[3] )
 	};
 }
 
-uint4x3 comp_unary( const uint4x3& lhs )
+uint4x3 cunary( const uint4x3& lhs )
 {
 	return HLML_CONSTRUCT( uint4x3 ) {
 		~lhs.rows[0].x,
@@ -7865,23 +7865,23 @@ uint4x3 comp_unary( const uint4x3& lhs )
 	};
 }
 
-uint4x3 comp_shift_left( const uint4x3& lhs, const uint4x3& rhs )
+uint4x3 cshift_left( const uint4x3& lhs, const uint4x3& rhs )
 {
 	return HLML_CONSTRUCT( uint4x3 ) {
-		comp_shift_left( lhs.rows[0], rhs.rows[0] ),
-		comp_shift_left( lhs.rows[1], rhs.rows[1] ),
-		comp_shift_left( lhs.rows[2], rhs.rows[2] ),
-		comp_shift_left( lhs.rows[3], rhs.rows[3] )
+		cshift_left( lhs.rows[0], rhs.rows[0] ),
+		cshift_left( lhs.rows[1], rhs.rows[1] ),
+		cshift_left( lhs.rows[2], rhs.rows[2] ),
+		cshift_left( lhs.rows[3], rhs.rows[3] )
 	};
 }
 
-uint4x3 comp_shift_right( const uint4x3& lhs, const uint4x3& rhs )
+uint4x3 cshift_right( const uint4x3& lhs, const uint4x3& rhs )
 {
 	return HLML_CONSTRUCT( uint4x3 ) {
-		comp_shift_right( lhs.rows[0], rhs.rows[0] ),
-		comp_shift_right( lhs.rows[1], rhs.rows[1] ),
-		comp_shift_right( lhs.rows[2], rhs.rows[2] ),
-		comp_shift_right( lhs.rows[3], rhs.rows[3] )
+		cshift_right( lhs.rows[0], rhs.rows[0] ),
+		cshift_right( lhs.rows[1], rhs.rows[1] ),
+		cshift_right( lhs.rows[2], rhs.rows[2] ),
+		cshift_right( lhs.rows[3], rhs.rows[3] )
 	};
 }
 
@@ -8011,7 +8011,7 @@ bool cmpne( const uint4x4& lhs, const uint4x4& rhs )
 	return !( cmpe( lhs, rhs ) );
 }
 
-uint4x4 comp_adds( const uint4x4& lhs, const uint32_t scalar )
+uint4x4 cadds( const uint4x4& lhs, const uint32_t scalar )
 {
 	return uint4x4(
 		lhs[0] + scalar,
@@ -8021,17 +8021,17 @@ uint4x4 comp_adds( const uint4x4& lhs, const uint32_t scalar )
 	);
 }
 
-uint4x4 comp_addm( const uint4x4& lhs, const uint4x4& rhs )
+uint4x4 caddm( const uint4x4& lhs, const uint4x4& rhs )
 {
 	return HLML_CONSTRUCT( uint4x4 ) {
-		comp_addv( lhs.rows[0], rhs.rows[0] ),
-		comp_addv( lhs.rows[1], rhs.rows[1] ),
-		comp_addv( lhs.rows[2], rhs.rows[2] ),
-		comp_addv( lhs.rows[3], rhs.rows[3] )
+		caddv( lhs.rows[0], rhs.rows[0] ),
+		caddv( lhs.rows[1], rhs.rows[1] ),
+		caddv( lhs.rows[2], rhs.rows[2] ),
+		caddv( lhs.rows[3], rhs.rows[3] )
 	};
 }
 
-uint4x4 comp_subs( const uint4x4& lhs, const uint32_t scalar )
+uint4x4 csubs( const uint4x4& lhs, const uint32_t scalar )
 {
 	return uint4x4(
 		lhs[0] - scalar,
@@ -8041,17 +8041,17 @@ uint4x4 comp_subs( const uint4x4& lhs, const uint32_t scalar )
 	);
 }
 
-uint4x4 comp_subm( const uint4x4& lhs, const uint4x4& rhs )
+uint4x4 csubm( const uint4x4& lhs, const uint4x4& rhs )
 {
 	return HLML_CONSTRUCT( uint4x4 ) {
-		comp_subv( lhs.rows[0], rhs.rows[0] ),
-		comp_subv( lhs.rows[1], rhs.rows[1] ),
-		comp_subv( lhs.rows[2], rhs.rows[2] ),
-		comp_subv( lhs.rows[3], rhs.rows[3] )
+		csubv( lhs.rows[0], rhs.rows[0] ),
+		csubv( lhs.rows[1], rhs.rows[1] ),
+		csubv( lhs.rows[2], rhs.rows[2] ),
+		csubv( lhs.rows[3], rhs.rows[3] )
 	};
 }
 
-uint4x4 comp_muls( const uint4x4& lhs, const uint32_t scalar )
+uint4x4 cmuls( const uint4x4& lhs, const uint32_t scalar )
 {
 	return uint4x4(
 		lhs[0] * scalar,
@@ -8061,17 +8061,17 @@ uint4x4 comp_muls( const uint4x4& lhs, const uint32_t scalar )
 	);
 }
 
-uint4x4 comp_mulm( const uint4x4& lhs, const uint4x4& rhs )
+uint4x4 cmulm( const uint4x4& lhs, const uint4x4& rhs )
 {
 	return HLML_CONSTRUCT( uint4x4 ) {
-		comp_mulv( lhs.rows[0], rhs.rows[0] ),
-		comp_mulv( lhs.rows[1], rhs.rows[1] ),
-		comp_mulv( lhs.rows[2], rhs.rows[2] ),
-		comp_mulv( lhs.rows[3], rhs.rows[3] )
+		cmulv( lhs.rows[0], rhs.rows[0] ),
+		cmulv( lhs.rows[1], rhs.rows[1] ),
+		cmulv( lhs.rows[2], rhs.rows[2] ),
+		cmulv( lhs.rows[3], rhs.rows[3] )
 	};
 }
 
-uint4x4 comp_divs( const uint4x4& lhs, const uint32_t scalar )
+uint4x4 cdivs( const uint4x4& lhs, const uint32_t scalar )
 {
 	return uint4x4(
 		lhs[0] / scalar,
@@ -8081,47 +8081,47 @@ uint4x4 comp_divs( const uint4x4& lhs, const uint32_t scalar )
 	);
 }
 
-uint4x4 comp_divm( const uint4x4& lhs, const uint4x4& rhs )
+uint4x4 cdivm( const uint4x4& lhs, const uint4x4& rhs )
 {
 	return HLML_CONSTRUCT( uint4x4 ) {
-		comp_divv( lhs.rows[0], rhs.rows[0] ),
-		comp_divv( lhs.rows[1], rhs.rows[1] ),
-		comp_divv( lhs.rows[2], rhs.rows[2] ),
-		comp_divv( lhs.rows[3], rhs.rows[3] )
+		cdivv( lhs.rows[0], rhs.rows[0] ),
+		cdivv( lhs.rows[1], rhs.rows[1] ),
+		cdivv( lhs.rows[2], rhs.rows[2] ),
+		cdivv( lhs.rows[3], rhs.rows[3] )
 	};
 }
 
-uint4x4 comp_and( const uint4x4& lhs, const uint4x4& rhs )
+uint4x4 cand( const uint4x4& lhs, const uint4x4& rhs )
 {
 	return HLML_CONSTRUCT( uint4x4 ) {
-		comp_and( lhs.rows[0], rhs.rows[0] ),
-		comp_and( lhs.rows[1], rhs.rows[1] ),
-		comp_and( lhs.rows[2], rhs.rows[2] ),
-		comp_and( lhs.rows[3], rhs.rows[3] )
+		cand( lhs.rows[0], rhs.rows[0] ),
+		cand( lhs.rows[1], rhs.rows[1] ),
+		cand( lhs.rows[2], rhs.rows[2] ),
+		cand( lhs.rows[3], rhs.rows[3] )
 	};
 }
 
-uint4x4 comp_or( const uint4x4& lhs, const uint4x4& rhs )
+uint4x4 cor( const uint4x4& lhs, const uint4x4& rhs )
 {
 	return HLML_CONSTRUCT( uint4x4 ) {
-		comp_or( lhs.rows[0], rhs.rows[0] ),
-		comp_or( lhs.rows[1], rhs.rows[1] ),
-		comp_or( lhs.rows[2], rhs.rows[2] ),
-		comp_or( lhs.rows[3], rhs.rows[3] )
+		cor( lhs.rows[0], rhs.rows[0] ),
+		cor( lhs.rows[1], rhs.rows[1] ),
+		cor( lhs.rows[2], rhs.rows[2] ),
+		cor( lhs.rows[3], rhs.rows[3] )
 	};
 }
 
-uint4x4 comp_xor( const uint4x4& lhs, const uint4x4& rhs )
+uint4x4 cxor( const uint4x4& lhs, const uint4x4& rhs )
 {
 	return HLML_CONSTRUCT( uint4x4 ) {
-		comp_xor( lhs.rows[0], rhs.rows[0] ),
-		comp_xor( lhs.rows[1], rhs.rows[1] ),
-		comp_xor( lhs.rows[2], rhs.rows[2] ),
-		comp_xor( lhs.rows[3], rhs.rows[3] )
+		cxor( lhs.rows[0], rhs.rows[0] ),
+		cxor( lhs.rows[1], rhs.rows[1] ),
+		cxor( lhs.rows[2], rhs.rows[2] ),
+		cxor( lhs.rows[3], rhs.rows[3] )
 	};
 }
 
-uint4x4 comp_unary( const uint4x4& lhs )
+uint4x4 cunary( const uint4x4& lhs )
 {
 	return HLML_CONSTRUCT( uint4x4 ) {
 		~lhs.rows[0].x,
@@ -8147,23 +8147,23 @@ uint4x4 comp_unary( const uint4x4& lhs )
 	};
 }
 
-uint4x4 comp_shift_left( const uint4x4& lhs, const uint4x4& rhs )
+uint4x4 cshift_left( const uint4x4& lhs, const uint4x4& rhs )
 {
 	return HLML_CONSTRUCT( uint4x4 ) {
-		comp_shift_left( lhs.rows[0], rhs.rows[0] ),
-		comp_shift_left( lhs.rows[1], rhs.rows[1] ),
-		comp_shift_left( lhs.rows[2], rhs.rows[2] ),
-		comp_shift_left( lhs.rows[3], rhs.rows[3] )
+		cshift_left( lhs.rows[0], rhs.rows[0] ),
+		cshift_left( lhs.rows[1], rhs.rows[1] ),
+		cshift_left( lhs.rows[2], rhs.rows[2] ),
+		cshift_left( lhs.rows[3], rhs.rows[3] )
 	};
 }
 
-uint4x4 comp_shift_right( const uint4x4& lhs, const uint4x4& rhs )
+uint4x4 cshift_right( const uint4x4& lhs, const uint4x4& rhs )
 {
 	return HLML_CONSTRUCT( uint4x4 ) {
-		comp_shift_right( lhs.rows[0], rhs.rows[0] ),
-		comp_shift_right( lhs.rows[1], rhs.rows[1] ),
-		comp_shift_right( lhs.rows[2], rhs.rows[2] ),
-		comp_shift_right( lhs.rows[3], rhs.rows[3] )
+		cshift_right( lhs.rows[0], rhs.rows[0] ),
+		cshift_right( lhs.rows[1], rhs.rows[1] ),
+		cshift_right( lhs.rows[2], rhs.rows[2] ),
+		cshift_right( lhs.rows[3], rhs.rows[3] )
 	};
 }
 
@@ -8316,7 +8316,7 @@ bool cmpne( const float2x2& lhs, const float2x2& rhs )
 	return !( cmpe( lhs, rhs ) );
 }
 
-float2x2 comp_adds( const float2x2& lhs, const float scalar )
+float2x2 cadds( const float2x2& lhs, const float scalar )
 {
 	return float2x2(
 		lhs[0] + scalar,
@@ -8324,15 +8324,15 @@ float2x2 comp_adds( const float2x2& lhs, const float scalar )
 	);
 }
 
-float2x2 comp_addm( const float2x2& lhs, const float2x2& rhs )
+float2x2 caddm( const float2x2& lhs, const float2x2& rhs )
 {
 	return HLML_CONSTRUCT( float2x2 ) {
-		comp_addv( lhs.rows[0], rhs.rows[0] ),
-		comp_addv( lhs.rows[1], rhs.rows[1] )
+		caddv( lhs.rows[0], rhs.rows[0] ),
+		caddv( lhs.rows[1], rhs.rows[1] )
 	};
 }
 
-float2x2 comp_subs( const float2x2& lhs, const float scalar )
+float2x2 csubs( const float2x2& lhs, const float scalar )
 {
 	return float2x2(
 		lhs[0] - scalar,
@@ -8340,15 +8340,15 @@ float2x2 comp_subs( const float2x2& lhs, const float scalar )
 	);
 }
 
-float2x2 comp_subm( const float2x2& lhs, const float2x2& rhs )
+float2x2 csubm( const float2x2& lhs, const float2x2& rhs )
 {
 	return HLML_CONSTRUCT( float2x2 ) {
-		comp_subv( lhs.rows[0], rhs.rows[0] ),
-		comp_subv( lhs.rows[1], rhs.rows[1] )
+		csubv( lhs.rows[0], rhs.rows[0] ),
+		csubv( lhs.rows[1], rhs.rows[1] )
 	};
 }
 
-float2x2 comp_muls( const float2x2& lhs, const float scalar )
+float2x2 cmuls( const float2x2& lhs, const float scalar )
 {
 	return float2x2(
 		lhs[0] * scalar,
@@ -8356,15 +8356,15 @@ float2x2 comp_muls( const float2x2& lhs, const float scalar )
 	);
 }
 
-float2x2 comp_mulm( const float2x2& lhs, const float2x2& rhs )
+float2x2 cmulm( const float2x2& lhs, const float2x2& rhs )
 {
 	return HLML_CONSTRUCT( float2x2 ) {
-		comp_mulv( lhs.rows[0], rhs.rows[0] ),
-		comp_mulv( lhs.rows[1], rhs.rows[1] )
+		cmulv( lhs.rows[0], rhs.rows[0] ),
+		cmulv( lhs.rows[1], rhs.rows[1] )
 	};
 }
 
-float2x2 comp_divs( const float2x2& lhs, const float scalar )
+float2x2 cdivs( const float2x2& lhs, const float scalar )
 {
 	return float2x2(
 		lhs[0] / scalar,
@@ -8372,11 +8372,11 @@ float2x2 comp_divs( const float2x2& lhs, const float scalar )
 	);
 }
 
-float2x2 comp_divm( const float2x2& lhs, const float2x2& rhs )
+float2x2 cdivm( const float2x2& lhs, const float2x2& rhs )
 {
 	return HLML_CONSTRUCT( float2x2 ) {
-		comp_divv( lhs.rows[0], rhs.rows[0] ),
-		comp_divv( lhs.rows[1], rhs.rows[1] )
+		cdivv( lhs.rows[0], rhs.rows[0] ),
+		cdivv( lhs.rows[1], rhs.rows[1] )
 	};
 }
 
@@ -8476,7 +8476,7 @@ bool cmpne( const float2x3& lhs, const float2x3& rhs )
 	return !( cmpe( lhs, rhs ) );
 }
 
-float2x3 comp_adds( const float2x3& lhs, const float scalar )
+float2x3 cadds( const float2x3& lhs, const float scalar )
 {
 	return float2x3(
 		lhs[0] + scalar,
@@ -8484,15 +8484,15 @@ float2x3 comp_adds( const float2x3& lhs, const float scalar )
 	);
 }
 
-float2x3 comp_addm( const float2x3& lhs, const float2x3& rhs )
+float2x3 caddm( const float2x3& lhs, const float2x3& rhs )
 {
 	return HLML_CONSTRUCT( float2x3 ) {
-		comp_addv( lhs.rows[0], rhs.rows[0] ),
-		comp_addv( lhs.rows[1], rhs.rows[1] )
+		caddv( lhs.rows[0], rhs.rows[0] ),
+		caddv( lhs.rows[1], rhs.rows[1] )
 	};
 }
 
-float2x3 comp_subs( const float2x3& lhs, const float scalar )
+float2x3 csubs( const float2x3& lhs, const float scalar )
 {
 	return float2x3(
 		lhs[0] - scalar,
@@ -8500,15 +8500,15 @@ float2x3 comp_subs( const float2x3& lhs, const float scalar )
 	);
 }
 
-float2x3 comp_subm( const float2x3& lhs, const float2x3& rhs )
+float2x3 csubm( const float2x3& lhs, const float2x3& rhs )
 {
 	return HLML_CONSTRUCT( float2x3 ) {
-		comp_subv( lhs.rows[0], rhs.rows[0] ),
-		comp_subv( lhs.rows[1], rhs.rows[1] )
+		csubv( lhs.rows[0], rhs.rows[0] ),
+		csubv( lhs.rows[1], rhs.rows[1] )
 	};
 }
 
-float2x3 comp_muls( const float2x3& lhs, const float scalar )
+float2x3 cmuls( const float2x3& lhs, const float scalar )
 {
 	return float2x3(
 		lhs[0] * scalar,
@@ -8516,15 +8516,15 @@ float2x3 comp_muls( const float2x3& lhs, const float scalar )
 	);
 }
 
-float2x3 comp_mulm( const float2x3& lhs, const float2x3& rhs )
+float2x3 cmulm( const float2x3& lhs, const float2x3& rhs )
 {
 	return HLML_CONSTRUCT( float2x3 ) {
-		comp_mulv( lhs.rows[0], rhs.rows[0] ),
-		comp_mulv( lhs.rows[1], rhs.rows[1] )
+		cmulv( lhs.rows[0], rhs.rows[0] ),
+		cmulv( lhs.rows[1], rhs.rows[1] )
 	};
 }
 
-float2x3 comp_divs( const float2x3& lhs, const float scalar )
+float2x3 cdivs( const float2x3& lhs, const float scalar )
 {
 	return float2x3(
 		lhs[0] / scalar,
@@ -8532,11 +8532,11 @@ float2x3 comp_divs( const float2x3& lhs, const float scalar )
 	);
 }
 
-float2x3 comp_divm( const float2x3& lhs, const float2x3& rhs )
+float2x3 cdivm( const float2x3& lhs, const float2x3& rhs )
 {
 	return HLML_CONSTRUCT( float2x3 ) {
-		comp_divv( lhs.rows[0], rhs.rows[0] ),
-		comp_divv( lhs.rows[1], rhs.rows[1] )
+		cdivv( lhs.rows[0], rhs.rows[0] ),
+		cdivv( lhs.rows[1], rhs.rows[1] )
 	};
 }
 
@@ -8628,7 +8628,7 @@ bool cmpne( const float2x4& lhs, const float2x4& rhs )
 	return !( cmpe( lhs, rhs ) );
 }
 
-float2x4 comp_adds( const float2x4& lhs, const float scalar )
+float2x4 cadds( const float2x4& lhs, const float scalar )
 {
 	return float2x4(
 		lhs[0] + scalar,
@@ -8636,15 +8636,15 @@ float2x4 comp_adds( const float2x4& lhs, const float scalar )
 	);
 }
 
-float2x4 comp_addm( const float2x4& lhs, const float2x4& rhs )
+float2x4 caddm( const float2x4& lhs, const float2x4& rhs )
 {
 	return HLML_CONSTRUCT( float2x4 ) {
-		comp_addv( lhs.rows[0], rhs.rows[0] ),
-		comp_addv( lhs.rows[1], rhs.rows[1] )
+		caddv( lhs.rows[0], rhs.rows[0] ),
+		caddv( lhs.rows[1], rhs.rows[1] )
 	};
 }
 
-float2x4 comp_subs( const float2x4& lhs, const float scalar )
+float2x4 csubs( const float2x4& lhs, const float scalar )
 {
 	return float2x4(
 		lhs[0] - scalar,
@@ -8652,15 +8652,15 @@ float2x4 comp_subs( const float2x4& lhs, const float scalar )
 	);
 }
 
-float2x4 comp_subm( const float2x4& lhs, const float2x4& rhs )
+float2x4 csubm( const float2x4& lhs, const float2x4& rhs )
 {
 	return HLML_CONSTRUCT( float2x4 ) {
-		comp_subv( lhs.rows[0], rhs.rows[0] ),
-		comp_subv( lhs.rows[1], rhs.rows[1] )
+		csubv( lhs.rows[0], rhs.rows[0] ),
+		csubv( lhs.rows[1], rhs.rows[1] )
 	};
 }
 
-float2x4 comp_muls( const float2x4& lhs, const float scalar )
+float2x4 cmuls( const float2x4& lhs, const float scalar )
 {
 	return float2x4(
 		lhs[0] * scalar,
@@ -8668,15 +8668,15 @@ float2x4 comp_muls( const float2x4& lhs, const float scalar )
 	);
 }
 
-float2x4 comp_mulm( const float2x4& lhs, const float2x4& rhs )
+float2x4 cmulm( const float2x4& lhs, const float2x4& rhs )
 {
 	return HLML_CONSTRUCT( float2x4 ) {
-		comp_mulv( lhs.rows[0], rhs.rows[0] ),
-		comp_mulv( lhs.rows[1], rhs.rows[1] )
+		cmulv( lhs.rows[0], rhs.rows[0] ),
+		cmulv( lhs.rows[1], rhs.rows[1] )
 	};
 }
 
-float2x4 comp_divs( const float2x4& lhs, const float scalar )
+float2x4 cdivs( const float2x4& lhs, const float scalar )
 {
 	return float2x4(
 		lhs[0] / scalar,
@@ -8684,11 +8684,11 @@ float2x4 comp_divs( const float2x4& lhs, const float scalar )
 	);
 }
 
-float2x4 comp_divm( const float2x4& lhs, const float2x4& rhs )
+float2x4 cdivm( const float2x4& lhs, const float2x4& rhs )
 {
 	return HLML_CONSTRUCT( float2x4 ) {
-		comp_divv( lhs.rows[0], rhs.rows[0] ),
-		comp_divv( lhs.rows[1], rhs.rows[1] )
+		cdivv( lhs.rows[0], rhs.rows[0] ),
+		cdivv( lhs.rows[1], rhs.rows[1] )
 	};
 }
 
@@ -8784,7 +8784,7 @@ bool cmpne( const float3x2& lhs, const float3x2& rhs )
 	return !( cmpe( lhs, rhs ) );
 }
 
-float3x2 comp_adds( const float3x2& lhs, const float scalar )
+float3x2 cadds( const float3x2& lhs, const float scalar )
 {
 	return float3x2(
 		lhs[0] + scalar,
@@ -8793,16 +8793,16 @@ float3x2 comp_adds( const float3x2& lhs, const float scalar )
 	);
 }
 
-float3x2 comp_addm( const float3x2& lhs, const float3x2& rhs )
+float3x2 caddm( const float3x2& lhs, const float3x2& rhs )
 {
 	return HLML_CONSTRUCT( float3x2 ) {
-		comp_addv( lhs.rows[0], rhs.rows[0] ),
-		comp_addv( lhs.rows[1], rhs.rows[1] ),
-		comp_addv( lhs.rows[2], rhs.rows[2] )
+		caddv( lhs.rows[0], rhs.rows[0] ),
+		caddv( lhs.rows[1], rhs.rows[1] ),
+		caddv( lhs.rows[2], rhs.rows[2] )
 	};
 }
 
-float3x2 comp_subs( const float3x2& lhs, const float scalar )
+float3x2 csubs( const float3x2& lhs, const float scalar )
 {
 	return float3x2(
 		lhs[0] - scalar,
@@ -8811,16 +8811,16 @@ float3x2 comp_subs( const float3x2& lhs, const float scalar )
 	);
 }
 
-float3x2 comp_subm( const float3x2& lhs, const float3x2& rhs )
+float3x2 csubm( const float3x2& lhs, const float3x2& rhs )
 {
 	return HLML_CONSTRUCT( float3x2 ) {
-		comp_subv( lhs.rows[0], rhs.rows[0] ),
-		comp_subv( lhs.rows[1], rhs.rows[1] ),
-		comp_subv( lhs.rows[2], rhs.rows[2] )
+		csubv( lhs.rows[0], rhs.rows[0] ),
+		csubv( lhs.rows[1], rhs.rows[1] ),
+		csubv( lhs.rows[2], rhs.rows[2] )
 	};
 }
 
-float3x2 comp_muls( const float3x2& lhs, const float scalar )
+float3x2 cmuls( const float3x2& lhs, const float scalar )
 {
 	return float3x2(
 		lhs[0] * scalar,
@@ -8829,16 +8829,16 @@ float3x2 comp_muls( const float3x2& lhs, const float scalar )
 	);
 }
 
-float3x2 comp_mulm( const float3x2& lhs, const float3x2& rhs )
+float3x2 cmulm( const float3x2& lhs, const float3x2& rhs )
 {
 	return HLML_CONSTRUCT( float3x2 ) {
-		comp_mulv( lhs.rows[0], rhs.rows[0] ),
-		comp_mulv( lhs.rows[1], rhs.rows[1] ),
-		comp_mulv( lhs.rows[2], rhs.rows[2] )
+		cmulv( lhs.rows[0], rhs.rows[0] ),
+		cmulv( lhs.rows[1], rhs.rows[1] ),
+		cmulv( lhs.rows[2], rhs.rows[2] )
 	};
 }
 
-float3x2 comp_divs( const float3x2& lhs, const float scalar )
+float3x2 cdivs( const float3x2& lhs, const float scalar )
 {
 	return float3x2(
 		lhs[0] / scalar,
@@ -8847,12 +8847,12 @@ float3x2 comp_divs( const float3x2& lhs, const float scalar )
 	);
 }
 
-float3x2 comp_divm( const float3x2& lhs, const float3x2& rhs )
+float3x2 cdivm( const float3x2& lhs, const float3x2& rhs )
 {
 	return HLML_CONSTRUCT( float3x2 ) {
-		comp_divv( lhs.rows[0], rhs.rows[0] ),
-		comp_divv( lhs.rows[1], rhs.rows[1] ),
-		comp_divv( lhs.rows[2], rhs.rows[2] )
+		cdivv( lhs.rows[0], rhs.rows[0] ),
+		cdivv( lhs.rows[1], rhs.rows[1] ),
+		cdivv( lhs.rows[2], rhs.rows[2] )
 	};
 }
 
@@ -8944,7 +8944,7 @@ bool cmpne( const float3x3& lhs, const float3x3& rhs )
 	return !( cmpe( lhs, rhs ) );
 }
 
-float3x3 comp_adds( const float3x3& lhs, const float scalar )
+float3x3 cadds( const float3x3& lhs, const float scalar )
 {
 	return float3x3(
 		lhs[0] + scalar,
@@ -8953,16 +8953,16 @@ float3x3 comp_adds( const float3x3& lhs, const float scalar )
 	);
 }
 
-float3x3 comp_addm( const float3x3& lhs, const float3x3& rhs )
+float3x3 caddm( const float3x3& lhs, const float3x3& rhs )
 {
 	return HLML_CONSTRUCT( float3x3 ) {
-		comp_addv( lhs.rows[0], rhs.rows[0] ),
-		comp_addv( lhs.rows[1], rhs.rows[1] ),
-		comp_addv( lhs.rows[2], rhs.rows[2] )
+		caddv( lhs.rows[0], rhs.rows[0] ),
+		caddv( lhs.rows[1], rhs.rows[1] ),
+		caddv( lhs.rows[2], rhs.rows[2] )
 	};
 }
 
-float3x3 comp_subs( const float3x3& lhs, const float scalar )
+float3x3 csubs( const float3x3& lhs, const float scalar )
 {
 	return float3x3(
 		lhs[0] - scalar,
@@ -8971,16 +8971,16 @@ float3x3 comp_subs( const float3x3& lhs, const float scalar )
 	);
 }
 
-float3x3 comp_subm( const float3x3& lhs, const float3x3& rhs )
+float3x3 csubm( const float3x3& lhs, const float3x3& rhs )
 {
 	return HLML_CONSTRUCT( float3x3 ) {
-		comp_subv( lhs.rows[0], rhs.rows[0] ),
-		comp_subv( lhs.rows[1], rhs.rows[1] ),
-		comp_subv( lhs.rows[2], rhs.rows[2] )
+		csubv( lhs.rows[0], rhs.rows[0] ),
+		csubv( lhs.rows[1], rhs.rows[1] ),
+		csubv( lhs.rows[2], rhs.rows[2] )
 	};
 }
 
-float3x3 comp_muls( const float3x3& lhs, const float scalar )
+float3x3 cmuls( const float3x3& lhs, const float scalar )
 {
 	return float3x3(
 		lhs[0] * scalar,
@@ -8989,16 +8989,16 @@ float3x3 comp_muls( const float3x3& lhs, const float scalar )
 	);
 }
 
-float3x3 comp_mulm( const float3x3& lhs, const float3x3& rhs )
+float3x3 cmulm( const float3x3& lhs, const float3x3& rhs )
 {
 	return HLML_CONSTRUCT( float3x3 ) {
-		comp_mulv( lhs.rows[0], rhs.rows[0] ),
-		comp_mulv( lhs.rows[1], rhs.rows[1] ),
-		comp_mulv( lhs.rows[2], rhs.rows[2] )
+		cmulv( lhs.rows[0], rhs.rows[0] ),
+		cmulv( lhs.rows[1], rhs.rows[1] ),
+		cmulv( lhs.rows[2], rhs.rows[2] )
 	};
 }
 
-float3x3 comp_divs( const float3x3& lhs, const float scalar )
+float3x3 cdivs( const float3x3& lhs, const float scalar )
 {
 	return float3x3(
 		lhs[0] / scalar,
@@ -9007,12 +9007,12 @@ float3x3 comp_divs( const float3x3& lhs, const float scalar )
 	);
 }
 
-float3x3 comp_divm( const float3x3& lhs, const float3x3& rhs )
+float3x3 cdivm( const float3x3& lhs, const float3x3& rhs )
 {
 	return HLML_CONSTRUCT( float3x3 ) {
-		comp_divv( lhs.rows[0], rhs.rows[0] ),
-		comp_divv( lhs.rows[1], rhs.rows[1] ),
-		comp_divv( lhs.rows[2], rhs.rows[2] )
+		cdivv( lhs.rows[0], rhs.rows[0] ),
+		cdivv( lhs.rows[1], rhs.rows[1] ),
+		cdivv( lhs.rows[2], rhs.rows[2] )
 	};
 }
 
@@ -9142,14 +9142,14 @@ float3x3 rotate( const float3x3& mat, const float rad )
 	const float c = cosf( rad );
 	const float s = sinf( rad );
 
-	float3 row0_cos  = comp_muls( mat.rows[0], c );
-	float3 row0_sin  = comp_muls( mat.rows[0], s );
-	float3 row1_nsin = comp_muls( mat.rows[1], -s );
-	float3 row1_cos  = comp_muls( mat.rows[1], c );
+	float3 row0_cos  = cmuls( mat.rows[0], c );
+	float3 row0_sin  = cmuls( mat.rows[0], s );
+	float3 row1_nsin = cmuls( mat.rows[1], -s );
+	float3 row1_cos  = cmuls( mat.rows[1], c );
 
 	return HLML_CONSTRUCT( float3x3 ) {
-		comp_addv( row0_cos, row1_nsin ),
-		comp_addv( row0_sin, row1_cos  ),
+		caddv( row0_cos, row1_nsin ),
+		caddv( row0_sin, row1_cos  ),
 		mat.rows[2]
 	};
 }
@@ -9183,7 +9183,7 @@ bool cmpne( const float3x4& lhs, const float3x4& rhs )
 	return !( cmpe( lhs, rhs ) );
 }
 
-float3x4 comp_adds( const float3x4& lhs, const float scalar )
+float3x4 cadds( const float3x4& lhs, const float scalar )
 {
 	return float3x4(
 		lhs[0] + scalar,
@@ -9192,16 +9192,16 @@ float3x4 comp_adds( const float3x4& lhs, const float scalar )
 	);
 }
 
-float3x4 comp_addm( const float3x4& lhs, const float3x4& rhs )
+float3x4 caddm( const float3x4& lhs, const float3x4& rhs )
 {
 	return HLML_CONSTRUCT( float3x4 ) {
-		comp_addv( lhs.rows[0], rhs.rows[0] ),
-		comp_addv( lhs.rows[1], rhs.rows[1] ),
-		comp_addv( lhs.rows[2], rhs.rows[2] )
+		caddv( lhs.rows[0], rhs.rows[0] ),
+		caddv( lhs.rows[1], rhs.rows[1] ),
+		caddv( lhs.rows[2], rhs.rows[2] )
 	};
 }
 
-float3x4 comp_subs( const float3x4& lhs, const float scalar )
+float3x4 csubs( const float3x4& lhs, const float scalar )
 {
 	return float3x4(
 		lhs[0] - scalar,
@@ -9210,16 +9210,16 @@ float3x4 comp_subs( const float3x4& lhs, const float scalar )
 	);
 }
 
-float3x4 comp_subm( const float3x4& lhs, const float3x4& rhs )
+float3x4 csubm( const float3x4& lhs, const float3x4& rhs )
 {
 	return HLML_CONSTRUCT( float3x4 ) {
-		comp_subv( lhs.rows[0], rhs.rows[0] ),
-		comp_subv( lhs.rows[1], rhs.rows[1] ),
-		comp_subv( lhs.rows[2], rhs.rows[2] )
+		csubv( lhs.rows[0], rhs.rows[0] ),
+		csubv( lhs.rows[1], rhs.rows[1] ),
+		csubv( lhs.rows[2], rhs.rows[2] )
 	};
 }
 
-float3x4 comp_muls( const float3x4& lhs, const float scalar )
+float3x4 cmuls( const float3x4& lhs, const float scalar )
 {
 	return float3x4(
 		lhs[0] * scalar,
@@ -9228,16 +9228,16 @@ float3x4 comp_muls( const float3x4& lhs, const float scalar )
 	);
 }
 
-float3x4 comp_mulm( const float3x4& lhs, const float3x4& rhs )
+float3x4 cmulm( const float3x4& lhs, const float3x4& rhs )
 {
 	return HLML_CONSTRUCT( float3x4 ) {
-		comp_mulv( lhs.rows[0], rhs.rows[0] ),
-		comp_mulv( lhs.rows[1], rhs.rows[1] ),
-		comp_mulv( lhs.rows[2], rhs.rows[2] )
+		cmulv( lhs.rows[0], rhs.rows[0] ),
+		cmulv( lhs.rows[1], rhs.rows[1] ),
+		cmulv( lhs.rows[2], rhs.rows[2] )
 	};
 }
 
-float3x4 comp_divs( const float3x4& lhs, const float scalar )
+float3x4 cdivs( const float3x4& lhs, const float scalar )
 {
 	return float3x4(
 		lhs[0] / scalar,
@@ -9246,12 +9246,12 @@ float3x4 comp_divs( const float3x4& lhs, const float scalar )
 	);
 }
 
-float3x4 comp_divm( const float3x4& lhs, const float3x4& rhs )
+float3x4 cdivm( const float3x4& lhs, const float3x4& rhs )
 {
 	return HLML_CONSTRUCT( float3x4 ) {
-		comp_divv( lhs.rows[0], rhs.rows[0] ),
-		comp_divv( lhs.rows[1], rhs.rows[1] ),
-		comp_divv( lhs.rows[2], rhs.rows[2] )
+		cdivv( lhs.rows[0], rhs.rows[0] ),
+		cdivv( lhs.rows[1], rhs.rows[1] ),
+		cdivv( lhs.rows[2], rhs.rows[2] )
 	};
 }
 
@@ -9375,7 +9375,7 @@ bool cmpne( const float4x2& lhs, const float4x2& rhs )
 	return !( cmpe( lhs, rhs ) );
 }
 
-float4x2 comp_adds( const float4x2& lhs, const float scalar )
+float4x2 cadds( const float4x2& lhs, const float scalar )
 {
 	return float4x2(
 		lhs[0] + scalar,
@@ -9385,17 +9385,17 @@ float4x2 comp_adds( const float4x2& lhs, const float scalar )
 	);
 }
 
-float4x2 comp_addm( const float4x2& lhs, const float4x2& rhs )
+float4x2 caddm( const float4x2& lhs, const float4x2& rhs )
 {
 	return HLML_CONSTRUCT( float4x2 ) {
-		comp_addv( lhs.rows[0], rhs.rows[0] ),
-		comp_addv( lhs.rows[1], rhs.rows[1] ),
-		comp_addv( lhs.rows[2], rhs.rows[2] ),
-		comp_addv( lhs.rows[3], rhs.rows[3] )
+		caddv( lhs.rows[0], rhs.rows[0] ),
+		caddv( lhs.rows[1], rhs.rows[1] ),
+		caddv( lhs.rows[2], rhs.rows[2] ),
+		caddv( lhs.rows[3], rhs.rows[3] )
 	};
 }
 
-float4x2 comp_subs( const float4x2& lhs, const float scalar )
+float4x2 csubs( const float4x2& lhs, const float scalar )
 {
 	return float4x2(
 		lhs[0] - scalar,
@@ -9405,17 +9405,17 @@ float4x2 comp_subs( const float4x2& lhs, const float scalar )
 	);
 }
 
-float4x2 comp_subm( const float4x2& lhs, const float4x2& rhs )
+float4x2 csubm( const float4x2& lhs, const float4x2& rhs )
 {
 	return HLML_CONSTRUCT( float4x2 ) {
-		comp_subv( lhs.rows[0], rhs.rows[0] ),
-		comp_subv( lhs.rows[1], rhs.rows[1] ),
-		comp_subv( lhs.rows[2], rhs.rows[2] ),
-		comp_subv( lhs.rows[3], rhs.rows[3] )
+		csubv( lhs.rows[0], rhs.rows[0] ),
+		csubv( lhs.rows[1], rhs.rows[1] ),
+		csubv( lhs.rows[2], rhs.rows[2] ),
+		csubv( lhs.rows[3], rhs.rows[3] )
 	};
 }
 
-float4x2 comp_muls( const float4x2& lhs, const float scalar )
+float4x2 cmuls( const float4x2& lhs, const float scalar )
 {
 	return float4x2(
 		lhs[0] * scalar,
@@ -9425,17 +9425,17 @@ float4x2 comp_muls( const float4x2& lhs, const float scalar )
 	);
 }
 
-float4x2 comp_mulm( const float4x2& lhs, const float4x2& rhs )
+float4x2 cmulm( const float4x2& lhs, const float4x2& rhs )
 {
 	return HLML_CONSTRUCT( float4x2 ) {
-		comp_mulv( lhs.rows[0], rhs.rows[0] ),
-		comp_mulv( lhs.rows[1], rhs.rows[1] ),
-		comp_mulv( lhs.rows[2], rhs.rows[2] ),
-		comp_mulv( lhs.rows[3], rhs.rows[3] )
+		cmulv( lhs.rows[0], rhs.rows[0] ),
+		cmulv( lhs.rows[1], rhs.rows[1] ),
+		cmulv( lhs.rows[2], rhs.rows[2] ),
+		cmulv( lhs.rows[3], rhs.rows[3] )
 	};
 }
 
-float4x2 comp_divs( const float4x2& lhs, const float scalar )
+float4x2 cdivs( const float4x2& lhs, const float scalar )
 {
 	return float4x2(
 		lhs[0] / scalar,
@@ -9445,13 +9445,13 @@ float4x2 comp_divs( const float4x2& lhs, const float scalar )
 	);
 }
 
-float4x2 comp_divm( const float4x2& lhs, const float4x2& rhs )
+float4x2 cdivm( const float4x2& lhs, const float4x2& rhs )
 {
 	return HLML_CONSTRUCT( float4x2 ) {
-		comp_divv( lhs.rows[0], rhs.rows[0] ),
-		comp_divv( lhs.rows[1], rhs.rows[1] ),
-		comp_divv( lhs.rows[2], rhs.rows[2] ),
-		comp_divv( lhs.rows[3], rhs.rows[3] )
+		cdivv( lhs.rows[0], rhs.rows[0] ),
+		cdivv( lhs.rows[1], rhs.rows[1] ),
+		cdivv( lhs.rows[2], rhs.rows[2] ),
+		cdivv( lhs.rows[3], rhs.rows[3] )
 	};
 }
 
@@ -9559,7 +9559,7 @@ bool cmpne( const float4x3& lhs, const float4x3& rhs )
 	return !( cmpe( lhs, rhs ) );
 }
 
-float4x3 comp_adds( const float4x3& lhs, const float scalar )
+float4x3 cadds( const float4x3& lhs, const float scalar )
 {
 	return float4x3(
 		lhs[0] + scalar,
@@ -9569,17 +9569,17 @@ float4x3 comp_adds( const float4x3& lhs, const float scalar )
 	);
 }
 
-float4x3 comp_addm( const float4x3& lhs, const float4x3& rhs )
+float4x3 caddm( const float4x3& lhs, const float4x3& rhs )
 {
 	return HLML_CONSTRUCT( float4x3 ) {
-		comp_addv( lhs.rows[0], rhs.rows[0] ),
-		comp_addv( lhs.rows[1], rhs.rows[1] ),
-		comp_addv( lhs.rows[2], rhs.rows[2] ),
-		comp_addv( lhs.rows[3], rhs.rows[3] )
+		caddv( lhs.rows[0], rhs.rows[0] ),
+		caddv( lhs.rows[1], rhs.rows[1] ),
+		caddv( lhs.rows[2], rhs.rows[2] ),
+		caddv( lhs.rows[3], rhs.rows[3] )
 	};
 }
 
-float4x3 comp_subs( const float4x3& lhs, const float scalar )
+float4x3 csubs( const float4x3& lhs, const float scalar )
 {
 	return float4x3(
 		lhs[0] - scalar,
@@ -9589,17 +9589,17 @@ float4x3 comp_subs( const float4x3& lhs, const float scalar )
 	);
 }
 
-float4x3 comp_subm( const float4x3& lhs, const float4x3& rhs )
+float4x3 csubm( const float4x3& lhs, const float4x3& rhs )
 {
 	return HLML_CONSTRUCT( float4x3 ) {
-		comp_subv( lhs.rows[0], rhs.rows[0] ),
-		comp_subv( lhs.rows[1], rhs.rows[1] ),
-		comp_subv( lhs.rows[2], rhs.rows[2] ),
-		comp_subv( lhs.rows[3], rhs.rows[3] )
+		csubv( lhs.rows[0], rhs.rows[0] ),
+		csubv( lhs.rows[1], rhs.rows[1] ),
+		csubv( lhs.rows[2], rhs.rows[2] ),
+		csubv( lhs.rows[3], rhs.rows[3] )
 	};
 }
 
-float4x3 comp_muls( const float4x3& lhs, const float scalar )
+float4x3 cmuls( const float4x3& lhs, const float scalar )
 {
 	return float4x3(
 		lhs[0] * scalar,
@@ -9609,17 +9609,17 @@ float4x3 comp_muls( const float4x3& lhs, const float scalar )
 	);
 }
 
-float4x3 comp_mulm( const float4x3& lhs, const float4x3& rhs )
+float4x3 cmulm( const float4x3& lhs, const float4x3& rhs )
 {
 	return HLML_CONSTRUCT( float4x3 ) {
-		comp_mulv( lhs.rows[0], rhs.rows[0] ),
-		comp_mulv( lhs.rows[1], rhs.rows[1] ),
-		comp_mulv( lhs.rows[2], rhs.rows[2] ),
-		comp_mulv( lhs.rows[3], rhs.rows[3] )
+		cmulv( lhs.rows[0], rhs.rows[0] ),
+		cmulv( lhs.rows[1], rhs.rows[1] ),
+		cmulv( lhs.rows[2], rhs.rows[2] ),
+		cmulv( lhs.rows[3], rhs.rows[3] )
 	};
 }
 
-float4x3 comp_divs( const float4x3& lhs, const float scalar )
+float4x3 cdivs( const float4x3& lhs, const float scalar )
 {
 	return float4x3(
 		lhs[0] / scalar,
@@ -9629,13 +9629,13 @@ float4x3 comp_divs( const float4x3& lhs, const float scalar )
 	);
 }
 
-float4x3 comp_divm( const float4x3& lhs, const float4x3& rhs )
+float4x3 cdivm( const float4x3& lhs, const float4x3& rhs )
 {
 	return HLML_CONSTRUCT( float4x3 ) {
-		comp_divv( lhs.rows[0], rhs.rows[0] ),
-		comp_divv( lhs.rows[1], rhs.rows[1] ),
-		comp_divv( lhs.rows[2], rhs.rows[2] ),
-		comp_divv( lhs.rows[3], rhs.rows[3] )
+		cdivv( lhs.rows[0], rhs.rows[0] ),
+		cdivv( lhs.rows[1], rhs.rows[1] ),
+		cdivv( lhs.rows[2], rhs.rows[2] ),
+		cdivv( lhs.rows[3], rhs.rows[3] )
 	};
 }
 
@@ -9765,7 +9765,7 @@ bool cmpne( const float4x4& lhs, const float4x4& rhs )
 	return !( cmpe( lhs, rhs ) );
 }
 
-float4x4 comp_adds( const float4x4& lhs, const float scalar )
+float4x4 cadds( const float4x4& lhs, const float scalar )
 {
 	return float4x4(
 		lhs[0] + scalar,
@@ -9775,17 +9775,17 @@ float4x4 comp_adds( const float4x4& lhs, const float scalar )
 	);
 }
 
-float4x4 comp_addm( const float4x4& lhs, const float4x4& rhs )
+float4x4 caddm( const float4x4& lhs, const float4x4& rhs )
 {
 	return HLML_CONSTRUCT( float4x4 ) {
-		comp_addv( lhs.rows[0], rhs.rows[0] ),
-		comp_addv( lhs.rows[1], rhs.rows[1] ),
-		comp_addv( lhs.rows[2], rhs.rows[2] ),
-		comp_addv( lhs.rows[3], rhs.rows[3] )
+		caddv( lhs.rows[0], rhs.rows[0] ),
+		caddv( lhs.rows[1], rhs.rows[1] ),
+		caddv( lhs.rows[2], rhs.rows[2] ),
+		caddv( lhs.rows[3], rhs.rows[3] )
 	};
 }
 
-float4x4 comp_subs( const float4x4& lhs, const float scalar )
+float4x4 csubs( const float4x4& lhs, const float scalar )
 {
 	return float4x4(
 		lhs[0] - scalar,
@@ -9795,17 +9795,17 @@ float4x4 comp_subs( const float4x4& lhs, const float scalar )
 	);
 }
 
-float4x4 comp_subm( const float4x4& lhs, const float4x4& rhs )
+float4x4 csubm( const float4x4& lhs, const float4x4& rhs )
 {
 	return HLML_CONSTRUCT( float4x4 ) {
-		comp_subv( lhs.rows[0], rhs.rows[0] ),
-		comp_subv( lhs.rows[1], rhs.rows[1] ),
-		comp_subv( lhs.rows[2], rhs.rows[2] ),
-		comp_subv( lhs.rows[3], rhs.rows[3] )
+		csubv( lhs.rows[0], rhs.rows[0] ),
+		csubv( lhs.rows[1], rhs.rows[1] ),
+		csubv( lhs.rows[2], rhs.rows[2] ),
+		csubv( lhs.rows[3], rhs.rows[3] )
 	};
 }
 
-float4x4 comp_muls( const float4x4& lhs, const float scalar )
+float4x4 cmuls( const float4x4& lhs, const float scalar )
 {
 	return float4x4(
 		lhs[0] * scalar,
@@ -9815,17 +9815,17 @@ float4x4 comp_muls( const float4x4& lhs, const float scalar )
 	);
 }
 
-float4x4 comp_mulm( const float4x4& lhs, const float4x4& rhs )
+float4x4 cmulm( const float4x4& lhs, const float4x4& rhs )
 {
 	return HLML_CONSTRUCT( float4x4 ) {
-		comp_mulv( lhs.rows[0], rhs.rows[0] ),
-		comp_mulv( lhs.rows[1], rhs.rows[1] ),
-		comp_mulv( lhs.rows[2], rhs.rows[2] ),
-		comp_mulv( lhs.rows[3], rhs.rows[3] )
+		cmulv( lhs.rows[0], rhs.rows[0] ),
+		cmulv( lhs.rows[1], rhs.rows[1] ),
+		cmulv( lhs.rows[2], rhs.rows[2] ),
+		cmulv( lhs.rows[3], rhs.rows[3] )
 	};
 }
 
-float4x4 comp_divs( const float4x4& lhs, const float scalar )
+float4x4 cdivs( const float4x4& lhs, const float scalar )
 {
 	return float4x4(
 		lhs[0] / scalar,
@@ -9835,13 +9835,13 @@ float4x4 comp_divs( const float4x4& lhs, const float scalar )
 	);
 }
 
-float4x4 comp_divm( const float4x4& lhs, const float4x4& rhs )
+float4x4 cdivm( const float4x4& lhs, const float4x4& rhs )
 {
 	return HLML_CONSTRUCT( float4x4 ) {
-		comp_divv( lhs.rows[0], rhs.rows[0] ),
-		comp_divv( lhs.rows[1], rhs.rows[1] ),
-		comp_divv( lhs.rows[2], rhs.rows[2] ),
-		comp_divv( lhs.rows[3], rhs.rows[3] )
+		cdivv( lhs.rows[0], rhs.rows[0] ),
+		cdivv( lhs.rows[1], rhs.rows[1] ),
+		cdivv( lhs.rows[2], rhs.rows[2] ),
+		cdivv( lhs.rows[3], rhs.rows[3] )
 	};
 }
 
@@ -9986,7 +9986,7 @@ float4x4 inverse( const float4x4& mat )
 
 	const float invdet = 1.0f / dot1;
 
-	return comp_muls( result, invdet );
+	return cmuls( result, invdet );
 }
 
 float4x4 mul( const float4x4& lhs, const float4x4& rhs )
@@ -10261,7 +10261,7 @@ bool cmpne( const double2x2& lhs, const double2x2& rhs )
 	return !( cmpe( lhs, rhs ) );
 }
 
-double2x2 comp_adds( const double2x2& lhs, const double scalar )
+double2x2 cadds( const double2x2& lhs, const double scalar )
 {
 	return double2x2(
 		lhs[0] + scalar,
@@ -10269,15 +10269,15 @@ double2x2 comp_adds( const double2x2& lhs, const double scalar )
 	);
 }
 
-double2x2 comp_addm( const double2x2& lhs, const double2x2& rhs )
+double2x2 caddm( const double2x2& lhs, const double2x2& rhs )
 {
 	return HLML_CONSTRUCT( double2x2 ) {
-		comp_addv( lhs.rows[0], rhs.rows[0] ),
-		comp_addv( lhs.rows[1], rhs.rows[1] )
+		caddv( lhs.rows[0], rhs.rows[0] ),
+		caddv( lhs.rows[1], rhs.rows[1] )
 	};
 }
 
-double2x2 comp_subs( const double2x2& lhs, const double scalar )
+double2x2 csubs( const double2x2& lhs, const double scalar )
 {
 	return double2x2(
 		lhs[0] - scalar,
@@ -10285,15 +10285,15 @@ double2x2 comp_subs( const double2x2& lhs, const double scalar )
 	);
 }
 
-double2x2 comp_subm( const double2x2& lhs, const double2x2& rhs )
+double2x2 csubm( const double2x2& lhs, const double2x2& rhs )
 {
 	return HLML_CONSTRUCT( double2x2 ) {
-		comp_subv( lhs.rows[0], rhs.rows[0] ),
-		comp_subv( lhs.rows[1], rhs.rows[1] )
+		csubv( lhs.rows[0], rhs.rows[0] ),
+		csubv( lhs.rows[1], rhs.rows[1] )
 	};
 }
 
-double2x2 comp_muls( const double2x2& lhs, const double scalar )
+double2x2 cmuls( const double2x2& lhs, const double scalar )
 {
 	return double2x2(
 		lhs[0] * scalar,
@@ -10301,15 +10301,15 @@ double2x2 comp_muls( const double2x2& lhs, const double scalar )
 	);
 }
 
-double2x2 comp_mulm( const double2x2& lhs, const double2x2& rhs )
+double2x2 cmulm( const double2x2& lhs, const double2x2& rhs )
 {
 	return HLML_CONSTRUCT( double2x2 ) {
-		comp_mulv( lhs.rows[0], rhs.rows[0] ),
-		comp_mulv( lhs.rows[1], rhs.rows[1] )
+		cmulv( lhs.rows[0], rhs.rows[0] ),
+		cmulv( lhs.rows[1], rhs.rows[1] )
 	};
 }
 
-double2x2 comp_divs( const double2x2& lhs, const double scalar )
+double2x2 cdivs( const double2x2& lhs, const double scalar )
 {
 	return double2x2(
 		lhs[0] / scalar,
@@ -10317,11 +10317,11 @@ double2x2 comp_divs( const double2x2& lhs, const double scalar )
 	);
 }
 
-double2x2 comp_divm( const double2x2& lhs, const double2x2& rhs )
+double2x2 cdivm( const double2x2& lhs, const double2x2& rhs )
 {
 	return HLML_CONSTRUCT( double2x2 ) {
-		comp_divv( lhs.rows[0], rhs.rows[0] ),
-		comp_divv( lhs.rows[1], rhs.rows[1] )
+		cdivv( lhs.rows[0], rhs.rows[0] ),
+		cdivv( lhs.rows[1], rhs.rows[1] )
 	};
 }
 
@@ -10421,7 +10421,7 @@ bool cmpne( const double2x3& lhs, const double2x3& rhs )
 	return !( cmpe( lhs, rhs ) );
 }
 
-double2x3 comp_adds( const double2x3& lhs, const double scalar )
+double2x3 cadds( const double2x3& lhs, const double scalar )
 {
 	return double2x3(
 		lhs[0] + scalar,
@@ -10429,15 +10429,15 @@ double2x3 comp_adds( const double2x3& lhs, const double scalar )
 	);
 }
 
-double2x3 comp_addm( const double2x3& lhs, const double2x3& rhs )
+double2x3 caddm( const double2x3& lhs, const double2x3& rhs )
 {
 	return HLML_CONSTRUCT( double2x3 ) {
-		comp_addv( lhs.rows[0], rhs.rows[0] ),
-		comp_addv( lhs.rows[1], rhs.rows[1] )
+		caddv( lhs.rows[0], rhs.rows[0] ),
+		caddv( lhs.rows[1], rhs.rows[1] )
 	};
 }
 
-double2x3 comp_subs( const double2x3& lhs, const double scalar )
+double2x3 csubs( const double2x3& lhs, const double scalar )
 {
 	return double2x3(
 		lhs[0] - scalar,
@@ -10445,15 +10445,15 @@ double2x3 comp_subs( const double2x3& lhs, const double scalar )
 	);
 }
 
-double2x3 comp_subm( const double2x3& lhs, const double2x3& rhs )
+double2x3 csubm( const double2x3& lhs, const double2x3& rhs )
 {
 	return HLML_CONSTRUCT( double2x3 ) {
-		comp_subv( lhs.rows[0], rhs.rows[0] ),
-		comp_subv( lhs.rows[1], rhs.rows[1] )
+		csubv( lhs.rows[0], rhs.rows[0] ),
+		csubv( lhs.rows[1], rhs.rows[1] )
 	};
 }
 
-double2x3 comp_muls( const double2x3& lhs, const double scalar )
+double2x3 cmuls( const double2x3& lhs, const double scalar )
 {
 	return double2x3(
 		lhs[0] * scalar,
@@ -10461,15 +10461,15 @@ double2x3 comp_muls( const double2x3& lhs, const double scalar )
 	);
 }
 
-double2x3 comp_mulm( const double2x3& lhs, const double2x3& rhs )
+double2x3 cmulm( const double2x3& lhs, const double2x3& rhs )
 {
 	return HLML_CONSTRUCT( double2x3 ) {
-		comp_mulv( lhs.rows[0], rhs.rows[0] ),
-		comp_mulv( lhs.rows[1], rhs.rows[1] )
+		cmulv( lhs.rows[0], rhs.rows[0] ),
+		cmulv( lhs.rows[1], rhs.rows[1] )
 	};
 }
 
-double2x3 comp_divs( const double2x3& lhs, const double scalar )
+double2x3 cdivs( const double2x3& lhs, const double scalar )
 {
 	return double2x3(
 		lhs[0] / scalar,
@@ -10477,11 +10477,11 @@ double2x3 comp_divs( const double2x3& lhs, const double scalar )
 	);
 }
 
-double2x3 comp_divm( const double2x3& lhs, const double2x3& rhs )
+double2x3 cdivm( const double2x3& lhs, const double2x3& rhs )
 {
 	return HLML_CONSTRUCT( double2x3 ) {
-		comp_divv( lhs.rows[0], rhs.rows[0] ),
-		comp_divv( lhs.rows[1], rhs.rows[1] )
+		cdivv( lhs.rows[0], rhs.rows[0] ),
+		cdivv( lhs.rows[1], rhs.rows[1] )
 	};
 }
 
@@ -10573,7 +10573,7 @@ bool cmpne( const double2x4& lhs, const double2x4& rhs )
 	return !( cmpe( lhs, rhs ) );
 }
 
-double2x4 comp_adds( const double2x4& lhs, const double scalar )
+double2x4 cadds( const double2x4& lhs, const double scalar )
 {
 	return double2x4(
 		lhs[0] + scalar,
@@ -10581,15 +10581,15 @@ double2x4 comp_adds( const double2x4& lhs, const double scalar )
 	);
 }
 
-double2x4 comp_addm( const double2x4& lhs, const double2x4& rhs )
+double2x4 caddm( const double2x4& lhs, const double2x4& rhs )
 {
 	return HLML_CONSTRUCT( double2x4 ) {
-		comp_addv( lhs.rows[0], rhs.rows[0] ),
-		comp_addv( lhs.rows[1], rhs.rows[1] )
+		caddv( lhs.rows[0], rhs.rows[0] ),
+		caddv( lhs.rows[1], rhs.rows[1] )
 	};
 }
 
-double2x4 comp_subs( const double2x4& lhs, const double scalar )
+double2x4 csubs( const double2x4& lhs, const double scalar )
 {
 	return double2x4(
 		lhs[0] - scalar,
@@ -10597,15 +10597,15 @@ double2x4 comp_subs( const double2x4& lhs, const double scalar )
 	);
 }
 
-double2x4 comp_subm( const double2x4& lhs, const double2x4& rhs )
+double2x4 csubm( const double2x4& lhs, const double2x4& rhs )
 {
 	return HLML_CONSTRUCT( double2x4 ) {
-		comp_subv( lhs.rows[0], rhs.rows[0] ),
-		comp_subv( lhs.rows[1], rhs.rows[1] )
+		csubv( lhs.rows[0], rhs.rows[0] ),
+		csubv( lhs.rows[1], rhs.rows[1] )
 	};
 }
 
-double2x4 comp_muls( const double2x4& lhs, const double scalar )
+double2x4 cmuls( const double2x4& lhs, const double scalar )
 {
 	return double2x4(
 		lhs[0] * scalar,
@@ -10613,15 +10613,15 @@ double2x4 comp_muls( const double2x4& lhs, const double scalar )
 	);
 }
 
-double2x4 comp_mulm( const double2x4& lhs, const double2x4& rhs )
+double2x4 cmulm( const double2x4& lhs, const double2x4& rhs )
 {
 	return HLML_CONSTRUCT( double2x4 ) {
-		comp_mulv( lhs.rows[0], rhs.rows[0] ),
-		comp_mulv( lhs.rows[1], rhs.rows[1] )
+		cmulv( lhs.rows[0], rhs.rows[0] ),
+		cmulv( lhs.rows[1], rhs.rows[1] )
 	};
 }
 
-double2x4 comp_divs( const double2x4& lhs, const double scalar )
+double2x4 cdivs( const double2x4& lhs, const double scalar )
 {
 	return double2x4(
 		lhs[0] / scalar,
@@ -10629,11 +10629,11 @@ double2x4 comp_divs( const double2x4& lhs, const double scalar )
 	);
 }
 
-double2x4 comp_divm( const double2x4& lhs, const double2x4& rhs )
+double2x4 cdivm( const double2x4& lhs, const double2x4& rhs )
 {
 	return HLML_CONSTRUCT( double2x4 ) {
-		comp_divv( lhs.rows[0], rhs.rows[0] ),
-		comp_divv( lhs.rows[1], rhs.rows[1] )
+		cdivv( lhs.rows[0], rhs.rows[0] ),
+		cdivv( lhs.rows[1], rhs.rows[1] )
 	};
 }
 
@@ -10729,7 +10729,7 @@ bool cmpne( const double3x2& lhs, const double3x2& rhs )
 	return !( cmpe( lhs, rhs ) );
 }
 
-double3x2 comp_adds( const double3x2& lhs, const double scalar )
+double3x2 cadds( const double3x2& lhs, const double scalar )
 {
 	return double3x2(
 		lhs[0] + scalar,
@@ -10738,16 +10738,16 @@ double3x2 comp_adds( const double3x2& lhs, const double scalar )
 	);
 }
 
-double3x2 comp_addm( const double3x2& lhs, const double3x2& rhs )
+double3x2 caddm( const double3x2& lhs, const double3x2& rhs )
 {
 	return HLML_CONSTRUCT( double3x2 ) {
-		comp_addv( lhs.rows[0], rhs.rows[0] ),
-		comp_addv( lhs.rows[1], rhs.rows[1] ),
-		comp_addv( lhs.rows[2], rhs.rows[2] )
+		caddv( lhs.rows[0], rhs.rows[0] ),
+		caddv( lhs.rows[1], rhs.rows[1] ),
+		caddv( lhs.rows[2], rhs.rows[2] )
 	};
 }
 
-double3x2 comp_subs( const double3x2& lhs, const double scalar )
+double3x2 csubs( const double3x2& lhs, const double scalar )
 {
 	return double3x2(
 		lhs[0] - scalar,
@@ -10756,16 +10756,16 @@ double3x2 comp_subs( const double3x2& lhs, const double scalar )
 	);
 }
 
-double3x2 comp_subm( const double3x2& lhs, const double3x2& rhs )
+double3x2 csubm( const double3x2& lhs, const double3x2& rhs )
 {
 	return HLML_CONSTRUCT( double3x2 ) {
-		comp_subv( lhs.rows[0], rhs.rows[0] ),
-		comp_subv( lhs.rows[1], rhs.rows[1] ),
-		comp_subv( lhs.rows[2], rhs.rows[2] )
+		csubv( lhs.rows[0], rhs.rows[0] ),
+		csubv( lhs.rows[1], rhs.rows[1] ),
+		csubv( lhs.rows[2], rhs.rows[2] )
 	};
 }
 
-double3x2 comp_muls( const double3x2& lhs, const double scalar )
+double3x2 cmuls( const double3x2& lhs, const double scalar )
 {
 	return double3x2(
 		lhs[0] * scalar,
@@ -10774,16 +10774,16 @@ double3x2 comp_muls( const double3x2& lhs, const double scalar )
 	);
 }
 
-double3x2 comp_mulm( const double3x2& lhs, const double3x2& rhs )
+double3x2 cmulm( const double3x2& lhs, const double3x2& rhs )
 {
 	return HLML_CONSTRUCT( double3x2 ) {
-		comp_mulv( lhs.rows[0], rhs.rows[0] ),
-		comp_mulv( lhs.rows[1], rhs.rows[1] ),
-		comp_mulv( lhs.rows[2], rhs.rows[2] )
+		cmulv( lhs.rows[0], rhs.rows[0] ),
+		cmulv( lhs.rows[1], rhs.rows[1] ),
+		cmulv( lhs.rows[2], rhs.rows[2] )
 	};
 }
 
-double3x2 comp_divs( const double3x2& lhs, const double scalar )
+double3x2 cdivs( const double3x2& lhs, const double scalar )
 {
 	return double3x2(
 		lhs[0] / scalar,
@@ -10792,12 +10792,12 @@ double3x2 comp_divs( const double3x2& lhs, const double scalar )
 	);
 }
 
-double3x2 comp_divm( const double3x2& lhs, const double3x2& rhs )
+double3x2 cdivm( const double3x2& lhs, const double3x2& rhs )
 {
 	return HLML_CONSTRUCT( double3x2 ) {
-		comp_divv( lhs.rows[0], rhs.rows[0] ),
-		comp_divv( lhs.rows[1], rhs.rows[1] ),
-		comp_divv( lhs.rows[2], rhs.rows[2] )
+		cdivv( lhs.rows[0], rhs.rows[0] ),
+		cdivv( lhs.rows[1], rhs.rows[1] ),
+		cdivv( lhs.rows[2], rhs.rows[2] )
 	};
 }
 
@@ -10889,7 +10889,7 @@ bool cmpne( const double3x3& lhs, const double3x3& rhs )
 	return !( cmpe( lhs, rhs ) );
 }
 
-double3x3 comp_adds( const double3x3& lhs, const double scalar )
+double3x3 cadds( const double3x3& lhs, const double scalar )
 {
 	return double3x3(
 		lhs[0] + scalar,
@@ -10898,16 +10898,16 @@ double3x3 comp_adds( const double3x3& lhs, const double scalar )
 	);
 }
 
-double3x3 comp_addm( const double3x3& lhs, const double3x3& rhs )
+double3x3 caddm( const double3x3& lhs, const double3x3& rhs )
 {
 	return HLML_CONSTRUCT( double3x3 ) {
-		comp_addv( lhs.rows[0], rhs.rows[0] ),
-		comp_addv( lhs.rows[1], rhs.rows[1] ),
-		comp_addv( lhs.rows[2], rhs.rows[2] )
+		caddv( lhs.rows[0], rhs.rows[0] ),
+		caddv( lhs.rows[1], rhs.rows[1] ),
+		caddv( lhs.rows[2], rhs.rows[2] )
 	};
 }
 
-double3x3 comp_subs( const double3x3& lhs, const double scalar )
+double3x3 csubs( const double3x3& lhs, const double scalar )
 {
 	return double3x3(
 		lhs[0] - scalar,
@@ -10916,16 +10916,16 @@ double3x3 comp_subs( const double3x3& lhs, const double scalar )
 	);
 }
 
-double3x3 comp_subm( const double3x3& lhs, const double3x3& rhs )
+double3x3 csubm( const double3x3& lhs, const double3x3& rhs )
 {
 	return HLML_CONSTRUCT( double3x3 ) {
-		comp_subv( lhs.rows[0], rhs.rows[0] ),
-		comp_subv( lhs.rows[1], rhs.rows[1] ),
-		comp_subv( lhs.rows[2], rhs.rows[2] )
+		csubv( lhs.rows[0], rhs.rows[0] ),
+		csubv( lhs.rows[1], rhs.rows[1] ),
+		csubv( lhs.rows[2], rhs.rows[2] )
 	};
 }
 
-double3x3 comp_muls( const double3x3& lhs, const double scalar )
+double3x3 cmuls( const double3x3& lhs, const double scalar )
 {
 	return double3x3(
 		lhs[0] * scalar,
@@ -10934,16 +10934,16 @@ double3x3 comp_muls( const double3x3& lhs, const double scalar )
 	);
 }
 
-double3x3 comp_mulm( const double3x3& lhs, const double3x3& rhs )
+double3x3 cmulm( const double3x3& lhs, const double3x3& rhs )
 {
 	return HLML_CONSTRUCT( double3x3 ) {
-		comp_mulv( lhs.rows[0], rhs.rows[0] ),
-		comp_mulv( lhs.rows[1], rhs.rows[1] ),
-		comp_mulv( lhs.rows[2], rhs.rows[2] )
+		cmulv( lhs.rows[0], rhs.rows[0] ),
+		cmulv( lhs.rows[1], rhs.rows[1] ),
+		cmulv( lhs.rows[2], rhs.rows[2] )
 	};
 }
 
-double3x3 comp_divs( const double3x3& lhs, const double scalar )
+double3x3 cdivs( const double3x3& lhs, const double scalar )
 {
 	return double3x3(
 		lhs[0] / scalar,
@@ -10952,12 +10952,12 @@ double3x3 comp_divs( const double3x3& lhs, const double scalar )
 	);
 }
 
-double3x3 comp_divm( const double3x3& lhs, const double3x3& rhs )
+double3x3 cdivm( const double3x3& lhs, const double3x3& rhs )
 {
 	return HLML_CONSTRUCT( double3x3 ) {
-		comp_divv( lhs.rows[0], rhs.rows[0] ),
-		comp_divv( lhs.rows[1], rhs.rows[1] ),
-		comp_divv( lhs.rows[2], rhs.rows[2] )
+		cdivv( lhs.rows[0], rhs.rows[0] ),
+		cdivv( lhs.rows[1], rhs.rows[1] ),
+		cdivv( lhs.rows[2], rhs.rows[2] )
 	};
 }
 
@@ -11087,14 +11087,14 @@ double3x3 rotate( const double3x3& mat, const double rad )
 	const double c = cos( rad );
 	const double s = sin( rad );
 
-	double3 row0_cos  = comp_muls( mat.rows[0], c );
-	double3 row0_sin  = comp_muls( mat.rows[0], s );
-	double3 row1_nsin = comp_muls( mat.rows[1], -s );
-	double3 row1_cos  = comp_muls( mat.rows[1], c );
+	double3 row0_cos  = cmuls( mat.rows[0], c );
+	double3 row0_sin  = cmuls( mat.rows[0], s );
+	double3 row1_nsin = cmuls( mat.rows[1], -s );
+	double3 row1_cos  = cmuls( mat.rows[1], c );
 
 	return HLML_CONSTRUCT( double3x3 ) {
-		comp_addv( row0_cos, row1_nsin ),
-		comp_addv( row0_sin, row1_cos  ),
+		caddv( row0_cos, row1_nsin ),
+		caddv( row0_sin, row1_cos  ),
 		mat.rows[2]
 	};
 }
@@ -11128,7 +11128,7 @@ bool cmpne( const double3x4& lhs, const double3x4& rhs )
 	return !( cmpe( lhs, rhs ) );
 }
 
-double3x4 comp_adds( const double3x4& lhs, const double scalar )
+double3x4 cadds( const double3x4& lhs, const double scalar )
 {
 	return double3x4(
 		lhs[0] + scalar,
@@ -11137,16 +11137,16 @@ double3x4 comp_adds( const double3x4& lhs, const double scalar )
 	);
 }
 
-double3x4 comp_addm( const double3x4& lhs, const double3x4& rhs )
+double3x4 caddm( const double3x4& lhs, const double3x4& rhs )
 {
 	return HLML_CONSTRUCT( double3x4 ) {
-		comp_addv( lhs.rows[0], rhs.rows[0] ),
-		comp_addv( lhs.rows[1], rhs.rows[1] ),
-		comp_addv( lhs.rows[2], rhs.rows[2] )
+		caddv( lhs.rows[0], rhs.rows[0] ),
+		caddv( lhs.rows[1], rhs.rows[1] ),
+		caddv( lhs.rows[2], rhs.rows[2] )
 	};
 }
 
-double3x4 comp_subs( const double3x4& lhs, const double scalar )
+double3x4 csubs( const double3x4& lhs, const double scalar )
 {
 	return double3x4(
 		lhs[0] - scalar,
@@ -11155,16 +11155,16 @@ double3x4 comp_subs( const double3x4& lhs, const double scalar )
 	);
 }
 
-double3x4 comp_subm( const double3x4& lhs, const double3x4& rhs )
+double3x4 csubm( const double3x4& lhs, const double3x4& rhs )
 {
 	return HLML_CONSTRUCT( double3x4 ) {
-		comp_subv( lhs.rows[0], rhs.rows[0] ),
-		comp_subv( lhs.rows[1], rhs.rows[1] ),
-		comp_subv( lhs.rows[2], rhs.rows[2] )
+		csubv( lhs.rows[0], rhs.rows[0] ),
+		csubv( lhs.rows[1], rhs.rows[1] ),
+		csubv( lhs.rows[2], rhs.rows[2] )
 	};
 }
 
-double3x4 comp_muls( const double3x4& lhs, const double scalar )
+double3x4 cmuls( const double3x4& lhs, const double scalar )
 {
 	return double3x4(
 		lhs[0] * scalar,
@@ -11173,16 +11173,16 @@ double3x4 comp_muls( const double3x4& lhs, const double scalar )
 	);
 }
 
-double3x4 comp_mulm( const double3x4& lhs, const double3x4& rhs )
+double3x4 cmulm( const double3x4& lhs, const double3x4& rhs )
 {
 	return HLML_CONSTRUCT( double3x4 ) {
-		comp_mulv( lhs.rows[0], rhs.rows[0] ),
-		comp_mulv( lhs.rows[1], rhs.rows[1] ),
-		comp_mulv( lhs.rows[2], rhs.rows[2] )
+		cmulv( lhs.rows[0], rhs.rows[0] ),
+		cmulv( lhs.rows[1], rhs.rows[1] ),
+		cmulv( lhs.rows[2], rhs.rows[2] )
 	};
 }
 
-double3x4 comp_divs( const double3x4& lhs, const double scalar )
+double3x4 cdivs( const double3x4& lhs, const double scalar )
 {
 	return double3x4(
 		lhs[0] / scalar,
@@ -11191,12 +11191,12 @@ double3x4 comp_divs( const double3x4& lhs, const double scalar )
 	);
 }
 
-double3x4 comp_divm( const double3x4& lhs, const double3x4& rhs )
+double3x4 cdivm( const double3x4& lhs, const double3x4& rhs )
 {
 	return HLML_CONSTRUCT( double3x4 ) {
-		comp_divv( lhs.rows[0], rhs.rows[0] ),
-		comp_divv( lhs.rows[1], rhs.rows[1] ),
-		comp_divv( lhs.rows[2], rhs.rows[2] )
+		cdivv( lhs.rows[0], rhs.rows[0] ),
+		cdivv( lhs.rows[1], rhs.rows[1] ),
+		cdivv( lhs.rows[2], rhs.rows[2] )
 	};
 }
 
@@ -11320,7 +11320,7 @@ bool cmpne( const double4x2& lhs, const double4x2& rhs )
 	return !( cmpe( lhs, rhs ) );
 }
 
-double4x2 comp_adds( const double4x2& lhs, const double scalar )
+double4x2 cadds( const double4x2& lhs, const double scalar )
 {
 	return double4x2(
 		lhs[0] + scalar,
@@ -11330,17 +11330,17 @@ double4x2 comp_adds( const double4x2& lhs, const double scalar )
 	);
 }
 
-double4x2 comp_addm( const double4x2& lhs, const double4x2& rhs )
+double4x2 caddm( const double4x2& lhs, const double4x2& rhs )
 {
 	return HLML_CONSTRUCT( double4x2 ) {
-		comp_addv( lhs.rows[0], rhs.rows[0] ),
-		comp_addv( lhs.rows[1], rhs.rows[1] ),
-		comp_addv( lhs.rows[2], rhs.rows[2] ),
-		comp_addv( lhs.rows[3], rhs.rows[3] )
+		caddv( lhs.rows[0], rhs.rows[0] ),
+		caddv( lhs.rows[1], rhs.rows[1] ),
+		caddv( lhs.rows[2], rhs.rows[2] ),
+		caddv( lhs.rows[3], rhs.rows[3] )
 	};
 }
 
-double4x2 comp_subs( const double4x2& lhs, const double scalar )
+double4x2 csubs( const double4x2& lhs, const double scalar )
 {
 	return double4x2(
 		lhs[0] - scalar,
@@ -11350,17 +11350,17 @@ double4x2 comp_subs( const double4x2& lhs, const double scalar )
 	);
 }
 
-double4x2 comp_subm( const double4x2& lhs, const double4x2& rhs )
+double4x2 csubm( const double4x2& lhs, const double4x2& rhs )
 {
 	return HLML_CONSTRUCT( double4x2 ) {
-		comp_subv( lhs.rows[0], rhs.rows[0] ),
-		comp_subv( lhs.rows[1], rhs.rows[1] ),
-		comp_subv( lhs.rows[2], rhs.rows[2] ),
-		comp_subv( lhs.rows[3], rhs.rows[3] )
+		csubv( lhs.rows[0], rhs.rows[0] ),
+		csubv( lhs.rows[1], rhs.rows[1] ),
+		csubv( lhs.rows[2], rhs.rows[2] ),
+		csubv( lhs.rows[3], rhs.rows[3] )
 	};
 }
 
-double4x2 comp_muls( const double4x2& lhs, const double scalar )
+double4x2 cmuls( const double4x2& lhs, const double scalar )
 {
 	return double4x2(
 		lhs[0] * scalar,
@@ -11370,17 +11370,17 @@ double4x2 comp_muls( const double4x2& lhs, const double scalar )
 	);
 }
 
-double4x2 comp_mulm( const double4x2& lhs, const double4x2& rhs )
+double4x2 cmulm( const double4x2& lhs, const double4x2& rhs )
 {
 	return HLML_CONSTRUCT( double4x2 ) {
-		comp_mulv( lhs.rows[0], rhs.rows[0] ),
-		comp_mulv( lhs.rows[1], rhs.rows[1] ),
-		comp_mulv( lhs.rows[2], rhs.rows[2] ),
-		comp_mulv( lhs.rows[3], rhs.rows[3] )
+		cmulv( lhs.rows[0], rhs.rows[0] ),
+		cmulv( lhs.rows[1], rhs.rows[1] ),
+		cmulv( lhs.rows[2], rhs.rows[2] ),
+		cmulv( lhs.rows[3], rhs.rows[3] )
 	};
 }
 
-double4x2 comp_divs( const double4x2& lhs, const double scalar )
+double4x2 cdivs( const double4x2& lhs, const double scalar )
 {
 	return double4x2(
 		lhs[0] / scalar,
@@ -11390,13 +11390,13 @@ double4x2 comp_divs( const double4x2& lhs, const double scalar )
 	);
 }
 
-double4x2 comp_divm( const double4x2& lhs, const double4x2& rhs )
+double4x2 cdivm( const double4x2& lhs, const double4x2& rhs )
 {
 	return HLML_CONSTRUCT( double4x2 ) {
-		comp_divv( lhs.rows[0], rhs.rows[0] ),
-		comp_divv( lhs.rows[1], rhs.rows[1] ),
-		comp_divv( lhs.rows[2], rhs.rows[2] ),
-		comp_divv( lhs.rows[3], rhs.rows[3] )
+		cdivv( lhs.rows[0], rhs.rows[0] ),
+		cdivv( lhs.rows[1], rhs.rows[1] ),
+		cdivv( lhs.rows[2], rhs.rows[2] ),
+		cdivv( lhs.rows[3], rhs.rows[3] )
 	};
 }
 
@@ -11504,7 +11504,7 @@ bool cmpne( const double4x3& lhs, const double4x3& rhs )
 	return !( cmpe( lhs, rhs ) );
 }
 
-double4x3 comp_adds( const double4x3& lhs, const double scalar )
+double4x3 cadds( const double4x3& lhs, const double scalar )
 {
 	return double4x3(
 		lhs[0] + scalar,
@@ -11514,17 +11514,17 @@ double4x3 comp_adds( const double4x3& lhs, const double scalar )
 	);
 }
 
-double4x3 comp_addm( const double4x3& lhs, const double4x3& rhs )
+double4x3 caddm( const double4x3& lhs, const double4x3& rhs )
 {
 	return HLML_CONSTRUCT( double4x3 ) {
-		comp_addv( lhs.rows[0], rhs.rows[0] ),
-		comp_addv( lhs.rows[1], rhs.rows[1] ),
-		comp_addv( lhs.rows[2], rhs.rows[2] ),
-		comp_addv( lhs.rows[3], rhs.rows[3] )
+		caddv( lhs.rows[0], rhs.rows[0] ),
+		caddv( lhs.rows[1], rhs.rows[1] ),
+		caddv( lhs.rows[2], rhs.rows[2] ),
+		caddv( lhs.rows[3], rhs.rows[3] )
 	};
 }
 
-double4x3 comp_subs( const double4x3& lhs, const double scalar )
+double4x3 csubs( const double4x3& lhs, const double scalar )
 {
 	return double4x3(
 		lhs[0] - scalar,
@@ -11534,17 +11534,17 @@ double4x3 comp_subs( const double4x3& lhs, const double scalar )
 	);
 }
 
-double4x3 comp_subm( const double4x3& lhs, const double4x3& rhs )
+double4x3 csubm( const double4x3& lhs, const double4x3& rhs )
 {
 	return HLML_CONSTRUCT( double4x3 ) {
-		comp_subv( lhs.rows[0], rhs.rows[0] ),
-		comp_subv( lhs.rows[1], rhs.rows[1] ),
-		comp_subv( lhs.rows[2], rhs.rows[2] ),
-		comp_subv( lhs.rows[3], rhs.rows[3] )
+		csubv( lhs.rows[0], rhs.rows[0] ),
+		csubv( lhs.rows[1], rhs.rows[1] ),
+		csubv( lhs.rows[2], rhs.rows[2] ),
+		csubv( lhs.rows[3], rhs.rows[3] )
 	};
 }
 
-double4x3 comp_muls( const double4x3& lhs, const double scalar )
+double4x3 cmuls( const double4x3& lhs, const double scalar )
 {
 	return double4x3(
 		lhs[0] * scalar,
@@ -11554,17 +11554,17 @@ double4x3 comp_muls( const double4x3& lhs, const double scalar )
 	);
 }
 
-double4x3 comp_mulm( const double4x3& lhs, const double4x3& rhs )
+double4x3 cmulm( const double4x3& lhs, const double4x3& rhs )
 {
 	return HLML_CONSTRUCT( double4x3 ) {
-		comp_mulv( lhs.rows[0], rhs.rows[0] ),
-		comp_mulv( lhs.rows[1], rhs.rows[1] ),
-		comp_mulv( lhs.rows[2], rhs.rows[2] ),
-		comp_mulv( lhs.rows[3], rhs.rows[3] )
+		cmulv( lhs.rows[0], rhs.rows[0] ),
+		cmulv( lhs.rows[1], rhs.rows[1] ),
+		cmulv( lhs.rows[2], rhs.rows[2] ),
+		cmulv( lhs.rows[3], rhs.rows[3] )
 	};
 }
 
-double4x3 comp_divs( const double4x3& lhs, const double scalar )
+double4x3 cdivs( const double4x3& lhs, const double scalar )
 {
 	return double4x3(
 		lhs[0] / scalar,
@@ -11574,13 +11574,13 @@ double4x3 comp_divs( const double4x3& lhs, const double scalar )
 	);
 }
 
-double4x3 comp_divm( const double4x3& lhs, const double4x3& rhs )
+double4x3 cdivm( const double4x3& lhs, const double4x3& rhs )
 {
 	return HLML_CONSTRUCT( double4x3 ) {
-		comp_divv( lhs.rows[0], rhs.rows[0] ),
-		comp_divv( lhs.rows[1], rhs.rows[1] ),
-		comp_divv( lhs.rows[2], rhs.rows[2] ),
-		comp_divv( lhs.rows[3], rhs.rows[3] )
+		cdivv( lhs.rows[0], rhs.rows[0] ),
+		cdivv( lhs.rows[1], rhs.rows[1] ),
+		cdivv( lhs.rows[2], rhs.rows[2] ),
+		cdivv( lhs.rows[3], rhs.rows[3] )
 	};
 }
 
@@ -11710,7 +11710,7 @@ bool cmpne( const double4x4& lhs, const double4x4& rhs )
 	return !( cmpe( lhs, rhs ) );
 }
 
-double4x4 comp_adds( const double4x4& lhs, const double scalar )
+double4x4 cadds( const double4x4& lhs, const double scalar )
 {
 	return double4x4(
 		lhs[0] + scalar,
@@ -11720,17 +11720,17 @@ double4x4 comp_adds( const double4x4& lhs, const double scalar )
 	);
 }
 
-double4x4 comp_addm( const double4x4& lhs, const double4x4& rhs )
+double4x4 caddm( const double4x4& lhs, const double4x4& rhs )
 {
 	return HLML_CONSTRUCT( double4x4 ) {
-		comp_addv( lhs.rows[0], rhs.rows[0] ),
-		comp_addv( lhs.rows[1], rhs.rows[1] ),
-		comp_addv( lhs.rows[2], rhs.rows[2] ),
-		comp_addv( lhs.rows[3], rhs.rows[3] )
+		caddv( lhs.rows[0], rhs.rows[0] ),
+		caddv( lhs.rows[1], rhs.rows[1] ),
+		caddv( lhs.rows[2], rhs.rows[2] ),
+		caddv( lhs.rows[3], rhs.rows[3] )
 	};
 }
 
-double4x4 comp_subs( const double4x4& lhs, const double scalar )
+double4x4 csubs( const double4x4& lhs, const double scalar )
 {
 	return double4x4(
 		lhs[0] - scalar,
@@ -11740,17 +11740,17 @@ double4x4 comp_subs( const double4x4& lhs, const double scalar )
 	);
 }
 
-double4x4 comp_subm( const double4x4& lhs, const double4x4& rhs )
+double4x4 csubm( const double4x4& lhs, const double4x4& rhs )
 {
 	return HLML_CONSTRUCT( double4x4 ) {
-		comp_subv( lhs.rows[0], rhs.rows[0] ),
-		comp_subv( lhs.rows[1], rhs.rows[1] ),
-		comp_subv( lhs.rows[2], rhs.rows[2] ),
-		comp_subv( lhs.rows[3], rhs.rows[3] )
+		csubv( lhs.rows[0], rhs.rows[0] ),
+		csubv( lhs.rows[1], rhs.rows[1] ),
+		csubv( lhs.rows[2], rhs.rows[2] ),
+		csubv( lhs.rows[3], rhs.rows[3] )
 	};
 }
 
-double4x4 comp_muls( const double4x4& lhs, const double scalar )
+double4x4 cmuls( const double4x4& lhs, const double scalar )
 {
 	return double4x4(
 		lhs[0] * scalar,
@@ -11760,17 +11760,17 @@ double4x4 comp_muls( const double4x4& lhs, const double scalar )
 	);
 }
 
-double4x4 comp_mulm( const double4x4& lhs, const double4x4& rhs )
+double4x4 cmulm( const double4x4& lhs, const double4x4& rhs )
 {
 	return HLML_CONSTRUCT( double4x4 ) {
-		comp_mulv( lhs.rows[0], rhs.rows[0] ),
-		comp_mulv( lhs.rows[1], rhs.rows[1] ),
-		comp_mulv( lhs.rows[2], rhs.rows[2] ),
-		comp_mulv( lhs.rows[3], rhs.rows[3] )
+		cmulv( lhs.rows[0], rhs.rows[0] ),
+		cmulv( lhs.rows[1], rhs.rows[1] ),
+		cmulv( lhs.rows[2], rhs.rows[2] ),
+		cmulv( lhs.rows[3], rhs.rows[3] )
 	};
 }
 
-double4x4 comp_divs( const double4x4& lhs, const double scalar )
+double4x4 cdivs( const double4x4& lhs, const double scalar )
 {
 	return double4x4(
 		lhs[0] / scalar,
@@ -11780,13 +11780,13 @@ double4x4 comp_divs( const double4x4& lhs, const double scalar )
 	);
 }
 
-double4x4 comp_divm( const double4x4& lhs, const double4x4& rhs )
+double4x4 cdivm( const double4x4& lhs, const double4x4& rhs )
 {
 	return HLML_CONSTRUCT( double4x4 ) {
-		comp_divv( lhs.rows[0], rhs.rows[0] ),
-		comp_divv( lhs.rows[1], rhs.rows[1] ),
-		comp_divv( lhs.rows[2], rhs.rows[2] ),
-		comp_divv( lhs.rows[3], rhs.rows[3] )
+		cdivv( lhs.rows[0], rhs.rows[0] ),
+		cdivv( lhs.rows[1], rhs.rows[1] ),
+		cdivv( lhs.rows[2], rhs.rows[2] ),
+		cdivv( lhs.rows[3], rhs.rows[3] )
 	};
 }
 
@@ -11931,7 +11931,7 @@ double4x4 inverse( const double4x4& mat )
 
 	const double invdet = 1.0 / dot1;
 
-	return comp_muls( result, invdet );
+	return cmuls( result, invdet );
 }
 
 double4x4 mul( const double4x4& lhs, const double4x4& rhs )

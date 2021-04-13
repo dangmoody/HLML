@@ -57,7 +57,7 @@ TEMPER_TEST( TestArithmeticAddition_uint3 )
 {
 	uint3 a = (uint3)	{ 6U, 6U, 6U };
 	uint3 b = (uint3)	{ 2U, 3U, 4U };
-	uint3 c = uint3_comp_addv( &a, &b );
+	uint3 c = uint3_caddv( &a, &b );
 
 	TEMPER_EXPECT_TRUE( c.x == 8U );
 	TEMPER_EXPECT_TRUE( c.y == 9U );
@@ -70,7 +70,7 @@ TEMPER_TEST( TestArithmeticSubtraction_uint3 )
 {
 	uint3 a = (uint3)	{ 6U, 6U, 6U };
 	uint3 b = (uint3)	{ 2U, 3U, 4U };
-	uint3 c = uint3_comp_subv( &a, &b );
+	uint3 c = uint3_csubv( &a, &b );
 
 	TEMPER_EXPECT_TRUE( c.x == 4U );
 	TEMPER_EXPECT_TRUE( c.y == 3U );
@@ -83,7 +83,7 @@ TEMPER_TEST( TestArithmeticMultiplication_uint3 )
 {
 	uint3 a = (uint3)	{ 6U, 6U, 6U };
 	uint3 b = (uint3)	{ 2U, 3U, 4U };
-	uint3 c = uint3_comp_mulv( &a, &b );
+	uint3 c = uint3_cmulv( &a, &b );
 
 	TEMPER_EXPECT_TRUE( c.x == 12U );
 	TEMPER_EXPECT_TRUE( c.y == 18U );
@@ -96,7 +96,7 @@ TEMPER_TEST( TestArithmeticDivision_uint3 )
 {
 	uint3 a = (uint3)	{ 6U, 6U, 6U };
 	uint3 b = (uint3)	{ 2U, 2U, 3U };
-	uint3 c = uint3_comp_divv( &a, &b );
+	uint3 c = uint3_cdivv( &a, &b );
 
 	TEMPER_EXPECT_TRUE( c.x == 3U );
 	TEMPER_EXPECT_TRUE( c.y == 3U );
@@ -172,7 +172,7 @@ TEMPER_TEST( TestBitwise_And_uint3 )
 	uint3 a = (uint3) { 21U, 21U, 21U };
 	uint3 b = (uint3) { 7U, 7U, 7U };
 
-	uint3 c = uint3_comp_and( &a, &b );
+	uint3 c = uint3_cand( &a, &b );
 
 	TEMPER_EXPECT_TRUE( uint3_cmpe( &c, &answer ) );
 
@@ -186,7 +186,7 @@ TEMPER_TEST( TestBitwise_Or_uint3 )
 	uint3 a = (uint3) { 21U, 21U, 21U };
 	uint3 b = (uint3) { 7U, 7U, 7U };
 
-	uint3 c = uint3_comp_or( &a, &b );
+	uint3 c = uint3_cor( &a, &b );
 
 	TEMPER_EXPECT_TRUE( uint3_cmpe( &c, &answer ) );
 
@@ -200,7 +200,7 @@ TEMPER_TEST( TestBitwise_Xor_uint3 )
 	uint3 a = (uint3) { 21U, 21U, 21U };
 	uint3 b = (uint3) { 7U, 7U, 7U };
 
-	uint3 c = uint3_comp_xor( &a, &b );
+	uint3 c = uint3_cxor( &a, &b );
 
 	TEMPER_EXPECT_TRUE( uint3_cmpe( &c, &answer ) );
 
@@ -214,7 +214,7 @@ TEMPER_TEST( TestBitwise_ShiftLeft_uint3 )
 	uint3 a = (uint3) { 1U, 1U, 1U };
 	uint3 b = (uint3) { 2U, 2U, 2U };
 
-	uint3 c = uint3_comp_shift_left( &a, &b );
+	uint3 c = uint3_cshift_left( &a, &b );
 
 	TEMPER_EXPECT_TRUE( uint3_cmpe( &c, &answer ) );
 
@@ -228,7 +228,7 @@ TEMPER_TEST( TestBitwise_ShiftRight_uint3 )
 	uint3 a = (uint3) { 16U, 16U, 16U };
 	uint3 b = (uint3) { 4U, 4U, 4U };
 
-	uint3 c = uint3_comp_shift_right( &a, &b );
+	uint3 c = uint3_cshift_right( &a, &b );
 
 	TEMPER_EXPECT_TRUE( uint3_cmpe( &c, &answer ) );
 
@@ -241,7 +241,7 @@ TEMPER_TEST( TestBitwise_Unary_uint3 )
 
 	uint3 a = (uint3) { 0U, 0U, 0U };
 
-	uint3 b = uint3_comp_unary( &a );
+	uint3 b = uint3_cunary( &a );
 
 	TEMPER_EXPECT_TRUE( uint3_cmpe( &b, &answer ) );
 

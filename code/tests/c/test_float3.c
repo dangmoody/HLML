@@ -57,7 +57,7 @@ TEMPER_TEST( TestArithmeticAddition_float3 )
 {
 	float3 a = (float3)	{ 6.000000f, 6.000000f, 6.000000f };
 	float3 b = (float3)	{ 2.000000f, 3.000000f, 4.000000f };
-	float3 c = float3_comp_addv( &a, &b );
+	float3 c = float3_caddv( &a, &b );
 
 	TEMPER_EXPECT_TRUE( c.x == 8.0f );
 	TEMPER_EXPECT_TRUE( c.y == 9.0f );
@@ -70,7 +70,7 @@ TEMPER_TEST( TestArithmeticSubtraction_float3 )
 {
 	float3 a = (float3)	{ 6.000000f, 6.000000f, 6.000000f };
 	float3 b = (float3)	{ 2.000000f, 3.000000f, 4.000000f };
-	float3 c = float3_comp_subv( &a, &b );
+	float3 c = float3_csubv( &a, &b );
 
 	TEMPER_EXPECT_TRUE( c.x == 4.0f );
 	TEMPER_EXPECT_TRUE( c.y == 3.0f );
@@ -83,7 +83,7 @@ TEMPER_TEST( TestArithmeticMultiplication_float3 )
 {
 	float3 a = (float3)	{ 6.000000f, 6.000000f, 6.000000f };
 	float3 b = (float3)	{ 2.000000f, 3.000000f, 4.000000f };
-	float3 c = float3_comp_mulv( &a, &b );
+	float3 c = float3_cmulv( &a, &b );
 
 	TEMPER_EXPECT_TRUE( c.x == 12.0f );
 	TEMPER_EXPECT_TRUE( c.y == 18.0f );
@@ -96,7 +96,7 @@ TEMPER_TEST( TestArithmeticDivision_float3 )
 {
 	float3 a = (float3)	{ 6.000000f, 6.000000f, 6.000000f };
 	float3 b = (float3)	{ 2.000000f, 2.000000f, 3.000000f };
-	float3 c = float3_comp_divv( &a, &b );
+	float3 c = float3_cdivv( &a, &b );
 
 	TEMPER_EXPECT_TRUE( c.x == 3.0f );
 	TEMPER_EXPECT_TRUE( c.y == 3.0f );

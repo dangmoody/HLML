@@ -194,7 +194,7 @@ TEMPER_TEST( TestComponentWiseArithmetic_Scalar_Addition_float2x4 )
 		2.000000f, 2.000000f, 2.000000f, 2.000000f
 	);
 
-	float2x4 c = comp_addm( a, b );
+	float2x4 c = caddm( a, b );
 
 	TEMPER_EXPECT_TRUE( c == answer );
 
@@ -218,7 +218,7 @@ TEMPER_TEST( TestComponentWiseArithmetic_Scalar_Subtraction_float2x4 )
 		2.000000f, 2.000000f, 2.000000f, 2.000000f
 	);
 
-	float2x4 c = comp_subm( a, b );
+	float2x4 c = csubm( a, b );
 
 	TEMPER_EXPECT_TRUE( c == answer );
 
@@ -242,7 +242,7 @@ TEMPER_TEST( TestComponentWiseArithmetic_Scalar_Multiplication_float2x4 )
 		2.000000f, 2.000000f, 2.000000f, 2.000000f
 	);
 
-	float2x4 c = comp_mulm( a, b );
+	float2x4 c = cmulm( a, b );
 
 	TEMPER_EXPECT_TRUE( c == answer );
 
@@ -266,7 +266,7 @@ TEMPER_TEST( TestComponentWiseArithmetic_Scalar_Division_float2x4 )
 		2.000000f, 2.000000f, 2.000000f, 2.000000f
 	);
 
-	float2x4 c = comp_divm( a, b );
+	float2x4 c = cdivm( a, b );
 
 	TEMPER_EXPECT_TRUE( c == answer );
 
@@ -314,7 +314,7 @@ TEMPER_TEST( TestComponentWiseArithmetic_SSE_Addition_float2x4 )
 	rhs.m[1][2] = _mm_load_ps( b12 );
 	rhs.m[1][3] = _mm_load_ps( b13 );
 
-	comp_addm_sse( &lhs, &rhs, &results );
+	caddm_sse( &lhs, &rhs, &results );
 
 	float arithmeticResults[4];
 
@@ -410,7 +410,7 @@ TEMPER_TEST( TestComponentWiseArithmetic_SSE_Subtraction_float2x4 )
 	rhs.m[1][2] = _mm_load_ps( b12 );
 	rhs.m[1][3] = _mm_load_ps( b13 );
 
-	comp_subm_sse( &lhs, &rhs, &results );
+	csubm_sse( &lhs, &rhs, &results );
 
 	float arithmeticResults[4];
 
@@ -506,7 +506,7 @@ TEMPER_TEST( TestComponentWiseArithmetic_SSE_Multiplication_float2x4 )
 	rhs.m[1][2] = _mm_load_ps( b12 );
 	rhs.m[1][3] = _mm_load_ps( b13 );
 
-	comp_mulm_sse( &lhs, &rhs, &results );
+	cmulm_sse( &lhs, &rhs, &results );
 
 	float arithmeticResults[4];
 
@@ -602,7 +602,7 @@ TEMPER_TEST( TestComponentWiseArithmetic_SSE_Division_float2x4 )
 	rhs.m[1][2] = _mm_load_ps( b12 );
 	rhs.m[1][3] = _mm_load_ps( b13 );
 
-	comp_divm_sse( &lhs, &rhs, &results );
+	cdivm_sse( &lhs, &rhs, &results );
 
 	float arithmeticResults[4];
 

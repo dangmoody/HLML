@@ -422,7 +422,7 @@ inline void Gen_SSE_GetFuncNameComponentWiseArithmeticMatrix( const genLanguage_
 	assert( numCols <= GEN_COMPONENT_COUNT_MAX );
 
 	char prefix[GEN_STRING_LENGTH_FUNCTION_NAME];
-	snprintf( prefix, GEN_STRING_LENGTH_FUNCTION_NAME, "comp_%sm", GEN_OPERATOR_STRINGS_ARITHMETIC[op] );
+	snprintf( prefix, GEN_STRING_LENGTH_FUNCTION_NAME, "c%sm", GEN_OPERATOR_STRINGS_ARITHMETIC[op] );
 
 	Gen_SSE_GetFuncNameInternal( language, type, numRows, numCols, prefix, outString );
 }

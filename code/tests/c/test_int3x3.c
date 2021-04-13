@@ -92,7 +92,7 @@ TEMPER_TEST( TestComponentWiseArithmetic_Scalar_Addition_int3x3 )
 		3, 3, 3
 	};
 
-	int3x3 c = int3x3_comp_addm( &a, &b );
+	int3x3 c = int3x3_caddm( &a, &b );
 
 	TEMPER_EXPECT_TRUE( int3x3_cmpe( &c, &answer ) );
 
@@ -119,7 +119,7 @@ TEMPER_TEST( TestComponentWiseArithmetic_Scalar_Subtraction_int3x3 )
 		3, 3, 3
 	};
 
-	int3x3 c = int3x3_comp_subm( &a, &b );
+	int3x3 c = int3x3_csubm( &a, &b );
 
 	TEMPER_EXPECT_TRUE( int3x3_cmpe( &c, &answer ) );
 
@@ -146,7 +146,7 @@ TEMPER_TEST( TestComponentWiseArithmetic_Scalar_Multiplication_int3x3 )
 		3, 3, 3
 	};
 
-	int3x3 c = int3x3_comp_mulm( &a, &b );
+	int3x3 c = int3x3_cmulm( &a, &b );
 
 	TEMPER_EXPECT_TRUE( int3x3_cmpe( &c, &answer ) );
 
@@ -173,7 +173,7 @@ TEMPER_TEST( TestComponentWiseArithmetic_Scalar_Division_int3x3 )
 		3, 3, 3
 	};
 
-	int3x3 c = int3x3_comp_divm( &a, &b );
+	int3x3 c = int3x3_cdivm( &a, &b );
 
 	TEMPER_EXPECT_TRUE( int3x3_cmpe( &c, &answer ) );
 
@@ -302,7 +302,7 @@ TEMPER_TEST( TestBitwise_And_int3x3 )
 		7, 7, 7,
 		7, 7, 7
 	};
-	int3x3 c = int3x3_comp_and( &a, &b );
+	int3x3 c = int3x3_cand( &a, &b );
 
 	TEMPER_EXPECT_TRUE( int3x3_cmpe( &c, &answer ) );
 
@@ -326,7 +326,7 @@ TEMPER_TEST( TestBitwise_Or_int3x3 )
 		7, 7, 7,
 		7, 7, 7
 	};
-	int3x3 c = int3x3_comp_or( &a, &b );
+	int3x3 c = int3x3_cor( &a, &b );
 
 	TEMPER_EXPECT_TRUE( int3x3_cmpe( &c, &answer ) );
 
@@ -350,7 +350,7 @@ TEMPER_TEST( TestBitwise_Xor_int3x3 )
 		7, 7, 7,
 		7, 7, 7
 	};
-	int3x3 c = int3x3_comp_xor( &a, &b );
+	int3x3 c = int3x3_cxor( &a, &b );
 
 	TEMPER_EXPECT_TRUE( int3x3_cmpe( &c, &answer ) );
 
@@ -374,7 +374,7 @@ TEMPER_TEST( TestBitwise_ShiftLeft_int3x3 )
 		2, 2, 2,
 		2, 2, 2
 	};
-	int3x3 c = int3x3_comp_shift_left( &a, &b );
+	int3x3 c = int3x3_cshift_left( &a, &b );
 
 	TEMPER_EXPECT_TRUE( int3x3_cmpe( &c, &answer ) );
 
@@ -398,7 +398,7 @@ TEMPER_TEST( TestBitwise_ShiftRight_int3x3 )
 		4, 4, 4,
 		4, 4, 4
 	};
-	int3x3 c = int3x3_comp_shift_right( &a, &b );
+	int3x3 c = int3x3_cshift_right( &a, &b );
 
 	TEMPER_EXPECT_TRUE( int3x3_cmpe( &c, &answer ) );
 
@@ -418,7 +418,7 @@ TEMPER_TEST( TestBitwise_Unary_int3x3 )
 		0, 0, 0
 	};
 
-	int3x3 b = int3x3_comp_unary( &a );
+	int3x3 b = int3x3_cunary( &a );
 
 	TEMPER_EXPECT_TRUE( int3x3_cmpe( &b, &answer ) );
 
