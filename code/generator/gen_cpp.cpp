@@ -108,10 +108,10 @@ static void GenerateVectorOperatorComponentWiseArithmeticRhsType( const genType_
 
 	// main arithmetic func
 	Doc_ComponentWiseArithmeticRhsType( sbFwdDec, fullTypeName, fullTypeName, op );
-	String_Appendf( sbFwdDec, "inline %s operator%c( const %s lhs, const %s rhs );\n", fullTypeName, opStr, fullTypeName, fullTypeName );
+	String_Appendf( sbFwdDec, "inline %s operator%c( const %s& lhs, const %s& rhs );\n", fullTypeName, opStr, fullTypeName, fullTypeName );
 	String_Append(  sbFwdDec, "\n" );
 
-	String_Appendf( sbImpl, "%s operator%c( const %s lhs, const %s rhs )\n", fullTypeName, opStr, fullTypeName, fullTypeName );
+	String_Appendf( sbImpl, "%s operator%c( const %s& lhs, const %s& rhs )\n", fullTypeName, opStr, fullTypeName, fullTypeName );
 	String_Append(  sbImpl, "{\n" );
 	Gen_VectorGetCodeComponentWiseArithmeticRhsType( GEN_LANGUAGE_CPP, type, numComponents, op, sbImpl );
 	String_Append( sbImpl, "}\n" );
@@ -119,7 +119,7 @@ static void GenerateVectorOperatorComponentWiseArithmeticRhsType( const genType_
 
 	// compound arithmetic func
 	Doc_OperatorCompoundComponentWiseArithmeticRhsType( sbFwdDec, fullTypeName, fullTypeName, op );
-	String_Appendf( sbFwdDec, "inline %s operator%c=( %s& lhs, const %s rhs );\n", fullTypeName, opStr, fullTypeName, fullTypeName );
+	String_Appendf( sbFwdDec, "inline %s operator%c=( %s& lhs, const %s& rhs );\n", fullTypeName, opStr, fullTypeName, fullTypeName );
 	String_Append(  sbFwdDec, "\n" );
 
 	String_Appendf( sbImpl, "%s operator%c=( %s& lhs, const %s rhs )\n", fullTypeName, opStr, fullTypeName, fullTypeName );

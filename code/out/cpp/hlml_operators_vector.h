@@ -233,11 +233,11 @@ inline int2 operator+=( int2& lhs, const int32_t scalar );
 
 /// \relates int2
 /// \brief Returns a copy of the int2 that has been component-wise added by the corresponding component of the right-hand int2.
-inline int2 operator+( const int2 lhs, const int2 rhs );
+inline int2 operator+( const int2& lhs, const int2& rhs );
 
 /// \relates int2
 /// \brief Adds each component of the int2 by the corresponding component of the right-hand int2.
-inline int2 operator+=( int2& lhs, const int2 rhs );
+inline int2 operator+=( int2& lhs, const int2& rhs );
 
 /// \relates int2
 /// \brief Returns a copy of the int2 that has been component-wise subtracted by the corresponding component of the right-hand int2.
@@ -249,11 +249,11 @@ inline int2 operator-=( int2& lhs, const int32_t scalar );
 
 /// \relates int2
 /// \brief Returns a copy of the int2 that has been component-wise subtracted by the corresponding component of the right-hand int2.
-inline int2 operator-( const int2 lhs, const int2 rhs );
+inline int2 operator-( const int2& lhs, const int2& rhs );
 
 /// \relates int2
 /// \brief Subtracts each component of the int2 by the corresponding component of the right-hand int2.
-inline int2 operator-=( int2& lhs, const int2 rhs );
+inline int2 operator-=( int2& lhs, const int2& rhs );
 
 /// \relates int2
 /// \brief Returns a copy of the int2 that has been component-wise multiplied by the corresponding component of the right-hand int2.
@@ -265,11 +265,11 @@ inline int2 operator*=( int2& lhs, const int32_t scalar );
 
 /// \relates int2
 /// \brief Returns a copy of the int2 that has been component-wise multiplied by the corresponding component of the right-hand int2.
-inline int2 operator*( const int2 lhs, const int2 rhs );
+inline int2 operator*( const int2& lhs, const int2& rhs );
 
 /// \relates int2
 /// \brief Multiplies each component of the int2 by the corresponding component of the right-hand int2.
-inline int2 operator*=( int2& lhs, const int2 rhs );
+inline int2 operator*=( int2& lhs, const int2& rhs );
 
 /// \relates int2
 /// \brief Returns a copy of the int2 that has been component-wise divided by the corresponding component of the right-hand int2.
@@ -281,11 +281,11 @@ inline int2 operator/=( int2& lhs, const int32_t scalar );
 
 /// \relates int2
 /// \brief Returns a copy of the int2 that has been component-wise divided by the corresponding component of the right-hand int2.
-inline int2 operator/( const int2 lhs, const int2 rhs );
+inline int2 operator/( const int2& lhs, const int2& rhs );
 
 /// \relates int2
 /// \brief Divides each component of the int2 by the corresponding component of the right-hand int2.
-inline int2 operator/=( int2& lhs, const int2 rhs );
+inline int2 operator/=( int2& lhs, const int2& rhs );
 
 // prefix
 /// \relates int2
@@ -381,11 +381,11 @@ inline int3 operator+=( int3& lhs, const int32_t scalar );
 
 /// \relates int3
 /// \brief Returns a copy of the int3 that has been component-wise added by the corresponding component of the right-hand int3.
-inline int3 operator+( const int3 lhs, const int3 rhs );
+inline int3 operator+( const int3& lhs, const int3& rhs );
 
 /// \relates int3
 /// \brief Adds each component of the int3 by the corresponding component of the right-hand int3.
-inline int3 operator+=( int3& lhs, const int3 rhs );
+inline int3 operator+=( int3& lhs, const int3& rhs );
 
 /// \relates int3
 /// \brief Returns a copy of the int3 that has been component-wise subtracted by the corresponding component of the right-hand int3.
@@ -397,11 +397,11 @@ inline int3 operator-=( int3& lhs, const int32_t scalar );
 
 /// \relates int3
 /// \brief Returns a copy of the int3 that has been component-wise subtracted by the corresponding component of the right-hand int3.
-inline int3 operator-( const int3 lhs, const int3 rhs );
+inline int3 operator-( const int3& lhs, const int3& rhs );
 
 /// \relates int3
 /// \brief Subtracts each component of the int3 by the corresponding component of the right-hand int3.
-inline int3 operator-=( int3& lhs, const int3 rhs );
+inline int3 operator-=( int3& lhs, const int3& rhs );
 
 /// \relates int3
 /// \brief Returns a copy of the int3 that has been component-wise multiplied by the corresponding component of the right-hand int3.
@@ -413,11 +413,11 @@ inline int3 operator*=( int3& lhs, const int32_t scalar );
 
 /// \relates int3
 /// \brief Returns a copy of the int3 that has been component-wise multiplied by the corresponding component of the right-hand int3.
-inline int3 operator*( const int3 lhs, const int3 rhs );
+inline int3 operator*( const int3& lhs, const int3& rhs );
 
 /// \relates int3
 /// \brief Multiplies each component of the int3 by the corresponding component of the right-hand int3.
-inline int3 operator*=( int3& lhs, const int3 rhs );
+inline int3 operator*=( int3& lhs, const int3& rhs );
 
 /// \relates int3
 /// \brief Returns a copy of the int3 that has been component-wise divided by the corresponding component of the right-hand int3.
@@ -429,11 +429,11 @@ inline int3 operator/=( int3& lhs, const int32_t scalar );
 
 /// \relates int3
 /// \brief Returns a copy of the int3 that has been component-wise divided by the corresponding component of the right-hand int3.
-inline int3 operator/( const int3 lhs, const int3 rhs );
+inline int3 operator/( const int3& lhs, const int3& rhs );
 
 /// \relates int3
 /// \brief Divides each component of the int3 by the corresponding component of the right-hand int3.
-inline int3 operator/=( int3& lhs, const int3 rhs );
+inline int3 operator/=( int3& lhs, const int3& rhs );
 
 // prefix
 /// \relates int3
@@ -529,11 +529,11 @@ inline int4 operator+=( int4& lhs, const int32_t scalar );
 
 /// \relates int4
 /// \brief Returns a copy of the int4 that has been component-wise added by the corresponding component of the right-hand int4.
-inline int4 operator+( const int4 lhs, const int4 rhs );
+inline int4 operator+( const int4& lhs, const int4& rhs );
 
 /// \relates int4
 /// \brief Adds each component of the int4 by the corresponding component of the right-hand int4.
-inline int4 operator+=( int4& lhs, const int4 rhs );
+inline int4 operator+=( int4& lhs, const int4& rhs );
 
 /// \relates int4
 /// \brief Returns a copy of the int4 that has been component-wise subtracted by the corresponding component of the right-hand int4.
@@ -545,11 +545,11 @@ inline int4 operator-=( int4& lhs, const int32_t scalar );
 
 /// \relates int4
 /// \brief Returns a copy of the int4 that has been component-wise subtracted by the corresponding component of the right-hand int4.
-inline int4 operator-( const int4 lhs, const int4 rhs );
+inline int4 operator-( const int4& lhs, const int4& rhs );
 
 /// \relates int4
 /// \brief Subtracts each component of the int4 by the corresponding component of the right-hand int4.
-inline int4 operator-=( int4& lhs, const int4 rhs );
+inline int4 operator-=( int4& lhs, const int4& rhs );
 
 /// \relates int4
 /// \brief Returns a copy of the int4 that has been component-wise multiplied by the corresponding component of the right-hand int4.
@@ -561,11 +561,11 @@ inline int4 operator*=( int4& lhs, const int32_t scalar );
 
 /// \relates int4
 /// \brief Returns a copy of the int4 that has been component-wise multiplied by the corresponding component of the right-hand int4.
-inline int4 operator*( const int4 lhs, const int4 rhs );
+inline int4 operator*( const int4& lhs, const int4& rhs );
 
 /// \relates int4
 /// \brief Multiplies each component of the int4 by the corresponding component of the right-hand int4.
-inline int4 operator*=( int4& lhs, const int4 rhs );
+inline int4 operator*=( int4& lhs, const int4& rhs );
 
 /// \relates int4
 /// \brief Returns a copy of the int4 that has been component-wise divided by the corresponding component of the right-hand int4.
@@ -577,11 +577,11 @@ inline int4 operator/=( int4& lhs, const int32_t scalar );
 
 /// \relates int4
 /// \brief Returns a copy of the int4 that has been component-wise divided by the corresponding component of the right-hand int4.
-inline int4 operator/( const int4 lhs, const int4 rhs );
+inline int4 operator/( const int4& lhs, const int4& rhs );
 
 /// \relates int4
 /// \brief Divides each component of the int4 by the corresponding component of the right-hand int4.
-inline int4 operator/=( int4& lhs, const int4 rhs );
+inline int4 operator/=( int4& lhs, const int4& rhs );
 
 // prefix
 /// \relates int4
@@ -677,11 +677,11 @@ inline uint2 operator+=( uint2& lhs, const uint32_t scalar );
 
 /// \relates uint2
 /// \brief Returns a copy of the uint2 that has been component-wise added by the corresponding component of the right-hand uint2.
-inline uint2 operator+( const uint2 lhs, const uint2 rhs );
+inline uint2 operator+( const uint2& lhs, const uint2& rhs );
 
 /// \relates uint2
 /// \brief Adds each component of the uint2 by the corresponding component of the right-hand uint2.
-inline uint2 operator+=( uint2& lhs, const uint2 rhs );
+inline uint2 operator+=( uint2& lhs, const uint2& rhs );
 
 /// \relates uint2
 /// \brief Returns a copy of the uint2 that has been component-wise subtracted by the corresponding component of the right-hand uint2.
@@ -693,11 +693,11 @@ inline uint2 operator-=( uint2& lhs, const uint32_t scalar );
 
 /// \relates uint2
 /// \brief Returns a copy of the uint2 that has been component-wise subtracted by the corresponding component of the right-hand uint2.
-inline uint2 operator-( const uint2 lhs, const uint2 rhs );
+inline uint2 operator-( const uint2& lhs, const uint2& rhs );
 
 /// \relates uint2
 /// \brief Subtracts each component of the uint2 by the corresponding component of the right-hand uint2.
-inline uint2 operator-=( uint2& lhs, const uint2 rhs );
+inline uint2 operator-=( uint2& lhs, const uint2& rhs );
 
 /// \relates uint2
 /// \brief Returns a copy of the uint2 that has been component-wise multiplied by the corresponding component of the right-hand uint2.
@@ -709,11 +709,11 @@ inline uint2 operator*=( uint2& lhs, const uint32_t scalar );
 
 /// \relates uint2
 /// \brief Returns a copy of the uint2 that has been component-wise multiplied by the corresponding component of the right-hand uint2.
-inline uint2 operator*( const uint2 lhs, const uint2 rhs );
+inline uint2 operator*( const uint2& lhs, const uint2& rhs );
 
 /// \relates uint2
 /// \brief Multiplies each component of the uint2 by the corresponding component of the right-hand uint2.
-inline uint2 operator*=( uint2& lhs, const uint2 rhs );
+inline uint2 operator*=( uint2& lhs, const uint2& rhs );
 
 /// \relates uint2
 /// \brief Returns a copy of the uint2 that has been component-wise divided by the corresponding component of the right-hand uint2.
@@ -725,11 +725,11 @@ inline uint2 operator/=( uint2& lhs, const uint32_t scalar );
 
 /// \relates uint2
 /// \brief Returns a copy of the uint2 that has been component-wise divided by the corresponding component of the right-hand uint2.
-inline uint2 operator/( const uint2 lhs, const uint2 rhs );
+inline uint2 operator/( const uint2& lhs, const uint2& rhs );
 
 /// \relates uint2
 /// \brief Divides each component of the uint2 by the corresponding component of the right-hand uint2.
-inline uint2 operator/=( uint2& lhs, const uint2 rhs );
+inline uint2 operator/=( uint2& lhs, const uint2& rhs );
 
 // prefix
 /// \relates uint2
@@ -825,11 +825,11 @@ inline uint3 operator+=( uint3& lhs, const uint32_t scalar );
 
 /// \relates uint3
 /// \brief Returns a copy of the uint3 that has been component-wise added by the corresponding component of the right-hand uint3.
-inline uint3 operator+( const uint3 lhs, const uint3 rhs );
+inline uint3 operator+( const uint3& lhs, const uint3& rhs );
 
 /// \relates uint3
 /// \brief Adds each component of the uint3 by the corresponding component of the right-hand uint3.
-inline uint3 operator+=( uint3& lhs, const uint3 rhs );
+inline uint3 operator+=( uint3& lhs, const uint3& rhs );
 
 /// \relates uint3
 /// \brief Returns a copy of the uint3 that has been component-wise subtracted by the corresponding component of the right-hand uint3.
@@ -841,11 +841,11 @@ inline uint3 operator-=( uint3& lhs, const uint32_t scalar );
 
 /// \relates uint3
 /// \brief Returns a copy of the uint3 that has been component-wise subtracted by the corresponding component of the right-hand uint3.
-inline uint3 operator-( const uint3 lhs, const uint3 rhs );
+inline uint3 operator-( const uint3& lhs, const uint3& rhs );
 
 /// \relates uint3
 /// \brief Subtracts each component of the uint3 by the corresponding component of the right-hand uint3.
-inline uint3 operator-=( uint3& lhs, const uint3 rhs );
+inline uint3 operator-=( uint3& lhs, const uint3& rhs );
 
 /// \relates uint3
 /// \brief Returns a copy of the uint3 that has been component-wise multiplied by the corresponding component of the right-hand uint3.
@@ -857,11 +857,11 @@ inline uint3 operator*=( uint3& lhs, const uint32_t scalar );
 
 /// \relates uint3
 /// \brief Returns a copy of the uint3 that has been component-wise multiplied by the corresponding component of the right-hand uint3.
-inline uint3 operator*( const uint3 lhs, const uint3 rhs );
+inline uint3 operator*( const uint3& lhs, const uint3& rhs );
 
 /// \relates uint3
 /// \brief Multiplies each component of the uint3 by the corresponding component of the right-hand uint3.
-inline uint3 operator*=( uint3& lhs, const uint3 rhs );
+inline uint3 operator*=( uint3& lhs, const uint3& rhs );
 
 /// \relates uint3
 /// \brief Returns a copy of the uint3 that has been component-wise divided by the corresponding component of the right-hand uint3.
@@ -873,11 +873,11 @@ inline uint3 operator/=( uint3& lhs, const uint32_t scalar );
 
 /// \relates uint3
 /// \brief Returns a copy of the uint3 that has been component-wise divided by the corresponding component of the right-hand uint3.
-inline uint3 operator/( const uint3 lhs, const uint3 rhs );
+inline uint3 operator/( const uint3& lhs, const uint3& rhs );
 
 /// \relates uint3
 /// \brief Divides each component of the uint3 by the corresponding component of the right-hand uint3.
-inline uint3 operator/=( uint3& lhs, const uint3 rhs );
+inline uint3 operator/=( uint3& lhs, const uint3& rhs );
 
 // prefix
 /// \relates uint3
@@ -973,11 +973,11 @@ inline uint4 operator+=( uint4& lhs, const uint32_t scalar );
 
 /// \relates uint4
 /// \brief Returns a copy of the uint4 that has been component-wise added by the corresponding component of the right-hand uint4.
-inline uint4 operator+( const uint4 lhs, const uint4 rhs );
+inline uint4 operator+( const uint4& lhs, const uint4& rhs );
 
 /// \relates uint4
 /// \brief Adds each component of the uint4 by the corresponding component of the right-hand uint4.
-inline uint4 operator+=( uint4& lhs, const uint4 rhs );
+inline uint4 operator+=( uint4& lhs, const uint4& rhs );
 
 /// \relates uint4
 /// \brief Returns a copy of the uint4 that has been component-wise subtracted by the corresponding component of the right-hand uint4.
@@ -989,11 +989,11 @@ inline uint4 operator-=( uint4& lhs, const uint32_t scalar );
 
 /// \relates uint4
 /// \brief Returns a copy of the uint4 that has been component-wise subtracted by the corresponding component of the right-hand uint4.
-inline uint4 operator-( const uint4 lhs, const uint4 rhs );
+inline uint4 operator-( const uint4& lhs, const uint4& rhs );
 
 /// \relates uint4
 /// \brief Subtracts each component of the uint4 by the corresponding component of the right-hand uint4.
-inline uint4 operator-=( uint4& lhs, const uint4 rhs );
+inline uint4 operator-=( uint4& lhs, const uint4& rhs );
 
 /// \relates uint4
 /// \brief Returns a copy of the uint4 that has been component-wise multiplied by the corresponding component of the right-hand uint4.
@@ -1005,11 +1005,11 @@ inline uint4 operator*=( uint4& lhs, const uint32_t scalar );
 
 /// \relates uint4
 /// \brief Returns a copy of the uint4 that has been component-wise multiplied by the corresponding component of the right-hand uint4.
-inline uint4 operator*( const uint4 lhs, const uint4 rhs );
+inline uint4 operator*( const uint4& lhs, const uint4& rhs );
 
 /// \relates uint4
 /// \brief Multiplies each component of the uint4 by the corresponding component of the right-hand uint4.
-inline uint4 operator*=( uint4& lhs, const uint4 rhs );
+inline uint4 operator*=( uint4& lhs, const uint4& rhs );
 
 /// \relates uint4
 /// \brief Returns a copy of the uint4 that has been component-wise divided by the corresponding component of the right-hand uint4.
@@ -1021,11 +1021,11 @@ inline uint4 operator/=( uint4& lhs, const uint32_t scalar );
 
 /// \relates uint4
 /// \brief Returns a copy of the uint4 that has been component-wise divided by the corresponding component of the right-hand uint4.
-inline uint4 operator/( const uint4 lhs, const uint4 rhs );
+inline uint4 operator/( const uint4& lhs, const uint4& rhs );
 
 /// \relates uint4
 /// \brief Divides each component of the uint4 by the corresponding component of the right-hand uint4.
-inline uint4 operator/=( uint4& lhs, const uint4 rhs );
+inline uint4 operator/=( uint4& lhs, const uint4& rhs );
 
 // prefix
 /// \relates uint4
@@ -1121,11 +1121,11 @@ inline float2 operator+=( float2& lhs, const float scalar );
 
 /// \relates float2
 /// \brief Returns a copy of the float2 that has been component-wise added by the corresponding component of the right-hand float2.
-inline float2 operator+( const float2 lhs, const float2 rhs );
+inline float2 operator+( const float2& lhs, const float2& rhs );
 
 /// \relates float2
 /// \brief Adds each component of the float2 by the corresponding component of the right-hand float2.
-inline float2 operator+=( float2& lhs, const float2 rhs );
+inline float2 operator+=( float2& lhs, const float2& rhs );
 
 /// \relates float2
 /// \brief Returns a copy of the float2 that has been component-wise subtracted by the corresponding component of the right-hand float2.
@@ -1137,11 +1137,11 @@ inline float2 operator-=( float2& lhs, const float scalar );
 
 /// \relates float2
 /// \brief Returns a copy of the float2 that has been component-wise subtracted by the corresponding component of the right-hand float2.
-inline float2 operator-( const float2 lhs, const float2 rhs );
+inline float2 operator-( const float2& lhs, const float2& rhs );
 
 /// \relates float2
 /// \brief Subtracts each component of the float2 by the corresponding component of the right-hand float2.
-inline float2 operator-=( float2& lhs, const float2 rhs );
+inline float2 operator-=( float2& lhs, const float2& rhs );
 
 /// \relates float2
 /// \brief Returns a copy of the float2 that has been component-wise multiplied by the corresponding component of the right-hand float2.
@@ -1153,11 +1153,11 @@ inline float2 operator*=( float2& lhs, const float scalar );
 
 /// \relates float2
 /// \brief Returns a copy of the float2 that has been component-wise multiplied by the corresponding component of the right-hand float2.
-inline float2 operator*( const float2 lhs, const float2 rhs );
+inline float2 operator*( const float2& lhs, const float2& rhs );
 
 /// \relates float2
 /// \brief Multiplies each component of the float2 by the corresponding component of the right-hand float2.
-inline float2 operator*=( float2& lhs, const float2 rhs );
+inline float2 operator*=( float2& lhs, const float2& rhs );
 
 /// \relates float2
 /// \brief Returns a copy of the float2 that has been component-wise divided by the corresponding component of the right-hand float2.
@@ -1169,11 +1169,11 @@ inline float2 operator/=( float2& lhs, const float scalar );
 
 /// \relates float2
 /// \brief Returns a copy of the float2 that has been component-wise divided by the corresponding component of the right-hand float2.
-inline float2 operator/( const float2 lhs, const float2 rhs );
+inline float2 operator/( const float2& lhs, const float2& rhs );
 
 /// \relates float2
 /// \brief Divides each component of the float2 by the corresponding component of the right-hand float2.
-inline float2 operator/=( float2& lhs, const float2 rhs );
+inline float2 operator/=( float2& lhs, const float2& rhs );
 
 // prefix
 /// \relates float2
@@ -1225,11 +1225,11 @@ inline float3 operator+=( float3& lhs, const float scalar );
 
 /// \relates float3
 /// \brief Returns a copy of the float3 that has been component-wise added by the corresponding component of the right-hand float3.
-inline float3 operator+( const float3 lhs, const float3 rhs );
+inline float3 operator+( const float3& lhs, const float3& rhs );
 
 /// \relates float3
 /// \brief Adds each component of the float3 by the corresponding component of the right-hand float3.
-inline float3 operator+=( float3& lhs, const float3 rhs );
+inline float3 operator+=( float3& lhs, const float3& rhs );
 
 /// \relates float3
 /// \brief Returns a copy of the float3 that has been component-wise subtracted by the corresponding component of the right-hand float3.
@@ -1241,11 +1241,11 @@ inline float3 operator-=( float3& lhs, const float scalar );
 
 /// \relates float3
 /// \brief Returns a copy of the float3 that has been component-wise subtracted by the corresponding component of the right-hand float3.
-inline float3 operator-( const float3 lhs, const float3 rhs );
+inline float3 operator-( const float3& lhs, const float3& rhs );
 
 /// \relates float3
 /// \brief Subtracts each component of the float3 by the corresponding component of the right-hand float3.
-inline float3 operator-=( float3& lhs, const float3 rhs );
+inline float3 operator-=( float3& lhs, const float3& rhs );
 
 /// \relates float3
 /// \brief Returns a copy of the float3 that has been component-wise multiplied by the corresponding component of the right-hand float3.
@@ -1257,11 +1257,11 @@ inline float3 operator*=( float3& lhs, const float scalar );
 
 /// \relates float3
 /// \brief Returns a copy of the float3 that has been component-wise multiplied by the corresponding component of the right-hand float3.
-inline float3 operator*( const float3 lhs, const float3 rhs );
+inline float3 operator*( const float3& lhs, const float3& rhs );
 
 /// \relates float3
 /// \brief Multiplies each component of the float3 by the corresponding component of the right-hand float3.
-inline float3 operator*=( float3& lhs, const float3 rhs );
+inline float3 operator*=( float3& lhs, const float3& rhs );
 
 /// \relates float3
 /// \brief Returns a copy of the float3 that has been component-wise divided by the corresponding component of the right-hand float3.
@@ -1273,11 +1273,11 @@ inline float3 operator/=( float3& lhs, const float scalar );
 
 /// \relates float3
 /// \brief Returns a copy of the float3 that has been component-wise divided by the corresponding component of the right-hand float3.
-inline float3 operator/( const float3 lhs, const float3 rhs );
+inline float3 operator/( const float3& lhs, const float3& rhs );
 
 /// \relates float3
 /// \brief Divides each component of the float3 by the corresponding component of the right-hand float3.
-inline float3 operator/=( float3& lhs, const float3 rhs );
+inline float3 operator/=( float3& lhs, const float3& rhs );
 
 // prefix
 /// \relates float3
@@ -1329,11 +1329,11 @@ inline float4 operator+=( float4& lhs, const float scalar );
 
 /// \relates float4
 /// \brief Returns a copy of the float4 that has been component-wise added by the corresponding component of the right-hand float4.
-inline float4 operator+( const float4 lhs, const float4 rhs );
+inline float4 operator+( const float4& lhs, const float4& rhs );
 
 /// \relates float4
 /// \brief Adds each component of the float4 by the corresponding component of the right-hand float4.
-inline float4 operator+=( float4& lhs, const float4 rhs );
+inline float4 operator+=( float4& lhs, const float4& rhs );
 
 /// \relates float4
 /// \brief Returns a copy of the float4 that has been component-wise subtracted by the corresponding component of the right-hand float4.
@@ -1345,11 +1345,11 @@ inline float4 operator-=( float4& lhs, const float scalar );
 
 /// \relates float4
 /// \brief Returns a copy of the float4 that has been component-wise subtracted by the corresponding component of the right-hand float4.
-inline float4 operator-( const float4 lhs, const float4 rhs );
+inline float4 operator-( const float4& lhs, const float4& rhs );
 
 /// \relates float4
 /// \brief Subtracts each component of the float4 by the corresponding component of the right-hand float4.
-inline float4 operator-=( float4& lhs, const float4 rhs );
+inline float4 operator-=( float4& lhs, const float4& rhs );
 
 /// \relates float4
 /// \brief Returns a copy of the float4 that has been component-wise multiplied by the corresponding component of the right-hand float4.
@@ -1361,11 +1361,11 @@ inline float4 operator*=( float4& lhs, const float scalar );
 
 /// \relates float4
 /// \brief Returns a copy of the float4 that has been component-wise multiplied by the corresponding component of the right-hand float4.
-inline float4 operator*( const float4 lhs, const float4 rhs );
+inline float4 operator*( const float4& lhs, const float4& rhs );
 
 /// \relates float4
 /// \brief Multiplies each component of the float4 by the corresponding component of the right-hand float4.
-inline float4 operator*=( float4& lhs, const float4 rhs );
+inline float4 operator*=( float4& lhs, const float4& rhs );
 
 /// \relates float4
 /// \brief Returns a copy of the float4 that has been component-wise divided by the corresponding component of the right-hand float4.
@@ -1377,11 +1377,11 @@ inline float4 operator/=( float4& lhs, const float scalar );
 
 /// \relates float4
 /// \brief Returns a copy of the float4 that has been component-wise divided by the corresponding component of the right-hand float4.
-inline float4 operator/( const float4 lhs, const float4 rhs );
+inline float4 operator/( const float4& lhs, const float4& rhs );
 
 /// \relates float4
 /// \brief Divides each component of the float4 by the corresponding component of the right-hand float4.
-inline float4 operator/=( float4& lhs, const float4 rhs );
+inline float4 operator/=( float4& lhs, const float4& rhs );
 
 // prefix
 /// \relates float4
@@ -1433,11 +1433,11 @@ inline double2 operator+=( double2& lhs, const double scalar );
 
 /// \relates double2
 /// \brief Returns a copy of the double2 that has been component-wise added by the corresponding component of the right-hand double2.
-inline double2 operator+( const double2 lhs, const double2 rhs );
+inline double2 operator+( const double2& lhs, const double2& rhs );
 
 /// \relates double2
 /// \brief Adds each component of the double2 by the corresponding component of the right-hand double2.
-inline double2 operator+=( double2& lhs, const double2 rhs );
+inline double2 operator+=( double2& lhs, const double2& rhs );
 
 /// \relates double2
 /// \brief Returns a copy of the double2 that has been component-wise subtracted by the corresponding component of the right-hand double2.
@@ -1449,11 +1449,11 @@ inline double2 operator-=( double2& lhs, const double scalar );
 
 /// \relates double2
 /// \brief Returns a copy of the double2 that has been component-wise subtracted by the corresponding component of the right-hand double2.
-inline double2 operator-( const double2 lhs, const double2 rhs );
+inline double2 operator-( const double2& lhs, const double2& rhs );
 
 /// \relates double2
 /// \brief Subtracts each component of the double2 by the corresponding component of the right-hand double2.
-inline double2 operator-=( double2& lhs, const double2 rhs );
+inline double2 operator-=( double2& lhs, const double2& rhs );
 
 /// \relates double2
 /// \brief Returns a copy of the double2 that has been component-wise multiplied by the corresponding component of the right-hand double2.
@@ -1465,11 +1465,11 @@ inline double2 operator*=( double2& lhs, const double scalar );
 
 /// \relates double2
 /// \brief Returns a copy of the double2 that has been component-wise multiplied by the corresponding component of the right-hand double2.
-inline double2 operator*( const double2 lhs, const double2 rhs );
+inline double2 operator*( const double2& lhs, const double2& rhs );
 
 /// \relates double2
 /// \brief Multiplies each component of the double2 by the corresponding component of the right-hand double2.
-inline double2 operator*=( double2& lhs, const double2 rhs );
+inline double2 operator*=( double2& lhs, const double2& rhs );
 
 /// \relates double2
 /// \brief Returns a copy of the double2 that has been component-wise divided by the corresponding component of the right-hand double2.
@@ -1481,11 +1481,11 @@ inline double2 operator/=( double2& lhs, const double scalar );
 
 /// \relates double2
 /// \brief Returns a copy of the double2 that has been component-wise divided by the corresponding component of the right-hand double2.
-inline double2 operator/( const double2 lhs, const double2 rhs );
+inline double2 operator/( const double2& lhs, const double2& rhs );
 
 /// \relates double2
 /// \brief Divides each component of the double2 by the corresponding component of the right-hand double2.
-inline double2 operator/=( double2& lhs, const double2 rhs );
+inline double2 operator/=( double2& lhs, const double2& rhs );
 
 // prefix
 /// \relates double2
@@ -1537,11 +1537,11 @@ inline double3 operator+=( double3& lhs, const double scalar );
 
 /// \relates double3
 /// \brief Returns a copy of the double3 that has been component-wise added by the corresponding component of the right-hand double3.
-inline double3 operator+( const double3 lhs, const double3 rhs );
+inline double3 operator+( const double3& lhs, const double3& rhs );
 
 /// \relates double3
 /// \brief Adds each component of the double3 by the corresponding component of the right-hand double3.
-inline double3 operator+=( double3& lhs, const double3 rhs );
+inline double3 operator+=( double3& lhs, const double3& rhs );
 
 /// \relates double3
 /// \brief Returns a copy of the double3 that has been component-wise subtracted by the corresponding component of the right-hand double3.
@@ -1553,11 +1553,11 @@ inline double3 operator-=( double3& lhs, const double scalar );
 
 /// \relates double3
 /// \brief Returns a copy of the double3 that has been component-wise subtracted by the corresponding component of the right-hand double3.
-inline double3 operator-( const double3 lhs, const double3 rhs );
+inline double3 operator-( const double3& lhs, const double3& rhs );
 
 /// \relates double3
 /// \brief Subtracts each component of the double3 by the corresponding component of the right-hand double3.
-inline double3 operator-=( double3& lhs, const double3 rhs );
+inline double3 operator-=( double3& lhs, const double3& rhs );
 
 /// \relates double3
 /// \brief Returns a copy of the double3 that has been component-wise multiplied by the corresponding component of the right-hand double3.
@@ -1569,11 +1569,11 @@ inline double3 operator*=( double3& lhs, const double scalar );
 
 /// \relates double3
 /// \brief Returns a copy of the double3 that has been component-wise multiplied by the corresponding component of the right-hand double3.
-inline double3 operator*( const double3 lhs, const double3 rhs );
+inline double3 operator*( const double3& lhs, const double3& rhs );
 
 /// \relates double3
 /// \brief Multiplies each component of the double3 by the corresponding component of the right-hand double3.
-inline double3 operator*=( double3& lhs, const double3 rhs );
+inline double3 operator*=( double3& lhs, const double3& rhs );
 
 /// \relates double3
 /// \brief Returns a copy of the double3 that has been component-wise divided by the corresponding component of the right-hand double3.
@@ -1585,11 +1585,11 @@ inline double3 operator/=( double3& lhs, const double scalar );
 
 /// \relates double3
 /// \brief Returns a copy of the double3 that has been component-wise divided by the corresponding component of the right-hand double3.
-inline double3 operator/( const double3 lhs, const double3 rhs );
+inline double3 operator/( const double3& lhs, const double3& rhs );
 
 /// \relates double3
 /// \brief Divides each component of the double3 by the corresponding component of the right-hand double3.
-inline double3 operator/=( double3& lhs, const double3 rhs );
+inline double3 operator/=( double3& lhs, const double3& rhs );
 
 // prefix
 /// \relates double3
@@ -1641,11 +1641,11 @@ inline double4 operator+=( double4& lhs, const double scalar );
 
 /// \relates double4
 /// \brief Returns a copy of the double4 that has been component-wise added by the corresponding component of the right-hand double4.
-inline double4 operator+( const double4 lhs, const double4 rhs );
+inline double4 operator+( const double4& lhs, const double4& rhs );
 
 /// \relates double4
 /// \brief Adds each component of the double4 by the corresponding component of the right-hand double4.
-inline double4 operator+=( double4& lhs, const double4 rhs );
+inline double4 operator+=( double4& lhs, const double4& rhs );
 
 /// \relates double4
 /// \brief Returns a copy of the double4 that has been component-wise subtracted by the corresponding component of the right-hand double4.
@@ -1657,11 +1657,11 @@ inline double4 operator-=( double4& lhs, const double scalar );
 
 /// \relates double4
 /// \brief Returns a copy of the double4 that has been component-wise subtracted by the corresponding component of the right-hand double4.
-inline double4 operator-( const double4 lhs, const double4 rhs );
+inline double4 operator-( const double4& lhs, const double4& rhs );
 
 /// \relates double4
 /// \brief Subtracts each component of the double4 by the corresponding component of the right-hand double4.
-inline double4 operator-=( double4& lhs, const double4 rhs );
+inline double4 operator-=( double4& lhs, const double4& rhs );
 
 /// \relates double4
 /// \brief Returns a copy of the double4 that has been component-wise multiplied by the corresponding component of the right-hand double4.
@@ -1673,11 +1673,11 @@ inline double4 operator*=( double4& lhs, const double scalar );
 
 /// \relates double4
 /// \brief Returns a copy of the double4 that has been component-wise multiplied by the corresponding component of the right-hand double4.
-inline double4 operator*( const double4 lhs, const double4 rhs );
+inline double4 operator*( const double4& lhs, const double4& rhs );
 
 /// \relates double4
 /// \brief Multiplies each component of the double4 by the corresponding component of the right-hand double4.
-inline double4 operator*=( double4& lhs, const double4 rhs );
+inline double4 operator*=( double4& lhs, const double4& rhs );
 
 /// \relates double4
 /// \brief Returns a copy of the double4 that has been component-wise divided by the corresponding component of the right-hand double4.
@@ -1689,11 +1689,11 @@ inline double4 operator/=( double4& lhs, const double scalar );
 
 /// \relates double4
 /// \brief Returns a copy of the double4 that has been component-wise divided by the corresponding component of the right-hand double4.
-inline double4 operator/( const double4 lhs, const double4 rhs );
+inline double4 operator/( const double4& lhs, const double4& rhs );
 
 /// \relates double4
 /// \brief Divides each component of the double4 by the corresponding component of the right-hand double4.
-inline double4 operator/=( double4& lhs, const double4 rhs );
+inline double4 operator/=( double4& lhs, const double4& rhs );
 
 // prefix
 /// \relates double4
@@ -2059,7 +2059,7 @@ int2 operator+=( int2& lhs, const int32_t scalar )
 	return ( lhs = lhs + scalar );
 }
 
-int2 operator+( const int2 lhs, const int2 rhs )
+int2 operator+( const int2& lhs, const int2& rhs )
 {
 	return HLML_CONSTRUCT( int2 ) {
 		lhs.x + rhs.x,
@@ -2085,7 +2085,7 @@ int2 operator-=( int2& lhs, const int32_t scalar )
 	return ( lhs = lhs - scalar );
 }
 
-int2 operator-( const int2 lhs, const int2 rhs )
+int2 operator-( const int2& lhs, const int2& rhs )
 {
 	return HLML_CONSTRUCT( int2 ) {
 		lhs.x - rhs.x,
@@ -2111,7 +2111,7 @@ int2 operator*=( int2& lhs, const int32_t scalar )
 	return ( lhs = lhs * scalar );
 }
 
-int2 operator*( const int2 lhs, const int2 rhs )
+int2 operator*( const int2& lhs, const int2& rhs )
 {
 	return HLML_CONSTRUCT( int2 ) {
 		lhs.x * rhs.x,
@@ -2137,7 +2137,7 @@ int2 operator/=( int2& lhs, const int32_t scalar )
 	return ( lhs = lhs / scalar );
 }
 
-int2 operator/( const int2 lhs, const int2 rhs )
+int2 operator/( const int2& lhs, const int2& rhs )
 {
 	return HLML_CONSTRUCT( int2 ) {
 		lhs.x / rhs.x,
@@ -2307,7 +2307,7 @@ int3 operator+=( int3& lhs, const int32_t scalar )
 	return ( lhs = lhs + scalar );
 }
 
-int3 operator+( const int3 lhs, const int3 rhs )
+int3 operator+( const int3& lhs, const int3& rhs )
 {
 	return HLML_CONSTRUCT( int3 ) {
 		lhs.x + rhs.x,
@@ -2335,7 +2335,7 @@ int3 operator-=( int3& lhs, const int32_t scalar )
 	return ( lhs = lhs - scalar );
 }
 
-int3 operator-( const int3 lhs, const int3 rhs )
+int3 operator-( const int3& lhs, const int3& rhs )
 {
 	return HLML_CONSTRUCT( int3 ) {
 		lhs.x - rhs.x,
@@ -2363,7 +2363,7 @@ int3 operator*=( int3& lhs, const int32_t scalar )
 	return ( lhs = lhs * scalar );
 }
 
-int3 operator*( const int3 lhs, const int3 rhs )
+int3 operator*( const int3& lhs, const int3& rhs )
 {
 	return HLML_CONSTRUCT( int3 ) {
 		lhs.x * rhs.x,
@@ -2391,7 +2391,7 @@ int3 operator/=( int3& lhs, const int32_t scalar )
 	return ( lhs = lhs / scalar );
 }
 
-int3 operator/( const int3 lhs, const int3 rhs )
+int3 operator/( const int3& lhs, const int3& rhs )
 {
 	return HLML_CONSTRUCT( int3 ) {
 		lhs.x / rhs.x,
@@ -2577,7 +2577,7 @@ int4 operator+=( int4& lhs, const int32_t scalar )
 	return ( lhs = lhs + scalar );
 }
 
-int4 operator+( const int4 lhs, const int4 rhs )
+int4 operator+( const int4& lhs, const int4& rhs )
 {
 	return HLML_CONSTRUCT( int4 ) {
 		lhs.x + rhs.x,
@@ -2607,7 +2607,7 @@ int4 operator-=( int4& lhs, const int32_t scalar )
 	return ( lhs = lhs - scalar );
 }
 
-int4 operator-( const int4 lhs, const int4 rhs )
+int4 operator-( const int4& lhs, const int4& rhs )
 {
 	return HLML_CONSTRUCT( int4 ) {
 		lhs.x - rhs.x,
@@ -2637,7 +2637,7 @@ int4 operator*=( int4& lhs, const int32_t scalar )
 	return ( lhs = lhs * scalar );
 }
 
-int4 operator*( const int4 lhs, const int4 rhs )
+int4 operator*( const int4& lhs, const int4& rhs )
 {
 	return HLML_CONSTRUCT( int4 ) {
 		lhs.x * rhs.x,
@@ -2667,7 +2667,7 @@ int4 operator/=( int4& lhs, const int32_t scalar )
 	return ( lhs = lhs / scalar );
 }
 
-int4 operator/( const int4 lhs, const int4 rhs )
+int4 operator/( const int4& lhs, const int4& rhs )
 {
 	return HLML_CONSTRUCT( int4 ) {
 		lhs.x / rhs.x,
@@ -2866,7 +2866,7 @@ uint2 operator+=( uint2& lhs, const uint32_t scalar )
 	return ( lhs = lhs + scalar );
 }
 
-uint2 operator+( const uint2 lhs, const uint2 rhs )
+uint2 operator+( const uint2& lhs, const uint2& rhs )
 {
 	return HLML_CONSTRUCT( uint2 ) {
 		lhs.x + rhs.x,
@@ -2892,7 +2892,7 @@ uint2 operator-=( uint2& lhs, const uint32_t scalar )
 	return ( lhs = lhs - scalar );
 }
 
-uint2 operator-( const uint2 lhs, const uint2 rhs )
+uint2 operator-( const uint2& lhs, const uint2& rhs )
 {
 	return HLML_CONSTRUCT( uint2 ) {
 		lhs.x - rhs.x,
@@ -2918,7 +2918,7 @@ uint2 operator*=( uint2& lhs, const uint32_t scalar )
 	return ( lhs = lhs * scalar );
 }
 
-uint2 operator*( const uint2 lhs, const uint2 rhs )
+uint2 operator*( const uint2& lhs, const uint2& rhs )
 {
 	return HLML_CONSTRUCT( uint2 ) {
 		lhs.x * rhs.x,
@@ -2944,7 +2944,7 @@ uint2 operator/=( uint2& lhs, const uint32_t scalar )
 	return ( lhs = lhs / scalar );
 }
 
-uint2 operator/( const uint2 lhs, const uint2 rhs )
+uint2 operator/( const uint2& lhs, const uint2& rhs )
 {
 	return HLML_CONSTRUCT( uint2 ) {
 		lhs.x / rhs.x,
@@ -3114,7 +3114,7 @@ uint3 operator+=( uint3& lhs, const uint32_t scalar )
 	return ( lhs = lhs + scalar );
 }
 
-uint3 operator+( const uint3 lhs, const uint3 rhs )
+uint3 operator+( const uint3& lhs, const uint3& rhs )
 {
 	return HLML_CONSTRUCT( uint3 ) {
 		lhs.x + rhs.x,
@@ -3142,7 +3142,7 @@ uint3 operator-=( uint3& lhs, const uint32_t scalar )
 	return ( lhs = lhs - scalar );
 }
 
-uint3 operator-( const uint3 lhs, const uint3 rhs )
+uint3 operator-( const uint3& lhs, const uint3& rhs )
 {
 	return HLML_CONSTRUCT( uint3 ) {
 		lhs.x - rhs.x,
@@ -3170,7 +3170,7 @@ uint3 operator*=( uint3& lhs, const uint32_t scalar )
 	return ( lhs = lhs * scalar );
 }
 
-uint3 operator*( const uint3 lhs, const uint3 rhs )
+uint3 operator*( const uint3& lhs, const uint3& rhs )
 {
 	return HLML_CONSTRUCT( uint3 ) {
 		lhs.x * rhs.x,
@@ -3198,7 +3198,7 @@ uint3 operator/=( uint3& lhs, const uint32_t scalar )
 	return ( lhs = lhs / scalar );
 }
 
-uint3 operator/( const uint3 lhs, const uint3 rhs )
+uint3 operator/( const uint3& lhs, const uint3& rhs )
 {
 	return HLML_CONSTRUCT( uint3 ) {
 		lhs.x / rhs.x,
@@ -3384,7 +3384,7 @@ uint4 operator+=( uint4& lhs, const uint32_t scalar )
 	return ( lhs = lhs + scalar );
 }
 
-uint4 operator+( const uint4 lhs, const uint4 rhs )
+uint4 operator+( const uint4& lhs, const uint4& rhs )
 {
 	return HLML_CONSTRUCT( uint4 ) {
 		lhs.x + rhs.x,
@@ -3414,7 +3414,7 @@ uint4 operator-=( uint4& lhs, const uint32_t scalar )
 	return ( lhs = lhs - scalar );
 }
 
-uint4 operator-( const uint4 lhs, const uint4 rhs )
+uint4 operator-( const uint4& lhs, const uint4& rhs )
 {
 	return HLML_CONSTRUCT( uint4 ) {
 		lhs.x - rhs.x,
@@ -3444,7 +3444,7 @@ uint4 operator*=( uint4& lhs, const uint32_t scalar )
 	return ( lhs = lhs * scalar );
 }
 
-uint4 operator*( const uint4 lhs, const uint4 rhs )
+uint4 operator*( const uint4& lhs, const uint4& rhs )
 {
 	return HLML_CONSTRUCT( uint4 ) {
 		lhs.x * rhs.x,
@@ -3474,7 +3474,7 @@ uint4 operator/=( uint4& lhs, const uint32_t scalar )
 	return ( lhs = lhs / scalar );
 }
 
-uint4 operator/( const uint4 lhs, const uint4 rhs )
+uint4 operator/( const uint4& lhs, const uint4& rhs )
 {
 	return HLML_CONSTRUCT( uint4 ) {
 		lhs.x / rhs.x,
@@ -3673,7 +3673,7 @@ float2 operator+=( float2& lhs, const float scalar )
 	return ( lhs = lhs + scalar );
 }
 
-float2 operator+( const float2 lhs, const float2 rhs )
+float2 operator+( const float2& lhs, const float2& rhs )
 {
 	return HLML_CONSTRUCT( float2 ) {
 		lhs.x + rhs.x,
@@ -3699,7 +3699,7 @@ float2 operator-=( float2& lhs, const float scalar )
 	return ( lhs = lhs - scalar );
 }
 
-float2 operator-( const float2 lhs, const float2 rhs )
+float2 operator-( const float2& lhs, const float2& rhs )
 {
 	return HLML_CONSTRUCT( float2 ) {
 		lhs.x - rhs.x,
@@ -3725,7 +3725,7 @@ float2 operator*=( float2& lhs, const float scalar )
 	return ( lhs = lhs * scalar );
 }
 
-float2 operator*( const float2 lhs, const float2 rhs )
+float2 operator*( const float2& lhs, const float2& rhs )
 {
 	return HLML_CONSTRUCT( float2 ) {
 		lhs.x * rhs.x,
@@ -3751,7 +3751,7 @@ float2 operator/=( float2& lhs, const float scalar )
 	return ( lhs = lhs / scalar );
 }
 
-float2 operator/( const float2 lhs, const float2 rhs )
+float2 operator/( const float2& lhs, const float2& rhs )
 {
 	return HLML_CONSTRUCT( float2 ) {
 		lhs.x / rhs.x,
@@ -3848,7 +3848,7 @@ float3 operator+=( float3& lhs, const float scalar )
 	return ( lhs = lhs + scalar );
 }
 
-float3 operator+( const float3 lhs, const float3 rhs )
+float3 operator+( const float3& lhs, const float3& rhs )
 {
 	return HLML_CONSTRUCT( float3 ) {
 		lhs.x + rhs.x,
@@ -3876,7 +3876,7 @@ float3 operator-=( float3& lhs, const float scalar )
 	return ( lhs = lhs - scalar );
 }
 
-float3 operator-( const float3 lhs, const float3 rhs )
+float3 operator-( const float3& lhs, const float3& rhs )
 {
 	return HLML_CONSTRUCT( float3 ) {
 		lhs.x - rhs.x,
@@ -3904,7 +3904,7 @@ float3 operator*=( float3& lhs, const float scalar )
 	return ( lhs = lhs * scalar );
 }
 
-float3 operator*( const float3 lhs, const float3 rhs )
+float3 operator*( const float3& lhs, const float3& rhs )
 {
 	return HLML_CONSTRUCT( float3 ) {
 		lhs.x * rhs.x,
@@ -3932,7 +3932,7 @@ float3 operator/=( float3& lhs, const float scalar )
 	return ( lhs = lhs / scalar );
 }
 
-float3 operator/( const float3 lhs, const float3 rhs )
+float3 operator/( const float3& lhs, const float3& rhs )
 {
 	return HLML_CONSTRUCT( float3 ) {
 		lhs.x / rhs.x,
@@ -4039,7 +4039,7 @@ float4 operator+=( float4& lhs, const float scalar )
 	return ( lhs = lhs + scalar );
 }
 
-float4 operator+( const float4 lhs, const float4 rhs )
+float4 operator+( const float4& lhs, const float4& rhs )
 {
 	return HLML_CONSTRUCT( float4 ) {
 		lhs.x + rhs.x,
@@ -4069,7 +4069,7 @@ float4 operator-=( float4& lhs, const float scalar )
 	return ( lhs = lhs - scalar );
 }
 
-float4 operator-( const float4 lhs, const float4 rhs )
+float4 operator-( const float4& lhs, const float4& rhs )
 {
 	return HLML_CONSTRUCT( float4 ) {
 		lhs.x - rhs.x,
@@ -4099,7 +4099,7 @@ float4 operator*=( float4& lhs, const float scalar )
 	return ( lhs = lhs * scalar );
 }
 
-float4 operator*( const float4 lhs, const float4 rhs )
+float4 operator*( const float4& lhs, const float4& rhs )
 {
 	return HLML_CONSTRUCT( float4 ) {
 		lhs.x * rhs.x,
@@ -4129,7 +4129,7 @@ float4 operator/=( float4& lhs, const float scalar )
 	return ( lhs = lhs / scalar );
 }
 
-float4 operator/( const float4 lhs, const float4 rhs )
+float4 operator/( const float4& lhs, const float4& rhs )
 {
 	return HLML_CONSTRUCT( float4 ) {
 		lhs.x / rhs.x,
@@ -4243,7 +4243,7 @@ double2 operator+=( double2& lhs, const double scalar )
 	return ( lhs = lhs + scalar );
 }
 
-double2 operator+( const double2 lhs, const double2 rhs )
+double2 operator+( const double2& lhs, const double2& rhs )
 {
 	return HLML_CONSTRUCT( double2 ) {
 		lhs.x + rhs.x,
@@ -4269,7 +4269,7 @@ double2 operator-=( double2& lhs, const double scalar )
 	return ( lhs = lhs - scalar );
 }
 
-double2 operator-( const double2 lhs, const double2 rhs )
+double2 operator-( const double2& lhs, const double2& rhs )
 {
 	return HLML_CONSTRUCT( double2 ) {
 		lhs.x - rhs.x,
@@ -4295,7 +4295,7 @@ double2 operator*=( double2& lhs, const double scalar )
 	return ( lhs = lhs * scalar );
 }
 
-double2 operator*( const double2 lhs, const double2 rhs )
+double2 operator*( const double2& lhs, const double2& rhs )
 {
 	return HLML_CONSTRUCT( double2 ) {
 		lhs.x * rhs.x,
@@ -4321,7 +4321,7 @@ double2 operator/=( double2& lhs, const double scalar )
 	return ( lhs = lhs / scalar );
 }
 
-double2 operator/( const double2 lhs, const double2 rhs )
+double2 operator/( const double2& lhs, const double2& rhs )
 {
 	return HLML_CONSTRUCT( double2 ) {
 		lhs.x / rhs.x,
@@ -4418,7 +4418,7 @@ double3 operator+=( double3& lhs, const double scalar )
 	return ( lhs = lhs + scalar );
 }
 
-double3 operator+( const double3 lhs, const double3 rhs )
+double3 operator+( const double3& lhs, const double3& rhs )
 {
 	return HLML_CONSTRUCT( double3 ) {
 		lhs.x + rhs.x,
@@ -4446,7 +4446,7 @@ double3 operator-=( double3& lhs, const double scalar )
 	return ( lhs = lhs - scalar );
 }
 
-double3 operator-( const double3 lhs, const double3 rhs )
+double3 operator-( const double3& lhs, const double3& rhs )
 {
 	return HLML_CONSTRUCT( double3 ) {
 		lhs.x - rhs.x,
@@ -4474,7 +4474,7 @@ double3 operator*=( double3& lhs, const double scalar )
 	return ( lhs = lhs * scalar );
 }
 
-double3 operator*( const double3 lhs, const double3 rhs )
+double3 operator*( const double3& lhs, const double3& rhs )
 {
 	return HLML_CONSTRUCT( double3 ) {
 		lhs.x * rhs.x,
@@ -4502,7 +4502,7 @@ double3 operator/=( double3& lhs, const double scalar )
 	return ( lhs = lhs / scalar );
 }
 
-double3 operator/( const double3 lhs, const double3 rhs )
+double3 operator/( const double3& lhs, const double3& rhs )
 {
 	return HLML_CONSTRUCT( double3 ) {
 		lhs.x / rhs.x,
@@ -4609,7 +4609,7 @@ double4 operator+=( double4& lhs, const double scalar )
 	return ( lhs = lhs + scalar );
 }
 
-double4 operator+( const double4 lhs, const double4 rhs )
+double4 operator+( const double4& lhs, const double4& rhs )
 {
 	return HLML_CONSTRUCT( double4 ) {
 		lhs.x + rhs.x,
@@ -4639,7 +4639,7 @@ double4 operator-=( double4& lhs, const double scalar )
 	return ( lhs = lhs - scalar );
 }
 
-double4 operator-( const double4 lhs, const double4 rhs )
+double4 operator-( const double4& lhs, const double4& rhs )
 {
 	return HLML_CONSTRUCT( double4 ) {
 		lhs.x - rhs.x,
@@ -4669,7 +4669,7 @@ double4 operator*=( double4& lhs, const double scalar )
 	return ( lhs = lhs * scalar );
 }
 
-double4 operator*( const double4 lhs, const double4 rhs )
+double4 operator*( const double4& lhs, const double4& rhs )
 {
 	return HLML_CONSTRUCT( double4 ) {
 		lhs.x * rhs.x,
@@ -4699,7 +4699,7 @@ double4 operator/=( double4& lhs, const double scalar )
 	return ( lhs = lhs / scalar );
 }
 
-double4 operator/( const double4 lhs, const double4 rhs )
+double4 operator/( const double4& lhs, const double4& rhs )
 {
 	return HLML_CONSTRUCT( double4 ) {
 		lhs.x / rhs.x,
