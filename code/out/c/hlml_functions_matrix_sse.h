@@ -42,67 +42,67 @@ extern "C" {
 
 #include "hlml_functions_vector_sse.h"
 
-/// \brief Changes the sign of the values in the register.
+// Changes the sign of the values in the register.
 #define NEGATE_PS( reg ) _mm_sub_ps( HLML_ZERO_SSE, (reg) )
 
-/// \brief Holds 2 x 2 __m128s where each regster is a vertical stream of that matrix component.
-/// Basically, this struct holds 4 matrices.
+// Holds 2 x 2 __m128s where each regster is a vertical stream of that matrix component.
+// Basically, this struct holds 4 matrices.
 typedef struct float2x2_sse_t
 {
 	__m128 m[2][2];
 } float2x2_sse_t;
 
-/// \brief Holds 2 x 3 __m128s where each regster is a vertical stream of that matrix component.
-/// Basically, this struct holds 4 matrices.
+// Holds 2 x 3 __m128s where each regster is a vertical stream of that matrix component.
+// Basically, this struct holds 4 matrices.
 typedef struct float2x3_sse_t
 {
 	__m128 m[2][3];
 } float2x3_sse_t;
 
-/// \brief Holds 2 x 4 __m128s where each regster is a vertical stream of that matrix component.
-/// Basically, this struct holds 4 matrices.
+// Holds 2 x 4 __m128s where each regster is a vertical stream of that matrix component.
+// Basically, this struct holds 4 matrices.
 typedef struct float2x4_sse_t
 {
 	__m128 m[2][4];
 } float2x4_sse_t;
 
-/// \brief Holds 3 x 2 __m128s where each regster is a vertical stream of that matrix component.
-/// Basically, this struct holds 4 matrices.
+// Holds 3 x 2 __m128s where each regster is a vertical stream of that matrix component.
+// Basically, this struct holds 4 matrices.
 typedef struct float3x2_sse_t
 {
 	__m128 m[3][2];
 } float3x2_sse_t;
 
-/// \brief Holds 3 x 3 __m128s where each regster is a vertical stream of that matrix component.
-/// Basically, this struct holds 4 matrices.
+// Holds 3 x 3 __m128s where each regster is a vertical stream of that matrix component.
+// Basically, this struct holds 4 matrices.
 typedef struct float3x3_sse_t
 {
 	__m128 m[3][3];
 } float3x3_sse_t;
 
-/// \brief Holds 3 x 4 __m128s where each regster is a vertical stream of that matrix component.
-/// Basically, this struct holds 4 matrices.
+// Holds 3 x 4 __m128s where each regster is a vertical stream of that matrix component.
+// Basically, this struct holds 4 matrices.
 typedef struct float3x4_sse_t
 {
 	__m128 m[3][4];
 } float3x4_sse_t;
 
-/// \brief Holds 4 x 2 __m128s where each regster is a vertical stream of that matrix component.
-/// Basically, this struct holds 4 matrices.
+// Holds 4 x 2 __m128s where each regster is a vertical stream of that matrix component.
+// Basically, this struct holds 4 matrices.
 typedef struct float4x2_sse_t
 {
 	__m128 m[4][2];
 } float4x2_sse_t;
 
-/// \brief Holds 4 x 3 __m128s where each regster is a vertical stream of that matrix component.
-/// Basically, this struct holds 4 matrices.
+// Holds 4 x 3 __m128s where each regster is a vertical stream of that matrix component.
+// Basically, this struct holds 4 matrices.
 typedef struct float4x3_sse_t
 {
 	__m128 m[4][3];
 } float4x3_sse_t;
 
-/// \brief Holds 4 x 4 __m128s where each regster is a vertical stream of that matrix component.
-/// Basically, this struct holds 4 matrices.
+// Holds 4 x 4 __m128s where each regster is a vertical stream of that matrix component.
+// Basically, this struct holds 4 matrices.
 typedef struct float4x4_sse_t
 {
 	__m128 m[4][4];
@@ -110,8 +110,7 @@ typedef struct float4x4_sse_t
 
 
 // float2x2
-/// \relates float2x2_sse_t
-/// \brief Sets a matrix of __m128 registers to identity.
+// Sets a matrix of __m128 registers to identity.
 inline static void float2x2_identity_sse( float2x2_sse_t* mat )
 {
 	// row 0
@@ -123,8 +122,7 @@ inline static void float2x2_identity_sse( float2x2_sse_t* mat )
 	mat->m[1][1] = _mm_set1_ps( 1.0f );
 }
 
-/// \relates float2x2_sse_t
-/// \brief Stores a transposed matrix of 2 x 2 __m128 registers in the output given the input 2 x 2 register matrix.
+// Stores a transposed matrix of 2 x 2 __m128 registers in the output given the input 2 x 2 register matrix.
 inline static void float2x2_transpose_sse( const float2x2_sse_t* in, float2x2_sse_t* out )
 {
 	assert( in );
@@ -137,8 +135,7 @@ inline static void float2x2_transpose_sse( const float2x2_sse_t* in, float2x2_ss
 	out->m[1][1] = in->m[1][1];
 }
 
-/// \relates float2x2_sse_t
-/// \brief Stores the determinants of a matrix of 2 x 2 __m128 registers.
+// Stores the determinants of a matrix of 2 x 2 __m128 registers.
 inline static void float2x2_determinant_sse( const float2x2_sse_t* in, __m128* out_result )
 {
 	assert( in );
@@ -150,8 +147,7 @@ inline static void float2x2_determinant_sse( const float2x2_sse_t* in, __m128* o
 	*out_result = _mm_sub_ps( mul0, mul1 );
 }
 
-/// \relates float2x2_sse_t
-/// \brief Stores an inverted matrix of 2 x 2 __m128 registers.
+// Stores an inverted matrix of 2 x 2 __m128 registers.
 inline static void float2x2_inverse_sse( const float2x2_sse_t* in, float2x2_sse_t* out )
 {
 	assert( in );
@@ -171,8 +167,7 @@ inline static void float2x2_inverse_sse( const float2x2_sse_t* in, float2x2_sse_
 	out->m[1][1] = _mm_mul_ps( in->m[0][0], determinants );
 }
 
-/// \relates float2x2_sse_t
-/// \brief Stores a matrix that is the result of the component-wise addition between the lhs and rhs __m128 registers of the input.
+// Stores a matrix that is the result of the component-wise addition between the lhs and rhs __m128 registers of the input.
 inline static void float2x2_caddm_sse( const float2x2_sse_t* lhs, const float2x2_sse_t* rhs, float2x2_sse_t* out )
 {
 	assert( lhs );
@@ -188,8 +183,7 @@ inline static void float2x2_caddm_sse( const float2x2_sse_t* lhs, const float2x2
 	out->m[1][1] = _mm_add_ps( lhs->m[1][1], rhs->m[1][1] );
 }
 
-/// \relates float2x2_sse_t
-/// \brief Stores a matrix that is the result of the component-wise subtraction between the lhs and rhs __m128 registers of the input.
+// Stores a matrix that is the result of the component-wise subtraction between the lhs and rhs __m128 registers of the input.
 inline static void float2x2_csubm_sse( const float2x2_sse_t* lhs, const float2x2_sse_t* rhs, float2x2_sse_t* out )
 {
 	assert( lhs );
@@ -205,8 +199,7 @@ inline static void float2x2_csubm_sse( const float2x2_sse_t* lhs, const float2x2
 	out->m[1][1] = _mm_sub_ps( lhs->m[1][1], rhs->m[1][1] );
 }
 
-/// \relates float2x2_sse_t
-/// \brief Stores a matrix that is the result of the component-wise multiplication between the lhs and rhs __m128 registers of the input.
+// Stores a matrix that is the result of the component-wise multiplication between the lhs and rhs __m128 registers of the input.
 inline static void float2x2_cmulm_sse( const float2x2_sse_t* lhs, const float2x2_sse_t* rhs, float2x2_sse_t* out )
 {
 	assert( lhs );
@@ -222,8 +215,7 @@ inline static void float2x2_cmulm_sse( const float2x2_sse_t* lhs, const float2x2
 	out->m[1][1] = _mm_mul_ps( lhs->m[1][1], rhs->m[1][1] );
 }
 
-/// \relates float2x2_sse_t
-/// \brief Stores a matrix that is the result of the component-wise division between the lhs and rhs __m128 registers of the input.
+// Stores a matrix that is the result of the component-wise division between the lhs and rhs __m128 registers of the input.
 inline static void float2x2_cdivm_sse( const float2x2_sse_t* lhs, const float2x2_sse_t* rhs, float2x2_sse_t* out )
 {
 	assert( lhs );
@@ -239,8 +231,7 @@ inline static void float2x2_cdivm_sse( const float2x2_sse_t* lhs, const float2x2
 	out->m[1][1] = _mm_div_ps( lhs->m[1][1], rhs->m[1][1] );
 }
 
-/// \relates float2x2
-/// \brief Performs a matrix-multiplication of 2 matrices of __m128 registers.
+// Performs a matrix-multiplication of 2 matrices of __m128 registers.
 inline static void float2x2_mulm_sse( const float2x2_sse_t* lhs, const float2x2_sse_t* rhs, float2x2_sse_t* out )
 {
 	assert( lhs );
@@ -285,8 +276,7 @@ inline static void float2x2_mulm_sse( const float2x2_sse_t* lhs, const float2x2_
 
 
 // float2x3
-/// \relates float2x3_sse_t
-/// \brief Sets a matrix of __m128 registers to identity.
+// Sets a matrix of __m128 registers to identity.
 inline static void float2x3_identity_sse( float2x3_sse_t* mat )
 {
 	// row 0
@@ -300,8 +290,7 @@ inline static void float2x3_identity_sse( float2x3_sse_t* mat )
 	mat->m[1][2] = _mm_set1_ps( 0.0f );
 }
 
-/// \relates float2x3_sse_t
-/// \brief Stores a transposed matrix of 3 x 2 __m128 registers in the output given the input 2 x 3 register matrix.
+// Stores a transposed matrix of 3 x 2 __m128 registers in the output given the input 2 x 3 register matrix.
 inline static void float2x3_transpose_sse( const float2x3_sse_t* in, float3x2_sse_t* out )
 {
 	assert( in );
@@ -316,8 +305,7 @@ inline static void float2x3_transpose_sse( const float2x3_sse_t* in, float3x2_ss
 	out->m[2][1] = in->m[1][2];
 }
 
-/// \relates float2x3_sse_t
-/// \brief Stores a matrix that is the result of the component-wise addition between the lhs and rhs __m128 registers of the input.
+// Stores a matrix that is the result of the component-wise addition between the lhs and rhs __m128 registers of the input.
 inline static void float2x3_caddm_sse( const float2x3_sse_t* lhs, const float2x3_sse_t* rhs, float2x3_sse_t* out )
 {
 	assert( lhs );
@@ -335,8 +323,7 @@ inline static void float2x3_caddm_sse( const float2x3_sse_t* lhs, const float2x3
 	out->m[1][2] = _mm_add_ps( lhs->m[1][2], rhs->m[1][2] );
 }
 
-/// \relates float2x3_sse_t
-/// \brief Stores a matrix that is the result of the component-wise subtraction between the lhs and rhs __m128 registers of the input.
+// Stores a matrix that is the result of the component-wise subtraction between the lhs and rhs __m128 registers of the input.
 inline static void float2x3_csubm_sse( const float2x3_sse_t* lhs, const float2x3_sse_t* rhs, float2x3_sse_t* out )
 {
 	assert( lhs );
@@ -354,8 +341,7 @@ inline static void float2x3_csubm_sse( const float2x3_sse_t* lhs, const float2x3
 	out->m[1][2] = _mm_sub_ps( lhs->m[1][2], rhs->m[1][2] );
 }
 
-/// \relates float2x3_sse_t
-/// \brief Stores a matrix that is the result of the component-wise multiplication between the lhs and rhs __m128 registers of the input.
+// Stores a matrix that is the result of the component-wise multiplication between the lhs and rhs __m128 registers of the input.
 inline static void float2x3_cmulm_sse( const float2x3_sse_t* lhs, const float2x3_sse_t* rhs, float2x3_sse_t* out )
 {
 	assert( lhs );
@@ -373,8 +359,7 @@ inline static void float2x3_cmulm_sse( const float2x3_sse_t* lhs, const float2x3
 	out->m[1][2] = _mm_mul_ps( lhs->m[1][2], rhs->m[1][2] );
 }
 
-/// \relates float2x3_sse_t
-/// \brief Stores a matrix that is the result of the component-wise division between the lhs and rhs __m128 registers of the input.
+// Stores a matrix that is the result of the component-wise division between the lhs and rhs __m128 registers of the input.
 inline static void float2x3_cdivm_sse( const float2x3_sse_t* lhs, const float2x3_sse_t* rhs, float2x3_sse_t* out )
 {
 	assert( lhs );
@@ -392,8 +377,7 @@ inline static void float2x3_cdivm_sse( const float2x3_sse_t* lhs, const float2x3
 	out->m[1][2] = _mm_div_ps( lhs->m[1][2], rhs->m[1][2] );
 }
 
-/// \relates float2x3
-/// \brief Performs a matrix-multiplication of 2 matrices of __m128 registers.
+// Performs a matrix-multiplication of 2 matrices of __m128 registers.
 inline static void float2x3_mulm_sse( const float2x3_sse_t* lhs, const float3x2_sse_t* rhs, float2x2_sse_t* out )
 {
 	assert( lhs );
@@ -446,8 +430,7 @@ inline static void float2x3_mulm_sse( const float2x3_sse_t* lhs, const float3x2_
 
 
 // float2x4
-/// \relates float2x4_sse_t
-/// \brief Sets a matrix of __m128 registers to identity.
+// Sets a matrix of __m128 registers to identity.
 inline static void float2x4_identity_sse( float2x4_sse_t* mat )
 {
 	// row 0
@@ -463,8 +446,7 @@ inline static void float2x4_identity_sse( float2x4_sse_t* mat )
 	mat->m[1][3] = _mm_set1_ps( 0.0f );
 }
 
-/// \relates float2x4_sse_t
-/// \brief Stores a transposed matrix of 4 x 2 __m128 registers in the output given the input 2 x 4 register matrix.
+// Stores a transposed matrix of 4 x 2 __m128 registers in the output given the input 2 x 4 register matrix.
 inline static void float2x4_transpose_sse( const float2x4_sse_t* in, float4x2_sse_t* out )
 {
 	assert( in );
@@ -481,8 +463,7 @@ inline static void float2x4_transpose_sse( const float2x4_sse_t* in, float4x2_ss
 	out->m[3][1] = in->m[1][3];
 }
 
-/// \relates float2x4_sse_t
-/// \brief Stores a matrix that is the result of the component-wise addition between the lhs and rhs __m128 registers of the input.
+// Stores a matrix that is the result of the component-wise addition between the lhs and rhs __m128 registers of the input.
 inline static void float2x4_caddm_sse( const float2x4_sse_t* lhs, const float2x4_sse_t* rhs, float2x4_sse_t* out )
 {
 	assert( lhs );
@@ -502,8 +483,7 @@ inline static void float2x4_caddm_sse( const float2x4_sse_t* lhs, const float2x4
 	out->m[1][3] = _mm_add_ps( lhs->m[1][3], rhs->m[1][3] );
 }
 
-/// \relates float2x4_sse_t
-/// \brief Stores a matrix that is the result of the component-wise subtraction between the lhs and rhs __m128 registers of the input.
+// Stores a matrix that is the result of the component-wise subtraction between the lhs and rhs __m128 registers of the input.
 inline static void float2x4_csubm_sse( const float2x4_sse_t* lhs, const float2x4_sse_t* rhs, float2x4_sse_t* out )
 {
 	assert( lhs );
@@ -523,8 +503,7 @@ inline static void float2x4_csubm_sse( const float2x4_sse_t* lhs, const float2x4
 	out->m[1][3] = _mm_sub_ps( lhs->m[1][3], rhs->m[1][3] );
 }
 
-/// \relates float2x4_sse_t
-/// \brief Stores a matrix that is the result of the component-wise multiplication between the lhs and rhs __m128 registers of the input.
+// Stores a matrix that is the result of the component-wise multiplication between the lhs and rhs __m128 registers of the input.
 inline static void float2x4_cmulm_sse( const float2x4_sse_t* lhs, const float2x4_sse_t* rhs, float2x4_sse_t* out )
 {
 	assert( lhs );
@@ -544,8 +523,7 @@ inline static void float2x4_cmulm_sse( const float2x4_sse_t* lhs, const float2x4
 	out->m[1][3] = _mm_mul_ps( lhs->m[1][3], rhs->m[1][3] );
 }
 
-/// \relates float2x4_sse_t
-/// \brief Stores a matrix that is the result of the component-wise division between the lhs and rhs __m128 registers of the input.
+// Stores a matrix that is the result of the component-wise division between the lhs and rhs __m128 registers of the input.
 inline static void float2x4_cdivm_sse( const float2x4_sse_t* lhs, const float2x4_sse_t* rhs, float2x4_sse_t* out )
 {
 	assert( lhs );
@@ -565,8 +543,7 @@ inline static void float2x4_cdivm_sse( const float2x4_sse_t* lhs, const float2x4
 	out->m[1][3] = _mm_div_ps( lhs->m[1][3], rhs->m[1][3] );
 }
 
-/// \relates float2x4
-/// \brief Performs a matrix-multiplication of 2 matrices of __m128 registers.
+// Performs a matrix-multiplication of 2 matrices of __m128 registers.
 inline static void float2x4_mulm_sse( const float2x4_sse_t* lhs, const float4x2_sse_t* rhs, float2x2_sse_t* out )
 {
 	assert( lhs );
@@ -627,8 +604,7 @@ inline static void float2x4_mulm_sse( const float2x4_sse_t* lhs, const float4x2_
 
 
 // float3x2
-/// \relates float3x2_sse_t
-/// \brief Sets a matrix of __m128 registers to identity.
+// Sets a matrix of __m128 registers to identity.
 inline static void float3x2_identity_sse( float3x2_sse_t* mat )
 {
 	// row 0
@@ -644,8 +620,7 @@ inline static void float3x2_identity_sse( float3x2_sse_t* mat )
 	mat->m[2][1] = _mm_set1_ps( 0.0f );
 }
 
-/// \relates float3x2_sse_t
-/// \brief Stores a transposed matrix of 2 x 3 __m128 registers in the output given the input 3 x 2 register matrix.
+// Stores a transposed matrix of 2 x 3 __m128 registers in the output given the input 3 x 2 register matrix.
 inline static void float3x2_transpose_sse( const float3x2_sse_t* in, float2x3_sse_t* out )
 {
 	assert( in );
@@ -661,8 +636,7 @@ inline static void float3x2_transpose_sse( const float3x2_sse_t* in, float2x3_ss
 	out->m[1][2] = in->m[2][1];
 }
 
-/// \relates float3x2_sse_t
-/// \brief Stores a matrix that is the result of the component-wise addition between the lhs and rhs __m128 registers of the input.
+// Stores a matrix that is the result of the component-wise addition between the lhs and rhs __m128 registers of the input.
 inline static void float3x2_caddm_sse( const float3x2_sse_t* lhs, const float3x2_sse_t* rhs, float3x2_sse_t* out )
 {
 	assert( lhs );
@@ -682,8 +656,7 @@ inline static void float3x2_caddm_sse( const float3x2_sse_t* lhs, const float3x2
 	out->m[2][1] = _mm_add_ps( lhs->m[2][1], rhs->m[2][1] );
 }
 
-/// \relates float3x2_sse_t
-/// \brief Stores a matrix that is the result of the component-wise subtraction between the lhs and rhs __m128 registers of the input.
+// Stores a matrix that is the result of the component-wise subtraction between the lhs and rhs __m128 registers of the input.
 inline static void float3x2_csubm_sse( const float3x2_sse_t* lhs, const float3x2_sse_t* rhs, float3x2_sse_t* out )
 {
 	assert( lhs );
@@ -703,8 +676,7 @@ inline static void float3x2_csubm_sse( const float3x2_sse_t* lhs, const float3x2
 	out->m[2][1] = _mm_sub_ps( lhs->m[2][1], rhs->m[2][1] );
 }
 
-/// \relates float3x2_sse_t
-/// \brief Stores a matrix that is the result of the component-wise multiplication between the lhs and rhs __m128 registers of the input.
+// Stores a matrix that is the result of the component-wise multiplication between the lhs and rhs __m128 registers of the input.
 inline static void float3x2_cmulm_sse( const float3x2_sse_t* lhs, const float3x2_sse_t* rhs, float3x2_sse_t* out )
 {
 	assert( lhs );
@@ -724,8 +696,7 @@ inline static void float3x2_cmulm_sse( const float3x2_sse_t* lhs, const float3x2
 	out->m[2][1] = _mm_mul_ps( lhs->m[2][1], rhs->m[2][1] );
 }
 
-/// \relates float3x2_sse_t
-/// \brief Stores a matrix that is the result of the component-wise division between the lhs and rhs __m128 registers of the input.
+// Stores a matrix that is the result of the component-wise division between the lhs and rhs __m128 registers of the input.
 inline static void float3x2_cdivm_sse( const float3x2_sse_t* lhs, const float3x2_sse_t* rhs, float3x2_sse_t* out )
 {
 	assert( lhs );
@@ -745,8 +716,7 @@ inline static void float3x2_cdivm_sse( const float3x2_sse_t* lhs, const float3x2
 	out->m[2][1] = _mm_div_ps( lhs->m[2][1], rhs->m[2][1] );
 }
 
-/// \relates float3x2
-/// \brief Performs a matrix-multiplication of 2 matrices of __m128 registers.
+// Performs a matrix-multiplication of 2 matrices of __m128 registers.
 inline static void float3x2_mulm_sse( const float3x2_sse_t* lhs, const float2x3_sse_t* rhs, float3x3_sse_t* out )
 {
 	assert( lhs );
@@ -831,8 +801,7 @@ inline static void float3x2_mulm_sse( const float3x2_sse_t* lhs, const float2x3_
 
 
 // float3x3
-/// \relates float3x3_sse_t
-/// \brief Sets a matrix of __m128 registers to identity.
+// Sets a matrix of __m128 registers to identity.
 inline static void float3x3_identity_sse( float3x3_sse_t* mat )
 {
 	// row 0
@@ -851,8 +820,7 @@ inline static void float3x3_identity_sse( float3x3_sse_t* mat )
 	mat->m[2][2] = _mm_set1_ps( 1.0f );
 }
 
-/// \relates float3x3_sse_t
-/// \brief Stores a transposed matrix of 3 x 3 __m128 registers in the output given the input 3 x 3 register matrix.
+// Stores a transposed matrix of 3 x 3 __m128 registers in the output given the input 3 x 3 register matrix.
 inline static void float3x3_transpose_sse( const float3x3_sse_t* in, float3x3_sse_t* out )
 {
 	assert( in );
@@ -871,8 +839,7 @@ inline static void float3x3_transpose_sse( const float3x3_sse_t* in, float3x3_ss
 	out->m[2][2] = in->m[2][2];
 }
 
-/// \relates float3x3_sse_t
-/// \brief Stores the determinants of a matrix of 3 x 3 __m128 registers.
+// Stores the determinants of a matrix of 3 x 3 __m128 registers.
 inline static void float3x3_determinant_sse( const float3x3_sse_t* in, __m128* out_result )
 {
 	assert( in );
@@ -899,8 +866,7 @@ inline static void float3x3_determinant_sse( const float3x3_sse_t* in, __m128* o
 	*out_result = _mm_add_ps( add0, mul2 );
 }
 
-/// \relates float3x3_sse_t
-/// \brief Stores an inverted matrix of 3 x 3 __m128 registers.
+// Stores an inverted matrix of 3 x 3 __m128 registers.
 inline static void float3x3_inverse_sse( const float3x3_sse_t* in, float3x3_sse_t* out )
 {
 	assert( in );
@@ -976,8 +942,7 @@ inline static void float3x3_inverse_sse( const float3x3_sse_t* in, float3x3_sse_
 	out->m[2][2] = sub22;
 }
 
-/// \relates float3x3_sse_t
-/// \brief Stores a matrix that is the result of the component-wise addition between the lhs and rhs __m128 registers of the input.
+// Stores a matrix that is the result of the component-wise addition between the lhs and rhs __m128 registers of the input.
 inline static void float3x3_caddm_sse( const float3x3_sse_t* lhs, const float3x3_sse_t* rhs, float3x3_sse_t* out )
 {
 	assert( lhs );
@@ -1000,8 +965,7 @@ inline static void float3x3_caddm_sse( const float3x3_sse_t* lhs, const float3x3
 	out->m[2][2] = _mm_add_ps( lhs->m[2][2], rhs->m[2][2] );
 }
 
-/// \relates float3x3_sse_t
-/// \brief Stores a matrix that is the result of the component-wise subtraction between the lhs and rhs __m128 registers of the input.
+// Stores a matrix that is the result of the component-wise subtraction between the lhs and rhs __m128 registers of the input.
 inline static void float3x3_csubm_sse( const float3x3_sse_t* lhs, const float3x3_sse_t* rhs, float3x3_sse_t* out )
 {
 	assert( lhs );
@@ -1024,8 +988,7 @@ inline static void float3x3_csubm_sse( const float3x3_sse_t* lhs, const float3x3
 	out->m[2][2] = _mm_sub_ps( lhs->m[2][2], rhs->m[2][2] );
 }
 
-/// \relates float3x3_sse_t
-/// \brief Stores a matrix that is the result of the component-wise multiplication between the lhs and rhs __m128 registers of the input.
+// Stores a matrix that is the result of the component-wise multiplication between the lhs and rhs __m128 registers of the input.
 inline static void float3x3_cmulm_sse( const float3x3_sse_t* lhs, const float3x3_sse_t* rhs, float3x3_sse_t* out )
 {
 	assert( lhs );
@@ -1048,8 +1011,7 @@ inline static void float3x3_cmulm_sse( const float3x3_sse_t* lhs, const float3x3
 	out->m[2][2] = _mm_mul_ps( lhs->m[2][2], rhs->m[2][2] );
 }
 
-/// \relates float3x3_sse_t
-/// \brief Stores a matrix that is the result of the component-wise division between the lhs and rhs __m128 registers of the input.
+// Stores a matrix that is the result of the component-wise division between the lhs and rhs __m128 registers of the input.
 inline static void float3x3_cdivm_sse( const float3x3_sse_t* lhs, const float3x3_sse_t* rhs, float3x3_sse_t* out )
 {
 	assert( lhs );
@@ -1072,8 +1034,7 @@ inline static void float3x3_cdivm_sse( const float3x3_sse_t* lhs, const float3x3
 	out->m[2][2] = _mm_div_ps( lhs->m[2][2], rhs->m[2][2] );
 }
 
-/// \relates float3x3
-/// \brief Performs a matrix-multiplication of 2 matrices of __m128 registers.
+// Performs a matrix-multiplication of 2 matrices of __m128 registers.
 inline static void float3x3_mulm_sse( const float3x3_sse_t* lhs, const float3x3_sse_t* rhs, float3x3_sse_t* out )
 {
 	assert( lhs );
@@ -1174,8 +1135,7 @@ inline static void float3x3_mulm_sse( const float3x3_sse_t* lhs, const float3x3_
 	float3_dot_sse( &dot_lhs, &dot_rhs, &out->m[2][2] );
 }
 
-/// \relates float3x3_sse_t
-/// \brief Stores a last matrix column that has been translated by the given __m128 register vector in the input.
+// Stores a last matrix column that has been translated by the given __m128 register vector in the input.
 inline static void float3x3_translate_sse( const float2_sse_t* column, const float2_sse_t* vec, float2_sse_t* out_column )
 {
 	assert( column );
@@ -1186,8 +1146,7 @@ inline static void float3x3_translate_sse( const float2_sse_t* column, const flo
 	out_column->y = _mm_add_ps( column->y, vec->y );
 }
 
-/// \relates float3x3_sse_t
-/// \brief Stores an array of float3x3_sse_t diagonals that have been scaled by the given vector in the input.
+// Stores an array of float3x3_sse_t diagonals that have been scaled by the given vector in the input.
 inline static void float3x3_scale_sse( const float2_sse_t* diagonal, const float2_sse_t* scale, float2_sse_t* out_diagonal )
 {
 	assert( diagonal );
@@ -1200,8 +1159,7 @@ inline static void float3x3_scale_sse( const float2_sse_t* diagonal, const float
 
 
 // float3x4
-/// \relates float3x4_sse_t
-/// \brief Sets a matrix of __m128 registers to identity.
+// Sets a matrix of __m128 registers to identity.
 inline static void float3x4_identity_sse( float3x4_sse_t* mat )
 {
 	// row 0
@@ -1223,8 +1181,7 @@ inline static void float3x4_identity_sse( float3x4_sse_t* mat )
 	mat->m[2][3] = _mm_set1_ps( 0.0f );
 }
 
-/// \relates float3x4_sse_t
-/// \brief Stores a transposed matrix of 4 x 3 __m128 registers in the output given the input 3 x 4 register matrix.
+// Stores a transposed matrix of 4 x 3 __m128 registers in the output given the input 3 x 4 register matrix.
 inline static void float3x4_transpose_sse( const float3x4_sse_t* in, float4x3_sse_t* out )
 {
 	assert( in );
@@ -1246,8 +1203,7 @@ inline static void float3x4_transpose_sse( const float3x4_sse_t* in, float4x3_ss
 	out->m[3][2] = in->m[2][3];
 }
 
-/// \relates float3x4_sse_t
-/// \brief Stores a matrix that is the result of the component-wise addition between the lhs and rhs __m128 registers of the input.
+// Stores a matrix that is the result of the component-wise addition between the lhs and rhs __m128 registers of the input.
 inline static void float3x4_caddm_sse( const float3x4_sse_t* lhs, const float3x4_sse_t* rhs, float3x4_sse_t* out )
 {
 	assert( lhs );
@@ -1273,8 +1229,7 @@ inline static void float3x4_caddm_sse( const float3x4_sse_t* lhs, const float3x4
 	out->m[2][3] = _mm_add_ps( lhs->m[2][3], rhs->m[2][3] );
 }
 
-/// \relates float3x4_sse_t
-/// \brief Stores a matrix that is the result of the component-wise subtraction between the lhs and rhs __m128 registers of the input.
+// Stores a matrix that is the result of the component-wise subtraction between the lhs and rhs __m128 registers of the input.
 inline static void float3x4_csubm_sse( const float3x4_sse_t* lhs, const float3x4_sse_t* rhs, float3x4_sse_t* out )
 {
 	assert( lhs );
@@ -1300,8 +1255,7 @@ inline static void float3x4_csubm_sse( const float3x4_sse_t* lhs, const float3x4
 	out->m[2][3] = _mm_sub_ps( lhs->m[2][3], rhs->m[2][3] );
 }
 
-/// \relates float3x4_sse_t
-/// \brief Stores a matrix that is the result of the component-wise multiplication between the lhs and rhs __m128 registers of the input.
+// Stores a matrix that is the result of the component-wise multiplication between the lhs and rhs __m128 registers of the input.
 inline static void float3x4_cmulm_sse( const float3x4_sse_t* lhs, const float3x4_sse_t* rhs, float3x4_sse_t* out )
 {
 	assert( lhs );
@@ -1327,8 +1281,7 @@ inline static void float3x4_cmulm_sse( const float3x4_sse_t* lhs, const float3x4
 	out->m[2][3] = _mm_mul_ps( lhs->m[2][3], rhs->m[2][3] );
 }
 
-/// \relates float3x4_sse_t
-/// \brief Stores a matrix that is the result of the component-wise division between the lhs and rhs __m128 registers of the input.
+// Stores a matrix that is the result of the component-wise division between the lhs and rhs __m128 registers of the input.
 inline static void float3x4_cdivm_sse( const float3x4_sse_t* lhs, const float3x4_sse_t* rhs, float3x4_sse_t* out )
 {
 	assert( lhs );
@@ -1354,8 +1307,7 @@ inline static void float3x4_cdivm_sse( const float3x4_sse_t* lhs, const float3x4
 	out->m[2][3] = _mm_div_ps( lhs->m[2][3], rhs->m[2][3] );
 }
 
-/// \relates float3x4
-/// \brief Performs a matrix-multiplication of 2 matrices of __m128 registers.
+// Performs a matrix-multiplication of 2 matrices of __m128 registers.
 inline static void float3x4_mulm_sse( const float3x4_sse_t* lhs, const float4x3_sse_t* rhs, float3x3_sse_t* out )
 {
 	assert( lhs );
@@ -1476,8 +1428,7 @@ inline static void float3x4_mulm_sse( const float3x4_sse_t* lhs, const float4x3_
 
 
 // float4x2
-/// \relates float4x2_sse_t
-/// \brief Sets a matrix of __m128 registers to identity.
+// Sets a matrix of __m128 registers to identity.
 inline static void float4x2_identity_sse( float4x2_sse_t* mat )
 {
 	// row 0
@@ -1497,8 +1448,7 @@ inline static void float4x2_identity_sse( float4x2_sse_t* mat )
 	mat->m[3][1] = _mm_set1_ps( 0.0f );
 }
 
-/// \relates float4x2_sse_t
-/// \brief Stores a transposed matrix of 2 x 4 __m128 registers in the output given the input 4 x 2 register matrix.
+// Stores a transposed matrix of 2 x 4 __m128 registers in the output given the input 4 x 2 register matrix.
 inline static void float4x2_transpose_sse( const float4x2_sse_t* in, float2x4_sse_t* out )
 {
 	assert( in );
@@ -1517,8 +1467,7 @@ inline static void float4x2_transpose_sse( const float4x2_sse_t* in, float2x4_ss
 	out->m[1][3] = in->m[3][1];
 }
 
-/// \relates float4x2_sse_t
-/// \brief Stores a matrix that is the result of the component-wise addition between the lhs and rhs __m128 registers of the input.
+// Stores a matrix that is the result of the component-wise addition between the lhs and rhs __m128 registers of the input.
 inline static void float4x2_caddm_sse( const float4x2_sse_t* lhs, const float4x2_sse_t* rhs, float4x2_sse_t* out )
 {
 	assert( lhs );
@@ -1542,8 +1491,7 @@ inline static void float4x2_caddm_sse( const float4x2_sse_t* lhs, const float4x2
 	out->m[3][1] = _mm_add_ps( lhs->m[3][1], rhs->m[3][1] );
 }
 
-/// \relates float4x2_sse_t
-/// \brief Stores a matrix that is the result of the component-wise subtraction between the lhs and rhs __m128 registers of the input.
+// Stores a matrix that is the result of the component-wise subtraction between the lhs and rhs __m128 registers of the input.
 inline static void float4x2_csubm_sse( const float4x2_sse_t* lhs, const float4x2_sse_t* rhs, float4x2_sse_t* out )
 {
 	assert( lhs );
@@ -1567,8 +1515,7 @@ inline static void float4x2_csubm_sse( const float4x2_sse_t* lhs, const float4x2
 	out->m[3][1] = _mm_sub_ps( lhs->m[3][1], rhs->m[3][1] );
 }
 
-/// \relates float4x2_sse_t
-/// \brief Stores a matrix that is the result of the component-wise multiplication between the lhs and rhs __m128 registers of the input.
+// Stores a matrix that is the result of the component-wise multiplication between the lhs and rhs __m128 registers of the input.
 inline static void float4x2_cmulm_sse( const float4x2_sse_t* lhs, const float4x2_sse_t* rhs, float4x2_sse_t* out )
 {
 	assert( lhs );
@@ -1592,8 +1539,7 @@ inline static void float4x2_cmulm_sse( const float4x2_sse_t* lhs, const float4x2
 	out->m[3][1] = _mm_mul_ps( lhs->m[3][1], rhs->m[3][1] );
 }
 
-/// \relates float4x2_sse_t
-/// \brief Stores a matrix that is the result of the component-wise division between the lhs and rhs __m128 registers of the input.
+// Stores a matrix that is the result of the component-wise division between the lhs and rhs __m128 registers of the input.
 inline static void float4x2_cdivm_sse( const float4x2_sse_t* lhs, const float4x2_sse_t* rhs, float4x2_sse_t* out )
 {
 	assert( lhs );
@@ -1617,8 +1563,7 @@ inline static void float4x2_cdivm_sse( const float4x2_sse_t* lhs, const float4x2
 	out->m[3][1] = _mm_div_ps( lhs->m[3][1], rhs->m[3][1] );
 }
 
-/// \relates float4x2
-/// \brief Performs a matrix-multiplication of 2 matrices of __m128 registers.
+// Performs a matrix-multiplication of 2 matrices of __m128 registers.
 inline static void float4x2_mulm_sse( const float4x2_sse_t* lhs, const float2x4_sse_t* rhs, float4x4_sse_t* out )
 {
 	assert( lhs );
@@ -1759,8 +1704,7 @@ inline static void float4x2_mulm_sse( const float4x2_sse_t* lhs, const float2x4_
 
 
 // float4x3
-/// \relates float4x3_sse_t
-/// \brief Sets a matrix of __m128 registers to identity.
+// Sets a matrix of __m128 registers to identity.
 inline static void float4x3_identity_sse( float4x3_sse_t* mat )
 {
 	// row 0
@@ -1784,8 +1728,7 @@ inline static void float4x3_identity_sse( float4x3_sse_t* mat )
 	mat->m[3][2] = _mm_set1_ps( 0.0f );
 }
 
-/// \relates float4x3_sse_t
-/// \brief Stores a transposed matrix of 3 x 4 __m128 registers in the output given the input 4 x 3 register matrix.
+// Stores a transposed matrix of 3 x 4 __m128 registers in the output given the input 4 x 3 register matrix.
 inline static void float4x3_transpose_sse( const float4x3_sse_t* in, float3x4_sse_t* out )
 {
 	assert( in );
@@ -1808,8 +1751,7 @@ inline static void float4x3_transpose_sse( const float4x3_sse_t* in, float3x4_ss
 	out->m[2][3] = in->m[3][2];
 }
 
-/// \relates float4x3_sse_t
-/// \brief Stores a matrix that is the result of the component-wise addition between the lhs and rhs __m128 registers of the input.
+// Stores a matrix that is the result of the component-wise addition between the lhs and rhs __m128 registers of the input.
 inline static void float4x3_caddm_sse( const float4x3_sse_t* lhs, const float4x3_sse_t* rhs, float4x3_sse_t* out )
 {
 	assert( lhs );
@@ -1837,8 +1779,7 @@ inline static void float4x3_caddm_sse( const float4x3_sse_t* lhs, const float4x3
 	out->m[3][2] = _mm_add_ps( lhs->m[3][2], rhs->m[3][2] );
 }
 
-/// \relates float4x3_sse_t
-/// \brief Stores a matrix that is the result of the component-wise subtraction between the lhs and rhs __m128 registers of the input.
+// Stores a matrix that is the result of the component-wise subtraction between the lhs and rhs __m128 registers of the input.
 inline static void float4x3_csubm_sse( const float4x3_sse_t* lhs, const float4x3_sse_t* rhs, float4x3_sse_t* out )
 {
 	assert( lhs );
@@ -1866,8 +1807,7 @@ inline static void float4x3_csubm_sse( const float4x3_sse_t* lhs, const float4x3
 	out->m[3][2] = _mm_sub_ps( lhs->m[3][2], rhs->m[3][2] );
 }
 
-/// \relates float4x3_sse_t
-/// \brief Stores a matrix that is the result of the component-wise multiplication between the lhs and rhs __m128 registers of the input.
+// Stores a matrix that is the result of the component-wise multiplication between the lhs and rhs __m128 registers of the input.
 inline static void float4x3_cmulm_sse( const float4x3_sse_t* lhs, const float4x3_sse_t* rhs, float4x3_sse_t* out )
 {
 	assert( lhs );
@@ -1895,8 +1835,7 @@ inline static void float4x3_cmulm_sse( const float4x3_sse_t* lhs, const float4x3
 	out->m[3][2] = _mm_mul_ps( lhs->m[3][2], rhs->m[3][2] );
 }
 
-/// \relates float4x3_sse_t
-/// \brief Stores a matrix that is the result of the component-wise division between the lhs and rhs __m128 registers of the input.
+// Stores a matrix that is the result of the component-wise division between the lhs and rhs __m128 registers of the input.
 inline static void float4x3_cdivm_sse( const float4x3_sse_t* lhs, const float4x3_sse_t* rhs, float4x3_sse_t* out )
 {
 	assert( lhs );
@@ -1924,8 +1863,7 @@ inline static void float4x3_cdivm_sse( const float4x3_sse_t* lhs, const float4x3
 	out->m[3][2] = _mm_div_ps( lhs->m[3][2], rhs->m[3][2] );
 }
 
-/// \relates float4x3
-/// \brief Performs a matrix-multiplication of 2 matrices of __m128 registers.
+// Performs a matrix-multiplication of 2 matrices of __m128 registers.
 inline static void float4x3_mulm_sse( const float4x3_sse_t* lhs, const float3x4_sse_t* rhs, float4x4_sse_t* out )
 {
 	assert( lhs );
@@ -2098,8 +2036,7 @@ inline static void float4x3_mulm_sse( const float4x3_sse_t* lhs, const float3x4_
 
 
 // float4x4
-/// \relates float4x4_sse_t
-/// \brief Sets a matrix of __m128 registers to identity.
+// Sets a matrix of __m128 registers to identity.
 inline static void float4x4_identity_sse( float4x4_sse_t* mat )
 {
 	// row 0
@@ -2127,8 +2064,7 @@ inline static void float4x4_identity_sse( float4x4_sse_t* mat )
 	mat->m[3][3] = _mm_set1_ps( 1.0f );
 }
 
-/// \relates float4x4_sse_t
-/// \brief Stores a transposed matrix of 4 x 4 __m128 registers in the output given the input 4 x 4 register matrix.
+// Stores a transposed matrix of 4 x 4 __m128 registers in the output given the input 4 x 4 register matrix.
 inline static void float4x4_transpose_sse( const float4x4_sse_t* in, float4x4_sse_t* out )
 {
 	assert( in );
@@ -2155,8 +2091,7 @@ inline static void float4x4_transpose_sse( const float4x4_sse_t* in, float4x4_ss
 	out->m[3][3] = in->m[3][3];
 }
 
-/// \relates float4x4_sse_t
-/// \brief Stores the determinants of a matrix of 4 x 4 __m128 registers.
+// Stores the determinants of a matrix of 4 x 4 __m128 registers.
 inline static void float4x4_determinant_sse( const float4x4_sse_t* in, __m128* out_result )
 {
 	assert( in );
@@ -2223,8 +2158,7 @@ inline static void float4x4_determinant_sse( const float4x4_sse_t* in, __m128* o
 	*out_result = _mm_add_ps( final0, final1 );
 }
 
-/// \relates float4x4_sse_t
-/// \brief Stores an inverted matrix of 4 x 4 __m128 registers.
+// Stores an inverted matrix of 4 x 4 __m128 registers.
 inline static void float4x4_inverse_sse( const float4x4_sse_t* in, float4x4_sse_t* out )
 {
 	assert( in );
@@ -2410,8 +2344,7 @@ inline static void float4x4_inverse_sse( const float4x4_sse_t* in, float4x4_sse_
 	out->m[3][3] = _mm_mul_ps( out33subadd, invdet );
 }
 
-/// \relates float4x4_sse_t
-/// \brief Stores a matrix that is the result of the component-wise addition between the lhs and rhs __m128 registers of the input.
+// Stores a matrix that is the result of the component-wise addition between the lhs and rhs __m128 registers of the input.
 inline static void float4x4_caddm_sse( const float4x4_sse_t* lhs, const float4x4_sse_t* rhs, float4x4_sse_t* out )
 {
 	assert( lhs );
@@ -2443,8 +2376,7 @@ inline static void float4x4_caddm_sse( const float4x4_sse_t* lhs, const float4x4
 	out->m[3][3] = _mm_add_ps( lhs->m[3][3], rhs->m[3][3] );
 }
 
-/// \relates float4x4_sse_t
-/// \brief Stores a matrix that is the result of the component-wise subtraction between the lhs and rhs __m128 registers of the input.
+// Stores a matrix that is the result of the component-wise subtraction between the lhs and rhs __m128 registers of the input.
 inline static void float4x4_csubm_sse( const float4x4_sse_t* lhs, const float4x4_sse_t* rhs, float4x4_sse_t* out )
 {
 	assert( lhs );
@@ -2476,8 +2408,7 @@ inline static void float4x4_csubm_sse( const float4x4_sse_t* lhs, const float4x4
 	out->m[3][3] = _mm_sub_ps( lhs->m[3][3], rhs->m[3][3] );
 }
 
-/// \relates float4x4_sse_t
-/// \brief Stores a matrix that is the result of the component-wise multiplication between the lhs and rhs __m128 registers of the input.
+// Stores a matrix that is the result of the component-wise multiplication between the lhs and rhs __m128 registers of the input.
 inline static void float4x4_cmulm_sse( const float4x4_sse_t* lhs, const float4x4_sse_t* rhs, float4x4_sse_t* out )
 {
 	assert( lhs );
@@ -2509,8 +2440,7 @@ inline static void float4x4_cmulm_sse( const float4x4_sse_t* lhs, const float4x4
 	out->m[3][3] = _mm_mul_ps( lhs->m[3][3], rhs->m[3][3] );
 }
 
-/// \relates float4x4_sse_t
-/// \brief Stores a matrix that is the result of the component-wise division between the lhs and rhs __m128 registers of the input.
+// Stores a matrix that is the result of the component-wise division between the lhs and rhs __m128 registers of the input.
 inline static void float4x4_cdivm_sse( const float4x4_sse_t* lhs, const float4x4_sse_t* rhs, float4x4_sse_t* out )
 {
 	assert( lhs );
@@ -2542,8 +2472,7 @@ inline static void float4x4_cdivm_sse( const float4x4_sse_t* lhs, const float4x4
 	out->m[3][3] = _mm_div_ps( lhs->m[3][3], rhs->m[3][3] );
 }
 
-/// \relates float4x4
-/// \brief Performs a matrix-multiplication of 2 matrices of __m128 registers.
+// Performs a matrix-multiplication of 2 matrices of __m128 registers.
 inline static void float4x4_mulm_sse( const float4x4_sse_t* lhs, const float4x4_sse_t* rhs, float4x4_sse_t* out )
 {
 	assert( lhs );
@@ -2746,8 +2675,7 @@ inline static void float4x4_mulm_sse( const float4x4_sse_t* lhs, const float4x4_
 	float4_dot_sse( &dot_lhs, &dot_rhs, &out->m[3][3] );
 }
 
-/// \relates float4x4_sse_t
-/// \brief Stores a last matrix column that has been translated by the given __m128 register vector in the input.
+// Stores a last matrix column that has been translated by the given __m128 register vector in the input.
 inline static void float4x4_translate_sse( const float3_sse_t* column, const float3_sse_t* vec, float3_sse_t* out_column )
 {
 	assert( column );
@@ -2759,8 +2687,7 @@ inline static void float4x4_translate_sse( const float3_sse_t* column, const flo
 	out_column->z = _mm_add_ps( column->z, vec->z );
 }
 
-/// \relates float4x4_sse_t
-/// \brief Stores an array of float4x4_sse_t diagonals that have been scaled by the given vector in the input.
+// Stores an array of float4x4_sse_t diagonals that have been scaled by the given vector in the input.
 inline static void float4x4_scale_sse( const float3_sse_t* diagonal, const float3_sse_t* scale, float3_sse_t* out_diagonal )
 {
 	assert( diagonal );

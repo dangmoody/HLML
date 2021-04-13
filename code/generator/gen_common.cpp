@@ -24,7 +24,6 @@ along with The HLML Generator.  If not, see <http://www.gnu.org/licenses/>.
 #include "gen_common.h"
 #include "gen_doc_common.h"
 #include "gen_common_sse.h"
-#include "gen_doc_common_sse.h"
 #include "gen_scalar_cpp.h"
 #include "gen_vector_cpp.h"
 #include "gen_matrix_cpp.h"
@@ -744,7 +743,11 @@ void Gen_FunctionsVectorSSE( allocatorLinear_t* allocator, const genLanguage_t l
 			char sseTypeName[GEN_STRING_LENGTH_SSE_INPUT_NAME];
 			Gen_SSE_GetFullTypeName( type, 1, componentIndex, sseTypeName );
 
-			Doc_SSE_Vector( &contentFwdDec, componentIndex, registerName );
+			String_Appendf( &contentFwdDec,
+				"// Holds %d %ss where each register is a vertical stream of that vector component.\n"
+				"// Basically, this struct holds 4 vectors.\n"
+				, componentIndex, registerName
+			);
 			String_Appendf( &contentFwdDec, "typedef struct %s\n", sseTypeName );
 			String_Append(  &contentFwdDec, "{\n" );
 			for ( u32 i = 0; i < componentIndex; i++ ) {
@@ -843,7 +846,11 @@ void Gen_FunctionsMatrixSSE( allocatorLinear_t* allocator, const genLanguage_t l
 				char sseTypeName[GEN_STRING_LENGTH_SSE_INPUT_NAME];
 				Gen_SSE_GetFullTypeName( type, row, col, sseTypeName );
 
-				Doc_SSE_Matrix( &contentFwdDec, row, col, registerName );
+				String_Appendf( &contentFwdDec,
+					"// Holds %d x %d %ss where each regster is a vertical stream of that matrix component.\n"
+					"// Basically, this struct holds 4 matrices.\n"
+					, row, col, registerName
+				);
 				String_Appendf( &contentFwdDec, "typedef struct %s\n", sseTypeName );
 				String_Append(  &contentFwdDec, "{\n" );
 				String_Appendf( &contentFwdDec, "\t%s m[%d][%d];\n", registerName, row, col );

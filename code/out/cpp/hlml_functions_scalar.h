@@ -44,120 +44,110 @@ SOFTWARE.
 #endif
 
 // int32_t
-/// \brief Returns -1 if x is < 0, 0 if x == 0, or 1 if x > 1.
-/// This function does no branching.
+// Returns -1 if x is < 0, 0 if x == 0, or 1 if x > 1.
+// This function does no branching.
 inline int32_t signi( const int32_t x );
 
-/// \brief Returns x if its smaller than y, otherwise returns y.
+// Returns x if its smaller than y, otherwise returns y.
 inline int32_t mini( const int32_t x, const int32_t y );
 
-/// \brief Returns x if its bigger than y, otherwise returns y.
+// Returns x if its bigger than y, otherwise returns y.
 inline int32_t maxi( const int32_t x, const int32_t y );
 
-/// \brief If x is lower than low or higher than high then returns low or high respectively, otherwise returns x.
+// If x is lower than low or higher than high then returns low or high respectively, otherwise returns x.
 inline int32_t clampi( const int32_t x, const int32_t low, const int32_t high );
 
 
 // uint32_t
-/// \brief Returns x if its smaller than y, otherwise returns y.
+// Returns x if its smaller than y, otherwise returns y.
 inline uint32_t minu( const uint32_t x, const uint32_t y );
 
-/// \brief Returns x if its bigger than y, otherwise returns y.
+// Returns x if its bigger than y, otherwise returns y.
 inline uint32_t maxu( const uint32_t x, const uint32_t y );
 
-/// \brief If x is lower than low or higher than high then returns low or high respectively, otherwise returns x.
+// If x is lower than low or higher than high then returns low or high respectively, otherwise returns x.
 inline uint32_t clampu( const uint32_t x, const uint32_t low, const uint32_t high );
 
 
 // float
-/// \brief Returns true if the two given floating-point numbers are within a small enough epsilon range of each other that takes into account floating-point inaccuracy.
+// Returns true if the two given floating-point numbers are within a small enough epsilon range of each other that takes into account floating-point inaccuracy.
 inline bool floateq_eps( const float lhs, const float rhs, const float epsilon );
 
-/// \brief Returns true if the two given floating-point numbers are within a small enough epsilon range of each other that takes into account floating-point inaccuracy.
+// Returns true if the two given floating-point numbers are within a small enough epsilon range of each other that takes into account floating-point inaccuracy.
 inline bool floateq( const float lhs, const float rhs );
 
-/// \brief Returns -1 if x is < 0, 0 if x == 0, or 1 if x > 1.
-/// This function does no branching.
+// Returns -1 if x is < 0, 0 if x == 0, or 1 if x > 1.
+// This function does no branching.
 inline int32_t signf( const float x );
 
-/// \brief Returns the given degrees to radians.
+// Returns the given degrees to radians.
 inline float radiansf( const float deg );
-/// \brief Returns the given radians to degrees.
+// Returns the given radians to degrees.
 inline float degreesf( const float rad );
 
-/// \brief Returns x if its smaller than y, otherwise returns y.
+// Returns x if its smaller than y, otherwise returns y.
 inline float minf( const float x, const float y );
 
-/// \brief Returns x if its bigger than y, otherwise returns y.
+// Returns x if its bigger than y, otherwise returns y.
 inline float maxf( const float x, const float y );
 
-/// \brief If x is lower than low or higher than high then returns low or high respectively, otherwise returns x.
+// If x is lower than low or higher than high then returns low or high respectively, otherwise returns x.
 inline float clampf( const float x, const float low, const float high );
 
-/// \relates float
-/// \brief Returns a copy of the float with each component clamped between the range 0 and 1.
+// Returns a copy of the float with each component clamped between the range 0 and 1.
 inline float saturatef( const float x );
-/// \relates float
-/// \brief Returns a linearly interpolated float between types "a" and "b".
+// Returns a linearly interpolated float between types "a" and "b".
 inline float lerpf( const float a, const float b, const float t );
 
-/// \relates float
-/// \brief Returns 1 if y is greater than x, otherwise returns 0.
+// Returns 1 if y is greater than x, otherwise returns 0.
 inline float stepf( const float x, const float y );
 
-/// \relates float
-/// \brief Performs a sigmoid-like interpolation and clamp.
+// Performs a sigmoid-like interpolation and clamp.
 inline float smoothstepf( const float low, const float high, const float x );
 
-/// \relates float
-/// \brief Performs a 'smoother' version of smoothstep, as design by Ken Perlin.
-/// https://en.wikipedia.org/wiki/Smoothstep#Variations
+// Performs a 'smoother' version of smoothstep, as design by Ken Perlin.
+// https://en.wikipedia.org/wiki/Smoothstep#Variations
 inline float smootherstepf( const float low, const float high, const float x );
 
 
 // double
-/// \brief Returns true if the two given floating-point numbers are within a small enough epsilon range of each other that takes into account floating-point inaccuracy.
+// Returns true if the two given floating-point numbers are within a small enough epsilon range of each other that takes into account floating-point inaccuracy.
 inline bool doubleeq_eps( const double lhs, const double rhs, const double epsilon );
 
-/// \brief Returns true if the two given floating-point numbers are within a small enough epsilon range of each other that takes into account floating-point inaccuracy.
+// Returns true if the two given floating-point numbers are within a small enough epsilon range of each other that takes into account floating-point inaccuracy.
 inline bool doubleeq( const double lhs, const double rhs );
 
-/// \brief Returns -1 if x is < 0, 0 if x == 0, or 1 if x > 1.
-/// This function does no branching.
+// Returns -1 if x is < 0, 0 if x == 0, or 1 if x > 1.
+// This function does no branching.
 inline int32_t signd( const double x );
 
-/// \brief Returns the given degrees to radians.
+// Returns the given degrees to radians.
 inline double radians( const double deg );
-/// \brief Returns the given radians to degrees.
+// Returns the given radians to degrees.
 inline double degrees( const double rad );
 
-/// \brief Returns x if its smaller than y, otherwise returns y.
+// Returns x if its smaller than y, otherwise returns y.
 inline double mind( const double x, const double y );
 
-/// \brief Returns x if its bigger than y, otherwise returns y.
+// Returns x if its bigger than y, otherwise returns y.
 inline double maxd( const double x, const double y );
 
-/// \brief If x is lower than low or higher than high then returns low or high respectively, otherwise returns x.
+// If x is lower than low or higher than high then returns low or high respectively, otherwise returns x.
 inline double clampd( const double x, const double low, const double high );
 
-/// \relates double
-/// \brief Returns a copy of the double with each component clamped between the range 0 and 1.
+// Returns a copy of the double with each component clamped between the range 0 and 1.
 inline double saturate( const double x );
-/// \relates double
-/// \brief Returns a linearly interpolated double between types "a" and "b".
+// Returns a linearly interpolated double between types "a" and "b".
 inline double lerp( const double a, const double b, const double t );
 
-/// \relates double
-/// \brief Returns 1 if y is greater than x, otherwise returns 0.
+// Returns 1 if y is greater than x, otherwise returns 0.
 inline double step( const double x, const double y );
 
-/// \relates double
-/// \brief Performs a sigmoid-like interpolation and clamp.
+// Performs a sigmoid-like interpolation and clamp.
 inline double smoothstep( const double low, const double high, const double x );
 
-/// \relates double
-/// \brief Performs a 'smoother' version of smoothstep, as design by Ken Perlin.
-/// https://en.wikipedia.org/wiki/Smoothstep#Variations
+// Performs a 'smoother' version of smoothstep, as design by Ken Perlin.
+// https://en.wikipedia.org/wiki/Smoothstep#Variations
 inline double smootherstep( const double low, const double high, const double x );
 
 

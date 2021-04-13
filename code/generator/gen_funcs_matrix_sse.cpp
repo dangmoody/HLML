@@ -57,7 +57,7 @@ void Gen_SSE_MatrixIdentity( const genLanguage_t language, const genType_t type,
 	char identityFuncStr[GEN_STRING_LENGTH_FUNCTION_NAME];
 	Gen_SSE_GetFuncNameIdentity( language, type, numRows, numCols, identityFuncStr );
 
-	Doc_SSE_MatrixIdentity( sbHeader, sseTypeName, registerName );
+	Doc_SSE_MatrixIdentity( sbHeader, registerName );
 	String_Appendf( sbHeader, "inline static void %s( %s* mat )\n", identityFuncStr, sseTypeName );
 	String_Append(  sbHeader, "{\n" );
 	for ( u32 row = 0; row < numRows; row++ ) {
@@ -101,7 +101,7 @@ void Gen_SSE_MatrixTranspose( const genLanguage_t language, const genType_t type
 	char transposeFuncStr[GEN_STRING_LENGTH_FUNCTION_NAME];
 	Gen_SSE_GetFuncNameTranspose( language, type, numRows, numCols, transposeFuncStr );
 
-	Doc_SSE_MatrixTranspose( sbHeader, sseTypeName, numRows, numCols, registerName );
+	Doc_SSE_MatrixTranspose( sbHeader, numRows, numCols, registerName );
 	String_Appendf( sbHeader, "inline static void %s( const %s* in, %s* out )\n", transposeFuncStr, sseTypeName, sseTransposedName );
 	String_Append(  sbHeader, "{\n" );
 	String_Append(  sbHeader, "\tassert( in );\n" );
@@ -153,7 +153,7 @@ void Gen_SSE_MatrixDeterminant( const genLanguage_t language, const genType_t ty
 	char determinantFuncStr[GEN_STRING_LENGTH_FUNCTION_NAME];
 	Gen_SSE_GetFuncNameDeterminant( language, type, numRows, numCols, determinantFuncStr );
 
-	Doc_SSE_MatrixDeterminant( sbHeader, sseTypeName, numRows, numCols, registerName );
+	Doc_SSE_MatrixDeterminant( sbHeader, numRows, numCols, registerName );
 	String_Appendf( sbHeader, "inline static void %s( const %s* in, %s* out_result )\n", determinantFuncStr, sseTypeName, registerName );
 	String_Append(  sbHeader, "{\n" );
 	String_Append(  sbHeader, "\tassert( in );\n" );
@@ -320,7 +320,7 @@ void Gen_SSE_MatrixInverse( const genLanguage_t language, const genType_t type, 
 	char determinantFuncStr[GEN_STRING_LENGTH_FUNCTION_NAME];
 	Gen_SSE_GetFuncNameDeterminant( language, type, numRows, numCols, determinantFuncStr );
 
-	Doc_SSE_MatrixInverse( sbHeader, sseTypeName, numRows, numCols, registerName );
+	Doc_SSE_MatrixInverse( sbHeader, numRows, numCols, registerName );
 	String_Appendf( sbHeader, "inline static void %s( const %s* in, %s* out )\n", inverseFuncStr, sseTypeName, sseTypeName );
 	String_Append(  sbHeader, "{\n" );
 	String_Append(  sbHeader, "\tassert( in );\n" );
@@ -620,7 +620,7 @@ void Gen_SSE_MatrixArithmeticComponentWise( const genLanguage_t language, const 
 	char funcStr[GEN_STRING_LENGTH_FUNCTION_NAME];
 	Gen_SSE_GetFuncNameComponentWiseArithmeticMatrix( language, type, numRows, numCols, op, funcStr );
 
-	Doc_SSE_MatrixArithmeticComponentWise( sbHeader, sseTypeName, registerName, op );
+	Doc_SSE_MatrixArithmeticComponentWise( sbHeader, registerName, op );
 	String_Appendf( sbHeader, "inline static void %s( const %s* lhs, const %s* rhs, %s* out )\n", funcStr, sseTypeName, sseTypeName, sseTypeName );
 	String_Append(  sbHeader, "{\n" );
 	String_Append(  sbHeader, "\tassert( lhs );\n" );
@@ -693,7 +693,7 @@ void Gen_SSE_MatrixMultiply( const genLanguage_t language, const genType_t type,
 	char dotFuncStr[GEN_STRING_LENGTH_FUNCTION_NAME];
 	Gen_SSE_GetFuncNameDot( language, type, numCols, dotFuncStr );
 
-	Doc_SSE_MatrixMul( sbHeader, lhsTypeName, registerName );
+	Doc_SSE_MatrixMul( sbHeader, registerName );
 	String_Appendf( sbHeader, "inline static void %s( const %s* lhs, const %s* rhs, %s* out )\n", mulFuncStr, sseLHSName, sseRHSName, sseReturnName );
 	String_Append(  sbHeader, "{\n" );
 	String_Append(  sbHeader, "\tassert( lhs );\n" );
@@ -766,7 +766,7 @@ void Gen_SSE_MatrixTranslate( const genLanguage_t language, const genType_t type
 	char translateFuncStr[GEN_STRING_LENGTH_FUNCTION_NAME];
 	Gen_SSE_GetFuncNameTranslate( language, type, numRows, numCols, translateFuncStr );
 
-	Doc_SSE_MatrixTranslate( sbHeader, sseTypeName, registerName );
+	Doc_SSE_MatrixTranslate( sbHeader, registerName );
 	String_Appendf( sbHeader, "inline static void %s( const %s* column, const %s* vec, %s* out_column )\n", translateFuncStr, sseTranslateVecName, sseTranslateVecName, sseTranslateVecName );
 	String_Append(  sbHeader, "{\n" );
 	String_Append(  sbHeader, "\tassert( column );\n" );

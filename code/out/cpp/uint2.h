@@ -51,8 +51,8 @@ struct uint4;
 #pragma warning( disable : 4201 ) // C4201 - nonstandard extension used : nameless struct/union
 #endif
 
-/// \brief A vector of 2 uint32_ts with components xy.
-/// Components are also stored as elements in an array via a union.
+// A vector of 2 uint32_ts with components xy.
+// Components are also stored as elements in an array via a union.
 struct uint2
 {
 	union
@@ -73,41 +73,41 @@ struct uint2
 	};
 
 
-	/// Default constructor.  Initializes all values to zero.
+	// Default constructor.  Initializes all values to zero.
 	inline uint2() {}
 
-	/// Initializes all components of the vector to the given scalar value.
+	// Initializes all components of the vector to the given scalar value.
 	inline explicit uint2( const uint32_t x );
 
-	/// Sets the xy members of the vector to the corresponding parameters.
+	// Sets the xy members of the vector to the corresponding parameters.
 	inline uint2( const uint32_t x, const uint32_t y );
 
-	/// Copy constructor.  Copies the elements of the given vector via memcpy.
+	// Copy constructor.  Copies the elements of the given vector via memcpy.
 	inline uint2( const uint2& other );
 
-	/// Copy constructor.  Copies the elements of the given vector via memcpy.
+	// Copy constructor.  Copies the elements of the given vector via memcpy.
 	inline uint2( const uint3& other );
 
-	/// Copy constructor.  Copies the elements of the given vector via memcpy.
+	// Copy constructor.  Copies the elements of the given vector via memcpy.
 	inline uint2( const uint4& other );
 
 	~uint2() {}
 
-	/// Copies the elements of the given vector via a single memcpy.
+	// Copies the elements of the given vector via a single memcpy.
 	inline uint2 operator=( const uint2& rhs );
 
-	/// Copies the elements of the given vector via a single memcpy.
+	// Copies the elements of the given vector via a single memcpy.
 	inline uint2 operator=( const uint3& rhs );
 
-	/// Copies the elements of the given vector via a single memcpy.
+	// Copies the elements of the given vector via a single memcpy.
 	inline uint2 operator=( const uint4& rhs );
 
-	/// \brief Returns the vector component at the given index.
-	/// Index CANNOT be lower than 0 or higher than 1.
+	// Returns the vector component at the given index.
+	// Index CANNOT be lower than 0 or higher than 1.
 	inline const uint32_t& operator[]( const uint32_t index ) const;
 
-	/// \brief Returns the vector component at the given index.
-	/// Index CANNOT be lower than 0 or higher than 1.
+	// Returns the vector component at the given index.
+	// Index CANNOT be lower than 0 or higher than 1.
 	inline uint32_t& operator[]( const uint32_t index );
 
 	// swizzle funcs

@@ -38,7 +38,7 @@ SOFTWARE.
 extern "C" {
 #endif
 
-/// A matrix of 4 bool2s.
+// A matrix of 4 bool2s.
 typedef struct bool4x2
 {
 	bool2 rows[4];

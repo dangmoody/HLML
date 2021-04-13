@@ -60,1308 +60,989 @@ SOFTWARE.
 #include "hlml_operators_vector.h"
 
 // bool2
-/// \relates bool2
-/// \brief Returns true if all components of the bool2 are true, otherwise returns false.
+// Returns true if all components of the bool2 are true, otherwise returns false.
 inline bool all( const bool2& x );
 
-/// \relates bool2
-/// \brief Returns true if the all the components of the left-hand-side bool2 match the other one, otherwise returns false.
+// Returns true if the all the components of the left-hand-side bool2 match the other one, otherwise returns false.
 inline bool cmpe( const bool2& lhs, const bool2& rhs );
 
-/// \relates bool2
-/// \brief Returns true if not all of the components of the left-hand-side bool2 match the other one, otherwise returns false.
+// Returns true if not all of the components of the left-hand-side bool2 match the other one, otherwise returns false.
 inline bool cmpne( const bool2& lhs, const bool2& rhs );
 
 
 // bool3
-/// \relates bool3
-/// \brief Returns true if all components of the bool3 are true, otherwise returns false.
+// Returns true if all components of the bool3 are true, otherwise returns false.
 inline bool all( const bool3& x );
 
-/// \relates bool3
-/// \brief Returns true if the all the components of the left-hand-side bool3 match the other one, otherwise returns false.
+// Returns true if the all the components of the left-hand-side bool3 match the other one, otherwise returns false.
 inline bool cmpe( const bool3& lhs, const bool3& rhs );
 
-/// \relates bool3
-/// \brief Returns true if not all of the components of the left-hand-side bool3 match the other one, otherwise returns false.
+// Returns true if not all of the components of the left-hand-side bool3 match the other one, otherwise returns false.
 inline bool cmpne( const bool3& lhs, const bool3& rhs );
 
 
 // bool4
-/// \relates bool4
-/// \brief Returns true if all components of the bool4 are true, otherwise returns false.
+// Returns true if all components of the bool4 are true, otherwise returns false.
 inline bool all( const bool4& x );
 
-/// \relates bool4
-/// \brief Returns true if the all the components of the left-hand-side bool4 match the other one, otherwise returns false.
+// Returns true if the all the components of the left-hand-side bool4 match the other one, otherwise returns false.
 inline bool cmpe( const bool4& lhs, const bool4& rhs );
 
-/// \relates bool4
-/// \brief Returns true if not all of the components of the left-hand-side bool4 match the other one, otherwise returns false.
+// Returns true if not all of the components of the left-hand-side bool4 match the other one, otherwise returns false.
 inline bool cmpne( const bool4& lhs, const bool4& rhs );
 
 
 // int2
-/// \relates int2
-/// \brief Returns true if the all the components of the left-hand-side int2 match the other one, otherwise returns false.
+// Returns true if the all the components of the left-hand-side int2 match the other one, otherwise returns false.
 inline bool cmpe( const int2& lhs, const int2& rhs );
 
-/// \relates int2
-/// \brief Returns true if not all of the components of the left-hand-side int2 match the other one, otherwise returns false.
+// Returns true if not all of the components of the left-hand-side int2 match the other one, otherwise returns false.
 inline bool cmpne( const int2& lhs, const int2& rhs );
 
-/// \relates int2
-/// \brief Returns a copy of the int2 that has been component-wise added by the given scalar value.
+// Returns a copy of the int2 that has been component-wise added by the given scalar value.
 inline int2 cadds( const int2& lhs, const int32_t scalar );
 
-/// \relates int2
-/// \brief Returns a copy of the int2 that has been component-wise added by the corresponding component of the right-hand int2.
+// Returns a copy of the int2 that has been component-wise added by the corresponding component of the right-hand int2.
 inline int2 caddv( const int2& lhs, const int2& rhs );
 
-/// \relates int2
-/// \brief Returns a copy of the int2 that has been component-wise subtracted by the given scalar value.
+// Returns a copy of the int2 that has been component-wise subtracted by the given scalar value.
 inline int2 csubs( const int2& lhs, const int32_t scalar );
 
-/// \relates int2
-/// \brief Returns a copy of the int2 that has been component-wise subtracted by the corresponding component of the right-hand int2.
+// Returns a copy of the int2 that has been component-wise subtracted by the corresponding component of the right-hand int2.
 inline int2 csubv( const int2& lhs, const int2& rhs );
 
-/// \relates int2
-/// \brief Returns a copy of the int2 that has been component-wise multiplied by the given scalar value.
+// Returns a copy of the int2 that has been component-wise multiplied by the given scalar value.
 inline int2 cmuls( const int2& lhs, const int32_t scalar );
 
-/// \relates int2
-/// \brief Returns a copy of the int2 that has been component-wise multiplied by the corresponding component of the right-hand int2.
+// Returns a copy of the int2 that has been component-wise multiplied by the corresponding component of the right-hand int2.
 inline int2 cmulv( const int2& lhs, const int2& rhs );
 
-/// \relates int2
-/// \brief Returns a copy of the int2 that has been component-wise divided by the given scalar value.
+// Returns a copy of the int2 that has been component-wise divided by the given scalar value.
 inline int2 cdivs( const int2& lhs, const int32_t scalar );
 
-/// \relates int2
-/// \brief Returns a copy of the int2 that has been component-wise divided by the corresponding component of the right-hand int2.
+// Returns a copy of the int2 that has been component-wise divided by the corresponding component of the right-hand int2.
 inline int2 cdivv( const int2& lhs, const int2& rhs );
 
-/// \relates int2
-/// \brief Returns a copy of the int2 where each component of the left-hand int2 has been bitwise AND'd against the corresponding component of the right-hand side int2.
+// Returns a copy of the int2 where each component of the left-hand int2 has been bitwise AND'd against the corresponding component of the right-hand side int2.
 inline int2 cand( const int2& lhs, const int2& rhs );
 
-/// \relates int2
-/// \brief Returns a copy of the int2 where each component of the left-hand int2 has been bitwise OR'd against the corresponding component of the right-hand side int2.
+// Returns a copy of the int2 where each component of the left-hand int2 has been bitwise OR'd against the corresponding component of the right-hand side int2.
 inline int2 cor( const int2& lhs, const int2& rhs );
 
-/// \relates int2
-/// \brief Returns a copy of the int2 where each component of the left-hand int2 has been bitwise XOR'd against the corresponding component of the right-hand side int2.
+// Returns a copy of the int2 where each component of the left-hand int2 has been bitwise XOR'd against the corresponding component of the right-hand side int2.
 inline int2 cxor( const int2& lhs, const int2& rhs );
 
-/// \relates int2
-/// \brief Performs a unary bitwise operation on all components of the given int2.
+// Performs a unary bitwise operation on all components of the given int2.
 inline int2 cunary( const int2& lhs );
 
-/// \relates int2
-/// \brief Returns a copy of the int2 where each component of the left-hand int2 has been bitwise left-shifted by the corresponding component of the right-hand side int2.
+// Returns a copy of the int2 where each component of the left-hand int2 has been bitwise left-shifted by the corresponding component of the right-hand side int2.
 inline int2 cshift_left( const int2& lhs, const int2& rhs );
 
-/// \relates int2
-/// \brief Returns a copy of the int2 where each component of the left-hand int2 has been bitwise right-shifted by the corresponding component of the right-hand side int2.
+// Returns a copy of the int2 where each component of the left-hand int2 has been bitwise right-shifted by the corresponding component of the right-hand side int2.
 inline int2 cshift_right( const int2& lhs, const int2& rhs );
 
-/// \relates int2
-/// \brief Returns a bool2 where each component is true if the component of the left-hand type is less than the corresponding right-hand type component.
+// Returns a bool2 where each component is true if the component of the left-hand type is less than the corresponding right-hand type component.
 inline bool2 cmpl( const int2& lhs, const int2& rhs );
 
-/// \relates int2
-/// \brief Returns a bool2 where each component is true if the component of the left-hand type is less than or equal to the corresponding right-hand type component.
+// Returns a bool2 where each component is true if the component of the left-hand type is less than or equal to the corresponding right-hand type component.
 inline bool2 cmple( const int2& lhs, const int2& rhs );
 
-/// \relates int2
-/// \brief Returns a bool2 where each component is true if the component of the left-hand type is greater than the corresponding right-hand type component.
+// Returns a bool2 where each component is true if the component of the left-hand type is greater than the corresponding right-hand type component.
 inline bool2 cmpg( const int2& lhs, const int2& rhs );
 
-/// \relates int2
-/// \brief Returns a bool2 where each component is true if the component of the left-hand type is greater than or equal to the corresponding right-hand type component.
+// Returns a bool2 where each component is true if the component of the left-hand type is greater than or equal to the corresponding right-hand type component.
 inline bool2 cmpge( const int2& lhs, const int2& rhs );
 
-/// \relates int2
-/// \brief Returns the magnitude of the vector squared.
+// Returns the magnitude of the vector squared.
 inline float lengthsqr( const int2& vec );
 
-/// \relates int2
-/// \brief Returns the magnitude of the vector.
+// Returns the magnitude of the vector.
 inline float length( const int2& vec );
 
-/// \relates int2
-/// \brief Returns the dot product of the two vectors.
+// Returns the dot product of the two vectors.
 inline int32_t dot( const int2& lhs, const int2& rhs );
 
-/// \relates int2
-/// \brief Returns the squared distance between the two vectors.
+// Returns the squared distance between the two vectors.
 inline float distancesqr( const int2& lhs, const int2& rhs );
 
-/// \relates int2
-/// \brief Returns the distance between the two vectors.
+// Returns the distance between the two vectors.
 inline float distance( const int2& lhs, const int2& rhs );
 
 
 // int3
-/// \relates int3
-/// \brief Returns true if the all the components of the left-hand-side int3 match the other one, otherwise returns false.
+// Returns true if the all the components of the left-hand-side int3 match the other one, otherwise returns false.
 inline bool cmpe( const int3& lhs, const int3& rhs );
 
-/// \relates int3
-/// \brief Returns true if not all of the components of the left-hand-side int3 match the other one, otherwise returns false.
+// Returns true if not all of the components of the left-hand-side int3 match the other one, otherwise returns false.
 inline bool cmpne( const int3& lhs, const int3& rhs );
 
-/// \relates int3
-/// \brief Returns a copy of the int3 that has been component-wise added by the given scalar value.
+// Returns a copy of the int3 that has been component-wise added by the given scalar value.
 inline int3 cadds( const int3& lhs, const int32_t scalar );
 
-/// \relates int3
-/// \brief Returns a copy of the int3 that has been component-wise added by the corresponding component of the right-hand int3.
+// Returns a copy of the int3 that has been component-wise added by the corresponding component of the right-hand int3.
 inline int3 caddv( const int3& lhs, const int3& rhs );
 
-/// \relates int3
-/// \brief Returns a copy of the int3 that has been component-wise subtracted by the given scalar value.
+// Returns a copy of the int3 that has been component-wise subtracted by the given scalar value.
 inline int3 csubs( const int3& lhs, const int32_t scalar );
 
-/// \relates int3
-/// \brief Returns a copy of the int3 that has been component-wise subtracted by the corresponding component of the right-hand int3.
+// Returns a copy of the int3 that has been component-wise subtracted by the corresponding component of the right-hand int3.
 inline int3 csubv( const int3& lhs, const int3& rhs );
 
-/// \relates int3
-/// \brief Returns a copy of the int3 that has been component-wise multiplied by the given scalar value.
+// Returns a copy of the int3 that has been component-wise multiplied by the given scalar value.
 inline int3 cmuls( const int3& lhs, const int32_t scalar );
 
-/// \relates int3
-/// \brief Returns a copy of the int3 that has been component-wise multiplied by the corresponding component of the right-hand int3.
+// Returns a copy of the int3 that has been component-wise multiplied by the corresponding component of the right-hand int3.
 inline int3 cmulv( const int3& lhs, const int3& rhs );
 
-/// \relates int3
-/// \brief Returns a copy of the int3 that has been component-wise divided by the given scalar value.
+// Returns a copy of the int3 that has been component-wise divided by the given scalar value.
 inline int3 cdivs( const int3& lhs, const int32_t scalar );
 
-/// \relates int3
-/// \brief Returns a copy of the int3 that has been component-wise divided by the corresponding component of the right-hand int3.
+// Returns a copy of the int3 that has been component-wise divided by the corresponding component of the right-hand int3.
 inline int3 cdivv( const int3& lhs, const int3& rhs );
 
-/// \relates int3
-/// \brief Returns a copy of the int3 where each component of the left-hand int3 has been bitwise AND'd against the corresponding component of the right-hand side int3.
+// Returns a copy of the int3 where each component of the left-hand int3 has been bitwise AND'd against the corresponding component of the right-hand side int3.
 inline int3 cand( const int3& lhs, const int3& rhs );
 
-/// \relates int3
-/// \brief Returns a copy of the int3 where each component of the left-hand int3 has been bitwise OR'd against the corresponding component of the right-hand side int3.
+// Returns a copy of the int3 where each component of the left-hand int3 has been bitwise OR'd against the corresponding component of the right-hand side int3.
 inline int3 cor( const int3& lhs, const int3& rhs );
 
-/// \relates int3
-/// \brief Returns a copy of the int3 where each component of the left-hand int3 has been bitwise XOR'd against the corresponding component of the right-hand side int3.
+// Returns a copy of the int3 where each component of the left-hand int3 has been bitwise XOR'd against the corresponding component of the right-hand side int3.
 inline int3 cxor( const int3& lhs, const int3& rhs );
 
-/// \relates int3
-/// \brief Performs a unary bitwise operation on all components of the given int3.
+// Performs a unary bitwise operation on all components of the given int3.
 inline int3 cunary( const int3& lhs );
 
-/// \relates int3
-/// \brief Returns a copy of the int3 where each component of the left-hand int3 has been bitwise left-shifted by the corresponding component of the right-hand side int3.
+// Returns a copy of the int3 where each component of the left-hand int3 has been bitwise left-shifted by the corresponding component of the right-hand side int3.
 inline int3 cshift_left( const int3& lhs, const int3& rhs );
 
-/// \relates int3
-/// \brief Returns a copy of the int3 where each component of the left-hand int3 has been bitwise right-shifted by the corresponding component of the right-hand side int3.
+// Returns a copy of the int3 where each component of the left-hand int3 has been bitwise right-shifted by the corresponding component of the right-hand side int3.
 inline int3 cshift_right( const int3& lhs, const int3& rhs );
 
-/// \relates int3
-/// \brief Returns a bool3 where each component is true if the component of the left-hand type is less than the corresponding right-hand type component.
+// Returns a bool3 where each component is true if the component of the left-hand type is less than the corresponding right-hand type component.
 inline bool3 cmpl( const int3& lhs, const int3& rhs );
 
-/// \relates int3
-/// \brief Returns a bool3 where each component is true if the component of the left-hand type is less than or equal to the corresponding right-hand type component.
+// Returns a bool3 where each component is true if the component of the left-hand type is less than or equal to the corresponding right-hand type component.
 inline bool3 cmple( const int3& lhs, const int3& rhs );
 
-/// \relates int3
-/// \brief Returns a bool3 where each component is true if the component of the left-hand type is greater than the corresponding right-hand type component.
+// Returns a bool3 where each component is true if the component of the left-hand type is greater than the corresponding right-hand type component.
 inline bool3 cmpg( const int3& lhs, const int3& rhs );
 
-/// \relates int3
-/// \brief Returns a bool3 where each component is true if the component of the left-hand type is greater than or equal to the corresponding right-hand type component.
+// Returns a bool3 where each component is true if the component of the left-hand type is greater than or equal to the corresponding right-hand type component.
 inline bool3 cmpge( const int3& lhs, const int3& rhs );
 
-/// \relates int3
-/// \brief Returns the magnitude of the vector squared.
+// Returns the magnitude of the vector squared.
 inline float lengthsqr( const int3& vec );
 
-/// \relates int3
-/// \brief Returns the magnitude of the vector.
+// Returns the magnitude of the vector.
 inline float length( const int3& vec );
 
-/// \relates int3
-/// \brief Returns the dot product of the two vectors.
+// Returns the dot product of the two vectors.
 inline int32_t dot( const int3& lhs, const int3& rhs );
 
-/// \relates int3
-/// \brief Returns the squared distance between the two vectors.
+// Returns the squared distance between the two vectors.
 inline float distancesqr( const int3& lhs, const int3& rhs );
 
-/// \relates int3
-/// \brief Returns the distance between the two vectors.
+// Returns the distance between the two vectors.
 inline float distance( const int3& lhs, const int3& rhs );
 
 
 // int4
-/// \relates int4
-/// \brief Returns true if the all the components of the left-hand-side int4 match the other one, otherwise returns false.
+// Returns true if the all the components of the left-hand-side int4 match the other one, otherwise returns false.
 inline bool cmpe( const int4& lhs, const int4& rhs );
 
-/// \relates int4
-/// \brief Returns true if not all of the components of the left-hand-side int4 match the other one, otherwise returns false.
+// Returns true if not all of the components of the left-hand-side int4 match the other one, otherwise returns false.
 inline bool cmpne( const int4& lhs, const int4& rhs );
 
-/// \relates int4
-/// \brief Returns a copy of the int4 that has been component-wise added by the given scalar value.
+// Returns a copy of the int4 that has been component-wise added by the given scalar value.
 inline int4 cadds( const int4& lhs, const int32_t scalar );
 
-/// \relates int4
-/// \brief Returns a copy of the int4 that has been component-wise added by the corresponding component of the right-hand int4.
+// Returns a copy of the int4 that has been component-wise added by the corresponding component of the right-hand int4.
 inline int4 caddv( const int4& lhs, const int4& rhs );
 
-/// \relates int4
-/// \brief Returns a copy of the int4 that has been component-wise subtracted by the given scalar value.
+// Returns a copy of the int4 that has been component-wise subtracted by the given scalar value.
 inline int4 csubs( const int4& lhs, const int32_t scalar );
 
-/// \relates int4
-/// \brief Returns a copy of the int4 that has been component-wise subtracted by the corresponding component of the right-hand int4.
+// Returns a copy of the int4 that has been component-wise subtracted by the corresponding component of the right-hand int4.
 inline int4 csubv( const int4& lhs, const int4& rhs );
 
-/// \relates int4
-/// \brief Returns a copy of the int4 that has been component-wise multiplied by the given scalar value.
+// Returns a copy of the int4 that has been component-wise multiplied by the given scalar value.
 inline int4 cmuls( const int4& lhs, const int32_t scalar );
 
-/// \relates int4
-/// \brief Returns a copy of the int4 that has been component-wise multiplied by the corresponding component of the right-hand int4.
+// Returns a copy of the int4 that has been component-wise multiplied by the corresponding component of the right-hand int4.
 inline int4 cmulv( const int4& lhs, const int4& rhs );
 
-/// \relates int4
-/// \brief Returns a copy of the int4 that has been component-wise divided by the given scalar value.
+// Returns a copy of the int4 that has been component-wise divided by the given scalar value.
 inline int4 cdivs( const int4& lhs, const int32_t scalar );
 
-/// \relates int4
-/// \brief Returns a copy of the int4 that has been component-wise divided by the corresponding component of the right-hand int4.
+// Returns a copy of the int4 that has been component-wise divided by the corresponding component of the right-hand int4.
 inline int4 cdivv( const int4& lhs, const int4& rhs );
 
-/// \relates int4
-/// \brief Returns a copy of the int4 where each component of the left-hand int4 has been bitwise AND'd against the corresponding component of the right-hand side int4.
+// Returns a copy of the int4 where each component of the left-hand int4 has been bitwise AND'd against the corresponding component of the right-hand side int4.
 inline int4 cand( const int4& lhs, const int4& rhs );
 
-/// \relates int4
-/// \brief Returns a copy of the int4 where each component of the left-hand int4 has been bitwise OR'd against the corresponding component of the right-hand side int4.
+// Returns a copy of the int4 where each component of the left-hand int4 has been bitwise OR'd against the corresponding component of the right-hand side int4.
 inline int4 cor( const int4& lhs, const int4& rhs );
 
-/// \relates int4
-/// \brief Returns a copy of the int4 where each component of the left-hand int4 has been bitwise XOR'd against the corresponding component of the right-hand side int4.
+// Returns a copy of the int4 where each component of the left-hand int4 has been bitwise XOR'd against the corresponding component of the right-hand side int4.
 inline int4 cxor( const int4& lhs, const int4& rhs );
 
-/// \relates int4
-/// \brief Performs a unary bitwise operation on all components of the given int4.
+// Performs a unary bitwise operation on all components of the given int4.
 inline int4 cunary( const int4& lhs );
 
-/// \relates int4
-/// \brief Returns a copy of the int4 where each component of the left-hand int4 has been bitwise left-shifted by the corresponding component of the right-hand side int4.
+// Returns a copy of the int4 where each component of the left-hand int4 has been bitwise left-shifted by the corresponding component of the right-hand side int4.
 inline int4 cshift_left( const int4& lhs, const int4& rhs );
 
-/// \relates int4
-/// \brief Returns a copy of the int4 where each component of the left-hand int4 has been bitwise right-shifted by the corresponding component of the right-hand side int4.
+// Returns a copy of the int4 where each component of the left-hand int4 has been bitwise right-shifted by the corresponding component of the right-hand side int4.
 inline int4 cshift_right( const int4& lhs, const int4& rhs );
 
-/// \relates int4
-/// \brief Returns a bool4 where each component is true if the component of the left-hand type is less than the corresponding right-hand type component.
+// Returns a bool4 where each component is true if the component of the left-hand type is less than the corresponding right-hand type component.
 inline bool4 cmpl( const int4& lhs, const int4& rhs );
 
-/// \relates int4
-/// \brief Returns a bool4 where each component is true if the component of the left-hand type is less than or equal to the corresponding right-hand type component.
+// Returns a bool4 where each component is true if the component of the left-hand type is less than or equal to the corresponding right-hand type component.
 inline bool4 cmple( const int4& lhs, const int4& rhs );
 
-/// \relates int4
-/// \brief Returns a bool4 where each component is true if the component of the left-hand type is greater than the corresponding right-hand type component.
+// Returns a bool4 where each component is true if the component of the left-hand type is greater than the corresponding right-hand type component.
 inline bool4 cmpg( const int4& lhs, const int4& rhs );
 
-/// \relates int4
-/// \brief Returns a bool4 where each component is true if the component of the left-hand type is greater than or equal to the corresponding right-hand type component.
+// Returns a bool4 where each component is true if the component of the left-hand type is greater than or equal to the corresponding right-hand type component.
 inline bool4 cmpge( const int4& lhs, const int4& rhs );
 
-/// \relates int4
-/// \brief Returns the magnitude of the vector squared.
+// Returns the magnitude of the vector squared.
 inline float lengthsqr( const int4& vec );
 
-/// \relates int4
-/// \brief Returns the magnitude of the vector.
+// Returns the magnitude of the vector.
 inline float length( const int4& vec );
 
-/// \relates int4
-/// \brief Returns the dot product of the two vectors.
+// Returns the dot product of the two vectors.
 inline int32_t dot( const int4& lhs, const int4& rhs );
 
 
 // uint2
-/// \relates uint2
-/// \brief Returns true if the all the components of the left-hand-side uint2 match the other one, otherwise returns false.
+// Returns true if the all the components of the left-hand-side uint2 match the other one, otherwise returns false.
 inline bool cmpe( const uint2& lhs, const uint2& rhs );
 
-/// \relates uint2
-/// \brief Returns true if not all of the components of the left-hand-side uint2 match the other one, otherwise returns false.
+// Returns true if not all of the components of the left-hand-side uint2 match the other one, otherwise returns false.
 inline bool cmpne( const uint2& lhs, const uint2& rhs );
 
-/// \relates uint2
-/// \brief Returns a copy of the uint2 that has been component-wise added by the given scalar value.
+// Returns a copy of the uint2 that has been component-wise added by the given scalar value.
 inline uint2 cadds( const uint2& lhs, const uint32_t scalar );
 
-/// \relates uint2
-/// \brief Returns a copy of the uint2 that has been component-wise added by the corresponding component of the right-hand uint2.
+// Returns a copy of the uint2 that has been component-wise added by the corresponding component of the right-hand uint2.
 inline uint2 caddv( const uint2& lhs, const uint2& rhs );
 
-/// \relates uint2
-/// \brief Returns a copy of the uint2 that has been component-wise subtracted by the given scalar value.
+// Returns a copy of the uint2 that has been component-wise subtracted by the given scalar value.
 inline uint2 csubs( const uint2& lhs, const uint32_t scalar );
 
-/// \relates uint2
-/// \brief Returns a copy of the uint2 that has been component-wise subtracted by the corresponding component of the right-hand uint2.
+// Returns a copy of the uint2 that has been component-wise subtracted by the corresponding component of the right-hand uint2.
 inline uint2 csubv( const uint2& lhs, const uint2& rhs );
 
-/// \relates uint2
-/// \brief Returns a copy of the uint2 that has been component-wise multiplied by the given scalar value.
+// Returns a copy of the uint2 that has been component-wise multiplied by the given scalar value.
 inline uint2 cmuls( const uint2& lhs, const uint32_t scalar );
 
-/// \relates uint2
-/// \brief Returns a copy of the uint2 that has been component-wise multiplied by the corresponding component of the right-hand uint2.
+// Returns a copy of the uint2 that has been component-wise multiplied by the corresponding component of the right-hand uint2.
 inline uint2 cmulv( const uint2& lhs, const uint2& rhs );
 
-/// \relates uint2
-/// \brief Returns a copy of the uint2 that has been component-wise divided by the given scalar value.
+// Returns a copy of the uint2 that has been component-wise divided by the given scalar value.
 inline uint2 cdivs( const uint2& lhs, const uint32_t scalar );
 
-/// \relates uint2
-/// \brief Returns a copy of the uint2 that has been component-wise divided by the corresponding component of the right-hand uint2.
+// Returns a copy of the uint2 that has been component-wise divided by the corresponding component of the right-hand uint2.
 inline uint2 cdivv( const uint2& lhs, const uint2& rhs );
 
-/// \relates uint2
-/// \brief Returns a copy of the uint2 where each component of the left-hand uint2 has been bitwise AND'd against the corresponding component of the right-hand side uint2.
+// Returns a copy of the uint2 where each component of the left-hand uint2 has been bitwise AND'd against the corresponding component of the right-hand side uint2.
 inline uint2 cand( const uint2& lhs, const uint2& rhs );
 
-/// \relates uint2
-/// \brief Returns a copy of the uint2 where each component of the left-hand uint2 has been bitwise OR'd against the corresponding component of the right-hand side uint2.
+// Returns a copy of the uint2 where each component of the left-hand uint2 has been bitwise OR'd against the corresponding component of the right-hand side uint2.
 inline uint2 cor( const uint2& lhs, const uint2& rhs );
 
-/// \relates uint2
-/// \brief Returns a copy of the uint2 where each component of the left-hand uint2 has been bitwise XOR'd against the corresponding component of the right-hand side uint2.
+// Returns a copy of the uint2 where each component of the left-hand uint2 has been bitwise XOR'd against the corresponding component of the right-hand side uint2.
 inline uint2 cxor( const uint2& lhs, const uint2& rhs );
 
-/// \relates uint2
-/// \brief Performs a unary bitwise operation on all components of the given uint2.
+// Performs a unary bitwise operation on all components of the given uint2.
 inline uint2 cunary( const uint2& lhs );
 
-/// \relates uint2
-/// \brief Returns a copy of the uint2 where each component of the left-hand uint2 has been bitwise left-shifted by the corresponding component of the right-hand side uint2.
+// Returns a copy of the uint2 where each component of the left-hand uint2 has been bitwise left-shifted by the corresponding component of the right-hand side uint2.
 inline uint2 cshift_left( const uint2& lhs, const uint2& rhs );
 
-/// \relates uint2
-/// \brief Returns a copy of the uint2 where each component of the left-hand uint2 has been bitwise right-shifted by the corresponding component of the right-hand side uint2.
+// Returns a copy of the uint2 where each component of the left-hand uint2 has been bitwise right-shifted by the corresponding component of the right-hand side uint2.
 inline uint2 cshift_right( const uint2& lhs, const uint2& rhs );
 
-/// \relates uint2
-/// \brief Returns a bool2 where each component is true if the component of the left-hand type is less than the corresponding right-hand type component.
+// Returns a bool2 where each component is true if the component of the left-hand type is less than the corresponding right-hand type component.
 inline bool2 cmpl( const uint2& lhs, const uint2& rhs );
 
-/// \relates uint2
-/// \brief Returns a bool2 where each component is true if the component of the left-hand type is less than or equal to the corresponding right-hand type component.
+// Returns a bool2 where each component is true if the component of the left-hand type is less than or equal to the corresponding right-hand type component.
 inline bool2 cmple( const uint2& lhs, const uint2& rhs );
 
-/// \relates uint2
-/// \brief Returns a bool2 where each component is true if the component of the left-hand type is greater than the corresponding right-hand type component.
+// Returns a bool2 where each component is true if the component of the left-hand type is greater than the corresponding right-hand type component.
 inline bool2 cmpg( const uint2& lhs, const uint2& rhs );
 
-/// \relates uint2
-/// \brief Returns a bool2 where each component is true if the component of the left-hand type is greater than or equal to the corresponding right-hand type component.
+// Returns a bool2 where each component is true if the component of the left-hand type is greater than or equal to the corresponding right-hand type component.
 inline bool2 cmpge( const uint2& lhs, const uint2& rhs );
 
-/// \relates uint2
-/// \brief Returns the magnitude of the vector squared.
+// Returns the magnitude of the vector squared.
 inline float lengthsqr( const uint2& vec );
 
-/// \relates uint2
-/// \brief Returns the magnitude of the vector.
+// Returns the magnitude of the vector.
 inline float length( const uint2& vec );
 
-/// \relates uint2
-/// \brief Returns the dot product of the two vectors.
+// Returns the dot product of the two vectors.
 inline int32_t dot( const uint2& lhs, const uint2& rhs );
 
-/// \relates uint2
-/// \brief Returns the squared distance between the two vectors.
+// Returns the squared distance between the two vectors.
 inline float distancesqr( const uint2& lhs, const uint2& rhs );
 
-/// \relates uint2
-/// \brief Returns the distance between the two vectors.
+// Returns the distance between the two vectors.
 inline float distance( const uint2& lhs, const uint2& rhs );
 
 
 // uint3
-/// \relates uint3
-/// \brief Returns true if the all the components of the left-hand-side uint3 match the other one, otherwise returns false.
+// Returns true if the all the components of the left-hand-side uint3 match the other one, otherwise returns false.
 inline bool cmpe( const uint3& lhs, const uint3& rhs );
 
-/// \relates uint3
-/// \brief Returns true if not all of the components of the left-hand-side uint3 match the other one, otherwise returns false.
+// Returns true if not all of the components of the left-hand-side uint3 match the other one, otherwise returns false.
 inline bool cmpne( const uint3& lhs, const uint3& rhs );
 
-/// \relates uint3
-/// \brief Returns a copy of the uint3 that has been component-wise added by the given scalar value.
+// Returns a copy of the uint3 that has been component-wise added by the given scalar value.
 inline uint3 cadds( const uint3& lhs, const uint32_t scalar );
 
-/// \relates uint3
-/// \brief Returns a copy of the uint3 that has been component-wise added by the corresponding component of the right-hand uint3.
+// Returns a copy of the uint3 that has been component-wise added by the corresponding component of the right-hand uint3.
 inline uint3 caddv( const uint3& lhs, const uint3& rhs );
 
-/// \relates uint3
-/// \brief Returns a copy of the uint3 that has been component-wise subtracted by the given scalar value.
+// Returns a copy of the uint3 that has been component-wise subtracted by the given scalar value.
 inline uint3 csubs( const uint3& lhs, const uint32_t scalar );
 
-/// \relates uint3
-/// \brief Returns a copy of the uint3 that has been component-wise subtracted by the corresponding component of the right-hand uint3.
+// Returns a copy of the uint3 that has been component-wise subtracted by the corresponding component of the right-hand uint3.
 inline uint3 csubv( const uint3& lhs, const uint3& rhs );
 
-/// \relates uint3
-/// \brief Returns a copy of the uint3 that has been component-wise multiplied by the given scalar value.
+// Returns a copy of the uint3 that has been component-wise multiplied by the given scalar value.
 inline uint3 cmuls( const uint3& lhs, const uint32_t scalar );
 
-/// \relates uint3
-/// \brief Returns a copy of the uint3 that has been component-wise multiplied by the corresponding component of the right-hand uint3.
+// Returns a copy of the uint3 that has been component-wise multiplied by the corresponding component of the right-hand uint3.
 inline uint3 cmulv( const uint3& lhs, const uint3& rhs );
 
-/// \relates uint3
-/// \brief Returns a copy of the uint3 that has been component-wise divided by the given scalar value.
+// Returns a copy of the uint3 that has been component-wise divided by the given scalar value.
 inline uint3 cdivs( const uint3& lhs, const uint32_t scalar );
 
-/// \relates uint3
-/// \brief Returns a copy of the uint3 that has been component-wise divided by the corresponding component of the right-hand uint3.
+// Returns a copy of the uint3 that has been component-wise divided by the corresponding component of the right-hand uint3.
 inline uint3 cdivv( const uint3& lhs, const uint3& rhs );
 
-/// \relates uint3
-/// \brief Returns a copy of the uint3 where each component of the left-hand uint3 has been bitwise AND'd against the corresponding component of the right-hand side uint3.
+// Returns a copy of the uint3 where each component of the left-hand uint3 has been bitwise AND'd against the corresponding component of the right-hand side uint3.
 inline uint3 cand( const uint3& lhs, const uint3& rhs );
 
-/// \relates uint3
-/// \brief Returns a copy of the uint3 where each component of the left-hand uint3 has been bitwise OR'd against the corresponding component of the right-hand side uint3.
+// Returns a copy of the uint3 where each component of the left-hand uint3 has been bitwise OR'd against the corresponding component of the right-hand side uint3.
 inline uint3 cor( const uint3& lhs, const uint3& rhs );
 
-/// \relates uint3
-/// \brief Returns a copy of the uint3 where each component of the left-hand uint3 has been bitwise XOR'd against the corresponding component of the right-hand side uint3.
+// Returns a copy of the uint3 where each component of the left-hand uint3 has been bitwise XOR'd against the corresponding component of the right-hand side uint3.
 inline uint3 cxor( const uint3& lhs, const uint3& rhs );
 
-/// \relates uint3
-/// \brief Performs a unary bitwise operation on all components of the given uint3.
+// Performs a unary bitwise operation on all components of the given uint3.
 inline uint3 cunary( const uint3& lhs );
 
-/// \relates uint3
-/// \brief Returns a copy of the uint3 where each component of the left-hand uint3 has been bitwise left-shifted by the corresponding component of the right-hand side uint3.
+// Returns a copy of the uint3 where each component of the left-hand uint3 has been bitwise left-shifted by the corresponding component of the right-hand side uint3.
 inline uint3 cshift_left( const uint3& lhs, const uint3& rhs );
 
-/// \relates uint3
-/// \brief Returns a copy of the uint3 where each component of the left-hand uint3 has been bitwise right-shifted by the corresponding component of the right-hand side uint3.
+// Returns a copy of the uint3 where each component of the left-hand uint3 has been bitwise right-shifted by the corresponding component of the right-hand side uint3.
 inline uint3 cshift_right( const uint3& lhs, const uint3& rhs );
 
-/// \relates uint3
-/// \brief Returns a bool3 where each component is true if the component of the left-hand type is less than the corresponding right-hand type component.
+// Returns a bool3 where each component is true if the component of the left-hand type is less than the corresponding right-hand type component.
 inline bool3 cmpl( const uint3& lhs, const uint3& rhs );
 
-/// \relates uint3
-/// \brief Returns a bool3 where each component is true if the component of the left-hand type is less than or equal to the corresponding right-hand type component.
+// Returns a bool3 where each component is true if the component of the left-hand type is less than or equal to the corresponding right-hand type component.
 inline bool3 cmple( const uint3& lhs, const uint3& rhs );
 
-/// \relates uint3
-/// \brief Returns a bool3 where each component is true if the component of the left-hand type is greater than the corresponding right-hand type component.
+// Returns a bool3 where each component is true if the component of the left-hand type is greater than the corresponding right-hand type component.
 inline bool3 cmpg( const uint3& lhs, const uint3& rhs );
 
-/// \relates uint3
-/// \brief Returns a bool3 where each component is true if the component of the left-hand type is greater than or equal to the corresponding right-hand type component.
+// Returns a bool3 where each component is true if the component of the left-hand type is greater than or equal to the corresponding right-hand type component.
 inline bool3 cmpge( const uint3& lhs, const uint3& rhs );
 
-/// \relates uint3
-/// \brief Returns the magnitude of the vector squared.
+// Returns the magnitude of the vector squared.
 inline float lengthsqr( const uint3& vec );
 
-/// \relates uint3
-/// \brief Returns the magnitude of the vector.
+// Returns the magnitude of the vector.
 inline float length( const uint3& vec );
 
-/// \relates uint3
-/// \brief Returns the dot product of the two vectors.
+// Returns the dot product of the two vectors.
 inline int32_t dot( const uint3& lhs, const uint3& rhs );
 
-/// \relates uint3
-/// \brief Returns the squared distance between the two vectors.
+// Returns the squared distance between the two vectors.
 inline float distancesqr( const uint3& lhs, const uint3& rhs );
 
-/// \relates uint3
-/// \brief Returns the distance between the two vectors.
+// Returns the distance between the two vectors.
 inline float distance( const uint3& lhs, const uint3& rhs );
 
 
 // uint4
-/// \relates uint4
-/// \brief Returns true if the all the components of the left-hand-side uint4 match the other one, otherwise returns false.
+// Returns true if the all the components of the left-hand-side uint4 match the other one, otherwise returns false.
 inline bool cmpe( const uint4& lhs, const uint4& rhs );
 
-/// \relates uint4
-/// \brief Returns true if not all of the components of the left-hand-side uint4 match the other one, otherwise returns false.
+// Returns true if not all of the components of the left-hand-side uint4 match the other one, otherwise returns false.
 inline bool cmpne( const uint4& lhs, const uint4& rhs );
 
-/// \relates uint4
-/// \brief Returns a copy of the uint4 that has been component-wise added by the given scalar value.
+// Returns a copy of the uint4 that has been component-wise added by the given scalar value.
 inline uint4 cadds( const uint4& lhs, const uint32_t scalar );
 
-/// \relates uint4
-/// \brief Returns a copy of the uint4 that has been component-wise added by the corresponding component of the right-hand uint4.
+// Returns a copy of the uint4 that has been component-wise added by the corresponding component of the right-hand uint4.
 inline uint4 caddv( const uint4& lhs, const uint4& rhs );
 
-/// \relates uint4
-/// \brief Returns a copy of the uint4 that has been component-wise subtracted by the given scalar value.
+// Returns a copy of the uint4 that has been component-wise subtracted by the given scalar value.
 inline uint4 csubs( const uint4& lhs, const uint32_t scalar );
 
-/// \relates uint4
-/// \brief Returns a copy of the uint4 that has been component-wise subtracted by the corresponding component of the right-hand uint4.
+// Returns a copy of the uint4 that has been component-wise subtracted by the corresponding component of the right-hand uint4.
 inline uint4 csubv( const uint4& lhs, const uint4& rhs );
 
-/// \relates uint4
-/// \brief Returns a copy of the uint4 that has been component-wise multiplied by the given scalar value.
+// Returns a copy of the uint4 that has been component-wise multiplied by the given scalar value.
 inline uint4 cmuls( const uint4& lhs, const uint32_t scalar );
 
-/// \relates uint4
-/// \brief Returns a copy of the uint4 that has been component-wise multiplied by the corresponding component of the right-hand uint4.
+// Returns a copy of the uint4 that has been component-wise multiplied by the corresponding component of the right-hand uint4.
 inline uint4 cmulv( const uint4& lhs, const uint4& rhs );
 
-/// \relates uint4
-/// \brief Returns a copy of the uint4 that has been component-wise divided by the given scalar value.
+// Returns a copy of the uint4 that has been component-wise divided by the given scalar value.
 inline uint4 cdivs( const uint4& lhs, const uint32_t scalar );
 
-/// \relates uint4
-/// \brief Returns a copy of the uint4 that has been component-wise divided by the corresponding component of the right-hand uint4.
+// Returns a copy of the uint4 that has been component-wise divided by the corresponding component of the right-hand uint4.
 inline uint4 cdivv( const uint4& lhs, const uint4& rhs );
 
-/// \relates uint4
-/// \brief Returns a copy of the uint4 where each component of the left-hand uint4 has been bitwise AND'd against the corresponding component of the right-hand side uint4.
+// Returns a copy of the uint4 where each component of the left-hand uint4 has been bitwise AND'd against the corresponding component of the right-hand side uint4.
 inline uint4 cand( const uint4& lhs, const uint4& rhs );
 
-/// \relates uint4
-/// \brief Returns a copy of the uint4 where each component of the left-hand uint4 has been bitwise OR'd against the corresponding component of the right-hand side uint4.
+// Returns a copy of the uint4 where each component of the left-hand uint4 has been bitwise OR'd against the corresponding component of the right-hand side uint4.
 inline uint4 cor( const uint4& lhs, const uint4& rhs );
 
-/// \relates uint4
-/// \brief Returns a copy of the uint4 where each component of the left-hand uint4 has been bitwise XOR'd against the corresponding component of the right-hand side uint4.
+// Returns a copy of the uint4 where each component of the left-hand uint4 has been bitwise XOR'd against the corresponding component of the right-hand side uint4.
 inline uint4 cxor( const uint4& lhs, const uint4& rhs );
 
-/// \relates uint4
-/// \brief Performs a unary bitwise operation on all components of the given uint4.
+// Performs a unary bitwise operation on all components of the given uint4.
 inline uint4 cunary( const uint4& lhs );
 
-/// \relates uint4
-/// \brief Returns a copy of the uint4 where each component of the left-hand uint4 has been bitwise left-shifted by the corresponding component of the right-hand side uint4.
+// Returns a copy of the uint4 where each component of the left-hand uint4 has been bitwise left-shifted by the corresponding component of the right-hand side uint4.
 inline uint4 cshift_left( const uint4& lhs, const uint4& rhs );
 
-/// \relates uint4
-/// \brief Returns a copy of the uint4 where each component of the left-hand uint4 has been bitwise right-shifted by the corresponding component of the right-hand side uint4.
+// Returns a copy of the uint4 where each component of the left-hand uint4 has been bitwise right-shifted by the corresponding component of the right-hand side uint4.
 inline uint4 cshift_right( const uint4& lhs, const uint4& rhs );
 
-/// \relates uint4
-/// \brief Returns a bool4 where each component is true if the component of the left-hand type is less than the corresponding right-hand type component.
+// Returns a bool4 where each component is true if the component of the left-hand type is less than the corresponding right-hand type component.
 inline bool4 cmpl( const uint4& lhs, const uint4& rhs );
 
-/// \relates uint4
-/// \brief Returns a bool4 where each component is true if the component of the left-hand type is less than or equal to the corresponding right-hand type component.
+// Returns a bool4 where each component is true if the component of the left-hand type is less than or equal to the corresponding right-hand type component.
 inline bool4 cmple( const uint4& lhs, const uint4& rhs );
 
-/// \relates uint4
-/// \brief Returns a bool4 where each component is true if the component of the left-hand type is greater than the corresponding right-hand type component.
+// Returns a bool4 where each component is true if the component of the left-hand type is greater than the corresponding right-hand type component.
 inline bool4 cmpg( const uint4& lhs, const uint4& rhs );
 
-/// \relates uint4
-/// \brief Returns a bool4 where each component is true if the component of the left-hand type is greater than or equal to the corresponding right-hand type component.
+// Returns a bool4 where each component is true if the component of the left-hand type is greater than or equal to the corresponding right-hand type component.
 inline bool4 cmpge( const uint4& lhs, const uint4& rhs );
 
-/// \relates uint4
-/// \brief Returns the magnitude of the vector squared.
+// Returns the magnitude of the vector squared.
 inline float lengthsqr( const uint4& vec );
 
-/// \relates uint4
-/// \brief Returns the magnitude of the vector.
+// Returns the magnitude of the vector.
 inline float length( const uint4& vec );
 
-/// \relates uint4
-/// \brief Returns the dot product of the two vectors.
+// Returns the dot product of the two vectors.
 inline int32_t dot( const uint4& lhs, const uint4& rhs );
 
-/// \relates uint4
-/// \brief Returns a 32 bit integer containing each component of the vector (starting with x) at each byte.
+// Returns a 32 bit integer containing each component of the vector (starting with x) at each byte.
 inline uint32_t pack( const uint4& vec );
 
-/// \relates uint4
-/// \brief Returns a 4-component integer vector containing each byte of the given integer.
+// Returns a 4-component integer vector containing each byte of the given integer.
 inline uint4 unpack( const uint32_t x );
 
 
 // float2
-/// \relates float2
-/// \brief Returns a copy of the float2 with each component clamped between the range 0 and 1.
+// Returns a copy of the float2 with each component clamped between the range 0 and 1.
 inline float2 saturate( const float2& x );
-/// \relates float2
-/// \brief Returns a linearly interpolated float2 between types "a" and "b".
+// Returns a linearly interpolated float2 between types "a" and "b".
 inline float2 lerp( const float2& a, const float2& b, const float t );
 
-/// \relates float2
-/// \brief Returns 1 if y is greater than x, otherwise returns 0.
+// Returns 1 if y is greater than x, otherwise returns 0.
 inline float2 step( const float2& x, const float2& y );
 
-/// \relates float2
-/// \brief Performs a sigmoid-like interpolation and clamp.
+// Performs a sigmoid-like interpolation and clamp.
 inline float2 smoothstep( const float2& low, const float2& high, const float2& x );
 
-/// \relates float2
-/// \brief Performs a 'smoother' version of smoothstep, as design by Ken Perlin.
-/// https://en.wikipedia.org/wiki/Smoothstep#Variations
+// Performs a 'smoother' version of smoothstep, as design by Ken Perlin.
+// https://en.wikipedia.org/wiki/Smoothstep#Variations
 inline float2 smootherstep( const float2& low, const float2& high, const float2& x );
 
-/// \relates float2
-/// \brief Returns true if the all the components of the left-hand-side float2 match the other one, otherwise returns false.
+// Returns true if the all the components of the left-hand-side float2 match the other one, otherwise returns false.
 inline bool cmpe( const float2& lhs, const float2& rhs );
 
-/// \relates float2
-/// \brief Returns true if not all of the components of the left-hand-side float2 match the other one, otherwise returns false.
+// Returns true if not all of the components of the left-hand-side float2 match the other one, otherwise returns false.
 inline bool cmpne( const float2& lhs, const float2& rhs );
 
-/// \relates float2
-/// \brief Returns a copy of the float2 that has been component-wise added by the given scalar value.
+// Returns a copy of the float2 that has been component-wise added by the given scalar value.
 inline float2 cadds( const float2& lhs, const float scalar );
 
-/// \relates float2
-/// \brief Returns a copy of the float2 that has been component-wise added by the corresponding component of the right-hand float2.
+// Returns a copy of the float2 that has been component-wise added by the corresponding component of the right-hand float2.
 inline float2 caddv( const float2& lhs, const float2& rhs );
 
-/// \relates float2
-/// \brief Returns a copy of the float2 that has been component-wise subtracted by the given scalar value.
+// Returns a copy of the float2 that has been component-wise subtracted by the given scalar value.
 inline float2 csubs( const float2& lhs, const float scalar );
 
-/// \relates float2
-/// \brief Returns a copy of the float2 that has been component-wise subtracted by the corresponding component of the right-hand float2.
+// Returns a copy of the float2 that has been component-wise subtracted by the corresponding component of the right-hand float2.
 inline float2 csubv( const float2& lhs, const float2& rhs );
 
-/// \relates float2
-/// \brief Returns a copy of the float2 that has been component-wise multiplied by the given scalar value.
+// Returns a copy of the float2 that has been component-wise multiplied by the given scalar value.
 inline float2 cmuls( const float2& lhs, const float scalar );
 
-/// \relates float2
-/// \brief Returns a copy of the float2 that has been component-wise multiplied by the corresponding component of the right-hand float2.
+// Returns a copy of the float2 that has been component-wise multiplied by the corresponding component of the right-hand float2.
 inline float2 cmulv( const float2& lhs, const float2& rhs );
 
-/// \relates float2
-/// \brief Returns a copy of the float2 that has been component-wise divided by the given scalar value.
+// Returns a copy of the float2 that has been component-wise divided by the given scalar value.
 inline float2 cdivs( const float2& lhs, const float scalar );
 
-/// \relates float2
-/// \brief Returns a copy of the float2 that has been component-wise divided by the corresponding component of the right-hand float2.
+// Returns a copy of the float2 that has been component-wise divided by the corresponding component of the right-hand float2.
 inline float2 cdivv( const float2& lhs, const float2& rhs );
 
-/// \relates float2
-/// \brief Returns a bool2 where each component is true if the component of the left-hand type is less than the corresponding right-hand type component.
+// Returns a bool2 where each component is true if the component of the left-hand type is less than the corresponding right-hand type component.
 inline bool2 cmpl( const float2& lhs, const float2& rhs );
 
-/// \relates float2
-/// \brief Returns a bool2 where each component is true if the component of the left-hand type is less than or equal to the corresponding right-hand type component.
+// Returns a bool2 where each component is true if the component of the left-hand type is less than or equal to the corresponding right-hand type component.
 inline bool2 cmple( const float2& lhs, const float2& rhs );
 
-/// \relates float2
-/// \brief Returns a bool2 where each component is true if the component of the left-hand type is greater than the corresponding right-hand type component.
+// Returns a bool2 where each component is true if the component of the left-hand type is greater than the corresponding right-hand type component.
 inline bool2 cmpg( const float2& lhs, const float2& rhs );
 
-/// \relates float2
-/// \brief Returns a bool2 where each component is true if the component of the left-hand type is greater than or equal to the corresponding right-hand type component.
+// Returns a bool2 where each component is true if the component of the left-hand type is greater than or equal to the corresponding right-hand type component.
 inline bool2 cmpge( const float2& lhs, const float2& rhs );
 
-/// \relates float2
-/// \brief Returns the magnitude of the vector squared.
+// Returns the magnitude of the vector squared.
 inline float lengthsqr( const float2& vec );
 
-/// \relates float2
-/// \brief Returns the magnitude of the vector.
+// Returns the magnitude of the vector.
 inline float length( const float2& vec );
 
-/// \relates float2
-/// \brief Normalizes the vector.
+// Normalizes the vector.
 inline void normalize( float2& vec );
 
-/// \relates float2
-/// \brief Returns a normalized copy of the vector.
+// Returns a normalized copy of the vector.
 inline float2 normalized( const float2& vec );
 
-/// \relates float2
-/// \brief Returns the dot product of the two vectors.
+// Returns the dot product of the two vectors.
 inline float dot( const float2& lhs, const float2& rhs );
 
-/// \relates float2
-/// \brief Returns the angle in degrees between the two vectors.
+// Returns the angle in degrees between the two vectors.
 inline float angle( const float2& lhs, const float2& rhs );
 
-/// \relates float2
-/// \brief Returns the squared distance between the two vectors.
+// Returns the squared distance between the two vectors.
 inline float distancesqr( const float2& lhs, const float2& rhs );
 
-/// \relates float2
-/// \brief Returns the distance between the two vectors.
+// Returns the distance between the two vectors.
 inline float distance( const float2& lhs, const float2& rhs );
 
 
 // float3
-/// \relates float3
-/// \brief Returns a copy of the float3 with each component clamped between the range 0 and 1.
+// Returns a copy of the float3 with each component clamped between the range 0 and 1.
 inline float3 saturate( const float3& x );
-/// \relates float3
-/// \brief Returns a linearly interpolated float3 between types "a" and "b".
+// Returns a linearly interpolated float3 between types "a" and "b".
 inline float3 lerp( const float3& a, const float3& b, const float t );
 
-/// \relates float3
-/// \brief Returns 1 if y is greater than x, otherwise returns 0.
+// Returns 1 if y is greater than x, otherwise returns 0.
 inline float3 step( const float3& x, const float3& y );
 
-/// \relates float3
-/// \brief Performs a sigmoid-like interpolation and clamp.
+// Performs a sigmoid-like interpolation and clamp.
 inline float3 smoothstep( const float3& low, const float3& high, const float3& x );
 
-/// \relates float3
-/// \brief Performs a 'smoother' version of smoothstep, as design by Ken Perlin.
-/// https://en.wikipedia.org/wiki/Smoothstep#Variations
+// Performs a 'smoother' version of smoothstep, as design by Ken Perlin.
+// https://en.wikipedia.org/wiki/Smoothstep#Variations
 inline float3 smootherstep( const float3& low, const float3& high, const float3& x );
 
-/// \relates float3
-/// \brief Returns true if the all the components of the left-hand-side float3 match the other one, otherwise returns false.
+// Returns true if the all the components of the left-hand-side float3 match the other one, otherwise returns false.
 inline bool cmpe( const float3& lhs, const float3& rhs );
 
-/// \relates float3
-/// \brief Returns true if not all of the components of the left-hand-side float3 match the other one, otherwise returns false.
+// Returns true if not all of the components of the left-hand-side float3 match the other one, otherwise returns false.
 inline bool cmpne( const float3& lhs, const float3& rhs );
 
-/// \relates float3
-/// \brief Returns a copy of the float3 that has been component-wise added by the given scalar value.
+// Returns a copy of the float3 that has been component-wise added by the given scalar value.
 inline float3 cadds( const float3& lhs, const float scalar );
 
-/// \relates float3
-/// \brief Returns a copy of the float3 that has been component-wise added by the corresponding component of the right-hand float3.
+// Returns a copy of the float3 that has been component-wise added by the corresponding component of the right-hand float3.
 inline float3 caddv( const float3& lhs, const float3& rhs );
 
-/// \relates float3
-/// \brief Returns a copy of the float3 that has been component-wise subtracted by the given scalar value.
+// Returns a copy of the float3 that has been component-wise subtracted by the given scalar value.
 inline float3 csubs( const float3& lhs, const float scalar );
 
-/// \relates float3
-/// \brief Returns a copy of the float3 that has been component-wise subtracted by the corresponding component of the right-hand float3.
+// Returns a copy of the float3 that has been component-wise subtracted by the corresponding component of the right-hand float3.
 inline float3 csubv( const float3& lhs, const float3& rhs );
 
-/// \relates float3
-/// \brief Returns a copy of the float3 that has been component-wise multiplied by the given scalar value.
+// Returns a copy of the float3 that has been component-wise multiplied by the given scalar value.
 inline float3 cmuls( const float3& lhs, const float scalar );
 
-/// \relates float3
-/// \brief Returns a copy of the float3 that has been component-wise multiplied by the corresponding component of the right-hand float3.
+// Returns a copy of the float3 that has been component-wise multiplied by the corresponding component of the right-hand float3.
 inline float3 cmulv( const float3& lhs, const float3& rhs );
 
-/// \relates float3
-/// \brief Returns a copy of the float3 that has been component-wise divided by the given scalar value.
+// Returns a copy of the float3 that has been component-wise divided by the given scalar value.
 inline float3 cdivs( const float3& lhs, const float scalar );
 
-/// \relates float3
-/// \brief Returns a copy of the float3 that has been component-wise divided by the corresponding component of the right-hand float3.
+// Returns a copy of the float3 that has been component-wise divided by the corresponding component of the right-hand float3.
 inline float3 cdivv( const float3& lhs, const float3& rhs );
 
-/// \relates float3
-/// \brief Returns a bool3 where each component is true if the component of the left-hand type is less than the corresponding right-hand type component.
+// Returns a bool3 where each component is true if the component of the left-hand type is less than the corresponding right-hand type component.
 inline bool3 cmpl( const float3& lhs, const float3& rhs );
 
-/// \relates float3
-/// \brief Returns a bool3 where each component is true if the component of the left-hand type is less than or equal to the corresponding right-hand type component.
+// Returns a bool3 where each component is true if the component of the left-hand type is less than or equal to the corresponding right-hand type component.
 inline bool3 cmple( const float3& lhs, const float3& rhs );
 
-/// \relates float3
-/// \brief Returns a bool3 where each component is true if the component of the left-hand type is greater than the corresponding right-hand type component.
+// Returns a bool3 where each component is true if the component of the left-hand type is greater than the corresponding right-hand type component.
 inline bool3 cmpg( const float3& lhs, const float3& rhs );
 
-/// \relates float3
-/// \brief Returns a bool3 where each component is true if the component of the left-hand type is greater than or equal to the corresponding right-hand type component.
+// Returns a bool3 where each component is true if the component of the left-hand type is greater than or equal to the corresponding right-hand type component.
 inline bool3 cmpge( const float3& lhs, const float3& rhs );
 
-/// \relates float3
-/// \brief Returns the magnitude of the vector squared.
+// Returns the magnitude of the vector squared.
 inline float lengthsqr( const float3& vec );
 
-/// \relates float3
-/// \brief Returns the magnitude of the vector.
+// Returns the magnitude of the vector.
 inline float length( const float3& vec );
 
-/// \relates float3
-/// \brief Normalizes the vector.
+// Normalizes the vector.
 inline void normalize( float3& vec );
 
-/// \relates float3
-/// \brief Returns a normalized copy of the vector.
+// Returns a normalized copy of the vector.
 inline float3 normalized( const float3& vec );
 
-/// \relates float3
-/// \brief Returns the dot product of the two vectors.
+// Returns the dot product of the two vectors.
 inline float dot( const float3& lhs, const float3& rhs );
 
-/// \relates float3
-/// \brief Returns a vector perpendicular (normal) to the two vectors.
+// Returns a vector perpendicular (normal) to the two vectors.
 inline float3 cross( const float3& lhs, const float3& rhs );
 
-/// \relates float3
-/// \brief Returns the angle in degrees between the two vectors.
+// Returns the angle in degrees between the two vectors.
 inline float angle( const float3& lhs, const float3& rhs );
 
-/// \relates float3
-/// \brief Returns the squared distance between the two vectors.
+// Returns the squared distance between the two vectors.
 inline float distancesqr( const float3& lhs, const float3& rhs );
 
-/// \relates float3
-/// \brief Returns the distance between the two vectors.
+// Returns the distance between the two vectors.
 inline float distance( const float3& lhs, const float3& rhs );
 
 
 // float4
-/// \relates float4
-/// \brief Returns a copy of the float4 with each component clamped between the range 0 and 1.
+// Returns a copy of the float4 with each component clamped between the range 0 and 1.
 inline float4 saturate( const float4& x );
-/// \relates float4
-/// \brief Returns a linearly interpolated float4 between types "a" and "b".
+// Returns a linearly interpolated float4 between types "a" and "b".
 inline float4 lerp( const float4& a, const float4& b, const float t );
 
-/// \relates float4
-/// \brief Returns 1 if y is greater than x, otherwise returns 0.
+// Returns 1 if y is greater than x, otherwise returns 0.
 inline float4 step( const float4& x, const float4& y );
 
-/// \relates float4
-/// \brief Performs a sigmoid-like interpolation and clamp.
+// Performs a sigmoid-like interpolation and clamp.
 inline float4 smoothstep( const float4& low, const float4& high, const float4& x );
 
-/// \relates float4
-/// \brief Performs a 'smoother' version of smoothstep, as design by Ken Perlin.
-/// https://en.wikipedia.org/wiki/Smoothstep#Variations
+// Performs a 'smoother' version of smoothstep, as design by Ken Perlin.
+// https://en.wikipedia.org/wiki/Smoothstep#Variations
 inline float4 smootherstep( const float4& low, const float4& high, const float4& x );
 
-/// \relates float4
-/// \brief Returns true if the all the components of the left-hand-side float4 match the other one, otherwise returns false.
+// Returns true if the all the components of the left-hand-side float4 match the other one, otherwise returns false.
 inline bool cmpe( const float4& lhs, const float4& rhs );
 
-/// \relates float4
-/// \brief Returns true if not all of the components of the left-hand-side float4 match the other one, otherwise returns false.
+// Returns true if not all of the components of the left-hand-side float4 match the other one, otherwise returns false.
 inline bool cmpne( const float4& lhs, const float4& rhs );
 
-/// \relates float4
-/// \brief Returns a copy of the float4 that has been component-wise added by the given scalar value.
+// Returns a copy of the float4 that has been component-wise added by the given scalar value.
 inline float4 cadds( const float4& lhs, const float scalar );
 
-/// \relates float4
-/// \brief Returns a copy of the float4 that has been component-wise added by the corresponding component of the right-hand float4.
+// Returns a copy of the float4 that has been component-wise added by the corresponding component of the right-hand float4.
 inline float4 caddv( const float4& lhs, const float4& rhs );
 
-/// \relates float4
-/// \brief Returns a copy of the float4 that has been component-wise subtracted by the given scalar value.
+// Returns a copy of the float4 that has been component-wise subtracted by the given scalar value.
 inline float4 csubs( const float4& lhs, const float scalar );
 
-/// \relates float4
-/// \brief Returns a copy of the float4 that has been component-wise subtracted by the corresponding component of the right-hand float4.
+// Returns a copy of the float4 that has been component-wise subtracted by the corresponding component of the right-hand float4.
 inline float4 csubv( const float4& lhs, const float4& rhs );
 
-/// \relates float4
-/// \brief Returns a copy of the float4 that has been component-wise multiplied by the given scalar value.
+// Returns a copy of the float4 that has been component-wise multiplied by the given scalar value.
 inline float4 cmuls( const float4& lhs, const float scalar );
 
-/// \relates float4
-/// \brief Returns a copy of the float4 that has been component-wise multiplied by the corresponding component of the right-hand float4.
+// Returns a copy of the float4 that has been component-wise multiplied by the corresponding component of the right-hand float4.
 inline float4 cmulv( const float4& lhs, const float4& rhs );
 
-/// \relates float4
-/// \brief Returns a copy of the float4 that has been component-wise divided by the given scalar value.
+// Returns a copy of the float4 that has been component-wise divided by the given scalar value.
 inline float4 cdivs( const float4& lhs, const float scalar );
 
-/// \relates float4
-/// \brief Returns a copy of the float4 that has been component-wise divided by the corresponding component of the right-hand float4.
+// Returns a copy of the float4 that has been component-wise divided by the corresponding component of the right-hand float4.
 inline float4 cdivv( const float4& lhs, const float4& rhs );
 
-/// \relates float4
-/// \brief Returns a bool4 where each component is true if the component of the left-hand type is less than the corresponding right-hand type component.
+// Returns a bool4 where each component is true if the component of the left-hand type is less than the corresponding right-hand type component.
 inline bool4 cmpl( const float4& lhs, const float4& rhs );
 
-/// \relates float4
-/// \brief Returns a bool4 where each component is true if the component of the left-hand type is less than or equal to the corresponding right-hand type component.
+// Returns a bool4 where each component is true if the component of the left-hand type is less than or equal to the corresponding right-hand type component.
 inline bool4 cmple( const float4& lhs, const float4& rhs );
 
-/// \relates float4
-/// \brief Returns a bool4 where each component is true if the component of the left-hand type is greater than the corresponding right-hand type component.
+// Returns a bool4 where each component is true if the component of the left-hand type is greater than the corresponding right-hand type component.
 inline bool4 cmpg( const float4& lhs, const float4& rhs );
 
-/// \relates float4
-/// \brief Returns a bool4 where each component is true if the component of the left-hand type is greater than or equal to the corresponding right-hand type component.
+// Returns a bool4 where each component is true if the component of the left-hand type is greater than or equal to the corresponding right-hand type component.
 inline bool4 cmpge( const float4& lhs, const float4& rhs );
 
-/// \relates float4
-/// \brief Returns the magnitude of the vector squared.
+// Returns the magnitude of the vector squared.
 inline float lengthsqr( const float4& vec );
 
-/// \relates float4
-/// \brief Returns the magnitude of the vector.
+// Returns the magnitude of the vector.
 inline float length( const float4& vec );
 
-/// \relates float4
-/// \brief Normalizes the vector.
+// Normalizes the vector.
 inline void normalize( float4& vec );
 
-/// \relates float4
-/// \brief Returns a normalized copy of the vector.
+// Returns a normalized copy of the vector.
 inline float4 normalized( const float4& vec );
 
-/// \relates float4
-/// \brief Returns the dot product of the two vectors.
+// Returns the dot product of the two vectors.
 inline float dot( const float4& lhs, const float4& rhs );
 
-/// \relates float4
-/// \brief Returns a vector perpendicular (normal) to the two vectors.
+// Returns a vector perpendicular (normal) to the two vectors.
 inline float4 cross( const float4& lhs, const float4& rhs );
 
-/// \relates float4
-/// \brief Returns the angle in degrees between the two vectors.
+// Returns the angle in degrees between the two vectors.
 inline float angle( const float4& lhs, const float4& rhs );
 
 
 // double2
-/// \relates double2
-/// \brief Returns a copy of the double2 with each component clamped between the range 0 and 1.
+// Returns a copy of the double2 with each component clamped between the range 0 and 1.
 inline double2 saturate( const double2& x );
-/// \relates double2
-/// \brief Returns a linearly interpolated double2 between types "a" and "b".
+// Returns a linearly interpolated double2 between types "a" and "b".
 inline double2 lerp( const double2& a, const double2& b, const double t );
 
-/// \relates double2
-/// \brief Returns 1 if y is greater than x, otherwise returns 0.
+// Returns 1 if y is greater than x, otherwise returns 0.
 inline double2 step( const double2& x, const double2& y );
 
-/// \relates double2
-/// \brief Performs a sigmoid-like interpolation and clamp.
+// Performs a sigmoid-like interpolation and clamp.
 inline double2 smoothstep( const double2& low, const double2& high, const double2& x );
 
-/// \relates double2
-/// \brief Performs a 'smoother' version of smoothstep, as design by Ken Perlin.
-/// https://en.wikipedia.org/wiki/Smoothstep#Variations
+// Performs a 'smoother' version of smoothstep, as design by Ken Perlin.
+// https://en.wikipedia.org/wiki/Smoothstep#Variations
 inline double2 smootherstep( const double2& low, const double2& high, const double2& x );
 
-/// \relates double2
-/// \brief Returns true if the all the components of the left-hand-side double2 match the other one, otherwise returns false.
+// Returns true if the all the components of the left-hand-side double2 match the other one, otherwise returns false.
 inline bool cmpe( const double2& lhs, const double2& rhs );
 
-/// \relates double2
-/// \brief Returns true if not all of the components of the left-hand-side double2 match the other one, otherwise returns false.
+// Returns true if not all of the components of the left-hand-side double2 match the other one, otherwise returns false.
 inline bool cmpne( const double2& lhs, const double2& rhs );
 
-/// \relates double2
-/// \brief Returns a copy of the double2 that has been component-wise added by the given scalar value.
+// Returns a copy of the double2 that has been component-wise added by the given scalar value.
 inline double2 cadds( const double2& lhs, const double scalar );
 
-/// \relates double2
-/// \brief Returns a copy of the double2 that has been component-wise added by the corresponding component of the right-hand double2.
+// Returns a copy of the double2 that has been component-wise added by the corresponding component of the right-hand double2.
 inline double2 caddv( const double2& lhs, const double2& rhs );
 
-/// \relates double2
-/// \brief Returns a copy of the double2 that has been component-wise subtracted by the given scalar value.
+// Returns a copy of the double2 that has been component-wise subtracted by the given scalar value.
 inline double2 csubs( const double2& lhs, const double scalar );
 
-/// \relates double2
-/// \brief Returns a copy of the double2 that has been component-wise subtracted by the corresponding component of the right-hand double2.
+// Returns a copy of the double2 that has been component-wise subtracted by the corresponding component of the right-hand double2.
 inline double2 csubv( const double2& lhs, const double2& rhs );
 
-/// \relates double2
-/// \brief Returns a copy of the double2 that has been component-wise multiplied by the given scalar value.
+// Returns a copy of the double2 that has been component-wise multiplied by the given scalar value.
 inline double2 cmuls( const double2& lhs, const double scalar );
 
-/// \relates double2
-/// \brief Returns a copy of the double2 that has been component-wise multiplied by the corresponding component of the right-hand double2.
+// Returns a copy of the double2 that has been component-wise multiplied by the corresponding component of the right-hand double2.
 inline double2 cmulv( const double2& lhs, const double2& rhs );
 
-/// \relates double2
-/// \brief Returns a copy of the double2 that has been component-wise divided by the given scalar value.
+// Returns a copy of the double2 that has been component-wise divided by the given scalar value.
 inline double2 cdivs( const double2& lhs, const double scalar );
 
-/// \relates double2
-/// \brief Returns a copy of the double2 that has been component-wise divided by the corresponding component of the right-hand double2.
+// Returns a copy of the double2 that has been component-wise divided by the corresponding component of the right-hand double2.
 inline double2 cdivv( const double2& lhs, const double2& rhs );
 
-/// \relates double2
-/// \brief Returns a bool2 where each component is true if the component of the left-hand type is less than the corresponding right-hand type component.
+// Returns a bool2 where each component is true if the component of the left-hand type is less than the corresponding right-hand type component.
 inline bool2 cmpl( const double2& lhs, const double2& rhs );
 
-/// \relates double2
-/// \brief Returns a bool2 where each component is true if the component of the left-hand type is less than or equal to the corresponding right-hand type component.
+// Returns a bool2 where each component is true if the component of the left-hand type is less than or equal to the corresponding right-hand type component.
 inline bool2 cmple( const double2& lhs, const double2& rhs );
 
-/// \relates double2
-/// \brief Returns a bool2 where each component is true if the component of the left-hand type is greater than the corresponding right-hand type component.
+// Returns a bool2 where each component is true if the component of the left-hand type is greater than the corresponding right-hand type component.
 inline bool2 cmpg( const double2& lhs, const double2& rhs );
 
-/// \relates double2
-/// \brief Returns a bool2 where each component is true if the component of the left-hand type is greater than or equal to the corresponding right-hand type component.
+// Returns a bool2 where each component is true if the component of the left-hand type is greater than or equal to the corresponding right-hand type component.
 inline bool2 cmpge( const double2& lhs, const double2& rhs );
 
-/// \relates double2
-/// \brief Returns the magnitude of the vector squared.
+// Returns the magnitude of the vector squared.
 inline double lengthsqr( const double2& vec );
 
-/// \relates double2
-/// \brief Returns the magnitude of the vector.
+// Returns the magnitude of the vector.
 inline double length( const double2& vec );
 
-/// \relates double2
-/// \brief Normalizes the vector.
+// Normalizes the vector.
 inline void normalize( double2& vec );
 
-/// \relates double2
-/// \brief Returns a normalized copy of the vector.
+// Returns a normalized copy of the vector.
 inline double2 normalized( const double2& vec );
 
-/// \relates double2
-/// \brief Returns the dot product of the two vectors.
+// Returns the dot product of the two vectors.
 inline double dot( const double2& lhs, const double2& rhs );
 
-/// \relates double2
-/// \brief Returns the angle in degrees between the two vectors.
+// Returns the angle in degrees between the two vectors.
 inline double angle( const double2& lhs, const double2& rhs );
 
-/// \relates double2
-/// \brief Returns the squared distance between the two vectors.
+// Returns the squared distance between the two vectors.
 inline double distancesqr( const double2& lhs, const double2& rhs );
 
-/// \relates double2
-/// \brief Returns the distance between the two vectors.
+// Returns the distance between the two vectors.
 inline double distance( const double2& lhs, const double2& rhs );
 
 
 // double3
-/// \relates double3
-/// \brief Returns a copy of the double3 with each component clamped between the range 0 and 1.
+// Returns a copy of the double3 with each component clamped between the range 0 and 1.
 inline double3 saturate( const double3& x );
-/// \relates double3
-/// \brief Returns a linearly interpolated double3 between types "a" and "b".
+// Returns a linearly interpolated double3 between types "a" and "b".
 inline double3 lerp( const double3& a, const double3& b, const double t );
 
-/// \relates double3
-/// \brief Returns 1 if y is greater than x, otherwise returns 0.
+// Returns 1 if y is greater than x, otherwise returns 0.
 inline double3 step( const double3& x, const double3& y );
 
-/// \relates double3
-/// \brief Performs a sigmoid-like interpolation and clamp.
+// Performs a sigmoid-like interpolation and clamp.
 inline double3 smoothstep( const double3& low, const double3& high, const double3& x );
 
-/// \relates double3
-/// \brief Performs a 'smoother' version of smoothstep, as design by Ken Perlin.
-/// https://en.wikipedia.org/wiki/Smoothstep#Variations
+// Performs a 'smoother' version of smoothstep, as design by Ken Perlin.
+// https://en.wikipedia.org/wiki/Smoothstep#Variations
 inline double3 smootherstep( const double3& low, const double3& high, const double3& x );
 
-/// \relates double3
-/// \brief Returns true if the all the components of the left-hand-side double3 match the other one, otherwise returns false.
+// Returns true if the all the components of the left-hand-side double3 match the other one, otherwise returns false.
 inline bool cmpe( const double3& lhs, const double3& rhs );
 
-/// \relates double3
-/// \brief Returns true if not all of the components of the left-hand-side double3 match the other one, otherwise returns false.
+// Returns true if not all of the components of the left-hand-side double3 match the other one, otherwise returns false.
 inline bool cmpne( const double3& lhs, const double3& rhs );
 
-/// \relates double3
-/// \brief Returns a copy of the double3 that has been component-wise added by the given scalar value.
+// Returns a copy of the double3 that has been component-wise added by the given scalar value.
 inline double3 cadds( const double3& lhs, const double scalar );
 
-/// \relates double3
-/// \brief Returns a copy of the double3 that has been component-wise added by the corresponding component of the right-hand double3.
+// Returns a copy of the double3 that has been component-wise added by the corresponding component of the right-hand double3.
 inline double3 caddv( const double3& lhs, const double3& rhs );
 
-/// \relates double3
-/// \brief Returns a copy of the double3 that has been component-wise subtracted by the given scalar value.
+// Returns a copy of the double3 that has been component-wise subtracted by the given scalar value.
 inline double3 csubs( const double3& lhs, const double scalar );
 
-/// \relates double3
-/// \brief Returns a copy of the double3 that has been component-wise subtracted by the corresponding component of the right-hand double3.
+// Returns a copy of the double3 that has been component-wise subtracted by the corresponding component of the right-hand double3.
 inline double3 csubv( const double3& lhs, const double3& rhs );
 
-/// \relates double3
-/// \brief Returns a copy of the double3 that has been component-wise multiplied by the given scalar value.
+// Returns a copy of the double3 that has been component-wise multiplied by the given scalar value.
 inline double3 cmuls( const double3& lhs, const double scalar );
 
-/// \relates double3
-/// \brief Returns a copy of the double3 that has been component-wise multiplied by the corresponding component of the right-hand double3.
+// Returns a copy of the double3 that has been component-wise multiplied by the corresponding component of the right-hand double3.
 inline double3 cmulv( const double3& lhs, const double3& rhs );
 
-/// \relates double3
-/// \brief Returns a copy of the double3 that has been component-wise divided by the given scalar value.
+// Returns a copy of the double3 that has been component-wise divided by the given scalar value.
 inline double3 cdivs( const double3& lhs, const double scalar );
 
-/// \relates double3
-/// \brief Returns a copy of the double3 that has been component-wise divided by the corresponding component of the right-hand double3.
+// Returns a copy of the double3 that has been component-wise divided by the corresponding component of the right-hand double3.
 inline double3 cdivv( const double3& lhs, const double3& rhs );
 
-/// \relates double3
-/// \brief Returns a bool3 where each component is true if the component of the left-hand type is less than the corresponding right-hand type component.
+// Returns a bool3 where each component is true if the component of the left-hand type is less than the corresponding right-hand type component.
 inline bool3 cmpl( const double3& lhs, const double3& rhs );
 
-/// \relates double3
-/// \brief Returns a bool3 where each component is true if the component of the left-hand type is less than or equal to the corresponding right-hand type component.
+// Returns a bool3 where each component is true if the component of the left-hand type is less than or equal to the corresponding right-hand type component.
 inline bool3 cmple( const double3& lhs, const double3& rhs );
 
-/// \relates double3
-/// \brief Returns a bool3 where each component is true if the component of the left-hand type is greater than the corresponding right-hand type component.
+// Returns a bool3 where each component is true if the component of the left-hand type is greater than the corresponding right-hand type component.
 inline bool3 cmpg( const double3& lhs, const double3& rhs );
 
-/// \relates double3
-/// \brief Returns a bool3 where each component is true if the component of the left-hand type is greater than or equal to the corresponding right-hand type component.
+// Returns a bool3 where each component is true if the component of the left-hand type is greater than or equal to the corresponding right-hand type component.
 inline bool3 cmpge( const double3& lhs, const double3& rhs );
 
-/// \relates double3
-/// \brief Returns the magnitude of the vector squared.
+// Returns the magnitude of the vector squared.
 inline double lengthsqr( const double3& vec );
 
-/// \relates double3
-/// \brief Returns the magnitude of the vector.
+// Returns the magnitude of the vector.
 inline double length( const double3& vec );
 
-/// \relates double3
-/// \brief Normalizes the vector.
+// Normalizes the vector.
 inline void normalize( double3& vec );
 
-/// \relates double3
-/// \brief Returns a normalized copy of the vector.
+// Returns a normalized copy of the vector.
 inline double3 normalized( const double3& vec );
 
-/// \relates double3
-/// \brief Returns the dot product of the two vectors.
+// Returns the dot product of the two vectors.
 inline double dot( const double3& lhs, const double3& rhs );
 
-/// \relates double3
-/// \brief Returns a vector perpendicular (normal) to the two vectors.
+// Returns a vector perpendicular (normal) to the two vectors.
 inline double3 cross( const double3& lhs, const double3& rhs );
 
-/// \relates double3
-/// \brief Returns the angle in degrees between the two vectors.
+// Returns the angle in degrees between the two vectors.
 inline double angle( const double3& lhs, const double3& rhs );
 
-/// \relates double3
-/// \brief Returns the squared distance between the two vectors.
+// Returns the squared distance between the two vectors.
 inline double distancesqr( const double3& lhs, const double3& rhs );
 
-/// \relates double3
-/// \brief Returns the distance between the two vectors.
+// Returns the distance between the two vectors.
 inline double distance( const double3& lhs, const double3& rhs );
 
 
 // double4
-/// \relates double4
-/// \brief Returns a copy of the double4 with each component clamped between the range 0 and 1.
+// Returns a copy of the double4 with each component clamped between the range 0 and 1.
 inline double4 saturate( const double4& x );
-/// \relates double4
-/// \brief Returns a linearly interpolated double4 between types "a" and "b".
+// Returns a linearly interpolated double4 between types "a" and "b".
 inline double4 lerp( const double4& a, const double4& b, const double t );
 
-/// \relates double4
-/// \brief Returns 1 if y is greater than x, otherwise returns 0.
+// Returns 1 if y is greater than x, otherwise returns 0.
 inline double4 step( const double4& x, const double4& y );
 
-/// \relates double4
-/// \brief Performs a sigmoid-like interpolation and clamp.
+// Performs a sigmoid-like interpolation and clamp.
 inline double4 smoothstep( const double4& low, const double4& high, const double4& x );
 
-/// \relates double4
-/// \brief Performs a 'smoother' version of smoothstep, as design by Ken Perlin.
-/// https://en.wikipedia.org/wiki/Smoothstep#Variations
+// Performs a 'smoother' version of smoothstep, as design by Ken Perlin.
+// https://en.wikipedia.org/wiki/Smoothstep#Variations
 inline double4 smootherstep( const double4& low, const double4& high, const double4& x );
 
-/// \relates double4
-/// \brief Returns true if the all the components of the left-hand-side double4 match the other one, otherwise returns false.
+// Returns true if the all the components of the left-hand-side double4 match the other one, otherwise returns false.
 inline bool cmpe( const double4& lhs, const double4& rhs );
 
-/// \relates double4
-/// \brief Returns true if not all of the components of the left-hand-side double4 match the other one, otherwise returns false.
+// Returns true if not all of the components of the left-hand-side double4 match the other one, otherwise returns false.
 inline bool cmpne( const double4& lhs, const double4& rhs );
 
-/// \relates double4
-/// \brief Returns a copy of the double4 that has been component-wise added by the given scalar value.
+// Returns a copy of the double4 that has been component-wise added by the given scalar value.
 inline double4 cadds( const double4& lhs, const double scalar );
 
-/// \relates double4
-/// \brief Returns a copy of the double4 that has been component-wise added by the corresponding component of the right-hand double4.
+// Returns a copy of the double4 that has been component-wise added by the corresponding component of the right-hand double4.
 inline double4 caddv( const double4& lhs, const double4& rhs );
 
-/// \relates double4
-/// \brief Returns a copy of the double4 that has been component-wise subtracted by the given scalar value.
+// Returns a copy of the double4 that has been component-wise subtracted by the given scalar value.
 inline double4 csubs( const double4& lhs, const double scalar );
 
-/// \relates double4
-/// \brief Returns a copy of the double4 that has been component-wise subtracted by the corresponding component of the right-hand double4.
+// Returns a copy of the double4 that has been component-wise subtracted by the corresponding component of the right-hand double4.
 inline double4 csubv( const double4& lhs, const double4& rhs );
 
-/// \relates double4
-/// \brief Returns a copy of the double4 that has been component-wise multiplied by the given scalar value.
+// Returns a copy of the double4 that has been component-wise multiplied by the given scalar value.
 inline double4 cmuls( const double4& lhs, const double scalar );
 
-/// \relates double4
-/// \brief Returns a copy of the double4 that has been component-wise multiplied by the corresponding component of the right-hand double4.
+// Returns a copy of the double4 that has been component-wise multiplied by the corresponding component of the right-hand double4.
 inline double4 cmulv( const double4& lhs, const double4& rhs );
 
-/// \relates double4
-/// \brief Returns a copy of the double4 that has been component-wise divided by the given scalar value.
+// Returns a copy of the double4 that has been component-wise divided by the given scalar value.
 inline double4 cdivs( const double4& lhs, const double scalar );
 
-/// \relates double4
-/// \brief Returns a copy of the double4 that has been component-wise divided by the corresponding component of the right-hand double4.
+// Returns a copy of the double4 that has been component-wise divided by the corresponding component of the right-hand double4.
 inline double4 cdivv( const double4& lhs, const double4& rhs );
 
-/// \relates double4
-/// \brief Returns a bool4 where each component is true if the component of the left-hand type is less than the corresponding right-hand type component.
+// Returns a bool4 where each component is true if the component of the left-hand type is less than the corresponding right-hand type component.
 inline bool4 cmpl( const double4& lhs, const double4& rhs );
 
-/// \relates double4
-/// \brief Returns a bool4 where each component is true if the component of the left-hand type is less than or equal to the corresponding right-hand type component.
+// Returns a bool4 where each component is true if the component of the left-hand type is less than or equal to the corresponding right-hand type component.
 inline bool4 cmple( const double4& lhs, const double4& rhs );
 
-/// \relates double4
-/// \brief Returns a bool4 where each component is true if the component of the left-hand type is greater than the corresponding right-hand type component.
+// Returns a bool4 where each component is true if the component of the left-hand type is greater than the corresponding right-hand type component.
 inline bool4 cmpg( const double4& lhs, const double4& rhs );
 
-/// \relates double4
-/// \brief Returns a bool4 where each component is true if the component of the left-hand type is greater than or equal to the corresponding right-hand type component.
+// Returns a bool4 where each component is true if the component of the left-hand type is greater than or equal to the corresponding right-hand type component.
 inline bool4 cmpge( const double4& lhs, const double4& rhs );
 
-/// \relates double4
-/// \brief Returns the magnitude of the vector squared.
+// Returns the magnitude of the vector squared.
 inline double lengthsqr( const double4& vec );
 
-/// \relates double4
-/// \brief Returns the magnitude of the vector.
+// Returns the magnitude of the vector.
 inline double length( const double4& vec );
 
-/// \relates double4
-/// \brief Normalizes the vector.
+// Normalizes the vector.
 inline void normalize( double4& vec );
 
-/// \relates double4
-/// \brief Returns a normalized copy of the vector.
+// Returns a normalized copy of the vector.
 inline double4 normalized( const double4& vec );
 
-/// \relates double4
-/// \brief Returns the dot product of the two vectors.
+// Returns the dot product of the two vectors.
 inline double dot( const double4& lhs, const double4& rhs );
 
-/// \relates double4
-/// \brief Returns a vector perpendicular (normal) to the two vectors.
+// Returns a vector perpendicular (normal) to the two vectors.
 inline double4 cross( const double4& lhs, const double4& rhs );
 
-/// \relates double4
-/// \brief Returns the angle in degrees between the two vectors.
+// Returns the angle in degrees between the two vectors.
 inline double angle( const double4& lhs, const double4& rhs );
 
 

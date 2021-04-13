@@ -38,7 +38,7 @@ SOFTWARE.
 extern "C" {
 #endif
 
-/// A matrix of 3 double4s.
+// A matrix of 3 double4s.
 typedef struct double3x4
 {
 	double4 rows[3];

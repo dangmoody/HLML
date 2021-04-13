@@ -37,13 +37,13 @@ along with The HLML Generator.  If not, see <http://www.gnu.org/licenses/>.
 static void GenerateDocCtorDefault( stringBuilder_t* codeHeader ) {
 	assert( codeHeader );
 
-	String_Append( codeHeader, "\t/// Default constructor.  Initializes all values to zero.\n" );
+	String_Append( codeHeader, "\t// Default constructor.  Initializes all values to zero.\n" );
 }
 
 static void GenerateDocCtorScalar( stringBuilder_t* codeHeader ) {
 	assert( codeHeader );
 
-	String_Append( codeHeader, "\t/// Initializes all components of the vector to the given scalar value.\n" );
+	String_Append( codeHeader, "\t// Initializes all components of the vector to the given scalar value.\n" );
 }
 
 static void GenerateDocCtorMemberwise( stringBuilder_t* codeHeader, const u32 numComponents ) {
@@ -55,19 +55,19 @@ static void GenerateDocCtorMemberwise( stringBuilder_t* codeHeader, const u32 nu
 	strncpy( componentsStr, GEN_COMPONENT_NAMES_VECTOR, numComponents );
 	componentsStr[numComponents] = 0;
 
-	String_Appendf( codeHeader, "\t/// Sets the %s members of the vector to the corresponding parameters.\n", componentsStr );
+	String_Appendf( codeHeader, "\t// Sets the %s members of the vector to the corresponding parameters.\n", componentsStr );
 }
 
 static void GenerateDocCtorCopy( stringBuilder_t* codeHeader ) {
 	assert( codeHeader );
 
-	String_Append( codeHeader, "\t/// Copy constructor.  Copies the elements of the given vector via memcpy.\n" );
+	String_Append( codeHeader, "\t// Copy constructor.  Copies the elements of the given vector via memcpy.\n" );
 }
 
 static void GenerateDocOperatorAssignment( stringBuilder_t* codeHeader ) {
 	assert( codeHeader );
 
-	String_Append( codeHeader, "\t/// Copies the elements of the given vector via a single memcpy.\n" );
+	String_Append( codeHeader, "\t// Copies the elements of the given vector via a single memcpy.\n" );
 }
 
 static void GenerateDocOperatorArray( stringBuilder_t* codeHeader, const u32 numComponents ) {
@@ -76,8 +76,8 @@ static void GenerateDocOperatorArray( stringBuilder_t* codeHeader, const u32 num
 	assert( numComponents <= GEN_COMPONENT_COUNT_MAX );
 
 	String_Appendf( codeHeader,
-		"\t/// \\brief Returns the vector component at the given index.\n" \
-		"\t/// Index CANNOT be lower than 0 or higher than %d.\n", numComponents - 1 );
+		"\t// Returns the vector component at the given index.\n" \
+		"\t// Index CANNOT be lower than 0 or higher than %d.\n", numComponents - 1 );
 }
 
 static void GenerateConstructors( stringBuilder_t* codeHeader, stringBuilder_t* codeInl, const u32 numComponents, const char* fullTypeName, const char* memberTypeString, const char* typeString ) {

@@ -33,53 +33,53 @@ along with The HLML Generator.  If not, see <http://www.gnu.org/licenses/>.
 static void GenerateDocCtorDefault( stringBuilder_t* codeHeader ) {
 	assert( codeHeader );
 
-	String_Append( codeHeader, "\t/// Default constructor.  Sets the matrix to an identity matrix.\n" );
+	String_Append( codeHeader, "\t// Default constructor.  Sets the matrix to an identity matrix.\n" );
 }
 
 static void GenerateDocCtorDiagonalScalar( stringBuilder_t* codeHeader ) {
 	assert( codeHeader );
 
 	String_Append( codeHeader,
-		"\t/// \\brief Sets each of the diagonal values of the matrix to the given scalar value.\n" \
-		"\t/// Setting the scalar to 1 will give an identity matrix.\n" );
+		"\t// Sets each of the diagonal values of the matrix to the given scalar value.\n" \
+		"\t// Setting the scalar to 1 will give an identity matrix.\n" );
 }
 
 static void GenerateDocCtorDiagonalVector( stringBuilder_t* codeHeader ) {
 	assert( codeHeader );
 
 	String_Append( codeHeader,
-		"\t/// \\brief Sets the diagonal values of the matrix to the corresponding components of the given vector.\n" \
-		"\t/// Setting each component of the vector to 1 will give an identity matrix.\n" );
+		"\t// Sets the diagonal values of the matrix to the corresponding components of the given vector.\n" \
+		"\t// Setting each component of the vector to 1 will give an identity matrix.\n" );
 }
 
 static void GenerateDocCtorRow( stringBuilder_t* codeHeader ) {
 	assert( codeHeader );
 
-	String_Append( codeHeader, "\t/// Sets each row of the matrix to the given vectors.\n" );
+	String_Append( codeHeader, "\t// Sets each row of the matrix to the given vectors.\n" );
 }
 
 static void GenerateDocCtorRowArray( stringBuilder_t* codeHeader ) {
 	assert( codeHeader );
 
-	String_Append( codeHeader, "\t/// Sets each row of the matrix to the corresponding vector in the array.\n" );
+	String_Append( codeHeader, "\t// Sets each row of the matrix to the corresponding vector in the array.\n" );
 }
 
 static void GenerateDocCtorRowsAndCols( stringBuilder_t* codeHeader ) {
 	assert( codeHeader );
 
-	String_Append( codeHeader, "\t/// Sets each component of the vector to the corresponding scalar value (row major).\n" );
+	String_Append( codeHeader, "\t// Sets each component of the vector to the corresponding scalar value (row major).\n" );
 }
 
 static void GenerateDocCtorCopy( stringBuilder_t* codeHeader ) {
 	assert( codeHeader );
 
-	String_Append( codeHeader, "\t/// Copy constructor.  Sets each row of the matrix to the rows in the other matrix.\n" );
+	String_Append( codeHeader, "\t// Copy constructor.  Sets each row of the matrix to the rows in the other matrix.\n" );
 }
 
 static void GenerateDocOperatorAssignment( stringBuilder_t* codeHeader ) {
 	assert( codeHeader );
 
-	String_Append( codeHeader, "\t/// Copies each row of the given matrix via a single memcpy.\n" );
+	String_Append( codeHeader, "\t// Copies each row of the given matrix via a single memcpy.\n" );
 }
 
 static void GenerateDocOperatorArray( stringBuilder_t* codeHeader, const u32 numRows ) {
@@ -88,8 +88,8 @@ static void GenerateDocOperatorArray( stringBuilder_t* codeHeader, const u32 num
 	assert( numRows <= GEN_COMPONENT_COUNT_MAX );
 
 	String_Appendf( codeHeader,
-		"\t/// \\brief Returns the row at the given index of the matrix.\n" \
-		"\t/// Index CANNOT be lower than 0 or higher than %d.\n", numRows - 1 );
+		"\t// Returns the row at the given index of the matrix.\n" \
+		"\t// Index CANNOT be lower than 0 or higher than %d.\n", numRows - 1 );
 }
 
 static void GenerateConstructors( stringBuilder_t* codeFwdDec, stringBuilder_t* codeInl, const u32 numRows, const u32 numCols, const char* fullTypeName, const char* memberTypeString, const char* vectorMemberTypeString ) {

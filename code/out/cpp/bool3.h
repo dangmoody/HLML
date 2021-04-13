@@ -50,8 +50,8 @@ struct float3;
 #pragma warning( disable : 4201 ) // C4201 - nonstandard extension used : nameless struct/union
 #endif
 
-/// \brief A vector of 3 bool32_ts with components xyz.
-/// Components are also stored as elements in an array via a union.
+// A vector of 3 bool32_ts with components xyz.
+// Components are also stored as elements in an array via a union.
 struct bool3
 {
 	union
@@ -67,41 +67,41 @@ struct bool3
 	};
 
 
-	/// Default constructor.  Initializes all values to zero.
+	// Default constructor.  Initializes all values to zero.
 	inline bool3() {}
 
-	/// Initializes all components of the vector to the given scalar value.
+	// Initializes all components of the vector to the given scalar value.
 	inline explicit bool3( const bool32_t x );
 
-	/// Sets the xyz members of the vector to the corresponding parameters.
+	// Sets the xyz members of the vector to the corresponding parameters.
 	inline bool3( const bool32_t x, const bool32_t y, const bool32_t z );
 
-	/// Copy constructor.  Copies the elements of the given vector via memcpy.
+	// Copy constructor.  Copies the elements of the given vector via memcpy.
 	inline bool3( const bool2& other );
 
-	/// Copy constructor.  Copies the elements of the given vector via memcpy.
+	// Copy constructor.  Copies the elements of the given vector via memcpy.
 	inline bool3( const bool3& other );
 
-	/// Copy constructor.  Copies the elements of the given vector via memcpy.
+	// Copy constructor.  Copies the elements of the given vector via memcpy.
 	inline bool3( const bool4& other );
 
 	~bool3() {}
 
-	/// Copies the elements of the given vector via a single memcpy.
+	// Copies the elements of the given vector via a single memcpy.
 	inline bool3 operator=( const bool2& rhs );
 
-	/// Copies the elements of the given vector via a single memcpy.
+	// Copies the elements of the given vector via a single memcpy.
 	inline bool3 operator=( const bool3& rhs );
 
-	/// Copies the elements of the given vector via a single memcpy.
+	// Copies the elements of the given vector via a single memcpy.
 	inline bool3 operator=( const bool4& rhs );
 
-	/// \brief Returns the vector component at the given index.
-	/// Index CANNOT be lower than 0 or higher than 2.
+	// Returns the vector component at the given index.
+	// Index CANNOT be lower than 0 or higher than 2.
 	inline const bool32_t& operator[]( const uint32_t index ) const;
 
-	/// \brief Returns the vector component at the given index.
-	/// Index CANNOT be lower than 0 or higher than 2.
+	// Returns the vector component at the given index.
+	// Index CANNOT be lower than 0 or higher than 2.
 	inline bool32_t& operator[]( const uint32_t index );
 
 	// swizzle funcs

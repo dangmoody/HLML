@@ -38,7 +38,7 @@ SOFTWARE.
 extern "C" {
 #endif
 
-/// \brief A vector of 2 doubles with components xy.
+// A vector of 2 doubles with components xy.
 typedef struct double2
 {
 	double x;

@@ -2,8 +2,6 @@
 
 #include "gen_common_sse.h"
 
-#include "gen_doc_vector_sse.h"
-
 #include "string_builder.h"
 
 void Gen_SSE_VectorNormalize( const genLanguage_t language, const genType_t type, const u32 numComponents, stringBuilder_t* sbHeader ) {
@@ -33,7 +31,7 @@ void Gen_SSE_VectorNormalize( const genLanguage_t language, const genType_t type
 	char lengthFuncStr[GEN_STRING_LENGTH_FUNCTION_NAME];
 	Gen_SSE_GetFuncNameLength( language, type, numComponents, lengthFuncStr );
 
-	Doc_SSE_VectorNormalize( sbHeader, sseTypeName );
+	String_Appendf( sbHeader, "// Normalizes each input array element and stores the normalized result in the corresponding element in the output.\n" );
 	String_Appendf( sbHeader, "inline static void %s( const %s* in, %s* out )\n", normalizeFuncStr, sseTypeName, sseTypeName );
 	String_Append(  sbHeader, "{\n" );
 	String_Appendf( sbHeader, "\tassert( in );\n" );
@@ -75,7 +73,7 @@ void Gen_SSE_VectorDot( const genLanguage_t language, const genType_t type, cons
 	char dotFuncStr[GEN_STRING_LENGTH_FUNCTION_NAME];
 	Gen_SSE_GetFuncNameDot( language, type, numComponents, dotFuncStr );
 
-	Doc_SSE_VectorDot( sbHeader, sseTypeName );
+	String_Appendf( sbHeader, "// Performs a dot-product on each index of the left-hand-side and right-hand-side registers, respectively, and stores the result in its respective component in the output register.\n" );
 	String_Appendf( sbHeader, "inline static void %s( const %s* lhs, const %s* rhs, %s* out_results )\n", dotFuncStr, sseTypeName, sseTypeName, registerName );
 	String_Append(  sbHeader, "{\n" );
 	String_Appendf( sbHeader, "\tassert( lhs );\n" );
@@ -142,7 +140,7 @@ void Gen_SSE_VectorCross( const genLanguage_t language, const genType_t type, co
 	char crossFuncStr[GEN_STRING_LENGTH_FUNCTION_NAME];
 	Gen_SSE_GetFuncNameCross( language, type, numComponents, crossFuncStr );
 
-	Doc_SSE_VectorCross( sbHeader, sseTypeName );
+	String_Appendf( sbHeader, "// Stores the cross product of register vectors lhs and rhs into out_results.\n" );
 	String_Appendf( sbHeader, "inline static void %s( const %s* lhs, const %s* rhs, %s* out_results )\n", crossFuncStr, sseTypeName, sseTypeName, sseTypeName );
 	String_Append(  sbHeader, "{\n" );
 	String_Append(  sbHeader, "\tassert( lhs );\n" );
@@ -191,7 +189,7 @@ void Gen_SSE_VectorLength( const genLanguage_t language, const genType_t type, c
 		char dotFuncStr[GEN_STRING_LENGTH_FUNCTION_NAME];
 		Gen_SSE_GetFuncNameDot( language, type, numComponents, dotFuncStr );
 
-		Doc_SSE_VectorLengthsq( sbHeader, sseTypeName );
+		String_Appendf( sbHeader, "// Finds the squared length of each input vector and stores it in its respective component in the output register.\n" );
 		String_Appendf( sbHeader, "inline static void %s( const %s* in, %s* out_results )\n", lengthsqFuncStr, sseTypeName, registerName );
 		String_Append(  sbHeader, "{\n" );
 		String_Appendf( sbHeader, "\tassert( in );\n" );
@@ -207,7 +205,7 @@ void Gen_SSE_VectorLength( const genLanguage_t language, const genType_t type, c
 		char lengthFuncStr[GEN_STRING_LENGTH_FUNCTION_NAME];
 		Gen_SSE_GetFuncNameLength( language, type, numComponents, lengthFuncStr );
 
-		Doc_SSE_VectorLength( sbHeader, sseTypeName );
+		String_Appendf( sbHeader, "// Finds the length of each input vector and stores it in its respective component in the output register.\n" );
 		String_Appendf( sbHeader, "inline static void %s( const %s* in, %s* out_results )\n", lengthFuncStr, sseTypeName, registerName );
 		String_Append(  sbHeader, "{\n" );
 		String_Appendf( sbHeader, "\tassert( in );\n" );
@@ -244,7 +242,7 @@ void Gen_SSE_VectorDistance( const genLanguage_t language, const genType_t type,
 		char lengthsqFuncStr[GEN_STRING_LENGTH_FUNCTION_NAME];
 		Gen_SSE_GetFuncNameLengthsq( language, type, numComponents, lengthsqFuncStr );
 
-		Doc_SSE_VectorDistancesq( sbHeader, sseTypeName );
+		String_Appendf( sbHeader, "// Finds the squared distance between each vector and stores the result in its respective component in the output register.\n" );
 		String_Appendf( sbHeader, "inline static void %s( const %s* lhs, const %s* rhs, %s* out_results )\n", distancesqFuncStr, sseTypeName, sseTypeName, registerName );
 		String_Append(  sbHeader, "{\n" );
 		String_Append(  sbHeader, "\tassert( lhs );\n" );
@@ -271,7 +269,7 @@ void Gen_SSE_VectorDistance( const genLanguage_t language, const genType_t type,
 		char lengthFuncStr[GEN_STRING_LENGTH_FUNCTION_NAME];
 		Gen_SSE_GetFuncNameLength( language, type, numComponents, lengthFuncStr );
 
-		Doc_SSE_VectorDistance( sbHeader, sseTypeName );
+		String_Appendf( sbHeader, "// Finds the distance between each vector and stores the result in its respective component in the output register.\n" );
 		String_Appendf( sbHeader, "inline static void %s( const %s* lhs, const %s* rhs, %s* out_results )\n", distanceFuncStr, sseTypeName, sseTypeName, registerName );
 		String_Append(  sbHeader, "{\n" );
 		String_Append(  sbHeader, "\tassert( lhs );\n" );

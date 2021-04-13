@@ -38,7 +38,7 @@ SOFTWARE.
 extern "C" {
 #endif
 
-/// \brief A vector of 3 floats with components xyz.
+// A vector of 3 floats with components xyz.
 typedef struct float3
 {
 	float x;

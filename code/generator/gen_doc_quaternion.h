@@ -28,56 +28,48 @@ along with The HLML Generator.  If not, see <http://www.gnu.org/licenses/>.
 
 inline void Doc_QuaternionMultiplyRhsType( stringBuilder_t* sb, const char* fullTypeName ) {
 	String_Appendf( sb,
-		"/// \\relates %s\n"
-		"/// \\brief Performs a quaternion multiplication of the two given quaternions.\n", fullTypeName
+		"// Performs a quaternion multiplication of the two given quaternions.\n", fullTypeName
 	);
 }
 
 inline void Doc_QuaternionMultiplyScalar( stringBuilder_t* sb, const char* fullTypeName ) {
 	String_Appendf( sb,
-		"/// \\relates %s\n"
-		"/// \\brief Multiplies the given quaternion by the given scalar.\n", fullTypeName
+		"// Multiplies the given quaternion by the given scalar.\n", fullTypeName
 	);
 }
 
 inline void Doc_QuaternionLength( stringBuilder_t* sb, const char* fullTypeName ) {
 	String_Appendf( sb,
-		"/// \\relates %s\n"
-		"/// \\brief Returns the length of the quaternion.\n", fullTypeName
+		"// Returns the length of the quaternion.\n", fullTypeName
 	);
 }
 
 inline void Doc_QuaternionNormalize( stringBuilder_t* sb, const char* fullTypeName ) {
 	String_Appendf( sb,
-		"/// \\relates %s\n"
-		"/// \\brief Normalizes the quaternion.\n", fullTypeName
+		"// Normalizes the quaternion.\n", fullTypeName
 	);
 }
 
 inline void Doc_QuaternionConjugate( stringBuilder_t* sb, const char* fullTypeName ) {
 	String_Appendf( sb,
-		"/// \\relates %s\n"
-		"/// \\brief Returns the conjugate of the quaternion.\n", fullTypeName
+		"// Returns the conjugate of the quaternion.\n", fullTypeName
 	);
 }
 
 inline void Doc_QuaternionInverse( stringBuilder_t* sb, const char* fullTypeName ) {
 	String_Appendf( sb,
-		"/// \\relates %s\n"
-		"/// \\brief Returns the inverse of the quaternion.\n", fullTypeName
+		"// Returns the inverse of the quaternion.\n", fullTypeName
 	);
 }
 
 inline void Doc_QuaternionRotateAxis( stringBuilder_t* sb, const char* fullTypeName ) {
 	String_Appendf( sb,
-		"/// \\relates %s\n"
-		"/// \\brief Performs a rotation on the quaternion by the given axis-angle and angle (in radians).\n", fullTypeName
+		"// Performs a rotation on the quaternion by the given axis-angle and angle (in radians).\n", fullTypeName
 	);
 }
 
 inline void Doc_QuaternionSlerp( stringBuilder_t* sb, const char* fullTypeName ) {
 	String_Appendf( sb,
-		"/// \\relates %s\n"
-		"/// \\brief Returns a spherically interpolated %s between \"a\" and \"b\".\n", fullTypeName, fullTypeName
+		"// Returns a spherically interpolated %s between \"a\" and \"b\".\n", fullTypeName, fullTypeName
 	);
 }

@@ -38,7 +38,7 @@ SOFTWARE.
 extern "C" {
 #endif
 
-/// \brief A vector of 2 uint32_ts with components xy.
+// A vector of 2 uint32_ts with components xy.
 typedef struct uint2
 {
 	uint32_t x;

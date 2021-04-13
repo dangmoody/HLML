@@ -85,78 +85,60 @@ SOFTWARE.
 #include "hlml_functions_vector.h"
 
 // float4
-/// \relates float4
-/// \brief Performs a quaternion multiplication of the two given quaternions.
+// Performs a quaternion multiplication of the two given quaternions.
 inline float4 quaternion_mul( const float4& lhs, const float4& rhs );
 
-/// \relates float4
-/// \brief Multiplies the given quaternion by the given scalar.
+// Multiplies the given quaternion by the given scalar.
 inline float4 quaternion_mul( const float4& lhs, const float rhs );
 
-/// \relates float4
-/// \brief Returns the length of the quaternion.
+// Returns the length of the quaternion.
 inline float quaternion_length( const float4& quat );
 
-/// \relates float4
-/// \brief Normalizes the quaternion.
+// Normalizes the quaternion.
 inline float4 quaternion_normalize( const float4& quat );
 
-/// \relates float4
-/// \brief Returns the conjugate of the quaternion.
+// Returns the conjugate of the quaternion.
 inline float4 quaternion_conjugate( const float4& quat );
 
-/// \relates float4
-/// \brief Returns the inverse of the quaternion.
+// Returns the inverse of the quaternion.
 inline float4 quaternion_inverse( const float4& quat );
 
-/// \relates float4
-/// \brief Performs a rotation on the quaternion by the given axis-angle and angle (in radians).
+// Performs a rotation on the quaternion by the given axis-angle and angle (in radians).
 inline float3 quaternion_rotate( const float3& vect, const float angle, const float3& axis );
 
-/// \relates float4
-/// \brief Returns a linearly interpolated float4 between types "a" and "b".
+// Returns a linearly interpolated float4 between types "a" and "b".
 inline float4 quaternion_lerp( const float4& lhs, const float4& rhs, const float percent );
 
-/// \relates float4
-/// \brief Returns a spherically interpolated float4 between "a" and "b".
+// Returns a spherically interpolated float4 between "a" and "b".
 inline float4 quaternion_slerp( const float4& lhs, const float4& rhs, const float percent );
 
 
 // double4
-/// \relates double4
-/// \brief Performs a quaternion multiplication of the two given quaternions.
+// Performs a quaternion multiplication of the two given quaternions.
 inline double4 quaternion_mul( const double4& lhs, const double4& rhs );
 
-/// \relates double4
-/// \brief Multiplies the given quaternion by the given scalar.
+// Multiplies the given quaternion by the given scalar.
 inline double4 quaternion_mul( const double4& lhs, const double rhs );
 
-/// \relates double4
-/// \brief Returns the length of the quaternion.
+// Returns the length of the quaternion.
 inline double quaternion_length( const double4& quat );
 
-/// \relates double4
-/// \brief Normalizes the quaternion.
+// Normalizes the quaternion.
 inline double4 quaternion_normalize( const double4& quat );
 
-/// \relates double4
-/// \brief Returns the conjugate of the quaternion.
+// Returns the conjugate of the quaternion.
 inline double4 quaternion_conjugate( const double4& quat );
 
-/// \relates double4
-/// \brief Returns the inverse of the quaternion.
+// Returns the inverse of the quaternion.
 inline double4 quaternion_inverse( const double4& quat );
 
-/// \relates double4
-/// \brief Performs a rotation on the quaternion by the given axis-angle and angle (in radians).
+// Performs a rotation on the quaternion by the given axis-angle and angle (in radians).
 inline double3 quaternion_rotate( const double3& vect, const double angle, const double3& axis );
 
-/// \relates double4
-/// \brief Returns a linearly interpolated double4 between types "a" and "b".
+// Returns a linearly interpolated double4 between types "a" and "b".
 inline double4 quaternion_lerp( const double4& lhs, const double4& rhs, const double percent );
 
-/// \relates double4
-/// \brief Returns a spherically interpolated double4 between "a" and "b".
+// Returns a spherically interpolated double4 between "a" and "b".
 inline double4 quaternion_slerp( const double4& lhs, const double4& rhs, const double percent );
 
 

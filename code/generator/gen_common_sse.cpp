@@ -23,8 +23,6 @@ along with The HLML Generator.  If not, see <http://www.gnu.org/licenses/>.
 */
 #include "gen_common_sse.h"
 
-#include "gen_doc_common_sse.h"
-
 #include "string_builder.h"
 
 void Gen_SSE_MacroNegate( const genType_t type, stringBuilder_t* sbHeader ) {
@@ -37,7 +35,7 @@ void Gen_SSE_MacroNegate( const genType_t type, stringBuilder_t* sbHeader ) {
 	char subFuncStr[GEN_STRING_LENGTH_SSE_INTRINSIC];
 	Gen_SSE_GetIntrinsicArithmetic( type, GEN_OP_ARITHMETIC_SUB, subFuncStr );
 
-	String_Append(  sbHeader, "/// \\brief Changes the sign of the values in the register.\n" );
+	String_Append(  sbHeader, "// Changes the sign of the values in the register.\n" );
 	String_Appendf( sbHeader, "#define %s( reg ) %s( HLML_ZERO_SSE, (reg) )\n", macroName, subFuncStr );
 	String_Append(  sbHeader, "\n" );
 }
@@ -55,7 +53,7 @@ void Gen_SSE_Radians( const genLanguage_t language, const genType_t type, string
 	char radiansFuncStr[GEN_STRING_LENGTH_FUNCTION_NAME];
 	Gen_SSE_GetFuncNameRadians( language, type, radiansFuncStr );
 
-	Doc_SSE_Radians( sbHeader, registerName );
+	String_Appendf( sbHeader, "// Converts each component of the given %s from degrees to radians.\n", registerName );
 	String_Appendf( sbHeader, "inline static void %s( const %s deg, %s* out_radians )\n", radiansFuncStr, registerName, registerName );
 	String_Append(  sbHeader, "{\n" );
 	String_Append(  sbHeader, "\tassert( out_radians );\n" );
@@ -78,7 +76,7 @@ void Gen_SSE_Degrees( const genLanguage_t language, const genType_t type, string
 	char degreesFuncStr[GEN_STRING_LENGTH_FUNCTION_NAME];
 	Gen_SSE_GetFuncNameDegrees( language, type, degreesFuncStr );
 
-	Doc_SSE_Degrees( sbHeader, registerName );
+	String_Appendf( sbHeader, "// Converts each component of the given %s from radians to degrees.\n", registerName );
 	String_Appendf( sbHeader, "inline static void %s( const %s rad, %s* out_degrees )\n", degreesFuncStr, registerName, registerName );
 	String_Append(  sbHeader, "{\n" );
 	String_Append(  sbHeader, "\tassert( out_degrees );\n" );
@@ -111,7 +109,7 @@ void Gen_SSE_Lerp( const genLanguage_t language, const genType_t type, const u32
 		char mulFuncStr[GEN_STRING_LENGTH_SSE_INTRINSIC];
 		Gen_SSE_GetIntrinsicArithmetic( type, GEN_OP_ARITHMETIC_MUL, mulFuncStr );
 
-		Doc_SSE_Lerp( sbHeader, registerName );
+		String_Appendf( sbHeader, "// Lerps each component of register 'lhs' against the corresponding component of register 'rhs' by the corresponding component of register 't'.\n", registerName );
 		String_Appendf( sbHeader, "inline static void %s( const %s lhs, const %s rhs, const %s t, %s* out_results )\n", lerpFuncStr, registerName, registerName, registerName, registerName );
 		String_Append(  sbHeader, "{\n" );
 		String_Append(  sbHeader, "\tassert( out_results );\n" );

@@ -61,52 +61,40 @@ inline bool operator==( const bool2& lhs, const bool2& rhs );
 
 inline bool operator!=( const bool2& lhs, const bool2& rhs );
 
-/// \relates bool2
-/// \brief Returns a copy of the bool2 that has been component-wise added by the corresponding component of the right-hand bool2.
+// Returns a copy of the bool2 that has been component-wise added by the corresponding component of the right-hand bool2.
 inline bool2 operator+( const bool2& lhs, const bool32_t scalar );
 
-/// \relates bool2
-/// \brief Adds each component of the bool2 by the corresponding component of the right-hand bool2.
+// Adds each component of the bool2 by the corresponding component of the right-hand bool2.
 inline bool2 operator+=( bool2& lhs, const bool32_t scalar );
 
-/// \relates bool2
-/// \brief Returns a copy of the bool2 that has been component-wise subtracted by the corresponding component of the right-hand bool2.
+// Returns a copy of the bool2 that has been component-wise subtracted by the corresponding component of the right-hand bool2.
 inline bool2 operator-( const bool2& lhs, const bool32_t scalar );
 
-/// \relates bool2
-/// \brief Subtracts each component of the bool2 by the corresponding component of the right-hand bool2.
+// Subtracts each component of the bool2 by the corresponding component of the right-hand bool2.
 inline bool2 operator-=( bool2& lhs, const bool32_t scalar );
 
-/// \relates bool2
-/// \brief Returns a copy of the bool2 that has been component-wise multiplied by the corresponding component of the right-hand bool2.
+// Returns a copy of the bool2 that has been component-wise multiplied by the corresponding component of the right-hand bool2.
 inline bool2 operator*( const bool2& lhs, const bool32_t scalar );
 
-/// \relates bool2
-/// \brief Multiplies each component of the bool2 by the corresponding component of the right-hand bool2.
+// Multiplies each component of the bool2 by the corresponding component of the right-hand bool2.
 inline bool2 operator*=( bool2& lhs, const bool32_t scalar );
 
-/// \relates bool2
-/// \brief Returns a copy of the bool2 that has been component-wise divided by the corresponding component of the right-hand bool2.
+// Returns a copy of the bool2 that has been component-wise divided by the corresponding component of the right-hand bool2.
 inline bool2 operator/( const bool2& lhs, const bool32_t scalar );
 
-/// \relates bool2
-/// \brief Divides each component of the bool2 by the corresponding component of the right-hand bool2.
+// Divides each component of the bool2 by the corresponding component of the right-hand bool2.
 inline bool2 operator/=( bool2& lhs, const bool32_t scalar );
 
-/// \relates bool2
-/// \brief Returns a bool2 where each component is true if the component of the left-hand type is less than the corresponding right-hand type component.
+// Returns a bool2 where each component is true if the component of the left-hand type is less than the corresponding right-hand type component.
 inline bool2 operator<( bool2& lhs, const bool2& rhs );
 
-/// \relates bool2
-/// \brief Returns a bool2 where each component is true if the component of the left-hand type is less than or equal to the corresponding right-hand type component.
+// Returns a bool2 where each component is true if the component of the left-hand type is less than or equal to the corresponding right-hand type component.
 inline bool2 operator<=( bool2& lhs, const bool2& rhs );
 
-/// \relates bool2
-/// \brief Returns a bool2 where each component is true if the component of the left-hand type is greater than the corresponding right-hand type component.
+// Returns a bool2 where each component is true if the component of the left-hand type is greater than the corresponding right-hand type component.
 inline bool2 operator>( bool2& lhs, const bool2& rhs );
 
-/// \relates bool2
-/// \brief Returns a bool2 where each component is true if the component of the left-hand type is greater than or equal to the corresponding right-hand type component.
+// Returns a bool2 where each component is true if the component of the left-hand type is greater than or equal to the corresponding right-hand type component.
 inline bool2 operator>=( bool2& lhs, const bool2& rhs );
 
 
@@ -115,52 +103,40 @@ inline bool operator==( const bool3& lhs, const bool3& rhs );
 
 inline bool operator!=( const bool3& lhs, const bool3& rhs );
 
-/// \relates bool3
-/// \brief Returns a copy of the bool3 that has been component-wise added by the corresponding component of the right-hand bool3.
+// Returns a copy of the bool3 that has been component-wise added by the corresponding component of the right-hand bool3.
 inline bool3 operator+( const bool3& lhs, const bool32_t scalar );
 
-/// \relates bool3
-/// \brief Adds each component of the bool3 by the corresponding component of the right-hand bool3.
+// Adds each component of the bool3 by the corresponding component of the right-hand bool3.
 inline bool3 operator+=( bool3& lhs, const bool32_t scalar );
 
-/// \relates bool3
-/// \brief Returns a copy of the bool3 that has been component-wise subtracted by the corresponding component of the right-hand bool3.
+// Returns a copy of the bool3 that has been component-wise subtracted by the corresponding component of the right-hand bool3.
 inline bool3 operator-( const bool3& lhs, const bool32_t scalar );
 
-/// \relates bool3
-/// \brief Subtracts each component of the bool3 by the corresponding component of the right-hand bool3.
+// Subtracts each component of the bool3 by the corresponding component of the right-hand bool3.
 inline bool3 operator-=( bool3& lhs, const bool32_t scalar );
 
-/// \relates bool3
-/// \brief Returns a copy of the bool3 that has been component-wise multiplied by the corresponding component of the right-hand bool3.
+// Returns a copy of the bool3 that has been component-wise multiplied by the corresponding component of the right-hand bool3.
 inline bool3 operator*( const bool3& lhs, const bool32_t scalar );
 
-/// \relates bool3
-/// \brief Multiplies each component of the bool3 by the corresponding component of the right-hand bool3.
+// Multiplies each component of the bool3 by the corresponding component of the right-hand bool3.
 inline bool3 operator*=( bool3& lhs, const bool32_t scalar );
 
-/// \relates bool3
-/// \brief Returns a copy of the bool3 that has been component-wise divided by the corresponding component of the right-hand bool3.
+// Returns a copy of the bool3 that has been component-wise divided by the corresponding component of the right-hand bool3.
 inline bool3 operator/( const bool3& lhs, const bool32_t scalar );
 
-/// \relates bool3
-/// \brief Divides each component of the bool3 by the corresponding component of the right-hand bool3.
+// Divides each component of the bool3 by the corresponding component of the right-hand bool3.
 inline bool3 operator/=( bool3& lhs, const bool32_t scalar );
 
-/// \relates bool3
-/// \brief Returns a bool3 where each component is true if the component of the left-hand type is less than the corresponding right-hand type component.
+// Returns a bool3 where each component is true if the component of the left-hand type is less than the corresponding right-hand type component.
 inline bool3 operator<( bool3& lhs, const bool3& rhs );
 
-/// \relates bool3
-/// \brief Returns a bool3 where each component is true if the component of the left-hand type is less than or equal to the corresponding right-hand type component.
+// Returns a bool3 where each component is true if the component of the left-hand type is less than or equal to the corresponding right-hand type component.
 inline bool3 operator<=( bool3& lhs, const bool3& rhs );
 
-/// \relates bool3
-/// \brief Returns a bool3 where each component is true if the component of the left-hand type is greater than the corresponding right-hand type component.
+// Returns a bool3 where each component is true if the component of the left-hand type is greater than the corresponding right-hand type component.
 inline bool3 operator>( bool3& lhs, const bool3& rhs );
 
-/// \relates bool3
-/// \brief Returns a bool3 where each component is true if the component of the left-hand type is greater than or equal to the corresponding right-hand type component.
+// Returns a bool3 where each component is true if the component of the left-hand type is greater than or equal to the corresponding right-hand type component.
 inline bool3 operator>=( bool3& lhs, const bool3& rhs );
 
 
@@ -169,52 +145,40 @@ inline bool operator==( const bool4& lhs, const bool4& rhs );
 
 inline bool operator!=( const bool4& lhs, const bool4& rhs );
 
-/// \relates bool4
-/// \brief Returns a copy of the bool4 that has been component-wise added by the corresponding component of the right-hand bool4.
+// Returns a copy of the bool4 that has been component-wise added by the corresponding component of the right-hand bool4.
 inline bool4 operator+( const bool4& lhs, const bool32_t scalar );
 
-/// \relates bool4
-/// \brief Adds each component of the bool4 by the corresponding component of the right-hand bool4.
+// Adds each component of the bool4 by the corresponding component of the right-hand bool4.
 inline bool4 operator+=( bool4& lhs, const bool32_t scalar );
 
-/// \relates bool4
-/// \brief Returns a copy of the bool4 that has been component-wise subtracted by the corresponding component of the right-hand bool4.
+// Returns a copy of the bool4 that has been component-wise subtracted by the corresponding component of the right-hand bool4.
 inline bool4 operator-( const bool4& lhs, const bool32_t scalar );
 
-/// \relates bool4
-/// \brief Subtracts each component of the bool4 by the corresponding component of the right-hand bool4.
+// Subtracts each component of the bool4 by the corresponding component of the right-hand bool4.
 inline bool4 operator-=( bool4& lhs, const bool32_t scalar );
 
-/// \relates bool4
-/// \brief Returns a copy of the bool4 that has been component-wise multiplied by the corresponding component of the right-hand bool4.
+// Returns a copy of the bool4 that has been component-wise multiplied by the corresponding component of the right-hand bool4.
 inline bool4 operator*( const bool4& lhs, const bool32_t scalar );
 
-/// \relates bool4
-/// \brief Multiplies each component of the bool4 by the corresponding component of the right-hand bool4.
+// Multiplies each component of the bool4 by the corresponding component of the right-hand bool4.
 inline bool4 operator*=( bool4& lhs, const bool32_t scalar );
 
-/// \relates bool4
-/// \brief Returns a copy of the bool4 that has been component-wise divided by the corresponding component of the right-hand bool4.
+// Returns a copy of the bool4 that has been component-wise divided by the corresponding component of the right-hand bool4.
 inline bool4 operator/( const bool4& lhs, const bool32_t scalar );
 
-/// \relates bool4
-/// \brief Divides each component of the bool4 by the corresponding component of the right-hand bool4.
+// Divides each component of the bool4 by the corresponding component of the right-hand bool4.
 inline bool4 operator/=( bool4& lhs, const bool32_t scalar );
 
-/// \relates bool4
-/// \brief Returns a bool4 where each component is true if the component of the left-hand type is less than the corresponding right-hand type component.
+// Returns a bool4 where each component is true if the component of the left-hand type is less than the corresponding right-hand type component.
 inline bool4 operator<( bool4& lhs, const bool4& rhs );
 
-/// \relates bool4
-/// \brief Returns a bool4 where each component is true if the component of the left-hand type is less than or equal to the corresponding right-hand type component.
+// Returns a bool4 where each component is true if the component of the left-hand type is less than or equal to the corresponding right-hand type component.
 inline bool4 operator<=( bool4& lhs, const bool4& rhs );
 
-/// \relates bool4
-/// \brief Returns a bool4 where each component is true if the component of the left-hand type is greater than the corresponding right-hand type component.
+// Returns a bool4 where each component is true if the component of the left-hand type is greater than the corresponding right-hand type component.
 inline bool4 operator>( bool4& lhs, const bool4& rhs );
 
-/// \relates bool4
-/// \brief Returns a bool4 where each component is true if the component of the left-hand type is greater than or equal to the corresponding right-hand type component.
+// Returns a bool4 where each component is true if the component of the left-hand type is greater than or equal to the corresponding right-hand type component.
 inline bool4 operator>=( bool4& lhs, const bool4& rhs );
 
 
@@ -223,146 +187,111 @@ inline bool operator==( const int2& lhs, const int2& rhs );
 
 inline bool operator!=( const int2& lhs, const int2& rhs );
 
-/// \relates int2
-/// \brief Returns a copy of the int2 that has been component-wise added by the corresponding component of the right-hand int2.
+// Returns a copy of the int2 that has been component-wise added by the corresponding component of the right-hand int2.
 inline int2 operator+( const int2& lhs, const int32_t scalar );
 
-/// \relates int2
-/// \brief Adds each component of the int2 by the corresponding component of the right-hand int2.
+// Adds each component of the int2 by the corresponding component of the right-hand int2.
 inline int2 operator+=( int2& lhs, const int32_t scalar );
 
-/// \relates int2
-/// \brief Returns a copy of the int2 that has been component-wise added by the corresponding component of the right-hand int2.
+// Returns a copy of the int2 that has been component-wise added by the corresponding component of the right-hand int2.
 inline int2 operator+( const int2& lhs, const int2& rhs );
 
-/// \relates int2
-/// \brief Adds each component of the int2 by the corresponding component of the right-hand int2.
+// Adds each component of the int2 by the corresponding component of the right-hand int2.
 inline int2 operator+=( int2& lhs, const int2& rhs );
 
-/// \relates int2
-/// \brief Returns a copy of the int2 that has been component-wise subtracted by the corresponding component of the right-hand int2.
+// Returns a copy of the int2 that has been component-wise subtracted by the corresponding component of the right-hand int2.
 inline int2 operator-( const int2& lhs, const int32_t scalar );
 
-/// \relates int2
-/// \brief Subtracts each component of the int2 by the corresponding component of the right-hand int2.
+// Subtracts each component of the int2 by the corresponding component of the right-hand int2.
 inline int2 operator-=( int2& lhs, const int32_t scalar );
 
-/// \relates int2
-/// \brief Returns a copy of the int2 that has been component-wise subtracted by the corresponding component of the right-hand int2.
+// Returns a copy of the int2 that has been component-wise subtracted by the corresponding component of the right-hand int2.
 inline int2 operator-( const int2& lhs, const int2& rhs );
 
-/// \relates int2
-/// \brief Subtracts each component of the int2 by the corresponding component of the right-hand int2.
+// Subtracts each component of the int2 by the corresponding component of the right-hand int2.
 inline int2 operator-=( int2& lhs, const int2& rhs );
 
-/// \relates int2
-/// \brief Returns a copy of the int2 that has been component-wise multiplied by the corresponding component of the right-hand int2.
+// Returns a copy of the int2 that has been component-wise multiplied by the corresponding component of the right-hand int2.
 inline int2 operator*( const int2& lhs, const int32_t scalar );
 
-/// \relates int2
-/// \brief Multiplies each component of the int2 by the corresponding component of the right-hand int2.
+// Multiplies each component of the int2 by the corresponding component of the right-hand int2.
 inline int2 operator*=( int2& lhs, const int32_t scalar );
 
-/// \relates int2
-/// \brief Returns a copy of the int2 that has been component-wise multiplied by the corresponding component of the right-hand int2.
+// Returns a copy of the int2 that has been component-wise multiplied by the corresponding component of the right-hand int2.
 inline int2 operator*( const int2& lhs, const int2& rhs );
 
-/// \relates int2
-/// \brief Multiplies each component of the int2 by the corresponding component of the right-hand int2.
+// Multiplies each component of the int2 by the corresponding component of the right-hand int2.
 inline int2 operator*=( int2& lhs, const int2& rhs );
 
-/// \relates int2
-/// \brief Returns a copy of the int2 that has been component-wise divided by the corresponding component of the right-hand int2.
+// Returns a copy of the int2 that has been component-wise divided by the corresponding component of the right-hand int2.
 inline int2 operator/( const int2& lhs, const int32_t scalar );
 
-/// \relates int2
-/// \brief Divides each component of the int2 by the corresponding component of the right-hand int2.
+// Divides each component of the int2 by the corresponding component of the right-hand int2.
 inline int2 operator/=( int2& lhs, const int32_t scalar );
 
-/// \relates int2
-/// \brief Returns a copy of the int2 that has been component-wise divided by the corresponding component of the right-hand int2.
+// Returns a copy of the int2 that has been component-wise divided by the corresponding component of the right-hand int2.
 inline int2 operator/( const int2& lhs, const int2& rhs );
 
-/// \relates int2
-/// \brief Divides each component of the int2 by the corresponding component of the right-hand int2.
+// Divides each component of the int2 by the corresponding component of the right-hand int2.
 inline int2 operator/=( int2& lhs, const int2& rhs );
 
 // prefix
-/// \relates int2
-/// \brief Prefix increment operator.  Adds one to each component of the given int2 before evaluation.
+// Prefix increment operator.  Adds one to each component of the given int2 before evaluation.
 inline int2& operator++( int2& lhs );
 
 // postfix
-/// \relates int2
-/// \brief Postfix increment operator.  Adds one to each component of the given int2 after evaluation.
+// Postfix increment operator.  Adds one to each component of the given int2 after evaluation.
 inline int2& operator++( int2& lhs, const int );
 // prefix
-/// \relates int2
-/// \brief Prefix decrement operator.  Subtracts one from each component of the given int2 before evaluation.
+// Prefix decrement operator.  Subtracts one from each component of the given int2 before evaluation.
 inline int2& operator--( int2& lhs );
 
 // postfix
-/// \relates int2
-/// \brief Postfix decrement operator.  Subtracts one from each component of the given int2 after evaluation.
+// Postfix decrement operator.  Subtracts one from each component of the given int2 after evaluation.
 inline int2& operator--( int2& lhs, const int );
-/// \relates int2
-/// \brief Returns a copy of the int2 where each component of the left-hand int2 has been bitwise AND'd against the corresponding component of the right-hand side int2.
+// Returns a copy of the int2 where each component of the left-hand int2 has been bitwise AND'd against the corresponding component of the right-hand side int2.
 inline int2 operator&( const int2& lhs, const int2& rhs );
 
-/// \relates int2
-/// \brief Performs a bitwise AND on the given left-hand int2 against the corresponding component of the given right-hand int2.
+// Performs a bitwise AND on the given left-hand int2 against the corresponding component of the given right-hand int2.
 inline int2 operator&=( int2& lhs, const int2& rhs );
 
-/// \relates int2
-/// \brief Returns a copy of the int2 where each component of the left-hand int2 has been bitwise OR'd against the corresponding component of the right-hand side int2.
+// Returns a copy of the int2 where each component of the left-hand int2 has been bitwise OR'd against the corresponding component of the right-hand side int2.
 inline int2 operator|( const int2& lhs, const int2& rhs );
 
-/// \relates int2
-/// \brief Performs a bitwise OR on the given left-hand int2 against the corresponding component of the given right-hand int2.
+// Performs a bitwise OR on the given left-hand int2 against the corresponding component of the given right-hand int2.
 inline int2 operator|=( int2& lhs, const int2& rhs );
 
-/// \relates int2
-/// \brief Returns a copy of the int2 where each component of the left-hand int2 has been bitwise XOR'd against the corresponding component of the right-hand side int2.
+// Returns a copy of the int2 where each component of the left-hand int2 has been bitwise XOR'd against the corresponding component of the right-hand side int2.
 inline int2 operator^( const int2& lhs, const int2& rhs );
 
-/// \relates int2
-/// \brief Performs a bitwise XOR on the given left-hand int2 against the corresponding component of the given right-hand int2.
+// Performs a bitwise XOR on the given left-hand int2 against the corresponding component of the given right-hand int2.
 inline int2 operator^=( int2& lhs, const int2& rhs );
 
-/// \relates int2
-/// \brief Returns a copy of the int2 where each component of the left-hand int2 has been bitwise left-shifted by the corresponding component of the right-hand side int2.
+// Returns a copy of the int2 where each component of the left-hand int2 has been bitwise left-shifted by the corresponding component of the right-hand side int2.
 inline int2 operator<<( const int2& lhs, const int2& rhs );
 
-/// \relates int2
-/// \brief Performs a left bitshift on the given left-hand int2 by the corresponding component of the given right-hand int2.
+// Performs a left bitshift on the given left-hand int2 by the corresponding component of the given right-hand int2.
 inline int2 operator<<=( int2& lhs, const int2& rhs );
 
-/// \relates int2
-/// \brief Returns a copy of the int2 where each component of the left-hand int2 has been bitwise right-shifted by the corresponding component of the right-hand side int2.
+// Returns a copy of the int2 where each component of the left-hand int2 has been bitwise right-shifted by the corresponding component of the right-hand side int2.
 inline int2 operator>>( const int2& lhs, const int2& rhs );
 
-/// \relates int2
-/// \brief Performs a right bitshift on the given left-hand int2 by the corresponding component of the given right-hand int2.
+// Performs a right bitshift on the given left-hand int2 by the corresponding component of the given right-hand int2.
 inline int2 operator>>=( int2& lhs, const int2& rhs );
 
-/// \relates int2
-/// \brief Performs a unary bitwise operation on all components of the given int2.
+// Performs a unary bitwise operation on all components of the given int2.
 inline int2 operator~( const int2& lhs );
 
-/// \relates int2
-/// \brief Returns a bool2 where each component is true if the component of the left-hand type is less than the corresponding right-hand type component.
+// Returns a bool2 where each component is true if the component of the left-hand type is less than the corresponding right-hand type component.
 inline bool2 operator<( int2& lhs, const int2& rhs );
 
-/// \relates int2
-/// \brief Returns a bool2 where each component is true if the component of the left-hand type is less than or equal to the corresponding right-hand type component.
+// Returns a bool2 where each component is true if the component of the left-hand type is less than or equal to the corresponding right-hand type component.
 inline bool2 operator<=( int2& lhs, const int2& rhs );
 
-/// \relates int2
-/// \brief Returns a bool2 where each component is true if the component of the left-hand type is greater than the corresponding right-hand type component.
+// Returns a bool2 where each component is true if the component of the left-hand type is greater than the corresponding right-hand type component.
 inline bool2 operator>( int2& lhs, const int2& rhs );
 
-/// \relates int2
-/// \brief Returns a bool2 where each component is true if the component of the left-hand type is greater than or equal to the corresponding right-hand type component.
+// Returns a bool2 where each component is true if the component of the left-hand type is greater than or equal to the corresponding right-hand type component.
 inline bool2 operator>=( int2& lhs, const int2& rhs );
 
 
@@ -371,146 +300,111 @@ inline bool operator==( const int3& lhs, const int3& rhs );
 
 inline bool operator!=( const int3& lhs, const int3& rhs );
 
-/// \relates int3
-/// \brief Returns a copy of the int3 that has been component-wise added by the corresponding component of the right-hand int3.
+// Returns a copy of the int3 that has been component-wise added by the corresponding component of the right-hand int3.
 inline int3 operator+( const int3& lhs, const int32_t scalar );
 
-/// \relates int3
-/// \brief Adds each component of the int3 by the corresponding component of the right-hand int3.
+// Adds each component of the int3 by the corresponding component of the right-hand int3.
 inline int3 operator+=( int3& lhs, const int32_t scalar );
 
-/// \relates int3
-/// \brief Returns a copy of the int3 that has been component-wise added by the corresponding component of the right-hand int3.
+// Returns a copy of the int3 that has been component-wise added by the corresponding component of the right-hand int3.
 inline int3 operator+( const int3& lhs, const int3& rhs );
 
-/// \relates int3
-/// \brief Adds each component of the int3 by the corresponding component of the right-hand int3.
+// Adds each component of the int3 by the corresponding component of the right-hand int3.
 inline int3 operator+=( int3& lhs, const int3& rhs );
 
-/// \relates int3
-/// \brief Returns a copy of the int3 that has been component-wise subtracted by the corresponding component of the right-hand int3.
+// Returns a copy of the int3 that has been component-wise subtracted by the corresponding component of the right-hand int3.
 inline int3 operator-( const int3& lhs, const int32_t scalar );
 
-/// \relates int3
-/// \brief Subtracts each component of the int3 by the corresponding component of the right-hand int3.
+// Subtracts each component of the int3 by the corresponding component of the right-hand int3.
 inline int3 operator-=( int3& lhs, const int32_t scalar );
 
-/// \relates int3
-/// \brief Returns a copy of the int3 that has been component-wise subtracted by the corresponding component of the right-hand int3.
+// Returns a copy of the int3 that has been component-wise subtracted by the corresponding component of the right-hand int3.
 inline int3 operator-( const int3& lhs, const int3& rhs );
 
-/// \relates int3
-/// \brief Subtracts each component of the int3 by the corresponding component of the right-hand int3.
+// Subtracts each component of the int3 by the corresponding component of the right-hand int3.
 inline int3 operator-=( int3& lhs, const int3& rhs );
 
-/// \relates int3
-/// \brief Returns a copy of the int3 that has been component-wise multiplied by the corresponding component of the right-hand int3.
+// Returns a copy of the int3 that has been component-wise multiplied by the corresponding component of the right-hand int3.
 inline int3 operator*( const int3& lhs, const int32_t scalar );
 
-/// \relates int3
-/// \brief Multiplies each component of the int3 by the corresponding component of the right-hand int3.
+// Multiplies each component of the int3 by the corresponding component of the right-hand int3.
 inline int3 operator*=( int3& lhs, const int32_t scalar );
 
-/// \relates int3
-/// \brief Returns a copy of the int3 that has been component-wise multiplied by the corresponding component of the right-hand int3.
+// Returns a copy of the int3 that has been component-wise multiplied by the corresponding component of the right-hand int3.
 inline int3 operator*( const int3& lhs, const int3& rhs );
 
-/// \relates int3
-/// \brief Multiplies each component of the int3 by the corresponding component of the right-hand int3.
+// Multiplies each component of the int3 by the corresponding component of the right-hand int3.
 inline int3 operator*=( int3& lhs, const int3& rhs );
 
-/// \relates int3
-/// \brief Returns a copy of the int3 that has been component-wise divided by the corresponding component of the right-hand int3.
+// Returns a copy of the int3 that has been component-wise divided by the corresponding component of the right-hand int3.
 inline int3 operator/( const int3& lhs, const int32_t scalar );
 
-/// \relates int3
-/// \brief Divides each component of the int3 by the corresponding component of the right-hand int3.
+// Divides each component of the int3 by the corresponding component of the right-hand int3.
 inline int3 operator/=( int3& lhs, const int32_t scalar );
 
-/// \relates int3
-/// \brief Returns a copy of the int3 that has been component-wise divided by the corresponding component of the right-hand int3.
+// Returns a copy of the int3 that has been component-wise divided by the corresponding component of the right-hand int3.
 inline int3 operator/( const int3& lhs, const int3& rhs );
 
-/// \relates int3
-/// \brief Divides each component of the int3 by the corresponding component of the right-hand int3.
+// Divides each component of the int3 by the corresponding component of the right-hand int3.
 inline int3 operator/=( int3& lhs, const int3& rhs );
 
 // prefix
-/// \relates int3
-/// \brief Prefix increment operator.  Adds one to each component of the given int3 before evaluation.
+// Prefix increment operator.  Adds one to each component of the given int3 before evaluation.
 inline int3& operator++( int3& lhs );
 
 // postfix
-/// \relates int3
-/// \brief Postfix increment operator.  Adds one to each component of the given int3 after evaluation.
+// Postfix increment operator.  Adds one to each component of the given int3 after evaluation.
 inline int3& operator++( int3& lhs, const int );
 // prefix
-/// \relates int3
-/// \brief Prefix decrement operator.  Subtracts one from each component of the given int3 before evaluation.
+// Prefix decrement operator.  Subtracts one from each component of the given int3 before evaluation.
 inline int3& operator--( int3& lhs );
 
 // postfix
-/// \relates int3
-/// \brief Postfix decrement operator.  Subtracts one from each component of the given int3 after evaluation.
+// Postfix decrement operator.  Subtracts one from each component of the given int3 after evaluation.
 inline int3& operator--( int3& lhs, const int );
-/// \relates int3
-/// \brief Returns a copy of the int3 where each component of the left-hand int3 has been bitwise AND'd against the corresponding component of the right-hand side int3.
+// Returns a copy of the int3 where each component of the left-hand int3 has been bitwise AND'd against the corresponding component of the right-hand side int3.
 inline int3 operator&( const int3& lhs, const int3& rhs );
 
-/// \relates int3
-/// \brief Performs a bitwise AND on the given left-hand int3 against the corresponding component of the given right-hand int3.
+// Performs a bitwise AND on the given left-hand int3 against the corresponding component of the given right-hand int3.
 inline int3 operator&=( int3& lhs, const int3& rhs );
 
-/// \relates int3
-/// \brief Returns a copy of the int3 where each component of the left-hand int3 has been bitwise OR'd against the corresponding component of the right-hand side int3.
+// Returns a copy of the int3 where each component of the left-hand int3 has been bitwise OR'd against the corresponding component of the right-hand side int3.
 inline int3 operator|( const int3& lhs, const int3& rhs );
 
-/// \relates int3
-/// \brief Performs a bitwise OR on the given left-hand int3 against the corresponding component of the given right-hand int3.
+// Performs a bitwise OR on the given left-hand int3 against the corresponding component of the given right-hand int3.
 inline int3 operator|=( int3& lhs, const int3& rhs );
 
-/// \relates int3
-/// \brief Returns a copy of the int3 where each component of the left-hand int3 has been bitwise XOR'd against the corresponding component of the right-hand side int3.
+// Returns a copy of the int3 where each component of the left-hand int3 has been bitwise XOR'd against the corresponding component of the right-hand side int3.
 inline int3 operator^( const int3& lhs, const int3& rhs );
 
-/// \relates int3
-/// \brief Performs a bitwise XOR on the given left-hand int3 against the corresponding component of the given right-hand int3.
+// Performs a bitwise XOR on the given left-hand int3 against the corresponding component of the given right-hand int3.
 inline int3 operator^=( int3& lhs, const int3& rhs );
 
-/// \relates int3
-/// \brief Returns a copy of the int3 where each component of the left-hand int3 has been bitwise left-shifted by the corresponding component of the right-hand side int3.
+// Returns a copy of the int3 where each component of the left-hand int3 has been bitwise left-shifted by the corresponding component of the right-hand side int3.
 inline int3 operator<<( const int3& lhs, const int3& rhs );
 
-/// \relates int3
-/// \brief Performs a left bitshift on the given left-hand int3 by the corresponding component of the given right-hand int3.
+// Performs a left bitshift on the given left-hand int3 by the corresponding component of the given right-hand int3.
 inline int3 operator<<=( int3& lhs, const int3& rhs );
 
-/// \relates int3
-/// \brief Returns a copy of the int3 where each component of the left-hand int3 has been bitwise right-shifted by the corresponding component of the right-hand side int3.
+// Returns a copy of the int3 where each component of the left-hand int3 has been bitwise right-shifted by the corresponding component of the right-hand side int3.
 inline int3 operator>>( const int3& lhs, const int3& rhs );
 
-/// \relates int3
-/// \brief Performs a right bitshift on the given left-hand int3 by the corresponding component of the given right-hand int3.
+// Performs a right bitshift on the given left-hand int3 by the corresponding component of the given right-hand int3.
 inline int3 operator>>=( int3& lhs, const int3& rhs );
 
-/// \relates int3
-/// \brief Performs a unary bitwise operation on all components of the given int3.
+// Performs a unary bitwise operation on all components of the given int3.
 inline int3 operator~( const int3& lhs );
 
-/// \relates int3
-/// \brief Returns a bool3 where each component is true if the component of the left-hand type is less than the corresponding right-hand type component.
+// Returns a bool3 where each component is true if the component of the left-hand type is less than the corresponding right-hand type component.
 inline bool3 operator<( int3& lhs, const int3& rhs );
 
-/// \relates int3
-/// \brief Returns a bool3 where each component is true if the component of the left-hand type is less than or equal to the corresponding right-hand type component.
+// Returns a bool3 where each component is true if the component of the left-hand type is less than or equal to the corresponding right-hand type component.
 inline bool3 operator<=( int3& lhs, const int3& rhs );
 
-/// \relates int3
-/// \brief Returns a bool3 where each component is true if the component of the left-hand type is greater than the corresponding right-hand type component.
+// Returns a bool3 where each component is true if the component of the left-hand type is greater than the corresponding right-hand type component.
 inline bool3 operator>( int3& lhs, const int3& rhs );
 
-/// \relates int3
-/// \brief Returns a bool3 where each component is true if the component of the left-hand type is greater than or equal to the corresponding right-hand type component.
+// Returns a bool3 where each component is true if the component of the left-hand type is greater than or equal to the corresponding right-hand type component.
 inline bool3 operator>=( int3& lhs, const int3& rhs );
 
 
@@ -519,146 +413,111 @@ inline bool operator==( const int4& lhs, const int4& rhs );
 
 inline bool operator!=( const int4& lhs, const int4& rhs );
 
-/// \relates int4
-/// \brief Returns a copy of the int4 that has been component-wise added by the corresponding component of the right-hand int4.
+// Returns a copy of the int4 that has been component-wise added by the corresponding component of the right-hand int4.
 inline int4 operator+( const int4& lhs, const int32_t scalar );
 
-/// \relates int4
-/// \brief Adds each component of the int4 by the corresponding component of the right-hand int4.
+// Adds each component of the int4 by the corresponding component of the right-hand int4.
 inline int4 operator+=( int4& lhs, const int32_t scalar );
 
-/// \relates int4
-/// \brief Returns a copy of the int4 that has been component-wise added by the corresponding component of the right-hand int4.
+// Returns a copy of the int4 that has been component-wise added by the corresponding component of the right-hand int4.
 inline int4 operator+( const int4& lhs, const int4& rhs );
 
-/// \relates int4
-/// \brief Adds each component of the int4 by the corresponding component of the right-hand int4.
+// Adds each component of the int4 by the corresponding component of the right-hand int4.
 inline int4 operator+=( int4& lhs, const int4& rhs );
 
-/// \relates int4
-/// \brief Returns a copy of the int4 that has been component-wise subtracted by the corresponding component of the right-hand int4.
+// Returns a copy of the int4 that has been component-wise subtracted by the corresponding component of the right-hand int4.
 inline int4 operator-( const int4& lhs, const int32_t scalar );
 
-/// \relates int4
-/// \brief Subtracts each component of the int4 by the corresponding component of the right-hand int4.
+// Subtracts each component of the int4 by the corresponding component of the right-hand int4.
 inline int4 operator-=( int4& lhs, const int32_t scalar );
 
-/// \relates int4
-/// \brief Returns a copy of the int4 that has been component-wise subtracted by the corresponding component of the right-hand int4.
+// Returns a copy of the int4 that has been component-wise subtracted by the corresponding component of the right-hand int4.
 inline int4 operator-( const int4& lhs, const int4& rhs );
 
-/// \relates int4
-/// \brief Subtracts each component of the int4 by the corresponding component of the right-hand int4.
+// Subtracts each component of the int4 by the corresponding component of the right-hand int4.
 inline int4 operator-=( int4& lhs, const int4& rhs );
 
-/// \relates int4
-/// \brief Returns a copy of the int4 that has been component-wise multiplied by the corresponding component of the right-hand int4.
+// Returns a copy of the int4 that has been component-wise multiplied by the corresponding component of the right-hand int4.
 inline int4 operator*( const int4& lhs, const int32_t scalar );
 
-/// \relates int4
-/// \brief Multiplies each component of the int4 by the corresponding component of the right-hand int4.
+// Multiplies each component of the int4 by the corresponding component of the right-hand int4.
 inline int4 operator*=( int4& lhs, const int32_t scalar );
 
-/// \relates int4
-/// \brief Returns a copy of the int4 that has been component-wise multiplied by the corresponding component of the right-hand int4.
+// Returns a copy of the int4 that has been component-wise multiplied by the corresponding component of the right-hand int4.
 inline int4 operator*( const int4& lhs, const int4& rhs );
 
-/// \relates int4
-/// \brief Multiplies each component of the int4 by the corresponding component of the right-hand int4.
+// Multiplies each component of the int4 by the corresponding component of the right-hand int4.
 inline int4 operator*=( int4& lhs, const int4& rhs );
 
-/// \relates int4
-/// \brief Returns a copy of the int4 that has been component-wise divided by the corresponding component of the right-hand int4.
+// Returns a copy of the int4 that has been component-wise divided by the corresponding component of the right-hand int4.
 inline int4 operator/( const int4& lhs, const int32_t scalar );
 
-/// \relates int4
-/// \brief Divides each component of the int4 by the corresponding component of the right-hand int4.
+// Divides each component of the int4 by the corresponding component of the right-hand int4.
 inline int4 operator/=( int4& lhs, const int32_t scalar );
 
-/// \relates int4
-/// \brief Returns a copy of the int4 that has been component-wise divided by the corresponding component of the right-hand int4.
+// Returns a copy of the int4 that has been component-wise divided by the corresponding component of the right-hand int4.
 inline int4 operator/( const int4& lhs, const int4& rhs );
 
-/// \relates int4
-/// \brief Divides each component of the int4 by the corresponding component of the right-hand int4.
+// Divides each component of the int4 by the corresponding component of the right-hand int4.
 inline int4 operator/=( int4& lhs, const int4& rhs );
 
 // prefix
-/// \relates int4
-/// \brief Prefix increment operator.  Adds one to each component of the given int4 before evaluation.
+// Prefix increment operator.  Adds one to each component of the given int4 before evaluation.
 inline int4& operator++( int4& lhs );
 
 // postfix
-/// \relates int4
-/// \brief Postfix increment operator.  Adds one to each component of the given int4 after evaluation.
+// Postfix increment operator.  Adds one to each component of the given int4 after evaluation.
 inline int4& operator++( int4& lhs, const int );
 // prefix
-/// \relates int4
-/// \brief Prefix decrement operator.  Subtracts one from each component of the given int4 before evaluation.
+// Prefix decrement operator.  Subtracts one from each component of the given int4 before evaluation.
 inline int4& operator--( int4& lhs );
 
 // postfix
-/// \relates int4
-/// \brief Postfix decrement operator.  Subtracts one from each component of the given int4 after evaluation.
+// Postfix decrement operator.  Subtracts one from each component of the given int4 after evaluation.
 inline int4& operator--( int4& lhs, const int );
-/// \relates int4
-/// \brief Returns a copy of the int4 where each component of the left-hand int4 has been bitwise AND'd against the corresponding component of the right-hand side int4.
+// Returns a copy of the int4 where each component of the left-hand int4 has been bitwise AND'd against the corresponding component of the right-hand side int4.
 inline int4 operator&( const int4& lhs, const int4& rhs );
 
-/// \relates int4
-/// \brief Performs a bitwise AND on the given left-hand int4 against the corresponding component of the given right-hand int4.
+// Performs a bitwise AND on the given left-hand int4 against the corresponding component of the given right-hand int4.
 inline int4 operator&=( int4& lhs, const int4& rhs );
 
-/// \relates int4
-/// \brief Returns a copy of the int4 where each component of the left-hand int4 has been bitwise OR'd against the corresponding component of the right-hand side int4.
+// Returns a copy of the int4 where each component of the left-hand int4 has been bitwise OR'd against the corresponding component of the right-hand side int4.
 inline int4 operator|( const int4& lhs, const int4& rhs );
 
-/// \relates int4
-/// \brief Performs a bitwise OR on the given left-hand int4 against the corresponding component of the given right-hand int4.
+// Performs a bitwise OR on the given left-hand int4 against the corresponding component of the given right-hand int4.
 inline int4 operator|=( int4& lhs, const int4& rhs );
 
-/// \relates int4
-/// \brief Returns a copy of the int4 where each component of the left-hand int4 has been bitwise XOR'd against the corresponding component of the right-hand side int4.
+// Returns a copy of the int4 where each component of the left-hand int4 has been bitwise XOR'd against the corresponding component of the right-hand side int4.
 inline int4 operator^( const int4& lhs, const int4& rhs );
 
-/// \relates int4
-/// \brief Performs a bitwise XOR on the given left-hand int4 against the corresponding component of the given right-hand int4.
+// Performs a bitwise XOR on the given left-hand int4 against the corresponding component of the given right-hand int4.
 inline int4 operator^=( int4& lhs, const int4& rhs );
 
-/// \relates int4
-/// \brief Returns a copy of the int4 where each component of the left-hand int4 has been bitwise left-shifted by the corresponding component of the right-hand side int4.
+// Returns a copy of the int4 where each component of the left-hand int4 has been bitwise left-shifted by the corresponding component of the right-hand side int4.
 inline int4 operator<<( const int4& lhs, const int4& rhs );
 
-/// \relates int4
-/// \brief Performs a left bitshift on the given left-hand int4 by the corresponding component of the given right-hand int4.
+// Performs a left bitshift on the given left-hand int4 by the corresponding component of the given right-hand int4.
 inline int4 operator<<=( int4& lhs, const int4& rhs );
 
-/// \relates int4
-/// \brief Returns a copy of the int4 where each component of the left-hand int4 has been bitwise right-shifted by the corresponding component of the right-hand side int4.
+// Returns a copy of the int4 where each component of the left-hand int4 has been bitwise right-shifted by the corresponding component of the right-hand side int4.
 inline int4 operator>>( const int4& lhs, const int4& rhs );
 
-/// \relates int4
-/// \brief Performs a right bitshift on the given left-hand int4 by the corresponding component of the given right-hand int4.
+// Performs a right bitshift on the given left-hand int4 by the corresponding component of the given right-hand int4.
 inline int4 operator>>=( int4& lhs, const int4& rhs );
 
-/// \relates int4
-/// \brief Performs a unary bitwise operation on all components of the given int4.
+// Performs a unary bitwise operation on all components of the given int4.
 inline int4 operator~( const int4& lhs );
 
-/// \relates int4
-/// \brief Returns a bool4 where each component is true if the component of the left-hand type is less than the corresponding right-hand type component.
+// Returns a bool4 where each component is true if the component of the left-hand type is less than the corresponding right-hand type component.
 inline bool4 operator<( int4& lhs, const int4& rhs );
 
-/// \relates int4
-/// \brief Returns a bool4 where each component is true if the component of the left-hand type is less than or equal to the corresponding right-hand type component.
+// Returns a bool4 where each component is true if the component of the left-hand type is less than or equal to the corresponding right-hand type component.
 inline bool4 operator<=( int4& lhs, const int4& rhs );
 
-/// \relates int4
-/// \brief Returns a bool4 where each component is true if the component of the left-hand type is greater than the corresponding right-hand type component.
+// Returns a bool4 where each component is true if the component of the left-hand type is greater than the corresponding right-hand type component.
 inline bool4 operator>( int4& lhs, const int4& rhs );
 
-/// \relates int4
-/// \brief Returns a bool4 where each component is true if the component of the left-hand type is greater than or equal to the corresponding right-hand type component.
+// Returns a bool4 where each component is true if the component of the left-hand type is greater than or equal to the corresponding right-hand type component.
 inline bool4 operator>=( int4& lhs, const int4& rhs );
 
 
@@ -667,146 +526,111 @@ inline bool operator==( const uint2& lhs, const uint2& rhs );
 
 inline bool operator!=( const uint2& lhs, const uint2& rhs );
 
-/// \relates uint2
-/// \brief Returns a copy of the uint2 that has been component-wise added by the corresponding component of the right-hand uint2.
+// Returns a copy of the uint2 that has been component-wise added by the corresponding component of the right-hand uint2.
 inline uint2 operator+( const uint2& lhs, const uint32_t scalar );
 
-/// \relates uint2
-/// \brief Adds each component of the uint2 by the corresponding component of the right-hand uint2.
+// Adds each component of the uint2 by the corresponding component of the right-hand uint2.
 inline uint2 operator+=( uint2& lhs, const uint32_t scalar );
 
-/// \relates uint2
-/// \brief Returns a copy of the uint2 that has been component-wise added by the corresponding component of the right-hand uint2.
+// Returns a copy of the uint2 that has been component-wise added by the corresponding component of the right-hand uint2.
 inline uint2 operator+( const uint2& lhs, const uint2& rhs );
 
-/// \relates uint2
-/// \brief Adds each component of the uint2 by the corresponding component of the right-hand uint2.
+// Adds each component of the uint2 by the corresponding component of the right-hand uint2.
 inline uint2 operator+=( uint2& lhs, const uint2& rhs );
 
-/// \relates uint2
-/// \brief Returns a copy of the uint2 that has been component-wise subtracted by the corresponding component of the right-hand uint2.
+// Returns a copy of the uint2 that has been component-wise subtracted by the corresponding component of the right-hand uint2.
 inline uint2 operator-( const uint2& lhs, const uint32_t scalar );
 
-/// \relates uint2
-/// \brief Subtracts each component of the uint2 by the corresponding component of the right-hand uint2.
+// Subtracts each component of the uint2 by the corresponding component of the right-hand uint2.
 inline uint2 operator-=( uint2& lhs, const uint32_t scalar );
 
-/// \relates uint2
-/// \brief Returns a copy of the uint2 that has been component-wise subtracted by the corresponding component of the right-hand uint2.
+// Returns a copy of the uint2 that has been component-wise subtracted by the corresponding component of the right-hand uint2.
 inline uint2 operator-( const uint2& lhs, const uint2& rhs );
 
-/// \relates uint2
-/// \brief Subtracts each component of the uint2 by the corresponding component of the right-hand uint2.
+// Subtracts each component of the uint2 by the corresponding component of the right-hand uint2.
 inline uint2 operator-=( uint2& lhs, const uint2& rhs );
 
-/// \relates uint2
-/// \brief Returns a copy of the uint2 that has been component-wise multiplied by the corresponding component of the right-hand uint2.
+// Returns a copy of the uint2 that has been component-wise multiplied by the corresponding component of the right-hand uint2.
 inline uint2 operator*( const uint2& lhs, const uint32_t scalar );
 
-/// \relates uint2
-/// \brief Multiplies each component of the uint2 by the corresponding component of the right-hand uint2.
+// Multiplies each component of the uint2 by the corresponding component of the right-hand uint2.
 inline uint2 operator*=( uint2& lhs, const uint32_t scalar );
 
-/// \relates uint2
-/// \brief Returns a copy of the uint2 that has been component-wise multiplied by the corresponding component of the right-hand uint2.
+// Returns a copy of the uint2 that has been component-wise multiplied by the corresponding component of the right-hand uint2.
 inline uint2 operator*( const uint2& lhs, const uint2& rhs );
 
-/// \relates uint2
-/// \brief Multiplies each component of the uint2 by the corresponding component of the right-hand uint2.
+// Multiplies each component of the uint2 by the corresponding component of the right-hand uint2.
 inline uint2 operator*=( uint2& lhs, const uint2& rhs );
 
-/// \relates uint2
-/// \brief Returns a copy of the uint2 that has been component-wise divided by the corresponding component of the right-hand uint2.
+// Returns a copy of the uint2 that has been component-wise divided by the corresponding component of the right-hand uint2.
 inline uint2 operator/( const uint2& lhs, const uint32_t scalar );
 
-/// \relates uint2
-/// \brief Divides each component of the uint2 by the corresponding component of the right-hand uint2.
+// Divides each component of the uint2 by the corresponding component of the right-hand uint2.
 inline uint2 operator/=( uint2& lhs, const uint32_t scalar );
 
-/// \relates uint2
-/// \brief Returns a copy of the uint2 that has been component-wise divided by the corresponding component of the right-hand uint2.
+// Returns a copy of the uint2 that has been component-wise divided by the corresponding component of the right-hand uint2.
 inline uint2 operator/( const uint2& lhs, const uint2& rhs );
 
-/// \relates uint2
-/// \brief Divides each component of the uint2 by the corresponding component of the right-hand uint2.
+// Divides each component of the uint2 by the corresponding component of the right-hand uint2.
 inline uint2 operator/=( uint2& lhs, const uint2& rhs );
 
 // prefix
-/// \relates uint2
-/// \brief Prefix increment operator.  Adds one to each component of the given uint2 before evaluation.
+// Prefix increment operator.  Adds one to each component of the given uint2 before evaluation.
 inline uint2& operator++( uint2& lhs );
 
 // postfix
-/// \relates uint2
-/// \brief Postfix increment operator.  Adds one to each component of the given uint2 after evaluation.
+// Postfix increment operator.  Adds one to each component of the given uint2 after evaluation.
 inline uint2& operator++( uint2& lhs, const int );
 // prefix
-/// \relates uint2
-/// \brief Prefix decrement operator.  Subtracts one from each component of the given uint2 before evaluation.
+// Prefix decrement operator.  Subtracts one from each component of the given uint2 before evaluation.
 inline uint2& operator--( uint2& lhs );
 
 // postfix
-/// \relates uint2
-/// \brief Postfix decrement operator.  Subtracts one from each component of the given uint2 after evaluation.
+// Postfix decrement operator.  Subtracts one from each component of the given uint2 after evaluation.
 inline uint2& operator--( uint2& lhs, const int );
-/// \relates uint2
-/// \brief Returns a copy of the uint2 where each component of the left-hand uint2 has been bitwise AND'd against the corresponding component of the right-hand side uint2.
+// Returns a copy of the uint2 where each component of the left-hand uint2 has been bitwise AND'd against the corresponding component of the right-hand side uint2.
 inline uint2 operator&( const uint2& lhs, const uint2& rhs );
 
-/// \relates uint2
-/// \brief Performs a bitwise AND on the given left-hand uint2 against the corresponding component of the given right-hand uint2.
+// Performs a bitwise AND on the given left-hand uint2 against the corresponding component of the given right-hand uint2.
 inline uint2 operator&=( uint2& lhs, const uint2& rhs );
 
-/// \relates uint2
-/// \brief Returns a copy of the uint2 where each component of the left-hand uint2 has been bitwise OR'd against the corresponding component of the right-hand side uint2.
+// Returns a copy of the uint2 where each component of the left-hand uint2 has been bitwise OR'd against the corresponding component of the right-hand side uint2.
 inline uint2 operator|( const uint2& lhs, const uint2& rhs );
 
-/// \relates uint2
-/// \brief Performs a bitwise OR on the given left-hand uint2 against the corresponding component of the given right-hand uint2.
+// Performs a bitwise OR on the given left-hand uint2 against the corresponding component of the given right-hand uint2.
 inline uint2 operator|=( uint2& lhs, const uint2& rhs );
 
-/// \relates uint2
-/// \brief Returns a copy of the uint2 where each component of the left-hand uint2 has been bitwise XOR'd against the corresponding component of the right-hand side uint2.
+// Returns a copy of the uint2 where each component of the left-hand uint2 has been bitwise XOR'd against the corresponding component of the right-hand side uint2.
 inline uint2 operator^( const uint2& lhs, const uint2& rhs );
 
-/// \relates uint2
-/// \brief Performs a bitwise XOR on the given left-hand uint2 against the corresponding component of the given right-hand uint2.
+// Performs a bitwise XOR on the given left-hand uint2 against the corresponding component of the given right-hand uint2.
 inline uint2 operator^=( uint2& lhs, const uint2& rhs );
 
-/// \relates uint2
-/// \brief Returns a copy of the uint2 where each component of the left-hand uint2 has been bitwise left-shifted by the corresponding component of the right-hand side uint2.
+// Returns a copy of the uint2 where each component of the left-hand uint2 has been bitwise left-shifted by the corresponding component of the right-hand side uint2.
 inline uint2 operator<<( const uint2& lhs, const uint2& rhs );
 
-/// \relates uint2
-/// \brief Performs a left bitshift on the given left-hand uint2 by the corresponding component of the given right-hand uint2.
+// Performs a left bitshift on the given left-hand uint2 by the corresponding component of the given right-hand uint2.
 inline uint2 operator<<=( uint2& lhs, const uint2& rhs );
 
-/// \relates uint2
-/// \brief Returns a copy of the uint2 where each component of the left-hand uint2 has been bitwise right-shifted by the corresponding component of the right-hand side uint2.
+// Returns a copy of the uint2 where each component of the left-hand uint2 has been bitwise right-shifted by the corresponding component of the right-hand side uint2.
 inline uint2 operator>>( const uint2& lhs, const uint2& rhs );
 
-/// \relates uint2
-/// \brief Performs a right bitshift on the given left-hand uint2 by the corresponding component of the given right-hand uint2.
+// Performs a right bitshift on the given left-hand uint2 by the corresponding component of the given right-hand uint2.
 inline uint2 operator>>=( uint2& lhs, const uint2& rhs );
 
-/// \relates uint2
-/// \brief Performs a unary bitwise operation on all components of the given uint2.
+// Performs a unary bitwise operation on all components of the given uint2.
 inline uint2 operator~( const uint2& lhs );
 
-/// \relates uint2
-/// \brief Returns a bool2 where each component is true if the component of the left-hand type is less than the corresponding right-hand type component.
+// Returns a bool2 where each component is true if the component of the left-hand type is less than the corresponding right-hand type component.
 inline bool2 operator<( uint2& lhs, const uint2& rhs );
 
-/// \relates uint2
-/// \brief Returns a bool2 where each component is true if the component of the left-hand type is less than or equal to the corresponding right-hand type component.
+// Returns a bool2 where each component is true if the component of the left-hand type is less than or equal to the corresponding right-hand type component.
 inline bool2 operator<=( uint2& lhs, const uint2& rhs );
 
-/// \relates uint2
-/// \brief Returns a bool2 where each component is true if the component of the left-hand type is greater than the corresponding right-hand type component.
+// Returns a bool2 where each component is true if the component of the left-hand type is greater than the corresponding right-hand type component.
 inline bool2 operator>( uint2& lhs, const uint2& rhs );
 
-/// \relates uint2
-/// \brief Returns a bool2 where each component is true if the component of the left-hand type is greater than or equal to the corresponding right-hand type component.
+// Returns a bool2 where each component is true if the component of the left-hand type is greater than or equal to the corresponding right-hand type component.
 inline bool2 operator>=( uint2& lhs, const uint2& rhs );
 
 
@@ -815,146 +639,111 @@ inline bool operator==( const uint3& lhs, const uint3& rhs );
 
 inline bool operator!=( const uint3& lhs, const uint3& rhs );
 
-/// \relates uint3
-/// \brief Returns a copy of the uint3 that has been component-wise added by the corresponding component of the right-hand uint3.
+// Returns a copy of the uint3 that has been component-wise added by the corresponding component of the right-hand uint3.
 inline uint3 operator+( const uint3& lhs, const uint32_t scalar );
 
-/// \relates uint3
-/// \brief Adds each component of the uint3 by the corresponding component of the right-hand uint3.
+// Adds each component of the uint3 by the corresponding component of the right-hand uint3.
 inline uint3 operator+=( uint3& lhs, const uint32_t scalar );
 
-/// \relates uint3
-/// \brief Returns a copy of the uint3 that has been component-wise added by the corresponding component of the right-hand uint3.
+// Returns a copy of the uint3 that has been component-wise added by the corresponding component of the right-hand uint3.
 inline uint3 operator+( const uint3& lhs, const uint3& rhs );
 
-/// \relates uint3
-/// \brief Adds each component of the uint3 by the corresponding component of the right-hand uint3.
+// Adds each component of the uint3 by the corresponding component of the right-hand uint3.
 inline uint3 operator+=( uint3& lhs, const uint3& rhs );
 
-/// \relates uint3
-/// \brief Returns a copy of the uint3 that has been component-wise subtracted by the corresponding component of the right-hand uint3.
+// Returns a copy of the uint3 that has been component-wise subtracted by the corresponding component of the right-hand uint3.
 inline uint3 operator-( const uint3& lhs, const uint32_t scalar );
 
-/// \relates uint3
-/// \brief Subtracts each component of the uint3 by the corresponding component of the right-hand uint3.
+// Subtracts each component of the uint3 by the corresponding component of the right-hand uint3.
 inline uint3 operator-=( uint3& lhs, const uint32_t scalar );
 
-/// \relates uint3
-/// \brief Returns a copy of the uint3 that has been component-wise subtracted by the corresponding component of the right-hand uint3.
+// Returns a copy of the uint3 that has been component-wise subtracted by the corresponding component of the right-hand uint3.
 inline uint3 operator-( const uint3& lhs, const uint3& rhs );
 
-/// \relates uint3
-/// \brief Subtracts each component of the uint3 by the corresponding component of the right-hand uint3.
+// Subtracts each component of the uint3 by the corresponding component of the right-hand uint3.
 inline uint3 operator-=( uint3& lhs, const uint3& rhs );
 
-/// \relates uint3
-/// \brief Returns a copy of the uint3 that has been component-wise multiplied by the corresponding component of the right-hand uint3.
+// Returns a copy of the uint3 that has been component-wise multiplied by the corresponding component of the right-hand uint3.
 inline uint3 operator*( const uint3& lhs, const uint32_t scalar );
 
-/// \relates uint3
-/// \brief Multiplies each component of the uint3 by the corresponding component of the right-hand uint3.
+// Multiplies each component of the uint3 by the corresponding component of the right-hand uint3.
 inline uint3 operator*=( uint3& lhs, const uint32_t scalar );
 
-/// \relates uint3
-/// \brief Returns a copy of the uint3 that has been component-wise multiplied by the corresponding component of the right-hand uint3.
+// Returns a copy of the uint3 that has been component-wise multiplied by the corresponding component of the right-hand uint3.
 inline uint3 operator*( const uint3& lhs, const uint3& rhs );
 
-/// \relates uint3
-/// \brief Multiplies each component of the uint3 by the corresponding component of the right-hand uint3.
+// Multiplies each component of the uint3 by the corresponding component of the right-hand uint3.
 inline uint3 operator*=( uint3& lhs, const uint3& rhs );
 
-/// \relates uint3
-/// \brief Returns a copy of the uint3 that has been component-wise divided by the corresponding component of the right-hand uint3.
+// Returns a copy of the uint3 that has been component-wise divided by the corresponding component of the right-hand uint3.
 inline uint3 operator/( const uint3& lhs, const uint32_t scalar );
 
-/// \relates uint3
-/// \brief Divides each component of the uint3 by the corresponding component of the right-hand uint3.
+// Divides each component of the uint3 by the corresponding component of the right-hand uint3.
 inline uint3 operator/=( uint3& lhs, const uint32_t scalar );
 
-/// \relates uint3
-/// \brief Returns a copy of the uint3 that has been component-wise divided by the corresponding component of the right-hand uint3.
+// Returns a copy of the uint3 that has been component-wise divided by the corresponding component of the right-hand uint3.
 inline uint3 operator/( const uint3& lhs, const uint3& rhs );
 
-/// \relates uint3
-/// \brief Divides each component of the uint3 by the corresponding component of the right-hand uint3.
+// Divides each component of the uint3 by the corresponding component of the right-hand uint3.
 inline uint3 operator/=( uint3& lhs, const uint3& rhs );
 
 // prefix
-/// \relates uint3
-/// \brief Prefix increment operator.  Adds one to each component of the given uint3 before evaluation.
+// Prefix increment operator.  Adds one to each component of the given uint3 before evaluation.
 inline uint3& operator++( uint3& lhs );
 
 // postfix
-/// \relates uint3
-/// \brief Postfix increment operator.  Adds one to each component of the given uint3 after evaluation.
+// Postfix increment operator.  Adds one to each component of the given uint3 after evaluation.
 inline uint3& operator++( uint3& lhs, const int );
 // prefix
-/// \relates uint3
-/// \brief Prefix decrement operator.  Subtracts one from each component of the given uint3 before evaluation.
+// Prefix decrement operator.  Subtracts one from each component of the given uint3 before evaluation.
 inline uint3& operator--( uint3& lhs );
 
 // postfix
-/// \relates uint3
-/// \brief Postfix decrement operator.  Subtracts one from each component of the given uint3 after evaluation.
+// Postfix decrement operator.  Subtracts one from each component of the given uint3 after evaluation.
 inline uint3& operator--( uint3& lhs, const int );
-/// \relates uint3
-/// \brief Returns a copy of the uint3 where each component of the left-hand uint3 has been bitwise AND'd against the corresponding component of the right-hand side uint3.
+// Returns a copy of the uint3 where each component of the left-hand uint3 has been bitwise AND'd against the corresponding component of the right-hand side uint3.
 inline uint3 operator&( const uint3& lhs, const uint3& rhs );
 
-/// \relates uint3
-/// \brief Performs a bitwise AND on the given left-hand uint3 against the corresponding component of the given right-hand uint3.
+// Performs a bitwise AND on the given left-hand uint3 against the corresponding component of the given right-hand uint3.
 inline uint3 operator&=( uint3& lhs, const uint3& rhs );
 
-/// \relates uint3
-/// \brief Returns a copy of the uint3 where each component of the left-hand uint3 has been bitwise OR'd against the corresponding component of the right-hand side uint3.
+// Returns a copy of the uint3 where each component of the left-hand uint3 has been bitwise OR'd against the corresponding component of the right-hand side uint3.
 inline uint3 operator|( const uint3& lhs, const uint3& rhs );
 
-/// \relates uint3
-/// \brief Performs a bitwise OR on the given left-hand uint3 against the corresponding component of the given right-hand uint3.
+// Performs a bitwise OR on the given left-hand uint3 against the corresponding component of the given right-hand uint3.
 inline uint3 operator|=( uint3& lhs, const uint3& rhs );
 
-/// \relates uint3
-/// \brief Returns a copy of the uint3 where each component of the left-hand uint3 has been bitwise XOR'd against the corresponding component of the right-hand side uint3.
+// Returns a copy of the uint3 where each component of the left-hand uint3 has been bitwise XOR'd against the corresponding component of the right-hand side uint3.
 inline uint3 operator^( const uint3& lhs, const uint3& rhs );
 
-/// \relates uint3
-/// \brief Performs a bitwise XOR on the given left-hand uint3 against the corresponding component of the given right-hand uint3.
+// Performs a bitwise XOR on the given left-hand uint3 against the corresponding component of the given right-hand uint3.
 inline uint3 operator^=( uint3& lhs, const uint3& rhs );
 
-/// \relates uint3
-/// \brief Returns a copy of the uint3 where each component of the left-hand uint3 has been bitwise left-shifted by the corresponding component of the right-hand side uint3.
+// Returns a copy of the uint3 where each component of the left-hand uint3 has been bitwise left-shifted by the corresponding component of the right-hand side uint3.
 inline uint3 operator<<( const uint3& lhs, const uint3& rhs );
 
-/// \relates uint3
-/// \brief Performs a left bitshift on the given left-hand uint3 by the corresponding component of the given right-hand uint3.
+// Performs a left bitshift on the given left-hand uint3 by the corresponding component of the given right-hand uint3.
 inline uint3 operator<<=( uint3& lhs, const uint3& rhs );
 
-/// \relates uint3
-/// \brief Returns a copy of the uint3 where each component of the left-hand uint3 has been bitwise right-shifted by the corresponding component of the right-hand side uint3.
+// Returns a copy of the uint3 where each component of the left-hand uint3 has been bitwise right-shifted by the corresponding component of the right-hand side uint3.
 inline uint3 operator>>( const uint3& lhs, const uint3& rhs );
 
-/// \relates uint3
-/// \brief Performs a right bitshift on the given left-hand uint3 by the corresponding component of the given right-hand uint3.
+// Performs a right bitshift on the given left-hand uint3 by the corresponding component of the given right-hand uint3.
 inline uint3 operator>>=( uint3& lhs, const uint3& rhs );
 
-/// \relates uint3
-/// \brief Performs a unary bitwise operation on all components of the given uint3.
+// Performs a unary bitwise operation on all components of the given uint3.
 inline uint3 operator~( const uint3& lhs );
 
-/// \relates uint3
-/// \brief Returns a bool3 where each component is true if the component of the left-hand type is less than the corresponding right-hand type component.
+// Returns a bool3 where each component is true if the component of the left-hand type is less than the corresponding right-hand type component.
 inline bool3 operator<( uint3& lhs, const uint3& rhs );
 
-/// \relates uint3
-/// \brief Returns a bool3 where each component is true if the component of the left-hand type is less than or equal to the corresponding right-hand type component.
+// Returns a bool3 where each component is true if the component of the left-hand type is less than or equal to the corresponding right-hand type component.
 inline bool3 operator<=( uint3& lhs, const uint3& rhs );
 
-/// \relates uint3
-/// \brief Returns a bool3 where each component is true if the component of the left-hand type is greater than the corresponding right-hand type component.
+// Returns a bool3 where each component is true if the component of the left-hand type is greater than the corresponding right-hand type component.
 inline bool3 operator>( uint3& lhs, const uint3& rhs );
 
-/// \relates uint3
-/// \brief Returns a bool3 where each component is true if the component of the left-hand type is greater than or equal to the corresponding right-hand type component.
+// Returns a bool3 where each component is true if the component of the left-hand type is greater than or equal to the corresponding right-hand type component.
 inline bool3 operator>=( uint3& lhs, const uint3& rhs );
 
 
@@ -963,146 +752,111 @@ inline bool operator==( const uint4& lhs, const uint4& rhs );
 
 inline bool operator!=( const uint4& lhs, const uint4& rhs );
 
-/// \relates uint4
-/// \brief Returns a copy of the uint4 that has been component-wise added by the corresponding component of the right-hand uint4.
+// Returns a copy of the uint4 that has been component-wise added by the corresponding component of the right-hand uint4.
 inline uint4 operator+( const uint4& lhs, const uint32_t scalar );
 
-/// \relates uint4
-/// \brief Adds each component of the uint4 by the corresponding component of the right-hand uint4.
+// Adds each component of the uint4 by the corresponding component of the right-hand uint4.
 inline uint4 operator+=( uint4& lhs, const uint32_t scalar );
 
-/// \relates uint4
-/// \brief Returns a copy of the uint4 that has been component-wise added by the corresponding component of the right-hand uint4.
+// Returns a copy of the uint4 that has been component-wise added by the corresponding component of the right-hand uint4.
 inline uint4 operator+( const uint4& lhs, const uint4& rhs );
 
-/// \relates uint4
-/// \brief Adds each component of the uint4 by the corresponding component of the right-hand uint4.
+// Adds each component of the uint4 by the corresponding component of the right-hand uint4.
 inline uint4 operator+=( uint4& lhs, const uint4& rhs );
 
-/// \relates uint4
-/// \brief Returns a copy of the uint4 that has been component-wise subtracted by the corresponding component of the right-hand uint4.
+// Returns a copy of the uint4 that has been component-wise subtracted by the corresponding component of the right-hand uint4.
 inline uint4 operator-( const uint4& lhs, const uint32_t scalar );
 
-/// \relates uint4
-/// \brief Subtracts each component of the uint4 by the corresponding component of the right-hand uint4.
+// Subtracts each component of the uint4 by the corresponding component of the right-hand uint4.
 inline uint4 operator-=( uint4& lhs, const uint32_t scalar );
 
-/// \relates uint4
-/// \brief Returns a copy of the uint4 that has been component-wise subtracted by the corresponding component of the right-hand uint4.
+// Returns a copy of the uint4 that has been component-wise subtracted by the corresponding component of the right-hand uint4.
 inline uint4 operator-( const uint4& lhs, const uint4& rhs );
 
-/// \relates uint4
-/// \brief Subtracts each component of the uint4 by the corresponding component of the right-hand uint4.
+// Subtracts each component of the uint4 by the corresponding component of the right-hand uint4.
 inline uint4 operator-=( uint4& lhs, const uint4& rhs );
 
-/// \relates uint4
-/// \brief Returns a copy of the uint4 that has been component-wise multiplied by the corresponding component of the right-hand uint4.
+// Returns a copy of the uint4 that has been component-wise multiplied by the corresponding component of the right-hand uint4.
 inline uint4 operator*( const uint4& lhs, const uint32_t scalar );
 
-/// \relates uint4
-/// \brief Multiplies each component of the uint4 by the corresponding component of the right-hand uint4.
+// Multiplies each component of the uint4 by the corresponding component of the right-hand uint4.
 inline uint4 operator*=( uint4& lhs, const uint32_t scalar );
 
-/// \relates uint4
-/// \brief Returns a copy of the uint4 that has been component-wise multiplied by the corresponding component of the right-hand uint4.
+// Returns a copy of the uint4 that has been component-wise multiplied by the corresponding component of the right-hand uint4.
 inline uint4 operator*( const uint4& lhs, const uint4& rhs );
 
-/// \relates uint4
-/// \brief Multiplies each component of the uint4 by the corresponding component of the right-hand uint4.
+// Multiplies each component of the uint4 by the corresponding component of the right-hand uint4.
 inline uint4 operator*=( uint4& lhs, const uint4& rhs );
 
-/// \relates uint4
-/// \brief Returns a copy of the uint4 that has been component-wise divided by the corresponding component of the right-hand uint4.
+// Returns a copy of the uint4 that has been component-wise divided by the corresponding component of the right-hand uint4.
 inline uint4 operator/( const uint4& lhs, const uint32_t scalar );
 
-/// \relates uint4
-/// \brief Divides each component of the uint4 by the corresponding component of the right-hand uint4.
+// Divides each component of the uint4 by the corresponding component of the right-hand uint4.
 inline uint4 operator/=( uint4& lhs, const uint32_t scalar );
 
-/// \relates uint4
-/// \brief Returns a copy of the uint4 that has been component-wise divided by the corresponding component of the right-hand uint4.
+// Returns a copy of the uint4 that has been component-wise divided by the corresponding component of the right-hand uint4.
 inline uint4 operator/( const uint4& lhs, const uint4& rhs );
 
-/// \relates uint4
-/// \brief Divides each component of the uint4 by the corresponding component of the right-hand uint4.
+// Divides each component of the uint4 by the corresponding component of the right-hand uint4.
 inline uint4 operator/=( uint4& lhs, const uint4& rhs );
 
 // prefix
-/// \relates uint4
-/// \brief Prefix increment operator.  Adds one to each component of the given uint4 before evaluation.
+// Prefix increment operator.  Adds one to each component of the given uint4 before evaluation.
 inline uint4& operator++( uint4& lhs );
 
 // postfix
-/// \relates uint4
-/// \brief Postfix increment operator.  Adds one to each component of the given uint4 after evaluation.
+// Postfix increment operator.  Adds one to each component of the given uint4 after evaluation.
 inline uint4& operator++( uint4& lhs, const int );
 // prefix
-/// \relates uint4
-/// \brief Prefix decrement operator.  Subtracts one from each component of the given uint4 before evaluation.
+// Prefix decrement operator.  Subtracts one from each component of the given uint4 before evaluation.
 inline uint4& operator--( uint4& lhs );
 
 // postfix
-/// \relates uint4
-/// \brief Postfix decrement operator.  Subtracts one from each component of the given uint4 after evaluation.
+// Postfix decrement operator.  Subtracts one from each component of the given uint4 after evaluation.
 inline uint4& operator--( uint4& lhs, const int );
-/// \relates uint4
-/// \brief Returns a copy of the uint4 where each component of the left-hand uint4 has been bitwise AND'd against the corresponding component of the right-hand side uint4.
+// Returns a copy of the uint4 where each component of the left-hand uint4 has been bitwise AND'd against the corresponding component of the right-hand side uint4.
 inline uint4 operator&( const uint4& lhs, const uint4& rhs );
 
-/// \relates uint4
-/// \brief Performs a bitwise AND on the given left-hand uint4 against the corresponding component of the given right-hand uint4.
+// Performs a bitwise AND on the given left-hand uint4 against the corresponding component of the given right-hand uint4.
 inline uint4 operator&=( uint4& lhs, const uint4& rhs );
 
-/// \relates uint4
-/// \brief Returns a copy of the uint4 where each component of the left-hand uint4 has been bitwise OR'd against the corresponding component of the right-hand side uint4.
+// Returns a copy of the uint4 where each component of the left-hand uint4 has been bitwise OR'd against the corresponding component of the right-hand side uint4.
 inline uint4 operator|( const uint4& lhs, const uint4& rhs );
 
-/// \relates uint4
-/// \brief Performs a bitwise OR on the given left-hand uint4 against the corresponding component of the given right-hand uint4.
+// Performs a bitwise OR on the given left-hand uint4 against the corresponding component of the given right-hand uint4.
 inline uint4 operator|=( uint4& lhs, const uint4& rhs );
 
-/// \relates uint4
-/// \brief Returns a copy of the uint4 where each component of the left-hand uint4 has been bitwise XOR'd against the corresponding component of the right-hand side uint4.
+// Returns a copy of the uint4 where each component of the left-hand uint4 has been bitwise XOR'd against the corresponding component of the right-hand side uint4.
 inline uint4 operator^( const uint4& lhs, const uint4& rhs );
 
-/// \relates uint4
-/// \brief Performs a bitwise XOR on the given left-hand uint4 against the corresponding component of the given right-hand uint4.
+// Performs a bitwise XOR on the given left-hand uint4 against the corresponding component of the given right-hand uint4.
 inline uint4 operator^=( uint4& lhs, const uint4& rhs );
 
-/// \relates uint4
-/// \brief Returns a copy of the uint4 where each component of the left-hand uint4 has been bitwise left-shifted by the corresponding component of the right-hand side uint4.
+// Returns a copy of the uint4 where each component of the left-hand uint4 has been bitwise left-shifted by the corresponding component of the right-hand side uint4.
 inline uint4 operator<<( const uint4& lhs, const uint4& rhs );
 
-/// \relates uint4
-/// \brief Performs a left bitshift on the given left-hand uint4 by the corresponding component of the given right-hand uint4.
+// Performs a left bitshift on the given left-hand uint4 by the corresponding component of the given right-hand uint4.
 inline uint4 operator<<=( uint4& lhs, const uint4& rhs );
 
-/// \relates uint4
-/// \brief Returns a copy of the uint4 where each component of the left-hand uint4 has been bitwise right-shifted by the corresponding component of the right-hand side uint4.
+// Returns a copy of the uint4 where each component of the left-hand uint4 has been bitwise right-shifted by the corresponding component of the right-hand side uint4.
 inline uint4 operator>>( const uint4& lhs, const uint4& rhs );
 
-/// \relates uint4
-/// \brief Performs a right bitshift on the given left-hand uint4 by the corresponding component of the given right-hand uint4.
+// Performs a right bitshift on the given left-hand uint4 by the corresponding component of the given right-hand uint4.
 inline uint4 operator>>=( uint4& lhs, const uint4& rhs );
 
-/// \relates uint4
-/// \brief Performs a unary bitwise operation on all components of the given uint4.
+// Performs a unary bitwise operation on all components of the given uint4.
 inline uint4 operator~( const uint4& lhs );
 
-/// \relates uint4
-/// \brief Returns a bool4 where each component is true if the component of the left-hand type is less than the corresponding right-hand type component.
+// Returns a bool4 where each component is true if the component of the left-hand type is less than the corresponding right-hand type component.
 inline bool4 operator<( uint4& lhs, const uint4& rhs );
 
-/// \relates uint4
-/// \brief Returns a bool4 where each component is true if the component of the left-hand type is less than or equal to the corresponding right-hand type component.
+// Returns a bool4 where each component is true if the component of the left-hand type is less than or equal to the corresponding right-hand type component.
 inline bool4 operator<=( uint4& lhs, const uint4& rhs );
 
-/// \relates uint4
-/// \brief Returns a bool4 where each component is true if the component of the left-hand type is greater than the corresponding right-hand type component.
+// Returns a bool4 where each component is true if the component of the left-hand type is greater than the corresponding right-hand type component.
 inline bool4 operator>( uint4& lhs, const uint4& rhs );
 
-/// \relates uint4
-/// \brief Returns a bool4 where each component is true if the component of the left-hand type is greater than or equal to the corresponding right-hand type component.
+// Returns a bool4 where each component is true if the component of the left-hand type is greater than or equal to the corresponding right-hand type component.
 inline bool4 operator>=( uint4& lhs, const uint4& rhs );
 
 
@@ -1111,102 +865,78 @@ inline bool operator==( const float2& lhs, const float2& rhs );
 
 inline bool operator!=( const float2& lhs, const float2& rhs );
 
-/// \relates float2
-/// \brief Returns a copy of the float2 that has been component-wise added by the corresponding component of the right-hand float2.
+// Returns a copy of the float2 that has been component-wise added by the corresponding component of the right-hand float2.
 inline float2 operator+( const float2& lhs, const float scalar );
 
-/// \relates float2
-/// \brief Adds each component of the float2 by the corresponding component of the right-hand float2.
+// Adds each component of the float2 by the corresponding component of the right-hand float2.
 inline float2 operator+=( float2& lhs, const float scalar );
 
-/// \relates float2
-/// \brief Returns a copy of the float2 that has been component-wise added by the corresponding component of the right-hand float2.
+// Returns a copy of the float2 that has been component-wise added by the corresponding component of the right-hand float2.
 inline float2 operator+( const float2& lhs, const float2& rhs );
 
-/// \relates float2
-/// \brief Adds each component of the float2 by the corresponding component of the right-hand float2.
+// Adds each component of the float2 by the corresponding component of the right-hand float2.
 inline float2 operator+=( float2& lhs, const float2& rhs );
 
-/// \relates float2
-/// \brief Returns a copy of the float2 that has been component-wise subtracted by the corresponding component of the right-hand float2.
+// Returns a copy of the float2 that has been component-wise subtracted by the corresponding component of the right-hand float2.
 inline float2 operator-( const float2& lhs, const float scalar );
 
-/// \relates float2
-/// \brief Subtracts each component of the float2 by the corresponding component of the right-hand float2.
+// Subtracts each component of the float2 by the corresponding component of the right-hand float2.
 inline float2 operator-=( float2& lhs, const float scalar );
 
-/// \relates float2
-/// \brief Returns a copy of the float2 that has been component-wise subtracted by the corresponding component of the right-hand float2.
+// Returns a copy of the float2 that has been component-wise subtracted by the corresponding component of the right-hand float2.
 inline float2 operator-( const float2& lhs, const float2& rhs );
 
-/// \relates float2
-/// \brief Subtracts each component of the float2 by the corresponding component of the right-hand float2.
+// Subtracts each component of the float2 by the corresponding component of the right-hand float2.
 inline float2 operator-=( float2& lhs, const float2& rhs );
 
-/// \relates float2
-/// \brief Returns a copy of the float2 that has been component-wise multiplied by the corresponding component of the right-hand float2.
+// Returns a copy of the float2 that has been component-wise multiplied by the corresponding component of the right-hand float2.
 inline float2 operator*( const float2& lhs, const float scalar );
 
-/// \relates float2
-/// \brief Multiplies each component of the float2 by the corresponding component of the right-hand float2.
+// Multiplies each component of the float2 by the corresponding component of the right-hand float2.
 inline float2 operator*=( float2& lhs, const float scalar );
 
-/// \relates float2
-/// \brief Returns a copy of the float2 that has been component-wise multiplied by the corresponding component of the right-hand float2.
+// Returns a copy of the float2 that has been component-wise multiplied by the corresponding component of the right-hand float2.
 inline float2 operator*( const float2& lhs, const float2& rhs );
 
-/// \relates float2
-/// \brief Multiplies each component of the float2 by the corresponding component of the right-hand float2.
+// Multiplies each component of the float2 by the corresponding component of the right-hand float2.
 inline float2 operator*=( float2& lhs, const float2& rhs );
 
-/// \relates float2
-/// \brief Returns a copy of the float2 that has been component-wise divided by the corresponding component of the right-hand float2.
+// Returns a copy of the float2 that has been component-wise divided by the corresponding component of the right-hand float2.
 inline float2 operator/( const float2& lhs, const float scalar );
 
-/// \relates float2
-/// \brief Divides each component of the float2 by the corresponding component of the right-hand float2.
+// Divides each component of the float2 by the corresponding component of the right-hand float2.
 inline float2 operator/=( float2& lhs, const float scalar );
 
-/// \relates float2
-/// \brief Returns a copy of the float2 that has been component-wise divided by the corresponding component of the right-hand float2.
+// Returns a copy of the float2 that has been component-wise divided by the corresponding component of the right-hand float2.
 inline float2 operator/( const float2& lhs, const float2& rhs );
 
-/// \relates float2
-/// \brief Divides each component of the float2 by the corresponding component of the right-hand float2.
+// Divides each component of the float2 by the corresponding component of the right-hand float2.
 inline float2 operator/=( float2& lhs, const float2& rhs );
 
 // prefix
-/// \relates float2
-/// \brief Prefix increment operator.  Adds one to each component of the given float2 before evaluation.
+// Prefix increment operator.  Adds one to each component of the given float2 before evaluation.
 inline float2& operator++( float2& lhs );
 
 // postfix
-/// \relates float2
-/// \brief Postfix increment operator.  Adds one to each component of the given float2 after evaluation.
+// Postfix increment operator.  Adds one to each component of the given float2 after evaluation.
 inline float2& operator++( float2& lhs, const int );
 // prefix
-/// \relates float2
-/// \brief Prefix decrement operator.  Subtracts one from each component of the given float2 before evaluation.
+// Prefix decrement operator.  Subtracts one from each component of the given float2 before evaluation.
 inline float2& operator--( float2& lhs );
 
 // postfix
-/// \relates float2
-/// \brief Postfix decrement operator.  Subtracts one from each component of the given float2 after evaluation.
+// Postfix decrement operator.  Subtracts one from each component of the given float2 after evaluation.
 inline float2& operator--( float2& lhs, const int );
-/// \relates float2
-/// \brief Returns a bool2 where each component is true if the component of the left-hand type is less than the corresponding right-hand type component.
+// Returns a bool2 where each component is true if the component of the left-hand type is less than the corresponding right-hand type component.
 inline bool2 operator<( float2& lhs, const float2& rhs );
 
-/// \relates float2
-/// \brief Returns a bool2 where each component is true if the component of the left-hand type is less than or equal to the corresponding right-hand type component.
+// Returns a bool2 where each component is true if the component of the left-hand type is less than or equal to the corresponding right-hand type component.
 inline bool2 operator<=( float2& lhs, const float2& rhs );
 
-/// \relates float2
-/// \brief Returns a bool2 where each component is true if the component of the left-hand type is greater than the corresponding right-hand type component.
+// Returns a bool2 where each component is true if the component of the left-hand type is greater than the corresponding right-hand type component.
 inline bool2 operator>( float2& lhs, const float2& rhs );
 
-/// \relates float2
-/// \brief Returns a bool2 where each component is true if the component of the left-hand type is greater than or equal to the corresponding right-hand type component.
+// Returns a bool2 where each component is true if the component of the left-hand type is greater than or equal to the corresponding right-hand type component.
 inline bool2 operator>=( float2& lhs, const float2& rhs );
 
 
@@ -1215,102 +945,78 @@ inline bool operator==( const float3& lhs, const float3& rhs );
 
 inline bool operator!=( const float3& lhs, const float3& rhs );
 
-/// \relates float3
-/// \brief Returns a copy of the float3 that has been component-wise added by the corresponding component of the right-hand float3.
+// Returns a copy of the float3 that has been component-wise added by the corresponding component of the right-hand float3.
 inline float3 operator+( const float3& lhs, const float scalar );
 
-/// \relates float3
-/// \brief Adds each component of the float3 by the corresponding component of the right-hand float3.
+// Adds each component of the float3 by the corresponding component of the right-hand float3.
 inline float3 operator+=( float3& lhs, const float scalar );
 
-/// \relates float3
-/// \brief Returns a copy of the float3 that has been component-wise added by the corresponding component of the right-hand float3.
+// Returns a copy of the float3 that has been component-wise added by the corresponding component of the right-hand float3.
 inline float3 operator+( const float3& lhs, const float3& rhs );
 
-/// \relates float3
-/// \brief Adds each component of the float3 by the corresponding component of the right-hand float3.
+// Adds each component of the float3 by the corresponding component of the right-hand float3.
 inline float3 operator+=( float3& lhs, const float3& rhs );
 
-/// \relates float3
-/// \brief Returns a copy of the float3 that has been component-wise subtracted by the corresponding component of the right-hand float3.
+// Returns a copy of the float3 that has been component-wise subtracted by the corresponding component of the right-hand float3.
 inline float3 operator-( const float3& lhs, const float scalar );
 
-/// \relates float3
-/// \brief Subtracts each component of the float3 by the corresponding component of the right-hand float3.
+// Subtracts each component of the float3 by the corresponding component of the right-hand float3.
 inline float3 operator-=( float3& lhs, const float scalar );
 
-/// \relates float3
-/// \brief Returns a copy of the float3 that has been component-wise subtracted by the corresponding component of the right-hand float3.
+// Returns a copy of the float3 that has been component-wise subtracted by the corresponding component of the right-hand float3.
 inline float3 operator-( const float3& lhs, const float3& rhs );
 
-/// \relates float3
-/// \brief Subtracts each component of the float3 by the corresponding component of the right-hand float3.
+// Subtracts each component of the float3 by the corresponding component of the right-hand float3.
 inline float3 operator-=( float3& lhs, const float3& rhs );
 
-/// \relates float3
-/// \brief Returns a copy of the float3 that has been component-wise multiplied by the corresponding component of the right-hand float3.
+// Returns a copy of the float3 that has been component-wise multiplied by the corresponding component of the right-hand float3.
 inline float3 operator*( const float3& lhs, const float scalar );
 
-/// \relates float3
-/// \brief Multiplies each component of the float3 by the corresponding component of the right-hand float3.
+// Multiplies each component of the float3 by the corresponding component of the right-hand float3.
 inline float3 operator*=( float3& lhs, const float scalar );
 
-/// \relates float3
-/// \brief Returns a copy of the float3 that has been component-wise multiplied by the corresponding component of the right-hand float3.
+// Returns a copy of the float3 that has been component-wise multiplied by the corresponding component of the right-hand float3.
 inline float3 operator*( const float3& lhs, const float3& rhs );
 
-/// \relates float3
-/// \brief Multiplies each component of the float3 by the corresponding component of the right-hand float3.
+// Multiplies each component of the float3 by the corresponding component of the right-hand float3.
 inline float3 operator*=( float3& lhs, const float3& rhs );
 
-/// \relates float3
-/// \brief Returns a copy of the float3 that has been component-wise divided by the corresponding component of the right-hand float3.
+// Returns a copy of the float3 that has been component-wise divided by the corresponding component of the right-hand float3.
 inline float3 operator/( const float3& lhs, const float scalar );
 
-/// \relates float3
-/// \brief Divides each component of the float3 by the corresponding component of the right-hand float3.
+// Divides each component of the float3 by the corresponding component of the right-hand float3.
 inline float3 operator/=( float3& lhs, const float scalar );
 
-/// \relates float3
-/// \brief Returns a copy of the float3 that has been component-wise divided by the corresponding component of the right-hand float3.
+// Returns a copy of the float3 that has been component-wise divided by the corresponding component of the right-hand float3.
 inline float3 operator/( const float3& lhs, const float3& rhs );
 
-/// \relates float3
-/// \brief Divides each component of the float3 by the corresponding component of the right-hand float3.
+// Divides each component of the float3 by the corresponding component of the right-hand float3.
 inline float3 operator/=( float3& lhs, const float3& rhs );
 
 // prefix
-/// \relates float3
-/// \brief Prefix increment operator.  Adds one to each component of the given float3 before evaluation.
+// Prefix increment operator.  Adds one to each component of the given float3 before evaluation.
 inline float3& operator++( float3& lhs );
 
 // postfix
-/// \relates float3
-/// \brief Postfix increment operator.  Adds one to each component of the given float3 after evaluation.
+// Postfix increment operator.  Adds one to each component of the given float3 after evaluation.
 inline float3& operator++( float3& lhs, const int );
 // prefix
-/// \relates float3
-/// \brief Prefix decrement operator.  Subtracts one from each component of the given float3 before evaluation.
+// Prefix decrement operator.  Subtracts one from each component of the given float3 before evaluation.
 inline float3& operator--( float3& lhs );
 
 // postfix
-/// \relates float3
-/// \brief Postfix decrement operator.  Subtracts one from each component of the given float3 after evaluation.
+// Postfix decrement operator.  Subtracts one from each component of the given float3 after evaluation.
 inline float3& operator--( float3& lhs, const int );
-/// \relates float3
-/// \brief Returns a bool3 where each component is true if the component of the left-hand type is less than the corresponding right-hand type component.
+// Returns a bool3 where each component is true if the component of the left-hand type is less than the corresponding right-hand type component.
 inline bool3 operator<( float3& lhs, const float3& rhs );
 
-/// \relates float3
-/// \brief Returns a bool3 where each component is true if the component of the left-hand type is less than or equal to the corresponding right-hand type component.
+// Returns a bool3 where each component is true if the component of the left-hand type is less than or equal to the corresponding right-hand type component.
 inline bool3 operator<=( float3& lhs, const float3& rhs );
 
-/// \relates float3
-/// \brief Returns a bool3 where each component is true if the component of the left-hand type is greater than the corresponding right-hand type component.
+// Returns a bool3 where each component is true if the component of the left-hand type is greater than the corresponding right-hand type component.
 inline bool3 operator>( float3& lhs, const float3& rhs );
 
-/// \relates float3
-/// \brief Returns a bool3 where each component is true if the component of the left-hand type is greater than or equal to the corresponding right-hand type component.
+// Returns a bool3 where each component is true if the component of the left-hand type is greater than or equal to the corresponding right-hand type component.
 inline bool3 operator>=( float3& lhs, const float3& rhs );
 
 
@@ -1319,102 +1025,78 @@ inline bool operator==( const float4& lhs, const float4& rhs );
 
 inline bool operator!=( const float4& lhs, const float4& rhs );
 
-/// \relates float4
-/// \brief Returns a copy of the float4 that has been component-wise added by the corresponding component of the right-hand float4.
+// Returns a copy of the float4 that has been component-wise added by the corresponding component of the right-hand float4.
 inline float4 operator+( const float4& lhs, const float scalar );
 
-/// \relates float4
-/// \brief Adds each component of the float4 by the corresponding component of the right-hand float4.
+// Adds each component of the float4 by the corresponding component of the right-hand float4.
 inline float4 operator+=( float4& lhs, const float scalar );
 
-/// \relates float4
-/// \brief Returns a copy of the float4 that has been component-wise added by the corresponding component of the right-hand float4.
+// Returns a copy of the float4 that has been component-wise added by the corresponding component of the right-hand float4.
 inline float4 operator+( const float4& lhs, const float4& rhs );
 
-/// \relates float4
-/// \brief Adds each component of the float4 by the corresponding component of the right-hand float4.
+// Adds each component of the float4 by the corresponding component of the right-hand float4.
 inline float4 operator+=( float4& lhs, const float4& rhs );
 
-/// \relates float4
-/// \brief Returns a copy of the float4 that has been component-wise subtracted by the corresponding component of the right-hand float4.
+// Returns a copy of the float4 that has been component-wise subtracted by the corresponding component of the right-hand float4.
 inline float4 operator-( const float4& lhs, const float scalar );
 
-/// \relates float4
-/// \brief Subtracts each component of the float4 by the corresponding component of the right-hand float4.
+// Subtracts each component of the float4 by the corresponding component of the right-hand float4.
 inline float4 operator-=( float4& lhs, const float scalar );
 
-/// \relates float4
-/// \brief Returns a copy of the float4 that has been component-wise subtracted by the corresponding component of the right-hand float4.
+// Returns a copy of the float4 that has been component-wise subtracted by the corresponding component of the right-hand float4.
 inline float4 operator-( const float4& lhs, const float4& rhs );
 
-/// \relates float4
-/// \brief Subtracts each component of the float4 by the corresponding component of the right-hand float4.
+// Subtracts each component of the float4 by the corresponding component of the right-hand float4.
 inline float4 operator-=( float4& lhs, const float4& rhs );
 
-/// \relates float4
-/// \brief Returns a copy of the float4 that has been component-wise multiplied by the corresponding component of the right-hand float4.
+// Returns a copy of the float4 that has been component-wise multiplied by the corresponding component of the right-hand float4.
 inline float4 operator*( const float4& lhs, const float scalar );
 
-/// \relates float4
-/// \brief Multiplies each component of the float4 by the corresponding component of the right-hand float4.
+// Multiplies each component of the float4 by the corresponding component of the right-hand float4.
 inline float4 operator*=( float4& lhs, const float scalar );
 
-/// \relates float4
-/// \brief Returns a copy of the float4 that has been component-wise multiplied by the corresponding component of the right-hand float4.
+// Returns a copy of the float4 that has been component-wise multiplied by the corresponding component of the right-hand float4.
 inline float4 operator*( const float4& lhs, const float4& rhs );
 
-/// \relates float4
-/// \brief Multiplies each component of the float4 by the corresponding component of the right-hand float4.
+// Multiplies each component of the float4 by the corresponding component of the right-hand float4.
 inline float4 operator*=( float4& lhs, const float4& rhs );
 
-/// \relates float4
-/// \brief Returns a copy of the float4 that has been component-wise divided by the corresponding component of the right-hand float4.
+// Returns a copy of the float4 that has been component-wise divided by the corresponding component of the right-hand float4.
 inline float4 operator/( const float4& lhs, const float scalar );
 
-/// \relates float4
-/// \brief Divides each component of the float4 by the corresponding component of the right-hand float4.
+// Divides each component of the float4 by the corresponding component of the right-hand float4.
 inline float4 operator/=( float4& lhs, const float scalar );
 
-/// \relates float4
-/// \brief Returns a copy of the float4 that has been component-wise divided by the corresponding component of the right-hand float4.
+// Returns a copy of the float4 that has been component-wise divided by the corresponding component of the right-hand float4.
 inline float4 operator/( const float4& lhs, const float4& rhs );
 
-/// \relates float4
-/// \brief Divides each component of the float4 by the corresponding component of the right-hand float4.
+// Divides each component of the float4 by the corresponding component of the right-hand float4.
 inline float4 operator/=( float4& lhs, const float4& rhs );
 
 // prefix
-/// \relates float4
-/// \brief Prefix increment operator.  Adds one to each component of the given float4 before evaluation.
+// Prefix increment operator.  Adds one to each component of the given float4 before evaluation.
 inline float4& operator++( float4& lhs );
 
 // postfix
-/// \relates float4
-/// \brief Postfix increment operator.  Adds one to each component of the given float4 after evaluation.
+// Postfix increment operator.  Adds one to each component of the given float4 after evaluation.
 inline float4& operator++( float4& lhs, const int );
 // prefix
-/// \relates float4
-/// \brief Prefix decrement operator.  Subtracts one from each component of the given float4 before evaluation.
+// Prefix decrement operator.  Subtracts one from each component of the given float4 before evaluation.
 inline float4& operator--( float4& lhs );
 
 // postfix
-/// \relates float4
-/// \brief Postfix decrement operator.  Subtracts one from each component of the given float4 after evaluation.
+// Postfix decrement operator.  Subtracts one from each component of the given float4 after evaluation.
 inline float4& operator--( float4& lhs, const int );
-/// \relates float4
-/// \brief Returns a bool4 where each component is true if the component of the left-hand type is less than the corresponding right-hand type component.
+// Returns a bool4 where each component is true if the component of the left-hand type is less than the corresponding right-hand type component.
 inline bool4 operator<( float4& lhs, const float4& rhs );
 
-/// \relates float4
-/// \brief Returns a bool4 where each component is true if the component of the left-hand type is less than or equal to the corresponding right-hand type component.
+// Returns a bool4 where each component is true if the component of the left-hand type is less than or equal to the corresponding right-hand type component.
 inline bool4 operator<=( float4& lhs, const float4& rhs );
 
-/// \relates float4
-/// \brief Returns a bool4 where each component is true if the component of the left-hand type is greater than the corresponding right-hand type component.
+// Returns a bool4 where each component is true if the component of the left-hand type is greater than the corresponding right-hand type component.
 inline bool4 operator>( float4& lhs, const float4& rhs );
 
-/// \relates float4
-/// \brief Returns a bool4 where each component is true if the component of the left-hand type is greater than or equal to the corresponding right-hand type component.
+// Returns a bool4 where each component is true if the component of the left-hand type is greater than or equal to the corresponding right-hand type component.
 inline bool4 operator>=( float4& lhs, const float4& rhs );
 
 
@@ -1423,102 +1105,78 @@ inline bool operator==( const double2& lhs, const double2& rhs );
 
 inline bool operator!=( const double2& lhs, const double2& rhs );
 
-/// \relates double2
-/// \brief Returns a copy of the double2 that has been component-wise added by the corresponding component of the right-hand double2.
+// Returns a copy of the double2 that has been component-wise added by the corresponding component of the right-hand double2.
 inline double2 operator+( const double2& lhs, const double scalar );
 
-/// \relates double2
-/// \brief Adds each component of the double2 by the corresponding component of the right-hand double2.
+// Adds each component of the double2 by the corresponding component of the right-hand double2.
 inline double2 operator+=( double2& lhs, const double scalar );
 
-/// \relates double2
-/// \brief Returns a copy of the double2 that has been component-wise added by the corresponding component of the right-hand double2.
+// Returns a copy of the double2 that has been component-wise added by the corresponding component of the right-hand double2.
 inline double2 operator+( const double2& lhs, const double2& rhs );
 
-/// \relates double2
-/// \brief Adds each component of the double2 by the corresponding component of the right-hand double2.
+// Adds each component of the double2 by the corresponding component of the right-hand double2.
 inline double2 operator+=( double2& lhs, const double2& rhs );
 
-/// \relates double2
-/// \brief Returns a copy of the double2 that has been component-wise subtracted by the corresponding component of the right-hand double2.
+// Returns a copy of the double2 that has been component-wise subtracted by the corresponding component of the right-hand double2.
 inline double2 operator-( const double2& lhs, const double scalar );
 
-/// \relates double2
-/// \brief Subtracts each component of the double2 by the corresponding component of the right-hand double2.
+// Subtracts each component of the double2 by the corresponding component of the right-hand double2.
 inline double2 operator-=( double2& lhs, const double scalar );
 
-/// \relates double2
-/// \brief Returns a copy of the double2 that has been component-wise subtracted by the corresponding component of the right-hand double2.
+// Returns a copy of the double2 that has been component-wise subtracted by the corresponding component of the right-hand double2.
 inline double2 operator-( const double2& lhs, const double2& rhs );
 
-/// \relates double2
-/// \brief Subtracts each component of the double2 by the corresponding component of the right-hand double2.
+// Subtracts each component of the double2 by the corresponding component of the right-hand double2.
 inline double2 operator-=( double2& lhs, const double2& rhs );
 
-/// \relates double2
-/// \brief Returns a copy of the double2 that has been component-wise multiplied by the corresponding component of the right-hand double2.
+// Returns a copy of the double2 that has been component-wise multiplied by the corresponding component of the right-hand double2.
 inline double2 operator*( const double2& lhs, const double scalar );
 
-/// \relates double2
-/// \brief Multiplies each component of the double2 by the corresponding component of the right-hand double2.
+// Multiplies each component of the double2 by the corresponding component of the right-hand double2.
 inline double2 operator*=( double2& lhs, const double scalar );
 
-/// \relates double2
-/// \brief Returns a copy of the double2 that has been component-wise multiplied by the corresponding component of the right-hand double2.
+// Returns a copy of the double2 that has been component-wise multiplied by the corresponding component of the right-hand double2.
 inline double2 operator*( const double2& lhs, const double2& rhs );
 
-/// \relates double2
-/// \brief Multiplies each component of the double2 by the corresponding component of the right-hand double2.
+// Multiplies each component of the double2 by the corresponding component of the right-hand double2.
 inline double2 operator*=( double2& lhs, const double2& rhs );
 
-/// \relates double2
-/// \brief Returns a copy of the double2 that has been component-wise divided by the corresponding component of the right-hand double2.
+// Returns a copy of the double2 that has been component-wise divided by the corresponding component of the right-hand double2.
 inline double2 operator/( const double2& lhs, const double scalar );
 
-/// \relates double2
-/// \brief Divides each component of the double2 by the corresponding component of the right-hand double2.
+// Divides each component of the double2 by the corresponding component of the right-hand double2.
 inline double2 operator/=( double2& lhs, const double scalar );
 
-/// \relates double2
-/// \brief Returns a copy of the double2 that has been component-wise divided by the corresponding component of the right-hand double2.
+// Returns a copy of the double2 that has been component-wise divided by the corresponding component of the right-hand double2.
 inline double2 operator/( const double2& lhs, const double2& rhs );
 
-/// \relates double2
-/// \brief Divides each component of the double2 by the corresponding component of the right-hand double2.
+// Divides each component of the double2 by the corresponding component of the right-hand double2.
 inline double2 operator/=( double2& lhs, const double2& rhs );
 
 // prefix
-/// \relates double2
-/// \brief Prefix increment operator.  Adds one to each component of the given double2 before evaluation.
+// Prefix increment operator.  Adds one to each component of the given double2 before evaluation.
 inline double2& operator++( double2& lhs );
 
 // postfix
-/// \relates double2
-/// \brief Postfix increment operator.  Adds one to each component of the given double2 after evaluation.
+// Postfix increment operator.  Adds one to each component of the given double2 after evaluation.
 inline double2& operator++( double2& lhs, const int );
 // prefix
-/// \relates double2
-/// \brief Prefix decrement operator.  Subtracts one from each component of the given double2 before evaluation.
+// Prefix decrement operator.  Subtracts one from each component of the given double2 before evaluation.
 inline double2& operator--( double2& lhs );
 
 // postfix
-/// \relates double2
-/// \brief Postfix decrement operator.  Subtracts one from each component of the given double2 after evaluation.
+// Postfix decrement operator.  Subtracts one from each component of the given double2 after evaluation.
 inline double2& operator--( double2& lhs, const int );
-/// \relates double2
-/// \brief Returns a bool2 where each component is true if the component of the left-hand type is less than the corresponding right-hand type component.
+// Returns a bool2 where each component is true if the component of the left-hand type is less than the corresponding right-hand type component.
 inline bool2 operator<( double2& lhs, const double2& rhs );
 
-/// \relates double2
-/// \brief Returns a bool2 where each component is true if the component of the left-hand type is less than or equal to the corresponding right-hand type component.
+// Returns a bool2 where each component is true if the component of the left-hand type is less than or equal to the corresponding right-hand type component.
 inline bool2 operator<=( double2& lhs, const double2& rhs );
 
-/// \relates double2
-/// \brief Returns a bool2 where each component is true if the component of the left-hand type is greater than the corresponding right-hand type component.
+// Returns a bool2 where each component is true if the component of the left-hand type is greater than the corresponding right-hand type component.
 inline bool2 operator>( double2& lhs, const double2& rhs );
 
-/// \relates double2
-/// \brief Returns a bool2 where each component is true if the component of the left-hand type is greater than or equal to the corresponding right-hand type component.
+// Returns a bool2 where each component is true if the component of the left-hand type is greater than or equal to the corresponding right-hand type component.
 inline bool2 operator>=( double2& lhs, const double2& rhs );
 
 
@@ -1527,102 +1185,78 @@ inline bool operator==( const double3& lhs, const double3& rhs );
 
 inline bool operator!=( const double3& lhs, const double3& rhs );
 
-/// \relates double3
-/// \brief Returns a copy of the double3 that has been component-wise added by the corresponding component of the right-hand double3.
+// Returns a copy of the double3 that has been component-wise added by the corresponding component of the right-hand double3.
 inline double3 operator+( const double3& lhs, const double scalar );
 
-/// \relates double3
-/// \brief Adds each component of the double3 by the corresponding component of the right-hand double3.
+// Adds each component of the double3 by the corresponding component of the right-hand double3.
 inline double3 operator+=( double3& lhs, const double scalar );
 
-/// \relates double3
-/// \brief Returns a copy of the double3 that has been component-wise added by the corresponding component of the right-hand double3.
+// Returns a copy of the double3 that has been component-wise added by the corresponding component of the right-hand double3.
 inline double3 operator+( const double3& lhs, const double3& rhs );
 
-/// \relates double3
-/// \brief Adds each component of the double3 by the corresponding component of the right-hand double3.
+// Adds each component of the double3 by the corresponding component of the right-hand double3.
 inline double3 operator+=( double3& lhs, const double3& rhs );
 
-/// \relates double3
-/// \brief Returns a copy of the double3 that has been component-wise subtracted by the corresponding component of the right-hand double3.
+// Returns a copy of the double3 that has been component-wise subtracted by the corresponding component of the right-hand double3.
 inline double3 operator-( const double3& lhs, const double scalar );
 
-/// \relates double3
-/// \brief Subtracts each component of the double3 by the corresponding component of the right-hand double3.
+// Subtracts each component of the double3 by the corresponding component of the right-hand double3.
 inline double3 operator-=( double3& lhs, const double scalar );
 
-/// \relates double3
-/// \brief Returns a copy of the double3 that has been component-wise subtracted by the corresponding component of the right-hand double3.
+// Returns a copy of the double3 that has been component-wise subtracted by the corresponding component of the right-hand double3.
 inline double3 operator-( const double3& lhs, const double3& rhs );
 
-/// \relates double3
-/// \brief Subtracts each component of the double3 by the corresponding component of the right-hand double3.
+// Subtracts each component of the double3 by the corresponding component of the right-hand double3.
 inline double3 operator-=( double3& lhs, const double3& rhs );
 
-/// \relates double3
-/// \brief Returns a copy of the double3 that has been component-wise multiplied by the corresponding component of the right-hand double3.
+// Returns a copy of the double3 that has been component-wise multiplied by the corresponding component of the right-hand double3.
 inline double3 operator*( const double3& lhs, const double scalar );
 
-/// \relates double3
-/// \brief Multiplies each component of the double3 by the corresponding component of the right-hand double3.
+// Multiplies each component of the double3 by the corresponding component of the right-hand double3.
 inline double3 operator*=( double3& lhs, const double scalar );
 
-/// \relates double3
-/// \brief Returns a copy of the double3 that has been component-wise multiplied by the corresponding component of the right-hand double3.
+// Returns a copy of the double3 that has been component-wise multiplied by the corresponding component of the right-hand double3.
 inline double3 operator*( const double3& lhs, const double3& rhs );
 
-/// \relates double3
-/// \brief Multiplies each component of the double3 by the corresponding component of the right-hand double3.
+// Multiplies each component of the double3 by the corresponding component of the right-hand double3.
 inline double3 operator*=( double3& lhs, const double3& rhs );
 
-/// \relates double3
-/// \brief Returns a copy of the double3 that has been component-wise divided by the corresponding component of the right-hand double3.
+// Returns a copy of the double3 that has been component-wise divided by the corresponding component of the right-hand double3.
 inline double3 operator/( const double3& lhs, const double scalar );
 
-/// \relates double3
-/// \brief Divides each component of the double3 by the corresponding component of the right-hand double3.
+// Divides each component of the double3 by the corresponding component of the right-hand double3.
 inline double3 operator/=( double3& lhs, const double scalar );
 
-/// \relates double3
-/// \brief Returns a copy of the double3 that has been component-wise divided by the corresponding component of the right-hand double3.
+// Returns a copy of the double3 that has been component-wise divided by the corresponding component of the right-hand double3.
 inline double3 operator/( const double3& lhs, const double3& rhs );
 
-/// \relates double3
-/// \brief Divides each component of the double3 by the corresponding component of the right-hand double3.
+// Divides each component of the double3 by the corresponding component of the right-hand double3.
 inline double3 operator/=( double3& lhs, const double3& rhs );
 
 // prefix
-/// \relates double3
-/// \brief Prefix increment operator.  Adds one to each component of the given double3 before evaluation.
+// Prefix increment operator.  Adds one to each component of the given double3 before evaluation.
 inline double3& operator++( double3& lhs );
 
 // postfix
-/// \relates double3
-/// \brief Postfix increment operator.  Adds one to each component of the given double3 after evaluation.
+// Postfix increment operator.  Adds one to each component of the given double3 after evaluation.
 inline double3& operator++( double3& lhs, const int );
 // prefix
-/// \relates double3
-/// \brief Prefix decrement operator.  Subtracts one from each component of the given double3 before evaluation.
+// Prefix decrement operator.  Subtracts one from each component of the given double3 before evaluation.
 inline double3& operator--( double3& lhs );
 
 // postfix
-/// \relates double3
-/// \brief Postfix decrement operator.  Subtracts one from each component of the given double3 after evaluation.
+// Postfix decrement operator.  Subtracts one from each component of the given double3 after evaluation.
 inline double3& operator--( double3& lhs, const int );
-/// \relates double3
-/// \brief Returns a bool3 where each component is true if the component of the left-hand type is less than the corresponding right-hand type component.
+// Returns a bool3 where each component is true if the component of the left-hand type is less than the corresponding right-hand type component.
 inline bool3 operator<( double3& lhs, const double3& rhs );
 
-/// \relates double3
-/// \brief Returns a bool3 where each component is true if the component of the left-hand type is less than or equal to the corresponding right-hand type component.
+// Returns a bool3 where each component is true if the component of the left-hand type is less than or equal to the corresponding right-hand type component.
 inline bool3 operator<=( double3& lhs, const double3& rhs );
 
-/// \relates double3
-/// \brief Returns a bool3 where each component is true if the component of the left-hand type is greater than the corresponding right-hand type component.
+// Returns a bool3 where each component is true if the component of the left-hand type is greater than the corresponding right-hand type component.
 inline bool3 operator>( double3& lhs, const double3& rhs );
 
-/// \relates double3
-/// \brief Returns a bool3 where each component is true if the component of the left-hand type is greater than or equal to the corresponding right-hand type component.
+// Returns a bool3 where each component is true if the component of the left-hand type is greater than or equal to the corresponding right-hand type component.
 inline bool3 operator>=( double3& lhs, const double3& rhs );
 
 
@@ -1631,102 +1265,78 @@ inline bool operator==( const double4& lhs, const double4& rhs );
 
 inline bool operator!=( const double4& lhs, const double4& rhs );
 
-/// \relates double4
-/// \brief Returns a copy of the double4 that has been component-wise added by the corresponding component of the right-hand double4.
+// Returns a copy of the double4 that has been component-wise added by the corresponding component of the right-hand double4.
 inline double4 operator+( const double4& lhs, const double scalar );
 
-/// \relates double4
-/// \brief Adds each component of the double4 by the corresponding component of the right-hand double4.
+// Adds each component of the double4 by the corresponding component of the right-hand double4.
 inline double4 operator+=( double4& lhs, const double scalar );
 
-/// \relates double4
-/// \brief Returns a copy of the double4 that has been component-wise added by the corresponding component of the right-hand double4.
+// Returns a copy of the double4 that has been component-wise added by the corresponding component of the right-hand double4.
 inline double4 operator+( const double4& lhs, const double4& rhs );
 
-/// \relates double4
-/// \brief Adds each component of the double4 by the corresponding component of the right-hand double4.
+// Adds each component of the double4 by the corresponding component of the right-hand double4.
 inline double4 operator+=( double4& lhs, const double4& rhs );
 
-/// \relates double4
-/// \brief Returns a copy of the double4 that has been component-wise subtracted by the corresponding component of the right-hand double4.
+// Returns a copy of the double4 that has been component-wise subtracted by the corresponding component of the right-hand double4.
 inline double4 operator-( const double4& lhs, const double scalar );
 
-/// \relates double4
-/// \brief Subtracts each component of the double4 by the corresponding component of the right-hand double4.
+// Subtracts each component of the double4 by the corresponding component of the right-hand double4.
 inline double4 operator-=( double4& lhs, const double scalar );
 
-/// \relates double4
-/// \brief Returns a copy of the double4 that has been component-wise subtracted by the corresponding component of the right-hand double4.
+// Returns a copy of the double4 that has been component-wise subtracted by the corresponding component of the right-hand double4.
 inline double4 operator-( const double4& lhs, const double4& rhs );
 
-/// \relates double4
-/// \brief Subtracts each component of the double4 by the corresponding component of the right-hand double4.
+// Subtracts each component of the double4 by the corresponding component of the right-hand double4.
 inline double4 operator-=( double4& lhs, const double4& rhs );
 
-/// \relates double4
-/// \brief Returns a copy of the double4 that has been component-wise multiplied by the corresponding component of the right-hand double4.
+// Returns a copy of the double4 that has been component-wise multiplied by the corresponding component of the right-hand double4.
 inline double4 operator*( const double4& lhs, const double scalar );
 
-/// \relates double4
-/// \brief Multiplies each component of the double4 by the corresponding component of the right-hand double4.
+// Multiplies each component of the double4 by the corresponding component of the right-hand double4.
 inline double4 operator*=( double4& lhs, const double scalar );
 
-/// \relates double4
-/// \brief Returns a copy of the double4 that has been component-wise multiplied by the corresponding component of the right-hand double4.
+// Returns a copy of the double4 that has been component-wise multiplied by the corresponding component of the right-hand double4.
 inline double4 operator*( const double4& lhs, const double4& rhs );
 
-/// \relates double4
-/// \brief Multiplies each component of the double4 by the corresponding component of the right-hand double4.
+// Multiplies each component of the double4 by the corresponding component of the right-hand double4.
 inline double4 operator*=( double4& lhs, const double4& rhs );
 
-/// \relates double4
-/// \brief Returns a copy of the double4 that has been component-wise divided by the corresponding component of the right-hand double4.
+// Returns a copy of the double4 that has been component-wise divided by the corresponding component of the right-hand double4.
 inline double4 operator/( const double4& lhs, const double scalar );
 
-/// \relates double4
-/// \brief Divides each component of the double4 by the corresponding component of the right-hand double4.
+// Divides each component of the double4 by the corresponding component of the right-hand double4.
 inline double4 operator/=( double4& lhs, const double scalar );
 
-/// \relates double4
-/// \brief Returns a copy of the double4 that has been component-wise divided by the corresponding component of the right-hand double4.
+// Returns a copy of the double4 that has been component-wise divided by the corresponding component of the right-hand double4.
 inline double4 operator/( const double4& lhs, const double4& rhs );
 
-/// \relates double4
-/// \brief Divides each component of the double4 by the corresponding component of the right-hand double4.
+// Divides each component of the double4 by the corresponding component of the right-hand double4.
 inline double4 operator/=( double4& lhs, const double4& rhs );
 
 // prefix
-/// \relates double4
-/// \brief Prefix increment operator.  Adds one to each component of the given double4 before evaluation.
+// Prefix increment operator.  Adds one to each component of the given double4 before evaluation.
 inline double4& operator++( double4& lhs );
 
 // postfix
-/// \relates double4
-/// \brief Postfix increment operator.  Adds one to each component of the given double4 after evaluation.
+// Postfix increment operator.  Adds one to each component of the given double4 after evaluation.
 inline double4& operator++( double4& lhs, const int );
 // prefix
-/// \relates double4
-/// \brief Prefix decrement operator.  Subtracts one from each component of the given double4 before evaluation.
+// Prefix decrement operator.  Subtracts one from each component of the given double4 before evaluation.
 inline double4& operator--( double4& lhs );
 
 // postfix
-/// \relates double4
-/// \brief Postfix decrement operator.  Subtracts one from each component of the given double4 after evaluation.
+// Postfix decrement operator.  Subtracts one from each component of the given double4 after evaluation.
 inline double4& operator--( double4& lhs, const int );
-/// \relates double4
-/// \brief Returns a bool4 where each component is true if the component of the left-hand type is less than the corresponding right-hand type component.
+// Returns a bool4 where each component is true if the component of the left-hand type is less than the corresponding right-hand type component.
 inline bool4 operator<( double4& lhs, const double4& rhs );
 
-/// \relates double4
-/// \brief Returns a bool4 where each component is true if the component of the left-hand type is less than or equal to the corresponding right-hand type component.
+// Returns a bool4 where each component is true if the component of the left-hand type is less than or equal to the corresponding right-hand type component.
 inline bool4 operator<=( double4& lhs, const double4& rhs );
 
-/// \relates double4
-/// \brief Returns a bool4 where each component is true if the component of the left-hand type is greater than the corresponding right-hand type component.
+// Returns a bool4 where each component is true if the component of the left-hand type is greater than the corresponding right-hand type component.
 inline bool4 operator>( double4& lhs, const double4& rhs );
 
-/// \relates double4
-/// \brief Returns a bool4 where each component is true if the component of the left-hand type is greater than or equal to the corresponding right-hand type component.
+// Returns a bool4 where each component is true if the component of the left-hand type is greater than or equal to the corresponding right-hand type component.
 inline bool4 operator>=( double4& lhs, const double4& rhs );
 
 
@@ -2067,7 +1677,7 @@ int2 operator+( const int2& lhs, const int2& rhs )
 	};
 }
 
-int2 operator+=( int2& lhs, const int2 rhs )
+int2 operator+=( int2& lhs, const int2& rhs )
 {
 	return ( lhs = lhs + rhs );
 }
@@ -2093,7 +1703,7 @@ int2 operator-( const int2& lhs, const int2& rhs )
 	};
 }
 
-int2 operator-=( int2& lhs, const int2 rhs )
+int2 operator-=( int2& lhs, const int2& rhs )
 {
 	return ( lhs = lhs - rhs );
 }
@@ -2119,7 +1729,7 @@ int2 operator*( const int2& lhs, const int2& rhs )
 	};
 }
 
-int2 operator*=( int2& lhs, const int2 rhs )
+int2 operator*=( int2& lhs, const int2& rhs )
 {
 	return ( lhs = lhs * rhs );
 }
@@ -2145,7 +1755,7 @@ int2 operator/( const int2& lhs, const int2& rhs )
 	};
 }
 
-int2 operator/=( int2& lhs, const int2 rhs )
+int2 operator/=( int2& lhs, const int2& rhs )
 {
 	return ( lhs = lhs / rhs );
 }
@@ -2316,7 +1926,7 @@ int3 operator+( const int3& lhs, const int3& rhs )
 	};
 }
 
-int3 operator+=( int3& lhs, const int3 rhs )
+int3 operator+=( int3& lhs, const int3& rhs )
 {
 	return ( lhs = lhs + rhs );
 }
@@ -2344,7 +1954,7 @@ int3 operator-( const int3& lhs, const int3& rhs )
 	};
 }
 
-int3 operator-=( int3& lhs, const int3 rhs )
+int3 operator-=( int3& lhs, const int3& rhs )
 {
 	return ( lhs = lhs - rhs );
 }
@@ -2372,7 +1982,7 @@ int3 operator*( const int3& lhs, const int3& rhs )
 	};
 }
 
-int3 operator*=( int3& lhs, const int3 rhs )
+int3 operator*=( int3& lhs, const int3& rhs )
 {
 	return ( lhs = lhs * rhs );
 }
@@ -2400,7 +2010,7 @@ int3 operator/( const int3& lhs, const int3& rhs )
 	};
 }
 
-int3 operator/=( int3& lhs, const int3 rhs )
+int3 operator/=( int3& lhs, const int3& rhs )
 {
 	return ( lhs = lhs / rhs );
 }
@@ -2587,7 +2197,7 @@ int4 operator+( const int4& lhs, const int4& rhs )
 	};
 }
 
-int4 operator+=( int4& lhs, const int4 rhs )
+int4 operator+=( int4& lhs, const int4& rhs )
 {
 	return ( lhs = lhs + rhs );
 }
@@ -2617,7 +2227,7 @@ int4 operator-( const int4& lhs, const int4& rhs )
 	};
 }
 
-int4 operator-=( int4& lhs, const int4 rhs )
+int4 operator-=( int4& lhs, const int4& rhs )
 {
 	return ( lhs = lhs - rhs );
 }
@@ -2647,7 +2257,7 @@ int4 operator*( const int4& lhs, const int4& rhs )
 	};
 }
 
-int4 operator*=( int4& lhs, const int4 rhs )
+int4 operator*=( int4& lhs, const int4& rhs )
 {
 	return ( lhs = lhs * rhs );
 }
@@ -2677,7 +2287,7 @@ int4 operator/( const int4& lhs, const int4& rhs )
 	};
 }
 
-int4 operator/=( int4& lhs, const int4 rhs )
+int4 operator/=( int4& lhs, const int4& rhs )
 {
 	return ( lhs = lhs / rhs );
 }
@@ -2874,7 +2484,7 @@ uint2 operator+( const uint2& lhs, const uint2& rhs )
 	};
 }
 
-uint2 operator+=( uint2& lhs, const uint2 rhs )
+uint2 operator+=( uint2& lhs, const uint2& rhs )
 {
 	return ( lhs = lhs + rhs );
 }
@@ -2900,7 +2510,7 @@ uint2 operator-( const uint2& lhs, const uint2& rhs )
 	};
 }
 
-uint2 operator-=( uint2& lhs, const uint2 rhs )
+uint2 operator-=( uint2& lhs, const uint2& rhs )
 {
 	return ( lhs = lhs - rhs );
 }
@@ -2926,7 +2536,7 @@ uint2 operator*( const uint2& lhs, const uint2& rhs )
 	};
 }
 
-uint2 operator*=( uint2& lhs, const uint2 rhs )
+uint2 operator*=( uint2& lhs, const uint2& rhs )
 {
 	return ( lhs = lhs * rhs );
 }
@@ -2952,7 +2562,7 @@ uint2 operator/( const uint2& lhs, const uint2& rhs )
 	};
 }
 
-uint2 operator/=( uint2& lhs, const uint2 rhs )
+uint2 operator/=( uint2& lhs, const uint2& rhs )
 {
 	return ( lhs = lhs / rhs );
 }
@@ -3123,7 +2733,7 @@ uint3 operator+( const uint3& lhs, const uint3& rhs )
 	};
 }
 
-uint3 operator+=( uint3& lhs, const uint3 rhs )
+uint3 operator+=( uint3& lhs, const uint3& rhs )
 {
 	return ( lhs = lhs + rhs );
 }
@@ -3151,7 +2761,7 @@ uint3 operator-( const uint3& lhs, const uint3& rhs )
 	};
 }
 
-uint3 operator-=( uint3& lhs, const uint3 rhs )
+uint3 operator-=( uint3& lhs, const uint3& rhs )
 {
 	return ( lhs = lhs - rhs );
 }
@@ -3179,7 +2789,7 @@ uint3 operator*( const uint3& lhs, const uint3& rhs )
 	};
 }
 
-uint3 operator*=( uint3& lhs, const uint3 rhs )
+uint3 operator*=( uint3& lhs, const uint3& rhs )
 {
 	return ( lhs = lhs * rhs );
 }
@@ -3207,7 +2817,7 @@ uint3 operator/( const uint3& lhs, const uint3& rhs )
 	};
 }
 
-uint3 operator/=( uint3& lhs, const uint3 rhs )
+uint3 operator/=( uint3& lhs, const uint3& rhs )
 {
 	return ( lhs = lhs / rhs );
 }
@@ -3394,7 +3004,7 @@ uint4 operator+( const uint4& lhs, const uint4& rhs )
 	};
 }
 
-uint4 operator+=( uint4& lhs, const uint4 rhs )
+uint4 operator+=( uint4& lhs, const uint4& rhs )
 {
 	return ( lhs = lhs + rhs );
 }
@@ -3424,7 +3034,7 @@ uint4 operator-( const uint4& lhs, const uint4& rhs )
 	};
 }
 
-uint4 operator-=( uint4& lhs, const uint4 rhs )
+uint4 operator-=( uint4& lhs, const uint4& rhs )
 {
 	return ( lhs = lhs - rhs );
 }
@@ -3454,7 +3064,7 @@ uint4 operator*( const uint4& lhs, const uint4& rhs )
 	};
 }
 
-uint4 operator*=( uint4& lhs, const uint4 rhs )
+uint4 operator*=( uint4& lhs, const uint4& rhs )
 {
 	return ( lhs = lhs * rhs );
 }
@@ -3484,7 +3094,7 @@ uint4 operator/( const uint4& lhs, const uint4& rhs )
 	};
 }
 
-uint4 operator/=( uint4& lhs, const uint4 rhs )
+uint4 operator/=( uint4& lhs, const uint4& rhs )
 {
 	return ( lhs = lhs / rhs );
 }
@@ -3681,7 +3291,7 @@ float2 operator+( const float2& lhs, const float2& rhs )
 	};
 }
 
-float2 operator+=( float2& lhs, const float2 rhs )
+float2 operator+=( float2& lhs, const float2& rhs )
 {
 	return ( lhs = lhs + rhs );
 }
@@ -3707,7 +3317,7 @@ float2 operator-( const float2& lhs, const float2& rhs )
 	};
 }
 
-float2 operator-=( float2& lhs, const float2 rhs )
+float2 operator-=( float2& lhs, const float2& rhs )
 {
 	return ( lhs = lhs - rhs );
 }
@@ -3733,7 +3343,7 @@ float2 operator*( const float2& lhs, const float2& rhs )
 	};
 }
 
-float2 operator*=( float2& lhs, const float2 rhs )
+float2 operator*=( float2& lhs, const float2& rhs )
 {
 	return ( lhs = lhs * rhs );
 }
@@ -3759,7 +3369,7 @@ float2 operator/( const float2& lhs, const float2& rhs )
 	};
 }
 
-float2 operator/=( float2& lhs, const float2 rhs )
+float2 operator/=( float2& lhs, const float2& rhs )
 {
 	return ( lhs = lhs / rhs );
 }
@@ -3857,7 +3467,7 @@ float3 operator+( const float3& lhs, const float3& rhs )
 	};
 }
 
-float3 operator+=( float3& lhs, const float3 rhs )
+float3 operator+=( float3& lhs, const float3& rhs )
 {
 	return ( lhs = lhs + rhs );
 }
@@ -3885,7 +3495,7 @@ float3 operator-( const float3& lhs, const float3& rhs )
 	};
 }
 
-float3 operator-=( float3& lhs, const float3 rhs )
+float3 operator-=( float3& lhs, const float3& rhs )
 {
 	return ( lhs = lhs - rhs );
 }
@@ -3913,7 +3523,7 @@ float3 operator*( const float3& lhs, const float3& rhs )
 	};
 }
 
-float3 operator*=( float3& lhs, const float3 rhs )
+float3 operator*=( float3& lhs, const float3& rhs )
 {
 	return ( lhs = lhs * rhs );
 }
@@ -3941,7 +3551,7 @@ float3 operator/( const float3& lhs, const float3& rhs )
 	};
 }
 
-float3 operator/=( float3& lhs, const float3 rhs )
+float3 operator/=( float3& lhs, const float3& rhs )
 {
 	return ( lhs = lhs / rhs );
 }
@@ -4049,7 +3659,7 @@ float4 operator+( const float4& lhs, const float4& rhs )
 	};
 }
 
-float4 operator+=( float4& lhs, const float4 rhs )
+float4 operator+=( float4& lhs, const float4& rhs )
 {
 	return ( lhs = lhs + rhs );
 }
@@ -4079,7 +3689,7 @@ float4 operator-( const float4& lhs, const float4& rhs )
 	};
 }
 
-float4 operator-=( float4& lhs, const float4 rhs )
+float4 operator-=( float4& lhs, const float4& rhs )
 {
 	return ( lhs = lhs - rhs );
 }
@@ -4109,7 +3719,7 @@ float4 operator*( const float4& lhs, const float4& rhs )
 	};
 }
 
-float4 operator*=( float4& lhs, const float4 rhs )
+float4 operator*=( float4& lhs, const float4& rhs )
 {
 	return ( lhs = lhs * rhs );
 }
@@ -4139,7 +3749,7 @@ float4 operator/( const float4& lhs, const float4& rhs )
 	};
 }
 
-float4 operator/=( float4& lhs, const float4 rhs )
+float4 operator/=( float4& lhs, const float4& rhs )
 {
 	return ( lhs = lhs / rhs );
 }
@@ -4251,7 +3861,7 @@ double2 operator+( const double2& lhs, const double2& rhs )
 	};
 }
 
-double2 operator+=( double2& lhs, const double2 rhs )
+double2 operator+=( double2& lhs, const double2& rhs )
 {
 	return ( lhs = lhs + rhs );
 }
@@ -4277,7 +3887,7 @@ double2 operator-( const double2& lhs, const double2& rhs )
 	};
 }
 
-double2 operator-=( double2& lhs, const double2 rhs )
+double2 operator-=( double2& lhs, const double2& rhs )
 {
 	return ( lhs = lhs - rhs );
 }
@@ -4303,7 +3913,7 @@ double2 operator*( const double2& lhs, const double2& rhs )
 	};
 }
 
-double2 operator*=( double2& lhs, const double2 rhs )
+double2 operator*=( double2& lhs, const double2& rhs )
 {
 	return ( lhs = lhs * rhs );
 }
@@ -4329,7 +3939,7 @@ double2 operator/( const double2& lhs, const double2& rhs )
 	};
 }
 
-double2 operator/=( double2& lhs, const double2 rhs )
+double2 operator/=( double2& lhs, const double2& rhs )
 {
 	return ( lhs = lhs / rhs );
 }
@@ -4427,7 +4037,7 @@ double3 operator+( const double3& lhs, const double3& rhs )
 	};
 }
 
-double3 operator+=( double3& lhs, const double3 rhs )
+double3 operator+=( double3& lhs, const double3& rhs )
 {
 	return ( lhs = lhs + rhs );
 }
@@ -4455,7 +4065,7 @@ double3 operator-( const double3& lhs, const double3& rhs )
 	};
 }
 
-double3 operator-=( double3& lhs, const double3 rhs )
+double3 operator-=( double3& lhs, const double3& rhs )
 {
 	return ( lhs = lhs - rhs );
 }
@@ -4483,7 +4093,7 @@ double3 operator*( const double3& lhs, const double3& rhs )
 	};
 }
 
-double3 operator*=( double3& lhs, const double3 rhs )
+double3 operator*=( double3& lhs, const double3& rhs )
 {
 	return ( lhs = lhs * rhs );
 }
@@ -4511,7 +4121,7 @@ double3 operator/( const double3& lhs, const double3& rhs )
 	};
 }
 
-double3 operator/=( double3& lhs, const double3 rhs )
+double3 operator/=( double3& lhs, const double3& rhs )
 {
 	return ( lhs = lhs / rhs );
 }
@@ -4619,7 +4229,7 @@ double4 operator+( const double4& lhs, const double4& rhs )
 	};
 }
 
-double4 operator+=( double4& lhs, const double4 rhs )
+double4 operator+=( double4& lhs, const double4& rhs )
 {
 	return ( lhs = lhs + rhs );
 }
@@ -4649,7 +4259,7 @@ double4 operator-( const double4& lhs, const double4& rhs )
 	};
 }
 
-double4 operator-=( double4& lhs, const double4 rhs )
+double4 operator-=( double4& lhs, const double4& rhs )
 {
 	return ( lhs = lhs - rhs );
 }
@@ -4679,7 +4289,7 @@ double4 operator*( const double4& lhs, const double4& rhs )
 	};
 }
 
-double4 operator*=( double4& lhs, const double4 rhs )
+double4 operator*=( double4& lhs, const double4& rhs )
 {
 	return ( lhs = lhs * rhs );
 }
@@ -4709,7 +4319,7 @@ double4 operator/( const double4& lhs, const double4& rhs )
 	};
 }
 
-double4 operator/=( double4& lhs, const double4 rhs )
+double4 operator/=( double4& lhs, const double4& rhs )
 {
 	return ( lhs = lhs / rhs );
 }

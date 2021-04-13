@@ -36,45 +36,45 @@ SOFTWARE.
 
 #include "float4.h"
 
-/// A matrix of 4 float4s.
+// A matrix of 4 float4s.
 struct float4x4
 {
 	float4 rows[4];
 
-	/// Default constructor.  Sets the matrix to an identity matrix.
+	// Default constructor.  Sets the matrix to an identity matrix.
 	inline float4x4() {}
 
-	/// \brief Sets each of the diagonal values of the matrix to the given scalar value.
-	/// Setting the scalar to 1 will give an identity matrix.
+	// Sets each of the diagonal values of the matrix to the given scalar value.
+	// Setting the scalar to 1 will give an identity matrix.
 	inline float4x4( const float diagonal );
 
-	/// \brief Sets the diagonal values of the matrix to the corresponding components of the given vector.
-	/// Setting each component of the vector to 1 will give an identity matrix.
+	// Sets the diagonal values of the matrix to the corresponding components of the given vector.
+	// Setting each component of the vector to 1 will give an identity matrix.
 	inline float4x4( const float4& diagonal );
 
-	/// Sets each row of the matrix to the given vectors.
+	// Sets each row of the matrix to the given vectors.
 	inline float4x4( const float4& row0, const float4& row1, const float4& row2, const float4& row3 );
 
-	/// Sets each row of the matrix to the corresponding vector in the array.
+	// Sets each row of the matrix to the corresponding vector in the array.
 	inline float4x4( const float4 rows[4] );
 
-	/// Sets each component of the vector to the corresponding scalar value (row major).
+	// Sets each component of the vector to the corresponding scalar value (row major).
 	inline float4x4( const float m00, const float m01, const float m02, const float m03, const float m10, const float m11, const float m12, const float m13, const float m20, const float m21, const float m22, const float m23, const float m30, const float m31, const float m32, const float m33 );
 
-	/// Copy constructor.  Sets each row of the matrix to the rows in the other matrix.
+	// Copy constructor.  Sets each row of the matrix to the rows in the other matrix.
 	inline float4x4( const float4x4& other );
 
 	inline ~float4x4() {}
 
-	/// Copies each row of the given matrix via a single memcpy.
+	// Copies each row of the given matrix via a single memcpy.
 	inline float4x4 operator=( const float4x4& other );
 
-	/// \brief Returns the row at the given index of the matrix.
-	/// Index CANNOT be lower than 0 or higher than 3.
+	// Returns the row at the given index of the matrix.
+	// Index CANNOT be lower than 0 or higher than 3.
 	inline float4& operator[]( const uint32_t index );
 
-	/// \brief Returns the row at the given index of the matrix.
-	/// Index CANNOT be lower than 0 or higher than 3.
+	// Returns the row at the given index of the matrix.
+	// Index CANNOT be lower than 0 or higher than 3.
 	inline const float4& operator[]( const uint32_t index ) const;
 };
 

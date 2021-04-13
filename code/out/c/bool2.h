@@ -40,7 +40,7 @@ extern "C" {
 
 #include "../hlml_types.h"
 
-/// \brief A vector of 2 bool32_ts with components xy.
+// A vector of 2 bool32_ts with components xy.
 typedef struct bool2
 {
 	bool32_t x;

@@ -754,7 +754,7 @@ void Gen_MatrixIdentity( const genLanguage_t language, const genType_t type, con
 	char identityFuncStr[GEN_STRING_LENGTH_FUNCTION_NAME];
 	Gen_GetFuncNameIdentity( language, type, numRows, numCols, identityFuncStr );
 
-	Doc_MatrixIdentity( sbFwdDec, fullTypeName );
+	Doc_MatrixIdentity( sbFwdDec );
 	String_Appendf( sbFwdDec, "inline void %s( %s mat );\n", identityFuncStr, parmTypeName );
 	String_Append(  sbFwdDec, "\n" );
 
@@ -799,7 +799,7 @@ void Gen_MatrixTranspose( const genLanguage_t language, const genType_t type, co
 	char transposeFuncStr[GEN_STRING_LENGTH_FUNCTION_NAME];
 	Gen_GetFuncNameTranspose( language, type, numRows, numCols, transposeFuncStr );
 
-	Doc_MatrixTranpose( sbFwdDec, fullTypeName );
+	Doc_MatrixTranpose( sbFwdDec );
 	String_Appendf( sbFwdDec, "inline %s %s( const %s mat );\n", transposeTypeName, transposeFuncStr, parmTypeName );
 	String_Append(  sbFwdDec, "\n" );
 
@@ -885,7 +885,7 @@ void Gen_MatrixInverse( const genLanguage_t language, const genType_t type, cons
 	char mulMatrixScalarFuncStr[GEN_STRING_LENGTH_FUNCTION_NAME];
 	Gen_GetFuncNameComponentWiseArithmeticScalar( language, type, numRows, numCols, GEN_OP_ARITHMETIC_MUL, mulMatrixScalarFuncStr );
 
-	Doc_MatrixInverse( sbFwdDec, fullTypeName );
+	Doc_MatrixInverse( sbFwdDec );
 	String_Appendf( sbFwdDec, "inline %s %s( const %s mat );\n", fullTypeName, inverseFuncStr, parmTypeName );
 	String_Append(  sbFwdDec, "\n" );
 
@@ -1080,7 +1080,7 @@ void Gen_MatrixDeterminant( const genLanguage_t language, const genType_t type, 
 	char determinantFuncStr[GEN_STRING_LENGTH_FUNCTION_NAME];
 	Gen_GetFuncNameDeterminant( language, type, numRows, numCols, determinantFuncStr );
 
-	Doc_MatrixDeterminant( sbFwdDec, fullTypeName );
+	Doc_MatrixDeterminant( sbFwdDec );
 	String_Appendf( sbFwdDec, "inline %s %s( const %s mat );\n", memberTypeString, determinantFuncStr, parmTypeName );
 	String_Appendf( sbFwdDec, "\n" );
 
@@ -1153,7 +1153,7 @@ void Gen_MatrixTranslate( const genLanguage_t language, const genType_t type, co
 	char translateFuncStr[GEN_STRING_LENGTH_FUNCTION_NAME];
 	Gen_GetFuncNameTranslate( language, type, numRows, numCols, translateFuncStr );
 
-	Doc_MatrixTranslate( sbFwdDec, fullTypeName );
+	Doc_MatrixTranslate( sbFwdDec );
 	String_Appendf( sbFwdDec, "inline %s %s( const %s%c mat, const %s%d%c vec );\n", fullTypeName, translateFuncStr, fullTypeName, parmRefStr, typeString, vecComponents, parmRefStr );
 	String_Append(  sbFwdDec, "\n" );
 
@@ -1250,7 +1250,7 @@ void Gen_MatrixRotate( allocatorLinear_t* allocator, const genLanguage_t languag
 	char matrixMulFuncStr[GEN_STRING_LENGTH_FUNCTION_NAME];
 	Gen_GetFuncNameMatrixMultiply( language, type, numRows, numCols, matrixMulFuncStr );
 
-	Doc_MatrixRotate( sbFwdDec, fullTypeName );
+	Doc_MatrixRotate( sbFwdDec );
 	String_Appendf( sbFwdDec, "inline %s %s( %s );\n", fullTypeName, rotateFuncStr, parmListStr.str );
 	String_Append(  sbFwdDec, "\n" );
 
@@ -1342,7 +1342,7 @@ void Gen_MatrixScale( const genLanguage_t language, const genType_t type, const 
 	char scaleFuncStr[GEN_STRING_LENGTH_FUNCTION_NAME];
 	Gen_GetFuncNameScale( language, type, numRows, numCols, scaleFuncStr );
 
-	Doc_MatrixScaleNonUniform( sbFwdDec, fullTypeName );
+	Doc_MatrixScaleNonUniform( sbFwdDec );
 	String_Appendf( sbFwdDec, "inline %s %s( const %s mat, const %s vec );\n", fullTypeName, scaleFuncStr, parmTypeNameMatrix, parmTypeNameScaleVec );
 	String_Append(  sbFwdDec, "\n" );
 
@@ -1431,7 +1431,7 @@ void Gen_MatrixOrtho( const genLanguage_t language, const genType_t type, const 
 
 		Gen_GetFuncNameOrtho( language, type, numRows, numCols, hand, range, funcStr );
 
-		Doc_MatrixOrtho( sbFwdDec, fullTypeName, hand, range );
+		Doc_MatrixOrtho( sbFwdDec, hand, range );
 		String_Appendf( sbFwdDec, "inline %s %s( const %s left, const %s right, const %s top, const %s bottom, const %s znear, const %s zfar );\n",
 			fullTypeName, funcStr, typeString, typeString, typeString, typeString, typeString, typeString );
 		String_Append(  sbFwdDec, "\n" );
@@ -1466,7 +1466,7 @@ void Gen_MatrixOrtho( const genLanguage_t language, const genType_t type, const 
 
 		Gen_GetFuncNameOrtho( language, type, numRows, numCols, hand, range, funcStr );
 
-		Doc_MatrixOrtho( sbFwdDec, fullTypeName, hand, range );
+		Doc_MatrixOrtho( sbFwdDec, hand, range );
 		String_Appendf( sbFwdDec, "inline %s %s( const %s left, const %s right, const %s top, const %s bottom, const %s znear, const %s zfar );\n",
 			fullTypeName, funcStr, typeString, typeString, typeString, typeString, typeString, typeString );
 		String_Append(  sbFwdDec, "\n" );
@@ -1502,7 +1502,7 @@ void Gen_MatrixOrtho( const genLanguage_t language, const genType_t type, const 
 
 		Gen_GetFuncNameOrtho( language, type, numRows, numCols, hand, range, funcStr );
 
-		Doc_MatrixOrtho( sbFwdDec, fullTypeName, hand, range );
+		Doc_MatrixOrtho( sbFwdDec, hand, range );
 		String_Appendf( sbFwdDec, "inline %s %s( const %s left, const %s right, const %s top, const %s bottom, const %s znear, const %s zfar );\n",
 			fullTypeName, funcStr, typeString, typeString, typeString, typeString, typeString, typeString );
 		String_Append(  sbFwdDec, "\n" );
@@ -1537,7 +1537,7 @@ void Gen_MatrixOrtho( const genLanguage_t language, const genType_t type, const 
 
 		Gen_GetFuncNameOrtho( language, type, numRows, numCols, hand, range, funcStr );
 
-		Doc_MatrixOrtho( sbFwdDec, fullTypeName, hand, range );
+		Doc_MatrixOrtho( sbFwdDec, hand, range );
 		String_Appendf( sbFwdDec, "inline %s %s( const %s left, const %s right, const %s top, const %s bottom, const %s znear, const %s zfar );\n",
 			fullTypeName, funcStr, typeString, typeString, typeString, typeString, typeString, typeString );
 		String_Append(  sbFwdDec, "\n" );
@@ -1620,7 +1620,7 @@ void Gen_MatrixPerspective( const genLanguage_t language, const genType_t type, 
 
 		Gen_GetFuncNamePerspective( language, type, numRows, numCols, hand, range, funcStr );
 
-		Doc_MatrixPerspective( sbFwdDec, fullTypeName, hand, range );
+		Doc_MatrixPerspective( sbFwdDec, hand, range );
 		String_Appendf( sbFwdDec, "inline %s %s( const %s fovdeg, const %s aspect, const %s znear, const %s zfar );\n",
 			fullTypeName, funcStr, typeString, typeString, typeString, typeString );
 		String_Appendf( sbFwdDec, "\n" );
@@ -1652,7 +1652,7 @@ void Gen_MatrixPerspective( const genLanguage_t language, const genType_t type, 
 
 		Gen_GetFuncNamePerspective( language, type, numRows, numCols, hand, range, funcStr );
 
-		Doc_MatrixPerspective( sbFwdDec, fullTypeName, hand, range );
+		Doc_MatrixPerspective( sbFwdDec, hand, range );
 		String_Appendf( sbFwdDec, "inline %s %s( const %s fovdeg, const %s aspect, const %s znear, const %s zfar );\n",
 			fullTypeName, funcStr, typeString, typeString, typeString, typeString );
 		String_Append(  sbFwdDec, "\n" );
@@ -1685,7 +1685,7 @@ void Gen_MatrixPerspective( const genLanguage_t language, const genType_t type, 
 
 		Gen_GetFuncNamePerspective( language, type, numRows, numCols, hand, range, funcStr );
 
-		Doc_MatrixPerspective( sbFwdDec, fullTypeName, hand, range );
+		Doc_MatrixPerspective( sbFwdDec, hand, range );
 		String_Appendf( sbFwdDec, "inline %s %s( const %s fovdeg, const %s aspect, const %s znear, const %s zfar );\n",
 			fullTypeName, funcStr, typeString, typeString, typeString, typeString );
 		String_Append(  sbFwdDec, "\n" );
@@ -1716,7 +1716,7 @@ void Gen_MatrixPerspective( const genLanguage_t language, const genType_t type, 
 
 		Gen_GetFuncNamePerspective( language, type, numRows, numCols, hand, range, funcStr );
 
-		Doc_MatrixPerspective( sbFwdDec, fullTypeName, hand, range );
+		Doc_MatrixPerspective( sbFwdDec, hand, range );
 		String_Appendf( sbFwdDec, "inline %s %s( const %s fovdeg, const %s aspect, const %s znear, const %s zfar );\n",
 			fullTypeName, funcStr, typeString, typeString, typeString, typeString );
 		String_Append(  sbFwdDec, "\n" );
@@ -1793,7 +1793,7 @@ void Gen_MatrixLookAt( const genLanguage_t language, const genType_t type, const
 	{
 		Gen_GetFuncNameLookAt( language, type, numRows, numCols, GEN_HAND_LEFT, funcStr );
 
-		Doc_MatrixLookAt( sbFwdDec, fullTypeName, GEN_HAND_LEFT );
+		Doc_MatrixLookAt( sbFwdDec, GEN_HAND_LEFT );
 		String_Appendf( sbFwdDec, "inline %s %s( const %s eye, const %s target, const %s up );\n",
 			fullTypeName, funcStr, vectorParmTypeName, vectorParmTypeName, vectorParmTypeName );
 		String_Append(  sbFwdDec, "\n" );
@@ -1834,7 +1834,7 @@ void Gen_MatrixLookAt( const genLanguage_t language, const genType_t type, const
 	{
 		Gen_GetFuncNameLookAt( language, type, numRows, numCols, GEN_HAND_RIGHT, funcStr );
 
-		Doc_MatrixLookAt( sbFwdDec, fullTypeName, GEN_HAND_RIGHT );
+		Doc_MatrixLookAt( sbFwdDec, GEN_HAND_RIGHT );
 		String_Appendf( sbFwdDec, "inline %s %s( const %s eye, const %s target, const %s up );\n",
 			fullTypeName, funcStr, vectorParmTypeName, vectorParmTypeName, vectorParmTypeName );
 		String_Append(  sbFwdDec, "\n" );
@@ -1898,7 +1898,7 @@ void Gen_MatrixMultiply( const genLanguage_t language, const genType_t type, con
 	char mulFuncStr[GEN_STRING_LENGTH_FUNCTION_NAME];
 	Gen_GetFuncNameMatrixMultiply( language, type, numRows, numCols, mulFuncStr );
 
-	Doc_MatrixMultiplication( sbFwdDec, typeNameLhs );
+	Doc_MatrixMultiplication( sbFwdDec );
 	String_Appendf( sbFwdDec, "inline %s %s( const %s%c lhs, const %s%c rhs );\n", typeNameReturn, mulFuncStr, typeNameLhs, parmRefStr, typeNameRhs, parmRefStr );
 	String_Append(  sbFwdDec, "\n" );
 
@@ -1938,7 +1938,7 @@ void Gen_MatrixMultiplyVector( const genLanguage_t language, const genType_t typ
 	char mulVectorFuncStr[GEN_STRING_LENGTH_FUNCTION_NAME];
 	Gen_GetFuncNameMatrixMultiplyVector( language, type, numRows, numCols, mulVectorFuncStr );
 
-	Doc_MatrixMultiplicationVector( sbFwdDec, fullTypeName );
+	Doc_MatrixMultiplicationVector( sbFwdDec );
 	String_Appendf( sbFwdDec, "inline %s %s( const %s%c lhs, const %s%c rhs );\n", vectorTypeName, mulVectorFuncStr, fullTypeName, parmRefStr, vectorTypeName, parmRefStr );
 	String_Append(  sbFwdDec, "\n" );
 

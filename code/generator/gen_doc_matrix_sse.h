@@ -26,18 +26,14 @@ along with The HLML Generator.  If not, see <http://www.gnu.org/licenses/>.
 #include "gen_common.h"
 #include "string_builder.h"
 
-inline void Doc_SSE_MatrixIdentity( stringBuilder_t* sb, const char* fullTypeName, const char* registerName ) {
-	assert( fullTypeName );
-
+inline void Doc_SSE_MatrixIdentity( stringBuilder_t* sb, const char* registerName ) {
 	String_Appendf( sb,
-		"/// \\relates %s\n" \
-		"/// \\brief Sets a matrix of %s registers to identity.\n", fullTypeName, registerName
+		"// Sets a matrix of %s registers to identity.\n", registerName
 	);
 }
 
-inline void Doc_SSE_MatrixTranspose( stringBuilder_t* sb, const char* fullTypeName, const u32 numRows, const u32 numCols, const char* registerName ) {
+inline void Doc_SSE_MatrixTranspose( stringBuilder_t* sb, const u32 numRows, const u32 numCols, const char* registerName ) {
 	assert( sb );
-	assert( fullTypeName );
 	assert( numRows >= GEN_COMPONENT_COUNT_MIN );
 	assert( numRows <= GEN_COMPONENT_COUNT_MAX );
 	assert( numCols >= GEN_COMPONENT_COUNT_MIN );
@@ -45,14 +41,12 @@ inline void Doc_SSE_MatrixTranspose( stringBuilder_t* sb, const char* fullTypeNa
 	assert( registerName );
 
 	String_Appendf( sb,
-		"/// \\relates %s\n" \
-		"/// \\brief Stores a transposed matrix of %d x %d %s registers in the output given the input %d x %d register matrix.\n", fullTypeName, numCols, numRows, registerName, numRows, numCols
+		"// Stores a transposed matrix of %d x %d %s registers in the output given the input %d x %d register matrix.\n", numCols, numRows, registerName, numRows, numCols
 	);
 }
 
-inline void Doc_SSE_MatrixInverse( stringBuilder_t* sb, const char* fullTypeName, const u32 numRows, const u32 numCols, const char* registerName ) {
+inline void Doc_SSE_MatrixInverse( stringBuilder_t* sb, const u32 numRows, const u32 numCols, const char* registerName ) {
 	assert( sb );
-	assert( fullTypeName );
 	assert( numRows >= GEN_COMPONENT_COUNT_MIN );
 	assert( numRows <= GEN_COMPONENT_COUNT_MAX );
 	assert( numCols >= GEN_COMPONENT_COUNT_MIN );
@@ -60,14 +54,12 @@ inline void Doc_SSE_MatrixInverse( stringBuilder_t* sb, const char* fullTypeName
 	assert( registerName );
 
 	String_Appendf( sb,
-		"/// \\relates %s\n"
-		"/// \\brief Stores an inverted matrix of %d x %d %s registers.\n", fullTypeName, numRows, numCols, registerName
+		"// Stores an inverted matrix of %d x %d %s registers.\n", numRows, numCols, registerName
 	);
 }
 
-inline void Doc_SSE_MatrixDeterminant( stringBuilder_t* sb, const char* fullTypeName, const u32 numRows, const u32 numCols, const char* registerName ) {
+inline void Doc_SSE_MatrixDeterminant( stringBuilder_t* sb, const u32 numRows, const u32 numCols, const char* registerName ) {
 	assert( sb );
-	assert( fullTypeName );
 	assert( numRows >= GEN_COMPONENT_COUNT_MIN );
 	assert( numRows <= GEN_COMPONENT_COUNT_MAX );
 	assert( numCols >= GEN_COMPONENT_COUNT_MIN );
@@ -75,14 +67,11 @@ inline void Doc_SSE_MatrixDeterminant( stringBuilder_t* sb, const char* fullType
 	assert( registerName );
 
 	String_Appendf( sb,
-		"/// \\relates %s\n"
-		"/// \\brief Stores the determinants of a matrix of %d x %d %s registers.\n", fullTypeName, numRows, numCols, registerName
+		"// Stores the determinants of a matrix of %d x %d %s registers.\n", numRows, numCols, registerName
 	);
 }
 
-inline void Doc_SSE_MatrixArithmeticComponentWise( stringBuilder_t* sb, const char* fullTypeName, const char* registerName, const genOpArithmetic_t op ) {
-	assert( fullTypeName );
-
+inline void Doc_SSE_MatrixArithmeticComponentWise( stringBuilder_t* sb, const char* registerName, const genOpArithmetic_t op ) {
 	const char* verb = NULL;
 	switch ( op ) {
 		case GEN_OP_ARITHMETIC_ADD:
@@ -109,17 +98,13 @@ inline void Doc_SSE_MatrixArithmeticComponentWise( stringBuilder_t* sb, const ch
 	}
 
 	String_Appendf( sb,
-		"/// \\relates %s\n" \
-		"/// \\brief Stores a matrix that is the result of the component-wise %s between the lhs and rhs %s registers of the input.\n", fullTypeName, verb, registerName
+		"// Stores a matrix that is the result of the component-wise %s between the lhs and rhs %s registers of the input.\n", verb, registerName
 	);
 }
 
-inline void Doc_SSE_MatrixTranslate( stringBuilder_t* sb, const char* fullTypeName, const char* registerName ) {
-	assert( fullTypeName );
-
+inline void Doc_SSE_MatrixTranslate( stringBuilder_t* sb, const char* registerName ) {
 	String_Appendf( sb,
-		"/// \\relates %s\n" \
-		"/// \\brief Stores a last matrix column that has been translated by the given %s register vector in the input.\n", fullTypeName, registerName
+		"// Stores a last matrix column that has been translated by the given %s register vector in the input.\n", registerName
 	);
 }
 
@@ -127,14 +112,12 @@ inline void Doc_SSE_MatrixScale( stringBuilder_t* sb, const char* fullTypeName )
 	assert( fullTypeName );
 
 	String_Appendf( sb,
-		"/// \\relates %s\n" \
-		"/// \\brief Stores an array of %s diagonals that have been scaled by the given vector in the input.\n", fullTypeName, fullTypeName
+		"// Stores an array of %s diagonals that have been scaled by the given vector in the input.\n", fullTypeName
 	);
 }
 
-inline void Doc_SSE_MatrixMul( stringBuilder_t* sb, const char* fullTypeName, const char* registerName ) {
+inline void Doc_SSE_MatrixMul( stringBuilder_t* sb, const char* registerName ) {
 	String_Appendf( sb,
-		"/// \\relates %s\n" \
-		"/// \\brief Performs a matrix-multiplication of 2 matrices of %s registers.\n", fullTypeName, registerName
+		"// Performs a matrix-multiplication of 2 matrices of %s registers.\n", registerName
 	);
 }

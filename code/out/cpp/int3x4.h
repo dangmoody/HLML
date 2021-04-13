@@ -38,45 +38,45 @@ SOFTWARE.
 #include "int3x3.h"
 #include "int4x3.h"
 
-/// A matrix of 3 int4s.
+// A matrix of 3 int4s.
 struct int3x4
 {
 	int4 rows[3];
 
-	/// Default constructor.  Sets the matrix to an identity matrix.
+	// Default constructor.  Sets the matrix to an identity matrix.
 	inline int3x4() {}
 
-	/// \brief Sets each of the diagonal values of the matrix to the given scalar value.
-	/// Setting the scalar to 1 will give an identity matrix.
+	// Sets each of the diagonal values of the matrix to the given scalar value.
+	// Setting the scalar to 1 will give an identity matrix.
 	inline int3x4( const int32_t diagonal );
 
-	/// \brief Sets the diagonal values of the matrix to the corresponding components of the given vector.
-	/// Setting each component of the vector to 1 will give an identity matrix.
+	// Sets the diagonal values of the matrix to the corresponding components of the given vector.
+	// Setting each component of the vector to 1 will give an identity matrix.
 	inline int3x4( const int4& diagonal );
 
-	/// Sets each row of the matrix to the given vectors.
+	// Sets each row of the matrix to the given vectors.
 	inline int3x4( const int4& row0, const int4& row1, const int4& row2 );
 
-	/// Sets each row of the matrix to the corresponding vector in the array.
+	// Sets each row of the matrix to the corresponding vector in the array.
 	inline int3x4( const int4 rows[3] );
 
-	/// Sets each component of the vector to the corresponding scalar value (row major).
+	// Sets each component of the vector to the corresponding scalar value (row major).
 	inline int3x4( const int32_t m00, const int32_t m01, const int32_t m02, const int32_t m03, const int32_t m10, const int32_t m11, const int32_t m12, const int32_t m13, const int32_t m20, const int32_t m21, const int32_t m22, const int32_t m23 );
 
-	/// Copy constructor.  Sets each row of the matrix to the rows in the other matrix.
+	// Copy constructor.  Sets each row of the matrix to the rows in the other matrix.
 	inline int3x4( const int3x4& other );
 
 	inline ~int3x4() {}
 
-	/// Copies each row of the given matrix via a single memcpy.
+	// Copies each row of the given matrix via a single memcpy.
 	inline int3x4 operator=( const int3x4& other );
 
-	/// \brief Returns the row at the given index of the matrix.
-	/// Index CANNOT be lower than 0 or higher than 2.
+	// Returns the row at the given index of the matrix.
+	// Index CANNOT be lower than 0 or higher than 2.
 	inline int4& operator[]( const uint32_t index );
 
-	/// \brief Returns the row at the given index of the matrix.
-	/// Index CANNOT be lower than 0 or higher than 2.
+	// Returns the row at the given index of the matrix.
+	// Index CANNOT be lower than 0 or higher than 2.
 	inline const int4& operator[]( const uint32_t index ) const;
 };
 

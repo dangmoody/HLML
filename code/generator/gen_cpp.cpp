@@ -320,7 +320,7 @@ static void GenerateMatrixOperatorsArithmetic( const genType_t type, const u32 n
 		char returnTypeName[GEN_STRING_LENGTH_TYPE_NAME];
 		Gen_GetFullTypeName( type, numRows, numRows, returnTypeName );
 
-		Doc_MatrixMultiplication( sbFwdDec, fullTypeName );
+		Doc_MatrixMultiplication( sbFwdDec );
 		String_Appendf( sbFwdDec, "inline %s operator*( const %s& lhs, const %s& rhs );\n", returnTypeName, fullTypeName, rhsTypeName );
 		String_Append(  sbFwdDec, "\n" );
 
@@ -351,11 +351,11 @@ static void GenerateMatrixOperatorsArithmetic( const genType_t type, const u32 n
 		Gen_GetFuncNameInverse( GEN_LANGUAGE_CPP, type, numRows, numCols, inverseFuncStr );
 
 		// main operator
-		Doc_MatrixDivision( sbFwdDec, fullTypeName );
+		Doc_MatrixDivision( sbFwdDec );
 		String_Appendf( sbFwdDec, "inline %s operator/( const %s& lhs, const %s& rhs );\n", fullTypeName, fullTypeName, fullTypeName );
 		String_Append(  sbFwdDec, "\n" );
 
-		Doc_MatrixDivision( sbImpl, fullTypeName );
+		Doc_MatrixDivision( sbImpl );
 		String_Appendf( sbImpl, "inline %s operator/( const %s& lhs, const %s& rhs )\n", fullTypeName, fullTypeName, fullTypeName );
 		String_Append(  sbImpl, "{\n" );
 		String_Appendf( sbImpl, "\treturn lhs * %s( rhs );\n", inverseFuncStr );
@@ -363,7 +363,7 @@ static void GenerateMatrixOperatorsArithmetic( const genType_t type, const u32 n
 		String_Append(  sbImpl, "\n" );
 
 		// compound operator
-		Doc_MatrixDivisionCompound( sbFwdDec, fullTypeName );
+		Doc_MatrixDivisionCompound( sbFwdDec );
 		String_Appendf( sbFwdDec, "inline %s operator/=( %s& lhs, const %s& rhs );\n", fullTypeName, fullTypeName, fullTypeName );
 		String_Append(  sbFwdDec, "\n" );
 

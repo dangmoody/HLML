@@ -51,8 +51,8 @@ struct float4;
 #pragma warning( disable : 4201 ) // C4201 - nonstandard extension used : nameless struct/union
 #endif
 
-/// \brief A vector of 2 floats with components xy.
-/// Components are also stored as elements in an array via a union.
+// A vector of 2 floats with components xy.
+// Components are also stored as elements in an array via a union.
 struct float2
 {
 	union
@@ -73,41 +73,41 @@ struct float2
 	};
 
 
-	/// Default constructor.  Initializes all values to zero.
+	// Default constructor.  Initializes all values to zero.
 	inline float2() {}
 
-	/// Initializes all components of the vector to the given scalar value.
+	// Initializes all components of the vector to the given scalar value.
 	inline explicit float2( const float x );
 
-	/// Sets the xy members of the vector to the corresponding parameters.
+	// Sets the xy members of the vector to the corresponding parameters.
 	inline float2( const float x, const float y );
 
-	/// Copy constructor.  Copies the elements of the given vector via memcpy.
+	// Copy constructor.  Copies the elements of the given vector via memcpy.
 	inline float2( const float2& other );
 
-	/// Copy constructor.  Copies the elements of the given vector via memcpy.
+	// Copy constructor.  Copies the elements of the given vector via memcpy.
 	inline float2( const float3& other );
 
-	/// Copy constructor.  Copies the elements of the given vector via memcpy.
+	// Copy constructor.  Copies the elements of the given vector via memcpy.
 	inline float2( const float4& other );
 
 	~float2() {}
 
-	/// Copies the elements of the given vector via a single memcpy.
+	// Copies the elements of the given vector via a single memcpy.
 	inline float2 operator=( const float2& rhs );
 
-	/// Copies the elements of the given vector via a single memcpy.
+	// Copies the elements of the given vector via a single memcpy.
 	inline float2 operator=( const float3& rhs );
 
-	/// Copies the elements of the given vector via a single memcpy.
+	// Copies the elements of the given vector via a single memcpy.
 	inline float2 operator=( const float4& rhs );
 
-	/// \brief Returns the vector component at the given index.
-	/// Index CANNOT be lower than 0 or higher than 1.
+	// Returns the vector component at the given index.
+	// Index CANNOT be lower than 0 or higher than 1.
 	inline const float& operator[]( const uint32_t index ) const;
 
-	/// \brief Returns the vector component at the given index.
-	/// Index CANNOT be lower than 0 or higher than 1.
+	// Returns the vector component at the given index.
+	// Index CANNOT be lower than 0 or higher than 1.
 	inline float& operator[]( const uint32_t index );
 
 	// swizzle funcs
