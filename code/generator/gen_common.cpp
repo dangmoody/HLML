@@ -1852,18 +1852,17 @@ void Gen_OperatorNegate( const genType_t type, const u32 numRows, const u32 numC
 
 	String_Appendf( sbImpl, "%s operator-( const %s& %s )\n", fullTypeName, fullTypeName, parmName );
 	String_Append(  sbImpl, "{\n");
-	String_Appendf( sbImpl, "\treturn HLML_CONSTRUCT( %s ) {\n", fullTypeName );
+	String_Appendf( sbImpl, "\treturn HLML_CONSTRUCT( %s )\n", fullTypeName );
+	String_Append(  sbImpl, "\t{\n");
 	if ( isMatrix ) {
 		for ( u32 row = 0; row < numRows; row++ ) {
-			for ( u32 col = 0; col < numCols; col++ ) {
-				String_Appendf( sbImpl, "-%s.rows[%d]", parmName, col );
+			String_Appendf( sbImpl, "\t\t-%s.rows[%d]", parmName, row );
 
-				if ( col != numCols - 1 ) {
-					String_Append( sbImpl, "," );
-				}
-
-				String_Append( sbImpl, "\n" );
+			if ( row != numRows - 1 ) {
+				String_Append( sbImpl, "," );
 			}
+
+			String_Append( sbImpl, "\n" );
 		}
 	} else {
 		for ( u32 componentIndex = 0; componentIndex < numCols; componentIndex++ ) {
