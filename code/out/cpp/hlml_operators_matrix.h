@@ -3079,12 +3079,12 @@ int2x2& operator--( int2x2& lhs, const int )
 
 int2x2 operator-( const int2x2& mat )
 {
-	return int2x2(
+	return HLML_CONSTRUCT( int2x2 ) {
 -mat.rows[0],
 -mat.rows[1]
 -mat.rows[0],
 -mat.rows[1]
-	);
+	};
 }
 
 int2x2 operator&( int2x2& lhs, const int2x2& rhs )
@@ -3298,14 +3298,14 @@ int2x3& operator--( int2x3& lhs, const int )
 
 int2x3 operator-( const int2x3& mat )
 {
-	return int2x3(
+	return HLML_CONSTRUCT( int2x3 ) {
 -mat.rows[0],
 -mat.rows[1],
 -mat.rows[2]
 -mat.rows[0],
 -mat.rows[1],
 -mat.rows[2]
-	);
+	};
 }
 
 int2x3 operator&( int2x3& lhs, const int2x3& rhs )
@@ -3519,7 +3519,7 @@ int2x4& operator--( int2x4& lhs, const int )
 
 int2x4 operator-( const int2x4& mat )
 {
-	return int2x4(
+	return HLML_CONSTRUCT( int2x4 ) {
 -mat.rows[0],
 -mat.rows[1],
 -mat.rows[2],
@@ -3528,7 +3528,7 @@ int2x4 operator-( const int2x4& mat )
 -mat.rows[1],
 -mat.rows[2],
 -mat.rows[3]
-	);
+	};
 }
 
 int2x4 operator&( int2x4& lhs, const int2x4& rhs )
@@ -3761,14 +3761,14 @@ int3x2& operator--( int3x2& lhs, const int )
 
 int3x2 operator-( const int3x2& mat )
 {
-	return int3x2(
+	return HLML_CONSTRUCT( int3x2 ) {
 -mat.rows[0],
 -mat.rows[1]
 -mat.rows[0],
 -mat.rows[1]
 -mat.rows[0],
 -mat.rows[1]
-	);
+	};
 }
 
 int3x2 operator&( int3x2& lhs, const int3x2& rhs )
@@ -4030,7 +4030,7 @@ int3x3& operator--( int3x3& lhs, const int )
 
 int3x3 operator-( const int3x3& mat )
 {
-	return int3x3(
+	return HLML_CONSTRUCT( int3x3 ) {
 -mat.rows[0],
 -mat.rows[1],
 -mat.rows[2]
@@ -4040,7 +4040,7 @@ int3x3 operator-( const int3x3& mat )
 -mat.rows[0],
 -mat.rows[1],
 -mat.rows[2]
-	);
+	};
 }
 
 int3x3 operator&( int3x3& lhs, const int3x3& rhs )
@@ -4283,7 +4283,7 @@ int3x4& operator--( int3x4& lhs, const int )
 
 int3x4 operator-( const int3x4& mat )
 {
-	return int3x4(
+	return HLML_CONSTRUCT( int3x4 ) {
 -mat.rows[0],
 -mat.rows[1],
 -mat.rows[2],
@@ -4296,7 +4296,7 @@ int3x4 operator-( const int3x4& mat )
 -mat.rows[1],
 -mat.rows[2],
 -mat.rows[3]
-	);
+	};
 }
 
 int3x4 operator&( int3x4& lhs, const int3x4& rhs )
@@ -4560,7 +4560,7 @@ int4x2& operator--( int4x2& lhs, const int )
 
 int4x2 operator-( const int4x2& mat )
 {
-	return int4x2(
+	return HLML_CONSTRUCT( int4x2 ) {
 -mat.rows[0],
 -mat.rows[1]
 -mat.rows[0],
@@ -4569,7 +4569,7 @@ int4x2 operator-( const int4x2& mat )
 -mat.rows[1]
 -mat.rows[0],
 -mat.rows[1]
-	);
+	};
 }
 
 int4x2 operator&( int4x2& lhs, const int4x2& rhs )
@@ -4843,7 +4843,7 @@ int4x3& operator--( int4x3& lhs, const int )
 
 int4x3 operator-( const int4x3& mat )
 {
-	return int4x3(
+	return HLML_CONSTRUCT( int4x3 ) {
 -mat.rows[0],
 -mat.rows[1],
 -mat.rows[2]
@@ -4856,7 +4856,7 @@ int4x3 operator-( const int4x3& mat )
 -mat.rows[0],
 -mat.rows[1],
 -mat.rows[2]
-	);
+	};
 }
 
 int4x3 operator&( int4x3& lhs, const int4x3& rhs )
@@ -5150,7 +5150,7 @@ int4x4& operator--( int4x4& lhs, const int )
 
 int4x4 operator-( const int4x4& mat )
 {
-	return int4x4(
+	return HLML_CONSTRUCT( int4x4 ) {
 -mat.rows[0],
 -mat.rows[1],
 -mat.rows[2],
@@ -5167,7 +5167,7 @@ int4x4 operator-( const int4x4& mat )
 -mat.rows[1],
 -mat.rows[2],
 -mat.rows[3]
-	);
+	};
 }
 
 int4x4 operator&( int4x4& lhs, const int4x4& rhs )
@@ -5419,12 +5419,12 @@ uint2x2& operator--( uint2x2& lhs, const int )
 
 uint2x2 operator-( const uint2x2& mat )
 {
-	return uint2x2(
+	return HLML_CONSTRUCT( uint2x2 ) {
 -mat.rows[0],
 -mat.rows[1]
 -mat.rows[0],
 -mat.rows[1]
-	);
+	};
 }
 
 uint2x2 operator&( uint2x2& lhs, const uint2x2& rhs )
@@ -5638,14 +5638,14 @@ uint2x3& operator--( uint2x3& lhs, const int )
 
 uint2x3 operator-( const uint2x3& mat )
 {
-	return uint2x3(
+	return HLML_CONSTRUCT( uint2x3 ) {
 -mat.rows[0],
 -mat.rows[1],
 -mat.rows[2]
 -mat.rows[0],
 -mat.rows[1],
 -mat.rows[2]
-	);
+	};
 }
 
 uint2x3 operator&( uint2x3& lhs, const uint2x3& rhs )
@@ -5859,7 +5859,7 @@ uint2x4& operator--( uint2x4& lhs, const int )
 
 uint2x4 operator-( const uint2x4& mat )
 {
-	return uint2x4(
+	return HLML_CONSTRUCT( uint2x4 ) {
 -mat.rows[0],
 -mat.rows[1],
 -mat.rows[2],
@@ -5868,7 +5868,7 @@ uint2x4 operator-( const uint2x4& mat )
 -mat.rows[1],
 -mat.rows[2],
 -mat.rows[3]
-	);
+	};
 }
 
 uint2x4 operator&( uint2x4& lhs, const uint2x4& rhs )
@@ -6101,14 +6101,14 @@ uint3x2& operator--( uint3x2& lhs, const int )
 
 uint3x2 operator-( const uint3x2& mat )
 {
-	return uint3x2(
+	return HLML_CONSTRUCT( uint3x2 ) {
 -mat.rows[0],
 -mat.rows[1]
 -mat.rows[0],
 -mat.rows[1]
 -mat.rows[0],
 -mat.rows[1]
-	);
+	};
 }
 
 uint3x2 operator&( uint3x2& lhs, const uint3x2& rhs )
@@ -6370,7 +6370,7 @@ uint3x3& operator--( uint3x3& lhs, const int )
 
 uint3x3 operator-( const uint3x3& mat )
 {
-	return uint3x3(
+	return HLML_CONSTRUCT( uint3x3 ) {
 -mat.rows[0],
 -mat.rows[1],
 -mat.rows[2]
@@ -6380,7 +6380,7 @@ uint3x3 operator-( const uint3x3& mat )
 -mat.rows[0],
 -mat.rows[1],
 -mat.rows[2]
-	);
+	};
 }
 
 uint3x3 operator&( uint3x3& lhs, const uint3x3& rhs )
@@ -6623,7 +6623,7 @@ uint3x4& operator--( uint3x4& lhs, const int )
 
 uint3x4 operator-( const uint3x4& mat )
 {
-	return uint3x4(
+	return HLML_CONSTRUCT( uint3x4 ) {
 -mat.rows[0],
 -mat.rows[1],
 -mat.rows[2],
@@ -6636,7 +6636,7 @@ uint3x4 operator-( const uint3x4& mat )
 -mat.rows[1],
 -mat.rows[2],
 -mat.rows[3]
-	);
+	};
 }
 
 uint3x4 operator&( uint3x4& lhs, const uint3x4& rhs )
@@ -6900,7 +6900,7 @@ uint4x2& operator--( uint4x2& lhs, const int )
 
 uint4x2 operator-( const uint4x2& mat )
 {
-	return uint4x2(
+	return HLML_CONSTRUCT( uint4x2 ) {
 -mat.rows[0],
 -mat.rows[1]
 -mat.rows[0],
@@ -6909,7 +6909,7 @@ uint4x2 operator-( const uint4x2& mat )
 -mat.rows[1]
 -mat.rows[0],
 -mat.rows[1]
-	);
+	};
 }
 
 uint4x2 operator&( uint4x2& lhs, const uint4x2& rhs )
@@ -7183,7 +7183,7 @@ uint4x3& operator--( uint4x3& lhs, const int )
 
 uint4x3 operator-( const uint4x3& mat )
 {
-	return uint4x3(
+	return HLML_CONSTRUCT( uint4x3 ) {
 -mat.rows[0],
 -mat.rows[1],
 -mat.rows[2]
@@ -7196,7 +7196,7 @@ uint4x3 operator-( const uint4x3& mat )
 -mat.rows[0],
 -mat.rows[1],
 -mat.rows[2]
-	);
+	};
 }
 
 uint4x3 operator&( uint4x3& lhs, const uint4x3& rhs )
@@ -7490,7 +7490,7 @@ uint4x4& operator--( uint4x4& lhs, const int )
 
 uint4x4 operator-( const uint4x4& mat )
 {
-	return uint4x4(
+	return HLML_CONSTRUCT( uint4x4 ) {
 -mat.rows[0],
 -mat.rows[1],
 -mat.rows[2],
@@ -7507,7 +7507,7 @@ uint4x4 operator-( const uint4x4& mat )
 -mat.rows[1],
 -mat.rows[2],
 -mat.rows[3]
-	);
+	};
 }
 
 uint4x4 operator&( uint4x4& lhs, const uint4x4& rhs )
@@ -7754,12 +7754,12 @@ float2x2& operator--( float2x2& lhs, const int )
 
 float2x2 operator-( const float2x2& mat )
 {
-	return float2x2(
+	return HLML_CONSTRUCT( float2x2 ) {
 -mat.rows[0],
 -mat.rows[1]
 -mat.rows[0],
 -mat.rows[1]
-	);
+	};
 }
 
 bool2x2 operator<( const float2x2& lhs, const float2x2& rhs )
@@ -7900,14 +7900,14 @@ float2x3& operator--( float2x3& lhs, const int )
 
 float2x3 operator-( const float2x3& mat )
 {
-	return float2x3(
+	return HLML_CONSTRUCT( float2x3 ) {
 -mat.rows[0],
 -mat.rows[1],
 -mat.rows[2]
 -mat.rows[0],
 -mat.rows[1],
 -mat.rows[2]
-	);
+	};
 }
 
 bool2x3 operator<( const float2x3& lhs, const float2x3& rhs )
@@ -8048,7 +8048,7 @@ float2x4& operator--( float2x4& lhs, const int )
 
 float2x4 operator-( const float2x4& mat )
 {
-	return float2x4(
+	return HLML_CONSTRUCT( float2x4 ) {
 -mat.rows[0],
 -mat.rows[1],
 -mat.rows[2],
@@ -8057,7 +8057,7 @@ float2x4 operator-( const float2x4& mat )
 -mat.rows[1],
 -mat.rows[2],
 -mat.rows[3]
-	);
+	};
 }
 
 bool2x4 operator<( const float2x4& lhs, const float2x4& rhs )
@@ -8217,14 +8217,14 @@ float3x2& operator--( float3x2& lhs, const int )
 
 float3x2 operator-( const float3x2& mat )
 {
-	return float3x2(
+	return HLML_CONSTRUCT( float3x2 ) {
 -mat.rows[0],
 -mat.rows[1]
 -mat.rows[0],
 -mat.rows[1]
 -mat.rows[0],
 -mat.rows[1]
-	);
+	};
 }
 
 bool3x2 operator<( const float3x2& lhs, const float3x2& rhs )
@@ -8400,7 +8400,7 @@ float3x3& operator--( float3x3& lhs, const int )
 
 float3x3 operator-( const float3x3& mat )
 {
-	return float3x3(
+	return HLML_CONSTRUCT( float3x3 ) {
 -mat.rows[0],
 -mat.rows[1],
 -mat.rows[2]
@@ -8410,7 +8410,7 @@ float3x3 operator-( const float3x3& mat )
 -mat.rows[0],
 -mat.rows[1],
 -mat.rows[2]
-	);
+	};
 }
 
 bool3x3 operator<( const float3x3& lhs, const float3x3& rhs )
@@ -8574,7 +8574,7 @@ float3x4& operator--( float3x4& lhs, const int )
 
 float3x4 operator-( const float3x4& mat )
 {
-	return float3x4(
+	return HLML_CONSTRUCT( float3x4 ) {
 -mat.rows[0],
 -mat.rows[1],
 -mat.rows[2],
@@ -8587,7 +8587,7 @@ float3x4 operator-( const float3x4& mat )
 -mat.rows[1],
 -mat.rows[2],
 -mat.rows[3]
-	);
+	};
 }
 
 bool3x4 operator<( const float3x4& lhs, const float3x4& rhs )
@@ -8772,7 +8772,7 @@ float4x2& operator--( float4x2& lhs, const int )
 
 float4x2 operator-( const float4x2& mat )
 {
-	return float4x2(
+	return HLML_CONSTRUCT( float4x2 ) {
 -mat.rows[0],
 -mat.rows[1]
 -mat.rows[0],
@@ -8781,7 +8781,7 @@ float4x2 operator-( const float4x2& mat )
 -mat.rows[1]
 -mat.rows[0],
 -mat.rows[1]
-	);
+	};
 }
 
 bool4x2 operator<( const float4x2& lhs, const float4x2& rhs )
@@ -8970,7 +8970,7 @@ float4x3& operator--( float4x3& lhs, const int )
 
 float4x3 operator-( const float4x3& mat )
 {
-	return float4x3(
+	return HLML_CONSTRUCT( float4x3 ) {
 -mat.rows[0],
 -mat.rows[1],
 -mat.rows[2]
@@ -8983,7 +8983,7 @@ float4x3 operator-( const float4x3& mat )
 -mat.rows[0],
 -mat.rows[1],
 -mat.rows[2]
-	);
+	};
 }
 
 bool4x3 operator<( const float4x3& lhs, const float4x3& rhs )
@@ -9183,7 +9183,7 @@ float4x4& operator--( float4x4& lhs, const int )
 
 float4x4 operator-( const float4x4& mat )
 {
-	return float4x4(
+	return HLML_CONSTRUCT( float4x4 ) {
 -mat.rows[0],
 -mat.rows[1],
 -mat.rows[2],
@@ -9200,7 +9200,7 @@ float4x4 operator-( const float4x4& mat )
 -mat.rows[1],
 -mat.rows[2],
 -mat.rows[3]
-	);
+	};
 }
 
 bool4x4 operator<( const float4x4& lhs, const float4x4& rhs )
@@ -9362,12 +9362,12 @@ double2x2& operator--( double2x2& lhs, const int )
 
 double2x2 operator-( const double2x2& mat )
 {
-	return double2x2(
+	return HLML_CONSTRUCT( double2x2 ) {
 -mat.rows[0],
 -mat.rows[1]
 -mat.rows[0],
 -mat.rows[1]
-	);
+	};
 }
 
 bool2x2 operator<( const double2x2& lhs, const double2x2& rhs )
@@ -9508,14 +9508,14 @@ double2x3& operator--( double2x3& lhs, const int )
 
 double2x3 operator-( const double2x3& mat )
 {
-	return double2x3(
+	return HLML_CONSTRUCT( double2x3 ) {
 -mat.rows[0],
 -mat.rows[1],
 -mat.rows[2]
 -mat.rows[0],
 -mat.rows[1],
 -mat.rows[2]
-	);
+	};
 }
 
 bool2x3 operator<( const double2x3& lhs, const double2x3& rhs )
@@ -9656,7 +9656,7 @@ double2x4& operator--( double2x4& lhs, const int )
 
 double2x4 operator-( const double2x4& mat )
 {
-	return double2x4(
+	return HLML_CONSTRUCT( double2x4 ) {
 -mat.rows[0],
 -mat.rows[1],
 -mat.rows[2],
@@ -9665,7 +9665,7 @@ double2x4 operator-( const double2x4& mat )
 -mat.rows[1],
 -mat.rows[2],
 -mat.rows[3]
-	);
+	};
 }
 
 bool2x4 operator<( const double2x4& lhs, const double2x4& rhs )
@@ -9825,14 +9825,14 @@ double3x2& operator--( double3x2& lhs, const int )
 
 double3x2 operator-( const double3x2& mat )
 {
-	return double3x2(
+	return HLML_CONSTRUCT( double3x2 ) {
 -mat.rows[0],
 -mat.rows[1]
 -mat.rows[0],
 -mat.rows[1]
 -mat.rows[0],
 -mat.rows[1]
-	);
+	};
 }
 
 bool3x2 operator<( const double3x2& lhs, const double3x2& rhs )
@@ -10008,7 +10008,7 @@ double3x3& operator--( double3x3& lhs, const int )
 
 double3x3 operator-( const double3x3& mat )
 {
-	return double3x3(
+	return HLML_CONSTRUCT( double3x3 ) {
 -mat.rows[0],
 -mat.rows[1],
 -mat.rows[2]
@@ -10018,7 +10018,7 @@ double3x3 operator-( const double3x3& mat )
 -mat.rows[0],
 -mat.rows[1],
 -mat.rows[2]
-	);
+	};
 }
 
 bool3x3 operator<( const double3x3& lhs, const double3x3& rhs )
@@ -10182,7 +10182,7 @@ double3x4& operator--( double3x4& lhs, const int )
 
 double3x4 operator-( const double3x4& mat )
 {
-	return double3x4(
+	return HLML_CONSTRUCT( double3x4 ) {
 -mat.rows[0],
 -mat.rows[1],
 -mat.rows[2],
@@ -10195,7 +10195,7 @@ double3x4 operator-( const double3x4& mat )
 -mat.rows[1],
 -mat.rows[2],
 -mat.rows[3]
-	);
+	};
 }
 
 bool3x4 operator<( const double3x4& lhs, const double3x4& rhs )
@@ -10380,7 +10380,7 @@ double4x2& operator--( double4x2& lhs, const int )
 
 double4x2 operator-( const double4x2& mat )
 {
-	return double4x2(
+	return HLML_CONSTRUCT( double4x2 ) {
 -mat.rows[0],
 -mat.rows[1]
 -mat.rows[0],
@@ -10389,7 +10389,7 @@ double4x2 operator-( const double4x2& mat )
 -mat.rows[1]
 -mat.rows[0],
 -mat.rows[1]
-	);
+	};
 }
 
 bool4x2 operator<( const double4x2& lhs, const double4x2& rhs )
@@ -10578,7 +10578,7 @@ double4x3& operator--( double4x3& lhs, const int )
 
 double4x3 operator-( const double4x3& mat )
 {
-	return double4x3(
+	return HLML_CONSTRUCT( double4x3 ) {
 -mat.rows[0],
 -mat.rows[1],
 -mat.rows[2]
@@ -10591,7 +10591,7 @@ double4x3 operator-( const double4x3& mat )
 -mat.rows[0],
 -mat.rows[1],
 -mat.rows[2]
-	);
+	};
 }
 
 bool4x3 operator<( const double4x3& lhs, const double4x3& rhs )
@@ -10791,7 +10791,7 @@ double4x4& operator--( double4x4& lhs, const int )
 
 double4x4 operator-( const double4x4& mat )
 {
-	return double4x4(
+	return HLML_CONSTRUCT( double4x4 ) {
 -mat.rows[0],
 -mat.rows[1],
 -mat.rows[2],
@@ -10808,7 +10808,7 @@ double4x4 operator-( const double4x4& mat )
 -mat.rows[1],
 -mat.rows[2],
 -mat.rows[3]
-	);
+	};
 }
 
 bool4x4 operator<( const double4x4& lhs, const double4x4& rhs )

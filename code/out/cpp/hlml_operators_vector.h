@@ -1826,10 +1826,10 @@ int2& operator--( int2& lhs, const int )
 
 int2 operator-( const int2& vec )
 {
-	return int2(
+	return HLML_CONSTRUCT( int2 ) {
 		-vec.x,
 		-vec.y
-	);
+	};
 }
 
 int2 operator&( const int2& lhs, const int2& rhs )
@@ -2093,11 +2093,11 @@ int3& operator--( int3& lhs, const int )
 
 int3 operator-( const int3& vec )
 {
-	return int3(
+	return HLML_CONSTRUCT( int3 ) {
 		-vec.x,
 		-vec.y,
 		-vec.z
-	);
+	};
 }
 
 int3 operator&( const int3& lhs, const int3& rhs )
@@ -2383,12 +2383,12 @@ int4& operator--( int4& lhs, const int )
 
 int4 operator-( const int4& vec )
 {
-	return int4(
+	return HLML_CONSTRUCT( int4 ) {
 		-vec.x,
 		-vec.y,
 		-vec.z,
 		-vec.w
-	);
+	};
 }
 
 int4 operator&( const int4& lhs, const int4& rhs )
@@ -2660,10 +2660,10 @@ uint2& operator--( uint2& lhs, const int )
 
 uint2 operator-( const uint2& vec )
 {
-	return uint2(
+	return HLML_CONSTRUCT( uint2 ) {
 		-vec.x,
 		-vec.y
-	);
+	};
 }
 
 uint2 operator&( const uint2& lhs, const uint2& rhs )
@@ -2927,11 +2927,11 @@ uint3& operator--( uint3& lhs, const int )
 
 uint3 operator-( const uint3& vec )
 {
-	return uint3(
+	return HLML_CONSTRUCT( uint3 ) {
 		-vec.x,
 		-vec.y,
 		-vec.z
-	);
+	};
 }
 
 uint3 operator&( const uint3& lhs, const uint3& rhs )
@@ -3217,12 +3217,12 @@ uint4& operator--( uint4& lhs, const int )
 
 uint4 operator-( const uint4& vec )
 {
-	return uint4(
+	return HLML_CONSTRUCT( uint4 ) {
 		-vec.x,
 		-vec.y,
 		-vec.z,
 		-vec.w
-	);
+	};
 }
 
 uint4 operator&( const uint4& lhs, const uint4& rhs )
@@ -3494,10 +3494,10 @@ float2& operator--( float2& lhs, const int )
 
 float2 operator-( const float2& vec )
 {
-	return float2(
+	return HLML_CONSTRUCT( float2 ) {
 		-vec.x,
 		-vec.y
-	);
+	};
 }
 
 bool2 operator<( float2& lhs, const float2& rhs )
@@ -3688,11 +3688,11 @@ float3& operator--( float3& lhs, const int )
 
 float3 operator-( const float3& vec )
 {
-	return float3(
+	return HLML_CONSTRUCT( float3 ) {
 		-vec.x,
 		-vec.y,
 		-vec.z
-	);
+	};
 }
 
 bool3 operator<( float3& lhs, const float3& rhs )
@@ -3899,12 +3899,12 @@ float4& operator--( float4& lhs, const int )
 
 float4 operator-( const float4& vec )
 {
-	return float4(
+	return HLML_CONSTRUCT( float4 ) {
 		-vec.x,
 		-vec.y,
 		-vec.z,
 		-vec.w
-	);
+	};
 }
 
 bool4 operator<( float4& lhs, const float4& rhs )
@@ -4091,10 +4091,10 @@ double2& operator--( double2& lhs, const int )
 
 double2 operator-( const double2& vec )
 {
-	return double2(
+	return HLML_CONSTRUCT( double2 ) {
 		-vec.x,
 		-vec.y
-	);
+	};
 }
 
 bool2 operator<( double2& lhs, const double2& rhs )
@@ -4285,11 +4285,11 @@ double3& operator--( double3& lhs, const int )
 
 double3 operator-( const double3& vec )
 {
-	return double3(
+	return HLML_CONSTRUCT( double3 ) {
 		-vec.x,
 		-vec.y,
 		-vec.z
-	);
+	};
 }
 
 bool3 operator<( double3& lhs, const double3& rhs )
@@ -4496,12 +4496,12 @@ double4& operator--( double4& lhs, const int )
 
 double4 operator-( const double4& vec )
 {
-	return double4(
+	return HLML_CONSTRUCT( double4 ) {
 		-vec.x,
 		-vec.y,
 		-vec.z,
 		-vec.w
-	);
+	};
 }
 
 bool4 operator<( double4& lhs, const double4& rhs )
