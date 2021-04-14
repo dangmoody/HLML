@@ -32,70 +32,59 @@ SOFTWARE.
 // EDITING THIS FILE MAY CAUSE SIDE EFFECTS.
 // DO SO AT YOUR OWN RISK.
 
-TEMPER_TEST( TestAssignment_bool2 )
+TEMPER_TEST( TestAssignment_bool2, TEMPER_FLAG_SHOULD_RUN )
 {
 	bool2 vec;
 
 	vec.x = true;
 	vec.y = true;
-	TEMPER_EXPECT_TRUE( vec.x == true );
-	TEMPER_EXPECT_TRUE( vec.y == true );
+	TEMPER_CHECK_TRUE( vec.x == true );
+	TEMPER_CHECK_TRUE( vec.y == true );
 
 	vec.x = false;
 	vec.y = true;
-	TEMPER_EXPECT_TRUE( vec.x == false );
-	TEMPER_EXPECT_TRUE( vec.y == true );
-
-	TEMPER_PASS();
+	TEMPER_CHECK_TRUE( vec.x == false );
+	TEMPER_CHECK_TRUE( vec.y == true );
 }
 
 // also tests equality operators
-TEMPER_TEST( TestCtor_bool2 )
+TEMPER_TEST( TestCtor_bool2, TEMPER_FLAG_SHOULD_RUN )
 {
 	bool2 vec;
 
 	// single value
 	vec = bool2( true );
-	TEMPER_EXPECT_TRUE( vec == bool2( true ) );
-	TEMPER_EXPECT_TRUE( vec != bool2( false, true ) );
+	TEMPER_CHECK_TRUE( vec == bool2( true ) );
+	TEMPER_CHECK_TRUE( vec != bool2( false, true ) );
 
 	// all values set
 	vec = bool2( false, true );
-	TEMPER_EXPECT_TRUE( vec == bool2( false, true ) );
-	TEMPER_EXPECT_TRUE( vec != bool2( true ) );
+	TEMPER_CHECK_TRUE( vec == bool2( false, true ) );
+	TEMPER_CHECK_TRUE( vec != bool2( true ) );
 
 	// copy ctors of other vector types
 	bool2 other2 = { true, true };
 	vec = bool2( other2 );
-	TEMPER_EXPECT_TRUE( vec.x == true );
-	TEMPER_EXPECT_TRUE( vec.y == true );
+	TEMPER_CHECK_TRUE( vec.x == true );
+	TEMPER_CHECK_TRUE( vec.y == true );
 
 	bool3 other3 = { true, true, true };
 	vec = bool2( other3 );
-	TEMPER_EXPECT_TRUE( vec.x == true );
-	TEMPER_EXPECT_TRUE( vec.y == true );
+	TEMPER_CHECK_TRUE( vec.x == true );
+	TEMPER_CHECK_TRUE( vec.y == true );
 
 	bool4 other4 = { true, true, true, true };
 	vec = bool2( other4 );
-	TEMPER_EXPECT_TRUE( vec.x == true );
-	TEMPER_EXPECT_TRUE( vec.y == true );
+	TEMPER_CHECK_TRUE( vec.x == true );
+	TEMPER_CHECK_TRUE( vec.y == true );
 
-	TEMPER_PASS();
 }
 
-TEMPER_TEST( TestArray_bool2 )
+TEMPER_TEST( TestArray_bool2, TEMPER_FLAG_SHOULD_RUN )
 {
 	bool2 a = bool2( false, true );
 
-	TEMPER_EXPECT_TRUE( a.x == false );
-	TEMPER_EXPECT_TRUE( a.y == true );
-
-	TEMPER_PASS();
+	TEMPER_CHECK_TRUE( a.x == false );
+	TEMPER_CHECK_TRUE( a.y == true );
 }
 
-TEMPER_SUITE( Test_bool2 )
-{
-	TEMPER_RUN_TEST( TestAssignment_bool2 );
-	TEMPER_RUN_TEST( TestCtor_bool2 );
-	TEMPER_RUN_TEST( TestArray_bool2 );
-}

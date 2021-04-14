@@ -32,7 +32,7 @@ SOFTWARE.
 // EDITING THIS FILE MAY CAUSE SIDE EFFECTS.
 // DO SO AT YOUR OWN RISK.
 
-TEMPER_TEST( TestAssignment_int4 )
+TEMPER_TEST( TestAssignment_int4, TEMPER_FLAG_SHOULD_RUN )
 {
 	int4 vec;
 
@@ -40,155 +40,138 @@ TEMPER_TEST( TestAssignment_int4 )
 	vec.y = 1;
 	vec.z = 1;
 	vec.w = 1;
-	TEMPER_EXPECT_TRUE( vec.x == 1 );
-	TEMPER_EXPECT_TRUE( vec.y == 1 );
-	TEMPER_EXPECT_TRUE( vec.z == 1 );
-	TEMPER_EXPECT_TRUE( vec.w == 1 );
+	TEMPER_CHECK_TRUE( vec.x == 1 );
+	TEMPER_CHECK_TRUE( vec.y == 1 );
+	TEMPER_CHECK_TRUE( vec.z == 1 );
+	TEMPER_CHECK_TRUE( vec.w == 1 );
 
 	vec.x = 0;
 	vec.y = 1;
 	vec.z = 2;
 	vec.w = 3;
-	TEMPER_EXPECT_TRUE( vec.x == 0 );
-	TEMPER_EXPECT_TRUE( vec.y == 1 );
-	TEMPER_EXPECT_TRUE( vec.z == 2 );
-	TEMPER_EXPECT_TRUE( vec.w == 3 );
-
-	TEMPER_PASS();
+	TEMPER_CHECK_TRUE( vec.x == 0 );
+	TEMPER_CHECK_TRUE( vec.y == 1 );
+	TEMPER_CHECK_TRUE( vec.z == 2 );
+	TEMPER_CHECK_TRUE( vec.w == 3 );
 }
 
 // also tests equality operators
-TEMPER_TEST( TestCtor_int4 )
+TEMPER_TEST( TestCtor_int4, TEMPER_FLAG_SHOULD_RUN )
 {
 	int4 vec;
 
 	// single value
 	vec = int4( 1 );
-	TEMPER_EXPECT_TRUE( vec == int4( 1 ) );
-	TEMPER_EXPECT_TRUE( vec != int4( 0, 1, 2, 3 ) );
+	TEMPER_CHECK_TRUE( vec == int4( 1 ) );
+	TEMPER_CHECK_TRUE( vec != int4( 0, 1, 2, 3 ) );
 
 	// all values set
 	vec = int4( 0, 1, 2, 3 );
-	TEMPER_EXPECT_TRUE( vec == int4( 0, 1, 2, 3 ) );
-	TEMPER_EXPECT_TRUE( vec != int4( 1 ) );
+	TEMPER_CHECK_TRUE( vec == int4( 0, 1, 2, 3 ) );
+	TEMPER_CHECK_TRUE( vec != int4( 1 ) );
 
 	// copy ctors of other vector types
 	int2 other2 = { 10, 11 };
 	vec = int4( other2 );
-	TEMPER_EXPECT_TRUE( vec.x == 10 );
-	TEMPER_EXPECT_TRUE( vec.y == 11 );
+	TEMPER_CHECK_TRUE( vec.x == 10 );
+	TEMPER_CHECK_TRUE( vec.y == 11 );
 
 	int3 other3 = { 10, 11, 14 };
 	vec = int4( other3 );
-	TEMPER_EXPECT_TRUE( vec.x == 10 );
-	TEMPER_EXPECT_TRUE( vec.y == 11 );
-	TEMPER_EXPECT_TRUE( vec.z == 14 );
+	TEMPER_CHECK_TRUE( vec.x == 10 );
+	TEMPER_CHECK_TRUE( vec.y == 11 );
+	TEMPER_CHECK_TRUE( vec.z == 14 );
 
 	int4 other4 = { 10, 11, 14, 15 };
 	vec = int4( other4 );
-	TEMPER_EXPECT_TRUE( vec.x == 10 );
-	TEMPER_EXPECT_TRUE( vec.y == 11 );
-	TEMPER_EXPECT_TRUE( vec.z == 14 );
-	TEMPER_EXPECT_TRUE( vec.w == 15 );
+	TEMPER_CHECK_TRUE( vec.x == 10 );
+	TEMPER_CHECK_TRUE( vec.y == 11 );
+	TEMPER_CHECK_TRUE( vec.z == 14 );
+	TEMPER_CHECK_TRUE( vec.w == 15 );
 
-	TEMPER_PASS();
 }
 
-TEMPER_TEST( TestArray_int4 )
+TEMPER_TEST( TestArray_int4, TEMPER_FLAG_SHOULD_RUN )
 {
 	int4 a = int4( 0, 1, 2, 3 );
 
-	TEMPER_EXPECT_TRUE( a.x == 0 );
-	TEMPER_EXPECT_TRUE( a.y == 1 );
-	TEMPER_EXPECT_TRUE( a.z == 2 );
-	TEMPER_EXPECT_TRUE( a.w == 3 );
-
-	TEMPER_PASS();
+	TEMPER_CHECK_TRUE( a.x == 0 );
+	TEMPER_CHECK_TRUE( a.y == 1 );
+	TEMPER_CHECK_TRUE( a.z == 2 );
+	TEMPER_CHECK_TRUE( a.w == 3 );
 }
 
-TEMPER_TEST( TestIncrement_int4 )
+TEMPER_TEST( TestIncrement_int4, TEMPER_FLAG_SHOULD_RUN )
 {
 	int4 vec;
 
 	// prefix
 	vec = int4( 0, 0, 0, 0 );
 	++vec;
-	TEMPER_EXPECT_TRUE( vec == int4( 1, 1, 1, 1 ) );
+	TEMPER_CHECK_TRUE( vec == int4( 1, 1, 1, 1 ) );
 
 	// postfix
 	vec = int4( 0, 0, 0, 0 );
 	vec++;
-	TEMPER_EXPECT_TRUE( vec == int4( 1, 1, 1, 1 ) );
-
-	TEMPER_PASS();
+	TEMPER_CHECK_TRUE( vec == int4( 1, 1, 1, 1 ) );
 }
 
-TEMPER_TEST( TestDecrement_int4 )
+TEMPER_TEST( TestDecrement_int4, TEMPER_FLAG_SHOULD_RUN )
 {
 	int4 vec;
 
 	// prefix
 	vec = int4( 1, 1, 1, 1 );
 	--vec;
-	TEMPER_EXPECT_TRUE( vec == int4( 0, 0, 0, 0 ) );
+	TEMPER_CHECK_TRUE( vec == int4( 0, 0, 0, 0 ) );
 
 	// postfix
 	vec = int4( 1, 1, 1, 1 );
 	vec--;
-	TEMPER_EXPECT_TRUE( vec == int4( 0, 0, 0, 0 ) );
-
-	TEMPER_PASS();
+	TEMPER_CHECK_TRUE( vec == int4( 0, 0, 0, 0 ) );
 }
 
-TEMPER_TEST( TestArithmeticAddition_int4 )
+TEMPER_TEST( TestArithmeticAddition_int4, TEMPER_FLAG_SHOULD_RUN )
 {
 	int4 a = int4( 6 );
 	int4 b = int4( 2, 3, 4, 5 );
 
 	int4 c = a + b;
 
-	TEMPER_EXPECT_TRUE( c == int4( 8, 9, 10, 11 ) );
-
-	TEMPER_PASS();
+	TEMPER_CHECK_TRUE( c == int4( 8, 9, 10, 11 ) );
 }
 
-TEMPER_TEST( TestArithmeticSubtraction_int4 )
+TEMPER_TEST( TestArithmeticSubtraction_int4, TEMPER_FLAG_SHOULD_RUN )
 {
 	int4 a = int4( 6 );
 	int4 b = int4( 2, 3, 4, 5 );
 
 	int4 c = a - b;
 
-	TEMPER_EXPECT_TRUE( c == int4( 4, 3, 2, 1 ) );
-
-	TEMPER_PASS();
+	TEMPER_CHECK_TRUE( c == int4( 4, 3, 2, 1 ) );
 }
 
-TEMPER_TEST( TestArithmeticMultiplication_int4 )
+TEMPER_TEST( TestArithmeticMultiplication_int4, TEMPER_FLAG_SHOULD_RUN )
 {
 	int4 a = int4( 6 );
 	int4 b = int4( 2, 3, 4, 5 );
 
 	int4 c = a * b;
 
-	TEMPER_EXPECT_TRUE( c == int4( 12, 18, 24, 30 ) );
-
-	TEMPER_PASS();
+	TEMPER_CHECK_TRUE( c == int4( 12, 18, 24, 30 ) );
 }
 
-TEMPER_TEST( TestArithmeticDivision_int4 )
+TEMPER_TEST( TestArithmeticDivision_int4, TEMPER_FLAG_SHOULD_RUN )
 {
 	int4 a = int4( 6 );
 	int4 b = int4( 2, 2, 3, 6 );
 
 	int4 c = a / b;
 
-	TEMPER_EXPECT_TRUE( c == int4( 3, 3, 2, 1 ) );
-
-	TEMPER_PASS();
+	TEMPER_CHECK_TRUE( c == int4( 3, 3, 2, 1 ) );
 }
 
-TEMPER_TEST( TestRelational_int4 )
+TEMPER_TEST( TestRelational_int4, TEMPER_FLAG_SHOULD_RUN )
 {
 	bool4 allTrue = bool4( true );
 
@@ -221,142 +204,103 @@ TEMPER_TEST( TestRelational_int4 )
 	bool4 test18 = vec3 <= vec3;
 	bool4 test19 = vec3 >= vec3;
 
-	TEMPER_EXPECT_TRUE( test0  == allTrue );
-	TEMPER_EXPECT_TRUE( test1  == allTrue );
-	TEMPER_EXPECT_TRUE( test2  == allTrue );
-	TEMPER_EXPECT_TRUE( test3  == allTrue );
-	TEMPER_EXPECT_TRUE( test4  == allTrue );
+	TEMPER_CHECK_TRUE( test0  == allTrue );
+	TEMPER_CHECK_TRUE( test1  == allTrue );
+	TEMPER_CHECK_TRUE( test2  == allTrue );
+	TEMPER_CHECK_TRUE( test3  == allTrue );
+	TEMPER_CHECK_TRUE( test4  == allTrue );
 
-	TEMPER_EXPECT_TRUE( test5  == allTrue );
-	TEMPER_EXPECT_TRUE( test6  == allTrue );
-	TEMPER_EXPECT_TRUE( test7  == allTrue );
-	TEMPER_EXPECT_TRUE( test8  == allTrue );
-	TEMPER_EXPECT_TRUE( test9  == allTrue );
+	TEMPER_CHECK_TRUE( test5  == allTrue );
+	TEMPER_CHECK_TRUE( test6  == allTrue );
+	TEMPER_CHECK_TRUE( test7  == allTrue );
+	TEMPER_CHECK_TRUE( test8  == allTrue );
+	TEMPER_CHECK_TRUE( test9  == allTrue );
 
-	TEMPER_EXPECT_TRUE( test10 == allTrue );
-	TEMPER_EXPECT_TRUE( test11 == allTrue );
-	TEMPER_EXPECT_TRUE( test12 == allTrue );
-	TEMPER_EXPECT_TRUE( test13 == allTrue );
-	TEMPER_EXPECT_TRUE( test14 == allTrue );
+	TEMPER_CHECK_TRUE( test10 == allTrue );
+	TEMPER_CHECK_TRUE( test11 == allTrue );
+	TEMPER_CHECK_TRUE( test12 == allTrue );
+	TEMPER_CHECK_TRUE( test13 == allTrue );
+	TEMPER_CHECK_TRUE( test14 == allTrue );
 
-	TEMPER_EXPECT_TRUE( test15 == allTrue );
-	TEMPER_EXPECT_TRUE( test16 == allTrue );
-	TEMPER_EXPECT_TRUE( test17 == allTrue );
-	TEMPER_EXPECT_TRUE( test18 == allTrue );
-	TEMPER_EXPECT_TRUE( test19 == allTrue );
-
-	TEMPER_PASS();
+	TEMPER_CHECK_TRUE( test15 == allTrue );
+	TEMPER_CHECK_TRUE( test16 == allTrue );
+	TEMPER_CHECK_TRUE( test17 == allTrue );
+	TEMPER_CHECK_TRUE( test18 == allTrue );
+	TEMPER_CHECK_TRUE( test19 == allTrue );
 }
 
-TEMPER_TEST( TestBitwise_And_int4 )
+TEMPER_TEST( TestBitwise_And_int4, TEMPER_FLAG_SHOULD_RUN )
 {
 	int4 a  = int4( 21, 21, 21, 21 );
 	int4 b  = int4( 7, 7, 7, 7 );
 
 	int4 answer = a & b;
 
-	TEMPER_EXPECT_TRUE( answer == int4( 5, 5, 5, 5 ) );
-
-	TEMPER_PASS();
+	TEMPER_CHECK_TRUE( answer == int4( 5, 5, 5, 5 ) );
 }
 
-TEMPER_TEST( TestBitwise_Or_int4 )
+TEMPER_TEST( TestBitwise_Or_int4, TEMPER_FLAG_SHOULD_RUN )
 {
 	int4 a  = int4( 21, 21, 21, 21 );
 	int4 b  = int4( 7, 7, 7, 7 );
 
 	int4 answer = a | b;
 
-	TEMPER_EXPECT_TRUE( answer == int4( 23, 23, 23, 23 ) );
-
-	TEMPER_PASS();
+	TEMPER_CHECK_TRUE( answer == int4( 23, 23, 23, 23 ) );
 }
 
-TEMPER_TEST( TestBitwise_Xor_int4 )
+TEMPER_TEST( TestBitwise_Xor_int4, TEMPER_FLAG_SHOULD_RUN )
 {
 	int4 a  = int4( 21, 21, 21, 21 );
 	int4 b  = int4( 7, 7, 7, 7 );
 
 	int4 answer = a ^ b;
 
-	TEMPER_EXPECT_TRUE( answer == int4( 18, 18, 18, 18 ) );
-
-	TEMPER_PASS();
+	TEMPER_CHECK_TRUE( answer == int4( 18, 18, 18, 18 ) );
 }
 
-TEMPER_TEST( TestBitwise_ShiftLeft_int4 )
+TEMPER_TEST( TestBitwise_ShiftLeft_int4, TEMPER_FLAG_SHOULD_RUN )
 {
 	int4 a  = int4( 1, 1, 1, 1 );
 	int4 b  = int4( 2, 2, 2, 2 );
 
 	int4 answer = a << b;
 
-	TEMPER_EXPECT_TRUE( answer == int4( 4, 4, 4, 4 ) );
-
-	TEMPER_PASS();
+	TEMPER_CHECK_TRUE( answer == int4( 4, 4, 4, 4 ) );
 }
 
-TEMPER_TEST( TestBitwise_ShiftRight_int4 )
+TEMPER_TEST( TestBitwise_ShiftRight_int4, TEMPER_FLAG_SHOULD_RUN )
 {
 	int4 a  = int4( 16, 16, 16, 16 );
 	int4 b  = int4( 4, 4, 4, 4 );
 
 	int4 answer = a >> b;
 
-	TEMPER_EXPECT_TRUE( answer == int4( 1, 1, 1, 1 ) );
-
-	TEMPER_PASS();
+	TEMPER_CHECK_TRUE( answer == int4( 1, 1, 1, 1 ) );
 }
 
-TEMPER_TEST( TestBitwise_Unary_int4 )
+TEMPER_TEST( TestBitwise_Unary_int4, TEMPER_FLAG_SHOULD_RUN )
 {
 	int4 a = int4( 0, 0, 0, 0 );
 
 	int4 answer = ~a;
 
-	TEMPER_EXPECT_TRUE( answer == int4( (int32_t) -1 ) );
-
-	TEMPER_PASS();
+	TEMPER_CHECK_TRUE( answer == int4( (int32_t) -1 ) );
 }
 
-TEMPER_TEST( TestLength_Scalar_int4 )
+TEMPER_TEST( TestLength_Scalar_int4, TEMPER_FLAG_SHOULD_RUN )
 {
 	int4 vec = int4( 2 );
 
-	TEMPER_EXPECT_TRUE( floateq( lengthsqr( vec ), 16.0f ) );
-	TEMPER_EXPECT_TRUE( floateq( length( vec ), 4.0f ) );
-
-	TEMPER_PASS();
+	TEMPER_CHECK_TRUE( floateq( lengthsqr( vec ), 16.0f ) );
+	TEMPER_CHECK_TRUE( floateq( length( vec ), 4.0f ) );
 }
 
-TEMPER_TEST( TestDot_Scalar_int4 )
+TEMPER_TEST( TestDot_Scalar_int4, TEMPER_FLAG_SHOULD_RUN )
 {
 	int4 a = int4( 0, 1, 0, 0 );
 	int4 b = int4( 0, -1, 0, 0 );
 
-	TEMPER_EXPECT_TRUE( dot( a, b ) == -1 );
-
-	TEMPER_PASS();
+	TEMPER_CHECK_TRUE( dot( a, b ) == -1 );
 }
 
-TEMPER_SUITE( Test_int4 )
-{
-	TEMPER_RUN_TEST( TestAssignment_int4 );
-	TEMPER_RUN_TEST( TestCtor_int4 );
-	TEMPER_RUN_TEST( TestArray_int4 );
-	TEMPER_RUN_TEST( TestIncrement_int4 );
-	TEMPER_RUN_TEST( TestDecrement_int4 );
-	TEMPER_RUN_TEST( TestArithmeticAddition_int4 );
-	TEMPER_RUN_TEST( TestArithmeticSubtraction_int4 );
-	TEMPER_RUN_TEST( TestArithmeticMultiplication_int4 );
-	TEMPER_RUN_TEST( TestArithmeticDivision_int4 );
-	TEMPER_RUN_TEST( TestRelational_int4 );
-	TEMPER_RUN_TEST( TestBitwise_And_int4 );
-	TEMPER_RUN_TEST( TestBitwise_Or_int4 );
-	TEMPER_RUN_TEST( TestBitwise_Xor_int4 );
-	TEMPER_RUN_TEST( TestBitwise_ShiftLeft_int4 );
-	TEMPER_RUN_TEST( TestBitwise_ShiftRight_int4 );
-	TEMPER_RUN_TEST( TestBitwise_Unary_int4 );
-	TEMPER_RUN_TEST( TestLength_Scalar_int4 );
-	TEMPER_RUN_TEST( TestDot_Scalar_int4 );
-}

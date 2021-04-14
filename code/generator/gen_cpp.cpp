@@ -601,6 +601,7 @@ void Gen_OperatorsVector( allocatorLinear_t* allocator ) {
 
 			GenerateVectorOperatorsArithmetic( type, componentIndex, &contentFwdDec, &contentImpl );
 			Gen_OperatorsIncrement( type, 1, componentIndex, &contentFwdDec, &contentImpl );
+			Gen_OperatorNegate( type, 1, componentIndex, &contentFwdDec, &contentImpl );
 			GenerateVectorOperatorsBitwise( type, componentIndex, &contentFwdDec, &contentImpl );
 			GenerateVectorOperatorsRelational( type, componentIndex, &contentFwdDec, &contentImpl );
 
@@ -668,6 +669,7 @@ void Gen_OperatorsMatrix( allocatorLinear_t* allocator ) {
 
 				GenerateMatrixOperatorsArithmetic( type, row, col, &contentFwdDec, &contentImpl );
 				Gen_OperatorsIncrement( type, row, col, &contentFwdDec, &contentImpl );
+				Gen_OperatorNegate( type, row, col, &contentFwdDec, &contentImpl );
 				GenerateMatrixOperatorsBitwise( type, row, col, &contentFwdDec, &contentImpl );
 				GenerateMatrixOperatorsRelational( type, row, col, &contentFwdDec, &contentImpl );
 

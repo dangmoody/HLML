@@ -32,72 +32,62 @@ SOFTWARE.
 // EDITING THIS FILE MAY CAUSE SIDE EFFECTS.
 // DO SO AT YOUR OWN RISK.
 
-TEMPER_TEST( TestAssignment_int2 )
+TEMPER_TEST( TestAssignment_int2, TEMPER_FLAG_SHOULD_RUN )
 {
 	int2 vec;
 
 	vec.x = 1;
 	vec.y = 1;
-	TEMPER_EXPECT_TRUE( vec.x == 1 );
-	TEMPER_EXPECT_TRUE( vec.y == 1 );
+	TEMPER_CHECK_TRUE( vec.x == 1 );
+	TEMPER_CHECK_TRUE( vec.y == 1 );
 
 	vec.x = 0;
 	vec.y = 1;
-	TEMPER_EXPECT_TRUE( vec.x == 0 );
-	TEMPER_EXPECT_TRUE( vec.y == 1 );
-
-	TEMPER_PASS();
+	TEMPER_CHECK_TRUE( vec.x == 0 );
+	TEMPER_CHECK_TRUE( vec.y == 1 );
 }
 
-TEMPER_TEST( TestArithmeticAddition_int2 )
+TEMPER_TEST( TestArithmeticAddition_int2, TEMPER_FLAG_SHOULD_RUN )
 {
 	int2 a = (int2)	{ 6, 6 };
 	int2 b = (int2)	{ 2, 3 };
 	int2 c = int2_caddv( &a, &b );
 
-	TEMPER_EXPECT_TRUE( c.x == 8 );
-	TEMPER_EXPECT_TRUE( c.y == 9 );
-
-	TEMPER_PASS();
+	TEMPER_CHECK_TRUE( c.x == 8 );
+	TEMPER_CHECK_TRUE( c.y == 9 );
 }
 
-TEMPER_TEST( TestArithmeticSubtraction_int2 )
+TEMPER_TEST( TestArithmeticSubtraction_int2, TEMPER_FLAG_SHOULD_RUN )
 {
 	int2 a = (int2)	{ 6, 6 };
 	int2 b = (int2)	{ 2, 3 };
 	int2 c = int2_csubv( &a, &b );
 
-	TEMPER_EXPECT_TRUE( c.x == 4 );
-	TEMPER_EXPECT_TRUE( c.y == 3 );
-
-	TEMPER_PASS();
+	TEMPER_CHECK_TRUE( c.x == 4 );
+	TEMPER_CHECK_TRUE( c.y == 3 );
 }
 
-TEMPER_TEST( TestArithmeticMultiplication_int2 )
+TEMPER_TEST( TestArithmeticMultiplication_int2, TEMPER_FLAG_SHOULD_RUN )
 {
 	int2 a = (int2)	{ 6, 6 };
 	int2 b = (int2)	{ 2, 3 };
 	int2 c = int2_cmulv( &a, &b );
 
-	TEMPER_EXPECT_TRUE( c.x == 12 );
-	TEMPER_EXPECT_TRUE( c.y == 18 );
-
-	TEMPER_PASS();
+	TEMPER_CHECK_TRUE( c.x == 12 );
+	TEMPER_CHECK_TRUE( c.y == 18 );
 }
 
-TEMPER_TEST( TestArithmeticDivision_int2 )
+TEMPER_TEST( TestArithmeticDivision_int2, TEMPER_FLAG_SHOULD_RUN )
 {
 	int2 a = (int2)	{ 6, 6 };
 	int2 b = (int2)	{ 2, 2 };
 	int2 c = int2_cdivv( &a, &b );
 
-	TEMPER_EXPECT_TRUE( c.x == 3 );
-	TEMPER_EXPECT_TRUE( c.y == 3 );
-
-	TEMPER_PASS();
+	TEMPER_CHECK_TRUE( c.x == 3 );
+	TEMPER_CHECK_TRUE( c.y == 3 );
 }
 
-TEMPER_TEST( TestRelational_int2 )
+TEMPER_TEST( TestRelational_int2, TEMPER_FLAG_SHOULD_RUN )
 {
 	bool2 allTrue = (bool2)	{ true, true };
 
@@ -130,34 +120,32 @@ TEMPER_TEST( TestRelational_int2 )
 	bool2 test18 = int2_cmple( &vec3, &vec3 );
 	bool2 test19 = int2_cmpge( &vec3, &vec3 );
 
-	TEMPER_EXPECT_TRUE( bool2_cmpe( &test0,  &allTrue ) );
-	TEMPER_EXPECT_TRUE( bool2_cmpe( &test1,  &allTrue ) );
-	TEMPER_EXPECT_TRUE( bool2_cmpe( &test2,  &allTrue ) );
-	TEMPER_EXPECT_TRUE( bool2_cmpe( &test3,  &allTrue ) );
-	TEMPER_EXPECT_TRUE( bool2_cmpe( &test4,  &allTrue ) );
+	TEMPER_CHECK_TRUE( bool2_cmpe( &test0,  &allTrue ) );
+	TEMPER_CHECK_TRUE( bool2_cmpe( &test1,  &allTrue ) );
+	TEMPER_CHECK_TRUE( bool2_cmpe( &test2,  &allTrue ) );
+	TEMPER_CHECK_TRUE( bool2_cmpe( &test3,  &allTrue ) );
+	TEMPER_CHECK_TRUE( bool2_cmpe( &test4,  &allTrue ) );
 
-	TEMPER_EXPECT_TRUE( bool2_cmpe( &test5,  &allTrue ) );
-	TEMPER_EXPECT_TRUE( bool2_cmpe( &test6,  &allTrue ) );
-	TEMPER_EXPECT_TRUE( bool2_cmpe( &test7,  &allTrue ) );
-	TEMPER_EXPECT_TRUE( bool2_cmpe( &test8,  &allTrue ) );
-	TEMPER_EXPECT_TRUE( bool2_cmpe( &test9,  &allTrue ) );
+	TEMPER_CHECK_TRUE( bool2_cmpe( &test5,  &allTrue ) );
+	TEMPER_CHECK_TRUE( bool2_cmpe( &test6,  &allTrue ) );
+	TEMPER_CHECK_TRUE( bool2_cmpe( &test7,  &allTrue ) );
+	TEMPER_CHECK_TRUE( bool2_cmpe( &test8,  &allTrue ) );
+	TEMPER_CHECK_TRUE( bool2_cmpe( &test9,  &allTrue ) );
 
-	TEMPER_EXPECT_TRUE( bool2_cmpe( &test10, &allTrue ) );
-	TEMPER_EXPECT_TRUE( bool2_cmpe( &test11, &allTrue ) );
-	TEMPER_EXPECT_TRUE( bool2_cmpe( &test12, &allTrue ) );
-	TEMPER_EXPECT_TRUE( bool2_cmpe( &test13, &allTrue ) );
-	TEMPER_EXPECT_TRUE( bool2_cmpe( &test14, &allTrue ) );
+	TEMPER_CHECK_TRUE( bool2_cmpe( &test10, &allTrue ) );
+	TEMPER_CHECK_TRUE( bool2_cmpe( &test11, &allTrue ) );
+	TEMPER_CHECK_TRUE( bool2_cmpe( &test12, &allTrue ) );
+	TEMPER_CHECK_TRUE( bool2_cmpe( &test13, &allTrue ) );
+	TEMPER_CHECK_TRUE( bool2_cmpe( &test14, &allTrue ) );
 
-	TEMPER_EXPECT_TRUE( bool2_cmpe( &test15, &allTrue ) );
-	TEMPER_EXPECT_TRUE( bool2_cmpe( &test16, &allTrue ) );
-	TEMPER_EXPECT_TRUE( bool2_cmpe( &test17, &allTrue ) );
-	TEMPER_EXPECT_TRUE( bool2_cmpe( &test18, &allTrue ) );
-	TEMPER_EXPECT_TRUE( bool2_cmpe( &test19, &allTrue ) );
-
-	TEMPER_PASS();
+	TEMPER_CHECK_TRUE( bool2_cmpe( &test15, &allTrue ) );
+	TEMPER_CHECK_TRUE( bool2_cmpe( &test16, &allTrue ) );
+	TEMPER_CHECK_TRUE( bool2_cmpe( &test17, &allTrue ) );
+	TEMPER_CHECK_TRUE( bool2_cmpe( &test18, &allTrue ) );
+	TEMPER_CHECK_TRUE( bool2_cmpe( &test19, &allTrue ) );
 }
 
-TEMPER_TEST( TestBitwise_And_int2 )
+TEMPER_TEST( TestBitwise_And_int2, TEMPER_FLAG_SHOULD_RUN )
 {
 	int2 answer = (int2) { 5, 5 };
 
@@ -166,12 +154,10 @@ TEMPER_TEST( TestBitwise_And_int2 )
 
 	int2 c = int2_cand( &a, &b );
 
-	TEMPER_EXPECT_TRUE( int2_cmpe( &c, &answer ) );
-
-	TEMPER_PASS();
+	TEMPER_CHECK_TRUE( int2_cmpe( &c, &answer ) );
 }
 
-TEMPER_TEST( TestBitwise_Or_int2 )
+TEMPER_TEST( TestBitwise_Or_int2, TEMPER_FLAG_SHOULD_RUN )
 {
 	int2 answer = (int2) { 23, 23 };
 
@@ -180,12 +166,10 @@ TEMPER_TEST( TestBitwise_Or_int2 )
 
 	int2 c = int2_cor( &a, &b );
 
-	TEMPER_EXPECT_TRUE( int2_cmpe( &c, &answer ) );
-
-	TEMPER_PASS();
+	TEMPER_CHECK_TRUE( int2_cmpe( &c, &answer ) );
 }
 
-TEMPER_TEST( TestBitwise_Xor_int2 )
+TEMPER_TEST( TestBitwise_Xor_int2, TEMPER_FLAG_SHOULD_RUN )
 {
 	int2 answer = (int2) { 18, 18 };
 
@@ -194,12 +178,10 @@ TEMPER_TEST( TestBitwise_Xor_int2 )
 
 	int2 c = int2_cxor( &a, &b );
 
-	TEMPER_EXPECT_TRUE( int2_cmpe( &c, &answer ) );
-
-	TEMPER_PASS();
+	TEMPER_CHECK_TRUE( int2_cmpe( &c, &answer ) );
 }
 
-TEMPER_TEST( TestBitwise_ShiftLeft_int2 )
+TEMPER_TEST( TestBitwise_ShiftLeft_int2, TEMPER_FLAG_SHOULD_RUN )
 {
 	int2 answer = (int2) { 4, 4 };
 
@@ -208,12 +190,10 @@ TEMPER_TEST( TestBitwise_ShiftLeft_int2 )
 
 	int2 c = int2_cshift_left( &a, &b );
 
-	TEMPER_EXPECT_TRUE( int2_cmpe( &c, &answer ) );
-
-	TEMPER_PASS();
+	TEMPER_CHECK_TRUE( int2_cmpe( &c, &answer ) );
 }
 
-TEMPER_TEST( TestBitwise_ShiftRight_int2 )
+TEMPER_TEST( TestBitwise_ShiftRight_int2, TEMPER_FLAG_SHOULD_RUN )
 {
 	int2 answer = (int2) { 1, 1 };
 
@@ -222,12 +202,10 @@ TEMPER_TEST( TestBitwise_ShiftRight_int2 )
 
 	int2 c = int2_cshift_right( &a, &b );
 
-	TEMPER_EXPECT_TRUE( int2_cmpe( &c, &answer ) );
-
-	TEMPER_PASS();
+	TEMPER_CHECK_TRUE( int2_cmpe( &c, &answer ) );
 }
 
-TEMPER_TEST( TestBitwise_Unary_int2 )
+TEMPER_TEST( TestBitwise_Unary_int2, TEMPER_FLAG_SHOULD_RUN )
 {
 	int2 answer = (int2) { (int32_t) -1, (int32_t) -1 };
 
@@ -235,32 +213,26 @@ TEMPER_TEST( TestBitwise_Unary_int2 )
 
 	int2 b = int2_cunary( &a );
 
-	TEMPER_EXPECT_TRUE( int2_cmpe( &b, &answer ) );
-
-	TEMPER_PASS();
+	TEMPER_CHECK_TRUE( int2_cmpe( &b, &answer ) );
 }
 
-TEMPER_TEST( TestLength_Scalar_int2 )
+TEMPER_TEST( TestLength_Scalar_int2, TEMPER_FLAG_SHOULD_RUN )
 {
 	int2 vec = (int2) { 2, 2 };
 
-	TEMPER_EXPECT_TRUE( floateq( int2_lengthsqr( &vec ), 8.0f ) );
-	TEMPER_EXPECT_TRUE( floateq( int2_length( &vec ), 2.82842712475f ) );
-
-	TEMPER_PASS();
+	TEMPER_CHECK_TRUE( floateq( int2_lengthsqr( &vec ), 8.0f ) );
+	TEMPER_CHECK_TRUE( floateq( int2_length( &vec ), 2.82842712475f ) );
 }
 
-TEMPER_TEST( TestDot_Scalar_int2 )
+TEMPER_TEST( TestDot_Scalar_int2, TEMPER_FLAG_SHOULD_RUN )
 {
 	int2 a = (int2) { 0, 1 };
 	int2 b = (int2) { 0, -1 };
 
-	TEMPER_EXPECT_TRUE( int2_dot( &a, &b ) == -1 );
-
-	TEMPER_PASS();
+	TEMPER_CHECK_TRUE( int2_dot( &a, &b ) == -1 );
 }
 
-TEMPER_TEST( TestDistance_Scalar_int2 )
+TEMPER_TEST( TestDistance_Scalar_int2, TEMPER_FLAG_SHOULD_RUN )
 {
 	float answerDistanceSqr = 104.0f;
 	float answerDistance    = 10.198039f;
@@ -271,27 +243,7 @@ TEMPER_TEST( TestDistance_Scalar_int2 )
 	float distSqr = int2_distancesqr( &a, &b );
 	float dist    = int2_distance( &a, &b );
 
-	TEMPER_EXPECT_TRUE( floateq( distSqr, answerDistanceSqr ) );
-	TEMPER_EXPECT_TRUE( floateq( dist, answerDistance ) );
-
-	TEMPER_PASS();
+	TEMPER_CHECK_TRUE( floateq( distSqr, answerDistanceSqr ) );
+	TEMPER_CHECK_TRUE( floateq( dist, answerDistance ) );
 }
 
-TEMPER_SUITE( Test_int2 )
-{
-	TEMPER_RUN_TEST( TestAssignment_int2 );
-	TEMPER_RUN_TEST( TestArithmeticAddition_int2 );
-	TEMPER_RUN_TEST( TestArithmeticSubtraction_int2 );
-	TEMPER_RUN_TEST( TestArithmeticMultiplication_int2 );
-	TEMPER_RUN_TEST( TestArithmeticDivision_int2 );
-	TEMPER_RUN_TEST( TestRelational_int2 );
-	TEMPER_RUN_TEST( TestBitwise_And_int2 );
-	TEMPER_RUN_TEST( TestBitwise_Or_int2 );
-	TEMPER_RUN_TEST( TestBitwise_Xor_int2 );
-	TEMPER_RUN_TEST( TestBitwise_ShiftLeft_int2 );
-	TEMPER_RUN_TEST( TestBitwise_ShiftRight_int2 );
-	TEMPER_RUN_TEST( TestBitwise_Unary_int2 );
-	TEMPER_RUN_TEST( TestLength_Scalar_int2 );
-	TEMPER_RUN_TEST( TestDot_Scalar_int2 );
-	TEMPER_RUN_TEST( TestDistance_Scalar_int2 );
-}

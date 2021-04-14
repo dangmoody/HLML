@@ -63,6 +63,8 @@ void Doc_OperatorCompoundComponentWiseArithmeticRhsType( stringBuilder_t* sb, co
 void Doc_OperatorIncrementPrefix( stringBuilder_t* sb, const char* fullTypeName, const genOpIncrement_t op );
 void Doc_OperatorIncrementPostfix( stringBuilder_t* sb, const char* fullTypeName, const genOpIncrement_t op );
 
+void Doc_Negate( stringBuilder_t* sb, const char* fullTypeName );
+
 void Doc_ComponentWiseRelational( stringBuilder_t* sb, const char* fullTypeName, const u32 numRows, const u32 numCols, const genOpRelational_t op );
 
 void Doc_OperatorBitwiseRhsType( stringBuilder_t* sb, const char* fullTypeName, const genOpBitwise_t op );

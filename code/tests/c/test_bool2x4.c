@@ -32,26 +32,24 @@ SOFTWARE.
 // EDITING THIS FILE MAY CAUSE SIDE EFFECTS.
 // DO SO AT YOUR OWN RISK.
 
-TEMPER_TEST( TestAssignment_bool2x4 )
+TEMPER_TEST( TestAssignment_bool2x4, TEMPER_FLAG_SHOULD_RUN )
 {
 	bool2x4 mat;
 
 	mat.rows[0] = (bool4) { true, false, false, false };
 	mat.rows[1] = (bool4) { false, true, false, false };
 
-	TEMPER_EXPECT_TRUE( mat.rows[0].x == true );
-	TEMPER_EXPECT_TRUE( mat.rows[0].y == false );
-	TEMPER_EXPECT_TRUE( mat.rows[0].z == false );
-	TEMPER_EXPECT_TRUE( mat.rows[0].w == false );
-	TEMPER_EXPECT_TRUE( mat.rows[1].x == false );
-	TEMPER_EXPECT_TRUE( mat.rows[1].y == true );
-	TEMPER_EXPECT_TRUE( mat.rows[1].z == false );
-	TEMPER_EXPECT_TRUE( mat.rows[1].w == false );
-
-	TEMPER_PASS();
+	TEMPER_CHECK_TRUE( mat.rows[0].x == true );
+	TEMPER_CHECK_TRUE( mat.rows[0].y == false );
+	TEMPER_CHECK_TRUE( mat.rows[0].z == false );
+	TEMPER_CHECK_TRUE( mat.rows[0].w == false );
+	TEMPER_CHECK_TRUE( mat.rows[1].x == false );
+	TEMPER_CHECK_TRUE( mat.rows[1].y == true );
+	TEMPER_CHECK_TRUE( mat.rows[1].z == false );
+	TEMPER_CHECK_TRUE( mat.rows[1].w == false );
 }
 
-TEMPER_TEST( TestIdentity_Scalar_bool2x4 )
+TEMPER_TEST( TestIdentity_Scalar_bool2x4, TEMPER_FLAG_SHOULD_RUN )
 {
 	bool2x4 id;
 	id.rows[0] = (bool4) { true, false, false, false };
@@ -59,12 +57,10 @@ TEMPER_TEST( TestIdentity_Scalar_bool2x4 )
 
 	bool2x4 mat;
 	bool2x4_identity( &mat );
-	TEMPER_EXPECT_TRUE( bool2x4_cmpe( &mat, &id ) );
-
-	TEMPER_PASS();
+	TEMPER_CHECK_TRUE( bool2x4_cmpe( &mat, &id ) );
 }
 
-TEMPER_TEST( TestTranspose_Scalar_bool2x4 )
+TEMPER_TEST( TestTranspose_Scalar_bool2x4, TEMPER_FLAG_SHOULD_RUN )
 {
 	bool4x2 answerTransposed = (bool4x2) {
 		false, true,
@@ -79,14 +75,6 @@ TEMPER_TEST( TestTranspose_Scalar_bool2x4 )
 	};
 	bool4x2 trans = bool2x4_transpose( &mat );
 
-	TEMPER_EXPECT_TRUE( bool4x2_cmpe( &trans, &answerTransposed ) );
-
-	TEMPER_PASS();
+	TEMPER_CHECK_TRUE( bool4x2_cmpe( &trans, &answerTransposed ) );
 }
 
-TEMPER_SUITE( Test_bool2x4 )
-{
-	TEMPER_RUN_TEST( TestAssignment_bool2x4 );
-	TEMPER_RUN_TEST( TestIdentity_Scalar_bool2x4 );
-	TEMPER_RUN_TEST( TestTranspose_Scalar_bool2x4 );
-}

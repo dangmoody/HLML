@@ -47,65 +47,59 @@ static uint2x2 g_matrixMulAnswer_uint2x4 = uint2x2( 		72U, 72U,
  );
 
 
-TEMPER_TEST( TestAssignment_uint2x4 )
+TEMPER_TEST( TestAssignment_uint2x4, TEMPER_FLAG_SHOULD_RUN )
 {
 	uint2x4 mat;
 
 	mat.rows[0] = uint4( 999U, 0U, 0U, 0U );
 	mat.rows[1] = uint4( 0U, 999U, 0U, 0U );
 
-	TEMPER_EXPECT_TRUE( mat.rows[0].x == 999U );
-	TEMPER_EXPECT_TRUE( mat.rows[0].y == 0U );
-	TEMPER_EXPECT_TRUE( mat.rows[0].z == 0U );
-	TEMPER_EXPECT_TRUE( mat.rows[0].w == 0U );
-	TEMPER_EXPECT_TRUE( mat.rows[1].x == 0U );
-	TEMPER_EXPECT_TRUE( mat.rows[1].y == 999U );
-	TEMPER_EXPECT_TRUE( mat.rows[1].z == 0U );
-	TEMPER_EXPECT_TRUE( mat.rows[1].w == 0U );
-
-	TEMPER_PASS();
+	TEMPER_CHECK_TRUE( mat.rows[0].x == 999U );
+	TEMPER_CHECK_TRUE( mat.rows[0].y == 0U );
+	TEMPER_CHECK_TRUE( mat.rows[0].z == 0U );
+	TEMPER_CHECK_TRUE( mat.rows[0].w == 0U );
+	TEMPER_CHECK_TRUE( mat.rows[1].x == 0U );
+	TEMPER_CHECK_TRUE( mat.rows[1].y == 999U );
+	TEMPER_CHECK_TRUE( mat.rows[1].z == 0U );
+	TEMPER_CHECK_TRUE( mat.rows[1].w == 0U );
 }
 
-TEMPER_TEST( TestCtor_uint2x4 )
+TEMPER_TEST( TestCtor_uint2x4, TEMPER_FLAG_SHOULD_RUN )
 {
 	uint2x4 mat;
 
 	// fill single value
 	mat = uint2x4( 999U );
-	TEMPER_EXPECT_TRUE( mat[0] == uint4( 999U, 0U, 0U, 0U ) );
-	TEMPER_EXPECT_TRUE( mat[1] == uint4( 0U, 999U, 0U, 0U ) );
+	TEMPER_CHECK_TRUE( mat[0] == uint4( 999U, 0U, 0U, 0U ) );
+	TEMPER_CHECK_TRUE( mat[1] == uint4( 0U, 999U, 0U, 0U ) );
 
 	// row filling
 	mat = uint2x4(
 		uint4( 0U, 1U, 2U, 3U ),
 		uint4( 4U, 5U, 6U, 7U )
 	);
-	TEMPER_EXPECT_TRUE( mat[0] == uint4( 0U, 1U, 2U, 3U ) );
-	TEMPER_EXPECT_TRUE( mat[1] == uint4( 4U, 5U, 6U, 7U ) );
+	TEMPER_CHECK_TRUE( mat[0] == uint4( 0U, 1U, 2U, 3U ) );
+	TEMPER_CHECK_TRUE( mat[1] == uint4( 4U, 5U, 6U, 7U ) );
 
 	// all values filled
 	mat = uint2x4(
 		16U, 15U, 14U, 13U,
 		12U, 11U, 10U, 9U
 	);
-	TEMPER_EXPECT_TRUE( mat[0] == uint4( 16U, 15U, 14U, 13U ) );
-	TEMPER_EXPECT_TRUE( mat[1] == uint4( 12U, 11U, 10U, 9U ) );
-
-	TEMPER_PASS();
+	TEMPER_CHECK_TRUE( mat[0] == uint4( 16U, 15U, 14U, 13U ) );
+	TEMPER_CHECK_TRUE( mat[1] == uint4( 12U, 11U, 10U, 9U ) );
 }
 
-TEMPER_TEST( TestArray_uint2x4 )
+TEMPER_TEST( TestArray_uint2x4, TEMPER_FLAG_SHOULD_RUN )
 {
 	uint2x4 mat;
 	identity( mat );
 
-	TEMPER_EXPECT_TRUE( mat[0] == uint4( 1U, 0U, 0U, 0U ) );
-	TEMPER_EXPECT_TRUE( mat[1] == uint4( 0U, 1U, 0U, 0U ) );
-
-	TEMPER_PASS();
+	TEMPER_CHECK_TRUE( mat[0] == uint4( 1U, 0U, 0U, 0U ) );
+	TEMPER_CHECK_TRUE( mat[1] == uint4( 0U, 1U, 0U, 0U ) );
 }
 
-TEMPER_TEST( TestIncrement_uint2x4 )
+TEMPER_TEST( TestIncrement_uint2x4, TEMPER_FLAG_SHOULD_RUN )
 {
 	uint2x4 answer;
 	uint2x4 mat;
@@ -122,7 +116,7 @@ TEMPER_TEST( TestIncrement_uint2x4 )
 
 	);
 	++mat;
-	TEMPER_EXPECT_TRUE( mat == answer );
+	TEMPER_CHECK_TRUE( mat == answer );
 
 	// postfix
 	answer = uint2x4(
@@ -136,12 +130,10 @@ TEMPER_TEST( TestIncrement_uint2x4 )
 
 	);
 	mat++;
-	TEMPER_EXPECT_TRUE( mat == answer );
-
-	TEMPER_PASS();
+	TEMPER_CHECK_TRUE( mat == answer );
 }
 
-TEMPER_TEST( TestDecrement_uint2x4 )
+TEMPER_TEST( TestDecrement_uint2x4, TEMPER_FLAG_SHOULD_RUN )
 {
 	uint2x4 answer;
 	uint2x4 mat;
@@ -158,7 +150,7 @@ TEMPER_TEST( TestDecrement_uint2x4 )
 
 	);
 	--mat;
-	TEMPER_EXPECT_TRUE( mat == answer );
+	TEMPER_CHECK_TRUE( mat == answer );
 
 	// postfix
 	answer = uint2x4(
@@ -172,12 +164,10 @@ TEMPER_TEST( TestDecrement_uint2x4 )
 
 	);
 	mat--;
-	TEMPER_EXPECT_TRUE( mat == answer );
-
-	TEMPER_PASS();
+	TEMPER_CHECK_TRUE( mat == answer );
 }
 
-TEMPER_TEST( TestComponentWiseArithmetic_Scalar_Addition_uint2x4 )
+TEMPER_TEST( TestComponentWiseArithmetic_Scalar_Addition_uint2x4, TEMPER_FLAG_SHOULD_RUN )
 {
 	uint2x4 answer = uint2x4(
 		7U, 7U, 7U, 7U,
@@ -196,12 +186,10 @@ TEMPER_TEST( TestComponentWiseArithmetic_Scalar_Addition_uint2x4 )
 
 	uint2x4 c = caddm( a, b );
 
-	TEMPER_EXPECT_TRUE( c == answer );
-
-	TEMPER_PASS();
+	TEMPER_CHECK_TRUE( c == answer );
 }
 
-TEMPER_TEST( TestComponentWiseArithmetic_Scalar_Subtraction_uint2x4 )
+TEMPER_TEST( TestComponentWiseArithmetic_Scalar_Subtraction_uint2x4, TEMPER_FLAG_SHOULD_RUN )
 {
 	uint2x4 answer = uint2x4(
 		5U, 5U, 5U, 5U,
@@ -220,12 +208,10 @@ TEMPER_TEST( TestComponentWiseArithmetic_Scalar_Subtraction_uint2x4 )
 
 	uint2x4 c = csubm( a, b );
 
-	TEMPER_EXPECT_TRUE( c == answer );
-
-	TEMPER_PASS();
+	TEMPER_CHECK_TRUE( c == answer );
 }
 
-TEMPER_TEST( TestComponentWiseArithmetic_Scalar_Multiplication_uint2x4 )
+TEMPER_TEST( TestComponentWiseArithmetic_Scalar_Multiplication_uint2x4, TEMPER_FLAG_SHOULD_RUN )
 {
 	uint2x4 answer = uint2x4(
 		6U, 6U, 6U, 6U,
@@ -244,12 +230,10 @@ TEMPER_TEST( TestComponentWiseArithmetic_Scalar_Multiplication_uint2x4 )
 
 	uint2x4 c = cmulm( a, b );
 
-	TEMPER_EXPECT_TRUE( c == answer );
-
-	TEMPER_PASS();
+	TEMPER_CHECK_TRUE( c == answer );
 }
 
-TEMPER_TEST( TestComponentWiseArithmetic_Scalar_Division_uint2x4 )
+TEMPER_TEST( TestComponentWiseArithmetic_Scalar_Division_uint2x4, TEMPER_FLAG_SHOULD_RUN )
 {
 	uint2x4 answer = uint2x4(
 		6U, 6U, 6U, 6U,
@@ -268,12 +252,10 @@ TEMPER_TEST( TestComponentWiseArithmetic_Scalar_Division_uint2x4 )
 
 	uint2x4 c = cdivm( a, b );
 
-	TEMPER_EXPECT_TRUE( c == answer );
-
-	TEMPER_PASS();
+	TEMPER_CHECK_TRUE( c == answer );
 }
 
-TEMPER_TEST( TestMultiplyMatrix_Scalar_uint2x4 )
+TEMPER_TEST( TestMultiplyMatrix_Scalar_uint2x4, TEMPER_FLAG_SHOULD_RUN )
 {
 	uint2x2 answer = g_matrixMulAnswer_uint2x4;
 
@@ -281,12 +263,10 @@ TEMPER_TEST( TestMultiplyMatrix_Scalar_uint2x4 )
 	uint4x2 b = g_matrixMulRHS_uint2x4;
 	uint2x2 c = a * b;
 
-	TEMPER_EXPECT_TRUE( c == answer );
-
-	TEMPER_PASS();
+	TEMPER_CHECK_TRUE( c == answer );
 }
 
-TEMPER_TEST( TestRelational_uint2x4 )
+TEMPER_TEST( TestRelational_uint2x4, TEMPER_FLAG_SHOULD_RUN )
 {
 	bool2x4 allTrue = { 		true, true, true, true,
 		true, true, true, true
@@ -329,34 +309,32 @@ TEMPER_TEST( TestRelational_uint2x4 )
 	bool2x4 test18 = mat3 <= mat3;
 	bool2x4 test19 = mat3 >= mat3;
 
-	TEMPER_EXPECT_TRUE( test0  == allTrue );
-	TEMPER_EXPECT_TRUE( test1  == allTrue );
-	TEMPER_EXPECT_TRUE( test2  == allTrue );
-	TEMPER_EXPECT_TRUE( test3  == allTrue );
-	TEMPER_EXPECT_TRUE( test4  == allTrue );
+	TEMPER_CHECK_TRUE( test0  == allTrue );
+	TEMPER_CHECK_TRUE( test1  == allTrue );
+	TEMPER_CHECK_TRUE( test2  == allTrue );
+	TEMPER_CHECK_TRUE( test3  == allTrue );
+	TEMPER_CHECK_TRUE( test4  == allTrue );
 
-	TEMPER_EXPECT_TRUE( test5  == allTrue );
-	TEMPER_EXPECT_TRUE( test6  == allTrue );
-	TEMPER_EXPECT_TRUE( test7  == allTrue );
-	TEMPER_EXPECT_TRUE( test8  == allTrue );
-	TEMPER_EXPECT_TRUE( test9  == allTrue );
+	TEMPER_CHECK_TRUE( test5  == allTrue );
+	TEMPER_CHECK_TRUE( test6  == allTrue );
+	TEMPER_CHECK_TRUE( test7  == allTrue );
+	TEMPER_CHECK_TRUE( test8  == allTrue );
+	TEMPER_CHECK_TRUE( test9  == allTrue );
 
-	TEMPER_EXPECT_TRUE( test10 == allTrue );
-	TEMPER_EXPECT_TRUE( test11 == allTrue );
-	TEMPER_EXPECT_TRUE( test12 == allTrue );
-	TEMPER_EXPECT_TRUE( test13 == allTrue );
-	TEMPER_EXPECT_TRUE( test14 == allTrue );
+	TEMPER_CHECK_TRUE( test10 == allTrue );
+	TEMPER_CHECK_TRUE( test11 == allTrue );
+	TEMPER_CHECK_TRUE( test12 == allTrue );
+	TEMPER_CHECK_TRUE( test13 == allTrue );
+	TEMPER_CHECK_TRUE( test14 == allTrue );
 
-	TEMPER_EXPECT_TRUE( test15 == allTrue );
-	TEMPER_EXPECT_TRUE( test16 == allTrue );
-	TEMPER_EXPECT_TRUE( test17 == allTrue );
-	TEMPER_EXPECT_TRUE( test18 == allTrue );
-	TEMPER_EXPECT_TRUE( test19 == allTrue );
-
-	TEMPER_PASS();
+	TEMPER_CHECK_TRUE( test15 == allTrue );
+	TEMPER_CHECK_TRUE( test16 == allTrue );
+	TEMPER_CHECK_TRUE( test17 == allTrue );
+	TEMPER_CHECK_TRUE( test18 == allTrue );
+	TEMPER_CHECK_TRUE( test19 == allTrue );
 }
 
-TEMPER_TEST( TestBitwise_And_uint2x4 )
+TEMPER_TEST( TestBitwise_And_uint2x4, TEMPER_FLAG_SHOULD_RUN )
 {
 	uint2x4 answer = uint2x4(
 		5U, 5U, 5U, 5U,
@@ -373,12 +351,10 @@ TEMPER_TEST( TestBitwise_And_uint2x4 )
 
 	uint2x4 c = a & b;
 
-	TEMPER_EXPECT_TRUE( c == answer );
-
-	TEMPER_PASS();
+	TEMPER_CHECK_TRUE( c == answer );
 }
 
-TEMPER_TEST( TestBitwise_Or_uint2x4 )
+TEMPER_TEST( TestBitwise_Or_uint2x4, TEMPER_FLAG_SHOULD_RUN )
 {
 	uint2x4 answer = uint2x4(
 		23U, 23U, 23U, 23U,
@@ -395,12 +371,10 @@ TEMPER_TEST( TestBitwise_Or_uint2x4 )
 
 	uint2x4 c = a | b;
 
-	TEMPER_EXPECT_TRUE( c == answer );
-
-	TEMPER_PASS();
+	TEMPER_CHECK_TRUE( c == answer );
 }
 
-TEMPER_TEST( TestBitwise_Xor_uint2x4 )
+TEMPER_TEST( TestBitwise_Xor_uint2x4, TEMPER_FLAG_SHOULD_RUN )
 {
 	uint2x4 answer = uint2x4(
 		18U, 18U, 18U, 18U,
@@ -417,12 +391,10 @@ TEMPER_TEST( TestBitwise_Xor_uint2x4 )
 
 	uint2x4 c = a ^ b;
 
-	TEMPER_EXPECT_TRUE( c == answer );
-
-	TEMPER_PASS();
+	TEMPER_CHECK_TRUE( c == answer );
 }
 
-TEMPER_TEST( TestBitwise_ShiftLeft_uint2x4 )
+TEMPER_TEST( TestBitwise_ShiftLeft_uint2x4, TEMPER_FLAG_SHOULD_RUN )
 {
 	uint2x4 answer = uint2x4(
 		4U, 4U, 4U, 4U,
@@ -439,12 +411,10 @@ TEMPER_TEST( TestBitwise_ShiftLeft_uint2x4 )
 
 	uint2x4 c = a << b;
 
-	TEMPER_EXPECT_TRUE( c == answer );
-
-	TEMPER_PASS();
+	TEMPER_CHECK_TRUE( c == answer );
 }
 
-TEMPER_TEST( TestBitwise_ShiftRight_uint2x4 )
+TEMPER_TEST( TestBitwise_ShiftRight_uint2x4, TEMPER_FLAG_SHOULD_RUN )
 {
 	uint2x4 answer = uint2x4(
 		1U, 1U, 1U, 1U,
@@ -461,12 +431,10 @@ TEMPER_TEST( TestBitwise_ShiftRight_uint2x4 )
 
 	uint2x4 c = a >> b;
 
-	TEMPER_EXPECT_TRUE( c == answer );
-
-	TEMPER_PASS();
+	TEMPER_CHECK_TRUE( c == answer );
 }
 
-TEMPER_TEST( TestBitwise_Unary_uint2x4 )
+TEMPER_TEST( TestBitwise_Unary_uint2x4, TEMPER_FLAG_SHOULD_RUN )
 {
 	uint2x4 answer = uint2x4(
 		(uint32_t) -1, (uint32_t) -1, (uint32_t) -1, (uint32_t) -1,
@@ -479,12 +447,10 @@ TEMPER_TEST( TestBitwise_Unary_uint2x4 )
 
 	uint2x4 b = ~a;
 
-	TEMPER_EXPECT_TRUE( b == answer );
-
-	TEMPER_PASS();
+	TEMPER_CHECK_TRUE( b == answer );
 }
 
-TEMPER_TEST( TestIdentity_Scalar_uint2x4 )
+TEMPER_TEST( TestIdentity_Scalar_uint2x4, TEMPER_FLAG_SHOULD_RUN )
 {
 	uint2x4 id;
 	id[0] = uint4( 1U, 0U, 0U, 0U );
@@ -493,12 +459,10 @@ TEMPER_TEST( TestIdentity_Scalar_uint2x4 )
 	uint2x4 mat;
 
 	identity( mat );
-	TEMPER_EXPECT_TRUE( mat == id );
-
-	TEMPER_PASS();
+	TEMPER_CHECK_TRUE( mat == id );
 }
 
-TEMPER_TEST( TestTranspose_Scalar_uint2x4 )
+TEMPER_TEST( TestTranspose_Scalar_uint2x4, TEMPER_FLAG_SHOULD_RUN )
 {
 	uint4x2 answerTransposed = uint4x2(
 		0U, 4U,
@@ -513,12 +477,10 @@ TEMPER_TEST( TestTranspose_Scalar_uint2x4 )
 	);
 	uint4x2 trans = transpose( mat );
 
-	TEMPER_EXPECT_TRUE( trans == answerTransposed );
-
-	TEMPER_PASS();
+	TEMPER_CHECK_TRUE( trans == answerTransposed );
 }
 
-TEMPER_TEST( TestScale_Scalar_uint2x4 )
+TEMPER_TEST( TestScale_Scalar_uint2x4, TEMPER_FLAG_SHOULD_RUN )
 {
 	uint2 scaleVec = { 2U, 2U };
 	uint2x4 mat;
@@ -526,32 +488,7 @@ TEMPER_TEST( TestScale_Scalar_uint2x4 )
 
 	uint2x4 scaled = scale( mat, scaleVec );
 
-	TEMPER_EXPECT_TRUE( scaled.rows[0].x == 2U );
-	TEMPER_EXPECT_TRUE( scaled.rows[1].y == 2U );
-
-	TEMPER_PASS();
+	TEMPER_CHECK_TRUE( scaled.rows[0].x == 2U );
+	TEMPER_CHECK_TRUE( scaled.rows[1].y == 2U );
 }
 
-TEMPER_SUITE( Test_uint2x4 )
-{
-	TEMPER_RUN_TEST( TestAssignment_uint2x4 );
-	TEMPER_RUN_TEST( TestCtor_uint2x4 );
-	TEMPER_RUN_TEST( TestArray_uint2x4 );
-	TEMPER_RUN_TEST( TestIncrement_uint2x4 );
-	TEMPER_RUN_TEST( TestDecrement_uint2x4 );
-	TEMPER_RUN_TEST( TestComponentWiseArithmetic_Scalar_Addition_uint2x4 );
-	TEMPER_RUN_TEST( TestComponentWiseArithmetic_Scalar_Subtraction_uint2x4 );
-	TEMPER_RUN_TEST( TestComponentWiseArithmetic_Scalar_Multiplication_uint2x4 );
-	TEMPER_RUN_TEST( TestComponentWiseArithmetic_Scalar_Division_uint2x4 );
-	TEMPER_RUN_TEST( TestMultiplyMatrix_Scalar_uint2x4 );
-	TEMPER_RUN_TEST( TestRelational_uint2x4 );
-	TEMPER_RUN_TEST( TestBitwise_And_uint2x4 );
-	TEMPER_RUN_TEST( TestBitwise_Or_uint2x4 );
-	TEMPER_RUN_TEST( TestBitwise_Xor_uint2x4 );
-	TEMPER_RUN_TEST( TestBitwise_ShiftLeft_uint2x4 );
-	TEMPER_RUN_TEST( TestBitwise_ShiftRight_uint2x4 );
-	TEMPER_RUN_TEST( TestBitwise_Unary_uint2x4 );
-	TEMPER_RUN_TEST( TestIdentity_Scalar_uint2x4 );
-	TEMPER_RUN_TEST( TestTranspose_Scalar_uint2x4 );
-	TEMPER_RUN_TEST( TestScale_Scalar_uint2x4 );
-}

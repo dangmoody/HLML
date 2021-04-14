@@ -32,43 +32,31 @@ SOFTWARE.
 // EDITING THIS FILE MAY CAUSE SIDE EFFECTS.
 // DO SO AT YOUR OWN RISK.
 
-TEMPER_TEST( TestSign_int32_t )
+TEMPER_TEST( TestSign_int32_t, TEMPER_FLAG_SHOULD_RUN )
 {
-	TEMPER_EXPECT_TRUE( signi( -5 ) == -1 );
-	TEMPER_EXPECT_TRUE( signi( 9 ) ==  1 );
-
-	TEMPER_PASS();
+	TEMPER_CHECK_TRUE( signi( -5 ) == -1 );
+	TEMPER_CHECK_TRUE( signi( 9 ) ==  1 );
 }
 
-TEMPER_TEST( TestMinMax_int32_t )
+TEMPER_TEST( TestMinMax_int32_t, TEMPER_FLAG_SHOULD_RUN )
 {
 	int32_t a = 5;
 	int32_t b = 9;
 
-	TEMPER_EXPECT_TRUE( mini( a, b ) == a );
-	TEMPER_EXPECT_TRUE( maxi( a, b ) == b );
-
-	TEMPER_PASS();
+	TEMPER_CHECK_TRUE( mini( a, b ) == a );
+	TEMPER_CHECK_TRUE( maxi( a, b ) == b );
 }
 
-TEMPER_TEST( TestClamp_int32_t )
+TEMPER_TEST( TestClamp_int32_t, TEMPER_FLAG_SHOULD_RUN )
 {
 	int32_t a;
 	int32_t low  = 1;
 	int32_t high = 10;
 
 	a = (int32_t) clampi( 0, low, high );
-	TEMPER_EXPECT_TRUE( a == low );
+	TEMPER_CHECK_TRUE( a == low );
 
 	a = (int32_t) clampi( 11, low, high );
-	TEMPER_EXPECT_TRUE( a == high );
-
-	TEMPER_PASS();
+	TEMPER_CHECK_TRUE( a == high );
 }
 
-TEMPER_SUITE( Test_int32_t )
-{
-	TEMPER_RUN_TEST( TestSign_int32_t );
-	TEMPER_RUN_TEST( TestMinMax_int32_t );
-	TEMPER_RUN_TEST( TestClamp_int32_t );
-}

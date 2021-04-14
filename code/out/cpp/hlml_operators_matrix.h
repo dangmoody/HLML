@@ -189,6 +189,9 @@ inline int2x2& operator--( int2x2& lhs );
 // postfix
 // Postfix decrement operator.  Subtracts one from each component of the given int2x2 after evaluation.
 inline int2x2& operator--( int2x2& lhs, const int );
+// Returns a copy of the int2x2 where all values have been negated.
+inline int2x2 operator-( const int2x2& mat );
+
 // Returns a copy of the int2x2 where each component of the left-hand int2x2 has been bitwise AND'd against the corresponding component of the right-hand side int2x2.
 inline int2x2 operator&( int2x2& lhs, const int2x2& rhs );
 
@@ -275,6 +278,9 @@ inline int2x3& operator--( int2x3& lhs );
 // postfix
 // Postfix decrement operator.  Subtracts one from each component of the given int2x3 after evaluation.
 inline int2x3& operator--( int2x3& lhs, const int );
+// Returns a copy of the int2x3 where all values have been negated.
+inline int2x3 operator-( const int2x3& mat );
+
 // Returns a copy of the int2x3 where each component of the left-hand int2x3 has been bitwise AND'd against the corresponding component of the right-hand side int2x3.
 inline int2x3 operator&( int2x3& lhs, const int2x3& rhs );
 
@@ -361,6 +367,9 @@ inline int2x4& operator--( int2x4& lhs );
 // postfix
 // Postfix decrement operator.  Subtracts one from each component of the given int2x4 after evaluation.
 inline int2x4& operator--( int2x4& lhs, const int );
+// Returns a copy of the int2x4 where all values have been negated.
+inline int2x4 operator-( const int2x4& mat );
+
 // Returns a copy of the int2x4 where each component of the left-hand int2x4 has been bitwise AND'd against the corresponding component of the right-hand side int2x4.
 inline int2x4 operator&( int2x4& lhs, const int2x4& rhs );
 
@@ -447,6 +456,9 @@ inline int3x2& operator--( int3x2& lhs );
 // postfix
 // Postfix decrement operator.  Subtracts one from each component of the given int3x2 after evaluation.
 inline int3x2& operator--( int3x2& lhs, const int );
+// Returns a copy of the int3x2 where all values have been negated.
+inline int3x2 operator-( const int3x2& mat );
+
 // Returns a copy of the int3x2 where each component of the left-hand int3x2 has been bitwise AND'd against the corresponding component of the right-hand side int3x2.
 inline int3x2 operator&( int3x2& lhs, const int3x2& rhs );
 
@@ -541,6 +553,9 @@ inline int3x3& operator--( int3x3& lhs );
 // postfix
 // Postfix decrement operator.  Subtracts one from each component of the given int3x3 after evaluation.
 inline int3x3& operator--( int3x3& lhs, const int );
+// Returns a copy of the int3x3 where all values have been negated.
+inline int3x3 operator-( const int3x3& mat );
+
 // Returns a copy of the int3x3 where each component of the left-hand int3x3 has been bitwise AND'd against the corresponding component of the right-hand side int3x3.
 inline int3x3 operator&( int3x3& lhs, const int3x3& rhs );
 
@@ -627,6 +642,9 @@ inline int3x4& operator--( int3x4& lhs );
 // postfix
 // Postfix decrement operator.  Subtracts one from each component of the given int3x4 after evaluation.
 inline int3x4& operator--( int3x4& lhs, const int );
+// Returns a copy of the int3x4 where all values have been negated.
+inline int3x4 operator-( const int3x4& mat );
+
 // Returns a copy of the int3x4 where each component of the left-hand int3x4 has been bitwise AND'd against the corresponding component of the right-hand side int3x4.
 inline int3x4 operator&( int3x4& lhs, const int3x4& rhs );
 
@@ -713,6 +731,9 @@ inline int4x2& operator--( int4x2& lhs );
 // postfix
 // Postfix decrement operator.  Subtracts one from each component of the given int4x2 after evaluation.
 inline int4x2& operator--( int4x2& lhs, const int );
+// Returns a copy of the int4x2 where all values have been negated.
+inline int4x2 operator-( const int4x2& mat );
+
 // Returns a copy of the int4x2 where each component of the left-hand int4x2 has been bitwise AND'd against the corresponding component of the right-hand side int4x2.
 inline int4x2 operator&( int4x2& lhs, const int4x2& rhs );
 
@@ -799,6 +820,9 @@ inline int4x3& operator--( int4x3& lhs );
 // postfix
 // Postfix decrement operator.  Subtracts one from each component of the given int4x3 after evaluation.
 inline int4x3& operator--( int4x3& lhs, const int );
+// Returns a copy of the int4x3 where all values have been negated.
+inline int4x3 operator-( const int4x3& mat );
+
 // Returns a copy of the int4x3 where each component of the left-hand int4x3 has been bitwise AND'd against the corresponding component of the right-hand side int4x3.
 inline int4x3 operator&( int4x3& lhs, const int4x3& rhs );
 
@@ -893,6 +917,9 @@ inline int4x4& operator--( int4x4& lhs );
 // postfix
 // Postfix decrement operator.  Subtracts one from each component of the given int4x4 after evaluation.
 inline int4x4& operator--( int4x4& lhs, const int );
+// Returns a copy of the int4x4 where all values have been negated.
+inline int4x4 operator-( const int4x4& mat );
+
 // Returns a copy of the int4x4 where each component of the left-hand int4x4 has been bitwise AND'd against the corresponding component of the right-hand side int4x4.
 inline int4x4 operator&( int4x4& lhs, const int4x4& rhs );
 
@@ -987,6 +1014,9 @@ inline uint2x2& operator--( uint2x2& lhs );
 // postfix
 // Postfix decrement operator.  Subtracts one from each component of the given uint2x2 after evaluation.
 inline uint2x2& operator--( uint2x2& lhs, const int );
+// Returns a copy of the uint2x2 where all values have been negated.
+inline uint2x2 operator-( const uint2x2& mat );
+
 // Returns a copy of the uint2x2 where each component of the left-hand uint2x2 has been bitwise AND'd against the corresponding component of the right-hand side uint2x2.
 inline uint2x2 operator&( uint2x2& lhs, const uint2x2& rhs );
 
@@ -1073,6 +1103,9 @@ inline uint2x3& operator--( uint2x3& lhs );
 // postfix
 // Postfix decrement operator.  Subtracts one from each component of the given uint2x3 after evaluation.
 inline uint2x3& operator--( uint2x3& lhs, const int );
+// Returns a copy of the uint2x3 where all values have been negated.
+inline uint2x3 operator-( const uint2x3& mat );
+
 // Returns a copy of the uint2x3 where each component of the left-hand uint2x3 has been bitwise AND'd against the corresponding component of the right-hand side uint2x3.
 inline uint2x3 operator&( uint2x3& lhs, const uint2x3& rhs );
 
@@ -1159,6 +1192,9 @@ inline uint2x4& operator--( uint2x4& lhs );
 // postfix
 // Postfix decrement operator.  Subtracts one from each component of the given uint2x4 after evaluation.
 inline uint2x4& operator--( uint2x4& lhs, const int );
+// Returns a copy of the uint2x4 where all values have been negated.
+inline uint2x4 operator-( const uint2x4& mat );
+
 // Returns a copy of the uint2x4 where each component of the left-hand uint2x4 has been bitwise AND'd against the corresponding component of the right-hand side uint2x4.
 inline uint2x4 operator&( uint2x4& lhs, const uint2x4& rhs );
 
@@ -1245,6 +1281,9 @@ inline uint3x2& operator--( uint3x2& lhs );
 // postfix
 // Postfix decrement operator.  Subtracts one from each component of the given uint3x2 after evaluation.
 inline uint3x2& operator--( uint3x2& lhs, const int );
+// Returns a copy of the uint3x2 where all values have been negated.
+inline uint3x2 operator-( const uint3x2& mat );
+
 // Returns a copy of the uint3x2 where each component of the left-hand uint3x2 has been bitwise AND'd against the corresponding component of the right-hand side uint3x2.
 inline uint3x2 operator&( uint3x2& lhs, const uint3x2& rhs );
 
@@ -1339,6 +1378,9 @@ inline uint3x3& operator--( uint3x3& lhs );
 // postfix
 // Postfix decrement operator.  Subtracts one from each component of the given uint3x3 after evaluation.
 inline uint3x3& operator--( uint3x3& lhs, const int );
+// Returns a copy of the uint3x3 where all values have been negated.
+inline uint3x3 operator-( const uint3x3& mat );
+
 // Returns a copy of the uint3x3 where each component of the left-hand uint3x3 has been bitwise AND'd against the corresponding component of the right-hand side uint3x3.
 inline uint3x3 operator&( uint3x3& lhs, const uint3x3& rhs );
 
@@ -1425,6 +1467,9 @@ inline uint3x4& operator--( uint3x4& lhs );
 // postfix
 // Postfix decrement operator.  Subtracts one from each component of the given uint3x4 after evaluation.
 inline uint3x4& operator--( uint3x4& lhs, const int );
+// Returns a copy of the uint3x4 where all values have been negated.
+inline uint3x4 operator-( const uint3x4& mat );
+
 // Returns a copy of the uint3x4 where each component of the left-hand uint3x4 has been bitwise AND'd against the corresponding component of the right-hand side uint3x4.
 inline uint3x4 operator&( uint3x4& lhs, const uint3x4& rhs );
 
@@ -1511,6 +1556,9 @@ inline uint4x2& operator--( uint4x2& lhs );
 // postfix
 // Postfix decrement operator.  Subtracts one from each component of the given uint4x2 after evaluation.
 inline uint4x2& operator--( uint4x2& lhs, const int );
+// Returns a copy of the uint4x2 where all values have been negated.
+inline uint4x2 operator-( const uint4x2& mat );
+
 // Returns a copy of the uint4x2 where each component of the left-hand uint4x2 has been bitwise AND'd against the corresponding component of the right-hand side uint4x2.
 inline uint4x2 operator&( uint4x2& lhs, const uint4x2& rhs );
 
@@ -1597,6 +1645,9 @@ inline uint4x3& operator--( uint4x3& lhs );
 // postfix
 // Postfix decrement operator.  Subtracts one from each component of the given uint4x3 after evaluation.
 inline uint4x3& operator--( uint4x3& lhs, const int );
+// Returns a copy of the uint4x3 where all values have been negated.
+inline uint4x3 operator-( const uint4x3& mat );
+
 // Returns a copy of the uint4x3 where each component of the left-hand uint4x3 has been bitwise AND'd against the corresponding component of the right-hand side uint4x3.
 inline uint4x3 operator&( uint4x3& lhs, const uint4x3& rhs );
 
@@ -1691,6 +1742,9 @@ inline uint4x4& operator--( uint4x4& lhs );
 // postfix
 // Postfix decrement operator.  Subtracts one from each component of the given uint4x4 after evaluation.
 inline uint4x4& operator--( uint4x4& lhs, const int );
+// Returns a copy of the uint4x4 where all values have been negated.
+inline uint4x4 operator-( const uint4x4& mat );
+
 // Returns a copy of the uint4x4 where each component of the left-hand uint4x4 has been bitwise AND'd against the corresponding component of the right-hand side uint4x4.
 inline uint4x4 operator&( uint4x4& lhs, const uint4x4& rhs );
 
@@ -1785,6 +1839,9 @@ inline float2x2& operator--( float2x2& lhs );
 // postfix
 // Postfix decrement operator.  Subtracts one from each component of the given float2x2 after evaluation.
 inline float2x2& operator--( float2x2& lhs, const int );
+// Returns a copy of the float2x2 where all values have been negated.
+inline float2x2 operator-( const float2x2& mat );
+
 // Returns a bool2x2 where each component is true if the component of the left-hand type is less than the corresponding right-hand type component.
 inline bool2x2 operator<( const float2x2& lhs, const float2x2& rhs );
 
@@ -1838,6 +1895,9 @@ inline float2x3& operator--( float2x3& lhs );
 // postfix
 // Postfix decrement operator.  Subtracts one from each component of the given float2x3 after evaluation.
 inline float2x3& operator--( float2x3& lhs, const int );
+// Returns a copy of the float2x3 where all values have been negated.
+inline float2x3 operator-( const float2x3& mat );
+
 // Returns a bool2x2 where each component is true if the component of the left-hand type is less than the corresponding right-hand type component.
 inline bool2x3 operator<( const float2x3& lhs, const float2x3& rhs );
 
@@ -1891,6 +1951,9 @@ inline float2x4& operator--( float2x4& lhs );
 // postfix
 // Postfix decrement operator.  Subtracts one from each component of the given float2x4 after evaluation.
 inline float2x4& operator--( float2x4& lhs, const int );
+// Returns a copy of the float2x4 where all values have been negated.
+inline float2x4 operator-( const float2x4& mat );
+
 // Returns a bool2x2 where each component is true if the component of the left-hand type is less than the corresponding right-hand type component.
 inline bool2x4 operator<( const float2x4& lhs, const float2x4& rhs );
 
@@ -1944,6 +2007,9 @@ inline float3x2& operator--( float3x2& lhs );
 // postfix
 // Postfix decrement operator.  Subtracts one from each component of the given float3x2 after evaluation.
 inline float3x2& operator--( float3x2& lhs, const int );
+// Returns a copy of the float3x2 where all values have been negated.
+inline float3x2 operator-( const float3x2& mat );
+
 // Returns a bool3x3 where each component is true if the component of the left-hand type is less than the corresponding right-hand type component.
 inline bool3x2 operator<( const float3x2& lhs, const float3x2& rhs );
 
@@ -2005,6 +2071,9 @@ inline float3x3& operator--( float3x3& lhs );
 // postfix
 // Postfix decrement operator.  Subtracts one from each component of the given float3x3 after evaluation.
 inline float3x3& operator--( float3x3& lhs, const int );
+// Returns a copy of the float3x3 where all values have been negated.
+inline float3x3 operator-( const float3x3& mat );
+
 // Returns a bool3x3 where each component is true if the component of the left-hand type is less than the corresponding right-hand type component.
 inline bool3x3 operator<( const float3x3& lhs, const float3x3& rhs );
 
@@ -2058,6 +2127,9 @@ inline float3x4& operator--( float3x4& lhs );
 // postfix
 // Postfix decrement operator.  Subtracts one from each component of the given float3x4 after evaluation.
 inline float3x4& operator--( float3x4& lhs, const int );
+// Returns a copy of the float3x4 where all values have been negated.
+inline float3x4 operator-( const float3x4& mat );
+
 // Returns a bool3x3 where each component is true if the component of the left-hand type is less than the corresponding right-hand type component.
 inline bool3x4 operator<( const float3x4& lhs, const float3x4& rhs );
 
@@ -2111,6 +2183,9 @@ inline float4x2& operator--( float4x2& lhs );
 // postfix
 // Postfix decrement operator.  Subtracts one from each component of the given float4x2 after evaluation.
 inline float4x2& operator--( float4x2& lhs, const int );
+// Returns a copy of the float4x2 where all values have been negated.
+inline float4x2 operator-( const float4x2& mat );
+
 // Returns a bool4x4 where each component is true if the component of the left-hand type is less than the corresponding right-hand type component.
 inline bool4x2 operator<( const float4x2& lhs, const float4x2& rhs );
 
@@ -2164,6 +2239,9 @@ inline float4x3& operator--( float4x3& lhs );
 // postfix
 // Postfix decrement operator.  Subtracts one from each component of the given float4x3 after evaluation.
 inline float4x3& operator--( float4x3& lhs, const int );
+// Returns a copy of the float4x3 where all values have been negated.
+inline float4x3 operator-( const float4x3& mat );
+
 // Returns a bool4x4 where each component is true if the component of the left-hand type is less than the corresponding right-hand type component.
 inline bool4x3 operator<( const float4x3& lhs, const float4x3& rhs );
 
@@ -2225,6 +2303,9 @@ inline float4x4& operator--( float4x4& lhs );
 // postfix
 // Postfix decrement operator.  Subtracts one from each component of the given float4x4 after evaluation.
 inline float4x4& operator--( float4x4& lhs, const int );
+// Returns a copy of the float4x4 where all values have been negated.
+inline float4x4 operator-( const float4x4& mat );
+
 // Returns a bool4x4 where each component is true if the component of the left-hand type is less than the corresponding right-hand type component.
 inline bool4x4 operator<( const float4x4& lhs, const float4x4& rhs );
 
@@ -2286,6 +2367,9 @@ inline double2x2& operator--( double2x2& lhs );
 // postfix
 // Postfix decrement operator.  Subtracts one from each component of the given double2x2 after evaluation.
 inline double2x2& operator--( double2x2& lhs, const int );
+// Returns a copy of the double2x2 where all values have been negated.
+inline double2x2 operator-( const double2x2& mat );
+
 // Returns a bool2x2 where each component is true if the component of the left-hand type is less than the corresponding right-hand type component.
 inline bool2x2 operator<( const double2x2& lhs, const double2x2& rhs );
 
@@ -2339,6 +2423,9 @@ inline double2x3& operator--( double2x3& lhs );
 // postfix
 // Postfix decrement operator.  Subtracts one from each component of the given double2x3 after evaluation.
 inline double2x3& operator--( double2x3& lhs, const int );
+// Returns a copy of the double2x3 where all values have been negated.
+inline double2x3 operator-( const double2x3& mat );
+
 // Returns a bool2x2 where each component is true if the component of the left-hand type is less than the corresponding right-hand type component.
 inline bool2x3 operator<( const double2x3& lhs, const double2x3& rhs );
 
@@ -2392,6 +2479,9 @@ inline double2x4& operator--( double2x4& lhs );
 // postfix
 // Postfix decrement operator.  Subtracts one from each component of the given double2x4 after evaluation.
 inline double2x4& operator--( double2x4& lhs, const int );
+// Returns a copy of the double2x4 where all values have been negated.
+inline double2x4 operator-( const double2x4& mat );
+
 // Returns a bool2x2 where each component is true if the component of the left-hand type is less than the corresponding right-hand type component.
 inline bool2x4 operator<( const double2x4& lhs, const double2x4& rhs );
 
@@ -2445,6 +2535,9 @@ inline double3x2& operator--( double3x2& lhs );
 // postfix
 // Postfix decrement operator.  Subtracts one from each component of the given double3x2 after evaluation.
 inline double3x2& operator--( double3x2& lhs, const int );
+// Returns a copy of the double3x2 where all values have been negated.
+inline double3x2 operator-( const double3x2& mat );
+
 // Returns a bool3x3 where each component is true if the component of the left-hand type is less than the corresponding right-hand type component.
 inline bool3x2 operator<( const double3x2& lhs, const double3x2& rhs );
 
@@ -2506,6 +2599,9 @@ inline double3x3& operator--( double3x3& lhs );
 // postfix
 // Postfix decrement operator.  Subtracts one from each component of the given double3x3 after evaluation.
 inline double3x3& operator--( double3x3& lhs, const int );
+// Returns a copy of the double3x3 where all values have been negated.
+inline double3x3 operator-( const double3x3& mat );
+
 // Returns a bool3x3 where each component is true if the component of the left-hand type is less than the corresponding right-hand type component.
 inline bool3x3 operator<( const double3x3& lhs, const double3x3& rhs );
 
@@ -2559,6 +2655,9 @@ inline double3x4& operator--( double3x4& lhs );
 // postfix
 // Postfix decrement operator.  Subtracts one from each component of the given double3x4 after evaluation.
 inline double3x4& operator--( double3x4& lhs, const int );
+// Returns a copy of the double3x4 where all values have been negated.
+inline double3x4 operator-( const double3x4& mat );
+
 // Returns a bool3x3 where each component is true if the component of the left-hand type is less than the corresponding right-hand type component.
 inline bool3x4 operator<( const double3x4& lhs, const double3x4& rhs );
 
@@ -2612,6 +2711,9 @@ inline double4x2& operator--( double4x2& lhs );
 // postfix
 // Postfix decrement operator.  Subtracts one from each component of the given double4x2 after evaluation.
 inline double4x2& operator--( double4x2& lhs, const int );
+// Returns a copy of the double4x2 where all values have been negated.
+inline double4x2 operator-( const double4x2& mat );
+
 // Returns a bool4x4 where each component is true if the component of the left-hand type is less than the corresponding right-hand type component.
 inline bool4x2 operator<( const double4x2& lhs, const double4x2& rhs );
 
@@ -2665,6 +2767,9 @@ inline double4x3& operator--( double4x3& lhs );
 // postfix
 // Postfix decrement operator.  Subtracts one from each component of the given double4x3 after evaluation.
 inline double4x3& operator--( double4x3& lhs, const int );
+// Returns a copy of the double4x3 where all values have been negated.
+inline double4x3 operator-( const double4x3& mat );
+
 // Returns a bool4x4 where each component is true if the component of the left-hand type is less than the corresponding right-hand type component.
 inline bool4x3 operator<( const double4x3& lhs, const double4x3& rhs );
 
@@ -2726,6 +2831,9 @@ inline double4x4& operator--( double4x4& lhs );
 // postfix
 // Postfix decrement operator.  Subtracts one from each component of the given double4x4 after evaluation.
 inline double4x4& operator--( double4x4& lhs, const int );
+// Returns a copy of the double4x4 where all values have been negated.
+inline double4x4 operator-( const double4x4& mat );
+
 // Returns a bool4x4 where each component is true if the component of the left-hand type is less than the corresponding right-hand type component.
 inline bool4x4 operator<( const double4x4& lhs, const double4x4& rhs );
 
@@ -2969,6 +3077,16 @@ int2x2& operator--( int2x2& lhs, const int )
 	return lhs;
 }
 
+int2x2 operator-( const int2x2& mat )
+{
+	return int2x2(
+-mat.rows[0],
+-mat.rows[1]
+-mat.rows[0],
+-mat.rows[1]
+	);
+}
+
 int2x2 operator&( int2x2& lhs, const int2x2& rhs )
 {
 	return HLML_CONSTRUCT( int2x2 ) {
@@ -3178,6 +3296,18 @@ int2x3& operator--( int2x3& lhs, const int )
 	return lhs;
 }
 
+int2x3 operator-( const int2x3& mat )
+{
+	return int2x3(
+-mat.rows[0],
+-mat.rows[1],
+-mat.rows[2]
+-mat.rows[0],
+-mat.rows[1],
+-mat.rows[2]
+	);
+}
+
 int2x3 operator&( int2x3& lhs, const int2x3& rhs )
 {
 	return HLML_CONSTRUCT( int2x3 ) {
@@ -3385,6 +3515,20 @@ int2x4& operator--( int2x4& lhs, const int )
 	lhs[0]--;
 	lhs[1]--;
 	return lhs;
+}
+
+int2x4 operator-( const int2x4& mat )
+{
+	return int2x4(
+-mat.rows[0],
+-mat.rows[1],
+-mat.rows[2],
+-mat.rows[3]
+-mat.rows[0],
+-mat.rows[1],
+-mat.rows[2],
+-mat.rows[3]
+	);
 }
 
 int2x4 operator&( int2x4& lhs, const int2x4& rhs )
@@ -3613,6 +3757,18 @@ int3x2& operator--( int3x2& lhs, const int )
 	lhs[1]--;
 	lhs[2]--;
 	return lhs;
+}
+
+int3x2 operator-( const int3x2& mat )
+{
+	return int3x2(
+-mat.rows[0],
+-mat.rows[1]
+-mat.rows[0],
+-mat.rows[1]
+-mat.rows[0],
+-mat.rows[1]
+	);
 }
 
 int3x2 operator&( int3x2& lhs, const int3x2& rhs )
@@ -3872,6 +4028,21 @@ int3x3& operator--( int3x3& lhs, const int )
 	return lhs;
 }
 
+int3x3 operator-( const int3x3& mat )
+{
+	return int3x3(
+-mat.rows[0],
+-mat.rows[1],
+-mat.rows[2]
+-mat.rows[0],
+-mat.rows[1],
+-mat.rows[2]
+-mat.rows[0],
+-mat.rows[1],
+-mat.rows[2]
+	);
+}
+
 int3x3 operator&( int3x3& lhs, const int3x3& rhs )
 {
 	return HLML_CONSTRUCT( int3x3 ) {
@@ -4108,6 +4279,24 @@ int3x4& operator--( int3x4& lhs, const int )
 	lhs[1]--;
 	lhs[2]--;
 	return lhs;
+}
+
+int3x4 operator-( const int3x4& mat )
+{
+	return int3x4(
+-mat.rows[0],
+-mat.rows[1],
+-mat.rows[2],
+-mat.rows[3]
+-mat.rows[0],
+-mat.rows[1],
+-mat.rows[2],
+-mat.rows[3]
+-mat.rows[0],
+-mat.rows[1],
+-mat.rows[2],
+-mat.rows[3]
+	);
 }
 
 int3x4 operator&( int3x4& lhs, const int3x4& rhs )
@@ -4367,6 +4556,20 @@ int4x2& operator--( int4x2& lhs, const int )
 	lhs[2]--;
 	lhs[3]--;
 	return lhs;
+}
+
+int4x2 operator-( const int4x2& mat )
+{
+	return int4x2(
+-mat.rows[0],
+-mat.rows[1]
+-mat.rows[0],
+-mat.rows[1]
+-mat.rows[0],
+-mat.rows[1]
+-mat.rows[0],
+-mat.rows[1]
+	);
 }
 
 int4x2 operator&( int4x2& lhs, const int4x2& rhs )
@@ -4636,6 +4839,24 @@ int4x3& operator--( int4x3& lhs, const int )
 	lhs[2]--;
 	lhs[3]--;
 	return lhs;
+}
+
+int4x3 operator-( const int4x3& mat )
+{
+	return int4x3(
+-mat.rows[0],
+-mat.rows[1],
+-mat.rows[2]
+-mat.rows[0],
+-mat.rows[1],
+-mat.rows[2]
+-mat.rows[0],
+-mat.rows[1],
+-mat.rows[2]
+-mat.rows[0],
+-mat.rows[1],
+-mat.rows[2]
+	);
 }
 
 int4x3 operator&( int4x3& lhs, const int4x3& rhs )
@@ -4927,6 +5148,28 @@ int4x4& operator--( int4x4& lhs, const int )
 	return lhs;
 }
 
+int4x4 operator-( const int4x4& mat )
+{
+	return int4x4(
+-mat.rows[0],
+-mat.rows[1],
+-mat.rows[2],
+-mat.rows[3]
+-mat.rows[0],
+-mat.rows[1],
+-mat.rows[2],
+-mat.rows[3]
+-mat.rows[0],
+-mat.rows[1],
+-mat.rows[2],
+-mat.rows[3]
+-mat.rows[0],
+-mat.rows[1],
+-mat.rows[2],
+-mat.rows[3]
+	);
+}
+
 int4x4 operator&( int4x4& lhs, const int4x4& rhs )
 {
 	return HLML_CONSTRUCT( int4x4 ) {
@@ -5174,6 +5417,16 @@ uint2x2& operator--( uint2x2& lhs, const int )
 	return lhs;
 }
 
+uint2x2 operator-( const uint2x2& mat )
+{
+	return uint2x2(
+-mat.rows[0],
+-mat.rows[1]
+-mat.rows[0],
+-mat.rows[1]
+	);
+}
+
 uint2x2 operator&( uint2x2& lhs, const uint2x2& rhs )
 {
 	return HLML_CONSTRUCT( uint2x2 ) {
@@ -5383,6 +5636,18 @@ uint2x3& operator--( uint2x3& lhs, const int )
 	return lhs;
 }
 
+uint2x3 operator-( const uint2x3& mat )
+{
+	return uint2x3(
+-mat.rows[0],
+-mat.rows[1],
+-mat.rows[2]
+-mat.rows[0],
+-mat.rows[1],
+-mat.rows[2]
+	);
+}
+
 uint2x3 operator&( uint2x3& lhs, const uint2x3& rhs )
 {
 	return HLML_CONSTRUCT( uint2x3 ) {
@@ -5590,6 +5855,20 @@ uint2x4& operator--( uint2x4& lhs, const int )
 	lhs[0]--;
 	lhs[1]--;
 	return lhs;
+}
+
+uint2x4 operator-( const uint2x4& mat )
+{
+	return uint2x4(
+-mat.rows[0],
+-mat.rows[1],
+-mat.rows[2],
+-mat.rows[3]
+-mat.rows[0],
+-mat.rows[1],
+-mat.rows[2],
+-mat.rows[3]
+	);
 }
 
 uint2x4 operator&( uint2x4& lhs, const uint2x4& rhs )
@@ -5818,6 +6097,18 @@ uint3x2& operator--( uint3x2& lhs, const int )
 	lhs[1]--;
 	lhs[2]--;
 	return lhs;
+}
+
+uint3x2 operator-( const uint3x2& mat )
+{
+	return uint3x2(
+-mat.rows[0],
+-mat.rows[1]
+-mat.rows[0],
+-mat.rows[1]
+-mat.rows[0],
+-mat.rows[1]
+	);
 }
 
 uint3x2 operator&( uint3x2& lhs, const uint3x2& rhs )
@@ -6077,6 +6368,21 @@ uint3x3& operator--( uint3x3& lhs, const int )
 	return lhs;
 }
 
+uint3x3 operator-( const uint3x3& mat )
+{
+	return uint3x3(
+-mat.rows[0],
+-mat.rows[1],
+-mat.rows[2]
+-mat.rows[0],
+-mat.rows[1],
+-mat.rows[2]
+-mat.rows[0],
+-mat.rows[1],
+-mat.rows[2]
+	);
+}
+
 uint3x3 operator&( uint3x3& lhs, const uint3x3& rhs )
 {
 	return HLML_CONSTRUCT( uint3x3 ) {
@@ -6313,6 +6619,24 @@ uint3x4& operator--( uint3x4& lhs, const int )
 	lhs[1]--;
 	lhs[2]--;
 	return lhs;
+}
+
+uint3x4 operator-( const uint3x4& mat )
+{
+	return uint3x4(
+-mat.rows[0],
+-mat.rows[1],
+-mat.rows[2],
+-mat.rows[3]
+-mat.rows[0],
+-mat.rows[1],
+-mat.rows[2],
+-mat.rows[3]
+-mat.rows[0],
+-mat.rows[1],
+-mat.rows[2],
+-mat.rows[3]
+	);
 }
 
 uint3x4 operator&( uint3x4& lhs, const uint3x4& rhs )
@@ -6572,6 +6896,20 @@ uint4x2& operator--( uint4x2& lhs, const int )
 	lhs[2]--;
 	lhs[3]--;
 	return lhs;
+}
+
+uint4x2 operator-( const uint4x2& mat )
+{
+	return uint4x2(
+-mat.rows[0],
+-mat.rows[1]
+-mat.rows[0],
+-mat.rows[1]
+-mat.rows[0],
+-mat.rows[1]
+-mat.rows[0],
+-mat.rows[1]
+	);
 }
 
 uint4x2 operator&( uint4x2& lhs, const uint4x2& rhs )
@@ -6841,6 +7179,24 @@ uint4x3& operator--( uint4x3& lhs, const int )
 	lhs[2]--;
 	lhs[3]--;
 	return lhs;
+}
+
+uint4x3 operator-( const uint4x3& mat )
+{
+	return uint4x3(
+-mat.rows[0],
+-mat.rows[1],
+-mat.rows[2]
+-mat.rows[0],
+-mat.rows[1],
+-mat.rows[2]
+-mat.rows[0],
+-mat.rows[1],
+-mat.rows[2]
+-mat.rows[0],
+-mat.rows[1],
+-mat.rows[2]
+	);
 }
 
 uint4x3 operator&( uint4x3& lhs, const uint4x3& rhs )
@@ -7132,6 +7488,28 @@ uint4x4& operator--( uint4x4& lhs, const int )
 	return lhs;
 }
 
+uint4x4 operator-( const uint4x4& mat )
+{
+	return uint4x4(
+-mat.rows[0],
+-mat.rows[1],
+-mat.rows[2],
+-mat.rows[3]
+-mat.rows[0],
+-mat.rows[1],
+-mat.rows[2],
+-mat.rows[3]
+-mat.rows[0],
+-mat.rows[1],
+-mat.rows[2],
+-mat.rows[3]
+-mat.rows[0],
+-mat.rows[1],
+-mat.rows[2],
+-mat.rows[3]
+	);
+}
+
 uint4x4 operator&( uint4x4& lhs, const uint4x4& rhs )
 {
 	return HLML_CONSTRUCT( uint4x4 ) {
@@ -7374,6 +7752,16 @@ float2x2& operator--( float2x2& lhs, const int )
 	return lhs;
 }
 
+float2x2 operator-( const float2x2& mat )
+{
+	return float2x2(
+-mat.rows[0],
+-mat.rows[1]
+-mat.rows[0],
+-mat.rows[1]
+	);
+}
+
 bool2x2 operator<( const float2x2& lhs, const float2x2& rhs )
 {
 	return HLML_CONSTRUCT( bool2x2 ) {
@@ -7510,6 +7898,18 @@ float2x3& operator--( float2x3& lhs, const int )
 	return lhs;
 }
 
+float2x3 operator-( const float2x3& mat )
+{
+	return float2x3(
+-mat.rows[0],
+-mat.rows[1],
+-mat.rows[2]
+-mat.rows[0],
+-mat.rows[1],
+-mat.rows[2]
+	);
+}
+
 bool2x3 operator<( const float2x3& lhs, const float2x3& rhs )
 {
 	return HLML_CONSTRUCT( bool2x3 ) {
@@ -7644,6 +8044,20 @@ float2x4& operator--( float2x4& lhs, const int )
 	lhs[0]--;
 	lhs[1]--;
 	return lhs;
+}
+
+float2x4 operator-( const float2x4& mat )
+{
+	return float2x4(
+-mat.rows[0],
+-mat.rows[1],
+-mat.rows[2],
+-mat.rows[3]
+-mat.rows[0],
+-mat.rows[1],
+-mat.rows[2],
+-mat.rows[3]
+	);
 }
 
 bool2x4 operator<( const float2x4& lhs, const float2x4& rhs )
@@ -7799,6 +8213,18 @@ float3x2& operator--( float3x2& lhs, const int )
 	lhs[1]--;
 	lhs[2]--;
 	return lhs;
+}
+
+float3x2 operator-( const float3x2& mat )
+{
+	return float3x2(
+-mat.rows[0],
+-mat.rows[1]
+-mat.rows[0],
+-mat.rows[1]
+-mat.rows[0],
+-mat.rows[1]
+	);
 }
 
 bool3x2 operator<( const float3x2& lhs, const float3x2& rhs )
@@ -7972,6 +8398,21 @@ float3x3& operator--( float3x3& lhs, const int )
 	return lhs;
 }
 
+float3x3 operator-( const float3x3& mat )
+{
+	return float3x3(
+-mat.rows[0],
+-mat.rows[1],
+-mat.rows[2]
+-mat.rows[0],
+-mat.rows[1],
+-mat.rows[2]
+-mat.rows[0],
+-mat.rows[1],
+-mat.rows[2]
+	);
+}
+
 bool3x3 operator<( const float3x3& lhs, const float3x3& rhs )
 {
 	return HLML_CONSTRUCT( bool3x3 ) {
@@ -8129,6 +8570,24 @@ float3x4& operator--( float3x4& lhs, const int )
 	lhs[1]--;
 	lhs[2]--;
 	return lhs;
+}
+
+float3x4 operator-( const float3x4& mat )
+{
+	return float3x4(
+-mat.rows[0],
+-mat.rows[1],
+-mat.rows[2],
+-mat.rows[3]
+-mat.rows[0],
+-mat.rows[1],
+-mat.rows[2],
+-mat.rows[3]
+-mat.rows[0],
+-mat.rows[1],
+-mat.rows[2],
+-mat.rows[3]
+	);
 }
 
 bool3x4 operator<( const float3x4& lhs, const float3x4& rhs )
@@ -8309,6 +8768,20 @@ float4x2& operator--( float4x2& lhs, const int )
 	lhs[2]--;
 	lhs[3]--;
 	return lhs;
+}
+
+float4x2 operator-( const float4x2& mat )
+{
+	return float4x2(
+-mat.rows[0],
+-mat.rows[1]
+-mat.rows[0],
+-mat.rows[1]
+-mat.rows[0],
+-mat.rows[1]
+-mat.rows[0],
+-mat.rows[1]
+	);
 }
 
 bool4x2 operator<( const float4x2& lhs, const float4x2& rhs )
@@ -8493,6 +8966,24 @@ float4x3& operator--( float4x3& lhs, const int )
 	lhs[2]--;
 	lhs[3]--;
 	return lhs;
+}
+
+float4x3 operator-( const float4x3& mat )
+{
+	return float4x3(
+-mat.rows[0],
+-mat.rows[1],
+-mat.rows[2]
+-mat.rows[0],
+-mat.rows[1],
+-mat.rows[2]
+-mat.rows[0],
+-mat.rows[1],
+-mat.rows[2]
+-mat.rows[0],
+-mat.rows[1],
+-mat.rows[2]
+	);
 }
 
 bool4x3 operator<( const float4x3& lhs, const float4x3& rhs )
@@ -8690,6 +9181,28 @@ float4x4& operator--( float4x4& lhs, const int )
 	return lhs;
 }
 
+float4x4 operator-( const float4x4& mat )
+{
+	return float4x4(
+-mat.rows[0],
+-mat.rows[1],
+-mat.rows[2],
+-mat.rows[3]
+-mat.rows[0],
+-mat.rows[1],
+-mat.rows[2],
+-mat.rows[3]
+-mat.rows[0],
+-mat.rows[1],
+-mat.rows[2],
+-mat.rows[3]
+-mat.rows[0],
+-mat.rows[1],
+-mat.rows[2],
+-mat.rows[3]
+	);
+}
+
 bool4x4 operator<( const float4x4& lhs, const float4x4& rhs )
 {
 	return HLML_CONSTRUCT( bool4x4 ) {
@@ -8847,6 +9360,16 @@ double2x2& operator--( double2x2& lhs, const int )
 	return lhs;
 }
 
+double2x2 operator-( const double2x2& mat )
+{
+	return double2x2(
+-mat.rows[0],
+-mat.rows[1]
+-mat.rows[0],
+-mat.rows[1]
+	);
+}
+
 bool2x2 operator<( const double2x2& lhs, const double2x2& rhs )
 {
 	return HLML_CONSTRUCT( bool2x2 ) {
@@ -8983,6 +9506,18 @@ double2x3& operator--( double2x3& lhs, const int )
 	return lhs;
 }
 
+double2x3 operator-( const double2x3& mat )
+{
+	return double2x3(
+-mat.rows[0],
+-mat.rows[1],
+-mat.rows[2]
+-mat.rows[0],
+-mat.rows[1],
+-mat.rows[2]
+	);
+}
+
 bool2x3 operator<( const double2x3& lhs, const double2x3& rhs )
 {
 	return HLML_CONSTRUCT( bool2x3 ) {
@@ -9117,6 +9652,20 @@ double2x4& operator--( double2x4& lhs, const int )
 	lhs[0]--;
 	lhs[1]--;
 	return lhs;
+}
+
+double2x4 operator-( const double2x4& mat )
+{
+	return double2x4(
+-mat.rows[0],
+-mat.rows[1],
+-mat.rows[2],
+-mat.rows[3]
+-mat.rows[0],
+-mat.rows[1],
+-mat.rows[2],
+-mat.rows[3]
+	);
 }
 
 bool2x4 operator<( const double2x4& lhs, const double2x4& rhs )
@@ -9272,6 +9821,18 @@ double3x2& operator--( double3x2& lhs, const int )
 	lhs[1]--;
 	lhs[2]--;
 	return lhs;
+}
+
+double3x2 operator-( const double3x2& mat )
+{
+	return double3x2(
+-mat.rows[0],
+-mat.rows[1]
+-mat.rows[0],
+-mat.rows[1]
+-mat.rows[0],
+-mat.rows[1]
+	);
 }
 
 bool3x2 operator<( const double3x2& lhs, const double3x2& rhs )
@@ -9445,6 +10006,21 @@ double3x3& operator--( double3x3& lhs, const int )
 	return lhs;
 }
 
+double3x3 operator-( const double3x3& mat )
+{
+	return double3x3(
+-mat.rows[0],
+-mat.rows[1],
+-mat.rows[2]
+-mat.rows[0],
+-mat.rows[1],
+-mat.rows[2]
+-mat.rows[0],
+-mat.rows[1],
+-mat.rows[2]
+	);
+}
+
 bool3x3 operator<( const double3x3& lhs, const double3x3& rhs )
 {
 	return HLML_CONSTRUCT( bool3x3 ) {
@@ -9602,6 +10178,24 @@ double3x4& operator--( double3x4& lhs, const int )
 	lhs[1]--;
 	lhs[2]--;
 	return lhs;
+}
+
+double3x4 operator-( const double3x4& mat )
+{
+	return double3x4(
+-mat.rows[0],
+-mat.rows[1],
+-mat.rows[2],
+-mat.rows[3]
+-mat.rows[0],
+-mat.rows[1],
+-mat.rows[2],
+-mat.rows[3]
+-mat.rows[0],
+-mat.rows[1],
+-mat.rows[2],
+-mat.rows[3]
+	);
 }
 
 bool3x4 operator<( const double3x4& lhs, const double3x4& rhs )
@@ -9782,6 +10376,20 @@ double4x2& operator--( double4x2& lhs, const int )
 	lhs[2]--;
 	lhs[3]--;
 	return lhs;
+}
+
+double4x2 operator-( const double4x2& mat )
+{
+	return double4x2(
+-mat.rows[0],
+-mat.rows[1]
+-mat.rows[0],
+-mat.rows[1]
+-mat.rows[0],
+-mat.rows[1]
+-mat.rows[0],
+-mat.rows[1]
+	);
 }
 
 bool4x2 operator<( const double4x2& lhs, const double4x2& rhs )
@@ -9966,6 +10574,24 @@ double4x3& operator--( double4x3& lhs, const int )
 	lhs[2]--;
 	lhs[3]--;
 	return lhs;
+}
+
+double4x3 operator-( const double4x3& mat )
+{
+	return double4x3(
+-mat.rows[0],
+-mat.rows[1],
+-mat.rows[2]
+-mat.rows[0],
+-mat.rows[1],
+-mat.rows[2]
+-mat.rows[0],
+-mat.rows[1],
+-mat.rows[2]
+-mat.rows[0],
+-mat.rows[1],
+-mat.rows[2]
+	);
 }
 
 bool4x3 operator<( const double4x3& lhs, const double4x3& rhs )
@@ -10161,6 +10787,28 @@ double4x4& operator--( double4x4& lhs, const int )
 	lhs[2]--;
 	lhs[3]--;
 	return lhs;
+}
+
+double4x4 operator-( const double4x4& mat )
+{
+	return double4x4(
+-mat.rows[0],
+-mat.rows[1],
+-mat.rows[2],
+-mat.rows[3]
+-mat.rows[0],
+-mat.rows[1],
+-mat.rows[2],
+-mat.rows[3]
+-mat.rows[0],
+-mat.rows[1],
+-mat.rows[2],
+-mat.rows[3]
+-mat.rows[0],
+-mat.rows[1],
+-mat.rows[2],
+-mat.rows[3]
+	);
 }
 
 bool4x4 operator<( const double4x4& lhs, const double4x4& rhs )

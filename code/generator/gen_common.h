@@ -331,10 +331,12 @@ void				Gen_Smoothstep( const genLanguage_t language, const genType_t type, cons
 
 // vector/matrix common functions
 void				Gen_FunctionAll( const genLanguage_t language, const genType_t type, const u32 numRows, const u32 numCols, stringBuilder_t* sbFwdDec, stringBuilder_t* sbImpl );
+void				Gen_Negate( const genLanguage_t language, const genType_t type, const u32 numRows, const u32 numCols, stringBuilder_t* sbFwdDec, stringBuilder_t* sbImpl );
 
 // C++ operator overloads for vectors and matrices
 void				Gen_OperatorsEquality( const genType_t type, const u32 numRows, const u32 numCols, stringBuilder_t* sbFwdDec, stringBuilder_t* sbImpl );
 void				Gen_OperatorsIncrement( const genType_t type, const u32 numRows, const u32 numCols, stringBuilder_t* sbFwdDec, stringBuilder_t* sbImpl );
+void				Gen_OperatorNegate( const genType_t type, const u32 numRows, const u32 numCols, stringBuilder_t* sbFwdDec, stringBuilder_t* sbImpl );
 
 void				Gen_NotEquals( const genLanguage_t language, const genType_t type, const u32 numRows, const u32 numCols, stringBuilder_t* sbFwdDec, stringBuilder_t* sbImpl );
 
@@ -600,6 +602,15 @@ inline void Gen_GetFuncNameAll( const genLanguage_t language, const genType_t ty
 	assert( numCols <= GEN_COMPONENT_COUNT_MAX );
 
 	Gen_GetFuncNameInternal( language, type, numRows, numCols, "all", outString );
+}
+
+inline void Gen_GetFuncNameNegate( const genLanguage_t language, const genType_t type, const u32 numRows, const u32 numCols, char* outString ) {
+	assert( numRows >= 1 );	// 1 for vectors
+	assert( numRows <= GEN_COMPONENT_COUNT_MAX );
+	assert( numCols >= GEN_COMPONENT_COUNT_MIN );
+	assert( numCols <= GEN_COMPONENT_COUNT_MAX );
+
+	Gen_GetFuncNameInternal( language, type, numRows, numCols, "negate", outString );
 }
 
 inline void Gen_GetFuncNameEquals( const genLanguage_t language, const genType_t type, const u32 numRows, const u32 numCols, char* outString ) {

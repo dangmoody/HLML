@@ -153,6 +153,9 @@ inline bool2 cmpg( const int2& lhs, const int2& rhs );
 // Returns a bool2 where each component is true if the component of the left-hand type is greater than or equal to the corresponding right-hand type component.
 inline bool2 cmpge( const int2& lhs, const int2& rhs );
 
+// Returns a copy of the int2 where all values have been negated.
+inline int2 negate( const int2& vec );
+
 // Returns the magnitude of the vector squared.
 inline float lengthsqr( const int2& vec );
 
@@ -229,6 +232,9 @@ inline bool3 cmpg( const int3& lhs, const int3& rhs );
 
 // Returns a bool3 where each component is true if the component of the left-hand type is greater than or equal to the corresponding right-hand type component.
 inline bool3 cmpge( const int3& lhs, const int3& rhs );
+
+// Returns a copy of the int3 where all values have been negated.
+inline int3 negate( const int3& vec );
 
 // Returns the magnitude of the vector squared.
 inline float lengthsqr( const int3& vec );
@@ -307,6 +313,9 @@ inline bool4 cmpg( const int4& lhs, const int4& rhs );
 // Returns a bool4 where each component is true if the component of the left-hand type is greater than or equal to the corresponding right-hand type component.
 inline bool4 cmpge( const int4& lhs, const int4& rhs );
 
+// Returns a copy of the int4 where all values have been negated.
+inline int4 negate( const int4& vec );
+
 // Returns the magnitude of the vector squared.
 inline float lengthsqr( const int4& vec );
 
@@ -377,6 +386,9 @@ inline bool2 cmpg( const uint2& lhs, const uint2& rhs );
 
 // Returns a bool2 where each component is true if the component of the left-hand type is greater than or equal to the corresponding right-hand type component.
 inline bool2 cmpge( const uint2& lhs, const uint2& rhs );
+
+// Returns a copy of the uint2 where all values have been negated.
+inline uint2 negate( const uint2& vec );
 
 // Returns the magnitude of the vector squared.
 inline float lengthsqr( const uint2& vec );
@@ -455,6 +467,9 @@ inline bool3 cmpg( const uint3& lhs, const uint3& rhs );
 // Returns a bool3 where each component is true if the component of the left-hand type is greater than or equal to the corresponding right-hand type component.
 inline bool3 cmpge( const uint3& lhs, const uint3& rhs );
 
+// Returns a copy of the uint3 where all values have been negated.
+inline uint3 negate( const uint3& vec );
+
 // Returns the magnitude of the vector squared.
 inline float lengthsqr( const uint3& vec );
 
@@ -532,6 +547,9 @@ inline bool4 cmpg( const uint4& lhs, const uint4& rhs );
 // Returns a bool4 where each component is true if the component of the left-hand type is greater than or equal to the corresponding right-hand type component.
 inline bool4 cmpge( const uint4& lhs, const uint4& rhs );
 
+// Returns a copy of the uint4 where all values have been negated.
+inline uint4 negate( const uint4& vec );
+
 // Returns the magnitude of the vector squared.
 inline float lengthsqr( const uint4& vec );
 
@@ -605,6 +623,9 @@ inline bool2 cmpg( const float2& lhs, const float2& rhs );
 
 // Returns a bool2 where each component is true if the component of the left-hand type is greater than or equal to the corresponding right-hand type component.
 inline bool2 cmpge( const float2& lhs, const float2& rhs );
+
+// Returns a copy of the float2 where all values have been negated.
+inline float2 negate( const float2& vec );
 
 // Returns the magnitude of the vector squared.
 inline float lengthsqr( const float2& vec );
@@ -688,6 +709,9 @@ inline bool3 cmpg( const float3& lhs, const float3& rhs );
 
 // Returns a bool3 where each component is true if the component of the left-hand type is greater than or equal to the corresponding right-hand type component.
 inline bool3 cmpge( const float3& lhs, const float3& rhs );
+
+// Returns a copy of the float3 where all values have been negated.
+inline float3 negate( const float3& vec );
 
 // Returns the magnitude of the vector squared.
 inline float lengthsqr( const float3& vec );
@@ -775,6 +799,9 @@ inline bool4 cmpg( const float4& lhs, const float4& rhs );
 // Returns a bool4 where each component is true if the component of the left-hand type is greater than or equal to the corresponding right-hand type component.
 inline bool4 cmpge( const float4& lhs, const float4& rhs );
 
+// Returns a copy of the float4 where all values have been negated.
+inline float4 negate( const float4& vec );
+
 // Returns the magnitude of the vector squared.
 inline float lengthsqr( const float4& vec );
 
@@ -854,6 +881,9 @@ inline bool2 cmpg( const double2& lhs, const double2& rhs );
 
 // Returns a bool2 where each component is true if the component of the left-hand type is greater than or equal to the corresponding right-hand type component.
 inline bool2 cmpge( const double2& lhs, const double2& rhs );
+
+// Returns a copy of the double2 where all values have been negated.
+inline double2 negate( const double2& vec );
 
 // Returns the magnitude of the vector squared.
 inline double lengthsqr( const double2& vec );
@@ -937,6 +967,9 @@ inline bool3 cmpg( const double3& lhs, const double3& rhs );
 
 // Returns a bool3 where each component is true if the component of the left-hand type is greater than or equal to the corresponding right-hand type component.
 inline bool3 cmpge( const double3& lhs, const double3& rhs );
+
+// Returns a copy of the double3 where all values have been negated.
+inline double3 negate( const double3& vec );
 
 // Returns the magnitude of the vector squared.
 inline double lengthsqr( const double3& vec );
@@ -1023,6 +1056,9 @@ inline bool4 cmpg( const double4& lhs, const double4& rhs );
 
 // Returns a bool4 where each component is true if the component of the left-hand type is greater than or equal to the corresponding right-hand type component.
 inline bool4 cmpge( const double4& lhs, const double4& rhs );
+
+// Returns a copy of the double4 where all values have been negated.
+inline double4 negate( const double4& vec );
 
 // Returns the magnitude of the vector squared.
 inline double lengthsqr( const double4& vec );
@@ -1245,6 +1281,15 @@ bool2 cmpge( const int2& lhs, const int2& rhs )
 	};
 }
 
+int2 negate( const int2& vec )
+{
+	return HLML_CONSTRUCT( int2 )
+	{
+		-vec.x,
+		-vec.y
+	};
+}
+
 float lengthsqr( const int2& vec )
 {
 	return (float)( ( vec.x * vec.x ) + ( vec.y * vec.y ) );
@@ -1441,6 +1486,16 @@ bool3 cmpge( const int3& lhs, const int3& rhs )
 		lhs.x >= rhs.x,
 		lhs.y >= rhs.y,
 		lhs.z >= rhs.z
+	};
+}
+
+int3 negate( const int3& vec )
+{
+	return HLML_CONSTRUCT( int3 )
+	{
+		-vec.x,
+		-vec.y,
+		-vec.z
 	};
 }
 
@@ -1661,6 +1716,17 @@ bool4 cmpge( const int4& lhs, const int4& rhs )
 	};
 }
 
+int4 negate( const int4& vec )
+{
+	return HLML_CONSTRUCT( int4 )
+	{
+		-vec.x,
+		-vec.y,
+		-vec.z,
+		-vec.w
+	};
+}
+
 float lengthsqr( const int4& vec )
 {
 	return (float)( ( vec.x * vec.x ) + ( vec.y * vec.y ) + ( vec.z * vec.z ) + ( vec.w * vec.w ) );
@@ -1827,6 +1893,15 @@ bool2 cmpge( const uint2& lhs, const uint2& rhs )
 	return HLML_CONSTRUCT( bool2 ) {
 		lhs.x >= rhs.x,
 		lhs.y >= rhs.y
+	};
+}
+
+uint2 negate( const uint2& vec )
+{
+	return HLML_CONSTRUCT( uint2 )
+	{
+		-vec.x,
+		-vec.y
 	};
 }
 
@@ -2026,6 +2101,16 @@ bool3 cmpge( const uint3& lhs, const uint3& rhs )
 		lhs.x >= rhs.x,
 		lhs.y >= rhs.y,
 		lhs.z >= rhs.z
+	};
+}
+
+uint3 negate( const uint3& vec )
+{
+	return HLML_CONSTRUCT( uint3 )
+	{
+		-vec.x,
+		-vec.y,
+		-vec.z
 	};
 }
 
@@ -2246,6 +2331,17 @@ bool4 cmpge( const uint4& lhs, const uint4& rhs )
 	};
 }
 
+uint4 negate( const uint4& vec )
+{
+	return HLML_CONSTRUCT( uint4 )
+	{
+		-vec.x,
+		-vec.y,
+		-vec.z,
+		-vec.w
+	};
+}
+
 float lengthsqr( const uint4& vec )
 {
 	return (float)( ( vec.x * vec.x ) + ( vec.y * vec.y ) + ( vec.z * vec.z ) + ( vec.w * vec.w ) );
@@ -2419,6 +2515,15 @@ bool2 cmpge( const float2& lhs, const float2& rhs )
 	return HLML_CONSTRUCT( bool2 ) {
 		lhs.x >= rhs.x,
 		lhs.y >= rhs.y
+	};
+}
+
+float2 negate( const float2& vec )
+{
+	return HLML_CONSTRUCT( float2 )
+	{
+		-vec.x,
+		-vec.y
 	};
 }
 
@@ -2636,6 +2741,16 @@ bool3 cmpge( const float3& lhs, const float3& rhs )
 		lhs.x >= rhs.x,
 		lhs.y >= rhs.y,
 		lhs.z >= rhs.z
+	};
+}
+
+float3 negate( const float3& vec )
+{
+	return HLML_CONSTRUCT( float3 )
+	{
+		-vec.x,
+		-vec.y,
+		-vec.z
 	};
 }
 
@@ -2884,6 +2999,17 @@ bool4 cmpge( const float4& lhs, const float4& rhs )
 	};
 }
 
+float4 negate( const float4& vec )
+{
+	return HLML_CONSTRUCT( float4 )
+	{
+		-vec.x,
+		-vec.y,
+		-vec.z,
+		-vec.w
+	};
+}
+
 float lengthsqr( const float4& vec )
 {
 	return ( vec.x * vec.x ) + ( vec.y * vec.y ) + ( vec.z * vec.z ) + ( vec.w * vec.w );
@@ -3083,6 +3209,15 @@ bool2 cmpge( const double2& lhs, const double2& rhs )
 	return HLML_CONSTRUCT( bool2 ) {
 		lhs.x >= rhs.x,
 		lhs.y >= rhs.y
+	};
+}
+
+double2 negate( const double2& vec )
+{
+	return HLML_CONSTRUCT( double2 )
+	{
+		-vec.x,
+		-vec.y
 	};
 }
 
@@ -3300,6 +3435,16 @@ bool3 cmpge( const double3& lhs, const double3& rhs )
 		lhs.x >= rhs.x,
 		lhs.y >= rhs.y,
 		lhs.z >= rhs.z
+	};
+}
+
+double3 negate( const double3& vec )
+{
+	return HLML_CONSTRUCT( double3 )
+	{
+		-vec.x,
+		-vec.y,
+		-vec.z
 	};
 }
 
@@ -3545,6 +3690,17 @@ bool4 cmpge( const double4& lhs, const double4& rhs )
 		lhs.y >= rhs.y,
 		lhs.z >= rhs.z,
 		lhs.w >= rhs.w
+	};
+}
+
+double4 negate( const double4& vec )
+{
+	return HLML_CONSTRUCT( double4 )
+	{
+		-vec.x,
+		-vec.y,
+		-vec.z,
+		-vec.w
 	};
 }
 

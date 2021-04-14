@@ -53,7 +53,7 @@ static double4x4 g_matrixMulAnswer_double4x3 = {
 };
 
 
-TEMPER_TEST( TestAssignment_double4x3 )
+TEMPER_TEST( TestAssignment_double4x3, TEMPER_FLAG_SHOULD_RUN )
 {
 	double4x3 mat;
 
@@ -62,23 +62,21 @@ TEMPER_TEST( TestAssignment_double4x3 )
 	mat.rows[2] = (double3) { 0.000000, 0.000000, 999.000000 };
 	mat.rows[3] = (double3) { 0.000000, 0.000000, 0.000000 };
 
-	TEMPER_EXPECT_TRUE( mat.rows[0].x == 999.0 );
-	TEMPER_EXPECT_TRUE( mat.rows[0].y == 0.0 );
-	TEMPER_EXPECT_TRUE( mat.rows[0].z == 0.0 );
-	TEMPER_EXPECT_TRUE( mat.rows[1].x == 0.0 );
-	TEMPER_EXPECT_TRUE( mat.rows[1].y == 999.0 );
-	TEMPER_EXPECT_TRUE( mat.rows[1].z == 0.0 );
-	TEMPER_EXPECT_TRUE( mat.rows[2].x == 0.0 );
-	TEMPER_EXPECT_TRUE( mat.rows[2].y == 0.0 );
-	TEMPER_EXPECT_TRUE( mat.rows[2].z == 999.0 );
-	TEMPER_EXPECT_TRUE( mat.rows[3].x == 0.0 );
-	TEMPER_EXPECT_TRUE( mat.rows[3].y == 0.0 );
-	TEMPER_EXPECT_TRUE( mat.rows[3].z == 0.0 );
-
-	TEMPER_PASS();
+	TEMPER_CHECK_TRUE( mat.rows[0].x == 999.0 );
+	TEMPER_CHECK_TRUE( mat.rows[0].y == 0.0 );
+	TEMPER_CHECK_TRUE( mat.rows[0].z == 0.0 );
+	TEMPER_CHECK_TRUE( mat.rows[1].x == 0.0 );
+	TEMPER_CHECK_TRUE( mat.rows[1].y == 999.0 );
+	TEMPER_CHECK_TRUE( mat.rows[1].z == 0.0 );
+	TEMPER_CHECK_TRUE( mat.rows[2].x == 0.0 );
+	TEMPER_CHECK_TRUE( mat.rows[2].y == 0.0 );
+	TEMPER_CHECK_TRUE( mat.rows[2].z == 999.0 );
+	TEMPER_CHECK_TRUE( mat.rows[3].x == 0.0 );
+	TEMPER_CHECK_TRUE( mat.rows[3].y == 0.0 );
+	TEMPER_CHECK_TRUE( mat.rows[3].z == 0.0 );
 }
 
-TEMPER_TEST( TestComponentWiseArithmetic_Scalar_Addition_double4x3 )
+TEMPER_TEST( TestComponentWiseArithmetic_Scalar_Addition_double4x3, TEMPER_FLAG_SHOULD_RUN )
 {
 	double4x3 answer = (double4x3) {
 		7.000000, 7.000000, 7.000000,
@@ -103,12 +101,10 @@ TEMPER_TEST( TestComponentWiseArithmetic_Scalar_Addition_double4x3 )
 
 	double4x3 c = double4x3_caddm( &a, &b );
 
-	TEMPER_EXPECT_TRUE( double4x3_cmpe( &c, &answer ) );
-
-	TEMPER_PASS();
+	TEMPER_CHECK_TRUE( double4x3_cmpe( &c, &answer ) );
 }
 
-TEMPER_TEST( TestComponentWiseArithmetic_Scalar_Subtraction_double4x3 )
+TEMPER_TEST( TestComponentWiseArithmetic_Scalar_Subtraction_double4x3, TEMPER_FLAG_SHOULD_RUN )
 {
 	double4x3 answer = (double4x3) {
 		5.000000, 5.000000, 5.000000,
@@ -133,12 +129,10 @@ TEMPER_TEST( TestComponentWiseArithmetic_Scalar_Subtraction_double4x3 )
 
 	double4x3 c = double4x3_csubm( &a, &b );
 
-	TEMPER_EXPECT_TRUE( double4x3_cmpe( &c, &answer ) );
-
-	TEMPER_PASS();
+	TEMPER_CHECK_TRUE( double4x3_cmpe( &c, &answer ) );
 }
 
-TEMPER_TEST( TestComponentWiseArithmetic_Scalar_Multiplication_double4x3 )
+TEMPER_TEST( TestComponentWiseArithmetic_Scalar_Multiplication_double4x3, TEMPER_FLAG_SHOULD_RUN )
 {
 	double4x3 answer = (double4x3) {
 		6.000000, 6.000000, 6.000000,
@@ -163,12 +157,10 @@ TEMPER_TEST( TestComponentWiseArithmetic_Scalar_Multiplication_double4x3 )
 
 	double4x3 c = double4x3_cmulm( &a, &b );
 
-	TEMPER_EXPECT_TRUE( double4x3_cmpe( &c, &answer ) );
-
-	TEMPER_PASS();
+	TEMPER_CHECK_TRUE( double4x3_cmpe( &c, &answer ) );
 }
 
-TEMPER_TEST( TestComponentWiseArithmetic_Scalar_Division_double4x3 )
+TEMPER_TEST( TestComponentWiseArithmetic_Scalar_Division_double4x3, TEMPER_FLAG_SHOULD_RUN )
 {
 	double4x3 answer = (double4x3) {
 		6.000000, 6.000000, 6.000000,
@@ -193,12 +185,10 @@ TEMPER_TEST( TestComponentWiseArithmetic_Scalar_Division_double4x3 )
 
 	double4x3 c = double4x3_cdivm( &a, &b );
 
-	TEMPER_EXPECT_TRUE( double4x3_cmpe( &c, &answer ) );
-
-	TEMPER_PASS();
+	TEMPER_CHECK_TRUE( double4x3_cmpe( &c, &answer ) );
 }
 
-TEMPER_TEST( TestMultiplyMatrix_Scalar_double4x3 )
+TEMPER_TEST( TestMultiplyMatrix_Scalar_double4x3, TEMPER_FLAG_SHOULD_RUN )
 {
 	double4x4 answer = g_matrixMulAnswer_double4x3;
 
@@ -206,12 +196,10 @@ TEMPER_TEST( TestMultiplyMatrix_Scalar_double4x3 )
 	double3x4 b = g_matrixMulRHS_double4x3;
 	double4x4 c = double4x3_mulm( &a, &b );
 
-	TEMPER_EXPECT_TRUE( double4x4_cmpe( &c, &answer ) );
-
-	TEMPER_PASS();
+	TEMPER_CHECK_TRUE( double4x4_cmpe( &c, &answer ) );
 }
 
-TEMPER_TEST( TestRelational_double4x3 )
+TEMPER_TEST( TestRelational_double4x3, TEMPER_FLAG_SHOULD_RUN )
 {
 	bool4x3 allTrue = { 		true, true, true,
 		true, true, true,
@@ -264,34 +252,32 @@ TEMPER_TEST( TestRelational_double4x3 )
 	bool4x3 test18 = double4x3_cmple( &mat3, &mat3 );
 	bool4x3 test19 = double4x3_cmpge( &mat3, &mat3 );
 
-	TEMPER_EXPECT_TRUE( bool4x3_cmpe( &test0,  &allTrue ) );
-	TEMPER_EXPECT_TRUE( bool4x3_cmpe( &test1,  &allTrue ) );
-	TEMPER_EXPECT_TRUE( bool4x3_cmpe( &test2,  &allTrue ) );
-	TEMPER_EXPECT_TRUE( bool4x3_cmpe( &test3,  &allTrue ) );
-	TEMPER_EXPECT_TRUE( bool4x3_cmpe( &test4,  &allTrue ) );
+	TEMPER_CHECK_TRUE( bool4x3_cmpe( &test0,  &allTrue ) );
+	TEMPER_CHECK_TRUE( bool4x3_cmpe( &test1,  &allTrue ) );
+	TEMPER_CHECK_TRUE( bool4x3_cmpe( &test2,  &allTrue ) );
+	TEMPER_CHECK_TRUE( bool4x3_cmpe( &test3,  &allTrue ) );
+	TEMPER_CHECK_TRUE( bool4x3_cmpe( &test4,  &allTrue ) );
 
-	TEMPER_EXPECT_TRUE( bool4x3_cmpe( &test5,  &allTrue ) );
-	TEMPER_EXPECT_TRUE( bool4x3_cmpe( &test6,  &allTrue ) );
-	TEMPER_EXPECT_TRUE( bool4x3_cmpe( &test7,  &allTrue ) );
-	TEMPER_EXPECT_TRUE( bool4x3_cmpe( &test8,  &allTrue ) );
-	TEMPER_EXPECT_TRUE( bool4x3_cmpe( &test9,  &allTrue ) );
+	TEMPER_CHECK_TRUE( bool4x3_cmpe( &test5,  &allTrue ) );
+	TEMPER_CHECK_TRUE( bool4x3_cmpe( &test6,  &allTrue ) );
+	TEMPER_CHECK_TRUE( bool4x3_cmpe( &test7,  &allTrue ) );
+	TEMPER_CHECK_TRUE( bool4x3_cmpe( &test8,  &allTrue ) );
+	TEMPER_CHECK_TRUE( bool4x3_cmpe( &test9,  &allTrue ) );
 
-	TEMPER_EXPECT_TRUE( bool4x3_cmpe( &test10, &allTrue ) );
-	TEMPER_EXPECT_TRUE( bool4x3_cmpe( &test11, &allTrue ) );
-	TEMPER_EXPECT_TRUE( bool4x3_cmpe( &test12, &allTrue ) );
-	TEMPER_EXPECT_TRUE( bool4x3_cmpe( &test13, &allTrue ) );
-	TEMPER_EXPECT_TRUE( bool4x3_cmpe( &test14, &allTrue ) );
+	TEMPER_CHECK_TRUE( bool4x3_cmpe( &test10, &allTrue ) );
+	TEMPER_CHECK_TRUE( bool4x3_cmpe( &test11, &allTrue ) );
+	TEMPER_CHECK_TRUE( bool4x3_cmpe( &test12, &allTrue ) );
+	TEMPER_CHECK_TRUE( bool4x3_cmpe( &test13, &allTrue ) );
+	TEMPER_CHECK_TRUE( bool4x3_cmpe( &test14, &allTrue ) );
 
-	TEMPER_EXPECT_TRUE( bool4x3_cmpe( &test15, &allTrue ) );
-	TEMPER_EXPECT_TRUE( bool4x3_cmpe( &test16, &allTrue ) );
-	TEMPER_EXPECT_TRUE( bool4x3_cmpe( &test17, &allTrue ) );
-	TEMPER_EXPECT_TRUE( bool4x3_cmpe( &test18, &allTrue ) );
-	TEMPER_EXPECT_TRUE( bool4x3_cmpe( &test19, &allTrue ) );
-
-	TEMPER_PASS();
+	TEMPER_CHECK_TRUE( bool4x3_cmpe( &test15, &allTrue ) );
+	TEMPER_CHECK_TRUE( bool4x3_cmpe( &test16, &allTrue ) );
+	TEMPER_CHECK_TRUE( bool4x3_cmpe( &test17, &allTrue ) );
+	TEMPER_CHECK_TRUE( bool4x3_cmpe( &test18, &allTrue ) );
+	TEMPER_CHECK_TRUE( bool4x3_cmpe( &test19, &allTrue ) );
 }
 
-TEMPER_TEST( TestIdentity_Scalar_double4x3 )
+TEMPER_TEST( TestIdentity_Scalar_double4x3, TEMPER_FLAG_SHOULD_RUN )
 {
 	double4x3 id;
 	id.rows[0] = (double3) { 1.000000, 0.000000, 0.000000 };
@@ -301,12 +287,10 @@ TEMPER_TEST( TestIdentity_Scalar_double4x3 )
 
 	double4x3 mat;
 	double4x3_identity( &mat );
-	TEMPER_EXPECT_TRUE( double4x3_cmpe( &mat, &id ) );
-
-	TEMPER_PASS();
+	TEMPER_CHECK_TRUE( double4x3_cmpe( &mat, &id ) );
 }
 
-TEMPER_TEST( TestTranspose_Scalar_double4x3 )
+TEMPER_TEST( TestTranspose_Scalar_double4x3, TEMPER_FLAG_SHOULD_RUN )
 {
 	double3x4 answerTransposed = (double3x4) {
 		0.000000, 4.000000, 8.000000, 12.000000,
@@ -322,12 +306,10 @@ TEMPER_TEST( TestTranspose_Scalar_double4x3 )
 	};
 	double3x4 trans = double4x3_transpose( &mat );
 
-	TEMPER_EXPECT_TRUE( double3x4_cmpe( &trans, &answerTransposed ) );
-
-	TEMPER_PASS();
+	TEMPER_CHECK_TRUE( double3x4_cmpe( &trans, &answerTransposed ) );
 }
 
-TEMPER_TEST( TestScale_Scalar_double4x3 )
+TEMPER_TEST( TestScale_Scalar_double4x3, TEMPER_FLAG_SHOULD_RUN )
 {
 	double2 scaleVec = { 2.000000, 2.000000 };
 	double4x3 mat;
@@ -335,22 +317,7 @@ TEMPER_TEST( TestScale_Scalar_double4x3 )
 
 	double4x3 scaled = double4x3_scale( &mat, &scaleVec );
 
-	TEMPER_EXPECT_TRUE( doubleeq( scaled.rows[0].x, 2.000000 ) );
-	TEMPER_EXPECT_TRUE( doubleeq( scaled.rows[1].y, 2.000000 ) );
-
-	TEMPER_PASS();
+	TEMPER_CHECK_TRUE( doubleeq( scaled.rows[0].x, 2.000000 ) );
+	TEMPER_CHECK_TRUE( doubleeq( scaled.rows[1].y, 2.000000 ) );
 }
 
-TEMPER_SUITE( Test_double4x3 )
-{
-	TEMPER_RUN_TEST( TestAssignment_double4x3 );
-	TEMPER_RUN_TEST( TestComponentWiseArithmetic_Scalar_Addition_double4x3 );
-	TEMPER_RUN_TEST( TestComponentWiseArithmetic_Scalar_Subtraction_double4x3 );
-	TEMPER_RUN_TEST( TestComponentWiseArithmetic_Scalar_Multiplication_double4x3 );
-	TEMPER_RUN_TEST( TestComponentWiseArithmetic_Scalar_Division_double4x3 );
-	TEMPER_RUN_TEST( TestMultiplyMatrix_Scalar_double4x3 );
-	TEMPER_RUN_TEST( TestRelational_double4x3 );
-	TEMPER_RUN_TEST( TestIdentity_Scalar_double4x3 );
-	TEMPER_RUN_TEST( TestTranspose_Scalar_double4x3 );
-	TEMPER_RUN_TEST( TestScale_Scalar_double4x3 );
-}

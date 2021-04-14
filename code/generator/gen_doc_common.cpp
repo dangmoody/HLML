@@ -298,6 +298,13 @@ void Doc_OperatorIncrementPostfix( stringBuilder_t* sb, const char* fullTypeName
 	String_Appendf( sb, "// Postfix %s operator.  %s each component of the given %s after evaluation.\n", noun, verb, fullTypeName );
 }
 
+void Doc_Negate( stringBuilder_t* sb, const char* fullTypeName ) {
+	assert( sb );
+	assert( fullTypeName );
+
+	String_Appendf( sb, "// Returns a copy of the %s where all values have been negated.\n", fullTypeName );
+}
+
 void Doc_ComponentWiseRelational( stringBuilder_t* sb, const char* fullTypeName, const u32 numRows, const u32 numCols, const genOpRelational_t op ) {
 	assert( sb );
 	assert( fullTypeName );

@@ -32,7 +32,7 @@ SOFTWARE.
 // EDITING THIS FILE MAY CAUSE SIDE EFFECTS.
 // DO SO AT YOUR OWN RISK.
 
-TEMPER_TEST( TestAssignment_bool3x4 )
+TEMPER_TEST( TestAssignment_bool3x4, TEMPER_FLAG_SHOULD_RUN )
 {
 	bool3x4 mat;
 
@@ -40,23 +40,21 @@ TEMPER_TEST( TestAssignment_bool3x4 )
 	mat.rows[1] = (bool4) { false, true, false, false };
 	mat.rows[2] = (bool4) { false, false, true, false };
 
-	TEMPER_EXPECT_TRUE( mat.rows[0].x == true );
-	TEMPER_EXPECT_TRUE( mat.rows[0].y == false );
-	TEMPER_EXPECT_TRUE( mat.rows[0].z == false );
-	TEMPER_EXPECT_TRUE( mat.rows[0].w == false );
-	TEMPER_EXPECT_TRUE( mat.rows[1].x == false );
-	TEMPER_EXPECT_TRUE( mat.rows[1].y == true );
-	TEMPER_EXPECT_TRUE( mat.rows[1].z == false );
-	TEMPER_EXPECT_TRUE( mat.rows[1].w == false );
-	TEMPER_EXPECT_TRUE( mat.rows[2].x == false );
-	TEMPER_EXPECT_TRUE( mat.rows[2].y == false );
-	TEMPER_EXPECT_TRUE( mat.rows[2].z == true );
-	TEMPER_EXPECT_TRUE( mat.rows[2].w == false );
-
-	TEMPER_PASS();
+	TEMPER_CHECK_TRUE( mat.rows[0].x == true );
+	TEMPER_CHECK_TRUE( mat.rows[0].y == false );
+	TEMPER_CHECK_TRUE( mat.rows[0].z == false );
+	TEMPER_CHECK_TRUE( mat.rows[0].w == false );
+	TEMPER_CHECK_TRUE( mat.rows[1].x == false );
+	TEMPER_CHECK_TRUE( mat.rows[1].y == true );
+	TEMPER_CHECK_TRUE( mat.rows[1].z == false );
+	TEMPER_CHECK_TRUE( mat.rows[1].w == false );
+	TEMPER_CHECK_TRUE( mat.rows[2].x == false );
+	TEMPER_CHECK_TRUE( mat.rows[2].y == false );
+	TEMPER_CHECK_TRUE( mat.rows[2].z == true );
+	TEMPER_CHECK_TRUE( mat.rows[2].w == false );
 }
 
-TEMPER_TEST( TestIdentity_Scalar_bool3x4 )
+TEMPER_TEST( TestIdentity_Scalar_bool3x4, TEMPER_FLAG_SHOULD_RUN )
 {
 	bool3x4 id;
 	id.rows[0] = (bool4) { true, false, false, false };
@@ -65,12 +63,10 @@ TEMPER_TEST( TestIdentity_Scalar_bool3x4 )
 
 	bool3x4 mat;
 	bool3x4_identity( &mat );
-	TEMPER_EXPECT_TRUE( bool3x4_cmpe( &mat, &id ) );
-
-	TEMPER_PASS();
+	TEMPER_CHECK_TRUE( bool3x4_cmpe( &mat, &id ) );
 }
 
-TEMPER_TEST( TestTranspose_Scalar_bool3x4 )
+TEMPER_TEST( TestTranspose_Scalar_bool3x4, TEMPER_FLAG_SHOULD_RUN )
 {
 	bool4x3 answerTransposed = (bool4x3) {
 		false, true, true,
@@ -86,14 +82,6 @@ TEMPER_TEST( TestTranspose_Scalar_bool3x4 )
 	};
 	bool4x3 trans = bool3x4_transpose( &mat );
 
-	TEMPER_EXPECT_TRUE( bool4x3_cmpe( &trans, &answerTransposed ) );
-
-	TEMPER_PASS();
+	TEMPER_CHECK_TRUE( bool4x3_cmpe( &trans, &answerTransposed ) );
 }
 
-TEMPER_SUITE( Test_bool3x4 )
-{
-	TEMPER_RUN_TEST( TestAssignment_bool3x4 );
-	TEMPER_RUN_TEST( TestIdentity_Scalar_bool3x4 );
-	TEMPER_RUN_TEST( TestTranspose_Scalar_bool3x4 );
-}

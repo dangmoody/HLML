@@ -32,34 +32,25 @@ SOFTWARE.
 // EDITING THIS FILE MAY CAUSE SIDE EFFECTS.
 // DO SO AT YOUR OWN RISK.
 
-TEMPER_TEST( TestMinMax_uint32_t )
+TEMPER_TEST( TestMinMax_uint32_t, TEMPER_FLAG_SHOULD_RUN )
 {
 	uint32_t a = 5U;
 	uint32_t b = 9U;
 
-	TEMPER_EXPECT_TRUE( minu( a, b ) == a );
-	TEMPER_EXPECT_TRUE( maxu( a, b ) == b );
-
-	TEMPER_PASS();
+	TEMPER_CHECK_TRUE( minu( a, b ) == a );
+	TEMPER_CHECK_TRUE( maxu( a, b ) == b );
 }
 
-TEMPER_TEST( TestClamp_uint32_t )
+TEMPER_TEST( TestClamp_uint32_t, TEMPER_FLAG_SHOULD_RUN )
 {
 	uint32_t a;
 	uint32_t low  = 1U;
 	uint32_t high = 10U;
 
 	a = (uint32_t) clampu( 0U, low, high );
-	TEMPER_EXPECT_TRUE( a == low );
+	TEMPER_CHECK_TRUE( a == low );
 
 	a = (uint32_t) clampu( 11U, low, high );
-	TEMPER_EXPECT_TRUE( a == high );
-
-	TEMPER_PASS();
+	TEMPER_CHECK_TRUE( a == high );
 }
 
-TEMPER_SUITE( Test_uint32_t )
-{
-	TEMPER_RUN_TEST( TestMinMax_uint32_t );
-	TEMPER_RUN_TEST( TestClamp_uint32_t );
-}

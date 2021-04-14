@@ -32,7 +32,7 @@ SOFTWARE.
 // EDITING THIS FILE MAY CAUSE SIDE EFFECTS.
 // DO SO AT YOUR OWN RISK.
 
-TEMPER_TEST( TestAssignment_bool3x2 )
+TEMPER_TEST( TestAssignment_bool3x2, TEMPER_FLAG_SHOULD_RUN )
 {
 	bool3x2 mat;
 
@@ -40,17 +40,15 @@ TEMPER_TEST( TestAssignment_bool3x2 )
 	mat.rows[1] = (bool2) { false, true };
 	mat.rows[2] = (bool2) { false, false };
 
-	TEMPER_EXPECT_TRUE( mat.rows[0].x == true );
-	TEMPER_EXPECT_TRUE( mat.rows[0].y == false );
-	TEMPER_EXPECT_TRUE( mat.rows[1].x == false );
-	TEMPER_EXPECT_TRUE( mat.rows[1].y == true );
-	TEMPER_EXPECT_TRUE( mat.rows[2].x == false );
-	TEMPER_EXPECT_TRUE( mat.rows[2].y == false );
-
-	TEMPER_PASS();
+	TEMPER_CHECK_TRUE( mat.rows[0].x == true );
+	TEMPER_CHECK_TRUE( mat.rows[0].y == false );
+	TEMPER_CHECK_TRUE( mat.rows[1].x == false );
+	TEMPER_CHECK_TRUE( mat.rows[1].y == true );
+	TEMPER_CHECK_TRUE( mat.rows[2].x == false );
+	TEMPER_CHECK_TRUE( mat.rows[2].y == false );
 }
 
-TEMPER_TEST( TestIdentity_Scalar_bool3x2 )
+TEMPER_TEST( TestIdentity_Scalar_bool3x2, TEMPER_FLAG_SHOULD_RUN )
 {
 	bool3x2 id;
 	id.rows[0] = (bool2) { true, false };
@@ -59,12 +57,10 @@ TEMPER_TEST( TestIdentity_Scalar_bool3x2 )
 
 	bool3x2 mat;
 	bool3x2_identity( &mat );
-	TEMPER_EXPECT_TRUE( bool3x2_cmpe( &mat, &id ) );
-
-	TEMPER_PASS();
+	TEMPER_CHECK_TRUE( bool3x2_cmpe( &mat, &id ) );
 }
 
-TEMPER_TEST( TestTranspose_Scalar_bool3x2 )
+TEMPER_TEST( TestTranspose_Scalar_bool3x2, TEMPER_FLAG_SHOULD_RUN )
 {
 	bool2x3 answerTransposed = (bool2x3) {
 		false, true, true,
@@ -78,14 +74,6 @@ TEMPER_TEST( TestTranspose_Scalar_bool3x2 )
 	};
 	bool2x3 trans = bool3x2_transpose( &mat );
 
-	TEMPER_EXPECT_TRUE( bool2x3_cmpe( &trans, &answerTransposed ) );
-
-	TEMPER_PASS();
+	TEMPER_CHECK_TRUE( bool2x3_cmpe( &trans, &answerTransposed ) );
 }
 
-TEMPER_SUITE( Test_bool3x2 )
-{
-	TEMPER_RUN_TEST( TestAssignment_bool3x2 );
-	TEMPER_RUN_TEST( TestIdentity_Scalar_bool3x2 );
-	TEMPER_RUN_TEST( TestTranspose_Scalar_bool3x2 );
-}

@@ -32,80 +32,70 @@ SOFTWARE.
 // EDITING THIS FILE MAY CAUSE SIDE EFFECTS.
 // DO SO AT YOUR OWN RISK.
 
-TEMPER_TEST( TestAssignment_int3 )
+TEMPER_TEST( TestAssignment_int3, TEMPER_FLAG_SHOULD_RUN )
 {
 	int3 vec;
 
 	vec.x = 1;
 	vec.y = 1;
 	vec.z = 1;
-	TEMPER_EXPECT_TRUE( vec.x == 1 );
-	TEMPER_EXPECT_TRUE( vec.y == 1 );
-	TEMPER_EXPECT_TRUE( vec.z == 1 );
+	TEMPER_CHECK_TRUE( vec.x == 1 );
+	TEMPER_CHECK_TRUE( vec.y == 1 );
+	TEMPER_CHECK_TRUE( vec.z == 1 );
 
 	vec.x = 0;
 	vec.y = 1;
 	vec.z = 2;
-	TEMPER_EXPECT_TRUE( vec.x == 0 );
-	TEMPER_EXPECT_TRUE( vec.y == 1 );
-	TEMPER_EXPECT_TRUE( vec.z == 2 );
-
-	TEMPER_PASS();
+	TEMPER_CHECK_TRUE( vec.x == 0 );
+	TEMPER_CHECK_TRUE( vec.y == 1 );
+	TEMPER_CHECK_TRUE( vec.z == 2 );
 }
 
-TEMPER_TEST( TestArithmeticAddition_int3 )
+TEMPER_TEST( TestArithmeticAddition_int3, TEMPER_FLAG_SHOULD_RUN )
 {
 	int3 a = (int3)	{ 6, 6, 6 };
 	int3 b = (int3)	{ 2, 3, 4 };
 	int3 c = int3_caddv( &a, &b );
 
-	TEMPER_EXPECT_TRUE( c.x == 8 );
-	TEMPER_EXPECT_TRUE( c.y == 9 );
-	TEMPER_EXPECT_TRUE( c.z == 10 );
-
-	TEMPER_PASS();
+	TEMPER_CHECK_TRUE( c.x == 8 );
+	TEMPER_CHECK_TRUE( c.y == 9 );
+	TEMPER_CHECK_TRUE( c.z == 10 );
 }
 
-TEMPER_TEST( TestArithmeticSubtraction_int3 )
+TEMPER_TEST( TestArithmeticSubtraction_int3, TEMPER_FLAG_SHOULD_RUN )
 {
 	int3 a = (int3)	{ 6, 6, 6 };
 	int3 b = (int3)	{ 2, 3, 4 };
 	int3 c = int3_csubv( &a, &b );
 
-	TEMPER_EXPECT_TRUE( c.x == 4 );
-	TEMPER_EXPECT_TRUE( c.y == 3 );
-	TEMPER_EXPECT_TRUE( c.z == 2 );
-
-	TEMPER_PASS();
+	TEMPER_CHECK_TRUE( c.x == 4 );
+	TEMPER_CHECK_TRUE( c.y == 3 );
+	TEMPER_CHECK_TRUE( c.z == 2 );
 }
 
-TEMPER_TEST( TestArithmeticMultiplication_int3 )
+TEMPER_TEST( TestArithmeticMultiplication_int3, TEMPER_FLAG_SHOULD_RUN )
 {
 	int3 a = (int3)	{ 6, 6, 6 };
 	int3 b = (int3)	{ 2, 3, 4 };
 	int3 c = int3_cmulv( &a, &b );
 
-	TEMPER_EXPECT_TRUE( c.x == 12 );
-	TEMPER_EXPECT_TRUE( c.y == 18 );
-	TEMPER_EXPECT_TRUE( c.z == 24 );
-
-	TEMPER_PASS();
+	TEMPER_CHECK_TRUE( c.x == 12 );
+	TEMPER_CHECK_TRUE( c.y == 18 );
+	TEMPER_CHECK_TRUE( c.z == 24 );
 }
 
-TEMPER_TEST( TestArithmeticDivision_int3 )
+TEMPER_TEST( TestArithmeticDivision_int3, TEMPER_FLAG_SHOULD_RUN )
 {
 	int3 a = (int3)	{ 6, 6, 6 };
 	int3 b = (int3)	{ 2, 2, 3 };
 	int3 c = int3_cdivv( &a, &b );
 
-	TEMPER_EXPECT_TRUE( c.x == 3 );
-	TEMPER_EXPECT_TRUE( c.y == 3 );
-	TEMPER_EXPECT_TRUE( c.z == 2 );
-
-	TEMPER_PASS();
+	TEMPER_CHECK_TRUE( c.x == 3 );
+	TEMPER_CHECK_TRUE( c.y == 3 );
+	TEMPER_CHECK_TRUE( c.z == 2 );
 }
 
-TEMPER_TEST( TestRelational_int3 )
+TEMPER_TEST( TestRelational_int3, TEMPER_FLAG_SHOULD_RUN )
 {
 	bool3 allTrue = (bool3)	{ true, true, true };
 
@@ -138,34 +128,32 @@ TEMPER_TEST( TestRelational_int3 )
 	bool3 test18 = int3_cmple( &vec3, &vec3 );
 	bool3 test19 = int3_cmpge( &vec3, &vec3 );
 
-	TEMPER_EXPECT_TRUE( bool3_cmpe( &test0,  &allTrue ) );
-	TEMPER_EXPECT_TRUE( bool3_cmpe( &test1,  &allTrue ) );
-	TEMPER_EXPECT_TRUE( bool3_cmpe( &test2,  &allTrue ) );
-	TEMPER_EXPECT_TRUE( bool3_cmpe( &test3,  &allTrue ) );
-	TEMPER_EXPECT_TRUE( bool3_cmpe( &test4,  &allTrue ) );
+	TEMPER_CHECK_TRUE( bool3_cmpe( &test0,  &allTrue ) );
+	TEMPER_CHECK_TRUE( bool3_cmpe( &test1,  &allTrue ) );
+	TEMPER_CHECK_TRUE( bool3_cmpe( &test2,  &allTrue ) );
+	TEMPER_CHECK_TRUE( bool3_cmpe( &test3,  &allTrue ) );
+	TEMPER_CHECK_TRUE( bool3_cmpe( &test4,  &allTrue ) );
 
-	TEMPER_EXPECT_TRUE( bool3_cmpe( &test5,  &allTrue ) );
-	TEMPER_EXPECT_TRUE( bool3_cmpe( &test6,  &allTrue ) );
-	TEMPER_EXPECT_TRUE( bool3_cmpe( &test7,  &allTrue ) );
-	TEMPER_EXPECT_TRUE( bool3_cmpe( &test8,  &allTrue ) );
-	TEMPER_EXPECT_TRUE( bool3_cmpe( &test9,  &allTrue ) );
+	TEMPER_CHECK_TRUE( bool3_cmpe( &test5,  &allTrue ) );
+	TEMPER_CHECK_TRUE( bool3_cmpe( &test6,  &allTrue ) );
+	TEMPER_CHECK_TRUE( bool3_cmpe( &test7,  &allTrue ) );
+	TEMPER_CHECK_TRUE( bool3_cmpe( &test8,  &allTrue ) );
+	TEMPER_CHECK_TRUE( bool3_cmpe( &test9,  &allTrue ) );
 
-	TEMPER_EXPECT_TRUE( bool3_cmpe( &test10, &allTrue ) );
-	TEMPER_EXPECT_TRUE( bool3_cmpe( &test11, &allTrue ) );
-	TEMPER_EXPECT_TRUE( bool3_cmpe( &test12, &allTrue ) );
-	TEMPER_EXPECT_TRUE( bool3_cmpe( &test13, &allTrue ) );
-	TEMPER_EXPECT_TRUE( bool3_cmpe( &test14, &allTrue ) );
+	TEMPER_CHECK_TRUE( bool3_cmpe( &test10, &allTrue ) );
+	TEMPER_CHECK_TRUE( bool3_cmpe( &test11, &allTrue ) );
+	TEMPER_CHECK_TRUE( bool3_cmpe( &test12, &allTrue ) );
+	TEMPER_CHECK_TRUE( bool3_cmpe( &test13, &allTrue ) );
+	TEMPER_CHECK_TRUE( bool3_cmpe( &test14, &allTrue ) );
 
-	TEMPER_EXPECT_TRUE( bool3_cmpe( &test15, &allTrue ) );
-	TEMPER_EXPECT_TRUE( bool3_cmpe( &test16, &allTrue ) );
-	TEMPER_EXPECT_TRUE( bool3_cmpe( &test17, &allTrue ) );
-	TEMPER_EXPECT_TRUE( bool3_cmpe( &test18, &allTrue ) );
-	TEMPER_EXPECT_TRUE( bool3_cmpe( &test19, &allTrue ) );
-
-	TEMPER_PASS();
+	TEMPER_CHECK_TRUE( bool3_cmpe( &test15, &allTrue ) );
+	TEMPER_CHECK_TRUE( bool3_cmpe( &test16, &allTrue ) );
+	TEMPER_CHECK_TRUE( bool3_cmpe( &test17, &allTrue ) );
+	TEMPER_CHECK_TRUE( bool3_cmpe( &test18, &allTrue ) );
+	TEMPER_CHECK_TRUE( bool3_cmpe( &test19, &allTrue ) );
 }
 
-TEMPER_TEST( TestBitwise_And_int3 )
+TEMPER_TEST( TestBitwise_And_int3, TEMPER_FLAG_SHOULD_RUN )
 {
 	int3 answer = (int3) { 5, 5, 5 };
 
@@ -174,12 +162,10 @@ TEMPER_TEST( TestBitwise_And_int3 )
 
 	int3 c = int3_cand( &a, &b );
 
-	TEMPER_EXPECT_TRUE( int3_cmpe( &c, &answer ) );
-
-	TEMPER_PASS();
+	TEMPER_CHECK_TRUE( int3_cmpe( &c, &answer ) );
 }
 
-TEMPER_TEST( TestBitwise_Or_int3 )
+TEMPER_TEST( TestBitwise_Or_int3, TEMPER_FLAG_SHOULD_RUN )
 {
 	int3 answer = (int3) { 23, 23, 23 };
 
@@ -188,12 +174,10 @@ TEMPER_TEST( TestBitwise_Or_int3 )
 
 	int3 c = int3_cor( &a, &b );
 
-	TEMPER_EXPECT_TRUE( int3_cmpe( &c, &answer ) );
-
-	TEMPER_PASS();
+	TEMPER_CHECK_TRUE( int3_cmpe( &c, &answer ) );
 }
 
-TEMPER_TEST( TestBitwise_Xor_int3 )
+TEMPER_TEST( TestBitwise_Xor_int3, TEMPER_FLAG_SHOULD_RUN )
 {
 	int3 answer = (int3) { 18, 18, 18 };
 
@@ -202,12 +186,10 @@ TEMPER_TEST( TestBitwise_Xor_int3 )
 
 	int3 c = int3_cxor( &a, &b );
 
-	TEMPER_EXPECT_TRUE( int3_cmpe( &c, &answer ) );
-
-	TEMPER_PASS();
+	TEMPER_CHECK_TRUE( int3_cmpe( &c, &answer ) );
 }
 
-TEMPER_TEST( TestBitwise_ShiftLeft_int3 )
+TEMPER_TEST( TestBitwise_ShiftLeft_int3, TEMPER_FLAG_SHOULD_RUN )
 {
 	int3 answer = (int3) { 4, 4, 4 };
 
@@ -216,12 +198,10 @@ TEMPER_TEST( TestBitwise_ShiftLeft_int3 )
 
 	int3 c = int3_cshift_left( &a, &b );
 
-	TEMPER_EXPECT_TRUE( int3_cmpe( &c, &answer ) );
-
-	TEMPER_PASS();
+	TEMPER_CHECK_TRUE( int3_cmpe( &c, &answer ) );
 }
 
-TEMPER_TEST( TestBitwise_ShiftRight_int3 )
+TEMPER_TEST( TestBitwise_ShiftRight_int3, TEMPER_FLAG_SHOULD_RUN )
 {
 	int3 answer = (int3) { 1, 1, 1 };
 
@@ -230,12 +210,10 @@ TEMPER_TEST( TestBitwise_ShiftRight_int3 )
 
 	int3 c = int3_cshift_right( &a, &b );
 
-	TEMPER_EXPECT_TRUE( int3_cmpe( &c, &answer ) );
-
-	TEMPER_PASS();
+	TEMPER_CHECK_TRUE( int3_cmpe( &c, &answer ) );
 }
 
-TEMPER_TEST( TestBitwise_Unary_int3 )
+TEMPER_TEST( TestBitwise_Unary_int3, TEMPER_FLAG_SHOULD_RUN )
 {
 	int3 answer = (int3) { (int32_t) -1, (int32_t) -1, (int32_t) -1 };
 
@@ -243,32 +221,26 @@ TEMPER_TEST( TestBitwise_Unary_int3 )
 
 	int3 b = int3_cunary( &a );
 
-	TEMPER_EXPECT_TRUE( int3_cmpe( &b, &answer ) );
-
-	TEMPER_PASS();
+	TEMPER_CHECK_TRUE( int3_cmpe( &b, &answer ) );
 }
 
-TEMPER_TEST( TestLength_Scalar_int3 )
+TEMPER_TEST( TestLength_Scalar_int3, TEMPER_FLAG_SHOULD_RUN )
 {
 	int3 vec = (int3) { 2, 2, 2 };
 
-	TEMPER_EXPECT_TRUE( floateq( int3_lengthsqr( &vec ), 12.0f ) );
-	TEMPER_EXPECT_TRUE( floateq( int3_length( &vec ), 3.46410161514f ) );
-
-	TEMPER_PASS();
+	TEMPER_CHECK_TRUE( floateq( int3_lengthsqr( &vec ), 12.0f ) );
+	TEMPER_CHECK_TRUE( floateq( int3_length( &vec ), 3.46410161514f ) );
 }
 
-TEMPER_TEST( TestDot_Scalar_int3 )
+TEMPER_TEST( TestDot_Scalar_int3, TEMPER_FLAG_SHOULD_RUN )
 {
 	int3 a = (int3) { 0, 1, 0 };
 	int3 b = (int3) { 0, -1, 0 };
 
-	TEMPER_EXPECT_TRUE( int3_dot( &a, &b ) == -1 );
-
-	TEMPER_PASS();
+	TEMPER_CHECK_TRUE( int3_dot( &a, &b ) == -1 );
 }
 
-TEMPER_TEST( TestDistance_Scalar_int3 )
+TEMPER_TEST( TestDistance_Scalar_int3, TEMPER_FLAG_SHOULD_RUN )
 {
 	float answerDistanceSqr = 105.0f;
 	float answerDistance    = 10.246951f;
@@ -279,27 +251,7 @@ TEMPER_TEST( TestDistance_Scalar_int3 )
 	float distSqr = int3_distancesqr( &a, &b );
 	float dist    = int3_distance( &a, &b );
 
-	TEMPER_EXPECT_TRUE( floateq( distSqr, answerDistanceSqr ) );
-	TEMPER_EXPECT_TRUE( floateq( dist, answerDistance ) );
-
-	TEMPER_PASS();
+	TEMPER_CHECK_TRUE( floateq( distSqr, answerDistanceSqr ) );
+	TEMPER_CHECK_TRUE( floateq( dist, answerDistance ) );
 }
 
-TEMPER_SUITE( Test_int3 )
-{
-	TEMPER_RUN_TEST( TestAssignment_int3 );
-	TEMPER_RUN_TEST( TestArithmeticAddition_int3 );
-	TEMPER_RUN_TEST( TestArithmeticSubtraction_int3 );
-	TEMPER_RUN_TEST( TestArithmeticMultiplication_int3 );
-	TEMPER_RUN_TEST( TestArithmeticDivision_int3 );
-	TEMPER_RUN_TEST( TestRelational_int3 );
-	TEMPER_RUN_TEST( TestBitwise_And_int3 );
-	TEMPER_RUN_TEST( TestBitwise_Or_int3 );
-	TEMPER_RUN_TEST( TestBitwise_Xor_int3 );
-	TEMPER_RUN_TEST( TestBitwise_ShiftLeft_int3 );
-	TEMPER_RUN_TEST( TestBitwise_ShiftRight_int3 );
-	TEMPER_RUN_TEST( TestBitwise_Unary_int3 );
-	TEMPER_RUN_TEST( TestLength_Scalar_int3 );
-	TEMPER_RUN_TEST( TestDot_Scalar_int3 );
-	TEMPER_RUN_TEST( TestDistance_Scalar_int3 );
-}

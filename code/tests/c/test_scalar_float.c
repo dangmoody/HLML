@@ -35,37 +35,31 @@ SOFTWARE.
 static float g_deg_float = 90.0f;
 static float g_rad_float = 1.57079637f;
 
-TEMPER_TEST( TestFloateq_float )
+TEMPER_TEST( TestFloateq_float, TEMPER_FLAG_SHOULD_RUN )
 {
 	float a = 5.0f;
 	float b = 5.0f;
 	float c = 5.000020f;
 	float d = 5.000100f;
 
-	TEMPER_EXPECT_TRUE(  floateq( a, b ) );
-	TEMPER_EXPECT_TRUE( !floateq( a, c ) );
-	TEMPER_EXPECT_TRUE( !floateq( a, d ) );
-
-	TEMPER_PASS();
+	TEMPER_CHECK_TRUE(  floateq( a, b ) );
+	TEMPER_CHECK_TRUE( !floateq( a, c ) );
+	TEMPER_CHECK_TRUE( !floateq( a, d ) );
 }
 
-TEMPER_TEST( TestSign_float )
+TEMPER_TEST( TestSign_float, TEMPER_FLAG_SHOULD_RUN )
 {
-	TEMPER_EXPECT_TRUE( signf( -5.0f ) == -1 );
-	TEMPER_EXPECT_TRUE( signf( 9.0f ) ==  1 );
-
-	TEMPER_PASS();
+	TEMPER_CHECK_TRUE( signf( -5.0f ) == -1 );
+	TEMPER_CHECK_TRUE( signf( 9.0f ) ==  1 );
 }
 
-TEMPER_TEST( TestDegreesRadians_Scalar_float )
+TEMPER_TEST( TestDegreesRadians_Scalar_float, TEMPER_FLAG_SHOULD_RUN )
 {
-	TEMPER_EXPECT_TRUE( floateq( radiansf( g_deg_float ), 1.57079637f ) );
-	TEMPER_EXPECT_TRUE( floateq( degreesf( g_rad_float ), 90.0f ) );
-
-	TEMPER_PASS();
+	TEMPER_CHECK_TRUE( floateq( radiansf( g_deg_float ), 1.57079637f ) );
+	TEMPER_CHECK_TRUE( floateq( degreesf( g_rad_float ), 90.0f ) );
 }
 
-TEMPER_TEST( TestDegreesRadians_SSE_float )
+TEMPER_TEST( TestDegreesRadians_SSE_float, TEMPER_FLAG_SHOULD_RUN )
 {
 	float degs[4] = { g_deg_float, g_deg_float, g_deg_float, g_deg_float };
 	float rads[4] = { g_rad_float, g_rad_float, g_rad_float, g_rad_float };
@@ -79,10 +73,10 @@ TEMPER_TEST( TestDegreesRadians_SSE_float )
 	float radiansResults[4];
 	_mm_store_ps( radiansResults, results );
 
-	TEMPER_EXPECT_TRUE( floateq( radiansResults[0], 1.57079637f ) );
-	TEMPER_EXPECT_TRUE( floateq( radiansResults[1], 1.57079637f ) );
-	TEMPER_EXPECT_TRUE( floateq( radiansResults[2], 1.57079637f ) );
-	TEMPER_EXPECT_TRUE( floateq( radiansResults[3], 1.57079637f ) );
+	TEMPER_CHECK_TRUE( floateq( radiansResults[0], 1.57079637f ) );
+	TEMPER_CHECK_TRUE( floateq( radiansResults[1], 1.57079637f ) );
+	TEMPER_CHECK_TRUE( floateq( radiansResults[2], 1.57079637f ) );
+	TEMPER_CHECK_TRUE( floateq( radiansResults[3], 1.57079637f ) );
 
 	// degrees
 	__m128 inDegrees = _mm_load_ps( rads );
@@ -91,66 +85,56 @@ TEMPER_TEST( TestDegreesRadians_SSE_float )
 	float degreesResults[4];
 	_mm_store_ps( degreesResults, results );
 
-	TEMPER_EXPECT_TRUE( floateq( degreesResults[0], 90.0f ) );
-	TEMPER_EXPECT_TRUE( floateq( degreesResults[1], 90.0f ) );
-	TEMPER_EXPECT_TRUE( floateq( degreesResults[2], 90.0f ) );
-	TEMPER_EXPECT_TRUE( floateq( degreesResults[3], 90.0f ) );
-
-	TEMPER_PASS();
+	TEMPER_CHECK_TRUE( floateq( degreesResults[0], 90.0f ) );
+	TEMPER_CHECK_TRUE( floateq( degreesResults[1], 90.0f ) );
+	TEMPER_CHECK_TRUE( floateq( degreesResults[2], 90.0f ) );
+	TEMPER_CHECK_TRUE( floateq( degreesResults[3], 90.0f ) );
 }
 
-TEMPER_TEST( TestMinMax_float )
+TEMPER_TEST( TestMinMax_float, TEMPER_FLAG_SHOULD_RUN )
 {
 	float a = 5.0f;
 	float b = 9.0f;
 
-	TEMPER_EXPECT_TRUE( floateq( minf( a, b ), a ) );
-	TEMPER_EXPECT_TRUE( floateq( maxf( a, b ), b ) );
-
-	TEMPER_PASS();
+	TEMPER_CHECK_TRUE( floateq( minf( a, b ), a ) );
+	TEMPER_CHECK_TRUE( floateq( maxf( a, b ), b ) );
 }
 
-TEMPER_TEST( TestClamp_float )
+TEMPER_TEST( TestClamp_float, TEMPER_FLAG_SHOULD_RUN )
 {
 	float a;
 	float low  = 1.0f;
 	float high = 10.0f;
 
 	a = clampf( 0.0f, low, high );
-	TEMPER_EXPECT_TRUE( floateq( a, low ) );
+	TEMPER_CHECK_TRUE( floateq( a, low ) );
 
 	a = clampf( 11.0f, low, high );
-	TEMPER_EXPECT_TRUE( floateq( a, high ) );
-
-	TEMPER_PASS();
+	TEMPER_CHECK_TRUE( floateq( a, high ) );
 }
 
-TEMPER_TEST( TestSaturate_float )
+TEMPER_TEST( TestSaturate_float, TEMPER_FLAG_SHOULD_RUN )
 {
 	float a;
 
 	a = saturatef( -1.000000f );
-	TEMPER_EXPECT_TRUE( floateq( a, 0.000000f ) );
+	TEMPER_CHECK_TRUE( floateq( a, 0.000000f ) );
 
 	a = saturatef( 2.000000f );
-	TEMPER_EXPECT_TRUE( floateq( a, 1.000000f ) );
-
-	TEMPER_PASS();
+	TEMPER_CHECK_TRUE( floateq( a, 1.000000f ) );
 }
 
-TEMPER_TEST( TestLerp_Scalar_float )
+TEMPER_TEST( TestLerp_Scalar_float, TEMPER_FLAG_SHOULD_RUN )
 {
 	float a = 1.0f;
 	float b = 3.0f;
 
 	float answer = lerpf( a, b, 0.5f );
 
-	TEMPER_EXPECT_TRUE( floateq( answer, 2.0f ) );
-
-	TEMPER_PASS();
+	TEMPER_CHECK_TRUE( floateq( answer, 2.0f ) );
 }
 
-TEMPER_TEST( TestLerp_SSE_float )
+TEMPER_TEST( TestLerp_SSE_float, TEMPER_FLAG_SHOULD_RUN )
 {
 
 	float ones[4]   = { 1.0f, 1.0f, 1.0f, 1.0f };
@@ -167,23 +151,9 @@ TEMPER_TEST( TestLerp_SSE_float )
 	float lerpResults[4];
 	_mm_store_ps( lerpResults, results );
 
-	TEMPER_EXPECT_TRUE( floateq( lerpResults[0], 2.0f ) );
-	TEMPER_EXPECT_TRUE( floateq( lerpResults[1], 2.0f ) );
-	TEMPER_EXPECT_TRUE( floateq( lerpResults[2], 2.0f ) );
-	TEMPER_EXPECT_TRUE( floateq( lerpResults[3], 2.0f ) );
-
-	TEMPER_PASS();
+	TEMPER_CHECK_TRUE( floateq( lerpResults[0], 2.0f ) );
+	TEMPER_CHECK_TRUE( floateq( lerpResults[1], 2.0f ) );
+	TEMPER_CHECK_TRUE( floateq( lerpResults[2], 2.0f ) );
+	TEMPER_CHECK_TRUE( floateq( lerpResults[3], 2.0f ) );
 }
 
-TEMPER_SUITE( Test_float )
-{
-	TEMPER_RUN_TEST( TestFloateq_float );
-	TEMPER_RUN_TEST( TestSign_float );
-	TEMPER_RUN_TEST( TestDegreesRadians_Scalar_float );
-	TEMPER_RUN_TEST( TestDegreesRadians_SSE_float );
-	TEMPER_RUN_TEST( TestMinMax_float );
-	TEMPER_RUN_TEST( TestClamp_float );
-	TEMPER_RUN_TEST( TestSaturate_float );
-	TEMPER_RUN_TEST( TestLerp_Scalar_float );
-	TEMPER_RUN_TEST( TestLerp_SSE_float );
-}

@@ -34,6 +34,12 @@ SOFTWARE.
 
 #define NOMINMAX
 
+typedef struct temperTestInfo_t temperTestInfo_t;
+void OnBeforeTest( const temperTestInfo_t* testInfo );
+void OnAfterTest( const temperTestInfo_t* testInfo );
+#define TEMPER_IMPLEMENTATION
+#define TEMPERDEV__ON_BEFORE_TEST OnBeforeTest
+#define TEMPERDEV__ON_AFTER_TEST OnAfterTest
 #include <temper/temper.h>
 
 #include "../../../code/out/c/hlml.h"
@@ -126,111 +132,46 @@ SOFTWARE.
 #include "test_quaternion_float4.c"
 #include "test_quaternion_double4.c"
 
-static void OnSuiteEnd( void* userdata )
+#define TEST_PADDING "................................................................"
+
+void OnBeforeTest( const temperTestInfo_t* testInfo )
 {
-	( (void) userdata );
-	printf( "\n" );
+	const int padLengthMax = (int) strlen( TEST_PADDING );
+
+	const int dotLength = padLengthMax - (int) strlen( testInfo->testNameStr );
+	assert( dotLength );
+
+	printf( "%s %*.*s ", testInfo->testNameStr, dotLength, dotLength, TEST_PADDING );
 }
 
-TEMPER_DEFS();
+void OnAfterTest( const temperTestInfo_t* testInfo )
+{
+		if ( testInfo->testingFlag == TEMPER_FLAG_SHOULD_SKIP )
+		{
+			TemperSetTextColorInternal( TEMPERDEV__COLOR_YELLOW );
+			printf( "SKIPPED\n" );
+			TemperSetTextColorInternal( TEMPERDEV__COLOR_DEFAULT );
+		}
+		else
+		{
+			if ( g_temperTestContext.currentTestErrorCount == 0 )
+			{
+				TemperSetTextColorInternal( TEMPERDEV__COLOR_GREEN );
+				printf( "OK" );
+				TemperSetTextColorInternal( TEMPERDEV__COLOR_DEFAULT );
+			}
+			else
+			{
+				TemperSetTextColorInternal( TEMPERDEV__COLOR_RED );
+				printf( "FAILED\n" );
+				TemperSetTextColorInternal( TEMPERDEV__COLOR_DEFAULT );
+			}
 
+			printf( " (%f %s)\n", testInfo->testTimeTaken, TemperGetTimeUnitStringInternal( g_temperTestContext.timeUnit ) );
+		}
+	}
 int main( int argc, char** argv )
 {
-	TEMPER_SET_COMMAND_LINE_ARGS( argc, argv );
-
-	TEMPER_SET_SUITE_END_CALLBACK( OnSuiteEnd, NULL );
-
-	// scalar tests
-	TEMPER_RUN_SUITE( Test_int32_t );
-	TEMPER_RUN_SUITE( Test_uint32_t );
-	TEMPER_RUN_SUITE( Test_float );
-	TEMPER_RUN_SUITE( Test_double );
-
-	// vector/matrix tests
-	TEMPER_RUN_SUITE( Test_bool2 );
-	TEMPER_RUN_SUITE( Test_bool3 );
-	TEMPER_RUN_SUITE( Test_bool4 );
-
-	TEMPER_RUN_SUITE( Test_bool2x2 );
-	TEMPER_RUN_SUITE( Test_bool2x3 );
-	TEMPER_RUN_SUITE( Test_bool2x4 );
-
-	TEMPER_RUN_SUITE( Test_bool3x2 );
-	TEMPER_RUN_SUITE( Test_bool3x3 );
-	TEMPER_RUN_SUITE( Test_bool3x4 );
-
-	TEMPER_RUN_SUITE( Test_bool4x2 );
-	TEMPER_RUN_SUITE( Test_bool4x3 );
-	TEMPER_RUN_SUITE( Test_bool4x4 );
-
-	TEMPER_RUN_SUITE( Test_int2 );
-	TEMPER_RUN_SUITE( Test_int3 );
-	TEMPER_RUN_SUITE( Test_int4 );
-
-	TEMPER_RUN_SUITE( Test_int2x2 );
-	TEMPER_RUN_SUITE( Test_int2x3 );
-	TEMPER_RUN_SUITE( Test_int2x4 );
-
-	TEMPER_RUN_SUITE( Test_int3x2 );
-	TEMPER_RUN_SUITE( Test_int3x3 );
-	TEMPER_RUN_SUITE( Test_int3x4 );
-
-	TEMPER_RUN_SUITE( Test_int4x2 );
-	TEMPER_RUN_SUITE( Test_int4x3 );
-	TEMPER_RUN_SUITE( Test_int4x4 );
-
-	TEMPER_RUN_SUITE( Test_uint2 );
-	TEMPER_RUN_SUITE( Test_uint3 );
-	TEMPER_RUN_SUITE( Test_uint4 );
-
-	TEMPER_RUN_SUITE( Test_uint2x2 );
-	TEMPER_RUN_SUITE( Test_uint2x3 );
-	TEMPER_RUN_SUITE( Test_uint2x4 );
-
-	TEMPER_RUN_SUITE( Test_uint3x2 );
-	TEMPER_RUN_SUITE( Test_uint3x3 );
-	TEMPER_RUN_SUITE( Test_uint3x4 );
-
-	TEMPER_RUN_SUITE( Test_uint4x2 );
-	TEMPER_RUN_SUITE( Test_uint4x3 );
-	TEMPER_RUN_SUITE( Test_uint4x4 );
-
-	TEMPER_RUN_SUITE( Test_float2 );
-	TEMPER_RUN_SUITE( Test_float3 );
-	TEMPER_RUN_SUITE( Test_float4 );
-
-	TEMPER_RUN_SUITE( Test_float2x2 );
-	TEMPER_RUN_SUITE( Test_float2x3 );
-	TEMPER_RUN_SUITE( Test_float2x4 );
-
-	TEMPER_RUN_SUITE( Test_float3x2 );
-	TEMPER_RUN_SUITE( Test_float3x3 );
-	TEMPER_RUN_SUITE( Test_float3x4 );
-
-	TEMPER_RUN_SUITE( Test_float4x2 );
-	TEMPER_RUN_SUITE( Test_float4x3 );
-	TEMPER_RUN_SUITE( Test_float4x4 );
-
-	TEMPER_RUN_SUITE( Test_double2 );
-	TEMPER_RUN_SUITE( Test_double3 );
-	TEMPER_RUN_SUITE( Test_double4 );
-
-	TEMPER_RUN_SUITE( Test_double2x2 );
-	TEMPER_RUN_SUITE( Test_double2x3 );
-	TEMPER_RUN_SUITE( Test_double2x4 );
-
-	TEMPER_RUN_SUITE( Test_double3x2 );
-	TEMPER_RUN_SUITE( Test_double3x3 );
-	TEMPER_RUN_SUITE( Test_double3x4 );
-
-	TEMPER_RUN_SUITE( Test_double4x2 );
-	TEMPER_RUN_SUITE( Test_double4x3 );
-	TEMPER_RUN_SUITE( Test_double4x4 );
-
-	TEMPER_RUN_SUITE( Test_quaternion_float4 );
-	TEMPER_RUN_SUITE( Test_quaternion_double4 );
-
-	TEMPER_SHOW_STATS();
-
-	return TEMPER_EXIT_CODE();
+	TEMPER_RUN( argc, argv );
+	return TEMPER_GET_EXIT_CODE();
 }

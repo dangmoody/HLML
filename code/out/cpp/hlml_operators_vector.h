@@ -249,6 +249,9 @@ inline int2& operator--( int2& lhs );
 // postfix
 // Postfix decrement operator.  Subtracts one from each component of the given int2 after evaluation.
 inline int2& operator--( int2& lhs, const int );
+// Returns a copy of the int2 where all values have been negated.
+inline int2 operator-( const int2& vec );
+
 // Returns a copy of the int2 where each component of the left-hand int2 has been bitwise AND'd against the corresponding component of the right-hand side int2.
 inline int2 operator&( const int2& lhs, const int2& rhs );
 
@@ -362,6 +365,9 @@ inline int3& operator--( int3& lhs );
 // postfix
 // Postfix decrement operator.  Subtracts one from each component of the given int3 after evaluation.
 inline int3& operator--( int3& lhs, const int );
+// Returns a copy of the int3 where all values have been negated.
+inline int3 operator-( const int3& vec );
+
 // Returns a copy of the int3 where each component of the left-hand int3 has been bitwise AND'd against the corresponding component of the right-hand side int3.
 inline int3 operator&( const int3& lhs, const int3& rhs );
 
@@ -475,6 +481,9 @@ inline int4& operator--( int4& lhs );
 // postfix
 // Postfix decrement operator.  Subtracts one from each component of the given int4 after evaluation.
 inline int4& operator--( int4& lhs, const int );
+// Returns a copy of the int4 where all values have been negated.
+inline int4 operator-( const int4& vec );
+
 // Returns a copy of the int4 where each component of the left-hand int4 has been bitwise AND'd against the corresponding component of the right-hand side int4.
 inline int4 operator&( const int4& lhs, const int4& rhs );
 
@@ -588,6 +597,9 @@ inline uint2& operator--( uint2& lhs );
 // postfix
 // Postfix decrement operator.  Subtracts one from each component of the given uint2 after evaluation.
 inline uint2& operator--( uint2& lhs, const int );
+// Returns a copy of the uint2 where all values have been negated.
+inline uint2 operator-( const uint2& vec );
+
 // Returns a copy of the uint2 where each component of the left-hand uint2 has been bitwise AND'd against the corresponding component of the right-hand side uint2.
 inline uint2 operator&( const uint2& lhs, const uint2& rhs );
 
@@ -701,6 +713,9 @@ inline uint3& operator--( uint3& lhs );
 // postfix
 // Postfix decrement operator.  Subtracts one from each component of the given uint3 after evaluation.
 inline uint3& operator--( uint3& lhs, const int );
+// Returns a copy of the uint3 where all values have been negated.
+inline uint3 operator-( const uint3& vec );
+
 // Returns a copy of the uint3 where each component of the left-hand uint3 has been bitwise AND'd against the corresponding component of the right-hand side uint3.
 inline uint3 operator&( const uint3& lhs, const uint3& rhs );
 
@@ -814,6 +829,9 @@ inline uint4& operator--( uint4& lhs );
 // postfix
 // Postfix decrement operator.  Subtracts one from each component of the given uint4 after evaluation.
 inline uint4& operator--( uint4& lhs, const int );
+// Returns a copy of the uint4 where all values have been negated.
+inline uint4 operator-( const uint4& vec );
+
 // Returns a copy of the uint4 where each component of the left-hand uint4 has been bitwise AND'd against the corresponding component of the right-hand side uint4.
 inline uint4 operator&( const uint4& lhs, const uint4& rhs );
 
@@ -927,6 +945,9 @@ inline float2& operator--( float2& lhs );
 // postfix
 // Postfix decrement operator.  Subtracts one from each component of the given float2 after evaluation.
 inline float2& operator--( float2& lhs, const int );
+// Returns a copy of the float2 where all values have been negated.
+inline float2 operator-( const float2& vec );
+
 // Returns a bool2 where each component is true if the component of the left-hand type is less than the corresponding right-hand type component.
 inline bool2 operator<( float2& lhs, const float2& rhs );
 
@@ -1007,6 +1028,9 @@ inline float3& operator--( float3& lhs );
 // postfix
 // Postfix decrement operator.  Subtracts one from each component of the given float3 after evaluation.
 inline float3& operator--( float3& lhs, const int );
+// Returns a copy of the float3 where all values have been negated.
+inline float3 operator-( const float3& vec );
+
 // Returns a bool3 where each component is true if the component of the left-hand type is less than the corresponding right-hand type component.
 inline bool3 operator<( float3& lhs, const float3& rhs );
 
@@ -1087,6 +1111,9 @@ inline float4& operator--( float4& lhs );
 // postfix
 // Postfix decrement operator.  Subtracts one from each component of the given float4 after evaluation.
 inline float4& operator--( float4& lhs, const int );
+// Returns a copy of the float4 where all values have been negated.
+inline float4 operator-( const float4& vec );
+
 // Returns a bool4 where each component is true if the component of the left-hand type is less than the corresponding right-hand type component.
 inline bool4 operator<( float4& lhs, const float4& rhs );
 
@@ -1167,6 +1194,9 @@ inline double2& operator--( double2& lhs );
 // postfix
 // Postfix decrement operator.  Subtracts one from each component of the given double2 after evaluation.
 inline double2& operator--( double2& lhs, const int );
+// Returns a copy of the double2 where all values have been negated.
+inline double2 operator-( const double2& vec );
+
 // Returns a bool2 where each component is true if the component of the left-hand type is less than the corresponding right-hand type component.
 inline bool2 operator<( double2& lhs, const double2& rhs );
 
@@ -1247,6 +1277,9 @@ inline double3& operator--( double3& lhs );
 // postfix
 // Postfix decrement operator.  Subtracts one from each component of the given double3 after evaluation.
 inline double3& operator--( double3& lhs, const int );
+// Returns a copy of the double3 where all values have been negated.
+inline double3 operator-( const double3& vec );
+
 // Returns a bool3 where each component is true if the component of the left-hand type is less than the corresponding right-hand type component.
 inline bool3 operator<( double3& lhs, const double3& rhs );
 
@@ -1327,6 +1360,9 @@ inline double4& operator--( double4& lhs );
 // postfix
 // Postfix decrement operator.  Subtracts one from each component of the given double4 after evaluation.
 inline double4& operator--( double4& lhs, const int );
+// Returns a copy of the double4 where all values have been negated.
+inline double4 operator-( const double4& vec );
+
 // Returns a bool4 where each component is true if the component of the left-hand type is less than the corresponding right-hand type component.
 inline bool4 operator<( double4& lhs, const double4& rhs );
 
@@ -1788,6 +1824,14 @@ int2& operator--( int2& lhs, const int )
 	return lhs;
 }
 
+int2 operator-( const int2& vec )
+{
+	return int2(
+-x,
+-y
+	);
+}
+
 int2 operator&( const int2& lhs, const int2& rhs )
 {
 	return HLML_CONSTRUCT( int2 ) {
@@ -2045,6 +2089,15 @@ int3& operator--( int3& lhs, const int )
 	lhs[1]--;
 	lhs[2]--;
 	return lhs;
+}
+
+int3 operator-( const int3& vec )
+{
+	return int3(
+-x,
+-y,
+-z
+	);
 }
 
 int3 operator&( const int3& lhs, const int3& rhs )
@@ -2328,6 +2381,16 @@ int4& operator--( int4& lhs, const int )
 	return lhs;
 }
 
+int4 operator-( const int4& vec )
+{
+	return int4(
+-x,
+-y,
+-z,
+-w
+	);
+}
+
 int4 operator&( const int4& lhs, const int4& rhs )
 {
 	return HLML_CONSTRUCT( int4 ) {
@@ -2595,6 +2658,14 @@ uint2& operator--( uint2& lhs, const int )
 	return lhs;
 }
 
+uint2 operator-( const uint2& vec )
+{
+	return uint2(
+-x,
+-y
+	);
+}
+
 uint2 operator&( const uint2& lhs, const uint2& rhs )
 {
 	return HLML_CONSTRUCT( uint2 ) {
@@ -2852,6 +2923,15 @@ uint3& operator--( uint3& lhs, const int )
 	lhs[1]--;
 	lhs[2]--;
 	return lhs;
+}
+
+uint3 operator-( const uint3& vec )
+{
+	return uint3(
+-x,
+-y,
+-z
+	);
 }
 
 uint3 operator&( const uint3& lhs, const uint3& rhs )
@@ -3135,6 +3215,16 @@ uint4& operator--( uint4& lhs, const int )
 	return lhs;
 }
 
+uint4 operator-( const uint4& vec )
+{
+	return uint4(
+-x,
+-y,
+-z,
+-w
+	);
+}
+
 uint4 operator&( const uint4& lhs, const uint4& rhs )
 {
 	return HLML_CONSTRUCT( uint4 ) {
@@ -3402,6 +3492,14 @@ float2& operator--( float2& lhs, const int )
 	return lhs;
 }
 
+float2 operator-( const float2& vec )
+{
+	return float2(
+-x,
+-y
+	);
+}
+
 bool2 operator<( float2& lhs, const float2& rhs )
 {
 	return HLML_CONSTRUCT( bool2 ) {
@@ -3586,6 +3684,15 @@ float3& operator--( float3& lhs, const int )
 	lhs[1]--;
 	lhs[2]--;
 	return lhs;
+}
+
+float3 operator-( const float3& vec )
+{
+	return float3(
+-x,
+-y,
+-z
+	);
 }
 
 bool3 operator<( float3& lhs, const float3& rhs )
@@ -3790,6 +3897,16 @@ float4& operator--( float4& lhs, const int )
 	return lhs;
 }
 
+float4 operator-( const float4& vec )
+{
+	return float4(
+-x,
+-y,
+-z,
+-w
+	);
+}
+
 bool4 operator<( float4& lhs, const float4& rhs )
 {
 	return HLML_CONSTRUCT( bool4 ) {
@@ -3970,6 +4087,14 @@ double2& operator--( double2& lhs, const int )
 	lhs[0]--;
 	lhs[1]--;
 	return lhs;
+}
+
+double2 operator-( const double2& vec )
+{
+	return double2(
+-x,
+-y
+	);
 }
 
 bool2 operator<( double2& lhs, const double2& rhs )
@@ -4156,6 +4281,15 @@ double3& operator--( double3& lhs, const int )
 	lhs[1]--;
 	lhs[2]--;
 	return lhs;
+}
+
+double3 operator-( const double3& vec )
+{
+	return double3(
+-x,
+-y,
+-z
+	);
 }
 
 bool3 operator<( double3& lhs, const double3& rhs )
@@ -4358,6 +4492,16 @@ double4& operator--( double4& lhs, const int )
 	lhs[2]--;
 	lhs[3]--;
 	return lhs;
+}
+
+double4 operator-( const double4& vec )
+{
+	return double4(
+-x,
+-y,
+-z,
+-w
+	);
 }
 
 bool4 operator<( double4& lhs, const double4& rhs )

@@ -32,7 +32,7 @@ SOFTWARE.
 // EDITING THIS FILE MAY CAUSE SIDE EFFECTS.
 // DO SO AT YOUR OWN RISK.
 
-TEMPER_TEST( TestAssignment_double4 )
+TEMPER_TEST( TestAssignment_double4, TEMPER_FLAG_SHOULD_RUN )
 {
 	double4 vec;
 
@@ -40,80 +40,70 @@ TEMPER_TEST( TestAssignment_double4 )
 	vec.y = 1.0;
 	vec.z = 1.0;
 	vec.w = 1.0;
-	TEMPER_EXPECT_TRUE( vec.x == 1.0 );
-	TEMPER_EXPECT_TRUE( vec.y == 1.0 );
-	TEMPER_EXPECT_TRUE( vec.z == 1.0 );
-	TEMPER_EXPECT_TRUE( vec.w == 1.0 );
+	TEMPER_CHECK_TRUE( vec.x == 1.0 );
+	TEMPER_CHECK_TRUE( vec.y == 1.0 );
+	TEMPER_CHECK_TRUE( vec.z == 1.0 );
+	TEMPER_CHECK_TRUE( vec.w == 1.0 );
 
 	vec.x = 0.0;
 	vec.y = 1.0;
 	vec.z = 2.0;
 	vec.w = 3.0;
-	TEMPER_EXPECT_TRUE( vec.x == 0.0 );
-	TEMPER_EXPECT_TRUE( vec.y == 1.0 );
-	TEMPER_EXPECT_TRUE( vec.z == 2.0 );
-	TEMPER_EXPECT_TRUE( vec.w == 3.0 );
-
-	TEMPER_PASS();
+	TEMPER_CHECK_TRUE( vec.x == 0.0 );
+	TEMPER_CHECK_TRUE( vec.y == 1.0 );
+	TEMPER_CHECK_TRUE( vec.z == 2.0 );
+	TEMPER_CHECK_TRUE( vec.w == 3.0 );
 }
 
-TEMPER_TEST( TestArithmeticAddition_double4 )
+TEMPER_TEST( TestArithmeticAddition_double4, TEMPER_FLAG_SHOULD_RUN )
 {
 	double4 a = (double4)	{ 6.000000, 6.000000, 6.000000, 6.000000 };
 	double4 b = (double4)	{ 2.000000, 3.000000, 4.000000, 5.000000 };
 	double4 c = double4_caddv( &a, &b );
 
-	TEMPER_EXPECT_TRUE( c.x == 8.0 );
-	TEMPER_EXPECT_TRUE( c.y == 9.0 );
-	TEMPER_EXPECT_TRUE( c.z == 10.0 );
-	TEMPER_EXPECT_TRUE( c.w == 11.0 );
-
-	TEMPER_PASS();
+	TEMPER_CHECK_TRUE( c.x == 8.0 );
+	TEMPER_CHECK_TRUE( c.y == 9.0 );
+	TEMPER_CHECK_TRUE( c.z == 10.0 );
+	TEMPER_CHECK_TRUE( c.w == 11.0 );
 }
 
-TEMPER_TEST( TestArithmeticSubtraction_double4 )
+TEMPER_TEST( TestArithmeticSubtraction_double4, TEMPER_FLAG_SHOULD_RUN )
 {
 	double4 a = (double4)	{ 6.000000, 6.000000, 6.000000, 6.000000 };
 	double4 b = (double4)	{ 2.000000, 3.000000, 4.000000, 5.000000 };
 	double4 c = double4_csubv( &a, &b );
 
-	TEMPER_EXPECT_TRUE( c.x == 4.0 );
-	TEMPER_EXPECT_TRUE( c.y == 3.0 );
-	TEMPER_EXPECT_TRUE( c.z == 2.0 );
-	TEMPER_EXPECT_TRUE( c.w == 1.0 );
-
-	TEMPER_PASS();
+	TEMPER_CHECK_TRUE( c.x == 4.0 );
+	TEMPER_CHECK_TRUE( c.y == 3.0 );
+	TEMPER_CHECK_TRUE( c.z == 2.0 );
+	TEMPER_CHECK_TRUE( c.w == 1.0 );
 }
 
-TEMPER_TEST( TestArithmeticMultiplication_double4 )
+TEMPER_TEST( TestArithmeticMultiplication_double4, TEMPER_FLAG_SHOULD_RUN )
 {
 	double4 a = (double4)	{ 6.000000, 6.000000, 6.000000, 6.000000 };
 	double4 b = (double4)	{ 2.000000, 3.000000, 4.000000, 5.000000 };
 	double4 c = double4_cmulv( &a, &b );
 
-	TEMPER_EXPECT_TRUE( c.x == 12.0 );
-	TEMPER_EXPECT_TRUE( c.y == 18.0 );
-	TEMPER_EXPECT_TRUE( c.z == 24.0 );
-	TEMPER_EXPECT_TRUE( c.w == 30.0 );
-
-	TEMPER_PASS();
+	TEMPER_CHECK_TRUE( c.x == 12.0 );
+	TEMPER_CHECK_TRUE( c.y == 18.0 );
+	TEMPER_CHECK_TRUE( c.z == 24.0 );
+	TEMPER_CHECK_TRUE( c.w == 30.0 );
 }
 
-TEMPER_TEST( TestArithmeticDivision_double4 )
+TEMPER_TEST( TestArithmeticDivision_double4, TEMPER_FLAG_SHOULD_RUN )
 {
 	double4 a = (double4)	{ 6.000000, 6.000000, 6.000000, 6.000000 };
 	double4 b = (double4)	{ 2.000000, 2.000000, 3.000000, 6.000000 };
 	double4 c = double4_cdivv( &a, &b );
 
-	TEMPER_EXPECT_TRUE( c.x == 3.0 );
-	TEMPER_EXPECT_TRUE( c.y == 3.0 );
-	TEMPER_EXPECT_TRUE( c.z == 2.0 );
-	TEMPER_EXPECT_TRUE( c.w == 1.0 );
-
-	TEMPER_PASS();
+	TEMPER_CHECK_TRUE( c.x == 3.0 );
+	TEMPER_CHECK_TRUE( c.y == 3.0 );
+	TEMPER_CHECK_TRUE( c.z == 2.0 );
+	TEMPER_CHECK_TRUE( c.w == 1.0 );
 }
 
-TEMPER_TEST( TestRelational_double4 )
+TEMPER_TEST( TestRelational_double4, TEMPER_FLAG_SHOULD_RUN )
 {
 	bool4 allTrue = (bool4)	{ true, true, true, true };
 
@@ -146,100 +136,86 @@ TEMPER_TEST( TestRelational_double4 )
 	bool4 test18 = double4_cmple( &vec3, &vec3 );
 	bool4 test19 = double4_cmpge( &vec3, &vec3 );
 
-	TEMPER_EXPECT_TRUE( bool4_cmpe( &test0,  &allTrue ) );
-	TEMPER_EXPECT_TRUE( bool4_cmpe( &test1,  &allTrue ) );
-	TEMPER_EXPECT_TRUE( bool4_cmpe( &test2,  &allTrue ) );
-	TEMPER_EXPECT_TRUE( bool4_cmpe( &test3,  &allTrue ) );
-	TEMPER_EXPECT_TRUE( bool4_cmpe( &test4,  &allTrue ) );
+	TEMPER_CHECK_TRUE( bool4_cmpe( &test0,  &allTrue ) );
+	TEMPER_CHECK_TRUE( bool4_cmpe( &test1,  &allTrue ) );
+	TEMPER_CHECK_TRUE( bool4_cmpe( &test2,  &allTrue ) );
+	TEMPER_CHECK_TRUE( bool4_cmpe( &test3,  &allTrue ) );
+	TEMPER_CHECK_TRUE( bool4_cmpe( &test4,  &allTrue ) );
 
-	TEMPER_EXPECT_TRUE( bool4_cmpe( &test5,  &allTrue ) );
-	TEMPER_EXPECT_TRUE( bool4_cmpe( &test6,  &allTrue ) );
-	TEMPER_EXPECT_TRUE( bool4_cmpe( &test7,  &allTrue ) );
-	TEMPER_EXPECT_TRUE( bool4_cmpe( &test8,  &allTrue ) );
-	TEMPER_EXPECT_TRUE( bool4_cmpe( &test9,  &allTrue ) );
+	TEMPER_CHECK_TRUE( bool4_cmpe( &test5,  &allTrue ) );
+	TEMPER_CHECK_TRUE( bool4_cmpe( &test6,  &allTrue ) );
+	TEMPER_CHECK_TRUE( bool4_cmpe( &test7,  &allTrue ) );
+	TEMPER_CHECK_TRUE( bool4_cmpe( &test8,  &allTrue ) );
+	TEMPER_CHECK_TRUE( bool4_cmpe( &test9,  &allTrue ) );
 
-	TEMPER_EXPECT_TRUE( bool4_cmpe( &test10, &allTrue ) );
-	TEMPER_EXPECT_TRUE( bool4_cmpe( &test11, &allTrue ) );
-	TEMPER_EXPECT_TRUE( bool4_cmpe( &test12, &allTrue ) );
-	TEMPER_EXPECT_TRUE( bool4_cmpe( &test13, &allTrue ) );
-	TEMPER_EXPECT_TRUE( bool4_cmpe( &test14, &allTrue ) );
+	TEMPER_CHECK_TRUE( bool4_cmpe( &test10, &allTrue ) );
+	TEMPER_CHECK_TRUE( bool4_cmpe( &test11, &allTrue ) );
+	TEMPER_CHECK_TRUE( bool4_cmpe( &test12, &allTrue ) );
+	TEMPER_CHECK_TRUE( bool4_cmpe( &test13, &allTrue ) );
+	TEMPER_CHECK_TRUE( bool4_cmpe( &test14, &allTrue ) );
 
-	TEMPER_EXPECT_TRUE( bool4_cmpe( &test15, &allTrue ) );
-	TEMPER_EXPECT_TRUE( bool4_cmpe( &test16, &allTrue ) );
-	TEMPER_EXPECT_TRUE( bool4_cmpe( &test17, &allTrue ) );
-	TEMPER_EXPECT_TRUE( bool4_cmpe( &test18, &allTrue ) );
-	TEMPER_EXPECT_TRUE( bool4_cmpe( &test19, &allTrue ) );
-
-	TEMPER_PASS();
+	TEMPER_CHECK_TRUE( bool4_cmpe( &test15, &allTrue ) );
+	TEMPER_CHECK_TRUE( bool4_cmpe( &test16, &allTrue ) );
+	TEMPER_CHECK_TRUE( bool4_cmpe( &test17, &allTrue ) );
+	TEMPER_CHECK_TRUE( bool4_cmpe( &test18, &allTrue ) );
+	TEMPER_CHECK_TRUE( bool4_cmpe( &test19, &allTrue ) );
 }
 
-TEMPER_TEST( TestLength_Scalar_double4 )
+TEMPER_TEST( TestLength_Scalar_double4, TEMPER_FLAG_SHOULD_RUN )
 {
 	double4 vec = (double4) { 2.0, 2.0, 2.0, 2.0 };
 
-	TEMPER_EXPECT_TRUE( doubleeq( double4_lengthsqr( &vec ), 16.0 ) );
-	TEMPER_EXPECT_TRUE( doubleeq( double4_length( &vec ), 4.0 ) );
-
-	TEMPER_PASS();
+	TEMPER_CHECK_TRUE( doubleeq( double4_lengthsqr( &vec ), 16.0 ) );
+	TEMPER_CHECK_TRUE( doubleeq( double4_length( &vec ), 4.0 ) );
 }
 
-TEMPER_TEST( TestNormalized_Scalar_double4 )
+TEMPER_TEST( TestNormalized_Scalar_double4, TEMPER_FLAG_SHOULD_RUN )
 {
 	double4 vec = (double4) { 5.000000, 4.000000, 3.000000, 2.000000 };
 	vec = double4_normalized( &vec );
 
 	double veclen = double4_length( &vec );
-	TEMPER_EXPECT_TRUE( doubleeq( veclen, 1.0 ) );
-
-	TEMPER_PASS();
+	TEMPER_CHECK_TRUE( doubleeq( veclen, 1.0 ) );
 }
 
-TEMPER_TEST( TestDot_Scalar_double4 )
+TEMPER_TEST( TestDot_Scalar_double4, TEMPER_FLAG_SHOULD_RUN )
 {
 	double4 a = (double4) { 0.000000, 1.000000, 0.000000, 0.000000 };
 	double4 b = (double4) { 0.000000, -1.000000, 0.000000, 0.000000 };
 
-	TEMPER_EXPECT_TRUE( doubleeq( double4_dot( &a, &b ), -1.0 ) );
-
-	TEMPER_PASS();
+	TEMPER_CHECK_TRUE( doubleeq( double4_dot( &a, &b ), -1.0 ) );
 }
 
-TEMPER_TEST( TestCross_Scalar_double4 )
+TEMPER_TEST( TestCross_Scalar_double4, TEMPER_FLAG_SHOULD_RUN )
 {
 	double4 left    = (double4) { -1.000000, 0.000000, 0.000000, 0.000000 };
 	double4 forward = (double4) { 0.000000, 0.000000, 1.000000, 0.000000 };
 	double4 up      = (double4) { 0.000000, 1.000000, 0.000000, 0.000000 };
 
 	double4 vecCross = double4_cross( &left, &forward );
-	TEMPER_EXPECT_TRUE( double4_cmpe( &vecCross, &up ) );
-
-	TEMPER_PASS();
+	TEMPER_CHECK_TRUE( double4_cmpe( &vecCross, &up ) );
 }
 
-TEMPER_TEST( TestAngle_Scalar_double4 )
+TEMPER_TEST( TestAngle_Scalar_double4, TEMPER_FLAG_SHOULD_RUN )
 {
 	double4 right = (double4) { 1.000000, 0.000000, 0.000000, 0.000000 };
 	double4 up    = (double4) { 0.000000, 1.000000, 0.000000, 0.000000 };
 
 double angleDeg = double4_angle( &up, &right );
-	TEMPER_EXPECT_TRUE( doubleeq( angleDeg, 90.0 ) );
-
-	TEMPER_PASS();
+	TEMPER_CHECK_TRUE( doubleeq( angleDeg, 90.0 ) );
 }
 
-TEMPER_TEST( TestSaturate_double4 )
+TEMPER_TEST( TestSaturate_double4, TEMPER_FLAG_SHOULD_RUN )
 {
 	double4 answer = (double4) { 0.000000, 1.000000, 1.000000, 1.000000 };
 
 	double4 vec = (double4) { -1.000000, 2.000000, 4.000000, 6.000000 };
 	double4 clamped = double4_saturate( &vec );
 
-	TEMPER_EXPECT_TRUE( double4_cmpe( &clamped, &answer ) );
-
-	TEMPER_PASS();
+	TEMPER_CHECK_TRUE( double4_cmpe( &clamped, &answer ) );
 }
 
-TEMPER_TEST( TestLerp_double4 )
+TEMPER_TEST( TestLerp_double4, TEMPER_FLAG_SHOULD_RUN )
 {
 	double4 answer = (double4) { 0.500000, 0.500000, 0.000000, 0.000000 };
 
@@ -247,12 +223,10 @@ TEMPER_TEST( TestLerp_double4 )
 	double4 b = (double4) { 1.000000, 0.000000, 0.000000, 0.000000 };
 	double4 lerped = double4_lerp( &a, &b, 0.5 );
 
-	TEMPER_EXPECT_TRUE( double4_cmpe( &lerped, &answer ) );
-
-	TEMPER_PASS();
+	TEMPER_CHECK_TRUE( double4_cmpe( &lerped, &answer ) );
 }
 
-TEMPER_TEST( TestStep_double4 )
+TEMPER_TEST( TestStep_double4, TEMPER_FLAG_SHOULD_RUN )
 {
 	double4 answer = (double4) { 1.000000, 1.000000, 0.000000, 0.000000 };
 
@@ -260,12 +234,10 @@ TEMPER_TEST( TestStep_double4 )
 	double4 b = (double4) { 4.000000, 3.000000, 2.000000, 1.000000 };
 
 	double4 answerStep = double4_step( &a, &b );
-	TEMPER_EXPECT_TRUE( double4_cmpe( &answerStep, &answer ) );
-
-	TEMPER_PASS();
+	TEMPER_CHECK_TRUE( double4_cmpe( &answerStep, &answer ) );
 }
 
-TEMPER_TEST( TestSmoothstep_double4 )
+TEMPER_TEST( TestSmoothstep_double4, TEMPER_FLAG_SHOULD_RUN )
 {
 	double4 answerInRangeSmoothstep   = (double4) { 0.104000, 0.104000, 0.104000, 0.104000 };
 	double4 answerClampedSmoothstep   = (double4) { 1.000000, 1.000000, 1.000000, 1.000000 };
@@ -279,38 +251,18 @@ TEMPER_TEST( TestSmoothstep_double4 )
 
 	vec = (double4) { 0.200000, 0.200000, 0.200000, 0.200000 };
 	answer = double4_smoothstep( &low, &high, &vec );
-	TEMPER_EXPECT_TRUE( double4_cmpe( &answer, &answerInRangeSmoothstep ) );
+	TEMPER_CHECK_TRUE( double4_cmpe( &answer, &answerInRangeSmoothstep ) );
 
 	vec = (double4) { 1.200000, 1.200000, 1.200000, 1.200000 };
 	answer = double4_smoothstep( &low, &high, &vec );
-	TEMPER_EXPECT_TRUE( double4_cmpe( &answer, &answerClampedSmoothstep ) );
+	TEMPER_CHECK_TRUE( double4_cmpe( &answer, &answerClampedSmoothstep ) );
 
 	vec = (double4) { 0.200000, 0.200000, 0.200000, 0.200000 };
 	answer = double4_smootherstep( &low, &high, &vec );
-	TEMPER_EXPECT_TRUE( double4_cmpe( &answer, &answerInRangeSmootherstep ) );
+	TEMPER_CHECK_TRUE( double4_cmpe( &answer, &answerInRangeSmootherstep ) );
 
 	vec = (double4) { 1.200000, 1.200000, 1.200000, 1.200000 };
 	answer = double4_smootherstep( &low, &high, &vec );
-	TEMPER_EXPECT_TRUE( double4_cmpe( &answer, &answerClampedSmootherstep ) );
-
-	TEMPER_PASS();
+	TEMPER_CHECK_TRUE( double4_cmpe( &answer, &answerClampedSmootherstep ) );
 }
 
-TEMPER_SUITE( Test_double4 )
-{
-	TEMPER_RUN_TEST( TestAssignment_double4 );
-	TEMPER_RUN_TEST( TestArithmeticAddition_double4 );
-	TEMPER_RUN_TEST( TestArithmeticSubtraction_double4 );
-	TEMPER_RUN_TEST( TestArithmeticMultiplication_double4 );
-	TEMPER_RUN_TEST( TestArithmeticDivision_double4 );
-	TEMPER_RUN_TEST( TestRelational_double4 );
-	TEMPER_RUN_TEST( TestLength_Scalar_double4 );
-	TEMPER_RUN_TEST( TestNormalized_Scalar_double4 );
-	TEMPER_RUN_TEST( TestDot_Scalar_double4 );
-	TEMPER_RUN_TEST( TestCross_Scalar_double4 );
-	TEMPER_RUN_TEST( TestAngle_Scalar_double4 );
-	TEMPER_RUN_TEST( TestSaturate_double4 );
-	TEMPER_RUN_TEST( TestLerp_double4 );
-	TEMPER_RUN_TEST( TestStep_double4 );
-	TEMPER_RUN_TEST( TestSmoothstep_double4 );
-}

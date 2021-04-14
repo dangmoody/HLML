@@ -162,7 +162,7 @@ static void GetTestCodeComponentWiseArithmeticInternalScalar( stringBuilder_t* c
 		String_Append(  code, "\n" );
 		String_Appendf( code, "\t%s c = %s( &a, &b );\n", fullTypeName, compFuncStr );
 		String_Append(  code, "\n" );
-		String_Appendf( code, "\tTEMPER_EXPECT_TRUE( %s( &c, &answer ) );\n", equalsFuncStr );
+		String_Appendf( code, "\tTEMPER_CHECK_TRUE( %s( &c, &answer ) );\n", equalsFuncStr );
 	} else {
 		String_Appendf( code, "\t%s answer = %s(\n", fullTypeName, fullTypeName );
 		String_Append(  code, parmListAnswer );
@@ -178,10 +178,8 @@ static void GetTestCodeComponentWiseArithmeticInternalScalar( stringBuilder_t* c
 		String_Append(  code, "\n" );
 		String_Appendf( code, "\t%s c = %s( a, b );\n", fullTypeName, compFuncStr );
 		String_Append(  code, "\n" );
-		String_Append(  code, "\tTEMPER_EXPECT_TRUE( c == answer );\n" );
+		String_Append(  code, "\tTEMPER_CHECK_TRUE( c == answer );\n" );
 	}
-	String_Append(  code, "\n" );
-	String_Append(  code, "\tTEMPER_PASS();\n" );
 }
 
 static void GetTestCodeOperatorArithmeticInternalSSE( stringBuilder_t* code, const genLanguage_t language, const genType_t type, const u32 numRows, const u32 numCols, const char* fullTypeName, const char* memberTypeString,
@@ -282,13 +280,12 @@ static void GetTestCodeOperatorArithmeticInternalSSE( stringBuilder_t* code, con
 			String_Appendf( code, "\t%s( arithmeticResults, results.m[%d][%d] );\n", storeFuncStr, row, col );
 
 			for ( u32 componentIndex = 0; componentIndex < 4; componentIndex++ ) {
-				String_Appendf( code, "\tTEMPER_EXPECT_TRUE( %s( arithmeticResults[%d], %s ) );\n", floateqStr, componentIndex, answerStr );
+				String_Appendf( code, "\tTEMPER_CHECK_TRUE( %s( arithmeticResults[%d], %s ) );\n", floateqStr, componentIndex, answerStr );
 			}
 
 			String_Append( code, "\n" );
 		}
 	}
-	String_Append(  code, "\tTEMPER_PASS();\n" );
 }
 
 static void GetParmListMatrixMultiply( const genType_t type, const u32 numCols, const u32 returnTypeRows, const u32 returnTypeCols,
@@ -353,10 +350,9 @@ static void GetParmListMatrixMultiply( const genType_t type, const u32 numCols, 
 }
 
 
-static void GenerateTestAssignment( stringBuilder_t* codeTests, stringBuilder_t* codeSuite, const genLanguage_t language, const genType_t type, const u32 numRows, const u32 numCols,
+static void GenerateTestAssignment( stringBuilder_t* codeTests, const genLanguage_t language, const genType_t type, const u32 numRows, const u32 numCols,
 	const char* fullTypeName, const char* vectorTypeString ) {
 	assert( codeTests );
-	assert( codeSuite );
 	assert( numRows >= GEN_COMPONENT_COUNT_MIN );
 	assert( numRows <= GEN_COMPONENT_COUNT_MAX );
 	assert( numCols >= GEN_COMPONENT_COUNT_MIN );
@@ -376,7 +372,7 @@ static void GenerateTestAssignment( stringBuilder_t* codeTests, stringBuilder_t*
 		{ 0.0f,      0.0f,      0.0f,      fillValue }
 	};
 
-	String_Appendf( codeTests, "TEMPER_TEST( %s )\n", testName );
+	String_Appendf( codeTests, "TEMPER_TEST( %s, TEMPER_FLAG_SHOULD_RUN )\n", testName );
 	String_Append(  codeTests, "{\n" );
 	String_Appendf( codeTests, "\t%s mat;\n", fullTypeName );
 	String_Append(  codeTests, "\n" );
@@ -403,22 +399,17 @@ static void GenerateTestAssignment( stringBuilder_t* codeTests, stringBuilder_t*
 			char valueStr[GEN_STRING_LENGTH_NUMERIC_LITERAL];
 			Gen_GetNumericLiteral( type, valuesIdentity[row][col], valueStr, 1 );
 
-			String_Appendf( codeTests, "\tTEMPER_EXPECT_TRUE( mat.rows[%d].%c == %s );\n", row, componentStr, valueStr );
+			String_Appendf( codeTests, "\tTEMPER_CHECK_TRUE( mat.rows[%d].%c == %s );\n", row, componentStr, valueStr );
 		}
 	}
-	String_Append( codeTests, "\n" );
-	String_Append( codeTests, "\tTEMPER_PASS();\n" );
 	String_Append( codeTests, "}\n" );
 	String_Append( codeTests, "\n" );
-
-	String_Appendf( codeSuite, "\tTEMPER_RUN_TEST( %s );\n", testName );
 }
 
 // DM!!! test all ctors
-static void GenerateTestCtor( stringBuilder_t* codeTests, stringBuilder_t* codeSuite, const genType_t type, const u32 numRows, const u32 numCols,
+static void GenerateTestCtor( stringBuilder_t* codeTests, const genType_t type, const u32 numRows, const u32 numCols,
 	const char* fullTypeName, const char* vectorTypeString ) {
 	assert( codeTests );
-	assert( codeSuite );
 	assert( numRows >= GEN_COMPONENT_COUNT_MIN );
 	assert( numRows <= GEN_COMPONENT_COUNT_MAX );
 	assert( numCols >= GEN_COMPONENT_COUNT_MIN );
@@ -461,7 +452,7 @@ static void GenerateTestCtor( stringBuilder_t* codeTests, stringBuilder_t* codeS
 	char parmListValuesReversed[GEN_STRING_LENGTH_PARM_LIST_MATRIX]	= { 0 };
 	Gen_GetParmListMatrix( type, numRows, numCols, valuesReversed, parmListValuesReversed );
 
-	String_Appendf( codeTests, "TEMPER_TEST( %s )\n", testName );
+	String_Appendf( codeTests, "TEMPER_TEST( %s, TEMPER_FLAG_SHOULD_RUN )\n", testName );
 	String_Append(  codeTests, "{\n" );
 	String_Appendf( codeTests, "\t%s mat;\n", fullTypeName );
 	String_Append(  codeTests, "\n" );
@@ -471,7 +462,7 @@ static void GenerateTestCtor( stringBuilder_t* codeTests, stringBuilder_t* codeS
 		char parmList[GEN_STRING_LENGTH_PARM_LIST_VECTOR] = { 0 };
 		Gen_GetParmListVector( type, numCols, valuesIdentity[row], parmList );
 
-		String_Appendf( codeTests, "\tTEMPER_EXPECT_TRUE( mat[%d] == %s( %s ) );\n", row, vectorTypeString, parmList );
+		String_Appendf( codeTests, "\tTEMPER_CHECK_TRUE( mat[%d] == %s( %s ) );\n", row, vectorTypeString, parmList );
 	}
 	String_Append( codeTests, "\n" );
 
@@ -494,7 +485,7 @@ static void GenerateTestCtor( stringBuilder_t* codeTests, stringBuilder_t* codeS
 		char parmList[GEN_STRING_LENGTH_PARM_LIST_VECTOR] = { 0 };
 		Gen_GetParmListVector( type, numCols, values[row], parmList );
 
-		String_Appendf( codeTests, "\tTEMPER_EXPECT_TRUE( mat[%d] == %s( %s ) );\n", row, vectorTypeString, parmList );
+		String_Appendf( codeTests, "\tTEMPER_CHECK_TRUE( mat[%d] == %s( %s ) );\n", row, vectorTypeString, parmList );
 	}
 	String_Append( codeTests, "\n" );
 
@@ -506,21 +497,15 @@ static void GenerateTestCtor( stringBuilder_t* codeTests, stringBuilder_t* codeS
 		char parmList[GEN_STRING_LENGTH_PARM_LIST_VECTOR] = { 0 };
 		Gen_GetParmListVector( type, numCols, valuesReversed[row], parmList );
 
-		String_Appendf( codeTests, "\tTEMPER_EXPECT_TRUE( mat[%d] == %s( %s ) );\n", row, vectorTypeString, parmList );
+		String_Appendf( codeTests, "\tTEMPER_CHECK_TRUE( mat[%d] == %s( %s ) );\n", row, vectorTypeString, parmList );
 	}
-	String_Append( codeTests, "\n" );
-
-	String_Append( codeTests, "\tTEMPER_PASS();\n" );
 	String_Append( codeTests, "}\n" );
 	String_Append( codeTests, "\n" );
-
-	String_Appendf( codeSuite, "\tTEMPER_RUN_TEST( %s );\n", testName );
 }
 
-static void GenerateTestComponentWiseArithmetic( stringBuilder_t* codeTests, stringBuilder_t* codeSuite, const genLanguage_t language, const genType_t type, const u32 numRows, const u32 numCols,
+static void GenerateTestComponentWiseArithmetic( stringBuilder_t* codeTests, const genLanguage_t language, const genType_t type, const u32 numRows, const u32 numCols,
 	const char* fullTypeName, const char* memberTypeString ) {
 	assert( codeTests );
-	assert( codeSuite );
 	assert( numRows >= GEN_COMPONENT_COUNT_MIN );
 	assert( numRows <= GEN_COMPONENT_COUNT_MAX );
 	assert( numCols >= GEN_COMPONENT_COUNT_MIN );
@@ -560,13 +545,11 @@ static void GenerateTestComponentWiseArithmetic( stringBuilder_t* codeTests, str
 
 		genOpArithmetic_t op = (genOpArithmetic_t) i;
 
-		String_Appendf( codeTests, "TEMPER_TEST( %s )\n", testNames[op] );
+		String_Appendf( codeTests, "TEMPER_TEST( %s, TEMPER_FLAG_SHOULD_RUN )\n", testNames[op] );
 		String_Append(  codeTests, "{\n" );
 		GetTestCodeComponentWiseArithmeticInternalScalar( codeTests, language, type, numRows, numCols, fullTypeName, op, valuesLhs, valuesRhs );
 		String_Append( codeTests, "}\n" );
 		String_Append( codeTests, "\n" );
-
-		String_Appendf( codeSuite, "\tTEMPER_RUN_TEST( %s );\n", testNames[i] );
 	}
 
 	if ( Gen_TypeSupportsSSE( type ) ) {
@@ -575,21 +558,18 @@ static void GenerateTestComponentWiseArithmetic( stringBuilder_t* codeTests, str
 
 			genOpArithmetic_t op = (genOpArithmetic_t) i;
 
-			String_Appendf( codeTests, "TEMPER_TEST( %s )\n", testNames[op] );
+			String_Appendf( codeTests, "TEMPER_TEST( %s, TEMPER_FLAG_SHOULD_RUN )\n", testNames[op] );
 			String_Append( codeTests, "{\n" );
 			GetTestCodeOperatorArithmeticInternalSSE( codeTests, language, type, numRows, numCols, fullTypeName, memberTypeString, op, valuesLhs, valuesRhs );
 			String_Append( codeTests, "}\n" );
 			String_Append( codeTests, "\n" );
-
-			String_Appendf( codeSuite, "\tTEMPER_RUN_TEST( %s );\n", testNames[i] );
 		}
 	}
 }
 
-static void GenerateTestMultiplyVector( stringBuilder_t* codeTests, stringBuilder_t* codeSuite, const genLanguage_t language, const genType_t type, const u32 numRows, const u32 numCols,
+static void GenerateTestMultiplyVector( stringBuilder_t* codeTests, const genLanguage_t language, const genType_t type, const u32 numRows, const u32 numCols,
 	const char* fullTypeName, const char* vectorTypeString ) {
 	assert( codeTests );
-	assert( codeSuite );
 	assert( numRows >= GEN_COMPONENT_COUNT_MIN );
 	assert( numRows <= GEN_COMPONENT_COUNT_MAX );
 	assert( numCols >= GEN_COMPONENT_COUNT_MIN );
@@ -663,7 +643,7 @@ static void GenerateTestMultiplyVector( stringBuilder_t* codeTests, stringBuilde
 	char equalsVectorFuncStr[GEN_STRING_LENGTH_FUNCTION_NAME];
 	Gen_GetFuncNameEquals( language, type, 1, numCols, equalsVectorFuncStr );
 
-	String_Appendf( codeTests, "TEMPER_TEST( %s )\n", testName );
+	String_Appendf( codeTests, "TEMPER_TEST( %s, TEMPER_FLAG_SHOULD_RUN )\n", testName );
 	String_Append(  codeTests, "{\n" );
 	String_Appendf( codeTests, "\t%s answerVec = { %s };\n", vectorTypeString, parmListVecAnswer );
 	String_Append(  codeTests, "\n" );
@@ -674,7 +654,7 @@ static void GenerateTestMultiplyVector( stringBuilder_t* codeTests, stringBuilde
 		String_Appendf( codeTests, "\t%s b = { %s };\n", vectorTypeString, parmListVec );
 		String_Appendf( codeTests, "\t%s c = %s( &a, &b );\n", vectorTypeString, mulVectorFuncStr );
 		String_Append(  codeTests, "\n" );
-		String_Appendf( codeTests, "\tTEMPER_EXPECT_TRUE( %s( &c, &answerVec ) );\n", equalsVectorFuncStr );
+		String_Appendf( codeTests, "\tTEMPER_CHECK_TRUE( %s( &c, &answerVec ) );\n", equalsVectorFuncStr );
 	} else {
 		String_Appendf( codeTests, "\t%s a = %s(\n", fullTypeName, fullTypeName );
 		String_Appendf( codeTests, "%s", parmListMat );
@@ -682,20 +662,15 @@ static void GenerateTestMultiplyVector( stringBuilder_t* codeTests, stringBuilde
 		String_Appendf( codeTests, "\t%s b = { %s };\n", vectorTypeString, parmListVec );
 		String_Appendf( codeTests, "\t%s c = a %c b;\n", vectorTypeString, GEN_OPERATORS_ARITHMETIC[GEN_OP_ARITHMETIC_MUL] );
 		String_Append(  codeTests, "\n" );
-		String_Append(  codeTests, "\tTEMPER_EXPECT_TRUE( c == answerVec );\n" );
+		String_Append(  codeTests, "\tTEMPER_CHECK_TRUE( c == answerVec );\n" );
 	}
-	String_Append(  codeTests, "\n" );
-	String_Append(  codeTests, "\tTEMPER_PASS();\n" );
 	String_Append(  codeTests, "}\n" );
 	String_Append(  codeTests, "\n" );
-
-	String_Appendf( codeSuite, "\tTEMPER_RUN_TEST( %s );\n", testName );
 }
 
-static void GenerateTestMultiplyMatrix( stringBuilder_t* codeTests, stringBuilder_t* codeSuite, const genLanguage_t language, const genType_t type, const u32 numRows, const u32 numCols,
+static void GenerateTestMultiplyMatrix( stringBuilder_t* codeTests, const genLanguage_t language, const genType_t type, const u32 numRows, const u32 numCols,
 	const char* fullTypeName, const char* typeString, const char* memberTypeString ) {
 	assert( codeTests );
-	assert( codeSuite );
 	assert( numRows >= GEN_COMPONENT_COUNT_MIN );
 	assert( numRows <= GEN_COMPONENT_COUNT_MAX );
 	assert( numCols >= GEN_COMPONENT_COUNT_MIN );
@@ -733,7 +708,7 @@ static void GenerateTestMultiplyMatrix( stringBuilder_t* codeTests, stringBuilde
 	char equalsFuncStr[GEN_STRING_LENGTH_FUNCTION_NAME];
 	Gen_GetFuncNameEquals( language, type, returnTypeRows, returnTypeCols, equalsFuncStr );
 
-	String_Appendf( codeTests, "TEMPER_TEST( %s )\n", testName );
+	String_Appendf( codeTests, "TEMPER_TEST( %s, TEMPER_FLAG_SHOULD_RUN )\n", testName );
 	String_Append(  codeTests, "{\n" );
 	String_Appendf( codeTests, "\t%s answer = g_matrixMulAnswer_%s;\n", returnTypeName, fullTypeName );
 	String_Append(  codeTests, "\n" );
@@ -742,18 +717,14 @@ static void GenerateTestMultiplyMatrix( stringBuilder_t* codeTests, stringBuilde
 	if ( language == GEN_LANGUAGE_C ) {
 		String_Appendf( codeTests, "\t%s c = %s( &a, &b );\n", returnTypeName, mulFuncStr );
 		String_Append(  codeTests, "\n" );
-		String_Appendf( codeTests, "\tTEMPER_EXPECT_TRUE( %s( &c, &answer ) );\n", equalsFuncStr );
+		String_Appendf( codeTests, "\tTEMPER_CHECK_TRUE( %s( &c, &answer ) );\n", equalsFuncStr );
 	} else {
 		String_Appendf( codeTests, "\t%s c = a %c b;\n", returnTypeName, GEN_OPERATORS_ARITHMETIC[GEN_OP_ARITHMETIC_MUL] );
 		String_Append(  codeTests, "\n" );
-		String_Append(  codeTests, "\tTEMPER_EXPECT_TRUE( c == answer );\n" );
+		String_Append(  codeTests, "\tTEMPER_CHECK_TRUE( c == answer );\n" );
 	}
-	String_Append(  codeTests, "\n" );
-	String_Append(  codeTests, "\tTEMPER_PASS();\n" );
 	String_Append(  codeTests, "}\n" );
 	String_Append(  codeTests, "\n" );
-
-	String_Appendf( codeSuite, "\tTEMPER_RUN_TEST( %s );\n", testName );
 
 	if ( Gen_TypeSupportsSSE( type ) ) {
 		snprintf( testName, GEN_STRING_LENGTH_TEST_NAME, "TestMultiplyMatrix_SSE_%s", fullTypeName );
@@ -773,7 +744,7 @@ static void GenerateTestMultiplyMatrix( stringBuilder_t* codeTests, stringBuilde
 		char mulFuncStrSSE[GEN_STRING_LENGTH_FUNCTION_NAME];
 		Gen_SSE_GetFuncNameMatrixMultiply( language, type, numRows, numCols, mulFuncStrSSE );
 
-		String_Appendf( codeTests, "TEMPER_TEST( %s )\n", testName );
+		String_Appendf( codeTests, "TEMPER_TEST( %s, TEMPER_FLAG_SHOULD_RUN )\n", testName );
 		String_Append(  codeTests, "{\n" );
 		for ( u32 row = 0; row < numRows; row++ ) {
 			for ( u32 col = 0; col < numCols; col++ ) {
@@ -823,24 +794,19 @@ static void GenerateTestMultiplyMatrix( stringBuilder_t* codeTests, stringBuilde
 				for ( u32 componentIndex = 0; componentIndex < 4; componentIndex++ ) {
 					char componentStr = GEN_COMPONENT_NAMES_VECTOR[col];
 
-					String_Appendf( codeTests, "\tTEMPER_EXPECT_TRUE( %s( mulResults[%d], g_matrixMulAnswer_%s.rows[%d].%c ) );\n", floateqStr, componentIndex, fullTypeName, row, componentStr );
+					String_Appendf( codeTests, "\tTEMPER_CHECK_TRUE( %s( mulResults[%d], g_matrixMulAnswer_%s.rows[%d].%c ) );\n", floateqStr, componentIndex, fullTypeName, row, componentStr );
 				}
 
 				String_Append( codeTests, "\n" );
 			}
 		}
-		String_Append(  codeTests, "\n" );
-		String_Append(  codeTests, "\tTEMPER_PASS();\n" );
 		String_Append(  codeTests, "}\n" );
 		String_Append(  codeTests, "\n" );
-
-		String_Appendf( codeSuite, "\tTEMPER_RUN_TEST( %s );\n", testName );
 	}
 }
 
-static void GenerateTestDivideMatrix( stringBuilder_t* codeTests, stringBuilder_t* codeSuite, const genLanguage_t language, const genType_t type, const u32 numRows, const u32 numCols, const char* fullTypeName ) {
+static void GenerateTestDivideMatrix( stringBuilder_t* codeTests, const genLanguage_t language, const genType_t type, const u32 numRows, const u32 numCols, const char* fullTypeName ) {
 	assert( codeTests );
-	assert( codeSuite );
 	assert( numRows >= GEN_COMPONENT_COUNT_MIN );
 	assert( numRows <= GEN_COMPONENT_COUNT_MAX );
 	assert( numCols >= GEN_COMPONENT_COUNT_MIN );
@@ -885,7 +851,7 @@ static void GenerateTestDivideMatrix( stringBuilder_t* codeTests, stringBuilder_
 	char equalsFuncStr[GEN_STRING_LENGTH_FUNCTION_NAME];
 	Gen_GetFuncNameEquals( language, type, numRows, numCols, equalsFuncStr );
 
-	String_Appendf( codeTests, "TEMPER_TEST( %s )\n", testName );
+	String_Appendf( codeTests, "TEMPER_TEST( %s, TEMPER_FLAG_SHOULD_RUN )\n", testName );
 	String_Append(  codeTests, "{\n" );
 	String_Appendf( codeTests, "\t%s answer = %s( %s );\n", fullTypeName, fullTypeName, parmListAnswer );
 	String_Append(  codeTests, "\n" );
@@ -893,18 +859,13 @@ static void GenerateTestDivideMatrix( stringBuilder_t* codeTests, stringBuilder_
 	String_Appendf( codeTests, "\t%s b = %s( %s );\n", fullTypeName, fullTypeName, parmListRhs );
 	String_Appendf( codeTests, "\t%s c = a %c b;\n", fullTypeName, GEN_OPERATORS_ARITHMETIC[GEN_OP_ARITHMETIC_DIV] );
 	String_Append(  codeTests, "\n" );
-	String_Append(  codeTests, "\tTEMPER_EXPECT_TRUE( c == answer );\n" );
-	String_Append(  codeTests, "\n" );
-	String_Append(  codeTests, "\tTEMPER_PASS();\n" );
+	String_Append(  codeTests, "\tTEMPER_CHECK_TRUE( c == answer );\n" );
 	String_Append(  codeTests, "}\n" );
 	String_Append(  codeTests, "\n" );
-
-	String_Appendf( codeSuite, "\tTEMPER_RUN_TEST( %s );\n", testName );
 }
 
-static void GenerateTestIncrement( stringBuilder_t* codeTests, stringBuilder_t* codeSuite, const genType_t type, const u32 numRows, const u32 numCols, const char* fullTypeName ) {
+static void GenerateTestIncrement( stringBuilder_t* codeTests, const genType_t type, const u32 numRows, const u32 numCols, const char* fullTypeName ) {
 	assert( codeTests );
-	assert( codeSuite );
 	assert( numRows >= GEN_COMPONENT_COUNT_MIN );
 	assert( numRows <= GEN_COMPONENT_COUNT_MAX );
 	assert( numCols >= GEN_COMPONENT_COUNT_MIN );
@@ -940,7 +901,7 @@ static void GenerateTestIncrement( stringBuilder_t* codeTests, stringBuilder_t* 
 		char testName[GEN_STRING_LENGTH_TEST_NAME] = { 0 };
 		snprintf( testName, GEN_STRING_LENGTH_TEST_NAME, "Test%s_%s", suffices[i], fullTypeName );
 
-		String_Appendf( codeTests, "TEMPER_TEST( %s )\n", testName );
+		String_Appendf( codeTests, "TEMPER_TEST( %s, TEMPER_FLAG_SHOULD_RUN )\n", testName );
 		String_Append(  codeTests, "{\n" );
 		String_Appendf( codeTests, "\t%s answer;\n", fullTypeName );
 		String_Appendf( codeTests, "\t%s mat;\n", fullTypeName );
@@ -954,7 +915,7 @@ static void GenerateTestIncrement( stringBuilder_t* codeTests, stringBuilder_t* 
 		String_Appendf( codeTests, "%s\n", parmListVecs[i] );
 		String_Append(  codeTests, "\t);\n" );
 		String_Appendf( codeTests, "\t%smat;\n", GEN_OPERATORS_INCREMENT[i] );
-		String_Appendf( codeTests, "\tTEMPER_EXPECT_TRUE( mat == answer );\n", fullTypeName, parmListAnswers[i] );
+		String_Appendf( codeTests, "\tTEMPER_CHECK_TRUE( mat == answer );\n", fullTypeName, parmListAnswers[i] );
 		String_Append(  codeTests, "\n" );
 		String_Append(  codeTests, "\t// postfix\n" );
 		String_Appendf( codeTests, "\tanswer = %s(\n", fullTypeName );
@@ -965,19 +926,14 @@ static void GenerateTestIncrement( stringBuilder_t* codeTests, stringBuilder_t* 
 		String_Appendf( codeTests, "%s\n", parmListVecs[i] );
 		String_Append(  codeTests, "\t);\n" );
 		String_Appendf( codeTests, "\tmat%s;\n", GEN_OPERATORS_INCREMENT[i] );
-		String_Appendf( codeTests, "\tTEMPER_EXPECT_TRUE( mat == answer );\n", fullTypeName, parmListAnswers[i] );
-		String_Append(  codeTests, "\n" );
-		String_Append(  codeTests, "\tTEMPER_PASS();\n" );
+		String_Appendf( codeTests, "\tTEMPER_CHECK_TRUE( mat == answer );\n", fullTypeName, parmListAnswers[i] );
 		String_Append(  codeTests, "}\n" );
 		String_Append(  codeTests, "\n" );
-
-		String_Appendf( codeSuite, "\tTEMPER_RUN_TEST( %s );\n", testName );
 	}
 }
 
-static void GenerateTestRelational( stringBuilder_t* codeTests, stringBuilder_t* codeSuite, const genLanguage_t language, const genType_t type, const u32 numRows, const u32 numCols, const char* fullTypeName ) {
+static void GenerateTestRelational( stringBuilder_t* codeTests, const genLanguage_t language, const genType_t type, const u32 numRows, const u32 numCols, const char* fullTypeName ) {
 	assert( codeTests );
-	assert( codeSuite );
 	assert( numRows >= GEN_COMPONENT_COUNT_MIN );
 	assert( numRows <= GEN_COMPONENT_COUNT_MAX );
 	assert( numCols >= GEN_COMPONENT_COUNT_MIN );
@@ -1020,7 +976,7 @@ static void GenerateTestRelational( stringBuilder_t* codeTests, stringBuilder_t*
 	char equalsFuncStr[GEN_STRING_LENGTH_FUNCTION_NAME];
 	Gen_GetFuncNameEquals( language, GEN_TYPE_BOOL, numRows, numCols, equalsFuncStr );
 
-	String_Appendf( codeTests, "TEMPER_TEST( %s )\n", testName );
+	String_Appendf( codeTests, "TEMPER_TEST( %s, TEMPER_FLAG_SHOULD_RUN )\n", testName );
 	String_Append(  codeTests, "{\n" );
 	String_Appendf( codeTests, "\t%s allTrue = { %s };\n", boolTypeName, parmListTrue );
 	String_Append(  codeTests, "\n" );
@@ -1053,29 +1009,29 @@ static void GenerateTestRelational( stringBuilder_t* codeTests, stringBuilder_t*
 		String_Appendf( codeTests, "\t%s test18 = %s( &mat3, &mat3 );\n", boolTypeName, cmpleFuncStr );
 		String_Appendf( codeTests, "\t%s test19 = %s( &mat3, &mat3 );\n", boolTypeName, cmpgeFuncStr );
 		String_Append(  codeTests, "\n" );
-		String_Appendf( codeTests, "\tTEMPER_EXPECT_TRUE( %s( &test0,  &allTrue ) );\n", equalsFuncStr );
-		String_Appendf( codeTests, "\tTEMPER_EXPECT_TRUE( %s( &test1,  &allTrue ) );\n", equalsFuncStr );
-		String_Appendf( codeTests, "\tTEMPER_EXPECT_TRUE( %s( &test2,  &allTrue ) );\n", equalsFuncStr );
-		String_Appendf( codeTests, "\tTEMPER_EXPECT_TRUE( %s( &test3,  &allTrue ) );\n", equalsFuncStr );
-		String_Appendf( codeTests, "\tTEMPER_EXPECT_TRUE( %s( &test4,  &allTrue ) );\n", equalsFuncStr );
+		String_Appendf( codeTests, "\tTEMPER_CHECK_TRUE( %s( &test0,  &allTrue ) );\n", equalsFuncStr );
+		String_Appendf( codeTests, "\tTEMPER_CHECK_TRUE( %s( &test1,  &allTrue ) );\n", equalsFuncStr );
+		String_Appendf( codeTests, "\tTEMPER_CHECK_TRUE( %s( &test2,  &allTrue ) );\n", equalsFuncStr );
+		String_Appendf( codeTests, "\tTEMPER_CHECK_TRUE( %s( &test3,  &allTrue ) );\n", equalsFuncStr );
+		String_Appendf( codeTests, "\tTEMPER_CHECK_TRUE( %s( &test4,  &allTrue ) );\n", equalsFuncStr );
 		String_Append(  codeTests, "\n" );
-		String_Appendf( codeTests, "\tTEMPER_EXPECT_TRUE( %s( &test5,  &allTrue ) );\n", equalsFuncStr );
-		String_Appendf( codeTests, "\tTEMPER_EXPECT_TRUE( %s( &test6,  &allTrue ) );\n", equalsFuncStr );
-		String_Appendf( codeTests, "\tTEMPER_EXPECT_TRUE( %s( &test7,  &allTrue ) );\n", equalsFuncStr );
-		String_Appendf( codeTests, "\tTEMPER_EXPECT_TRUE( %s( &test8,  &allTrue ) );\n", equalsFuncStr );
-		String_Appendf( codeTests, "\tTEMPER_EXPECT_TRUE( %s( &test9,  &allTrue ) );\n", equalsFuncStr );
+		String_Appendf( codeTests, "\tTEMPER_CHECK_TRUE( %s( &test5,  &allTrue ) );\n", equalsFuncStr );
+		String_Appendf( codeTests, "\tTEMPER_CHECK_TRUE( %s( &test6,  &allTrue ) );\n", equalsFuncStr );
+		String_Appendf( codeTests, "\tTEMPER_CHECK_TRUE( %s( &test7,  &allTrue ) );\n", equalsFuncStr );
+		String_Appendf( codeTests, "\tTEMPER_CHECK_TRUE( %s( &test8,  &allTrue ) );\n", equalsFuncStr );
+		String_Appendf( codeTests, "\tTEMPER_CHECK_TRUE( %s( &test9,  &allTrue ) );\n", equalsFuncStr );
 		String_Append(  codeTests, "\n" );
-		String_Appendf( codeTests, "\tTEMPER_EXPECT_TRUE( %s( &test10, &allTrue ) );\n", equalsFuncStr );
-		String_Appendf( codeTests, "\tTEMPER_EXPECT_TRUE( %s( &test11, &allTrue ) );\n", equalsFuncStr );
-		String_Appendf( codeTests, "\tTEMPER_EXPECT_TRUE( %s( &test12, &allTrue ) );\n", equalsFuncStr );
-		String_Appendf( codeTests, "\tTEMPER_EXPECT_TRUE( %s( &test13, &allTrue ) );\n", equalsFuncStr );
-		String_Appendf( codeTests, "\tTEMPER_EXPECT_TRUE( %s( &test14, &allTrue ) );\n", equalsFuncStr );
+		String_Appendf( codeTests, "\tTEMPER_CHECK_TRUE( %s( &test10, &allTrue ) );\n", equalsFuncStr );
+		String_Appendf( codeTests, "\tTEMPER_CHECK_TRUE( %s( &test11, &allTrue ) );\n", equalsFuncStr );
+		String_Appendf( codeTests, "\tTEMPER_CHECK_TRUE( %s( &test12, &allTrue ) );\n", equalsFuncStr );
+		String_Appendf( codeTests, "\tTEMPER_CHECK_TRUE( %s( &test13, &allTrue ) );\n", equalsFuncStr );
+		String_Appendf( codeTests, "\tTEMPER_CHECK_TRUE( %s( &test14, &allTrue ) );\n", equalsFuncStr );
 		String_Append(  codeTests, "\n" );
-		String_Appendf( codeTests, "\tTEMPER_EXPECT_TRUE( %s( &test15, &allTrue ) );\n", equalsFuncStr );
-		String_Appendf( codeTests, "\tTEMPER_EXPECT_TRUE( %s( &test16, &allTrue ) );\n", equalsFuncStr );
-		String_Appendf( codeTests, "\tTEMPER_EXPECT_TRUE( %s( &test17, &allTrue ) );\n", equalsFuncStr );
-		String_Appendf( codeTests, "\tTEMPER_EXPECT_TRUE( %s( &test18, &allTrue ) );\n", equalsFuncStr );
-		String_Appendf( codeTests, "\tTEMPER_EXPECT_TRUE( %s( &test19, &allTrue ) );\n", equalsFuncStr );
+		String_Appendf( codeTests, "\tTEMPER_CHECK_TRUE( %s( &test15, &allTrue ) );\n", equalsFuncStr );
+		String_Appendf( codeTests, "\tTEMPER_CHECK_TRUE( %s( &test16, &allTrue ) );\n", equalsFuncStr );
+		String_Appendf( codeTests, "\tTEMPER_CHECK_TRUE( %s( &test17, &allTrue ) );\n", equalsFuncStr );
+		String_Appendf( codeTests, "\tTEMPER_CHECK_TRUE( %s( &test18, &allTrue ) );\n", equalsFuncStr );
+		String_Appendf( codeTests, "\tTEMPER_CHECK_TRUE( %s( &test19, &allTrue ) );\n", equalsFuncStr );
 	} else {
 		for ( u32 i = 0; i < 4; i++ ) {
 			String_Appendf( codeTests, "\t%s mat%d = %s( %s );\n", fullTypeName, i, fullTypeName, parmLists[i] );
@@ -1105,41 +1061,36 @@ static void GenerateTestRelational( stringBuilder_t* codeTests, stringBuilder_t*
 		String_Appendf( codeTests, "\t%s test18 = mat3 <= mat3;\n", boolTypeName );
 		String_Appendf( codeTests, "\t%s test19 = mat3 >= mat3;\n", boolTypeName );
 		String_Append(  codeTests, "\n" );
-		String_Append(  codeTests, "\tTEMPER_EXPECT_TRUE( test0  == allTrue );\n" );
-		String_Append(  codeTests, "\tTEMPER_EXPECT_TRUE( test1  == allTrue );\n" );
-		String_Append(  codeTests, "\tTEMPER_EXPECT_TRUE( test2  == allTrue );\n" );
-		String_Append(  codeTests, "\tTEMPER_EXPECT_TRUE( test3  == allTrue );\n" );
-		String_Append(  codeTests, "\tTEMPER_EXPECT_TRUE( test4  == allTrue );\n" );
+		String_Append(  codeTests, "\tTEMPER_CHECK_TRUE( test0  == allTrue );\n" );
+		String_Append(  codeTests, "\tTEMPER_CHECK_TRUE( test1  == allTrue );\n" );
+		String_Append(  codeTests, "\tTEMPER_CHECK_TRUE( test2  == allTrue );\n" );
+		String_Append(  codeTests, "\tTEMPER_CHECK_TRUE( test3  == allTrue );\n" );
+		String_Append(  codeTests, "\tTEMPER_CHECK_TRUE( test4  == allTrue );\n" );
 		String_Append(  codeTests, "\n" );
-		String_Append(  codeTests, "\tTEMPER_EXPECT_TRUE( test5  == allTrue );\n" );
-		String_Append(  codeTests, "\tTEMPER_EXPECT_TRUE( test6  == allTrue );\n" );
-		String_Append(  codeTests, "\tTEMPER_EXPECT_TRUE( test7  == allTrue );\n" );
-		String_Append(  codeTests, "\tTEMPER_EXPECT_TRUE( test8  == allTrue );\n" );
-		String_Append(  codeTests, "\tTEMPER_EXPECT_TRUE( test9  == allTrue );\n" );
+		String_Append(  codeTests, "\tTEMPER_CHECK_TRUE( test5  == allTrue );\n" );
+		String_Append(  codeTests, "\tTEMPER_CHECK_TRUE( test6  == allTrue );\n" );
+		String_Append(  codeTests, "\tTEMPER_CHECK_TRUE( test7  == allTrue );\n" );
+		String_Append(  codeTests, "\tTEMPER_CHECK_TRUE( test8  == allTrue );\n" );
+		String_Append(  codeTests, "\tTEMPER_CHECK_TRUE( test9  == allTrue );\n" );
 		String_Append(  codeTests, "\n" );
-		String_Append(  codeTests, "\tTEMPER_EXPECT_TRUE( test10 == allTrue );\n" );
-		String_Append(  codeTests, "\tTEMPER_EXPECT_TRUE( test11 == allTrue );\n" );
-		String_Append(  codeTests, "\tTEMPER_EXPECT_TRUE( test12 == allTrue );\n" );
-		String_Append(  codeTests, "\tTEMPER_EXPECT_TRUE( test13 == allTrue );\n" );
-		String_Append(  codeTests, "\tTEMPER_EXPECT_TRUE( test14 == allTrue );\n" );
+		String_Append(  codeTests, "\tTEMPER_CHECK_TRUE( test10 == allTrue );\n" );
+		String_Append(  codeTests, "\tTEMPER_CHECK_TRUE( test11 == allTrue );\n" );
+		String_Append(  codeTests, "\tTEMPER_CHECK_TRUE( test12 == allTrue );\n" );
+		String_Append(  codeTests, "\tTEMPER_CHECK_TRUE( test13 == allTrue );\n" );
+		String_Append(  codeTests, "\tTEMPER_CHECK_TRUE( test14 == allTrue );\n" );
 		String_Append(  codeTests, "\n" );
-		String_Append(  codeTests, "\tTEMPER_EXPECT_TRUE( test15 == allTrue );\n" );
-		String_Append(  codeTests, "\tTEMPER_EXPECT_TRUE( test16 == allTrue );\n" );
-		String_Append(  codeTests, "\tTEMPER_EXPECT_TRUE( test17 == allTrue );\n" );
-		String_Append(  codeTests, "\tTEMPER_EXPECT_TRUE( test18 == allTrue );\n" );
-		String_Append(  codeTests, "\tTEMPER_EXPECT_TRUE( test19 == allTrue );\n" );
+		String_Append(  codeTests, "\tTEMPER_CHECK_TRUE( test15 == allTrue );\n" );
+		String_Append(  codeTests, "\tTEMPER_CHECK_TRUE( test16 == allTrue );\n" );
+		String_Append(  codeTests, "\tTEMPER_CHECK_TRUE( test17 == allTrue );\n" );
+		String_Append(  codeTests, "\tTEMPER_CHECK_TRUE( test18 == allTrue );\n" );
+		String_Append(  codeTests, "\tTEMPER_CHECK_TRUE( test19 == allTrue );\n" );
 	}
-	String_Append(  codeTests, "\n" );
-	String_Append(  codeTests, "\tTEMPER_PASS();\n" );
 	String_Append(  codeTests, "}\n" );
 	String_Append(  codeTests, "\n" );
-
-	String_Appendf( codeSuite, "\tTEMPER_RUN_TEST( %s );\n", testName );
 }
 
-static void GenerateTestBitwise( stringBuilder_t* codeTests, stringBuilder_t* codeSuite, const genLanguage_t language, const genType_t type, const u32 numRows, const u32 numCols, const char* fullTypeName, const char* memberTypeString ) {
+static void GenerateTestBitwise( stringBuilder_t* codeTests, const genLanguage_t language, const genType_t type, const u32 numRows, const u32 numCols, const char* fullTypeName, const char* memberTypeString ) {
 	assert( codeTests );
-	assert( codeSuite );
 	assert( numRows >= GEN_COMPONENT_COUNT_MIN );
 	assert( numRows <= GEN_COMPONENT_COUNT_MAX );
 	assert( numCols >= GEN_COMPONENT_COUNT_MIN );
@@ -1213,7 +1164,7 @@ static void GenerateTestBitwise( stringBuilder_t* codeTests, stringBuilder_t* co
 			char funcStr[GEN_STRING_LENGTH_FUNCTION_NAME];
 			Gen_GetFuncNameBitwise( language, type, numRows, numCols, op, funcStr );
 
-			String_Appendf( codeTests, "TEMPER_TEST( %s )\n", testName );
+			String_Appendf( codeTests, "TEMPER_TEST( %s, TEMPER_FLAG_SHOULD_RUN )\n", testName );
 			String_Append(  codeTests, "{\n" );
 			String_Appendf( codeTests, "\t%s answer  = (%s) {\n", fullTypeName, fullTypeName );
 			String_Appendf( codeTests, "%s", parmListAnswers[i] );
@@ -1226,13 +1177,9 @@ static void GenerateTestBitwise( stringBuilder_t* codeTests, stringBuilder_t* co
 			String_Append(  codeTests, "\t};\n" );
 			String_Appendf( codeTests, "\t%s c = %s( &a, &b );\n", fullTypeName, funcStr );
 			String_Append(  codeTests, "\n" );
-			String_Appendf( codeTests, "\tTEMPER_EXPECT_TRUE( %s( &c, &answer ) );\n", equalsFuncStr, parmListAnswers[i] );
-			String_Append(  codeTests, "\n" );
-			String_Append(  codeTests, "\tTEMPER_PASS();\n" );
+			String_Appendf( codeTests, "\tTEMPER_CHECK_TRUE( %s( &c, &answer ) );\n", equalsFuncStr, parmListAnswers[i] );
 			String_Append(  codeTests, "}\n" );
 			String_Append(  codeTests, "\n" );
-
-			String_Appendf( codeSuite, "\tTEMPER_RUN_TEST( %s );\n", testName );
 		}
 	} else {
 		for ( u32 i = 0; i < _countof( ops ); i++ ) {
@@ -1240,7 +1187,7 @@ static void GenerateTestBitwise( stringBuilder_t* codeTests, stringBuilder_t* co
 
 			snprintf( testName, GEN_STRING_LENGTH_TEST_NAME, "TestBitwise_%s_%s", suffices[i], fullTypeName );
 
-			String_Appendf( codeTests, "TEMPER_TEST( %s )\n", testName );
+			String_Appendf( codeTests, "TEMPER_TEST( %s, TEMPER_FLAG_SHOULD_RUN )\n", testName );
 			String_Append(  codeTests, "{\n" );
 			String_Appendf( codeTests, "\t%s answer = %s(\n", fullTypeName, fullTypeName );
 			String_Appendf( codeTests, "%s", parmListAnswers[i] );
@@ -1254,13 +1201,9 @@ static void GenerateTestBitwise( stringBuilder_t* codeTests, stringBuilder_t* co
 			String_Append(  codeTests, "\n" );
 			String_Appendf( codeTests, "\t%s c = a %s b;\n", fullTypeName, GEN_OPERATORS_BITWISE[op] );
 			String_Append(  codeTests, "\n" );
-			String_Append(  codeTests, "\tTEMPER_EXPECT_TRUE( c == answer );\n" );
-			String_Append(  codeTests, "\n" );
-			String_Append(  codeTests, "\tTEMPER_PASS();\n" );
+			String_Append(  codeTests, "\tTEMPER_CHECK_TRUE( c == answer );\n" );
 			String_Append(  codeTests, "}\n" );
 			String_Append(  codeTests, "\n" );
-
-			String_Appendf( codeSuite, "\tTEMPER_RUN_TEST( %s );\n", testName );
 		}
 	}
 
@@ -1274,7 +1217,7 @@ static void GenerateTestBitwise( stringBuilder_t* codeTests, stringBuilder_t* co
 		char unaryFuncStr[GEN_STRING_LENGTH_FUNCTION_NAME];
 		Gen_GetFuncNameBitwise( language, type, numRows, numCols, GEN_OP_BITWISE_UNARY, unaryFuncStr );
 
-		String_Appendf( codeTests, "TEMPER_TEST( %s )\n", testName );
+		String_Appendf( codeTests, "TEMPER_TEST( %s, TEMPER_FLAG_SHOULD_RUN )\n", testName );
 		String_Append(  codeTests, "{\n" );
 		if ( language == GEN_LANGUAGE_C ) {
 			String_Appendf( codeTests, "\t%s answer = (%s) {\n", fullTypeName, fullTypeName );
@@ -1286,7 +1229,7 @@ static void GenerateTestBitwise( stringBuilder_t* codeTests, stringBuilder_t* co
 			String_Append(  codeTests, "\n" );
 			String_Appendf( codeTests, "\t%s b = %s( &a );\n", fullTypeName, unaryFuncStr );
 			String_Append(  codeTests, "\n" );
-			String_Appendf( codeTests, "\tTEMPER_EXPECT_TRUE( %s( &b, &answer ) );\n", equalsFuncStr );
+			String_Appendf( codeTests, "\tTEMPER_CHECK_TRUE( %s( &b, &answer ) );\n", equalsFuncStr );
 		} else {
 			String_Appendf( codeTests, "\t%s answer = %s(\n", fullTypeName, fullTypeName );
 			String_Appendf( codeTests, "%s", parmListAnswerUnary );
@@ -1297,20 +1240,15 @@ static void GenerateTestBitwise( stringBuilder_t* codeTests, stringBuilder_t* co
 			String_Append(  codeTests, "\n" );
 			String_Appendf( codeTests, "\t%s b = %sa;\n", fullTypeName, GEN_OPERATORS_BITWISE[GEN_OP_BITWISE_UNARY] );
 			String_Append(  codeTests, "\n" );
-			String_Append(  codeTests, "\tTEMPER_EXPECT_TRUE( b == answer );\n" );
+			String_Append(  codeTests, "\tTEMPER_CHECK_TRUE( b == answer );\n" );
 		}
-		String_Append(  codeTests, "\n" );
-		String_Append(  codeTests, "\tTEMPER_PASS();\n" );
 		String_Append(  codeTests, "}\n" );
 		String_Append(  codeTests, "\n" );
-
-		String_Appendf( codeSuite, "\tTEMPER_RUN_TEST( %s );\n", testName );
 	}
 }
 
-static void GenerateTestArray( stringBuilder_t* codeTests, stringBuilder_t* codeSuite, const genType_t type, const u32 numRows, const u32 numCols, const char* fullTypeName, const char* vectorTypeString ) {
+static void GenerateTestArray( stringBuilder_t* codeTests, const genType_t type, const u32 numRows, const u32 numCols, const char* fullTypeName, const char* vectorTypeString ) {
 	assert( codeTests );
-	assert( codeSuite );
 	assert( numRows >= GEN_COMPONENT_COUNT_MIN );
 	assert( numRows <= GEN_COMPONENT_COUNT_MAX );
 	assert( numCols >= GEN_COMPONENT_COUNT_MIN );
@@ -1330,13 +1268,13 @@ static void GenerateTestArray( stringBuilder_t* codeTests, stringBuilder_t* code
 	char identityFuncStr[GEN_STRING_LENGTH_FUNCTION_NAME];
 	Gen_GetFuncNameIdentity( GEN_LANGUAGE_CPP, type, numRows, numCols, identityFuncStr );
 
-	String_Appendf( codeTests, "TEMPER_TEST( %s )\n", testName );
+	String_Appendf( codeTests, "TEMPER_TEST( %s, TEMPER_FLAG_SHOULD_RUN )\n", testName );
 	String_Append(  codeTests, "{\n" );
 	String_Appendf( codeTests, "\t%s mat;\n", fullTypeName );
 	String_Appendf( codeTests, "\t%s( mat );\n", identityFuncStr );
 	String_Append(  codeTests, "\n" );
 	for ( u32 row = 0; row < numRows; row++ ) {
-		String_Appendf( codeTests, "\tTEMPER_EXPECT_TRUE( mat[%d] == %s( ", row, vectorTypeString );
+		String_Appendf( codeTests, "\tTEMPER_CHECK_TRUE( mat[%d] == %s( ", row, vectorTypeString );
 
 		for ( u32 col = 0; col < numCols; col++ ) {
 			String_Appendf( codeTests, "%s", ( row == col ) ? oneStr : zeroStr );
@@ -1348,18 +1286,13 @@ static void GenerateTestArray( stringBuilder_t* codeTests, stringBuilder_t* code
 
 		String_Append( codeTests, " ) );\n" );
 	}
-	String_Append( codeTests, "\n" );
-	String_Append( codeTests, "\tTEMPER_PASS();\n" );
 	String_Append( codeTests, "}\n" );
 	String_Append( codeTests, "\n" );
-
-	String_Appendf( codeSuite, "\tTEMPER_RUN_TEST( %s );\n", testName );
 }
 
-static void GenerateTestIdentity( stringBuilder_t* codeTests, stringBuilder_t* codeSuite, const genLanguage_t language, const genType_t type, const u32 numRows, const u32 numCols,
+static void GenerateTestIdentity( stringBuilder_t* codeTests, const genLanguage_t language, const genType_t type, const u32 numRows, const u32 numCols,
 	const char* fullTypeName, const char* vectorTypeName, const char* memberTypeString ) {
 	assert( codeTests );
-	assert( codeSuite );
 	assert( numRows >= GEN_COMPONENT_COUNT_MIN );
 	assert( numRows <= GEN_COMPONENT_COUNT_MAX );
 	assert( numCols >= GEN_COMPONENT_COUNT_MIN );
@@ -1392,7 +1325,7 @@ static void GenerateTestIdentity( stringBuilder_t* codeTests, stringBuilder_t* c
 	char cmpeFuncStr[GEN_STRING_LENGTH_FUNCTION_NAME];
 	Gen_GetFuncNameEquals( language, type, numRows, numCols, cmpeFuncStr );
 
-	String_Appendf( codeTests, "TEMPER_TEST( %s )\n", testName );
+	String_Appendf( codeTests, "TEMPER_TEST( %s, TEMPER_FLAG_SHOULD_RUN )\n", testName );
 	String_Append(  codeTests, "{\n" );
 	String_Appendf( codeTests, "\t%s id;\n", fullTypeName, fullTypeName, parmListIdentity );
 	if ( language == GEN_LANGUAGE_C ) {
@@ -1414,18 +1347,14 @@ static void GenerateTestIdentity( stringBuilder_t* codeTests, stringBuilder_t* c
 	String_Appendf( codeTests, "\t%s mat;\n", fullTypeName );
 	if ( language == GEN_LANGUAGE_C ) {
 		String_Appendf( codeTests, "\t%s( &mat );\n", identityFuncStr );
-		String_Appendf( codeTests, "\tTEMPER_EXPECT_TRUE( %s( &mat, &id ) );\n", cmpeFuncStr );
+		String_Appendf( codeTests, "\tTEMPER_CHECK_TRUE( %s( &mat, &id ) );\n", cmpeFuncStr );
 	} else {
 		String_Append(  codeTests, "\n" );
 		String_Appendf( codeTests, "\t%s( mat );\n", identityFuncStr );
-		String_Append(  codeTests, "\tTEMPER_EXPECT_TRUE( mat == id );\n" );
+		String_Append(  codeTests, "\tTEMPER_CHECK_TRUE( mat == id );\n" );
 	}
-	String_Append(  codeTests, "\n" );
-	String_Append( codeTests, "\tTEMPER_PASS();\n" );
 	String_Append( codeTests, "}\n" );
 	String_Append( codeTests, "\n" );
-
-	String_Appendf( codeSuite, "\tTEMPER_RUN_TEST( %s );\n", testName );
 
 	if ( Gen_TypeSupportsSSE( type ) ) {
 		snprintf( testName, GEN_STRING_LENGTH_TEST_NAME, "TestIdentity_SSE_%s", fullTypeName );
@@ -1438,7 +1367,7 @@ static void GenerateTestIdentity( stringBuilder_t* codeTests, stringBuilder_t* c
 		char identityFuncStrSSE[GEN_STRING_LENGTH_FUNCTION_NAME];
 		Gen_SSE_GetFuncNameIdentity( language, type, numRows, numCols, identityFuncStrSSE );
 
-		String_Appendf( codeTests, "TEMPER_TEST( %s )\n", testName );
+		String_Appendf( codeTests, "TEMPER_TEST( %s, TEMPER_FLAG_SHOULD_RUN )\n", testName );
 		String_Append(  codeTests, "{\n" );
 		String_Appendf( codeTests, "\t%s matSSE;\n", sseTypeName );
 		String_Appendf( codeTests, "\t%s( &matSSE );\n", identityFuncStrSSE );
@@ -1450,24 +1379,20 @@ static void GenerateTestIdentity( stringBuilder_t* codeTests, stringBuilder_t* c
 
 				String_Appendf( codeTests, "\t%s( identityResults, matSSE.m[%d][%d] );\n", storeFuncStr, row, col );
 				for ( u32 componentIndex = 0; componentIndex < 4; componentIndex++ ) {
-					String_Appendf( codeTests, "\tTEMPER_EXPECT_TRUE( identityResults[%d] == %s );\n", componentIndex, valueStr );
+					String_Appendf( codeTests, "\tTEMPER_CHECK_TRUE( identityResults[%d] == %s );\n", componentIndex, valueStr );
 				}
 
 				String_Append(  codeTests, "\n" );
 			}
 		}
-		String_Append( codeTests, "\tTEMPER_PASS();\n" );
 		String_Append( codeTests, "}\n" );
 		String_Append( codeTests, "\n" );
-
-		String_Appendf( codeSuite, "\tTEMPER_RUN_TEST( %s );\n", testName );
 	}
 }
 
-static void GenerateTestTranspose( stringBuilder_t* codeTests, stringBuilder_t* codeSuite, const genLanguage_t language, const genType_t type, const u32 numRows, const u32 numCols,
+static void GenerateTestTranspose( stringBuilder_t* codeTests, const genLanguage_t language, const genType_t type, const u32 numRows, const u32 numCols,
 	const char* fullTypeName, const char* vectorTypeName, const char* typeString, const char* memberTypeString ) {
 	assert( codeTests );
-	assert( codeSuite );
 	assert( numRows >= GEN_COMPONENT_COUNT_MIN );
 	assert( numRows <= GEN_COMPONENT_COUNT_MAX );
 	assert( numCols >= GEN_COMPONENT_COUNT_MIN );
@@ -1515,7 +1440,7 @@ static void GenerateTestTranspose( stringBuilder_t* codeTests, stringBuilder_t* 
 	char cmpeFuncStr[GEN_STRING_LENGTH_FUNCTION_NAME];
 	Gen_GetFuncNameEquals( language, type, transposeTypeRows, transposeTypeCols, cmpeFuncStr );
 
-	String_Appendf( codeTests, "TEMPER_TEST( %s )\n", testName );
+	String_Appendf( codeTests, "TEMPER_TEST( %s, TEMPER_FLAG_SHOULD_RUN )\n", testName );
 	String_Append(  codeTests, "{\n" );
 	if ( language == GEN_LANGUAGE_C ) {
 		String_Appendf( codeTests, "\t%s answerTransposed = (%s) {\n", transposeTypeName, transposeTypeName );
@@ -1527,7 +1452,7 @@ static void GenerateTestTranspose( stringBuilder_t* codeTests, stringBuilder_t* 
 		String_Append(  codeTests, "\t};\n" );
 		String_Appendf( codeTests, "\t%s trans = %s( &mat );\n", transposeTypeName, transposeFuncStr );
 		String_Append(  codeTests, "\n" );
-		String_Appendf( codeTests, "\tTEMPER_EXPECT_TRUE( %s( &trans, &answerTransposed ) );\n", cmpeFuncStr );
+		String_Appendf( codeTests, "\tTEMPER_CHECK_TRUE( %s( &trans, &answerTransposed ) );\n", cmpeFuncStr );
 	} else {
 		String_Appendf( codeTests, "\t%s answerTransposed = %s(\n", transposeTypeName, transposeTypeName );
 		String_Appendf( codeTests, "%s", parmListTransposed );
@@ -1538,14 +1463,10 @@ static void GenerateTestTranspose( stringBuilder_t* codeTests, stringBuilder_t* 
 		String_Append(  codeTests, "\t);\n" );
 		String_Appendf( codeTests, "\t%s trans = %s( mat );\n", transposeTypeName, transposeFuncStr );
 		String_Append(  codeTests, "\n" );
-		String_Appendf( codeTests, "\tTEMPER_EXPECT_TRUE( trans == answerTransposed );\n", transposeTypeName, parmListTransposed );
+		String_Appendf( codeTests, "\tTEMPER_CHECK_TRUE( trans == answerTransposed );\n", transposeTypeName, parmListTransposed );
 	}
-	String_Append(  codeTests, "\n" );
-	String_Append( codeTests, "\tTEMPER_PASS();\n" );
 	String_Append( codeTests, "}\n" );
 	String_Append( codeTests, "\n" );
-
-	String_Appendf( codeSuite, "\tTEMPER_RUN_TEST( %s );\n", testName );
 
 	if ( Gen_TypeSupportsSSE( type ) ) {
 		snprintf( testName, GEN_STRING_LENGTH_TEST_NAME, "TestTranspose_SSE_%s", fullTypeName );
@@ -1564,7 +1485,7 @@ static void GenerateTestTranspose( stringBuilder_t* codeTests, stringBuilder_t* 
 		char transposeFuncStrSSE[GEN_STRING_LENGTH_FUNCTION_NAME];
 		Gen_SSE_GetFuncNameTranspose( language, type, numRows, numCols, transposeFuncStrSSE );
 
-		String_Appendf( codeTests, "TEMPER_TEST( %s )\n", testName );
+		String_Appendf( codeTests, "TEMPER_TEST( %s, TEMPER_FLAG_SHOULD_RUN )\n", testName );
 		String_Append(  codeTests, "{\n" );
 		String_Appendf( codeTests, "\t%s results;\n", sseTransposedName );
 		String_Appendf( codeTests, "\t%s in;\n", sseTypeName );
@@ -1592,24 +1513,20 @@ static void GenerateTestTranspose( stringBuilder_t* codeTests, stringBuilder_t* 
 				String_Appendf( codeTests, "\t%s( transposeResults, results.m[%d][%d] );\n", storeFuncStr, col, row );
 
 				for ( u32 i = 0; i < 4; i++ ) {
-					String_Appendf( codeTests, "\tTEMPER_EXPECT_TRUE( %s( transposeResults[%d], %s ) );\n", floateqStr, i, valueStr );
+					String_Appendf( codeTests, "\tTEMPER_CHECK_TRUE( %s( transposeResults[%d], %s ) );\n", floateqStr, i, valueStr );
 				}
 
 				String_Append( codeTests, "\n" );
 			}
 		}
 
-		String_Append( codeTests, "\tTEMPER_PASS();\n" );
 		String_Append( codeTests, "}\n" );
 		String_Append( codeTests, "\n" );
-
-		String_Appendf( codeSuite, "\tTEMPER_RUN_TEST( %s );\n", testName );
 	}
 }
 
-static void GenerateTestDeterminant( stringBuilder_t* codeTests, stringBuilder_t* codeSuite, const genLanguage_t language, const genType_t type, const u32 numRows, const u32 numCols, const char* fullTypeName, const char* memberTypeString ) {
+static void GenerateTestDeterminant( stringBuilder_t* codeTests, const genLanguage_t language, const genType_t type, const u32 numRows, const u32 numCols, const char* fullTypeName, const char* memberTypeString ) {
 	assert( codeTests );
-	assert( codeSuite );
 	assert( numRows >= GEN_COMPONENT_COUNT_MIN );
 	assert( numRows <= GEN_COMPONENT_COUNT_MAX );
 	assert( numCols >= GEN_COMPONENT_COUNT_MIN );
@@ -1688,7 +1605,7 @@ static void GenerateTestDeterminant( stringBuilder_t* codeTests, stringBuilder_t
 	char determinantFuncStr[GEN_STRING_LENGTH_FUNCTION_NAME];
 	Gen_GetFuncNameDeterminant( language, type, numRows, numCols, determinantFuncStr );
 
-	String_Appendf( codeTests, "TEMPER_TEST( %s )\n", testName );
+	String_Appendf( codeTests, "TEMPER_TEST( %s, TEMPER_FLAG_SHOULD_RUN )\n", testName );
 	String_Append(  codeTests, "{\n" );
 	if ( language == GEN_LANGUAGE_C ) {
 		String_Appendf( codeTests, "\t%s mat = (%s) {\n", fullTypeName, fullTypeName );
@@ -1697,9 +1614,9 @@ static void GenerateTestDeterminant( stringBuilder_t* codeTests, stringBuilder_t
 		String_Appendf( codeTests, "\t%s det = %s( &mat );\n", memberTypeString, determinantFuncStr );
 		String_Append(  codeTests, "\n" );
 		if ( Gen_TypeIsFloatingPoint( type ) ) {
-			String_Appendf( codeTests, "\tTEMPER_EXPECT_TRUE( %s( det, %s ) );\n", floateqStr, answerStr );
+			String_Appendf( codeTests, "\tTEMPER_CHECK_TRUE( %s( det, %s ) );\n", floateqStr, answerStr );
 		} else {
-			String_Appendf( codeTests, "\tTEMPER_EXPECT_TRUE( det == %s );\n", answerStr );
+			String_Appendf( codeTests, "\tTEMPER_CHECK_TRUE( det == %s );\n", answerStr );
 		}
 	} else {
 		String_Appendf( codeTests, "\t%s mat = %s(\n", fullTypeName, fullTypeName );
@@ -1709,17 +1626,13 @@ static void GenerateTestDeterminant( stringBuilder_t* codeTests, stringBuilder_t
 		String_Appendf( codeTests, "\t%s det = determinant( mat );\n", memberTypeString );
 		String_Append(  codeTests, "\n" );
 		if ( Gen_TypeIsFloatingPoint( type ) ) {
-			String_Appendf( codeTests, "\tTEMPER_EXPECT_TRUE( %s( det, %s ) );\n", floateqStr, answerStr );
+			String_Appendf( codeTests, "\tTEMPER_CHECK_TRUE( %s( det, %s ) );\n", floateqStr, answerStr );
 		} else {
-			String_Appendf( codeTests, "\tTEMPER_EXPECT_TRUE( det == %s );\n", answerStr );
+			String_Appendf( codeTests, "\tTEMPER_CHECK_TRUE( det == %s );\n", answerStr );
 		}
 	}
-	String_Append( codeTests, "\n" );
-	String_Append( codeTests, "\tTEMPER_PASS();\n" );
 	String_Append( codeTests, "}\n" );
 	String_Append( codeTests, "\n" );
-
-	String_Appendf( codeSuite, "\tTEMPER_RUN_TEST( %s );\n", testName );
 
 	if ( Gen_TypeSupportsSSE( type ) ) {
 		snprintf( testName, GEN_STRING_LENGTH_TEST_NAME, "TestDeterminant_SSE_%s", fullTypeName );
@@ -1735,7 +1648,7 @@ static void GenerateTestDeterminant( stringBuilder_t* codeTests, stringBuilder_t
 		char determinantFuncStrSSE[GEN_STRING_LENGTH_FUNCTION_NAME];
 		Gen_SSE_GetFuncNameDeterminant( language, type, numRows, numCols, determinantFuncStrSSE );
 
-		String_Appendf( codeTests, "TEMPER_TEST( %s )\n", testName );
+		String_Appendf( codeTests, "TEMPER_TEST( %s, TEMPER_FLAG_SHOULD_RUN )\n", testName );
 		String_Append(  codeTests, "{\n" );
 		for ( u32 row = 0; row < numRows; row++ ) {
 			for ( u32 col = 0; col < numCols; col++ ) {
@@ -1760,23 +1673,18 @@ static void GenerateTestDeterminant( stringBuilder_t* codeTests, stringBuilder_t
 		String_Append(  codeTests, "\n" );
 		String_Appendf( codeTests, "\t%s determinantResults[4];\n", memberTypeString );
 		String_Appendf( codeTests, "\t%s( determinantResults, results );\n", storeFuncStr );
-		String_Appendf( codeTests, "\tTEMPER_EXPECT_TRUE( %s( determinantResults[0], %s ) );\n", floateqStr, answerStr );
-		String_Appendf( codeTests, "\tTEMPER_EXPECT_TRUE( %s( determinantResults[1], %s ) );\n", floateqStr, answerStr );
-		String_Appendf( codeTests, "\tTEMPER_EXPECT_TRUE( %s( determinantResults[2], %s ) );\n", floateqStr, answerStr );
-		String_Appendf( codeTests, "\tTEMPER_EXPECT_TRUE( %s( determinantResults[3], %s ) );\n", floateqStr, answerStr );
-		String_Append(  codeTests, "\n" );
-		String_Append(  codeTests, "\tTEMPER_PASS();\n" );
+		String_Appendf( codeTests, "\tTEMPER_CHECK_TRUE( %s( determinantResults[0], %s ) );\n", floateqStr, answerStr );
+		String_Appendf( codeTests, "\tTEMPER_CHECK_TRUE( %s( determinantResults[1], %s ) );\n", floateqStr, answerStr );
+		String_Appendf( codeTests, "\tTEMPER_CHECK_TRUE( %s( determinantResults[2], %s ) );\n", floateqStr, answerStr );
+		String_Appendf( codeTests, "\tTEMPER_CHECK_TRUE( %s( determinantResults[3], %s ) );\n", floateqStr, answerStr );
 		String_Append(  codeTests, "}\n" );
 		String_Append(  codeTests, "\n" );
-
-		String_Appendf( codeSuite, "\tTEMPER_RUN_TEST( %s );\n", testName );
 	}
 }
 
-static void GenerateTestInverse( stringBuilder_t* codeTests, stringBuilder_t* codeSuite, const genLanguage_t language, const genType_t type, const u32 numRows, const u32 numCols,
+static void GenerateTestInverse( stringBuilder_t* codeTests, const genLanguage_t language, const genType_t type, const u32 numRows, const u32 numCols,
 	const char* fullTypeName, const char* memberTypeString ) {
 	assert( codeTests );
-	assert( codeSuite );
 	assert( numRows >= GEN_COMPONENT_COUNT_MIN );
 	assert( numRows <= GEN_COMPONENT_COUNT_MAX );
 	assert( numCols >= GEN_COMPONENT_COUNT_MIN );
@@ -1866,7 +1774,7 @@ static void GenerateTestInverse( stringBuilder_t* codeTests, stringBuilder_t* co
 	char equalsFuncStr[GEN_STRING_LENGTH_FUNCTION_NAME];
 	Gen_GetFuncNameEquals( language, type, numRows, numCols, equalsFuncStr );
 
-	String_Appendf( codeTests, "TEMPER_TEST( %s )\n", testName );
+	String_Appendf( codeTests, "TEMPER_TEST( %s, TEMPER_FLAG_SHOULD_RUN )\n", testName );
 	String_Append(  codeTests, "{\n" );
 	String_Appendf( codeTests, "\t%s id;\n", fullTypeName );
 	String_Appendf( codeTests, "\t%s( %sid );\n", identityFuncStr, parmRefStr );
@@ -1879,21 +1787,17 @@ static void GenerateTestInverse( stringBuilder_t* codeTests, stringBuilder_t* co
 		String_Append(  codeTests, "\n" );
 		String_Appendf( codeTests, "\t%s shouldBeIdentity = %s( &mat, &matInverse );\n", fullTypeName, mulFuncStr );
 		String_Append(  codeTests, "\n" );
-		String_Appendf( codeTests, "\tTEMPER_EXPECT_TRUE( %s( &shouldBeIdentity, &id ) );\n", equalsFuncStr, fullTypeName );
+		String_Appendf( codeTests, "\tTEMPER_CHECK_TRUE( %s( &shouldBeIdentity, &id ) );\n", equalsFuncStr, fullTypeName );
 	} else {
 		String_Appendf( codeTests, "\t%s mat = %s(\n", fullTypeName, fullTypeName );
 		String_Append(  codeTests, parmList );
 		String_Append(  codeTests, "\t);\n" );
 		String_Appendf( codeTests, "\t%s matInverse = inverse( mat );\n", fullTypeName );
 		String_Append(  codeTests, "\n" );
-		String_Appendf( codeTests, "\tTEMPER_EXPECT_TRUE( mat * matInverse == id );\n", fullTypeName );
+		String_Appendf( codeTests, "\tTEMPER_CHECK_TRUE( mat * matInverse == id );\n", fullTypeName );
 	}
-	String_Append(  codeTests, "\n" );
-	String_Append(  codeTests, "\tTEMPER_PASS();\n" );
 	String_Append(  codeTests, "}\n" );
 	String_Append(  codeTests, "\n" );
-
-	String_Appendf( codeSuite, "\tTEMPER_RUN_TEST( %s );\n", testName );
 
 	if ( Gen_TypeSupportsSSE( type ) ) {
 		snprintf( testName, GEN_STRING_LENGTH_TEST_NAME, "TestInverse_SSE_%s", fullTypeName );
@@ -1912,7 +1816,7 @@ static void GenerateTestInverse( stringBuilder_t* codeTests, stringBuilder_t* co
 		char mulFuncStrSSE[GEN_STRING_LENGTH_FUNCTION_NAME];
 		Gen_SSE_GetFuncNameMatrixMultiply( language, type, numRows, numCols, mulFuncStrSSE );
 
-		String_Appendf( codeTests, "TEMPER_TEST( %s )\n", testName );
+		String_Appendf( codeTests, "TEMPER_TEST( %s, TEMPER_FLAG_SHOULD_RUN )\n", testName );
 		String_Append(  codeTests, "{\n" );
 		String_Appendf( codeTests, "\t%s id;\n", fullTypeName );
 		String_Appendf( codeTests, "\t%s( %sid );\n", identityFuncStr, parmRefStr );
@@ -1950,24 +1854,20 @@ static void GenerateTestInverse( stringBuilder_t* codeTests, stringBuilder_t* co
 				for ( u32 componentIndex = 0; componentIndex < 4; componentIndex++ ) {
 					char componentStr = GEN_COMPONENT_NAMES_VECTOR[col];
 
-					String_Appendf( codeTests, "\tTEMPER_EXPECT_TRUE( %s( inverseResults[%d], id.rows[%d].%c, %s ) );\n", floateqepsStr, componentIndex, row, componentStr, epsilonStr );
+					String_Appendf( codeTests, "\tTEMPER_CHECK_TRUE( %s( inverseResults[%d], id.rows[%d].%c, %s ) );\n", floateqepsStr, componentIndex, row, componentStr, epsilonStr );
 				}
 
 				String_Append( codeTests, "\n" );
 			}
 		}
-		String_Append(  codeTests, "\tTEMPER_PASS();\n" );
 		String_Append(  codeTests, "}\n" );
 		String_Append(  codeTests, "\n" );
-
-		String_Appendf( codeSuite, "\tTEMPER_RUN_TEST( %s );\n", testName );
 	}
 }
 
-static void GenerateTestTranslate( stringBuilder_t* codeTests, stringBuilder_t* codeSuite, const genLanguage_t language, const genType_t type, const u32 numRows, const u32 numCols,
+static void GenerateTestTranslate( stringBuilder_t* codeTests, const genLanguage_t language, const genType_t type, const u32 numRows, const u32 numCols,
 	const char* fullTypeName, const char* typeString, const char* memberTypeString ) {
 	assert( codeTests );
-	assert( codeSuite );
 	assert( numRows >= GEN_COMPONENT_COUNT_MIN );
 	assert( numRows <= GEN_COMPONENT_COUNT_MAX );
 	assert( numCols >= GEN_COMPONENT_COUNT_MIN );
@@ -2011,7 +1911,7 @@ static void GenerateTestTranslate( stringBuilder_t* codeTests, stringBuilder_t* 
 
 	const char* parmRefStr = GEN_TYPE_PARM_REFERENCE_MODIFIERS[language];
 
-	String_Appendf( codeTests, "TEMPER_TEST( %s )\n", testName );
+	String_Appendf( codeTests, "TEMPER_TEST( %s, TEMPER_FLAG_SHOULD_RUN )\n", testName );
 	String_Append(  codeTests, "{\n" );
 	String_Appendf( codeTests, "\t%s mat;\n", fullTypeName );
 	String_Appendf( codeTests, "\t%s( %smat );\n", identityFuncStr, parmRefStr );
@@ -2031,22 +1931,18 @@ static void GenerateTestTranslate( stringBuilder_t* codeTests, stringBuilder_t* 
 			char translateValueStr[GEN_STRING_LENGTH_NUMERIC_LITERAL];
 			Gen_GetNumericLiteral( type, valuesTranslateVec[i], translateValueStr, 1 );
 
-			String_Appendf( codeTests, "\tTEMPER_EXPECT_TRUE( %s( mat.rows[%d].%c, %s ) );\n", floateqStr, i, translateComponentStr, translateValueStr );
+			String_Appendf( codeTests, "\tTEMPER_CHECK_TRUE( %s( mat.rows[%d].%c, %s ) );\n", floateqStr, i, translateComponentStr, translateValueStr );
 		}
 	} else {
 		for ( u32 i = 0; i < translateVecComponents; i++ ) {
 			char translateValueStr[GEN_STRING_LENGTH_NUMERIC_LITERAL];
 			Gen_GetNumericLiteral( type, valuesTranslateVec[i], translateValueStr, 1 );
 
-			String_Appendf( codeTests, "\tTEMPER_EXPECT_TRUE( mat.rows[%d].%c == %s );\n", i, translateComponentStr, translateValueStr );
+			String_Appendf( codeTests, "\tTEMPER_CHECK_TRUE( mat.rows[%d].%c == %s );\n", i, translateComponentStr, translateValueStr );
 		}
 	}
-	String_Append(  codeTests, "\n" );
-	String_Append(  codeTests, "\tTEMPER_PASS();\n" );
 	String_Append(  codeTests, "}\n" );
 	String_Append(  codeTests, "\n" );
-
-	String_Appendf( codeSuite, "\tTEMPER_RUN_TEST( %s );\n", testName );
 
 	if ( Gen_TypeSupportsSSE( type ) ) {
 		// rules for generating SSE versions of translate() and scale() function are different from the scalar implementation
@@ -2071,7 +1967,7 @@ static void GenerateTestTranslate( stringBuilder_t* codeTests, stringBuilder_t* 
 		char translateFuncStrSSE[GEN_STRING_LENGTH_FUNCTION_NAME];
 		Gen_SSE_GetFuncNameTranslate( language, type, numRows, numCols, translateFuncStrSSE );
 
-		String_Appendf( codeTests, "TEMPER_TEST( %s )\n", testName );
+		String_Appendf( codeTests, "TEMPER_TEST( %s, TEMPER_FLAG_SHOULD_RUN )\n", testName );
 		String_Append(  codeTests, "{\n" );
 		String_Appendf( codeTests, "\t%s translateVecComponents[%d][4] =\n", memberTypeString, translateVecComponents );
 		String_Append(  codeTests, "\t{\n" );
@@ -2113,24 +2009,20 @@ static void GenerateTestTranslate( stringBuilder_t* codeTests, stringBuilder_t* 
 				Gen_GetNumericLiteral( type, valuesTranslateVec[componentIndex], valueStr );
 
 				if ( Gen_TypeIsFloatingPoint( type ) ) {
-					String_Appendf( codeTests, "\tTEMPER_EXPECT_TRUE( %s( translateResults[%d], %s ) );\n", floateqStr, i, valueStr );
+					String_Appendf( codeTests, "\tTEMPER_CHECK_TRUE( %s( translateResults[%d], %s ) );\n", floateqStr, i, valueStr );
 				} else {
-					String_Appendf( codeTests, "\tTEMPER_EXPECT_TRUE( translateResults[%d] == %s );\n", floateqStr, i, valueStr );
+					String_Appendf( codeTests, "\tTEMPER_CHECK_TRUE( translateResults[%d] == %s );\n", floateqStr, i, valueStr );
 				}
 			}
 			String_Append(  codeTests, "\n" );
 		}
-		String_Append(  codeTests, "\tTEMPER_PASS();\n" );
 		String_Append(  codeTests, "}\n" );
 		String_Append(  codeTests, "\n" );
-
-		String_Appendf( codeSuite, "\tTEMPER_RUN_TEST( %s );\n", testName );
 	}
 }
 
-static void GenerateTestRotate( stringBuilder_t* codeTests, stringBuilder_t* codeSuite, const genLanguage_t language, const genType_t type, const u32 numRows, const u32 numCols, const char* fullTypeName, const char* typeString ) {
+static void GenerateTestRotate( stringBuilder_t* codeTests, const genLanguage_t language, const genType_t type, const u32 numRows, const u32 numCols, const char* fullTypeName, const char* typeString ) {
 	assert( codeTests );
-	assert( codeSuite );
 	assert( numRows >= GEN_COMPONENT_COUNT_MIN );
 	assert( numRows <= GEN_COMPONENT_COUNT_MAX );
 	assert( numCols >= GEN_COMPONENT_COUNT_MIN );
@@ -2244,7 +2136,7 @@ static void GenerateTestRotate( stringBuilder_t* codeTests, stringBuilder_t* cod
 	char equalsFuncStr[GEN_STRING_LENGTH_FUNCTION_NAME];
 	Gen_GetFuncNameEquals( language, type, numRows, numCols, equalsFuncStr );
 
-	String_Appendf( codeTests, "TEMPER_TEST( %s )\n", testName );
+	String_Appendf( codeTests, "TEMPER_TEST( %s, TEMPER_FLAG_SHOULD_RUN )\n", testName );
 	String_Append(  codeTests, "{\n" );
 	String_Appendf( codeTests, "\t%s mat;\n", fullTypeName );
 	String_Appendf( codeTests, "\t%s( %smat );\n", identityFuncStr, parmRefStr );
@@ -2257,7 +2149,7 @@ static void GenerateTestRotate( stringBuilder_t* codeTests, stringBuilder_t* cod
 		String_Appendf( codeTests, "\t%s answerRoll = (%s) {\n", fullTypeName, fullTypeName );
 		String_Appendf( codeTests, "%s", parmListMatRoll );
 		String_Append(  codeTests, "\t};\n" );
-		String_Appendf( codeTests, "\tTEMPER_EXPECT_TRUE( %s( &roll, &answerRoll ) );\n", equalsFuncStr );
+		String_Appendf( codeTests, "\tTEMPER_CHECK_TRUE( %s( &roll, &answerRoll ) );\n", equalsFuncStr );
 		String_Append(  codeTests, "\n" );
 		if ( numRows > 3 ) {
 			String_Appendf( codeTests, "\t%s( &mat ); // reset the matrix\n", identityFuncStr );
@@ -2266,7 +2158,7 @@ static void GenerateTestRotate( stringBuilder_t* codeTests, stringBuilder_t* cod
 			String_Appendf( codeTests, "\t%s answerYaw = (%s) {\n", fullTypeName, fullTypeName, parmListMatYaw );
 			String_Appendf( codeTests, "%s", parmListMatYaw );
 			String_Append(  codeTests, "\t};\n" );
-			String_Appendf( codeTests, "\tTEMPER_EXPECT_TRUE( %s( &yaw, &answerYaw ) );\n", equalsFuncStr );
+			String_Appendf( codeTests, "\tTEMPER_CHECK_TRUE( %s( &yaw, &answerYaw ) );\n", equalsFuncStr );
 			String_Append(  codeTests, "\n" );
 			String_Appendf( codeTests, "\t%s( &mat ); // reset the matrix\n", identityFuncStr );
 			String_Appendf( codeTests, "\t%s pitchVec = { %s };\n", rotateVecTypeString, parmListVecPitch );
@@ -2274,7 +2166,7 @@ static void GenerateTestRotate( stringBuilder_t* codeTests, stringBuilder_t* cod
 			String_Appendf( codeTests, "\t%s answerPitch = (%s) {\n", fullTypeName, fullTypeName );
 			String_Appendf( codeTests, "%s", parmListMatPitch );
 			String_Append(  codeTests, "\t};\n" );
-			String_Appendf( codeTests, "\tTEMPER_EXPECT_TRUE( %s( &pitch, &answerPitch ) );\n", equalsFuncStr );
+			String_Appendf( codeTests, "\tTEMPER_CHECK_TRUE( %s( &pitch, &answerPitch ) );\n", equalsFuncStr );
 		}
 	} else {
 		String_Appendf( codeTests, "\t%s roll = rotate( %s );\n", fullTypeName, parmListRotateRoll );
@@ -2285,26 +2177,21 @@ static void GenerateTestRotate( stringBuilder_t* codeTests, stringBuilder_t* cod
 		if ( numRows > 3 ) {
 			String_Appendf( codeTests, "\t%s yaw = %s( mat, %s( %s ), %s( %s ) );\n", fullTypeName, rotateFuncStr, radiansFuncStr, rotDegreesStr, rotateVecTypeString, parmListVecYaw );
 			String_Appendf( codeTests, "\t%s answerYaw = %s( %s );\n", fullTypeName, fullTypeName, parmListMatYaw );
-			String_Append( codeTests, "\tTEMPER_EXPECT_TRUE( yaw == answerYaw );\n" );
+			String_Append( codeTests, "\tTEMPER_CHECK_TRUE( yaw == answerYaw );\n" );
 			String_Append( codeTests, "\n" );
 			String_Appendf( codeTests, "\t%s pitch = %s( mat, %s( %s ), %s( %s ) );\n", fullTypeName, rotateFuncStr, radiansFuncStr, rotDegreesStr, rotateVecTypeString, parmListVecPitch );
 			String_Appendf( codeTests, "\t%s answerPitch = %s( %s );\n", fullTypeName, fullTypeName, parmListMatPitch );
-			String_Append( codeTests, "\tTEMPER_EXPECT_TRUE( pitch == answerPitch );\n" );
+			String_Append( codeTests, "\tTEMPER_CHECK_TRUE( pitch == answerPitch );\n" );
 		}
-		String_Append( codeTests, "\tTEMPER_EXPECT_TRUE( roll == answerRoll );\n" );
+		String_Append( codeTests, "\tTEMPER_CHECK_TRUE( roll == answerRoll );\n" );
 	}
-	String_Append( codeTests, "\n" );
-	String_Append( codeTests, "\tTEMPER_PASS();\n" );
 	String_Append( codeTests, "}\n" );
 	String_Append( codeTests, "\n" );
-
-	String_Appendf( codeSuite, "\tTEMPER_RUN_TEST( %s );\n", testName );
 }
 
-static void GenerateTestScale( stringBuilder_t* codeTests, stringBuilder_t* codeSuite, const genLanguage_t language, const genType_t type, const u32 numRows, const u32 numCols,
+static void GenerateTestScale( stringBuilder_t* codeTests, const genLanguage_t language, const genType_t type, const u32 numRows, const u32 numCols,
 	const char* fullTypeName, const char* typeString, const char* memberTypeString ) {
 	assert( codeTests );
-	assert( codeSuite );
 	assert( numRows >= GEN_COMPONENT_COUNT_MIN );
 	assert( numRows <= GEN_COMPONENT_COUNT_MAX );
 	assert( numCols >= GEN_COMPONENT_COUNT_MIN );
@@ -2349,7 +2236,7 @@ static void GenerateTestScale( stringBuilder_t* codeTests, stringBuilder_t* code
 	char identityFuncStr[GEN_STRING_LENGTH_FUNCTION_NAME];
 	Gen_GetFuncNameIdentity( language, type, numRows, numCols, identityFuncStr );
 
-	String_Appendf( codeTests, "TEMPER_TEST( %s )\n", testName );
+	String_Appendf( codeTests, "TEMPER_TEST( %s, TEMPER_FLAG_SHOULD_RUN )\n", testName );
 	String_Append(  codeTests, "{\n" );
 	String_Appendf( codeTests, "\t%s scaleVec = { %s };\n", scaleVecTypeString, parmListScaleVec );
 	String_Appendf( codeTests, "\t%s mat;\n", fullTypeName );
@@ -2362,22 +2249,18 @@ static void GenerateTestScale( stringBuilder_t* codeTests, stringBuilder_t* code
 			char valueStr[GEN_STRING_LENGTH_NUMERIC_LITERAL];
 			Gen_GetNumericLiteral( type, scaleMatDiagonal[i], valueStr );
 
-			String_Appendf( codeTests, "\tTEMPER_EXPECT_TRUE( %s( scaled.rows[%d].%c, %s ) );\n", floateqStr, i, GEN_COMPONENT_NAMES_VECTOR[i], valueStr );
+			String_Appendf( codeTests, "\tTEMPER_CHECK_TRUE( %s( scaled.rows[%d].%c, %s ) );\n", floateqStr, i, GEN_COMPONENT_NAMES_VECTOR[i], valueStr );
 		}
 	} else {
 		for ( u32 i = 0; i < scaleCols; i++ ) {
 			char valueStr[GEN_STRING_LENGTH_NUMERIC_LITERAL];
 			Gen_GetNumericLiteral( type, scaleMatDiagonal[i], valueStr );
 
-			String_Appendf( codeTests, "\tTEMPER_EXPECT_TRUE( scaled.rows[%d].%c == %s );\n", i, GEN_COMPONENT_NAMES_VECTOR[i], valueStr );
+			String_Appendf( codeTests, "\tTEMPER_CHECK_TRUE( scaled.rows[%d].%c == %s );\n", i, GEN_COMPONENT_NAMES_VECTOR[i], valueStr );
 		}
 	}
-	String_Append(  codeTests, "\n" );
-	String_Append(  codeTests, "\tTEMPER_PASS();\n" );
 	String_Append(  codeTests, "}\n" );
 	String_Append(  codeTests, "\n" );
-
-	String_Appendf( codeSuite, "\tTEMPER_RUN_TEST( %s );\n", testName );
 
 	if ( Gen_TypeSupportsSSE( type ) ) {
 		// rules for generating SSE versions of translate() and scale() function are different from the scalar implementation
@@ -2397,7 +2280,7 @@ static void GenerateTestScale( stringBuilder_t* codeTests, stringBuilder_t* code
 		char scaleFuncStrSSE[GEN_STRING_LENGTH_FUNCTION_NAME];
 		Gen_SSE_GetFuncNameScale( language, type, numRows, numCols, scaleFuncStrSSE );
 
-		String_Appendf( codeTests, "TEMPER_TEST( %s )\n", testName );
+		String_Appendf( codeTests, "TEMPER_TEST( %s, TEMPER_FLAG_SHOULD_RUN )\n", testName );
 		String_Append(  codeTests, "{\n" );
 		String_Appendf( codeTests, "\t%s scaleVecComponents[%d][4] =\n", memberTypeString, scaleCols );
 		String_Append(  codeTests, "\t{\n" );
@@ -2443,24 +2326,20 @@ static void GenerateTestScale( stringBuilder_t* codeTests, stringBuilder_t* code
 				Gen_GetNumericLiteral( type, scaleMatDiagonal[componentIndex], valueStr );
 
 				if ( Gen_TypeIsFloatingPoint( type ) ) {
-					String_Appendf( codeTests, "\tTEMPER_EXPECT_TRUE( %s( scaleResults[%d], %s ) );\n", floateqStr, i, valueStr );
+					String_Appendf( codeTests, "\tTEMPER_CHECK_TRUE( %s( scaleResults[%d], %s ) );\n", floateqStr, i, valueStr );
 				} else {
-					String_Appendf( codeTests, "\tTEMPER_EXPECT_TRUE( scaleResults[%d] == %s );\n", i, valueStr );
+					String_Appendf( codeTests, "\tTEMPER_CHECK_TRUE( scaleResults[%d] == %s );\n", i, valueStr );
 				}
 			}
 			String_Append(  codeTests, "\n" );
 		}
-		String_Append(  codeTests, "\tTEMPER_PASS();\n" );
 		String_Append(  codeTests, "}\n" );
 		String_Append(  codeTests, "\n" );
-
-		String_Appendf( codeSuite, "\tTEMPER_RUN_TEST( %s );\n", testName );
 	}
 }
 
-static void GenerateTestOrtho( stringBuilder_t* codeTests, stringBuilder_t* codeSuite, const genLanguage_t language, const genType_t type, const u32 numRows, const u32 numCols, const char* fullTypeName, const char* typeString ) {
+static void GenerateTestOrtho( stringBuilder_t* codeTests, const genLanguage_t language, const genType_t type, const u32 numRows, const u32 numCols, const char* fullTypeName, const char* typeString ) {
 	assert( codeTests );
-	assert( codeSuite );
 	assert( numRows >= GEN_COMPONENT_COUNT_MIN );
 	assert( numRows <= GEN_COMPONENT_COUNT_MAX );
 	assert( numCols >= GEN_COMPONENT_COUNT_MIN );
@@ -2554,7 +2433,7 @@ static void GenerateTestOrtho( stringBuilder_t* codeTests, stringBuilder_t* code
 	char equalsFuncStr[GEN_STRING_LENGTH_FUNCTION_NAME];
 	Gen_GetFuncNameEquals( language, type, numRows, numCols, equalsFuncStr );
 
-	String_Appendf( codeTests, "TEMPER_TEST( %s )\n", testName );
+	String_Appendf( codeTests, "TEMPER_TEST( %s, TEMPER_FLAG_SHOULD_RUN )\n", testName );
 	String_Append(  codeTests, "{\n" );
 	if ( language == GEN_LANGUAGE_C ) {
 		String_Appendf( codeTests, "\t%s answerOrtho_LH_ZO = (%s) {\n", fullTypeName, fullTypeName );
@@ -2600,32 +2479,27 @@ static void GenerateTestOrtho( stringBuilder_t* codeTests, stringBuilder_t* code
 		String_Appendf( codeTests, "\t%s mat_RH_ZO = %s( left, right, top, bottom, %s, %s );\n", fullTypeName, orthoFuncStr_RH_ZO, minusOneStr, oneHundredStr );
 		String_Appendf( codeTests, "\t%s mat_RH_NO = %s( left, right, top, bottom, %s, %s );\n", fullTypeName, orthoFuncStr_RH_NO, minusOneStr, oneHundredStr );
 		String_Append(  codeTests, "\n" );
-		String_Appendf(  codeTests, "\tTEMPER_EXPECT_TRUE( %s( &mat_LH_ZO, &answerOrtho_LH_ZO ) );\n", equalsFuncStr );
-		String_Appendf(  codeTests, "\tTEMPER_EXPECT_TRUE( %s( &mat_LH_NO, &answerOrtho_LH_NO ) );\n", equalsFuncStr );
-		String_Appendf(  codeTests, "\tTEMPER_EXPECT_TRUE( %s( &mat_RH_ZO, &answerOrtho_RH_ZO ) );\n", equalsFuncStr );
-		String_Appendf(  codeTests, "\tTEMPER_EXPECT_TRUE( %s( &mat_RH_NO, &answerOrtho_RH_NO ) );\n", equalsFuncStr );
+		String_Appendf(  codeTests, "\tTEMPER_CHECK_TRUE( %s( &mat_LH_ZO, &answerOrtho_LH_ZO ) );\n", equalsFuncStr );
+		String_Appendf(  codeTests, "\tTEMPER_CHECK_TRUE( %s( &mat_LH_NO, &answerOrtho_LH_NO ) );\n", equalsFuncStr );
+		String_Appendf(  codeTests, "\tTEMPER_CHECK_TRUE( %s( &mat_RH_ZO, &answerOrtho_RH_ZO ) );\n", equalsFuncStr );
+		String_Appendf(  codeTests, "\tTEMPER_CHECK_TRUE( %s( &mat_RH_NO, &answerOrtho_RH_NO ) );\n", equalsFuncStr );
 	} else {
 		String_Appendf( codeTests, "\t%s mat_LH_ZO = %s( left, right, top, bottom, %s, %s );\n", fullTypeName, orthoFuncStr_LH_ZO, minusOneStr, oneHundredStr );
 		String_Appendf( codeTests, "\t%s mat_LH_NO = %s( left, right, top, bottom, %s, %s );\n", fullTypeName, orthoFuncStr_LH_NO, minusOneStr, oneHundredStr );
 		String_Appendf( codeTests, "\t%s mat_RH_ZO = %s( left, right, top, bottom, %s, %s );\n", fullTypeName, orthoFuncStr_RH_ZO, minusOneStr, oneHundredStr );
 		String_Appendf( codeTests, "\t%s mat_RH_NO = %s( left, right, top, bottom, %s, %s );\n", fullTypeName, orthoFuncStr_RH_NO, minusOneStr, oneHundredStr );
 		String_Append(  codeTests, "\n" );
-		String_Append(  codeTests, "\tTEMPER_EXPECT_TRUE( mat_LH_ZO == answerOrtho_LH_ZO );\n" );
-		String_Append(  codeTests, "\tTEMPER_EXPECT_TRUE( mat_LH_NO == answerOrtho_LH_NO );\n" );
-		String_Append(  codeTests, "\tTEMPER_EXPECT_TRUE( mat_RH_ZO == answerOrtho_RH_ZO );\n" );
-		String_Append(  codeTests, "\tTEMPER_EXPECT_TRUE( mat_RH_NO == answerOrtho_RH_NO );\n" );
+		String_Append(  codeTests, "\tTEMPER_CHECK_TRUE( mat_LH_ZO == answerOrtho_LH_ZO );\n" );
+		String_Append(  codeTests, "\tTEMPER_CHECK_TRUE( mat_LH_NO == answerOrtho_LH_NO );\n" );
+		String_Append(  codeTests, "\tTEMPER_CHECK_TRUE( mat_RH_ZO == answerOrtho_RH_ZO );\n" );
+		String_Append(  codeTests, "\tTEMPER_CHECK_TRUE( mat_RH_NO == answerOrtho_RH_NO );\n" );
 	}
-	String_Append(  codeTests, "\n" );
-	String_Append(  codeTests, "\tTEMPER_PASS();\n" );
 	String_Append(  codeTests, "}\n" );
 	String_Append(  codeTests, "\n" );
-
-	String_Appendf( codeSuite, "\tTEMPER_RUN_TEST( %s );\n", testName );
 }
 
-static void GenerateTestPerspective( stringBuilder_t* codeTests, stringBuilder_t* codeSuite, const genLanguage_t language, const genType_t type, const u32 numRows, const u32 numCols, const char* fullTypeName, const char* typeString ) {
+static void GenerateTestPerspective( stringBuilder_t* codeTests, const genLanguage_t language, const genType_t type, const u32 numRows, const u32 numCols, const char* fullTypeName, const char* typeString ) {
 	assert( codeTests );
-	assert( codeSuite );
 	assert( numRows >= GEN_COMPONENT_COUNT_MIN );
 	assert( numRows <= GEN_COMPONENT_COUNT_MAX );
 	assert( numCols >= GEN_COMPONENT_COUNT_MIN );
@@ -2719,7 +2593,7 @@ static void GenerateTestPerspective( stringBuilder_t* codeTests, stringBuilder_t
 	char equalsFuncStr[GEN_STRING_LENGTH_FUNCTION_NAME];
 	Gen_GetFuncNameEquals( language, type, numRows, numCols, equalsFuncStr );
 
-	String_Appendf( codeTests, "TEMPER_TEST( %s )\n", testName );
+	String_Appendf( codeTests, "TEMPER_TEST( %s, TEMPER_FLAG_SHOULD_RUN )\n", testName );
 	String_Append(  codeTests, "{\n" );
 	if ( language == GEN_LANGUAGE_C ) {
 		String_Appendf( codeTests, "\t%s answerPerspective_LH_ZO = (%s) {\n", fullTypeName, fullTypeName );
@@ -2757,32 +2631,27 @@ static void GenerateTestPerspective( stringBuilder_t* codeTests, stringBuilder_t
 		String_Appendf( codeTests, "\t%s mat_RH_ZO = %s( %s, aspect, %s, %s );\n", fullTypeName, perspectiveFuncStr_RH_ZO, fovStr, znearStr, zfarStr );
 		String_Appendf( codeTests, "\t%s mat_RH_NO = %s( %s, aspect, %s, %s );\n", fullTypeName, perspectiveFuncStr_RH_NO, fovStr, znearStr, zfarStr );
 		String_Append(  codeTests, "\n" );
-		String_Appendf( codeTests, "\tTEMPER_EXPECT_TRUE( %s( &mat_LH_ZO, &answerPerspective_LH_ZO ) );\n", equalsFuncStr );
-		String_Appendf( codeTests, "\tTEMPER_EXPECT_TRUE( %s( &mat_LH_NO, &answerPerspective_LH_NO ) );\n", equalsFuncStr );
-		String_Appendf( codeTests, "\tTEMPER_EXPECT_TRUE( %s( &mat_RH_ZO, &answerPerspective_RH_ZO ) );\n", equalsFuncStr );
-		String_Appendf( codeTests, "\tTEMPER_EXPECT_TRUE( %s( &mat_RH_NO, &answerPerspective_RH_NO ) );\n", equalsFuncStr );
+		String_Appendf( codeTests, "\tTEMPER_CHECK_TRUE( %s( &mat_LH_ZO, &answerPerspective_LH_ZO ) );\n", equalsFuncStr );
+		String_Appendf( codeTests, "\tTEMPER_CHECK_TRUE( %s( &mat_LH_NO, &answerPerspective_LH_NO ) );\n", equalsFuncStr );
+		String_Appendf( codeTests, "\tTEMPER_CHECK_TRUE( %s( &mat_RH_ZO, &answerPerspective_RH_ZO ) );\n", equalsFuncStr );
+		String_Appendf( codeTests, "\tTEMPER_CHECK_TRUE( %s( &mat_RH_NO, &answerPerspective_RH_NO ) );\n", equalsFuncStr );
 	} else {
 		String_Appendf( codeTests, "\t%s mat_LH_ZO = %s( %s, aspect, %s, %s );\n", fullTypeName, perspectiveFuncStr_LH_ZO, fovStr, znearStr, zfarStr );
 		String_Appendf( codeTests, "\t%s mat_LH_NO = %s( %s, aspect, %s, %s );\n", fullTypeName, perspectiveFuncStr_LH_NO, fovStr, znearStr, zfarStr );
 		String_Appendf( codeTests, "\t%s mat_RH_ZO = %s( %s, aspect, %s, %s );\n", fullTypeName, perspectiveFuncStr_RH_ZO, fovStr, znearStr, zfarStr );
 		String_Appendf( codeTests, "\t%s mat_RH_NO = %s( %s, aspect, %s, %s );\n", fullTypeName, perspectiveFuncStr_RH_NO, fovStr, znearStr, zfarStr );
 		String_Append(  codeTests, "\n" );
-		String_Appendf( codeTests, "\tTEMPER_EXPECT_TRUE( mat_LH_ZO == answerPerspective_LH_ZO );\n" );
-		String_Appendf( codeTests, "\tTEMPER_EXPECT_TRUE( mat_LH_NO == answerPerspective_LH_NO );\n" );
-		String_Appendf( codeTests, "\tTEMPER_EXPECT_TRUE( mat_RH_ZO == answerPerspective_RH_ZO );\n" );
-		String_Appendf( codeTests, "\tTEMPER_EXPECT_TRUE( mat_RH_NO == answerPerspective_RH_NO );\n" );
+		String_Appendf( codeTests, "\tTEMPER_CHECK_TRUE( mat_LH_ZO == answerPerspective_LH_ZO );\n" );
+		String_Appendf( codeTests, "\tTEMPER_CHECK_TRUE( mat_LH_NO == answerPerspective_LH_NO );\n" );
+		String_Appendf( codeTests, "\tTEMPER_CHECK_TRUE( mat_RH_ZO == answerPerspective_RH_ZO );\n" );
+		String_Appendf( codeTests, "\tTEMPER_CHECK_TRUE( mat_RH_NO == answerPerspective_RH_NO );\n" );
 	}
-	String_Append(  codeTests, "\n" );
-	String_Append(  codeTests, "\tTEMPER_PASS();\n" );
 	String_Append(  codeTests, "}\n" );
 	String_Append(  codeTests, "\n" );
-
-	String_Appendf( codeSuite, "\tTEMPER_RUN_TEST( %s );\n", testName );
 }
 
-static void GenerateTestLookAt( stringBuilder_t* codeTests, stringBuilder_t* codeSuite, const genLanguage_t language, const genType_t type, const u32 numRows, const u32 numCols, const char* fullTypeName, const char* typeString ) {
+static void GenerateTestLookAt( stringBuilder_t* codeTests, const genLanguage_t language, const genType_t type, const u32 numRows, const u32 numCols, const char* fullTypeName, const char* typeString ) {
 	assert( codeTests );
-	assert( codeSuite );
 	assert( numRows >= GEN_COMPONENT_COUNT_MIN );
 	assert( numRows <= GEN_COMPONENT_COUNT_MAX );
 	assert( numCols >= GEN_COMPONENT_COUNT_MIN );
@@ -2849,7 +2718,7 @@ static void GenerateTestLookAt( stringBuilder_t* codeTests, stringBuilder_t* cod
 	char equalsFuncStr[GEN_STRING_LENGTH_FUNCTION_NAME];
 	Gen_GetFuncNameEquals( language, type, numRows, numCols, equalsFuncStr );
 
-	String_Appendf( codeTests, "TEMPER_TEST( %s )\n", testName );
+	String_Appendf( codeTests, "TEMPER_TEST( %s, TEMPER_FLAG_SHOULD_RUN )\n", testName );
 	String_Append(  codeTests, "{\n" );
 	if ( language == GEN_LANGUAGE_C ) {
 		String_Appendf( codeTests, "\t%s answerLookAt_LH = (%s) {\n", fullTypeName, fullTypeName );
@@ -2875,21 +2744,17 @@ static void GenerateTestLookAt( stringBuilder_t* codeTests, stringBuilder_t* cod
 		String_Appendf( codeTests, "\t%s mat_LH = %s( &currentPos, &targetPos, &up );\n", fullTypeName, lookAtFuncStr_LH );
 		String_Appendf( codeTests, "\t%s mat_RH = %s( &currentPos, &targetPos, &up );\n", fullTypeName, lookAtFuncStr_RH );
 		String_Append(  codeTests, "\n" );
-		String_Appendf( codeTests, "\tTEMPER_EXPECT_TRUE( %s( &mat_LH, &answerLookAt_LH ) );\n", equalsFuncStr );
-		String_Appendf( codeTests, "\tTEMPER_EXPECT_TRUE( %s( &mat_RH, &answerLookAt_RH ) );\n", equalsFuncStr );
+		String_Appendf( codeTests, "\tTEMPER_CHECK_TRUE( %s( &mat_LH, &answerLookAt_LH ) );\n", equalsFuncStr );
+		String_Appendf( codeTests, "\tTEMPER_CHECK_TRUE( %s( &mat_RH, &answerLookAt_RH ) );\n", equalsFuncStr );
 	} else {
 		String_Appendf( codeTests, "\t%s mat_LH = %s( currentPos, targetPos, up );\n", fullTypeName, lookAtFuncStr_LH );
 		String_Appendf( codeTests, "\t%s mat_RH = %s( currentPos, targetPos, up );\n", fullTypeName, lookAtFuncStr_RH );
 		String_Append(  codeTests, "\n" );
-		String_Append(  codeTests, "\tTEMPER_EXPECT_TRUE( mat_LH == answerLookAt_LH );\n" );
-		String_Append(  codeTests, "\tTEMPER_EXPECT_TRUE( mat_RH == answerLookAt_RH );\n" );
+		String_Append(  codeTests, "\tTEMPER_CHECK_TRUE( mat_LH == answerLookAt_LH );\n" );
+		String_Append(  codeTests, "\tTEMPER_CHECK_TRUE( mat_RH == answerLookAt_RH );\n" );
 	}
-	String_Append(  codeTests, "\n" );
-	String_Append(  codeTests, "\tTEMPER_PASS();\n" );
 	String_Append(  codeTests, "}\n" );
 	String_Append(  codeTests, "\n" );
-
-	String_Appendf( codeSuite, "\tTEMPER_RUN_TEST( %s );\n", testName );
 }
 
 void Gen_MatrixTests( allocatorLinear_t* allocator, const genLanguage_t language, const genType_t type, const u32 numRows, const u32 numCols ) {
@@ -2903,7 +2768,6 @@ void Gen_MatrixTests( allocatorLinear_t* allocator, const genLanguage_t language
 	const u32 suiteCodeBytes = 12 * KB_TO_BYTES;
 
 	stringBuilder_t codeTests = String_Create( allocator, testsCodeBytes );
-	stringBuilder_t codeSuite = String_Create( allocator, suiteCodeBytes );
 
 	const char* typeString = Gen_GetTypeString( type );
 	const char* memberTypeString = Gen_GetMemberTypeString( type );
@@ -2955,55 +2819,30 @@ void Gen_MatrixTests( allocatorLinear_t* allocator, const genLanguage_t language
 		String_Append(  &code, "\n" );
 	}
 
-	String_Appendf( &codeSuite, "TEMPER_SUITE( Test_%s )\n", fullTypeName );
-	String_Append(  &codeSuite, "{\n" );
-
-	GenerateTestAssignment( &codeTests, &codeSuite, language, type, numRows, numCols, fullTypeName, vectorTypeString );
-
+	GenerateTestAssignment( &codeTests, language, type, numRows, numCols, fullTypeName, vectorTypeString );
 	if ( language == GEN_LANGUAGE_CPP ) {
-		GenerateTestCtor( &codeTests, &codeSuite, type, numRows, numCols, fullTypeName, vectorTypeString );
-
-		GenerateTestArray( &codeTests, &codeSuite, type, numRows, numCols, fullTypeName, vectorTypeString );
-
-		GenerateTestIncrement( &codeTests, &codeSuite, type, numRows, numCols, fullTypeName );
+		GenerateTestCtor( &codeTests, type, numRows, numCols, fullTypeName, vectorTypeString );
+		GenerateTestArray( &codeTests, type, numRows, numCols, fullTypeName, vectorTypeString );
+		GenerateTestIncrement( &codeTests, type, numRows, numCols, fullTypeName );
 	}
-
-	GenerateTestComponentWiseArithmetic( &codeTests, &codeSuite, language, type, numRows, numCols, fullTypeName, memberTypeString );
-
-	GenerateTestMultiplyMatrix( &codeTests, &codeSuite, language, type, numRows, numCols, fullTypeName, typeString, memberTypeString );
-
-	GenerateTestMultiplyVector( &codeTests, &codeSuite, language, type, numRows, numCols, fullTypeName, vectorTypeString );
-
-	GenerateTestDivideMatrix( &codeTests, &codeSuite, language, type, numRows, numCols, fullTypeName );
-
-	GenerateTestRelational( &codeTests, &codeSuite, language, type, numRows, numCols, fullTypeName );
-
-	GenerateTestBitwise( &codeTests, &codeSuite, language, type, numRows, numCols, fullTypeName, memberTypeString );
-
-	GenerateTestIdentity( &codeTests, &codeSuite, language, type, numRows, numCols, fullTypeName, vectorTypeString, memberTypeString );
-
-	GenerateTestTranspose( &codeTests, &codeSuite, language, type, numRows, numCols, fullTypeName, vectorTypeString, typeString, memberTypeString );
-
-	GenerateTestDeterminant( &codeTests, &codeSuite, language, type, numRows, numCols, fullTypeName, memberTypeString );
-
-	GenerateTestInverse( &codeTests, &codeSuite, language, type, numRows, numCols, fullTypeName, memberTypeString );
-
-	GenerateTestTranslate( &codeTests, &codeSuite, language, type, numRows, numCols, fullTypeName, typeString, memberTypeString );
-
-	GenerateTestRotate( &codeTests, &codeSuite, language, type, numRows, numCols, fullTypeName, typeString );
-
-	GenerateTestScale( &codeTests, &codeSuite, language, type, numRows, numCols, fullTypeName, typeString, memberTypeString );
-
-	GenerateTestOrtho( &codeTests, &codeSuite, language, type, numRows, numCols, fullTypeName, typeString );
-
-	GenerateTestPerspective( &codeTests, &codeSuite, language, type, numRows, numCols, fullTypeName, typeString );
-
-	GenerateTestLookAt( &codeTests, &codeSuite, language, type, numRows, numCols, fullTypeName, typeString );
-
-	String_Append( &codeSuite, "}\n" );
+	GenerateTestComponentWiseArithmetic( &codeTests, language, type, numRows, numCols, fullTypeName, memberTypeString );
+	GenerateTestMultiplyMatrix( &codeTests, language, type, numRows, numCols, fullTypeName, typeString, memberTypeString );
+	GenerateTestMultiplyVector( &codeTests, language, type, numRows, numCols, fullTypeName, vectorTypeString );
+	GenerateTestDivideMatrix( &codeTests, language, type, numRows, numCols, fullTypeName );
+	GenerateTestRelational( &codeTests, language, type, numRows, numCols, fullTypeName );
+	GenerateTestBitwise( &codeTests, language, type, numRows, numCols, fullTypeName, memberTypeString );
+	GenerateTestIdentity( &codeTests, language, type, numRows, numCols, fullTypeName, vectorTypeString, memberTypeString );
+	GenerateTestTranspose( &codeTests, language, type, numRows, numCols, fullTypeName, vectorTypeString, typeString, memberTypeString );
+	GenerateTestDeterminant( &codeTests, language, type, numRows, numCols, fullTypeName, memberTypeString );
+	GenerateTestInverse( &codeTests, language, type, numRows, numCols, fullTypeName, memberTypeString );
+	GenerateTestTranslate( &codeTests, language, type, numRows, numCols, fullTypeName, typeString, memberTypeString );
+	GenerateTestRotate( &codeTests, language, type, numRows, numCols, fullTypeName, typeString );
+	GenerateTestScale( &codeTests, language, type, numRows, numCols, fullTypeName, typeString, memberTypeString );
+	GenerateTestOrtho( &codeTests, language, type, numRows, numCols, fullTypeName, typeString );
+	GenerateTestPerspective( &codeTests, language, type, numRows, numCols, fullTypeName, typeString );
+	GenerateTestLookAt( &codeTests, language, type, numRows, numCols, fullTypeName, typeString );
 
 	String_Append( &code, codeTests.str );
-	String_Append( &code, codeSuite.str );
 
 	char filename[64] = { 0 };
 	snprintf( filename, 64, "%stest_%s.%s", GEN_FOLDER_PATHS_TESTS[language], fullTypeName, GEN_SOURCE_FILE_EXTENSIONS[language] );

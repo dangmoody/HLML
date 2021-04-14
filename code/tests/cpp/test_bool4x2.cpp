@@ -32,7 +32,7 @@ SOFTWARE.
 // EDITING THIS FILE MAY CAUSE SIDE EFFECTS.
 // DO SO AT YOUR OWN RISK.
 
-TEMPER_TEST( TestAssignment_bool4x2 )
+TEMPER_TEST( TestAssignment_bool4x2, TEMPER_FLAG_SHOULD_RUN )
 {
 	bool4x2 mat;
 
@@ -41,28 +41,26 @@ TEMPER_TEST( TestAssignment_bool4x2 )
 	mat.rows[2] = bool2( false, false );
 	mat.rows[3] = bool2( false, false );
 
-	TEMPER_EXPECT_TRUE( mat.rows[0].x == true );
-	TEMPER_EXPECT_TRUE( mat.rows[0].y == false );
-	TEMPER_EXPECT_TRUE( mat.rows[1].x == false );
-	TEMPER_EXPECT_TRUE( mat.rows[1].y == true );
-	TEMPER_EXPECT_TRUE( mat.rows[2].x == false );
-	TEMPER_EXPECT_TRUE( mat.rows[2].y == false );
-	TEMPER_EXPECT_TRUE( mat.rows[3].x == false );
-	TEMPER_EXPECT_TRUE( mat.rows[3].y == false );
-
-	TEMPER_PASS();
+	TEMPER_CHECK_TRUE( mat.rows[0].x == true );
+	TEMPER_CHECK_TRUE( mat.rows[0].y == false );
+	TEMPER_CHECK_TRUE( mat.rows[1].x == false );
+	TEMPER_CHECK_TRUE( mat.rows[1].y == true );
+	TEMPER_CHECK_TRUE( mat.rows[2].x == false );
+	TEMPER_CHECK_TRUE( mat.rows[2].y == false );
+	TEMPER_CHECK_TRUE( mat.rows[3].x == false );
+	TEMPER_CHECK_TRUE( mat.rows[3].y == false );
 }
 
-TEMPER_TEST( TestCtor_bool4x2 )
+TEMPER_TEST( TestCtor_bool4x2, TEMPER_FLAG_SHOULD_RUN )
 {
 	bool4x2 mat;
 
 	// fill single value
 	mat = bool4x2( true );
-	TEMPER_EXPECT_TRUE( mat[0] == bool2( true, false ) );
-	TEMPER_EXPECT_TRUE( mat[1] == bool2( false, true ) );
-	TEMPER_EXPECT_TRUE( mat[2] == bool2( false, false ) );
-	TEMPER_EXPECT_TRUE( mat[3] == bool2( false, false ) );
+	TEMPER_CHECK_TRUE( mat[0] == bool2( true, false ) );
+	TEMPER_CHECK_TRUE( mat[1] == bool2( false, true ) );
+	TEMPER_CHECK_TRUE( mat[2] == bool2( false, false ) );
+	TEMPER_CHECK_TRUE( mat[3] == bool2( false, false ) );
 
 	// row filling
 	mat = bool4x2(
@@ -71,10 +69,10 @@ TEMPER_TEST( TestCtor_bool4x2 )
 		bool2( true, true ),
 		bool2( true, true )
 	);
-	TEMPER_EXPECT_TRUE( mat[0] == bool2( false, true ) );
-	TEMPER_EXPECT_TRUE( mat[1] == bool2( true, true ) );
-	TEMPER_EXPECT_TRUE( mat[2] == bool2( true, true ) );
-	TEMPER_EXPECT_TRUE( mat[3] == bool2( true, true ) );
+	TEMPER_CHECK_TRUE( mat[0] == bool2( false, true ) );
+	TEMPER_CHECK_TRUE( mat[1] == bool2( true, true ) );
+	TEMPER_CHECK_TRUE( mat[2] == bool2( true, true ) );
+	TEMPER_CHECK_TRUE( mat[3] == bool2( true, true ) );
 
 	// all values filled
 	mat = bool4x2(
@@ -83,28 +81,24 @@ TEMPER_TEST( TestCtor_bool4x2 )
 		true, true,
 		true, true
 	);
-	TEMPER_EXPECT_TRUE( mat[0] == bool2( true, true ) );
-	TEMPER_EXPECT_TRUE( mat[1] == bool2( true, true ) );
-	TEMPER_EXPECT_TRUE( mat[2] == bool2( true, true ) );
-	TEMPER_EXPECT_TRUE( mat[3] == bool2( true, true ) );
-
-	TEMPER_PASS();
+	TEMPER_CHECK_TRUE( mat[0] == bool2( true, true ) );
+	TEMPER_CHECK_TRUE( mat[1] == bool2( true, true ) );
+	TEMPER_CHECK_TRUE( mat[2] == bool2( true, true ) );
+	TEMPER_CHECK_TRUE( mat[3] == bool2( true, true ) );
 }
 
-TEMPER_TEST( TestArray_bool4x2 )
+TEMPER_TEST( TestArray_bool4x2, TEMPER_FLAG_SHOULD_RUN )
 {
 	bool4x2 mat;
 	identity( mat );
 
-	TEMPER_EXPECT_TRUE( mat[0] == bool2( true, false ) );
-	TEMPER_EXPECT_TRUE( mat[1] == bool2( false, true ) );
-	TEMPER_EXPECT_TRUE( mat[2] == bool2( false, false ) );
-	TEMPER_EXPECT_TRUE( mat[3] == bool2( false, false ) );
-
-	TEMPER_PASS();
+	TEMPER_CHECK_TRUE( mat[0] == bool2( true, false ) );
+	TEMPER_CHECK_TRUE( mat[1] == bool2( false, true ) );
+	TEMPER_CHECK_TRUE( mat[2] == bool2( false, false ) );
+	TEMPER_CHECK_TRUE( mat[3] == bool2( false, false ) );
 }
 
-TEMPER_TEST( TestIdentity_Scalar_bool4x2 )
+TEMPER_TEST( TestIdentity_Scalar_bool4x2, TEMPER_FLAG_SHOULD_RUN )
 {
 	bool4x2 id;
 	id[0] = bool2( true, false );
@@ -115,12 +109,10 @@ TEMPER_TEST( TestIdentity_Scalar_bool4x2 )
 	bool4x2 mat;
 
 	identity( mat );
-	TEMPER_EXPECT_TRUE( mat == id );
-
-	TEMPER_PASS();
+	TEMPER_CHECK_TRUE( mat == id );
 }
 
-TEMPER_TEST( TestTranspose_Scalar_bool4x2 )
+TEMPER_TEST( TestTranspose_Scalar_bool4x2, TEMPER_FLAG_SHOULD_RUN )
 {
 	bool2x4 answerTransposed = bool2x4(
 		false, true, true, true,
@@ -135,16 +127,6 @@ TEMPER_TEST( TestTranspose_Scalar_bool4x2 )
 	);
 	bool2x4 trans = transpose( mat );
 
-	TEMPER_EXPECT_TRUE( trans == answerTransposed );
-
-	TEMPER_PASS();
+	TEMPER_CHECK_TRUE( trans == answerTransposed );
 }
 
-TEMPER_SUITE( Test_bool4x2 )
-{
-	TEMPER_RUN_TEST( TestAssignment_bool4x2 );
-	TEMPER_RUN_TEST( TestCtor_bool4x2 );
-	TEMPER_RUN_TEST( TestArray_bool4x2 );
-	TEMPER_RUN_TEST( TestIdentity_Scalar_bool4x2 );
-	TEMPER_RUN_TEST( TestTranspose_Scalar_bool4x2 );
-}

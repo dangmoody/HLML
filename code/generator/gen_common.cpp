@@ -374,6 +374,7 @@ void Gen_FunctionsVector( allocatorLinear_t* allocator, const genLanguage_t lang
 			Gen_VectorFunctionsComponentWiseArithmetic( language, type, componentIndex, &contentFwdDec, &contentImpl );
 			Gen_VectorFunctionsComponentWiseBitwise( language, type, componentIndex, &contentFwdDec, &contentImpl );
 			Gen_VectorFunctionsComponentWiseRelational( language, type, componentIndex, &contentFwdDec, &contentImpl );
+			Gen_Negate( language, type, 1, componentIndex, &contentFwdDec, &contentImpl );
 
 			// vector-specific funcs
 			Gen_VectorLength( language, type, componentIndex, &contentFwdDec, &contentImpl );
@@ -1004,6 +1005,13 @@ void Gen_TestsMain( allocatorLinear_t* allocator, const genLanguage_t language )
 	String_Append( &sb, "#define NOMINMAX\n" );
 	String_Append( &sb, "\n" );
 
+	String_Append( &sb, "typedef struct temperTestInfo_t temperTestInfo_t;\n" );
+	String_Append( &sb, "void OnBeforeTest( const temperTestInfo_t* testInfo );\n" );
+	String_Append( &sb, "void OnAfterTest( const temperTestInfo_t* testInfo );\n" );
+
+	String_Append( &sb, "#define TEMPER_IMPLEMENTATION\n" );
+	String_Append( &sb, "#define TEMPERDEV__ON_BEFORE_TEST OnBeforeTest\n" );
+	String_Append( &sb, "#define TEMPERDEV__ON_AFTER_TEST OnAfterTest\n" );
 	String_Append( &sb, "#include <temper/temper.h>\n" );
 	String_Append( &sb, "\n" );
 
@@ -1069,72 +1077,51 @@ void Gen_TestsMain( allocatorLinear_t* allocator, const genLanguage_t language )
 	}
 	String_Append( &sb, "\n" );
 
-	String_Append( &sb, "static void OnSuiteEnd( void* userdata )\n" );
+	String_Append( &sb, "#define TEST_PADDING \"................................................................\"\n" );
+	String_Append( &sb, "\n" );
+
+	String_Append( &sb, "void OnBeforeTest( const temperTestInfo_t* testInfo )\n" );
 	String_Append( &sb, "{\n" );
-	String_Append( &sb, "\t( (void) userdata );\n" );
-	String_Append( &sb, "\tprintf( \"\\n\" );\n" );
+	String_Append( &sb, "\tconst int padLengthMax = (int) strlen( TEST_PADDING );\n" );
+	String_Append( &sb, "\n" );
+	String_Append( &sb, "\tconst int dotLength = padLengthMax - (int) strlen( testInfo->testNameStr );\n" );
+	String_Append( &sb, "\tassert( dotLength );\n" );
+	String_Append( &sb, "\n" );
+	String_Append( &sb, "\tprintf( \"%s %*.*s \", testInfo->testNameStr, dotLength, dotLength, TEST_PADDING );\n" );
 	String_Append( &sb, "}\n" );
 	String_Append( &sb, "\n" );
 
-	String_Append( &sb, "TEMPER_DEFS();\n" );
+	String_Append( &sb, "void OnAfterTest( const temperTestInfo_t* testInfo )\n" );
+	String_Append( &sb, "{\n" );
+	String_Append( &sb, "\t\tif ( testInfo->testingFlag == TEMPER_FLAG_SHOULD_SKIP )\n" );
+	String_Append( &sb, "\t\t{\n" );
+	String_Append( &sb, "\t\t\tTemperSetTextColorInternal( TEMPERDEV__COLOR_YELLOW );\n" );
+	String_Append( &sb, "\t\t\tprintf( \"SKIPPED\\n\" );\n" );
+	String_Append( &sb, "\t\t\tTemperSetTextColorInternal( TEMPERDEV__COLOR_DEFAULT );\n" );
+	String_Append( &sb, "\t\t}\n" );
+	String_Append( &sb, "\t\telse\n" );
+	String_Append( &sb, "\t\t{\n" );
+	String_Append( &sb, "\t\t\tif ( g_temperTestContext.currentTestErrorCount == 0 )\n" );
+	String_Append( &sb, "\t\t\t{\n" );
+	String_Append( &sb, "\t\t\t\tTemperSetTextColorInternal( TEMPERDEV__COLOR_GREEN );\n" );
+	String_Append( &sb, "\t\t\t\tprintf( \"OK\" );\n" );
+	String_Append( &sb, "\t\t\t\tTemperSetTextColorInternal( TEMPERDEV__COLOR_DEFAULT );\n" );
+	String_Append( &sb, "\t\t\t}\n" );
+	String_Append( &sb, "\t\t\telse\n" );
+	String_Append( &sb, "\t\t\t{\n" );
+	String_Append( &sb, "\t\t\t\tTemperSetTextColorInternal( TEMPERDEV__COLOR_RED );\n" );
+	String_Append( &sb, "\t\t\t\tprintf( \"FAILED\\n\" );\n" );
+	String_Append( &sb, "\t\t\t\tTemperSetTextColorInternal( TEMPERDEV__COLOR_DEFAULT );\n" );
+	String_Append( &sb, "\t\t\t}\n" );
 	String_Append( &sb, "\n" );
+	String_Append( &sb, "\t\t\tprintf( \" (%f %s)\\n\", testInfo->testTimeTaken, TemperGetTimeUnitStringInternal( g_temperTestContext.timeUnit ) );\n" );
+	String_Append( &sb, "\t\t}\n" );
+	String_Append( &sb, "\t}\n" );
 
 	String_Append( &sb, "int main( int argc, char** argv )\n" );
 	String_Append( &sb, "{\n" );
-	String_Append( &sb, "\tTEMPER_SET_COMMAND_LINE_ARGS( argc, argv );\n" );
-	String_Append( &sb, "\n" );
-	String_Append( &sb, "\tTEMPER_SET_SUITE_END_CALLBACK( OnSuiteEnd, NULL );\n" );
-	String_Append( &sb, "\n" );
-
-	// run the scalar tests first
-	// the vector/matrix functions make heavy use of these per-component
-	// so if these fail, the problem might be easier to diagnose
-	String_Append( &sb, "\t// scalar tests\n" );
-	for ( u32 typeIndex = 0; typeIndex < GEN_TYPE_COUNT; typeIndex++ ) {
-		genType_t type = (genType_t) typeIndex;
-
-		if ( type == GEN_TYPE_BOOL ) {
-			continue;
-		}
-
-		String_Appendf( &sb, "\tTEMPER_RUN_SUITE( Test_%s );\n", Gen_GetMemberTypeString( type ) );
-	}
-
-	String_Append( &sb, "\n" );
-
-	// now do vector and matrix types
-	String_Appendf( &sb, "\t// vector/matrix tests\n" );
-	for ( u32 typeIndex = 0; typeIndex < GEN_TYPE_COUNT; typeIndex++ ) {
-		genType_t type = (genType_t) typeIndex;
-
-		for ( u32 row = 1; row <= GEN_COMPONENT_COUNT_MAX; row++ ) {
-			for ( u32 col = GEN_COMPONENT_COUNT_MIN; col <= GEN_COMPONENT_COUNT_MAX; col++ ) {
-				char fullTypeName[GEN_STRING_LENGTH_TYPE_NAME] = { 0 };
-				Gen_GetFullTypeName( type, row, col, fullTypeName );
-
-				String_Appendf( &sb, "\tTEMPER_RUN_SUITE( Test_%s );\n", fullTypeName );
-			}
-			String_Appendf( &sb, "\n" );
-		}
-	}
-
-	// quaternion suites
-	for ( u32 typeIndex = 0; typeIndex < GEN_TYPE_COUNT; typeIndex++ ) {
-		genType_t type = (genType_t) typeIndex;
-		if (Gen_TypeIsFloatingPoint(type) == false) {
-			continue;
-		}
-
-		char fullTypeName[GEN_STRING_LENGTH_TYPE_NAME] = { 0 };
-		Gen_GetFullTypeName( type, 1, 1, fullTypeName );
-
-		String_Appendf( &sb, "\tTEMPER_RUN_SUITE( Test_quaternion_%s4 );\n", fullTypeName );
-	}
-	String_Appendf( &sb, "\n" );
-
-	String_Append( &sb, "\tTEMPER_SHOW_STATS();\n" );
-	String_Append( &sb, "\n" );
-	String_Append( &sb, "\treturn TEMPER_EXIT_CODE();\n" );
+	String_Append( &sb, "\tTEMPER_RUN( argc, argv );\n" );
+	String_Append( &sb, "\treturn TEMPER_GET_EXIT_CODE();\n" );
 	String_Append( &sb, "}" );
 	String_Append( &sb, "\n" );
 
@@ -1718,8 +1705,72 @@ void Gen_FunctionAll( const genLanguage_t language, const genType_t type, const 
 	String_Append(  sbImpl, "\n" );
 }
 
+void Gen_Negate( const genLanguage_t language, const genType_t type, const u32 numRows, const u32 numCols, stringBuilder_t* sbFwdDec, stringBuilder_t* sbImpl ) {
+	assert( numRows >= 1 );	// pass through 1 for vectors
+	assert( numRows <= GEN_COMPONENT_COUNT_MAX );
+	assert( numCols >= GEN_COMPONENT_COUNT_MIN );
+	assert( numCols <= GEN_COMPONENT_COUNT_MAX );
+	assert( sbFwdDec );
+	assert( sbImpl );
+
+	if ( type == GEN_TYPE_BOOL ) {
+		return;
+	}
+
+	char fullTypeName[GEN_STRING_LENGTH_TYPE_NAME];
+	Gen_GetFullTypeName( type, numRows, numCols, fullTypeName );
+
+	char parmTypeName[GEN_STRING_LENGTH_TYPE_NAME];
+	Gen_GetParmTypeName( language, type, numRows, numCols, parmTypeName );
+
+	char negateFuncStr[GEN_STRING_LENGTH_FUNCTION_NAME];
+	Gen_GetFuncNameNegate( language, type, numRows, numCols, negateFuncStr );
+
+	const char* parmAccessStr = GEN_TYPE_ACCESS_OPERATORS[language];
+
+	bool32 isMatrix = numRows > 1;
+
+	const char* parmName = isMatrix ? "mat" : "vec";
+
+	Doc_Negate( sbFwdDec, fullTypeName );
+	String_Appendf( sbFwdDec, "inline %s %s( const %s %s );\n", fullTypeName, negateFuncStr, parmTypeName, parmName );
+	String_Append(  sbFwdDec, "\n" );
+
+	String_Appendf( sbImpl, "%s %s( const %s %s )\n", fullTypeName, negateFuncStr, parmTypeName, parmName );
+	String_Append(  sbImpl, "{\n" );
+	String_Appendf( sbImpl, "\treturn HLML_CONSTRUCT( %s )\n", fullTypeName );
+	String_Append(  sbImpl, "\t{\n" );
+	if ( isMatrix ) {
+		char funcNameNegateVector[GEN_STRING_LENGTH_FUNCTION_NAME];
+		Gen_GetFuncNameNegate( language, type, 1, numRows, funcNameNegateVector );
+
+		for ( u32 row = 0; row < numRows; row++ ) {
+			String_Appendf( sbImpl, "\t\t%s( %s%srows[%d] )", funcNameNegateVector, parmAccessStr, parmName, row );
+
+			if ( row != numRows - 1 ) {
+				String_Append( sbImpl, "," );
+			}
+
+			String_Append( sbImpl, "\n" );
+		}
+	} else {
+		for ( u32 componentIndex = 0; componentIndex < numCols; componentIndex++ ) {
+			String_Appendf( sbImpl, "\t\t-%s%s%c", parmName, parmAccessStr, GEN_COMPONENT_NAMES_VECTOR[componentIndex] );
+
+			if ( componentIndex != numCols - 1 ) {
+				String_Append( sbImpl, "," );
+			}
+
+			String_Append( sbImpl, "\n" );
+		}
+	}
+	String_Append(  sbImpl, "\t};\n" );
+	String_Append(  sbImpl, "}\n" );
+	String_Append(  sbImpl, "\n" );
+}
+
 void Gen_OperatorsEquality( const genType_t type, const u32 numRows, const u32 numCols, stringBuilder_t* sbFwdDec, stringBuilder_t* sbImpl ) {
-	assert( numRows >= 1 );	// pass through > 1 for vectors
+	assert( numRows >= 1 );	// pass through 1 for vectors
 	assert( numRows <= GEN_COMPONENT_COUNT_MAX );
 	assert( numCols >= GEN_COMPONENT_COUNT_MIN );
 	assert( numCols <= GEN_COMPONENT_COUNT_MAX );
@@ -1758,7 +1809,7 @@ void Gen_OperatorsEquality( const genType_t type, const u32 numRows, const u32 n
 }
 
 void Gen_OperatorsIncrement( const genType_t type, const u32 numRows, const u32 numCols, stringBuilder_t* sbFwdDec, stringBuilder_t* sbImpl ) {
-	assert( numRows >= 1 );	// pass through > 1 for vectors
+	assert( numRows >= 1 );	// pass through 1 for vectors
 	assert( numRows <= GEN_COMPONENT_COUNT_MAX );
 	assert( numCols >= GEN_COMPONENT_COUNT_MIN );
 	assert( numCols <= GEN_COMPONENT_COUNT_MAX );
@@ -1774,6 +1825,60 @@ void Gen_OperatorsIncrement( const genType_t type, const u32 numRows, const u32 
 
 		GenerateOperatorIncrementInl( type, numRows, numCols, op, sbFwdDec, sbImpl );
 	}
+}
+
+void Gen_OperatorNegate( const genType_t type, const u32 numRows, const u32 numCols, stringBuilder_t* sbFwdDec, stringBuilder_t* sbImpl ) {
+	assert( numRows >= 1 );	// pass through 1 for vectors
+	assert( numRows <= GEN_COMPONENT_COUNT_MAX );
+	assert( numCols >= GEN_COMPONENT_COUNT_MIN );
+	assert( numCols <= GEN_COMPONENT_COUNT_MAX );
+	assert( sbFwdDec );
+	assert( sbImpl );
+
+	if ( type == GEN_TYPE_BOOL ) {
+		return;
+	}
+
+	char fullTypeName[GEN_STRING_LENGTH_TYPE_NAME];
+	Gen_GetFullTypeName( type, numRows, numCols, fullTypeName );
+
+	bool32 isMatrix = numRows > 1;
+
+	const char* parmName = isMatrix ? "mat" : "vec";
+
+	Doc_Negate( sbFwdDec, fullTypeName );
+	String_Appendf( sbFwdDec, "inline %s operator-( const %s& %s );\n", fullTypeName, fullTypeName, parmName );
+	String_Append(  sbFwdDec, "\n");
+
+	String_Appendf( sbImpl, "%s operator-( const %s& %s )\n", fullTypeName, fullTypeName, parmName );
+	String_Append(  sbImpl, "{\n");
+	String_Appendf( sbImpl, "\treturn %s(\n", fullTypeName );
+	if ( isMatrix ) {
+		for ( u32 row = 0; row < numRows; row++ ) {
+			for ( u32 col = 0; col < numCols; col++ ) {
+				String_Appendf( sbImpl, "-%s.rows[%d]", parmName, col );
+
+				if ( col != numCols - 1 ) {
+					String_Append( sbImpl, "," );
+				}
+
+				String_Append( sbImpl, "\n" );
+			}
+		}
+	} else {
+		for ( u32 componentIndex = 0; componentIndex < numCols; componentIndex++ ) {
+			String_Appendf( sbImpl, "-%c", GEN_COMPONENT_NAMES_VECTOR[componentIndex] );
+
+			if ( componentIndex != numCols - 1 ) {
+				String_Append( sbImpl, "," );
+			}
+
+			String_Append( sbImpl, "\n" );
+		}
+	}
+	String_Append(  sbImpl, "\t);\n" );
+	String_Append(  sbImpl, "}\n");
+	String_Append(  sbImpl, "\n");
 }
 
 void Gen_NotEquals( const genLanguage_t language, const genType_t type, const u32 numRows, const u32 numCols, stringBuilder_t* sbFwdDec, stringBuilder_t* sbImpl ) {

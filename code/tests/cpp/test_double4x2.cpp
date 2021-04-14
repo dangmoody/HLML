@@ -49,7 +49,7 @@ static double4x4 g_matrixMulAnswer_double4x2 = double4x4( 		18.000000, 18.000000
  );
 
 
-TEMPER_TEST( TestAssignment_double4x2 )
+TEMPER_TEST( TestAssignment_double4x2, TEMPER_FLAG_SHOULD_RUN )
 {
 	double4x2 mat;
 
@@ -58,28 +58,26 @@ TEMPER_TEST( TestAssignment_double4x2 )
 	mat.rows[2] = double2( 0.000000, 0.000000 );
 	mat.rows[3] = double2( 0.000000, 0.000000 );
 
-	TEMPER_EXPECT_TRUE( mat.rows[0].x == 999.0 );
-	TEMPER_EXPECT_TRUE( mat.rows[0].y == 0.0 );
-	TEMPER_EXPECT_TRUE( mat.rows[1].x == 0.0 );
-	TEMPER_EXPECT_TRUE( mat.rows[1].y == 999.0 );
-	TEMPER_EXPECT_TRUE( mat.rows[2].x == 0.0 );
-	TEMPER_EXPECT_TRUE( mat.rows[2].y == 0.0 );
-	TEMPER_EXPECT_TRUE( mat.rows[3].x == 0.0 );
-	TEMPER_EXPECT_TRUE( mat.rows[3].y == 0.0 );
-
-	TEMPER_PASS();
+	TEMPER_CHECK_TRUE( mat.rows[0].x == 999.0 );
+	TEMPER_CHECK_TRUE( mat.rows[0].y == 0.0 );
+	TEMPER_CHECK_TRUE( mat.rows[1].x == 0.0 );
+	TEMPER_CHECK_TRUE( mat.rows[1].y == 999.0 );
+	TEMPER_CHECK_TRUE( mat.rows[2].x == 0.0 );
+	TEMPER_CHECK_TRUE( mat.rows[2].y == 0.0 );
+	TEMPER_CHECK_TRUE( mat.rows[3].x == 0.0 );
+	TEMPER_CHECK_TRUE( mat.rows[3].y == 0.0 );
 }
 
-TEMPER_TEST( TestCtor_double4x2 )
+TEMPER_TEST( TestCtor_double4x2, TEMPER_FLAG_SHOULD_RUN )
 {
 	double4x2 mat;
 
 	// fill single value
 	mat = double4x2( 999.0 );
-	TEMPER_EXPECT_TRUE( mat[0] == double2( 999.000000, 0.000000 ) );
-	TEMPER_EXPECT_TRUE( mat[1] == double2( 0.000000, 999.000000 ) );
-	TEMPER_EXPECT_TRUE( mat[2] == double2( 0.000000, 0.000000 ) );
-	TEMPER_EXPECT_TRUE( mat[3] == double2( 0.000000, 0.000000 ) );
+	TEMPER_CHECK_TRUE( mat[0] == double2( 999.000000, 0.000000 ) );
+	TEMPER_CHECK_TRUE( mat[1] == double2( 0.000000, 999.000000 ) );
+	TEMPER_CHECK_TRUE( mat[2] == double2( 0.000000, 0.000000 ) );
+	TEMPER_CHECK_TRUE( mat[3] == double2( 0.000000, 0.000000 ) );
 
 	// row filling
 	mat = double4x2(
@@ -88,10 +86,10 @@ TEMPER_TEST( TestCtor_double4x2 )
 		double2( 8.000000, 9.000000 ),
 		double2( 12.000000, 13.000000 )
 	);
-	TEMPER_EXPECT_TRUE( mat[0] == double2( 0.000000, 1.000000 ) );
-	TEMPER_EXPECT_TRUE( mat[1] == double2( 4.000000, 5.000000 ) );
-	TEMPER_EXPECT_TRUE( mat[2] == double2( 8.000000, 9.000000 ) );
-	TEMPER_EXPECT_TRUE( mat[3] == double2( 12.000000, 13.000000 ) );
+	TEMPER_CHECK_TRUE( mat[0] == double2( 0.000000, 1.000000 ) );
+	TEMPER_CHECK_TRUE( mat[1] == double2( 4.000000, 5.000000 ) );
+	TEMPER_CHECK_TRUE( mat[2] == double2( 8.000000, 9.000000 ) );
+	TEMPER_CHECK_TRUE( mat[3] == double2( 12.000000, 13.000000 ) );
 
 	// all values filled
 	mat = double4x2(
@@ -100,28 +98,24 @@ TEMPER_TEST( TestCtor_double4x2 )
 		8.000000, 7.000000,
 		4.000000, 3.000000
 	);
-	TEMPER_EXPECT_TRUE( mat[0] == double2( 16.000000, 15.000000 ) );
-	TEMPER_EXPECT_TRUE( mat[1] == double2( 12.000000, 11.000000 ) );
-	TEMPER_EXPECT_TRUE( mat[2] == double2( 8.000000, 7.000000 ) );
-	TEMPER_EXPECT_TRUE( mat[3] == double2( 4.000000, 3.000000 ) );
-
-	TEMPER_PASS();
+	TEMPER_CHECK_TRUE( mat[0] == double2( 16.000000, 15.000000 ) );
+	TEMPER_CHECK_TRUE( mat[1] == double2( 12.000000, 11.000000 ) );
+	TEMPER_CHECK_TRUE( mat[2] == double2( 8.000000, 7.000000 ) );
+	TEMPER_CHECK_TRUE( mat[3] == double2( 4.000000, 3.000000 ) );
 }
 
-TEMPER_TEST( TestArray_double4x2 )
+TEMPER_TEST( TestArray_double4x2, TEMPER_FLAG_SHOULD_RUN )
 {
 	double4x2 mat;
 	identity( mat );
 
-	TEMPER_EXPECT_TRUE( mat[0] == double2( 1.0, 0.0 ) );
-	TEMPER_EXPECT_TRUE( mat[1] == double2( 0.0, 1.0 ) );
-	TEMPER_EXPECT_TRUE( mat[2] == double2( 0.0, 0.0 ) );
-	TEMPER_EXPECT_TRUE( mat[3] == double2( 0.0, 0.0 ) );
-
-	TEMPER_PASS();
+	TEMPER_CHECK_TRUE( mat[0] == double2( 1.0, 0.0 ) );
+	TEMPER_CHECK_TRUE( mat[1] == double2( 0.0, 1.0 ) );
+	TEMPER_CHECK_TRUE( mat[2] == double2( 0.0, 0.0 ) );
+	TEMPER_CHECK_TRUE( mat[3] == double2( 0.0, 0.0 ) );
 }
 
-TEMPER_TEST( TestIncrement_double4x2 )
+TEMPER_TEST( TestIncrement_double4x2, TEMPER_FLAG_SHOULD_RUN )
 {
 	double4x2 answer;
 	double4x2 mat;
@@ -142,7 +136,7 @@ TEMPER_TEST( TestIncrement_double4x2 )
 
 	);
 	++mat;
-	TEMPER_EXPECT_TRUE( mat == answer );
+	TEMPER_CHECK_TRUE( mat == answer );
 
 	// postfix
 	answer = double4x2(
@@ -160,12 +154,10 @@ TEMPER_TEST( TestIncrement_double4x2 )
 
 	);
 	mat++;
-	TEMPER_EXPECT_TRUE( mat == answer );
-
-	TEMPER_PASS();
+	TEMPER_CHECK_TRUE( mat == answer );
 }
 
-TEMPER_TEST( TestDecrement_double4x2 )
+TEMPER_TEST( TestDecrement_double4x2, TEMPER_FLAG_SHOULD_RUN )
 {
 	double4x2 answer;
 	double4x2 mat;
@@ -186,7 +178,7 @@ TEMPER_TEST( TestDecrement_double4x2 )
 
 	);
 	--mat;
-	TEMPER_EXPECT_TRUE( mat == answer );
+	TEMPER_CHECK_TRUE( mat == answer );
 
 	// postfix
 	answer = double4x2(
@@ -204,12 +196,10 @@ TEMPER_TEST( TestDecrement_double4x2 )
 
 	);
 	mat--;
-	TEMPER_EXPECT_TRUE( mat == answer );
-
-	TEMPER_PASS();
+	TEMPER_CHECK_TRUE( mat == answer );
 }
 
-TEMPER_TEST( TestComponentWiseArithmetic_Scalar_Addition_double4x2 )
+TEMPER_TEST( TestComponentWiseArithmetic_Scalar_Addition_double4x2, TEMPER_FLAG_SHOULD_RUN )
 {
 	double4x2 answer = double4x2(
 		7.000000, 7.000000,
@@ -234,12 +224,10 @@ TEMPER_TEST( TestComponentWiseArithmetic_Scalar_Addition_double4x2 )
 
 	double4x2 c = caddm( a, b );
 
-	TEMPER_EXPECT_TRUE( c == answer );
-
-	TEMPER_PASS();
+	TEMPER_CHECK_TRUE( c == answer );
 }
 
-TEMPER_TEST( TestComponentWiseArithmetic_Scalar_Subtraction_double4x2 )
+TEMPER_TEST( TestComponentWiseArithmetic_Scalar_Subtraction_double4x2, TEMPER_FLAG_SHOULD_RUN )
 {
 	double4x2 answer = double4x2(
 		5.000000, 5.000000,
@@ -264,12 +252,10 @@ TEMPER_TEST( TestComponentWiseArithmetic_Scalar_Subtraction_double4x2 )
 
 	double4x2 c = csubm( a, b );
 
-	TEMPER_EXPECT_TRUE( c == answer );
-
-	TEMPER_PASS();
+	TEMPER_CHECK_TRUE( c == answer );
 }
 
-TEMPER_TEST( TestComponentWiseArithmetic_Scalar_Multiplication_double4x2 )
+TEMPER_TEST( TestComponentWiseArithmetic_Scalar_Multiplication_double4x2, TEMPER_FLAG_SHOULD_RUN )
 {
 	double4x2 answer = double4x2(
 		6.000000, 6.000000,
@@ -294,12 +280,10 @@ TEMPER_TEST( TestComponentWiseArithmetic_Scalar_Multiplication_double4x2 )
 
 	double4x2 c = cmulm( a, b );
 
-	TEMPER_EXPECT_TRUE( c == answer );
-
-	TEMPER_PASS();
+	TEMPER_CHECK_TRUE( c == answer );
 }
 
-TEMPER_TEST( TestComponentWiseArithmetic_Scalar_Division_double4x2 )
+TEMPER_TEST( TestComponentWiseArithmetic_Scalar_Division_double4x2, TEMPER_FLAG_SHOULD_RUN )
 {
 	double4x2 answer = double4x2(
 		6.000000, 6.000000,
@@ -324,12 +308,10 @@ TEMPER_TEST( TestComponentWiseArithmetic_Scalar_Division_double4x2 )
 
 	double4x2 c = cdivm( a, b );
 
-	TEMPER_EXPECT_TRUE( c == answer );
-
-	TEMPER_PASS();
+	TEMPER_CHECK_TRUE( c == answer );
 }
 
-TEMPER_TEST( TestMultiplyMatrix_Scalar_double4x2 )
+TEMPER_TEST( TestMultiplyMatrix_Scalar_double4x2, TEMPER_FLAG_SHOULD_RUN )
 {
 	double4x4 answer = g_matrixMulAnswer_double4x2;
 
@@ -337,12 +319,10 @@ TEMPER_TEST( TestMultiplyMatrix_Scalar_double4x2 )
 	double2x4 b = g_matrixMulRHS_double4x2;
 	double4x4 c = a * b;
 
-	TEMPER_EXPECT_TRUE( c == answer );
-
-	TEMPER_PASS();
+	TEMPER_CHECK_TRUE( c == answer );
 }
 
-TEMPER_TEST( TestRelational_double4x2 )
+TEMPER_TEST( TestRelational_double4x2, TEMPER_FLAG_SHOULD_RUN )
 {
 	bool4x2 allTrue = { 		true, true,
 		true, true,
@@ -395,34 +375,32 @@ TEMPER_TEST( TestRelational_double4x2 )
 	bool4x2 test18 = mat3 <= mat3;
 	bool4x2 test19 = mat3 >= mat3;
 
-	TEMPER_EXPECT_TRUE( test0  == allTrue );
-	TEMPER_EXPECT_TRUE( test1  == allTrue );
-	TEMPER_EXPECT_TRUE( test2  == allTrue );
-	TEMPER_EXPECT_TRUE( test3  == allTrue );
-	TEMPER_EXPECT_TRUE( test4  == allTrue );
+	TEMPER_CHECK_TRUE( test0  == allTrue );
+	TEMPER_CHECK_TRUE( test1  == allTrue );
+	TEMPER_CHECK_TRUE( test2  == allTrue );
+	TEMPER_CHECK_TRUE( test3  == allTrue );
+	TEMPER_CHECK_TRUE( test4  == allTrue );
 
-	TEMPER_EXPECT_TRUE( test5  == allTrue );
-	TEMPER_EXPECT_TRUE( test6  == allTrue );
-	TEMPER_EXPECT_TRUE( test7  == allTrue );
-	TEMPER_EXPECT_TRUE( test8  == allTrue );
-	TEMPER_EXPECT_TRUE( test9  == allTrue );
+	TEMPER_CHECK_TRUE( test5  == allTrue );
+	TEMPER_CHECK_TRUE( test6  == allTrue );
+	TEMPER_CHECK_TRUE( test7  == allTrue );
+	TEMPER_CHECK_TRUE( test8  == allTrue );
+	TEMPER_CHECK_TRUE( test9  == allTrue );
 
-	TEMPER_EXPECT_TRUE( test10 == allTrue );
-	TEMPER_EXPECT_TRUE( test11 == allTrue );
-	TEMPER_EXPECT_TRUE( test12 == allTrue );
-	TEMPER_EXPECT_TRUE( test13 == allTrue );
-	TEMPER_EXPECT_TRUE( test14 == allTrue );
+	TEMPER_CHECK_TRUE( test10 == allTrue );
+	TEMPER_CHECK_TRUE( test11 == allTrue );
+	TEMPER_CHECK_TRUE( test12 == allTrue );
+	TEMPER_CHECK_TRUE( test13 == allTrue );
+	TEMPER_CHECK_TRUE( test14 == allTrue );
 
-	TEMPER_EXPECT_TRUE( test15 == allTrue );
-	TEMPER_EXPECT_TRUE( test16 == allTrue );
-	TEMPER_EXPECT_TRUE( test17 == allTrue );
-	TEMPER_EXPECT_TRUE( test18 == allTrue );
-	TEMPER_EXPECT_TRUE( test19 == allTrue );
-
-	TEMPER_PASS();
+	TEMPER_CHECK_TRUE( test15 == allTrue );
+	TEMPER_CHECK_TRUE( test16 == allTrue );
+	TEMPER_CHECK_TRUE( test17 == allTrue );
+	TEMPER_CHECK_TRUE( test18 == allTrue );
+	TEMPER_CHECK_TRUE( test19 == allTrue );
 }
 
-TEMPER_TEST( TestIdentity_Scalar_double4x2 )
+TEMPER_TEST( TestIdentity_Scalar_double4x2, TEMPER_FLAG_SHOULD_RUN )
 {
 	double4x2 id;
 	id[0] = double2( 1.000000, 0.000000 );
@@ -433,12 +411,10 @@ TEMPER_TEST( TestIdentity_Scalar_double4x2 )
 	double4x2 mat;
 
 	identity( mat );
-	TEMPER_EXPECT_TRUE( mat == id );
-
-	TEMPER_PASS();
+	TEMPER_CHECK_TRUE( mat == id );
 }
 
-TEMPER_TEST( TestTranspose_Scalar_double4x2 )
+TEMPER_TEST( TestTranspose_Scalar_double4x2, TEMPER_FLAG_SHOULD_RUN )
 {
 	double2x4 answerTransposed = double2x4(
 		0.000000, 4.000000, 8.000000, 12.000000,
@@ -453,24 +429,6 @@ TEMPER_TEST( TestTranspose_Scalar_double4x2 )
 	);
 	double2x4 trans = transpose( mat );
 
-	TEMPER_EXPECT_TRUE( trans == answerTransposed );
-
-	TEMPER_PASS();
+	TEMPER_CHECK_TRUE( trans == answerTransposed );
 }
 
-TEMPER_SUITE( Test_double4x2 )
-{
-	TEMPER_RUN_TEST( TestAssignment_double4x2 );
-	TEMPER_RUN_TEST( TestCtor_double4x2 );
-	TEMPER_RUN_TEST( TestArray_double4x2 );
-	TEMPER_RUN_TEST( TestIncrement_double4x2 );
-	TEMPER_RUN_TEST( TestDecrement_double4x2 );
-	TEMPER_RUN_TEST( TestComponentWiseArithmetic_Scalar_Addition_double4x2 );
-	TEMPER_RUN_TEST( TestComponentWiseArithmetic_Scalar_Subtraction_double4x2 );
-	TEMPER_RUN_TEST( TestComponentWiseArithmetic_Scalar_Multiplication_double4x2 );
-	TEMPER_RUN_TEST( TestComponentWiseArithmetic_Scalar_Division_double4x2 );
-	TEMPER_RUN_TEST( TestMultiplyMatrix_Scalar_double4x2 );
-	TEMPER_RUN_TEST( TestRelational_double4x2 );
-	TEMPER_RUN_TEST( TestIdentity_Scalar_double4x2 );
-	TEMPER_RUN_TEST( TestTranspose_Scalar_double4x2 );
-}

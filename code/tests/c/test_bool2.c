@@ -32,24 +32,18 @@ SOFTWARE.
 // EDITING THIS FILE MAY CAUSE SIDE EFFECTS.
 // DO SO AT YOUR OWN RISK.
 
-TEMPER_TEST( TestAssignment_bool2 )
+TEMPER_TEST( TestAssignment_bool2, TEMPER_FLAG_SHOULD_RUN )
 {
 	bool2 vec;
 
 	vec.x = true;
 	vec.y = true;
-	TEMPER_EXPECT_TRUE( vec.x == true );
-	TEMPER_EXPECT_TRUE( vec.y == true );
+	TEMPER_CHECK_TRUE( vec.x == true );
+	TEMPER_CHECK_TRUE( vec.y == true );
 
 	vec.x = false;
 	vec.y = true;
-	TEMPER_EXPECT_TRUE( vec.x == false );
-	TEMPER_EXPECT_TRUE( vec.y == true );
-
-	TEMPER_PASS();
+	TEMPER_CHECK_TRUE( vec.x == false );
+	TEMPER_CHECK_TRUE( vec.y == true );
 }
 
-TEMPER_SUITE( Test_bool2 )
-{
-	TEMPER_RUN_TEST( TestAssignment_bool2 );
-}

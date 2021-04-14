@@ -32,7 +32,7 @@ SOFTWARE.
 // EDITING THIS FILE MAY CAUSE SIDE EFFECTS.
 // DO SO AT YOUR OWN RISK.
 
-TEMPER_TEST( TestAssignment_bool4 )
+TEMPER_TEST( TestAssignment_bool4, TEMPER_FLAG_SHOULD_RUN )
 {
 	bool4 vec;
 
@@ -40,75 +40,64 @@ TEMPER_TEST( TestAssignment_bool4 )
 	vec.y = true;
 	vec.z = true;
 	vec.w = true;
-	TEMPER_EXPECT_TRUE( vec.x == true );
-	TEMPER_EXPECT_TRUE( vec.y == true );
-	TEMPER_EXPECT_TRUE( vec.z == true );
-	TEMPER_EXPECT_TRUE( vec.w == true );
+	TEMPER_CHECK_TRUE( vec.x == true );
+	TEMPER_CHECK_TRUE( vec.y == true );
+	TEMPER_CHECK_TRUE( vec.z == true );
+	TEMPER_CHECK_TRUE( vec.w == true );
 
 	vec.x = false;
 	vec.y = true;
 	vec.z = true;
 	vec.w = true;
-	TEMPER_EXPECT_TRUE( vec.x == false );
-	TEMPER_EXPECT_TRUE( vec.y == true );
-	TEMPER_EXPECT_TRUE( vec.z == true );
-	TEMPER_EXPECT_TRUE( vec.w == true );
-
-	TEMPER_PASS();
+	TEMPER_CHECK_TRUE( vec.x == false );
+	TEMPER_CHECK_TRUE( vec.y == true );
+	TEMPER_CHECK_TRUE( vec.z == true );
+	TEMPER_CHECK_TRUE( vec.w == true );
 }
 
 // also tests equality operators
-TEMPER_TEST( TestCtor_bool4 )
+TEMPER_TEST( TestCtor_bool4, TEMPER_FLAG_SHOULD_RUN )
 {
 	bool4 vec;
 
 	// single value
 	vec = bool4( true );
-	TEMPER_EXPECT_TRUE( vec == bool4( true ) );
-	TEMPER_EXPECT_TRUE( vec != bool4( false, true, true, true ) );
+	TEMPER_CHECK_TRUE( vec == bool4( true ) );
+	TEMPER_CHECK_TRUE( vec != bool4( false, true, true, true ) );
 
 	// all values set
 	vec = bool4( false, true, true, true );
-	TEMPER_EXPECT_TRUE( vec == bool4( false, true, true, true ) );
-	TEMPER_EXPECT_TRUE( vec != bool4( true ) );
+	TEMPER_CHECK_TRUE( vec == bool4( false, true, true, true ) );
+	TEMPER_CHECK_TRUE( vec != bool4( true ) );
 
 	// copy ctors of other vector types
 	bool2 other2 = { true, true };
 	vec = bool4( other2 );
-	TEMPER_EXPECT_TRUE( vec.x == true );
-	TEMPER_EXPECT_TRUE( vec.y == true );
+	TEMPER_CHECK_TRUE( vec.x == true );
+	TEMPER_CHECK_TRUE( vec.y == true );
 
 	bool3 other3 = { true, true, true };
 	vec = bool4( other3 );
-	TEMPER_EXPECT_TRUE( vec.x == true );
-	TEMPER_EXPECT_TRUE( vec.y == true );
-	TEMPER_EXPECT_TRUE( vec.z == true );
+	TEMPER_CHECK_TRUE( vec.x == true );
+	TEMPER_CHECK_TRUE( vec.y == true );
+	TEMPER_CHECK_TRUE( vec.z == true );
 
 	bool4 other4 = { true, true, true, true };
 	vec = bool4( other4 );
-	TEMPER_EXPECT_TRUE( vec.x == true );
-	TEMPER_EXPECT_TRUE( vec.y == true );
-	TEMPER_EXPECT_TRUE( vec.z == true );
-	TEMPER_EXPECT_TRUE( vec.w == true );
+	TEMPER_CHECK_TRUE( vec.x == true );
+	TEMPER_CHECK_TRUE( vec.y == true );
+	TEMPER_CHECK_TRUE( vec.z == true );
+	TEMPER_CHECK_TRUE( vec.w == true );
 
-	TEMPER_PASS();
 }
 
-TEMPER_TEST( TestArray_bool4 )
+TEMPER_TEST( TestArray_bool4, TEMPER_FLAG_SHOULD_RUN )
 {
 	bool4 a = bool4( false, true, true, true );
 
-	TEMPER_EXPECT_TRUE( a.x == false );
-	TEMPER_EXPECT_TRUE( a.y == true );
-	TEMPER_EXPECT_TRUE( a.z == true );
-	TEMPER_EXPECT_TRUE( a.w == true );
-
-	TEMPER_PASS();
+	TEMPER_CHECK_TRUE( a.x == false );
+	TEMPER_CHECK_TRUE( a.y == true );
+	TEMPER_CHECK_TRUE( a.z == true );
+	TEMPER_CHECK_TRUE( a.w == true );
 }
 
-TEMPER_SUITE( Test_bool4 )
-{
-	TEMPER_RUN_TEST( TestAssignment_bool4 );
-	TEMPER_RUN_TEST( TestCtor_bool4 );
-	TEMPER_RUN_TEST( TestArray_bool4 );
-}
