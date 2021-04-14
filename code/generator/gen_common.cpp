@@ -1867,7 +1867,7 @@ void Gen_OperatorNegate( const genType_t type, const u32 numRows, const u32 numC
 		}
 	} else {
 		for ( u32 componentIndex = 0; componentIndex < numCols; componentIndex++ ) {
-			String_Appendf( sbImpl, "-%c", GEN_COMPONENT_NAMES_VECTOR[componentIndex] );
+			String_Appendf( sbImpl, "\t\t-%s.%c", parmName, GEN_COMPONENT_NAMES_VECTOR[componentIndex] );
 
 			if ( componentIndex != numCols - 1 ) {
 				String_Append( sbImpl, "," );

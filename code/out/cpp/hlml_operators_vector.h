@@ -1827,8 +1827,8 @@ int2& operator--( int2& lhs, const int )
 int2 operator-( const int2& vec )
 {
 	return int2(
--x,
--y
+		-vec.x,
+		-vec.y
 	);
 }
 
@@ -2094,9 +2094,9 @@ int3& operator--( int3& lhs, const int )
 int3 operator-( const int3& vec )
 {
 	return int3(
--x,
--y,
--z
+		-vec.x,
+		-vec.y,
+		-vec.z
 	);
 }
 
@@ -2384,10 +2384,10 @@ int4& operator--( int4& lhs, const int )
 int4 operator-( const int4& vec )
 {
 	return int4(
--x,
--y,
--z,
--w
+		-vec.x,
+		-vec.y,
+		-vec.z,
+		-vec.w
 	);
 }
 
@@ -2661,8 +2661,8 @@ uint2& operator--( uint2& lhs, const int )
 uint2 operator-( const uint2& vec )
 {
 	return uint2(
--x,
--y
+		-vec.x,
+		-vec.y
 	);
 }
 
@@ -2928,9 +2928,9 @@ uint3& operator--( uint3& lhs, const int )
 uint3 operator-( const uint3& vec )
 {
 	return uint3(
--x,
--y,
--z
+		-vec.x,
+		-vec.y,
+		-vec.z
 	);
 }
 
@@ -3218,10 +3218,10 @@ uint4& operator--( uint4& lhs, const int )
 uint4 operator-( const uint4& vec )
 {
 	return uint4(
--x,
--y,
--z,
--w
+		-vec.x,
+		-vec.y,
+		-vec.z,
+		-vec.w
 	);
 }
 
@@ -3495,8 +3495,8 @@ float2& operator--( float2& lhs, const int )
 float2 operator-( const float2& vec )
 {
 	return float2(
--x,
--y
+		-vec.x,
+		-vec.y
 	);
 }
 
@@ -3689,9 +3689,9 @@ float3& operator--( float3& lhs, const int )
 float3 operator-( const float3& vec )
 {
 	return float3(
--x,
--y,
--z
+		-vec.x,
+		-vec.y,
+		-vec.z
 	);
 }
 
@@ -3900,10 +3900,10 @@ float4& operator--( float4& lhs, const int )
 float4 operator-( const float4& vec )
 {
 	return float4(
--x,
--y,
--z,
--w
+		-vec.x,
+		-vec.y,
+		-vec.z,
+		-vec.w
 	);
 }
 
@@ -4092,8 +4092,8 @@ double2& operator--( double2& lhs, const int )
 double2 operator-( const double2& vec )
 {
 	return double2(
--x,
--y
+		-vec.x,
+		-vec.y
 	);
 }
 
@@ -4286,9 +4286,9 @@ double3& operator--( double3& lhs, const int )
 double3 operator-( const double3& vec )
 {
 	return double3(
--x,
--y,
--z
+		-vec.x,
+		-vec.y,
+		-vec.z
 	);
 }
 
@@ -4497,10 +4497,10 @@ double4& operator--( double4& lhs, const int )
 double4 operator-( const double4& vec )
 {
 	return double4(
--x,
--y,
--z,
--w
+		-vec.x,
+		-vec.y,
+		-vec.z,
+		-vec.w
 	);
 }
 
