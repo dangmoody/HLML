@@ -54,7 +54,7 @@ else
 	options_clangpp="-std=c99"
 
 	if [[ "$OSTYPE" == "linux-gnu" ]]; then
-		options_linker="-lm"
+		options_linker="-lm -lpthread"
 	fi
 fi
 
