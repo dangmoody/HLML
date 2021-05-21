@@ -173,8 +173,6 @@ TEMPER_TEST( TestArithmeticDivision_float4, TEMPER_FLAG_SHOULD_RUN )
 
 TEMPER_TEST( TestRelational_float4, TEMPER_FLAG_SHOULD_RUN )
 {
-	bool4 allTrue = bool4( true );
-
 	float4 vec0 = float4( 0.0f );
 	float4 vec1 = float4( 1.0f );
 	float4 vec2 = float4( 2.0f );
@@ -204,29 +202,29 @@ TEMPER_TEST( TestRelational_float4, TEMPER_FLAG_SHOULD_RUN )
 	bool4 test18 = vec3 <= vec3;
 	bool4 test19 = vec3 >= vec3;
 
-	TEMPER_CHECK_TRUE( test0  == allTrue );
-	TEMPER_CHECK_TRUE( test1  == allTrue );
-	TEMPER_CHECK_TRUE( test2  == allTrue );
-	TEMPER_CHECK_TRUE( test3  == allTrue );
-	TEMPER_CHECK_TRUE( test4  == allTrue );
+	TEMPER_CHECK_TRUE( all( test0 ) );
+	TEMPER_CHECK_TRUE( all( test1 ) );
+	TEMPER_CHECK_TRUE( all( test2 ) );
+	TEMPER_CHECK_TRUE( all( test3 ) );
+	TEMPER_CHECK_TRUE( all( test4 ) );
 
-	TEMPER_CHECK_TRUE( test5  == allTrue );
-	TEMPER_CHECK_TRUE( test6  == allTrue );
-	TEMPER_CHECK_TRUE( test7  == allTrue );
-	TEMPER_CHECK_TRUE( test8  == allTrue );
-	TEMPER_CHECK_TRUE( test9  == allTrue );
+	TEMPER_CHECK_TRUE( all( test5 ) );
+	TEMPER_CHECK_TRUE( all( test6 ) );
+	TEMPER_CHECK_TRUE( all( test7 ) );
+	TEMPER_CHECK_TRUE( all( test8 ) );
+	TEMPER_CHECK_TRUE( all( test9 ) );
 
-	TEMPER_CHECK_TRUE( test10 == allTrue );
-	TEMPER_CHECK_TRUE( test11 == allTrue );
-	TEMPER_CHECK_TRUE( test12 == allTrue );
-	TEMPER_CHECK_TRUE( test13 == allTrue );
-	TEMPER_CHECK_TRUE( test14 == allTrue );
+	TEMPER_CHECK_TRUE( all( test10 ) );
+	TEMPER_CHECK_TRUE( all( test11 ) );
+	TEMPER_CHECK_TRUE( all( test12 ) );
+	TEMPER_CHECK_TRUE( all( test13 ) );
+	TEMPER_CHECK_TRUE( all( test14 ) );
 
-	TEMPER_CHECK_TRUE( test15 == allTrue );
-	TEMPER_CHECK_TRUE( test16 == allTrue );
-	TEMPER_CHECK_TRUE( test17 == allTrue );
-	TEMPER_CHECK_TRUE( test18 == allTrue );
-	TEMPER_CHECK_TRUE( test19 == allTrue );
+	TEMPER_CHECK_TRUE( all( test15 ) );
+	TEMPER_CHECK_TRUE( all( test16 ) );
+	TEMPER_CHECK_TRUE( all( test17 ) );
+	TEMPER_CHECK_TRUE( all( test18 ) );
+	TEMPER_CHECK_TRUE( all( test19 ) );
 }
 
 TEMPER_TEST( TestLength_Scalar_float4, TEMPER_FLAG_SHOULD_RUN )

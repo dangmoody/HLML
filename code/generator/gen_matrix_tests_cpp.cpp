@@ -950,10 +950,7 @@ static void GenerateTestRelational( stringBuilder_t* codeTests, const genLanguag
 	snprintf( testName, GEN_STRING_LENGTH_TEST_NAME, "TestRelational_%s", fullTypeName );
 
 	char boolTypeName[GEN_STRING_LENGTH_TYPE_NAME] = { 0 };
-	snprintf( boolTypeName, GEN_STRING_LENGTH_TYPE_NAME, "bool%dx%d", numRows, numCols );
-
-	char parmListTrue[GEN_STRING_LENGTH_PARM_LIST_MATRIX] = { 0 };
-	Gen_GetParmListMatrixSingleValue( GEN_TYPE_BOOL, numRows, numCols, true, parmListTrue );
+	Gen_GetFullTypeName( GEN_TYPE_BOOL, numRows, numCols, boolTypeName );
 
 	char parmLists[4][GEN_STRING_LENGTH_PARM_LIST_MATRIX];
 	Gen_GetParmListMatrixSingleValue( type, numRows, numCols, 1, parmLists[0] );
@@ -973,18 +970,21 @@ static void GenerateTestRelational( stringBuilder_t* codeTests, const genLanguag
 	char cmpgeFuncStr[GEN_STRING_LENGTH_FUNCTION_NAME];
 	Gen_GetFuncNameRelational( language, type, numRows, numCols, GEN_OP_RELATIONAL_GREATER_EQUAL, cmpgeFuncStr );
 
-	char equalsFuncStr[GEN_STRING_LENGTH_FUNCTION_NAME];
-	Gen_GetFuncNameEquals( language, GEN_TYPE_BOOL, numRows, numCols, equalsFuncStr );
+	char allFuncStr[GEN_STRING_LENGTH_FUNCTION_NAME];
+	Gen_GetFuncNameAll( language, GEN_TYPE_BOOL, numRows, numCols, allFuncStr );
+
+	const char* parmReferenceStr = GEN_TYPE_PARM_REFERENCE_MODIFIERS[language];
 
 	String_Appendf( codeTests, "TEMPER_TEST( %s, TEMPER_FLAG_SHOULD_RUN )\n", testName );
 	String_Append(  codeTests, "{\n" );
-	String_Appendf( codeTests, "\t%s allTrue = { %s };\n", boolTypeName, parmListTrue );
-	String_Append(  codeTests, "\n" );
+	for ( u32 i = 0; i < 4; i++ ) {
+		String_Appendf( codeTests, "\t%s mat%d =\n", fullTypeName, i );
+		String_Appendf( codeTests, "\t{\n" );
+		String_Appendf( codeTests, "%s", parmLists[i] );
+		String_Appendf( codeTests, "\t};\n\n" );
+	}
+
 	if ( language == GEN_LANGUAGE_C ) {
-		for ( u32 i = 0; i < 4; i++ ) {
-			String_Appendf( codeTests, "\t%s mat%d = (%s) { %s };\n", fullTypeName, i, fullTypeName, parmLists[i] );
-		}
-		String_Append(  codeTests, "\n" );
 		String_Appendf( codeTests, "\t%s test0  = %s( &mat0, &mat0 );\n", boolTypeName, cmpleFuncStr );
 		String_Appendf( codeTests, "\t%s test1  = %s( &mat0, &mat0 );\n", boolTypeName, cmpgeFuncStr );
 		String_Appendf( codeTests, "\t%s test2  = %s( &mat0, &mat1 );\n", boolTypeName, cmplFuncStr );
@@ -1008,35 +1008,7 @@ static void GenerateTestRelational( stringBuilder_t* codeTests, const genLanguag
 		String_Appendf( codeTests, "\t%s test17 = %s( &mat3, &mat2 );\n", boolTypeName, cmpgFuncStr );
 		String_Appendf( codeTests, "\t%s test18 = %s( &mat3, &mat3 );\n", boolTypeName, cmpleFuncStr );
 		String_Appendf( codeTests, "\t%s test19 = %s( &mat3, &mat3 );\n", boolTypeName, cmpgeFuncStr );
-		String_Append(  codeTests, "\n" );
-		String_Appendf( codeTests, "\tTEMPER_CHECK_TRUE( %s( &test0,  &allTrue ) );\n", equalsFuncStr );
-		String_Appendf( codeTests, "\tTEMPER_CHECK_TRUE( %s( &test1,  &allTrue ) );\n", equalsFuncStr );
-		String_Appendf( codeTests, "\tTEMPER_CHECK_TRUE( %s( &test2,  &allTrue ) );\n", equalsFuncStr );
-		String_Appendf( codeTests, "\tTEMPER_CHECK_TRUE( %s( &test3,  &allTrue ) );\n", equalsFuncStr );
-		String_Appendf( codeTests, "\tTEMPER_CHECK_TRUE( %s( &test4,  &allTrue ) );\n", equalsFuncStr );
-		String_Append(  codeTests, "\n" );
-		String_Appendf( codeTests, "\tTEMPER_CHECK_TRUE( %s( &test5,  &allTrue ) );\n", equalsFuncStr );
-		String_Appendf( codeTests, "\tTEMPER_CHECK_TRUE( %s( &test6,  &allTrue ) );\n", equalsFuncStr );
-		String_Appendf( codeTests, "\tTEMPER_CHECK_TRUE( %s( &test7,  &allTrue ) );\n", equalsFuncStr );
-		String_Appendf( codeTests, "\tTEMPER_CHECK_TRUE( %s( &test8,  &allTrue ) );\n", equalsFuncStr );
-		String_Appendf( codeTests, "\tTEMPER_CHECK_TRUE( %s( &test9,  &allTrue ) );\n", equalsFuncStr );
-		String_Append(  codeTests, "\n" );
-		String_Appendf( codeTests, "\tTEMPER_CHECK_TRUE( %s( &test10, &allTrue ) );\n", equalsFuncStr );
-		String_Appendf( codeTests, "\tTEMPER_CHECK_TRUE( %s( &test11, &allTrue ) );\n", equalsFuncStr );
-		String_Appendf( codeTests, "\tTEMPER_CHECK_TRUE( %s( &test12, &allTrue ) );\n", equalsFuncStr );
-		String_Appendf( codeTests, "\tTEMPER_CHECK_TRUE( %s( &test13, &allTrue ) );\n", equalsFuncStr );
-		String_Appendf( codeTests, "\tTEMPER_CHECK_TRUE( %s( &test14, &allTrue ) );\n", equalsFuncStr );
-		String_Append(  codeTests, "\n" );
-		String_Appendf( codeTests, "\tTEMPER_CHECK_TRUE( %s( &test15, &allTrue ) );\n", equalsFuncStr );
-		String_Appendf( codeTests, "\tTEMPER_CHECK_TRUE( %s( &test16, &allTrue ) );\n", equalsFuncStr );
-		String_Appendf( codeTests, "\tTEMPER_CHECK_TRUE( %s( &test17, &allTrue ) );\n", equalsFuncStr );
-		String_Appendf( codeTests, "\tTEMPER_CHECK_TRUE( %s( &test18, &allTrue ) );\n", equalsFuncStr );
-		String_Appendf( codeTests, "\tTEMPER_CHECK_TRUE( %s( &test19, &allTrue ) );\n", equalsFuncStr );
 	} else {
-		for ( u32 i = 0; i < 4; i++ ) {
-			String_Appendf( codeTests, "\t%s mat%d = %s( %s );\n", fullTypeName, i, fullTypeName, parmLists[i] );
-		}
-		String_Append(  codeTests, "\n" );
 		String_Appendf( codeTests, "\t%s test0  = mat0 <= mat0;\n", boolTypeName );
 		String_Appendf( codeTests, "\t%s test1  = mat0 >= mat0;\n", boolTypeName );
 		String_Appendf( codeTests, "\t%s test2  = mat0 <  mat1;\n", boolTypeName );
@@ -1060,31 +1032,32 @@ static void GenerateTestRelational( stringBuilder_t* codeTests, const genLanguag
 		String_Appendf( codeTests, "\t%s test17 = mat3 >  mat2;\n", boolTypeName );
 		String_Appendf( codeTests, "\t%s test18 = mat3 <= mat3;\n", boolTypeName );
 		String_Appendf( codeTests, "\t%s test19 = mat3 >= mat3;\n", boolTypeName );
-		String_Append(  codeTests, "\n" );
-		String_Append(  codeTests, "\tTEMPER_CHECK_TRUE( test0  == allTrue );\n" );
-		String_Append(  codeTests, "\tTEMPER_CHECK_TRUE( test1  == allTrue );\n" );
-		String_Append(  codeTests, "\tTEMPER_CHECK_TRUE( test2  == allTrue );\n" );
-		String_Append(  codeTests, "\tTEMPER_CHECK_TRUE( test3  == allTrue );\n" );
-		String_Append(  codeTests, "\tTEMPER_CHECK_TRUE( test4  == allTrue );\n" );
-		String_Append(  codeTests, "\n" );
-		String_Append(  codeTests, "\tTEMPER_CHECK_TRUE( test5  == allTrue );\n" );
-		String_Append(  codeTests, "\tTEMPER_CHECK_TRUE( test6  == allTrue );\n" );
-		String_Append(  codeTests, "\tTEMPER_CHECK_TRUE( test7  == allTrue );\n" );
-		String_Append(  codeTests, "\tTEMPER_CHECK_TRUE( test8  == allTrue );\n" );
-		String_Append(  codeTests, "\tTEMPER_CHECK_TRUE( test9  == allTrue );\n" );
-		String_Append(  codeTests, "\n" );
-		String_Append(  codeTests, "\tTEMPER_CHECK_TRUE( test10 == allTrue );\n" );
-		String_Append(  codeTests, "\tTEMPER_CHECK_TRUE( test11 == allTrue );\n" );
-		String_Append(  codeTests, "\tTEMPER_CHECK_TRUE( test12 == allTrue );\n" );
-		String_Append(  codeTests, "\tTEMPER_CHECK_TRUE( test13 == allTrue );\n" );
-		String_Append(  codeTests, "\tTEMPER_CHECK_TRUE( test14 == allTrue );\n" );
-		String_Append(  codeTests, "\n" );
-		String_Append(  codeTests, "\tTEMPER_CHECK_TRUE( test15 == allTrue );\n" );
-		String_Append(  codeTests, "\tTEMPER_CHECK_TRUE( test16 == allTrue );\n" );
-		String_Append(  codeTests, "\tTEMPER_CHECK_TRUE( test17 == allTrue );\n" );
-		String_Append(  codeTests, "\tTEMPER_CHECK_TRUE( test18 == allTrue );\n" );
-		String_Append(  codeTests, "\tTEMPER_CHECK_TRUE( test19 == allTrue );\n" );
 	}
+
+	String_Append(  codeTests, "\n" );
+	String_Appendf( codeTests, "\tTEMPER_CHECK_TRUE( %s( %stest0 ) );\n", allFuncStr, parmReferenceStr );
+	String_Appendf( codeTests, "\tTEMPER_CHECK_TRUE( %s( %stest1 ) );\n", allFuncStr, parmReferenceStr );
+	String_Appendf( codeTests, "\tTEMPER_CHECK_TRUE( %s( %stest2 ) );\n", allFuncStr, parmReferenceStr );
+	String_Appendf( codeTests, "\tTEMPER_CHECK_TRUE( %s( %stest3 ) );\n", allFuncStr, parmReferenceStr );
+	String_Appendf( codeTests, "\tTEMPER_CHECK_TRUE( %s( %stest4 ) );\n", allFuncStr, parmReferenceStr );
+	String_Append(  codeTests, "\n" );
+	String_Appendf( codeTests, "\tTEMPER_CHECK_TRUE( %s( %stest5 ) );\n", allFuncStr, parmReferenceStr );
+	String_Appendf( codeTests, "\tTEMPER_CHECK_TRUE( %s( %stest6 ) );\n", allFuncStr, parmReferenceStr );
+	String_Appendf( codeTests, "\tTEMPER_CHECK_TRUE( %s( %stest7 ) );\n", allFuncStr, parmReferenceStr );
+	String_Appendf( codeTests, "\tTEMPER_CHECK_TRUE( %s( %stest8 ) );\n", allFuncStr, parmReferenceStr );
+	String_Appendf( codeTests, "\tTEMPER_CHECK_TRUE( %s( %stest9 ) );\n", allFuncStr, parmReferenceStr );
+	String_Append(  codeTests, "\n" );
+	String_Appendf( codeTests, "\tTEMPER_CHECK_TRUE( %s( %stest10 ) );\n", allFuncStr, parmReferenceStr );
+	String_Appendf( codeTests, "\tTEMPER_CHECK_TRUE( %s( %stest11 ) );\n", allFuncStr, parmReferenceStr );
+	String_Appendf( codeTests, "\tTEMPER_CHECK_TRUE( %s( %stest12 ) );\n", allFuncStr, parmReferenceStr );
+	String_Appendf( codeTests, "\tTEMPER_CHECK_TRUE( %s( %stest13 ) );\n", allFuncStr, parmReferenceStr );
+	String_Appendf( codeTests, "\tTEMPER_CHECK_TRUE( %s( %stest14 ) );\n", allFuncStr, parmReferenceStr );
+	String_Append(  codeTests, "\n" );
+	String_Appendf( codeTests, "\tTEMPER_CHECK_TRUE( %s( %stest15 ) );\n", allFuncStr, parmReferenceStr );
+	String_Appendf( codeTests, "\tTEMPER_CHECK_TRUE( %s( %stest16 ) );\n", allFuncStr, parmReferenceStr );
+	String_Appendf( codeTests, "\tTEMPER_CHECK_TRUE( %s( %stest17 ) );\n", allFuncStr, parmReferenceStr );
+	String_Appendf( codeTests, "\tTEMPER_CHECK_TRUE( %s( %stest18 ) );\n", allFuncStr, parmReferenceStr );
+	String_Appendf( codeTests, "\tTEMPER_CHECK_TRUE( %s( %stest19 ) );\n", allFuncStr, parmReferenceStr );
 	String_Append(  codeTests, "}\n" );
 	String_Append(  codeTests, "\n" );
 }

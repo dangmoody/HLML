@@ -97,12 +97,10 @@ TEMPER_TEST( TestArithmeticDivision_uint3, TEMPER_FLAG_SHOULD_RUN )
 
 TEMPER_TEST( TestRelational_uint3, TEMPER_FLAG_SHOULD_RUN )
 {
-	bool3 allTrue = (bool3)	{ true, true, true };
-
-	uint3 vec0 = (uint3)	{ 0U, 0U, 0U };
-	uint3 vec1 = (uint3)	{ 1U, 1U, 1U };
-	uint3 vec2 = (uint3)	{ 2U, 2U, 2U };
-	uint3 vec3 = (uint3)	{ 3U, 3U, 3U };
+	uint3 vec0 =	{ 0U, 0U, 0U };
+	uint3 vec1 =	{ 1U, 1U, 1U };
+	uint3 vec2 =	{ 2U, 2U, 2U };
+	uint3 vec3 =	{ 3U, 3U, 3U };
 
 	bool3 test0  = uint3_cmple( &vec0, &vec0 );
 	bool3 test1  = uint3_cmpge( &vec0, &vec0 );
@@ -128,29 +126,29 @@ TEMPER_TEST( TestRelational_uint3, TEMPER_FLAG_SHOULD_RUN )
 	bool3 test18 = uint3_cmple( &vec3, &vec3 );
 	bool3 test19 = uint3_cmpge( &vec3, &vec3 );
 
-	TEMPER_CHECK_TRUE( bool3_cmpe( &test0,  &allTrue ) );
-	TEMPER_CHECK_TRUE( bool3_cmpe( &test1,  &allTrue ) );
-	TEMPER_CHECK_TRUE( bool3_cmpe( &test2,  &allTrue ) );
-	TEMPER_CHECK_TRUE( bool3_cmpe( &test3,  &allTrue ) );
-	TEMPER_CHECK_TRUE( bool3_cmpe( &test4,  &allTrue ) );
+	TEMPER_CHECK_TRUE( bool3_all( &test0 ) );
+	TEMPER_CHECK_TRUE( bool3_all( &test1 ) );
+	TEMPER_CHECK_TRUE( bool3_all( &test2 ) );
+	TEMPER_CHECK_TRUE( bool3_all( &test3 ) );
+	TEMPER_CHECK_TRUE( bool3_all( &test4 ) );
 
-	TEMPER_CHECK_TRUE( bool3_cmpe( &test5,  &allTrue ) );
-	TEMPER_CHECK_TRUE( bool3_cmpe( &test6,  &allTrue ) );
-	TEMPER_CHECK_TRUE( bool3_cmpe( &test7,  &allTrue ) );
-	TEMPER_CHECK_TRUE( bool3_cmpe( &test8,  &allTrue ) );
-	TEMPER_CHECK_TRUE( bool3_cmpe( &test9,  &allTrue ) );
+	TEMPER_CHECK_TRUE( bool3_all( &test5 ) );
+	TEMPER_CHECK_TRUE( bool3_all( &test6 ) );
+	TEMPER_CHECK_TRUE( bool3_all( &test7 ) );
+	TEMPER_CHECK_TRUE( bool3_all( &test8 ) );
+	TEMPER_CHECK_TRUE( bool3_all( &test9 ) );
 
-	TEMPER_CHECK_TRUE( bool3_cmpe( &test10, &allTrue ) );
-	TEMPER_CHECK_TRUE( bool3_cmpe( &test11, &allTrue ) );
-	TEMPER_CHECK_TRUE( bool3_cmpe( &test12, &allTrue ) );
-	TEMPER_CHECK_TRUE( bool3_cmpe( &test13, &allTrue ) );
-	TEMPER_CHECK_TRUE( bool3_cmpe( &test14, &allTrue ) );
+	TEMPER_CHECK_TRUE( bool3_all( &test10 ) );
+	TEMPER_CHECK_TRUE( bool3_all( &test11 ) );
+	TEMPER_CHECK_TRUE( bool3_all( &test12 ) );
+	TEMPER_CHECK_TRUE( bool3_all( &test13 ) );
+	TEMPER_CHECK_TRUE( bool3_all( &test14 ) );
 
-	TEMPER_CHECK_TRUE( bool3_cmpe( &test15, &allTrue ) );
-	TEMPER_CHECK_TRUE( bool3_cmpe( &test16, &allTrue ) );
-	TEMPER_CHECK_TRUE( bool3_cmpe( &test17, &allTrue ) );
-	TEMPER_CHECK_TRUE( bool3_cmpe( &test18, &allTrue ) );
-	TEMPER_CHECK_TRUE( bool3_cmpe( &test19, &allTrue ) );
+	TEMPER_CHECK_TRUE( bool3_all( &test15 ) );
+	TEMPER_CHECK_TRUE( bool3_all( &test16 ) );
+	TEMPER_CHECK_TRUE( bool3_all( &test17 ) );
+	TEMPER_CHECK_TRUE( bool3_all( &test18 ) );
+	TEMPER_CHECK_TRUE( bool3_all( &test19 ) );
 }
 
 TEMPER_TEST( TestBitwise_And_uint3, TEMPER_FLAG_SHOULD_RUN )

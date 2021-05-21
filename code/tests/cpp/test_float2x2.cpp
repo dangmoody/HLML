@@ -568,22 +568,29 @@ TEMPER_TEST( TestDivideMatrix_float2x2, TEMPER_FLAG_SHOULD_RUN )
 
 TEMPER_TEST( TestRelational_float2x2, TEMPER_FLAG_SHOULD_RUN )
 {
-	bool2x2 allTrue = { 		true, true,
-		true, true
- };
-
-	float2x2 mat0 = float2x2( 		1.000000f, 1.000000f,
+	float2x2 mat0 =
+	{
+		1.000000f, 1.000000f,
 		1.000000f, 1.000000f
- );
-	float2x2 mat1 = float2x2( 		2.000000f, 2.000000f,
+	};
+
+	float2x2 mat1 =
+	{
+		2.000000f, 2.000000f,
 		2.000000f, 2.000000f
- );
-	float2x2 mat2 = float2x2( 		3.000000f, 3.000000f,
+	};
+
+	float2x2 mat2 =
+	{
+		3.000000f, 3.000000f,
 		3.000000f, 3.000000f
- );
-	float2x2 mat3 = float2x2( 		4.000000f, 4.000000f,
+	};
+
+	float2x2 mat3 =
+	{
+		4.000000f, 4.000000f,
 		4.000000f, 4.000000f
- );
+	};
 
 	bool2x2 test0  = mat0 <= mat0;
 	bool2x2 test1  = mat0 >= mat0;
@@ -609,29 +616,29 @@ TEMPER_TEST( TestRelational_float2x2, TEMPER_FLAG_SHOULD_RUN )
 	bool2x2 test18 = mat3 <= mat3;
 	bool2x2 test19 = mat3 >= mat3;
 
-	TEMPER_CHECK_TRUE( test0  == allTrue );
-	TEMPER_CHECK_TRUE( test1  == allTrue );
-	TEMPER_CHECK_TRUE( test2  == allTrue );
-	TEMPER_CHECK_TRUE( test3  == allTrue );
-	TEMPER_CHECK_TRUE( test4  == allTrue );
+	TEMPER_CHECK_TRUE( all( test0 ) );
+	TEMPER_CHECK_TRUE( all( test1 ) );
+	TEMPER_CHECK_TRUE( all( test2 ) );
+	TEMPER_CHECK_TRUE( all( test3 ) );
+	TEMPER_CHECK_TRUE( all( test4 ) );
 
-	TEMPER_CHECK_TRUE( test5  == allTrue );
-	TEMPER_CHECK_TRUE( test6  == allTrue );
-	TEMPER_CHECK_TRUE( test7  == allTrue );
-	TEMPER_CHECK_TRUE( test8  == allTrue );
-	TEMPER_CHECK_TRUE( test9  == allTrue );
+	TEMPER_CHECK_TRUE( all( test5 ) );
+	TEMPER_CHECK_TRUE( all( test6 ) );
+	TEMPER_CHECK_TRUE( all( test7 ) );
+	TEMPER_CHECK_TRUE( all( test8 ) );
+	TEMPER_CHECK_TRUE( all( test9 ) );
 
-	TEMPER_CHECK_TRUE( test10 == allTrue );
-	TEMPER_CHECK_TRUE( test11 == allTrue );
-	TEMPER_CHECK_TRUE( test12 == allTrue );
-	TEMPER_CHECK_TRUE( test13 == allTrue );
-	TEMPER_CHECK_TRUE( test14 == allTrue );
+	TEMPER_CHECK_TRUE( all( test10 ) );
+	TEMPER_CHECK_TRUE( all( test11 ) );
+	TEMPER_CHECK_TRUE( all( test12 ) );
+	TEMPER_CHECK_TRUE( all( test13 ) );
+	TEMPER_CHECK_TRUE( all( test14 ) );
 
-	TEMPER_CHECK_TRUE( test15 == allTrue );
-	TEMPER_CHECK_TRUE( test16 == allTrue );
-	TEMPER_CHECK_TRUE( test17 == allTrue );
-	TEMPER_CHECK_TRUE( test18 == allTrue );
-	TEMPER_CHECK_TRUE( test19 == allTrue );
+	TEMPER_CHECK_TRUE( all( test15 ) );
+	TEMPER_CHECK_TRUE( all( test16 ) );
+	TEMPER_CHECK_TRUE( all( test17 ) );
+	TEMPER_CHECK_TRUE( all( test18 ) );
+	TEMPER_CHECK_TRUE( all( test19 ) );
 }
 
 TEMPER_TEST( TestIdentity_Scalar_float2x2, TEMPER_FLAG_SHOULD_RUN )

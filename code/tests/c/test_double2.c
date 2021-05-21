@@ -89,12 +89,10 @@ TEMPER_TEST( TestArithmeticDivision_double2, TEMPER_FLAG_SHOULD_RUN )
 
 TEMPER_TEST( TestRelational_double2, TEMPER_FLAG_SHOULD_RUN )
 {
-	bool2 allTrue = (bool2)	{ true, true };
-
-	double2 vec0 = (double2)	{ 0.000000, 0.000000 };
-	double2 vec1 = (double2)	{ 1.000000, 1.000000 };
-	double2 vec2 = (double2)	{ 2.000000, 2.000000 };
-	double2 vec3 = (double2)	{ 3.000000, 3.000000 };
+	double2 vec0 =	{ 0.000000, 0.000000 };
+	double2 vec1 =	{ 1.000000, 1.000000 };
+	double2 vec2 =	{ 2.000000, 2.000000 };
+	double2 vec3 =	{ 3.000000, 3.000000 };
 
 	bool2 test0  = double2_cmple( &vec0, &vec0 );
 	bool2 test1  = double2_cmpge( &vec0, &vec0 );
@@ -120,29 +118,29 @@ TEMPER_TEST( TestRelational_double2, TEMPER_FLAG_SHOULD_RUN )
 	bool2 test18 = double2_cmple( &vec3, &vec3 );
 	bool2 test19 = double2_cmpge( &vec3, &vec3 );
 
-	TEMPER_CHECK_TRUE( bool2_cmpe( &test0,  &allTrue ) );
-	TEMPER_CHECK_TRUE( bool2_cmpe( &test1,  &allTrue ) );
-	TEMPER_CHECK_TRUE( bool2_cmpe( &test2,  &allTrue ) );
-	TEMPER_CHECK_TRUE( bool2_cmpe( &test3,  &allTrue ) );
-	TEMPER_CHECK_TRUE( bool2_cmpe( &test4,  &allTrue ) );
+	TEMPER_CHECK_TRUE( bool2_all( &test0 ) );
+	TEMPER_CHECK_TRUE( bool2_all( &test1 ) );
+	TEMPER_CHECK_TRUE( bool2_all( &test2 ) );
+	TEMPER_CHECK_TRUE( bool2_all( &test3 ) );
+	TEMPER_CHECK_TRUE( bool2_all( &test4 ) );
 
-	TEMPER_CHECK_TRUE( bool2_cmpe( &test5,  &allTrue ) );
-	TEMPER_CHECK_TRUE( bool2_cmpe( &test6,  &allTrue ) );
-	TEMPER_CHECK_TRUE( bool2_cmpe( &test7,  &allTrue ) );
-	TEMPER_CHECK_TRUE( bool2_cmpe( &test8,  &allTrue ) );
-	TEMPER_CHECK_TRUE( bool2_cmpe( &test9,  &allTrue ) );
+	TEMPER_CHECK_TRUE( bool2_all( &test5 ) );
+	TEMPER_CHECK_TRUE( bool2_all( &test6 ) );
+	TEMPER_CHECK_TRUE( bool2_all( &test7 ) );
+	TEMPER_CHECK_TRUE( bool2_all( &test8 ) );
+	TEMPER_CHECK_TRUE( bool2_all( &test9 ) );
 
-	TEMPER_CHECK_TRUE( bool2_cmpe( &test10, &allTrue ) );
-	TEMPER_CHECK_TRUE( bool2_cmpe( &test11, &allTrue ) );
-	TEMPER_CHECK_TRUE( bool2_cmpe( &test12, &allTrue ) );
-	TEMPER_CHECK_TRUE( bool2_cmpe( &test13, &allTrue ) );
-	TEMPER_CHECK_TRUE( bool2_cmpe( &test14, &allTrue ) );
+	TEMPER_CHECK_TRUE( bool2_all( &test10 ) );
+	TEMPER_CHECK_TRUE( bool2_all( &test11 ) );
+	TEMPER_CHECK_TRUE( bool2_all( &test12 ) );
+	TEMPER_CHECK_TRUE( bool2_all( &test13 ) );
+	TEMPER_CHECK_TRUE( bool2_all( &test14 ) );
 
-	TEMPER_CHECK_TRUE( bool2_cmpe( &test15, &allTrue ) );
-	TEMPER_CHECK_TRUE( bool2_cmpe( &test16, &allTrue ) );
-	TEMPER_CHECK_TRUE( bool2_cmpe( &test17, &allTrue ) );
-	TEMPER_CHECK_TRUE( bool2_cmpe( &test18, &allTrue ) );
-	TEMPER_CHECK_TRUE( bool2_cmpe( &test19, &allTrue ) );
+	TEMPER_CHECK_TRUE( bool2_all( &test15 ) );
+	TEMPER_CHECK_TRUE( bool2_all( &test16 ) );
+	TEMPER_CHECK_TRUE( bool2_all( &test17 ) );
+	TEMPER_CHECK_TRUE( bool2_all( &test18 ) );
+	TEMPER_CHECK_TRUE( bool2_all( &test19 ) );
 }
 
 TEMPER_TEST( TestLength_Scalar_double2, TEMPER_FLAG_SHOULD_RUN )
