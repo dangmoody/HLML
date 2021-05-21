@@ -1835,7 +1835,7 @@ void Gen_OperatorNegate( const genType_t type, const u32 numRows, const u32 numC
 	assert( sbFwdDec );
 	assert( sbImpl );
 
-	if ( type == GEN_TYPE_BOOL ) {
+	if ( type == GEN_TYPE_BOOL || type == GEN_TYPE_UINT ) {
 		return;
 	}
 
