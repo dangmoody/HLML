@@ -1713,7 +1713,7 @@ void Gen_Negate( const genLanguage_t language, const genType_t type, const u32 n
 	assert( sbFwdDec );
 	assert( sbImpl );
 
-	if ( type == GEN_TYPE_BOOL ) {
+	if ( type == GEN_TYPE_BOOL || type == GEN_TYPE_UINT ) {
 		return;
 	}
 
