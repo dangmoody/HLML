@@ -597,9 +597,6 @@ inline uint2& operator--( uint2& lhs );
 // postfix
 // Postfix decrement operator.  Subtracts one from each component of the given uint2 after evaluation.
 inline uint2& operator--( uint2& lhs, const int );
-// Returns a copy of the uint2 where all values have been negated.
-inline uint2 operator-( const uint2& vec );
-
 // Returns a copy of the uint2 where each component of the left-hand uint2 has been bitwise AND'd against the corresponding component of the right-hand side uint2.
 inline uint2 operator&( const uint2& lhs, const uint2& rhs );
 
@@ -713,9 +710,6 @@ inline uint3& operator--( uint3& lhs );
 // postfix
 // Postfix decrement operator.  Subtracts one from each component of the given uint3 after evaluation.
 inline uint3& operator--( uint3& lhs, const int );
-// Returns a copy of the uint3 where all values have been negated.
-inline uint3 operator-( const uint3& vec );
-
 // Returns a copy of the uint3 where each component of the left-hand uint3 has been bitwise AND'd against the corresponding component of the right-hand side uint3.
 inline uint3 operator&( const uint3& lhs, const uint3& rhs );
 
@@ -829,9 +823,6 @@ inline uint4& operator--( uint4& lhs );
 // postfix
 // Postfix decrement operator.  Subtracts one from each component of the given uint4 after evaluation.
 inline uint4& operator--( uint4& lhs, const int );
-// Returns a copy of the uint4 where all values have been negated.
-inline uint4 operator-( const uint4& vec );
-
 // Returns a copy of the uint4 where each component of the left-hand uint4 has been bitwise AND'd against the corresponding component of the right-hand side uint4.
 inline uint4 operator&( const uint4& lhs, const uint4& rhs );
 
@@ -2661,15 +2652,6 @@ uint2& operator--( uint2& lhs, const int )
 	return lhs;
 }
 
-uint2 operator-( const uint2& vec )
-{
-	return HLML_CONSTRUCT( uint2 )
-	{
-		-vec.x,
-		-vec.y
-	};
-}
-
 uint2 operator&( const uint2& lhs, const uint2& rhs )
 {
 	return HLML_CONSTRUCT( uint2 ) {
@@ -2927,16 +2909,6 @@ uint3& operator--( uint3& lhs, const int )
 	lhs[1]--;
 	lhs[2]--;
 	return lhs;
-}
-
-uint3 operator-( const uint3& vec )
-{
-	return HLML_CONSTRUCT( uint3 )
-	{
-		-vec.x,
-		-vec.y,
-		-vec.z
-	};
 }
 
 uint3 operator&( const uint3& lhs, const uint3& rhs )
@@ -3218,17 +3190,6 @@ uint4& operator--( uint4& lhs, const int )
 	lhs[2]--;
 	lhs[3]--;
 	return lhs;
-}
-
-uint4 operator-( const uint4& vec )
-{
-	return HLML_CONSTRUCT( uint4 )
-	{
-		-vec.x,
-		-vec.y,
-		-vec.z,
-		-vec.w
-	};
 }
 
 uint4 operator&( const uint4& lhs, const uint4& rhs )

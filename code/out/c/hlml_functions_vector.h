@@ -390,9 +390,6 @@ inline bool2 uint2_cmpg( const uint2* lhs, const uint2* rhs );
 // Returns a bool2 where each component is true if the component of the left-hand type is greater than or equal to the corresponding right-hand type component.
 inline bool2 uint2_cmpge( const uint2* lhs, const uint2* rhs );
 
-// Returns a copy of the uint2 where all values have been negated.
-inline uint2 uint2_negate( const uint2* vec );
-
 // Returns the magnitude of the vector squared.
 inline float uint2_lengthsqr( const uint2* vec );
 
@@ -470,9 +467,6 @@ inline bool3 uint3_cmpg( const uint3* lhs, const uint3* rhs );
 // Returns a bool3 where each component is true if the component of the left-hand type is greater than or equal to the corresponding right-hand type component.
 inline bool3 uint3_cmpge( const uint3* lhs, const uint3* rhs );
 
-// Returns a copy of the uint3 where all values have been negated.
-inline uint3 uint3_negate( const uint3* vec );
-
 // Returns the magnitude of the vector squared.
 inline float uint3_lengthsqr( const uint3* vec );
 
@@ -549,9 +543,6 @@ inline bool4 uint4_cmpg( const uint4* lhs, const uint4* rhs );
 
 // Returns a bool4 where each component is true if the component of the left-hand type is greater than or equal to the corresponding right-hand type component.
 inline bool4 uint4_cmpge( const uint4* lhs, const uint4* rhs );
-
-// Returns a copy of the uint4 where all values have been negated.
-inline uint4 uint4_negate( const uint4* vec );
 
 // Returns the magnitude of the vector squared.
 inline float uint4_lengthsqr( const uint4* vec );
@@ -1899,15 +1890,6 @@ bool2 uint2_cmpge( const uint2* lhs, const uint2* rhs )
 	};
 }
 
-uint2 uint2_negate( const uint2* vec )
-{
-	return HLML_CONSTRUCT( uint2 )
-	{
-		-vec->x,
-		-vec->y
-	};
-}
-
 float uint2_lengthsqr( const uint2* vec )
 {
 	return (float)( ( vec->x * vec->x ) + ( vec->y * vec->y ) );
@@ -2104,16 +2086,6 @@ bool3 uint3_cmpge( const uint3* lhs, const uint3* rhs )
 		lhs->x >= rhs->x,
 		lhs->y >= rhs->y,
 		lhs->z >= rhs->z
-	};
-}
-
-uint3 uint3_negate( const uint3* vec )
-{
-	return HLML_CONSTRUCT( uint3 )
-	{
-		-vec->x,
-		-vec->y,
-		-vec->z
 	};
 }
 
@@ -2331,17 +2303,6 @@ bool4 uint4_cmpge( const uint4* lhs, const uint4* rhs )
 		lhs->y >= rhs->y,
 		lhs->z >= rhs->z,
 		lhs->w >= rhs->w
-	};
-}
-
-uint4 uint4_negate( const uint4* vec )
-{
-	return HLML_CONSTRUCT( uint4 )
-	{
-		-vec->x,
-		-vec->y,
-		-vec->z,
-		-vec->w
 	};
 }
 

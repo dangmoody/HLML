@@ -1014,9 +1014,6 @@ inline uint2x2& operator--( uint2x2& lhs );
 // postfix
 // Postfix decrement operator.  Subtracts one from each component of the given uint2x2 after evaluation.
 inline uint2x2& operator--( uint2x2& lhs, const int );
-// Returns a copy of the uint2x2 where all values have been negated.
-inline uint2x2 operator-( const uint2x2& mat );
-
 // Returns a copy of the uint2x2 where each component of the left-hand uint2x2 has been bitwise AND'd against the corresponding component of the right-hand side uint2x2.
 inline uint2x2 operator&( uint2x2& lhs, const uint2x2& rhs );
 
@@ -1103,9 +1100,6 @@ inline uint2x3& operator--( uint2x3& lhs );
 // postfix
 // Postfix decrement operator.  Subtracts one from each component of the given uint2x3 after evaluation.
 inline uint2x3& operator--( uint2x3& lhs, const int );
-// Returns a copy of the uint2x3 where all values have been negated.
-inline uint2x3 operator-( const uint2x3& mat );
-
 // Returns a copy of the uint2x3 where each component of the left-hand uint2x3 has been bitwise AND'd against the corresponding component of the right-hand side uint2x3.
 inline uint2x3 operator&( uint2x3& lhs, const uint2x3& rhs );
 
@@ -1192,9 +1186,6 @@ inline uint2x4& operator--( uint2x4& lhs );
 // postfix
 // Postfix decrement operator.  Subtracts one from each component of the given uint2x4 after evaluation.
 inline uint2x4& operator--( uint2x4& lhs, const int );
-// Returns a copy of the uint2x4 where all values have been negated.
-inline uint2x4 operator-( const uint2x4& mat );
-
 // Returns a copy of the uint2x4 where each component of the left-hand uint2x4 has been bitwise AND'd against the corresponding component of the right-hand side uint2x4.
 inline uint2x4 operator&( uint2x4& lhs, const uint2x4& rhs );
 
@@ -1281,9 +1272,6 @@ inline uint3x2& operator--( uint3x2& lhs );
 // postfix
 // Postfix decrement operator.  Subtracts one from each component of the given uint3x2 after evaluation.
 inline uint3x2& operator--( uint3x2& lhs, const int );
-// Returns a copy of the uint3x2 where all values have been negated.
-inline uint3x2 operator-( const uint3x2& mat );
-
 // Returns a copy of the uint3x2 where each component of the left-hand uint3x2 has been bitwise AND'd against the corresponding component of the right-hand side uint3x2.
 inline uint3x2 operator&( uint3x2& lhs, const uint3x2& rhs );
 
@@ -1378,9 +1366,6 @@ inline uint3x3& operator--( uint3x3& lhs );
 // postfix
 // Postfix decrement operator.  Subtracts one from each component of the given uint3x3 after evaluation.
 inline uint3x3& operator--( uint3x3& lhs, const int );
-// Returns a copy of the uint3x3 where all values have been negated.
-inline uint3x3 operator-( const uint3x3& mat );
-
 // Returns a copy of the uint3x3 where each component of the left-hand uint3x3 has been bitwise AND'd against the corresponding component of the right-hand side uint3x3.
 inline uint3x3 operator&( uint3x3& lhs, const uint3x3& rhs );
 
@@ -1467,9 +1452,6 @@ inline uint3x4& operator--( uint3x4& lhs );
 // postfix
 // Postfix decrement operator.  Subtracts one from each component of the given uint3x4 after evaluation.
 inline uint3x4& operator--( uint3x4& lhs, const int );
-// Returns a copy of the uint3x4 where all values have been negated.
-inline uint3x4 operator-( const uint3x4& mat );
-
 // Returns a copy of the uint3x4 where each component of the left-hand uint3x4 has been bitwise AND'd against the corresponding component of the right-hand side uint3x4.
 inline uint3x4 operator&( uint3x4& lhs, const uint3x4& rhs );
 
@@ -1556,9 +1538,6 @@ inline uint4x2& operator--( uint4x2& lhs );
 // postfix
 // Postfix decrement operator.  Subtracts one from each component of the given uint4x2 after evaluation.
 inline uint4x2& operator--( uint4x2& lhs, const int );
-// Returns a copy of the uint4x2 where all values have been negated.
-inline uint4x2 operator-( const uint4x2& mat );
-
 // Returns a copy of the uint4x2 where each component of the left-hand uint4x2 has been bitwise AND'd against the corresponding component of the right-hand side uint4x2.
 inline uint4x2 operator&( uint4x2& lhs, const uint4x2& rhs );
 
@@ -1645,9 +1624,6 @@ inline uint4x3& operator--( uint4x3& lhs );
 // postfix
 // Postfix decrement operator.  Subtracts one from each component of the given uint4x3 after evaluation.
 inline uint4x3& operator--( uint4x3& lhs, const int );
-// Returns a copy of the uint4x3 where all values have been negated.
-inline uint4x3 operator-( const uint4x3& mat );
-
 // Returns a copy of the uint4x3 where each component of the left-hand uint4x3 has been bitwise AND'd against the corresponding component of the right-hand side uint4x3.
 inline uint4x3 operator&( uint4x3& lhs, const uint4x3& rhs );
 
@@ -1742,9 +1718,6 @@ inline uint4x4& operator--( uint4x4& lhs );
 // postfix
 // Postfix decrement operator.  Subtracts one from each component of the given uint4x4 after evaluation.
 inline uint4x4& operator--( uint4x4& lhs, const int );
-// Returns a copy of the uint4x4 where all values have been negated.
-inline uint4x4 operator-( const uint4x4& mat );
-
 // Returns a copy of the uint4x4 where each component of the left-hand uint4x4 has been bitwise AND'd against the corresponding component of the right-hand side uint4x4.
 inline uint4x4 operator&( uint4x4& lhs, const uint4x4& rhs );
 
@@ -5372,15 +5345,6 @@ uint2x2& operator--( uint2x2& lhs, const int )
 	return lhs;
 }
 
-uint2x2 operator-( const uint2x2& mat )
-{
-	return HLML_CONSTRUCT( uint2x2 )
-	{
-		-mat.rows[0],
-		-mat.rows[1]
-	};
-}
-
 uint2x2 operator&( uint2x2& lhs, const uint2x2& rhs )
 {
 	return HLML_CONSTRUCT( uint2x2 ) {
@@ -5590,15 +5554,6 @@ uint2x3& operator--( uint2x3& lhs, const int )
 	return lhs;
 }
 
-uint2x3 operator-( const uint2x3& mat )
-{
-	return HLML_CONSTRUCT( uint2x3 )
-	{
-		-mat.rows[0],
-		-mat.rows[1]
-	};
-}
-
 uint2x3 operator&( uint2x3& lhs, const uint2x3& rhs )
 {
 	return HLML_CONSTRUCT( uint2x3 ) {
@@ -5806,15 +5761,6 @@ uint2x4& operator--( uint2x4& lhs, const int )
 	lhs[0]--;
 	lhs[1]--;
 	return lhs;
-}
-
-uint2x4 operator-( const uint2x4& mat )
-{
-	return HLML_CONSTRUCT( uint2x4 )
-	{
-		-mat.rows[0],
-		-mat.rows[1]
-	};
 }
 
 uint2x4 operator&( uint2x4& lhs, const uint2x4& rhs )
@@ -6043,16 +5989,6 @@ uint3x2& operator--( uint3x2& lhs, const int )
 	lhs[1]--;
 	lhs[2]--;
 	return lhs;
-}
-
-uint3x2 operator-( const uint3x2& mat )
-{
-	return HLML_CONSTRUCT( uint3x2 )
-	{
-		-mat.rows[0],
-		-mat.rows[1],
-		-mat.rows[2]
-	};
 }
 
 uint3x2 operator&( uint3x2& lhs, const uint3x2& rhs )
@@ -6312,16 +6248,6 @@ uint3x3& operator--( uint3x3& lhs, const int )
 	return lhs;
 }
 
-uint3x3 operator-( const uint3x3& mat )
-{
-	return HLML_CONSTRUCT( uint3x3 )
-	{
-		-mat.rows[0],
-		-mat.rows[1],
-		-mat.rows[2]
-	};
-}
-
 uint3x3 operator&( uint3x3& lhs, const uint3x3& rhs )
 {
 	return HLML_CONSTRUCT( uint3x3 ) {
@@ -6558,16 +6484,6 @@ uint3x4& operator--( uint3x4& lhs, const int )
 	lhs[1]--;
 	lhs[2]--;
 	return lhs;
-}
-
-uint3x4 operator-( const uint3x4& mat )
-{
-	return HLML_CONSTRUCT( uint3x4 )
-	{
-		-mat.rows[0],
-		-mat.rows[1],
-		-mat.rows[2]
-	};
 }
 
 uint3x4 operator&( uint3x4& lhs, const uint3x4& rhs )
@@ -6827,17 +6743,6 @@ uint4x2& operator--( uint4x2& lhs, const int )
 	lhs[2]--;
 	lhs[3]--;
 	return lhs;
-}
-
-uint4x2 operator-( const uint4x2& mat )
-{
-	return HLML_CONSTRUCT( uint4x2 )
-	{
-		-mat.rows[0],
-		-mat.rows[1],
-		-mat.rows[2],
-		-mat.rows[3]
-	};
 }
 
 uint4x2 operator&( uint4x2& lhs, const uint4x2& rhs )
@@ -7107,17 +7012,6 @@ uint4x3& operator--( uint4x3& lhs, const int )
 	lhs[2]--;
 	lhs[3]--;
 	return lhs;
-}
-
-uint4x3 operator-( const uint4x3& mat )
-{
-	return HLML_CONSTRUCT( uint4x3 )
-	{
-		-mat.rows[0],
-		-mat.rows[1],
-		-mat.rows[2],
-		-mat.rows[3]
-	};
 }
 
 uint4x3 operator&( uint4x3& lhs, const uint4x3& rhs )
@@ -7407,17 +7301,6 @@ uint4x4& operator--( uint4x4& lhs, const int )
 	lhs[2]--;
 	lhs[3]--;
 	return lhs;
-}
-
-uint4x4 operator-( const uint4x4& mat )
-{
-	return HLML_CONSTRUCT( uint4x4 )
-	{
-		-mat.rows[0],
-		-mat.rows[1],
-		-mat.rows[2],
-		-mat.rows[3]
-	};
 }
 
 uint4x4 operator&( uint4x4& lhs, const uint4x4& rhs )
