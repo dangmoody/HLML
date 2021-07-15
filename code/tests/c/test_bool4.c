@@ -55,3 +55,20 @@ TEMPER_TEST( TestAssignment_bool4, TEMPER_FLAG_SHOULD_RUN )
 	TEMPER_CHECK_TRUE( vec.w == true );
 }
 
+TEMPER_PARAMETRIC( TestAll_bool4, TEMPER_FLAG_SHOULD_RUN, const bool4* vec, const bool expectedResult )
+{
+	TEMPER_CHECK_TRUE( bool4_all( vec ) == expectedResult );
+}
+
+const bool4 g_testAll_AllTrue_bool4 = { true, true, true, true };
+TEMPER_INVOKE_PARAMETRIC_TEST( TestAll_bool4, &g_testAll_AllTrue_bool4, true );
+
+const bool4 g_testAll_OneFalse_bool4 = { false, true, true, true };
+TEMPER_INVOKE_PARAMETRIC_TEST( TestAll_bool4, &g_testAll_OneFalse_bool4, false );
+
+const bool4 g_testAll_SomeFalse_bool4 = { false, true, false, true };
+TEMPER_INVOKE_PARAMETRIC_TEST( TestAll_bool4, &g_testAll_SomeFalse_bool4, false );
+
+const bool4 g_testAll_AllFalse_bool4 = { false, false, false, false };
+TEMPER_INVOKE_PARAMETRIC_TEST( TestAll_bool4, &g_testAll_AllFalse_bool4, false );
+

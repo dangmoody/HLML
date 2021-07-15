@@ -71,8 +71,7 @@ static void GenerateTestAssignment( stringBuilder_t* codeTests, const genType_t 
 
 		String_Appendf( codeTests, "\tTEMPER_CHECK_TRUE( vec.%c == %s );\n", GEN_COMPONENT_NAMES_VECTOR[i], valueStr );
 	}
-	String_Append(  codeTests, "}\n" );
-	String_Append(  codeTests, "\n" );
+	String_Append(  codeTests, "}\n\n" );
 }
 
 static void GenerateTestConstruct( stringBuilder_t* codeTests, const genType_t type, const u32 numComponents, const char* fullTypeName ) {
@@ -143,8 +142,7 @@ static void GenerateTestConstruct( stringBuilder_t* codeTests, const genType_t t
 		}
 		String_Append(  codeTests, "\n" );
 	}
-	String_Append(  codeTests, "}\n" );
-	String_Append(  codeTests, "\n" );
+	String_Append(  codeTests, "}\n\n" );
 }
 
 static void GenerateTestArray( stringBuilder_t* codeTests, const genType_t type, const u32 numComponents, const char* fullTypeName ) {
@@ -152,9 +150,6 @@ static void GenerateTestArray( stringBuilder_t* codeTests, const genType_t type,
 	assert( numComponents >= GEN_COMPONENT_COUNT_MIN );
 	assert( numComponents <= GEN_COMPONENT_COUNT_MAX );
 	assert( fullTypeName );
-
-	char testName[GEN_STRING_LENGTH_TEST_NAME] = { 0 };
-	snprintf( testName, GEN_STRING_LENGTH_TEST_NAME, "TestArray_%s", fullTypeName );
 
 	float values[] = { 0.0f, 1.0f, 2.0f, 3.0f };
 
@@ -167,15 +162,81 @@ static void GenerateTestArray( stringBuilder_t* codeTests, const genType_t type,
 	Gen_GetNumericLiteral( type, 2, valuesStr[2], 1 );
 	Gen_GetNumericLiteral( type, 3, valuesStr[3], 1 );
 
-	String_Appendf( codeTests, "TEMPER_TEST( %s, TEMPER_FLAG_SHOULD_RUN )\n", testName );
+	String_Appendf( codeTests, "TEMPER_TEST( TestArray_%s, TEMPER_FLAG_SHOULD_RUN )\n", fullTypeName );
 	String_Append(  codeTests, "{\n" );
 	String_Appendf( codeTests, "\t%s a = %s( %s );\n", fullTypeName, fullTypeName, parmList );
 	String_Append(  codeTests, "\n" );
 	for ( u32 i = 0; i < numComponents; i++ ) {
 		String_Appendf( codeTests, "\tTEMPER_CHECK_TRUE( a.%c == %s );\n", GEN_COMPONENT_NAMES_VECTOR[i], valuesStr[i] );
 	}
-	String_Append( codeTests, "}\n" );
-	String_Append( codeTests, "\n" );
+	String_Append( codeTests, "}\n\n" );
+}
+
+static void GenerateTestAll( stringBuilder_t* codeTests, const genLanguage_t language, const genType_t type, const u32 numComponents, const char* fullTypeName ) {
+	assert( codeTests );
+	assert( numComponents >= GEN_COMPONENT_COUNT_MIN );
+	assert( numComponents <= GEN_COMPONENT_COUNT_MAX );
+	assert( fullTypeName );
+
+	if ( type != GEN_TYPE_BOOL ) {
+		return;
+	}
+
+	char testName[GEN_STRING_LENGTH_TEST_NAME];
+	snprintf( testName, GEN_STRING_LENGTH_TEST_NAME, "TestAll_%s", fullTypeName );
+
+	float32 valuesAllTrue[] = {
+		1.0f, 1.0f, 1.0f, 1.0f
+	};
+
+	float32 valuesOneFalse[] = {
+		0.0f, 1.0f, 1.0f, 1.0f
+	};
+
+	float32 valuesSomeFalse[] = {
+		0.0f, 1.0f, 0.0f, 1.0f
+	};
+
+	float32 valuesAllFalse[] = {
+		0.0f, 0.0f, 0.0f, 0.0f
+	};
+
+	char parmListAllTrue[GEN_STRING_LENGTH_PARM_LIST_VECTOR];
+	Gen_GetParmListVector( GEN_TYPE_BOOL, numComponents, valuesAllTrue, parmListAllTrue );
+
+	char parmListOneFalse[GEN_STRING_LENGTH_PARM_LIST_VECTOR];
+	Gen_GetParmListVector( GEN_TYPE_BOOL, numComponents, valuesOneFalse, parmListOneFalse );
+
+	char parmListSomeFalse[GEN_STRING_LENGTH_PARM_LIST_VECTOR];
+	Gen_GetParmListVector( GEN_TYPE_BOOL, numComponents, valuesSomeFalse, parmListSomeFalse );
+
+	char parmListAllFalse[GEN_STRING_LENGTH_PARM_LIST_VECTOR];
+	Gen_GetParmListVector( GEN_TYPE_BOOL, numComponents, valuesAllFalse, parmListAllFalse );
+
+	char parmTypeName[GEN_STRING_LENGTH_TYPE_NAME];
+	Gen_GetParmTypeName( language, type, 1, numComponents, parmTypeName );
+
+	const char* parmRefStr = GEN_TYPE_PARM_REFERENCE_MODIFIERS[language];
+
+	char allFuncStr[GEN_STRING_LENGTH_FUNCTION_NAME];
+	Gen_GetFuncNameAll( language, type, 1, numComponents, allFuncStr );
+
+	String_Appendf( codeTests, "TEMPER_PARAMETRIC( %s, TEMPER_FLAG_SHOULD_RUN, const %s vec, const bool expectedResult )\n", testName, parmTypeName );
+	String_Append(  codeTests, "{\n" );
+	String_Appendf( codeTests, "\tTEMPER_CHECK_TRUE( %s( vec ) == expectedResult );\n", allFuncStr );
+	String_Append(  codeTests, "}\n\n" );
+
+	String_Appendf( codeTests, "const %s g_testAll_AllTrue_%s = { %s };\n", fullTypeName, fullTypeName, parmListAllTrue );
+	String_Appendf( codeTests, "TEMPER_INVOKE_PARAMETRIC_TEST( %s, %sg_testAll_AllTrue_%s, true );\n\n", testName, parmRefStr, fullTypeName );
+
+	String_Appendf( codeTests, "const %s g_testAll_OneFalse_%s = { %s };\n", fullTypeName, fullTypeName, parmListOneFalse );
+	String_Appendf( codeTests, "TEMPER_INVOKE_PARAMETRIC_TEST( %s, %sg_testAll_OneFalse_%s, false );\n\n", testName, parmRefStr, fullTypeName );
+
+	String_Appendf( codeTests, "const %s g_testAll_SomeFalse_%s = { %s };\n", fullTypeName, fullTypeName, parmListSomeFalse );
+	String_Appendf( codeTests, "TEMPER_INVOKE_PARAMETRIC_TEST( %s, %sg_testAll_SomeFalse_%s, false );\n\n", testName, parmRefStr, fullTypeName );
+
+	String_Appendf( codeTests, "const %s g_testAll_AllFalse_%s = { %s };\n", fullTypeName, fullTypeName, parmListAllFalse );
+	String_Appendf( codeTests, "TEMPER_INVOKE_PARAMETRIC_TEST( %s, %sg_testAll_AllFalse_%s, false );\n\n", testName, parmRefStr, fullTypeName );
 }
 
 static void GenerateTestArithmetic( stringBuilder_t* codeTests, const genLanguage_t language, const genType_t type, const u32 numComponents, const char* fullTypeName ) {
@@ -1694,6 +1755,7 @@ void Gen_VectorTests( allocatorLinear_t* allocator, const genLanguage_t language
 		GenerateTestArray( &codeTests, type, numComponents, fullTypeName );
 		GenerateTestIncrement( &codeTests, type, numComponents, fullTypeName );
 	}
+	GenerateTestAll( &codeTests, language, type, numComponents, fullTypeName );
 	GenerateTestArithmetic( &codeTests, language, type, numComponents, fullTypeName );
 	GenerateTestRelational( &codeTests, language, type, numComponents, fullTypeName );
 	GenerateTestBitwise( &codeTests, language, type, numComponents, fullTypeName, memberTypeString );

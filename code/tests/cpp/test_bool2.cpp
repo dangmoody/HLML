@@ -88,3 +88,20 @@ TEMPER_TEST( TestArray_bool2, TEMPER_FLAG_SHOULD_RUN )
 	TEMPER_CHECK_TRUE( a.y == true );
 }
 
+TEMPER_PARAMETRIC( TestAll_bool2, TEMPER_FLAG_SHOULD_RUN, const bool2& vec, const bool expectedResult )
+{
+	TEMPER_CHECK_TRUE( all( vec ) == expectedResult );
+}
+
+const bool2 g_testAll_AllTrue_bool2 = { true, true };
+TEMPER_INVOKE_PARAMETRIC_TEST( TestAll_bool2, g_testAll_AllTrue_bool2, true );
+
+const bool2 g_testAll_OneFalse_bool2 = { false, true };
+TEMPER_INVOKE_PARAMETRIC_TEST( TestAll_bool2, g_testAll_OneFalse_bool2, false );
+
+const bool2 g_testAll_SomeFalse_bool2 = { false, true };
+TEMPER_INVOKE_PARAMETRIC_TEST( TestAll_bool2, g_testAll_SomeFalse_bool2, false );
+
+const bool2 g_testAll_AllFalse_bool2 = { false, false };
+TEMPER_INVOKE_PARAMETRIC_TEST( TestAll_bool2, g_testAll_AllFalse_bool2, false );
+
