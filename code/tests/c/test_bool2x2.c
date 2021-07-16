@@ -45,6 +45,39 @@ TEMPER_TEST( TestAssignment_bool2x2, TEMPER_FLAG_SHOULD_RUN )
 	TEMPER_CHECK_TRUE( mat.rows[1].y == true );
 }
 
+TEMPER_PARAMETRIC( TestAll_bool2x2, TEMPER_FLAG_SHOULD_RUN, const bool2x2* vec, const bool expectedResult )
+{
+	TEMPER_CHECK_TRUE( bool2x2_all( vec ) == expectedResult );
+}
+
+const bool2x2 g_testAll_AllTrue_bool2x2 =
+{
+		true, true,
+		true, true
+};
+TEMPER_INVOKE_PARAMETRIC_TEST( TestAll_bool2x2, &g_testAll_AllTrue_bool2x2, true );
+
+const bool2x2 g_testAll_OneFalse_bool2x2 =
+{
+		false, true,
+		true, true
+};
+TEMPER_INVOKE_PARAMETRIC_TEST( TestAll_bool2x2, &g_testAll_OneFalse_bool2x2, false );
+
+const bool2x2 g_testAll_SomeFalse_bool2x2 =
+{
+		false, true,
+		true, false
+};
+TEMPER_INVOKE_PARAMETRIC_TEST( TestAll_bool2x2, &g_testAll_SomeFalse_bool2x2, false );
+
+const bool2x2 g_testAll_AllFalse_bool2x2 =
+{
+		false, false,
+		false, false
+};
+TEMPER_INVOKE_PARAMETRIC_TEST( TestAll_bool2x2, &g_testAll_AllFalse_bool2x2, false );
+
 TEMPER_TEST( TestIdentity_Scalar_bool2x2, TEMPER_FLAG_SHOULD_RUN )
 {
 	bool2x2 id;

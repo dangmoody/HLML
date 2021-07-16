@@ -302,6 +302,9 @@ inline bool2x2 int2x2_cmpg( const int2x2* lhs, const int2x2* rhs );
 // Returns a bool2x2 where each component is true if the component of the left-hand type is greater than or equal to the corresponding right-hand type component.
 inline bool2x2 int2x2_cmpge( const int2x2* lhs, const int2x2* rhs );
 
+// Returns a copy of the int2x2 where all values have been negated.
+inline int2x2 int2x2_negate( const int2x2* mat );
+
 // Sets the matrix to an identity matrix.
 inline void int2x2_identity( int2x2* mat );
 
@@ -379,6 +382,9 @@ inline bool2x3 int2x3_cmpg( const int2x3* lhs, const int2x3* rhs );
 // Returns a bool2x3 where each component is true if the component of the left-hand type is greater than or equal to the corresponding right-hand type component.
 inline bool2x3 int2x3_cmpge( const int2x3* lhs, const int2x3* rhs );
 
+// Returns a copy of the int2x3 where all values have been negated.
+inline int2x3 int2x3_negate( const int2x3* mat );
+
 // Sets the matrix to an identity matrix.
 inline void int2x3_identity( int2x3* mat );
 
@@ -452,6 +458,9 @@ inline bool2x4 int2x4_cmpg( const int2x4* lhs, const int2x4* rhs );
 
 // Returns a bool2x4 where each component is true if the component of the left-hand type is greater than or equal to the corresponding right-hand type component.
 inline bool2x4 int2x4_cmpge( const int2x4* lhs, const int2x4* rhs );
+
+// Returns a copy of the int2x4 where all values have been negated.
+inline int2x4 int2x4_negate( const int2x4* mat );
 
 // Sets the matrix to an identity matrix.
 inline void int2x4_identity( int2x4* mat );
@@ -527,6 +536,9 @@ inline bool3x2 int3x2_cmpg( const int3x2* lhs, const int3x2* rhs );
 // Returns a bool3x2 where each component is true if the component of the left-hand type is greater than or equal to the corresponding right-hand type component.
 inline bool3x2 int3x2_cmpge( const int3x2* lhs, const int3x2* rhs );
 
+// Returns a copy of the int3x2 where all values have been negated.
+inline int3x2 int3x2_negate( const int3x2* mat );
+
 // Sets the matrix to an identity matrix.
 inline void int3x2_identity( int3x2* mat );
 
@@ -597,6 +609,9 @@ inline bool3x3 int3x3_cmpg( const int3x3* lhs, const int3x3* rhs );
 
 // Returns a bool3x3 where each component is true if the component of the left-hand type is greater than or equal to the corresponding right-hand type component.
 inline bool3x3 int3x3_cmpge( const int3x3* lhs, const int3x3* rhs );
+
+// Returns a copy of the int3x3 where all values have been negated.
+inline int3x3 int3x3_negate( const int3x3* mat );
 
 // Sets the matrix to an identity matrix.
 inline void int3x3_identity( int3x3* mat );
@@ -681,6 +696,9 @@ inline bool3x4 int3x4_cmpg( const int3x4* lhs, const int3x4* rhs );
 // Returns a bool3x4 where each component is true if the component of the left-hand type is greater than or equal to the corresponding right-hand type component.
 inline bool3x4 int3x4_cmpge( const int3x4* lhs, const int3x4* rhs );
 
+// Returns a copy of the int3x4 where all values have been negated.
+inline int3x4 int3x4_negate( const int3x4* mat );
+
 // Sets the matrix to an identity matrix.
 inline void int3x4_identity( int3x4* mat );
 
@@ -758,6 +776,9 @@ inline bool4x2 int4x2_cmpg( const int4x2* lhs, const int4x2* rhs );
 // Returns a bool4x2 where each component is true if the component of the left-hand type is greater than or equal to the corresponding right-hand type component.
 inline bool4x2 int4x2_cmpge( const int4x2* lhs, const int4x2* rhs );
 
+// Returns a copy of the int4x2 where all values have been negated.
+inline int4x2 int4x2_negate( const int4x2* mat );
+
 // Sets the matrix to an identity matrix.
 inline void int4x2_identity( int4x2* mat );
 
@@ -828,6 +849,9 @@ inline bool4x3 int4x3_cmpg( const int4x3* lhs, const int4x3* rhs );
 
 // Returns a bool4x3 where each component is true if the component of the left-hand type is greater than or equal to the corresponding right-hand type component.
 inline bool4x3 int4x3_cmpge( const int4x3* lhs, const int4x3* rhs );
+
+// Returns a copy of the int4x3 where all values have been negated.
+inline int4x3 int4x3_negate( const int4x3* mat );
 
 // Sets the matrix to an identity matrix.
 inline void int4x3_identity( int4x3* mat );
@@ -902,6 +926,9 @@ inline bool4x4 int4x4_cmpg( const int4x4* lhs, const int4x4* rhs );
 
 // Returns a bool4x4 where each component is true if the component of the left-hand type is greater than or equal to the corresponding right-hand type component.
 inline bool4x4 int4x4_cmpge( const int4x4* lhs, const int4x4* rhs );
+
+// Returns a copy of the int4x4 where all values have been negated.
+inline int4x4 int4x4_negate( const int4x4* mat );
 
 // Sets the matrix to an identity matrix.
 inline void int4x4_identity( int4x4* mat );
@@ -1643,6 +1670,9 @@ inline bool2x2 float2x2_cmpg( const float2x2* lhs, const float2x2* rhs );
 // Returns a bool2x2 where each component is true if the component of the left-hand type is greater than or equal to the corresponding right-hand type component.
 inline bool2x2 float2x2_cmpge( const float2x2* lhs, const float2x2* rhs );
 
+// Returns a copy of the float2x2 where all values have been negated.
+inline float2x2 float2x2_negate( const float2x2* mat );
+
 // Sets the matrix to an identity matrix.
 inline void float2x2_identity( float2x2* mat );
 
@@ -1706,6 +1736,9 @@ inline bool2x3 float2x3_cmpg( const float2x3* lhs, const float2x3* rhs );
 // Returns a bool2x3 where each component is true if the component of the left-hand type is greater than or equal to the corresponding right-hand type component.
 inline bool2x3 float2x3_cmpge( const float2x3* lhs, const float2x3* rhs );
 
+// Returns a copy of the float2x3 where all values have been negated.
+inline float2x3 float2x3_negate( const float2x3* mat );
+
 // Sets the matrix to an identity matrix.
 inline void float2x3_identity( float2x3* mat );
 
@@ -1761,6 +1794,9 @@ inline bool2x4 float2x4_cmpg( const float2x4* lhs, const float2x4* rhs );
 
 // Returns a bool2x4 where each component is true if the component of the left-hand type is greater than or equal to the corresponding right-hand type component.
 inline bool2x4 float2x4_cmpge( const float2x4* lhs, const float2x4* rhs );
+
+// Returns a copy of the float2x4 where all values have been negated.
+inline float2x4 float2x4_negate( const float2x4* mat );
 
 // Sets the matrix to an identity matrix.
 inline void float2x4_identity( float2x4* mat );
@@ -1818,6 +1854,9 @@ inline bool3x2 float3x2_cmpg( const float3x2* lhs, const float3x2* rhs );
 // Returns a bool3x2 where each component is true if the component of the left-hand type is greater than or equal to the corresponding right-hand type component.
 inline bool3x2 float3x2_cmpge( const float3x2* lhs, const float3x2* rhs );
 
+// Returns a copy of the float3x2 where all values have been negated.
+inline float3x2 float3x2_negate( const float3x2* mat );
+
 // Sets the matrix to an identity matrix.
 inline void float3x2_identity( float3x2* mat );
 
@@ -1870,6 +1909,9 @@ inline bool3x3 float3x3_cmpg( const float3x3* lhs, const float3x3* rhs );
 
 // Returns a bool3x3 where each component is true if the component of the left-hand type is greater than or equal to the corresponding right-hand type component.
 inline bool3x3 float3x3_cmpge( const float3x3* lhs, const float3x3* rhs );
+
+// Returns a copy of the float3x3 where all values have been negated.
+inline float3x3 float3x3_negate( const float3x3* mat );
 
 // Sets the matrix to an identity matrix.
 inline void float3x3_identity( float3x3* mat );
@@ -1943,6 +1985,9 @@ inline bool3x4 float3x4_cmpg( const float3x4* lhs, const float3x4* rhs );
 // Returns a bool3x4 where each component is true if the component of the left-hand type is greater than or equal to the corresponding right-hand type component.
 inline bool3x4 float3x4_cmpge( const float3x4* lhs, const float3x4* rhs );
 
+// Returns a copy of the float3x4 where all values have been negated.
+inline float3x4 float3x4_negate( const float3x4* mat );
+
 // Sets the matrix to an identity matrix.
 inline void float3x4_identity( float3x4* mat );
 
@@ -2002,6 +2047,9 @@ inline bool4x2 float4x2_cmpg( const float4x2* lhs, const float4x2* rhs );
 // Returns a bool4x2 where each component is true if the component of the left-hand type is greater than or equal to the corresponding right-hand type component.
 inline bool4x2 float4x2_cmpge( const float4x2* lhs, const float4x2* rhs );
 
+// Returns a copy of the float4x2 where all values have been negated.
+inline float4x2 float4x2_negate( const float4x2* mat );
+
 // Sets the matrix to an identity matrix.
 inline void float4x2_identity( float4x2* mat );
 
@@ -2054,6 +2102,9 @@ inline bool4x3 float4x3_cmpg( const float4x3* lhs, const float4x3* rhs );
 
 // Returns a bool4x3 where each component is true if the component of the left-hand type is greater than or equal to the corresponding right-hand type component.
 inline bool4x3 float4x3_cmpge( const float4x3* lhs, const float4x3* rhs );
+
+// Returns a copy of the float4x3 where all values have been negated.
+inline float4x3 float4x3_negate( const float4x3* mat );
 
 // Sets the matrix to an identity matrix.
 inline void float4x3_identity( float4x3* mat );
@@ -2110,6 +2161,9 @@ inline bool4x4 float4x4_cmpg( const float4x4* lhs, const float4x4* rhs );
 
 // Returns a bool4x4 where each component is true if the component of the left-hand type is greater than or equal to the corresponding right-hand type component.
 inline bool4x4 float4x4_cmpge( const float4x4* lhs, const float4x4* rhs );
+
+// Returns a copy of the float4x4 where all values have been negated.
+inline float4x4 float4x4_negate( const float4x4* mat );
 
 // Sets the matrix to an identity matrix.
 inline void float4x4_identity( float4x4* mat );
@@ -2213,6 +2267,9 @@ inline bool2x2 double2x2_cmpg( const double2x2* lhs, const double2x2* rhs );
 // Returns a bool2x2 where each component is true if the component of the left-hand type is greater than or equal to the corresponding right-hand type component.
 inline bool2x2 double2x2_cmpge( const double2x2* lhs, const double2x2* rhs );
 
+// Returns a copy of the double2x2 where all values have been negated.
+inline double2x2 double2x2_negate( const double2x2* mat );
+
 // Sets the matrix to an identity matrix.
 inline void double2x2_identity( double2x2* mat );
 
@@ -2276,6 +2333,9 @@ inline bool2x3 double2x3_cmpg( const double2x3* lhs, const double2x3* rhs );
 // Returns a bool2x3 where each component is true if the component of the left-hand type is greater than or equal to the corresponding right-hand type component.
 inline bool2x3 double2x3_cmpge( const double2x3* lhs, const double2x3* rhs );
 
+// Returns a copy of the double2x3 where all values have been negated.
+inline double2x3 double2x3_negate( const double2x3* mat );
+
 // Sets the matrix to an identity matrix.
 inline void double2x3_identity( double2x3* mat );
 
@@ -2331,6 +2391,9 @@ inline bool2x4 double2x4_cmpg( const double2x4* lhs, const double2x4* rhs );
 
 // Returns a bool2x4 where each component is true if the component of the left-hand type is greater than or equal to the corresponding right-hand type component.
 inline bool2x4 double2x4_cmpge( const double2x4* lhs, const double2x4* rhs );
+
+// Returns a copy of the double2x4 where all values have been negated.
+inline double2x4 double2x4_negate( const double2x4* mat );
 
 // Sets the matrix to an identity matrix.
 inline void double2x4_identity( double2x4* mat );
@@ -2388,6 +2451,9 @@ inline bool3x2 double3x2_cmpg( const double3x2* lhs, const double3x2* rhs );
 // Returns a bool3x2 where each component is true if the component of the left-hand type is greater than or equal to the corresponding right-hand type component.
 inline bool3x2 double3x2_cmpge( const double3x2* lhs, const double3x2* rhs );
 
+// Returns a copy of the double3x2 where all values have been negated.
+inline double3x2 double3x2_negate( const double3x2* mat );
+
 // Sets the matrix to an identity matrix.
 inline void double3x2_identity( double3x2* mat );
 
@@ -2440,6 +2506,9 @@ inline bool3x3 double3x3_cmpg( const double3x3* lhs, const double3x3* rhs );
 
 // Returns a bool3x3 where each component is true if the component of the left-hand type is greater than or equal to the corresponding right-hand type component.
 inline bool3x3 double3x3_cmpge( const double3x3* lhs, const double3x3* rhs );
+
+// Returns a copy of the double3x3 where all values have been negated.
+inline double3x3 double3x3_negate( const double3x3* mat );
 
 // Sets the matrix to an identity matrix.
 inline void double3x3_identity( double3x3* mat );
@@ -2513,6 +2582,9 @@ inline bool3x4 double3x4_cmpg( const double3x4* lhs, const double3x4* rhs );
 // Returns a bool3x4 where each component is true if the component of the left-hand type is greater than or equal to the corresponding right-hand type component.
 inline bool3x4 double3x4_cmpge( const double3x4* lhs, const double3x4* rhs );
 
+// Returns a copy of the double3x4 where all values have been negated.
+inline double3x4 double3x4_negate( const double3x4* mat );
+
 // Sets the matrix to an identity matrix.
 inline void double3x4_identity( double3x4* mat );
 
@@ -2572,6 +2644,9 @@ inline bool4x2 double4x2_cmpg( const double4x2* lhs, const double4x2* rhs );
 // Returns a bool4x2 where each component is true if the component of the left-hand type is greater than or equal to the corresponding right-hand type component.
 inline bool4x2 double4x2_cmpge( const double4x2* lhs, const double4x2* rhs );
 
+// Returns a copy of the double4x2 where all values have been negated.
+inline double4x2 double4x2_negate( const double4x2* mat );
+
 // Sets the matrix to an identity matrix.
 inline void double4x2_identity( double4x2* mat );
 
@@ -2624,6 +2699,9 @@ inline bool4x3 double4x3_cmpg( const double4x3* lhs, const double4x3* rhs );
 
 // Returns a bool4x3 where each component is true if the component of the left-hand type is greater than or equal to the corresponding right-hand type component.
 inline bool4x3 double4x3_cmpge( const double4x3* lhs, const double4x3* rhs );
+
+// Returns a copy of the double4x3 where all values have been negated.
+inline double4x3 double4x3_negate( const double4x3* mat );
 
 // Sets the matrix to an identity matrix.
 inline void double4x3_identity( double4x3* mat );
@@ -2680,6 +2758,9 @@ inline bool4x4 double4x4_cmpg( const double4x4* lhs, const double4x4* rhs );
 
 // Returns a bool4x4 where each component is true if the component of the left-hand type is greater than or equal to the corresponding right-hand type component.
 inline bool4x4 double4x4_cmpge( const double4x4* lhs, const double4x4* rhs );
+
+// Returns a copy of the double4x4 where all values have been negated.
+inline double4x4 double4x4_negate( const double4x4* mat );
 
 // Sets the matrix to an identity matrix.
 inline void double4x4_identity( double4x4* mat );
@@ -3205,6 +3286,15 @@ bool2x2 int2x2_cmpge( const int2x2* lhs, const int2x2* rhs )
 	};
 }
 
+int2x2 int2x2_negate( const int2x2* mat )
+{
+	return HLML_CONSTRUCT( int2x2 )
+	{
+		int2_negate( &mat->rows[0] ),
+		int2_negate( &mat->rows[1] )
+	};
+}
+
 void int2x2_identity( int2x2* mat )
 {
 	mat->rows[0] = HLML_CONSTRUCT( int2 ) { 1, 0 };
@@ -3407,6 +3497,15 @@ bool2x3 int2x3_cmpge( const int2x3* lhs, const int2x3* rhs )
 	return HLML_CONSTRUCT( bool2x3 ) {
 		int3_cmpge( &lhs->rows[0], &rhs->rows[0] ),
 		int3_cmpge( &lhs->rows[1], &rhs->rows[1] )
+	};
+}
+
+int2x3 int2x3_negate( const int2x3* mat )
+{
+	return HLML_CONSTRUCT( int2x3 )
+	{
+		int3_negate( &mat->rows[0] ),
+		int3_negate( &mat->rows[1] )
 	};
 }
 
@@ -3615,6 +3714,15 @@ bool2x4 int2x4_cmpge( const int2x4* lhs, const int2x4* rhs )
 	return HLML_CONSTRUCT( bool2x4 ) {
 		int4_cmpge( &lhs->rows[0], &rhs->rows[0] ),
 		int4_cmpge( &lhs->rows[1], &rhs->rows[1] )
+	};
+}
+
+int2x4 int2x4_negate( const int2x4* mat )
+{
+	return HLML_CONSTRUCT( int2x4 )
+	{
+		int4_negate( &mat->rows[0] ),
+		int4_negate( &mat->rows[1] )
 	};
 }
 
@@ -3846,6 +3954,16 @@ bool3x2 int3x2_cmpge( const int3x2* lhs, const int3x2* rhs )
 	};
 }
 
+int3x2 int3x2_negate( const int3x2* mat )
+{
+	return HLML_CONSTRUCT( int3x2 )
+	{
+		int2_negate( &mat->rows[0] ),
+		int2_negate( &mat->rows[1] ),
+		int2_negate( &mat->rows[2] )
+	};
+}
+
 void int3x2_identity( int3x2* mat )
 {
 	mat->rows[0] = HLML_CONSTRUCT( int2 ) { 1, 0 };
@@ -4066,6 +4184,16 @@ bool3x3 int3x3_cmpge( const int3x3* lhs, const int3x3* rhs )
 		int3_cmpge( &lhs->rows[0], &rhs->rows[0] ),
 		int3_cmpge( &lhs->rows[1], &rhs->rows[1] ),
 		int3_cmpge( &lhs->rows[2], &rhs->rows[2] )
+	};
+}
+
+int3x3 int3x3_negate( const int3x3* mat )
+{
+	return HLML_CONSTRUCT( int3x3 )
+	{
+		int3_negate( &mat->rows[0] ),
+		int3_negate( &mat->rows[1] ),
+		int3_negate( &mat->rows[2] )
 	};
 }
 
@@ -4336,6 +4464,16 @@ bool3x4 int3x4_cmpge( const int3x4* lhs, const int3x4* rhs )
 		int4_cmpge( &lhs->rows[0], &rhs->rows[0] ),
 		int4_cmpge( &lhs->rows[1], &rhs->rows[1] ),
 		int4_cmpge( &lhs->rows[2], &rhs->rows[2] )
+	};
+}
+
+int3x4 int3x4_negate( const int3x4* mat )
+{
+	return HLML_CONSTRUCT( int3x4 )
+	{
+		int4_negate( &mat->rows[0] ),
+		int4_negate( &mat->rows[1] ),
+		int4_negate( &mat->rows[2] )
 	};
 }
 
@@ -4611,6 +4749,17 @@ bool4x2 int4x2_cmpge( const int4x2* lhs, const int4x2* rhs )
 	};
 }
 
+int4x2 int4x2_negate( const int4x2* mat )
+{
+	return HLML_CONSTRUCT( int4x2 )
+	{
+		int2_negate( &mat->rows[0] ),
+		int2_negate( &mat->rows[1] ),
+		int2_negate( &mat->rows[2] ),
+		int2_negate( &mat->rows[3] )
+	};
+}
+
 void int4x2_identity( int4x2* mat )
 {
 	mat->rows[0] = HLML_CONSTRUCT( int2 ) { 1, 0 };
@@ -4864,6 +5013,17 @@ bool4x3 int4x3_cmpge( const int4x3* lhs, const int4x3* rhs )
 		int3_cmpge( &lhs->rows[1], &rhs->rows[1] ),
 		int3_cmpge( &lhs->rows[2], &rhs->rows[2] ),
 		int3_cmpge( &lhs->rows[3], &rhs->rows[3] )
+	};
+}
+
+int4x3 int4x3_negate( const int4x3* mat )
+{
+	return HLML_CONSTRUCT( int4x3 )
+	{
+		int3_negate( &mat->rows[0] ),
+		int3_negate( &mat->rows[1] ),
+		int3_negate( &mat->rows[2] ),
+		int3_negate( &mat->rows[3] )
 	};
 }
 
@@ -5146,6 +5306,17 @@ bool4x4 int4x4_cmpge( const int4x4* lhs, const int4x4* rhs )
 		int4_cmpge( &lhs->rows[1], &rhs->rows[1] ),
 		int4_cmpge( &lhs->rows[2], &rhs->rows[2] ),
 		int4_cmpge( &lhs->rows[3], &rhs->rows[3] )
+	};
+}
+
+int4x4 int4x4_negate( const int4x4* mat )
+{
+	return HLML_CONSTRUCT( int4x4 )
+	{
+		int4_negate( &mat->rows[0] ),
+		int4_negate( &mat->rows[1] ),
+		int4_negate( &mat->rows[2] ),
+		int4_negate( &mat->rows[3] )
 	};
 }
 
@@ -7564,6 +7735,15 @@ bool2x2 float2x2_cmpge( const float2x2* lhs, const float2x2* rhs )
 	};
 }
 
+float2x2 float2x2_negate( const float2x2* mat )
+{
+	return HLML_CONSTRUCT( float2x2 )
+	{
+		float2_negate( &mat->rows[0] ),
+		float2_negate( &mat->rows[1] )
+	};
+}
+
 void float2x2_identity( float2x2* mat )
 {
 	mat->rows[0] = HLML_CONSTRUCT( float2 ) { 1.0f, 0.0f };
@@ -7724,6 +7904,15 @@ bool2x3 float2x3_cmpge( const float2x3* lhs, const float2x3* rhs )
 	};
 }
 
+float2x3 float2x3_negate( const float2x3* mat )
+{
+	return HLML_CONSTRUCT( float2x3 )
+	{
+		float3_negate( &mat->rows[0] ),
+		float3_negate( &mat->rows[1] )
+	};
+}
+
 void float2x3_identity( float2x3* mat )
 {
 	mat->rows[0] = HLML_CONSTRUCT( float3 ) { 1.0f, 0.0f, 0.0f };
@@ -7873,6 +8062,15 @@ bool2x4 float2x4_cmpge( const float2x4* lhs, const float2x4* rhs )
 	return HLML_CONSTRUCT( bool2x4 ) {
 		float4_cmpge( &lhs->rows[0], &rhs->rows[0] ),
 		float4_cmpge( &lhs->rows[1], &rhs->rows[1] )
+	};
+}
+
+float2x4 float2x4_negate( const float2x4* mat )
+{
+	return HLML_CONSTRUCT( float2x4 )
+	{
+		float4_negate( &mat->rows[0] ),
+		float4_negate( &mat->rows[1] )
 	};
 }
 
@@ -8044,6 +8242,16 @@ bool3x2 float3x2_cmpge( const float3x2* lhs, const float3x2* rhs )
 	};
 }
 
+float3x2 float3x2_negate( const float3x2* mat )
+{
+	return HLML_CONSTRUCT( float3x2 )
+	{
+		float2_negate( &mat->rows[0] ),
+		float2_negate( &mat->rows[1] ),
+		float2_negate( &mat->rows[2] )
+	};
+}
+
 void float3x2_identity( float3x2* mat )
 {
 	mat->rows[0] = HLML_CONSTRUCT( float2 ) { 1.0f, 0.0f };
@@ -8201,6 +8409,16 @@ bool3x3 float3x3_cmpge( const float3x3* lhs, const float3x3* rhs )
 		float3_cmpge( &lhs->rows[0], &rhs->rows[0] ),
 		float3_cmpge( &lhs->rows[1], &rhs->rows[1] ),
 		float3_cmpge( &lhs->rows[2], &rhs->rows[2] )
+	};
+}
+
+float3x3 float3x3_negate( const float3x3* mat )
+{
+	return HLML_CONSTRUCT( float3x3 )
+	{
+		float3_negate( &mat->rows[0] ),
+		float3_negate( &mat->rows[1] ),
+		float3_negate( &mat->rows[2] )
 	};
 }
 
@@ -8443,6 +8661,16 @@ bool3x4 float3x4_cmpge( const float3x4* lhs, const float3x4* rhs )
 	};
 }
 
+float3x4 float3x4_negate( const float3x4* mat )
+{
+	return HLML_CONSTRUCT( float3x4 )
+	{
+		float4_negate( &mat->rows[0] ),
+		float4_negate( &mat->rows[1] ),
+		float4_negate( &mat->rows[2] )
+	};
+}
+
 void float3x4_identity( float3x4* mat )
 {
 	mat->rows[0] = HLML_CONSTRUCT( float4 ) { 1.0f, 0.0f, 0.0f, 0.0f };
@@ -8647,6 +8875,17 @@ bool4x2 float4x2_cmpge( const float4x2* lhs, const float4x2* rhs )
 	};
 }
 
+float4x2 float4x2_negate( const float4x2* mat )
+{
+	return HLML_CONSTRUCT( float4x2 )
+	{
+		float2_negate( &mat->rows[0] ),
+		float2_negate( &mat->rows[1] ),
+		float2_negate( &mat->rows[2] ),
+		float2_negate( &mat->rows[3] )
+	};
+}
+
 void float4x2_identity( float4x2* mat )
 {
 	mat->rows[0] = HLML_CONSTRUCT( float2 ) { 1.0f, 0.0f };
@@ -8828,6 +9067,17 @@ bool4x3 float4x3_cmpge( const float4x3* lhs, const float4x3* rhs )
 		float3_cmpge( &lhs->rows[1], &rhs->rows[1] ),
 		float3_cmpge( &lhs->rows[2], &rhs->rows[2] ),
 		float3_cmpge( &lhs->rows[3], &rhs->rows[3] )
+	};
+}
+
+float4x3 float4x3_negate( const float4x3* mat )
+{
+	return HLML_CONSTRUCT( float4x3 )
+	{
+		float3_negate( &mat->rows[0] ),
+		float3_negate( &mat->rows[1] ),
+		float3_negate( &mat->rows[2] ),
+		float3_negate( &mat->rows[3] )
 	};
 }
 
@@ -9034,6 +9284,17 @@ bool4x4 float4x4_cmpge( const float4x4* lhs, const float4x4* rhs )
 		float4_cmpge( &lhs->rows[1], &rhs->rows[1] ),
 		float4_cmpge( &lhs->rows[2], &rhs->rows[2] ),
 		float4_cmpge( &lhs->rows[3], &rhs->rows[3] )
+	};
+}
+
+float4x4 float4x4_negate( const float4x4* mat )
+{
+	return HLML_CONSTRUCT( float4x4 )
+	{
+		float4_negate( &mat->rows[0] ),
+		float4_negate( &mat->rows[1] ),
+		float4_negate( &mat->rows[2] ),
+		float4_negate( &mat->rows[3] )
 	};
 }
 
@@ -9533,6 +9794,15 @@ bool2x2 double2x2_cmpge( const double2x2* lhs, const double2x2* rhs )
 	};
 }
 
+double2x2 double2x2_negate( const double2x2* mat )
+{
+	return HLML_CONSTRUCT( double2x2 )
+	{
+		double2_negate( &mat->rows[0] ),
+		double2_negate( &mat->rows[1] )
+	};
+}
+
 void double2x2_identity( double2x2* mat )
 {
 	mat->rows[0] = HLML_CONSTRUCT( double2 ) { 1.0, 0.0 };
@@ -9693,6 +9963,15 @@ bool2x3 double2x3_cmpge( const double2x3* lhs, const double2x3* rhs )
 	};
 }
 
+double2x3 double2x3_negate( const double2x3* mat )
+{
+	return HLML_CONSTRUCT( double2x3 )
+	{
+		double3_negate( &mat->rows[0] ),
+		double3_negate( &mat->rows[1] )
+	};
+}
+
 void double2x3_identity( double2x3* mat )
 {
 	mat->rows[0] = HLML_CONSTRUCT( double3 ) { 1.0, 0.0, 0.0 };
@@ -9842,6 +10121,15 @@ bool2x4 double2x4_cmpge( const double2x4* lhs, const double2x4* rhs )
 	return HLML_CONSTRUCT( bool2x4 ) {
 		double4_cmpge( &lhs->rows[0], &rhs->rows[0] ),
 		double4_cmpge( &lhs->rows[1], &rhs->rows[1] )
+	};
+}
+
+double2x4 double2x4_negate( const double2x4* mat )
+{
+	return HLML_CONSTRUCT( double2x4 )
+	{
+		double4_negate( &mat->rows[0] ),
+		double4_negate( &mat->rows[1] )
 	};
 }
 
@@ -10013,6 +10301,16 @@ bool3x2 double3x2_cmpge( const double3x2* lhs, const double3x2* rhs )
 	};
 }
 
+double3x2 double3x2_negate( const double3x2* mat )
+{
+	return HLML_CONSTRUCT( double3x2 )
+	{
+		double2_negate( &mat->rows[0] ),
+		double2_negate( &mat->rows[1] ),
+		double2_negate( &mat->rows[2] )
+	};
+}
+
 void double3x2_identity( double3x2* mat )
 {
 	mat->rows[0] = HLML_CONSTRUCT( double2 ) { 1.0, 0.0 };
@@ -10170,6 +10468,16 @@ bool3x3 double3x3_cmpge( const double3x3* lhs, const double3x3* rhs )
 		double3_cmpge( &lhs->rows[0], &rhs->rows[0] ),
 		double3_cmpge( &lhs->rows[1], &rhs->rows[1] ),
 		double3_cmpge( &lhs->rows[2], &rhs->rows[2] )
+	};
+}
+
+double3x3 double3x3_negate( const double3x3* mat )
+{
+	return HLML_CONSTRUCT( double3x3 )
+	{
+		double3_negate( &mat->rows[0] ),
+		double3_negate( &mat->rows[1] ),
+		double3_negate( &mat->rows[2] )
 	};
 }
 
@@ -10412,6 +10720,16 @@ bool3x4 double3x4_cmpge( const double3x4* lhs, const double3x4* rhs )
 	};
 }
 
+double3x4 double3x4_negate( const double3x4* mat )
+{
+	return HLML_CONSTRUCT( double3x4 )
+	{
+		double4_negate( &mat->rows[0] ),
+		double4_negate( &mat->rows[1] ),
+		double4_negate( &mat->rows[2] )
+	};
+}
+
 void double3x4_identity( double3x4* mat )
 {
 	mat->rows[0] = HLML_CONSTRUCT( double4 ) { 1.0, 0.0, 0.0, 0.0 };
@@ -10616,6 +10934,17 @@ bool4x2 double4x2_cmpge( const double4x2* lhs, const double4x2* rhs )
 	};
 }
 
+double4x2 double4x2_negate( const double4x2* mat )
+{
+	return HLML_CONSTRUCT( double4x2 )
+	{
+		double2_negate( &mat->rows[0] ),
+		double2_negate( &mat->rows[1] ),
+		double2_negate( &mat->rows[2] ),
+		double2_negate( &mat->rows[3] )
+	};
+}
+
 void double4x2_identity( double4x2* mat )
 {
 	mat->rows[0] = HLML_CONSTRUCT( double2 ) { 1.0, 0.0 };
@@ -10797,6 +11126,17 @@ bool4x3 double4x3_cmpge( const double4x3* lhs, const double4x3* rhs )
 		double3_cmpge( &lhs->rows[1], &rhs->rows[1] ),
 		double3_cmpge( &lhs->rows[2], &rhs->rows[2] ),
 		double3_cmpge( &lhs->rows[3], &rhs->rows[3] )
+	};
+}
+
+double4x3 double4x3_negate( const double4x3* mat )
+{
+	return HLML_CONSTRUCT( double4x3 )
+	{
+		double3_negate( &mat->rows[0] ),
+		double3_negate( &mat->rows[1] ),
+		double3_negate( &mat->rows[2] ),
+		double3_negate( &mat->rows[3] )
 	};
 }
 
@@ -11003,6 +11343,17 @@ bool4x4 double4x4_cmpge( const double4x4* lhs, const double4x4* rhs )
 		double4_cmpge( &lhs->rows[1], &rhs->rows[1] ),
 		double4_cmpge( &lhs->rows[2], &rhs->rows[2] ),
 		double4_cmpge( &lhs->rows[3], &rhs->rows[3] )
+	};
+}
+
+double4x4 double4x4_negate( const double4x4* mat )
+{
+	return HLML_CONSTRUCT( double4x4 )
+	{
+		double4_negate( &mat->rows[0] ),
+		double4_negate( &mat->rows[1] ),
+		double4_negate( &mat->rows[2] ),
+		double4_negate( &mat->rows[3] )
 	};
 }
 

@@ -431,6 +431,63 @@ TEMPER_TEST( TestRelational_int4x4, TEMPER_FLAG_SHOULD_RUN )
 	TEMPER_CHECK_TRUE( all( test19 ) );
 }
 
+TEMPER_PARAMETRIC( TestNegate_int4x4, TEMPER_FLAG_SHOULD_RUN, const int4x4& vec )
+{
+	int4x4 negated = -vec;
+	TEMPER_CHECK_TRUE( negated.rows[0].x == -vec.rows[0].x );
+	TEMPER_CHECK_TRUE( negated.rows[0].y == -vec.rows[0].y );
+	TEMPER_CHECK_TRUE( negated.rows[0].z == -vec.rows[0].z );
+	TEMPER_CHECK_TRUE( negated.rows[0].w == -vec.rows[0].w );
+	TEMPER_CHECK_TRUE( negated.rows[1].x == -vec.rows[1].x );
+	TEMPER_CHECK_TRUE( negated.rows[1].y == -vec.rows[1].y );
+	TEMPER_CHECK_TRUE( negated.rows[1].z == -vec.rows[1].z );
+	TEMPER_CHECK_TRUE( negated.rows[1].w == -vec.rows[1].w );
+	TEMPER_CHECK_TRUE( negated.rows[2].x == -vec.rows[2].x );
+	TEMPER_CHECK_TRUE( negated.rows[2].y == -vec.rows[2].y );
+	TEMPER_CHECK_TRUE( negated.rows[2].z == -vec.rows[2].z );
+	TEMPER_CHECK_TRUE( negated.rows[2].w == -vec.rows[2].w );
+	TEMPER_CHECK_TRUE( negated.rows[3].x == -vec.rows[3].x );
+	TEMPER_CHECK_TRUE( negated.rows[3].y == -vec.rows[3].y );
+	TEMPER_CHECK_TRUE( negated.rows[3].z == -vec.rows[3].z );
+	TEMPER_CHECK_TRUE( negated.rows[3].w == -vec.rows[3].w );
+}
+
+const int4x4 g_testNegate_zero_int4x4 =
+{
+		0, 0, 0, 0,
+		0, 0, 0, 0,
+		0, 0, 0, 0,
+		0, 0, 0, 0
+};
+TEMPER_INVOKE_PARAMETRIC_TEST( TestNegate_int4x4, g_testNegate_zero_int4x4 );
+
+const int4x4 g_testNegate_one_int4x4 =
+{
+		1, 1, 1, 1,
+		1, 1, 1, 1,
+		1, 1, 1, 1,
+		1, 1, 1, 1
+};
+TEMPER_INVOKE_PARAMETRIC_TEST( TestNegate_int4x4, g_testNegate_one_int4x4 );
+
+const int4x4 g_testNegate_minusTwo_int4x4 =
+{
+		-2, -2, -2, -2,
+		-2, -2, -2, -2,
+		-2, -2, -2, -2,
+		-2, -2, -2, -2
+};
+TEMPER_INVOKE_PARAMETRIC_TEST( TestNegate_int4x4, g_testNegate_minusTwo_int4x4 );
+
+const int4x4 g_testNegate_alternatingValues_int4x4 =
+{
+		0, 0, 1, -4,
+		-5, 6, -7, 8,
+		9, -10, 11, -12,
+		-13, 14, -15, 16
+};
+TEMPER_INVOKE_PARAMETRIC_TEST( TestNegate_int4x4, g_testNegate_alternatingValues_int4x4 );
+
 TEMPER_TEST( TestBitwise_And_int4x4, TEMPER_FLAG_SHOULD_RUN )
 {
 	int4x4 answer = int4x4(

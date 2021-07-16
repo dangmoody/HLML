@@ -409,6 +409,52 @@ TEMPER_TEST( TestRelational_double3x3, TEMPER_FLAG_SHOULD_RUN )
 	TEMPER_CHECK_TRUE( all( test19 ) );
 }
 
+TEMPER_PARAMETRIC( TestNegate_double3x3, TEMPER_FLAG_SHOULD_RUN, const double3x3& vec )
+{
+	double3x3 negated = -vec;
+	TEMPER_CHECK_TRUE( doubleeq( negated.rows[0].x, -vec.rows[0].x ) );
+	TEMPER_CHECK_TRUE( doubleeq( negated.rows[0].y, -vec.rows[0].y ) );
+	TEMPER_CHECK_TRUE( doubleeq( negated.rows[0].z, -vec.rows[0].z ) );
+	TEMPER_CHECK_TRUE( doubleeq( negated.rows[1].x, -vec.rows[1].x ) );
+	TEMPER_CHECK_TRUE( doubleeq( negated.rows[1].y, -vec.rows[1].y ) );
+	TEMPER_CHECK_TRUE( doubleeq( negated.rows[1].z, -vec.rows[1].z ) );
+	TEMPER_CHECK_TRUE( doubleeq( negated.rows[2].x, -vec.rows[2].x ) );
+	TEMPER_CHECK_TRUE( doubleeq( negated.rows[2].y, -vec.rows[2].y ) );
+	TEMPER_CHECK_TRUE( doubleeq( negated.rows[2].z, -vec.rows[2].z ) );
+}
+
+const double3x3 g_testNegate_zero_double3x3 =
+{
+		0.000000, 0.000000, 0.000000,
+		0.000000, 0.000000, 0.000000,
+		0.000000, 0.000000, 0.000000
+};
+TEMPER_INVOKE_PARAMETRIC_TEST( TestNegate_double3x3, g_testNegate_zero_double3x3 );
+
+const double3x3 g_testNegate_one_double3x3 =
+{
+		1.000000, 1.000000, 1.000000,
+		1.000000, 1.000000, 1.000000,
+		1.000000, 1.000000, 1.000000
+};
+TEMPER_INVOKE_PARAMETRIC_TEST( TestNegate_double3x3, g_testNegate_one_double3x3 );
+
+const double3x3 g_testNegate_minusTwo_double3x3 =
+{
+		-2.000000, -2.000000, -2.000000,
+		-2.000000, -2.000000, -2.000000,
+		-2.000000, -2.000000, -2.000000
+};
+TEMPER_INVOKE_PARAMETRIC_TEST( TestNegate_double3x3, g_testNegate_minusTwo_double3x3 );
+
+const double3x3 g_testNegate_alternatingValues_double3x3 =
+{
+		0.000000, -0.000000, 1.000000,
+		-5.000000, 6.000000, -7.000000,
+		9.000000, -10.000000, 11.000000
+};
+TEMPER_INVOKE_PARAMETRIC_TEST( TestNegate_double3x3, g_testNegate_alternatingValues_double3x3 );
+
 TEMPER_TEST( TestIdentity_Scalar_double3x3, TEMPER_FLAG_SHOULD_RUN )
 {
 	double3x3 id;

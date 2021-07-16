@@ -143,6 +143,25 @@ TEMPER_TEST( TestRelational_float2, TEMPER_FLAG_SHOULD_RUN )
 	TEMPER_CHECK_TRUE( bool2_all( &test19 ) );
 }
 
+TEMPER_PARAMETRIC( TestNegate_float2, TEMPER_FLAG_SHOULD_RUN, const float2* vec )
+{
+	float2 negated = float2_negate( vec );
+	TEMPER_CHECK_TRUE( floateq( negated.x, -vec->x ) );
+	TEMPER_CHECK_TRUE( floateq( negated.y, -vec->y ) );
+}
+
+float2 g_testNegate_zero_float2 = { 0.000000f, 0.000000f };
+TEMPER_INVOKE_PARAMETRIC_TEST( TestNegate_float2, &g_testNegate_zero_float2 );
+
+float2 g_testNegate_one_float2 = { 1.000000f, 1.000000f };
+TEMPER_INVOKE_PARAMETRIC_TEST( TestNegate_float2, &g_testNegate_one_float2 );
+
+float2 g_testNegate_minusTwo_float2 = { -2.000000f, -2.000000f };
+TEMPER_INVOKE_PARAMETRIC_TEST( TestNegate_float2, &g_testNegate_minusTwo_float2 );
+
+float2 g_testNegate_alternatingValues_float2 = { 0.000000f, -0.000000f };
+TEMPER_INVOKE_PARAMETRIC_TEST( TestNegate_float2, &g_testNegate_alternatingValues_float2 );
+
 TEMPER_TEST( TestLength_Scalar_float2, TEMPER_FLAG_SHOULD_RUN )
 {
 	float2 vec = (float2) { 2.0f, 2.0f };

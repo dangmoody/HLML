@@ -106,6 +106,47 @@ TEMPER_TEST( TestArray_bool4x4, TEMPER_FLAG_SHOULD_RUN )
 	TEMPER_CHECK_TRUE( mat[3] == bool4( false, false, false, true ) );
 }
 
+TEMPER_PARAMETRIC( TestAll_bool4x4, TEMPER_FLAG_SHOULD_RUN, const bool4x4& vec, const bool expectedResult )
+{
+	TEMPER_CHECK_TRUE( all( vec ) == expectedResult );
+}
+
+const bool4x4 g_testAll_AllTrue_bool4x4 =
+{
+		true, true, true, true,
+		true, true, true, true,
+		true, true, true, true,
+		true, true, true, true
+};
+TEMPER_INVOKE_PARAMETRIC_TEST( TestAll_bool4x4, g_testAll_AllTrue_bool4x4, true );
+
+const bool4x4 g_testAll_OneFalse_bool4x4 =
+{
+		false, true, true, true,
+		true, true, true, true,
+		true, true, true, true,
+		true, true, true, true
+};
+TEMPER_INVOKE_PARAMETRIC_TEST( TestAll_bool4x4, g_testAll_OneFalse_bool4x4, false );
+
+const bool4x4 g_testAll_SomeFalse_bool4x4 =
+{
+		false, true, false, true,
+		true, false, true, false,
+		false, true, false, true,
+		true, false, true, false
+};
+TEMPER_INVOKE_PARAMETRIC_TEST( TestAll_bool4x4, g_testAll_SomeFalse_bool4x4, false );
+
+const bool4x4 g_testAll_AllFalse_bool4x4 =
+{
+		false, false, false, false,
+		false, false, false, false,
+		false, false, false, false,
+		false, false, false, false
+};
+TEMPER_INVOKE_PARAMETRIC_TEST( TestAll_bool4x4, g_testAll_AllFalse_bool4x4, false );
+
 TEMPER_TEST( TestIdentity_Scalar_bool4x4, TEMPER_FLAG_SHOULD_RUN )
 {
 	bool4x4 id;

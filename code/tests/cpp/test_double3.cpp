@@ -221,6 +221,26 @@ TEMPER_TEST( TestRelational_double3, TEMPER_FLAG_SHOULD_RUN )
 	TEMPER_CHECK_TRUE( all( test19 ) );
 }
 
+TEMPER_PARAMETRIC( TestNegate_double3, TEMPER_FLAG_SHOULD_RUN, const double3& vec )
+{
+	double3 negated = -vec;
+	TEMPER_CHECK_TRUE( doubleeq( negated.x, -vec.x ) );
+	TEMPER_CHECK_TRUE( doubleeq( negated.y, -vec.y ) );
+	TEMPER_CHECK_TRUE( doubleeq( negated.z, -vec.z ) );
+}
+
+double3 g_testNegate_zero_double3 = { 0.000000, 0.000000, 0.000000 };
+TEMPER_INVOKE_PARAMETRIC_TEST( TestNegate_double3, g_testNegate_zero_double3 );
+
+double3 g_testNegate_one_double3 = { 1.000000, 1.000000, 1.000000 };
+TEMPER_INVOKE_PARAMETRIC_TEST( TestNegate_double3, g_testNegate_one_double3 );
+
+double3 g_testNegate_minusTwo_double3 = { -2.000000, -2.000000, -2.000000 };
+TEMPER_INVOKE_PARAMETRIC_TEST( TestNegate_double3, g_testNegate_minusTwo_double3 );
+
+double3 g_testNegate_alternatingValues_double3 = { 0.000000, -0.000000, 1.000000 };
+TEMPER_INVOKE_PARAMETRIC_TEST( TestNegate_double3, g_testNegate_alternatingValues_double3 );
+
 TEMPER_TEST( TestLength_Scalar_double3, TEMPER_FLAG_SHOULD_RUN )
 {
 	double3 vec = double3( 2.0 );

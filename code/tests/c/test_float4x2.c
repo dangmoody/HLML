@@ -800,6 +800,55 @@ TEMPER_TEST( TestRelational_float4x2, TEMPER_FLAG_SHOULD_RUN )
 	TEMPER_CHECK_TRUE( bool4x2_all( &test19 ) );
 }
 
+TEMPER_PARAMETRIC( TestNegate_float4x2, TEMPER_FLAG_SHOULD_RUN, const float4x2* vec )
+{
+	float4x2 negated = float4x2_negate( vec );
+	TEMPER_CHECK_TRUE( floateq( negated.rows[0].x, -vec->rows[0].x ) );
+	TEMPER_CHECK_TRUE( floateq( negated.rows[0].y, -vec->rows[0].y ) );
+	TEMPER_CHECK_TRUE( floateq( negated.rows[1].x, -vec->rows[1].x ) );
+	TEMPER_CHECK_TRUE( floateq( negated.rows[1].y, -vec->rows[1].y ) );
+	TEMPER_CHECK_TRUE( floateq( negated.rows[2].x, -vec->rows[2].x ) );
+	TEMPER_CHECK_TRUE( floateq( negated.rows[2].y, -vec->rows[2].y ) );
+	TEMPER_CHECK_TRUE( floateq( negated.rows[3].x, -vec->rows[3].x ) );
+	TEMPER_CHECK_TRUE( floateq( negated.rows[3].y, -vec->rows[3].y ) );
+}
+
+const float4x2 g_testNegate_zero_float4x2 =
+{
+		0.000000f, 0.000000f,
+		0.000000f, 0.000000f,
+		0.000000f, 0.000000f,
+		0.000000f, 0.000000f
+};
+TEMPER_INVOKE_PARAMETRIC_TEST( TestNegate_float4x2, &g_testNegate_zero_float4x2 );
+
+const float4x2 g_testNegate_one_float4x2 =
+{
+		1.000000f, 1.000000f,
+		1.000000f, 1.000000f,
+		1.000000f, 1.000000f,
+		1.000000f, 1.000000f
+};
+TEMPER_INVOKE_PARAMETRIC_TEST( TestNegate_float4x2, &g_testNegate_one_float4x2 );
+
+const float4x2 g_testNegate_minusTwo_float4x2 =
+{
+		-2.000000f, -2.000000f,
+		-2.000000f, -2.000000f,
+		-2.000000f, -2.000000f,
+		-2.000000f, -2.000000f
+};
+TEMPER_INVOKE_PARAMETRIC_TEST( TestNegate_float4x2, &g_testNegate_minusTwo_float4x2 );
+
+const float4x2 g_testNegate_alternatingValues_float4x2 =
+{
+		0.000000f, -0.000000f,
+		-5.000000f, 6.000000f,
+		9.000000f, -10.000000f,
+		-13.000000f, 14.000000f
+};
+TEMPER_INVOKE_PARAMETRIC_TEST( TestNegate_float4x2, &g_testNegate_alternatingValues_float4x2 );
+
 TEMPER_TEST( TestIdentity_Scalar_float4x2, TEMPER_FLAG_SHOULD_RUN )
 {
 	float4x2 id;

@@ -159,6 +159,27 @@ TEMPER_TEST( TestRelational_int4, TEMPER_FLAG_SHOULD_RUN )
 	TEMPER_CHECK_TRUE( bool4_all( &test19 ) );
 }
 
+TEMPER_PARAMETRIC( TestNegate_int4, TEMPER_FLAG_SHOULD_RUN, const int4* vec )
+{
+	int4 negated = int4_negate( vec );
+	TEMPER_CHECK_TRUE( negated.x == -vec->x );
+	TEMPER_CHECK_TRUE( negated.y == -vec->y );
+	TEMPER_CHECK_TRUE( negated.z == -vec->z );
+	TEMPER_CHECK_TRUE( negated.w == -vec->w );
+}
+
+int4 g_testNegate_zero_int4 = { 0, 0, 0, 0 };
+TEMPER_INVOKE_PARAMETRIC_TEST( TestNegate_int4, &g_testNegate_zero_int4 );
+
+int4 g_testNegate_one_int4 = { 1, 1, 1, 1 };
+TEMPER_INVOKE_PARAMETRIC_TEST( TestNegate_int4, &g_testNegate_one_int4 );
+
+int4 g_testNegate_minusTwo_int4 = { -2, -2, -2, -2 };
+TEMPER_INVOKE_PARAMETRIC_TEST( TestNegate_int4, &g_testNegate_minusTwo_int4 );
+
+int4 g_testNegate_alternatingValues_int4 = { 0, 0, 1, -4 };
+TEMPER_INVOKE_PARAMETRIC_TEST( TestNegate_int4, &g_testNegate_alternatingValues_int4 );
+
 TEMPER_TEST( TestBitwise_And_int4, TEMPER_FLAG_SHOULD_RUN )
 {
 	int4 answer = (int4) { 5, 5, 5, 5 };

@@ -465,6 +465,7 @@ void Gen_FunctionsMatrix( allocatorLinear_t* allocator, const genLanguage_t lang
 				Gen_MatrixComponentWiseArithmetic( language, type, row, col, &contentFwdDec, &contentImpl );
 				Gen_MatrixComponentWiseBitwise( language, type, row, col, &contentFwdDec, &contentImpl );
 				Gen_MatrixComponentWiseRelational( language, type, row, col, &contentFwdDec, &contentImpl );
+				Gen_Negate( language, type, row, col, &contentFwdDec, &contentImpl );
 
 				Gen_MatrixIdentity( language, type, row, col, &contentFwdDec, &contentImpl );
 				Gen_MatrixTranspose( language, type, row, col, &contentFwdDec, &contentImpl );
@@ -1727,6 +1728,7 @@ void Gen_Negate( const genLanguage_t language, const genType_t type, const u32 n
 	Gen_GetFuncNameNegate( language, type, numRows, numCols, negateFuncStr );
 
 	const char* parmAccessStr = GEN_TYPE_ACCESS_OPERATORS[language];
+	const char* parmRefStr = GEN_TYPE_PARM_REFERENCE_MODIFIERS[language];
 
 	bool32 isMatrix = numRows > 1;
 
@@ -1742,10 +1744,10 @@ void Gen_Negate( const genLanguage_t language, const genType_t type, const u32 n
 	String_Append(  sbImpl, "\t{\n" );
 	if ( isMatrix ) {
 		char funcNameNegateVector[GEN_STRING_LENGTH_FUNCTION_NAME];
-		Gen_GetFuncNameNegate( language, type, 1, numRows, funcNameNegateVector );
+		Gen_GetFuncNameNegate( language, type, 1, numCols, funcNameNegateVector );
 
 		for ( u32 row = 0; row < numRows; row++ ) {
-			String_Appendf( sbImpl, "\t\t%s( %s%srows[%d] )", funcNameNegateVector, parmAccessStr, parmName, row );
+			String_Appendf( sbImpl, "\t\t%s( %s%s%srows[%d] )", funcNameNegateVector, parmRefStr, parmName, parmAccessStr, row );
 
 			if ( row != numRows - 1 ) {
 				String_Append( sbImpl, "," );

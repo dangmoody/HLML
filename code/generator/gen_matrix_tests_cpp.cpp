@@ -31,6 +31,7 @@ along with The HLML Generator.  If not, see <http://www.gnu.org/licenses/>.
 #include "gen_funcs_matrix.h"
 
 #include "string_builder.h"
+#include "string_wrappers.h"
 #include "allocator.h"
 #include "file_io.h"
 
@@ -1062,6 +1063,132 @@ static void GenerateTestRelational( stringBuilder_t* codeTests, const genLanguag
 	String_Append(  codeTests, "\n" );
 }
 
+static void GenerateTestNegate( stringBuilder_t* codeTests, const genLanguage_t language, const genType_t type, const u32 numRows, const u32 numCols, const char* fullTypeName ) {
+	assert( codeTests );
+	assert( numRows >= GEN_COMPONENT_COUNT_MIN );
+	assert( numRows <= GEN_COMPONENT_COUNT_MAX );
+	assert( numCols >= GEN_COMPONENT_COUNT_MIN );
+	assert( numCols <= GEN_COMPONENT_COUNT_MAX );
+	assert( fullTypeName );
+
+	if ( type == GEN_TYPE_BOOL || type == GEN_TYPE_UINT ) {
+		return;
+	}
+
+	char testName[GEN_STRING_LENGTH_TEST_NAME];
+	GEN_SNPRINTF( testName, GEN_STRING_LENGTH_TEST_NAME, "TestNegate_%s", fullTypeName );
+
+	char parmTypeName[GEN_STRING_LENGTH_TYPE_NAME];
+	Gen_GetParmTypeName( language, type, numRows, numCols, parmTypeName );
+
+	char negateFuncStr[GEN_STRING_LENGTH_FUNCTION_NAME];
+	Gen_GetFuncNameNegate( language, type, numRows, numCols, negateFuncStr );
+
+	const char* parmRefStr = GEN_TYPE_PARM_REFERENCE_MODIFIERS[language];
+	const char* accessOperator = GEN_TYPE_ACCESS_OPERATORS[language];
+
+	String_Appendf( codeTests, "TEMPER_PARAMETRIC( %s, TEMPER_FLAG_SHOULD_RUN, const %s vec )\n", testName, parmTypeName );
+	String_Append(  codeTests, "{\n" );
+	if ( language == GEN_LANGUAGE_C ) {
+		String_Appendf( codeTests, "\t%s negated = %s( vec );\n", fullTypeName, negateFuncStr );
+	} else {
+		String_Appendf( codeTests, "\t%s negated = -vec;\n", fullTypeName );
+	}
+
+	if ( Gen_TypeIsFloatingPoint( type ) ) {
+		const char* floateqStr = Gen_GetFuncNameFloateq( type );
+
+		for ( u32 row = 0; row < numRows; row++ ) {
+			for ( u32 col = 0; col < numCols; col++ ) {
+				const char componentName = GEN_COMPONENT_NAMES_VECTOR[col];
+
+				String_Appendf( codeTests, "\tTEMPER_CHECK_TRUE( %s( negated.rows[%d].%c, -vec%srows[%d].%c ) );\n", floateqStr, row, componentName, accessOperator, row, componentName );
+			}
+		}
+	} else {
+		for ( u32 row = 0; row < numRows; row++ ) {
+			for ( u32 col = 0; col < numCols; col++ ) {
+				const char componentName = GEN_COMPONENT_NAMES_VECTOR[col];
+
+				String_Appendf( codeTests, "\tTEMPER_CHECK_TRUE( negated.rows[%d].%c == -vec%srows[%d].%c );\n", row, componentName, accessOperator, row, componentName );
+			}
+		}
+	}
+	String_Append( codeTests, "}\n\n" );
+
+	{
+		float values[4][4] = {
+			0.0f, 0.0f, 0.0f, 0.0f,
+			0.0f, 0.0f, 0.0f, 0.0f,
+			0.0f, 0.0f, 0.0f, 0.0f,
+			0.0f, 0.0f, 0.0f, 0.0f
+		};
+
+		char parmList[GEN_STRING_LENGTH_PARM_LIST_MATRIX];
+		Gen_GetParmListMatrix( type, numRows, numCols, values, parmList );
+
+		String_Appendf( codeTests, "const %s g_testNegate_zero_%s =\n", fullTypeName, fullTypeName );
+		String_Append(  codeTests, "{\n" );
+		String_Appendf( codeTests, "%s", parmList );
+		String_Append(  codeTests, "};\n" );
+		String_Appendf( codeTests, "TEMPER_INVOKE_PARAMETRIC_TEST( %s, %sg_testNegate_zero_%s );\n\n", testName, parmRefStr, fullTypeName );
+	}
+
+	{
+		float values[4][4] = {
+			1.0f, 1.0f, 1.0f, 1.0f,
+			1.0f, 1.0f, 1.0f, 1.0f,
+			1.0f, 1.0f, 1.0f, 1.0f,
+			1.0f, 1.0f, 1.0f, 1.0f
+		};
+
+		char parmList[GEN_STRING_LENGTH_PARM_LIST_MATRIX];
+		Gen_GetParmListMatrix( type, numRows, numCols, values, parmList );
+
+		String_Appendf( codeTests, "const %s g_testNegate_one_%s =\n", fullTypeName, fullTypeName );
+		String_Append(  codeTests, "{\n" );
+		String_Appendf( codeTests, "%s", parmList );
+		String_Append(  codeTests, "};\n" );
+		String_Appendf( codeTests, "TEMPER_INVOKE_PARAMETRIC_TEST( %s, %sg_testNegate_one_%s );\n\n", testName, parmRefStr, fullTypeName );
+	}
+
+	{
+		float values[4][4] = {
+			-2.0f, -2.0f, -2.0f, -2.0f,
+			-2.0f, -2.0f, -2.0f, -2.0f,
+			-2.0f, -2.0f, -2.0f, -2.0f,
+			-2.0f, -2.0f, -2.0f, -2.0f
+		};
+
+		char parmList[GEN_STRING_LENGTH_PARM_LIST_MATRIX];
+		Gen_GetParmListMatrix( type, numRows, numCols, values, parmList );
+
+		String_Appendf( codeTests, "const %s g_testNegate_minusTwo_%s =\n", fullTypeName, fullTypeName );
+		String_Append(  codeTests, "{\n" );
+		String_Appendf( codeTests, "%s", parmList );
+		String_Append(  codeTests, "};\n" );
+		String_Appendf( codeTests, "TEMPER_INVOKE_PARAMETRIC_TEST( %s, %sg_testNegate_minusTwo_%s );\n\n", testName, parmRefStr, fullTypeName );
+	}
+
+	{
+		float values[4][4] = {
+			 0.0f,  -0.0f,   1.0f,  -4.0f,
+			-5.0f,   6.0f,  -7.0f,   8.0f,
+			 9.0f,  -10.0f,  11.0f, -12.0f,
+			-13.0f,  14.0f, -15.0f,  16.0f
+		};
+
+		char parmList[GEN_STRING_LENGTH_PARM_LIST_MATRIX];
+		Gen_GetParmListMatrix( type, numRows, numCols, values, parmList );
+
+		String_Appendf( codeTests, "const %s g_testNegate_alternatingValues_%s =\n", fullTypeName, fullTypeName );
+		String_Append(  codeTests, "{\n" );
+		String_Appendf( codeTests, "%s", parmList );
+		String_Append(  codeTests, "};\n" );
+		String_Appendf( codeTests, "TEMPER_INVOKE_PARAMETRIC_TEST( %s, %sg_testNegate_alternatingValues_%s );\n\n", testName, parmRefStr, fullTypeName );
+	}
+}
+
 static void GenerateTestBitwise( stringBuilder_t* codeTests, const genLanguage_t language, const genType_t type, const u32 numRows, const u32 numCols, const char* fullTypeName, const char* memberTypeString ) {
 	assert( codeTests );
 	assert( numRows >= GEN_COMPONENT_COUNT_MIN );
@@ -1261,6 +1388,107 @@ static void GenerateTestArray( stringBuilder_t* codeTests, const genType_t type,
 	}
 	String_Append( codeTests, "}\n" );
 	String_Append( codeTests, "\n" );
+}
+
+static void GenerateTestAll( stringBuilder_t* codeTests, const genLanguage_t language, const genType_t type, const u32 numRows, const u32 numCols, const char* fullTypeName ) {
+	assert( codeTests );
+	assert( numRows >= GEN_COMPONENT_COUNT_MIN );
+	assert( numRows <= GEN_COMPONENT_COUNT_MAX );
+	assert( numCols >= GEN_COMPONENT_COUNT_MIN );
+	assert( numCols <= GEN_COMPONENT_COUNT_MAX );
+	assert( fullTypeName );
+
+	if ( type != GEN_TYPE_BOOL ) {
+		return;
+	}
+
+	char testName[GEN_STRING_LENGTH_TEST_NAME];
+	GEN_SNPRINTF( testName, GEN_STRING_LENGTH_TEST_NAME, "TestAll_%s", fullTypeName );
+
+	char parmTypeName[GEN_STRING_LENGTH_TYPE_NAME];
+	Gen_GetParmTypeName( language, type, numRows, numCols, parmTypeName );
+
+	const char* parmRefStr = GEN_TYPE_PARM_REFERENCE_MODIFIERS[language];
+
+	char allFuncStr[GEN_STRING_LENGTH_FUNCTION_NAME];
+	Gen_GetFuncNameAll( language, type, numRows, numCols, allFuncStr );
+
+	String_Appendf( codeTests, "TEMPER_PARAMETRIC( %s, TEMPER_FLAG_SHOULD_RUN, const %s vec, const bool expectedResult )\n", testName, parmTypeName );
+	String_Append(  codeTests, "{\n" );
+	String_Appendf( codeTests, "\tTEMPER_CHECK_TRUE( %s( vec ) == expectedResult );\n", allFuncStr );
+	String_Append(  codeTests, "}\n\n" );
+
+	{
+		float32 values[4][4] = {
+			1.0f, 1.0f, 1.0f, 1.0f,
+			1.0f, 1.0f, 1.0f, 1.0f,
+			1.0f, 1.0f, 1.0f, 1.0f,
+			1.0f, 1.0f, 1.0f, 1.0f
+		};
+
+		char parmList[GEN_STRING_LENGTH_PARM_LIST_MATRIX];
+		Gen_GetParmListMatrix( type, numRows, numCols, values, parmList );
+
+		String_Appendf( codeTests, "const %s g_testAll_AllTrue_%s =\n", fullTypeName, fullTypeName );
+		String_Append(  codeTests, "{\n" );
+		String_Appendf( codeTests, "%s", parmList );
+		String_Append(  codeTests, "};\n" );
+		String_Appendf( codeTests, "TEMPER_INVOKE_PARAMETRIC_TEST( %s, %sg_testAll_AllTrue_%s, true );\n\n", testName, parmRefStr, fullTypeName );
+	}
+
+	{
+		float32 values[4][4] = {
+			0.0f, 1.0f, 1.0f, 1.0f,
+			1.0f, 1.0f, 1.0f, 1.0f,
+			1.0f, 1.0f, 1.0f, 1.0f,
+			1.0f, 1.0f, 1.0f, 1.0f
+		};
+
+		char parmList[GEN_STRING_LENGTH_PARM_LIST_MATRIX];
+		Gen_GetParmListMatrix( type, numRows, numCols, values, parmList );
+
+		String_Appendf( codeTests, "const %s g_testAll_OneFalse_%s =\n", fullTypeName, fullTypeName );
+		String_Append(  codeTests, "{\n" );
+		String_Appendf( codeTests, "%s", parmList );
+		String_Append(  codeTests, "};\n" );
+		String_Appendf( codeTests, "TEMPER_INVOKE_PARAMETRIC_TEST( %s, %sg_testAll_OneFalse_%s, false );\n\n", testName, parmRefStr, fullTypeName );
+	}
+
+	{
+		float32 values[4][4] = {
+			0.0f, 1.0f, 0.0f, 1.0f,
+			1.0f, 0.0f, 1.0f, 0.0f,
+			0.0f, 1.0f, 0.0f, 1.0f,
+			1.0f, 0.0f, 1.0f, 0.0f
+		};
+
+		char parmList[GEN_STRING_LENGTH_PARM_LIST_MATRIX];
+		Gen_GetParmListMatrix( type, numRows, numCols, values, parmList );
+
+		String_Appendf( codeTests, "const %s g_testAll_SomeFalse_%s =\n", fullTypeName, fullTypeName );
+		String_Append(  codeTests, "{\n" );
+		String_Appendf( codeTests, "%s", parmList );
+		String_Append(  codeTests, "};\n" );
+		String_Appendf( codeTests, "TEMPER_INVOKE_PARAMETRIC_TEST( %s, %sg_testAll_SomeFalse_%s, false );\n\n", testName, parmRefStr, fullTypeName );
+	}
+
+	{
+		float32 values[4][4] = {
+			0.0f, 0.0f, 0.0f, 0.0f,
+			0.0f, 0.0f, 0.0f, 0.0f,
+			0.0f, 0.0f, 0.0f, 0.0f,
+			0.0f, 0.0f, 0.0f, 0.0f
+		};
+
+		char parmList[GEN_STRING_LENGTH_PARM_LIST_MATRIX];
+		Gen_GetParmListMatrix( type, numRows, numCols, values, parmList );
+
+		String_Appendf( codeTests, "const %s g_testAll_AllFalse_%s =\n", fullTypeName, fullTypeName );
+		String_Append(  codeTests, "{\n" );
+		String_Appendf( codeTests, "%s", parmList );
+		String_Append(  codeTests, "};\n" );
+		String_Appendf( codeTests, "TEMPER_INVOKE_PARAMETRIC_TEST( %s, %sg_testAll_AllFalse_%s, false );\n\n", testName, parmRefStr, fullTypeName );
+	}
 }
 
 static void GenerateTestIdentity( stringBuilder_t* codeTests, const genLanguage_t language, const genType_t type, const u32 numRows, const u32 numCols,
@@ -2798,11 +3026,13 @@ void Gen_MatrixTests( allocatorLinear_t* allocator, const genLanguage_t language
 		GenerateTestArray( &codeTests, type, numRows, numCols, fullTypeName, vectorTypeString );
 		GenerateTestIncrement( &codeTests, type, numRows, numCols, fullTypeName );
 	}
+	GenerateTestAll( &codeTests, language, type, numRows, numCols, fullTypeName );
 	GenerateTestComponentWiseArithmetic( &codeTests, language, type, numRows, numCols, fullTypeName, memberTypeString );
 	GenerateTestMultiplyMatrix( &codeTests, language, type, numRows, numCols, fullTypeName, typeString, memberTypeString );
 	GenerateTestMultiplyVector( &codeTests, language, type, numRows, numCols, fullTypeName, vectorTypeString );
 	GenerateTestDivideMatrix( &codeTests, language, type, numRows, numCols, fullTypeName );
 	GenerateTestRelational( &codeTests, language, type, numRows, numCols, fullTypeName );
+	GenerateTestNegate( &codeTests, language, type, numRows, numCols, fullTypeName );
 	GenerateTestBitwise( &codeTests, language, type, numRows, numCols, fullTypeName, memberTypeString );
 	GenerateTestIdentity( &codeTests, language, type, numRows, numCols, fullTypeName, vectorTypeString, memberTypeString );
 	GenerateTestTranspose( &codeTests, language, type, numRows, numCols, fullTypeName, vectorTypeString, typeString, memberTypeString );

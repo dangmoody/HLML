@@ -370,6 +370,49 @@ TEMPER_TEST( TestRelational_int3x2, TEMPER_FLAG_SHOULD_RUN )
 	TEMPER_CHECK_TRUE( all( test19 ) );
 }
 
+TEMPER_PARAMETRIC( TestNegate_int3x2, TEMPER_FLAG_SHOULD_RUN, const int3x2& vec )
+{
+	int3x2 negated = -vec;
+	TEMPER_CHECK_TRUE( negated.rows[0].x == -vec.rows[0].x );
+	TEMPER_CHECK_TRUE( negated.rows[0].y == -vec.rows[0].y );
+	TEMPER_CHECK_TRUE( negated.rows[1].x == -vec.rows[1].x );
+	TEMPER_CHECK_TRUE( negated.rows[1].y == -vec.rows[1].y );
+	TEMPER_CHECK_TRUE( negated.rows[2].x == -vec.rows[2].x );
+	TEMPER_CHECK_TRUE( negated.rows[2].y == -vec.rows[2].y );
+}
+
+const int3x2 g_testNegate_zero_int3x2 =
+{
+		0, 0,
+		0, 0,
+		0, 0
+};
+TEMPER_INVOKE_PARAMETRIC_TEST( TestNegate_int3x2, g_testNegate_zero_int3x2 );
+
+const int3x2 g_testNegate_one_int3x2 =
+{
+		1, 1,
+		1, 1,
+		1, 1
+};
+TEMPER_INVOKE_PARAMETRIC_TEST( TestNegate_int3x2, g_testNegate_one_int3x2 );
+
+const int3x2 g_testNegate_minusTwo_int3x2 =
+{
+		-2, -2,
+		-2, -2,
+		-2, -2
+};
+TEMPER_INVOKE_PARAMETRIC_TEST( TestNegate_int3x2, g_testNegate_minusTwo_int3x2 );
+
+const int3x2 g_testNegate_alternatingValues_int3x2 =
+{
+		0, 0,
+		-5, 6,
+		9, -10
+};
+TEMPER_INVOKE_PARAMETRIC_TEST( TestNegate_int3x2, g_testNegate_alternatingValues_int3x2 );
+
 TEMPER_TEST( TestBitwise_And_int3x2, TEMPER_FLAG_SHOULD_RUN )
 {
 	int3x2 answer = int3x2(
