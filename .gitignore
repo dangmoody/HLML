@@ -19,3 +19,10 @@ releases/*
 
 # remedybg files
 *.rdbg
+
+# sublime text files
+*.sublime-project
+*.sublime-workspace
+
+# 10x project files
+*.10x

@@ -1,0 +1,56 @@
+ASSUMPTIONS:
+	- API functions returns a register instead of putting it into out parameters
+	- scalar API functions only
+
+TEMPER_PARAMETRIC( Test_float_lerpf, TEMPER_FLAG_SHOULD_RUN, const float lhs, const float rhs, const float t, const float expectedAnswer ) {
+	__m128 reg_lhs = _mm_set1_ps( lhs );
+	__m128 reg_rhs = _mm_set1_ps( rhs );
+	__m128 reg_t = _mm_set1_ps( t );
+
+	__m128 reg_actualAnswer = lerpf_sse( reg_lhs, reg_rhs, reg_t );
+
+	float actualAnswer[4];
+	_mm_store_ps( actualAnswer, reg_actualAnswer );
+
+	TEMPER_CHECK_TRUE( floateq( actualAnswer[0], expectedAnswer ) );
+	TEMPER_CHECK_TRUE( floateq( actualAnswer[1], expectedAnswer ) );
+	TEMPER_CHECK_TRUE( floateq( actualAnswer[2], expectedAnswer ) );
+	TEMPER_CHECK_TRUE( floateq( actualAnswer[3], expectedAnswer ) );
+}
+
+TEMPER_PAREMTRIC( Test_float_radiansf, TEMPER_FLAG_SHOULD_RUN, const float degrees, const float expectedAnswer ) {
+	__m128 reg_degrees = _mm_set1_ps( degrees );
+
+	__m128 reg_actualAnswer = radiansf_sse( reg_degrees );
+
+	float actualAnswer[4];
+	_mm_store_ps( actualAnswer, reg_actualAnswer );
+
+	TEMPER_CHECK_TRUE( actualAnswer[0] == expectedAnswer );
+	TEMPER_CHECK_TRUE( actualAnswer[1] == expectedAnswer );
+	TEMPER_CHECK_TRUE( actualAnswer[2] == expectedAnswer );
+	TEMPER_CHECK_TRUE( actualAnswer[3] == expectedAnswer );
+}
+
+TEMPER_PARAMETRIC( Test_dot_sse, const float4* lhs, const float4* rhs, const float expectedAnswer ) {
+	__m128 reg_lhs_x = _mm_set1_ps( lhs->x );
+	__m128 reg_lhs_y = _mm_set1_ps( lhs->y );
+	__m128 reg_lhs_z = _mm_set1_ps( lhs->z );
+	__m128 reg_lhs_w = _mm_set1_ps( lhs->w );
+
+	__m128 reg_lhs_x = _mm_set1_ps( lhs->x );
+	__m128 reg_lhs_y = _mm_set1_ps( lhs->y );
+	__m128 reg_lhs_z = _mm_set1_ps( lhs->z );
+	__m128 reg_lhs_w = _mm_set1_ps( lhs->w );
+
+	__m128 reg_actualAnswer = dot_sse( reg_lhs_x, reg_lhs_y, reg_lhs_z, reg_lhs_w,
+									   reg_rhs_x, reg_rhs_y, reg_rhs_z, reg_rhs_w );
+
+	float actualAnswer[4];
+	_mm_store_ps( reg_actualAnswer, actualAnswer );
+
+	TEMPER_CHECK_TRUE( floateq( actualAnswer[0], expectedAnswer ) );
+	TEMPER_CHECK_TRUE( floateq( actualAnswer[1], expectedAnswer ) );
+	TEMPER_CHECK_TRUE( floateq( actualAnswer[2], expectedAnswer ) );
+	TEMPER_CHECK_TRUE( floateq( actualAnswer[3], expectedAnswer ) );
+}

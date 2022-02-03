@@ -299,169 +299,253 @@ extern "C" {
 
 // If 'condition' is NOT true then marks the test as failed.
 #define TEMPER_CHECK_TRUE( condition ) \
-	TemperTestTrueInternal( condition, "TEMPER_CHECK_TRUE(" #condition ")", false, __FILE__, __LINE__, NULL, NULL )
+	TemperTestTrueInternal( condition, "TEMPER_CHECK_TRUE(" #condition ")", TEMPER_FLAG_TEST_OKAY, __FILE__, __LINE__, NULL, NULL )
 
 //----------------------------------------------------------
 
 // If 'condition' is NOT true then marks the test as failed and logs the specified printf-formatted error message.
 #define TEMPER_CHECK_TRUE_M( condition, ... ) \
-	TemperTestTrueInternal( condition, "TEMPER_CHECK_TRUE_M(" #condition ", ...)", false, __FILE__, __LINE__, __VA_ARGS__ )
+	TemperTestTrueInternal( condition, "TEMPER_CHECK_TRUE_M(" #condition ", ...)", TEMPER_FLAG_TEST_OKAY, __FILE__, __LINE__, __VA_ARGS__ )
 
 //----------------------------------------------------------
 
 // If 'condition' is NOT true then marks the test as failed and aborts the test.
 #define TEMPER_CHECK_TRUE_A( condition ) \
-	TemperTestTrueInternal( condition, "TEMPER_CHECK_TRUE_A(" #condition ")", true, __FILE__, __LINE__, NULL, NULL )
+	TemperTestTrueInternal( condition, "TEMPER_CHECK_TRUE_A(" #condition ")", TEMPER_FLAG_TEST_ABORT, __FILE__, __LINE__, NULL, NULL )
+
+//----------------------------------------------------------
+
+// If 'condition' is NOT true then marks the test as failed, aborts the test & ceases execution.
+#define TEMPER_CHECK_TRUE_Q( condition ) \
+	TemperTestTrueInternal( condition, "TEMPER_CHECK_TRUE_Q(" #condition ")", TEMPER_FLAG_TEST_QUIT, __FILE__, __LINE__, NULL, NULL )
 
 //----------------------------------------------------------
 
 // If 'condition' is NOT true then marks the test as failed, logs the specified printf-formatted error message and aborts the test.
 #define TEMPER_CHECK_TRUE_AM( condition, ... ) \
-	TemperTestTrueInternal( condition, "TEMPER_CHECK_TRUE_AM(" #condition ", ...)", true, __FILE__, __LINE__, __VA_ARGS__ )
+	TemperTestTrueInternal( condition, "TEMPER_CHECK_TRUE_AM(" #condition ", ...)", TEMPER_FLAG_TEST_ABORT, __FILE__, __LINE__, __VA_ARGS__ )
+
+//----------------------------------------------------------
+
+// If 'condition' is NOT true then marks the test as failed, aborts the test & ceases execution.
+#define TEMPER_CHECK_TRUE_QM( condition, ... ) \
+	TemperTestTrueInternal( condition, "TEMPER_CHECK_TRUE_QM(" #condition ", ...)", TEMPER_FLAG_TEST_QUIT, __FILE__, __LINE__, __VA_ARGS__ )
 
 //----------------------------------------------------------
 
 // If 'condition' is NOT false then marks the test as failed.
 #define TEMPER_CHECK_FALSE( condition ) \
-	TemperTestTrueInternal( !(condition), "TEMPER_CHECK_FALSE(" #condition ")", false, __FILE__, __LINE__, NULL, NULL )
+	TemperTestTrueInternal( !(condition), "TEMPER_CHECK_FALSE(" #condition ")", TEMPER_FLAG_TEST_OKAY, __FILE__, __LINE__, NULL, NULL )
 
 //----------------------------------------------------------
 
 // If 'condition' is NOT false then marks the test as failed and logs the specified printf-formatted error message.
 #define TEMPER_CHECK_FALSE_M( condition, ... ) \
-	TemperTestTrueInternal( !(condition), "TEMPER_CHECK_FALSE_M(" #condition ", ...)", false, __FILE__, __LINE__, __VA_ARGS__ )
+	TemperTestTrueInternal( !(condition), "TEMPER_CHECK_FALSE_M(" #condition ", ...)", TEMPER_FLAG_TEST_OKAY, __FILE__, __LINE__, __VA_ARGS__ )
 
 //----------------------------------------------------------
 
 // If 'condition' is NOT false then marks the test as failed and aborts the test.
 #define TEMPER_CHECK_FALSE_A( condition ) \
-	TemperTestTrueInternal( !(condition), "TEMPER_CHECK_FALSE_A(" #condition ")", true, __FILE__, __LINE__, NULL, NULL )
+	TemperTestTrueInternal( !(condition), "TEMPER_CHECK_FALSE_A(" #condition ")", TEMPER_FLAG_TEST_ABORT, __FILE__, __LINE__, NULL, NULL )
+
+//----------------------------------------------------------
+
+// If 'condition' is NOT false then marks the test as failed and aborts the test & ceases execution.
+#define TEMPER_CHECK_FALSE_Q( condition ) \
+	TemperTestTrueInternal( !(condition), "TEMPER_CHECK_FALSE_Q(" #condition ")", TEMPER_FLAG_TEST_QUIT, __FILE__, __LINE__, NULL, NULL )
 
 //----------------------------------------------------------
 
 // If 'condition' is NOT false then marks the test as failed, logs the specified printf-formatted error message and aborts the test.
 #define TEMPER_CHECK_FALSE_AM( condition, ... ) \
-	TemperTestTrueInternal( !(condition), "TEMPER_CHECK_FALSE_AM(" #condition ", ...)", true, __FILE__, __LINE__, __VA_ARGS__ )
+	TemperTestTrueInternal( !(condition), "TEMPER_CHECK_FALSE_AM(" #condition ", ...)", TEMPER_FLAG_TEST_ABORT, __FILE__, __LINE__, __VA_ARGS__ )
+
+//----------------------------------------------------------
+
+// If 'condition' is NOT false then marks the test as failed, logs the specified printf-formatted error message and aborts the test & ceases execution.
+#define TEMPER_CHECK_FALSE_QM( condition, ... ) \
+	TemperTestTrueInternal( !(condition), "TEMPER_CHECK_FALSE_QM(" #condition ", ...)", TEMPER_FLAG_TEST_QUIT, __FILE__, __LINE__, __VA_ARGS__ )
 
 //----------------------------------------------------------
 
 // If 'conditionA' is NOT equal to 'conditionB' then marks the test as failed.
 #define TEMPER_CHECK_EQUAL( conditionA, conditionB ) \
-	TemperTestTrueInternal( conditionA == conditionB, "TEMPER_CHECK_EQUAL(" #conditionA ", " #conditionB ")", false, __FILE__, __LINE__, NULL, NULL )
+	TemperTestTrueInternal( conditionA == conditionB, "TEMPER_CHECK_EQUAL(" #conditionA ", " #conditionB ")", TEMPER_FLAG_TEST_OKAY, __FILE__, __LINE__, NULL, NULL )
 
 //----------------------------------------------------------
 
 // If 'conditionA' is NOT equal to 'conditionB' then marks the test as failed and logs the specified printf-formatted error message.
 #define TEMPER_CHECK_EQUAL_M( conditionA, conditionB, ... ) \
-	TemperTestTrueInternal( conditionA == conditionB, "TEMPER_CHECK_EQUAL_M(" #conditionA ", " #conditionB ", ...)", false, __FILE__, __LINE__, __VA_ARGS__ )
+	TemperTestTrueInternal( conditionA == conditionB, "TEMPER_CHECK_EQUAL_M(" #conditionA ", " #conditionB ", ...)", TEMPER_FLAG_TEST_OKAY, __FILE__, __LINE__, __VA_ARGS__ )
 
 //----------------------------------------------------------
 
 // If 'conditionA' is NOT equal to 'conditionB' then marks the test as failed and aborts the test.
 #define TEMPER_CHECK_EQUAL_A( conditionA, conditionB ) \
-	TemperTestTrueInternal( conditionA == conditionB, "TEMPER_CHECK_EQUAL_A(" #conditionA ", " #conditionB ")", true, __FILE__, __LINE__, NULL, NULL )
+	TemperTestTrueInternal( conditionA == conditionB, "TEMPER_CHECK_EQUAL_A(" #conditionA ", " #conditionB ")", TEMPER_FLAG_TEST_ABORT, __FILE__, __LINE__, NULL, NULL )
+
+//----------------------------------------------------------
+
+// If 'conditionA' is NOT equal to 'conditionB' then marks the test as failed and aborts the test & ceases execution.
+#define TEMPER_CHECK_EQUAL_Q( conditionA, conditionB ) \
+	TemperTestTrueInternal( conditionA == conditionB, "TEMPER_CHECK_EQUAL_Q(" #conditionA ", " #conditionB ")", TEMPER_FLAG_TEST_QUIT, __FILE__, __LINE__, NULL, NULL )
 
 //----------------------------------------------------------
 
 // If 'conditionA' is NOT equal to 'conditionB' then marks the test as failed, logs the specified printf-formatted error message and aborts the test.
 #define TEMPER_CHECK_EQUAL_AM( conditionA, conditionB, ... ) \
-	TemperTestTrueInternal( conditionA == conditionB, "TEMPER_CHECK_EQUAL_AM(" #conditionA ", " #conditionB ", ...)", true, __FILE__, __LINE__, __VA_ARGS__ )
+	TemperTestTrueInternal( conditionA == conditionB, "TEMPER_CHECK_EQUAL_AM(" #conditionA ", " #conditionB ", ...)", TEMPER_FLAG_TEST_ABORT, __FILE__, __LINE__, __VA_ARGS__ )
+
+//----------------------------------------------------------
+
+// If 'conditionA' is NOT equal to 'conditionB' then marks the test as failed, logs the specified printf-formatted error message and aborts the test & ceases execution.
+#define TEMPER_CHECK_EQUAL_QM( conditionA, conditionB, ... ) \
+	TemperTestTrueInternal( conditionA == conditionB, "TEMPER_CHECK_EQUAL_QM(" #conditionA ", " #conditionB ", ...)", TEMPER_FLAG_TEST_QUIT, __FILE__, __LINE__, __VA_ARGS__ )
 
 //----------------------------------------------------------
 
 // If 'conditionA' is equal to 'conditionB' then marks the test as failed.
 #define TEMPER_CHECK_NOT_EQUAL( conditionA, conditionB ) \
-	TemperTestTrueInternal( conditionA != conditionB, "TEMPER_CHECK_NOT_EQUAL(" #conditionA ", " #conditionB ")", false, __FILE__, __LINE__, NULL, NULL )
+	TemperTestTrueInternal( conditionA != conditionB, "TEMPER_CHECK_NOT_EQUAL(" #conditionA ", " #conditionB ")", TEMPER_FLAG_TEST_OKAY, __FILE__, __LINE__, NULL, NULL )
 
 //----------------------------------------------------------
 
 // If 'conditionA' is equal to 'conditionB' then marks the test as failed and logs the specified printf-formatted error message.
 #define TEMPER_CHECK_NOT_EQUAL_M( conditionA, conditionB, ... ) \
-	TemperTestTrueInternal( conditionA != conditionB, "TEMPER_CHECK_NOT_EQUAL_M(" #conditionA ", " #conditionB ", ...)", false, __FILE__, __LINE__, __VA_ARGS__ )
+	TemperTestTrueInternal( conditionA != conditionB, "TEMPER_CHECK_NOT_EQUAL_M(" #conditionA ", " #conditionB ", ...)", TEMPER_FLAG_TEST_OKAY, __FILE__, __LINE__, __VA_ARGS__ )
 
 //----------------------------------------------------------
 
 // If 'conditionA' is equal to 'conditionB' then marks the test as failed and aborts the test.
 #define TEMPER_CHECK_NOT_EQUAL_A( conditionA, conditionB ) \
-	TemperTestTrueInternal( conditionA != conditionB, "TEMPER_CHECK_NOT_EQUAL_A(" #conditionA ", " #conditionB ")", true, __FILE__, __LINE__, NULL, NULL )
+	TemperTestTrueInternal( conditionA != conditionB, "TEMPER_CHECK_NOT_EQUAL_A(" #conditionA ", " #conditionB ")", TEMPER_FLAG_TEST_ABORT, __FILE__, __LINE__, NULL, NULL )
+
+//----------------------------------------------------------
+
+// If 'conditionA' is equal to 'conditionB' then marks the test as failed and aborts the test & ceases execution.
+#define TEMPER_CHECK_NOT_EQUAL_Q( conditionA, conditionB ) \
+	TemperTestTrueInternal( conditionA != conditionB, "TEMPER_CHECK_NOT_EQUAL_Q(" #conditionA ", " #conditionB ")", TEMPER_FLAG_TEST_QUIT, __FILE__, __LINE__, NULL, NULL )
 
 //----------------------------------------------------------
 
 // If 'conditionA' is equal to 'conditionB' then marks the test as failed, logs the specified printf-formatted error message and aborts the test.
 #define TEMPER_CHECK_NOT_EQUAL_AM( conditionA, conditionB, ... ) \
-	TemperTestTrueInternal( conditionA != conditionB, "TEMPER_CHECK_NOT_EQUAL_AM(" #conditionA ", " #conditionB ", ...)", true, __FILE__, __LINE__, __VA_ARGS__ )
+	TemperTestTrueInternal( conditionA != conditionB, "TEMPER_CHECK_NOT_EQUAL_AM(" #conditionA ", " #conditionB ", ...)", TEMPER_FLAG_TEST_ABORT, __FILE__, __LINE__, __VA_ARGS__ )
+
+//----------------------------------------------------------
+
+// If 'conditionA' is equal to 'conditionB' then marks the test as failed, logs the specified printf-formatted error message and aborts the test & ceases execution.
+#define TEMPER_CHECK_NOT_EQUAL_QM( conditionA, conditionB, ... ) \
+	TemperTestTrueInternal( conditionA != conditionB, "TEMPER_CHECK_NOT_EQUAL_QM(" #conditionA ", " #conditionB ", ...)", TEMPER_FLAG_TEST_QUIT, __FILE__, __LINE__, __VA_ARGS__ )
 
 //----------------------------------------------------------
 
 // If 'floatA' is NOT approximately equal enough to floatB (within Temper's default margins of error) then marks the test as failed.
 #define TEMPER_CHECK_FLOAT_EQUAL( floatA, floatB ) \
-	TemperTestTrueInternal( TEMPERDEV__FLOAT_EQUALS( floatA, floatB, TEMPERDEV__EPSILON_TOLERANCE_ABSOLUTE, TEMPERDEV__EPSILON_TOLERANCE_RELATIVE ), "TEMPER_CHECK_FLOAT_EQUAL(" #floatA ", " #floatB ")", false, __FILE__, __LINE__, NULL, NULL )
+	TemperTestTrueInternal( g_temperTestContext.callbacks.FloatEquals( floatA, floatB, TEMPERDEV__EPSILON_TOLERANCE_ABSOLUTE, TEMPERDEV__EPSILON_TOLERANCE_RELATIVE ), "TEMPER_CHECK_FLOAT_EQUAL(" #floatA ", " #floatB ")", TEMPER_FLAG_TEST_OKAY, __FILE__, __LINE__, NULL, NULL )
 
 //----------------------------------------------------------
 
 // If 'floatA' is NOT approximately equal enough to floatB (within Temper's default margins of error) then marks the test as failed and logs the specified printf-formatted error message.
 #define TEMPER_CHECK_FLOAT_EQUAL_M( floatA, floatB, ... ) \
-	TemperTestTrueInternal( TEMPERDEV__FLOAT_EQUALS( floatA, floatB, TEMPERDEV__EPSILON_TOLERANCE_ABSOLUTE, TEMPERDEV__EPSILON_TOLERANCE_RELATIVE ), "TEMPER_CHECK_FLOAT_EQUAL_M(" #floatA ", " #floatB ", ...)", false, __FILE__, __LINE__, __VA_ARGS__ )
+	TemperTestTrueInternal( g_temperTestContext.callbacks.FloatEquals( floatA, floatB, TEMPERDEV__EPSILON_TOLERANCE_ABSOLUTE, TEMPERDEV__EPSILON_TOLERANCE_RELATIVE ), "TEMPER_CHECK_FLOAT_EQUAL_M(" #floatA ", " #floatB ", ...)", TEMPER_FLAG_TEST_OKAY, __FILE__, __LINE__, __VA_ARGS__ )
 
 //----------------------------------------------------------
 
 // If 'floatA' is NOT approximately equal enough to floatB (within Temper's default margins of error) then marks the test as failed and aborts the test.
 #define TEMPER_CHECK_FLOAT_EQUAL_A( floatA, floatB ) \
-	TemperTestTrueInternal( TEMPERDEV__FLOAT_EQUALS( floatA, floatB, TEMPERDEV__EPSILON_TOLERANCE_ABSOLUTE, TEMPERDEV__EPSILON_TOLERANCE_RELATIVE ), "TEMPER_CHECK_FLOAT_EQUAL_A(" #floatA ", " #floatB ")", true, __FILE__, __LINE__, NULL, NULL )
+	TemperTestTrueInternal( g_temperTestContext.callbacks.FloatEquals( floatA, floatB, TEMPERDEV__EPSILON_TOLERANCE_ABSOLUTE, TEMPERDEV__EPSILON_TOLERANCE_RELATIVE ), "TEMPER_CHECK_FLOAT_EQUAL_A(" #floatA ", " #floatB ")", TEMPER_FLAG_TEST_ABORT, __FILE__, __LINE__, NULL, NULL )
+
+//----------------------------------------------------------
+
+// If 'floatA' is NOT approximately equal enough to floatB (within Temper's default margins of error) then marks the test as failed and aborts the test & ceases execution.
+#define TEMPER_CHECK_FLOAT_EQUAL_Q( floatA, floatB ) \
+	TemperTestTrueInternal( g_temperTestContext.callbacks.FloatEquals( floatA, floatB, TEMPERDEV__EPSILON_TOLERANCE_ABSOLUTE, TEMPERDEV__EPSILON_TOLERANCE_RELATIVE ), "TEMPER_CHECK_FLOAT_EQUAL_Q(" #floatA ", " #floatB ")", TEMPER_FLAG_TEST_QUIT, __FILE__, __LINE__, NULL, NULL )
 
 //----------------------------------------------------------
 
 // If 'floatA' is NOT approximately equal enough to floatB (within Temper's default margins of error) then marks the test as failed, logs the specified printf-formatted error message, and aborts the test.
 #define TEMPER_CHECK_FLOAT_EQUAL_AM( floatA, floatB, ... ) \
-	TemperTestTrueInternal( TEMPERDEV__FLOAT_EQUALS( floatA, floatB, TEMPERDEV__EPSILON_TOLERANCE_ABSOLUTE, TEMPERDEV__EPSILON_TOLERANCE_RELATIVE ), "TEMPER_CHECK_FLOAT_EQUAL_AM(" #floatA ", " #floatB ", ...)", true, __FILE__, __LINE__, __VA_ARGS__ )
+	TemperTestTrueInternal( g_temperTestContext.callbacks.FloatEquals( floatA, floatB, TEMPERDEV__EPSILON_TOLERANCE_ABSOLUTE, TEMPERDEV__EPSILON_TOLERANCE_RELATIVE ), "TEMPER_CHECK_FLOAT_EQUAL_AM(" #floatA ", " #floatB ", ...)", TEMPER_FLAG_TEST_ABORT, __FILE__, __LINE__, __VA_ARGS__ )
+
+//----------------------------------------------------------
+
+// If 'floatA' is NOT approximately equal enough to floatB (within Temper's default margins of error) then marks the test as failed, logs the specified printf-formatted error message, and aborts the test & ceases execution.
+#define TEMPER_CHECK_FLOAT_EQUAL_QM( floatA, floatB, ... ) \
+	TemperTestTrueInternal( g_temperTestContext.callbacks.FloatEquals( floatA, floatB, TEMPERDEV__EPSILON_TOLERANCE_ABSOLUTE, TEMPERDEV__EPSILON_TOLERANCE_RELATIVE ), "TEMPER_CHECK_FLOAT_EQUAL_QM(" #floatA ", " #floatB ", ...)", TEMPER_FLAG_TEST_QUIT, __FILE__, __LINE__, __VA_ARGS__ )
 
 //----------------------------------------------------------
 
 // If 'conditionA' is NOT approximately equal enough to 'conditionB' (within 'tolerance' margin of error) then marks the test as failed.
 #define TEMPER_CHECK_ALMOST_EQUAL( conditionA, conditionB, absoluteTolerance ) \
-	TemperTestTrueInternal( TEMPERDEV__FLOAT_EQUALS( conditionA, conditionB, absoluteTolerance, TEMPERDEV__EPSILON_TOLERANCE_RELATIVE ), "TEMPER_CHECK_ALMOST_EQUAL(" #conditionA ", " #conditionB ", " #absoluteTolerance ")", false, __FILE__, __LINE__, NULL, NULL )
+	TemperTestTrueInternal( g_temperTestContext.callbacks.FloatEquals( conditionA, conditionB, absoluteTolerance, TEMPERDEV__EPSILON_TOLERANCE_RELATIVE ), "TEMPER_CHECK_ALMOST_EQUAL(" #conditionA ", " #conditionB ", " #absoluteTolerance ")", TEMPER_FLAG_TEST_OKAY, __FILE__, __LINE__, NULL, NULL )
 
 //----------------------------------------------------------
 
 // If 'conditionA' is NOT approximately equal enough to 'conditionB' (within 'absoluteTolerance' margin of error) then marks the test as failed and logs the specified printf-formatted error message.
 #define TEMPER_CHECK_ALMOST_EQUAL_M( conditionA, conditionB, absoluteTolerance, ... ) \
-	TemperTestTrueInternal( TEMPERDEV__FLOAT_EQUALS( conditionA, conditionB, absoluteTolerance, TEMPERDEV__EPSILON_TOLERANCE_RELATIVE ), "TEMPER_CHECK_ALMOST_EQUAL_M(" #conditionA ", " #conditionB ", " #absoluteTolerance ", ...)", false, __FILE__, __LINE__, __VA_ARGS__ )
+	TemperTestTrueInternal( g_temperTestContext.callbacks.FloatEquals( conditionA, conditionB, absoluteTolerance, TEMPERDEV__EPSILON_TOLERANCE_RELATIVE ), "TEMPER_CHECK_ALMOST_EQUAL_M(" #conditionA ", " #conditionB ", " #absoluteTolerance ", ...)", TEMPER_FLAG_TEST_OKAY, __FILE__, __LINE__, __VA_ARGS__ )
 
 //----------------------------------------------------------
 
 // If 'conditionA' is NOT approximately equal enough to 'conditionB' (within 'absoluteTolerance' margin of error) then marks the test as failed and aborts the test.
 #define TEMPER_CHECK_ALMOST_EQUAL_A( conditionA, conditionB, absoluteTolerance ) \
-	TemperTestTrueInternal( TEMPERDEV__FLOAT_EQUALS( conditionA, conditionB, absoluteTolerance, TEMPERDEV__EPSILON_TOLERANCE_RELATIVE ), "TEMPER_CHECK_ALMOST_EQUAL_A(" #conditionA ", " #conditionB ", " #absoluteTolerance ")", true, __FILE__, __LINE__, NULL, NULL )
+	TemperTestTrueInternal( g_temperTestContext.callbacks.FloatEquals( conditionA, conditionB, absoluteTolerance, TEMPERDEV__EPSILON_TOLERANCE_RELATIVE ), "TEMPER_CHECK_ALMOST_EQUAL_A(" #conditionA ", " #conditionB ", " #absoluteTolerance ")", TEMPER_FLAG_TEST_ABORT, __FILE__, __LINE__, NULL, NULL )
+
+//----------------------------------------------------------
+
+// If 'conditionA' is NOT approximately equal enough to 'conditionB' (within 'absoluteTolerance' margin of error) then marks the test as failed and aborts the test & ceases execution.
+#define TEMPER_CHECK_ALMOST_EQUAL_Q( conditionA, conditionB, absoluteTolerance ) \
+	TemperTestTrueInternal( g_temperTestContext.callbacks.FloatEquals( conditionA, conditionB, absoluteTolerance, TEMPERDEV__EPSILON_TOLERANCE_RELATIVE ), "TEMPER_CHECK_ALMOST_EQUAL_Q(" #conditionA ", " #conditionB ", " #absoluteTolerance ")", TEMPER_FLAG_TEST_QUIT, __FILE__, __LINE__, NULL, NULL )
 
 //----------------------------------------------------------
 
 // If 'conditionA' is NOT approximately equal enough to 'conditionB' (within 'absoluteTolerance' margin of error) then marks the test as failed, logs the specified printf-formatted error message, and aborts the test.
 #define TEMPER_CHECK_ALMOST_EQUAL_AM( conditionA, conditionB, absoluteTolerance, ... ) \
-	TemperTestTrueInternal( TEMPERDEV__FLOAT_EQUALS( conditionA, conditionB, absoluteTolerance, TEMPERDEV__EPSILON_TOLERANCE_RELATIVE ), "TEMPER_CHECK_ALMOST_EQUAL_AM(" #conditionA ", " #conditionB ", " #absoluteTolerance ", ...)", true, __FILE__, __LINE__, __VA_ARGS__ )
+	TemperTestTrueInternal( g_temperTestContext.callbacks.FloatEquals( conditionA, conditionB, absoluteTolerance, TEMPERDEV__EPSILON_TOLERANCE_RELATIVE ), "TEMPER_CHECK_ALMOST_EQUAL_AM(" #conditionA ", " #conditionB ", " #absoluteTolerance ", ...)", TEMPER_FLAG_TEST_ABORT, __FILE__, __LINE__, __VA_ARGS__ )
+
+//----------------------------------------------------------
+
+// If 'conditionA' is NOT approximately equal enough to 'conditionB' (within 'absoluteTolerance' margin of error) then marks the test as failed, logs the specified printf-formatted error message, and aborts the test & ceases execution.
+#define TEMPER_CHECK_ALMOST_EQUAL_QM( conditionA, conditionB, absoluteTolerance, ... ) \
+	TemperTestTrueInternal( g_temperTestContext.callbacks.FloatEquals( conditionA, conditionB, absoluteTolerance, TEMPERDEV__EPSILON_TOLERANCE_RELATIVE ), "TEMPER_CHECK_ALMOST_EQUAL_QM(" #conditionA ", " #conditionB ", " #absoluteTolerance ", ...)", TEMPER_FLAG_TEST_QUIT, __FILE__, __LINE__, __VA_ARGS__ )
 
 //----------------------------------------------------------
 
 // If 'conditionA' is approximately equal enough to 'conditionB' (within 'absoluteTolerance' margin of error) then marks the test as failed.
 #define TEMPER_CHECK_NOT_ALMOST_EQUAL( conditionA, conditionB, absoluteTolerance ) \
-	TemperTestTrueInternal( !TEMPERDEV__FLOAT_EQUALS( conditionA, conditionB, absoluteTolerance, TEMPERDEV__EPSILON_TOLERANCE_RELATIVE ), "TEMPER_CHECK_NOT_ALMOST_EQUAL(" #conditionA ", " #conditionB ", " #absoluteTolerance ")", false, __FILE__, __LINE__, NULL, NULL )
+	TemperTestTrueInternal( !g_temperTestContext.callbacks.FloatEquals( conditionA, conditionB, absoluteTolerance, TEMPERDEV__EPSILON_TOLERANCE_RELATIVE ), "TEMPER_CHECK_NOT_ALMOST_EQUAL(" #conditionA ", " #conditionB ", " #absoluteTolerance ")", TEMPER_FLAG_TEST_OKAY, __FILE__, __LINE__, NULL, NULL )
 
 //----------------------------------------------------------
 
 // If 'conditionA' is approximately equal enough to 'conditionB' (within 'absoluteTolerance' margin of error) then marks the test as failed and logs the specified printf-formatted error message.
 #define TEMPER_CHECK_NOT_ALMOST_EQUAL_M( conditionA, conditionB, absoluteTolerance, ... ) \
-	TemperTestTrueInternal( !TEMPERDEV__FLOAT_EQUALS( conditionA, conditionB, absoluteTolerance, TEMPERDEV__EPSILON_TOLERANCE_RELATIVE ), "TEMPER_CHECK_NOT_ALMOST_EQUAL_M(" #conditionA ", " #conditionB ", " #absoluteTolerance ", ...)", false,  __FILE__, __LINE__, __VA_ARGS__ )
+	TemperTestTrueInternal( !g_temperTestContext.callbacks.FloatEquals( conditionA, conditionB, absoluteTolerance, TEMPERDEV__EPSILON_TOLERANCE_RELATIVE ), "TEMPER_CHECK_NOT_ALMOST_EQUAL_M(" #conditionA ", " #conditionB ", " #absoluteTolerance ", ...)", TEMPER_FLAG_TEST_OKAY,  __FILE__, __LINE__, __VA_ARGS__ )
 
 //----------------------------------------------------------
 
 // If 'conditionA' is approximately equal enough to 'conditionB' (within 'absoluteTolerance' margin of error) then marks the test as failed and aborts the test.
 #define TEMPER_CHECK_NOT_ALMOST_EQUAL_A( conditionA, conditionB, absoluteTolerance ) \
-	TemperTestTrueInternal( !TEMPERDEV__FLOAT_EQUALS( conditionA, conditionB, absoluteTolerance, TEMPERDEV__EPSILON_TOLERANCE_RELATIVE ), "TEMPER_CHECK_NOT_ALMOST_EQUAL_A(" #conditionA ", " #conditionB ", " #absoluteTolerance ")", true, __FILE__, __LINE__, NULL, NULL )
+	TemperTestTrueInternal( !g_temperTestContext.callbacks.FloatEquals( conditionA, conditionB, absoluteTolerance, TEMPERDEV__EPSILON_TOLERANCE_RELATIVE ), "TEMPER_CHECK_NOT_ALMOST_EQUAL_A(" #conditionA ", " #conditionB ", " #absoluteTolerance ")", TEMPER_FLAG_TEST_ABORT, __FILE__, __LINE__, NULL, NULL )
+
+//----------------------------------------------------------
+
+// If 'conditionA' is approximately equal enough to 'conditionB' (within 'absoluteTolerance' margin of error) then marks the test as failed and aborts the test & ceases execution.
+#define TEMPER_CHECK_NOT_ALMOST_EQUAL_Q( conditionA, conditionB, absoluteTolerance ) \
+	TemperTestTrueInternal( !g_temperTestContext.callbacks.FloatEquals( conditionA, conditionB, absoluteTolerance, TEMPERDEV__EPSILON_TOLERANCE_RELATIVE ), "TEMPER_CHECK_NOT_ALMOST_EQUAL_Q(" #conditionA ", " #conditionB ", " #absoluteTolerance ")", TEMPER_FLAG_TEST_QUIT, __FILE__, __LINE__, NULL, NULL )
 
 //----------------------------------------------------------
 
 // If 'conditionA' is approximately equal enough to 'conditionB' (within 'absoluteTolerance' margin of error) then marks the test as failed, logs the specified printf-formatted error message, and aborts the test.
 #define TEMPER_CHECK_NOT_ALMOST_EQUAL_AM( conditionA, conditionB, absoluteTolerance, ... ) \
-	TemperTestTrueInternal( !TEMPERDEV__FLOAT_EQUALS( conditionA, conditionB, absoluteTolerance, TEMPERDEV__EPSILON_TOLERANCE_RELATIVE ), "TEMPER_CHECK_NOT_ALMOST_EQUAL_AM(" #conditionA ", " #conditionB ", " #absoluteTolerance ", ...)", true, __FILE__, __LINE__, __VA_ARGS__ )
+	TemperTestTrueInternal( !g_temperTestContext.callbacks.FloatEquals( conditionA, conditionB, absoluteTolerance, TEMPERDEV__EPSILON_TOLERANCE_RELATIVE ), "TEMPER_CHECK_NOT_ALMOST_EQUAL_AM(" #conditionA ", " #conditionB ", " #absoluteTolerance ", ...)", TEMPER_FLAG_TEST_ABORT, __FILE__, __LINE__, __VA_ARGS__ )
+
+//----------------------------------------------------------
+
+// If 'conditionA' is approximately equal enough to 'conditionB' (within 'absoluteTolerance' margin of error) then marks the test as failed, logs the specified printf-formatted error message, and aborts the test & ceases execution.
+#define TEMPER_CHECK_NOT_ALMOST_EQUAL_QM( conditionA, conditionB, absoluteTolerance, ... ) \
+	TemperTestTrueInternal( !g_temperTestContext.callbacks.FloatEquals( conditionA, conditionB, absoluteTolerance, TEMPERDEV__EPSILON_TOLERANCE_RELATIVE ), "TEMPER_CHECK_NOT_ALMOST_EQUAL_QM(" #conditionA ", " #conditionB ", " #absoluteTolerance ", ...)", TEMPER_FLAG_TEST_QUIT, __FILE__, __LINE__, __VA_ARGS__ )
 
 
 //==========================================================
@@ -472,10 +556,12 @@ extern "C" {
 // This must be done before including temper.h
 //==========================================================
 
-// Returns a timestamp from the CPU in the 'timeUnit' format.
-// See temperTimeUnit_t for time units.
-#ifndef TEMPER_GET_TIMESTAMP
-#define TEMPER_GET_TIMESTAMP				TemperGetTimestampInternal
+#ifndef TEMPERDEV__ASSERT
+#define TEMPERDEV__ASSERT					assert
+#endif
+
+#ifndef TEMPERDEV__REALLOC
+#define TEMPERDEV__REALLOC					realloc
 #endif
 
 // The code that gets returned if all tests passed.
@@ -493,65 +579,45 @@ extern "C" {
 #define TEMPERDEV__UNUSED( x )				( (void) x )
 #endif
 
-#ifndef TEMPERDEV__REALLOC
-#define TEMPERDEV__REALLOC					realloc
-#endif
 
-#ifndef TEMPERDEV__ASSERT
-#define TEMPERDEV__ASSERT					assert
-#endif
+//==========================================================
+// User-Overridable functions
+//==========================================================
 
-#ifndef TEMPERDEV__VPRINTF
-#define TEMPERDEV__VPRINTF					vprintf
-#endif
+typedef enum temperTimeUnit_t {
+	TEMPER_TIME_UNIT_CLOCKS	= 1,
+	TEMPER_TIME_UNIT_NS,
+	TEMPER_TIME_UNIT_US,
+	TEMPER_TIME_UNIT_MS,
+	TEMPER_TIME_UNIT_SECONDS
+} temperTimeUnit_t;
 
-#ifndef TEMPERDEV__STRCMP
-#define TEMPERDEV__STRCMP					strcmp
-#endif
+//----------------------------------------------------------
 
-#ifndef TEMPERDEV__STRSTR
-#define TEMPERDEV__STRSTR					strstr
-#endif
+typedef struct temperTestInfo_t temperTestInfo_t;
 
-#ifndef TEMPERDEV__MAXF
-#define TEMPERDEV__MAXF						TemperMaxfInternal
-#endif
+//----------------------------------------------------------
 
-#ifndef TEMPERDEV__ABSF
-#define TEMPERDEV__ABSF						TemperAbsfInternal
-#endif
+typedef struct temperCallbacks_t {
+	int			( *VPrintf )( const char* fmt, va_list args );
+	int			( *Strcmp )( const char* strA, const char* strB );
+	bool		( *StringContains )( const char* str, const char* substring );
 
-#ifndef TEMPERDEV__FLOAT_EQUALS
-#define TEMPERDEV__FLOAT_EQUALS				TemperFloatEqualsInternal
-#endif
+	// Returns a timestamp from the CPU in the 'timeUnit' format.
+	// See temperTimeUnit_t for time units.
+	double		( *GetTimestamp )( const temperTimeUnit_t timeUnit );
 
-#ifndef TEMPERDEV__LOG
-#define TEMPERDEV__LOG						TemperLogInternal
-#endif
-
-#ifndef TEMPERDEV__LOG_WARNING
-#define TEMPERDEV__LOG_WARNING				TemperLogWarningInternal
-#endif
-
-#ifndef TEMPERDEV__LOG_ERROR
-#define TEMPERDEV__LOG_ERROR				TemperLogErrorInternal
-#endif
-
-#ifndef TEMPERDEV__ON_BEFORE_TEST
-#define TEMPERDEV__ON_BEFORE_TEST			TemperOnBeforeTestInternal
-#endif
-
-#ifndef TEMPERDEV__ON_AFTER_TEST
-#define TEMPERDEV__ON_AFTER_TEST			TemperOnAfterTestInternal
-#endif
-
-#ifndef TEMPERDEV__RUN_TEST_THREAD
-#define TEMPERDEV__RUN_TEST_THREAD			TemperRunTestThreadInternal
-#endif
-
-#ifndef TEMPERDEV__ON_ALL_TESTS_FINISHED
-#define TEMPERDEV__ON_ALL_TESTS_FINISHED	TemperOnAllTestsFinishedInternal
-#endif
+	float		( *Maxf )( const float a, const float b );
+	float		( *Absf )( const float x );
+	bool		( *FloatEquals )( const float a, const float b, const float absoluteTolerance, const float relativeTolerance );
+	void		( *Log )( const char* fmt, ... );
+	void		( *LogWarning )( const char* fmt, ... );
+	void		( *LogError )( const char* fmt, ... );
+	void		( *OnBeforeTest )( const temperTestInfo_t* information );
+	void		( *OnAfterTest )( const temperTestInfo_t* information );
+	void		( *RunTestThread )( temperTestInfo_t* information );
+	void		( *OnAllTestsFinished )( void );
+} temperCallbacks_t;
 
 
 //==========================================================
@@ -564,21 +630,19 @@ typedef uint32_t temperBool32;
 
 //----------------------------------------------------------
 
-typedef enum temperTimeUnit_t {
-	TEMPER_TIME_UNIT_CLOCKS	= 1,
-	TEMPER_TIME_UNIT_NS,
-	TEMPER_TIME_UNIT_US,
-	TEMPER_TIME_UNIT_MS,
-	TEMPER_TIME_UNIT_SECONDS
-} temperTimeUnit_t;
-
-//----------------------------------------------------------
-
 typedef enum temperTestFlag_t {
-	TEMPER_FLAG_SHOULD_RUN				= 0,
+	TEMPER_FLAG_SHOULD_RUN = 0,
 	TEMPER_FLAG_SHOULD_SKIP,
 	TEMPER_FLAG_DEPRECATED
 } temperTestFlag_t;
+
+//----------------------------------------------------------
+
+typedef enum temperTestInterruptFlag_t {
+	TEMPER_FLAG_TEST_OKAY = 0,
+	TEMPER_FLAG_TEST_ABORT,
+	TEMPER_FLAG_TEST_QUIT
+} temperTestInterruptFlag_t;
 
 //----------------------------------------------------------
 
@@ -603,6 +667,7 @@ typedef struct temperTestInfo_t {
 //----------------------------------------------------------
 
 typedef struct temperTestContext_t {
+	temperCallbacks_t	callbacks;
 	uint64_t			testInfosCount;
 	temperTestInfo_t*	testInfos;
 #ifdef _WIN32
@@ -620,9 +685,9 @@ typedef struct temperTestContext_t {
 	uint32_t			currentTestErrorCount;
 	int32_t				exitCode;
 	temperBool32		currentTestWasAborted;
+	temperBool32		quitHasBeenCalled;
 	temperBool32		partialFilter;
 	temperTimeUnit_t	timeUnit;
-	uint32_t			pad0;
 	const char*			suiteFilterPrevious;
 	const char*			suiteFilter;
 	const char*			testFilter;
@@ -772,7 +837,7 @@ typedef const char*					temperTextColor_t;
 
 TEMPERDEV__EXTERN_C void	TemperAddTestInternal( const temperTestInfo_t* newTestInfo );
 
-TEMPERDEV__EXTERN_C void	TemperTestTrueInternal( const bool condition, const char* conditionStr, const bool abortOnFail, const char* file, const uint32_t line, const char* fmt, ... );
+TEMPERDEV__EXTERN_C void	TemperTestTrueInternal( const bool condition, const char* conditionStr, const temperTestInterruptFlag_t testInteruptFlag, const char* file, const uint32_t line, const char* fmt, ... );
 
 TEMPERDEV__EXTERN_C void	TemperSetupInternal( void );
 
@@ -810,7 +875,7 @@ static void TemperLogInternal( const char* fmt, ... ) {
 
 	va_list args;
 	va_start( args, fmt );
-	TEMPERDEV__VPRINTF( fmt, args );
+	g_temperTestContext.callbacks.VPrintf( fmt, args );
 	va_end( args );
 }
 
@@ -828,7 +893,7 @@ static void TemperLogWarningInternal( const char* fmt, ... ) {
 
 	TemperSetTextColorInternal( TEMPERDEV__COLOR_YELLOW );
 
-	TEMPERDEV__VPRINTF( fmt, args );
+	g_temperTestContext.callbacks.VPrintf( fmt, args );
 
 	TemperSetTextColorInternal( TEMPERDEV__COLOR_DEFAULT );
 
@@ -849,7 +914,7 @@ static void TemperLogErrorInternal( const char* fmt, ... ) {
 
 	TemperSetTextColorInternal( TEMPERDEV__COLOR_YELLOW );
 
-	TEMPERDEV__VPRINTF( fmt, args );
+	g_temperTestContext.callbacks.VPrintf( fmt, args );
 
 	TemperSetTextColorInternal( TEMPERDEV__COLOR_DEFAULT );
 
@@ -871,7 +936,7 @@ static float TemperMaxfInternal( const float a, const float b ) {
 //----------------------------------------------------------
 
 static float TemperAbsfInternal( const float x ) {
-	return TEMPERDEV__MAXF( -x, x );
+	return g_temperTestContext.callbacks.Maxf( -x, x );
 }
 
 //----------------------------------------------------------
@@ -879,7 +944,7 @@ static float TemperAbsfInternal( const float x ) {
 // uses Christer Ericson's solution:
 // https://realtimecollisiondetection.net/blog/?p=89
 bool TemperFloatEqualsInternal( const float a, const float b, const float absoluteTolerance, const float relativeTolerance ) {
-	return TEMPERDEV__ABSF( a - b ) <= TEMPERDEV__MAXF( absoluteTolerance, relativeTolerance * TEMPERDEV__MAXF( TEMPERDEV__ABSF( a ), TEMPERDEV__ABSF( b ) ) );
+	return g_temperTestContext.callbacks.Absf( a - b ) <= g_temperTestContext.callbacks.Maxf( absoluteTolerance, relativeTolerance * g_temperTestContext.callbacks.Maxf( g_temperTestContext.callbacks.Absf( a ), g_temperTestContext.callbacks.Absf( b ) ) );
 }
 
 //----------------------------------------------------------
@@ -912,6 +977,10 @@ static const char* TemperGetNextArgInternal( const int argIndex, const int argc,
 }
 
 //----------------------------------------------------------
+
+static bool TemperStringContainsInternal( const char* str, const char* substring ) {
+	return strstr( str, substring ) != NULL;
+}
 
 static double TemperGetTimestampInternal( const temperTimeUnit_t timeUnit ) {
 	// should never get here
@@ -952,7 +1021,7 @@ static double TemperGetTimestampInternal( const temperTimeUnit_t timeUnit ) {
 //----------------------------------------------------------
 
 static void TemperShowUsageInternal( void ) {
-	TEMPERDEV__LOG(
+	g_temperTestContext.callbacks.Log(
 		"Arguments:\n"
 		"    [-h|--help]\n"
 		"        Shows this help and then exits.\n"
@@ -980,15 +1049,15 @@ static bool TemperHandleCommandLineArgumentsInternal( int argc, char** argv ) {
 	for ( int argIndex = 0; argIndex < argc; argIndex++ ) {
 		const char* arg = argv[argIndex];
 
-		if ( TEMPERDEV__STRCMP( arg, "-h" ) == 0 || TEMPERDEV__STRCMP( arg, "--help" ) == 0 ) {
+		if ( g_temperTestContext.callbacks.Strcmp( arg, "-h" ) == 0 || g_temperTestContext.callbacks.Strcmp( arg, "--help" ) == 0 ) {
 			TemperShowUsageInternal();
 			return false;
 		}
 
-		if ( TEMPERDEV__STRCMP( arg, "-s" ) == 0 ) {
+		if ( g_temperTestContext.callbacks.Strcmp( arg, "-s" ) == 0 ) {
 			const char* nextArg = TemperGetNextArgInternal( argIndex, argc, argv );
 			if ( !nextArg ) {
-				TEMPERDEV__LOG_ERROR( "Value for argument \"%s\" was not set.\n", arg );
+				g_temperTestContext.callbacks.LogError( "Value for argument \"%s\" was not set.\n", arg );
 				TemperShowUsageInternal();
 				return false;
 			}
@@ -998,10 +1067,10 @@ static bool TemperHandleCommandLineArgumentsInternal( int argc, char** argv ) {
 			continue;
 		}
 
-		if ( TEMPERDEV__STRCMP( arg, "-t" ) == 0 ) {
+		if ( g_temperTestContext.callbacks.Strcmp( arg, "-t" ) == 0 ) {
 			const char* nextArg = TemperGetNextArgInternal( argIndex, argc, argv );
 			if ( !nextArg ) {
-				TEMPERDEV__LOG_ERROR( "Value for argument \"%s\" was not set.\n", arg );
+				g_temperTestContext.callbacks.LogError( "Value for argument \"%s\" was not set.\n", arg );
 				TemperShowUsageInternal();
 				return false;
 			}
@@ -1011,31 +1080,31 @@ static bool TemperHandleCommandLineArgumentsInternal( int argc, char** argv ) {
 			continue;
 		}
 
-		if ( TEMPERDEV__STRCMP( arg, "-p" ) == 0 ) {
+		if ( g_temperTestContext.callbacks.Strcmp( arg, "-p" ) == 0 ) {
 			g_temperTestContext.partialFilter = true;
 			continue;
 		}
 
-		if ( TEMPERDEV__STRCMP( arg, "--time-unit" ) == 0 ) {
+		if ( g_temperTestContext.callbacks.Strcmp( arg, "--time-unit" ) == 0 ) {
 			const char* nextArg = TemperGetNextArgInternal( argIndex, argc, argv );
 			if ( !nextArg ) {
-				TEMPERDEV__LOG_ERROR( "Value for argument \"%s\" was not set.\n", arg );
+				g_temperTestContext.callbacks.LogError( "Value for argument \"%s\" was not set.\n", arg );
 				TemperShowUsageInternal();
 				return false;
 			}
 
-			if ( TEMPERDEV__STRCMP( nextArg, "seconds" ) == 0 ) {
+			if ( g_temperTestContext.callbacks.Strcmp( nextArg, "seconds" ) == 0 ) {
 				g_temperTestContext.timeUnit = TEMPER_TIME_UNIT_SECONDS;
-			} else if ( TEMPERDEV__STRCMP( nextArg, "ms" ) == 0 ) {
+			} else if ( g_temperTestContext.callbacks.Strcmp( nextArg, "ms" ) == 0 ) {
 				g_temperTestContext.timeUnit = TEMPER_TIME_UNIT_MS;
-			} else if ( TEMPERDEV__STRCMP( nextArg, "us" ) == 0 ) {
+			} else if ( g_temperTestContext.callbacks.Strcmp( nextArg, "us" ) == 0 ) {
 				g_temperTestContext.timeUnit = TEMPER_TIME_UNIT_US;
-			} else if ( TEMPERDEV__STRCMP( nextArg, "ns" ) == 0 ) {
+			} else if ( g_temperTestContext.callbacks.Strcmp( nextArg, "ns" ) == 0 ) {
 				g_temperTestContext.timeUnit = TEMPER_TIME_UNIT_NS;
-			} else if ( TEMPERDEV__STRCMP( nextArg, "clocks" ) == 0 ) {
+			} else if ( g_temperTestContext.callbacks.Strcmp( nextArg, "clocks" ) == 0 ) {
 				g_temperTestContext.timeUnit = TEMPER_TIME_UNIT_CLOCKS;
 			} else {
-				TEMPERDEV__LOG_ERROR(
+				g_temperTestContext.callbacks.LogError(
 					"Invalid time unit \"%s\" specified.  Please select from one of the following:\n"
 					"\t- seconds\n"
 					"\t- ms\n"
@@ -1058,7 +1127,7 @@ static bool TemperHandleCommandLineArgumentsInternal( int argc, char** argv ) {
 	// if partial filtering was enabled but the user did not then specify a suite or test filter then they need to know about incorrect usage
 	if ( g_temperTestContext.partialFilter ) {
 		if ( !g_temperTestContext.suiteFilter && !g_temperTestContext.testFilter ) {
-			TEMPERDEV__LOG_ERROR(
+			g_temperTestContext.callbacks.LogError(
 				"Partial filtering (-p) was enabled but suite or test filtering (-s, -t) was not.\n"
 				"You can only use partial filtering if you have either suite or test filtering enabled as well.\n"
 			);
@@ -1114,9 +1183,9 @@ static TEMPERDEV__THREAD_HANDLE TemperThreadProcInternal( void* data ) {
 		information->OnBeforeTest();
 	}
 
-	g_temperTestContext.currentTestStartTime = TEMPER_GET_TIMESTAMP( g_temperTestContext.timeUnit );
+	g_temperTestContext.currentTestStartTime = g_temperTestContext.callbacks.GetTimestamp( g_temperTestContext.timeUnit );
 	information->TestFuncCallback();
-	g_temperTestContext.currentTestEndTime = TEMPER_GET_TIMESTAMP( g_temperTestContext.timeUnit );
+	g_temperTestContext.currentTestEndTime = g_temperTestContext.callbacks.GetTimestamp( g_temperTestContext.timeUnit );
 
 	information->testTimeTaken = g_temperTestContext.currentTestEndTime - g_temperTestContext.currentTestStartTime;
 
@@ -1155,14 +1224,14 @@ static void TemperRunTestThreadInternal( temperTestInfo_t* information ) {
 	pthread_attr_init( &threadAttribs );
 	if ( pthread_create( &thread, &threadAttribs, TemperThreadProcInternal, information ) != 0 ) {
 		err = errno;
-		TEMPERDEV__LOG_ERROR( "Failed to create test thread: %s.\n", strerror( err ) );
+		g_temperTestContext.callbacks.LogError( "Failed to create test thread: %s.\n", strerror( err ) );
 		return;
 	}
 
 	void* exitCode;
 	if ( pthread_join( thread, &exitCode ) != 0 ) {
 		err = errno;
-		TEMPERDEV__LOG_ERROR( "Failed to wait for test thread to finish: %s.\n", strerror( err ) );
+		g_temperTestContext.callbacks.LogError( "Failed to wait for test thread to finish: %s.\n", strerror( err ) );
 		return;
 	}
 #else	// defined( _WIN32 )
@@ -1173,7 +1242,7 @@ static void TemperRunTestThreadInternal( temperTestInfo_t* information ) {
 //----------------------------------------------------------
 
 static void TemperPrintDividerInternal( const char* suiteName ) {
-	TEMPERDEV__LOG( "----------------------------------------------------------\nSUITE: \"%s\"\n\n", suiteName );
+	g_temperTestContext.callbacks.Log( "----------------------------------------------------------\nSUITE: \"%s\"\n\n", suiteName );
 }
 
 //----------------------------------------------------------
@@ -1182,7 +1251,7 @@ static void TemperOnBeforeTestInternal( const temperTestInfo_t* information ) {
 	TEMPERDEV__ASSERT( information );
 
 	if ( g_temperTestContext.suiteFilterPrevious && information->suiteNameStr ) {
-		if ( TEMPERDEV__STRCMP( g_temperTestContext.suiteFilterPrevious, information->suiteNameStr ) != 0 ) {
+		if ( g_temperTestContext.callbacks.Strcmp( g_temperTestContext.suiteFilterPrevious, information->suiteNameStr ) != 0 ) {
 			TemperPrintDividerInternal( information->suiteNameStr );
 			g_temperTestContext.suiteFilterPrevious = information->suiteNameStr;
 		}
@@ -1193,7 +1262,7 @@ static void TemperOnBeforeTestInternal( const temperTestInfo_t* information ) {
 	}
 
 	if ( information->testNameStr ) {
-		TEMPERDEV__LOG( "TEST: \"%s\"\n", information->testNameStr );
+		g_temperTestContext.callbacks.Log( "TEST: \"%s\"\n", information->testNameStr );
 	}
 }
 
@@ -1205,34 +1274,42 @@ static void TemperOnAfterTestInternal( const temperTestInfo_t* information ) {
 	if ( information->testingFlag == TEMPER_FLAG_SHOULD_RUN ) {
 		const char* timeUnitStr = TemperGetTimeUnitStringInternal( g_temperTestContext.timeUnit );
 
-		if ( g_temperTestContext.currentTestWasAborted ) {
+		if( g_temperTestContext.quitHasBeenCalled ) {
 			TemperSetTextColorInternal( TEMPERDEV__COLOR_RED );
-			TEMPERDEV__LOG( "=== TEST ABORTED (%.3f %s) ===\n\n", g_temperTestContext.currentTestEndTime - g_temperTestContext.currentTestStartTime, timeUnitStr );
+			g_temperTestContext.callbacks.Log( "=== TEST INVOKED EARLY EXIT (%.3f %s) ===\n\n", g_temperTestContext.currentTestEndTime - g_temperTestContext.currentTestStartTime, timeUnitStr );
+		}
+		else if( g_temperTestContext.currentTestWasAborted ) {
+			TemperSetTextColorInternal( TEMPERDEV__COLOR_RED );
+			g_temperTestContext.callbacks.Log( "=== TEST ABORTED (%.3f %s) ===\n\n", g_temperTestContext.currentTestEndTime - g_temperTestContext.currentTestStartTime, timeUnitStr );
 			TemperSetTextColorInternal( TEMPERDEV__COLOR_DEFAULT );
 		} else if ( g_temperTestContext.currentTestErrorCount > 0 ) {
 			TemperSetTextColorInternal( TEMPERDEV__COLOR_RED );
-			TEMPERDEV__LOG( "TEST FAILED (%.3f %s)\n\n", g_temperTestContext.currentTestEndTime - g_temperTestContext.currentTestStartTime, timeUnitStr );
+			g_temperTestContext.callbacks.Log( "TEST FAILED (%.3f %s)\n\n", g_temperTestContext.currentTestEndTime - g_temperTestContext.currentTestStartTime, timeUnitStr );
 			TemperSetTextColorInternal( TEMPERDEV__COLOR_DEFAULT );
 		} else {
 			TemperSetTextColorInternal( TEMPERDEV__COLOR_GREEN );
-			TEMPERDEV__LOG( "TEST SUCCEEDED (%.3f %s)\n\n", g_temperTestContext.currentTestEndTime - g_temperTestContext.currentTestStartTime, timeUnitStr );
+			g_temperTestContext.callbacks.Log( "TEST SUCCEEDED (%.3f %s)\n\n", g_temperTestContext.currentTestEndTime - g_temperTestContext.currentTestStartTime, timeUnitStr );
 			TemperSetTextColorInternal( TEMPERDEV__COLOR_DEFAULT );
 		}
 	} else {
 		const char* skipReason = information->testingFlag == TEMPER_FLAG_DEPRECATED ? "DEPRECATED" : "SHOULD_SKIP";
 		TemperSetTextColorInternal( TEMPERDEV__COLOR_YELLOW );
-		TEMPERDEV__LOG( "TEST FLAGGED \"%s\"\n\n", skipReason );
+		g_temperTestContext.callbacks.Log( "TEST FLAGGED \"%s\"\n\n", skipReason );
 		TemperSetTextColorInternal( TEMPERDEV__COLOR_DEFAULT );
 	}
 }
 
 //----------------------------------------------------------
 
-static void TemperAbortTestOnFailInternal( const bool abortOnFail ) {
-	if ( abortOnFail ) {
-		g_temperTestContext.currentTestEndTime = TEMPER_GET_TIMESTAMP( g_temperTestContext.timeUnit );
+static void TemperAbortTestOnFailInternal( const temperTestInterruptFlag_t testInteruptFlag ) {
+	if ( testInteruptFlag != 0 ) {
+		g_temperTestContext.currentTestEndTime = g_temperTestContext.callbacks.GetTimestamp( g_temperTestContext.timeUnit );
 		g_temperTestContext.testsAborted += 1;
 		g_temperTestContext.currentTestWasAborted = true;
+
+		if( testInteruptFlag == TEMPER_FLAG_TEST_QUIT ) {
+			g_temperTestContext.quitHasBeenCalled = true;
+		}
 
 		TEMPERDEV__EXIT_TEST_THREAD();
 	}
@@ -1240,51 +1317,54 @@ static void TemperAbortTestOnFailInternal( const bool abortOnFail ) {
 
 //----------------------------------------------------------
 
-void TemperTestTrueInternal( const bool condition, const char* conditionStr, const bool abortOnFail, const char* file, const uint32_t line, const char* fmt, ... ) {
+void TemperTestTrueInternal( const bool condition, const char* conditionStr, const temperTestInterruptFlag_t testInteruptFlag, const char* file, const uint32_t line, const char* fmt, ... ) {
 	if ( !( condition ) ) {
 		g_temperTestContext.currentTestErrorCount += 1;
 
 		{
 			TemperSetTextColorInternal( TEMPERDEV__COLOR_RED );
-			TEMPERDEV__LOG( "FAILED: " );
+			g_temperTestContext.callbacks.Log( "FAILED: " );
 			TemperSetTextColorInternal( TEMPERDEV__COLOR_YELLOW );
-			TEMPERDEV__LOG( "%s at %s line %d.\n", conditionStr, file, line );
+			g_temperTestContext.callbacks.Log( "%s at %s line %d.\n", conditionStr, file, line );
 			if ( fmt ) {
 				va_list args;
 				va_start( args, fmt );
-				TEMPERDEV__VPRINTF( fmt, args );
+				g_temperTestContext.callbacks.VPrintf( fmt, args );
 				va_end( args );
 			}
 			TemperSetTextColorInternal( TEMPERDEV__COLOR_DEFAULT );
 		}
 
-		TemperAbortTestOnFailInternal( abortOnFail );
+		TemperAbortTestOnFailInternal( testInteruptFlag );
 	}
 }
 
 //----------------------------------------------------------
 
 static void TemperOnAllTestsFinishedInternal( void ) {
-	TEMPERDEV__LOG(
+	uint32_t totalFound = g_temperTestContext.totalTestsFoundWithFilters;
+
+	g_temperTestContext.callbacks.Log(
 		"------------------------------------------------------------\n"
 		"\n"
 		"\n=== ALL TESTS FINISHED ===\n"
 		"Total time taken: %.3f %s\n"
 		"Total tests defined: %d\n"
+		"Total tests found & ran: %d\n"
 		, g_temperTestContext.totalExecutionTime, TemperGetTimeUnitStringInternal( g_temperTestContext.timeUnit )
 		, g_temperTestContext.testInfosCount
+		, totalFound
 	);
 
 	if ( g_temperTestContext.suiteFilter || g_temperTestContext.testFilter ) {
-		TEMPERDEV__LOG( "\t- Total tests matching filters: %d\n\t- Suite filter: %s\n\t- Test filter: %s\n\t- Partial results %s\n",
+		g_temperTestContext.callbacks.Log( "\t- Total tests matching filters: %d\n\t- Suite filter: %s\n\t- Test filter: %s\n\t- Partial results %s\n",
 				g_temperTestContext.totalTestsFoundWithFilters,
 				g_temperTestContext.suiteFilter,
 				g_temperTestContext.testFilter,
 				g_temperTestContext.partialFilter ? "PERMITTED" : "DISCARDED" );
 	}
 
-	uint32_t totalFound = g_temperTestContext.totalTestsFoundWithFilters;
-	TEMPERDEV__LOG(
+	g_temperTestContext.callbacks.Log(
 		"Passed:   %d ( %d%% )\n"
 		"Failed:   %d ( %d%% )\n"
 		"Aborted:  %d ( %d%% )\n"
@@ -1303,6 +1383,26 @@ static void TemperOnAllTestsFinishedInternal( void ) {
 // an error if it isn't. Maybe also (SOMEHOW) ensuring no test
 // ever has a higher count.
 void TemperSetupInternal( void ) {
+	// set default callbacks if none were set beforehand
+	{
+		temperCallbacks_t* callbacks = &g_temperTestContext.callbacks;
+
+		if ( !callbacks->VPrintf )				{ callbacks->VPrintf = vprintf; }
+		if ( !callbacks->Strcmp )				{ callbacks->Strcmp = strcmp; }
+		if ( !callbacks->StringContains )		{ callbacks->StringContains = TemperStringContainsInternal; }
+		if ( !callbacks->GetTimestamp )			{ callbacks->GetTimestamp = TemperGetTimestampInternal; }
+		if ( !callbacks->Maxf )					{ callbacks->Maxf = TemperMaxfInternal; }
+		if ( !callbacks->Absf )					{ callbacks->Absf = TemperAbsfInternal; }
+		if ( !callbacks->FloatEquals )			{ callbacks->FloatEquals = TemperFloatEqualsInternal; }
+		if ( !callbacks->Log )					{ callbacks->Log = TemperLogInternal; }
+		if ( !callbacks->LogWarning )			{ callbacks->LogWarning = TemperLogWarningInternal; }
+		if ( !callbacks->LogError )				{ callbacks->LogError = TemperLogErrorInternal; }
+		if ( !callbacks->OnBeforeTest )			{ callbacks->OnBeforeTest = TemperOnBeforeTestInternal; }
+		if ( !callbacks->OnAfterTest )			{ callbacks->OnAfterTest = TemperOnAfterTestInternal; }
+		if ( !callbacks->RunTestThread )		{ callbacks->RunTestThread = TemperRunTestThreadInternal; }
+		if ( !callbacks->OnAllTestsFinished )	{ callbacks->OnAllTestsFinished = TemperOnAllTestsFinishedInternal; }
+	}
+
 #ifdef _WIN32
 	LARGE_INTEGER frequency;
 	QueryPerformanceFrequency( &frequency );
@@ -1340,9 +1440,9 @@ static bool TemperIsSuiteFilteredInternal( const char* suiteName ) {
 	}
 
 	if ( g_temperTestContext.partialFilter ) {
-		return TEMPERDEV__STRSTR( suiteName, g_temperTestContext.suiteFilter ) != NULL;
+		return g_temperTestContext.callbacks.StringContains( suiteName, g_temperTestContext.suiteFilter );
 	} else {
-		return TEMPERDEV__STRCMP( suiteName, g_temperTestContext.suiteFilter ) == 0;
+		return g_temperTestContext.callbacks.Strcmp( suiteName, g_temperTestContext.suiteFilter ) == 0;
 	}
 }
 
@@ -1358,9 +1458,9 @@ static bool TemperIsTestFilteredInternal( const char* testName ) {
 	}
 
 	if ( g_temperTestContext.partialFilter ) {
-		return TEMPERDEV__STRSTR( testName, g_temperTestContext.testFilter ) != NULL;
+		return g_temperTestContext.callbacks.StringContains( testName, g_temperTestContext.testFilter );
 	} else {
-		return TEMPERDEV__STRCMP( testName, g_temperTestContext.testFilter ) == 0;
+		return g_temperTestContext.callbacks.Strcmp( testName, g_temperTestContext.testFilter ) == 0;
 	}
 }
 
@@ -1373,9 +1473,7 @@ static int TemperCalculateExitCode( void ) {
 //----------------------------------------------------------
 
 int TemperExecuteAllTestsInternal( void ) {
-	TemperSetupInternal();
-
-	double start = TEMPER_GET_TIMESTAMP( g_temperTestContext.timeUnit );
+	double start = g_temperTestContext.callbacks.GetTimestamp( g_temperTestContext.timeUnit );
 
 	for ( uint64_t i = 0; i < g_temperTestContext.testInfosCount; i++ ) {
 		temperTestInfo_t* testInfo = &g_temperTestContext.testInfos[i];
@@ -1388,13 +1486,13 @@ int TemperExecuteAllTestsInternal( void ) {
 			if ( TemperIsTestFilteredInternal( testInfo->testNameStr ) ) {
 				g_temperTestContext.totalTestsFoundWithFilters += 1;
 
-				TEMPERDEV__ON_BEFORE_TEST( testInfo );
+				g_temperTestContext.callbacks.OnBeforeTest( testInfo );
 
 				if ( testInfo->testingFlag == TEMPER_FLAG_SHOULD_RUN ) {
 					g_temperTestContext.currentTestErrorCount = 0;
 					g_temperTestContext.currentTestWasAborted = false;
 
-					TEMPERDEV__RUN_TEST_THREAD( testInfo );
+					g_temperTestContext.callbacks.RunTestThread( testInfo );
 
 					g_temperTestContext.totalTestsExecuted += 1;
 
@@ -1407,15 +1505,19 @@ int TemperExecuteAllTestsInternal( void ) {
 					g_temperTestContext.testsSkipped += 1;
 				}
 
-				TEMPERDEV__ON_AFTER_TEST( testInfo );
+				g_temperTestContext.callbacks.OnAfterTest( testInfo );
+
+				if( g_temperTestContext.quitHasBeenCalled ) {
+					break;
+				}
 			}
 		}
 	}
 
-	double end = TEMPER_GET_TIMESTAMP( g_temperTestContext.timeUnit );
+	double end = g_temperTestContext.callbacks.GetTimestamp( g_temperTestContext.timeUnit );
 	g_temperTestContext.totalExecutionTime = end - start;
 
-	TEMPERDEV__ON_ALL_TESTS_FINISHED();
+	g_temperTestContext.callbacks.OnAllTestsFinished();
 
 	return TemperCalculateExitCode();
 }
@@ -1423,6 +1525,8 @@ int TemperExecuteAllTestsInternal( void ) {
 //----------------------------------------------------------
 
 int TemperExecuteAllTestsWithArgumentsInternal( int argc, char** argv ) {
+	TemperSetupInternal();
+
 	if ( !TemperHandleCommandLineArgumentsInternal( argc, argv ) ) {
 		return TEMPERDEV__EXIT_FAILURE;
 	}

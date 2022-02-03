@@ -1,0 +1,14 @@
+FINISH HLML!!!
+
+BEFORE RELEASE:
+- make sure changelog mentions ALL the changes that you made for 2.0
+- update README
+- RELEASE 2.0!
+
+POST RELEASE:
+- add more tests:
+	- constructor tests for each different constructor for vectors and matrices
+	- assignment operator tests
+	- array access operators
+- assembly optimisations for ALL functions
+- float16 support?

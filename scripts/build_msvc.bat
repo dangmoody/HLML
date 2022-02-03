@@ -1,47 +1,120 @@
 @echo off
 
-REM can be either "debug" or "release"
-set config=%1
-if [%config%]==[] (
-	echo ERROR: Config argument was not specified.
+setlocal EnableDelayedExpansion
+
+set output_filename=""
+set compiler=msvc
+set config=""
+set source_files=""
+
+set foundSourceFiles=0
+
+REM store this now because were about to fuck around with all the cmd line args
+set cwd=%~dp0
+
+:ParseArgs
+if "%1" NEQ "" (
+	if /I [%1]==[-h] (
+		goto :ShowUsage
+	)
+
+	if /I [%1]==[--help] (
+		goto :ShowUsage
+	)
+
+	if /I [%1]==[--output] (
+		set output_filename=%2
+	)
+
+	if /I [%1]==[--config] (
+		set config=%2
+	)
+
+	if /I [%1]==[--source] (
+		set foundSourceFiles=1
+		goto :VerifyArgs
+	)
+
+	shift
+
+	goto :ParseArgs
+)
+
+:VerifyArgs
+if /I [!output_filename!]==[""] (
+	echo ERROR: --output argument not specified.
+	echo.
 	goto :ShowUsage
 )
 
-REM name of the exe to make, must NOT include ".exe"
-set output_file=%2
-if [%output_file%]==[] (
-	echo ERROR: Output file was not specified.
+if /I [!config!]==[""] (
+	echo ERROR: --config argument not specified.
+	echo.
 	goto :ShowUsage
 )
 
-REM path to source of files to build, must NOT include ".cpp"
-set source_files_path=%3
-if [%source_files_path%]==[] (
-	echo ERROR: Source files path was not specified.
+if %foundSourceFiles%==0 (
+	echo ERROR: --source argument not specified.
+	echo.
 	goto :ShowUsage
 )
 
-pushd %~dp0
+REM get all of the source files specified after the --source arg
+shift
+set source_files=%1
+:GetSourceFilesArgs
+shift
+if [%1]==[] goto :Build
+set source_files=!source_files! %1
+goto :GetSourceFilesArgs
+
+REM now we can start to build
+:Build
+REM echo OUTPUT: !output_filename!
+REM echo COMPILER: !compiler!
+REM echo CONFIG: !config!
+REM echo SOURCE FILES: !source_files!
+REM echo.
+
+set symbols=
+if /I [!config!]==[debug] (
+	set symbols=/Zi
+)
+
+set optimisation=/Od
+if /I [!config!]==[release] (
+	set optimisation=/O3
+)
+
+set defines=-D_CRT_SECURE_NO_WARNINGS
+
+if /I [!config!]==[debug] (
+	set defines=!defines! -D_DEBUG
+)
+
+if /I [!config!]==[release] (
+	set defines=!defines! -DNDEBUG
+)
+
+set include_dirs=/I"code\\3rdparty\\include\\"
+
+set warninglevels=/W4
+
+set ignorewarnings=
+
+pushd %cwd%
 pushd ..
 
-set ignore_warnings=/wd4805 /wd4204 /wd4996
-set options_compiler=/W4 /WX %ignore_warnings% /MT /Od /MP /Gm- /EHsc /U "_UNICODE" /Fo"bin\\msvc\\%config%\\intermediate\\%output_file%\\" /Zi /Fd"bin\\msvc\\%config%\\intermediate\\%output_file%\\%output_file%.pdb"
-set options_linker=/OUT:bin\\msvc\\%config%\\%output_file%.exe /NOLOGO /opt:ref
-set libs=User32.lib gdi32.lib winmm.lib
+set build_dir=bin\\win64\\!config!\\tests\\!compiler!
 
-set additional_includes=/I"code/3rdparty/include/"
-
-REM if the output folder doesn't exist, create it
-IF NOT EXIST "bin\\msvc\\%config%\\" (
-	mkdir "bin\\msvc\\%config%\\"
+if not exist %build_dir% (
+	mkdir %build_dir%
 )
 
-REM if the intermediate output folder doesn't exist, create it
-IF NOT EXIST "bin\\msvc\\%config%\\intermediate\\%output_file%" (
-	mkdir "bin\\msvc\\%config%\\intermediate\\%output_file%"
-)
+call "C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Auxiliary\Build\vcvars64.bat"
 
-cl.exe %source_files_path% %additional_includes% %options_compiler% /link %options_linker% %libs%
+echo CALLING: cl /Fe:%build_dir%\\!output_filename! /Fd:%build_dir%\\!output_filename!.pdb /Fo:%build_dir%\\!output_filename!.obj !symbols! !optimisation! !defines! %include_dirs% %warninglevels% !ignorewarnings! !source_files!
+cl /Fe:%build_dir%\\!output_filename! /Fd:%build_dir%\\!output_filename!.pdb /Fo:%build_dir%\\!output_filename!.obj !symbols! !optimisation! !defines! %include_dirs% %warninglevels% !ignorewarnings! !source_files!
 
 popd
 popd
@@ -51,15 +124,21 @@ goto :EOF
 
 :ShowUsage
 echo Usage:
-echo build_msvc.bat ^<config^> ^<output_file^> ^<source_files_path^>
 echo.
-echo Args:
-echo     ^<config^>
-echo         Must be either "debug" or "release".
+echo %~nx0 --output ^<filename^> --config [debug^|release] --source ^<source files^>
 echo.
-echo     ^<output_file^>
-echo         The name of the .exe to generate.  Must NOT include ".exe".
+echo Arguments:
+echo     [-h^|--help] (optional):
+echo         Shows this help and then exits.
 echo.
-echo     ^<source_files_path^>
-echo         Path to the source files to build.  Must NOT include ".cpp".
+echo     --output ^<exe^> (required):
+echo         The name of the output binary.
+echo.
+echo     --config [debug^|release] (required):
+echo         MUST be either \"debug\" or \"release\".  If debug is used then compiles with symbols and without optimisations.  If release is used compiles vice-versa.
+echo.
+echo     --source ^<source files^> (required):
+echo         All the source files you want to build.
+echo         THIS ARGUMENT MUST COME LAST.
+echo.
 goto :EOF
