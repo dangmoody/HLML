@@ -1,3 +1,6 @@
+BEFORE RELEASE:
+- move from Travis CI to GitHub Actions
+
 POST RELEASE:
 - add more tests:
 	- constructor tests for each different constructor for vectors and matrices
