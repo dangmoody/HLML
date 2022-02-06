@@ -28,5 +28,5 @@ jobs:
       - name: Install MSVC
         uses: ilammy/msvc-dev-cmd@v1
 
-    - name: Build Generator
-      run: .\scripts\build_generator.bat --config debug
+      - name: Build Generator
+        run: .\scripts\build_generator.bat --config debug
