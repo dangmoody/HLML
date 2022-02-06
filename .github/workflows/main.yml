@@ -19,6 +19,8 @@ jobs:
     runs-on: windows-latest
 
     steps:
+      - uses: actions/checkout@v2
+
       - name: Install LLVM and Clang
         uses: KyleMayes/install-llvm-action@v1
         with:
