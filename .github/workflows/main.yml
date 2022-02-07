@@ -10,6 +10,9 @@ on:
   workflow_dispatch:
 
 jobs:
+  #
+  # win64
+  #
   build-and-test-windows:
     runs-on: windows-latest
 
@@ -36,3 +39,31 @@ jobs:
 
       - name: Build And Test
         run: .\scripts\build_and_test_clang.bat ${{ matrix.compiler }}
+
+  #
+  # linux
+  #
+  build-and-test-linux:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        compiler: ["clang", "gcc"]
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Install Clang
+        uses: KyleMayes/install-llvm-action@v1
+        with:
+          version: "10.0"
+          directory: ${{ runner.temp }}/llvm
+
+      - name: Install GCC
+        uses: egor-tensin/setup-gcc@v1
+        with:
+          version: latest
+          platform: x64
+
+      - name: Build And Test
+        run: .\scripts\build_and_test_clang.sh ${{ matrix.compiler }}
