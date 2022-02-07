@@ -42,18 +42,18 @@ if /I [!compiler_cpp!]==[] (
 	goto :BuildFailure
 )
 
-echo Compiling for !arg_compiler!
+echo Compiling for !compiler_c! (C) and !compiler_cpp! (C++)
 
 pushd %~dp0
 pushd ..
 
 REM cleanup old files
-if exist .\\bin\\win64\\debug\\tests\\!arg_compiler!\\hlml_tests_c.exe (
-	del .\\bin\\win64\\debug\\tests\\!arg_compiler!\\hlml_tests_c.exe
+if exist .\\bin\\win64\\debug\\tests\\!compiler_c!\\hlml_tests_c.exe (
+	del .\\bin\\win64\\debug\\tests\\!compiler_c!\\hlml_tests_c.exe
 )
 
-if exist .\\bin\\win64\\debug\\tests\\!arg_compiler!\\hlml_tests_cpp.exe (
-	del .\\bin\\win64\\debug\\tests\\!arg_compiler!\\hlml_tests_cpp.exe
+if exist .\\bin\\win64\\debug\\tests\\!compiler_cpp!\\hlml_tests_cpp.exe (
+	del .\\bin\\win64\\debug\\tests\\!compiler_cpp!\\hlml_tests_cpp.exe
 )
 
 
