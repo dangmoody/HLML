@@ -10,3 +10,4 @@ POST RELEASE:
 	- array access operators
 - assembly optimisations for ALL functions
 - float16 support?
+- investigate using ODIN as glue code solution

@@ -20,7 +20,7 @@ call .\\scripts\\build_generator.bat --config debug
 if %errorlevel% neq 0 goto :BuildFailure
 
 .\\bin\\win64\\debug\\generator.exe
-if %errorlevel% neq 0 goto :BuildFailure
+if %errorlevel% neq 0 goto :RuntimeFailure
 echo.
 
 
@@ -31,7 +31,7 @@ if %errorlevel% neq 0 goto :BuildFailure
 echo.
 echo Running C99 tests...
 .\\bin\\win64\\debug\\tests\\clang\\hlml_tests_c.exe %*
-if %errorlevel% neq 0 goto :BuildFailure
+if %errorlevel% neq 0 goto :RuntimeFailure
 echo.
 
 
@@ -42,7 +42,7 @@ if %errorlevel% neq 0 goto :BuildFailure
 echo.
 echo Running C++ tests...
 .\\bin\\win64\\debug\\tests\\clang++\\hlml_tests_cpp.exe %*
-if %errorlevel% neq 0 goto :BuildFailure
+if %errorlevel% neq 0 goto :RuntimeFailure
 echo.
 
 popd
@@ -57,9 +57,14 @@ echo No errors were detected on any of the compilers.  Everything looks fine.
 popd
 goto :EOF
 
-
 :BuildFailure
 echo.
-echo ERROR: Failed to build.  Stopping...
+echo ERROR: Compile failed.  Stopping...
+popd
+exit /b %errorlevel%
+
+:RuntimeFailure
+echo.
+echo ERROR: .EXE returned failure exit code.  Stopping...
 popd
 exit /b %errorlevel%
