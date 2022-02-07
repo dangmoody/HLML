@@ -24,7 +24,7 @@ along with The HLML Generator.  If not, see <http://www.gnu.org/licenses/>.
 #if defined( __linux__ ) || defined( __APPLE__ )
 
 #pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Wreserved-macro-identifier"
+#pragma clang diagnostic ignored "-Wreserved-id-macro"
 #pragma push_macro( "_POSIX_C_SOURCE" )
 #undef _POSIX_C_SOURCE
 #define _POSIX_C_SOURCE 200112L
@@ -287,7 +287,7 @@ float64 Time_NowNS( void ) {
 #undef GEN_CLOCK_MOD
 
 #pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Wreserved-macro-identifier"
+#pragma clang diagnostic ignored "-Wreserved-id-macro"
 #pragma pop_macro( "_POSIX_C_SOURCE" )
 #pragma clang diagnostic pop
 
