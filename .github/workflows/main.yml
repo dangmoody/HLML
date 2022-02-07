@@ -32,3 +32,9 @@ jobs:
 
       - name: Build Generator
         run: .\scripts\build_generator.bat --config debug
+
+  tests-clang:
+    needs: build-generator
+    name: Clang
+    steps:
+      - run: .\scripts\build_and_test_clang.bat
