@@ -29,5 +29,5 @@ jobs:
       - name: Install MSVC
         uses: ilammy/msvc-dev-cmd@v1
 
-      - name: Build And Test Clang
+      - name: Build And Test
         run: .\scripts\build_and_test_clang.bat ${{ matrix.compiler }}

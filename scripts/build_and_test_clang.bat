@@ -42,6 +42,8 @@ if /I [!compiler_cpp!]==[] (
 	goto :BuildFailure
 )
 
+echo Compiling for !arg_compiler!
+
 pushd %~dp0
 pushd ..
 
