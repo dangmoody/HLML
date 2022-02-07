@@ -7,6 +7,7 @@ set -e
 # 	clang
 # 	gcc
 compiler=$1
+shift
 
 compiler_c=""
 compiler_cpp=""

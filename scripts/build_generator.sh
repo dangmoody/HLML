@@ -70,12 +70,7 @@ mkdir -p ${g_bin_dir}
 
 warning_level="-Wall -Wextra -Werror -Wpedantic -Weverything"
 
-ignore_warnings="-Wno-newline-eof -Wno-typedef-redefinition -Wno-double-promotion -Wno-padded -Wno-reserved-macro-identifier -Wno-unused-function -Wno-format-nonliteral -Wno-bad-function-cast"
-
-# add warnings specifically for clang
-if [[ "${g_compiler}" == clang* ]]; then
-	ignore_warnings="${ignore_warnings} -Wno-newline-eof"
-fi
+ignore_warnings="-Wno-newline-eof -Wno-typedef-redefinition -Wno-double-promotion -Wno-padded -Wno-format-nonliteral -Wno-bad-function-cast -Wno-reserved-macro-identifier"
 
 # add warnings specifically for mac
 if [[ "${g_os_name}" == "macos" ]]; then
