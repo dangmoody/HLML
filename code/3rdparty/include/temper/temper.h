@@ -185,6 +185,7 @@ extern "C" {
 #pragma clang diagnostic ignored "-Wzero-as-null-pointer-constant"
 #pragma clang diagnostic ignored "-Wc++98-compat-pedantic"
 #pragma clang diagnostic ignored "-Wtypedef-redefinition"
+#pragma clang diagnostic ignored "-Wreserved-macro-identifier"
 #if defined( __APPLE__ )
 // DM: only disabling this one to avoid a warning that gets generated when trying to convert function pointers to void*
 // if anyone knows of a better way to get around that without disabling all pedantic warnings I'd love to hear about it
