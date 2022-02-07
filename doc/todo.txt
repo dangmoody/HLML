@@ -1,4 +1,6 @@
 BEFORE RELEASE:
+- check for error levels in the .bat scripts
+- combine build_and_test scripts and set compiler as parameter
 - move from Travis CI to GitHub Actions
 
 POST RELEASE:
