@@ -82,9 +82,10 @@ goto :EOF
 
 :BuildFailure
 echo.
-echo ERROR: Failed to compiler generator.  Stopping...
+echo ERROR: Failed to compile generator.  Stopping...
 popd
 exit /b %errorlevel%
 
 :ShowUsage
 echo USAGE: TODO(DM): this!
+if %errorlevel% neq 0 exit /b %errorlevel%

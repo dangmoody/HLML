@@ -1,5 +1,6 @@
 BEFORE RELEASE:
 - move from Travis CI to GitHub Actions
+- update CI to use latest version of clang
 
 POST RELEASE:
 - add more tests:

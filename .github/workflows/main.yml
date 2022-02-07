@@ -26,6 +26,12 @@ jobs:
           version: "10.0"
           directory: ${{ runner.temp }}/llvm
 
+      - name: Set up GCC
+        uses: egor-tensin/setup-gcc@v1
+        with:
+          version: latest
+          platform: x64
+
       - name: Install MSVC
         uses: ilammy/msvc-dev-cmd@v1
 
