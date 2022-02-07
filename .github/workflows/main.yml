@@ -20,7 +20,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - name: Install LLVM and Clang
+      - name: Install Clang
         uses: KyleMayes/install-llvm-action@v1
         with:
           version: "10.0"
