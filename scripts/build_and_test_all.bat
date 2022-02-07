@@ -4,13 +4,13 @@ setlocal EnableDelayedExpansion
 
 pushd %~dp0
 
-call build_and_test_clang.bat
+call build_and_test_clang.bat clang
 if %errorlevel% neq 0 goto :ExitFailure
 
-call build_and_test_gcc.bat
+call build_and_test_clang.bat gcc
 if %errorlevel% neq 0 goto :ExitFailure
 
-call build_and_test_msvc.bat
+call build_and_test_clang.bat msvc
 if %errorlevel% neq 0 goto :ExitFailure
 
 goto :ExitSuccess

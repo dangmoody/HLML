@@ -73,11 +73,18 @@ if exist %build_dir%\\generator.exe (
 
 REM clang -o %build_dir%\\generator.exe -std=c++14 !symbols! !optimisation! %source_files% %warning_levels% %ignore_warnings% %includes% %defines%
 clang -o %build_dir%\\generator.exe -std=c99 !symbols! !optimisation! %source_files% %warning_levels% %ignore_warnings% %includes% %defines%
+if %errorlevel% neq 0 goto :BuildFailure
 
 popd
 popd
 
 goto :EOF
 
+:BuildFailure
+echo.
+echo ERROR: Failed to compiler generator.  Stopping...
+popd
+exit /b %errorlevel%
+
 :ShowUsage
-echo USAGE:
+echo USAGE: TODO(DM): this!
