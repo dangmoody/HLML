@@ -837,22 +837,22 @@ TEMPER_PARAMETRIC( Test_float3_cross_sse, TEMPER_FLAG_SHOULD_RUN, const float3& 
 
 	float actualAnswer[4];
 	_mm_store_ps( actualAnswer, reg_actualAnswer_x );
-	TEMPER_CHECK_ALMOST_EQUAL( actualAnswer[0], expectedAnswer.x, 1e-4f );
-	TEMPER_CHECK_ALMOST_EQUAL( actualAnswer[1], expectedAnswer.x, 1e-4f );
-	TEMPER_CHECK_ALMOST_EQUAL( actualAnswer[2], expectedAnswer.x, 1e-4f );
-	TEMPER_CHECK_ALMOST_EQUAL( actualAnswer[3], expectedAnswer.x, 1e-4f );
+	TEMPER_CHECK_ALMOST_EQUAL( actualAnswer[0], expectedAnswer.x, 1e-3f );
+	TEMPER_CHECK_ALMOST_EQUAL( actualAnswer[1], expectedAnswer.x, 1e-3f );
+	TEMPER_CHECK_ALMOST_EQUAL( actualAnswer[2], expectedAnswer.x, 1e-3f );
+	TEMPER_CHECK_ALMOST_EQUAL( actualAnswer[3], expectedAnswer.x, 1e-3f );
 
 	_mm_store_ps( actualAnswer, reg_actualAnswer_y );
-	TEMPER_CHECK_ALMOST_EQUAL( actualAnswer[0], expectedAnswer.y, 1e-4f );
-	TEMPER_CHECK_ALMOST_EQUAL( actualAnswer[1], expectedAnswer.y, 1e-4f );
-	TEMPER_CHECK_ALMOST_EQUAL( actualAnswer[2], expectedAnswer.y, 1e-4f );
-	TEMPER_CHECK_ALMOST_EQUAL( actualAnswer[3], expectedAnswer.y, 1e-4f );
+	TEMPER_CHECK_ALMOST_EQUAL( actualAnswer[0], expectedAnswer.y, 1e-3f );
+	TEMPER_CHECK_ALMOST_EQUAL( actualAnswer[1], expectedAnswer.y, 1e-3f );
+	TEMPER_CHECK_ALMOST_EQUAL( actualAnswer[2], expectedAnswer.y, 1e-3f );
+	TEMPER_CHECK_ALMOST_EQUAL( actualAnswer[3], expectedAnswer.y, 1e-3f );
 
 	_mm_store_ps( actualAnswer, reg_actualAnswer_z );
-	TEMPER_CHECK_ALMOST_EQUAL( actualAnswer[0], expectedAnswer.z, 1e-4f );
-	TEMPER_CHECK_ALMOST_EQUAL( actualAnswer[1], expectedAnswer.z, 1e-4f );
-	TEMPER_CHECK_ALMOST_EQUAL( actualAnswer[2], expectedAnswer.z, 1e-4f );
-	TEMPER_CHECK_ALMOST_EQUAL( actualAnswer[3], expectedAnswer.z, 1e-4f );
+	TEMPER_CHECK_ALMOST_EQUAL( actualAnswer[0], expectedAnswer.z, 1e-3f );
+	TEMPER_CHECK_ALMOST_EQUAL( actualAnswer[1], expectedAnswer.z, 1e-3f );
+	TEMPER_CHECK_ALMOST_EQUAL( actualAnswer[2], expectedAnswer.z, 1e-3f );
+	TEMPER_CHECK_ALMOST_EQUAL( actualAnswer[3], expectedAnswer.z, 1e-3f );
 
 }
 
@@ -1034,22 +1034,22 @@ TEMPER_PARAMETRIC( Test_float3_normalize_sse, TEMPER_FLAG_SHOULD_RUN, const floa
 
 	float actualAnswer[4];
 	_mm_store_ps( actualAnswer, reg_actualAnswer_x );
-	TEMPER_CHECK_ALMOST_EQUAL( actualAnswer[0], expectedAnswer.x, 1e-4f );
-	TEMPER_CHECK_ALMOST_EQUAL( actualAnswer[1], expectedAnswer.x, 1e-4f );
-	TEMPER_CHECK_ALMOST_EQUAL( actualAnswer[2], expectedAnswer.x, 1e-4f );
-	TEMPER_CHECK_ALMOST_EQUAL( actualAnswer[3], expectedAnswer.x, 1e-4f );
+	TEMPER_CHECK_ALMOST_EQUAL( actualAnswer[0], expectedAnswer.x, 1e-3f );
+	TEMPER_CHECK_ALMOST_EQUAL( actualAnswer[1], expectedAnswer.x, 1e-3f );
+	TEMPER_CHECK_ALMOST_EQUAL( actualAnswer[2], expectedAnswer.x, 1e-3f );
+	TEMPER_CHECK_ALMOST_EQUAL( actualAnswer[3], expectedAnswer.x, 1e-3f );
 
 	_mm_store_ps( actualAnswer, reg_actualAnswer_y );
-	TEMPER_CHECK_ALMOST_EQUAL( actualAnswer[0], expectedAnswer.y, 1e-4f );
-	TEMPER_CHECK_ALMOST_EQUAL( actualAnswer[1], expectedAnswer.y, 1e-4f );
-	TEMPER_CHECK_ALMOST_EQUAL( actualAnswer[2], expectedAnswer.y, 1e-4f );
-	TEMPER_CHECK_ALMOST_EQUAL( actualAnswer[3], expectedAnswer.y, 1e-4f );
+	TEMPER_CHECK_ALMOST_EQUAL( actualAnswer[0], expectedAnswer.y, 1e-3f );
+	TEMPER_CHECK_ALMOST_EQUAL( actualAnswer[1], expectedAnswer.y, 1e-3f );
+	TEMPER_CHECK_ALMOST_EQUAL( actualAnswer[2], expectedAnswer.y, 1e-3f );
+	TEMPER_CHECK_ALMOST_EQUAL( actualAnswer[3], expectedAnswer.y, 1e-3f );
 
 	_mm_store_ps( actualAnswer, reg_actualAnswer_z );
-	TEMPER_CHECK_ALMOST_EQUAL( actualAnswer[0], expectedAnswer.z, 1e-4f );
-	TEMPER_CHECK_ALMOST_EQUAL( actualAnswer[1], expectedAnswer.z, 1e-4f );
-	TEMPER_CHECK_ALMOST_EQUAL( actualAnswer[2], expectedAnswer.z, 1e-4f );
-	TEMPER_CHECK_ALMOST_EQUAL( actualAnswer[3], expectedAnswer.z, 1e-4f );
+	TEMPER_CHECK_ALMOST_EQUAL( actualAnswer[0], expectedAnswer.z, 1e-3f );
+	TEMPER_CHECK_ALMOST_EQUAL( actualAnswer[1], expectedAnswer.z, 1e-3f );
+	TEMPER_CHECK_ALMOST_EQUAL( actualAnswer[2], expectedAnswer.z, 1e-3f );
+	TEMPER_CHECK_ALMOST_EQUAL( actualAnswer[3], expectedAnswer.z, 1e-3f );
 
 }
 

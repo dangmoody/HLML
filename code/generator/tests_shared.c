@@ -233,10 +233,10 @@ static void Gen_GenerateParametricTestDefinition_Generic_SSE( allocatorLinear_t*
 
 			StringBuilder_Appendf( code, "\t_mm_store_ps( actualAnswer, reg_actualAnswer_%c );\n", componentStr );
 
-			StringBuilder_Appendf( code, "\tTEMPER_CHECK_ALMOST_EQUAL( actualAnswer[0], expectedAnswer%s%c, 1e-4f );\n", strings->parmAccessOperatorStr, componentStr );
-			StringBuilder_Appendf( code, "\tTEMPER_CHECK_ALMOST_EQUAL( actualAnswer[1], expectedAnswer%s%c, 1e-4f );\n", strings->parmAccessOperatorStr, componentStr );
-			StringBuilder_Appendf( code, "\tTEMPER_CHECK_ALMOST_EQUAL( actualAnswer[2], expectedAnswer%s%c, 1e-4f );\n", strings->parmAccessOperatorStr, componentStr );
-			StringBuilder_Appendf( code, "\tTEMPER_CHECK_ALMOST_EQUAL( actualAnswer[3], expectedAnswer%s%c, 1e-4f );\n", strings->parmAccessOperatorStr, componentStr );
+			StringBuilder_Appendf( code, "\tTEMPER_CHECK_ALMOST_EQUAL( actualAnswer[0], expectedAnswer%s%c, 1e-3f );\n", strings->parmAccessOperatorStr, componentStr );
+			StringBuilder_Appendf( code, "\tTEMPER_CHECK_ALMOST_EQUAL( actualAnswer[1], expectedAnswer%s%c, 1e-3f );\n", strings->parmAccessOperatorStr, componentStr );
+			StringBuilder_Appendf( code, "\tTEMPER_CHECK_ALMOST_EQUAL( actualAnswer[2], expectedAnswer%s%c, 1e-3f );\n", strings->parmAccessOperatorStr, componentStr );
+			StringBuilder_Appendf( code, "\tTEMPER_CHECK_ALMOST_EQUAL( actualAnswer[3], expectedAnswer%s%c, 1e-3f );\n", strings->parmAccessOperatorStr, componentStr );
 
 			StringBuilder_Appendf( code, "\n" );
 		}
