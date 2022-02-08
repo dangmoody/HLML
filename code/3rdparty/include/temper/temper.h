@@ -185,7 +185,7 @@ extern "C" {
 #pragma clang diagnostic ignored "-Wzero-as-null-pointer-constant"
 #pragma clang diagnostic ignored "-Wc++98-compat-pedantic"
 #pragma clang diagnostic ignored "-Wtypedef-redefinition"
-#pragma clang diagnostic ignored "-Wreserved-identifier"
+#pragma clang diagnostic ignored "-Wreserved-identifier"	// DM: this compiler error is not avoidable on windows now?
 #if defined( __APPLE__ )
 // DM: only disabling this one to avoid a warning that gets generated when trying to convert function pointers to void*
 // if anyone knows of a better way to get around that without disabling all pedantic warnings I'd love to hear about it
@@ -736,14 +736,14 @@ TEMPERDEV__EXTERN_C temperTestContext_t g_temperTestContext;
 //----------------------------------------------------------
 
 #if defined( __clang__ )
-#define TEMPERDEV__TEST_INFO_FETCHER( testName ) \
-	void TEMPERDEV__CONCAT( __temper_test_info_fetcher_, testName )( void ) __attribute__( ( constructor ) ); \
-	void TEMPERDEV__CONCAT( __temper_test_info_fetcher_, testName )( void )
+#define TEMPERDEV__DEFINE_TEST_INFO_FETCHER( testName ) \
+	void TEMPERDEV__CONCAT( TEMPERDEV__TEST_INFO_FETCHER_, testName )( void ) __attribute__( ( constructor ) ); \
+	void TEMPERDEV__CONCAT( TEMPERDEV__TEST_INFO_FETCHER_, testName )( void )
 #elif defined( __GNUC__ )
-#define TEMPERDEV__TEST_INFO_FETCHER( testName ) \
+#define TEMPERDEV__DEFINE_TEST_INFO_FETCHER( testName ) \
 	/* add 101 because gcc reserves constructors with priorities between 0 - 100 and __COUNTER__ starts at 0 */ \
-	void TEMPERDEV__CONCAT( __temper_test_info_fetcher_, testName )( void ) __attribute__( ( constructor( __COUNTER__ + 101 ) ) ); \
-	void TEMPERDEV__CONCAT( __temper_test_info_fetcher_, testName )( void )
+	void TEMPERDEV__CONCAT( TEMPERDEV__TEST_INFO_FETCHER_, testName )( void ) __attribute__( ( constructor( __COUNTER__ + 101 ) ) ); \
+	void TEMPERDEV__CONCAT( TEMPERDEV__TEST_INFO_FETCHER_, testName )( void )
 #elif defined( _MSC_VER )	// defined( __GNUC__ ) || defined( __clang__ )
 #ifdef _WIN64
 #define TEMPERDEV__MSVC_PREFIX	""
@@ -752,13 +752,13 @@ TEMPERDEV__EXTERN_C temperTestContext_t g_temperTestContext;
 #endif
 
 #pragma section( ".CRT$XCU", read )
-#define TEMPERDEV__TEST_INFO_FETCHER( testName ) \
-	void TEMPERDEV__CONCAT( __temper_test_info_fetcher_, testName )( void ); \
+#define TEMPERDEV__DEFINE_TEST_INFO_FETCHER( testName ) \
+	void TEMPERDEV__CONCAT( TEMPERDEV__TEST_INFO_FETCHER_, testName )( void ); \
 \
-	TEMPERDEV__EXTERN_C __declspec( allocate( ".CRT$XCU" ) ) void ( * TEMPERDEV__CONCAT( testName, _FuncPtr ) )( void ) = TEMPERDEV__CONCAT( __temper_test_info_fetcher_, testName ); \
+	TEMPERDEV__EXTERN_C __declspec( allocate( ".CRT$XCU" ) ) void ( * TEMPERDEV__CONCAT( testName, _FuncPtr ) )( void ) = TEMPERDEV__CONCAT( TEMPERDEV__TEST_INFO_FETCHER_, testName ); \
 	__pragma( comment( linker, "/include:" TEMPERDEV__MSVC_PREFIX TEMPERDEV__CONCAT( TEMPERDEV__STRINGIFY( testName ), "_FuncPtr" ) ) ) \
 \
-	void TEMPERDEV__CONCAT( __temper_test_info_fetcher_, testName )( void )
+	void TEMPERDEV__CONCAT( TEMPERDEV__TEST_INFO_FETCHER_, testName )( void )
 #endif	// defined( _MSC_VER )
 
 //----------------------------------------------------------
@@ -768,7 +768,7 @@ TEMPERDEV__EXTERN_C temperTestContext_t g_temperTestContext;
 	void ( testName )( void ); \
 \
 	/*2. This is what the runner will loop over to grab the test function as well as all the information concerning it*/ \
-	TEMPERDEV__TEST_INFO_FETCHER( testName ) { \
+	TEMPERDEV__DEFINE_TEST_INFO_FETCHER( testName ) { \
 		temperTestInfo_t testInfo; \
 		testInfo.OnBeforeTest		= onBeforeName; \
 		testInfo.TestFuncCallback	= testName; \
@@ -806,7 +806,7 @@ TEMPERDEV__EXTERN_C temperTestContext_t g_temperTestContext;
 		testName( __VA_ARGS__ ); \
 	} \
 \
-	TEMPERDEV__TEST_INFO_FETCHER( TEMPERDEV__CONCAT( testName, counter ) ) { \
+	TEMPERDEV__DEFINE_TEST_INFO_FETCHER( TEMPERDEV__CONCAT( testName, counter ) ) { \
 		temperTestInfo_t testInfo; \
 		TemperGetParametricTestInfo_ ## testName( &testInfo ); \
 		testInfo.TestFuncCallback = TEMPERDEV__CONCAT( TemperCallParametricTest_, TEMPERDEV__CONCAT( testName, counter ) ); \
@@ -814,7 +814,7 @@ TEMPERDEV__EXTERN_C temperTestContext_t g_temperTestContext;
 		TemperAddTestInternal( &testInfo ); \
 	} \
 \
-	void TEMPERDEV__CONCAT( __temper_test_info_fetcher_, TEMPERDEV__CONCAT( testName, counter ) )( void )
+	void TEMPERDEV__CONCAT( TEMPERDEV__TEST_INFO_FETCHER_, TEMPERDEV__CONCAT( testName, counter ) )( void )
 
 //----------------------------------------------------------
 
