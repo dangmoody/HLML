@@ -14,7 +14,7 @@ As well as the above, HLML also offers the following:
 * Non-uniform matrix types.
 * Boolean vectors/matrices to aid equality checking of vector types.
 
-Currently HLML is written to produce optimised assembly for clang.  If you use another compiler then YMMV.
+Currently HLML is written to produce optimised assembly for Clang.  If you use another compiler then YMMV.
 
 HLML does not override any maths functions that are a part of C99.
 
@@ -160,6 +160,8 @@ One day I stumbled upon the [Unity.Mathematics](https://github.com/Unity-Technol
 
 Licenses
 ========
+
+HLML is dual licensed.
 
 All code that is part of the generator is licensed under GNU GPL v3.
 
