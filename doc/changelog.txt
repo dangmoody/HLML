@@ -15,12 +15,12 @@ v2.0.0, 11/02/2022:
 		* Removed component-wise functions in the C++ API when their operator counterparts existed (E.G.: caddv -> operator+).  Use those instead.
 		* translate(), rotate(), and scale() are now only for 4x4 matrices.
 		* Matrices no longer have a constructor that takes an array of row-types.
-	* Removed forward declarations for all functions because they were unecessary.
+	* Removed forward declarations for all functions because they were unnecessary.
 	* Removed the doxygen-styling on all comments in the API because it was just ugly.
 	* A lot of SSE functionality has been removed.
 		* The SSE abstraction types (E.G.: float2_sse_t) have been removed due to causing aliasing.
 		* Removed support for all SSE register types except __m128.
-			* I suspect no-one was using any of the other types, but if you were then let me know.
+			* I suspect no-one needs any of the other types, but if you were then let me know.
 		* A lot of the vector functions have been removed due to performance concerns and lack of practicality.
 		* ALL of the matrix functions have been removed due to performance concerns.
 			* A new, better API for matrices will be implemented at some point.
