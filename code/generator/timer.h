@@ -25,17 +25,17 @@ along with The HLML Generator.  If not, see <http://www.gnu.org/licenses/>.
 
 #include "int_types.h"
 
-				// returns a timestamp in clock cycles
-extern s64		Time_Now( void );
+		// returns a timestamp in clock cycles
+s64		Time_Now( void );
 
-				// returns a timestamp in seconds
-extern float64	Time_NowSeconds( void );
+		// returns a timestamp in seconds
+float64	Time_NowSeconds( void );
 
-				// returns a timestamp in milliseconds
-extern float64	Time_NowMS( void );
+		// returns a timestamp in milliseconds
+float64	Time_NowMS( void );
 
-				// returns a timestamp in microseconds
-extern float64	Time_NowUS( void );
+		// returns a timestamp in microseconds
+float64	Time_NowUS( void );
 
-				// returns a timestamp in nanoseconds
-extern float64	Time_NowNS( void );
+		// returns a timestamp in nanoseconds
+float64	Time_NowNS( void );

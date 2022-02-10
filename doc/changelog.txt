@@ -1,0 +1,77 @@
+HLML CHANGELOG
+
+v2.0.0, 11/02/2022:
+	* Everything has been rewritten from scratch.
+		* The old generator codebase was clearly not easy to work in at all and could be very confusing at times.  The new generator codebase addresses all of those concerns.
+	* The C and C++ APIs have been split for better usability, but unfortunately this does mean that you can no longer use both the C and C++ APIs in your project together.
+	* Added any() and all() functions, which do the same thing as in HLSL.
+	* Added the rest of the missing vector swizzle functions.
+		* The previous implementation was poor and did not cover all possible permutations.
+	* All arithmetic operator overloads now do their component-wise function.
+		* Therefore, float4x4::operator* no longer performs matrix multiplication, but rather component-wise multiplication.
+			* For matrix multiplication you will now have to call mul (or float4x4_mul in the C API, for example).
+			* This was done for consistency across the API and to avoid a common pitfall.
+	* Removed a bunch of maths functions that were redundant:
+		* Removed component-wise functions in the C++ API when their operator counterparts existed (E.G.: caddv -> operator+).  Use those instead.
+		* translate(), rotate(), and scale() are now only for 4x4 matrices.
+		* Matrices no longer have a constructor that takes an array of row-types.
+	* Removed forward declarations for all functions because they were unecessary.
+	* Removed the doxygen-styling on all comments in the API because it was just ugly.
+	* A lot of SSE functionality has been removed.
+		* The SSE abstraction types (E.G.: float2_sse_t) have been removed due to causing aliasing.
+		* Removed support for all SSE register types except __m128.
+			* I suspect no-one was using any of the other types, but if you were then let me know.
+		* A lot of the vector functions have been removed due to performance concerns and lack of practicality.
+		* ALL of the matrix functions have been removed due to performance concerns.
+			* A new, better API for matrices will be implemented at some point.
+		* If you need any of the old functionality that was removed then let me know.
+	* Removed macOS support for the generator.
+		* I don't have a Mac, so I was basically writing a Mac generator only for a Travis VM.  This isn't ideal.
+		* If I can get access to a Mac at some point I will maybe sit down and write one then.
+		* If someone else wants to go ahead and add Mac support for me (but ONLY if you have access to actual hardware!) then go ahead.
+	* Re-wrote the tests to use Temper 2's parametric testing functionality.
+		* There are now A LOT more tests running, whereas before we had around 1,000 tests in the C++ side we now have over 5,500.
+
+v1.1.1, 28/10/2020:
+	* Add extern "C" { ... } wrappers for each header file in the C API.
+	* Remove Doxygen documentation because:
+		* No-one seemed to care about it.
+		* Maintaining that part of the generator was more work than it was worth.  If you want Doxygen documentation you'll have to do it yourself from now on.  The external-facing comments are Doxygen compliant, so all you need to do is run Doxygen.
+
+v1.1.0, 03/02/2020:
+	* Removed the HLML_IMPLEMENTATION define as it's simply not needed for an all-inlined library.  Now you only need to simply include the main header to use HLML.
+	* Maths types no longer default-initialise to all zeros and will now need to be handled by the user, if desired.
+	* Replaced quaternion_to_matrix for quaternion_rotate_matrix.
+	* Other minor fixes to the documentation, tests, and quaternions.
+	* Fixed the make_release scripts to actually generate .zip files correctly (Thanks @xwize).
+
+v1.0.0, 01/12/2019:
+	* The library is now included by including one of two headers: hlml/c/hlml.h or hlml/cpp/hlml.h.  In one source file you must also define HLML_IMPLEMENTATION so that all the function bodies can be defined (this works the same as the STB libraries).
+	* Quaternion functions (courtesy of @Flave229).
+	* Better SSE support (still experimental for now but it's looking good).
+	* SSE constants are now #defines instead of actual constants (this is for compatibility with the C API).
+	* C99 functions that are completely separate from the C++ functions.
+	* C++ vector/matrix functions no-longer rely on operator overloads. This means that the C++ operator overloads are completely separate from functions.  This means that hlml_operators_vector.h and hlml_operators_matrix.h can be removed from the codebase if desired.
+	* Function-counterparts for C++ overloaded operators (there's a chance we are missing some for now - these will be added, if any).
+
+v0.4.0, 06/07/2019:
+	* This release comes with only some minor additions and updates to the maths library itself, this version adds:
+		* step() function.
+		* comp_mul() and comp_div() functions for the missing component-wise arithmetic functionality for matrix types.
+	* The generator has also been re-written to not use the STL at all.  The generator now uses a linear allocator and string builders to write out strings.  The time taken to generate the maths library code has now more than halved; from ~270ms to ~120ms.
+
+v0.3.1, 25/05/2019:
+	* Boolean vectors/matrices now use a 4-byte boolean type.
+
+v0.3.0, 25/05/2019:
+	* Ensured that everything builds for MSVC, not promising optimal ASM though (and I probably never will, because I don't care for MSVC).
+	* length() and lengthsqr() will now return float.
+	* dot() now returns the appropriate type for each vector (except uint vectors, where it returns an int).
+	* Fixed up some stuff in the tests (you don't really care about that...do you?)
+
+v0.2.0, 21/04/2019:
+	* Fixes a series of warnings for Clang and GCC.  SIMD still not included in this release, but it's on its way.
+	* Hotfix to remove broken isinf/isnan functions.  I never knew they were part of C99, those should now be used.
+
+v0.1.0, 31/03/2019:
+	* Initial release.

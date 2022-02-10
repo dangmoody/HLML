@@ -1,63 +1,61 @@
 #!/bin/bash
 
-# exit on first failure
+# exit when any command fails
 set -e
 
-compiler=$1	# can be either "clang" or "gcc"
-config=$2	# can be either "debug" or "release"
+# must be either:
+# 	clang
+# 	gcc
+compiler=$1
+shift
 
-DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
+compiler_c=""
+compiler_cpp=""
 
-# determine the folder name to use
-if [[ ${compiler} == clang ]]; then
-	compiler_folder_name="clang"
-elif [[ ${compiler} == gcc ]]; then
-	compiler_folder_name="gcc"
+if [[ "${compiler}" == "clang" ]]; then
+	compiler_c=clang
+	compiler_cpp=clang++
+elif [[ "${compiler}" == "gcc" ]]; then
+	compiler_c=gcc
+	compiler_cpp=g++
 else
-	echo ERROR: Unsupported compiler: "${compiler}".  Can be either: clang or gcc
+	printf "ERROR: Compiler was not set.\n"
 	exit 1
 fi
 
-cd ${DIR}
-cd ..
-
-# make build folder if it doesn't already exist
-if [ ! -d "bin/${config}" ]; then
-	mkdir -p bin/${compiler_folder_name}/${config}
+# cleanup old files
+if [[ -f ./bin/linux/debug/tests/${compiler_c}/hlml_tests_c.exe ]];
+then
+	rm ./bin/linux/debug/tests/${compiler_c}/hlml_tests_c.exe
 fi
 
-# build the generator
-echo ------- Building generator -------
-source_files="code/generator/"
-source scripts/build_linux_clang_gcc.sh ${compiler} ${config} C++ hlml-gen.exe ${source_files} *.cpp
-echo ------- Done -------
-echo ""
+if [[ -f ./bin/linux/debug/tests/${compiler_cpp}/hlml_tests_cpp.exe ]];
+then
+	rm ./bin/linux/debug/tests/${compiler_cpp}/hlml_tests_cpp.exe
+fi
 
-echo ------- Running generator -------
-bin/${compiler_folder_name}/${config}/hlml-gen.exe
-echo ------- Done -------
-echo ""
 
-# C tests
-echo ------- Building C tests -------
-source_files="code/tests/c/"
-source scripts/build_linux_clang_gcc.sh ${compiler} ${config} C hlml-gen-tests-c.exe ${source_files} main.c
-echo ------- Done -------
-echo ""
+# generate API files
+printf "\n"
+printf "Running Generator...\n"
+source ./scripts/build_generator.sh --config debug
+./bin/linux/debug/generator.exe
+printf "\n"
 
-echo ------- Running C tests -------
-bin/${compiler_folder_name}/${config}/hlml-gen-tests-c.exe -c --time-unit=us
-echo ------- C Tests Finished -------
-echo ""
+
+# C99 tests
+printf "Compiling C99 tests...\n"
+source ./scripts/build_${compiler_c}.sh --output hlml_tests_c.exe --config debug --source code/generated_files/tests/c/test_main.c
+printf "\n"
+printf "Running C99 tests...\n"
+./bin/linux/debug/tests/${compiler_c}/hlml_tests_c.exe $@
+printf "\n"
+
 
 # C++ tests
-echo ------- Building C++ tests -------
-source_files="code/tests/cpp/"
-source scripts/build_linux_clang_gcc.sh ${compiler} ${config} C++ hlml-gen-tests-cpp.exe ${source_files} main.cpp
-echo ------- Done -------
-echo ""
-
-echo ------- Running C++ tests -------
-bin/${compiler_folder_name}/${config}/hlml-gen-tests-cpp.exe -c --time-unit=us
-echo ------- C++ Tests Finished -------
-echo ""
+printf "Compiling C++ tests...\n"
+source ./scripts/build_${compiler_cpp}.sh --output hlml_tests_cpp.exe --config debug --source code/generated_files/tests/cpp/test_main.cpp
+printf "\n"
+printf "Running C++ tests...\n"
+./bin/linux/debug/tests/${compiler_cpp}/hlml_tests_cpp.exe $@
+printf "\n"

@@ -1,11 +1,14 @@
 folder_code = "code/"
+folder_generated_files = "code/generated_files/"
+folder_generated_tests = folder_generated_files .. "tests/"
 
-folder_bin = "$(SolutionDir)../bin/"
+folder_bin = "$(SolutionDir)../bin/win64/%{cfg.buildcfg}/"
+folder_bin_tests = folder_bin .. "tests/"
 folder_scripts = "$(SolutionDir)../scripts/"
 
 vs_project_folder = "../../" .. _ACTION .. "/"	-- path must be relative to premake5.lua file
 
-workspace( "hlml-gen" )
+workspace( "HLML" )
 	location( vs_project_folder )
 
 	platforms { "win64-msvc" }
@@ -15,11 +18,11 @@ workspace( "hlml-gen" )
 
 	architecture( "x64" )
 
-project( "hlml-gen" )
+project( "generator" )
 	location( vs_project_folder )
 
 	files {
-		"../../" .. folder_code .. "generator/**.cpp",
+		"../../" .. folder_code .. "generator/**.c",
 		"../../" .. folder_code .. "generator/**.h",
 	}
 
@@ -32,71 +35,72 @@ project( "hlml-gen" )
 	debugdir( "$(SolutionDir)../" )
 
 	-- required because VS will create these folders if they don't exist
-	targetdir( folder_bin .. "msvc/%{cfg.buildcfg}" )
-	objdir( folder_bin .. "msvc/%{cfg.buildcfg}/intermediate/hlml-gen" )
+	targetdir( folder_bin  )
+	objdir( folder_bin .. "/intermediate/hlml-gen" )
 
-	debugcommand( "$(OutDir)hlml-gen.exe" )
+	debugcommand( "$(OutDir)generator.exe" )
 
 	buildcommands (
-		folder_scripts .. "build_generator_msvc.bat %{cfg.buildcfg}"
+		folder_scripts .. "build_generator.bat --config %{cfg.buildcfg}"
 	)
 
 	rebuildcommands (
-		folder_scripts .. "build_generator_msvc.bat %{cfg.buildcfg}"
+		folder_scripts .. "build_generator.bat --config %{cfg.buildcfg}"
 	)
 
-project( "hlml-tests-c" )
-	location( vs_project_folder )
+group( "tests" )
+	project( "tests-c" )
+		location( vs_project_folder )
 
-	files {
-		"../../" .. folder_code .. "tests/c/*.c",
-		"../../" .. folder_code .. "tests/c/*.h",
-	}
+		files {
+			"../../" .. folder_generated_tests .. "c/*.c",
+			"../../" .. folder_generated_tests .. "c/*.h",
+		}
 
-	kind( "Makefile" )
+		kind( "Makefile" )
 
-	cleancommands (
-		folder_scripts .. "clean_tests.bat"
-	)
+		cleancommands (
+			folder_scripts .. "clean_tests.bat"
+		)
 
-	-- required because VS will create these folders if they don't exist
-	targetdir( folder_bin .. "msvc/%{cfg.buildcfg}" )
-	objdir( folder_bin .. "msvc/%{cfg.buildcfg}/intermediate/hlml-gen-tests-c" )
+		-- required because VS will create these folders if they don't exist
+		targetdir( folder_bin_tests .. "msvc/" )
+		objdir( folder_bin_tests .. "msvc/intermediate/hlml_tests_c" )
 
-	debugcommand( "$(OutDir)hlml-gen-tests-c.exe" )
+		debugcommand( "$(OutDir)hlml_tests_c.exe" )
 
-	buildcommands (
-		folder_scripts .. "build_msvc.bat %{cfg.buildcfg} hlml-gen-tests-c code/tests/c/main.c"
-	)
+		buildcommands (
+			folder_scripts .. "build_msvc.bat --output hlml_tests_c.exe --config debug --source code\\generated_files\\tests\\c\\main.c"
+		)
 
-	rebuildcommands (
-		folder_scripts .. "build_msvc.bat %{cfg.buildcfg} hlml-gen-tests-c code/tests/c/main.c"
-	)
+		rebuildcommands (
+			folder_scripts .. "build_msvc.bat --output hlml_tests_c.exe --config debug --source code\\generated_files\\tests\\c\\main.c"
+		)
 
-project( "hlml-test-cpp" )
-	location( vs_project_folder )
+	project( "test-cpp" )
+		location( vs_project_folder )
 
-	files {
-		"../../" .. folder_code .. "tests/cpp/*.cpp",
-		"../../" .. folder_code .. "tests/cpp/*.h",
-	}
+		files {
+			"../../" .. folder_generated_tests .. "cpp/*.cpp",
+			"../../" .. folder_generated_tests .. "cpp/*.h",
+		}
 
-	kind( "Makefile" )
+		kind( "Makefile" )
 
-	cleancommands (
-		folder_scripts .. "clean_tests.bat"
-	)
+		cleancommands (
+			folder_scripts .. "clean_tests.bat"
+		)
 
-	-- required because VS will create these folders if they don't exist
-	targetdir( folder_bin .. "msvc/%{cfg.buildcfg}" )
-	objdir( folder_bin .. "msvc/%{cfg.buildcfg}/intermediate/hlml-gen-tests-cpp" )
+		-- required because VS will create these folders if they don't exist
+		targetdir( folder_bin .. "msvc/%{cfg.buildcfg}" )
+		objdir( folder_bin .. "msvc/%{cfg.buildcfg}/intermediate/hlml-gen-tests-cpp" )
 
-	debugcommand( "$(OutDir)hlml-gen-tests-cpp.exe" )
+		debugcommand( "$(OutDir)hlml-gen-tests-cpp.exe" )
 
-	buildcommands (
-		folder_scripts .. "build_msvc.bat %{cfg.buildcfg} hlml-gen-tests-cpp code/tests/cpp/main.cpp"
-	)
+		buildcommands (
+			folder_scripts .. "build_msvc.bat %{cfg.buildcfg} hlml-gen-tests-cpp code/tests/cpp/main.cpp"
+		)
 
-	rebuildcommands (
-		folder_scripts .. "build_msvc.bat %{cfg.buildcfg} hlml-gen-tests-cpp code/tests/cpp/main.cpp"
-	)
+		rebuildcommands (
+			folder_scripts .. "build_msvc.bat %{cfg.buildcfg} hlml-gen-tests-cpp code/tests/cpp/main.cpp"
+		)
