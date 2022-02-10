@@ -116,7 +116,7 @@ Common Pitfalls
 Contributing
 ============
 
-If this is a project you'd like to contribute to, I'm open to pull requests.  See the [contribution documentation](https://github.com/dangmoody/HLML/blob/master/doc/contribute.md).
+If this is a project you'd like to contribute to then see the [contribution document](https://github.com/dangmoody/HLML/blob/master/doc/contribute.md).
 
 
 Credits
