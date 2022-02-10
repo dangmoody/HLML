@@ -3,20 +3,20 @@ HLML CHANGELOG
 v2.0.0, 11/02/2022:
 	* Everything has been rewritten from scratch.
 		* The old generator codebase was clearly not easy to work in at all and could be very confusing at times.  The new generator codebase addresses all of those concerns.
-	* The C and C++ APIs have been split for better usability.  This means you can no longer use both the C and C++ APIs in your project together.
+	* The C and C++ APIs have been split for better usability, but unfortunately this does mean that you can no longer use both the C and C++ APIs in your project together.
 	* Added any() and all() functions, which do the same thing as in HLSL.
 	* Added the rest of the missing vector swizzle functions.
 		* The previous implementation was poor and did not cover all possible permutations.
-	* All operator arithmetic overloads now do their component-wise function.
+	* All arithmetic operator overloads now do their component-wise function.
 		* Therefore, float4x4::operator* no longer performs matrix multiplication, but rather component-wise multiplication.
-		* For matrix multiplication you will now have to call mul (or float4x4_mul in the C API, for example).
-		* This was done for consistency across the API and to avoid a common pitfall.
+			* For matrix multiplication you will now have to call mul (or float4x4_mul in the C API, for example).
+			* This was done for consistency across the API and to avoid a common pitfall.
 	* Removed a bunch of maths functions that were redundant:
-		* Removed component-wise function equivalents for C++ operators in the C++ API (E.G.: caddv, cmpge, etc.) because they were unecessary when the operator overloads existed; use those instead.
+		* Removed component-wise functions in the C++ API when their operator counterparts existed (E.G.: caddv -> operator+).  Use those instead.
 		* translate(), rotate(), and scale() are now only for 4x4 matrices.
 		* Matrices no longer have a constructor that takes an array of row-types.
 	* Removed forward declarations for all functions because they were unecessary.
-	* Removed the doxygen-styling on all comments in the API because it was unecessary and ugly.
+	* Removed the doxygen-styling on all comments in the API because it was just ugly.
 	* A lot of SSE functionality has been removed.
 		* The SSE abstraction types (E.G.: float2_sse_t) have been removed due to causing aliasing.
 		* Removed support for all SSE register types except __m128.
@@ -25,10 +25,10 @@ v2.0.0, 11/02/2022:
 		* ALL of the matrix functions have been removed due to performance concerns.
 			* A new, better API for matrices will be implemented at some point.
 		* If you need any of the old functionality that was removed then let me know.
-	* Removed macOS support from the generator.
-		* I don't have a Mac, so I was basically writing a Mac generator that had been tested only on Travis VMs.  This isn't ideal.
+	* Removed macOS support for the generator.
+		* I don't have a Mac, so I was basically writing a Mac generator only for a Travis VM.  This isn't ideal.
 		* If I can get access to a Mac at some point I will maybe sit down and write one then.
-		* If someone else wants to go ahead and add Mac support for me (but only if you have access to actual hardware) then go ahead.
+		* If someone else wants to go ahead and add Mac support for me (but ONLY if you have access to actual hardware!) then go ahead.
 	* Re-wrote the tests to use Temper 2's parametric testing functionality.
 		* There are now A LOT more tests running, whereas before we had around 1,000 tests in the C++ side we now have over 5,500.
 
