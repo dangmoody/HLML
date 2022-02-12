@@ -5,12 +5,14 @@ v2.0.0, 11/02/2022:
 		* The old generator codebase was clearly not easy to work in at all and could be very confusing at times.  The new generator codebase addresses all of those concerns.
 	* The C and C++ APIs have been split for better usability, but unfortunately this does mean that you can no longer use both the C and C++ APIs in your project together.
 	* Added any() and all() functions, which do the same thing as in HLSL.
+	* Added quat_to_rotation_matrix function.
 	* Added the rest of the missing vector swizzle functions.
 		* The previous implementation was poor and did not cover all possible permutations.
 	* All arithmetic operator overloads now do their component-wise function.
 		* Therefore, float4x4::operator* no longer performs matrix multiplication, but rather component-wise multiplication.
 			* For matrix multiplication you will now have to call mul (or float4x4_mul in the C API, for example).
 			* This was done for consistency across the API and to avoid a common pitfall.
+	* lookat has been renamed to look_at.
 	* Removed a bunch of maths functions that were redundant:
 		* Removed component-wise functions in the C++ API when their operator counterparts existed (E.G.: caddv -> operator+).  Use those instead.
 		* translate(), rotate(), and scale() are now only for 4x4 matrices.
