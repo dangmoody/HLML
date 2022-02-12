@@ -1105,6 +1105,21 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_float3x4_negate_prefix,
 	}
 );
 
+TEMPER_INVOKE_PARAMETRIC_TEST( Test_float3x4_negate_prefix,
+	&(float3x4)
+	{
+		10.000000f, 10.000000f, 10.000000f, 10.000000f,
+		10.000000f, 10.000000f, 10.000000f, 10.000000f,
+		10.000000f, 10.000000f, 10.000000f, 10.000000f
+	},
+	&(float3x4)
+	{
+		-10.000000f, -10.000000f, -10.000000f, -10.000000f,
+		-10.000000f, -10.000000f, -10.000000f, -10.000000f,
+		-10.000000f, -10.000000f, -10.000000f, -10.000000f
+	}
+);
+
 #if defined( __GNUC__ ) || defined( __clang__ )
 #pragma GCC diagnostic pop
 #endif

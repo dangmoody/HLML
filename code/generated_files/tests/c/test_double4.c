@@ -425,6 +425,11 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_double4_negate_prefix,
 	&(double4) { -3.000000f, -3.000000f, -3.000000f, -3.000000f }
 );
 
+TEMPER_INVOKE_PARAMETRIC_TEST( Test_double4_negate_prefix,
+	&(double4) { 10.000000f, 10.000000f, 10.000000f, 10.000000f },
+	&(double4) { -10.000000f, -10.000000f, -10.000000f, -10.000000f }
+);
+
 #if defined( __GNUC__ ) || defined( __clang__ )
 #pragma GCC diagnostic pop
 #endif

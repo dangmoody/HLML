@@ -425,6 +425,11 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_uint4_negate_prefix,
 	&(uint4) { 4294967293U, 4294967293U, 4294967293U, 4294967293U }
 );
 
+TEMPER_INVOKE_PARAMETRIC_TEST( Test_uint4_negate_prefix,
+	&(uint4) { 10U, 10U, 10U, 10U },
+	&(uint4) { 4294967286U, 4294967286U, 4294967286U, 4294967286U }
+);
+
 #if defined( __GNUC__ ) || defined( __clang__ )
 #pragma GCC diagnostic pop
 #endif

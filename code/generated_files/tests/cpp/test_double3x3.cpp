@@ -1221,6 +1221,19 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3x3_negate_prefix,
 	)
 );
 
+TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3x3_negate_prefix,
+	double3x3(
+		10.000000f, 10.000000f, 10.000000f,
+		10.000000f, 10.000000f, 10.000000f,
+		10.000000f, 10.000000f, 10.000000f
+	),
+	double3x3(
+		-10.000000f, -10.000000f, -10.000000f,
+		-10.000000f, -10.000000f, -10.000000f,
+		-10.000000f, -10.000000f, -10.000000f
+	)
+);
+
 #if defined( __GNUC__ ) || defined( __clang__ )
 #pragma GCC diagnostic pop
 #endif

@@ -425,6 +425,11 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_int2_negate_prefix,
 	&(int2) { -3, -3 }
 );
 
+TEMPER_INVOKE_PARAMETRIC_TEST( Test_int2_negate_prefix,
+	&(int2) { 10, 10 },
+	&(int2) { -10, -10 }
+);
+
 #if defined( __GNUC__ ) || defined( __clang__ )
 #pragma GCC diagnostic pop
 #endif

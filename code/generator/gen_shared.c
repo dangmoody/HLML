@@ -1648,7 +1648,7 @@ static void GenerateComponentWiseOperators( allocatorLinear_t* tempStorage, cons
 
 		if ( typeInfo->type != GEN_TYPE_BOOL ) {
 			commentStr = GetComment_ComponentWiseNegate( tempStorage, typeDescSingular );
-			GenerateComponentWiseFunction_OperatorSingleParm( tempStorage, code, typeInfo, "negate", "-", OPERATOR_SINGLE_PARM_TYPE_PREFIX, strings, flags, commentStr );
+			GenerateComponentWiseFunction_OperatorSingleParm( tempStorage, code, typeInfo, GEN_FUNCTION_NAME_NEGATE, "-", OPERATOR_SINGLE_PARM_TYPE_PREFIX, strings, flags, commentStr );
 		}
 
 		if ( Gen_TypeIsInteger( typeInfo->type ) ) {

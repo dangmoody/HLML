@@ -1148,8 +1148,8 @@ static void GenerateOperatorTests( allocatorLinear_t* tempStorage, stringBuilder
 		float32 inputValues[]           = {  0.0f,  1.0f,  2.0f,  3.0f,  10.0f };
 		float32 negateExpectedAnswers[] = { -0.0f, -1.0f, -2.0f, -3.0f, -10.0f };
 
-		Gen_GenerateParametricTestCode_OperatorSingleParm( tempStorage, code, typeInfo, "negate", "-", strings, flags, OPERATOR_SINGLE_PARM_TYPE_PREFIX, &(testFixtureOperatorSingleParm_t) {
-			.numTests = 4,
+		Gen_GenerateParametricTestCode_OperatorSingleParm( tempStorage, code, typeInfo, GEN_FUNCTION_NAME_NEGATE, "-", strings, flags, OPERATOR_SINGLE_PARM_TYPE_PREFIX, &(testFixtureOperatorSingleParm_t) {
+			.numTests = 5,
 			.inputValues = inputValues,
 			.outputValues = negateExpectedAnswers
 		} );
