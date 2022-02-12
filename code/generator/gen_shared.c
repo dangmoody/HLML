@@ -190,7 +190,7 @@ static const char* Gen_GetBitwiseName( const genOpBitwise_t op ) {
 	assert( op != GEN_OP_BITWISE_COUNT );
 
 	switch ( op ) {
-		case GEN_OP_BITWISE_UNARY:			return "unary";
+		case GEN_OP_BITWISE_NOT:			return "not";
 		case GEN_OP_BITWISE_AND:			return "and";
 		case GEN_OP_BITWISE_OR:				return "or";
 		case GEN_OP_BITWISE_XOR:			return "xor";
@@ -205,7 +205,7 @@ static const char* Gen_GetOperatorBitwise( const genOpBitwise_t op ) {
 	assert( op != GEN_OP_BITWISE_COUNT );
 
 	switch ( op ) {
-		case GEN_OP_BITWISE_UNARY:			return "~";
+		case GEN_OP_BITWISE_NOT:			return "~";
 		case GEN_OP_BITWISE_AND:			return "&";
 		case GEN_OP_BITWISE_OR:				return "|";
 		case GEN_OP_BITWISE_XOR:			return "^";
@@ -347,7 +347,7 @@ static const char* Gen_GetFuncName_VectorBitwiseScalar( allocatorLinear_t* tempS
 	assert( typeInfo );
 	assert( typeInfo->fullTypeName );
 	assert( op != GEN_OP_BITWISE_COUNT );
-	assert( op != GEN_OP_BITWISE_UNARY );
+	assert( op != GEN_OP_BITWISE_NOT );
 
 	const char* opName = Gen_GetBitwiseName( op );
 
@@ -359,7 +359,7 @@ static const char* Gen_GetFuncName_VectorBitwiseVector( allocatorLinear_t* tempS
 	assert( typeInfo );
 	assert( typeInfo->fullTypeName );
 	assert( op != GEN_OP_BITWISE_COUNT );
-	assert( op != GEN_OP_BITWISE_UNARY );
+	assert( op != GEN_OP_BITWISE_NOT );
 
 	const char* opName = Gen_GetBitwiseName( op );
 
@@ -371,7 +371,7 @@ static const char* Gen_GetFuncName_VectorBitwiseMatrix( allocatorLinear_t* tempS
 	assert( typeInfo );
 	assert( typeInfo->fullTypeName );
 	assert( op != GEN_OP_BITWISE_COUNT );
-	assert( op != GEN_OP_BITWISE_UNARY );
+	assert( op != GEN_OP_BITWISE_NOT );
 
 	const char* opName = Gen_GetBitwiseName( op );
 
@@ -1578,8 +1578,8 @@ static void GenerateComponentWiseOperators( allocatorLinear_t* tempStorage, cons
 
 				const char* opStr = Gen_GetOperatorBitwise( op );
 
-				// unary is separate because the function body is different
-				if ( op == GEN_OP_BITWISE_UNARY ) {
+				// bitwise not is separate because the function body is different
+				if ( op == GEN_OP_BITWISE_NOT ) {
 					commentStr = GetComment_ComponentWiseBitwiseNot( tempStorage, typeDescSingular );
 
 					GenerateOperatorSingleParm( tempStorage, code, typeInfo, opStr, OPERATOR_SINGLE_PARM_TYPE_PREFIX, OPERATOR_PREFIX_FLAG_RETURN_COPY, commentStr );
@@ -1658,11 +1658,10 @@ static void GenerateComponentWiseOperators( allocatorLinear_t* tempStorage, cons
 				const char* opName = Gen_GetBitwiseName( op );
 				const char* opStr = Gen_GetOperatorBitwise( op );
 
-				if ( op == GEN_OP_BITWISE_UNARY ) {
-					// unary is separate because the function body is different
+				if ( op == GEN_OP_BITWISE_NOT ) {
+					// bitwise not is separate because the function body is different
 					commentStr = GetComment_ComponentWiseBitwiseNot( tempStorage, typeDescSingular );
 
-					//GenerateFunction_BitwiseUnary( tempStorage, typeInfo, code, flags, commentStr );
 					GenerateComponentWiseFunction_OperatorSingleParm( tempStorage, code, typeInfo, opName, opStr, OPERATOR_SINGLE_PARM_TYPE_PREFIX, strings, flags, commentStr );
 					continue;
 				}

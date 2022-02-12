@@ -1,31 +1,34 @@
 HLML CHANGELOG
 
+v2.0.?????, <INSERT RELEASE DATE HERE>:
+	`*_unary` has been renamed to `*_not` because that's what it actually does.
+
 v2.0.1, 12/02/2022:
-	* Re-added negate function and operator after it was accidentally removed during the re-write between v1 and v2 (oops).
+	* Re-added `negate` function and operator after it was accidentally removed during the re-write between v1 and v2 (oops).
 
 v2.0.0, 11/02/2022:
 	* Everything has been rewritten from scratch.
 		* The old generator codebase was clearly not easy to work in at all and could be very confusing at times.  The new generator codebase addresses all of those concerns.
 	* The C and C++ APIs have been split for better usability, but unfortunately this does mean that you can no longer use both the C and C++ APIs in your project together.
-	* Added any() and all() functions, which do the same thing as in HLSL.
-	* Added quat_to_rotation_matrix function.
+	* Added `any` and `all` functions, which do the same thing as in HLSL.
+	* Added `quat_to_rotation_matrix` function.
 	* Added the rest of the missing vector swizzle functions.
 		* The previous implementation was poor and did not cover all possible permutations.
 	* All arithmetic operator overloads now do their component-wise function.
-		* Therefore, float4x4::operator* no longer performs matrix multiplication, but rather component-wise multiplication.
-			* For matrix multiplication you will now have to call mul (or float4x4_mul in the C API, for example).
+		* Therefore, `float4x4::operator*` no longer performs matrix multiplication, but rather component-wise multiplication.
+			* For matrix multiplication you will now have to call `mul` (or `float4x4_mul` in the C API, for example).
 			* This was done for consistency across the API and to avoid a common pitfall.
-	* lookat has been renamed to look_at.
+	* `lookat` has been renamed to `look_at`.
 	* Removed a bunch of maths functions that were redundant:
-		* Removed component-wise functions in the C++ API when their operator counterparts existed (E.G.: caddv -> operator+).  Use those instead.
-		* translate(), rotate(), and scale() are now only for 4x4 matrices.
+		* Removed component-wise functions in the C++ API when their operator counterparts existed (E.G.: `caddv` -> `operator+`).  Use those instead.
+		* `translate()`, `rotate()`, and `scale()` are now only for 4x4 matrices.
 		* Matrices no longer have a constructor that takes an array of row-types.
 	* Removed forward declarations for all functions because they were unnecessary.
 	* Removed the doxygen-styling on all comments in the API because it was just ugly.
 	* A lot of SSE functionality has been removed.
-		* The SSE abstraction types (E.G.: float2_sse_t) have been removed due to causing aliasing.
-		* Removed support for all SSE register types except __m128.
-			* I suspect no-one needs any of the other types, but if you were then let me know.
+		* The SSE abstraction types (E.G.: `float2_sse_t`) have been removed due to causing aliasing.
+		* Removed support for all SSE register types except `__m128`.
+			* I suspect no-one needs any of the other types, but if you do then let me know.
 		* A lot of the vector functions have been removed due to performance concerns and lack of practicality.
 		* ALL of the matrix functions have been removed due to performance concerns.
 			* A new, better API for matrices will be implemented at some point.

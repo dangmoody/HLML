@@ -684,7 +684,7 @@ HLML_INLINE int2 int2_negate( const int2* x )
 }
 
 // Returns a copy of the vector where each component has been bitwise NOT'd.
-HLML_INLINE int2 int2_unary( const int2* x )
+HLML_INLINE int2 int2_not( const int2* x )
 {
 	return HLML_CONSTRUCT( int2 )
 	{
@@ -1035,7 +1035,7 @@ HLML_INLINE int3 int3_negate( const int3* x )
 }
 
 // Returns a copy of the vector where each component has been bitwise NOT'd.
-HLML_INLINE int3 int3_unary( const int3* x )
+HLML_INLINE int3 int3_not( const int3* x )
 {
 	return HLML_CONSTRUCT( int3 )
 	{
@@ -1416,7 +1416,7 @@ HLML_INLINE int4 int4_negate( const int4* x )
 }
 
 // Returns a copy of the vector where each component has been bitwise NOT'd.
-HLML_INLINE int4 int4_unary( const int4* x )
+HLML_INLINE int4 int4_not( const int4* x )
 {
 	return HLML_CONSTRUCT( int4 )
 	{
@@ -1771,7 +1771,7 @@ HLML_INLINE uint2 uint2_negate( const uint2* x )
 }
 
 // Returns a copy of the vector where each component has been bitwise NOT'd.
-HLML_INLINE uint2 uint2_unary( const uint2* x )
+HLML_INLINE uint2 uint2_not( const uint2* x )
 {
 	return HLML_CONSTRUCT( uint2 )
 	{
@@ -2112,7 +2112,7 @@ HLML_INLINE uint3 uint3_negate( const uint3* x )
 }
 
 // Returns a copy of the vector where each component has been bitwise NOT'd.
-HLML_INLINE uint3 uint3_unary( const uint3* x )
+HLML_INLINE uint3 uint3_not( const uint3* x )
 {
 	return HLML_CONSTRUCT( uint3 )
 	{
@@ -2482,7 +2482,7 @@ HLML_INLINE uint4 uint4_negate( const uint4* x )
 }
 
 // Returns a copy of the vector where each component has been bitwise NOT'd.
-HLML_INLINE uint4 uint4_unary( const uint4* x )
+HLML_INLINE uint4 uint4_not( const uint4* x )
 {
 	return HLML_CONSTRUCT( uint4 )
 	{

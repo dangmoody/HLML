@@ -117,7 +117,7 @@ typedef enum genOpIncrement_t {
 } genOpIncrement_t;
 
 typedef enum genOpBitwise_t {
-	GEN_OP_BITWISE_UNARY				= 0,
+	GEN_OP_BITWISE_NOT					= 0,
 	GEN_OP_BITWISE_AND,
 	GEN_OP_BITWISE_OR,
 	GEN_OP_BITWISE_XOR,

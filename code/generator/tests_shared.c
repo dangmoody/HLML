@@ -1163,7 +1163,7 @@ static void GenerateOperatorTests( allocatorLinear_t* tempStorage, stringBuilder
 
 	// bitwise
 	if ( Gen_TypeIsInteger( typeInfo->type ) ) {
-		// unary
+		// not
 		{
 			StringBuilder_Append( code,
 				"#if defined( __GNUC__ ) || defined( __clang__ )\n"
@@ -1172,8 +1172,8 @@ static void GenerateOperatorTests( allocatorLinear_t* tempStorage, stringBuilder
 				"#endif\n"
 			);
 
-			const char* opFuncName = Gen_GetBitwiseName( GEN_OP_BITWISE_UNARY );
-			const char* opStr = Gen_GetOperatorBitwise( GEN_OP_BITWISE_UNARY );
+			const char* opFuncName = Gen_GetBitwiseName( GEN_OP_BITWISE_NOT );
+			const char* opStr = Gen_GetOperatorBitwise( GEN_OP_BITWISE_NOT );
 
 			Gen_GenerateParametricTestCode_OperatorSingleParm( tempStorage, code, typeInfo, opFuncName, opStr, strings, flags, OPERATOR_SINGLE_PARM_TYPE_PREFIX, &(testFixtureOperatorSingleParm_t) {
 				.numTests = 1,
@@ -1201,7 +1201,7 @@ static void GenerateOperatorTests( allocatorLinear_t* tempStorage, stringBuilder
 				{ 0.0f, 1.0f, 1.0f, 0.0f }	// shift right
 			};
 
-			// exclude unary, which is different
+			// exclude bitwise not, which is different
 			genOpBitwise_t ops[] = {
 				GEN_OP_BITWISE_AND,
 				GEN_OP_BITWISE_OR,
@@ -1213,7 +1213,7 @@ static void GenerateOperatorTests( allocatorLinear_t* tempStorage, stringBuilder
 			for ( u32 opIndex = 0; opIndex < GEN_COUNTOF( ops ); opIndex++ ) {
 				genOpBitwise_t op = ops[opIndex];
 
-				if ( op == GEN_OP_BITWISE_UNARY ) {
+				if ( op == GEN_OP_BITWISE_NOT ) {
 					continue;
 				}
 
@@ -1237,7 +1237,7 @@ static void GenerateOperatorTests( allocatorLinear_t* tempStorage, stringBuilder
 			for ( u32 opIndex = 0; opIndex < GEN_COUNTOF( ops ); opIndex++ ) {
 				genOpBitwise_t op = ops[opIndex];
 
-				if ( op == GEN_OP_BITWISE_UNARY ) {
+				if ( op == GEN_OP_BITWISE_NOT ) {
 					continue;
 				}
 

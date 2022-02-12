@@ -438,16 +438,16 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_uint3_negate_prefix,
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Wcast-qual"
 #endif
-TEMPER_PARAMETRIC( Test_uint3_unary_prefix, TEMPER_FLAG_SHOULD_RUN, const uint3* x, const uint3* expectedAnswer )
+TEMPER_PARAMETRIC( Test_uint3_not_prefix, TEMPER_FLAG_SHOULD_RUN, const uint3* x, const uint3* expectedAnswer )
 {
 	// make local copy of x and use that because we cant do increment or decrement operations on a const reference
 	// and MSVC throws warnings if we just make the parameter a non-const reference
 	uint3* xlocal = (uint3*) x;
-	uint3 actualAnswer = uint3_unary( xlocal );
+	uint3 actualAnswer = uint3_not( xlocal );
 	TEMPER_CHECK_TRUE( uint3_equals( &actualAnswer, expectedAnswer ) );
 }
 
-TEMPER_INVOKE_PARAMETRIC_TEST( Test_uint3_unary_prefix,
+TEMPER_INVOKE_PARAMETRIC_TEST( Test_uint3_not_prefix,
 	&(uint3) { 1U, 1U, 1U },
 	&(uint3) { 4294967294U, 4294967294U, 4294967294U }
 );

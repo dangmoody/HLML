@@ -1947,12 +1947,12 @@ HLML_INLINE int2x2 int2x2_negate( const int2x2* x )
 }
 
 // Returns a copy of the matrix where each component has been bitwise NOT'd.
-HLML_INLINE int2x2 int2x2_unary( const int2x2* x )
+HLML_INLINE int2x2 int2x2_not( const int2x2* x )
 {
 	return HLML_CONSTRUCT( int2x2 )
 	{
-		int2_unary( &x->rows[0] ),
-		int2_unary( &x->rows[1] )
+		int2_not( &x->rows[0] ),
+		int2_not( &x->rows[1] )
 	};
 }
 
@@ -2304,12 +2304,12 @@ HLML_INLINE int2x3 int2x3_negate( const int2x3* x )
 }
 
 // Returns a copy of the matrix where each component has been bitwise NOT'd.
-HLML_INLINE int2x3 int2x3_unary( const int2x3* x )
+HLML_INLINE int2x3 int2x3_not( const int2x3* x )
 {
 	return HLML_CONSTRUCT( int2x3 )
 	{
-		int3_unary( &x->rows[0] ),
-		int3_unary( &x->rows[1] )
+		int3_not( &x->rows[0] ),
+		int3_not( &x->rows[1] )
 	};
 }
 
@@ -2646,12 +2646,12 @@ HLML_INLINE int2x4 int2x4_negate( const int2x4* x )
 }
 
 // Returns a copy of the matrix where each component has been bitwise NOT'd.
-HLML_INLINE int2x4 int2x4_unary( const int2x4* x )
+HLML_INLINE int2x4 int2x4_not( const int2x4* x )
 {
 	return HLML_CONSTRUCT( int2x4 )
 	{
-		int4_unary( &x->rows[0] ),
-		int4_unary( &x->rows[1] )
+		int4_not( &x->rows[0] ),
+		int4_not( &x->rows[1] )
 	};
 }
 
@@ -3008,13 +3008,13 @@ HLML_INLINE int3x2 int3x2_negate( const int3x2* x )
 }
 
 // Returns a copy of the matrix where each component has been bitwise NOT'd.
-HLML_INLINE int3x2 int3x2_unary( const int3x2* x )
+HLML_INLINE int3x2 int3x2_not( const int3x2* x )
 {
 	return HLML_CONSTRUCT( int3x2 )
 	{
-		int2_unary( &x->rows[0] ),
-		int2_unary( &x->rows[1] ),
-		int2_unary( &x->rows[2] )
+		int2_not( &x->rows[0] ),
+		int2_not( &x->rows[1] ),
+		int2_not( &x->rows[2] )
 	};
 }
 
@@ -3388,13 +3388,13 @@ HLML_INLINE int3x3 int3x3_negate( const int3x3* x )
 }
 
 // Returns a copy of the matrix where each component has been bitwise NOT'd.
-HLML_INLINE int3x3 int3x3_unary( const int3x3* x )
+HLML_INLINE int3x3 int3x3_not( const int3x3* x )
 {
 	return HLML_CONSTRUCT( int3x3 )
 	{
-		int3_unary( &x->rows[0] ),
-		int3_unary( &x->rows[1] ),
-		int3_unary( &x->rows[2] )
+		int3_not( &x->rows[0] ),
+		int3_not( &x->rows[1] ),
+		int3_not( &x->rows[2] )
 	};
 }
 
@@ -3789,13 +3789,13 @@ HLML_INLINE int3x4 int3x4_negate( const int3x4* x )
 }
 
 // Returns a copy of the matrix where each component has been bitwise NOT'd.
-HLML_INLINE int3x4 int3x4_unary( const int3x4* x )
+HLML_INLINE int3x4 int3x4_not( const int3x4* x )
 {
 	return HLML_CONSTRUCT( int3x4 )
 	{
-		int4_unary( &x->rows[0] ),
-		int4_unary( &x->rows[1] ),
-		int4_unary( &x->rows[2] )
+		int4_not( &x->rows[0] ),
+		int4_not( &x->rows[1] ),
+		int4_not( &x->rows[2] )
 	};
 }
 
@@ -4190,14 +4190,14 @@ HLML_INLINE int4x2 int4x2_negate( const int4x2* x )
 }
 
 // Returns a copy of the matrix where each component has been bitwise NOT'd.
-HLML_INLINE int4x2 int4x2_unary( const int4x2* x )
+HLML_INLINE int4x2 int4x2_not( const int4x2* x )
 {
 	return HLML_CONSTRUCT( int4x2 )
 	{
-		int2_unary( &x->rows[0] ),
-		int2_unary( &x->rows[1] ),
-		int2_unary( &x->rows[2] ),
-		int2_unary( &x->rows[3] )
+		int2_not( &x->rows[0] ),
+		int2_not( &x->rows[1] ),
+		int2_not( &x->rows[2] ),
+		int2_not( &x->rows[3] )
 	};
 }
 
@@ -4611,14 +4611,14 @@ HLML_INLINE int4x3 int4x3_negate( const int4x3* x )
 }
 
 // Returns a copy of the matrix where each component has been bitwise NOT'd.
-HLML_INLINE int4x3 int4x3_unary( const int4x3* x )
+HLML_INLINE int4x3 int4x3_not( const int4x3* x )
 {
 	return HLML_CONSTRUCT( int4x3 )
 	{
-		int3_unary( &x->rows[0] ),
-		int3_unary( &x->rows[1] ),
-		int3_unary( &x->rows[2] ),
-		int3_unary( &x->rows[3] )
+		int3_not( &x->rows[0] ),
+		int3_not( &x->rows[1] ),
+		int3_not( &x->rows[2] ),
+		int3_not( &x->rows[3] )
 	};
 }
 
@@ -5033,14 +5033,14 @@ HLML_INLINE int4x4 int4x4_negate( const int4x4* x )
 }
 
 // Returns a copy of the matrix where each component has been bitwise NOT'd.
-HLML_INLINE int4x4 int4x4_unary( const int4x4* x )
+HLML_INLINE int4x4 int4x4_not( const int4x4* x )
 {
 	return HLML_CONSTRUCT( int4x4 )
 	{
-		int4_unary( &x->rows[0] ),
-		int4_unary( &x->rows[1] ),
-		int4_unary( &x->rows[2] ),
-		int4_unary( &x->rows[3] )
+		int4_not( &x->rows[0] ),
+		int4_not( &x->rows[1] ),
+		int4_not( &x->rows[2] ),
+		int4_not( &x->rows[3] )
 	};
 }
 
@@ -5483,12 +5483,12 @@ HLML_INLINE uint2x2 uint2x2_negate( const uint2x2* x )
 }
 
 // Returns a copy of the matrix where each component has been bitwise NOT'd.
-HLML_INLINE uint2x2 uint2x2_unary( const uint2x2* x )
+HLML_INLINE uint2x2 uint2x2_not( const uint2x2* x )
 {
 	return HLML_CONSTRUCT( uint2x2 )
 	{
-		uint2_unary( &x->rows[0] ),
-		uint2_unary( &x->rows[1] )
+		uint2_not( &x->rows[0] ),
+		uint2_not( &x->rows[1] )
 	};
 }
 
@@ -5824,12 +5824,12 @@ HLML_INLINE uint2x3 uint2x3_negate( const uint2x3* x )
 }
 
 // Returns a copy of the matrix where each component has been bitwise NOT'd.
-HLML_INLINE uint2x3 uint2x3_unary( const uint2x3* x )
+HLML_INLINE uint2x3 uint2x3_not( const uint2x3* x )
 {
 	return HLML_CONSTRUCT( uint2x3 )
 	{
-		uint3_unary( &x->rows[0] ),
-		uint3_unary( &x->rows[1] )
+		uint3_not( &x->rows[0] ),
+		uint3_not( &x->rows[1] )
 	};
 }
 
@@ -6156,12 +6156,12 @@ HLML_INLINE uint2x4 uint2x4_negate( const uint2x4* x )
 }
 
 // Returns a copy of the matrix where each component has been bitwise NOT'd.
-HLML_INLINE uint2x4 uint2x4_unary( const uint2x4* x )
+HLML_INLINE uint2x4 uint2x4_not( const uint2x4* x )
 {
 	return HLML_CONSTRUCT( uint2x4 )
 	{
-		uint4_unary( &x->rows[0] ),
-		uint4_unary( &x->rows[1] )
+		uint4_not( &x->rows[0] ),
+		uint4_not( &x->rows[1] )
 	};
 }
 
@@ -6507,13 +6507,13 @@ HLML_INLINE uint3x2 uint3x2_negate( const uint3x2* x )
 }
 
 // Returns a copy of the matrix where each component has been bitwise NOT'd.
-HLML_INLINE uint3x2 uint3x2_unary( const uint3x2* x )
+HLML_INLINE uint3x2 uint3x2_not( const uint3x2* x )
 {
 	return HLML_CONSTRUCT( uint3x2 )
 	{
-		uint2_unary( &x->rows[0] ),
-		uint2_unary( &x->rows[1] ),
-		uint2_unary( &x->rows[2] )
+		uint2_not( &x->rows[0] ),
+		uint2_not( &x->rows[1] ),
+		uint2_not( &x->rows[2] )
 	};
 }
 
@@ -6876,13 +6876,13 @@ HLML_INLINE uint3x3 uint3x3_negate( const uint3x3* x )
 }
 
 // Returns a copy of the matrix where each component has been bitwise NOT'd.
-HLML_INLINE uint3x3 uint3x3_unary( const uint3x3* x )
+HLML_INLINE uint3x3 uint3x3_not( const uint3x3* x )
 {
 	return HLML_CONSTRUCT( uint3x3 )
 	{
-		uint3_unary( &x->rows[0] ),
-		uint3_unary( &x->rows[1] ),
-		uint3_unary( &x->rows[2] )
+		uint3_not( &x->rows[0] ),
+		uint3_not( &x->rows[1] ),
+		uint3_not( &x->rows[2] )
 	};
 }
 
@@ -7257,13 +7257,13 @@ HLML_INLINE uint3x4 uint3x4_negate( const uint3x4* x )
 }
 
 // Returns a copy of the matrix where each component has been bitwise NOT'd.
-HLML_INLINE uint3x4 uint3x4_unary( const uint3x4* x )
+HLML_INLINE uint3x4 uint3x4_not( const uint3x4* x )
 {
 	return HLML_CONSTRUCT( uint3x4 )
 	{
-		uint4_unary( &x->rows[0] ),
-		uint4_unary( &x->rows[1] ),
-		uint4_unary( &x->rows[2] )
+		uint4_not( &x->rows[0] ),
+		uint4_not( &x->rows[1] ),
+		uint4_not( &x->rows[2] )
 	};
 }
 
@@ -7646,14 +7646,14 @@ HLML_INLINE uint4x2 uint4x2_negate( const uint4x2* x )
 }
 
 // Returns a copy of the matrix where each component has been bitwise NOT'd.
-HLML_INLINE uint4x2 uint4x2_unary( const uint4x2* x )
+HLML_INLINE uint4x2 uint4x2_not( const uint4x2* x )
 {
 	return HLML_CONSTRUCT( uint4x2 )
 	{
-		uint2_unary( &x->rows[0] ),
-		uint2_unary( &x->rows[1] ),
-		uint2_unary( &x->rows[2] ),
-		uint2_unary( &x->rows[3] )
+		uint2_not( &x->rows[0] ),
+		uint2_not( &x->rows[1] ),
+		uint2_not( &x->rows[2] ),
+		uint2_not( &x->rows[3] )
 	};
 }
 
@@ -8055,14 +8055,14 @@ HLML_INLINE uint4x3 uint4x3_negate( const uint4x3* x )
 }
 
 // Returns a copy of the matrix where each component has been bitwise NOT'd.
-HLML_INLINE uint4x3 uint4x3_unary( const uint4x3* x )
+HLML_INLINE uint4x3 uint4x3_not( const uint4x3* x )
 {
 	return HLML_CONSTRUCT( uint4x3 )
 	{
-		uint3_unary( &x->rows[0] ),
-		uint3_unary( &x->rows[1] ),
-		uint3_unary( &x->rows[2] ),
-		uint3_unary( &x->rows[3] )
+		uint3_not( &x->rows[0] ),
+		uint3_not( &x->rows[1] ),
+		uint3_not( &x->rows[2] ),
+		uint3_not( &x->rows[3] )
 	};
 }
 
@@ -8465,14 +8465,14 @@ HLML_INLINE uint4x4 uint4x4_negate( const uint4x4* x )
 }
 
 // Returns a copy of the matrix where each component has been bitwise NOT'd.
-HLML_INLINE uint4x4 uint4x4_unary( const uint4x4* x )
+HLML_INLINE uint4x4 uint4x4_not( const uint4x4* x )
 {
 	return HLML_CONSTRUCT( uint4x4 )
 	{
-		uint4_unary( &x->rows[0] ),
-		uint4_unary( &x->rows[1] ),
-		uint4_unary( &x->rows[2] ),
-		uint4_unary( &x->rows[3] )
+		uint4_not( &x->rows[0] ),
+		uint4_not( &x->rows[1] ),
+		uint4_not( &x->rows[2] ),
+		uint4_not( &x->rows[3] )
 	};
 }
 
