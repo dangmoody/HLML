@@ -392,6 +392,43 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_float4_cdivv,
 	&(float4) { 2.000000f, 2.000000f, 2.000000f, 2.000000f }
 );
 
+#if defined( __GNUC__ ) || defined( __clang__ )
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wcast-qual"
+#endif
+TEMPER_PARAMETRIC( Test_float4_negate_prefix, TEMPER_FLAG_SHOULD_RUN, const float4* x, const float4* expectedAnswer )
+{
+	// make local copy of x and use that because we cant do increment or decrement operations on a const reference
+	// and MSVC throws warnings if we just make the parameter a non-const reference
+	float4* xlocal = (float4*) x;
+	float4 actualAnswer = float4_negate( xlocal );
+	TEMPER_CHECK_TRUE( float4_equals( &actualAnswer, expectedAnswer ) );
+}
+
+TEMPER_INVOKE_PARAMETRIC_TEST( Test_float4_negate_prefix,
+	&(float4) { 0.000000f, 0.000000f, 0.000000f, 0.000000f },
+	&(float4) { -0.000000f, -0.000000f, -0.000000f, -0.000000f }
+);
+
+TEMPER_INVOKE_PARAMETRIC_TEST( Test_float4_negate_prefix,
+	&(float4) { 1.000000f, 1.000000f, 1.000000f, 1.000000f },
+	&(float4) { -1.000000f, -1.000000f, -1.000000f, -1.000000f }
+);
+
+TEMPER_INVOKE_PARAMETRIC_TEST( Test_float4_negate_prefix,
+	&(float4) { 2.000000f, 2.000000f, 2.000000f, 2.000000f },
+	&(float4) { -2.000000f, -2.000000f, -2.000000f, -2.000000f }
+);
+
+TEMPER_INVOKE_PARAMETRIC_TEST( Test_float4_negate_prefix,
+	&(float4) { 3.000000f, 3.000000f, 3.000000f, 3.000000f },
+	&(float4) { -3.000000f, -3.000000f, -3.000000f, -3.000000f }
+);
+
+#if defined( __GNUC__ ) || defined( __clang__ )
+#pragma GCC diagnostic pop
+#endif
+
 TEMPER_PARAMETRIC( Test_float4_min, TEMPER_FLAG_SHOULD_RUN, const float4* lhs, const float4* rhs, const float4* expectedAnswer )
 {
 	float4 actualResult = float4_min( lhs, rhs );

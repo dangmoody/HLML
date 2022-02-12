@@ -1164,6 +1164,91 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_uint4x3_cdivm,
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Wcast-qual"
 #endif
+TEMPER_PARAMETRIC( Test_uint4x3_negate_prefix, TEMPER_FLAG_SHOULD_RUN, const uint4x3* x, const uint4x3* expectedAnswer )
+{
+	// make local copy of x and use that because we cant do increment or decrement operations on a const reference
+	// and MSVC throws warnings if we just make the parameter a non-const reference
+	uint4x3* xlocal = (uint4x3*) x;
+	uint4x3 actualAnswer = uint4x3_negate( xlocal );
+	TEMPER_CHECK_TRUE( uint4x3_equals( &actualAnswer, expectedAnswer ) );
+}
+
+TEMPER_INVOKE_PARAMETRIC_TEST( Test_uint4x3_negate_prefix,
+	&(uint4x3)
+	{
+		0U, 0U, 0U,
+		0U, 0U, 0U,
+		0U, 0U, 0U,
+		0U, 0U, 0U
+	},
+	&(uint4x3)
+	{
+		0U, 0U, 0U,
+		0U, 0U, 0U,
+		0U, 0U, 0U,
+		0U, 0U, 0U
+	}
+);
+
+TEMPER_INVOKE_PARAMETRIC_TEST( Test_uint4x3_negate_prefix,
+	&(uint4x3)
+	{
+		1U, 1U, 1U,
+		1U, 1U, 1U,
+		1U, 1U, 1U,
+		1U, 1U, 1U
+	},
+	&(uint4x3)
+	{
+		4294967295U, 4294967295U, 4294967295U,
+		4294967295U, 4294967295U, 4294967295U,
+		4294967295U, 4294967295U, 4294967295U,
+		4294967295U, 4294967295U, 4294967295U
+	}
+);
+
+TEMPER_INVOKE_PARAMETRIC_TEST( Test_uint4x3_negate_prefix,
+	&(uint4x3)
+	{
+		2U, 2U, 2U,
+		2U, 2U, 2U,
+		2U, 2U, 2U,
+		2U, 2U, 2U
+	},
+	&(uint4x3)
+	{
+		4294967294U, 4294967294U, 4294967294U,
+		4294967294U, 4294967294U, 4294967294U,
+		4294967294U, 4294967294U, 4294967294U,
+		4294967294U, 4294967294U, 4294967294U
+	}
+);
+
+TEMPER_INVOKE_PARAMETRIC_TEST( Test_uint4x3_negate_prefix,
+	&(uint4x3)
+	{
+		3U, 3U, 3U,
+		3U, 3U, 3U,
+		3U, 3U, 3U,
+		3U, 3U, 3U
+	},
+	&(uint4x3)
+	{
+		4294967293U, 4294967293U, 4294967293U,
+		4294967293U, 4294967293U, 4294967293U,
+		4294967293U, 4294967293U, 4294967293U,
+		4294967293U, 4294967293U, 4294967293U
+	}
+);
+
+#if defined( __GNUC__ ) || defined( __clang__ )
+#pragma GCC diagnostic pop
+#endif
+
+#if defined( __GNUC__ ) || defined( __clang__ )
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wcast-qual"
+#endif
 TEMPER_PARAMETRIC( Test_uint4x3_unary_prefix, TEMPER_FLAG_SHOULD_RUN, const uint4x3* x, const uint4x3* expectedAnswer )
 {
 	// make local copy of x and use that because we cant do increment or decrement operations on a const reference

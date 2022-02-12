@@ -516,6 +516,43 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_double4_decrement_postfix,
 #if defined( __GNUC__ ) || defined( __clang__ )
 #pragma GCC diagnostic pop
 #endif
+#if defined( __GNUC__ ) || defined( __clang__ )
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wcast-qual"
+#endif
+TEMPER_PARAMETRIC( Test_double4_negate_prefix, TEMPER_FLAG_SHOULD_RUN, const double4& x, const double4& expectedAnswer )
+{
+	// make local copy of x and use that because we cant do increment or decrement operations on a const reference
+	// and MSVC throws warnings if we just make the parameter a non-const reference
+	double4 xlocal = (double4) x;
+	double4 actualAnswer = -xlocal;
+	TEMPER_CHECK_TRUE( actualAnswer == expectedAnswer );
+}
+
+TEMPER_INVOKE_PARAMETRIC_TEST( Test_double4_negate_prefix,
+	double4( 0.000000f, 0.000000f, 0.000000f, 0.000000f ),
+	double4( -0.000000f, -0.000000f, -0.000000f, -0.000000f )
+);
+
+TEMPER_INVOKE_PARAMETRIC_TEST( Test_double4_negate_prefix,
+	double4( 1.000000f, 1.000000f, 1.000000f, 1.000000f ),
+	double4( -1.000000f, -1.000000f, -1.000000f, -1.000000f )
+);
+
+TEMPER_INVOKE_PARAMETRIC_TEST( Test_double4_negate_prefix,
+	double4( 2.000000f, 2.000000f, 2.000000f, 2.000000f ),
+	double4( -2.000000f, -2.000000f, -2.000000f, -2.000000f )
+);
+
+TEMPER_INVOKE_PARAMETRIC_TEST( Test_double4_negate_prefix,
+	double4( 3.000000f, 3.000000f, 3.000000f, 3.000000f ),
+	double4( -3.000000f, -3.000000f, -3.000000f, -3.000000f )
+);
+
+#if defined( __GNUC__ ) || defined( __clang__ )
+#pragma GCC diagnostic pop
+#endif
+
 TEMPER_PARAMETRIC( Test_double4_min, TEMPER_FLAG_SHOULD_RUN, const double4& lhs, const double4& rhs, const double4& expectedAnswer )
 {
 	double4 actualResult = min( lhs, rhs );

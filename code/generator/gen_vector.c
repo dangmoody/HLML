@@ -892,7 +892,7 @@ static void GenerateVectorFiles( allocatorLinear_t* tempStorage, const char* gen
 
 			StringBuilder_Appendf( code, "// %s\n", typeInfo->fullTypeName );
 
-			GenerateComponentWiseOperators( tempStorage, typeInfo, code, flags );
+			GenerateComponentWiseOperators( tempStorage, typeInfo, code, strings, flags );
 
 			GenerateComponentWiseFunctions( tempStorage, typeInfo, &scalarMemberType, code, strings, flags );
 

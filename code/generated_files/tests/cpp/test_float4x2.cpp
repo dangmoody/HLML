@@ -1316,6 +1316,83 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_float4x2_decrement_postfix,
 #if defined( __GNUC__ ) || defined( __clang__ )
 #pragma GCC diagnostic pop
 #endif
+#if defined( __GNUC__ ) || defined( __clang__ )
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wcast-qual"
+#endif
+TEMPER_PARAMETRIC( Test_float4x2_negate_prefix, TEMPER_FLAG_SHOULD_RUN, const float4x2& x, const float4x2& expectedAnswer )
+{
+	// make local copy of x and use that because we cant do increment or decrement operations on a const reference
+	// and MSVC throws warnings if we just make the parameter a non-const reference
+	float4x2 xlocal = (float4x2) x;
+	float4x2 actualAnswer = -xlocal;
+	TEMPER_CHECK_TRUE( actualAnswer == expectedAnswer );
+}
+
+TEMPER_INVOKE_PARAMETRIC_TEST( Test_float4x2_negate_prefix,
+	float4x2(
+		0.000000f, 0.000000f,
+		0.000000f, 0.000000f,
+		0.000000f, 0.000000f,
+		0.000000f, 0.000000f
+	),
+	float4x2(
+		-0.000000f, -0.000000f,
+		-0.000000f, -0.000000f,
+		-0.000000f, -0.000000f,
+		-0.000000f, -0.000000f
+	)
+);
+
+TEMPER_INVOKE_PARAMETRIC_TEST( Test_float4x2_negate_prefix,
+	float4x2(
+		1.000000f, 1.000000f,
+		1.000000f, 1.000000f,
+		1.000000f, 1.000000f,
+		1.000000f, 1.000000f
+	),
+	float4x2(
+		-1.000000f, -1.000000f,
+		-1.000000f, -1.000000f,
+		-1.000000f, -1.000000f,
+		-1.000000f, -1.000000f
+	)
+);
+
+TEMPER_INVOKE_PARAMETRIC_TEST( Test_float4x2_negate_prefix,
+	float4x2(
+		2.000000f, 2.000000f,
+		2.000000f, 2.000000f,
+		2.000000f, 2.000000f,
+		2.000000f, 2.000000f
+	),
+	float4x2(
+		-2.000000f, -2.000000f,
+		-2.000000f, -2.000000f,
+		-2.000000f, -2.000000f,
+		-2.000000f, -2.000000f
+	)
+);
+
+TEMPER_INVOKE_PARAMETRIC_TEST( Test_float4x2_negate_prefix,
+	float4x2(
+		3.000000f, 3.000000f,
+		3.000000f, 3.000000f,
+		3.000000f, 3.000000f,
+		3.000000f, 3.000000f
+	),
+	float4x2(
+		-3.000000f, -3.000000f,
+		-3.000000f, -3.000000f,
+		-3.000000f, -3.000000f,
+		-3.000000f, -3.000000f
+	)
+);
+
+#if defined( __GNUC__ ) || defined( __clang__ )
+#pragma GCC diagnostic pop
+#endif
+
 TEMPER_PARAMETRIC( Test_float4x2_min, TEMPER_FLAG_SHOULD_RUN, const float4x2& lhs, const float4x2& rhs, const float4x2& expectedAnswer )
 {
 	float4x2 actualResult = min( lhs, rhs );

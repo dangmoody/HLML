@@ -1098,10 +1098,12 @@ static void GenerateOperatorTests( allocatorLinear_t* tempStorage, stringBuilder
 
 	// increment/decrement
 	if ( flags & GENERATOR_FLAG_GENERATE_OPERATORS ) {
-		StringBuilder_Appendf( code, "#if defined( __GNUC__ ) || defined( __clang__ )\n" );
-		StringBuilder_Appendf( code, "#pragma GCC diagnostic push\n" );
-		StringBuilder_Appendf( code, "#pragma GCC diagnostic ignored \"-Wcast-qual\"\n" );
-		StringBuilder_Appendf( code, "#endif\n\n" );
+		StringBuilder_Appendf( code,
+			"#if defined( __GNUC__ ) || defined( __clang__ )\n"
+			"#pragma GCC diagnostic push\n"
+			"#pragma GCC diagnostic ignored \"-Wcast-qual\"\n"
+			"#endif\n\n"
+		);
 
 		float32 inputValues[] = { 1.0f, 2.0f, 3.0f, 4.0f };
 		float32 outputValues[GEN_OP_INCREMENT_COUNT][4] = {
@@ -1128,19 +1130,47 @@ static void GenerateOperatorTests( allocatorLinear_t* tempStorage, stringBuilder
 			} );
 		}
 
-		StringBuilder_Appendf( code, "#if defined( __GNUC__ ) || defined( __clang__ )\n" );
-		StringBuilder_Appendf( code, "#pragma GCC diagnostic pop\n" );
-		StringBuilder_Appendf( code, "#endif\n" );
+		StringBuilder_Appendf( code,
+			"#if defined( __GNUC__ ) || defined( __clang__ )\n"
+			"#pragma GCC diagnostic pop\n"
+			"#endif\n" );
+	}
+
+	// negate
+	{
+		StringBuilder_Appendf( code,
+			"#if defined( __GNUC__ ) || defined( __clang__ )\n"
+			"#pragma GCC diagnostic push\n"
+			"#pragma GCC diagnostic ignored \"-Wcast-qual\"\n"
+			"#endif\n"
+		);
+
+		float32 inputValues[]           = {  0.0f,  1.0f,  2.0f,  3.0f,  10.0f };
+		float32 negateExpectedAnswers[] = { -0.0f, -1.0f, -2.0f, -3.0f, -10.0f };
+
+		Gen_GenerateParametricTestCode_OperatorSingleParm( tempStorage, code, typeInfo, "negate", "-", strings, flags, OPERATOR_SINGLE_PARM_TYPE_PREFIX, &(testFixtureOperatorSingleParm_t) {
+			.numTests = 4,
+			.inputValues = inputValues,
+			.outputValues = negateExpectedAnswers
+		} );
+
+		StringBuilder_Append( code,
+			"#if defined( __GNUC__ ) || defined( __clang__ )\n"
+			"#pragma GCC diagnostic pop\n"
+			"#endif\n\n"
+		);
 	}
 
 	// bitwise
 	if ( Gen_TypeIsInteger( typeInfo->type ) ) {
 		// unary
 		{
-			StringBuilder_Appendf( code, "#if defined( __GNUC__ ) || defined( __clang__ )\n" );
-			StringBuilder_Appendf( code, "#pragma GCC diagnostic push\n" );
-			StringBuilder_Appendf( code, "#pragma GCC diagnostic ignored \"-Wcast-qual\"\n" );
-			StringBuilder_Appendf( code, "#endif\n" );
+			StringBuilder_Append( code,
+				"#if defined( __GNUC__ ) || defined( __clang__ )\n"
+				"#pragma GCC diagnostic push\n"
+				"#pragma GCC diagnostic ignored \"-Wcast-qual\"\n"
+				"#endif\n"
+			);
 
 			const char* opFuncName = Gen_GetBitwiseName( GEN_OP_BITWISE_UNARY );
 			const char* opStr = Gen_GetOperatorBitwise( GEN_OP_BITWISE_UNARY );
@@ -1151,9 +1181,11 @@ static void GenerateOperatorTests( allocatorLinear_t* tempStorage, stringBuilder
 				.outputValues = (float32[]) { ~1 }
 			} );
 
-			StringBuilder_Appendf( code, "#if defined( __GNUC__ ) || defined( __clang__ )\n" );
-			StringBuilder_Appendf( code, "#pragma GCC diagnostic pop\n" );
-			StringBuilder_Appendf( code, "#endif\n\n" );
+			StringBuilder_Appendf( code,
+				"#if defined( __GNUC__ ) || defined( __clang__ )\n"
+				"#pragma GCC diagnostic pop\n"
+				"#endif\n\n"
+			);
 		}
 
 		// all others

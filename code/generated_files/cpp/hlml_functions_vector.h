@@ -961,6 +961,16 @@ HLML_INLINE int2 operator--( int2& x, const int32_t )
 	return x;
 }
 
+// Returns a copy of the vector that has been negated.
+// pre-fix
+HLML_INLINE int2 operator-( const int2& x )
+{
+	return int2(
+		-x[0],
+		-x[1]
+	);
+}
+
 // Returns a copy of the vector where each component has been bitwise NOT'd.
 // pre-fix
 HLML_INLINE int2 operator~( const int2& x )
@@ -1416,6 +1426,17 @@ HLML_INLINE int3 operator--( int3& x, const int32_t )
 	x[1]--;
 	x[2]--;
 	return x;
+}
+
+// Returns a copy of the vector that has been negated.
+// pre-fix
+HLML_INLINE int3 operator-( const int3& x )
+{
+	return int3(
+		-x[0],
+		-x[1],
+		-x[2]
+	);
 }
 
 // Returns a copy of the vector where each component has been bitwise NOT'd.
@@ -1908,6 +1929,18 @@ HLML_INLINE int4 operator--( int4& x, const int32_t )
 	return x;
 }
 
+// Returns a copy of the vector that has been negated.
+// pre-fix
+HLML_INLINE int4 operator-( const int4& x )
+{
+	return int4(
+		-x[0],
+		-x[1],
+		-x[2],
+		-x[3]
+	);
+}
+
 // Returns a copy of the vector where each component has been bitwise NOT'd.
 // pre-fix
 HLML_INLINE int4 operator~( const int4& x )
@@ -2368,6 +2401,16 @@ HLML_INLINE uint2 operator--( uint2& x, const int32_t )
 	return x;
 }
 
+// Returns a copy of the vector that has been negated.
+// pre-fix
+HLML_INLINE uint2 operator-( const uint2& x )
+{
+	return uint2(
+		-x[0],
+		-x[1]
+	);
+}
+
 // Returns a copy of the vector where each component has been bitwise NOT'd.
 // pre-fix
 HLML_INLINE uint2 operator~( const uint2& x )
@@ -2814,6 +2857,17 @@ HLML_INLINE uint3 operator--( uint3& x, const int32_t )
 	x[1]--;
 	x[2]--;
 	return x;
+}
+
+// Returns a copy of the vector that has been negated.
+// pre-fix
+HLML_INLINE uint3 operator-( const uint3& x )
+{
+	return uint3(
+		-x[0],
+		-x[1],
+		-x[2]
+	);
 }
 
 // Returns a copy of the vector where each component has been bitwise NOT'd.
@@ -3296,6 +3350,18 @@ HLML_INLINE uint4 operator--( uint4& x, const int32_t )
 	return x;
 }
 
+// Returns a copy of the vector that has been negated.
+// pre-fix
+HLML_INLINE uint4 operator-( const uint4& x )
+{
+	return uint4(
+		-x[0],
+		-x[1],
+		-x[2],
+		-x[3]
+	);
+}
+
 // Returns a copy of the vector where each component has been bitwise NOT'd.
 // pre-fix
 HLML_INLINE uint4 operator~( const uint4& x )
@@ -3763,6 +3829,16 @@ HLML_INLINE float2 operator--( float2& x, const int32_t )
 	return x;
 }
 
+// Returns a copy of the vector that has been negated.
+// pre-fix
+HLML_INLINE float2 operator-( const float2& x )
+{
+	return float2(
+		-x[0],
+		-x[1]
+	);
+}
+
 // Performs a sign function on each component of the vector.
 HLML_INLINE int2 sign( const float2& x )
 {
@@ -4089,6 +4165,17 @@ HLML_INLINE float3 operator--( float3& x, const int32_t )
 	x[1]--;
 	x[2]--;
 	return x;
+}
+
+// Returns a copy of the vector that has been negated.
+// pre-fix
+HLML_INLINE float3 operator-( const float3& x )
+{
+	return float3(
+		-x[0],
+		-x[1],
+		-x[2]
+	);
 }
 
 // Performs a sign function on each component of the vector.
@@ -4453,6 +4540,18 @@ HLML_INLINE float4 operator--( float4& x, const int32_t )
 	return x;
 }
 
+// Returns a copy of the vector that has been negated.
+// pre-fix
+HLML_INLINE float4 operator-( const float4& x )
+{
+	return float4(
+		-x[0],
+		-x[1],
+		-x[2],
+		-x[3]
+	);
+}
+
 // Performs a sign function on each component of the vector.
 HLML_INLINE int4 sign( const float4& x )
 {
@@ -4762,6 +4861,16 @@ HLML_INLINE double2 operator--( double2& x, const int32_t )
 	x[0]--;
 	x[1]--;
 	return x;
+}
+
+// Returns a copy of the vector that has been negated.
+// pre-fix
+HLML_INLINE double2 operator-( const double2& x )
+{
+	return double2(
+		-x[0],
+		-x[1]
+	);
 }
 
 // Performs a sign function on each component of the vector.
@@ -5090,6 +5199,17 @@ HLML_INLINE double3 operator--( double3& x, const int32_t )
 	x[1]--;
 	x[2]--;
 	return x;
+}
+
+// Returns a copy of the vector that has been negated.
+// pre-fix
+HLML_INLINE double3 operator-( const double3& x )
+{
+	return double3(
+		-x[0],
+		-x[1],
+		-x[2]
+	);
 }
 
 // Performs a sign function on each component of the vector.
@@ -5452,6 +5572,18 @@ HLML_INLINE double4 operator--( double4& x, const int32_t )
 	x[2]--;
 	x[3]--;
 	return x;
+}
+
+// Returns a copy of the vector that has been negated.
+// pre-fix
+HLML_INLINE double4 operator-( const double4& x )
+{
+	return double4(
+		-x[0],
+		-x[1],
+		-x[2],
+		-x[3]
+	);
 }
 
 // Performs a sign function on each component of the vector.

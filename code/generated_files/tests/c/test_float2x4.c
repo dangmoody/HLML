@@ -904,6 +904,75 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_float2x4_cdivm,
 	}
 );
 
+#if defined( __GNUC__ ) || defined( __clang__ )
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wcast-qual"
+#endif
+TEMPER_PARAMETRIC( Test_float2x4_negate_prefix, TEMPER_FLAG_SHOULD_RUN, const float2x4* x, const float2x4* expectedAnswer )
+{
+	// make local copy of x and use that because we cant do increment or decrement operations on a const reference
+	// and MSVC throws warnings if we just make the parameter a non-const reference
+	float2x4* xlocal = (float2x4*) x;
+	float2x4 actualAnswer = float2x4_negate( xlocal );
+	TEMPER_CHECK_TRUE( float2x4_equals( &actualAnswer, expectedAnswer ) );
+}
+
+TEMPER_INVOKE_PARAMETRIC_TEST( Test_float2x4_negate_prefix,
+	&(float2x4)
+	{
+		0.000000f, 0.000000f, 0.000000f, 0.000000f,
+		0.000000f, 0.000000f, 0.000000f, 0.000000f
+	},
+	&(float2x4)
+	{
+		-0.000000f, -0.000000f, -0.000000f, -0.000000f,
+		-0.000000f, -0.000000f, -0.000000f, -0.000000f
+	}
+);
+
+TEMPER_INVOKE_PARAMETRIC_TEST( Test_float2x4_negate_prefix,
+	&(float2x4)
+	{
+		1.000000f, 1.000000f, 1.000000f, 1.000000f,
+		1.000000f, 1.000000f, 1.000000f, 1.000000f
+	},
+	&(float2x4)
+	{
+		-1.000000f, -1.000000f, -1.000000f, -1.000000f,
+		-1.000000f, -1.000000f, -1.000000f, -1.000000f
+	}
+);
+
+TEMPER_INVOKE_PARAMETRIC_TEST( Test_float2x4_negate_prefix,
+	&(float2x4)
+	{
+		2.000000f, 2.000000f, 2.000000f, 2.000000f,
+		2.000000f, 2.000000f, 2.000000f, 2.000000f
+	},
+	&(float2x4)
+	{
+		-2.000000f, -2.000000f, -2.000000f, -2.000000f,
+		-2.000000f, -2.000000f, -2.000000f, -2.000000f
+	}
+);
+
+TEMPER_INVOKE_PARAMETRIC_TEST( Test_float2x4_negate_prefix,
+	&(float2x4)
+	{
+		3.000000f, 3.000000f, 3.000000f, 3.000000f,
+		3.000000f, 3.000000f, 3.000000f, 3.000000f
+	},
+	&(float2x4)
+	{
+		-3.000000f, -3.000000f, -3.000000f, -3.000000f,
+		-3.000000f, -3.000000f, -3.000000f, -3.000000f
+	}
+);
+
+#if defined( __GNUC__ ) || defined( __clang__ )
+#pragma GCC diagnostic pop
+#endif
+
 TEMPER_PARAMETRIC( Test_float2x4_min, TEMPER_FLAG_SHOULD_RUN, const float2x4* lhs, const float2x4* rhs, const float2x4* expectedAnswer )
 {
 	float2x4 actualResult = float2x4_min( lhs, rhs );

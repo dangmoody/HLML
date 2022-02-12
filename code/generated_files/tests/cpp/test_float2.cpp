@@ -516,6 +516,43 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_float2_decrement_postfix,
 #if defined( __GNUC__ ) || defined( __clang__ )
 #pragma GCC diagnostic pop
 #endif
+#if defined( __GNUC__ ) || defined( __clang__ )
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wcast-qual"
+#endif
+TEMPER_PARAMETRIC( Test_float2_negate_prefix, TEMPER_FLAG_SHOULD_RUN, const float2& x, const float2& expectedAnswer )
+{
+	// make local copy of x and use that because we cant do increment or decrement operations on a const reference
+	// and MSVC throws warnings if we just make the parameter a non-const reference
+	float2 xlocal = (float2) x;
+	float2 actualAnswer = -xlocal;
+	TEMPER_CHECK_TRUE( actualAnswer == expectedAnswer );
+}
+
+TEMPER_INVOKE_PARAMETRIC_TEST( Test_float2_negate_prefix,
+	float2( 0.000000f, 0.000000f ),
+	float2( -0.000000f, -0.000000f )
+);
+
+TEMPER_INVOKE_PARAMETRIC_TEST( Test_float2_negate_prefix,
+	float2( 1.000000f, 1.000000f ),
+	float2( -1.000000f, -1.000000f )
+);
+
+TEMPER_INVOKE_PARAMETRIC_TEST( Test_float2_negate_prefix,
+	float2( 2.000000f, 2.000000f ),
+	float2( -2.000000f, -2.000000f )
+);
+
+TEMPER_INVOKE_PARAMETRIC_TEST( Test_float2_negate_prefix,
+	float2( 3.000000f, 3.000000f ),
+	float2( -3.000000f, -3.000000f )
+);
+
+#if defined( __GNUC__ ) || defined( __clang__ )
+#pragma GCC diagnostic pop
+#endif
+
 TEMPER_PARAMETRIC( Test_float2_min, TEMPER_FLAG_SHOULD_RUN, const float2& lhs, const float2& rhs, const float2& expectedAnswer )
 {
 	float2 actualResult = min( lhs, rhs );

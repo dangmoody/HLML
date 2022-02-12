@@ -1160,6 +1160,91 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_double4x2_cdivm,
 	}
 );
 
+#if defined( __GNUC__ ) || defined( __clang__ )
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wcast-qual"
+#endif
+TEMPER_PARAMETRIC( Test_double4x2_negate_prefix, TEMPER_FLAG_SHOULD_RUN, const double4x2* x, const double4x2* expectedAnswer )
+{
+	// make local copy of x and use that because we cant do increment or decrement operations on a const reference
+	// and MSVC throws warnings if we just make the parameter a non-const reference
+	double4x2* xlocal = (double4x2*) x;
+	double4x2 actualAnswer = double4x2_negate( xlocal );
+	TEMPER_CHECK_TRUE( double4x2_equals( &actualAnswer, expectedAnswer ) );
+}
+
+TEMPER_INVOKE_PARAMETRIC_TEST( Test_double4x2_negate_prefix,
+	&(double4x2)
+	{
+		0.000000f, 0.000000f,
+		0.000000f, 0.000000f,
+		0.000000f, 0.000000f,
+		0.000000f, 0.000000f
+	},
+	&(double4x2)
+	{
+		-0.000000f, -0.000000f,
+		-0.000000f, -0.000000f,
+		-0.000000f, -0.000000f,
+		-0.000000f, -0.000000f
+	}
+);
+
+TEMPER_INVOKE_PARAMETRIC_TEST( Test_double4x2_negate_prefix,
+	&(double4x2)
+	{
+		1.000000f, 1.000000f,
+		1.000000f, 1.000000f,
+		1.000000f, 1.000000f,
+		1.000000f, 1.000000f
+	},
+	&(double4x2)
+	{
+		-1.000000f, -1.000000f,
+		-1.000000f, -1.000000f,
+		-1.000000f, -1.000000f,
+		-1.000000f, -1.000000f
+	}
+);
+
+TEMPER_INVOKE_PARAMETRIC_TEST( Test_double4x2_negate_prefix,
+	&(double4x2)
+	{
+		2.000000f, 2.000000f,
+		2.000000f, 2.000000f,
+		2.000000f, 2.000000f,
+		2.000000f, 2.000000f
+	},
+	&(double4x2)
+	{
+		-2.000000f, -2.000000f,
+		-2.000000f, -2.000000f,
+		-2.000000f, -2.000000f,
+		-2.000000f, -2.000000f
+	}
+);
+
+TEMPER_INVOKE_PARAMETRIC_TEST( Test_double4x2_negate_prefix,
+	&(double4x2)
+	{
+		3.000000f, 3.000000f,
+		3.000000f, 3.000000f,
+		3.000000f, 3.000000f,
+		3.000000f, 3.000000f
+	},
+	&(double4x2)
+	{
+		-3.000000f, -3.000000f,
+		-3.000000f, -3.000000f,
+		-3.000000f, -3.000000f,
+		-3.000000f, -3.000000f
+	}
+);
+
+#if defined( __GNUC__ ) || defined( __clang__ )
+#pragma GCC diagnostic pop
+#endif
+
 TEMPER_PARAMETRIC( Test_double4x2_min, TEMPER_FLAG_SHOULD_RUN, const double4x2* lhs, const double4x2* rhs, const double4x2* expectedAnswer )
 {
 	double4x2 actualResult = double4x2_min( lhs, rhs );

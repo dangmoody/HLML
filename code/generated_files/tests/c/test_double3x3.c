@@ -1032,6 +1032,83 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3x3_cdivm,
 	}
 );
 
+#if defined( __GNUC__ ) || defined( __clang__ )
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wcast-qual"
+#endif
+TEMPER_PARAMETRIC( Test_double3x3_negate_prefix, TEMPER_FLAG_SHOULD_RUN, const double3x3* x, const double3x3* expectedAnswer )
+{
+	// make local copy of x and use that because we cant do increment or decrement operations on a const reference
+	// and MSVC throws warnings if we just make the parameter a non-const reference
+	double3x3* xlocal = (double3x3*) x;
+	double3x3 actualAnswer = double3x3_negate( xlocal );
+	TEMPER_CHECK_TRUE( double3x3_equals( &actualAnswer, expectedAnswer ) );
+}
+
+TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3x3_negate_prefix,
+	&(double3x3)
+	{
+		0.000000f, 0.000000f, 0.000000f,
+		0.000000f, 0.000000f, 0.000000f,
+		0.000000f, 0.000000f, 0.000000f
+	},
+	&(double3x3)
+	{
+		-0.000000f, -0.000000f, -0.000000f,
+		-0.000000f, -0.000000f, -0.000000f,
+		-0.000000f, -0.000000f, -0.000000f
+	}
+);
+
+TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3x3_negate_prefix,
+	&(double3x3)
+	{
+		1.000000f, 1.000000f, 1.000000f,
+		1.000000f, 1.000000f, 1.000000f,
+		1.000000f, 1.000000f, 1.000000f
+	},
+	&(double3x3)
+	{
+		-1.000000f, -1.000000f, -1.000000f,
+		-1.000000f, -1.000000f, -1.000000f,
+		-1.000000f, -1.000000f, -1.000000f
+	}
+);
+
+TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3x3_negate_prefix,
+	&(double3x3)
+	{
+		2.000000f, 2.000000f, 2.000000f,
+		2.000000f, 2.000000f, 2.000000f,
+		2.000000f, 2.000000f, 2.000000f
+	},
+	&(double3x3)
+	{
+		-2.000000f, -2.000000f, -2.000000f,
+		-2.000000f, -2.000000f, -2.000000f,
+		-2.000000f, -2.000000f, -2.000000f
+	}
+);
+
+TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3x3_negate_prefix,
+	&(double3x3)
+	{
+		3.000000f, 3.000000f, 3.000000f,
+		3.000000f, 3.000000f, 3.000000f,
+		3.000000f, 3.000000f, 3.000000f
+	},
+	&(double3x3)
+	{
+		-3.000000f, -3.000000f, -3.000000f,
+		-3.000000f, -3.000000f, -3.000000f,
+		-3.000000f, -3.000000f, -3.000000f
+	}
+);
+
+#if defined( __GNUC__ ) || defined( __clang__ )
+#pragma GCC diagnostic pop
+#endif
+
 TEMPER_PARAMETRIC( Test_double3x3_min, TEMPER_FLAG_SHOULD_RUN, const double3x3* lhs, const double3x3* rhs, const double3x3* expectedAnswer )
 {
 	double3x3 actualResult = double3x3_min( lhs, rhs );

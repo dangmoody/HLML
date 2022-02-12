@@ -908,6 +908,75 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_uint2x4_cdivm,
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Wcast-qual"
 #endif
+TEMPER_PARAMETRIC( Test_uint2x4_negate_prefix, TEMPER_FLAG_SHOULD_RUN, const uint2x4* x, const uint2x4* expectedAnswer )
+{
+	// make local copy of x and use that because we cant do increment or decrement operations on a const reference
+	// and MSVC throws warnings if we just make the parameter a non-const reference
+	uint2x4* xlocal = (uint2x4*) x;
+	uint2x4 actualAnswer = uint2x4_negate( xlocal );
+	TEMPER_CHECK_TRUE( uint2x4_equals( &actualAnswer, expectedAnswer ) );
+}
+
+TEMPER_INVOKE_PARAMETRIC_TEST( Test_uint2x4_negate_prefix,
+	&(uint2x4)
+	{
+		0U, 0U, 0U, 0U,
+		0U, 0U, 0U, 0U
+	},
+	&(uint2x4)
+	{
+		0U, 0U, 0U, 0U,
+		0U, 0U, 0U, 0U
+	}
+);
+
+TEMPER_INVOKE_PARAMETRIC_TEST( Test_uint2x4_negate_prefix,
+	&(uint2x4)
+	{
+		1U, 1U, 1U, 1U,
+		1U, 1U, 1U, 1U
+	},
+	&(uint2x4)
+	{
+		4294967295U, 4294967295U, 4294967295U, 4294967295U,
+		4294967295U, 4294967295U, 4294967295U, 4294967295U
+	}
+);
+
+TEMPER_INVOKE_PARAMETRIC_TEST( Test_uint2x4_negate_prefix,
+	&(uint2x4)
+	{
+		2U, 2U, 2U, 2U,
+		2U, 2U, 2U, 2U
+	},
+	&(uint2x4)
+	{
+		4294967294U, 4294967294U, 4294967294U, 4294967294U,
+		4294967294U, 4294967294U, 4294967294U, 4294967294U
+	}
+);
+
+TEMPER_INVOKE_PARAMETRIC_TEST( Test_uint2x4_negate_prefix,
+	&(uint2x4)
+	{
+		3U, 3U, 3U, 3U,
+		3U, 3U, 3U, 3U
+	},
+	&(uint2x4)
+	{
+		4294967293U, 4294967293U, 4294967293U, 4294967293U,
+		4294967293U, 4294967293U, 4294967293U, 4294967293U
+	}
+);
+
+#if defined( __GNUC__ ) || defined( __clang__ )
+#pragma GCC diagnostic pop
+#endif
+
+#if defined( __GNUC__ ) || defined( __clang__ )
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wcast-qual"
+#endif
 TEMPER_PARAMETRIC( Test_uint2x4_unary_prefix, TEMPER_FLAG_SHOULD_RUN, const uint2x4* x, const uint2x4* expectedAnswer )
 {
 	// make local copy of x and use that because we cant do increment or decrement operations on a const reference

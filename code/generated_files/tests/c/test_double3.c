@@ -392,6 +392,43 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_cdivv,
 	&(double3) { 2.000000f, 2.000000f, 2.000000f }
 );
 
+#if defined( __GNUC__ ) || defined( __clang__ )
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wcast-qual"
+#endif
+TEMPER_PARAMETRIC( Test_double3_negate_prefix, TEMPER_FLAG_SHOULD_RUN, const double3* x, const double3* expectedAnswer )
+{
+	// make local copy of x and use that because we cant do increment or decrement operations on a const reference
+	// and MSVC throws warnings if we just make the parameter a non-const reference
+	double3* xlocal = (double3*) x;
+	double3 actualAnswer = double3_negate( xlocal );
+	TEMPER_CHECK_TRUE( double3_equals( &actualAnswer, expectedAnswer ) );
+}
+
+TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_negate_prefix,
+	&(double3) { 0.000000f, 0.000000f, 0.000000f },
+	&(double3) { -0.000000f, -0.000000f, -0.000000f }
+);
+
+TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_negate_prefix,
+	&(double3) { 1.000000f, 1.000000f, 1.000000f },
+	&(double3) { -1.000000f, -1.000000f, -1.000000f }
+);
+
+TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_negate_prefix,
+	&(double3) { 2.000000f, 2.000000f, 2.000000f },
+	&(double3) { -2.000000f, -2.000000f, -2.000000f }
+);
+
+TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_negate_prefix,
+	&(double3) { 3.000000f, 3.000000f, 3.000000f },
+	&(double3) { -3.000000f, -3.000000f, -3.000000f }
+);
+
+#if defined( __GNUC__ ) || defined( __clang__ )
+#pragma GCC diagnostic pop
+#endif
+
 TEMPER_PARAMETRIC( Test_double3_min, TEMPER_FLAG_SHOULD_RUN, const double3* lhs, const double3* rhs, const double3* expectedAnswer )
 {
 	double3 actualResult = double3_min( lhs, rhs );

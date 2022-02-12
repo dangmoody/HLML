@@ -2663,6 +2663,16 @@ HLML_INLINE int2x2 operator--( int2x2& x, const int32_t )
 	return x;
 }
 
+// Returns a copy of the matrix that has been negated.
+// pre-fix
+HLML_INLINE int2x2 operator-( const int2x2& x )
+{
+	return int2x2(
+		-x[0],
+		-x[1]
+	);
+}
+
 // Returns a copy of the matrix where each component has been bitwise NOT'd.
 // pre-fix
 HLML_INLINE int2x2 operator~( const int2x2& x )
@@ -3125,6 +3135,16 @@ HLML_INLINE int2x3 operator--( int2x3& x, const int32_t )
 	return x;
 }
 
+// Returns a copy of the matrix that has been negated.
+// pre-fix
+HLML_INLINE int2x3 operator-( const int2x3& x )
+{
+	return int2x3(
+		-x[0],
+		-x[1]
+	);
+}
+
 // Returns a copy of the matrix where each component has been bitwise NOT'd.
 // pre-fix
 HLML_INLINE int2x3 operator~( const int2x3& x )
@@ -3570,6 +3590,16 @@ HLML_INLINE int2x4 operator--( int2x4& x, const int32_t )
 	x[0]--;
 	x[1]--;
 	return x;
+}
+
+// Returns a copy of the matrix that has been negated.
+// pre-fix
+HLML_INLINE int2x4 operator-( const int2x4& x )
+{
+	return int2x4(
+		-x[0],
+		-x[1]
+	);
 }
 
 // Returns a copy of the matrix where each component has been bitwise NOT'd.
@@ -4040,6 +4070,17 @@ HLML_INLINE int3x2 operator--( int3x2& x, const int32_t )
 	x[1]--;
 	x[2]--;
 	return x;
+}
+
+// Returns a copy of the matrix that has been negated.
+// pre-fix
+HLML_INLINE int3x2 operator-( const int3x2& x )
+{
+	return int3x2(
+		-x[0],
+		-x[1],
+		-x[2]
+	);
 }
 
 // Returns a copy of the matrix where each component has been bitwise NOT'd.
@@ -4528,6 +4569,17 @@ HLML_INLINE int3x3 operator--( int3x3& x, const int32_t )
 	x[1]--;
 	x[2]--;
 	return x;
+}
+
+// Returns a copy of the matrix that has been negated.
+// pre-fix
+HLML_INLINE int3x3 operator-( const int3x3& x )
+{
+	return int3x3(
+		-x[0],
+		-x[1],
+		-x[2]
+	);
 }
 
 // Returns a copy of the matrix where each component has been bitwise NOT'd.
@@ -5037,6 +5089,17 @@ HLML_INLINE int3x4 operator--( int3x4& x, const int32_t )
 	x[1]--;
 	x[2]--;
 	return x;
+}
+
+// Returns a copy of the matrix that has been negated.
+// pre-fix
+HLML_INLINE int3x4 operator-( const int3x4& x )
+{
+	return int3x4(
+		-x[0],
+		-x[1],
+		-x[2]
+	);
 }
 
 // Returns a copy of the matrix where each component has been bitwise NOT'd.
@@ -5549,6 +5612,18 @@ HLML_INLINE int4x2 operator--( int4x2& x, const int32_t )
 	x[2]--;
 	x[3]--;
 	return x;
+}
+
+// Returns a copy of the matrix that has been negated.
+// pre-fix
+HLML_INLINE int4x2 operator-( const int4x2& x )
+{
+	return int4x2(
+		-x[0],
+		-x[1],
+		-x[2],
+		-x[3]
+	);
 }
 
 // Returns a copy of the matrix where each component has been bitwise NOT'd.
@@ -6083,6 +6158,18 @@ HLML_INLINE int4x3 operator--( int4x3& x, const int32_t )
 	return x;
 }
 
+// Returns a copy of the matrix that has been negated.
+// pre-fix
+HLML_INLINE int4x3 operator-( const int4x3& x )
+{
+	return int4x3(
+		-x[0],
+		-x[1],
+		-x[2],
+		-x[3]
+	);
+}
+
 // Returns a copy of the matrix where each component has been bitwise NOT'd.
 // pre-fix
 HLML_INLINE int4x3 operator~( const int4x3& x )
@@ -6614,6 +6701,18 @@ HLML_INLINE int4x4 operator--( int4x4& x, const int32_t )
 	x[2]--;
 	x[3]--;
 	return x;
+}
+
+// Returns a copy of the matrix that has been negated.
+// pre-fix
+HLML_INLINE int4x4 operator-( const int4x4& x )
+{
+	return int4x4(
+		-x[0],
+		-x[1],
+		-x[2],
+		-x[3]
+	);
 }
 
 // Returns a copy of the matrix where each component has been bitwise NOT'd.
@@ -7172,6 +7271,16 @@ HLML_INLINE uint2x2 operator--( uint2x2& x, const int32_t )
 	return x;
 }
 
+// Returns a copy of the matrix that has been negated.
+// pre-fix
+HLML_INLINE uint2x2 operator-( const uint2x2& x )
+{
+	return uint2x2(
+		-x[0],
+		-x[1]
+	);
+}
+
 // Returns a copy of the matrix where each component has been bitwise NOT'd.
 // pre-fix
 HLML_INLINE uint2x2 operator~( const uint2x2& x )
@@ -7619,6 +7728,16 @@ HLML_INLINE uint2x3 operator--( uint2x3& x, const int32_t )
 	return x;
 }
 
+// Returns a copy of the matrix that has been negated.
+// pre-fix
+HLML_INLINE uint2x3 operator-( const uint2x3& x )
+{
+	return uint2x3(
+		-x[0],
+		-x[1]
+	);
+}
+
 // Returns a copy of the matrix where each component has been bitwise NOT'd.
 // pre-fix
 HLML_INLINE uint2x3 operator~( const uint2x3& x )
@@ -8055,6 +8174,16 @@ HLML_INLINE uint2x4 operator--( uint2x4& x, const int32_t )
 	x[0]--;
 	x[1]--;
 	return x;
+}
+
+// Returns a copy of the matrix that has been negated.
+// pre-fix
+HLML_INLINE uint2x4 operator-( const uint2x4& x )
+{
+	return uint2x4(
+		-x[0],
+		-x[1]
+	);
 }
 
 // Returns a copy of the matrix where each component has been bitwise NOT'd.
@@ -8515,6 +8644,17 @@ HLML_INLINE uint3x2 operator--( uint3x2& x, const int32_t )
 	x[1]--;
 	x[2]--;
 	return x;
+}
+
+// Returns a copy of the matrix that has been negated.
+// pre-fix
+HLML_INLINE uint3x2 operator-( const uint3x2& x )
+{
+	return uint3x2(
+		-x[0],
+		-x[1],
+		-x[2]
+	);
 }
 
 // Returns a copy of the matrix where each component has been bitwise NOT'd.
@@ -8993,6 +9133,17 @@ HLML_INLINE uint3x3 operator--( uint3x3& x, const int32_t )
 	x[1]--;
 	x[2]--;
 	return x;
+}
+
+// Returns a copy of the matrix that has been negated.
+// pre-fix
+HLML_INLINE uint3x3 operator-( const uint3x3& x )
+{
+	return uint3x3(
+		-x[0],
+		-x[1],
+		-x[2]
+	);
 }
 
 // Returns a copy of the matrix where each component has been bitwise NOT'd.
@@ -9483,6 +9634,17 @@ HLML_INLINE uint3x4 operator--( uint3x4& x, const int32_t )
 	x[1]--;
 	x[2]--;
 	return x;
+}
+
+// Returns a copy of the matrix that has been negated.
+// pre-fix
+HLML_INLINE uint3x4 operator-( const uint3x4& x )
+{
+	return uint3x4(
+		-x[0],
+		-x[1],
+		-x[2]
+	);
 }
 
 // Returns a copy of the matrix where each component has been bitwise NOT'd.
@@ -9984,6 +10146,18 @@ HLML_INLINE uint4x2 operator--( uint4x2& x, const int32_t )
 	x[2]--;
 	x[3]--;
 	return x;
+}
+
+// Returns a copy of the matrix that has been negated.
+// pre-fix
+HLML_INLINE uint4x2 operator-( const uint4x2& x )
+{
+	return uint4x2(
+		-x[0],
+		-x[1],
+		-x[2],
+		-x[3]
+	);
 }
 
 // Returns a copy of the matrix where each component has been bitwise NOT'd.
@@ -10507,6 +10681,18 @@ HLML_INLINE uint4x3 operator--( uint4x3& x, const int32_t )
 	return x;
 }
 
+// Returns a copy of the matrix that has been negated.
+// pre-fix
+HLML_INLINE uint4x3 operator-( const uint4x3& x )
+{
+	return uint4x3(
+		-x[0],
+		-x[1],
+		-x[2],
+		-x[3]
+	);
+}
+
 // Returns a copy of the matrix where each component has been bitwise NOT'd.
 // pre-fix
 HLML_INLINE uint4x3 operator~( const uint4x3& x )
@@ -11027,6 +11213,18 @@ HLML_INLINE uint4x4 operator--( uint4x4& x, const int32_t )
 	x[2]--;
 	x[3]--;
 	return x;
+}
+
+// Returns a copy of the matrix that has been negated.
+// pre-fix
+HLML_INLINE uint4x4 operator-( const uint4x4& x )
+{
+	return uint4x4(
+		-x[0],
+		-x[1],
+		-x[2],
+		-x[3]
+	);
 }
 
 // Returns a copy of the matrix where each component has been bitwise NOT'd.
@@ -11579,6 +11777,16 @@ HLML_INLINE float2x2 operator--( float2x2& x, const int32_t )
 	return x;
 }
 
+// Returns a copy of the matrix that has been negated.
+// pre-fix
+HLML_INLINE float2x2 operator-( const float2x2& x )
+{
+	return float2x2(
+		-x[0],
+		-x[1]
+	);
+}
+
 // Sets the matrix to an identity matrix.
 HLML_INLINE void identity( float2x2& mat )
 {
@@ -11902,6 +12110,16 @@ HLML_INLINE float2x3 operator--( float2x3& x, const int32_t )
 	return x;
 }
 
+// Returns a copy of the matrix that has been negated.
+// pre-fix
+HLML_INLINE float2x3 operator-( const float2x3& x )
+{
+	return float2x3(
+		-x[0],
+		-x[1]
+	);
+}
+
 // Sets the matrix to an identity matrix.
 HLML_INLINE void identity( float2x3& mat )
 {
@@ -12196,6 +12414,16 @@ HLML_INLINE float2x4 operator--( float2x4& x, const int32_t )
 	x[0]--;
 	x[1]--;
 	return x;
+}
+
+// Returns a copy of the matrix that has been negated.
+// pre-fix
+HLML_INLINE float2x4 operator-( const float2x4& x )
+{
+	return float2x4(
+		-x[0],
+		-x[1]
+	);
 }
 
 // Sets the matrix to an identity matrix.
@@ -12516,6 +12744,17 @@ HLML_INLINE float3x2 operator--( float3x2& x, const int32_t )
 	x[1]--;
 	x[2]--;
 	return x;
+}
+
+// Returns a copy of the matrix that has been negated.
+// pre-fix
+HLML_INLINE float3x2 operator-( const float3x2& x )
+{
+	return float3x2(
+		-x[0],
+		-x[1],
+		-x[2]
+	);
 }
 
 // Sets the matrix to an identity matrix.
@@ -12843,6 +13082,17 @@ HLML_INLINE float3x3 operator--( float3x3& x, const int32_t )
 	x[1]--;
 	x[2]--;
 	return x;
+}
+
+// Returns a copy of the matrix that has been negated.
+// pre-fix
+HLML_INLINE float3x3 operator-( const float3x3& x )
+{
+	return float3x3(
+		-x[0],
+		-x[1],
+		-x[2]
+	);
 }
 
 // Sets the matrix to an identity matrix.
@@ -13214,6 +13464,17 @@ HLML_INLINE float3x4 operator--( float3x4& x, const int32_t )
 	return x;
 }
 
+// Returns a copy of the matrix that has been negated.
+// pre-fix
+HLML_INLINE float3x4 operator-( const float3x4& x )
+{
+	return float3x4(
+		-x[0],
+		-x[1],
+		-x[2]
+	);
+}
+
 // Sets the matrix to an identity matrix.
 HLML_INLINE void identity( float3x4& mat )
 {
@@ -13564,6 +13825,18 @@ HLML_INLINE float4x2 operator--( float4x2& x, const int32_t )
 	x[2]--;
 	x[3]--;
 	return x;
+}
+
+// Returns a copy of the matrix that has been negated.
+// pre-fix
+HLML_INLINE float4x2 operator-( const float4x2& x )
+{
+	return float4x2(
+		-x[0],
+		-x[1],
+		-x[2],
+		-x[3]
+	);
 }
 
 // Sets the matrix to an identity matrix.
@@ -13927,6 +14200,18 @@ HLML_INLINE float4x3 operator--( float4x3& x, const int32_t )
 	return x;
 }
 
+// Returns a copy of the matrix that has been negated.
+// pre-fix
+HLML_INLINE float4x3 operator-( const float4x3& x )
+{
+	return float4x3(
+		-x[0],
+		-x[1],
+		-x[2],
+		-x[3]
+	);
+}
+
 // Sets the matrix to an identity matrix.
 HLML_INLINE void identity( float4x3& mat )
 {
@@ -14287,6 +14572,18 @@ HLML_INLINE float4x4 operator--( float4x4& x, const int32_t )
 	x[2]--;
 	x[3]--;
 	return x;
+}
+
+// Returns a copy of the matrix that has been negated.
+// pre-fix
+HLML_INLINE float4x4 operator-( const float4x4& x )
+{
+	return float4x4(
+		-x[0],
+		-x[1],
+		-x[2],
+		-x[3]
+	);
 }
 
 // Sets the matrix to an identity matrix.
@@ -14951,6 +15248,16 @@ HLML_INLINE double2x2 operator--( double2x2& x, const int32_t )
 	return x;
 }
 
+// Returns a copy of the matrix that has been negated.
+// pre-fix
+HLML_INLINE double2x2 operator-( const double2x2& x )
+{
+	return double2x2(
+		-x[0],
+		-x[1]
+	);
+}
+
 // Sets the matrix to an identity matrix.
 HLML_INLINE void identity( double2x2& mat )
 {
@@ -15274,6 +15581,16 @@ HLML_INLINE double2x3 operator--( double2x3& x, const int32_t )
 	return x;
 }
 
+// Returns a copy of the matrix that has been negated.
+// pre-fix
+HLML_INLINE double2x3 operator-( const double2x3& x )
+{
+	return double2x3(
+		-x[0],
+		-x[1]
+	);
+}
+
 // Sets the matrix to an identity matrix.
 HLML_INLINE void identity( double2x3& mat )
 {
@@ -15568,6 +15885,16 @@ HLML_INLINE double2x4 operator--( double2x4& x, const int32_t )
 	x[0]--;
 	x[1]--;
 	return x;
+}
+
+// Returns a copy of the matrix that has been negated.
+// pre-fix
+HLML_INLINE double2x4 operator-( const double2x4& x )
+{
+	return double2x4(
+		-x[0],
+		-x[1]
+	);
 }
 
 // Sets the matrix to an identity matrix.
@@ -15888,6 +16215,17 @@ HLML_INLINE double3x2 operator--( double3x2& x, const int32_t )
 	x[1]--;
 	x[2]--;
 	return x;
+}
+
+// Returns a copy of the matrix that has been negated.
+// pre-fix
+HLML_INLINE double3x2 operator-( const double3x2& x )
+{
+	return double3x2(
+		-x[0],
+		-x[1],
+		-x[2]
+	);
 }
 
 // Sets the matrix to an identity matrix.
@@ -16215,6 +16553,17 @@ HLML_INLINE double3x3 operator--( double3x3& x, const int32_t )
 	x[1]--;
 	x[2]--;
 	return x;
+}
+
+// Returns a copy of the matrix that has been negated.
+// pre-fix
+HLML_INLINE double3x3 operator-( const double3x3& x )
+{
+	return double3x3(
+		-x[0],
+		-x[1],
+		-x[2]
+	);
 }
 
 // Sets the matrix to an identity matrix.
@@ -16586,6 +16935,17 @@ HLML_INLINE double3x4 operator--( double3x4& x, const int32_t )
 	return x;
 }
 
+// Returns a copy of the matrix that has been negated.
+// pre-fix
+HLML_INLINE double3x4 operator-( const double3x4& x )
+{
+	return double3x4(
+		-x[0],
+		-x[1],
+		-x[2]
+	);
+}
+
 // Sets the matrix to an identity matrix.
 HLML_INLINE void identity( double3x4& mat )
 {
@@ -16936,6 +17296,18 @@ HLML_INLINE double4x2 operator--( double4x2& x, const int32_t )
 	x[2]--;
 	x[3]--;
 	return x;
+}
+
+// Returns a copy of the matrix that has been negated.
+// pre-fix
+HLML_INLINE double4x2 operator-( const double4x2& x )
+{
+	return double4x2(
+		-x[0],
+		-x[1],
+		-x[2],
+		-x[3]
+	);
 }
 
 // Sets the matrix to an identity matrix.
@@ -17299,6 +17671,18 @@ HLML_INLINE double4x3 operator--( double4x3& x, const int32_t )
 	return x;
 }
 
+// Returns a copy of the matrix that has been negated.
+// pre-fix
+HLML_INLINE double4x3 operator-( const double4x3& x )
+{
+	return double4x3(
+		-x[0],
+		-x[1],
+		-x[2],
+		-x[3]
+	);
+}
+
 // Sets the matrix to an identity matrix.
 HLML_INLINE void identity( double4x3& mat )
 {
@@ -17659,6 +18043,18 @@ HLML_INLINE double4x4 operator--( double4x4& x, const int32_t )
 	x[2]--;
 	x[3]--;
 	return x;
+}
+
+// Returns a copy of the matrix that has been negated.
+// pre-fix
+HLML_INLINE double4x4 operator-( const double4x4& x )
+{
+	return double4x4(
+		-x[0],
+		-x[1],
+		-x[2],
+		-x[3]
+	);
 }
 
 // Sets the matrix to an identity matrix.

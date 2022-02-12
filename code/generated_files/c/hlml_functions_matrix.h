@@ -1936,6 +1936,16 @@ HLML_INLINE int2x2 int2x2_cdivm( const int2x2* lhs, const int2x2* rhs )
 	};
 }
 
+// Returns a copy of the matrix that has been negated.
+HLML_INLINE int2x2 int2x2_negate( const int2x2* x )
+{
+	return HLML_CONSTRUCT( int2x2 )
+	{
+		int2_negate( &x->rows[0] ),
+		int2_negate( &x->rows[1] )
+	};
+}
+
 // Returns a copy of the matrix where each component has been bitwise NOT'd.
 HLML_INLINE int2x2 int2x2_unary( const int2x2* x )
 {
@@ -2283,6 +2293,16 @@ HLML_INLINE int2x3 int2x3_cdivm( const int2x3* lhs, const int2x3* rhs )
 	};
 }
 
+// Returns a copy of the matrix that has been negated.
+HLML_INLINE int2x3 int2x3_negate( const int2x3* x )
+{
+	return HLML_CONSTRUCT( int2x3 )
+	{
+		int3_negate( &x->rows[0] ),
+		int3_negate( &x->rows[1] )
+	};
+}
+
 // Returns a copy of the matrix where each component has been bitwise NOT'd.
 HLML_INLINE int2x3 int2x3_unary( const int2x3* x )
 {
@@ -2612,6 +2632,16 @@ HLML_INLINE int2x4 int2x4_cdivm( const int2x4* lhs, const int2x4* rhs )
 	{
 		int4_cdivv( &lhs->rows[0], &rhs->rows[0] ),
 		int4_cdivv( &lhs->rows[1], &rhs->rows[1] )
+	};
+}
+
+// Returns a copy of the matrix that has been negated.
+HLML_INLINE int2x4 int2x4_negate( const int2x4* x )
+{
+	return HLML_CONSTRUCT( int2x4 )
+	{
+		int4_negate( &x->rows[0] ),
+		int4_negate( &x->rows[1] )
 	};
 }
 
@@ -2963,6 +2993,17 @@ HLML_INLINE int3x2 int3x2_cdivm( const int3x2* lhs, const int3x2* rhs )
 		int2_cdivv( &lhs->rows[0], &rhs->rows[0] ),
 		int2_cdivv( &lhs->rows[1], &rhs->rows[1] ),
 		int2_cdivv( &lhs->rows[2], &rhs->rows[2] )
+	};
+}
+
+// Returns a copy of the matrix that has been negated.
+HLML_INLINE int3x2 int3x2_negate( const int3x2* x )
+{
+	return HLML_CONSTRUCT( int3x2 )
+	{
+		int2_negate( &x->rows[0] ),
+		int2_negate( &x->rows[1] ),
+		int2_negate( &x->rows[2] )
 	};
 }
 
@@ -3332,6 +3373,17 @@ HLML_INLINE int3x3 int3x3_cdivm( const int3x3* lhs, const int3x3* rhs )
 		int3_cdivv( &lhs->rows[0], &rhs->rows[0] ),
 		int3_cdivv( &lhs->rows[1], &rhs->rows[1] ),
 		int3_cdivv( &lhs->rows[2], &rhs->rows[2] )
+	};
+}
+
+// Returns a copy of the matrix that has been negated.
+HLML_INLINE int3x3 int3x3_negate( const int3x3* x )
+{
+	return HLML_CONSTRUCT( int3x3 )
+	{
+		int3_negate( &x->rows[0] ),
+		int3_negate( &x->rows[1] ),
+		int3_negate( &x->rows[2] )
 	};
 }
 
@@ -3725,6 +3777,17 @@ HLML_INLINE int3x4 int3x4_cdivm( const int3x4* lhs, const int3x4* rhs )
 	};
 }
 
+// Returns a copy of the matrix that has been negated.
+HLML_INLINE int3x4 int3x4_negate( const int3x4* x )
+{
+	return HLML_CONSTRUCT( int3x4 )
+	{
+		int4_negate( &x->rows[0] ),
+		int4_negate( &x->rows[1] ),
+		int4_negate( &x->rows[2] )
+	};
+}
+
 // Returns a copy of the matrix where each component has been bitwise NOT'd.
 HLML_INLINE int3x4 int3x4_unary( const int3x4* x )
 {
@@ -4111,6 +4174,18 @@ HLML_INLINE int4x2 int4x2_cdivm( const int4x2* lhs, const int4x2* rhs )
 		int2_cdivv( &lhs->rows[1], &rhs->rows[1] ),
 		int2_cdivv( &lhs->rows[2], &rhs->rows[2] ),
 		int2_cdivv( &lhs->rows[3], &rhs->rows[3] )
+	};
+}
+
+// Returns a copy of the matrix that has been negated.
+HLML_INLINE int4x2 int4x2_negate( const int4x2* x )
+{
+	return HLML_CONSTRUCT( int4x2 )
+	{
+		int2_negate( &x->rows[0] ),
+		int2_negate( &x->rows[1] ),
+		int2_negate( &x->rows[2] ),
+		int2_negate( &x->rows[3] )
 	};
 }
 
@@ -4523,6 +4598,18 @@ HLML_INLINE int4x3 int4x3_cdivm( const int4x3* lhs, const int4x3* rhs )
 	};
 }
 
+// Returns a copy of the matrix that has been negated.
+HLML_INLINE int4x3 int4x3_negate( const int4x3* x )
+{
+	return HLML_CONSTRUCT( int4x3 )
+	{
+		int3_negate( &x->rows[0] ),
+		int3_negate( &x->rows[1] ),
+		int3_negate( &x->rows[2] ),
+		int3_negate( &x->rows[3] )
+	};
+}
+
 // Returns a copy of the matrix where each component has been bitwise NOT'd.
 HLML_INLINE int4x3 int4x3_unary( const int4x3* x )
 {
@@ -4930,6 +5017,18 @@ HLML_INLINE int4x4 int4x4_cdivm( const int4x4* lhs, const int4x4* rhs )
 		int4_cdivv( &lhs->rows[1], &rhs->rows[1] ),
 		int4_cdivv( &lhs->rows[2], &rhs->rows[2] ),
 		int4_cdivv( &lhs->rows[3], &rhs->rows[3] )
+	};
+}
+
+// Returns a copy of the matrix that has been negated.
+HLML_INLINE int4x4 int4x4_negate( const int4x4* x )
+{
+	return HLML_CONSTRUCT( int4x4 )
+	{
+		int4_negate( &x->rows[0] ),
+		int4_negate( &x->rows[1] ),
+		int4_negate( &x->rows[2] ),
+		int4_negate( &x->rows[3] )
 	};
 }
 
@@ -5373,6 +5472,16 @@ HLML_INLINE uint2x2 uint2x2_cdivm( const uint2x2* lhs, const uint2x2* rhs )
 	};
 }
 
+// Returns a copy of the matrix that has been negated.
+HLML_INLINE uint2x2 uint2x2_negate( const uint2x2* x )
+{
+	return HLML_CONSTRUCT( uint2x2 )
+	{
+		uint2_negate( &x->rows[0] ),
+		uint2_negate( &x->rows[1] )
+	};
+}
+
 // Returns a copy of the matrix where each component has been bitwise NOT'd.
 HLML_INLINE uint2x2 uint2x2_unary( const uint2x2* x )
 {
@@ -5704,6 +5813,16 @@ HLML_INLINE uint2x3 uint2x3_cdivm( const uint2x3* lhs, const uint2x3* rhs )
 	};
 }
 
+// Returns a copy of the matrix that has been negated.
+HLML_INLINE uint2x3 uint2x3_negate( const uint2x3* x )
+{
+	return HLML_CONSTRUCT( uint2x3 )
+	{
+		uint3_negate( &x->rows[0] ),
+		uint3_negate( &x->rows[1] )
+	};
+}
+
 // Returns a copy of the matrix where each component has been bitwise NOT'd.
 HLML_INLINE uint2x3 uint2x3_unary( const uint2x3* x )
 {
@@ -6023,6 +6142,16 @@ HLML_INLINE uint2x4 uint2x4_cdivm( const uint2x4* lhs, const uint2x4* rhs )
 	{
 		uint4_cdivv( &lhs->rows[0], &rhs->rows[0] ),
 		uint4_cdivv( &lhs->rows[1], &rhs->rows[1] )
+	};
+}
+
+// Returns a copy of the matrix that has been negated.
+HLML_INLINE uint2x4 uint2x4_negate( const uint2x4* x )
+{
+	return HLML_CONSTRUCT( uint2x4 )
+	{
+		uint4_negate( &x->rows[0] ),
+		uint4_negate( &x->rows[1] )
 	};
 }
 
@@ -6363,6 +6492,17 @@ HLML_INLINE uint3x2 uint3x2_cdivm( const uint3x2* lhs, const uint3x2* rhs )
 		uint2_cdivv( &lhs->rows[0], &rhs->rows[0] ),
 		uint2_cdivv( &lhs->rows[1], &rhs->rows[1] ),
 		uint2_cdivv( &lhs->rows[2], &rhs->rows[2] )
+	};
+}
+
+// Returns a copy of the matrix that has been negated.
+HLML_INLINE uint3x2 uint3x2_negate( const uint3x2* x )
+{
+	return HLML_CONSTRUCT( uint3x2 )
+	{
+		uint2_negate( &x->rows[0] ),
+		uint2_negate( &x->rows[1] ),
+		uint2_negate( &x->rows[2] )
 	};
 }
 
@@ -6721,6 +6861,17 @@ HLML_INLINE uint3x3 uint3x3_cdivm( const uint3x3* lhs, const uint3x3* rhs )
 		uint3_cdivv( &lhs->rows[0], &rhs->rows[0] ),
 		uint3_cdivv( &lhs->rows[1], &rhs->rows[1] ),
 		uint3_cdivv( &lhs->rows[2], &rhs->rows[2] )
+	};
+}
+
+// Returns a copy of the matrix that has been negated.
+HLML_INLINE uint3x3 uint3x3_negate( const uint3x3* x )
+{
+	return HLML_CONSTRUCT( uint3x3 )
+	{
+		uint3_negate( &x->rows[0] ),
+		uint3_negate( &x->rows[1] ),
+		uint3_negate( &x->rows[2] )
 	};
 }
 
@@ -7091,6 +7242,17 @@ HLML_INLINE uint3x4 uint3x4_cdivm( const uint3x4* lhs, const uint3x4* rhs )
 		uint4_cdivv( &lhs->rows[0], &rhs->rows[0] ),
 		uint4_cdivv( &lhs->rows[1], &rhs->rows[1] ),
 		uint4_cdivv( &lhs->rows[2], &rhs->rows[2] )
+	};
+}
+
+// Returns a copy of the matrix that has been negated.
+HLML_INLINE uint3x4 uint3x4_negate( const uint3x4* x )
+{
+	return HLML_CONSTRUCT( uint3x4 )
+	{
+		uint4_negate( &x->rows[0] ),
+		uint4_negate( &x->rows[1] ),
+		uint4_negate( &x->rows[2] )
 	};
 }
 
@@ -7468,6 +7630,18 @@ HLML_INLINE uint4x2 uint4x2_cdivm( const uint4x2* lhs, const uint4x2* rhs )
 		uint2_cdivv( &lhs->rows[1], &rhs->rows[1] ),
 		uint2_cdivv( &lhs->rows[2], &rhs->rows[2] ),
 		uint2_cdivv( &lhs->rows[3], &rhs->rows[3] )
+	};
+}
+
+// Returns a copy of the matrix that has been negated.
+HLML_INLINE uint4x2 uint4x2_negate( const uint4x2* x )
+{
+	return HLML_CONSTRUCT( uint4x2 )
+	{
+		uint2_negate( &x->rows[0] ),
+		uint2_negate( &x->rows[1] ),
+		uint2_negate( &x->rows[2] ),
+		uint2_negate( &x->rows[3] )
 	};
 }
 
@@ -7868,6 +8042,18 @@ HLML_INLINE uint4x3 uint4x3_cdivm( const uint4x3* lhs, const uint4x3* rhs )
 	};
 }
 
+// Returns a copy of the matrix that has been negated.
+HLML_INLINE uint4x3 uint4x3_negate( const uint4x3* x )
+{
+	return HLML_CONSTRUCT( uint4x3 )
+	{
+		uint3_negate( &x->rows[0] ),
+		uint3_negate( &x->rows[1] ),
+		uint3_negate( &x->rows[2] ),
+		uint3_negate( &x->rows[3] )
+	};
+}
+
 // Returns a copy of the matrix where each component has been bitwise NOT'd.
 HLML_INLINE uint4x3 uint4x3_unary( const uint4x3* x )
 {
@@ -8263,6 +8449,18 @@ HLML_INLINE uint4x4 uint4x4_cdivm( const uint4x4* lhs, const uint4x4* rhs )
 		uint4_cdivv( &lhs->rows[1], &rhs->rows[1] ),
 		uint4_cdivv( &lhs->rows[2], &rhs->rows[2] ),
 		uint4_cdivv( &lhs->rows[3], &rhs->rows[3] )
+	};
+}
+
+// Returns a copy of the matrix that has been negated.
+HLML_INLINE uint4x4 uint4x4_negate( const uint4x4* x )
+{
+	return HLML_CONSTRUCT( uint4x4 )
+	{
+		uint4_negate( &x->rows[0] ),
+		uint4_negate( &x->rows[1] ),
+		uint4_negate( &x->rows[2] ),
+		uint4_negate( &x->rows[3] )
 	};
 }
 
@@ -8702,6 +8900,16 @@ HLML_INLINE float2x2 float2x2_cdivm( const float2x2* lhs, const float2x2* rhs )
 	};
 }
 
+// Returns a copy of the matrix that has been negated.
+HLML_INLINE float2x2 float2x2_negate( const float2x2* x )
+{
+	return HLML_CONSTRUCT( float2x2 )
+	{
+		float2_negate( &x->rows[0] ),
+		float2_negate( &x->rows[1] )
+	};
+}
+
 // Sets the matrix to an identity matrix.
 HLML_INLINE void float2x2_identity( float2x2* mat )
 {
@@ -8961,6 +9169,16 @@ HLML_INLINE float2x3 float2x3_cdivm( const float2x3* lhs, const float2x3* rhs )
 	};
 }
 
+// Returns a copy of the matrix that has been negated.
+HLML_INLINE float2x3 float2x3_negate( const float2x3* x )
+{
+	return HLML_CONSTRUCT( float2x3 )
+	{
+		float3_negate( &x->rows[0] ),
+		float3_negate( &x->rows[1] )
+	};
+}
+
 // Sets the matrix to an identity matrix.
 HLML_INLINE void float2x3_identity( float2x3* mat )
 {
@@ -9190,6 +9408,16 @@ HLML_INLINE float2x4 float2x4_cdivm( const float2x4* lhs, const float2x4* rhs )
 	{
 		float4_cdivv( &lhs->rows[0], &rhs->rows[0] ),
 		float4_cdivv( &lhs->rows[1], &rhs->rows[1] )
+	};
+}
+
+// Returns a copy of the matrix that has been negated.
+HLML_INLINE float2x4 float2x4_negate( const float2x4* x )
+{
+	return HLML_CONSTRUCT( float2x4 )
+	{
+		float4_negate( &x->rows[0] ),
+		float4_negate( &x->rows[1] )
 	};
 }
 
@@ -9442,6 +9670,17 @@ HLML_INLINE float3x2 float3x2_cdivm( const float3x2* lhs, const float3x2* rhs )
 		float2_cdivv( &lhs->rows[0], &rhs->rows[0] ),
 		float2_cdivv( &lhs->rows[1], &rhs->rows[1] ),
 		float2_cdivv( &lhs->rows[2], &rhs->rows[2] )
+	};
+}
+
+// Returns a copy of the matrix that has been negated.
+HLML_INLINE float3x2 float3x2_negate( const float3x2* x )
+{
+	return HLML_CONSTRUCT( float3x2 )
+	{
+		float2_negate( &x->rows[0] ),
+		float2_negate( &x->rows[1] ),
+		float2_negate( &x->rows[2] )
 	};
 }
 
@@ -9701,6 +9940,17 @@ HLML_INLINE float3x3 float3x3_cdivm( const float3x3* lhs, const float3x3* rhs )
 		float3_cdivv( &lhs->rows[0], &rhs->rows[0] ),
 		float3_cdivv( &lhs->rows[1], &rhs->rows[1] ),
 		float3_cdivv( &lhs->rows[2], &rhs->rows[2] )
+	};
+}
+
+// Returns a copy of the matrix that has been negated.
+HLML_INLINE float3x3 float3x3_negate( const float3x3* x )
+{
+	return HLML_CONSTRUCT( float3x3 )
+	{
+		float3_negate( &x->rows[0] ),
+		float3_negate( &x->rows[1] ),
+		float3_negate( &x->rows[2] )
 	};
 }
 
@@ -10005,6 +10255,17 @@ HLML_INLINE float3x4 float3x4_cdivm( const float3x4* lhs, const float3x4* rhs )
 	};
 }
 
+// Returns a copy of the matrix that has been negated.
+HLML_INLINE float3x4 float3x4_negate( const float3x4* x )
+{
+	return HLML_CONSTRUCT( float3x4 )
+	{
+		float4_negate( &x->rows[0] ),
+		float4_negate( &x->rows[1] ),
+		float4_negate( &x->rows[2] )
+	};
+}
+
 // Sets the matrix to an identity matrix.
 HLML_INLINE void float3x4_identity( float3x4* mat )
 {
@@ -10282,6 +10543,18 @@ HLML_INLINE float4x2 float4x2_cdivm( const float4x2* lhs, const float4x2* rhs )
 		float2_cdivv( &lhs->rows[1], &rhs->rows[1] ),
 		float2_cdivv( &lhs->rows[2], &rhs->rows[2] ),
 		float2_cdivv( &lhs->rows[3], &rhs->rows[3] )
+	};
+}
+
+// Returns a copy of the matrix that has been negated.
+HLML_INLINE float4x2 float4x2_negate( const float4x2* x )
+{
+	return HLML_CONSTRUCT( float4x2 )
+	{
+		float2_negate( &x->rows[0] ),
+		float2_negate( &x->rows[1] ),
+		float2_negate( &x->rows[2] ),
+		float2_negate( &x->rows[3] )
 	};
 }
 
@@ -10574,6 +10847,18 @@ HLML_INLINE float4x3 float4x3_cdivm( const float4x3* lhs, const float4x3* rhs )
 	};
 }
 
+// Returns a copy of the matrix that has been negated.
+HLML_INLINE float4x3 float4x3_negate( const float4x3* x )
+{
+	return HLML_CONSTRUCT( float4x3 )
+	{
+		float3_negate( &x->rows[0] ),
+		float3_negate( &x->rows[1] ),
+		float3_negate( &x->rows[2] ),
+		float3_negate( &x->rows[3] )
+	};
+}
+
 // Sets the matrix to an identity matrix.
 HLML_INLINE void float4x3_identity( float4x3* mat )
 {
@@ -10861,6 +11146,18 @@ HLML_INLINE float4x4 float4x4_cdivm( const float4x4* lhs, const float4x4* rhs )
 		float4_cdivv( &lhs->rows[1], &rhs->rows[1] ),
 		float4_cdivv( &lhs->rows[2], &rhs->rows[2] ),
 		float4_cdivv( &lhs->rows[3], &rhs->rows[3] )
+	};
+}
+
+// Returns a copy of the matrix that has been negated.
+HLML_INLINE float4x4 float4x4_negate( const float4x4* x )
+{
+	return HLML_CONSTRUCT( float4x4 )
+	{
+		float4_negate( &x->rows[0] ),
+		float4_negate( &x->rows[1] ),
+		float4_negate( &x->rows[2] ),
+		float4_negate( &x->rows[3] )
 	};
 }
 
@@ -11484,6 +11781,16 @@ HLML_INLINE double2x2 double2x2_cdivm( const double2x2* lhs, const double2x2* rh
 	};
 }
 
+// Returns a copy of the matrix that has been negated.
+HLML_INLINE double2x2 double2x2_negate( const double2x2* x )
+{
+	return HLML_CONSTRUCT( double2x2 )
+	{
+		double2_negate( &x->rows[0] ),
+		double2_negate( &x->rows[1] )
+	};
+}
+
 // Sets the matrix to an identity matrix.
 HLML_INLINE void double2x2_identity( double2x2* mat )
 {
@@ -11743,6 +12050,16 @@ HLML_INLINE double2x3 double2x3_cdivm( const double2x3* lhs, const double2x3* rh
 	};
 }
 
+// Returns a copy of the matrix that has been negated.
+HLML_INLINE double2x3 double2x3_negate( const double2x3* x )
+{
+	return HLML_CONSTRUCT( double2x3 )
+	{
+		double3_negate( &x->rows[0] ),
+		double3_negate( &x->rows[1] )
+	};
+}
+
 // Sets the matrix to an identity matrix.
 HLML_INLINE void double2x3_identity( double2x3* mat )
 {
@@ -11972,6 +12289,16 @@ HLML_INLINE double2x4 double2x4_cdivm( const double2x4* lhs, const double2x4* rh
 	{
 		double4_cdivv( &lhs->rows[0], &rhs->rows[0] ),
 		double4_cdivv( &lhs->rows[1], &rhs->rows[1] )
+	};
+}
+
+// Returns a copy of the matrix that has been negated.
+HLML_INLINE double2x4 double2x4_negate( const double2x4* x )
+{
+	return HLML_CONSTRUCT( double2x4 )
+	{
+		double4_negate( &x->rows[0] ),
+		double4_negate( &x->rows[1] )
 	};
 }
 
@@ -12224,6 +12551,17 @@ HLML_INLINE double3x2 double3x2_cdivm( const double3x2* lhs, const double3x2* rh
 		double2_cdivv( &lhs->rows[0], &rhs->rows[0] ),
 		double2_cdivv( &lhs->rows[1], &rhs->rows[1] ),
 		double2_cdivv( &lhs->rows[2], &rhs->rows[2] )
+	};
+}
+
+// Returns a copy of the matrix that has been negated.
+HLML_INLINE double3x2 double3x2_negate( const double3x2* x )
+{
+	return HLML_CONSTRUCT( double3x2 )
+	{
+		double2_negate( &x->rows[0] ),
+		double2_negate( &x->rows[1] ),
+		double2_negate( &x->rows[2] )
 	};
 }
 
@@ -12483,6 +12821,17 @@ HLML_INLINE double3x3 double3x3_cdivm( const double3x3* lhs, const double3x3* rh
 		double3_cdivv( &lhs->rows[0], &rhs->rows[0] ),
 		double3_cdivv( &lhs->rows[1], &rhs->rows[1] ),
 		double3_cdivv( &lhs->rows[2], &rhs->rows[2] )
+	};
+}
+
+// Returns a copy of the matrix that has been negated.
+HLML_INLINE double3x3 double3x3_negate( const double3x3* x )
+{
+	return HLML_CONSTRUCT( double3x3 )
+	{
+		double3_negate( &x->rows[0] ),
+		double3_negate( &x->rows[1] ),
+		double3_negate( &x->rows[2] )
 	};
 }
 
@@ -12787,6 +13136,17 @@ HLML_INLINE double3x4 double3x4_cdivm( const double3x4* lhs, const double3x4* rh
 	};
 }
 
+// Returns a copy of the matrix that has been negated.
+HLML_INLINE double3x4 double3x4_negate( const double3x4* x )
+{
+	return HLML_CONSTRUCT( double3x4 )
+	{
+		double4_negate( &x->rows[0] ),
+		double4_negate( &x->rows[1] ),
+		double4_negate( &x->rows[2] )
+	};
+}
+
 // Sets the matrix to an identity matrix.
 HLML_INLINE void double3x4_identity( double3x4* mat )
 {
@@ -13064,6 +13424,18 @@ HLML_INLINE double4x2 double4x2_cdivm( const double4x2* lhs, const double4x2* rh
 		double2_cdivv( &lhs->rows[1], &rhs->rows[1] ),
 		double2_cdivv( &lhs->rows[2], &rhs->rows[2] ),
 		double2_cdivv( &lhs->rows[3], &rhs->rows[3] )
+	};
+}
+
+// Returns a copy of the matrix that has been negated.
+HLML_INLINE double4x2 double4x2_negate( const double4x2* x )
+{
+	return HLML_CONSTRUCT( double4x2 )
+	{
+		double2_negate( &x->rows[0] ),
+		double2_negate( &x->rows[1] ),
+		double2_negate( &x->rows[2] ),
+		double2_negate( &x->rows[3] )
 	};
 }
 
@@ -13356,6 +13728,18 @@ HLML_INLINE double4x3 double4x3_cdivm( const double4x3* lhs, const double4x3* rh
 	};
 }
 
+// Returns a copy of the matrix that has been negated.
+HLML_INLINE double4x3 double4x3_negate( const double4x3* x )
+{
+	return HLML_CONSTRUCT( double4x3 )
+	{
+		double3_negate( &x->rows[0] ),
+		double3_negate( &x->rows[1] ),
+		double3_negate( &x->rows[2] ),
+		double3_negate( &x->rows[3] )
+	};
+}
+
 // Sets the matrix to an identity matrix.
 HLML_INLINE void double4x3_identity( double4x3* mat )
 {
@@ -13643,6 +14027,18 @@ HLML_INLINE double4x4 double4x4_cdivm( const double4x4* lhs, const double4x4* rh
 		double4_cdivv( &lhs->rows[1], &rhs->rows[1] ),
 		double4_cdivv( &lhs->rows[2], &rhs->rows[2] ),
 		double4_cdivv( &lhs->rows[3], &rhs->rows[3] )
+	};
+}
+
+// Returns a copy of the matrix that has been negated.
+HLML_INLINE double4x4 double4x4_negate( const double4x4* x )
+{
+	return HLML_CONSTRUCT( double4x4 )
+	{
+		double4_negate( &x->rows[0] ),
+		double4_negate( &x->rows[1] ),
+		double4_negate( &x->rows[2] ),
+		double4_negate( &x->rows[3] )
 	};
 }
 

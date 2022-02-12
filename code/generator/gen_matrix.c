@@ -1374,7 +1374,7 @@ static void GenerateMatrixFiles( allocatorLinear_t* tempStorage, const char* gen
 
 			GenerateComponentWiseFunctions( tempStorage, typeInfo, &vectorMemberType, code, strings, flags );
 
-			GenerateComponentWiseOperators( tempStorage, typeInfo, code, flags );
+			GenerateComponentWiseOperators( tempStorage, typeInfo, code, strings, flags );
 
 			GenerateFunction_All_Matrix( tempStorage, typeInfo, &vectorMemberType, code, flags );
 			GenerateFunction_Any_Matrix( tempStorage, typeInfo, &vectorMemberType, code, flags );

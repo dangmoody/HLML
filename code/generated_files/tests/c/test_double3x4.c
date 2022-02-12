@@ -1032,6 +1032,83 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3x4_cdivm,
 	}
 );
 
+#if defined( __GNUC__ ) || defined( __clang__ )
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wcast-qual"
+#endif
+TEMPER_PARAMETRIC( Test_double3x4_negate_prefix, TEMPER_FLAG_SHOULD_RUN, const double3x4* x, const double3x4* expectedAnswer )
+{
+	// make local copy of x and use that because we cant do increment or decrement operations on a const reference
+	// and MSVC throws warnings if we just make the parameter a non-const reference
+	double3x4* xlocal = (double3x4*) x;
+	double3x4 actualAnswer = double3x4_negate( xlocal );
+	TEMPER_CHECK_TRUE( double3x4_equals( &actualAnswer, expectedAnswer ) );
+}
+
+TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3x4_negate_prefix,
+	&(double3x4)
+	{
+		0.000000f, 0.000000f, 0.000000f, 0.000000f,
+		0.000000f, 0.000000f, 0.000000f, 0.000000f,
+		0.000000f, 0.000000f, 0.000000f, 0.000000f
+	},
+	&(double3x4)
+	{
+		-0.000000f, -0.000000f, -0.000000f, -0.000000f,
+		-0.000000f, -0.000000f, -0.000000f, -0.000000f,
+		-0.000000f, -0.000000f, -0.000000f, -0.000000f
+	}
+);
+
+TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3x4_negate_prefix,
+	&(double3x4)
+	{
+		1.000000f, 1.000000f, 1.000000f, 1.000000f,
+		1.000000f, 1.000000f, 1.000000f, 1.000000f,
+		1.000000f, 1.000000f, 1.000000f, 1.000000f
+	},
+	&(double3x4)
+	{
+		-1.000000f, -1.000000f, -1.000000f, -1.000000f,
+		-1.000000f, -1.000000f, -1.000000f, -1.000000f,
+		-1.000000f, -1.000000f, -1.000000f, -1.000000f
+	}
+);
+
+TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3x4_negate_prefix,
+	&(double3x4)
+	{
+		2.000000f, 2.000000f, 2.000000f, 2.000000f,
+		2.000000f, 2.000000f, 2.000000f, 2.000000f,
+		2.000000f, 2.000000f, 2.000000f, 2.000000f
+	},
+	&(double3x4)
+	{
+		-2.000000f, -2.000000f, -2.000000f, -2.000000f,
+		-2.000000f, -2.000000f, -2.000000f, -2.000000f,
+		-2.000000f, -2.000000f, -2.000000f, -2.000000f
+	}
+);
+
+TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3x4_negate_prefix,
+	&(double3x4)
+	{
+		3.000000f, 3.000000f, 3.000000f, 3.000000f,
+		3.000000f, 3.000000f, 3.000000f, 3.000000f,
+		3.000000f, 3.000000f, 3.000000f, 3.000000f
+	},
+	&(double3x4)
+	{
+		-3.000000f, -3.000000f, -3.000000f, -3.000000f,
+		-3.000000f, -3.000000f, -3.000000f, -3.000000f,
+		-3.000000f, -3.000000f, -3.000000f, -3.000000f
+	}
+);
+
+#if defined( __GNUC__ ) || defined( __clang__ )
+#pragma GCC diagnostic pop
+#endif
+
 TEMPER_PARAMETRIC( Test_double3x4_min, TEMPER_FLAG_SHOULD_RUN, const double3x4* lhs, const double3x4* rhs, const double3x4* expectedAnswer )
 {
 	double3x4 actualResult = double3x4_min( lhs, rhs );

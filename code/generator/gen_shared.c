@@ -1051,35 +1051,46 @@ static void GenerateComponentWiseFunction_Operator( allocatorLinear_t* tempStora
 	StringBuilder_Append( code, "}\n\n" );
 }
 
-static void GenerateFunction_BitwiseUnary( allocatorLinear_t* tempStorage, const typeInfo_t* typeInfo, stringBuilder_t* code, const generatorFlags_t flags, const char* commentStr ) {
+static void GenerateComponentWiseFunction_OperatorSingleParm( allocatorLinear_t* tempStorage, stringBuilder_t* code, const typeInfo_t* typeInfo, const char* opName, const char* opStr, const operatorSingleParmType_t type, const generatorStrings_t* strings, const generatorFlags_t flags, const char* commentStr ) {
 	assert( tempStorage );
+	assert( code );
 	assert( typeInfo );
 	assert( typeInfo->fullTypeName );
 	assert( !Gen_TypeIsScalar( typeInfo ) );
-	assert( code );
+	assert( opName );
+	assert( opStr );
+	assert( strings );
 	assert( commentStr );
 
-	if ( !Gen_TypeIsInteger( typeInfo->type ) ) {
-		return;
-	}
-
-	const char* unaryFuncStr = Gen_GetFuncName_Vector( tempStorage, typeInfo, flags, Gen_GetBitwiseName( GEN_OP_BITWISE_UNARY ) );
+	const char* funcStr = Gen_GetFuncName_Vector( tempStorage, typeInfo, flags, opName );
 
 	StringBuilder_Append(  code, commentStr );
-	StringBuilder_Appendf( code, "HLML_INLINE %s %s( const %s* x )\n", typeInfo->fullTypeName, unaryFuncStr, typeInfo->fullTypeName );
+	StringBuilder_Appendf( code, "HLML_INLINE %s %s( const %s* x )\n", typeInfo->fullTypeName, funcStr, typeInfo->fullTypeName );
 	StringBuilder_Append(  code, "{\n" );
 	StringBuilder_Appendf( code, "\treturn HLML_CONSTRUCT( %s )\n", typeInfo->fullTypeName );
 	StringBuilder_Append(  code, "\t{\n" );
 
 	if ( Gen_TypeIsVector( typeInfo ) ) {
-		for ( u32 i = 0; i < typeInfo->numCols; i++ ) {
-			StringBuilder_Appendf( code, "\t\t~x->%c", GEN_COMPONENT_NAMES_VECTOR[i] );
+		if ( type == OPERATOR_SINGLE_PARM_TYPE_PREFIX ) {
+			for ( u32 i = 0; i < typeInfo->numCols; i++ ) {
+				StringBuilder_Appendf( code, "\t\t%sx%s%c", opStr, strings->parmAccessOperatorStr, GEN_COMPONENT_NAMES_VECTOR[i] );
 
-			if ( i != typeInfo->numCols - 1 ) {
-				StringBuilder_Append( code, "," );
+				if ( i != typeInfo->numCols - 1 ) {
+					StringBuilder_Append( code, "," );
+				}
+
+				StringBuilder_Append( code, "\n" );
 			}
+		} else {
+			for ( u32 i = 0; i < typeInfo->numCols; i++ ) {
+				StringBuilder_Appendf( code, "\t\tx%s%c%s", strings->parmAccessOperatorStr, GEN_COMPONENT_NAMES_VECTOR[i], opStr );
 
-			StringBuilder_Append( code, "\n" );
+				if ( i != typeInfo->numCols - 1 ) {
+					StringBuilder_Append( code, "," );
+				}
+
+				StringBuilder_Append( code, "\n" );
+			}
 		}
 	} else {
 		typeInfo_t memberType = {
@@ -1089,10 +1100,10 @@ static void GenerateFunction_BitwiseUnary( allocatorLinear_t* tempStorage, const
 			.fullTypeName	= String_TPrintf( tempStorage, "%s%d", Gen_GetTypeString( memberType.type ), memberType.numCols )
 		};
 
-		const char* uaryFuncMemberStr = Gen_GetFuncName_Vector( tempStorage, &memberType, flags, Gen_GetBitwiseName( GEN_OP_BITWISE_UNARY ) );
+		const char* memberFuncStr = Gen_GetFuncName_Vector( tempStorage, &memberType, flags, opName );
 
 		for ( u32 i = 0; i < typeInfo->numRows; i++ ) {
-			StringBuilder_Appendf( code, "\t\t%s( &x->rows[%d] )", uaryFuncMemberStr, i );
+			StringBuilder_Appendf( code, "\t\t%s( &x->rows[%d] )", memberFuncStr, i );
 
 			if ( i < typeInfo->numRows - 1 ) {
 				StringBuilder_Append( code, "," );
@@ -1410,6 +1421,12 @@ static const char* GetComment_ComponentWiseIncrement( allocatorLinear_t* tempSto
 	return String_TPrintf( tempStorage, "// %ss each component of the %s and returns the result.\n", opStr, typeDescSingular );
 }
 
+static const char* GetComment_ComponentWiseNegate( allocatorLinear_t* tempStorage, const char* typeDescSingular ) {
+	assert( typeDescSingular );
+
+	return String_TPrintf( tempStorage, "// Returns a copy of the %s that has been negated.\n", typeDescSingular );
+}
+
 static const char* GetComment_ComponentWiseBitwiseNot( allocatorLinear_t* tempStorage, const char* typeDescSingular ) {
 	assert( tempStorage );
 	assert( typeDescSingular );
@@ -1455,11 +1472,12 @@ static const char* GetComment_CompoundComponentWiseBitwise_Vector( allocatorLine
 	return String_TPrintf( tempStorage, "// Returns a copy of 'lhs' that has been component-wise bitwise %s'd against 'rhs'.\n", opStr );
 }
 
-static void GenerateComponentWiseOperators( allocatorLinear_t* tempStorage, const typeInfo_t* typeInfo, stringBuilder_t* code, const generatorFlags_t flags ) {
+static void GenerateComponentWiseOperators( allocatorLinear_t* tempStorage, const typeInfo_t* typeInfo, stringBuilder_t* code, const generatorStrings_t* strings, const generatorFlags_t flags ) {
 	assert( tempStorage );
 	assert( typeInfo );
 	assert( typeInfo->fullTypeName );
 	assert( code );
+	assert( strings );
 
 	typeInfo_t returnTypeBoolVector = {
 		.type		= GEN_TYPE_BOOL,
@@ -1549,6 +1567,11 @@ static void GenerateComponentWiseOperators( allocatorLinear_t* tempStorage, cons
 			GenerateOperatorSingleParm( tempStorage, code, typeInfo, opStr, OPERATOR_SINGLE_PARM_TYPE_POSTFIX, 0, commentStr );
 		}
 
+		if ( typeInfo->type != GEN_TYPE_BOOL ) {
+			commentStr = GetComment_ComponentWiseNegate( tempStorage, typeDescSingular );
+			GenerateOperatorSingleParm( tempStorage, code, typeInfo, "-", OPERATOR_SINGLE_PARM_TYPE_PREFIX, OPERATOR_PREFIX_FLAG_RETURN_COPY, commentStr );
+		}
+
 		if ( Gen_TypeIsInteger( typeInfo->type ) ) {
 			for ( u32 opIndex = 0; opIndex < GEN_OP_BITWISE_COUNT; opIndex++ ) {
 				const genOpBitwise_t op = (genOpBitwise_t) opIndex;
@@ -1623,20 +1646,28 @@ static void GenerateComponentWiseOperators( allocatorLinear_t* tempStorage, cons
 			GenerateComponentWiseFunction_Operator( tempStorage, code, typeInfo, typeInfo, &memberType, typeInfo, funcName, memberFuncStrVector, opStr, commentStr );
 		}
 
+		if ( typeInfo->type != GEN_TYPE_BOOL ) {
+			commentStr = GetComment_ComponentWiseNegate( tempStorage, typeDescSingular );
+			GenerateComponentWiseFunction_OperatorSingleParm( tempStorage, code, typeInfo, "negate", "-", OPERATOR_SINGLE_PARM_TYPE_PREFIX, strings, flags, commentStr );
+		}
+
 		if ( Gen_TypeIsInteger( typeInfo->type ) ) {
 			for ( u32 opIndex = 0; opIndex < GEN_OP_BITWISE_COUNT; opIndex++ ) {
 				const genOpBitwise_t op = (genOpBitwise_t) opIndex;
+
+				const char* opName = Gen_GetBitwiseName( op );
+				const char* opStr = Gen_GetOperatorBitwise( op );
 
 				if ( op == GEN_OP_BITWISE_UNARY ) {
 					// unary is separate because the function body is different
 					commentStr = GetComment_ComponentWiseBitwiseNot( tempStorage, typeDescSingular );
 
-					GenerateFunction_BitwiseUnary( tempStorage, typeInfo, code, flags, commentStr );
+					//GenerateFunction_BitwiseUnary( tempStorage, typeInfo, code, flags, commentStr );
+					GenerateComponentWiseFunction_OperatorSingleParm( tempStorage, code, typeInfo, opName, opStr, OPERATOR_SINGLE_PARM_TYPE_PREFIX, strings, flags, commentStr );
 					continue;
 				}
 
 				const char* funcName = NULL;
-				const char* opStr = Gen_GetOperatorBitwise( op );
 
 				const char* memberFuncStrScalar = String_TPrintf( tempStorage, "%s_c%ss", memberType.fullTypeName, Gen_GetBitwiseName( op ) );
 				const char* memberFuncStrVector = String_TPrintf( tempStorage, "%s_c%sv", memberType.fullTypeName, Gen_GetBitwiseName( op ) );

@@ -396,6 +396,43 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_uint3_cdivv,
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Wcast-qual"
 #endif
+TEMPER_PARAMETRIC( Test_uint3_negate_prefix, TEMPER_FLAG_SHOULD_RUN, const uint3* x, const uint3* expectedAnswer )
+{
+	// make local copy of x and use that because we cant do increment or decrement operations on a const reference
+	// and MSVC throws warnings if we just make the parameter a non-const reference
+	uint3* xlocal = (uint3*) x;
+	uint3 actualAnswer = uint3_negate( xlocal );
+	TEMPER_CHECK_TRUE( uint3_equals( &actualAnswer, expectedAnswer ) );
+}
+
+TEMPER_INVOKE_PARAMETRIC_TEST( Test_uint3_negate_prefix,
+	&(uint3) { 0U, 0U, 0U },
+	&(uint3) { 0U, 0U, 0U }
+);
+
+TEMPER_INVOKE_PARAMETRIC_TEST( Test_uint3_negate_prefix,
+	&(uint3) { 1U, 1U, 1U },
+	&(uint3) { 4294967295U, 4294967295U, 4294967295U }
+);
+
+TEMPER_INVOKE_PARAMETRIC_TEST( Test_uint3_negate_prefix,
+	&(uint3) { 2U, 2U, 2U },
+	&(uint3) { 4294967294U, 4294967294U, 4294967294U }
+);
+
+TEMPER_INVOKE_PARAMETRIC_TEST( Test_uint3_negate_prefix,
+	&(uint3) { 3U, 3U, 3U },
+	&(uint3) { 4294967293U, 4294967293U, 4294967293U }
+);
+
+#if defined( __GNUC__ ) || defined( __clang__ )
+#pragma GCC diagnostic pop
+#endif
+
+#if defined( __GNUC__ ) || defined( __clang__ )
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wcast-qual"
+#endif
 TEMPER_PARAMETRIC( Test_uint3_unary_prefix, TEMPER_FLAG_SHOULD_RUN, const uint3* x, const uint3* expectedAnswer )
 {
 	// make local copy of x and use that because we cant do increment or decrement operations on a const reference

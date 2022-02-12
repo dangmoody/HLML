@@ -673,6 +673,16 @@ HLML_INLINE int2 int2_cdivv( const int2* lhs, const int2* rhs )
 	};
 }
 
+// Returns a copy of the vector that has been negated.
+HLML_INLINE int2 int2_negate( const int2* x )
+{
+	return HLML_CONSTRUCT( int2 )
+	{
+		-x->x,
+		-x->y
+	};
+}
+
 // Returns a copy of the vector where each component has been bitwise NOT'd.
 HLML_INLINE int2 int2_unary( const int2* x )
 {
@@ -1010,6 +1020,17 @@ HLML_INLINE int3 int3_cdivv( const int3* lhs, const int3* rhs )
 		lhs->x / rhs->x,
 		lhs->y / rhs->y,
 		lhs->z / rhs->z
+	};
+}
+
+// Returns a copy of the vector that has been negated.
+HLML_INLINE int3 int3_negate( const int3* x )
+{
+	return HLML_CONSTRUCT( int3 )
+	{
+		-x->x,
+		-x->y,
+		-x->z
 	};
 }
 
@@ -1382,6 +1403,18 @@ HLML_INLINE int4 int4_cdivv( const int4* lhs, const int4* rhs )
 	};
 }
 
+// Returns a copy of the vector that has been negated.
+HLML_INLINE int4 int4_negate( const int4* x )
+{
+	return HLML_CONSTRUCT( int4 )
+	{
+		-x->x,
+		-x->y,
+		-x->z,
+		-x->w
+	};
+}
+
 // Returns a copy of the vector where each component has been bitwise NOT'd.
 HLML_INLINE int4 int4_unary( const int4* x )
 {
@@ -1727,6 +1760,16 @@ HLML_INLINE uint2 uint2_cdivv( const uint2* lhs, const uint2* rhs )
 	};
 }
 
+// Returns a copy of the vector that has been negated.
+HLML_INLINE uint2 uint2_negate( const uint2* x )
+{
+	return HLML_CONSTRUCT( uint2 )
+	{
+		-x->x,
+		-x->y
+	};
+}
+
 // Returns a copy of the vector where each component has been bitwise NOT'd.
 HLML_INLINE uint2 uint2_unary( const uint2* x )
 {
@@ -2054,6 +2097,17 @@ HLML_INLINE uint3 uint3_cdivv( const uint3* lhs, const uint3* rhs )
 		lhs->x / rhs->x,
 		lhs->y / rhs->y,
 		lhs->z / rhs->z
+	};
+}
+
+// Returns a copy of the vector that has been negated.
+HLML_INLINE uint3 uint3_negate( const uint3* x )
+{
+	return HLML_CONSTRUCT( uint3 )
+	{
+		-x->x,
+		-x->y,
+		-x->z
 	};
 }
 
@@ -2415,6 +2469,18 @@ HLML_INLINE uint4 uint4_cdivv( const uint4* lhs, const uint4* rhs )
 	};
 }
 
+// Returns a copy of the vector that has been negated.
+HLML_INLINE uint4 uint4_negate( const uint4* x )
+{
+	return HLML_CONSTRUCT( uint4 )
+	{
+		-x->x,
+		-x->y,
+		-x->z,
+		-x->w
+	};
+}
+
 // Returns a copy of the vector where each component has been bitwise NOT'd.
 HLML_INLINE uint4 uint4_unary( const uint4* x )
 {
@@ -2766,6 +2832,16 @@ HLML_INLINE float2 float2_cdivv( const float2* lhs, const float2* rhs )
 	};
 }
 
+// Returns a copy of the vector that has been negated.
+HLML_INLINE float2 float2_negate( const float2* x )
+{
+	return HLML_CONSTRUCT( float2 )
+	{
+		-x->x,
+		-x->y
+	};
+}
+
 // Performs a float2_sign function on each component of the vector.
 HLML_INLINE int2 float2_sign( const float2* x )
 {
@@ -3027,6 +3103,17 @@ HLML_INLINE float3 float3_cdivv( const float3* lhs, const float3* rhs )
 		lhs->x / rhs->x,
 		lhs->y / rhs->y,
 		lhs->z / rhs->z
+	};
+}
+
+// Returns a copy of the vector that has been negated.
+HLML_INLINE float3 float3_negate( const float3* x )
+{
+	return HLML_CONSTRUCT( float3 )
+	{
+		-x->x,
+		-x->y,
+		-x->z
 	};
 }
 
@@ -3324,6 +3411,18 @@ HLML_INLINE float4 float4_cdivv( const float4* lhs, const float4* rhs )
 	};
 }
 
+// Returns a copy of the vector that has been negated.
+HLML_INLINE float4 float4_negate( const float4* x )
+{
+	return HLML_CONSTRUCT( float4 )
+	{
+		-x->x,
+		-x->y,
+		-x->z,
+		-x->w
+	};
+}
+
 // Performs a float4_sign function on each component of the vector.
 HLML_INLINE int4 float4_sign( const float4* x )
 {
@@ -3570,6 +3669,16 @@ HLML_INLINE double2 double2_cdivv( const double2* lhs, const double2* rhs )
 	{
 		lhs->x / rhs->x,
 		lhs->y / rhs->y
+	};
+}
+
+// Returns a copy of the vector that has been negated.
+HLML_INLINE double2 double2_negate( const double2* x )
+{
+	return HLML_CONSTRUCT( double2 )
+	{
+		-x->x,
+		-x->y
 	};
 }
 
@@ -3834,6 +3943,17 @@ HLML_INLINE double3 double3_cdivv( const double3* lhs, const double3* rhs )
 		lhs->x / rhs->x,
 		lhs->y / rhs->y,
 		lhs->z / rhs->z
+	};
+}
+
+// Returns a copy of the vector that has been negated.
+HLML_INLINE double3 double3_negate( const double3* x )
+{
+	return HLML_CONSTRUCT( double3 )
+	{
+		-x->x,
+		-x->y,
+		-x->z
 	};
 }
 
@@ -4128,6 +4248,18 @@ HLML_INLINE double4 double4_cdivv( const double4* lhs, const double4* rhs )
 		lhs->y / rhs->y,
 		lhs->z / rhs->z,
 		lhs->w / rhs->w
+	};
+}
+
+// Returns a copy of the vector that has been negated.
+HLML_INLINE double4 double4_negate( const double4* x )
+{
+	return HLML_CONSTRUCT( double4 )
+	{
+		-x->x,
+		-x->y,
+		-x->z,
+		-x->w
 	};
 }
 

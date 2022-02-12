@@ -396,6 +396,43 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_int4_cdivv,
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Wcast-qual"
 #endif
+TEMPER_PARAMETRIC( Test_int4_negate_prefix, TEMPER_FLAG_SHOULD_RUN, const int4* x, const int4* expectedAnswer )
+{
+	// make local copy of x and use that because we cant do increment or decrement operations on a const reference
+	// and MSVC throws warnings if we just make the parameter a non-const reference
+	int4* xlocal = (int4*) x;
+	int4 actualAnswer = int4_negate( xlocal );
+	TEMPER_CHECK_TRUE( int4_equals( &actualAnswer, expectedAnswer ) );
+}
+
+TEMPER_INVOKE_PARAMETRIC_TEST( Test_int4_negate_prefix,
+	&(int4) { 0, 0, 0, 0 },
+	&(int4) { 0, 0, 0, 0 }
+);
+
+TEMPER_INVOKE_PARAMETRIC_TEST( Test_int4_negate_prefix,
+	&(int4) { 1, 1, 1, 1 },
+	&(int4) { -1, -1, -1, -1 }
+);
+
+TEMPER_INVOKE_PARAMETRIC_TEST( Test_int4_negate_prefix,
+	&(int4) { 2, 2, 2, 2 },
+	&(int4) { -2, -2, -2, -2 }
+);
+
+TEMPER_INVOKE_PARAMETRIC_TEST( Test_int4_negate_prefix,
+	&(int4) { 3, 3, 3, 3 },
+	&(int4) { -3, -3, -3, -3 }
+);
+
+#if defined( __GNUC__ ) || defined( __clang__ )
+#pragma GCC diagnostic pop
+#endif
+
+#if defined( __GNUC__ ) || defined( __clang__ )
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wcast-qual"
+#endif
 TEMPER_PARAMETRIC( Test_int4_unary_prefix, TEMPER_FLAG_SHOULD_RUN, const int4* x, const int4* expectedAnswer )
 {
 	// make local copy of x and use that because we cant do increment or decrement operations on a const reference
