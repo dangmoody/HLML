@@ -170,3 +170,4 @@ All of the generated code (found in the releases) are licensed under MIT license
 HLML's generator also makes use of the following libraries, which are under their own respective licenses:
 
 - [Temper](https://github.com/dangmoody/temper) - MIT
+- [stb_sprintf](https://github.com/nothings/stb/blob/master/stb_sprintf.h) - MIT/Public Domain
