@@ -34,6 +34,8 @@ SOFTWARE.
 
 #pragma once
 
+#include "double4.h"
+
 struct double4x4
 {
 	double4 rows[4];

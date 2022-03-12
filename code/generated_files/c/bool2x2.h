@@ -38,6 +38,8 @@ SOFTWARE.
 extern "C" {
 #endif
 
+#include "bool2.h"
+
 typedef struct bool2x2
 {
 	bool2 rows[2];

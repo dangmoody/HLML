@@ -38,6 +38,8 @@ SOFTWARE.
 extern "C" {
 #endif
 
+#include "uint2.h"
+
 typedef struct uint3x2
 {
 	uint2 rows[3];

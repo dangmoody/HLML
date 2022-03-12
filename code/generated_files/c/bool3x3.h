@@ -38,6 +38,8 @@ SOFTWARE.
 extern "C" {
 #endif
 
+#include "bool3.h"
+
 typedef struct bool3x3
 {
 	bool3 rows[3];

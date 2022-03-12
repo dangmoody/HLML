@@ -38,6 +38,8 @@ SOFTWARE.
 extern "C" {
 #endif
 
+#include "double3.h"
+
 typedef struct double2x3
 {
 	double3 rows[2];

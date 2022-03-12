@@ -38,6 +38,8 @@ SOFTWARE.
 extern "C" {
 #endif
 
+#include "int3.h"
+
 typedef struct int3x3
 {
 	int3 rows[3];

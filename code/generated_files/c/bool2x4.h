@@ -38,6 +38,8 @@ SOFTWARE.
 extern "C" {
 #endif
 
+#include "bool4.h"
+
 typedef struct bool2x4
 {
 	bool4 rows[2];

@@ -34,6 +34,8 @@ SOFTWARE.
 
 #pragma once
 
+#include "float2.h"
+
 struct float3x2
 {
 	float2 rows[3];

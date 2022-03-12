@@ -34,6 +34,8 @@ SOFTWARE.
 
 #pragma once
 
+#include "bool4.h"
+
 struct bool2x4
 {
 	bool4 rows[2];

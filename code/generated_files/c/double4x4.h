@@ -38,6 +38,8 @@ SOFTWARE.
 extern "C" {
 #endif
 
+#include "double4.h"
+
 typedef struct double4x4
 {
 	double4 rows[4];

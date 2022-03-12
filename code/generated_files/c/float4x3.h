@@ -38,6 +38,8 @@ SOFTWARE.
 extern "C" {
 #endif
 
+#include "float3.h"
+
 typedef struct float4x3
 {
 	float3 rows[4];

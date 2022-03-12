@@ -34,6 +34,8 @@ SOFTWARE.
 
 #pragma once
 
+#include "uint3.h"
+
 struct uint2x3
 {
 	uint3 rows[2];

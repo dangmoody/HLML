@@ -1114,6 +1114,8 @@ static void GenerateMatrixFiles( allocatorLinear_t* tempStorage, const char* gen
 				);
 			}
 
+			StringBuilder_Appendf( codeHeader, "#include \"%s.h\"\n\n", vectorMemberTypeName );
+
 			if ( cLinkage ) {
 				StringBuilder_Appendf( codeHeader, "typedef struct %s\n", typeInfo->fullTypeName );
 			} else {
