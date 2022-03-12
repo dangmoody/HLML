@@ -59,10 +59,21 @@ static void GenerateMainHeader(
 
 	stringBuilder_t* code = StringBuilder_Create( tempStorage, 2 * KB_TO_BYTES );
 
+	bool32 cLinkage = flags & GENERATOR_FLAG_C_LINKAGE;
 	bool32 generateConstructors = flags & GENERATOR_FLAG_GENERATE_CONSTRUCTORS;
 	bool32 generateOperators = flags & GENERATOR_FLAG_GENERATE_OPERATORS;
 
 	bool32 generateInlFile = generateConstructors || generateOperators;
+
+	StringBuilder_Append( code, "#pragma once\n\n" );
+
+	if ( cLinkage ) {
+		StringBuilder_Append( code,
+			"#ifdef __cplusplus\n"
+			"extern \"C\" {\n"
+			"#endif\n\n"
+		);
+	}
 
 	// vectors
 	for ( u32 i = 0; i < vectorTypeInfosCount; i++ ) {
@@ -89,6 +100,7 @@ static void GenerateMainHeader(
 
 		StringBuilder_Appendf( code, "#include \"%s.%s\"\n", typeInfo->fullTypeName, includeFileExtension );
 	}
+	StringBuilder_Appendf( code, "\n" );
 
 	// function file includes
 	StringBuilder_Appendf( code, "#include \"%s.h\"\n", GEN_FILENAME_FUNCTIONS_SCALAR );
@@ -98,6 +110,14 @@ static void GenerateMainHeader(
 	StringBuilder_Appendf( code, "#include \"%s.h\"\n", GEN_FILENAME_FUNCTIONS_QUATERNION );
 	StringBuilder_Appendf( code, "#include \"%s.h\"\n", GEN_FILENAME_FUNCTIONS_MATRIX );
 	StringBuilder_Appendf( code, "\n" );
+
+	if ( cLinkage ) {
+		StringBuilder_Append( code,
+			"#ifdef __cplusplus\n"
+			"}\n"
+			"#endif\n"
+		);
+	}
 
 	const char* filePathHeader = String_TPrintf( tempStorage, "%s/%s", generatedCodePath, GEN_HEADER_MAIN );
 

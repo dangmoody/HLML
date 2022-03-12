@@ -1,3 +1,9 @@
+#pragma once
+
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 #include "bool2.h"
 #include "bool3.h"
 #include "bool4.h"
@@ -59,6 +65,7 @@
 #include "double4x2.h"
 #include "double4x3.h"
 #include "double4x4.h"
+
 #include "hlml_functions_scalar.h"
 #include "hlml_functions_scalar_sse.h"
 #include "hlml_functions_vector.h"
@@ -66,3 +73,6 @@
 #include "hlml_functions_quaternion.h"
 #include "hlml_functions_matrix.h"
 
+#ifdef __cplusplus
+}
+#endif

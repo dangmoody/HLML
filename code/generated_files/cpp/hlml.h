@@ -1,3 +1,5 @@
+#pragma once
+
 #include "bool2.h"
 #include "bool3.h"
 #include "bool4.h"
@@ -75,6 +77,7 @@
 #include "double4x2.inl"
 #include "double4x3.inl"
 #include "double4x4.inl"
+
 #include "hlml_functions_scalar.h"
 #include "hlml_functions_scalar_sse.h"
 #include "hlml_functions_vector.h"
