@@ -45,6 +45,7 @@ extern "C" {
 #endif
 
 #ifndef HLML_ASSERT
+#include <assert.h>
 #define HLML_ASSERT assert
 #endif
 

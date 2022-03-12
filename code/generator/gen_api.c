@@ -216,6 +216,7 @@ static void GenerateDefinesHeader( allocatorLinear_t* tempStorage, const char* g
 		"\n"
 
 		"#ifndef HLML_ASSERT\n"
+		"#include <assert.h>\n"
 		"#define HLML_ASSERT assert\n"
 		"#endif\n"
 		"\n"
