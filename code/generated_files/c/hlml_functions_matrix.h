@@ -5472,6 +5472,10 @@ HLML_INLINE uint2x2 uint2x2_cdivm( const uint2x2* lhs, const uint2x2* rhs )
 	};
 }
 
+#if defined( _MSC_VER )
+#pragma warning( push, 4 )
+#pragma warning( disable : 4146 )
+#endif
 // Returns a copy of the matrix that has been negated.
 HLML_INLINE uint2x2 uint2x2_negate( const uint2x2* x )
 {
@@ -5482,6 +5486,9 @@ HLML_INLINE uint2x2 uint2x2_negate( const uint2x2* x )
 	};
 }
 
+#if defined( _MSC_VER )
+#pragma warning( pop )
+#endif
 // Returns a copy of the matrix where each component has been bitwise NOT'd.
 HLML_INLINE uint2x2 uint2x2_not( const uint2x2* x )
 {
@@ -5813,6 +5820,10 @@ HLML_INLINE uint2x3 uint2x3_cdivm( const uint2x3* lhs, const uint2x3* rhs )
 	};
 }
 
+#if defined( _MSC_VER )
+#pragma warning( push, 4 )
+#pragma warning( disable : 4146 )
+#endif
 // Returns a copy of the matrix that has been negated.
 HLML_INLINE uint2x3 uint2x3_negate( const uint2x3* x )
 {
@@ -5823,6 +5834,9 @@ HLML_INLINE uint2x3 uint2x3_negate( const uint2x3* x )
 	};
 }
 
+#if defined( _MSC_VER )
+#pragma warning( pop )
+#endif
 // Returns a copy of the matrix where each component has been bitwise NOT'd.
 HLML_INLINE uint2x3 uint2x3_not( const uint2x3* x )
 {
@@ -6145,6 +6159,10 @@ HLML_INLINE uint2x4 uint2x4_cdivm( const uint2x4* lhs, const uint2x4* rhs )
 	};
 }
 
+#if defined( _MSC_VER )
+#pragma warning( push, 4 )
+#pragma warning( disable : 4146 )
+#endif
 // Returns a copy of the matrix that has been negated.
 HLML_INLINE uint2x4 uint2x4_negate( const uint2x4* x )
 {
@@ -6155,6 +6173,9 @@ HLML_INLINE uint2x4 uint2x4_negate( const uint2x4* x )
 	};
 }
 
+#if defined( _MSC_VER )
+#pragma warning( pop )
+#endif
 // Returns a copy of the matrix where each component has been bitwise NOT'd.
 HLML_INLINE uint2x4 uint2x4_not( const uint2x4* x )
 {
@@ -6495,6 +6516,10 @@ HLML_INLINE uint3x2 uint3x2_cdivm( const uint3x2* lhs, const uint3x2* rhs )
 	};
 }
 
+#if defined( _MSC_VER )
+#pragma warning( push, 4 )
+#pragma warning( disable : 4146 )
+#endif
 // Returns a copy of the matrix that has been negated.
 HLML_INLINE uint3x2 uint3x2_negate( const uint3x2* x )
 {
@@ -6506,6 +6531,9 @@ HLML_INLINE uint3x2 uint3x2_negate( const uint3x2* x )
 	};
 }
 
+#if defined( _MSC_VER )
+#pragma warning( pop )
+#endif
 // Returns a copy of the matrix where each component has been bitwise NOT'd.
 HLML_INLINE uint3x2 uint3x2_not( const uint3x2* x )
 {
@@ -6864,6 +6892,10 @@ HLML_INLINE uint3x3 uint3x3_cdivm( const uint3x3* lhs, const uint3x3* rhs )
 	};
 }
 
+#if defined( _MSC_VER )
+#pragma warning( push, 4 )
+#pragma warning( disable : 4146 )
+#endif
 // Returns a copy of the matrix that has been negated.
 HLML_INLINE uint3x3 uint3x3_negate( const uint3x3* x )
 {
@@ -6875,6 +6907,9 @@ HLML_INLINE uint3x3 uint3x3_negate( const uint3x3* x )
 	};
 }
 
+#if defined( _MSC_VER )
+#pragma warning( pop )
+#endif
 // Returns a copy of the matrix where each component has been bitwise NOT'd.
 HLML_INLINE uint3x3 uint3x3_not( const uint3x3* x )
 {
@@ -7245,6 +7280,10 @@ HLML_INLINE uint3x4 uint3x4_cdivm( const uint3x4* lhs, const uint3x4* rhs )
 	};
 }
 
+#if defined( _MSC_VER )
+#pragma warning( push, 4 )
+#pragma warning( disable : 4146 )
+#endif
 // Returns a copy of the matrix that has been negated.
 HLML_INLINE uint3x4 uint3x4_negate( const uint3x4* x )
 {
@@ -7256,6 +7295,9 @@ HLML_INLINE uint3x4 uint3x4_negate( const uint3x4* x )
 	};
 }
 
+#if defined( _MSC_VER )
+#pragma warning( pop )
+#endif
 // Returns a copy of the matrix where each component has been bitwise NOT'd.
 HLML_INLINE uint3x4 uint3x4_not( const uint3x4* x )
 {
@@ -7633,6 +7675,10 @@ HLML_INLINE uint4x2 uint4x2_cdivm( const uint4x2* lhs, const uint4x2* rhs )
 	};
 }
 
+#if defined( _MSC_VER )
+#pragma warning( push, 4 )
+#pragma warning( disable : 4146 )
+#endif
 // Returns a copy of the matrix that has been negated.
 HLML_INLINE uint4x2 uint4x2_negate( const uint4x2* x )
 {
@@ -7645,6 +7691,9 @@ HLML_INLINE uint4x2 uint4x2_negate( const uint4x2* x )
 	};
 }
 
+#if defined( _MSC_VER )
+#pragma warning( pop )
+#endif
 // Returns a copy of the matrix where each component has been bitwise NOT'd.
 HLML_INLINE uint4x2 uint4x2_not( const uint4x2* x )
 {
@@ -8042,6 +8091,10 @@ HLML_INLINE uint4x3 uint4x3_cdivm( const uint4x3* lhs, const uint4x3* rhs )
 	};
 }
 
+#if defined( _MSC_VER )
+#pragma warning( push, 4 )
+#pragma warning( disable : 4146 )
+#endif
 // Returns a copy of the matrix that has been negated.
 HLML_INLINE uint4x3 uint4x3_negate( const uint4x3* x )
 {
@@ -8054,6 +8107,9 @@ HLML_INLINE uint4x3 uint4x3_negate( const uint4x3* x )
 	};
 }
 
+#if defined( _MSC_VER )
+#pragma warning( pop )
+#endif
 // Returns a copy of the matrix where each component has been bitwise NOT'd.
 HLML_INLINE uint4x3 uint4x3_not( const uint4x3* x )
 {
@@ -8452,6 +8508,10 @@ HLML_INLINE uint4x4 uint4x4_cdivm( const uint4x4* lhs, const uint4x4* rhs )
 	};
 }
 
+#if defined( _MSC_VER )
+#pragma warning( push, 4 )
+#pragma warning( disable : 4146 )
+#endif
 // Returns a copy of the matrix that has been negated.
 HLML_INLINE uint4x4 uint4x4_negate( const uint4x4* x )
 {
@@ -8464,6 +8524,9 @@ HLML_INLINE uint4x4 uint4x4_negate( const uint4x4* x )
 	};
 }
 
+#if defined( _MSC_VER )
+#pragma warning( pop )
+#endif
 // Returns a copy of the matrix where each component has been bitwise NOT'd.
 HLML_INLINE uint4x4 uint4x4_not( const uint4x4* x )
 {

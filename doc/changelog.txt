@@ -3,7 +3,8 @@ HLML CHANGELOG
 v2.1.0, 12/03/2022:
 	* `*_unary` has been renamed to `*_not` because that's what it actually does.
 	* Matrix header files now include the header file for their vector member type.
-	* Fix bug where assert.h was not included if using default HLML_ASSERT macro.
+	* Fixed bug where assert.h was not included if using default HLML_ASSERT macro.
+	* Fixed bug where compiler warned about using negate function/operator on unsigned types.
 
 v2.0.1, 12/02/2022:
 	* Re-added `negate` function and operator after it was accidentally removed during the re-write between v1 and v2 (oops).

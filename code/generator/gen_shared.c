@@ -1568,8 +1568,25 @@ static void GenerateComponentWiseOperators( allocatorLinear_t* tempStorage, cons
 		}
 
 		if ( typeInfo->type != GEN_TYPE_BOOL ) {
+			if ( typeInfo->type == GEN_TYPE_UINT ) {
+				StringBuilder_Append( code,
+					"#if defined( _MSC_VER )\n"
+					"#pragma warning( push, 4 )\n"
+					"#pragma warning( disable : 4146 )\n"
+					"#endif\n"
+				);
+			}
+
 			commentStr = GetComment_ComponentWiseNegate( tempStorage, typeDescSingular );
 			GenerateOperatorSingleParm( tempStorage, code, typeInfo, "-", OPERATOR_SINGLE_PARM_TYPE_PREFIX, OPERATOR_PREFIX_FLAG_RETURN_COPY, commentStr );
+
+			if ( typeInfo->type == GEN_TYPE_UINT ) {
+				StringBuilder_Append( code,
+					"#if defined( _MSC_VER )\n"
+					"#pragma warning( pop )\n"
+					"#endif\n"
+				);
+			}
 		}
 
 		if ( Gen_TypeIsInteger( typeInfo->type ) ) {
@@ -1647,8 +1664,25 @@ static void GenerateComponentWiseOperators( allocatorLinear_t* tempStorage, cons
 		}
 
 		if ( typeInfo->type != GEN_TYPE_BOOL ) {
+			if ( typeInfo->type == GEN_TYPE_UINT ) {
+				StringBuilder_Append( code,
+					"#if defined( _MSC_VER )\n"
+					"#pragma warning( push, 4 )\n"
+					"#pragma warning( disable : 4146 )\n"
+					"#endif\n"
+				);
+			}
+
 			commentStr = GetComment_ComponentWiseNegate( tempStorage, typeDescSingular );
 			GenerateComponentWiseFunction_OperatorSingleParm( tempStorage, code, typeInfo, GEN_FUNCTION_NAME_NEGATE, "-", OPERATOR_SINGLE_PARM_TYPE_PREFIX, strings, flags, commentStr );
+
+			if ( typeInfo->type == GEN_TYPE_UINT ) {
+				StringBuilder_Append( code,
+					"#if defined( _MSC_VER )\n"
+					"#pragma warning( pop )\n"
+					"#endif\n"
+				);
+			}
 		}
 
 		if ( Gen_TypeIsInteger( typeInfo->type ) ) {

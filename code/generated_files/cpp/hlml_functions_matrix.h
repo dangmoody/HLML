@@ -7271,6 +7271,10 @@ HLML_INLINE uint2x2 operator--( uint2x2& x, const int32_t )
 	return x;
 }
 
+#if defined( _MSC_VER )
+#pragma warning( push, 4 )
+#pragma warning( disable : 4146 )
+#endif
 // Returns a copy of the matrix that has been negated.
 // pre-fix
 HLML_INLINE uint2x2 operator-( const uint2x2& x )
@@ -7281,6 +7285,9 @@ HLML_INLINE uint2x2 operator-( const uint2x2& x )
 	);
 }
 
+#if defined( _MSC_VER )
+#pragma warning( pop )
+#endif
 // Returns a copy of the matrix where each component has been bitwise NOT'd.
 // pre-fix
 HLML_INLINE uint2x2 operator~( const uint2x2& x )
@@ -7728,6 +7735,10 @@ HLML_INLINE uint2x3 operator--( uint2x3& x, const int32_t )
 	return x;
 }
 
+#if defined( _MSC_VER )
+#pragma warning( push, 4 )
+#pragma warning( disable : 4146 )
+#endif
 // Returns a copy of the matrix that has been negated.
 // pre-fix
 HLML_INLINE uint2x3 operator-( const uint2x3& x )
@@ -7738,6 +7749,9 @@ HLML_INLINE uint2x3 operator-( const uint2x3& x )
 	);
 }
 
+#if defined( _MSC_VER )
+#pragma warning( pop )
+#endif
 // Returns a copy of the matrix where each component has been bitwise NOT'd.
 // pre-fix
 HLML_INLINE uint2x3 operator~( const uint2x3& x )
@@ -8176,6 +8190,10 @@ HLML_INLINE uint2x4 operator--( uint2x4& x, const int32_t )
 	return x;
 }
 
+#if defined( _MSC_VER )
+#pragma warning( push, 4 )
+#pragma warning( disable : 4146 )
+#endif
 // Returns a copy of the matrix that has been negated.
 // pre-fix
 HLML_INLINE uint2x4 operator-( const uint2x4& x )
@@ -8186,6 +8204,9 @@ HLML_INLINE uint2x4 operator-( const uint2x4& x )
 	);
 }
 
+#if defined( _MSC_VER )
+#pragma warning( pop )
+#endif
 // Returns a copy of the matrix where each component has been bitwise NOT'd.
 // pre-fix
 HLML_INLINE uint2x4 operator~( const uint2x4& x )
@@ -8646,6 +8667,10 @@ HLML_INLINE uint3x2 operator--( uint3x2& x, const int32_t )
 	return x;
 }
 
+#if defined( _MSC_VER )
+#pragma warning( push, 4 )
+#pragma warning( disable : 4146 )
+#endif
 // Returns a copy of the matrix that has been negated.
 // pre-fix
 HLML_INLINE uint3x2 operator-( const uint3x2& x )
@@ -8657,6 +8682,9 @@ HLML_INLINE uint3x2 operator-( const uint3x2& x )
 	);
 }
 
+#if defined( _MSC_VER )
+#pragma warning( pop )
+#endif
 // Returns a copy of the matrix where each component has been bitwise NOT'd.
 // pre-fix
 HLML_INLINE uint3x2 operator~( const uint3x2& x )
@@ -9135,6 +9163,10 @@ HLML_INLINE uint3x3 operator--( uint3x3& x, const int32_t )
 	return x;
 }
 
+#if defined( _MSC_VER )
+#pragma warning( push, 4 )
+#pragma warning( disable : 4146 )
+#endif
 // Returns a copy of the matrix that has been negated.
 // pre-fix
 HLML_INLINE uint3x3 operator-( const uint3x3& x )
@@ -9146,6 +9178,9 @@ HLML_INLINE uint3x3 operator-( const uint3x3& x )
 	);
 }
 
+#if defined( _MSC_VER )
+#pragma warning( pop )
+#endif
 // Returns a copy of the matrix where each component has been bitwise NOT'd.
 // pre-fix
 HLML_INLINE uint3x3 operator~( const uint3x3& x )
@@ -9636,6 +9671,10 @@ HLML_INLINE uint3x4 operator--( uint3x4& x, const int32_t )
 	return x;
 }
 
+#if defined( _MSC_VER )
+#pragma warning( push, 4 )
+#pragma warning( disable : 4146 )
+#endif
 // Returns a copy of the matrix that has been negated.
 // pre-fix
 HLML_INLINE uint3x4 operator-( const uint3x4& x )
@@ -9647,6 +9686,9 @@ HLML_INLINE uint3x4 operator-( const uint3x4& x )
 	);
 }
 
+#if defined( _MSC_VER )
+#pragma warning( pop )
+#endif
 // Returns a copy of the matrix where each component has been bitwise NOT'd.
 // pre-fix
 HLML_INLINE uint3x4 operator~( const uint3x4& x )
@@ -10148,6 +10190,10 @@ HLML_INLINE uint4x2 operator--( uint4x2& x, const int32_t )
 	return x;
 }
 
+#if defined( _MSC_VER )
+#pragma warning( push, 4 )
+#pragma warning( disable : 4146 )
+#endif
 // Returns a copy of the matrix that has been negated.
 // pre-fix
 HLML_INLINE uint4x2 operator-( const uint4x2& x )
@@ -10160,6 +10206,9 @@ HLML_INLINE uint4x2 operator-( const uint4x2& x )
 	);
 }
 
+#if defined( _MSC_VER )
+#pragma warning( pop )
+#endif
 // Returns a copy of the matrix where each component has been bitwise NOT'd.
 // pre-fix
 HLML_INLINE uint4x2 operator~( const uint4x2& x )
@@ -10681,6 +10730,10 @@ HLML_INLINE uint4x3 operator--( uint4x3& x, const int32_t )
 	return x;
 }
 
+#if defined( _MSC_VER )
+#pragma warning( push, 4 )
+#pragma warning( disable : 4146 )
+#endif
 // Returns a copy of the matrix that has been negated.
 // pre-fix
 HLML_INLINE uint4x3 operator-( const uint4x3& x )
@@ -10693,6 +10746,9 @@ HLML_INLINE uint4x3 operator-( const uint4x3& x )
 	);
 }
 
+#if defined( _MSC_VER )
+#pragma warning( pop )
+#endif
 // Returns a copy of the matrix where each component has been bitwise NOT'd.
 // pre-fix
 HLML_INLINE uint4x3 operator~( const uint4x3& x )
@@ -11215,6 +11271,10 @@ HLML_INLINE uint4x4 operator--( uint4x4& x, const int32_t )
 	return x;
 }
 
+#if defined( _MSC_VER )
+#pragma warning( push, 4 )
+#pragma warning( disable : 4146 )
+#endif
 // Returns a copy of the matrix that has been negated.
 // pre-fix
 HLML_INLINE uint4x4 operator-( const uint4x4& x )
@@ -11227,6 +11287,9 @@ HLML_INLINE uint4x4 operator-( const uint4x4& x )
 	);
 }
 
+#if defined( _MSC_VER )
+#pragma warning( pop )
+#endif
 // Returns a copy of the matrix where each component has been bitwise NOT'd.
 // pre-fix
 HLML_INLINE uint4x4 operator~( const uint4x4& x )

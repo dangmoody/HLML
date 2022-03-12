@@ -2401,6 +2401,10 @@ HLML_INLINE uint2 operator--( uint2& x, const int32_t )
 	return x;
 }
 
+#if defined( _MSC_VER )
+#pragma warning( push, 4 )
+#pragma warning( disable : 4146 )
+#endif
 // Returns a copy of the vector that has been negated.
 // pre-fix
 HLML_INLINE uint2 operator-( const uint2& x )
@@ -2411,6 +2415,9 @@ HLML_INLINE uint2 operator-( const uint2& x )
 	);
 }
 
+#if defined( _MSC_VER )
+#pragma warning( pop )
+#endif
 // Returns a copy of the vector where each component has been bitwise NOT'd.
 // pre-fix
 HLML_INLINE uint2 operator~( const uint2& x )
@@ -2859,6 +2866,10 @@ HLML_INLINE uint3 operator--( uint3& x, const int32_t )
 	return x;
 }
 
+#if defined( _MSC_VER )
+#pragma warning( push, 4 )
+#pragma warning( disable : 4146 )
+#endif
 // Returns a copy of the vector that has been negated.
 // pre-fix
 HLML_INLINE uint3 operator-( const uint3& x )
@@ -2870,6 +2881,9 @@ HLML_INLINE uint3 operator-( const uint3& x )
 	);
 }
 
+#if defined( _MSC_VER )
+#pragma warning( pop )
+#endif
 // Returns a copy of the vector where each component has been bitwise NOT'd.
 // pre-fix
 HLML_INLINE uint3 operator~( const uint3& x )
@@ -3350,6 +3364,10 @@ HLML_INLINE uint4 operator--( uint4& x, const int32_t )
 	return x;
 }
 
+#if defined( _MSC_VER )
+#pragma warning( push, 4 )
+#pragma warning( disable : 4146 )
+#endif
 // Returns a copy of the vector that has been negated.
 // pre-fix
 HLML_INLINE uint4 operator-( const uint4& x )
@@ -3362,6 +3380,9 @@ HLML_INLINE uint4 operator-( const uint4& x )
 	);
 }
 
+#if defined( _MSC_VER )
+#pragma warning( pop )
+#endif
 // Returns a copy of the vector where each component has been bitwise NOT'd.
 // pre-fix
 HLML_INLINE uint4 operator~( const uint4& x )

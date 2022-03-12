@@ -1760,6 +1760,10 @@ HLML_INLINE uint2 uint2_cdivv( const uint2* lhs, const uint2* rhs )
 	};
 }
 
+#if defined( _MSC_VER )
+#pragma warning( push, 4 )
+#pragma warning( disable : 4146 )
+#endif
 // Returns a copy of the vector that has been negated.
 HLML_INLINE uint2 uint2_negate( const uint2* x )
 {
@@ -1770,6 +1774,9 @@ HLML_INLINE uint2 uint2_negate( const uint2* x )
 	};
 }
 
+#if defined( _MSC_VER )
+#pragma warning( pop )
+#endif
 // Returns a copy of the vector where each component has been bitwise NOT'd.
 HLML_INLINE uint2 uint2_not( const uint2* x )
 {
@@ -2100,6 +2107,10 @@ HLML_INLINE uint3 uint3_cdivv( const uint3* lhs, const uint3* rhs )
 	};
 }
 
+#if defined( _MSC_VER )
+#pragma warning( push, 4 )
+#pragma warning( disable : 4146 )
+#endif
 // Returns a copy of the vector that has been negated.
 HLML_INLINE uint3 uint3_negate( const uint3* x )
 {
@@ -2111,6 +2122,9 @@ HLML_INLINE uint3 uint3_negate( const uint3* x )
 	};
 }
 
+#if defined( _MSC_VER )
+#pragma warning( pop )
+#endif
 // Returns a copy of the vector where each component has been bitwise NOT'd.
 HLML_INLINE uint3 uint3_not( const uint3* x )
 {
@@ -2469,6 +2483,10 @@ HLML_INLINE uint4 uint4_cdivv( const uint4* lhs, const uint4* rhs )
 	};
 }
 
+#if defined( _MSC_VER )
+#pragma warning( push, 4 )
+#pragma warning( disable : 4146 )
+#endif
 // Returns a copy of the vector that has been negated.
 HLML_INLINE uint4 uint4_negate( const uint4* x )
 {
@@ -2481,6 +2499,9 @@ HLML_INLINE uint4 uint4_negate( const uint4* x )
 	};
 }
 
+#if defined( _MSC_VER )
+#pragma warning( pop )
+#endif
 // Returns a copy of the vector where each component has been bitwise NOT'd.
 HLML_INLINE uint4 uint4_not( const uint4* x )
 {
