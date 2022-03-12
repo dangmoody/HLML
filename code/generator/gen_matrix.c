@@ -1138,11 +1138,11 @@ static void GenerateMatrixFiles( allocatorLinear_t* tempStorage, const char* gen
 
 				// diagonal vector ctor
 				StringBuilder_Append(  codeHeader, "\t// Sets each diagonal component of the matrix to the corresponding vector component.\n" );
-				StringBuilder_Appendf( codeHeader, "\t%s( const %s& diagonal );\n\n", typeInfo->fullTypeName, vectorMemberTypeName );
+				StringBuilder_Appendf( codeHeader, "\tHLML_INLINE %s( const %s& diagonal );\n\n", typeInfo->fullTypeName, vectorMemberTypeName );
 
 				// per-row vector ctor
 				StringBuilder_Append(  codeHeader, "\t// Sets each row of the matrix to the corresponding vector.\n" );
-				StringBuilder_Appendf( codeHeader, "\t%s( ", typeInfo->fullTypeName );
+				StringBuilder_Appendf( codeHeader, "\tHLML_INLINE %s( ", typeInfo->fullTypeName );
 				for ( u32 row = 0; row < typeInfo->numRows; row++ ) {
 					StringBuilder_Appendf( codeHeader, "const %s& row%d", vectorMemberTypeName, row );
 

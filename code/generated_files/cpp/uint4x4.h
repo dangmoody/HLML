@@ -47,10 +47,10 @@ struct uint4x4
 	HLML_INLINE explicit uint4x4( const uint32_t diagonal );
 
 	// Sets each diagonal component of the matrix to the corresponding vector component.
-	uint4x4( const uint4& diagonal );
+	HLML_INLINE uint4x4( const uint4& diagonal );
 
 	// Sets each row of the matrix to the corresponding vector.
-	uint4x4( const uint4& row0, const uint4& row1, const uint4& row2, const uint4& row3 );
+	HLML_INLINE uint4x4( const uint4& row0, const uint4& row1, const uint4& row2, const uint4& row3 );
 
 	// Sets each component of the matrix to the corresponding scalar value.
 	HLML_INLINE uint4x4( const uint32_t m00, const uint32_t m01, const uint32_t m02, const uint32_t m03,

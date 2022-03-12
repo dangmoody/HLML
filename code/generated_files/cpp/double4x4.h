@@ -47,10 +47,10 @@ struct double4x4
 	HLML_INLINE explicit double4x4( const double diagonal );
 
 	// Sets each diagonal component of the matrix to the corresponding vector component.
-	double4x4( const double4& diagonal );
+	HLML_INLINE double4x4( const double4& diagonal );
 
 	// Sets each row of the matrix to the corresponding vector.
-	double4x4( const double4& row0, const double4& row1, const double4& row2, const double4& row3 );
+	HLML_INLINE double4x4( const double4& row0, const double4& row1, const double4& row2, const double4& row3 );
 
 	// Sets each component of the matrix to the corresponding scalar value.
 	HLML_INLINE double4x4( const double m00, const double m01, const double m02, const double m03,

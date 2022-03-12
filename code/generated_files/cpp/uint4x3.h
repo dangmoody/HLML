@@ -47,10 +47,10 @@ struct uint4x3
 	HLML_INLINE explicit uint4x3( const uint32_t diagonal );
 
 	// Sets each diagonal component of the matrix to the corresponding vector component.
-	uint4x3( const uint3& diagonal );
+	HLML_INLINE uint4x3( const uint3& diagonal );
 
 	// Sets each row of the matrix to the corresponding vector.
-	uint4x3( const uint3& row0, const uint3& row1, const uint3& row2, const uint3& row3 );
+	HLML_INLINE uint4x3( const uint3& row0, const uint3& row1, const uint3& row2, const uint3& row3 );
 
 	// Sets each component of the matrix to the corresponding scalar value.
 	HLML_INLINE uint4x3( const uint32_t m00, const uint32_t m01, const uint32_t m02,

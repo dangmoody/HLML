@@ -47,10 +47,10 @@ struct double2x3
 	HLML_INLINE explicit double2x3( const double diagonal );
 
 	// Sets each diagonal component of the matrix to the corresponding vector component.
-	double2x3( const double3& diagonal );
+	HLML_INLINE double2x3( const double3& diagonal );
 
 	// Sets each row of the matrix to the corresponding vector.
-	double2x3( const double3& row0, const double3& row1 );
+	HLML_INLINE double2x3( const double3& row0, const double3& row1 );
 
 	// Sets each component of the matrix to the corresponding scalar value.
 	HLML_INLINE double2x3( const double m00, const double m01, const double m02,

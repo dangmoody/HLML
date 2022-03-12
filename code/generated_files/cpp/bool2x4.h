@@ -47,10 +47,10 @@ struct bool2x4
 	HLML_INLINE explicit bool2x4( const bool32_t diagonal );
 
 	// Sets each diagonal component of the matrix to the corresponding vector component.
-	bool2x4( const bool4& diagonal );
+	HLML_INLINE bool2x4( const bool4& diagonal );
 
 	// Sets each row of the matrix to the corresponding vector.
-	bool2x4( const bool4& row0, const bool4& row1 );
+	HLML_INLINE bool2x4( const bool4& row0, const bool4& row1 );
 
 	// Sets each component of the matrix to the corresponding scalar value.
 	HLML_INLINE bool2x4( const bool32_t m00, const bool32_t m01, const bool32_t m02, const bool32_t m03,

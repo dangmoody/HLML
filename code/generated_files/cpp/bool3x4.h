@@ -47,10 +47,10 @@ struct bool3x4
 	HLML_INLINE explicit bool3x4( const bool32_t diagonal );
 
 	// Sets each diagonal component of the matrix to the corresponding vector component.
-	bool3x4( const bool4& diagonal );
+	HLML_INLINE bool3x4( const bool4& diagonal );
 
 	// Sets each row of the matrix to the corresponding vector.
-	bool3x4( const bool4& row0, const bool4& row1, const bool4& row2 );
+	HLML_INLINE bool3x4( const bool4& row0, const bool4& row1, const bool4& row2 );
 
 	// Sets each component of the matrix to the corresponding scalar value.
 	HLML_INLINE bool3x4( const bool32_t m00, const bool32_t m01, const bool32_t m02, const bool32_t m03,

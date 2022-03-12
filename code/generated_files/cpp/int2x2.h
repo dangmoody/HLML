@@ -47,10 +47,10 @@ struct int2x2
 	HLML_INLINE explicit int2x2( const int32_t diagonal );
 
 	// Sets each diagonal component of the matrix to the corresponding vector component.
-	int2x2( const int2& diagonal );
+	HLML_INLINE int2x2( const int2& diagonal );
 
 	// Sets each row of the matrix to the corresponding vector.
-	int2x2( const int2& row0, const int2& row1 );
+	HLML_INLINE int2x2( const int2& row0, const int2& row1 );
 
 	// Sets each component of the matrix to the corresponding scalar value.
 	HLML_INLINE int2x2( const int32_t m00, const int32_t m01,

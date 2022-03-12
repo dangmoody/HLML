@@ -47,10 +47,10 @@ struct float2x2
 	HLML_INLINE explicit float2x2( const float diagonal );
 
 	// Sets each diagonal component of the matrix to the corresponding vector component.
-	float2x2( const float2& diagonal );
+	HLML_INLINE float2x2( const float2& diagonal );
 
 	// Sets each row of the matrix to the corresponding vector.
-	float2x2( const float2& row0, const float2& row1 );
+	HLML_INLINE float2x2( const float2& row0, const float2& row1 );
 
 	// Sets each component of the matrix to the corresponding scalar value.
 	HLML_INLINE float2x2( const float m00, const float m01,
