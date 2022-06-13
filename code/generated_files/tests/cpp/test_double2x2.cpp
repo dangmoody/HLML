@@ -1483,6 +1483,17 @@ TEMPER_PARAMETRIC( Test_double2x2_inverse, TEMPER_FLAG_SHOULD_RUN, const double2
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_double2x2_inverse,
 	double2x2(
+		1.000000f, 0.000000f,
+		0.000000f, 1.000000f
+	),
+	double2x2(
+		1.000000f, 0.000000f,
+		0.000000f, 1.000000f
+	)
+);
+
+TEMPER_INVOKE_PARAMETRIC_TEST( Test_double2x2_inverse,
+	double2x2(
 		6.000000f, 2.000000f,
 		2.000000f, 7.000000f
 	),

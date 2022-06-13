@@ -178,23 +178,23 @@ static void OnAfterTest( const temperTestInfo_t* testInfo )
 {
 	if ( testInfo->testingFlag == TEMPER_FLAG_SHOULD_SKIP )
 	{
-		TemperSetTextColorInternal( TEMPERDEV__COLOR_YELLOW );
+		TemperSetTextColorInternal( TEMPERDEV_COLOR_YELLOW );
 		printf( "SKIPPED\n" );
-		TemperSetTextColorInternal( TEMPERDEV__COLOR_DEFAULT );
+		TemperSetTextColorInternal( TEMPERDEV_COLOR_DEFAULT );
 	}
 	else
 	{
 		if ( g_temperTestContext.currentTestErrorCount == 0 )
 		{
-			TemperSetTextColorInternal( TEMPERDEV__COLOR_GREEN );
+			TemperSetTextColorInternal( TEMPERDEV_COLOR_GREEN );
 			printf( "OK" );
-			TemperSetTextColorInternal( TEMPERDEV__COLOR_DEFAULT );
+			TemperSetTextColorInternal( TEMPERDEV_COLOR_DEFAULT );
 		}
 		else
 		{
-			TemperSetTextColorInternal( TEMPERDEV__COLOR_RED );
+			TemperSetTextColorInternal( TEMPERDEV_COLOR_RED );
 			printf( "FAILED\n" );
-			TemperSetTextColorInternal( TEMPERDEV__COLOR_DEFAULT );
+			TemperSetTextColorInternal( TEMPERDEV_COLOR_DEFAULT );
 		}
 
 		printf( " (%f %s)\n", testInfo->testTimeTaken, TemperGetTimeUnitStringInternal( g_temperTestContext.timeUnit ) );

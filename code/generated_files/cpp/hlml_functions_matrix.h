@@ -14699,36 +14699,36 @@ HLML_INLINE float determinant( const float4x4& mat )
 HLML_INLINE float4x4 inverse( const float4x4& mat )
 {
 	// uses the glm version, which is basically just an optimised version of the adjugate formula
-	float sub00 = mat.rows[2].z * mat.rows[3].w - mat.rows[3].z * mat.rows[2].w;
-	float sub01 = mat.rows[1].z * mat.rows[3].w - mat.rows[1].w * mat.rows[2].w;
-	float sub02 = mat.rows[1].z * mat.rows[2].w - mat.rows[1].w * mat.rows[2].z;
+	float coef00 = mat.rows[2].z * mat.rows[3].w - mat.rows[3].z * mat.rows[2].w;
+	float coef02 = mat.rows[1].z * mat.rows[3].w - mat.rows[3].z * mat.rows[1].w;
+	float coef03 = mat.rows[1].z * mat.rows[2].w - mat.rows[2].z * mat.rows[1].w;
 
-	float sub03 = mat.rows[2].y * mat.rows[3].w - mat.rows[2].w * mat.rows[3].y;
-	float sub04 = mat.rows[1].y * mat.rows[3].w - mat.rows[1].w * mat.rows[3].y;
-	float sub05 = mat.rows[1].y * mat.rows[2].w - mat.rows[1].w * mat.rows[2].y;
+	float coef04 = mat.rows[2].y * mat.rows[3].w - mat.rows[3].y * mat.rows[2].w;
+	float coef06 = mat.rows[1].y * mat.rows[3].w - mat.rows[3].y * mat.rows[1].w;
+	float coef07 = mat.rows[1].y * mat.rows[2].w - mat.rows[2].y * mat.rows[1].w;
 
-	float sub06 = mat.rows[2].y * mat.rows[3].z - mat.rows[2].z * mat.rows[3].y;
-	float sub07 = mat.rows[1].y * mat.rows[3].z - mat.rows[1].z * mat.rows[3].y;
-	float sub08 = mat.rows[1].y * mat.rows[2].z - mat.rows[1].z * mat.rows[2].y;
+	float coef08 = mat.rows[2].y * mat.rows[3].z - mat.rows[3].y * mat.rows[2].z;
+	float coef10 = mat.rows[1].y * mat.rows[3].z - mat.rows[3].y * mat.rows[1].z;
+	float coef11 = mat.rows[1].y * mat.rows[2].z - mat.rows[2].y * mat.rows[1].z;
 
-	float sub09 = mat.rows[2].x * mat.rows[3].w - mat.rows[3].x * mat.rows[2].w;
-	float sub10 = mat.rows[1].x * mat.rows[3].w - mat.rows[3].x * mat.rows[1].w;
-	float sub11 = mat.rows[1].x * mat.rows[2].w - mat.rows[2].x * mat.rows[1].w;
+	float coef12 = mat.rows[2].x * mat.rows[3].w - mat.rows[3].x * mat.rows[2].w;
+	float coef14 = mat.rows[1].x * mat.rows[3].w - mat.rows[3].x * mat.rows[1].w;
+	float coef15 = mat.rows[1].x * mat.rows[2].w - mat.rows[2].x * mat.rows[1].w;
 
-	float sub12 = mat.rows[2].x * mat.rows[3].z - mat.rows[2].z * mat.rows[3].x;
-	float sub13 = mat.rows[1].x * mat.rows[3].z - mat.rows[1].z * mat.rows[3].x;
-	float sub14 = mat.rows[1].x * mat.rows[2].z - mat.rows[1].z * mat.rows[2].x;
+	float coef16 = mat.rows[2].x * mat.rows[3].z - mat.rows[3].x * mat.rows[2].z;
+	float coef18 = mat.rows[1].x * mat.rows[3].z - mat.rows[3].x * mat.rows[1].z;
+	float coef19 = mat.rows[1].x * mat.rows[2].z - mat.rows[2].x * mat.rows[1].z;
 
-	float sub15 = mat.rows[2].x * mat.rows[3].y - mat.rows[2].y * mat.rows[3].x;
-	float sub16 = mat.rows[1].x * mat.rows[3].y - mat.rows[1].y * mat.rows[3].x;
-	float sub17 = mat.rows[1].x * mat.rows[2].y - mat.rows[1].y * mat.rows[2].x;
+	float coef20 = mat.rows[2].x * mat.rows[3].y - mat.rows[3].x * mat.rows[2].y;
+	float coef22 = mat.rows[1].x * mat.rows[3].y - mat.rows[3].x * mat.rows[1].y;
+	float coef23 = mat.rows[1].x * mat.rows[2].y - mat.rows[2].x * mat.rows[1].y;
 
-	float4 fac0 = { sub00, sub00, sub01, sub02 };
-	float4 fac1 = { sub03, sub03, sub04, sub05 };
-	float4 fac2 = { sub06, sub06, sub07, sub08 };
-	float4 fac3 = { sub09, sub09, sub10, sub11 };
-	float4 fac4 = { sub12, sub12, sub13, sub14 };
-	float4 fac5 = { sub15, sub15, sub16, sub17 };
+	float4 fac0 = { coef00, coef00, coef02, coef03 };
+	float4 fac1 = { coef04, coef04, coef06, coef07 };
+	float4 fac2 = { coef08, coef08, coef10, coef11 };
+	float4 fac3 = { coef12, coef12, coef14, coef15 };
+	float4 fac4 = { coef16, coef16, coef18, coef19 };
+	float4 fac5 = { coef20, coef20, coef22, coef23 };
 
 	float4 vec0 = { mat.rows[1].x, mat.rows[0].x, mat.rows[0].x, mat.rows[0].x };
 	float4 vec1 = { mat.rows[1].y, mat.rows[0].y, mat.rows[0].y, mat.rows[0].y };
@@ -14750,8 +14750,8 @@ HLML_INLINE float4x4 inverse( const float4x4& mat )
 		inv3 * sign1
 	);
 
-	float4 col0 = float4( result.rows[0][0], result.rows[1][0], result.rows[2][0], result.rows[3][0] );
-	float4 dot0 = mat.rows[0] * col0;
+	float4 row0 = float4( result.rows[0][0], result.rows[1][0], result.rows[2][0], result.rows[3][0] );
+	float4 dot0 = mat.rows[0] * row0;
 
 	const float dot1 = ( dot0.x + dot0.y ) + ( dot0.z + dot0.w );
 
@@ -18170,36 +18170,36 @@ HLML_INLINE double determinant( const double4x4& mat )
 HLML_INLINE double4x4 inverse( const double4x4& mat )
 {
 	// uses the glm version, which is basically just an optimised version of the adjugate formula
-	double sub00 = mat.rows[2].z * mat.rows[3].w - mat.rows[3].z * mat.rows[2].w;
-	double sub01 = mat.rows[1].z * mat.rows[3].w - mat.rows[1].w * mat.rows[2].w;
-	double sub02 = mat.rows[1].z * mat.rows[2].w - mat.rows[1].w * mat.rows[2].z;
+	double coef00 = mat.rows[2].z * mat.rows[3].w - mat.rows[3].z * mat.rows[2].w;
+	double coef02 = mat.rows[1].z * mat.rows[3].w - mat.rows[3].z * mat.rows[1].w;
+	double coef03 = mat.rows[1].z * mat.rows[2].w - mat.rows[2].z * mat.rows[1].w;
 
-	double sub03 = mat.rows[2].y * mat.rows[3].w - mat.rows[2].w * mat.rows[3].y;
-	double sub04 = mat.rows[1].y * mat.rows[3].w - mat.rows[1].w * mat.rows[3].y;
-	double sub05 = mat.rows[1].y * mat.rows[2].w - mat.rows[1].w * mat.rows[2].y;
+	double coef04 = mat.rows[2].y * mat.rows[3].w - mat.rows[3].y * mat.rows[2].w;
+	double coef06 = mat.rows[1].y * mat.rows[3].w - mat.rows[3].y * mat.rows[1].w;
+	double coef07 = mat.rows[1].y * mat.rows[2].w - mat.rows[2].y * mat.rows[1].w;
 
-	double sub06 = mat.rows[2].y * mat.rows[3].z - mat.rows[2].z * mat.rows[3].y;
-	double sub07 = mat.rows[1].y * mat.rows[3].z - mat.rows[1].z * mat.rows[3].y;
-	double sub08 = mat.rows[1].y * mat.rows[2].z - mat.rows[1].z * mat.rows[2].y;
+	double coef08 = mat.rows[2].y * mat.rows[3].z - mat.rows[3].y * mat.rows[2].z;
+	double coef10 = mat.rows[1].y * mat.rows[3].z - mat.rows[3].y * mat.rows[1].z;
+	double coef11 = mat.rows[1].y * mat.rows[2].z - mat.rows[2].y * mat.rows[1].z;
 
-	double sub09 = mat.rows[2].x * mat.rows[3].w - mat.rows[3].x * mat.rows[2].w;
-	double sub10 = mat.rows[1].x * mat.rows[3].w - mat.rows[3].x * mat.rows[1].w;
-	double sub11 = mat.rows[1].x * mat.rows[2].w - mat.rows[2].x * mat.rows[1].w;
+	double coef12 = mat.rows[2].x * mat.rows[3].w - mat.rows[3].x * mat.rows[2].w;
+	double coef14 = mat.rows[1].x * mat.rows[3].w - mat.rows[3].x * mat.rows[1].w;
+	double coef15 = mat.rows[1].x * mat.rows[2].w - mat.rows[2].x * mat.rows[1].w;
 
-	double sub12 = mat.rows[2].x * mat.rows[3].z - mat.rows[2].z * mat.rows[3].x;
-	double sub13 = mat.rows[1].x * mat.rows[3].z - mat.rows[1].z * mat.rows[3].x;
-	double sub14 = mat.rows[1].x * mat.rows[2].z - mat.rows[1].z * mat.rows[2].x;
+	double coef16 = mat.rows[2].x * mat.rows[3].z - mat.rows[3].x * mat.rows[2].z;
+	double coef18 = mat.rows[1].x * mat.rows[3].z - mat.rows[3].x * mat.rows[1].z;
+	double coef19 = mat.rows[1].x * mat.rows[2].z - mat.rows[2].x * mat.rows[1].z;
 
-	double sub15 = mat.rows[2].x * mat.rows[3].y - mat.rows[2].y * mat.rows[3].x;
-	double sub16 = mat.rows[1].x * mat.rows[3].y - mat.rows[1].y * mat.rows[3].x;
-	double sub17 = mat.rows[1].x * mat.rows[2].y - mat.rows[1].y * mat.rows[2].x;
+	double coef20 = mat.rows[2].x * mat.rows[3].y - mat.rows[3].x * mat.rows[2].y;
+	double coef22 = mat.rows[1].x * mat.rows[3].y - mat.rows[3].x * mat.rows[1].y;
+	double coef23 = mat.rows[1].x * mat.rows[2].y - mat.rows[2].x * mat.rows[1].y;
 
-	double4 fac0 = { sub00, sub00, sub01, sub02 };
-	double4 fac1 = { sub03, sub03, sub04, sub05 };
-	double4 fac2 = { sub06, sub06, sub07, sub08 };
-	double4 fac3 = { sub09, sub09, sub10, sub11 };
-	double4 fac4 = { sub12, sub12, sub13, sub14 };
-	double4 fac5 = { sub15, sub15, sub16, sub17 };
+	double4 fac0 = { coef00, coef00, coef02, coef03 };
+	double4 fac1 = { coef04, coef04, coef06, coef07 };
+	double4 fac2 = { coef08, coef08, coef10, coef11 };
+	double4 fac3 = { coef12, coef12, coef14, coef15 };
+	double4 fac4 = { coef16, coef16, coef18, coef19 };
+	double4 fac5 = { coef20, coef20, coef22, coef23 };
 
 	double4 vec0 = { mat.rows[1].x, mat.rows[0].x, mat.rows[0].x, mat.rows[0].x };
 	double4 vec1 = { mat.rows[1].y, mat.rows[0].y, mat.rows[0].y, mat.rows[0].y };
@@ -18221,8 +18221,8 @@ HLML_INLINE double4x4 inverse( const double4x4& mat )
 		inv3 * sign1
 	);
 
-	double4 col0 = double4( result.rows[0][0], result.rows[1][0], result.rows[2][0], result.rows[3][0] );
-	double4 dot0 = mat.rows[0] * col0;
+	double4 row0 = double4( result.rows[0][0], result.rows[1][0], result.rows[2][0], result.rows[3][0] );
+	double4 dot0 = mat.rows[0] * row0;
 
 	const double dot1 = ( dot0.x + dot0.y ) + ( dot0.z + dot0.w );
 

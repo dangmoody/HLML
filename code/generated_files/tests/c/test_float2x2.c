@@ -1459,6 +1459,19 @@ TEMPER_PARAMETRIC( Test_float2x2_inverse, TEMPER_FLAG_SHOULD_RUN, const float2x2
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_float2x2_inverse,
 	&(float2x2)
 	{
+		1.000000f, 0.000000f,
+		0.000000f, 1.000000f
+	},
+	&(float2x2)
+	{
+		1.000000f, 0.000000f,
+		0.000000f, 1.000000f
+	}
+);
+
+TEMPER_INVOKE_PARAMETRIC_TEST( Test_float2x2_inverse,
+	&(float2x2)
+	{
 		6.000000f, 2.000000f,
 		2.000000f, 7.000000f
 	},
