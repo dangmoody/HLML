@@ -111,7 +111,7 @@ if not exist %build_dir% (
 	mkdir %build_dir%
 )
 
-call "C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Auxiliary\Build\vcvars64.bat"
+call "C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Auxiliary\\Build\\vcvars64.bat"
 
 echo CALLING: cl /Fe:%build_dir%\\!output_filename! /Fd:%build_dir%\\!output_filename!.pdb /Fo:%build_dir%\\!output_filename!.obj !symbols! !optimisation! !defines! /W4 %include_dirs% %warninglevels% !ignorewarnings! !source_files!
 cl /Fe:%build_dir%\\!output_filename! /Fd:%build_dir%\\!output_filename!.pdb /Fo:%build_dir%\\!output_filename!.obj !symbols! !optimisation! !defines! /W4 %include_dirs% %warninglevels% !ignorewarnings! !source_files!
