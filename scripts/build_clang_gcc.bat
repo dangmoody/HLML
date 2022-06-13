@@ -124,7 +124,7 @@ if [!compiler!]==[clang] (
 
 set ignorewarnings=
 if [!compiler!]==[clang] (
-	set ignorewarnings=-Wno-newline-eof -Wno-missing-braces -Wno-double-promotion
+	set ignorewarnings=-Wno-newline-eof -Wno-missing-braces -Wno-double-promotion -Wno-declaration-after-statement
 ) else (
 	set ignorewarnings=-Wno-missing-braces
 )
