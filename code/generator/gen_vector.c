@@ -1,6 +1,10 @@
 #include <math.h>
 
-typedef void ( *generateSwizzleFunc_t )( allocatorLinear_t* tempStorage, stringBuilder_t* code, const typeInfo_t* typeInfo, const u32 numSwizzleComponents, const char* swizzleStr );
+#if GENERATE_TEMPLATES
+#include <ctype.h>
+#endif
+
+typedef void ( *generateSwizzleFunc_t )( allocatorLinear_t* tempStorage, stringBuilder_t* code, const typeInfo_t* typeInfo, const generatorStrings_t* strings, const generatorFlags_t flags, const u32 numSwizzleComponents, const char* swizzleStr );
 
 // not really a "component-wise" function in the common sense, just so happens to use touch all of them
 static void GenerateFunction_All( allocatorLinear_t* tempStorage, const typeInfo_t* typeInfo, stringBuilder_t* code, const generatorFlags_t flags ) {
@@ -436,57 +440,157 @@ static void GenerateFunction_Unpack( allocatorLinear_t* tempStorage, const typeI
 	StringBuilder_Append( code, "}\n\n" );
 }
 
-static void GenerateSwizzleFunc_FwdDec( allocatorLinear_t* tempStorage, stringBuilder_t* code, const typeInfo_t* typeInfo, const u32 numSwizzleComponents, const char* swizzleStr ) {
-	assert( tempStorage );
-	assert( code );
-	assert( typeInfo );
-	assert( typeInfo->fullTypeName );
-	assert( swizzleStr );
-
-	const char* typeString = Gen_GetTypeString( typeInfo->type );
-
-	StringBuilder_Appendf( code, "\tHLML_INLINE %s%d ", typeString, numSwizzleComponents );
-	for ( u32 i = numSwizzleComponents; i-- > 0; ) {
-		StringBuilder_Appendf( code, "%c", swizzleStr[i] );
+static bool32 SwizzleTypeIsWritable( const char* swizzleStr, const u32 numSwizzleComponents ) {
+	// if the swizzle contains duplicate components in the name (eg xzx, xxy, etc.) then the swizzle cant be written to
+	for ( u32 i = 0; i < numSwizzleComponents - 1; i++ ) {
+		for ( u32 j = i + 1; j < numSwizzleComponents; j++ ) {
+			if ( swizzleStr[i] == swizzleStr[j] ) {
+				return false;
+			}
+		}
 	}
-	StringBuilder_Append( code, "() const;\n" );
+
+	return true;
 }
 
-static void GenerateSwizzleFunc_Impl( allocatorLinear_t* tempStorage, stringBuilder_t* code, const typeInfo_t* typeInfo, const u32 numSwizzleComponents, const char* swizzleStr ) {
+#if !GENERATE_TEMPLATES
+static void GenerateSwizzleFunc_Type( allocatorLinear_t* tempStorage, stringBuilder_t* code, const typeInfo_t* typeInfo, const generatorStrings_t* strings, const generatorFlags_t flags, const u32 numSwizzleComponents, const char* swizzleStr ) {
 	assert( tempStorage );
 	assert( code );
 	assert( typeInfo );
 	assert( typeInfo->fullTypeName );
+	assert( Gen_TypeIsVector( typeInfo ) );
+	assert( strings );
+	assert( numSwizzleComponents );
 	assert( swizzleStr );
 
+	GEN_UNUSED( flags );
+
 	const char* typeString = Gen_GetTypeString( typeInfo->type );
+	const char* memberTypeString = Gen_GetMemberTypeString( typeInfo->type );
 
-	StringBuilder_Appendf( code, "%s%d %s::", typeString, numSwizzleComponents, typeInfo->fullTypeName );
-	for ( u32 i = numSwizzleComponents; i-- > 0; ) {
-		StringBuilder_Appendf( code, "%c", swizzleStr[i] );
+	const char* swizzleTypeName = String_TPrintf( tempStorage, "%s%d", typeString, numSwizzleComponents );
+
+	bool32 isWritable = SwizzleTypeIsWritable( swizzleStr, numSwizzleComponents );
+
+	StringBuilder_Appendf( code, "struct %s_swizzle_%d_to_%d_%s_t\n", typeInfo->fullTypeName, typeInfo->numCols, numSwizzleComponents, swizzleStr );
+	StringBuilder_Append(  code, "{\n" );
+	StringBuilder_Appendf( code, "\t%s v[%d];\n", memberTypeString, typeInfo->numCols );
+	StringBuilder_Append(  code, "\n" );
+
+	if ( isWritable ) {
+		StringBuilder_Appendf( code, "\tHLML_INLINE %s operator=( const %s%s vec );\n", swizzleTypeName, swizzleTypeName, strings->parmPassByStr );
+		StringBuilder_Append(  code, "\n" );
 	}
-	StringBuilder_Appendf( code, "() const { return %s%d( ", typeString, numSwizzleComponents );
-	for ( u32 i = numSwizzleComponents; i-- > 0; ) {
-		StringBuilder_Appendf( code, "%c", swizzleStr[i] );
 
-		if ( i > 0 ) {
+	StringBuilder_Appendf( code, "\tHLML_INLINE operator %s() const;\n", swizzleTypeName );
+	StringBuilder_Append(  code, "};\n\n" );
+}
+#endif
+
+static void GenerateSwizzleFunc_Members( allocatorLinear_t* tempStorage, stringBuilder_t* code, const typeInfo_t* typeInfo, const generatorStrings_t* strings, const generatorFlags_t flags, const u32 numSwizzleComponents, const char* swizzleStr ) {
+	assert( tempStorage );
+	assert( code );
+	assert( typeInfo );
+	assert( typeInfo->fullTypeName );
+	assert( Gen_TypeIsVector( typeInfo ) );
+	assert( strings );
+	assert( numSwizzleComponents );
+	assert( swizzleStr );
+
+	GEN_UNUSED( flags );
+
+#if GENERATE_TEMPLATES
+	const char* memberTypeString = Gen_GetMemberTypeString( typeInfo->type );
+
+	const char* typeString = Gen_GetTypeString( typeInfo->type );
+	const char* swizzleTypeName = String_TPrintf( tempStorage, "%s%d", typeString, numSwizzleComponents );
+
+	const char* writableStr = SwizzleTypeIsWritable( swizzleStr, numSwizzleComponents ) ? "writable" : "nonwritable";
+
+	StringBuilder_Appendf( code, "\t\tswizzle_%d_to_%d_%s_t<%s, %s, ", typeInfo->numCols, numSwizzleComponents, writableStr, swizzleTypeName, memberTypeString );
+	for ( u32 i = 0; i < numSwizzleComponents; i++ ) {
+		u32 swizzleIndex = Gen_GetComponentIndex( swizzleStr[i] );
+
+		StringBuilder_Appendf( code, "%d", swizzleIndex );
+
+		if ( i != numSwizzleComponents - 1 ) {
 			StringBuilder_Append( code, ", " );
 		}
 	}
-	StringBuilder_Append( code, " ); }\n" );
+	StringBuilder_Appendf( code, "> %s;\n", swizzleStr );
+#else // GENERATE_TEMPLATES
+	StringBuilder_Appendf( code, "\t\t%s_swizzle_%d_to_%d_%s_t %s;\n", typeInfo->fullTypeName, typeInfo->numCols, numSwizzleComponents, swizzleStr, swizzleStr );
+#endif // GENERATE_TEMPLATES
 }
+
+#if !GENERATE_TEMPLATES
+static void GenerateSwizzleFunc_OperatorDefinitions( allocatorLinear_t* tempStorage, stringBuilder_t* code, const typeInfo_t* typeInfo, const generatorStrings_t* strings, const generatorFlags_t flags, const u32 numSwizzleComponents, const char* swizzleStr ) {
+	assert( tempStorage );
+	assert( code );
+	assert( typeInfo );
+	assert( typeInfo->fullTypeName );
+	assert( Gen_TypeIsVector( typeInfo ) );
+	assert( strings );
+	assert( numSwizzleComponents );
+	assert( swizzleStr );
+
+	GEN_UNUSED( flags );
+
+	const char* typeString = Gen_GetTypeString( typeInfo->type );
+	const char* swizzleTypeName = String_TPrintf( tempStorage, "%s%d", typeString, numSwizzleComponents );
+
+	bool32 isWritable = SwizzleTypeIsWritable( swizzleStr, numSwizzleComponents );
+
+	// assignment operator
+	if ( isWritable ) {
+		StringBuilder_Append( code, "\n" );
+		StringBuilder_Appendf( code, "%s %s_swizzle_%d_to_%d_%s_t::operator=( const %s%s vec )\n", swizzleTypeName, typeInfo->fullTypeName, typeInfo->numCols, numSwizzleComponents, swizzleStr, swizzleTypeName, strings->parmPassByStr );
+		StringBuilder_Append(  code, "{\n" );
+		StringBuilder_Appendf( code, "\treturn %s(\n", swizzleTypeName );
+		for ( u32 componentIndex = 0; componentIndex < numSwizzleComponents; componentIndex++ ) {
+			StringBuilder_Appendf( code, "\t\tv[%d] = vec.%c", componentIndex, GEN_COMPONENT_NAMES_VECTOR[componentIndex] );
+
+			if ( componentIndex != numSwizzleComponents - 1 ) {
+				StringBuilder_Append(  code, "," );
+			}
+
+			StringBuilder_Append(  code, "\n" );
+		}
+		StringBuilder_Append(  code, "\t);\n}\n\n" );
+	}
+
+	// conversion function
+	StringBuilder_Appendf( code, "%s_swizzle_%d_to_%d_%s_t::operator %s() const ", typeInfo->fullTypeName, typeInfo->numCols, numSwizzleComponents, swizzleStr, swizzleTypeName );
+	StringBuilder_Appendf( code, "{ return %s( ", swizzleTypeName );
+	for ( u32 componentIndex = 0; componentIndex < numSwizzleComponents; componentIndex++ ) {
+		u32 swizzleComponentIndex = Gen_GetComponentIndex( swizzleStr[componentIndex] );
+
+		StringBuilder_Appendf( code, "v[%d]", swizzleComponentIndex );
+
+		if ( componentIndex != numSwizzleComponents - 1 ) {
+			StringBuilder_Append(  code, ", " );
+		}
+	}
+	StringBuilder_Append(  code, " ); }\n" );
+}
+#endif // GENERATE_TEMPLATES
 
 // generating vector component swizzles:
 // the main work of this function is to transform a base 10 number (12, for example) into a swizzle string like zxwy, xxzz, etc.
 // for vec2, for example, you can count all the 2-component swizzles by counting in base 2 from 0 through to 2^2
 // this can then be repeated for generating the 3-component swizzles for vec2 types by counting in base 2 from 0 through to 2^3 and so on
 // the same logic applies for vec3 and vec4
-static void GenerateSwizzleFunctions( allocatorLinear_t* tempStorage, stringBuilder_t* code, const typeInfo_t* typeInfo, const char* componentNames, generateSwizzleFunc_t generateSwizzleFunc ) {
+static void GenerateSwizzleFunctions( allocatorLinear_t* tempStorage, stringBuilder_t* code, const typeInfo_t* typeInfo, const generatorStrings_t* strings, const generatorFlags_t flags, const char* componentNames, generateSwizzleFunc_t generateSwizzleFunc ) {
 	assert( tempStorage );
 	assert( code );
 	assert( typeInfo );
 	assert( typeInfo->fullTypeName );
 	assert( strlen( componentNames ) == 4 );
+	assert( strings );
+	assert( flags & GENERATOR_FLAG_VECTOR_SWIZZLES );
+	assert( componentNames );
+	assert( generateSwizzleFunc );
 
 	u32 numVectorComponents = typeInfo->numCols;
 
@@ -495,6 +599,7 @@ static void GenerateSwizzleFunctions( allocatorLinear_t* tempStorage, stringBuil
 		// number of permutations that this vector can generate for the given swizzle type
 		u32 numPermutations = (u32) pow( numVectorComponents, swizzleComponentIndex );
 
+		// now go through each permutation
 		for ( u32 permutationIndex = 0; permutationIndex < numPermutations; permutationIndex++ ) {
 			u32 permutationIndexCopy = permutationIndex;
 			u32 numberInBase = 0;
@@ -513,15 +618,16 @@ static void GenerateSwizzleFunctions( allocatorLinear_t* tempStorage, stringBuil
 			// turn that number into a swizzle name
 			while ( permutationIndexCopy ) {
 				numberInBase = permutationIndexCopy % numVectorComponents;
-				permutationIndexCopy = permutationIndexCopy / numVectorComponents;
+				permutationIndexCopy /= numVectorComponents;
 
 				swizzleStr[swizzleCharIndex++] = componentNames[numberInBase];
 			}
 
-			generateSwizzleFunc( tempStorage, code, typeInfo, swizzleComponentIndex, swizzleStr );
+			swizzleStr[swizzleComponentIndex] = 0;
+
+			generateSwizzleFunc( tempStorage, code, typeInfo, strings, flags, swizzleComponentIndex, swizzleStr );
 		}
 	}
-	StringBuilder_Append( code, "\n" );
 }
 
 static void GenerateVectorFiles( allocatorLinear_t* tempStorage, const char* generatedCodePath, const typeInfo_t* typeInfos, const u32 typeInfosCount, const generatorStrings_t* strings, const generatorFlags_t flags ) {
@@ -535,6 +641,7 @@ static void GenerateVectorFiles( allocatorLinear_t* tempStorage, const char* gen
 	bool32 vectorUnions = flags & GENERATOR_FLAG_VECTOR_UNIONS;
 	bool32 generateConstructors = flags & GENERATOR_FLAG_GENERATE_CONSTRUCTORS;
 	bool32 generateOperators = flags & GENERATOR_FLAG_GENERATE_OPERATORS;
+	bool32 generateSwizzles = flags & GENERATOR_FLAG_VECTOR_SWIZZLES;
 
 	bool32 generateInlFile = generateConstructors || generateOperators;
 
@@ -542,12 +649,11 @@ static void GenerateVectorFiles( allocatorLinear_t* tempStorage, const char* gen
 	for ( u32 typeInfoIndex = 0; typeInfoIndex < typeInfosCount; typeInfoIndex++ ) {
 		const typeInfo_t* typeInfo = &typeInfos[typeInfoIndex];
 
-		const char* typeString = Gen_GetTypeString( typeInfo->type );
 		const char* memberTypeString = Gen_GetMemberTypeString( typeInfo->type );
 
-		// header file
+		// vector header file
 		{
-			stringBuilder_t* codeHeader = StringBuilder_Create( tempStorage, 64 * KB_TO_BYTES );
+			stringBuilder_t* codeHeader = StringBuilder_Create( tempStorage, 128 * KB_TO_BYTES );
 
 			StringBuilder_Append(  codeHeader, GEN_FILE_HEADER );
 			StringBuilder_Append(  codeHeader,
@@ -564,17 +670,21 @@ static void GenerateVectorFiles( allocatorLinear_t* tempStorage, const char* gen
 				);
 			}
 
-			for ( u32 i = 2; i <= 4; i++ ) {
-				if ( i != typeInfo->numCols ) {
-					if ( !cLinkage ) {
-						StringBuilder_Appendf( codeHeader, "struct %s%d;\n", typeString, i );
-					}
-				}
-			}
-			StringBuilder_Append( codeHeader, "\n" );
+			StringBuilder_Append(  codeHeader, "#include \"" GEN_HEADER_TYPES "\"\n" );
+			StringBuilder_Append(  codeHeader, "#include \"" GEN_HEADER_DEFINES "\"\n\n" );
 
-			StringBuilder_Append( codeHeader, "#include \"" GEN_HEADER_TYPES "\"\n" );
-			StringBuilder_Append( codeHeader, "#include \"" GEN_HEADER_DEFINES "\"\n\n" );
+			if ( generateSwizzles ) {
+#if GENERATE_TEMPLATES
+				for ( u32 i = 2; i <= 4; i++ ) {
+					//StringBuilder_Appendf( codeHeader, "#include \"%s%d.h\"\n", Gen_GetTypeString( typeInfo->type ), i );
+					StringBuilder_Appendf( codeHeader, "struct %s%d;\n", Gen_GetTypeString( typeInfo->type ), i );
+				}
+
+				StringBuilder_Appendf( codeHeader, "#include \"swizzle_templates.h\"\n\n", typeInfo->fullTypeName );
+#else
+				StringBuilder_Appendf( codeHeader, "#include \"%s_swizzle_types.h\"\n\n", typeInfo->fullTypeName );
+#endif // GENERATE_TEMPLATES
+			}
 
 			if ( vectorUnions ) {
 				StringBuilder_Appendf( codeHeader,
@@ -630,7 +740,22 @@ static void GenerateVectorFiles( allocatorLinear_t* tempStorage, const char* gen
 
 				// array
 				StringBuilder_Appendf( codeHeader, "\t\t%s v[%d];\n", memberTypeString, typeInfo->numCols );
-				StringBuilder_Append(  codeHeader, "\t};\n\n" );	// end of union
+
+				// swizzles
+				if ( generateSwizzles ) {
+					StringBuilder_Appendf( codeHeader, "\n\t\t// swizzles\n" );
+
+					GenerateSwizzleFunctions( tempStorage, codeHeader, typeInfo, strings, flags, GEN_COMPONENT_NAMES_VECTOR, GenerateSwizzleFunc_Members );
+
+					StringBuilder_Append( codeHeader, "\n" );
+
+					if ( vectorUnions ) {
+						GenerateSwizzleFunctions( tempStorage, codeHeader, typeInfo, strings, flags, GEN_COMPONENT_NAMES_COLOR, GenerateSwizzleFunc_Members );
+					}
+				}
+
+				// end of union
+				StringBuilder_Append(  codeHeader, "\t};\n\n" );
 			} else {
 				for ( u32 componentIndex = 0; componentIndex < typeInfo->numCols; componentIndex++ ) {
 					StringBuilder_Appendf( codeHeader, "\t%s %c;\n", memberTypeString, GEN_COMPONENT_NAMES_VECTOR[componentIndex] );
@@ -691,17 +816,6 @@ static void GenerateVectorFiles( allocatorLinear_t* tempStorage, const char* gen
 				StringBuilder_Appendf( codeHeader, "\tHLML_INLINE const %s& operator[]( const %s index ) const;\n", memberTypeString, returnTypeName );
 			}
 
-			// swizzle functions
-			if ( generateConstructors ) {
-				StringBuilder_Appendf( codeHeader, "\n\t// swizzle functions\n" );
-
-				GenerateSwizzleFunctions( tempStorage, codeHeader, typeInfo, GEN_COMPONENT_NAMES_VECTOR, GenerateSwizzleFunc_FwdDec );
-
-				if ( flags & GENERATOR_FLAG_VECTOR_UNIONS ) {
-					GenerateSwizzleFunctions( tempStorage, codeHeader, typeInfo, GEN_COMPONENT_NAMES_COLOR, GenerateSwizzleFunc_FwdDec );
-				}
-			}
-
 			// struct end
 			if ( cLinkage ) {
 				StringBuilder_Appendf( codeHeader, "} %s;\n", typeInfo->fullTypeName );
@@ -716,7 +830,7 @@ static void GenerateVectorFiles( allocatorLinear_t* tempStorage, const char* gen
 					"#pragma GCC diagnostic pop\n"
 					"#elif defined( _MSC_VER )\n"
 					"#pragma warning( pop )\n"
-					"#endif\n"
+					"#endif\n\n"
 				);
 			}
 
@@ -734,7 +848,7 @@ static void GenerateVectorFiles( allocatorLinear_t* tempStorage, const char* gen
 			FS_WriteEntireFile( fileNameHeader, codeHeader->str, codeHeader->length );
 		}
 
-		// inl file
+		// vector inl file
 		if ( generateInlFile ) {
 			stringBuilder_t* codeInl = StringBuilder_Create( tempStorage, 64 * KB_TO_BYTES );
 
@@ -821,24 +935,170 @@ static void GenerateVectorFiles( allocatorLinear_t* tempStorage, const char* gen
 				StringBuilder_Append(  codeInl, "}\n" );
 			}
 
-			// swizzle functions
-			if ( generateConstructors ) {
-				StringBuilder_Appendf( codeInl, "\n// swizzle functions\n" );
-
-				GenerateSwizzleFunctions( tempStorage, codeInl, typeInfo, GEN_COMPONENT_NAMES_VECTOR, GenerateSwizzleFunc_Impl );
-
-				if ( flags & GENERATOR_FLAG_VECTOR_UNIONS ) {
-					GenerateSwizzleFunctions( tempStorage, codeInl, typeInfo, GEN_COMPONENT_NAMES_COLOR, GenerateSwizzleFunc_Impl );
-				}
+#if !GENERATE_TEMPLATES
+			if ( generateSwizzles ) {
+				StringBuilder_Appendf( codeInl, "\n#include \"%s_swizzle_types.inl\"\n", typeInfo->fullTypeName );
 			}
+#endif // GENERATE_TEMPLATES
 
 			const char* fileNameInl = String_TPrintf( tempStorage, "%s/%s.inl", generatedCodePath, typeInfo->fullTypeName );
 
 			FS_WriteEntireFile( fileNameInl, codeInl->str, codeInl->length );
 		}
 
+#if !GENERATE_TEMPLATES
+		// generate swizzles
+		if ( generateSwizzles ) {
+			// swizzle header file
+			{
+				const char* typeString = Gen_GetTypeString( typeInfo->type );
+
+				stringBuilder_t* codeHeader = StringBuilder_Create( tempStorage, 128 * KB_TO_BYTES );
+
+				StringBuilder_Appendf( codeHeader,
+					GEN_FILE_HEADER
+					"#pragma once\n\n"
+				);
+
+				for ( uint32_t i = 2; i <= 4; i++ ) {
+					StringBuilder_Appendf( codeHeader, "struct %s%d;\n", typeString, i );
+				}
+				StringBuilder_Append( codeHeader, "\n" );
+
+				GenerateSwizzleFunctions( tempStorage, codeHeader, typeInfo, strings, flags, GEN_COMPONENT_NAMES_VECTOR, GenerateSwizzleFunc_Type );
+				GenerateSwizzleFunctions( tempStorage, codeHeader, typeInfo, strings, flags, GEN_COMPONENT_NAMES_COLOR, GenerateSwizzleFunc_Type );
+
+				const char* fileNameHeader = String_TPrintf( tempStorage, "%s/%s_swizzle_types.h", generatedCodePath, typeInfo->fullTypeName );
+
+				FS_WriteEntireFile( fileNameHeader, codeHeader->str, codeHeader->length );
+			}
+
+			// swizzle inl file
+			{
+				stringBuilder_t* codeInl = StringBuilder_Create( tempStorage, 128 * KB_TO_BYTES );
+
+				StringBuilder_Appendf( codeInl,
+					GEN_FILE_HEADER
+					"#pragma once\n\n"
+				);
+
+				StringBuilder_Appendf( codeInl, "#include \"%s_swizzle_types.h\"\n\n", typeInfo->fullTypeName );
+
+				StringBuilder_Append( codeInl, "// xyzw swizzles\n" );
+				GenerateSwizzleFunctions( tempStorage, codeInl, typeInfo, strings, flags, GEN_COMPONENT_NAMES_VECTOR, GenerateSwizzleFunc_OperatorDefinitions );
+				StringBuilder_Append( codeInl, "\n" );
+
+				StringBuilder_Append( codeInl, "// rgba swizzles\n" );
+				GenerateSwizzleFunctions( tempStorage, codeInl, typeInfo, strings, flags, GEN_COMPONENT_NAMES_COLOR, GenerateSwizzleFunc_OperatorDefinitions );
+
+				const char* fileNameInl = String_TPrintf( tempStorage, "%s/%s_swizzle_types.inl", generatedCodePath, typeInfo->fullTypeName );
+
+				FS_WriteEntireFile( fileNameInl, codeInl->str, codeInl->length );
+			}
+		}
+#endif // !GENERATE_TEMPLATES
+
 		Mem_Reset( tempStorage );
 	}
+
+#if GENERATE_TEMPLATES
+	// swizzle templates header file
+	if ( generateSwizzles ) {
+		stringBuilder_t* codeHeader = StringBuilder_Create( tempStorage, KILOBYTES( 8 ) );
+
+		StringBuilder_Appendf( codeHeader,
+			GEN_FILE_HEADER
+			"#pragma once\n\n"
+		);
+
+		for ( u32 numComponents = 2; numComponents <= 4; numComponents++ ) {
+			for ( u32 numSwizzleComponents = 2; numSwizzleComponents <= 4; numSwizzleComponents++ ) {
+				bool32 isWritable = numComponents >= numSwizzleComponents;
+
+				if ( isWritable ) {
+					StringBuilder_Append(  codeHeader, "template<class ReturnType, class ScalarType, " );
+					for ( u32 i = 0; i < numSwizzleComponents; i++ ) {
+						StringBuilder_Appendf( codeHeader, "int %c", toupper( GEN_COMPONENT_NAMES_VECTOR[i] ) );
+		
+						if ( i != numSwizzleComponents - 1 ) {
+							StringBuilder_Append( codeHeader, ", " );
+						}
+					}
+					StringBuilder_Append(  codeHeader, ">\n" );
+					StringBuilder_Appendf( codeHeader, "struct swizzle_%d_to_%d_writable_t\n", numComponents, numSwizzleComponents );
+					StringBuilder_Append(  codeHeader, "{\n" );
+					StringBuilder_Appendf( codeHeader, "\tScalarType v[%d];\n", numComponents );
+					StringBuilder_Append(  codeHeader, "\n" );
+
+					StringBuilder_Append(  codeHeader, "\tHLML_INLINE ReturnType operator=( const ReturnType& vec )\n" );
+					StringBuilder_Append(  codeHeader, "\t{\n" );
+					StringBuilder_Append(  codeHeader, "\t\treturn ReturnType(\n" );
+					for ( u32 i = 0; i < numSwizzleComponents; i++ ) {
+						const char componentStr = GEN_COMPONENT_NAMES_VECTOR[i];
+
+						StringBuilder_Appendf( codeHeader, "\t\t\tv[%c] = vec.%c", toupper( componentStr ), componentStr );
+
+						if ( i != numSwizzleComponents - 1 ) {
+							StringBuilder_Append( codeHeader, "," );
+						}
+
+						StringBuilder_Append( codeHeader, "\n" );
+					}
+					StringBuilder_Append(  codeHeader, "\t\t);\n" );
+					StringBuilder_Append(  codeHeader, "\t}\n\n" );
+		
+					StringBuilder_Append(  codeHeader, "\tHLML_INLINE operator ReturnType() const\n" );
+					StringBuilder_Append(  codeHeader, "\t{\n" );
+					StringBuilder_Append(  codeHeader, "\t\treturn ReturnType( " );
+					for ( u32 i = 0; i < numSwizzleComponents; i++ ) {
+						StringBuilder_Appendf( codeHeader, "v[%c]", toupper( GEN_COMPONENT_NAMES_VECTOR[i] ) );
+		
+						if ( i != numSwizzleComponents - 1 ) {
+							StringBuilder_Append( codeHeader, ", " );
+						}
+					}
+					StringBuilder_Append(  codeHeader, " );\n" );
+					StringBuilder_Append(  codeHeader, "\t}\n" );
+					StringBuilder_Append(  codeHeader, "};\n\n" );
+				}
+
+				StringBuilder_Append(  codeHeader, "template<class ReturnType, class ScalarType, " );
+				for ( u32 i = 0; i < numSwizzleComponents; i++ ) {
+					StringBuilder_Appendf( codeHeader, "int %c", toupper( GEN_COMPONENT_NAMES_VECTOR[i] ) );
+		
+					if ( i != numSwizzleComponents - 1 ) {
+						StringBuilder_Append( codeHeader, ", " );
+					}
+				}
+				StringBuilder_Append(  codeHeader, ">\n" );
+				StringBuilder_Appendf( codeHeader, "struct swizzle_%d_to_%d_nonwritable_t\n", numComponents, numSwizzleComponents );
+				StringBuilder_Append(  codeHeader, "{\n" );
+				StringBuilder_Appendf( codeHeader, "\tScalarType v[%d];\n", numComponents );
+				StringBuilder_Append(  codeHeader, "\n" );
+		
+				StringBuilder_Append(  codeHeader, "\tHLML_INLINE operator ReturnType() const\n" );
+				StringBuilder_Append(  codeHeader, "\t{\n" );
+				StringBuilder_Append(  codeHeader, "\t\treturn ReturnType( " );
+				for ( u32 i = 0; i < numSwizzleComponents; i++ ) {
+					StringBuilder_Appendf( codeHeader, "v[%c]", toupper( GEN_COMPONENT_NAMES_VECTOR[i] ) );
+		
+					if ( i != numSwizzleComponents - 1 ) {
+						StringBuilder_Append( codeHeader, ", " );
+					}
+				}
+				StringBuilder_Append(  codeHeader, " );\n" );
+				StringBuilder_Append(  codeHeader, "\t}\n" );
+				StringBuilder_Append(  codeHeader, "};\n\n" );
+			}
+		}
+
+		const char* fileNameHeader = String_TPrintf( tempStorage, "%s/swizzle_templates.h", generatedCodePath );
+
+		FS_WriteEntireFile( fileNameHeader, codeHeader->str, codeHeader->length );
+
+		Mem_Reset( tempStorage );
+	}
+#endif // GENERATE_TEMPLATES
 
 	// vector functions
 	{
@@ -878,6 +1138,7 @@ static void GenerateVectorFiles( allocatorLinear_t* tempStorage, const char* gen
 
 		StringBuilder_Appendf( code, "#include \"" GEN_FILENAME_FUNCTIONS_SCALAR ".h\"\n\n" );
 
+		// generate vector types
 		for ( u32 i = 0; i < typeInfosCount; i++ ) {
 			const typeInfo_t* typeInfo = &typeInfos[i];
 

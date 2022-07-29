@@ -61,7 +61,6 @@ static void GenerateFunction_Lerp_SSE( allocatorLinear_t* tempStorage, stringBui
 static void GenerateScalarFiles_SSE( allocatorLinear_t* tempStorage, const char* generatedCodePath, const generatorStrings_t* strings, const generatorFlags_t flags ) {
 	assert( tempStorage );
 	assert( generatedCodePath );
-	assert( flags );
 
 	bool32 cLinkage = flags & GENERATOR_FLAG_C_LINKAGE;
 

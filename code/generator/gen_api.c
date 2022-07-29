@@ -89,6 +89,7 @@ static void GenerateMainHeader(
 
 			StringBuilder_Appendf( code, "#include \"%s.inl\"\n", typeInfo->fullTypeName );
 		}
+
 		StringBuilder_Appendf( code, "\n" );
 	}
 

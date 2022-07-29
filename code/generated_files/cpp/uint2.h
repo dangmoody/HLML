@@ -34,11 +34,10 @@ SOFTWARE.
 
 #pragma once
 
-struct uint3;
-struct uint4;
-
 #include "hlml_types.h"
 #include "hlml_defines.h"
+
+#include "uint2_swizzle_types.h"
 
 // ignore prohibition of anymous structs for GCC
 #if defined( __clang__ ) || defined( __GNUC__ )
@@ -66,6 +65,65 @@ struct uint2
 		};
 
 		uint32_t v[2];
+
+		// swizzles
+		uint2_swizzle_2_to_2_xx_t xx;
+		uint2_swizzle_2_to_2_yx_t yx;
+		uint2_swizzle_2_to_2_xy_t xy;
+		uint2_swizzle_2_to_2_yy_t yy;
+		uint2_swizzle_2_to_3_xxx_t xxx;
+		uint2_swizzle_2_to_3_yxx_t yxx;
+		uint2_swizzle_2_to_3_xyx_t xyx;
+		uint2_swizzle_2_to_3_yyx_t yyx;
+		uint2_swizzle_2_to_3_xxy_t xxy;
+		uint2_swizzle_2_to_3_yxy_t yxy;
+		uint2_swizzle_2_to_3_xyy_t xyy;
+		uint2_swizzle_2_to_3_yyy_t yyy;
+		uint2_swizzle_2_to_4_xxxx_t xxxx;
+		uint2_swizzle_2_to_4_yxxx_t yxxx;
+		uint2_swizzle_2_to_4_xyxx_t xyxx;
+		uint2_swizzle_2_to_4_yyxx_t yyxx;
+		uint2_swizzle_2_to_4_xxyx_t xxyx;
+		uint2_swizzle_2_to_4_yxyx_t yxyx;
+		uint2_swizzle_2_to_4_xyyx_t xyyx;
+		uint2_swizzle_2_to_4_yyyx_t yyyx;
+		uint2_swizzle_2_to_4_xxxy_t xxxy;
+		uint2_swizzle_2_to_4_yxxy_t yxxy;
+		uint2_swizzle_2_to_4_xyxy_t xyxy;
+		uint2_swizzle_2_to_4_yyxy_t yyxy;
+		uint2_swizzle_2_to_4_xxyy_t xxyy;
+		uint2_swizzle_2_to_4_yxyy_t yxyy;
+		uint2_swizzle_2_to_4_xyyy_t xyyy;
+		uint2_swizzle_2_to_4_yyyy_t yyyy;
+
+		uint2_swizzle_2_to_2_rr_t rr;
+		uint2_swizzle_2_to_2_gr_t gr;
+		uint2_swizzle_2_to_2_rg_t rg;
+		uint2_swizzle_2_to_2_gg_t gg;
+		uint2_swizzle_2_to_3_rrr_t rrr;
+		uint2_swizzle_2_to_3_grr_t grr;
+		uint2_swizzle_2_to_3_rgr_t rgr;
+		uint2_swizzle_2_to_3_ggr_t ggr;
+		uint2_swizzle_2_to_3_rrg_t rrg;
+		uint2_swizzle_2_to_3_grg_t grg;
+		uint2_swizzle_2_to_3_rgg_t rgg;
+		uint2_swizzle_2_to_3_ggg_t ggg;
+		uint2_swizzle_2_to_4_rrrr_t rrrr;
+		uint2_swizzle_2_to_4_grrr_t grrr;
+		uint2_swizzle_2_to_4_rgrr_t rgrr;
+		uint2_swizzle_2_to_4_ggrr_t ggrr;
+		uint2_swizzle_2_to_4_rrgr_t rrgr;
+		uint2_swizzle_2_to_4_grgr_t grgr;
+		uint2_swizzle_2_to_4_rggr_t rggr;
+		uint2_swizzle_2_to_4_gggr_t gggr;
+		uint2_swizzle_2_to_4_rrrg_t rrrg;
+		uint2_swizzle_2_to_4_grrg_t grrg;
+		uint2_swizzle_2_to_4_rgrg_t rgrg;
+		uint2_swizzle_2_to_4_ggrg_t ggrg;
+		uint2_swizzle_2_to_4_rrgg_t rrgg;
+		uint2_swizzle_2_to_4_grgg_t grgg;
+		uint2_swizzle_2_to_4_rggg_t rggg;
+		uint2_swizzle_2_to_4_gggg_t gggg;
 	};
 
 	// Default constructor.
@@ -92,66 +150,6 @@ struct uint2
 	// Returns the vector component at the given index.
 	// Index CANNOT be lower than 0 or greater than 1.
 	HLML_INLINE const uint32_t& operator[]( const int32_t index ) const;
-
-	// swizzle functions
-	HLML_INLINE uint2 xx() const;
-	HLML_INLINE uint2 xy() const;
-	HLML_INLINE uint2 yx() const;
-	HLML_INLINE uint2 yy() const;
-	HLML_INLINE uint3 xxx() const;
-	HLML_INLINE uint3 xxy() const;
-	HLML_INLINE uint3 xyx() const;
-	HLML_INLINE uint3 xyy() const;
-	HLML_INLINE uint3 yxx() const;
-	HLML_INLINE uint3 yxy() const;
-	HLML_INLINE uint3 yyx() const;
-	HLML_INLINE uint3 yyy() const;
-	HLML_INLINE uint4 xxxx() const;
-	HLML_INLINE uint4 xxxy() const;
-	HLML_INLINE uint4 xxyx() const;
-	HLML_INLINE uint4 xxyy() const;
-	HLML_INLINE uint4 xyxx() const;
-	HLML_INLINE uint4 xyxy() const;
-	HLML_INLINE uint4 xyyx() const;
-	HLML_INLINE uint4 xyyy() const;
-	HLML_INLINE uint4 yxxx() const;
-	HLML_INLINE uint4 yxxy() const;
-	HLML_INLINE uint4 yxyx() const;
-	HLML_INLINE uint4 yxyy() const;
-	HLML_INLINE uint4 yyxx() const;
-	HLML_INLINE uint4 yyxy() const;
-	HLML_INLINE uint4 yyyx() const;
-	HLML_INLINE uint4 yyyy() const;
-
-	HLML_INLINE uint2 rr() const;
-	HLML_INLINE uint2 rg() const;
-	HLML_INLINE uint2 gr() const;
-	HLML_INLINE uint2 gg() const;
-	HLML_INLINE uint3 rrr() const;
-	HLML_INLINE uint3 rrg() const;
-	HLML_INLINE uint3 rgr() const;
-	HLML_INLINE uint3 rgg() const;
-	HLML_INLINE uint3 grr() const;
-	HLML_INLINE uint3 grg() const;
-	HLML_INLINE uint3 ggr() const;
-	HLML_INLINE uint3 ggg() const;
-	HLML_INLINE uint4 rrrr() const;
-	HLML_INLINE uint4 rrrg() const;
-	HLML_INLINE uint4 rrgr() const;
-	HLML_INLINE uint4 rrgg() const;
-	HLML_INLINE uint4 rgrr() const;
-	HLML_INLINE uint4 rgrg() const;
-	HLML_INLINE uint4 rggr() const;
-	HLML_INLINE uint4 rggg() const;
-	HLML_INLINE uint4 grrr() const;
-	HLML_INLINE uint4 grrg() const;
-	HLML_INLINE uint4 grgr() const;
-	HLML_INLINE uint4 grgg() const;
-	HLML_INLINE uint4 ggrr() const;
-	HLML_INLINE uint4 ggrg() const;
-	HLML_INLINE uint4 gggr() const;
-	HLML_INLINE uint4 gggg() const;
-
 };
 
 #if defined( __clang__ ) || defined( __GNUC__ )
@@ -159,3 +157,4 @@ struct uint2
 #elif defined( _MSC_VER )
 #pragma warning( pop )
 #endif
+

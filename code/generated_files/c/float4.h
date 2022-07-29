@@ -38,7 +38,6 @@ SOFTWARE.
 extern "C" {
 #endif
 
-
 #include "hlml_types.h"
 #include "hlml_defines.h"
 

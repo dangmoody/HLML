@@ -347,7 +347,6 @@ static void GenerateVectorFiles_SSE( allocatorLinear_t* tempStorage, const char*
 	assert( generatedCodePath );
 	assert( typeInfos );
 	assert( typeInfosCount );
-	assert( flags );
 
 	bool32 cLinkage = flags & GENERATOR_FLAG_C_LINKAGE;
 

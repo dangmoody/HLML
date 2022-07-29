@@ -34,11 +34,10 @@ SOFTWARE.
 
 #pragma once
 
-struct bool3;
-struct bool4;
-
 #include "hlml_types.h"
 #include "hlml_defines.h"
+
+#include "bool2_swizzle_types.h"
 
 // ignore prohibition of anymous structs for GCC
 #if defined( __clang__ ) || defined( __GNUC__ )
@@ -66,6 +65,65 @@ struct bool2
 		};
 
 		bool32_t v[2];
+
+		// swizzles
+		bool2_swizzle_2_to_2_xx_t xx;
+		bool2_swizzle_2_to_2_yx_t yx;
+		bool2_swizzle_2_to_2_xy_t xy;
+		bool2_swizzle_2_to_2_yy_t yy;
+		bool2_swizzle_2_to_3_xxx_t xxx;
+		bool2_swizzle_2_to_3_yxx_t yxx;
+		bool2_swizzle_2_to_3_xyx_t xyx;
+		bool2_swizzle_2_to_3_yyx_t yyx;
+		bool2_swizzle_2_to_3_xxy_t xxy;
+		bool2_swizzle_2_to_3_yxy_t yxy;
+		bool2_swizzle_2_to_3_xyy_t xyy;
+		bool2_swizzle_2_to_3_yyy_t yyy;
+		bool2_swizzle_2_to_4_xxxx_t xxxx;
+		bool2_swizzle_2_to_4_yxxx_t yxxx;
+		bool2_swizzle_2_to_4_xyxx_t xyxx;
+		bool2_swizzle_2_to_4_yyxx_t yyxx;
+		bool2_swizzle_2_to_4_xxyx_t xxyx;
+		bool2_swizzle_2_to_4_yxyx_t yxyx;
+		bool2_swizzle_2_to_4_xyyx_t xyyx;
+		bool2_swizzle_2_to_4_yyyx_t yyyx;
+		bool2_swizzle_2_to_4_xxxy_t xxxy;
+		bool2_swizzle_2_to_4_yxxy_t yxxy;
+		bool2_swizzle_2_to_4_xyxy_t xyxy;
+		bool2_swizzle_2_to_4_yyxy_t yyxy;
+		bool2_swizzle_2_to_4_xxyy_t xxyy;
+		bool2_swizzle_2_to_4_yxyy_t yxyy;
+		bool2_swizzle_2_to_4_xyyy_t xyyy;
+		bool2_swizzle_2_to_4_yyyy_t yyyy;
+
+		bool2_swizzle_2_to_2_rr_t rr;
+		bool2_swizzle_2_to_2_gr_t gr;
+		bool2_swizzle_2_to_2_rg_t rg;
+		bool2_swizzle_2_to_2_gg_t gg;
+		bool2_swizzle_2_to_3_rrr_t rrr;
+		bool2_swizzle_2_to_3_grr_t grr;
+		bool2_swizzle_2_to_3_rgr_t rgr;
+		bool2_swizzle_2_to_3_ggr_t ggr;
+		bool2_swizzle_2_to_3_rrg_t rrg;
+		bool2_swizzle_2_to_3_grg_t grg;
+		bool2_swizzle_2_to_3_rgg_t rgg;
+		bool2_swizzle_2_to_3_ggg_t ggg;
+		bool2_swizzle_2_to_4_rrrr_t rrrr;
+		bool2_swizzle_2_to_4_grrr_t grrr;
+		bool2_swizzle_2_to_4_rgrr_t rgrr;
+		bool2_swizzle_2_to_4_ggrr_t ggrr;
+		bool2_swizzle_2_to_4_rrgr_t rrgr;
+		bool2_swizzle_2_to_4_grgr_t grgr;
+		bool2_swizzle_2_to_4_rggr_t rggr;
+		bool2_swizzle_2_to_4_gggr_t gggr;
+		bool2_swizzle_2_to_4_rrrg_t rrrg;
+		bool2_swizzle_2_to_4_grrg_t grrg;
+		bool2_swizzle_2_to_4_rgrg_t rgrg;
+		bool2_swizzle_2_to_4_ggrg_t ggrg;
+		bool2_swizzle_2_to_4_rrgg_t rrgg;
+		bool2_swizzle_2_to_4_grgg_t grgg;
+		bool2_swizzle_2_to_4_rggg_t rggg;
+		bool2_swizzle_2_to_4_gggg_t gggg;
 	};
 
 	// Default constructor.
@@ -92,66 +150,6 @@ struct bool2
 	// Returns the vector component at the given index.
 	// Index CANNOT be lower than 0 or greater than 1.
 	HLML_INLINE const bool32_t& operator[]( const int32_t index ) const;
-
-	// swizzle functions
-	HLML_INLINE bool2 xx() const;
-	HLML_INLINE bool2 xy() const;
-	HLML_INLINE bool2 yx() const;
-	HLML_INLINE bool2 yy() const;
-	HLML_INLINE bool3 xxx() const;
-	HLML_INLINE bool3 xxy() const;
-	HLML_INLINE bool3 xyx() const;
-	HLML_INLINE bool3 xyy() const;
-	HLML_INLINE bool3 yxx() const;
-	HLML_INLINE bool3 yxy() const;
-	HLML_INLINE bool3 yyx() const;
-	HLML_INLINE bool3 yyy() const;
-	HLML_INLINE bool4 xxxx() const;
-	HLML_INLINE bool4 xxxy() const;
-	HLML_INLINE bool4 xxyx() const;
-	HLML_INLINE bool4 xxyy() const;
-	HLML_INLINE bool4 xyxx() const;
-	HLML_INLINE bool4 xyxy() const;
-	HLML_INLINE bool4 xyyx() const;
-	HLML_INLINE bool4 xyyy() const;
-	HLML_INLINE bool4 yxxx() const;
-	HLML_INLINE bool4 yxxy() const;
-	HLML_INLINE bool4 yxyx() const;
-	HLML_INLINE bool4 yxyy() const;
-	HLML_INLINE bool4 yyxx() const;
-	HLML_INLINE bool4 yyxy() const;
-	HLML_INLINE bool4 yyyx() const;
-	HLML_INLINE bool4 yyyy() const;
-
-	HLML_INLINE bool2 rr() const;
-	HLML_INLINE bool2 rg() const;
-	HLML_INLINE bool2 gr() const;
-	HLML_INLINE bool2 gg() const;
-	HLML_INLINE bool3 rrr() const;
-	HLML_INLINE bool3 rrg() const;
-	HLML_INLINE bool3 rgr() const;
-	HLML_INLINE bool3 rgg() const;
-	HLML_INLINE bool3 grr() const;
-	HLML_INLINE bool3 grg() const;
-	HLML_INLINE bool3 ggr() const;
-	HLML_INLINE bool3 ggg() const;
-	HLML_INLINE bool4 rrrr() const;
-	HLML_INLINE bool4 rrrg() const;
-	HLML_INLINE bool4 rrgr() const;
-	HLML_INLINE bool4 rrgg() const;
-	HLML_INLINE bool4 rgrr() const;
-	HLML_INLINE bool4 rgrg() const;
-	HLML_INLINE bool4 rggr() const;
-	HLML_INLINE bool4 rggg() const;
-	HLML_INLINE bool4 grrr() const;
-	HLML_INLINE bool4 grrg() const;
-	HLML_INLINE bool4 grgr() const;
-	HLML_INLINE bool4 grgg() const;
-	HLML_INLINE bool4 ggrr() const;
-	HLML_INLINE bool4 ggrg() const;
-	HLML_INLINE bool4 gggr() const;
-	HLML_INLINE bool4 gggg() const;
-
 };
 
 #if defined( __clang__ ) || defined( __GNUC__ )
@@ -159,3 +157,4 @@ struct bool2
 #elif defined( _MSC_VER )
 #pragma warning( pop )
 #endif
+

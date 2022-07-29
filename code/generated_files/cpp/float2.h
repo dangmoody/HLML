@@ -34,11 +34,10 @@ SOFTWARE.
 
 #pragma once
 
-struct float3;
-struct float4;
-
 #include "hlml_types.h"
 #include "hlml_defines.h"
+
+#include "float2_swizzle_types.h"
 
 // ignore prohibition of anymous structs for GCC
 #if defined( __clang__ ) || defined( __GNUC__ )
@@ -66,6 +65,65 @@ struct float2
 		};
 
 		float v[2];
+
+		// swizzles
+		float2_swizzle_2_to_2_xx_t xx;
+		float2_swizzle_2_to_2_yx_t yx;
+		float2_swizzle_2_to_2_xy_t xy;
+		float2_swizzle_2_to_2_yy_t yy;
+		float2_swizzle_2_to_3_xxx_t xxx;
+		float2_swizzle_2_to_3_yxx_t yxx;
+		float2_swizzle_2_to_3_xyx_t xyx;
+		float2_swizzle_2_to_3_yyx_t yyx;
+		float2_swizzle_2_to_3_xxy_t xxy;
+		float2_swizzle_2_to_3_yxy_t yxy;
+		float2_swizzle_2_to_3_xyy_t xyy;
+		float2_swizzle_2_to_3_yyy_t yyy;
+		float2_swizzle_2_to_4_xxxx_t xxxx;
+		float2_swizzle_2_to_4_yxxx_t yxxx;
+		float2_swizzle_2_to_4_xyxx_t xyxx;
+		float2_swizzle_2_to_4_yyxx_t yyxx;
+		float2_swizzle_2_to_4_xxyx_t xxyx;
+		float2_swizzle_2_to_4_yxyx_t yxyx;
+		float2_swizzle_2_to_4_xyyx_t xyyx;
+		float2_swizzle_2_to_4_yyyx_t yyyx;
+		float2_swizzle_2_to_4_xxxy_t xxxy;
+		float2_swizzle_2_to_4_yxxy_t yxxy;
+		float2_swizzle_2_to_4_xyxy_t xyxy;
+		float2_swizzle_2_to_4_yyxy_t yyxy;
+		float2_swizzle_2_to_4_xxyy_t xxyy;
+		float2_swizzle_2_to_4_yxyy_t yxyy;
+		float2_swizzle_2_to_4_xyyy_t xyyy;
+		float2_swizzle_2_to_4_yyyy_t yyyy;
+
+		float2_swizzle_2_to_2_rr_t rr;
+		float2_swizzle_2_to_2_gr_t gr;
+		float2_swizzle_2_to_2_rg_t rg;
+		float2_swizzle_2_to_2_gg_t gg;
+		float2_swizzle_2_to_3_rrr_t rrr;
+		float2_swizzle_2_to_3_grr_t grr;
+		float2_swizzle_2_to_3_rgr_t rgr;
+		float2_swizzle_2_to_3_ggr_t ggr;
+		float2_swizzle_2_to_3_rrg_t rrg;
+		float2_swizzle_2_to_3_grg_t grg;
+		float2_swizzle_2_to_3_rgg_t rgg;
+		float2_swizzle_2_to_3_ggg_t ggg;
+		float2_swizzle_2_to_4_rrrr_t rrrr;
+		float2_swizzle_2_to_4_grrr_t grrr;
+		float2_swizzle_2_to_4_rgrr_t rgrr;
+		float2_swizzle_2_to_4_ggrr_t ggrr;
+		float2_swizzle_2_to_4_rrgr_t rrgr;
+		float2_swizzle_2_to_4_grgr_t grgr;
+		float2_swizzle_2_to_4_rggr_t rggr;
+		float2_swizzle_2_to_4_gggr_t gggr;
+		float2_swizzle_2_to_4_rrrg_t rrrg;
+		float2_swizzle_2_to_4_grrg_t grrg;
+		float2_swizzle_2_to_4_rgrg_t rgrg;
+		float2_swizzle_2_to_4_ggrg_t ggrg;
+		float2_swizzle_2_to_4_rrgg_t rrgg;
+		float2_swizzle_2_to_4_grgg_t grgg;
+		float2_swizzle_2_to_4_rggg_t rggg;
+		float2_swizzle_2_to_4_gggg_t gggg;
 	};
 
 	// Default constructor.
@@ -92,66 +150,6 @@ struct float2
 	// Returns the vector component at the given index.
 	// Index CANNOT be lower than 0 or greater than 1.
 	HLML_INLINE const float& operator[]( const int32_t index ) const;
-
-	// swizzle functions
-	HLML_INLINE float2 xx() const;
-	HLML_INLINE float2 xy() const;
-	HLML_INLINE float2 yx() const;
-	HLML_INLINE float2 yy() const;
-	HLML_INLINE float3 xxx() const;
-	HLML_INLINE float3 xxy() const;
-	HLML_INLINE float3 xyx() const;
-	HLML_INLINE float3 xyy() const;
-	HLML_INLINE float3 yxx() const;
-	HLML_INLINE float3 yxy() const;
-	HLML_INLINE float3 yyx() const;
-	HLML_INLINE float3 yyy() const;
-	HLML_INLINE float4 xxxx() const;
-	HLML_INLINE float4 xxxy() const;
-	HLML_INLINE float4 xxyx() const;
-	HLML_INLINE float4 xxyy() const;
-	HLML_INLINE float4 xyxx() const;
-	HLML_INLINE float4 xyxy() const;
-	HLML_INLINE float4 xyyx() const;
-	HLML_INLINE float4 xyyy() const;
-	HLML_INLINE float4 yxxx() const;
-	HLML_INLINE float4 yxxy() const;
-	HLML_INLINE float4 yxyx() const;
-	HLML_INLINE float4 yxyy() const;
-	HLML_INLINE float4 yyxx() const;
-	HLML_INLINE float4 yyxy() const;
-	HLML_INLINE float4 yyyx() const;
-	HLML_INLINE float4 yyyy() const;
-
-	HLML_INLINE float2 rr() const;
-	HLML_INLINE float2 rg() const;
-	HLML_INLINE float2 gr() const;
-	HLML_INLINE float2 gg() const;
-	HLML_INLINE float3 rrr() const;
-	HLML_INLINE float3 rrg() const;
-	HLML_INLINE float3 rgr() const;
-	HLML_INLINE float3 rgg() const;
-	HLML_INLINE float3 grr() const;
-	HLML_INLINE float3 grg() const;
-	HLML_INLINE float3 ggr() const;
-	HLML_INLINE float3 ggg() const;
-	HLML_INLINE float4 rrrr() const;
-	HLML_INLINE float4 rrrg() const;
-	HLML_INLINE float4 rrgr() const;
-	HLML_INLINE float4 rrgg() const;
-	HLML_INLINE float4 rgrr() const;
-	HLML_INLINE float4 rgrg() const;
-	HLML_INLINE float4 rggr() const;
-	HLML_INLINE float4 rggg() const;
-	HLML_INLINE float4 grrr() const;
-	HLML_INLINE float4 grrg() const;
-	HLML_INLINE float4 grgr() const;
-	HLML_INLINE float4 grgg() const;
-	HLML_INLINE float4 ggrr() const;
-	HLML_INLINE float4 ggrg() const;
-	HLML_INLINE float4 gggr() const;
-	HLML_INLINE float4 gggg() const;
-
 };
 
 #if defined( __clang__ ) || defined( __GNUC__ )
@@ -159,3 +157,4 @@ struct float2
 #elif defined( _MSC_VER )
 #pragma warning( pop )
 #endif
+

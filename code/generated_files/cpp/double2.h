@@ -34,11 +34,10 @@ SOFTWARE.
 
 #pragma once
 
-struct double3;
-struct double4;
-
 #include "hlml_types.h"
 #include "hlml_defines.h"
+
+#include "double2_swizzle_types.h"
 
 // ignore prohibition of anymous structs for GCC
 #if defined( __clang__ ) || defined( __GNUC__ )
@@ -66,6 +65,65 @@ struct double2
 		};
 
 		double v[2];
+
+		// swizzles
+		double2_swizzle_2_to_2_xx_t xx;
+		double2_swizzle_2_to_2_yx_t yx;
+		double2_swizzle_2_to_2_xy_t xy;
+		double2_swizzle_2_to_2_yy_t yy;
+		double2_swizzle_2_to_3_xxx_t xxx;
+		double2_swizzle_2_to_3_yxx_t yxx;
+		double2_swizzle_2_to_3_xyx_t xyx;
+		double2_swizzle_2_to_3_yyx_t yyx;
+		double2_swizzle_2_to_3_xxy_t xxy;
+		double2_swizzle_2_to_3_yxy_t yxy;
+		double2_swizzle_2_to_3_xyy_t xyy;
+		double2_swizzle_2_to_3_yyy_t yyy;
+		double2_swizzle_2_to_4_xxxx_t xxxx;
+		double2_swizzle_2_to_4_yxxx_t yxxx;
+		double2_swizzle_2_to_4_xyxx_t xyxx;
+		double2_swizzle_2_to_4_yyxx_t yyxx;
+		double2_swizzle_2_to_4_xxyx_t xxyx;
+		double2_swizzle_2_to_4_yxyx_t yxyx;
+		double2_swizzle_2_to_4_xyyx_t xyyx;
+		double2_swizzle_2_to_4_yyyx_t yyyx;
+		double2_swizzle_2_to_4_xxxy_t xxxy;
+		double2_swizzle_2_to_4_yxxy_t yxxy;
+		double2_swizzle_2_to_4_xyxy_t xyxy;
+		double2_swizzle_2_to_4_yyxy_t yyxy;
+		double2_swizzle_2_to_4_xxyy_t xxyy;
+		double2_swizzle_2_to_4_yxyy_t yxyy;
+		double2_swizzle_2_to_4_xyyy_t xyyy;
+		double2_swizzle_2_to_4_yyyy_t yyyy;
+
+		double2_swizzle_2_to_2_rr_t rr;
+		double2_swizzle_2_to_2_gr_t gr;
+		double2_swizzle_2_to_2_rg_t rg;
+		double2_swizzle_2_to_2_gg_t gg;
+		double2_swizzle_2_to_3_rrr_t rrr;
+		double2_swizzle_2_to_3_grr_t grr;
+		double2_swizzle_2_to_3_rgr_t rgr;
+		double2_swizzle_2_to_3_ggr_t ggr;
+		double2_swizzle_2_to_3_rrg_t rrg;
+		double2_swizzle_2_to_3_grg_t grg;
+		double2_swizzle_2_to_3_rgg_t rgg;
+		double2_swizzle_2_to_3_ggg_t ggg;
+		double2_swizzle_2_to_4_rrrr_t rrrr;
+		double2_swizzle_2_to_4_grrr_t grrr;
+		double2_swizzle_2_to_4_rgrr_t rgrr;
+		double2_swizzle_2_to_4_ggrr_t ggrr;
+		double2_swizzle_2_to_4_rrgr_t rrgr;
+		double2_swizzle_2_to_4_grgr_t grgr;
+		double2_swizzle_2_to_4_rggr_t rggr;
+		double2_swizzle_2_to_4_gggr_t gggr;
+		double2_swizzle_2_to_4_rrrg_t rrrg;
+		double2_swizzle_2_to_4_grrg_t grrg;
+		double2_swizzle_2_to_4_rgrg_t rgrg;
+		double2_swizzle_2_to_4_ggrg_t ggrg;
+		double2_swizzle_2_to_4_rrgg_t rrgg;
+		double2_swizzle_2_to_4_grgg_t grgg;
+		double2_swizzle_2_to_4_rggg_t rggg;
+		double2_swizzle_2_to_4_gggg_t gggg;
 	};
 
 	// Default constructor.
@@ -92,66 +150,6 @@ struct double2
 	// Returns the vector component at the given index.
 	// Index CANNOT be lower than 0 or greater than 1.
 	HLML_INLINE const double& operator[]( const int32_t index ) const;
-
-	// swizzle functions
-	HLML_INLINE double2 xx() const;
-	HLML_INLINE double2 xy() const;
-	HLML_INLINE double2 yx() const;
-	HLML_INLINE double2 yy() const;
-	HLML_INLINE double3 xxx() const;
-	HLML_INLINE double3 xxy() const;
-	HLML_INLINE double3 xyx() const;
-	HLML_INLINE double3 xyy() const;
-	HLML_INLINE double3 yxx() const;
-	HLML_INLINE double3 yxy() const;
-	HLML_INLINE double3 yyx() const;
-	HLML_INLINE double3 yyy() const;
-	HLML_INLINE double4 xxxx() const;
-	HLML_INLINE double4 xxxy() const;
-	HLML_INLINE double4 xxyx() const;
-	HLML_INLINE double4 xxyy() const;
-	HLML_INLINE double4 xyxx() const;
-	HLML_INLINE double4 xyxy() const;
-	HLML_INLINE double4 xyyx() const;
-	HLML_INLINE double4 xyyy() const;
-	HLML_INLINE double4 yxxx() const;
-	HLML_INLINE double4 yxxy() const;
-	HLML_INLINE double4 yxyx() const;
-	HLML_INLINE double4 yxyy() const;
-	HLML_INLINE double4 yyxx() const;
-	HLML_INLINE double4 yyxy() const;
-	HLML_INLINE double4 yyyx() const;
-	HLML_INLINE double4 yyyy() const;
-
-	HLML_INLINE double2 rr() const;
-	HLML_INLINE double2 rg() const;
-	HLML_INLINE double2 gr() const;
-	HLML_INLINE double2 gg() const;
-	HLML_INLINE double3 rrr() const;
-	HLML_INLINE double3 rrg() const;
-	HLML_INLINE double3 rgr() const;
-	HLML_INLINE double3 rgg() const;
-	HLML_INLINE double3 grr() const;
-	HLML_INLINE double3 grg() const;
-	HLML_INLINE double3 ggr() const;
-	HLML_INLINE double3 ggg() const;
-	HLML_INLINE double4 rrrr() const;
-	HLML_INLINE double4 rrrg() const;
-	HLML_INLINE double4 rrgr() const;
-	HLML_INLINE double4 rrgg() const;
-	HLML_INLINE double4 rgrr() const;
-	HLML_INLINE double4 rgrg() const;
-	HLML_INLINE double4 rggr() const;
-	HLML_INLINE double4 rggg() const;
-	HLML_INLINE double4 grrr() const;
-	HLML_INLINE double4 grrg() const;
-	HLML_INLINE double4 grgr() const;
-	HLML_INLINE double4 grgg() const;
-	HLML_INLINE double4 ggrr() const;
-	HLML_INLINE double4 ggrg() const;
-	HLML_INLINE double4 gggr() const;
-	HLML_INLINE double4 gggg() const;
-
 };
 
 #if defined( __clang__ ) || defined( __GNUC__ )
@@ -159,3 +157,4 @@ struct double2
 #elif defined( _MSC_VER )
 #pragma warning( pop )
 #endif
+

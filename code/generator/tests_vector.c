@@ -1,3 +1,5 @@
+#include <float.h>	// FLT_MAX
+
 typedef struct testFixture_Length_t {
 	float32	values[4];
 	float32	expectedAnswerVec2;
@@ -43,6 +45,10 @@ typedef struct testFixture_Pack_t {
 	float32	unpacked[4];
 	float32	packed;
 } testFixture_Pack_t;
+
+typedef struct testFixture_Swizzle_t {
+	float32 values[4];
+} testFixture_Swizzle_t;
 
 typedef struct testFixture_QuatMul_t {
 	float32	lhs[4];
@@ -722,6 +728,62 @@ static void Gen_GenerateTests_Pack( allocatorLinear_t* tempStorage, stringBuilde
 	}
 }
 
+static void GenerateSwizzleFunc_Test( allocatorLinear_t* tempStorage, stringBuilder_t* code, const typeInfo_t* typeInfo, const generatorStrings_t* strings, const generatorFlags_t flags, const u32 numSwizzleComponents, const char* swizzleStr ) {
+	assert( tempStorage );
+	assert( code );
+	assert( typeInfo );
+	assert( typeInfo->fullTypeName );
+	assert( Gen_TypeIsVector( typeInfo ) );
+	assert( strings );
+	assert( numSwizzleComponents );
+	assert( swizzleStr );
+
+	const char* typeString = Gen_GetTypeString( typeInfo->type );
+
+	typeInfo_t swizzleTypeInfo = {
+		.type			= typeInfo->type,
+		.numRows		= typeInfo->numRows,
+		.numCols		= numSwizzleComponents,
+		.fullTypeName	= String_TPrintf( tempStorage, "%s%d", typeString, numSwizzleComponents )
+	};
+
+	const char* funcName = String_TPrintf( tempStorage, "Swizzle_%s", swizzleStr );
+
+	StringBuilder_Appendf( code, "TEMPER_PARAMETRIC( Test_%s_%s, TEMPER_FLAG_SHOULD_RUN, const %s%s vec, const %s%s expectedAnswer )\n", typeInfo->fullTypeName, funcName, typeInfo->fullTypeName, strings->parmPassByStr, swizzleTypeInfo.fullTypeName, strings->parmPassByStr );
+	StringBuilder_Appendf( code, "{\n" );
+	StringBuilder_Appendf( code, "\t%s vecSwizzled = vec.%s;\n", swizzleTypeInfo.fullTypeName, swizzleStr );
+	StringBuilder_Append(  code, "\tTEMPER_CHECK_TRUE( vecSwizzled == expectedAnswer );\n" );
+	StringBuilder_Appendf( code, "}\n\n" );
+
+	testFixture_Swizzle_t fixtures[] = {
+		{ 0.0f,    0.0f,   0.0f,   0.0f   },
+		{ 0.0f,    1.0f,   2.0f,   3.0f   },
+		{ 3.0f,    2.0f,   1.0f,   0.0f   },
+		{ 10.0f,   10.0f,  20.0f,  20.0f  },
+		{ 20.0f,   20.0f,  10.0f,  10.0f  },
+		{ FLT_MAX, 100.0f, 666.0f, 616.0f }
+	};
+
+	for ( u32 fixtureIndex = 0; fixtureIndex < GEN_COUNTOF( fixtures ); fixtureIndex++ ) {
+		const testFixture_Swizzle_t* fixture = &fixtures[fixtureIndex];
+
+		float32 expectedAnswer[4] = { 0 };
+
+		for ( u32 i = 0; i < numSwizzleComponents; i++ ) {
+			u32 swizzleComponentIndex = Gen_GetComponentIndex( swizzleStr[i] );
+
+			expectedAnswer[i] = fixture->values[swizzleComponentIndex];
+		}
+
+		parametricTestInvokationGenericParm_t parms[] = {
+			{ typeInfo,         fixture->values },
+			{ &swizzleTypeInfo, expectedAnswer  }
+		};
+
+		Gen_GenerateParametricTestInvokation_Generic( tempStorage, code, typeInfo, funcName, strings, flags, parms, GEN_COUNTOF( parms ) );
+	}
+}
+
 static void Gen_GenerateTests_QuatMulScalar( allocatorLinear_t* tempStorage, stringBuilder_t* code, const typeInfo_t* typeInfo, const typeInfo_t* scalarType, const generatorStrings_t* strings, const generatorFlags_t flags ) {
 	assert( tempStorage );
 	assert( code );
@@ -1178,7 +1240,7 @@ static void GenerateVectorTests( allocatorLinear_t* tempStorage, const char* gen
 
 		printf( "Generating test_%s.%s...", typeInfo->fullTypeName, languageName );
 
-		stringBuilder_t* code = StringBuilder_Create( tempStorage, 64 * KB_TO_BYTES );
+		stringBuilder_t* code = StringBuilder_Create( tempStorage, KILOBYTES( 256 ) );
 
 		StringBuilder_Append( code, GEN_FILE_HEADER );
 
@@ -1200,6 +1262,47 @@ static void GenerateVectorTests( allocatorLinear_t* tempStorage, const char* gen
 		printf( "OK.\n" );
 
 		Mem_Reset( tempStorage );
+	}
+
+	// generate swizzle tests separately because theres so many
+	if ( flags & GENERATOR_FLAG_VECTOR_SWIZZLES ) {
+		for ( u32 i = 0; i < vectorTypeInfosCount; i++ ) {
+			const typeInfo_t* typeInfo = &vectorTypeInfos[i];
+
+			printf( "Generating test_%s_swizzle_%s.%s...", typeInfo->fullTypeName, GEN_COMPONENT_NAMES_VECTOR, languageName );
+
+			stringBuilder_t* code = StringBuilder_Create( tempStorage, MEGABYTES( 8 ) );
+
+			StringBuilder_Append( code, GEN_FILE_HEADER );
+
+			GenerateSwizzleFunctions( tempStorage, code, typeInfo, strings, flags, GEN_COMPONENT_NAMES_VECTOR, GenerateSwizzleFunc_Test );
+
+			const char* fileNameHeader = String_TPrintf( tempStorage, "%s/test_%s_swizzle_%s.%s", generatedTestsPath, typeInfo->fullTypeName, GEN_COMPONENT_NAMES_VECTOR, languageName );
+			FS_WriteEntireFile( fileNameHeader, code->str, code->length );
+
+			printf( "OK.\n" );
+
+			Mem_Reset( tempStorage );
+		}
+
+		for ( u32 i = 0; i < vectorTypeInfosCount; i++ ) {
+			const typeInfo_t* typeInfo = &vectorTypeInfos[i];
+
+			printf( "Generating test_%s_swizzle_%s.%s...", typeInfo->fullTypeName, GEN_COMPONENT_NAMES_COLOR, languageName );
+
+			stringBuilder_t* code = StringBuilder_Create( tempStorage, MEGABYTES( 8 ) );
+
+			StringBuilder_Append( code, GEN_FILE_HEADER );
+
+			GenerateSwizzleFunctions( tempStorage, code, typeInfo, strings, flags, GEN_COMPONENT_NAMES_COLOR, GenerateSwizzleFunc_Test );
+
+			const char* fileNameHeader = String_TPrintf( tempStorage, "%s/test_%s_swizzle_%s.%s", generatedTestsPath, typeInfo->fullTypeName, GEN_COMPONENT_NAMES_COLOR, languageName );
+			FS_WriteEntireFile( fileNameHeader, code->str, code->length );
+
+			printf( "OK.\n" );
+
+			Mem_Reset( tempStorage );
+		}
 	}
 }
 

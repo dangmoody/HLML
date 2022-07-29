@@ -42,3 +42,9 @@ along with The HLML Generator.  If not, see <http://www.gnu.org/licenses/>.
 // memory unit conversion helpers
 #define MB_TO_BYTES							( 1024 * 1024 )
 #define KB_TO_BYTES							( 1024 )
+
+#define KILOBYTES( x )						( ( (u64) (x) ) * 1024 )
+#define MEGABYTES( x )						( ( (u64) (x) ) * 1024 * 1024 )
+#define GIGABYTES( x )						( ( (u64) (x) ) * 1024 * 1024 * 1024 )
+
+#define GENERATE_TEMPLATES 0
