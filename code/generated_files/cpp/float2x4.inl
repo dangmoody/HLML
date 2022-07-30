@@ -64,10 +64,34 @@ float2x4::float2x4( const float m00, const float m01, const float m02, const flo
 	rows[1] = float4( m10, m11, m12, m13 );
 }
 
-float2x4::float2x4( const float2x4& other )
+float2x4::float2x4( const float2x4& mat )
 {
-	rows[0] = other[0];
-	rows[1] = other[1];
+	rows[0] = mat[0];
+	rows[1] = mat[1];
+}
+
+float2x4::float2x4( const bool2x4& mat )
+{
+	rows[0] = float4( mat[0] );
+	rows[1] = float4( mat[1] );
+}
+
+float2x4::float2x4( const int2x4& mat )
+{
+	rows[0] = float4( mat[0] );
+	rows[1] = float4( mat[1] );
+}
+
+float2x4::float2x4( const uint2x4& mat )
+{
+	rows[0] = float4( mat[0] );
+	rows[1] = float4( mat[1] );
+}
+
+float2x4::float2x4( const double2x4& mat )
+{
+	rows[0] = float4( mat[0] );
+	rows[1] = float4( mat[1] );
 }
 
 float2x4 float2x4::operator=( const float2x4& other )

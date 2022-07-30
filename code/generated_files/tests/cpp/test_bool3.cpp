@@ -32,6 +32,110 @@ SOFTWARE.
 // EDITING THIS FILE MAY CAUSE SIDE EFFECTS.
 // DO SO AT YOUR OWN RISK.
 
+TEMPER_PARAMETRIC( Test_int3_bool3, TEMPER_FLAG_SHOULD_RUN, const int3& vec, const bool3& expectedAnswer )
+{
+	bool3 actualResult = bool3( vec );
+	TEMPER_CHECK_TRUE( actualResult == expectedAnswer );
+}
+
+TEMPER_INVOKE_PARAMETRIC_TEST( Test_int3_bool3,
+	int3( 0, 0, 0 ),
+	bool3( false, false, false )
+);
+
+TEMPER_INVOKE_PARAMETRIC_TEST( Test_int3_bool3,
+	int3( 1, 1, 1 ),
+	bool3( true, true, true )
+);
+
+TEMPER_INVOKE_PARAMETRIC_TEST( Test_int3_bool3,
+	int3( 69, 69, 69 ),
+	bool3( true, true, true )
+);
+
+TEMPER_INVOKE_PARAMETRIC_TEST( Test_int3_bool3,
+	int3( 420, 420, 420 ),
+	bool3( true, true, true )
+);
+
+TEMPER_PARAMETRIC( Test_uint3_bool3, TEMPER_FLAG_SHOULD_RUN, const uint3& vec, const bool3& expectedAnswer )
+{
+	bool3 actualResult = bool3( vec );
+	TEMPER_CHECK_TRUE( actualResult == expectedAnswer );
+}
+
+TEMPER_INVOKE_PARAMETRIC_TEST( Test_uint3_bool3,
+	uint3( 0U, 0U, 0U ),
+	bool3( false, false, false )
+);
+
+TEMPER_INVOKE_PARAMETRIC_TEST( Test_uint3_bool3,
+	uint3( 1U, 1U, 1U ),
+	bool3( true, true, true )
+);
+
+TEMPER_INVOKE_PARAMETRIC_TEST( Test_uint3_bool3,
+	uint3( 69U, 69U, 69U ),
+	bool3( true, true, true )
+);
+
+TEMPER_INVOKE_PARAMETRIC_TEST( Test_uint3_bool3,
+	uint3( 420U, 420U, 420U ),
+	bool3( true, true, true )
+);
+
+TEMPER_PARAMETRIC( Test_float3_bool3, TEMPER_FLAG_SHOULD_RUN, const float3& vec, const bool3& expectedAnswer )
+{
+	bool3 actualResult = bool3( vec );
+	TEMPER_CHECK_TRUE( actualResult == expectedAnswer );
+}
+
+TEMPER_INVOKE_PARAMETRIC_TEST( Test_float3_bool3,
+	float3( 0.000000f, 0.000000f, 0.000000f ),
+	bool3( false, false, false )
+);
+
+TEMPER_INVOKE_PARAMETRIC_TEST( Test_float3_bool3,
+	float3( 1.000000f, 1.000000f, 1.000000f ),
+	bool3( true, true, true )
+);
+
+TEMPER_INVOKE_PARAMETRIC_TEST( Test_float3_bool3,
+	float3( 69.000000f, 69.000000f, 69.000000f ),
+	bool3( true, true, true )
+);
+
+TEMPER_INVOKE_PARAMETRIC_TEST( Test_float3_bool3,
+	float3( 420.000000f, 420.000000f, 420.000000f ),
+	bool3( true, true, true )
+);
+
+TEMPER_PARAMETRIC( Test_double3_bool3, TEMPER_FLAG_SHOULD_RUN, const double3& vec, const bool3& expectedAnswer )
+{
+	bool3 actualResult = bool3( vec );
+	TEMPER_CHECK_TRUE( actualResult == expectedAnswer );
+}
+
+TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_bool3,
+	double3( 0.000000f, 0.000000f, 0.000000f ),
+	bool3( false, false, false )
+);
+
+TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_bool3,
+	double3( 1.000000f, 1.000000f, 1.000000f ),
+	bool3( true, true, true )
+);
+
+TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_bool3,
+	double3( 69.000000f, 69.000000f, 69.000000f ),
+	bool3( true, true, true )
+);
+
+TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_bool3,
+	double3( 420.000000f, 420.000000f, 420.000000f ),
+	bool3( true, true, true )
+);
+
 TEMPER_PARAMETRIC( Test_bool3_all, TEMPER_FLAG_SHOULD_RUN, const bool3& x, const bool32_t expectedAnswer )
 {
 	bool32_t actualResult = all( x );

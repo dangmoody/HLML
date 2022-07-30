@@ -64,10 +64,34 @@ double2x4::double2x4( const double m00, const double m01, const double m02, cons
 	rows[1] = double4( m10, m11, m12, m13 );
 }
 
-double2x4::double2x4( const double2x4& other )
+double2x4::double2x4( const double2x4& mat )
 {
-	rows[0] = other[0];
-	rows[1] = other[1];
+	rows[0] = mat[0];
+	rows[1] = mat[1];
+}
+
+double2x4::double2x4( const bool2x4& mat )
+{
+	rows[0] = double4( mat[0] );
+	rows[1] = double4( mat[1] );
+}
+
+double2x4::double2x4( const int2x4& mat )
+{
+	rows[0] = double4( mat[0] );
+	rows[1] = double4( mat[1] );
+}
+
+double2x4::double2x4( const uint2x4& mat )
+{
+	rows[0] = double4( mat[0] );
+	rows[1] = double4( mat[1] );
+}
+
+double2x4::double2x4( const float2x4& mat )
+{
+	rows[0] = double4( mat[0] );
+	rows[1] = double4( mat[1] );
 }
 
 double2x4 double2x4::operator=( const double2x4& other )

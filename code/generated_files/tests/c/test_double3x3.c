@@ -1172,6 +1172,27 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3x3_min,
 	}
 );
 
+TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3x3_min,
+	&(double3x3)
+	{
+		420.000000f, 420.000000f, 420.000000f,
+		420.000000f, 420.000000f, 420.000000f,
+		420.000000f, 420.000000f, 420.000000f
+	},
+	&(double3x3)
+	{
+		69.000000f, 69.000000f, 69.000000f,
+		69.000000f, 69.000000f, 69.000000f,
+		69.000000f, 69.000000f, 69.000000f
+	},
+	&(double3x3)
+	{
+		69.000000f, 69.000000f, 69.000000f,
+		69.000000f, 69.000000f, 69.000000f,
+		69.000000f, 69.000000f, 69.000000f
+	}
+);
+
 TEMPER_PARAMETRIC( Test_double3x3_max, TEMPER_FLAG_SHOULD_RUN, const double3x3* lhs, const double3x3* rhs, const double3x3* expectedAnswer )
 {
 	double3x3 actualResult = double3x3_max( lhs, rhs );
@@ -1181,15 +1202,15 @@ TEMPER_PARAMETRIC( Test_double3x3_max, TEMPER_FLAG_SHOULD_RUN, const double3x3* 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3x3_max,
 	&(double3x3)
 	{
-		1.000000f, 1.000000f, 1.000000f,
-		1.000000f, 1.000000f, 1.000000f,
-		1.000000f, 1.000000f, 1.000000f
-	},
-	&(double3x3)
-	{
 		0.000000f, 0.000000f, 0.000000f,
 		0.000000f, 0.000000f, 0.000000f,
 		0.000000f, 0.000000f, 0.000000f
+	},
+	&(double3x3)
+	{
+		1.000000f, 1.000000f, 1.000000f,
+		1.000000f, 1.000000f, 1.000000f,
+		1.000000f, 1.000000f, 1.000000f
 	},
 	&(double3x3)
 	{
@@ -1202,12 +1223,6 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3x3_max,
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3x3_max,
 	&(double3x3)
 	{
-		2.000000f, 2.000000f, 2.000000f,
-		2.000000f, 2.000000f, 2.000000f,
-		2.000000f, 2.000000f, 2.000000f
-	},
-	&(double3x3)
-	{
 		1.000000f, 1.000000f, 1.000000f,
 		1.000000f, 1.000000f, 1.000000f,
 		1.000000f, 1.000000f, 1.000000f
@@ -1217,6 +1232,33 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3x3_max,
 		2.000000f, 2.000000f, 2.000000f,
 		2.000000f, 2.000000f, 2.000000f,
 		2.000000f, 2.000000f, 2.000000f
+	},
+	&(double3x3)
+	{
+		2.000000f, 2.000000f, 2.000000f,
+		2.000000f, 2.000000f, 2.000000f,
+		2.000000f, 2.000000f, 2.000000f
+	}
+);
+
+TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3x3_max,
+	&(double3x3)
+	{
+		69.000000f, 69.000000f, 69.000000f,
+		69.000000f, 69.000000f, 69.000000f,
+		69.000000f, 69.000000f, 69.000000f
+	},
+	&(double3x3)
+	{
+		420.000000f, 420.000000f, 420.000000f,
+		420.000000f, 420.000000f, 420.000000f,
+		420.000000f, 420.000000f, 420.000000f
+	},
+	&(double3x3)
+	{
+		420.000000f, 420.000000f, 420.000000f,
+		420.000000f, 420.000000f, 420.000000f,
+		420.000000f, 420.000000f, 420.000000f
 	}
 );
 

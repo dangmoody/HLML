@@ -74,12 +74,44 @@ uint4x2::uint4x2( const uint32_t m00, const uint32_t m01,
 	rows[3] = uint2( m30, m31 );
 }
 
-uint4x2::uint4x2( const uint4x2& other )
+uint4x2::uint4x2( const uint4x2& mat )
 {
-	rows[0] = other[0];
-	rows[1] = other[1];
-	rows[2] = other[2];
-	rows[3] = other[3];
+	rows[0] = mat[0];
+	rows[1] = mat[1];
+	rows[2] = mat[2];
+	rows[3] = mat[3];
+}
+
+uint4x2::uint4x2( const bool4x2& mat )
+{
+	rows[0] = uint2( mat[0] );
+	rows[1] = uint2( mat[1] );
+	rows[2] = uint2( mat[2] );
+	rows[3] = uint2( mat[3] );
+}
+
+uint4x2::uint4x2( const int4x2& mat )
+{
+	rows[0] = uint2( mat[0] );
+	rows[1] = uint2( mat[1] );
+	rows[2] = uint2( mat[2] );
+	rows[3] = uint2( mat[3] );
+}
+
+uint4x2::uint4x2( const float4x2& mat )
+{
+	rows[0] = uint2( mat[0] );
+	rows[1] = uint2( mat[1] );
+	rows[2] = uint2( mat[2] );
+	rows[3] = uint2( mat[3] );
+}
+
+uint4x2::uint4x2( const double4x2& mat )
+{
+	rows[0] = uint2( mat[0] );
+	rows[1] = uint2( mat[1] );
+	rows[2] = uint2( mat[2] );
+	rows[3] = uint2( mat[3] );
 }
 
 uint4x2 uint4x2::operator=( const uint4x2& other )

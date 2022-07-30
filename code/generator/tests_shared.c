@@ -1279,6 +1279,8 @@ static void GenerateComponentWiseTests( allocatorLinear_t* tempStorage, stringBu
 	assert( scalarTypeFloatingPoint->fullTypeName );
 	assert( strings );
 
+	bool generateConstructors = flags & GENERATOR_FLAG_GENERATE_CONSTRUCTORS;
+
 	typeInfo_t boolReturnTypeScalar = {
 		.type			= GEN_TYPE_BOOL,
 		.numRows		= 1,
@@ -1292,6 +1294,7 @@ static void GenerateComponentWiseTests( allocatorLinear_t* tempStorage, stringBu
 		.numCols		= typeInfo->numCols
 	};
 
+	// TODO(DM): make a helper function for this
 	if ( Gen_TypeIsVector( typeInfo ) ) {
 		boolType.fullTypeName = String_TPrintf( tempStorage, "%s%d", Gen_GetTypeString( boolType.type ), boolType.numCols );
 	} else if ( Gen_TypeIsMatrix( typeInfo ) ) {
@@ -1306,12 +1309,82 @@ static void GenerateComponentWiseTests( allocatorLinear_t* tempStorage, stringBu
 		.numCols		= typeInfo->numCols
 	};
 
+	// TODO(DM): make a helper function for this
 	if ( Gen_TypeIsVector( typeInfo ) ) {
 		floatingPointTypeVector.fullTypeName = String_TPrintf( tempStorage, "%s%d", Gen_GetTypeString( floatingPointTypeVector.type ), floatingPointTypeVector.numCols );
 	} else if ( Gen_TypeIsMatrix( typeInfo ) ) {
 		floatingPointTypeVector.fullTypeName = String_TPrintf( tempStorage, "%s%dx%d", Gen_GetTypeString( floatingPointTypeVector.type ), floatingPointTypeVector.numRows, floatingPointTypeVector.numCols );
 	} else {
 		floatingPointTypeVector.fullTypeName = Gen_GetMemberTypeString( floatingPointTypeVector.type );
+	}
+
+	// constructor tests
+	if ( generateConstructors ) {
+		for ( u32 typeIndex = 0; typeIndex < GEN_TYPE_COUNT; typeIndex++ ) {
+			const genType_t otherType = (genType_t) typeIndex;
+
+			if ( otherType == typeInfo->type ) {
+				continue;
+			}
+
+			// TODO(DM): the problem here is that we have no way of converting a value from the input type to the output type
+			// this means for the constructor tests we end up with a problem where we have something like the following:
+			//
+			// given an a test where we want to convert from a vector with values ( 69, 420 ) this will generate the following code for bool conversion:
+			//
+			//	TEMPER_INVOK_EPARAMETERIC_TEST( CtorTest,
+			//		bool2( true, true ),
+			//		float2( 69.0f, 420.0f )
+			//	);
+			//
+			// so we need a way of handling this
+			if ( otherType == GEN_TYPE_BOOL ) {
+				continue;
+			}
+
+			typeInfo_t otherTypeInfo = {
+				.type = otherType,
+				.numRows = typeInfo->numRows,
+				.numCols = typeInfo->numCols,
+			};
+
+			// TODO(DM): make a helper function for this
+			if ( Gen_TypeIsVector( typeInfo ) ) {
+				otherTypeInfo.fullTypeName = String_TPrintf( tempStorage, "%s%d", Gen_GetTypeString( otherTypeInfo.type ), otherTypeInfo.numCols );
+			} else if ( Gen_TypeIsMatrix( typeInfo ) ) {
+				otherTypeInfo.fullTypeName = String_TPrintf( tempStorage, "%s%dx%d", Gen_GetTypeString( otherTypeInfo.type ), otherTypeInfo.numRows, otherTypeInfo.numCols );
+			} else {
+				otherTypeInfo.fullTypeName = Gen_GetMemberTypeString( otherTypeInfo.type );
+			}
+
+			// the ctor name is just the name of the type
+			// so for this test the name of the type is also the name of the function
+			const char* ctorName = typeInfo->fullTypeName;
+
+			Gen_GenerateParametricTestsCode_ComponentWise( tempStorage, code, &otherTypeInfo, ctorName, strings, flags, &(componentWiseTestsData_t) {
+				.parmDefsCount = 1,
+				.parmDefs = (parametricTestDefinitionParm_t[]) {
+					{ &otherTypeInfo, "vec" }
+				},
+
+				.numTests = 4,
+
+				.inputs = (testValues_t[]) {
+					{ (float32[]) { 0.0f   } },
+					{ (float32[]) { 1.0f   } },
+					{ (float32[]) { 69.0f  } },
+					{ (float32[]) { 420.0f } }
+				},
+
+				.outputType = typeInfo,
+				.outputs = (testValues_t[]) {
+					{ (float32[]) { 0.0f   } },
+					{ (float32[]) { 1.0f   } },
+					{ (float32[]) { 69.0f  } },
+					{ (float32[]) { 420.0f } }
+				}
+			} );
+		}
 	}
 
 	GenerateOperatorTests( tempStorage, code, typeInfo, scalarType, &boolType, strings, flags );
@@ -1328,17 +1401,19 @@ static void GenerateComponentWiseTests( allocatorLinear_t* tempStorage, stringBu
 				{ typeInfo, "rhs" }
 			},
 
-			.numTests = 2,
+			.numTests = 3,
 
 			.inputs = (testValues_t[]) {
-				{ (float32[]) { 0.0f, 1.0f } },
-				{ (float32[]) { 1.0f, 2.0f } }
+				{ (float32[]) { 0.0f,   1.0f  } },
+				{ (float32[]) { 1.0f,   2.0f  } },
+				{ (float32[]) { 420.0f, 69.0f } }
 			},
 
 			.outputType = typeInfo,
 			.outputs = (testValues_t[]) {
-				{ (float32[]) { 0.0f } },
-				{ (float32[]) { 1.0f } }
+				{ (float32[]) { 0.0f  } },
+				{ (float32[]) { 1.0f  } },
+				{ (float32[]) { 69.0f } }
 			}
 		} );
 
@@ -1350,17 +1425,19 @@ static void GenerateComponentWiseTests( allocatorLinear_t* tempStorage, stringBu
 				{ typeInfo, "rhs" }
 			},
 
-			.numTests = 2,
+			.numTests = 3,
 
 			.inputs = (testValues_t[]) {
-				{ (float32[]) { 1.0f, 0.0f } },
-				{ (float32[]) { 2.0f, 1.0f } }
+				{ (float32[]) { 0.0f,  1.0f   } },
+				{ (float32[]) { 1.0f,  2.0f   } },
+				{ (float32[]) { 69.0f, 420.0f } }
 			},
 
 			.outputType = typeInfo,
 			.outputs = (testValues_t[]) {
-				{ (float32[]) { 1.0f } },
-				{ (float32[]) { 2.0f } }
+				{ (float32[]) { 1.0f   } },
+				{ (float32[]) { 2.0f   } },
+				{ (float32[]) { 420.0f } }
 			}
 		} );
 

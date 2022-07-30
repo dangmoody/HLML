@@ -1316,6 +1316,30 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_double4x2_min,
 	}
 );
 
+TEMPER_INVOKE_PARAMETRIC_TEST( Test_double4x2_min,
+	&(double4x2)
+	{
+		420.000000f, 420.000000f,
+		420.000000f, 420.000000f,
+		420.000000f, 420.000000f,
+		420.000000f, 420.000000f
+	},
+	&(double4x2)
+	{
+		69.000000f, 69.000000f,
+		69.000000f, 69.000000f,
+		69.000000f, 69.000000f,
+		69.000000f, 69.000000f
+	},
+	&(double4x2)
+	{
+		69.000000f, 69.000000f,
+		69.000000f, 69.000000f,
+		69.000000f, 69.000000f,
+		69.000000f, 69.000000f
+	}
+);
+
 TEMPER_PARAMETRIC( Test_double4x2_max, TEMPER_FLAG_SHOULD_RUN, const double4x2* lhs, const double4x2* rhs, const double4x2* expectedAnswer )
 {
 	double4x2 actualResult = double4x2_max( lhs, rhs );
@@ -1323,13 +1347,6 @@ TEMPER_PARAMETRIC( Test_double4x2_max, TEMPER_FLAG_SHOULD_RUN, const double4x2* 
 }
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_double4x2_max,
-	&(double4x2)
-	{
-		1.000000f, 1.000000f,
-		1.000000f, 1.000000f,
-		1.000000f, 1.000000f,
-		1.000000f, 1.000000f
-	},
 	&(double4x2)
 	{
 		0.000000f, 0.000000f,
@@ -1343,17 +1360,17 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_double4x2_max,
 		1.000000f, 1.000000f,
 		1.000000f, 1.000000f,
 		1.000000f, 1.000000f
+	},
+	&(double4x2)
+	{
+		1.000000f, 1.000000f,
+		1.000000f, 1.000000f,
+		1.000000f, 1.000000f,
+		1.000000f, 1.000000f
 	}
 );
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_double4x2_max,
-	&(double4x2)
-	{
-		2.000000f, 2.000000f,
-		2.000000f, 2.000000f,
-		2.000000f, 2.000000f,
-		2.000000f, 2.000000f
-	},
 	&(double4x2)
 	{
 		1.000000f, 1.000000f,
@@ -1367,6 +1384,37 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_double4x2_max,
 		2.000000f, 2.000000f,
 		2.000000f, 2.000000f,
 		2.000000f, 2.000000f
+	},
+	&(double4x2)
+	{
+		2.000000f, 2.000000f,
+		2.000000f, 2.000000f,
+		2.000000f, 2.000000f,
+		2.000000f, 2.000000f
+	}
+);
+
+TEMPER_INVOKE_PARAMETRIC_TEST( Test_double4x2_max,
+	&(double4x2)
+	{
+		69.000000f, 69.000000f,
+		69.000000f, 69.000000f,
+		69.000000f, 69.000000f,
+		69.000000f, 69.000000f
+	},
+	&(double4x2)
+	{
+		420.000000f, 420.000000f,
+		420.000000f, 420.000000f,
+		420.000000f, 420.000000f,
+		420.000000f, 420.000000f
+	},
+	&(double4x2)
+	{
+		420.000000f, 420.000000f,
+		420.000000f, 420.000000f,
+		420.000000f, 420.000000f,
+		420.000000f, 420.000000f
 	}
 );
 

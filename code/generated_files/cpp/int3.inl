@@ -39,30 +39,58 @@ SOFTWARE.
 #include "hlml_defines.h"
 
 int3::int3( const int32_t scalar )
+	: x( scalar )
+	, y( scalar )
+	, z( scalar )
 {
-	this->x = scalar;
-	this->y = scalar;
-	this->z = scalar;
 }
 
 int3::int3( const int32_t x, const int32_t y, const int32_t z )
+	: x( x )
+	, y( y )
+	, z( z )
 {
-	this->x = x;
-	this->y = y;
-	this->z = z;
 }
 
-int3::int3( const int2& other )
+int3::int3( const int2& vec )
+	: x( vec.x )
+	, y( vec.y )
 {
-	this->x = other.x;
-	this->y = other.y;
 }
 
-int3::int3( const int3& other )
+int3::int3( const int3& vec )
+	: x( vec.x )
+	, y( vec.y )
+	, z( vec.z )
 {
-	this->x = other.x;
-	this->y = other.y;
-	this->z = other.z;
+}
+
+int3::int3( const bool3& vec )
+	: x( (int32_t) vec.x )
+	, y( (int32_t) vec.y )
+	, z( (int32_t) vec.z )
+{
+}
+
+int3::int3( const uint3& vec )
+	: x( (int32_t) vec.x )
+	, y( (int32_t) vec.y )
+	, z( (int32_t) vec.z )
+{
+}
+
+int3::int3( const float3& vec )
+	: x( (int32_t) vec.x )
+	, y( (int32_t) vec.y )
+	, z( (int32_t) vec.z )
+{
+}
+
+int3::int3( const double3& vec )
+	: x( (int32_t) vec.x )
+	, y( (int32_t) vec.y )
+	, z( (int32_t) vec.z )
+{
 }
 
 int3 int3::operator=( const int2& other )

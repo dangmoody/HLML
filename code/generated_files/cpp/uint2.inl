@@ -39,21 +39,45 @@ SOFTWARE.
 #include "hlml_defines.h"
 
 uint2::uint2( const uint32_t scalar )
+	: x( scalar )
+	, y( scalar )
 {
-	this->x = scalar;
-	this->y = scalar;
 }
 
 uint2::uint2( const uint32_t x, const uint32_t y )
+	: x( x )
+	, y( y )
 {
-	this->x = x;
-	this->y = y;
 }
 
-uint2::uint2( const uint2& other )
+uint2::uint2( const uint2& vec )
+	: x( vec.x )
+	, y( vec.y )
 {
-	this->x = other.x;
-	this->y = other.y;
+}
+
+uint2::uint2( const bool2& vec )
+	: x( (uint32_t) vec.x )
+	, y( (uint32_t) vec.y )
+{
+}
+
+uint2::uint2( const int2& vec )
+	: x( (uint32_t) vec.x )
+	, y( (uint32_t) vec.y )
+{
+}
+
+uint2::uint2( const float2& vec )
+	: x( (uint32_t) vec.x )
+	, y( (uint32_t) vec.y )
+{
+}
+
+uint2::uint2( const double2& vec )
+	: x( (uint32_t) vec.x )
+	, y( (uint32_t) vec.y )
+{
 }
 
 uint2 uint2::operator=( const uint2& other )

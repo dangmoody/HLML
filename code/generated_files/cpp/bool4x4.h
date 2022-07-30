@@ -34,6 +34,11 @@ SOFTWARE.
 
 #pragma once
 
+struct int4x4;
+struct uint4x4;
+struct float4x4;
+struct double4x4;
+
 #include "bool4.h"
 
 struct bool4x4
@@ -59,12 +64,24 @@ struct bool4x4
 					const bool32_t m30, const bool32_t m31, const bool32_t m32, const bool32_t m33 );
 
 	// Copy constructor.
-	HLML_INLINE bool4x4( const bool4x4& other );
+	HLML_INLINE bool4x4( const bool4x4& mat );
+
+	// Conversion constructor.  Casts all components of 'mat' from type int32_t to type bool32_t.
+	HLML_INLINE explicit bool4x4( const int4x4& mat );
+
+	// Conversion constructor.  Casts all components of 'mat' from type uint32_t to type bool32_t.
+	HLML_INLINE explicit bool4x4( const uint4x4& mat );
+
+	// Conversion constructor.  Casts all components of 'mat' from type float to type bool32_t.
+	HLML_INLINE explicit bool4x4( const float4x4& mat );
+
+	// Conversion constructor.  Casts all components of 'mat' from type double to type bool32_t.
+	HLML_INLINE explicit bool4x4( const double4x4& mat );
 
 	HLML_INLINE ~bool4x4() {}
 
 	// Sets each row of the matrix to be the same as the parameter.
-	HLML_INLINE bool4x4 operator=( const bool4x4& other );
+	HLML_INLINE bool4x4 operator=( const bool4x4& mat );
 
 	// Returns the row vector at the given index of the matrix.
 	// Index CANNOT be lower than 0 or higher than 4.

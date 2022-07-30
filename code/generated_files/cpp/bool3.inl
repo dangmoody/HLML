@@ -39,30 +39,58 @@ SOFTWARE.
 #include "hlml_defines.h"
 
 bool3::bool3( const bool32_t scalar )
+	: x( scalar )
+	, y( scalar )
+	, z( scalar )
 {
-	this->x = scalar;
-	this->y = scalar;
-	this->z = scalar;
 }
 
 bool3::bool3( const bool32_t x, const bool32_t y, const bool32_t z )
+	: x( x )
+	, y( y )
+	, z( z )
 {
-	this->x = x;
-	this->y = y;
-	this->z = z;
 }
 
-bool3::bool3( const bool2& other )
+bool3::bool3( const bool2& vec )
+	: x( vec.x )
+	, y( vec.y )
 {
-	this->x = other.x;
-	this->y = other.y;
 }
 
-bool3::bool3( const bool3& other )
+bool3::bool3( const bool3& vec )
+	: x( vec.x )
+	, y( vec.y )
+	, z( vec.z )
 {
-	this->x = other.x;
-	this->y = other.y;
-	this->z = other.z;
+}
+
+bool3::bool3( const int3& vec )
+	: x( (bool32_t) vec.x )
+	, y( (bool32_t) vec.y )
+	, z( (bool32_t) vec.z )
+{
+}
+
+bool3::bool3( const uint3& vec )
+	: x( (bool32_t) vec.x )
+	, y( (bool32_t) vec.y )
+	, z( (bool32_t) vec.z )
+{
+}
+
+bool3::bool3( const float3& vec )
+	: x( (bool32_t) vec.x )
+	, y( (bool32_t) vec.y )
+	, z( (bool32_t) vec.z )
+{
+}
+
+bool3::bool3( const double3& vec )
+	: x( (bool32_t) vec.x )
+	, y( (bool32_t) vec.y )
+	, z( (bool32_t) vec.z )
+{
 }
 
 bool3 bool3::operator=( const bool2& other )

@@ -69,11 +69,39 @@ uint3x2::uint3x2( const uint32_t m00, const uint32_t m01,
 	rows[2] = uint2( m20, m21 );
 }
 
-uint3x2::uint3x2( const uint3x2& other )
+uint3x2::uint3x2( const uint3x2& mat )
 {
-	rows[0] = other[0];
-	rows[1] = other[1];
-	rows[2] = other[2];
+	rows[0] = mat[0];
+	rows[1] = mat[1];
+	rows[2] = mat[2];
+}
+
+uint3x2::uint3x2( const bool3x2& mat )
+{
+	rows[0] = uint2( mat[0] );
+	rows[1] = uint2( mat[1] );
+	rows[2] = uint2( mat[2] );
+}
+
+uint3x2::uint3x2( const int3x2& mat )
+{
+	rows[0] = uint2( mat[0] );
+	rows[1] = uint2( mat[1] );
+	rows[2] = uint2( mat[2] );
+}
+
+uint3x2::uint3x2( const float3x2& mat )
+{
+	rows[0] = uint2( mat[0] );
+	rows[1] = uint2( mat[1] );
+	rows[2] = uint2( mat[2] );
+}
+
+uint3x2::uint3x2( const double3x2& mat )
+{
+	rows[0] = uint2( mat[0] );
+	rows[1] = uint2( mat[1] );
+	rows[2] = uint2( mat[2] );
 }
 
 uint3x2 uint3x2::operator=( const uint3x2& other )

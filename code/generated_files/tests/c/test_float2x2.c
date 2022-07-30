@@ -1028,6 +1028,24 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_float2x2_min,
 	}
 );
 
+TEMPER_INVOKE_PARAMETRIC_TEST( Test_float2x2_min,
+	&(float2x2)
+	{
+		420.000000f, 420.000000f,
+		420.000000f, 420.000000f
+	},
+	&(float2x2)
+	{
+		69.000000f, 69.000000f,
+		69.000000f, 69.000000f
+	},
+	&(float2x2)
+	{
+		69.000000f, 69.000000f,
+		69.000000f, 69.000000f
+	}
+);
+
 TEMPER_PARAMETRIC( Test_float2x2_max, TEMPER_FLAG_SHOULD_RUN, const float2x2* lhs, const float2x2* rhs, const float2x2* expectedAnswer )
 {
 	float2x2 actualResult = float2x2_max( lhs, rhs );
@@ -1037,13 +1055,13 @@ TEMPER_PARAMETRIC( Test_float2x2_max, TEMPER_FLAG_SHOULD_RUN, const float2x2* lh
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_float2x2_max,
 	&(float2x2)
 	{
-		1.000000f, 1.000000f,
-		1.000000f, 1.000000f
+		0.000000f, 0.000000f,
+		0.000000f, 0.000000f
 	},
 	&(float2x2)
 	{
-		0.000000f, 0.000000f,
-		0.000000f, 0.000000f
+		1.000000f, 1.000000f,
+		1.000000f, 1.000000f
 	},
 	&(float2x2)
 	{
@@ -1055,11 +1073,6 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_float2x2_max,
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_float2x2_max,
 	&(float2x2)
 	{
-		2.000000f, 2.000000f,
-		2.000000f, 2.000000f
-	},
-	&(float2x2)
-	{
 		1.000000f, 1.000000f,
 		1.000000f, 1.000000f
 	},
@@ -1067,6 +1080,29 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_float2x2_max,
 	{
 		2.000000f, 2.000000f,
 		2.000000f, 2.000000f
+	},
+	&(float2x2)
+	{
+		2.000000f, 2.000000f,
+		2.000000f, 2.000000f
+	}
+);
+
+TEMPER_INVOKE_PARAMETRIC_TEST( Test_float2x2_max,
+	&(float2x2)
+	{
+		69.000000f, 69.000000f,
+		69.000000f, 69.000000f
+	},
+	&(float2x2)
+	{
+		420.000000f, 420.000000f,
+		420.000000f, 420.000000f
+	},
+	&(float2x2)
+	{
+		420.000000f, 420.000000f,
+		420.000000f, 420.000000f
 	}
 );
 

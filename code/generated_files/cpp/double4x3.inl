@@ -74,12 +74,44 @@ double4x3::double4x3( const double m00, const double m01, const double m02,
 	rows[3] = double3( m30, m31, m32 );
 }
 
-double4x3::double4x3( const double4x3& other )
+double4x3::double4x3( const double4x3& mat )
 {
-	rows[0] = other[0];
-	rows[1] = other[1];
-	rows[2] = other[2];
-	rows[3] = other[3];
+	rows[0] = mat[0];
+	rows[1] = mat[1];
+	rows[2] = mat[2];
+	rows[3] = mat[3];
+}
+
+double4x3::double4x3( const bool4x3& mat )
+{
+	rows[0] = double3( mat[0] );
+	rows[1] = double3( mat[1] );
+	rows[2] = double3( mat[2] );
+	rows[3] = double3( mat[3] );
+}
+
+double4x3::double4x3( const int4x3& mat )
+{
+	rows[0] = double3( mat[0] );
+	rows[1] = double3( mat[1] );
+	rows[2] = double3( mat[2] );
+	rows[3] = double3( mat[3] );
+}
+
+double4x3::double4x3( const uint4x3& mat )
+{
+	rows[0] = double3( mat[0] );
+	rows[1] = double3( mat[1] );
+	rows[2] = double3( mat[2] );
+	rows[3] = double3( mat[3] );
+}
+
+double4x3::double4x3( const float4x3& mat )
+{
+	rows[0] = double3( mat[0] );
+	rows[1] = double3( mat[1] );
+	rows[2] = double3( mat[2] );
+	rows[3] = double3( mat[3] );
 }
 
 double4x3 double4x3::operator=( const double4x3& other )

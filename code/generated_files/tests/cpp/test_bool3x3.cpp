@@ -32,6 +32,238 @@ SOFTWARE.
 // EDITING THIS FILE MAY CAUSE SIDE EFFECTS.
 // DO SO AT YOUR OWN RISK.
 
+TEMPER_PARAMETRIC( Test_int3x3_bool3x3, TEMPER_FLAG_SHOULD_RUN, const int3x3& vec, const bool3x3& expectedAnswer )
+{
+	bool3x3 actualResult = bool3x3( vec );
+	TEMPER_CHECK_TRUE( actualResult == expectedAnswer );
+}
+
+TEMPER_INVOKE_PARAMETRIC_TEST( Test_int3x3_bool3x3,
+	int3x3(
+		0, 0, 0,
+		0, 0, 0,
+		0, 0, 0
+	),
+	bool3x3(
+		false, false, false,
+		false, false, false,
+		false, false, false
+	)
+);
+
+TEMPER_INVOKE_PARAMETRIC_TEST( Test_int3x3_bool3x3,
+	int3x3(
+		1, 1, 1,
+		1, 1, 1,
+		1, 1, 1
+	),
+	bool3x3(
+		true, true, true,
+		true, true, true,
+		true, true, true
+	)
+);
+
+TEMPER_INVOKE_PARAMETRIC_TEST( Test_int3x3_bool3x3,
+	int3x3(
+		69, 69, 69,
+		69, 69, 69,
+		69, 69, 69
+	),
+	bool3x3(
+		true, true, true,
+		true, true, true,
+		true, true, true
+	)
+);
+
+TEMPER_INVOKE_PARAMETRIC_TEST( Test_int3x3_bool3x3,
+	int3x3(
+		420, 420, 420,
+		420, 420, 420,
+		420, 420, 420
+	),
+	bool3x3(
+		true, true, true,
+		true, true, true,
+		true, true, true
+	)
+);
+
+TEMPER_PARAMETRIC( Test_uint3x3_bool3x3, TEMPER_FLAG_SHOULD_RUN, const uint3x3& vec, const bool3x3& expectedAnswer )
+{
+	bool3x3 actualResult = bool3x3( vec );
+	TEMPER_CHECK_TRUE( actualResult == expectedAnswer );
+}
+
+TEMPER_INVOKE_PARAMETRIC_TEST( Test_uint3x3_bool3x3,
+	uint3x3(
+		0U, 0U, 0U,
+		0U, 0U, 0U,
+		0U, 0U, 0U
+	),
+	bool3x3(
+		false, false, false,
+		false, false, false,
+		false, false, false
+	)
+);
+
+TEMPER_INVOKE_PARAMETRIC_TEST( Test_uint3x3_bool3x3,
+	uint3x3(
+		1U, 1U, 1U,
+		1U, 1U, 1U,
+		1U, 1U, 1U
+	),
+	bool3x3(
+		true, true, true,
+		true, true, true,
+		true, true, true
+	)
+);
+
+TEMPER_INVOKE_PARAMETRIC_TEST( Test_uint3x3_bool3x3,
+	uint3x3(
+		69U, 69U, 69U,
+		69U, 69U, 69U,
+		69U, 69U, 69U
+	),
+	bool3x3(
+		true, true, true,
+		true, true, true,
+		true, true, true
+	)
+);
+
+TEMPER_INVOKE_PARAMETRIC_TEST( Test_uint3x3_bool3x3,
+	uint3x3(
+		420U, 420U, 420U,
+		420U, 420U, 420U,
+		420U, 420U, 420U
+	),
+	bool3x3(
+		true, true, true,
+		true, true, true,
+		true, true, true
+	)
+);
+
+TEMPER_PARAMETRIC( Test_float3x3_bool3x3, TEMPER_FLAG_SHOULD_RUN, const float3x3& vec, const bool3x3& expectedAnswer )
+{
+	bool3x3 actualResult = bool3x3( vec );
+	TEMPER_CHECK_TRUE( actualResult == expectedAnswer );
+}
+
+TEMPER_INVOKE_PARAMETRIC_TEST( Test_float3x3_bool3x3,
+	float3x3(
+		0.000000f, 0.000000f, 0.000000f,
+		0.000000f, 0.000000f, 0.000000f,
+		0.000000f, 0.000000f, 0.000000f
+	),
+	bool3x3(
+		false, false, false,
+		false, false, false,
+		false, false, false
+	)
+);
+
+TEMPER_INVOKE_PARAMETRIC_TEST( Test_float3x3_bool3x3,
+	float3x3(
+		1.000000f, 1.000000f, 1.000000f,
+		1.000000f, 1.000000f, 1.000000f,
+		1.000000f, 1.000000f, 1.000000f
+	),
+	bool3x3(
+		true, true, true,
+		true, true, true,
+		true, true, true
+	)
+);
+
+TEMPER_INVOKE_PARAMETRIC_TEST( Test_float3x3_bool3x3,
+	float3x3(
+		69.000000f, 69.000000f, 69.000000f,
+		69.000000f, 69.000000f, 69.000000f,
+		69.000000f, 69.000000f, 69.000000f
+	),
+	bool3x3(
+		true, true, true,
+		true, true, true,
+		true, true, true
+	)
+);
+
+TEMPER_INVOKE_PARAMETRIC_TEST( Test_float3x3_bool3x3,
+	float3x3(
+		420.000000f, 420.000000f, 420.000000f,
+		420.000000f, 420.000000f, 420.000000f,
+		420.000000f, 420.000000f, 420.000000f
+	),
+	bool3x3(
+		true, true, true,
+		true, true, true,
+		true, true, true
+	)
+);
+
+TEMPER_PARAMETRIC( Test_double3x3_bool3x3, TEMPER_FLAG_SHOULD_RUN, const double3x3& vec, const bool3x3& expectedAnswer )
+{
+	bool3x3 actualResult = bool3x3( vec );
+	TEMPER_CHECK_TRUE( actualResult == expectedAnswer );
+}
+
+TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3x3_bool3x3,
+	double3x3(
+		0.000000f, 0.000000f, 0.000000f,
+		0.000000f, 0.000000f, 0.000000f,
+		0.000000f, 0.000000f, 0.000000f
+	),
+	bool3x3(
+		false, false, false,
+		false, false, false,
+		false, false, false
+	)
+);
+
+TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3x3_bool3x3,
+	double3x3(
+		1.000000f, 1.000000f, 1.000000f,
+		1.000000f, 1.000000f, 1.000000f,
+		1.000000f, 1.000000f, 1.000000f
+	),
+	bool3x3(
+		true, true, true,
+		true, true, true,
+		true, true, true
+	)
+);
+
+TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3x3_bool3x3,
+	double3x3(
+		69.000000f, 69.000000f, 69.000000f,
+		69.000000f, 69.000000f, 69.000000f,
+		69.000000f, 69.000000f, 69.000000f
+	),
+	bool3x3(
+		true, true, true,
+		true, true, true,
+		true, true, true
+	)
+);
+
+TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3x3_bool3x3,
+	double3x3(
+		420.000000f, 420.000000f, 420.000000f,
+		420.000000f, 420.000000f, 420.000000f,
+		420.000000f, 420.000000f, 420.000000f
+	),
+	bool3x3(
+		true, true, true,
+		true, true, true,
+		true, true, true
+	)
+);
+
 TEMPER_PARAMETRIC( Test_bool3x3_all, TEMPER_FLAG_SHOULD_RUN, const bool3x3& x, const bool32_t expectedAnswer )
 {
 	bool32_t actualResult = all( x );

@@ -42,15 +42,19 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_uint32_t_min, 0U, 1U, 0U );
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_uint32_t_min, 1U, 2U, 1U );
 
+TEMPER_INVOKE_PARAMETRIC_TEST( Test_uint32_t_min, 420U, 69U, 69U );
+
 TEMPER_PARAMETRIC( Test_uint32_t_max, TEMPER_FLAG_SHOULD_RUN, const uint32_t lhs, const uint32_t rhs, const uint32_t expectedAnswer )
 {
 	uint32_t actualResult = maxu( lhs, rhs );
 	TEMPER_CHECK_TRUE( actualResult == expectedAnswer );
 }
 
-TEMPER_INVOKE_PARAMETRIC_TEST( Test_uint32_t_max, 1U, 0U, 1U );
+TEMPER_INVOKE_PARAMETRIC_TEST( Test_uint32_t_max, 0U, 1U, 1U );
 
-TEMPER_INVOKE_PARAMETRIC_TEST( Test_uint32_t_max, 2U, 1U, 2U );
+TEMPER_INVOKE_PARAMETRIC_TEST( Test_uint32_t_max, 1U, 2U, 2U );
+
+TEMPER_INVOKE_PARAMETRIC_TEST( Test_uint32_t_max, 69U, 420U, 420U );
 
 TEMPER_PARAMETRIC( Test_uint32_t_saturate, TEMPER_FLAG_SHOULD_RUN, const uint32_t x, const uint32_t expectedAnswer )
 {

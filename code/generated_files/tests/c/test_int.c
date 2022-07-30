@@ -42,15 +42,19 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_int32_t_min, 0, 1, 0 );
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_int32_t_min, 1, 2, 1 );
 
+TEMPER_INVOKE_PARAMETRIC_TEST( Test_int32_t_min, 420, 69, 69 );
+
 TEMPER_PARAMETRIC( Test_int32_t_max, TEMPER_FLAG_SHOULD_RUN, const int32_t lhs, const int32_t rhs, const int32_t expectedAnswer )
 {
 	int32_t actualResult = maxi( lhs, rhs );
 	TEMPER_CHECK_TRUE( actualResult == expectedAnswer );
 }
 
-TEMPER_INVOKE_PARAMETRIC_TEST( Test_int32_t_max, 1, 0, 1 );
+TEMPER_INVOKE_PARAMETRIC_TEST( Test_int32_t_max, 0, 1, 1 );
 
-TEMPER_INVOKE_PARAMETRIC_TEST( Test_int32_t_max, 2, 1, 2 );
+TEMPER_INVOKE_PARAMETRIC_TEST( Test_int32_t_max, 1, 2, 2 );
+
+TEMPER_INVOKE_PARAMETRIC_TEST( Test_int32_t_max, 69, 420, 420 );
 
 TEMPER_PARAMETRIC( Test_int32_t_saturate, TEMPER_FLAG_SHOULD_RUN, const int32_t x, const int32_t expectedAnswer )
 {

@@ -64,10 +64,34 @@ float2x2::float2x2( const float m00, const float m01,
 	rows[1] = float2( m10, m11 );
 }
 
-float2x2::float2x2( const float2x2& other )
+float2x2::float2x2( const float2x2& mat )
 {
-	rows[0] = other[0];
-	rows[1] = other[1];
+	rows[0] = mat[0];
+	rows[1] = mat[1];
+}
+
+float2x2::float2x2( const bool2x2& mat )
+{
+	rows[0] = float2( mat[0] );
+	rows[1] = float2( mat[1] );
+}
+
+float2x2::float2x2( const int2x2& mat )
+{
+	rows[0] = float2( mat[0] );
+	rows[1] = float2( mat[1] );
+}
+
+float2x2::float2x2( const uint2x2& mat )
+{
+	rows[0] = float2( mat[0] );
+	rows[1] = float2( mat[1] );
+}
+
+float2x2::float2x2( const double2x2& mat )
+{
+	rows[0] = float2( mat[0] );
+	rows[1] = float2( mat[1] );
 }
 
 float2x2 float2x2::operator=( const float2x2& other )

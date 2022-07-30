@@ -57,7 +57,7 @@ static void GenerateMainHeader(
 
 	printf( "Generating \"%s/%s\"...", generatedCodePath, GEN_HEADER_MAIN );
 
-	stringBuilder_t* code = StringBuilder_Create( tempStorage, 2 * KB_TO_BYTES );
+	stringBuilder_t* code = StringBuilder_Create( tempStorage, 4 * KB_TO_BYTES );
 
 	bool32 cLinkage = flags & GENERATOR_FLAG_C_LINKAGE;
 	bool32 generateConstructors = flags & GENERATOR_FLAG_GENERATE_CONSTRUCTORS;
@@ -92,15 +92,22 @@ static void GenerateMainHeader(
 		StringBuilder_Appendf( code, "\n" );
 	}
 
-	const char* includeFileExtension = generateInlFile ? "inl" : "h";
-
 	// matrices
 	for ( u32 i = 0; i < matrixTypeInfosCount; i++ ) {
 		const typeInfo_t* typeInfo = &matrixTypeInfos[i];
 
-		StringBuilder_Appendf( code, "#include \"%s.%s\"\n", typeInfo->fullTypeName, includeFileExtension );
+		StringBuilder_Appendf( code, "#include \"%s.h\"\n", typeInfo->fullTypeName );
 	}
 	StringBuilder_Appendf( code, "\n" );
+
+	if ( generateInlFile ) {
+		for ( u32 i = 0; i < matrixTypeInfosCount; i++ ) {
+			const typeInfo_t* typeInfo = &matrixTypeInfos[i];
+
+			StringBuilder_Appendf( code, "#include \"%s.inl\"\n", typeInfo->fullTypeName );
+		}
+		StringBuilder_Appendf( code, "\n" );
+	}
 
 	// function file includes
 	StringBuilder_Appendf( code, "#include \"%s.h\"\n", GEN_FILENAME_FUNCTIONS_SCALAR );

@@ -34,6 +34,11 @@ SOFTWARE.
 
 #pragma once
 
+struct bool3x2;
+struct uint3x2;
+struct float3x2;
+struct double3x2;
+
 #include "int2.h"
 
 struct int3x2
@@ -58,12 +63,24 @@ struct int3x2
 					const int32_t m20, const int32_t m21 );
 
 	// Copy constructor.
-	HLML_INLINE int3x2( const int3x2& other );
+	HLML_INLINE int3x2( const int3x2& mat );
+
+	// Conversion constructor.  Casts all components of 'mat' from type bool32_t to type int32_t.
+	HLML_INLINE explicit int3x2( const bool3x2& mat );
+
+	// Conversion constructor.  Casts all components of 'mat' from type uint32_t to type int32_t.
+	HLML_INLINE explicit int3x2( const uint3x2& mat );
+
+	// Conversion constructor.  Casts all components of 'mat' from type float to type int32_t.
+	HLML_INLINE explicit int3x2( const float3x2& mat );
+
+	// Conversion constructor.  Casts all components of 'mat' from type double to type int32_t.
+	HLML_INLINE explicit int3x2( const double3x2& mat );
 
 	HLML_INLINE ~int3x2() {}
 
 	// Sets each row of the matrix to be the same as the parameter.
-	HLML_INLINE int3x2 operator=( const int3x2& other );
+	HLML_INLINE int3x2 operator=( const int3x2& mat );
 
 	// Returns the row vector at the given index of the matrix.
 	// Index CANNOT be lower than 0 or higher than 3.

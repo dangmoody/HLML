@@ -34,6 +34,11 @@ SOFTWARE.
 
 #pragma once
 
+struct int2x3;
+struct uint2x3;
+struct float2x3;
+struct double2x3;
+
 #include "bool3.h"
 
 struct bool2x3
@@ -57,12 +62,24 @@ struct bool2x3
 					const bool32_t m10, const bool32_t m11, const bool32_t m12 );
 
 	// Copy constructor.
-	HLML_INLINE bool2x3( const bool2x3& other );
+	HLML_INLINE bool2x3( const bool2x3& mat );
+
+	// Conversion constructor.  Casts all components of 'mat' from type int32_t to type bool32_t.
+	HLML_INLINE explicit bool2x3( const int2x3& mat );
+
+	// Conversion constructor.  Casts all components of 'mat' from type uint32_t to type bool32_t.
+	HLML_INLINE explicit bool2x3( const uint2x3& mat );
+
+	// Conversion constructor.  Casts all components of 'mat' from type float to type bool32_t.
+	HLML_INLINE explicit bool2x3( const float2x3& mat );
+
+	// Conversion constructor.  Casts all components of 'mat' from type double to type bool32_t.
+	HLML_INLINE explicit bool2x3( const double2x3& mat );
 
 	HLML_INLINE ~bool2x3() {}
 
 	// Sets each row of the matrix to be the same as the parameter.
-	HLML_INLINE bool2x3 operator=( const bool2x3& other );
+	HLML_INLINE bool2x3 operator=( const bool2x3& mat );
 
 	// Returns the row vector at the given index of the matrix.
 	// Index CANNOT be lower than 0 or higher than 2.

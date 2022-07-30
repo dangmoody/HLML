@@ -32,6 +32,270 @@ SOFTWARE.
 // EDITING THIS FILE MAY CAUSE SIDE EFFECTS.
 // DO SO AT YOUR OWN RISK.
 
+TEMPER_PARAMETRIC( Test_int4x4_bool4x4, TEMPER_FLAG_SHOULD_RUN, const int4x4& vec, const bool4x4& expectedAnswer )
+{
+	bool4x4 actualResult = bool4x4( vec );
+	TEMPER_CHECK_TRUE( actualResult == expectedAnswer );
+}
+
+TEMPER_INVOKE_PARAMETRIC_TEST( Test_int4x4_bool4x4,
+	int4x4(
+		0, 0, 0, 0,
+		0, 0, 0, 0,
+		0, 0, 0, 0,
+		0, 0, 0, 0
+	),
+	bool4x4(
+		false, false, false, false,
+		false, false, false, false,
+		false, false, false, false,
+		false, false, false, false
+	)
+);
+
+TEMPER_INVOKE_PARAMETRIC_TEST( Test_int4x4_bool4x4,
+	int4x4(
+		1, 1, 1, 1,
+		1, 1, 1, 1,
+		1, 1, 1, 1,
+		1, 1, 1, 1
+	),
+	bool4x4(
+		true, true, true, true,
+		true, true, true, true,
+		true, true, true, true,
+		true, true, true, true
+	)
+);
+
+TEMPER_INVOKE_PARAMETRIC_TEST( Test_int4x4_bool4x4,
+	int4x4(
+		69, 69, 69, 69,
+		69, 69, 69, 69,
+		69, 69, 69, 69,
+		69, 69, 69, 69
+	),
+	bool4x4(
+		true, true, true, true,
+		true, true, true, true,
+		true, true, true, true,
+		true, true, true, true
+	)
+);
+
+TEMPER_INVOKE_PARAMETRIC_TEST( Test_int4x4_bool4x4,
+	int4x4(
+		420, 420, 420, 420,
+		420, 420, 420, 420,
+		420, 420, 420, 420,
+		420, 420, 420, 420
+	),
+	bool4x4(
+		true, true, true, true,
+		true, true, true, true,
+		true, true, true, true,
+		true, true, true, true
+	)
+);
+
+TEMPER_PARAMETRIC( Test_uint4x4_bool4x4, TEMPER_FLAG_SHOULD_RUN, const uint4x4& vec, const bool4x4& expectedAnswer )
+{
+	bool4x4 actualResult = bool4x4( vec );
+	TEMPER_CHECK_TRUE( actualResult == expectedAnswer );
+}
+
+TEMPER_INVOKE_PARAMETRIC_TEST( Test_uint4x4_bool4x4,
+	uint4x4(
+		0U, 0U, 0U, 0U,
+		0U, 0U, 0U, 0U,
+		0U, 0U, 0U, 0U,
+		0U, 0U, 0U, 0U
+	),
+	bool4x4(
+		false, false, false, false,
+		false, false, false, false,
+		false, false, false, false,
+		false, false, false, false
+	)
+);
+
+TEMPER_INVOKE_PARAMETRIC_TEST( Test_uint4x4_bool4x4,
+	uint4x4(
+		1U, 1U, 1U, 1U,
+		1U, 1U, 1U, 1U,
+		1U, 1U, 1U, 1U,
+		1U, 1U, 1U, 1U
+	),
+	bool4x4(
+		true, true, true, true,
+		true, true, true, true,
+		true, true, true, true,
+		true, true, true, true
+	)
+);
+
+TEMPER_INVOKE_PARAMETRIC_TEST( Test_uint4x4_bool4x4,
+	uint4x4(
+		69U, 69U, 69U, 69U,
+		69U, 69U, 69U, 69U,
+		69U, 69U, 69U, 69U,
+		69U, 69U, 69U, 69U
+	),
+	bool4x4(
+		true, true, true, true,
+		true, true, true, true,
+		true, true, true, true,
+		true, true, true, true
+	)
+);
+
+TEMPER_INVOKE_PARAMETRIC_TEST( Test_uint4x4_bool4x4,
+	uint4x4(
+		420U, 420U, 420U, 420U,
+		420U, 420U, 420U, 420U,
+		420U, 420U, 420U, 420U,
+		420U, 420U, 420U, 420U
+	),
+	bool4x4(
+		true, true, true, true,
+		true, true, true, true,
+		true, true, true, true,
+		true, true, true, true
+	)
+);
+
+TEMPER_PARAMETRIC( Test_float4x4_bool4x4, TEMPER_FLAG_SHOULD_RUN, const float4x4& vec, const bool4x4& expectedAnswer )
+{
+	bool4x4 actualResult = bool4x4( vec );
+	TEMPER_CHECK_TRUE( actualResult == expectedAnswer );
+}
+
+TEMPER_INVOKE_PARAMETRIC_TEST( Test_float4x4_bool4x4,
+	float4x4(
+		0.000000f, 0.000000f, 0.000000f, 0.000000f,
+		0.000000f, 0.000000f, 0.000000f, 0.000000f,
+		0.000000f, 0.000000f, 0.000000f, 0.000000f,
+		0.000000f, 0.000000f, 0.000000f, 0.000000f
+	),
+	bool4x4(
+		false, false, false, false,
+		false, false, false, false,
+		false, false, false, false,
+		false, false, false, false
+	)
+);
+
+TEMPER_INVOKE_PARAMETRIC_TEST( Test_float4x4_bool4x4,
+	float4x4(
+		1.000000f, 1.000000f, 1.000000f, 1.000000f,
+		1.000000f, 1.000000f, 1.000000f, 1.000000f,
+		1.000000f, 1.000000f, 1.000000f, 1.000000f,
+		1.000000f, 1.000000f, 1.000000f, 1.000000f
+	),
+	bool4x4(
+		true, true, true, true,
+		true, true, true, true,
+		true, true, true, true,
+		true, true, true, true
+	)
+);
+
+TEMPER_INVOKE_PARAMETRIC_TEST( Test_float4x4_bool4x4,
+	float4x4(
+		69.000000f, 69.000000f, 69.000000f, 69.000000f,
+		69.000000f, 69.000000f, 69.000000f, 69.000000f,
+		69.000000f, 69.000000f, 69.000000f, 69.000000f,
+		69.000000f, 69.000000f, 69.000000f, 69.000000f
+	),
+	bool4x4(
+		true, true, true, true,
+		true, true, true, true,
+		true, true, true, true,
+		true, true, true, true
+	)
+);
+
+TEMPER_INVOKE_PARAMETRIC_TEST( Test_float4x4_bool4x4,
+	float4x4(
+		420.000000f, 420.000000f, 420.000000f, 420.000000f,
+		420.000000f, 420.000000f, 420.000000f, 420.000000f,
+		420.000000f, 420.000000f, 420.000000f, 420.000000f,
+		420.000000f, 420.000000f, 420.000000f, 420.000000f
+	),
+	bool4x4(
+		true, true, true, true,
+		true, true, true, true,
+		true, true, true, true,
+		true, true, true, true
+	)
+);
+
+TEMPER_PARAMETRIC( Test_double4x4_bool4x4, TEMPER_FLAG_SHOULD_RUN, const double4x4& vec, const bool4x4& expectedAnswer )
+{
+	bool4x4 actualResult = bool4x4( vec );
+	TEMPER_CHECK_TRUE( actualResult == expectedAnswer );
+}
+
+TEMPER_INVOKE_PARAMETRIC_TEST( Test_double4x4_bool4x4,
+	double4x4(
+		0.000000f, 0.000000f, 0.000000f, 0.000000f,
+		0.000000f, 0.000000f, 0.000000f, 0.000000f,
+		0.000000f, 0.000000f, 0.000000f, 0.000000f,
+		0.000000f, 0.000000f, 0.000000f, 0.000000f
+	),
+	bool4x4(
+		false, false, false, false,
+		false, false, false, false,
+		false, false, false, false,
+		false, false, false, false
+	)
+);
+
+TEMPER_INVOKE_PARAMETRIC_TEST( Test_double4x4_bool4x4,
+	double4x4(
+		1.000000f, 1.000000f, 1.000000f, 1.000000f,
+		1.000000f, 1.000000f, 1.000000f, 1.000000f,
+		1.000000f, 1.000000f, 1.000000f, 1.000000f,
+		1.000000f, 1.000000f, 1.000000f, 1.000000f
+	),
+	bool4x4(
+		true, true, true, true,
+		true, true, true, true,
+		true, true, true, true,
+		true, true, true, true
+	)
+);
+
+TEMPER_INVOKE_PARAMETRIC_TEST( Test_double4x4_bool4x4,
+	double4x4(
+		69.000000f, 69.000000f, 69.000000f, 69.000000f,
+		69.000000f, 69.000000f, 69.000000f, 69.000000f,
+		69.000000f, 69.000000f, 69.000000f, 69.000000f,
+		69.000000f, 69.000000f, 69.000000f, 69.000000f
+	),
+	bool4x4(
+		true, true, true, true,
+		true, true, true, true,
+		true, true, true, true,
+		true, true, true, true
+	)
+);
+
+TEMPER_INVOKE_PARAMETRIC_TEST( Test_double4x4_bool4x4,
+	double4x4(
+		420.000000f, 420.000000f, 420.000000f, 420.000000f,
+		420.000000f, 420.000000f, 420.000000f, 420.000000f,
+		420.000000f, 420.000000f, 420.000000f, 420.000000f,
+		420.000000f, 420.000000f, 420.000000f, 420.000000f
+	),
+	bool4x4(
+		true, true, true, true,
+		true, true, true, true,
+		true, true, true, true,
+		true, true, true, true
+	)
+);
+
 TEMPER_PARAMETRIC( Test_bool4x4_all, TEMPER_FLAG_SHOULD_RUN, const bool4x4& x, const bool32_t expectedAnswer )
 {
 	bool32_t actualResult = all( x );

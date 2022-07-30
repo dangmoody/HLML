@@ -571,6 +571,25 @@ static void GenerateVectorFiles( allocatorLinear_t* tempStorage, const char* gen
 					}
 				}
 			}
+
+			StringBuilder_Append( codeHeader, "\n" );
+
+			// forward declarations for other types with the same component count
+			// used for conversion ctors
+			if ( generateConstructors ) {
+				for ( u32 typeIndex = 0; typeIndex < GEN_TYPE_COUNT; typeIndex++ ) {
+					const genType_t otherType = (genType_t) typeIndex;
+
+					if ( otherType == typeInfo->type ) {
+						continue;
+					}
+
+					const char* otherTypeString = Gen_GetTypeString( otherType );
+
+					StringBuilder_Appendf( codeHeader, "struct %s%d;\n", otherTypeString, typeInfo->numCols );
+				}
+			}
+
 			StringBuilder_Append( codeHeader, "\n" );
 
 			StringBuilder_Append( codeHeader, "#include \"" GEN_HEADER_TYPES "\"\n" );
@@ -666,6 +685,22 @@ static void GenerateVectorFiles( allocatorLinear_t* tempStorage, const char* gen
 					StringBuilder_Appendf( codeHeader, "\tHLML_INLINE %s( const %s& other );\n\n", typeInfo->fullTypeName, otherTypeName );
 				}
 
+				// conversion ctors
+				for ( u32 typeIndex = 0; typeIndex < GEN_TYPE_COUNT; typeIndex++ ) {
+					const genType_t otherType = (genType_t) typeIndex;
+
+					// dont do the conversion ctor for the same type because we just generated that
+					if ( otherType == typeInfo->type ) {
+						continue;
+					}
+
+					const char* otherTypeString = Gen_GetTypeString( otherType );
+					const char* otherMemberTypeString = Gen_GetMemberTypeString( otherType );
+
+					StringBuilder_Appendf( codeHeader, "\t// Conversion constructor.  Casts all components of 'vec' from type %s to type %s.\n", otherMemberTypeString, memberTypeString );
+					StringBuilder_Appendf( codeHeader, "\tHLML_INLINE explicit %s( const %s%d& vec );\n\n", typeInfo->fullTypeName, otherTypeString, typeInfo->numCols );
+				}
+
 				// dtor
 				StringBuilder_Appendf( codeHeader, "\t~%s() {}\n\n", typeInfo->fullTypeName );
 			}
@@ -749,11 +784,16 @@ static void GenerateVectorFiles( allocatorLinear_t* tempStorage, const char* gen
 			if ( generateConstructors ) {
 				// single scalar ctor
 				StringBuilder_Appendf( codeInl, "%s::%s( const %s scalar )\n", typeInfo->fullTypeName, typeInfo->fullTypeName, memberTypeString );
-				StringBuilder_Append(  codeInl, "{\n" );
-				for ( u32 componentIndex = 0; componentIndex < typeInfo->numCols; componentIndex++ ) {
-					StringBuilder_Appendf( codeInl, "\tthis->%c = scalar;\n", GEN_COMPONENT_NAMES_VECTOR[componentIndex] );
+				StringBuilder_Append(  codeInl, "\t: x( scalar )\n" );
+
+				for ( u32 componentIndex = 1; componentIndex < typeInfo->numCols; componentIndex++ ) {
+					StringBuilder_Appendf( codeInl, "\t, %c( scalar )\n", GEN_COMPONENT_NAMES_VECTOR[componentIndex] );
 				}
-				StringBuilder_Append(  codeInl, "}\n\n" );
+
+				StringBuilder_Append(  codeInl,
+					"{\n"
+					"}\n\n"
+				);
 
 				// per component ctor
 				StringBuilder_Appendf( codeInl, "%s::%s( ", typeInfo->fullTypeName, typeInfo->fullTypeName );
@@ -767,26 +807,62 @@ static void GenerateVectorFiles( allocatorLinear_t* tempStorage, const char* gen
 					}
 				}
 				StringBuilder_Append( codeInl, " )\n" );
-				StringBuilder_Append( codeInl, "{\n" );
-				for ( u32 componentIndex = 0; componentIndex < typeInfo->numCols; componentIndex++ ) {
+				StringBuilder_Append( codeInl, "\t: x( x )\n" );
+
+				for ( u32 componentIndex = 1; componentIndex < typeInfo->numCols; componentIndex++ ) {
 					const char componentName = GEN_COMPONENT_NAMES_VECTOR[componentIndex];
 
-					StringBuilder_Appendf( codeInl, "\tthis->%c = %c;\n", componentName, componentName );
+					StringBuilder_Appendf( codeInl, "\t, %c( %c )\n", componentName, componentName );
 				}
-				StringBuilder_Append( codeInl, "}\n\n" );
+
+				StringBuilder_Append(  codeInl,
+					"{\n"
+					"}\n\n"
+				);
 
 				// copy ctors
 				for ( u32 otherVecComponentIndex = 2; otherVecComponentIndex <= typeInfo->numCols; otherVecComponentIndex++ ) {
 					const char* otherTypeName = String_TPrintf( tempStorage, "%s%d", Gen_GetTypeString( typeInfo->type ), otherVecComponentIndex );
 
-					StringBuilder_Appendf( codeInl, "%s::%s( const %s& other )\n", typeInfo->fullTypeName, typeInfo->fullTypeName, otherTypeName );
-					StringBuilder_Append(  codeInl, "{\n" );
-					for ( u32 componentIndex = 0; componentIndex < otherVecComponentIndex; componentIndex++ ) {
+					StringBuilder_Appendf( codeInl, "%s::%s( const %s& vec )\n", typeInfo->fullTypeName, typeInfo->fullTypeName, otherTypeName );
+					StringBuilder_Append( codeInl, "\t: x( vec.x )\n" );
+
+					for ( u32 componentIndex = 1; componentIndex < otherVecComponentIndex; componentIndex++ ) {
 						const char componentName = GEN_COMPONENT_NAMES_VECTOR[componentIndex];
 
-						StringBuilder_Appendf( codeInl, "\tthis->%c = other.%c;\n", componentName, componentName );
+						StringBuilder_Appendf( codeInl, "\t, %c( vec.%c )\n", componentName, componentName );
 					}
-					StringBuilder_Append(  codeInl, "}\n\n" );
+
+					StringBuilder_Append(  codeInl,
+						"{\n"
+						"}\n\n"
+					);
+				}
+
+				// conversion ctors
+				for ( u32 typeIndex = 0; typeIndex < GEN_TYPE_COUNT; typeIndex++ ) {
+					const genType_t otherType = (genType_t) typeIndex;
+
+					// dont do the conversion ctor for the same type because we just generated that
+					if ( otherType == typeInfo->type ) {
+						continue;
+					}
+
+					const char* otherTypeString = Gen_GetTypeString( otherType );
+
+					StringBuilder_Appendf( codeInl, "%s::%s( const %s%d& vec )\n", typeInfo->fullTypeName, typeInfo->fullTypeName, otherTypeString, typeInfo->numCols );
+					StringBuilder_Appendf( codeInl, "\t: x( (%s) vec.x )\n", memberTypeString );
+
+					for ( u32 componentIndex = 1; componentIndex < typeInfo->numCols; componentIndex++ ) {
+						const char componentName = GEN_COMPONENT_NAMES_VECTOR[componentIndex];
+
+						StringBuilder_Appendf( codeInl, "\t, %c( (%s) vec.%c )\n", componentName, memberTypeString, componentName );
+					}
+
+					StringBuilder_Append(  codeInl,
+						"{\n"
+						"}\n\n"
+					);
 				}
 			}
 

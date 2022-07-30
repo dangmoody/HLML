@@ -37,6 +37,11 @@ SOFTWARE.
 struct float2;
 struct float3;
 
+struct bool4;
+struct int4;
+struct uint4;
+struct double4;
+
 #include "hlml_types.h"
 #include "hlml_defines.h"
 
@@ -89,6 +94,18 @@ struct float4
 
 	// Copy constructor.  Copies all elements of 'other' into the vector.
 	HLML_INLINE float4( const float4& other );
+
+	// Conversion constructor.  Casts all components of 'vec' from type bool32_t to type float.
+	HLML_INLINE explicit float4( const bool4& vec );
+
+	// Conversion constructor.  Casts all components of 'vec' from type int32_t to type float.
+	HLML_INLINE explicit float4( const int4& vec );
+
+	// Conversion constructor.  Casts all components of 'vec' from type uint32_t to type float.
+	HLML_INLINE explicit float4( const uint4& vec );
+
+	// Conversion constructor.  Casts all components of 'vec' from type double to type float.
+	HLML_INLINE explicit float4( const double4& vec );
 
 	~float4() {}
 

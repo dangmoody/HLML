@@ -39,30 +39,58 @@ SOFTWARE.
 #include "hlml_defines.h"
 
 float3::float3( const float scalar )
+	: x( scalar )
+	, y( scalar )
+	, z( scalar )
 {
-	this->x = scalar;
-	this->y = scalar;
-	this->z = scalar;
 }
 
 float3::float3( const float x, const float y, const float z )
+	: x( x )
+	, y( y )
+	, z( z )
 {
-	this->x = x;
-	this->y = y;
-	this->z = z;
 }
 
-float3::float3( const float2& other )
+float3::float3( const float2& vec )
+	: x( vec.x )
+	, y( vec.y )
 {
-	this->x = other.x;
-	this->y = other.y;
 }
 
-float3::float3( const float3& other )
+float3::float3( const float3& vec )
+	: x( vec.x )
+	, y( vec.y )
+	, z( vec.z )
 {
-	this->x = other.x;
-	this->y = other.y;
-	this->z = other.z;
+}
+
+float3::float3( const bool3& vec )
+	: x( (float) vec.x )
+	, y( (float) vec.y )
+	, z( (float) vec.z )
+{
+}
+
+float3::float3( const int3& vec )
+	: x( (float) vec.x )
+	, y( (float) vec.y )
+	, z( (float) vec.z )
+{
+}
+
+float3::float3( const uint3& vec )
+	: x( (float) vec.x )
+	, y( (float) vec.y )
+	, z( (float) vec.z )
+{
+}
+
+float3::float3( const double3& vec )
+	: x( (float) vec.x )
+	, y( (float) vec.y )
+	, z( (float) vec.z )
+{
 }
 
 float3 float3::operator=( const float2& other )

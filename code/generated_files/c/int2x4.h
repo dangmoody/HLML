@@ -38,6 +38,7 @@ SOFTWARE.
 extern "C" {
 #endif
 
+
 #include "int4.h"
 
 typedef struct int2x4

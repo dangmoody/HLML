@@ -69,11 +69,39 @@ bool3x4::bool3x4( const bool32_t m00, const bool32_t m01, const bool32_t m02, co
 	rows[2] = bool4( m20, m21, m22, m23 );
 }
 
-bool3x4::bool3x4( const bool3x4& other )
+bool3x4::bool3x4( const bool3x4& mat )
 {
-	rows[0] = other[0];
-	rows[1] = other[1];
-	rows[2] = other[2];
+	rows[0] = mat[0];
+	rows[1] = mat[1];
+	rows[2] = mat[2];
+}
+
+bool3x4::bool3x4( const int3x4& mat )
+{
+	rows[0] = bool4( mat[0] );
+	rows[1] = bool4( mat[1] );
+	rows[2] = bool4( mat[2] );
+}
+
+bool3x4::bool3x4( const uint3x4& mat )
+{
+	rows[0] = bool4( mat[0] );
+	rows[1] = bool4( mat[1] );
+	rows[2] = bool4( mat[2] );
+}
+
+bool3x4::bool3x4( const float3x4& mat )
+{
+	rows[0] = bool4( mat[0] );
+	rows[1] = bool4( mat[1] );
+	rows[2] = bool4( mat[2] );
+}
+
+bool3x4::bool3x4( const double3x4& mat )
+{
+	rows[0] = bool4( mat[0] );
+	rows[1] = bool4( mat[1] );
+	rows[2] = bool4( mat[2] );
 }
 
 bool3x4 bool3x4::operator=( const bool3x4& other )

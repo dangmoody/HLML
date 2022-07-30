@@ -38,6 +38,7 @@ SOFTWARE.
 extern "C" {
 #endif
 
+
 #include "double2.h"
 
 typedef struct double3x2

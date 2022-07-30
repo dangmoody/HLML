@@ -39,21 +39,45 @@ SOFTWARE.
 #include "hlml_defines.h"
 
 bool2::bool2( const bool32_t scalar )
+	: x( scalar )
+	, y( scalar )
 {
-	this->x = scalar;
-	this->y = scalar;
 }
 
 bool2::bool2( const bool32_t x, const bool32_t y )
+	: x( x )
+	, y( y )
 {
-	this->x = x;
-	this->y = y;
 }
 
-bool2::bool2( const bool2& other )
+bool2::bool2( const bool2& vec )
+	: x( vec.x )
+	, y( vec.y )
 {
-	this->x = other.x;
-	this->y = other.y;
+}
+
+bool2::bool2( const int2& vec )
+	: x( (bool32_t) vec.x )
+	, y( (bool32_t) vec.y )
+{
+}
+
+bool2::bool2( const uint2& vec )
+	: x( (bool32_t) vec.x )
+	, y( (bool32_t) vec.y )
+{
+}
+
+bool2::bool2( const float2& vec )
+	: x( (bool32_t) vec.x )
+	, y( (bool32_t) vec.y )
+{
+}
+
+bool2::bool2( const double2& vec )
+	: x( (bool32_t) vec.x )
+	, y( (bool32_t) vec.y )
+{
 }
 
 bool2 bool2::operator=( const bool2& other )

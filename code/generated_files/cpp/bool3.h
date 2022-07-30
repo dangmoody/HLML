@@ -37,6 +37,11 @@ SOFTWARE.
 struct bool2;
 struct bool4;
 
+struct int3;
+struct uint3;
+struct float3;
+struct double3;
+
 #include "hlml_types.h"
 #include "hlml_defines.h"
 
@@ -84,6 +89,18 @@ struct bool3
 
 	// Copy constructor.  Copies all elements of 'other' into the vector.
 	HLML_INLINE bool3( const bool3& other );
+
+	// Conversion constructor.  Casts all components of 'vec' from type int32_t to type bool32_t.
+	HLML_INLINE explicit bool3( const int3& vec );
+
+	// Conversion constructor.  Casts all components of 'vec' from type uint32_t to type bool32_t.
+	HLML_INLINE explicit bool3( const uint3& vec );
+
+	// Conversion constructor.  Casts all components of 'vec' from type float to type bool32_t.
+	HLML_INLINE explicit bool3( const float3& vec );
+
+	// Conversion constructor.  Casts all components of 'vec' from type double to type bool32_t.
+	HLML_INLINE explicit bool3( const double3& vec );
 
 	~bool3() {}
 

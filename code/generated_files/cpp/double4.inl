@@ -39,40 +39,72 @@ SOFTWARE.
 #include "hlml_defines.h"
 
 double4::double4( const double scalar )
+	: x( scalar )
+	, y( scalar )
+	, z( scalar )
+	, w( scalar )
 {
-	this->x = scalar;
-	this->y = scalar;
-	this->z = scalar;
-	this->w = scalar;
 }
 
 double4::double4( const double x, const double y, const double z, const double w )
+	: x( x )
+	, y( y )
+	, z( z )
+	, w( w )
 {
-	this->x = x;
-	this->y = y;
-	this->z = z;
-	this->w = w;
 }
 
-double4::double4( const double2& other )
+double4::double4( const double2& vec )
+	: x( vec.x )
+	, y( vec.y )
 {
-	this->x = other.x;
-	this->y = other.y;
 }
 
-double4::double4( const double3& other )
+double4::double4( const double3& vec )
+	: x( vec.x )
+	, y( vec.y )
+	, z( vec.z )
 {
-	this->x = other.x;
-	this->y = other.y;
-	this->z = other.z;
 }
 
-double4::double4( const double4& other )
+double4::double4( const double4& vec )
+	: x( vec.x )
+	, y( vec.y )
+	, z( vec.z )
+	, w( vec.w )
 {
-	this->x = other.x;
-	this->y = other.y;
-	this->z = other.z;
-	this->w = other.w;
+}
+
+double4::double4( const bool4& vec )
+	: x( (double) vec.x )
+	, y( (double) vec.y )
+	, z( (double) vec.z )
+	, w( (double) vec.w )
+{
+}
+
+double4::double4( const int4& vec )
+	: x( (double) vec.x )
+	, y( (double) vec.y )
+	, z( (double) vec.z )
+	, w( (double) vec.w )
+{
+}
+
+double4::double4( const uint4& vec )
+	: x( (double) vec.x )
+	, y( (double) vec.y )
+	, z( (double) vec.z )
+	, w( (double) vec.w )
+{
+}
+
+double4::double4( const float4& vec )
+	: x( (double) vec.x )
+	, y( (double) vec.y )
+	, z( (double) vec.z )
+	, w( (double) vec.w )
+{
 }
 
 double4 double4::operator=( const double2& other )

@@ -2250,6 +2250,30 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_uint4x4_min,
 	}
 );
 
+TEMPER_INVOKE_PARAMETRIC_TEST( Test_uint4x4_min,
+	&(uint4x4)
+	{
+		420U, 420U, 420U, 420U,
+		420U, 420U, 420U, 420U,
+		420U, 420U, 420U, 420U,
+		420U, 420U, 420U, 420U
+	},
+	&(uint4x4)
+	{
+		69U, 69U, 69U, 69U,
+		69U, 69U, 69U, 69U,
+		69U, 69U, 69U, 69U,
+		69U, 69U, 69U, 69U
+	},
+	&(uint4x4)
+	{
+		69U, 69U, 69U, 69U,
+		69U, 69U, 69U, 69U,
+		69U, 69U, 69U, 69U,
+		69U, 69U, 69U, 69U
+	}
+);
+
 TEMPER_PARAMETRIC( Test_uint4x4_max, TEMPER_FLAG_SHOULD_RUN, const uint4x4* lhs, const uint4x4* rhs, const uint4x4* expectedAnswer )
 {
 	uint4x4 actualResult = uint4x4_max( lhs, rhs );
@@ -2257,13 +2281,6 @@ TEMPER_PARAMETRIC( Test_uint4x4_max, TEMPER_FLAG_SHOULD_RUN, const uint4x4* lhs,
 }
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_uint4x4_max,
-	&(uint4x4)
-	{
-		1U, 1U, 1U, 1U,
-		1U, 1U, 1U, 1U,
-		1U, 1U, 1U, 1U,
-		1U, 1U, 1U, 1U
-	},
 	&(uint4x4)
 	{
 		0U, 0U, 0U, 0U,
@@ -2277,17 +2294,17 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_uint4x4_max,
 		1U, 1U, 1U, 1U,
 		1U, 1U, 1U, 1U,
 		1U, 1U, 1U, 1U
+	},
+	&(uint4x4)
+	{
+		1U, 1U, 1U, 1U,
+		1U, 1U, 1U, 1U,
+		1U, 1U, 1U, 1U,
+		1U, 1U, 1U, 1U
 	}
 );
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_uint4x4_max,
-	&(uint4x4)
-	{
-		2U, 2U, 2U, 2U,
-		2U, 2U, 2U, 2U,
-		2U, 2U, 2U, 2U,
-		2U, 2U, 2U, 2U
-	},
 	&(uint4x4)
 	{
 		1U, 1U, 1U, 1U,
@@ -2301,6 +2318,37 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_uint4x4_max,
 		2U, 2U, 2U, 2U,
 		2U, 2U, 2U, 2U,
 		2U, 2U, 2U, 2U
+	},
+	&(uint4x4)
+	{
+		2U, 2U, 2U, 2U,
+		2U, 2U, 2U, 2U,
+		2U, 2U, 2U, 2U,
+		2U, 2U, 2U, 2U
+	}
+);
+
+TEMPER_INVOKE_PARAMETRIC_TEST( Test_uint4x4_max,
+	&(uint4x4)
+	{
+		69U, 69U, 69U, 69U,
+		69U, 69U, 69U, 69U,
+		69U, 69U, 69U, 69U,
+		69U, 69U, 69U, 69U
+	},
+	&(uint4x4)
+	{
+		420U, 420U, 420U, 420U,
+		420U, 420U, 420U, 420U,
+		420U, 420U, 420U, 420U,
+		420U, 420U, 420U, 420U
+	},
+	&(uint4x4)
+	{
+		420U, 420U, 420U, 420U,
+		420U, 420U, 420U, 420U,
+		420U, 420U, 420U, 420U,
+		420U, 420U, 420U, 420U
 	}
 );
 

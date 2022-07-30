@@ -64,10 +64,34 @@ uint2x2::uint2x2( const uint32_t m00, const uint32_t m01,
 	rows[1] = uint2( m10, m11 );
 }
 
-uint2x2::uint2x2( const uint2x2& other )
+uint2x2::uint2x2( const uint2x2& mat )
 {
-	rows[0] = other[0];
-	rows[1] = other[1];
+	rows[0] = mat[0];
+	rows[1] = mat[1];
+}
+
+uint2x2::uint2x2( const bool2x2& mat )
+{
+	rows[0] = uint2( mat[0] );
+	rows[1] = uint2( mat[1] );
+}
+
+uint2x2::uint2x2( const int2x2& mat )
+{
+	rows[0] = uint2( mat[0] );
+	rows[1] = uint2( mat[1] );
+}
+
+uint2x2::uint2x2( const float2x2& mat )
+{
+	rows[0] = uint2( mat[0] );
+	rows[1] = uint2( mat[1] );
+}
+
+uint2x2::uint2x2( const double2x2& mat )
+{
+	rows[0] = uint2( mat[0] );
+	rows[1] = uint2( mat[1] );
 }
 
 uint2x2 uint2x2::operator=( const uint2x2& other )

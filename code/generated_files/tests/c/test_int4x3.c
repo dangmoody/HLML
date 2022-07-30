@@ -2250,6 +2250,30 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_int4x3_min,
 	}
 );
 
+TEMPER_INVOKE_PARAMETRIC_TEST( Test_int4x3_min,
+	&(int4x3)
+	{
+		420, 420, 420,
+		420, 420, 420,
+		420, 420, 420,
+		420, 420, 420
+	},
+	&(int4x3)
+	{
+		69, 69, 69,
+		69, 69, 69,
+		69, 69, 69,
+		69, 69, 69
+	},
+	&(int4x3)
+	{
+		69, 69, 69,
+		69, 69, 69,
+		69, 69, 69,
+		69, 69, 69
+	}
+);
+
 TEMPER_PARAMETRIC( Test_int4x3_max, TEMPER_FLAG_SHOULD_RUN, const int4x3* lhs, const int4x3* rhs, const int4x3* expectedAnswer )
 {
 	int4x3 actualResult = int4x3_max( lhs, rhs );
@@ -2257,13 +2281,6 @@ TEMPER_PARAMETRIC( Test_int4x3_max, TEMPER_FLAG_SHOULD_RUN, const int4x3* lhs, c
 }
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_int4x3_max,
-	&(int4x3)
-	{
-		1, 1, 1,
-		1, 1, 1,
-		1, 1, 1,
-		1, 1, 1
-	},
 	&(int4x3)
 	{
 		0, 0, 0,
@@ -2277,17 +2294,17 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_int4x3_max,
 		1, 1, 1,
 		1, 1, 1,
 		1, 1, 1
+	},
+	&(int4x3)
+	{
+		1, 1, 1,
+		1, 1, 1,
+		1, 1, 1,
+		1, 1, 1
 	}
 );
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_int4x3_max,
-	&(int4x3)
-	{
-		2, 2, 2,
-		2, 2, 2,
-		2, 2, 2,
-		2, 2, 2
-	},
 	&(int4x3)
 	{
 		1, 1, 1,
@@ -2301,6 +2318,37 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_int4x3_max,
 		2, 2, 2,
 		2, 2, 2,
 		2, 2, 2
+	},
+	&(int4x3)
+	{
+		2, 2, 2,
+		2, 2, 2,
+		2, 2, 2,
+		2, 2, 2
+	}
+);
+
+TEMPER_INVOKE_PARAMETRIC_TEST( Test_int4x3_max,
+	&(int4x3)
+	{
+		69, 69, 69,
+		69, 69, 69,
+		69, 69, 69,
+		69, 69, 69
+	},
+	&(int4x3)
+	{
+		420, 420, 420,
+		420, 420, 420,
+		420, 420, 420,
+		420, 420, 420
+	},
+	&(int4x3)
+	{
+		420, 420, 420,
+		420, 420, 420,
+		420, 420, 420,
+		420, 420, 420
 	}
 );
 

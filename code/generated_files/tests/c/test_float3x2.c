@@ -1172,6 +1172,27 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_float3x2_min,
 	}
 );
 
+TEMPER_INVOKE_PARAMETRIC_TEST( Test_float3x2_min,
+	&(float3x2)
+	{
+		420.000000f, 420.000000f,
+		420.000000f, 420.000000f,
+		420.000000f, 420.000000f
+	},
+	&(float3x2)
+	{
+		69.000000f, 69.000000f,
+		69.000000f, 69.000000f,
+		69.000000f, 69.000000f
+	},
+	&(float3x2)
+	{
+		69.000000f, 69.000000f,
+		69.000000f, 69.000000f,
+		69.000000f, 69.000000f
+	}
+);
+
 TEMPER_PARAMETRIC( Test_float3x2_max, TEMPER_FLAG_SHOULD_RUN, const float3x2* lhs, const float3x2* rhs, const float3x2* expectedAnswer )
 {
 	float3x2 actualResult = float3x2_max( lhs, rhs );
@@ -1181,15 +1202,15 @@ TEMPER_PARAMETRIC( Test_float3x2_max, TEMPER_FLAG_SHOULD_RUN, const float3x2* lh
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_float3x2_max,
 	&(float3x2)
 	{
-		1.000000f, 1.000000f,
-		1.000000f, 1.000000f,
-		1.000000f, 1.000000f
-	},
-	&(float3x2)
-	{
 		0.000000f, 0.000000f,
 		0.000000f, 0.000000f,
 		0.000000f, 0.000000f
+	},
+	&(float3x2)
+	{
+		1.000000f, 1.000000f,
+		1.000000f, 1.000000f,
+		1.000000f, 1.000000f
 	},
 	&(float3x2)
 	{
@@ -1202,12 +1223,6 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_float3x2_max,
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_float3x2_max,
 	&(float3x2)
 	{
-		2.000000f, 2.000000f,
-		2.000000f, 2.000000f,
-		2.000000f, 2.000000f
-	},
-	&(float3x2)
-	{
 		1.000000f, 1.000000f,
 		1.000000f, 1.000000f,
 		1.000000f, 1.000000f
@@ -1217,6 +1232,33 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_float3x2_max,
 		2.000000f, 2.000000f,
 		2.000000f, 2.000000f,
 		2.000000f, 2.000000f
+	},
+	&(float3x2)
+	{
+		2.000000f, 2.000000f,
+		2.000000f, 2.000000f,
+		2.000000f, 2.000000f
+	}
+);
+
+TEMPER_INVOKE_PARAMETRIC_TEST( Test_float3x2_max,
+	&(float3x2)
+	{
+		69.000000f, 69.000000f,
+		69.000000f, 69.000000f,
+		69.000000f, 69.000000f
+	},
+	&(float3x2)
+	{
+		420.000000f, 420.000000f,
+		420.000000f, 420.000000f,
+		420.000000f, 420.000000f
+	},
+	&(float3x2)
+	{
+		420.000000f, 420.000000f,
+		420.000000f, 420.000000f,
+		420.000000f, 420.000000f
 	}
 );
 

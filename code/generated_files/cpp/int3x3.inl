@@ -69,11 +69,39 @@ int3x3::int3x3( const int32_t m00, const int32_t m01, const int32_t m02,
 	rows[2] = int3( m20, m21, m22 );
 }
 
-int3x3::int3x3( const int3x3& other )
+int3x3::int3x3( const int3x3& mat )
 {
-	rows[0] = other[0];
-	rows[1] = other[1];
-	rows[2] = other[2];
+	rows[0] = mat[0];
+	rows[1] = mat[1];
+	rows[2] = mat[2];
+}
+
+int3x3::int3x3( const bool3x3& mat )
+{
+	rows[0] = int3( mat[0] );
+	rows[1] = int3( mat[1] );
+	rows[2] = int3( mat[2] );
+}
+
+int3x3::int3x3( const uint3x3& mat )
+{
+	rows[0] = int3( mat[0] );
+	rows[1] = int3( mat[1] );
+	rows[2] = int3( mat[2] );
+}
+
+int3x3::int3x3( const float3x3& mat )
+{
+	rows[0] = int3( mat[0] );
+	rows[1] = int3( mat[1] );
+	rows[2] = int3( mat[2] );
+}
+
+int3x3::int3x3( const double3x3& mat )
+{
+	rows[0] = int3( mat[0] );
+	rows[1] = int3( mat[1] );
+	rows[2] = int3( mat[2] );
 }
 
 int3x3 int3x3::operator=( const int3x3& other )

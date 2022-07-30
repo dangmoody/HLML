@@ -64,10 +64,34 @@ int2x4::int2x4( const int32_t m00, const int32_t m01, const int32_t m02, const i
 	rows[1] = int4( m10, m11, m12, m13 );
 }
 
-int2x4::int2x4( const int2x4& other )
+int2x4::int2x4( const int2x4& mat )
 {
-	rows[0] = other[0];
-	rows[1] = other[1];
+	rows[0] = mat[0];
+	rows[1] = mat[1];
+}
+
+int2x4::int2x4( const bool2x4& mat )
+{
+	rows[0] = int4( mat[0] );
+	rows[1] = int4( mat[1] );
+}
+
+int2x4::int2x4( const uint2x4& mat )
+{
+	rows[0] = int4( mat[0] );
+	rows[1] = int4( mat[1] );
+}
+
+int2x4::int2x4( const float2x4& mat )
+{
+	rows[0] = int4( mat[0] );
+	rows[1] = int4( mat[1] );
+}
+
+int2x4::int2x4( const double2x4& mat )
+{
+	rows[0] = int4( mat[0] );
+	rows[1] = int4( mat[1] );
 }
 
 int2x4 int2x4::operator=( const int2x4& other )

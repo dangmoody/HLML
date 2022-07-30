@@ -39,40 +39,72 @@ SOFTWARE.
 #include "hlml_defines.h"
 
 bool4::bool4( const bool32_t scalar )
+	: x( scalar )
+	, y( scalar )
+	, z( scalar )
+	, w( scalar )
 {
-	this->x = scalar;
-	this->y = scalar;
-	this->z = scalar;
-	this->w = scalar;
 }
 
 bool4::bool4( const bool32_t x, const bool32_t y, const bool32_t z, const bool32_t w )
+	: x( x )
+	, y( y )
+	, z( z )
+	, w( w )
 {
-	this->x = x;
-	this->y = y;
-	this->z = z;
-	this->w = w;
 }
 
-bool4::bool4( const bool2& other )
+bool4::bool4( const bool2& vec )
+	: x( vec.x )
+	, y( vec.y )
 {
-	this->x = other.x;
-	this->y = other.y;
 }
 
-bool4::bool4( const bool3& other )
+bool4::bool4( const bool3& vec )
+	: x( vec.x )
+	, y( vec.y )
+	, z( vec.z )
 {
-	this->x = other.x;
-	this->y = other.y;
-	this->z = other.z;
 }
 
-bool4::bool4( const bool4& other )
+bool4::bool4( const bool4& vec )
+	: x( vec.x )
+	, y( vec.y )
+	, z( vec.z )
+	, w( vec.w )
 {
-	this->x = other.x;
-	this->y = other.y;
-	this->z = other.z;
-	this->w = other.w;
+}
+
+bool4::bool4( const int4& vec )
+	: x( (bool32_t) vec.x )
+	, y( (bool32_t) vec.y )
+	, z( (bool32_t) vec.z )
+	, w( (bool32_t) vec.w )
+{
+}
+
+bool4::bool4( const uint4& vec )
+	: x( (bool32_t) vec.x )
+	, y( (bool32_t) vec.y )
+	, z( (bool32_t) vec.z )
+	, w( (bool32_t) vec.w )
+{
+}
+
+bool4::bool4( const float4& vec )
+	: x( (bool32_t) vec.x )
+	, y( (bool32_t) vec.y )
+	, z( (bool32_t) vec.z )
+	, w( (bool32_t) vec.w )
+{
+}
+
+bool4::bool4( const double4& vec )
+	: x( (bool32_t) vec.x )
+	, y( (bool32_t) vec.y )
+	, z( (bool32_t) vec.z )
+	, w( (bool32_t) vec.w )
+{
 }
 
 bool4 bool4::operator=( const bool2& other )

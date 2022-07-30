@@ -452,6 +452,12 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_double2_min,
 	&(double2) { 1.000000f, 1.000000f }
 );
 
+TEMPER_INVOKE_PARAMETRIC_TEST( Test_double2_min,
+	&(double2) { 420.000000f, 420.000000f },
+	&(double2) { 69.000000f, 69.000000f },
+	&(double2) { 69.000000f, 69.000000f }
+);
+
 TEMPER_PARAMETRIC( Test_double2_max, TEMPER_FLAG_SHOULD_RUN, const double2* lhs, const double2* rhs, const double2* expectedAnswer )
 {
 	double2 actualResult = double2_max( lhs, rhs );
@@ -459,15 +465,21 @@ TEMPER_PARAMETRIC( Test_double2_max, TEMPER_FLAG_SHOULD_RUN, const double2* lhs,
 }
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_double2_max,
-	&(double2) { 1.000000f, 1.000000f },
 	&(double2) { 0.000000f, 0.000000f },
+	&(double2) { 1.000000f, 1.000000f },
 	&(double2) { 1.000000f, 1.000000f }
 );
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_double2_max,
-	&(double2) { 2.000000f, 2.000000f },
 	&(double2) { 1.000000f, 1.000000f },
+	&(double2) { 2.000000f, 2.000000f },
 	&(double2) { 2.000000f, 2.000000f }
+);
+
+TEMPER_INVOKE_PARAMETRIC_TEST( Test_double2_max,
+	&(double2) { 69.000000f, 69.000000f },
+	&(double2) { 420.000000f, 420.000000f },
+	&(double2) { 420.000000f, 420.000000f }
 );
 
 TEMPER_PARAMETRIC( Test_double2_saturate, TEMPER_FLAG_SHOULD_RUN, const double2* x, const double2* expectedAnswer )

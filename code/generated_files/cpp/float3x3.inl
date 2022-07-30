@@ -69,11 +69,39 @@ float3x3::float3x3( const float m00, const float m01, const float m02,
 	rows[2] = float3( m20, m21, m22 );
 }
 
-float3x3::float3x3( const float3x3& other )
+float3x3::float3x3( const float3x3& mat )
 {
-	rows[0] = other[0];
-	rows[1] = other[1];
-	rows[2] = other[2];
+	rows[0] = mat[0];
+	rows[1] = mat[1];
+	rows[2] = mat[2];
+}
+
+float3x3::float3x3( const bool3x3& mat )
+{
+	rows[0] = float3( mat[0] );
+	rows[1] = float3( mat[1] );
+	rows[2] = float3( mat[2] );
+}
+
+float3x3::float3x3( const int3x3& mat )
+{
+	rows[0] = float3( mat[0] );
+	rows[1] = float3( mat[1] );
+	rows[2] = float3( mat[2] );
+}
+
+float3x3::float3x3( const uint3x3& mat )
+{
+	rows[0] = float3( mat[0] );
+	rows[1] = float3( mat[1] );
+	rows[2] = float3( mat[2] );
+}
+
+float3x3::float3x3( const double3x3& mat )
+{
+	rows[0] = float3( mat[0] );
+	rows[1] = float3( mat[1] );
+	rows[2] = float3( mat[2] );
 }
 
 float3x3 float3x3::operator=( const float3x3& other )

@@ -39,21 +39,45 @@ SOFTWARE.
 #include "hlml_defines.h"
 
 double2::double2( const double scalar )
+	: x( scalar )
+	, y( scalar )
 {
-	this->x = scalar;
-	this->y = scalar;
 }
 
 double2::double2( const double x, const double y )
+	: x( x )
+	, y( y )
 {
-	this->x = x;
-	this->y = y;
 }
 
-double2::double2( const double2& other )
+double2::double2( const double2& vec )
+	: x( vec.x )
+	, y( vec.y )
 {
-	this->x = other.x;
-	this->y = other.y;
+}
+
+double2::double2( const bool2& vec )
+	: x( (double) vec.x )
+	, y( (double) vec.y )
+{
+}
+
+double2::double2( const int2& vec )
+	: x( (double) vec.x )
+	, y( (double) vec.y )
+{
+}
+
+double2::double2( const uint2& vec )
+	: x( (double) vec.x )
+	, y( (double) vec.y )
+{
+}
+
+double2::double2( const float2& vec )
+	: x( (double) vec.x )
+	, y( (double) vec.y )
+{
 }
 
 double2 double2::operator=( const double2& other )

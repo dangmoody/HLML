@@ -34,6 +34,11 @@ SOFTWARE.
 
 #pragma once
 
+struct bool2x2;
+struct int2x2;
+struct uint2x2;
+struct double2x2;
+
 #include "float2.h"
 
 struct float2x2
@@ -57,12 +62,24 @@ struct float2x2
 					const float m10, const float m11 );
 
 	// Copy constructor.
-	HLML_INLINE float2x2( const float2x2& other );
+	HLML_INLINE float2x2( const float2x2& mat );
+
+	// Conversion constructor.  Casts all components of 'mat' from type bool32_t to type float.
+	HLML_INLINE explicit float2x2( const bool2x2& mat );
+
+	// Conversion constructor.  Casts all components of 'mat' from type int32_t to type float.
+	HLML_INLINE explicit float2x2( const int2x2& mat );
+
+	// Conversion constructor.  Casts all components of 'mat' from type uint32_t to type float.
+	HLML_INLINE explicit float2x2( const uint2x2& mat );
+
+	// Conversion constructor.  Casts all components of 'mat' from type double to type float.
+	HLML_INLINE explicit float2x2( const double2x2& mat );
 
 	HLML_INLINE ~float2x2() {}
 
 	// Sets each row of the matrix to be the same as the parameter.
-	HLML_INLINE float2x2 operator=( const float2x2& other );
+	HLML_INLINE float2x2 operator=( const float2x2& mat );
 
 	// Returns the row vector at the given index of the matrix.
 	// Index CANNOT be lower than 0 or higher than 2.

@@ -34,6 +34,11 @@ SOFTWARE.
 
 #pragma once
 
+struct bool4x2;
+struct int4x2;
+struct float4x2;
+struct double4x2;
+
 #include "uint2.h"
 
 struct uint4x2
@@ -59,12 +64,24 @@ struct uint4x2
 					const uint32_t m30, const uint32_t m31 );
 
 	// Copy constructor.
-	HLML_INLINE uint4x2( const uint4x2& other );
+	HLML_INLINE uint4x2( const uint4x2& mat );
+
+	// Conversion constructor.  Casts all components of 'mat' from type bool32_t to type uint32_t.
+	HLML_INLINE explicit uint4x2( const bool4x2& mat );
+
+	// Conversion constructor.  Casts all components of 'mat' from type int32_t to type uint32_t.
+	HLML_INLINE explicit uint4x2( const int4x2& mat );
+
+	// Conversion constructor.  Casts all components of 'mat' from type float to type uint32_t.
+	HLML_INLINE explicit uint4x2( const float4x2& mat );
+
+	// Conversion constructor.  Casts all components of 'mat' from type double to type uint32_t.
+	HLML_INLINE explicit uint4x2( const double4x2& mat );
 
 	HLML_INLINE ~uint4x2() {}
 
 	// Sets each row of the matrix to be the same as the parameter.
-	HLML_INLINE uint4x2 operator=( const uint4x2& other );
+	HLML_INLINE uint4x2 operator=( const uint4x2& mat );
 
 	// Returns the row vector at the given index of the matrix.
 	// Index CANNOT be lower than 0 or higher than 4.

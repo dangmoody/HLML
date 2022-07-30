@@ -64,10 +64,34 @@ uint2x3::uint2x3( const uint32_t m00, const uint32_t m01, const uint32_t m02,
 	rows[1] = uint3( m10, m11, m12 );
 }
 
-uint2x3::uint2x3( const uint2x3& other )
+uint2x3::uint2x3( const uint2x3& mat )
 {
-	rows[0] = other[0];
-	rows[1] = other[1];
+	rows[0] = mat[0];
+	rows[1] = mat[1];
+}
+
+uint2x3::uint2x3( const bool2x3& mat )
+{
+	rows[0] = uint3( mat[0] );
+	rows[1] = uint3( mat[1] );
+}
+
+uint2x3::uint2x3( const int2x3& mat )
+{
+	rows[0] = uint3( mat[0] );
+	rows[1] = uint3( mat[1] );
+}
+
+uint2x3::uint2x3( const float2x3& mat )
+{
+	rows[0] = uint3( mat[0] );
+	rows[1] = uint3( mat[1] );
+}
+
+uint2x3::uint2x3( const double2x3& mat )
+{
+	rows[0] = uint3( mat[0] );
+	rows[1] = uint3( mat[1] );
 }
 
 uint2x3 uint2x3::operator=( const uint2x3& other )

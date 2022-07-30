@@ -32,6 +32,180 @@ SOFTWARE.
 // EDITING THIS FILE MAY CAUSE SIDE EFFECTS.
 // DO SO AT YOUR OWN RISK.
 
+TEMPER_PARAMETRIC( Test_uint3x3_int3x3, TEMPER_FLAG_SHOULD_RUN, const uint3x3& vec, const int3x3& expectedAnswer )
+{
+	int3x3 actualResult = int3x3( vec );
+	TEMPER_CHECK_TRUE( actualResult == expectedAnswer );
+}
+
+TEMPER_INVOKE_PARAMETRIC_TEST( Test_uint3x3_int3x3,
+	uint3x3(
+		0U, 0U, 0U,
+		0U, 0U, 0U,
+		0U, 0U, 0U
+	),
+	int3x3(
+		0, 0, 0,
+		0, 0, 0,
+		0, 0, 0
+	)
+);
+
+TEMPER_INVOKE_PARAMETRIC_TEST( Test_uint3x3_int3x3,
+	uint3x3(
+		1U, 1U, 1U,
+		1U, 1U, 1U,
+		1U, 1U, 1U
+	),
+	int3x3(
+		1, 1, 1,
+		1, 1, 1,
+		1, 1, 1
+	)
+);
+
+TEMPER_INVOKE_PARAMETRIC_TEST( Test_uint3x3_int3x3,
+	uint3x3(
+		69U, 69U, 69U,
+		69U, 69U, 69U,
+		69U, 69U, 69U
+	),
+	int3x3(
+		69, 69, 69,
+		69, 69, 69,
+		69, 69, 69
+	)
+);
+
+TEMPER_INVOKE_PARAMETRIC_TEST( Test_uint3x3_int3x3,
+	uint3x3(
+		420U, 420U, 420U,
+		420U, 420U, 420U,
+		420U, 420U, 420U
+	),
+	int3x3(
+		420, 420, 420,
+		420, 420, 420,
+		420, 420, 420
+	)
+);
+
+TEMPER_PARAMETRIC( Test_float3x3_int3x3, TEMPER_FLAG_SHOULD_RUN, const float3x3& vec, const int3x3& expectedAnswer )
+{
+	int3x3 actualResult = int3x3( vec );
+	TEMPER_CHECK_TRUE( actualResult == expectedAnswer );
+}
+
+TEMPER_INVOKE_PARAMETRIC_TEST( Test_float3x3_int3x3,
+	float3x3(
+		0.000000f, 0.000000f, 0.000000f,
+		0.000000f, 0.000000f, 0.000000f,
+		0.000000f, 0.000000f, 0.000000f
+	),
+	int3x3(
+		0, 0, 0,
+		0, 0, 0,
+		0, 0, 0
+	)
+);
+
+TEMPER_INVOKE_PARAMETRIC_TEST( Test_float3x3_int3x3,
+	float3x3(
+		1.000000f, 1.000000f, 1.000000f,
+		1.000000f, 1.000000f, 1.000000f,
+		1.000000f, 1.000000f, 1.000000f
+	),
+	int3x3(
+		1, 1, 1,
+		1, 1, 1,
+		1, 1, 1
+	)
+);
+
+TEMPER_INVOKE_PARAMETRIC_TEST( Test_float3x3_int3x3,
+	float3x3(
+		69.000000f, 69.000000f, 69.000000f,
+		69.000000f, 69.000000f, 69.000000f,
+		69.000000f, 69.000000f, 69.000000f
+	),
+	int3x3(
+		69, 69, 69,
+		69, 69, 69,
+		69, 69, 69
+	)
+);
+
+TEMPER_INVOKE_PARAMETRIC_TEST( Test_float3x3_int3x3,
+	float3x3(
+		420.000000f, 420.000000f, 420.000000f,
+		420.000000f, 420.000000f, 420.000000f,
+		420.000000f, 420.000000f, 420.000000f
+	),
+	int3x3(
+		420, 420, 420,
+		420, 420, 420,
+		420, 420, 420
+	)
+);
+
+TEMPER_PARAMETRIC( Test_double3x3_int3x3, TEMPER_FLAG_SHOULD_RUN, const double3x3& vec, const int3x3& expectedAnswer )
+{
+	int3x3 actualResult = int3x3( vec );
+	TEMPER_CHECK_TRUE( actualResult == expectedAnswer );
+}
+
+TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3x3_int3x3,
+	double3x3(
+		0.000000f, 0.000000f, 0.000000f,
+		0.000000f, 0.000000f, 0.000000f,
+		0.000000f, 0.000000f, 0.000000f
+	),
+	int3x3(
+		0, 0, 0,
+		0, 0, 0,
+		0, 0, 0
+	)
+);
+
+TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3x3_int3x3,
+	double3x3(
+		1.000000f, 1.000000f, 1.000000f,
+		1.000000f, 1.000000f, 1.000000f,
+		1.000000f, 1.000000f, 1.000000f
+	),
+	int3x3(
+		1, 1, 1,
+		1, 1, 1,
+		1, 1, 1
+	)
+);
+
+TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3x3_int3x3,
+	double3x3(
+		69.000000f, 69.000000f, 69.000000f,
+		69.000000f, 69.000000f, 69.000000f,
+		69.000000f, 69.000000f, 69.000000f
+	),
+	int3x3(
+		69, 69, 69,
+		69, 69, 69,
+		69, 69, 69
+	)
+);
+
+TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3x3_int3x3,
+	double3x3(
+		420.000000f, 420.000000f, 420.000000f,
+		420.000000f, 420.000000f, 420.000000f,
+		420.000000f, 420.000000f, 420.000000f
+	),
+	int3x3(
+		420, 420, 420,
+		420, 420, 420,
+		420, 420, 420
+	)
+);
+
 TEMPER_PARAMETRIC( Test_int3x3_less_than, TEMPER_FLAG_SHOULD_RUN, const int3x3& lhs, const int3x3& rhs, const bool3x3& expectedAnswer )
 {
 	bool3x3 actualResult = lhs < rhs;
@@ -2010,6 +2184,24 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_int3x3_min,
 	)
 );
 
+TEMPER_INVOKE_PARAMETRIC_TEST( Test_int3x3_min,
+	int3x3(
+		420, 420, 420,
+		420, 420, 420,
+		420, 420, 420
+	),
+	int3x3(
+		69, 69, 69,
+		69, 69, 69,
+		69, 69, 69
+	),
+	int3x3(
+		69, 69, 69,
+		69, 69, 69,
+		69, 69, 69
+	)
+);
+
 TEMPER_PARAMETRIC( Test_int3x3_max, TEMPER_FLAG_SHOULD_RUN, const int3x3& lhs, const int3x3& rhs, const int3x3& expectedAnswer )
 {
 	int3x3 actualResult = max( lhs, rhs );
@@ -2018,14 +2210,14 @@ TEMPER_PARAMETRIC( Test_int3x3_max, TEMPER_FLAG_SHOULD_RUN, const int3x3& lhs, c
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_int3x3_max,
 	int3x3(
-		1, 1, 1,
-		1, 1, 1,
-		1, 1, 1
-	),
-	int3x3(
 		0, 0, 0,
 		0, 0, 0,
 		0, 0, 0
+	),
+	int3x3(
+		1, 1, 1,
+		1, 1, 1,
+		1, 1, 1
 	),
 	int3x3(
 		1, 1, 1,
@@ -2036,11 +2228,6 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_int3x3_max,
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_int3x3_max,
 	int3x3(
-		2, 2, 2,
-		2, 2, 2,
-		2, 2, 2
-	),
-	int3x3(
 		1, 1, 1,
 		1, 1, 1,
 		1, 1, 1
@@ -2049,6 +2236,29 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_int3x3_max,
 		2, 2, 2,
 		2, 2, 2,
 		2, 2, 2
+	),
+	int3x3(
+		2, 2, 2,
+		2, 2, 2,
+		2, 2, 2
+	)
+);
+
+TEMPER_INVOKE_PARAMETRIC_TEST( Test_int3x3_max,
+	int3x3(
+		69, 69, 69,
+		69, 69, 69,
+		69, 69, 69
+	),
+	int3x3(
+		420, 420, 420,
+		420, 420, 420,
+		420, 420, 420
+	),
+	int3x3(
+		420, 420, 420,
+		420, 420, 420,
+		420, 420, 420
 	)
 );
 

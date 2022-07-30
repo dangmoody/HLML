@@ -1028,6 +1028,24 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_float2x3_min,
 	}
 );
 
+TEMPER_INVOKE_PARAMETRIC_TEST( Test_float2x3_min,
+	&(float2x3)
+	{
+		420.000000f, 420.000000f, 420.000000f,
+		420.000000f, 420.000000f, 420.000000f
+	},
+	&(float2x3)
+	{
+		69.000000f, 69.000000f, 69.000000f,
+		69.000000f, 69.000000f, 69.000000f
+	},
+	&(float2x3)
+	{
+		69.000000f, 69.000000f, 69.000000f,
+		69.000000f, 69.000000f, 69.000000f
+	}
+);
+
 TEMPER_PARAMETRIC( Test_float2x3_max, TEMPER_FLAG_SHOULD_RUN, const float2x3* lhs, const float2x3* rhs, const float2x3* expectedAnswer )
 {
 	float2x3 actualResult = float2x3_max( lhs, rhs );
@@ -1037,13 +1055,13 @@ TEMPER_PARAMETRIC( Test_float2x3_max, TEMPER_FLAG_SHOULD_RUN, const float2x3* lh
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_float2x3_max,
 	&(float2x3)
 	{
-		1.000000f, 1.000000f, 1.000000f,
-		1.000000f, 1.000000f, 1.000000f
+		0.000000f, 0.000000f, 0.000000f,
+		0.000000f, 0.000000f, 0.000000f
 	},
 	&(float2x3)
 	{
-		0.000000f, 0.000000f, 0.000000f,
-		0.000000f, 0.000000f, 0.000000f
+		1.000000f, 1.000000f, 1.000000f,
+		1.000000f, 1.000000f, 1.000000f
 	},
 	&(float2x3)
 	{
@@ -1055,11 +1073,6 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_float2x3_max,
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_float2x3_max,
 	&(float2x3)
 	{
-		2.000000f, 2.000000f, 2.000000f,
-		2.000000f, 2.000000f, 2.000000f
-	},
-	&(float2x3)
-	{
 		1.000000f, 1.000000f, 1.000000f,
 		1.000000f, 1.000000f, 1.000000f
 	},
@@ -1067,6 +1080,29 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_float2x3_max,
 	{
 		2.000000f, 2.000000f, 2.000000f,
 		2.000000f, 2.000000f, 2.000000f
+	},
+	&(float2x3)
+	{
+		2.000000f, 2.000000f, 2.000000f,
+		2.000000f, 2.000000f, 2.000000f
+	}
+);
+
+TEMPER_INVOKE_PARAMETRIC_TEST( Test_float2x3_max,
+	&(float2x3)
+	{
+		69.000000f, 69.000000f, 69.000000f,
+		69.000000f, 69.000000f, 69.000000f
+	},
+	&(float2x3)
+	{
+		420.000000f, 420.000000f, 420.000000f,
+		420.000000f, 420.000000f, 420.000000f
+	},
+	&(float2x3)
+	{
+		420.000000f, 420.000000f, 420.000000f,
+		420.000000f, 420.000000f, 420.000000f
 	}
 );
 

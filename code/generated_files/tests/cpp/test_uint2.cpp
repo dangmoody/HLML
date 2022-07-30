@@ -32,6 +32,84 @@ SOFTWARE.
 // EDITING THIS FILE MAY CAUSE SIDE EFFECTS.
 // DO SO AT YOUR OWN RISK.
 
+TEMPER_PARAMETRIC( Test_int2_uint2, TEMPER_FLAG_SHOULD_RUN, const int2& vec, const uint2& expectedAnswer )
+{
+	uint2 actualResult = uint2( vec );
+	TEMPER_CHECK_TRUE( actualResult == expectedAnswer );
+}
+
+TEMPER_INVOKE_PARAMETRIC_TEST( Test_int2_uint2,
+	int2( 0, 0 ),
+	uint2( 0U, 0U )
+);
+
+TEMPER_INVOKE_PARAMETRIC_TEST( Test_int2_uint2,
+	int2( 1, 1 ),
+	uint2( 1U, 1U )
+);
+
+TEMPER_INVOKE_PARAMETRIC_TEST( Test_int2_uint2,
+	int2( 69, 69 ),
+	uint2( 69U, 69U )
+);
+
+TEMPER_INVOKE_PARAMETRIC_TEST( Test_int2_uint2,
+	int2( 420, 420 ),
+	uint2( 420U, 420U )
+);
+
+TEMPER_PARAMETRIC( Test_float2_uint2, TEMPER_FLAG_SHOULD_RUN, const float2& vec, const uint2& expectedAnswer )
+{
+	uint2 actualResult = uint2( vec );
+	TEMPER_CHECK_TRUE( actualResult == expectedAnswer );
+}
+
+TEMPER_INVOKE_PARAMETRIC_TEST( Test_float2_uint2,
+	float2( 0.000000f, 0.000000f ),
+	uint2( 0U, 0U )
+);
+
+TEMPER_INVOKE_PARAMETRIC_TEST( Test_float2_uint2,
+	float2( 1.000000f, 1.000000f ),
+	uint2( 1U, 1U )
+);
+
+TEMPER_INVOKE_PARAMETRIC_TEST( Test_float2_uint2,
+	float2( 69.000000f, 69.000000f ),
+	uint2( 69U, 69U )
+);
+
+TEMPER_INVOKE_PARAMETRIC_TEST( Test_float2_uint2,
+	float2( 420.000000f, 420.000000f ),
+	uint2( 420U, 420U )
+);
+
+TEMPER_PARAMETRIC( Test_double2_uint2, TEMPER_FLAG_SHOULD_RUN, const double2& vec, const uint2& expectedAnswer )
+{
+	uint2 actualResult = uint2( vec );
+	TEMPER_CHECK_TRUE( actualResult == expectedAnswer );
+}
+
+TEMPER_INVOKE_PARAMETRIC_TEST( Test_double2_uint2,
+	double2( 0.000000f, 0.000000f ),
+	uint2( 0U, 0U )
+);
+
+TEMPER_INVOKE_PARAMETRIC_TEST( Test_double2_uint2,
+	double2( 1.000000f, 1.000000f ),
+	uint2( 1U, 1U )
+);
+
+TEMPER_INVOKE_PARAMETRIC_TEST( Test_double2_uint2,
+	double2( 69.000000f, 69.000000f ),
+	uint2( 69U, 69U )
+);
+
+TEMPER_INVOKE_PARAMETRIC_TEST( Test_double2_uint2,
+	double2( 420.000000f, 420.000000f ),
+	uint2( 420U, 420U )
+);
+
 TEMPER_PARAMETRIC( Test_uint2_less_than, TEMPER_FLAG_SHOULD_RUN, const uint2& lhs, const uint2& rhs, const bool2& expectedAnswer )
 {
 	bool2 actualResult = lhs < rhs;
@@ -898,6 +976,12 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_uint2_min,
 	uint2( 1U, 1U )
 );
 
+TEMPER_INVOKE_PARAMETRIC_TEST( Test_uint2_min,
+	uint2( 420U, 420U ),
+	uint2( 69U, 69U ),
+	uint2( 69U, 69U )
+);
+
 TEMPER_PARAMETRIC( Test_uint2_max, TEMPER_FLAG_SHOULD_RUN, const uint2& lhs, const uint2& rhs, const uint2& expectedAnswer )
 {
 	uint2 actualResult = max( lhs, rhs );
@@ -905,15 +989,21 @@ TEMPER_PARAMETRIC( Test_uint2_max, TEMPER_FLAG_SHOULD_RUN, const uint2& lhs, con
 }
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_uint2_max,
-	uint2( 1U, 1U ),
 	uint2( 0U, 0U ),
+	uint2( 1U, 1U ),
 	uint2( 1U, 1U )
 );
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_uint2_max,
-	uint2( 2U, 2U ),
 	uint2( 1U, 1U ),
+	uint2( 2U, 2U ),
 	uint2( 2U, 2U )
+);
+
+TEMPER_INVOKE_PARAMETRIC_TEST( Test_uint2_max,
+	uint2( 69U, 69U ),
+	uint2( 420U, 420U ),
+	uint2( 420U, 420U )
 );
 
 TEMPER_PARAMETRIC( Test_uint2_saturate, TEMPER_FLAG_SHOULD_RUN, const uint2& x, const uint2& expectedAnswer )

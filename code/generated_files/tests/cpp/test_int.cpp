@@ -32,6 +32,48 @@ SOFTWARE.
 // EDITING THIS FILE MAY CAUSE SIDE EFFECTS.
 // DO SO AT YOUR OWN RISK.
 
+TEMPER_PARAMETRIC( Test_uint32_t_int32_t, TEMPER_FLAG_SHOULD_RUN, const uint32_t vec, const int32_t expectedAnswer )
+{
+	int32_t actualResult = int32_t( vec );
+	TEMPER_CHECK_TRUE( actualResult == expectedAnswer );
+}
+
+TEMPER_INVOKE_PARAMETRIC_TEST( Test_uint32_t_int32_t, 0U, 0 );
+
+TEMPER_INVOKE_PARAMETRIC_TEST( Test_uint32_t_int32_t, 1U, 1 );
+
+TEMPER_INVOKE_PARAMETRIC_TEST( Test_uint32_t_int32_t, 69U, 69 );
+
+TEMPER_INVOKE_PARAMETRIC_TEST( Test_uint32_t_int32_t, 420U, 420 );
+
+TEMPER_PARAMETRIC( Test_float_int32_t, TEMPER_FLAG_SHOULD_RUN, const float vec, const int32_t expectedAnswer )
+{
+	int32_t actualResult = int32_t( vec );
+	TEMPER_CHECK_TRUE( actualResult == expectedAnswer );
+}
+
+TEMPER_INVOKE_PARAMETRIC_TEST( Test_float_int32_t, 0.000000f, 0 );
+
+TEMPER_INVOKE_PARAMETRIC_TEST( Test_float_int32_t, 1.000000f, 1 );
+
+TEMPER_INVOKE_PARAMETRIC_TEST( Test_float_int32_t, 69.000000f, 69 );
+
+TEMPER_INVOKE_PARAMETRIC_TEST( Test_float_int32_t, 420.000000f, 420 );
+
+TEMPER_PARAMETRIC( Test_double_int32_t, TEMPER_FLAG_SHOULD_RUN, const double vec, const int32_t expectedAnswer )
+{
+	int32_t actualResult = int32_t( vec );
+	TEMPER_CHECK_TRUE( actualResult == expectedAnswer );
+}
+
+TEMPER_INVOKE_PARAMETRIC_TEST( Test_double_int32_t, 0.000000f, 0 );
+
+TEMPER_INVOKE_PARAMETRIC_TEST( Test_double_int32_t, 1.000000f, 1 );
+
+TEMPER_INVOKE_PARAMETRIC_TEST( Test_double_int32_t, 69.000000f, 69 );
+
+TEMPER_INVOKE_PARAMETRIC_TEST( Test_double_int32_t, 420.000000f, 420 );
+
 TEMPER_PARAMETRIC( Test_int32_t_min, TEMPER_FLAG_SHOULD_RUN, const int32_t lhs, const int32_t rhs, const int32_t expectedAnswer )
 {
 	int32_t actualResult = min( lhs, rhs );
@@ -42,15 +84,19 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_int32_t_min, 0, 1, 0 );
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_int32_t_min, 1, 2, 1 );
 
+TEMPER_INVOKE_PARAMETRIC_TEST( Test_int32_t_min, 420, 69, 69 );
+
 TEMPER_PARAMETRIC( Test_int32_t_max, TEMPER_FLAG_SHOULD_RUN, const int32_t lhs, const int32_t rhs, const int32_t expectedAnswer )
 {
 	int32_t actualResult = max( lhs, rhs );
 	TEMPER_CHECK_TRUE( actualResult == expectedAnswer );
 }
 
-TEMPER_INVOKE_PARAMETRIC_TEST( Test_int32_t_max, 1, 0, 1 );
+TEMPER_INVOKE_PARAMETRIC_TEST( Test_int32_t_max, 0, 1, 1 );
 
-TEMPER_INVOKE_PARAMETRIC_TEST( Test_int32_t_max, 2, 1, 2 );
+TEMPER_INVOKE_PARAMETRIC_TEST( Test_int32_t_max, 1, 2, 2 );
+
+TEMPER_INVOKE_PARAMETRIC_TEST( Test_int32_t_max, 69, 420, 420 );
 
 TEMPER_PARAMETRIC( Test_int32_t_saturate, TEMPER_FLAG_SHOULD_RUN, const int32_t x, const int32_t expectedAnswer )
 {

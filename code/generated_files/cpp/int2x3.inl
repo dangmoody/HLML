@@ -64,10 +64,34 @@ int2x3::int2x3( const int32_t m00, const int32_t m01, const int32_t m02,
 	rows[1] = int3( m10, m11, m12 );
 }
 
-int2x3::int2x3( const int2x3& other )
+int2x3::int2x3( const int2x3& mat )
 {
-	rows[0] = other[0];
-	rows[1] = other[1];
+	rows[0] = mat[0];
+	rows[1] = mat[1];
+}
+
+int2x3::int2x3( const bool2x3& mat )
+{
+	rows[0] = int3( mat[0] );
+	rows[1] = int3( mat[1] );
+}
+
+int2x3::int2x3( const uint2x3& mat )
+{
+	rows[0] = int3( mat[0] );
+	rows[1] = int3( mat[1] );
+}
+
+int2x3::int2x3( const float2x3& mat )
+{
+	rows[0] = int3( mat[0] );
+	rows[1] = int3( mat[1] );
+}
+
+int2x3::int2x3( const double2x3& mat )
+{
+	rows[0] = int3( mat[0] );
+	rows[1] = int3( mat[1] );
 }
 
 int2x3 int2x3::operator=( const int2x3& other )

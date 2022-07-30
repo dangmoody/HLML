@@ -1,3 +1,8 @@
+typedef struct testFixture_Assignment_t {
+	float32 values[4];
+	float32 expectedAnswer[4];
+} testFixture_Assignment_t;
+
 typedef struct testFixture_Length_t {
 	float32	values[4];
 	float32	expectedAnswerVec2;
@@ -76,6 +81,7 @@ typedef struct testFixture_QuatToRotationMatrix_t {
 	float32	quat[4];
 	float32	expectedAnswer[16];
 } testFixture_QuatToRotationMatrix_t;
+
 
 static void Gen_GenerateTests_Length_Internal( allocatorLinear_t* tempStorage, stringBuilder_t* code, const typeInfo_t* typeInfo, const char* funcName, const generatorStrings_t* strings, const generatorFlags_t flags, const testFixture_Length_t* fixtures, const u32 fixturesCount ) {
 	assert( tempStorage );

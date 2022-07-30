@@ -69,11 +69,39 @@ uint3x4::uint3x4( const uint32_t m00, const uint32_t m01, const uint32_t m02, co
 	rows[2] = uint4( m20, m21, m22, m23 );
 }
 
-uint3x4::uint3x4( const uint3x4& other )
+uint3x4::uint3x4( const uint3x4& mat )
 {
-	rows[0] = other[0];
-	rows[1] = other[1];
-	rows[2] = other[2];
+	rows[0] = mat[0];
+	rows[1] = mat[1];
+	rows[2] = mat[2];
+}
+
+uint3x4::uint3x4( const bool3x4& mat )
+{
+	rows[0] = uint4( mat[0] );
+	rows[1] = uint4( mat[1] );
+	rows[2] = uint4( mat[2] );
+}
+
+uint3x4::uint3x4( const int3x4& mat )
+{
+	rows[0] = uint4( mat[0] );
+	rows[1] = uint4( mat[1] );
+	rows[2] = uint4( mat[2] );
+}
+
+uint3x4::uint3x4( const float3x4& mat )
+{
+	rows[0] = uint4( mat[0] );
+	rows[1] = uint4( mat[1] );
+	rows[2] = uint4( mat[2] );
+}
+
+uint3x4::uint3x4( const double3x4& mat )
+{
+	rows[0] = uint4( mat[0] );
+	rows[1] = uint4( mat[1] );
+	rows[2] = uint4( mat[2] );
 }
 
 uint3x4 uint3x4::operator=( const uint3x4& other )

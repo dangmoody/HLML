@@ -34,6 +34,11 @@ SOFTWARE.
 
 #pragma once
 
+struct bool3x4;
+struct int3x4;
+struct uint3x4;
+struct float3x4;
+
 #include "double4.h"
 
 struct double3x4
@@ -58,12 +63,24 @@ struct double3x4
 					const double m20, const double m21, const double m22, const double m23 );
 
 	// Copy constructor.
-	HLML_INLINE double3x4( const double3x4& other );
+	HLML_INLINE double3x4( const double3x4& mat );
+
+	// Conversion constructor.  Casts all components of 'mat' from type bool32_t to type double.
+	HLML_INLINE explicit double3x4( const bool3x4& mat );
+
+	// Conversion constructor.  Casts all components of 'mat' from type int32_t to type double.
+	HLML_INLINE explicit double3x4( const int3x4& mat );
+
+	// Conversion constructor.  Casts all components of 'mat' from type uint32_t to type double.
+	HLML_INLINE explicit double3x4( const uint3x4& mat );
+
+	// Conversion constructor.  Casts all components of 'mat' from type float to type double.
+	HLML_INLINE explicit double3x4( const float3x4& mat );
 
 	HLML_INLINE ~double3x4() {}
 
 	// Sets each row of the matrix to be the same as the parameter.
-	HLML_INLINE double3x4 operator=( const double3x4& other );
+	HLML_INLINE double3x4 operator=( const double3x4& mat );
 
 	// Returns the row vector at the given index of the matrix.
 	// Index CANNOT be lower than 0 or higher than 3.

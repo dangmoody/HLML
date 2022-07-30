@@ -774,6 +774,12 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_int4_min,
 	&(int4) { 1, 1, 1, 1 }
 );
 
+TEMPER_INVOKE_PARAMETRIC_TEST( Test_int4_min,
+	&(int4) { 420, 420, 420, 420 },
+	&(int4) { 69, 69, 69, 69 },
+	&(int4) { 69, 69, 69, 69 }
+);
+
 TEMPER_PARAMETRIC( Test_int4_max, TEMPER_FLAG_SHOULD_RUN, const int4* lhs, const int4* rhs, const int4* expectedAnswer )
 {
 	int4 actualResult = int4_max( lhs, rhs );
@@ -781,15 +787,21 @@ TEMPER_PARAMETRIC( Test_int4_max, TEMPER_FLAG_SHOULD_RUN, const int4* lhs, const
 }
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_int4_max,
-	&(int4) { 1, 1, 1, 1 },
 	&(int4) { 0, 0, 0, 0 },
+	&(int4) { 1, 1, 1, 1 },
 	&(int4) { 1, 1, 1, 1 }
 );
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_int4_max,
-	&(int4) { 2, 2, 2, 2 },
 	&(int4) { 1, 1, 1, 1 },
+	&(int4) { 2, 2, 2, 2 },
 	&(int4) { 2, 2, 2, 2 }
+);
+
+TEMPER_INVOKE_PARAMETRIC_TEST( Test_int4_max,
+	&(int4) { 69, 69, 69, 69 },
+	&(int4) { 420, 420, 420, 420 },
+	&(int4) { 420, 420, 420, 420 }
 );
 
 TEMPER_PARAMETRIC( Test_int4_saturate, TEMPER_FLAG_SHOULD_RUN, const int4* x, const int4* expectedAnswer )

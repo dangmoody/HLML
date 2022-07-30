@@ -42,15 +42,19 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_float_min, 0.000000f, 1.000000f, 0.000000f )
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_float_min, 1.000000f, 2.000000f, 1.000000f );
 
+TEMPER_INVOKE_PARAMETRIC_TEST( Test_float_min, 420.000000f, 69.000000f, 69.000000f );
+
 TEMPER_PARAMETRIC( Test_float_max, TEMPER_FLAG_SHOULD_RUN, const float lhs, const float rhs, const float expectedAnswer )
 {
 	float actualResult = maxf( lhs, rhs );
 	TEMPER_CHECK_TRUE( floateq( actualResult, expectedAnswer ) );
 }
 
-TEMPER_INVOKE_PARAMETRIC_TEST( Test_float_max, 1.000000f, 0.000000f, 1.000000f );
+TEMPER_INVOKE_PARAMETRIC_TEST( Test_float_max, 0.000000f, 1.000000f, 1.000000f );
 
-TEMPER_INVOKE_PARAMETRIC_TEST( Test_float_max, 2.000000f, 1.000000f, 2.000000f );
+TEMPER_INVOKE_PARAMETRIC_TEST( Test_float_max, 1.000000f, 2.000000f, 2.000000f );
+
+TEMPER_INVOKE_PARAMETRIC_TEST( Test_float_max, 69.000000f, 420.000000f, 420.000000f );
 
 TEMPER_PARAMETRIC( Test_float_saturate, TEMPER_FLAG_SHOULD_RUN, const float x, const float expectedAnswer )
 {

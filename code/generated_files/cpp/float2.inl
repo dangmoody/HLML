@@ -39,21 +39,45 @@ SOFTWARE.
 #include "hlml_defines.h"
 
 float2::float2( const float scalar )
+	: x( scalar )
+	, y( scalar )
 {
-	this->x = scalar;
-	this->y = scalar;
 }
 
 float2::float2( const float x, const float y )
+	: x( x )
+	, y( y )
 {
-	this->x = x;
-	this->y = y;
 }
 
-float2::float2( const float2& other )
+float2::float2( const float2& vec )
+	: x( vec.x )
+	, y( vec.y )
 {
-	this->x = other.x;
-	this->y = other.y;
+}
+
+float2::float2( const bool2& vec )
+	: x( (float) vec.x )
+	, y( (float) vec.y )
+{
+}
+
+float2::float2( const int2& vec )
+	: x( (float) vec.x )
+	, y( (float) vec.y )
+{
+}
+
+float2::float2( const uint2& vec )
+	: x( (float) vec.x )
+	, y( (float) vec.y )
+{
+}
+
+float2::float2( const double2& vec )
+	: x( (float) vec.x )
+	, y( (float) vec.y )
+{
 }
 
 float2 float2::operator=( const float2& other )

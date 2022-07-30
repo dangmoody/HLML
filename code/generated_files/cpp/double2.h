@@ -37,6 +37,11 @@ SOFTWARE.
 struct double3;
 struct double4;
 
+struct bool2;
+struct int2;
+struct uint2;
+struct float2;
+
 #include "hlml_types.h"
 #include "hlml_defines.h"
 
@@ -79,6 +84,18 @@ struct double2
 
 	// Copy constructor.  Copies all elements of 'other' into the vector.
 	HLML_INLINE double2( const double2& other );
+
+	// Conversion constructor.  Casts all components of 'vec' from type bool32_t to type double.
+	HLML_INLINE explicit double2( const bool2& vec );
+
+	// Conversion constructor.  Casts all components of 'vec' from type int32_t to type double.
+	HLML_INLINE explicit double2( const int2& vec );
+
+	// Conversion constructor.  Casts all components of 'vec' from type uint32_t to type double.
+	HLML_INLINE explicit double2( const uint2& vec );
+
+	// Conversion constructor.  Casts all components of 'vec' from type float to type double.
+	HLML_INLINE explicit double2( const float2& vec );
 
 	~double2() {}
 

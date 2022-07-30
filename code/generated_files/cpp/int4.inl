@@ -39,40 +39,72 @@ SOFTWARE.
 #include "hlml_defines.h"
 
 int4::int4( const int32_t scalar )
+	: x( scalar )
+	, y( scalar )
+	, z( scalar )
+	, w( scalar )
 {
-	this->x = scalar;
-	this->y = scalar;
-	this->z = scalar;
-	this->w = scalar;
 }
 
 int4::int4( const int32_t x, const int32_t y, const int32_t z, const int32_t w )
+	: x( x )
+	, y( y )
+	, z( z )
+	, w( w )
 {
-	this->x = x;
-	this->y = y;
-	this->z = z;
-	this->w = w;
 }
 
-int4::int4( const int2& other )
+int4::int4( const int2& vec )
+	: x( vec.x )
+	, y( vec.y )
 {
-	this->x = other.x;
-	this->y = other.y;
 }
 
-int4::int4( const int3& other )
+int4::int4( const int3& vec )
+	: x( vec.x )
+	, y( vec.y )
+	, z( vec.z )
 {
-	this->x = other.x;
-	this->y = other.y;
-	this->z = other.z;
 }
 
-int4::int4( const int4& other )
+int4::int4( const int4& vec )
+	: x( vec.x )
+	, y( vec.y )
+	, z( vec.z )
+	, w( vec.w )
 {
-	this->x = other.x;
-	this->y = other.y;
-	this->z = other.z;
-	this->w = other.w;
+}
+
+int4::int4( const bool4& vec )
+	: x( (int32_t) vec.x )
+	, y( (int32_t) vec.y )
+	, z( (int32_t) vec.z )
+	, w( (int32_t) vec.w )
+{
+}
+
+int4::int4( const uint4& vec )
+	: x( (int32_t) vec.x )
+	, y( (int32_t) vec.y )
+	, z( (int32_t) vec.z )
+	, w( (int32_t) vec.w )
+{
+}
+
+int4::int4( const float4& vec )
+	: x( (int32_t) vec.x )
+	, y( (int32_t) vec.y )
+	, z( (int32_t) vec.z )
+	, w( (int32_t) vec.w )
+{
+}
+
+int4::int4( const double4& vec )
+	: x( (int32_t) vec.x )
+	, y( (int32_t) vec.y )
+	, z( (int32_t) vec.z )
+	, w( (int32_t) vec.w )
+{
 }
 
 int4 int4::operator=( const int2& other )
