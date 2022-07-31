@@ -46,8 +46,6 @@ int main( int argc, char** argv ) {
 	GEN_UNUSED( argc );
 	GEN_UNUSED( argv );
 
-	printf( "INT64_MIN: %lld\n", INT64_MIN );
-
 	float64 start = Time_NowMS();
 
 	printf(
