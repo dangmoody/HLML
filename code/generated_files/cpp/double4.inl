@@ -54,24 +54,24 @@ double4::double4( const double x, const double y, const double z, const double w
 {
 }
 
-double4::double4( const double2& vec )
-	: x( vec.x )
-	, y( vec.y )
-{
-}
-
-double4::double4( const double3& vec )
-	: x( vec.x )
-	, y( vec.y )
-	, z( vec.z )
-{
-}
-
 double4::double4( const double4& vec )
 	: x( vec.x )
 	, y( vec.y )
 	, z( vec.z )
 	, w( vec.w )
+{
+}
+
+double4::double4( const bool2& vec )
+	: x( (double) vec.x )
+	, y( (double) vec.y )
+{
+}
+
+double4::double4( const bool3& vec )
+	: x( (double) vec.x )
+	, y( (double) vec.y )
+	, z( (double) vec.z )
 {
 }
 
@@ -83,11 +83,37 @@ double4::double4( const bool4& vec )
 {
 }
 
+double4::double4( const int2& vec )
+	: x( (double) vec.x )
+	, y( (double) vec.y )
+{
+}
+
+double4::double4( const int3& vec )
+	: x( (double) vec.x )
+	, y( (double) vec.y )
+	, z( (double) vec.z )
+{
+}
+
 double4::double4( const int4& vec )
 	: x( (double) vec.x )
 	, y( (double) vec.y )
 	, z( (double) vec.z )
 	, w( (double) vec.w )
+{
+}
+
+double4::double4( const uint2& vec )
+	: x( (double) vec.x )
+	, y( (double) vec.y )
+{
+}
+
+double4::double4( const uint3& vec )
+	: x( (double) vec.x )
+	, y( (double) vec.y )
+	, z( (double) vec.z )
 {
 }
 
@@ -99,11 +125,37 @@ double4::double4( const uint4& vec )
 {
 }
 
+double4::double4( const float2& vec )
+	: x( (double) vec.x )
+	, y( (double) vec.y )
+{
+}
+
+double4::double4( const float3& vec )
+	: x( (double) vec.x )
+	, y( (double) vec.y )
+	, z( (double) vec.z )
+{
+}
+
 double4::double4( const float4& vec )
 	: x( (double) vec.x )
 	, y( (double) vec.y )
 	, z( (double) vec.z )
 	, w( (double) vec.w )
+{
+}
+
+double4::double4( const double2& vec )
+	: x( vec.x )
+	, y( vec.y )
+{
+}
+
+double4::double4( const double3& vec )
+	: x( vec.x )
+	, y( vec.y )
+	, z( vec.z )
 {
 }
 

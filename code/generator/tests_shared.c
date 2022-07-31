@@ -7,7 +7,8 @@ typedef struct parametricTestDefinition_t {
 	const typeInfo_t*						returnType;
 	const parametricTestDefinitionParm_t*	parms;
 	u32										parmsCount;
-	bool32									alsoGenerateSSE;
+	bool32									alsoGenerateSSE;	// TODO(DM): now that we have multiple bools, do flags
+	bool32									checkEachComponent;
 	const char*								funcName;
 	const char*								testNameOverride;	// if NULL then generator will pick its own test name
 } parametricTestDefinition_t;
@@ -46,6 +47,10 @@ typedef struct parametricTestInvokationGenericParm_t {
 	const typeInfo_t*	typeInfo;
 	const float32*		value;
 } parametricTestInvokationGenericParm_t;
+
+typedef struct testFixture_Ctor_t {
+	float32	values[4];
+} testFixture_Ctor_t;
 
 typedef struct testFixture_All_t {
 	bool32	values[16];
@@ -275,6 +280,7 @@ static void Gen_GenerateParametricTestDefinition_Generic( allocatorLinear_t* tem
 
 	const char* testName = def->testNameOverride ? def->testNameOverride : Gen_GetTestName( tempStorage, typeInfo, def->funcName );
 
+	const char* floateqFuncStr = Gen_GetFuncName_Floateq( def->returnType->type );
 	const char* equalsFuncStr = NULL;
 	const char* passByStr = NULL;
 	const char* referenceStr = NULL;
@@ -283,7 +289,7 @@ static void Gen_GenerateParametricTestDefinition_Generic( allocatorLinear_t* tem
 	bool32 returnScalarFloatingPoint = returnScalar && Gen_TypeIsFloatingPoint( def->returnType->type );
 
 	if ( returnScalar ) {
-		equalsFuncStr = Gen_GetFuncName_Floateq( def->returnType->type );
+		equalsFuncStr = floateqFuncStr;
 		passByStr = "";
 		referenceStr = "";
 	} else {
@@ -315,10 +321,24 @@ static void Gen_GenerateParametricTestDefinition_Generic( allocatorLinear_t* tem
 	}
 
 	StringBuilder_Append( code, " );\n" );
-	if ( returnScalarFloatingPoint || ( !returnScalar && !generateOperators ) ) {
-		StringBuilder_Appendf( code, "\tTEMPER_CHECK_TRUE( %s( %sactualResult, expectedAnswer ) );\n", equalsFuncStr, referenceStr );
+	if ( def->checkEachComponent ) {
+		// generate separate check calls for each component of the vector/matrix
+		if ( Gen_TypeIsFloatingPoint( typeInfo->type ) ) {
+			for ( u32 col = 0; col < def->returnType->numCols; col++ ) {
+				StringBuilder_Appendf( code, "\tTEMPER_CHECK_TRUE( %s( actualResult[%d], expectedAnswer%s%c ) );\n", floateqFuncStr, col, strings->parmAccessOperatorStr, GEN_COMPONENT_NAMES_VECTOR[col] );
+			}
+		} else {
+			for ( u32 col = 0; col < def->returnType->numCols; col++ ) {
+				StringBuilder_Appendf( code, "\tTEMPER_CHECK_TRUE( actualResult[%d] == expectedAnswer%s%c );\n", col, strings->parmAccessOperatorStr, GEN_COMPONENT_NAMES_VECTOR[col] );
+			}
+		}
 	} else {
-		StringBuilder_Append( code, "\tTEMPER_CHECK_TRUE( actualResult == expectedAnswer );\n" );
+		// equals check against the whole type
+		if ( returnScalarFloatingPoint || ( !returnScalar && !generateOperators ) ) {
+			StringBuilder_Appendf( code, "\tTEMPER_CHECK_TRUE( %s( %sactualResult, expectedAnswer ) );\n", equalsFuncStr, referenceStr );
+		} else {
+			StringBuilder_Append( code, "\tTEMPER_CHECK_TRUE( actualResult == expectedAnswer );\n" );
+		}
 	}
 	StringBuilder_Append( code, "}\n\n" );
 
@@ -1279,8 +1299,6 @@ static void GenerateComponentWiseTests( allocatorLinear_t* tempStorage, stringBu
 	assert( scalarTypeFloatingPoint->fullTypeName );
 	assert( strings );
 
-	bool generateConstructors = flags & GENERATOR_FLAG_GENERATE_CONSTRUCTORS;
-
 	typeInfo_t boolReturnTypeScalar = {
 		.type			= GEN_TYPE_BOOL,
 		.numRows		= 1,
@@ -1316,75 +1334,6 @@ static void GenerateComponentWiseTests( allocatorLinear_t* tempStorage, stringBu
 		floatingPointTypeVector.fullTypeName = String_TPrintf( tempStorage, "%s%dx%d", Gen_GetTypeString( floatingPointTypeVector.type ), floatingPointTypeVector.numRows, floatingPointTypeVector.numCols );
 	} else {
 		floatingPointTypeVector.fullTypeName = Gen_GetMemberTypeString( floatingPointTypeVector.type );
-	}
-
-	// constructor tests
-	if ( generateConstructors ) {
-		for ( u32 typeIndex = 0; typeIndex < GEN_TYPE_COUNT; typeIndex++ ) {
-			const genType_t otherType = (genType_t) typeIndex;
-
-			if ( otherType == typeInfo->type ) {
-				continue;
-			}
-
-			// TODO(DM): the problem here is that we have no way of converting a value from the input type to the output type
-			// this means for the constructor tests we end up with a problem where we have something like the following:
-			//
-			// given an a test where we want to convert from a vector with values ( 69, 420 ) this will generate the following code for bool conversion:
-			//
-			//	TEMPER_INVOK_EPARAMETERIC_TEST( CtorTest,
-			//		bool2( true, true ),
-			//		float2( 69.0f, 420.0f )
-			//	);
-			//
-			// so we need a way of handling this
-			if ( otherType == GEN_TYPE_BOOL ) {
-				continue;
-			}
-
-			typeInfo_t otherTypeInfo = {
-				.type = otherType,
-				.numRows = typeInfo->numRows,
-				.numCols = typeInfo->numCols,
-			};
-
-			// TODO(DM): make a helper function for this
-			if ( Gen_TypeIsVector( typeInfo ) ) {
-				otherTypeInfo.fullTypeName = String_TPrintf( tempStorage, "%s%d", Gen_GetTypeString( otherTypeInfo.type ), otherTypeInfo.numCols );
-			} else if ( Gen_TypeIsMatrix( typeInfo ) ) {
-				otherTypeInfo.fullTypeName = String_TPrintf( tempStorage, "%s%dx%d", Gen_GetTypeString( otherTypeInfo.type ), otherTypeInfo.numRows, otherTypeInfo.numCols );
-			} else {
-				otherTypeInfo.fullTypeName = Gen_GetMemberTypeString( otherTypeInfo.type );
-			}
-
-			// the ctor name is just the name of the type
-			// so for this test the name of the type is also the name of the function
-			const char* ctorName = typeInfo->fullTypeName;
-
-			Gen_GenerateParametricTestsCode_ComponentWise( tempStorage, code, &otherTypeInfo, ctorName, strings, flags, &(componentWiseTestsData_t) {
-				.parmDefsCount = 1,
-				.parmDefs = (parametricTestDefinitionParm_t[]) {
-					{ &otherTypeInfo, "vec" }
-				},
-
-				.numTests = 4,
-
-				.inputs = (testValues_t[]) {
-					{ (float32[]) { 0.0f   } },
-					{ (float32[]) { 1.0f   } },
-					{ (float32[]) { 69.0f  } },
-					{ (float32[]) { 420.0f } }
-				},
-
-				.outputType = typeInfo,
-				.outputs = (testValues_t[]) {
-					{ (float32[]) { 0.0f   } },
-					{ (float32[]) { 1.0f   } },
-					{ (float32[]) { 69.0f  } },
-					{ (float32[]) { 420.0f } }
-				}
-			} );
-		}
 	}
 
 	GenerateOperatorTests( tempStorage, code, typeInfo, scalarType, &boolType, strings, flags );
@@ -1688,5 +1637,114 @@ static void GenerateComponentWiseTests( allocatorLinear_t* tempStorage, stringBu
 				{ (float32[]) { 0.707106781f } }
 			}
 		} );
+	}
+}
+
+static void GenerateTests_CtorConversion( allocatorLinear_t* tempStorage, stringBuilder_t* code, const typeInfo_t* typeInfo, const generatorStrings_t* strings, const generatorFlags_t flags ) {
+	assert( tempStorage );
+	assert( code );
+	assert( typeInfo );
+	assert( strings );
+
+	bool generateConstructors = flags & GENERATOR_FLAG_GENERATE_CONSTRUCTORS;
+
+	if ( !generateConstructors ) {
+		return;
+	}
+
+	// TODO(DM): enable this test for matrices too
+	if ( !Gen_TypeIsVector( typeInfo ) ) {
+		return;
+	}
+
+	testFixture_Ctor_t fixtures[] = {
+		{
+			.values = { 0.0f, 0.0f, 0.0f, 0.0f }
+		},
+
+		{
+			.values = { 10.0f, 10.0f, 10.0f, 10.0f }
+		},
+
+		{
+			.values = { 10.0f, 20.0f, 30.0f, 40.0f }
+		},
+
+		{
+			.values = { 40.0f, 30.0f, 20.0f, 10.0f }
+		}
+	};
+
+	// now generate every type other than the one were generating the tests for
+	// we want to convert from those other types to the one were generating tests for
+	for ( u32 typeIndex = 0; typeIndex < GEN_TYPE_COUNT; typeIndex++ ) {
+		const genType_t otherType = (genType_t) typeIndex;
+
+		for ( u32 rhsComponentIndex = 2; rhsComponentIndex <= 4; rhsComponentIndex++ ) {
+			// TODO(DM): the problem here is that we have no way of converting a value from the input type to the output type
+			// this means for the constructor tests we end up with a problem where we have something like the following:
+			//
+			// given an a test where we want to convert from a vector with values ( 69, 420 ) this will generate the following code for bool conversion:
+			//
+			//	TEMPER_INVOK_EPARAMETERIC_TEST( CtorTest,
+			//		bool2( true, true ),
+			//		float2( 69.0f, 420.0f )
+			//	);
+			//
+			// so we need a way of handling this
+			if ( otherType == GEN_TYPE_BOOL ) {
+				continue;
+			}
+
+			typeInfo_t otherTypeInfo = {
+				.type = otherType,
+				.numRows = typeInfo->numRows,
+				.numCols = rhsComponentIndex,
+			};
+
+			// TODO(DM): make a helper function for this
+			if ( Gen_TypeIsVector( typeInfo ) ) {
+				otherTypeInfo.fullTypeName = String_TPrintf( tempStorage, "%s%d", Gen_GetTypeString( otherTypeInfo.type ), otherTypeInfo.numCols );
+			} else if ( Gen_TypeIsMatrix( typeInfo ) ) {
+				otherTypeInfo.fullTypeName = String_TPrintf( tempStorage, "%s%dx%d", Gen_GetTypeString( otherTypeInfo.type ), otherTypeInfo.numRows, otherTypeInfo.numCols );
+			} else {
+				otherTypeInfo.fullTypeName = Gen_GetMemberTypeString( otherTypeInfo.type );
+			}
+
+			const u32 numCheckComponents = min( typeInfo->numCols, otherTypeInfo.numCols );
+
+			// this test cant use any of the main test generation functions because we only a certain number of components get assigned based on the type being converting from
+			StringBuilder_Appendf( code, "TEMPER_PARAMETRIC( Test_%s_%s, TEMPER_FLAG_SHOULD_RUN, const %s& convertFrom, const %s& expectedAnswer )\n", typeInfo->fullTypeName, otherTypeInfo.fullTypeName, otherTypeInfo.fullTypeName, typeInfo->fullTypeName );
+			StringBuilder_Append(  code, "{\n" );
+			StringBuilder_Appendf( code, "\t%s actualAnswer = %s( convertFrom );\n", typeInfo->fullTypeName, typeInfo->fullTypeName );
+			StringBuilder_Append(  code, "\n" );
+			if ( Gen_TypeIsFloatingPoint( typeInfo->type ) ) {
+				const char* floateqStr = Gen_GetFuncName_Floateq( typeInfo->type );
+
+				for ( u32 componentIndex = 0; componentIndex < numCheckComponents; componentIndex++ ) {
+					const char componentName = GEN_COMPONENT_NAMES_VECTOR[componentIndex];
+
+					StringBuilder_Appendf( code, "\tTEMPER_CHECK_TRUE( %s( expectedAnswer.%c, actualAnswer.%c ) );\n", floateqStr, componentName, componentName );
+				}
+			} else {
+				for ( u32 componentIndex = 0; componentIndex < numCheckComponents; componentIndex++ ) {
+					const char componentName = GEN_COMPONENT_NAMES_VECTOR[componentIndex];
+
+					StringBuilder_Appendf( code, "\tTEMPER_CHECK_TRUE( expectedAnswer.%c == actualAnswer.%c );\n", componentName, componentName );
+				}
+			}
+			StringBuilder_Append(  code, "}\n\n" );
+
+			for ( u32 fixtureIndex = 0; fixtureIndex < GEN_COUNTOF( fixtures ); fixtureIndex++ ) {
+				const testFixture_Ctor_t* fixture = &fixtures[fixtureIndex];
+
+				parametricTestInvokationGenericParm_t parms[] = {
+					{ &otherTypeInfo, fixture->values },
+					{ typeInfo,       fixture->values }
+				};
+
+				Gen_GenerateParametricTestInvokation_Generic( tempStorage, code, typeInfo, otherTypeInfo.fullTypeName, strings, flags, parms, GEN_COUNTOF( parms ) );
+			}
+		}
 	}
 }

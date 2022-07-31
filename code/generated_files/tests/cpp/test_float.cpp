@@ -32,48 +32,6 @@ SOFTWARE.
 // EDITING THIS FILE MAY CAUSE SIDE EFFECTS.
 // DO SO AT YOUR OWN RISK.
 
-TEMPER_PARAMETRIC( Test_int32_t_float, TEMPER_FLAG_SHOULD_RUN, const int32_t vec, const float expectedAnswer )
-{
-	float actualResult = float( vec );
-	TEMPER_CHECK_TRUE( floateq( actualResult, expectedAnswer ) );
-}
-
-TEMPER_INVOKE_PARAMETRIC_TEST( Test_int32_t_float, 0, 0.000000f );
-
-TEMPER_INVOKE_PARAMETRIC_TEST( Test_int32_t_float, 1, 1.000000f );
-
-TEMPER_INVOKE_PARAMETRIC_TEST( Test_int32_t_float, 69, 69.000000f );
-
-TEMPER_INVOKE_PARAMETRIC_TEST( Test_int32_t_float, 420, 420.000000f );
-
-TEMPER_PARAMETRIC( Test_uint32_t_float, TEMPER_FLAG_SHOULD_RUN, const uint32_t vec, const float expectedAnswer )
-{
-	float actualResult = float( vec );
-	TEMPER_CHECK_TRUE( floateq( actualResult, expectedAnswer ) );
-}
-
-TEMPER_INVOKE_PARAMETRIC_TEST( Test_uint32_t_float, 0U, 0.000000f );
-
-TEMPER_INVOKE_PARAMETRIC_TEST( Test_uint32_t_float, 1U, 1.000000f );
-
-TEMPER_INVOKE_PARAMETRIC_TEST( Test_uint32_t_float, 69U, 69.000000f );
-
-TEMPER_INVOKE_PARAMETRIC_TEST( Test_uint32_t_float, 420U, 420.000000f );
-
-TEMPER_PARAMETRIC( Test_double_float, TEMPER_FLAG_SHOULD_RUN, const double vec, const float expectedAnswer )
-{
-	float actualResult = float( vec );
-	TEMPER_CHECK_TRUE( floateq( actualResult, expectedAnswer ) );
-}
-
-TEMPER_INVOKE_PARAMETRIC_TEST( Test_double_float, 0.000000f, 0.000000f );
-
-TEMPER_INVOKE_PARAMETRIC_TEST( Test_double_float, 1.000000f, 1.000000f );
-
-TEMPER_INVOKE_PARAMETRIC_TEST( Test_double_float, 69.000000f, 69.000000f );
-
-TEMPER_INVOKE_PARAMETRIC_TEST( Test_double_float, 420.000000f, 420.000000f );
-
 TEMPER_PARAMETRIC( Test_float_min, TEMPER_FLAG_SHOULD_RUN, const float lhs, const float rhs, const float expectedAnswer )
 {
 	float actualResult = min( lhs, rhs );

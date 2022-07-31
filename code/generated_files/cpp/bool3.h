@@ -36,18 +36,22 @@ SOFTWARE.
 
 struct bool2;
 struct bool4;
-
+struct int2;
 struct int3;
+struct int4;
+struct uint2;
 struct uint3;
+struct uint4;
+struct float2;
 struct float3;
+struct float4;
+struct double2;
 struct double3;
+struct double4;
 
 #include "hlml_types.h"
 #include "hlml_defines.h"
 
-struct bool2;
-struct bool3;
-struct bool4;
 #include "swizzle_templates.h"
 
 // ignore prohibition of anymous structs for GCC
@@ -327,22 +331,49 @@ struct bool3
 	HLML_INLINE bool3( const bool32_t x, const bool32_t y, const bool32_t z );
 
 	// Copy constructor.  Copies all elements of 'other' into the vector.
-	HLML_INLINE bool3( const bool2& other );
-
-	// Copy constructor.  Copies all elements of 'other' into the vector.
 	HLML_INLINE bool3( const bool3& other );
+
+	// Conversion constructor.  Casts all components of 'vec' from type bool32_t to type bool32_t.
+	HLML_INLINE explicit bool3( const bool2& vec );
+
+	// Conversion constructor.  Casts all components of 'vec' from type bool32_t to type bool32_t.
+	HLML_INLINE explicit bool3( const bool4& vec );
+
+	// Conversion constructor.  Casts all components of 'vec' from type int32_t to type bool32_t.
+	HLML_INLINE explicit bool3( const int2& vec );
 
 	// Conversion constructor.  Casts all components of 'vec' from type int32_t to type bool32_t.
 	HLML_INLINE explicit bool3( const int3& vec );
 
+	// Conversion constructor.  Casts all components of 'vec' from type int32_t to type bool32_t.
+	HLML_INLINE explicit bool3( const int4& vec );
+
+	// Conversion constructor.  Casts all components of 'vec' from type uint32_t to type bool32_t.
+	HLML_INLINE explicit bool3( const uint2& vec );
+
 	// Conversion constructor.  Casts all components of 'vec' from type uint32_t to type bool32_t.
 	HLML_INLINE explicit bool3( const uint3& vec );
+
+	// Conversion constructor.  Casts all components of 'vec' from type uint32_t to type bool32_t.
+	HLML_INLINE explicit bool3( const uint4& vec );
+
+	// Conversion constructor.  Casts all components of 'vec' from type float to type bool32_t.
+	HLML_INLINE explicit bool3( const float2& vec );
 
 	// Conversion constructor.  Casts all components of 'vec' from type float to type bool32_t.
 	HLML_INLINE explicit bool3( const float3& vec );
 
+	// Conversion constructor.  Casts all components of 'vec' from type float to type bool32_t.
+	HLML_INLINE explicit bool3( const float4& vec );
+
+	// Conversion constructor.  Casts all components of 'vec' from type double to type bool32_t.
+	HLML_INLINE explicit bool3( const double2& vec );
+
 	// Conversion constructor.  Casts all components of 'vec' from type double to type bool32_t.
 	HLML_INLINE explicit bool3( const double3& vec );
+
+	// Conversion constructor.  Casts all components of 'vec' from type double to type bool32_t.
+	HLML_INLINE explicit bool3( const double4& vec );
 
 	~bool3() {}
 

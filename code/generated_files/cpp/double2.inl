@@ -62,7 +62,31 @@ double2::double2( const bool2& vec )
 {
 }
 
+double2::double2( const bool3& vec )
+	: x( (double) vec.x )
+	, y( (double) vec.y )
+{
+}
+
+double2::double2( const bool4& vec )
+	: x( (double) vec.x )
+	, y( (double) vec.y )
+{
+}
+
 double2::double2( const int2& vec )
+	: x( (double) vec.x )
+	, y( (double) vec.y )
+{
+}
+
+double2::double2( const int3& vec )
+	: x( (double) vec.x )
+	, y( (double) vec.y )
+{
+}
+
+double2::double2( const int4& vec )
 	: x( (double) vec.x )
 	, y( (double) vec.y )
 {
@@ -74,9 +98,45 @@ double2::double2( const uint2& vec )
 {
 }
 
+double2::double2( const uint3& vec )
+	: x( (double) vec.x )
+	, y( (double) vec.y )
+{
+}
+
+double2::double2( const uint4& vec )
+	: x( (double) vec.x )
+	, y( (double) vec.y )
+{
+}
+
 double2::double2( const float2& vec )
 	: x( (double) vec.x )
 	, y( (double) vec.y )
+{
+}
+
+double2::double2( const float3& vec )
+	: x( (double) vec.x )
+	, y( (double) vec.y )
+{
+}
+
+double2::double2( const float4& vec )
+	: x( (double) vec.x )
+	, y( (double) vec.y )
+{
+}
+
+double2::double2( const double3& vec )
+	: x( vec.x )
+	, y( vec.y )
+{
+}
+
+double2::double2( const double4& vec )
+	: x( vec.x )
+	, y( vec.y )
 {
 }
 

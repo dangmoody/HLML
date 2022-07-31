@@ -54,6 +54,77 @@ float4::float4( const float x, const float y, const float z, const float w )
 {
 }
 
+float4::float4( const float4& vec )
+	: x( vec.x )
+	, y( vec.y )
+	, z( vec.z )
+	, w( vec.w )
+{
+}
+
+float4::float4( const bool2& vec )
+	: x( (float) vec.x )
+	, y( (float) vec.y )
+{
+}
+
+float4::float4( const bool3& vec )
+	: x( (float) vec.x )
+	, y( (float) vec.y )
+	, z( (float) vec.z )
+{
+}
+
+float4::float4( const bool4& vec )
+	: x( (float) vec.x )
+	, y( (float) vec.y )
+	, z( (float) vec.z )
+	, w( (float) vec.w )
+{
+}
+
+float4::float4( const int2& vec )
+	: x( (float) vec.x )
+	, y( (float) vec.y )
+{
+}
+
+float4::float4( const int3& vec )
+	: x( (float) vec.x )
+	, y( (float) vec.y )
+	, z( (float) vec.z )
+{
+}
+
+float4::float4( const int4& vec )
+	: x( (float) vec.x )
+	, y( (float) vec.y )
+	, z( (float) vec.z )
+	, w( (float) vec.w )
+{
+}
+
+float4::float4( const uint2& vec )
+	: x( (float) vec.x )
+	, y( (float) vec.y )
+{
+}
+
+float4::float4( const uint3& vec )
+	: x( (float) vec.x )
+	, y( (float) vec.y )
+	, z( (float) vec.z )
+{
+}
+
+float4::float4( const uint4& vec )
+	: x( (float) vec.x )
+	, y( (float) vec.y )
+	, z( (float) vec.z )
+	, w( (float) vec.w )
+{
+}
+
 float4::float4( const float2& vec )
 	: x( vec.x )
 	, y( vec.y )
@@ -67,35 +138,16 @@ float4::float4( const float3& vec )
 {
 }
 
-float4::float4( const float4& vec )
-	: x( vec.x )
-	, y( vec.y )
-	, z( vec.z )
-	, w( vec.w )
+float4::float4( const double2& vec )
+	: x( (float) vec.x )
+	, y( (float) vec.y )
 {
 }
 
-float4::float4( const bool4& vec )
+float4::float4( const double3& vec )
 	: x( (float) vec.x )
 	, y( (float) vec.y )
 	, z( (float) vec.z )
-	, w( (float) vec.w )
-{
-}
-
-float4::float4( const int4& vec )
-	: x( (float) vec.x )
-	, y( (float) vec.y )
-	, z( (float) vec.z )
-	, w( (float) vec.w )
-{
-}
-
-float4::float4( const uint4& vec )
-	: x( (float) vec.x )
-	, y( (float) vec.y )
-	, z( (float) vec.z )
-	, w( (float) vec.w )
 {
 }
 

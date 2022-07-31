@@ -1252,6 +1252,8 @@ static void GenerateVectorTests( allocatorLinear_t* tempStorage, const char* gen
 
 		GenerateComponentWiseTests( tempStorage, code, typeInfo, &scalarType, &scalarTypeFloatingPoint, strings, flags );
 
+		GenerateTests_CtorConversion( tempStorage, code, typeInfo, strings, flags );
+
 		Gen_GenerateTests_Lengthsq( tempStorage, code, typeInfo, strings, flags );
 		Gen_GenerateTests_Length( tempStorage, code, typeInfo, strings, flags );
 		Gen_GenerateTests_Dot( tempStorage, code, typeInfo, strings, flags );

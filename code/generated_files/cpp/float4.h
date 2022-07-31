@@ -34,20 +34,24 @@ SOFTWARE.
 
 #pragma once
 
+struct bool2;
+struct bool3;
+struct bool4;
+struct int2;
+struct int3;
+struct int4;
+struct uint2;
+struct uint3;
+struct uint4;
 struct float2;
 struct float3;
-
-struct bool4;
-struct int4;
-struct uint4;
+struct double2;
+struct double3;
 struct double4;
 
 #include "hlml_types.h"
 #include "hlml_defines.h"
 
-struct float2;
-struct float3;
-struct float4;
 #include "swizzle_templates.h"
 
 // ignore prohibition of anymous structs for GCC
@@ -767,22 +771,46 @@ struct float4
 	HLML_INLINE float4( const float x, const float y, const float z, const float w );
 
 	// Copy constructor.  Copies all elements of 'other' into the vector.
-	HLML_INLINE float4( const float2& other );
-
-	// Copy constructor.  Copies all elements of 'other' into the vector.
-	HLML_INLINE float4( const float3& other );
-
-	// Copy constructor.  Copies all elements of 'other' into the vector.
 	HLML_INLINE float4( const float4& other );
+
+	// Conversion constructor.  Casts all components of 'vec' from type bool32_t to type float.
+	HLML_INLINE explicit float4( const bool2& vec );
+
+	// Conversion constructor.  Casts all components of 'vec' from type bool32_t to type float.
+	HLML_INLINE explicit float4( const bool3& vec );
 
 	// Conversion constructor.  Casts all components of 'vec' from type bool32_t to type float.
 	HLML_INLINE explicit float4( const bool4& vec );
 
 	// Conversion constructor.  Casts all components of 'vec' from type int32_t to type float.
+	HLML_INLINE explicit float4( const int2& vec );
+
+	// Conversion constructor.  Casts all components of 'vec' from type int32_t to type float.
+	HLML_INLINE explicit float4( const int3& vec );
+
+	// Conversion constructor.  Casts all components of 'vec' from type int32_t to type float.
 	HLML_INLINE explicit float4( const int4& vec );
 
 	// Conversion constructor.  Casts all components of 'vec' from type uint32_t to type float.
+	HLML_INLINE explicit float4( const uint2& vec );
+
+	// Conversion constructor.  Casts all components of 'vec' from type uint32_t to type float.
+	HLML_INLINE explicit float4( const uint3& vec );
+
+	// Conversion constructor.  Casts all components of 'vec' from type uint32_t to type float.
 	HLML_INLINE explicit float4( const uint4& vec );
+
+	// Conversion constructor.  Casts all components of 'vec' from type float to type float.
+	HLML_INLINE explicit float4( const float2& vec );
+
+	// Conversion constructor.  Casts all components of 'vec' from type float to type float.
+	HLML_INLINE explicit float4( const float3& vec );
+
+	// Conversion constructor.  Casts all components of 'vec' from type double to type float.
+	HLML_INLINE explicit float4( const double2& vec );
+
+	// Conversion constructor.  Casts all components of 'vec' from type double to type float.
+	HLML_INLINE explicit float4( const double3& vec );
 
 	// Conversion constructor.  Casts all components of 'vec' from type double to type float.
 	HLML_INLINE explicit float4( const double4& vec );

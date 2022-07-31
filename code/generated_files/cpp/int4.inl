@@ -54,6 +54,35 @@ int4::int4( const int32_t x, const int32_t y, const int32_t z, const int32_t w )
 {
 }
 
+int4::int4( const int4& vec )
+	: x( vec.x )
+	, y( vec.y )
+	, z( vec.z )
+	, w( vec.w )
+{
+}
+
+int4::int4( const bool2& vec )
+	: x( (int32_t) vec.x )
+	, y( (int32_t) vec.y )
+{
+}
+
+int4::int4( const bool3& vec )
+	: x( (int32_t) vec.x )
+	, y( (int32_t) vec.y )
+	, z( (int32_t) vec.z )
+{
+}
+
+int4::int4( const bool4& vec )
+	: x( (int32_t) vec.x )
+	, y( (int32_t) vec.y )
+	, z( (int32_t) vec.z )
+	, w( (int32_t) vec.w )
+{
+}
+
 int4::int4( const int2& vec )
 	: x( vec.x )
 	, y( vec.y )
@@ -67,19 +96,16 @@ int4::int4( const int3& vec )
 {
 }
 
-int4::int4( const int4& vec )
-	: x( vec.x )
-	, y( vec.y )
-	, z( vec.z )
-	, w( vec.w )
+int4::int4( const uint2& vec )
+	: x( (int32_t) vec.x )
+	, y( (int32_t) vec.y )
 {
 }
 
-int4::int4( const bool4& vec )
+int4::int4( const uint3& vec )
 	: x( (int32_t) vec.x )
 	, y( (int32_t) vec.y )
 	, z( (int32_t) vec.z )
-	, w( (int32_t) vec.w )
 {
 }
 
@@ -91,11 +117,37 @@ int4::int4( const uint4& vec )
 {
 }
 
+int4::int4( const float2& vec )
+	: x( (int32_t) vec.x )
+	, y( (int32_t) vec.y )
+{
+}
+
+int4::int4( const float3& vec )
+	: x( (int32_t) vec.x )
+	, y( (int32_t) vec.y )
+	, z( (int32_t) vec.z )
+{
+}
+
 int4::int4( const float4& vec )
 	: x( (int32_t) vec.x )
 	, y( (int32_t) vec.y )
 	, z( (int32_t) vec.z )
 	, w( (int32_t) vec.w )
+{
+}
+
+int4::int4( const double2& vec )
+	: x( (int32_t) vec.x )
+	, y( (int32_t) vec.y )
+{
+}
+
+int4::int4( const double3& vec )
+	: x( (int32_t) vec.x )
+	, y( (int32_t) vec.y )
+	, z( (int32_t) vec.z )
 {
 }
 
