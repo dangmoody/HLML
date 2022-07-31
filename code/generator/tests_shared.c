@@ -1734,8 +1734,8 @@ static void GenerateTests_CtorConversion( allocatorLinear_t* tempStorage, string
 			StringBuilder_Appendf( code, "\t%s actualAnswer = %s( convertFrom );\n", typeInfo->fullTypeName, typeInfo->fullTypeName );
 			StringBuilder_Append(  code, "\n" );
 			if ( Gen_TypeIsMatrix( typeInfo ) ) {
-				const u32 numCheckRows = min( typeInfo->numRows, otherTypeInfo.numRows );
-				const u32 numCheckCols = min( typeInfo->numCols, otherTypeInfo.numCols );
+				const u32 numCheckRows = GEN_MIN( typeInfo->numRows, otherTypeInfo.numRows );
+				const u32 numCheckCols = GEN_MIN( typeInfo->numCols, otherTypeInfo.numCols );
 
 				if ( Gen_TypeIsFloatingPoint( typeInfo->type ) ) {
 					for ( u32 row = 0; row < numCheckRows; row++ ) {
@@ -1753,7 +1753,7 @@ static void GenerateTests_CtorConversion( allocatorLinear_t* tempStorage, string
 					}
 				}
 			} else {
-				const u32 numCheckComponents = min( typeInfo->numCols, otherTypeInfo.numCols );
+				const u32 numCheckComponents = GEN_MIN( typeInfo->numCols, otherTypeInfo.numCols );
 
 				if ( Gen_TypeIsFloatingPoint( typeInfo->type ) ) {
 					for ( u32 componentIndex = 0; componentIndex < numCheckComponents; componentIndex++ ) {

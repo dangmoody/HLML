@@ -1379,7 +1379,7 @@ static void GenerateMatrixFiles( allocatorLinear_t* tempStorage, const char* gen
 								continue;
 							}
 
-							u32 numConvertRows = min( typeInfo->numRows, row );
+							u32 numConvertRows = GEN_MIN( typeInfo->numRows, row );
 
 							StringBuilder_Appendf( codeInl, "%s::%s( const %s%dx%d& mat )\n", typeInfo->fullTypeName, typeInfo->fullTypeName, otherTypeString, row, col );
 							StringBuilder_Append(  codeInl, "{\n" );

@@ -962,7 +962,7 @@ static void GenerateVectorFiles( allocatorLinear_t* tempStorage, const char* gen
 							StringBuilder_Append( codeInl, "\t: x( vec.x )\n" );
 						}
 
-						u32 numCtorComponents = min( typeInfo->numCols, rhsComponentIndex );
+						u32 numCtorComponents = GEN_MIN( typeInfo->numCols, rhsComponentIndex );
 
 						for ( u32 componentIndex = 1; componentIndex < numCtorComponents; componentIndex++ ) {
 							const char componentName = GEN_COMPONENT_NAMES_VECTOR[componentIndex];
