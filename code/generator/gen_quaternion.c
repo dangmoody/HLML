@@ -427,7 +427,7 @@ static void GenerateQuaternionFiles( allocatorLinear_t* tempStorage, const char*
 	bool32 cLinkage = flags & GENERATOR_FLAG_C_LINKAGE;
 
 	// quaternion functions
-	stringBuilder_t* code = StringBuilder_Create( tempStorage, 64 * KB_TO_BYTES );
+	stringBuilder_t* code = StringBuilder_Create( tempStorage, KILOBYTES( 64 ) );
 
 	StringBuilder_Append( code,
 		GEN_FILE_HEADER

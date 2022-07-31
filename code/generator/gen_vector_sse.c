@@ -350,7 +350,7 @@ static void GenerateVectorFiles_SSE( allocatorLinear_t* tempStorage, const char*
 
 	bool32 cLinkage = flags & GENERATOR_FLAG_C_LINKAGE;
 
-	stringBuilder_t* code = StringBuilder_Create( tempStorage, 12 * KB_TO_BYTES );
+	stringBuilder_t* code = StringBuilder_Create( tempStorage, KILOBYTES( 12 ) );
 
 	StringBuilder_Append( code,
 		GEN_FILE_HEADER

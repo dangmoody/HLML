@@ -89,7 +89,7 @@ static void GenerateTests( allocatorLinear_t* tempStorage,
 
 		printf( "Generating test_%s.%s...", typeString, languageName );
 
-		stringBuilder_t* code = StringBuilder_Create( tempStorage, 16 * KB_TO_BYTES );
+		stringBuilder_t* code = StringBuilder_Create( tempStorage, KILOBYTES( 16 ) );
 
 		StringBuilder_Append( code, GEN_FILE_HEADER );
 
@@ -111,7 +111,7 @@ static void GenerateTests( allocatorLinear_t* tempStorage,
 	{
 		printf( "Generating test_main.%s...", languageName );
 
-		stringBuilder_t* sb = StringBuilder_Create( tempStorage, 8 * KB_TO_BYTES );
+		stringBuilder_t* sb = StringBuilder_Create( tempStorage, KILOBYTES( 8 ) );
 
 		StringBuilder_Append( sb,
 			GEN_FILE_HEADER

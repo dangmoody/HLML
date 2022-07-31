@@ -1330,7 +1330,7 @@ static void GenerateQuaternionTests( allocatorLinear_t* tempStorage, const char*
 
 		printf( "Generating test_quat_%s.%s...", typeInfo->fullTypeName, languageName );
 
-		stringBuilder_t* code = StringBuilder_Create( tempStorage, 64 * KB_TO_BYTES );
+		stringBuilder_t* code = StringBuilder_Create( tempStorage, KILOBYTES( 64 ) );
 
 		StringBuilder_Append( code, GEN_FILE_HEADER );
 

@@ -654,7 +654,7 @@ static void GenerateVectorFiles( allocatorLinear_t* tempStorage, const char* gen
 
 		// vector header file
 		{
-			stringBuilder_t* codeHeader = StringBuilder_Create( tempStorage, 128 * KB_TO_BYTES );
+			stringBuilder_t* codeHeader = StringBuilder_Create( tempStorage, KILOBYTES( 128 ) );
 
 			StringBuilder_Append(  codeHeader, GEN_FILE_HEADER );
 			StringBuilder_Append(  codeHeader,
@@ -894,7 +894,7 @@ static void GenerateVectorFiles( allocatorLinear_t* tempStorage, const char* gen
 
 		// vector inl file
 		if ( generateInlFile ) {
-			stringBuilder_t* codeInl = StringBuilder_Create( tempStorage, 64 * KB_TO_BYTES );
+			stringBuilder_t* codeInl = StringBuilder_Create( tempStorage, KILOBYTES( 64 ) );
 
 			StringBuilder_Appendf( codeInl,
 				GEN_FILE_HEADER
@@ -1036,7 +1036,7 @@ static void GenerateVectorFiles( allocatorLinear_t* tempStorage, const char* gen
 		if ( generateSwizzles ) {
 			// swizzle header file
 			{
-				stringBuilder_t* codeHeader = StringBuilder_Create( tempStorage, 128 * KB_TO_BYTES );
+				stringBuilder_t* codeHeader = StringBuilder_Create( tempStorage, KILOBYTES( 128 ) );
 
 				StringBuilder_Appendf( codeHeader,
 					GEN_FILE_HEADER
@@ -1058,7 +1058,7 @@ static void GenerateVectorFiles( allocatorLinear_t* tempStorage, const char* gen
 
 			// swizzle inl file
 			{
-				stringBuilder_t* codeInl = StringBuilder_Create( tempStorage, 128 * KB_TO_BYTES );
+				stringBuilder_t* codeInl = StringBuilder_Create( tempStorage, KILOBYTES( 128 ) );
 
 				StringBuilder_Appendf( codeInl,
 					GEN_FILE_HEADER
@@ -1185,7 +1185,7 @@ static void GenerateVectorFiles( allocatorLinear_t* tempStorage, const char* gen
 
 	// vector functions
 	{
-		stringBuilder_t* code = StringBuilder_Create( tempStorage, 256 * KB_TO_BYTES );
+		stringBuilder_t* code = StringBuilder_Create( tempStorage, KILOBYTES( 256 ) );
 
 		StringBuilder_Append( code,
 			GEN_FILE_HEADER

@@ -57,7 +57,7 @@ static void GenerateMainHeader(
 
 	printf( "Generating \"%s/%s\"...", generatedCodePath, GEN_HEADER_MAIN );
 
-	stringBuilder_t* code = StringBuilder_Create( tempStorage, 4 * KB_TO_BYTES );
+	stringBuilder_t* code = StringBuilder_Create( tempStorage, KILOBYTES( 4 ) );
 
 	bool32 cLinkage = flags & GENERATOR_FLAG_C_LINKAGE;
 	bool32 generateConstructors = flags & GENERATOR_FLAG_GENERATE_CONSTRUCTORS;
@@ -142,7 +142,7 @@ static void GenerateTypesHeader( allocatorLinear_t* tempStorage, const char* gen
 
 	printf( "Generating \"%s/%s\"...", generatedCodePath, GEN_HEADER_TYPES );
 
-	stringBuilder_t* code = StringBuilder_Create( tempStorage, 2 * KB_TO_BYTES );
+	stringBuilder_t* code = StringBuilder_Create( tempStorage, KILOBYTES( 2 ) );
 
 	StringBuilder_Append( code,
 		GEN_FILE_HEADER
@@ -181,7 +181,7 @@ static void GenerateConstantsHeader( allocatorLinear_t* tempStorage, const char*
 
 	printf( "Generating \"%s/%s\"...", generatedCodePath, GEN_HEADER_CONSTANTS );
 
-	stringBuilder_t* code = StringBuilder_Create( tempStorage, 2 * KB_TO_BYTES );
+	stringBuilder_t* code = StringBuilder_Create( tempStorage, KILOBYTES( 2 ) );
 
 	StringBuilder_Append( code,
 		GEN_FILE_HEADER
@@ -224,7 +224,7 @@ static void GenerateDefinesHeader( allocatorLinear_t* tempStorage, const char* g
 
 	printf( "Generating \"%s/%s\"...", generatedCodePath, GEN_HEADER_DEFINES );
 
-	stringBuilder_t* code = StringBuilder_Create( tempStorage, 2 * KB_TO_BYTES );
+	stringBuilder_t* code = StringBuilder_Create( tempStorage, KILOBYTES( 2 ) );
 
 	StringBuilder_Append( code,
 		GEN_FILE_HEADER
@@ -280,7 +280,7 @@ static void GenerateSSEConstantsHeader( allocatorLinear_t* tempStorage, const ch
 
 	printf( "Generating \"%s/%s\"...", generatedCodePath, GEN_HEADER_CONSTANTS_SSE );
 
-	stringBuilder_t* code = StringBuilder_Create( tempStorage, 2 * KB_TO_BYTES );
+	stringBuilder_t* code = StringBuilder_Create( tempStorage, KILOBYTES( 2 ) );
 
 	StringBuilder_Append( code,
 		GEN_FILE_HEADER

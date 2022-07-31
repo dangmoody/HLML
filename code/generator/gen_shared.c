@@ -581,7 +581,7 @@ static const char* Gen_GetNumericLiteral( allocatorLinear_t* tempStorage, const 
 #pragma clang diagnostic pop
 
 static stringBuilder_t* Gen_GetParmList_Vector( allocatorLinear_t* tempStorage, const typeInfo_t* typeInfo, const float32* values, const u32 decimalPlaces ) {
-	stringBuilder_t* stringBuilder = StringBuilder_Create( tempStorage, 1 * KB_TO_BYTES );
+	stringBuilder_t* stringBuilder = StringBuilder_Create( tempStorage, KILOBYTES( 1 ) );
 
 	for ( u32 i = 0; i < typeInfo->numCols; i++ ) {
 		const char* valueAsStr = Gen_GetNumericLiteral( tempStorage, typeInfo->type, values[i], decimalPlaces );
@@ -597,7 +597,7 @@ static stringBuilder_t* Gen_GetParmList_Vector( allocatorLinear_t* tempStorage, 
 }
 
 static stringBuilder_t* Gen_GetParmList_Matrix( allocatorLinear_t* tempStorage, const typeInfo_t* typeInfo, const float32* values, const u32 decimalPlaces ) {
-	stringBuilder_t* stringBuilder = StringBuilder_Create( tempStorage, 1 * KB_TO_BYTES );
+	stringBuilder_t* stringBuilder = StringBuilder_Create( tempStorage, KILOBYTES( 1 ) );
 
 	for ( u32 row = 0; row < typeInfo->numRows; row++ ) {
 		StringBuilder_Append( stringBuilder, "\t\t" );
@@ -638,7 +638,7 @@ static stringBuilder_t* Gen_GetParmList_MatrixMultiply( allocatorLinear_t* tempS
 	u32 returnTypeRows = lhsType->numRows;
 	u32 returnTypeCols = rhsType->numCols;
 
-	stringBuilder_t* parmList = StringBuilder_Create( tempStorage, 1 * KB_TO_BYTES );
+	stringBuilder_t* parmList = StringBuilder_Create( tempStorage, KILOBYTES( 1 ) );
 
 	for ( u32 row = 0; row < returnTypeRows; row++ ) {
 		StringBuilder_Append( parmList, "\t\t" );
@@ -697,7 +697,7 @@ static stringBuilder_t* Gen_GetConstructor( allocatorLinear_t* tempStorage, cons
 
 	bool32 generateConstructors = flags & GENERATOR_FLAG_GENERATE_CONSTRUCTORS;
 
-	stringBuilder_t* result = StringBuilder_Create( tempStorage, 1024 * KB_TO_BYTES );
+	stringBuilder_t* result = StringBuilder_Create( tempStorage, MEGABYTES( 1 ) );
 
 	if ( Gen_TypeIsVector( typeInfo ) ) {
 		stringBuilder_t* parmList = Gen_GetParmList_Vector( tempStorage, typeInfo, values, 0 );

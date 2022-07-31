@@ -1122,7 +1122,7 @@ static void GenerateMatrixFiles( allocatorLinear_t* tempStorage, const char* gen
 
 		// header file
 		{
-			stringBuilder_t* codeHeader = StringBuilder_Create( tempStorage, 4 * KB_TO_BYTES );
+			stringBuilder_t* codeHeader = StringBuilder_Create( tempStorage, KILOBYTES( 4 ) );
 
 			StringBuilder_Append( codeHeader, GEN_FILE_HEADER );
 
@@ -1277,7 +1277,7 @@ static void GenerateMatrixFiles( allocatorLinear_t* tempStorage, const char* gen
 
 		// inl file
 		if ( generateInlFile ) {
-			stringBuilder_t* codeInl = StringBuilder_Create( tempStorage, 4 * KB_TO_BYTES );
+			stringBuilder_t* codeInl = StringBuilder_Create( tempStorage, KILOBYTES( 4 ) );
 
 			StringBuilder_Appendf( codeInl,
 				GEN_FILE_HEADER
@@ -1417,7 +1417,7 @@ static void GenerateMatrixFiles( allocatorLinear_t* tempStorage, const char* gen
 
 	// matrix functions
 	{
-		stringBuilder_t* code = StringBuilder_Create( tempStorage, 512 * KB_TO_BYTES );
+		stringBuilder_t* code = StringBuilder_Create( tempStorage, KILOBYTES( 512 ) );
 
 		StringBuilder_Append( code,
 			GEN_FILE_HEADER

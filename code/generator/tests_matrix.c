@@ -1297,7 +1297,7 @@ static void GenerateMatrixTests( allocatorLinear_t* tempStorage, const char* gen
 
 		printf( "Generating test_%s.%s...", typeInfo->fullTypeName, languageName );
 
-		stringBuilder_t* code = StringBuilder_Create( tempStorage, 4 * MB_TO_BYTES );
+		stringBuilder_t* code = StringBuilder_Create( tempStorage, MEGABYTES( 4 ) );
 
 		StringBuilder_Append( code, GEN_FILE_HEADER );
 
