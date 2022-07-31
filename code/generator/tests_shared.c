@@ -49,7 +49,7 @@ typedef struct parametricTestInvokationGenericParm_t {
 } parametricTestInvokationGenericParm_t;
 
 typedef struct testFixture_Ctor_t {
-	float32	values[4];
+	float32	values[16];
 } testFixture_Ctor_t;
 
 typedef struct testFixture_All_t {
@@ -1652,26 +1652,41 @@ static void GenerateTests_CtorConversion( allocatorLinear_t* tempStorage, string
 		return;
 	}
 
-	// TODO(DM): enable this test for matrices too
-	if ( !Gen_TypeIsVector( typeInfo ) ) {
-		return;
-	}
-
 	testFixture_Ctor_t fixtures[] = {
 		{
-			.values = { 0.0f, 0.0f, 0.0f, 0.0f }
+			.values = {
+				0.0f, 0.0f, 0.0f, 0.0f,
+				0.0f, 0.0f, 0.0f, 0.0f,
+				0.0f, 0.0f, 0.0f, 0.0f,
+				0.0f, 0.0f, 0.0f, 0.0f
+			}
 		},
 
 		{
-			.values = { 10.0f, 10.0f, 10.0f, 10.0f }
+			.values = {
+				10.0f, 10.0f, 10.0f, 10.0f,
+				10.0f, 10.0f, 10.0f, 10.0f,
+				10.0f, 10.0f, 10.0f, 10.0f,
+				10.0f, 10.0f, 10.0f, 10.0f
+			}
 		},
 
 		{
-			.values = { 10.0f, 20.0f, 30.0f, 40.0f }
+			.values = {
+				10.0f,  20.0f,  30.0f,  40.0f,
+				50.0f,  60.0f,  70.0f,  80.0f,
+				90.0f,  100.0f, 110.0f, 120.0f,
+				130.0f, 140.0f, 150.0f, 160.0f
+			}
 		},
 
 		{
-			.values = { 40.0f, 30.0f, 20.0f, 10.0f }
+			.values = {
+				160.0f, 150.0f, 140.0f, 130.0f,
+				120.0f, 110.0f, 100.0f, 90.0f,
+				80.0f,  70.0f,  60.0f,  50.0f,
+				40.0f,  30.0f,  20.0f,  10.0f
+			}
 		}
 	};
 
@@ -1711,26 +1726,47 @@ static void GenerateTests_CtorConversion( allocatorLinear_t* tempStorage, string
 				otherTypeInfo.fullTypeName = Gen_GetMemberTypeString( otherTypeInfo.type );
 			}
 
-			const u32 numCheckComponents = min( typeInfo->numCols, otherTypeInfo.numCols );
+			const char* floateqStr = Gen_GetFuncName_Floateq( typeInfo->type );
 
 			// this test cant use any of the main test generation functions because we only a certain number of components get assigned based on the type being converting from
 			StringBuilder_Appendf( code, "TEMPER_PARAMETRIC( Test_%s_%s, TEMPER_FLAG_SHOULD_RUN, const %s& convertFrom, const %s& expectedAnswer )\n", typeInfo->fullTypeName, otherTypeInfo.fullTypeName, otherTypeInfo.fullTypeName, typeInfo->fullTypeName );
 			StringBuilder_Append(  code, "{\n" );
 			StringBuilder_Appendf( code, "\t%s actualAnswer = %s( convertFrom );\n", typeInfo->fullTypeName, typeInfo->fullTypeName );
 			StringBuilder_Append(  code, "\n" );
-			if ( Gen_TypeIsFloatingPoint( typeInfo->type ) ) {
-				const char* floateqStr = Gen_GetFuncName_Floateq( typeInfo->type );
+			if ( Gen_TypeIsMatrix( typeInfo ) ) {
+				const u32 numCheckRows = min( typeInfo->numRows, otherTypeInfo.numRows );
+				const u32 numCheckCols = min( typeInfo->numCols, otherTypeInfo.numCols );
 
-				for ( u32 componentIndex = 0; componentIndex < numCheckComponents; componentIndex++ ) {
-					const char componentName = GEN_COMPONENT_NAMES_VECTOR[componentIndex];
-
-					StringBuilder_Appendf( code, "\tTEMPER_CHECK_TRUE( %s( expectedAnswer.%c, actualAnswer.%c ) );\n", floateqStr, componentName, componentName );
+				if ( Gen_TypeIsFloatingPoint( typeInfo->type ) ) {
+					for ( u32 row = 0; row < numCheckRows; row++ ) {
+						for ( u32 col = 0; col < numCheckCols; col++ ) {
+							StringBuilder_Appendf( code, "\tTEMPER_CHECK_TRUE( %s( expectedAnswer[%d][%d], actualAnswer[%d][%d] ) );\n", floateqStr, row, col, row, col );
+						}
+						StringBuilder_Append( code, "\n" );
+					}
+				} else {
+					for ( u32 row = 0; row < numCheckRows; row++ ) {
+						for ( u32 col = 0; col < numCheckCols; col++ ) {
+							StringBuilder_Appendf( code, "\tTEMPER_CHECK_TRUE( expectedAnswer[%d][%d] == actualAnswer[%d][%d] );\n", row, col, row, col );
+						}
+						StringBuilder_Append( code, "\n" );
+					}
 				}
 			} else {
-				for ( u32 componentIndex = 0; componentIndex < numCheckComponents; componentIndex++ ) {
-					const char componentName = GEN_COMPONENT_NAMES_VECTOR[componentIndex];
+				const u32 numCheckComponents = min( typeInfo->numCols, otherTypeInfo.numCols );
 
-					StringBuilder_Appendf( code, "\tTEMPER_CHECK_TRUE( expectedAnswer.%c == actualAnswer.%c );\n", componentName, componentName );
+				if ( Gen_TypeIsFloatingPoint( typeInfo->type ) ) {
+					for ( u32 componentIndex = 0; componentIndex < numCheckComponents; componentIndex++ ) {
+						const char componentName = GEN_COMPONENT_NAMES_VECTOR[componentIndex];
+
+						StringBuilder_Appendf( code, "\tTEMPER_CHECK_TRUE( %s( expectedAnswer.%c, actualAnswer.%c ) );\n", floateqStr, componentName, componentName );
+					}
+				} else {
+					for ( u32 componentIndex = 0; componentIndex < numCheckComponents; componentIndex++ ) {
+						const char componentName = GEN_COMPONENT_NAMES_VECTOR[componentIndex];
+
+						StringBuilder_Appendf( code, "\tTEMPER_CHECK_TRUE( expectedAnswer.%c == actualAnswer.%c );\n", componentName, componentName );
+					}
 				}
 			}
 			StringBuilder_Append(  code, "}\n\n" );

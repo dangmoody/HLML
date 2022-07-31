@@ -82,7 +82,117 @@ double4x4::double4x4( const double4x4& mat )
 	rows[3] = mat[3];
 }
 
+double4x4::double4x4( const bool2x2& mat )
+{
+	rows[0] = double4( mat[0] );
+	rows[1] = double4( mat[1] );
+}
+
+double4x4::double4x4( const bool2x3& mat )
+{
+	rows[0] = double4( mat[0] );
+	rows[1] = double4( mat[1] );
+}
+
+double4x4::double4x4( const bool2x4& mat )
+{
+	rows[0] = double4( mat[0] );
+	rows[1] = double4( mat[1] );
+}
+
+double4x4::double4x4( const bool3x2& mat )
+{
+	rows[0] = double4( mat[0] );
+	rows[1] = double4( mat[1] );
+	rows[2] = double4( mat[2] );
+}
+
+double4x4::double4x4( const bool3x3& mat )
+{
+	rows[0] = double4( mat[0] );
+	rows[1] = double4( mat[1] );
+	rows[2] = double4( mat[2] );
+}
+
+double4x4::double4x4( const bool3x4& mat )
+{
+	rows[0] = double4( mat[0] );
+	rows[1] = double4( mat[1] );
+	rows[2] = double4( mat[2] );
+}
+
+double4x4::double4x4( const bool4x2& mat )
+{
+	rows[0] = double4( mat[0] );
+	rows[1] = double4( mat[1] );
+	rows[2] = double4( mat[2] );
+	rows[3] = double4( mat[3] );
+}
+
+double4x4::double4x4( const bool4x3& mat )
+{
+	rows[0] = double4( mat[0] );
+	rows[1] = double4( mat[1] );
+	rows[2] = double4( mat[2] );
+	rows[3] = double4( mat[3] );
+}
+
 double4x4::double4x4( const bool4x4& mat )
+{
+	rows[0] = double4( mat[0] );
+	rows[1] = double4( mat[1] );
+	rows[2] = double4( mat[2] );
+	rows[3] = double4( mat[3] );
+}
+
+double4x4::double4x4( const int2x2& mat )
+{
+	rows[0] = double4( mat[0] );
+	rows[1] = double4( mat[1] );
+}
+
+double4x4::double4x4( const int2x3& mat )
+{
+	rows[0] = double4( mat[0] );
+	rows[1] = double4( mat[1] );
+}
+
+double4x4::double4x4( const int2x4& mat )
+{
+	rows[0] = double4( mat[0] );
+	rows[1] = double4( mat[1] );
+}
+
+double4x4::double4x4( const int3x2& mat )
+{
+	rows[0] = double4( mat[0] );
+	rows[1] = double4( mat[1] );
+	rows[2] = double4( mat[2] );
+}
+
+double4x4::double4x4( const int3x3& mat )
+{
+	rows[0] = double4( mat[0] );
+	rows[1] = double4( mat[1] );
+	rows[2] = double4( mat[2] );
+}
+
+double4x4::double4x4( const int3x4& mat )
+{
+	rows[0] = double4( mat[0] );
+	rows[1] = double4( mat[1] );
+	rows[2] = double4( mat[2] );
+}
+
+double4x4::double4x4( const int4x2& mat )
+{
+	rows[0] = double4( mat[0] );
+	rows[1] = double4( mat[1] );
+	rows[2] = double4( mat[2] );
+	rows[3] = double4( mat[3] );
+}
+
+double4x4::double4x4( const int4x3& mat )
 {
 	rows[0] = double4( mat[0] );
 	rows[1] = double4( mat[1] );
@@ -98,6 +208,61 @@ double4x4::double4x4( const int4x4& mat )
 	rows[3] = double4( mat[3] );
 }
 
+double4x4::double4x4( const uint2x2& mat )
+{
+	rows[0] = double4( mat[0] );
+	rows[1] = double4( mat[1] );
+}
+
+double4x4::double4x4( const uint2x3& mat )
+{
+	rows[0] = double4( mat[0] );
+	rows[1] = double4( mat[1] );
+}
+
+double4x4::double4x4( const uint2x4& mat )
+{
+	rows[0] = double4( mat[0] );
+	rows[1] = double4( mat[1] );
+}
+
+double4x4::double4x4( const uint3x2& mat )
+{
+	rows[0] = double4( mat[0] );
+	rows[1] = double4( mat[1] );
+	rows[2] = double4( mat[2] );
+}
+
+double4x4::double4x4( const uint3x3& mat )
+{
+	rows[0] = double4( mat[0] );
+	rows[1] = double4( mat[1] );
+	rows[2] = double4( mat[2] );
+}
+
+double4x4::double4x4( const uint3x4& mat )
+{
+	rows[0] = double4( mat[0] );
+	rows[1] = double4( mat[1] );
+	rows[2] = double4( mat[2] );
+}
+
+double4x4::double4x4( const uint4x2& mat )
+{
+	rows[0] = double4( mat[0] );
+	rows[1] = double4( mat[1] );
+	rows[2] = double4( mat[2] );
+	rows[3] = double4( mat[3] );
+}
+
+double4x4::double4x4( const uint4x3& mat )
+{
+	rows[0] = double4( mat[0] );
+	rows[1] = double4( mat[1] );
+	rows[2] = double4( mat[2] );
+	rows[3] = double4( mat[3] );
+}
+
 double4x4::double4x4( const uint4x4& mat )
 {
 	rows[0] = double4( mat[0] );
@@ -106,7 +271,117 @@ double4x4::double4x4( const uint4x4& mat )
 	rows[3] = double4( mat[3] );
 }
 
+double4x4::double4x4( const float2x2& mat )
+{
+	rows[0] = double4( mat[0] );
+	rows[1] = double4( mat[1] );
+}
+
+double4x4::double4x4( const float2x3& mat )
+{
+	rows[0] = double4( mat[0] );
+	rows[1] = double4( mat[1] );
+}
+
+double4x4::double4x4( const float2x4& mat )
+{
+	rows[0] = double4( mat[0] );
+	rows[1] = double4( mat[1] );
+}
+
+double4x4::double4x4( const float3x2& mat )
+{
+	rows[0] = double4( mat[0] );
+	rows[1] = double4( mat[1] );
+	rows[2] = double4( mat[2] );
+}
+
+double4x4::double4x4( const float3x3& mat )
+{
+	rows[0] = double4( mat[0] );
+	rows[1] = double4( mat[1] );
+	rows[2] = double4( mat[2] );
+}
+
+double4x4::double4x4( const float3x4& mat )
+{
+	rows[0] = double4( mat[0] );
+	rows[1] = double4( mat[1] );
+	rows[2] = double4( mat[2] );
+}
+
+double4x4::double4x4( const float4x2& mat )
+{
+	rows[0] = double4( mat[0] );
+	rows[1] = double4( mat[1] );
+	rows[2] = double4( mat[2] );
+	rows[3] = double4( mat[3] );
+}
+
+double4x4::double4x4( const float4x3& mat )
+{
+	rows[0] = double4( mat[0] );
+	rows[1] = double4( mat[1] );
+	rows[2] = double4( mat[2] );
+	rows[3] = double4( mat[3] );
+}
+
 double4x4::double4x4( const float4x4& mat )
+{
+	rows[0] = double4( mat[0] );
+	rows[1] = double4( mat[1] );
+	rows[2] = double4( mat[2] );
+	rows[3] = double4( mat[3] );
+}
+
+double4x4::double4x4( const double2x2& mat )
+{
+	rows[0] = double4( mat[0] );
+	rows[1] = double4( mat[1] );
+}
+
+double4x4::double4x4( const double2x3& mat )
+{
+	rows[0] = double4( mat[0] );
+	rows[1] = double4( mat[1] );
+}
+
+double4x4::double4x4( const double2x4& mat )
+{
+	rows[0] = double4( mat[0] );
+	rows[1] = double4( mat[1] );
+}
+
+double4x4::double4x4( const double3x2& mat )
+{
+	rows[0] = double4( mat[0] );
+	rows[1] = double4( mat[1] );
+	rows[2] = double4( mat[2] );
+}
+
+double4x4::double4x4( const double3x3& mat )
+{
+	rows[0] = double4( mat[0] );
+	rows[1] = double4( mat[1] );
+	rows[2] = double4( mat[2] );
+}
+
+double4x4::double4x4( const double3x4& mat )
+{
+	rows[0] = double4( mat[0] );
+	rows[1] = double4( mat[1] );
+	rows[2] = double4( mat[2] );
+}
+
+double4x4::double4x4( const double4x2& mat )
+{
+	rows[0] = double4( mat[0] );
+	rows[1] = double4( mat[1] );
+	rows[2] = double4( mat[2] );
+	rows[3] = double4( mat[3] );
+}
+
+double4x4::double4x4( const double4x3& mat )
 {
 	rows[0] = double4( mat[0] );
 	rows[1] = double4( mat[1] );

@@ -35,9 +35,49 @@ SOFTWARE.
 #pragma once
 
 struct bool2x2;
+struct bool2x3;
+struct bool2x4;
+struct bool3x2;
+struct bool3x3;
+struct bool3x4;
+struct bool4x2;
+struct bool4x3;
+struct bool4x4;
 struct int2x2;
+struct int2x3;
+struct int2x4;
+struct int3x2;
+struct int3x3;
+struct int3x4;
+struct int4x2;
+struct int4x3;
+struct int4x4;
+struct uint2x3;
+struct uint2x4;
+struct uint3x2;
+struct uint3x3;
+struct uint3x4;
+struct uint4x2;
+struct uint4x3;
+struct uint4x4;
 struct float2x2;
+struct float2x3;
+struct float2x4;
+struct float3x2;
+struct float3x3;
+struct float3x4;
+struct float4x2;
+struct float4x3;
+struct float4x4;
 struct double2x2;
+struct double2x3;
+struct double2x4;
+struct double3x2;
+struct double3x3;
+struct double3x4;
+struct double4x2;
+struct double4x3;
+struct double4x4;
 
 #include "uint2.h"
 
@@ -67,14 +107,134 @@ struct uint2x2
 	// Conversion constructor.  Casts all components of 'mat' from type bool32_t to type uint32_t.
 	HLML_INLINE explicit uint2x2( const bool2x2& mat );
 
+	// Conversion constructor.  Casts all components of 'mat' from type bool32_t to type uint32_t.
+	HLML_INLINE explicit uint2x2( const bool2x3& mat );
+
+	// Conversion constructor.  Casts all components of 'mat' from type bool32_t to type uint32_t.
+	HLML_INLINE explicit uint2x2( const bool2x4& mat );
+
+	// Conversion constructor.  Casts all components of 'mat' from type bool32_t to type uint32_t.
+	HLML_INLINE explicit uint2x2( const bool3x2& mat );
+
+	// Conversion constructor.  Casts all components of 'mat' from type bool32_t to type uint32_t.
+	HLML_INLINE explicit uint2x2( const bool3x3& mat );
+
+	// Conversion constructor.  Casts all components of 'mat' from type bool32_t to type uint32_t.
+	HLML_INLINE explicit uint2x2( const bool3x4& mat );
+
+	// Conversion constructor.  Casts all components of 'mat' from type bool32_t to type uint32_t.
+	HLML_INLINE explicit uint2x2( const bool4x2& mat );
+
+	// Conversion constructor.  Casts all components of 'mat' from type bool32_t to type uint32_t.
+	HLML_INLINE explicit uint2x2( const bool4x3& mat );
+
+	// Conversion constructor.  Casts all components of 'mat' from type bool32_t to type uint32_t.
+	HLML_INLINE explicit uint2x2( const bool4x4& mat );
+
 	// Conversion constructor.  Casts all components of 'mat' from type int32_t to type uint32_t.
 	HLML_INLINE explicit uint2x2( const int2x2& mat );
+
+	// Conversion constructor.  Casts all components of 'mat' from type int32_t to type uint32_t.
+	HLML_INLINE explicit uint2x2( const int2x3& mat );
+
+	// Conversion constructor.  Casts all components of 'mat' from type int32_t to type uint32_t.
+	HLML_INLINE explicit uint2x2( const int2x4& mat );
+
+	// Conversion constructor.  Casts all components of 'mat' from type int32_t to type uint32_t.
+	HLML_INLINE explicit uint2x2( const int3x2& mat );
+
+	// Conversion constructor.  Casts all components of 'mat' from type int32_t to type uint32_t.
+	HLML_INLINE explicit uint2x2( const int3x3& mat );
+
+	// Conversion constructor.  Casts all components of 'mat' from type int32_t to type uint32_t.
+	HLML_INLINE explicit uint2x2( const int3x4& mat );
+
+	// Conversion constructor.  Casts all components of 'mat' from type int32_t to type uint32_t.
+	HLML_INLINE explicit uint2x2( const int4x2& mat );
+
+	// Conversion constructor.  Casts all components of 'mat' from type int32_t to type uint32_t.
+	HLML_INLINE explicit uint2x2( const int4x3& mat );
+
+	// Conversion constructor.  Casts all components of 'mat' from type int32_t to type uint32_t.
+	HLML_INLINE explicit uint2x2( const int4x4& mat );
+
+	// Conversion constructor.  Casts all components of 'mat' from type uint32_t to type uint32_t.
+	HLML_INLINE explicit uint2x2( const uint2x3& mat );
+
+	// Conversion constructor.  Casts all components of 'mat' from type uint32_t to type uint32_t.
+	HLML_INLINE explicit uint2x2( const uint2x4& mat );
+
+	// Conversion constructor.  Casts all components of 'mat' from type uint32_t to type uint32_t.
+	HLML_INLINE explicit uint2x2( const uint3x2& mat );
+
+	// Conversion constructor.  Casts all components of 'mat' from type uint32_t to type uint32_t.
+	HLML_INLINE explicit uint2x2( const uint3x3& mat );
+
+	// Conversion constructor.  Casts all components of 'mat' from type uint32_t to type uint32_t.
+	HLML_INLINE explicit uint2x2( const uint3x4& mat );
+
+	// Conversion constructor.  Casts all components of 'mat' from type uint32_t to type uint32_t.
+	HLML_INLINE explicit uint2x2( const uint4x2& mat );
+
+	// Conversion constructor.  Casts all components of 'mat' from type uint32_t to type uint32_t.
+	HLML_INLINE explicit uint2x2( const uint4x3& mat );
+
+	// Conversion constructor.  Casts all components of 'mat' from type uint32_t to type uint32_t.
+	HLML_INLINE explicit uint2x2( const uint4x4& mat );
 
 	// Conversion constructor.  Casts all components of 'mat' from type float to type uint32_t.
 	HLML_INLINE explicit uint2x2( const float2x2& mat );
 
+	// Conversion constructor.  Casts all components of 'mat' from type float to type uint32_t.
+	HLML_INLINE explicit uint2x2( const float2x3& mat );
+
+	// Conversion constructor.  Casts all components of 'mat' from type float to type uint32_t.
+	HLML_INLINE explicit uint2x2( const float2x4& mat );
+
+	// Conversion constructor.  Casts all components of 'mat' from type float to type uint32_t.
+	HLML_INLINE explicit uint2x2( const float3x2& mat );
+
+	// Conversion constructor.  Casts all components of 'mat' from type float to type uint32_t.
+	HLML_INLINE explicit uint2x2( const float3x3& mat );
+
+	// Conversion constructor.  Casts all components of 'mat' from type float to type uint32_t.
+	HLML_INLINE explicit uint2x2( const float3x4& mat );
+
+	// Conversion constructor.  Casts all components of 'mat' from type float to type uint32_t.
+	HLML_INLINE explicit uint2x2( const float4x2& mat );
+
+	// Conversion constructor.  Casts all components of 'mat' from type float to type uint32_t.
+	HLML_INLINE explicit uint2x2( const float4x3& mat );
+
+	// Conversion constructor.  Casts all components of 'mat' from type float to type uint32_t.
+	HLML_INLINE explicit uint2x2( const float4x4& mat );
+
 	// Conversion constructor.  Casts all components of 'mat' from type double to type uint32_t.
 	HLML_INLINE explicit uint2x2( const double2x2& mat );
+
+	// Conversion constructor.  Casts all components of 'mat' from type double to type uint32_t.
+	HLML_INLINE explicit uint2x2( const double2x3& mat );
+
+	// Conversion constructor.  Casts all components of 'mat' from type double to type uint32_t.
+	HLML_INLINE explicit uint2x2( const double2x4& mat );
+
+	// Conversion constructor.  Casts all components of 'mat' from type double to type uint32_t.
+	HLML_INLINE explicit uint2x2( const double3x2& mat );
+
+	// Conversion constructor.  Casts all components of 'mat' from type double to type uint32_t.
+	HLML_INLINE explicit uint2x2( const double3x3& mat );
+
+	// Conversion constructor.  Casts all components of 'mat' from type double to type uint32_t.
+	HLML_INLINE explicit uint2x2( const double3x4& mat );
+
+	// Conversion constructor.  Casts all components of 'mat' from type double to type uint32_t.
+	HLML_INLINE explicit uint2x2( const double4x2& mat );
+
+	// Conversion constructor.  Casts all components of 'mat' from type double to type uint32_t.
+	HLML_INLINE explicit uint2x2( const double4x3& mat );
+
+	// Conversion constructor.  Casts all components of 'mat' from type double to type uint32_t.
+	HLML_INLINE explicit uint2x2( const double4x4& mat );
 
 	HLML_INLINE ~uint2x2() {}
 

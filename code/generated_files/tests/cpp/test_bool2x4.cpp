@@ -124,6 +124,702 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_bool2x4_any,
 	false
 );
 
+TEMPER_PARAMETRIC( Test_bool2x4_int2x2, TEMPER_FLAG_SHOULD_RUN, const int2x2& convertFrom, const bool2x4& expectedAnswer )
+{
+	bool2x4 actualAnswer = bool2x4( convertFrom );
+
+	TEMPER_CHECK_TRUE( expectedAnswer[0][0] == actualAnswer[0][0] );
+	TEMPER_CHECK_TRUE( expectedAnswer[0][1] == actualAnswer[0][1] );
+
+	TEMPER_CHECK_TRUE( expectedAnswer[1][0] == actualAnswer[1][0] );
+	TEMPER_CHECK_TRUE( expectedAnswer[1][1] == actualAnswer[1][1] );
+
+}
+
+TEMPER_INVOKE_PARAMETRIC_TEST( Test_bool2x4_int2x2,
+	int2x2(
+		0, 0,
+		0, 0
+	),
+	bool2x4(
+		false, false, false, false,
+		false, false, false, false
+	)
+);
+
+TEMPER_INVOKE_PARAMETRIC_TEST( Test_bool2x4_int2x2,
+	int2x2(
+		10, 10,
+		10, 10
+	),
+	bool2x4(
+		true, true, true, true,
+		true, true, true, true
+	)
+);
+
+TEMPER_INVOKE_PARAMETRIC_TEST( Test_bool2x4_int2x2,
+	int2x2(
+		10, 20,
+		50, 60
+	),
+	bool2x4(
+		true, true, true, true,
+		true, true, true, true
+	)
+);
+
+TEMPER_INVOKE_PARAMETRIC_TEST( Test_bool2x4_int2x2,
+	int2x2(
+		160, 150,
+		120, 110
+	),
+	bool2x4(
+		true, true, true, true,
+		true, true, true, true
+	)
+);
+
+TEMPER_PARAMETRIC( Test_bool2x4_int2x3, TEMPER_FLAG_SHOULD_RUN, const int2x3& convertFrom, const bool2x4& expectedAnswer )
+{
+	bool2x4 actualAnswer = bool2x4( convertFrom );
+
+	TEMPER_CHECK_TRUE( expectedAnswer[0][0] == actualAnswer[0][0] );
+	TEMPER_CHECK_TRUE( expectedAnswer[0][1] == actualAnswer[0][1] );
+	TEMPER_CHECK_TRUE( expectedAnswer[0][2] == actualAnswer[0][2] );
+
+	TEMPER_CHECK_TRUE( expectedAnswer[1][0] == actualAnswer[1][0] );
+	TEMPER_CHECK_TRUE( expectedAnswer[1][1] == actualAnswer[1][1] );
+	TEMPER_CHECK_TRUE( expectedAnswer[1][2] == actualAnswer[1][2] );
+
+}
+
+TEMPER_INVOKE_PARAMETRIC_TEST( Test_bool2x4_int2x3,
+	int2x3(
+		0, 0, 0,
+		0, 0, 0
+	),
+	bool2x4(
+		false, false, false, false,
+		false, false, false, false
+	)
+);
+
+TEMPER_INVOKE_PARAMETRIC_TEST( Test_bool2x4_int2x3,
+	int2x3(
+		10, 10, 10,
+		10, 10, 10
+	),
+	bool2x4(
+		true, true, true, true,
+		true, true, true, true
+	)
+);
+
+TEMPER_INVOKE_PARAMETRIC_TEST( Test_bool2x4_int2x3,
+	int2x3(
+		10, 20, 30,
+		50, 60, 70
+	),
+	bool2x4(
+		true, true, true, true,
+		true, true, true, true
+	)
+);
+
+TEMPER_INVOKE_PARAMETRIC_TEST( Test_bool2x4_int2x3,
+	int2x3(
+		160, 150, 140,
+		120, 110, 100
+	),
+	bool2x4(
+		true, true, true, true,
+		true, true, true, true
+	)
+);
+
+TEMPER_PARAMETRIC( Test_bool2x4_int2x4, TEMPER_FLAG_SHOULD_RUN, const int2x4& convertFrom, const bool2x4& expectedAnswer )
+{
+	bool2x4 actualAnswer = bool2x4( convertFrom );
+
+	TEMPER_CHECK_TRUE( expectedAnswer[0][0] == actualAnswer[0][0] );
+	TEMPER_CHECK_TRUE( expectedAnswer[0][1] == actualAnswer[0][1] );
+	TEMPER_CHECK_TRUE( expectedAnswer[0][2] == actualAnswer[0][2] );
+	TEMPER_CHECK_TRUE( expectedAnswer[0][3] == actualAnswer[0][3] );
+
+	TEMPER_CHECK_TRUE( expectedAnswer[1][0] == actualAnswer[1][0] );
+	TEMPER_CHECK_TRUE( expectedAnswer[1][1] == actualAnswer[1][1] );
+	TEMPER_CHECK_TRUE( expectedAnswer[1][2] == actualAnswer[1][2] );
+	TEMPER_CHECK_TRUE( expectedAnswer[1][3] == actualAnswer[1][3] );
+
+}
+
+TEMPER_INVOKE_PARAMETRIC_TEST( Test_bool2x4_int2x4,
+	int2x4(
+		0, 0, 0, 0,
+		0, 0, 0, 0
+	),
+	bool2x4(
+		false, false, false, false,
+		false, false, false, false
+	)
+);
+
+TEMPER_INVOKE_PARAMETRIC_TEST( Test_bool2x4_int2x4,
+	int2x4(
+		10, 10, 10, 10,
+		10, 10, 10, 10
+	),
+	bool2x4(
+		true, true, true, true,
+		true, true, true, true
+	)
+);
+
+TEMPER_INVOKE_PARAMETRIC_TEST( Test_bool2x4_int2x4,
+	int2x4(
+		10, 20, 30, 40,
+		50, 60, 70, 80
+	),
+	bool2x4(
+		true, true, true, true,
+		true, true, true, true
+	)
+);
+
+TEMPER_INVOKE_PARAMETRIC_TEST( Test_bool2x4_int2x4,
+	int2x4(
+		160, 150, 140, 130,
+		120, 110, 100, 90
+	),
+	bool2x4(
+		true, true, true, true,
+		true, true, true, true
+	)
+);
+
+TEMPER_PARAMETRIC( Test_bool2x4_uint2x2, TEMPER_FLAG_SHOULD_RUN, const uint2x2& convertFrom, const bool2x4& expectedAnswer )
+{
+	bool2x4 actualAnswer = bool2x4( convertFrom );
+
+	TEMPER_CHECK_TRUE( expectedAnswer[0][0] == actualAnswer[0][0] );
+	TEMPER_CHECK_TRUE( expectedAnswer[0][1] == actualAnswer[0][1] );
+
+	TEMPER_CHECK_TRUE( expectedAnswer[1][0] == actualAnswer[1][0] );
+	TEMPER_CHECK_TRUE( expectedAnswer[1][1] == actualAnswer[1][1] );
+
+}
+
+TEMPER_INVOKE_PARAMETRIC_TEST( Test_bool2x4_uint2x2,
+	uint2x2(
+		0U, 0U,
+		0U, 0U
+	),
+	bool2x4(
+		false, false, false, false,
+		false, false, false, false
+	)
+);
+
+TEMPER_INVOKE_PARAMETRIC_TEST( Test_bool2x4_uint2x2,
+	uint2x2(
+		10U, 10U,
+		10U, 10U
+	),
+	bool2x4(
+		true, true, true, true,
+		true, true, true, true
+	)
+);
+
+TEMPER_INVOKE_PARAMETRIC_TEST( Test_bool2x4_uint2x2,
+	uint2x2(
+		10U, 20U,
+		50U, 60U
+	),
+	bool2x4(
+		true, true, true, true,
+		true, true, true, true
+	)
+);
+
+TEMPER_INVOKE_PARAMETRIC_TEST( Test_bool2x4_uint2x2,
+	uint2x2(
+		160U, 150U,
+		120U, 110U
+	),
+	bool2x4(
+		true, true, true, true,
+		true, true, true, true
+	)
+);
+
+TEMPER_PARAMETRIC( Test_bool2x4_uint2x3, TEMPER_FLAG_SHOULD_RUN, const uint2x3& convertFrom, const bool2x4& expectedAnswer )
+{
+	bool2x4 actualAnswer = bool2x4( convertFrom );
+
+	TEMPER_CHECK_TRUE( expectedAnswer[0][0] == actualAnswer[0][0] );
+	TEMPER_CHECK_TRUE( expectedAnswer[0][1] == actualAnswer[0][1] );
+	TEMPER_CHECK_TRUE( expectedAnswer[0][2] == actualAnswer[0][2] );
+
+	TEMPER_CHECK_TRUE( expectedAnswer[1][0] == actualAnswer[1][0] );
+	TEMPER_CHECK_TRUE( expectedAnswer[1][1] == actualAnswer[1][1] );
+	TEMPER_CHECK_TRUE( expectedAnswer[1][2] == actualAnswer[1][2] );
+
+}
+
+TEMPER_INVOKE_PARAMETRIC_TEST( Test_bool2x4_uint2x3,
+	uint2x3(
+		0U, 0U, 0U,
+		0U, 0U, 0U
+	),
+	bool2x4(
+		false, false, false, false,
+		false, false, false, false
+	)
+);
+
+TEMPER_INVOKE_PARAMETRIC_TEST( Test_bool2x4_uint2x3,
+	uint2x3(
+		10U, 10U, 10U,
+		10U, 10U, 10U
+	),
+	bool2x4(
+		true, true, true, true,
+		true, true, true, true
+	)
+);
+
+TEMPER_INVOKE_PARAMETRIC_TEST( Test_bool2x4_uint2x3,
+	uint2x3(
+		10U, 20U, 30U,
+		50U, 60U, 70U
+	),
+	bool2x4(
+		true, true, true, true,
+		true, true, true, true
+	)
+);
+
+TEMPER_INVOKE_PARAMETRIC_TEST( Test_bool2x4_uint2x3,
+	uint2x3(
+		160U, 150U, 140U,
+		120U, 110U, 100U
+	),
+	bool2x4(
+		true, true, true, true,
+		true, true, true, true
+	)
+);
+
+TEMPER_PARAMETRIC( Test_bool2x4_uint2x4, TEMPER_FLAG_SHOULD_RUN, const uint2x4& convertFrom, const bool2x4& expectedAnswer )
+{
+	bool2x4 actualAnswer = bool2x4( convertFrom );
+
+	TEMPER_CHECK_TRUE( expectedAnswer[0][0] == actualAnswer[0][0] );
+	TEMPER_CHECK_TRUE( expectedAnswer[0][1] == actualAnswer[0][1] );
+	TEMPER_CHECK_TRUE( expectedAnswer[0][2] == actualAnswer[0][2] );
+	TEMPER_CHECK_TRUE( expectedAnswer[0][3] == actualAnswer[0][3] );
+
+	TEMPER_CHECK_TRUE( expectedAnswer[1][0] == actualAnswer[1][0] );
+	TEMPER_CHECK_TRUE( expectedAnswer[1][1] == actualAnswer[1][1] );
+	TEMPER_CHECK_TRUE( expectedAnswer[1][2] == actualAnswer[1][2] );
+	TEMPER_CHECK_TRUE( expectedAnswer[1][3] == actualAnswer[1][3] );
+
+}
+
+TEMPER_INVOKE_PARAMETRIC_TEST( Test_bool2x4_uint2x4,
+	uint2x4(
+		0U, 0U, 0U, 0U,
+		0U, 0U, 0U, 0U
+	),
+	bool2x4(
+		false, false, false, false,
+		false, false, false, false
+	)
+);
+
+TEMPER_INVOKE_PARAMETRIC_TEST( Test_bool2x4_uint2x4,
+	uint2x4(
+		10U, 10U, 10U, 10U,
+		10U, 10U, 10U, 10U
+	),
+	bool2x4(
+		true, true, true, true,
+		true, true, true, true
+	)
+);
+
+TEMPER_INVOKE_PARAMETRIC_TEST( Test_bool2x4_uint2x4,
+	uint2x4(
+		10U, 20U, 30U, 40U,
+		50U, 60U, 70U, 80U
+	),
+	bool2x4(
+		true, true, true, true,
+		true, true, true, true
+	)
+);
+
+TEMPER_INVOKE_PARAMETRIC_TEST( Test_bool2x4_uint2x4,
+	uint2x4(
+		160U, 150U, 140U, 130U,
+		120U, 110U, 100U, 90U
+	),
+	bool2x4(
+		true, true, true, true,
+		true, true, true, true
+	)
+);
+
+TEMPER_PARAMETRIC( Test_bool2x4_float2x2, TEMPER_FLAG_SHOULD_RUN, const float2x2& convertFrom, const bool2x4& expectedAnswer )
+{
+	bool2x4 actualAnswer = bool2x4( convertFrom );
+
+	TEMPER_CHECK_TRUE( expectedAnswer[0][0] == actualAnswer[0][0] );
+	TEMPER_CHECK_TRUE( expectedAnswer[0][1] == actualAnswer[0][1] );
+
+	TEMPER_CHECK_TRUE( expectedAnswer[1][0] == actualAnswer[1][0] );
+	TEMPER_CHECK_TRUE( expectedAnswer[1][1] == actualAnswer[1][1] );
+
+}
+
+TEMPER_INVOKE_PARAMETRIC_TEST( Test_bool2x4_float2x2,
+	float2x2(
+		0.000000f, 0.000000f,
+		0.000000f, 0.000000f
+	),
+	bool2x4(
+		false, false, false, false,
+		false, false, false, false
+	)
+);
+
+TEMPER_INVOKE_PARAMETRIC_TEST( Test_bool2x4_float2x2,
+	float2x2(
+		10.000000f, 10.000000f,
+		10.000000f, 10.000000f
+	),
+	bool2x4(
+		true, true, true, true,
+		true, true, true, true
+	)
+);
+
+TEMPER_INVOKE_PARAMETRIC_TEST( Test_bool2x4_float2x2,
+	float2x2(
+		10.000000f, 20.000000f,
+		50.000000f, 60.000000f
+	),
+	bool2x4(
+		true, true, true, true,
+		true, true, true, true
+	)
+);
+
+TEMPER_INVOKE_PARAMETRIC_TEST( Test_bool2x4_float2x2,
+	float2x2(
+		160.000000f, 150.000000f,
+		120.000000f, 110.000000f
+	),
+	bool2x4(
+		true, true, true, true,
+		true, true, true, true
+	)
+);
+
+TEMPER_PARAMETRIC( Test_bool2x4_float2x3, TEMPER_FLAG_SHOULD_RUN, const float2x3& convertFrom, const bool2x4& expectedAnswer )
+{
+	bool2x4 actualAnswer = bool2x4( convertFrom );
+
+	TEMPER_CHECK_TRUE( expectedAnswer[0][0] == actualAnswer[0][0] );
+	TEMPER_CHECK_TRUE( expectedAnswer[0][1] == actualAnswer[0][1] );
+	TEMPER_CHECK_TRUE( expectedAnswer[0][2] == actualAnswer[0][2] );
+
+	TEMPER_CHECK_TRUE( expectedAnswer[1][0] == actualAnswer[1][0] );
+	TEMPER_CHECK_TRUE( expectedAnswer[1][1] == actualAnswer[1][1] );
+	TEMPER_CHECK_TRUE( expectedAnswer[1][2] == actualAnswer[1][2] );
+
+}
+
+TEMPER_INVOKE_PARAMETRIC_TEST( Test_bool2x4_float2x3,
+	float2x3(
+		0.000000f, 0.000000f, 0.000000f,
+		0.000000f, 0.000000f, 0.000000f
+	),
+	bool2x4(
+		false, false, false, false,
+		false, false, false, false
+	)
+);
+
+TEMPER_INVOKE_PARAMETRIC_TEST( Test_bool2x4_float2x3,
+	float2x3(
+		10.000000f, 10.000000f, 10.000000f,
+		10.000000f, 10.000000f, 10.000000f
+	),
+	bool2x4(
+		true, true, true, true,
+		true, true, true, true
+	)
+);
+
+TEMPER_INVOKE_PARAMETRIC_TEST( Test_bool2x4_float2x3,
+	float2x3(
+		10.000000f, 20.000000f, 30.000000f,
+		50.000000f, 60.000000f, 70.000000f
+	),
+	bool2x4(
+		true, true, true, true,
+		true, true, true, true
+	)
+);
+
+TEMPER_INVOKE_PARAMETRIC_TEST( Test_bool2x4_float2x3,
+	float2x3(
+		160.000000f, 150.000000f, 140.000000f,
+		120.000000f, 110.000000f, 100.000000f
+	),
+	bool2x4(
+		true, true, true, true,
+		true, true, true, true
+	)
+);
+
+TEMPER_PARAMETRIC( Test_bool2x4_float2x4, TEMPER_FLAG_SHOULD_RUN, const float2x4& convertFrom, const bool2x4& expectedAnswer )
+{
+	bool2x4 actualAnswer = bool2x4( convertFrom );
+
+	TEMPER_CHECK_TRUE( expectedAnswer[0][0] == actualAnswer[0][0] );
+	TEMPER_CHECK_TRUE( expectedAnswer[0][1] == actualAnswer[0][1] );
+	TEMPER_CHECK_TRUE( expectedAnswer[0][2] == actualAnswer[0][2] );
+	TEMPER_CHECK_TRUE( expectedAnswer[0][3] == actualAnswer[0][3] );
+
+	TEMPER_CHECK_TRUE( expectedAnswer[1][0] == actualAnswer[1][0] );
+	TEMPER_CHECK_TRUE( expectedAnswer[1][1] == actualAnswer[1][1] );
+	TEMPER_CHECK_TRUE( expectedAnswer[1][2] == actualAnswer[1][2] );
+	TEMPER_CHECK_TRUE( expectedAnswer[1][3] == actualAnswer[1][3] );
+
+}
+
+TEMPER_INVOKE_PARAMETRIC_TEST( Test_bool2x4_float2x4,
+	float2x4(
+		0.000000f, 0.000000f, 0.000000f, 0.000000f,
+		0.000000f, 0.000000f, 0.000000f, 0.000000f
+	),
+	bool2x4(
+		false, false, false, false,
+		false, false, false, false
+	)
+);
+
+TEMPER_INVOKE_PARAMETRIC_TEST( Test_bool2x4_float2x4,
+	float2x4(
+		10.000000f, 10.000000f, 10.000000f, 10.000000f,
+		10.000000f, 10.000000f, 10.000000f, 10.000000f
+	),
+	bool2x4(
+		true, true, true, true,
+		true, true, true, true
+	)
+);
+
+TEMPER_INVOKE_PARAMETRIC_TEST( Test_bool2x4_float2x4,
+	float2x4(
+		10.000000f, 20.000000f, 30.000000f, 40.000000f,
+		50.000000f, 60.000000f, 70.000000f, 80.000000f
+	),
+	bool2x4(
+		true, true, true, true,
+		true, true, true, true
+	)
+);
+
+TEMPER_INVOKE_PARAMETRIC_TEST( Test_bool2x4_float2x4,
+	float2x4(
+		160.000000f, 150.000000f, 140.000000f, 130.000000f,
+		120.000000f, 110.000000f, 100.000000f, 90.000000f
+	),
+	bool2x4(
+		true, true, true, true,
+		true, true, true, true
+	)
+);
+
+TEMPER_PARAMETRIC( Test_bool2x4_double2x2, TEMPER_FLAG_SHOULD_RUN, const double2x2& convertFrom, const bool2x4& expectedAnswer )
+{
+	bool2x4 actualAnswer = bool2x4( convertFrom );
+
+	TEMPER_CHECK_TRUE( expectedAnswer[0][0] == actualAnswer[0][0] );
+	TEMPER_CHECK_TRUE( expectedAnswer[0][1] == actualAnswer[0][1] );
+
+	TEMPER_CHECK_TRUE( expectedAnswer[1][0] == actualAnswer[1][0] );
+	TEMPER_CHECK_TRUE( expectedAnswer[1][1] == actualAnswer[1][1] );
+
+}
+
+TEMPER_INVOKE_PARAMETRIC_TEST( Test_bool2x4_double2x2,
+	double2x2(
+		0.000000f, 0.000000f,
+		0.000000f, 0.000000f
+	),
+	bool2x4(
+		false, false, false, false,
+		false, false, false, false
+	)
+);
+
+TEMPER_INVOKE_PARAMETRIC_TEST( Test_bool2x4_double2x2,
+	double2x2(
+		10.000000f, 10.000000f,
+		10.000000f, 10.000000f
+	),
+	bool2x4(
+		true, true, true, true,
+		true, true, true, true
+	)
+);
+
+TEMPER_INVOKE_PARAMETRIC_TEST( Test_bool2x4_double2x2,
+	double2x2(
+		10.000000f, 20.000000f,
+		50.000000f, 60.000000f
+	),
+	bool2x4(
+		true, true, true, true,
+		true, true, true, true
+	)
+);
+
+TEMPER_INVOKE_PARAMETRIC_TEST( Test_bool2x4_double2x2,
+	double2x2(
+		160.000000f, 150.000000f,
+		120.000000f, 110.000000f
+	),
+	bool2x4(
+		true, true, true, true,
+		true, true, true, true
+	)
+);
+
+TEMPER_PARAMETRIC( Test_bool2x4_double2x3, TEMPER_FLAG_SHOULD_RUN, const double2x3& convertFrom, const bool2x4& expectedAnswer )
+{
+	bool2x4 actualAnswer = bool2x4( convertFrom );
+
+	TEMPER_CHECK_TRUE( expectedAnswer[0][0] == actualAnswer[0][0] );
+	TEMPER_CHECK_TRUE( expectedAnswer[0][1] == actualAnswer[0][1] );
+	TEMPER_CHECK_TRUE( expectedAnswer[0][2] == actualAnswer[0][2] );
+
+	TEMPER_CHECK_TRUE( expectedAnswer[1][0] == actualAnswer[1][0] );
+	TEMPER_CHECK_TRUE( expectedAnswer[1][1] == actualAnswer[1][1] );
+	TEMPER_CHECK_TRUE( expectedAnswer[1][2] == actualAnswer[1][2] );
+
+}
+
+TEMPER_INVOKE_PARAMETRIC_TEST( Test_bool2x4_double2x3,
+	double2x3(
+		0.000000f, 0.000000f, 0.000000f,
+		0.000000f, 0.000000f, 0.000000f
+	),
+	bool2x4(
+		false, false, false, false,
+		false, false, false, false
+	)
+);
+
+TEMPER_INVOKE_PARAMETRIC_TEST( Test_bool2x4_double2x3,
+	double2x3(
+		10.000000f, 10.000000f, 10.000000f,
+		10.000000f, 10.000000f, 10.000000f
+	),
+	bool2x4(
+		true, true, true, true,
+		true, true, true, true
+	)
+);
+
+TEMPER_INVOKE_PARAMETRIC_TEST( Test_bool2x4_double2x3,
+	double2x3(
+		10.000000f, 20.000000f, 30.000000f,
+		50.000000f, 60.000000f, 70.000000f
+	),
+	bool2x4(
+		true, true, true, true,
+		true, true, true, true
+	)
+);
+
+TEMPER_INVOKE_PARAMETRIC_TEST( Test_bool2x4_double2x3,
+	double2x3(
+		160.000000f, 150.000000f, 140.000000f,
+		120.000000f, 110.000000f, 100.000000f
+	),
+	bool2x4(
+		true, true, true, true,
+		true, true, true, true
+	)
+);
+
+TEMPER_PARAMETRIC( Test_bool2x4_double2x4, TEMPER_FLAG_SHOULD_RUN, const double2x4& convertFrom, const bool2x4& expectedAnswer )
+{
+	bool2x4 actualAnswer = bool2x4( convertFrom );
+
+	TEMPER_CHECK_TRUE( expectedAnswer[0][0] == actualAnswer[0][0] );
+	TEMPER_CHECK_TRUE( expectedAnswer[0][1] == actualAnswer[0][1] );
+	TEMPER_CHECK_TRUE( expectedAnswer[0][2] == actualAnswer[0][2] );
+	TEMPER_CHECK_TRUE( expectedAnswer[0][3] == actualAnswer[0][3] );
+
+	TEMPER_CHECK_TRUE( expectedAnswer[1][0] == actualAnswer[1][0] );
+	TEMPER_CHECK_TRUE( expectedAnswer[1][1] == actualAnswer[1][1] );
+	TEMPER_CHECK_TRUE( expectedAnswer[1][2] == actualAnswer[1][2] );
+	TEMPER_CHECK_TRUE( expectedAnswer[1][3] == actualAnswer[1][3] );
+
+}
+
+TEMPER_INVOKE_PARAMETRIC_TEST( Test_bool2x4_double2x4,
+	double2x4(
+		0.000000f, 0.000000f, 0.000000f, 0.000000f,
+		0.000000f, 0.000000f, 0.000000f, 0.000000f
+	),
+	bool2x4(
+		false, false, false, false,
+		false, false, false, false
+	)
+);
+
+TEMPER_INVOKE_PARAMETRIC_TEST( Test_bool2x4_double2x4,
+	double2x4(
+		10.000000f, 10.000000f, 10.000000f, 10.000000f,
+		10.000000f, 10.000000f, 10.000000f, 10.000000f
+	),
+	bool2x4(
+		true, true, true, true,
+		true, true, true, true
+	)
+);
+
+TEMPER_INVOKE_PARAMETRIC_TEST( Test_bool2x4_double2x4,
+	double2x4(
+		10.000000f, 20.000000f, 30.000000f, 40.000000f,
+		50.000000f, 60.000000f, 70.000000f, 80.000000f
+	),
+	bool2x4(
+		true, true, true, true,
+		true, true, true, true
+	)
+);
+
+TEMPER_INVOKE_PARAMETRIC_TEST( Test_bool2x4_double2x4,
+	double2x4(
+		160.000000f, 150.000000f, 140.000000f, 130.000000f,
+		120.000000f, 110.000000f, 100.000000f, 90.000000f
+	),
+	bool2x4(
+		true, true, true, true,
+		true, true, true, true
+	)
+);
+
 TEMPER_PARAMETRIC( Test_bool2x4_identity, TEMPER_FLAG_SHOULD_RUN, const bool2x4& matrix, const bool expectedAnswer )
 {
 	bool2x4 identityMat;

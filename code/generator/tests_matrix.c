@@ -1303,6 +1303,8 @@ static void GenerateMatrixTests( allocatorLinear_t* tempStorage, const char* gen
 
 		GenerateComponentWiseTests( tempStorage, code, typeInfo, &scalarType, &scalarTypeFloatingPoint, strings, flags );
 
+		GenerateTests_CtorConversion( tempStorage, code, typeInfo, strings, flags );
+
 		Gen_GenerateTests_Identity( tempStorage, code, typeInfo, strings, flags );
 		Gen_GenerateTests_Transpose( tempStorage, code, typeInfo, strings, flags );
 		Gen_GenerateTests_MatrixMulMatrix( tempStorage, code, typeInfo, strings, flags );

@@ -722,8 +722,8 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_float3_int2,
 );
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_float3_int2,
-	int2( 40, 30 ),
-	float3( 40.000000f, 30.000000f, 20.000000f )
+	int2( 160, 150 ),
+	float3( 160.000000f, 150.000000f, 140.000000f )
 );
 
 TEMPER_PARAMETRIC( Test_float3_int3, TEMPER_FLAG_SHOULD_RUN, const int3& convertFrom, const float3& expectedAnswer )
@@ -751,8 +751,8 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_float3_int3,
 );
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_float3_int3,
-	int3( 40, 30, 20 ),
-	float3( 40.000000f, 30.000000f, 20.000000f )
+	int3( 160, 150, 140 ),
+	float3( 160.000000f, 150.000000f, 140.000000f )
 );
 
 TEMPER_PARAMETRIC( Test_float3_int4, TEMPER_FLAG_SHOULD_RUN, const int4& convertFrom, const float3& expectedAnswer )
@@ -780,8 +780,8 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_float3_int4,
 );
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_float3_int4,
-	int4( 40, 30, 20, 10 ),
-	float3( 40.000000f, 30.000000f, 20.000000f )
+	int4( 160, 150, 140, 130 ),
+	float3( 160.000000f, 150.000000f, 140.000000f )
 );
 
 TEMPER_PARAMETRIC( Test_float3_uint2, TEMPER_FLAG_SHOULD_RUN, const uint2& convertFrom, const float3& expectedAnswer )
@@ -808,8 +808,8 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_float3_uint2,
 );
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_float3_uint2,
-	uint2( 40U, 30U ),
-	float3( 40.000000f, 30.000000f, 20.000000f )
+	uint2( 160U, 150U ),
+	float3( 160.000000f, 150.000000f, 140.000000f )
 );
 
 TEMPER_PARAMETRIC( Test_float3_uint3, TEMPER_FLAG_SHOULD_RUN, const uint3& convertFrom, const float3& expectedAnswer )
@@ -837,8 +837,8 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_float3_uint3,
 );
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_float3_uint3,
-	uint3( 40U, 30U, 20U ),
-	float3( 40.000000f, 30.000000f, 20.000000f )
+	uint3( 160U, 150U, 140U ),
+	float3( 160.000000f, 150.000000f, 140.000000f )
 );
 
 TEMPER_PARAMETRIC( Test_float3_uint4, TEMPER_FLAG_SHOULD_RUN, const uint4& convertFrom, const float3& expectedAnswer )
@@ -866,8 +866,8 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_float3_uint4,
 );
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_float3_uint4,
-	uint4( 40U, 30U, 20U, 10U ),
-	float3( 40.000000f, 30.000000f, 20.000000f )
+	uint4( 160U, 150U, 140U, 130U ),
+	float3( 160.000000f, 150.000000f, 140.000000f )
 );
 
 TEMPER_PARAMETRIC( Test_float3_float2, TEMPER_FLAG_SHOULD_RUN, const float2& convertFrom, const float3& expectedAnswer )
@@ -894,8 +894,8 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_float3_float2,
 );
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_float3_float2,
-	float2( 40.000000f, 30.000000f ),
-	float3( 40.000000f, 30.000000f, 20.000000f )
+	float2( 160.000000f, 150.000000f ),
+	float3( 160.000000f, 150.000000f, 140.000000f )
 );
 
 TEMPER_PARAMETRIC( Test_float3_float3, TEMPER_FLAG_SHOULD_RUN, const float3& convertFrom, const float3& expectedAnswer )
@@ -923,8 +923,8 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_float3_float3,
 );
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_float3_float3,
-	float3( 40.000000f, 30.000000f, 20.000000f ),
-	float3( 40.000000f, 30.000000f, 20.000000f )
+	float3( 160.000000f, 150.000000f, 140.000000f ),
+	float3( 160.000000f, 150.000000f, 140.000000f )
 );
 
 TEMPER_PARAMETRIC( Test_float3_float4, TEMPER_FLAG_SHOULD_RUN, const float4& convertFrom, const float3& expectedAnswer )
@@ -952,8 +952,8 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_float3_float4,
 );
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_float3_float4,
-	float4( 40.000000f, 30.000000f, 20.000000f, 10.000000f ),
-	float3( 40.000000f, 30.000000f, 20.000000f )
+	float4( 160.000000f, 150.000000f, 140.000000f, 130.000000f ),
+	float3( 160.000000f, 150.000000f, 140.000000f )
 );
 
 TEMPER_PARAMETRIC( Test_float3_double2, TEMPER_FLAG_SHOULD_RUN, const double2& convertFrom, const float3& expectedAnswer )
@@ -980,8 +980,8 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_float3_double2,
 );
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_float3_double2,
-	double2( 40.000000f, 30.000000f ),
-	float3( 40.000000f, 30.000000f, 20.000000f )
+	double2( 160.000000f, 150.000000f ),
+	float3( 160.000000f, 150.000000f, 140.000000f )
 );
 
 TEMPER_PARAMETRIC( Test_float3_double3, TEMPER_FLAG_SHOULD_RUN, const double3& convertFrom, const float3& expectedAnswer )
@@ -1009,8 +1009,8 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_float3_double3,
 );
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_float3_double3,
-	double3( 40.000000f, 30.000000f, 20.000000f ),
-	float3( 40.000000f, 30.000000f, 20.000000f )
+	double3( 160.000000f, 150.000000f, 140.000000f ),
+	float3( 160.000000f, 150.000000f, 140.000000f )
 );
 
 TEMPER_PARAMETRIC( Test_float3_double4, TEMPER_FLAG_SHOULD_RUN, const double4& convertFrom, const float3& expectedAnswer )
@@ -1038,8 +1038,8 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_float3_double4,
 );
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_float3_double4,
-	double4( 40.000000f, 30.000000f, 20.000000f, 10.000000f ),
-	float3( 40.000000f, 30.000000f, 20.000000f )
+	double4( 160.000000f, 150.000000f, 140.000000f, 130.000000f ),
+	float3( 160.000000f, 150.000000f, 140.000000f )
 );
 
 TEMPER_PARAMETRIC( Test_float3_lengthsq, TEMPER_FLAG_SHOULD_RUN, const float3& vec, const float expectedAnswer )

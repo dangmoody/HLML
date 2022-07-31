@@ -1122,7 +1122,7 @@ static void GenerateMatrixFiles( allocatorLinear_t* tempStorage, const char* gen
 
 		// header file
 		{
-			stringBuilder_t* codeHeader = StringBuilder_Create( tempStorage, KILOBYTES( 4 ) );
+			stringBuilder_t* codeHeader = StringBuilder_Create( tempStorage, KILOBYTES( 10 ) );
 
 			StringBuilder_Append( codeHeader, GEN_FILE_HEADER );
 
@@ -1140,19 +1140,22 @@ static void GenerateMatrixFiles( allocatorLinear_t* tempStorage, const char* gen
 				);
 			}
 
-			// forward declarations for other types with the same component count
-			// used for conversion ctors
-			if ( generateConstructors ) {
+			if ( !cLinkage ) {
 				for ( u32 typeIndex = 0; typeIndex < GEN_TYPE_COUNT; typeIndex++ ) {
 					const genType_t otherType = (genType_t) typeIndex;
 
-					if ( otherType == typeInfo->type ) {
-						continue;
-					}
-
 					const char* otherTypeString = Gen_GetTypeString( otherType );
 
-					StringBuilder_Appendf( codeHeader, "struct %s%dx%d;\n", otherTypeString, typeInfo->numRows, typeInfo->numCols );
+					for ( u32 row = 2; row <= 4; row++ ) {
+						for ( u32 col = 2; col <= 4; col++ ) {
+							// dont forward declare the same type as what were about to define
+							if ( otherType == typeInfo->type && row == typeInfo->numRows && col == typeInfo->numCols ) {
+								continue;
+							}
+
+							StringBuilder_Appendf( codeHeader, "struct %s%dx%d;\n", otherTypeString, row, col );
+						}
+					}
 				}
 			}
 
@@ -1222,16 +1225,19 @@ static void GenerateMatrixFiles( allocatorLinear_t* tempStorage, const char* gen
 				for ( u32 typeIndex = 0; typeIndex < GEN_TYPE_COUNT; typeIndex++ ) {
 					const genType_t otherType = (genType_t) typeIndex;
 
-					// dont do the conversion ctor for the same type because we just generated that
-					if ( otherType == typeInfo->type ) {
-						continue;
-					}
-
 					const char* otherTypeString = Gen_GetTypeString( otherType );
 					const char* otherMemberTypeString = Gen_GetMemberTypeString( otherType );
 
-					StringBuilder_Appendf( codeHeader, "\t// Conversion constructor.  Casts all components of 'mat' from type %s to type %s.\n", otherMemberTypeString, memberTypeString );
-					StringBuilder_Appendf( codeHeader, "\tHLML_INLINE explicit %s( const %s%dx%d& mat );\n\n", typeInfo->fullTypeName, otherTypeString, typeInfo->numRows, typeInfo->numCols );
+					for ( u32 row = 2; row <= 4; row++ ) {
+						for ( u32 col = 2; col <= 4; col++ ) {
+							if ( otherType == typeInfo->type && row == typeInfo->numRows && col == typeInfo->numCols ) {
+								continue;
+							}
+
+							StringBuilder_Appendf( codeHeader, "\t// Conversion constructor.  Casts all components of 'mat' from type %s to type %s.\n", otherMemberTypeString, memberTypeString );
+							StringBuilder_Appendf( codeHeader, "\tHLML_INLINE explicit %s( const %s%dx%d& mat );\n\n", typeInfo->fullTypeName, otherTypeString, row, col );
+						}
+					}
 				}
 
 				// dtor
@@ -1277,7 +1283,7 @@ static void GenerateMatrixFiles( allocatorLinear_t* tempStorage, const char* gen
 
 		// inl file
 		if ( generateInlFile ) {
-			stringBuilder_t* codeInl = StringBuilder_Create( tempStorage, KILOBYTES( 4 ) );
+			stringBuilder_t* codeInl = StringBuilder_Create( tempStorage, KILOBYTES( 16 ) );
 
 			StringBuilder_Appendf( codeInl,
 				GEN_FILE_HEADER
@@ -1364,21 +1370,27 @@ static void GenerateMatrixFiles( allocatorLinear_t* tempStorage, const char* gen
 				for ( u32 typeIndex = 0; typeIndex < GEN_TYPE_COUNT; typeIndex++ ) {
 					const genType_t otherType = (genType_t) typeIndex;
 
-					// dont do the conversion ctor for the same type because we just generated that
-					if ( otherType == typeInfo->type ) {
-						continue;
-					}
-
 					const char* otherTypeString = Gen_GetTypeString( otherType );
 
-					StringBuilder_Appendf( codeInl, "%s::%s( const %s%dx%d& mat )\n", typeInfo->fullTypeName, typeInfo->fullTypeName, otherTypeString, typeInfo->numRows, typeInfo->numCols );
-					StringBuilder_Append(  codeInl, "{\n" );
+					for ( u32 row = 2; row <= 4; row++ ) {
+						for ( u32 col = 2; col <= 4; col++ ) {
+							// dont do the conversion ctor for the same type because we just generated that
+							if ( otherType == typeInfo->type && row == typeInfo->numRows && col == typeInfo->numCols ) {
+								continue;
+							}
 
-					for ( u32 row = 0; row < typeInfo->numRows; row++ ) {
-						StringBuilder_Appendf( codeInl, "\trows[%d] = %s( mat[%d] );\n", row, vectorMemberTypeName, row );
+							u32 numConvertRows = min( typeInfo->numRows, row );
+
+							StringBuilder_Appendf( codeInl, "%s::%s( const %s%dx%d& mat )\n", typeInfo->fullTypeName, typeInfo->fullTypeName, otherTypeString, row, col );
+							StringBuilder_Append(  codeInl, "{\n" );
+
+							for ( u32 i = 0; i < numConvertRows; i++ ) {
+								StringBuilder_Appendf( codeInl, "\trows[%d] = %s( mat[%d] );\n", i, vectorMemberTypeName, i );
+							}
+
+							StringBuilder_Append(  codeInl, "}\n\n" );
+						}
 					}
-
-					StringBuilder_Append(  codeInl, "}\n\n" );
 				}
 			}
 
