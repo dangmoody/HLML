@@ -129,6 +129,11 @@ if [!compiler!]==[clang] (
 	set ignorewarnings=-Wno-missing-braces
 )
 
+set additional_flags=
+if [!compiler!]==[g++] (
+	set additional_flags=-Wa,-mbig-obj
+)
+
 pushd %cwd%
 pushd ..
 
@@ -139,7 +144,7 @@ if not exist %build_dir% (
 )
 
 REM echo !compiler! -std=c99 -o %build_dir%\\!output_filename! !symbols! !optimisation! !defines! %warninglevels% !ignorewarnings! !source_files! !includes!
-!compiler! !std! -o %build_dir%\\!output_filename! !symbols! !optimisation! !defines! %warninglevels% !ignorewarnings! !source_files! !includes!
+!compiler! !std! !additional_flags! -o %build_dir%\\!output_filename! !symbols! !optimisation! !defines! %warninglevels% !ignorewarnings! !source_files! !includes!
 
 popd
 popd
