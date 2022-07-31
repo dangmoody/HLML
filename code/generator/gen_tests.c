@@ -170,6 +170,11 @@ static void GenerateTests( allocatorLinear_t* tempStorage,
 			}
 
 			StringBuilder_Appendf( sb, "#include \"test_%s.%s\"\n", typeInfo->fullTypeName, languageName );
+
+			if ( flags & GENERATOR_FLAG_VECTOR_UNIONS ) {
+				StringBuilder_Appendf( sb, "#include \"test_%s_swizzle_%s.%s\"\n", typeInfo->fullTypeName, GEN_COMPONENT_NAMES_VECTOR, languageName );
+				StringBuilder_Appendf( sb, "#include \"test_%s_swizzle_%s.%s\"\n", typeInfo->fullTypeName, GEN_COMPONENT_NAMES_COLOR, languageName );
+			}
 		}
 		StringBuilder_Append( sb, "\n" );
 

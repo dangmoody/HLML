@@ -45,6 +45,11 @@ struct double2;
 #include "hlml_types.h"
 #include "hlml_defines.h"
 
+struct int2;
+struct int3;
+struct int4;
+#include "swizzle_templates.h"
+
 // ignore prohibition of anymous structs for GCC
 #if defined( __clang__ ) || defined( __GNUC__ )
 #pragma GCC diagnostic push
@@ -71,6 +76,65 @@ struct int2
 		};
 
 		int32_t v[2];
+
+		// swizzles
+		swizzle_2_to_2_nonwritable_t<int2, int32_t, 0, 0> xx;
+		swizzle_2_to_2_writable_t<int2, int32_t, 1, 0> yx;
+		swizzle_2_to_2_writable_t<int2, int32_t, 0, 1> xy;
+		swizzle_2_to_2_nonwritable_t<int2, int32_t, 1, 1> yy;
+		swizzle_2_to_3_nonwritable_t<int3, int32_t, 0, 0, 0> xxx;
+		swizzle_2_to_3_nonwritable_t<int3, int32_t, 1, 0, 0> yxx;
+		swizzle_2_to_3_nonwritable_t<int3, int32_t, 0, 1, 0> xyx;
+		swizzle_2_to_3_nonwritable_t<int3, int32_t, 1, 1, 0> yyx;
+		swizzle_2_to_3_nonwritable_t<int3, int32_t, 0, 0, 1> xxy;
+		swizzle_2_to_3_nonwritable_t<int3, int32_t, 1, 0, 1> yxy;
+		swizzle_2_to_3_nonwritable_t<int3, int32_t, 0, 1, 1> xyy;
+		swizzle_2_to_3_nonwritable_t<int3, int32_t, 1, 1, 1> yyy;
+		swizzle_2_to_4_nonwritable_t<int4, int32_t, 0, 0, 0, 0> xxxx;
+		swizzle_2_to_4_nonwritable_t<int4, int32_t, 1, 0, 0, 0> yxxx;
+		swizzle_2_to_4_nonwritable_t<int4, int32_t, 0, 1, 0, 0> xyxx;
+		swizzle_2_to_4_nonwritable_t<int4, int32_t, 1, 1, 0, 0> yyxx;
+		swizzle_2_to_4_nonwritable_t<int4, int32_t, 0, 0, 1, 0> xxyx;
+		swizzle_2_to_4_nonwritable_t<int4, int32_t, 1, 0, 1, 0> yxyx;
+		swizzle_2_to_4_nonwritable_t<int4, int32_t, 0, 1, 1, 0> xyyx;
+		swizzle_2_to_4_nonwritable_t<int4, int32_t, 1, 1, 1, 0> yyyx;
+		swizzle_2_to_4_nonwritable_t<int4, int32_t, 0, 0, 0, 1> xxxy;
+		swizzle_2_to_4_nonwritable_t<int4, int32_t, 1, 0, 0, 1> yxxy;
+		swizzle_2_to_4_nonwritable_t<int4, int32_t, 0, 1, 0, 1> xyxy;
+		swizzle_2_to_4_nonwritable_t<int4, int32_t, 1, 1, 0, 1> yyxy;
+		swizzle_2_to_4_nonwritable_t<int4, int32_t, 0, 0, 1, 1> xxyy;
+		swizzle_2_to_4_nonwritable_t<int4, int32_t, 1, 0, 1, 1> yxyy;
+		swizzle_2_to_4_nonwritable_t<int4, int32_t, 0, 1, 1, 1> xyyy;
+		swizzle_2_to_4_nonwritable_t<int4, int32_t, 1, 1, 1, 1> yyyy;
+
+		swizzle_2_to_2_nonwritable_t<int2, int32_t, 0, 0> rr;
+		swizzle_2_to_2_writable_t<int2, int32_t, 1, 0> gr;
+		swizzle_2_to_2_writable_t<int2, int32_t, 0, 1> rg;
+		swizzle_2_to_2_nonwritable_t<int2, int32_t, 1, 1> gg;
+		swizzle_2_to_3_nonwritable_t<int3, int32_t, 0, 0, 0> rrr;
+		swizzle_2_to_3_nonwritable_t<int3, int32_t, 1, 0, 0> grr;
+		swizzle_2_to_3_nonwritable_t<int3, int32_t, 0, 1, 0> rgr;
+		swizzle_2_to_3_nonwritable_t<int3, int32_t, 1, 1, 0> ggr;
+		swizzle_2_to_3_nonwritable_t<int3, int32_t, 0, 0, 1> rrg;
+		swizzle_2_to_3_nonwritable_t<int3, int32_t, 1, 0, 1> grg;
+		swizzle_2_to_3_nonwritable_t<int3, int32_t, 0, 1, 1> rgg;
+		swizzle_2_to_3_nonwritable_t<int3, int32_t, 1, 1, 1> ggg;
+		swizzle_2_to_4_nonwritable_t<int4, int32_t, 0, 0, 0, 0> rrrr;
+		swizzle_2_to_4_nonwritable_t<int4, int32_t, 1, 0, 0, 0> grrr;
+		swizzle_2_to_4_nonwritable_t<int4, int32_t, 0, 1, 0, 0> rgrr;
+		swizzle_2_to_4_nonwritable_t<int4, int32_t, 1, 1, 0, 0> ggrr;
+		swizzle_2_to_4_nonwritable_t<int4, int32_t, 0, 0, 1, 0> rrgr;
+		swizzle_2_to_4_nonwritable_t<int4, int32_t, 1, 0, 1, 0> grgr;
+		swizzle_2_to_4_nonwritable_t<int4, int32_t, 0, 1, 1, 0> rggr;
+		swizzle_2_to_4_nonwritable_t<int4, int32_t, 1, 1, 1, 0> gggr;
+		swizzle_2_to_4_nonwritable_t<int4, int32_t, 0, 0, 0, 1> rrrg;
+		swizzle_2_to_4_nonwritable_t<int4, int32_t, 1, 0, 0, 1> grrg;
+		swizzle_2_to_4_nonwritable_t<int4, int32_t, 0, 1, 0, 1> rgrg;
+		swizzle_2_to_4_nonwritable_t<int4, int32_t, 1, 1, 0, 1> ggrg;
+		swizzle_2_to_4_nonwritable_t<int4, int32_t, 0, 0, 1, 1> rrgg;
+		swizzle_2_to_4_nonwritable_t<int4, int32_t, 1, 0, 1, 1> grgg;
+		swizzle_2_to_4_nonwritable_t<int4, int32_t, 0, 1, 1, 1> rggg;
+		swizzle_2_to_4_nonwritable_t<int4, int32_t, 1, 1, 1, 1> gggg;
 	};
 
 	// Default constructor.
@@ -109,66 +173,6 @@ struct int2
 	// Returns the vector component at the given index.
 	// Index CANNOT be lower than 0 or greater than 1.
 	HLML_INLINE const int32_t& operator[]( const int32_t index ) const;
-
-	// swizzle functions
-	HLML_INLINE int2 xx() const;
-	HLML_INLINE int2 xy() const;
-	HLML_INLINE int2 yx() const;
-	HLML_INLINE int2 yy() const;
-	HLML_INLINE int3 xxx() const;
-	HLML_INLINE int3 xxy() const;
-	HLML_INLINE int3 xyx() const;
-	HLML_INLINE int3 xyy() const;
-	HLML_INLINE int3 yxx() const;
-	HLML_INLINE int3 yxy() const;
-	HLML_INLINE int3 yyx() const;
-	HLML_INLINE int3 yyy() const;
-	HLML_INLINE int4 xxxx() const;
-	HLML_INLINE int4 xxxy() const;
-	HLML_INLINE int4 xxyx() const;
-	HLML_INLINE int4 xxyy() const;
-	HLML_INLINE int4 xyxx() const;
-	HLML_INLINE int4 xyxy() const;
-	HLML_INLINE int4 xyyx() const;
-	HLML_INLINE int4 xyyy() const;
-	HLML_INLINE int4 yxxx() const;
-	HLML_INLINE int4 yxxy() const;
-	HLML_INLINE int4 yxyx() const;
-	HLML_INLINE int4 yxyy() const;
-	HLML_INLINE int4 yyxx() const;
-	HLML_INLINE int4 yyxy() const;
-	HLML_INLINE int4 yyyx() const;
-	HLML_INLINE int4 yyyy() const;
-
-	HLML_INLINE int2 rr() const;
-	HLML_INLINE int2 rg() const;
-	HLML_INLINE int2 gr() const;
-	HLML_INLINE int2 gg() const;
-	HLML_INLINE int3 rrr() const;
-	HLML_INLINE int3 rrg() const;
-	HLML_INLINE int3 rgr() const;
-	HLML_INLINE int3 rgg() const;
-	HLML_INLINE int3 grr() const;
-	HLML_INLINE int3 grg() const;
-	HLML_INLINE int3 ggr() const;
-	HLML_INLINE int3 ggg() const;
-	HLML_INLINE int4 rrrr() const;
-	HLML_INLINE int4 rrrg() const;
-	HLML_INLINE int4 rrgr() const;
-	HLML_INLINE int4 rrgg() const;
-	HLML_INLINE int4 rgrr() const;
-	HLML_INLINE int4 rgrg() const;
-	HLML_INLINE int4 rggr() const;
-	HLML_INLINE int4 rggg() const;
-	HLML_INLINE int4 grrr() const;
-	HLML_INLINE int4 grrg() const;
-	HLML_INLINE int4 grgr() const;
-	HLML_INLINE int4 grgg() const;
-	HLML_INLINE int4 ggrr() const;
-	HLML_INLINE int4 ggrg() const;
-	HLML_INLINE int4 gggr() const;
-	HLML_INLINE int4 gggg() const;
-
 };
 
 #if defined( __clang__ ) || defined( __GNUC__ )
@@ -176,3 +180,4 @@ struct int2
 #elif defined( _MSC_VER )
 #pragma warning( pop )
 #endif
+

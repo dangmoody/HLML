@@ -142,6 +142,7 @@ typedef enum generatorFlagBits_t {
 	GENERATOR_FLAG_GENERATE_CONSTRUCTORS	= GEN_BIT( 3 ),
 	GENERATOR_FLAG_PARMS_ARE_POINTERS		= GEN_BIT( 4 ),	// if not set then parms are references
 	GENERATOR_FLAG_C_LINKAGE				= GEN_BIT( 5 ),	// will generate all the extern "C" stuff and all things related to that
+	GENERATOR_FLAG_VECTOR_SWIZZLES			= GEN_BIT( 6 ),	// generate HLSL-style vector swizzles
 
 	GENERATOR_FLAG_ALL
 } generatorFlagBits_t;

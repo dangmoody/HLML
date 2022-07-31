@@ -46,6 +46,8 @@ int main( int argc, char** argv ) {
 	GEN_UNUSED( argc );
 	GEN_UNUSED( argv );
 
+	printf( "INT64_MIN: %lld\n", INT64_MIN );
+
 	float64 start = Time_NowMS();
 
 	printf(
@@ -56,8 +58,8 @@ int main( int argc, char** argv ) {
 		"\n"
 	);
 
-	allocatorLinear_t* allocator = Mem_CreateLinear( 1024 * MB_TO_BYTES );
-	allocatorLinear_t* tempStorage = Mem_CreateFromOther( allocator, 512 * MB_TO_BYTES );
+	allocatorLinear_t* allocator = Mem_CreateLinear( GIGABYTES( 6 ) );
+	allocatorLinear_t* tempStorage = Mem_CreateFromOther( allocator, GIGABYTES( 5 ) );
 
 	u32 vectorTypeInfosCount = 0;
 	u32 quaternionTypeInfosCount = 0;
@@ -154,7 +156,7 @@ int main( int argc, char** argv ) {
 
 	// C++
 	{
-		flags = GENERATOR_FLAG_GENERATE_OPERATORS | GENERATOR_FLAG_NAME_MANGLING | GENERATOR_FLAG_VECTOR_UNIONS | GENERATOR_FLAG_GENERATE_CONSTRUCTORS;
+		flags = GENERATOR_FLAG_GENERATE_OPERATORS | GENERATOR_FLAG_NAME_MANGLING | GENERATOR_FLAG_VECTOR_UNIONS | GENERATOR_FLAG_GENERATE_CONSTRUCTORS | GENERATOR_FLAG_VECTOR_SWIZZLES;
 
 		UpdateStringsFromFlags( flags, &generatorStrings );
 

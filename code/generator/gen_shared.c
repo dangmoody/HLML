@@ -216,6 +216,26 @@ static const char* Gen_GetOperatorBitwise( const genOpBitwise_t op ) {
 	}
 }
 
+// TODO(DM): no! this is slow!
+// this could be a lookup table!
+static u32 Gen_GetComponentIndex( const char component ) {
+	for ( u32 i = 0; i < 4; i++ ) {
+		if ( GEN_COMPONENT_NAMES_VECTOR[i] == component ) {
+			return i;
+		}
+	}
+
+	for ( u32 i = 0; i < 4; i++ ) {
+		if ( GEN_COMPONENT_NAMES_COLOR[i] == component ) {
+			return i;
+		}
+	}
+
+	assert( false && "Invalid component." );
+
+	return U32_MAX;
+}
+
 //================================================================
 
 static bool32 Gen_TypeIsScalar( const typeInfo_t* typeInfo ) {
