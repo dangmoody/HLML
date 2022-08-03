@@ -762,12 +762,12 @@ static void GenerateSwizzleFunc_Test( allocatorLinear_t* tempStorage, stringBuil
 	StringBuilder_Appendf( code, "}\n\n" );
 
 	testFixture_Swizzle_t fixtures[] = {
-		{ 0.0f,    0.0f,   0.0f,   0.0f   },
-		{ 0.0f,    1.0f,   2.0f,   3.0f   },
-		{ 3.0f,    2.0f,   1.0f,   0.0f   },
-		{ 10.0f,   10.0f,  20.0f,  20.0f  },
-		{ 20.0f,   20.0f,  10.0f,  10.0f  },
-		{ FLT_MAX, 100.0f, 666.0f, 616.0f }
+		{ 0.0f,  0.0f,   0.0f,   0.0f   },
+		{ 0.0f,  1.0f,   2.0f,   3.0f   },
+		{ 3.0f,  2.0f,   1.0f,   0.0f   },
+		{ 10.0f, 10.0f,  20.0f,  20.0f  },
+		{ 20.0f, 20.0f,  10.0f,  10.0f  },
+		{ 69.0f, 420.0f, 666.0f, 616.0f }
 	};
 
 	for ( u32 fixtureIndex = 0; fixtureIndex < GEN_COUNTOF( fixtures ); fixtureIndex++ ) {

@@ -64,8 +64,8 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_uint2_Swizzle_rr,
 );
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_uint2_Swizzle_rr,
-	uint2( 0U, 100U ),
-	uint2( 0U, 0U )
+	uint2( 69U, 420U ),
+	uint2( 69U, 69U )
 );
 
 TEMPER_PARAMETRIC( Test_uint2_Swizzle_gr, TEMPER_FLAG_SHOULD_RUN, const uint2& vec, const uint2& expectedAnswer )
@@ -100,8 +100,8 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_uint2_Swizzle_gr,
 );
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_uint2_Swizzle_gr,
-	uint2( 0U, 100U ),
-	uint2( 100U, 0U )
+	uint2( 69U, 420U ),
+	uint2( 420U, 69U )
 );
 
 TEMPER_PARAMETRIC( Test_uint2_Swizzle_rg, TEMPER_FLAG_SHOULD_RUN, const uint2& vec, const uint2& expectedAnswer )
@@ -136,8 +136,8 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_uint2_Swizzle_rg,
 );
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_uint2_Swizzle_rg,
-	uint2( 0U, 100U ),
-	uint2( 0U, 100U )
+	uint2( 69U, 420U ),
+	uint2( 69U, 420U )
 );
 
 TEMPER_PARAMETRIC( Test_uint2_Swizzle_gg, TEMPER_FLAG_SHOULD_RUN, const uint2& vec, const uint2& expectedAnswer )
@@ -172,8 +172,8 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_uint2_Swizzle_gg,
 );
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_uint2_Swizzle_gg,
-	uint2( 0U, 100U ),
-	uint2( 100U, 100U )
+	uint2( 69U, 420U ),
+	uint2( 420U, 420U )
 );
 
 TEMPER_PARAMETRIC( Test_uint2_Swizzle_rrr, TEMPER_FLAG_SHOULD_RUN, const uint2& vec, const uint3& expectedAnswer )
@@ -208,8 +208,8 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_uint2_Swizzle_rrr,
 );
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_uint2_Swizzle_rrr,
-	uint2( 0U, 100U ),
-	uint3( 0U, 0U, 0U )
+	uint2( 69U, 420U ),
+	uint3( 69U, 69U, 69U )
 );
 
 TEMPER_PARAMETRIC( Test_uint2_Swizzle_grr, TEMPER_FLAG_SHOULD_RUN, const uint2& vec, const uint3& expectedAnswer )
@@ -244,8 +244,8 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_uint2_Swizzle_grr,
 );
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_uint2_Swizzle_grr,
-	uint2( 0U, 100U ),
-	uint3( 100U, 0U, 0U )
+	uint2( 69U, 420U ),
+	uint3( 420U, 69U, 69U )
 );
 
 TEMPER_PARAMETRIC( Test_uint2_Swizzle_rgr, TEMPER_FLAG_SHOULD_RUN, const uint2& vec, const uint3& expectedAnswer )
@@ -280,8 +280,8 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_uint2_Swizzle_rgr,
 );
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_uint2_Swizzle_rgr,
-	uint2( 0U, 100U ),
-	uint3( 0U, 100U, 0U )
+	uint2( 69U, 420U ),
+	uint3( 69U, 420U, 69U )
 );
 
 TEMPER_PARAMETRIC( Test_uint2_Swizzle_ggr, TEMPER_FLAG_SHOULD_RUN, const uint2& vec, const uint3& expectedAnswer )
@@ -316,8 +316,8 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_uint2_Swizzle_ggr,
 );
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_uint2_Swizzle_ggr,
-	uint2( 0U, 100U ),
-	uint3( 100U, 100U, 0U )
+	uint2( 69U, 420U ),
+	uint3( 420U, 420U, 69U )
 );
 
 TEMPER_PARAMETRIC( Test_uint2_Swizzle_rrg, TEMPER_FLAG_SHOULD_RUN, const uint2& vec, const uint3& expectedAnswer )
@@ -352,8 +352,8 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_uint2_Swizzle_rrg,
 );
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_uint2_Swizzle_rrg,
-	uint2( 0U, 100U ),
-	uint3( 0U, 0U, 100U )
+	uint2( 69U, 420U ),
+	uint3( 69U, 69U, 420U )
 );
 
 TEMPER_PARAMETRIC( Test_uint2_Swizzle_grg, TEMPER_FLAG_SHOULD_RUN, const uint2& vec, const uint3& expectedAnswer )
@@ -388,8 +388,8 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_uint2_Swizzle_grg,
 );
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_uint2_Swizzle_grg,
-	uint2( 0U, 100U ),
-	uint3( 100U, 0U, 100U )
+	uint2( 69U, 420U ),
+	uint3( 420U, 69U, 420U )
 );
 
 TEMPER_PARAMETRIC( Test_uint2_Swizzle_rgg, TEMPER_FLAG_SHOULD_RUN, const uint2& vec, const uint3& expectedAnswer )
@@ -424,8 +424,8 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_uint2_Swizzle_rgg,
 );
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_uint2_Swizzle_rgg,
-	uint2( 0U, 100U ),
-	uint3( 0U, 100U, 100U )
+	uint2( 69U, 420U ),
+	uint3( 69U, 420U, 420U )
 );
 
 TEMPER_PARAMETRIC( Test_uint2_Swizzle_ggg, TEMPER_FLAG_SHOULD_RUN, const uint2& vec, const uint3& expectedAnswer )
@@ -460,8 +460,8 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_uint2_Swizzle_ggg,
 );
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_uint2_Swizzle_ggg,
-	uint2( 0U, 100U ),
-	uint3( 100U, 100U, 100U )
+	uint2( 69U, 420U ),
+	uint3( 420U, 420U, 420U )
 );
 
 TEMPER_PARAMETRIC( Test_uint2_Swizzle_rrrr, TEMPER_FLAG_SHOULD_RUN, const uint2& vec, const uint4& expectedAnswer )
@@ -496,8 +496,8 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_uint2_Swizzle_rrrr,
 );
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_uint2_Swizzle_rrrr,
-	uint2( 0U, 100U ),
-	uint4( 0U, 0U, 0U, 0U )
+	uint2( 69U, 420U ),
+	uint4( 69U, 69U, 69U, 69U )
 );
 
 TEMPER_PARAMETRIC( Test_uint2_Swizzle_grrr, TEMPER_FLAG_SHOULD_RUN, const uint2& vec, const uint4& expectedAnswer )
@@ -532,8 +532,8 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_uint2_Swizzle_grrr,
 );
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_uint2_Swizzle_grrr,
-	uint2( 0U, 100U ),
-	uint4( 100U, 0U, 0U, 0U )
+	uint2( 69U, 420U ),
+	uint4( 420U, 69U, 69U, 69U )
 );
 
 TEMPER_PARAMETRIC( Test_uint2_Swizzle_rgrr, TEMPER_FLAG_SHOULD_RUN, const uint2& vec, const uint4& expectedAnswer )
@@ -568,8 +568,8 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_uint2_Swizzle_rgrr,
 );
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_uint2_Swizzle_rgrr,
-	uint2( 0U, 100U ),
-	uint4( 0U, 100U, 0U, 0U )
+	uint2( 69U, 420U ),
+	uint4( 69U, 420U, 69U, 69U )
 );
 
 TEMPER_PARAMETRIC( Test_uint2_Swizzle_ggrr, TEMPER_FLAG_SHOULD_RUN, const uint2& vec, const uint4& expectedAnswer )
@@ -604,8 +604,8 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_uint2_Swizzle_ggrr,
 );
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_uint2_Swizzle_ggrr,
-	uint2( 0U, 100U ),
-	uint4( 100U, 100U, 0U, 0U )
+	uint2( 69U, 420U ),
+	uint4( 420U, 420U, 69U, 69U )
 );
 
 TEMPER_PARAMETRIC( Test_uint2_Swizzle_rrgr, TEMPER_FLAG_SHOULD_RUN, const uint2& vec, const uint4& expectedAnswer )
@@ -640,8 +640,8 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_uint2_Swizzle_rrgr,
 );
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_uint2_Swizzle_rrgr,
-	uint2( 0U, 100U ),
-	uint4( 0U, 0U, 100U, 0U )
+	uint2( 69U, 420U ),
+	uint4( 69U, 69U, 420U, 69U )
 );
 
 TEMPER_PARAMETRIC( Test_uint2_Swizzle_grgr, TEMPER_FLAG_SHOULD_RUN, const uint2& vec, const uint4& expectedAnswer )
@@ -676,8 +676,8 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_uint2_Swizzle_grgr,
 );
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_uint2_Swizzle_grgr,
-	uint2( 0U, 100U ),
-	uint4( 100U, 0U, 100U, 0U )
+	uint2( 69U, 420U ),
+	uint4( 420U, 69U, 420U, 69U )
 );
 
 TEMPER_PARAMETRIC( Test_uint2_Swizzle_rggr, TEMPER_FLAG_SHOULD_RUN, const uint2& vec, const uint4& expectedAnswer )
@@ -712,8 +712,8 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_uint2_Swizzle_rggr,
 );
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_uint2_Swizzle_rggr,
-	uint2( 0U, 100U ),
-	uint4( 0U, 100U, 100U, 0U )
+	uint2( 69U, 420U ),
+	uint4( 69U, 420U, 420U, 69U )
 );
 
 TEMPER_PARAMETRIC( Test_uint2_Swizzle_gggr, TEMPER_FLAG_SHOULD_RUN, const uint2& vec, const uint4& expectedAnswer )
@@ -748,8 +748,8 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_uint2_Swizzle_gggr,
 );
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_uint2_Swizzle_gggr,
-	uint2( 0U, 100U ),
-	uint4( 100U, 100U, 100U, 0U )
+	uint2( 69U, 420U ),
+	uint4( 420U, 420U, 420U, 69U )
 );
 
 TEMPER_PARAMETRIC( Test_uint2_Swizzle_rrrg, TEMPER_FLAG_SHOULD_RUN, const uint2& vec, const uint4& expectedAnswer )
@@ -784,8 +784,8 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_uint2_Swizzle_rrrg,
 );
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_uint2_Swizzle_rrrg,
-	uint2( 0U, 100U ),
-	uint4( 0U, 0U, 0U, 100U )
+	uint2( 69U, 420U ),
+	uint4( 69U, 69U, 69U, 420U )
 );
 
 TEMPER_PARAMETRIC( Test_uint2_Swizzle_grrg, TEMPER_FLAG_SHOULD_RUN, const uint2& vec, const uint4& expectedAnswer )
@@ -820,8 +820,8 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_uint2_Swizzle_grrg,
 );
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_uint2_Swizzle_grrg,
-	uint2( 0U, 100U ),
-	uint4( 100U, 0U, 0U, 100U )
+	uint2( 69U, 420U ),
+	uint4( 420U, 69U, 69U, 420U )
 );
 
 TEMPER_PARAMETRIC( Test_uint2_Swizzle_rgrg, TEMPER_FLAG_SHOULD_RUN, const uint2& vec, const uint4& expectedAnswer )
@@ -856,8 +856,8 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_uint2_Swizzle_rgrg,
 );
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_uint2_Swizzle_rgrg,
-	uint2( 0U, 100U ),
-	uint4( 0U, 100U, 0U, 100U )
+	uint2( 69U, 420U ),
+	uint4( 69U, 420U, 69U, 420U )
 );
 
 TEMPER_PARAMETRIC( Test_uint2_Swizzle_ggrg, TEMPER_FLAG_SHOULD_RUN, const uint2& vec, const uint4& expectedAnswer )
@@ -892,8 +892,8 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_uint2_Swizzle_ggrg,
 );
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_uint2_Swizzle_ggrg,
-	uint2( 0U, 100U ),
-	uint4( 100U, 100U, 0U, 100U )
+	uint2( 69U, 420U ),
+	uint4( 420U, 420U, 69U, 420U )
 );
 
 TEMPER_PARAMETRIC( Test_uint2_Swizzle_rrgg, TEMPER_FLAG_SHOULD_RUN, const uint2& vec, const uint4& expectedAnswer )
@@ -928,8 +928,8 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_uint2_Swizzle_rrgg,
 );
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_uint2_Swizzle_rrgg,
-	uint2( 0U, 100U ),
-	uint4( 0U, 0U, 100U, 100U )
+	uint2( 69U, 420U ),
+	uint4( 69U, 69U, 420U, 420U )
 );
 
 TEMPER_PARAMETRIC( Test_uint2_Swizzle_grgg, TEMPER_FLAG_SHOULD_RUN, const uint2& vec, const uint4& expectedAnswer )
@@ -964,8 +964,8 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_uint2_Swizzle_grgg,
 );
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_uint2_Swizzle_grgg,
-	uint2( 0U, 100U ),
-	uint4( 100U, 0U, 100U, 100U )
+	uint2( 69U, 420U ),
+	uint4( 420U, 69U, 420U, 420U )
 );
 
 TEMPER_PARAMETRIC( Test_uint2_Swizzle_rggg, TEMPER_FLAG_SHOULD_RUN, const uint2& vec, const uint4& expectedAnswer )
@@ -1000,8 +1000,8 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_uint2_Swizzle_rggg,
 );
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_uint2_Swizzle_rggg,
-	uint2( 0U, 100U ),
-	uint4( 0U, 100U, 100U, 100U )
+	uint2( 69U, 420U ),
+	uint4( 69U, 420U, 420U, 420U )
 );
 
 TEMPER_PARAMETRIC( Test_uint2_Swizzle_gggg, TEMPER_FLAG_SHOULD_RUN, const uint2& vec, const uint4& expectedAnswer )
@@ -1036,7 +1036,7 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_uint2_Swizzle_gggg,
 );
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_uint2_Swizzle_gggg,
-	uint2( 0U, 100U ),
-	uint4( 100U, 100U, 100U, 100U )
+	uint2( 69U, 420U ),
+	uint4( 420U, 420U, 420U, 420U )
 );
 
