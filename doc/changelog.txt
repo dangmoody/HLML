@@ -1,5 +1,9 @@
 HLML CHANGELOG
 
+v2.2.0, <INSERT RELEASE DATE HERE>:
+	* Added more constructors for vector and matrix types.
+	* Rewrote the vector swizzling to support the same syntax and usage as HLSL.
+
 v2.1.0, 12/03/2022:
 	* `*_unary` has been renamed to `*_not` because that's what it actually does.
 	* Matrix header files now include the header file for their vector member type.
