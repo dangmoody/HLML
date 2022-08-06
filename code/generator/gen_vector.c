@@ -649,7 +649,7 @@ static void GenerateVectorFiles( allocatorLinear_t* tempStorage, const char* gen
 	for ( u32 typeInfoIndex = 0; typeInfoIndex < typeInfosCount; typeInfoIndex++ ) {
 		const typeInfo_t* typeInfo = &typeInfos[typeInfoIndex];
 
-		//const char* typeString = Gen_GetTypeString( typeInfo->type );
+		const char* typeString = Gen_GetTypeString( typeInfo->type );
 		const char* memberTypeString = Gen_GetMemberTypeString( typeInfo->type );
 
 		// vector header file
@@ -672,19 +672,25 @@ static void GenerateVectorFiles( allocatorLinear_t* tempStorage, const char* gen
 			}
 
 			if ( !cLinkage ) {
+				for ( u32 componentIndex = 2; componentIndex <= 4; componentIndex++ ) {
+					if ( componentIndex != typeInfo->numCols ) {
+						StringBuilder_Appendf( codeHeader, "struct %s%d;\n", typeString, componentIndex );
+					}
+				}
+
+				StringBuilder_Append( codeHeader, "\n" );
+
 				for ( u32 typeIndex = 0; typeIndex < GEN_TYPE_COUNT; typeIndex++ ) {
 					const genType_t type = (genType_t) typeIndex;
 
+					// dont forward declare the same type as what were about to define
+					if ( type == typeInfo->type ) {
+						continue;
+					}
+
 					const char* rhsTypeString = Gen_GetTypeString( type );
 
-					for ( u32 rhsComponentIndex = 2; rhsComponentIndex <= 4; rhsComponentIndex++ ) {
-						// dont forward declare the same type as what were about to define
-						if ( type == typeInfo->type && rhsComponentIndex == typeInfo->numCols ) {
-							continue;
-						}
-
-						StringBuilder_Appendf( codeHeader, "struct %s%d;\n", rhsTypeString, rhsComponentIndex );
-					}
+					StringBuilder_Appendf( codeHeader, "struct %s%d;\n", rhsTypeString, typeInfo->numCols );
 				}
 			}
 
@@ -805,17 +811,88 @@ static void GenerateVectorFiles( allocatorLinear_t* tempStorage, const char* gen
 				for ( u32 typeIndex = 0; typeIndex < GEN_TYPE_COUNT; typeIndex++ ) {
 					const genType_t otherType = (genType_t) typeIndex;
 
-					for ( u32 rhsComponentIndex = 2; rhsComponentIndex <= 4; rhsComponentIndex++ ) {
-						// dont do the conversion ctor for the same type because we just generated that
-						if ( otherType == typeInfo->type && rhsComponentIndex == typeInfo->numCols ) {
+					// dont do the conversion ctor for the same type because we just generated that
+					if ( otherType == typeInfo->type ) {
+						continue;
+					}
+
+					const char* otherTypeString = Gen_GetTypeString( otherType );
+					const char* otherMemberTypeString = Gen_GetMemberTypeString( otherType );
+
+					StringBuilder_Appendf( codeHeader, "\t// Conversion constructor.  Casts all components of 'vec' from type %s to type %s.\n", otherMemberTypeString, memberTypeString );
+					StringBuilder_Appendf( codeHeader, "\tHLML_INLINE explicit %s( const %s%d& vec );\n\n", typeInfo->fullTypeName, otherTypeString, typeInfo->numCols );
+				}
+
+				// scalar/vector composite ctors
+				{
+					// the components that the input vector will set
+					// component names are used as parm names here
+					char subVecStr[4];
+
+					// generate the ctors where we can fit a vector and some scalars
+					for ( u32 componentIndex = 2; componentIndex < typeInfo->numCols; componentIndex++ ) {
+						u32 leftoverOnes = typeInfo->numCols - componentIndex;
+
+						if ( !leftoverOnes ) {
 							continue;
 						}
 
-						const char* otherTypeString = Gen_GetTypeString( otherType );
-						const char* otherMemberTypeString = Gen_GetMemberTypeString( otherType );
+						memcpy( subVecStr, GEN_COMPONENT_NAMES_VECTOR, componentIndex * sizeof( char ) );
+						subVecStr[componentIndex] = 0;
 
-						StringBuilder_Appendf( codeHeader, "\t// Conversion constructor.  Casts all components of 'vec' from type %s to type %s.\n", otherMemberTypeString, memberTypeString );
-						StringBuilder_Appendf( codeHeader, "\tHLML_INLINE explicit %s( const %s%d& vec );\n\n", typeInfo->fullTypeName, otherTypeString, rhsComponentIndex );
+						// vector before
+						StringBuilder_Appendf( codeHeader, "\t// Sets the %s components of the vector to that of the corresponding input vector.  Sets the other corresponding vectors to the given scalars.\n", subVecStr );
+						StringBuilder_Appendf( codeHeader, "\tHLML_INLINE %s( const %s%d& %s, ", typeInfo->fullTypeName, typeString, componentIndex, subVecStr );
+						for ( u32 i = 0; i < leftoverOnes; i++ ) {
+							const u32 componentNameIndex = componentIndex + i;
+
+							assert( componentNameIndex < 4 );
+
+							StringBuilder_Appendf( codeHeader, "const %s %c", memberTypeString, GEN_COMPONENT_NAMES_VECTOR[componentNameIndex] );
+
+							if ( i != leftoverOnes - 1 ) {
+								StringBuilder_Append( codeHeader, ", " );
+							}
+						}
+						StringBuilder_Appendf( codeHeader, " );\n\n" );
+
+						// vector after
+						memcpy( subVecStr, GEN_COMPONENT_NAMES_VECTOR + ( 4 - componentIndex ), componentIndex * sizeof( char ) );
+						subVecStr[componentIndex] = 0;
+
+						StringBuilder_Appendf( codeHeader, "\t// Sets the %s components of the vector to that of the corresponding input vector.  Sets the other corresponding vectors to the given scalars.\n", subVecStr );
+						StringBuilder_Appendf( codeHeader, "\tHLML_INLINE %s( ", typeInfo->fullTypeName );
+						for ( u32 i = 0; i < leftoverOnes; i++ ) {
+							const char componentName = GEN_COMPONENT_NAMES_VECTOR[i];
+
+							StringBuilder_Appendf( codeHeader, "const %s %c, ", memberTypeString, componentName );
+						}
+
+						StringBuilder_Appendf( codeHeader, "const %s%d& %s );\n\n", typeString, componentIndex, subVecStr );
+					}
+
+					// if we can also have a ctors consisting of two input vectors then generate that one now
+					if ( typeInfo->numCols > 2 && typeInfo->numCols % 2 == 0 ) {
+						StringBuilder_Appendf( codeHeader, "\tHLML_INLINE %s( ", typeInfo->fullTypeName );
+
+						const u32 numVectorParms = typeInfo->numCols - 2;
+						const u32 numVectorParmComponents = numVectorParms;
+
+						for ( u32 i = 0; i < numVectorParms; i++ ) {
+							u32 subVecStrOffset = ( i * numVectorParmComponents );
+
+							assert( subVecStrOffset < 4 );
+
+							memcpy( subVecStr, GEN_COMPONENT_NAMES_VECTOR + subVecStrOffset, numVectorParmComponents * sizeof( char ) );
+							subVecStr[numVectorParmComponents] = 0;
+
+							StringBuilder_Appendf( codeHeader, "const %s%d& %s", typeString, numVectorParmComponents, subVecStr );
+
+							if ( i != numVectorParms - 1 ) {
+								StringBuilder_Append( codeHeader, ", " );
+							}
+						}
+						StringBuilder_Append( codeHeader, " );\n\n" );
 					}
 				}
 
@@ -946,34 +1023,169 @@ static void GenerateVectorFiles( allocatorLinear_t* tempStorage, const char* gen
 				for ( u32 typeIndex = 0; typeIndex < GEN_TYPE_COUNT; typeIndex++ ) {
 					const genType_t otherType = (genType_t) typeIndex;
 
-					for ( u32 rhsComponentIndex = 2; rhsComponentIndex <= 4; rhsComponentIndex++ ) {
-						// dont do the conversion ctor for the same type because we just generated that
-						if ( otherType == typeInfo->type && rhsComponentIndex == typeInfo->numCols ) {
+					// dont do the conversion ctor for the same type because we just generated that
+					if ( otherType == typeInfo->type ) {
+						continue;
+					}
+
+					const char* otherTypeString = Gen_GetTypeString( otherType );
+
+					StringBuilder_Appendf( codeInl, "%s::%s( const %s%d& vec )\n", typeInfo->fullTypeName, typeInfo->fullTypeName, otherTypeString, typeInfo->numCols );
+
+					if ( otherType != typeInfo->type ) {
+						StringBuilder_Appendf( codeInl, "\t: x( (%s) vec.x )\n", memberTypeString );
+					} else {
+						StringBuilder_Append( codeInl, "\t: x( vec.x )\n" );
+					}
+
+					for ( u32 componentIndex = 1; componentIndex < typeInfo->numCols; componentIndex++ ) {
+						const char componentName = GEN_COMPONENT_NAMES_VECTOR[componentIndex];
+
+						if ( otherType != typeInfo->type ) {
+							StringBuilder_Appendf( codeInl, "\t, %c( (%s) vec.%c )\n", componentName, memberTypeString, componentName );
+						} else {
+							StringBuilder_Appendf( codeInl, "\t, %c( vec.%c )\n", componentName, componentName );
+						}
+					}
+
+					StringBuilder_Append( codeInl,
+						"{\n"
+						"}\n\n"
+					);
+				}
+
+				// scalar/vector composite ctors
+				{
+					char subVecStr[4];
+
+					for ( u32 componentIndex = 2; componentIndex < typeInfo->numCols; componentIndex++ ) {
+						u32 leftoverOnes = typeInfo->numCols - componentIndex;
+
+						if ( !leftoverOnes ) {
 							continue;
 						}
 
-						const char* otherTypeString = Gen_GetTypeString( otherType );
+						memcpy( subVecStr, GEN_COMPONENT_NAMES_VECTOR, componentIndex * sizeof( char ) );
+						subVecStr[componentIndex] = 0;
 
-						StringBuilder_Appendf( codeInl, "%s::%s( const %s%d& vec )\n", typeInfo->fullTypeName, typeInfo->fullTypeName, otherTypeString, rhsComponentIndex );
+						// vector before
+						StringBuilder_Appendf( codeInl, "%s::%s( const %s%d& %s, ", typeInfo->fullTypeName, typeInfo->fullTypeName, typeString, componentIndex, subVecStr );
+						for ( u32 i = 0; i < leftoverOnes; i++ ) {
+							const u32 componentNameIndex = componentIndex + i;
 
-						if ( otherType != typeInfo->type ) {
-							StringBuilder_Appendf( codeInl, "\t: x( (%s) vec.x )\n", memberTypeString );
-						} else {
-							StringBuilder_Append( codeInl, "\t: x( vec.x )\n" );
-						}
+							assert( componentNameIndex <= 3 );
 
-						u32 numCtorComponents = GEN_MIN( typeInfo->numCols, rhsComponentIndex );
+							StringBuilder_Appendf( codeInl, "const %s %c", memberTypeString, GEN_COMPONENT_NAMES_VECTOR[componentNameIndex] );
 
-						for ( u32 componentIndex = 1; componentIndex < numCtorComponents; componentIndex++ ) {
-							const char componentName = GEN_COMPONENT_NAMES_VECTOR[componentIndex];
-
-							if ( otherType != typeInfo->type ) {
-								StringBuilder_Appendf( codeInl, "\t, %c( (%s) vec.%c )\n", componentName, memberTypeString, componentName );
-							} else {
-								StringBuilder_Appendf( codeInl, "\t, %c( vec.%c )\n", componentName, componentName );
+							if ( i != leftoverOnes - 1 ) {
+								StringBuilder_Append( codeInl, ", " );
 							}
 						}
+						StringBuilder_Appendf( codeInl, " )\n" );
+						StringBuilder_Appendf( codeInl, "\t: x( %s.x )\n", subVecStr );
+						for ( u32 i = 1; i < componentIndex; i++ ) {
+							const char componentName = GEN_COMPONENT_NAMES_VECTOR[i];
 
+							StringBuilder_Appendf( codeInl, "\t, %c( %s.%c )\n", componentName, subVecStr, componentName );
+						}
+						for ( u32 i = 0; i < leftoverOnes; i++ ) {
+							const u32 componentNameIndex = componentIndex + i;
+
+							assert( componentNameIndex <= 3 );
+
+							const char componentName = GEN_COMPONENT_NAMES_VECTOR[componentNameIndex];
+
+							StringBuilder_Appendf( codeInl, "\t, %c( %c )\n", componentName, componentName );
+						}
+						StringBuilder_Appendf( codeInl,
+							"{\n"
+							"}\n\n"
+						);
+
+						// vector after
+						StringBuilder_Appendf( codeInl, "%s::%s( ", typeInfo->fullTypeName, typeInfo->fullTypeName );
+						for ( u32 i = 0; i < leftoverOnes; i++ ) {
+							const char componentName = GEN_COMPONENT_NAMES_VECTOR[i];
+
+							StringBuilder_Appendf( codeInl, "const %s %c, ", memberTypeString, componentName );
+						}
+
+						memcpy( subVecStr, GEN_COMPONENT_NAMES_VECTOR + componentIndex, componentIndex * sizeof( char ) );
+						subVecStr[componentIndex] = 0;
+
+						StringBuilder_Appendf( codeInl, "const %s%d& %s )\n", typeString, componentIndex, subVecStr );
+						StringBuilder_Append(  codeInl, "\t: x( x )\n" );
+						for ( u32 i = 1; i < leftoverOnes; i++ ) {
+							const char componentName = GEN_COMPONENT_NAMES_VECTOR[i];
+
+							StringBuilder_Appendf( codeInl, "\t, %c( %c )\n", componentName, componentName );
+						}
+						for ( u32 i = 0; i < componentIndex; i++ ) {
+							u32 componentNameIndex = i + leftoverOnes;
+
+							assert( componentNameIndex <= 3 );
+
+							const char componentName = GEN_COMPONENT_NAMES_VECTOR[componentNameIndex];
+
+							const char subVecComponentName = GEN_COMPONENT_NAMES_VECTOR[i];
+
+							StringBuilder_Appendf( codeInl, "\t, %c( %s.%c )\n", componentName, subVecStr, subVecComponentName );
+						}
+						StringBuilder_Append( codeInl,
+							"{\n"
+							"}\n\n"
+						);
+					}
+
+					// if we can also have a ctors consisting of two input vectors then generate that one now
+					if ( typeInfo->numCols > 2 && typeInfo->numCols % 2 == 0 ) {
+						StringBuilder_Appendf( codeInl, "%s::%s( ", typeInfo->fullTypeName, typeInfo->fullTypeName );
+
+						const u32 numVectorParms = typeInfo->numCols - 2;
+						const u32 numVectorParmComponents = numVectorParms;
+
+						for ( u32 parmIndex = 0; parmIndex < numVectorParms; parmIndex++ ) {
+							u32 subVecStrOffset = ( parmIndex * numVectorParmComponents );
+
+							assert( subVecStrOffset < 4 );
+
+							memcpy( subVecStr, GEN_COMPONENT_NAMES_VECTOR + subVecStrOffset, numVectorParmComponents * sizeof( char ) );
+							subVecStr[numVectorParmComponents] = 0;
+
+							StringBuilder_Appendf( codeInl, "const %s%d& %s", typeString, numVectorParmComponents, subVecStr );
+
+							if ( parmIndex != numVectorParms - 1 ) {
+								StringBuilder_Append( codeInl, ", " );
+							}
+						}
+						StringBuilder_Append( codeInl, " )\n" );
+
+						char initializerListToken = ':';
+
+						for ( u32 parmIndex = 0; parmIndex < numVectorParms; parmIndex++ ) {
+							u32 subVecStrOffset = ( parmIndex * numVectorParmComponents );
+
+							assert( subVecStrOffset < 4 );
+
+							memcpy( subVecStr, GEN_COMPONENT_NAMES_VECTOR + subVecStrOffset, numVectorParmComponents * sizeof( char ) );
+							subVecStr[numVectorParmComponents] = 0;
+
+							for ( u32 componentIndex = 0; componentIndex < numVectorParmComponents; componentIndex++ ) {
+								// 00 = x
+								// 01 = y
+								// 10 = z
+								// 11 = w
+								// DM!!! this is a hack! redo this!
+								u32 componentNameIndex = ( parmIndex << 1 ) | componentIndex;
+								const char componentName = GEN_COMPONENT_NAMES_VECTOR[componentNameIndex];
+
+								const char inputParmComponentName = GEN_COMPONENT_NAMES_VECTOR[componentIndex];
+
+								StringBuilder_Appendf( codeInl, "\t%c %c( %s.%c )\n", initializerListToken, componentName, subVecStr, inputParmComponentName );
+
+								initializerListToken = ',';
+							}
+						}
 						StringBuilder_Append( codeInl,
 							"{\n"
 							"}\n\n"

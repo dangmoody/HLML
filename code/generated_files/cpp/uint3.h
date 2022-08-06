@@ -34,20 +34,13 @@ SOFTWARE.
 
 #pragma once
 
-struct bool2;
-struct bool3;
-struct bool4;
-struct int2;
-struct int3;
-struct int4;
 struct uint2;
 struct uint4;
-struct float2;
+
+struct bool3;
+struct int3;
 struct float3;
-struct float4;
-struct double2;
 struct double3;
-struct double4;
 
 #include "hlml_types.h"
 #include "hlml_defines.h"
@@ -334,46 +327,22 @@ struct uint3
 	HLML_INLINE uint3( const uint3& other );
 
 	// Conversion constructor.  Casts all components of 'vec' from type bool32_t to type uint32_t.
-	HLML_INLINE explicit uint3( const bool2& vec );
-
-	// Conversion constructor.  Casts all components of 'vec' from type bool32_t to type uint32_t.
 	HLML_INLINE explicit uint3( const bool3& vec );
-
-	// Conversion constructor.  Casts all components of 'vec' from type bool32_t to type uint32_t.
-	HLML_INLINE explicit uint3( const bool4& vec );
-
-	// Conversion constructor.  Casts all components of 'vec' from type int32_t to type uint32_t.
-	HLML_INLINE explicit uint3( const int2& vec );
 
 	// Conversion constructor.  Casts all components of 'vec' from type int32_t to type uint32_t.
 	HLML_INLINE explicit uint3( const int3& vec );
 
-	// Conversion constructor.  Casts all components of 'vec' from type int32_t to type uint32_t.
-	HLML_INLINE explicit uint3( const int4& vec );
-
-	// Conversion constructor.  Casts all components of 'vec' from type uint32_t to type uint32_t.
-	HLML_INLINE explicit uint3( const uint2& vec );
-
-	// Conversion constructor.  Casts all components of 'vec' from type uint32_t to type uint32_t.
-	HLML_INLINE explicit uint3( const uint4& vec );
-
-	// Conversion constructor.  Casts all components of 'vec' from type float to type uint32_t.
-	HLML_INLINE explicit uint3( const float2& vec );
-
 	// Conversion constructor.  Casts all components of 'vec' from type float to type uint32_t.
 	HLML_INLINE explicit uint3( const float3& vec );
-
-	// Conversion constructor.  Casts all components of 'vec' from type float to type uint32_t.
-	HLML_INLINE explicit uint3( const float4& vec );
-
-	// Conversion constructor.  Casts all components of 'vec' from type double to type uint32_t.
-	HLML_INLINE explicit uint3( const double2& vec );
 
 	// Conversion constructor.  Casts all components of 'vec' from type double to type uint32_t.
 	HLML_INLINE explicit uint3( const double3& vec );
 
-	// Conversion constructor.  Casts all components of 'vec' from type double to type uint32_t.
-	HLML_INLINE explicit uint3( const double4& vec );
+	// Sets the xy components of the vector to that of the corresponding input vector.  Sets the other corresponding vectors to the given scalars.
+	HLML_INLINE uint3( const uint2& xy, const uint32_t z );
+
+	// Sets the zw components of the vector to that of the corresponding input vector.  Sets the other corresponding vectors to the given scalars.
+	HLML_INLINE uint3( const uint32_t x, const uint2& zw );
 
 	~uint3() {}
 

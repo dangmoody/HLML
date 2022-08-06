@@ -59,29 +59,10 @@ float3::float3( const float3& vec )
 {
 }
 
-float3::float3( const bool2& vec )
-	: x( (float) vec.x )
-	, y( (float) vec.y )
-{
-}
-
 float3::float3( const bool3& vec )
 	: x( (float) vec.x )
 	, y( (float) vec.y )
 	, z( (float) vec.z )
-{
-}
-
-float3::float3( const bool4& vec )
-	: x( (float) vec.x )
-	, y( (float) vec.y )
-	, z( (float) vec.z )
-{
-}
-
-float3::float3( const int2& vec )
-	: x( (float) vec.x )
-	, y( (float) vec.y )
 {
 }
 
@@ -92,49 +73,10 @@ float3::float3( const int3& vec )
 {
 }
 
-float3::float3( const int4& vec )
-	: x( (float) vec.x )
-	, y( (float) vec.y )
-	, z( (float) vec.z )
-{
-}
-
-float3::float3( const uint2& vec )
-	: x( (float) vec.x )
-	, y( (float) vec.y )
-{
-}
-
 float3::float3( const uint3& vec )
 	: x( (float) vec.x )
 	, y( (float) vec.y )
 	, z( (float) vec.z )
-{
-}
-
-float3::float3( const uint4& vec )
-	: x( (float) vec.x )
-	, y( (float) vec.y )
-	, z( (float) vec.z )
-{
-}
-
-float3::float3( const float2& vec )
-	: x( vec.x )
-	, y( vec.y )
-{
-}
-
-float3::float3( const float4& vec )
-	: x( vec.x )
-	, y( vec.y )
-	, z( vec.z )
-{
-}
-
-float3::float3( const double2& vec )
-	: x( (float) vec.x )
-	, y( (float) vec.y )
 {
 }
 
@@ -145,10 +87,17 @@ float3::float3( const double3& vec )
 {
 }
 
-float3::float3( const double4& vec )
-	: x( (float) vec.x )
-	, y( (float) vec.y )
-	, z( (float) vec.z )
+float3::float3( const float2& xy, const float z )
+	: x( xy.x )
+	, y( xy.y )
+	, z( z )
+{
+}
+
+float3::float3( const float x, const float2& zw )
+	: x( x )
+	, y( zw.x )
+	, z( zw.y )
 {
 }
 

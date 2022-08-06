@@ -1246,7 +1246,7 @@ static void GenerateVectorTests( allocatorLinear_t* tempStorage, const char* gen
 
 		printf( "Generating test_%s.%s...", typeInfo->fullTypeName, languageName );
 
-		stringBuilder_t* code = StringBuilder_Create( tempStorage, KILOBYTES( 256 ) );
+		stringBuilder_t* code = StringBuilder_Create( tempStorage, KILOBYTES( 512 ) );
 
 		StringBuilder_Append( code, GEN_FILE_HEADER );
 

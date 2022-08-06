@@ -62,50 +62,11 @@ bool4::bool4( const bool4& vec )
 {
 }
 
-bool4::bool4( const bool2& vec )
-	: x( vec.x )
-	, y( vec.y )
-{
-}
-
-bool4::bool4( const bool3& vec )
-	: x( vec.x )
-	, y( vec.y )
-	, z( vec.z )
-{
-}
-
-bool4::bool4( const int2& vec )
-	: x( (bool32_t) vec.x )
-	, y( (bool32_t) vec.y )
-{
-}
-
-bool4::bool4( const int3& vec )
-	: x( (bool32_t) vec.x )
-	, y( (bool32_t) vec.y )
-	, z( (bool32_t) vec.z )
-{
-}
-
 bool4::bool4( const int4& vec )
 	: x( (bool32_t) vec.x )
 	, y( (bool32_t) vec.y )
 	, z( (bool32_t) vec.z )
 	, w( (bool32_t) vec.w )
-{
-}
-
-bool4::bool4( const uint2& vec )
-	: x( (bool32_t) vec.x )
-	, y( (bool32_t) vec.y )
-{
-}
-
-bool4::bool4( const uint3& vec )
-	: x( (bool32_t) vec.x )
-	, y( (bool32_t) vec.y )
-	, z( (bool32_t) vec.z )
 {
 }
 
@@ -117,19 +78,6 @@ bool4::bool4( const uint4& vec )
 {
 }
 
-bool4::bool4( const float2& vec )
-	: x( (bool32_t) vec.x )
-	, y( (bool32_t) vec.y )
-{
-}
-
-bool4::bool4( const float3& vec )
-	: x( (bool32_t) vec.x )
-	, y( (bool32_t) vec.y )
-	, z( (bool32_t) vec.z )
-{
-}
-
 bool4::bool4( const float4& vec )
 	: x( (bool32_t) vec.x )
 	, y( (bool32_t) vec.y )
@@ -138,24 +86,51 @@ bool4::bool4( const float4& vec )
 {
 }
 
-bool4::bool4( const double2& vec )
-	: x( (bool32_t) vec.x )
-	, y( (bool32_t) vec.y )
-{
-}
-
-bool4::bool4( const double3& vec )
-	: x( (bool32_t) vec.x )
-	, y( (bool32_t) vec.y )
-	, z( (bool32_t) vec.z )
-{
-}
-
 bool4::bool4( const double4& vec )
 	: x( (bool32_t) vec.x )
 	, y( (bool32_t) vec.y )
 	, z( (bool32_t) vec.z )
 	, w( (bool32_t) vec.w )
+{
+}
+
+bool4::bool4( const bool2& xy, const bool32_t z, const bool32_t w )
+	: x( xy.x )
+	, y( xy.y )
+	, z( z )
+	, w( w )
+{
+}
+
+bool4::bool4( const bool32_t x, const bool32_t y, const bool2& zw )
+	: x( x )
+	, y( y )
+	, z( zw.x )
+	, w( zw.y )
+{
+}
+
+bool4::bool4( const bool3& xyz, const bool32_t w )
+	: x( xyz.x )
+	, y( xyz.y )
+	, z( xyz.z )
+	, w( w )
+{
+}
+
+bool4::bool4( const bool32_t x, const bool3& w )
+	: x( x )
+	, y( w.x )
+	, z( w.y )
+	, w( w.z )
+{
+}
+
+bool4::bool4( const bool2& xy, const bool2& zw )
+	: x( xy.x )
+	, y( xy.y )
+	, z( zw.x )
+	, w( zw.y )
 {
 }
 

@@ -769,63 +769,6 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_float4_quat_slerp,
 	float4( 0.707107f, 0.707107f, 0.707107f, 0.707107f )
 );
 
-TEMPER_PARAMETRIC( Test_float4_int2, TEMPER_FLAG_SHOULD_RUN, const int2& convertFrom, const float4& expectedAnswer )
-{
-	float4 actualAnswer = float4( convertFrom );
-
-	TEMPER_CHECK_TRUE( floateq( expectedAnswer.x, actualAnswer.x ) );
-	TEMPER_CHECK_TRUE( floateq( expectedAnswer.y, actualAnswer.y ) );
-}
-
-TEMPER_INVOKE_PARAMETRIC_TEST( Test_float4_int2,
-	int2( 0, 0 ),
-	float4( 0.000000f, 0.000000f, 0.000000f, 0.000000f )
-);
-
-TEMPER_INVOKE_PARAMETRIC_TEST( Test_float4_int2,
-	int2( 10, 10 ),
-	float4( 10.000000f, 10.000000f, 10.000000f, 10.000000f )
-);
-
-TEMPER_INVOKE_PARAMETRIC_TEST( Test_float4_int2,
-	int2( 10, 20 ),
-	float4( 10.000000f, 20.000000f, 30.000000f, 40.000000f )
-);
-
-TEMPER_INVOKE_PARAMETRIC_TEST( Test_float4_int2,
-	int2( 160, 150 ),
-	float4( 160.000000f, 150.000000f, 140.000000f, 130.000000f )
-);
-
-TEMPER_PARAMETRIC( Test_float4_int3, TEMPER_FLAG_SHOULD_RUN, const int3& convertFrom, const float4& expectedAnswer )
-{
-	float4 actualAnswer = float4( convertFrom );
-
-	TEMPER_CHECK_TRUE( floateq( expectedAnswer.x, actualAnswer.x ) );
-	TEMPER_CHECK_TRUE( floateq( expectedAnswer.y, actualAnswer.y ) );
-	TEMPER_CHECK_TRUE( floateq( expectedAnswer.z, actualAnswer.z ) );
-}
-
-TEMPER_INVOKE_PARAMETRIC_TEST( Test_float4_int3,
-	int3( 0, 0, 0 ),
-	float4( 0.000000f, 0.000000f, 0.000000f, 0.000000f )
-);
-
-TEMPER_INVOKE_PARAMETRIC_TEST( Test_float4_int3,
-	int3( 10, 10, 10 ),
-	float4( 10.000000f, 10.000000f, 10.000000f, 10.000000f )
-);
-
-TEMPER_INVOKE_PARAMETRIC_TEST( Test_float4_int3,
-	int3( 10, 20, 30 ),
-	float4( 10.000000f, 20.000000f, 30.000000f, 40.000000f )
-);
-
-TEMPER_INVOKE_PARAMETRIC_TEST( Test_float4_int3,
-	int3( 160, 150, 140 ),
-	float4( 160.000000f, 150.000000f, 140.000000f, 130.000000f )
-);
-
 TEMPER_PARAMETRIC( Test_float4_int4, TEMPER_FLAG_SHOULD_RUN, const int4& convertFrom, const float4& expectedAnswer )
 {
 	float4 actualAnswer = float4( convertFrom );
@@ -853,63 +796,6 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_float4_int4,
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_float4_int4,
 	int4( 160, 150, 140, 130 ),
-	float4( 160.000000f, 150.000000f, 140.000000f, 130.000000f )
-);
-
-TEMPER_PARAMETRIC( Test_float4_uint2, TEMPER_FLAG_SHOULD_RUN, const uint2& convertFrom, const float4& expectedAnswer )
-{
-	float4 actualAnswer = float4( convertFrom );
-
-	TEMPER_CHECK_TRUE( floateq( expectedAnswer.x, actualAnswer.x ) );
-	TEMPER_CHECK_TRUE( floateq( expectedAnswer.y, actualAnswer.y ) );
-}
-
-TEMPER_INVOKE_PARAMETRIC_TEST( Test_float4_uint2,
-	uint2( 0U, 0U ),
-	float4( 0.000000f, 0.000000f, 0.000000f, 0.000000f )
-);
-
-TEMPER_INVOKE_PARAMETRIC_TEST( Test_float4_uint2,
-	uint2( 10U, 10U ),
-	float4( 10.000000f, 10.000000f, 10.000000f, 10.000000f )
-);
-
-TEMPER_INVOKE_PARAMETRIC_TEST( Test_float4_uint2,
-	uint2( 10U, 20U ),
-	float4( 10.000000f, 20.000000f, 30.000000f, 40.000000f )
-);
-
-TEMPER_INVOKE_PARAMETRIC_TEST( Test_float4_uint2,
-	uint2( 160U, 150U ),
-	float4( 160.000000f, 150.000000f, 140.000000f, 130.000000f )
-);
-
-TEMPER_PARAMETRIC( Test_float4_uint3, TEMPER_FLAG_SHOULD_RUN, const uint3& convertFrom, const float4& expectedAnswer )
-{
-	float4 actualAnswer = float4( convertFrom );
-
-	TEMPER_CHECK_TRUE( floateq( expectedAnswer.x, actualAnswer.x ) );
-	TEMPER_CHECK_TRUE( floateq( expectedAnswer.y, actualAnswer.y ) );
-	TEMPER_CHECK_TRUE( floateq( expectedAnswer.z, actualAnswer.z ) );
-}
-
-TEMPER_INVOKE_PARAMETRIC_TEST( Test_float4_uint3,
-	uint3( 0U, 0U, 0U ),
-	float4( 0.000000f, 0.000000f, 0.000000f, 0.000000f )
-);
-
-TEMPER_INVOKE_PARAMETRIC_TEST( Test_float4_uint3,
-	uint3( 10U, 10U, 10U ),
-	float4( 10.000000f, 10.000000f, 10.000000f, 10.000000f )
-);
-
-TEMPER_INVOKE_PARAMETRIC_TEST( Test_float4_uint3,
-	uint3( 10U, 20U, 30U ),
-	float4( 10.000000f, 20.000000f, 30.000000f, 40.000000f )
-);
-
-TEMPER_INVOKE_PARAMETRIC_TEST( Test_float4_uint3,
-	uint3( 160U, 150U, 140U ),
 	float4( 160.000000f, 150.000000f, 140.000000f, 130.000000f )
 );
 
@@ -943,63 +829,6 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_float4_uint4,
 	float4( 160.000000f, 150.000000f, 140.000000f, 130.000000f )
 );
 
-TEMPER_PARAMETRIC( Test_float4_float2, TEMPER_FLAG_SHOULD_RUN, const float2& convertFrom, const float4& expectedAnswer )
-{
-	float4 actualAnswer = float4( convertFrom );
-
-	TEMPER_CHECK_TRUE( floateq( expectedAnswer.x, actualAnswer.x ) );
-	TEMPER_CHECK_TRUE( floateq( expectedAnswer.y, actualAnswer.y ) );
-}
-
-TEMPER_INVOKE_PARAMETRIC_TEST( Test_float4_float2,
-	float2( 0.000000f, 0.000000f ),
-	float4( 0.000000f, 0.000000f, 0.000000f, 0.000000f )
-);
-
-TEMPER_INVOKE_PARAMETRIC_TEST( Test_float4_float2,
-	float2( 10.000000f, 10.000000f ),
-	float4( 10.000000f, 10.000000f, 10.000000f, 10.000000f )
-);
-
-TEMPER_INVOKE_PARAMETRIC_TEST( Test_float4_float2,
-	float2( 10.000000f, 20.000000f ),
-	float4( 10.000000f, 20.000000f, 30.000000f, 40.000000f )
-);
-
-TEMPER_INVOKE_PARAMETRIC_TEST( Test_float4_float2,
-	float2( 160.000000f, 150.000000f ),
-	float4( 160.000000f, 150.000000f, 140.000000f, 130.000000f )
-);
-
-TEMPER_PARAMETRIC( Test_float4_float3, TEMPER_FLAG_SHOULD_RUN, const float3& convertFrom, const float4& expectedAnswer )
-{
-	float4 actualAnswer = float4( convertFrom );
-
-	TEMPER_CHECK_TRUE( floateq( expectedAnswer.x, actualAnswer.x ) );
-	TEMPER_CHECK_TRUE( floateq( expectedAnswer.y, actualAnswer.y ) );
-	TEMPER_CHECK_TRUE( floateq( expectedAnswer.z, actualAnswer.z ) );
-}
-
-TEMPER_INVOKE_PARAMETRIC_TEST( Test_float4_float3,
-	float3( 0.000000f, 0.000000f, 0.000000f ),
-	float4( 0.000000f, 0.000000f, 0.000000f, 0.000000f )
-);
-
-TEMPER_INVOKE_PARAMETRIC_TEST( Test_float4_float3,
-	float3( 10.000000f, 10.000000f, 10.000000f ),
-	float4( 10.000000f, 10.000000f, 10.000000f, 10.000000f )
-);
-
-TEMPER_INVOKE_PARAMETRIC_TEST( Test_float4_float3,
-	float3( 10.000000f, 20.000000f, 30.000000f ),
-	float4( 10.000000f, 20.000000f, 30.000000f, 40.000000f )
-);
-
-TEMPER_INVOKE_PARAMETRIC_TEST( Test_float4_float3,
-	float3( 160.000000f, 150.000000f, 140.000000f ),
-	float4( 160.000000f, 150.000000f, 140.000000f, 130.000000f )
-);
-
 TEMPER_PARAMETRIC( Test_float4_float4, TEMPER_FLAG_SHOULD_RUN, const float4& convertFrom, const float4& expectedAnswer )
 {
 	float4 actualAnswer = float4( convertFrom );
@@ -1030,63 +859,6 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_float4_float4,
 	float4( 160.000000f, 150.000000f, 140.000000f, 130.000000f )
 );
 
-TEMPER_PARAMETRIC( Test_float4_double2, TEMPER_FLAG_SHOULD_RUN, const double2& convertFrom, const float4& expectedAnswer )
-{
-	float4 actualAnswer = float4( convertFrom );
-
-	TEMPER_CHECK_TRUE( floateq( expectedAnswer.x, actualAnswer.x ) );
-	TEMPER_CHECK_TRUE( floateq( expectedAnswer.y, actualAnswer.y ) );
-}
-
-TEMPER_INVOKE_PARAMETRIC_TEST( Test_float4_double2,
-	double2( 0.000000f, 0.000000f ),
-	float4( 0.000000f, 0.000000f, 0.000000f, 0.000000f )
-);
-
-TEMPER_INVOKE_PARAMETRIC_TEST( Test_float4_double2,
-	double2( 10.000000f, 10.000000f ),
-	float4( 10.000000f, 10.000000f, 10.000000f, 10.000000f )
-);
-
-TEMPER_INVOKE_PARAMETRIC_TEST( Test_float4_double2,
-	double2( 10.000000f, 20.000000f ),
-	float4( 10.000000f, 20.000000f, 30.000000f, 40.000000f )
-);
-
-TEMPER_INVOKE_PARAMETRIC_TEST( Test_float4_double2,
-	double2( 160.000000f, 150.000000f ),
-	float4( 160.000000f, 150.000000f, 140.000000f, 130.000000f )
-);
-
-TEMPER_PARAMETRIC( Test_float4_double3, TEMPER_FLAG_SHOULD_RUN, const double3& convertFrom, const float4& expectedAnswer )
-{
-	float4 actualAnswer = float4( convertFrom );
-
-	TEMPER_CHECK_TRUE( floateq( expectedAnswer.x, actualAnswer.x ) );
-	TEMPER_CHECK_TRUE( floateq( expectedAnswer.y, actualAnswer.y ) );
-	TEMPER_CHECK_TRUE( floateq( expectedAnswer.z, actualAnswer.z ) );
-}
-
-TEMPER_INVOKE_PARAMETRIC_TEST( Test_float4_double3,
-	double3( 0.000000f, 0.000000f, 0.000000f ),
-	float4( 0.000000f, 0.000000f, 0.000000f, 0.000000f )
-);
-
-TEMPER_INVOKE_PARAMETRIC_TEST( Test_float4_double3,
-	double3( 10.000000f, 10.000000f, 10.000000f ),
-	float4( 10.000000f, 10.000000f, 10.000000f, 10.000000f )
-);
-
-TEMPER_INVOKE_PARAMETRIC_TEST( Test_float4_double3,
-	double3( 10.000000f, 20.000000f, 30.000000f ),
-	float4( 10.000000f, 20.000000f, 30.000000f, 40.000000f )
-);
-
-TEMPER_INVOKE_PARAMETRIC_TEST( Test_float4_double3,
-	double3( 160.000000f, 150.000000f, 140.000000f ),
-	float4( 160.000000f, 150.000000f, 140.000000f, 130.000000f )
-);
-
 TEMPER_PARAMETRIC( Test_float4_double4, TEMPER_FLAG_SHOULD_RUN, const double4& convertFrom, const float4& expectedAnswer )
 {
 	float4 actualAnswer = float4( convertFrom );
@@ -1114,6 +886,150 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_float4_double4,
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_float4_double4,
 	double4( 160.000000f, 150.000000f, 140.000000f, 130.000000f ),
+	float4( 160.000000f, 150.000000f, 140.000000f, 130.000000f )
+);
+
+TEMPER_PARAMETRIC( Test_float4_composite_ctor_1_vec_before_with_2_leftovers, TEMPER_FLAG_SHOULD_RUN, const float2& vecPart, const float scalar0, const float scalar1, const float4 expectedAnswer )
+{
+	float4 actualAnswer = float4( vecPart, scalar0, scalar1 );
+
+	TEMPER_CHECK_TRUE( actualAnswer.x == expectedAnswer.x );
+	TEMPER_CHECK_TRUE( actualAnswer.y == expectedAnswer.y );
+	TEMPER_CHECK_TRUE( actualAnswer.z == expectedAnswer.z );
+	TEMPER_CHECK_TRUE( actualAnswer.w == expectedAnswer.w );
+}
+
+TEMPER_INVOKE_PARAMETRIC_TEST( Test_float4_composite_ctor_1_vec_before_with_2_leftovers,
+	float2( 0.000000f, 0.000000f ),
+	0.000000f,
+	0.000000f,
+	float4( 0.000000f, 0.000000f, 0.000000f, 0.000000f )
+);
+
+TEMPER_INVOKE_PARAMETRIC_TEST( Test_float4_composite_ctor_1_vec_before_with_2_leftovers,
+	float2( 10.000000f, 10.000000f ),
+	10.000000f,
+	10.000000f,
+	float4( 10.000000f, 10.000000f, 10.000000f, 10.000000f )
+);
+
+TEMPER_INVOKE_PARAMETRIC_TEST( Test_float4_composite_ctor_1_vec_before_with_2_leftovers,
+	float2( 10.000000f, 20.000000f ),
+	30.000000f,
+	40.000000f,
+	float4( 10.000000f, 20.000000f, 30.000000f, 40.000000f )
+);
+
+TEMPER_INVOKE_PARAMETRIC_TEST( Test_float4_composite_ctor_1_vec_before_with_2_leftovers,
+	float2( 160.000000f, 150.000000f ),
+	140.000000f,
+	130.000000f,
+	float4( 160.000000f, 150.000000f, 140.000000f, 130.000000f )
+);
+
+TEMPER_PARAMETRIC( Test_float4_composite_ctor_1_vec_after_with_2_leftovers, TEMPER_FLAG_SHOULD_RUN, const float scalar0, const float scalar1, const float2& vecPart, const float4 expectedAnswer )
+{
+	float4 actualAnswer = float4( scalar0, scalar1, vecPart );
+
+	TEMPER_CHECK_TRUE( actualAnswer.x == expectedAnswer.x );
+	TEMPER_CHECK_TRUE( actualAnswer.y == expectedAnswer.y );
+	TEMPER_CHECK_TRUE( actualAnswer.z == expectedAnswer.z );
+	TEMPER_CHECK_TRUE( actualAnswer.w == expectedAnswer.w );
+}
+
+TEMPER_INVOKE_PARAMETRIC_TEST( Test_float4_composite_ctor_1_vec_after_with_2_leftovers,
+	0.000000f,
+	0.000000f,
+	float2( 0.000000f, 0.000000f ),
+	float4( 0.000000f, 0.000000f, 0.000000f, 0.000000f )
+);
+
+TEMPER_INVOKE_PARAMETRIC_TEST( Test_float4_composite_ctor_1_vec_after_with_2_leftovers,
+	10.000000f,
+	10.000000f,
+	float2( 10.000000f, 10.000000f ),
+	float4( 10.000000f, 10.000000f, 10.000000f, 10.000000f )
+);
+
+TEMPER_INVOKE_PARAMETRIC_TEST( Test_float4_composite_ctor_1_vec_after_with_2_leftovers,
+	10.000000f,
+	20.000000f,
+	float2( 30.000000f, 40.000000f ),
+	float4( 10.000000f, 20.000000f, 30.000000f, 40.000000f )
+);
+
+TEMPER_INVOKE_PARAMETRIC_TEST( Test_float4_composite_ctor_1_vec_after_with_2_leftovers,
+	160.000000f,
+	150.000000f,
+	float2( 140.000000f, 130.000000f ),
+	float4( 160.000000f, 150.000000f, 140.000000f, 130.000000f )
+);
+
+TEMPER_PARAMETRIC( Test_float4_composite_ctor_1_vec_before_with_3_leftovers, TEMPER_FLAG_SHOULD_RUN, const float3& vecPart, const float scalar0, const float4 expectedAnswer )
+{
+	float4 actualAnswer = float4( vecPart, scalar0 );
+
+	TEMPER_CHECK_TRUE( actualAnswer.x == expectedAnswer.x );
+	TEMPER_CHECK_TRUE( actualAnswer.y == expectedAnswer.y );
+	TEMPER_CHECK_TRUE( actualAnswer.z == expectedAnswer.z );
+	TEMPER_CHECK_TRUE( actualAnswer.w == expectedAnswer.w );
+}
+
+TEMPER_INVOKE_PARAMETRIC_TEST( Test_float4_composite_ctor_1_vec_before_with_3_leftovers,
+	float3( 0.000000f, 0.000000f, 0.000000f ),
+	0.000000f,
+	float4( 0.000000f, 0.000000f, 0.000000f, 0.000000f )
+);
+
+TEMPER_INVOKE_PARAMETRIC_TEST( Test_float4_composite_ctor_1_vec_before_with_3_leftovers,
+	float3( 10.000000f, 10.000000f, 10.000000f ),
+	10.000000f,
+	float4( 10.000000f, 10.000000f, 10.000000f, 10.000000f )
+);
+
+TEMPER_INVOKE_PARAMETRIC_TEST( Test_float4_composite_ctor_1_vec_before_with_3_leftovers,
+	float3( 10.000000f, 20.000000f, 30.000000f ),
+	40.000000f,
+	float4( 10.000000f, 20.000000f, 30.000000f, 40.000000f )
+);
+
+TEMPER_INVOKE_PARAMETRIC_TEST( Test_float4_composite_ctor_1_vec_before_with_3_leftovers,
+	float3( 160.000000f, 150.000000f, 140.000000f ),
+	130.000000f,
+	float4( 160.000000f, 150.000000f, 140.000000f, 130.000000f )
+);
+
+TEMPER_PARAMETRIC( Test_float4_composite_ctor_1_vec_after_with_3_leftovers, TEMPER_FLAG_SHOULD_RUN, const float scalar0, const float3& vecPart, const float4 expectedAnswer )
+{
+	float4 actualAnswer = float4( scalar0, vecPart );
+
+	TEMPER_CHECK_TRUE( actualAnswer.x == expectedAnswer.x );
+	TEMPER_CHECK_TRUE( actualAnswer.y == expectedAnswer.y );
+	TEMPER_CHECK_TRUE( actualAnswer.z == expectedAnswer.z );
+	TEMPER_CHECK_TRUE( actualAnswer.w == expectedAnswer.w );
+}
+
+TEMPER_INVOKE_PARAMETRIC_TEST( Test_float4_composite_ctor_1_vec_after_with_3_leftovers,
+	0.000000f,
+	float3( 0.000000f, 0.000000f, 0.000000f ),
+	float4( 0.000000f, 0.000000f, 0.000000f, 0.000000f )
+);
+
+TEMPER_INVOKE_PARAMETRIC_TEST( Test_float4_composite_ctor_1_vec_after_with_3_leftovers,
+	10.000000f,
+	float3( 10.000000f, 10.000000f, 10.000000f ),
+	float4( 10.000000f, 10.000000f, 10.000000f, 10.000000f )
+);
+
+TEMPER_INVOKE_PARAMETRIC_TEST( Test_float4_composite_ctor_1_vec_after_with_3_leftovers,
+	10.000000f,
+	float3( 20.000000f, 30.000000f, 40.000000f ),
+	float4( 10.000000f, 20.000000f, 30.000000f, 40.000000f )
+);
+
+TEMPER_INVOKE_PARAMETRIC_TEST( Test_float4_composite_ctor_1_vec_after_with_3_leftovers,
+	160.000000f,
+	float3( 150.000000f, 140.000000f, 130.000000f ),
 	float4( 160.000000f, 150.000000f, 140.000000f, 130.000000f )
 );
 

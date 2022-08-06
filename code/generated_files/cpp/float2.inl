@@ -62,31 +62,7 @@ float2::float2( const bool2& vec )
 {
 }
 
-float2::float2( const bool3& vec )
-	: x( (float) vec.x )
-	, y( (float) vec.y )
-{
-}
-
-float2::float2( const bool4& vec )
-	: x( (float) vec.x )
-	, y( (float) vec.y )
-{
-}
-
 float2::float2( const int2& vec )
-	: x( (float) vec.x )
-	, y( (float) vec.y )
-{
-}
-
-float2::float2( const int3& vec )
-	: x( (float) vec.x )
-	, y( (float) vec.y )
-{
-}
-
-float2::float2( const int4& vec )
 	: x( (float) vec.x )
 	, y( (float) vec.y )
 {
@@ -98,43 +74,7 @@ float2::float2( const uint2& vec )
 {
 }
 
-float2::float2( const uint3& vec )
-	: x( (float) vec.x )
-	, y( (float) vec.y )
-{
-}
-
-float2::float2( const uint4& vec )
-	: x( (float) vec.x )
-	, y( (float) vec.y )
-{
-}
-
-float2::float2( const float3& vec )
-	: x( vec.x )
-	, y( vec.y )
-{
-}
-
-float2::float2( const float4& vec )
-	: x( vec.x )
-	, y( vec.y )
-{
-}
-
 float2::float2( const double2& vec )
-	: x( (float) vec.x )
-	, y( (float) vec.y )
-{
-}
-
-float2::float2( const double3& vec )
-	: x( (float) vec.x )
-	, y( (float) vec.y )
-{
-}
-
-float2::float2( const double4& vec )
 	: x( (float) vec.x )
 	, y( (float) vec.y )
 {

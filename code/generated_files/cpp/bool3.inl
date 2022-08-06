@@ -59,42 +59,10 @@ bool3::bool3( const bool3& vec )
 {
 }
 
-bool3::bool3( const bool2& vec )
-	: x( vec.x )
-	, y( vec.y )
-{
-}
-
-bool3::bool3( const bool4& vec )
-	: x( vec.x )
-	, y( vec.y )
-	, z( vec.z )
-{
-}
-
-bool3::bool3( const int2& vec )
-	: x( (bool32_t) vec.x )
-	, y( (bool32_t) vec.y )
-{
-}
-
 bool3::bool3( const int3& vec )
 	: x( (bool32_t) vec.x )
 	, y( (bool32_t) vec.y )
 	, z( (bool32_t) vec.z )
-{
-}
-
-bool3::bool3( const int4& vec )
-	: x( (bool32_t) vec.x )
-	, y( (bool32_t) vec.y )
-	, z( (bool32_t) vec.z )
-{
-}
-
-bool3::bool3( const uint2& vec )
-	: x( (bool32_t) vec.x )
-	, y( (bool32_t) vec.y )
 {
 }
 
@@ -105,36 +73,10 @@ bool3::bool3( const uint3& vec )
 {
 }
 
-bool3::bool3( const uint4& vec )
-	: x( (bool32_t) vec.x )
-	, y( (bool32_t) vec.y )
-	, z( (bool32_t) vec.z )
-{
-}
-
-bool3::bool3( const float2& vec )
-	: x( (bool32_t) vec.x )
-	, y( (bool32_t) vec.y )
-{
-}
-
 bool3::bool3( const float3& vec )
 	: x( (bool32_t) vec.x )
 	, y( (bool32_t) vec.y )
 	, z( (bool32_t) vec.z )
-{
-}
-
-bool3::bool3( const float4& vec )
-	: x( (bool32_t) vec.x )
-	, y( (bool32_t) vec.y )
-	, z( (bool32_t) vec.z )
-{
-}
-
-bool3::bool3( const double2& vec )
-	: x( (bool32_t) vec.x )
-	, y( (bool32_t) vec.y )
 {
 }
 
@@ -145,10 +87,17 @@ bool3::bool3( const double3& vec )
 {
 }
 
-bool3::bool3( const double4& vec )
-	: x( (bool32_t) vec.x )
-	, y( (bool32_t) vec.y )
-	, z( (bool32_t) vec.z )
+bool3::bool3( const bool2& xy, const bool32_t z )
+	: x( xy.x )
+	, y( xy.y )
+	, z( z )
+{
+}
+
+bool3::bool3( const bool32_t x, const bool2& zw )
+	: x( x )
+	, y( zw.x )
+	, z( zw.y )
 {
 }
 

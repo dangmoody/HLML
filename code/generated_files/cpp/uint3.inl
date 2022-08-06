@@ -59,29 +59,10 @@ uint3::uint3( const uint3& vec )
 {
 }
 
-uint3::uint3( const bool2& vec )
-	: x( (uint32_t) vec.x )
-	, y( (uint32_t) vec.y )
-{
-}
-
 uint3::uint3( const bool3& vec )
 	: x( (uint32_t) vec.x )
 	, y( (uint32_t) vec.y )
 	, z( (uint32_t) vec.z )
-{
-}
-
-uint3::uint3( const bool4& vec )
-	: x( (uint32_t) vec.x )
-	, y( (uint32_t) vec.y )
-	, z( (uint32_t) vec.z )
-{
-}
-
-uint3::uint3( const int2& vec )
-	: x( (uint32_t) vec.x )
-	, y( (uint32_t) vec.y )
 {
 }
 
@@ -92,49 +73,10 @@ uint3::uint3( const int3& vec )
 {
 }
 
-uint3::uint3( const int4& vec )
-	: x( (uint32_t) vec.x )
-	, y( (uint32_t) vec.y )
-	, z( (uint32_t) vec.z )
-{
-}
-
-uint3::uint3( const uint2& vec )
-	: x( vec.x )
-	, y( vec.y )
-{
-}
-
-uint3::uint3( const uint4& vec )
-	: x( vec.x )
-	, y( vec.y )
-	, z( vec.z )
-{
-}
-
-uint3::uint3( const float2& vec )
-	: x( (uint32_t) vec.x )
-	, y( (uint32_t) vec.y )
-{
-}
-
 uint3::uint3( const float3& vec )
 	: x( (uint32_t) vec.x )
 	, y( (uint32_t) vec.y )
 	, z( (uint32_t) vec.z )
-{
-}
-
-uint3::uint3( const float4& vec )
-	: x( (uint32_t) vec.x )
-	, y( (uint32_t) vec.y )
-	, z( (uint32_t) vec.z )
-{
-}
-
-uint3::uint3( const double2& vec )
-	: x( (uint32_t) vec.x )
-	, y( (uint32_t) vec.y )
 {
 }
 
@@ -145,10 +87,17 @@ uint3::uint3( const double3& vec )
 {
 }
 
-uint3::uint3( const double4& vec )
-	: x( (uint32_t) vec.x )
-	, y( (uint32_t) vec.y )
-	, z( (uint32_t) vec.z )
+uint3::uint3( const uint2& xy, const uint32_t z )
+	: x( xy.x )
+	, y( xy.y )
+	, z( z )
+{
+}
+
+uint3::uint3( const uint32_t x, const uint2& zw )
+	: x( x )
+	, y( zw.x )
+	, z( zw.y )
 {
 }
 

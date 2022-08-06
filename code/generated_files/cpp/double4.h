@@ -34,20 +34,13 @@ SOFTWARE.
 
 #pragma once
 
-struct bool2;
-struct bool3;
-struct bool4;
-struct int2;
-struct int3;
-struct int4;
-struct uint2;
-struct uint3;
-struct uint4;
-struct float2;
-struct float3;
-struct float4;
 struct double2;
 struct double3;
+
+struct bool4;
+struct int4;
+struct uint4;
+struct float4;
 
 #include "hlml_types.h"
 #include "hlml_defines.h"
@@ -774,46 +767,30 @@ struct double4
 	HLML_INLINE double4( const double4& other );
 
 	// Conversion constructor.  Casts all components of 'vec' from type bool32_t to type double.
-	HLML_INLINE explicit double4( const bool2& vec );
-
-	// Conversion constructor.  Casts all components of 'vec' from type bool32_t to type double.
-	HLML_INLINE explicit double4( const bool3& vec );
-
-	// Conversion constructor.  Casts all components of 'vec' from type bool32_t to type double.
 	HLML_INLINE explicit double4( const bool4& vec );
-
-	// Conversion constructor.  Casts all components of 'vec' from type int32_t to type double.
-	HLML_INLINE explicit double4( const int2& vec );
-
-	// Conversion constructor.  Casts all components of 'vec' from type int32_t to type double.
-	HLML_INLINE explicit double4( const int3& vec );
 
 	// Conversion constructor.  Casts all components of 'vec' from type int32_t to type double.
 	HLML_INLINE explicit double4( const int4& vec );
 
 	// Conversion constructor.  Casts all components of 'vec' from type uint32_t to type double.
-	HLML_INLINE explicit double4( const uint2& vec );
-
-	// Conversion constructor.  Casts all components of 'vec' from type uint32_t to type double.
-	HLML_INLINE explicit double4( const uint3& vec );
-
-	// Conversion constructor.  Casts all components of 'vec' from type uint32_t to type double.
 	HLML_INLINE explicit double4( const uint4& vec );
-
-	// Conversion constructor.  Casts all components of 'vec' from type float to type double.
-	HLML_INLINE explicit double4( const float2& vec );
-
-	// Conversion constructor.  Casts all components of 'vec' from type float to type double.
-	HLML_INLINE explicit double4( const float3& vec );
 
 	// Conversion constructor.  Casts all components of 'vec' from type float to type double.
 	HLML_INLINE explicit double4( const float4& vec );
 
-	// Conversion constructor.  Casts all components of 'vec' from type double to type double.
-	HLML_INLINE explicit double4( const double2& vec );
+	// Sets the xy components of the vector to that of the corresponding input vector.  Sets the other corresponding vectors to the given scalars.
+	HLML_INLINE double4( const double2& xy, const double z, const double w );
 
-	// Conversion constructor.  Casts all components of 'vec' from type double to type double.
-	HLML_INLINE explicit double4( const double3& vec );
+	// Sets the zw components of the vector to that of the corresponding input vector.  Sets the other corresponding vectors to the given scalars.
+	HLML_INLINE double4( const double x, const double y, const double2& zw );
+
+	// Sets the xyz components of the vector to that of the corresponding input vector.  Sets the other corresponding vectors to the given scalars.
+	HLML_INLINE double4( const double3& xyz, const double w );
+
+	// Sets the yzw components of the vector to that of the corresponding input vector.  Sets the other corresponding vectors to the given scalars.
+	HLML_INLINE double4( const double x, const double3& yzw );
+
+	HLML_INLINE double4( const double2& xy, const double2& zw );
 
 	~double4() {}
 

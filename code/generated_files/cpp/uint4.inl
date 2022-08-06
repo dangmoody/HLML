@@ -62,37 +62,11 @@ uint4::uint4( const uint4& vec )
 {
 }
 
-uint4::uint4( const bool2& vec )
-	: x( (uint32_t) vec.x )
-	, y( (uint32_t) vec.y )
-{
-}
-
-uint4::uint4( const bool3& vec )
-	: x( (uint32_t) vec.x )
-	, y( (uint32_t) vec.y )
-	, z( (uint32_t) vec.z )
-{
-}
-
 uint4::uint4( const bool4& vec )
 	: x( (uint32_t) vec.x )
 	, y( (uint32_t) vec.y )
 	, z( (uint32_t) vec.z )
 	, w( (uint32_t) vec.w )
-{
-}
-
-uint4::uint4( const int2& vec )
-	: x( (uint32_t) vec.x )
-	, y( (uint32_t) vec.y )
-{
-}
-
-uint4::uint4( const int3& vec )
-	: x( (uint32_t) vec.x )
-	, y( (uint32_t) vec.y )
-	, z( (uint32_t) vec.z )
 {
 }
 
@@ -104,32 +78,6 @@ uint4::uint4( const int4& vec )
 {
 }
 
-uint4::uint4( const uint2& vec )
-	: x( vec.x )
-	, y( vec.y )
-{
-}
-
-uint4::uint4( const uint3& vec )
-	: x( vec.x )
-	, y( vec.y )
-	, z( vec.z )
-{
-}
-
-uint4::uint4( const float2& vec )
-	: x( (uint32_t) vec.x )
-	, y( (uint32_t) vec.y )
-{
-}
-
-uint4::uint4( const float3& vec )
-	: x( (uint32_t) vec.x )
-	, y( (uint32_t) vec.y )
-	, z( (uint32_t) vec.z )
-{
-}
-
 uint4::uint4( const float4& vec )
 	: x( (uint32_t) vec.x )
 	, y( (uint32_t) vec.y )
@@ -138,24 +86,51 @@ uint4::uint4( const float4& vec )
 {
 }
 
-uint4::uint4( const double2& vec )
-	: x( (uint32_t) vec.x )
-	, y( (uint32_t) vec.y )
-{
-}
-
-uint4::uint4( const double3& vec )
-	: x( (uint32_t) vec.x )
-	, y( (uint32_t) vec.y )
-	, z( (uint32_t) vec.z )
-{
-}
-
 uint4::uint4( const double4& vec )
 	: x( (uint32_t) vec.x )
 	, y( (uint32_t) vec.y )
 	, z( (uint32_t) vec.z )
 	, w( (uint32_t) vec.w )
+{
+}
+
+uint4::uint4( const uint2& xy, const uint32_t z, const uint32_t w )
+	: x( xy.x )
+	, y( xy.y )
+	, z( z )
+	, w( w )
+{
+}
+
+uint4::uint4( const uint32_t x, const uint32_t y, const uint2& zw )
+	: x( x )
+	, y( y )
+	, z( zw.x )
+	, w( zw.y )
+{
+}
+
+uint4::uint4( const uint3& xyz, const uint32_t w )
+	: x( xyz.x )
+	, y( xyz.y )
+	, z( xyz.z )
+	, w( w )
+{
+}
+
+uint4::uint4( const uint32_t x, const uint3& w )
+	: x( x )
+	, y( w.x )
+	, z( w.y )
+	, w( w.z )
+{
+}
+
+uint4::uint4( const uint2& xy, const uint2& zw )
+	: x( xy.x )
+	, y( xy.y )
+	, z( zw.x )
+	, w( zw.y )
 {
 }
 

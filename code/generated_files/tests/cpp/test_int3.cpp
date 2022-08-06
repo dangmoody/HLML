@@ -1000,34 +1000,6 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_int3_sign,
 	int3( -1, -1, -1 )
 );
 
-TEMPER_PARAMETRIC( Test_int3_int2, TEMPER_FLAG_SHOULD_RUN, const int2& convertFrom, const int3& expectedAnswer )
-{
-	int3 actualAnswer = int3( convertFrom );
-
-	TEMPER_CHECK_TRUE( expectedAnswer.x == actualAnswer.x );
-	TEMPER_CHECK_TRUE( expectedAnswer.y == actualAnswer.y );
-}
-
-TEMPER_INVOKE_PARAMETRIC_TEST( Test_int3_int2,
-	int2( 0, 0 ),
-	int3( 0, 0, 0 )
-);
-
-TEMPER_INVOKE_PARAMETRIC_TEST( Test_int3_int2,
-	int2( 10, 10 ),
-	int3( 10, 10, 10 )
-);
-
-TEMPER_INVOKE_PARAMETRIC_TEST( Test_int3_int2,
-	int2( 10, 20 ),
-	int3( 10, 20, 30 )
-);
-
-TEMPER_INVOKE_PARAMETRIC_TEST( Test_int3_int2,
-	int2( 160, 150 ),
-	int3( 160, 150, 140 )
-);
-
 TEMPER_PARAMETRIC( Test_int3_int3, TEMPER_FLAG_SHOULD_RUN, const int3& convertFrom, const int3& expectedAnswer )
 {
 	int3 actualAnswer = int3( convertFrom );
@@ -1054,63 +1026,6 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_int3_int3,
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_int3_int3,
 	int3( 160, 150, 140 ),
-	int3( 160, 150, 140 )
-);
-
-TEMPER_PARAMETRIC( Test_int3_int4, TEMPER_FLAG_SHOULD_RUN, const int4& convertFrom, const int3& expectedAnswer )
-{
-	int3 actualAnswer = int3( convertFrom );
-
-	TEMPER_CHECK_TRUE( expectedAnswer.x == actualAnswer.x );
-	TEMPER_CHECK_TRUE( expectedAnswer.y == actualAnswer.y );
-	TEMPER_CHECK_TRUE( expectedAnswer.z == actualAnswer.z );
-}
-
-TEMPER_INVOKE_PARAMETRIC_TEST( Test_int3_int4,
-	int4( 0, 0, 0, 0 ),
-	int3( 0, 0, 0 )
-);
-
-TEMPER_INVOKE_PARAMETRIC_TEST( Test_int3_int4,
-	int4( 10, 10, 10, 10 ),
-	int3( 10, 10, 10 )
-);
-
-TEMPER_INVOKE_PARAMETRIC_TEST( Test_int3_int4,
-	int4( 10, 20, 30, 40 ),
-	int3( 10, 20, 30 )
-);
-
-TEMPER_INVOKE_PARAMETRIC_TEST( Test_int3_int4,
-	int4( 160, 150, 140, 130 ),
-	int3( 160, 150, 140 )
-);
-
-TEMPER_PARAMETRIC( Test_int3_uint2, TEMPER_FLAG_SHOULD_RUN, const uint2& convertFrom, const int3& expectedAnswer )
-{
-	int3 actualAnswer = int3( convertFrom );
-
-	TEMPER_CHECK_TRUE( expectedAnswer.x == actualAnswer.x );
-	TEMPER_CHECK_TRUE( expectedAnswer.y == actualAnswer.y );
-}
-
-TEMPER_INVOKE_PARAMETRIC_TEST( Test_int3_uint2,
-	uint2( 0U, 0U ),
-	int3( 0, 0, 0 )
-);
-
-TEMPER_INVOKE_PARAMETRIC_TEST( Test_int3_uint2,
-	uint2( 10U, 10U ),
-	int3( 10, 10, 10 )
-);
-
-TEMPER_INVOKE_PARAMETRIC_TEST( Test_int3_uint2,
-	uint2( 10U, 20U ),
-	int3( 10, 20, 30 )
-);
-
-TEMPER_INVOKE_PARAMETRIC_TEST( Test_int3_uint2,
-	uint2( 160U, 150U ),
 	int3( 160, 150, 140 )
 );
 
@@ -1143,63 +1058,6 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_int3_uint3,
 	int3( 160, 150, 140 )
 );
 
-TEMPER_PARAMETRIC( Test_int3_uint4, TEMPER_FLAG_SHOULD_RUN, const uint4& convertFrom, const int3& expectedAnswer )
-{
-	int3 actualAnswer = int3( convertFrom );
-
-	TEMPER_CHECK_TRUE( expectedAnswer.x == actualAnswer.x );
-	TEMPER_CHECK_TRUE( expectedAnswer.y == actualAnswer.y );
-	TEMPER_CHECK_TRUE( expectedAnswer.z == actualAnswer.z );
-}
-
-TEMPER_INVOKE_PARAMETRIC_TEST( Test_int3_uint4,
-	uint4( 0U, 0U, 0U, 0U ),
-	int3( 0, 0, 0 )
-);
-
-TEMPER_INVOKE_PARAMETRIC_TEST( Test_int3_uint4,
-	uint4( 10U, 10U, 10U, 10U ),
-	int3( 10, 10, 10 )
-);
-
-TEMPER_INVOKE_PARAMETRIC_TEST( Test_int3_uint4,
-	uint4( 10U, 20U, 30U, 40U ),
-	int3( 10, 20, 30 )
-);
-
-TEMPER_INVOKE_PARAMETRIC_TEST( Test_int3_uint4,
-	uint4( 160U, 150U, 140U, 130U ),
-	int3( 160, 150, 140 )
-);
-
-TEMPER_PARAMETRIC( Test_int3_float2, TEMPER_FLAG_SHOULD_RUN, const float2& convertFrom, const int3& expectedAnswer )
-{
-	int3 actualAnswer = int3( convertFrom );
-
-	TEMPER_CHECK_TRUE( expectedAnswer.x == actualAnswer.x );
-	TEMPER_CHECK_TRUE( expectedAnswer.y == actualAnswer.y );
-}
-
-TEMPER_INVOKE_PARAMETRIC_TEST( Test_int3_float2,
-	float2( 0.000000f, 0.000000f ),
-	int3( 0, 0, 0 )
-);
-
-TEMPER_INVOKE_PARAMETRIC_TEST( Test_int3_float2,
-	float2( 10.000000f, 10.000000f ),
-	int3( 10, 10, 10 )
-);
-
-TEMPER_INVOKE_PARAMETRIC_TEST( Test_int3_float2,
-	float2( 10.000000f, 20.000000f ),
-	int3( 10, 20, 30 )
-);
-
-TEMPER_INVOKE_PARAMETRIC_TEST( Test_int3_float2,
-	float2( 160.000000f, 150.000000f ),
-	int3( 160, 150, 140 )
-);
-
 TEMPER_PARAMETRIC( Test_int3_float3, TEMPER_FLAG_SHOULD_RUN, const float3& convertFrom, const int3& expectedAnswer )
 {
 	int3 actualAnswer = int3( convertFrom );
@@ -1226,63 +1084,6 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_int3_float3,
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_int3_float3,
 	float3( 160.000000f, 150.000000f, 140.000000f ),
-	int3( 160, 150, 140 )
-);
-
-TEMPER_PARAMETRIC( Test_int3_float4, TEMPER_FLAG_SHOULD_RUN, const float4& convertFrom, const int3& expectedAnswer )
-{
-	int3 actualAnswer = int3( convertFrom );
-
-	TEMPER_CHECK_TRUE( expectedAnswer.x == actualAnswer.x );
-	TEMPER_CHECK_TRUE( expectedAnswer.y == actualAnswer.y );
-	TEMPER_CHECK_TRUE( expectedAnswer.z == actualAnswer.z );
-}
-
-TEMPER_INVOKE_PARAMETRIC_TEST( Test_int3_float4,
-	float4( 0.000000f, 0.000000f, 0.000000f, 0.000000f ),
-	int3( 0, 0, 0 )
-);
-
-TEMPER_INVOKE_PARAMETRIC_TEST( Test_int3_float4,
-	float4( 10.000000f, 10.000000f, 10.000000f, 10.000000f ),
-	int3( 10, 10, 10 )
-);
-
-TEMPER_INVOKE_PARAMETRIC_TEST( Test_int3_float4,
-	float4( 10.000000f, 20.000000f, 30.000000f, 40.000000f ),
-	int3( 10, 20, 30 )
-);
-
-TEMPER_INVOKE_PARAMETRIC_TEST( Test_int3_float4,
-	float4( 160.000000f, 150.000000f, 140.000000f, 130.000000f ),
-	int3( 160, 150, 140 )
-);
-
-TEMPER_PARAMETRIC( Test_int3_double2, TEMPER_FLAG_SHOULD_RUN, const double2& convertFrom, const int3& expectedAnswer )
-{
-	int3 actualAnswer = int3( convertFrom );
-
-	TEMPER_CHECK_TRUE( expectedAnswer.x == actualAnswer.x );
-	TEMPER_CHECK_TRUE( expectedAnswer.y == actualAnswer.y );
-}
-
-TEMPER_INVOKE_PARAMETRIC_TEST( Test_int3_double2,
-	double2( 0.000000f, 0.000000f ),
-	int3( 0, 0, 0 )
-);
-
-TEMPER_INVOKE_PARAMETRIC_TEST( Test_int3_double2,
-	double2( 10.000000f, 10.000000f ),
-	int3( 10, 10, 10 )
-);
-
-TEMPER_INVOKE_PARAMETRIC_TEST( Test_int3_double2,
-	double2( 10.000000f, 20.000000f ),
-	int3( 10, 20, 30 )
-);
-
-TEMPER_INVOKE_PARAMETRIC_TEST( Test_int3_double2,
-	double2( 160.000000f, 150.000000f ),
 	int3( 160, 150, 140 )
 );
 
@@ -1315,32 +1116,69 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_int3_double3,
 	int3( 160, 150, 140 )
 );
 
-TEMPER_PARAMETRIC( Test_int3_double4, TEMPER_FLAG_SHOULD_RUN, const double4& convertFrom, const int3& expectedAnswer )
+TEMPER_PARAMETRIC( Test_int3_composite_ctor_1_vec_before_with_2_leftovers, TEMPER_FLAG_SHOULD_RUN, const int2& vecPart, const int32_t scalar0, const int3 expectedAnswer )
 {
-	int3 actualAnswer = int3( convertFrom );
+	int3 actualAnswer = int3( vecPart, scalar0 );
 
-	TEMPER_CHECK_TRUE( expectedAnswer.x == actualAnswer.x );
-	TEMPER_CHECK_TRUE( expectedAnswer.y == actualAnswer.y );
-	TEMPER_CHECK_TRUE( expectedAnswer.z == actualAnswer.z );
+	TEMPER_CHECK_TRUE( actualAnswer.x == expectedAnswer.x );
+	TEMPER_CHECK_TRUE( actualAnswer.y == expectedAnswer.y );
+	TEMPER_CHECK_TRUE( actualAnswer.z == expectedAnswer.z );
 }
 
-TEMPER_INVOKE_PARAMETRIC_TEST( Test_int3_double4,
-	double4( 0.000000f, 0.000000f, 0.000000f, 0.000000f ),
+TEMPER_INVOKE_PARAMETRIC_TEST( Test_int3_composite_ctor_1_vec_before_with_2_leftovers,
+	int2( 0, 0 ),
+	0,
 	int3( 0, 0, 0 )
 );
 
-TEMPER_INVOKE_PARAMETRIC_TEST( Test_int3_double4,
-	double4( 10.000000f, 10.000000f, 10.000000f, 10.000000f ),
+TEMPER_INVOKE_PARAMETRIC_TEST( Test_int3_composite_ctor_1_vec_before_with_2_leftovers,
+	int2( 10, 10 ),
+	10,
 	int3( 10, 10, 10 )
 );
 
-TEMPER_INVOKE_PARAMETRIC_TEST( Test_int3_double4,
-	double4( 10.000000f, 20.000000f, 30.000000f, 40.000000f ),
+TEMPER_INVOKE_PARAMETRIC_TEST( Test_int3_composite_ctor_1_vec_before_with_2_leftovers,
+	int2( 10, 20 ),
+	30,
 	int3( 10, 20, 30 )
 );
 
-TEMPER_INVOKE_PARAMETRIC_TEST( Test_int3_double4,
-	double4( 160.000000f, 150.000000f, 140.000000f, 130.000000f ),
+TEMPER_INVOKE_PARAMETRIC_TEST( Test_int3_composite_ctor_1_vec_before_with_2_leftovers,
+	int2( 160, 150 ),
+	140,
+	int3( 160, 150, 140 )
+);
+
+TEMPER_PARAMETRIC( Test_int3_composite_ctor_1_vec_after_with_2_leftovers, TEMPER_FLAG_SHOULD_RUN, const int32_t scalar0, const int2& vecPart, const int3 expectedAnswer )
+{
+	int3 actualAnswer = int3( scalar0, vecPart );
+
+	TEMPER_CHECK_TRUE( actualAnswer.x == expectedAnswer.x );
+	TEMPER_CHECK_TRUE( actualAnswer.y == expectedAnswer.y );
+	TEMPER_CHECK_TRUE( actualAnswer.z == expectedAnswer.z );
+}
+
+TEMPER_INVOKE_PARAMETRIC_TEST( Test_int3_composite_ctor_1_vec_after_with_2_leftovers,
+	0,
+	int2( 0, 0 ),
+	int3( 0, 0, 0 )
+);
+
+TEMPER_INVOKE_PARAMETRIC_TEST( Test_int3_composite_ctor_1_vec_after_with_2_leftovers,
+	10,
+	int2( 10, 10 ),
+	int3( 10, 10, 10 )
+);
+
+TEMPER_INVOKE_PARAMETRIC_TEST( Test_int3_composite_ctor_1_vec_after_with_2_leftovers,
+	10,
+	int2( 20, 30 ),
+	int3( 10, 20, 30 )
+);
+
+TEMPER_INVOKE_PARAMETRIC_TEST( Test_int3_composite_ctor_1_vec_after_with_2_leftovers,
+	160,
+	int2( 150, 140 ),
 	int3( 160, 150, 140 )
 );
 

@@ -62,37 +62,11 @@ double4::double4( const double4& vec )
 {
 }
 
-double4::double4( const bool2& vec )
-	: x( (double) vec.x )
-	, y( (double) vec.y )
-{
-}
-
-double4::double4( const bool3& vec )
-	: x( (double) vec.x )
-	, y( (double) vec.y )
-	, z( (double) vec.z )
-{
-}
-
 double4::double4( const bool4& vec )
 	: x( (double) vec.x )
 	, y( (double) vec.y )
 	, z( (double) vec.z )
 	, w( (double) vec.w )
-{
-}
-
-double4::double4( const int2& vec )
-	: x( (double) vec.x )
-	, y( (double) vec.y )
-{
-}
-
-double4::double4( const int3& vec )
-	: x( (double) vec.x )
-	, y( (double) vec.y )
-	, z( (double) vec.z )
 {
 }
 
@@ -104,37 +78,11 @@ double4::double4( const int4& vec )
 {
 }
 
-double4::double4( const uint2& vec )
-	: x( (double) vec.x )
-	, y( (double) vec.y )
-{
-}
-
-double4::double4( const uint3& vec )
-	: x( (double) vec.x )
-	, y( (double) vec.y )
-	, z( (double) vec.z )
-{
-}
-
 double4::double4( const uint4& vec )
 	: x( (double) vec.x )
 	, y( (double) vec.y )
 	, z( (double) vec.z )
 	, w( (double) vec.w )
-{
-}
-
-double4::double4( const float2& vec )
-	: x( (double) vec.x )
-	, y( (double) vec.y )
-{
-}
-
-double4::double4( const float3& vec )
-	: x( (double) vec.x )
-	, y( (double) vec.y )
-	, z( (double) vec.z )
 {
 }
 
@@ -146,16 +94,43 @@ double4::double4( const float4& vec )
 {
 }
 
-double4::double4( const double2& vec )
-	: x( vec.x )
-	, y( vec.y )
+double4::double4( const double2& xy, const double z, const double w )
+	: x( xy.x )
+	, y( xy.y )
+	, z( z )
+	, w( w )
 {
 }
 
-double4::double4( const double3& vec )
-	: x( vec.x )
-	, y( vec.y )
-	, z( vec.z )
+double4::double4( const double x, const double y, const double2& zw )
+	: x( x )
+	, y( y )
+	, z( zw.x )
+	, w( zw.y )
+{
+}
+
+double4::double4( const double3& xyz, const double w )
+	: x( xyz.x )
+	, y( xyz.y )
+	, z( xyz.z )
+	, w( w )
+{
+}
+
+double4::double4( const double x, const double3& w )
+	: x( x )
+	, y( w.x )
+	, z( w.y )
+	, w( w.z )
+{
+}
+
+double4::double4( const double2& xy, const double2& zw )
+	: x( xy.x )
+	, y( xy.y )
+	, z( zw.x )
+	, w( zw.y )
 {
 }
 

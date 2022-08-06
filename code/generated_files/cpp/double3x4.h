@@ -106,136 +106,16 @@ struct double3x4
 	HLML_INLINE double3x4( const double3x4& mat );
 
 	// Conversion constructor.  Casts all components of 'mat' from type bool32_t to type double.
-	HLML_INLINE explicit double3x4( const bool2x2& mat );
-
-	// Conversion constructor.  Casts all components of 'mat' from type bool32_t to type double.
-	HLML_INLINE explicit double3x4( const bool2x3& mat );
-
-	// Conversion constructor.  Casts all components of 'mat' from type bool32_t to type double.
-	HLML_INLINE explicit double3x4( const bool2x4& mat );
-
-	// Conversion constructor.  Casts all components of 'mat' from type bool32_t to type double.
-	HLML_INLINE explicit double3x4( const bool3x2& mat );
-
-	// Conversion constructor.  Casts all components of 'mat' from type bool32_t to type double.
-	HLML_INLINE explicit double3x4( const bool3x3& mat );
-
-	// Conversion constructor.  Casts all components of 'mat' from type bool32_t to type double.
 	HLML_INLINE explicit double3x4( const bool3x4& mat );
-
-	// Conversion constructor.  Casts all components of 'mat' from type bool32_t to type double.
-	HLML_INLINE explicit double3x4( const bool4x2& mat );
-
-	// Conversion constructor.  Casts all components of 'mat' from type bool32_t to type double.
-	HLML_INLINE explicit double3x4( const bool4x3& mat );
-
-	// Conversion constructor.  Casts all components of 'mat' from type bool32_t to type double.
-	HLML_INLINE explicit double3x4( const bool4x4& mat );
-
-	// Conversion constructor.  Casts all components of 'mat' from type int32_t to type double.
-	HLML_INLINE explicit double3x4( const int2x2& mat );
-
-	// Conversion constructor.  Casts all components of 'mat' from type int32_t to type double.
-	HLML_INLINE explicit double3x4( const int2x3& mat );
-
-	// Conversion constructor.  Casts all components of 'mat' from type int32_t to type double.
-	HLML_INLINE explicit double3x4( const int2x4& mat );
-
-	// Conversion constructor.  Casts all components of 'mat' from type int32_t to type double.
-	HLML_INLINE explicit double3x4( const int3x2& mat );
-
-	// Conversion constructor.  Casts all components of 'mat' from type int32_t to type double.
-	HLML_INLINE explicit double3x4( const int3x3& mat );
 
 	// Conversion constructor.  Casts all components of 'mat' from type int32_t to type double.
 	HLML_INLINE explicit double3x4( const int3x4& mat );
 
-	// Conversion constructor.  Casts all components of 'mat' from type int32_t to type double.
-	HLML_INLINE explicit double3x4( const int4x2& mat );
-
-	// Conversion constructor.  Casts all components of 'mat' from type int32_t to type double.
-	HLML_INLINE explicit double3x4( const int4x3& mat );
-
-	// Conversion constructor.  Casts all components of 'mat' from type int32_t to type double.
-	HLML_INLINE explicit double3x4( const int4x4& mat );
-
-	// Conversion constructor.  Casts all components of 'mat' from type uint32_t to type double.
-	HLML_INLINE explicit double3x4( const uint2x2& mat );
-
-	// Conversion constructor.  Casts all components of 'mat' from type uint32_t to type double.
-	HLML_INLINE explicit double3x4( const uint2x3& mat );
-
-	// Conversion constructor.  Casts all components of 'mat' from type uint32_t to type double.
-	HLML_INLINE explicit double3x4( const uint2x4& mat );
-
-	// Conversion constructor.  Casts all components of 'mat' from type uint32_t to type double.
-	HLML_INLINE explicit double3x4( const uint3x2& mat );
-
-	// Conversion constructor.  Casts all components of 'mat' from type uint32_t to type double.
-	HLML_INLINE explicit double3x4( const uint3x3& mat );
-
 	// Conversion constructor.  Casts all components of 'mat' from type uint32_t to type double.
 	HLML_INLINE explicit double3x4( const uint3x4& mat );
 
-	// Conversion constructor.  Casts all components of 'mat' from type uint32_t to type double.
-	HLML_INLINE explicit double3x4( const uint4x2& mat );
-
-	// Conversion constructor.  Casts all components of 'mat' from type uint32_t to type double.
-	HLML_INLINE explicit double3x4( const uint4x3& mat );
-
-	// Conversion constructor.  Casts all components of 'mat' from type uint32_t to type double.
-	HLML_INLINE explicit double3x4( const uint4x4& mat );
-
-	// Conversion constructor.  Casts all components of 'mat' from type float to type double.
-	HLML_INLINE explicit double3x4( const float2x2& mat );
-
-	// Conversion constructor.  Casts all components of 'mat' from type float to type double.
-	HLML_INLINE explicit double3x4( const float2x3& mat );
-
-	// Conversion constructor.  Casts all components of 'mat' from type float to type double.
-	HLML_INLINE explicit double3x4( const float2x4& mat );
-
-	// Conversion constructor.  Casts all components of 'mat' from type float to type double.
-	HLML_INLINE explicit double3x4( const float3x2& mat );
-
-	// Conversion constructor.  Casts all components of 'mat' from type float to type double.
-	HLML_INLINE explicit double3x4( const float3x3& mat );
-
 	// Conversion constructor.  Casts all components of 'mat' from type float to type double.
 	HLML_INLINE explicit double3x4( const float3x4& mat );
-
-	// Conversion constructor.  Casts all components of 'mat' from type float to type double.
-	HLML_INLINE explicit double3x4( const float4x2& mat );
-
-	// Conversion constructor.  Casts all components of 'mat' from type float to type double.
-	HLML_INLINE explicit double3x4( const float4x3& mat );
-
-	// Conversion constructor.  Casts all components of 'mat' from type float to type double.
-	HLML_INLINE explicit double3x4( const float4x4& mat );
-
-	// Conversion constructor.  Casts all components of 'mat' from type double to type double.
-	HLML_INLINE explicit double3x4( const double2x2& mat );
-
-	// Conversion constructor.  Casts all components of 'mat' from type double to type double.
-	HLML_INLINE explicit double3x4( const double2x3& mat );
-
-	// Conversion constructor.  Casts all components of 'mat' from type double to type double.
-	HLML_INLINE explicit double3x4( const double2x4& mat );
-
-	// Conversion constructor.  Casts all components of 'mat' from type double to type double.
-	HLML_INLINE explicit double3x4( const double3x2& mat );
-
-	// Conversion constructor.  Casts all components of 'mat' from type double to type double.
-	HLML_INLINE explicit double3x4( const double3x3& mat );
-
-	// Conversion constructor.  Casts all components of 'mat' from type double to type double.
-	HLML_INLINE explicit double3x4( const double4x2& mat );
-
-	// Conversion constructor.  Casts all components of 'mat' from type double to type double.
-	HLML_INLINE explicit double3x4( const double4x3& mat );
-
-	// Conversion constructor.  Casts all components of 'mat' from type double to type double.
-	HLML_INLINE explicit double3x4( const double4x4& mat );
 
 	HLML_INLINE ~double3x4() {}
 
