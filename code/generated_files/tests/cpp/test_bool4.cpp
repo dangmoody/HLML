@@ -358,6 +358,40 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_bool4_composite_ctor_1_vec_after_with_3_left
 	bool4( true, true, true, true )
 );
 
+TEMPER_PARAMETRIC( Test_bool4_composite_ctor_2_vecs, TEMPER_FLAG_SHOULD_RUN, const bool2& vec0, const bool2& vec1, const bool4& expectedAnswer )
+{
+	bool4 actualAnswer = bool4( vec0, vec1 );
+
+	TEMPER_CHECK_TRUE( actualAnswer.x == expectedAnswer.x );
+	TEMPER_CHECK_TRUE( actualAnswer.y == expectedAnswer.y );
+	TEMPER_CHECK_TRUE( actualAnswer.z == expectedAnswer.z );
+	TEMPER_CHECK_TRUE( actualAnswer.w == expectedAnswer.w );
+}
+
+TEMPER_INVOKE_PARAMETRIC_TEST( Test_bool4_composite_ctor_2_vecs,
+	bool2( false, false ),
+	bool2( false, false ),
+	bool4( false, false, false, false )
+);
+
+TEMPER_INVOKE_PARAMETRIC_TEST( Test_bool4_composite_ctor_2_vecs,
+	bool2( true, true ),
+	bool2( true, true ),
+	bool4( true, true, true, true )
+);
+
+TEMPER_INVOKE_PARAMETRIC_TEST( Test_bool4_composite_ctor_2_vecs,
+	bool2( true, true ),
+	bool2( true, true ),
+	bool4( true, true, true, true )
+);
+
+TEMPER_INVOKE_PARAMETRIC_TEST( Test_bool4_composite_ctor_2_vecs,
+	bool2( true, true ),
+	bool2( true, true ),
+	bool4( true, true, true, true )
+);
+
 TEMPER_PARAMETRIC( Test_bool4_lengthsq, TEMPER_FLAG_SHOULD_RUN, const bool4& vec, const float expectedAnswer )
 {
 	float actualResult = lengthsq( vec );

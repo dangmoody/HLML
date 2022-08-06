@@ -1223,6 +1223,40 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_uint4_composite_ctor_1_vec_after_with_3_left
 	uint4( 160U, 150U, 140U, 130U )
 );
 
+TEMPER_PARAMETRIC( Test_uint4_composite_ctor_2_vecs, TEMPER_FLAG_SHOULD_RUN, const uint2& vec0, const uint2& vec1, const uint4& expectedAnswer )
+{
+	uint4 actualAnswer = uint4( vec0, vec1 );
+
+	TEMPER_CHECK_TRUE( actualAnswer.x == expectedAnswer.x );
+	TEMPER_CHECK_TRUE( actualAnswer.y == expectedAnswer.y );
+	TEMPER_CHECK_TRUE( actualAnswer.z == expectedAnswer.z );
+	TEMPER_CHECK_TRUE( actualAnswer.w == expectedAnswer.w );
+}
+
+TEMPER_INVOKE_PARAMETRIC_TEST( Test_uint4_composite_ctor_2_vecs,
+	uint2( 0U, 0U ),
+	uint2( 0U, 0U ),
+	uint4( 0U, 0U, 0U, 0U )
+);
+
+TEMPER_INVOKE_PARAMETRIC_TEST( Test_uint4_composite_ctor_2_vecs,
+	uint2( 10U, 10U ),
+	uint2( 10U, 10U ),
+	uint4( 10U, 10U, 10U, 10U )
+);
+
+TEMPER_INVOKE_PARAMETRIC_TEST( Test_uint4_composite_ctor_2_vecs,
+	uint2( 10U, 20U ),
+	uint2( 30U, 40U ),
+	uint4( 10U, 20U, 30U, 40U )
+);
+
+TEMPER_INVOKE_PARAMETRIC_TEST( Test_uint4_composite_ctor_2_vecs,
+	uint2( 160U, 150U ),
+	uint2( 140U, 130U ),
+	uint4( 160U, 150U, 140U, 130U )
+);
+
 TEMPER_PARAMETRIC( Test_uint4_lengthsq, TEMPER_FLAG_SHOULD_RUN, const uint4& vec, const float expectedAnswer )
 {
 	float actualResult = lengthsq( vec );

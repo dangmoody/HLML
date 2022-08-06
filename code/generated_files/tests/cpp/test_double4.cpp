@@ -893,10 +893,10 @@ TEMPER_PARAMETRIC( Test_double4_composite_ctor_1_vec_before_with_2_leftovers, TE
 {
 	double4 actualAnswer = double4( vecPart, scalar0, scalar1 );
 
-	TEMPER_CHECK_TRUE( actualAnswer.x == expectedAnswer.x );
-	TEMPER_CHECK_TRUE( actualAnswer.y == expectedAnswer.y );
-	TEMPER_CHECK_TRUE( actualAnswer.z == expectedAnswer.z );
-	TEMPER_CHECK_TRUE( actualAnswer.w == expectedAnswer.w );
+	TEMPER_CHECK_TRUE( doubleeq( actualAnswer.x, expectedAnswer.x ) );
+	TEMPER_CHECK_TRUE( doubleeq( actualAnswer.y, expectedAnswer.y ) );
+	TEMPER_CHECK_TRUE( doubleeq( actualAnswer.z, expectedAnswer.z ) );
+	TEMPER_CHECK_TRUE( doubleeq( actualAnswer.w, expectedAnswer.w ) );
 }
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_double4_composite_ctor_1_vec_before_with_2_leftovers,
@@ -931,10 +931,10 @@ TEMPER_PARAMETRIC( Test_double4_composite_ctor_1_vec_after_with_2_leftovers, TEM
 {
 	double4 actualAnswer = double4( scalar0, scalar1, vecPart );
 
-	TEMPER_CHECK_TRUE( actualAnswer.x == expectedAnswer.x );
-	TEMPER_CHECK_TRUE( actualAnswer.y == expectedAnswer.y );
-	TEMPER_CHECK_TRUE( actualAnswer.z == expectedAnswer.z );
-	TEMPER_CHECK_TRUE( actualAnswer.w == expectedAnswer.w );
+	TEMPER_CHECK_TRUE( doubleeq( actualAnswer.x, expectedAnswer.x ) );
+	TEMPER_CHECK_TRUE( doubleeq( actualAnswer.y, expectedAnswer.y ) );
+	TEMPER_CHECK_TRUE( doubleeq( actualAnswer.z, expectedAnswer.z ) );
+	TEMPER_CHECK_TRUE( doubleeq( actualAnswer.w, expectedAnswer.w ) );
 }
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_double4_composite_ctor_1_vec_after_with_2_leftovers,
@@ -969,10 +969,10 @@ TEMPER_PARAMETRIC( Test_double4_composite_ctor_1_vec_before_with_3_leftovers, TE
 {
 	double4 actualAnswer = double4( vecPart, scalar0 );
 
-	TEMPER_CHECK_TRUE( actualAnswer.x == expectedAnswer.x );
-	TEMPER_CHECK_TRUE( actualAnswer.y == expectedAnswer.y );
-	TEMPER_CHECK_TRUE( actualAnswer.z == expectedAnswer.z );
-	TEMPER_CHECK_TRUE( actualAnswer.w == expectedAnswer.w );
+	TEMPER_CHECK_TRUE( doubleeq( actualAnswer.x, expectedAnswer.x ) );
+	TEMPER_CHECK_TRUE( doubleeq( actualAnswer.y, expectedAnswer.y ) );
+	TEMPER_CHECK_TRUE( doubleeq( actualAnswer.z, expectedAnswer.z ) );
+	TEMPER_CHECK_TRUE( doubleeq( actualAnswer.w, expectedAnswer.w ) );
 }
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_double4_composite_ctor_1_vec_before_with_3_leftovers,
@@ -1003,10 +1003,10 @@ TEMPER_PARAMETRIC( Test_double4_composite_ctor_1_vec_after_with_3_leftovers, TEM
 {
 	double4 actualAnswer = double4( scalar0, vecPart );
 
-	TEMPER_CHECK_TRUE( actualAnswer.x == expectedAnswer.x );
-	TEMPER_CHECK_TRUE( actualAnswer.y == expectedAnswer.y );
-	TEMPER_CHECK_TRUE( actualAnswer.z == expectedAnswer.z );
-	TEMPER_CHECK_TRUE( actualAnswer.w == expectedAnswer.w );
+	TEMPER_CHECK_TRUE( doubleeq( actualAnswer.x, expectedAnswer.x ) );
+	TEMPER_CHECK_TRUE( doubleeq( actualAnswer.y, expectedAnswer.y ) );
+	TEMPER_CHECK_TRUE( doubleeq( actualAnswer.z, expectedAnswer.z ) );
+	TEMPER_CHECK_TRUE( doubleeq( actualAnswer.w, expectedAnswer.w ) );
 }
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_double4_composite_ctor_1_vec_after_with_3_leftovers,
@@ -1030,6 +1030,40 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_double4_composite_ctor_1_vec_after_with_3_le
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_double4_composite_ctor_1_vec_after_with_3_leftovers,
 	160.000000f,
 	double3( 150.000000f, 140.000000f, 130.000000f ),
+	double4( 160.000000f, 150.000000f, 140.000000f, 130.000000f )
+);
+
+TEMPER_PARAMETRIC( Test_double4_composite_ctor_2_vecs, TEMPER_FLAG_SHOULD_RUN, const double2& vec0, const double2& vec1, const double4& expectedAnswer )
+{
+	double4 actualAnswer = double4( vec0, vec1 );
+
+	TEMPER_CHECK_TRUE( doubleeq( actualAnswer.x, expectedAnswer.x ) );
+	TEMPER_CHECK_TRUE( doubleeq( actualAnswer.y, expectedAnswer.y ) );
+	TEMPER_CHECK_TRUE( doubleeq( actualAnswer.z, expectedAnswer.z ) );
+	TEMPER_CHECK_TRUE( doubleeq( actualAnswer.w, expectedAnswer.w ) );
+}
+
+TEMPER_INVOKE_PARAMETRIC_TEST( Test_double4_composite_ctor_2_vecs,
+	double2( 0.000000f, 0.000000f ),
+	double2( 0.000000f, 0.000000f ),
+	double4( 0.000000f, 0.000000f, 0.000000f, 0.000000f )
+);
+
+TEMPER_INVOKE_PARAMETRIC_TEST( Test_double4_composite_ctor_2_vecs,
+	double2( 10.000000f, 10.000000f ),
+	double2( 10.000000f, 10.000000f ),
+	double4( 10.000000f, 10.000000f, 10.000000f, 10.000000f )
+);
+
+TEMPER_INVOKE_PARAMETRIC_TEST( Test_double4_composite_ctor_2_vecs,
+	double2( 10.000000f, 20.000000f ),
+	double2( 30.000000f, 40.000000f ),
+	double4( 10.000000f, 20.000000f, 30.000000f, 40.000000f )
+);
+
+TEMPER_INVOKE_PARAMETRIC_TEST( Test_double4_composite_ctor_2_vecs,
+	double2( 160.000000f, 150.000000f ),
+	double2( 140.000000f, 130.000000f ),
 	double4( 160.000000f, 150.000000f, 140.000000f, 130.000000f )
 );
 

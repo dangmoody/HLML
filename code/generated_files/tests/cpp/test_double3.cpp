@@ -818,9 +818,9 @@ TEMPER_PARAMETRIC( Test_double3_composite_ctor_1_vec_before_with_2_leftovers, TE
 {
 	double3 actualAnswer = double3( vecPart, scalar0 );
 
-	TEMPER_CHECK_TRUE( actualAnswer.x == expectedAnswer.x );
-	TEMPER_CHECK_TRUE( actualAnswer.y == expectedAnswer.y );
-	TEMPER_CHECK_TRUE( actualAnswer.z == expectedAnswer.z );
+	TEMPER_CHECK_TRUE( doubleeq( actualAnswer.x, expectedAnswer.x ) );
+	TEMPER_CHECK_TRUE( doubleeq( actualAnswer.y, expectedAnswer.y ) );
+	TEMPER_CHECK_TRUE( doubleeq( actualAnswer.z, expectedAnswer.z ) );
 }
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_composite_ctor_1_vec_before_with_2_leftovers,
@@ -851,9 +851,9 @@ TEMPER_PARAMETRIC( Test_double3_composite_ctor_1_vec_after_with_2_leftovers, TEM
 {
 	double3 actualAnswer = double3( scalar0, vecPart );
 
-	TEMPER_CHECK_TRUE( actualAnswer.x == expectedAnswer.x );
-	TEMPER_CHECK_TRUE( actualAnswer.y == expectedAnswer.y );
-	TEMPER_CHECK_TRUE( actualAnswer.z == expectedAnswer.z );
+	TEMPER_CHECK_TRUE( doubleeq( actualAnswer.x, expectedAnswer.x ) );
+	TEMPER_CHECK_TRUE( doubleeq( actualAnswer.y, expectedAnswer.y ) );
+	TEMPER_CHECK_TRUE( doubleeq( actualAnswer.z, expectedAnswer.z ) );
 }
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_composite_ctor_1_vec_after_with_2_leftovers,
