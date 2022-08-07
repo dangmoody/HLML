@@ -111,7 +111,7 @@ static void GenerateTests( allocatorLinear_t* tempStorage,
 	{
 		printf( "Generating test_main.%s...", languageName );
 
-		stringBuilder_t* sb = StringBuilder_Create( tempStorage, KILOBYTES( 8 ) );
+		stringBuilder_t* sb = StringBuilder_Create( tempStorage, KILOBYTES( 10 ) );
 
 		StringBuilder_Append( sb,
 			GEN_FILE_HEADER

@@ -1,11 +1,12 @@
 /*
 ===========================================================================
 
-HLML.
+HLML
+v2.2.0
 
-MIT License
+MIT License:
 
-Copyright (c) 2019 Dan Moody
+Copyright (c) 2019 Dan Moody (daniel.guy.moody@gmail.com).
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -34,7 +35,9 @@ SOFTWARE.
 
 TEMPER_PARAMETRIC( Test_double3_Swizzle_xx, TEMPER_FLAG_SHOULD_RUN, const double3& vec, const double2& expectedAnswer )
 {
-	double2 vecSwizzled = vec.xx;
+	double3 vecCopy = vec;
+
+	double2 vecSwizzled = vecCopy.xx;
 	TEMPER_CHECK_TRUE( vecSwizzled == expectedAnswer );
 }
 
@@ -54,13 +57,13 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_xx,
 );
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_xx,
-	double3( 10.000000f, 10.000000f, 20.000000f ),
+	double3( 10.000000f, 20.000000f, 30.000000f ),
 	double2( 10.000000f, 10.000000f )
 );
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_xx,
-	double3( 20.000000f, 20.000000f, 10.000000f ),
-	double2( 20.000000f, 20.000000f )
+	double3( 40.000000f, 30.000000f, 20.000000f ),
+	double2( 40.000000f, 40.000000f )
 );
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_xx,
@@ -70,8 +73,21 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_xx,
 
 TEMPER_PARAMETRIC( Test_double3_Swizzle_yx, TEMPER_FLAG_SHOULD_RUN, const double3& vec, const double2& expectedAnswer )
 {
-	double2 vecSwizzled = vec.yx;
+	double3 vecCopy = vec;
+
+	double2 vecSwizzled = vecCopy.yx;
 	TEMPER_CHECK_TRUE( vecSwizzled == expectedAnswer );
+
+	// write swizzle test
+	{
+		double old_y = vecCopy.y;
+		double old_x = vecCopy.x;
+
+		vecCopy.yx = vecCopy.xy;
+
+		TEMPER_CHECK_TRUE( vecCopy.x == old_y );
+		TEMPER_CHECK_TRUE( vecCopy.y == old_x );
+	}
 }
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_yx,
@@ -90,13 +106,13 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_yx,
 );
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_yx,
-	double3( 10.000000f, 10.000000f, 20.000000f ),
-	double2( 10.000000f, 10.000000f )
+	double3( 10.000000f, 20.000000f, 30.000000f ),
+	double2( 20.000000f, 10.000000f )
 );
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_yx,
-	double3( 20.000000f, 20.000000f, 10.000000f ),
-	double2( 20.000000f, 20.000000f )
+	double3( 40.000000f, 30.000000f, 20.000000f ),
+	double2( 30.000000f, 40.000000f )
 );
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_yx,
@@ -106,8 +122,21 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_yx,
 
 TEMPER_PARAMETRIC( Test_double3_Swizzle_zx, TEMPER_FLAG_SHOULD_RUN, const double3& vec, const double2& expectedAnswer )
 {
-	double2 vecSwizzled = vec.zx;
+	double3 vecCopy = vec;
+
+	double2 vecSwizzled = vecCopy.zx;
 	TEMPER_CHECK_TRUE( vecSwizzled == expectedAnswer );
+
+	// write swizzle test
+	{
+		double old_z = vecCopy.z;
+		double old_x = vecCopy.x;
+
+		vecCopy.zx = vecCopy.xz;
+
+		TEMPER_CHECK_TRUE( vecCopy.x == old_z );
+		TEMPER_CHECK_TRUE( vecCopy.z == old_x );
+	}
 }
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_zx,
@@ -126,13 +155,13 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_zx,
 );
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_zx,
-	double3( 10.000000f, 10.000000f, 20.000000f ),
-	double2( 20.000000f, 10.000000f )
+	double3( 10.000000f, 20.000000f, 30.000000f ),
+	double2( 30.000000f, 10.000000f )
 );
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_zx,
-	double3( 20.000000f, 20.000000f, 10.000000f ),
-	double2( 10.000000f, 20.000000f )
+	double3( 40.000000f, 30.000000f, 20.000000f ),
+	double2( 20.000000f, 40.000000f )
 );
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_zx,
@@ -142,8 +171,21 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_zx,
 
 TEMPER_PARAMETRIC( Test_double3_Swizzle_xy, TEMPER_FLAG_SHOULD_RUN, const double3& vec, const double2& expectedAnswer )
 {
-	double2 vecSwizzled = vec.xy;
+	double3 vecCopy = vec;
+
+	double2 vecSwizzled = vecCopy.xy;
 	TEMPER_CHECK_TRUE( vecSwizzled == expectedAnswer );
+
+	// write swizzle test
+	{
+		double old_x = vecCopy.x;
+		double old_y = vecCopy.y;
+
+		vecCopy.xy = vecCopy.yx;
+
+		TEMPER_CHECK_TRUE( vecCopy.y == old_x );
+		TEMPER_CHECK_TRUE( vecCopy.x == old_y );
+	}
 }
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_xy,
@@ -162,13 +204,13 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_xy,
 );
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_xy,
-	double3( 10.000000f, 10.000000f, 20.000000f ),
-	double2( 10.000000f, 10.000000f )
+	double3( 10.000000f, 20.000000f, 30.000000f ),
+	double2( 10.000000f, 20.000000f )
 );
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_xy,
-	double3( 20.000000f, 20.000000f, 10.000000f ),
-	double2( 20.000000f, 20.000000f )
+	double3( 40.000000f, 30.000000f, 20.000000f ),
+	double2( 40.000000f, 30.000000f )
 );
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_xy,
@@ -178,7 +220,9 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_xy,
 
 TEMPER_PARAMETRIC( Test_double3_Swizzle_yy, TEMPER_FLAG_SHOULD_RUN, const double3& vec, const double2& expectedAnswer )
 {
-	double2 vecSwizzled = vec.yy;
+	double3 vecCopy = vec;
+
+	double2 vecSwizzled = vecCopy.yy;
 	TEMPER_CHECK_TRUE( vecSwizzled == expectedAnswer );
 }
 
@@ -198,13 +242,13 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_yy,
 );
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_yy,
-	double3( 10.000000f, 10.000000f, 20.000000f ),
-	double2( 10.000000f, 10.000000f )
+	double3( 10.000000f, 20.000000f, 30.000000f ),
+	double2( 20.000000f, 20.000000f )
 );
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_yy,
-	double3( 20.000000f, 20.000000f, 10.000000f ),
-	double2( 20.000000f, 20.000000f )
+	double3( 40.000000f, 30.000000f, 20.000000f ),
+	double2( 30.000000f, 30.000000f )
 );
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_yy,
@@ -214,8 +258,21 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_yy,
 
 TEMPER_PARAMETRIC( Test_double3_Swizzle_zy, TEMPER_FLAG_SHOULD_RUN, const double3& vec, const double2& expectedAnswer )
 {
-	double2 vecSwizzled = vec.zy;
+	double3 vecCopy = vec;
+
+	double2 vecSwizzled = vecCopy.zy;
 	TEMPER_CHECK_TRUE( vecSwizzled == expectedAnswer );
+
+	// write swizzle test
+	{
+		double old_z = vecCopy.z;
+		double old_y = vecCopy.y;
+
+		vecCopy.zy = vecCopy.yz;
+
+		TEMPER_CHECK_TRUE( vecCopy.y == old_z );
+		TEMPER_CHECK_TRUE( vecCopy.z == old_y );
+	}
 }
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_zy,
@@ -234,13 +291,13 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_zy,
 );
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_zy,
-	double3( 10.000000f, 10.000000f, 20.000000f ),
-	double2( 20.000000f, 10.000000f )
+	double3( 10.000000f, 20.000000f, 30.000000f ),
+	double2( 30.000000f, 20.000000f )
 );
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_zy,
-	double3( 20.000000f, 20.000000f, 10.000000f ),
-	double2( 10.000000f, 20.000000f )
+	double3( 40.000000f, 30.000000f, 20.000000f ),
+	double2( 20.000000f, 30.000000f )
 );
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_zy,
@@ -250,8 +307,21 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_zy,
 
 TEMPER_PARAMETRIC( Test_double3_Swizzle_xz, TEMPER_FLAG_SHOULD_RUN, const double3& vec, const double2& expectedAnswer )
 {
-	double2 vecSwizzled = vec.xz;
+	double3 vecCopy = vec;
+
+	double2 vecSwizzled = vecCopy.xz;
 	TEMPER_CHECK_TRUE( vecSwizzled == expectedAnswer );
+
+	// write swizzle test
+	{
+		double old_x = vecCopy.x;
+		double old_z = vecCopy.z;
+
+		vecCopy.xz = vecCopy.zx;
+
+		TEMPER_CHECK_TRUE( vecCopy.z == old_x );
+		TEMPER_CHECK_TRUE( vecCopy.x == old_z );
+	}
 }
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_xz,
@@ -270,13 +340,13 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_xz,
 );
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_xz,
-	double3( 10.000000f, 10.000000f, 20.000000f ),
-	double2( 10.000000f, 20.000000f )
+	double3( 10.000000f, 20.000000f, 30.000000f ),
+	double2( 10.000000f, 30.000000f )
 );
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_xz,
-	double3( 20.000000f, 20.000000f, 10.000000f ),
-	double2( 20.000000f, 10.000000f )
+	double3( 40.000000f, 30.000000f, 20.000000f ),
+	double2( 40.000000f, 20.000000f )
 );
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_xz,
@@ -286,8 +356,21 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_xz,
 
 TEMPER_PARAMETRIC( Test_double3_Swizzle_yz, TEMPER_FLAG_SHOULD_RUN, const double3& vec, const double2& expectedAnswer )
 {
-	double2 vecSwizzled = vec.yz;
+	double3 vecCopy = vec;
+
+	double2 vecSwizzled = vecCopy.yz;
 	TEMPER_CHECK_TRUE( vecSwizzled == expectedAnswer );
+
+	// write swizzle test
+	{
+		double old_y = vecCopy.y;
+		double old_z = vecCopy.z;
+
+		vecCopy.yz = vecCopy.zy;
+
+		TEMPER_CHECK_TRUE( vecCopy.z == old_y );
+		TEMPER_CHECK_TRUE( vecCopy.y == old_z );
+	}
 }
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_yz,
@@ -306,13 +389,13 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_yz,
 );
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_yz,
-	double3( 10.000000f, 10.000000f, 20.000000f ),
-	double2( 10.000000f, 20.000000f )
+	double3( 10.000000f, 20.000000f, 30.000000f ),
+	double2( 20.000000f, 30.000000f )
 );
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_yz,
-	double3( 20.000000f, 20.000000f, 10.000000f ),
-	double2( 20.000000f, 10.000000f )
+	double3( 40.000000f, 30.000000f, 20.000000f ),
+	double2( 30.000000f, 20.000000f )
 );
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_yz,
@@ -322,7 +405,9 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_yz,
 
 TEMPER_PARAMETRIC( Test_double3_Swizzle_zz, TEMPER_FLAG_SHOULD_RUN, const double3& vec, const double2& expectedAnswer )
 {
-	double2 vecSwizzled = vec.zz;
+	double3 vecCopy = vec;
+
+	double2 vecSwizzled = vecCopy.zz;
 	TEMPER_CHECK_TRUE( vecSwizzled == expectedAnswer );
 }
 
@@ -342,13 +427,13 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_zz,
 );
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_zz,
-	double3( 10.000000f, 10.000000f, 20.000000f ),
-	double2( 20.000000f, 20.000000f )
+	double3( 10.000000f, 20.000000f, 30.000000f ),
+	double2( 30.000000f, 30.000000f )
 );
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_zz,
-	double3( 20.000000f, 20.000000f, 10.000000f ),
-	double2( 10.000000f, 10.000000f )
+	double3( 40.000000f, 30.000000f, 20.000000f ),
+	double2( 20.000000f, 20.000000f )
 );
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_zz,
@@ -358,7 +443,9 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_zz,
 
 TEMPER_PARAMETRIC( Test_double3_Swizzle_xxx, TEMPER_FLAG_SHOULD_RUN, const double3& vec, const double3& expectedAnswer )
 {
-	double3 vecSwizzled = vec.xxx;
+	double3 vecCopy = vec;
+
+	double3 vecSwizzled = vecCopy.xxx;
 	TEMPER_CHECK_TRUE( vecSwizzled == expectedAnswer );
 }
 
@@ -378,13 +465,13 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_xxx,
 );
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_xxx,
-	double3( 10.000000f, 10.000000f, 20.000000f ),
+	double3( 10.000000f, 20.000000f, 30.000000f ),
 	double3( 10.000000f, 10.000000f, 10.000000f )
 );
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_xxx,
-	double3( 20.000000f, 20.000000f, 10.000000f ),
-	double3( 20.000000f, 20.000000f, 20.000000f )
+	double3( 40.000000f, 30.000000f, 20.000000f ),
+	double3( 40.000000f, 40.000000f, 40.000000f )
 );
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_xxx,
@@ -394,7 +481,9 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_xxx,
 
 TEMPER_PARAMETRIC( Test_double3_Swizzle_yxx, TEMPER_FLAG_SHOULD_RUN, const double3& vec, const double3& expectedAnswer )
 {
-	double3 vecSwizzled = vec.yxx;
+	double3 vecCopy = vec;
+
+	double3 vecSwizzled = vecCopy.yxx;
 	TEMPER_CHECK_TRUE( vecSwizzled == expectedAnswer );
 }
 
@@ -414,13 +503,13 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_yxx,
 );
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_yxx,
-	double3( 10.000000f, 10.000000f, 20.000000f ),
-	double3( 10.000000f, 10.000000f, 10.000000f )
+	double3( 10.000000f, 20.000000f, 30.000000f ),
+	double3( 20.000000f, 10.000000f, 10.000000f )
 );
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_yxx,
-	double3( 20.000000f, 20.000000f, 10.000000f ),
-	double3( 20.000000f, 20.000000f, 20.000000f )
+	double3( 40.000000f, 30.000000f, 20.000000f ),
+	double3( 30.000000f, 40.000000f, 40.000000f )
 );
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_yxx,
@@ -430,7 +519,9 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_yxx,
 
 TEMPER_PARAMETRIC( Test_double3_Swizzle_zxx, TEMPER_FLAG_SHOULD_RUN, const double3& vec, const double3& expectedAnswer )
 {
-	double3 vecSwizzled = vec.zxx;
+	double3 vecCopy = vec;
+
+	double3 vecSwizzled = vecCopy.zxx;
 	TEMPER_CHECK_TRUE( vecSwizzled == expectedAnswer );
 }
 
@@ -450,13 +541,13 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_zxx,
 );
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_zxx,
-	double3( 10.000000f, 10.000000f, 20.000000f ),
-	double3( 20.000000f, 10.000000f, 10.000000f )
+	double3( 10.000000f, 20.000000f, 30.000000f ),
+	double3( 30.000000f, 10.000000f, 10.000000f )
 );
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_zxx,
-	double3( 20.000000f, 20.000000f, 10.000000f ),
-	double3( 10.000000f, 20.000000f, 20.000000f )
+	double3( 40.000000f, 30.000000f, 20.000000f ),
+	double3( 20.000000f, 40.000000f, 40.000000f )
 );
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_zxx,
@@ -466,7 +557,9 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_zxx,
 
 TEMPER_PARAMETRIC( Test_double3_Swizzle_xyx, TEMPER_FLAG_SHOULD_RUN, const double3& vec, const double3& expectedAnswer )
 {
-	double3 vecSwizzled = vec.xyx;
+	double3 vecCopy = vec;
+
+	double3 vecSwizzled = vecCopy.xyx;
 	TEMPER_CHECK_TRUE( vecSwizzled == expectedAnswer );
 }
 
@@ -486,13 +579,13 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_xyx,
 );
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_xyx,
-	double3( 10.000000f, 10.000000f, 20.000000f ),
-	double3( 10.000000f, 10.000000f, 10.000000f )
+	double3( 10.000000f, 20.000000f, 30.000000f ),
+	double3( 10.000000f, 20.000000f, 10.000000f )
 );
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_xyx,
-	double3( 20.000000f, 20.000000f, 10.000000f ),
-	double3( 20.000000f, 20.000000f, 20.000000f )
+	double3( 40.000000f, 30.000000f, 20.000000f ),
+	double3( 40.000000f, 30.000000f, 40.000000f )
 );
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_xyx,
@@ -502,7 +595,9 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_xyx,
 
 TEMPER_PARAMETRIC( Test_double3_Swizzle_yyx, TEMPER_FLAG_SHOULD_RUN, const double3& vec, const double3& expectedAnswer )
 {
-	double3 vecSwizzled = vec.yyx;
+	double3 vecCopy = vec;
+
+	double3 vecSwizzled = vecCopy.yyx;
 	TEMPER_CHECK_TRUE( vecSwizzled == expectedAnswer );
 }
 
@@ -522,13 +617,13 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_yyx,
 );
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_yyx,
-	double3( 10.000000f, 10.000000f, 20.000000f ),
-	double3( 10.000000f, 10.000000f, 10.000000f )
+	double3( 10.000000f, 20.000000f, 30.000000f ),
+	double3( 20.000000f, 20.000000f, 10.000000f )
 );
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_yyx,
-	double3( 20.000000f, 20.000000f, 10.000000f ),
-	double3( 20.000000f, 20.000000f, 20.000000f )
+	double3( 40.000000f, 30.000000f, 20.000000f ),
+	double3( 30.000000f, 30.000000f, 40.000000f )
 );
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_yyx,
@@ -538,8 +633,23 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_yyx,
 
 TEMPER_PARAMETRIC( Test_double3_Swizzle_zyx, TEMPER_FLAG_SHOULD_RUN, const double3& vec, const double3& expectedAnswer )
 {
-	double3 vecSwizzled = vec.zyx;
+	double3 vecCopy = vec;
+
+	double3 vecSwizzled = vecCopy.zyx;
 	TEMPER_CHECK_TRUE( vecSwizzled == expectedAnswer );
+
+	// write swizzle test
+	{
+		double old_z = vecCopy.z;
+		double old_y = vecCopy.y;
+		double old_x = vecCopy.x;
+
+		vecCopy.zyx = vecCopy.xyz;
+
+		TEMPER_CHECK_TRUE( vecCopy.x == old_z );
+		TEMPER_CHECK_TRUE( vecCopy.y == old_y );
+		TEMPER_CHECK_TRUE( vecCopy.z == old_x );
+	}
 }
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_zyx,
@@ -558,13 +668,13 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_zyx,
 );
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_zyx,
-	double3( 10.000000f, 10.000000f, 20.000000f ),
-	double3( 20.000000f, 10.000000f, 10.000000f )
+	double3( 10.000000f, 20.000000f, 30.000000f ),
+	double3( 30.000000f, 20.000000f, 10.000000f )
 );
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_zyx,
-	double3( 20.000000f, 20.000000f, 10.000000f ),
-	double3( 10.000000f, 20.000000f, 20.000000f )
+	double3( 40.000000f, 30.000000f, 20.000000f ),
+	double3( 20.000000f, 30.000000f, 40.000000f )
 );
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_zyx,
@@ -574,7 +684,9 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_zyx,
 
 TEMPER_PARAMETRIC( Test_double3_Swizzle_xzx, TEMPER_FLAG_SHOULD_RUN, const double3& vec, const double3& expectedAnswer )
 {
-	double3 vecSwizzled = vec.xzx;
+	double3 vecCopy = vec;
+
+	double3 vecSwizzled = vecCopy.xzx;
 	TEMPER_CHECK_TRUE( vecSwizzled == expectedAnswer );
 }
 
@@ -594,13 +706,13 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_xzx,
 );
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_xzx,
-	double3( 10.000000f, 10.000000f, 20.000000f ),
-	double3( 10.000000f, 20.000000f, 10.000000f )
+	double3( 10.000000f, 20.000000f, 30.000000f ),
+	double3( 10.000000f, 30.000000f, 10.000000f )
 );
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_xzx,
-	double3( 20.000000f, 20.000000f, 10.000000f ),
-	double3( 20.000000f, 10.000000f, 20.000000f )
+	double3( 40.000000f, 30.000000f, 20.000000f ),
+	double3( 40.000000f, 20.000000f, 40.000000f )
 );
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_xzx,
@@ -610,8 +722,23 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_xzx,
 
 TEMPER_PARAMETRIC( Test_double3_Swizzle_yzx, TEMPER_FLAG_SHOULD_RUN, const double3& vec, const double3& expectedAnswer )
 {
-	double3 vecSwizzled = vec.yzx;
+	double3 vecCopy = vec;
+
+	double3 vecSwizzled = vecCopy.yzx;
 	TEMPER_CHECK_TRUE( vecSwizzled == expectedAnswer );
+
+	// write swizzle test
+	{
+		double old_y = vecCopy.y;
+		double old_z = vecCopy.z;
+		double old_x = vecCopy.x;
+
+		vecCopy.yzx = vecCopy.xzy;
+
+		TEMPER_CHECK_TRUE( vecCopy.x == old_y );
+		TEMPER_CHECK_TRUE( vecCopy.z == old_z );
+		TEMPER_CHECK_TRUE( vecCopy.y == old_x );
+	}
 }
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_yzx,
@@ -630,13 +757,13 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_yzx,
 );
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_yzx,
-	double3( 10.000000f, 10.000000f, 20.000000f ),
-	double3( 10.000000f, 20.000000f, 10.000000f )
+	double3( 10.000000f, 20.000000f, 30.000000f ),
+	double3( 20.000000f, 30.000000f, 10.000000f )
 );
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_yzx,
-	double3( 20.000000f, 20.000000f, 10.000000f ),
-	double3( 20.000000f, 10.000000f, 20.000000f )
+	double3( 40.000000f, 30.000000f, 20.000000f ),
+	double3( 30.000000f, 20.000000f, 40.000000f )
 );
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_yzx,
@@ -646,7 +773,9 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_yzx,
 
 TEMPER_PARAMETRIC( Test_double3_Swizzle_zzx, TEMPER_FLAG_SHOULD_RUN, const double3& vec, const double3& expectedAnswer )
 {
-	double3 vecSwizzled = vec.zzx;
+	double3 vecCopy = vec;
+
+	double3 vecSwizzled = vecCopy.zzx;
 	TEMPER_CHECK_TRUE( vecSwizzled == expectedAnswer );
 }
 
@@ -666,13 +795,13 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_zzx,
 );
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_zzx,
-	double3( 10.000000f, 10.000000f, 20.000000f ),
-	double3( 20.000000f, 20.000000f, 10.000000f )
+	double3( 10.000000f, 20.000000f, 30.000000f ),
+	double3( 30.000000f, 30.000000f, 10.000000f )
 );
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_zzx,
-	double3( 20.000000f, 20.000000f, 10.000000f ),
-	double3( 10.000000f, 10.000000f, 20.000000f )
+	double3( 40.000000f, 30.000000f, 20.000000f ),
+	double3( 20.000000f, 20.000000f, 40.000000f )
 );
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_zzx,
@@ -682,7 +811,9 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_zzx,
 
 TEMPER_PARAMETRIC( Test_double3_Swizzle_xxy, TEMPER_FLAG_SHOULD_RUN, const double3& vec, const double3& expectedAnswer )
 {
-	double3 vecSwizzled = vec.xxy;
+	double3 vecCopy = vec;
+
+	double3 vecSwizzled = vecCopy.xxy;
 	TEMPER_CHECK_TRUE( vecSwizzled == expectedAnswer );
 }
 
@@ -702,13 +833,13 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_xxy,
 );
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_xxy,
-	double3( 10.000000f, 10.000000f, 20.000000f ),
-	double3( 10.000000f, 10.000000f, 10.000000f )
+	double3( 10.000000f, 20.000000f, 30.000000f ),
+	double3( 10.000000f, 10.000000f, 20.000000f )
 );
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_xxy,
-	double3( 20.000000f, 20.000000f, 10.000000f ),
-	double3( 20.000000f, 20.000000f, 20.000000f )
+	double3( 40.000000f, 30.000000f, 20.000000f ),
+	double3( 40.000000f, 40.000000f, 30.000000f )
 );
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_xxy,
@@ -718,7 +849,9 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_xxy,
 
 TEMPER_PARAMETRIC( Test_double3_Swizzle_yxy, TEMPER_FLAG_SHOULD_RUN, const double3& vec, const double3& expectedAnswer )
 {
-	double3 vecSwizzled = vec.yxy;
+	double3 vecCopy = vec;
+
+	double3 vecSwizzled = vecCopy.yxy;
 	TEMPER_CHECK_TRUE( vecSwizzled == expectedAnswer );
 }
 
@@ -738,13 +871,13 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_yxy,
 );
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_yxy,
-	double3( 10.000000f, 10.000000f, 20.000000f ),
-	double3( 10.000000f, 10.000000f, 10.000000f )
+	double3( 10.000000f, 20.000000f, 30.000000f ),
+	double3( 20.000000f, 10.000000f, 20.000000f )
 );
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_yxy,
-	double3( 20.000000f, 20.000000f, 10.000000f ),
-	double3( 20.000000f, 20.000000f, 20.000000f )
+	double3( 40.000000f, 30.000000f, 20.000000f ),
+	double3( 30.000000f, 40.000000f, 30.000000f )
 );
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_yxy,
@@ -754,8 +887,23 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_yxy,
 
 TEMPER_PARAMETRIC( Test_double3_Swizzle_zxy, TEMPER_FLAG_SHOULD_RUN, const double3& vec, const double3& expectedAnswer )
 {
-	double3 vecSwizzled = vec.zxy;
+	double3 vecCopy = vec;
+
+	double3 vecSwizzled = vecCopy.zxy;
 	TEMPER_CHECK_TRUE( vecSwizzled == expectedAnswer );
+
+	// write swizzle test
+	{
+		double old_z = vecCopy.z;
+		double old_x = vecCopy.x;
+		double old_y = vecCopy.y;
+
+		vecCopy.zxy = vecCopy.yxz;
+
+		TEMPER_CHECK_TRUE( vecCopy.y == old_z );
+		TEMPER_CHECK_TRUE( vecCopy.x == old_x );
+		TEMPER_CHECK_TRUE( vecCopy.z == old_y );
+	}
 }
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_zxy,
@@ -774,13 +922,13 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_zxy,
 );
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_zxy,
-	double3( 10.000000f, 10.000000f, 20.000000f ),
-	double3( 20.000000f, 10.000000f, 10.000000f )
+	double3( 10.000000f, 20.000000f, 30.000000f ),
+	double3( 30.000000f, 10.000000f, 20.000000f )
 );
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_zxy,
-	double3( 20.000000f, 20.000000f, 10.000000f ),
-	double3( 10.000000f, 20.000000f, 20.000000f )
+	double3( 40.000000f, 30.000000f, 20.000000f ),
+	double3( 20.000000f, 40.000000f, 30.000000f )
 );
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_zxy,
@@ -790,7 +938,9 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_zxy,
 
 TEMPER_PARAMETRIC( Test_double3_Swizzle_xyy, TEMPER_FLAG_SHOULD_RUN, const double3& vec, const double3& expectedAnswer )
 {
-	double3 vecSwizzled = vec.xyy;
+	double3 vecCopy = vec;
+
+	double3 vecSwizzled = vecCopy.xyy;
 	TEMPER_CHECK_TRUE( vecSwizzled == expectedAnswer );
 }
 
@@ -810,13 +960,13 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_xyy,
 );
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_xyy,
-	double3( 10.000000f, 10.000000f, 20.000000f ),
-	double3( 10.000000f, 10.000000f, 10.000000f )
+	double3( 10.000000f, 20.000000f, 30.000000f ),
+	double3( 10.000000f, 20.000000f, 20.000000f )
 );
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_xyy,
-	double3( 20.000000f, 20.000000f, 10.000000f ),
-	double3( 20.000000f, 20.000000f, 20.000000f )
+	double3( 40.000000f, 30.000000f, 20.000000f ),
+	double3( 40.000000f, 30.000000f, 30.000000f )
 );
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_xyy,
@@ -826,7 +976,9 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_xyy,
 
 TEMPER_PARAMETRIC( Test_double3_Swizzle_yyy, TEMPER_FLAG_SHOULD_RUN, const double3& vec, const double3& expectedAnswer )
 {
-	double3 vecSwizzled = vec.yyy;
+	double3 vecCopy = vec;
+
+	double3 vecSwizzled = vecCopy.yyy;
 	TEMPER_CHECK_TRUE( vecSwizzled == expectedAnswer );
 }
 
@@ -846,13 +998,13 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_yyy,
 );
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_yyy,
-	double3( 10.000000f, 10.000000f, 20.000000f ),
-	double3( 10.000000f, 10.000000f, 10.000000f )
+	double3( 10.000000f, 20.000000f, 30.000000f ),
+	double3( 20.000000f, 20.000000f, 20.000000f )
 );
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_yyy,
-	double3( 20.000000f, 20.000000f, 10.000000f ),
-	double3( 20.000000f, 20.000000f, 20.000000f )
+	double3( 40.000000f, 30.000000f, 20.000000f ),
+	double3( 30.000000f, 30.000000f, 30.000000f )
 );
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_yyy,
@@ -862,7 +1014,9 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_yyy,
 
 TEMPER_PARAMETRIC( Test_double3_Swizzle_zyy, TEMPER_FLAG_SHOULD_RUN, const double3& vec, const double3& expectedAnswer )
 {
-	double3 vecSwizzled = vec.zyy;
+	double3 vecCopy = vec;
+
+	double3 vecSwizzled = vecCopy.zyy;
 	TEMPER_CHECK_TRUE( vecSwizzled == expectedAnswer );
 }
 
@@ -882,13 +1036,13 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_zyy,
 );
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_zyy,
-	double3( 10.000000f, 10.000000f, 20.000000f ),
-	double3( 20.000000f, 10.000000f, 10.000000f )
+	double3( 10.000000f, 20.000000f, 30.000000f ),
+	double3( 30.000000f, 20.000000f, 20.000000f )
 );
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_zyy,
-	double3( 20.000000f, 20.000000f, 10.000000f ),
-	double3( 10.000000f, 20.000000f, 20.000000f )
+	double3( 40.000000f, 30.000000f, 20.000000f ),
+	double3( 20.000000f, 30.000000f, 30.000000f )
 );
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_zyy,
@@ -898,8 +1052,23 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_zyy,
 
 TEMPER_PARAMETRIC( Test_double3_Swizzle_xzy, TEMPER_FLAG_SHOULD_RUN, const double3& vec, const double3& expectedAnswer )
 {
-	double3 vecSwizzled = vec.xzy;
+	double3 vecCopy = vec;
+
+	double3 vecSwizzled = vecCopy.xzy;
 	TEMPER_CHECK_TRUE( vecSwizzled == expectedAnswer );
+
+	// write swizzle test
+	{
+		double old_x = vecCopy.x;
+		double old_z = vecCopy.z;
+		double old_y = vecCopy.y;
+
+		vecCopy.xzy = vecCopy.yzx;
+
+		TEMPER_CHECK_TRUE( vecCopy.y == old_x );
+		TEMPER_CHECK_TRUE( vecCopy.z == old_z );
+		TEMPER_CHECK_TRUE( vecCopy.x == old_y );
+	}
 }
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_xzy,
@@ -918,13 +1087,13 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_xzy,
 );
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_xzy,
-	double3( 10.000000f, 10.000000f, 20.000000f ),
-	double3( 10.000000f, 20.000000f, 10.000000f )
+	double3( 10.000000f, 20.000000f, 30.000000f ),
+	double3( 10.000000f, 30.000000f, 20.000000f )
 );
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_xzy,
-	double3( 20.000000f, 20.000000f, 10.000000f ),
-	double3( 20.000000f, 10.000000f, 20.000000f )
+	double3( 40.000000f, 30.000000f, 20.000000f ),
+	double3( 40.000000f, 20.000000f, 30.000000f )
 );
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_xzy,
@@ -934,7 +1103,9 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_xzy,
 
 TEMPER_PARAMETRIC( Test_double3_Swizzle_yzy, TEMPER_FLAG_SHOULD_RUN, const double3& vec, const double3& expectedAnswer )
 {
-	double3 vecSwizzled = vec.yzy;
+	double3 vecCopy = vec;
+
+	double3 vecSwizzled = vecCopy.yzy;
 	TEMPER_CHECK_TRUE( vecSwizzled == expectedAnswer );
 }
 
@@ -954,13 +1125,13 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_yzy,
 );
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_yzy,
-	double3( 10.000000f, 10.000000f, 20.000000f ),
-	double3( 10.000000f, 20.000000f, 10.000000f )
+	double3( 10.000000f, 20.000000f, 30.000000f ),
+	double3( 20.000000f, 30.000000f, 20.000000f )
 );
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_yzy,
-	double3( 20.000000f, 20.000000f, 10.000000f ),
-	double3( 20.000000f, 10.000000f, 20.000000f )
+	double3( 40.000000f, 30.000000f, 20.000000f ),
+	double3( 30.000000f, 20.000000f, 30.000000f )
 );
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_yzy,
@@ -970,7 +1141,9 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_yzy,
 
 TEMPER_PARAMETRIC( Test_double3_Swizzle_zzy, TEMPER_FLAG_SHOULD_RUN, const double3& vec, const double3& expectedAnswer )
 {
-	double3 vecSwizzled = vec.zzy;
+	double3 vecCopy = vec;
+
+	double3 vecSwizzled = vecCopy.zzy;
 	TEMPER_CHECK_TRUE( vecSwizzled == expectedAnswer );
 }
 
@@ -990,13 +1163,13 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_zzy,
 );
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_zzy,
-	double3( 10.000000f, 10.000000f, 20.000000f ),
-	double3( 20.000000f, 20.000000f, 10.000000f )
+	double3( 10.000000f, 20.000000f, 30.000000f ),
+	double3( 30.000000f, 30.000000f, 20.000000f )
 );
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_zzy,
-	double3( 20.000000f, 20.000000f, 10.000000f ),
-	double3( 10.000000f, 10.000000f, 20.000000f )
+	double3( 40.000000f, 30.000000f, 20.000000f ),
+	double3( 20.000000f, 20.000000f, 30.000000f )
 );
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_zzy,
@@ -1006,7 +1179,9 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_zzy,
 
 TEMPER_PARAMETRIC( Test_double3_Swizzle_xxz, TEMPER_FLAG_SHOULD_RUN, const double3& vec, const double3& expectedAnswer )
 {
-	double3 vecSwizzled = vec.xxz;
+	double3 vecCopy = vec;
+
+	double3 vecSwizzled = vecCopy.xxz;
 	TEMPER_CHECK_TRUE( vecSwizzled == expectedAnswer );
 }
 
@@ -1026,13 +1201,13 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_xxz,
 );
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_xxz,
-	double3( 10.000000f, 10.000000f, 20.000000f ),
-	double3( 10.000000f, 10.000000f, 20.000000f )
+	double3( 10.000000f, 20.000000f, 30.000000f ),
+	double3( 10.000000f, 10.000000f, 30.000000f )
 );
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_xxz,
-	double3( 20.000000f, 20.000000f, 10.000000f ),
-	double3( 20.000000f, 20.000000f, 10.000000f )
+	double3( 40.000000f, 30.000000f, 20.000000f ),
+	double3( 40.000000f, 40.000000f, 20.000000f )
 );
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_xxz,
@@ -1042,8 +1217,23 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_xxz,
 
 TEMPER_PARAMETRIC( Test_double3_Swizzle_yxz, TEMPER_FLAG_SHOULD_RUN, const double3& vec, const double3& expectedAnswer )
 {
-	double3 vecSwizzled = vec.yxz;
+	double3 vecCopy = vec;
+
+	double3 vecSwizzled = vecCopy.yxz;
 	TEMPER_CHECK_TRUE( vecSwizzled == expectedAnswer );
+
+	// write swizzle test
+	{
+		double old_y = vecCopy.y;
+		double old_x = vecCopy.x;
+		double old_z = vecCopy.z;
+
+		vecCopy.yxz = vecCopy.zxy;
+
+		TEMPER_CHECK_TRUE( vecCopy.z == old_y );
+		TEMPER_CHECK_TRUE( vecCopy.x == old_x );
+		TEMPER_CHECK_TRUE( vecCopy.y == old_z );
+	}
 }
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_yxz,
@@ -1062,13 +1252,13 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_yxz,
 );
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_yxz,
-	double3( 10.000000f, 10.000000f, 20.000000f ),
-	double3( 10.000000f, 10.000000f, 20.000000f )
+	double3( 10.000000f, 20.000000f, 30.000000f ),
+	double3( 20.000000f, 10.000000f, 30.000000f )
 );
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_yxz,
-	double3( 20.000000f, 20.000000f, 10.000000f ),
-	double3( 20.000000f, 20.000000f, 10.000000f )
+	double3( 40.000000f, 30.000000f, 20.000000f ),
+	double3( 30.000000f, 40.000000f, 20.000000f )
 );
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_yxz,
@@ -1078,7 +1268,9 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_yxz,
 
 TEMPER_PARAMETRIC( Test_double3_Swizzle_zxz, TEMPER_FLAG_SHOULD_RUN, const double3& vec, const double3& expectedAnswer )
 {
-	double3 vecSwizzled = vec.zxz;
+	double3 vecCopy = vec;
+
+	double3 vecSwizzled = vecCopy.zxz;
 	TEMPER_CHECK_TRUE( vecSwizzled == expectedAnswer );
 }
 
@@ -1098,13 +1290,13 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_zxz,
 );
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_zxz,
-	double3( 10.000000f, 10.000000f, 20.000000f ),
-	double3( 20.000000f, 10.000000f, 20.000000f )
+	double3( 10.000000f, 20.000000f, 30.000000f ),
+	double3( 30.000000f, 10.000000f, 30.000000f )
 );
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_zxz,
-	double3( 20.000000f, 20.000000f, 10.000000f ),
-	double3( 10.000000f, 20.000000f, 10.000000f )
+	double3( 40.000000f, 30.000000f, 20.000000f ),
+	double3( 20.000000f, 40.000000f, 20.000000f )
 );
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_zxz,
@@ -1114,8 +1306,23 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_zxz,
 
 TEMPER_PARAMETRIC( Test_double3_Swizzle_xyz, TEMPER_FLAG_SHOULD_RUN, const double3& vec, const double3& expectedAnswer )
 {
-	double3 vecSwizzled = vec.xyz;
+	double3 vecCopy = vec;
+
+	double3 vecSwizzled = vecCopy.xyz;
 	TEMPER_CHECK_TRUE( vecSwizzled == expectedAnswer );
+
+	// write swizzle test
+	{
+		double old_x = vecCopy.x;
+		double old_y = vecCopy.y;
+		double old_z = vecCopy.z;
+
+		vecCopy.xyz = vecCopy.zyx;
+
+		TEMPER_CHECK_TRUE( vecCopy.z == old_x );
+		TEMPER_CHECK_TRUE( vecCopy.y == old_y );
+		TEMPER_CHECK_TRUE( vecCopy.x == old_z );
+	}
 }
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_xyz,
@@ -1134,13 +1341,13 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_xyz,
 );
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_xyz,
-	double3( 10.000000f, 10.000000f, 20.000000f ),
-	double3( 10.000000f, 10.000000f, 20.000000f )
+	double3( 10.000000f, 20.000000f, 30.000000f ),
+	double3( 10.000000f, 20.000000f, 30.000000f )
 );
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_xyz,
-	double3( 20.000000f, 20.000000f, 10.000000f ),
-	double3( 20.000000f, 20.000000f, 10.000000f )
+	double3( 40.000000f, 30.000000f, 20.000000f ),
+	double3( 40.000000f, 30.000000f, 20.000000f )
 );
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_xyz,
@@ -1150,7 +1357,9 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_xyz,
 
 TEMPER_PARAMETRIC( Test_double3_Swizzle_yyz, TEMPER_FLAG_SHOULD_RUN, const double3& vec, const double3& expectedAnswer )
 {
-	double3 vecSwizzled = vec.yyz;
+	double3 vecCopy = vec;
+
+	double3 vecSwizzled = vecCopy.yyz;
 	TEMPER_CHECK_TRUE( vecSwizzled == expectedAnswer );
 }
 
@@ -1170,13 +1379,13 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_yyz,
 );
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_yyz,
-	double3( 10.000000f, 10.000000f, 20.000000f ),
-	double3( 10.000000f, 10.000000f, 20.000000f )
+	double3( 10.000000f, 20.000000f, 30.000000f ),
+	double3( 20.000000f, 20.000000f, 30.000000f )
 );
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_yyz,
-	double3( 20.000000f, 20.000000f, 10.000000f ),
-	double3( 20.000000f, 20.000000f, 10.000000f )
+	double3( 40.000000f, 30.000000f, 20.000000f ),
+	double3( 30.000000f, 30.000000f, 20.000000f )
 );
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_yyz,
@@ -1186,7 +1395,9 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_yyz,
 
 TEMPER_PARAMETRIC( Test_double3_Swizzle_zyz, TEMPER_FLAG_SHOULD_RUN, const double3& vec, const double3& expectedAnswer )
 {
-	double3 vecSwizzled = vec.zyz;
+	double3 vecCopy = vec;
+
+	double3 vecSwizzled = vecCopy.zyz;
 	TEMPER_CHECK_TRUE( vecSwizzled == expectedAnswer );
 }
 
@@ -1206,13 +1417,13 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_zyz,
 );
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_zyz,
-	double3( 10.000000f, 10.000000f, 20.000000f ),
-	double3( 20.000000f, 10.000000f, 20.000000f )
+	double3( 10.000000f, 20.000000f, 30.000000f ),
+	double3( 30.000000f, 20.000000f, 30.000000f )
 );
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_zyz,
-	double3( 20.000000f, 20.000000f, 10.000000f ),
-	double3( 10.000000f, 20.000000f, 10.000000f )
+	double3( 40.000000f, 30.000000f, 20.000000f ),
+	double3( 20.000000f, 30.000000f, 20.000000f )
 );
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_zyz,
@@ -1222,7 +1433,9 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_zyz,
 
 TEMPER_PARAMETRIC( Test_double3_Swizzle_xzz, TEMPER_FLAG_SHOULD_RUN, const double3& vec, const double3& expectedAnswer )
 {
-	double3 vecSwizzled = vec.xzz;
+	double3 vecCopy = vec;
+
+	double3 vecSwizzled = vecCopy.xzz;
 	TEMPER_CHECK_TRUE( vecSwizzled == expectedAnswer );
 }
 
@@ -1242,13 +1455,13 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_xzz,
 );
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_xzz,
-	double3( 10.000000f, 10.000000f, 20.000000f ),
-	double3( 10.000000f, 20.000000f, 20.000000f )
+	double3( 10.000000f, 20.000000f, 30.000000f ),
+	double3( 10.000000f, 30.000000f, 30.000000f )
 );
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_xzz,
-	double3( 20.000000f, 20.000000f, 10.000000f ),
-	double3( 20.000000f, 10.000000f, 10.000000f )
+	double3( 40.000000f, 30.000000f, 20.000000f ),
+	double3( 40.000000f, 20.000000f, 20.000000f )
 );
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_xzz,
@@ -1258,7 +1471,9 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_xzz,
 
 TEMPER_PARAMETRIC( Test_double3_Swizzle_yzz, TEMPER_FLAG_SHOULD_RUN, const double3& vec, const double3& expectedAnswer )
 {
-	double3 vecSwizzled = vec.yzz;
+	double3 vecCopy = vec;
+
+	double3 vecSwizzled = vecCopy.yzz;
 	TEMPER_CHECK_TRUE( vecSwizzled == expectedAnswer );
 }
 
@@ -1278,13 +1493,13 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_yzz,
 );
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_yzz,
-	double3( 10.000000f, 10.000000f, 20.000000f ),
-	double3( 10.000000f, 20.000000f, 20.000000f )
+	double3( 10.000000f, 20.000000f, 30.000000f ),
+	double3( 20.000000f, 30.000000f, 30.000000f )
 );
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_yzz,
-	double3( 20.000000f, 20.000000f, 10.000000f ),
-	double3( 20.000000f, 10.000000f, 10.000000f )
+	double3( 40.000000f, 30.000000f, 20.000000f ),
+	double3( 30.000000f, 20.000000f, 20.000000f )
 );
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_yzz,
@@ -1294,7 +1509,9 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_yzz,
 
 TEMPER_PARAMETRIC( Test_double3_Swizzle_zzz, TEMPER_FLAG_SHOULD_RUN, const double3& vec, const double3& expectedAnswer )
 {
-	double3 vecSwizzled = vec.zzz;
+	double3 vecCopy = vec;
+
+	double3 vecSwizzled = vecCopy.zzz;
 	TEMPER_CHECK_TRUE( vecSwizzled == expectedAnswer );
 }
 
@@ -1314,13 +1531,13 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_zzz,
 );
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_zzz,
-	double3( 10.000000f, 10.000000f, 20.000000f ),
-	double3( 20.000000f, 20.000000f, 20.000000f )
+	double3( 10.000000f, 20.000000f, 30.000000f ),
+	double3( 30.000000f, 30.000000f, 30.000000f )
 );
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_zzz,
-	double3( 20.000000f, 20.000000f, 10.000000f ),
-	double3( 10.000000f, 10.000000f, 10.000000f )
+	double3( 40.000000f, 30.000000f, 20.000000f ),
+	double3( 20.000000f, 20.000000f, 20.000000f )
 );
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_zzz,
@@ -1330,7 +1547,9 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_zzz,
 
 TEMPER_PARAMETRIC( Test_double3_Swizzle_xxxx, TEMPER_FLAG_SHOULD_RUN, const double3& vec, const double4& expectedAnswer )
 {
-	double4 vecSwizzled = vec.xxxx;
+	double3 vecCopy = vec;
+
+	double4 vecSwizzled = vecCopy.xxxx;
 	TEMPER_CHECK_TRUE( vecSwizzled == expectedAnswer );
 }
 
@@ -1350,13 +1569,13 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_xxxx,
 );
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_xxxx,
-	double3( 10.000000f, 10.000000f, 20.000000f ),
+	double3( 10.000000f, 20.000000f, 30.000000f ),
 	double4( 10.000000f, 10.000000f, 10.000000f, 10.000000f )
 );
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_xxxx,
-	double3( 20.000000f, 20.000000f, 10.000000f ),
-	double4( 20.000000f, 20.000000f, 20.000000f, 20.000000f )
+	double3( 40.000000f, 30.000000f, 20.000000f ),
+	double4( 40.000000f, 40.000000f, 40.000000f, 40.000000f )
 );
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_xxxx,
@@ -1366,7 +1585,9 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_xxxx,
 
 TEMPER_PARAMETRIC( Test_double3_Swizzle_yxxx, TEMPER_FLAG_SHOULD_RUN, const double3& vec, const double4& expectedAnswer )
 {
-	double4 vecSwizzled = vec.yxxx;
+	double3 vecCopy = vec;
+
+	double4 vecSwizzled = vecCopy.yxxx;
 	TEMPER_CHECK_TRUE( vecSwizzled == expectedAnswer );
 }
 
@@ -1386,13 +1607,13 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_yxxx,
 );
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_yxxx,
-	double3( 10.000000f, 10.000000f, 20.000000f ),
-	double4( 10.000000f, 10.000000f, 10.000000f, 10.000000f )
+	double3( 10.000000f, 20.000000f, 30.000000f ),
+	double4( 20.000000f, 10.000000f, 10.000000f, 10.000000f )
 );
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_yxxx,
-	double3( 20.000000f, 20.000000f, 10.000000f ),
-	double4( 20.000000f, 20.000000f, 20.000000f, 20.000000f )
+	double3( 40.000000f, 30.000000f, 20.000000f ),
+	double4( 30.000000f, 40.000000f, 40.000000f, 40.000000f )
 );
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_yxxx,
@@ -1402,7 +1623,9 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_yxxx,
 
 TEMPER_PARAMETRIC( Test_double3_Swizzle_zxxx, TEMPER_FLAG_SHOULD_RUN, const double3& vec, const double4& expectedAnswer )
 {
-	double4 vecSwizzled = vec.zxxx;
+	double3 vecCopy = vec;
+
+	double4 vecSwizzled = vecCopy.zxxx;
 	TEMPER_CHECK_TRUE( vecSwizzled == expectedAnswer );
 }
 
@@ -1422,13 +1645,13 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_zxxx,
 );
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_zxxx,
-	double3( 10.000000f, 10.000000f, 20.000000f ),
-	double4( 20.000000f, 10.000000f, 10.000000f, 10.000000f )
+	double3( 10.000000f, 20.000000f, 30.000000f ),
+	double4( 30.000000f, 10.000000f, 10.000000f, 10.000000f )
 );
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_zxxx,
-	double3( 20.000000f, 20.000000f, 10.000000f ),
-	double4( 10.000000f, 20.000000f, 20.000000f, 20.000000f )
+	double3( 40.000000f, 30.000000f, 20.000000f ),
+	double4( 20.000000f, 40.000000f, 40.000000f, 40.000000f )
 );
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_zxxx,
@@ -1438,7 +1661,9 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_zxxx,
 
 TEMPER_PARAMETRIC( Test_double3_Swizzle_xyxx, TEMPER_FLAG_SHOULD_RUN, const double3& vec, const double4& expectedAnswer )
 {
-	double4 vecSwizzled = vec.xyxx;
+	double3 vecCopy = vec;
+
+	double4 vecSwizzled = vecCopy.xyxx;
 	TEMPER_CHECK_TRUE( vecSwizzled == expectedAnswer );
 }
 
@@ -1458,13 +1683,13 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_xyxx,
 );
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_xyxx,
-	double3( 10.000000f, 10.000000f, 20.000000f ),
-	double4( 10.000000f, 10.000000f, 10.000000f, 10.000000f )
+	double3( 10.000000f, 20.000000f, 30.000000f ),
+	double4( 10.000000f, 20.000000f, 10.000000f, 10.000000f )
 );
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_xyxx,
-	double3( 20.000000f, 20.000000f, 10.000000f ),
-	double4( 20.000000f, 20.000000f, 20.000000f, 20.000000f )
+	double3( 40.000000f, 30.000000f, 20.000000f ),
+	double4( 40.000000f, 30.000000f, 40.000000f, 40.000000f )
 );
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_xyxx,
@@ -1474,7 +1699,9 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_xyxx,
 
 TEMPER_PARAMETRIC( Test_double3_Swizzle_yyxx, TEMPER_FLAG_SHOULD_RUN, const double3& vec, const double4& expectedAnswer )
 {
-	double4 vecSwizzled = vec.yyxx;
+	double3 vecCopy = vec;
+
+	double4 vecSwizzled = vecCopy.yyxx;
 	TEMPER_CHECK_TRUE( vecSwizzled == expectedAnswer );
 }
 
@@ -1494,13 +1721,13 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_yyxx,
 );
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_yyxx,
-	double3( 10.000000f, 10.000000f, 20.000000f ),
-	double4( 10.000000f, 10.000000f, 10.000000f, 10.000000f )
+	double3( 10.000000f, 20.000000f, 30.000000f ),
+	double4( 20.000000f, 20.000000f, 10.000000f, 10.000000f )
 );
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_yyxx,
-	double3( 20.000000f, 20.000000f, 10.000000f ),
-	double4( 20.000000f, 20.000000f, 20.000000f, 20.000000f )
+	double3( 40.000000f, 30.000000f, 20.000000f ),
+	double4( 30.000000f, 30.000000f, 40.000000f, 40.000000f )
 );
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_yyxx,
@@ -1510,7 +1737,9 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_yyxx,
 
 TEMPER_PARAMETRIC( Test_double3_Swizzle_zyxx, TEMPER_FLAG_SHOULD_RUN, const double3& vec, const double4& expectedAnswer )
 {
-	double4 vecSwizzled = vec.zyxx;
+	double3 vecCopy = vec;
+
+	double4 vecSwizzled = vecCopy.zyxx;
 	TEMPER_CHECK_TRUE( vecSwizzled == expectedAnswer );
 }
 
@@ -1530,13 +1759,13 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_zyxx,
 );
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_zyxx,
-	double3( 10.000000f, 10.000000f, 20.000000f ),
-	double4( 20.000000f, 10.000000f, 10.000000f, 10.000000f )
+	double3( 10.000000f, 20.000000f, 30.000000f ),
+	double4( 30.000000f, 20.000000f, 10.000000f, 10.000000f )
 );
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_zyxx,
-	double3( 20.000000f, 20.000000f, 10.000000f ),
-	double4( 10.000000f, 20.000000f, 20.000000f, 20.000000f )
+	double3( 40.000000f, 30.000000f, 20.000000f ),
+	double4( 20.000000f, 30.000000f, 40.000000f, 40.000000f )
 );
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_zyxx,
@@ -1546,7 +1775,9 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_zyxx,
 
 TEMPER_PARAMETRIC( Test_double3_Swizzle_xzxx, TEMPER_FLAG_SHOULD_RUN, const double3& vec, const double4& expectedAnswer )
 {
-	double4 vecSwizzled = vec.xzxx;
+	double3 vecCopy = vec;
+
+	double4 vecSwizzled = vecCopy.xzxx;
 	TEMPER_CHECK_TRUE( vecSwizzled == expectedAnswer );
 }
 
@@ -1566,13 +1797,13 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_xzxx,
 );
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_xzxx,
-	double3( 10.000000f, 10.000000f, 20.000000f ),
-	double4( 10.000000f, 20.000000f, 10.000000f, 10.000000f )
+	double3( 10.000000f, 20.000000f, 30.000000f ),
+	double4( 10.000000f, 30.000000f, 10.000000f, 10.000000f )
 );
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_xzxx,
-	double3( 20.000000f, 20.000000f, 10.000000f ),
-	double4( 20.000000f, 10.000000f, 20.000000f, 20.000000f )
+	double3( 40.000000f, 30.000000f, 20.000000f ),
+	double4( 40.000000f, 20.000000f, 40.000000f, 40.000000f )
 );
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_xzxx,
@@ -1582,7 +1813,9 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_xzxx,
 
 TEMPER_PARAMETRIC( Test_double3_Swizzle_yzxx, TEMPER_FLAG_SHOULD_RUN, const double3& vec, const double4& expectedAnswer )
 {
-	double4 vecSwizzled = vec.yzxx;
+	double3 vecCopy = vec;
+
+	double4 vecSwizzled = vecCopy.yzxx;
 	TEMPER_CHECK_TRUE( vecSwizzled == expectedAnswer );
 }
 
@@ -1602,13 +1835,13 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_yzxx,
 );
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_yzxx,
-	double3( 10.000000f, 10.000000f, 20.000000f ),
-	double4( 10.000000f, 20.000000f, 10.000000f, 10.000000f )
+	double3( 10.000000f, 20.000000f, 30.000000f ),
+	double4( 20.000000f, 30.000000f, 10.000000f, 10.000000f )
 );
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_yzxx,
-	double3( 20.000000f, 20.000000f, 10.000000f ),
-	double4( 20.000000f, 10.000000f, 20.000000f, 20.000000f )
+	double3( 40.000000f, 30.000000f, 20.000000f ),
+	double4( 30.000000f, 20.000000f, 40.000000f, 40.000000f )
 );
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_yzxx,
@@ -1618,7 +1851,9 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_yzxx,
 
 TEMPER_PARAMETRIC( Test_double3_Swizzle_zzxx, TEMPER_FLAG_SHOULD_RUN, const double3& vec, const double4& expectedAnswer )
 {
-	double4 vecSwizzled = vec.zzxx;
+	double3 vecCopy = vec;
+
+	double4 vecSwizzled = vecCopy.zzxx;
 	TEMPER_CHECK_TRUE( vecSwizzled == expectedAnswer );
 }
 
@@ -1638,13 +1873,13 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_zzxx,
 );
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_zzxx,
-	double3( 10.000000f, 10.000000f, 20.000000f ),
-	double4( 20.000000f, 20.000000f, 10.000000f, 10.000000f )
+	double3( 10.000000f, 20.000000f, 30.000000f ),
+	double4( 30.000000f, 30.000000f, 10.000000f, 10.000000f )
 );
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_zzxx,
-	double3( 20.000000f, 20.000000f, 10.000000f ),
-	double4( 10.000000f, 10.000000f, 20.000000f, 20.000000f )
+	double3( 40.000000f, 30.000000f, 20.000000f ),
+	double4( 20.000000f, 20.000000f, 40.000000f, 40.000000f )
 );
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_zzxx,
@@ -1654,7 +1889,9 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_zzxx,
 
 TEMPER_PARAMETRIC( Test_double3_Swizzle_xxyx, TEMPER_FLAG_SHOULD_RUN, const double3& vec, const double4& expectedAnswer )
 {
-	double4 vecSwizzled = vec.xxyx;
+	double3 vecCopy = vec;
+
+	double4 vecSwizzled = vecCopy.xxyx;
 	TEMPER_CHECK_TRUE( vecSwizzled == expectedAnswer );
 }
 
@@ -1674,13 +1911,13 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_xxyx,
 );
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_xxyx,
-	double3( 10.000000f, 10.000000f, 20.000000f ),
-	double4( 10.000000f, 10.000000f, 10.000000f, 10.000000f )
+	double3( 10.000000f, 20.000000f, 30.000000f ),
+	double4( 10.000000f, 10.000000f, 20.000000f, 10.000000f )
 );
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_xxyx,
-	double3( 20.000000f, 20.000000f, 10.000000f ),
-	double4( 20.000000f, 20.000000f, 20.000000f, 20.000000f )
+	double3( 40.000000f, 30.000000f, 20.000000f ),
+	double4( 40.000000f, 40.000000f, 30.000000f, 40.000000f )
 );
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_xxyx,
@@ -1690,7 +1927,9 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_xxyx,
 
 TEMPER_PARAMETRIC( Test_double3_Swizzle_yxyx, TEMPER_FLAG_SHOULD_RUN, const double3& vec, const double4& expectedAnswer )
 {
-	double4 vecSwizzled = vec.yxyx;
+	double3 vecCopy = vec;
+
+	double4 vecSwizzled = vecCopy.yxyx;
 	TEMPER_CHECK_TRUE( vecSwizzled == expectedAnswer );
 }
 
@@ -1710,13 +1949,13 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_yxyx,
 );
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_yxyx,
-	double3( 10.000000f, 10.000000f, 20.000000f ),
-	double4( 10.000000f, 10.000000f, 10.000000f, 10.000000f )
+	double3( 10.000000f, 20.000000f, 30.000000f ),
+	double4( 20.000000f, 10.000000f, 20.000000f, 10.000000f )
 );
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_yxyx,
-	double3( 20.000000f, 20.000000f, 10.000000f ),
-	double4( 20.000000f, 20.000000f, 20.000000f, 20.000000f )
+	double3( 40.000000f, 30.000000f, 20.000000f ),
+	double4( 30.000000f, 40.000000f, 30.000000f, 40.000000f )
 );
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_yxyx,
@@ -1726,7 +1965,9 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_yxyx,
 
 TEMPER_PARAMETRIC( Test_double3_Swizzle_zxyx, TEMPER_FLAG_SHOULD_RUN, const double3& vec, const double4& expectedAnswer )
 {
-	double4 vecSwizzled = vec.zxyx;
+	double3 vecCopy = vec;
+
+	double4 vecSwizzled = vecCopy.zxyx;
 	TEMPER_CHECK_TRUE( vecSwizzled == expectedAnswer );
 }
 
@@ -1746,13 +1987,13 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_zxyx,
 );
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_zxyx,
-	double3( 10.000000f, 10.000000f, 20.000000f ),
-	double4( 20.000000f, 10.000000f, 10.000000f, 10.000000f )
+	double3( 10.000000f, 20.000000f, 30.000000f ),
+	double4( 30.000000f, 10.000000f, 20.000000f, 10.000000f )
 );
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_zxyx,
-	double3( 20.000000f, 20.000000f, 10.000000f ),
-	double4( 10.000000f, 20.000000f, 20.000000f, 20.000000f )
+	double3( 40.000000f, 30.000000f, 20.000000f ),
+	double4( 20.000000f, 40.000000f, 30.000000f, 40.000000f )
 );
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_zxyx,
@@ -1762,7 +2003,9 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_zxyx,
 
 TEMPER_PARAMETRIC( Test_double3_Swizzle_xyyx, TEMPER_FLAG_SHOULD_RUN, const double3& vec, const double4& expectedAnswer )
 {
-	double4 vecSwizzled = vec.xyyx;
+	double3 vecCopy = vec;
+
+	double4 vecSwizzled = vecCopy.xyyx;
 	TEMPER_CHECK_TRUE( vecSwizzled == expectedAnswer );
 }
 
@@ -1782,13 +2025,13 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_xyyx,
 );
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_xyyx,
-	double3( 10.000000f, 10.000000f, 20.000000f ),
-	double4( 10.000000f, 10.000000f, 10.000000f, 10.000000f )
+	double3( 10.000000f, 20.000000f, 30.000000f ),
+	double4( 10.000000f, 20.000000f, 20.000000f, 10.000000f )
 );
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_xyyx,
-	double3( 20.000000f, 20.000000f, 10.000000f ),
-	double4( 20.000000f, 20.000000f, 20.000000f, 20.000000f )
+	double3( 40.000000f, 30.000000f, 20.000000f ),
+	double4( 40.000000f, 30.000000f, 30.000000f, 40.000000f )
 );
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_xyyx,
@@ -1798,7 +2041,9 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_xyyx,
 
 TEMPER_PARAMETRIC( Test_double3_Swizzle_yyyx, TEMPER_FLAG_SHOULD_RUN, const double3& vec, const double4& expectedAnswer )
 {
-	double4 vecSwizzled = vec.yyyx;
+	double3 vecCopy = vec;
+
+	double4 vecSwizzled = vecCopy.yyyx;
 	TEMPER_CHECK_TRUE( vecSwizzled == expectedAnswer );
 }
 
@@ -1818,13 +2063,13 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_yyyx,
 );
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_yyyx,
-	double3( 10.000000f, 10.000000f, 20.000000f ),
-	double4( 10.000000f, 10.000000f, 10.000000f, 10.000000f )
+	double3( 10.000000f, 20.000000f, 30.000000f ),
+	double4( 20.000000f, 20.000000f, 20.000000f, 10.000000f )
 );
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_yyyx,
-	double3( 20.000000f, 20.000000f, 10.000000f ),
-	double4( 20.000000f, 20.000000f, 20.000000f, 20.000000f )
+	double3( 40.000000f, 30.000000f, 20.000000f ),
+	double4( 30.000000f, 30.000000f, 30.000000f, 40.000000f )
 );
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_yyyx,
@@ -1834,7 +2079,9 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_yyyx,
 
 TEMPER_PARAMETRIC( Test_double3_Swizzle_zyyx, TEMPER_FLAG_SHOULD_RUN, const double3& vec, const double4& expectedAnswer )
 {
-	double4 vecSwizzled = vec.zyyx;
+	double3 vecCopy = vec;
+
+	double4 vecSwizzled = vecCopy.zyyx;
 	TEMPER_CHECK_TRUE( vecSwizzled == expectedAnswer );
 }
 
@@ -1854,13 +2101,13 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_zyyx,
 );
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_zyyx,
-	double3( 10.000000f, 10.000000f, 20.000000f ),
-	double4( 20.000000f, 10.000000f, 10.000000f, 10.000000f )
+	double3( 10.000000f, 20.000000f, 30.000000f ),
+	double4( 30.000000f, 20.000000f, 20.000000f, 10.000000f )
 );
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_zyyx,
-	double3( 20.000000f, 20.000000f, 10.000000f ),
-	double4( 10.000000f, 20.000000f, 20.000000f, 20.000000f )
+	double3( 40.000000f, 30.000000f, 20.000000f ),
+	double4( 20.000000f, 30.000000f, 30.000000f, 40.000000f )
 );
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_zyyx,
@@ -1870,7 +2117,9 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_zyyx,
 
 TEMPER_PARAMETRIC( Test_double3_Swizzle_xzyx, TEMPER_FLAG_SHOULD_RUN, const double3& vec, const double4& expectedAnswer )
 {
-	double4 vecSwizzled = vec.xzyx;
+	double3 vecCopy = vec;
+
+	double4 vecSwizzled = vecCopy.xzyx;
 	TEMPER_CHECK_TRUE( vecSwizzled == expectedAnswer );
 }
 
@@ -1890,13 +2139,13 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_xzyx,
 );
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_xzyx,
-	double3( 10.000000f, 10.000000f, 20.000000f ),
-	double4( 10.000000f, 20.000000f, 10.000000f, 10.000000f )
+	double3( 10.000000f, 20.000000f, 30.000000f ),
+	double4( 10.000000f, 30.000000f, 20.000000f, 10.000000f )
 );
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_xzyx,
-	double3( 20.000000f, 20.000000f, 10.000000f ),
-	double4( 20.000000f, 10.000000f, 20.000000f, 20.000000f )
+	double3( 40.000000f, 30.000000f, 20.000000f ),
+	double4( 40.000000f, 20.000000f, 30.000000f, 40.000000f )
 );
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_xzyx,
@@ -1906,7 +2155,9 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_xzyx,
 
 TEMPER_PARAMETRIC( Test_double3_Swizzle_yzyx, TEMPER_FLAG_SHOULD_RUN, const double3& vec, const double4& expectedAnswer )
 {
-	double4 vecSwizzled = vec.yzyx;
+	double3 vecCopy = vec;
+
+	double4 vecSwizzled = vecCopy.yzyx;
 	TEMPER_CHECK_TRUE( vecSwizzled == expectedAnswer );
 }
 
@@ -1926,13 +2177,13 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_yzyx,
 );
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_yzyx,
-	double3( 10.000000f, 10.000000f, 20.000000f ),
-	double4( 10.000000f, 20.000000f, 10.000000f, 10.000000f )
+	double3( 10.000000f, 20.000000f, 30.000000f ),
+	double4( 20.000000f, 30.000000f, 20.000000f, 10.000000f )
 );
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_yzyx,
-	double3( 20.000000f, 20.000000f, 10.000000f ),
-	double4( 20.000000f, 10.000000f, 20.000000f, 20.000000f )
+	double3( 40.000000f, 30.000000f, 20.000000f ),
+	double4( 30.000000f, 20.000000f, 30.000000f, 40.000000f )
 );
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_yzyx,
@@ -1942,7 +2193,9 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_yzyx,
 
 TEMPER_PARAMETRIC( Test_double3_Swizzle_zzyx, TEMPER_FLAG_SHOULD_RUN, const double3& vec, const double4& expectedAnswer )
 {
-	double4 vecSwizzled = vec.zzyx;
+	double3 vecCopy = vec;
+
+	double4 vecSwizzled = vecCopy.zzyx;
 	TEMPER_CHECK_TRUE( vecSwizzled == expectedAnswer );
 }
 
@@ -1962,13 +2215,13 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_zzyx,
 );
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_zzyx,
-	double3( 10.000000f, 10.000000f, 20.000000f ),
-	double4( 20.000000f, 20.000000f, 10.000000f, 10.000000f )
+	double3( 10.000000f, 20.000000f, 30.000000f ),
+	double4( 30.000000f, 30.000000f, 20.000000f, 10.000000f )
 );
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_zzyx,
-	double3( 20.000000f, 20.000000f, 10.000000f ),
-	double4( 10.000000f, 10.000000f, 20.000000f, 20.000000f )
+	double3( 40.000000f, 30.000000f, 20.000000f ),
+	double4( 20.000000f, 20.000000f, 30.000000f, 40.000000f )
 );
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_zzyx,
@@ -1978,7 +2231,9 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_zzyx,
 
 TEMPER_PARAMETRIC( Test_double3_Swizzle_xxzx, TEMPER_FLAG_SHOULD_RUN, const double3& vec, const double4& expectedAnswer )
 {
-	double4 vecSwizzled = vec.xxzx;
+	double3 vecCopy = vec;
+
+	double4 vecSwizzled = vecCopy.xxzx;
 	TEMPER_CHECK_TRUE( vecSwizzled == expectedAnswer );
 }
 
@@ -1998,13 +2253,13 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_xxzx,
 );
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_xxzx,
-	double3( 10.000000f, 10.000000f, 20.000000f ),
-	double4( 10.000000f, 10.000000f, 20.000000f, 10.000000f )
+	double3( 10.000000f, 20.000000f, 30.000000f ),
+	double4( 10.000000f, 10.000000f, 30.000000f, 10.000000f )
 );
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_xxzx,
-	double3( 20.000000f, 20.000000f, 10.000000f ),
-	double4( 20.000000f, 20.000000f, 10.000000f, 20.000000f )
+	double3( 40.000000f, 30.000000f, 20.000000f ),
+	double4( 40.000000f, 40.000000f, 20.000000f, 40.000000f )
 );
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_xxzx,
@@ -2014,7 +2269,9 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_xxzx,
 
 TEMPER_PARAMETRIC( Test_double3_Swizzle_yxzx, TEMPER_FLAG_SHOULD_RUN, const double3& vec, const double4& expectedAnswer )
 {
-	double4 vecSwizzled = vec.yxzx;
+	double3 vecCopy = vec;
+
+	double4 vecSwizzled = vecCopy.yxzx;
 	TEMPER_CHECK_TRUE( vecSwizzled == expectedAnswer );
 }
 
@@ -2034,13 +2291,13 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_yxzx,
 );
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_yxzx,
-	double3( 10.000000f, 10.000000f, 20.000000f ),
-	double4( 10.000000f, 10.000000f, 20.000000f, 10.000000f )
+	double3( 10.000000f, 20.000000f, 30.000000f ),
+	double4( 20.000000f, 10.000000f, 30.000000f, 10.000000f )
 );
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_yxzx,
-	double3( 20.000000f, 20.000000f, 10.000000f ),
-	double4( 20.000000f, 20.000000f, 10.000000f, 20.000000f )
+	double3( 40.000000f, 30.000000f, 20.000000f ),
+	double4( 30.000000f, 40.000000f, 20.000000f, 40.000000f )
 );
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_yxzx,
@@ -2050,7 +2307,9 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_yxzx,
 
 TEMPER_PARAMETRIC( Test_double3_Swizzle_zxzx, TEMPER_FLAG_SHOULD_RUN, const double3& vec, const double4& expectedAnswer )
 {
-	double4 vecSwizzled = vec.zxzx;
+	double3 vecCopy = vec;
+
+	double4 vecSwizzled = vecCopy.zxzx;
 	TEMPER_CHECK_TRUE( vecSwizzled == expectedAnswer );
 }
 
@@ -2070,13 +2329,13 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_zxzx,
 );
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_zxzx,
-	double3( 10.000000f, 10.000000f, 20.000000f ),
-	double4( 20.000000f, 10.000000f, 20.000000f, 10.000000f )
+	double3( 10.000000f, 20.000000f, 30.000000f ),
+	double4( 30.000000f, 10.000000f, 30.000000f, 10.000000f )
 );
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_zxzx,
-	double3( 20.000000f, 20.000000f, 10.000000f ),
-	double4( 10.000000f, 20.000000f, 10.000000f, 20.000000f )
+	double3( 40.000000f, 30.000000f, 20.000000f ),
+	double4( 20.000000f, 40.000000f, 20.000000f, 40.000000f )
 );
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_zxzx,
@@ -2086,7 +2345,9 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_zxzx,
 
 TEMPER_PARAMETRIC( Test_double3_Swizzle_xyzx, TEMPER_FLAG_SHOULD_RUN, const double3& vec, const double4& expectedAnswer )
 {
-	double4 vecSwizzled = vec.xyzx;
+	double3 vecCopy = vec;
+
+	double4 vecSwizzled = vecCopy.xyzx;
 	TEMPER_CHECK_TRUE( vecSwizzled == expectedAnswer );
 }
 
@@ -2106,13 +2367,13 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_xyzx,
 );
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_xyzx,
-	double3( 10.000000f, 10.000000f, 20.000000f ),
-	double4( 10.000000f, 10.000000f, 20.000000f, 10.000000f )
+	double3( 10.000000f, 20.000000f, 30.000000f ),
+	double4( 10.000000f, 20.000000f, 30.000000f, 10.000000f )
 );
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_xyzx,
-	double3( 20.000000f, 20.000000f, 10.000000f ),
-	double4( 20.000000f, 20.000000f, 10.000000f, 20.000000f )
+	double3( 40.000000f, 30.000000f, 20.000000f ),
+	double4( 40.000000f, 30.000000f, 20.000000f, 40.000000f )
 );
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_xyzx,
@@ -2122,7 +2383,9 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_xyzx,
 
 TEMPER_PARAMETRIC( Test_double3_Swizzle_yyzx, TEMPER_FLAG_SHOULD_RUN, const double3& vec, const double4& expectedAnswer )
 {
-	double4 vecSwizzled = vec.yyzx;
+	double3 vecCopy = vec;
+
+	double4 vecSwizzled = vecCopy.yyzx;
 	TEMPER_CHECK_TRUE( vecSwizzled == expectedAnswer );
 }
 
@@ -2142,13 +2405,13 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_yyzx,
 );
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_yyzx,
-	double3( 10.000000f, 10.000000f, 20.000000f ),
-	double4( 10.000000f, 10.000000f, 20.000000f, 10.000000f )
+	double3( 10.000000f, 20.000000f, 30.000000f ),
+	double4( 20.000000f, 20.000000f, 30.000000f, 10.000000f )
 );
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_yyzx,
-	double3( 20.000000f, 20.000000f, 10.000000f ),
-	double4( 20.000000f, 20.000000f, 10.000000f, 20.000000f )
+	double3( 40.000000f, 30.000000f, 20.000000f ),
+	double4( 30.000000f, 30.000000f, 20.000000f, 40.000000f )
 );
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_yyzx,
@@ -2158,7 +2421,9 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_yyzx,
 
 TEMPER_PARAMETRIC( Test_double3_Swizzle_zyzx, TEMPER_FLAG_SHOULD_RUN, const double3& vec, const double4& expectedAnswer )
 {
-	double4 vecSwizzled = vec.zyzx;
+	double3 vecCopy = vec;
+
+	double4 vecSwizzled = vecCopy.zyzx;
 	TEMPER_CHECK_TRUE( vecSwizzled == expectedAnswer );
 }
 
@@ -2178,13 +2443,13 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_zyzx,
 );
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_zyzx,
-	double3( 10.000000f, 10.000000f, 20.000000f ),
-	double4( 20.000000f, 10.000000f, 20.000000f, 10.000000f )
+	double3( 10.000000f, 20.000000f, 30.000000f ),
+	double4( 30.000000f, 20.000000f, 30.000000f, 10.000000f )
 );
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_zyzx,
-	double3( 20.000000f, 20.000000f, 10.000000f ),
-	double4( 10.000000f, 20.000000f, 10.000000f, 20.000000f )
+	double3( 40.000000f, 30.000000f, 20.000000f ),
+	double4( 20.000000f, 30.000000f, 20.000000f, 40.000000f )
 );
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_zyzx,
@@ -2194,7 +2459,9 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_zyzx,
 
 TEMPER_PARAMETRIC( Test_double3_Swizzle_xzzx, TEMPER_FLAG_SHOULD_RUN, const double3& vec, const double4& expectedAnswer )
 {
-	double4 vecSwizzled = vec.xzzx;
+	double3 vecCopy = vec;
+
+	double4 vecSwizzled = vecCopy.xzzx;
 	TEMPER_CHECK_TRUE( vecSwizzled == expectedAnswer );
 }
 
@@ -2214,13 +2481,13 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_xzzx,
 );
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_xzzx,
-	double3( 10.000000f, 10.000000f, 20.000000f ),
-	double4( 10.000000f, 20.000000f, 20.000000f, 10.000000f )
+	double3( 10.000000f, 20.000000f, 30.000000f ),
+	double4( 10.000000f, 30.000000f, 30.000000f, 10.000000f )
 );
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_xzzx,
-	double3( 20.000000f, 20.000000f, 10.000000f ),
-	double4( 20.000000f, 10.000000f, 10.000000f, 20.000000f )
+	double3( 40.000000f, 30.000000f, 20.000000f ),
+	double4( 40.000000f, 20.000000f, 20.000000f, 40.000000f )
 );
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_xzzx,
@@ -2230,7 +2497,9 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_xzzx,
 
 TEMPER_PARAMETRIC( Test_double3_Swizzle_yzzx, TEMPER_FLAG_SHOULD_RUN, const double3& vec, const double4& expectedAnswer )
 {
-	double4 vecSwizzled = vec.yzzx;
+	double3 vecCopy = vec;
+
+	double4 vecSwizzled = vecCopy.yzzx;
 	TEMPER_CHECK_TRUE( vecSwizzled == expectedAnswer );
 }
 
@@ -2250,13 +2519,13 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_yzzx,
 );
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_yzzx,
-	double3( 10.000000f, 10.000000f, 20.000000f ),
-	double4( 10.000000f, 20.000000f, 20.000000f, 10.000000f )
+	double3( 10.000000f, 20.000000f, 30.000000f ),
+	double4( 20.000000f, 30.000000f, 30.000000f, 10.000000f )
 );
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_yzzx,
-	double3( 20.000000f, 20.000000f, 10.000000f ),
-	double4( 20.000000f, 10.000000f, 10.000000f, 20.000000f )
+	double3( 40.000000f, 30.000000f, 20.000000f ),
+	double4( 30.000000f, 20.000000f, 20.000000f, 40.000000f )
 );
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_yzzx,
@@ -2266,7 +2535,9 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_yzzx,
 
 TEMPER_PARAMETRIC( Test_double3_Swizzle_zzzx, TEMPER_FLAG_SHOULD_RUN, const double3& vec, const double4& expectedAnswer )
 {
-	double4 vecSwizzled = vec.zzzx;
+	double3 vecCopy = vec;
+
+	double4 vecSwizzled = vecCopy.zzzx;
 	TEMPER_CHECK_TRUE( vecSwizzled == expectedAnswer );
 }
 
@@ -2286,13 +2557,13 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_zzzx,
 );
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_zzzx,
-	double3( 10.000000f, 10.000000f, 20.000000f ),
-	double4( 20.000000f, 20.000000f, 20.000000f, 10.000000f )
+	double3( 10.000000f, 20.000000f, 30.000000f ),
+	double4( 30.000000f, 30.000000f, 30.000000f, 10.000000f )
 );
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_zzzx,
-	double3( 20.000000f, 20.000000f, 10.000000f ),
-	double4( 10.000000f, 10.000000f, 10.000000f, 20.000000f )
+	double3( 40.000000f, 30.000000f, 20.000000f ),
+	double4( 20.000000f, 20.000000f, 20.000000f, 40.000000f )
 );
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_zzzx,
@@ -2302,7 +2573,9 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_zzzx,
 
 TEMPER_PARAMETRIC( Test_double3_Swizzle_xxxy, TEMPER_FLAG_SHOULD_RUN, const double3& vec, const double4& expectedAnswer )
 {
-	double4 vecSwizzled = vec.xxxy;
+	double3 vecCopy = vec;
+
+	double4 vecSwizzled = vecCopy.xxxy;
 	TEMPER_CHECK_TRUE( vecSwizzled == expectedAnswer );
 }
 
@@ -2322,13 +2595,13 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_xxxy,
 );
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_xxxy,
-	double3( 10.000000f, 10.000000f, 20.000000f ),
-	double4( 10.000000f, 10.000000f, 10.000000f, 10.000000f )
+	double3( 10.000000f, 20.000000f, 30.000000f ),
+	double4( 10.000000f, 10.000000f, 10.000000f, 20.000000f )
 );
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_xxxy,
-	double3( 20.000000f, 20.000000f, 10.000000f ),
-	double4( 20.000000f, 20.000000f, 20.000000f, 20.000000f )
+	double3( 40.000000f, 30.000000f, 20.000000f ),
+	double4( 40.000000f, 40.000000f, 40.000000f, 30.000000f )
 );
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_xxxy,
@@ -2338,7 +2611,9 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_xxxy,
 
 TEMPER_PARAMETRIC( Test_double3_Swizzle_yxxy, TEMPER_FLAG_SHOULD_RUN, const double3& vec, const double4& expectedAnswer )
 {
-	double4 vecSwizzled = vec.yxxy;
+	double3 vecCopy = vec;
+
+	double4 vecSwizzled = vecCopy.yxxy;
 	TEMPER_CHECK_TRUE( vecSwizzled == expectedAnswer );
 }
 
@@ -2358,13 +2633,13 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_yxxy,
 );
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_yxxy,
-	double3( 10.000000f, 10.000000f, 20.000000f ),
-	double4( 10.000000f, 10.000000f, 10.000000f, 10.000000f )
+	double3( 10.000000f, 20.000000f, 30.000000f ),
+	double4( 20.000000f, 10.000000f, 10.000000f, 20.000000f )
 );
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_yxxy,
-	double3( 20.000000f, 20.000000f, 10.000000f ),
-	double4( 20.000000f, 20.000000f, 20.000000f, 20.000000f )
+	double3( 40.000000f, 30.000000f, 20.000000f ),
+	double4( 30.000000f, 40.000000f, 40.000000f, 30.000000f )
 );
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_yxxy,
@@ -2374,7 +2649,9 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_yxxy,
 
 TEMPER_PARAMETRIC( Test_double3_Swizzle_zxxy, TEMPER_FLAG_SHOULD_RUN, const double3& vec, const double4& expectedAnswer )
 {
-	double4 vecSwizzled = vec.zxxy;
+	double3 vecCopy = vec;
+
+	double4 vecSwizzled = vecCopy.zxxy;
 	TEMPER_CHECK_TRUE( vecSwizzled == expectedAnswer );
 }
 
@@ -2394,13 +2671,13 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_zxxy,
 );
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_zxxy,
-	double3( 10.000000f, 10.000000f, 20.000000f ),
-	double4( 20.000000f, 10.000000f, 10.000000f, 10.000000f )
+	double3( 10.000000f, 20.000000f, 30.000000f ),
+	double4( 30.000000f, 10.000000f, 10.000000f, 20.000000f )
 );
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_zxxy,
-	double3( 20.000000f, 20.000000f, 10.000000f ),
-	double4( 10.000000f, 20.000000f, 20.000000f, 20.000000f )
+	double3( 40.000000f, 30.000000f, 20.000000f ),
+	double4( 20.000000f, 40.000000f, 40.000000f, 30.000000f )
 );
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_zxxy,
@@ -2410,7 +2687,9 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_zxxy,
 
 TEMPER_PARAMETRIC( Test_double3_Swizzle_xyxy, TEMPER_FLAG_SHOULD_RUN, const double3& vec, const double4& expectedAnswer )
 {
-	double4 vecSwizzled = vec.xyxy;
+	double3 vecCopy = vec;
+
+	double4 vecSwizzled = vecCopy.xyxy;
 	TEMPER_CHECK_TRUE( vecSwizzled == expectedAnswer );
 }
 
@@ -2430,13 +2709,13 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_xyxy,
 );
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_xyxy,
-	double3( 10.000000f, 10.000000f, 20.000000f ),
-	double4( 10.000000f, 10.000000f, 10.000000f, 10.000000f )
+	double3( 10.000000f, 20.000000f, 30.000000f ),
+	double4( 10.000000f, 20.000000f, 10.000000f, 20.000000f )
 );
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_xyxy,
-	double3( 20.000000f, 20.000000f, 10.000000f ),
-	double4( 20.000000f, 20.000000f, 20.000000f, 20.000000f )
+	double3( 40.000000f, 30.000000f, 20.000000f ),
+	double4( 40.000000f, 30.000000f, 40.000000f, 30.000000f )
 );
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_xyxy,
@@ -2446,7 +2725,9 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_xyxy,
 
 TEMPER_PARAMETRIC( Test_double3_Swizzle_yyxy, TEMPER_FLAG_SHOULD_RUN, const double3& vec, const double4& expectedAnswer )
 {
-	double4 vecSwizzled = vec.yyxy;
+	double3 vecCopy = vec;
+
+	double4 vecSwizzled = vecCopy.yyxy;
 	TEMPER_CHECK_TRUE( vecSwizzled == expectedAnswer );
 }
 
@@ -2466,13 +2747,13 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_yyxy,
 );
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_yyxy,
-	double3( 10.000000f, 10.000000f, 20.000000f ),
-	double4( 10.000000f, 10.000000f, 10.000000f, 10.000000f )
+	double3( 10.000000f, 20.000000f, 30.000000f ),
+	double4( 20.000000f, 20.000000f, 10.000000f, 20.000000f )
 );
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_yyxy,
-	double3( 20.000000f, 20.000000f, 10.000000f ),
-	double4( 20.000000f, 20.000000f, 20.000000f, 20.000000f )
+	double3( 40.000000f, 30.000000f, 20.000000f ),
+	double4( 30.000000f, 30.000000f, 40.000000f, 30.000000f )
 );
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_yyxy,
@@ -2482,7 +2763,9 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_yyxy,
 
 TEMPER_PARAMETRIC( Test_double3_Swizzle_zyxy, TEMPER_FLAG_SHOULD_RUN, const double3& vec, const double4& expectedAnswer )
 {
-	double4 vecSwizzled = vec.zyxy;
+	double3 vecCopy = vec;
+
+	double4 vecSwizzled = vecCopy.zyxy;
 	TEMPER_CHECK_TRUE( vecSwizzled == expectedAnswer );
 }
 
@@ -2502,13 +2785,13 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_zyxy,
 );
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_zyxy,
-	double3( 10.000000f, 10.000000f, 20.000000f ),
-	double4( 20.000000f, 10.000000f, 10.000000f, 10.000000f )
+	double3( 10.000000f, 20.000000f, 30.000000f ),
+	double4( 30.000000f, 20.000000f, 10.000000f, 20.000000f )
 );
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_zyxy,
-	double3( 20.000000f, 20.000000f, 10.000000f ),
-	double4( 10.000000f, 20.000000f, 20.000000f, 20.000000f )
+	double3( 40.000000f, 30.000000f, 20.000000f ),
+	double4( 20.000000f, 30.000000f, 40.000000f, 30.000000f )
 );
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_zyxy,
@@ -2518,7 +2801,9 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_zyxy,
 
 TEMPER_PARAMETRIC( Test_double3_Swizzle_xzxy, TEMPER_FLAG_SHOULD_RUN, const double3& vec, const double4& expectedAnswer )
 {
-	double4 vecSwizzled = vec.xzxy;
+	double3 vecCopy = vec;
+
+	double4 vecSwizzled = vecCopy.xzxy;
 	TEMPER_CHECK_TRUE( vecSwizzled == expectedAnswer );
 }
 
@@ -2538,13 +2823,13 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_xzxy,
 );
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_xzxy,
-	double3( 10.000000f, 10.000000f, 20.000000f ),
-	double4( 10.000000f, 20.000000f, 10.000000f, 10.000000f )
+	double3( 10.000000f, 20.000000f, 30.000000f ),
+	double4( 10.000000f, 30.000000f, 10.000000f, 20.000000f )
 );
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_xzxy,
-	double3( 20.000000f, 20.000000f, 10.000000f ),
-	double4( 20.000000f, 10.000000f, 20.000000f, 20.000000f )
+	double3( 40.000000f, 30.000000f, 20.000000f ),
+	double4( 40.000000f, 20.000000f, 40.000000f, 30.000000f )
 );
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_xzxy,
@@ -2554,7 +2839,9 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_xzxy,
 
 TEMPER_PARAMETRIC( Test_double3_Swizzle_yzxy, TEMPER_FLAG_SHOULD_RUN, const double3& vec, const double4& expectedAnswer )
 {
-	double4 vecSwizzled = vec.yzxy;
+	double3 vecCopy = vec;
+
+	double4 vecSwizzled = vecCopy.yzxy;
 	TEMPER_CHECK_TRUE( vecSwizzled == expectedAnswer );
 }
 
@@ -2574,13 +2861,13 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_yzxy,
 );
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_yzxy,
-	double3( 10.000000f, 10.000000f, 20.000000f ),
-	double4( 10.000000f, 20.000000f, 10.000000f, 10.000000f )
+	double3( 10.000000f, 20.000000f, 30.000000f ),
+	double4( 20.000000f, 30.000000f, 10.000000f, 20.000000f )
 );
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_yzxy,
-	double3( 20.000000f, 20.000000f, 10.000000f ),
-	double4( 20.000000f, 10.000000f, 20.000000f, 20.000000f )
+	double3( 40.000000f, 30.000000f, 20.000000f ),
+	double4( 30.000000f, 20.000000f, 40.000000f, 30.000000f )
 );
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_yzxy,
@@ -2590,7 +2877,9 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_yzxy,
 
 TEMPER_PARAMETRIC( Test_double3_Swizzle_zzxy, TEMPER_FLAG_SHOULD_RUN, const double3& vec, const double4& expectedAnswer )
 {
-	double4 vecSwizzled = vec.zzxy;
+	double3 vecCopy = vec;
+
+	double4 vecSwizzled = vecCopy.zzxy;
 	TEMPER_CHECK_TRUE( vecSwizzled == expectedAnswer );
 }
 
@@ -2610,13 +2899,13 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_zzxy,
 );
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_zzxy,
-	double3( 10.000000f, 10.000000f, 20.000000f ),
-	double4( 20.000000f, 20.000000f, 10.000000f, 10.000000f )
+	double3( 10.000000f, 20.000000f, 30.000000f ),
+	double4( 30.000000f, 30.000000f, 10.000000f, 20.000000f )
 );
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_zzxy,
-	double3( 20.000000f, 20.000000f, 10.000000f ),
-	double4( 10.000000f, 10.000000f, 20.000000f, 20.000000f )
+	double3( 40.000000f, 30.000000f, 20.000000f ),
+	double4( 20.000000f, 20.000000f, 40.000000f, 30.000000f )
 );
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_zzxy,
@@ -2626,7 +2915,9 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_zzxy,
 
 TEMPER_PARAMETRIC( Test_double3_Swizzle_xxyy, TEMPER_FLAG_SHOULD_RUN, const double3& vec, const double4& expectedAnswer )
 {
-	double4 vecSwizzled = vec.xxyy;
+	double3 vecCopy = vec;
+
+	double4 vecSwizzled = vecCopy.xxyy;
 	TEMPER_CHECK_TRUE( vecSwizzled == expectedAnswer );
 }
 
@@ -2646,13 +2937,13 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_xxyy,
 );
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_xxyy,
-	double3( 10.000000f, 10.000000f, 20.000000f ),
-	double4( 10.000000f, 10.000000f, 10.000000f, 10.000000f )
+	double3( 10.000000f, 20.000000f, 30.000000f ),
+	double4( 10.000000f, 10.000000f, 20.000000f, 20.000000f )
 );
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_xxyy,
-	double3( 20.000000f, 20.000000f, 10.000000f ),
-	double4( 20.000000f, 20.000000f, 20.000000f, 20.000000f )
+	double3( 40.000000f, 30.000000f, 20.000000f ),
+	double4( 40.000000f, 40.000000f, 30.000000f, 30.000000f )
 );
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_xxyy,
@@ -2662,7 +2953,9 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_xxyy,
 
 TEMPER_PARAMETRIC( Test_double3_Swizzle_yxyy, TEMPER_FLAG_SHOULD_RUN, const double3& vec, const double4& expectedAnswer )
 {
-	double4 vecSwizzled = vec.yxyy;
+	double3 vecCopy = vec;
+
+	double4 vecSwizzled = vecCopy.yxyy;
 	TEMPER_CHECK_TRUE( vecSwizzled == expectedAnswer );
 }
 
@@ -2682,13 +2975,13 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_yxyy,
 );
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_yxyy,
-	double3( 10.000000f, 10.000000f, 20.000000f ),
-	double4( 10.000000f, 10.000000f, 10.000000f, 10.000000f )
+	double3( 10.000000f, 20.000000f, 30.000000f ),
+	double4( 20.000000f, 10.000000f, 20.000000f, 20.000000f )
 );
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_yxyy,
-	double3( 20.000000f, 20.000000f, 10.000000f ),
-	double4( 20.000000f, 20.000000f, 20.000000f, 20.000000f )
+	double3( 40.000000f, 30.000000f, 20.000000f ),
+	double4( 30.000000f, 40.000000f, 30.000000f, 30.000000f )
 );
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_yxyy,
@@ -2698,7 +2991,9 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_yxyy,
 
 TEMPER_PARAMETRIC( Test_double3_Swizzle_zxyy, TEMPER_FLAG_SHOULD_RUN, const double3& vec, const double4& expectedAnswer )
 {
-	double4 vecSwizzled = vec.zxyy;
+	double3 vecCopy = vec;
+
+	double4 vecSwizzled = vecCopy.zxyy;
 	TEMPER_CHECK_TRUE( vecSwizzled == expectedAnswer );
 }
 
@@ -2718,13 +3013,13 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_zxyy,
 );
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_zxyy,
-	double3( 10.000000f, 10.000000f, 20.000000f ),
-	double4( 20.000000f, 10.000000f, 10.000000f, 10.000000f )
+	double3( 10.000000f, 20.000000f, 30.000000f ),
+	double4( 30.000000f, 10.000000f, 20.000000f, 20.000000f )
 );
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_zxyy,
-	double3( 20.000000f, 20.000000f, 10.000000f ),
-	double4( 10.000000f, 20.000000f, 20.000000f, 20.000000f )
+	double3( 40.000000f, 30.000000f, 20.000000f ),
+	double4( 20.000000f, 40.000000f, 30.000000f, 30.000000f )
 );
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_zxyy,
@@ -2734,7 +3029,9 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_zxyy,
 
 TEMPER_PARAMETRIC( Test_double3_Swizzle_xyyy, TEMPER_FLAG_SHOULD_RUN, const double3& vec, const double4& expectedAnswer )
 {
-	double4 vecSwizzled = vec.xyyy;
+	double3 vecCopy = vec;
+
+	double4 vecSwizzled = vecCopy.xyyy;
 	TEMPER_CHECK_TRUE( vecSwizzled == expectedAnswer );
 }
 
@@ -2754,13 +3051,13 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_xyyy,
 );
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_xyyy,
-	double3( 10.000000f, 10.000000f, 20.000000f ),
-	double4( 10.000000f, 10.000000f, 10.000000f, 10.000000f )
+	double3( 10.000000f, 20.000000f, 30.000000f ),
+	double4( 10.000000f, 20.000000f, 20.000000f, 20.000000f )
 );
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_xyyy,
-	double3( 20.000000f, 20.000000f, 10.000000f ),
-	double4( 20.000000f, 20.000000f, 20.000000f, 20.000000f )
+	double3( 40.000000f, 30.000000f, 20.000000f ),
+	double4( 40.000000f, 30.000000f, 30.000000f, 30.000000f )
 );
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_xyyy,
@@ -2770,7 +3067,9 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_xyyy,
 
 TEMPER_PARAMETRIC( Test_double3_Swizzle_yyyy, TEMPER_FLAG_SHOULD_RUN, const double3& vec, const double4& expectedAnswer )
 {
-	double4 vecSwizzled = vec.yyyy;
+	double3 vecCopy = vec;
+
+	double4 vecSwizzled = vecCopy.yyyy;
 	TEMPER_CHECK_TRUE( vecSwizzled == expectedAnswer );
 }
 
@@ -2790,13 +3089,13 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_yyyy,
 );
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_yyyy,
-	double3( 10.000000f, 10.000000f, 20.000000f ),
-	double4( 10.000000f, 10.000000f, 10.000000f, 10.000000f )
+	double3( 10.000000f, 20.000000f, 30.000000f ),
+	double4( 20.000000f, 20.000000f, 20.000000f, 20.000000f )
 );
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_yyyy,
-	double3( 20.000000f, 20.000000f, 10.000000f ),
-	double4( 20.000000f, 20.000000f, 20.000000f, 20.000000f )
+	double3( 40.000000f, 30.000000f, 20.000000f ),
+	double4( 30.000000f, 30.000000f, 30.000000f, 30.000000f )
 );
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_yyyy,
@@ -2806,7 +3105,9 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_yyyy,
 
 TEMPER_PARAMETRIC( Test_double3_Swizzle_zyyy, TEMPER_FLAG_SHOULD_RUN, const double3& vec, const double4& expectedAnswer )
 {
-	double4 vecSwizzled = vec.zyyy;
+	double3 vecCopy = vec;
+
+	double4 vecSwizzled = vecCopy.zyyy;
 	TEMPER_CHECK_TRUE( vecSwizzled == expectedAnswer );
 }
 
@@ -2826,13 +3127,13 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_zyyy,
 );
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_zyyy,
-	double3( 10.000000f, 10.000000f, 20.000000f ),
-	double4( 20.000000f, 10.000000f, 10.000000f, 10.000000f )
+	double3( 10.000000f, 20.000000f, 30.000000f ),
+	double4( 30.000000f, 20.000000f, 20.000000f, 20.000000f )
 );
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_zyyy,
-	double3( 20.000000f, 20.000000f, 10.000000f ),
-	double4( 10.000000f, 20.000000f, 20.000000f, 20.000000f )
+	double3( 40.000000f, 30.000000f, 20.000000f ),
+	double4( 20.000000f, 30.000000f, 30.000000f, 30.000000f )
 );
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_zyyy,
@@ -2842,7 +3143,9 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_zyyy,
 
 TEMPER_PARAMETRIC( Test_double3_Swizzle_xzyy, TEMPER_FLAG_SHOULD_RUN, const double3& vec, const double4& expectedAnswer )
 {
-	double4 vecSwizzled = vec.xzyy;
+	double3 vecCopy = vec;
+
+	double4 vecSwizzled = vecCopy.xzyy;
 	TEMPER_CHECK_TRUE( vecSwizzled == expectedAnswer );
 }
 
@@ -2862,13 +3165,13 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_xzyy,
 );
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_xzyy,
-	double3( 10.000000f, 10.000000f, 20.000000f ),
-	double4( 10.000000f, 20.000000f, 10.000000f, 10.000000f )
+	double3( 10.000000f, 20.000000f, 30.000000f ),
+	double4( 10.000000f, 30.000000f, 20.000000f, 20.000000f )
 );
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_xzyy,
-	double3( 20.000000f, 20.000000f, 10.000000f ),
-	double4( 20.000000f, 10.000000f, 20.000000f, 20.000000f )
+	double3( 40.000000f, 30.000000f, 20.000000f ),
+	double4( 40.000000f, 20.000000f, 30.000000f, 30.000000f )
 );
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_xzyy,
@@ -2878,7 +3181,9 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_xzyy,
 
 TEMPER_PARAMETRIC( Test_double3_Swizzle_yzyy, TEMPER_FLAG_SHOULD_RUN, const double3& vec, const double4& expectedAnswer )
 {
-	double4 vecSwizzled = vec.yzyy;
+	double3 vecCopy = vec;
+
+	double4 vecSwizzled = vecCopy.yzyy;
 	TEMPER_CHECK_TRUE( vecSwizzled == expectedAnswer );
 }
 
@@ -2898,13 +3203,13 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_yzyy,
 );
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_yzyy,
-	double3( 10.000000f, 10.000000f, 20.000000f ),
-	double4( 10.000000f, 20.000000f, 10.000000f, 10.000000f )
+	double3( 10.000000f, 20.000000f, 30.000000f ),
+	double4( 20.000000f, 30.000000f, 20.000000f, 20.000000f )
 );
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_yzyy,
-	double3( 20.000000f, 20.000000f, 10.000000f ),
-	double4( 20.000000f, 10.000000f, 20.000000f, 20.000000f )
+	double3( 40.000000f, 30.000000f, 20.000000f ),
+	double4( 30.000000f, 20.000000f, 30.000000f, 30.000000f )
 );
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_yzyy,
@@ -2914,7 +3219,9 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_yzyy,
 
 TEMPER_PARAMETRIC( Test_double3_Swizzle_zzyy, TEMPER_FLAG_SHOULD_RUN, const double3& vec, const double4& expectedAnswer )
 {
-	double4 vecSwizzled = vec.zzyy;
+	double3 vecCopy = vec;
+
+	double4 vecSwizzled = vecCopy.zzyy;
 	TEMPER_CHECK_TRUE( vecSwizzled == expectedAnswer );
 }
 
@@ -2934,13 +3241,13 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_zzyy,
 );
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_zzyy,
-	double3( 10.000000f, 10.000000f, 20.000000f ),
-	double4( 20.000000f, 20.000000f, 10.000000f, 10.000000f )
+	double3( 10.000000f, 20.000000f, 30.000000f ),
+	double4( 30.000000f, 30.000000f, 20.000000f, 20.000000f )
 );
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_zzyy,
-	double3( 20.000000f, 20.000000f, 10.000000f ),
-	double4( 10.000000f, 10.000000f, 20.000000f, 20.000000f )
+	double3( 40.000000f, 30.000000f, 20.000000f ),
+	double4( 20.000000f, 20.000000f, 30.000000f, 30.000000f )
 );
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_zzyy,
@@ -2950,7 +3257,9 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_zzyy,
 
 TEMPER_PARAMETRIC( Test_double3_Swizzle_xxzy, TEMPER_FLAG_SHOULD_RUN, const double3& vec, const double4& expectedAnswer )
 {
-	double4 vecSwizzled = vec.xxzy;
+	double3 vecCopy = vec;
+
+	double4 vecSwizzled = vecCopy.xxzy;
 	TEMPER_CHECK_TRUE( vecSwizzled == expectedAnswer );
 }
 
@@ -2970,13 +3279,13 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_xxzy,
 );
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_xxzy,
-	double3( 10.000000f, 10.000000f, 20.000000f ),
-	double4( 10.000000f, 10.000000f, 20.000000f, 10.000000f )
+	double3( 10.000000f, 20.000000f, 30.000000f ),
+	double4( 10.000000f, 10.000000f, 30.000000f, 20.000000f )
 );
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_xxzy,
-	double3( 20.000000f, 20.000000f, 10.000000f ),
-	double4( 20.000000f, 20.000000f, 10.000000f, 20.000000f )
+	double3( 40.000000f, 30.000000f, 20.000000f ),
+	double4( 40.000000f, 40.000000f, 20.000000f, 30.000000f )
 );
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_xxzy,
@@ -2986,7 +3295,9 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_xxzy,
 
 TEMPER_PARAMETRIC( Test_double3_Swizzle_yxzy, TEMPER_FLAG_SHOULD_RUN, const double3& vec, const double4& expectedAnswer )
 {
-	double4 vecSwizzled = vec.yxzy;
+	double3 vecCopy = vec;
+
+	double4 vecSwizzled = vecCopy.yxzy;
 	TEMPER_CHECK_TRUE( vecSwizzled == expectedAnswer );
 }
 
@@ -3006,13 +3317,13 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_yxzy,
 );
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_yxzy,
-	double3( 10.000000f, 10.000000f, 20.000000f ),
-	double4( 10.000000f, 10.000000f, 20.000000f, 10.000000f )
+	double3( 10.000000f, 20.000000f, 30.000000f ),
+	double4( 20.000000f, 10.000000f, 30.000000f, 20.000000f )
 );
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_yxzy,
-	double3( 20.000000f, 20.000000f, 10.000000f ),
-	double4( 20.000000f, 20.000000f, 10.000000f, 20.000000f )
+	double3( 40.000000f, 30.000000f, 20.000000f ),
+	double4( 30.000000f, 40.000000f, 20.000000f, 30.000000f )
 );
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_yxzy,
@@ -3022,7 +3333,9 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_yxzy,
 
 TEMPER_PARAMETRIC( Test_double3_Swizzle_zxzy, TEMPER_FLAG_SHOULD_RUN, const double3& vec, const double4& expectedAnswer )
 {
-	double4 vecSwizzled = vec.zxzy;
+	double3 vecCopy = vec;
+
+	double4 vecSwizzled = vecCopy.zxzy;
 	TEMPER_CHECK_TRUE( vecSwizzled == expectedAnswer );
 }
 
@@ -3042,13 +3355,13 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_zxzy,
 );
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_zxzy,
-	double3( 10.000000f, 10.000000f, 20.000000f ),
-	double4( 20.000000f, 10.000000f, 20.000000f, 10.000000f )
+	double3( 10.000000f, 20.000000f, 30.000000f ),
+	double4( 30.000000f, 10.000000f, 30.000000f, 20.000000f )
 );
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_zxzy,
-	double3( 20.000000f, 20.000000f, 10.000000f ),
-	double4( 10.000000f, 20.000000f, 10.000000f, 20.000000f )
+	double3( 40.000000f, 30.000000f, 20.000000f ),
+	double4( 20.000000f, 40.000000f, 20.000000f, 30.000000f )
 );
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_zxzy,
@@ -3058,7 +3371,9 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_zxzy,
 
 TEMPER_PARAMETRIC( Test_double3_Swizzle_xyzy, TEMPER_FLAG_SHOULD_RUN, const double3& vec, const double4& expectedAnswer )
 {
-	double4 vecSwizzled = vec.xyzy;
+	double3 vecCopy = vec;
+
+	double4 vecSwizzled = vecCopy.xyzy;
 	TEMPER_CHECK_TRUE( vecSwizzled == expectedAnswer );
 }
 
@@ -3078,13 +3393,13 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_xyzy,
 );
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_xyzy,
-	double3( 10.000000f, 10.000000f, 20.000000f ),
-	double4( 10.000000f, 10.000000f, 20.000000f, 10.000000f )
+	double3( 10.000000f, 20.000000f, 30.000000f ),
+	double4( 10.000000f, 20.000000f, 30.000000f, 20.000000f )
 );
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_xyzy,
-	double3( 20.000000f, 20.000000f, 10.000000f ),
-	double4( 20.000000f, 20.000000f, 10.000000f, 20.000000f )
+	double3( 40.000000f, 30.000000f, 20.000000f ),
+	double4( 40.000000f, 30.000000f, 20.000000f, 30.000000f )
 );
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_xyzy,
@@ -3094,7 +3409,9 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_xyzy,
 
 TEMPER_PARAMETRIC( Test_double3_Swizzle_yyzy, TEMPER_FLAG_SHOULD_RUN, const double3& vec, const double4& expectedAnswer )
 {
-	double4 vecSwizzled = vec.yyzy;
+	double3 vecCopy = vec;
+
+	double4 vecSwizzled = vecCopy.yyzy;
 	TEMPER_CHECK_TRUE( vecSwizzled == expectedAnswer );
 }
 
@@ -3114,13 +3431,13 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_yyzy,
 );
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_yyzy,
-	double3( 10.000000f, 10.000000f, 20.000000f ),
-	double4( 10.000000f, 10.000000f, 20.000000f, 10.000000f )
+	double3( 10.000000f, 20.000000f, 30.000000f ),
+	double4( 20.000000f, 20.000000f, 30.000000f, 20.000000f )
 );
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_yyzy,
-	double3( 20.000000f, 20.000000f, 10.000000f ),
-	double4( 20.000000f, 20.000000f, 10.000000f, 20.000000f )
+	double3( 40.000000f, 30.000000f, 20.000000f ),
+	double4( 30.000000f, 30.000000f, 20.000000f, 30.000000f )
 );
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_yyzy,
@@ -3130,7 +3447,9 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_yyzy,
 
 TEMPER_PARAMETRIC( Test_double3_Swizzle_zyzy, TEMPER_FLAG_SHOULD_RUN, const double3& vec, const double4& expectedAnswer )
 {
-	double4 vecSwizzled = vec.zyzy;
+	double3 vecCopy = vec;
+
+	double4 vecSwizzled = vecCopy.zyzy;
 	TEMPER_CHECK_TRUE( vecSwizzled == expectedAnswer );
 }
 
@@ -3150,13 +3469,13 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_zyzy,
 );
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_zyzy,
-	double3( 10.000000f, 10.000000f, 20.000000f ),
-	double4( 20.000000f, 10.000000f, 20.000000f, 10.000000f )
+	double3( 10.000000f, 20.000000f, 30.000000f ),
+	double4( 30.000000f, 20.000000f, 30.000000f, 20.000000f )
 );
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_zyzy,
-	double3( 20.000000f, 20.000000f, 10.000000f ),
-	double4( 10.000000f, 20.000000f, 10.000000f, 20.000000f )
+	double3( 40.000000f, 30.000000f, 20.000000f ),
+	double4( 20.000000f, 30.000000f, 20.000000f, 30.000000f )
 );
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_zyzy,
@@ -3166,7 +3485,9 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_zyzy,
 
 TEMPER_PARAMETRIC( Test_double3_Swizzle_xzzy, TEMPER_FLAG_SHOULD_RUN, const double3& vec, const double4& expectedAnswer )
 {
-	double4 vecSwizzled = vec.xzzy;
+	double3 vecCopy = vec;
+
+	double4 vecSwizzled = vecCopy.xzzy;
 	TEMPER_CHECK_TRUE( vecSwizzled == expectedAnswer );
 }
 
@@ -3186,13 +3507,13 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_xzzy,
 );
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_xzzy,
-	double3( 10.000000f, 10.000000f, 20.000000f ),
-	double4( 10.000000f, 20.000000f, 20.000000f, 10.000000f )
+	double3( 10.000000f, 20.000000f, 30.000000f ),
+	double4( 10.000000f, 30.000000f, 30.000000f, 20.000000f )
 );
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_xzzy,
-	double3( 20.000000f, 20.000000f, 10.000000f ),
-	double4( 20.000000f, 10.000000f, 10.000000f, 20.000000f )
+	double3( 40.000000f, 30.000000f, 20.000000f ),
+	double4( 40.000000f, 20.000000f, 20.000000f, 30.000000f )
 );
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_xzzy,
@@ -3202,7 +3523,9 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_xzzy,
 
 TEMPER_PARAMETRIC( Test_double3_Swizzle_yzzy, TEMPER_FLAG_SHOULD_RUN, const double3& vec, const double4& expectedAnswer )
 {
-	double4 vecSwizzled = vec.yzzy;
+	double3 vecCopy = vec;
+
+	double4 vecSwizzled = vecCopy.yzzy;
 	TEMPER_CHECK_TRUE( vecSwizzled == expectedAnswer );
 }
 
@@ -3222,13 +3545,13 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_yzzy,
 );
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_yzzy,
-	double3( 10.000000f, 10.000000f, 20.000000f ),
-	double4( 10.000000f, 20.000000f, 20.000000f, 10.000000f )
+	double3( 10.000000f, 20.000000f, 30.000000f ),
+	double4( 20.000000f, 30.000000f, 30.000000f, 20.000000f )
 );
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_yzzy,
-	double3( 20.000000f, 20.000000f, 10.000000f ),
-	double4( 20.000000f, 10.000000f, 10.000000f, 20.000000f )
+	double3( 40.000000f, 30.000000f, 20.000000f ),
+	double4( 30.000000f, 20.000000f, 20.000000f, 30.000000f )
 );
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_yzzy,
@@ -3238,7 +3561,9 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_yzzy,
 
 TEMPER_PARAMETRIC( Test_double3_Swizzle_zzzy, TEMPER_FLAG_SHOULD_RUN, const double3& vec, const double4& expectedAnswer )
 {
-	double4 vecSwizzled = vec.zzzy;
+	double3 vecCopy = vec;
+
+	double4 vecSwizzled = vecCopy.zzzy;
 	TEMPER_CHECK_TRUE( vecSwizzled == expectedAnswer );
 }
 
@@ -3258,13 +3583,13 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_zzzy,
 );
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_zzzy,
-	double3( 10.000000f, 10.000000f, 20.000000f ),
-	double4( 20.000000f, 20.000000f, 20.000000f, 10.000000f )
+	double3( 10.000000f, 20.000000f, 30.000000f ),
+	double4( 30.000000f, 30.000000f, 30.000000f, 20.000000f )
 );
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_zzzy,
-	double3( 20.000000f, 20.000000f, 10.000000f ),
-	double4( 10.000000f, 10.000000f, 10.000000f, 20.000000f )
+	double3( 40.000000f, 30.000000f, 20.000000f ),
+	double4( 20.000000f, 20.000000f, 20.000000f, 30.000000f )
 );
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_zzzy,
@@ -3274,7 +3599,9 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_zzzy,
 
 TEMPER_PARAMETRIC( Test_double3_Swizzle_xxxz, TEMPER_FLAG_SHOULD_RUN, const double3& vec, const double4& expectedAnswer )
 {
-	double4 vecSwizzled = vec.xxxz;
+	double3 vecCopy = vec;
+
+	double4 vecSwizzled = vecCopy.xxxz;
 	TEMPER_CHECK_TRUE( vecSwizzled == expectedAnswer );
 }
 
@@ -3294,13 +3621,13 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_xxxz,
 );
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_xxxz,
-	double3( 10.000000f, 10.000000f, 20.000000f ),
-	double4( 10.000000f, 10.000000f, 10.000000f, 20.000000f )
+	double3( 10.000000f, 20.000000f, 30.000000f ),
+	double4( 10.000000f, 10.000000f, 10.000000f, 30.000000f )
 );
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_xxxz,
-	double3( 20.000000f, 20.000000f, 10.000000f ),
-	double4( 20.000000f, 20.000000f, 20.000000f, 10.000000f )
+	double3( 40.000000f, 30.000000f, 20.000000f ),
+	double4( 40.000000f, 40.000000f, 40.000000f, 20.000000f )
 );
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_xxxz,
@@ -3310,7 +3637,9 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_xxxz,
 
 TEMPER_PARAMETRIC( Test_double3_Swizzle_yxxz, TEMPER_FLAG_SHOULD_RUN, const double3& vec, const double4& expectedAnswer )
 {
-	double4 vecSwizzled = vec.yxxz;
+	double3 vecCopy = vec;
+
+	double4 vecSwizzled = vecCopy.yxxz;
 	TEMPER_CHECK_TRUE( vecSwizzled == expectedAnswer );
 }
 
@@ -3330,13 +3659,13 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_yxxz,
 );
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_yxxz,
-	double3( 10.000000f, 10.000000f, 20.000000f ),
-	double4( 10.000000f, 10.000000f, 10.000000f, 20.000000f )
+	double3( 10.000000f, 20.000000f, 30.000000f ),
+	double4( 20.000000f, 10.000000f, 10.000000f, 30.000000f )
 );
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_yxxz,
-	double3( 20.000000f, 20.000000f, 10.000000f ),
-	double4( 20.000000f, 20.000000f, 20.000000f, 10.000000f )
+	double3( 40.000000f, 30.000000f, 20.000000f ),
+	double4( 30.000000f, 40.000000f, 40.000000f, 20.000000f )
 );
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_yxxz,
@@ -3346,7 +3675,9 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_yxxz,
 
 TEMPER_PARAMETRIC( Test_double3_Swizzle_zxxz, TEMPER_FLAG_SHOULD_RUN, const double3& vec, const double4& expectedAnswer )
 {
-	double4 vecSwizzled = vec.zxxz;
+	double3 vecCopy = vec;
+
+	double4 vecSwizzled = vecCopy.zxxz;
 	TEMPER_CHECK_TRUE( vecSwizzled == expectedAnswer );
 }
 
@@ -3366,13 +3697,13 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_zxxz,
 );
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_zxxz,
-	double3( 10.000000f, 10.000000f, 20.000000f ),
-	double4( 20.000000f, 10.000000f, 10.000000f, 20.000000f )
+	double3( 10.000000f, 20.000000f, 30.000000f ),
+	double4( 30.000000f, 10.000000f, 10.000000f, 30.000000f )
 );
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_zxxz,
-	double3( 20.000000f, 20.000000f, 10.000000f ),
-	double4( 10.000000f, 20.000000f, 20.000000f, 10.000000f )
+	double3( 40.000000f, 30.000000f, 20.000000f ),
+	double4( 20.000000f, 40.000000f, 40.000000f, 20.000000f )
 );
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_zxxz,
@@ -3382,7 +3713,9 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_zxxz,
 
 TEMPER_PARAMETRIC( Test_double3_Swizzle_xyxz, TEMPER_FLAG_SHOULD_RUN, const double3& vec, const double4& expectedAnswer )
 {
-	double4 vecSwizzled = vec.xyxz;
+	double3 vecCopy = vec;
+
+	double4 vecSwizzled = vecCopy.xyxz;
 	TEMPER_CHECK_TRUE( vecSwizzled == expectedAnswer );
 }
 
@@ -3402,13 +3735,13 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_xyxz,
 );
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_xyxz,
-	double3( 10.000000f, 10.000000f, 20.000000f ),
-	double4( 10.000000f, 10.000000f, 10.000000f, 20.000000f )
+	double3( 10.000000f, 20.000000f, 30.000000f ),
+	double4( 10.000000f, 20.000000f, 10.000000f, 30.000000f )
 );
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_xyxz,
-	double3( 20.000000f, 20.000000f, 10.000000f ),
-	double4( 20.000000f, 20.000000f, 20.000000f, 10.000000f )
+	double3( 40.000000f, 30.000000f, 20.000000f ),
+	double4( 40.000000f, 30.000000f, 40.000000f, 20.000000f )
 );
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_xyxz,
@@ -3418,7 +3751,9 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_xyxz,
 
 TEMPER_PARAMETRIC( Test_double3_Swizzle_yyxz, TEMPER_FLAG_SHOULD_RUN, const double3& vec, const double4& expectedAnswer )
 {
-	double4 vecSwizzled = vec.yyxz;
+	double3 vecCopy = vec;
+
+	double4 vecSwizzled = vecCopy.yyxz;
 	TEMPER_CHECK_TRUE( vecSwizzled == expectedAnswer );
 }
 
@@ -3438,13 +3773,13 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_yyxz,
 );
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_yyxz,
-	double3( 10.000000f, 10.000000f, 20.000000f ),
-	double4( 10.000000f, 10.000000f, 10.000000f, 20.000000f )
+	double3( 10.000000f, 20.000000f, 30.000000f ),
+	double4( 20.000000f, 20.000000f, 10.000000f, 30.000000f )
 );
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_yyxz,
-	double3( 20.000000f, 20.000000f, 10.000000f ),
-	double4( 20.000000f, 20.000000f, 20.000000f, 10.000000f )
+	double3( 40.000000f, 30.000000f, 20.000000f ),
+	double4( 30.000000f, 30.000000f, 40.000000f, 20.000000f )
 );
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_yyxz,
@@ -3454,7 +3789,9 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_yyxz,
 
 TEMPER_PARAMETRIC( Test_double3_Swizzle_zyxz, TEMPER_FLAG_SHOULD_RUN, const double3& vec, const double4& expectedAnswer )
 {
-	double4 vecSwizzled = vec.zyxz;
+	double3 vecCopy = vec;
+
+	double4 vecSwizzled = vecCopy.zyxz;
 	TEMPER_CHECK_TRUE( vecSwizzled == expectedAnswer );
 }
 
@@ -3474,13 +3811,13 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_zyxz,
 );
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_zyxz,
-	double3( 10.000000f, 10.000000f, 20.000000f ),
-	double4( 20.000000f, 10.000000f, 10.000000f, 20.000000f )
+	double3( 10.000000f, 20.000000f, 30.000000f ),
+	double4( 30.000000f, 20.000000f, 10.000000f, 30.000000f )
 );
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_zyxz,
-	double3( 20.000000f, 20.000000f, 10.000000f ),
-	double4( 10.000000f, 20.000000f, 20.000000f, 10.000000f )
+	double3( 40.000000f, 30.000000f, 20.000000f ),
+	double4( 20.000000f, 30.000000f, 40.000000f, 20.000000f )
 );
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_zyxz,
@@ -3490,7 +3827,9 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_zyxz,
 
 TEMPER_PARAMETRIC( Test_double3_Swizzle_xzxz, TEMPER_FLAG_SHOULD_RUN, const double3& vec, const double4& expectedAnswer )
 {
-	double4 vecSwizzled = vec.xzxz;
+	double3 vecCopy = vec;
+
+	double4 vecSwizzled = vecCopy.xzxz;
 	TEMPER_CHECK_TRUE( vecSwizzled == expectedAnswer );
 }
 
@@ -3510,13 +3849,13 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_xzxz,
 );
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_xzxz,
-	double3( 10.000000f, 10.000000f, 20.000000f ),
-	double4( 10.000000f, 20.000000f, 10.000000f, 20.000000f )
+	double3( 10.000000f, 20.000000f, 30.000000f ),
+	double4( 10.000000f, 30.000000f, 10.000000f, 30.000000f )
 );
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_xzxz,
-	double3( 20.000000f, 20.000000f, 10.000000f ),
-	double4( 20.000000f, 10.000000f, 20.000000f, 10.000000f )
+	double3( 40.000000f, 30.000000f, 20.000000f ),
+	double4( 40.000000f, 20.000000f, 40.000000f, 20.000000f )
 );
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_xzxz,
@@ -3526,7 +3865,9 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_xzxz,
 
 TEMPER_PARAMETRIC( Test_double3_Swizzle_yzxz, TEMPER_FLAG_SHOULD_RUN, const double3& vec, const double4& expectedAnswer )
 {
-	double4 vecSwizzled = vec.yzxz;
+	double3 vecCopy = vec;
+
+	double4 vecSwizzled = vecCopy.yzxz;
 	TEMPER_CHECK_TRUE( vecSwizzled == expectedAnswer );
 }
 
@@ -3546,13 +3887,13 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_yzxz,
 );
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_yzxz,
-	double3( 10.000000f, 10.000000f, 20.000000f ),
-	double4( 10.000000f, 20.000000f, 10.000000f, 20.000000f )
+	double3( 10.000000f, 20.000000f, 30.000000f ),
+	double4( 20.000000f, 30.000000f, 10.000000f, 30.000000f )
 );
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_yzxz,
-	double3( 20.000000f, 20.000000f, 10.000000f ),
-	double4( 20.000000f, 10.000000f, 20.000000f, 10.000000f )
+	double3( 40.000000f, 30.000000f, 20.000000f ),
+	double4( 30.000000f, 20.000000f, 40.000000f, 20.000000f )
 );
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_yzxz,
@@ -3562,7 +3903,9 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_yzxz,
 
 TEMPER_PARAMETRIC( Test_double3_Swizzle_zzxz, TEMPER_FLAG_SHOULD_RUN, const double3& vec, const double4& expectedAnswer )
 {
-	double4 vecSwizzled = vec.zzxz;
+	double3 vecCopy = vec;
+
+	double4 vecSwizzled = vecCopy.zzxz;
 	TEMPER_CHECK_TRUE( vecSwizzled == expectedAnswer );
 }
 
@@ -3582,13 +3925,13 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_zzxz,
 );
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_zzxz,
-	double3( 10.000000f, 10.000000f, 20.000000f ),
-	double4( 20.000000f, 20.000000f, 10.000000f, 20.000000f )
+	double3( 10.000000f, 20.000000f, 30.000000f ),
+	double4( 30.000000f, 30.000000f, 10.000000f, 30.000000f )
 );
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_zzxz,
-	double3( 20.000000f, 20.000000f, 10.000000f ),
-	double4( 10.000000f, 10.000000f, 20.000000f, 10.000000f )
+	double3( 40.000000f, 30.000000f, 20.000000f ),
+	double4( 20.000000f, 20.000000f, 40.000000f, 20.000000f )
 );
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_zzxz,
@@ -3598,7 +3941,9 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_zzxz,
 
 TEMPER_PARAMETRIC( Test_double3_Swizzle_xxyz, TEMPER_FLAG_SHOULD_RUN, const double3& vec, const double4& expectedAnswer )
 {
-	double4 vecSwizzled = vec.xxyz;
+	double3 vecCopy = vec;
+
+	double4 vecSwizzled = vecCopy.xxyz;
 	TEMPER_CHECK_TRUE( vecSwizzled == expectedAnswer );
 }
 
@@ -3618,13 +3963,13 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_xxyz,
 );
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_xxyz,
-	double3( 10.000000f, 10.000000f, 20.000000f ),
-	double4( 10.000000f, 10.000000f, 10.000000f, 20.000000f )
+	double3( 10.000000f, 20.000000f, 30.000000f ),
+	double4( 10.000000f, 10.000000f, 20.000000f, 30.000000f )
 );
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_xxyz,
-	double3( 20.000000f, 20.000000f, 10.000000f ),
-	double4( 20.000000f, 20.000000f, 20.000000f, 10.000000f )
+	double3( 40.000000f, 30.000000f, 20.000000f ),
+	double4( 40.000000f, 40.000000f, 30.000000f, 20.000000f )
 );
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_xxyz,
@@ -3634,7 +3979,9 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_xxyz,
 
 TEMPER_PARAMETRIC( Test_double3_Swizzle_yxyz, TEMPER_FLAG_SHOULD_RUN, const double3& vec, const double4& expectedAnswer )
 {
-	double4 vecSwizzled = vec.yxyz;
+	double3 vecCopy = vec;
+
+	double4 vecSwizzled = vecCopy.yxyz;
 	TEMPER_CHECK_TRUE( vecSwizzled == expectedAnswer );
 }
 
@@ -3654,13 +4001,13 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_yxyz,
 );
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_yxyz,
-	double3( 10.000000f, 10.000000f, 20.000000f ),
-	double4( 10.000000f, 10.000000f, 10.000000f, 20.000000f )
+	double3( 10.000000f, 20.000000f, 30.000000f ),
+	double4( 20.000000f, 10.000000f, 20.000000f, 30.000000f )
 );
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_yxyz,
-	double3( 20.000000f, 20.000000f, 10.000000f ),
-	double4( 20.000000f, 20.000000f, 20.000000f, 10.000000f )
+	double3( 40.000000f, 30.000000f, 20.000000f ),
+	double4( 30.000000f, 40.000000f, 30.000000f, 20.000000f )
 );
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_yxyz,
@@ -3670,7 +4017,9 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_yxyz,
 
 TEMPER_PARAMETRIC( Test_double3_Swizzle_zxyz, TEMPER_FLAG_SHOULD_RUN, const double3& vec, const double4& expectedAnswer )
 {
-	double4 vecSwizzled = vec.zxyz;
+	double3 vecCopy = vec;
+
+	double4 vecSwizzled = vecCopy.zxyz;
 	TEMPER_CHECK_TRUE( vecSwizzled == expectedAnswer );
 }
 
@@ -3690,13 +4039,13 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_zxyz,
 );
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_zxyz,
-	double3( 10.000000f, 10.000000f, 20.000000f ),
-	double4( 20.000000f, 10.000000f, 10.000000f, 20.000000f )
+	double3( 10.000000f, 20.000000f, 30.000000f ),
+	double4( 30.000000f, 10.000000f, 20.000000f, 30.000000f )
 );
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_zxyz,
-	double3( 20.000000f, 20.000000f, 10.000000f ),
-	double4( 10.000000f, 20.000000f, 20.000000f, 10.000000f )
+	double3( 40.000000f, 30.000000f, 20.000000f ),
+	double4( 20.000000f, 40.000000f, 30.000000f, 20.000000f )
 );
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_zxyz,
@@ -3706,7 +4055,9 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_zxyz,
 
 TEMPER_PARAMETRIC( Test_double3_Swizzle_xyyz, TEMPER_FLAG_SHOULD_RUN, const double3& vec, const double4& expectedAnswer )
 {
-	double4 vecSwizzled = vec.xyyz;
+	double3 vecCopy = vec;
+
+	double4 vecSwizzled = vecCopy.xyyz;
 	TEMPER_CHECK_TRUE( vecSwizzled == expectedAnswer );
 }
 
@@ -3726,13 +4077,13 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_xyyz,
 );
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_xyyz,
-	double3( 10.000000f, 10.000000f, 20.000000f ),
-	double4( 10.000000f, 10.000000f, 10.000000f, 20.000000f )
+	double3( 10.000000f, 20.000000f, 30.000000f ),
+	double4( 10.000000f, 20.000000f, 20.000000f, 30.000000f )
 );
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_xyyz,
-	double3( 20.000000f, 20.000000f, 10.000000f ),
-	double4( 20.000000f, 20.000000f, 20.000000f, 10.000000f )
+	double3( 40.000000f, 30.000000f, 20.000000f ),
+	double4( 40.000000f, 30.000000f, 30.000000f, 20.000000f )
 );
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_xyyz,
@@ -3742,7 +4093,9 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_xyyz,
 
 TEMPER_PARAMETRIC( Test_double3_Swizzle_yyyz, TEMPER_FLAG_SHOULD_RUN, const double3& vec, const double4& expectedAnswer )
 {
-	double4 vecSwizzled = vec.yyyz;
+	double3 vecCopy = vec;
+
+	double4 vecSwizzled = vecCopy.yyyz;
 	TEMPER_CHECK_TRUE( vecSwizzled == expectedAnswer );
 }
 
@@ -3762,13 +4115,13 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_yyyz,
 );
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_yyyz,
-	double3( 10.000000f, 10.000000f, 20.000000f ),
-	double4( 10.000000f, 10.000000f, 10.000000f, 20.000000f )
+	double3( 10.000000f, 20.000000f, 30.000000f ),
+	double4( 20.000000f, 20.000000f, 20.000000f, 30.000000f )
 );
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_yyyz,
-	double3( 20.000000f, 20.000000f, 10.000000f ),
-	double4( 20.000000f, 20.000000f, 20.000000f, 10.000000f )
+	double3( 40.000000f, 30.000000f, 20.000000f ),
+	double4( 30.000000f, 30.000000f, 30.000000f, 20.000000f )
 );
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_yyyz,
@@ -3778,7 +4131,9 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_yyyz,
 
 TEMPER_PARAMETRIC( Test_double3_Swizzle_zyyz, TEMPER_FLAG_SHOULD_RUN, const double3& vec, const double4& expectedAnswer )
 {
-	double4 vecSwizzled = vec.zyyz;
+	double3 vecCopy = vec;
+
+	double4 vecSwizzled = vecCopy.zyyz;
 	TEMPER_CHECK_TRUE( vecSwizzled == expectedAnswer );
 }
 
@@ -3798,13 +4153,13 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_zyyz,
 );
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_zyyz,
-	double3( 10.000000f, 10.000000f, 20.000000f ),
-	double4( 20.000000f, 10.000000f, 10.000000f, 20.000000f )
+	double3( 10.000000f, 20.000000f, 30.000000f ),
+	double4( 30.000000f, 20.000000f, 20.000000f, 30.000000f )
 );
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_zyyz,
-	double3( 20.000000f, 20.000000f, 10.000000f ),
-	double4( 10.000000f, 20.000000f, 20.000000f, 10.000000f )
+	double3( 40.000000f, 30.000000f, 20.000000f ),
+	double4( 20.000000f, 30.000000f, 30.000000f, 20.000000f )
 );
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_zyyz,
@@ -3814,7 +4169,9 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_zyyz,
 
 TEMPER_PARAMETRIC( Test_double3_Swizzle_xzyz, TEMPER_FLAG_SHOULD_RUN, const double3& vec, const double4& expectedAnswer )
 {
-	double4 vecSwizzled = vec.xzyz;
+	double3 vecCopy = vec;
+
+	double4 vecSwizzled = vecCopy.xzyz;
 	TEMPER_CHECK_TRUE( vecSwizzled == expectedAnswer );
 }
 
@@ -3834,13 +4191,13 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_xzyz,
 );
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_xzyz,
-	double3( 10.000000f, 10.000000f, 20.000000f ),
-	double4( 10.000000f, 20.000000f, 10.000000f, 20.000000f )
+	double3( 10.000000f, 20.000000f, 30.000000f ),
+	double4( 10.000000f, 30.000000f, 20.000000f, 30.000000f )
 );
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_xzyz,
-	double3( 20.000000f, 20.000000f, 10.000000f ),
-	double4( 20.000000f, 10.000000f, 20.000000f, 10.000000f )
+	double3( 40.000000f, 30.000000f, 20.000000f ),
+	double4( 40.000000f, 20.000000f, 30.000000f, 20.000000f )
 );
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_xzyz,
@@ -3850,7 +4207,9 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_xzyz,
 
 TEMPER_PARAMETRIC( Test_double3_Swizzle_yzyz, TEMPER_FLAG_SHOULD_RUN, const double3& vec, const double4& expectedAnswer )
 {
-	double4 vecSwizzled = vec.yzyz;
+	double3 vecCopy = vec;
+
+	double4 vecSwizzled = vecCopy.yzyz;
 	TEMPER_CHECK_TRUE( vecSwizzled == expectedAnswer );
 }
 
@@ -3870,13 +4229,13 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_yzyz,
 );
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_yzyz,
-	double3( 10.000000f, 10.000000f, 20.000000f ),
-	double4( 10.000000f, 20.000000f, 10.000000f, 20.000000f )
+	double3( 10.000000f, 20.000000f, 30.000000f ),
+	double4( 20.000000f, 30.000000f, 20.000000f, 30.000000f )
 );
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_yzyz,
-	double3( 20.000000f, 20.000000f, 10.000000f ),
-	double4( 20.000000f, 10.000000f, 20.000000f, 10.000000f )
+	double3( 40.000000f, 30.000000f, 20.000000f ),
+	double4( 30.000000f, 20.000000f, 30.000000f, 20.000000f )
 );
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_yzyz,
@@ -3886,7 +4245,9 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_yzyz,
 
 TEMPER_PARAMETRIC( Test_double3_Swizzle_zzyz, TEMPER_FLAG_SHOULD_RUN, const double3& vec, const double4& expectedAnswer )
 {
-	double4 vecSwizzled = vec.zzyz;
+	double3 vecCopy = vec;
+
+	double4 vecSwizzled = vecCopy.zzyz;
 	TEMPER_CHECK_TRUE( vecSwizzled == expectedAnswer );
 }
 
@@ -3906,13 +4267,13 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_zzyz,
 );
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_zzyz,
-	double3( 10.000000f, 10.000000f, 20.000000f ),
-	double4( 20.000000f, 20.000000f, 10.000000f, 20.000000f )
+	double3( 10.000000f, 20.000000f, 30.000000f ),
+	double4( 30.000000f, 30.000000f, 20.000000f, 30.000000f )
 );
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_zzyz,
-	double3( 20.000000f, 20.000000f, 10.000000f ),
-	double4( 10.000000f, 10.000000f, 20.000000f, 10.000000f )
+	double3( 40.000000f, 30.000000f, 20.000000f ),
+	double4( 20.000000f, 20.000000f, 30.000000f, 20.000000f )
 );
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_zzyz,
@@ -3922,7 +4283,9 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_zzyz,
 
 TEMPER_PARAMETRIC( Test_double3_Swizzle_xxzz, TEMPER_FLAG_SHOULD_RUN, const double3& vec, const double4& expectedAnswer )
 {
-	double4 vecSwizzled = vec.xxzz;
+	double3 vecCopy = vec;
+
+	double4 vecSwizzled = vecCopy.xxzz;
 	TEMPER_CHECK_TRUE( vecSwizzled == expectedAnswer );
 }
 
@@ -3942,13 +4305,13 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_xxzz,
 );
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_xxzz,
-	double3( 10.000000f, 10.000000f, 20.000000f ),
-	double4( 10.000000f, 10.000000f, 20.000000f, 20.000000f )
+	double3( 10.000000f, 20.000000f, 30.000000f ),
+	double4( 10.000000f, 10.000000f, 30.000000f, 30.000000f )
 );
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_xxzz,
-	double3( 20.000000f, 20.000000f, 10.000000f ),
-	double4( 20.000000f, 20.000000f, 10.000000f, 10.000000f )
+	double3( 40.000000f, 30.000000f, 20.000000f ),
+	double4( 40.000000f, 40.000000f, 20.000000f, 20.000000f )
 );
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_xxzz,
@@ -3958,7 +4321,9 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_xxzz,
 
 TEMPER_PARAMETRIC( Test_double3_Swizzle_yxzz, TEMPER_FLAG_SHOULD_RUN, const double3& vec, const double4& expectedAnswer )
 {
-	double4 vecSwizzled = vec.yxzz;
+	double3 vecCopy = vec;
+
+	double4 vecSwizzled = vecCopy.yxzz;
 	TEMPER_CHECK_TRUE( vecSwizzled == expectedAnswer );
 }
 
@@ -3978,13 +4343,13 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_yxzz,
 );
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_yxzz,
-	double3( 10.000000f, 10.000000f, 20.000000f ),
-	double4( 10.000000f, 10.000000f, 20.000000f, 20.000000f )
+	double3( 10.000000f, 20.000000f, 30.000000f ),
+	double4( 20.000000f, 10.000000f, 30.000000f, 30.000000f )
 );
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_yxzz,
-	double3( 20.000000f, 20.000000f, 10.000000f ),
-	double4( 20.000000f, 20.000000f, 10.000000f, 10.000000f )
+	double3( 40.000000f, 30.000000f, 20.000000f ),
+	double4( 30.000000f, 40.000000f, 20.000000f, 20.000000f )
 );
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_yxzz,
@@ -3994,7 +4359,9 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_yxzz,
 
 TEMPER_PARAMETRIC( Test_double3_Swizzle_zxzz, TEMPER_FLAG_SHOULD_RUN, const double3& vec, const double4& expectedAnswer )
 {
-	double4 vecSwizzled = vec.zxzz;
+	double3 vecCopy = vec;
+
+	double4 vecSwizzled = vecCopy.zxzz;
 	TEMPER_CHECK_TRUE( vecSwizzled == expectedAnswer );
 }
 
@@ -4014,13 +4381,13 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_zxzz,
 );
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_zxzz,
-	double3( 10.000000f, 10.000000f, 20.000000f ),
-	double4( 20.000000f, 10.000000f, 20.000000f, 20.000000f )
+	double3( 10.000000f, 20.000000f, 30.000000f ),
+	double4( 30.000000f, 10.000000f, 30.000000f, 30.000000f )
 );
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_zxzz,
-	double3( 20.000000f, 20.000000f, 10.000000f ),
-	double4( 10.000000f, 20.000000f, 10.000000f, 10.000000f )
+	double3( 40.000000f, 30.000000f, 20.000000f ),
+	double4( 20.000000f, 40.000000f, 20.000000f, 20.000000f )
 );
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_zxzz,
@@ -4030,7 +4397,9 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_zxzz,
 
 TEMPER_PARAMETRIC( Test_double3_Swizzle_xyzz, TEMPER_FLAG_SHOULD_RUN, const double3& vec, const double4& expectedAnswer )
 {
-	double4 vecSwizzled = vec.xyzz;
+	double3 vecCopy = vec;
+
+	double4 vecSwizzled = vecCopy.xyzz;
 	TEMPER_CHECK_TRUE( vecSwizzled == expectedAnswer );
 }
 
@@ -4050,13 +4419,13 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_xyzz,
 );
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_xyzz,
-	double3( 10.000000f, 10.000000f, 20.000000f ),
-	double4( 10.000000f, 10.000000f, 20.000000f, 20.000000f )
+	double3( 10.000000f, 20.000000f, 30.000000f ),
+	double4( 10.000000f, 20.000000f, 30.000000f, 30.000000f )
 );
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_xyzz,
-	double3( 20.000000f, 20.000000f, 10.000000f ),
-	double4( 20.000000f, 20.000000f, 10.000000f, 10.000000f )
+	double3( 40.000000f, 30.000000f, 20.000000f ),
+	double4( 40.000000f, 30.000000f, 20.000000f, 20.000000f )
 );
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_xyzz,
@@ -4066,7 +4435,9 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_xyzz,
 
 TEMPER_PARAMETRIC( Test_double3_Swizzle_yyzz, TEMPER_FLAG_SHOULD_RUN, const double3& vec, const double4& expectedAnswer )
 {
-	double4 vecSwizzled = vec.yyzz;
+	double3 vecCopy = vec;
+
+	double4 vecSwizzled = vecCopy.yyzz;
 	TEMPER_CHECK_TRUE( vecSwizzled == expectedAnswer );
 }
 
@@ -4086,13 +4457,13 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_yyzz,
 );
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_yyzz,
-	double3( 10.000000f, 10.000000f, 20.000000f ),
-	double4( 10.000000f, 10.000000f, 20.000000f, 20.000000f )
+	double3( 10.000000f, 20.000000f, 30.000000f ),
+	double4( 20.000000f, 20.000000f, 30.000000f, 30.000000f )
 );
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_yyzz,
-	double3( 20.000000f, 20.000000f, 10.000000f ),
-	double4( 20.000000f, 20.000000f, 10.000000f, 10.000000f )
+	double3( 40.000000f, 30.000000f, 20.000000f ),
+	double4( 30.000000f, 30.000000f, 20.000000f, 20.000000f )
 );
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_yyzz,
@@ -4102,7 +4473,9 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_yyzz,
 
 TEMPER_PARAMETRIC( Test_double3_Swizzle_zyzz, TEMPER_FLAG_SHOULD_RUN, const double3& vec, const double4& expectedAnswer )
 {
-	double4 vecSwizzled = vec.zyzz;
+	double3 vecCopy = vec;
+
+	double4 vecSwizzled = vecCopy.zyzz;
 	TEMPER_CHECK_TRUE( vecSwizzled == expectedAnswer );
 }
 
@@ -4122,13 +4495,13 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_zyzz,
 );
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_zyzz,
-	double3( 10.000000f, 10.000000f, 20.000000f ),
-	double4( 20.000000f, 10.000000f, 20.000000f, 20.000000f )
+	double3( 10.000000f, 20.000000f, 30.000000f ),
+	double4( 30.000000f, 20.000000f, 30.000000f, 30.000000f )
 );
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_zyzz,
-	double3( 20.000000f, 20.000000f, 10.000000f ),
-	double4( 10.000000f, 20.000000f, 10.000000f, 10.000000f )
+	double3( 40.000000f, 30.000000f, 20.000000f ),
+	double4( 20.000000f, 30.000000f, 20.000000f, 20.000000f )
 );
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_zyzz,
@@ -4138,7 +4511,9 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_zyzz,
 
 TEMPER_PARAMETRIC( Test_double3_Swizzle_xzzz, TEMPER_FLAG_SHOULD_RUN, const double3& vec, const double4& expectedAnswer )
 {
-	double4 vecSwizzled = vec.xzzz;
+	double3 vecCopy = vec;
+
+	double4 vecSwizzled = vecCopy.xzzz;
 	TEMPER_CHECK_TRUE( vecSwizzled == expectedAnswer );
 }
 
@@ -4158,13 +4533,13 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_xzzz,
 );
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_xzzz,
-	double3( 10.000000f, 10.000000f, 20.000000f ),
-	double4( 10.000000f, 20.000000f, 20.000000f, 20.000000f )
+	double3( 10.000000f, 20.000000f, 30.000000f ),
+	double4( 10.000000f, 30.000000f, 30.000000f, 30.000000f )
 );
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_xzzz,
-	double3( 20.000000f, 20.000000f, 10.000000f ),
-	double4( 20.000000f, 10.000000f, 10.000000f, 10.000000f )
+	double3( 40.000000f, 30.000000f, 20.000000f ),
+	double4( 40.000000f, 20.000000f, 20.000000f, 20.000000f )
 );
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_xzzz,
@@ -4174,7 +4549,9 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_xzzz,
 
 TEMPER_PARAMETRIC( Test_double3_Swizzle_yzzz, TEMPER_FLAG_SHOULD_RUN, const double3& vec, const double4& expectedAnswer )
 {
-	double4 vecSwizzled = vec.yzzz;
+	double3 vecCopy = vec;
+
+	double4 vecSwizzled = vecCopy.yzzz;
 	TEMPER_CHECK_TRUE( vecSwizzled == expectedAnswer );
 }
 
@@ -4194,13 +4571,13 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_yzzz,
 );
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_yzzz,
-	double3( 10.000000f, 10.000000f, 20.000000f ),
-	double4( 10.000000f, 20.000000f, 20.000000f, 20.000000f )
+	double3( 10.000000f, 20.000000f, 30.000000f ),
+	double4( 20.000000f, 30.000000f, 30.000000f, 30.000000f )
 );
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_yzzz,
-	double3( 20.000000f, 20.000000f, 10.000000f ),
-	double4( 20.000000f, 10.000000f, 10.000000f, 10.000000f )
+	double3( 40.000000f, 30.000000f, 20.000000f ),
+	double4( 30.000000f, 20.000000f, 20.000000f, 20.000000f )
 );
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_yzzz,
@@ -4210,7 +4587,9 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_yzzz,
 
 TEMPER_PARAMETRIC( Test_double3_Swizzle_zzzz, TEMPER_FLAG_SHOULD_RUN, const double3& vec, const double4& expectedAnswer )
 {
-	double4 vecSwizzled = vec.zzzz;
+	double3 vecCopy = vec;
+
+	double4 vecSwizzled = vecCopy.zzzz;
 	TEMPER_CHECK_TRUE( vecSwizzled == expectedAnswer );
 }
 
@@ -4230,13 +4609,13 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_zzzz,
 );
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_zzzz,
-	double3( 10.000000f, 10.000000f, 20.000000f ),
-	double4( 20.000000f, 20.000000f, 20.000000f, 20.000000f )
+	double3( 10.000000f, 20.000000f, 30.000000f ),
+	double4( 30.000000f, 30.000000f, 30.000000f, 30.000000f )
 );
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_zzzz,
-	double3( 20.000000f, 20.000000f, 10.000000f ),
-	double4( 10.000000f, 10.000000f, 10.000000f, 10.000000f )
+	double3( 40.000000f, 30.000000f, 20.000000f ),
+	double4( 20.000000f, 20.000000f, 20.000000f, 20.000000f )
 );
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_double3_Swizzle_zzzz,

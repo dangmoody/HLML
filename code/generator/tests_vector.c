@@ -745,6 +745,7 @@ static void GenerateSwizzleFunc_Test( allocatorLinear_t* tempStorage, stringBuil
 	assert( swizzleStr );
 
 	const char* typeString = Gen_GetTypeString( typeInfo->type );
+	const char* memberTypeString = Gen_GetMemberTypeString( typeInfo->type );
 
 	typeInfo_t swizzleTypeInfo = {
 		.type			= typeInfo->type,
@@ -755,18 +756,48 @@ static void GenerateSwizzleFunc_Test( allocatorLinear_t* tempStorage, stringBuil
 
 	const char* funcName = String_TPrintf( tempStorage, "Swizzle_%s", swizzleStr );
 
+	bool32 isWritable = SwizzleTypeIsWritable( swizzleStr, numSwizzleComponents );
+
+	char reverseSwizzle[5] = { 0 };
+	for ( u32 i = 0; i < numSwizzleComponents; i++ ) {
+		reverseSwizzle[i] = swizzleStr[numSwizzleComponents - 1 - i];
+	}
+
 	StringBuilder_Appendf( code, "TEMPER_PARAMETRIC( Test_%s_%s, TEMPER_FLAG_SHOULD_RUN, const %s%s vec, const %s%s expectedAnswer )\n", typeInfo->fullTypeName, funcName, typeInfo->fullTypeName, strings->parmPassByStr, swizzleTypeInfo.fullTypeName, strings->parmPassByStr );
 	StringBuilder_Appendf( code, "{\n" );
-	StringBuilder_Appendf( code, "\t%s vecSwizzled = vec.%s;\n", swizzleTypeInfo.fullTypeName, swizzleStr );
+	StringBuilder_Appendf( code, "\t%s vecCopy = vec;\n", typeInfo->fullTypeName );
+	StringBuilder_Appendf( code, "\n" );
+	StringBuilder_Appendf( code, "\t%s vecSwizzled = vecCopy.%s;\n", swizzleTypeInfo.fullTypeName, swizzleStr );
 	StringBuilder_Append(  code, "\tTEMPER_CHECK_TRUE( vecSwizzled == expectedAnswer );\n" );
+	if ( isWritable ) {
+		StringBuilder_Appendf( code, "\n" );
+		StringBuilder_Appendf( code, "\t// write swizzle test\n" );
+		StringBuilder_Appendf( code, "\t{\n" );
+		for ( u32 i = 0; i < numSwizzleComponents; i++ ) {
+			const char componentName = swizzleStr[i];
+
+			StringBuilder_Appendf( code, "\t\t%s old_%c = vecCopy.%c;\n", memberTypeString, componentName, componentName );
+		}
+		StringBuilder_Appendf( code, "\n" );
+		StringBuilder_Appendf( code, "\t\tvecCopy.%s = vecCopy.%s;\n", swizzleStr, reverseSwizzle );
+		StringBuilder_Appendf( code, "\n" );
+		for ( u32 i = 0; i < numSwizzleComponents; i++ ) {
+			const char componentName = swizzleStr[i];
+			//const char reverseComponentName = GEN_COMPONENT_NAMES_VECTOR[numSwizzleComponents - 1 - i];
+			const char reverseComponentName = reverseSwizzle[i];
+
+			StringBuilder_Appendf( code, "\t\tTEMPER_CHECK_TRUE( vecCopy.%c == old_%c );\n", reverseComponentName, componentName );
+		}
+		StringBuilder_Appendf( code, "\t}\n" );
+	}
 	StringBuilder_Appendf( code, "}\n\n" );
 
 	testFixture_Swizzle_t fixtures[] = {
 		{ 0.0f,  0.0f,   0.0f,   0.0f   },
 		{ 0.0f,  1.0f,   2.0f,   3.0f   },
 		{ 3.0f,  2.0f,   1.0f,   0.0f   },
-		{ 10.0f, 10.0f,  20.0f,  20.0f  },
-		{ 20.0f, 20.0f,  10.0f,  10.0f  },
+		{ 10.0f, 20.0f,  30.0f,  40.0f  },
+		{ 40.0f, 30.0f,  20.0f,  10.0f  },
 		{ 69.0f, 420.0f, 666.0f, 616.0f }
 	};
 

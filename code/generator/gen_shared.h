@@ -36,11 +36,12 @@
 	"/*\n" \
 	"===========================================================================\n" \
 	"\n" \
-	"HLML.\n" \
+	"HLML\n" \
+	"v2.2.0\n" \
 	"\n" \
-	"MIT License\n" \
+	"MIT License:\n" \
 	"\n" \
-	"Copyright (c) 2019 Dan Moody\n" \
+	"Copyright (c) 2019 Dan Moody (daniel.guy.moody@gmail.com).\n" \
 	"\n" \
 	"Permission is hereby granted, free of charge, to any person obtaining a copy\n" \
 	"of this software and associated documentation files (the \"Software\"), to deal\n" \

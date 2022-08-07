@@ -1,11 +1,12 @@
 /*
 ===========================================================================
 
-HLML.
+HLML
+v2.2.0
 
-MIT License
+MIT License:
 
-Copyright (c) 2019 Dan Moody
+Copyright (c) 2019 Dan Moody (daniel.guy.moody@gmail.com).
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -34,7 +35,9 @@ SOFTWARE.
 
 TEMPER_PARAMETRIC( Test_bool2_Swizzle_rr, TEMPER_FLAG_SHOULD_RUN, const bool2& vec, const bool2& expectedAnswer )
 {
-	bool2 vecSwizzled = vec.rr;
+	bool2 vecCopy = vec;
+
+	bool2 vecSwizzled = vecCopy.rr;
 	TEMPER_CHECK_TRUE( vecSwizzled == expectedAnswer );
 }
 
@@ -70,8 +73,21 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_bool2_Swizzle_rr,
 
 TEMPER_PARAMETRIC( Test_bool2_Swizzle_gr, TEMPER_FLAG_SHOULD_RUN, const bool2& vec, const bool2& expectedAnswer )
 {
-	bool2 vecSwizzled = vec.gr;
+	bool2 vecCopy = vec;
+
+	bool2 vecSwizzled = vecCopy.gr;
 	TEMPER_CHECK_TRUE( vecSwizzled == expectedAnswer );
+
+	// write swizzle test
+	{
+		bool32_t old_g = vecCopy.g;
+		bool32_t old_r = vecCopy.r;
+
+		vecCopy.gr = vecCopy.rg;
+
+		TEMPER_CHECK_TRUE( vecCopy.r == old_g );
+		TEMPER_CHECK_TRUE( vecCopy.g == old_r );
+	}
 }
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_bool2_Swizzle_gr,
@@ -106,8 +122,21 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_bool2_Swizzle_gr,
 
 TEMPER_PARAMETRIC( Test_bool2_Swizzle_rg, TEMPER_FLAG_SHOULD_RUN, const bool2& vec, const bool2& expectedAnswer )
 {
-	bool2 vecSwizzled = vec.rg;
+	bool2 vecCopy = vec;
+
+	bool2 vecSwizzled = vecCopy.rg;
 	TEMPER_CHECK_TRUE( vecSwizzled == expectedAnswer );
+
+	// write swizzle test
+	{
+		bool32_t old_r = vecCopy.r;
+		bool32_t old_g = vecCopy.g;
+
+		vecCopy.rg = vecCopy.gr;
+
+		TEMPER_CHECK_TRUE( vecCopy.g == old_r );
+		TEMPER_CHECK_TRUE( vecCopy.r == old_g );
+	}
 }
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_bool2_Swizzle_rg,
@@ -142,7 +171,9 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_bool2_Swizzle_rg,
 
 TEMPER_PARAMETRIC( Test_bool2_Swizzle_gg, TEMPER_FLAG_SHOULD_RUN, const bool2& vec, const bool2& expectedAnswer )
 {
-	bool2 vecSwizzled = vec.gg;
+	bool2 vecCopy = vec;
+
+	bool2 vecSwizzled = vecCopy.gg;
 	TEMPER_CHECK_TRUE( vecSwizzled == expectedAnswer );
 }
 
@@ -178,7 +209,9 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_bool2_Swizzle_gg,
 
 TEMPER_PARAMETRIC( Test_bool2_Swizzle_rrr, TEMPER_FLAG_SHOULD_RUN, const bool2& vec, const bool3& expectedAnswer )
 {
-	bool3 vecSwizzled = vec.rrr;
+	bool2 vecCopy = vec;
+
+	bool3 vecSwizzled = vecCopy.rrr;
 	TEMPER_CHECK_TRUE( vecSwizzled == expectedAnswer );
 }
 
@@ -214,7 +247,9 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_bool2_Swizzle_rrr,
 
 TEMPER_PARAMETRIC( Test_bool2_Swizzle_grr, TEMPER_FLAG_SHOULD_RUN, const bool2& vec, const bool3& expectedAnswer )
 {
-	bool3 vecSwizzled = vec.grr;
+	bool2 vecCopy = vec;
+
+	bool3 vecSwizzled = vecCopy.grr;
 	TEMPER_CHECK_TRUE( vecSwizzled == expectedAnswer );
 }
 
@@ -250,7 +285,9 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_bool2_Swizzle_grr,
 
 TEMPER_PARAMETRIC( Test_bool2_Swizzle_rgr, TEMPER_FLAG_SHOULD_RUN, const bool2& vec, const bool3& expectedAnswer )
 {
-	bool3 vecSwizzled = vec.rgr;
+	bool2 vecCopy = vec;
+
+	bool3 vecSwizzled = vecCopy.rgr;
 	TEMPER_CHECK_TRUE( vecSwizzled == expectedAnswer );
 }
 
@@ -286,7 +323,9 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_bool2_Swizzle_rgr,
 
 TEMPER_PARAMETRIC( Test_bool2_Swizzle_ggr, TEMPER_FLAG_SHOULD_RUN, const bool2& vec, const bool3& expectedAnswer )
 {
-	bool3 vecSwizzled = vec.ggr;
+	bool2 vecCopy = vec;
+
+	bool3 vecSwizzled = vecCopy.ggr;
 	TEMPER_CHECK_TRUE( vecSwizzled == expectedAnswer );
 }
 
@@ -322,7 +361,9 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_bool2_Swizzle_ggr,
 
 TEMPER_PARAMETRIC( Test_bool2_Swizzle_rrg, TEMPER_FLAG_SHOULD_RUN, const bool2& vec, const bool3& expectedAnswer )
 {
-	bool3 vecSwizzled = vec.rrg;
+	bool2 vecCopy = vec;
+
+	bool3 vecSwizzled = vecCopy.rrg;
 	TEMPER_CHECK_TRUE( vecSwizzled == expectedAnswer );
 }
 
@@ -358,7 +399,9 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_bool2_Swizzle_rrg,
 
 TEMPER_PARAMETRIC( Test_bool2_Swizzle_grg, TEMPER_FLAG_SHOULD_RUN, const bool2& vec, const bool3& expectedAnswer )
 {
-	bool3 vecSwizzled = vec.grg;
+	bool2 vecCopy = vec;
+
+	bool3 vecSwizzled = vecCopy.grg;
 	TEMPER_CHECK_TRUE( vecSwizzled == expectedAnswer );
 }
 
@@ -394,7 +437,9 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_bool2_Swizzle_grg,
 
 TEMPER_PARAMETRIC( Test_bool2_Swizzle_rgg, TEMPER_FLAG_SHOULD_RUN, const bool2& vec, const bool3& expectedAnswer )
 {
-	bool3 vecSwizzled = vec.rgg;
+	bool2 vecCopy = vec;
+
+	bool3 vecSwizzled = vecCopy.rgg;
 	TEMPER_CHECK_TRUE( vecSwizzled == expectedAnswer );
 }
 
@@ -430,7 +475,9 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_bool2_Swizzle_rgg,
 
 TEMPER_PARAMETRIC( Test_bool2_Swizzle_ggg, TEMPER_FLAG_SHOULD_RUN, const bool2& vec, const bool3& expectedAnswer )
 {
-	bool3 vecSwizzled = vec.ggg;
+	bool2 vecCopy = vec;
+
+	bool3 vecSwizzled = vecCopy.ggg;
 	TEMPER_CHECK_TRUE( vecSwizzled == expectedAnswer );
 }
 
@@ -466,7 +513,9 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_bool2_Swizzle_ggg,
 
 TEMPER_PARAMETRIC( Test_bool2_Swizzle_rrrr, TEMPER_FLAG_SHOULD_RUN, const bool2& vec, const bool4& expectedAnswer )
 {
-	bool4 vecSwizzled = vec.rrrr;
+	bool2 vecCopy = vec;
+
+	bool4 vecSwizzled = vecCopy.rrrr;
 	TEMPER_CHECK_TRUE( vecSwizzled == expectedAnswer );
 }
 
@@ -502,7 +551,9 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_bool2_Swizzle_rrrr,
 
 TEMPER_PARAMETRIC( Test_bool2_Swizzle_grrr, TEMPER_FLAG_SHOULD_RUN, const bool2& vec, const bool4& expectedAnswer )
 {
-	bool4 vecSwizzled = vec.grrr;
+	bool2 vecCopy = vec;
+
+	bool4 vecSwizzled = vecCopy.grrr;
 	TEMPER_CHECK_TRUE( vecSwizzled == expectedAnswer );
 }
 
@@ -538,7 +589,9 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_bool2_Swizzle_grrr,
 
 TEMPER_PARAMETRIC( Test_bool2_Swizzle_rgrr, TEMPER_FLAG_SHOULD_RUN, const bool2& vec, const bool4& expectedAnswer )
 {
-	bool4 vecSwizzled = vec.rgrr;
+	bool2 vecCopy = vec;
+
+	bool4 vecSwizzled = vecCopy.rgrr;
 	TEMPER_CHECK_TRUE( vecSwizzled == expectedAnswer );
 }
 
@@ -574,7 +627,9 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_bool2_Swizzle_rgrr,
 
 TEMPER_PARAMETRIC( Test_bool2_Swizzle_ggrr, TEMPER_FLAG_SHOULD_RUN, const bool2& vec, const bool4& expectedAnswer )
 {
-	bool4 vecSwizzled = vec.ggrr;
+	bool2 vecCopy = vec;
+
+	bool4 vecSwizzled = vecCopy.ggrr;
 	TEMPER_CHECK_TRUE( vecSwizzled == expectedAnswer );
 }
 
@@ -610,7 +665,9 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_bool2_Swizzle_ggrr,
 
 TEMPER_PARAMETRIC( Test_bool2_Swizzle_rrgr, TEMPER_FLAG_SHOULD_RUN, const bool2& vec, const bool4& expectedAnswer )
 {
-	bool4 vecSwizzled = vec.rrgr;
+	bool2 vecCopy = vec;
+
+	bool4 vecSwizzled = vecCopy.rrgr;
 	TEMPER_CHECK_TRUE( vecSwizzled == expectedAnswer );
 }
 
@@ -646,7 +703,9 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_bool2_Swizzle_rrgr,
 
 TEMPER_PARAMETRIC( Test_bool2_Swizzle_grgr, TEMPER_FLAG_SHOULD_RUN, const bool2& vec, const bool4& expectedAnswer )
 {
-	bool4 vecSwizzled = vec.grgr;
+	bool2 vecCopy = vec;
+
+	bool4 vecSwizzled = vecCopy.grgr;
 	TEMPER_CHECK_TRUE( vecSwizzled == expectedAnswer );
 }
 
@@ -682,7 +741,9 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_bool2_Swizzle_grgr,
 
 TEMPER_PARAMETRIC( Test_bool2_Swizzle_rggr, TEMPER_FLAG_SHOULD_RUN, const bool2& vec, const bool4& expectedAnswer )
 {
-	bool4 vecSwizzled = vec.rggr;
+	bool2 vecCopy = vec;
+
+	bool4 vecSwizzled = vecCopy.rggr;
 	TEMPER_CHECK_TRUE( vecSwizzled == expectedAnswer );
 }
 
@@ -718,7 +779,9 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_bool2_Swizzle_rggr,
 
 TEMPER_PARAMETRIC( Test_bool2_Swizzle_gggr, TEMPER_FLAG_SHOULD_RUN, const bool2& vec, const bool4& expectedAnswer )
 {
-	bool4 vecSwizzled = vec.gggr;
+	bool2 vecCopy = vec;
+
+	bool4 vecSwizzled = vecCopy.gggr;
 	TEMPER_CHECK_TRUE( vecSwizzled == expectedAnswer );
 }
 
@@ -754,7 +817,9 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_bool2_Swizzle_gggr,
 
 TEMPER_PARAMETRIC( Test_bool2_Swizzle_rrrg, TEMPER_FLAG_SHOULD_RUN, const bool2& vec, const bool4& expectedAnswer )
 {
-	bool4 vecSwizzled = vec.rrrg;
+	bool2 vecCopy = vec;
+
+	bool4 vecSwizzled = vecCopy.rrrg;
 	TEMPER_CHECK_TRUE( vecSwizzled == expectedAnswer );
 }
 
@@ -790,7 +855,9 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_bool2_Swizzle_rrrg,
 
 TEMPER_PARAMETRIC( Test_bool2_Swizzle_grrg, TEMPER_FLAG_SHOULD_RUN, const bool2& vec, const bool4& expectedAnswer )
 {
-	bool4 vecSwizzled = vec.grrg;
+	bool2 vecCopy = vec;
+
+	bool4 vecSwizzled = vecCopy.grrg;
 	TEMPER_CHECK_TRUE( vecSwizzled == expectedAnswer );
 }
 
@@ -826,7 +893,9 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_bool2_Swizzle_grrg,
 
 TEMPER_PARAMETRIC( Test_bool2_Swizzle_rgrg, TEMPER_FLAG_SHOULD_RUN, const bool2& vec, const bool4& expectedAnswer )
 {
-	bool4 vecSwizzled = vec.rgrg;
+	bool2 vecCopy = vec;
+
+	bool4 vecSwizzled = vecCopy.rgrg;
 	TEMPER_CHECK_TRUE( vecSwizzled == expectedAnswer );
 }
 
@@ -862,7 +931,9 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_bool2_Swizzle_rgrg,
 
 TEMPER_PARAMETRIC( Test_bool2_Swizzle_ggrg, TEMPER_FLAG_SHOULD_RUN, const bool2& vec, const bool4& expectedAnswer )
 {
-	bool4 vecSwizzled = vec.ggrg;
+	bool2 vecCopy = vec;
+
+	bool4 vecSwizzled = vecCopy.ggrg;
 	TEMPER_CHECK_TRUE( vecSwizzled == expectedAnswer );
 }
 
@@ -898,7 +969,9 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_bool2_Swizzle_ggrg,
 
 TEMPER_PARAMETRIC( Test_bool2_Swizzle_rrgg, TEMPER_FLAG_SHOULD_RUN, const bool2& vec, const bool4& expectedAnswer )
 {
-	bool4 vecSwizzled = vec.rrgg;
+	bool2 vecCopy = vec;
+
+	bool4 vecSwizzled = vecCopy.rrgg;
 	TEMPER_CHECK_TRUE( vecSwizzled == expectedAnswer );
 }
 
@@ -934,7 +1007,9 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_bool2_Swizzle_rrgg,
 
 TEMPER_PARAMETRIC( Test_bool2_Swizzle_grgg, TEMPER_FLAG_SHOULD_RUN, const bool2& vec, const bool4& expectedAnswer )
 {
-	bool4 vecSwizzled = vec.grgg;
+	bool2 vecCopy = vec;
+
+	bool4 vecSwizzled = vecCopy.grgg;
 	TEMPER_CHECK_TRUE( vecSwizzled == expectedAnswer );
 }
 
@@ -970,7 +1045,9 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_bool2_Swizzle_grgg,
 
 TEMPER_PARAMETRIC( Test_bool2_Swizzle_rggg, TEMPER_FLAG_SHOULD_RUN, const bool2& vec, const bool4& expectedAnswer )
 {
-	bool4 vecSwizzled = vec.rggg;
+	bool2 vecCopy = vec;
+
+	bool4 vecSwizzled = vecCopy.rggg;
 	TEMPER_CHECK_TRUE( vecSwizzled == expectedAnswer );
 }
 
@@ -1006,7 +1083,9 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_bool2_Swizzle_rggg,
 
 TEMPER_PARAMETRIC( Test_bool2_Swizzle_gggg, TEMPER_FLAG_SHOULD_RUN, const bool2& vec, const bool4& expectedAnswer )
 {
-	bool4 vecSwizzled = vec.gggg;
+	bool2 vecCopy = vec;
+
+	bool4 vecSwizzled = vecCopy.gggg;
 	TEMPER_CHECK_TRUE( vecSwizzled == expectedAnswer );
 }
 
