@@ -85,8 +85,8 @@ TEMPER_PARAMETRIC( Test_float2_Swizzle_gr, TEMPER_FLAG_SHOULD_RUN, const float2&
 
 		vecCopy.gr = vecCopy.rg;
 
-		TEMPER_CHECK_TRUE( vecCopy.r == old_g );
-		TEMPER_CHECK_TRUE( vecCopy.g == old_r );
+		TEMPER_CHECK_TRUE( floateq( vecCopy.r, old_g ) );
+		TEMPER_CHECK_TRUE( floateq( vecCopy.g, old_r ) );
 	}
 }
 
@@ -134,8 +134,8 @@ TEMPER_PARAMETRIC( Test_float2_Swizzle_rg, TEMPER_FLAG_SHOULD_RUN, const float2&
 
 		vecCopy.rg = vecCopy.gr;
 
-		TEMPER_CHECK_TRUE( vecCopy.g == old_r );
-		TEMPER_CHECK_TRUE( vecCopy.r == old_g );
+		TEMPER_CHECK_TRUE( floateq( vecCopy.g, old_r ) );
+		TEMPER_CHECK_TRUE( floateq( vecCopy.r, old_g ) );
 	}
 }
 

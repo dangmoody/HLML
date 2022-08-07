@@ -781,12 +781,22 @@ static void GenerateSwizzleFunc_Test( allocatorLinear_t* tempStorage, stringBuil
 		StringBuilder_Appendf( code, "\n" );
 		StringBuilder_Appendf( code, "\t\tvecCopy.%s = vecCopy.%s;\n", swizzleStr, reverseSwizzle );
 		StringBuilder_Appendf( code, "\n" );
-		for ( u32 i = 0; i < numSwizzleComponents; i++ ) {
-			const char componentName = swizzleStr[i];
-			//const char reverseComponentName = GEN_COMPONENT_NAMES_VECTOR[numSwizzleComponents - 1 - i];
-			const char reverseComponentName = reverseSwizzle[i];
+		if ( Gen_TypeIsFloatingPoint( typeInfo->type ) ) {
+			const char* floateqStr = Gen_GetFuncName_Floateq( typeInfo->type );
 
-			StringBuilder_Appendf( code, "\t\tTEMPER_CHECK_TRUE( vecCopy.%c == old_%c );\n", reverseComponentName, componentName );
+			for ( u32 i = 0; i < numSwizzleComponents; i++ ) {
+				const char componentName = swizzleStr[i];
+				const char reverseComponentName = reverseSwizzle[i];
+
+				StringBuilder_Appendf( code, "\t\tTEMPER_CHECK_TRUE( %s( vecCopy.%c, old_%c ) );\n", floateqStr, reverseComponentName, componentName );
+			}
+		} else {
+			for ( u32 i = 0; i < numSwizzleComponents; i++ ) {
+				const char componentName = swizzleStr[i];
+				const char reverseComponentName = reverseSwizzle[i];
+
+				StringBuilder_Appendf( code, "\t\tTEMPER_CHECK_TRUE( vecCopy.%c == old_%c );\n", reverseComponentName, componentName );
+			}
 		}
 		StringBuilder_Appendf( code, "\t}\n" );
 	}

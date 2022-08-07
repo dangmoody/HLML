@@ -85,8 +85,8 @@ TEMPER_PARAMETRIC( Test_float4_Swizzle_yx, TEMPER_FLAG_SHOULD_RUN, const float4&
 
 		vecCopy.yx = vecCopy.xy;
 
-		TEMPER_CHECK_TRUE( vecCopy.x == old_y );
-		TEMPER_CHECK_TRUE( vecCopy.y == old_x );
+		TEMPER_CHECK_TRUE( floateq( vecCopy.x, old_y ) );
+		TEMPER_CHECK_TRUE( floateq( vecCopy.y, old_x ) );
 	}
 }
 
@@ -134,8 +134,8 @@ TEMPER_PARAMETRIC( Test_float4_Swizzle_zx, TEMPER_FLAG_SHOULD_RUN, const float4&
 
 		vecCopy.zx = vecCopy.xz;
 
-		TEMPER_CHECK_TRUE( vecCopy.x == old_z );
-		TEMPER_CHECK_TRUE( vecCopy.z == old_x );
+		TEMPER_CHECK_TRUE( floateq( vecCopy.x, old_z ) );
+		TEMPER_CHECK_TRUE( floateq( vecCopy.z, old_x ) );
 	}
 }
 
@@ -183,8 +183,8 @@ TEMPER_PARAMETRIC( Test_float4_Swizzle_wx, TEMPER_FLAG_SHOULD_RUN, const float4&
 
 		vecCopy.wx = vecCopy.xw;
 
-		TEMPER_CHECK_TRUE( vecCopy.x == old_w );
-		TEMPER_CHECK_TRUE( vecCopy.w == old_x );
+		TEMPER_CHECK_TRUE( floateq( vecCopy.x, old_w ) );
+		TEMPER_CHECK_TRUE( floateq( vecCopy.w, old_x ) );
 	}
 }
 
@@ -232,8 +232,8 @@ TEMPER_PARAMETRIC( Test_float4_Swizzle_xy, TEMPER_FLAG_SHOULD_RUN, const float4&
 
 		vecCopy.xy = vecCopy.yx;
 
-		TEMPER_CHECK_TRUE( vecCopy.y == old_x );
-		TEMPER_CHECK_TRUE( vecCopy.x == old_y );
+		TEMPER_CHECK_TRUE( floateq( vecCopy.y, old_x ) );
+		TEMPER_CHECK_TRUE( floateq( vecCopy.x, old_y ) );
 	}
 }
 
@@ -319,8 +319,8 @@ TEMPER_PARAMETRIC( Test_float4_Swizzle_zy, TEMPER_FLAG_SHOULD_RUN, const float4&
 
 		vecCopy.zy = vecCopy.yz;
 
-		TEMPER_CHECK_TRUE( vecCopy.y == old_z );
-		TEMPER_CHECK_TRUE( vecCopy.z == old_y );
+		TEMPER_CHECK_TRUE( floateq( vecCopy.y, old_z ) );
+		TEMPER_CHECK_TRUE( floateq( vecCopy.z, old_y ) );
 	}
 }
 
@@ -368,8 +368,8 @@ TEMPER_PARAMETRIC( Test_float4_Swizzle_wy, TEMPER_FLAG_SHOULD_RUN, const float4&
 
 		vecCopy.wy = vecCopy.yw;
 
-		TEMPER_CHECK_TRUE( vecCopy.y == old_w );
-		TEMPER_CHECK_TRUE( vecCopy.w == old_y );
+		TEMPER_CHECK_TRUE( floateq( vecCopy.y, old_w ) );
+		TEMPER_CHECK_TRUE( floateq( vecCopy.w, old_y ) );
 	}
 }
 
@@ -417,8 +417,8 @@ TEMPER_PARAMETRIC( Test_float4_Swizzle_xz, TEMPER_FLAG_SHOULD_RUN, const float4&
 
 		vecCopy.xz = vecCopy.zx;
 
-		TEMPER_CHECK_TRUE( vecCopy.z == old_x );
-		TEMPER_CHECK_TRUE( vecCopy.x == old_z );
+		TEMPER_CHECK_TRUE( floateq( vecCopy.z, old_x ) );
+		TEMPER_CHECK_TRUE( floateq( vecCopy.x, old_z ) );
 	}
 }
 
@@ -466,8 +466,8 @@ TEMPER_PARAMETRIC( Test_float4_Swizzle_yz, TEMPER_FLAG_SHOULD_RUN, const float4&
 
 		vecCopy.yz = vecCopy.zy;
 
-		TEMPER_CHECK_TRUE( vecCopy.z == old_y );
-		TEMPER_CHECK_TRUE( vecCopy.y == old_z );
+		TEMPER_CHECK_TRUE( floateq( vecCopy.z, old_y ) );
+		TEMPER_CHECK_TRUE( floateq( vecCopy.y, old_z ) );
 	}
 }
 
@@ -553,8 +553,8 @@ TEMPER_PARAMETRIC( Test_float4_Swizzle_wz, TEMPER_FLAG_SHOULD_RUN, const float4&
 
 		vecCopy.wz = vecCopy.zw;
 
-		TEMPER_CHECK_TRUE( vecCopy.z == old_w );
-		TEMPER_CHECK_TRUE( vecCopy.w == old_z );
+		TEMPER_CHECK_TRUE( floateq( vecCopy.z, old_w ) );
+		TEMPER_CHECK_TRUE( floateq( vecCopy.w, old_z ) );
 	}
 }
 
@@ -602,8 +602,8 @@ TEMPER_PARAMETRIC( Test_float4_Swizzle_xw, TEMPER_FLAG_SHOULD_RUN, const float4&
 
 		vecCopy.xw = vecCopy.wx;
 
-		TEMPER_CHECK_TRUE( vecCopy.w == old_x );
-		TEMPER_CHECK_TRUE( vecCopy.x == old_w );
+		TEMPER_CHECK_TRUE( floateq( vecCopy.w, old_x ) );
+		TEMPER_CHECK_TRUE( floateq( vecCopy.x, old_w ) );
 	}
 }
 
@@ -651,8 +651,8 @@ TEMPER_PARAMETRIC( Test_float4_Swizzle_yw, TEMPER_FLAG_SHOULD_RUN, const float4&
 
 		vecCopy.yw = vecCopy.wy;
 
-		TEMPER_CHECK_TRUE( vecCopy.w == old_y );
-		TEMPER_CHECK_TRUE( vecCopy.y == old_w );
+		TEMPER_CHECK_TRUE( floateq( vecCopy.w, old_y ) );
+		TEMPER_CHECK_TRUE( floateq( vecCopy.y, old_w ) );
 	}
 }
 
@@ -700,8 +700,8 @@ TEMPER_PARAMETRIC( Test_float4_Swizzle_zw, TEMPER_FLAG_SHOULD_RUN, const float4&
 
 		vecCopy.zw = vecCopy.wz;
 
-		TEMPER_CHECK_TRUE( vecCopy.w == old_z );
-		TEMPER_CHECK_TRUE( vecCopy.z == old_w );
+		TEMPER_CHECK_TRUE( floateq( vecCopy.w, old_z ) );
+		TEMPER_CHECK_TRUE( floateq( vecCopy.z, old_w ) );
 	}
 }
 
@@ -1016,9 +1016,9 @@ TEMPER_PARAMETRIC( Test_float4_Swizzle_zyx, TEMPER_FLAG_SHOULD_RUN, const float4
 
 		vecCopy.zyx = vecCopy.xyz;
 
-		TEMPER_CHECK_TRUE( vecCopy.x == old_z );
-		TEMPER_CHECK_TRUE( vecCopy.y == old_y );
-		TEMPER_CHECK_TRUE( vecCopy.z == old_x );
+		TEMPER_CHECK_TRUE( floateq( vecCopy.x, old_z ) );
+		TEMPER_CHECK_TRUE( floateq( vecCopy.y, old_y ) );
+		TEMPER_CHECK_TRUE( floateq( vecCopy.z, old_x ) );
 	}
 }
 
@@ -1067,9 +1067,9 @@ TEMPER_PARAMETRIC( Test_float4_Swizzle_wyx, TEMPER_FLAG_SHOULD_RUN, const float4
 
 		vecCopy.wyx = vecCopy.xyw;
 
-		TEMPER_CHECK_TRUE( vecCopy.x == old_w );
-		TEMPER_CHECK_TRUE( vecCopy.y == old_y );
-		TEMPER_CHECK_TRUE( vecCopy.w == old_x );
+		TEMPER_CHECK_TRUE( floateq( vecCopy.x, old_w ) );
+		TEMPER_CHECK_TRUE( floateq( vecCopy.y, old_y ) );
+		TEMPER_CHECK_TRUE( floateq( vecCopy.w, old_x ) );
 	}
 }
 
@@ -1156,9 +1156,9 @@ TEMPER_PARAMETRIC( Test_float4_Swizzle_yzx, TEMPER_FLAG_SHOULD_RUN, const float4
 
 		vecCopy.yzx = vecCopy.xzy;
 
-		TEMPER_CHECK_TRUE( vecCopy.x == old_y );
-		TEMPER_CHECK_TRUE( vecCopy.z == old_z );
-		TEMPER_CHECK_TRUE( vecCopy.y == old_x );
+		TEMPER_CHECK_TRUE( floateq( vecCopy.x, old_y ) );
+		TEMPER_CHECK_TRUE( floateq( vecCopy.z, old_z ) );
+		TEMPER_CHECK_TRUE( floateq( vecCopy.y, old_x ) );
 	}
 }
 
@@ -1245,9 +1245,9 @@ TEMPER_PARAMETRIC( Test_float4_Swizzle_wzx, TEMPER_FLAG_SHOULD_RUN, const float4
 
 		vecCopy.wzx = vecCopy.xzw;
 
-		TEMPER_CHECK_TRUE( vecCopy.x == old_w );
-		TEMPER_CHECK_TRUE( vecCopy.z == old_z );
-		TEMPER_CHECK_TRUE( vecCopy.w == old_x );
+		TEMPER_CHECK_TRUE( floateq( vecCopy.x, old_w ) );
+		TEMPER_CHECK_TRUE( floateq( vecCopy.z, old_z ) );
+		TEMPER_CHECK_TRUE( floateq( vecCopy.w, old_x ) );
 	}
 }
 
@@ -1334,9 +1334,9 @@ TEMPER_PARAMETRIC( Test_float4_Swizzle_ywx, TEMPER_FLAG_SHOULD_RUN, const float4
 
 		vecCopy.ywx = vecCopy.xwy;
 
-		TEMPER_CHECK_TRUE( vecCopy.x == old_y );
-		TEMPER_CHECK_TRUE( vecCopy.w == old_w );
-		TEMPER_CHECK_TRUE( vecCopy.y == old_x );
+		TEMPER_CHECK_TRUE( floateq( vecCopy.x, old_y ) );
+		TEMPER_CHECK_TRUE( floateq( vecCopy.w, old_w ) );
+		TEMPER_CHECK_TRUE( floateq( vecCopy.y, old_x ) );
 	}
 }
 
@@ -1385,9 +1385,9 @@ TEMPER_PARAMETRIC( Test_float4_Swizzle_zwx, TEMPER_FLAG_SHOULD_RUN, const float4
 
 		vecCopy.zwx = vecCopy.xwz;
 
-		TEMPER_CHECK_TRUE( vecCopy.x == old_z );
-		TEMPER_CHECK_TRUE( vecCopy.w == old_w );
-		TEMPER_CHECK_TRUE( vecCopy.z == old_x );
+		TEMPER_CHECK_TRUE( floateq( vecCopy.x, old_z ) );
+		TEMPER_CHECK_TRUE( floateq( vecCopy.w, old_w ) );
+		TEMPER_CHECK_TRUE( floateq( vecCopy.z, old_x ) );
 	}
 }
 
@@ -1550,9 +1550,9 @@ TEMPER_PARAMETRIC( Test_float4_Swizzle_zxy, TEMPER_FLAG_SHOULD_RUN, const float4
 
 		vecCopy.zxy = vecCopy.yxz;
 
-		TEMPER_CHECK_TRUE( vecCopy.y == old_z );
-		TEMPER_CHECK_TRUE( vecCopy.x == old_x );
-		TEMPER_CHECK_TRUE( vecCopy.z == old_y );
+		TEMPER_CHECK_TRUE( floateq( vecCopy.y, old_z ) );
+		TEMPER_CHECK_TRUE( floateq( vecCopy.x, old_x ) );
+		TEMPER_CHECK_TRUE( floateq( vecCopy.z, old_y ) );
 	}
 }
 
@@ -1601,9 +1601,9 @@ TEMPER_PARAMETRIC( Test_float4_Swizzle_wxy, TEMPER_FLAG_SHOULD_RUN, const float4
 
 		vecCopy.wxy = vecCopy.yxw;
 
-		TEMPER_CHECK_TRUE( vecCopy.y == old_w );
-		TEMPER_CHECK_TRUE( vecCopy.x == old_x );
-		TEMPER_CHECK_TRUE( vecCopy.w == old_y );
+		TEMPER_CHECK_TRUE( floateq( vecCopy.y, old_w ) );
+		TEMPER_CHECK_TRUE( floateq( vecCopy.x, old_x ) );
+		TEMPER_CHECK_TRUE( floateq( vecCopy.w, old_y ) );
 	}
 }
 
@@ -1804,9 +1804,9 @@ TEMPER_PARAMETRIC( Test_float4_Swizzle_xzy, TEMPER_FLAG_SHOULD_RUN, const float4
 
 		vecCopy.xzy = vecCopy.yzx;
 
-		TEMPER_CHECK_TRUE( vecCopy.y == old_x );
-		TEMPER_CHECK_TRUE( vecCopy.z == old_z );
-		TEMPER_CHECK_TRUE( vecCopy.x == old_y );
+		TEMPER_CHECK_TRUE( floateq( vecCopy.y, old_x ) );
+		TEMPER_CHECK_TRUE( floateq( vecCopy.z, old_z ) );
+		TEMPER_CHECK_TRUE( floateq( vecCopy.x, old_y ) );
 	}
 }
 
@@ -1931,9 +1931,9 @@ TEMPER_PARAMETRIC( Test_float4_Swizzle_wzy, TEMPER_FLAG_SHOULD_RUN, const float4
 
 		vecCopy.wzy = vecCopy.yzw;
 
-		TEMPER_CHECK_TRUE( vecCopy.y == old_w );
-		TEMPER_CHECK_TRUE( vecCopy.z == old_z );
-		TEMPER_CHECK_TRUE( vecCopy.w == old_y );
+		TEMPER_CHECK_TRUE( floateq( vecCopy.y, old_w ) );
+		TEMPER_CHECK_TRUE( floateq( vecCopy.z, old_z ) );
+		TEMPER_CHECK_TRUE( floateq( vecCopy.w, old_y ) );
 	}
 }
 
@@ -1982,9 +1982,9 @@ TEMPER_PARAMETRIC( Test_float4_Swizzle_xwy, TEMPER_FLAG_SHOULD_RUN, const float4
 
 		vecCopy.xwy = vecCopy.ywx;
 
-		TEMPER_CHECK_TRUE( vecCopy.y == old_x );
-		TEMPER_CHECK_TRUE( vecCopy.w == old_w );
-		TEMPER_CHECK_TRUE( vecCopy.x == old_y );
+		TEMPER_CHECK_TRUE( floateq( vecCopy.y, old_x ) );
+		TEMPER_CHECK_TRUE( floateq( vecCopy.w, old_w ) );
+		TEMPER_CHECK_TRUE( floateq( vecCopy.x, old_y ) );
 	}
 }
 
@@ -2071,9 +2071,9 @@ TEMPER_PARAMETRIC( Test_float4_Swizzle_zwy, TEMPER_FLAG_SHOULD_RUN, const float4
 
 		vecCopy.zwy = vecCopy.ywz;
 
-		TEMPER_CHECK_TRUE( vecCopy.y == old_z );
-		TEMPER_CHECK_TRUE( vecCopy.w == old_w );
-		TEMPER_CHECK_TRUE( vecCopy.z == old_y );
+		TEMPER_CHECK_TRUE( floateq( vecCopy.y, old_z ) );
+		TEMPER_CHECK_TRUE( floateq( vecCopy.w, old_w ) );
+		TEMPER_CHECK_TRUE( floateq( vecCopy.z, old_y ) );
 	}
 }
 
@@ -2198,9 +2198,9 @@ TEMPER_PARAMETRIC( Test_float4_Swizzle_yxz, TEMPER_FLAG_SHOULD_RUN, const float4
 
 		vecCopy.yxz = vecCopy.zxy;
 
-		TEMPER_CHECK_TRUE( vecCopy.z == old_y );
-		TEMPER_CHECK_TRUE( vecCopy.x == old_x );
-		TEMPER_CHECK_TRUE( vecCopy.y == old_z );
+		TEMPER_CHECK_TRUE( floateq( vecCopy.z, old_y ) );
+		TEMPER_CHECK_TRUE( floateq( vecCopy.x, old_x ) );
+		TEMPER_CHECK_TRUE( floateq( vecCopy.y, old_z ) );
 	}
 }
 
@@ -2287,9 +2287,9 @@ TEMPER_PARAMETRIC( Test_float4_Swizzle_wxz, TEMPER_FLAG_SHOULD_RUN, const float4
 
 		vecCopy.wxz = vecCopy.zxw;
 
-		TEMPER_CHECK_TRUE( vecCopy.z == old_w );
-		TEMPER_CHECK_TRUE( vecCopy.x == old_x );
-		TEMPER_CHECK_TRUE( vecCopy.w == old_z );
+		TEMPER_CHECK_TRUE( floateq( vecCopy.z, old_w ) );
+		TEMPER_CHECK_TRUE( floateq( vecCopy.x, old_x ) );
+		TEMPER_CHECK_TRUE( floateq( vecCopy.w, old_z ) );
 	}
 }
 
@@ -2338,9 +2338,9 @@ TEMPER_PARAMETRIC( Test_float4_Swizzle_xyz, TEMPER_FLAG_SHOULD_RUN, const float4
 
 		vecCopy.xyz = vecCopy.zyx;
 
-		TEMPER_CHECK_TRUE( vecCopy.z == old_x );
-		TEMPER_CHECK_TRUE( vecCopy.y == old_y );
-		TEMPER_CHECK_TRUE( vecCopy.x == old_z );
+		TEMPER_CHECK_TRUE( floateq( vecCopy.z, old_x ) );
+		TEMPER_CHECK_TRUE( floateq( vecCopy.y, old_y ) );
+		TEMPER_CHECK_TRUE( floateq( vecCopy.x, old_z ) );
 	}
 }
 
@@ -2465,9 +2465,9 @@ TEMPER_PARAMETRIC( Test_float4_Swizzle_wyz, TEMPER_FLAG_SHOULD_RUN, const float4
 
 		vecCopy.wyz = vecCopy.zyw;
 
-		TEMPER_CHECK_TRUE( vecCopy.z == old_w );
-		TEMPER_CHECK_TRUE( vecCopy.y == old_y );
-		TEMPER_CHECK_TRUE( vecCopy.w == old_z );
+		TEMPER_CHECK_TRUE( floateq( vecCopy.z, old_w ) );
+		TEMPER_CHECK_TRUE( floateq( vecCopy.y, old_y ) );
+		TEMPER_CHECK_TRUE( floateq( vecCopy.w, old_z ) );
 	}
 }
 
@@ -2668,9 +2668,9 @@ TEMPER_PARAMETRIC( Test_float4_Swizzle_xwz, TEMPER_FLAG_SHOULD_RUN, const float4
 
 		vecCopy.xwz = vecCopy.zwx;
 
-		TEMPER_CHECK_TRUE( vecCopy.z == old_x );
-		TEMPER_CHECK_TRUE( vecCopy.w == old_w );
-		TEMPER_CHECK_TRUE( vecCopy.x == old_z );
+		TEMPER_CHECK_TRUE( floateq( vecCopy.z, old_x ) );
+		TEMPER_CHECK_TRUE( floateq( vecCopy.w, old_w ) );
+		TEMPER_CHECK_TRUE( floateq( vecCopy.x, old_z ) );
 	}
 }
 
@@ -2719,9 +2719,9 @@ TEMPER_PARAMETRIC( Test_float4_Swizzle_ywz, TEMPER_FLAG_SHOULD_RUN, const float4
 
 		vecCopy.ywz = vecCopy.zwy;
 
-		TEMPER_CHECK_TRUE( vecCopy.z == old_y );
-		TEMPER_CHECK_TRUE( vecCopy.w == old_w );
-		TEMPER_CHECK_TRUE( vecCopy.y == old_z );
+		TEMPER_CHECK_TRUE( floateq( vecCopy.z, old_y ) );
+		TEMPER_CHECK_TRUE( floateq( vecCopy.w, old_w ) );
+		TEMPER_CHECK_TRUE( floateq( vecCopy.y, old_z ) );
 	}
 }
 
@@ -2884,9 +2884,9 @@ TEMPER_PARAMETRIC( Test_float4_Swizzle_yxw, TEMPER_FLAG_SHOULD_RUN, const float4
 
 		vecCopy.yxw = vecCopy.wxy;
 
-		TEMPER_CHECK_TRUE( vecCopy.w == old_y );
-		TEMPER_CHECK_TRUE( vecCopy.x == old_x );
-		TEMPER_CHECK_TRUE( vecCopy.y == old_w );
+		TEMPER_CHECK_TRUE( floateq( vecCopy.w, old_y ) );
+		TEMPER_CHECK_TRUE( floateq( vecCopy.x, old_x ) );
+		TEMPER_CHECK_TRUE( floateq( vecCopy.y, old_w ) );
 	}
 }
 
@@ -2935,9 +2935,9 @@ TEMPER_PARAMETRIC( Test_float4_Swizzle_zxw, TEMPER_FLAG_SHOULD_RUN, const float4
 
 		vecCopy.zxw = vecCopy.wxz;
 
-		TEMPER_CHECK_TRUE( vecCopy.w == old_z );
-		TEMPER_CHECK_TRUE( vecCopy.x == old_x );
-		TEMPER_CHECK_TRUE( vecCopy.z == old_w );
+		TEMPER_CHECK_TRUE( floateq( vecCopy.w, old_z ) );
+		TEMPER_CHECK_TRUE( floateq( vecCopy.x, old_x ) );
+		TEMPER_CHECK_TRUE( floateq( vecCopy.z, old_w ) );
 	}
 }
 
@@ -3024,9 +3024,9 @@ TEMPER_PARAMETRIC( Test_float4_Swizzle_xyw, TEMPER_FLAG_SHOULD_RUN, const float4
 
 		vecCopy.xyw = vecCopy.wyx;
 
-		TEMPER_CHECK_TRUE( vecCopy.w == old_x );
-		TEMPER_CHECK_TRUE( vecCopy.y == old_y );
-		TEMPER_CHECK_TRUE( vecCopy.x == old_w );
+		TEMPER_CHECK_TRUE( floateq( vecCopy.w, old_x ) );
+		TEMPER_CHECK_TRUE( floateq( vecCopy.y, old_y ) );
+		TEMPER_CHECK_TRUE( floateq( vecCopy.x, old_w ) );
 	}
 }
 
@@ -3113,9 +3113,9 @@ TEMPER_PARAMETRIC( Test_float4_Swizzle_zyw, TEMPER_FLAG_SHOULD_RUN, const float4
 
 		vecCopy.zyw = vecCopy.wyz;
 
-		TEMPER_CHECK_TRUE( vecCopy.w == old_z );
-		TEMPER_CHECK_TRUE( vecCopy.y == old_y );
-		TEMPER_CHECK_TRUE( vecCopy.z == old_w );
+		TEMPER_CHECK_TRUE( floateq( vecCopy.w, old_z ) );
+		TEMPER_CHECK_TRUE( floateq( vecCopy.y, old_y ) );
+		TEMPER_CHECK_TRUE( floateq( vecCopy.z, old_w ) );
 	}
 }
 
@@ -3202,9 +3202,9 @@ TEMPER_PARAMETRIC( Test_float4_Swizzle_xzw, TEMPER_FLAG_SHOULD_RUN, const float4
 
 		vecCopy.xzw = vecCopy.wzx;
 
-		TEMPER_CHECK_TRUE( vecCopy.w == old_x );
-		TEMPER_CHECK_TRUE( vecCopy.z == old_z );
-		TEMPER_CHECK_TRUE( vecCopy.x == old_w );
+		TEMPER_CHECK_TRUE( floateq( vecCopy.w, old_x ) );
+		TEMPER_CHECK_TRUE( floateq( vecCopy.z, old_z ) );
+		TEMPER_CHECK_TRUE( floateq( vecCopy.x, old_w ) );
 	}
 }
 
@@ -3253,9 +3253,9 @@ TEMPER_PARAMETRIC( Test_float4_Swizzle_yzw, TEMPER_FLAG_SHOULD_RUN, const float4
 
 		vecCopy.yzw = vecCopy.wzy;
 
-		TEMPER_CHECK_TRUE( vecCopy.w == old_y );
-		TEMPER_CHECK_TRUE( vecCopy.z == old_z );
-		TEMPER_CHECK_TRUE( vecCopy.y == old_w );
+		TEMPER_CHECK_TRUE( floateq( vecCopy.w, old_y ) );
+		TEMPER_CHECK_TRUE( floateq( vecCopy.z, old_z ) );
+		TEMPER_CHECK_TRUE( floateq( vecCopy.y, old_w ) );
 	}
 }
 
@@ -4559,10 +4559,10 @@ TEMPER_PARAMETRIC( Test_float4_Swizzle_wzyx, TEMPER_FLAG_SHOULD_RUN, const float
 
 		vecCopy.wzyx = vecCopy.xyzw;
 
-		TEMPER_CHECK_TRUE( vecCopy.x == old_w );
-		TEMPER_CHECK_TRUE( vecCopy.y == old_z );
-		TEMPER_CHECK_TRUE( vecCopy.z == old_y );
-		TEMPER_CHECK_TRUE( vecCopy.w == old_x );
+		TEMPER_CHECK_TRUE( floateq( vecCopy.x, old_w ) );
+		TEMPER_CHECK_TRUE( floateq( vecCopy.y, old_z ) );
+		TEMPER_CHECK_TRUE( floateq( vecCopy.z, old_y ) );
+		TEMPER_CHECK_TRUE( floateq( vecCopy.w, old_x ) );
 	}
 }
 
@@ -4688,10 +4688,10 @@ TEMPER_PARAMETRIC( Test_float4_Swizzle_zwyx, TEMPER_FLAG_SHOULD_RUN, const float
 
 		vecCopy.zwyx = vecCopy.xywz;
 
-		TEMPER_CHECK_TRUE( vecCopy.x == old_z );
-		TEMPER_CHECK_TRUE( vecCopy.y == old_w );
-		TEMPER_CHECK_TRUE( vecCopy.w == old_y );
-		TEMPER_CHECK_TRUE( vecCopy.z == old_x );
+		TEMPER_CHECK_TRUE( floateq( vecCopy.x, old_z ) );
+		TEMPER_CHECK_TRUE( floateq( vecCopy.y, old_w ) );
+		TEMPER_CHECK_TRUE( floateq( vecCopy.w, old_y ) );
+		TEMPER_CHECK_TRUE( floateq( vecCopy.z, old_x ) );
 	}
 }
 
@@ -5045,10 +5045,10 @@ TEMPER_PARAMETRIC( Test_float4_Swizzle_wyzx, TEMPER_FLAG_SHOULD_RUN, const float
 
 		vecCopy.wyzx = vecCopy.xzyw;
 
-		TEMPER_CHECK_TRUE( vecCopy.x == old_w );
-		TEMPER_CHECK_TRUE( vecCopy.z == old_y );
-		TEMPER_CHECK_TRUE( vecCopy.y == old_z );
-		TEMPER_CHECK_TRUE( vecCopy.w == old_x );
+		TEMPER_CHECK_TRUE( floateq( vecCopy.x, old_w ) );
+		TEMPER_CHECK_TRUE( floateq( vecCopy.z, old_y ) );
+		TEMPER_CHECK_TRUE( floateq( vecCopy.y, old_z ) );
+		TEMPER_CHECK_TRUE( floateq( vecCopy.w, old_x ) );
 	}
 }
 
@@ -5288,10 +5288,10 @@ TEMPER_PARAMETRIC( Test_float4_Swizzle_ywzx, TEMPER_FLAG_SHOULD_RUN, const float
 
 		vecCopy.ywzx = vecCopy.xzwy;
 
-		TEMPER_CHECK_TRUE( vecCopy.x == old_y );
-		TEMPER_CHECK_TRUE( vecCopy.z == old_w );
-		TEMPER_CHECK_TRUE( vecCopy.w == old_z );
-		TEMPER_CHECK_TRUE( vecCopy.y == old_x );
+		TEMPER_CHECK_TRUE( floateq( vecCopy.x, old_y ) );
+		TEMPER_CHECK_TRUE( floateq( vecCopy.z, old_w ) );
+		TEMPER_CHECK_TRUE( floateq( vecCopy.w, old_z ) );
+		TEMPER_CHECK_TRUE( floateq( vecCopy.y, old_x ) );
 	}
 }
 
@@ -5645,10 +5645,10 @@ TEMPER_PARAMETRIC( Test_float4_Swizzle_zywx, TEMPER_FLAG_SHOULD_RUN, const float
 
 		vecCopy.zywx = vecCopy.xwyz;
 
-		TEMPER_CHECK_TRUE( vecCopy.x == old_z );
-		TEMPER_CHECK_TRUE( vecCopy.w == old_y );
-		TEMPER_CHECK_TRUE( vecCopy.y == old_w );
-		TEMPER_CHECK_TRUE( vecCopy.z == old_x );
+		TEMPER_CHECK_TRUE( floateq( vecCopy.x, old_z ) );
+		TEMPER_CHECK_TRUE( floateq( vecCopy.w, old_y ) );
+		TEMPER_CHECK_TRUE( floateq( vecCopy.y, old_w ) );
+		TEMPER_CHECK_TRUE( floateq( vecCopy.z, old_x ) );
 	}
 }
 
@@ -5774,10 +5774,10 @@ TEMPER_PARAMETRIC( Test_float4_Swizzle_yzwx, TEMPER_FLAG_SHOULD_RUN, const float
 
 		vecCopy.yzwx = vecCopy.xwzy;
 
-		TEMPER_CHECK_TRUE( vecCopy.x == old_y );
-		TEMPER_CHECK_TRUE( vecCopy.w == old_z );
-		TEMPER_CHECK_TRUE( vecCopy.z == old_w );
-		TEMPER_CHECK_TRUE( vecCopy.y == old_x );
+		TEMPER_CHECK_TRUE( floateq( vecCopy.x, old_y ) );
+		TEMPER_CHECK_TRUE( floateq( vecCopy.w, old_z ) );
+		TEMPER_CHECK_TRUE( floateq( vecCopy.z, old_w ) );
+		TEMPER_CHECK_TRUE( floateq( vecCopy.y, old_x ) );
 	}
 }
 
@@ -6473,10 +6473,10 @@ TEMPER_PARAMETRIC( Test_float4_Swizzle_wzxy, TEMPER_FLAG_SHOULD_RUN, const float
 
 		vecCopy.wzxy = vecCopy.yxzw;
 
-		TEMPER_CHECK_TRUE( vecCopy.y == old_w );
-		TEMPER_CHECK_TRUE( vecCopy.x == old_z );
-		TEMPER_CHECK_TRUE( vecCopy.z == old_x );
-		TEMPER_CHECK_TRUE( vecCopy.w == old_y );
+		TEMPER_CHECK_TRUE( floateq( vecCopy.y, old_w ) );
+		TEMPER_CHECK_TRUE( floateq( vecCopy.x, old_z ) );
+		TEMPER_CHECK_TRUE( floateq( vecCopy.z, old_x ) );
+		TEMPER_CHECK_TRUE( floateq( vecCopy.w, old_y ) );
 	}
 }
 
@@ -6602,10 +6602,10 @@ TEMPER_PARAMETRIC( Test_float4_Swizzle_zwxy, TEMPER_FLAG_SHOULD_RUN, const float
 
 		vecCopy.zwxy = vecCopy.yxwz;
 
-		TEMPER_CHECK_TRUE( vecCopy.y == old_z );
-		TEMPER_CHECK_TRUE( vecCopy.x == old_w );
-		TEMPER_CHECK_TRUE( vecCopy.w == old_x );
-		TEMPER_CHECK_TRUE( vecCopy.z == old_y );
+		TEMPER_CHECK_TRUE( floateq( vecCopy.y, old_z ) );
+		TEMPER_CHECK_TRUE( floateq( vecCopy.x, old_w ) );
+		TEMPER_CHECK_TRUE( floateq( vecCopy.w, old_x ) );
+		TEMPER_CHECK_TRUE( floateq( vecCopy.z, old_y ) );
 	}
 }
 
@@ -7415,10 +7415,10 @@ TEMPER_PARAMETRIC( Test_float4_Swizzle_wxzy, TEMPER_FLAG_SHOULD_RUN, const float
 
 		vecCopy.wxzy = vecCopy.yzxw;
 
-		TEMPER_CHECK_TRUE( vecCopy.y == old_w );
-		TEMPER_CHECK_TRUE( vecCopy.z == old_x );
-		TEMPER_CHECK_TRUE( vecCopy.x == old_z );
-		TEMPER_CHECK_TRUE( vecCopy.w == old_y );
+		TEMPER_CHECK_TRUE( floateq( vecCopy.y, old_w ) );
+		TEMPER_CHECK_TRUE( floateq( vecCopy.z, old_x ) );
+		TEMPER_CHECK_TRUE( floateq( vecCopy.x, old_z ) );
+		TEMPER_CHECK_TRUE( floateq( vecCopy.w, old_y ) );
 	}
 }
 
@@ -7772,10 +7772,10 @@ TEMPER_PARAMETRIC( Test_float4_Swizzle_xwzy, TEMPER_FLAG_SHOULD_RUN, const float
 
 		vecCopy.xwzy = vecCopy.yzwx;
 
-		TEMPER_CHECK_TRUE( vecCopy.y == old_x );
-		TEMPER_CHECK_TRUE( vecCopy.z == old_w );
-		TEMPER_CHECK_TRUE( vecCopy.w == old_z );
-		TEMPER_CHECK_TRUE( vecCopy.x == old_y );
+		TEMPER_CHECK_TRUE( floateq( vecCopy.y, old_x ) );
+		TEMPER_CHECK_TRUE( floateq( vecCopy.z, old_w ) );
+		TEMPER_CHECK_TRUE( floateq( vecCopy.w, old_z ) );
+		TEMPER_CHECK_TRUE( floateq( vecCopy.x, old_y ) );
 	}
 }
 
@@ -8015,10 +8015,10 @@ TEMPER_PARAMETRIC( Test_float4_Swizzle_zxwy, TEMPER_FLAG_SHOULD_RUN, const float
 
 		vecCopy.zxwy = vecCopy.ywxz;
 
-		TEMPER_CHECK_TRUE( vecCopy.y == old_z );
-		TEMPER_CHECK_TRUE( vecCopy.w == old_x );
-		TEMPER_CHECK_TRUE( vecCopy.x == old_w );
-		TEMPER_CHECK_TRUE( vecCopy.z == old_y );
+		TEMPER_CHECK_TRUE( floateq( vecCopy.y, old_z ) );
+		TEMPER_CHECK_TRUE( floateq( vecCopy.w, old_x ) );
+		TEMPER_CHECK_TRUE( floateq( vecCopy.x, old_w ) );
+		TEMPER_CHECK_TRUE( floateq( vecCopy.z, old_y ) );
 	}
 }
 
@@ -8258,10 +8258,10 @@ TEMPER_PARAMETRIC( Test_float4_Swizzle_xzwy, TEMPER_FLAG_SHOULD_RUN, const float
 
 		vecCopy.xzwy = vecCopy.ywzx;
 
-		TEMPER_CHECK_TRUE( vecCopy.y == old_x );
-		TEMPER_CHECK_TRUE( vecCopy.w == old_z );
-		TEMPER_CHECK_TRUE( vecCopy.z == old_w );
-		TEMPER_CHECK_TRUE( vecCopy.x == old_y );
+		TEMPER_CHECK_TRUE( floateq( vecCopy.y, old_x ) );
+		TEMPER_CHECK_TRUE( floateq( vecCopy.w, old_z ) );
+		TEMPER_CHECK_TRUE( floateq( vecCopy.z, old_w ) );
+		TEMPER_CHECK_TRUE( floateq( vecCopy.x, old_y ) );
 	}
 }
 
@@ -8843,10 +8843,10 @@ TEMPER_PARAMETRIC( Test_float4_Swizzle_wyxz, TEMPER_FLAG_SHOULD_RUN, const float
 
 		vecCopy.wyxz = vecCopy.zxyw;
 
-		TEMPER_CHECK_TRUE( vecCopy.z == old_w );
-		TEMPER_CHECK_TRUE( vecCopy.x == old_y );
-		TEMPER_CHECK_TRUE( vecCopy.y == old_x );
-		TEMPER_CHECK_TRUE( vecCopy.w == old_z );
+		TEMPER_CHECK_TRUE( floateq( vecCopy.z, old_w ) );
+		TEMPER_CHECK_TRUE( floateq( vecCopy.x, old_y ) );
+		TEMPER_CHECK_TRUE( floateq( vecCopy.y, old_x ) );
+		TEMPER_CHECK_TRUE( floateq( vecCopy.w, old_z ) );
 	}
 }
 
@@ -9086,10 +9086,10 @@ TEMPER_PARAMETRIC( Test_float4_Swizzle_ywxz, TEMPER_FLAG_SHOULD_RUN, const float
 
 		vecCopy.ywxz = vecCopy.zxwy;
 
-		TEMPER_CHECK_TRUE( vecCopy.z == old_y );
-		TEMPER_CHECK_TRUE( vecCopy.x == old_w );
-		TEMPER_CHECK_TRUE( vecCopy.w == old_x );
-		TEMPER_CHECK_TRUE( vecCopy.y == old_z );
+		TEMPER_CHECK_TRUE( floateq( vecCopy.z, old_y ) );
+		TEMPER_CHECK_TRUE( floateq( vecCopy.x, old_w ) );
+		TEMPER_CHECK_TRUE( floateq( vecCopy.w, old_x ) );
+		TEMPER_CHECK_TRUE( floateq( vecCopy.y, old_z ) );
 	}
 }
 
@@ -9329,10 +9329,10 @@ TEMPER_PARAMETRIC( Test_float4_Swizzle_wxyz, TEMPER_FLAG_SHOULD_RUN, const float
 
 		vecCopy.wxyz = vecCopy.zyxw;
 
-		TEMPER_CHECK_TRUE( vecCopy.z == old_w );
-		TEMPER_CHECK_TRUE( vecCopy.y == old_x );
-		TEMPER_CHECK_TRUE( vecCopy.x == old_y );
-		TEMPER_CHECK_TRUE( vecCopy.w == old_z );
+		TEMPER_CHECK_TRUE( floateq( vecCopy.z, old_w ) );
+		TEMPER_CHECK_TRUE( floateq( vecCopy.y, old_x ) );
+		TEMPER_CHECK_TRUE( floateq( vecCopy.x, old_y ) );
+		TEMPER_CHECK_TRUE( floateq( vecCopy.w, old_z ) );
 	}
 }
 
@@ -9686,10 +9686,10 @@ TEMPER_PARAMETRIC( Test_float4_Swizzle_xwyz, TEMPER_FLAG_SHOULD_RUN, const float
 
 		vecCopy.xwyz = vecCopy.zywx;
 
-		TEMPER_CHECK_TRUE( vecCopy.z == old_x );
-		TEMPER_CHECK_TRUE( vecCopy.y == old_w );
-		TEMPER_CHECK_TRUE( vecCopy.w == old_y );
-		TEMPER_CHECK_TRUE( vecCopy.x == old_z );
+		TEMPER_CHECK_TRUE( floateq( vecCopy.z, old_x ) );
+		TEMPER_CHECK_TRUE( floateq( vecCopy.y, old_w ) );
+		TEMPER_CHECK_TRUE( floateq( vecCopy.w, old_y ) );
+		TEMPER_CHECK_TRUE( floateq( vecCopy.x, old_z ) );
 	}
 }
 
@@ -10499,10 +10499,10 @@ TEMPER_PARAMETRIC( Test_float4_Swizzle_yxwz, TEMPER_FLAG_SHOULD_RUN, const float
 
 		vecCopy.yxwz = vecCopy.zwxy;
 
-		TEMPER_CHECK_TRUE( vecCopy.z == old_y );
-		TEMPER_CHECK_TRUE( vecCopy.w == old_x );
-		TEMPER_CHECK_TRUE( vecCopy.x == old_w );
-		TEMPER_CHECK_TRUE( vecCopy.y == old_z );
+		TEMPER_CHECK_TRUE( floateq( vecCopy.z, old_y ) );
+		TEMPER_CHECK_TRUE( floateq( vecCopy.w, old_x ) );
+		TEMPER_CHECK_TRUE( floateq( vecCopy.x, old_w ) );
+		TEMPER_CHECK_TRUE( floateq( vecCopy.y, old_z ) );
 	}
 }
 
@@ -10628,10 +10628,10 @@ TEMPER_PARAMETRIC( Test_float4_Swizzle_xywz, TEMPER_FLAG_SHOULD_RUN, const float
 
 		vecCopy.xywz = vecCopy.zwyx;
 
-		TEMPER_CHECK_TRUE( vecCopy.z == old_x );
-		TEMPER_CHECK_TRUE( vecCopy.w == old_y );
-		TEMPER_CHECK_TRUE( vecCopy.y == old_w );
-		TEMPER_CHECK_TRUE( vecCopy.x == old_z );
+		TEMPER_CHECK_TRUE( floateq( vecCopy.z, old_x ) );
+		TEMPER_CHECK_TRUE( floateq( vecCopy.w, old_y ) );
+		TEMPER_CHECK_TRUE( floateq( vecCopy.y, old_w ) );
+		TEMPER_CHECK_TRUE( floateq( vecCopy.x, old_z ) );
 	}
 }
 
@@ -11327,10 +11327,10 @@ TEMPER_PARAMETRIC( Test_float4_Swizzle_zyxw, TEMPER_FLAG_SHOULD_RUN, const float
 
 		vecCopy.zyxw = vecCopy.wxyz;
 
-		TEMPER_CHECK_TRUE( vecCopy.w == old_z );
-		TEMPER_CHECK_TRUE( vecCopy.x == old_y );
-		TEMPER_CHECK_TRUE( vecCopy.y == old_x );
-		TEMPER_CHECK_TRUE( vecCopy.z == old_w );
+		TEMPER_CHECK_TRUE( floateq( vecCopy.w, old_z ) );
+		TEMPER_CHECK_TRUE( floateq( vecCopy.x, old_y ) );
+		TEMPER_CHECK_TRUE( floateq( vecCopy.y, old_x ) );
+		TEMPER_CHECK_TRUE( floateq( vecCopy.z, old_w ) );
 	}
 }
 
@@ -11456,10 +11456,10 @@ TEMPER_PARAMETRIC( Test_float4_Swizzle_yzxw, TEMPER_FLAG_SHOULD_RUN, const float
 
 		vecCopy.yzxw = vecCopy.wxzy;
 
-		TEMPER_CHECK_TRUE( vecCopy.w == old_y );
-		TEMPER_CHECK_TRUE( vecCopy.x == old_z );
-		TEMPER_CHECK_TRUE( vecCopy.z == old_x );
-		TEMPER_CHECK_TRUE( vecCopy.y == old_w );
+		TEMPER_CHECK_TRUE( floateq( vecCopy.w, old_y ) );
+		TEMPER_CHECK_TRUE( floateq( vecCopy.x, old_z ) );
+		TEMPER_CHECK_TRUE( floateq( vecCopy.z, old_x ) );
+		TEMPER_CHECK_TRUE( floateq( vecCopy.y, old_w ) );
 	}
 }
 
@@ -11813,10 +11813,10 @@ TEMPER_PARAMETRIC( Test_float4_Swizzle_zxyw, TEMPER_FLAG_SHOULD_RUN, const float
 
 		vecCopy.zxyw = vecCopy.wyxz;
 
-		TEMPER_CHECK_TRUE( vecCopy.w == old_z );
-		TEMPER_CHECK_TRUE( vecCopy.y == old_x );
-		TEMPER_CHECK_TRUE( vecCopy.x == old_y );
-		TEMPER_CHECK_TRUE( vecCopy.z == old_w );
+		TEMPER_CHECK_TRUE( floateq( vecCopy.w, old_z ) );
+		TEMPER_CHECK_TRUE( floateq( vecCopy.y, old_x ) );
+		TEMPER_CHECK_TRUE( floateq( vecCopy.x, old_y ) );
+		TEMPER_CHECK_TRUE( floateq( vecCopy.z, old_w ) );
 	}
 }
 
@@ -12056,10 +12056,10 @@ TEMPER_PARAMETRIC( Test_float4_Swizzle_xzyw, TEMPER_FLAG_SHOULD_RUN, const float
 
 		vecCopy.xzyw = vecCopy.wyzx;
 
-		TEMPER_CHECK_TRUE( vecCopy.w == old_x );
-		TEMPER_CHECK_TRUE( vecCopy.y == old_z );
-		TEMPER_CHECK_TRUE( vecCopy.z == old_y );
-		TEMPER_CHECK_TRUE( vecCopy.x == old_w );
+		TEMPER_CHECK_TRUE( floateq( vecCopy.w, old_x ) );
+		TEMPER_CHECK_TRUE( floateq( vecCopy.y, old_z ) );
+		TEMPER_CHECK_TRUE( floateq( vecCopy.z, old_y ) );
+		TEMPER_CHECK_TRUE( floateq( vecCopy.x, old_w ) );
 	}
 }
 
@@ -12413,10 +12413,10 @@ TEMPER_PARAMETRIC( Test_float4_Swizzle_yxzw, TEMPER_FLAG_SHOULD_RUN, const float
 
 		vecCopy.yxzw = vecCopy.wzxy;
 
-		TEMPER_CHECK_TRUE( vecCopy.w == old_y );
-		TEMPER_CHECK_TRUE( vecCopy.z == old_x );
-		TEMPER_CHECK_TRUE( vecCopy.x == old_z );
-		TEMPER_CHECK_TRUE( vecCopy.y == old_w );
+		TEMPER_CHECK_TRUE( floateq( vecCopy.w, old_y ) );
+		TEMPER_CHECK_TRUE( floateq( vecCopy.z, old_x ) );
+		TEMPER_CHECK_TRUE( floateq( vecCopy.x, old_z ) );
+		TEMPER_CHECK_TRUE( floateq( vecCopy.y, old_w ) );
 	}
 }
 
@@ -12542,10 +12542,10 @@ TEMPER_PARAMETRIC( Test_float4_Swizzle_xyzw, TEMPER_FLAG_SHOULD_RUN, const float
 
 		vecCopy.xyzw = vecCopy.wzyx;
 
-		TEMPER_CHECK_TRUE( vecCopy.w == old_x );
-		TEMPER_CHECK_TRUE( vecCopy.z == old_y );
-		TEMPER_CHECK_TRUE( vecCopy.y == old_z );
-		TEMPER_CHECK_TRUE( vecCopy.x == old_w );
+		TEMPER_CHECK_TRUE( floateq( vecCopy.w, old_x ) );
+		TEMPER_CHECK_TRUE( floateq( vecCopy.z, old_y ) );
+		TEMPER_CHECK_TRUE( floateq( vecCopy.y, old_z ) );
+		TEMPER_CHECK_TRUE( floateq( vecCopy.x, old_w ) );
 	}
 }
 
