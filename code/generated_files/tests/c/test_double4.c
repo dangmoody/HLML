@@ -633,9 +633,9 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_double4_quat_lerp,
 	&(double4) { 0.750000f, 0.750000f, 0.750000f, 0.750000f }
 );
 
-TEMPER_PARAMETRIC( Test_double4_quat_slerp, TEMPER_FLAG_SHOULD_RUN, const double4* lhs, const double4* rhs, const double percent, const double4* expectedAnswer )
+TEMPER_PARAMETRIC( Test_double4_quat_slerp, TEMPER_FLAG_SHOULD_RUN, const double4* lhs, const double4* rhs, const double t, const double4* expectedAnswer )
 {
-	double4 actualResult = double4_quat_slerp( lhs, rhs, percent );
+	double4 actualResult = double4_quat_slerp( lhs, rhs, t );
 	TEMPER_CHECK_TRUE( double4_equals( &actualResult, expectedAnswer ) );
 }
 
@@ -647,24 +647,17 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_double4_quat_slerp,
 );
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_double4_quat_slerp,
-	&(double4) { -0.015586f, 0.002385f, -0.152123f, 0.988236f },
-	&(double4) { -0.013892f, 0.000244f, -0.155418f, 0.987751f },
-	0.500000f,
-	&(double4) { -0.014739f, 0.001314f, -0.153771f, 0.987996f }
-);
-
-TEMPER_INVOKE_PARAMETRIC_TEST( Test_double4_quat_slerp,
-	&(double4) { 0.294370f, 0.103423f, -0.136137f, 0.940275f },
-	&(double4) { 0.417178f, 0.137045f, -0.379427f, 0.814381f },
+	&(double4) { 0.000000f, 0.000000f, 0.000000f, 0.000000f },
+	&(double4) { 1.000000f, 1.000000f, 1.000000f, 1.000000f },
 	0.250000f,
-	&(double4) { 0.328079f, 0.112850f, -0.199027f, 0.916525f }
+	&(double4) { 0.382683f, 0.382683f, 0.382683f, 0.382683f }
 );
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_double4_quat_slerp,
-	&(double4) { 0.294370f, 0.103423f, -0.136137f, 0.940275f },
-	&(double4) { 0.417178f, 0.137045f, -0.379427f, 0.814381f },
+	&(double4) { 0.000000f, 0.000000f, 0.000000f, 0.000000f },
+	&(double4) { 1.000000f, 1.000000f, 1.000000f, 1.000000f },
 	0.750000f,
-	&(double4) { 0.389659f, 0.129709f, -0.321022f, 0.853397f }
+	&(double4) { 0.923880f, 0.923880f, 0.923880f, 0.923880f }
 );
 
 TEMPER_PARAMETRIC( Test_double4_lengthsq, TEMPER_FLAG_SHOULD_RUN, const double4* vec, const double expectedAnswer )
