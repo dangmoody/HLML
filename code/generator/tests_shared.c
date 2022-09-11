@@ -1592,24 +1592,64 @@ static void GenerateComponentWiseTests( allocatorLinear_t* tempStorage, stringBu
 			}
 		} );
 
-		Gen_GenerateParametricTestsCode_ComponentWise( tempStorage, code, typeInfo, GEN_FUNCTION_NAME_QUAT_SLERP, strings, flags, &(componentWiseTestsData_t) {
-			.parmDefsCount = 3,
-			.parmDefs = (parametricTestDefinitionParm_t[]) {
-				{ typeInfo,   "lhs" },
-				{ typeInfo,   "rhs" },
-				{ scalarType, "t"   }
-			},
+		{
+			Gen_GenerateParametricTestDefinition_Generic( tempStorage, code, typeInfo, strings, flags, &(parametricTestDefinition_t) {
+				.returnType = typeInfo,
+				.funcName = GEN_FUNCTION_NAME_QUAT_SLERP,
+				.parmsCount = 3,
+				.parms = (parametricTestDefinitionParm_t[]) {
+					{ typeInfo, "lhs" },
+					{ typeInfo, "rhs" },
+					{ scalarType, "percent" }
+				},
+			} );
+			
+			typedef struct testFixture_QuatSlerp_t {
+				float32	lhs[4];
+				float32	rhs[4];
+				float32	percent;
+				float32	expectedAnswer[4];
+			} testFixture_QuatSlerp_t;
+			
+			testFixture_QuatSlerp_t slerpFixtures[] = {
+				{
+					.lhs			= { 0.0f, 0.0f, 0.0f, 0.0f },
+					.rhs			= { 1.0f, 1.0f, 1.0f, 1.0f },
+					.percent		= 0.5f,
+					.expectedAnswer	= { 0.707106781f, 0.707106781f, 0.707106781f, 0.707106781f }
+				},
+				{
+					.lhs			= { -0.01558623f, 0.002385007f, -0.1521227f, 0.9882358f },
+					.rhs			= { -0.01389236f, 0.0002439279f, -0.1554181f, 0.9877511f },
+					.percent		= 0.5f,
+					.expectedAnswer	= { -0.0147393281f, 0.00131447043f, -0.15377076f, 0.987995684f }
+				},
+				{
+					.lhs			= { 0.29437f, 0.1034228f, -0.1361366f, 0.940275f },
+					.rhs			= { 0.4171777f, 0.1370446f, -0.3794265f, 0.8143814f },
+					.percent		= 0.25f,
+					.expectedAnswer	= { 0.328078657f, 0.112850063f, -0.199026555f, 0.916524946f }
+				},
+				{
+					.lhs			= { 0.29437f, 0.1034228f, -0.1361366f, 0.940275f },
+					.rhs			= { 0.4171777f, 0.1370446f, -0.3794265f, 0.8143814f },
+					.percent		= 0.75f,
+					.expectedAnswer	= { 0.389659435f, 0.129709378f, -0.321021885f, 0.853396773f }
+				}
+			}; 
 
-			.numTests = 1,
+			for ( u32 i = 0; i < GEN_COUNTOF( slerpFixtures ); i++ ) {
+				const testFixture_QuatSlerp_t* fixture = &slerpFixtures[i];
 
-			.inputs = (testValues_t[]) {
-				{ (float32[]) { 0.0f, 1.0f, 0.5f } }
-			},
+				parametricTestInvokationGenericParm_t params[] = {
+					{  typeInfo,       fixture->lhs           },
+					{  typeInfo,       fixture->rhs           },
+					{  scalarType,    &fixture->percent       },
+					{  typeInfo,  fixture->expectedAnswer     }
+				};
 
-			.outputType = typeInfo,
-			.outputs = (testValues_t[]) {
-				{ (float32[]) { 0.707106781f } }
+				Gen_GenerateParametricTestInvokation_Generic( tempStorage, code, typeInfo, GEN_FUNCTION_NAME_QUAT_SLERP, strings, flags, params, GEN_COUNTOF( params ) );
 			}
-		} );
+		}
 	}
 }
