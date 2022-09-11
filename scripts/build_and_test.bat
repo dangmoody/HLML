@@ -70,7 +70,7 @@ echo.
 
 REM C99 tests
 echo Compiling C99 tests...
-call .\\scripts\\build_!compiler_c!.bat --output hlml_tests_c.exe --config debug --source code\\generated_files\\tests\\c\\test_main.c
+call .\\scripts\\build_!compiler_c!.bat --output hlml_tests_c --config debug --source code\\generated_files\\tests\\c\\test_main.c
 if %errorlevel% neq 0 goto :BuildFailure
 echo.
 echo Running C99 tests...
@@ -81,7 +81,7 @@ echo.
 
 REM C++ tests
 echo Compiling C++ tests...
-call .\\scripts\\build_!compiler_cpp!.bat --output hlml_tests_cpp.exe --config debug --source code\\generated_files\\tests\\cpp\\test_main.cpp
+call .\\scripts\\build_!compiler_cpp!.bat --output hlml_tests_cpp --config debug --source code\\generated_files\\tests\\cpp\\test_main.cpp
 if %errorlevel% neq 0 goto :BuildFailure
 echo.
 echo Running C++ tests...
