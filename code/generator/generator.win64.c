@@ -187,13 +187,13 @@ void FS_DeleteAllFilesInFolder( const char* name ) {
 // QueryPerformanceFrequency() only needs to be called once
 // but doing that means we end up having an init function which would be completely unecessary on any other platform
 static s64 Frequency( void ) {
-	LARGE_INTEGER frequency = { 0 };
+	LARGE_INTEGER frequency = { { 0 } };
 	QueryPerformanceFrequency( &frequency );
 	return frequency.QuadPart;
 }
 
 s64 Time_Now( void ) {
-	LARGE_INTEGER now = { 0 };
+	LARGE_INTEGER now = { { 0 } };
 	QueryPerformanceCounter( &now );
 	return now.QuadPart;
 }

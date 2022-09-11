@@ -1850,7 +1850,7 @@ static void GenerateTests_CtorConversion( allocatorLinear_t* tempStorage, string
 					const testFixture_Ctor_t* fixture = &fixtures[fixtureIndex];
 
 					u32 parmsCount = 0;
-					parametricTestInvokationGenericParm_t parms[5] = { 0 };
+					parametricTestInvokationGenericParm_t parms[5] = { { 0 } };
 
 					parms[parmsCount++] = (parametricTestInvokationGenericParm_t) { &subVecType, fixture->values };
 
@@ -1904,7 +1904,7 @@ static void GenerateTests_CtorConversion( allocatorLinear_t* tempStorage, string
 					const testFixture_Ctor_t* fixture = &fixtures[fixtureIndex];
 
 					u32 parmsCount = 0;
-					parametricTestInvokationGenericParm_t parms[5] = { 0 };
+					parametricTestInvokationGenericParm_t parms[5] = { { 0 } };
 
 					for ( u32 i = 0; i < leftoverOnes; i++ ) {
 						parms[parmsCount++] = (parametricTestInvokationGenericParm_t) { &scalarType, &fixture->values[i] };
