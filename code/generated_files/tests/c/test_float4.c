@@ -620,9 +620,9 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_float4_quat_lerp,
 	&(float4) { 0.750000f, 0.750000f, 0.750000f, 0.750000f }
 );
 
-TEMPER_PARAMETRIC( Test_float4_quat_slerp, TEMPER_FLAG_SHOULD_RUN, const float4* lhs, const float4* rhs, const float t, const float4* expectedAnswer )
+TEMPER_PARAMETRIC( Test_float4_quat_slerp, TEMPER_FLAG_SHOULD_RUN, const float4* lhs, const float4* rhs, const float percent, const float4* expectedAnswer )
 {
-	float4 actualResult = float4_quat_slerp( lhs, rhs, t );
+	float4 actualResult = float4_quat_slerp( lhs, rhs, percent );
 	TEMPER_CHECK_TRUE( float4_equals( &actualResult, expectedAnswer ) );
 }
 
@@ -631,6 +631,27 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_float4_quat_slerp,
 	&(float4) { 1.000000f, 1.000000f, 1.000000f, 1.000000f },
 	0.500000f,
 	&(float4) { 0.707107f, 0.707107f, 0.707107f, 0.707107f }
+);
+
+TEMPER_INVOKE_PARAMETRIC_TEST( Test_float4_quat_slerp,
+	&(float4) { -0.015586f, 0.002385f, -0.152123f, 0.988236f },
+	&(float4) { -0.013892f, 0.000244f, -0.155418f, 0.987751f },
+	0.500000f,
+	&(float4) { -0.014739f, 0.001314f, -0.153771f, 0.987996f }
+);
+
+TEMPER_INVOKE_PARAMETRIC_TEST( Test_float4_quat_slerp,
+	&(float4) { 0.294370f, 0.103423f, -0.136137f, 0.940275f },
+	&(float4) { 0.417178f, 0.137045f, -0.379427f, 0.814381f },
+	0.250000f,
+	&(float4) { 0.328079f, 0.112850f, -0.199027f, 0.916525f }
+);
+
+TEMPER_INVOKE_PARAMETRIC_TEST( Test_float4_quat_slerp,
+	&(float4) { 0.294370f, 0.103423f, -0.136137f, 0.940275f },
+	&(float4) { 0.417178f, 0.137045f, -0.379427f, 0.814381f },
+	0.750000f,
+	&(float4) { 0.389659f, 0.129709f, -0.321022f, 0.853397f }
 );
 
 TEMPER_PARAMETRIC( Test_float4_lengthsq, TEMPER_FLAG_SHOULD_RUN, const float4* vec, const float expectedAnswer )
