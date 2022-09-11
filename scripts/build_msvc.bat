@@ -113,8 +113,8 @@ if not exist %build_dir% (
 
 call "C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Auxiliary\\Build\\vcvars64.bat"
 
-echo CALLING: cl /Fe:%build_dir%\\!output_filename! /Fd:%build_dir%\\!output_filename!.pdb /Fo:%build_dir%\\!output_filename!.obj !symbols! !optimisation! !defines! /W4 %include_dirs% %warninglevels% !ignorewarnings! !source_files!
-cl /Fe:%build_dir%\\!output_filename! /Fd:%build_dir%\\!output_filename!.pdb /Fo:%build_dir%\\!output_filename!.obj !symbols! !optimisation! !defines! /W4 %include_dirs% %warninglevels% !ignorewarnings! !source_files!
+echo CALLING: cl /Fe:%build_dir%\\!output_filename!.exe /Fd:%build_dir%\\!output_filename!.pdb /Fo:%build_dir%\\intermediate\\!output_filename!.obj !symbols! !optimisation! !defines! /W4 %include_dirs% %warninglevels% !ignorewarnings! !source_files!
+cl /Fe:%build_dir%\\!output_filename!.exe /Fd:%build_dir%\\!output_filename!.pdb /Fo:%build_dir%\\intermediate\\!output_filename!.obj !symbols! !optimisation! !defines! /W4 %include_dirs% %warninglevels% !ignorewarnings! !source_files!
 
 popd
 popd

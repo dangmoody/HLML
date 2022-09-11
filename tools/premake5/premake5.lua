@@ -1,6 +1,7 @@
 folder_code = "code/"
 folder_generated_files = "code/generated_files/"
 folder_generated_tests = folder_generated_files .. "tests/"
+folder_includes = "code/3rdparty/include/"
 
 folder_bin = "$(SolutionDir)../bin/win64/%{cfg.buildcfg}/"
 folder_bin_tests = folder_bin .. "tests/"
@@ -62,6 +63,10 @@ group( "tests" )
 		cleancommands (
 			folder_scripts .. "clean_tests.bat"
 		)
+		
+		includedirs (
+			"../../" .. folder_includes
+		)
 
 		-- required because VS will create these folders if they don't exist
 		targetdir( folder_bin_tests .. "msvc/" )
@@ -70,11 +75,11 @@ group( "tests" )
 		debugcommand( "$(OutDir)hlml_tests_c.exe" )
 
 		buildcommands (
-			folder_scripts .. "build_msvc.bat --output hlml_tests_c.exe --config debug --source code\\generated_files\\tests\\c\\main.c"
+			folder_scripts .. "build_msvc.bat --output hlml_tests_c --config debug --source code\\generated_files\\tests\\c\\test_main.c"
 		)
 
 		rebuildcommands (
-			folder_scripts .. "build_msvc.bat --output hlml_tests_c.exe --config debug --source code\\generated_files\\tests\\c\\main.c"
+			folder_scripts .. "build_msvc.bat --output hlml_tests_c --config debug --source code\\generated_files\\tests\\c\\test_main.c"
 		)
 
 	project( "test-cpp" )
@@ -90,17 +95,21 @@ group( "tests" )
 		cleancommands (
 			folder_scripts .. "clean_tests.bat"
 		)
+		
+		includedirs (
+			"../../" .. folder_includes
+		)
 
 		-- required because VS will create these folders if they don't exist
-		targetdir( folder_bin .. "msvc/%{cfg.buildcfg}" )
-		objdir( folder_bin .. "msvc/%{cfg.buildcfg}/intermediate/hlml-gen-tests-cpp" )
+		targetdir( folder_bin_tests .. "msvc/" )
+		objdir( folder_bin_tests .. "msvc/intermediate" )
 
-		debugcommand( "$(OutDir)hlml-gen-tests-cpp.exe" )
+		debugcommand( "$(OutDir)hlml_tests_cpp.exe" )
 
 		buildcommands (
-			folder_scripts .. "build_msvc.bat %{cfg.buildcfg} hlml-gen-tests-cpp code/tests/cpp/main.cpp"
+			folder_scripts .. "build_msvc.bat --output hlml_tests_cpp --config %{cfg.buildcfg} hlml-gen-tests-cpp --source code/generated_files/tests/cpp/test_main.cpp"
 		)
 
 		rebuildcommands (
-			folder_scripts .. "build_msvc.bat %{cfg.buildcfg} hlml-gen-tests-cpp code/tests/cpp/main.cpp"
+			folder_scripts .. "build_msvc.bat --output hlml_tests_cpp --config %{cfg.buildcfg} hlml-gen-tests-cpp --source code/generated_files/tests/cpp/test_main.cpp"
 		)
