@@ -147,8 +147,8 @@ HLML_INLINE float4 quat_slerp( const float4& lhs, const float4& rhs, const float
 	}
 	float theta = acosf( cosTheta );
 	float sn = sqrtf( 1.0f - cosTheta * cosTheta );
-	float Wa = sinf( t * theta ) / sn;
-	float Wb = sinf( percent * theta ) / sn;
+	float Wa = sinf( percent * theta ) / sn;
+	float Wb = sinf( t * theta ) / sn;
 	quat.x = Wa * rhs.x + Wb * lhs.x;
 	quat.y = Wa * rhs.y + Wb * lhs.y;
 	quat.z = Wa * rhs.z + Wb * lhs.z;
@@ -295,8 +295,8 @@ HLML_INLINE double4 quat_slerp( const double4& lhs, const double4& rhs, const do
 	}
 	double theta = acos( cosTheta );
 	double sn = sqrt( 1.0 - cosTheta * cosTheta );
-	double Wa = sin( t * theta ) / sn;
-	double Wb = sin( percent * theta ) / sn;
+	double Wa = sin( percent * theta ) / sn;
+	double Wb = sin( t * theta ) / sn;
 	quat.x = Wa * rhs.x + Wb * lhs.x;
 	quat.y = Wa * rhs.y + Wb * lhs.y;
 	quat.z = Wa * rhs.z + Wb * lhs.z;
