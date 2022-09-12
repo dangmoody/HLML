@@ -43,7 +43,7 @@ set ignore_warnings=-Wno-newline-eof -Wno-microsoft-anon-tag -Wno-double-promoti
 set includes=-Icode\\3rdparty\\include\\
 
 set symbols=""
-set defines=-D_CRT_SECURE_NO_WARNINGS -D_DEBUG
+set defines=-D_CRT_SECURE_NO_WARNINGS
 set optimisation=""
 
 if /I [!config!]==[debug] (
