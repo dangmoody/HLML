@@ -604,11 +604,12 @@ static void GenerateSwizzleFunctions( allocatorLinear_t* tempStorage, stringBuil
 			u32 permutationIndexCopy = permutationIndex;
 			u32 numberInBase = 0;
 
-			char swizzleStr[4] = {
+			char swizzleStr[5] = {
 				componentNames[0],
 				componentNames[0],
 				componentNames[0],
-				componentNames[0]
+				componentNames[0],
+				0
 			};
 
 			u32 swizzleCharIndex = 0;
