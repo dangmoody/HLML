@@ -13,7 +13,7 @@ workspace( "HLML" )
 	location( vs_project_folder )
 
 	platforms { "win64-msvc" }
-	platforms { "win64-clang" }
+	-- platforms { "win64-clang" }
 	configurations { "debug", "release" }
 
 	startproject( "hlml-gen" )
@@ -35,8 +35,8 @@ workspace( "HLML" )
 			"NDEBUG"
 		}
 
-	filter ( "platforms:win64-clang" )
-		toolset( "msc-clangcl" )
+	-- filter ( "platforms:win64-clang" )
+	--	toolset( "clang" )
 	filter ( "platforms:win64-msvc", "_ACTION:vs2019" )
 		toolset( "v142" )
 
@@ -96,14 +96,6 @@ group( "tests" )
 			flags( "ExcludeFromBuild" )
 		filter ( "files:../../" .. folder_generated_tests .. "c/test_main.c" )
 			removeflags( "ExcludeFromBuild" )
-
-		--buildcommands (
-		--	folder_scripts .. "build_msvc.bat --output hlml_tests_c --config debug --source code\\generated_files\\tests\\c\\test_main.c"
-		--)
-
-		--rebuildcommands (
-		--	folder_scripts .. "build_msvc.bat --output hlml_tests_c --config debug --source code\\generated_files\\tests\\c\\test_main.c"
-		--)
 
 	project( "test-cpp" )
 		location( vs_project_folder )
