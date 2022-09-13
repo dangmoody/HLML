@@ -13,6 +13,7 @@ workspace( "HLML" )
 	location( vs_project_folder )
 
 	platforms { "win64-msvc" }
+	platforms { "win64-clang" }
 	configurations { "debug", "release" }
 
 	startproject( "hlml-gen" )
@@ -33,6 +34,11 @@ workspace( "HLML" )
 			"_CRT_SECURE_NO_WARNINGS",
 			"NDEBUG"
 		}
+
+	filter ( "platforms:win64-clang" )
+		toolset( "msc-clangcl" )
+	filter ( "platforms:win64-msvc", "_ACTION:vs2019" )
+		toolset( "v142" )
 
 project( "generator" )
 	location( vs_project_folder )
