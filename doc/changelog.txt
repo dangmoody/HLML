@@ -1,5 +1,12 @@
 HLML CHANGELOG
 
+v2.1.2, 14/09/2022:
+	* Fix bug in `float4_quat_slerp()` and `double4_quaternion_slerp()` which gave incorrect outputs.
+		* Added tests to catch these.
+
+v2.1.1, 13/06/2022:
+	* Fix bug in `inverse()`, which had slipped through the cracks in testing.
+
 v2.1.0, 12/03/2022:
 	* `*_unary` has been renamed to `*_not` because that's what it actually does.
 	* Matrix header files now include the header file for their vector member type.
