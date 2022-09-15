@@ -356,8 +356,8 @@ static void GenerateFunction_QuaternionSlerp( allocatorLinear_t* tempStorage, co
 	StringBuilder_Append(  code, "\t}\n" );
 	StringBuilder_Appendf( code, "\t%s theta = %s( cosTheta );\n", memberTypeString, acosFuncStr );
 	StringBuilder_Appendf( code, "\t%s sn = %s( %s - cosTheta * cosTheta );\n", memberTypeString, sqrtFuncStr, oneStr );
-	StringBuilder_Appendf( code, "\t%s Wa = %s( t * theta ) / sn;\n", memberTypeString, sinFuncStr );
-	StringBuilder_Appendf( code, "\t%s Wb = %s( percent * theta ) / sn;\n", memberTypeString, sinFuncStr );
+	StringBuilder_Appendf( code, "\t%s Wa = %s( percent * theta ) / sn;\n", memberTypeString, sinFuncStr );
+	StringBuilder_Appendf( code, "\t%s Wb = %s( t * theta ) / sn;\n", memberTypeString, sinFuncStr );
 
 	for (u32 i = 0; i < typeInfo->numCols; i++) {
 		const char componentName = GEN_COMPONENT_NAMES_VECTOR[i];

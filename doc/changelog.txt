@@ -6,6 +6,10 @@ v2.2.0, <INSERT RELEASE DATE HERE>:
 		* These currently exist as templates (gasp) but when I profiled the compile times between the templated vs. non-templated versions the compile times were basically the same (as was the runtime performance), but the amount of generated code was significantly less.
 		* If the compile-time or runtime performance of the templated version is ever found to be worse than the alternative then I will flip the switch to generate the non-templated version.
 
+v2.1.2, 14/09/2022:
+	* Fix bug in `float4_quat_slerp()` and `double4_quat_slerp()` which gave incorrect outputs.
+		* Added tests to catch these.
+
 v2.1.1, 13/06/2022:
 	* Fix bug in inverse(), which had slipped through the cracks in testing.
 

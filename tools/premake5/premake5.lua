@@ -85,6 +85,10 @@ group( "tests" )
 		cleancommands (
 			folder_scripts .. "clean_tests.bat"
 		)
+		
+		includedirs (
+			"../../" .. folder_includes
+		)
 
 		-- required because VS will create these folders if they don't exist
 		targetdir( folder_bin_tests .. "msvc/" )
@@ -109,6 +113,10 @@ group( "tests" )
 
 		cleancommands (
 			folder_scripts .. "clean_tests.bat"
+		)
+		
+		includedirs (
+			"../../" .. folder_includes
 		)
 
 		-- required because VS will create these folders if they don't exist

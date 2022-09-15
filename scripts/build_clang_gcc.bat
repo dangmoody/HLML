@@ -144,7 +144,7 @@ if not exist %build_dir% (
 )
 
 REM echo !compiler! -std=c99 -o %build_dir%\\!output_filename! !symbols! !optimisation! !defines! %warninglevels% !ignorewarnings! !source_files! !includes!
-!compiler! !std! !additional_flags! -o %build_dir%\\!output_filename! !symbols! !optimisation! !defines! %warninglevels% !ignorewarnings! !source_files! !includes!
+!compiler! !std! !additional_flags! -o %build_dir%\\!output_filename!.exe !symbols! !optimisation! !defines! %warninglevels% !ignorewarnings! !source_files! !includes!
 
 popd
 popd

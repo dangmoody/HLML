@@ -770,6 +770,20 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_double4_quat_slerp,
 	double4( 0.707107f, 0.707107f, 0.707107f, 0.707107f )
 );
 
+TEMPER_INVOKE_PARAMETRIC_TEST( Test_double4_quat_slerp,
+	double4( 0.000000f, 0.000000f, 0.000000f, 0.000000f ),
+	double4( 1.000000f, 1.000000f, 1.000000f, 1.000000f ),
+	0.250000f,
+	double4( 0.382683f, 0.382683f, 0.382683f, 0.382683f )
+);
+
+TEMPER_INVOKE_PARAMETRIC_TEST( Test_double4_quat_slerp,
+	double4( 0.000000f, 0.000000f, 0.000000f, 0.000000f ),
+	double4( 1.000000f, 1.000000f, 1.000000f, 1.000000f ),
+	0.750000f,
+	double4( 0.923880f, 0.923880f, 0.923880f, 0.923880f )
+);
+
 TEMPER_PARAMETRIC( Test_double4_int4, TEMPER_FLAG_SHOULD_RUN, const int4& convertFrom, const double4& expectedAnswer )
 {
 	double4 actualAnswer = double4( convertFrom );

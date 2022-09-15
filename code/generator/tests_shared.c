@@ -1618,25 +1618,32 @@ static void GenerateComponentWiseTests( allocatorLinear_t* tempStorage, stringBu
 			}
 		} );
 
-		Gen_GenerateParametricTestsCode_ComponentWise( tempStorage, code, typeInfo, GEN_FUNCTION_NAME_QUAT_SLERP, strings, flags, &(componentWiseTestsData_t) {
-			.parmDefsCount = 3,
-			.parmDefs = (parametricTestDefinitionParm_t[]) {
-				{ typeInfo,   "lhs" },
-				{ typeInfo,   "rhs" },
-				{ scalarType, "t"   }
-			},
+		{
+			Gen_GenerateParametricTestsCode_ComponentWise( tempStorage, code, typeInfo, GEN_FUNCTION_NAME_QUAT_SLERP, strings, flags, &(componentWiseTestsData_t) {
+				.parmDefsCount = 3,
+				.parmDefs = (parametricTestDefinitionParm_t[]) {
+					{ typeInfo,   "lhs" },
+					{ typeInfo,   "rhs" },
+					{ scalarType, "t"   }
+				},
 
-			.numTests = 1,
+				.numTests = 3,
 
-			.inputs = (testValues_t[]) {
-				{ (float32[]) { 0.0f, 1.0f, 0.5f } }
-			},
+				.inputs = (testValues_t[]) {
+					{ (float32[]) { 0.0f, 1.0f, 0.5f } },
+					{ (float32[]) { 0.0f, 1.0f, 0.25f } },
+					{ (float32[]) { 0.0f, 1.0f, 0.75f } }
+				},
 
-			.outputType = typeInfo,
-			.outputs = (testValues_t[]) {
-				{ (float32[]) { 0.707106781f } }
-			}
-		} );
+				.outputType = typeInfo,
+				.outputs = (testValues_t[]) {
+					{ (float32[]) { 0.707106781f } },
+					{ (float32[]) { 0.382683456f } },
+					{ (float32[]) { 0.923879504f } }
+					
+				}
+			} );
+		}
 	}
 }
 
