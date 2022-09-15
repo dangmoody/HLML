@@ -5,7 +5,7 @@ all: build
 hello:
 	@echo "Hello, World"
 
-check_args:
+verify_args:
 ifndef config
 	$(error "config" argument was not specified. eg. "config=release")
 else ifeq ($(config), debug)
@@ -33,5 +33,5 @@ endif
 source_files=..\\code\\generator\\main.c ..\\code\\generator\\generator.win64.c ..\\code\\generator\\stb_impl.c
 build_dir=..\\bin\\win64\\$(config)
 
-build: check_args
+build: verify_args
 	clang -o $(build_dir)\\generator.exe -std=c99 $(symbols) $(optimisation) $(source_files) $(warning_levels) $(ignore_warnings) $(includes) $(defines)
