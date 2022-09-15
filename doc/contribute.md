@@ -31,6 +31,7 @@ Submitting Changes
 ==================
 
 1. Work in your own branch.  Don't work off `master`.
+2. Name new branches using the `snake_case` naming convention.
 2. Before submitting a PR make sure all the tests pass both locally on your machine and on GitHub Actions for all platforms.
 	* If they don't pass both locally and on CI then I'm not accepting your changes until they do.
 3. Please give as much detail as possible when writing your PR.
