@@ -2,10 +2,6 @@
 
 all: build
 
-test="Hello World!"
-
-printfunc: compile
-
 # Determine OS
 platform =
 ifeq ($(OS), Windows_NT)
@@ -18,7 +14,6 @@ else ifeq ($(uname_s),Darwin)
 platform = macos
 endif
 endif
-
 
 compiler_c =
 compiler_cpp =
@@ -41,27 +36,32 @@ else
 	$(error "config" argument can only equal "debug" or "release")
 endif
 
-hlml_tests_c_filename = hlml_tests_c.exe
+hlml_tests_c_filename = hlml_tests_c
 hlml_tests_c_source = ..\\code\\generated_files\\tests\\c\\test_main.c
 hlml_tests_c_path = ..\\bin\\$(platform)\\$(config)\\tests\\$(compiler_c)\\$(hlml_tests_c_filename).exe
 
-hlml_tests_cpp_filename = hlml_tests_cpp.exe
+hlml_tests_cpp_filename = hlml_tests_cpp
 hlml_tests_cpp_source = ..\\code\\generated_files\\tests\\cpp\\test_main.cpp
 hlml_tests_cpp_path = ..\\bin\\$(platform)\\$(config)\\tests\\$(compiler_cpp)\\$(hlml_tests_cpp_filename).exe
 
-# Bring in our build_tests_c and build_tests_cpp functions
+# Bring in our make_build_dir, build_tests_c and build_tests_cpp functions
 include build_tests_$(compiler).mak
 
-build: verify_args clean build_tests_c build_tests_cpp
+build: verify_args clean make_build_dir build_tests_c build_tests_cpp
 
 clean:
 ifneq ("$(wildcard $(hlml_tests_c_path))", "")
-# Exe does exist and needs cleaning
 ifeq ($(platform), win64)
 	@del $(hlml_tests_c_path)
-	@del $(hlml_tests_cpp_path)
 else
 	@rm -f $(hlml_tests_c_path)
+endif
+endif
+
+ifneq ("$(wildcard $(hlml_tests_cpp_path))", "")
+ifeq ($(platform), win64)
+	@del $(hlml_tests_cpp_path)
+else
 	@rm -f $(hlml_tests_cpp_path)
 endif
 endif
