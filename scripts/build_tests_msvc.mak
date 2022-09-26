@@ -50,7 +50,6 @@ else
 	$(error Cannot find a supported edition of Visual Studio in the Visual Studio $(vs_version) Install directory)
 endif
 
-# We have everything, double check we exist before assigning
 vs_vcvars_path = C:\\Program Files\\Microsoft Visual Studio\\$(vs_version)\\$(vs_edition)\\VC\\Auxiliary\\Build\\vcvars64.bat
 else
 	$(error Cannot find the main Visual Studio Install directory)
@@ -59,6 +58,12 @@ endif
 make_build_dir:
 ifeq ("$(wildcard $(build_dir_cpp))", "")
 	mkdir $(build_dir_cpp)
+endif
+ifeq ("$(wildcard $(build_dir_c))", "")
+# Don't mkdir twice if build dirs match
+ifneq ("$(build_dir_c)", "$(build_dir_cpp)")
+	mkdir $(build_dir_c)
+endif
 endif
 
 build_tests_c: find_vs_vcvars_path

@@ -19,17 +19,22 @@ includes = -I..\\code\\3rdparty\\include\\
 compiler_c = clang
 compiler_cpp = clang++
 
-build_dir_c=..\\bin\\win64\\$(config)\\tests\\$(compiler_c)
-build_dir_cpp=..\\bin\\win64\\$(config)\\tests\\$(compiler_cpp)
+build_dir_c=..\\bin\\$(platform)\\$(config)\\tests\\$(compiler_c)
+build_dir_cpp=..\\bin\\$(platform)\\$(config)\\tests\\$(compiler_cpp)
 
-build_tests_c:
-ifeq ("$(wildcard $(build_dir_c))", "")
-	mkdir $(build_dir_c)
-endif
-	clang -std=c99 -o $(build_dir_c)\\$(hlml_tests_c_filename).exe $(symbols) $(optimisation) $(defines) $(warning_levels) $(ignore_warnings) $(hlml_tests_c_source) $(includes)
-	
-build_tests_cpp:
+make_build_dir:
 ifeq ("$(wildcard $(build_dir_cpp))", "")
 	mkdir $(build_dir_cpp)
 endif
+ifeq ("$(wildcard $(build_dir_c))", "")
+# Don't mkdir twice if build dirs match
+ifneq ("$(build_dir_c))", "$(build_dir_cpp)")
+	mkdir $(build_dir_c)
+endif
+endif
+
+build_tests_c:
+	clang -std=c99 -o $(build_dir_c)\\$(hlml_tests_c_filename).exe $(symbols) $(optimisation) $(defines) $(warning_levels) $(ignore_warnings) $(hlml_tests_c_source) $(includes)
+	
+build_tests_cpp:
 	clang++ -std=c++11 -o $(build_dir_cpp)\\$(hlml_tests_cpp_filename).exe $(symbols) $(optimisation) $(defines) $(warning_levels) $(ignore_warnings) $(hlml_tests_cpp_source) $(includes)
