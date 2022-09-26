@@ -1,4 +1,5 @@
 # pass configuration on command line!
+# pass compiler on command line!
 
 all: build
 
@@ -45,7 +46,9 @@ hlml_tests_cpp_source = ..\\code\\generated_files\\tests\\cpp\\test_main.cpp
 hlml_tests_cpp_path = ..\\bin\\$(platform)\\$(config)\\tests\\$(compiler_cpp)\\$(hlml_tests_cpp_filename).exe
 
 # Bring in our make_build_dir, build_tests_c and build_tests_cpp functions
+ifdef compiler
 include build_tests_$(compiler).mak
+endif
 
 build: verify_args clean make_build_dir build_tests_c build_tests_cpp
 
