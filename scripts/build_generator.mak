@@ -11,10 +11,12 @@ else
 	$(error "config" argument can only equal "debug" or "release")
 endif
 
+source_files_c = ..\\code\\generator\\main.c ..\\code\\generator\\generator.win64.c ..\\code\\generator\\stb_impl.c
+executable_name_c = generator
+
 include include_$(compiler)_settings.mak
+include build_$(compiler).mak
 
-source_files=..\\code\\generator\\main.c ..\\code\\generator\\generator.win64.c ..\\code\\generator\\stb_impl.c
-build_dir=..\\bin\\win64\\$(config)
+build_dir_c = ..\\bin\\win64\\$(config)
 
-build: verify_args
-	clang -o $(build_dir)\\generator.exe -std=c99 $(symbols) $(optimisation) $(source_files) $(warning_levels) $(ignore_warnings) $(includes) $(defines)
+build: build_c

@@ -37,18 +37,18 @@ else
 	$(error "config" argument can only equal "debug" or "release")
 endif
 
-hlml_tests_c_filename = hlml_tests_c
-hlml_tests_c_source = ..\\code\\generated_files\\tests\\c\\test_main.c
-hlml_tests_c_path = ..\\bin\\$(platform)\\$(config)\\tests\\$(compiler_c)\\$(hlml_tests_c_filename).exe
+executable_name_c = hlml_tests_c
+source_files_c = ..\\code\\generated_files\\tests\\c\\test_main.c
+hlml_tests_c_path = ..\\bin\\$(platform)\\$(config)\\tests\\$(compiler_c)\\$(executable_name_c).exe
 
-hlml_tests_cpp_filename = hlml_tests_cpp
-hlml_tests_cpp_source = ..\\code\\generated_files\\tests\\cpp\\test_main.cpp
-hlml_tests_cpp_path = ..\\bin\\$(platform)\\$(config)\\tests\\$(compiler_cpp)\\$(hlml_tests_cpp_filename).exe
+executable_name_cpp = hlml_tests_cpp
+source_files_cpp = ..\\code\\generated_files\\tests\\cpp\\test_main.cpp
+hlml_tests_cpp_path = ..\\bin\\$(platform)\\$(config)\\tests\\$(compiler_cpp)\\$(executable_name_cpp).exe
 
 # Bring in our make_build_dir, build_tests_c and build_tests_cpp functions
 ifdef compiler
 include include_$(compiler)_settings.mak
-include build_tests_$(compiler).mak
+include build_$(compiler).mak
 endif
 
 build_dir_c=..\\bin\\$(platform)\\$(config)\\tests\\$(compiler_c)

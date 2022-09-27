@@ -26,7 +26,7 @@ endif
 endif
 
 build_c: has_vs_vcvars_path
-	"$(vs_vcvars_path)" && cl /Fe:$(build_dir_c)\\$(hlml_tests_c_filename).exe /Fd:$(build_dir_c)\\$(hlml_tests_c_filename).pdb /Fo:$(build_dir_c)\\$(hlml_tests_c_filename).obj $(symbols) $(optimisation) $(defines) $(includes) $(warning_levels) $(ignore_warnings) $(hlml_tests_c_source)
+	"$(vs_vcvars_path)" && cl /Fe:$(build_dir_c)\\$(executable_name_c).exe /Fd:$(build_dir_c)\\$(executable_name_c).pdb /Fo:$(build_dir_c)\\$(executable_name_c).obj $(symbols) $(optimisation) $(defines) $(includes) $(warning_levels) $(ignore_warnings) $(source_files_c)
 	
 build_cpp: has_vs_vcvars_path
-	"$(vs_vcvars_path)" && cl /Fe:$(build_dir_cpp)\\$(hlml_tests_cpp_filename).exe /Fd:$(build_dir_cpp)\\$(hlml_tests_cpp_filename).pdb /Fo:$(build_dir_cpp)\\$(hlml_tests_cpp_filename).obj $(symbols) $(optimisation) $(defines) $(includes) $(warning_levels) $(ignore_warnings) $(hlml_tests_cpp_source)
+	"$(vs_vcvars_path)" && cl /Fe:$(build_dir_cpp)\\$(executable_name_cpp).exe /Fd:$(build_dir_cpp)\\$(executable_name_cpp).pdb /Fo:$(build_dir_cpp)\\$(executable_name_cpp).obj $(symbols) $(optimisation) $(defines) $(includes) $(warning_levels) $(ignore_warnings) $(source_files_cpp)

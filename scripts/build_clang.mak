@@ -12,7 +12,7 @@ endif
 endif
 
 build_c:
-	$(compiler_c) -std=c99 -o $(build_dir_c)\\$(hlml_tests_c_filename).exe $(symbols) $(optimisation) $(defines) $(warning_levels) $(ignore_warnings) $(hlml_tests_c_source) $(includes)
+	$(compiler_c) -std=c99 -o $(build_dir_c)\\$(executable_name_c).exe $(symbols) $(optimisation) $(defines) $(warning_levels) $(ignore_warnings) $(source_files_c) $(includes)
 	
 build_cpp:
-	$(compiler_cpp) -std=c++11 $(additional_flags_cpp) -o $(build_dir_cpp)\\$(hlml_tests_cpp_filename).exe $(symbols) $(optimisation) $(defines) $(warning_levels) $(ignore_warnings) $(hlml_tests_cpp_source) $(includes)
+	$(compiler_cpp) -std=c++11 $(additional_flags_cpp) -o $(build_dir_cpp)\\$(executable_name_cpp).exe $(symbols) $(optimisation) $(defines) $(warning_levels) $(ignore_warnings) $(source_files_cpp) $(includes)
