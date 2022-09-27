@@ -93,7 +93,7 @@ static void GenerateTests( allocatorLinear_t* tempStorage,
 
 		StringBuilder_Append( code, GEN_FILE_HEADER );
 
-		GenerateComponentWiseTests( tempStorage, code, &typeInfo, &typeInfo, &scalarTypeFloatingPoint, strings, flags );
+		GenerateComponentWiseTests( tempStorage, code, &typeInfo, &typeInfo, strings, flags );
 
 		const char* fileNameHeader = String_TPrintf( tempStorage, "%s/test_%s.%s", generatedTestsPath, typeString, languageName );
 		FS_WriteEntireFile( fileNameHeader, code->str, code->length );

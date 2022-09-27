@@ -80,7 +80,7 @@ static const char* Gen_GetTestName_SSE( allocatorLinear_t* tempStorage, const ty
 	return String_TPrintf( tempStorage, "%s_sse", testName );
 }
 
-static void Gen_GenerateParametricTestDefinition_Operator( allocatorLinear_t* tempStorage, stringBuilder_t* code, const typeInfo_t* lhsType, const typeInfo_t* rhsType, const typeInfo_t* returnType, const char* opName, const char* opStr, const generatorStrings_t* strings, const generatorFlags_t flags ) {
+static void Gen_GenerateParametricTestDefinition_Operator( allocatorLinear_t* tempStorage, stringBuilder_t* code, const typeInfo_t* lhsType, const typeInfo_t* rhsType, const typeInfo_t* returnType, const char* opName, const char* opStr, const generatorStrings_t* strings ) {
 	assert( tempStorage );
 	assert( code );
 	assert( lhsType );
@@ -93,7 +93,6 @@ static void Gen_GenerateParametricTestDefinition_Operator( allocatorLinear_t* te
 	assert( opName );
 	assert( opStr );
 	assert( strings );
-	assert( flags & GENERATOR_FLAG_GENERATE_OPERATORS );
 
 	const char* testName = Gen_GetTestName( tempStorage, lhsType, opName );
 
@@ -460,12 +459,11 @@ static void Gen_GenerateParametricTestDefinition_ComponentWise_SSE( allocatorLin
 	StringBuilder_Append( code, "}\n\n" );
 }
 
-static void Gen_GenerateParametricTestInvokations_ComponentWise( allocatorLinear_t* tempStorage, stringBuilder_t* code, const typeInfo_t* typeInfo, const char* funcName, const char* testName, const generatorStrings_t* strings, const generatorFlags_t flags, const componentWiseTestsData_t* testData ) {
+static void Gen_GenerateParametricTestInvokations_ComponentWise( allocatorLinear_t* tempStorage, stringBuilder_t* code, const typeInfo_t* typeInfo, const char* testName, const generatorStrings_t* strings, const generatorFlags_t flags, const componentWiseTestsData_t* testData ) {
 	assert( tempStorage );
 	assert( code );
 	assert( typeInfo );
 	assert( typeInfo->fullTypeName );
-	assert( funcName );
 	assert( testName );
 	assert( strings );
 	assert( testData );
@@ -565,7 +563,7 @@ static void Gen_GenerateParametricTestsCode_ComponentWise( allocatorLinear_t* te
 		.parms		= testData->parmDefs
 	} );
 
-	Gen_GenerateParametricTestInvokations_ComponentWise( tempStorage, code, typeInfo, funcName, testName, strings, flags, testData );
+	Gen_GenerateParametricTestInvokations_ComponentWise( tempStorage, code, typeInfo, testName, strings, flags, testData );
 
 	if ( testData->generateSSE ) {
 		assert( Gen_TypeSupportsSIMD( typeInfo->type ) );
@@ -579,7 +577,7 @@ static void Gen_GenerateParametricTestsCode_ComponentWise( allocatorLinear_t* te
 			.parms		= testData->parmDefs
 		} );
 
-		Gen_GenerateParametricTestInvokations_ComponentWise( tempStorage, code, typeInfo, funcName, testNameSSE, strings, flags, testData );
+		Gen_GenerateParametricTestInvokations_ComponentWise( tempStorage, code, typeInfo, testNameSSE, strings, flags, testData );
 	}
 }
 
@@ -603,7 +601,7 @@ static void Gen_GenerateParametricTestsCode_Operator( allocatorLinear_t* tempSto
 	const char* testName = Gen_GetTestName( tempStorage, typeInfo, opName );
 
 	if ( flags & GENERATOR_FLAG_GENERATE_OPERATORS ) {
-		Gen_GenerateParametricTestDefinition_Operator( tempStorage, code, fixture->lhsType, fixture->rhsType, fixture->returnType, opName, opStr, strings, flags );
+		Gen_GenerateParametricTestDefinition_Operator( tempStorage, code, fixture->lhsType, fixture->rhsType, fixture->returnType, opName, opStr, strings );
 	} else {
 		Gen_GenerateParametricTestDefinition_Generic( tempStorage, code, typeInfo, strings, flags, &(parametricTestDefinition_t) {
 			.returnType = fixture->returnType,
@@ -1288,15 +1286,13 @@ static void GenerateOperatorTests( allocatorLinear_t* tempStorage, stringBuilder
 	}
 }
 
-static void GenerateComponentWiseTests( allocatorLinear_t* tempStorage, stringBuilder_t* code, const typeInfo_t* typeInfo, const typeInfo_t* scalarType, const typeInfo_t* scalarTypeFloatingPoint, const generatorStrings_t* strings, const generatorFlags_t flags ) {
+static void GenerateComponentWiseTests( allocatorLinear_t* tempStorage, stringBuilder_t* code, const typeInfo_t* typeInfo, const typeInfo_t* scalarType, const generatorStrings_t* strings, const generatorFlags_t flags ) {
 	assert( tempStorage );
 	assert( code );
 	assert( typeInfo );
 	assert( typeInfo->fullTypeName );
 	assert( scalarType );
 	assert( scalarType->fullTypeName );
-	assert( scalarTypeFloatingPoint );
-	assert( scalarTypeFloatingPoint->fullTypeName );
 	assert( strings );
 
 	typeInfo_t boolReturnTypeScalar = {

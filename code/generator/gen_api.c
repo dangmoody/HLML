@@ -347,7 +347,7 @@ static void GenerateAPIFiles( allocatorLinear_t* tempStorage,
 	GenerateSSEConstantsHeader( tempStorage, generatedCodePath );
 
 	GenerateScalarFiles( tempStorage, generatedCodePath, flags );
-	GenerateScalarFiles_SSE( tempStorage, generatedCodePath, strings, flags );
+	GenerateScalarFiles_SSE( tempStorage, generatedCodePath, flags );
 	GenerateVectorFiles( tempStorage, generatedCodePath, vectorTypeInfos, vectorTypeInfosCount, strings, flags );
 	GenerateVectorFiles_SSE( tempStorage, generatedCodePath, vectorTypeInfos, vectorTypeInfosCount, strings, flags );
 	GenerateQuaternionFiles( tempStorage, generatedCodePath, quaternionTypeInfos, quaternionTypeInfosCount, strings, flags );

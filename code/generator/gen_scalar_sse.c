@@ -8,12 +8,10 @@ static const char* Gen_GetFuncName_Scalar_SSE( allocatorLinear_t* tempStorage, c
 	return String_TPrintf( tempStorage, "%s_sse", actualFuncName );
 }
 
-static void GenerateFunction_Radians_SSE( allocatorLinear_t* tempStorage, stringBuilder_t* code, const genType_t type, const char* memberTypeString, const generatorStrings_t* strings, const generatorFlags_t flags ) {
+static void GenerateFunction_Radians_SSE( allocatorLinear_t* tempStorage, stringBuilder_t* code, const genType_t type, const generatorFlags_t flags ) {
 	assert( tempStorage );
 	assert( code );
 	assert( type != GEN_TYPE_COUNT );
-	assert( memberTypeString );
-	assert( strings );
 
 	const char* funcName = Gen_GetFuncName_Scalar_SSE( tempStorage, type, flags, GEN_FUNCTION_NAME_RADIANS );
 
@@ -23,12 +21,10 @@ static void GenerateFunction_Radians_SSE( allocatorLinear_t* tempStorage, string
 	StringBuilder_Append(  code, "}\n\n" );
 }
 
-static void GenerateFunction_Degrees_SSE( allocatorLinear_t* tempStorage, stringBuilder_t* code, const genType_t type, const char* memberTypeString, const generatorStrings_t* strings, const generatorFlags_t flags ) {
+static void GenerateFunction_Degrees_SSE( allocatorLinear_t* tempStorage, stringBuilder_t* code, const genType_t type, const generatorFlags_t flags ) {
 	assert( tempStorage );
 	assert( code );
 	assert( type != GEN_TYPE_COUNT );
-	assert( memberTypeString );
-	assert( strings );
 
 	const char* funcName = Gen_GetFuncName_Scalar_SSE( tempStorage, type, flags, GEN_FUNCTION_NAME_DEGREES );
 
@@ -38,12 +34,10 @@ static void GenerateFunction_Degrees_SSE( allocatorLinear_t* tempStorage, string
 	StringBuilder_Append(  code, "}\n\n" );
 }
 
-static void GenerateFunction_Lerp_SSE( allocatorLinear_t* tempStorage, stringBuilder_t* code, const genType_t type, const char* memberTypeString, const generatorStrings_t* strings, const generatorFlags_t flags ) {
+static void GenerateFunction_Lerp_SSE( allocatorLinear_t* tempStorage, stringBuilder_t* code, const genType_t type, const generatorFlags_t flags ) {
 	assert( tempStorage );
 	assert( code );
 	assert( type != GEN_TYPE_COUNT );
-	assert( memberTypeString );
-	assert( strings );
 
 	const char* funcName = Gen_GetFuncName_Scalar_SSE( tempStorage, type, flags, GEN_FUNCTION_NAME_LERP );
 
@@ -58,7 +52,7 @@ static void GenerateFunction_Lerp_SSE( allocatorLinear_t* tempStorage, stringBui
 	StringBuilder_Append(  code, "}\n\n" );
 }
 
-static void GenerateScalarFiles_SSE( allocatorLinear_t* tempStorage, const char* generatedCodePath, const generatorStrings_t* strings, const generatorFlags_t flags ) {
+static void GenerateScalarFiles_SSE( allocatorLinear_t* tempStorage, const char* generatedCodePath, const generatorFlags_t flags ) {
 	assert( tempStorage );
 	assert( generatedCodePath );
 
@@ -102,9 +96,9 @@ static void GenerateScalarFiles_SSE( allocatorLinear_t* tempStorage, const char*
 
 	StringBuilder_Appendf( code, "// %s\n", memberTypeString );
 
-	GenerateFunction_Radians_SSE( tempStorage, code, type, memberTypeString, strings, flags );
-	GenerateFunction_Degrees_SSE( tempStorage, code, type, memberTypeString, strings, flags );
-	GenerateFunction_Lerp_SSE( tempStorage, code, type, memberTypeString, strings, flags );
+	GenerateFunction_Radians_SSE( tempStorage, code, type, flags );
+	GenerateFunction_Degrees_SSE( tempStorage, code, type, flags );
+	GenerateFunction_Lerp_SSE( tempStorage, code, type, flags );
 
 	StringBuilder_Append( code, "\n" );
 

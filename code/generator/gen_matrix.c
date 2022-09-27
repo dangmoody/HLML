@@ -456,7 +456,7 @@ static void GenerateFunction_MultiplyVector_Matrix( allocatorLinear_t* tempStora
 	StringBuilder_Append(  code, "// Multiplies the vector 'lhs' against the matrix 'rhs' and returns the result.\n" );
 	StringBuilder_Appendf( code, "HLML_INLINE %s %s( const %s%s lhs, const %s%s rhs )\n", vectorTypeName, mulVectorFuncStr, vectorTypeName, strings->parmPassByStr, typeInfo->fullTypeName, strings->parmPassByStr );
 	StringBuilder_Append(  code, "{\n" );
-	GetMatrixCodeMultiplyVector( tempStorage, typeInfo, memberTypeInfo, code, strings->parmAccessOperatorStr, false );
+	GetMatrixCodeMultiplyVector( typeInfo, memberTypeInfo, code, strings->parmAccessOperatorStr, false );
 	StringBuilder_Append(  code, "}\n\n" );
 }
 
@@ -510,12 +510,10 @@ static void GenerateFunction_Translate_Matrix( allocatorLinear_t* tempStorage, c
 	StringBuilder_Append( code, "}\n\n" );
 }
 
-static void GenerateFunction_Rotate_Matrix( allocatorLinear_t* tempStorage, const typeInfo_t* typeInfo, const typeInfo_t* memberTypeInfo, stringBuilder_t* code, const generatorStrings_t* strings, const generatorFlags_t flags ) {
+static void GenerateFunction_Rotate_Matrix( allocatorLinear_t* tempStorage, const typeInfo_t* typeInfo, stringBuilder_t* code, const generatorStrings_t* strings, const generatorFlags_t flags ) {
 	assert( tempStorage );
 	assert( typeInfo );
 	assert( typeInfo->fullTypeName );
-	assert( memberTypeInfo );
-	assert( memberTypeInfo->fullTypeName );
 	assert( code );
 	assert( strings );
 
@@ -1472,7 +1470,7 @@ static void GenerateMatrixFiles( allocatorLinear_t* tempStorage, const char* gen
 			GenerateFunction_Multiply_Matrix( tempStorage, typeInfo, code, strings, flags );
 			GenerateFunction_MultiplyVector_Matrix( tempStorage, typeInfo, &vectorMemberType, code, strings, flags );
 			GenerateFunction_Translate_Matrix( tempStorage, typeInfo, code, strings, flags );
-			GenerateFunction_Rotate_Matrix( tempStorage, typeInfo, &vectorMemberType, code, strings, flags );
+			GenerateFunction_Rotate_Matrix( tempStorage, typeInfo, code, strings, flags );
 			GenerateFunction_Scale_Matrix( tempStorage, typeInfo, code, strings, flags );
 			GenerateFunction_Ortho_LH_ZO_Matrix( tempStorage, typeInfo, code, flags );
 			GenerateFunction_Ortho_LH_NO_Matrix( tempStorage, typeInfo, code, flags );
