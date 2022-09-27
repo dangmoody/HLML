@@ -47,6 +47,7 @@ hlml_tests_cpp_path = ..\\bin\\$(platform)\\$(config)\\tests\\$(compiler_cpp)\\$
 
 # Bring in our make_build_dir, build_tests_c and build_tests_cpp functions
 ifdef compiler
+include include_$(compiler)_settings.mak
 include build_tests_$(compiler).mak
 endif
 
