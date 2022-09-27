@@ -45,14 +45,14 @@ executable_name_cpp = hlml_tests_cpp
 source_files_cpp = ..\\code\\generated_files\\tests\\cpp\\test_main.cpp
 hlml_tests_cpp_path = ..\\bin\\$(platform)\\$(config)\\tests\\$(compiler_cpp)\\$(executable_name_cpp).exe
 
+build_dir_c=..\\bin\\$(platform)\\$(config)\\tests\\$(compiler_c)
+build_dir_cpp=..\\bin\\$(platform)\\$(config)\\tests\\$(compiler_cpp)
+
 # Bring in our make_build_dir, build_tests_c and build_tests_cpp functions
 ifdef compiler
 include include_$(compiler)_settings.mak
 include build_$(compiler).mak
 endif
-
-build_dir_c=..\\bin\\$(platform)\\$(config)\\tests\\$(compiler_c)
-build_dir_cpp=..\\bin\\$(platform)\\$(config)\\tests\\$(compiler_cpp)
 
 build: verify_args clean make_build_dir build_c build_cpp
 
