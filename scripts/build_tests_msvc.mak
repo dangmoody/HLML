@@ -1,4 +1,4 @@
-# Intended to be called from build_tests.mak!
+# Intended to be called from a parent file, requires prior variable setup!
 
 has_vs_vcvars_path:
 # Check if include_msvc_settings determined VS Version
@@ -25,8 +25,8 @@ ifneq ("$(build_dir_c)", "$(build_dir_cpp)")
 endif
 endif
 
-build_tests_c: has_vs_vcvars_path
+build_c: has_vs_vcvars_path
 	"$(vs_vcvars_path)" && cl /Fe:$(build_dir_c)\\$(hlml_tests_c_filename).exe /Fd:$(build_dir_c)\\$(hlml_tests_c_filename).pdb /Fo:$(build_dir_c)\\$(hlml_tests_c_filename).obj $(symbols) $(optimisation) $(defines) $(includes) $(warning_levels) $(ignore_warnings) $(hlml_tests_c_source)
 	
-build_tests_cpp: has_vs_vcvars_path
+build_cpp: has_vs_vcvars_path
 	"$(vs_vcvars_path)" && cl /Fe:$(build_dir_cpp)\\$(hlml_tests_cpp_filename).exe /Fd:$(build_dir_cpp)\\$(hlml_tests_cpp_filename).pdb /Fo:$(build_dir_cpp)\\$(hlml_tests_cpp_filename).obj $(symbols) $(optimisation) $(defines) $(includes) $(warning_levels) $(ignore_warnings) $(hlml_tests_cpp_source)

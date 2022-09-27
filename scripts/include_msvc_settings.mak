@@ -19,9 +19,6 @@ includes = /I"..\\code\\3rdparty\\include\\"
 compiler_c = msvc
 compiler_cpp = msvc
 
-build_dir_c=..\\bin\\win64\\$(config)\\tests\\$(compiler_c)
-build_dir_cpp=..\\bin\\win64\\$(config)\\tests\\$(compiler_cpp)
-
 vs_install_dir = C:\\Program\ Files\\Microsoft\ Visual\ Studio
 
 ifneq ("$(wildcard C:\\Program\ Files\\Microsoft\ Visual\ Studio\\.)", "")

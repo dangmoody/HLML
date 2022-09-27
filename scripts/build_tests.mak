@@ -51,7 +51,10 @@ include include_$(compiler)_settings.mak
 include build_tests_$(compiler).mak
 endif
 
-build: verify_args clean make_build_dir build_tests_c build_tests_cpp
+build_dir_c=..\\bin\\$(platform)\\$(config)\\tests\\$(compiler_c)
+build_dir_cpp=..\\bin\\$(platform)\\$(config)\\tests\\$(compiler_cpp)
+
+build: verify_args clean make_build_dir build_c build_cpp
 
 clean:
 ifneq ("$(wildcard $(hlml_tests_c_path))", "")

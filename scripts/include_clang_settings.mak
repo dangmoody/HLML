@@ -13,11 +13,8 @@ defines += -DNDEBUG
 endif
 
 warning_levels = -Werror -Wall -Wextra -Weverything -Wpedantic
-ignore_warnings = -Wno-newline-eof -Wno-missing-braces -Wno-double-promotion -Wno-declaration-after-statement -Wno-old-style-cast -Wno-c++98-compat
+ignore_warnings = -Wno-newline-eof -Wno-missing-braces -Wno-double-promotion -Wno-declaration-after-statement -Wno-old-style-cast -Wno-c++98-compat -Wno-bad-function-cast
 includes = -I..\\code\\3rdparty\\include\\
 
 compiler_c = clang
 compiler_cpp = clang++
-
-build_dir_c=..\\bin\\$(platform)\\$(config)\\tests\\$(compiler_c)
-build_dir_cpp=..\\bin\\$(platform)\\$(config)\\tests\\$(compiler_cpp)
