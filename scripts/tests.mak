@@ -1,7 +1,7 @@
 # pass configuration on command line!
 # pass compiler on command line!
 
-all: build
+all: build run
 
 # Determine OS
 platform =
@@ -72,4 +72,7 @@ else
 	@rm -f $(hlml_tests_cpp_path)
 endif
 endif
-	
+
+run:
+	$(hlml_tests_c_path)
+	$(hlml_tests_cpp_path)

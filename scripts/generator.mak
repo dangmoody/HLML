@@ -1,6 +1,6 @@
 # pass configuration on command line!
 
-all: build
+all: build run
 
 verify_args:
 ifndef config
@@ -20,3 +20,6 @@ include build_$(compiler).mak
 build_dir_c = ..\\bin\\win64\\$(config)
 
 build: build_c
+
+run:
+	$(build_dir_c)\\$(executable_name_c).exe
