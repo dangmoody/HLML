@@ -14,12 +14,13 @@ endif
 source_files_c = ..\\code\\generator\\main.c ..\\code\\generator\\generator.win64.c ..\\code\\generator\\stb_impl.c
 executable_name_c = generator
 
+build_dir_c = ..\\bin\\win64\\$(config)
+build_dir_cpp = ..\\bin\\win64\\$(config)
+
 include include_clang_settings.mak
 include build_clang.mak
 
-build_dir_c = ..\\bin\\win64\\$(config)
-
-build: verify_args build_c
+build: verify_args make_build_dir build_c
 
 run:
 	$(build_dir_c)\\$(executable_name_c).exe
