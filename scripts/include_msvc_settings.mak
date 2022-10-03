@@ -14,7 +14,7 @@ endif
 
 warning_levels = /W4
 ignore_warnings = 
-includes = /I"..\\code\\3rdparty\\include\\"
+includes = /I"$(hlml_root_dir)\\code\\3rdparty\\include\\"
 
 compiler_c = msvc
 compiler_cpp = msvc
