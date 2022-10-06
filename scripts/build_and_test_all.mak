@@ -1,5 +1,9 @@
 # Intended to be called from a parent file, requires prior variable setup!
 
+mkfile_path = $(firstword $(MAKEFILE_LIST)))
+makefile_dir = $(patsubst %/,%,$(dir $(mkfile_path)))
+hlml_root_dir = $(subst /,\\,$(makefile_dir)\..)
+
 all: build_and_test_all
 
 verify_args:
@@ -12,7 +16,8 @@ else
 endif
 
 build_and_test_all: verify_args
-	$(MAKE) -f generator.mak config=$(config)
-	$(MAKE) -f tests.mak compiler=clang config=$(config)
-	$(MAKE) -f tests.mak compiler=msvc config=$(config)
-	$(MAKE) -f tests.mak compiler=gcc config=$(config)
+	echo $(makefile_dir)
+	$(MAKE) -f $(makefile_dir)\\generator.mak config=$(config)
+	$(MAKE) -f $(makefile_dir)\\tests.mak compiler=clang config=$(config)
+	$(MAKE) -f $(makefile_dir)\\tests.mak compiler=msvc config=$(config)
+	$(MAKE) -f $(makefile_dir)\\tests.mak compiler=gcc config=$(config)
