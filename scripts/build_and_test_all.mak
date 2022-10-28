@@ -17,7 +17,7 @@ endif
 
 build_and_test_all: verify_args
 	echo $(makefile_dir)
-	$(MAKE) -f $(makefile_dir)\\generator.mak config=$(config)
-	$(MAKE) -f $(makefile_dir)\\tests.mak compiler=clang config=$(config)
-	$(MAKE) -f $(makefile_dir)\\tests.mak compiler=msvc config=$(config)
-	$(MAKE) -f $(makefile_dir)\\tests.mak compiler=gcc config=$(config)
+	$(MAKE) -f $(makefile_dir)generator.mak config=$(config)
+	$(MAKE) -f $(makefile_dir)tests.mak compiler=clang config=$(config)
+	$(MAKE) -f $(makefile_dir)tests.mak compiler=gcc config=$(config)
+	$(MAKE) -f $(makefile_dir)tests.mak compiler=msvc config=$(config)
