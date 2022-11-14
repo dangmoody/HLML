@@ -49,8 +49,8 @@ executable_name_cpp = hlml_tests_cpp
 source_files_cpp = $(hlml_root_dir)\\code\\generated_files\\tests\\cpp\\test_main.cpp
 hlml_tests_cpp_path = $(hlml_root_dir)\\bin\\$(platform)\\$(config)\\tests\\$(compiler_cpp)\\$(executable_name_cpp).exe
 
-build_dir_c=$(hlml_root_dir)\\bin\\$(platform)\\$(config)\\tests\\$(compiler_c)
-build_dir_cpp=$(hlml_root_dir)\\bin\\$(platform)\\$(config)\\tests\\$(compiler_cpp)
+build_dir_c = $(hlml_root_dir)\\bin\\$(platform)\\$(config)\\tests\\$(compiler_c)
+build_dir_cpp = $(hlml_root_dir)\\bin\\$(platform)\\$(config)\\tests\\$(compiler_cpp)
 
 # Bring in our make_build_dir, build_tests_c and build_tests_cpp functions
 ifdef compiler
@@ -77,5 +77,7 @@ endif
 endif
 
 run:
+	@echo Running tests for $(compiler_c) (C)
 	$(hlml_tests_c_path)
+	@echo Running tests for $(compiler_cpp) (C++)
 	$(hlml_tests_cpp_path)
