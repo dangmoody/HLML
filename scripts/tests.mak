@@ -68,7 +68,7 @@ build: verify_args clean make_build_dir build_c build_cpp
 clean:
 ifneq ("$(wildcard $(hlml_tests_c_path))", "")
 ifeq ($(platform), win64)
-	@del $(hlml_tests_c_path)
+	del $(subst /,\\,$(hlml_tests_c_path))
 else
 	@rm -f $(hlml_tests_c_path)
 endif
@@ -76,7 +76,7 @@ endif
 
 ifneq ("$(wildcard $(hlml_tests_cpp_path))", "")
 ifeq ($(platform), win64)
-	@del $(hlml_tests_cpp_path)
+	del $(subst /,\\,$(hlml_tests_cpp_path))
 else
 	@rm -f $(hlml_tests_cpp_path)
 endif
