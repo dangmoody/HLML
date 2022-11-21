@@ -1,8 +1,27 @@
 # pass configuration on command line!
 
-mkfile_path = $(firstword $(MAKEFILE_LIST))
+# Determine OS
+platform =
+ifeq ($(OS), Windows_NT)
+platform = win64
+else
+uname_s = $(shell uname -s)
+ifeq ($(uname_s),Linux)
+platform = linux
+else ifeq ($(uname_s),Darwin)
+platform = macos
+endif
+endif
+
+mkfile_path = $(firstword $(MAKEFILE_LIST)))
 makefile_dir = $(patsubst %/,%,$(dir $(mkfile_path)))
+
+# get the root directory of the project
+ifeq ($(platform), win64)
 hlml_root_dir = $(subst /,\\,$(makefile_dir)\..)
+else
+hlml_root_dir = $(makefile_dir)/..
+endif
 
 all: build run
 
@@ -15,16 +34,16 @@ else
 	$(error "config" argument can only equal "debug" or "release")
 endif
 
-source_files_c = $(hlml_root_dir)\\code\\generator\\main.c $(hlml_root_dir)\\code\\generator\\generator.win64.c $(hlml_root_dir)\\code\\generator\\stb_impl.c
+source_files_c = $(hlml_root_dir)/code/generator/main.c $(hlml_root_dir)/code/generator/generator.$(platform).c $(hlml_root_dir)/code/generator/stb_impl.c
 executable_name_c = generator
 
-build_dir_c = $(hlml_root_dir)\\bin\\win64\\$(config)
-build_dir_cpp = $(hlml_root_dir)\\bin\\win64\\$(config)
+build_dir_c = $(hlml_root_dir)/bin/$(platform)/$(config)
+build_dir_cpp = $(hlml_root_dir)/bin/$(platform)/$(config)
 
-include $(makefile_dir)\\include_clang_settings.mak
-include $(makefile_dir)\\build_clang.mak
+include $(makefile_dir)/include_clang_settings.mak
+include $(makefile_dir)/build_clang.mak
 
 build: verify_args make_build_dir build_c
 
 run:
-	$(build_dir_c)\\$(executable_name_c).exe
+	$(build_dir_c)/$(executable_name_c).exe

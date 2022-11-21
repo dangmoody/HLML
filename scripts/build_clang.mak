@@ -2,19 +2,27 @@
 
 make_build_dir:
 ifeq ("$(wildcard $(build_dir_cpp))", "")
+ifeq ($(platform), win64)
 	mkdir $(build_dir_cpp)
+else
+	mkdir -p $(build_dir_cpp)
+endif
 endif
 ifeq ("$(wildcard $(build_dir_c))", "")
 # Don't mkdir twice if build dirs match
 ifneq ("$(build_dir_c)", "$(build_dir_cpp)")
+ifeq ($(platform), win64)
 	mkdir $(build_dir_c)
+else
+	mkdir -p $(build_dir_c)
+endif
 endif
 endif
 
 build_c:
 	@echo Compiling $(compiler_c)
-	$(compiler_c) -std=c99 -o $(build_dir_c)\\$(executable_name_c).exe $(symbols) $(optimisation) $(defines) $(warning_levels) $(ignore_warnings) $(source_files_c) $(includes)
+	$(compiler_c) -std=c99 -o $(build_dir_c)/$(executable_name_c).exe $(symbols) $(optimisation) $(defines) $(warning_levels) $(ignore_warnings) $(source_files_c) $(includes) $(libs)
 
 build_cpp:
 	@echo Compiling $(compiler_cpp)
-	$(compiler_cpp) -std=c++11 $(additional_flags_cpp) -o $(build_dir_cpp)\\$(executable_name_cpp).exe $(symbols) $(optimisation) $(defines) $(warning_levels) $(ignore_warnings) $(source_files_cpp) $(includes)
+	$(compiler_cpp) -std=c++11 $(additional_flags_cpp) -o $(build_dir_cpp)/$(executable_name_cpp).exe $(symbols) $(optimisation) $(defines) $(warning_levels) $(ignore_warnings) $(source_files_cpp) $(includes) $(libs)
