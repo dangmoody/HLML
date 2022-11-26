@@ -38,7 +38,10 @@ jobs:
         uses: ilammy/msvc-dev-cmd@v1
 
       - name: Build And Test
-        run: .\scripts\build_and_test.bat ${{ matrix.compiler }}
+        # run: .\scripts\build_and_test.bat ${{ matrix.compiler }}
+        run: |
+          .\tools\make\make.exe -f .\scripts\generator.mak config=release
+          .\tools\make\make.exe -f .\scripts\tests.mak compiler=${{ matrix.compiler }} config=release
 
   #
   # linux
@@ -66,4 +69,7 @@ jobs:
       #     platform: x64
 
       - name: Build And Test
-        run: ./scripts/build_and_test.sh ${{ matrix.compiler }}
+        # run: ./scripts/build_and_test.sh ${{ matrix.compiler }}
+        run: |
+          .\tools\make\make.exe -f .\scripts\generator.mak config=release
+          .\tools\make\make.exe -f .\scripts\tests.mak compiler=${{ matrix.compiler }} config=release
