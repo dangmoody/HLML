@@ -13,11 +13,32 @@ workspace( "HLML" )
 	location( vs_project_folder )
 
 	platforms { "win64-msvc" }
+	-- platforms { "win64-clang" }
 	configurations { "debug", "release" }
 
 	startproject( "hlml-gen" )
 
 	architecture( "x64" )
+		
+	-- C/C++
+	includedirs (
+		"../../" .. folder_includes
+	)
+	filter ( "configurations:debug" )
+		defines {
+			"_CRT_SECURE_NO_WARNINGS",
+			"_DEBUG"
+		}
+	filter ( "configurations:release" )
+		defines {
+			"_CRT_SECURE_NO_WARNINGS",
+			"NDEBUG"
+		}
+
+	-- filter ( "platforms:win64-clang" )
+	--	toolset( "clang" )
+	filter ( "platforms:win64-msvc", "_ACTION:vs2019" )
+		toolset( "v142" )
 
 project( "generator" )
 	location( vs_project_folder )
@@ -27,7 +48,7 @@ project( "generator" )
 		"../../" .. folder_code .. "generator/**.h",
 	}
 
-	kind( "MakeFile" )
+	kind( "ConsoleApp" )
 
 	cleancommands (
 		folder_scripts .. "clean_generator.bat"
@@ -41,13 +62,14 @@ project( "generator" )
 
 	debugcommand( "$(OutDir)generator.exe" )
 
-	buildcommands (
-		folder_scripts .. "build_generator.bat --config %{cfg.buildcfg}"
-	)
-
-	rebuildcommands (
-		folder_scripts .. "build_generator.bat --config %{cfg.buildcfg}"
-	)
+	filter ( "files:../../" .. folder_code .. "generator/**" )
+		flags( "ExcludeFromBuild" )
+	filter ( "files:../../" .. folder_code .. "generator/main.c" )
+		removeflags( "ExcludeFromBuild" )
+	filter ( "files:../../" .. folder_code .. "generator/generator.win64.c" )
+		removeflags( "ExcludeFromBuild" )
+	filter ( "files:../../" .. folder_code .. "generator/stb_impl.c" )
+		removeflags( "ExcludeFromBuild" )
 
 group( "tests" )
 	project( "tests-c" )
@@ -58,7 +80,7 @@ group( "tests" )
 			"../../" .. folder_generated_tests .. "c/*.h",
 		}
 
-		kind( "Makefile" )
+		kind( "ConsoleApp" )
 
 		cleancommands (
 			folder_scripts .. "clean_tests.bat"
@@ -74,13 +96,10 @@ group( "tests" )
 
 		debugcommand( "$(OutDir)hlml_tests_c.exe" )
 
-		buildcommands (
-			folder_scripts .. "build_msvc.bat --output hlml_tests_c --config debug --source code\\generated_files\\tests\\c\\test_main.c"
-		)
-
-		rebuildcommands (
-			folder_scripts .. "build_msvc.bat --output hlml_tests_c --config debug --source code\\generated_files\\tests\\c\\test_main.c"
-		)
+		filter ( "files:../../" .. folder_generated_tests .. "c/**" )
+			flags( "ExcludeFromBuild" )
+		filter ( "files:../../" .. folder_generated_tests .. "c/test_main.c" )
+			removeflags( "ExcludeFromBuild" )
 
 	project( "test-cpp" )
 		location( vs_project_folder )
@@ -90,7 +109,7 @@ group( "tests" )
 			"../../" .. folder_generated_tests .. "cpp/*.h",
 		}
 
-		kind( "Makefile" )
+		kind( "ConsoleApp" )
 
 		cleancommands (
 			folder_scripts .. "clean_tests.bat"
@@ -106,10 +125,7 @@ group( "tests" )
 
 		debugcommand( "$(OutDir)hlml_tests_cpp.exe" )
 
-		buildcommands (
-			folder_scripts .. "build_msvc.bat --output hlml_tests_cpp --config %{cfg.buildcfg} hlml-gen-tests-cpp --source code/generated_files/tests/cpp/test_main.cpp"
-		)
-
-		rebuildcommands (
-			folder_scripts .. "build_msvc.bat --output hlml_tests_cpp --config %{cfg.buildcfg} hlml-gen-tests-cpp --source code/generated_files/tests/cpp/test_main.cpp"
-		)
+		filter ( "files:../../" .. folder_generated_tests .. "cpp/**" )
+			flags( "ExcludeFromBuild" )
+		filter ( "files:../../" .. folder_generated_tests .. "cpp/test_main.cpp" )
+			removeflags( "ExcludeFromBuild" )

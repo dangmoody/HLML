@@ -1,10 +1,7 @@
-static void GenerateFunction_QuaternionMulScalar( allocatorLinear_t* tempStorage, const typeInfo_t* typeInfo, const typeInfo_t* scalarType, stringBuilder_t* code, const generatorStrings_t* strings, const generatorFlags_t flags ) {
+static void GenerateFunction_QuaternionMulScalar( allocatorLinear_t* tempStorage, const typeInfo_t* typeInfo, stringBuilder_t* code, const generatorStrings_t* strings, const generatorFlags_t flags ) {
 	assert( tempStorage );
 	assert( typeInfo );
 	assert( typeInfo->fullTypeName );
-	assert( scalarType );
-	assert( scalarType->fullTypeName );
-	assert( Gen_TypeIsScalar( scalarType ) );
 	assert( code );
 	assert( strings );
 
@@ -451,13 +448,11 @@ static void GenerateQuaternionFiles( allocatorLinear_t* tempStorage, const char*
 			return;
 		}
 
-		typeInfo_t scalarMemberType = Gen_GetScalarType( typeInfo );
-
 		printf( "Quaternion functions %s...", typeInfo->fullTypeName );
 
 		StringBuilder_Appendf( code, "// %s\n", typeInfo->fullTypeName );
 
-		GenerateFunction_QuaternionMulScalar( tempStorage, typeInfo, &scalarMemberType, code, strings, flags );
+		GenerateFunction_QuaternionMulScalar( tempStorage, typeInfo, code, strings, flags );
 		GenerateFunction_QuaternionMulQuaternion( tempStorage, typeInfo, code, strings, flags );
 		GenerateFunction_QuaternionLength( tempStorage, typeInfo, code, strings, flags );
 		GenerateFunction_QuaternionNormalize( tempStorage, typeInfo, code, strings, flags );

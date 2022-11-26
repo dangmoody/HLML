@@ -488,7 +488,10 @@ static void GenerateSwizzleFunc_Type( allocatorLinear_t* tempStorage, stringBuil
 }
 #endif
 
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wunused-parameter"
 static void GenerateSwizzleFunc_Members( allocatorLinear_t* tempStorage, stringBuilder_t* code, const typeInfo_t* typeInfo, const generatorStrings_t* strings, const generatorFlags_t flags, const u32 numSwizzleComponents, const char* swizzleStr ) {
+#pragma clang diagnostic pop
 	assert( tempStorage );
 	assert( code );
 	assert( typeInfo );

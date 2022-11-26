@@ -495,8 +495,7 @@ static void GetMatrixCodeMultiply( allocatorLinear_t* tempStorage, const typeInf
 	}
 }
 
-static void GetMatrixCodeMultiplyVector( allocatorLinear_t* tempStorage, const typeInfo_t* matrixType, const typeInfo_t* vectorType, stringBuilder_t* code, const char* accessOperatorStr, const bool32 useConstructor ) {
-	assert( tempStorage );
+static void GetMatrixCodeMultiplyVector( const typeInfo_t* matrixType, const typeInfo_t* vectorType, stringBuilder_t* code, const char* accessOperatorStr, const bool32 useConstructor ) {
 	assert( matrixType );
 	assert( vectorType );
 	assert( vectorType->fullTypeName );
@@ -846,8 +845,7 @@ static void GenerateFunction_NotEquals( allocatorLinear_t* tempStorage, const ty
 	}
 }
 
-static void GenerateComponentWiseOperator( allocatorLinear_t* tempStorage, stringBuilder_t* code, const typeInfo_t* returnType, const typeInfo_t* lhsType, const typeInfo_t* rhsType, const char* opStr, const char* commentStr ) {
-	assert( tempStorage );
+static void GenerateComponentWiseOperator( stringBuilder_t* code, const typeInfo_t* returnType, const typeInfo_t* lhsType, const typeInfo_t* rhsType, const char* opStr, const char* commentStr ) {
 	assert( code );
 	assert( returnType );
 	assert( returnType->fullTypeName );
@@ -915,8 +913,7 @@ static void GenerateComponentWiseOperator( allocatorLinear_t* tempStorage, strin
 	StringBuilder_Append( code, "}\n\n" );
 }
 
-static void GenerateCompundComponentWiseOperator( allocatorLinear_t* tempStorage, stringBuilder_t* code, const typeInfo_t* returnType, const typeInfo_t* lhsType, const typeInfo_t* rhsType, const char* opStr, const char* commentStr ) {
-	assert( tempStorage );
+static void GenerateCompundComponentWiseOperator( stringBuilder_t* code, const typeInfo_t* returnType, const typeInfo_t* lhsType, const typeInfo_t* rhsType, const char* opStr, const char* commentStr ) {
 	assert( code );
 	assert( returnType );
 	assert( returnType->fullTypeName );
@@ -937,8 +934,7 @@ static void GenerateCompundComponentWiseOperator( allocatorLinear_t* tempStorage
 	StringBuilder_Append(  code, "}\n\n" );
 }
 
-static void GenerateOperatorSingleParm( allocatorLinear_t* tempStorage, stringBuilder_t* code, const typeInfo_t* typeInfo, const char* opStr, const operatorSingleParmType_t type, const operatorSingleParmFlags_t flags, const char* commentStr ) {
-	assert( tempStorage );
+static void GenerateOperatorSingleParm( stringBuilder_t* code, const typeInfo_t* typeInfo, const char* opStr, const operatorSingleParmType_t type, const operatorSingleParmFlags_t flags, const char* commentStr ) {
 	assert( code );
 	assert( typeInfo );
 	assert( typeInfo->fullTypeName );
@@ -989,16 +985,13 @@ static void GenerateOperatorSingleParm( allocatorLinear_t* tempStorage, stringBu
 	}
 }
 
-static void GenerateComponentWiseFunction_Operator( allocatorLinear_t* tempStorage, stringBuilder_t* code, const typeInfo_t* returnType, const typeInfo_t* lhsType, const typeInfo_t* lhsMemberType, const typeInfo_t* rhsType, const char* funcStr, const char* memberFuncStr, const char* opStr, const char* commentStr ) {
-	assert( tempStorage );
+static void GenerateComponentWiseFunction_Operator( stringBuilder_t* code, const typeInfo_t* returnType, const typeInfo_t* lhsType, const typeInfo_t* rhsType, const char* funcStr, const char* memberFuncStr, const char* opStr, const char* commentStr ) {
 	assert( code );
 	assert( returnType );
 	assert( returnType->fullTypeName );
 	assert( lhsType );
 	assert( lhsType->fullTypeName );
 	assert( !Gen_TypeIsScalar( lhsType ) );
-	assert( lhsMemberType );
-	assert( lhsMemberType->fullTypeName );
 	assert( rhsType );
 	assert( rhsType->fullTypeName );
 	assert( funcStr );
@@ -1547,7 +1540,7 @@ static void GenerateComponentWiseOperators( allocatorLinear_t* tempStorage, cons
 
 			commentStr = GetComment_ComponentWiseRelational( tempStorage, opStr, typeDescPlural );
 
-			GenerateComponentWiseOperator( tempStorage, code, &returnTypeBoolVector, typeInfo, typeInfo, opStr, commentStr );
+			GenerateComponentWiseOperator( code, &returnTypeBoolVector, typeInfo, typeInfo, opStr, commentStr );
 		}
 
 		for ( u32 opIndex = 0; opIndex < GEN_OP_ARITHMETIC_COUNT; opIndex++ ) {
@@ -1558,21 +1551,21 @@ static void GenerateComponentWiseOperators( allocatorLinear_t* tempStorage, cons
 			{
 				commentStr = GetComment_ComponentWiseArithmetic_Scalar( tempStorage, opStr, typeDescSingular );
 
-				GenerateComponentWiseOperator( tempStorage, code, typeInfo, typeInfo, &scalarType, opStr, commentStr );
+				GenerateComponentWiseOperator( code, typeInfo, typeInfo, &scalarType, opStr, commentStr );
 
 				commentStr = GetComment_CompoundComponentWiseArithmetic_Scalar( tempStorage, opStr );
 
-				GenerateCompundComponentWiseOperator( tempStorage, code, typeInfo, typeInfo, &scalarType, opStr, commentStr );
+				GenerateCompundComponentWiseOperator( code, typeInfo, typeInfo, &scalarType, opStr, commentStr );
 			}
 
 			{
 				commentStr = GetComment_ComponentWiseArithmetic_Vector( tempStorage, opStr, typeDescPlural );
 
-				GenerateComponentWiseOperator( tempStorage, code, typeInfo, typeInfo, typeInfo, opStr, commentStr );
+				GenerateComponentWiseOperator( code, typeInfo, typeInfo, typeInfo, opStr, commentStr );
 
 				commentStr = GetComment_CompoundComponentWiseArithmetic_Vector( tempStorage, opStr );
 
-				GenerateCompundComponentWiseOperator( tempStorage, code, typeInfo, typeInfo, typeInfo, opStr, commentStr );
+				GenerateCompundComponentWiseOperator( code, typeInfo, typeInfo, typeInfo, opStr, commentStr );
 			}
 		}
 
@@ -1583,8 +1576,8 @@ static void GenerateComponentWiseOperators( allocatorLinear_t* tempStorage, cons
 
 			commentStr = GetComment_ComponentWiseIncrement( tempStorage, opStr, typeDescSingular );
 
-			GenerateOperatorSingleParm( tempStorage, code, typeInfo, opStr, OPERATOR_SINGLE_PARM_TYPE_PREFIX, 0, commentStr );
-			GenerateOperatorSingleParm( tempStorage, code, typeInfo, opStr, OPERATOR_SINGLE_PARM_TYPE_POSTFIX, 0, commentStr );
+			GenerateOperatorSingleParm( code, typeInfo, opStr, OPERATOR_SINGLE_PARM_TYPE_PREFIX, 0, commentStr );
+			GenerateOperatorSingleParm( code, typeInfo, opStr, OPERATOR_SINGLE_PARM_TYPE_POSTFIX, 0, commentStr );
 		}
 
 		if ( typeInfo->type != GEN_TYPE_BOOL ) {
@@ -1598,7 +1591,7 @@ static void GenerateComponentWiseOperators( allocatorLinear_t* tempStorage, cons
 			}
 
 			commentStr = GetComment_ComponentWiseNegate( tempStorage, typeDescSingular );
-			GenerateOperatorSingleParm( tempStorage, code, typeInfo, "-", OPERATOR_SINGLE_PARM_TYPE_PREFIX, OPERATOR_PREFIX_FLAG_RETURN_COPY, commentStr );
+			GenerateOperatorSingleParm( code, typeInfo, "-", OPERATOR_SINGLE_PARM_TYPE_PREFIX, OPERATOR_PREFIX_FLAG_RETURN_COPY, commentStr );
 
 			if ( typeInfo->type == GEN_TYPE_UINT ) {
 				StringBuilder_Append( code,
@@ -1619,28 +1612,28 @@ static void GenerateComponentWiseOperators( allocatorLinear_t* tempStorage, cons
 				if ( op == GEN_OP_BITWISE_NOT ) {
 					commentStr = GetComment_ComponentWiseBitwiseNot( tempStorage, typeDescSingular );
 
-					GenerateOperatorSingleParm( tempStorage, code, typeInfo, opStr, OPERATOR_SINGLE_PARM_TYPE_PREFIX, OPERATOR_PREFIX_FLAG_RETURN_COPY, commentStr );
+					GenerateOperatorSingleParm( code, typeInfo, opStr, OPERATOR_SINGLE_PARM_TYPE_PREFIX, OPERATOR_PREFIX_FLAG_RETURN_COPY, commentStr );
 					continue;
 				}
 
 				{
 					commentStr = GetComment_ComponentWiseBitwise_Scalar( tempStorage, op, typeDescSingular );
 
-					GenerateComponentWiseOperator( tempStorage, code, typeInfo, typeInfo, &scalarType, opStr, commentStr );
+					GenerateComponentWiseOperator( code, typeInfo, typeInfo, &scalarType, opStr, commentStr );
 
 					commentStr = GetComment_CompoundComponentWiseBitwise_Scalar( tempStorage, op );
 
-					GenerateCompundComponentWiseOperator( tempStorage, code, typeInfo, typeInfo, &scalarType, opStr, commentStr );
+					GenerateCompundComponentWiseOperator( code, typeInfo, typeInfo, &scalarType, opStr, commentStr );
 				}
 
 				{
 					commentStr = GetComment_ComponentWiseBitwise_Vector( tempStorage, op, typeDescPlural );
 
-					GenerateComponentWiseOperator( tempStorage, code, typeInfo, typeInfo, typeInfo, opStr, commentStr );
+					GenerateComponentWiseOperator( code, typeInfo, typeInfo, typeInfo, opStr, commentStr );
 
 					commentStr = GetComment_CompoundComponentWiseBitwise_Vector( tempStorage, op );
 
-					GenerateCompundComponentWiseOperator( tempStorage, code, typeInfo, typeInfo, typeInfo, opStr, commentStr );
+					GenerateCompundComponentWiseOperator( code, typeInfo, typeInfo, typeInfo, opStr, commentStr );
 				}
 			}
 		}
@@ -1654,7 +1647,7 @@ static void GenerateComponentWiseOperators( allocatorLinear_t* tempStorage, cons
 
 			commentStr = GetComment_ComponentWiseRelational( tempStorage, opStr, typeDescPlural );
 
-			GenerateComponentWiseFunction_Operator( tempStorage, code, &returnTypeBoolVector, typeInfo, &memberType, typeInfo, funcName, memberFuncStr, opStr, commentStr );
+			GenerateComponentWiseFunction_Operator( code, &returnTypeBoolVector, typeInfo, typeInfo, funcName, memberFuncStr, opStr, commentStr );
 		}
 
 		for ( u32 opIndex = 0; opIndex < GEN_OP_ARITHMETIC_COUNT; opIndex++ ) {
@@ -1670,7 +1663,7 @@ static void GenerateComponentWiseOperators( allocatorLinear_t* tempStorage, cons
 
 			commentStr = GetComment_ComponentWiseArithmetic_Scalar( tempStorage, opStr, typeDescSingular );
 
-			GenerateComponentWiseFunction_Operator( tempStorage, code, typeInfo, typeInfo, &memberType, &scalarType, funcName, memberFuncStrScalar, opStr, commentStr );
+			GenerateComponentWiseFunction_Operator( code, typeInfo, typeInfo, &scalarType, funcName, memberFuncStrScalar, opStr, commentStr );
 
 			if ( typeIsVector ) {
 				funcName = Gen_GetFuncName_VectorArithmeticVector( tempStorage, typeInfo, op );
@@ -1680,7 +1673,7 @@ static void GenerateComponentWiseOperators( allocatorLinear_t* tempStorage, cons
 
 			commentStr = GetComment_ComponentWiseArithmetic_Vector( tempStorage, opStr, typeDescPlural );
 
-			GenerateComponentWiseFunction_Operator( tempStorage, code, typeInfo, typeInfo, &memberType, typeInfo, funcName, memberFuncStrVector, opStr, commentStr );
+			GenerateComponentWiseFunction_Operator( code, typeInfo, typeInfo, typeInfo, funcName, memberFuncStrVector, opStr, commentStr );
 		}
 
 		if ( typeInfo->type != GEN_TYPE_BOOL ) {
@@ -1729,7 +1722,7 @@ static void GenerateComponentWiseOperators( allocatorLinear_t* tempStorage, cons
 
 				commentStr = GetComment_ComponentWiseBitwise_Scalar( tempStorage, op, typeDescSingular );
 
-				GenerateComponentWiseFunction_Operator( tempStorage, code, typeInfo, typeInfo, &memberType, &scalarType, funcName, memberFuncStrScalar, opStr, commentStr );
+				GenerateComponentWiseFunction_Operator( code, typeInfo, typeInfo, &scalarType, funcName, memberFuncStrScalar, opStr, commentStr );
 
 				if ( typeIsVector ) {
 					funcName = Gen_GetFuncName_VectorBitwiseVector( tempStorage, typeInfo, op );
@@ -1739,7 +1732,7 @@ static void GenerateComponentWiseOperators( allocatorLinear_t* tempStorage, cons
 
 				commentStr = GetComment_ComponentWiseBitwise_Vector( tempStorage, op, typeDescPlural );
 
-				GenerateComponentWiseFunction_Operator( tempStorage, code, typeInfo, typeInfo, &memberType, typeInfo, funcName, memberFuncStrVector, opStr, commentStr );
+				GenerateComponentWiseFunction_Operator( code, typeInfo, typeInfo,typeInfo, funcName, memberFuncStrVector, opStr, commentStr );
 			}
 		}
 	}

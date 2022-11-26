@@ -1291,7 +1291,7 @@ static void GenerateVectorTests( allocatorLinear_t* tempStorage, const char* gen
 
 		StringBuilder_Append( code, GEN_FILE_HEADER );
 
-		GenerateComponentWiseTests( tempStorage, code, typeInfo, &scalarType, &scalarTypeFloatingPoint, strings, flags );
+		GenerateComponentWiseTests( tempStorage, code, typeInfo, &scalarType, strings, flags );
 
 		GenerateTests_CtorConversion( tempStorage, code, typeInfo, strings, flags );
 
