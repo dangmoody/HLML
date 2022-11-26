@@ -71,5 +71,5 @@ jobs:
       - name: Build And Test
         # run: ./scripts/build_and_test.sh ${{ matrix.compiler }}
         run: |
-          .\tools\make\make.exe -f .\scripts\generator.mak config=release
-          .\tools\make\make.exe -f .\scripts\tests.mak compiler=${{ matrix.compiler }} config=release
+          ./tools/make/make.exe -f ./scripts/generator.mak config=release
+          ./tools/make/make.exe -f ./scripts/tests.mak compiler=${{ matrix.compiler }} config=release
