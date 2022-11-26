@@ -18,7 +18,7 @@ ignore_warnings = -Wno-newline-eof -Wno-missing-braces -Wno-double-promotion -Wn
 includes = -I$(hlml_root_dir)/code/3rdparty/include/
 
 ifeq ($(platform), linux)
-ignore_warnings += -Wno-typedef-redefinition -Wno-padded -Wno-unused-macros
+ignore_warnings += -Wno-typedef-redefinition -Wno-padded -Wno-unused-macros -Wno-reserved-identifier
 libs += -lm
 endif
 
