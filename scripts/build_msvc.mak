@@ -16,12 +16,12 @@ endif
 
 make_build_dir:
 ifeq ("$(wildcard $(build_dir_cpp))", "")
-	mkdir $(build_dir_cpp)
+	mkdir $(subst /,\\,$(build_dir_cpp))
 endif
 ifeq ("$(wildcard $(build_dir_c))", "")
 # Don't mkdir twice if build dirs match
 ifneq ("$(build_dir_c)", "$(build_dir_cpp)")
-	mkdir $(build_dir_c)
+	mkdir $(subst /,\\,$(build_dir_c))
 endif
 endif
 
