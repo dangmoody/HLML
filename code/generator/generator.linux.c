@@ -38,6 +38,7 @@ along with The HLML Generator.  If not, see <http://www.gnu.org/licenses/>.
 #include "file_io.h"
 #include "timer.h"
 #include "string_helpers.h"
+#include "defines.h"
 
 #include <sys/types.h>
 #include <sys/stat.h>
@@ -203,6 +204,7 @@ void FS_DeleteFolder( const char* name ) {
 	result = rmdir( name ) == 0;
 
 	assert( result );
+	GEN_UNUSED( result );
 }
 
 bool32 FS_FolderExists( const char* name ) {
