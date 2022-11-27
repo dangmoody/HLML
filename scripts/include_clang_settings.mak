@@ -19,7 +19,7 @@ includes = -I$(hlml_root_dir)/code/3rdparty/include/
 
 ifeq ($(platform), linux)
 ignore_warnings += -Wno-typedef-redefinition -Wno-padded -Wno-unused-macros -Wno-reserved-identifier -Wno-disabled-macro-expansion
-libs += -lm
+libs += -lm -lpthread
 endif
 
 compiler_c = clang
