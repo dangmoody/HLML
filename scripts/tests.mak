@@ -5,20 +5,21 @@ all: build run
 
 # Determine OS
 useWindowsSyntax = false
-platform = $(shell uname -s)
-ifeq ($(findstring NT,$(platform)),NT)
+platform =
+uname_s = $(shell uname -s)
+ifeq ($(findstring NT,$(uname_s)),NT)
 platform = win64
-ifeq ($(platform), Linux)
+ifeq ($(uname_s), Linux)
 platform = linux
-else ifeq ($(platform), Darwin)
+else ifeq ($(uname_s), Darwin)
 platform = macos
 endif # (platform, Linux)
-else # ($(findstring NT,$(platform)),NT)
+else # ($(findstring NT,$(uname_s)),NT)
 ifeq ($(OS), Windows_NT)
 platform = win64
 useWindowsSyntax = true
 endif # ($(OS), Windows_NT)
-endif # ($(findstring NT,$(platform)),NT)
+endif # ($(findstring NT,$(uname_s)),NT)
 
 mkfile_path = $(firstword $(MAKEFILE_LIST)))
 makefile_dir = $(patsubst %/,%,$(dir $(mkfile_path)))
