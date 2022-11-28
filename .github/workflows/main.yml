@@ -33,9 +33,11 @@ jobs:
         uses: egor-tensin/setup-mingw@v2
         with:
           platform: x64
+        if: ${{ matrix.compiler }} == "gcc"
 
       - name: Install MSVC
         uses: ilammy/msvc-dev-cmd@v1
+        if: ${{ matrix.compiler }} == "msvc"
 
       - name: Build And Test
         # run: .\scripts\build_and_test.bat ${{ matrix.compiler }}

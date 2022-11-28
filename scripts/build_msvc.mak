@@ -16,12 +16,20 @@ endif
 
 make_build_dir:
 ifeq ("$(wildcard $(build_dir_cpp))", "")
+ifeq ($(useWindowsSyntax), true)
 	mkdir $(subst /,\\,$(build_dir_cpp))
+else
+	mkdir -p $(build_dir_cpp)
+endif
 endif
 ifeq ("$(wildcard $(build_dir_c))", "")
 # Don't mkdir twice if build dirs match
 ifneq ("$(build_dir_c)", "$(build_dir_cpp)")
+ifeq ($(useWindowsSyntax), true)
 	mkdir $(subst /,\\,$(build_dir_c))
+else
+	mkdir -p $(build_dir_c)
+endif
 endif
 endif
 
