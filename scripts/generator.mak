@@ -5,9 +5,9 @@ useWindowsSyntax = false
 platform = $(shell uname -s)
 ifeq ($(findstring NT,$(platform)),NT)
 platform = win64
-ifeq (platform, Linux)
+ifeq ($(platform), Linux)
 platform = linux
-else ifeq (platform, Darwin)
+else ifeq ($(platform), Darwin)
 platform = macos
 endif # (platform, Linux)
 else # ($(findstring NT,$(platform)),NT)
