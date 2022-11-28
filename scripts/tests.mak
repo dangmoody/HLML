@@ -4,17 +4,21 @@
 all: build run
 
 # Determine OS
-platform =
+useWindowsSyntax = false
+platform = $(shell uname -s)
+ifeq ($(findstring NT,$(platform)),NT)
+platform = win64
+ifeq (platform, Linux)
+platform = linux
+else ifeq (platform, Darwin)
+platform = macos
+endif # (platform, Linux)
+else # ($(findstring NT,$(platform)),NT)
 ifeq ($(OS), Windows_NT)
 platform = win64
-else
-uname_s = $(shell uname -s)
-ifeq ($(uname_s),Linux)
-platform = linux
-else ifeq ($(uname_s),Darwin)
-platform = macos
-endif
-endif
+useWindowsSyntax = true
+endif # ($(OS), Windows_NT)
+endif # ($(findstring NT,$(platform)),NT)
 
 mkfile_path = $(firstword $(MAKEFILE_LIST)))
 makefile_dir = $(patsubst %/,%,$(dir $(mkfile_path)))
@@ -67,7 +71,7 @@ build: verify_args clean make_build_dir build_c build_cpp
 
 clean:
 ifneq ("$(wildcard $(hlml_tests_c_path))", "")
-ifeq ($(platform), win64)
+ifeq ($(useWindowsSyntax), true)
 	del $(subst /,\\,$(hlml_tests_c_path))
 else
 	@rm -f $(hlml_tests_c_path)
@@ -75,7 +79,7 @@ endif
 endif
 
 ifneq ("$(wildcard $(hlml_tests_cpp_path))", "")
-ifeq ($(platform), win64)
+ifeq ($(useWindowsSyntax), true)
 	del $(subst /,\\,$(hlml_tests_cpp_path))
 else
 	@rm -f $(hlml_tests_cpp_path)

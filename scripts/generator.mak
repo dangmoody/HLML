@@ -1,26 +1,30 @@
 # pass configuration on command line!
 
 # Determine OS
-platform =
+useWindowsSyntax = false
+platform = $(shell uname -s)
+ifeq ($(findstring NT,$(platform)),NT)
+platform = win64
+ifeq (platform, Linux)
+platform = linux
+else ifeq (platform, Darwin)
+platform = macos
+endif # (platform, Linux)
+else # ($(findstring NT,$(platform)),NT)
 ifeq ($(OS), Windows_NT)
 platform = win64
-else
-uname_s = $(shell uname -s)
-ifeq ($(uname_s),Linux)
-platform = linux
-else ifeq ($(uname_s),Darwin)
-platform = macos
-endif
-endif
+useWindowsSyntax = true
+endif # ($(OS), Windows_NT)
+endif # ($(findstring NT,$(platform)),NT)
 
 mkfile_path = $(firstword $(MAKEFILE_LIST)))
 makefile_dir = $(patsubst %/,%,$(dir $(mkfile_path)))
 
 # get the root directory of the project
 ifeq ($(platform), win64)
-hlml_root_dir = $(subst /,\\,$(makefile_dir)\..)
+	hlml_root_dir = $(subst /,\\,$(makefile_dir)\..)
 else
-hlml_root_dir = $(makefile_dir)/..
+	hlml_root_dir = $(makefile_dir)/..
 endif
 
 all: build run
