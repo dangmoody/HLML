@@ -6,7 +6,7 @@ platform =
 uname_s = $(shell uname -s)
 ifeq ($(findstring NT,$(uname_s)),NT)
 platform = win64
-ifeq ($(uname_s),Linux)
+else ifeq ($(uname_s),Linux)
 platform = linux
 else ifeq ($(uname_s),Darwin)
 platform = macos
@@ -23,9 +23,9 @@ makefile_dir = $(patsubst %/,%,$(dir $(mkfile_path)))
 
 # get the root directory of the project
 ifeq ($(platform), win64)
-	hlml_root_dir = $(subst /,\\,$(makefile_dir)\..)
+hlml_root_dir = $(subst /,\\,$(makefile_dir)\..)
 else
-	hlml_root_dir = $(makefile_dir)/..
+hlml_root_dir = $(makefile_dir)/..
 endif
 
 all: build run
