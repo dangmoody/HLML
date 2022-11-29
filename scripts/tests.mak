@@ -9,13 +9,13 @@ platform =
 uname_s = $(shell uname -s)
 ifeq ($(findstring NT,$(uname_s)),NT)
 platform = win64
-ifeq ($(uname_s), Linux)
+ifeq ($(uname_s),Linux)
 platform = linux
-else ifeq ($(uname_s), Darwin)
+else ifeq ($(uname_s),Darwin)
 platform = macos
 endif # (platform, Linux)
 else # ($(findstring NT,$(uname_s)),NT)
-ifeq ($(OS), Windows_NT)
+ifeq ($(OS),Windows_NT)
 platform = win64
 useWindowsSyntax = true
 endif # ($(OS), Windows_NT)
