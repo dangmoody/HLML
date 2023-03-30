@@ -122,6 +122,8 @@ If this is a project you'd like to contribute to then see the [contribution docu
 Credits
 =======
 
+I'd like to dedicate HLML to my Grandad, who helped raise me and taught me to "always keep an open mind", which I always strive my best to do every single day.  Grandad was someone who helped me overcome my initial fear of maths as a child, and helped make me the man I am today.  He is missed dearly, and always will be.
+
 I'd like to extend credit to the following:
 
 - [GLM](https://github.com/g-truc/glm) - I use some of their solutions for a couple of functions, therefore I take no credit for those.
