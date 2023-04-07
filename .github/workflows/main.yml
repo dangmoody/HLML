@@ -72,7 +72,7 @@ jobs:
       - name: Install GCC
         run: |
           sudo apt update
-          sudo apt install gcc-13
+          sudo apt install gcc
 
       # - name: Install GCC
       #   uses: egor-tensin/setup-gcc@v1
