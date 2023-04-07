@@ -18,7 +18,7 @@ jobs:
 
     strategy:
       matrix:
-        compiler: ['clang', 'gcc']
+        compiler: ['clang', 'gcc', 'msvc']
 
     steps:
       - uses: actions/checkout@v2
@@ -33,17 +33,18 @@ jobs:
         uses: egor-tensin/setup-mingw@v2
         with:
           platform: x64
-        if: ${{ matrix.compiler == 'gcc' }}
+        if: ${{ matrix.compiler }} == 'gcc'
 
       - name: Install MSVC
         uses: ilammy/msvc-dev-cmd@v1
-        if: ${{ matrix.compiler == 'msvc' }}
+        if: ${{ matrix.compiler }} == 'msvc'
 
       - name: Build And Test
         # run: .\scripts\build_and_test.bat ${{ matrix.compiler }}
         run: |
           .\tools\make\make.exe -f .\scripts\generator.mak config=release
           .\tools\make\make.exe -f .\scripts\tests.mak compiler=${{ matrix.compiler }} config=release
+        if: ${{ matrix.compiler }} != 'msvc'
 
   #
   # linux
