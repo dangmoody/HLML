@@ -38,6 +38,6 @@ build_and_test_all: verify_args
 	$(MAKE) -f $(makefile_dir)/generator.mak config=$(config)
 	$(MAKE) -f $(makefile_dir)/tests.mak compiler=clang config=$(config)
 	$(MAKE) -f $(makefile_dir)/tests.mak compiler=gcc config=$(config)
-# ifeq ($(platform), win64)
-# 	$(MAKE) -f $(makefile_dir)/tests.mak compiler=msvc config=$(config)
-# endif
+ifeq ($(platform), win64)
+	$(MAKE) -f $(makefile_dir)/tests.mak compiler=msvc config=$(config)
+endif
