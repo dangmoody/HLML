@@ -46,6 +46,10 @@ jobs:
           .\tools\make\make.exe -f .\scripts\tests.mak compiler=${{ matrix.compiler }} config=release
         if: matrix.compiler != 'msvc'
 
+      - name: Build And Test (MSVC only)
+        run: .\scripts\build_and_test.bat ${{ matrix.compiler }}
+        if: matrix.compiler == 'msvc'
+
   #
   # linux
   #
