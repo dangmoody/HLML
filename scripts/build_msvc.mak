@@ -35,8 +35,8 @@ endif
 
 build_c: has_vs_vcvars_path
 	@echo "Compiling ${compiler_c} (C)"
-	"$(vs_vcvars_path)" && cl /Fe:$(build_dir_c)\\$(executable_name_c).exe /Fd:$(build_dir_c)\\$(executable_name_c).pdb /Fo:$(build_dir_c)\\$(executable_name_c).obj $(symbols) $(optimisation) $(defines) $(includes) $(warning_levels) $(ignore_warnings) $(source_files_c)
+	"$(vs_vcvars_path)" && cl \/Fe:$(build_dir_c)\\$(executable_name_c).exe /Fd:$(build_dir_c)\\$(executable_name_c).pdb /Fo:$(build_dir_c)\\$(executable_name_c).obj $(symbols) $(optimisation) $(defines) $(includes) $(warning_levels) $(ignore_warnings) $(source_files_c)
 
 build_cpp: has_vs_vcvars_path
 	@echo "Compiling ${compiler_cpp} (C++)"
-	"$(vs_vcvars_path)" && cl /Fe:$(build_dir_cpp)\\$(executable_name_cpp).exe /Fd:$(build_dir_cpp)\\$(executable_name_cpp).pdb /Fo:$(build_dir_cpp)\\$(executable_name_cpp).obj $(symbols) $(optimisation) $(defines) $(includes) $(warning_levels) $(ignore_warnings) $(source_files_cpp)
+	"$(vs_vcvars_path)" && cl \/Fe:$(build_dir_cpp)\\$(executable_name_cpp).exe /Fd:$(build_dir_cpp)\\$(executable_name_cpp).pdb /Fo:$(build_dir_cpp)\\$(executable_name_cpp).obj $(symbols) $(optimisation) $(defines) $(includes) $(warning_levels) $(ignore_warnings) $(source_files_cpp)
