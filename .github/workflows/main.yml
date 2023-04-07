@@ -58,11 +58,21 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
+      # - name: Install Clang
+      #   uses: KyleMayes/install-llvm-action@v1
+      #   with:
+      #     version: "13.0"
+      #     directory: ${{ runner.temp }}/llvm
+
       - name: Install Clang
-        uses: KyleMayes/install-llvm-action@v1
-        with:
-          version: "13.0"
-          directory: ${{ runner.temp }}/llvm
+        run: |
+          sudo apt update
+          sudo apt install clang-13
+
+      - name: Install GCC
+        run: |
+          sudo apt update
+          sudo apt install gcc-13
 
       # - name: Install GCC
       #   uses: egor-tensin/setup-gcc@v1
