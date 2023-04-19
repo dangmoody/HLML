@@ -33,41 +33,6 @@ SOFTWARE.
 // EDITING THIS FILE MAY CAUSE SIDE EFFECTS.
 // DO SO AT YOUR OWN RISK.
 
-#pragma warning(1 : 5247)
-#pragma warning(1 : 5248)
-
-#if 0
-#include <stdio.h>
-
-#define DEFINE_CTOR( func ) \
-	static void func( void ); \
-\
-	__pragma( section( ".CRT$XCU", read ) ) \
-	__declspec( allocate( ".CRT$XCU" ) ) void ( *Func_ ## func )( void ) = func; \
-\
-	static void func( void )
-
-DEFINE_CTOR( BeforeMain0 ) {
-	printf( "before main 0\n" );
-}
-
-DEFINE_CTOR( BeforeMain1 ) {
-	printf( "before main 1\n" );
-}
-
-/*#pragma data_seg( ".CRT$XCU" )
-static void ( *OnBefore )( void ) = BeforeMain;
-#pragma data_seg()*/
-
-int main( int argc, char** argv ) {
-	( ( void ) argc );
-	( ( void ) argv );
-
-	printf( "in main\n" );
-
-	return 0;
-}
-#else
 #define NOMINMAX
 
 #define TEMPER_IMPLEMENTATION
@@ -246,4 +211,3 @@ int main( int argc, char** argv )
 
 	return TEMPER_GET_EXIT_CODE();
 }
-#endif

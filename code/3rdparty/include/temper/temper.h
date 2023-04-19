@@ -577,20 +577,20 @@ TEMPERDEV_EXTERN_C temperTestContext_t	g_temperTestContext;
 	void TEMPERDEV_CONCAT( TEMPERDEV_TEST_INFO_FETCHER_, testName )( void ) __attribute__( ( constructor( __COUNTER__ + 101 ) ) ); \
 	void TEMPERDEV_CONCAT( TEMPERDEV_TEST_INFO_FETCHER_, testName )( void )
 #elif defined( _MSC_VER )	// defined( __GNUC__ ) || defined( __clang__ )
-#if defined( _WIN64 )
-#define TEMPERDEV_MSVC_PREFIX
+#ifdef _WIN64
+#define TEMPERDEV_MSVC_PREFIX	""
 #else
 #define TEMPERDEV_MSVC_PREFIX	"_"
 #endif
 
 #pragma section( ".CRT$XCU", read )
 #define TEMPERDEV_DEFINE_TEST_INFO_FETCHER( testName ) \
-	static void __cdecl TEMPERDEV_CONCAT( TEMPERDEV_TEST_INFO_FETCHER_, testName )( void ); \
+	void TEMPERDEV_CONCAT( TEMPERDEV_TEST_INFO_FETCHER_, testName )( void ); \
 \
-	__pragma( comment( linker, "/include:" TEMPERDEV_MSVC_PREFIX TEMPERDEV_CONCAT( TEMPERDEV_STRINGIFY( testName ), "_" ) ) ) \
-	__declspec( allocate( ".CRT$XCU" ) ) void ( __cdecl * TEMPERDEV_CONCAT( testName, _ ) )( void ) = TEMPERDEV_CONCAT( TEMPERDEV_TEST_INFO_FETCHER_, testName ); \
+	__pragma( comment( linker, "/include:" TEMPERDEV_MSVC_PREFIX TEMPERDEV_CONCAT( TEMPERDEV_STRINGIFY( testName ), "_FuncPtr" ) ) ) \
+	TEMPERDEV_EXTERN_C __declspec( allocate( ".CRT$XCU" ) ) void ( * TEMPERDEV_CONCAT( testName, _FuncPtr ) )( void ) = TEMPERDEV_CONCAT( TEMPERDEV_TEST_INFO_FETCHER_, testName ); \
 \
-	static void __cdecl TEMPERDEV_CONCAT( TEMPERDEV_TEST_INFO_FETCHER_, testName )( void )
+	void TEMPERDEV_CONCAT( TEMPERDEV_TEST_INFO_FETCHER_, testName )( void )
 #endif	// defined( _MSC_VER )
 
 //----------------------------------------------------------
