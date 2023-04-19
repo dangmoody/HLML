@@ -33,7 +33,7 @@ SOFTWARE.
 // EDITING THIS FILE MAY CAUSE SIDE EFFECTS.
 // DO SO AT YOUR OWN RISK.
 
-TEMPER_PARAMETRIC( Test_bool3_bool3_all, TEMPER_FLAG_SHOULD_RUN, const bool3* x, const bool32_t expectedAnswer )
+TEMPER_TEST_PARAMETRIC( Test_bool3_bool3_all, TEMPER_FLAG_SHOULD_RUN, const bool3* x, const bool32_t expectedAnswer )
 {
 	bool32_t actualResult = bool3_bool3_all( x );
 	TEMPER_CHECK_TRUE( actualResult == expectedAnswer );
@@ -64,7 +64,7 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_bool3_bool3_all,
 	false
 );
 
-TEMPER_PARAMETRIC( Test_bool3_bool3_any, TEMPER_FLAG_SHOULD_RUN, const bool3* x, const bool32_t expectedAnswer )
+TEMPER_TEST_PARAMETRIC( Test_bool3_bool3_any, TEMPER_FLAG_SHOULD_RUN, const bool3* x, const bool32_t expectedAnswer )
 {
 	bool32_t actualResult = bool3_bool3_any( x );
 	TEMPER_CHECK_TRUE( actualResult == expectedAnswer );
@@ -95,7 +95,7 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_bool3_bool3_any,
 	false
 );
 
-TEMPER_PARAMETRIC( Test_bool3_lengthsq, TEMPER_FLAG_SHOULD_RUN, const bool3* vec, const float expectedAnswer )
+TEMPER_TEST_PARAMETRIC( Test_bool3_lengthsq, TEMPER_FLAG_SHOULD_RUN, const bool3* vec, const float expectedAnswer )
 {
 	float actualResult = bool3_lengthsq( vec );
 	TEMPER_CHECK_TRUE( floateq( actualResult, expectedAnswer ) );
@@ -116,7 +116,7 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_bool3_lengthsq,
 	12.000000f
 );
 
-TEMPER_PARAMETRIC( Test_bool3_length, TEMPER_FLAG_SHOULD_RUN, const bool3* vec, const float expectedAnswer )
+TEMPER_TEST_PARAMETRIC( Test_bool3_length, TEMPER_FLAG_SHOULD_RUN, const bool3* vec, const float expectedAnswer )
 {
 	float actualResult = bool3_length( vec );
 	TEMPER_CHECK_TRUE( floateq( actualResult, expectedAnswer ) );
@@ -137,7 +137,7 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_bool3_length,
 	3.464102f
 );
 
-TEMPER_PARAMETRIC( Test_bool3_dot, TEMPER_FLAG_SHOULD_RUN, const bool3* lhs, const bool3* rhs, const bool32_t expectedAnswer )
+TEMPER_TEST_PARAMETRIC( Test_bool3_dot, TEMPER_FLAG_SHOULD_RUN, const bool3* lhs, const bool3* rhs, const bool32_t expectedAnswer )
 {
 	bool32_t actualResult = bool3_dot( lhs, rhs );
 	TEMPER_CHECK_TRUE( actualResult == expectedAnswer );

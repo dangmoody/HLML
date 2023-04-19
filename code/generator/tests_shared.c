@@ -96,7 +96,7 @@ static void Gen_GenerateParametricTestDefinition_Operator( allocatorLinear_t* te
 
 	const char* testName = Gen_GetTestName( tempStorage, lhsType, opName );
 
-	StringBuilder_Appendf( code, "TEMPER_PARAMETRIC( %s, TEMPER_FLAG_SHOULD_RUN, const %s%s lhs, const %s%s rhs, const %s%s expectedAnswer )\n", testName, lhsType->fullTypeName, strings->parmPassByStr, rhsType->fullTypeName, strings->parmPassByStr, returnType->fullTypeName, strings->parmPassByStr );
+	StringBuilder_Appendf( code, "TEMPER_TEST_PARAMETRIC( %s, TEMPER_FLAG_SHOULD_RUN, const %s%s lhs, const %s%s rhs, const %s%s expectedAnswer )\n", testName, lhsType->fullTypeName, strings->parmPassByStr, rhsType->fullTypeName, strings->parmPassByStr, returnType->fullTypeName, strings->parmPassByStr );
 	StringBuilder_Append(  code, "{\n" );
 	StringBuilder_Appendf( code, "\t%s actualResult = lhs %s rhs;\n", returnType->fullTypeName, opStr );
 	StringBuilder_Append(  code, "\tTEMPER_CHECK_TRUE( actualResult == expectedAnswer );\n" );
@@ -138,7 +138,7 @@ static void Gen_GenerateParametricTestDefinition_Generic_SSE( allocatorLinear_t*
 		referenceStr = strings->parmReferenceStr;
 	}
 
-	StringBuilder_Appendf( code, "TEMPER_PARAMETRIC( %s, TEMPER_FLAG_SHOULD_RUN", testName );
+	StringBuilder_Appendf( code, "TEMPER_TEST_PARAMETRIC( %s, TEMPER_FLAG_SHOULD_RUN", testName );
 
 	for ( u32 i = 0; i < def->parmsCount; i++ ) {
 		const parametricTestDefinitionParm_t* parm = &def->parms[i];
@@ -237,10 +237,10 @@ static void Gen_GenerateParametricTestDefinition_Generic_SSE( allocatorLinear_t*
 
 			StringBuilder_Appendf( code, "\t_mm_store_ps( actualAnswer, reg_actualAnswer_%c );\n", componentStr );
 
-			StringBuilder_Appendf( code, "\tTEMPER_CHECK_ALMOST_EQUAL( actualAnswer[0], expectedAnswer%s%c, 1e-3f );\n", strings->parmAccessOperatorStr, componentStr );
-			StringBuilder_Appendf( code, "\tTEMPER_CHECK_ALMOST_EQUAL( actualAnswer[1], expectedAnswer%s%c, 1e-3f );\n", strings->parmAccessOperatorStr, componentStr );
-			StringBuilder_Appendf( code, "\tTEMPER_CHECK_ALMOST_EQUAL( actualAnswer[2], expectedAnswer%s%c, 1e-3f );\n", strings->parmAccessOperatorStr, componentStr );
-			StringBuilder_Appendf( code, "\tTEMPER_CHECK_ALMOST_EQUAL( actualAnswer[3], expectedAnswer%s%c, 1e-3f );\n", strings->parmAccessOperatorStr, componentStr );
+			StringBuilder_Appendf( code, "\tTEMPER_CHECK_FLOAT_WITHIN_RANGE( actualAnswer[0], expectedAnswer%s%c, 1e-3f );\n", strings->parmAccessOperatorStr, componentStr );
+			StringBuilder_Appendf( code, "\tTEMPER_CHECK_FLOAT_WITHIN_RANGE( actualAnswer[1], expectedAnswer%s%c, 1e-3f );\n", strings->parmAccessOperatorStr, componentStr );
+			StringBuilder_Appendf( code, "\tTEMPER_CHECK_FLOAT_WITHIN_RANGE( actualAnswer[2], expectedAnswer%s%c, 1e-3f );\n", strings->parmAccessOperatorStr, componentStr );
+			StringBuilder_Appendf( code, "\tTEMPER_CHECK_FLOAT_WITHIN_RANGE( actualAnswer[3], expectedAnswer%s%c, 1e-3f );\n", strings->parmAccessOperatorStr, componentStr );
 
 			StringBuilder_Appendf( code, "\n" );
 		}
@@ -297,7 +297,7 @@ static void Gen_GenerateParametricTestDefinition_Generic( allocatorLinear_t* tem
 		referenceStr = strings->parmReferenceStr;
 	}
 
-	StringBuilder_Appendf( code, "TEMPER_PARAMETRIC( %s, TEMPER_FLAG_SHOULD_RUN", testName );
+	StringBuilder_Appendf( code, "TEMPER_TEST_PARAMETRIC( %s, TEMPER_FLAG_SHOULD_RUN", testName );
 
 	for ( u32 i = 0; i < def->parmsCount; i++ ) {
 		const parametricTestDefinitionParm_t* parm = &def->parms[i];
@@ -400,7 +400,7 @@ static void Gen_GenerateParametricTestDefinition_ComponentWise_SSE( allocatorLin
 		// referenceStr = strings->parmReferenceStr;
 	}
 
-	StringBuilder_Appendf( code, "TEMPER_PARAMETRIC( %s, TEMPER_FLAG_SHOULD_RUN", testName );
+	StringBuilder_Appendf( code, "TEMPER_TEST_PARAMETRIC( %s, TEMPER_FLAG_SHOULD_RUN", testName );
 
 	for ( u32 i = 0; i < def->parmsCount; i++ ) {
 		const parametricTestDefinitionParm_t* parm = &def->parms[i];
@@ -688,7 +688,7 @@ static void Gen_GenerateParametricTestCode_OperatorSingleParm( allocatorLinear_t
 
 	const char* testName = Gen_GetTestName( tempStorage, typeInfo, testNameSuffix );
 
-	StringBuilder_Appendf( code, "TEMPER_PARAMETRIC( %s, TEMPER_FLAG_SHOULD_RUN, const %s%s x, const %s%s expectedAnswer )\n", testName, typeInfo->fullTypeName, strings->parmPassByStr, typeInfo->fullTypeName, strings->parmPassByStr );
+	StringBuilder_Appendf( code, "TEMPER_TEST_PARAMETRIC( %s, TEMPER_FLAG_SHOULD_RUN, const %s%s x, const %s%s expectedAnswer )\n", testName, typeInfo->fullTypeName, strings->parmPassByStr, typeInfo->fullTypeName, strings->parmPassByStr );
 	StringBuilder_Append(  code, "{\n" );
 	StringBuilder_Append(  code, "\t// make local copy of x and use that because we cant do increment or decrement operations on a const reference\n" );
 	StringBuilder_Append(  code, "\t// and MSVC throws warnings if we just make the parameter a non-const reference\n" );
@@ -1731,7 +1731,7 @@ static void GenerateTests_CtorConversion( allocatorLinear_t* tempStorage, string
 		const char* floateqStr = Gen_GetFuncName_Floateq( typeInfo->type );
 
 		// this test cant use any of the main test generation functions because we only a certain number of components get assigned based on the type being converting from
-		StringBuilder_Appendf( code, "TEMPER_PARAMETRIC( Test_%s_%s, TEMPER_FLAG_SHOULD_RUN, const %s& convertFrom, const %s& expectedAnswer )\n", typeInfo->fullTypeName, otherTypeInfo.fullTypeName, otherTypeInfo.fullTypeName, typeInfo->fullTypeName );
+		StringBuilder_Appendf( code, "TEMPER_TEST_PARAMETRIC( Test_%s_%s, TEMPER_FLAG_SHOULD_RUN, const %s& convertFrom, const %s& expectedAnswer )\n", typeInfo->fullTypeName, otherTypeInfo.fullTypeName, otherTypeInfo.fullTypeName, typeInfo->fullTypeName );
 		StringBuilder_Append(  code, "{\n" );
 		StringBuilder_Appendf( code, "\t%s actualAnswer = %s( convertFrom );\n", typeInfo->fullTypeName, typeInfo->fullTypeName );
 		StringBuilder_Append(  code, "\n" );
@@ -1818,7 +1818,7 @@ static void GenerateTests_CtorConversion( allocatorLinear_t* tempStorage, string
 				funcName = String_TPrintf( tempStorage, "composite_ctor_1_vec_before_with_%d_leftovers", numComponents, leftoverOnes );
 				testName = Gen_GetTestName( tempStorage, typeInfo, funcName );
 
-				StringBuilder_Appendf( code, "TEMPER_PARAMETRIC( %s, TEMPER_FLAG_SHOULD_RUN, ", testName );
+				StringBuilder_Appendf( code, "TEMPER_TEST_PARAMETRIC( %s, TEMPER_FLAG_SHOULD_RUN, ", testName );
 				StringBuilder_Appendf( code, "const %s%d& vecPart, ", typeString, numComponents );
 				for ( u32 i = 0; i < leftoverOnes; i++ ) {
 					StringBuilder_Appendf( code, "const %s scalar%d, ", memberTypeString, i );
@@ -1876,7 +1876,7 @@ static void GenerateTests_CtorConversion( allocatorLinear_t* tempStorage, string
 				funcName = String_TPrintf( tempStorage, "composite_ctor_1_vec_after_with_%d_leftovers", numComponents, leftoverOnes );
 				testName = Gen_GetTestName( tempStorage, typeInfo, funcName );
 
-				StringBuilder_Appendf( code, "TEMPER_PARAMETRIC( %s, TEMPER_FLAG_SHOULD_RUN, ", testName );
+				StringBuilder_Appendf( code, "TEMPER_TEST_PARAMETRIC( %s, TEMPER_FLAG_SHOULD_RUN, ", testName );
 				for ( u32 i = 0; i < leftoverOnes; i++ ) {
 					StringBuilder_Appendf( code, "const %s scalar%d, ", memberTypeString, i );
 				}
@@ -1932,7 +1932,7 @@ static void GenerateTests_CtorConversion( allocatorLinear_t* tempStorage, string
 			funcName = String_TPrintf( tempStorage, "composite_ctor_2_vecs" );
 			testName = Gen_GetTestName( tempStorage, typeInfo, funcName );
 
-			StringBuilder_Appendf( code, "TEMPER_PARAMETRIC( %s, TEMPER_FLAG_SHOULD_RUN, const %s& vec0, const %s& vec1, const %s& expectedAnswer )\n", testName, subVecType.fullTypeName, subVecType.fullTypeName, typeInfo->fullTypeName );
+			StringBuilder_Appendf( code, "TEMPER_TEST_PARAMETRIC( %s, TEMPER_FLAG_SHOULD_RUN, const %s& vec0, const %s& vec1, const %s& expectedAnswer )\n", testName, subVecType.fullTypeName, subVecType.fullTypeName, typeInfo->fullTypeName );
 			StringBuilder_Append(  code, "{\n" );
 			StringBuilder_Appendf( code, "\t%s actualAnswer = %s( vec0, vec1 );\n", typeInfo->fullTypeName, typeInfo->fullTypeName );
 			StringBuilder_Append(  code, "\n" );

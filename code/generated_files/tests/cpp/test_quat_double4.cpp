@@ -33,7 +33,7 @@ SOFTWARE.
 // EDITING THIS FILE MAY CAUSE SIDE EFFECTS.
 // DO SO AT YOUR OWN RISK.
 
-TEMPER_PARAMETRIC( Test_double4_quat_muls, TEMPER_FLAG_SHOULD_RUN, const double4& quat, const double scalar, const double4& expectedAnswer )
+TEMPER_TEST_PARAMETRIC( Test_double4_quat_muls, TEMPER_FLAG_SHOULD_RUN, const double4& quat, const double scalar, const double4& expectedAnswer )
 {
 	double4 actualAnswer = quat_mul( quat, scalar );
 	TEMPER_CHECK_TRUE( actualAnswer == expectedAnswer );
@@ -59,7 +59,7 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_double4_quat_muls,
 		1.000000f,
 		double4( 1.000000f, 1.000000f, 1.000000f, 1.000000f )
 );
-TEMPER_PARAMETRIC( Test_double4_quat_mulq, TEMPER_FLAG_SHOULD_RUN, const double4& lhs, const double4& rhs, const double4& expectedAnswer )
+TEMPER_TEST_PARAMETRIC( Test_double4_quat_mulq, TEMPER_FLAG_SHOULD_RUN, const double4& lhs, const double4& rhs, const double4& expectedAnswer )
 {
 	double4 actualAnswer = quat_mul( lhs, rhs );
 	TEMPER_CHECK_TRUE( actualAnswer == expectedAnswer );
@@ -90,7 +90,7 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_double4_quat_mulq,
 		double4( 1.000000f, 3.000000f, 5.000000f, 7.000000f ),
 		double4( 22.000000f, 30.000000f, 56.000000f, 4.000000f )
 );
-TEMPER_PARAMETRIC( Test_double4_quat_normalize, TEMPER_FLAG_SHOULD_RUN, const double4& quat, const double4& expectedAnswer )
+TEMPER_TEST_PARAMETRIC( Test_double4_quat_normalize, TEMPER_FLAG_SHOULD_RUN, const double4& quat, const double4& expectedAnswer )
 {
 	double4 actualResult = quat_normalize( quat );
 	TEMPER_CHECK_TRUE( actualResult == expectedAnswer );
@@ -101,7 +101,7 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_double4_quat_normalize,
 	double4( 0.272166f, 0.408248f, 0.544331f, 0.680414f )
 );
 
-TEMPER_PARAMETRIC( Test_double4_quat_conjugate, TEMPER_FLAG_SHOULD_RUN, const double4& quat, const double4& expectedAnswer )
+TEMPER_TEST_PARAMETRIC( Test_double4_quat_conjugate, TEMPER_FLAG_SHOULD_RUN, const double4& quat, const double4& expectedAnswer )
 {
 	double4 actualResult = quat_conjugate( quat );
 	TEMPER_CHECK_TRUE( actualResult == expectedAnswer );
@@ -122,7 +122,7 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_double4_quat_conjugate,
 	double4( -3.000000f, -3.000000f, -3.000000f, 3.000000f )
 );
 
-TEMPER_PARAMETRIC( Test_double4_quat_inverse, TEMPER_FLAG_SHOULD_RUN, const double4& quat, const double4& expectedAnswer )
+TEMPER_TEST_PARAMETRIC( Test_double4_quat_inverse, TEMPER_FLAG_SHOULD_RUN, const double4& quat, const double4& expectedAnswer )
 {
 	double4 actualResult = quat_inverse( quat );
 	TEMPER_CHECK_TRUE( actualResult == expectedAnswer );
@@ -143,7 +143,7 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_double4_quat_inverse,
 	double4( -0.083333f, -0.083333f, -0.083333f, 0.083333f )
 );
 
-TEMPER_PARAMETRIC( Test_double4_quat_rotate, TEMPER_FLAG_SHOULD_RUN, const double4& quat, const double angleRadians, const double3& axis, const double3& expectedAnswer )
+TEMPER_TEST_PARAMETRIC( Test_double4_quat_rotate, TEMPER_FLAG_SHOULD_RUN, const double4& quat, const double angleRadians, const double3& axis, const double3& expectedAnswer )
 {
 	double3 actualResult = quat_rotate( quat, angleRadians, axis );
 	TEMPER_CHECK_TRUE( actualResult == expectedAnswer );
@@ -156,7 +156,7 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_double4_quat_rotate,
 	double3( 0.000000f, 0.000000f, 1.000000f )
 );
 
-TEMPER_PARAMETRIC( Test_double4_quat_to_rotation_matrix, TEMPER_FLAG_SHOULD_RUN, const double4& quat, const double4x4& expectedAnswer )
+TEMPER_TEST_PARAMETRIC( Test_double4_quat_to_rotation_matrix, TEMPER_FLAG_SHOULD_RUN, const double4& quat, const double4x4& expectedAnswer )
 {
 	double4x4 actualResult = quat_to_rotation_matrix( quat );
 	TEMPER_CHECK_TRUE( actualResult == expectedAnswer );

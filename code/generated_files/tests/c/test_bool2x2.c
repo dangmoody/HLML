@@ -33,7 +33,7 @@ SOFTWARE.
 // EDITING THIS FILE MAY CAUSE SIDE EFFECTS.
 // DO SO AT YOUR OWN RISK.
 
-TEMPER_PARAMETRIC( Test_bool2x2_bool2x2_all, TEMPER_FLAG_SHOULD_RUN, const bool2x2* x, const bool32_t expectedAnswer )
+TEMPER_TEST_PARAMETRIC( Test_bool2x2_bool2x2_all, TEMPER_FLAG_SHOULD_RUN, const bool2x2* x, const bool32_t expectedAnswer )
 {
 	bool32_t actualResult = bool2x2_bool2x2_all( x );
 	TEMPER_CHECK_TRUE( actualResult == expectedAnswer );
@@ -84,7 +84,7 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_bool2x2_bool2x2_all,
 	false
 );
 
-TEMPER_PARAMETRIC( Test_bool2x2_bool2x2_any, TEMPER_FLAG_SHOULD_RUN, const bool2x2* x, const bool32_t expectedAnswer )
+TEMPER_TEST_PARAMETRIC( Test_bool2x2_bool2x2_any, TEMPER_FLAG_SHOULD_RUN, const bool2x2* x, const bool32_t expectedAnswer )
 {
 	bool32_t actualResult = bool2x2_bool2x2_any( x );
 	TEMPER_CHECK_TRUE( actualResult == expectedAnswer );
@@ -135,7 +135,7 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_bool2x2_bool2x2_any,
 	false
 );
 
-TEMPER_PARAMETRIC( Test_bool2x2_identity, TEMPER_FLAG_SHOULD_RUN, const bool2x2* matrix, const bool expectedAnswer )
+TEMPER_TEST_PARAMETRIC( Test_bool2x2_identity, TEMPER_FLAG_SHOULD_RUN, const bool2x2* matrix, const bool expectedAnswer )
 {
 	bool2x2 identityMat;
 	bool2x2_identity( &identityMat );
@@ -179,7 +179,7 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_bool2x2_identity,
 	false
 );
 
-TEMPER_PARAMETRIC( Test_bool2x2_transpose, TEMPER_FLAG_SHOULD_RUN, const bool2x2* matrix, const bool2x2* expectedAnswer )
+TEMPER_TEST_PARAMETRIC( Test_bool2x2_transpose, TEMPER_FLAG_SHOULD_RUN, const bool2x2* matrix, const bool2x2* expectedAnswer )
 {
 	bool2x2 actualResult = bool2x2_transpose( matrix );
 	TEMPER_CHECK_TRUE( bool2x2_equals( &actualResult, expectedAnswer ) );

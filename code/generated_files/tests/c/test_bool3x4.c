@@ -33,7 +33,7 @@ SOFTWARE.
 // EDITING THIS FILE MAY CAUSE SIDE EFFECTS.
 // DO SO AT YOUR OWN RISK.
 
-TEMPER_PARAMETRIC( Test_bool3x4_bool3x4_all, TEMPER_FLAG_SHOULD_RUN, const bool3x4* x, const bool32_t expectedAnswer )
+TEMPER_TEST_PARAMETRIC( Test_bool3x4_bool3x4_all, TEMPER_FLAG_SHOULD_RUN, const bool3x4* x, const bool32_t expectedAnswer )
 {
 	bool32_t actualResult = bool3x4_bool3x4_all( x );
 	TEMPER_CHECK_TRUE( actualResult == expectedAnswer );
@@ -89,7 +89,7 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_bool3x4_bool3x4_all,
 	false
 );
 
-TEMPER_PARAMETRIC( Test_bool3x4_bool3x4_any, TEMPER_FLAG_SHOULD_RUN, const bool3x4* x, const bool32_t expectedAnswer )
+TEMPER_TEST_PARAMETRIC( Test_bool3x4_bool3x4_any, TEMPER_FLAG_SHOULD_RUN, const bool3x4* x, const bool32_t expectedAnswer )
 {
 	bool32_t actualResult = bool3x4_bool3x4_any( x );
 	TEMPER_CHECK_TRUE( actualResult == expectedAnswer );
@@ -145,7 +145,7 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_bool3x4_bool3x4_any,
 	false
 );
 
-TEMPER_PARAMETRIC( Test_bool3x4_identity, TEMPER_FLAG_SHOULD_RUN, const bool3x4* matrix, const bool expectedAnswer )
+TEMPER_TEST_PARAMETRIC( Test_bool3x4_identity, TEMPER_FLAG_SHOULD_RUN, const bool3x4* matrix, const bool expectedAnswer )
 {
 	bool3x4 identityMat;
 	bool3x4_identity( &identityMat );
@@ -193,7 +193,7 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_bool3x4_identity,
 	false
 );
 
-TEMPER_PARAMETRIC( Test_bool3x4_transpose, TEMPER_FLAG_SHOULD_RUN, const bool3x4* matrix, const bool4x3* expectedAnswer )
+TEMPER_TEST_PARAMETRIC( Test_bool3x4_transpose, TEMPER_FLAG_SHOULD_RUN, const bool3x4* matrix, const bool4x3* expectedAnswer )
 {
 	bool4x3 actualResult = bool3x4_transpose( matrix );
 	TEMPER_CHECK_TRUE( bool4x3_equals( &actualResult, expectedAnswer ) );

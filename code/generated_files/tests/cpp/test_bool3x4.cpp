@@ -33,7 +33,7 @@ SOFTWARE.
 // EDITING THIS FILE MAY CAUSE SIDE EFFECTS.
 // DO SO AT YOUR OWN RISK.
 
-TEMPER_PARAMETRIC( Test_bool3x4_all, TEMPER_FLAG_SHOULD_RUN, const bool3x4& x, const bool32_t expectedAnswer )
+TEMPER_TEST_PARAMETRIC( Test_bool3x4_all, TEMPER_FLAG_SHOULD_RUN, const bool3x4& x, const bool32_t expectedAnswer )
 {
 	bool32_t actualResult = all( x );
 	TEMPER_CHECK_TRUE( actualResult == expectedAnswer );
@@ -84,7 +84,7 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_bool3x4_all,
 	false
 );
 
-TEMPER_PARAMETRIC( Test_bool3x4_any, TEMPER_FLAG_SHOULD_RUN, const bool3x4& x, const bool32_t expectedAnswer )
+TEMPER_TEST_PARAMETRIC( Test_bool3x4_any, TEMPER_FLAG_SHOULD_RUN, const bool3x4& x, const bool32_t expectedAnswer )
 {
 	bool32_t actualResult = any( x );
 	TEMPER_CHECK_TRUE( actualResult == expectedAnswer );
@@ -135,7 +135,7 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_bool3x4_any,
 	false
 );
 
-TEMPER_PARAMETRIC( Test_bool3x4_int3x4, TEMPER_FLAG_SHOULD_RUN, const int3x4& convertFrom, const bool3x4& expectedAnswer )
+TEMPER_TEST_PARAMETRIC( Test_bool3x4_int3x4, TEMPER_FLAG_SHOULD_RUN, const int3x4& convertFrom, const bool3x4& expectedAnswer )
 {
 	bool3x4 actualAnswer = bool3x4( convertFrom );
 
@@ -208,7 +208,7 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_bool3x4_int3x4,
 	)
 );
 
-TEMPER_PARAMETRIC( Test_bool3x4_uint3x4, TEMPER_FLAG_SHOULD_RUN, const uint3x4& convertFrom, const bool3x4& expectedAnswer )
+TEMPER_TEST_PARAMETRIC( Test_bool3x4_uint3x4, TEMPER_FLAG_SHOULD_RUN, const uint3x4& convertFrom, const bool3x4& expectedAnswer )
 {
 	bool3x4 actualAnswer = bool3x4( convertFrom );
 
@@ -281,7 +281,7 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_bool3x4_uint3x4,
 	)
 );
 
-TEMPER_PARAMETRIC( Test_bool3x4_float3x4, TEMPER_FLAG_SHOULD_RUN, const float3x4& convertFrom, const bool3x4& expectedAnswer )
+TEMPER_TEST_PARAMETRIC( Test_bool3x4_float3x4, TEMPER_FLAG_SHOULD_RUN, const float3x4& convertFrom, const bool3x4& expectedAnswer )
 {
 	bool3x4 actualAnswer = bool3x4( convertFrom );
 
@@ -354,7 +354,7 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_bool3x4_float3x4,
 	)
 );
 
-TEMPER_PARAMETRIC( Test_bool3x4_double3x4, TEMPER_FLAG_SHOULD_RUN, const double3x4& convertFrom, const bool3x4& expectedAnswer )
+TEMPER_TEST_PARAMETRIC( Test_bool3x4_double3x4, TEMPER_FLAG_SHOULD_RUN, const double3x4& convertFrom, const bool3x4& expectedAnswer )
 {
 	bool3x4 actualAnswer = bool3x4( convertFrom );
 
@@ -427,7 +427,7 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_bool3x4_double3x4,
 	)
 );
 
-TEMPER_PARAMETRIC( Test_bool3x4_identity, TEMPER_FLAG_SHOULD_RUN, const bool3x4& matrix, const bool expectedAnswer )
+TEMPER_TEST_PARAMETRIC( Test_bool3x4_identity, TEMPER_FLAG_SHOULD_RUN, const bool3x4& matrix, const bool expectedAnswer )
 {
 	bool3x4 identityMat;
 	identity( identityMat );
@@ -471,7 +471,7 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_bool3x4_identity,
 	false
 );
 
-TEMPER_PARAMETRIC( Test_bool3x4_transpose, TEMPER_FLAG_SHOULD_RUN, const bool3x4& matrix, const bool4x3& expectedAnswer )
+TEMPER_TEST_PARAMETRIC( Test_bool3x4_transpose, TEMPER_FLAG_SHOULD_RUN, const bool3x4& matrix, const bool4x3& expectedAnswer )
 {
 	bool4x3 actualResult = transpose( matrix );
 	TEMPER_CHECK_TRUE( actualResult == expectedAnswer );

@@ -33,7 +33,7 @@ SOFTWARE.
 // EDITING THIS FILE MAY CAUSE SIDE EFFECTS.
 // DO SO AT YOUR OWN RISK.
 
-TEMPER_PARAMETRIC( Test_float_min, TEMPER_FLAG_SHOULD_RUN, const float lhs, const float rhs, const float expectedAnswer )
+TEMPER_TEST_PARAMETRIC( Test_float_min, TEMPER_FLAG_SHOULD_RUN, const float lhs, const float rhs, const float expectedAnswer )
 {
 	float actualResult = min( lhs, rhs );
 	TEMPER_CHECK_TRUE( floateq( actualResult, expectedAnswer ) );
@@ -45,7 +45,7 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_float_min, 1.000000f, 2.000000f, 1.000000f )
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_float_min, 420.000000f, 69.000000f, 69.000000f );
 
-TEMPER_PARAMETRIC( Test_float_max, TEMPER_FLAG_SHOULD_RUN, const float lhs, const float rhs, const float expectedAnswer )
+TEMPER_TEST_PARAMETRIC( Test_float_max, TEMPER_FLAG_SHOULD_RUN, const float lhs, const float rhs, const float expectedAnswer )
 {
 	float actualResult = max( lhs, rhs );
 	TEMPER_CHECK_TRUE( floateq( actualResult, expectedAnswer ) );
@@ -57,7 +57,7 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_float_max, 1.000000f, 2.000000f, 2.000000f )
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_float_max, 69.000000f, 420.000000f, 420.000000f );
 
-TEMPER_PARAMETRIC( Test_float_saturate, TEMPER_FLAG_SHOULD_RUN, const float x, const float expectedAnswer )
+TEMPER_TEST_PARAMETRIC( Test_float_saturate, TEMPER_FLAG_SHOULD_RUN, const float x, const float expectedAnswer )
 {
 	float actualResult = saturate( x );
 	TEMPER_CHECK_TRUE( floateq( actualResult, expectedAnswer ) );
@@ -73,7 +73,7 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_float_saturate, 3.000000f, 1.000000f );
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_float_saturate, 10.000000f, 1.000000f );
 
-TEMPER_PARAMETRIC( Test_float_sign, TEMPER_FLAG_SHOULD_RUN, const float x, const int32_t expectedAnswer )
+TEMPER_TEST_PARAMETRIC( Test_float_sign, TEMPER_FLAG_SHOULD_RUN, const float x, const int32_t expectedAnswer )
 {
 	int32_t actualResult = sign( x );
 	TEMPER_CHECK_TRUE( actualResult == expectedAnswer );
@@ -93,7 +93,7 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_float_sign, -2.000000f, -1 );
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_float_sign, -3.000000f, -1 );
 
-TEMPER_PARAMETRIC( Test_float_floateq, TEMPER_FLAG_SHOULD_RUN, const float lhs, const float rhs, const bool expectedAnswer )
+TEMPER_TEST_PARAMETRIC( Test_float_floateq, TEMPER_FLAG_SHOULD_RUN, const float lhs, const float rhs, const bool expectedAnswer )
 {
 	bool actualResult = floateq( lhs, rhs );
 	TEMPER_CHECK_TRUE( actualResult == expectedAnswer );
@@ -113,7 +113,7 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_float_floateq, 0.000000f, 0.100000f, false )
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_float_floateq, 0.000000f, 0.000001f, true );
 
-TEMPER_PARAMETRIC( Test_float_degrees, TEMPER_FLAG_SHOULD_RUN, const float x, const float expectedAnswer )
+TEMPER_TEST_PARAMETRIC( Test_float_degrees, TEMPER_FLAG_SHOULD_RUN, const float x, const float expectedAnswer )
 {
 	float actualResult = degrees( x );
 	TEMPER_CHECK_TRUE( floateq( actualResult, expectedAnswer ) );
@@ -121,7 +121,7 @@ TEMPER_PARAMETRIC( Test_float_degrees, TEMPER_FLAG_SHOULD_RUN, const float x, co
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_float_degrees, 1.000000f, 57.295780f );
 
-TEMPER_PARAMETRIC( Test_float_degrees_sse, TEMPER_FLAG_SHOULD_RUN, const float x, const float expectedAnswer )
+TEMPER_TEST_PARAMETRIC( Test_float_degrees_sse, TEMPER_FLAG_SHOULD_RUN, const float x, const float expectedAnswer )
 {
 	__m128 reg_x = _mm_set1_ps( x );
 
@@ -138,7 +138,7 @@ TEMPER_PARAMETRIC( Test_float_degrees_sse, TEMPER_FLAG_SHOULD_RUN, const float x
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_float_degrees_sse, 1.000000f, 57.295780f );
 
-TEMPER_PARAMETRIC( Test_float_radians, TEMPER_FLAG_SHOULD_RUN, const float x, const float expectedAnswer )
+TEMPER_TEST_PARAMETRIC( Test_float_radians, TEMPER_FLAG_SHOULD_RUN, const float x, const float expectedAnswer )
 {
 	float actualResult = radians( x );
 	TEMPER_CHECK_TRUE( floateq( actualResult, expectedAnswer ) );
@@ -146,7 +146,7 @@ TEMPER_PARAMETRIC( Test_float_radians, TEMPER_FLAG_SHOULD_RUN, const float x, co
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_float_radians, 57.295780f, 1.000000f );
 
-TEMPER_PARAMETRIC( Test_float_radians_sse, TEMPER_FLAG_SHOULD_RUN, const float x, const float expectedAnswer )
+TEMPER_TEST_PARAMETRIC( Test_float_radians_sse, TEMPER_FLAG_SHOULD_RUN, const float x, const float expectedAnswer )
 {
 	__m128 reg_x = _mm_set1_ps( x );
 
@@ -163,7 +163,7 @@ TEMPER_PARAMETRIC( Test_float_radians_sse, TEMPER_FLAG_SHOULD_RUN, const float x
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_float_radians_sse, 57.295780f, 1.000000f );
 
-TEMPER_PARAMETRIC( Test_float_lerp, TEMPER_FLAG_SHOULD_RUN, const float lhs, const float rhs, const float t, const float expectedAnswer )
+TEMPER_TEST_PARAMETRIC( Test_float_lerp, TEMPER_FLAG_SHOULD_RUN, const float lhs, const float rhs, const float t, const float expectedAnswer )
 {
 	float actualResult = lerp( lhs, rhs, t );
 	TEMPER_CHECK_TRUE( floateq( actualResult, expectedAnswer ) );
@@ -173,7 +173,7 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_float_lerp, 0.000000f, 1.000000f, 0.500000f,
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_float_lerp, 1.000000f, 3.000000f, 0.500000f, 2.000000f );
 
-TEMPER_PARAMETRIC( Test_float_lerp_sse, TEMPER_FLAG_SHOULD_RUN, const float lhs, const float rhs, const float t, const float expectedAnswer )
+TEMPER_TEST_PARAMETRIC( Test_float_lerp_sse, TEMPER_FLAG_SHOULD_RUN, const float lhs, const float rhs, const float t, const float expectedAnswer )
 {
 	__m128 reg_lhs = _mm_set1_ps( lhs );
 	__m128 reg_rhs = _mm_set1_ps( rhs );

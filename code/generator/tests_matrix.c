@@ -97,7 +97,7 @@ static void Gen_GenerateTests_Identity( allocatorLinear_t* tempStorage, stringBu
 
 	// identity function doesnt return anything and function to generate a parametric test definition assumes the function its testing actually returns something other than void
 	// so were not using that function for identity
-	StringBuilder_Appendf( code, "TEMPER_PARAMETRIC( %s, TEMPER_FLAG_SHOULD_RUN, const %s%s matrix, const bool expectedAnswer )\n", testName, typeInfo->fullTypeName, strings->parmPassByStr );
+	StringBuilder_Appendf( code, "TEMPER_TEST_PARAMETRIC( %s, TEMPER_FLAG_SHOULD_RUN, const %s%s matrix, const bool expectedAnswer )\n", testName, typeInfo->fullTypeName, strings->parmPassByStr );
 	StringBuilder_Append(  code, "{\n" );
 	StringBuilder_Appendf( code, "\t%s identityMat;\n", typeInfo->fullTypeName );
 	StringBuilder_Appendf( code, "\t%s( %sidentityMat );\n", actualFuncName, strings->parmReferenceStr );
@@ -513,7 +513,7 @@ static void Gen_GenerateTests_Inverse( allocatorLinear_t* tempStorage, stringBui
 	const char* identityFuncStr = Gen_GetFuncName_Vector( tempStorage, typeInfo, flags, GEN_FUNCTION_NAME_IDENTITY );
 	const char* mulFuncStr = Gen_GetFuncName_MatrixMul( tempStorage, typeInfo, typeInfo, flags );
 
-	StringBuilder_Appendf( code, "TEMPER_PARAMETRIC( %s, TEMPER_FLAG_SHOULD_RUN, const %s%s mat, const %s%s expectedAnswer )\n", testName, typeInfo->fullTypeName, strings->parmPassByStr, typeInfo->fullTypeName, strings->parmPassByStr );
+	StringBuilder_Appendf( code, "TEMPER_TEST_PARAMETRIC( %s, TEMPER_FLAG_SHOULD_RUN, const %s%s mat, const %s%s expectedAnswer )\n", testName, typeInfo->fullTypeName, strings->parmPassByStr, typeInfo->fullTypeName, strings->parmPassByStr );
 	StringBuilder_Append(  code, "{\n" );
 	StringBuilder_Appendf( code, "\t%s inversed = %s( mat );\n", typeInfo->fullTypeName, actualFuncName );
 	if ( generateOperators ) {

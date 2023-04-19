@@ -33,7 +33,7 @@ SOFTWARE.
 // EDITING THIS FILE MAY CAUSE SIDE EFFECTS.
 // DO SO AT YOUR OWN RISK.
 
-TEMPER_PARAMETRIC( Test_bool3_all, TEMPER_FLAG_SHOULD_RUN, const bool3& x, const bool32_t expectedAnswer )
+TEMPER_TEST_PARAMETRIC( Test_bool3_all, TEMPER_FLAG_SHOULD_RUN, const bool3& x, const bool32_t expectedAnswer )
 {
 	bool32_t actualResult = all( x );
 	TEMPER_CHECK_TRUE( actualResult == expectedAnswer );
@@ -64,7 +64,7 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_bool3_all,
 	false
 );
 
-TEMPER_PARAMETRIC( Test_bool3_any, TEMPER_FLAG_SHOULD_RUN, const bool3& x, const bool32_t expectedAnswer )
+TEMPER_TEST_PARAMETRIC( Test_bool3_any, TEMPER_FLAG_SHOULD_RUN, const bool3& x, const bool32_t expectedAnswer )
 {
 	bool32_t actualResult = any( x );
 	TEMPER_CHECK_TRUE( actualResult == expectedAnswer );
@@ -95,7 +95,7 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_bool3_any,
 	false
 );
 
-TEMPER_PARAMETRIC( Test_bool3_int3, TEMPER_FLAG_SHOULD_RUN, const int3& convertFrom, const bool3& expectedAnswer )
+TEMPER_TEST_PARAMETRIC( Test_bool3_int3, TEMPER_FLAG_SHOULD_RUN, const int3& convertFrom, const bool3& expectedAnswer )
 {
 	bool3 actualAnswer = bool3( convertFrom );
 
@@ -124,7 +124,7 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_bool3_int3,
 	bool3( true, true, true )
 );
 
-TEMPER_PARAMETRIC( Test_bool3_uint3, TEMPER_FLAG_SHOULD_RUN, const uint3& convertFrom, const bool3& expectedAnswer )
+TEMPER_TEST_PARAMETRIC( Test_bool3_uint3, TEMPER_FLAG_SHOULD_RUN, const uint3& convertFrom, const bool3& expectedAnswer )
 {
 	bool3 actualAnswer = bool3( convertFrom );
 
@@ -153,7 +153,7 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_bool3_uint3,
 	bool3( true, true, true )
 );
 
-TEMPER_PARAMETRIC( Test_bool3_float3, TEMPER_FLAG_SHOULD_RUN, const float3& convertFrom, const bool3& expectedAnswer )
+TEMPER_TEST_PARAMETRIC( Test_bool3_float3, TEMPER_FLAG_SHOULD_RUN, const float3& convertFrom, const bool3& expectedAnswer )
 {
 	bool3 actualAnswer = bool3( convertFrom );
 
@@ -182,7 +182,7 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_bool3_float3,
 	bool3( true, true, true )
 );
 
-TEMPER_PARAMETRIC( Test_bool3_double3, TEMPER_FLAG_SHOULD_RUN, const double3& convertFrom, const bool3& expectedAnswer )
+TEMPER_TEST_PARAMETRIC( Test_bool3_double3, TEMPER_FLAG_SHOULD_RUN, const double3& convertFrom, const bool3& expectedAnswer )
 {
 	bool3 actualAnswer = bool3( convertFrom );
 
@@ -211,7 +211,7 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_bool3_double3,
 	bool3( true, true, true )
 );
 
-TEMPER_PARAMETRIC( Test_bool3_composite_ctor_1_vec_before_with_2_leftovers, TEMPER_FLAG_SHOULD_RUN, const bool2& vecPart, const bool32_t scalar0, const bool3 expectedAnswer )
+TEMPER_TEST_PARAMETRIC( Test_bool3_composite_ctor_1_vec_before_with_2_leftovers, TEMPER_FLAG_SHOULD_RUN, const bool2& vecPart, const bool32_t scalar0, const bool3 expectedAnswer )
 {
 	bool3 actualAnswer = bool3( vecPart, scalar0 );
 
@@ -244,7 +244,7 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_bool3_composite_ctor_1_vec_before_with_2_lef
 	bool3( true, true, true )
 );
 
-TEMPER_PARAMETRIC( Test_bool3_composite_ctor_1_vec_after_with_2_leftovers, TEMPER_FLAG_SHOULD_RUN, const bool32_t scalar0, const bool2& vecPart, const bool3 expectedAnswer )
+TEMPER_TEST_PARAMETRIC( Test_bool3_composite_ctor_1_vec_after_with_2_leftovers, TEMPER_FLAG_SHOULD_RUN, const bool32_t scalar0, const bool2& vecPart, const bool3 expectedAnswer )
 {
 	bool3 actualAnswer = bool3( scalar0, vecPart );
 
@@ -277,7 +277,7 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_bool3_composite_ctor_1_vec_after_with_2_left
 	bool3( true, true, true )
 );
 
-TEMPER_PARAMETRIC( Test_bool3_lengthsq, TEMPER_FLAG_SHOULD_RUN, const bool3& vec, const float expectedAnswer )
+TEMPER_TEST_PARAMETRIC( Test_bool3_lengthsq, TEMPER_FLAG_SHOULD_RUN, const bool3& vec, const float expectedAnswer )
 {
 	float actualResult = lengthsq( vec );
 	TEMPER_CHECK_TRUE( floateq( actualResult, expectedAnswer ) );
@@ -298,7 +298,7 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_bool3_lengthsq,
 	12.000000f
 );
 
-TEMPER_PARAMETRIC( Test_bool3_length, TEMPER_FLAG_SHOULD_RUN, const bool3& vec, const float expectedAnswer )
+TEMPER_TEST_PARAMETRIC( Test_bool3_length, TEMPER_FLAG_SHOULD_RUN, const bool3& vec, const float expectedAnswer )
 {
 	float actualResult = length( vec );
 	TEMPER_CHECK_TRUE( floateq( actualResult, expectedAnswer ) );
@@ -319,7 +319,7 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_bool3_length,
 	3.464102f
 );
 
-TEMPER_PARAMETRIC( Test_bool3_dot, TEMPER_FLAG_SHOULD_RUN, const bool3& lhs, const bool3& rhs, const bool32_t expectedAnswer )
+TEMPER_TEST_PARAMETRIC( Test_bool3_dot, TEMPER_FLAG_SHOULD_RUN, const bool3& lhs, const bool3& rhs, const bool32_t expectedAnswer )
 {
 	bool32_t actualResult = dot( lhs, rhs );
 	TEMPER_CHECK_TRUE( actualResult == expectedAnswer );

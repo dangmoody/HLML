@@ -33,7 +33,7 @@ SOFTWARE.
 // EDITING THIS FILE MAY CAUSE SIDE EFFECTS.
 // DO SO AT YOUR OWN RISK.
 
-TEMPER_PARAMETRIC( Test_int32_t_min, TEMPER_FLAG_SHOULD_RUN, const int32_t lhs, const int32_t rhs, const int32_t expectedAnswer )
+TEMPER_TEST_PARAMETRIC( Test_int32_t_min, TEMPER_FLAG_SHOULD_RUN, const int32_t lhs, const int32_t rhs, const int32_t expectedAnswer )
 {
 	int32_t actualResult = min( lhs, rhs );
 	TEMPER_CHECK_TRUE( actualResult == expectedAnswer );
@@ -45,7 +45,7 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_int32_t_min, 1, 2, 1 );
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_int32_t_min, 420, 69, 69 );
 
-TEMPER_PARAMETRIC( Test_int32_t_max, TEMPER_FLAG_SHOULD_RUN, const int32_t lhs, const int32_t rhs, const int32_t expectedAnswer )
+TEMPER_TEST_PARAMETRIC( Test_int32_t_max, TEMPER_FLAG_SHOULD_RUN, const int32_t lhs, const int32_t rhs, const int32_t expectedAnswer )
 {
 	int32_t actualResult = max( lhs, rhs );
 	TEMPER_CHECK_TRUE( actualResult == expectedAnswer );
@@ -57,7 +57,7 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_int32_t_max, 1, 2, 2 );
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_int32_t_max, 69, 420, 420 );
 
-TEMPER_PARAMETRIC( Test_int32_t_saturate, TEMPER_FLAG_SHOULD_RUN, const int32_t x, const int32_t expectedAnswer )
+TEMPER_TEST_PARAMETRIC( Test_int32_t_saturate, TEMPER_FLAG_SHOULD_RUN, const int32_t x, const int32_t expectedAnswer )
 {
 	int32_t actualResult = saturate( x );
 	TEMPER_CHECK_TRUE( actualResult == expectedAnswer );
@@ -73,7 +73,7 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_int32_t_saturate, 3, 1 );
 
 TEMPER_INVOKE_PARAMETRIC_TEST( Test_int32_t_saturate, 10, 1 );
 
-TEMPER_PARAMETRIC( Test_int32_t_sign, TEMPER_FLAG_SHOULD_RUN, const int32_t x, const int32_t expectedAnswer )
+TEMPER_TEST_PARAMETRIC( Test_int32_t_sign, TEMPER_FLAG_SHOULD_RUN, const int32_t x, const int32_t expectedAnswer )
 {
 	int32_t actualResult = sign( x );
 	TEMPER_CHECK_TRUE( actualResult == expectedAnswer );
