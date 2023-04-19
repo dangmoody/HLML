@@ -1,6 +1,6 @@
 HLML CHANGELOG
 
-v2.2.0, <INSERT RELEASE DATE HERE>:
+v2.2.0, 07/04/2023:
 	* Added more constructors for vector and matrix types.
 	* Rewrote the vector swizzling to support the same syntax and usage as HLSL.
 		* These currently exist as templates (gasp) but when I profiled the compile times between the templated vs. non-templated versions the compile times were basically the same (as was the runtime performance), but the amount of generated code was significantly less.
