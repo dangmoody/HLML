@@ -120,6 +120,9 @@ Contributing
 
 If this is a project you'd like to contribute to then see the [contribution document](https://github.com/dangmoody/HLML/blob/master/doc/contribute.md).
 
+Alternatively you can just buy me a Diet Coke instead:
+[![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/N4N8NROJX)
+
 
 Credits
 =======
