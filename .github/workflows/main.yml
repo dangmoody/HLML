@@ -31,11 +31,11 @@ jobs:
           version: "13.0"
           directory: ${{ runner.temp }}/llvm
 
-      - name: Install MinGW
-        uses: egor-tensin/setup-mingw@v2
-        with:
-          platform: x64
-        if: matrix.compiler == 'gcc'
+      # - name: Install MinGW
+      #   uses: egor-tensin/setup-mingw@v2
+      #   with:
+      #     platform: x64
+      #   if: matrix.compiler == 'gcc'
 
       - name: Install MSVC
         uses: ilammy/msvc-dev-cmd@v1
