@@ -21,6 +21,7 @@ along with The HLML Generator.  If not, see <http://www.gnu.org/licenses/>.
 
 ===========================================================================
 */
+
 #if defined( __linux__ ) || defined( __APPLE__ )
 
 #pragma clang diagnostic push

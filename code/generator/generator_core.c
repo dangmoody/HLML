@@ -21,6 +21,7 @@ along with The HLML Generator.  If not, see <http://www.gnu.org/licenses/>.
 
 ===========================================================================
 */
+
 #include "string_helpers.h"
 #include "int_types.h"
 #include "defines.h"

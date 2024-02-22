@@ -21,6 +21,7 @@ along with The HLML Generator.  If not, see <http://www.gnu.org/licenses/>.
 
 ===========================================================================
 */
+
 #pragma once
 
 #define GEN_BIT( x )						( 1ULL << (x) )
