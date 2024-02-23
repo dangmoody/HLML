@@ -99,9 +99,10 @@ float4x4 mvp = mul( model, view_projection );
 
 Vector Swizzling (C++ only):
 ```C
+// use as you would in HLSL
 // all possible combinations are automatically generated and available
 float4 a = { 1.0f, 2.0f, 3.0f, 4.0f };
-float4 b = a.xxyy();
+float4 b = a.xxyy;
 ```
 
 
