@@ -1162,6 +1162,18 @@ static void GenerateMatrixFiles( allocatorLinear_t* tempStorage, const char* gen
 				);
 			}
 
+			StringBuilder_Appendf( codeHeader, "#include \"%s.h\"\n\n", vectorMemberTypeName );
+
+			if ( !cLinkage ) {
+				StringBuilder_Append( codeHeader,
+					"#ifdef HLML_NAMESPACE\n"
+					"namespace hlml\n"
+					"{\n"
+					"#endif\n"
+					"\n"
+				);
+			}
+
 			if ( !cLinkage ) {
 				for ( u32 typeIndex = 0; typeIndex < GEN_TYPE_COUNT; typeIndex++ ) {
 					const genType_t otherType = (genType_t) typeIndex;
@@ -1182,8 +1194,6 @@ static void GenerateMatrixFiles( allocatorLinear_t* tempStorage, const char* gen
 			}
 
 			StringBuilder_Append( codeHeader, "\n" );
-
-			StringBuilder_Appendf( codeHeader, "#include \"%s.h\"\n\n", vectorMemberTypeName );
 
 			if ( cLinkage ) {
 				StringBuilder_Appendf( codeHeader, "typedef struct %s\n", typeInfo->fullTypeName );
@@ -1281,15 +1291,22 @@ static void GenerateMatrixFiles( allocatorLinear_t* tempStorage, const char* gen
 			}
 
 			if ( cLinkage ) {
-				StringBuilder_Appendf( codeHeader, "} %s;\n", typeInfo->fullTypeName );
+				StringBuilder_Appendf( codeHeader, "} %s;\n\n", typeInfo->fullTypeName );
 			} else {
-				StringBuilder_Append(  codeHeader, "};\n" );
+				StringBuilder_Append(  codeHeader, "};\n\n" );
 			}
 
 			if ( cLinkage ) {
 				StringBuilder_Append(  codeHeader,
-					"\n"
 					"#ifdef __cplusplus\n"
+					"}\n"
+					"#endif\n"
+				);
+			}
+
+			if ( !cLinkage ) {
+				StringBuilder_Append( codeHeader,
+					"#ifdef HLML_NAMESPACE\n"
 					"}\n"
 					"#endif\n"
 				);
@@ -1311,6 +1328,14 @@ static void GenerateMatrixFiles( allocatorLinear_t* tempStorage, const char* gen
 
 			StringBuilder_Appendf( codeInl, "#include \"%s.h\"\n", typeInfo->fullTypeName );
 			StringBuilder_Appendf( codeInl, "#include \"%s.inl\"\n\n", vectorMemberTypeName );
+
+			StringBuilder_Append( codeInl,
+				"#ifdef HLML_NAMESPACE\n"
+				"namespace hlml\n"
+				"{\n"
+				"#endif\n"
+				"\n"
+			);
 
 			if ( generateConstructors ) {
 				// diagonal scalar ctor
@@ -1432,6 +1457,14 @@ static void GenerateMatrixFiles( allocatorLinear_t* tempStorage, const char* gen
 				StringBuilder_Append(  codeInl, "}\n" );
 			}
 
+			StringBuilder_Append( codeInl, "\n" );
+
+			StringBuilder_Append( codeInl,
+				"#ifdef HLML_NAMESPACE\n"
+				"}\n"
+				"#endif\n"
+			);
+
 			const char* fileNameInl = String_TPrintf( tempStorage, "%s/%s.inl", generatedCodePath, typeInfo->fullTypeName );
 
 			FS_WriteEntireFile( fileNameInl, codeInl->str, codeInl->length );
@@ -1466,6 +1499,17 @@ static void GenerateMatrixFiles( allocatorLinear_t* tempStorage, const char* gen
 
 		StringBuilder_Appendf( code, "#include \"" GEN_FILENAME_FUNCTIONS_VECTOR ".h\"\n\n" );
 
+		if ( !cLinkage ) {
+			StringBuilder_Append( code,
+				"#ifdef HLML_NAMESPACE\n"
+				"namespace hlml\n"
+				"{\n"
+				"#endif\n"
+				"\n"
+			);
+		}
+
+		// generate matrix types
 		for ( u32 typeInfoIndex = 0; typeInfoIndex < typeInfosCount; typeInfoIndex++ ) {
 			const typeInfo_t* typeInfo = &typeInfos[typeInfoIndex];
 
@@ -1513,6 +1557,14 @@ static void GenerateMatrixFiles( allocatorLinear_t* tempStorage, const char* gen
 		if ( cLinkage ) {
 			StringBuilder_Append( code,
 				"#ifdef __cplusplus\n"
+				"}\n"
+				"#endif\n"
+			);
+		}
+
+		if ( !cLinkage ) {
+			StringBuilder_Append( code,
+				"#ifdef HLML_NAMESPACE\n"
 				"}\n"
 				"#endif\n"
 			);

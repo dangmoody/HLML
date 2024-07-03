@@ -123,7 +123,21 @@ static void GenerateTests( allocatorLinear_t* tempStorage,
 			"\n"
 		);
 
+		//if ( flags & GENERATOR_FLAG_ALLOW_NAMESPACE ) {
+		//	StringBuilder_Append( sb, "#ifdef HLML_NAMESPACE\n" );
+		//	StringBuilder_Append( sb, "#define HLML_NAMESPACE\n" );
+		//	StringBuilder_Append( sb, "#endif\n");
+		//}
 		StringBuilder_Appendf( sb, "#include \"../../../%s/%s\"\n\n", generatedCodePath, GEN_HEADER_MAIN );
+
+		if ( flags & GENERATOR_FLAG_ALLOW_NAMESPACE ) {
+			StringBuilder_Append( sb,
+				"#ifdef HLML_NAMESPACE\n"
+				"using namespace hlml;\n"
+				"#endif\n"
+				"\n"
+			);
+		}
 
 		StringBuilder_Append( sb, "TEMPER_TEST( Test_TypeSizes, TEMPER_FLAG_SHOULD_RUN )\n" );
 		StringBuilder_Append( sb, "{\n" );

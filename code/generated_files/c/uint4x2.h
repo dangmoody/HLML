@@ -39,8 +39,8 @@ SOFTWARE.
 extern "C" {
 #endif
 
-
 #include "uint2.h"
+
 
 typedef struct uint4x2
 {

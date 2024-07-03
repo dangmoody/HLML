@@ -321,6 +321,16 @@ static void GenerateScalarFiles( allocatorLinear_t* tempStorage, const char* gen
 		);
 	}
 
+	if ( !cLinkage ) {
+		StringBuilder_Append( code,
+			"#ifdef HLML_NAMESPACE\n"
+			"namespace hlml\n"
+			"{\n"
+			"#endif\n"
+			"\n"
+		);
+	}
+
 	for ( u32 typeIndex = 0; typeIndex < GEN_TYPE_COUNT; typeIndex++ ) {
 		genType_t type = (genType_t) typeIndex;
 
@@ -346,14 +356,20 @@ static void GenerateScalarFiles( allocatorLinear_t* tempStorage, const char* gen
 		GenerateFunction_Smoothstep( tempStorage, type, code, memberTypeString, flags );
 		GenerateFunction_Smootherstep( tempStorage, type, code, memberTypeString, flags );
 
-		StringBuilder_Append( code, "\n" );
-
 		printf( "OK.\n" );
 	}
 
 	if ( cLinkage ) {
 		StringBuilder_Append( code,
 			"#ifdef __cplusplus\n"
+			"}\n"
+			"#endif\n"
+		);
+	}
+
+	if ( !cLinkage ) {
+		StringBuilder_Append( code,
+			"#ifdef HLML_NAMESPACE\n"
 			"}\n"
 			"#endif\n"
 		);

@@ -38,6 +38,11 @@ SOFTWARE.
 #include "int2x2.h"
 #include "int2.inl"
 
+#ifdef HLML_NAMESPACE
+namespace hlml
+{
+#endif
+
 int2x2::int2x2( const int32_t diagonal )
 {
 	rows[0][0] = diagonal;
@@ -114,3 +119,7 @@ const int2& int2x2::operator[]( const int32_t index ) const
 	HLML_ASSERT( index >= 0 && index < 2 );
 	return rows[index];
 }
+
+#ifdef HLML_NAMESPACE
+}
+#endif

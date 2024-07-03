@@ -39,8 +39,8 @@ SOFTWARE.
 extern "C" {
 #endif
 
-
 #include "float4.h"
+
 
 typedef struct float3x4
 {

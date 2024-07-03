@@ -1,7 +1,7 @@
 # Intended to be called from build_tests.mak!
 
 symbols =
-defines = -D_CRT_SECURE_NO_WARNINGS
+defines = -D_CRT_SECURE_NO_WARNINGS -DHLML_NAMESPACE
 optimisation =
 libs =
 
@@ -14,7 +14,7 @@ defines += -DNDEBUG
 endif
 
 warning_levels = -Werror -Wall -Wextra -Weverything -Wpedantic
-ignore_warnings = -Wno-newline-eof -Wno-missing-braces -Wno-double-promotion -Wno-declaration-after-statement -Wno-old-style-cast -Wno-c++98-compat -Wno-bad-function-cast
+ignore_warnings = -Wno-newline-eof -Wno-missing-braces -Wno-double-promotion -Wno-declaration-after-statement -Wno-old-style-cast -Wno-c++98-compat -Wno-bad-function-cast -Wno-unsafe-buffer-usage
 includes = -I$(hlml_root_dir)/code/3rdparty/include/
 
 ifeq ($(platform), linux)

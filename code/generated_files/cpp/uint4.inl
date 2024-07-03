@@ -35,6 +35,11 @@ SOFTWARE.
 
 #pragma once
 
+#ifdef HLML_NAMESPACE
+namespace hlml
+{
+#endif
+
 #include "uint4.h"
 
 #include "hlml_defines.h"
@@ -173,3 +178,6 @@ const uint32_t& uint4::operator[]( const int32_t index ) const
 	HLML_ASSERT( index >= 0 && index < 4 );
 	return v[index];
 }
+#ifdef HLML_NAMESPACE
+}
+#endif

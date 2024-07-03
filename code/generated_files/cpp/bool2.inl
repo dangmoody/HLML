@@ -35,6 +35,11 @@ SOFTWARE.
 
 #pragma once
 
+#ifdef HLML_NAMESPACE
+namespace hlml
+{
+#endif
+
 #include "bool2.h"
 
 #include "hlml_defines.h"
@@ -100,3 +105,6 @@ const bool32_t& bool2::operator[]( const int32_t index ) const
 	HLML_ASSERT( index >= 0 && index < 2 );
 	return v[index];
 }
+#ifdef HLML_NAMESPACE
+}
+#endif

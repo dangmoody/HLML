@@ -39,8 +39,8 @@ SOFTWARE.
 extern "C" {
 #endif
 
-
 #include "bool3.h"
+
 
 typedef struct bool4x3
 {

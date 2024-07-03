@@ -40,6 +40,10 @@ SOFTWARE.
 
 #include "../../../code/generated_files/cpp/hlml.h"
 
+#ifdef HLML_NAMESPACE
+using namespace hlml;
+#endif
+
 TEMPER_TEST( Test_TypeSizes, TEMPER_FLAG_SHOULD_RUN )
 {
 	TEMPER_CHECK_TRUE( sizeof( bool2 ) == 8 );

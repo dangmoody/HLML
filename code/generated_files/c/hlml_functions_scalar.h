@@ -86,7 +86,6 @@ HLML_INLINE int32_t stepi( const int32_t x, const int32_t y )
 	return ( y > x ? 1 : 0 );
 }
 
-
 // uint32_t
 // Returns 'x' if it's smaller than 'y', otherwise returns 'y'.
 HLML_INLINE uint32_t minu( const uint32_t x, const uint32_t y )
@@ -117,7 +116,6 @@ HLML_INLINE uint32_t stepu( const uint32_t x, const uint32_t y )
 {
 	return ( y > x ? 1U : 0U );
 }
-
 
 // float
 // Returns true if the two given floating-point numbers are close enough to each other within a user-specified margin of error to be considered equal.
@@ -201,7 +199,6 @@ HLML_INLINE float smootherstepf( const float low, const float high, const float 
 	return t * t * t * ( t * ( t * 6.0f - 15.0f ) + 10.0f );
 }
 
-
 // double
 // Returns true if the two given floating-point numbers are close enough to each other within a user-specified margin of error to be considered equal.
 HLML_INLINE bool doubleeq_eps( const double lhs, const double rhs, const double epsilon )
@@ -283,7 +280,6 @@ HLML_INLINE double smootherstepd( const double low, const double high, const dou
 	double t = saturated( ( x - low ) / ( high - low ) );
 	return t * t * t * ( t * ( t * 6.0 - 15.0 ) + 10.0 );
 }
-
 
 #ifdef __cplusplus
 }

@@ -35,6 +35,13 @@ SOFTWARE.
 
 #pragma once
 
+#include "float3.h"
+
+#ifdef HLML_NAMESPACE
+namespace hlml
+{
+#endif
+
 struct bool2x2;
 struct bool2x3;
 struct bool2x4;
@@ -79,8 +86,6 @@ struct double3x4;
 struct double4x2;
 struct double4x3;
 struct double4x4;
-
-#include "float3.h"
 
 struct float3x3
 {
@@ -131,3 +136,7 @@ struct float3x3
 	// Index CANNOT be lower than 0 or higher than 3.
 	HLML_INLINE const float3& operator[]( const int32_t index ) const;
 };
+
+#ifdef HLML_NAMESPACE
+}
+#endif

@@ -83,6 +83,11 @@ SOFTWARE.
 
 #include "hlml_functions_vector.h"
 
+#ifdef HLML_NAMESPACE
+namespace hlml
+{
+#endif
+
 // bool2x2
 // Returns true if the contents of 'lhs' are the same as the contents of 'rhs', otherwise returns false.
 HLML_INLINE bool operator==( const bool2x2& lhs, const bool2x2& rhs )
@@ -18524,3 +18529,6 @@ HLML_INLINE double4x4 look_at_rh( const double3& eye, const double3& target, con
 	};
 }
 
+#ifdef HLML_NAMESPACE
+}
+#endif

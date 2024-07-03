@@ -38,6 +38,11 @@ SOFTWARE.
 #include "double2x3.h"
 #include "double3.inl"
 
+#ifdef HLML_NAMESPACE
+namespace hlml
+{
+#endif
+
 double2x3::double2x3( const double diagonal )
 {
 	rows[0][0] = diagonal;
@@ -114,3 +119,7 @@ const double3& double2x3::operator[]( const int32_t index ) const
 	HLML_ASSERT( index >= 0 && index < 2 );
 	return rows[index];
 }
+
+#ifdef HLML_NAMESPACE
+}
+#endif

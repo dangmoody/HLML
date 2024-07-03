@@ -38,6 +38,11 @@ SOFTWARE.
 #include "bool3x2.h"
 #include "bool2.inl"
 
+#ifdef HLML_NAMESPACE
+namespace hlml
+{
+#endif
+
 bool3x2::bool3x2( const bool32_t diagonal )
 {
 	rows[0][0] = diagonal;
@@ -125,3 +130,7 @@ const bool2& bool3x2::operator[]( const int32_t index ) const
 	HLML_ASSERT( index >= 0 && index < 3 );
 	return rows[index];
 }
+
+#ifdef HLML_NAMESPACE
+}
+#endif
