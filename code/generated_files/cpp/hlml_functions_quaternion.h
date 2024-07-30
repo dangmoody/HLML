@@ -35,6 +35,11 @@ SOFTWARE.
 
 #pragma once
 
+#ifdef HLML_NAMESPACE
+namespace hlml
+{
+#endif
+
 // float4
 // Performs a quaternion multiplication against the given scalar.
 HLML_INLINE float4 quat_mul( const float4& lhs, const float rhs )
@@ -331,3 +336,6 @@ HLML_INLINE double4x4 quat_to_rotation_matrix( const double4& quat )
 	};
 }
 
+#ifdef HLML_NAMESPACE
+}
+#endif

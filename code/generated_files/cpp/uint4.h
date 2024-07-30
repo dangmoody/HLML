@@ -35,6 +35,15 @@ SOFTWARE.
 
 #pragma once
 
+#include "hlml_types.h"
+#include "hlml_defines.h"
+#include "swizzle_templates.h"
+
+#ifdef HLML_NAMESPACE
+namespace hlml
+{
+#endif
+
 struct uint2;
 struct uint3;
 
@@ -42,11 +51,6 @@ struct bool4;
 struct int4;
 struct float4;
 struct double4;
-
-#include "hlml_types.h"
-#include "hlml_defines.h"
-
-#include "swizzle_templates.h"
 
 // ignore prohibition of anymous structs for GCC
 #if defined( __clang__ ) || defined( __GNUC__ )
@@ -817,5 +821,9 @@ struct uint4
 #pragma GCC diagnostic pop
 #elif defined( _MSC_VER )
 #pragma warning( pop )
+#endif
+
+#ifdef HLML_NAMESPACE
+}
 #endif
 

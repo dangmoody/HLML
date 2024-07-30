@@ -38,6 +38,11 @@ SOFTWARE.
 #include "uint3x4.h"
 #include "uint4.inl"
 
+#ifdef HLML_NAMESPACE
+namespace hlml
+{
+#endif
+
 uint3x4::uint3x4( const uint32_t diagonal )
 {
 	rows[0][0] = diagonal;
@@ -125,3 +130,7 @@ const uint4& uint3x4::operator[]( const int32_t index ) const
 	HLML_ASSERT( index >= 0 && index < 3 );
 	return rows[index];
 }
+
+#ifdef HLML_NAMESPACE
+}
+#endif

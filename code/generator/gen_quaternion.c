@@ -465,6 +465,16 @@ static void GenerateQuaternionFiles( allocatorLinear_t* tempStorage, const char*
 		);
 	}
 
+	if ( !cLinkage ) {
+		StringBuilder_Append( code,
+			"#ifdef HLML_NAMESPACE\n"
+			"namespace hlml\n"
+			"{\n"
+			"#endif\n"
+			"\n"
+		);
+	}
+
 	for ( u32 i = 0; i < typeInfosCount; i++ ) {
 		const typeInfo_t* typeInfo = &typeInfos[i];
 
@@ -493,6 +503,14 @@ static void GenerateQuaternionFiles( allocatorLinear_t* tempStorage, const char*
 	if ( cLinkage ) {
 		StringBuilder_Append( code,
 			"#ifdef __cplusplus\n"
+			"}\n"
+			"#endif\n"
+		);
+	}
+
+	if ( !cLinkage ) {
+		StringBuilder_Append( code,
+			"#ifdef HLML_NAMESPACE\n"
 			"}\n"
 			"#endif\n"
 		);

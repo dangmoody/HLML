@@ -39,8 +39,8 @@ SOFTWARE.
 extern "C" {
 #endif
 
-
 #include "uint3.h"
+
 
 typedef struct uint3x3
 {

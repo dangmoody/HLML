@@ -38,6 +38,11 @@ SOFTWARE.
 #include "int4x4.h"
 #include "int4.inl"
 
+#ifdef HLML_NAMESPACE
+namespace hlml
+{
+#endif
+
 int4x4::int4x4( const int32_t diagonal )
 {
 	rows[0][0] = diagonal;
@@ -136,3 +141,7 @@ const int4& int4x4::operator[]( const int32_t index ) const
 	HLML_ASSERT( index >= 0 && index < 4 );
 	return rows[index];
 }
+
+#ifdef HLML_NAMESPACE
+}
+#endif

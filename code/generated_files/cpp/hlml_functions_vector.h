@@ -55,6 +55,11 @@ SOFTWARE.
 
 #include "hlml_functions_scalar.h"
 
+#ifdef HLML_NAMESPACE
+namespace hlml
+{
+#endif
+
 // bool2
 // Returns true if the contents of 'lhs' are the same as the contents of 'rhs', otherwise returns false.
 HLML_INLINE bool operator==( const bool2& lhs, const bool2& rhs )
@@ -5714,3 +5719,6 @@ HLML_INLINE double angle( const double4& lhs, const double4& rhs )
 	return degrees( acos( dot( normalized( lhs ), normalized( rhs ) ) ) );
 }
 
+#ifdef HLML_NAMESPACE
+}
+#endif

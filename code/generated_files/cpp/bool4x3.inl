@@ -38,6 +38,11 @@ SOFTWARE.
 #include "bool4x3.h"
 #include "bool3.inl"
 
+#ifdef HLML_NAMESPACE
+namespace hlml
+{
+#endif
+
 bool4x3::bool4x3( const bool32_t diagonal )
 {
 	rows[0][0] = diagonal;
@@ -136,3 +141,7 @@ const bool3& bool4x3::operator[]( const int32_t index ) const
 	HLML_ASSERT( index >= 0 && index < 4 );
 	return rows[index];
 }
+
+#ifdef HLML_NAMESPACE
+}
+#endif

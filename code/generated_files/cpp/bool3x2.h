@@ -35,6 +35,13 @@ SOFTWARE.
 
 #pragma once
 
+#include "bool2.h"
+
+#ifdef HLML_NAMESPACE
+namespace hlml
+{
+#endif
+
 struct bool2x2;
 struct bool2x3;
 struct bool2x4;
@@ -79,8 +86,6 @@ struct double3x4;
 struct double4x2;
 struct double4x3;
 struct double4x4;
-
-#include "bool2.h"
 
 struct bool3x2
 {
@@ -131,3 +136,7 @@ struct bool3x2
 	// Index CANNOT be lower than 0 or higher than 3.
 	HLML_INLINE const bool2& operator[]( const int32_t index ) const;
 };
+
+#ifdef HLML_NAMESPACE
+}
+#endif

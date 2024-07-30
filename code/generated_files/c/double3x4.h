@@ -39,8 +39,8 @@ SOFTWARE.
 extern "C" {
 #endif
 
-
 #include "double4.h"
+
 
 typedef struct double3x4
 {

@@ -38,6 +38,11 @@ SOFTWARE.
 #include "double3x4.h"
 #include "double4.inl"
 
+#ifdef HLML_NAMESPACE
+namespace hlml
+{
+#endif
+
 double3x4::double3x4( const double diagonal )
 {
 	rows[0][0] = diagonal;
@@ -125,3 +130,7 @@ const double4& double3x4::operator[]( const int32_t index ) const
 	HLML_ASSERT( index >= 0 && index < 3 );
 	return rows[index];
 }
+
+#ifdef HLML_NAMESPACE
+}
+#endif

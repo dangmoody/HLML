@@ -38,6 +38,11 @@ SOFTWARE.
 #include "float3x4.h"
 #include "float4.inl"
 
+#ifdef HLML_NAMESPACE
+namespace hlml
+{
+#endif
+
 float3x4::float3x4( const float diagonal )
 {
 	rows[0][0] = diagonal;
@@ -125,3 +130,7 @@ const float4& float3x4::operator[]( const int32_t index ) const
 	HLML_ASSERT( index >= 0 && index < 3 );
 	return rows[index];
 }
+
+#ifdef HLML_NAMESPACE
+}
+#endif

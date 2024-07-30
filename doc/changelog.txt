@@ -1,5 +1,9 @@
 HLML CHANGELOG
 
+v2.3.0, <INSERT RELEASE DATE HERE>:
+	* Added a namespace for the C++ API, which can be enable by doing `#define HLML_NAMESPACE` somewhere in your build system.
+		* This was added because `std` now has it's own `lerp` implementation.  I haven't tested or looked into it but this raised the problem that STL, should you use it, will collide with names present inside HLML.  This change should now avoid all occurrences of those.
+
 v2.2.0, 07/04/2023:
 	* Added more constructors for vector and matrix types.
 	* Rewrote the vector swizzling to support the same syntax and usage as HLSL.
