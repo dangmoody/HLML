@@ -38,7 +38,7 @@ if /I [!config!]==[""] (
 set warning_levels=-Werror -Wall -Wextra -Weverything -Wpedantic
 
 REM set ignore_warnings=-Wno-old-style-cast -Wno-zero-as-null-pointer-constant -Wno-c++98-compat -Wno-format-nonliteral -Wno-double-promotion -Wno-c++98-compat-pedantic -Wno-newline-eof -Wno-cast-align -Wno-gnu-anonymous-struct -Wno-nested-anon-types
-set ignore_warnings=-Wno-newline-eof -Wno-microsoft-anon-tag -Wno-double-promotion -Wno-bad-function-cast -Wno-declaration-after-statement  -Wno-missing-braces -Wno-switch-default
+set ignore_warnings=-Wno-newline-eof -Wno-microsoft-anon-tag -Wno-double-promotion -Wno-bad-function-cast -Wno-declaration-after-statement  -Wno-missing-braces -Wno-switch-default -Wno-unsafe-buffer-usage
 
 set includes=-Icode\\3rdparty\\include\\
 
