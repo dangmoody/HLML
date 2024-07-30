@@ -68,7 +68,7 @@ jobs:
       - name: Install Clang
         uses: KyleMayes/install-llvm-action@v2.0.2
         with:
-          version: "18.1.0"
+          version: "18.1.4"
           directory: ${{ runner.temp }}/llvm
 
       # - name: Install Clang
