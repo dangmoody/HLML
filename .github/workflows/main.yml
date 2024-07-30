@@ -28,7 +28,7 @@ jobs:
       - name: Install Clang
         uses: KyleMayes/install-llvm-action@v1
         with:
-          version: "18.1.6"
+          version: "18.1.0"
           directory: ${{ runner.temp }}/llvm
 
       # - name: Install MinGW
