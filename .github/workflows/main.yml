@@ -65,16 +65,16 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      # - name: Install Clang
-      #   uses: KyleMayes/install-llvm-action@v1
-      #   with:
-      #     version: "13.0"
-      #     directory: ${{ runner.temp }}/llvm
-
       - name: Install Clang
-        run: |
-          sudo apt update
-          sudo apt install clang-18
+        uses: KyleMayes/install-llvm-action@v2.0.2
+        with:
+          version: "18.1.0"
+          directory: ${{ runner.temp }}/llvm
+
+      # - name: Install Clang
+      #   run: |
+      #     sudo apt update
+      #     sudo apt install clang-18
 
       - name: Install GCC
         run: |
