@@ -28,7 +28,7 @@ jobs:
       - name: Install Clang
         uses: KyleMayes/install-llvm-action@v1
         with:
-          version: "13.0"
+          version: "18.0"
           directory: ${{ runner.temp }}/llvm
 
       # - name: Install MinGW
@@ -74,7 +74,7 @@ jobs:
       - name: Install Clang
         run: |
           sudo apt update
-          sudo apt install clang-13
+          sudo apt install clang-18
 
       - name: Install GCC
         run: |
