@@ -14,7 +14,7 @@ defines += -DNDEBUG
 endif
 
 warning_levels = -Werror -Wall -Wextra -Weverything -Wpedantic
-ignore_warnings = -Wno-newline-eof -Wno-missing-braces -Wno-double-promotion -Wno-declaration-after-statement -Wno-old-style-cast -Wno-c++98-compat -Wno-bad-function-cast -Wno-unsafe-buffer-usage
+ignore_warnings = -Wno-newline-eof -Wno-missing-braces -Wno-double-promotion -Wno-declaration-after-statement -Wno-old-style-cast -Wno-c++98-compat -Wno-bad-function-cast -Wno-unsafe-buffer-usage -Wno-switch-default
 includes = -I$(hlml_root_dir)/code/3rdparty/include/
 
 ifeq ($(platform), linux)
