@@ -14,7 +14,8 @@ HLML is accepting PRs!
 Windows:
 * MSVC
 
-Mac and Linux:
+All platforms:
+* [Builder](https://github.com/dangmoody/Builder)
 * Clang 20.1.5
 * GCC 15.2.0
 
