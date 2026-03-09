@@ -48,7 +48,7 @@ static void GetBuildConfigs( BuilderOptions *options, const std::string &compile
 	BuildConfig generatorCommon = {
 		.name 				= "generator",
 		.languageVersion	= LANGUAGE_VERSION_C99,
-		.binaryName			= "generator",
+		.binaryName			= "hlml-generator",
 		.binaryFolder		= "bin",
 		//.sourceFiles		= { "code/**/*.c" },
 		.sourceFiles		= { "code/generator/main.c", "code/generator/stb_impl.c", "code/generator/generator.win64.c" },
