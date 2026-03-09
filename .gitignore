@@ -1,5 +1,6 @@
 # visual studio folders
 .vs/*
+visual_studio
 
 # generated vs solution folders
 vs2017/*
@@ -26,3 +27,6 @@ releases/*
 
 # 10x project files
 *.10x
+
+# builder stuff
+.builder/
