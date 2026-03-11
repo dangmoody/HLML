@@ -61,6 +61,9 @@ static void GetBuildConfigs( BuilderOptions *options, const std::string &compile
 #endif
 		},
 		.additionalIncludes	= { "code/3rdparty/include" },
+#if defined( __linux__ )
+		.additionalLibs = { "libm" },
+#endif
 	};
 
 	BuildConfig generatorDebug = generatorCommon;
