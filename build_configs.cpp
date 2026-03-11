@@ -51,7 +51,15 @@ static void GetBuildConfigs( BuilderOptions *options, const std::string &compile
 		.binaryName			= "hlml-generator",
 		.binaryFolder		= "bin",
 		//.sourceFiles		= { "code/**/*.c" },
-		.sourceFiles		= { "code/generator/main.c", "code/generator/stb_impl.c", "code/generator/generator.win64.c" },
+		.sourceFiles = {
+			"code/generator/main.c",
+			"code/generator/stb_impl.c",
+#if defined( _WIN64 )
+			"code/generator/generator.win64.c",
+#elif defined( __linux__ )
+			"code/generator/generator.linux.c",
+#endif
+		},
 		.additionalIncludes	= { "code/3rdparty/include" },
 	};
 
