@@ -117,6 +117,9 @@ static void GetBuildConfigs( BuilderOptions *options, const std::string &compile
 				.binaryFolder		= "bin/" + configName,
 				.sourceFiles		= { "code/generated_files/tests/" + languageFileExtension + "/test_main." + languageFileExtension },
 				.additionalIncludes	= { "code/3rdparty/include" },
+#if defined( __linux__ )
+				.additionalLibs		= { "libm" },
+#endif
 			};
 
 			// DM!!! ugly hack but will do for now
