@@ -118,15 +118,15 @@ static void GetBuildConfigs( BuilderOptions *options, const std::string &compile
 				.sourceFiles		= { "code/generated_files/tests/" + languageFileExtension + "/test_main." + languageFileExtension },
 				.additionalIncludes	= { "code/3rdparty/include" },
 #if defined( __linux__ )
-				.additionalLibs		= { "libm" },
+				.additionalLibs		= { "m", "stdc++" },
 #endif
 			};
 
 			// DM!!! ugly hack but will do for now
 			if ( compilerName == "gcc" ) {
-				testConfig.additionalLibs.push_back( "stdc++" );
-
+#if !defined( __linux__ )
 				testConfig.additionalCompilerArguments.push_back( "-Wa,-mbig-obj" );
+#endif
 
 				testConfig.additionalLinkerArguments.push_back( "-static" );
 				testConfig.additionalLinkerArguments.push_back( "-static-libstdc++" );

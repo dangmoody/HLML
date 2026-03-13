@@ -5,8 +5,8 @@
 #include "build_configs.cpp"
 
 BUILDER_CALLBACK void SetBuilderOptions( BuilderOptions *options ) {
-	options->compilerPath = "C:/mingw64/bin/gcc";
-	options->compilerVersion = "15.2.0";
+	options->compilerPath = "gcc";
+	//options->compilerVersion = "15.2.0";
 
 	GetBuildConfigs( options, "gcc" );
 }

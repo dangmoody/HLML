@@ -1,5 +1,7 @@
 #!/bin/sh
 
+set -e
+
 # this file is only to recreate what would otherwise be happening on TeamCity
 # when that gets setup this file will get removed
 
@@ -27,5 +29,7 @@ pushd ${hlmlDir}
 # GCC CPP
 ~/builder/bin/builder build_tests_gcc.cpp --config=tests-cpp-debug
 ./bin/debug/hlml-tests-gcc-cpp
+
+echo All tests done! Success!
 
 popd
