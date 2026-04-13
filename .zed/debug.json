@@ -1,0 +1,47 @@
+[
+	// generator
+	{
+		"label": "debug: generator",
+		"adapter": "CodeLLDB",
+		"request": "launch",
+		"program": "${ZED_WORKTREE_ROOT}/bin/debug/hlml-generator",
+		"cwd": "$ZED_WORKTREE_ROOT",
+		"build": { "label": "build: generator" },
+	},
+
+	// clang
+	{
+		"label": "debug: tests clang C",
+		"adapter": "CodeLLDB",
+		"request": "launch",
+		"program": "${ZED_WORKTREE_ROOT}/bin/debug/hlml-tests-clang-c",
+		"cwd": "$ZED_WORKTREE_ROOT",
+		"build": { "label": "build: tests clang C" },
+	},
+	{
+		"label": "debug: tests clang C++",
+		"adapter": "CodeLLDB",
+		"request": "launch",
+		"program": "${ZED_WORKTREE_ROOT}/bin/debug/hlml-tests-clang-cpp",
+		"cwd": "$ZED_WORKTREE_ROOT",
+		"build": { "label": "build: tests clang C++" },
+	},
+
+	// gcc
+	{
+		"label": "debug: tests gcc C",
+		"adapter": "CodeLLDB",
+		"request": "launch",
+		"program": "${ZED_WORKTREE_ROOT}/bin/debug/hlml-tests-gcc-c",
+		"cwd": "$ZED_WORKTREE_ROOT",
+		"build": { "label": "build: tests gcc C" },
+	},
+	{
+		"label": "debug: tests gcc C++",
+		"adapter": "CodeLLDB",
+		"request": "launch",
+		"program": "${ZED_WORKTREE_ROOT}/bin/debug/hlml-tests-gcc-cpp",
+		"cwd": "$ZED_WORKTREE_ROOT",
+		"build": { "label": "build: tests gcc C++" },
+	},
+]

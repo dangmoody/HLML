@@ -1,0 +1,91 @@
+[
+	// generator
+	{
+		"label": "build: generator",
+		"command": "~/builder/bin/builder",
+		"args": ["build.cpp", "--config=generator"],
+		"cwd": "$ZED_WORKTREE_ROOT",
+	},
+	{
+		"label": "run: generator",
+		"command": "./bin/debug/hlml-generator",
+		"cwd": "$ZED_WORKTREE_ROOT",
+	},
+	{
+		"label": "build + run: generator",
+		"command": "~/builder/bin/builder build.cpp --config=generator && ./bin/debug/hlml-generator",
+		"cwd": "$ZED_WORKTREE_ROOT",
+	},
+
+	// clang
+	{
+		"label": "build: tests clang C",
+		"command": "~/builder/bin/builder",
+		"args": ["build.cpp", "--config=tests-c"],
+		"cwd": "$ZED_WORKTREE_ROOT",
+	},
+	{
+		"label": "build: tests clang C++",
+		"command": "~/builder/bin/builder",
+		"args": ["build.cpp", "--config=tests-cpp"],
+		"cwd": "$ZED_WORKTREE_ROOT",
+	},
+	{
+		"label": "run: tests clang C",
+		"command": "./bin/debug/hlml-tests-clang-c",
+		"cwd": "$ZED_WORKTREE_ROOT",
+	},
+	{
+		"label": "run: tests clang C++",
+		"command": "./bin/debug/hlml-tests-clang-cpp",
+		"cwd": "$ZED_WORKTREE_ROOT",
+	},
+
+	// gcc
+	{
+		"label": "build: tests gcc C",
+		"command": "~/builder/bin/builder",
+		"args": ["build.cpp", "--gcc", "--config=tests-c"],
+		"cwd": "$ZED_WORKTREE_ROOT",
+	},
+	{
+		"label": "build: tests gcc C++",
+		"command": "~/builder/bin/builder",
+		"args": ["build.cpp", "--gcc", "--config=tests-cpp"],
+		"cwd": "$ZED_WORKTREE_ROOT",
+	},
+	{
+		"label": "run: tests gcc C",
+		"command": "./bin/debug/hlml-tests-gcc-c",
+		"cwd": "$ZED_WORKTREE_ROOT",
+	},
+	{
+		"label": "run: tests gcc C++",
+		"command": "./bin/debug/hlml-tests-gcc-cpp",
+		"cwd": "$ZED_WORKTREE_ROOT",
+	},
+
+	// msvc
+	{
+		"label": "build: tests msvc C",
+		"command": "~/builder/bin/builder",
+		"args": ["build.cpp", "--msvc", "--config=tests-c"],
+		"cwd": "$ZED_WORKTREE_ROOT",
+	},
+	{
+		"label": "build: tests msvc C++",
+		"command": "~/builder/bin/builder",
+		"args": ["build.cpp", "--msvc", "--config=tests-cpp"],
+		"cwd": "$ZED_WORKTREE_ROOT",
+	},
+	{
+		"label": "run: tests msvc C",
+		"command": "./bin/debug/hlml-tests-msvc-c",
+		"cwd": "$ZED_WORKTREE_ROOT",
+	},
+	{
+		"label": "run: tests msvc C++",
+		"command": "./bin/debug/hlml-tests-msvc-cpp",
+		"cwd": "$ZED_WORKTREE_ROOT",
+	},
+]
