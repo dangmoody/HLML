@@ -10,24 +10,24 @@ hlmlDir=$(dirname -- "$(readlink -f -- "$BASH_SOURCE")")
 pushd ${hlmlDir}
 
 # generator
-~/builder/bin/builder build_generator.cpp --config=generator-debug
+~/builder/bin/builder build.cpp --config=generator
 
 ./bin/debug/hlml-generator
 
 # clang C
-~/builder/bin/builder build_tests_clang.cpp --config=tests-c-debug
+~/builder/bin/builder build.cpp --config=tests-c
 ./bin/debug/hlml-tests-clang-c
 
 # clang CPP
-~/builder/bin/builder build_tests_clang.cpp --config=tests-cpp-debug
+~/builder/bin/builder build.cpp --config=tests-cpp
 ./bin/debug/hlml-tests-clang-cpp
 
 # GCC C
-~/builder/bin/builder build_tests_gcc.cpp --config=tests-c-debug
+~/builder/bin/builder build.cpp --gcc --config=tests-c
 ./bin/debug/hlml-tests-gcc-c
 
 # GCC CPP
-~/builder/bin/builder build_tests_gcc.cpp --config=tests-cpp-debug
+~/builder/bin/builder build.cpp --gcc --config=tests-cpp
 ./bin/debug/hlml-tests-gcc-cpp
 
 echo All tests done! Success!
