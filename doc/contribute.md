@@ -30,5 +30,8 @@ If you want to use Visual Studio, run `builder generate_solution.cpp`.
 ### All platforms
 
 Run the following commands:
-* `builder build_generator.cpp` to build the generator.
-* `builder build_tests_<compiler>.cpp` where `<compiler>` is either `clang`, `gcc` or `msvc`.
+* `builder build.cpp --config=generator` to build the generator.
+* `builder build.cpp --config=tests-c` to build the C tests.
+* `builder build.cpp --config=tests-cpp` to build the C++ tests.
+
+By default the compiler is Clang.  Pass `--gcc` or `--msvc` to use GCC or MSVC instead.
