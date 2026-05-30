@@ -128,12 +128,20 @@ BUILDER_CALLBACK void SetBuilderOptions( BuilderOptions *options, CommandLineArg
 
 	VisualStudioProject *testsProject = &options->solution.projects.back();
 
-	for ( int languageIndex = 0; languageIndex < LANGUAGE_COUNT; languageIndex++ ) {
-		const language_t language = (language_t) languageIndex;
+	bool buildC   = HasCommandLineArg( args, "--c" );
+	bool buildCpp = HasCommandLineArg( args, "--cpp" );
+
+	if ( buildC && buildCpp ) {
+		fprintf( stderr, "ERROR: --c and --cpp are mutually exclusive.  Pass one or the other.\n" );
+		return;
+	}
+
+	if ( buildC || buildCpp ) {
+		const language_t language = buildCpp ? LANGUAGE_CPP : LANGUAGE_C;
 		const std::string languageFileExtension = GetLanguageFileExtension( language );
 
 		BuildConfig testConfig = {
-			.name				= "tests-" + languageFileExtension,
+			.name				= "tests",
 			.binaryName			= "hlml-tests-" + compilerName + "-" + languageFileExtension,
 			.sourceFiles		= { "code/generated_files/tests/" + languageFileExtension + "/test_main." + languageFileExtension },
 			.additionalIncludes	= { "code/3rdparty/include" },

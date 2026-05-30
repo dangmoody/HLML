@@ -15,19 +15,19 @@ pushd ${hlmlDir}
 ./bin/debug/hlml-generator
 
 # clang C
-~/builder/bin/builder build.cpp --config=tests-c
+~/builder/bin/builder build.cpp --config=tests --c
 ./bin/debug/hlml-tests-clang-c
 
 # clang CPP
-~/builder/bin/builder build.cpp --config=tests-cpp
+~/builder/bin/builder build.cpp --config=tests --cpp
 ./bin/debug/hlml-tests-clang-cpp
 
 # GCC C
-~/builder/bin/builder build.cpp --gcc --config=tests-c
+~/builder/bin/builder build.cpp --gcc --config=tests --c
 ./bin/debug/hlml-tests-gcc-c
 
 # GCC CPP
-~/builder/bin/builder build.cpp --gcc --config=tests-cpp
+~/builder/bin/builder build.cpp --gcc --config=tests --cpp
 ./bin/debug/hlml-tests-gcc-cpp
 
 echo All tests done! Success!
