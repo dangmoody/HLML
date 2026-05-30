@@ -6,7 +6,7 @@
 		"request": "launch",
 		"program": "${ZED_WORKTREE_ROOT}/bin/debug/hlml-generator",
 		"cwd": "$ZED_WORKTREE_ROOT",
-		"build": { "label": "build: generator" },
+		"build": "build: generator",
 	},
 
 	// clang
@@ -16,7 +16,7 @@
 		"request": "launch",
 		"program": "${ZED_WORKTREE_ROOT}/bin/debug/hlml-tests-clang-c",
 		"cwd": "$ZED_WORKTREE_ROOT",
-		"build": { "label": "build: tests clang C" },
+		"build": "build: tests clang C",
 	},
 	{
 		"label": "debug: tests clang C++",
@@ -24,7 +24,7 @@
 		"request": "launch",
 		"program": "${ZED_WORKTREE_ROOT}/bin/debug/hlml-tests-clang-cpp",
 		"cwd": "$ZED_WORKTREE_ROOT",
-		"build": { "label": "build: tests clang C++" },
+		"build": "build: tests clang C++",
 	},
 
 	// gcc
@@ -34,7 +34,7 @@
 		"request": "launch",
 		"program": "${ZED_WORKTREE_ROOT}/bin/debug/hlml-tests-gcc-c",
 		"cwd": "$ZED_WORKTREE_ROOT",
-		"build": { "label": "build: tests gcc C" },
+		"build": "build: tests gcc C",
 	},
 	{
 		"label": "debug: tests gcc C++",
@@ -42,6 +42,6 @@
 		"request": "launch",
 		"program": "${ZED_WORKTREE_ROOT}/bin/debug/hlml-tests-gcc-cpp",
 		"cwd": "$ZED_WORKTREE_ROOT",
-		"build": { "label": "build: tests gcc C++" },
+		"build": "build: tests gcc C++",
 	},
 ]
