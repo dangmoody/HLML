@@ -22,20 +22,16 @@ along with The HLML Generator.  If not, see <http://www.gnu.org/licenses/>.
 ===========================================================================
 */
 
-typedef struct parametricTestDefinitionParm_t {
-	const typeInfo_t*						typeInfo;
-	const char*								parmName;
-} parametricTestDefinitionParm_t;
+#include "tests_shared.h"
 
-typedef struct parametricTestDefinition_t {
-	const typeInfo_t*						returnType;
-	const parametricTestDefinitionParm_t*	parms;
-	u32										parmsCount;
-	bool32									alsoGenerateSSE;	// TODO(DM): now that we have multiple bools, do flags
-	bool32									checkEachComponent;
-	const char*								funcName;
-	const char*								testNameOverride;	// if NULL then generator will pick its own test name
-} parametricTestDefinition_t;
+#include "gen_shared.h"
+
+#include "string_helpers.h"
+#include "string_builder.h"
+#include "common_names.h"
+#include "defines.h"
+
+#include <assert.h>
 
 typedef struct testValues_t {
 	float32*		values;
@@ -67,11 +63,6 @@ typedef struct testFixtureOperatorSingleParm_t {
 	u32			numTests;
 } testFixtureOperatorSingleParm_t;
 
-typedef struct parametricTestInvokationGenericParm_t {
-	const typeInfo_t*	typeInfo;
-	const float32*		value;
-} parametricTestInvokationGenericParm_t;
-
 typedef struct testFixture_Ctor_t {
 	float32	values[16];
 } testFixture_Ctor_t;
@@ -86,7 +77,7 @@ typedef struct testFixture_Any_t {
 	bool32	expectedAnswer;
 } testFixture_Any_t;
 
-static const char* Gen_GetTestName( allocatorLinear_t* tempStorage, const typeInfo_t* typeInfo, const char* funcName ) {
+const char* Gen_GetTestName( allocatorLinear_t* tempStorage, const typeInfo_t* typeInfo, const char* funcName ) {
 	assert( tempStorage );
 	assert( typeInfo );
 	assert( funcName );
@@ -127,7 +118,7 @@ static void Gen_GenerateParametricTestDefinition_Operator( allocatorLinear_t* te
 	StringBuilder_Append(  code, "}\n\n" );
 }
 
-static void Gen_GenerateParametricTestDefinition_Generic_SSE( allocatorLinear_t* tempStorage, stringBuilder_t* code, const typeInfo_t* typeInfo, const generatorStrings_t* strings, const generatorFlags_t flags, parametricTestDefinition_t* def ) {
+void Gen_GenerateParametricTestDefinition_Generic_SSE( allocatorLinear_t* tempStorage, stringBuilder_t* code, const typeInfo_t* typeInfo, const generatorStrings_t* strings, const generatorFlags_t flags, parametricTestDefinition_t* def ) {
 	assert( tempStorage );
 	assert( code );
 	assert( typeInfo );
@@ -273,7 +264,7 @@ static void Gen_GenerateParametricTestDefinition_Generic_SSE( allocatorLinear_t*
 	StringBuilder_Append( code, "}\n\n" );
 }
 
-static void Gen_GenerateParametricTestDefinition_Generic( allocatorLinear_t* tempStorage, stringBuilder_t* code, const typeInfo_t* typeInfo, const generatorStrings_t* strings, const generatorFlags_t flags, parametricTestDefinition_t* def ) {
+void Gen_GenerateParametricTestDefinition_Generic( allocatorLinear_t* tempStorage, stringBuilder_t* code, const typeInfo_t* typeInfo, const generatorStrings_t* strings, const generatorFlags_t flags, parametricTestDefinition_t* def ) {
 	assert( tempStorage );
 	assert( code );
 	assert( typeInfo );
@@ -769,7 +760,16 @@ static void Gen_GenerateParametricTestCode_OperatorSingleParm( allocatorLinear_t
 	}
 }
 
-static void Gen_GenerateParametricTestInvokation_Generic( allocatorLinear_t* tempStorage, stringBuilder_t* code, const typeInfo_t* typeInfo, const char* funcName, const generatorStrings_t* strings, const generatorFlags_t flags, const parametricTestInvokationGenericParm_t* parms, const u32 parmsCount ) {
+void Gen_GenerateParametricTestInvokation_Generic(
+	allocatorLinear_t* tempStorage,
+	stringBuilder_t* code,
+	const typeInfo_t* typeInfo,
+	const char* funcName,
+	const generatorStrings_t* strings,
+	const generatorFlags_t flags,
+	const parametricTestInvokationGenericParm_t* parms,
+	const u32 parmsCount )
+{
 	assert( tempStorage );
 	assert( code );
 	assert( typeInfo );
@@ -798,7 +798,16 @@ static void Gen_GenerateParametricTestInvokation_Generic( allocatorLinear_t* tem
 	StringBuilder_Append( code, ");\n\n" );
 }
 
-static void Gen_GenerateParametricTestInvokation_Generic_SSE( allocatorLinear_t* tempStorage, stringBuilder_t* code, const typeInfo_t* typeInfo, const char* funcName, const generatorStrings_t* strings, const generatorFlags_t flags, const parametricTestInvokationGenericParm_t* parms, const u32 parmsCount ) {
+void Gen_GenerateParametricTestInvokation_Generic_SSE(
+	allocatorLinear_t* tempStorage,
+	stringBuilder_t* code,
+	const typeInfo_t* typeInfo,
+	const char* funcName,
+	const generatorStrings_t* strings,
+	const generatorFlags_t flags,
+	const parametricTestInvokationGenericParm_t* parms,
+	const u32 parmsCount )
+{
 	assert( tempStorage );
 	assert( code );
 	assert( typeInfo );
@@ -1310,7 +1319,7 @@ static void GenerateOperatorTests( allocatorLinear_t* tempStorage, stringBuilder
 	}
 }
 
-static void GenerateComponentWiseTests( allocatorLinear_t* tempStorage, stringBuilder_t* code, const typeInfo_t* typeInfo, const typeInfo_t* scalarType, const generatorStrings_t* strings, const generatorFlags_t flags ) {
+void GenerateComponentWiseTests( allocatorLinear_t* tempStorage, stringBuilder_t* code, const typeInfo_t* typeInfo, const typeInfo_t* scalarType, const generatorStrings_t* strings, const generatorFlags_t flags ) {
 	assert( tempStorage );
 	assert( code );
 	assert( typeInfo );
@@ -1660,14 +1669,14 @@ static void GenerateComponentWiseTests( allocatorLinear_t* tempStorage, stringBu
 					{ (float32[]) { 0.707106781f } },
 					{ (float32[]) { 0.382683456f } },
 					{ (float32[]) { 0.923879504f } }
-					
+
 				}
 			} );
 		}
 	}
 }
 
-static void GenerateTests_CtorConversion( allocatorLinear_t* tempStorage, stringBuilder_t* code, const typeInfo_t* typeInfo, const generatorStrings_t* strings, const generatorFlags_t flags ) {
+void GenerateTests_CtorConversion( allocatorLinear_t* tempStorage, stringBuilder_t* code, const typeInfo_t* typeInfo, const generatorStrings_t* strings, const generatorFlags_t flags ) {
 	assert( tempStorage );
 	assert( code );
 	assert( typeInfo );

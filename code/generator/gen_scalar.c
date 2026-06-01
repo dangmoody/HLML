@@ -22,6 +22,18 @@ along with The HLML Generator.  If not, see <http://www.gnu.org/licenses/>.
 ===========================================================================
 */
 
+#include "gen_shared.h"
+
+#include "linear_allocator.h"
+#include "string_builder.h"
+#include "string_helpers.h"
+#include "common_names.h"
+#include "defines.h"
+#include "file_io.h"
+
+#include <stdio.h>
+#include <assert.h>
+
 static const char* Gen_GetConstantName( allocatorLinear_t* tempStorage, const genType_t type, const char* constantName ) {
 	assert( tempStorage );
 	assert( type != GEN_TYPE_COUNT );
@@ -280,7 +292,7 @@ static void GenerateFunction_Smootherstep( allocatorLinear_t* tempStorage, const
 	StringBuilder_Append(  code, "}\n\n" );
 }
 
-static void GenerateScalarFiles( allocatorLinear_t* tempStorage, const char* generatedCodePath, const generatorFlags_t flags ) {
+void GenerateScalarFiles( allocatorLinear_t* tempStorage, const char* generatedCodePath, const generatorFlags_t flags ) {
 	assert( tempStorage );
 	assert( generatedCodePath );
 

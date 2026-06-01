@@ -22,7 +22,7 @@ along with The HLML Generator.  If not, see <http://www.gnu.org/licenses/>.
 ===========================================================================
 */
 
-#ifdef _WIN64
+#ifdef _WIN32
 
 #include "file_io.h"
 #include "defines.h"
@@ -30,7 +30,6 @@ along with The HLML Generator.  If not, see <http://www.gnu.org/licenses/>.
 #include "timer.h"
 #include "string_helpers.h"
 
-#define WIN32_LEAN_AND_MEAN 1
 #include <Windows.h>
 
 #pragma clang diagnostic push
@@ -184,35 +183,4 @@ void FS_DeleteAllFilesInFolder( const char* name ) {
 
 #undef WIN64_ASSERT
 
-// DM: I dont like this for obvious reasons
-// QueryPerformanceFrequency() only needs to be called once
-// but doing that means we end up having an init function which would be completely unecessary on any other platform
-static s64 Frequency( void ) {
-	LARGE_INTEGER frequency = { 0 };
-	QueryPerformanceFrequency( &frequency );
-	return frequency.QuadPart;
-}
-
-s64 Time_Now( void ) {
-	LARGE_INTEGER now = { 0 };
-	QueryPerformanceCounter( &now );
-	return now.QuadPart;
-}
-
-float64 Time_NowSeconds( void ) {
-	return (float64) Time_Now() / (float64) Frequency();
-}
-
-float64 Time_NowMS( void ) {
-	return (float64) ( Time_Now() * 1000 ) / (float64) Frequency();
-}
-
-float64 Time_NowUS( void ) {
-	return (float64) ( Time_Now() * 1000000 ) / (float64) Frequency();
-}
-
-float64 Time_NowNS( void ) {
-	return (float64) ( Time_Now() * 1000000000 ) / (float64) Frequency();
-}
-
-#endif // _WIN64
+#endif // _WIN32

@@ -56,6 +56,8 @@ static std::vector<std::string> GetAdditionalBuildArgs( const config_t config ) 
 }
 
 BUILDER_CALLBACK void SetBuilderOptions( BuilderOptions *options, CommandLineArgs *args ) {
+	options->consolidateCompilerArgs = true;
+
 	std::string compilerName;
 
 	if ( HasCommandLineArg( args, "--gcc" ) ) {
@@ -77,15 +79,8 @@ BUILDER_CALLBACK void SetBuilderOptions( BuilderOptions *options, CommandLineArg
 		.languageVersion	= LANGUAGE_VERSION_C99,
 		.binaryName			= "hlml-generator",
 		.binaryFolder		= "bin",
-		//.sourceFiles		= { "code/**/*.c" },
 		.sourceFiles = {
-			"code/generator/main.c",
-			"code/generator/stb_impl.c",
-#if defined( _WIN64 )
-			"code/generator/generator.win64.c",
-#elif defined( __linux__ )
-			"code/generator/generator.linux.c",
-#endif
+			"code/generator/**/*.c",
 		},
 		.additionalIncludes	= { "code/3rdparty/include" },
 	};
@@ -93,6 +88,8 @@ BUILDER_CALLBACK void SetBuilderOptions( BuilderOptions *options, CommandLineArg
 #if defined( __linux__ )
 	generator.additionalLibs.push_back( "m" );
 	generator.ignoreWarnings.push_back( "-Wno-typedef-redefinition" );
+#elif defined( _WIN32 )
+	generator.defines.push_back( "WIN32_LEAN_AND_MEAN" );
 #endif
 
 	if ( HasCommandLineArg( args, "--release" ) ) {

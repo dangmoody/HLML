@@ -22,7 +22,21 @@ along with The HLML Generator.  If not, see <http://www.gnu.org/licenses/>.
 ===========================================================================
 */
 
-#include <float.h>	// FLT_MAX
+#include "tests_shared.h"
+
+// TODO: DM: 01/06/2026: this only reason this is included is because we need SwizzleTypeIsWritable
+// that function needs to move into gen_shared AFTER the current gen_shared gets renamed to gen_local and then we figure out what is local and what is shared
+#include "gen_api.h"
+
+#include "linear_allocator.h"
+#include "string_builder.h"
+#include "defines.h"
+#include "common_names.h"
+#include "string_helpers.h"
+#include "file_io.h"
+
+#include <stdio.h>
+#include <assert.h>
 
 typedef struct testFixture_Assignment_t {
 	float32 values[4];
@@ -287,7 +301,7 @@ static void Gen_GenerateTests_Dot( allocatorLinear_t* tempStorage, stringBuilder
 
 	for ( u32 i = 0; i < GEN_COUNTOF( fixtures ); i++ ) {
 		const testFixture_Dot_t* fixture = &fixtures[i];
-		
+
 		parametricTestInvokationGenericParm_t parms[] = {
 			{  typeInfo,                fixture->valuesLHS },
 			{  typeInfo,                fixture->valuesRHS },
@@ -1285,7 +1299,7 @@ static void Gen_GenerateTests_QuatToRotationMatrix( allocatorLinear_t* tempStora
 	}
 }
 
-static void GenerateVectorTests( allocatorLinear_t* tempStorage, const char* generatedTestsPath, const char* languageName, const typeInfo_t* vectorTypeInfos, const u32 vectorTypeInfosCount, const generatorStrings_t* strings, const generatorFlags_t flags ) {
+void GenerateVectorTests( allocatorLinear_t* tempStorage, const char* generatedTestsPath, const char* languageName, const typeInfo_t* vectorTypeInfos, const u32 vectorTypeInfosCount, const generatorStrings_t* strings, const generatorFlags_t flags ) {
 	assert( tempStorage );
 	assert( languageName );
 	assert( generatedTestsPath );
@@ -1379,7 +1393,7 @@ static void GenerateVectorTests( allocatorLinear_t* tempStorage, const char* gen
 	}
 }
 
-static void GenerateQuaternionTests( allocatorLinear_t* tempStorage, const char* generatedTestsPath, const char* languageName, const typeInfo_t* quaternionTypeInfos, const u32 quaternionTypeInfosCount, const generatorStrings_t* strings, const generatorFlags_t flags ) {
+void GenerateQuaternionTests( allocatorLinear_t* tempStorage, const char* generatedTestsPath, const char* languageName, const typeInfo_t* quaternionTypeInfos, const u32 quaternionTypeInfosCount, const generatorStrings_t* strings, const generatorFlags_t flags ) {
 	assert( tempStorage );
 	assert( generatedTestsPath );
 	assert( languageName );

@@ -22,13 +22,23 @@ along with The HLML Generator.  If not, see <http://www.gnu.org/licenses/>.
 ===========================================================================
 */
 
+#include "gen_api.h"
+
+#include "string_builder.h"
+#include "common_names.h"
+#include "defines.h"
+#include "string_helpers.h"
+#include "file_io.h"
+#include "linear_allocator.h"
+
+#include <stdio.h>
+#include <assert.h>
+#include <string.h>
 #include <math.h>
 
 #if GENERATE_TEMPLATES
 #include <ctype.h>
 #endif
-
-typedef void ( *generateSwizzleFunc_t )( allocatorLinear_t* tempStorage, stringBuilder_t* code, const typeInfo_t* typeInfo, const generatorStrings_t* strings, const generatorFlags_t flags, const u32 numSwizzleComponents, const char* swizzleStr );
 
 // not really a "component-wise" function in the common sense, just so happens to use touch all of them
 static void GenerateFunction_All( allocatorLinear_t* tempStorage, const typeInfo_t* typeInfo, stringBuilder_t* code, const generatorFlags_t flags ) {
@@ -232,7 +242,7 @@ static void GenerateFunction_Dot( allocatorLinear_t* tempStorage, const typeInfo
 
 	// bool32 isUint = typeInfo->type == GEN_TYPE_UINT;
 
-	// // dot can return negative values, so uint vectors have to return signed int
+	// dot can return negative values, so uint vectors have to return signed int
 	// genType_t returnType = isUint ? GEN_TYPE_INT : typeInfo->type;
 	// const char* returnTypeString = Gen_GetMemberTypeString( returnType );
 
@@ -464,7 +474,10 @@ static void GenerateFunction_Unpack( allocatorLinear_t* tempStorage, const typeI
 	StringBuilder_Append( code, "}\n\n" );
 }
 
-static bool32 SwizzleTypeIsWritable( const char* swizzleStr, const u32 numSwizzleComponents ) {
+// TODO: DM: 01/06/2026:
+//	move this into gen_shared
+//	but before you do that, rename gen_shared to gen_local and figure out what is local and what is shared
+bool32 SwizzleTypeIsWritable( const char* swizzleStr, const u32 numSwizzleComponents ) {
 	// if the swizzle contains duplicate components in the name (eg xzx, xxy, etc.) then the swizzle cant be written to
 	for ( u32 i = 0; i < numSwizzleComponents - 1; i++ ) {
 		for ( u32 j = i + 1; j < numSwizzleComponents; j++ ) {
@@ -608,7 +621,7 @@ static void GenerateSwizzleFunc_OperatorDefinitions( allocatorLinear_t* tempStor
 // for vec2, for example, you can count all the 2-component swizzles by counting in base 2 from 0 through to 2^2
 // this can then be repeated for generating the 3-component swizzles for vec2 types by counting in base 2 from 0 through to 2^3 and so on
 // the same logic applies for vec3 and vec4
-static void GenerateSwizzleFunctions( allocatorLinear_t* tempStorage, stringBuilder_t* code, const typeInfo_t* typeInfo, const generatorStrings_t* strings, const generatorFlags_t flags, const char* componentNames, generateSwizzleFunc_t generateSwizzleFunc ) {
+void GenerateSwizzleFunctions( allocatorLinear_t* tempStorage, stringBuilder_t* code, const typeInfo_t* typeInfo, const generatorStrings_t* strings, const generatorFlags_t flags, const char* componentNames, generateSwizzleFunc_t generateSwizzleFunc ) {
 	assert( tempStorage );
 	assert( code );
 	assert( typeInfo );
@@ -658,7 +671,7 @@ static void GenerateSwizzleFunctions( allocatorLinear_t* tempStorage, stringBuil
 	}
 }
 
-static void GenerateVectorFiles( allocatorLinear_t* tempStorage, const char* generatedCodePath, const typeInfo_t* typeInfos, const u32 typeInfosCount, const generatorStrings_t* strings, const generatorFlags_t flags ) {
+void GenerateVectorFiles( allocatorLinear_t* tempStorage, const char* generatedCodePath, const typeInfo_t* typeInfos, const u32 typeInfosCount, const generatorStrings_t* strings, const generatorFlags_t flags ) {
 	assert( tempStorage );
 	assert( generatedCodePath );
 	assert( typeInfos );
@@ -1400,7 +1413,7 @@ static void GenerateVectorFiles( allocatorLinear_t* tempStorage, const char* gen
 					StringBuilder_Append(  codeHeader, "template<class ReturnType, class ScalarType, " );
 					for ( u32 i = 0; i < numSwizzleComponents; i++ ) {
 						StringBuilder_Appendf( codeHeader, "int %c", toupper( GEN_COMPONENT_NAMES_VECTOR[i] ) );
-		
+
 						if ( i != numSwizzleComponents - 1 ) {
 							StringBuilder_Append( codeHeader, ", " );
 						}
@@ -1427,13 +1440,13 @@ static void GenerateVectorFiles( allocatorLinear_t* tempStorage, const char* gen
 					}
 					StringBuilder_Append(  codeHeader, "\t\t);\n" );
 					StringBuilder_Append(  codeHeader, "\t}\n\n" );
-		
+
 					StringBuilder_Append(  codeHeader, "\tHLML_INLINE operator ReturnType() const\n" );
 					StringBuilder_Append(  codeHeader, "\t{\n" );
 					StringBuilder_Append(  codeHeader, "\t\treturn ReturnType( " );
 					for ( u32 i = 0; i < numSwizzleComponents; i++ ) {
 						StringBuilder_Appendf( codeHeader, "v[%c]", toupper( GEN_COMPONENT_NAMES_VECTOR[i] ) );
-		
+
 						if ( i != numSwizzleComponents - 1 ) {
 							StringBuilder_Append( codeHeader, ", " );
 						}
@@ -1446,7 +1459,7 @@ static void GenerateVectorFiles( allocatorLinear_t* tempStorage, const char* gen
 				StringBuilder_Append(  codeHeader, "template<class ReturnType, class ScalarType, " );
 				for ( u32 i = 0; i < numSwizzleComponents; i++ ) {
 					StringBuilder_Appendf( codeHeader, "int %c", toupper( GEN_COMPONENT_NAMES_VECTOR[i] ) );
-		
+
 					if ( i != numSwizzleComponents - 1 ) {
 						StringBuilder_Append( codeHeader, ", " );
 					}
@@ -1456,13 +1469,13 @@ static void GenerateVectorFiles( allocatorLinear_t* tempStorage, const char* gen
 				StringBuilder_Append(  codeHeader, "{\n" );
 				StringBuilder_Appendf( codeHeader, "\tScalarType v[%d];\n", numComponents );
 				StringBuilder_Append(  codeHeader, "\n" );
-		
+
 				StringBuilder_Append(  codeHeader, "\tHLML_INLINE operator ReturnType() const\n" );
 				StringBuilder_Append(  codeHeader, "\t{\n" );
 				StringBuilder_Append(  codeHeader, "\t\treturn ReturnType( " );
 				for ( u32 i = 0; i < numSwizzleComponents; i++ ) {
 					StringBuilder_Appendf( codeHeader, "v[%c]", toupper( GEN_COMPONENT_NAMES_VECTOR[i] ) );
-		
+
 					if ( i != numSwizzleComponents - 1 ) {
 						StringBuilder_Append( codeHeader, ", " );
 					}
@@ -1514,7 +1527,7 @@ static void GenerateVectorFiles( allocatorLinear_t* tempStorage, const char* gen
 				StringBuilder_Appendf( code, "#include \"%s.h\"\n", typeInfos[i].fullTypeName );
 			}
 		}
-		
+
 		StringBuilder_Append( code, "\n" );
 
 		StringBuilder_Appendf( code, "#include \"" GEN_FILENAME_FUNCTIONS_SCALAR ".h\"\n\n" );

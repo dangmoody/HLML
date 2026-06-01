@@ -22,16 +22,17 @@ along with The HLML Generator.  If not, see <http://www.gnu.org/licenses/>.
 ===========================================================================
 */
 
-#include "generator_core.c"
-
-#include "gen_api.c"
-#include "gen_tests.c"
-
 #include "timer.h"
 #include "int_types.h"
 #include "defines.h"
+#include "linear_allocator.h"
+#include "string_helpers.h"
+
+#include "gen_shared.h"
+#include "gen_api.h"
 
 #include <stdio.h>
+#include <assert.h>
 
 static void UpdateStringsFromFlags( const generatorFlags_t flags, generatorStrings_t* outStrings ) {
 	assert( outStrings );
@@ -50,7 +51,6 @@ int main( int argc, char** argv ) {
 
 	printf(
 		"HLML Generator.\n"
-		"(c) Dan Moody 2019 - Present.\n"
 		"\n"
 		"Generating...\n"
 		"\n"
@@ -148,8 +148,8 @@ int main( int argc, char** argv ) {
 
 		UpdateStringsFromFlags( flags, &generatorStrings );
 
-		GenerateAPIFiles( tempStorage, "c", vectorTypeInfos, vectorTypeInfosCount, quaternionTypeInfos, quaternionTypeInfosCount, matrixTypeInfos, matrixTypeInfosCount, &generatorStrings, flags );
-		GenerateTests( tempStorage, "c", vectorTypeInfos, vectorTypeInfosCount, quaternionTypeInfos, quaternionTypeInfosCount, matrixTypeInfos, matrixTypeInfosCount, &generatorStrings, flags );
+		Gen_GenerateAPIFiles( tempStorage, "c", vectorTypeInfos, vectorTypeInfosCount, quaternionTypeInfos, quaternionTypeInfosCount, matrixTypeInfos, matrixTypeInfosCount, &generatorStrings, flags );
+		Gen_GenerateTests( tempStorage, "c", vectorTypeInfos, vectorTypeInfosCount, quaternionTypeInfos, quaternionTypeInfosCount, matrixTypeInfos, matrixTypeInfosCount, &generatorStrings, flags );
 	}
 
 	// C++
@@ -158,8 +158,8 @@ int main( int argc, char** argv ) {
 
 		UpdateStringsFromFlags( flags, &generatorStrings );
 
-		GenerateAPIFiles( tempStorage, "cpp", vectorTypeInfos, vectorTypeInfosCount, quaternionTypeInfos, quaternionTypeInfosCount, matrixTypeInfos, matrixTypeInfosCount, &generatorStrings, flags );
-		GenerateTests( tempStorage, "cpp", vectorTypeInfos, vectorTypeInfosCount, quaternionTypeInfos, quaternionTypeInfosCount, matrixTypeInfos, matrixTypeInfosCount, &generatorStrings, flags );
+		Gen_GenerateAPIFiles( tempStorage, "cpp", vectorTypeInfos, vectorTypeInfosCount, quaternionTypeInfos, quaternionTypeInfosCount, matrixTypeInfos, matrixTypeInfosCount, &generatorStrings, flags );
+		Gen_GenerateTests( tempStorage, "cpp", vectorTypeInfos, vectorTypeInfosCount, quaternionTypeInfos, quaternionTypeInfosCount, matrixTypeInfos, matrixTypeInfosCount, &generatorStrings, flags );
 	}
 
 	float64 end = Time_NowMS();

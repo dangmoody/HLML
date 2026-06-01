@@ -22,24 +22,22 @@ along with The HLML Generator.  If not, see <http://www.gnu.org/licenses/>.
 ===========================================================================
 */
 
-#include "gen_shared.c"
-#include "common_names.h"
+#include "gen_api.h"
 
+#include "gen_shared.h"
+
+#include "common_names.h"
 #include "string_helpers.h"
 #include "file_io.h"
 #include "defines.h"
+#include "string_builder.h"
+#include "linear_allocator.h"
+
+#include "stb_local.h"
 
 #include <stdio.h>
 #include <assert.h>
 #include <stdbool.h>
-
-#include "gen_scalar.c"
-#include "gen_vector.c"
-#include "gen_quaternion.c"
-#include "gen_matrix.c"
-
-#include "gen_scalar_sse.c"
-#include "gen_vector_sse.c"
 
 static void GenerateMainHeader(
 	allocatorLinear_t* tempStorage,
@@ -318,13 +316,13 @@ static void GenerateSSEConstantsHeader( allocatorLinear_t* tempStorage, const ch
 	Mem_Reset( tempStorage );
 }
 
-static void GenerateAPIFiles( allocatorLinear_t* tempStorage,
-	const char* languageName,
-	const typeInfo_t* vectorTypeInfos, const u32 vectorTypeInfosCount,
-	const typeInfo_t* quaternionTypeInfos, const u32 quaternionTypeInfosCount,
-	const typeInfo_t* matrixTypeInfos, const u32 matrixTypeInfosCount,
-	const generatorStrings_t* strings,
-	const generatorFlags_t flags )
+void Gen_GenerateAPIFiles( allocatorLinear_t* tempStorage,
+						   const char* languageName,
+						   const typeInfo_t* vectorTypeInfos, const u32 vectorTypeInfosCount,
+						   const typeInfo_t* quaternionTypeInfos, const u32 quaternionTypeInfosCount,
+						   const typeInfo_t* matrixTypeInfos, const u32 matrixTypeInfosCount,
+						   const generatorStrings_t* strings,
+						   const generatorFlags_t flags )
 {
 	assert( tempStorage );
 	assert( languageName );

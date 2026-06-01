@@ -26,7 +26,9 @@ along with The HLML Generator.  If not, see <http://www.gnu.org/licenses/>.
 
 /*
 The names of all HLML constants, functions, etc.
+
 All generators should use these defines for the sake of uniformity.
+
 Some generators will need to modify names because of language-specific reasons
 (E.G: C doesn't support function-overloading, so we prefix each function).
 

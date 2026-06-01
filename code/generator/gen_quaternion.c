@@ -22,6 +22,18 @@ along with The HLML Generator.  If not, see <http://www.gnu.org/licenses/>.
 ===========================================================================
 */
 
+#include "gen_shared.h"
+
+#include "linear_allocator.h"
+#include "string_builder.h"
+#include "common_names.h"
+#include "string_helpers.h"
+#include "defines.h"
+#include "file_io.h"
+
+#include <stdio.h>
+#include <assert.h>
+
 static void GenerateFunction_QuaternionMulScalar( allocatorLinear_t* tempStorage, const typeInfo_t* typeInfo, stringBuilder_t* code, const generatorStrings_t* strings, const generatorFlags_t flags ) {
 	assert( tempStorage );
 	assert( typeInfo );
@@ -438,7 +450,7 @@ static void GenerateFunction_QuaternionToRotationMatrix( allocatorLinear_t* temp
 	StringBuilder_Append(  code, "}\n\n" );
 }
 
-static void GenerateQuaternionFiles( allocatorLinear_t* tempStorage, const char* generatedCodePath, const typeInfo_t* typeInfos, const u32 typeInfosCount, const generatorStrings_t* strings, const generatorFlags_t flags ) {
+void GenerateQuaternionFiles( allocatorLinear_t* tempStorage, const char* generatedCodePath, const typeInfo_t* typeInfos, const u32 typeInfosCount, const generatorStrings_t* strings, const generatorFlags_t flags ) {
 	assert( tempStorage );
 	assert( generatedCodePath );
 	assert( typeInfos );

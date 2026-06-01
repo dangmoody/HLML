@@ -22,6 +22,18 @@ along with The HLML Generator.  If not, see <http://www.gnu.org/licenses/>.
 ===========================================================================
 */
 
+#include "tests_shared.h"
+
+#include "linear_allocator.h"
+#include "string_builder.h"
+#include "common_names.h"
+#include "defines.h"
+#include "string_helpers.h"
+#include "file_io.h"
+
+#include <stdio.h>
+#include <assert.h>
+
 typedef struct testFixture_Identity_t {
 	float32	values[16];
 	bool32	expectedAnswer;
@@ -1282,7 +1294,7 @@ static void Gen_GenerateTests_LookAt_RH( allocatorLinear_t* tempStorage, stringB
 	Gen_GenerateTests_LookAt_Internal( tempStorage, code, typeInfo, GEN_FUNCTION_NAME_LOOK_AT_RH, strings, flags, fixtures, GEN_COUNTOF( fixtures ) );
 }
 
-static void GenerateMatrixTests( allocatorLinear_t* tempStorage, const char* generatedTestsPath, const char* languageName, const typeInfo_t* matrixTypeInfos, const u32 matrixTypeInfosCount, const generatorStrings_t* strings, const generatorFlags_t flags ) {
+void GenerateMatrixTests( allocatorLinear_t* tempStorage, const char* generatedTestsPath, const char* languageName, const typeInfo_t* matrixTypeInfos, const u32 matrixTypeInfosCount, const generatorStrings_t* strings, const generatorFlags_t flags ) {
 	assert( tempStorage );
 	assert( generatedTestsPath );
 	assert( languageName );

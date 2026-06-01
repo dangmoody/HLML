@@ -26,6 +26,9 @@ along with The HLML Generator.  If not, see <http://www.gnu.org/licenses/>.
 
 #include "int_types.h"
 
+typedef struct allocatorLinear_t allocatorLinear_t;
+typedef struct stringBuilder_t stringBuilder_t;
+
 #define GEN_GENERATED_CODE_PATH					"code/generated_files/"
 #define GEN_GENERATED_TESTS_PATH				"code/generated_files/tests/"
 
@@ -185,3 +188,70 @@ typedef enum operatorSingleParmType_t {
 	OPERATOR_SINGLE_PARM_TYPE_PREFIX = 0,
 	OPERATOR_SINGLE_PARM_TYPE_POSTFIX
 } operatorSingleParmType_t;
+
+genType_t			Gen_GetSupportedFloatingPointType( const genType_t type );
+
+bool32				Gen_TypeIsFloatingPoint( const genType_t type );
+bool32				Gen_TypeIsInteger( const genType_t type );
+bool32				Gen_TypeSupportsSIMD( const genType_t type );
+
+const char*			Gen_GetTypeString( const genType_t type );
+const char*			Gen_GetMemberTypeString( const genType_t type );
+
+u32					Gen_GetTypeBytes( const genType_t type );
+
+bool32				Gen_VectorQualifiesAsQuaternion( const typeInfo_t* typeInfo );
+typeInfo_t			Gen_GetQuaternionImaginaryPartType( const typeInfo_t* typeInfo, allocatorLinear_t* tempStorage );
+
+const char*			Gen_GetBuiltinFunction( allocatorLinear_t* tempStorage, const genType_t type, const char* functionName );
+
+const char*			Gen_GetRelationalName( const genOpRelational_t op );
+const char*			Gen_GetOperatorRelational( const genOpRelational_t op );
+
+const char*			Gen_GetArithmeticName( const genOpArithmetic_t op );
+const char*			Gen_GetOperatorArithmetic( const genOpArithmetic_t op );
+
+const char*			Gen_GetIncrementName( const genOpIncrement_t op );
+const char*			Gen_GetOperatorIncrement( const genOpIncrement_t op );
+
+const char*			Gen_GetBitwiseName( const genOpBitwise_t op );
+const char*			Gen_GetOperatorBitwise( const genOpBitwise_t op );
+
+u32					Gen_GetComponentIndex( const char component );
+
+bool32				Gen_TypeIsScalar( const typeInfo_t* typeInfo );
+bool32				Gen_TypeIsVector( const typeInfo_t* typeInfo );
+bool32				Gen_TypeIsMatrix( const typeInfo_t* typeInfo );
+
+typeInfo_t			Gen_GetScalarType( const typeInfo_t* typeInfo );
+
+const char*			Gen_GetFuncName_Floateq( const genType_t type );
+const char*			Gen_GetFuncName_Floateq_eps( const genType_t type );
+
+const char*			Gen_GetFuncName_Scalar( allocatorLinear_t* tempStorage, const genType_t type, const generatorFlags_t flags, const char* functionName );
+const char*			Gen_GetFuncName_Vector( allocatorLinear_t* tempStorage, const typeInfo_t* typeInfo, const generatorFlags_t flags, const char* functionName );
+
+const char*			Gen_GetFuncName_VectorArithmeticScalar( allocatorLinear_t* tempStorage, const typeInfo_t* typeInfo, const genOpArithmetic_t op );
+const char*			Gen_GetFuncName_VectorArithmeticVector( allocatorLinear_t* tempStorage, const typeInfo_t* typeInfo, const genOpArithmetic_t op );
+
+const char*			Gen_GetFuncName_MatrixMul( allocatorLinear_t* tempStorage, const typeInfo_t* lhsType, const typeInfo_t* rhsType, const generatorFlags_t flags );
+
+void				GetMatrixCodeMultiply( allocatorLinear_t* tempStorage, const typeInfo_t* typeInfo, stringBuilder_t* code, const char* accessOperatorStr, const bool32 useConstructor );
+
+const char*			Gen_GetNumericLiteral( allocatorLinear_t* tempStorage, const genType_t type, const float32 x, const u32 decimalPlaces );
+
+void				GetMatrixCodeMultiplyVector( const typeInfo_t* matrixType, const typeInfo_t* vectorType, stringBuilder_t* code, const char* accessOperatorStr, const bool32 useConstructor );
+
+stringBuilder_t*	Gen_GetParmList_MatrixMultiply( allocatorLinear_t* tempStorage, const typeInfo_t* lhsType, const typeInfo_t* rhsType, const float32* valuesLhs, const float32* valuesRhs );
+
+stringBuilder_t*	Gen_GetConstructor( allocatorLinear_t* tempStorage, const typeInfo_t* typeInfo, const float32* values, const generatorStrings_t* strings, const generatorFlags_t flags );
+
+void				GenerateComponentWiseFunctions( allocatorLinear_t* tempStorage, const typeInfo_t* typeInfo, const typeInfo_t* memberTypeInfo, stringBuilder_t* code, const generatorStrings_t* strings, const generatorFlags_t flags );
+
+void				GenerateComponentWiseOperators( allocatorLinear_t* tempStorage, const typeInfo_t* typeInfo, stringBuilder_t* code, const generatorStrings_t* strings, const generatorFlags_t flags );
+
+//
+// SSE
+//
+const char*			Gen_GetFuncName_Scalar_SSE( allocatorLinear_t* tempStorage, const genType_t type, const generatorFlags_t flags, const char* funcName );
+const char*			Gen_GetFuncName_Vector_SSE( allocatorLinear_t* tempStorage, const typeInfo_t* typeInfo, const generatorFlags_t flags, const char* funcName );

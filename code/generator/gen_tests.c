@@ -22,27 +22,30 @@ along with The HLML Generator.  If not, see <http://www.gnu.org/licenses/>.
 ===========================================================================
 */
 
-#include "gen_shared.h"
+#include "tests_shared.h"
+
+#include "tests_vector.h"
+
 #include "common_names.h"
 
 #include "file_io.h"
 #include "defines.h"
+#include "stb_local.h"
+#include "string_builder.h"
+#include "string_helpers.h"
+#include "linear_allocator.h"
 
 #include <stdio.h>
 #include <assert.h>
 #include <math.h>
 
-#include "tests_shared.c"
-#include "tests_vector.c"
-#include "tests_matrix.c"
-
-static void GenerateTests( allocatorLinear_t* tempStorage,
-						   const char* languageName,
-						   const typeInfo_t* vectorTypeInfos, const u32 vectorTypeInfosCount,
-						   const typeInfo_t* quaternionTypeInfos, const u32 quaternionTypeInfosCount,
-						   const typeInfo_t* matrixTypeInfos, const u32 matrixTypeInfosCount,
-						   const generatorStrings_t* strings,
-						   const generatorFlags_t flags )
+void Gen_GenerateTests( allocatorLinear_t* tempStorage,
+						const char* languageName,
+						const typeInfo_t* vectorTypeInfos, const u32 vectorTypeInfosCount,
+						const typeInfo_t* quaternionTypeInfos, const u32 quaternionTypeInfosCount,
+						const typeInfo_t* matrixTypeInfos, const u32 matrixTypeInfosCount,
+						const generatorStrings_t* strings,
+						const generatorFlags_t flags )
 {
 	assert( tempStorage );
 	assert( languageName );

@@ -24,6 +24,10 @@ along with The HLML Generator.  If not, see <http://www.gnu.org/licenses/>.
 
 #if defined( __linux__ ) || defined( __APPLE__ )
 
+#include "../file_io.h"
+#include "../string_helpers.h"
+#include "../defines.h"
+
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wreserved-id-macro"
 #pragma push_macro( "_POSIX_C_SOURCE" )
@@ -36,11 +40,6 @@ along with The HLML Generator.  If not, see <http://www.gnu.org/licenses/>.
 #include <stb/stb_sprintf.h>
 #pragma clang diagnostic pop
 
-#include "file_io.h"
-#include "timer.h"
-#include "string_helpers.h"
-#include "defines.h"
-
 #include <sys/types.h>
 #include <sys/stat.h>
 
@@ -49,8 +48,6 @@ along with The HLML Generator.  If not, see <http://www.gnu.org/licenses/>.
 #include <dirent.h>
 #include <unistd.h>
 #include <errno.h>
-
-#include <time.h>
 
 #include <stdio.h>
 #include <string.h>
@@ -247,47 +244,6 @@ void FS_DeleteAllFilesInFolder( const char* name ) {
 		assert( false );
 	}
 }
-
-/*
-Timer for Linux/MacOS
-
-DM: this seems to be the best implementation I can get on linux
-multiplying each resultant second by the constant seems wrong though
-I don't like how Time_Now() actually returns nano seconds when it should return clock cycles but I don't have a dedicated linux PC or a Mac so I'm not sure I can totally trust my test results
-but its the best I can do all things considered and it looks close enough to me
-if I'm wrong and someone can fix/improve this then please do
-*/
-
-#define GEN_CLOCK_MOD 1000000000
-
-s64 Time_Now( void ) {
-	struct timespec now;
-	clock_gettime( CLOCK_MONOTONIC, &now );
-
-	return (s64) ( now.tv_sec * GEN_CLOCK_MOD + now.tv_nsec );
-}
-
-float64 Time_NowSeconds( void ) {
-	s64 time = Time_Now();
-	return (float64) time / 1000000000.0;
-}
-
-float64 Time_NowMS( void ) {
-	s64 time = Time_Now();
-	return (float64) time / 1000000.0;
-}
-
-float64 Time_NowUS( void ) {
-	s64 time = Time_Now();
-	return (float64) time / 1000.0;
-}
-
-float64 Time_NowNS( void ) {
-	s64 time = Time_Now();
-	return (float64) time;
-}
-
-#undef GEN_CLOCK_MOD
 
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wreserved-id-macro"

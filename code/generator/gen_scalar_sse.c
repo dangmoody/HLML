@@ -22,7 +22,19 @@ along with The HLML Generator.  If not, see <http://www.gnu.org/licenses/>.
 ===========================================================================
 */
 
-static const char* Gen_GetFuncName_Scalar_SSE( allocatorLinear_t* tempStorage, const genType_t type, const generatorFlags_t flags, const char* funcName ) {
+#include "gen_shared.h"
+
+#include "linear_allocator.h"
+#include "string_builder.h"
+#include "string_helpers.h"
+#include "common_names.h"
+#include "defines.h"
+#include "file_io.h"
+
+#include <stdio.h>
+#include <assert.h>
+
+const char* Gen_GetFuncName_Scalar_SSE( allocatorLinear_t* tempStorage, const genType_t type, const generatorFlags_t flags, const char* funcName ) {
 	assert( tempStorage );
 	assert( type != GEN_TYPE_COUNT );
 	assert( funcName );
@@ -76,7 +88,7 @@ static void GenerateFunction_Lerp_SSE( allocatorLinear_t* tempStorage, stringBui
 	StringBuilder_Append(  code, "}\n\n" );
 }
 
-static void GenerateScalarFiles_SSE( allocatorLinear_t* tempStorage, const char* generatedCodePath, const generatorFlags_t flags ) {
+void GenerateScalarFiles_SSE( allocatorLinear_t* tempStorage, const char* generatedCodePath, const generatorFlags_t flags ) {
 	assert( tempStorage );
 	assert( generatedCodePath );
 

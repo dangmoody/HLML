@@ -22,7 +22,19 @@ along with The HLML Generator.  If not, see <http://www.gnu.org/licenses/>.
 ===========================================================================
 */
 
-static const char* Gen_GetFuncName_Vector_SSE( allocatorLinear_t* tempStorage, const typeInfo_t* typeInfo, const generatorFlags_t flags, const char* funcName ) {
+#include "gen_shared.h"
+
+#include "string_helpers.h"
+#include "string_builder.h"
+#include "common_names.h"
+#include "defines.h"
+#include "file_io.h"
+#include "linear_allocator.h"
+
+#include <stdio.h>
+#include <assert.h>
+
+const char* Gen_GetFuncName_Vector_SSE( allocatorLinear_t* tempStorage, const typeInfo_t* typeInfo, const generatorFlags_t flags, const char* funcName ) {
 	assert( tempStorage );
 	assert( typeInfo );
 	assert( funcName );
@@ -88,7 +100,7 @@ static void MakeSSEParmList( stringBuilder_t* code, const u32 numComponents, con
 
 		for ( u32 i = 0; i < numComponents; i++ ) {
 			StringBuilder_Appendf( code, "%s__m128%s out_%c", whitespacePaddingOut, strings->parmPassByStr, GEN_COMPONENT_NAMES_VECTOR[i] );
-			
+
 			if ( i < numComponents - 1 ) {
 				StringBuilder_Append( code, ", " );
 			}
@@ -302,7 +314,7 @@ static void GenerateFunction_Distancesq_SSE( allocatorLinear_t* tempStorage, str
 
 	for ( u32 i = 0; i < typeInfo->numCols; i++ ) {
 		const char componentStr = GEN_COMPONENT_NAMES_VECTOR[i];
-		
+
 		StringBuilder_Appendf( code, "\t       d%c  = _mm_mul_ps( d%c, d%c );\n", componentStr, componentStr, componentStr );
 	}
 	StringBuilder_Append( code, "\n" );
@@ -339,7 +351,7 @@ static void GenerateFunction_Distance_SSE( allocatorLinear_t* tempStorage, strin
 	const char* funcName = Gen_GetFuncName_Vector_SSE( tempStorage, typeInfo, flags, GEN_FUNCTION_NAME_DISTANCE );
 
 	const char* distancesqFuncStr = Gen_GetFuncName_Vector_SSE( tempStorage, typeInfo, flags, GEN_FUNCTION_NAME_DISTANCESQ );
-	
+
 	StringBuilder_Appendf( code, "inline static __m128 %s( ", funcName );
 	MakeSSEParmList( code, typeInfo->numCols, strings, SIMD_PARM_LIST_FLAG_LHS | SIMD_PARM_LIST_FLAG_RHS );
 	StringBuilder_Append(  code, " )\n" );
@@ -357,7 +369,7 @@ static void GenerateFunction_Distance_SSE( allocatorLinear_t* tempStorage, strin
 	}
 	for ( u32 i = 0; i < typeInfo->numCols; i++ ) {
 		StringBuilder_Appendf( code, "rhs_%c", GEN_COMPONENT_NAMES_VECTOR[i] );
-		
+
 		if ( i < typeInfo->numCols - 1 ) {
 			StringBuilder_Append( code, ", " );
 		}
@@ -366,7 +378,7 @@ static void GenerateFunction_Distance_SSE( allocatorLinear_t* tempStorage, strin
 	StringBuilder_Append(  code, "}\n\n" );
 }
 
-static void GenerateVectorFiles_SSE( allocatorLinear_t* tempStorage, const char* generatedCodePath, const typeInfo_t* typeInfos, const u32 typeInfosCount, const generatorStrings_t* strings, const generatorFlags_t flags ) {
+void GenerateVectorFiles_SSE( allocatorLinear_t* tempStorage, const char* generatedCodePath, const typeInfo_t* typeInfos, const u32 typeInfosCount, const generatorStrings_t* strings, const generatorFlags_t flags ) {
 	assert( tempStorage );
 	assert( generatedCodePath );
 	assert( typeInfos );

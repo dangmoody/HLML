@@ -26,6 +26,9 @@ along with The HLML Generator.  If not, see <http://www.gnu.org/licenses/>.
 
 #include "int_types.h"
 #include "common_names.h"
+#include "string_helpers.h"
+#include "string_builder.h"
+#include "defines.h"
 
 #include <assert.h>
 #include <stdbool.h>
@@ -37,24 +40,24 @@ typedef enum operatorSingleParmFlagBits_t {
 typedef u32 operatorSingleParmFlags_t;
 
 
-static genType_t Gen_GetSupportedFloatingPointType( const genType_t type ) {
+genType_t Gen_GetSupportedFloatingPointType( const genType_t type ) {
 	return ( type == GEN_TYPE_DOUBLE ) ? GEN_TYPE_DOUBLE : GEN_TYPE_FLOAT;
 }
 
-static bool32 Gen_TypeIsFloatingPoint( const genType_t type ) {
+bool32 Gen_TypeIsFloatingPoint( const genType_t type ) {
 	return type == GEN_TYPE_FLOAT || type == GEN_TYPE_DOUBLE;
 }
 
-static bool32 Gen_TypeIsInteger( const genType_t type ) {
+bool32 Gen_TypeIsInteger( const genType_t type ) {
 	return type == GEN_TYPE_INT || type == GEN_TYPE_UINT;
 }
 
-static bool32 Gen_TypeSupportsSIMD( const genType_t type ) {
+bool32 Gen_TypeSupportsSIMD( const genType_t type ) {
 	// DM: I'm not even sure yet if we will want to have SIMD support for anything other than float...
 	return type == GEN_TYPE_FLOAT;
 }
 
-static const char* Gen_GetTypeString( const genType_t type ) {
+const char* Gen_GetTypeString( const genType_t type ) {
 	assert( type != GEN_TYPE_COUNT && "Bad enum passed in!\n" );
 
 	switch ( type ) {
@@ -68,7 +71,7 @@ static const char* Gen_GetTypeString( const genType_t type ) {
 	}
 }
 
-static const char* Gen_GetMemberTypeString( const genType_t type ) {
+const char* Gen_GetMemberTypeString( const genType_t type ) {
 	assert( type != GEN_TYPE_COUNT && "Bad enum passed in!\n" );
 
 	switch ( type ) {
@@ -82,7 +85,7 @@ static const char* Gen_GetMemberTypeString( const genType_t type ) {
 	}
 }
 
-static u32 Gen_GetTypeBytes( const genType_t type ) {
+u32 Gen_GetTypeBytes( const genType_t type ) {
 	assert( type != GEN_TYPE_COUNT && "Bad enum passed in!\n" );
 
 	switch ( type ) {
@@ -102,11 +105,11 @@ static u32 Gen_GetTypeBytes( const genType_t type ) {
 
 //================================================================
 
-static bool32 Gen_VectorQualifiesAsQuaternion( const typeInfo_t* typeInfo ) {
+bool32 Gen_VectorQualifiesAsQuaternion( const typeInfo_t* typeInfo ) {
 	return Gen_TypeIsFloatingPoint( typeInfo->type ) && typeInfo->numCols == 4;
 }
 
-static typeInfo_t Gen_GetQuaternionImaginaryPartType( const typeInfo_t* typeInfo, allocatorLinear_t* tempStorage ) {
+typeInfo_t Gen_GetQuaternionImaginaryPartType( const typeInfo_t* typeInfo, allocatorLinear_t* tempStorage ) {
 	assert( Gen_VectorQualifiesAsQuaternion( typeInfo ) );
 
 	const char* typeString = Gen_GetTypeString( typeInfo->type );
@@ -124,7 +127,7 @@ static typeInfo_t Gen_GetQuaternionImaginaryPartType( const typeInfo_t* typeInfo
 
 // DM: I know this isnt correct for all built in C functions
 // but it should cover all the ones that we care about
-static const char* Gen_GetBuiltinFunction( allocatorLinear_t* tempStorage, const genType_t type, const char* functionName ) {
+const char* Gen_GetBuiltinFunction( allocatorLinear_t* tempStorage, const genType_t type, const char* functionName ) {
 	assert( tempStorage );
 	assert( type != GEN_TYPE_COUNT );
 	assert( functionName );
@@ -136,7 +139,7 @@ static const char* Gen_GetBuiltinFunction( allocatorLinear_t* tempStorage, const
 	}
 }
 
-static const char* Gen_GetRelationalName( const genOpRelational_t op ) {
+const char* Gen_GetRelationalName( const genOpRelational_t op ) {
 	assert( op != GEN_OP_RELATIONAL_COUNT );
 
 	switch ( op ) {
@@ -149,7 +152,7 @@ static const char* Gen_GetRelationalName( const genOpRelational_t op ) {
 	}
 }
 
-static const char* Gen_GetOperatorRelational( const genOpRelational_t op ) {
+const char* Gen_GetOperatorRelational( const genOpRelational_t op ) {
 	assert( op != GEN_OP_RELATIONAL_COUNT );
 
 	switch ( op ) {
@@ -162,7 +165,7 @@ static const char* Gen_GetOperatorRelational( const genOpRelational_t op ) {
 	}
 }
 
-static const char* Gen_GetArithmeticName( const genOpArithmetic_t op ) {
+const char* Gen_GetArithmeticName( const genOpArithmetic_t op ) {
 	assert( op != GEN_OP_ARITHMETIC_COUNT );
 
 	switch ( op ) {
@@ -175,7 +178,7 @@ static const char* Gen_GetArithmeticName( const genOpArithmetic_t op ) {
 	}
 }
 
-static const char* Gen_GetOperatorArithmetic( const genOpArithmetic_t op ) {
+const char* Gen_GetOperatorArithmetic( const genOpArithmetic_t op ) {
 	assert( op != GEN_OP_ARITHMETIC_COUNT );
 
 	switch ( op ) {
@@ -188,7 +191,7 @@ static const char* Gen_GetOperatorArithmetic( const genOpArithmetic_t op ) {
 	}
 }
 
-static const char* Gen_GetIncrementName( const genOpIncrement_t op ) {
+const char* Gen_GetIncrementName( const genOpIncrement_t op ) {
 	assert( op != GEN_OP_INCREMENT_COUNT );
 
 	switch ( op ) {
@@ -199,7 +202,7 @@ static const char* Gen_GetIncrementName( const genOpIncrement_t op ) {
 	}
 }
 
-static const char* Gen_GetOperatorIncrement( const genOpIncrement_t op ) {
+const char* Gen_GetOperatorIncrement( const genOpIncrement_t op ) {
 	assert( op != GEN_OP_INCREMENT_COUNT );
 
 	switch ( op ) {
@@ -210,7 +213,7 @@ static const char* Gen_GetOperatorIncrement( const genOpIncrement_t op ) {
 	}
 }
 
-static const char* Gen_GetBitwiseName( const genOpBitwise_t op ) {
+const char* Gen_GetBitwiseName( const genOpBitwise_t op ) {
 	assert( op != GEN_OP_BITWISE_COUNT );
 
 	switch ( op ) {
@@ -225,7 +228,7 @@ static const char* Gen_GetBitwiseName( const genOpBitwise_t op ) {
 	}
 }
 
-static const char* Gen_GetOperatorBitwise( const genOpBitwise_t op ) {
+const char* Gen_GetOperatorBitwise( const genOpBitwise_t op ) {
 	assert( op != GEN_OP_BITWISE_COUNT );
 
 	switch ( op ) {
@@ -242,7 +245,7 @@ static const char* Gen_GetOperatorBitwise( const genOpBitwise_t op ) {
 
 // TODO(DM): no! this is slow!
 // this could be a lookup table!
-static u32 Gen_GetComponentIndex( const char component ) {
+u32 Gen_GetComponentIndex( const char component ) {
 	for ( u32 i = 0; i < 4; i++ ) {
 		if ( GEN_COMPONENT_NAMES_VECTOR[i] == component ) {
 			return i;
@@ -262,25 +265,25 @@ static u32 Gen_GetComponentIndex( const char component ) {
 
 //================================================================
 
-static bool32 Gen_TypeIsScalar( const typeInfo_t* typeInfo ) {
+bool32 Gen_TypeIsScalar( const typeInfo_t* typeInfo ) {
 	assert( typeInfo );
 
 	return typeInfo->numRows == 1 && typeInfo->numCols == 1;
 }
 
-static bool32 Gen_TypeIsVector( const typeInfo_t* typeInfo ) {
+bool32 Gen_TypeIsVector( const typeInfo_t* typeInfo ) {
 	assert( typeInfo );
 
 	return typeInfo->numRows == 1 && typeInfo->numCols >= 2;
 }
 
-static bool32 Gen_TypeIsMatrix( const typeInfo_t* typeInfo ) {
+bool32 Gen_TypeIsMatrix( const typeInfo_t* typeInfo ) {
 	assert( typeInfo );
 
 	return typeInfo->numRows >= 2 && typeInfo->numCols >= 2;
 }
 
-static typeInfo_t Gen_GetScalarType( const typeInfo_t* typeInfo ) {
+typeInfo_t Gen_GetScalarType( const typeInfo_t* typeInfo ) {
 	assert( typeInfo );
 	assert( !Gen_TypeIsScalar( typeInfo ) );
 
@@ -294,15 +297,15 @@ static typeInfo_t Gen_GetScalarType( const typeInfo_t* typeInfo ) {
 
 //================================================================
 
-static const char* Gen_GetFuncName_Floateq( const genType_t type ) {
+const char* Gen_GetFuncName_Floateq( const genType_t type ) {
 	return ( type == GEN_TYPE_DOUBLE ) ? "doubleeq" : "floateq";
 }
 
-static const char* Gen_GetFuncName_Floateq_eps( const genType_t type ) {
+const char* Gen_GetFuncName_Floateq_eps( const genType_t type ) {
 	return ( type == GEN_TYPE_DOUBLE ) ? "doubleeq_eps" : "floateq_eps";
 }
 
-static const char* Gen_GetFuncName_Scalar( allocatorLinear_t* tempStorage, const genType_t type, const generatorFlags_t flags, const char* functionName ) {
+const char* Gen_GetFuncName_Scalar( allocatorLinear_t* tempStorage, const genType_t type, const generatorFlags_t flags, const char* functionName ) {
 	assert( tempStorage );
 	assert( type != GEN_TYPE_COUNT );
 	assert( functionName );
@@ -328,7 +331,7 @@ static const char* Gen_GetFuncName_Scalar( allocatorLinear_t* tempStorage, const
 	}
 }
 
-static const char* Gen_GetFuncName_Vector( allocatorLinear_t* tempStorage, const typeInfo_t* typeInfo, const generatorFlags_t flags, const char* functionName ) {
+const char* Gen_GetFuncName_Vector( allocatorLinear_t* tempStorage, const typeInfo_t* typeInfo, const generatorFlags_t flags, const char* functionName ) {
 	assert( tempStorage );
 	assert( typeInfo );
 	assert( typeInfo->fullTypeName );
@@ -353,7 +356,7 @@ static const char* Gen_GetFuncName_VectorRelational( allocatorLinear_t* tempStor
 	return String_TPrintf( tempStorage, "%s_%s", typeInfo->fullTypeName, opName );
 }
 
-static const char* Gen_GetFuncName_VectorArithmeticScalar( allocatorLinear_t* tempStorage, const typeInfo_t* typeInfo, const genOpArithmetic_t op ) {
+const char* Gen_GetFuncName_VectorArithmeticScalar( allocatorLinear_t* tempStorage, const typeInfo_t* typeInfo, const genOpArithmetic_t op ) {
 	assert( tempStorage );
 	assert( typeInfo );
 	assert( typeInfo->fullTypeName );
@@ -364,7 +367,7 @@ static const char* Gen_GetFuncName_VectorArithmeticScalar( allocatorLinear_t* te
 	return String_TPrintf( tempStorage, "%s_c%ss", typeInfo->fullTypeName, opName );
 }
 
-static const char* Gen_GetFuncName_VectorArithmeticVector( allocatorLinear_t* tempStorage, const typeInfo_t* typeInfo, const genOpArithmetic_t op ) {
+const char* Gen_GetFuncName_VectorArithmeticVector( allocatorLinear_t* tempStorage, const typeInfo_t* typeInfo, const genOpArithmetic_t op ) {
 	assert( tempStorage );
 	assert( typeInfo );
 	assert( typeInfo->fullTypeName );
@@ -422,7 +425,7 @@ static const char* Gen_GetFuncName_VectorBitwiseMatrix( allocatorLinear_t* tempS
 	return String_TPrintf( tempStorage, "%s_c%sm", typeInfo->fullTypeName, opName );
 }
 
-static const char* Gen_GetFuncName_MatrixMul( allocatorLinear_t* tempStorage, const typeInfo_t* lhsType, const typeInfo_t* rhsType, const generatorFlags_t flags ) {
+const char* Gen_GetFuncName_MatrixMul( allocatorLinear_t* tempStorage, const typeInfo_t* lhsType, const typeInfo_t* rhsType, const generatorFlags_t flags ) {
 	assert( tempStorage );
 	assert( lhsType );
 	assert( lhsType->fullTypeName );
@@ -442,7 +445,7 @@ static const char* Gen_GetFuncName_MatrixMul( allocatorLinear_t* tempStorage, co
 
 //================================================================
 
-static void GetMatrixCodeMultiply( allocatorLinear_t* tempStorage, const typeInfo_t* typeInfo, stringBuilder_t* code, const char* accessOperatorStr, const bool32 useConstructor ) {
+void GetMatrixCodeMultiply( allocatorLinear_t* tempStorage, const typeInfo_t* typeInfo, stringBuilder_t* code, const char* accessOperatorStr, const bool32 useConstructor ) {
 	assert( tempStorage );
 	assert( typeInfo );
 	assert( code );
@@ -519,7 +522,7 @@ static void GetMatrixCodeMultiply( allocatorLinear_t* tempStorage, const typeInf
 	}
 }
 
-static void GetMatrixCodeMultiplyVector( const typeInfo_t* matrixType, const typeInfo_t* vectorType, stringBuilder_t* code, const char* accessOperatorStr, const bool32 useConstructor ) {
+void GetMatrixCodeMultiplyVector( const typeInfo_t* matrixType, const typeInfo_t* vectorType, stringBuilder_t* code, const char* accessOperatorStr, const bool32 useConstructor ) {
 	assert( matrixType );
 	assert( vectorType );
 	assert( vectorType->fullTypeName );
@@ -568,7 +571,7 @@ static void GetMatrixCodeMultiplyVector( const typeInfo_t* matrixType, const typ
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wfloat-equal"
 
-static const char* Gen_GetNumericLiteral( allocatorLinear_t* tempStorage, const genType_t type, const float32 x, const u32 decimalPlaces ) {
+const char* Gen_GetNumericLiteral( allocatorLinear_t* tempStorage, const genType_t type, const float32 x, const u32 decimalPlaces ) {
 	assert( tempStorage );
 	assert( type != GEN_TYPE_COUNT );
 
@@ -646,7 +649,7 @@ static stringBuilder_t* Gen_GetParmList_Matrix( allocatorLinear_t* tempStorage, 
 	return stringBuilder;
 }
 
-static stringBuilder_t* Gen_GetParmList_MatrixMultiply( allocatorLinear_t* tempStorage, const typeInfo_t* lhsType, const typeInfo_t* rhsType, const float32* valuesLhs, const float32* valuesRhs ) {
+stringBuilder_t* Gen_GetParmList_MatrixMultiply( allocatorLinear_t* tempStorage, const typeInfo_t* lhsType, const typeInfo_t* rhsType, const float32* valuesLhs, const float32* valuesRhs ) {
 	assert( tempStorage );
 	assert( lhsType );
 	assert( lhsType->fullTypeName );
@@ -711,7 +714,7 @@ static stringBuilder_t* Gen_GetParmList_MatrixMultiply( allocatorLinear_t* tempS
 	return parmList;
 }
 
-static stringBuilder_t* Gen_GetConstructor( allocatorLinear_t* tempStorage, const typeInfo_t* typeInfo, const float32* values, const generatorStrings_t* strings, const generatorFlags_t flags ) {
+stringBuilder_t* Gen_GetConstructor( allocatorLinear_t* tempStorage, const typeInfo_t* typeInfo, const float32* values, const generatorStrings_t* strings, const generatorFlags_t flags ) {
 	assert( tempStorage );
 	assert( typeInfo );
 	assert( typeInfo->fullTypeName );
@@ -1265,7 +1268,7 @@ static void GenerateComponentWiseFunction( allocatorLinear_t* tempStorage, strin
 	StringBuilder_Append( code, "}\n\n" );
 }
 
-static void GenerateComponentWiseFunctions( allocatorLinear_t* tempStorage, const typeInfo_t* typeInfo, const typeInfo_t* memberTypeInfo, stringBuilder_t* code, const generatorStrings_t* strings, const generatorFlags_t flags ) {
+void GenerateComponentWiseFunctions( allocatorLinear_t* tempStorage, const typeInfo_t* typeInfo, const typeInfo_t* memberTypeInfo, stringBuilder_t* code, const generatorStrings_t* strings, const generatorFlags_t flags ) {
 	assert( tempStorage );
 	assert( typeInfo );
 	assert( typeInfo->fullTypeName );
@@ -1509,7 +1512,7 @@ static const char* GetComment_CompoundComponentWiseBitwise_Vector( allocatorLine
 	return String_TPrintf( tempStorage, "// Returns a copy of 'lhs' that has been component-wise bitwise %s'd against 'rhs'.\n", opStr );
 }
 
-static void GenerateComponentWiseOperators( allocatorLinear_t* tempStorage, const typeInfo_t* typeInfo, stringBuilder_t* code, const generatorStrings_t* strings, const generatorFlags_t flags ) {
+void GenerateComponentWiseOperators( allocatorLinear_t* tempStorage, const typeInfo_t* typeInfo, stringBuilder_t* code, const generatorStrings_t* strings, const generatorFlags_t flags ) {
 	assert( tempStorage );
 	assert( typeInfo );
 	assert( typeInfo->fullTypeName );

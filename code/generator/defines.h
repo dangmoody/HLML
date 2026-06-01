@@ -24,7 +24,7 @@ along with The HLML Generator.  If not, see <http://www.gnu.org/licenses/>.
 
 #pragma once
 
-#define GEN_BIT( x )						( 1ULL << (x) )
+// TODO: DM: 01/06/2026: probably need to get rid of this header
 
 // returns number of elements in static array
 #ifndef GEN_COUNTOF

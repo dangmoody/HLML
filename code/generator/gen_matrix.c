@@ -22,6 +22,20 @@ along with The HLML Generator.  If not, see <http://www.gnu.org/licenses/>.
 ===========================================================================
 */
 
+#include "gen_api.h"
+
+#include "gen_shared.h"
+
+#include "linear_allocator.h"
+#include "string_builder.h"
+#include "common_names.h"
+#include "string_helpers.h"
+#include "defines.h"
+#include "file_io.h"
+
+#include <stdio.h>
+#include <assert.h>
+
 static void GenerateFunction_All_Matrix( allocatorLinear_t* tempStorage, const typeInfo_t* typeInfo, const typeInfo_t* memberTypeInfo, stringBuilder_t* code, const generatorFlags_t flags ) {
 	assert( tempStorage );
 	assert( typeInfo );
@@ -1120,7 +1134,7 @@ static void GenerateFunction_LookAt_RH_Matrix( allocatorLinear_t* tempStorage, c
 	StringBuilder_Append(  code, "}\n\n" );
 }
 
-static void GenerateMatrixFiles( allocatorLinear_t* tempStorage, const char* generatedCodePath, const typeInfo_t* typeInfos, const u32 typeInfosCount, const generatorStrings_t* strings, const generatorFlags_t flags ) {
+void GenerateMatrixFiles( allocatorLinear_t* tempStorage, const char* generatedCodePath, const typeInfo_t* typeInfos, const u32 typeInfosCount, const generatorStrings_t* strings, const generatorFlags_t flags ) {
 	assert( tempStorage );
 	assert( generatedCodePath );
 	assert( typeInfos );
