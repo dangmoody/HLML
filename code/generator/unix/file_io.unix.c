@@ -54,14 +54,14 @@ along with The HLML Generator.  If not, see <http://www.gnu.org/licenses/>.
 #include <assert.h>
 #include <stdbool.h>
 
-static void DeleteAllFilesInFolderInternal( DIR* dir, const char* dirName ) {
+static void DeleteAllFilesInFolderInternal( DIR *dir, const char *dirName ) {
 	assert( dir );
 	assert( dirName );
 
 	int osResult = 0;
 	int err = 0;
 
-	struct dirent* dirEntry = NULL;
+	struct dirent *dirEntry = NULL;
 
 	while ( ( dirEntry = readdir( dir ) ) != NULL ) {
 		if ( String_Equals( dirEntry->d_name, "." ) || String_Equals( dirEntry->d_name, ".." ) ) {
@@ -102,12 +102,12 @@ DM: we can't use functions like opendir64 because the MacOS VMs on Travis compla
 I don't have a Mac so I can only test so much, but I'll assume it's legit unless I find out otherwise
 */
 
-void FS_WriteEntireFile( const char* filename, const char* data, const size_t length ) {
+void FS_WriteEntireFile( const char *filename, const char *data, const size_t length ) {
 	assert( filename );
 	assert( data );
 	assert( length );
 
-	FILE* file = fopen( filename, "w" );
+	FILE *file = fopen( filename, "w" );
 	if ( !file ) {
 		printf( "ERROR: Unable to open %s.  That's rough man...\n", filename );
 		assert( false );
@@ -127,7 +127,7 @@ void FS_WriteEntireFile( const char* filename, const char* data, const size_t le
 	file = NULL;
 }
 
-bool32 FS_CreateFolder( const char* name ) {
+bool32 FS_CreateFolder( const char *name ) {
 	assert( name );
 
 	int result = 0;
@@ -142,7 +142,7 @@ bool32 FS_CreateFolder( const char* name ) {
 		path[length - 1] = 0;
 	}
 
-	char* p = NULL;
+	char *p = NULL;
 
 	for ( p = path + 1; *p; p++ ) {
 		if ( *p == '/' ) {
@@ -173,7 +173,7 @@ bool32 FS_CreateFolder( const char* name ) {
 	return result == 0;
 }
 
-void FS_DeleteFolder( const char* name ) {
+void FS_DeleteFolder( const char *name ) {
 	assert( name );
 
 //	printf( "Deleting folder %s...\n", name );
@@ -183,7 +183,7 @@ void FS_DeleteFolder( const char* name ) {
 
 	bool result = false;
 
-	DIR* dir = opendir( name );
+	DIR *dir = opendir( name );
 	err = errno;
 	if ( !dir ) {
 		printf( "ERROR: Failed to find directory \"%s\": %s\n", name, strerror( err ) );
@@ -205,7 +205,7 @@ void FS_DeleteFolder( const char* name ) {
 	GEN_UNUSED( result );
 }
 
-bool32 FS_FolderExists( const char* name ) {
+bool32 FS_FolderExists( const char *name ) {
 	assert( name );
 
 	int err = 0;
@@ -223,12 +223,12 @@ bool32 FS_FolderExists( const char* name ) {
 	return S_ISDIR( info.st_mode );
 }
 
-void FS_DeleteAllFilesInFolder( const char* name ) {
+void FS_DeleteAllFilesInFolder( const char *name ) {
 	assert( name );
 
 	int err = 0;
 
-	DIR* dir = opendir( name );
+	DIR *dir = opendir( name );
 	err = errno;
 	if ( !dir ) {
 		printf( "ERROR: Failed to find directory \"%s\": %s\n", name, strerror( err ) );

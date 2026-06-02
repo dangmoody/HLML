@@ -39,12 +39,12 @@ along with The HLML Generator.  If not, see <http://www.gnu.org/licenses/>.
 #include <assert.h>
 #include <math.h>
 
-void Gen_GenerateTests( allocatorLinear_t* tempStorage,
-						const char* languageName,
-						const typeInfo_t* vectorTypeInfos, const u32 vectorTypeInfosCount,
-						const typeInfo_t* quaternionTypeInfos, const u32 quaternionTypeInfosCount,
-						const typeInfo_t* matrixTypeInfos, const u32 matrixTypeInfosCount,
-						const generatorStrings_t* strings,
+void Gen_GenerateTests( allocatorLinear_t *tempStorage,
+						const char *languageName,
+						const typeInfo_t *vectorTypeInfos, const u32 vectorTypeInfosCount,
+						const typeInfo_t *quaternionTypeInfos, const u32 quaternionTypeInfosCount,
+						const typeInfo_t *matrixTypeInfos, const u32 matrixTypeInfosCount,
+						const generatorStrings_t *strings,
 						const generatorFlags_t flags )
 {
 	assert( tempStorage );
@@ -74,7 +74,7 @@ void Gen_GenerateTests( allocatorLinear_t* tempStorage,
 			continue;
 		}
 
-		const char* typeString = Gen_GetTypeString( type );
+		const char *typeString = Gen_GetTypeString( type );
 
 		typeInfo_t typeInfo = {
 			.type			= type,
@@ -92,13 +92,13 @@ void Gen_GenerateTests( allocatorLinear_t* tempStorage,
 
 		printf( "Generating test_%s.%s...", typeString, languageName );
 
-		stringBuilder_t* code = StringBuilder_Create( tempStorage, KILOBYTES( 16 ) );
+		stringBuilder_t *code = StringBuilder_Create( tempStorage, KILOBYTES( 16 ) );
 
 		StringBuilder_Append( code, GEN_FILE_HEADER );
 
 		GenerateComponentWiseTests( tempStorage, code, &typeInfo, &typeInfo, strings, flags );
 
-		const char* fileNameHeader = String_TPrintf( tempStorage, "%s/test_%s.%s", generatedTestsPath, typeString, languageName );
+		const char *fileNameHeader = String_TPrintf( tempStorage, "%s/test_%s.%s", generatedTestsPath, typeString, languageName );
 		FS_WriteEntireFile( fileNameHeader, code->str, code->length );
 
 		printf( "OK.\n" );
@@ -114,7 +114,7 @@ void Gen_GenerateTests( allocatorLinear_t* tempStorage,
 	{
 		printf( "Generating test_main.%s...", languageName );
 
-		stringBuilder_t* sb = StringBuilder_Create( tempStorage, KILOBYTES( 10 ) );
+		stringBuilder_t *sb = StringBuilder_Create( tempStorage, KILOBYTES( 10 ) );
 
 		StringBuilder_Append( sb,
 			GEN_FILE_HEADER
@@ -146,7 +146,7 @@ void Gen_GenerateTests( allocatorLinear_t* tempStorage,
 		StringBuilder_Append( sb, "{\n" );
 
 		for ( u32 i = 0; i < vectorTypeInfosCount; i++ ) {
-			const typeInfo_t* typeInfo = &vectorTypeInfos[i];
+			const typeInfo_t *typeInfo = &vectorTypeInfos[i];
 
 			u32 sizeBytes = typeInfo->numRows * typeInfo->numCols * Gen_GetTypeBytes( typeInfo->type );
 
@@ -155,7 +155,7 @@ void Gen_GenerateTests( allocatorLinear_t* tempStorage,
 		StringBuilder_Append( sb, "\n" );
 
 		for ( u32 i = 0; i < matrixTypeInfosCount; i++ ) {
-			const typeInfo_t* typeInfo = &matrixTypeInfos[i];
+			const typeInfo_t *typeInfo = &matrixTypeInfos[i];
 
 			u32 sizeBytes = typeInfo->numRows * typeInfo->numCols * Gen_GetTypeBytes( typeInfo->type );
 
@@ -172,7 +172,7 @@ void Gen_GenerateTests( allocatorLinear_t* tempStorage,
 				continue;
 			}
 
-			const char* typeString = Gen_GetTypeString( type );
+			const char *typeString = Gen_GetTypeString( type );
 
 			StringBuilder_Appendf( sb, "#include \"test_%s.%s\"\n", typeString, languageName );
 		}
@@ -180,7 +180,7 @@ void Gen_GenerateTests( allocatorLinear_t* tempStorage,
 
 		// vector tests
 		for ( u32 i = 0; i < vectorTypeInfosCount; i++ ) {
-			const typeInfo_t* typeInfo = &vectorTypeInfos[i];
+			const typeInfo_t *typeInfo = &vectorTypeInfos[i];
 
 			if ( typeInfo->type == GEN_TYPE_BOOL ) {
 				continue;
@@ -197,7 +197,7 @@ void Gen_GenerateTests( allocatorLinear_t* tempStorage,
 
 		// quaternion tests
 		for ( u32 i = 0; i < quaternionTypeInfosCount; i++ ) {
-			const typeInfo_t* typeInfo = &quaternionTypeInfos[i];
+			const typeInfo_t *typeInfo = &quaternionTypeInfos[i];
 			assert( Gen_VectorQualifiesAsQuaternion( typeInfo ) );
 
 			StringBuilder_Appendf( sb, "#include \"test_quat_%s.%s\"\n", typeInfo->fullTypeName, languageName );
@@ -206,7 +206,7 @@ void Gen_GenerateTests( allocatorLinear_t* tempStorage,
 
 		// matrix tests
 		for ( u32 i = 0; i < matrixTypeInfosCount; i++ ) {
-			const typeInfo_t* typeInfo = &matrixTypeInfos[i];
+			const typeInfo_t *typeInfo = &matrixTypeInfos[i];
 
 			if ( typeInfo->type == GEN_TYPE_BOOL ) {
 				continue;
@@ -220,7 +220,7 @@ void Gen_GenerateTests( allocatorLinear_t* tempStorage,
 			"#define TEST_PADDING \"................................................................\"\n"
 			"\n"
 
-			"static void OnBeforeTest( const temperTestInfo_t* testInfo )\n"
+			"static void OnBeforeTest( const temperTestInfo_t *testInfo )\n"
 			"{\n"
 			"\tconst int padLengthMax = (int) strlen( TEST_PADDING );\n"
 			"\n"
@@ -231,7 +231,7 @@ void Gen_GenerateTests( allocatorLinear_t* tempStorage,
 			"}\n"
 			"\n"
 
-			"static void OnAfterTest( const temperTestInfo_t* testInfo )\n"
+			"static void OnAfterTest( const temperTestInfo_t *testInfo )\n"
 			"{\n"
 			"\tif ( testInfo->testingFlag == TEMPER_FLAG_SHOULD_SKIP )\n"
 			"\t{\n"
@@ -259,7 +259,7 @@ void Gen_GenerateTests( allocatorLinear_t* tempStorage,
 			"}\n"
 			"\n"
 
-			"int main( int argc, char** argv )\n"
+			"int main( int argc, char **argv )\n"
 			"{\n"
 			"\tg_temperTestContext.callbacks.OnBeforeTest = OnBeforeTest;\n"
 			"\tg_temperTestContext.callbacks.OnAfterTest = OnAfterTest;\n"
@@ -270,7 +270,7 @@ void Gen_GenerateTests( allocatorLinear_t* tempStorage,
 			"}\n"
 		);
 
-		const char* filePathMain = String_TPrintf( tempStorage, "%s/test_main.%s", generatedTestsPath, languageName );
+		const char *filePathMain = String_TPrintf( tempStorage, "%s/test_main.%s", generatedTestsPath, languageName );
 
 		FS_WriteEntireFile( filePathMain, sb->str, sb->length );
 

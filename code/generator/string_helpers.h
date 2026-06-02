@@ -29,7 +29,7 @@ along with The HLML Generator.  If not, see <http://www.gnu.org/licenses/>.
 typedef struct allocatorLinear_t allocatorLinear_t;
 
 // Returns true if the contents of lhs are indentical to rhs.
-bool32		String_Equals( const char* lhs, const char* rhs );
+bool32		String_Equals( const char *lhs, const char *rhs );
 
-// Returns a char* that is the result of calling sprintf with the given format string and var args, uses temp storage to allocate the result string.
-char*		String_TPrintf( allocatorLinear_t* tempStorage, const char* fmt, ... );
+// Returns a char *that is the result of calling sprintf with the given format string and var args, uses temp storage to allocate the result string.
+char		*String_TPrintf( allocatorLinear_t *tempStorage, const char *fmt, ... );

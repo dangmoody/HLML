@@ -34,7 +34,7 @@ along with The HLML Generator.  If not, see <http://www.gnu.org/licenses/>.
 #include <stdio.h>
 #include <assert.h>
 
-static void UpdateStringsFromFlags( const generatorFlags_t flags, generatorStrings_t* outStrings ) {
+static void UpdateStringsFromFlags( const generatorFlags_t flags, generatorStrings_t *outStrings ) {
 	assert( outStrings );
 
 	outStrings->parmPassByStr = ( flags & GENERATOR_FLAG_PARMS_ARE_POINTERS ) ? "*" : "&";
@@ -43,7 +43,7 @@ static void UpdateStringsFromFlags( const generatorFlags_t flags, generatorStrin
 	outStrings->parmDereferenceStr = ( flags & GENERATOR_FLAG_PARMS_ARE_POINTERS ) ? "*" : "";
 }
 
-int main( int argc, char** argv ) {
+int main( int argc, char **argv ) {
 	GEN_UNUSED( argc );
 	GEN_UNUSED( argv );
 
@@ -56,16 +56,16 @@ int main( int argc, char** argv ) {
 		"\n"
 	);
 
-	allocatorLinear_t* allocator = Mem_CreateLinear( GIGABYTES( 6 ) );
-	allocatorLinear_t* tempStorage = Mem_CreateFromOther( allocator, GIGABYTES( 5 ) );
+	allocatorLinear_t *allocator = Mem_CreateLinear( GIGABYTES( 6 ) );
+	allocatorLinear_t *tempStorage = Mem_CreateFromOther( allocator, GIGABYTES( 5 ) );
 
 	u32 vectorTypeInfosCount = 0;
 	u32 quaternionTypeInfosCount = 0;
 	u32 matrixTypeInfosCount = 0;
 
-	typeInfo_t* vectorTypeInfos = NULL;
-	typeInfo_t* quaternionTypeInfos = NULL;
-	typeInfo_t* matrixTypeInfos = NULL;
+	typeInfo_t *vectorTypeInfos = NULL;
+	typeInfo_t *quaternionTypeInfos = NULL;
+	typeInfo_t *matrixTypeInfos = NULL;
 
 	// create type infos
 	{
@@ -76,15 +76,15 @@ int main( int argc, char** argv ) {
 			u32 typeInfoIndex = 0;
 
 			vectorTypeInfosCount = GEN_TYPE_COUNT * numComponentPermutations;
-			vectorTypeInfos = (typeInfo_t*) Mem_Alloc( allocator, vectorTypeInfosCount * sizeof( typeInfo_t ) );
+			vectorTypeInfos = (typeInfo_t *) Mem_Alloc( allocator, vectorTypeInfosCount * sizeof( typeInfo_t ) );
 
 			for ( u32 typeIndex = 0; typeIndex < GEN_TYPE_COUNT; typeIndex++ ) {
 				genType_t type = (genType_t) typeIndex;
 
-				const char* typeString = Gen_GetTypeString( type );
+				const char *typeString = Gen_GetTypeString( type );
 
 				for ( u32 componentIndex = 2; componentIndex <= 4; componentIndex++ ) {
-					typeInfo_t* typeInfo = &vectorTypeInfos[typeInfoIndex++];
+					typeInfo_t *typeInfo = &vectorTypeInfos[typeInfoIndex++];
 					typeInfo->type = type;
 					typeInfo->numRows = 1;
 					typeInfo->numCols = componentIndex;
@@ -96,9 +96,9 @@ int main( int argc, char** argv ) {
 		// create quaternion type infos
 		{
 			quaternionTypeInfosCount = 2;
-			quaternionTypeInfos = (typeInfo_t*) Mem_Alloc( allocator, quaternionTypeInfosCount * sizeof( typeInfo_t ) );
+			quaternionTypeInfos = (typeInfo_t *) Mem_Alloc( allocator, quaternionTypeInfosCount * sizeof( typeInfo_t ) );
 
-			typeInfo_t* typeInfo = NULL;
+			typeInfo_t *typeInfo = NULL;
 
 			typeInfo = &quaternionTypeInfos[0];
 			typeInfo->type = GEN_TYPE_FLOAT;
@@ -118,16 +118,16 @@ int main( int argc, char** argv ) {
 			u32 typeInfoIndex = 0;
 
 			matrixTypeInfosCount = GEN_TYPE_COUNT * numComponentPermutations * numComponentPermutations;
-			matrixTypeInfos = (typeInfo_t*) Mem_Alloc( allocator, matrixTypeInfosCount * sizeof( typeInfo_t ) );
+			matrixTypeInfos = (typeInfo_t *) Mem_Alloc( allocator, matrixTypeInfosCount * sizeof( typeInfo_t ) );
 
 			for ( u32 typeIndex = 0; typeIndex < GEN_TYPE_COUNT; typeIndex++ ) {
 				genType_t type = (genType_t) typeIndex;
 
-				const char* typeString = Gen_GetTypeString( type );
+				const char *typeString = Gen_GetTypeString( type );
 
 				for ( u32 row = 2; row <= 4; row++ ) {
 					for ( u32 col = 2; col <= 4; col++ ) {
-						typeInfo_t* typeInfo = &matrixTypeInfos[typeInfoIndex++];
+						typeInfo_t *typeInfo = &matrixTypeInfos[typeInfoIndex++];
 						typeInfo->type = type;
 						typeInfo->numRows = row;
 						typeInfo->numCols = col;

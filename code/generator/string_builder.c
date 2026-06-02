@@ -34,18 +34,18 @@ along with The HLML Generator.  If not, see <http://www.gnu.org/licenses/>.
 #include <stb/stb_sprintf.h>
 #pragma clang diagnostic pop
 
-stringBuilder_t* StringBuilder_Create( allocatorLinear_t* allocator, const u32 size ) {
+stringBuilder_t *StringBuilder_Create( allocatorLinear_t *allocator, const u32 size ) {
 	assert( size > 0 );
 
-	stringBuilder_t* stringBuilder = (stringBuilder_t*) Mem_Alloc( allocator, sizeof( stringBuilder_t ) );
-	stringBuilder->str = (char*) Mem_Alloc( allocator, size );
+	stringBuilder_t *stringBuilder = (stringBuilder_t *) Mem_Alloc( allocator, sizeof( stringBuilder_t ) );
+	stringBuilder->str = (char *) Mem_Alloc( allocator, size );
 	stringBuilder->length = 0;
 	stringBuilder->alloc = size;
 
 	return stringBuilder;
 }
 
-void StringBuilder_Append( stringBuilder_t* sb, const char* msg ) {
+void StringBuilder_Append( stringBuilder_t *sb, const char *msg ) {
 	assert( sb );
 	assert( msg );
 
@@ -58,7 +58,7 @@ void StringBuilder_Append( stringBuilder_t* sb, const char* msg ) {
 	sb->length += length;
 }
 
-static void StringBuilder_Appendfv( stringBuilder_t* sb, const char* fmt, va_list args ) {
+static void StringBuilder_Appendfv( stringBuilder_t *sb, const char *fmt, va_list args ) {
 	assert( sb );
 	assert( fmt );
 	assert( args );
@@ -72,7 +72,7 @@ static void StringBuilder_Appendfv( stringBuilder_t* sb, const char* fmt, va_lis
 	sb->length += length;
 }
 
-void StringBuilder_Appendf( stringBuilder_t* sb, const char* fmt, ... ) {
+void StringBuilder_Appendf( stringBuilder_t *sb, const char *fmt, ... ) {
 	assert( sb );
 	assert( fmt );
 

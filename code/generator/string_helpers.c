@@ -36,14 +36,14 @@ along with The HLML Generator.  If not, see <http://www.gnu.org/licenses/>.
 #include <string.h>
 
 // TODO: DM: 31/05/2026: rename to StringEquals
-bool32 String_Equals( const char* lhs, const char* rhs ) {
+bool32 String_Equals( const char *lhs, const char *rhs ) {
 	return strcmp( lhs, rhs ) == 0;
 }
 
 // TODO: DM: 31/05/2026:
 //	rename to TempPrintf
 //	fix how length is calculated when allocating resultant string
-char* String_TPrintf( allocatorLinear_t* tempStorage, const char* fmt, ... ) {
+char *String_TPrintf( allocatorLinear_t *tempStorage, const char *fmt, ... ) {
 	assert( tempStorage );
 	assert( fmt && "Format string MUST be non-NULL." );
 
@@ -56,7 +56,7 @@ char* String_TPrintf( allocatorLinear_t* tempStorage, const char* fmt, ... ) {
 	u64 length = (u64) len;
 	length++;
 
-	char* result = Mem_Alloc( tempStorage, length * sizeof( char ) );
+	char *result = Mem_Alloc( tempStorage, length * sizeof( char ) );
 
 	va_start( args, fmt );
 	stbsp_vsnprintf( result, (int) length, fmt, args );

@@ -40,12 +40,12 @@ typedef struct allocatorLinear_t {
 	allocatorLinearFlags_t	flags;
 } allocatorLinear_t;
 
-allocatorLinear_t* Mem_CreateLinear( const u64 size ) {
+allocatorLinear_t *Mem_CreateLinear( const u64 size ) {
 	assert( size > 0 );
 
-	void* memory = malloc( sizeof( allocatorLinear_t ) + size );
+	void *memory = malloc( sizeof( allocatorLinear_t ) + size );
 
-	allocatorLinear_t* allocator = (allocatorLinear_t*) memory;
+	allocatorLinear_t *allocator = (allocatorLinear_t *) memory;
 	allocator->offset = 0;
 	allocator->size = size;
 	allocator->flags = 0;
@@ -53,13 +53,13 @@ allocatorLinear_t* Mem_CreateLinear( const u64 size ) {
 	return allocator;
 }
 
-allocatorLinear_t* Mem_CreateFromOther( allocatorLinear_t* original, const u64 sizeBytes ) {
+allocatorLinear_t *Mem_CreateFromOther( allocatorLinear_t *original, const u64 sizeBytes ) {
 	assert( original );
 	assert( sizeBytes );
 	// test that the size of the sub-allocator we want to make can fit inside the original allocator
 	assert( sizeBytes < original->size );
 
-	allocatorLinear_t* newAllocator = (allocatorLinear_t*) Mem_Alloc( original, sizeBytes );
+	allocatorLinear_t *newAllocator = (allocatorLinear_t *) Mem_Alloc( original, sizeBytes );
 	newAllocator->offset = 0;
 	newAllocator->size = sizeBytes;
 	newAllocator->flags = original->flags | ALLOCATOR_LINEAR_FLAG_CREATED_FROM_OTHER;
@@ -67,18 +67,18 @@ allocatorLinear_t* Mem_CreateFromOther( allocatorLinear_t* original, const u64 s
 	return newAllocator;
 }
 
-void Mem_DestroyLinear( allocatorLinear_t** allocator ) {
+void Mem_DestroyLinear( allocatorLinear_t **allocator ) {
 	assert( *allocator );
 
 	free( *allocator );
 	*allocator = NULL;
 }
 
-void* Mem_Alloc( allocatorLinear_t* allocator, const u64 size ) {
+void *Mem_Alloc( allocatorLinear_t *allocator, const u64 size ) {
 	return Mem_AllocAligned( allocator, size, ALLOCATOR_ALIGNMENT_EIGHT );
 }
 
-void* Mem_AllocAligned( allocatorLinear_t* allocator, const u64 size, const allocatorAlignment_t alignment ) {
+void *Mem_AllocAligned( allocatorLinear_t *allocator, const u64 size, const allocatorAlignment_t alignment ) {
 	assert( allocator );
 	assert( allocator->offset + size <= allocator->size );
 	assert( size );
@@ -86,14 +86,14 @@ void* Mem_AllocAligned( allocatorLinear_t* allocator, const u64 size, const allo
 
 	allocator->offset = GEN_ALIGN_UP_INT( allocator->offset, (u64) alignment );
 
-	void* basePtr = allocator + sizeof( allocatorLinear_t );
-	u8* ptr = (u8*) basePtr + allocator->offset;
+	void *basePtr = allocator + sizeof( allocatorLinear_t );
+	u8 *ptr = (u8 *) basePtr + allocator->offset;
 
 	allocator->offset += size;
 
 	return ptr;
 }
 
-void Mem_Reset( allocatorLinear_t* allocator ) {
+void Mem_Reset( allocatorLinear_t *allocator ) {
 	allocator->offset = 0;
 }

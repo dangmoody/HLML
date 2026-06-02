@@ -29,12 +29,12 @@ along with The HLML Generator.  If not, see <http://www.gnu.org/licenses/>.
 typedef struct allocatorLinear_t allocatorLinear_t;
 
 typedef struct stringBuilder_t {
-	char*	str;
+	char	*str;
 	u32		length;
 	u32		alloc;
 } stringBuilder_t;
 
-stringBuilder_t*	StringBuilder_Create( allocatorLinear_t* allocator, const u32 size );
+stringBuilder_t	*StringBuilder_Create( allocatorLinear_t *allocator, const u32 size );
 
-void				StringBuilder_Append( stringBuilder_t* sb, const char* msg );
-void				StringBuilder_Appendf( stringBuilder_t* sb, const char* fmt, ... );
+void				StringBuilder_Append( stringBuilder_t *sb, const char *msg );
+void				StringBuilder_Appendf( stringBuilder_t *sb, const char *fmt, ... );

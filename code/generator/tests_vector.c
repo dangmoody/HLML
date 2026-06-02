@@ -127,7 +127,7 @@ typedef struct testFixture_QuatToRotationMatrix_t {
 } testFixture_QuatToRotationMatrix_t;
 
 
-static void Gen_GenerateTests_Length_Internal( allocatorLinear_t* tempStorage, stringBuilder_t* code, const typeInfo_t* typeInfo, const char* funcName, const generatorStrings_t* strings, const generatorFlags_t flags, const testFixture_Length_t* fixtures, const u32 fixturesCount ) {
+static void Gen_GenerateTests_Length_Internal( allocatorLinear_t *tempStorage, stringBuilder_t *code, const typeInfo_t *typeInfo, const char *funcName, const generatorStrings_t *strings, const generatorFlags_t flags, const testFixture_Length_t *fixtures, const u32 fixturesCount ) {
 	assert( tempStorage );
 	assert( code );
 	assert( typeInfo );
@@ -159,7 +159,7 @@ static void Gen_GenerateTests_Length_Internal( allocatorLinear_t* tempStorage, s
 	} );
 
 	for ( u32 i = 0; i < fixturesCount; i++ ) {
-		const testFixture_Length_t* fixture = &fixtures[i];
+		const testFixture_Length_t *fixture = &fixtures[i];
 
 		parametricTestInvokationGenericParm_t parms[] = {
 			{  typeInfo,                fixture->values },
@@ -177,7 +177,7 @@ static void Gen_GenerateTests_Length_Internal( allocatorLinear_t* tempStorage, s
 
 	if ( Gen_TypeSupportsSIMD( typeInfo->type ) ) {
 		for ( u32 i = 0; i < fixturesCount; i++ ) {
-			const testFixture_Length_t* fixture = &fixtures[i];
+			const testFixture_Length_t *fixture = &fixtures[i];
 
 			parametricTestInvokationGenericParm_t parms[] = {
 				{  typeInfo,                fixture->values },
@@ -195,7 +195,7 @@ static void Gen_GenerateTests_Length_Internal( allocatorLinear_t* tempStorage, s
 	}
 }
 
-static void Gen_GenerateTests_Lengthsq( allocatorLinear_t* tempStorage, stringBuilder_t* code, const typeInfo_t* typeInfo, const generatorStrings_t* strings, const generatorFlags_t flags ) {
+static void Gen_GenerateTests_Lengthsq( allocatorLinear_t *tempStorage, stringBuilder_t *code, const typeInfo_t *typeInfo, const generatorStrings_t *strings, const generatorFlags_t flags ) {
 	testFixture_Length_t fixtures[] = {
 		{
 			.values				= { 0.0f, 0.0f, 0.0f, 0.0f },
@@ -222,7 +222,7 @@ static void Gen_GenerateTests_Lengthsq( allocatorLinear_t* tempStorage, stringBu
 	Gen_GenerateTests_Length_Internal( tempStorage, code, typeInfo, GEN_FUNCTION_NAME_LENGTHSQ, strings, flags, fixtures, GEN_COUNTOF( fixtures ) );
 }
 
-static void Gen_GenerateTests_Length( allocatorLinear_t* tempStorage, stringBuilder_t* code, const typeInfo_t* typeInfo, const generatorStrings_t* strings, const generatorFlags_t flags ) {
+static void Gen_GenerateTests_Length( allocatorLinear_t *tempStorage, stringBuilder_t *code, const typeInfo_t *typeInfo, const generatorStrings_t *strings, const generatorFlags_t flags ) {
 	testFixture_Length_t fixtures[] = {
 		{
 			.values				= { 0.0f, 0.0f, 0.0f, 0.0f },
@@ -249,7 +249,7 @@ static void Gen_GenerateTests_Length( allocatorLinear_t* tempStorage, stringBuil
 	Gen_GenerateTests_Length_Internal( tempStorage, code, typeInfo, GEN_FUNCTION_NAME_LENGTH, strings, flags, fixtures, GEN_COUNTOF( fixtures ) );
 }
 
-static void Gen_GenerateTests_Dot( allocatorLinear_t* tempStorage, stringBuilder_t* code, const typeInfo_t* typeInfo, const generatorStrings_t* strings, const generatorFlags_t flags ) {
+static void Gen_GenerateTests_Dot( allocatorLinear_t *tempStorage, stringBuilder_t *code, const typeInfo_t *typeInfo, const generatorStrings_t *strings, const generatorFlags_t flags ) {
 	assert( tempStorage );
 	assert( code );
 	assert( typeInfo );
@@ -300,7 +300,7 @@ static void Gen_GenerateTests_Dot( allocatorLinear_t* tempStorage, stringBuilder
 	};
 
 	for ( u32 i = 0; i < GEN_COUNTOF( fixtures ); i++ ) {
-		const testFixture_Dot_t* fixture = &fixtures[i];
+		const testFixture_Dot_t *fixture = &fixtures[i];
 
 		parametricTestInvokationGenericParm_t parms[] = {
 			{  typeInfo,                fixture->valuesLHS },
@@ -319,7 +319,7 @@ static void Gen_GenerateTests_Dot( allocatorLinear_t* tempStorage, stringBuilder
 
 	if ( Gen_TypeSupportsSIMD( typeInfo->type ) ) {
 		for ( u32 i = 0; i < GEN_COUNTOF( fixtures ); i++ ) {
-			const testFixture_Dot_t* fixture = &fixtures[i];
+			const testFixture_Dot_t *fixture = &fixtures[i];
 
 			parametricTestInvokationGenericParm_t parms[] = {
 				{  typeInfo,                fixture->valuesLHS },
@@ -340,7 +340,7 @@ static void Gen_GenerateTests_Dot( allocatorLinear_t* tempStorage, stringBuilder
 
 // DM: this test could be made into a component-wise test
 // but I think a dedicated test is more appropriate
-static void Gen_GenerateTests_Cross( allocatorLinear_t* tempStorage, stringBuilder_t* code, const typeInfo_t* typeInfo, const generatorStrings_t* strings, const generatorFlags_t flags ) {
+static void Gen_GenerateTests_Cross( allocatorLinear_t *tempStorage, stringBuilder_t *code, const typeInfo_t *typeInfo, const generatorStrings_t *strings, const generatorFlags_t flags ) {
 	assert( tempStorage );
 	assert( code );
 	assert( typeInfo );
@@ -371,7 +371,7 @@ static void Gen_GenerateTests_Cross( allocatorLinear_t* tempStorage, stringBuild
 	};
 
 	for ( u32 i = 0; i < GEN_COUNTOF( fixtures ); i++ ) {
-		testFixture_Cross_t* fixture = &fixtures[i];
+		testFixture_Cross_t *fixture = &fixtures[i];
 
 		parametricTestInvokationGenericParm_t parms[] = {
 			{ typeInfo, fixture->valuesLHS      },
@@ -387,7 +387,7 @@ static void Gen_GenerateTests_Cross( allocatorLinear_t* tempStorage, stringBuild
 	}
 }
 
-static void Gen_GenerateTests_Angle( allocatorLinear_t* tempStorage, stringBuilder_t* code, const typeInfo_t* typeInfo, const generatorStrings_t* strings, const generatorFlags_t flags ) {
+static void Gen_GenerateTests_Angle( allocatorLinear_t *tempStorage, stringBuilder_t *code, const typeInfo_t *typeInfo, const generatorStrings_t *strings, const generatorFlags_t flags ) {
 	assert( tempStorage );
 	assert( code );
 	assert( typeInfo );
@@ -430,7 +430,7 @@ static void Gen_GenerateTests_Angle( allocatorLinear_t* tempStorage, stringBuild
 	};
 
 	for ( u32 i = 0; i < GEN_COUNTOF( fixtures ); i++ ) {
-		const testFixture_Angle_t* fixture = &fixtures[i];
+		const testFixture_Angle_t *fixture = &fixtures[i];
 
 		parametricTestInvokationGenericParm_t parms[] = {
 			{  typeInfo,                 fixture->valuesLHS      },
@@ -442,7 +442,7 @@ static void Gen_GenerateTests_Angle( allocatorLinear_t* tempStorage, stringBuild
 	}
 }
 
-static void Gen_GenerateTests_Distance_Internal( allocatorLinear_t* tempStorage, stringBuilder_t* code, const typeInfo_t* typeInfo, const char* funcName, const generatorStrings_t* strings, const generatorFlags_t flags, const testFixture_Distance_t* fixtures, const u32 fixturesCount ) {
+static void Gen_GenerateTests_Distance_Internal( allocatorLinear_t *tempStorage, stringBuilder_t *code, const typeInfo_t *typeInfo, const char *funcName, const generatorStrings_t *strings, const generatorFlags_t flags, const testFixture_Distance_t *fixtures, const u32 fixturesCount ) {
 	assert( tempStorage );
 	assert( code );
 	assert( typeInfo );
@@ -479,7 +479,7 @@ static void Gen_GenerateTests_Distance_Internal( allocatorLinear_t* tempStorage,
 	} );
 
 	for ( u32 i = 0; i < fixturesCount; i++ ) {
-		const testFixture_Distance_t* fixture = &fixtures[i];
+		const testFixture_Distance_t *fixture = &fixtures[i];
 
 		parametricTestInvokationGenericParm_t parms[] = {
 			{  typeInfo,                fixture->valuesLHS },
@@ -498,7 +498,7 @@ static void Gen_GenerateTests_Distance_Internal( allocatorLinear_t* tempStorage,
 
 	if ( Gen_TypeSupportsSIMD( typeInfo->type ) ) {
 		for ( u32 i = 0; i < fixturesCount; i++ ) {
-			const testFixture_Distance_t* fixture = &fixtures[i];
+			const testFixture_Distance_t *fixture = &fixtures[i];
 
 			parametricTestInvokationGenericParm_t parms[] = {
 				{  typeInfo,                fixture->valuesLHS },
@@ -517,7 +517,7 @@ static void Gen_GenerateTests_Distance_Internal( allocatorLinear_t* tempStorage,
 	}
 }
 
-static void Gen_GenerateTests_Distancesq( allocatorLinear_t* tempStorage, stringBuilder_t* code, const typeInfo_t* typeInfo, const generatorStrings_t* strings, const generatorFlags_t flags ) {
+static void Gen_GenerateTests_Distancesq( allocatorLinear_t *tempStorage, stringBuilder_t *code, const typeInfo_t *typeInfo, const generatorStrings_t *strings, const generatorFlags_t flags ) {
 	testFixture_Distance_t fixtures[] = {
 		{
 			.valuesLHS			= { 0.0f, 0.0f, 0.0f, 0.0f },
@@ -547,7 +547,7 @@ static void Gen_GenerateTests_Distancesq( allocatorLinear_t* tempStorage, string
 	Gen_GenerateTests_Distance_Internal( tempStorage, code, typeInfo, GEN_FUNCTION_NAME_DISTANCESQ, strings, flags, fixtures, GEN_COUNTOF( fixtures ) );
 }
 
-static void Gen_GenerateTests_Distance( allocatorLinear_t* tempStorage, stringBuilder_t* code, const typeInfo_t* typeInfo, const generatorStrings_t* strings, const generatorFlags_t flags ) {
+static void Gen_GenerateTests_Distance( allocatorLinear_t *tempStorage, stringBuilder_t *code, const typeInfo_t *typeInfo, const generatorStrings_t *strings, const generatorFlags_t flags ) {
 	testFixture_Distance_t fixtures[] = {
 		{
 			.valuesLHS			= { 0.0f, 0.0f, 0.0f, 0.0f },
@@ -577,7 +577,7 @@ static void Gen_GenerateTests_Distance( allocatorLinear_t* tempStorage, stringBu
 	Gen_GenerateTests_Distance_Internal( tempStorage, code, typeInfo, GEN_FUNCTION_NAME_DISTANCE, strings, flags, fixtures, GEN_COUNTOF( fixtures ) );
 }
 
-static void Gen_GenerateTests_Normalize( allocatorLinear_t* tempStorage, stringBuilder_t* code, const typeInfo_t* typeInfo, const generatorStrings_t* strings, const generatorFlags_t flags ) {
+static void Gen_GenerateTests_Normalize( allocatorLinear_t *tempStorage, stringBuilder_t *code, const typeInfo_t *typeInfo, const generatorStrings_t *strings, const generatorFlags_t flags ) {
 	assert( tempStorage );
 	assert( code );
 	assert( typeInfo );
@@ -588,17 +588,17 @@ static void Gen_GenerateTests_Normalize( allocatorLinear_t* tempStorage, stringB
 		return;
 	}
 
-	const char* actualFuncName = Gen_GetFuncName_Vector( tempStorage, typeInfo, flags, GEN_FUNCTION_NAME_NORMALIZE );
-	const char* testName = Gen_GetTestName( tempStorage, typeInfo, GEN_FUNCTION_NAME_NORMALIZE );
+	const char *actualFuncName = Gen_GetFuncName_Vector( tempStorage, typeInfo, flags, GEN_FUNCTION_NAME_NORMALIZE );
+	const char *testName = Gen_GetTestName( tempStorage, typeInfo, GEN_FUNCTION_NAME_NORMALIZE );
 
-	const char* equalsFuncStr = Gen_GetFuncName_Vector( tempStorage, typeInfo, flags, GEN_FUNCTION_NAME_EQUALS );
+	const char *equalsFuncStr = Gen_GetFuncName_Vector( tempStorage, typeInfo, flags, GEN_FUNCTION_NAME_EQUALS );
 
-	const char* floateqStr = Gen_GetFuncName_Floateq( typeInfo->type );
-	const char* lengthFuncStr = Gen_GetFuncName_Vector( tempStorage, typeInfo, flags, GEN_FUNCTION_NAME_LENGTH );
+	const char *floateqStr = Gen_GetFuncName_Floateq( typeInfo->type );
+	const char *lengthFuncStr = Gen_GetFuncName_Vector( tempStorage, typeInfo, flags, GEN_FUNCTION_NAME_LENGTH );
 
 	const genType_t floatingPointType = Gen_GetSupportedFloatingPointType( typeInfo->type );
 
-	const char* oneStr = Gen_GetNumericLiteral( tempStorage, floatingPointType, 1.0f, 1 );
+	const char *oneStr = Gen_GetNumericLiteral( tempStorage, floatingPointType, 1.0f, 1 );
 
 	StringBuilder_Appendf( code, "TEMPER_TEST_PARAMETRIC( %s, TEMPER_FLAG_SHOULD_RUN, const %s%s vec, const %s%s expectedAnswer )\n", testName, typeInfo->fullTypeName, strings->parmPassByStr, typeInfo->fullTypeName, strings->parmPassByStr );
 	StringBuilder_Appendf( code, "{\n" );
@@ -638,7 +638,7 @@ static void Gen_GenerateTests_Normalize( allocatorLinear_t* tempStorage, stringB
 	};
 
 	for ( u32 i = 0; i < GEN_COUNTOF( fixtures ); i++ ) {
-		const testFixture_Normalize_t* fixture = &fixtures[i];
+		const testFixture_Normalize_t *fixture = &fixtures[i];
 
 		parametricTestInvokationGenericParm_t parms[] = {
 			{ typeInfo, fixture->valuesVec },
@@ -656,7 +656,7 @@ static void Gen_GenerateTests_Normalize( allocatorLinear_t* tempStorage, stringB
 
 	if ( Gen_TypeSupportsSIMD( typeInfo->type ) ) {
 		for ( u32 i = 0; i < GEN_COUNTOF( fixtures ); i++ ) {
-			const testFixture_Normalize_t* fixture = &fixtures[i];
+			const testFixture_Normalize_t *fixture = &fixtures[i];
 
 			parametricTestInvokationGenericParm_t parms[] = {
 				{ typeInfo, fixture->valuesVec },
@@ -674,7 +674,7 @@ static void Gen_GenerateTests_Normalize( allocatorLinear_t* tempStorage, stringB
 	}
 }
 
-static void Gen_GenerateTests_Pack( allocatorLinear_t* tempStorage, stringBuilder_t* code, const typeInfo_t* typeInfo, const generatorStrings_t* strings, const generatorFlags_t flags ) {
+static void Gen_GenerateTests_Pack( allocatorLinear_t *tempStorage, stringBuilder_t *code, const typeInfo_t *typeInfo, const generatorStrings_t *strings, const generatorFlags_t flags ) {
 	assert( tempStorage );
 	assert( code );
 	assert( typeInfo );
@@ -737,11 +737,11 @@ static void Gen_GenerateTests_Pack( allocatorLinear_t* tempStorage, stringBuilde
 		} );
 
 		for ( u32 i = 0; i < GEN_COUNTOF( fixtures ); i++ ) {
-			const testFixture_Pack_t* fixture = &fixtures[i];
+			const testFixture_Pack_t *fixture = &fixtures[i];
 
 			parametricTestInvokationGenericParm_t parms[] = {
 				{  typeInfo,                     fixture->unpacked },
-				{ &scalarType, (const float32*) &fixture->packed   }
+				{ &scalarType, (const float32 *) &fixture->packed   }
 			};
 
 			Gen_GenerateParametricTestInvokation_Generic( tempStorage, code, typeInfo, GEN_FUNCTION_NAME_PACK, strings, flags, parms, GEN_COUNTOF( parms ) );
@@ -760,10 +760,10 @@ static void Gen_GenerateTests_Pack( allocatorLinear_t* tempStorage, stringBuilde
 		} );
 
 		for ( u32 i = 0; i < GEN_COUNTOF( fixtures ); i++ ) {
-			const testFixture_Pack_t* fixture = &fixtures[i];
+			const testFixture_Pack_t *fixture = &fixtures[i];
 
 			parametricTestInvokationGenericParm_t parms[] = {
-				{ &scalarType, (const float32*) &fixture->packed   },
+				{ &scalarType, (const float32 *) &fixture->packed   },
 				{  typeInfo,                     fixture->unpacked }
 			};
 
@@ -772,7 +772,7 @@ static void Gen_GenerateTests_Pack( allocatorLinear_t* tempStorage, stringBuilde
 	}
 }
 
-static void GenerateSwizzleFunc_Test( allocatorLinear_t* tempStorage, stringBuilder_t* code, const typeInfo_t* typeInfo, const generatorStrings_t* strings, const generatorFlags_t flags, const u32 numSwizzleComponents, const char* swizzleStr ) {
+static void GenerateSwizzleFunc_Test( allocatorLinear_t *tempStorage, stringBuilder_t *code, const typeInfo_t *typeInfo, const generatorStrings_t *strings, const generatorFlags_t flags, const u32 numSwizzleComponents, const char *swizzleStr ) {
 	assert( tempStorage );
 	assert( code );
 	assert( typeInfo );
@@ -782,8 +782,8 @@ static void GenerateSwizzleFunc_Test( allocatorLinear_t* tempStorage, stringBuil
 	assert( numSwizzleComponents );
 	assert( swizzleStr );
 
-	const char* typeString = Gen_GetTypeString( typeInfo->type );
-	const char* memberTypeString = Gen_GetMemberTypeString( typeInfo->type );
+	const char *typeString = Gen_GetTypeString( typeInfo->type );
+	const char *memberTypeString = Gen_GetMemberTypeString( typeInfo->type );
 
 	typeInfo_t swizzleTypeInfo = {
 		.type			= typeInfo->type,
@@ -792,7 +792,7 @@ static void GenerateSwizzleFunc_Test( allocatorLinear_t* tempStorage, stringBuil
 		.fullTypeName	= String_TPrintf( tempStorage, "%s%d", typeString, numSwizzleComponents )
 	};
 
-	const char* funcName = String_TPrintf( tempStorage, "Swizzle_%s", swizzleStr );
+	const char *funcName = String_TPrintf( tempStorage, "Swizzle_%s", swizzleStr );
 
 	bool32 isWritable = SwizzleTypeIsWritable( swizzleStr, numSwizzleComponents );
 
@@ -820,7 +820,7 @@ static void GenerateSwizzleFunc_Test( allocatorLinear_t* tempStorage, stringBuil
 		StringBuilder_Appendf( code, "\t\tvecCopy.%s = vecCopy.%s;\n", swizzleStr, reverseSwizzle );
 		StringBuilder_Appendf( code, "\n" );
 		if ( Gen_TypeIsFloatingPoint( typeInfo->type ) ) {
-			const char* floateqStr = Gen_GetFuncName_Floateq( typeInfo->type );
+			const char *floateqStr = Gen_GetFuncName_Floateq( typeInfo->type );
 
 			for ( u32 i = 0; i < numSwizzleComponents; i++ ) {
 				const char componentName = swizzleStr[i];
@@ -850,7 +850,7 @@ static void GenerateSwizzleFunc_Test( allocatorLinear_t* tempStorage, stringBuil
 	};
 
 	for ( u32 fixtureIndex = 0; fixtureIndex < GEN_COUNTOF( fixtures ); fixtureIndex++ ) {
-		const testFixture_Swizzle_t* fixture = &fixtures[fixtureIndex];
+		const testFixture_Swizzle_t *fixture = &fixtures[fixtureIndex];
 
 		float32 expectedAnswer[4] = { 0 };
 
@@ -869,7 +869,7 @@ static void GenerateSwizzleFunc_Test( allocatorLinear_t* tempStorage, stringBuil
 	}
 }
 
-static void Gen_GenerateTests_QuatMulScalar( allocatorLinear_t* tempStorage, stringBuilder_t* code, const typeInfo_t* typeInfo, const typeInfo_t* scalarType, const generatorStrings_t* strings, const generatorFlags_t flags ) {
+static void Gen_GenerateTests_QuatMulScalar( allocatorLinear_t *tempStorage, stringBuilder_t *code, const typeInfo_t *typeInfo, const typeInfo_t *scalarType, const generatorStrings_t *strings, const generatorFlags_t flags ) {
 	assert( tempStorage );
 	assert( code );
 	assert( typeInfo );
@@ -884,14 +884,14 @@ static void Gen_GenerateTests_QuatMulScalar( allocatorLinear_t* tempStorage, str
 
 	bool32 allowNameMangling = flags & GENERATOR_FLAG_NAME_MANGLING;
 
-	const char* suffix = allowNameMangling ? "" : "s";
+	const char *suffix = allowNameMangling ? "" : "s";
 
-	const char* funcToCall = GEN_FUNCTION_NAME_QUAT_MUL;
+	const char *funcToCall = GEN_FUNCTION_NAME_QUAT_MUL;
 	if ( !allowNameMangling ) {
 		funcToCall = String_TPrintf( tempStorage, "%s_%s%s", typeInfo->fullTypeName, GEN_FUNCTION_NAME_QUAT_MUL, suffix );
 	}
 
-	const char* testName = String_TPrintf( tempStorage, "Test_%s_%ss", typeInfo->fullTypeName, GEN_FUNCTION_NAME_QUAT_MUL, suffix );
+	const char *testName = String_TPrintf( tempStorage, "Test_%s_%ss", typeInfo->fullTypeName, GEN_FUNCTION_NAME_QUAT_MUL, suffix );
 
 	StringBuilder_Appendf( code, "TEMPER_TEST_PARAMETRIC( %s, TEMPER_FLAG_SHOULD_RUN, const %s%s quat, const %s scalar, const %s%s expectedAnswer )\n", testName, typeInfo->fullTypeName, strings->parmPassByStr, scalarType->fullTypeName, typeInfo->fullTypeName, strings->parmPassByStr );
 	StringBuilder_Append(  code, "{\n" );
@@ -899,7 +899,7 @@ static void Gen_GenerateTests_QuatMulScalar( allocatorLinear_t* tempStorage, str
 	if ( flags & GENERATOR_FLAG_GENERATE_OPERATORS ) {
 		StringBuilder_Append(  code, "\tTEMPER_CHECK_TRUE( actualAnswer == expectedAnswer );\n" );
 	} else {
-		const char* equalsFuncStr = Gen_GetFuncName_Vector( tempStorage, typeInfo, flags, GEN_FUNCTION_NAME_EQUALS );
+		const char *equalsFuncStr = Gen_GetFuncName_Vector( tempStorage, typeInfo, flags, GEN_FUNCTION_NAME_EQUALS );
 
 		StringBuilder_Appendf( code, "\tTEMPER_CHECK_TRUE( %s( %sactualAnswer, expectedAnswer ) );\n", equalsFuncStr, strings->parmReferenceStr );
 	}
@@ -932,11 +932,11 @@ static void Gen_GenerateTests_QuatMulScalar( allocatorLinear_t* tempStorage, str
 	};
 
 	for ( u32 i = 0; i < GEN_COUNTOF( fixtures ); i++ ) {
-		const testFixture_QuatMul_t* fixture = &fixtures[i];
+		const testFixture_QuatMul_t *fixture = &fixtures[i];
 
-		stringBuilder_t* ctorLHS = Gen_GetConstructor( tempStorage, typeInfo, fixture->lhs, strings, flags );
-		stringBuilder_t* ctorRHS = Gen_GetConstructor( tempStorage, scalarType, fixture->rhs, strings, flags );
-		stringBuilder_t* ctorExpectedAnswer = Gen_GetConstructor( tempStorage, typeInfo, fixture->expectedAnswer, strings, flags );
+		stringBuilder_t *ctorLHS = Gen_GetConstructor( tempStorage, typeInfo, fixture->lhs, strings, flags );
+		stringBuilder_t *ctorRHS = Gen_GetConstructor( tempStorage, scalarType, fixture->rhs, strings, flags );
+		stringBuilder_t *ctorExpectedAnswer = Gen_GetConstructor( tempStorage, typeInfo, fixture->expectedAnswer, strings, flags );
 
 		StringBuilder_Appendf( code, "TEMPER_INVOKE_PARAMETRIC_TEST( %s,\n", testName );
 		StringBuilder_Appendf( code, "\t%s,\n", ctorLHS->str );
@@ -946,7 +946,7 @@ static void Gen_GenerateTests_QuatMulScalar( allocatorLinear_t* tempStorage, str
 	}
 }
 
-static void Gen_GenerateTests_QuatMulQuat( allocatorLinear_t* tempStorage, stringBuilder_t* code, const typeInfo_t* typeInfo, const generatorStrings_t* strings, const generatorFlags_t flags ) {
+static void Gen_GenerateTests_QuatMulQuat( allocatorLinear_t *tempStorage, stringBuilder_t *code, const typeInfo_t *typeInfo, const generatorStrings_t *strings, const generatorFlags_t flags ) {
 	assert( tempStorage );
 	assert( code );
 	assert( typeInfo );
@@ -959,14 +959,14 @@ static void Gen_GenerateTests_QuatMulQuat( allocatorLinear_t* tempStorage, strin
 
 	bool32 allowNameMangling = flags & GENERATOR_FLAG_NAME_MANGLING;
 
-	const char* suffix = allowNameMangling ? "" : "q";
+	const char *suffix = allowNameMangling ? "" : "q";
 
-	const char* funcToCall = GEN_FUNCTION_NAME_QUAT_MUL;
+	const char *funcToCall = GEN_FUNCTION_NAME_QUAT_MUL;
 	if ( !allowNameMangling ) {
 		funcToCall = String_TPrintf( tempStorage, "%s_%s%s", typeInfo->fullTypeName, funcToCall, suffix );
 	}
 
-	const char* testName = String_TPrintf( tempStorage, "Test_%s_%sq", typeInfo->fullTypeName, GEN_FUNCTION_NAME_QUAT_MUL, suffix );
+	const char *testName = String_TPrintf( tempStorage, "Test_%s_%sq", typeInfo->fullTypeName, GEN_FUNCTION_NAME_QUAT_MUL, suffix );
 
 	StringBuilder_Appendf( code, "TEMPER_TEST_PARAMETRIC( %s, TEMPER_FLAG_SHOULD_RUN, const %s%s lhs, const %s%s rhs, const %s%s expectedAnswer )\n", testName, typeInfo->fullTypeName, strings->parmPassByStr, typeInfo->fullTypeName, strings->parmPassByStr, typeInfo->fullTypeName, strings->parmPassByStr );
 	StringBuilder_Append(  code, "{\n" );
@@ -974,7 +974,7 @@ static void Gen_GenerateTests_QuatMulQuat( allocatorLinear_t* tempStorage, strin
 	if ( flags & GENERATOR_FLAG_GENERATE_OPERATORS ) {
 		StringBuilder_Append(  code, "\tTEMPER_CHECK_TRUE( actualAnswer == expectedAnswer );\n" );
 	} else {
-		const char* equalsFuncStr = Gen_GetFuncName_Vector( tempStorage, typeInfo, flags, GEN_FUNCTION_NAME_EQUALS );
+		const char *equalsFuncStr = Gen_GetFuncName_Vector( tempStorage, typeInfo, flags, GEN_FUNCTION_NAME_EQUALS );
 
 		StringBuilder_Appendf( code, "\tTEMPER_CHECK_TRUE( %s( %sactualAnswer, expectedAnswer ) );\n", equalsFuncStr, strings->parmReferenceStr );
 	}
@@ -1013,11 +1013,11 @@ static void Gen_GenerateTests_QuatMulQuat( allocatorLinear_t* tempStorage, strin
 	};
 
 	for ( u32 i = 0; i < GEN_COUNTOF( fixtures ); i++ ) {
-		const testFixture_QuatMul_t* fixture = &fixtures[i];
+		const testFixture_QuatMul_t *fixture = &fixtures[i];
 
-		stringBuilder_t* ctorLHS = Gen_GetConstructor( tempStorage, typeInfo, fixture->lhs, strings, flags );
-		stringBuilder_t* ctorRHS = Gen_GetConstructor( tempStorage, typeInfo, fixture->rhs, strings, flags );
-		stringBuilder_t* ctorExpectedAnswer = Gen_GetConstructor( tempStorage, typeInfo, fixture->expectedAnswer, strings, flags );
+		stringBuilder_t *ctorLHS = Gen_GetConstructor( tempStorage, typeInfo, fixture->lhs, strings, flags );
+		stringBuilder_t *ctorRHS = Gen_GetConstructor( tempStorage, typeInfo, fixture->rhs, strings, flags );
+		stringBuilder_t *ctorExpectedAnswer = Gen_GetConstructor( tempStorage, typeInfo, fixture->expectedAnswer, strings, flags );
 
 		StringBuilder_Appendf( code, "TEMPER_INVOKE_PARAMETRIC_TEST( %s,\n", testName );
 		StringBuilder_Appendf( code, "\t%s,\n", ctorLHS->str );
@@ -1027,7 +1027,7 @@ static void Gen_GenerateTests_QuatMulQuat( allocatorLinear_t* tempStorage, strin
 	}
 }
 
-static void Gen_GenerateTests_QuatNormalize( allocatorLinear_t* tempStorage, stringBuilder_t* code, const typeInfo_t* typeInfo, const generatorStrings_t* strings, const generatorFlags_t flags ) {
+static void Gen_GenerateTests_QuatNormalize( allocatorLinear_t *tempStorage, stringBuilder_t *code, const typeInfo_t *typeInfo, const generatorStrings_t *strings, const generatorFlags_t flags ) {
 	assert( tempStorage );
 	assert( code );
 	assert( typeInfo );
@@ -1055,7 +1055,7 @@ static void Gen_GenerateTests_QuatNormalize( allocatorLinear_t* tempStorage, str
 	};
 
 	for ( u32 i = 0; i < GEN_COUNTOF( fixtures ); i++ ) {
-		const testFixture_QuatNormalize_t* fixture = &fixtures[i];
+		const testFixture_QuatNormalize_t *fixture = &fixtures[i];
 
 		parametricTestInvokationGenericParm_t parms[] = {
 			{ typeInfo, fixture->values         },
@@ -1066,7 +1066,7 @@ static void Gen_GenerateTests_QuatNormalize( allocatorLinear_t* tempStorage, str
 	}
 }
 
-static void Gen_GenerateTests_QuatConjugate( allocatorLinear_t* tempStorage, stringBuilder_t* code, const typeInfo_t* typeInfo, const generatorStrings_t* strings, const generatorFlags_t flags ) {
+static void Gen_GenerateTests_QuatConjugate( allocatorLinear_t *tempStorage, stringBuilder_t *code, const typeInfo_t *typeInfo, const generatorStrings_t *strings, const generatorFlags_t flags ) {
 	assert( tempStorage );
 	assert( code );
 	assert( typeInfo );
@@ -1103,7 +1103,7 @@ static void Gen_GenerateTests_QuatConjugate( allocatorLinear_t* tempStorage, str
 	};
 
 	for ( u32 i = 0; i < GEN_COUNTOF( fixtures ); i++ ) {
-		const testFixture_QuatConjugate_t* fixture = &fixtures[i];
+		const testFixture_QuatConjugate_t *fixture = &fixtures[i];
 
 		parametricTestInvokationGenericParm_t parms[] = {
 			{ typeInfo, fixture->values         },
@@ -1114,7 +1114,7 @@ static void Gen_GenerateTests_QuatConjugate( allocatorLinear_t* tempStorage, str
 	}
 }
 
-static void Gen_GenerateTests_QuatInverse( allocatorLinear_t* tempStorage, stringBuilder_t* code, const typeInfo_t* typeInfo, const generatorStrings_t* strings, const generatorFlags_t flags ) {
+static void Gen_GenerateTests_QuatInverse( allocatorLinear_t *tempStorage, stringBuilder_t *code, const typeInfo_t *typeInfo, const generatorStrings_t *strings, const generatorFlags_t flags ) {
 	assert( tempStorage );
 	assert( code );
 	assert( typeInfo );
@@ -1153,7 +1153,7 @@ static void Gen_GenerateTests_QuatInverse( allocatorLinear_t* tempStorage, strin
 	};
 
 	for ( u32 i = 0; i < GEN_COUNTOF( fixtures ); i++ ) {
-		const testFixture_QuatInverse_t* fixture = &fixtures[i];
+		const testFixture_QuatInverse_t *fixture = &fixtures[i];
 
 		parametricTestInvokationGenericParm_t parms[] = {
 			{ typeInfo, fixture->values         },
@@ -1164,7 +1164,7 @@ static void Gen_GenerateTests_QuatInverse( allocatorLinear_t* tempStorage, strin
 	}
 }
 
-static void Gen_GenerateTests_QuatRotate( allocatorLinear_t* tempStorage, stringBuilder_t* code, const typeInfo_t* typeInfo, const generatorStrings_t* strings, const generatorFlags_t flags ) {
+static void Gen_GenerateTests_QuatRotate( allocatorLinear_t *tempStorage, stringBuilder_t *code, const typeInfo_t *typeInfo, const generatorStrings_t *strings, const generatorFlags_t flags ) {
 	assert( tempStorage );
 	assert( code );
 	assert( typeInfo );
@@ -1205,7 +1205,7 @@ static void Gen_GenerateTests_QuatRotate( allocatorLinear_t* tempStorage, string
 	};
 
 	for ( u32 i = 0; i < GEN_COUNTOF( fixtures ); i++ ) {
-		const testFixture_QuatRotate_t* fixture = &fixtures[i];
+		const testFixture_QuatRotate_t *fixture = &fixtures[i];
 
 		parametricTestInvokationGenericParm_t parms[] = {
 			{  typeInfo,       fixture->quat           },
@@ -1218,7 +1218,7 @@ static void Gen_GenerateTests_QuatRotate( allocatorLinear_t* tempStorage, string
 	}
 }
 
-static void Gen_GenerateTests_QuatToRotationMatrix( allocatorLinear_t* tempStorage, stringBuilder_t* code, const typeInfo_t* typeInfo, const generatorStrings_t* strings, const generatorFlags_t flags ) {
+static void Gen_GenerateTests_QuatToRotationMatrix( allocatorLinear_t *tempStorage, stringBuilder_t *code, const typeInfo_t *typeInfo, const generatorStrings_t *strings, const generatorFlags_t flags ) {
 	assert( tempStorage );
 	assert( code );
 	assert( typeInfo );
@@ -1288,7 +1288,7 @@ static void Gen_GenerateTests_QuatToRotationMatrix( allocatorLinear_t* tempStora
 	};
 
 	for ( u32 i = 0; i < GEN_COUNTOF( fixtures ); i++ ) {
-		const testFixture_QuatToRotationMatrix_t* fixture = &fixtures[i];
+		const testFixture_QuatToRotationMatrix_t *fixture = &fixtures[i];
 
 		parametricTestInvokationGenericParm_t parms[] = {
 			{  typeInfo,         fixture->quat           },
@@ -1299,7 +1299,7 @@ static void Gen_GenerateTests_QuatToRotationMatrix( allocatorLinear_t* tempStora
 	}
 }
 
-void GenerateVectorTests( allocatorLinear_t* tempStorage, const char* generatedTestsPath, const char* languageName, const typeInfo_t* vectorTypeInfos, const u32 vectorTypeInfosCount, const generatorStrings_t* strings, const generatorFlags_t flags ) {
+void GenerateVectorTests( allocatorLinear_t *tempStorage, const char *generatedTestsPath, const char *languageName, const typeInfo_t *vectorTypeInfos, const u32 vectorTypeInfosCount, const generatorStrings_t *strings, const generatorFlags_t flags ) {
 	assert( tempStorage );
 	assert( languageName );
 	assert( generatedTestsPath );
@@ -1308,7 +1308,7 @@ void GenerateVectorTests( allocatorLinear_t* tempStorage, const char* generatedT
 	assert( strings );
 
 	for ( u32 i = 0; i < vectorTypeInfosCount; i++ ) {
-		const typeInfo_t* typeInfo = &vectorTypeInfos[i];
+		const typeInfo_t *typeInfo = &vectorTypeInfos[i];
 
 		typeInfo_t scalarType = Gen_GetScalarType( typeInfo );
 
@@ -1325,7 +1325,7 @@ void GenerateVectorTests( allocatorLinear_t* tempStorage, const char* generatedT
 
 		printf( "Generating test_%s.%s...", typeInfo->fullTypeName, languageName );
 
-		stringBuilder_t* code = StringBuilder_Create( tempStorage, KILOBYTES( 512 ) );
+		stringBuilder_t *code = StringBuilder_Create( tempStorage, KILOBYTES( 512 ) );
 
 		StringBuilder_Append( code, GEN_FILE_HEADER );
 
@@ -1343,7 +1343,7 @@ void GenerateVectorTests( allocatorLinear_t* tempStorage, const char* generatedT
 		Gen_GenerateTests_Normalize( tempStorage, code, typeInfo, strings, flags );
 		Gen_GenerateTests_Pack( tempStorage, code, typeInfo, strings, flags );
 
-		const char* fileNameHeader = String_TPrintf( tempStorage, "%s/test_%s.%s", generatedTestsPath, typeInfo->fullTypeName, languageName );
+		const char *fileNameHeader = String_TPrintf( tempStorage, "%s/test_%s.%s", generatedTestsPath, typeInfo->fullTypeName, languageName );
 		FS_WriteEntireFile( fileNameHeader, code->str, code->length );
 
 		printf( "OK.\n" );
@@ -1354,17 +1354,17 @@ void GenerateVectorTests( allocatorLinear_t* tempStorage, const char* generatedT
 	// generate swizzle tests separately because theres so many
 	if ( flags & GENERATOR_FLAG_VECTOR_SWIZZLES ) {
 		for ( u32 i = 0; i < vectorTypeInfosCount; i++ ) {
-			const typeInfo_t* typeInfo = &vectorTypeInfos[i];
+			const typeInfo_t *typeInfo = &vectorTypeInfos[i];
 
 			printf( "Generating test_%s_swizzle_%s.%s...", typeInfo->fullTypeName, GEN_COMPONENT_NAMES_VECTOR, languageName );
 
-			stringBuilder_t* code = StringBuilder_Create( tempStorage, MEGABYTES( 8 ) );
+			stringBuilder_t *code = StringBuilder_Create( tempStorage, MEGABYTES( 8 ) );
 
 			StringBuilder_Append( code, GEN_FILE_HEADER );
 
 			GenerateSwizzleFunctions( tempStorage, code, typeInfo, strings, flags, GEN_COMPONENT_NAMES_VECTOR, GenerateSwizzleFunc_Test );
 
-			const char* fileNameHeader = String_TPrintf( tempStorage, "%s/test_%s_swizzle_%s.%s", generatedTestsPath, typeInfo->fullTypeName, GEN_COMPONENT_NAMES_VECTOR, languageName );
+			const char *fileNameHeader = String_TPrintf( tempStorage, "%s/test_%s_swizzle_%s.%s", generatedTestsPath, typeInfo->fullTypeName, GEN_COMPONENT_NAMES_VECTOR, languageName );
 			FS_WriteEntireFile( fileNameHeader, code->str, code->length );
 
 			printf( "OK.\n" );
@@ -1373,17 +1373,17 @@ void GenerateVectorTests( allocatorLinear_t* tempStorage, const char* generatedT
 		}
 
 		for ( u32 i = 0; i < vectorTypeInfosCount; i++ ) {
-			const typeInfo_t* typeInfo = &vectorTypeInfos[i];
+			const typeInfo_t *typeInfo = &vectorTypeInfos[i];
 
 			printf( "Generating test_%s_swizzle_%s.%s...", typeInfo->fullTypeName, GEN_COMPONENT_NAMES_COLOR, languageName );
 
-			stringBuilder_t* code = StringBuilder_Create( tempStorage, MEGABYTES( 8 ) );
+			stringBuilder_t *code = StringBuilder_Create( tempStorage, MEGABYTES( 8 ) );
 
 			StringBuilder_Append( code, GEN_FILE_HEADER );
 
 			GenerateSwizzleFunctions( tempStorage, code, typeInfo, strings, flags, GEN_COMPONENT_NAMES_COLOR, GenerateSwizzleFunc_Test );
 
-			const char* fileNameHeader = String_TPrintf( tempStorage, "%s/test_%s_swizzle_%s.%s", generatedTestsPath, typeInfo->fullTypeName, GEN_COMPONENT_NAMES_COLOR, languageName );
+			const char *fileNameHeader = String_TPrintf( tempStorage, "%s/test_%s_swizzle_%s.%s", generatedTestsPath, typeInfo->fullTypeName, GEN_COMPONENT_NAMES_COLOR, languageName );
 			FS_WriteEntireFile( fileNameHeader, code->str, code->length );
 
 			printf( "OK.\n" );
@@ -1393,7 +1393,7 @@ void GenerateVectorTests( allocatorLinear_t* tempStorage, const char* generatedT
 	}
 }
 
-void GenerateQuaternionTests( allocatorLinear_t* tempStorage, const char* generatedTestsPath, const char* languageName, const typeInfo_t* quaternionTypeInfos, const u32 quaternionTypeInfosCount, const generatorStrings_t* strings, const generatorFlags_t flags ) {
+void GenerateQuaternionTests( allocatorLinear_t *tempStorage, const char *generatedTestsPath, const char *languageName, const typeInfo_t *quaternionTypeInfos, const u32 quaternionTypeInfosCount, const generatorStrings_t *strings, const generatorFlags_t flags ) {
 	assert( tempStorage );
 	assert( generatedTestsPath );
 	assert( languageName );
@@ -1402,7 +1402,7 @@ void GenerateQuaternionTests( allocatorLinear_t* tempStorage, const char* genera
 	assert( strings );
 
 	for ( u32 typeInfoIndex = 0; typeInfoIndex < quaternionTypeInfosCount; typeInfoIndex++ ) {
-		const typeInfo_t* typeInfo = &quaternionTypeInfos[typeInfoIndex];
+		const typeInfo_t *typeInfo = &quaternionTypeInfos[typeInfoIndex];
 
 		typeInfo_t scalarType = Gen_GetScalarType( typeInfo );
 
@@ -1411,7 +1411,7 @@ void GenerateQuaternionTests( allocatorLinear_t* tempStorage, const char* genera
 
 		printf( "Generating test_quat_%s.%s...", typeInfo->fullTypeName, languageName );
 
-		stringBuilder_t* code = StringBuilder_Create( tempStorage, KILOBYTES( 64 ) );
+		stringBuilder_t *code = StringBuilder_Create( tempStorage, KILOBYTES( 64 ) );
 
 		StringBuilder_Append( code, GEN_FILE_HEADER );
 
@@ -1423,7 +1423,7 @@ void GenerateQuaternionTests( allocatorLinear_t* tempStorage, const char* genera
 		Gen_GenerateTests_QuatRotate( tempStorage, code, typeInfo, strings, flags );
 		Gen_GenerateTests_QuatToRotationMatrix( tempStorage, code, typeInfo, strings, flags );
 
-		const char* fileNameHeader = String_TPrintf( tempStorage, "%s/test_quat_%s.%s", generatedTestsPath, typeInfo->fullTypeName, languageName );
+		const char *fileNameHeader = String_TPrintf( tempStorage, "%s/test_quat_%s.%s", generatedTestsPath, typeInfo->fullTypeName, languageName );
 		FS_WriteEntireFile( fileNameHeader, code->str, code->length );
 
 		printf( "OK.\n" );

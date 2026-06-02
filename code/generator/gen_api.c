@@ -40,10 +40,10 @@ along with The HLML Generator.  If not, see <http://www.gnu.org/licenses/>.
 #include <stdbool.h>
 
 static void GenerateMainHeader(
-	allocatorLinear_t* tempStorage,
-	const char* generatedCodePath,
-	const typeInfo_t* vectorTypeInfos, const u32 vectorTypeInfosCount,
-	const typeInfo_t* matrixTypeInfos, const u32 matrixTypeInfosCount,
+	allocatorLinear_t *tempStorage,
+	const char *generatedCodePath,
+	const typeInfo_t *vectorTypeInfos, const u32 vectorTypeInfosCount,
+	const typeInfo_t *matrixTypeInfos, const u32 matrixTypeInfosCount,
 	const generatorFlags_t flags )
 {
 	assert( tempStorage );
@@ -55,7 +55,7 @@ static void GenerateMainHeader(
 
 	printf( "Generating \"%s/%s\"...", generatedCodePath, GEN_HEADER_MAIN );
 
-	stringBuilder_t* code = StringBuilder_Create( tempStorage, KILOBYTES( 4 ) );
+	stringBuilder_t *code = StringBuilder_Create( tempStorage, KILOBYTES( 4 ) );
 
 	bool32 cLinkage = flags & GENERATOR_FLAG_C_LINKAGE;
 	bool32 generateConstructors = flags & GENERATOR_FLAG_GENERATE_CONSTRUCTORS;
@@ -75,7 +75,7 @@ static void GenerateMainHeader(
 
 	// vectors
 	for ( u32 i = 0; i < vectorTypeInfosCount; i++ ) {
-		const typeInfo_t* typeInfo = &vectorTypeInfos[i];
+		const typeInfo_t *typeInfo = &vectorTypeInfos[i];
 
 		StringBuilder_Appendf( code, "#include \"%s.h\"\n", typeInfo->fullTypeName );
 	}
@@ -83,7 +83,7 @@ static void GenerateMainHeader(
 
 	if ( generateInlFile ) {
 		for ( u32 i = 0; i < vectorTypeInfosCount; i++ ) {
-			const typeInfo_t* typeInfo = &vectorTypeInfos[i];
+			const typeInfo_t *typeInfo = &vectorTypeInfos[i];
 
 			StringBuilder_Appendf( code, "#include \"%s.inl\"\n", typeInfo->fullTypeName );
 		}
@@ -93,7 +93,7 @@ static void GenerateMainHeader(
 
 	// matrices
 	for ( u32 i = 0; i < matrixTypeInfosCount; i++ ) {
-		const typeInfo_t* typeInfo = &matrixTypeInfos[i];
+		const typeInfo_t *typeInfo = &matrixTypeInfos[i];
 
 		StringBuilder_Appendf( code, "#include \"%s.h\"\n", typeInfo->fullTypeName );
 	}
@@ -101,7 +101,7 @@ static void GenerateMainHeader(
 
 	if ( generateInlFile ) {
 		for ( u32 i = 0; i < matrixTypeInfosCount; i++ ) {
-			const typeInfo_t* typeInfo = &matrixTypeInfos[i];
+			const typeInfo_t *typeInfo = &matrixTypeInfos[i];
 
 			StringBuilder_Appendf( code, "#include \"%s.inl\"\n", typeInfo->fullTypeName );
 		}
@@ -125,7 +125,7 @@ static void GenerateMainHeader(
 		);
 	}
 
-	const char* filePathHeader = String_TPrintf( tempStorage, "%s/%s", generatedCodePath, GEN_HEADER_MAIN );
+	const char *filePathHeader = String_TPrintf( tempStorage, "%s/%s", generatedCodePath, GEN_HEADER_MAIN );
 
 	FS_WriteEntireFile( filePathHeader, code->str, code->length );
 
@@ -134,13 +134,13 @@ static void GenerateMainHeader(
 	printf( "OK.\n" );
 }
 
-static void GenerateTypesHeader( allocatorLinear_t* tempStorage, const char* generatedCodePath ) {
+static void GenerateTypesHeader( allocatorLinear_t *tempStorage, const char *generatedCodePath ) {
 	assert( tempStorage );
 	assert( generatedCodePath );
 
 	printf( "Generating \"%s/%s\"...", generatedCodePath, GEN_HEADER_TYPES );
 
-	stringBuilder_t* code = StringBuilder_Create( tempStorage, KILOBYTES( 2 ) );
+	stringBuilder_t *code = StringBuilder_Create( tempStorage, KILOBYTES( 2 ) );
 
 	StringBuilder_Append( code,
 		GEN_FILE_HEADER
@@ -164,7 +164,7 @@ static void GenerateTypesHeader( allocatorLinear_t* tempStorage, const char* gen
 		"#endif\n"
 	);
 
-	const char* filePathHeader = String_TPrintf( tempStorage, "%s/%s", generatedCodePath, GEN_HEADER_TYPES );
+	const char *filePathHeader = String_TPrintf( tempStorage, "%s/%s", generatedCodePath, GEN_HEADER_TYPES );
 
 	FS_WriteEntireFile( filePathHeader, code->str, code->length );
 
@@ -173,13 +173,13 @@ static void GenerateTypesHeader( allocatorLinear_t* tempStorage, const char* gen
 	Mem_Reset( tempStorage );
 }
 
-static void GenerateConstantsHeader( allocatorLinear_t* tempStorage, const char* generatedCodePath ) {
+static void GenerateConstantsHeader( allocatorLinear_t *tempStorage, const char *generatedCodePath ) {
 	assert( tempStorage );
 	assert( generatedCodePath );
 
 	printf( "Generating \"%s/%s\"...", generatedCodePath, GEN_HEADER_CONSTANTS );
 
-	stringBuilder_t* code = StringBuilder_Create( tempStorage, KILOBYTES( 2 ) );
+	stringBuilder_t *code = StringBuilder_Create( tempStorage, KILOBYTES( 2 ) );
 
 	StringBuilder_Append( code,
 		GEN_FILE_HEADER
@@ -207,7 +207,7 @@ static void GenerateConstantsHeader( allocatorLinear_t* tempStorage, const char*
 		"#endif\n"
 	);
 
-	const char* filePathHeader = String_TPrintf( tempStorage, "%s/%s", generatedCodePath, GEN_HEADER_CONSTANTS );
+	const char *filePathHeader = String_TPrintf( tempStorage, "%s/%s", generatedCodePath, GEN_HEADER_CONSTANTS );
 
 	FS_WriteEntireFile( filePathHeader, code->str, code->length );
 
@@ -216,13 +216,13 @@ static void GenerateConstantsHeader( allocatorLinear_t* tempStorage, const char*
 	Mem_Reset( tempStorage );
 }
 
-static void GenerateDefinesHeader( allocatorLinear_t* tempStorage, const char* generatedCodePath ) {
+static void GenerateDefinesHeader( allocatorLinear_t *tempStorage, const char *generatedCodePath ) {
 	assert( tempStorage );
 	assert( generatedCodePath );
 
 	printf( "Generating \"%s/%s\"...", generatedCodePath, GEN_HEADER_DEFINES );
 
-	stringBuilder_t* code = StringBuilder_Create( tempStorage, KILOBYTES( 2 ) );
+	stringBuilder_t *code = StringBuilder_Create( tempStorage, KILOBYTES( 2 ) );
 
 	StringBuilder_Append( code,
 		GEN_FILE_HEADER
@@ -263,7 +263,7 @@ static void GenerateDefinesHeader( allocatorLinear_t* tempStorage, const char* g
 		"#endif\n"
 	);
 
-	const char* filePathHeader = String_TPrintf( tempStorage, "%s/%s", generatedCodePath, GEN_HEADER_DEFINES );
+	const char *filePathHeader = String_TPrintf( tempStorage, "%s/%s", generatedCodePath, GEN_HEADER_DEFINES );
 
 	FS_WriteEntireFile( filePathHeader, code->str, code->length );
 
@@ -272,13 +272,13 @@ static void GenerateDefinesHeader( allocatorLinear_t* tempStorage, const char* g
 	Mem_Reset( tempStorage );
 }
 
-static void GenerateSSEConstantsHeader( allocatorLinear_t* tempStorage, const char* generatedCodePath ) {
+static void GenerateSSEConstantsHeader( allocatorLinear_t *tempStorage, const char *generatedCodePath ) {
 	assert( tempStorage );
 	assert( generatedCodePath );
 
 	printf( "Generating \"%s/%s\"...", generatedCodePath, GEN_HEADER_CONSTANTS_SSE );
 
-	stringBuilder_t* code = StringBuilder_Create( tempStorage, KILOBYTES( 2 ) );
+	stringBuilder_t *code = StringBuilder_Create( tempStorage, KILOBYTES( 2 ) );
 
 	StringBuilder_Append( code,
 		GEN_FILE_HEADER
@@ -307,7 +307,7 @@ static void GenerateSSEConstantsHeader( allocatorLinear_t* tempStorage, const ch
 		"#endif\n"
 	);
 
-	const char* filePathHeader = String_TPrintf( tempStorage, "%s/%s", generatedCodePath, GEN_HEADER_CONSTANTS_SSE );
+	const char *filePathHeader = String_TPrintf( tempStorage, "%s/%s", generatedCodePath, GEN_HEADER_CONSTANTS_SSE );
 
 	FS_WriteEntireFile( filePathHeader, code->str, code->length );
 
@@ -316,12 +316,12 @@ static void GenerateSSEConstantsHeader( allocatorLinear_t* tempStorage, const ch
 	Mem_Reset( tempStorage );
 }
 
-void Gen_GenerateAPIFiles( allocatorLinear_t* tempStorage,
-						   const char* languageName,
-						   const typeInfo_t* vectorTypeInfos, const u32 vectorTypeInfosCount,
-						   const typeInfo_t* quaternionTypeInfos, const u32 quaternionTypeInfosCount,
-						   const typeInfo_t* matrixTypeInfos, const u32 matrixTypeInfosCount,
-						   const generatorStrings_t* strings,
+void Gen_GenerateAPIFiles( allocatorLinear_t *tempStorage,
+						   const char *languageName,
+						   const typeInfo_t *vectorTypeInfos, const u32 vectorTypeInfosCount,
+						   const typeInfo_t *quaternionTypeInfos, const u32 quaternionTypeInfosCount,
+						   const typeInfo_t *matrixTypeInfos, const u32 matrixTypeInfosCount,
+						   const generatorStrings_t *strings,
 						   const generatorFlags_t flags )
 {
 	assert( tempStorage );

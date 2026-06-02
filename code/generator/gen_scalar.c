@@ -34,7 +34,7 @@ along with The HLML Generator.  If not, see <http://www.gnu.org/licenses/>.
 #include <stdio.h>
 #include <assert.h>
 
-static const char* Gen_GetConstantName( allocatorLinear_t* tempStorage, const genType_t type, const char* constantName ) {
+static const char *Gen_GetConstantName( allocatorLinear_t *tempStorage, const genType_t type, const char *constantName ) {
 	assert( tempStorage );
 	assert( type != GEN_TYPE_COUNT );
 	assert( constantName );
@@ -47,7 +47,7 @@ static const char* Gen_GetConstantName( allocatorLinear_t* tempStorage, const ge
 }
 
 // TODO(DM): rewrite to use Christer Ericson's method
-static void GenerateFunction_Floateq( allocatorLinear_t* tempStorage, const genType_t type, stringBuilder_t* code, const char* memberTypeString ) {
+static void GenerateFunction_Floateq( allocatorLinear_t *tempStorage, const genType_t type, stringBuilder_t *code, const char *memberTypeString ) {
 	assert( tempStorage );
 	assert( code );
 
@@ -55,10 +55,10 @@ static void GenerateFunction_Floateq( allocatorLinear_t* tempStorage, const genT
 		return;
 	}
 
-	const char* floateqStr = Gen_GetFuncName_Floateq( type );
-	const char* floateqepsStr = Gen_GetFuncName_Floateq_eps( type );
+	const char *floateqStr = Gen_GetFuncName_Floateq( type );
+	const char *floateqepsStr = Gen_GetFuncName_Floateq_eps( type );
 
-	const char* parmEpsilonStr = Gen_GetConstantName( tempStorage, type, GEN_CONSTANT_NAME_EPSILON );
+	const char *parmEpsilonStr = Gen_GetConstantName( tempStorage, type, GEN_CONSTANT_NAME_EPSILON );
 
 	// floateq_eps
 	StringBuilder_Append(  code, "// Returns true if the two given floating-point numbers are close enough to each other within a user-specified margin of error to be considered equal.\n" );
@@ -75,7 +75,7 @@ static void GenerateFunction_Floateq( allocatorLinear_t* tempStorage, const genT
 	StringBuilder_Append(  code, "}\n\n" );
 }
 
-static void GenerateFunction_Sign_Scalar( allocatorLinear_t* tempStorage, const genType_t type, stringBuilder_t* code, const char* memberTypeString, const generatorFlags_t flags ) {
+static void GenerateFunction_Sign_Scalar( allocatorLinear_t *tempStorage, const genType_t type, stringBuilder_t *code, const char *memberTypeString, const generatorFlags_t flags ) {
 	assert( tempStorage );
 	assert( code );
 	assert( memberTypeString );
@@ -84,11 +84,11 @@ static void GenerateFunction_Sign_Scalar( allocatorLinear_t* tempStorage, const 
 		return;
 	}
 
-	const char* intTypeString = Gen_GetMemberTypeString( GEN_TYPE_INT );
+	const char *intTypeString = Gen_GetMemberTypeString( GEN_TYPE_INT );
 
-	const char* signFuncStr = Gen_GetFuncName_Scalar( tempStorage, type, flags, GEN_FUNCTION_NAME_SIGN );
+	const char *signFuncStr = Gen_GetFuncName_Scalar( tempStorage, type, flags, GEN_FUNCTION_NAME_SIGN );
 
-	const char* zeroStr = Gen_GetNumericLiteral( tempStorage, type, 0, 1 );
+	const char *zeroStr = Gen_GetNumericLiteral( tempStorage, type, 0, 1 );
 
 	StringBuilder_Append(  code, "// Returns -1 if 'x' is < 0, 0 if 'x' == 0, or 1 if 'x' > 1.\n" );
 	StringBuilder_Appendf( code, "HLML_INLINE %s %s( const %s x )\n", intTypeString, signFuncStr, memberTypeString );
@@ -97,7 +97,7 @@ static void GenerateFunction_Sign_Scalar( allocatorLinear_t* tempStorage, const 
 	StringBuilder_Append(  code, "}\n\n" );
 }
 
-static void GenerateFunction_Radians( allocatorLinear_t* tempStorage, const genType_t type, stringBuilder_t* code, const char* memberTypeString, const generatorFlags_t flags ) {
+static void GenerateFunction_Radians( allocatorLinear_t *tempStorage, const genType_t type, stringBuilder_t *code, const char *memberTypeString, const generatorFlags_t flags ) {
 	assert( tempStorage );
 	assert( code );
 
@@ -105,11 +105,11 @@ static void GenerateFunction_Radians( allocatorLinear_t* tempStorage, const genT
 		return;
 	}
 
-	const char* radiansFuncStr = Gen_GetFuncName_Scalar( tempStorage, type, flags, GEN_FUNCTION_NAME_RADIANS );
+	const char *radiansFuncStr = Gen_GetFuncName_Scalar( tempStorage, type, flags, GEN_FUNCTION_NAME_RADIANS );
 
-	const char* oneHundredEightyStr = Gen_GetNumericLiteral( tempStorage, type, 180, 1 );
+	const char *oneHundredEightyStr = Gen_GetNumericLiteral( tempStorage, type, 180, 1 );
 
-	const char* piStr = Gen_GetConstantName( tempStorage, type, GEN_CONSTANT_NAME_PI );
+	const char *piStr = Gen_GetConstantName( tempStorage, type, GEN_CONSTANT_NAME_PI );
 
 	StringBuilder_Append(  code, "// Returns the given degrees to radians.\n" );
 	StringBuilder_Appendf( code, "HLML_INLINE %s %s( const %s deg )\n", memberTypeString, radiansFuncStr, memberTypeString );
@@ -118,7 +118,7 @@ static void GenerateFunction_Radians( allocatorLinear_t* tempStorage, const genT
 	StringBuilder_Append(  code, "}\n\n" );
 }
 
-static void GenerateFunction_Degrees( allocatorLinear_t* tempStorage, const genType_t type, stringBuilder_t* code, const char* memberTypeString, const generatorFlags_t flags ) {
+static void GenerateFunction_Degrees( allocatorLinear_t *tempStorage, const genType_t type, stringBuilder_t *code, const char *memberTypeString, const generatorFlags_t flags ) {
 	assert( tempStorage );
 	assert( code );
 
@@ -126,11 +126,11 @@ static void GenerateFunction_Degrees( allocatorLinear_t* tempStorage, const genT
 		return;
 	}
 
-	const char* degreesFuncStr = Gen_GetFuncName_Scalar( tempStorage, type, flags, GEN_FUNCTION_NAME_DEGREES );
+	const char *degreesFuncStr = Gen_GetFuncName_Scalar( tempStorage, type, flags, GEN_FUNCTION_NAME_DEGREES );
 
-	const char* oneHundredEightyStr = Gen_GetNumericLiteral( tempStorage, type, 180, 1 );
+	const char *oneHundredEightyStr = Gen_GetNumericLiteral( tempStorage, type, 180, 1 );
 
-	const char* piStr = Gen_GetConstantName( tempStorage, type, GEN_CONSTANT_NAME_PI );
+	const char *piStr = Gen_GetConstantName( tempStorage, type, GEN_CONSTANT_NAME_PI );
 
 	StringBuilder_Append(  code, "// Returns the given radians to degrees.\n" );
 	StringBuilder_Appendf( code, "HLML_INLINE %s %s( const %s rad )\n", memberTypeString, degreesFuncStr, memberTypeString );
@@ -139,7 +139,7 @@ static void GenerateFunction_Degrees( allocatorLinear_t* tempStorage, const genT
 	StringBuilder_Append(  code, "}\n\n" );
 }
 
-static void GenerateFunction_MinMax_Scalar( allocatorLinear_t* tempStorage, const genType_t type, stringBuilder_t* code, const char* memberTypeString, const generatorFlags_t flags ) {
+static void GenerateFunction_MinMax_Scalar( allocatorLinear_t *tempStorage, const genType_t type, stringBuilder_t *code, const char *memberTypeString, const generatorFlags_t flags ) {
 	assert( tempStorage );
 	assert( code );
 
@@ -147,8 +147,8 @@ static void GenerateFunction_MinMax_Scalar( allocatorLinear_t* tempStorage, cons
 		return;
 	}
 
-	const char* minFuncStr = Gen_GetFuncName_Scalar( tempStorage, type, flags, GEN_FUNCTION_NAME_MIN );
-	const char* maxFuncStr = Gen_GetFuncName_Scalar( tempStorage, type, flags, GEN_FUNCTION_NAME_MAX );
+	const char *minFuncStr = Gen_GetFuncName_Scalar( tempStorage, type, flags, GEN_FUNCTION_NAME_MIN );
+	const char *maxFuncStr = Gen_GetFuncName_Scalar( tempStorage, type, flags, GEN_FUNCTION_NAME_MAX );
 
 	// min
 	StringBuilder_Append(  code, "// Returns 'x' if it's smaller than 'y', otherwise returns 'y'.\n" );
@@ -165,7 +165,7 @@ static void GenerateFunction_MinMax_Scalar( allocatorLinear_t* tempStorage, cons
 	StringBuilder_Append(  code, "}\n\n" );
 }
 
-static void GenerateFunction_Clamp( allocatorLinear_t* tempStorage, const genType_t type, stringBuilder_t* code, const char* memberTypeString, const generatorFlags_t flags ) {
+static void GenerateFunction_Clamp( allocatorLinear_t *tempStorage, const genType_t type, stringBuilder_t *code, const char *memberTypeString, const generatorFlags_t flags ) {
 	assert( tempStorage );
 	assert( code );
 
@@ -173,9 +173,9 @@ static void GenerateFunction_Clamp( allocatorLinear_t* tempStorage, const genTyp
 		return;
 	}
 
-	const char* clampFuncStr = Gen_GetFuncName_Scalar( tempStorage, type, flags, GEN_FUNCTION_NAME_CLAMP );
-	const char* minFuncStr = Gen_GetFuncName_Scalar( tempStorage, type, flags, GEN_FUNCTION_NAME_MIN );
-	const char* maxFuncStr = Gen_GetFuncName_Scalar( tempStorage, type, flags, GEN_FUNCTION_NAME_MAX );
+	const char *clampFuncStr = Gen_GetFuncName_Scalar( tempStorage, type, flags, GEN_FUNCTION_NAME_CLAMP );
+	const char *minFuncStr = Gen_GetFuncName_Scalar( tempStorage, type, flags, GEN_FUNCTION_NAME_MIN );
+	const char *maxFuncStr = Gen_GetFuncName_Scalar( tempStorage, type, flags, GEN_FUNCTION_NAME_MAX );
 
 	StringBuilder_Append(  code, "// If 'x' is lower than 'low' or higher than 'high' then returns 'low' or 'high' respectively, otherwise returns 'x'.\n" );
 	StringBuilder_Appendf( code, "HLML_INLINE %s %s( const %s x, const %s low, const %s high )\n", memberTypeString, clampFuncStr, memberTypeString, memberTypeString, memberTypeString );
@@ -184,7 +184,7 @@ static void GenerateFunction_Clamp( allocatorLinear_t* tempStorage, const genTyp
 	StringBuilder_Append(  code, "}\n\n" );
 }
 
-static void GenerateFunction_Saturate( allocatorLinear_t* tempStorage, const genType_t type, stringBuilder_t* code, const char* memberTypeString, const generatorFlags_t flags ) {
+static void GenerateFunction_Saturate( allocatorLinear_t *tempStorage, const genType_t type, stringBuilder_t *code, const char *memberTypeString, const generatorFlags_t flags ) {
 	assert( tempStorage );
 	assert( code );
 
@@ -192,11 +192,11 @@ static void GenerateFunction_Saturate( allocatorLinear_t* tempStorage, const gen
 		return;
 	}
 
-	const char* saturateFuncStr = Gen_GetFuncName_Scalar( tempStorage, type, flags, GEN_FUNCTION_NAME_SATURATE );
-	const char* clampFuncStr = Gen_GetFuncName_Scalar( tempStorage, type, flags, GEN_FUNCTION_NAME_CLAMP );
+	const char *saturateFuncStr = Gen_GetFuncName_Scalar( tempStorage, type, flags, GEN_FUNCTION_NAME_SATURATE );
+	const char *clampFuncStr = Gen_GetFuncName_Scalar( tempStorage, type, flags, GEN_FUNCTION_NAME_CLAMP );
 
-	const char* zeroStr = Gen_GetNumericLiteral( tempStorage, type, 0.0f, 1 );
-	const char* oneStr = Gen_GetNumericLiteral( tempStorage, type, 1.0f, 1 );
+	const char *zeroStr = Gen_GetNumericLiteral( tempStorage, type, 0.0f, 1 );
+	const char *oneStr = Gen_GetNumericLiteral( tempStorage, type, 1.0f, 1 );
 
 	StringBuilder_Append(  code, "// Returns a copy of 'x' that has been clamped between the range 0 and 1.\n" );
 	StringBuilder_Appendf( code, "HLML_INLINE %s %s( const %s x )\n", memberTypeString, saturateFuncStr, memberTypeString );
@@ -205,7 +205,7 @@ static void GenerateFunction_Saturate( allocatorLinear_t* tempStorage, const gen
 	StringBuilder_Append(  code, "}\n\n" );
 }
 
-static void GenerateFunction_Lerp( allocatorLinear_t* tempStorage, const genType_t type, stringBuilder_t* code, const char* memberTypeString, const generatorFlags_t flags ) {
+static void GenerateFunction_Lerp( allocatorLinear_t *tempStorage, const genType_t type, stringBuilder_t *code, const char *memberTypeString, const generatorFlags_t flags ) {
 	assert( tempStorage );
 	assert( code );
 
@@ -213,9 +213,9 @@ static void GenerateFunction_Lerp( allocatorLinear_t* tempStorage, const genType
 		return;
 	}
 
-	const char* lerpFuncStr = Gen_GetFuncName_Scalar( tempStorage, type, flags, GEN_FUNCTION_NAME_LERP );
+	const char *lerpFuncStr = Gen_GetFuncName_Scalar( tempStorage, type, flags, GEN_FUNCTION_NAME_LERP );
 
-	const char* oneStr = Gen_GetNumericLiteral( tempStorage, type, 1.0f, 1 );
+	const char *oneStr = Gen_GetNumericLiteral( tempStorage, type, 1.0f, 1 );
 
 	StringBuilder_Append(  code, "// Returns a linearly interpolated float between 'a' and 'b', where 't' is the percentage (between 0 and 1) to interpolate by.\n" );
 	StringBuilder_Appendf( code, "HLML_INLINE %s %s( const %s a, const %s b, const %s t )\n", memberTypeString, lerpFuncStr, memberTypeString, memberTypeString, memberTypeString );
@@ -224,7 +224,7 @@ static void GenerateFunction_Lerp( allocatorLinear_t* tempStorage, const genType
 	StringBuilder_Append(  code, "}\n\n" );
 }
 
-static void GenerateFunction_Step( allocatorLinear_t* tempStorage, const genType_t type, stringBuilder_t* code, const char* memberTypeString, const generatorFlags_t flags ) {
+static void GenerateFunction_Step( allocatorLinear_t *tempStorage, const genType_t type, stringBuilder_t *code, const char *memberTypeString, const generatorFlags_t flags ) {
 	assert( tempStorage );
 	assert( code );
 
@@ -232,10 +232,10 @@ static void GenerateFunction_Step( allocatorLinear_t* tempStorage, const genType
 		return;
 	}
 
-	const char* stepFuncStr = Gen_GetFuncName_Scalar( tempStorage, type, flags, GEN_FUNCTION_NAME_STEP );
+	const char *stepFuncStr = Gen_GetFuncName_Scalar( tempStorage, type, flags, GEN_FUNCTION_NAME_STEP );
 
-	const char* zeroStr = Gen_GetNumericLiteral( tempStorage, type, 0.0f, 1 );
-	const char* oneStr = Gen_GetNumericLiteral( tempStorage, type, 1.0f, 1 );
+	const char *zeroStr = Gen_GetNumericLiteral( tempStorage, type, 0.0f, 1 );
+	const char *oneStr = Gen_GetNumericLiteral( tempStorage, type, 1.0f, 1 );
 
 	StringBuilder_Append(  code, "// Returns 1 if 'y' is greater than 'x', otherwise returns 0.\n" );
 	StringBuilder_Appendf( code, "HLML_INLINE %s %s( const %s x, const %s y )\n", memberTypeString, stepFuncStr, memberTypeString, memberTypeString );
@@ -244,7 +244,7 @@ static void GenerateFunction_Step( allocatorLinear_t* tempStorage, const genType
 	StringBuilder_Append(  code, "}\n\n" );
 }
 
-static void GenerateFunction_Smoothstep( allocatorLinear_t* tempStorage, const genType_t type, stringBuilder_t* code, const char* memberTypeString, const generatorFlags_t flags ) {
+static void GenerateFunction_Smoothstep( allocatorLinear_t *tempStorage, const genType_t type, stringBuilder_t *code, const char *memberTypeString, const generatorFlags_t flags ) {
 	assert( tempStorage );
 	assert( code );
 
@@ -252,11 +252,11 @@ static void GenerateFunction_Smoothstep( allocatorLinear_t* tempStorage, const g
 		return;
 	}
 
-	const char* smoothstepFuncStr = Gen_GetFuncName_Scalar( tempStorage, type, flags, GEN_FUNCTION_NAME_SMOOTHSTEP );
-	const char* saturateFuncStr = Gen_GetFuncName_Scalar( tempStorage, type, flags, GEN_FUNCTION_NAME_SATURATE );
+	const char *smoothstepFuncStr = Gen_GetFuncName_Scalar( tempStorage, type, flags, GEN_FUNCTION_NAME_SMOOTHSTEP );
+	const char *saturateFuncStr = Gen_GetFuncName_Scalar( tempStorage, type, flags, GEN_FUNCTION_NAME_SATURATE );
 
-	const char* threeStr = Gen_GetNumericLiteral( tempStorage, type, 3.0f, 1 );
-	const char* twoStr = Gen_GetNumericLiteral( tempStorage, type, 2.0f, 1 );
+	const char *threeStr = Gen_GetNumericLiteral( tempStorage, type, 3.0f, 1 );
+	const char *twoStr = Gen_GetNumericLiteral( tempStorage, type, 2.0f, 1 );
 
 	StringBuilder_Append(  code, "// Performs a sigmoid-like interpolation and clamp.\n" );
 	StringBuilder_Appendf( code, "HLML_INLINE %s %s( const %s low, const %s high, const %s x )\n", memberTypeString, smoothstepFuncStr, memberTypeString, memberTypeString, memberTypeString );
@@ -266,7 +266,7 @@ static void GenerateFunction_Smoothstep( allocatorLinear_t* tempStorage, const g
 	StringBuilder_Append(  code, "}\n\n" );
 }
 
-static void GenerateFunction_Smootherstep( allocatorLinear_t* tempStorage, const genType_t type, stringBuilder_t* code, const char* memberTypeString, const generatorFlags_t flags ) {
+static void GenerateFunction_Smootherstep( allocatorLinear_t *tempStorage, const genType_t type, stringBuilder_t *code, const char *memberTypeString, const generatorFlags_t flags ) {
 	assert( tempStorage );
 	assert( code );
 
@@ -274,12 +274,12 @@ static void GenerateFunction_Smootherstep( allocatorLinear_t* tempStorage, const
 		return;
 	}
 
-	const char* smootherstepFuncStr = Gen_GetFuncName_Scalar( tempStorage, type, flags, GEN_FUNCTION_NAME_SMOOTHERSTEP );
-	const char* saturateFuncStr = Gen_GetFuncName_Scalar( tempStorage, type, flags, GEN_FUNCTION_NAME_SATURATE );
+	const char *smootherstepFuncStr = Gen_GetFuncName_Scalar( tempStorage, type, flags, GEN_FUNCTION_NAME_SMOOTHERSTEP );
+	const char *saturateFuncStr = Gen_GetFuncName_Scalar( tempStorage, type, flags, GEN_FUNCTION_NAME_SATURATE );
 
-	const char* sixStr = Gen_GetNumericLiteral( tempStorage, type, 6.0f, 1 );
-	const char* fifteenStr = Gen_GetNumericLiteral( tempStorage, type, 15.0f, 1 );
-	const char* tenStr = Gen_GetNumericLiteral( tempStorage, type, 10.0f, 1 );
+	const char *sixStr = Gen_GetNumericLiteral( tempStorage, type, 6.0f, 1 );
+	const char *fifteenStr = Gen_GetNumericLiteral( tempStorage, type, 15.0f, 1 );
+	const char *tenStr = Gen_GetNumericLiteral( tempStorage, type, 10.0f, 1 );
 
 	StringBuilder_Append(  code,
 		"// Performs a 'smoother' version of smoothstep, as design by Ken Perlin.\n"
@@ -292,13 +292,13 @@ static void GenerateFunction_Smootherstep( allocatorLinear_t* tempStorage, const
 	StringBuilder_Append(  code, "}\n\n" );
 }
 
-void GenerateScalarFiles( allocatorLinear_t* tempStorage, const char* generatedCodePath, const generatorFlags_t flags ) {
+void GenerateScalarFiles( allocatorLinear_t *tempStorage, const char *generatedCodePath, const generatorFlags_t flags ) {
 	assert( tempStorage );
 	assert( generatedCodePath );
 
 	bool32 cLinkage = flags & GENERATOR_FLAG_C_LINKAGE;
 
-	stringBuilder_t* code = StringBuilder_Create( tempStorage, KILOBYTES( 12 ) );
+	stringBuilder_t *code = StringBuilder_Create( tempStorage, KILOBYTES( 12 ) );
 
 	StringBuilder_Append( code,
 		GEN_FILE_HEADER
@@ -350,7 +350,7 @@ void GenerateScalarFiles( allocatorLinear_t* tempStorage, const char* generatedC
 			continue;
 		}
 
-		const char* memberTypeString = Gen_GetMemberTypeString( type );
+		const char *memberTypeString = Gen_GetMemberTypeString( type );
 
 		printf( "Scalar functions %s...", memberTypeString );
 
@@ -387,7 +387,7 @@ void GenerateScalarFiles( allocatorLinear_t* tempStorage, const char* generatedC
 		);
 	}
 
-	const char* fileNameHeader = String_TPrintf( tempStorage, "%s/%s.h", generatedCodePath, GEN_FILENAME_FUNCTIONS_SCALAR );
+	const char *fileNameHeader = String_TPrintf( tempStorage, "%s/%s.h", generatedCodePath, GEN_FILENAME_FUNCTIONS_SCALAR );
 
 	FS_WriteEntireFile( fileNameHeader, code->str, code->length );
 

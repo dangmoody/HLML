@@ -62,7 +62,7 @@ along with The HLML Generator.  If not, see <http://www.gnu.org/licenses/>.
 #endif // _DEBUG
 #endif // WIN64_ASSERT
 
-static HANDLE OpenOrCreateFileInternal( const char* filename ) {
+static HANDLE OpenOrCreateFileInternal( const char *filename ) {
 	assert( filename );
 
 	DWORD accessFlags = GENERIC_READ | GENERIC_WRITE;
@@ -81,7 +81,7 @@ static void CloseFileInternal( const HANDLE file ) {
 	WIN64_ASSERT( result );
 }
 
-static bool32 CreateFolderInternal( const char* path ) {
+static bool32 CreateFolderInternal( const char *path ) {
 	if ( FS_FolderExists( path ) ) {
 		return true;
 	}
@@ -94,7 +94,7 @@ static bool32 CreateFolderInternal( const char* path ) {
 }
 
 
-void FS_WriteEntireFile( const char* filename, const char* data, const u64 length ) {
+void FS_WriteEntireFile( const char *filename, const char *data, const u64 length ) {
 	assert( filename );
 	assert( data );
 	assert( length );
@@ -110,7 +110,7 @@ void FS_WriteEntireFile( const char* filename, const char* data, const u64 lengt
 	CloseFileInternal( file );
 }
 
-bool32 FS_CreateFolder( const char* path ) {
+bool32 FS_CreateFolder( const char *path ) {
 	size_t pathlen = strlen( path );
 
 	// dont process trailing slash if one exists
@@ -135,7 +135,7 @@ bool32 FS_CreateFolder( const char* path ) {
 	return result;
 }
 
-void FS_DeleteFolder( const char* name ) {
+void FS_DeleteFolder( const char *name ) {
 	assert( name );
 
 	FS_DeleteAllFilesInFolder( name );
@@ -145,7 +145,7 @@ void FS_DeleteFolder( const char* name ) {
 	WIN64_ASSERT( result );
 }
 
-bool32 FS_FolderExists( const char* name ) {
+bool32 FS_FolderExists( const char *name ) {
 	assert( name );
 
 	DWORD attribs = GetFileAttributesA( name );
@@ -153,7 +153,7 @@ bool32 FS_FolderExists( const char* name ) {
 	return ( attribs != INVALID_FILE_ATTRIBUTES ) && ( ( attribs & FILE_ATTRIBUTE_DIRECTORY ) != 0 );
 }
 
-void FS_DeleteAllFilesInFolder( const char* name ) {
+void FS_DeleteAllFilesInFolder( const char *name ) {
 	assert( name );
 
 	bool32 shouldClose = false;

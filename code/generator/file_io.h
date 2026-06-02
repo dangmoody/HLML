@@ -36,9 +36,9 @@ Linux/MacOS implementation does make heavy use of POSIX file IO functions
 because they work fine there.
 */
 
-void	FS_WriteEntireFile( const char* filename, const char* data, const u64 length );
+void	FS_WriteEntireFile( const char *filename, const char *data, const u64 length );
 
-bool32	FS_CreateFolder( const char* name );
-void	FS_DeleteFolder( const char* name );
-bool32	FS_FolderExists( const char* name );
-void	FS_DeleteAllFilesInFolder( const char* name );
+bool32	FS_CreateFolder( const char *name );
+void	FS_DeleteFolder( const char *name );
+bool32	FS_FolderExists( const char *name );
+void	FS_DeleteAllFilesInFolder( const char *name );

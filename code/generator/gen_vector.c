@@ -41,7 +41,7 @@ along with The HLML Generator.  If not, see <http://www.gnu.org/licenses/>.
 #endif
 
 // not really a "component-wise" function in the common sense, just so happens to use touch all of them
-static void GenerateFunction_All( allocatorLinear_t* tempStorage, const typeInfo_t* typeInfo, stringBuilder_t* code, const generatorFlags_t flags ) {
+static void GenerateFunction_All( allocatorLinear_t *tempStorage, const typeInfo_t *typeInfo, stringBuilder_t *code, const generatorFlags_t flags ) {
 	assert( tempStorage );
 	assert( typeInfo );
 	assert( code );
@@ -50,10 +50,10 @@ static void GenerateFunction_All( allocatorLinear_t* tempStorage, const typeInfo
 		return;
 	}
 
-	const char* allFuncStr = Gen_GetFuncName_Vector( tempStorage, typeInfo, flags, GEN_FUNCTION_NAME_ALL );
+	const char *allFuncStr = Gen_GetFuncName_Vector( tempStorage, typeInfo, flags, GEN_FUNCTION_NAME_ALL );
 
 	StringBuilder_Append(  code, "// Returns true if ALL components of the 'x' are true, otherwise returns false.\n" );
-	StringBuilder_Appendf( code, "HLML_INLINE bool %s( const %s* x )\n", allFuncStr, typeInfo->fullTypeName );
+	StringBuilder_Appendf( code, "HLML_INLINE bool %s( const %s *x )\n", allFuncStr, typeInfo->fullTypeName );
 	StringBuilder_Append(  code, "{\n" );
 	StringBuilder_Append(  code, "\treturn " );
 
@@ -68,7 +68,7 @@ static void GenerateFunction_All( allocatorLinear_t* tempStorage, const typeInfo
 	StringBuilder_Append( code, ";\n}\n\n" );
 }
 
-static void GenerateFunction_Any( allocatorLinear_t* tempStorage, const typeInfo_t* typeInfo, stringBuilder_t* code, const generatorFlags_t flags ) {
+static void GenerateFunction_Any( allocatorLinear_t *tempStorage, const typeInfo_t *typeInfo, stringBuilder_t *code, const generatorFlags_t flags ) {
 	assert( tempStorage );
 	assert( typeInfo );
 	assert( code );
@@ -77,10 +77,10 @@ static void GenerateFunction_Any( allocatorLinear_t* tempStorage, const typeInfo
 		return;
 	}
 
-	const char* anyFuncStr = Gen_GetFuncName_Vector( tempStorage, typeInfo, flags, GEN_FUNCTION_NAME_ANY );
+	const char *anyFuncStr = Gen_GetFuncName_Vector( tempStorage, typeInfo, flags, GEN_FUNCTION_NAME_ANY );
 
 	StringBuilder_Append(  code, "// Returns true if ANY one component of 'x' is true, otherwise returns false.\n" );
-	StringBuilder_Appendf( code, "HLML_INLINE bool %s( const %s* x )\n", anyFuncStr, typeInfo->fullTypeName );
+	StringBuilder_Appendf( code, "HLML_INLINE bool %s( const %s *x )\n", anyFuncStr, typeInfo->fullTypeName );
 	StringBuilder_Append(  code, "{\n" );
 	StringBuilder_Append(  code, "\treturn " );
 
@@ -95,7 +95,7 @@ static void GenerateFunction_Any( allocatorLinear_t* tempStorage, const typeInfo
 	StringBuilder_Append( code, ";\n}\n\n" );
 }
 
-static void GenerateFunction_LengthSqr( allocatorLinear_t* tempStorage, const typeInfo_t* typeInfo, stringBuilder_t* code, const generatorStrings_t* strings, const generatorFlags_t flags ) {
+static void GenerateFunction_LengthSqr( allocatorLinear_t *tempStorage, const typeInfo_t *typeInfo, stringBuilder_t *code, const generatorStrings_t *strings, const generatorFlags_t flags ) {
 	assert( tempStorage );
 	assert( typeInfo );
 	assert( code );
@@ -107,9 +107,9 @@ static void GenerateFunction_LengthSqr( allocatorLinear_t* tempStorage, const ty
 
 	genType_t floatingPointType = Gen_GetSupportedFloatingPointType( typeInfo->type );
 
-	const char* returnTypeName = Gen_GetMemberTypeString( floatingPointType );
+	const char *returnTypeName = Gen_GetMemberTypeString( floatingPointType );
 
-	const char* lengthsqrFuncStr = Gen_GetFuncName_Vector( tempStorage, typeInfo, flags, GEN_FUNCTION_NAME_LENGTHSQ );
+	const char *lengthsqrFuncStr = Gen_GetFuncName_Vector( tempStorage, typeInfo, flags, GEN_FUNCTION_NAME_LENGTHSQ );
 
 	bool32 shouldTypecast = !Gen_TypeIsFloatingPoint( typeInfo->type );
 
@@ -140,7 +140,7 @@ static void GenerateFunction_LengthSqr( allocatorLinear_t* tempStorage, const ty
 	StringBuilder_Append( code, "}\n\n" );
 }
 
-static void GenerateFunction_Length( allocatorLinear_t* tempStorage, const typeInfo_t* typeInfo, stringBuilder_t* code, const generatorStrings_t* strings, const generatorFlags_t flags ) {
+static void GenerateFunction_Length( allocatorLinear_t *tempStorage, const typeInfo_t *typeInfo, stringBuilder_t *code, const generatorStrings_t *strings, const generatorFlags_t flags ) {
 	assert( tempStorage );
 	assert( typeInfo );
 	assert( code );
@@ -152,12 +152,12 @@ static void GenerateFunction_Length( allocatorLinear_t* tempStorage, const typeI
 
 	genType_t floatingPointType = Gen_GetSupportedFloatingPointType( typeInfo->type );
 
-	const char* returnTypeName = Gen_GetMemberTypeString( floatingPointType );
+	const char *returnTypeName = Gen_GetMemberTypeString( floatingPointType );
 
-	const char* lengthFuncStr = Gen_GetFuncName_Vector( tempStorage, typeInfo, flags, GEN_FUNCTION_NAME_LENGTH );
-	const char* lengthsqFuncStr = Gen_GetFuncName_Vector( tempStorage, typeInfo, flags, GEN_FUNCTION_NAME_LENGTHSQ );
+	const char *lengthFuncStr = Gen_GetFuncName_Vector( tempStorage, typeInfo, flags, GEN_FUNCTION_NAME_LENGTH );
+	const char *lengthsqFuncStr = Gen_GetFuncName_Vector( tempStorage, typeInfo, flags, GEN_FUNCTION_NAME_LENGTHSQ );
 
-	const char* sqrtFuncStr = Gen_GetBuiltinFunction( tempStorage, typeInfo->type, GEN_BUILTIN_FUNCTION_NAME_SQRT );
+	const char *sqrtFuncStr = Gen_GetBuiltinFunction( tempStorage, typeInfo->type, GEN_BUILTIN_FUNCTION_NAME_SQRT );
 
 	StringBuilder_Append(  code, "// Returns the magnitude of the vector.\n" );
 	StringBuilder_Appendf( code, "HLML_INLINE %s %s( const %s%s vec )\n", returnTypeName, lengthFuncStr, typeInfo->fullTypeName, strings->parmPassByStr );
@@ -166,7 +166,7 @@ static void GenerateFunction_Length( allocatorLinear_t* tempStorage, const typeI
 	StringBuilder_Append(  code, "}\n\n" );
 }
 
-static void GenerateFunction_Normalize( allocatorLinear_t* tempStorage, const typeInfo_t* typeInfo, stringBuilder_t* code, const generatorStrings_t* strings, const generatorFlags_t flags ) {
+static void GenerateFunction_Normalize( allocatorLinear_t *tempStorage, const typeInfo_t *typeInfo, stringBuilder_t *code, const generatorStrings_t *strings, const generatorFlags_t flags ) {
 	assert( tempStorage );
 	assert( typeInfo );
 	assert( code );
@@ -176,14 +176,14 @@ static void GenerateFunction_Normalize( allocatorLinear_t* tempStorage, const ty
 		return;
 	}
 
-	const char* normalizeFuncStr = Gen_GetFuncName_Vector( tempStorage, typeInfo, flags, GEN_FUNCTION_NAME_NORMALIZE );
-	const char* lengthFuncStr = Gen_GetFuncName_Vector( tempStorage, typeInfo, flags, GEN_FUNCTION_NAME_LENGTH );
+	const char *normalizeFuncStr = Gen_GetFuncName_Vector( tempStorage, typeInfo, flags, GEN_FUNCTION_NAME_NORMALIZE );
+	const char *lengthFuncStr = Gen_GetFuncName_Vector( tempStorage, typeInfo, flags, GEN_FUNCTION_NAME_LENGTH );
 
-	const char* mulStr = Gen_GetFuncName_VectorArithmeticScalar( tempStorage, typeInfo, GEN_OP_ARITHMETIC_MUL );
+	const char *mulStr = Gen_GetFuncName_VectorArithmeticScalar( tempStorage, typeInfo, GEN_OP_ARITHMETIC_MUL );
 
-	const char* memberTypeString = Gen_GetMemberTypeString( typeInfo->type );
+	const char *memberTypeString = Gen_GetMemberTypeString( typeInfo->type );
 
-	const char* oneStr = Gen_GetNumericLiteral( tempStorage, typeInfo->type, 1.0f, 1 );
+	const char *oneStr = Gen_GetNumericLiteral( tempStorage, typeInfo->type, 1.0f, 1 );
 
 	StringBuilder_Append(  code, "// Normalizes the vector.\n" );
 	StringBuilder_Appendf( code, "HLML_INLINE void %s( %s%s vec )\n", normalizeFuncStr, typeInfo->fullTypeName, strings->parmPassByStr );
@@ -198,7 +198,7 @@ static void GenerateFunction_Normalize( allocatorLinear_t* tempStorage, const ty
 	StringBuilder_Append(  code, "}\n\n" );
 }
 
-static void GenerateFunction_Normalized( allocatorLinear_t* tempStorage, const typeInfo_t* typeInfo, stringBuilder_t* code, const generatorStrings_t* strings, const generatorFlags_t flags ) {
+static void GenerateFunction_Normalized( allocatorLinear_t *tempStorage, const typeInfo_t *typeInfo, stringBuilder_t *code, const generatorStrings_t *strings, const generatorFlags_t flags ) {
 	assert( tempStorage );
 	assert( typeInfo );
 	assert( code );
@@ -208,14 +208,14 @@ static void GenerateFunction_Normalized( allocatorLinear_t* tempStorage, const t
 		return;
 	}
 
-	const char* normalizedFuncStr = Gen_GetFuncName_Vector( tempStorage, typeInfo, flags, GEN_FUNCTION_NAME_NORMALIZED );
-	const char* lengthFuncStr = Gen_GetFuncName_Vector( tempStorage, typeInfo, flags, GEN_FUNCTION_NAME_LENGTH );
+	const char *normalizedFuncStr = Gen_GetFuncName_Vector( tempStorage, typeInfo, flags, GEN_FUNCTION_NAME_NORMALIZED );
+	const char *lengthFuncStr = Gen_GetFuncName_Vector( tempStorage, typeInfo, flags, GEN_FUNCTION_NAME_LENGTH );
 
-	const char* memberTypeString = Gen_GetMemberTypeString( typeInfo->type );
+	const char *memberTypeString = Gen_GetMemberTypeString( typeInfo->type );
 
-	const char* oneStr = Gen_GetNumericLiteral( tempStorage, typeInfo->type, 1.0f, 1 );
+	const char *oneStr = Gen_GetNumericLiteral( tempStorage, typeInfo->type, 1.0f, 1 );
 
-	const char* mulStr = Gen_GetFuncName_VectorArithmeticScalar( tempStorage, typeInfo, GEN_OP_ARITHMETIC_MUL );
+	const char *mulStr = Gen_GetFuncName_VectorArithmeticScalar( tempStorage, typeInfo, GEN_OP_ARITHMETIC_MUL );
 
 	StringBuilder_Append(  code, "// Returns a normalized copy of the vector.\n" );
 	StringBuilder_Appendf( code, "HLML_INLINE %s %s( const %s%s vec )\n", typeInfo->fullTypeName, normalizedFuncStr, typeInfo->fullTypeName, strings->parmPassByStr );
@@ -230,7 +230,7 @@ static void GenerateFunction_Normalized( allocatorLinear_t* tempStorage, const t
 	StringBuilder_Append(  code, "}\n\n" );
 }
 
-static void GenerateFunction_Dot( allocatorLinear_t* tempStorage, const typeInfo_t* typeInfo, stringBuilder_t* code, const generatorStrings_t* strings, const generatorFlags_t flags ) {
+static void GenerateFunction_Dot( allocatorLinear_t *tempStorage, const typeInfo_t *typeInfo, stringBuilder_t *code, const generatorStrings_t *strings, const generatorFlags_t flags ) {
 	assert( tempStorage );
 	assert( typeInfo );
 	assert( code );
@@ -244,13 +244,13 @@ static void GenerateFunction_Dot( allocatorLinear_t* tempStorage, const typeInfo
 
 	// dot can return negative values, so uint vectors have to return signed int
 	// genType_t returnType = isUint ? GEN_TYPE_INT : typeInfo->type;
-	// const char* returnTypeString = Gen_GetMemberTypeString( returnType );
+	// const char *returnTypeString = Gen_GetMemberTypeString( returnType );
 
 	// bool32 shouldTypecast = returnType != typeInfo->type;
 
-	const char* returnTypeString = Gen_GetMemberTypeString( typeInfo->type );
+	const char *returnTypeString = Gen_GetMemberTypeString( typeInfo->type );
 
-	const char* dotFuncStr = Gen_GetFuncName_Vector( tempStorage, typeInfo, flags, GEN_FUNCTION_NAME_DOT );
+	const char *dotFuncStr = Gen_GetFuncName_Vector( tempStorage, typeInfo, flags, GEN_FUNCTION_NAME_DOT );
 
 	StringBuilder_Append(  code, "// Returns the dot product of the two vectors.\n" );
 	StringBuilder_Appendf( code, "HLML_INLINE %s %s( const %s%s lhs, const %s%s rhs )\n", returnTypeString, dotFuncStr, typeInfo->fullTypeName, strings->parmPassByStr, typeInfo->fullTypeName, strings->parmPassByStr );
@@ -279,7 +279,7 @@ static void GenerateFunction_Dot( allocatorLinear_t* tempStorage, const typeInfo
 	StringBuilder_Append( code, "}\n\n" );
 }
 
-static void GenerateFunction_Cross( allocatorLinear_t* tempStorage, const typeInfo_t* typeInfo, stringBuilder_t* code, const generatorStrings_t* strings, const generatorFlags_t flags ) {
+static void GenerateFunction_Cross( allocatorLinear_t *tempStorage, const typeInfo_t *typeInfo, stringBuilder_t *code, const generatorStrings_t *strings, const generatorFlags_t flags ) {
 	assert( tempStorage );
 	assert( typeInfo );
 	assert( code );
@@ -293,7 +293,7 @@ static void GenerateFunction_Cross( allocatorLinear_t* tempStorage, const typeIn
 		return;
 	}
 
-	const char* crossFuncStr = Gen_GetFuncName_Vector( tempStorage, typeInfo, flags, GEN_FUNCTION_NAME_CROSS );
+	const char *crossFuncStr = Gen_GetFuncName_Vector( tempStorage, typeInfo, flags, GEN_FUNCTION_NAME_CROSS );
 
 	StringBuilder_Append(  code, "// Returns a vector perpendicular to the two vectors.\n" );
 	StringBuilder_Appendf( code, "HLML_INLINE %s %s( const %s%s lhs, const %s%s rhs )\n", typeInfo->fullTypeName, crossFuncStr, typeInfo->fullTypeName, strings->parmPassByStr, typeInfo->fullTypeName, strings->parmPassByStr );
@@ -312,7 +312,7 @@ static void GenerateFunction_Cross( allocatorLinear_t* tempStorage, const typeIn
 	StringBuilder_Append( code, "}\n\n" );
 }
 
-static void GenerateFunction_Angle( allocatorLinear_t* tempStorage, const typeInfo_t* typeInfo, stringBuilder_t* code, const generatorStrings_t* strings, const generatorFlags_t flags ) {
+static void GenerateFunction_Angle( allocatorLinear_t *tempStorage, const typeInfo_t *typeInfo, stringBuilder_t *code, const generatorStrings_t *strings, const generatorFlags_t flags ) {
 	assert( tempStorage );
 	assert( typeInfo );
 	assert( code );
@@ -324,13 +324,13 @@ static void GenerateFunction_Angle( allocatorLinear_t* tempStorage, const typeIn
 
 	genType_t floatingPointType = Gen_GetSupportedFloatingPointType( typeInfo->type );
 
-	const char* returnTypeString = Gen_GetMemberTypeString( floatingPointType );
+	const char *returnTypeString = Gen_GetMemberTypeString( floatingPointType );
 
-	const char* angleFuncStr = Gen_GetFuncName_Vector( tempStorage, typeInfo, flags, GEN_FUNCTION_NAME_ANGLE );
-	const char* normalizedFuncStr = Gen_GetFuncName_Vector( tempStorage, typeInfo, flags, GEN_FUNCTION_NAME_NORMALIZED );
-	const char* degreesFuncStr = Gen_GetFuncName_Scalar( tempStorage, typeInfo->type, flags, GEN_FUNCTION_NAME_DEGREES );
-	const char* dotFuncStr = Gen_GetFuncName_Vector( tempStorage, typeInfo, flags, GEN_FUNCTION_NAME_DOT );
-	const char* acosFuncStr = Gen_GetBuiltinFunction( tempStorage, typeInfo->type, GEN_BUILTIN_FUNCTION_NAME_ACOS );
+	const char *angleFuncStr = Gen_GetFuncName_Vector( tempStorage, typeInfo, flags, GEN_FUNCTION_NAME_ANGLE );
+	const char *normalizedFuncStr = Gen_GetFuncName_Vector( tempStorage, typeInfo, flags, GEN_FUNCTION_NAME_NORMALIZED );
+	const char *degreesFuncStr = Gen_GetFuncName_Scalar( tempStorage, typeInfo->type, flags, GEN_FUNCTION_NAME_DEGREES );
+	const char *dotFuncStr = Gen_GetFuncName_Vector( tempStorage, typeInfo, flags, GEN_FUNCTION_NAME_DOT );
+	const char *acosFuncStr = Gen_GetBuiltinFunction( tempStorage, typeInfo->type, GEN_BUILTIN_FUNCTION_NAME_ACOS );
 
 	StringBuilder_Append(  code, "// Returns the angle (in degrees) between the two vectors.\n" );
 	StringBuilder_Appendf( code, "HLML_INLINE %s %s( const %s%s lhs, const %s%s rhs )\n", returnTypeString, angleFuncStr, typeInfo->fullTypeName, strings->parmPassByStr, typeInfo->fullTypeName, strings->parmPassByStr );
@@ -345,7 +345,7 @@ static void GenerateFunction_Angle( allocatorLinear_t* tempStorage, const typeIn
 	StringBuilder_Append(  code, "}\n\n" );
 }
 
-static void GenerateFunction_Distancesq( allocatorLinear_t* tempStorage, const typeInfo_t* typeInfo, stringBuilder_t* code, const generatorStrings_t* strings, const generatorFlags_t flags ) {
+static void GenerateFunction_Distancesq( allocatorLinear_t *tempStorage, const typeInfo_t *typeInfo, stringBuilder_t *code, const generatorStrings_t *strings, const generatorFlags_t flags ) {
 	assert( tempStorage );
 	assert( typeInfo );
 	assert( code );
@@ -359,10 +359,10 @@ static void GenerateFunction_Distancesq( allocatorLinear_t* tempStorage, const t
 		return;
 	}
 
-	const char* returnTypeName = Gen_GetTypeString( Gen_GetSupportedFloatingPointType( typeInfo->type ) );
+	const char *returnTypeName = Gen_GetTypeString( Gen_GetSupportedFloatingPointType( typeInfo->type ) );
 
-	const char* distancesqFuncStr = Gen_GetFuncName_Vector( tempStorage, typeInfo, flags, GEN_FUNCTION_NAME_DISTANCESQ );
-	const char* lengthsqFuncStr = Gen_GetFuncName_Vector( tempStorage, typeInfo, flags, GEN_FUNCTION_NAME_LENGTHSQ );
+	const char *distancesqFuncStr = Gen_GetFuncName_Vector( tempStorage, typeInfo, flags, GEN_FUNCTION_NAME_DISTANCESQ );
+	const char *lengthsqFuncStr = Gen_GetFuncName_Vector( tempStorage, typeInfo, flags, GEN_FUNCTION_NAME_LENGTHSQ );
 
 	StringBuilder_Append(  code, "// Returns the squared distance between the two vectors.\n" );
 	StringBuilder_Appendf( code, "HLML_INLINE %s %s( const %s%s lhs, const %s%s rhs )\n", returnTypeName, distancesqFuncStr, typeInfo->fullTypeName, strings->parmPassByStr, typeInfo->fullTypeName, strings->parmPassByStr );
@@ -370,7 +370,7 @@ static void GenerateFunction_Distancesq( allocatorLinear_t* tempStorage, const t
 	if ( flags & GENERATOR_FLAG_GENERATE_OPERATORS ) {
 		StringBuilder_Appendf( code, "\treturn %s( lhs - rhs );\n", lengthsqFuncStr );
 	} else {
-		const char* subFuncStr = Gen_GetFuncName_VectorArithmeticVector( tempStorage, typeInfo, GEN_OP_ARITHMETIC_SUB );
+		const char *subFuncStr = Gen_GetFuncName_VectorArithmeticVector( tempStorage, typeInfo, GEN_OP_ARITHMETIC_SUB );
 
 		StringBuilder_Appendf( code, "\t%s delta = %s( lhs, rhs );\n", typeInfo->fullTypeName, subFuncStr );
 		StringBuilder_Appendf( code, "\treturn %s( &delta );\n", lengthsqFuncStr );
@@ -378,7 +378,7 @@ static void GenerateFunction_Distancesq( allocatorLinear_t* tempStorage, const t
 	StringBuilder_Append(  code, "}\n\n" );
 }
 
-static void GenerateFunction_Distance( allocatorLinear_t* tempStorage, const typeInfo_t* typeInfo, stringBuilder_t* code, const generatorStrings_t* strings, const generatorFlags_t flags ) {
+static void GenerateFunction_Distance( allocatorLinear_t *tempStorage, const typeInfo_t *typeInfo, stringBuilder_t *code, const generatorStrings_t *strings, const generatorFlags_t flags ) {
 	assert( tempStorage );
 	assert( typeInfo );
 	assert( code );
@@ -392,10 +392,10 @@ static void GenerateFunction_Distance( allocatorLinear_t* tempStorage, const typ
 		return;
 	}
 
-	const char* returnTypeName = Gen_GetMemberTypeString( Gen_GetSupportedFloatingPointType( typeInfo->type ) );
+	const char *returnTypeName = Gen_GetMemberTypeString( Gen_GetSupportedFloatingPointType( typeInfo->type ) );
 
-	const char* distancesqFuncStr = Gen_GetFuncName_Vector( tempStorage, typeInfo, flags, GEN_FUNCTION_NAME_DISTANCE );
-	const char* lengthFuncStr = Gen_GetFuncName_Vector( tempStorage, typeInfo, flags, GEN_FUNCTION_NAME_LENGTH );
+	const char *distancesqFuncStr = Gen_GetFuncName_Vector( tempStorage, typeInfo, flags, GEN_FUNCTION_NAME_DISTANCE );
+	const char *lengthFuncStr = Gen_GetFuncName_Vector( tempStorage, typeInfo, flags, GEN_FUNCTION_NAME_LENGTH );
 
 	StringBuilder_Append(  code, "// Returns the distance between the two vectors.\n" );
 	StringBuilder_Appendf( code, "HLML_INLINE %s %s( const %s%s lhs, const %s%s rhs )\n", returnTypeName, distancesqFuncStr, typeInfo->fullTypeName, strings->parmPassByStr, typeInfo->fullTypeName, strings->parmPassByStr );
@@ -404,7 +404,7 @@ static void GenerateFunction_Distance( allocatorLinear_t* tempStorage, const typ
 		StringBuilder_Appendf( code, "\treturn %s( lhs - rhs );\n", lengthFuncStr );
 
 	} else {
-		const char* subFuncStr = Gen_GetFuncName_VectorArithmeticVector( tempStorage, typeInfo, GEN_OP_ARITHMETIC_SUB );
+		const char *subFuncStr = Gen_GetFuncName_VectorArithmeticVector( tempStorage, typeInfo, GEN_OP_ARITHMETIC_SUB );
 
 		StringBuilder_Appendf( code, "\t%s delta = %s( lhs, rhs );\n", typeInfo->fullTypeName, subFuncStr );
 		StringBuilder_Appendf( code, "\treturn %s( &delta );\n", lengthFuncStr );
@@ -412,7 +412,7 @@ static void GenerateFunction_Distance( allocatorLinear_t* tempStorage, const typ
 	StringBuilder_Append(  code, "}\n\n" );
 }
 
-static void GenerateFunction_Pack( allocatorLinear_t* tempStorage, const typeInfo_t* typeInfo, stringBuilder_t* code, const generatorStrings_t* strings, const generatorFlags_t flags ) {
+static void GenerateFunction_Pack( allocatorLinear_t *tempStorage, const typeInfo_t *typeInfo, stringBuilder_t *code, const generatorStrings_t *strings, const generatorFlags_t flags ) {
 	assert( typeInfo );
 	assert( code );
 	assert( strings );
@@ -425,9 +425,9 @@ static void GenerateFunction_Pack( allocatorLinear_t* tempStorage, const typeInf
 		return;
 	}
 
-	const char* memberTypeString = Gen_GetMemberTypeString( typeInfo->type );
+	const char *memberTypeString = Gen_GetMemberTypeString( typeInfo->type );
 
-	const char* packFuncStr = Gen_GetFuncName_Vector( tempStorage, typeInfo, flags, GEN_FUNCTION_NAME_PACK );
+	const char *packFuncStr = Gen_GetFuncName_Vector( tempStorage, typeInfo, flags, GEN_FUNCTION_NAME_PACK );
 
 	StringBuilder_Append(  code, "// Returns a 32 bit integer containing each component of the vector at each byte (where the X component contains the left-most byte).\n" );
 	StringBuilder_Appendf( code, "HLML_INLINE %s %s( const %s%s vec )\n", memberTypeString, packFuncStr, typeInfo->fullTypeName, strings->parmPassByStr );
@@ -436,7 +436,7 @@ static void GenerateFunction_Pack( allocatorLinear_t* tempStorage, const typeInf
 	StringBuilder_Append(  code, "}\n\n" );
 }
 
-static void GenerateFunction_Unpack( allocatorLinear_t* tempStorage, const typeInfo_t* typeInfo, stringBuilder_t* code, const generatorFlags_t flags ) {
+static void GenerateFunction_Unpack( allocatorLinear_t *tempStorage, const typeInfo_t *typeInfo, stringBuilder_t *code, const generatorFlags_t flags ) {
 	assert( typeInfo );
 	assert( code );
 
@@ -452,9 +452,9 @@ static void GenerateFunction_Unpack( allocatorLinear_t* tempStorage, const typeI
 		24, 16, 8, 0
 	};
 
-	const char* memberTypeString = Gen_GetMemberTypeString( typeInfo->type );
+	const char *memberTypeString = Gen_GetMemberTypeString( typeInfo->type );
 
-	const char* unpackFuncStr = Gen_GetFuncName_Vector( tempStorage, typeInfo, flags, GEN_FUNCTION_NAME_UNPACK );
+	const char *unpackFuncStr = Gen_GetFuncName_Vector( tempStorage, typeInfo, flags, GEN_FUNCTION_NAME_UNPACK );
 
 	StringBuilder_Append(  code, "// Returns a 4-component int vector where each component contains each byte of the integer (where the X component contains the left-most byte).\n" );
 	StringBuilder_Appendf( code, "HLML_INLINE %s %s( const %s x )\n", typeInfo->fullTypeName, unpackFuncStr, memberTypeString );
@@ -477,7 +477,7 @@ static void GenerateFunction_Unpack( allocatorLinear_t* tempStorage, const typeI
 // TODO: DM: 01/06/2026:
 //	move this into gen_shared
 //	but before you do that, rename gen_shared to gen_local and figure out what is local and what is shared
-bool32 SwizzleTypeIsWritable( const char* swizzleStr, const u32 numSwizzleComponents ) {
+bool32 SwizzleTypeIsWritable( const char *swizzleStr, const u32 numSwizzleComponents ) {
 	// if the swizzle contains duplicate components in the name (eg xzx, xxy, etc.) then the swizzle cant be written to
 	for ( u32 i = 0; i < numSwizzleComponents - 1; i++ ) {
 		for ( u32 j = i + 1; j < numSwizzleComponents; j++ ) {
@@ -491,7 +491,7 @@ bool32 SwizzleTypeIsWritable( const char* swizzleStr, const u32 numSwizzleCompon
 }
 
 #if !GENERATE_TEMPLATES
-static void GenerateSwizzleFunc_Type( allocatorLinear_t* tempStorage, stringBuilder_t* code, const typeInfo_t* typeInfo, const generatorStrings_t* strings, const generatorFlags_t flags, const u32 numSwizzleComponents, const char* swizzleStr ) {
+static void GenerateSwizzleFunc_Type( allocatorLinear_t *tempStorage, stringBuilder_t *code, const typeInfo_t *typeInfo, const generatorStrings_t *strings, const generatorFlags_t flags, const u32 numSwizzleComponents, const char *swizzleStr ) {
 	assert( tempStorage );
 	assert( code );
 	assert( typeInfo );
@@ -503,10 +503,10 @@ static void GenerateSwizzleFunc_Type( allocatorLinear_t* tempStorage, stringBuil
 
 	GEN_UNUSED( flags );
 
-	const char* typeString = Gen_GetTypeString( typeInfo->type );
-	const char* memberTypeString = Gen_GetMemberTypeString( typeInfo->type );
+	const char *typeString = Gen_GetTypeString( typeInfo->type );
+	const char *memberTypeString = Gen_GetMemberTypeString( typeInfo->type );
 
-	const char* swizzleTypeName = String_TPrintf( tempStorage, "%s%d", typeString, numSwizzleComponents );
+	const char *swizzleTypeName = String_TPrintf( tempStorage, "%s%d", typeString, numSwizzleComponents );
 
 	bool32 isWritable = SwizzleTypeIsWritable( swizzleStr, numSwizzleComponents );
 
@@ -527,7 +527,7 @@ static void GenerateSwizzleFunc_Type( allocatorLinear_t* tempStorage, stringBuil
 
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wunused-parameter"
-static void GenerateSwizzleFunc_Members( allocatorLinear_t* tempStorage, stringBuilder_t* code, const typeInfo_t* typeInfo, const generatorStrings_t* strings, const generatorFlags_t flags, const u32 numSwizzleComponents, const char* swizzleStr ) {
+static void GenerateSwizzleFunc_Members( allocatorLinear_t *tempStorage, stringBuilder_t *code, const typeInfo_t *typeInfo, const generatorStrings_t *strings, const generatorFlags_t flags, const u32 numSwizzleComponents, const char *swizzleStr ) {
 #pragma clang diagnostic pop
 	assert( tempStorage );
 	assert( code );
@@ -541,12 +541,12 @@ static void GenerateSwizzleFunc_Members( allocatorLinear_t* tempStorage, stringB
 	GEN_UNUSED( flags );
 
 #if GENERATE_TEMPLATES
-	const char* memberTypeString = Gen_GetMemberTypeString( typeInfo->type );
+	const char *memberTypeString = Gen_GetMemberTypeString( typeInfo->type );
 
-	const char* typeString = Gen_GetTypeString( typeInfo->type );
-	const char* swizzleTypeName = String_TPrintf( tempStorage, "%s%d", typeString, numSwizzleComponents );
+	const char *typeString = Gen_GetTypeString( typeInfo->type );
+	const char *swizzleTypeName = String_TPrintf( tempStorage, "%s%d", typeString, numSwizzleComponents );
 
-	const char* writableStr = SwizzleTypeIsWritable( swizzleStr, numSwizzleComponents ) ? "writable" : "nonwritable";
+	const char *writableStr = SwizzleTypeIsWritable( swizzleStr, numSwizzleComponents ) ? "writable" : "nonwritable";
 
 	StringBuilder_Appendf( code, "\t\tswizzle_%d_to_%d_%s_t<%s, %s, ", typeInfo->numCols, numSwizzleComponents, writableStr, swizzleTypeName, memberTypeString );
 	for ( u32 i = 0; i < numSwizzleComponents; i++ ) {
@@ -565,7 +565,7 @@ static void GenerateSwizzleFunc_Members( allocatorLinear_t* tempStorage, stringB
 }
 
 #if !GENERATE_TEMPLATES
-static void GenerateSwizzleFunc_OperatorDefinitions( allocatorLinear_t* tempStorage, stringBuilder_t* code, const typeInfo_t* typeInfo, const generatorStrings_t* strings, const generatorFlags_t flags, const u32 numSwizzleComponents, const char* swizzleStr ) {
+static void GenerateSwizzleFunc_OperatorDefinitions( allocatorLinear_t *tempStorage, stringBuilder_t *code, const typeInfo_t *typeInfo, const generatorStrings_t *strings, const generatorFlags_t flags, const u32 numSwizzleComponents, const char *swizzleStr ) {
 	assert( tempStorage );
 	assert( code );
 	assert( typeInfo );
@@ -577,8 +577,8 @@ static void GenerateSwizzleFunc_OperatorDefinitions( allocatorLinear_t* tempStor
 
 	GEN_UNUSED( flags );
 
-	const char* typeString = Gen_GetTypeString( typeInfo->type );
-	const char* swizzleTypeName = String_TPrintf( tempStorage, "%s%d", typeString, numSwizzleComponents );
+	const char *typeString = Gen_GetTypeString( typeInfo->type );
+	const char *swizzleTypeName = String_TPrintf( tempStorage, "%s%d", typeString, numSwizzleComponents );
 
 	bool32 isWritable = SwizzleTypeIsWritable( swizzleStr, numSwizzleComponents );
 
@@ -621,7 +621,7 @@ static void GenerateSwizzleFunc_OperatorDefinitions( allocatorLinear_t* tempStor
 // for vec2, for example, you can count all the 2-component swizzles by counting in base 2 from 0 through to 2^2
 // this can then be repeated for generating the 3-component swizzles for vec2 types by counting in base 2 from 0 through to 2^3 and so on
 // the same logic applies for vec3 and vec4
-void GenerateSwizzleFunctions( allocatorLinear_t* tempStorage, stringBuilder_t* code, const typeInfo_t* typeInfo, const generatorStrings_t* strings, const generatorFlags_t flags, const char* componentNames, generateSwizzleFunc_t generateSwizzleFunc ) {
+void GenerateSwizzleFunctions( allocatorLinear_t *tempStorage, stringBuilder_t *code, const typeInfo_t *typeInfo, const generatorStrings_t *strings, const generatorFlags_t flags, const char *componentNames, generateSwizzleFunc_t generateSwizzleFunc ) {
 	assert( tempStorage );
 	assert( code );
 	assert( typeInfo );
@@ -671,7 +671,7 @@ void GenerateSwizzleFunctions( allocatorLinear_t* tempStorage, stringBuilder_t* 
 	}
 }
 
-void GenerateVectorFiles( allocatorLinear_t* tempStorage, const char* generatedCodePath, const typeInfo_t* typeInfos, const u32 typeInfosCount, const generatorStrings_t* strings, const generatorFlags_t flags ) {
+void GenerateVectorFiles( allocatorLinear_t *tempStorage, const char *generatedCodePath, const typeInfo_t *typeInfos, const u32 typeInfosCount, const generatorStrings_t *strings, const generatorFlags_t flags ) {
 	assert( tempStorage );
 	assert( generatedCodePath );
 	assert( typeInfos );
@@ -688,14 +688,14 @@ void GenerateVectorFiles( allocatorLinear_t* tempStorage, const char* generatedC
 
 	// vector types
 	for ( u32 typeInfoIndex = 0; typeInfoIndex < typeInfosCount; typeInfoIndex++ ) {
-		const typeInfo_t* typeInfo = &typeInfos[typeInfoIndex];
+		const typeInfo_t *typeInfo = &typeInfos[typeInfoIndex];
 
-		const char* typeString = Gen_GetTypeString( typeInfo->type );
-		const char* memberTypeString = Gen_GetMemberTypeString( typeInfo->type );
+		const char *typeString = Gen_GetTypeString( typeInfo->type );
+		const char *memberTypeString = Gen_GetMemberTypeString( typeInfo->type );
 
 		// vector header file
 		{
-			stringBuilder_t* codeHeader = StringBuilder_Create( tempStorage, KILOBYTES( 128 ) );
+			stringBuilder_t *codeHeader = StringBuilder_Create( tempStorage, KILOBYTES( 128 ) );
 
 			StringBuilder_Append(  codeHeader, GEN_FILE_HEADER );
 			StringBuilder_Append(  codeHeader,
@@ -753,7 +753,7 @@ void GenerateVectorFiles( allocatorLinear_t* tempStorage, const char* generatedC
 						continue;
 					}
 
-					const char* rhsTypeString = Gen_GetTypeString( type );
+					const char *rhsTypeString = Gen_GetTypeString( type );
 
 					StringBuilder_Appendf( codeHeader, "struct %s%d;\n", rhsTypeString, typeInfo->numCols );
 				}
@@ -871,8 +871,8 @@ void GenerateVectorFiles( allocatorLinear_t* tempStorage, const char* generatedC
 						continue;
 					}
 
-					const char* otherTypeString = Gen_GetTypeString( otherType );
-					const char* otherMemberTypeString = Gen_GetMemberTypeString( otherType );
+					const char *otherTypeString = Gen_GetTypeString( otherType );
+					const char *otherMemberTypeString = Gen_GetMemberTypeString( otherType );
 
 					StringBuilder_Appendf( codeHeader, "\t// Conversion constructor.  Casts all components of 'vec' from type %s to type %s.\n", otherMemberTypeString, memberTypeString );
 					StringBuilder_Appendf( codeHeader, "\tHLML_INLINE explicit %s( const %s%d& vec );\n\n", typeInfo->fullTypeName, otherTypeString, typeInfo->numCols );
@@ -958,13 +958,13 @@ void GenerateVectorFiles( allocatorLinear_t* tempStorage, const char* generatedC
 			if ( generateOperators ) {
 				// assignment operators
 				for ( u32 componentIndex = 2; componentIndex <= typeInfo->numCols; componentIndex++ ) {
-					const char* otherTypeName = String_TPrintf( tempStorage, "%s%d", Gen_GetTypeString( typeInfo->type ), componentIndex );
+					const char *otherTypeName = String_TPrintf( tempStorage, "%s%d", Gen_GetTypeString( typeInfo->type ), componentIndex );
 
 					StringBuilder_Append(  codeHeader, "\t// Copies all elements of 'other' into the vector.\n" );
 					StringBuilder_Appendf( codeHeader, "\tHLML_INLINE %s operator=( const %s& other );\n\n", typeInfo->fullTypeName, otherTypeName );
 				}
 
-				const char* returnTypeName = Gen_GetMemberTypeString( GEN_TYPE_INT );
+				const char *returnTypeName = Gen_GetMemberTypeString( GEN_TYPE_INT );
 
 				// array operators
 				StringBuilder_Append(  codeHeader, "\t// Returns the vector component at the given index.\n" );
@@ -1012,14 +1012,14 @@ void GenerateVectorFiles( allocatorLinear_t* tempStorage, const char* generatedC
 				);
 			}
 
-			const char* fileNameHeader = String_TPrintf( tempStorage, "%s/%s.h", generatedCodePath, typeInfo->fullTypeName );
+			const char *fileNameHeader = String_TPrintf( tempStorage, "%s/%s.h", generatedCodePath, typeInfo->fullTypeName );
 
 			FS_WriteEntireFile( fileNameHeader, codeHeader->str, codeHeader->length );
 		}
 
 		// vector inl file
 		if ( generateInlFile ) {
-			stringBuilder_t* codeInl = StringBuilder_Create( tempStorage, KILOBYTES( 64 ) );
+			stringBuilder_t *codeInl = StringBuilder_Create( tempStorage, KILOBYTES( 64 ) );
 
 			StringBuilder_Appendf( codeInl,
 				GEN_FILE_HEADER
@@ -1098,7 +1098,7 @@ void GenerateVectorFiles( allocatorLinear_t* tempStorage, const char* generatedC
 						continue;
 					}
 
-					const char* otherTypeString = Gen_GetTypeString( otherType );
+					const char *otherTypeString = Gen_GetTypeString( otherType );
 
 					StringBuilder_Appendf( codeInl, "%s::%s( const %s%d& vec )\n", typeInfo->fullTypeName, typeInfo->fullTypeName, otherTypeString, typeInfo->numCols );
 
@@ -1267,7 +1267,7 @@ void GenerateVectorFiles( allocatorLinear_t* tempStorage, const char* generatedC
 			if ( generateOperators ) {
 				// assignment operators
 				for ( u32 otherVecComponentIndex = 2; otherVecComponentIndex <= typeInfo->numCols; otherVecComponentIndex++ ) {
-					const char* otherTypeName = String_TPrintf( tempStorage, "%s%d", Gen_GetTypeString( typeInfo->type ), otherVecComponentIndex );
+					const char *otherTypeName = String_TPrintf( tempStorage, "%s%d", Gen_GetTypeString( typeInfo->type ), otherVecComponentIndex );
 
 					StringBuilder_Appendf( codeInl, "%s %s::operator=( const %s& other )\n", typeInfo->fullTypeName, typeInfo->fullTypeName, otherTypeName );
 					StringBuilder_Append(  codeInl, "{\n" );
@@ -1309,7 +1309,7 @@ void GenerateVectorFiles( allocatorLinear_t* tempStorage, const char* generatedC
 			}
 #endif // GENERATE_TEMPLATES
 
-			const char* fileNameInl = String_TPrintf( tempStorage, "%s/%s.inl", generatedCodePath, typeInfo->fullTypeName );
+			const char *fileNameInl = String_TPrintf( tempStorage, "%s/%s.inl", generatedCodePath, typeInfo->fullTypeName );
 
 			FS_WriteEntireFile( fileNameInl, codeInl->str, codeInl->length );
 		}
@@ -1319,7 +1319,7 @@ void GenerateVectorFiles( allocatorLinear_t* tempStorage, const char* generatedC
 		if ( generateSwizzles ) {
 			// swizzle header file
 			{
-				stringBuilder_t* codeHeader = StringBuilder_Create( tempStorage, KILOBYTES( 128 ) );
+				stringBuilder_t *codeHeader = StringBuilder_Create( tempStorage, KILOBYTES( 128 ) );
 
 				StringBuilder_Appendf( codeHeader,
 					GEN_FILE_HEADER
@@ -1348,14 +1348,14 @@ void GenerateVectorFiles( allocatorLinear_t* tempStorage, const char* generatedC
 					"#endif\n"
 				);
 
-				const char* fileNameHeader = String_TPrintf( tempStorage, "%s/%s_swizzle_types.h", generatedCodePath, typeInfo->fullTypeName );
+				const char *fileNameHeader = String_TPrintf( tempStorage, "%s/%s_swizzle_types.h", generatedCodePath, typeInfo->fullTypeName );
 
 				FS_WriteEntireFile( fileNameHeader, codeHeader->str, codeHeader->length );
 			}
 
 			// swizzle inl file
 			{
-				stringBuilder_t* codeInl = StringBuilder_Create( tempStorage, KILOBYTES( 128 ) );
+				stringBuilder_t *codeInl = StringBuilder_Create( tempStorage, KILOBYTES( 128 ) );
 
 				StringBuilder_Appendf( codeInl,
 					GEN_FILE_HEADER
@@ -1385,7 +1385,7 @@ void GenerateVectorFiles( allocatorLinear_t* tempStorage, const char* generatedC
 					"#endif\n"
 				);
 
-				const char* fileNameInl = String_TPrintf( tempStorage, "%s/%s_swizzle_types.inl", generatedCodePath, typeInfo->fullTypeName );
+				const char *fileNameInl = String_TPrintf( tempStorage, "%s/%s_swizzle_types.inl", generatedCodePath, typeInfo->fullTypeName );
 
 				FS_WriteEntireFile( fileNameInl, codeInl->str, codeInl->length );
 			}
@@ -1398,7 +1398,7 @@ void GenerateVectorFiles( allocatorLinear_t* tempStorage, const char* generatedC
 #if GENERATE_TEMPLATES
 	// swizzle templates header file
 	if ( generateSwizzles ) {
-		stringBuilder_t* codeHeader = StringBuilder_Create( tempStorage, KILOBYTES( 8 ) );
+		stringBuilder_t *codeHeader = StringBuilder_Create( tempStorage, KILOBYTES( 8 ) );
 
 		StringBuilder_Appendf( codeHeader,
 			GEN_FILE_HEADER
@@ -1486,7 +1486,7 @@ void GenerateVectorFiles( allocatorLinear_t* tempStorage, const char* generatedC
 			}
 		}
 
-		const char* fileNameHeader = String_TPrintf( tempStorage, "%s/swizzle_templates.h", generatedCodePath );
+		const char *fileNameHeader = String_TPrintf( tempStorage, "%s/swizzle_templates.h", generatedCodePath );
 
 		FS_WriteEntireFile( fileNameHeader, codeHeader->str, codeHeader->length );
 
@@ -1496,7 +1496,7 @@ void GenerateVectorFiles( allocatorLinear_t* tempStorage, const char* generatedC
 
 	// vector functions
 	{
-		stringBuilder_t* code = StringBuilder_Create( tempStorage, KILOBYTES( 256 ) );
+		stringBuilder_t *code = StringBuilder_Create( tempStorage, KILOBYTES( 256 ) );
 
 		StringBuilder_Append( code,
 			GEN_FILE_HEADER
@@ -1544,7 +1544,7 @@ void GenerateVectorFiles( allocatorLinear_t* tempStorage, const char* generatedC
 
 		// generate vector types
 		for ( u32 i = 0; i < typeInfosCount; i++ ) {
-			const typeInfo_t* typeInfo = &typeInfos[i];
+			const typeInfo_t *typeInfo = &typeInfos[i];
 
 			typeInfo_t scalarMemberType = {
 				.type			= typeInfo->type,
@@ -1595,7 +1595,7 @@ void GenerateVectorFiles( allocatorLinear_t* tempStorage, const char* generatedC
 			);
 		}
 
-		const char* fileNameHeader = String_TPrintf( tempStorage, "%s/%s.h", generatedCodePath, GEN_FILENAME_FUNCTIONS_VECTOR );
+		const char *fileNameHeader = String_TPrintf( tempStorage, "%s/%s.h", generatedCodePath, GEN_FILENAME_FUNCTIONS_VECTOR );
 
 		FS_WriteEntireFile( fileNameHeader, code->str, code->length );
 
