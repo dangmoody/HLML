@@ -94,3 +94,27 @@ void		GenerateTests_CtorConversion( allocatorLinear_t* tempStorage,
 										  const typeInfo_t* typeInfo,
 										  const generatorStrings_t* strings,
 										  const generatorFlags_t flags );
+
+void		GenerateVectorTests( allocatorLinear_t* tempStorage,
+								 const char* generatedTestsPath,
+								 const char* languageName,
+								 const typeInfo_t* vectorTypeInfos,
+								 const u32 vectorTypeInfosCount,
+								 const generatorStrings_t* strings,
+								 const generatorFlags_t flags );
+
+void		GenerateQuaternionTests( allocatorLinear_t* tempStorage,
+									 const char* generatedTestsPath,
+									 const char* languageName,
+									 const typeInfo_t* quaternionTypeInfos,
+									 const u32 quaternionTypeInfosCount,
+									 const generatorStrings_t* strings,
+									 const generatorFlags_t flags );
+
+void		GenerateMatrixTests( allocatorLinear_t* tempStorage,
+								 const char* generatedTestsPath,
+								 const char* languageName,
+								 const typeInfo_t* matrixTypeInfos,
+								 const u32 matrixTypeInfosCount,
+								 const generatorStrings_t* strings,
+								 const generatorFlags_t flags );
