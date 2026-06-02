@@ -294,7 +294,7 @@ HLML_INLINE bool2x2 operator--( bool2x2& x, const int32_t )
 }
 
 // Returns true if ALL components of the 'x' are true, otherwise returns false.
-HLML_INLINE bool all( const bool2x2* x )
+HLML_INLINE bool all( const bool2x2 *x )
 {
 	return
 		all( &x->rows[0] ) &&
@@ -302,7 +302,7 @@ HLML_INLINE bool all( const bool2x2* x )
 }
 
 // Returns true if ANY one component of 'x' is true, otherwise returns false.
-HLML_INLINE bool any( const bool2x2* x )
+HLML_INLINE bool any( const bool2x2 *x )
 {
 	return
 		any( &x->rows[0] ) ||
@@ -532,7 +532,7 @@ HLML_INLINE bool2x3 operator--( bool2x3& x, const int32_t )
 }
 
 // Returns true if ALL components of the 'x' are true, otherwise returns false.
-HLML_INLINE bool all( const bool2x3* x )
+HLML_INLINE bool all( const bool2x3 *x )
 {
 	return
 		all( &x->rows[0] ) &&
@@ -540,7 +540,7 @@ HLML_INLINE bool all( const bool2x3* x )
 }
 
 // Returns true if ANY one component of 'x' is true, otherwise returns false.
-HLML_INLINE bool any( const bool2x3* x )
+HLML_INLINE bool any( const bool2x3 *x )
 {
 	return
 		any( &x->rows[0] ) ||
@@ -771,7 +771,7 @@ HLML_INLINE bool2x4 operator--( bool2x4& x, const int32_t )
 }
 
 // Returns true if ALL components of the 'x' are true, otherwise returns false.
-HLML_INLINE bool all( const bool2x4* x )
+HLML_INLINE bool all( const bool2x4 *x )
 {
 	return
 		all( &x->rows[0] ) &&
@@ -779,7 +779,7 @@ HLML_INLINE bool all( const bool2x4* x )
 }
 
 // Returns true if ANY one component of 'x' is true, otherwise returns false.
-HLML_INLINE bool any( const bool2x4* x )
+HLML_INLINE bool any( const bool2x4 *x )
 {
 	return
 		any( &x->rows[0] ) ||
@@ -1028,7 +1028,7 @@ HLML_INLINE bool3x2 operator--( bool3x2& x, const int32_t )
 }
 
 // Returns true if ALL components of the 'x' are true, otherwise returns false.
-HLML_INLINE bool all( const bool3x2* x )
+HLML_INLINE bool all( const bool3x2 *x )
 {
 	return
 		all( &x->rows[0] ) &&
@@ -1037,7 +1037,7 @@ HLML_INLINE bool all( const bool3x2* x )
 }
 
 // Returns true if ANY one component of 'x' is true, otherwise returns false.
-HLML_INLINE bool any( const bool3x2* x )
+HLML_INLINE bool any( const bool3x2 *x )
 {
 	return
 		any( &x->rows[0] ) ||
@@ -1286,7 +1286,7 @@ HLML_INLINE bool3x3 operator--( bool3x3& x, const int32_t )
 }
 
 // Returns true if ALL components of the 'x' are true, otherwise returns false.
-HLML_INLINE bool all( const bool3x3* x )
+HLML_INLINE bool all( const bool3x3 *x )
 {
 	return
 		all( &x->rows[0] ) &&
@@ -1295,7 +1295,7 @@ HLML_INLINE bool all( const bool3x3* x )
 }
 
 // Returns true if ANY one component of 'x' is true, otherwise returns false.
-HLML_INLINE bool any( const bool3x3* x )
+HLML_INLINE bool any( const bool3x3 *x )
 {
 	return
 		any( &x->rows[0] ) ||
@@ -1545,7 +1545,7 @@ HLML_INLINE bool3x4 operator--( bool3x4& x, const int32_t )
 }
 
 // Returns true if ALL components of the 'x' are true, otherwise returns false.
-HLML_INLINE bool all( const bool3x4* x )
+HLML_INLINE bool all( const bool3x4 *x )
 {
 	return
 		all( &x->rows[0] ) &&
@@ -1554,7 +1554,7 @@ HLML_INLINE bool all( const bool3x4* x )
 }
 
 // Returns true if ANY one component of 'x' is true, otherwise returns false.
-HLML_INLINE bool any( const bool3x4* x )
+HLML_INLINE bool any( const bool3x4 *x )
 {
 	return
 		any( &x->rows[0] ) ||
@@ -1822,7 +1822,7 @@ HLML_INLINE bool4x2 operator--( bool4x2& x, const int32_t )
 }
 
 // Returns true if ALL components of the 'x' are true, otherwise returns false.
-HLML_INLINE bool all( const bool4x2* x )
+HLML_INLINE bool all( const bool4x2 *x )
 {
 	return
 		all( &x->rows[0] ) &&
@@ -1832,7 +1832,7 @@ HLML_INLINE bool all( const bool4x2* x )
 }
 
 // Returns true if ANY one component of 'x' is true, otherwise returns false.
-HLML_INLINE bool any( const bool4x2* x )
+HLML_INLINE bool any( const bool4x2 *x )
 {
 	return
 		any( &x->rows[0] ) ||
@@ -2100,7 +2100,7 @@ HLML_INLINE bool4x3 operator--( bool4x3& x, const int32_t )
 }
 
 // Returns true if ALL components of the 'x' are true, otherwise returns false.
-HLML_INLINE bool all( const bool4x3* x )
+HLML_INLINE bool all( const bool4x3 *x )
 {
 	return
 		all( &x->rows[0] ) &&
@@ -2110,7 +2110,7 @@ HLML_INLINE bool all( const bool4x3* x )
 }
 
 // Returns true if ANY one component of 'x' is true, otherwise returns false.
-HLML_INLINE bool any( const bool4x3* x )
+HLML_INLINE bool any( const bool4x3 *x )
 {
 	return
 		any( &x->rows[0] ) ||
@@ -2379,7 +2379,7 @@ HLML_INLINE bool4x4 operator--( bool4x4& x, const int32_t )
 }
 
 // Returns true if ALL components of the 'x' are true, otherwise returns false.
-HLML_INLINE bool all( const bool4x4* x )
+HLML_INLINE bool all( const bool4x4 *x )
 {
 	return
 		all( &x->rows[0] ) &&
@@ -2389,7 +2389,7 @@ HLML_INLINE bool all( const bool4x4* x )
 }
 
 // Returns true if ANY one component of 'x' is true, otherwise returns false.
-HLML_INLINE bool any( const bool4x4* x )
+HLML_INLINE bool any( const bool4x4 *x )
 {
 	return
 		any( &x->rows[0] ) ||

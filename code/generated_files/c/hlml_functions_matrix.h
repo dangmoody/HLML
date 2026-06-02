@@ -89,7 +89,7 @@ extern "C" {
 
 // bool2x2
 // Returns true if the contents of 'lhs' are the same as the contents of 'rhs', otherwise returns false.
-HLML_INLINE bool bool2x2_equals( const bool2x2* lhs, const bool2x2* rhs )
+HLML_INLINE bool bool2x2_equals( const bool2x2 *lhs, const bool2x2 *rhs )
 {
 	return
 		bool2_equals( &lhs->rows[0], &rhs->rows[0] ) &&
@@ -97,13 +97,13 @@ HLML_INLINE bool bool2x2_equals( const bool2x2* lhs, const bool2x2* rhs )
 }
 
 // Returns true if the contents of 'lhs' are NOT the same as the contents of 'rhs', otherwise returns false.
-HLML_INLINE bool bool2x2_not_equals( const bool2x2* lhs, const bool2x2* rhs )
+HLML_INLINE bool bool2x2_not_equals( const bool2x2 *lhs, const bool2x2 *rhs )
 {
 	return !bool2x2_equals( lhs, rhs );
 }
 
 // Performs a component-wise '<' check against the two matrices and returns the result.
-HLML_INLINE bool2x2 bool2x2_less_than( const bool2x2* lhs, const bool2x2* rhs )
+HLML_INLINE bool2x2 bool2x2_less_than( const bool2x2 *lhs, const bool2x2* rhs )
 {
 	return HLML_CONSTRUCT( bool2x2 )
 	{
@@ -113,7 +113,7 @@ HLML_INLINE bool2x2 bool2x2_less_than( const bool2x2* lhs, const bool2x2* rhs )
 }
 
 // Performs a component-wise '<=' check against the two matrices and returns the result.
-HLML_INLINE bool2x2 bool2x2_less_than_equal( const bool2x2* lhs, const bool2x2* rhs )
+HLML_INLINE bool2x2 bool2x2_less_than_equal( const bool2x2 *lhs, const bool2x2* rhs )
 {
 	return HLML_CONSTRUCT( bool2x2 )
 	{
@@ -123,7 +123,7 @@ HLML_INLINE bool2x2 bool2x2_less_than_equal( const bool2x2* lhs, const bool2x2* 
 }
 
 // Performs a component-wise '>' check against the two matrices and returns the result.
-HLML_INLINE bool2x2 bool2x2_greater_than( const bool2x2* lhs, const bool2x2* rhs )
+HLML_INLINE bool2x2 bool2x2_greater_than( const bool2x2 *lhs, const bool2x2* rhs )
 {
 	return HLML_CONSTRUCT( bool2x2 )
 	{
@@ -133,7 +133,7 @@ HLML_INLINE bool2x2 bool2x2_greater_than( const bool2x2* lhs, const bool2x2* rhs
 }
 
 // Performs a component-wise '>=' check against the two matrices and returns the result.
-HLML_INLINE bool2x2 bool2x2_greater_than_equal( const bool2x2* lhs, const bool2x2* rhs )
+HLML_INLINE bool2x2 bool2x2_greater_than_equal( const bool2x2 *lhs, const bool2x2* rhs )
 {
 	return HLML_CONSTRUCT( bool2x2 )
 	{
@@ -143,7 +143,7 @@ HLML_INLINE bool2x2 bool2x2_greater_than_equal( const bool2x2* lhs, const bool2x
 }
 
 // Performs a component-wise + on the matrix by the scalar and returns the result.
-HLML_INLINE bool2x2 bool2x2_cadds( const bool2x2* lhs, const bool32_t rhs )
+HLML_INLINE bool2x2 bool2x2_cadds( const bool2x2 *lhs, const bool32_t rhs )
 {
 	return HLML_CONSTRUCT( bool2x2 )
 	{
@@ -153,7 +153,7 @@ HLML_INLINE bool2x2 bool2x2_cadds( const bool2x2* lhs, const bool32_t rhs )
 }
 
 // Performs a component-wise + against the two matrices and returns the result.
-HLML_INLINE bool2x2 bool2x2_caddm( const bool2x2* lhs, const bool2x2* rhs )
+HLML_INLINE bool2x2 bool2x2_caddm( const bool2x2 *lhs, const bool2x2* rhs )
 {
 	return HLML_CONSTRUCT( bool2x2 )
 	{
@@ -163,7 +163,7 @@ HLML_INLINE bool2x2 bool2x2_caddm( const bool2x2* lhs, const bool2x2* rhs )
 }
 
 // Performs a component-wise - on the matrix by the scalar and returns the result.
-HLML_INLINE bool2x2 bool2x2_csubs( const bool2x2* lhs, const bool32_t rhs )
+HLML_INLINE bool2x2 bool2x2_csubs( const bool2x2 *lhs, const bool32_t rhs )
 {
 	return HLML_CONSTRUCT( bool2x2 )
 	{
@@ -173,7 +173,7 @@ HLML_INLINE bool2x2 bool2x2_csubs( const bool2x2* lhs, const bool32_t rhs )
 }
 
 // Performs a component-wise - against the two matrices and returns the result.
-HLML_INLINE bool2x2 bool2x2_csubm( const bool2x2* lhs, const bool2x2* rhs )
+HLML_INLINE bool2x2 bool2x2_csubm( const bool2x2 *lhs, const bool2x2* rhs )
 {
 	return HLML_CONSTRUCT( bool2x2 )
 	{
@@ -183,7 +183,7 @@ HLML_INLINE bool2x2 bool2x2_csubm( const bool2x2* lhs, const bool2x2* rhs )
 }
 
 // Performs a component-wise * on the matrix by the scalar and returns the result.
-HLML_INLINE bool2x2 bool2x2_cmuls( const bool2x2* lhs, const bool32_t rhs )
+HLML_INLINE bool2x2 bool2x2_cmuls( const bool2x2 *lhs, const bool32_t rhs )
 {
 	return HLML_CONSTRUCT( bool2x2 )
 	{
@@ -193,7 +193,7 @@ HLML_INLINE bool2x2 bool2x2_cmuls( const bool2x2* lhs, const bool32_t rhs )
 }
 
 // Performs a component-wise * against the two matrices and returns the result.
-HLML_INLINE bool2x2 bool2x2_cmulm( const bool2x2* lhs, const bool2x2* rhs )
+HLML_INLINE bool2x2 bool2x2_cmulm( const bool2x2 *lhs, const bool2x2* rhs )
 {
 	return HLML_CONSTRUCT( bool2x2 )
 	{
@@ -203,7 +203,7 @@ HLML_INLINE bool2x2 bool2x2_cmulm( const bool2x2* lhs, const bool2x2* rhs )
 }
 
 // Performs a component-wise / on the matrix by the scalar and returns the result.
-HLML_INLINE bool2x2 bool2x2_cdivs( const bool2x2* lhs, const bool32_t rhs )
+HLML_INLINE bool2x2 bool2x2_cdivs( const bool2x2 *lhs, const bool32_t rhs )
 {
 	return HLML_CONSTRUCT( bool2x2 )
 	{
@@ -213,7 +213,7 @@ HLML_INLINE bool2x2 bool2x2_cdivs( const bool2x2* lhs, const bool32_t rhs )
 }
 
 // Performs a component-wise / against the two matrices and returns the result.
-HLML_INLINE bool2x2 bool2x2_cdivm( const bool2x2* lhs, const bool2x2* rhs )
+HLML_INLINE bool2x2 bool2x2_cdivm( const bool2x2 *lhs, const bool2x2* rhs )
 {
 	return HLML_CONSTRUCT( bool2x2 )
 	{
@@ -223,7 +223,7 @@ HLML_INLINE bool2x2 bool2x2_cdivm( const bool2x2* lhs, const bool2x2* rhs )
 }
 
 // Returns true if ALL components of the 'x' are true, otherwise returns false.
-HLML_INLINE bool bool2x2_all( const bool2x2* x )
+HLML_INLINE bool bool2x2_all( const bool2x2 *x )
 {
 	return
 		bool2_all( &x->rows[0] ) &&
@@ -231,7 +231,7 @@ HLML_INLINE bool bool2x2_all( const bool2x2* x )
 }
 
 // Returns true if ANY one component of 'x' is true, otherwise returns false.
-HLML_INLINE bool bool2x2_any( const bool2x2* x )
+HLML_INLINE bool bool2x2_any( const bool2x2 *x )
 {
 	return
 		bool2_any( &x->rows[0] ) ||
@@ -257,7 +257,7 @@ HLML_INLINE bool2x2 bool2x2_transpose( const bool2x2* mat )
 
 // bool2x3
 // Returns true if the contents of 'lhs' are the same as the contents of 'rhs', otherwise returns false.
-HLML_INLINE bool bool2x3_equals( const bool2x3* lhs, const bool2x3* rhs )
+HLML_INLINE bool bool2x3_equals( const bool2x3 *lhs, const bool2x3 *rhs )
 {
 	return
 		bool3_equals( &lhs->rows[0], &rhs->rows[0] ) &&
@@ -265,13 +265,13 @@ HLML_INLINE bool bool2x3_equals( const bool2x3* lhs, const bool2x3* rhs )
 }
 
 // Returns true if the contents of 'lhs' are NOT the same as the contents of 'rhs', otherwise returns false.
-HLML_INLINE bool bool2x3_not_equals( const bool2x3* lhs, const bool2x3* rhs )
+HLML_INLINE bool bool2x3_not_equals( const bool2x3 *lhs, const bool2x3 *rhs )
 {
 	return !bool2x3_equals( lhs, rhs );
 }
 
 // Performs a component-wise '<' check against the two matrices and returns the result.
-HLML_INLINE bool2x3 bool2x3_less_than( const bool2x3* lhs, const bool2x3* rhs )
+HLML_INLINE bool2x3 bool2x3_less_than( const bool2x3 *lhs, const bool2x3* rhs )
 {
 	return HLML_CONSTRUCT( bool2x3 )
 	{
@@ -281,7 +281,7 @@ HLML_INLINE bool2x3 bool2x3_less_than( const bool2x3* lhs, const bool2x3* rhs )
 }
 
 // Performs a component-wise '<=' check against the two matrices and returns the result.
-HLML_INLINE bool2x3 bool2x3_less_than_equal( const bool2x3* lhs, const bool2x3* rhs )
+HLML_INLINE bool2x3 bool2x3_less_than_equal( const bool2x3 *lhs, const bool2x3* rhs )
 {
 	return HLML_CONSTRUCT( bool2x3 )
 	{
@@ -291,7 +291,7 @@ HLML_INLINE bool2x3 bool2x3_less_than_equal( const bool2x3* lhs, const bool2x3* 
 }
 
 // Performs a component-wise '>' check against the two matrices and returns the result.
-HLML_INLINE bool2x3 bool2x3_greater_than( const bool2x3* lhs, const bool2x3* rhs )
+HLML_INLINE bool2x3 bool2x3_greater_than( const bool2x3 *lhs, const bool2x3* rhs )
 {
 	return HLML_CONSTRUCT( bool2x3 )
 	{
@@ -301,7 +301,7 @@ HLML_INLINE bool2x3 bool2x3_greater_than( const bool2x3* lhs, const bool2x3* rhs
 }
 
 // Performs a component-wise '>=' check against the two matrices and returns the result.
-HLML_INLINE bool2x3 bool2x3_greater_than_equal( const bool2x3* lhs, const bool2x3* rhs )
+HLML_INLINE bool2x3 bool2x3_greater_than_equal( const bool2x3 *lhs, const bool2x3* rhs )
 {
 	return HLML_CONSTRUCT( bool2x3 )
 	{
@@ -311,7 +311,7 @@ HLML_INLINE bool2x3 bool2x3_greater_than_equal( const bool2x3* lhs, const bool2x
 }
 
 // Performs a component-wise + on the matrix by the scalar and returns the result.
-HLML_INLINE bool2x3 bool2x3_cadds( const bool2x3* lhs, const bool32_t rhs )
+HLML_INLINE bool2x3 bool2x3_cadds( const bool2x3 *lhs, const bool32_t rhs )
 {
 	return HLML_CONSTRUCT( bool2x3 )
 	{
@@ -321,7 +321,7 @@ HLML_INLINE bool2x3 bool2x3_cadds( const bool2x3* lhs, const bool32_t rhs )
 }
 
 // Performs a component-wise + against the two matrices and returns the result.
-HLML_INLINE bool2x3 bool2x3_caddm( const bool2x3* lhs, const bool2x3* rhs )
+HLML_INLINE bool2x3 bool2x3_caddm( const bool2x3 *lhs, const bool2x3* rhs )
 {
 	return HLML_CONSTRUCT( bool2x3 )
 	{
@@ -331,7 +331,7 @@ HLML_INLINE bool2x3 bool2x3_caddm( const bool2x3* lhs, const bool2x3* rhs )
 }
 
 // Performs a component-wise - on the matrix by the scalar and returns the result.
-HLML_INLINE bool2x3 bool2x3_csubs( const bool2x3* lhs, const bool32_t rhs )
+HLML_INLINE bool2x3 bool2x3_csubs( const bool2x3 *lhs, const bool32_t rhs )
 {
 	return HLML_CONSTRUCT( bool2x3 )
 	{
@@ -341,7 +341,7 @@ HLML_INLINE bool2x3 bool2x3_csubs( const bool2x3* lhs, const bool32_t rhs )
 }
 
 // Performs a component-wise - against the two matrices and returns the result.
-HLML_INLINE bool2x3 bool2x3_csubm( const bool2x3* lhs, const bool2x3* rhs )
+HLML_INLINE bool2x3 bool2x3_csubm( const bool2x3 *lhs, const bool2x3* rhs )
 {
 	return HLML_CONSTRUCT( bool2x3 )
 	{
@@ -351,7 +351,7 @@ HLML_INLINE bool2x3 bool2x3_csubm( const bool2x3* lhs, const bool2x3* rhs )
 }
 
 // Performs a component-wise * on the matrix by the scalar and returns the result.
-HLML_INLINE bool2x3 bool2x3_cmuls( const bool2x3* lhs, const bool32_t rhs )
+HLML_INLINE bool2x3 bool2x3_cmuls( const bool2x3 *lhs, const bool32_t rhs )
 {
 	return HLML_CONSTRUCT( bool2x3 )
 	{
@@ -361,7 +361,7 @@ HLML_INLINE bool2x3 bool2x3_cmuls( const bool2x3* lhs, const bool32_t rhs )
 }
 
 // Performs a component-wise * against the two matrices and returns the result.
-HLML_INLINE bool2x3 bool2x3_cmulm( const bool2x3* lhs, const bool2x3* rhs )
+HLML_INLINE bool2x3 bool2x3_cmulm( const bool2x3 *lhs, const bool2x3* rhs )
 {
 	return HLML_CONSTRUCT( bool2x3 )
 	{
@@ -371,7 +371,7 @@ HLML_INLINE bool2x3 bool2x3_cmulm( const bool2x3* lhs, const bool2x3* rhs )
 }
 
 // Performs a component-wise / on the matrix by the scalar and returns the result.
-HLML_INLINE bool2x3 bool2x3_cdivs( const bool2x3* lhs, const bool32_t rhs )
+HLML_INLINE bool2x3 bool2x3_cdivs( const bool2x3 *lhs, const bool32_t rhs )
 {
 	return HLML_CONSTRUCT( bool2x3 )
 	{
@@ -381,7 +381,7 @@ HLML_INLINE bool2x3 bool2x3_cdivs( const bool2x3* lhs, const bool32_t rhs )
 }
 
 // Performs a component-wise / against the two matrices and returns the result.
-HLML_INLINE bool2x3 bool2x3_cdivm( const bool2x3* lhs, const bool2x3* rhs )
+HLML_INLINE bool2x3 bool2x3_cdivm( const bool2x3 *lhs, const bool2x3* rhs )
 {
 	return HLML_CONSTRUCT( bool2x3 )
 	{
@@ -391,7 +391,7 @@ HLML_INLINE bool2x3 bool2x3_cdivm( const bool2x3* lhs, const bool2x3* rhs )
 }
 
 // Returns true if ALL components of the 'x' are true, otherwise returns false.
-HLML_INLINE bool bool2x3_all( const bool2x3* x )
+HLML_INLINE bool bool2x3_all( const bool2x3 *x )
 {
 	return
 		bool3_all( &x->rows[0] ) &&
@@ -399,7 +399,7 @@ HLML_INLINE bool bool2x3_all( const bool2x3* x )
 }
 
 // Returns true if ANY one component of 'x' is true, otherwise returns false.
-HLML_INLINE bool bool2x3_any( const bool2x3* x )
+HLML_INLINE bool bool2x3_any( const bool2x3 *x )
 {
 	return
 		bool3_any( &x->rows[0] ) ||
@@ -426,7 +426,7 @@ HLML_INLINE bool3x2 bool2x3_transpose( const bool2x3* mat )
 
 // bool2x4
 // Returns true if the contents of 'lhs' are the same as the contents of 'rhs', otherwise returns false.
-HLML_INLINE bool bool2x4_equals( const bool2x4* lhs, const bool2x4* rhs )
+HLML_INLINE bool bool2x4_equals( const bool2x4 *lhs, const bool2x4 *rhs )
 {
 	return
 		bool4_equals( &lhs->rows[0], &rhs->rows[0] ) &&
@@ -434,13 +434,13 @@ HLML_INLINE bool bool2x4_equals( const bool2x4* lhs, const bool2x4* rhs )
 }
 
 // Returns true if the contents of 'lhs' are NOT the same as the contents of 'rhs', otherwise returns false.
-HLML_INLINE bool bool2x4_not_equals( const bool2x4* lhs, const bool2x4* rhs )
+HLML_INLINE bool bool2x4_not_equals( const bool2x4 *lhs, const bool2x4 *rhs )
 {
 	return !bool2x4_equals( lhs, rhs );
 }
 
 // Performs a component-wise '<' check against the two matrices and returns the result.
-HLML_INLINE bool2x4 bool2x4_less_than( const bool2x4* lhs, const bool2x4* rhs )
+HLML_INLINE bool2x4 bool2x4_less_than( const bool2x4 *lhs, const bool2x4* rhs )
 {
 	return HLML_CONSTRUCT( bool2x4 )
 	{
@@ -450,7 +450,7 @@ HLML_INLINE bool2x4 bool2x4_less_than( const bool2x4* lhs, const bool2x4* rhs )
 }
 
 // Performs a component-wise '<=' check against the two matrices and returns the result.
-HLML_INLINE bool2x4 bool2x4_less_than_equal( const bool2x4* lhs, const bool2x4* rhs )
+HLML_INLINE bool2x4 bool2x4_less_than_equal( const bool2x4 *lhs, const bool2x4* rhs )
 {
 	return HLML_CONSTRUCT( bool2x4 )
 	{
@@ -460,7 +460,7 @@ HLML_INLINE bool2x4 bool2x4_less_than_equal( const bool2x4* lhs, const bool2x4* 
 }
 
 // Performs a component-wise '>' check against the two matrices and returns the result.
-HLML_INLINE bool2x4 bool2x4_greater_than( const bool2x4* lhs, const bool2x4* rhs )
+HLML_INLINE bool2x4 bool2x4_greater_than( const bool2x4 *lhs, const bool2x4* rhs )
 {
 	return HLML_CONSTRUCT( bool2x4 )
 	{
@@ -470,7 +470,7 @@ HLML_INLINE bool2x4 bool2x4_greater_than( const bool2x4* lhs, const bool2x4* rhs
 }
 
 // Performs a component-wise '>=' check against the two matrices and returns the result.
-HLML_INLINE bool2x4 bool2x4_greater_than_equal( const bool2x4* lhs, const bool2x4* rhs )
+HLML_INLINE bool2x4 bool2x4_greater_than_equal( const bool2x4 *lhs, const bool2x4* rhs )
 {
 	return HLML_CONSTRUCT( bool2x4 )
 	{
@@ -480,7 +480,7 @@ HLML_INLINE bool2x4 bool2x4_greater_than_equal( const bool2x4* lhs, const bool2x
 }
 
 // Performs a component-wise + on the matrix by the scalar and returns the result.
-HLML_INLINE bool2x4 bool2x4_cadds( const bool2x4* lhs, const bool32_t rhs )
+HLML_INLINE bool2x4 bool2x4_cadds( const bool2x4 *lhs, const bool32_t rhs )
 {
 	return HLML_CONSTRUCT( bool2x4 )
 	{
@@ -490,7 +490,7 @@ HLML_INLINE bool2x4 bool2x4_cadds( const bool2x4* lhs, const bool32_t rhs )
 }
 
 // Performs a component-wise + against the two matrices and returns the result.
-HLML_INLINE bool2x4 bool2x4_caddm( const bool2x4* lhs, const bool2x4* rhs )
+HLML_INLINE bool2x4 bool2x4_caddm( const bool2x4 *lhs, const bool2x4* rhs )
 {
 	return HLML_CONSTRUCT( bool2x4 )
 	{
@@ -500,7 +500,7 @@ HLML_INLINE bool2x4 bool2x4_caddm( const bool2x4* lhs, const bool2x4* rhs )
 }
 
 // Performs a component-wise - on the matrix by the scalar and returns the result.
-HLML_INLINE bool2x4 bool2x4_csubs( const bool2x4* lhs, const bool32_t rhs )
+HLML_INLINE bool2x4 bool2x4_csubs( const bool2x4 *lhs, const bool32_t rhs )
 {
 	return HLML_CONSTRUCT( bool2x4 )
 	{
@@ -510,7 +510,7 @@ HLML_INLINE bool2x4 bool2x4_csubs( const bool2x4* lhs, const bool32_t rhs )
 }
 
 // Performs a component-wise - against the two matrices and returns the result.
-HLML_INLINE bool2x4 bool2x4_csubm( const bool2x4* lhs, const bool2x4* rhs )
+HLML_INLINE bool2x4 bool2x4_csubm( const bool2x4 *lhs, const bool2x4* rhs )
 {
 	return HLML_CONSTRUCT( bool2x4 )
 	{
@@ -520,7 +520,7 @@ HLML_INLINE bool2x4 bool2x4_csubm( const bool2x4* lhs, const bool2x4* rhs )
 }
 
 // Performs a component-wise * on the matrix by the scalar and returns the result.
-HLML_INLINE bool2x4 bool2x4_cmuls( const bool2x4* lhs, const bool32_t rhs )
+HLML_INLINE bool2x4 bool2x4_cmuls( const bool2x4 *lhs, const bool32_t rhs )
 {
 	return HLML_CONSTRUCT( bool2x4 )
 	{
@@ -530,7 +530,7 @@ HLML_INLINE bool2x4 bool2x4_cmuls( const bool2x4* lhs, const bool32_t rhs )
 }
 
 // Performs a component-wise * against the two matrices and returns the result.
-HLML_INLINE bool2x4 bool2x4_cmulm( const bool2x4* lhs, const bool2x4* rhs )
+HLML_INLINE bool2x4 bool2x4_cmulm( const bool2x4 *lhs, const bool2x4* rhs )
 {
 	return HLML_CONSTRUCT( bool2x4 )
 	{
@@ -540,7 +540,7 @@ HLML_INLINE bool2x4 bool2x4_cmulm( const bool2x4* lhs, const bool2x4* rhs )
 }
 
 // Performs a component-wise / on the matrix by the scalar and returns the result.
-HLML_INLINE bool2x4 bool2x4_cdivs( const bool2x4* lhs, const bool32_t rhs )
+HLML_INLINE bool2x4 bool2x4_cdivs( const bool2x4 *lhs, const bool32_t rhs )
 {
 	return HLML_CONSTRUCT( bool2x4 )
 	{
@@ -550,7 +550,7 @@ HLML_INLINE bool2x4 bool2x4_cdivs( const bool2x4* lhs, const bool32_t rhs )
 }
 
 // Performs a component-wise / against the two matrices and returns the result.
-HLML_INLINE bool2x4 bool2x4_cdivm( const bool2x4* lhs, const bool2x4* rhs )
+HLML_INLINE bool2x4 bool2x4_cdivm( const bool2x4 *lhs, const bool2x4* rhs )
 {
 	return HLML_CONSTRUCT( bool2x4 )
 	{
@@ -560,7 +560,7 @@ HLML_INLINE bool2x4 bool2x4_cdivm( const bool2x4* lhs, const bool2x4* rhs )
 }
 
 // Returns true if ALL components of the 'x' are true, otherwise returns false.
-HLML_INLINE bool bool2x4_all( const bool2x4* x )
+HLML_INLINE bool bool2x4_all( const bool2x4 *x )
 {
 	return
 		bool4_all( &x->rows[0] ) &&
@@ -568,7 +568,7 @@ HLML_INLINE bool bool2x4_all( const bool2x4* x )
 }
 
 // Returns true if ANY one component of 'x' is true, otherwise returns false.
-HLML_INLINE bool bool2x4_any( const bool2x4* x )
+HLML_INLINE bool bool2x4_any( const bool2x4 *x )
 {
 	return
 		bool4_any( &x->rows[0] ) ||
@@ -596,7 +596,7 @@ HLML_INLINE bool4x2 bool2x4_transpose( const bool2x4* mat )
 
 // bool3x2
 // Returns true if the contents of 'lhs' are the same as the contents of 'rhs', otherwise returns false.
-HLML_INLINE bool bool3x2_equals( const bool3x2* lhs, const bool3x2* rhs )
+HLML_INLINE bool bool3x2_equals( const bool3x2 *lhs, const bool3x2 *rhs )
 {
 	return
 		bool2_equals( &lhs->rows[0], &rhs->rows[0] ) &&
@@ -605,13 +605,13 @@ HLML_INLINE bool bool3x2_equals( const bool3x2* lhs, const bool3x2* rhs )
 }
 
 // Returns true if the contents of 'lhs' are NOT the same as the contents of 'rhs', otherwise returns false.
-HLML_INLINE bool bool3x2_not_equals( const bool3x2* lhs, const bool3x2* rhs )
+HLML_INLINE bool bool3x2_not_equals( const bool3x2 *lhs, const bool3x2 *rhs )
 {
 	return !bool3x2_equals( lhs, rhs );
 }
 
 // Performs a component-wise '<' check against the two matrices and returns the result.
-HLML_INLINE bool3x2 bool3x2_less_than( const bool3x2* lhs, const bool3x2* rhs )
+HLML_INLINE bool3x2 bool3x2_less_than( const bool3x2 *lhs, const bool3x2* rhs )
 {
 	return HLML_CONSTRUCT( bool3x2 )
 	{
@@ -622,7 +622,7 @@ HLML_INLINE bool3x2 bool3x2_less_than( const bool3x2* lhs, const bool3x2* rhs )
 }
 
 // Performs a component-wise '<=' check against the two matrices and returns the result.
-HLML_INLINE bool3x2 bool3x2_less_than_equal( const bool3x2* lhs, const bool3x2* rhs )
+HLML_INLINE bool3x2 bool3x2_less_than_equal( const bool3x2 *lhs, const bool3x2* rhs )
 {
 	return HLML_CONSTRUCT( bool3x2 )
 	{
@@ -633,7 +633,7 @@ HLML_INLINE bool3x2 bool3x2_less_than_equal( const bool3x2* lhs, const bool3x2* 
 }
 
 // Performs a component-wise '>' check against the two matrices and returns the result.
-HLML_INLINE bool3x2 bool3x2_greater_than( const bool3x2* lhs, const bool3x2* rhs )
+HLML_INLINE bool3x2 bool3x2_greater_than( const bool3x2 *lhs, const bool3x2* rhs )
 {
 	return HLML_CONSTRUCT( bool3x2 )
 	{
@@ -644,7 +644,7 @@ HLML_INLINE bool3x2 bool3x2_greater_than( const bool3x2* lhs, const bool3x2* rhs
 }
 
 // Performs a component-wise '>=' check against the two matrices and returns the result.
-HLML_INLINE bool3x2 bool3x2_greater_than_equal( const bool3x2* lhs, const bool3x2* rhs )
+HLML_INLINE bool3x2 bool3x2_greater_than_equal( const bool3x2 *lhs, const bool3x2* rhs )
 {
 	return HLML_CONSTRUCT( bool3x2 )
 	{
@@ -655,7 +655,7 @@ HLML_INLINE bool3x2 bool3x2_greater_than_equal( const bool3x2* lhs, const bool3x
 }
 
 // Performs a component-wise + on the matrix by the scalar and returns the result.
-HLML_INLINE bool3x2 bool3x2_cadds( const bool3x2* lhs, const bool32_t rhs )
+HLML_INLINE bool3x2 bool3x2_cadds( const bool3x2 *lhs, const bool32_t rhs )
 {
 	return HLML_CONSTRUCT( bool3x2 )
 	{
@@ -666,7 +666,7 @@ HLML_INLINE bool3x2 bool3x2_cadds( const bool3x2* lhs, const bool32_t rhs )
 }
 
 // Performs a component-wise + against the two matrices and returns the result.
-HLML_INLINE bool3x2 bool3x2_caddm( const bool3x2* lhs, const bool3x2* rhs )
+HLML_INLINE bool3x2 bool3x2_caddm( const bool3x2 *lhs, const bool3x2* rhs )
 {
 	return HLML_CONSTRUCT( bool3x2 )
 	{
@@ -677,7 +677,7 @@ HLML_INLINE bool3x2 bool3x2_caddm( const bool3x2* lhs, const bool3x2* rhs )
 }
 
 // Performs a component-wise - on the matrix by the scalar and returns the result.
-HLML_INLINE bool3x2 bool3x2_csubs( const bool3x2* lhs, const bool32_t rhs )
+HLML_INLINE bool3x2 bool3x2_csubs( const bool3x2 *lhs, const bool32_t rhs )
 {
 	return HLML_CONSTRUCT( bool3x2 )
 	{
@@ -688,7 +688,7 @@ HLML_INLINE bool3x2 bool3x2_csubs( const bool3x2* lhs, const bool32_t rhs )
 }
 
 // Performs a component-wise - against the two matrices and returns the result.
-HLML_INLINE bool3x2 bool3x2_csubm( const bool3x2* lhs, const bool3x2* rhs )
+HLML_INLINE bool3x2 bool3x2_csubm( const bool3x2 *lhs, const bool3x2* rhs )
 {
 	return HLML_CONSTRUCT( bool3x2 )
 	{
@@ -699,7 +699,7 @@ HLML_INLINE bool3x2 bool3x2_csubm( const bool3x2* lhs, const bool3x2* rhs )
 }
 
 // Performs a component-wise * on the matrix by the scalar and returns the result.
-HLML_INLINE bool3x2 bool3x2_cmuls( const bool3x2* lhs, const bool32_t rhs )
+HLML_INLINE bool3x2 bool3x2_cmuls( const bool3x2 *lhs, const bool32_t rhs )
 {
 	return HLML_CONSTRUCT( bool3x2 )
 	{
@@ -710,7 +710,7 @@ HLML_INLINE bool3x2 bool3x2_cmuls( const bool3x2* lhs, const bool32_t rhs )
 }
 
 // Performs a component-wise * against the two matrices and returns the result.
-HLML_INLINE bool3x2 bool3x2_cmulm( const bool3x2* lhs, const bool3x2* rhs )
+HLML_INLINE bool3x2 bool3x2_cmulm( const bool3x2 *lhs, const bool3x2* rhs )
 {
 	return HLML_CONSTRUCT( bool3x2 )
 	{
@@ -721,7 +721,7 @@ HLML_INLINE bool3x2 bool3x2_cmulm( const bool3x2* lhs, const bool3x2* rhs )
 }
 
 // Performs a component-wise / on the matrix by the scalar and returns the result.
-HLML_INLINE bool3x2 bool3x2_cdivs( const bool3x2* lhs, const bool32_t rhs )
+HLML_INLINE bool3x2 bool3x2_cdivs( const bool3x2 *lhs, const bool32_t rhs )
 {
 	return HLML_CONSTRUCT( bool3x2 )
 	{
@@ -732,7 +732,7 @@ HLML_INLINE bool3x2 bool3x2_cdivs( const bool3x2* lhs, const bool32_t rhs )
 }
 
 // Performs a component-wise / against the two matrices and returns the result.
-HLML_INLINE bool3x2 bool3x2_cdivm( const bool3x2* lhs, const bool3x2* rhs )
+HLML_INLINE bool3x2 bool3x2_cdivm( const bool3x2 *lhs, const bool3x2* rhs )
 {
 	return HLML_CONSTRUCT( bool3x2 )
 	{
@@ -743,7 +743,7 @@ HLML_INLINE bool3x2 bool3x2_cdivm( const bool3x2* lhs, const bool3x2* rhs )
 }
 
 // Returns true if ALL components of the 'x' are true, otherwise returns false.
-HLML_INLINE bool bool3x2_all( const bool3x2* x )
+HLML_INLINE bool bool3x2_all( const bool3x2 *x )
 {
 	return
 		bool2_all( &x->rows[0] ) &&
@@ -752,7 +752,7 @@ HLML_INLINE bool bool3x2_all( const bool3x2* x )
 }
 
 // Returns true if ANY one component of 'x' is true, otherwise returns false.
-HLML_INLINE bool bool3x2_any( const bool3x2* x )
+HLML_INLINE bool bool3x2_any( const bool3x2 *x )
 {
 	return
 		bool2_any( &x->rows[0] ) ||
@@ -780,7 +780,7 @@ HLML_INLINE bool2x3 bool3x2_transpose( const bool3x2* mat )
 
 // bool3x3
 // Returns true if the contents of 'lhs' are the same as the contents of 'rhs', otherwise returns false.
-HLML_INLINE bool bool3x3_equals( const bool3x3* lhs, const bool3x3* rhs )
+HLML_INLINE bool bool3x3_equals( const bool3x3 *lhs, const bool3x3 *rhs )
 {
 	return
 		bool3_equals( &lhs->rows[0], &rhs->rows[0] ) &&
@@ -789,13 +789,13 @@ HLML_INLINE bool bool3x3_equals( const bool3x3* lhs, const bool3x3* rhs )
 }
 
 // Returns true if the contents of 'lhs' are NOT the same as the contents of 'rhs', otherwise returns false.
-HLML_INLINE bool bool3x3_not_equals( const bool3x3* lhs, const bool3x3* rhs )
+HLML_INLINE bool bool3x3_not_equals( const bool3x3 *lhs, const bool3x3 *rhs )
 {
 	return !bool3x3_equals( lhs, rhs );
 }
 
 // Performs a component-wise '<' check against the two matrices and returns the result.
-HLML_INLINE bool3x3 bool3x3_less_than( const bool3x3* lhs, const bool3x3* rhs )
+HLML_INLINE bool3x3 bool3x3_less_than( const bool3x3 *lhs, const bool3x3* rhs )
 {
 	return HLML_CONSTRUCT( bool3x3 )
 	{
@@ -806,7 +806,7 @@ HLML_INLINE bool3x3 bool3x3_less_than( const bool3x3* lhs, const bool3x3* rhs )
 }
 
 // Performs a component-wise '<=' check against the two matrices and returns the result.
-HLML_INLINE bool3x3 bool3x3_less_than_equal( const bool3x3* lhs, const bool3x3* rhs )
+HLML_INLINE bool3x3 bool3x3_less_than_equal( const bool3x3 *lhs, const bool3x3* rhs )
 {
 	return HLML_CONSTRUCT( bool3x3 )
 	{
@@ -817,7 +817,7 @@ HLML_INLINE bool3x3 bool3x3_less_than_equal( const bool3x3* lhs, const bool3x3* 
 }
 
 // Performs a component-wise '>' check against the two matrices and returns the result.
-HLML_INLINE bool3x3 bool3x3_greater_than( const bool3x3* lhs, const bool3x3* rhs )
+HLML_INLINE bool3x3 bool3x3_greater_than( const bool3x3 *lhs, const bool3x3* rhs )
 {
 	return HLML_CONSTRUCT( bool3x3 )
 	{
@@ -828,7 +828,7 @@ HLML_INLINE bool3x3 bool3x3_greater_than( const bool3x3* lhs, const bool3x3* rhs
 }
 
 // Performs a component-wise '>=' check against the two matrices and returns the result.
-HLML_INLINE bool3x3 bool3x3_greater_than_equal( const bool3x3* lhs, const bool3x3* rhs )
+HLML_INLINE bool3x3 bool3x3_greater_than_equal( const bool3x3 *lhs, const bool3x3* rhs )
 {
 	return HLML_CONSTRUCT( bool3x3 )
 	{
@@ -839,7 +839,7 @@ HLML_INLINE bool3x3 bool3x3_greater_than_equal( const bool3x3* lhs, const bool3x
 }
 
 // Performs a component-wise + on the matrix by the scalar and returns the result.
-HLML_INLINE bool3x3 bool3x3_cadds( const bool3x3* lhs, const bool32_t rhs )
+HLML_INLINE bool3x3 bool3x3_cadds( const bool3x3 *lhs, const bool32_t rhs )
 {
 	return HLML_CONSTRUCT( bool3x3 )
 	{
@@ -850,7 +850,7 @@ HLML_INLINE bool3x3 bool3x3_cadds( const bool3x3* lhs, const bool32_t rhs )
 }
 
 // Performs a component-wise + against the two matrices and returns the result.
-HLML_INLINE bool3x3 bool3x3_caddm( const bool3x3* lhs, const bool3x3* rhs )
+HLML_INLINE bool3x3 bool3x3_caddm( const bool3x3 *lhs, const bool3x3* rhs )
 {
 	return HLML_CONSTRUCT( bool3x3 )
 	{
@@ -861,7 +861,7 @@ HLML_INLINE bool3x3 bool3x3_caddm( const bool3x3* lhs, const bool3x3* rhs )
 }
 
 // Performs a component-wise - on the matrix by the scalar and returns the result.
-HLML_INLINE bool3x3 bool3x3_csubs( const bool3x3* lhs, const bool32_t rhs )
+HLML_INLINE bool3x3 bool3x3_csubs( const bool3x3 *lhs, const bool32_t rhs )
 {
 	return HLML_CONSTRUCT( bool3x3 )
 	{
@@ -872,7 +872,7 @@ HLML_INLINE bool3x3 bool3x3_csubs( const bool3x3* lhs, const bool32_t rhs )
 }
 
 // Performs a component-wise - against the two matrices and returns the result.
-HLML_INLINE bool3x3 bool3x3_csubm( const bool3x3* lhs, const bool3x3* rhs )
+HLML_INLINE bool3x3 bool3x3_csubm( const bool3x3 *lhs, const bool3x3* rhs )
 {
 	return HLML_CONSTRUCT( bool3x3 )
 	{
@@ -883,7 +883,7 @@ HLML_INLINE bool3x3 bool3x3_csubm( const bool3x3* lhs, const bool3x3* rhs )
 }
 
 // Performs a component-wise * on the matrix by the scalar and returns the result.
-HLML_INLINE bool3x3 bool3x3_cmuls( const bool3x3* lhs, const bool32_t rhs )
+HLML_INLINE bool3x3 bool3x3_cmuls( const bool3x3 *lhs, const bool32_t rhs )
 {
 	return HLML_CONSTRUCT( bool3x3 )
 	{
@@ -894,7 +894,7 @@ HLML_INLINE bool3x3 bool3x3_cmuls( const bool3x3* lhs, const bool32_t rhs )
 }
 
 // Performs a component-wise * against the two matrices and returns the result.
-HLML_INLINE bool3x3 bool3x3_cmulm( const bool3x3* lhs, const bool3x3* rhs )
+HLML_INLINE bool3x3 bool3x3_cmulm( const bool3x3 *lhs, const bool3x3* rhs )
 {
 	return HLML_CONSTRUCT( bool3x3 )
 	{
@@ -905,7 +905,7 @@ HLML_INLINE bool3x3 bool3x3_cmulm( const bool3x3* lhs, const bool3x3* rhs )
 }
 
 // Performs a component-wise / on the matrix by the scalar and returns the result.
-HLML_INLINE bool3x3 bool3x3_cdivs( const bool3x3* lhs, const bool32_t rhs )
+HLML_INLINE bool3x3 bool3x3_cdivs( const bool3x3 *lhs, const bool32_t rhs )
 {
 	return HLML_CONSTRUCT( bool3x3 )
 	{
@@ -916,7 +916,7 @@ HLML_INLINE bool3x3 bool3x3_cdivs( const bool3x3* lhs, const bool32_t rhs )
 }
 
 // Performs a component-wise / against the two matrices and returns the result.
-HLML_INLINE bool3x3 bool3x3_cdivm( const bool3x3* lhs, const bool3x3* rhs )
+HLML_INLINE bool3x3 bool3x3_cdivm( const bool3x3 *lhs, const bool3x3* rhs )
 {
 	return HLML_CONSTRUCT( bool3x3 )
 	{
@@ -927,7 +927,7 @@ HLML_INLINE bool3x3 bool3x3_cdivm( const bool3x3* lhs, const bool3x3* rhs )
 }
 
 // Returns true if ALL components of the 'x' are true, otherwise returns false.
-HLML_INLINE bool bool3x3_all( const bool3x3* x )
+HLML_INLINE bool bool3x3_all( const bool3x3 *x )
 {
 	return
 		bool3_all( &x->rows[0] ) &&
@@ -936,7 +936,7 @@ HLML_INLINE bool bool3x3_all( const bool3x3* x )
 }
 
 // Returns true if ANY one component of 'x' is true, otherwise returns false.
-HLML_INLINE bool bool3x3_any( const bool3x3* x )
+HLML_INLINE bool bool3x3_any( const bool3x3 *x )
 {
 	return
 		bool3_any( &x->rows[0] ) ||
@@ -965,7 +965,7 @@ HLML_INLINE bool3x3 bool3x3_transpose( const bool3x3* mat )
 
 // bool3x4
 // Returns true if the contents of 'lhs' are the same as the contents of 'rhs', otherwise returns false.
-HLML_INLINE bool bool3x4_equals( const bool3x4* lhs, const bool3x4* rhs )
+HLML_INLINE bool bool3x4_equals( const bool3x4 *lhs, const bool3x4 *rhs )
 {
 	return
 		bool4_equals( &lhs->rows[0], &rhs->rows[0] ) &&
@@ -974,13 +974,13 @@ HLML_INLINE bool bool3x4_equals( const bool3x4* lhs, const bool3x4* rhs )
 }
 
 // Returns true if the contents of 'lhs' are NOT the same as the contents of 'rhs', otherwise returns false.
-HLML_INLINE bool bool3x4_not_equals( const bool3x4* lhs, const bool3x4* rhs )
+HLML_INLINE bool bool3x4_not_equals( const bool3x4 *lhs, const bool3x4 *rhs )
 {
 	return !bool3x4_equals( lhs, rhs );
 }
 
 // Performs a component-wise '<' check against the two matrices and returns the result.
-HLML_INLINE bool3x4 bool3x4_less_than( const bool3x4* lhs, const bool3x4* rhs )
+HLML_INLINE bool3x4 bool3x4_less_than( const bool3x4 *lhs, const bool3x4* rhs )
 {
 	return HLML_CONSTRUCT( bool3x4 )
 	{
@@ -991,7 +991,7 @@ HLML_INLINE bool3x4 bool3x4_less_than( const bool3x4* lhs, const bool3x4* rhs )
 }
 
 // Performs a component-wise '<=' check against the two matrices and returns the result.
-HLML_INLINE bool3x4 bool3x4_less_than_equal( const bool3x4* lhs, const bool3x4* rhs )
+HLML_INLINE bool3x4 bool3x4_less_than_equal( const bool3x4 *lhs, const bool3x4* rhs )
 {
 	return HLML_CONSTRUCT( bool3x4 )
 	{
@@ -1002,7 +1002,7 @@ HLML_INLINE bool3x4 bool3x4_less_than_equal( const bool3x4* lhs, const bool3x4* 
 }
 
 // Performs a component-wise '>' check against the two matrices and returns the result.
-HLML_INLINE bool3x4 bool3x4_greater_than( const bool3x4* lhs, const bool3x4* rhs )
+HLML_INLINE bool3x4 bool3x4_greater_than( const bool3x4 *lhs, const bool3x4* rhs )
 {
 	return HLML_CONSTRUCT( bool3x4 )
 	{
@@ -1013,7 +1013,7 @@ HLML_INLINE bool3x4 bool3x4_greater_than( const bool3x4* lhs, const bool3x4* rhs
 }
 
 // Performs a component-wise '>=' check against the two matrices and returns the result.
-HLML_INLINE bool3x4 bool3x4_greater_than_equal( const bool3x4* lhs, const bool3x4* rhs )
+HLML_INLINE bool3x4 bool3x4_greater_than_equal( const bool3x4 *lhs, const bool3x4* rhs )
 {
 	return HLML_CONSTRUCT( bool3x4 )
 	{
@@ -1024,7 +1024,7 @@ HLML_INLINE bool3x4 bool3x4_greater_than_equal( const bool3x4* lhs, const bool3x
 }
 
 // Performs a component-wise + on the matrix by the scalar and returns the result.
-HLML_INLINE bool3x4 bool3x4_cadds( const bool3x4* lhs, const bool32_t rhs )
+HLML_INLINE bool3x4 bool3x4_cadds( const bool3x4 *lhs, const bool32_t rhs )
 {
 	return HLML_CONSTRUCT( bool3x4 )
 	{
@@ -1035,7 +1035,7 @@ HLML_INLINE bool3x4 bool3x4_cadds( const bool3x4* lhs, const bool32_t rhs )
 }
 
 // Performs a component-wise + against the two matrices and returns the result.
-HLML_INLINE bool3x4 bool3x4_caddm( const bool3x4* lhs, const bool3x4* rhs )
+HLML_INLINE bool3x4 bool3x4_caddm( const bool3x4 *lhs, const bool3x4* rhs )
 {
 	return HLML_CONSTRUCT( bool3x4 )
 	{
@@ -1046,7 +1046,7 @@ HLML_INLINE bool3x4 bool3x4_caddm( const bool3x4* lhs, const bool3x4* rhs )
 }
 
 // Performs a component-wise - on the matrix by the scalar and returns the result.
-HLML_INLINE bool3x4 bool3x4_csubs( const bool3x4* lhs, const bool32_t rhs )
+HLML_INLINE bool3x4 bool3x4_csubs( const bool3x4 *lhs, const bool32_t rhs )
 {
 	return HLML_CONSTRUCT( bool3x4 )
 	{
@@ -1057,7 +1057,7 @@ HLML_INLINE bool3x4 bool3x4_csubs( const bool3x4* lhs, const bool32_t rhs )
 }
 
 // Performs a component-wise - against the two matrices and returns the result.
-HLML_INLINE bool3x4 bool3x4_csubm( const bool3x4* lhs, const bool3x4* rhs )
+HLML_INLINE bool3x4 bool3x4_csubm( const bool3x4 *lhs, const bool3x4* rhs )
 {
 	return HLML_CONSTRUCT( bool3x4 )
 	{
@@ -1068,7 +1068,7 @@ HLML_INLINE bool3x4 bool3x4_csubm( const bool3x4* lhs, const bool3x4* rhs )
 }
 
 // Performs a component-wise * on the matrix by the scalar and returns the result.
-HLML_INLINE bool3x4 bool3x4_cmuls( const bool3x4* lhs, const bool32_t rhs )
+HLML_INLINE bool3x4 bool3x4_cmuls( const bool3x4 *lhs, const bool32_t rhs )
 {
 	return HLML_CONSTRUCT( bool3x4 )
 	{
@@ -1079,7 +1079,7 @@ HLML_INLINE bool3x4 bool3x4_cmuls( const bool3x4* lhs, const bool32_t rhs )
 }
 
 // Performs a component-wise * against the two matrices and returns the result.
-HLML_INLINE bool3x4 bool3x4_cmulm( const bool3x4* lhs, const bool3x4* rhs )
+HLML_INLINE bool3x4 bool3x4_cmulm( const bool3x4 *lhs, const bool3x4* rhs )
 {
 	return HLML_CONSTRUCT( bool3x4 )
 	{
@@ -1090,7 +1090,7 @@ HLML_INLINE bool3x4 bool3x4_cmulm( const bool3x4* lhs, const bool3x4* rhs )
 }
 
 // Performs a component-wise / on the matrix by the scalar and returns the result.
-HLML_INLINE bool3x4 bool3x4_cdivs( const bool3x4* lhs, const bool32_t rhs )
+HLML_INLINE bool3x4 bool3x4_cdivs( const bool3x4 *lhs, const bool32_t rhs )
 {
 	return HLML_CONSTRUCT( bool3x4 )
 	{
@@ -1101,7 +1101,7 @@ HLML_INLINE bool3x4 bool3x4_cdivs( const bool3x4* lhs, const bool32_t rhs )
 }
 
 // Performs a component-wise / against the two matrices and returns the result.
-HLML_INLINE bool3x4 bool3x4_cdivm( const bool3x4* lhs, const bool3x4* rhs )
+HLML_INLINE bool3x4 bool3x4_cdivm( const bool3x4 *lhs, const bool3x4* rhs )
 {
 	return HLML_CONSTRUCT( bool3x4 )
 	{
@@ -1112,7 +1112,7 @@ HLML_INLINE bool3x4 bool3x4_cdivm( const bool3x4* lhs, const bool3x4* rhs )
 }
 
 // Returns true if ALL components of the 'x' are true, otherwise returns false.
-HLML_INLINE bool bool3x4_all( const bool3x4* x )
+HLML_INLINE bool bool3x4_all( const bool3x4 *x )
 {
 	return
 		bool4_all( &x->rows[0] ) &&
@@ -1121,7 +1121,7 @@ HLML_INLINE bool bool3x4_all( const bool3x4* x )
 }
 
 // Returns true if ANY one component of 'x' is true, otherwise returns false.
-HLML_INLINE bool bool3x4_any( const bool3x4* x )
+HLML_INLINE bool bool3x4_any( const bool3x4 *x )
 {
 	return
 		bool4_any( &x->rows[0] ) ||
@@ -1151,7 +1151,7 @@ HLML_INLINE bool4x3 bool3x4_transpose( const bool3x4* mat )
 
 // bool4x2
 // Returns true if the contents of 'lhs' are the same as the contents of 'rhs', otherwise returns false.
-HLML_INLINE bool bool4x2_equals( const bool4x2* lhs, const bool4x2* rhs )
+HLML_INLINE bool bool4x2_equals( const bool4x2 *lhs, const bool4x2 *rhs )
 {
 	return
 		bool2_equals( &lhs->rows[0], &rhs->rows[0] ) &&
@@ -1161,13 +1161,13 @@ HLML_INLINE bool bool4x2_equals( const bool4x2* lhs, const bool4x2* rhs )
 }
 
 // Returns true if the contents of 'lhs' are NOT the same as the contents of 'rhs', otherwise returns false.
-HLML_INLINE bool bool4x2_not_equals( const bool4x2* lhs, const bool4x2* rhs )
+HLML_INLINE bool bool4x2_not_equals( const bool4x2 *lhs, const bool4x2 *rhs )
 {
 	return !bool4x2_equals( lhs, rhs );
 }
 
 // Performs a component-wise '<' check against the two matrices and returns the result.
-HLML_INLINE bool4x2 bool4x2_less_than( const bool4x2* lhs, const bool4x2* rhs )
+HLML_INLINE bool4x2 bool4x2_less_than( const bool4x2 *lhs, const bool4x2* rhs )
 {
 	return HLML_CONSTRUCT( bool4x2 )
 	{
@@ -1179,7 +1179,7 @@ HLML_INLINE bool4x2 bool4x2_less_than( const bool4x2* lhs, const bool4x2* rhs )
 }
 
 // Performs a component-wise '<=' check against the two matrices and returns the result.
-HLML_INLINE bool4x2 bool4x2_less_than_equal( const bool4x2* lhs, const bool4x2* rhs )
+HLML_INLINE bool4x2 bool4x2_less_than_equal( const bool4x2 *lhs, const bool4x2* rhs )
 {
 	return HLML_CONSTRUCT( bool4x2 )
 	{
@@ -1191,7 +1191,7 @@ HLML_INLINE bool4x2 bool4x2_less_than_equal( const bool4x2* lhs, const bool4x2* 
 }
 
 // Performs a component-wise '>' check against the two matrices and returns the result.
-HLML_INLINE bool4x2 bool4x2_greater_than( const bool4x2* lhs, const bool4x2* rhs )
+HLML_INLINE bool4x2 bool4x2_greater_than( const bool4x2 *lhs, const bool4x2* rhs )
 {
 	return HLML_CONSTRUCT( bool4x2 )
 	{
@@ -1203,7 +1203,7 @@ HLML_INLINE bool4x2 bool4x2_greater_than( const bool4x2* lhs, const bool4x2* rhs
 }
 
 // Performs a component-wise '>=' check against the two matrices and returns the result.
-HLML_INLINE bool4x2 bool4x2_greater_than_equal( const bool4x2* lhs, const bool4x2* rhs )
+HLML_INLINE bool4x2 bool4x2_greater_than_equal( const bool4x2 *lhs, const bool4x2* rhs )
 {
 	return HLML_CONSTRUCT( bool4x2 )
 	{
@@ -1215,7 +1215,7 @@ HLML_INLINE bool4x2 bool4x2_greater_than_equal( const bool4x2* lhs, const bool4x
 }
 
 // Performs a component-wise + on the matrix by the scalar and returns the result.
-HLML_INLINE bool4x2 bool4x2_cadds( const bool4x2* lhs, const bool32_t rhs )
+HLML_INLINE bool4x2 bool4x2_cadds( const bool4x2 *lhs, const bool32_t rhs )
 {
 	return HLML_CONSTRUCT( bool4x2 )
 	{
@@ -1227,7 +1227,7 @@ HLML_INLINE bool4x2 bool4x2_cadds( const bool4x2* lhs, const bool32_t rhs )
 }
 
 // Performs a component-wise + against the two matrices and returns the result.
-HLML_INLINE bool4x2 bool4x2_caddm( const bool4x2* lhs, const bool4x2* rhs )
+HLML_INLINE bool4x2 bool4x2_caddm( const bool4x2 *lhs, const bool4x2* rhs )
 {
 	return HLML_CONSTRUCT( bool4x2 )
 	{
@@ -1239,7 +1239,7 @@ HLML_INLINE bool4x2 bool4x2_caddm( const bool4x2* lhs, const bool4x2* rhs )
 }
 
 // Performs a component-wise - on the matrix by the scalar and returns the result.
-HLML_INLINE bool4x2 bool4x2_csubs( const bool4x2* lhs, const bool32_t rhs )
+HLML_INLINE bool4x2 bool4x2_csubs( const bool4x2 *lhs, const bool32_t rhs )
 {
 	return HLML_CONSTRUCT( bool4x2 )
 	{
@@ -1251,7 +1251,7 @@ HLML_INLINE bool4x2 bool4x2_csubs( const bool4x2* lhs, const bool32_t rhs )
 }
 
 // Performs a component-wise - against the two matrices and returns the result.
-HLML_INLINE bool4x2 bool4x2_csubm( const bool4x2* lhs, const bool4x2* rhs )
+HLML_INLINE bool4x2 bool4x2_csubm( const bool4x2 *lhs, const bool4x2* rhs )
 {
 	return HLML_CONSTRUCT( bool4x2 )
 	{
@@ -1263,7 +1263,7 @@ HLML_INLINE bool4x2 bool4x2_csubm( const bool4x2* lhs, const bool4x2* rhs )
 }
 
 // Performs a component-wise * on the matrix by the scalar and returns the result.
-HLML_INLINE bool4x2 bool4x2_cmuls( const bool4x2* lhs, const bool32_t rhs )
+HLML_INLINE bool4x2 bool4x2_cmuls( const bool4x2 *lhs, const bool32_t rhs )
 {
 	return HLML_CONSTRUCT( bool4x2 )
 	{
@@ -1275,7 +1275,7 @@ HLML_INLINE bool4x2 bool4x2_cmuls( const bool4x2* lhs, const bool32_t rhs )
 }
 
 // Performs a component-wise * against the two matrices and returns the result.
-HLML_INLINE bool4x2 bool4x2_cmulm( const bool4x2* lhs, const bool4x2* rhs )
+HLML_INLINE bool4x2 bool4x2_cmulm( const bool4x2 *lhs, const bool4x2* rhs )
 {
 	return HLML_CONSTRUCT( bool4x2 )
 	{
@@ -1287,7 +1287,7 @@ HLML_INLINE bool4x2 bool4x2_cmulm( const bool4x2* lhs, const bool4x2* rhs )
 }
 
 // Performs a component-wise / on the matrix by the scalar and returns the result.
-HLML_INLINE bool4x2 bool4x2_cdivs( const bool4x2* lhs, const bool32_t rhs )
+HLML_INLINE bool4x2 bool4x2_cdivs( const bool4x2 *lhs, const bool32_t rhs )
 {
 	return HLML_CONSTRUCT( bool4x2 )
 	{
@@ -1299,7 +1299,7 @@ HLML_INLINE bool4x2 bool4x2_cdivs( const bool4x2* lhs, const bool32_t rhs )
 }
 
 // Performs a component-wise / against the two matrices and returns the result.
-HLML_INLINE bool4x2 bool4x2_cdivm( const bool4x2* lhs, const bool4x2* rhs )
+HLML_INLINE bool4x2 bool4x2_cdivm( const bool4x2 *lhs, const bool4x2* rhs )
 {
 	return HLML_CONSTRUCT( bool4x2 )
 	{
@@ -1311,7 +1311,7 @@ HLML_INLINE bool4x2 bool4x2_cdivm( const bool4x2* lhs, const bool4x2* rhs )
 }
 
 // Returns true if ALL components of the 'x' are true, otherwise returns false.
-HLML_INLINE bool bool4x2_all( const bool4x2* x )
+HLML_INLINE bool bool4x2_all( const bool4x2 *x )
 {
 	return
 		bool2_all( &x->rows[0] ) &&
@@ -1321,7 +1321,7 @@ HLML_INLINE bool bool4x2_all( const bool4x2* x )
 }
 
 // Returns true if ANY one component of 'x' is true, otherwise returns false.
-HLML_INLINE bool bool4x2_any( const bool4x2* x )
+HLML_INLINE bool bool4x2_any( const bool4x2 *x )
 {
 	return
 		bool2_any( &x->rows[0] ) ||
@@ -1351,7 +1351,7 @@ HLML_INLINE bool2x4 bool4x2_transpose( const bool4x2* mat )
 
 // bool4x3
 // Returns true if the contents of 'lhs' are the same as the contents of 'rhs', otherwise returns false.
-HLML_INLINE bool bool4x3_equals( const bool4x3* lhs, const bool4x3* rhs )
+HLML_INLINE bool bool4x3_equals( const bool4x3 *lhs, const bool4x3 *rhs )
 {
 	return
 		bool3_equals( &lhs->rows[0], &rhs->rows[0] ) &&
@@ -1361,13 +1361,13 @@ HLML_INLINE bool bool4x3_equals( const bool4x3* lhs, const bool4x3* rhs )
 }
 
 // Returns true if the contents of 'lhs' are NOT the same as the contents of 'rhs', otherwise returns false.
-HLML_INLINE bool bool4x3_not_equals( const bool4x3* lhs, const bool4x3* rhs )
+HLML_INLINE bool bool4x3_not_equals( const bool4x3 *lhs, const bool4x3 *rhs )
 {
 	return !bool4x3_equals( lhs, rhs );
 }
 
 // Performs a component-wise '<' check against the two matrices and returns the result.
-HLML_INLINE bool4x3 bool4x3_less_than( const bool4x3* lhs, const bool4x3* rhs )
+HLML_INLINE bool4x3 bool4x3_less_than( const bool4x3 *lhs, const bool4x3* rhs )
 {
 	return HLML_CONSTRUCT( bool4x3 )
 	{
@@ -1379,7 +1379,7 @@ HLML_INLINE bool4x3 bool4x3_less_than( const bool4x3* lhs, const bool4x3* rhs )
 }
 
 // Performs a component-wise '<=' check against the two matrices and returns the result.
-HLML_INLINE bool4x3 bool4x3_less_than_equal( const bool4x3* lhs, const bool4x3* rhs )
+HLML_INLINE bool4x3 bool4x3_less_than_equal( const bool4x3 *lhs, const bool4x3* rhs )
 {
 	return HLML_CONSTRUCT( bool4x3 )
 	{
@@ -1391,7 +1391,7 @@ HLML_INLINE bool4x3 bool4x3_less_than_equal( const bool4x3* lhs, const bool4x3* 
 }
 
 // Performs a component-wise '>' check against the two matrices and returns the result.
-HLML_INLINE bool4x3 bool4x3_greater_than( const bool4x3* lhs, const bool4x3* rhs )
+HLML_INLINE bool4x3 bool4x3_greater_than( const bool4x3 *lhs, const bool4x3* rhs )
 {
 	return HLML_CONSTRUCT( bool4x3 )
 	{
@@ -1403,7 +1403,7 @@ HLML_INLINE bool4x3 bool4x3_greater_than( const bool4x3* lhs, const bool4x3* rhs
 }
 
 // Performs a component-wise '>=' check against the two matrices and returns the result.
-HLML_INLINE bool4x3 bool4x3_greater_than_equal( const bool4x3* lhs, const bool4x3* rhs )
+HLML_INLINE bool4x3 bool4x3_greater_than_equal( const bool4x3 *lhs, const bool4x3* rhs )
 {
 	return HLML_CONSTRUCT( bool4x3 )
 	{
@@ -1415,7 +1415,7 @@ HLML_INLINE bool4x3 bool4x3_greater_than_equal( const bool4x3* lhs, const bool4x
 }
 
 // Performs a component-wise + on the matrix by the scalar and returns the result.
-HLML_INLINE bool4x3 bool4x3_cadds( const bool4x3* lhs, const bool32_t rhs )
+HLML_INLINE bool4x3 bool4x3_cadds( const bool4x3 *lhs, const bool32_t rhs )
 {
 	return HLML_CONSTRUCT( bool4x3 )
 	{
@@ -1427,7 +1427,7 @@ HLML_INLINE bool4x3 bool4x3_cadds( const bool4x3* lhs, const bool32_t rhs )
 }
 
 // Performs a component-wise + against the two matrices and returns the result.
-HLML_INLINE bool4x3 bool4x3_caddm( const bool4x3* lhs, const bool4x3* rhs )
+HLML_INLINE bool4x3 bool4x3_caddm( const bool4x3 *lhs, const bool4x3* rhs )
 {
 	return HLML_CONSTRUCT( bool4x3 )
 	{
@@ -1439,7 +1439,7 @@ HLML_INLINE bool4x3 bool4x3_caddm( const bool4x3* lhs, const bool4x3* rhs )
 }
 
 // Performs a component-wise - on the matrix by the scalar and returns the result.
-HLML_INLINE bool4x3 bool4x3_csubs( const bool4x3* lhs, const bool32_t rhs )
+HLML_INLINE bool4x3 bool4x3_csubs( const bool4x3 *lhs, const bool32_t rhs )
 {
 	return HLML_CONSTRUCT( bool4x3 )
 	{
@@ -1451,7 +1451,7 @@ HLML_INLINE bool4x3 bool4x3_csubs( const bool4x3* lhs, const bool32_t rhs )
 }
 
 // Performs a component-wise - against the two matrices and returns the result.
-HLML_INLINE bool4x3 bool4x3_csubm( const bool4x3* lhs, const bool4x3* rhs )
+HLML_INLINE bool4x3 bool4x3_csubm( const bool4x3 *lhs, const bool4x3* rhs )
 {
 	return HLML_CONSTRUCT( bool4x3 )
 	{
@@ -1463,7 +1463,7 @@ HLML_INLINE bool4x3 bool4x3_csubm( const bool4x3* lhs, const bool4x3* rhs )
 }
 
 // Performs a component-wise * on the matrix by the scalar and returns the result.
-HLML_INLINE bool4x3 bool4x3_cmuls( const bool4x3* lhs, const bool32_t rhs )
+HLML_INLINE bool4x3 bool4x3_cmuls( const bool4x3 *lhs, const bool32_t rhs )
 {
 	return HLML_CONSTRUCT( bool4x3 )
 	{
@@ -1475,7 +1475,7 @@ HLML_INLINE bool4x3 bool4x3_cmuls( const bool4x3* lhs, const bool32_t rhs )
 }
 
 // Performs a component-wise * against the two matrices and returns the result.
-HLML_INLINE bool4x3 bool4x3_cmulm( const bool4x3* lhs, const bool4x3* rhs )
+HLML_INLINE bool4x3 bool4x3_cmulm( const bool4x3 *lhs, const bool4x3* rhs )
 {
 	return HLML_CONSTRUCT( bool4x3 )
 	{
@@ -1487,7 +1487,7 @@ HLML_INLINE bool4x3 bool4x3_cmulm( const bool4x3* lhs, const bool4x3* rhs )
 }
 
 // Performs a component-wise / on the matrix by the scalar and returns the result.
-HLML_INLINE bool4x3 bool4x3_cdivs( const bool4x3* lhs, const bool32_t rhs )
+HLML_INLINE bool4x3 bool4x3_cdivs( const bool4x3 *lhs, const bool32_t rhs )
 {
 	return HLML_CONSTRUCT( bool4x3 )
 	{
@@ -1499,7 +1499,7 @@ HLML_INLINE bool4x3 bool4x3_cdivs( const bool4x3* lhs, const bool32_t rhs )
 }
 
 // Performs a component-wise / against the two matrices and returns the result.
-HLML_INLINE bool4x3 bool4x3_cdivm( const bool4x3* lhs, const bool4x3* rhs )
+HLML_INLINE bool4x3 bool4x3_cdivm( const bool4x3 *lhs, const bool4x3* rhs )
 {
 	return HLML_CONSTRUCT( bool4x3 )
 	{
@@ -1511,7 +1511,7 @@ HLML_INLINE bool4x3 bool4x3_cdivm( const bool4x3* lhs, const bool4x3* rhs )
 }
 
 // Returns true if ALL components of the 'x' are true, otherwise returns false.
-HLML_INLINE bool bool4x3_all( const bool4x3* x )
+HLML_INLINE bool bool4x3_all( const bool4x3 *x )
 {
 	return
 		bool3_all( &x->rows[0] ) &&
@@ -1521,7 +1521,7 @@ HLML_INLINE bool bool4x3_all( const bool4x3* x )
 }
 
 // Returns true if ANY one component of 'x' is true, otherwise returns false.
-HLML_INLINE bool bool4x3_any( const bool4x3* x )
+HLML_INLINE bool bool4x3_any( const bool4x3 *x )
 {
 	return
 		bool3_any( &x->rows[0] ) ||
@@ -1552,7 +1552,7 @@ HLML_INLINE bool3x4 bool4x3_transpose( const bool4x3* mat )
 
 // bool4x4
 // Returns true if the contents of 'lhs' are the same as the contents of 'rhs', otherwise returns false.
-HLML_INLINE bool bool4x4_equals( const bool4x4* lhs, const bool4x4* rhs )
+HLML_INLINE bool bool4x4_equals( const bool4x4 *lhs, const bool4x4 *rhs )
 {
 	return
 		bool4_equals( &lhs->rows[0], &rhs->rows[0] ) &&
@@ -1562,13 +1562,13 @@ HLML_INLINE bool bool4x4_equals( const bool4x4* lhs, const bool4x4* rhs )
 }
 
 // Returns true if the contents of 'lhs' are NOT the same as the contents of 'rhs', otherwise returns false.
-HLML_INLINE bool bool4x4_not_equals( const bool4x4* lhs, const bool4x4* rhs )
+HLML_INLINE bool bool4x4_not_equals( const bool4x4 *lhs, const bool4x4 *rhs )
 {
 	return !bool4x4_equals( lhs, rhs );
 }
 
 // Performs a component-wise '<' check against the two matrices and returns the result.
-HLML_INLINE bool4x4 bool4x4_less_than( const bool4x4* lhs, const bool4x4* rhs )
+HLML_INLINE bool4x4 bool4x4_less_than( const bool4x4 *lhs, const bool4x4* rhs )
 {
 	return HLML_CONSTRUCT( bool4x4 )
 	{
@@ -1580,7 +1580,7 @@ HLML_INLINE bool4x4 bool4x4_less_than( const bool4x4* lhs, const bool4x4* rhs )
 }
 
 // Performs a component-wise '<=' check against the two matrices and returns the result.
-HLML_INLINE bool4x4 bool4x4_less_than_equal( const bool4x4* lhs, const bool4x4* rhs )
+HLML_INLINE bool4x4 bool4x4_less_than_equal( const bool4x4 *lhs, const bool4x4* rhs )
 {
 	return HLML_CONSTRUCT( bool4x4 )
 	{
@@ -1592,7 +1592,7 @@ HLML_INLINE bool4x4 bool4x4_less_than_equal( const bool4x4* lhs, const bool4x4* 
 }
 
 // Performs a component-wise '>' check against the two matrices and returns the result.
-HLML_INLINE bool4x4 bool4x4_greater_than( const bool4x4* lhs, const bool4x4* rhs )
+HLML_INLINE bool4x4 bool4x4_greater_than( const bool4x4 *lhs, const bool4x4* rhs )
 {
 	return HLML_CONSTRUCT( bool4x4 )
 	{
@@ -1604,7 +1604,7 @@ HLML_INLINE bool4x4 bool4x4_greater_than( const bool4x4* lhs, const bool4x4* rhs
 }
 
 // Performs a component-wise '>=' check against the two matrices and returns the result.
-HLML_INLINE bool4x4 bool4x4_greater_than_equal( const bool4x4* lhs, const bool4x4* rhs )
+HLML_INLINE bool4x4 bool4x4_greater_than_equal( const bool4x4 *lhs, const bool4x4* rhs )
 {
 	return HLML_CONSTRUCT( bool4x4 )
 	{
@@ -1616,7 +1616,7 @@ HLML_INLINE bool4x4 bool4x4_greater_than_equal( const bool4x4* lhs, const bool4x
 }
 
 // Performs a component-wise + on the matrix by the scalar and returns the result.
-HLML_INLINE bool4x4 bool4x4_cadds( const bool4x4* lhs, const bool32_t rhs )
+HLML_INLINE bool4x4 bool4x4_cadds( const bool4x4 *lhs, const bool32_t rhs )
 {
 	return HLML_CONSTRUCT( bool4x4 )
 	{
@@ -1628,7 +1628,7 @@ HLML_INLINE bool4x4 bool4x4_cadds( const bool4x4* lhs, const bool32_t rhs )
 }
 
 // Performs a component-wise + against the two matrices and returns the result.
-HLML_INLINE bool4x4 bool4x4_caddm( const bool4x4* lhs, const bool4x4* rhs )
+HLML_INLINE bool4x4 bool4x4_caddm( const bool4x4 *lhs, const bool4x4* rhs )
 {
 	return HLML_CONSTRUCT( bool4x4 )
 	{
@@ -1640,7 +1640,7 @@ HLML_INLINE bool4x4 bool4x4_caddm( const bool4x4* lhs, const bool4x4* rhs )
 }
 
 // Performs a component-wise - on the matrix by the scalar and returns the result.
-HLML_INLINE bool4x4 bool4x4_csubs( const bool4x4* lhs, const bool32_t rhs )
+HLML_INLINE bool4x4 bool4x4_csubs( const bool4x4 *lhs, const bool32_t rhs )
 {
 	return HLML_CONSTRUCT( bool4x4 )
 	{
@@ -1652,7 +1652,7 @@ HLML_INLINE bool4x4 bool4x4_csubs( const bool4x4* lhs, const bool32_t rhs )
 }
 
 // Performs a component-wise - against the two matrices and returns the result.
-HLML_INLINE bool4x4 bool4x4_csubm( const bool4x4* lhs, const bool4x4* rhs )
+HLML_INLINE bool4x4 bool4x4_csubm( const bool4x4 *lhs, const bool4x4* rhs )
 {
 	return HLML_CONSTRUCT( bool4x4 )
 	{
@@ -1664,7 +1664,7 @@ HLML_INLINE bool4x4 bool4x4_csubm( const bool4x4* lhs, const bool4x4* rhs )
 }
 
 // Performs a component-wise * on the matrix by the scalar and returns the result.
-HLML_INLINE bool4x4 bool4x4_cmuls( const bool4x4* lhs, const bool32_t rhs )
+HLML_INLINE bool4x4 bool4x4_cmuls( const bool4x4 *lhs, const bool32_t rhs )
 {
 	return HLML_CONSTRUCT( bool4x4 )
 	{
@@ -1676,7 +1676,7 @@ HLML_INLINE bool4x4 bool4x4_cmuls( const bool4x4* lhs, const bool32_t rhs )
 }
 
 // Performs a component-wise * against the two matrices and returns the result.
-HLML_INLINE bool4x4 bool4x4_cmulm( const bool4x4* lhs, const bool4x4* rhs )
+HLML_INLINE bool4x4 bool4x4_cmulm( const bool4x4 *lhs, const bool4x4* rhs )
 {
 	return HLML_CONSTRUCT( bool4x4 )
 	{
@@ -1688,7 +1688,7 @@ HLML_INLINE bool4x4 bool4x4_cmulm( const bool4x4* lhs, const bool4x4* rhs )
 }
 
 // Performs a component-wise / on the matrix by the scalar and returns the result.
-HLML_INLINE bool4x4 bool4x4_cdivs( const bool4x4* lhs, const bool32_t rhs )
+HLML_INLINE bool4x4 bool4x4_cdivs( const bool4x4 *lhs, const bool32_t rhs )
 {
 	return HLML_CONSTRUCT( bool4x4 )
 	{
@@ -1700,7 +1700,7 @@ HLML_INLINE bool4x4 bool4x4_cdivs( const bool4x4* lhs, const bool32_t rhs )
 }
 
 // Performs a component-wise / against the two matrices and returns the result.
-HLML_INLINE bool4x4 bool4x4_cdivm( const bool4x4* lhs, const bool4x4* rhs )
+HLML_INLINE bool4x4 bool4x4_cdivm( const bool4x4 *lhs, const bool4x4* rhs )
 {
 	return HLML_CONSTRUCT( bool4x4 )
 	{
@@ -1712,7 +1712,7 @@ HLML_INLINE bool4x4 bool4x4_cdivm( const bool4x4* lhs, const bool4x4* rhs )
 }
 
 // Returns true if ALL components of the 'x' are true, otherwise returns false.
-HLML_INLINE bool bool4x4_all( const bool4x4* x )
+HLML_INLINE bool bool4x4_all( const bool4x4 *x )
 {
 	return
 		bool4_all( &x->rows[0] ) &&
@@ -1722,7 +1722,7 @@ HLML_INLINE bool bool4x4_all( const bool4x4* x )
 }
 
 // Returns true if ANY one component of 'x' is true, otherwise returns false.
-HLML_INLINE bool bool4x4_any( const bool4x4* x )
+HLML_INLINE bool bool4x4_any( const bool4x4 *x )
 {
 	return
 		bool4_any( &x->rows[0] ) ||
@@ -1804,7 +1804,7 @@ HLML_INLINE int2x2 int2x2_saturate( const int2x2* x )
 }
 
 // Returns true if the contents of 'lhs' are the same as the contents of 'rhs', otherwise returns false.
-HLML_INLINE bool int2x2_equals( const int2x2* lhs, const int2x2* rhs )
+HLML_INLINE bool int2x2_equals( const int2x2 *lhs, const int2x2 *rhs )
 {
 	return
 		int2_equals( &lhs->rows[0], &rhs->rows[0] ) &&
@@ -1812,13 +1812,13 @@ HLML_INLINE bool int2x2_equals( const int2x2* lhs, const int2x2* rhs )
 }
 
 // Returns true if the contents of 'lhs' are NOT the same as the contents of 'rhs', otherwise returns false.
-HLML_INLINE bool int2x2_not_equals( const int2x2* lhs, const int2x2* rhs )
+HLML_INLINE bool int2x2_not_equals( const int2x2 *lhs, const int2x2 *rhs )
 {
 	return !int2x2_equals( lhs, rhs );
 }
 
 // Performs a component-wise '<' check against the two matrices and returns the result.
-HLML_INLINE bool2x2 int2x2_less_than( const int2x2* lhs, const int2x2* rhs )
+HLML_INLINE bool2x2 int2x2_less_than( const int2x2 *lhs, const int2x2* rhs )
 {
 	return HLML_CONSTRUCT( bool2x2 )
 	{
@@ -1828,7 +1828,7 @@ HLML_INLINE bool2x2 int2x2_less_than( const int2x2* lhs, const int2x2* rhs )
 }
 
 // Performs a component-wise '<=' check against the two matrices and returns the result.
-HLML_INLINE bool2x2 int2x2_less_than_equal( const int2x2* lhs, const int2x2* rhs )
+HLML_INLINE bool2x2 int2x2_less_than_equal( const int2x2 *lhs, const int2x2* rhs )
 {
 	return HLML_CONSTRUCT( bool2x2 )
 	{
@@ -1838,7 +1838,7 @@ HLML_INLINE bool2x2 int2x2_less_than_equal( const int2x2* lhs, const int2x2* rhs
 }
 
 // Performs a component-wise '>' check against the two matrices and returns the result.
-HLML_INLINE bool2x2 int2x2_greater_than( const int2x2* lhs, const int2x2* rhs )
+HLML_INLINE bool2x2 int2x2_greater_than( const int2x2 *lhs, const int2x2* rhs )
 {
 	return HLML_CONSTRUCT( bool2x2 )
 	{
@@ -1848,7 +1848,7 @@ HLML_INLINE bool2x2 int2x2_greater_than( const int2x2* lhs, const int2x2* rhs )
 }
 
 // Performs a component-wise '>=' check against the two matrices and returns the result.
-HLML_INLINE bool2x2 int2x2_greater_than_equal( const int2x2* lhs, const int2x2* rhs )
+HLML_INLINE bool2x2 int2x2_greater_than_equal( const int2x2 *lhs, const int2x2* rhs )
 {
 	return HLML_CONSTRUCT( bool2x2 )
 	{
@@ -1858,7 +1858,7 @@ HLML_INLINE bool2x2 int2x2_greater_than_equal( const int2x2* lhs, const int2x2* 
 }
 
 // Performs a component-wise + on the matrix by the scalar and returns the result.
-HLML_INLINE int2x2 int2x2_cadds( const int2x2* lhs, const int32_t rhs )
+HLML_INLINE int2x2 int2x2_cadds( const int2x2 *lhs, const int32_t rhs )
 {
 	return HLML_CONSTRUCT( int2x2 )
 	{
@@ -1868,7 +1868,7 @@ HLML_INLINE int2x2 int2x2_cadds( const int2x2* lhs, const int32_t rhs )
 }
 
 // Performs a component-wise + against the two matrices and returns the result.
-HLML_INLINE int2x2 int2x2_caddm( const int2x2* lhs, const int2x2* rhs )
+HLML_INLINE int2x2 int2x2_caddm( const int2x2 *lhs, const int2x2* rhs )
 {
 	return HLML_CONSTRUCT( int2x2 )
 	{
@@ -1878,7 +1878,7 @@ HLML_INLINE int2x2 int2x2_caddm( const int2x2* lhs, const int2x2* rhs )
 }
 
 // Performs a component-wise - on the matrix by the scalar and returns the result.
-HLML_INLINE int2x2 int2x2_csubs( const int2x2* lhs, const int32_t rhs )
+HLML_INLINE int2x2 int2x2_csubs( const int2x2 *lhs, const int32_t rhs )
 {
 	return HLML_CONSTRUCT( int2x2 )
 	{
@@ -1888,7 +1888,7 @@ HLML_INLINE int2x2 int2x2_csubs( const int2x2* lhs, const int32_t rhs )
 }
 
 // Performs a component-wise - against the two matrices and returns the result.
-HLML_INLINE int2x2 int2x2_csubm( const int2x2* lhs, const int2x2* rhs )
+HLML_INLINE int2x2 int2x2_csubm( const int2x2 *lhs, const int2x2* rhs )
 {
 	return HLML_CONSTRUCT( int2x2 )
 	{
@@ -1898,7 +1898,7 @@ HLML_INLINE int2x2 int2x2_csubm( const int2x2* lhs, const int2x2* rhs )
 }
 
 // Performs a component-wise * on the matrix by the scalar and returns the result.
-HLML_INLINE int2x2 int2x2_cmuls( const int2x2* lhs, const int32_t rhs )
+HLML_INLINE int2x2 int2x2_cmuls( const int2x2 *lhs, const int32_t rhs )
 {
 	return HLML_CONSTRUCT( int2x2 )
 	{
@@ -1908,7 +1908,7 @@ HLML_INLINE int2x2 int2x2_cmuls( const int2x2* lhs, const int32_t rhs )
 }
 
 // Performs a component-wise * against the two matrices and returns the result.
-HLML_INLINE int2x2 int2x2_cmulm( const int2x2* lhs, const int2x2* rhs )
+HLML_INLINE int2x2 int2x2_cmulm( const int2x2 *lhs, const int2x2* rhs )
 {
 	return HLML_CONSTRUCT( int2x2 )
 	{
@@ -1918,7 +1918,7 @@ HLML_INLINE int2x2 int2x2_cmulm( const int2x2* lhs, const int2x2* rhs )
 }
 
 // Performs a component-wise / on the matrix by the scalar and returns the result.
-HLML_INLINE int2x2 int2x2_cdivs( const int2x2* lhs, const int32_t rhs )
+HLML_INLINE int2x2 int2x2_cdivs( const int2x2 *lhs, const int32_t rhs )
 {
 	return HLML_CONSTRUCT( int2x2 )
 	{
@@ -1928,7 +1928,7 @@ HLML_INLINE int2x2 int2x2_cdivs( const int2x2* lhs, const int32_t rhs )
 }
 
 // Performs a component-wise / against the two matrices and returns the result.
-HLML_INLINE int2x2 int2x2_cdivm( const int2x2* lhs, const int2x2* rhs )
+HLML_INLINE int2x2 int2x2_cdivm( const int2x2 *lhs, const int2x2* rhs )
 {
 	return HLML_CONSTRUCT( int2x2 )
 	{
@@ -1938,7 +1938,7 @@ HLML_INLINE int2x2 int2x2_cdivm( const int2x2* lhs, const int2x2* rhs )
 }
 
 // Returns a copy of the matrix that has been negated.
-HLML_INLINE int2x2 int2x2_negate( const int2x2* x )
+HLML_INLINE int2x2 int2x2_negate( const int2x2 *x )
 {
 	return HLML_CONSTRUCT( int2x2 )
 	{
@@ -1948,7 +1948,7 @@ HLML_INLINE int2x2 int2x2_negate( const int2x2* x )
 }
 
 // Returns a copy of the matrix where each component has been bitwise NOT'd.
-HLML_INLINE int2x2 int2x2_not( const int2x2* x )
+HLML_INLINE int2x2 int2x2_not( const int2x2 *x )
 {
 	return HLML_CONSTRUCT( int2x2 )
 	{
@@ -1958,7 +1958,7 @@ HLML_INLINE int2x2 int2x2_not( const int2x2* x )
 }
 
 // Performs a component-wise bitwise & on the matrix by the scalar and returns the result.
-HLML_INLINE int2x2 int2x2_cands( const int2x2* lhs, const int32_t rhs )
+HLML_INLINE int2x2 int2x2_cands( const int2x2 *lhs, const int32_t rhs )
 {
 	return HLML_CONSTRUCT( int2x2 )
 	{
@@ -1968,7 +1968,7 @@ HLML_INLINE int2x2 int2x2_cands( const int2x2* lhs, const int32_t rhs )
 }
 
 // Performs a component-wise bitwise & against the two matrices and returns the result.
-HLML_INLINE int2x2 int2x2_candm( const int2x2* lhs, const int2x2* rhs )
+HLML_INLINE int2x2 int2x2_candm( const int2x2 *lhs, const int2x2* rhs )
 {
 	return HLML_CONSTRUCT( int2x2 )
 	{
@@ -1978,7 +1978,7 @@ HLML_INLINE int2x2 int2x2_candm( const int2x2* lhs, const int2x2* rhs )
 }
 
 // Performs a component-wise bitwise | on the matrix by the scalar and returns the result.
-HLML_INLINE int2x2 int2x2_cors( const int2x2* lhs, const int32_t rhs )
+HLML_INLINE int2x2 int2x2_cors( const int2x2 *lhs, const int32_t rhs )
 {
 	return HLML_CONSTRUCT( int2x2 )
 	{
@@ -1988,7 +1988,7 @@ HLML_INLINE int2x2 int2x2_cors( const int2x2* lhs, const int32_t rhs )
 }
 
 // Performs a component-wise bitwise | against the two matrices and returns the result.
-HLML_INLINE int2x2 int2x2_corm( const int2x2* lhs, const int2x2* rhs )
+HLML_INLINE int2x2 int2x2_corm( const int2x2 *lhs, const int2x2* rhs )
 {
 	return HLML_CONSTRUCT( int2x2 )
 	{
@@ -1998,7 +1998,7 @@ HLML_INLINE int2x2 int2x2_corm( const int2x2* lhs, const int2x2* rhs )
 }
 
 // Performs a component-wise bitwise ^ on the matrix by the scalar and returns the result.
-HLML_INLINE int2x2 int2x2_cxors( const int2x2* lhs, const int32_t rhs )
+HLML_INLINE int2x2 int2x2_cxors( const int2x2 *lhs, const int32_t rhs )
 {
 	return HLML_CONSTRUCT( int2x2 )
 	{
@@ -2008,7 +2008,7 @@ HLML_INLINE int2x2 int2x2_cxors( const int2x2* lhs, const int32_t rhs )
 }
 
 // Performs a component-wise bitwise ^ against the two matrices and returns the result.
-HLML_INLINE int2x2 int2x2_cxorm( const int2x2* lhs, const int2x2* rhs )
+HLML_INLINE int2x2 int2x2_cxorm( const int2x2 *lhs, const int2x2* rhs )
 {
 	return HLML_CONSTRUCT( int2x2 )
 	{
@@ -2018,7 +2018,7 @@ HLML_INLINE int2x2 int2x2_cxorm( const int2x2* lhs, const int2x2* rhs )
 }
 
 // Performs a component-wise bitwise << on the matrix by the scalar and returns the result.
-HLML_INLINE int2x2 int2x2_cshift_lefts( const int2x2* lhs, const int32_t rhs )
+HLML_INLINE int2x2 int2x2_cshift_lefts( const int2x2 *lhs, const int32_t rhs )
 {
 	return HLML_CONSTRUCT( int2x2 )
 	{
@@ -2028,7 +2028,7 @@ HLML_INLINE int2x2 int2x2_cshift_lefts( const int2x2* lhs, const int32_t rhs )
 }
 
 // Performs a component-wise bitwise << against the two matrices and returns the result.
-HLML_INLINE int2x2 int2x2_cshift_leftm( const int2x2* lhs, const int2x2* rhs )
+HLML_INLINE int2x2 int2x2_cshift_leftm( const int2x2 *lhs, const int2x2* rhs )
 {
 	return HLML_CONSTRUCT( int2x2 )
 	{
@@ -2038,7 +2038,7 @@ HLML_INLINE int2x2 int2x2_cshift_leftm( const int2x2* lhs, const int2x2* rhs )
 }
 
 // Performs a component-wise bitwise >> on the matrix by the scalar and returns the result.
-HLML_INLINE int2x2 int2x2_cshift_rights( const int2x2* lhs, const int32_t rhs )
+HLML_INLINE int2x2 int2x2_cshift_rights( const int2x2 *lhs, const int32_t rhs )
 {
 	return HLML_CONSTRUCT( int2x2 )
 	{
@@ -2048,7 +2048,7 @@ HLML_INLINE int2x2 int2x2_cshift_rights( const int2x2* lhs, const int32_t rhs )
 }
 
 // Performs a component-wise bitwise >> against the two matrices and returns the result.
-HLML_INLINE int2x2 int2x2_cshift_rightm( const int2x2* lhs, const int2x2* rhs )
+HLML_INLINE int2x2 int2x2_cshift_rightm( const int2x2 *lhs, const int2x2* rhs )
 {
 	return HLML_CONSTRUCT( int2x2 )
 	{
@@ -2161,7 +2161,7 @@ HLML_INLINE int2x3 int2x3_saturate( const int2x3* x )
 }
 
 // Returns true if the contents of 'lhs' are the same as the contents of 'rhs', otherwise returns false.
-HLML_INLINE bool int2x3_equals( const int2x3* lhs, const int2x3* rhs )
+HLML_INLINE bool int2x3_equals( const int2x3 *lhs, const int2x3 *rhs )
 {
 	return
 		int3_equals( &lhs->rows[0], &rhs->rows[0] ) &&
@@ -2169,13 +2169,13 @@ HLML_INLINE bool int2x3_equals( const int2x3* lhs, const int2x3* rhs )
 }
 
 // Returns true if the contents of 'lhs' are NOT the same as the contents of 'rhs', otherwise returns false.
-HLML_INLINE bool int2x3_not_equals( const int2x3* lhs, const int2x3* rhs )
+HLML_INLINE bool int2x3_not_equals( const int2x3 *lhs, const int2x3 *rhs )
 {
 	return !int2x3_equals( lhs, rhs );
 }
 
 // Performs a component-wise '<' check against the two matrices and returns the result.
-HLML_INLINE bool2x3 int2x3_less_than( const int2x3* lhs, const int2x3* rhs )
+HLML_INLINE bool2x3 int2x3_less_than( const int2x3 *lhs, const int2x3* rhs )
 {
 	return HLML_CONSTRUCT( bool2x3 )
 	{
@@ -2185,7 +2185,7 @@ HLML_INLINE bool2x3 int2x3_less_than( const int2x3* lhs, const int2x3* rhs )
 }
 
 // Performs a component-wise '<=' check against the two matrices and returns the result.
-HLML_INLINE bool2x3 int2x3_less_than_equal( const int2x3* lhs, const int2x3* rhs )
+HLML_INLINE bool2x3 int2x3_less_than_equal( const int2x3 *lhs, const int2x3* rhs )
 {
 	return HLML_CONSTRUCT( bool2x3 )
 	{
@@ -2195,7 +2195,7 @@ HLML_INLINE bool2x3 int2x3_less_than_equal( const int2x3* lhs, const int2x3* rhs
 }
 
 // Performs a component-wise '>' check against the two matrices and returns the result.
-HLML_INLINE bool2x3 int2x3_greater_than( const int2x3* lhs, const int2x3* rhs )
+HLML_INLINE bool2x3 int2x3_greater_than( const int2x3 *lhs, const int2x3* rhs )
 {
 	return HLML_CONSTRUCT( bool2x3 )
 	{
@@ -2205,7 +2205,7 @@ HLML_INLINE bool2x3 int2x3_greater_than( const int2x3* lhs, const int2x3* rhs )
 }
 
 // Performs a component-wise '>=' check against the two matrices and returns the result.
-HLML_INLINE bool2x3 int2x3_greater_than_equal( const int2x3* lhs, const int2x3* rhs )
+HLML_INLINE bool2x3 int2x3_greater_than_equal( const int2x3 *lhs, const int2x3* rhs )
 {
 	return HLML_CONSTRUCT( bool2x3 )
 	{
@@ -2215,7 +2215,7 @@ HLML_INLINE bool2x3 int2x3_greater_than_equal( const int2x3* lhs, const int2x3* 
 }
 
 // Performs a component-wise + on the matrix by the scalar and returns the result.
-HLML_INLINE int2x3 int2x3_cadds( const int2x3* lhs, const int32_t rhs )
+HLML_INLINE int2x3 int2x3_cadds( const int2x3 *lhs, const int32_t rhs )
 {
 	return HLML_CONSTRUCT( int2x3 )
 	{
@@ -2225,7 +2225,7 @@ HLML_INLINE int2x3 int2x3_cadds( const int2x3* lhs, const int32_t rhs )
 }
 
 // Performs a component-wise + against the two matrices and returns the result.
-HLML_INLINE int2x3 int2x3_caddm( const int2x3* lhs, const int2x3* rhs )
+HLML_INLINE int2x3 int2x3_caddm( const int2x3 *lhs, const int2x3* rhs )
 {
 	return HLML_CONSTRUCT( int2x3 )
 	{
@@ -2235,7 +2235,7 @@ HLML_INLINE int2x3 int2x3_caddm( const int2x3* lhs, const int2x3* rhs )
 }
 
 // Performs a component-wise - on the matrix by the scalar and returns the result.
-HLML_INLINE int2x3 int2x3_csubs( const int2x3* lhs, const int32_t rhs )
+HLML_INLINE int2x3 int2x3_csubs( const int2x3 *lhs, const int32_t rhs )
 {
 	return HLML_CONSTRUCT( int2x3 )
 	{
@@ -2245,7 +2245,7 @@ HLML_INLINE int2x3 int2x3_csubs( const int2x3* lhs, const int32_t rhs )
 }
 
 // Performs a component-wise - against the two matrices and returns the result.
-HLML_INLINE int2x3 int2x3_csubm( const int2x3* lhs, const int2x3* rhs )
+HLML_INLINE int2x3 int2x3_csubm( const int2x3 *lhs, const int2x3* rhs )
 {
 	return HLML_CONSTRUCT( int2x3 )
 	{
@@ -2255,7 +2255,7 @@ HLML_INLINE int2x3 int2x3_csubm( const int2x3* lhs, const int2x3* rhs )
 }
 
 // Performs a component-wise * on the matrix by the scalar and returns the result.
-HLML_INLINE int2x3 int2x3_cmuls( const int2x3* lhs, const int32_t rhs )
+HLML_INLINE int2x3 int2x3_cmuls( const int2x3 *lhs, const int32_t rhs )
 {
 	return HLML_CONSTRUCT( int2x3 )
 	{
@@ -2265,7 +2265,7 @@ HLML_INLINE int2x3 int2x3_cmuls( const int2x3* lhs, const int32_t rhs )
 }
 
 // Performs a component-wise * against the two matrices and returns the result.
-HLML_INLINE int2x3 int2x3_cmulm( const int2x3* lhs, const int2x3* rhs )
+HLML_INLINE int2x3 int2x3_cmulm( const int2x3 *lhs, const int2x3* rhs )
 {
 	return HLML_CONSTRUCT( int2x3 )
 	{
@@ -2275,7 +2275,7 @@ HLML_INLINE int2x3 int2x3_cmulm( const int2x3* lhs, const int2x3* rhs )
 }
 
 // Performs a component-wise / on the matrix by the scalar and returns the result.
-HLML_INLINE int2x3 int2x3_cdivs( const int2x3* lhs, const int32_t rhs )
+HLML_INLINE int2x3 int2x3_cdivs( const int2x3 *lhs, const int32_t rhs )
 {
 	return HLML_CONSTRUCT( int2x3 )
 	{
@@ -2285,7 +2285,7 @@ HLML_INLINE int2x3 int2x3_cdivs( const int2x3* lhs, const int32_t rhs )
 }
 
 // Performs a component-wise / against the two matrices and returns the result.
-HLML_INLINE int2x3 int2x3_cdivm( const int2x3* lhs, const int2x3* rhs )
+HLML_INLINE int2x3 int2x3_cdivm( const int2x3 *lhs, const int2x3* rhs )
 {
 	return HLML_CONSTRUCT( int2x3 )
 	{
@@ -2295,7 +2295,7 @@ HLML_INLINE int2x3 int2x3_cdivm( const int2x3* lhs, const int2x3* rhs )
 }
 
 // Returns a copy of the matrix that has been negated.
-HLML_INLINE int2x3 int2x3_negate( const int2x3* x )
+HLML_INLINE int2x3 int2x3_negate( const int2x3 *x )
 {
 	return HLML_CONSTRUCT( int2x3 )
 	{
@@ -2305,7 +2305,7 @@ HLML_INLINE int2x3 int2x3_negate( const int2x3* x )
 }
 
 // Returns a copy of the matrix where each component has been bitwise NOT'd.
-HLML_INLINE int2x3 int2x3_not( const int2x3* x )
+HLML_INLINE int2x3 int2x3_not( const int2x3 *x )
 {
 	return HLML_CONSTRUCT( int2x3 )
 	{
@@ -2315,7 +2315,7 @@ HLML_INLINE int2x3 int2x3_not( const int2x3* x )
 }
 
 // Performs a component-wise bitwise & on the matrix by the scalar and returns the result.
-HLML_INLINE int2x3 int2x3_cands( const int2x3* lhs, const int32_t rhs )
+HLML_INLINE int2x3 int2x3_cands( const int2x3 *lhs, const int32_t rhs )
 {
 	return HLML_CONSTRUCT( int2x3 )
 	{
@@ -2325,7 +2325,7 @@ HLML_INLINE int2x3 int2x3_cands( const int2x3* lhs, const int32_t rhs )
 }
 
 // Performs a component-wise bitwise & against the two matrices and returns the result.
-HLML_INLINE int2x3 int2x3_candm( const int2x3* lhs, const int2x3* rhs )
+HLML_INLINE int2x3 int2x3_candm( const int2x3 *lhs, const int2x3* rhs )
 {
 	return HLML_CONSTRUCT( int2x3 )
 	{
@@ -2335,7 +2335,7 @@ HLML_INLINE int2x3 int2x3_candm( const int2x3* lhs, const int2x3* rhs )
 }
 
 // Performs a component-wise bitwise | on the matrix by the scalar and returns the result.
-HLML_INLINE int2x3 int2x3_cors( const int2x3* lhs, const int32_t rhs )
+HLML_INLINE int2x3 int2x3_cors( const int2x3 *lhs, const int32_t rhs )
 {
 	return HLML_CONSTRUCT( int2x3 )
 	{
@@ -2345,7 +2345,7 @@ HLML_INLINE int2x3 int2x3_cors( const int2x3* lhs, const int32_t rhs )
 }
 
 // Performs a component-wise bitwise | against the two matrices and returns the result.
-HLML_INLINE int2x3 int2x3_corm( const int2x3* lhs, const int2x3* rhs )
+HLML_INLINE int2x3 int2x3_corm( const int2x3 *lhs, const int2x3* rhs )
 {
 	return HLML_CONSTRUCT( int2x3 )
 	{
@@ -2355,7 +2355,7 @@ HLML_INLINE int2x3 int2x3_corm( const int2x3* lhs, const int2x3* rhs )
 }
 
 // Performs a component-wise bitwise ^ on the matrix by the scalar and returns the result.
-HLML_INLINE int2x3 int2x3_cxors( const int2x3* lhs, const int32_t rhs )
+HLML_INLINE int2x3 int2x3_cxors( const int2x3 *lhs, const int32_t rhs )
 {
 	return HLML_CONSTRUCT( int2x3 )
 	{
@@ -2365,7 +2365,7 @@ HLML_INLINE int2x3 int2x3_cxors( const int2x3* lhs, const int32_t rhs )
 }
 
 // Performs a component-wise bitwise ^ against the two matrices and returns the result.
-HLML_INLINE int2x3 int2x3_cxorm( const int2x3* lhs, const int2x3* rhs )
+HLML_INLINE int2x3 int2x3_cxorm( const int2x3 *lhs, const int2x3* rhs )
 {
 	return HLML_CONSTRUCT( int2x3 )
 	{
@@ -2375,7 +2375,7 @@ HLML_INLINE int2x3 int2x3_cxorm( const int2x3* lhs, const int2x3* rhs )
 }
 
 // Performs a component-wise bitwise << on the matrix by the scalar and returns the result.
-HLML_INLINE int2x3 int2x3_cshift_lefts( const int2x3* lhs, const int32_t rhs )
+HLML_INLINE int2x3 int2x3_cshift_lefts( const int2x3 *lhs, const int32_t rhs )
 {
 	return HLML_CONSTRUCT( int2x3 )
 	{
@@ -2385,7 +2385,7 @@ HLML_INLINE int2x3 int2x3_cshift_lefts( const int2x3* lhs, const int32_t rhs )
 }
 
 // Performs a component-wise bitwise << against the two matrices and returns the result.
-HLML_INLINE int2x3 int2x3_cshift_leftm( const int2x3* lhs, const int2x3* rhs )
+HLML_INLINE int2x3 int2x3_cshift_leftm( const int2x3 *lhs, const int2x3* rhs )
 {
 	return HLML_CONSTRUCT( int2x3 )
 	{
@@ -2395,7 +2395,7 @@ HLML_INLINE int2x3 int2x3_cshift_leftm( const int2x3* lhs, const int2x3* rhs )
 }
 
 // Performs a component-wise bitwise >> on the matrix by the scalar and returns the result.
-HLML_INLINE int2x3 int2x3_cshift_rights( const int2x3* lhs, const int32_t rhs )
+HLML_INLINE int2x3 int2x3_cshift_rights( const int2x3 *lhs, const int32_t rhs )
 {
 	return HLML_CONSTRUCT( int2x3 )
 	{
@@ -2405,7 +2405,7 @@ HLML_INLINE int2x3 int2x3_cshift_rights( const int2x3* lhs, const int32_t rhs )
 }
 
 // Performs a component-wise bitwise >> against the two matrices and returns the result.
-HLML_INLINE int2x3 int2x3_cshift_rightm( const int2x3* lhs, const int2x3* rhs )
+HLML_INLINE int2x3 int2x3_cshift_rightm( const int2x3 *lhs, const int2x3* rhs )
 {
 	return HLML_CONSTRUCT( int2x3 )
 	{
@@ -2503,7 +2503,7 @@ HLML_INLINE int2x4 int2x4_saturate( const int2x4* x )
 }
 
 // Returns true if the contents of 'lhs' are the same as the contents of 'rhs', otherwise returns false.
-HLML_INLINE bool int2x4_equals( const int2x4* lhs, const int2x4* rhs )
+HLML_INLINE bool int2x4_equals( const int2x4 *lhs, const int2x4 *rhs )
 {
 	return
 		int4_equals( &lhs->rows[0], &rhs->rows[0] ) &&
@@ -2511,13 +2511,13 @@ HLML_INLINE bool int2x4_equals( const int2x4* lhs, const int2x4* rhs )
 }
 
 // Returns true if the contents of 'lhs' are NOT the same as the contents of 'rhs', otherwise returns false.
-HLML_INLINE bool int2x4_not_equals( const int2x4* lhs, const int2x4* rhs )
+HLML_INLINE bool int2x4_not_equals( const int2x4 *lhs, const int2x4 *rhs )
 {
 	return !int2x4_equals( lhs, rhs );
 }
 
 // Performs a component-wise '<' check against the two matrices and returns the result.
-HLML_INLINE bool2x4 int2x4_less_than( const int2x4* lhs, const int2x4* rhs )
+HLML_INLINE bool2x4 int2x4_less_than( const int2x4 *lhs, const int2x4* rhs )
 {
 	return HLML_CONSTRUCT( bool2x4 )
 	{
@@ -2527,7 +2527,7 @@ HLML_INLINE bool2x4 int2x4_less_than( const int2x4* lhs, const int2x4* rhs )
 }
 
 // Performs a component-wise '<=' check against the two matrices and returns the result.
-HLML_INLINE bool2x4 int2x4_less_than_equal( const int2x4* lhs, const int2x4* rhs )
+HLML_INLINE bool2x4 int2x4_less_than_equal( const int2x4 *lhs, const int2x4* rhs )
 {
 	return HLML_CONSTRUCT( bool2x4 )
 	{
@@ -2537,7 +2537,7 @@ HLML_INLINE bool2x4 int2x4_less_than_equal( const int2x4* lhs, const int2x4* rhs
 }
 
 // Performs a component-wise '>' check against the two matrices and returns the result.
-HLML_INLINE bool2x4 int2x4_greater_than( const int2x4* lhs, const int2x4* rhs )
+HLML_INLINE bool2x4 int2x4_greater_than( const int2x4 *lhs, const int2x4* rhs )
 {
 	return HLML_CONSTRUCT( bool2x4 )
 	{
@@ -2547,7 +2547,7 @@ HLML_INLINE bool2x4 int2x4_greater_than( const int2x4* lhs, const int2x4* rhs )
 }
 
 // Performs a component-wise '>=' check against the two matrices and returns the result.
-HLML_INLINE bool2x4 int2x4_greater_than_equal( const int2x4* lhs, const int2x4* rhs )
+HLML_INLINE bool2x4 int2x4_greater_than_equal( const int2x4 *lhs, const int2x4* rhs )
 {
 	return HLML_CONSTRUCT( bool2x4 )
 	{
@@ -2557,7 +2557,7 @@ HLML_INLINE bool2x4 int2x4_greater_than_equal( const int2x4* lhs, const int2x4* 
 }
 
 // Performs a component-wise + on the matrix by the scalar and returns the result.
-HLML_INLINE int2x4 int2x4_cadds( const int2x4* lhs, const int32_t rhs )
+HLML_INLINE int2x4 int2x4_cadds( const int2x4 *lhs, const int32_t rhs )
 {
 	return HLML_CONSTRUCT( int2x4 )
 	{
@@ -2567,7 +2567,7 @@ HLML_INLINE int2x4 int2x4_cadds( const int2x4* lhs, const int32_t rhs )
 }
 
 // Performs a component-wise + against the two matrices and returns the result.
-HLML_INLINE int2x4 int2x4_caddm( const int2x4* lhs, const int2x4* rhs )
+HLML_INLINE int2x4 int2x4_caddm( const int2x4 *lhs, const int2x4* rhs )
 {
 	return HLML_CONSTRUCT( int2x4 )
 	{
@@ -2577,7 +2577,7 @@ HLML_INLINE int2x4 int2x4_caddm( const int2x4* lhs, const int2x4* rhs )
 }
 
 // Performs a component-wise - on the matrix by the scalar and returns the result.
-HLML_INLINE int2x4 int2x4_csubs( const int2x4* lhs, const int32_t rhs )
+HLML_INLINE int2x4 int2x4_csubs( const int2x4 *lhs, const int32_t rhs )
 {
 	return HLML_CONSTRUCT( int2x4 )
 	{
@@ -2587,7 +2587,7 @@ HLML_INLINE int2x4 int2x4_csubs( const int2x4* lhs, const int32_t rhs )
 }
 
 // Performs a component-wise - against the two matrices and returns the result.
-HLML_INLINE int2x4 int2x4_csubm( const int2x4* lhs, const int2x4* rhs )
+HLML_INLINE int2x4 int2x4_csubm( const int2x4 *lhs, const int2x4* rhs )
 {
 	return HLML_CONSTRUCT( int2x4 )
 	{
@@ -2597,7 +2597,7 @@ HLML_INLINE int2x4 int2x4_csubm( const int2x4* lhs, const int2x4* rhs )
 }
 
 // Performs a component-wise * on the matrix by the scalar and returns the result.
-HLML_INLINE int2x4 int2x4_cmuls( const int2x4* lhs, const int32_t rhs )
+HLML_INLINE int2x4 int2x4_cmuls( const int2x4 *lhs, const int32_t rhs )
 {
 	return HLML_CONSTRUCT( int2x4 )
 	{
@@ -2607,7 +2607,7 @@ HLML_INLINE int2x4 int2x4_cmuls( const int2x4* lhs, const int32_t rhs )
 }
 
 // Performs a component-wise * against the two matrices and returns the result.
-HLML_INLINE int2x4 int2x4_cmulm( const int2x4* lhs, const int2x4* rhs )
+HLML_INLINE int2x4 int2x4_cmulm( const int2x4 *lhs, const int2x4* rhs )
 {
 	return HLML_CONSTRUCT( int2x4 )
 	{
@@ -2617,7 +2617,7 @@ HLML_INLINE int2x4 int2x4_cmulm( const int2x4* lhs, const int2x4* rhs )
 }
 
 // Performs a component-wise / on the matrix by the scalar and returns the result.
-HLML_INLINE int2x4 int2x4_cdivs( const int2x4* lhs, const int32_t rhs )
+HLML_INLINE int2x4 int2x4_cdivs( const int2x4 *lhs, const int32_t rhs )
 {
 	return HLML_CONSTRUCT( int2x4 )
 	{
@@ -2627,7 +2627,7 @@ HLML_INLINE int2x4 int2x4_cdivs( const int2x4* lhs, const int32_t rhs )
 }
 
 // Performs a component-wise / against the two matrices and returns the result.
-HLML_INLINE int2x4 int2x4_cdivm( const int2x4* lhs, const int2x4* rhs )
+HLML_INLINE int2x4 int2x4_cdivm( const int2x4 *lhs, const int2x4* rhs )
 {
 	return HLML_CONSTRUCT( int2x4 )
 	{
@@ -2637,7 +2637,7 @@ HLML_INLINE int2x4 int2x4_cdivm( const int2x4* lhs, const int2x4* rhs )
 }
 
 // Returns a copy of the matrix that has been negated.
-HLML_INLINE int2x4 int2x4_negate( const int2x4* x )
+HLML_INLINE int2x4 int2x4_negate( const int2x4 *x )
 {
 	return HLML_CONSTRUCT( int2x4 )
 	{
@@ -2647,7 +2647,7 @@ HLML_INLINE int2x4 int2x4_negate( const int2x4* x )
 }
 
 // Returns a copy of the matrix where each component has been bitwise NOT'd.
-HLML_INLINE int2x4 int2x4_not( const int2x4* x )
+HLML_INLINE int2x4 int2x4_not( const int2x4 *x )
 {
 	return HLML_CONSTRUCT( int2x4 )
 	{
@@ -2657,7 +2657,7 @@ HLML_INLINE int2x4 int2x4_not( const int2x4* x )
 }
 
 // Performs a component-wise bitwise & on the matrix by the scalar and returns the result.
-HLML_INLINE int2x4 int2x4_cands( const int2x4* lhs, const int32_t rhs )
+HLML_INLINE int2x4 int2x4_cands( const int2x4 *lhs, const int32_t rhs )
 {
 	return HLML_CONSTRUCT( int2x4 )
 	{
@@ -2667,7 +2667,7 @@ HLML_INLINE int2x4 int2x4_cands( const int2x4* lhs, const int32_t rhs )
 }
 
 // Performs a component-wise bitwise & against the two matrices and returns the result.
-HLML_INLINE int2x4 int2x4_candm( const int2x4* lhs, const int2x4* rhs )
+HLML_INLINE int2x4 int2x4_candm( const int2x4 *lhs, const int2x4* rhs )
 {
 	return HLML_CONSTRUCT( int2x4 )
 	{
@@ -2677,7 +2677,7 @@ HLML_INLINE int2x4 int2x4_candm( const int2x4* lhs, const int2x4* rhs )
 }
 
 // Performs a component-wise bitwise | on the matrix by the scalar and returns the result.
-HLML_INLINE int2x4 int2x4_cors( const int2x4* lhs, const int32_t rhs )
+HLML_INLINE int2x4 int2x4_cors( const int2x4 *lhs, const int32_t rhs )
 {
 	return HLML_CONSTRUCT( int2x4 )
 	{
@@ -2687,7 +2687,7 @@ HLML_INLINE int2x4 int2x4_cors( const int2x4* lhs, const int32_t rhs )
 }
 
 // Performs a component-wise bitwise | against the two matrices and returns the result.
-HLML_INLINE int2x4 int2x4_corm( const int2x4* lhs, const int2x4* rhs )
+HLML_INLINE int2x4 int2x4_corm( const int2x4 *lhs, const int2x4* rhs )
 {
 	return HLML_CONSTRUCT( int2x4 )
 	{
@@ -2697,7 +2697,7 @@ HLML_INLINE int2x4 int2x4_corm( const int2x4* lhs, const int2x4* rhs )
 }
 
 // Performs a component-wise bitwise ^ on the matrix by the scalar and returns the result.
-HLML_INLINE int2x4 int2x4_cxors( const int2x4* lhs, const int32_t rhs )
+HLML_INLINE int2x4 int2x4_cxors( const int2x4 *lhs, const int32_t rhs )
 {
 	return HLML_CONSTRUCT( int2x4 )
 	{
@@ -2707,7 +2707,7 @@ HLML_INLINE int2x4 int2x4_cxors( const int2x4* lhs, const int32_t rhs )
 }
 
 // Performs a component-wise bitwise ^ against the two matrices and returns the result.
-HLML_INLINE int2x4 int2x4_cxorm( const int2x4* lhs, const int2x4* rhs )
+HLML_INLINE int2x4 int2x4_cxorm( const int2x4 *lhs, const int2x4* rhs )
 {
 	return HLML_CONSTRUCT( int2x4 )
 	{
@@ -2717,7 +2717,7 @@ HLML_INLINE int2x4 int2x4_cxorm( const int2x4* lhs, const int2x4* rhs )
 }
 
 // Performs a component-wise bitwise << on the matrix by the scalar and returns the result.
-HLML_INLINE int2x4 int2x4_cshift_lefts( const int2x4* lhs, const int32_t rhs )
+HLML_INLINE int2x4 int2x4_cshift_lefts( const int2x4 *lhs, const int32_t rhs )
 {
 	return HLML_CONSTRUCT( int2x4 )
 	{
@@ -2727,7 +2727,7 @@ HLML_INLINE int2x4 int2x4_cshift_lefts( const int2x4* lhs, const int32_t rhs )
 }
 
 // Performs a component-wise bitwise << against the two matrices and returns the result.
-HLML_INLINE int2x4 int2x4_cshift_leftm( const int2x4* lhs, const int2x4* rhs )
+HLML_INLINE int2x4 int2x4_cshift_leftm( const int2x4 *lhs, const int2x4* rhs )
 {
 	return HLML_CONSTRUCT( int2x4 )
 	{
@@ -2737,7 +2737,7 @@ HLML_INLINE int2x4 int2x4_cshift_leftm( const int2x4* lhs, const int2x4* rhs )
 }
 
 // Performs a component-wise bitwise >> on the matrix by the scalar and returns the result.
-HLML_INLINE int2x4 int2x4_cshift_rights( const int2x4* lhs, const int32_t rhs )
+HLML_INLINE int2x4 int2x4_cshift_rights( const int2x4 *lhs, const int32_t rhs )
 {
 	return HLML_CONSTRUCT( int2x4 )
 	{
@@ -2747,7 +2747,7 @@ HLML_INLINE int2x4 int2x4_cshift_rights( const int2x4* lhs, const int32_t rhs )
 }
 
 // Performs a component-wise bitwise >> against the two matrices and returns the result.
-HLML_INLINE int2x4 int2x4_cshift_rightm( const int2x4* lhs, const int2x4* rhs )
+HLML_INLINE int2x4 int2x4_cshift_rightm( const int2x4 *lhs, const int2x4* rhs )
 {
 	return HLML_CONSTRUCT( int2x4 )
 	{
@@ -2851,7 +2851,7 @@ HLML_INLINE int3x2 int3x2_saturate( const int3x2* x )
 }
 
 // Returns true if the contents of 'lhs' are the same as the contents of 'rhs', otherwise returns false.
-HLML_INLINE bool int3x2_equals( const int3x2* lhs, const int3x2* rhs )
+HLML_INLINE bool int3x2_equals( const int3x2 *lhs, const int3x2 *rhs )
 {
 	return
 		int2_equals( &lhs->rows[0], &rhs->rows[0] ) &&
@@ -2860,13 +2860,13 @@ HLML_INLINE bool int3x2_equals( const int3x2* lhs, const int3x2* rhs )
 }
 
 // Returns true if the contents of 'lhs' are NOT the same as the contents of 'rhs', otherwise returns false.
-HLML_INLINE bool int3x2_not_equals( const int3x2* lhs, const int3x2* rhs )
+HLML_INLINE bool int3x2_not_equals( const int3x2 *lhs, const int3x2 *rhs )
 {
 	return !int3x2_equals( lhs, rhs );
 }
 
 // Performs a component-wise '<' check against the two matrices and returns the result.
-HLML_INLINE bool3x2 int3x2_less_than( const int3x2* lhs, const int3x2* rhs )
+HLML_INLINE bool3x2 int3x2_less_than( const int3x2 *lhs, const int3x2* rhs )
 {
 	return HLML_CONSTRUCT( bool3x2 )
 	{
@@ -2877,7 +2877,7 @@ HLML_INLINE bool3x2 int3x2_less_than( const int3x2* lhs, const int3x2* rhs )
 }
 
 // Performs a component-wise '<=' check against the two matrices and returns the result.
-HLML_INLINE bool3x2 int3x2_less_than_equal( const int3x2* lhs, const int3x2* rhs )
+HLML_INLINE bool3x2 int3x2_less_than_equal( const int3x2 *lhs, const int3x2* rhs )
 {
 	return HLML_CONSTRUCT( bool3x2 )
 	{
@@ -2888,7 +2888,7 @@ HLML_INLINE bool3x2 int3x2_less_than_equal( const int3x2* lhs, const int3x2* rhs
 }
 
 // Performs a component-wise '>' check against the two matrices and returns the result.
-HLML_INLINE bool3x2 int3x2_greater_than( const int3x2* lhs, const int3x2* rhs )
+HLML_INLINE bool3x2 int3x2_greater_than( const int3x2 *lhs, const int3x2* rhs )
 {
 	return HLML_CONSTRUCT( bool3x2 )
 	{
@@ -2899,7 +2899,7 @@ HLML_INLINE bool3x2 int3x2_greater_than( const int3x2* lhs, const int3x2* rhs )
 }
 
 // Performs a component-wise '>=' check against the two matrices and returns the result.
-HLML_INLINE bool3x2 int3x2_greater_than_equal( const int3x2* lhs, const int3x2* rhs )
+HLML_INLINE bool3x2 int3x2_greater_than_equal( const int3x2 *lhs, const int3x2* rhs )
 {
 	return HLML_CONSTRUCT( bool3x2 )
 	{
@@ -2910,7 +2910,7 @@ HLML_INLINE bool3x2 int3x2_greater_than_equal( const int3x2* lhs, const int3x2* 
 }
 
 // Performs a component-wise + on the matrix by the scalar and returns the result.
-HLML_INLINE int3x2 int3x2_cadds( const int3x2* lhs, const int32_t rhs )
+HLML_INLINE int3x2 int3x2_cadds( const int3x2 *lhs, const int32_t rhs )
 {
 	return HLML_CONSTRUCT( int3x2 )
 	{
@@ -2921,7 +2921,7 @@ HLML_INLINE int3x2 int3x2_cadds( const int3x2* lhs, const int32_t rhs )
 }
 
 // Performs a component-wise + against the two matrices and returns the result.
-HLML_INLINE int3x2 int3x2_caddm( const int3x2* lhs, const int3x2* rhs )
+HLML_INLINE int3x2 int3x2_caddm( const int3x2 *lhs, const int3x2* rhs )
 {
 	return HLML_CONSTRUCT( int3x2 )
 	{
@@ -2932,7 +2932,7 @@ HLML_INLINE int3x2 int3x2_caddm( const int3x2* lhs, const int3x2* rhs )
 }
 
 // Performs a component-wise - on the matrix by the scalar and returns the result.
-HLML_INLINE int3x2 int3x2_csubs( const int3x2* lhs, const int32_t rhs )
+HLML_INLINE int3x2 int3x2_csubs( const int3x2 *lhs, const int32_t rhs )
 {
 	return HLML_CONSTRUCT( int3x2 )
 	{
@@ -2943,7 +2943,7 @@ HLML_INLINE int3x2 int3x2_csubs( const int3x2* lhs, const int32_t rhs )
 }
 
 // Performs a component-wise - against the two matrices and returns the result.
-HLML_INLINE int3x2 int3x2_csubm( const int3x2* lhs, const int3x2* rhs )
+HLML_INLINE int3x2 int3x2_csubm( const int3x2 *lhs, const int3x2* rhs )
 {
 	return HLML_CONSTRUCT( int3x2 )
 	{
@@ -2954,7 +2954,7 @@ HLML_INLINE int3x2 int3x2_csubm( const int3x2* lhs, const int3x2* rhs )
 }
 
 // Performs a component-wise * on the matrix by the scalar and returns the result.
-HLML_INLINE int3x2 int3x2_cmuls( const int3x2* lhs, const int32_t rhs )
+HLML_INLINE int3x2 int3x2_cmuls( const int3x2 *lhs, const int32_t rhs )
 {
 	return HLML_CONSTRUCT( int3x2 )
 	{
@@ -2965,7 +2965,7 @@ HLML_INLINE int3x2 int3x2_cmuls( const int3x2* lhs, const int32_t rhs )
 }
 
 // Performs a component-wise * against the two matrices and returns the result.
-HLML_INLINE int3x2 int3x2_cmulm( const int3x2* lhs, const int3x2* rhs )
+HLML_INLINE int3x2 int3x2_cmulm( const int3x2 *lhs, const int3x2* rhs )
 {
 	return HLML_CONSTRUCT( int3x2 )
 	{
@@ -2976,7 +2976,7 @@ HLML_INLINE int3x2 int3x2_cmulm( const int3x2* lhs, const int3x2* rhs )
 }
 
 // Performs a component-wise / on the matrix by the scalar and returns the result.
-HLML_INLINE int3x2 int3x2_cdivs( const int3x2* lhs, const int32_t rhs )
+HLML_INLINE int3x2 int3x2_cdivs( const int3x2 *lhs, const int32_t rhs )
 {
 	return HLML_CONSTRUCT( int3x2 )
 	{
@@ -2987,7 +2987,7 @@ HLML_INLINE int3x2 int3x2_cdivs( const int3x2* lhs, const int32_t rhs )
 }
 
 // Performs a component-wise / against the two matrices and returns the result.
-HLML_INLINE int3x2 int3x2_cdivm( const int3x2* lhs, const int3x2* rhs )
+HLML_INLINE int3x2 int3x2_cdivm( const int3x2 *lhs, const int3x2* rhs )
 {
 	return HLML_CONSTRUCT( int3x2 )
 	{
@@ -2998,7 +2998,7 @@ HLML_INLINE int3x2 int3x2_cdivm( const int3x2* lhs, const int3x2* rhs )
 }
 
 // Returns a copy of the matrix that has been negated.
-HLML_INLINE int3x2 int3x2_negate( const int3x2* x )
+HLML_INLINE int3x2 int3x2_negate( const int3x2 *x )
 {
 	return HLML_CONSTRUCT( int3x2 )
 	{
@@ -3009,7 +3009,7 @@ HLML_INLINE int3x2 int3x2_negate( const int3x2* x )
 }
 
 // Returns a copy of the matrix where each component has been bitwise NOT'd.
-HLML_INLINE int3x2 int3x2_not( const int3x2* x )
+HLML_INLINE int3x2 int3x2_not( const int3x2 *x )
 {
 	return HLML_CONSTRUCT( int3x2 )
 	{
@@ -3020,7 +3020,7 @@ HLML_INLINE int3x2 int3x2_not( const int3x2* x )
 }
 
 // Performs a component-wise bitwise & on the matrix by the scalar and returns the result.
-HLML_INLINE int3x2 int3x2_cands( const int3x2* lhs, const int32_t rhs )
+HLML_INLINE int3x2 int3x2_cands( const int3x2 *lhs, const int32_t rhs )
 {
 	return HLML_CONSTRUCT( int3x2 )
 	{
@@ -3031,7 +3031,7 @@ HLML_INLINE int3x2 int3x2_cands( const int3x2* lhs, const int32_t rhs )
 }
 
 // Performs a component-wise bitwise & against the two matrices and returns the result.
-HLML_INLINE int3x2 int3x2_candm( const int3x2* lhs, const int3x2* rhs )
+HLML_INLINE int3x2 int3x2_candm( const int3x2 *lhs, const int3x2* rhs )
 {
 	return HLML_CONSTRUCT( int3x2 )
 	{
@@ -3042,7 +3042,7 @@ HLML_INLINE int3x2 int3x2_candm( const int3x2* lhs, const int3x2* rhs )
 }
 
 // Performs a component-wise bitwise | on the matrix by the scalar and returns the result.
-HLML_INLINE int3x2 int3x2_cors( const int3x2* lhs, const int32_t rhs )
+HLML_INLINE int3x2 int3x2_cors( const int3x2 *lhs, const int32_t rhs )
 {
 	return HLML_CONSTRUCT( int3x2 )
 	{
@@ -3053,7 +3053,7 @@ HLML_INLINE int3x2 int3x2_cors( const int3x2* lhs, const int32_t rhs )
 }
 
 // Performs a component-wise bitwise | against the two matrices and returns the result.
-HLML_INLINE int3x2 int3x2_corm( const int3x2* lhs, const int3x2* rhs )
+HLML_INLINE int3x2 int3x2_corm( const int3x2 *lhs, const int3x2* rhs )
 {
 	return HLML_CONSTRUCT( int3x2 )
 	{
@@ -3064,7 +3064,7 @@ HLML_INLINE int3x2 int3x2_corm( const int3x2* lhs, const int3x2* rhs )
 }
 
 // Performs a component-wise bitwise ^ on the matrix by the scalar and returns the result.
-HLML_INLINE int3x2 int3x2_cxors( const int3x2* lhs, const int32_t rhs )
+HLML_INLINE int3x2 int3x2_cxors( const int3x2 *lhs, const int32_t rhs )
 {
 	return HLML_CONSTRUCT( int3x2 )
 	{
@@ -3075,7 +3075,7 @@ HLML_INLINE int3x2 int3x2_cxors( const int3x2* lhs, const int32_t rhs )
 }
 
 // Performs a component-wise bitwise ^ against the two matrices and returns the result.
-HLML_INLINE int3x2 int3x2_cxorm( const int3x2* lhs, const int3x2* rhs )
+HLML_INLINE int3x2 int3x2_cxorm( const int3x2 *lhs, const int3x2* rhs )
 {
 	return HLML_CONSTRUCT( int3x2 )
 	{
@@ -3086,7 +3086,7 @@ HLML_INLINE int3x2 int3x2_cxorm( const int3x2* lhs, const int3x2* rhs )
 }
 
 // Performs a component-wise bitwise << on the matrix by the scalar and returns the result.
-HLML_INLINE int3x2 int3x2_cshift_lefts( const int3x2* lhs, const int32_t rhs )
+HLML_INLINE int3x2 int3x2_cshift_lefts( const int3x2 *lhs, const int32_t rhs )
 {
 	return HLML_CONSTRUCT( int3x2 )
 	{
@@ -3097,7 +3097,7 @@ HLML_INLINE int3x2 int3x2_cshift_lefts( const int3x2* lhs, const int32_t rhs )
 }
 
 // Performs a component-wise bitwise << against the two matrices and returns the result.
-HLML_INLINE int3x2 int3x2_cshift_leftm( const int3x2* lhs, const int3x2* rhs )
+HLML_INLINE int3x2 int3x2_cshift_leftm( const int3x2 *lhs, const int3x2* rhs )
 {
 	return HLML_CONSTRUCT( int3x2 )
 	{
@@ -3108,7 +3108,7 @@ HLML_INLINE int3x2 int3x2_cshift_leftm( const int3x2* lhs, const int3x2* rhs )
 }
 
 // Performs a component-wise bitwise >> on the matrix by the scalar and returns the result.
-HLML_INLINE int3x2 int3x2_cshift_rights( const int3x2* lhs, const int32_t rhs )
+HLML_INLINE int3x2 int3x2_cshift_rights( const int3x2 *lhs, const int32_t rhs )
 {
 	return HLML_CONSTRUCT( int3x2 )
 	{
@@ -3119,7 +3119,7 @@ HLML_INLINE int3x2 int3x2_cshift_rights( const int3x2* lhs, const int32_t rhs )
 }
 
 // Performs a component-wise bitwise >> against the two matrices and returns the result.
-HLML_INLINE int3x2 int3x2_cshift_rightm( const int3x2* lhs, const int3x2* rhs )
+HLML_INLINE int3x2 int3x2_cshift_rightm( const int3x2 *lhs, const int3x2* rhs )
 {
 	return HLML_CONSTRUCT( int3x2 )
 	{
@@ -3231,7 +3231,7 @@ HLML_INLINE int3x3 int3x3_saturate( const int3x3* x )
 }
 
 // Returns true if the contents of 'lhs' are the same as the contents of 'rhs', otherwise returns false.
-HLML_INLINE bool int3x3_equals( const int3x3* lhs, const int3x3* rhs )
+HLML_INLINE bool int3x3_equals( const int3x3 *lhs, const int3x3 *rhs )
 {
 	return
 		int3_equals( &lhs->rows[0], &rhs->rows[0] ) &&
@@ -3240,13 +3240,13 @@ HLML_INLINE bool int3x3_equals( const int3x3* lhs, const int3x3* rhs )
 }
 
 // Returns true if the contents of 'lhs' are NOT the same as the contents of 'rhs', otherwise returns false.
-HLML_INLINE bool int3x3_not_equals( const int3x3* lhs, const int3x3* rhs )
+HLML_INLINE bool int3x3_not_equals( const int3x3 *lhs, const int3x3 *rhs )
 {
 	return !int3x3_equals( lhs, rhs );
 }
 
 // Performs a component-wise '<' check against the two matrices and returns the result.
-HLML_INLINE bool3x3 int3x3_less_than( const int3x3* lhs, const int3x3* rhs )
+HLML_INLINE bool3x3 int3x3_less_than( const int3x3 *lhs, const int3x3* rhs )
 {
 	return HLML_CONSTRUCT( bool3x3 )
 	{
@@ -3257,7 +3257,7 @@ HLML_INLINE bool3x3 int3x3_less_than( const int3x3* lhs, const int3x3* rhs )
 }
 
 // Performs a component-wise '<=' check against the two matrices and returns the result.
-HLML_INLINE bool3x3 int3x3_less_than_equal( const int3x3* lhs, const int3x3* rhs )
+HLML_INLINE bool3x3 int3x3_less_than_equal( const int3x3 *lhs, const int3x3* rhs )
 {
 	return HLML_CONSTRUCT( bool3x3 )
 	{
@@ -3268,7 +3268,7 @@ HLML_INLINE bool3x3 int3x3_less_than_equal( const int3x3* lhs, const int3x3* rhs
 }
 
 // Performs a component-wise '>' check against the two matrices and returns the result.
-HLML_INLINE bool3x3 int3x3_greater_than( const int3x3* lhs, const int3x3* rhs )
+HLML_INLINE bool3x3 int3x3_greater_than( const int3x3 *lhs, const int3x3* rhs )
 {
 	return HLML_CONSTRUCT( bool3x3 )
 	{
@@ -3279,7 +3279,7 @@ HLML_INLINE bool3x3 int3x3_greater_than( const int3x3* lhs, const int3x3* rhs )
 }
 
 // Performs a component-wise '>=' check against the two matrices and returns the result.
-HLML_INLINE bool3x3 int3x3_greater_than_equal( const int3x3* lhs, const int3x3* rhs )
+HLML_INLINE bool3x3 int3x3_greater_than_equal( const int3x3 *lhs, const int3x3* rhs )
 {
 	return HLML_CONSTRUCT( bool3x3 )
 	{
@@ -3290,7 +3290,7 @@ HLML_INLINE bool3x3 int3x3_greater_than_equal( const int3x3* lhs, const int3x3* 
 }
 
 // Performs a component-wise + on the matrix by the scalar and returns the result.
-HLML_INLINE int3x3 int3x3_cadds( const int3x3* lhs, const int32_t rhs )
+HLML_INLINE int3x3 int3x3_cadds( const int3x3 *lhs, const int32_t rhs )
 {
 	return HLML_CONSTRUCT( int3x3 )
 	{
@@ -3301,7 +3301,7 @@ HLML_INLINE int3x3 int3x3_cadds( const int3x3* lhs, const int32_t rhs )
 }
 
 // Performs a component-wise + against the two matrices and returns the result.
-HLML_INLINE int3x3 int3x3_caddm( const int3x3* lhs, const int3x3* rhs )
+HLML_INLINE int3x3 int3x3_caddm( const int3x3 *lhs, const int3x3* rhs )
 {
 	return HLML_CONSTRUCT( int3x3 )
 	{
@@ -3312,7 +3312,7 @@ HLML_INLINE int3x3 int3x3_caddm( const int3x3* lhs, const int3x3* rhs )
 }
 
 // Performs a component-wise - on the matrix by the scalar and returns the result.
-HLML_INLINE int3x3 int3x3_csubs( const int3x3* lhs, const int32_t rhs )
+HLML_INLINE int3x3 int3x3_csubs( const int3x3 *lhs, const int32_t rhs )
 {
 	return HLML_CONSTRUCT( int3x3 )
 	{
@@ -3323,7 +3323,7 @@ HLML_INLINE int3x3 int3x3_csubs( const int3x3* lhs, const int32_t rhs )
 }
 
 // Performs a component-wise - against the two matrices and returns the result.
-HLML_INLINE int3x3 int3x3_csubm( const int3x3* lhs, const int3x3* rhs )
+HLML_INLINE int3x3 int3x3_csubm( const int3x3 *lhs, const int3x3* rhs )
 {
 	return HLML_CONSTRUCT( int3x3 )
 	{
@@ -3334,7 +3334,7 @@ HLML_INLINE int3x3 int3x3_csubm( const int3x3* lhs, const int3x3* rhs )
 }
 
 // Performs a component-wise * on the matrix by the scalar and returns the result.
-HLML_INLINE int3x3 int3x3_cmuls( const int3x3* lhs, const int32_t rhs )
+HLML_INLINE int3x3 int3x3_cmuls( const int3x3 *lhs, const int32_t rhs )
 {
 	return HLML_CONSTRUCT( int3x3 )
 	{
@@ -3345,7 +3345,7 @@ HLML_INLINE int3x3 int3x3_cmuls( const int3x3* lhs, const int32_t rhs )
 }
 
 // Performs a component-wise * against the two matrices and returns the result.
-HLML_INLINE int3x3 int3x3_cmulm( const int3x3* lhs, const int3x3* rhs )
+HLML_INLINE int3x3 int3x3_cmulm( const int3x3 *lhs, const int3x3* rhs )
 {
 	return HLML_CONSTRUCT( int3x3 )
 	{
@@ -3356,7 +3356,7 @@ HLML_INLINE int3x3 int3x3_cmulm( const int3x3* lhs, const int3x3* rhs )
 }
 
 // Performs a component-wise / on the matrix by the scalar and returns the result.
-HLML_INLINE int3x3 int3x3_cdivs( const int3x3* lhs, const int32_t rhs )
+HLML_INLINE int3x3 int3x3_cdivs( const int3x3 *lhs, const int32_t rhs )
 {
 	return HLML_CONSTRUCT( int3x3 )
 	{
@@ -3367,7 +3367,7 @@ HLML_INLINE int3x3 int3x3_cdivs( const int3x3* lhs, const int32_t rhs )
 }
 
 // Performs a component-wise / against the two matrices and returns the result.
-HLML_INLINE int3x3 int3x3_cdivm( const int3x3* lhs, const int3x3* rhs )
+HLML_INLINE int3x3 int3x3_cdivm( const int3x3 *lhs, const int3x3* rhs )
 {
 	return HLML_CONSTRUCT( int3x3 )
 	{
@@ -3378,7 +3378,7 @@ HLML_INLINE int3x3 int3x3_cdivm( const int3x3* lhs, const int3x3* rhs )
 }
 
 // Returns a copy of the matrix that has been negated.
-HLML_INLINE int3x3 int3x3_negate( const int3x3* x )
+HLML_INLINE int3x3 int3x3_negate( const int3x3 *x )
 {
 	return HLML_CONSTRUCT( int3x3 )
 	{
@@ -3389,7 +3389,7 @@ HLML_INLINE int3x3 int3x3_negate( const int3x3* x )
 }
 
 // Returns a copy of the matrix where each component has been bitwise NOT'd.
-HLML_INLINE int3x3 int3x3_not( const int3x3* x )
+HLML_INLINE int3x3 int3x3_not( const int3x3 *x )
 {
 	return HLML_CONSTRUCT( int3x3 )
 	{
@@ -3400,7 +3400,7 @@ HLML_INLINE int3x3 int3x3_not( const int3x3* x )
 }
 
 // Performs a component-wise bitwise & on the matrix by the scalar and returns the result.
-HLML_INLINE int3x3 int3x3_cands( const int3x3* lhs, const int32_t rhs )
+HLML_INLINE int3x3 int3x3_cands( const int3x3 *lhs, const int32_t rhs )
 {
 	return HLML_CONSTRUCT( int3x3 )
 	{
@@ -3411,7 +3411,7 @@ HLML_INLINE int3x3 int3x3_cands( const int3x3* lhs, const int32_t rhs )
 }
 
 // Performs a component-wise bitwise & against the two matrices and returns the result.
-HLML_INLINE int3x3 int3x3_candm( const int3x3* lhs, const int3x3* rhs )
+HLML_INLINE int3x3 int3x3_candm( const int3x3 *lhs, const int3x3* rhs )
 {
 	return HLML_CONSTRUCT( int3x3 )
 	{
@@ -3422,7 +3422,7 @@ HLML_INLINE int3x3 int3x3_candm( const int3x3* lhs, const int3x3* rhs )
 }
 
 // Performs a component-wise bitwise | on the matrix by the scalar and returns the result.
-HLML_INLINE int3x3 int3x3_cors( const int3x3* lhs, const int32_t rhs )
+HLML_INLINE int3x3 int3x3_cors( const int3x3 *lhs, const int32_t rhs )
 {
 	return HLML_CONSTRUCT( int3x3 )
 	{
@@ -3433,7 +3433,7 @@ HLML_INLINE int3x3 int3x3_cors( const int3x3* lhs, const int32_t rhs )
 }
 
 // Performs a component-wise bitwise | against the two matrices and returns the result.
-HLML_INLINE int3x3 int3x3_corm( const int3x3* lhs, const int3x3* rhs )
+HLML_INLINE int3x3 int3x3_corm( const int3x3 *lhs, const int3x3* rhs )
 {
 	return HLML_CONSTRUCT( int3x3 )
 	{
@@ -3444,7 +3444,7 @@ HLML_INLINE int3x3 int3x3_corm( const int3x3* lhs, const int3x3* rhs )
 }
 
 // Performs a component-wise bitwise ^ on the matrix by the scalar and returns the result.
-HLML_INLINE int3x3 int3x3_cxors( const int3x3* lhs, const int32_t rhs )
+HLML_INLINE int3x3 int3x3_cxors( const int3x3 *lhs, const int32_t rhs )
 {
 	return HLML_CONSTRUCT( int3x3 )
 	{
@@ -3455,7 +3455,7 @@ HLML_INLINE int3x3 int3x3_cxors( const int3x3* lhs, const int32_t rhs )
 }
 
 // Performs a component-wise bitwise ^ against the two matrices and returns the result.
-HLML_INLINE int3x3 int3x3_cxorm( const int3x3* lhs, const int3x3* rhs )
+HLML_INLINE int3x3 int3x3_cxorm( const int3x3 *lhs, const int3x3* rhs )
 {
 	return HLML_CONSTRUCT( int3x3 )
 	{
@@ -3466,7 +3466,7 @@ HLML_INLINE int3x3 int3x3_cxorm( const int3x3* lhs, const int3x3* rhs )
 }
 
 // Performs a component-wise bitwise << on the matrix by the scalar and returns the result.
-HLML_INLINE int3x3 int3x3_cshift_lefts( const int3x3* lhs, const int32_t rhs )
+HLML_INLINE int3x3 int3x3_cshift_lefts( const int3x3 *lhs, const int32_t rhs )
 {
 	return HLML_CONSTRUCT( int3x3 )
 	{
@@ -3477,7 +3477,7 @@ HLML_INLINE int3x3 int3x3_cshift_lefts( const int3x3* lhs, const int32_t rhs )
 }
 
 // Performs a component-wise bitwise << against the two matrices and returns the result.
-HLML_INLINE int3x3 int3x3_cshift_leftm( const int3x3* lhs, const int3x3* rhs )
+HLML_INLINE int3x3 int3x3_cshift_leftm( const int3x3 *lhs, const int3x3* rhs )
 {
 	return HLML_CONSTRUCT( int3x3 )
 	{
@@ -3488,7 +3488,7 @@ HLML_INLINE int3x3 int3x3_cshift_leftm( const int3x3* lhs, const int3x3* rhs )
 }
 
 // Performs a component-wise bitwise >> on the matrix by the scalar and returns the result.
-HLML_INLINE int3x3 int3x3_cshift_rights( const int3x3* lhs, const int32_t rhs )
+HLML_INLINE int3x3 int3x3_cshift_rights( const int3x3 *lhs, const int32_t rhs )
 {
 	return HLML_CONSTRUCT( int3x3 )
 	{
@@ -3499,7 +3499,7 @@ HLML_INLINE int3x3 int3x3_cshift_rights( const int3x3* lhs, const int32_t rhs )
 }
 
 // Performs a component-wise bitwise >> against the two matrices and returns the result.
-HLML_INLINE int3x3 int3x3_cshift_rightm( const int3x3* lhs, const int3x3* rhs )
+HLML_INLINE int3x3 int3x3_cshift_rightm( const int3x3 *lhs, const int3x3* rhs )
 {
 	return HLML_CONSTRUCT( int3x3 )
 	{
@@ -3632,7 +3632,7 @@ HLML_INLINE int3x4 int3x4_saturate( const int3x4* x )
 }
 
 // Returns true if the contents of 'lhs' are the same as the contents of 'rhs', otherwise returns false.
-HLML_INLINE bool int3x4_equals( const int3x4* lhs, const int3x4* rhs )
+HLML_INLINE bool int3x4_equals( const int3x4 *lhs, const int3x4 *rhs )
 {
 	return
 		int4_equals( &lhs->rows[0], &rhs->rows[0] ) &&
@@ -3641,13 +3641,13 @@ HLML_INLINE bool int3x4_equals( const int3x4* lhs, const int3x4* rhs )
 }
 
 // Returns true if the contents of 'lhs' are NOT the same as the contents of 'rhs', otherwise returns false.
-HLML_INLINE bool int3x4_not_equals( const int3x4* lhs, const int3x4* rhs )
+HLML_INLINE bool int3x4_not_equals( const int3x4 *lhs, const int3x4 *rhs )
 {
 	return !int3x4_equals( lhs, rhs );
 }
 
 // Performs a component-wise '<' check against the two matrices and returns the result.
-HLML_INLINE bool3x4 int3x4_less_than( const int3x4* lhs, const int3x4* rhs )
+HLML_INLINE bool3x4 int3x4_less_than( const int3x4 *lhs, const int3x4* rhs )
 {
 	return HLML_CONSTRUCT( bool3x4 )
 	{
@@ -3658,7 +3658,7 @@ HLML_INLINE bool3x4 int3x4_less_than( const int3x4* lhs, const int3x4* rhs )
 }
 
 // Performs a component-wise '<=' check against the two matrices and returns the result.
-HLML_INLINE bool3x4 int3x4_less_than_equal( const int3x4* lhs, const int3x4* rhs )
+HLML_INLINE bool3x4 int3x4_less_than_equal( const int3x4 *lhs, const int3x4* rhs )
 {
 	return HLML_CONSTRUCT( bool3x4 )
 	{
@@ -3669,7 +3669,7 @@ HLML_INLINE bool3x4 int3x4_less_than_equal( const int3x4* lhs, const int3x4* rhs
 }
 
 // Performs a component-wise '>' check against the two matrices and returns the result.
-HLML_INLINE bool3x4 int3x4_greater_than( const int3x4* lhs, const int3x4* rhs )
+HLML_INLINE bool3x4 int3x4_greater_than( const int3x4 *lhs, const int3x4* rhs )
 {
 	return HLML_CONSTRUCT( bool3x4 )
 	{
@@ -3680,7 +3680,7 @@ HLML_INLINE bool3x4 int3x4_greater_than( const int3x4* lhs, const int3x4* rhs )
 }
 
 // Performs a component-wise '>=' check against the two matrices and returns the result.
-HLML_INLINE bool3x4 int3x4_greater_than_equal( const int3x4* lhs, const int3x4* rhs )
+HLML_INLINE bool3x4 int3x4_greater_than_equal( const int3x4 *lhs, const int3x4* rhs )
 {
 	return HLML_CONSTRUCT( bool3x4 )
 	{
@@ -3691,7 +3691,7 @@ HLML_INLINE bool3x4 int3x4_greater_than_equal( const int3x4* lhs, const int3x4* 
 }
 
 // Performs a component-wise + on the matrix by the scalar and returns the result.
-HLML_INLINE int3x4 int3x4_cadds( const int3x4* lhs, const int32_t rhs )
+HLML_INLINE int3x4 int3x4_cadds( const int3x4 *lhs, const int32_t rhs )
 {
 	return HLML_CONSTRUCT( int3x4 )
 	{
@@ -3702,7 +3702,7 @@ HLML_INLINE int3x4 int3x4_cadds( const int3x4* lhs, const int32_t rhs )
 }
 
 // Performs a component-wise + against the two matrices and returns the result.
-HLML_INLINE int3x4 int3x4_caddm( const int3x4* lhs, const int3x4* rhs )
+HLML_INLINE int3x4 int3x4_caddm( const int3x4 *lhs, const int3x4* rhs )
 {
 	return HLML_CONSTRUCT( int3x4 )
 	{
@@ -3713,7 +3713,7 @@ HLML_INLINE int3x4 int3x4_caddm( const int3x4* lhs, const int3x4* rhs )
 }
 
 // Performs a component-wise - on the matrix by the scalar and returns the result.
-HLML_INLINE int3x4 int3x4_csubs( const int3x4* lhs, const int32_t rhs )
+HLML_INLINE int3x4 int3x4_csubs( const int3x4 *lhs, const int32_t rhs )
 {
 	return HLML_CONSTRUCT( int3x4 )
 	{
@@ -3724,7 +3724,7 @@ HLML_INLINE int3x4 int3x4_csubs( const int3x4* lhs, const int32_t rhs )
 }
 
 // Performs a component-wise - against the two matrices and returns the result.
-HLML_INLINE int3x4 int3x4_csubm( const int3x4* lhs, const int3x4* rhs )
+HLML_INLINE int3x4 int3x4_csubm( const int3x4 *lhs, const int3x4* rhs )
 {
 	return HLML_CONSTRUCT( int3x4 )
 	{
@@ -3735,7 +3735,7 @@ HLML_INLINE int3x4 int3x4_csubm( const int3x4* lhs, const int3x4* rhs )
 }
 
 // Performs a component-wise * on the matrix by the scalar and returns the result.
-HLML_INLINE int3x4 int3x4_cmuls( const int3x4* lhs, const int32_t rhs )
+HLML_INLINE int3x4 int3x4_cmuls( const int3x4 *lhs, const int32_t rhs )
 {
 	return HLML_CONSTRUCT( int3x4 )
 	{
@@ -3746,7 +3746,7 @@ HLML_INLINE int3x4 int3x4_cmuls( const int3x4* lhs, const int32_t rhs )
 }
 
 // Performs a component-wise * against the two matrices and returns the result.
-HLML_INLINE int3x4 int3x4_cmulm( const int3x4* lhs, const int3x4* rhs )
+HLML_INLINE int3x4 int3x4_cmulm( const int3x4 *lhs, const int3x4* rhs )
 {
 	return HLML_CONSTRUCT( int3x4 )
 	{
@@ -3757,7 +3757,7 @@ HLML_INLINE int3x4 int3x4_cmulm( const int3x4* lhs, const int3x4* rhs )
 }
 
 // Performs a component-wise / on the matrix by the scalar and returns the result.
-HLML_INLINE int3x4 int3x4_cdivs( const int3x4* lhs, const int32_t rhs )
+HLML_INLINE int3x4 int3x4_cdivs( const int3x4 *lhs, const int32_t rhs )
 {
 	return HLML_CONSTRUCT( int3x4 )
 	{
@@ -3768,7 +3768,7 @@ HLML_INLINE int3x4 int3x4_cdivs( const int3x4* lhs, const int32_t rhs )
 }
 
 // Performs a component-wise / against the two matrices and returns the result.
-HLML_INLINE int3x4 int3x4_cdivm( const int3x4* lhs, const int3x4* rhs )
+HLML_INLINE int3x4 int3x4_cdivm( const int3x4 *lhs, const int3x4* rhs )
 {
 	return HLML_CONSTRUCT( int3x4 )
 	{
@@ -3779,7 +3779,7 @@ HLML_INLINE int3x4 int3x4_cdivm( const int3x4* lhs, const int3x4* rhs )
 }
 
 // Returns a copy of the matrix that has been negated.
-HLML_INLINE int3x4 int3x4_negate( const int3x4* x )
+HLML_INLINE int3x4 int3x4_negate( const int3x4 *x )
 {
 	return HLML_CONSTRUCT( int3x4 )
 	{
@@ -3790,7 +3790,7 @@ HLML_INLINE int3x4 int3x4_negate( const int3x4* x )
 }
 
 // Returns a copy of the matrix where each component has been bitwise NOT'd.
-HLML_INLINE int3x4 int3x4_not( const int3x4* x )
+HLML_INLINE int3x4 int3x4_not( const int3x4 *x )
 {
 	return HLML_CONSTRUCT( int3x4 )
 	{
@@ -3801,7 +3801,7 @@ HLML_INLINE int3x4 int3x4_not( const int3x4* x )
 }
 
 // Performs a component-wise bitwise & on the matrix by the scalar and returns the result.
-HLML_INLINE int3x4 int3x4_cands( const int3x4* lhs, const int32_t rhs )
+HLML_INLINE int3x4 int3x4_cands( const int3x4 *lhs, const int32_t rhs )
 {
 	return HLML_CONSTRUCT( int3x4 )
 	{
@@ -3812,7 +3812,7 @@ HLML_INLINE int3x4 int3x4_cands( const int3x4* lhs, const int32_t rhs )
 }
 
 // Performs a component-wise bitwise & against the two matrices and returns the result.
-HLML_INLINE int3x4 int3x4_candm( const int3x4* lhs, const int3x4* rhs )
+HLML_INLINE int3x4 int3x4_candm( const int3x4 *lhs, const int3x4* rhs )
 {
 	return HLML_CONSTRUCT( int3x4 )
 	{
@@ -3823,7 +3823,7 @@ HLML_INLINE int3x4 int3x4_candm( const int3x4* lhs, const int3x4* rhs )
 }
 
 // Performs a component-wise bitwise | on the matrix by the scalar and returns the result.
-HLML_INLINE int3x4 int3x4_cors( const int3x4* lhs, const int32_t rhs )
+HLML_INLINE int3x4 int3x4_cors( const int3x4 *lhs, const int32_t rhs )
 {
 	return HLML_CONSTRUCT( int3x4 )
 	{
@@ -3834,7 +3834,7 @@ HLML_INLINE int3x4 int3x4_cors( const int3x4* lhs, const int32_t rhs )
 }
 
 // Performs a component-wise bitwise | against the two matrices and returns the result.
-HLML_INLINE int3x4 int3x4_corm( const int3x4* lhs, const int3x4* rhs )
+HLML_INLINE int3x4 int3x4_corm( const int3x4 *lhs, const int3x4* rhs )
 {
 	return HLML_CONSTRUCT( int3x4 )
 	{
@@ -3845,7 +3845,7 @@ HLML_INLINE int3x4 int3x4_corm( const int3x4* lhs, const int3x4* rhs )
 }
 
 // Performs a component-wise bitwise ^ on the matrix by the scalar and returns the result.
-HLML_INLINE int3x4 int3x4_cxors( const int3x4* lhs, const int32_t rhs )
+HLML_INLINE int3x4 int3x4_cxors( const int3x4 *lhs, const int32_t rhs )
 {
 	return HLML_CONSTRUCT( int3x4 )
 	{
@@ -3856,7 +3856,7 @@ HLML_INLINE int3x4 int3x4_cxors( const int3x4* lhs, const int32_t rhs )
 }
 
 // Performs a component-wise bitwise ^ against the two matrices and returns the result.
-HLML_INLINE int3x4 int3x4_cxorm( const int3x4* lhs, const int3x4* rhs )
+HLML_INLINE int3x4 int3x4_cxorm( const int3x4 *lhs, const int3x4* rhs )
 {
 	return HLML_CONSTRUCT( int3x4 )
 	{
@@ -3867,7 +3867,7 @@ HLML_INLINE int3x4 int3x4_cxorm( const int3x4* lhs, const int3x4* rhs )
 }
 
 // Performs a component-wise bitwise << on the matrix by the scalar and returns the result.
-HLML_INLINE int3x4 int3x4_cshift_lefts( const int3x4* lhs, const int32_t rhs )
+HLML_INLINE int3x4 int3x4_cshift_lefts( const int3x4 *lhs, const int32_t rhs )
 {
 	return HLML_CONSTRUCT( int3x4 )
 	{
@@ -3878,7 +3878,7 @@ HLML_INLINE int3x4 int3x4_cshift_lefts( const int3x4* lhs, const int32_t rhs )
 }
 
 // Performs a component-wise bitwise << against the two matrices and returns the result.
-HLML_INLINE int3x4 int3x4_cshift_leftm( const int3x4* lhs, const int3x4* rhs )
+HLML_INLINE int3x4 int3x4_cshift_leftm( const int3x4 *lhs, const int3x4* rhs )
 {
 	return HLML_CONSTRUCT( int3x4 )
 	{
@@ -3889,7 +3889,7 @@ HLML_INLINE int3x4 int3x4_cshift_leftm( const int3x4* lhs, const int3x4* rhs )
 }
 
 // Performs a component-wise bitwise >> on the matrix by the scalar and returns the result.
-HLML_INLINE int3x4 int3x4_cshift_rights( const int3x4* lhs, const int32_t rhs )
+HLML_INLINE int3x4 int3x4_cshift_rights( const int3x4 *lhs, const int32_t rhs )
 {
 	return HLML_CONSTRUCT( int3x4 )
 	{
@@ -3900,7 +3900,7 @@ HLML_INLINE int3x4 int3x4_cshift_rights( const int3x4* lhs, const int32_t rhs )
 }
 
 // Performs a component-wise bitwise >> against the two matrices and returns the result.
-HLML_INLINE int3x4 int3x4_cshift_rightm( const int3x4* lhs, const int3x4* rhs )
+HLML_INLINE int3x4 int3x4_cshift_rightm( const int3x4 *lhs, const int3x4* rhs )
 {
 	return HLML_CONSTRUCT( int3x4 )
 	{
@@ -4019,7 +4019,7 @@ HLML_INLINE int4x2 int4x2_saturate( const int4x2* x )
 }
 
 // Returns true if the contents of 'lhs' are the same as the contents of 'rhs', otherwise returns false.
-HLML_INLINE bool int4x2_equals( const int4x2* lhs, const int4x2* rhs )
+HLML_INLINE bool int4x2_equals( const int4x2 *lhs, const int4x2 *rhs )
 {
 	return
 		int2_equals( &lhs->rows[0], &rhs->rows[0] ) &&
@@ -4029,13 +4029,13 @@ HLML_INLINE bool int4x2_equals( const int4x2* lhs, const int4x2* rhs )
 }
 
 // Returns true if the contents of 'lhs' are NOT the same as the contents of 'rhs', otherwise returns false.
-HLML_INLINE bool int4x2_not_equals( const int4x2* lhs, const int4x2* rhs )
+HLML_INLINE bool int4x2_not_equals( const int4x2 *lhs, const int4x2 *rhs )
 {
 	return !int4x2_equals( lhs, rhs );
 }
 
 // Performs a component-wise '<' check against the two matrices and returns the result.
-HLML_INLINE bool4x2 int4x2_less_than( const int4x2* lhs, const int4x2* rhs )
+HLML_INLINE bool4x2 int4x2_less_than( const int4x2 *lhs, const int4x2* rhs )
 {
 	return HLML_CONSTRUCT( bool4x2 )
 	{
@@ -4047,7 +4047,7 @@ HLML_INLINE bool4x2 int4x2_less_than( const int4x2* lhs, const int4x2* rhs )
 }
 
 // Performs a component-wise '<=' check against the two matrices and returns the result.
-HLML_INLINE bool4x2 int4x2_less_than_equal( const int4x2* lhs, const int4x2* rhs )
+HLML_INLINE bool4x2 int4x2_less_than_equal( const int4x2 *lhs, const int4x2* rhs )
 {
 	return HLML_CONSTRUCT( bool4x2 )
 	{
@@ -4059,7 +4059,7 @@ HLML_INLINE bool4x2 int4x2_less_than_equal( const int4x2* lhs, const int4x2* rhs
 }
 
 // Performs a component-wise '>' check against the two matrices and returns the result.
-HLML_INLINE bool4x2 int4x2_greater_than( const int4x2* lhs, const int4x2* rhs )
+HLML_INLINE bool4x2 int4x2_greater_than( const int4x2 *lhs, const int4x2* rhs )
 {
 	return HLML_CONSTRUCT( bool4x2 )
 	{
@@ -4071,7 +4071,7 @@ HLML_INLINE bool4x2 int4x2_greater_than( const int4x2* lhs, const int4x2* rhs )
 }
 
 // Performs a component-wise '>=' check against the two matrices and returns the result.
-HLML_INLINE bool4x2 int4x2_greater_than_equal( const int4x2* lhs, const int4x2* rhs )
+HLML_INLINE bool4x2 int4x2_greater_than_equal( const int4x2 *lhs, const int4x2* rhs )
 {
 	return HLML_CONSTRUCT( bool4x2 )
 	{
@@ -4083,7 +4083,7 @@ HLML_INLINE bool4x2 int4x2_greater_than_equal( const int4x2* lhs, const int4x2* 
 }
 
 // Performs a component-wise + on the matrix by the scalar and returns the result.
-HLML_INLINE int4x2 int4x2_cadds( const int4x2* lhs, const int32_t rhs )
+HLML_INLINE int4x2 int4x2_cadds( const int4x2 *lhs, const int32_t rhs )
 {
 	return HLML_CONSTRUCT( int4x2 )
 	{
@@ -4095,7 +4095,7 @@ HLML_INLINE int4x2 int4x2_cadds( const int4x2* lhs, const int32_t rhs )
 }
 
 // Performs a component-wise + against the two matrices and returns the result.
-HLML_INLINE int4x2 int4x2_caddm( const int4x2* lhs, const int4x2* rhs )
+HLML_INLINE int4x2 int4x2_caddm( const int4x2 *lhs, const int4x2* rhs )
 {
 	return HLML_CONSTRUCT( int4x2 )
 	{
@@ -4107,7 +4107,7 @@ HLML_INLINE int4x2 int4x2_caddm( const int4x2* lhs, const int4x2* rhs )
 }
 
 // Performs a component-wise - on the matrix by the scalar and returns the result.
-HLML_INLINE int4x2 int4x2_csubs( const int4x2* lhs, const int32_t rhs )
+HLML_INLINE int4x2 int4x2_csubs( const int4x2 *lhs, const int32_t rhs )
 {
 	return HLML_CONSTRUCT( int4x2 )
 	{
@@ -4119,7 +4119,7 @@ HLML_INLINE int4x2 int4x2_csubs( const int4x2* lhs, const int32_t rhs )
 }
 
 // Performs a component-wise - against the two matrices and returns the result.
-HLML_INLINE int4x2 int4x2_csubm( const int4x2* lhs, const int4x2* rhs )
+HLML_INLINE int4x2 int4x2_csubm( const int4x2 *lhs, const int4x2* rhs )
 {
 	return HLML_CONSTRUCT( int4x2 )
 	{
@@ -4131,7 +4131,7 @@ HLML_INLINE int4x2 int4x2_csubm( const int4x2* lhs, const int4x2* rhs )
 }
 
 // Performs a component-wise * on the matrix by the scalar and returns the result.
-HLML_INLINE int4x2 int4x2_cmuls( const int4x2* lhs, const int32_t rhs )
+HLML_INLINE int4x2 int4x2_cmuls( const int4x2 *lhs, const int32_t rhs )
 {
 	return HLML_CONSTRUCT( int4x2 )
 	{
@@ -4143,7 +4143,7 @@ HLML_INLINE int4x2 int4x2_cmuls( const int4x2* lhs, const int32_t rhs )
 }
 
 // Performs a component-wise * against the two matrices and returns the result.
-HLML_INLINE int4x2 int4x2_cmulm( const int4x2* lhs, const int4x2* rhs )
+HLML_INLINE int4x2 int4x2_cmulm( const int4x2 *lhs, const int4x2* rhs )
 {
 	return HLML_CONSTRUCT( int4x2 )
 	{
@@ -4155,7 +4155,7 @@ HLML_INLINE int4x2 int4x2_cmulm( const int4x2* lhs, const int4x2* rhs )
 }
 
 // Performs a component-wise / on the matrix by the scalar and returns the result.
-HLML_INLINE int4x2 int4x2_cdivs( const int4x2* lhs, const int32_t rhs )
+HLML_INLINE int4x2 int4x2_cdivs( const int4x2 *lhs, const int32_t rhs )
 {
 	return HLML_CONSTRUCT( int4x2 )
 	{
@@ -4167,7 +4167,7 @@ HLML_INLINE int4x2 int4x2_cdivs( const int4x2* lhs, const int32_t rhs )
 }
 
 // Performs a component-wise / against the two matrices and returns the result.
-HLML_INLINE int4x2 int4x2_cdivm( const int4x2* lhs, const int4x2* rhs )
+HLML_INLINE int4x2 int4x2_cdivm( const int4x2 *lhs, const int4x2* rhs )
 {
 	return HLML_CONSTRUCT( int4x2 )
 	{
@@ -4179,7 +4179,7 @@ HLML_INLINE int4x2 int4x2_cdivm( const int4x2* lhs, const int4x2* rhs )
 }
 
 // Returns a copy of the matrix that has been negated.
-HLML_INLINE int4x2 int4x2_negate( const int4x2* x )
+HLML_INLINE int4x2 int4x2_negate( const int4x2 *x )
 {
 	return HLML_CONSTRUCT( int4x2 )
 	{
@@ -4191,7 +4191,7 @@ HLML_INLINE int4x2 int4x2_negate( const int4x2* x )
 }
 
 // Returns a copy of the matrix where each component has been bitwise NOT'd.
-HLML_INLINE int4x2 int4x2_not( const int4x2* x )
+HLML_INLINE int4x2 int4x2_not( const int4x2 *x )
 {
 	return HLML_CONSTRUCT( int4x2 )
 	{
@@ -4203,7 +4203,7 @@ HLML_INLINE int4x2 int4x2_not( const int4x2* x )
 }
 
 // Performs a component-wise bitwise & on the matrix by the scalar and returns the result.
-HLML_INLINE int4x2 int4x2_cands( const int4x2* lhs, const int32_t rhs )
+HLML_INLINE int4x2 int4x2_cands( const int4x2 *lhs, const int32_t rhs )
 {
 	return HLML_CONSTRUCT( int4x2 )
 	{
@@ -4215,7 +4215,7 @@ HLML_INLINE int4x2 int4x2_cands( const int4x2* lhs, const int32_t rhs )
 }
 
 // Performs a component-wise bitwise & against the two matrices and returns the result.
-HLML_INLINE int4x2 int4x2_candm( const int4x2* lhs, const int4x2* rhs )
+HLML_INLINE int4x2 int4x2_candm( const int4x2 *lhs, const int4x2* rhs )
 {
 	return HLML_CONSTRUCT( int4x2 )
 	{
@@ -4227,7 +4227,7 @@ HLML_INLINE int4x2 int4x2_candm( const int4x2* lhs, const int4x2* rhs )
 }
 
 // Performs a component-wise bitwise | on the matrix by the scalar and returns the result.
-HLML_INLINE int4x2 int4x2_cors( const int4x2* lhs, const int32_t rhs )
+HLML_INLINE int4x2 int4x2_cors( const int4x2 *lhs, const int32_t rhs )
 {
 	return HLML_CONSTRUCT( int4x2 )
 	{
@@ -4239,7 +4239,7 @@ HLML_INLINE int4x2 int4x2_cors( const int4x2* lhs, const int32_t rhs )
 }
 
 // Performs a component-wise bitwise | against the two matrices and returns the result.
-HLML_INLINE int4x2 int4x2_corm( const int4x2* lhs, const int4x2* rhs )
+HLML_INLINE int4x2 int4x2_corm( const int4x2 *lhs, const int4x2* rhs )
 {
 	return HLML_CONSTRUCT( int4x2 )
 	{
@@ -4251,7 +4251,7 @@ HLML_INLINE int4x2 int4x2_corm( const int4x2* lhs, const int4x2* rhs )
 }
 
 // Performs a component-wise bitwise ^ on the matrix by the scalar and returns the result.
-HLML_INLINE int4x2 int4x2_cxors( const int4x2* lhs, const int32_t rhs )
+HLML_INLINE int4x2 int4x2_cxors( const int4x2 *lhs, const int32_t rhs )
 {
 	return HLML_CONSTRUCT( int4x2 )
 	{
@@ -4263,7 +4263,7 @@ HLML_INLINE int4x2 int4x2_cxors( const int4x2* lhs, const int32_t rhs )
 }
 
 // Performs a component-wise bitwise ^ against the two matrices and returns the result.
-HLML_INLINE int4x2 int4x2_cxorm( const int4x2* lhs, const int4x2* rhs )
+HLML_INLINE int4x2 int4x2_cxorm( const int4x2 *lhs, const int4x2* rhs )
 {
 	return HLML_CONSTRUCT( int4x2 )
 	{
@@ -4275,7 +4275,7 @@ HLML_INLINE int4x2 int4x2_cxorm( const int4x2* lhs, const int4x2* rhs )
 }
 
 // Performs a component-wise bitwise << on the matrix by the scalar and returns the result.
-HLML_INLINE int4x2 int4x2_cshift_lefts( const int4x2* lhs, const int32_t rhs )
+HLML_INLINE int4x2 int4x2_cshift_lefts( const int4x2 *lhs, const int32_t rhs )
 {
 	return HLML_CONSTRUCT( int4x2 )
 	{
@@ -4287,7 +4287,7 @@ HLML_INLINE int4x2 int4x2_cshift_lefts( const int4x2* lhs, const int32_t rhs )
 }
 
 // Performs a component-wise bitwise << against the two matrices and returns the result.
-HLML_INLINE int4x2 int4x2_cshift_leftm( const int4x2* lhs, const int4x2* rhs )
+HLML_INLINE int4x2 int4x2_cshift_leftm( const int4x2 *lhs, const int4x2* rhs )
 {
 	return HLML_CONSTRUCT( int4x2 )
 	{
@@ -4299,7 +4299,7 @@ HLML_INLINE int4x2 int4x2_cshift_leftm( const int4x2* lhs, const int4x2* rhs )
 }
 
 // Performs a component-wise bitwise >> on the matrix by the scalar and returns the result.
-HLML_INLINE int4x2 int4x2_cshift_rights( const int4x2* lhs, const int32_t rhs )
+HLML_INLINE int4x2 int4x2_cshift_rights( const int4x2 *lhs, const int32_t rhs )
 {
 	return HLML_CONSTRUCT( int4x2 )
 	{
@@ -4311,7 +4311,7 @@ HLML_INLINE int4x2 int4x2_cshift_rights( const int4x2* lhs, const int32_t rhs )
 }
 
 // Performs a component-wise bitwise >> against the two matrices and returns the result.
-HLML_INLINE int4x2 int4x2_cshift_rightm( const int4x2* lhs, const int4x2* rhs )
+HLML_INLINE int4x2 int4x2_cshift_rightm( const int4x2 *lhs, const int4x2* rhs )
 {
 	return HLML_CONSTRUCT( int4x2 )
 	{
@@ -4440,7 +4440,7 @@ HLML_INLINE int4x3 int4x3_saturate( const int4x3* x )
 }
 
 // Returns true if the contents of 'lhs' are the same as the contents of 'rhs', otherwise returns false.
-HLML_INLINE bool int4x3_equals( const int4x3* lhs, const int4x3* rhs )
+HLML_INLINE bool int4x3_equals( const int4x3 *lhs, const int4x3 *rhs )
 {
 	return
 		int3_equals( &lhs->rows[0], &rhs->rows[0] ) &&
@@ -4450,13 +4450,13 @@ HLML_INLINE bool int4x3_equals( const int4x3* lhs, const int4x3* rhs )
 }
 
 // Returns true if the contents of 'lhs' are NOT the same as the contents of 'rhs', otherwise returns false.
-HLML_INLINE bool int4x3_not_equals( const int4x3* lhs, const int4x3* rhs )
+HLML_INLINE bool int4x3_not_equals( const int4x3 *lhs, const int4x3 *rhs )
 {
 	return !int4x3_equals( lhs, rhs );
 }
 
 // Performs a component-wise '<' check against the two matrices and returns the result.
-HLML_INLINE bool4x3 int4x3_less_than( const int4x3* lhs, const int4x3* rhs )
+HLML_INLINE bool4x3 int4x3_less_than( const int4x3 *lhs, const int4x3* rhs )
 {
 	return HLML_CONSTRUCT( bool4x3 )
 	{
@@ -4468,7 +4468,7 @@ HLML_INLINE bool4x3 int4x3_less_than( const int4x3* lhs, const int4x3* rhs )
 }
 
 // Performs a component-wise '<=' check against the two matrices and returns the result.
-HLML_INLINE bool4x3 int4x3_less_than_equal( const int4x3* lhs, const int4x3* rhs )
+HLML_INLINE bool4x3 int4x3_less_than_equal( const int4x3 *lhs, const int4x3* rhs )
 {
 	return HLML_CONSTRUCT( bool4x3 )
 	{
@@ -4480,7 +4480,7 @@ HLML_INLINE bool4x3 int4x3_less_than_equal( const int4x3* lhs, const int4x3* rhs
 }
 
 // Performs a component-wise '>' check against the two matrices and returns the result.
-HLML_INLINE bool4x3 int4x3_greater_than( const int4x3* lhs, const int4x3* rhs )
+HLML_INLINE bool4x3 int4x3_greater_than( const int4x3 *lhs, const int4x3* rhs )
 {
 	return HLML_CONSTRUCT( bool4x3 )
 	{
@@ -4492,7 +4492,7 @@ HLML_INLINE bool4x3 int4x3_greater_than( const int4x3* lhs, const int4x3* rhs )
 }
 
 // Performs a component-wise '>=' check against the two matrices and returns the result.
-HLML_INLINE bool4x3 int4x3_greater_than_equal( const int4x3* lhs, const int4x3* rhs )
+HLML_INLINE bool4x3 int4x3_greater_than_equal( const int4x3 *lhs, const int4x3* rhs )
 {
 	return HLML_CONSTRUCT( bool4x3 )
 	{
@@ -4504,7 +4504,7 @@ HLML_INLINE bool4x3 int4x3_greater_than_equal( const int4x3* lhs, const int4x3* 
 }
 
 // Performs a component-wise + on the matrix by the scalar and returns the result.
-HLML_INLINE int4x3 int4x3_cadds( const int4x3* lhs, const int32_t rhs )
+HLML_INLINE int4x3 int4x3_cadds( const int4x3 *lhs, const int32_t rhs )
 {
 	return HLML_CONSTRUCT( int4x3 )
 	{
@@ -4516,7 +4516,7 @@ HLML_INLINE int4x3 int4x3_cadds( const int4x3* lhs, const int32_t rhs )
 }
 
 // Performs a component-wise + against the two matrices and returns the result.
-HLML_INLINE int4x3 int4x3_caddm( const int4x3* lhs, const int4x3* rhs )
+HLML_INLINE int4x3 int4x3_caddm( const int4x3 *lhs, const int4x3* rhs )
 {
 	return HLML_CONSTRUCT( int4x3 )
 	{
@@ -4528,7 +4528,7 @@ HLML_INLINE int4x3 int4x3_caddm( const int4x3* lhs, const int4x3* rhs )
 }
 
 // Performs a component-wise - on the matrix by the scalar and returns the result.
-HLML_INLINE int4x3 int4x3_csubs( const int4x3* lhs, const int32_t rhs )
+HLML_INLINE int4x3 int4x3_csubs( const int4x3 *lhs, const int32_t rhs )
 {
 	return HLML_CONSTRUCT( int4x3 )
 	{
@@ -4540,7 +4540,7 @@ HLML_INLINE int4x3 int4x3_csubs( const int4x3* lhs, const int32_t rhs )
 }
 
 // Performs a component-wise - against the two matrices and returns the result.
-HLML_INLINE int4x3 int4x3_csubm( const int4x3* lhs, const int4x3* rhs )
+HLML_INLINE int4x3 int4x3_csubm( const int4x3 *lhs, const int4x3* rhs )
 {
 	return HLML_CONSTRUCT( int4x3 )
 	{
@@ -4552,7 +4552,7 @@ HLML_INLINE int4x3 int4x3_csubm( const int4x3* lhs, const int4x3* rhs )
 }
 
 // Performs a component-wise * on the matrix by the scalar and returns the result.
-HLML_INLINE int4x3 int4x3_cmuls( const int4x3* lhs, const int32_t rhs )
+HLML_INLINE int4x3 int4x3_cmuls( const int4x3 *lhs, const int32_t rhs )
 {
 	return HLML_CONSTRUCT( int4x3 )
 	{
@@ -4564,7 +4564,7 @@ HLML_INLINE int4x3 int4x3_cmuls( const int4x3* lhs, const int32_t rhs )
 }
 
 // Performs a component-wise * against the two matrices and returns the result.
-HLML_INLINE int4x3 int4x3_cmulm( const int4x3* lhs, const int4x3* rhs )
+HLML_INLINE int4x3 int4x3_cmulm( const int4x3 *lhs, const int4x3* rhs )
 {
 	return HLML_CONSTRUCT( int4x3 )
 	{
@@ -4576,7 +4576,7 @@ HLML_INLINE int4x3 int4x3_cmulm( const int4x3* lhs, const int4x3* rhs )
 }
 
 // Performs a component-wise / on the matrix by the scalar and returns the result.
-HLML_INLINE int4x3 int4x3_cdivs( const int4x3* lhs, const int32_t rhs )
+HLML_INLINE int4x3 int4x3_cdivs( const int4x3 *lhs, const int32_t rhs )
 {
 	return HLML_CONSTRUCT( int4x3 )
 	{
@@ -4588,7 +4588,7 @@ HLML_INLINE int4x3 int4x3_cdivs( const int4x3* lhs, const int32_t rhs )
 }
 
 // Performs a component-wise / against the two matrices and returns the result.
-HLML_INLINE int4x3 int4x3_cdivm( const int4x3* lhs, const int4x3* rhs )
+HLML_INLINE int4x3 int4x3_cdivm( const int4x3 *lhs, const int4x3* rhs )
 {
 	return HLML_CONSTRUCT( int4x3 )
 	{
@@ -4600,7 +4600,7 @@ HLML_INLINE int4x3 int4x3_cdivm( const int4x3* lhs, const int4x3* rhs )
 }
 
 // Returns a copy of the matrix that has been negated.
-HLML_INLINE int4x3 int4x3_negate( const int4x3* x )
+HLML_INLINE int4x3 int4x3_negate( const int4x3 *x )
 {
 	return HLML_CONSTRUCT( int4x3 )
 	{
@@ -4612,7 +4612,7 @@ HLML_INLINE int4x3 int4x3_negate( const int4x3* x )
 }
 
 // Returns a copy of the matrix where each component has been bitwise NOT'd.
-HLML_INLINE int4x3 int4x3_not( const int4x3* x )
+HLML_INLINE int4x3 int4x3_not( const int4x3 *x )
 {
 	return HLML_CONSTRUCT( int4x3 )
 	{
@@ -4624,7 +4624,7 @@ HLML_INLINE int4x3 int4x3_not( const int4x3* x )
 }
 
 // Performs a component-wise bitwise & on the matrix by the scalar and returns the result.
-HLML_INLINE int4x3 int4x3_cands( const int4x3* lhs, const int32_t rhs )
+HLML_INLINE int4x3 int4x3_cands( const int4x3 *lhs, const int32_t rhs )
 {
 	return HLML_CONSTRUCT( int4x3 )
 	{
@@ -4636,7 +4636,7 @@ HLML_INLINE int4x3 int4x3_cands( const int4x3* lhs, const int32_t rhs )
 }
 
 // Performs a component-wise bitwise & against the two matrices and returns the result.
-HLML_INLINE int4x3 int4x3_candm( const int4x3* lhs, const int4x3* rhs )
+HLML_INLINE int4x3 int4x3_candm( const int4x3 *lhs, const int4x3* rhs )
 {
 	return HLML_CONSTRUCT( int4x3 )
 	{
@@ -4648,7 +4648,7 @@ HLML_INLINE int4x3 int4x3_candm( const int4x3* lhs, const int4x3* rhs )
 }
 
 // Performs a component-wise bitwise | on the matrix by the scalar and returns the result.
-HLML_INLINE int4x3 int4x3_cors( const int4x3* lhs, const int32_t rhs )
+HLML_INLINE int4x3 int4x3_cors( const int4x3 *lhs, const int32_t rhs )
 {
 	return HLML_CONSTRUCT( int4x3 )
 	{
@@ -4660,7 +4660,7 @@ HLML_INLINE int4x3 int4x3_cors( const int4x3* lhs, const int32_t rhs )
 }
 
 // Performs a component-wise bitwise | against the two matrices and returns the result.
-HLML_INLINE int4x3 int4x3_corm( const int4x3* lhs, const int4x3* rhs )
+HLML_INLINE int4x3 int4x3_corm( const int4x3 *lhs, const int4x3* rhs )
 {
 	return HLML_CONSTRUCT( int4x3 )
 	{
@@ -4672,7 +4672,7 @@ HLML_INLINE int4x3 int4x3_corm( const int4x3* lhs, const int4x3* rhs )
 }
 
 // Performs a component-wise bitwise ^ on the matrix by the scalar and returns the result.
-HLML_INLINE int4x3 int4x3_cxors( const int4x3* lhs, const int32_t rhs )
+HLML_INLINE int4x3 int4x3_cxors( const int4x3 *lhs, const int32_t rhs )
 {
 	return HLML_CONSTRUCT( int4x3 )
 	{
@@ -4684,7 +4684,7 @@ HLML_INLINE int4x3 int4x3_cxors( const int4x3* lhs, const int32_t rhs )
 }
 
 // Performs a component-wise bitwise ^ against the two matrices and returns the result.
-HLML_INLINE int4x3 int4x3_cxorm( const int4x3* lhs, const int4x3* rhs )
+HLML_INLINE int4x3 int4x3_cxorm( const int4x3 *lhs, const int4x3* rhs )
 {
 	return HLML_CONSTRUCT( int4x3 )
 	{
@@ -4696,7 +4696,7 @@ HLML_INLINE int4x3 int4x3_cxorm( const int4x3* lhs, const int4x3* rhs )
 }
 
 // Performs a component-wise bitwise << on the matrix by the scalar and returns the result.
-HLML_INLINE int4x3 int4x3_cshift_lefts( const int4x3* lhs, const int32_t rhs )
+HLML_INLINE int4x3 int4x3_cshift_lefts( const int4x3 *lhs, const int32_t rhs )
 {
 	return HLML_CONSTRUCT( int4x3 )
 	{
@@ -4708,7 +4708,7 @@ HLML_INLINE int4x3 int4x3_cshift_lefts( const int4x3* lhs, const int32_t rhs )
 }
 
 // Performs a component-wise bitwise << against the two matrices and returns the result.
-HLML_INLINE int4x3 int4x3_cshift_leftm( const int4x3* lhs, const int4x3* rhs )
+HLML_INLINE int4x3 int4x3_cshift_leftm( const int4x3 *lhs, const int4x3* rhs )
 {
 	return HLML_CONSTRUCT( int4x3 )
 	{
@@ -4720,7 +4720,7 @@ HLML_INLINE int4x3 int4x3_cshift_leftm( const int4x3* lhs, const int4x3* rhs )
 }
 
 // Performs a component-wise bitwise >> on the matrix by the scalar and returns the result.
-HLML_INLINE int4x3 int4x3_cshift_rights( const int4x3* lhs, const int32_t rhs )
+HLML_INLINE int4x3 int4x3_cshift_rights( const int4x3 *lhs, const int32_t rhs )
 {
 	return HLML_CONSTRUCT( int4x3 )
 	{
@@ -4732,7 +4732,7 @@ HLML_INLINE int4x3 int4x3_cshift_rights( const int4x3* lhs, const int32_t rhs )
 }
 
 // Performs a component-wise bitwise >> against the two matrices and returns the result.
-HLML_INLINE int4x3 int4x3_cshift_rightm( const int4x3* lhs, const int4x3* rhs )
+HLML_INLINE int4x3 int4x3_cshift_rightm( const int4x3 *lhs, const int4x3* rhs )
 {
 	return HLML_CONSTRUCT( int4x3 )
 	{
@@ -4862,7 +4862,7 @@ HLML_INLINE int4x4 int4x4_saturate( const int4x4* x )
 }
 
 // Returns true if the contents of 'lhs' are the same as the contents of 'rhs', otherwise returns false.
-HLML_INLINE bool int4x4_equals( const int4x4* lhs, const int4x4* rhs )
+HLML_INLINE bool int4x4_equals( const int4x4 *lhs, const int4x4 *rhs )
 {
 	return
 		int4_equals( &lhs->rows[0], &rhs->rows[0] ) &&
@@ -4872,13 +4872,13 @@ HLML_INLINE bool int4x4_equals( const int4x4* lhs, const int4x4* rhs )
 }
 
 // Returns true if the contents of 'lhs' are NOT the same as the contents of 'rhs', otherwise returns false.
-HLML_INLINE bool int4x4_not_equals( const int4x4* lhs, const int4x4* rhs )
+HLML_INLINE bool int4x4_not_equals( const int4x4 *lhs, const int4x4 *rhs )
 {
 	return !int4x4_equals( lhs, rhs );
 }
 
 // Performs a component-wise '<' check against the two matrices and returns the result.
-HLML_INLINE bool4x4 int4x4_less_than( const int4x4* lhs, const int4x4* rhs )
+HLML_INLINE bool4x4 int4x4_less_than( const int4x4 *lhs, const int4x4* rhs )
 {
 	return HLML_CONSTRUCT( bool4x4 )
 	{
@@ -4890,7 +4890,7 @@ HLML_INLINE bool4x4 int4x4_less_than( const int4x4* lhs, const int4x4* rhs )
 }
 
 // Performs a component-wise '<=' check against the two matrices and returns the result.
-HLML_INLINE bool4x4 int4x4_less_than_equal( const int4x4* lhs, const int4x4* rhs )
+HLML_INLINE bool4x4 int4x4_less_than_equal( const int4x4 *lhs, const int4x4* rhs )
 {
 	return HLML_CONSTRUCT( bool4x4 )
 	{
@@ -4902,7 +4902,7 @@ HLML_INLINE bool4x4 int4x4_less_than_equal( const int4x4* lhs, const int4x4* rhs
 }
 
 // Performs a component-wise '>' check against the two matrices and returns the result.
-HLML_INLINE bool4x4 int4x4_greater_than( const int4x4* lhs, const int4x4* rhs )
+HLML_INLINE bool4x4 int4x4_greater_than( const int4x4 *lhs, const int4x4* rhs )
 {
 	return HLML_CONSTRUCT( bool4x4 )
 	{
@@ -4914,7 +4914,7 @@ HLML_INLINE bool4x4 int4x4_greater_than( const int4x4* lhs, const int4x4* rhs )
 }
 
 // Performs a component-wise '>=' check against the two matrices and returns the result.
-HLML_INLINE bool4x4 int4x4_greater_than_equal( const int4x4* lhs, const int4x4* rhs )
+HLML_INLINE bool4x4 int4x4_greater_than_equal( const int4x4 *lhs, const int4x4* rhs )
 {
 	return HLML_CONSTRUCT( bool4x4 )
 	{
@@ -4926,7 +4926,7 @@ HLML_INLINE bool4x4 int4x4_greater_than_equal( const int4x4* lhs, const int4x4* 
 }
 
 // Performs a component-wise + on the matrix by the scalar and returns the result.
-HLML_INLINE int4x4 int4x4_cadds( const int4x4* lhs, const int32_t rhs )
+HLML_INLINE int4x4 int4x4_cadds( const int4x4 *lhs, const int32_t rhs )
 {
 	return HLML_CONSTRUCT( int4x4 )
 	{
@@ -4938,7 +4938,7 @@ HLML_INLINE int4x4 int4x4_cadds( const int4x4* lhs, const int32_t rhs )
 }
 
 // Performs a component-wise + against the two matrices and returns the result.
-HLML_INLINE int4x4 int4x4_caddm( const int4x4* lhs, const int4x4* rhs )
+HLML_INLINE int4x4 int4x4_caddm( const int4x4 *lhs, const int4x4* rhs )
 {
 	return HLML_CONSTRUCT( int4x4 )
 	{
@@ -4950,7 +4950,7 @@ HLML_INLINE int4x4 int4x4_caddm( const int4x4* lhs, const int4x4* rhs )
 }
 
 // Performs a component-wise - on the matrix by the scalar and returns the result.
-HLML_INLINE int4x4 int4x4_csubs( const int4x4* lhs, const int32_t rhs )
+HLML_INLINE int4x4 int4x4_csubs( const int4x4 *lhs, const int32_t rhs )
 {
 	return HLML_CONSTRUCT( int4x4 )
 	{
@@ -4962,7 +4962,7 @@ HLML_INLINE int4x4 int4x4_csubs( const int4x4* lhs, const int32_t rhs )
 }
 
 // Performs a component-wise - against the two matrices and returns the result.
-HLML_INLINE int4x4 int4x4_csubm( const int4x4* lhs, const int4x4* rhs )
+HLML_INLINE int4x4 int4x4_csubm( const int4x4 *lhs, const int4x4* rhs )
 {
 	return HLML_CONSTRUCT( int4x4 )
 	{
@@ -4974,7 +4974,7 @@ HLML_INLINE int4x4 int4x4_csubm( const int4x4* lhs, const int4x4* rhs )
 }
 
 // Performs a component-wise * on the matrix by the scalar and returns the result.
-HLML_INLINE int4x4 int4x4_cmuls( const int4x4* lhs, const int32_t rhs )
+HLML_INLINE int4x4 int4x4_cmuls( const int4x4 *lhs, const int32_t rhs )
 {
 	return HLML_CONSTRUCT( int4x4 )
 	{
@@ -4986,7 +4986,7 @@ HLML_INLINE int4x4 int4x4_cmuls( const int4x4* lhs, const int32_t rhs )
 }
 
 // Performs a component-wise * against the two matrices and returns the result.
-HLML_INLINE int4x4 int4x4_cmulm( const int4x4* lhs, const int4x4* rhs )
+HLML_INLINE int4x4 int4x4_cmulm( const int4x4 *lhs, const int4x4* rhs )
 {
 	return HLML_CONSTRUCT( int4x4 )
 	{
@@ -4998,7 +4998,7 @@ HLML_INLINE int4x4 int4x4_cmulm( const int4x4* lhs, const int4x4* rhs )
 }
 
 // Performs a component-wise / on the matrix by the scalar and returns the result.
-HLML_INLINE int4x4 int4x4_cdivs( const int4x4* lhs, const int32_t rhs )
+HLML_INLINE int4x4 int4x4_cdivs( const int4x4 *lhs, const int32_t rhs )
 {
 	return HLML_CONSTRUCT( int4x4 )
 	{
@@ -5010,7 +5010,7 @@ HLML_INLINE int4x4 int4x4_cdivs( const int4x4* lhs, const int32_t rhs )
 }
 
 // Performs a component-wise / against the two matrices and returns the result.
-HLML_INLINE int4x4 int4x4_cdivm( const int4x4* lhs, const int4x4* rhs )
+HLML_INLINE int4x4 int4x4_cdivm( const int4x4 *lhs, const int4x4* rhs )
 {
 	return HLML_CONSTRUCT( int4x4 )
 	{
@@ -5022,7 +5022,7 @@ HLML_INLINE int4x4 int4x4_cdivm( const int4x4* lhs, const int4x4* rhs )
 }
 
 // Returns a copy of the matrix that has been negated.
-HLML_INLINE int4x4 int4x4_negate( const int4x4* x )
+HLML_INLINE int4x4 int4x4_negate( const int4x4 *x )
 {
 	return HLML_CONSTRUCT( int4x4 )
 	{
@@ -5034,7 +5034,7 @@ HLML_INLINE int4x4 int4x4_negate( const int4x4* x )
 }
 
 // Returns a copy of the matrix where each component has been bitwise NOT'd.
-HLML_INLINE int4x4 int4x4_not( const int4x4* x )
+HLML_INLINE int4x4 int4x4_not( const int4x4 *x )
 {
 	return HLML_CONSTRUCT( int4x4 )
 	{
@@ -5046,7 +5046,7 @@ HLML_INLINE int4x4 int4x4_not( const int4x4* x )
 }
 
 // Performs a component-wise bitwise & on the matrix by the scalar and returns the result.
-HLML_INLINE int4x4 int4x4_cands( const int4x4* lhs, const int32_t rhs )
+HLML_INLINE int4x4 int4x4_cands( const int4x4 *lhs, const int32_t rhs )
 {
 	return HLML_CONSTRUCT( int4x4 )
 	{
@@ -5058,7 +5058,7 @@ HLML_INLINE int4x4 int4x4_cands( const int4x4* lhs, const int32_t rhs )
 }
 
 // Performs a component-wise bitwise & against the two matrices and returns the result.
-HLML_INLINE int4x4 int4x4_candm( const int4x4* lhs, const int4x4* rhs )
+HLML_INLINE int4x4 int4x4_candm( const int4x4 *lhs, const int4x4* rhs )
 {
 	return HLML_CONSTRUCT( int4x4 )
 	{
@@ -5070,7 +5070,7 @@ HLML_INLINE int4x4 int4x4_candm( const int4x4* lhs, const int4x4* rhs )
 }
 
 // Performs a component-wise bitwise | on the matrix by the scalar and returns the result.
-HLML_INLINE int4x4 int4x4_cors( const int4x4* lhs, const int32_t rhs )
+HLML_INLINE int4x4 int4x4_cors( const int4x4 *lhs, const int32_t rhs )
 {
 	return HLML_CONSTRUCT( int4x4 )
 	{
@@ -5082,7 +5082,7 @@ HLML_INLINE int4x4 int4x4_cors( const int4x4* lhs, const int32_t rhs )
 }
 
 // Performs a component-wise bitwise | against the two matrices and returns the result.
-HLML_INLINE int4x4 int4x4_corm( const int4x4* lhs, const int4x4* rhs )
+HLML_INLINE int4x4 int4x4_corm( const int4x4 *lhs, const int4x4* rhs )
 {
 	return HLML_CONSTRUCT( int4x4 )
 	{
@@ -5094,7 +5094,7 @@ HLML_INLINE int4x4 int4x4_corm( const int4x4* lhs, const int4x4* rhs )
 }
 
 // Performs a component-wise bitwise ^ on the matrix by the scalar and returns the result.
-HLML_INLINE int4x4 int4x4_cxors( const int4x4* lhs, const int32_t rhs )
+HLML_INLINE int4x4 int4x4_cxors( const int4x4 *lhs, const int32_t rhs )
 {
 	return HLML_CONSTRUCT( int4x4 )
 	{
@@ -5106,7 +5106,7 @@ HLML_INLINE int4x4 int4x4_cxors( const int4x4* lhs, const int32_t rhs )
 }
 
 // Performs a component-wise bitwise ^ against the two matrices and returns the result.
-HLML_INLINE int4x4 int4x4_cxorm( const int4x4* lhs, const int4x4* rhs )
+HLML_INLINE int4x4 int4x4_cxorm( const int4x4 *lhs, const int4x4* rhs )
 {
 	return HLML_CONSTRUCT( int4x4 )
 	{
@@ -5118,7 +5118,7 @@ HLML_INLINE int4x4 int4x4_cxorm( const int4x4* lhs, const int4x4* rhs )
 }
 
 // Performs a component-wise bitwise << on the matrix by the scalar and returns the result.
-HLML_INLINE int4x4 int4x4_cshift_lefts( const int4x4* lhs, const int32_t rhs )
+HLML_INLINE int4x4 int4x4_cshift_lefts( const int4x4 *lhs, const int32_t rhs )
 {
 	return HLML_CONSTRUCT( int4x4 )
 	{
@@ -5130,7 +5130,7 @@ HLML_INLINE int4x4 int4x4_cshift_lefts( const int4x4* lhs, const int32_t rhs )
 }
 
 // Performs a component-wise bitwise << against the two matrices and returns the result.
-HLML_INLINE int4x4 int4x4_cshift_leftm( const int4x4* lhs, const int4x4* rhs )
+HLML_INLINE int4x4 int4x4_cshift_leftm( const int4x4 *lhs, const int4x4* rhs )
 {
 	return HLML_CONSTRUCT( int4x4 )
 	{
@@ -5142,7 +5142,7 @@ HLML_INLINE int4x4 int4x4_cshift_leftm( const int4x4* lhs, const int4x4* rhs )
 }
 
 // Performs a component-wise bitwise >> on the matrix by the scalar and returns the result.
-HLML_INLINE int4x4 int4x4_cshift_rights( const int4x4* lhs, const int32_t rhs )
+HLML_INLINE int4x4 int4x4_cshift_rights( const int4x4 *lhs, const int32_t rhs )
 {
 	return HLML_CONSTRUCT( int4x4 )
 	{
@@ -5154,7 +5154,7 @@ HLML_INLINE int4x4 int4x4_cshift_rights( const int4x4* lhs, const int32_t rhs )
 }
 
 // Performs a component-wise bitwise >> against the two matrices and returns the result.
-HLML_INLINE int4x4 int4x4_cshift_rightm( const int4x4* lhs, const int4x4* rhs )
+HLML_INLINE int4x4 int4x4_cshift_rightm( const int4x4 *lhs, const int4x4* rhs )
 {
 	return HLML_CONSTRUCT( int4x4 )
 	{
@@ -5340,7 +5340,7 @@ HLML_INLINE uint2x2 uint2x2_saturate( const uint2x2* x )
 }
 
 // Returns true if the contents of 'lhs' are the same as the contents of 'rhs', otherwise returns false.
-HLML_INLINE bool uint2x2_equals( const uint2x2* lhs, const uint2x2* rhs )
+HLML_INLINE bool uint2x2_equals( const uint2x2 *lhs, const uint2x2 *rhs )
 {
 	return
 		uint2_equals( &lhs->rows[0], &rhs->rows[0] ) &&
@@ -5348,13 +5348,13 @@ HLML_INLINE bool uint2x2_equals( const uint2x2* lhs, const uint2x2* rhs )
 }
 
 // Returns true if the contents of 'lhs' are NOT the same as the contents of 'rhs', otherwise returns false.
-HLML_INLINE bool uint2x2_not_equals( const uint2x2* lhs, const uint2x2* rhs )
+HLML_INLINE bool uint2x2_not_equals( const uint2x2 *lhs, const uint2x2 *rhs )
 {
 	return !uint2x2_equals( lhs, rhs );
 }
 
 // Performs a component-wise '<' check against the two matrices and returns the result.
-HLML_INLINE bool2x2 uint2x2_less_than( const uint2x2* lhs, const uint2x2* rhs )
+HLML_INLINE bool2x2 uint2x2_less_than( const uint2x2 *lhs, const uint2x2* rhs )
 {
 	return HLML_CONSTRUCT( bool2x2 )
 	{
@@ -5364,7 +5364,7 @@ HLML_INLINE bool2x2 uint2x2_less_than( const uint2x2* lhs, const uint2x2* rhs )
 }
 
 // Performs a component-wise '<=' check against the two matrices and returns the result.
-HLML_INLINE bool2x2 uint2x2_less_than_equal( const uint2x2* lhs, const uint2x2* rhs )
+HLML_INLINE bool2x2 uint2x2_less_than_equal( const uint2x2 *lhs, const uint2x2* rhs )
 {
 	return HLML_CONSTRUCT( bool2x2 )
 	{
@@ -5374,7 +5374,7 @@ HLML_INLINE bool2x2 uint2x2_less_than_equal( const uint2x2* lhs, const uint2x2* 
 }
 
 // Performs a component-wise '>' check against the two matrices and returns the result.
-HLML_INLINE bool2x2 uint2x2_greater_than( const uint2x2* lhs, const uint2x2* rhs )
+HLML_INLINE bool2x2 uint2x2_greater_than( const uint2x2 *lhs, const uint2x2* rhs )
 {
 	return HLML_CONSTRUCT( bool2x2 )
 	{
@@ -5384,7 +5384,7 @@ HLML_INLINE bool2x2 uint2x2_greater_than( const uint2x2* lhs, const uint2x2* rhs
 }
 
 // Performs a component-wise '>=' check against the two matrices and returns the result.
-HLML_INLINE bool2x2 uint2x2_greater_than_equal( const uint2x2* lhs, const uint2x2* rhs )
+HLML_INLINE bool2x2 uint2x2_greater_than_equal( const uint2x2 *lhs, const uint2x2* rhs )
 {
 	return HLML_CONSTRUCT( bool2x2 )
 	{
@@ -5394,7 +5394,7 @@ HLML_INLINE bool2x2 uint2x2_greater_than_equal( const uint2x2* lhs, const uint2x
 }
 
 // Performs a component-wise + on the matrix by the scalar and returns the result.
-HLML_INLINE uint2x2 uint2x2_cadds( const uint2x2* lhs, const uint32_t rhs )
+HLML_INLINE uint2x2 uint2x2_cadds( const uint2x2 *lhs, const uint32_t rhs )
 {
 	return HLML_CONSTRUCT( uint2x2 )
 	{
@@ -5404,7 +5404,7 @@ HLML_INLINE uint2x2 uint2x2_cadds( const uint2x2* lhs, const uint32_t rhs )
 }
 
 // Performs a component-wise + against the two matrices and returns the result.
-HLML_INLINE uint2x2 uint2x2_caddm( const uint2x2* lhs, const uint2x2* rhs )
+HLML_INLINE uint2x2 uint2x2_caddm( const uint2x2 *lhs, const uint2x2* rhs )
 {
 	return HLML_CONSTRUCT( uint2x2 )
 	{
@@ -5414,7 +5414,7 @@ HLML_INLINE uint2x2 uint2x2_caddm( const uint2x2* lhs, const uint2x2* rhs )
 }
 
 // Performs a component-wise - on the matrix by the scalar and returns the result.
-HLML_INLINE uint2x2 uint2x2_csubs( const uint2x2* lhs, const uint32_t rhs )
+HLML_INLINE uint2x2 uint2x2_csubs( const uint2x2 *lhs, const uint32_t rhs )
 {
 	return HLML_CONSTRUCT( uint2x2 )
 	{
@@ -5424,7 +5424,7 @@ HLML_INLINE uint2x2 uint2x2_csubs( const uint2x2* lhs, const uint32_t rhs )
 }
 
 // Performs a component-wise - against the two matrices and returns the result.
-HLML_INLINE uint2x2 uint2x2_csubm( const uint2x2* lhs, const uint2x2* rhs )
+HLML_INLINE uint2x2 uint2x2_csubm( const uint2x2 *lhs, const uint2x2* rhs )
 {
 	return HLML_CONSTRUCT( uint2x2 )
 	{
@@ -5434,7 +5434,7 @@ HLML_INLINE uint2x2 uint2x2_csubm( const uint2x2* lhs, const uint2x2* rhs )
 }
 
 // Performs a component-wise * on the matrix by the scalar and returns the result.
-HLML_INLINE uint2x2 uint2x2_cmuls( const uint2x2* lhs, const uint32_t rhs )
+HLML_INLINE uint2x2 uint2x2_cmuls( const uint2x2 *lhs, const uint32_t rhs )
 {
 	return HLML_CONSTRUCT( uint2x2 )
 	{
@@ -5444,7 +5444,7 @@ HLML_INLINE uint2x2 uint2x2_cmuls( const uint2x2* lhs, const uint32_t rhs )
 }
 
 // Performs a component-wise * against the two matrices and returns the result.
-HLML_INLINE uint2x2 uint2x2_cmulm( const uint2x2* lhs, const uint2x2* rhs )
+HLML_INLINE uint2x2 uint2x2_cmulm( const uint2x2 *lhs, const uint2x2* rhs )
 {
 	return HLML_CONSTRUCT( uint2x2 )
 	{
@@ -5454,7 +5454,7 @@ HLML_INLINE uint2x2 uint2x2_cmulm( const uint2x2* lhs, const uint2x2* rhs )
 }
 
 // Performs a component-wise / on the matrix by the scalar and returns the result.
-HLML_INLINE uint2x2 uint2x2_cdivs( const uint2x2* lhs, const uint32_t rhs )
+HLML_INLINE uint2x2 uint2x2_cdivs( const uint2x2 *lhs, const uint32_t rhs )
 {
 	return HLML_CONSTRUCT( uint2x2 )
 	{
@@ -5464,7 +5464,7 @@ HLML_INLINE uint2x2 uint2x2_cdivs( const uint2x2* lhs, const uint32_t rhs )
 }
 
 // Performs a component-wise / against the two matrices and returns the result.
-HLML_INLINE uint2x2 uint2x2_cdivm( const uint2x2* lhs, const uint2x2* rhs )
+HLML_INLINE uint2x2 uint2x2_cdivm( const uint2x2 *lhs, const uint2x2* rhs )
 {
 	return HLML_CONSTRUCT( uint2x2 )
 	{
@@ -5478,7 +5478,7 @@ HLML_INLINE uint2x2 uint2x2_cdivm( const uint2x2* lhs, const uint2x2* rhs )
 #pragma warning( disable : 4146 )
 #endif
 // Returns a copy of the matrix that has been negated.
-HLML_INLINE uint2x2 uint2x2_negate( const uint2x2* x )
+HLML_INLINE uint2x2 uint2x2_negate( const uint2x2 *x )
 {
 	return HLML_CONSTRUCT( uint2x2 )
 	{
@@ -5491,7 +5491,7 @@ HLML_INLINE uint2x2 uint2x2_negate( const uint2x2* x )
 #pragma warning( pop )
 #endif
 // Returns a copy of the matrix where each component has been bitwise NOT'd.
-HLML_INLINE uint2x2 uint2x2_not( const uint2x2* x )
+HLML_INLINE uint2x2 uint2x2_not( const uint2x2 *x )
 {
 	return HLML_CONSTRUCT( uint2x2 )
 	{
@@ -5501,7 +5501,7 @@ HLML_INLINE uint2x2 uint2x2_not( const uint2x2* x )
 }
 
 // Performs a component-wise bitwise & on the matrix by the scalar and returns the result.
-HLML_INLINE uint2x2 uint2x2_cands( const uint2x2* lhs, const uint32_t rhs )
+HLML_INLINE uint2x2 uint2x2_cands( const uint2x2 *lhs, const uint32_t rhs )
 {
 	return HLML_CONSTRUCT( uint2x2 )
 	{
@@ -5511,7 +5511,7 @@ HLML_INLINE uint2x2 uint2x2_cands( const uint2x2* lhs, const uint32_t rhs )
 }
 
 // Performs a component-wise bitwise & against the two matrices and returns the result.
-HLML_INLINE uint2x2 uint2x2_candm( const uint2x2* lhs, const uint2x2* rhs )
+HLML_INLINE uint2x2 uint2x2_candm( const uint2x2 *lhs, const uint2x2* rhs )
 {
 	return HLML_CONSTRUCT( uint2x2 )
 	{
@@ -5521,7 +5521,7 @@ HLML_INLINE uint2x2 uint2x2_candm( const uint2x2* lhs, const uint2x2* rhs )
 }
 
 // Performs a component-wise bitwise | on the matrix by the scalar and returns the result.
-HLML_INLINE uint2x2 uint2x2_cors( const uint2x2* lhs, const uint32_t rhs )
+HLML_INLINE uint2x2 uint2x2_cors( const uint2x2 *lhs, const uint32_t rhs )
 {
 	return HLML_CONSTRUCT( uint2x2 )
 	{
@@ -5531,7 +5531,7 @@ HLML_INLINE uint2x2 uint2x2_cors( const uint2x2* lhs, const uint32_t rhs )
 }
 
 // Performs a component-wise bitwise | against the two matrices and returns the result.
-HLML_INLINE uint2x2 uint2x2_corm( const uint2x2* lhs, const uint2x2* rhs )
+HLML_INLINE uint2x2 uint2x2_corm( const uint2x2 *lhs, const uint2x2* rhs )
 {
 	return HLML_CONSTRUCT( uint2x2 )
 	{
@@ -5541,7 +5541,7 @@ HLML_INLINE uint2x2 uint2x2_corm( const uint2x2* lhs, const uint2x2* rhs )
 }
 
 // Performs a component-wise bitwise ^ on the matrix by the scalar and returns the result.
-HLML_INLINE uint2x2 uint2x2_cxors( const uint2x2* lhs, const uint32_t rhs )
+HLML_INLINE uint2x2 uint2x2_cxors( const uint2x2 *lhs, const uint32_t rhs )
 {
 	return HLML_CONSTRUCT( uint2x2 )
 	{
@@ -5551,7 +5551,7 @@ HLML_INLINE uint2x2 uint2x2_cxors( const uint2x2* lhs, const uint32_t rhs )
 }
 
 // Performs a component-wise bitwise ^ against the two matrices and returns the result.
-HLML_INLINE uint2x2 uint2x2_cxorm( const uint2x2* lhs, const uint2x2* rhs )
+HLML_INLINE uint2x2 uint2x2_cxorm( const uint2x2 *lhs, const uint2x2* rhs )
 {
 	return HLML_CONSTRUCT( uint2x2 )
 	{
@@ -5561,7 +5561,7 @@ HLML_INLINE uint2x2 uint2x2_cxorm( const uint2x2* lhs, const uint2x2* rhs )
 }
 
 // Performs a component-wise bitwise << on the matrix by the scalar and returns the result.
-HLML_INLINE uint2x2 uint2x2_cshift_lefts( const uint2x2* lhs, const uint32_t rhs )
+HLML_INLINE uint2x2 uint2x2_cshift_lefts( const uint2x2 *lhs, const uint32_t rhs )
 {
 	return HLML_CONSTRUCT( uint2x2 )
 	{
@@ -5571,7 +5571,7 @@ HLML_INLINE uint2x2 uint2x2_cshift_lefts( const uint2x2* lhs, const uint32_t rhs
 }
 
 // Performs a component-wise bitwise << against the two matrices and returns the result.
-HLML_INLINE uint2x2 uint2x2_cshift_leftm( const uint2x2* lhs, const uint2x2* rhs )
+HLML_INLINE uint2x2 uint2x2_cshift_leftm( const uint2x2 *lhs, const uint2x2* rhs )
 {
 	return HLML_CONSTRUCT( uint2x2 )
 	{
@@ -5581,7 +5581,7 @@ HLML_INLINE uint2x2 uint2x2_cshift_leftm( const uint2x2* lhs, const uint2x2* rhs
 }
 
 // Performs a component-wise bitwise >> on the matrix by the scalar and returns the result.
-HLML_INLINE uint2x2 uint2x2_cshift_rights( const uint2x2* lhs, const uint32_t rhs )
+HLML_INLINE uint2x2 uint2x2_cshift_rights( const uint2x2 *lhs, const uint32_t rhs )
 {
 	return HLML_CONSTRUCT( uint2x2 )
 	{
@@ -5591,7 +5591,7 @@ HLML_INLINE uint2x2 uint2x2_cshift_rights( const uint2x2* lhs, const uint32_t rh
 }
 
 // Performs a component-wise bitwise >> against the two matrices and returns the result.
-HLML_INLINE uint2x2 uint2x2_cshift_rightm( const uint2x2* lhs, const uint2x2* rhs )
+HLML_INLINE uint2x2 uint2x2_cshift_rightm( const uint2x2 *lhs, const uint2x2* rhs )
 {
 	return HLML_CONSTRUCT( uint2x2 )
 	{
@@ -5688,7 +5688,7 @@ HLML_INLINE uint2x3 uint2x3_saturate( const uint2x3* x )
 }
 
 // Returns true if the contents of 'lhs' are the same as the contents of 'rhs', otherwise returns false.
-HLML_INLINE bool uint2x3_equals( const uint2x3* lhs, const uint2x3* rhs )
+HLML_INLINE bool uint2x3_equals( const uint2x3 *lhs, const uint2x3 *rhs )
 {
 	return
 		uint3_equals( &lhs->rows[0], &rhs->rows[0] ) &&
@@ -5696,13 +5696,13 @@ HLML_INLINE bool uint2x3_equals( const uint2x3* lhs, const uint2x3* rhs )
 }
 
 // Returns true if the contents of 'lhs' are NOT the same as the contents of 'rhs', otherwise returns false.
-HLML_INLINE bool uint2x3_not_equals( const uint2x3* lhs, const uint2x3* rhs )
+HLML_INLINE bool uint2x3_not_equals( const uint2x3 *lhs, const uint2x3 *rhs )
 {
 	return !uint2x3_equals( lhs, rhs );
 }
 
 // Performs a component-wise '<' check against the two matrices and returns the result.
-HLML_INLINE bool2x3 uint2x3_less_than( const uint2x3* lhs, const uint2x3* rhs )
+HLML_INLINE bool2x3 uint2x3_less_than( const uint2x3 *lhs, const uint2x3* rhs )
 {
 	return HLML_CONSTRUCT( bool2x3 )
 	{
@@ -5712,7 +5712,7 @@ HLML_INLINE bool2x3 uint2x3_less_than( const uint2x3* lhs, const uint2x3* rhs )
 }
 
 // Performs a component-wise '<=' check against the two matrices and returns the result.
-HLML_INLINE bool2x3 uint2x3_less_than_equal( const uint2x3* lhs, const uint2x3* rhs )
+HLML_INLINE bool2x3 uint2x3_less_than_equal( const uint2x3 *lhs, const uint2x3* rhs )
 {
 	return HLML_CONSTRUCT( bool2x3 )
 	{
@@ -5722,7 +5722,7 @@ HLML_INLINE bool2x3 uint2x3_less_than_equal( const uint2x3* lhs, const uint2x3* 
 }
 
 // Performs a component-wise '>' check against the two matrices and returns the result.
-HLML_INLINE bool2x3 uint2x3_greater_than( const uint2x3* lhs, const uint2x3* rhs )
+HLML_INLINE bool2x3 uint2x3_greater_than( const uint2x3 *lhs, const uint2x3* rhs )
 {
 	return HLML_CONSTRUCT( bool2x3 )
 	{
@@ -5732,7 +5732,7 @@ HLML_INLINE bool2x3 uint2x3_greater_than( const uint2x3* lhs, const uint2x3* rhs
 }
 
 // Performs a component-wise '>=' check against the two matrices and returns the result.
-HLML_INLINE bool2x3 uint2x3_greater_than_equal( const uint2x3* lhs, const uint2x3* rhs )
+HLML_INLINE bool2x3 uint2x3_greater_than_equal( const uint2x3 *lhs, const uint2x3* rhs )
 {
 	return HLML_CONSTRUCT( bool2x3 )
 	{
@@ -5742,7 +5742,7 @@ HLML_INLINE bool2x3 uint2x3_greater_than_equal( const uint2x3* lhs, const uint2x
 }
 
 // Performs a component-wise + on the matrix by the scalar and returns the result.
-HLML_INLINE uint2x3 uint2x3_cadds( const uint2x3* lhs, const uint32_t rhs )
+HLML_INLINE uint2x3 uint2x3_cadds( const uint2x3 *lhs, const uint32_t rhs )
 {
 	return HLML_CONSTRUCT( uint2x3 )
 	{
@@ -5752,7 +5752,7 @@ HLML_INLINE uint2x3 uint2x3_cadds( const uint2x3* lhs, const uint32_t rhs )
 }
 
 // Performs a component-wise + against the two matrices and returns the result.
-HLML_INLINE uint2x3 uint2x3_caddm( const uint2x3* lhs, const uint2x3* rhs )
+HLML_INLINE uint2x3 uint2x3_caddm( const uint2x3 *lhs, const uint2x3* rhs )
 {
 	return HLML_CONSTRUCT( uint2x3 )
 	{
@@ -5762,7 +5762,7 @@ HLML_INLINE uint2x3 uint2x3_caddm( const uint2x3* lhs, const uint2x3* rhs )
 }
 
 // Performs a component-wise - on the matrix by the scalar and returns the result.
-HLML_INLINE uint2x3 uint2x3_csubs( const uint2x3* lhs, const uint32_t rhs )
+HLML_INLINE uint2x3 uint2x3_csubs( const uint2x3 *lhs, const uint32_t rhs )
 {
 	return HLML_CONSTRUCT( uint2x3 )
 	{
@@ -5772,7 +5772,7 @@ HLML_INLINE uint2x3 uint2x3_csubs( const uint2x3* lhs, const uint32_t rhs )
 }
 
 // Performs a component-wise - against the two matrices and returns the result.
-HLML_INLINE uint2x3 uint2x3_csubm( const uint2x3* lhs, const uint2x3* rhs )
+HLML_INLINE uint2x3 uint2x3_csubm( const uint2x3 *lhs, const uint2x3* rhs )
 {
 	return HLML_CONSTRUCT( uint2x3 )
 	{
@@ -5782,7 +5782,7 @@ HLML_INLINE uint2x3 uint2x3_csubm( const uint2x3* lhs, const uint2x3* rhs )
 }
 
 // Performs a component-wise * on the matrix by the scalar and returns the result.
-HLML_INLINE uint2x3 uint2x3_cmuls( const uint2x3* lhs, const uint32_t rhs )
+HLML_INLINE uint2x3 uint2x3_cmuls( const uint2x3 *lhs, const uint32_t rhs )
 {
 	return HLML_CONSTRUCT( uint2x3 )
 	{
@@ -5792,7 +5792,7 @@ HLML_INLINE uint2x3 uint2x3_cmuls( const uint2x3* lhs, const uint32_t rhs )
 }
 
 // Performs a component-wise * against the two matrices and returns the result.
-HLML_INLINE uint2x3 uint2x3_cmulm( const uint2x3* lhs, const uint2x3* rhs )
+HLML_INLINE uint2x3 uint2x3_cmulm( const uint2x3 *lhs, const uint2x3* rhs )
 {
 	return HLML_CONSTRUCT( uint2x3 )
 	{
@@ -5802,7 +5802,7 @@ HLML_INLINE uint2x3 uint2x3_cmulm( const uint2x3* lhs, const uint2x3* rhs )
 }
 
 // Performs a component-wise / on the matrix by the scalar and returns the result.
-HLML_INLINE uint2x3 uint2x3_cdivs( const uint2x3* lhs, const uint32_t rhs )
+HLML_INLINE uint2x3 uint2x3_cdivs( const uint2x3 *lhs, const uint32_t rhs )
 {
 	return HLML_CONSTRUCT( uint2x3 )
 	{
@@ -5812,7 +5812,7 @@ HLML_INLINE uint2x3 uint2x3_cdivs( const uint2x3* lhs, const uint32_t rhs )
 }
 
 // Performs a component-wise / against the two matrices and returns the result.
-HLML_INLINE uint2x3 uint2x3_cdivm( const uint2x3* lhs, const uint2x3* rhs )
+HLML_INLINE uint2x3 uint2x3_cdivm( const uint2x3 *lhs, const uint2x3* rhs )
 {
 	return HLML_CONSTRUCT( uint2x3 )
 	{
@@ -5826,7 +5826,7 @@ HLML_INLINE uint2x3 uint2x3_cdivm( const uint2x3* lhs, const uint2x3* rhs )
 #pragma warning( disable : 4146 )
 #endif
 // Returns a copy of the matrix that has been negated.
-HLML_INLINE uint2x3 uint2x3_negate( const uint2x3* x )
+HLML_INLINE uint2x3 uint2x3_negate( const uint2x3 *x )
 {
 	return HLML_CONSTRUCT( uint2x3 )
 	{
@@ -5839,7 +5839,7 @@ HLML_INLINE uint2x3 uint2x3_negate( const uint2x3* x )
 #pragma warning( pop )
 #endif
 // Returns a copy of the matrix where each component has been bitwise NOT'd.
-HLML_INLINE uint2x3 uint2x3_not( const uint2x3* x )
+HLML_INLINE uint2x3 uint2x3_not( const uint2x3 *x )
 {
 	return HLML_CONSTRUCT( uint2x3 )
 	{
@@ -5849,7 +5849,7 @@ HLML_INLINE uint2x3 uint2x3_not( const uint2x3* x )
 }
 
 // Performs a component-wise bitwise & on the matrix by the scalar and returns the result.
-HLML_INLINE uint2x3 uint2x3_cands( const uint2x3* lhs, const uint32_t rhs )
+HLML_INLINE uint2x3 uint2x3_cands( const uint2x3 *lhs, const uint32_t rhs )
 {
 	return HLML_CONSTRUCT( uint2x3 )
 	{
@@ -5859,7 +5859,7 @@ HLML_INLINE uint2x3 uint2x3_cands( const uint2x3* lhs, const uint32_t rhs )
 }
 
 // Performs a component-wise bitwise & against the two matrices and returns the result.
-HLML_INLINE uint2x3 uint2x3_candm( const uint2x3* lhs, const uint2x3* rhs )
+HLML_INLINE uint2x3 uint2x3_candm( const uint2x3 *lhs, const uint2x3* rhs )
 {
 	return HLML_CONSTRUCT( uint2x3 )
 	{
@@ -5869,7 +5869,7 @@ HLML_INLINE uint2x3 uint2x3_candm( const uint2x3* lhs, const uint2x3* rhs )
 }
 
 // Performs a component-wise bitwise | on the matrix by the scalar and returns the result.
-HLML_INLINE uint2x3 uint2x3_cors( const uint2x3* lhs, const uint32_t rhs )
+HLML_INLINE uint2x3 uint2x3_cors( const uint2x3 *lhs, const uint32_t rhs )
 {
 	return HLML_CONSTRUCT( uint2x3 )
 	{
@@ -5879,7 +5879,7 @@ HLML_INLINE uint2x3 uint2x3_cors( const uint2x3* lhs, const uint32_t rhs )
 }
 
 // Performs a component-wise bitwise | against the two matrices and returns the result.
-HLML_INLINE uint2x3 uint2x3_corm( const uint2x3* lhs, const uint2x3* rhs )
+HLML_INLINE uint2x3 uint2x3_corm( const uint2x3 *lhs, const uint2x3* rhs )
 {
 	return HLML_CONSTRUCT( uint2x3 )
 	{
@@ -5889,7 +5889,7 @@ HLML_INLINE uint2x3 uint2x3_corm( const uint2x3* lhs, const uint2x3* rhs )
 }
 
 // Performs a component-wise bitwise ^ on the matrix by the scalar and returns the result.
-HLML_INLINE uint2x3 uint2x3_cxors( const uint2x3* lhs, const uint32_t rhs )
+HLML_INLINE uint2x3 uint2x3_cxors( const uint2x3 *lhs, const uint32_t rhs )
 {
 	return HLML_CONSTRUCT( uint2x3 )
 	{
@@ -5899,7 +5899,7 @@ HLML_INLINE uint2x3 uint2x3_cxors( const uint2x3* lhs, const uint32_t rhs )
 }
 
 // Performs a component-wise bitwise ^ against the two matrices and returns the result.
-HLML_INLINE uint2x3 uint2x3_cxorm( const uint2x3* lhs, const uint2x3* rhs )
+HLML_INLINE uint2x3 uint2x3_cxorm( const uint2x3 *lhs, const uint2x3* rhs )
 {
 	return HLML_CONSTRUCT( uint2x3 )
 	{
@@ -5909,7 +5909,7 @@ HLML_INLINE uint2x3 uint2x3_cxorm( const uint2x3* lhs, const uint2x3* rhs )
 }
 
 // Performs a component-wise bitwise << on the matrix by the scalar and returns the result.
-HLML_INLINE uint2x3 uint2x3_cshift_lefts( const uint2x3* lhs, const uint32_t rhs )
+HLML_INLINE uint2x3 uint2x3_cshift_lefts( const uint2x3 *lhs, const uint32_t rhs )
 {
 	return HLML_CONSTRUCT( uint2x3 )
 	{
@@ -5919,7 +5919,7 @@ HLML_INLINE uint2x3 uint2x3_cshift_lefts( const uint2x3* lhs, const uint32_t rhs
 }
 
 // Performs a component-wise bitwise << against the two matrices and returns the result.
-HLML_INLINE uint2x3 uint2x3_cshift_leftm( const uint2x3* lhs, const uint2x3* rhs )
+HLML_INLINE uint2x3 uint2x3_cshift_leftm( const uint2x3 *lhs, const uint2x3* rhs )
 {
 	return HLML_CONSTRUCT( uint2x3 )
 	{
@@ -5929,7 +5929,7 @@ HLML_INLINE uint2x3 uint2x3_cshift_leftm( const uint2x3* lhs, const uint2x3* rhs
 }
 
 // Performs a component-wise bitwise >> on the matrix by the scalar and returns the result.
-HLML_INLINE uint2x3 uint2x3_cshift_rights( const uint2x3* lhs, const uint32_t rhs )
+HLML_INLINE uint2x3 uint2x3_cshift_rights( const uint2x3 *lhs, const uint32_t rhs )
 {
 	return HLML_CONSTRUCT( uint2x3 )
 	{
@@ -5939,7 +5939,7 @@ HLML_INLINE uint2x3 uint2x3_cshift_rights( const uint2x3* lhs, const uint32_t rh
 }
 
 // Performs a component-wise bitwise >> against the two matrices and returns the result.
-HLML_INLINE uint2x3 uint2x3_cshift_rightm( const uint2x3* lhs, const uint2x3* rhs )
+HLML_INLINE uint2x3 uint2x3_cshift_rightm( const uint2x3 *lhs, const uint2x3* rhs )
 {
 	return HLML_CONSTRUCT( uint2x3 )
 	{
@@ -6027,7 +6027,7 @@ HLML_INLINE uint2x4 uint2x4_saturate( const uint2x4* x )
 }
 
 // Returns true if the contents of 'lhs' are the same as the contents of 'rhs', otherwise returns false.
-HLML_INLINE bool uint2x4_equals( const uint2x4* lhs, const uint2x4* rhs )
+HLML_INLINE bool uint2x4_equals( const uint2x4 *lhs, const uint2x4 *rhs )
 {
 	return
 		uint4_equals( &lhs->rows[0], &rhs->rows[0] ) &&
@@ -6035,13 +6035,13 @@ HLML_INLINE bool uint2x4_equals( const uint2x4* lhs, const uint2x4* rhs )
 }
 
 // Returns true if the contents of 'lhs' are NOT the same as the contents of 'rhs', otherwise returns false.
-HLML_INLINE bool uint2x4_not_equals( const uint2x4* lhs, const uint2x4* rhs )
+HLML_INLINE bool uint2x4_not_equals( const uint2x4 *lhs, const uint2x4 *rhs )
 {
 	return !uint2x4_equals( lhs, rhs );
 }
 
 // Performs a component-wise '<' check against the two matrices and returns the result.
-HLML_INLINE bool2x4 uint2x4_less_than( const uint2x4* lhs, const uint2x4* rhs )
+HLML_INLINE bool2x4 uint2x4_less_than( const uint2x4 *lhs, const uint2x4* rhs )
 {
 	return HLML_CONSTRUCT( bool2x4 )
 	{
@@ -6051,7 +6051,7 @@ HLML_INLINE bool2x4 uint2x4_less_than( const uint2x4* lhs, const uint2x4* rhs )
 }
 
 // Performs a component-wise '<=' check against the two matrices and returns the result.
-HLML_INLINE bool2x4 uint2x4_less_than_equal( const uint2x4* lhs, const uint2x4* rhs )
+HLML_INLINE bool2x4 uint2x4_less_than_equal( const uint2x4 *lhs, const uint2x4* rhs )
 {
 	return HLML_CONSTRUCT( bool2x4 )
 	{
@@ -6061,7 +6061,7 @@ HLML_INLINE bool2x4 uint2x4_less_than_equal( const uint2x4* lhs, const uint2x4* 
 }
 
 // Performs a component-wise '>' check against the two matrices and returns the result.
-HLML_INLINE bool2x4 uint2x4_greater_than( const uint2x4* lhs, const uint2x4* rhs )
+HLML_INLINE bool2x4 uint2x4_greater_than( const uint2x4 *lhs, const uint2x4* rhs )
 {
 	return HLML_CONSTRUCT( bool2x4 )
 	{
@@ -6071,7 +6071,7 @@ HLML_INLINE bool2x4 uint2x4_greater_than( const uint2x4* lhs, const uint2x4* rhs
 }
 
 // Performs a component-wise '>=' check against the two matrices and returns the result.
-HLML_INLINE bool2x4 uint2x4_greater_than_equal( const uint2x4* lhs, const uint2x4* rhs )
+HLML_INLINE bool2x4 uint2x4_greater_than_equal( const uint2x4 *lhs, const uint2x4* rhs )
 {
 	return HLML_CONSTRUCT( bool2x4 )
 	{
@@ -6081,7 +6081,7 @@ HLML_INLINE bool2x4 uint2x4_greater_than_equal( const uint2x4* lhs, const uint2x
 }
 
 // Performs a component-wise + on the matrix by the scalar and returns the result.
-HLML_INLINE uint2x4 uint2x4_cadds( const uint2x4* lhs, const uint32_t rhs )
+HLML_INLINE uint2x4 uint2x4_cadds( const uint2x4 *lhs, const uint32_t rhs )
 {
 	return HLML_CONSTRUCT( uint2x4 )
 	{
@@ -6091,7 +6091,7 @@ HLML_INLINE uint2x4 uint2x4_cadds( const uint2x4* lhs, const uint32_t rhs )
 }
 
 // Performs a component-wise + against the two matrices and returns the result.
-HLML_INLINE uint2x4 uint2x4_caddm( const uint2x4* lhs, const uint2x4* rhs )
+HLML_INLINE uint2x4 uint2x4_caddm( const uint2x4 *lhs, const uint2x4* rhs )
 {
 	return HLML_CONSTRUCT( uint2x4 )
 	{
@@ -6101,7 +6101,7 @@ HLML_INLINE uint2x4 uint2x4_caddm( const uint2x4* lhs, const uint2x4* rhs )
 }
 
 // Performs a component-wise - on the matrix by the scalar and returns the result.
-HLML_INLINE uint2x4 uint2x4_csubs( const uint2x4* lhs, const uint32_t rhs )
+HLML_INLINE uint2x4 uint2x4_csubs( const uint2x4 *lhs, const uint32_t rhs )
 {
 	return HLML_CONSTRUCT( uint2x4 )
 	{
@@ -6111,7 +6111,7 @@ HLML_INLINE uint2x4 uint2x4_csubs( const uint2x4* lhs, const uint32_t rhs )
 }
 
 // Performs a component-wise - against the two matrices and returns the result.
-HLML_INLINE uint2x4 uint2x4_csubm( const uint2x4* lhs, const uint2x4* rhs )
+HLML_INLINE uint2x4 uint2x4_csubm( const uint2x4 *lhs, const uint2x4* rhs )
 {
 	return HLML_CONSTRUCT( uint2x4 )
 	{
@@ -6121,7 +6121,7 @@ HLML_INLINE uint2x4 uint2x4_csubm( const uint2x4* lhs, const uint2x4* rhs )
 }
 
 // Performs a component-wise * on the matrix by the scalar and returns the result.
-HLML_INLINE uint2x4 uint2x4_cmuls( const uint2x4* lhs, const uint32_t rhs )
+HLML_INLINE uint2x4 uint2x4_cmuls( const uint2x4 *lhs, const uint32_t rhs )
 {
 	return HLML_CONSTRUCT( uint2x4 )
 	{
@@ -6131,7 +6131,7 @@ HLML_INLINE uint2x4 uint2x4_cmuls( const uint2x4* lhs, const uint32_t rhs )
 }
 
 // Performs a component-wise * against the two matrices and returns the result.
-HLML_INLINE uint2x4 uint2x4_cmulm( const uint2x4* lhs, const uint2x4* rhs )
+HLML_INLINE uint2x4 uint2x4_cmulm( const uint2x4 *lhs, const uint2x4* rhs )
 {
 	return HLML_CONSTRUCT( uint2x4 )
 	{
@@ -6141,7 +6141,7 @@ HLML_INLINE uint2x4 uint2x4_cmulm( const uint2x4* lhs, const uint2x4* rhs )
 }
 
 // Performs a component-wise / on the matrix by the scalar and returns the result.
-HLML_INLINE uint2x4 uint2x4_cdivs( const uint2x4* lhs, const uint32_t rhs )
+HLML_INLINE uint2x4 uint2x4_cdivs( const uint2x4 *lhs, const uint32_t rhs )
 {
 	return HLML_CONSTRUCT( uint2x4 )
 	{
@@ -6151,7 +6151,7 @@ HLML_INLINE uint2x4 uint2x4_cdivs( const uint2x4* lhs, const uint32_t rhs )
 }
 
 // Performs a component-wise / against the two matrices and returns the result.
-HLML_INLINE uint2x4 uint2x4_cdivm( const uint2x4* lhs, const uint2x4* rhs )
+HLML_INLINE uint2x4 uint2x4_cdivm( const uint2x4 *lhs, const uint2x4* rhs )
 {
 	return HLML_CONSTRUCT( uint2x4 )
 	{
@@ -6165,7 +6165,7 @@ HLML_INLINE uint2x4 uint2x4_cdivm( const uint2x4* lhs, const uint2x4* rhs )
 #pragma warning( disable : 4146 )
 #endif
 // Returns a copy of the matrix that has been negated.
-HLML_INLINE uint2x4 uint2x4_negate( const uint2x4* x )
+HLML_INLINE uint2x4 uint2x4_negate( const uint2x4 *x )
 {
 	return HLML_CONSTRUCT( uint2x4 )
 	{
@@ -6178,7 +6178,7 @@ HLML_INLINE uint2x4 uint2x4_negate( const uint2x4* x )
 #pragma warning( pop )
 #endif
 // Returns a copy of the matrix where each component has been bitwise NOT'd.
-HLML_INLINE uint2x4 uint2x4_not( const uint2x4* x )
+HLML_INLINE uint2x4 uint2x4_not( const uint2x4 *x )
 {
 	return HLML_CONSTRUCT( uint2x4 )
 	{
@@ -6188,7 +6188,7 @@ HLML_INLINE uint2x4 uint2x4_not( const uint2x4* x )
 }
 
 // Performs a component-wise bitwise & on the matrix by the scalar and returns the result.
-HLML_INLINE uint2x4 uint2x4_cands( const uint2x4* lhs, const uint32_t rhs )
+HLML_INLINE uint2x4 uint2x4_cands( const uint2x4 *lhs, const uint32_t rhs )
 {
 	return HLML_CONSTRUCT( uint2x4 )
 	{
@@ -6198,7 +6198,7 @@ HLML_INLINE uint2x4 uint2x4_cands( const uint2x4* lhs, const uint32_t rhs )
 }
 
 // Performs a component-wise bitwise & against the two matrices and returns the result.
-HLML_INLINE uint2x4 uint2x4_candm( const uint2x4* lhs, const uint2x4* rhs )
+HLML_INLINE uint2x4 uint2x4_candm( const uint2x4 *lhs, const uint2x4* rhs )
 {
 	return HLML_CONSTRUCT( uint2x4 )
 	{
@@ -6208,7 +6208,7 @@ HLML_INLINE uint2x4 uint2x4_candm( const uint2x4* lhs, const uint2x4* rhs )
 }
 
 // Performs a component-wise bitwise | on the matrix by the scalar and returns the result.
-HLML_INLINE uint2x4 uint2x4_cors( const uint2x4* lhs, const uint32_t rhs )
+HLML_INLINE uint2x4 uint2x4_cors( const uint2x4 *lhs, const uint32_t rhs )
 {
 	return HLML_CONSTRUCT( uint2x4 )
 	{
@@ -6218,7 +6218,7 @@ HLML_INLINE uint2x4 uint2x4_cors( const uint2x4* lhs, const uint32_t rhs )
 }
 
 // Performs a component-wise bitwise | against the two matrices and returns the result.
-HLML_INLINE uint2x4 uint2x4_corm( const uint2x4* lhs, const uint2x4* rhs )
+HLML_INLINE uint2x4 uint2x4_corm( const uint2x4 *lhs, const uint2x4* rhs )
 {
 	return HLML_CONSTRUCT( uint2x4 )
 	{
@@ -6228,7 +6228,7 @@ HLML_INLINE uint2x4 uint2x4_corm( const uint2x4* lhs, const uint2x4* rhs )
 }
 
 // Performs a component-wise bitwise ^ on the matrix by the scalar and returns the result.
-HLML_INLINE uint2x4 uint2x4_cxors( const uint2x4* lhs, const uint32_t rhs )
+HLML_INLINE uint2x4 uint2x4_cxors( const uint2x4 *lhs, const uint32_t rhs )
 {
 	return HLML_CONSTRUCT( uint2x4 )
 	{
@@ -6238,7 +6238,7 @@ HLML_INLINE uint2x4 uint2x4_cxors( const uint2x4* lhs, const uint32_t rhs )
 }
 
 // Performs a component-wise bitwise ^ against the two matrices and returns the result.
-HLML_INLINE uint2x4 uint2x4_cxorm( const uint2x4* lhs, const uint2x4* rhs )
+HLML_INLINE uint2x4 uint2x4_cxorm( const uint2x4 *lhs, const uint2x4* rhs )
 {
 	return HLML_CONSTRUCT( uint2x4 )
 	{
@@ -6248,7 +6248,7 @@ HLML_INLINE uint2x4 uint2x4_cxorm( const uint2x4* lhs, const uint2x4* rhs )
 }
 
 // Performs a component-wise bitwise << on the matrix by the scalar and returns the result.
-HLML_INLINE uint2x4 uint2x4_cshift_lefts( const uint2x4* lhs, const uint32_t rhs )
+HLML_INLINE uint2x4 uint2x4_cshift_lefts( const uint2x4 *lhs, const uint32_t rhs )
 {
 	return HLML_CONSTRUCT( uint2x4 )
 	{
@@ -6258,7 +6258,7 @@ HLML_INLINE uint2x4 uint2x4_cshift_lefts( const uint2x4* lhs, const uint32_t rhs
 }
 
 // Performs a component-wise bitwise << against the two matrices and returns the result.
-HLML_INLINE uint2x4 uint2x4_cshift_leftm( const uint2x4* lhs, const uint2x4* rhs )
+HLML_INLINE uint2x4 uint2x4_cshift_leftm( const uint2x4 *lhs, const uint2x4* rhs )
 {
 	return HLML_CONSTRUCT( uint2x4 )
 	{
@@ -6268,7 +6268,7 @@ HLML_INLINE uint2x4 uint2x4_cshift_leftm( const uint2x4* lhs, const uint2x4* rhs
 }
 
 // Performs a component-wise bitwise >> on the matrix by the scalar and returns the result.
-HLML_INLINE uint2x4 uint2x4_cshift_rights( const uint2x4* lhs, const uint32_t rhs )
+HLML_INLINE uint2x4 uint2x4_cshift_rights( const uint2x4 *lhs, const uint32_t rhs )
 {
 	return HLML_CONSTRUCT( uint2x4 )
 	{
@@ -6278,7 +6278,7 @@ HLML_INLINE uint2x4 uint2x4_cshift_rights( const uint2x4* lhs, const uint32_t rh
 }
 
 // Performs a component-wise bitwise >> against the two matrices and returns the result.
-HLML_INLINE uint2x4 uint2x4_cshift_rightm( const uint2x4* lhs, const uint2x4* rhs )
+HLML_INLINE uint2x4 uint2x4_cshift_rightm( const uint2x4 *lhs, const uint2x4* rhs )
 {
 	return HLML_CONSTRUCT( uint2x4 )
 	{
@@ -6371,7 +6371,7 @@ HLML_INLINE uint3x2 uint3x2_saturate( const uint3x2* x )
 }
 
 // Returns true if the contents of 'lhs' are the same as the contents of 'rhs', otherwise returns false.
-HLML_INLINE bool uint3x2_equals( const uint3x2* lhs, const uint3x2* rhs )
+HLML_INLINE bool uint3x2_equals( const uint3x2 *lhs, const uint3x2 *rhs )
 {
 	return
 		uint2_equals( &lhs->rows[0], &rhs->rows[0] ) &&
@@ -6380,13 +6380,13 @@ HLML_INLINE bool uint3x2_equals( const uint3x2* lhs, const uint3x2* rhs )
 }
 
 // Returns true if the contents of 'lhs' are NOT the same as the contents of 'rhs', otherwise returns false.
-HLML_INLINE bool uint3x2_not_equals( const uint3x2* lhs, const uint3x2* rhs )
+HLML_INLINE bool uint3x2_not_equals( const uint3x2 *lhs, const uint3x2 *rhs )
 {
 	return !uint3x2_equals( lhs, rhs );
 }
 
 // Performs a component-wise '<' check against the two matrices and returns the result.
-HLML_INLINE bool3x2 uint3x2_less_than( const uint3x2* lhs, const uint3x2* rhs )
+HLML_INLINE bool3x2 uint3x2_less_than( const uint3x2 *lhs, const uint3x2* rhs )
 {
 	return HLML_CONSTRUCT( bool3x2 )
 	{
@@ -6397,7 +6397,7 @@ HLML_INLINE bool3x2 uint3x2_less_than( const uint3x2* lhs, const uint3x2* rhs )
 }
 
 // Performs a component-wise '<=' check against the two matrices and returns the result.
-HLML_INLINE bool3x2 uint3x2_less_than_equal( const uint3x2* lhs, const uint3x2* rhs )
+HLML_INLINE bool3x2 uint3x2_less_than_equal( const uint3x2 *lhs, const uint3x2* rhs )
 {
 	return HLML_CONSTRUCT( bool3x2 )
 	{
@@ -6408,7 +6408,7 @@ HLML_INLINE bool3x2 uint3x2_less_than_equal( const uint3x2* lhs, const uint3x2* 
 }
 
 // Performs a component-wise '>' check against the two matrices and returns the result.
-HLML_INLINE bool3x2 uint3x2_greater_than( const uint3x2* lhs, const uint3x2* rhs )
+HLML_INLINE bool3x2 uint3x2_greater_than( const uint3x2 *lhs, const uint3x2* rhs )
 {
 	return HLML_CONSTRUCT( bool3x2 )
 	{
@@ -6419,7 +6419,7 @@ HLML_INLINE bool3x2 uint3x2_greater_than( const uint3x2* lhs, const uint3x2* rhs
 }
 
 // Performs a component-wise '>=' check against the two matrices and returns the result.
-HLML_INLINE bool3x2 uint3x2_greater_than_equal( const uint3x2* lhs, const uint3x2* rhs )
+HLML_INLINE bool3x2 uint3x2_greater_than_equal( const uint3x2 *lhs, const uint3x2* rhs )
 {
 	return HLML_CONSTRUCT( bool3x2 )
 	{
@@ -6430,7 +6430,7 @@ HLML_INLINE bool3x2 uint3x2_greater_than_equal( const uint3x2* lhs, const uint3x
 }
 
 // Performs a component-wise + on the matrix by the scalar and returns the result.
-HLML_INLINE uint3x2 uint3x2_cadds( const uint3x2* lhs, const uint32_t rhs )
+HLML_INLINE uint3x2 uint3x2_cadds( const uint3x2 *lhs, const uint32_t rhs )
 {
 	return HLML_CONSTRUCT( uint3x2 )
 	{
@@ -6441,7 +6441,7 @@ HLML_INLINE uint3x2 uint3x2_cadds( const uint3x2* lhs, const uint32_t rhs )
 }
 
 // Performs a component-wise + against the two matrices and returns the result.
-HLML_INLINE uint3x2 uint3x2_caddm( const uint3x2* lhs, const uint3x2* rhs )
+HLML_INLINE uint3x2 uint3x2_caddm( const uint3x2 *lhs, const uint3x2* rhs )
 {
 	return HLML_CONSTRUCT( uint3x2 )
 	{
@@ -6452,7 +6452,7 @@ HLML_INLINE uint3x2 uint3x2_caddm( const uint3x2* lhs, const uint3x2* rhs )
 }
 
 // Performs a component-wise - on the matrix by the scalar and returns the result.
-HLML_INLINE uint3x2 uint3x2_csubs( const uint3x2* lhs, const uint32_t rhs )
+HLML_INLINE uint3x2 uint3x2_csubs( const uint3x2 *lhs, const uint32_t rhs )
 {
 	return HLML_CONSTRUCT( uint3x2 )
 	{
@@ -6463,7 +6463,7 @@ HLML_INLINE uint3x2 uint3x2_csubs( const uint3x2* lhs, const uint32_t rhs )
 }
 
 // Performs a component-wise - against the two matrices and returns the result.
-HLML_INLINE uint3x2 uint3x2_csubm( const uint3x2* lhs, const uint3x2* rhs )
+HLML_INLINE uint3x2 uint3x2_csubm( const uint3x2 *lhs, const uint3x2* rhs )
 {
 	return HLML_CONSTRUCT( uint3x2 )
 	{
@@ -6474,7 +6474,7 @@ HLML_INLINE uint3x2 uint3x2_csubm( const uint3x2* lhs, const uint3x2* rhs )
 }
 
 // Performs a component-wise * on the matrix by the scalar and returns the result.
-HLML_INLINE uint3x2 uint3x2_cmuls( const uint3x2* lhs, const uint32_t rhs )
+HLML_INLINE uint3x2 uint3x2_cmuls( const uint3x2 *lhs, const uint32_t rhs )
 {
 	return HLML_CONSTRUCT( uint3x2 )
 	{
@@ -6485,7 +6485,7 @@ HLML_INLINE uint3x2 uint3x2_cmuls( const uint3x2* lhs, const uint32_t rhs )
 }
 
 // Performs a component-wise * against the two matrices and returns the result.
-HLML_INLINE uint3x2 uint3x2_cmulm( const uint3x2* lhs, const uint3x2* rhs )
+HLML_INLINE uint3x2 uint3x2_cmulm( const uint3x2 *lhs, const uint3x2* rhs )
 {
 	return HLML_CONSTRUCT( uint3x2 )
 	{
@@ -6496,7 +6496,7 @@ HLML_INLINE uint3x2 uint3x2_cmulm( const uint3x2* lhs, const uint3x2* rhs )
 }
 
 // Performs a component-wise / on the matrix by the scalar and returns the result.
-HLML_INLINE uint3x2 uint3x2_cdivs( const uint3x2* lhs, const uint32_t rhs )
+HLML_INLINE uint3x2 uint3x2_cdivs( const uint3x2 *lhs, const uint32_t rhs )
 {
 	return HLML_CONSTRUCT( uint3x2 )
 	{
@@ -6507,7 +6507,7 @@ HLML_INLINE uint3x2 uint3x2_cdivs( const uint3x2* lhs, const uint32_t rhs )
 }
 
 // Performs a component-wise / against the two matrices and returns the result.
-HLML_INLINE uint3x2 uint3x2_cdivm( const uint3x2* lhs, const uint3x2* rhs )
+HLML_INLINE uint3x2 uint3x2_cdivm( const uint3x2 *lhs, const uint3x2* rhs )
 {
 	return HLML_CONSTRUCT( uint3x2 )
 	{
@@ -6522,7 +6522,7 @@ HLML_INLINE uint3x2 uint3x2_cdivm( const uint3x2* lhs, const uint3x2* rhs )
 #pragma warning( disable : 4146 )
 #endif
 // Returns a copy of the matrix that has been negated.
-HLML_INLINE uint3x2 uint3x2_negate( const uint3x2* x )
+HLML_INLINE uint3x2 uint3x2_negate( const uint3x2 *x )
 {
 	return HLML_CONSTRUCT( uint3x2 )
 	{
@@ -6536,7 +6536,7 @@ HLML_INLINE uint3x2 uint3x2_negate( const uint3x2* x )
 #pragma warning( pop )
 #endif
 // Returns a copy of the matrix where each component has been bitwise NOT'd.
-HLML_INLINE uint3x2 uint3x2_not( const uint3x2* x )
+HLML_INLINE uint3x2 uint3x2_not( const uint3x2 *x )
 {
 	return HLML_CONSTRUCT( uint3x2 )
 	{
@@ -6547,7 +6547,7 @@ HLML_INLINE uint3x2 uint3x2_not( const uint3x2* x )
 }
 
 // Performs a component-wise bitwise & on the matrix by the scalar and returns the result.
-HLML_INLINE uint3x2 uint3x2_cands( const uint3x2* lhs, const uint32_t rhs )
+HLML_INLINE uint3x2 uint3x2_cands( const uint3x2 *lhs, const uint32_t rhs )
 {
 	return HLML_CONSTRUCT( uint3x2 )
 	{
@@ -6558,7 +6558,7 @@ HLML_INLINE uint3x2 uint3x2_cands( const uint3x2* lhs, const uint32_t rhs )
 }
 
 // Performs a component-wise bitwise & against the two matrices and returns the result.
-HLML_INLINE uint3x2 uint3x2_candm( const uint3x2* lhs, const uint3x2* rhs )
+HLML_INLINE uint3x2 uint3x2_candm( const uint3x2 *lhs, const uint3x2* rhs )
 {
 	return HLML_CONSTRUCT( uint3x2 )
 	{
@@ -6569,7 +6569,7 @@ HLML_INLINE uint3x2 uint3x2_candm( const uint3x2* lhs, const uint3x2* rhs )
 }
 
 // Performs a component-wise bitwise | on the matrix by the scalar and returns the result.
-HLML_INLINE uint3x2 uint3x2_cors( const uint3x2* lhs, const uint32_t rhs )
+HLML_INLINE uint3x2 uint3x2_cors( const uint3x2 *lhs, const uint32_t rhs )
 {
 	return HLML_CONSTRUCT( uint3x2 )
 	{
@@ -6580,7 +6580,7 @@ HLML_INLINE uint3x2 uint3x2_cors( const uint3x2* lhs, const uint32_t rhs )
 }
 
 // Performs a component-wise bitwise | against the two matrices and returns the result.
-HLML_INLINE uint3x2 uint3x2_corm( const uint3x2* lhs, const uint3x2* rhs )
+HLML_INLINE uint3x2 uint3x2_corm( const uint3x2 *lhs, const uint3x2* rhs )
 {
 	return HLML_CONSTRUCT( uint3x2 )
 	{
@@ -6591,7 +6591,7 @@ HLML_INLINE uint3x2 uint3x2_corm( const uint3x2* lhs, const uint3x2* rhs )
 }
 
 // Performs a component-wise bitwise ^ on the matrix by the scalar and returns the result.
-HLML_INLINE uint3x2 uint3x2_cxors( const uint3x2* lhs, const uint32_t rhs )
+HLML_INLINE uint3x2 uint3x2_cxors( const uint3x2 *lhs, const uint32_t rhs )
 {
 	return HLML_CONSTRUCT( uint3x2 )
 	{
@@ -6602,7 +6602,7 @@ HLML_INLINE uint3x2 uint3x2_cxors( const uint3x2* lhs, const uint32_t rhs )
 }
 
 // Performs a component-wise bitwise ^ against the two matrices and returns the result.
-HLML_INLINE uint3x2 uint3x2_cxorm( const uint3x2* lhs, const uint3x2* rhs )
+HLML_INLINE uint3x2 uint3x2_cxorm( const uint3x2 *lhs, const uint3x2* rhs )
 {
 	return HLML_CONSTRUCT( uint3x2 )
 	{
@@ -6613,7 +6613,7 @@ HLML_INLINE uint3x2 uint3x2_cxorm( const uint3x2* lhs, const uint3x2* rhs )
 }
 
 // Performs a component-wise bitwise << on the matrix by the scalar and returns the result.
-HLML_INLINE uint3x2 uint3x2_cshift_lefts( const uint3x2* lhs, const uint32_t rhs )
+HLML_INLINE uint3x2 uint3x2_cshift_lefts( const uint3x2 *lhs, const uint32_t rhs )
 {
 	return HLML_CONSTRUCT( uint3x2 )
 	{
@@ -6624,7 +6624,7 @@ HLML_INLINE uint3x2 uint3x2_cshift_lefts( const uint3x2* lhs, const uint32_t rhs
 }
 
 // Performs a component-wise bitwise << against the two matrices and returns the result.
-HLML_INLINE uint3x2 uint3x2_cshift_leftm( const uint3x2* lhs, const uint3x2* rhs )
+HLML_INLINE uint3x2 uint3x2_cshift_leftm( const uint3x2 *lhs, const uint3x2* rhs )
 {
 	return HLML_CONSTRUCT( uint3x2 )
 	{
@@ -6635,7 +6635,7 @@ HLML_INLINE uint3x2 uint3x2_cshift_leftm( const uint3x2* lhs, const uint3x2* rhs
 }
 
 // Performs a component-wise bitwise >> on the matrix by the scalar and returns the result.
-HLML_INLINE uint3x2 uint3x2_cshift_rights( const uint3x2* lhs, const uint32_t rhs )
+HLML_INLINE uint3x2 uint3x2_cshift_rights( const uint3x2 *lhs, const uint32_t rhs )
 {
 	return HLML_CONSTRUCT( uint3x2 )
 	{
@@ -6646,7 +6646,7 @@ HLML_INLINE uint3x2 uint3x2_cshift_rights( const uint3x2* lhs, const uint32_t rh
 }
 
 // Performs a component-wise bitwise >> against the two matrices and returns the result.
-HLML_INLINE uint3x2 uint3x2_cshift_rightm( const uint3x2* lhs, const uint3x2* rhs )
+HLML_INLINE uint3x2 uint3x2_cshift_rightm( const uint3x2 *lhs, const uint3x2* rhs )
 {
 	return HLML_CONSTRUCT( uint3x2 )
 	{
@@ -6747,7 +6747,7 @@ HLML_INLINE uint3x3 uint3x3_saturate( const uint3x3* x )
 }
 
 // Returns true if the contents of 'lhs' are the same as the contents of 'rhs', otherwise returns false.
-HLML_INLINE bool uint3x3_equals( const uint3x3* lhs, const uint3x3* rhs )
+HLML_INLINE bool uint3x3_equals( const uint3x3 *lhs, const uint3x3 *rhs )
 {
 	return
 		uint3_equals( &lhs->rows[0], &rhs->rows[0] ) &&
@@ -6756,13 +6756,13 @@ HLML_INLINE bool uint3x3_equals( const uint3x3* lhs, const uint3x3* rhs )
 }
 
 // Returns true if the contents of 'lhs' are NOT the same as the contents of 'rhs', otherwise returns false.
-HLML_INLINE bool uint3x3_not_equals( const uint3x3* lhs, const uint3x3* rhs )
+HLML_INLINE bool uint3x3_not_equals( const uint3x3 *lhs, const uint3x3 *rhs )
 {
 	return !uint3x3_equals( lhs, rhs );
 }
 
 // Performs a component-wise '<' check against the two matrices and returns the result.
-HLML_INLINE bool3x3 uint3x3_less_than( const uint3x3* lhs, const uint3x3* rhs )
+HLML_INLINE bool3x3 uint3x3_less_than( const uint3x3 *lhs, const uint3x3* rhs )
 {
 	return HLML_CONSTRUCT( bool3x3 )
 	{
@@ -6773,7 +6773,7 @@ HLML_INLINE bool3x3 uint3x3_less_than( const uint3x3* lhs, const uint3x3* rhs )
 }
 
 // Performs a component-wise '<=' check against the two matrices and returns the result.
-HLML_INLINE bool3x3 uint3x3_less_than_equal( const uint3x3* lhs, const uint3x3* rhs )
+HLML_INLINE bool3x3 uint3x3_less_than_equal( const uint3x3 *lhs, const uint3x3* rhs )
 {
 	return HLML_CONSTRUCT( bool3x3 )
 	{
@@ -6784,7 +6784,7 @@ HLML_INLINE bool3x3 uint3x3_less_than_equal( const uint3x3* lhs, const uint3x3* 
 }
 
 // Performs a component-wise '>' check against the two matrices and returns the result.
-HLML_INLINE bool3x3 uint3x3_greater_than( const uint3x3* lhs, const uint3x3* rhs )
+HLML_INLINE bool3x3 uint3x3_greater_than( const uint3x3 *lhs, const uint3x3* rhs )
 {
 	return HLML_CONSTRUCT( bool3x3 )
 	{
@@ -6795,7 +6795,7 @@ HLML_INLINE bool3x3 uint3x3_greater_than( const uint3x3* lhs, const uint3x3* rhs
 }
 
 // Performs a component-wise '>=' check against the two matrices and returns the result.
-HLML_INLINE bool3x3 uint3x3_greater_than_equal( const uint3x3* lhs, const uint3x3* rhs )
+HLML_INLINE bool3x3 uint3x3_greater_than_equal( const uint3x3 *lhs, const uint3x3* rhs )
 {
 	return HLML_CONSTRUCT( bool3x3 )
 	{
@@ -6806,7 +6806,7 @@ HLML_INLINE bool3x3 uint3x3_greater_than_equal( const uint3x3* lhs, const uint3x
 }
 
 // Performs a component-wise + on the matrix by the scalar and returns the result.
-HLML_INLINE uint3x3 uint3x3_cadds( const uint3x3* lhs, const uint32_t rhs )
+HLML_INLINE uint3x3 uint3x3_cadds( const uint3x3 *lhs, const uint32_t rhs )
 {
 	return HLML_CONSTRUCT( uint3x3 )
 	{
@@ -6817,7 +6817,7 @@ HLML_INLINE uint3x3 uint3x3_cadds( const uint3x3* lhs, const uint32_t rhs )
 }
 
 // Performs a component-wise + against the two matrices and returns the result.
-HLML_INLINE uint3x3 uint3x3_caddm( const uint3x3* lhs, const uint3x3* rhs )
+HLML_INLINE uint3x3 uint3x3_caddm( const uint3x3 *lhs, const uint3x3* rhs )
 {
 	return HLML_CONSTRUCT( uint3x3 )
 	{
@@ -6828,7 +6828,7 @@ HLML_INLINE uint3x3 uint3x3_caddm( const uint3x3* lhs, const uint3x3* rhs )
 }
 
 // Performs a component-wise - on the matrix by the scalar and returns the result.
-HLML_INLINE uint3x3 uint3x3_csubs( const uint3x3* lhs, const uint32_t rhs )
+HLML_INLINE uint3x3 uint3x3_csubs( const uint3x3 *lhs, const uint32_t rhs )
 {
 	return HLML_CONSTRUCT( uint3x3 )
 	{
@@ -6839,7 +6839,7 @@ HLML_INLINE uint3x3 uint3x3_csubs( const uint3x3* lhs, const uint32_t rhs )
 }
 
 // Performs a component-wise - against the two matrices and returns the result.
-HLML_INLINE uint3x3 uint3x3_csubm( const uint3x3* lhs, const uint3x3* rhs )
+HLML_INLINE uint3x3 uint3x3_csubm( const uint3x3 *lhs, const uint3x3* rhs )
 {
 	return HLML_CONSTRUCT( uint3x3 )
 	{
@@ -6850,7 +6850,7 @@ HLML_INLINE uint3x3 uint3x3_csubm( const uint3x3* lhs, const uint3x3* rhs )
 }
 
 // Performs a component-wise * on the matrix by the scalar and returns the result.
-HLML_INLINE uint3x3 uint3x3_cmuls( const uint3x3* lhs, const uint32_t rhs )
+HLML_INLINE uint3x3 uint3x3_cmuls( const uint3x3 *lhs, const uint32_t rhs )
 {
 	return HLML_CONSTRUCT( uint3x3 )
 	{
@@ -6861,7 +6861,7 @@ HLML_INLINE uint3x3 uint3x3_cmuls( const uint3x3* lhs, const uint32_t rhs )
 }
 
 // Performs a component-wise * against the two matrices and returns the result.
-HLML_INLINE uint3x3 uint3x3_cmulm( const uint3x3* lhs, const uint3x3* rhs )
+HLML_INLINE uint3x3 uint3x3_cmulm( const uint3x3 *lhs, const uint3x3* rhs )
 {
 	return HLML_CONSTRUCT( uint3x3 )
 	{
@@ -6872,7 +6872,7 @@ HLML_INLINE uint3x3 uint3x3_cmulm( const uint3x3* lhs, const uint3x3* rhs )
 }
 
 // Performs a component-wise / on the matrix by the scalar and returns the result.
-HLML_INLINE uint3x3 uint3x3_cdivs( const uint3x3* lhs, const uint32_t rhs )
+HLML_INLINE uint3x3 uint3x3_cdivs( const uint3x3 *lhs, const uint32_t rhs )
 {
 	return HLML_CONSTRUCT( uint3x3 )
 	{
@@ -6883,7 +6883,7 @@ HLML_INLINE uint3x3 uint3x3_cdivs( const uint3x3* lhs, const uint32_t rhs )
 }
 
 // Performs a component-wise / against the two matrices and returns the result.
-HLML_INLINE uint3x3 uint3x3_cdivm( const uint3x3* lhs, const uint3x3* rhs )
+HLML_INLINE uint3x3 uint3x3_cdivm( const uint3x3 *lhs, const uint3x3* rhs )
 {
 	return HLML_CONSTRUCT( uint3x3 )
 	{
@@ -6898,7 +6898,7 @@ HLML_INLINE uint3x3 uint3x3_cdivm( const uint3x3* lhs, const uint3x3* rhs )
 #pragma warning( disable : 4146 )
 #endif
 // Returns a copy of the matrix that has been negated.
-HLML_INLINE uint3x3 uint3x3_negate( const uint3x3* x )
+HLML_INLINE uint3x3 uint3x3_negate( const uint3x3 *x )
 {
 	return HLML_CONSTRUCT( uint3x3 )
 	{
@@ -6912,7 +6912,7 @@ HLML_INLINE uint3x3 uint3x3_negate( const uint3x3* x )
 #pragma warning( pop )
 #endif
 // Returns a copy of the matrix where each component has been bitwise NOT'd.
-HLML_INLINE uint3x3 uint3x3_not( const uint3x3* x )
+HLML_INLINE uint3x3 uint3x3_not( const uint3x3 *x )
 {
 	return HLML_CONSTRUCT( uint3x3 )
 	{
@@ -6923,7 +6923,7 @@ HLML_INLINE uint3x3 uint3x3_not( const uint3x3* x )
 }
 
 // Performs a component-wise bitwise & on the matrix by the scalar and returns the result.
-HLML_INLINE uint3x3 uint3x3_cands( const uint3x3* lhs, const uint32_t rhs )
+HLML_INLINE uint3x3 uint3x3_cands( const uint3x3 *lhs, const uint32_t rhs )
 {
 	return HLML_CONSTRUCT( uint3x3 )
 	{
@@ -6934,7 +6934,7 @@ HLML_INLINE uint3x3 uint3x3_cands( const uint3x3* lhs, const uint32_t rhs )
 }
 
 // Performs a component-wise bitwise & against the two matrices and returns the result.
-HLML_INLINE uint3x3 uint3x3_candm( const uint3x3* lhs, const uint3x3* rhs )
+HLML_INLINE uint3x3 uint3x3_candm( const uint3x3 *lhs, const uint3x3* rhs )
 {
 	return HLML_CONSTRUCT( uint3x3 )
 	{
@@ -6945,7 +6945,7 @@ HLML_INLINE uint3x3 uint3x3_candm( const uint3x3* lhs, const uint3x3* rhs )
 }
 
 // Performs a component-wise bitwise | on the matrix by the scalar and returns the result.
-HLML_INLINE uint3x3 uint3x3_cors( const uint3x3* lhs, const uint32_t rhs )
+HLML_INLINE uint3x3 uint3x3_cors( const uint3x3 *lhs, const uint32_t rhs )
 {
 	return HLML_CONSTRUCT( uint3x3 )
 	{
@@ -6956,7 +6956,7 @@ HLML_INLINE uint3x3 uint3x3_cors( const uint3x3* lhs, const uint32_t rhs )
 }
 
 // Performs a component-wise bitwise | against the two matrices and returns the result.
-HLML_INLINE uint3x3 uint3x3_corm( const uint3x3* lhs, const uint3x3* rhs )
+HLML_INLINE uint3x3 uint3x3_corm( const uint3x3 *lhs, const uint3x3* rhs )
 {
 	return HLML_CONSTRUCT( uint3x3 )
 	{
@@ -6967,7 +6967,7 @@ HLML_INLINE uint3x3 uint3x3_corm( const uint3x3* lhs, const uint3x3* rhs )
 }
 
 // Performs a component-wise bitwise ^ on the matrix by the scalar and returns the result.
-HLML_INLINE uint3x3 uint3x3_cxors( const uint3x3* lhs, const uint32_t rhs )
+HLML_INLINE uint3x3 uint3x3_cxors( const uint3x3 *lhs, const uint32_t rhs )
 {
 	return HLML_CONSTRUCT( uint3x3 )
 	{
@@ -6978,7 +6978,7 @@ HLML_INLINE uint3x3 uint3x3_cxors( const uint3x3* lhs, const uint32_t rhs )
 }
 
 // Performs a component-wise bitwise ^ against the two matrices and returns the result.
-HLML_INLINE uint3x3 uint3x3_cxorm( const uint3x3* lhs, const uint3x3* rhs )
+HLML_INLINE uint3x3 uint3x3_cxorm( const uint3x3 *lhs, const uint3x3* rhs )
 {
 	return HLML_CONSTRUCT( uint3x3 )
 	{
@@ -6989,7 +6989,7 @@ HLML_INLINE uint3x3 uint3x3_cxorm( const uint3x3* lhs, const uint3x3* rhs )
 }
 
 // Performs a component-wise bitwise << on the matrix by the scalar and returns the result.
-HLML_INLINE uint3x3 uint3x3_cshift_lefts( const uint3x3* lhs, const uint32_t rhs )
+HLML_INLINE uint3x3 uint3x3_cshift_lefts( const uint3x3 *lhs, const uint32_t rhs )
 {
 	return HLML_CONSTRUCT( uint3x3 )
 	{
@@ -7000,7 +7000,7 @@ HLML_INLINE uint3x3 uint3x3_cshift_lefts( const uint3x3* lhs, const uint32_t rhs
 }
 
 // Performs a component-wise bitwise << against the two matrices and returns the result.
-HLML_INLINE uint3x3 uint3x3_cshift_leftm( const uint3x3* lhs, const uint3x3* rhs )
+HLML_INLINE uint3x3 uint3x3_cshift_leftm( const uint3x3 *lhs, const uint3x3* rhs )
 {
 	return HLML_CONSTRUCT( uint3x3 )
 	{
@@ -7011,7 +7011,7 @@ HLML_INLINE uint3x3 uint3x3_cshift_leftm( const uint3x3* lhs, const uint3x3* rhs
 }
 
 // Performs a component-wise bitwise >> on the matrix by the scalar and returns the result.
-HLML_INLINE uint3x3 uint3x3_cshift_rights( const uint3x3* lhs, const uint32_t rhs )
+HLML_INLINE uint3x3 uint3x3_cshift_rights( const uint3x3 *lhs, const uint32_t rhs )
 {
 	return HLML_CONSTRUCT( uint3x3 )
 	{
@@ -7022,7 +7022,7 @@ HLML_INLINE uint3x3 uint3x3_cshift_rights( const uint3x3* lhs, const uint32_t rh
 }
 
 // Performs a component-wise bitwise >> against the two matrices and returns the result.
-HLML_INLINE uint3x3 uint3x3_cshift_rightm( const uint3x3* lhs, const uint3x3* rhs )
+HLML_INLINE uint3x3 uint3x3_cshift_rightm( const uint3x3 *lhs, const uint3x3* rhs )
 {
 	return HLML_CONSTRUCT( uint3x3 )
 	{
@@ -7135,7 +7135,7 @@ HLML_INLINE uint3x4 uint3x4_saturate( const uint3x4* x )
 }
 
 // Returns true if the contents of 'lhs' are the same as the contents of 'rhs', otherwise returns false.
-HLML_INLINE bool uint3x4_equals( const uint3x4* lhs, const uint3x4* rhs )
+HLML_INLINE bool uint3x4_equals( const uint3x4 *lhs, const uint3x4 *rhs )
 {
 	return
 		uint4_equals( &lhs->rows[0], &rhs->rows[0] ) &&
@@ -7144,13 +7144,13 @@ HLML_INLINE bool uint3x4_equals( const uint3x4* lhs, const uint3x4* rhs )
 }
 
 // Returns true if the contents of 'lhs' are NOT the same as the contents of 'rhs', otherwise returns false.
-HLML_INLINE bool uint3x4_not_equals( const uint3x4* lhs, const uint3x4* rhs )
+HLML_INLINE bool uint3x4_not_equals( const uint3x4 *lhs, const uint3x4 *rhs )
 {
 	return !uint3x4_equals( lhs, rhs );
 }
 
 // Performs a component-wise '<' check against the two matrices and returns the result.
-HLML_INLINE bool3x4 uint3x4_less_than( const uint3x4* lhs, const uint3x4* rhs )
+HLML_INLINE bool3x4 uint3x4_less_than( const uint3x4 *lhs, const uint3x4* rhs )
 {
 	return HLML_CONSTRUCT( bool3x4 )
 	{
@@ -7161,7 +7161,7 @@ HLML_INLINE bool3x4 uint3x4_less_than( const uint3x4* lhs, const uint3x4* rhs )
 }
 
 // Performs a component-wise '<=' check against the two matrices and returns the result.
-HLML_INLINE bool3x4 uint3x4_less_than_equal( const uint3x4* lhs, const uint3x4* rhs )
+HLML_INLINE bool3x4 uint3x4_less_than_equal( const uint3x4 *lhs, const uint3x4* rhs )
 {
 	return HLML_CONSTRUCT( bool3x4 )
 	{
@@ -7172,7 +7172,7 @@ HLML_INLINE bool3x4 uint3x4_less_than_equal( const uint3x4* lhs, const uint3x4* 
 }
 
 // Performs a component-wise '>' check against the two matrices and returns the result.
-HLML_INLINE bool3x4 uint3x4_greater_than( const uint3x4* lhs, const uint3x4* rhs )
+HLML_INLINE bool3x4 uint3x4_greater_than( const uint3x4 *lhs, const uint3x4* rhs )
 {
 	return HLML_CONSTRUCT( bool3x4 )
 	{
@@ -7183,7 +7183,7 @@ HLML_INLINE bool3x4 uint3x4_greater_than( const uint3x4* lhs, const uint3x4* rhs
 }
 
 // Performs a component-wise '>=' check against the two matrices and returns the result.
-HLML_INLINE bool3x4 uint3x4_greater_than_equal( const uint3x4* lhs, const uint3x4* rhs )
+HLML_INLINE bool3x4 uint3x4_greater_than_equal( const uint3x4 *lhs, const uint3x4* rhs )
 {
 	return HLML_CONSTRUCT( bool3x4 )
 	{
@@ -7194,7 +7194,7 @@ HLML_INLINE bool3x4 uint3x4_greater_than_equal( const uint3x4* lhs, const uint3x
 }
 
 // Performs a component-wise + on the matrix by the scalar and returns the result.
-HLML_INLINE uint3x4 uint3x4_cadds( const uint3x4* lhs, const uint32_t rhs )
+HLML_INLINE uint3x4 uint3x4_cadds( const uint3x4 *lhs, const uint32_t rhs )
 {
 	return HLML_CONSTRUCT( uint3x4 )
 	{
@@ -7205,7 +7205,7 @@ HLML_INLINE uint3x4 uint3x4_cadds( const uint3x4* lhs, const uint32_t rhs )
 }
 
 // Performs a component-wise + against the two matrices and returns the result.
-HLML_INLINE uint3x4 uint3x4_caddm( const uint3x4* lhs, const uint3x4* rhs )
+HLML_INLINE uint3x4 uint3x4_caddm( const uint3x4 *lhs, const uint3x4* rhs )
 {
 	return HLML_CONSTRUCT( uint3x4 )
 	{
@@ -7216,7 +7216,7 @@ HLML_INLINE uint3x4 uint3x4_caddm( const uint3x4* lhs, const uint3x4* rhs )
 }
 
 // Performs a component-wise - on the matrix by the scalar and returns the result.
-HLML_INLINE uint3x4 uint3x4_csubs( const uint3x4* lhs, const uint32_t rhs )
+HLML_INLINE uint3x4 uint3x4_csubs( const uint3x4 *lhs, const uint32_t rhs )
 {
 	return HLML_CONSTRUCT( uint3x4 )
 	{
@@ -7227,7 +7227,7 @@ HLML_INLINE uint3x4 uint3x4_csubs( const uint3x4* lhs, const uint32_t rhs )
 }
 
 // Performs a component-wise - against the two matrices and returns the result.
-HLML_INLINE uint3x4 uint3x4_csubm( const uint3x4* lhs, const uint3x4* rhs )
+HLML_INLINE uint3x4 uint3x4_csubm( const uint3x4 *lhs, const uint3x4* rhs )
 {
 	return HLML_CONSTRUCT( uint3x4 )
 	{
@@ -7238,7 +7238,7 @@ HLML_INLINE uint3x4 uint3x4_csubm( const uint3x4* lhs, const uint3x4* rhs )
 }
 
 // Performs a component-wise * on the matrix by the scalar and returns the result.
-HLML_INLINE uint3x4 uint3x4_cmuls( const uint3x4* lhs, const uint32_t rhs )
+HLML_INLINE uint3x4 uint3x4_cmuls( const uint3x4 *lhs, const uint32_t rhs )
 {
 	return HLML_CONSTRUCT( uint3x4 )
 	{
@@ -7249,7 +7249,7 @@ HLML_INLINE uint3x4 uint3x4_cmuls( const uint3x4* lhs, const uint32_t rhs )
 }
 
 // Performs a component-wise * against the two matrices and returns the result.
-HLML_INLINE uint3x4 uint3x4_cmulm( const uint3x4* lhs, const uint3x4* rhs )
+HLML_INLINE uint3x4 uint3x4_cmulm( const uint3x4 *lhs, const uint3x4* rhs )
 {
 	return HLML_CONSTRUCT( uint3x4 )
 	{
@@ -7260,7 +7260,7 @@ HLML_INLINE uint3x4 uint3x4_cmulm( const uint3x4* lhs, const uint3x4* rhs )
 }
 
 // Performs a component-wise / on the matrix by the scalar and returns the result.
-HLML_INLINE uint3x4 uint3x4_cdivs( const uint3x4* lhs, const uint32_t rhs )
+HLML_INLINE uint3x4 uint3x4_cdivs( const uint3x4 *lhs, const uint32_t rhs )
 {
 	return HLML_CONSTRUCT( uint3x4 )
 	{
@@ -7271,7 +7271,7 @@ HLML_INLINE uint3x4 uint3x4_cdivs( const uint3x4* lhs, const uint32_t rhs )
 }
 
 // Performs a component-wise / against the two matrices and returns the result.
-HLML_INLINE uint3x4 uint3x4_cdivm( const uint3x4* lhs, const uint3x4* rhs )
+HLML_INLINE uint3x4 uint3x4_cdivm( const uint3x4 *lhs, const uint3x4* rhs )
 {
 	return HLML_CONSTRUCT( uint3x4 )
 	{
@@ -7286,7 +7286,7 @@ HLML_INLINE uint3x4 uint3x4_cdivm( const uint3x4* lhs, const uint3x4* rhs )
 #pragma warning( disable : 4146 )
 #endif
 // Returns a copy of the matrix that has been negated.
-HLML_INLINE uint3x4 uint3x4_negate( const uint3x4* x )
+HLML_INLINE uint3x4 uint3x4_negate( const uint3x4 *x )
 {
 	return HLML_CONSTRUCT( uint3x4 )
 	{
@@ -7300,7 +7300,7 @@ HLML_INLINE uint3x4 uint3x4_negate( const uint3x4* x )
 #pragma warning( pop )
 #endif
 // Returns a copy of the matrix where each component has been bitwise NOT'd.
-HLML_INLINE uint3x4 uint3x4_not( const uint3x4* x )
+HLML_INLINE uint3x4 uint3x4_not( const uint3x4 *x )
 {
 	return HLML_CONSTRUCT( uint3x4 )
 	{
@@ -7311,7 +7311,7 @@ HLML_INLINE uint3x4 uint3x4_not( const uint3x4* x )
 }
 
 // Performs a component-wise bitwise & on the matrix by the scalar and returns the result.
-HLML_INLINE uint3x4 uint3x4_cands( const uint3x4* lhs, const uint32_t rhs )
+HLML_INLINE uint3x4 uint3x4_cands( const uint3x4 *lhs, const uint32_t rhs )
 {
 	return HLML_CONSTRUCT( uint3x4 )
 	{
@@ -7322,7 +7322,7 @@ HLML_INLINE uint3x4 uint3x4_cands( const uint3x4* lhs, const uint32_t rhs )
 }
 
 // Performs a component-wise bitwise & against the two matrices and returns the result.
-HLML_INLINE uint3x4 uint3x4_candm( const uint3x4* lhs, const uint3x4* rhs )
+HLML_INLINE uint3x4 uint3x4_candm( const uint3x4 *lhs, const uint3x4* rhs )
 {
 	return HLML_CONSTRUCT( uint3x4 )
 	{
@@ -7333,7 +7333,7 @@ HLML_INLINE uint3x4 uint3x4_candm( const uint3x4* lhs, const uint3x4* rhs )
 }
 
 // Performs a component-wise bitwise | on the matrix by the scalar and returns the result.
-HLML_INLINE uint3x4 uint3x4_cors( const uint3x4* lhs, const uint32_t rhs )
+HLML_INLINE uint3x4 uint3x4_cors( const uint3x4 *lhs, const uint32_t rhs )
 {
 	return HLML_CONSTRUCT( uint3x4 )
 	{
@@ -7344,7 +7344,7 @@ HLML_INLINE uint3x4 uint3x4_cors( const uint3x4* lhs, const uint32_t rhs )
 }
 
 // Performs a component-wise bitwise | against the two matrices and returns the result.
-HLML_INLINE uint3x4 uint3x4_corm( const uint3x4* lhs, const uint3x4* rhs )
+HLML_INLINE uint3x4 uint3x4_corm( const uint3x4 *lhs, const uint3x4* rhs )
 {
 	return HLML_CONSTRUCT( uint3x4 )
 	{
@@ -7355,7 +7355,7 @@ HLML_INLINE uint3x4 uint3x4_corm( const uint3x4* lhs, const uint3x4* rhs )
 }
 
 // Performs a component-wise bitwise ^ on the matrix by the scalar and returns the result.
-HLML_INLINE uint3x4 uint3x4_cxors( const uint3x4* lhs, const uint32_t rhs )
+HLML_INLINE uint3x4 uint3x4_cxors( const uint3x4 *lhs, const uint32_t rhs )
 {
 	return HLML_CONSTRUCT( uint3x4 )
 	{
@@ -7366,7 +7366,7 @@ HLML_INLINE uint3x4 uint3x4_cxors( const uint3x4* lhs, const uint32_t rhs )
 }
 
 // Performs a component-wise bitwise ^ against the two matrices and returns the result.
-HLML_INLINE uint3x4 uint3x4_cxorm( const uint3x4* lhs, const uint3x4* rhs )
+HLML_INLINE uint3x4 uint3x4_cxorm( const uint3x4 *lhs, const uint3x4* rhs )
 {
 	return HLML_CONSTRUCT( uint3x4 )
 	{
@@ -7377,7 +7377,7 @@ HLML_INLINE uint3x4 uint3x4_cxorm( const uint3x4* lhs, const uint3x4* rhs )
 }
 
 // Performs a component-wise bitwise << on the matrix by the scalar and returns the result.
-HLML_INLINE uint3x4 uint3x4_cshift_lefts( const uint3x4* lhs, const uint32_t rhs )
+HLML_INLINE uint3x4 uint3x4_cshift_lefts( const uint3x4 *lhs, const uint32_t rhs )
 {
 	return HLML_CONSTRUCT( uint3x4 )
 	{
@@ -7388,7 +7388,7 @@ HLML_INLINE uint3x4 uint3x4_cshift_lefts( const uint3x4* lhs, const uint32_t rhs
 }
 
 // Performs a component-wise bitwise << against the two matrices and returns the result.
-HLML_INLINE uint3x4 uint3x4_cshift_leftm( const uint3x4* lhs, const uint3x4* rhs )
+HLML_INLINE uint3x4 uint3x4_cshift_leftm( const uint3x4 *lhs, const uint3x4* rhs )
 {
 	return HLML_CONSTRUCT( uint3x4 )
 	{
@@ -7399,7 +7399,7 @@ HLML_INLINE uint3x4 uint3x4_cshift_leftm( const uint3x4* lhs, const uint3x4* rhs
 }
 
 // Performs a component-wise bitwise >> on the matrix by the scalar and returns the result.
-HLML_INLINE uint3x4 uint3x4_cshift_rights( const uint3x4* lhs, const uint32_t rhs )
+HLML_INLINE uint3x4 uint3x4_cshift_rights( const uint3x4 *lhs, const uint32_t rhs )
 {
 	return HLML_CONSTRUCT( uint3x4 )
 	{
@@ -7410,7 +7410,7 @@ HLML_INLINE uint3x4 uint3x4_cshift_rights( const uint3x4* lhs, const uint32_t rh
 }
 
 // Performs a component-wise bitwise >> against the two matrices and returns the result.
-HLML_INLINE uint3x4 uint3x4_cshift_rightm( const uint3x4* lhs, const uint3x4* rhs )
+HLML_INLINE uint3x4 uint3x4_cshift_rightm( const uint3x4 *lhs, const uint3x4* rhs )
 {
 	return HLML_CONSTRUCT( uint3x4 )
 	{
@@ -7517,7 +7517,7 @@ HLML_INLINE uint4x2 uint4x2_saturate( const uint4x2* x )
 }
 
 // Returns true if the contents of 'lhs' are the same as the contents of 'rhs', otherwise returns false.
-HLML_INLINE bool uint4x2_equals( const uint4x2* lhs, const uint4x2* rhs )
+HLML_INLINE bool uint4x2_equals( const uint4x2 *lhs, const uint4x2 *rhs )
 {
 	return
 		uint2_equals( &lhs->rows[0], &rhs->rows[0] ) &&
@@ -7527,13 +7527,13 @@ HLML_INLINE bool uint4x2_equals( const uint4x2* lhs, const uint4x2* rhs )
 }
 
 // Returns true if the contents of 'lhs' are NOT the same as the contents of 'rhs', otherwise returns false.
-HLML_INLINE bool uint4x2_not_equals( const uint4x2* lhs, const uint4x2* rhs )
+HLML_INLINE bool uint4x2_not_equals( const uint4x2 *lhs, const uint4x2 *rhs )
 {
 	return !uint4x2_equals( lhs, rhs );
 }
 
 // Performs a component-wise '<' check against the two matrices and returns the result.
-HLML_INLINE bool4x2 uint4x2_less_than( const uint4x2* lhs, const uint4x2* rhs )
+HLML_INLINE bool4x2 uint4x2_less_than( const uint4x2 *lhs, const uint4x2* rhs )
 {
 	return HLML_CONSTRUCT( bool4x2 )
 	{
@@ -7545,7 +7545,7 @@ HLML_INLINE bool4x2 uint4x2_less_than( const uint4x2* lhs, const uint4x2* rhs )
 }
 
 // Performs a component-wise '<=' check against the two matrices and returns the result.
-HLML_INLINE bool4x2 uint4x2_less_than_equal( const uint4x2* lhs, const uint4x2* rhs )
+HLML_INLINE bool4x2 uint4x2_less_than_equal( const uint4x2 *lhs, const uint4x2* rhs )
 {
 	return HLML_CONSTRUCT( bool4x2 )
 	{
@@ -7557,7 +7557,7 @@ HLML_INLINE bool4x2 uint4x2_less_than_equal( const uint4x2* lhs, const uint4x2* 
 }
 
 // Performs a component-wise '>' check against the two matrices and returns the result.
-HLML_INLINE bool4x2 uint4x2_greater_than( const uint4x2* lhs, const uint4x2* rhs )
+HLML_INLINE bool4x2 uint4x2_greater_than( const uint4x2 *lhs, const uint4x2* rhs )
 {
 	return HLML_CONSTRUCT( bool4x2 )
 	{
@@ -7569,7 +7569,7 @@ HLML_INLINE bool4x2 uint4x2_greater_than( const uint4x2* lhs, const uint4x2* rhs
 }
 
 // Performs a component-wise '>=' check against the two matrices and returns the result.
-HLML_INLINE bool4x2 uint4x2_greater_than_equal( const uint4x2* lhs, const uint4x2* rhs )
+HLML_INLINE bool4x2 uint4x2_greater_than_equal( const uint4x2 *lhs, const uint4x2* rhs )
 {
 	return HLML_CONSTRUCT( bool4x2 )
 	{
@@ -7581,7 +7581,7 @@ HLML_INLINE bool4x2 uint4x2_greater_than_equal( const uint4x2* lhs, const uint4x
 }
 
 // Performs a component-wise + on the matrix by the scalar and returns the result.
-HLML_INLINE uint4x2 uint4x2_cadds( const uint4x2* lhs, const uint32_t rhs )
+HLML_INLINE uint4x2 uint4x2_cadds( const uint4x2 *lhs, const uint32_t rhs )
 {
 	return HLML_CONSTRUCT( uint4x2 )
 	{
@@ -7593,7 +7593,7 @@ HLML_INLINE uint4x2 uint4x2_cadds( const uint4x2* lhs, const uint32_t rhs )
 }
 
 // Performs a component-wise + against the two matrices and returns the result.
-HLML_INLINE uint4x2 uint4x2_caddm( const uint4x2* lhs, const uint4x2* rhs )
+HLML_INLINE uint4x2 uint4x2_caddm( const uint4x2 *lhs, const uint4x2* rhs )
 {
 	return HLML_CONSTRUCT( uint4x2 )
 	{
@@ -7605,7 +7605,7 @@ HLML_INLINE uint4x2 uint4x2_caddm( const uint4x2* lhs, const uint4x2* rhs )
 }
 
 // Performs a component-wise - on the matrix by the scalar and returns the result.
-HLML_INLINE uint4x2 uint4x2_csubs( const uint4x2* lhs, const uint32_t rhs )
+HLML_INLINE uint4x2 uint4x2_csubs( const uint4x2 *lhs, const uint32_t rhs )
 {
 	return HLML_CONSTRUCT( uint4x2 )
 	{
@@ -7617,7 +7617,7 @@ HLML_INLINE uint4x2 uint4x2_csubs( const uint4x2* lhs, const uint32_t rhs )
 }
 
 // Performs a component-wise - against the two matrices and returns the result.
-HLML_INLINE uint4x2 uint4x2_csubm( const uint4x2* lhs, const uint4x2* rhs )
+HLML_INLINE uint4x2 uint4x2_csubm( const uint4x2 *lhs, const uint4x2* rhs )
 {
 	return HLML_CONSTRUCT( uint4x2 )
 	{
@@ -7629,7 +7629,7 @@ HLML_INLINE uint4x2 uint4x2_csubm( const uint4x2* lhs, const uint4x2* rhs )
 }
 
 // Performs a component-wise * on the matrix by the scalar and returns the result.
-HLML_INLINE uint4x2 uint4x2_cmuls( const uint4x2* lhs, const uint32_t rhs )
+HLML_INLINE uint4x2 uint4x2_cmuls( const uint4x2 *lhs, const uint32_t rhs )
 {
 	return HLML_CONSTRUCT( uint4x2 )
 	{
@@ -7641,7 +7641,7 @@ HLML_INLINE uint4x2 uint4x2_cmuls( const uint4x2* lhs, const uint32_t rhs )
 }
 
 // Performs a component-wise * against the two matrices and returns the result.
-HLML_INLINE uint4x2 uint4x2_cmulm( const uint4x2* lhs, const uint4x2* rhs )
+HLML_INLINE uint4x2 uint4x2_cmulm( const uint4x2 *lhs, const uint4x2* rhs )
 {
 	return HLML_CONSTRUCT( uint4x2 )
 	{
@@ -7653,7 +7653,7 @@ HLML_INLINE uint4x2 uint4x2_cmulm( const uint4x2* lhs, const uint4x2* rhs )
 }
 
 // Performs a component-wise / on the matrix by the scalar and returns the result.
-HLML_INLINE uint4x2 uint4x2_cdivs( const uint4x2* lhs, const uint32_t rhs )
+HLML_INLINE uint4x2 uint4x2_cdivs( const uint4x2 *lhs, const uint32_t rhs )
 {
 	return HLML_CONSTRUCT( uint4x2 )
 	{
@@ -7665,7 +7665,7 @@ HLML_INLINE uint4x2 uint4x2_cdivs( const uint4x2* lhs, const uint32_t rhs )
 }
 
 // Performs a component-wise / against the two matrices and returns the result.
-HLML_INLINE uint4x2 uint4x2_cdivm( const uint4x2* lhs, const uint4x2* rhs )
+HLML_INLINE uint4x2 uint4x2_cdivm( const uint4x2 *lhs, const uint4x2* rhs )
 {
 	return HLML_CONSTRUCT( uint4x2 )
 	{
@@ -7681,7 +7681,7 @@ HLML_INLINE uint4x2 uint4x2_cdivm( const uint4x2* lhs, const uint4x2* rhs )
 #pragma warning( disable : 4146 )
 #endif
 // Returns a copy of the matrix that has been negated.
-HLML_INLINE uint4x2 uint4x2_negate( const uint4x2* x )
+HLML_INLINE uint4x2 uint4x2_negate( const uint4x2 *x )
 {
 	return HLML_CONSTRUCT( uint4x2 )
 	{
@@ -7696,7 +7696,7 @@ HLML_INLINE uint4x2 uint4x2_negate( const uint4x2* x )
 #pragma warning( pop )
 #endif
 // Returns a copy of the matrix where each component has been bitwise NOT'd.
-HLML_INLINE uint4x2 uint4x2_not( const uint4x2* x )
+HLML_INLINE uint4x2 uint4x2_not( const uint4x2 *x )
 {
 	return HLML_CONSTRUCT( uint4x2 )
 	{
@@ -7708,7 +7708,7 @@ HLML_INLINE uint4x2 uint4x2_not( const uint4x2* x )
 }
 
 // Performs a component-wise bitwise & on the matrix by the scalar and returns the result.
-HLML_INLINE uint4x2 uint4x2_cands( const uint4x2* lhs, const uint32_t rhs )
+HLML_INLINE uint4x2 uint4x2_cands( const uint4x2 *lhs, const uint32_t rhs )
 {
 	return HLML_CONSTRUCT( uint4x2 )
 	{
@@ -7720,7 +7720,7 @@ HLML_INLINE uint4x2 uint4x2_cands( const uint4x2* lhs, const uint32_t rhs )
 }
 
 // Performs a component-wise bitwise & against the two matrices and returns the result.
-HLML_INLINE uint4x2 uint4x2_candm( const uint4x2* lhs, const uint4x2* rhs )
+HLML_INLINE uint4x2 uint4x2_candm( const uint4x2 *lhs, const uint4x2* rhs )
 {
 	return HLML_CONSTRUCT( uint4x2 )
 	{
@@ -7732,7 +7732,7 @@ HLML_INLINE uint4x2 uint4x2_candm( const uint4x2* lhs, const uint4x2* rhs )
 }
 
 // Performs a component-wise bitwise | on the matrix by the scalar and returns the result.
-HLML_INLINE uint4x2 uint4x2_cors( const uint4x2* lhs, const uint32_t rhs )
+HLML_INLINE uint4x2 uint4x2_cors( const uint4x2 *lhs, const uint32_t rhs )
 {
 	return HLML_CONSTRUCT( uint4x2 )
 	{
@@ -7744,7 +7744,7 @@ HLML_INLINE uint4x2 uint4x2_cors( const uint4x2* lhs, const uint32_t rhs )
 }
 
 // Performs a component-wise bitwise | against the two matrices and returns the result.
-HLML_INLINE uint4x2 uint4x2_corm( const uint4x2* lhs, const uint4x2* rhs )
+HLML_INLINE uint4x2 uint4x2_corm( const uint4x2 *lhs, const uint4x2* rhs )
 {
 	return HLML_CONSTRUCT( uint4x2 )
 	{
@@ -7756,7 +7756,7 @@ HLML_INLINE uint4x2 uint4x2_corm( const uint4x2* lhs, const uint4x2* rhs )
 }
 
 // Performs a component-wise bitwise ^ on the matrix by the scalar and returns the result.
-HLML_INLINE uint4x2 uint4x2_cxors( const uint4x2* lhs, const uint32_t rhs )
+HLML_INLINE uint4x2 uint4x2_cxors( const uint4x2 *lhs, const uint32_t rhs )
 {
 	return HLML_CONSTRUCT( uint4x2 )
 	{
@@ -7768,7 +7768,7 @@ HLML_INLINE uint4x2 uint4x2_cxors( const uint4x2* lhs, const uint32_t rhs )
 }
 
 // Performs a component-wise bitwise ^ against the two matrices and returns the result.
-HLML_INLINE uint4x2 uint4x2_cxorm( const uint4x2* lhs, const uint4x2* rhs )
+HLML_INLINE uint4x2 uint4x2_cxorm( const uint4x2 *lhs, const uint4x2* rhs )
 {
 	return HLML_CONSTRUCT( uint4x2 )
 	{
@@ -7780,7 +7780,7 @@ HLML_INLINE uint4x2 uint4x2_cxorm( const uint4x2* lhs, const uint4x2* rhs )
 }
 
 // Performs a component-wise bitwise << on the matrix by the scalar and returns the result.
-HLML_INLINE uint4x2 uint4x2_cshift_lefts( const uint4x2* lhs, const uint32_t rhs )
+HLML_INLINE uint4x2 uint4x2_cshift_lefts( const uint4x2 *lhs, const uint32_t rhs )
 {
 	return HLML_CONSTRUCT( uint4x2 )
 	{
@@ -7792,7 +7792,7 @@ HLML_INLINE uint4x2 uint4x2_cshift_lefts( const uint4x2* lhs, const uint32_t rhs
 }
 
 // Performs a component-wise bitwise << against the two matrices and returns the result.
-HLML_INLINE uint4x2 uint4x2_cshift_leftm( const uint4x2* lhs, const uint4x2* rhs )
+HLML_INLINE uint4x2 uint4x2_cshift_leftm( const uint4x2 *lhs, const uint4x2* rhs )
 {
 	return HLML_CONSTRUCT( uint4x2 )
 	{
@@ -7804,7 +7804,7 @@ HLML_INLINE uint4x2 uint4x2_cshift_leftm( const uint4x2* lhs, const uint4x2* rhs
 }
 
 // Performs a component-wise bitwise >> on the matrix by the scalar and returns the result.
-HLML_INLINE uint4x2 uint4x2_cshift_rights( const uint4x2* lhs, const uint32_t rhs )
+HLML_INLINE uint4x2 uint4x2_cshift_rights( const uint4x2 *lhs, const uint32_t rhs )
 {
 	return HLML_CONSTRUCT( uint4x2 )
 	{
@@ -7816,7 +7816,7 @@ HLML_INLINE uint4x2 uint4x2_cshift_rights( const uint4x2* lhs, const uint32_t rh
 }
 
 // Performs a component-wise bitwise >> against the two matrices and returns the result.
-HLML_INLINE uint4x2 uint4x2_cshift_rightm( const uint4x2* lhs, const uint4x2* rhs )
+HLML_INLINE uint4x2 uint4x2_cshift_rightm( const uint4x2 *lhs, const uint4x2* rhs )
 {
 	return HLML_CONSTRUCT( uint4x2 )
 	{
@@ -7933,7 +7933,7 @@ HLML_INLINE uint4x3 uint4x3_saturate( const uint4x3* x )
 }
 
 // Returns true if the contents of 'lhs' are the same as the contents of 'rhs', otherwise returns false.
-HLML_INLINE bool uint4x3_equals( const uint4x3* lhs, const uint4x3* rhs )
+HLML_INLINE bool uint4x3_equals( const uint4x3 *lhs, const uint4x3 *rhs )
 {
 	return
 		uint3_equals( &lhs->rows[0], &rhs->rows[0] ) &&
@@ -7943,13 +7943,13 @@ HLML_INLINE bool uint4x3_equals( const uint4x3* lhs, const uint4x3* rhs )
 }
 
 // Returns true if the contents of 'lhs' are NOT the same as the contents of 'rhs', otherwise returns false.
-HLML_INLINE bool uint4x3_not_equals( const uint4x3* lhs, const uint4x3* rhs )
+HLML_INLINE bool uint4x3_not_equals( const uint4x3 *lhs, const uint4x3 *rhs )
 {
 	return !uint4x3_equals( lhs, rhs );
 }
 
 // Performs a component-wise '<' check against the two matrices and returns the result.
-HLML_INLINE bool4x3 uint4x3_less_than( const uint4x3* lhs, const uint4x3* rhs )
+HLML_INLINE bool4x3 uint4x3_less_than( const uint4x3 *lhs, const uint4x3* rhs )
 {
 	return HLML_CONSTRUCT( bool4x3 )
 	{
@@ -7961,7 +7961,7 @@ HLML_INLINE bool4x3 uint4x3_less_than( const uint4x3* lhs, const uint4x3* rhs )
 }
 
 // Performs a component-wise '<=' check against the two matrices and returns the result.
-HLML_INLINE bool4x3 uint4x3_less_than_equal( const uint4x3* lhs, const uint4x3* rhs )
+HLML_INLINE bool4x3 uint4x3_less_than_equal( const uint4x3 *lhs, const uint4x3* rhs )
 {
 	return HLML_CONSTRUCT( bool4x3 )
 	{
@@ -7973,7 +7973,7 @@ HLML_INLINE bool4x3 uint4x3_less_than_equal( const uint4x3* lhs, const uint4x3* 
 }
 
 // Performs a component-wise '>' check against the two matrices and returns the result.
-HLML_INLINE bool4x3 uint4x3_greater_than( const uint4x3* lhs, const uint4x3* rhs )
+HLML_INLINE bool4x3 uint4x3_greater_than( const uint4x3 *lhs, const uint4x3* rhs )
 {
 	return HLML_CONSTRUCT( bool4x3 )
 	{
@@ -7985,7 +7985,7 @@ HLML_INLINE bool4x3 uint4x3_greater_than( const uint4x3* lhs, const uint4x3* rhs
 }
 
 // Performs a component-wise '>=' check against the two matrices and returns the result.
-HLML_INLINE bool4x3 uint4x3_greater_than_equal( const uint4x3* lhs, const uint4x3* rhs )
+HLML_INLINE bool4x3 uint4x3_greater_than_equal( const uint4x3 *lhs, const uint4x3* rhs )
 {
 	return HLML_CONSTRUCT( bool4x3 )
 	{
@@ -7997,7 +7997,7 @@ HLML_INLINE bool4x3 uint4x3_greater_than_equal( const uint4x3* lhs, const uint4x
 }
 
 // Performs a component-wise + on the matrix by the scalar and returns the result.
-HLML_INLINE uint4x3 uint4x3_cadds( const uint4x3* lhs, const uint32_t rhs )
+HLML_INLINE uint4x3 uint4x3_cadds( const uint4x3 *lhs, const uint32_t rhs )
 {
 	return HLML_CONSTRUCT( uint4x3 )
 	{
@@ -8009,7 +8009,7 @@ HLML_INLINE uint4x3 uint4x3_cadds( const uint4x3* lhs, const uint32_t rhs )
 }
 
 // Performs a component-wise + against the two matrices and returns the result.
-HLML_INLINE uint4x3 uint4x3_caddm( const uint4x3* lhs, const uint4x3* rhs )
+HLML_INLINE uint4x3 uint4x3_caddm( const uint4x3 *lhs, const uint4x3* rhs )
 {
 	return HLML_CONSTRUCT( uint4x3 )
 	{
@@ -8021,7 +8021,7 @@ HLML_INLINE uint4x3 uint4x3_caddm( const uint4x3* lhs, const uint4x3* rhs )
 }
 
 // Performs a component-wise - on the matrix by the scalar and returns the result.
-HLML_INLINE uint4x3 uint4x3_csubs( const uint4x3* lhs, const uint32_t rhs )
+HLML_INLINE uint4x3 uint4x3_csubs( const uint4x3 *lhs, const uint32_t rhs )
 {
 	return HLML_CONSTRUCT( uint4x3 )
 	{
@@ -8033,7 +8033,7 @@ HLML_INLINE uint4x3 uint4x3_csubs( const uint4x3* lhs, const uint32_t rhs )
 }
 
 // Performs a component-wise - against the two matrices and returns the result.
-HLML_INLINE uint4x3 uint4x3_csubm( const uint4x3* lhs, const uint4x3* rhs )
+HLML_INLINE uint4x3 uint4x3_csubm( const uint4x3 *lhs, const uint4x3* rhs )
 {
 	return HLML_CONSTRUCT( uint4x3 )
 	{
@@ -8045,7 +8045,7 @@ HLML_INLINE uint4x3 uint4x3_csubm( const uint4x3* lhs, const uint4x3* rhs )
 }
 
 // Performs a component-wise * on the matrix by the scalar and returns the result.
-HLML_INLINE uint4x3 uint4x3_cmuls( const uint4x3* lhs, const uint32_t rhs )
+HLML_INLINE uint4x3 uint4x3_cmuls( const uint4x3 *lhs, const uint32_t rhs )
 {
 	return HLML_CONSTRUCT( uint4x3 )
 	{
@@ -8057,7 +8057,7 @@ HLML_INLINE uint4x3 uint4x3_cmuls( const uint4x3* lhs, const uint32_t rhs )
 }
 
 // Performs a component-wise * against the two matrices and returns the result.
-HLML_INLINE uint4x3 uint4x3_cmulm( const uint4x3* lhs, const uint4x3* rhs )
+HLML_INLINE uint4x3 uint4x3_cmulm( const uint4x3 *lhs, const uint4x3* rhs )
 {
 	return HLML_CONSTRUCT( uint4x3 )
 	{
@@ -8069,7 +8069,7 @@ HLML_INLINE uint4x3 uint4x3_cmulm( const uint4x3* lhs, const uint4x3* rhs )
 }
 
 // Performs a component-wise / on the matrix by the scalar and returns the result.
-HLML_INLINE uint4x3 uint4x3_cdivs( const uint4x3* lhs, const uint32_t rhs )
+HLML_INLINE uint4x3 uint4x3_cdivs( const uint4x3 *lhs, const uint32_t rhs )
 {
 	return HLML_CONSTRUCT( uint4x3 )
 	{
@@ -8081,7 +8081,7 @@ HLML_INLINE uint4x3 uint4x3_cdivs( const uint4x3* lhs, const uint32_t rhs )
 }
 
 // Performs a component-wise / against the two matrices and returns the result.
-HLML_INLINE uint4x3 uint4x3_cdivm( const uint4x3* lhs, const uint4x3* rhs )
+HLML_INLINE uint4x3 uint4x3_cdivm( const uint4x3 *lhs, const uint4x3* rhs )
 {
 	return HLML_CONSTRUCT( uint4x3 )
 	{
@@ -8097,7 +8097,7 @@ HLML_INLINE uint4x3 uint4x3_cdivm( const uint4x3* lhs, const uint4x3* rhs )
 #pragma warning( disable : 4146 )
 #endif
 // Returns a copy of the matrix that has been negated.
-HLML_INLINE uint4x3 uint4x3_negate( const uint4x3* x )
+HLML_INLINE uint4x3 uint4x3_negate( const uint4x3 *x )
 {
 	return HLML_CONSTRUCT( uint4x3 )
 	{
@@ -8112,7 +8112,7 @@ HLML_INLINE uint4x3 uint4x3_negate( const uint4x3* x )
 #pragma warning( pop )
 #endif
 // Returns a copy of the matrix where each component has been bitwise NOT'd.
-HLML_INLINE uint4x3 uint4x3_not( const uint4x3* x )
+HLML_INLINE uint4x3 uint4x3_not( const uint4x3 *x )
 {
 	return HLML_CONSTRUCT( uint4x3 )
 	{
@@ -8124,7 +8124,7 @@ HLML_INLINE uint4x3 uint4x3_not( const uint4x3* x )
 }
 
 // Performs a component-wise bitwise & on the matrix by the scalar and returns the result.
-HLML_INLINE uint4x3 uint4x3_cands( const uint4x3* lhs, const uint32_t rhs )
+HLML_INLINE uint4x3 uint4x3_cands( const uint4x3 *lhs, const uint32_t rhs )
 {
 	return HLML_CONSTRUCT( uint4x3 )
 	{
@@ -8136,7 +8136,7 @@ HLML_INLINE uint4x3 uint4x3_cands( const uint4x3* lhs, const uint32_t rhs )
 }
 
 // Performs a component-wise bitwise & against the two matrices and returns the result.
-HLML_INLINE uint4x3 uint4x3_candm( const uint4x3* lhs, const uint4x3* rhs )
+HLML_INLINE uint4x3 uint4x3_candm( const uint4x3 *lhs, const uint4x3* rhs )
 {
 	return HLML_CONSTRUCT( uint4x3 )
 	{
@@ -8148,7 +8148,7 @@ HLML_INLINE uint4x3 uint4x3_candm( const uint4x3* lhs, const uint4x3* rhs )
 }
 
 // Performs a component-wise bitwise | on the matrix by the scalar and returns the result.
-HLML_INLINE uint4x3 uint4x3_cors( const uint4x3* lhs, const uint32_t rhs )
+HLML_INLINE uint4x3 uint4x3_cors( const uint4x3 *lhs, const uint32_t rhs )
 {
 	return HLML_CONSTRUCT( uint4x3 )
 	{
@@ -8160,7 +8160,7 @@ HLML_INLINE uint4x3 uint4x3_cors( const uint4x3* lhs, const uint32_t rhs )
 }
 
 // Performs a component-wise bitwise | against the two matrices and returns the result.
-HLML_INLINE uint4x3 uint4x3_corm( const uint4x3* lhs, const uint4x3* rhs )
+HLML_INLINE uint4x3 uint4x3_corm( const uint4x3 *lhs, const uint4x3* rhs )
 {
 	return HLML_CONSTRUCT( uint4x3 )
 	{
@@ -8172,7 +8172,7 @@ HLML_INLINE uint4x3 uint4x3_corm( const uint4x3* lhs, const uint4x3* rhs )
 }
 
 // Performs a component-wise bitwise ^ on the matrix by the scalar and returns the result.
-HLML_INLINE uint4x3 uint4x3_cxors( const uint4x3* lhs, const uint32_t rhs )
+HLML_INLINE uint4x3 uint4x3_cxors( const uint4x3 *lhs, const uint32_t rhs )
 {
 	return HLML_CONSTRUCT( uint4x3 )
 	{
@@ -8184,7 +8184,7 @@ HLML_INLINE uint4x3 uint4x3_cxors( const uint4x3* lhs, const uint32_t rhs )
 }
 
 // Performs a component-wise bitwise ^ against the two matrices and returns the result.
-HLML_INLINE uint4x3 uint4x3_cxorm( const uint4x3* lhs, const uint4x3* rhs )
+HLML_INLINE uint4x3 uint4x3_cxorm( const uint4x3 *lhs, const uint4x3* rhs )
 {
 	return HLML_CONSTRUCT( uint4x3 )
 	{
@@ -8196,7 +8196,7 @@ HLML_INLINE uint4x3 uint4x3_cxorm( const uint4x3* lhs, const uint4x3* rhs )
 }
 
 // Performs a component-wise bitwise << on the matrix by the scalar and returns the result.
-HLML_INLINE uint4x3 uint4x3_cshift_lefts( const uint4x3* lhs, const uint32_t rhs )
+HLML_INLINE uint4x3 uint4x3_cshift_lefts( const uint4x3 *lhs, const uint32_t rhs )
 {
 	return HLML_CONSTRUCT( uint4x3 )
 	{
@@ -8208,7 +8208,7 @@ HLML_INLINE uint4x3 uint4x3_cshift_lefts( const uint4x3* lhs, const uint32_t rhs
 }
 
 // Performs a component-wise bitwise << against the two matrices and returns the result.
-HLML_INLINE uint4x3 uint4x3_cshift_leftm( const uint4x3* lhs, const uint4x3* rhs )
+HLML_INLINE uint4x3 uint4x3_cshift_leftm( const uint4x3 *lhs, const uint4x3* rhs )
 {
 	return HLML_CONSTRUCT( uint4x3 )
 	{
@@ -8220,7 +8220,7 @@ HLML_INLINE uint4x3 uint4x3_cshift_leftm( const uint4x3* lhs, const uint4x3* rhs
 }
 
 // Performs a component-wise bitwise >> on the matrix by the scalar and returns the result.
-HLML_INLINE uint4x3 uint4x3_cshift_rights( const uint4x3* lhs, const uint32_t rhs )
+HLML_INLINE uint4x3 uint4x3_cshift_rights( const uint4x3 *lhs, const uint32_t rhs )
 {
 	return HLML_CONSTRUCT( uint4x3 )
 	{
@@ -8232,7 +8232,7 @@ HLML_INLINE uint4x3 uint4x3_cshift_rights( const uint4x3* lhs, const uint32_t rh
 }
 
 // Performs a component-wise bitwise >> against the two matrices and returns the result.
-HLML_INLINE uint4x3 uint4x3_cshift_rightm( const uint4x3* lhs, const uint4x3* rhs )
+HLML_INLINE uint4x3 uint4x3_cshift_rightm( const uint4x3 *lhs, const uint4x3* rhs )
 {
 	return HLML_CONSTRUCT( uint4x3 )
 	{
@@ -8350,7 +8350,7 @@ HLML_INLINE uint4x4 uint4x4_saturate( const uint4x4* x )
 }
 
 // Returns true if the contents of 'lhs' are the same as the contents of 'rhs', otherwise returns false.
-HLML_INLINE bool uint4x4_equals( const uint4x4* lhs, const uint4x4* rhs )
+HLML_INLINE bool uint4x4_equals( const uint4x4 *lhs, const uint4x4 *rhs )
 {
 	return
 		uint4_equals( &lhs->rows[0], &rhs->rows[0] ) &&
@@ -8360,13 +8360,13 @@ HLML_INLINE bool uint4x4_equals( const uint4x4* lhs, const uint4x4* rhs )
 }
 
 // Returns true if the contents of 'lhs' are NOT the same as the contents of 'rhs', otherwise returns false.
-HLML_INLINE bool uint4x4_not_equals( const uint4x4* lhs, const uint4x4* rhs )
+HLML_INLINE bool uint4x4_not_equals( const uint4x4 *lhs, const uint4x4 *rhs )
 {
 	return !uint4x4_equals( lhs, rhs );
 }
 
 // Performs a component-wise '<' check against the two matrices and returns the result.
-HLML_INLINE bool4x4 uint4x4_less_than( const uint4x4* lhs, const uint4x4* rhs )
+HLML_INLINE bool4x4 uint4x4_less_than( const uint4x4 *lhs, const uint4x4* rhs )
 {
 	return HLML_CONSTRUCT( bool4x4 )
 	{
@@ -8378,7 +8378,7 @@ HLML_INLINE bool4x4 uint4x4_less_than( const uint4x4* lhs, const uint4x4* rhs )
 }
 
 // Performs a component-wise '<=' check against the two matrices and returns the result.
-HLML_INLINE bool4x4 uint4x4_less_than_equal( const uint4x4* lhs, const uint4x4* rhs )
+HLML_INLINE bool4x4 uint4x4_less_than_equal( const uint4x4 *lhs, const uint4x4* rhs )
 {
 	return HLML_CONSTRUCT( bool4x4 )
 	{
@@ -8390,7 +8390,7 @@ HLML_INLINE bool4x4 uint4x4_less_than_equal( const uint4x4* lhs, const uint4x4* 
 }
 
 // Performs a component-wise '>' check against the two matrices and returns the result.
-HLML_INLINE bool4x4 uint4x4_greater_than( const uint4x4* lhs, const uint4x4* rhs )
+HLML_INLINE bool4x4 uint4x4_greater_than( const uint4x4 *lhs, const uint4x4* rhs )
 {
 	return HLML_CONSTRUCT( bool4x4 )
 	{
@@ -8402,7 +8402,7 @@ HLML_INLINE bool4x4 uint4x4_greater_than( const uint4x4* lhs, const uint4x4* rhs
 }
 
 // Performs a component-wise '>=' check against the two matrices and returns the result.
-HLML_INLINE bool4x4 uint4x4_greater_than_equal( const uint4x4* lhs, const uint4x4* rhs )
+HLML_INLINE bool4x4 uint4x4_greater_than_equal( const uint4x4 *lhs, const uint4x4* rhs )
 {
 	return HLML_CONSTRUCT( bool4x4 )
 	{
@@ -8414,7 +8414,7 @@ HLML_INLINE bool4x4 uint4x4_greater_than_equal( const uint4x4* lhs, const uint4x
 }
 
 // Performs a component-wise + on the matrix by the scalar and returns the result.
-HLML_INLINE uint4x4 uint4x4_cadds( const uint4x4* lhs, const uint32_t rhs )
+HLML_INLINE uint4x4 uint4x4_cadds( const uint4x4 *lhs, const uint32_t rhs )
 {
 	return HLML_CONSTRUCT( uint4x4 )
 	{
@@ -8426,7 +8426,7 @@ HLML_INLINE uint4x4 uint4x4_cadds( const uint4x4* lhs, const uint32_t rhs )
 }
 
 // Performs a component-wise + against the two matrices and returns the result.
-HLML_INLINE uint4x4 uint4x4_caddm( const uint4x4* lhs, const uint4x4* rhs )
+HLML_INLINE uint4x4 uint4x4_caddm( const uint4x4 *lhs, const uint4x4* rhs )
 {
 	return HLML_CONSTRUCT( uint4x4 )
 	{
@@ -8438,7 +8438,7 @@ HLML_INLINE uint4x4 uint4x4_caddm( const uint4x4* lhs, const uint4x4* rhs )
 }
 
 // Performs a component-wise - on the matrix by the scalar and returns the result.
-HLML_INLINE uint4x4 uint4x4_csubs( const uint4x4* lhs, const uint32_t rhs )
+HLML_INLINE uint4x4 uint4x4_csubs( const uint4x4 *lhs, const uint32_t rhs )
 {
 	return HLML_CONSTRUCT( uint4x4 )
 	{
@@ -8450,7 +8450,7 @@ HLML_INLINE uint4x4 uint4x4_csubs( const uint4x4* lhs, const uint32_t rhs )
 }
 
 // Performs a component-wise - against the two matrices and returns the result.
-HLML_INLINE uint4x4 uint4x4_csubm( const uint4x4* lhs, const uint4x4* rhs )
+HLML_INLINE uint4x4 uint4x4_csubm( const uint4x4 *lhs, const uint4x4* rhs )
 {
 	return HLML_CONSTRUCT( uint4x4 )
 	{
@@ -8462,7 +8462,7 @@ HLML_INLINE uint4x4 uint4x4_csubm( const uint4x4* lhs, const uint4x4* rhs )
 }
 
 // Performs a component-wise * on the matrix by the scalar and returns the result.
-HLML_INLINE uint4x4 uint4x4_cmuls( const uint4x4* lhs, const uint32_t rhs )
+HLML_INLINE uint4x4 uint4x4_cmuls( const uint4x4 *lhs, const uint32_t rhs )
 {
 	return HLML_CONSTRUCT( uint4x4 )
 	{
@@ -8474,7 +8474,7 @@ HLML_INLINE uint4x4 uint4x4_cmuls( const uint4x4* lhs, const uint32_t rhs )
 }
 
 // Performs a component-wise * against the two matrices and returns the result.
-HLML_INLINE uint4x4 uint4x4_cmulm( const uint4x4* lhs, const uint4x4* rhs )
+HLML_INLINE uint4x4 uint4x4_cmulm( const uint4x4 *lhs, const uint4x4* rhs )
 {
 	return HLML_CONSTRUCT( uint4x4 )
 	{
@@ -8486,7 +8486,7 @@ HLML_INLINE uint4x4 uint4x4_cmulm( const uint4x4* lhs, const uint4x4* rhs )
 }
 
 // Performs a component-wise / on the matrix by the scalar and returns the result.
-HLML_INLINE uint4x4 uint4x4_cdivs( const uint4x4* lhs, const uint32_t rhs )
+HLML_INLINE uint4x4 uint4x4_cdivs( const uint4x4 *lhs, const uint32_t rhs )
 {
 	return HLML_CONSTRUCT( uint4x4 )
 	{
@@ -8498,7 +8498,7 @@ HLML_INLINE uint4x4 uint4x4_cdivs( const uint4x4* lhs, const uint32_t rhs )
 }
 
 // Performs a component-wise / against the two matrices and returns the result.
-HLML_INLINE uint4x4 uint4x4_cdivm( const uint4x4* lhs, const uint4x4* rhs )
+HLML_INLINE uint4x4 uint4x4_cdivm( const uint4x4 *lhs, const uint4x4* rhs )
 {
 	return HLML_CONSTRUCT( uint4x4 )
 	{
@@ -8514,7 +8514,7 @@ HLML_INLINE uint4x4 uint4x4_cdivm( const uint4x4* lhs, const uint4x4* rhs )
 #pragma warning( disable : 4146 )
 #endif
 // Returns a copy of the matrix that has been negated.
-HLML_INLINE uint4x4 uint4x4_negate( const uint4x4* x )
+HLML_INLINE uint4x4 uint4x4_negate( const uint4x4 *x )
 {
 	return HLML_CONSTRUCT( uint4x4 )
 	{
@@ -8529,7 +8529,7 @@ HLML_INLINE uint4x4 uint4x4_negate( const uint4x4* x )
 #pragma warning( pop )
 #endif
 // Returns a copy of the matrix where each component has been bitwise NOT'd.
-HLML_INLINE uint4x4 uint4x4_not( const uint4x4* x )
+HLML_INLINE uint4x4 uint4x4_not( const uint4x4 *x )
 {
 	return HLML_CONSTRUCT( uint4x4 )
 	{
@@ -8541,7 +8541,7 @@ HLML_INLINE uint4x4 uint4x4_not( const uint4x4* x )
 }
 
 // Performs a component-wise bitwise & on the matrix by the scalar and returns the result.
-HLML_INLINE uint4x4 uint4x4_cands( const uint4x4* lhs, const uint32_t rhs )
+HLML_INLINE uint4x4 uint4x4_cands( const uint4x4 *lhs, const uint32_t rhs )
 {
 	return HLML_CONSTRUCT( uint4x4 )
 	{
@@ -8553,7 +8553,7 @@ HLML_INLINE uint4x4 uint4x4_cands( const uint4x4* lhs, const uint32_t rhs )
 }
 
 // Performs a component-wise bitwise & against the two matrices and returns the result.
-HLML_INLINE uint4x4 uint4x4_candm( const uint4x4* lhs, const uint4x4* rhs )
+HLML_INLINE uint4x4 uint4x4_candm( const uint4x4 *lhs, const uint4x4* rhs )
 {
 	return HLML_CONSTRUCT( uint4x4 )
 	{
@@ -8565,7 +8565,7 @@ HLML_INLINE uint4x4 uint4x4_candm( const uint4x4* lhs, const uint4x4* rhs )
 }
 
 // Performs a component-wise bitwise | on the matrix by the scalar and returns the result.
-HLML_INLINE uint4x4 uint4x4_cors( const uint4x4* lhs, const uint32_t rhs )
+HLML_INLINE uint4x4 uint4x4_cors( const uint4x4 *lhs, const uint32_t rhs )
 {
 	return HLML_CONSTRUCT( uint4x4 )
 	{
@@ -8577,7 +8577,7 @@ HLML_INLINE uint4x4 uint4x4_cors( const uint4x4* lhs, const uint32_t rhs )
 }
 
 // Performs a component-wise bitwise | against the two matrices and returns the result.
-HLML_INLINE uint4x4 uint4x4_corm( const uint4x4* lhs, const uint4x4* rhs )
+HLML_INLINE uint4x4 uint4x4_corm( const uint4x4 *lhs, const uint4x4* rhs )
 {
 	return HLML_CONSTRUCT( uint4x4 )
 	{
@@ -8589,7 +8589,7 @@ HLML_INLINE uint4x4 uint4x4_corm( const uint4x4* lhs, const uint4x4* rhs )
 }
 
 // Performs a component-wise bitwise ^ on the matrix by the scalar and returns the result.
-HLML_INLINE uint4x4 uint4x4_cxors( const uint4x4* lhs, const uint32_t rhs )
+HLML_INLINE uint4x4 uint4x4_cxors( const uint4x4 *lhs, const uint32_t rhs )
 {
 	return HLML_CONSTRUCT( uint4x4 )
 	{
@@ -8601,7 +8601,7 @@ HLML_INLINE uint4x4 uint4x4_cxors( const uint4x4* lhs, const uint32_t rhs )
 }
 
 // Performs a component-wise bitwise ^ against the two matrices and returns the result.
-HLML_INLINE uint4x4 uint4x4_cxorm( const uint4x4* lhs, const uint4x4* rhs )
+HLML_INLINE uint4x4 uint4x4_cxorm( const uint4x4 *lhs, const uint4x4* rhs )
 {
 	return HLML_CONSTRUCT( uint4x4 )
 	{
@@ -8613,7 +8613,7 @@ HLML_INLINE uint4x4 uint4x4_cxorm( const uint4x4* lhs, const uint4x4* rhs )
 }
 
 // Performs a component-wise bitwise << on the matrix by the scalar and returns the result.
-HLML_INLINE uint4x4 uint4x4_cshift_lefts( const uint4x4* lhs, const uint32_t rhs )
+HLML_INLINE uint4x4 uint4x4_cshift_lefts( const uint4x4 *lhs, const uint32_t rhs )
 {
 	return HLML_CONSTRUCT( uint4x4 )
 	{
@@ -8625,7 +8625,7 @@ HLML_INLINE uint4x4 uint4x4_cshift_lefts( const uint4x4* lhs, const uint32_t rhs
 }
 
 // Performs a component-wise bitwise << against the two matrices and returns the result.
-HLML_INLINE uint4x4 uint4x4_cshift_leftm( const uint4x4* lhs, const uint4x4* rhs )
+HLML_INLINE uint4x4 uint4x4_cshift_leftm( const uint4x4 *lhs, const uint4x4* rhs )
 {
 	return HLML_CONSTRUCT( uint4x4 )
 	{
@@ -8637,7 +8637,7 @@ HLML_INLINE uint4x4 uint4x4_cshift_leftm( const uint4x4* lhs, const uint4x4* rhs
 }
 
 // Performs a component-wise bitwise >> on the matrix by the scalar and returns the result.
-HLML_INLINE uint4x4 uint4x4_cshift_rights( const uint4x4* lhs, const uint32_t rhs )
+HLML_INLINE uint4x4 uint4x4_cshift_rights( const uint4x4 *lhs, const uint32_t rhs )
 {
 	return HLML_CONSTRUCT( uint4x4 )
 	{
@@ -8649,7 +8649,7 @@ HLML_INLINE uint4x4 uint4x4_cshift_rights( const uint4x4* lhs, const uint32_t rh
 }
 
 // Performs a component-wise bitwise >> against the two matrices and returns the result.
-HLML_INLINE uint4x4 uint4x4_cshift_rightm( const uint4x4* lhs, const uint4x4* rhs )
+HLML_INLINE uint4x4 uint4x4_cshift_rightm( const uint4x4 *lhs, const uint4x4* rhs )
 {
 	return HLML_CONSTRUCT( uint4x4 )
 	{
@@ -8831,7 +8831,7 @@ HLML_INLINE float2x2 float2x2_lerp( const float2x2* lhs, const float2x2* rhs, co
 }
 
 // Returns true if the contents of 'lhs' are the same as the contents of 'rhs', otherwise returns false.
-HLML_INLINE bool float2x2_equals( const float2x2* lhs, const float2x2* rhs )
+HLML_INLINE bool float2x2_equals( const float2x2 *lhs, const float2x2 *rhs )
 {
 	return
 		float2_equals( &lhs->rows[0], &rhs->rows[0] ) &&
@@ -8839,13 +8839,13 @@ HLML_INLINE bool float2x2_equals( const float2x2* lhs, const float2x2* rhs )
 }
 
 // Returns true if the contents of 'lhs' are NOT the same as the contents of 'rhs', otherwise returns false.
-HLML_INLINE bool float2x2_not_equals( const float2x2* lhs, const float2x2* rhs )
+HLML_INLINE bool float2x2_not_equals( const float2x2 *lhs, const float2x2 *rhs )
 {
 	return !float2x2_equals( lhs, rhs );
 }
 
 // Performs a component-wise '<' check against the two matrices and returns the result.
-HLML_INLINE bool2x2 float2x2_less_than( const float2x2* lhs, const float2x2* rhs )
+HLML_INLINE bool2x2 float2x2_less_than( const float2x2 *lhs, const float2x2* rhs )
 {
 	return HLML_CONSTRUCT( bool2x2 )
 	{
@@ -8855,7 +8855,7 @@ HLML_INLINE bool2x2 float2x2_less_than( const float2x2* lhs, const float2x2* rhs
 }
 
 // Performs a component-wise '<=' check against the two matrices and returns the result.
-HLML_INLINE bool2x2 float2x2_less_than_equal( const float2x2* lhs, const float2x2* rhs )
+HLML_INLINE bool2x2 float2x2_less_than_equal( const float2x2 *lhs, const float2x2* rhs )
 {
 	return HLML_CONSTRUCT( bool2x2 )
 	{
@@ -8865,7 +8865,7 @@ HLML_INLINE bool2x2 float2x2_less_than_equal( const float2x2* lhs, const float2x
 }
 
 // Performs a component-wise '>' check against the two matrices and returns the result.
-HLML_INLINE bool2x2 float2x2_greater_than( const float2x2* lhs, const float2x2* rhs )
+HLML_INLINE bool2x2 float2x2_greater_than( const float2x2 *lhs, const float2x2* rhs )
 {
 	return HLML_CONSTRUCT( bool2x2 )
 	{
@@ -8875,7 +8875,7 @@ HLML_INLINE bool2x2 float2x2_greater_than( const float2x2* lhs, const float2x2* 
 }
 
 // Performs a component-wise '>=' check against the two matrices and returns the result.
-HLML_INLINE bool2x2 float2x2_greater_than_equal( const float2x2* lhs, const float2x2* rhs )
+HLML_INLINE bool2x2 float2x2_greater_than_equal( const float2x2 *lhs, const float2x2* rhs )
 {
 	return HLML_CONSTRUCT( bool2x2 )
 	{
@@ -8885,7 +8885,7 @@ HLML_INLINE bool2x2 float2x2_greater_than_equal( const float2x2* lhs, const floa
 }
 
 // Performs a component-wise + on the matrix by the scalar and returns the result.
-HLML_INLINE float2x2 float2x2_cadds( const float2x2* lhs, const float rhs )
+HLML_INLINE float2x2 float2x2_cadds( const float2x2 *lhs, const float rhs )
 {
 	return HLML_CONSTRUCT( float2x2 )
 	{
@@ -8895,7 +8895,7 @@ HLML_INLINE float2x2 float2x2_cadds( const float2x2* lhs, const float rhs )
 }
 
 // Performs a component-wise + against the two matrices and returns the result.
-HLML_INLINE float2x2 float2x2_caddm( const float2x2* lhs, const float2x2* rhs )
+HLML_INLINE float2x2 float2x2_caddm( const float2x2 *lhs, const float2x2* rhs )
 {
 	return HLML_CONSTRUCT( float2x2 )
 	{
@@ -8905,7 +8905,7 @@ HLML_INLINE float2x2 float2x2_caddm( const float2x2* lhs, const float2x2* rhs )
 }
 
 // Performs a component-wise - on the matrix by the scalar and returns the result.
-HLML_INLINE float2x2 float2x2_csubs( const float2x2* lhs, const float rhs )
+HLML_INLINE float2x2 float2x2_csubs( const float2x2 *lhs, const float rhs )
 {
 	return HLML_CONSTRUCT( float2x2 )
 	{
@@ -8915,7 +8915,7 @@ HLML_INLINE float2x2 float2x2_csubs( const float2x2* lhs, const float rhs )
 }
 
 // Performs a component-wise - against the two matrices and returns the result.
-HLML_INLINE float2x2 float2x2_csubm( const float2x2* lhs, const float2x2* rhs )
+HLML_INLINE float2x2 float2x2_csubm( const float2x2 *lhs, const float2x2* rhs )
 {
 	return HLML_CONSTRUCT( float2x2 )
 	{
@@ -8925,7 +8925,7 @@ HLML_INLINE float2x2 float2x2_csubm( const float2x2* lhs, const float2x2* rhs )
 }
 
 // Performs a component-wise * on the matrix by the scalar and returns the result.
-HLML_INLINE float2x2 float2x2_cmuls( const float2x2* lhs, const float rhs )
+HLML_INLINE float2x2 float2x2_cmuls( const float2x2 *lhs, const float rhs )
 {
 	return HLML_CONSTRUCT( float2x2 )
 	{
@@ -8935,7 +8935,7 @@ HLML_INLINE float2x2 float2x2_cmuls( const float2x2* lhs, const float rhs )
 }
 
 // Performs a component-wise * against the two matrices and returns the result.
-HLML_INLINE float2x2 float2x2_cmulm( const float2x2* lhs, const float2x2* rhs )
+HLML_INLINE float2x2 float2x2_cmulm( const float2x2 *lhs, const float2x2* rhs )
 {
 	return HLML_CONSTRUCT( float2x2 )
 	{
@@ -8945,7 +8945,7 @@ HLML_INLINE float2x2 float2x2_cmulm( const float2x2* lhs, const float2x2* rhs )
 }
 
 // Performs a component-wise / on the matrix by the scalar and returns the result.
-HLML_INLINE float2x2 float2x2_cdivs( const float2x2* lhs, const float rhs )
+HLML_INLINE float2x2 float2x2_cdivs( const float2x2 *lhs, const float rhs )
 {
 	return HLML_CONSTRUCT( float2x2 )
 	{
@@ -8955,7 +8955,7 @@ HLML_INLINE float2x2 float2x2_cdivs( const float2x2* lhs, const float rhs )
 }
 
 // Performs a component-wise / against the two matrices and returns the result.
-HLML_INLINE float2x2 float2x2_cdivm( const float2x2* lhs, const float2x2* rhs )
+HLML_INLINE float2x2 float2x2_cdivm( const float2x2 *lhs, const float2x2* rhs )
 {
 	return HLML_CONSTRUCT( float2x2 )
 	{
@@ -8965,7 +8965,7 @@ HLML_INLINE float2x2 float2x2_cdivm( const float2x2* lhs, const float2x2* rhs )
 }
 
 // Returns a copy of the matrix that has been negated.
-HLML_INLINE float2x2 float2x2_negate( const float2x2* x )
+HLML_INLINE float2x2 float2x2_negate( const float2x2 *x )
 {
 	return HLML_CONSTRUCT( float2x2 )
 	{
@@ -9100,7 +9100,7 @@ HLML_INLINE float2x3 float2x3_lerp( const float2x3* lhs, const float2x3* rhs, co
 }
 
 // Returns true if the contents of 'lhs' are the same as the contents of 'rhs', otherwise returns false.
-HLML_INLINE bool float2x3_equals( const float2x3* lhs, const float2x3* rhs )
+HLML_INLINE bool float2x3_equals( const float2x3 *lhs, const float2x3 *rhs )
 {
 	return
 		float3_equals( &lhs->rows[0], &rhs->rows[0] ) &&
@@ -9108,13 +9108,13 @@ HLML_INLINE bool float2x3_equals( const float2x3* lhs, const float2x3* rhs )
 }
 
 // Returns true if the contents of 'lhs' are NOT the same as the contents of 'rhs', otherwise returns false.
-HLML_INLINE bool float2x3_not_equals( const float2x3* lhs, const float2x3* rhs )
+HLML_INLINE bool float2x3_not_equals( const float2x3 *lhs, const float2x3 *rhs )
 {
 	return !float2x3_equals( lhs, rhs );
 }
 
 // Performs a component-wise '<' check against the two matrices and returns the result.
-HLML_INLINE bool2x3 float2x3_less_than( const float2x3* lhs, const float2x3* rhs )
+HLML_INLINE bool2x3 float2x3_less_than( const float2x3 *lhs, const float2x3* rhs )
 {
 	return HLML_CONSTRUCT( bool2x3 )
 	{
@@ -9124,7 +9124,7 @@ HLML_INLINE bool2x3 float2x3_less_than( const float2x3* lhs, const float2x3* rhs
 }
 
 // Performs a component-wise '<=' check against the two matrices and returns the result.
-HLML_INLINE bool2x3 float2x3_less_than_equal( const float2x3* lhs, const float2x3* rhs )
+HLML_INLINE bool2x3 float2x3_less_than_equal( const float2x3 *lhs, const float2x3* rhs )
 {
 	return HLML_CONSTRUCT( bool2x3 )
 	{
@@ -9134,7 +9134,7 @@ HLML_INLINE bool2x3 float2x3_less_than_equal( const float2x3* lhs, const float2x
 }
 
 // Performs a component-wise '>' check against the two matrices and returns the result.
-HLML_INLINE bool2x3 float2x3_greater_than( const float2x3* lhs, const float2x3* rhs )
+HLML_INLINE bool2x3 float2x3_greater_than( const float2x3 *lhs, const float2x3* rhs )
 {
 	return HLML_CONSTRUCT( bool2x3 )
 	{
@@ -9144,7 +9144,7 @@ HLML_INLINE bool2x3 float2x3_greater_than( const float2x3* lhs, const float2x3* 
 }
 
 // Performs a component-wise '>=' check against the two matrices and returns the result.
-HLML_INLINE bool2x3 float2x3_greater_than_equal( const float2x3* lhs, const float2x3* rhs )
+HLML_INLINE bool2x3 float2x3_greater_than_equal( const float2x3 *lhs, const float2x3* rhs )
 {
 	return HLML_CONSTRUCT( bool2x3 )
 	{
@@ -9154,7 +9154,7 @@ HLML_INLINE bool2x3 float2x3_greater_than_equal( const float2x3* lhs, const floa
 }
 
 // Performs a component-wise + on the matrix by the scalar and returns the result.
-HLML_INLINE float2x3 float2x3_cadds( const float2x3* lhs, const float rhs )
+HLML_INLINE float2x3 float2x3_cadds( const float2x3 *lhs, const float rhs )
 {
 	return HLML_CONSTRUCT( float2x3 )
 	{
@@ -9164,7 +9164,7 @@ HLML_INLINE float2x3 float2x3_cadds( const float2x3* lhs, const float rhs )
 }
 
 // Performs a component-wise + against the two matrices and returns the result.
-HLML_INLINE float2x3 float2x3_caddm( const float2x3* lhs, const float2x3* rhs )
+HLML_INLINE float2x3 float2x3_caddm( const float2x3 *lhs, const float2x3* rhs )
 {
 	return HLML_CONSTRUCT( float2x3 )
 	{
@@ -9174,7 +9174,7 @@ HLML_INLINE float2x3 float2x3_caddm( const float2x3* lhs, const float2x3* rhs )
 }
 
 // Performs a component-wise - on the matrix by the scalar and returns the result.
-HLML_INLINE float2x3 float2x3_csubs( const float2x3* lhs, const float rhs )
+HLML_INLINE float2x3 float2x3_csubs( const float2x3 *lhs, const float rhs )
 {
 	return HLML_CONSTRUCT( float2x3 )
 	{
@@ -9184,7 +9184,7 @@ HLML_INLINE float2x3 float2x3_csubs( const float2x3* lhs, const float rhs )
 }
 
 // Performs a component-wise - against the two matrices and returns the result.
-HLML_INLINE float2x3 float2x3_csubm( const float2x3* lhs, const float2x3* rhs )
+HLML_INLINE float2x3 float2x3_csubm( const float2x3 *lhs, const float2x3* rhs )
 {
 	return HLML_CONSTRUCT( float2x3 )
 	{
@@ -9194,7 +9194,7 @@ HLML_INLINE float2x3 float2x3_csubm( const float2x3* lhs, const float2x3* rhs )
 }
 
 // Performs a component-wise * on the matrix by the scalar and returns the result.
-HLML_INLINE float2x3 float2x3_cmuls( const float2x3* lhs, const float rhs )
+HLML_INLINE float2x3 float2x3_cmuls( const float2x3 *lhs, const float rhs )
 {
 	return HLML_CONSTRUCT( float2x3 )
 	{
@@ -9204,7 +9204,7 @@ HLML_INLINE float2x3 float2x3_cmuls( const float2x3* lhs, const float rhs )
 }
 
 // Performs a component-wise * against the two matrices and returns the result.
-HLML_INLINE float2x3 float2x3_cmulm( const float2x3* lhs, const float2x3* rhs )
+HLML_INLINE float2x3 float2x3_cmulm( const float2x3 *lhs, const float2x3* rhs )
 {
 	return HLML_CONSTRUCT( float2x3 )
 	{
@@ -9214,7 +9214,7 @@ HLML_INLINE float2x3 float2x3_cmulm( const float2x3* lhs, const float2x3* rhs )
 }
 
 // Performs a component-wise / on the matrix by the scalar and returns the result.
-HLML_INLINE float2x3 float2x3_cdivs( const float2x3* lhs, const float rhs )
+HLML_INLINE float2x3 float2x3_cdivs( const float2x3 *lhs, const float rhs )
 {
 	return HLML_CONSTRUCT( float2x3 )
 	{
@@ -9224,7 +9224,7 @@ HLML_INLINE float2x3 float2x3_cdivs( const float2x3* lhs, const float rhs )
 }
 
 // Performs a component-wise / against the two matrices and returns the result.
-HLML_INLINE float2x3 float2x3_cdivm( const float2x3* lhs, const float2x3* rhs )
+HLML_INLINE float2x3 float2x3_cdivm( const float2x3 *lhs, const float2x3* rhs )
 {
 	return HLML_CONSTRUCT( float2x3 )
 	{
@@ -9234,7 +9234,7 @@ HLML_INLINE float2x3 float2x3_cdivm( const float2x3* lhs, const float2x3* rhs )
 }
 
 // Returns a copy of the matrix that has been negated.
-HLML_INLINE float2x3 float2x3_negate( const float2x3* x )
+HLML_INLINE float2x3 float2x3_negate( const float2x3 *x )
 {
 	return HLML_CONSTRUCT( float2x3 )
 	{
@@ -9342,7 +9342,7 @@ HLML_INLINE float2x4 float2x4_lerp( const float2x4* lhs, const float2x4* rhs, co
 }
 
 // Returns true if the contents of 'lhs' are the same as the contents of 'rhs', otherwise returns false.
-HLML_INLINE bool float2x4_equals( const float2x4* lhs, const float2x4* rhs )
+HLML_INLINE bool float2x4_equals( const float2x4 *lhs, const float2x4 *rhs )
 {
 	return
 		float4_equals( &lhs->rows[0], &rhs->rows[0] ) &&
@@ -9350,13 +9350,13 @@ HLML_INLINE bool float2x4_equals( const float2x4* lhs, const float2x4* rhs )
 }
 
 // Returns true if the contents of 'lhs' are NOT the same as the contents of 'rhs', otherwise returns false.
-HLML_INLINE bool float2x4_not_equals( const float2x4* lhs, const float2x4* rhs )
+HLML_INLINE bool float2x4_not_equals( const float2x4 *lhs, const float2x4 *rhs )
 {
 	return !float2x4_equals( lhs, rhs );
 }
 
 // Performs a component-wise '<' check against the two matrices and returns the result.
-HLML_INLINE bool2x4 float2x4_less_than( const float2x4* lhs, const float2x4* rhs )
+HLML_INLINE bool2x4 float2x4_less_than( const float2x4 *lhs, const float2x4* rhs )
 {
 	return HLML_CONSTRUCT( bool2x4 )
 	{
@@ -9366,7 +9366,7 @@ HLML_INLINE bool2x4 float2x4_less_than( const float2x4* lhs, const float2x4* rhs
 }
 
 // Performs a component-wise '<=' check against the two matrices and returns the result.
-HLML_INLINE bool2x4 float2x4_less_than_equal( const float2x4* lhs, const float2x4* rhs )
+HLML_INLINE bool2x4 float2x4_less_than_equal( const float2x4 *lhs, const float2x4* rhs )
 {
 	return HLML_CONSTRUCT( bool2x4 )
 	{
@@ -9376,7 +9376,7 @@ HLML_INLINE bool2x4 float2x4_less_than_equal( const float2x4* lhs, const float2x
 }
 
 // Performs a component-wise '>' check against the two matrices and returns the result.
-HLML_INLINE bool2x4 float2x4_greater_than( const float2x4* lhs, const float2x4* rhs )
+HLML_INLINE bool2x4 float2x4_greater_than( const float2x4 *lhs, const float2x4* rhs )
 {
 	return HLML_CONSTRUCT( bool2x4 )
 	{
@@ -9386,7 +9386,7 @@ HLML_INLINE bool2x4 float2x4_greater_than( const float2x4* lhs, const float2x4* 
 }
 
 // Performs a component-wise '>=' check against the two matrices and returns the result.
-HLML_INLINE bool2x4 float2x4_greater_than_equal( const float2x4* lhs, const float2x4* rhs )
+HLML_INLINE bool2x4 float2x4_greater_than_equal( const float2x4 *lhs, const float2x4* rhs )
 {
 	return HLML_CONSTRUCT( bool2x4 )
 	{
@@ -9396,7 +9396,7 @@ HLML_INLINE bool2x4 float2x4_greater_than_equal( const float2x4* lhs, const floa
 }
 
 // Performs a component-wise + on the matrix by the scalar and returns the result.
-HLML_INLINE float2x4 float2x4_cadds( const float2x4* lhs, const float rhs )
+HLML_INLINE float2x4 float2x4_cadds( const float2x4 *lhs, const float rhs )
 {
 	return HLML_CONSTRUCT( float2x4 )
 	{
@@ -9406,7 +9406,7 @@ HLML_INLINE float2x4 float2x4_cadds( const float2x4* lhs, const float rhs )
 }
 
 // Performs a component-wise + against the two matrices and returns the result.
-HLML_INLINE float2x4 float2x4_caddm( const float2x4* lhs, const float2x4* rhs )
+HLML_INLINE float2x4 float2x4_caddm( const float2x4 *lhs, const float2x4* rhs )
 {
 	return HLML_CONSTRUCT( float2x4 )
 	{
@@ -9416,7 +9416,7 @@ HLML_INLINE float2x4 float2x4_caddm( const float2x4* lhs, const float2x4* rhs )
 }
 
 // Performs a component-wise - on the matrix by the scalar and returns the result.
-HLML_INLINE float2x4 float2x4_csubs( const float2x4* lhs, const float rhs )
+HLML_INLINE float2x4 float2x4_csubs( const float2x4 *lhs, const float rhs )
 {
 	return HLML_CONSTRUCT( float2x4 )
 	{
@@ -9426,7 +9426,7 @@ HLML_INLINE float2x4 float2x4_csubs( const float2x4* lhs, const float rhs )
 }
 
 // Performs a component-wise - against the two matrices and returns the result.
-HLML_INLINE float2x4 float2x4_csubm( const float2x4* lhs, const float2x4* rhs )
+HLML_INLINE float2x4 float2x4_csubm( const float2x4 *lhs, const float2x4* rhs )
 {
 	return HLML_CONSTRUCT( float2x4 )
 	{
@@ -9436,7 +9436,7 @@ HLML_INLINE float2x4 float2x4_csubm( const float2x4* lhs, const float2x4* rhs )
 }
 
 // Performs a component-wise * on the matrix by the scalar and returns the result.
-HLML_INLINE float2x4 float2x4_cmuls( const float2x4* lhs, const float rhs )
+HLML_INLINE float2x4 float2x4_cmuls( const float2x4 *lhs, const float rhs )
 {
 	return HLML_CONSTRUCT( float2x4 )
 	{
@@ -9446,7 +9446,7 @@ HLML_INLINE float2x4 float2x4_cmuls( const float2x4* lhs, const float rhs )
 }
 
 // Performs a component-wise * against the two matrices and returns the result.
-HLML_INLINE float2x4 float2x4_cmulm( const float2x4* lhs, const float2x4* rhs )
+HLML_INLINE float2x4 float2x4_cmulm( const float2x4 *lhs, const float2x4* rhs )
 {
 	return HLML_CONSTRUCT( float2x4 )
 	{
@@ -9456,7 +9456,7 @@ HLML_INLINE float2x4 float2x4_cmulm( const float2x4* lhs, const float2x4* rhs )
 }
 
 // Performs a component-wise / on the matrix by the scalar and returns the result.
-HLML_INLINE float2x4 float2x4_cdivs( const float2x4* lhs, const float rhs )
+HLML_INLINE float2x4 float2x4_cdivs( const float2x4 *lhs, const float rhs )
 {
 	return HLML_CONSTRUCT( float2x4 )
 	{
@@ -9466,7 +9466,7 @@ HLML_INLINE float2x4 float2x4_cdivs( const float2x4* lhs, const float rhs )
 }
 
 // Performs a component-wise / against the two matrices and returns the result.
-HLML_INLINE float2x4 float2x4_cdivm( const float2x4* lhs, const float2x4* rhs )
+HLML_INLINE float2x4 float2x4_cdivm( const float2x4 *lhs, const float2x4* rhs )
 {
 	return HLML_CONSTRUCT( float2x4 )
 	{
@@ -9476,7 +9476,7 @@ HLML_INLINE float2x4 float2x4_cdivm( const float2x4* lhs, const float2x4* rhs )
 }
 
 // Returns a copy of the matrix that has been negated.
-HLML_INLINE float2x4 float2x4_negate( const float2x4* x )
+HLML_INLINE float2x4 float2x4_negate( const float2x4 *x )
 {
 	return HLML_CONSTRUCT( float2x4 )
 	{
@@ -9591,7 +9591,7 @@ HLML_INLINE float3x2 float3x2_lerp( const float3x2* lhs, const float3x2* rhs, co
 }
 
 // Returns true if the contents of 'lhs' are the same as the contents of 'rhs', otherwise returns false.
-HLML_INLINE bool float3x2_equals( const float3x2* lhs, const float3x2* rhs )
+HLML_INLINE bool float3x2_equals( const float3x2 *lhs, const float3x2 *rhs )
 {
 	return
 		float2_equals( &lhs->rows[0], &rhs->rows[0] ) &&
@@ -9600,13 +9600,13 @@ HLML_INLINE bool float3x2_equals( const float3x2* lhs, const float3x2* rhs )
 }
 
 // Returns true if the contents of 'lhs' are NOT the same as the contents of 'rhs', otherwise returns false.
-HLML_INLINE bool float3x2_not_equals( const float3x2* lhs, const float3x2* rhs )
+HLML_INLINE bool float3x2_not_equals( const float3x2 *lhs, const float3x2 *rhs )
 {
 	return !float3x2_equals( lhs, rhs );
 }
 
 // Performs a component-wise '<' check against the two matrices and returns the result.
-HLML_INLINE bool3x2 float3x2_less_than( const float3x2* lhs, const float3x2* rhs )
+HLML_INLINE bool3x2 float3x2_less_than( const float3x2 *lhs, const float3x2* rhs )
 {
 	return HLML_CONSTRUCT( bool3x2 )
 	{
@@ -9617,7 +9617,7 @@ HLML_INLINE bool3x2 float3x2_less_than( const float3x2* lhs, const float3x2* rhs
 }
 
 // Performs a component-wise '<=' check against the two matrices and returns the result.
-HLML_INLINE bool3x2 float3x2_less_than_equal( const float3x2* lhs, const float3x2* rhs )
+HLML_INLINE bool3x2 float3x2_less_than_equal( const float3x2 *lhs, const float3x2* rhs )
 {
 	return HLML_CONSTRUCT( bool3x2 )
 	{
@@ -9628,7 +9628,7 @@ HLML_INLINE bool3x2 float3x2_less_than_equal( const float3x2* lhs, const float3x
 }
 
 // Performs a component-wise '>' check against the two matrices and returns the result.
-HLML_INLINE bool3x2 float3x2_greater_than( const float3x2* lhs, const float3x2* rhs )
+HLML_INLINE bool3x2 float3x2_greater_than( const float3x2 *lhs, const float3x2* rhs )
 {
 	return HLML_CONSTRUCT( bool3x2 )
 	{
@@ -9639,7 +9639,7 @@ HLML_INLINE bool3x2 float3x2_greater_than( const float3x2* lhs, const float3x2* 
 }
 
 // Performs a component-wise '>=' check against the two matrices and returns the result.
-HLML_INLINE bool3x2 float3x2_greater_than_equal( const float3x2* lhs, const float3x2* rhs )
+HLML_INLINE bool3x2 float3x2_greater_than_equal( const float3x2 *lhs, const float3x2* rhs )
 {
 	return HLML_CONSTRUCT( bool3x2 )
 	{
@@ -9650,7 +9650,7 @@ HLML_INLINE bool3x2 float3x2_greater_than_equal( const float3x2* lhs, const floa
 }
 
 // Performs a component-wise + on the matrix by the scalar and returns the result.
-HLML_INLINE float3x2 float3x2_cadds( const float3x2* lhs, const float rhs )
+HLML_INLINE float3x2 float3x2_cadds( const float3x2 *lhs, const float rhs )
 {
 	return HLML_CONSTRUCT( float3x2 )
 	{
@@ -9661,7 +9661,7 @@ HLML_INLINE float3x2 float3x2_cadds( const float3x2* lhs, const float rhs )
 }
 
 // Performs a component-wise + against the two matrices and returns the result.
-HLML_INLINE float3x2 float3x2_caddm( const float3x2* lhs, const float3x2* rhs )
+HLML_INLINE float3x2 float3x2_caddm( const float3x2 *lhs, const float3x2* rhs )
 {
 	return HLML_CONSTRUCT( float3x2 )
 	{
@@ -9672,7 +9672,7 @@ HLML_INLINE float3x2 float3x2_caddm( const float3x2* lhs, const float3x2* rhs )
 }
 
 // Performs a component-wise - on the matrix by the scalar and returns the result.
-HLML_INLINE float3x2 float3x2_csubs( const float3x2* lhs, const float rhs )
+HLML_INLINE float3x2 float3x2_csubs( const float3x2 *lhs, const float rhs )
 {
 	return HLML_CONSTRUCT( float3x2 )
 	{
@@ -9683,7 +9683,7 @@ HLML_INLINE float3x2 float3x2_csubs( const float3x2* lhs, const float rhs )
 }
 
 // Performs a component-wise - against the two matrices and returns the result.
-HLML_INLINE float3x2 float3x2_csubm( const float3x2* lhs, const float3x2* rhs )
+HLML_INLINE float3x2 float3x2_csubm( const float3x2 *lhs, const float3x2* rhs )
 {
 	return HLML_CONSTRUCT( float3x2 )
 	{
@@ -9694,7 +9694,7 @@ HLML_INLINE float3x2 float3x2_csubm( const float3x2* lhs, const float3x2* rhs )
 }
 
 // Performs a component-wise * on the matrix by the scalar and returns the result.
-HLML_INLINE float3x2 float3x2_cmuls( const float3x2* lhs, const float rhs )
+HLML_INLINE float3x2 float3x2_cmuls( const float3x2 *lhs, const float rhs )
 {
 	return HLML_CONSTRUCT( float3x2 )
 	{
@@ -9705,7 +9705,7 @@ HLML_INLINE float3x2 float3x2_cmuls( const float3x2* lhs, const float rhs )
 }
 
 // Performs a component-wise * against the two matrices and returns the result.
-HLML_INLINE float3x2 float3x2_cmulm( const float3x2* lhs, const float3x2* rhs )
+HLML_INLINE float3x2 float3x2_cmulm( const float3x2 *lhs, const float3x2* rhs )
 {
 	return HLML_CONSTRUCT( float3x2 )
 	{
@@ -9716,7 +9716,7 @@ HLML_INLINE float3x2 float3x2_cmulm( const float3x2* lhs, const float3x2* rhs )
 }
 
 // Performs a component-wise / on the matrix by the scalar and returns the result.
-HLML_INLINE float3x2 float3x2_cdivs( const float3x2* lhs, const float rhs )
+HLML_INLINE float3x2 float3x2_cdivs( const float3x2 *lhs, const float rhs )
 {
 	return HLML_CONSTRUCT( float3x2 )
 	{
@@ -9727,7 +9727,7 @@ HLML_INLINE float3x2 float3x2_cdivs( const float3x2* lhs, const float rhs )
 }
 
 // Performs a component-wise / against the two matrices and returns the result.
-HLML_INLINE float3x2 float3x2_cdivm( const float3x2* lhs, const float3x2* rhs )
+HLML_INLINE float3x2 float3x2_cdivm( const float3x2 *lhs, const float3x2* rhs )
 {
 	return HLML_CONSTRUCT( float3x2 )
 	{
@@ -9738,7 +9738,7 @@ HLML_INLINE float3x2 float3x2_cdivm( const float3x2* lhs, const float3x2* rhs )
 }
 
 // Returns a copy of the matrix that has been negated.
-HLML_INLINE float3x2 float3x2_negate( const float3x2* x )
+HLML_INLINE float3x2 float3x2_negate( const float3x2 *x )
 {
 	return HLML_CONSTRUCT( float3x2 )
 	{
@@ -9861,7 +9861,7 @@ HLML_INLINE float3x3 float3x3_lerp( const float3x3* lhs, const float3x3* rhs, co
 }
 
 // Returns true if the contents of 'lhs' are the same as the contents of 'rhs', otherwise returns false.
-HLML_INLINE bool float3x3_equals( const float3x3* lhs, const float3x3* rhs )
+HLML_INLINE bool float3x3_equals( const float3x3 *lhs, const float3x3 *rhs )
 {
 	return
 		float3_equals( &lhs->rows[0], &rhs->rows[0] ) &&
@@ -9870,13 +9870,13 @@ HLML_INLINE bool float3x3_equals( const float3x3* lhs, const float3x3* rhs )
 }
 
 // Returns true if the contents of 'lhs' are NOT the same as the contents of 'rhs', otherwise returns false.
-HLML_INLINE bool float3x3_not_equals( const float3x3* lhs, const float3x3* rhs )
+HLML_INLINE bool float3x3_not_equals( const float3x3 *lhs, const float3x3 *rhs )
 {
 	return !float3x3_equals( lhs, rhs );
 }
 
 // Performs a component-wise '<' check against the two matrices and returns the result.
-HLML_INLINE bool3x3 float3x3_less_than( const float3x3* lhs, const float3x3* rhs )
+HLML_INLINE bool3x3 float3x3_less_than( const float3x3 *lhs, const float3x3* rhs )
 {
 	return HLML_CONSTRUCT( bool3x3 )
 	{
@@ -9887,7 +9887,7 @@ HLML_INLINE bool3x3 float3x3_less_than( const float3x3* lhs, const float3x3* rhs
 }
 
 // Performs a component-wise '<=' check against the two matrices and returns the result.
-HLML_INLINE bool3x3 float3x3_less_than_equal( const float3x3* lhs, const float3x3* rhs )
+HLML_INLINE bool3x3 float3x3_less_than_equal( const float3x3 *lhs, const float3x3* rhs )
 {
 	return HLML_CONSTRUCT( bool3x3 )
 	{
@@ -9898,7 +9898,7 @@ HLML_INLINE bool3x3 float3x3_less_than_equal( const float3x3* lhs, const float3x
 }
 
 // Performs a component-wise '>' check against the two matrices and returns the result.
-HLML_INLINE bool3x3 float3x3_greater_than( const float3x3* lhs, const float3x3* rhs )
+HLML_INLINE bool3x3 float3x3_greater_than( const float3x3 *lhs, const float3x3* rhs )
 {
 	return HLML_CONSTRUCT( bool3x3 )
 	{
@@ -9909,7 +9909,7 @@ HLML_INLINE bool3x3 float3x3_greater_than( const float3x3* lhs, const float3x3* 
 }
 
 // Performs a component-wise '>=' check against the two matrices and returns the result.
-HLML_INLINE bool3x3 float3x3_greater_than_equal( const float3x3* lhs, const float3x3* rhs )
+HLML_INLINE bool3x3 float3x3_greater_than_equal( const float3x3 *lhs, const float3x3* rhs )
 {
 	return HLML_CONSTRUCT( bool3x3 )
 	{
@@ -9920,7 +9920,7 @@ HLML_INLINE bool3x3 float3x3_greater_than_equal( const float3x3* lhs, const floa
 }
 
 // Performs a component-wise + on the matrix by the scalar and returns the result.
-HLML_INLINE float3x3 float3x3_cadds( const float3x3* lhs, const float rhs )
+HLML_INLINE float3x3 float3x3_cadds( const float3x3 *lhs, const float rhs )
 {
 	return HLML_CONSTRUCT( float3x3 )
 	{
@@ -9931,7 +9931,7 @@ HLML_INLINE float3x3 float3x3_cadds( const float3x3* lhs, const float rhs )
 }
 
 // Performs a component-wise + against the two matrices and returns the result.
-HLML_INLINE float3x3 float3x3_caddm( const float3x3* lhs, const float3x3* rhs )
+HLML_INLINE float3x3 float3x3_caddm( const float3x3 *lhs, const float3x3* rhs )
 {
 	return HLML_CONSTRUCT( float3x3 )
 	{
@@ -9942,7 +9942,7 @@ HLML_INLINE float3x3 float3x3_caddm( const float3x3* lhs, const float3x3* rhs )
 }
 
 // Performs a component-wise - on the matrix by the scalar and returns the result.
-HLML_INLINE float3x3 float3x3_csubs( const float3x3* lhs, const float rhs )
+HLML_INLINE float3x3 float3x3_csubs( const float3x3 *lhs, const float rhs )
 {
 	return HLML_CONSTRUCT( float3x3 )
 	{
@@ -9953,7 +9953,7 @@ HLML_INLINE float3x3 float3x3_csubs( const float3x3* lhs, const float rhs )
 }
 
 // Performs a component-wise - against the two matrices and returns the result.
-HLML_INLINE float3x3 float3x3_csubm( const float3x3* lhs, const float3x3* rhs )
+HLML_INLINE float3x3 float3x3_csubm( const float3x3 *lhs, const float3x3* rhs )
 {
 	return HLML_CONSTRUCT( float3x3 )
 	{
@@ -9964,7 +9964,7 @@ HLML_INLINE float3x3 float3x3_csubm( const float3x3* lhs, const float3x3* rhs )
 }
 
 // Performs a component-wise * on the matrix by the scalar and returns the result.
-HLML_INLINE float3x3 float3x3_cmuls( const float3x3* lhs, const float rhs )
+HLML_INLINE float3x3 float3x3_cmuls( const float3x3 *lhs, const float rhs )
 {
 	return HLML_CONSTRUCT( float3x3 )
 	{
@@ -9975,7 +9975,7 @@ HLML_INLINE float3x3 float3x3_cmuls( const float3x3* lhs, const float rhs )
 }
 
 // Performs a component-wise * against the two matrices and returns the result.
-HLML_INLINE float3x3 float3x3_cmulm( const float3x3* lhs, const float3x3* rhs )
+HLML_INLINE float3x3 float3x3_cmulm( const float3x3 *lhs, const float3x3* rhs )
 {
 	return HLML_CONSTRUCT( float3x3 )
 	{
@@ -9986,7 +9986,7 @@ HLML_INLINE float3x3 float3x3_cmulm( const float3x3* lhs, const float3x3* rhs )
 }
 
 // Performs a component-wise / on the matrix by the scalar and returns the result.
-HLML_INLINE float3x3 float3x3_cdivs( const float3x3* lhs, const float rhs )
+HLML_INLINE float3x3 float3x3_cdivs( const float3x3 *lhs, const float rhs )
 {
 	return HLML_CONSTRUCT( float3x3 )
 	{
@@ -9997,7 +9997,7 @@ HLML_INLINE float3x3 float3x3_cdivs( const float3x3* lhs, const float rhs )
 }
 
 // Performs a component-wise / against the two matrices and returns the result.
-HLML_INLINE float3x3 float3x3_cdivm( const float3x3* lhs, const float3x3* rhs )
+HLML_INLINE float3x3 float3x3_cdivm( const float3x3 *lhs, const float3x3* rhs )
 {
 	return HLML_CONSTRUCT( float3x3 )
 	{
@@ -10008,7 +10008,7 @@ HLML_INLINE float3x3 float3x3_cdivm( const float3x3* lhs, const float3x3* rhs )
 }
 
 // Returns a copy of the matrix that has been negated.
-HLML_INLINE float3x3 float3x3_negate( const float3x3* x )
+HLML_INLINE float3x3 float3x3_negate( const float3x3 *x )
 {
 	return HLML_CONSTRUCT( float3x3 )
 	{
@@ -10173,7 +10173,7 @@ HLML_INLINE float3x4 float3x4_lerp( const float3x4* lhs, const float3x4* rhs, co
 }
 
 // Returns true if the contents of 'lhs' are the same as the contents of 'rhs', otherwise returns false.
-HLML_INLINE bool float3x4_equals( const float3x4* lhs, const float3x4* rhs )
+HLML_INLINE bool float3x4_equals( const float3x4 *lhs, const float3x4 *rhs )
 {
 	return
 		float4_equals( &lhs->rows[0], &rhs->rows[0] ) &&
@@ -10182,13 +10182,13 @@ HLML_INLINE bool float3x4_equals( const float3x4* lhs, const float3x4* rhs )
 }
 
 // Returns true if the contents of 'lhs' are NOT the same as the contents of 'rhs', otherwise returns false.
-HLML_INLINE bool float3x4_not_equals( const float3x4* lhs, const float3x4* rhs )
+HLML_INLINE bool float3x4_not_equals( const float3x4 *lhs, const float3x4 *rhs )
 {
 	return !float3x4_equals( lhs, rhs );
 }
 
 // Performs a component-wise '<' check against the two matrices and returns the result.
-HLML_INLINE bool3x4 float3x4_less_than( const float3x4* lhs, const float3x4* rhs )
+HLML_INLINE bool3x4 float3x4_less_than( const float3x4 *lhs, const float3x4* rhs )
 {
 	return HLML_CONSTRUCT( bool3x4 )
 	{
@@ -10199,7 +10199,7 @@ HLML_INLINE bool3x4 float3x4_less_than( const float3x4* lhs, const float3x4* rhs
 }
 
 // Performs a component-wise '<=' check against the two matrices and returns the result.
-HLML_INLINE bool3x4 float3x4_less_than_equal( const float3x4* lhs, const float3x4* rhs )
+HLML_INLINE bool3x4 float3x4_less_than_equal( const float3x4 *lhs, const float3x4* rhs )
 {
 	return HLML_CONSTRUCT( bool3x4 )
 	{
@@ -10210,7 +10210,7 @@ HLML_INLINE bool3x4 float3x4_less_than_equal( const float3x4* lhs, const float3x
 }
 
 // Performs a component-wise '>' check against the two matrices and returns the result.
-HLML_INLINE bool3x4 float3x4_greater_than( const float3x4* lhs, const float3x4* rhs )
+HLML_INLINE bool3x4 float3x4_greater_than( const float3x4 *lhs, const float3x4* rhs )
 {
 	return HLML_CONSTRUCT( bool3x4 )
 	{
@@ -10221,7 +10221,7 @@ HLML_INLINE bool3x4 float3x4_greater_than( const float3x4* lhs, const float3x4* 
 }
 
 // Performs a component-wise '>=' check against the two matrices and returns the result.
-HLML_INLINE bool3x4 float3x4_greater_than_equal( const float3x4* lhs, const float3x4* rhs )
+HLML_INLINE bool3x4 float3x4_greater_than_equal( const float3x4 *lhs, const float3x4* rhs )
 {
 	return HLML_CONSTRUCT( bool3x4 )
 	{
@@ -10232,7 +10232,7 @@ HLML_INLINE bool3x4 float3x4_greater_than_equal( const float3x4* lhs, const floa
 }
 
 // Performs a component-wise + on the matrix by the scalar and returns the result.
-HLML_INLINE float3x4 float3x4_cadds( const float3x4* lhs, const float rhs )
+HLML_INLINE float3x4 float3x4_cadds( const float3x4 *lhs, const float rhs )
 {
 	return HLML_CONSTRUCT( float3x4 )
 	{
@@ -10243,7 +10243,7 @@ HLML_INLINE float3x4 float3x4_cadds( const float3x4* lhs, const float rhs )
 }
 
 // Performs a component-wise + against the two matrices and returns the result.
-HLML_INLINE float3x4 float3x4_caddm( const float3x4* lhs, const float3x4* rhs )
+HLML_INLINE float3x4 float3x4_caddm( const float3x4 *lhs, const float3x4* rhs )
 {
 	return HLML_CONSTRUCT( float3x4 )
 	{
@@ -10254,7 +10254,7 @@ HLML_INLINE float3x4 float3x4_caddm( const float3x4* lhs, const float3x4* rhs )
 }
 
 // Performs a component-wise - on the matrix by the scalar and returns the result.
-HLML_INLINE float3x4 float3x4_csubs( const float3x4* lhs, const float rhs )
+HLML_INLINE float3x4 float3x4_csubs( const float3x4 *lhs, const float rhs )
 {
 	return HLML_CONSTRUCT( float3x4 )
 	{
@@ -10265,7 +10265,7 @@ HLML_INLINE float3x4 float3x4_csubs( const float3x4* lhs, const float rhs )
 }
 
 // Performs a component-wise - against the two matrices and returns the result.
-HLML_INLINE float3x4 float3x4_csubm( const float3x4* lhs, const float3x4* rhs )
+HLML_INLINE float3x4 float3x4_csubm( const float3x4 *lhs, const float3x4* rhs )
 {
 	return HLML_CONSTRUCT( float3x4 )
 	{
@@ -10276,7 +10276,7 @@ HLML_INLINE float3x4 float3x4_csubm( const float3x4* lhs, const float3x4* rhs )
 }
 
 // Performs a component-wise * on the matrix by the scalar and returns the result.
-HLML_INLINE float3x4 float3x4_cmuls( const float3x4* lhs, const float rhs )
+HLML_INLINE float3x4 float3x4_cmuls( const float3x4 *lhs, const float rhs )
 {
 	return HLML_CONSTRUCT( float3x4 )
 	{
@@ -10287,7 +10287,7 @@ HLML_INLINE float3x4 float3x4_cmuls( const float3x4* lhs, const float rhs )
 }
 
 // Performs a component-wise * against the two matrices and returns the result.
-HLML_INLINE float3x4 float3x4_cmulm( const float3x4* lhs, const float3x4* rhs )
+HLML_INLINE float3x4 float3x4_cmulm( const float3x4 *lhs, const float3x4* rhs )
 {
 	return HLML_CONSTRUCT( float3x4 )
 	{
@@ -10298,7 +10298,7 @@ HLML_INLINE float3x4 float3x4_cmulm( const float3x4* lhs, const float3x4* rhs )
 }
 
 // Performs a component-wise / on the matrix by the scalar and returns the result.
-HLML_INLINE float3x4 float3x4_cdivs( const float3x4* lhs, const float rhs )
+HLML_INLINE float3x4 float3x4_cdivs( const float3x4 *lhs, const float rhs )
 {
 	return HLML_CONSTRUCT( float3x4 )
 	{
@@ -10309,7 +10309,7 @@ HLML_INLINE float3x4 float3x4_cdivs( const float3x4* lhs, const float rhs )
 }
 
 // Performs a component-wise / against the two matrices and returns the result.
-HLML_INLINE float3x4 float3x4_cdivm( const float3x4* lhs, const float3x4* rhs )
+HLML_INLINE float3x4 float3x4_cdivm( const float3x4 *lhs, const float3x4* rhs )
 {
 	return HLML_CONSTRUCT( float3x4 )
 	{
@@ -10320,7 +10320,7 @@ HLML_INLINE float3x4 float3x4_cdivm( const float3x4* lhs, const float3x4* rhs )
 }
 
 // Returns a copy of the matrix that has been negated.
-HLML_INLINE float3x4 float3x4_negate( const float3x4* x )
+HLML_INLINE float3x4 float3x4_negate( const float3x4 *x )
 {
 	return HLML_CONSTRUCT( float3x4 )
 	{
@@ -10451,7 +10451,7 @@ HLML_INLINE float4x2 float4x2_lerp( const float4x2* lhs, const float4x2* rhs, co
 }
 
 // Returns true if the contents of 'lhs' are the same as the contents of 'rhs', otherwise returns false.
-HLML_INLINE bool float4x2_equals( const float4x2* lhs, const float4x2* rhs )
+HLML_INLINE bool float4x2_equals( const float4x2 *lhs, const float4x2 *rhs )
 {
 	return
 		float2_equals( &lhs->rows[0], &rhs->rows[0] ) &&
@@ -10461,13 +10461,13 @@ HLML_INLINE bool float4x2_equals( const float4x2* lhs, const float4x2* rhs )
 }
 
 // Returns true if the contents of 'lhs' are NOT the same as the contents of 'rhs', otherwise returns false.
-HLML_INLINE bool float4x2_not_equals( const float4x2* lhs, const float4x2* rhs )
+HLML_INLINE bool float4x2_not_equals( const float4x2 *lhs, const float4x2 *rhs )
 {
 	return !float4x2_equals( lhs, rhs );
 }
 
 // Performs a component-wise '<' check against the two matrices and returns the result.
-HLML_INLINE bool4x2 float4x2_less_than( const float4x2* lhs, const float4x2* rhs )
+HLML_INLINE bool4x2 float4x2_less_than( const float4x2 *lhs, const float4x2* rhs )
 {
 	return HLML_CONSTRUCT( bool4x2 )
 	{
@@ -10479,7 +10479,7 @@ HLML_INLINE bool4x2 float4x2_less_than( const float4x2* lhs, const float4x2* rhs
 }
 
 // Performs a component-wise '<=' check against the two matrices and returns the result.
-HLML_INLINE bool4x2 float4x2_less_than_equal( const float4x2* lhs, const float4x2* rhs )
+HLML_INLINE bool4x2 float4x2_less_than_equal( const float4x2 *lhs, const float4x2* rhs )
 {
 	return HLML_CONSTRUCT( bool4x2 )
 	{
@@ -10491,7 +10491,7 @@ HLML_INLINE bool4x2 float4x2_less_than_equal( const float4x2* lhs, const float4x
 }
 
 // Performs a component-wise '>' check against the two matrices and returns the result.
-HLML_INLINE bool4x2 float4x2_greater_than( const float4x2* lhs, const float4x2* rhs )
+HLML_INLINE bool4x2 float4x2_greater_than( const float4x2 *lhs, const float4x2* rhs )
 {
 	return HLML_CONSTRUCT( bool4x2 )
 	{
@@ -10503,7 +10503,7 @@ HLML_INLINE bool4x2 float4x2_greater_than( const float4x2* lhs, const float4x2* 
 }
 
 // Performs a component-wise '>=' check against the two matrices and returns the result.
-HLML_INLINE bool4x2 float4x2_greater_than_equal( const float4x2* lhs, const float4x2* rhs )
+HLML_INLINE bool4x2 float4x2_greater_than_equal( const float4x2 *lhs, const float4x2* rhs )
 {
 	return HLML_CONSTRUCT( bool4x2 )
 	{
@@ -10515,7 +10515,7 @@ HLML_INLINE bool4x2 float4x2_greater_than_equal( const float4x2* lhs, const floa
 }
 
 // Performs a component-wise + on the matrix by the scalar and returns the result.
-HLML_INLINE float4x2 float4x2_cadds( const float4x2* lhs, const float rhs )
+HLML_INLINE float4x2 float4x2_cadds( const float4x2 *lhs, const float rhs )
 {
 	return HLML_CONSTRUCT( float4x2 )
 	{
@@ -10527,7 +10527,7 @@ HLML_INLINE float4x2 float4x2_cadds( const float4x2* lhs, const float rhs )
 }
 
 // Performs a component-wise + against the two matrices and returns the result.
-HLML_INLINE float4x2 float4x2_caddm( const float4x2* lhs, const float4x2* rhs )
+HLML_INLINE float4x2 float4x2_caddm( const float4x2 *lhs, const float4x2* rhs )
 {
 	return HLML_CONSTRUCT( float4x2 )
 	{
@@ -10539,7 +10539,7 @@ HLML_INLINE float4x2 float4x2_caddm( const float4x2* lhs, const float4x2* rhs )
 }
 
 // Performs a component-wise - on the matrix by the scalar and returns the result.
-HLML_INLINE float4x2 float4x2_csubs( const float4x2* lhs, const float rhs )
+HLML_INLINE float4x2 float4x2_csubs( const float4x2 *lhs, const float rhs )
 {
 	return HLML_CONSTRUCT( float4x2 )
 	{
@@ -10551,7 +10551,7 @@ HLML_INLINE float4x2 float4x2_csubs( const float4x2* lhs, const float rhs )
 }
 
 // Performs a component-wise - against the two matrices and returns the result.
-HLML_INLINE float4x2 float4x2_csubm( const float4x2* lhs, const float4x2* rhs )
+HLML_INLINE float4x2 float4x2_csubm( const float4x2 *lhs, const float4x2* rhs )
 {
 	return HLML_CONSTRUCT( float4x2 )
 	{
@@ -10563,7 +10563,7 @@ HLML_INLINE float4x2 float4x2_csubm( const float4x2* lhs, const float4x2* rhs )
 }
 
 // Performs a component-wise * on the matrix by the scalar and returns the result.
-HLML_INLINE float4x2 float4x2_cmuls( const float4x2* lhs, const float rhs )
+HLML_INLINE float4x2 float4x2_cmuls( const float4x2 *lhs, const float rhs )
 {
 	return HLML_CONSTRUCT( float4x2 )
 	{
@@ -10575,7 +10575,7 @@ HLML_INLINE float4x2 float4x2_cmuls( const float4x2* lhs, const float rhs )
 }
 
 // Performs a component-wise * against the two matrices and returns the result.
-HLML_INLINE float4x2 float4x2_cmulm( const float4x2* lhs, const float4x2* rhs )
+HLML_INLINE float4x2 float4x2_cmulm( const float4x2 *lhs, const float4x2* rhs )
 {
 	return HLML_CONSTRUCT( float4x2 )
 	{
@@ -10587,7 +10587,7 @@ HLML_INLINE float4x2 float4x2_cmulm( const float4x2* lhs, const float4x2* rhs )
 }
 
 // Performs a component-wise / on the matrix by the scalar and returns the result.
-HLML_INLINE float4x2 float4x2_cdivs( const float4x2* lhs, const float rhs )
+HLML_INLINE float4x2 float4x2_cdivs( const float4x2 *lhs, const float rhs )
 {
 	return HLML_CONSTRUCT( float4x2 )
 	{
@@ -10599,7 +10599,7 @@ HLML_INLINE float4x2 float4x2_cdivs( const float4x2* lhs, const float rhs )
 }
 
 // Performs a component-wise / against the two matrices and returns the result.
-HLML_INLINE float4x2 float4x2_cdivm( const float4x2* lhs, const float4x2* rhs )
+HLML_INLINE float4x2 float4x2_cdivm( const float4x2 *lhs, const float4x2* rhs )
 {
 	return HLML_CONSTRUCT( float4x2 )
 	{
@@ -10611,7 +10611,7 @@ HLML_INLINE float4x2 float4x2_cdivm( const float4x2* lhs, const float4x2* rhs )
 }
 
 // Returns a copy of the matrix that has been negated.
-HLML_INLINE float4x2 float4x2_negate( const float4x2* x )
+HLML_INLINE float4x2 float4x2_negate( const float4x2 *x )
 {
 	return HLML_CONSTRUCT( float4x2 )
 	{
@@ -10752,7 +10752,7 @@ HLML_INLINE float4x3 float4x3_lerp( const float4x3* lhs, const float4x3* rhs, co
 }
 
 // Returns true if the contents of 'lhs' are the same as the contents of 'rhs', otherwise returns false.
-HLML_INLINE bool float4x3_equals( const float4x3* lhs, const float4x3* rhs )
+HLML_INLINE bool float4x3_equals( const float4x3 *lhs, const float4x3 *rhs )
 {
 	return
 		float3_equals( &lhs->rows[0], &rhs->rows[0] ) &&
@@ -10762,13 +10762,13 @@ HLML_INLINE bool float4x3_equals( const float4x3* lhs, const float4x3* rhs )
 }
 
 // Returns true if the contents of 'lhs' are NOT the same as the contents of 'rhs', otherwise returns false.
-HLML_INLINE bool float4x3_not_equals( const float4x3* lhs, const float4x3* rhs )
+HLML_INLINE bool float4x3_not_equals( const float4x3 *lhs, const float4x3 *rhs )
 {
 	return !float4x3_equals( lhs, rhs );
 }
 
 // Performs a component-wise '<' check against the two matrices and returns the result.
-HLML_INLINE bool4x3 float4x3_less_than( const float4x3* lhs, const float4x3* rhs )
+HLML_INLINE bool4x3 float4x3_less_than( const float4x3 *lhs, const float4x3* rhs )
 {
 	return HLML_CONSTRUCT( bool4x3 )
 	{
@@ -10780,7 +10780,7 @@ HLML_INLINE bool4x3 float4x3_less_than( const float4x3* lhs, const float4x3* rhs
 }
 
 // Performs a component-wise '<=' check against the two matrices and returns the result.
-HLML_INLINE bool4x3 float4x3_less_than_equal( const float4x3* lhs, const float4x3* rhs )
+HLML_INLINE bool4x3 float4x3_less_than_equal( const float4x3 *lhs, const float4x3* rhs )
 {
 	return HLML_CONSTRUCT( bool4x3 )
 	{
@@ -10792,7 +10792,7 @@ HLML_INLINE bool4x3 float4x3_less_than_equal( const float4x3* lhs, const float4x
 }
 
 // Performs a component-wise '>' check against the two matrices and returns the result.
-HLML_INLINE bool4x3 float4x3_greater_than( const float4x3* lhs, const float4x3* rhs )
+HLML_INLINE bool4x3 float4x3_greater_than( const float4x3 *lhs, const float4x3* rhs )
 {
 	return HLML_CONSTRUCT( bool4x3 )
 	{
@@ -10804,7 +10804,7 @@ HLML_INLINE bool4x3 float4x3_greater_than( const float4x3* lhs, const float4x3* 
 }
 
 // Performs a component-wise '>=' check against the two matrices and returns the result.
-HLML_INLINE bool4x3 float4x3_greater_than_equal( const float4x3* lhs, const float4x3* rhs )
+HLML_INLINE bool4x3 float4x3_greater_than_equal( const float4x3 *lhs, const float4x3* rhs )
 {
 	return HLML_CONSTRUCT( bool4x3 )
 	{
@@ -10816,7 +10816,7 @@ HLML_INLINE bool4x3 float4x3_greater_than_equal( const float4x3* lhs, const floa
 }
 
 // Performs a component-wise + on the matrix by the scalar and returns the result.
-HLML_INLINE float4x3 float4x3_cadds( const float4x3* lhs, const float rhs )
+HLML_INLINE float4x3 float4x3_cadds( const float4x3 *lhs, const float rhs )
 {
 	return HLML_CONSTRUCT( float4x3 )
 	{
@@ -10828,7 +10828,7 @@ HLML_INLINE float4x3 float4x3_cadds( const float4x3* lhs, const float rhs )
 }
 
 // Performs a component-wise + against the two matrices and returns the result.
-HLML_INLINE float4x3 float4x3_caddm( const float4x3* lhs, const float4x3* rhs )
+HLML_INLINE float4x3 float4x3_caddm( const float4x3 *lhs, const float4x3* rhs )
 {
 	return HLML_CONSTRUCT( float4x3 )
 	{
@@ -10840,7 +10840,7 @@ HLML_INLINE float4x3 float4x3_caddm( const float4x3* lhs, const float4x3* rhs )
 }
 
 // Performs a component-wise - on the matrix by the scalar and returns the result.
-HLML_INLINE float4x3 float4x3_csubs( const float4x3* lhs, const float rhs )
+HLML_INLINE float4x3 float4x3_csubs( const float4x3 *lhs, const float rhs )
 {
 	return HLML_CONSTRUCT( float4x3 )
 	{
@@ -10852,7 +10852,7 @@ HLML_INLINE float4x3 float4x3_csubs( const float4x3* lhs, const float rhs )
 }
 
 // Performs a component-wise - against the two matrices and returns the result.
-HLML_INLINE float4x3 float4x3_csubm( const float4x3* lhs, const float4x3* rhs )
+HLML_INLINE float4x3 float4x3_csubm( const float4x3 *lhs, const float4x3* rhs )
 {
 	return HLML_CONSTRUCT( float4x3 )
 	{
@@ -10864,7 +10864,7 @@ HLML_INLINE float4x3 float4x3_csubm( const float4x3* lhs, const float4x3* rhs )
 }
 
 // Performs a component-wise * on the matrix by the scalar and returns the result.
-HLML_INLINE float4x3 float4x3_cmuls( const float4x3* lhs, const float rhs )
+HLML_INLINE float4x3 float4x3_cmuls( const float4x3 *lhs, const float rhs )
 {
 	return HLML_CONSTRUCT( float4x3 )
 	{
@@ -10876,7 +10876,7 @@ HLML_INLINE float4x3 float4x3_cmuls( const float4x3* lhs, const float rhs )
 }
 
 // Performs a component-wise * against the two matrices and returns the result.
-HLML_INLINE float4x3 float4x3_cmulm( const float4x3* lhs, const float4x3* rhs )
+HLML_INLINE float4x3 float4x3_cmulm( const float4x3 *lhs, const float4x3* rhs )
 {
 	return HLML_CONSTRUCT( float4x3 )
 	{
@@ -10888,7 +10888,7 @@ HLML_INLINE float4x3 float4x3_cmulm( const float4x3* lhs, const float4x3* rhs )
 }
 
 // Performs a component-wise / on the matrix by the scalar and returns the result.
-HLML_INLINE float4x3 float4x3_cdivs( const float4x3* lhs, const float rhs )
+HLML_INLINE float4x3 float4x3_cdivs( const float4x3 *lhs, const float rhs )
 {
 	return HLML_CONSTRUCT( float4x3 )
 	{
@@ -10900,7 +10900,7 @@ HLML_INLINE float4x3 float4x3_cdivs( const float4x3* lhs, const float rhs )
 }
 
 // Performs a component-wise / against the two matrices and returns the result.
-HLML_INLINE float4x3 float4x3_cdivm( const float4x3* lhs, const float4x3* rhs )
+HLML_INLINE float4x3 float4x3_cdivm( const float4x3 *lhs, const float4x3* rhs )
 {
 	return HLML_CONSTRUCT( float4x3 )
 	{
@@ -10912,7 +10912,7 @@ HLML_INLINE float4x3 float4x3_cdivm( const float4x3* lhs, const float4x3* rhs )
 }
 
 // Returns a copy of the matrix that has been negated.
-HLML_INLINE float4x3 float4x3_negate( const float4x3* x )
+HLML_INLINE float4x3 float4x3_negate( const float4x3 *x )
 {
 	return HLML_CONSTRUCT( float4x3 )
 	{
@@ -11054,7 +11054,7 @@ HLML_INLINE float4x4 float4x4_lerp( const float4x4* lhs, const float4x4* rhs, co
 }
 
 // Returns true if the contents of 'lhs' are the same as the contents of 'rhs', otherwise returns false.
-HLML_INLINE bool float4x4_equals( const float4x4* lhs, const float4x4* rhs )
+HLML_INLINE bool float4x4_equals( const float4x4 *lhs, const float4x4 *rhs )
 {
 	return
 		float4_equals( &lhs->rows[0], &rhs->rows[0] ) &&
@@ -11064,13 +11064,13 @@ HLML_INLINE bool float4x4_equals( const float4x4* lhs, const float4x4* rhs )
 }
 
 // Returns true if the contents of 'lhs' are NOT the same as the contents of 'rhs', otherwise returns false.
-HLML_INLINE bool float4x4_not_equals( const float4x4* lhs, const float4x4* rhs )
+HLML_INLINE bool float4x4_not_equals( const float4x4 *lhs, const float4x4 *rhs )
 {
 	return !float4x4_equals( lhs, rhs );
 }
 
 // Performs a component-wise '<' check against the two matrices and returns the result.
-HLML_INLINE bool4x4 float4x4_less_than( const float4x4* lhs, const float4x4* rhs )
+HLML_INLINE bool4x4 float4x4_less_than( const float4x4 *lhs, const float4x4* rhs )
 {
 	return HLML_CONSTRUCT( bool4x4 )
 	{
@@ -11082,7 +11082,7 @@ HLML_INLINE bool4x4 float4x4_less_than( const float4x4* lhs, const float4x4* rhs
 }
 
 // Performs a component-wise '<=' check against the two matrices and returns the result.
-HLML_INLINE bool4x4 float4x4_less_than_equal( const float4x4* lhs, const float4x4* rhs )
+HLML_INLINE bool4x4 float4x4_less_than_equal( const float4x4 *lhs, const float4x4* rhs )
 {
 	return HLML_CONSTRUCT( bool4x4 )
 	{
@@ -11094,7 +11094,7 @@ HLML_INLINE bool4x4 float4x4_less_than_equal( const float4x4* lhs, const float4x
 }
 
 // Performs a component-wise '>' check against the two matrices and returns the result.
-HLML_INLINE bool4x4 float4x4_greater_than( const float4x4* lhs, const float4x4* rhs )
+HLML_INLINE bool4x4 float4x4_greater_than( const float4x4 *lhs, const float4x4* rhs )
 {
 	return HLML_CONSTRUCT( bool4x4 )
 	{
@@ -11106,7 +11106,7 @@ HLML_INLINE bool4x4 float4x4_greater_than( const float4x4* lhs, const float4x4* 
 }
 
 // Performs a component-wise '>=' check against the two matrices and returns the result.
-HLML_INLINE bool4x4 float4x4_greater_than_equal( const float4x4* lhs, const float4x4* rhs )
+HLML_INLINE bool4x4 float4x4_greater_than_equal( const float4x4 *lhs, const float4x4* rhs )
 {
 	return HLML_CONSTRUCT( bool4x4 )
 	{
@@ -11118,7 +11118,7 @@ HLML_INLINE bool4x4 float4x4_greater_than_equal( const float4x4* lhs, const floa
 }
 
 // Performs a component-wise + on the matrix by the scalar and returns the result.
-HLML_INLINE float4x4 float4x4_cadds( const float4x4* lhs, const float rhs )
+HLML_INLINE float4x4 float4x4_cadds( const float4x4 *lhs, const float rhs )
 {
 	return HLML_CONSTRUCT( float4x4 )
 	{
@@ -11130,7 +11130,7 @@ HLML_INLINE float4x4 float4x4_cadds( const float4x4* lhs, const float rhs )
 }
 
 // Performs a component-wise + against the two matrices and returns the result.
-HLML_INLINE float4x4 float4x4_caddm( const float4x4* lhs, const float4x4* rhs )
+HLML_INLINE float4x4 float4x4_caddm( const float4x4 *lhs, const float4x4* rhs )
 {
 	return HLML_CONSTRUCT( float4x4 )
 	{
@@ -11142,7 +11142,7 @@ HLML_INLINE float4x4 float4x4_caddm( const float4x4* lhs, const float4x4* rhs )
 }
 
 // Performs a component-wise - on the matrix by the scalar and returns the result.
-HLML_INLINE float4x4 float4x4_csubs( const float4x4* lhs, const float rhs )
+HLML_INLINE float4x4 float4x4_csubs( const float4x4 *lhs, const float rhs )
 {
 	return HLML_CONSTRUCT( float4x4 )
 	{
@@ -11154,7 +11154,7 @@ HLML_INLINE float4x4 float4x4_csubs( const float4x4* lhs, const float rhs )
 }
 
 // Performs a component-wise - against the two matrices and returns the result.
-HLML_INLINE float4x4 float4x4_csubm( const float4x4* lhs, const float4x4* rhs )
+HLML_INLINE float4x4 float4x4_csubm( const float4x4 *lhs, const float4x4* rhs )
 {
 	return HLML_CONSTRUCT( float4x4 )
 	{
@@ -11166,7 +11166,7 @@ HLML_INLINE float4x4 float4x4_csubm( const float4x4* lhs, const float4x4* rhs )
 }
 
 // Performs a component-wise * on the matrix by the scalar and returns the result.
-HLML_INLINE float4x4 float4x4_cmuls( const float4x4* lhs, const float rhs )
+HLML_INLINE float4x4 float4x4_cmuls( const float4x4 *lhs, const float rhs )
 {
 	return HLML_CONSTRUCT( float4x4 )
 	{
@@ -11178,7 +11178,7 @@ HLML_INLINE float4x4 float4x4_cmuls( const float4x4* lhs, const float rhs )
 }
 
 // Performs a component-wise * against the two matrices and returns the result.
-HLML_INLINE float4x4 float4x4_cmulm( const float4x4* lhs, const float4x4* rhs )
+HLML_INLINE float4x4 float4x4_cmulm( const float4x4 *lhs, const float4x4* rhs )
 {
 	return HLML_CONSTRUCT( float4x4 )
 	{
@@ -11190,7 +11190,7 @@ HLML_INLINE float4x4 float4x4_cmulm( const float4x4* lhs, const float4x4* rhs )
 }
 
 // Performs a component-wise / on the matrix by the scalar and returns the result.
-HLML_INLINE float4x4 float4x4_cdivs( const float4x4* lhs, const float rhs )
+HLML_INLINE float4x4 float4x4_cdivs( const float4x4 *lhs, const float rhs )
 {
 	return HLML_CONSTRUCT( float4x4 )
 	{
@@ -11202,7 +11202,7 @@ HLML_INLINE float4x4 float4x4_cdivs( const float4x4* lhs, const float rhs )
 }
 
 // Performs a component-wise / against the two matrices and returns the result.
-HLML_INLINE float4x4 float4x4_cdivm( const float4x4* lhs, const float4x4* rhs )
+HLML_INLINE float4x4 float4x4_cdivm( const float4x4 *lhs, const float4x4* rhs )
 {
 	return HLML_CONSTRUCT( float4x4 )
 	{
@@ -11214,7 +11214,7 @@ HLML_INLINE float4x4 float4x4_cdivm( const float4x4* lhs, const float4x4* rhs )
 }
 
 // Returns a copy of the matrix that has been negated.
-HLML_INLINE float4x4 float4x4_negate( const float4x4* x )
+HLML_INLINE float4x4 float4x4_negate( const float4x4 *x )
 {
 	return HLML_CONSTRUCT( float4x4 )
 	{
@@ -11712,7 +11712,7 @@ HLML_INLINE double2x2 double2x2_lerp( const double2x2* lhs, const double2x2* rhs
 }
 
 // Returns true if the contents of 'lhs' are the same as the contents of 'rhs', otherwise returns false.
-HLML_INLINE bool double2x2_equals( const double2x2* lhs, const double2x2* rhs )
+HLML_INLINE bool double2x2_equals( const double2x2 *lhs, const double2x2 *rhs )
 {
 	return
 		double2_equals( &lhs->rows[0], &rhs->rows[0] ) &&
@@ -11720,13 +11720,13 @@ HLML_INLINE bool double2x2_equals( const double2x2* lhs, const double2x2* rhs )
 }
 
 // Returns true if the contents of 'lhs' are NOT the same as the contents of 'rhs', otherwise returns false.
-HLML_INLINE bool double2x2_not_equals( const double2x2* lhs, const double2x2* rhs )
+HLML_INLINE bool double2x2_not_equals( const double2x2 *lhs, const double2x2 *rhs )
 {
 	return !double2x2_equals( lhs, rhs );
 }
 
 // Performs a component-wise '<' check against the two matrices and returns the result.
-HLML_INLINE bool2x2 double2x2_less_than( const double2x2* lhs, const double2x2* rhs )
+HLML_INLINE bool2x2 double2x2_less_than( const double2x2 *lhs, const double2x2* rhs )
 {
 	return HLML_CONSTRUCT( bool2x2 )
 	{
@@ -11736,7 +11736,7 @@ HLML_INLINE bool2x2 double2x2_less_than( const double2x2* lhs, const double2x2* 
 }
 
 // Performs a component-wise '<=' check against the two matrices and returns the result.
-HLML_INLINE bool2x2 double2x2_less_than_equal( const double2x2* lhs, const double2x2* rhs )
+HLML_INLINE bool2x2 double2x2_less_than_equal( const double2x2 *lhs, const double2x2* rhs )
 {
 	return HLML_CONSTRUCT( bool2x2 )
 	{
@@ -11746,7 +11746,7 @@ HLML_INLINE bool2x2 double2x2_less_than_equal( const double2x2* lhs, const doubl
 }
 
 // Performs a component-wise '>' check against the two matrices and returns the result.
-HLML_INLINE bool2x2 double2x2_greater_than( const double2x2* lhs, const double2x2* rhs )
+HLML_INLINE bool2x2 double2x2_greater_than( const double2x2 *lhs, const double2x2* rhs )
 {
 	return HLML_CONSTRUCT( bool2x2 )
 	{
@@ -11756,7 +11756,7 @@ HLML_INLINE bool2x2 double2x2_greater_than( const double2x2* lhs, const double2x
 }
 
 // Performs a component-wise '>=' check against the two matrices and returns the result.
-HLML_INLINE bool2x2 double2x2_greater_than_equal( const double2x2* lhs, const double2x2* rhs )
+HLML_INLINE bool2x2 double2x2_greater_than_equal( const double2x2 *lhs, const double2x2* rhs )
 {
 	return HLML_CONSTRUCT( bool2x2 )
 	{
@@ -11766,7 +11766,7 @@ HLML_INLINE bool2x2 double2x2_greater_than_equal( const double2x2* lhs, const do
 }
 
 // Performs a component-wise + on the matrix by the scalar and returns the result.
-HLML_INLINE double2x2 double2x2_cadds( const double2x2* lhs, const double rhs )
+HLML_INLINE double2x2 double2x2_cadds( const double2x2 *lhs, const double rhs )
 {
 	return HLML_CONSTRUCT( double2x2 )
 	{
@@ -11776,7 +11776,7 @@ HLML_INLINE double2x2 double2x2_cadds( const double2x2* lhs, const double rhs )
 }
 
 // Performs a component-wise + against the two matrices and returns the result.
-HLML_INLINE double2x2 double2x2_caddm( const double2x2* lhs, const double2x2* rhs )
+HLML_INLINE double2x2 double2x2_caddm( const double2x2 *lhs, const double2x2* rhs )
 {
 	return HLML_CONSTRUCT( double2x2 )
 	{
@@ -11786,7 +11786,7 @@ HLML_INLINE double2x2 double2x2_caddm( const double2x2* lhs, const double2x2* rh
 }
 
 // Performs a component-wise - on the matrix by the scalar and returns the result.
-HLML_INLINE double2x2 double2x2_csubs( const double2x2* lhs, const double rhs )
+HLML_INLINE double2x2 double2x2_csubs( const double2x2 *lhs, const double rhs )
 {
 	return HLML_CONSTRUCT( double2x2 )
 	{
@@ -11796,7 +11796,7 @@ HLML_INLINE double2x2 double2x2_csubs( const double2x2* lhs, const double rhs )
 }
 
 // Performs a component-wise - against the two matrices and returns the result.
-HLML_INLINE double2x2 double2x2_csubm( const double2x2* lhs, const double2x2* rhs )
+HLML_INLINE double2x2 double2x2_csubm( const double2x2 *lhs, const double2x2* rhs )
 {
 	return HLML_CONSTRUCT( double2x2 )
 	{
@@ -11806,7 +11806,7 @@ HLML_INLINE double2x2 double2x2_csubm( const double2x2* lhs, const double2x2* rh
 }
 
 // Performs a component-wise * on the matrix by the scalar and returns the result.
-HLML_INLINE double2x2 double2x2_cmuls( const double2x2* lhs, const double rhs )
+HLML_INLINE double2x2 double2x2_cmuls( const double2x2 *lhs, const double rhs )
 {
 	return HLML_CONSTRUCT( double2x2 )
 	{
@@ -11816,7 +11816,7 @@ HLML_INLINE double2x2 double2x2_cmuls( const double2x2* lhs, const double rhs )
 }
 
 // Performs a component-wise * against the two matrices and returns the result.
-HLML_INLINE double2x2 double2x2_cmulm( const double2x2* lhs, const double2x2* rhs )
+HLML_INLINE double2x2 double2x2_cmulm( const double2x2 *lhs, const double2x2* rhs )
 {
 	return HLML_CONSTRUCT( double2x2 )
 	{
@@ -11826,7 +11826,7 @@ HLML_INLINE double2x2 double2x2_cmulm( const double2x2* lhs, const double2x2* rh
 }
 
 // Performs a component-wise / on the matrix by the scalar and returns the result.
-HLML_INLINE double2x2 double2x2_cdivs( const double2x2* lhs, const double rhs )
+HLML_INLINE double2x2 double2x2_cdivs( const double2x2 *lhs, const double rhs )
 {
 	return HLML_CONSTRUCT( double2x2 )
 	{
@@ -11836,7 +11836,7 @@ HLML_INLINE double2x2 double2x2_cdivs( const double2x2* lhs, const double rhs )
 }
 
 // Performs a component-wise / against the two matrices and returns the result.
-HLML_INLINE double2x2 double2x2_cdivm( const double2x2* lhs, const double2x2* rhs )
+HLML_INLINE double2x2 double2x2_cdivm( const double2x2 *lhs, const double2x2* rhs )
 {
 	return HLML_CONSTRUCT( double2x2 )
 	{
@@ -11846,7 +11846,7 @@ HLML_INLINE double2x2 double2x2_cdivm( const double2x2* lhs, const double2x2* rh
 }
 
 // Returns a copy of the matrix that has been negated.
-HLML_INLINE double2x2 double2x2_negate( const double2x2* x )
+HLML_INLINE double2x2 double2x2_negate( const double2x2 *x )
 {
 	return HLML_CONSTRUCT( double2x2 )
 	{
@@ -11981,7 +11981,7 @@ HLML_INLINE double2x3 double2x3_lerp( const double2x3* lhs, const double2x3* rhs
 }
 
 // Returns true if the contents of 'lhs' are the same as the contents of 'rhs', otherwise returns false.
-HLML_INLINE bool double2x3_equals( const double2x3* lhs, const double2x3* rhs )
+HLML_INLINE bool double2x3_equals( const double2x3 *lhs, const double2x3 *rhs )
 {
 	return
 		double3_equals( &lhs->rows[0], &rhs->rows[0] ) &&
@@ -11989,13 +11989,13 @@ HLML_INLINE bool double2x3_equals( const double2x3* lhs, const double2x3* rhs )
 }
 
 // Returns true if the contents of 'lhs' are NOT the same as the contents of 'rhs', otherwise returns false.
-HLML_INLINE bool double2x3_not_equals( const double2x3* lhs, const double2x3* rhs )
+HLML_INLINE bool double2x3_not_equals( const double2x3 *lhs, const double2x3 *rhs )
 {
 	return !double2x3_equals( lhs, rhs );
 }
 
 // Performs a component-wise '<' check against the two matrices and returns the result.
-HLML_INLINE bool2x3 double2x3_less_than( const double2x3* lhs, const double2x3* rhs )
+HLML_INLINE bool2x3 double2x3_less_than( const double2x3 *lhs, const double2x3* rhs )
 {
 	return HLML_CONSTRUCT( bool2x3 )
 	{
@@ -12005,7 +12005,7 @@ HLML_INLINE bool2x3 double2x3_less_than( const double2x3* lhs, const double2x3* 
 }
 
 // Performs a component-wise '<=' check against the two matrices and returns the result.
-HLML_INLINE bool2x3 double2x3_less_than_equal( const double2x3* lhs, const double2x3* rhs )
+HLML_INLINE bool2x3 double2x3_less_than_equal( const double2x3 *lhs, const double2x3* rhs )
 {
 	return HLML_CONSTRUCT( bool2x3 )
 	{
@@ -12015,7 +12015,7 @@ HLML_INLINE bool2x3 double2x3_less_than_equal( const double2x3* lhs, const doubl
 }
 
 // Performs a component-wise '>' check against the two matrices and returns the result.
-HLML_INLINE bool2x3 double2x3_greater_than( const double2x3* lhs, const double2x3* rhs )
+HLML_INLINE bool2x3 double2x3_greater_than( const double2x3 *lhs, const double2x3* rhs )
 {
 	return HLML_CONSTRUCT( bool2x3 )
 	{
@@ -12025,7 +12025,7 @@ HLML_INLINE bool2x3 double2x3_greater_than( const double2x3* lhs, const double2x
 }
 
 // Performs a component-wise '>=' check against the two matrices and returns the result.
-HLML_INLINE bool2x3 double2x3_greater_than_equal( const double2x3* lhs, const double2x3* rhs )
+HLML_INLINE bool2x3 double2x3_greater_than_equal( const double2x3 *lhs, const double2x3* rhs )
 {
 	return HLML_CONSTRUCT( bool2x3 )
 	{
@@ -12035,7 +12035,7 @@ HLML_INLINE bool2x3 double2x3_greater_than_equal( const double2x3* lhs, const do
 }
 
 // Performs a component-wise + on the matrix by the scalar and returns the result.
-HLML_INLINE double2x3 double2x3_cadds( const double2x3* lhs, const double rhs )
+HLML_INLINE double2x3 double2x3_cadds( const double2x3 *lhs, const double rhs )
 {
 	return HLML_CONSTRUCT( double2x3 )
 	{
@@ -12045,7 +12045,7 @@ HLML_INLINE double2x3 double2x3_cadds( const double2x3* lhs, const double rhs )
 }
 
 // Performs a component-wise + against the two matrices and returns the result.
-HLML_INLINE double2x3 double2x3_caddm( const double2x3* lhs, const double2x3* rhs )
+HLML_INLINE double2x3 double2x3_caddm( const double2x3 *lhs, const double2x3* rhs )
 {
 	return HLML_CONSTRUCT( double2x3 )
 	{
@@ -12055,7 +12055,7 @@ HLML_INLINE double2x3 double2x3_caddm( const double2x3* lhs, const double2x3* rh
 }
 
 // Performs a component-wise - on the matrix by the scalar and returns the result.
-HLML_INLINE double2x3 double2x3_csubs( const double2x3* lhs, const double rhs )
+HLML_INLINE double2x3 double2x3_csubs( const double2x3 *lhs, const double rhs )
 {
 	return HLML_CONSTRUCT( double2x3 )
 	{
@@ -12065,7 +12065,7 @@ HLML_INLINE double2x3 double2x3_csubs( const double2x3* lhs, const double rhs )
 }
 
 // Performs a component-wise - against the two matrices and returns the result.
-HLML_INLINE double2x3 double2x3_csubm( const double2x3* lhs, const double2x3* rhs )
+HLML_INLINE double2x3 double2x3_csubm( const double2x3 *lhs, const double2x3* rhs )
 {
 	return HLML_CONSTRUCT( double2x3 )
 	{
@@ -12075,7 +12075,7 @@ HLML_INLINE double2x3 double2x3_csubm( const double2x3* lhs, const double2x3* rh
 }
 
 // Performs a component-wise * on the matrix by the scalar and returns the result.
-HLML_INLINE double2x3 double2x3_cmuls( const double2x3* lhs, const double rhs )
+HLML_INLINE double2x3 double2x3_cmuls( const double2x3 *lhs, const double rhs )
 {
 	return HLML_CONSTRUCT( double2x3 )
 	{
@@ -12085,7 +12085,7 @@ HLML_INLINE double2x3 double2x3_cmuls( const double2x3* lhs, const double rhs )
 }
 
 // Performs a component-wise * against the two matrices and returns the result.
-HLML_INLINE double2x3 double2x3_cmulm( const double2x3* lhs, const double2x3* rhs )
+HLML_INLINE double2x3 double2x3_cmulm( const double2x3 *lhs, const double2x3* rhs )
 {
 	return HLML_CONSTRUCT( double2x3 )
 	{
@@ -12095,7 +12095,7 @@ HLML_INLINE double2x3 double2x3_cmulm( const double2x3* lhs, const double2x3* rh
 }
 
 // Performs a component-wise / on the matrix by the scalar and returns the result.
-HLML_INLINE double2x3 double2x3_cdivs( const double2x3* lhs, const double rhs )
+HLML_INLINE double2x3 double2x3_cdivs( const double2x3 *lhs, const double rhs )
 {
 	return HLML_CONSTRUCT( double2x3 )
 	{
@@ -12105,7 +12105,7 @@ HLML_INLINE double2x3 double2x3_cdivs( const double2x3* lhs, const double rhs )
 }
 
 // Performs a component-wise / against the two matrices and returns the result.
-HLML_INLINE double2x3 double2x3_cdivm( const double2x3* lhs, const double2x3* rhs )
+HLML_INLINE double2x3 double2x3_cdivm( const double2x3 *lhs, const double2x3* rhs )
 {
 	return HLML_CONSTRUCT( double2x3 )
 	{
@@ -12115,7 +12115,7 @@ HLML_INLINE double2x3 double2x3_cdivm( const double2x3* lhs, const double2x3* rh
 }
 
 // Returns a copy of the matrix that has been negated.
-HLML_INLINE double2x3 double2x3_negate( const double2x3* x )
+HLML_INLINE double2x3 double2x3_negate( const double2x3 *x )
 {
 	return HLML_CONSTRUCT( double2x3 )
 	{
@@ -12223,7 +12223,7 @@ HLML_INLINE double2x4 double2x4_lerp( const double2x4* lhs, const double2x4* rhs
 }
 
 // Returns true if the contents of 'lhs' are the same as the contents of 'rhs', otherwise returns false.
-HLML_INLINE bool double2x4_equals( const double2x4* lhs, const double2x4* rhs )
+HLML_INLINE bool double2x4_equals( const double2x4 *lhs, const double2x4 *rhs )
 {
 	return
 		double4_equals( &lhs->rows[0], &rhs->rows[0] ) &&
@@ -12231,13 +12231,13 @@ HLML_INLINE bool double2x4_equals( const double2x4* lhs, const double2x4* rhs )
 }
 
 // Returns true if the contents of 'lhs' are NOT the same as the contents of 'rhs', otherwise returns false.
-HLML_INLINE bool double2x4_not_equals( const double2x4* lhs, const double2x4* rhs )
+HLML_INLINE bool double2x4_not_equals( const double2x4 *lhs, const double2x4 *rhs )
 {
 	return !double2x4_equals( lhs, rhs );
 }
 
 // Performs a component-wise '<' check against the two matrices and returns the result.
-HLML_INLINE bool2x4 double2x4_less_than( const double2x4* lhs, const double2x4* rhs )
+HLML_INLINE bool2x4 double2x4_less_than( const double2x4 *lhs, const double2x4* rhs )
 {
 	return HLML_CONSTRUCT( bool2x4 )
 	{
@@ -12247,7 +12247,7 @@ HLML_INLINE bool2x4 double2x4_less_than( const double2x4* lhs, const double2x4* 
 }
 
 // Performs a component-wise '<=' check against the two matrices and returns the result.
-HLML_INLINE bool2x4 double2x4_less_than_equal( const double2x4* lhs, const double2x4* rhs )
+HLML_INLINE bool2x4 double2x4_less_than_equal( const double2x4 *lhs, const double2x4* rhs )
 {
 	return HLML_CONSTRUCT( bool2x4 )
 	{
@@ -12257,7 +12257,7 @@ HLML_INLINE bool2x4 double2x4_less_than_equal( const double2x4* lhs, const doubl
 }
 
 // Performs a component-wise '>' check against the two matrices and returns the result.
-HLML_INLINE bool2x4 double2x4_greater_than( const double2x4* lhs, const double2x4* rhs )
+HLML_INLINE bool2x4 double2x4_greater_than( const double2x4 *lhs, const double2x4* rhs )
 {
 	return HLML_CONSTRUCT( bool2x4 )
 	{
@@ -12267,7 +12267,7 @@ HLML_INLINE bool2x4 double2x4_greater_than( const double2x4* lhs, const double2x
 }
 
 // Performs a component-wise '>=' check against the two matrices and returns the result.
-HLML_INLINE bool2x4 double2x4_greater_than_equal( const double2x4* lhs, const double2x4* rhs )
+HLML_INLINE bool2x4 double2x4_greater_than_equal( const double2x4 *lhs, const double2x4* rhs )
 {
 	return HLML_CONSTRUCT( bool2x4 )
 	{
@@ -12277,7 +12277,7 @@ HLML_INLINE bool2x4 double2x4_greater_than_equal( const double2x4* lhs, const do
 }
 
 // Performs a component-wise + on the matrix by the scalar and returns the result.
-HLML_INLINE double2x4 double2x4_cadds( const double2x4* lhs, const double rhs )
+HLML_INLINE double2x4 double2x4_cadds( const double2x4 *lhs, const double rhs )
 {
 	return HLML_CONSTRUCT( double2x4 )
 	{
@@ -12287,7 +12287,7 @@ HLML_INLINE double2x4 double2x4_cadds( const double2x4* lhs, const double rhs )
 }
 
 // Performs a component-wise + against the two matrices and returns the result.
-HLML_INLINE double2x4 double2x4_caddm( const double2x4* lhs, const double2x4* rhs )
+HLML_INLINE double2x4 double2x4_caddm( const double2x4 *lhs, const double2x4* rhs )
 {
 	return HLML_CONSTRUCT( double2x4 )
 	{
@@ -12297,7 +12297,7 @@ HLML_INLINE double2x4 double2x4_caddm( const double2x4* lhs, const double2x4* rh
 }
 
 // Performs a component-wise - on the matrix by the scalar and returns the result.
-HLML_INLINE double2x4 double2x4_csubs( const double2x4* lhs, const double rhs )
+HLML_INLINE double2x4 double2x4_csubs( const double2x4 *lhs, const double rhs )
 {
 	return HLML_CONSTRUCT( double2x4 )
 	{
@@ -12307,7 +12307,7 @@ HLML_INLINE double2x4 double2x4_csubs( const double2x4* lhs, const double rhs )
 }
 
 // Performs a component-wise - against the two matrices and returns the result.
-HLML_INLINE double2x4 double2x4_csubm( const double2x4* lhs, const double2x4* rhs )
+HLML_INLINE double2x4 double2x4_csubm( const double2x4 *lhs, const double2x4* rhs )
 {
 	return HLML_CONSTRUCT( double2x4 )
 	{
@@ -12317,7 +12317,7 @@ HLML_INLINE double2x4 double2x4_csubm( const double2x4* lhs, const double2x4* rh
 }
 
 // Performs a component-wise * on the matrix by the scalar and returns the result.
-HLML_INLINE double2x4 double2x4_cmuls( const double2x4* lhs, const double rhs )
+HLML_INLINE double2x4 double2x4_cmuls( const double2x4 *lhs, const double rhs )
 {
 	return HLML_CONSTRUCT( double2x4 )
 	{
@@ -12327,7 +12327,7 @@ HLML_INLINE double2x4 double2x4_cmuls( const double2x4* lhs, const double rhs )
 }
 
 // Performs a component-wise * against the two matrices and returns the result.
-HLML_INLINE double2x4 double2x4_cmulm( const double2x4* lhs, const double2x4* rhs )
+HLML_INLINE double2x4 double2x4_cmulm( const double2x4 *lhs, const double2x4* rhs )
 {
 	return HLML_CONSTRUCT( double2x4 )
 	{
@@ -12337,7 +12337,7 @@ HLML_INLINE double2x4 double2x4_cmulm( const double2x4* lhs, const double2x4* rh
 }
 
 // Performs a component-wise / on the matrix by the scalar and returns the result.
-HLML_INLINE double2x4 double2x4_cdivs( const double2x4* lhs, const double rhs )
+HLML_INLINE double2x4 double2x4_cdivs( const double2x4 *lhs, const double rhs )
 {
 	return HLML_CONSTRUCT( double2x4 )
 	{
@@ -12347,7 +12347,7 @@ HLML_INLINE double2x4 double2x4_cdivs( const double2x4* lhs, const double rhs )
 }
 
 // Performs a component-wise / against the two matrices and returns the result.
-HLML_INLINE double2x4 double2x4_cdivm( const double2x4* lhs, const double2x4* rhs )
+HLML_INLINE double2x4 double2x4_cdivm( const double2x4 *lhs, const double2x4* rhs )
 {
 	return HLML_CONSTRUCT( double2x4 )
 	{
@@ -12357,7 +12357,7 @@ HLML_INLINE double2x4 double2x4_cdivm( const double2x4* lhs, const double2x4* rh
 }
 
 // Returns a copy of the matrix that has been negated.
-HLML_INLINE double2x4 double2x4_negate( const double2x4* x )
+HLML_INLINE double2x4 double2x4_negate( const double2x4 *x )
 {
 	return HLML_CONSTRUCT( double2x4 )
 	{
@@ -12472,7 +12472,7 @@ HLML_INLINE double3x2 double3x2_lerp( const double3x2* lhs, const double3x2* rhs
 }
 
 // Returns true if the contents of 'lhs' are the same as the contents of 'rhs', otherwise returns false.
-HLML_INLINE bool double3x2_equals( const double3x2* lhs, const double3x2* rhs )
+HLML_INLINE bool double3x2_equals( const double3x2 *lhs, const double3x2 *rhs )
 {
 	return
 		double2_equals( &lhs->rows[0], &rhs->rows[0] ) &&
@@ -12481,13 +12481,13 @@ HLML_INLINE bool double3x2_equals( const double3x2* lhs, const double3x2* rhs )
 }
 
 // Returns true if the contents of 'lhs' are NOT the same as the contents of 'rhs', otherwise returns false.
-HLML_INLINE bool double3x2_not_equals( const double3x2* lhs, const double3x2* rhs )
+HLML_INLINE bool double3x2_not_equals( const double3x2 *lhs, const double3x2 *rhs )
 {
 	return !double3x2_equals( lhs, rhs );
 }
 
 // Performs a component-wise '<' check against the two matrices and returns the result.
-HLML_INLINE bool3x2 double3x2_less_than( const double3x2* lhs, const double3x2* rhs )
+HLML_INLINE bool3x2 double3x2_less_than( const double3x2 *lhs, const double3x2* rhs )
 {
 	return HLML_CONSTRUCT( bool3x2 )
 	{
@@ -12498,7 +12498,7 @@ HLML_INLINE bool3x2 double3x2_less_than( const double3x2* lhs, const double3x2* 
 }
 
 // Performs a component-wise '<=' check against the two matrices and returns the result.
-HLML_INLINE bool3x2 double3x2_less_than_equal( const double3x2* lhs, const double3x2* rhs )
+HLML_INLINE bool3x2 double3x2_less_than_equal( const double3x2 *lhs, const double3x2* rhs )
 {
 	return HLML_CONSTRUCT( bool3x2 )
 	{
@@ -12509,7 +12509,7 @@ HLML_INLINE bool3x2 double3x2_less_than_equal( const double3x2* lhs, const doubl
 }
 
 // Performs a component-wise '>' check against the two matrices and returns the result.
-HLML_INLINE bool3x2 double3x2_greater_than( const double3x2* lhs, const double3x2* rhs )
+HLML_INLINE bool3x2 double3x2_greater_than( const double3x2 *lhs, const double3x2* rhs )
 {
 	return HLML_CONSTRUCT( bool3x2 )
 	{
@@ -12520,7 +12520,7 @@ HLML_INLINE bool3x2 double3x2_greater_than( const double3x2* lhs, const double3x
 }
 
 // Performs a component-wise '>=' check against the two matrices and returns the result.
-HLML_INLINE bool3x2 double3x2_greater_than_equal( const double3x2* lhs, const double3x2* rhs )
+HLML_INLINE bool3x2 double3x2_greater_than_equal( const double3x2 *lhs, const double3x2* rhs )
 {
 	return HLML_CONSTRUCT( bool3x2 )
 	{
@@ -12531,7 +12531,7 @@ HLML_INLINE bool3x2 double3x2_greater_than_equal( const double3x2* lhs, const do
 }
 
 // Performs a component-wise + on the matrix by the scalar and returns the result.
-HLML_INLINE double3x2 double3x2_cadds( const double3x2* lhs, const double rhs )
+HLML_INLINE double3x2 double3x2_cadds( const double3x2 *lhs, const double rhs )
 {
 	return HLML_CONSTRUCT( double3x2 )
 	{
@@ -12542,7 +12542,7 @@ HLML_INLINE double3x2 double3x2_cadds( const double3x2* lhs, const double rhs )
 }
 
 // Performs a component-wise + against the two matrices and returns the result.
-HLML_INLINE double3x2 double3x2_caddm( const double3x2* lhs, const double3x2* rhs )
+HLML_INLINE double3x2 double3x2_caddm( const double3x2 *lhs, const double3x2* rhs )
 {
 	return HLML_CONSTRUCT( double3x2 )
 	{
@@ -12553,7 +12553,7 @@ HLML_INLINE double3x2 double3x2_caddm( const double3x2* lhs, const double3x2* rh
 }
 
 // Performs a component-wise - on the matrix by the scalar and returns the result.
-HLML_INLINE double3x2 double3x2_csubs( const double3x2* lhs, const double rhs )
+HLML_INLINE double3x2 double3x2_csubs( const double3x2 *lhs, const double rhs )
 {
 	return HLML_CONSTRUCT( double3x2 )
 	{
@@ -12564,7 +12564,7 @@ HLML_INLINE double3x2 double3x2_csubs( const double3x2* lhs, const double rhs )
 }
 
 // Performs a component-wise - against the two matrices and returns the result.
-HLML_INLINE double3x2 double3x2_csubm( const double3x2* lhs, const double3x2* rhs )
+HLML_INLINE double3x2 double3x2_csubm( const double3x2 *lhs, const double3x2* rhs )
 {
 	return HLML_CONSTRUCT( double3x2 )
 	{
@@ -12575,7 +12575,7 @@ HLML_INLINE double3x2 double3x2_csubm( const double3x2* lhs, const double3x2* rh
 }
 
 // Performs a component-wise * on the matrix by the scalar and returns the result.
-HLML_INLINE double3x2 double3x2_cmuls( const double3x2* lhs, const double rhs )
+HLML_INLINE double3x2 double3x2_cmuls( const double3x2 *lhs, const double rhs )
 {
 	return HLML_CONSTRUCT( double3x2 )
 	{
@@ -12586,7 +12586,7 @@ HLML_INLINE double3x2 double3x2_cmuls( const double3x2* lhs, const double rhs )
 }
 
 // Performs a component-wise * against the two matrices and returns the result.
-HLML_INLINE double3x2 double3x2_cmulm( const double3x2* lhs, const double3x2* rhs )
+HLML_INLINE double3x2 double3x2_cmulm( const double3x2 *lhs, const double3x2* rhs )
 {
 	return HLML_CONSTRUCT( double3x2 )
 	{
@@ -12597,7 +12597,7 @@ HLML_INLINE double3x2 double3x2_cmulm( const double3x2* lhs, const double3x2* rh
 }
 
 // Performs a component-wise / on the matrix by the scalar and returns the result.
-HLML_INLINE double3x2 double3x2_cdivs( const double3x2* lhs, const double rhs )
+HLML_INLINE double3x2 double3x2_cdivs( const double3x2 *lhs, const double rhs )
 {
 	return HLML_CONSTRUCT( double3x2 )
 	{
@@ -12608,7 +12608,7 @@ HLML_INLINE double3x2 double3x2_cdivs( const double3x2* lhs, const double rhs )
 }
 
 // Performs a component-wise / against the two matrices and returns the result.
-HLML_INLINE double3x2 double3x2_cdivm( const double3x2* lhs, const double3x2* rhs )
+HLML_INLINE double3x2 double3x2_cdivm( const double3x2 *lhs, const double3x2* rhs )
 {
 	return HLML_CONSTRUCT( double3x2 )
 	{
@@ -12619,7 +12619,7 @@ HLML_INLINE double3x2 double3x2_cdivm( const double3x2* lhs, const double3x2* rh
 }
 
 // Returns a copy of the matrix that has been negated.
-HLML_INLINE double3x2 double3x2_negate( const double3x2* x )
+HLML_INLINE double3x2 double3x2_negate( const double3x2 *x )
 {
 	return HLML_CONSTRUCT( double3x2 )
 	{
@@ -12742,7 +12742,7 @@ HLML_INLINE double3x3 double3x3_lerp( const double3x3* lhs, const double3x3* rhs
 }
 
 // Returns true if the contents of 'lhs' are the same as the contents of 'rhs', otherwise returns false.
-HLML_INLINE bool double3x3_equals( const double3x3* lhs, const double3x3* rhs )
+HLML_INLINE bool double3x3_equals( const double3x3 *lhs, const double3x3 *rhs )
 {
 	return
 		double3_equals( &lhs->rows[0], &rhs->rows[0] ) &&
@@ -12751,13 +12751,13 @@ HLML_INLINE bool double3x3_equals( const double3x3* lhs, const double3x3* rhs )
 }
 
 // Returns true if the contents of 'lhs' are NOT the same as the contents of 'rhs', otherwise returns false.
-HLML_INLINE bool double3x3_not_equals( const double3x3* lhs, const double3x3* rhs )
+HLML_INLINE bool double3x3_not_equals( const double3x3 *lhs, const double3x3 *rhs )
 {
 	return !double3x3_equals( lhs, rhs );
 }
 
 // Performs a component-wise '<' check against the two matrices and returns the result.
-HLML_INLINE bool3x3 double3x3_less_than( const double3x3* lhs, const double3x3* rhs )
+HLML_INLINE bool3x3 double3x3_less_than( const double3x3 *lhs, const double3x3* rhs )
 {
 	return HLML_CONSTRUCT( bool3x3 )
 	{
@@ -12768,7 +12768,7 @@ HLML_INLINE bool3x3 double3x3_less_than( const double3x3* lhs, const double3x3* 
 }
 
 // Performs a component-wise '<=' check against the two matrices and returns the result.
-HLML_INLINE bool3x3 double3x3_less_than_equal( const double3x3* lhs, const double3x3* rhs )
+HLML_INLINE bool3x3 double3x3_less_than_equal( const double3x3 *lhs, const double3x3* rhs )
 {
 	return HLML_CONSTRUCT( bool3x3 )
 	{
@@ -12779,7 +12779,7 @@ HLML_INLINE bool3x3 double3x3_less_than_equal( const double3x3* lhs, const doubl
 }
 
 // Performs a component-wise '>' check against the two matrices and returns the result.
-HLML_INLINE bool3x3 double3x3_greater_than( const double3x3* lhs, const double3x3* rhs )
+HLML_INLINE bool3x3 double3x3_greater_than( const double3x3 *lhs, const double3x3* rhs )
 {
 	return HLML_CONSTRUCT( bool3x3 )
 	{
@@ -12790,7 +12790,7 @@ HLML_INLINE bool3x3 double3x3_greater_than( const double3x3* lhs, const double3x
 }
 
 // Performs a component-wise '>=' check against the two matrices and returns the result.
-HLML_INLINE bool3x3 double3x3_greater_than_equal( const double3x3* lhs, const double3x3* rhs )
+HLML_INLINE bool3x3 double3x3_greater_than_equal( const double3x3 *lhs, const double3x3* rhs )
 {
 	return HLML_CONSTRUCT( bool3x3 )
 	{
@@ -12801,7 +12801,7 @@ HLML_INLINE bool3x3 double3x3_greater_than_equal( const double3x3* lhs, const do
 }
 
 // Performs a component-wise + on the matrix by the scalar and returns the result.
-HLML_INLINE double3x3 double3x3_cadds( const double3x3* lhs, const double rhs )
+HLML_INLINE double3x3 double3x3_cadds( const double3x3 *lhs, const double rhs )
 {
 	return HLML_CONSTRUCT( double3x3 )
 	{
@@ -12812,7 +12812,7 @@ HLML_INLINE double3x3 double3x3_cadds( const double3x3* lhs, const double rhs )
 }
 
 // Performs a component-wise + against the two matrices and returns the result.
-HLML_INLINE double3x3 double3x3_caddm( const double3x3* lhs, const double3x3* rhs )
+HLML_INLINE double3x3 double3x3_caddm( const double3x3 *lhs, const double3x3* rhs )
 {
 	return HLML_CONSTRUCT( double3x3 )
 	{
@@ -12823,7 +12823,7 @@ HLML_INLINE double3x3 double3x3_caddm( const double3x3* lhs, const double3x3* rh
 }
 
 // Performs a component-wise - on the matrix by the scalar and returns the result.
-HLML_INLINE double3x3 double3x3_csubs( const double3x3* lhs, const double rhs )
+HLML_INLINE double3x3 double3x3_csubs( const double3x3 *lhs, const double rhs )
 {
 	return HLML_CONSTRUCT( double3x3 )
 	{
@@ -12834,7 +12834,7 @@ HLML_INLINE double3x3 double3x3_csubs( const double3x3* lhs, const double rhs )
 }
 
 // Performs a component-wise - against the two matrices and returns the result.
-HLML_INLINE double3x3 double3x3_csubm( const double3x3* lhs, const double3x3* rhs )
+HLML_INLINE double3x3 double3x3_csubm( const double3x3 *lhs, const double3x3* rhs )
 {
 	return HLML_CONSTRUCT( double3x3 )
 	{
@@ -12845,7 +12845,7 @@ HLML_INLINE double3x3 double3x3_csubm( const double3x3* lhs, const double3x3* rh
 }
 
 // Performs a component-wise * on the matrix by the scalar and returns the result.
-HLML_INLINE double3x3 double3x3_cmuls( const double3x3* lhs, const double rhs )
+HLML_INLINE double3x3 double3x3_cmuls( const double3x3 *lhs, const double rhs )
 {
 	return HLML_CONSTRUCT( double3x3 )
 	{
@@ -12856,7 +12856,7 @@ HLML_INLINE double3x3 double3x3_cmuls( const double3x3* lhs, const double rhs )
 }
 
 // Performs a component-wise * against the two matrices and returns the result.
-HLML_INLINE double3x3 double3x3_cmulm( const double3x3* lhs, const double3x3* rhs )
+HLML_INLINE double3x3 double3x3_cmulm( const double3x3 *lhs, const double3x3* rhs )
 {
 	return HLML_CONSTRUCT( double3x3 )
 	{
@@ -12867,7 +12867,7 @@ HLML_INLINE double3x3 double3x3_cmulm( const double3x3* lhs, const double3x3* rh
 }
 
 // Performs a component-wise / on the matrix by the scalar and returns the result.
-HLML_INLINE double3x3 double3x3_cdivs( const double3x3* lhs, const double rhs )
+HLML_INLINE double3x3 double3x3_cdivs( const double3x3 *lhs, const double rhs )
 {
 	return HLML_CONSTRUCT( double3x3 )
 	{
@@ -12878,7 +12878,7 @@ HLML_INLINE double3x3 double3x3_cdivs( const double3x3* lhs, const double rhs )
 }
 
 // Performs a component-wise / against the two matrices and returns the result.
-HLML_INLINE double3x3 double3x3_cdivm( const double3x3* lhs, const double3x3* rhs )
+HLML_INLINE double3x3 double3x3_cdivm( const double3x3 *lhs, const double3x3* rhs )
 {
 	return HLML_CONSTRUCT( double3x3 )
 	{
@@ -12889,7 +12889,7 @@ HLML_INLINE double3x3 double3x3_cdivm( const double3x3* lhs, const double3x3* rh
 }
 
 // Returns a copy of the matrix that has been negated.
-HLML_INLINE double3x3 double3x3_negate( const double3x3* x )
+HLML_INLINE double3x3 double3x3_negate( const double3x3 *x )
 {
 	return HLML_CONSTRUCT( double3x3 )
 	{
@@ -13054,7 +13054,7 @@ HLML_INLINE double3x4 double3x4_lerp( const double3x4* lhs, const double3x4* rhs
 }
 
 // Returns true if the contents of 'lhs' are the same as the contents of 'rhs', otherwise returns false.
-HLML_INLINE bool double3x4_equals( const double3x4* lhs, const double3x4* rhs )
+HLML_INLINE bool double3x4_equals( const double3x4 *lhs, const double3x4 *rhs )
 {
 	return
 		double4_equals( &lhs->rows[0], &rhs->rows[0] ) &&
@@ -13063,13 +13063,13 @@ HLML_INLINE bool double3x4_equals( const double3x4* lhs, const double3x4* rhs )
 }
 
 // Returns true if the contents of 'lhs' are NOT the same as the contents of 'rhs', otherwise returns false.
-HLML_INLINE bool double3x4_not_equals( const double3x4* lhs, const double3x4* rhs )
+HLML_INLINE bool double3x4_not_equals( const double3x4 *lhs, const double3x4 *rhs )
 {
 	return !double3x4_equals( lhs, rhs );
 }
 
 // Performs a component-wise '<' check against the two matrices and returns the result.
-HLML_INLINE bool3x4 double3x4_less_than( const double3x4* lhs, const double3x4* rhs )
+HLML_INLINE bool3x4 double3x4_less_than( const double3x4 *lhs, const double3x4* rhs )
 {
 	return HLML_CONSTRUCT( bool3x4 )
 	{
@@ -13080,7 +13080,7 @@ HLML_INLINE bool3x4 double3x4_less_than( const double3x4* lhs, const double3x4* 
 }
 
 // Performs a component-wise '<=' check against the two matrices and returns the result.
-HLML_INLINE bool3x4 double3x4_less_than_equal( const double3x4* lhs, const double3x4* rhs )
+HLML_INLINE bool3x4 double3x4_less_than_equal( const double3x4 *lhs, const double3x4* rhs )
 {
 	return HLML_CONSTRUCT( bool3x4 )
 	{
@@ -13091,7 +13091,7 @@ HLML_INLINE bool3x4 double3x4_less_than_equal( const double3x4* lhs, const doubl
 }
 
 // Performs a component-wise '>' check against the two matrices and returns the result.
-HLML_INLINE bool3x4 double3x4_greater_than( const double3x4* lhs, const double3x4* rhs )
+HLML_INLINE bool3x4 double3x4_greater_than( const double3x4 *lhs, const double3x4* rhs )
 {
 	return HLML_CONSTRUCT( bool3x4 )
 	{
@@ -13102,7 +13102,7 @@ HLML_INLINE bool3x4 double3x4_greater_than( const double3x4* lhs, const double3x
 }
 
 // Performs a component-wise '>=' check against the two matrices and returns the result.
-HLML_INLINE bool3x4 double3x4_greater_than_equal( const double3x4* lhs, const double3x4* rhs )
+HLML_INLINE bool3x4 double3x4_greater_than_equal( const double3x4 *lhs, const double3x4* rhs )
 {
 	return HLML_CONSTRUCT( bool3x4 )
 	{
@@ -13113,7 +13113,7 @@ HLML_INLINE bool3x4 double3x4_greater_than_equal( const double3x4* lhs, const do
 }
 
 // Performs a component-wise + on the matrix by the scalar and returns the result.
-HLML_INLINE double3x4 double3x4_cadds( const double3x4* lhs, const double rhs )
+HLML_INLINE double3x4 double3x4_cadds( const double3x4 *lhs, const double rhs )
 {
 	return HLML_CONSTRUCT( double3x4 )
 	{
@@ -13124,7 +13124,7 @@ HLML_INLINE double3x4 double3x4_cadds( const double3x4* lhs, const double rhs )
 }
 
 // Performs a component-wise + against the two matrices and returns the result.
-HLML_INLINE double3x4 double3x4_caddm( const double3x4* lhs, const double3x4* rhs )
+HLML_INLINE double3x4 double3x4_caddm( const double3x4 *lhs, const double3x4* rhs )
 {
 	return HLML_CONSTRUCT( double3x4 )
 	{
@@ -13135,7 +13135,7 @@ HLML_INLINE double3x4 double3x4_caddm( const double3x4* lhs, const double3x4* rh
 }
 
 // Performs a component-wise - on the matrix by the scalar and returns the result.
-HLML_INLINE double3x4 double3x4_csubs( const double3x4* lhs, const double rhs )
+HLML_INLINE double3x4 double3x4_csubs( const double3x4 *lhs, const double rhs )
 {
 	return HLML_CONSTRUCT( double3x4 )
 	{
@@ -13146,7 +13146,7 @@ HLML_INLINE double3x4 double3x4_csubs( const double3x4* lhs, const double rhs )
 }
 
 // Performs a component-wise - against the two matrices and returns the result.
-HLML_INLINE double3x4 double3x4_csubm( const double3x4* lhs, const double3x4* rhs )
+HLML_INLINE double3x4 double3x4_csubm( const double3x4 *lhs, const double3x4* rhs )
 {
 	return HLML_CONSTRUCT( double3x4 )
 	{
@@ -13157,7 +13157,7 @@ HLML_INLINE double3x4 double3x4_csubm( const double3x4* lhs, const double3x4* rh
 }
 
 // Performs a component-wise * on the matrix by the scalar and returns the result.
-HLML_INLINE double3x4 double3x4_cmuls( const double3x4* lhs, const double rhs )
+HLML_INLINE double3x4 double3x4_cmuls( const double3x4 *lhs, const double rhs )
 {
 	return HLML_CONSTRUCT( double3x4 )
 	{
@@ -13168,7 +13168,7 @@ HLML_INLINE double3x4 double3x4_cmuls( const double3x4* lhs, const double rhs )
 }
 
 // Performs a component-wise * against the two matrices and returns the result.
-HLML_INLINE double3x4 double3x4_cmulm( const double3x4* lhs, const double3x4* rhs )
+HLML_INLINE double3x4 double3x4_cmulm( const double3x4 *lhs, const double3x4* rhs )
 {
 	return HLML_CONSTRUCT( double3x4 )
 	{
@@ -13179,7 +13179,7 @@ HLML_INLINE double3x4 double3x4_cmulm( const double3x4* lhs, const double3x4* rh
 }
 
 // Performs a component-wise / on the matrix by the scalar and returns the result.
-HLML_INLINE double3x4 double3x4_cdivs( const double3x4* lhs, const double rhs )
+HLML_INLINE double3x4 double3x4_cdivs( const double3x4 *lhs, const double rhs )
 {
 	return HLML_CONSTRUCT( double3x4 )
 	{
@@ -13190,7 +13190,7 @@ HLML_INLINE double3x4 double3x4_cdivs( const double3x4* lhs, const double rhs )
 }
 
 // Performs a component-wise / against the two matrices and returns the result.
-HLML_INLINE double3x4 double3x4_cdivm( const double3x4* lhs, const double3x4* rhs )
+HLML_INLINE double3x4 double3x4_cdivm( const double3x4 *lhs, const double3x4* rhs )
 {
 	return HLML_CONSTRUCT( double3x4 )
 	{
@@ -13201,7 +13201,7 @@ HLML_INLINE double3x4 double3x4_cdivm( const double3x4* lhs, const double3x4* rh
 }
 
 // Returns a copy of the matrix that has been negated.
-HLML_INLINE double3x4 double3x4_negate( const double3x4* x )
+HLML_INLINE double3x4 double3x4_negate( const double3x4 *x )
 {
 	return HLML_CONSTRUCT( double3x4 )
 	{
@@ -13332,7 +13332,7 @@ HLML_INLINE double4x2 double4x2_lerp( const double4x2* lhs, const double4x2* rhs
 }
 
 // Returns true if the contents of 'lhs' are the same as the contents of 'rhs', otherwise returns false.
-HLML_INLINE bool double4x2_equals( const double4x2* lhs, const double4x2* rhs )
+HLML_INLINE bool double4x2_equals( const double4x2 *lhs, const double4x2 *rhs )
 {
 	return
 		double2_equals( &lhs->rows[0], &rhs->rows[0] ) &&
@@ -13342,13 +13342,13 @@ HLML_INLINE bool double4x2_equals( const double4x2* lhs, const double4x2* rhs )
 }
 
 // Returns true if the contents of 'lhs' are NOT the same as the contents of 'rhs', otherwise returns false.
-HLML_INLINE bool double4x2_not_equals( const double4x2* lhs, const double4x2* rhs )
+HLML_INLINE bool double4x2_not_equals( const double4x2 *lhs, const double4x2 *rhs )
 {
 	return !double4x2_equals( lhs, rhs );
 }
 
 // Performs a component-wise '<' check against the two matrices and returns the result.
-HLML_INLINE bool4x2 double4x2_less_than( const double4x2* lhs, const double4x2* rhs )
+HLML_INLINE bool4x2 double4x2_less_than( const double4x2 *lhs, const double4x2* rhs )
 {
 	return HLML_CONSTRUCT( bool4x2 )
 	{
@@ -13360,7 +13360,7 @@ HLML_INLINE bool4x2 double4x2_less_than( const double4x2* lhs, const double4x2* 
 }
 
 // Performs a component-wise '<=' check against the two matrices and returns the result.
-HLML_INLINE bool4x2 double4x2_less_than_equal( const double4x2* lhs, const double4x2* rhs )
+HLML_INLINE bool4x2 double4x2_less_than_equal( const double4x2 *lhs, const double4x2* rhs )
 {
 	return HLML_CONSTRUCT( bool4x2 )
 	{
@@ -13372,7 +13372,7 @@ HLML_INLINE bool4x2 double4x2_less_than_equal( const double4x2* lhs, const doubl
 }
 
 // Performs a component-wise '>' check against the two matrices and returns the result.
-HLML_INLINE bool4x2 double4x2_greater_than( const double4x2* lhs, const double4x2* rhs )
+HLML_INLINE bool4x2 double4x2_greater_than( const double4x2 *lhs, const double4x2* rhs )
 {
 	return HLML_CONSTRUCT( bool4x2 )
 	{
@@ -13384,7 +13384,7 @@ HLML_INLINE bool4x2 double4x2_greater_than( const double4x2* lhs, const double4x
 }
 
 // Performs a component-wise '>=' check against the two matrices and returns the result.
-HLML_INLINE bool4x2 double4x2_greater_than_equal( const double4x2* lhs, const double4x2* rhs )
+HLML_INLINE bool4x2 double4x2_greater_than_equal( const double4x2 *lhs, const double4x2* rhs )
 {
 	return HLML_CONSTRUCT( bool4x2 )
 	{
@@ -13396,7 +13396,7 @@ HLML_INLINE bool4x2 double4x2_greater_than_equal( const double4x2* lhs, const do
 }
 
 // Performs a component-wise + on the matrix by the scalar and returns the result.
-HLML_INLINE double4x2 double4x2_cadds( const double4x2* lhs, const double rhs )
+HLML_INLINE double4x2 double4x2_cadds( const double4x2 *lhs, const double rhs )
 {
 	return HLML_CONSTRUCT( double4x2 )
 	{
@@ -13408,7 +13408,7 @@ HLML_INLINE double4x2 double4x2_cadds( const double4x2* lhs, const double rhs )
 }
 
 // Performs a component-wise + against the two matrices and returns the result.
-HLML_INLINE double4x2 double4x2_caddm( const double4x2* lhs, const double4x2* rhs )
+HLML_INLINE double4x2 double4x2_caddm( const double4x2 *lhs, const double4x2* rhs )
 {
 	return HLML_CONSTRUCT( double4x2 )
 	{
@@ -13420,7 +13420,7 @@ HLML_INLINE double4x2 double4x2_caddm( const double4x2* lhs, const double4x2* rh
 }
 
 // Performs a component-wise - on the matrix by the scalar and returns the result.
-HLML_INLINE double4x2 double4x2_csubs( const double4x2* lhs, const double rhs )
+HLML_INLINE double4x2 double4x2_csubs( const double4x2 *lhs, const double rhs )
 {
 	return HLML_CONSTRUCT( double4x2 )
 	{
@@ -13432,7 +13432,7 @@ HLML_INLINE double4x2 double4x2_csubs( const double4x2* lhs, const double rhs )
 }
 
 // Performs a component-wise - against the two matrices and returns the result.
-HLML_INLINE double4x2 double4x2_csubm( const double4x2* lhs, const double4x2* rhs )
+HLML_INLINE double4x2 double4x2_csubm( const double4x2 *lhs, const double4x2* rhs )
 {
 	return HLML_CONSTRUCT( double4x2 )
 	{
@@ -13444,7 +13444,7 @@ HLML_INLINE double4x2 double4x2_csubm( const double4x2* lhs, const double4x2* rh
 }
 
 // Performs a component-wise * on the matrix by the scalar and returns the result.
-HLML_INLINE double4x2 double4x2_cmuls( const double4x2* lhs, const double rhs )
+HLML_INLINE double4x2 double4x2_cmuls( const double4x2 *lhs, const double rhs )
 {
 	return HLML_CONSTRUCT( double4x2 )
 	{
@@ -13456,7 +13456,7 @@ HLML_INLINE double4x2 double4x2_cmuls( const double4x2* lhs, const double rhs )
 }
 
 // Performs a component-wise * against the two matrices and returns the result.
-HLML_INLINE double4x2 double4x2_cmulm( const double4x2* lhs, const double4x2* rhs )
+HLML_INLINE double4x2 double4x2_cmulm( const double4x2 *lhs, const double4x2* rhs )
 {
 	return HLML_CONSTRUCT( double4x2 )
 	{
@@ -13468,7 +13468,7 @@ HLML_INLINE double4x2 double4x2_cmulm( const double4x2* lhs, const double4x2* rh
 }
 
 // Performs a component-wise / on the matrix by the scalar and returns the result.
-HLML_INLINE double4x2 double4x2_cdivs( const double4x2* lhs, const double rhs )
+HLML_INLINE double4x2 double4x2_cdivs( const double4x2 *lhs, const double rhs )
 {
 	return HLML_CONSTRUCT( double4x2 )
 	{
@@ -13480,7 +13480,7 @@ HLML_INLINE double4x2 double4x2_cdivs( const double4x2* lhs, const double rhs )
 }
 
 // Performs a component-wise / against the two matrices and returns the result.
-HLML_INLINE double4x2 double4x2_cdivm( const double4x2* lhs, const double4x2* rhs )
+HLML_INLINE double4x2 double4x2_cdivm( const double4x2 *lhs, const double4x2* rhs )
 {
 	return HLML_CONSTRUCT( double4x2 )
 	{
@@ -13492,7 +13492,7 @@ HLML_INLINE double4x2 double4x2_cdivm( const double4x2* lhs, const double4x2* rh
 }
 
 // Returns a copy of the matrix that has been negated.
-HLML_INLINE double4x2 double4x2_negate( const double4x2* x )
+HLML_INLINE double4x2 double4x2_negate( const double4x2 *x )
 {
 	return HLML_CONSTRUCT( double4x2 )
 	{
@@ -13633,7 +13633,7 @@ HLML_INLINE double4x3 double4x3_lerp( const double4x3* lhs, const double4x3* rhs
 }
 
 // Returns true if the contents of 'lhs' are the same as the contents of 'rhs', otherwise returns false.
-HLML_INLINE bool double4x3_equals( const double4x3* lhs, const double4x3* rhs )
+HLML_INLINE bool double4x3_equals( const double4x3 *lhs, const double4x3 *rhs )
 {
 	return
 		double3_equals( &lhs->rows[0], &rhs->rows[0] ) &&
@@ -13643,13 +13643,13 @@ HLML_INLINE bool double4x3_equals( const double4x3* lhs, const double4x3* rhs )
 }
 
 // Returns true if the contents of 'lhs' are NOT the same as the contents of 'rhs', otherwise returns false.
-HLML_INLINE bool double4x3_not_equals( const double4x3* lhs, const double4x3* rhs )
+HLML_INLINE bool double4x3_not_equals( const double4x3 *lhs, const double4x3 *rhs )
 {
 	return !double4x3_equals( lhs, rhs );
 }
 
 // Performs a component-wise '<' check against the two matrices and returns the result.
-HLML_INLINE bool4x3 double4x3_less_than( const double4x3* lhs, const double4x3* rhs )
+HLML_INLINE bool4x3 double4x3_less_than( const double4x3 *lhs, const double4x3* rhs )
 {
 	return HLML_CONSTRUCT( bool4x3 )
 	{
@@ -13661,7 +13661,7 @@ HLML_INLINE bool4x3 double4x3_less_than( const double4x3* lhs, const double4x3* 
 }
 
 // Performs a component-wise '<=' check against the two matrices and returns the result.
-HLML_INLINE bool4x3 double4x3_less_than_equal( const double4x3* lhs, const double4x3* rhs )
+HLML_INLINE bool4x3 double4x3_less_than_equal( const double4x3 *lhs, const double4x3* rhs )
 {
 	return HLML_CONSTRUCT( bool4x3 )
 	{
@@ -13673,7 +13673,7 @@ HLML_INLINE bool4x3 double4x3_less_than_equal( const double4x3* lhs, const doubl
 }
 
 // Performs a component-wise '>' check against the two matrices and returns the result.
-HLML_INLINE bool4x3 double4x3_greater_than( const double4x3* lhs, const double4x3* rhs )
+HLML_INLINE bool4x3 double4x3_greater_than( const double4x3 *lhs, const double4x3* rhs )
 {
 	return HLML_CONSTRUCT( bool4x3 )
 	{
@@ -13685,7 +13685,7 @@ HLML_INLINE bool4x3 double4x3_greater_than( const double4x3* lhs, const double4x
 }
 
 // Performs a component-wise '>=' check against the two matrices and returns the result.
-HLML_INLINE bool4x3 double4x3_greater_than_equal( const double4x3* lhs, const double4x3* rhs )
+HLML_INLINE bool4x3 double4x3_greater_than_equal( const double4x3 *lhs, const double4x3* rhs )
 {
 	return HLML_CONSTRUCT( bool4x3 )
 	{
@@ -13697,7 +13697,7 @@ HLML_INLINE bool4x3 double4x3_greater_than_equal( const double4x3* lhs, const do
 }
 
 // Performs a component-wise + on the matrix by the scalar and returns the result.
-HLML_INLINE double4x3 double4x3_cadds( const double4x3* lhs, const double rhs )
+HLML_INLINE double4x3 double4x3_cadds( const double4x3 *lhs, const double rhs )
 {
 	return HLML_CONSTRUCT( double4x3 )
 	{
@@ -13709,7 +13709,7 @@ HLML_INLINE double4x3 double4x3_cadds( const double4x3* lhs, const double rhs )
 }
 
 // Performs a component-wise + against the two matrices and returns the result.
-HLML_INLINE double4x3 double4x3_caddm( const double4x3* lhs, const double4x3* rhs )
+HLML_INLINE double4x3 double4x3_caddm( const double4x3 *lhs, const double4x3* rhs )
 {
 	return HLML_CONSTRUCT( double4x3 )
 	{
@@ -13721,7 +13721,7 @@ HLML_INLINE double4x3 double4x3_caddm( const double4x3* lhs, const double4x3* rh
 }
 
 // Performs a component-wise - on the matrix by the scalar and returns the result.
-HLML_INLINE double4x3 double4x3_csubs( const double4x3* lhs, const double rhs )
+HLML_INLINE double4x3 double4x3_csubs( const double4x3 *lhs, const double rhs )
 {
 	return HLML_CONSTRUCT( double4x3 )
 	{
@@ -13733,7 +13733,7 @@ HLML_INLINE double4x3 double4x3_csubs( const double4x3* lhs, const double rhs )
 }
 
 // Performs a component-wise - against the two matrices and returns the result.
-HLML_INLINE double4x3 double4x3_csubm( const double4x3* lhs, const double4x3* rhs )
+HLML_INLINE double4x3 double4x3_csubm( const double4x3 *lhs, const double4x3* rhs )
 {
 	return HLML_CONSTRUCT( double4x3 )
 	{
@@ -13745,7 +13745,7 @@ HLML_INLINE double4x3 double4x3_csubm( const double4x3* lhs, const double4x3* rh
 }
 
 // Performs a component-wise * on the matrix by the scalar and returns the result.
-HLML_INLINE double4x3 double4x3_cmuls( const double4x3* lhs, const double rhs )
+HLML_INLINE double4x3 double4x3_cmuls( const double4x3 *lhs, const double rhs )
 {
 	return HLML_CONSTRUCT( double4x3 )
 	{
@@ -13757,7 +13757,7 @@ HLML_INLINE double4x3 double4x3_cmuls( const double4x3* lhs, const double rhs )
 }
 
 // Performs a component-wise * against the two matrices and returns the result.
-HLML_INLINE double4x3 double4x3_cmulm( const double4x3* lhs, const double4x3* rhs )
+HLML_INLINE double4x3 double4x3_cmulm( const double4x3 *lhs, const double4x3* rhs )
 {
 	return HLML_CONSTRUCT( double4x3 )
 	{
@@ -13769,7 +13769,7 @@ HLML_INLINE double4x3 double4x3_cmulm( const double4x3* lhs, const double4x3* rh
 }
 
 // Performs a component-wise / on the matrix by the scalar and returns the result.
-HLML_INLINE double4x3 double4x3_cdivs( const double4x3* lhs, const double rhs )
+HLML_INLINE double4x3 double4x3_cdivs( const double4x3 *lhs, const double rhs )
 {
 	return HLML_CONSTRUCT( double4x3 )
 	{
@@ -13781,7 +13781,7 @@ HLML_INLINE double4x3 double4x3_cdivs( const double4x3* lhs, const double rhs )
 }
 
 // Performs a component-wise / against the two matrices and returns the result.
-HLML_INLINE double4x3 double4x3_cdivm( const double4x3* lhs, const double4x3* rhs )
+HLML_INLINE double4x3 double4x3_cdivm( const double4x3 *lhs, const double4x3* rhs )
 {
 	return HLML_CONSTRUCT( double4x3 )
 	{
@@ -13793,7 +13793,7 @@ HLML_INLINE double4x3 double4x3_cdivm( const double4x3* lhs, const double4x3* rh
 }
 
 // Returns a copy of the matrix that has been negated.
-HLML_INLINE double4x3 double4x3_negate( const double4x3* x )
+HLML_INLINE double4x3 double4x3_negate( const double4x3 *x )
 {
 	return HLML_CONSTRUCT( double4x3 )
 	{
@@ -13935,7 +13935,7 @@ HLML_INLINE double4x4 double4x4_lerp( const double4x4* lhs, const double4x4* rhs
 }
 
 // Returns true if the contents of 'lhs' are the same as the contents of 'rhs', otherwise returns false.
-HLML_INLINE bool double4x4_equals( const double4x4* lhs, const double4x4* rhs )
+HLML_INLINE bool double4x4_equals( const double4x4 *lhs, const double4x4 *rhs )
 {
 	return
 		double4_equals( &lhs->rows[0], &rhs->rows[0] ) &&
@@ -13945,13 +13945,13 @@ HLML_INLINE bool double4x4_equals( const double4x4* lhs, const double4x4* rhs )
 }
 
 // Returns true if the contents of 'lhs' are NOT the same as the contents of 'rhs', otherwise returns false.
-HLML_INLINE bool double4x4_not_equals( const double4x4* lhs, const double4x4* rhs )
+HLML_INLINE bool double4x4_not_equals( const double4x4 *lhs, const double4x4 *rhs )
 {
 	return !double4x4_equals( lhs, rhs );
 }
 
 // Performs a component-wise '<' check against the two matrices and returns the result.
-HLML_INLINE bool4x4 double4x4_less_than( const double4x4* lhs, const double4x4* rhs )
+HLML_INLINE bool4x4 double4x4_less_than( const double4x4 *lhs, const double4x4* rhs )
 {
 	return HLML_CONSTRUCT( bool4x4 )
 	{
@@ -13963,7 +13963,7 @@ HLML_INLINE bool4x4 double4x4_less_than( const double4x4* lhs, const double4x4* 
 }
 
 // Performs a component-wise '<=' check against the two matrices and returns the result.
-HLML_INLINE bool4x4 double4x4_less_than_equal( const double4x4* lhs, const double4x4* rhs )
+HLML_INLINE bool4x4 double4x4_less_than_equal( const double4x4 *lhs, const double4x4* rhs )
 {
 	return HLML_CONSTRUCT( bool4x4 )
 	{
@@ -13975,7 +13975,7 @@ HLML_INLINE bool4x4 double4x4_less_than_equal( const double4x4* lhs, const doubl
 }
 
 // Performs a component-wise '>' check against the two matrices and returns the result.
-HLML_INLINE bool4x4 double4x4_greater_than( const double4x4* lhs, const double4x4* rhs )
+HLML_INLINE bool4x4 double4x4_greater_than( const double4x4 *lhs, const double4x4* rhs )
 {
 	return HLML_CONSTRUCT( bool4x4 )
 	{
@@ -13987,7 +13987,7 @@ HLML_INLINE bool4x4 double4x4_greater_than( const double4x4* lhs, const double4x
 }
 
 // Performs a component-wise '>=' check against the two matrices and returns the result.
-HLML_INLINE bool4x4 double4x4_greater_than_equal( const double4x4* lhs, const double4x4* rhs )
+HLML_INLINE bool4x4 double4x4_greater_than_equal( const double4x4 *lhs, const double4x4* rhs )
 {
 	return HLML_CONSTRUCT( bool4x4 )
 	{
@@ -13999,7 +13999,7 @@ HLML_INLINE bool4x4 double4x4_greater_than_equal( const double4x4* lhs, const do
 }
 
 // Performs a component-wise + on the matrix by the scalar and returns the result.
-HLML_INLINE double4x4 double4x4_cadds( const double4x4* lhs, const double rhs )
+HLML_INLINE double4x4 double4x4_cadds( const double4x4 *lhs, const double rhs )
 {
 	return HLML_CONSTRUCT( double4x4 )
 	{
@@ -14011,7 +14011,7 @@ HLML_INLINE double4x4 double4x4_cadds( const double4x4* lhs, const double rhs )
 }
 
 // Performs a component-wise + against the two matrices and returns the result.
-HLML_INLINE double4x4 double4x4_caddm( const double4x4* lhs, const double4x4* rhs )
+HLML_INLINE double4x4 double4x4_caddm( const double4x4 *lhs, const double4x4* rhs )
 {
 	return HLML_CONSTRUCT( double4x4 )
 	{
@@ -14023,7 +14023,7 @@ HLML_INLINE double4x4 double4x4_caddm( const double4x4* lhs, const double4x4* rh
 }
 
 // Performs a component-wise - on the matrix by the scalar and returns the result.
-HLML_INLINE double4x4 double4x4_csubs( const double4x4* lhs, const double rhs )
+HLML_INLINE double4x4 double4x4_csubs( const double4x4 *lhs, const double rhs )
 {
 	return HLML_CONSTRUCT( double4x4 )
 	{
@@ -14035,7 +14035,7 @@ HLML_INLINE double4x4 double4x4_csubs( const double4x4* lhs, const double rhs )
 }
 
 // Performs a component-wise - against the two matrices and returns the result.
-HLML_INLINE double4x4 double4x4_csubm( const double4x4* lhs, const double4x4* rhs )
+HLML_INLINE double4x4 double4x4_csubm( const double4x4 *lhs, const double4x4* rhs )
 {
 	return HLML_CONSTRUCT( double4x4 )
 	{
@@ -14047,7 +14047,7 @@ HLML_INLINE double4x4 double4x4_csubm( const double4x4* lhs, const double4x4* rh
 }
 
 // Performs a component-wise * on the matrix by the scalar and returns the result.
-HLML_INLINE double4x4 double4x4_cmuls( const double4x4* lhs, const double rhs )
+HLML_INLINE double4x4 double4x4_cmuls( const double4x4 *lhs, const double rhs )
 {
 	return HLML_CONSTRUCT( double4x4 )
 	{
@@ -14059,7 +14059,7 @@ HLML_INLINE double4x4 double4x4_cmuls( const double4x4* lhs, const double rhs )
 }
 
 // Performs a component-wise * against the two matrices and returns the result.
-HLML_INLINE double4x4 double4x4_cmulm( const double4x4* lhs, const double4x4* rhs )
+HLML_INLINE double4x4 double4x4_cmulm( const double4x4 *lhs, const double4x4* rhs )
 {
 	return HLML_CONSTRUCT( double4x4 )
 	{
@@ -14071,7 +14071,7 @@ HLML_INLINE double4x4 double4x4_cmulm( const double4x4* lhs, const double4x4* rh
 }
 
 // Performs a component-wise / on the matrix by the scalar and returns the result.
-HLML_INLINE double4x4 double4x4_cdivs( const double4x4* lhs, const double rhs )
+HLML_INLINE double4x4 double4x4_cdivs( const double4x4 *lhs, const double rhs )
 {
 	return HLML_CONSTRUCT( double4x4 )
 	{
@@ -14083,7 +14083,7 @@ HLML_INLINE double4x4 double4x4_cdivs( const double4x4* lhs, const double rhs )
 }
 
 // Performs a component-wise / against the two matrices and returns the result.
-HLML_INLINE double4x4 double4x4_cdivm( const double4x4* lhs, const double4x4* rhs )
+HLML_INLINE double4x4 double4x4_cdivm( const double4x4 *lhs, const double4x4* rhs )
 {
 	return HLML_CONSTRUCT( double4x4 )
 	{
@@ -14095,7 +14095,7 @@ HLML_INLINE double4x4 double4x4_cdivm( const double4x4* lhs, const double4x4* rh
 }
 
 // Returns a copy of the matrix that has been negated.
-HLML_INLINE double4x4 double4x4_negate( const double4x4* x )
+HLML_INLINE double4x4 double4x4_negate( const double4x4 *x )
 {
 	return HLML_CONSTRUCT( double4x4 )
 	{

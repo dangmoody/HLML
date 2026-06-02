@@ -266,13 +266,13 @@ HLML_INLINE bool2 operator--( bool2& x, const int32_t )
 }
 
 // Returns true if ALL components of the 'x' are true, otherwise returns false.
-HLML_INLINE bool all( const bool2* x )
+HLML_INLINE bool all( const bool2 *x )
 {
 	return x->x && x->y;
 }
 
 // Returns true if ANY one component of 'x' is true, otherwise returns false.
-HLML_INLINE bool any( const bool2* x )
+HLML_INLINE bool any( const bool2 *x )
 {
 	return x->x || x->y;
 }
@@ -500,13 +500,13 @@ HLML_INLINE bool3 operator--( bool3& x, const int32_t )
 }
 
 // Returns true if ALL components of the 'x' are true, otherwise returns false.
-HLML_INLINE bool all( const bool3* x )
+HLML_INLINE bool all( const bool3 *x )
 {
 	return x->x && x->y && x->z;
 }
 
 // Returns true if ANY one component of 'x' is true, otherwise returns false.
-HLML_INLINE bool any( const bool3* x )
+HLML_INLINE bool any( const bool3 *x )
 {
 	return x->x || x->y || x->z;
 }
@@ -751,13 +751,13 @@ HLML_INLINE bool4 operator--( bool4& x, const int32_t )
 }
 
 // Returns true if ALL components of the 'x' are true, otherwise returns false.
-HLML_INLINE bool all( const bool4* x )
+HLML_INLINE bool all( const bool4 *x )
 {
 	return x->x && x->y && x->z && x->w;
 }
 
 // Returns true if ANY one component of 'x' is true, otherwise returns false.
-HLML_INLINE bool any( const bool4* x )
+HLML_INLINE bool any( const bool4 *x )
 {
 	return x->x || x->y || x->z || x->w;
 }

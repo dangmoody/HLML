@@ -1041,7 +1041,7 @@ TEMPER_TEST_PARAMETRIC( Test_double3x2_negate_prefix, TEMPER_FLAG_SHOULD_RUN, co
 {
 	// make local copy of x and use that because we cant do increment or decrement operations on a const reference
 	// and MSVC throws warnings if we just make the parameter a non-const reference
-	double3x2* xlocal = (double3x2*) x;
+	double3x2 *xlocal = (double3x2 *) x;
 	double3x2 actualAnswer = double3x2_negate( xlocal );
 	TEMPER_CHECK_TRUE( double3x2_equals( &actualAnswer, expectedAnswer ) );
 }

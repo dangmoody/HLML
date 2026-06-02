@@ -913,7 +913,7 @@ TEMPER_TEST_PARAMETRIC( Test_int2x3_negate_prefix, TEMPER_FLAG_SHOULD_RUN, const
 {
 	// make local copy of x and use that because we cant do increment or decrement operations on a const reference
 	// and MSVC throws warnings if we just make the parameter a non-const reference
-	int2x3* xlocal = (int2x3*) x;
+	int2x3 *xlocal = (int2x3 *) x;
 	int2x3 actualAnswer = int2x3_negate( xlocal );
 	TEMPER_CHECK_TRUE( int2x3_equals( &actualAnswer, expectedAnswer ) );
 }
@@ -995,7 +995,7 @@ TEMPER_TEST_PARAMETRIC( Test_int2x3_not_prefix, TEMPER_FLAG_SHOULD_RUN, const in
 {
 	// make local copy of x and use that because we cant do increment or decrement operations on a const reference
 	// and MSVC throws warnings if we just make the parameter a non-const reference
-	int2x3* xlocal = (int2x3*) x;
+	int2x3 *xlocal = (int2x3 *) x;
 	int2x3 actualAnswer = int2x3_not( xlocal );
 	TEMPER_CHECK_TRUE( int2x3_equals( &actualAnswer, expectedAnswer ) );
 }

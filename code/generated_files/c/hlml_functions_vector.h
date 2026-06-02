@@ -61,7 +61,7 @@ extern "C" {
 
 // bool2
 // Returns true if the contents of 'lhs' are the same as the contents of 'rhs', otherwise returns false.
-HLML_INLINE bool bool2_equals( const bool2* lhs, const bool2* rhs )
+HLML_INLINE bool bool2_equals( const bool2 *lhs, const bool2 *rhs )
 {
 	return
 		lhs->x == rhs->x &&
@@ -69,13 +69,13 @@ HLML_INLINE bool bool2_equals( const bool2* lhs, const bool2* rhs )
 }
 
 // Returns true if the contents of 'lhs' are NOT the same as the contents of 'rhs', otherwise returns false.
-HLML_INLINE bool bool2_not_equals( const bool2* lhs, const bool2* rhs )
+HLML_INLINE bool bool2_not_equals( const bool2 *lhs, const bool2 *rhs )
 {
 	return !bool2_equals( lhs, rhs );
 }
 
 // Performs a component-wise '<' check against the two vectors and returns the result.
-HLML_INLINE bool2 bool2_less_than( const bool2* lhs, const bool2* rhs )
+HLML_INLINE bool2 bool2_less_than( const bool2 *lhs, const bool2* rhs )
 {
 	return HLML_CONSTRUCT( bool2 )
 	{
@@ -85,7 +85,7 @@ HLML_INLINE bool2 bool2_less_than( const bool2* lhs, const bool2* rhs )
 }
 
 // Performs a component-wise '<=' check against the two vectors and returns the result.
-HLML_INLINE bool2 bool2_less_than_equal( const bool2* lhs, const bool2* rhs )
+HLML_INLINE bool2 bool2_less_than_equal( const bool2 *lhs, const bool2* rhs )
 {
 	return HLML_CONSTRUCT( bool2 )
 	{
@@ -95,7 +95,7 @@ HLML_INLINE bool2 bool2_less_than_equal( const bool2* lhs, const bool2* rhs )
 }
 
 // Performs a component-wise '>' check against the two vectors and returns the result.
-HLML_INLINE bool2 bool2_greater_than( const bool2* lhs, const bool2* rhs )
+HLML_INLINE bool2 bool2_greater_than( const bool2 *lhs, const bool2* rhs )
 {
 	return HLML_CONSTRUCT( bool2 )
 	{
@@ -105,7 +105,7 @@ HLML_INLINE bool2 bool2_greater_than( const bool2* lhs, const bool2* rhs )
 }
 
 // Performs a component-wise '>=' check against the two vectors and returns the result.
-HLML_INLINE bool2 bool2_greater_than_equal( const bool2* lhs, const bool2* rhs )
+HLML_INLINE bool2 bool2_greater_than_equal( const bool2 *lhs, const bool2* rhs )
 {
 	return HLML_CONSTRUCT( bool2 )
 	{
@@ -115,7 +115,7 @@ HLML_INLINE bool2 bool2_greater_than_equal( const bool2* lhs, const bool2* rhs )
 }
 
 // Performs a component-wise + on the vector by the scalar and returns the result.
-HLML_INLINE bool2 bool2_cadds( const bool2* lhs, const bool32_t rhs )
+HLML_INLINE bool2 bool2_cadds( const bool2 *lhs, const bool32_t rhs )
 {
 	return HLML_CONSTRUCT( bool2 )
 	{
@@ -125,7 +125,7 @@ HLML_INLINE bool2 bool2_cadds( const bool2* lhs, const bool32_t rhs )
 }
 
 // Performs a component-wise + against the two vectors and returns the result.
-HLML_INLINE bool2 bool2_caddv( const bool2* lhs, const bool2* rhs )
+HLML_INLINE bool2 bool2_caddv( const bool2 *lhs, const bool2* rhs )
 {
 	return HLML_CONSTRUCT( bool2 )
 	{
@@ -135,7 +135,7 @@ HLML_INLINE bool2 bool2_caddv( const bool2* lhs, const bool2* rhs )
 }
 
 // Performs a component-wise - on the vector by the scalar and returns the result.
-HLML_INLINE bool2 bool2_csubs( const bool2* lhs, const bool32_t rhs )
+HLML_INLINE bool2 bool2_csubs( const bool2 *lhs, const bool32_t rhs )
 {
 	return HLML_CONSTRUCT( bool2 )
 	{
@@ -145,7 +145,7 @@ HLML_INLINE bool2 bool2_csubs( const bool2* lhs, const bool32_t rhs )
 }
 
 // Performs a component-wise - against the two vectors and returns the result.
-HLML_INLINE bool2 bool2_csubv( const bool2* lhs, const bool2* rhs )
+HLML_INLINE bool2 bool2_csubv( const bool2 *lhs, const bool2* rhs )
 {
 	return HLML_CONSTRUCT( bool2 )
 	{
@@ -155,7 +155,7 @@ HLML_INLINE bool2 bool2_csubv( const bool2* lhs, const bool2* rhs )
 }
 
 // Performs a component-wise * on the vector by the scalar and returns the result.
-HLML_INLINE bool2 bool2_cmuls( const bool2* lhs, const bool32_t rhs )
+HLML_INLINE bool2 bool2_cmuls( const bool2 *lhs, const bool32_t rhs )
 {
 	return HLML_CONSTRUCT( bool2 )
 	{
@@ -165,7 +165,7 @@ HLML_INLINE bool2 bool2_cmuls( const bool2* lhs, const bool32_t rhs )
 }
 
 // Performs a component-wise * against the two vectors and returns the result.
-HLML_INLINE bool2 bool2_cmulv( const bool2* lhs, const bool2* rhs )
+HLML_INLINE bool2 bool2_cmulv( const bool2 *lhs, const bool2* rhs )
 {
 	return HLML_CONSTRUCT( bool2 )
 	{
@@ -175,7 +175,7 @@ HLML_INLINE bool2 bool2_cmulv( const bool2* lhs, const bool2* rhs )
 }
 
 // Performs a component-wise / on the vector by the scalar and returns the result.
-HLML_INLINE bool2 bool2_cdivs( const bool2* lhs, const bool32_t rhs )
+HLML_INLINE bool2 bool2_cdivs( const bool2 *lhs, const bool32_t rhs )
 {
 	return HLML_CONSTRUCT( bool2 )
 	{
@@ -185,7 +185,7 @@ HLML_INLINE bool2 bool2_cdivs( const bool2* lhs, const bool32_t rhs )
 }
 
 // Performs a component-wise / against the two vectors and returns the result.
-HLML_INLINE bool2 bool2_cdivv( const bool2* lhs, const bool2* rhs )
+HLML_INLINE bool2 bool2_cdivv( const bool2 *lhs, const bool2* rhs )
 {
 	return HLML_CONSTRUCT( bool2 )
 	{
@@ -195,20 +195,20 @@ HLML_INLINE bool2 bool2_cdivv( const bool2* lhs, const bool2* rhs )
 }
 
 // Returns true if ALL components of the 'x' are true, otherwise returns false.
-HLML_INLINE bool bool2_all( const bool2* x )
+HLML_INLINE bool bool2_all( const bool2 *x )
 {
 	return x->x && x->y;
 }
 
 // Returns true if ANY one component of 'x' is true, otherwise returns false.
-HLML_INLINE bool bool2_any( const bool2* x )
+HLML_INLINE bool bool2_any( const bool2 *x )
 {
 	return x->x || x->y;
 }
 
 // bool3
 // Returns true if the contents of 'lhs' are the same as the contents of 'rhs', otherwise returns false.
-HLML_INLINE bool bool3_equals( const bool3* lhs, const bool3* rhs )
+HLML_INLINE bool bool3_equals( const bool3 *lhs, const bool3 *rhs )
 {
 	return
 		lhs->x == rhs->x &&
@@ -217,13 +217,13 @@ HLML_INLINE bool bool3_equals( const bool3* lhs, const bool3* rhs )
 }
 
 // Returns true if the contents of 'lhs' are NOT the same as the contents of 'rhs', otherwise returns false.
-HLML_INLINE bool bool3_not_equals( const bool3* lhs, const bool3* rhs )
+HLML_INLINE bool bool3_not_equals( const bool3 *lhs, const bool3 *rhs )
 {
 	return !bool3_equals( lhs, rhs );
 }
 
 // Performs a component-wise '<' check against the two vectors and returns the result.
-HLML_INLINE bool3 bool3_less_than( const bool3* lhs, const bool3* rhs )
+HLML_INLINE bool3 bool3_less_than( const bool3 *lhs, const bool3* rhs )
 {
 	return HLML_CONSTRUCT( bool3 )
 	{
@@ -234,7 +234,7 @@ HLML_INLINE bool3 bool3_less_than( const bool3* lhs, const bool3* rhs )
 }
 
 // Performs a component-wise '<=' check against the two vectors and returns the result.
-HLML_INLINE bool3 bool3_less_than_equal( const bool3* lhs, const bool3* rhs )
+HLML_INLINE bool3 bool3_less_than_equal( const bool3 *lhs, const bool3* rhs )
 {
 	return HLML_CONSTRUCT( bool3 )
 	{
@@ -245,7 +245,7 @@ HLML_INLINE bool3 bool3_less_than_equal( const bool3* lhs, const bool3* rhs )
 }
 
 // Performs a component-wise '>' check against the two vectors and returns the result.
-HLML_INLINE bool3 bool3_greater_than( const bool3* lhs, const bool3* rhs )
+HLML_INLINE bool3 bool3_greater_than( const bool3 *lhs, const bool3* rhs )
 {
 	return HLML_CONSTRUCT( bool3 )
 	{
@@ -256,7 +256,7 @@ HLML_INLINE bool3 bool3_greater_than( const bool3* lhs, const bool3* rhs )
 }
 
 // Performs a component-wise '>=' check against the two vectors and returns the result.
-HLML_INLINE bool3 bool3_greater_than_equal( const bool3* lhs, const bool3* rhs )
+HLML_INLINE bool3 bool3_greater_than_equal( const bool3 *lhs, const bool3* rhs )
 {
 	return HLML_CONSTRUCT( bool3 )
 	{
@@ -267,7 +267,7 @@ HLML_INLINE bool3 bool3_greater_than_equal( const bool3* lhs, const bool3* rhs )
 }
 
 // Performs a component-wise + on the vector by the scalar and returns the result.
-HLML_INLINE bool3 bool3_cadds( const bool3* lhs, const bool32_t rhs )
+HLML_INLINE bool3 bool3_cadds( const bool3 *lhs, const bool32_t rhs )
 {
 	return HLML_CONSTRUCT( bool3 )
 	{
@@ -278,7 +278,7 @@ HLML_INLINE bool3 bool3_cadds( const bool3* lhs, const bool32_t rhs )
 }
 
 // Performs a component-wise + against the two vectors and returns the result.
-HLML_INLINE bool3 bool3_caddv( const bool3* lhs, const bool3* rhs )
+HLML_INLINE bool3 bool3_caddv( const bool3 *lhs, const bool3* rhs )
 {
 	return HLML_CONSTRUCT( bool3 )
 	{
@@ -289,7 +289,7 @@ HLML_INLINE bool3 bool3_caddv( const bool3* lhs, const bool3* rhs )
 }
 
 // Performs a component-wise - on the vector by the scalar and returns the result.
-HLML_INLINE bool3 bool3_csubs( const bool3* lhs, const bool32_t rhs )
+HLML_INLINE bool3 bool3_csubs( const bool3 *lhs, const bool32_t rhs )
 {
 	return HLML_CONSTRUCT( bool3 )
 	{
@@ -300,7 +300,7 @@ HLML_INLINE bool3 bool3_csubs( const bool3* lhs, const bool32_t rhs )
 }
 
 // Performs a component-wise - against the two vectors and returns the result.
-HLML_INLINE bool3 bool3_csubv( const bool3* lhs, const bool3* rhs )
+HLML_INLINE bool3 bool3_csubv( const bool3 *lhs, const bool3* rhs )
 {
 	return HLML_CONSTRUCT( bool3 )
 	{
@@ -311,7 +311,7 @@ HLML_INLINE bool3 bool3_csubv( const bool3* lhs, const bool3* rhs )
 }
 
 // Performs a component-wise * on the vector by the scalar and returns the result.
-HLML_INLINE bool3 bool3_cmuls( const bool3* lhs, const bool32_t rhs )
+HLML_INLINE bool3 bool3_cmuls( const bool3 *lhs, const bool32_t rhs )
 {
 	return HLML_CONSTRUCT( bool3 )
 	{
@@ -322,7 +322,7 @@ HLML_INLINE bool3 bool3_cmuls( const bool3* lhs, const bool32_t rhs )
 }
 
 // Performs a component-wise * against the two vectors and returns the result.
-HLML_INLINE bool3 bool3_cmulv( const bool3* lhs, const bool3* rhs )
+HLML_INLINE bool3 bool3_cmulv( const bool3 *lhs, const bool3* rhs )
 {
 	return HLML_CONSTRUCT( bool3 )
 	{
@@ -333,7 +333,7 @@ HLML_INLINE bool3 bool3_cmulv( const bool3* lhs, const bool3* rhs )
 }
 
 // Performs a component-wise / on the vector by the scalar and returns the result.
-HLML_INLINE bool3 bool3_cdivs( const bool3* lhs, const bool32_t rhs )
+HLML_INLINE bool3 bool3_cdivs( const bool3 *lhs, const bool32_t rhs )
 {
 	return HLML_CONSTRUCT( bool3 )
 	{
@@ -344,7 +344,7 @@ HLML_INLINE bool3 bool3_cdivs( const bool3* lhs, const bool32_t rhs )
 }
 
 // Performs a component-wise / against the two vectors and returns the result.
-HLML_INLINE bool3 bool3_cdivv( const bool3* lhs, const bool3* rhs )
+HLML_INLINE bool3 bool3_cdivv( const bool3 *lhs, const bool3* rhs )
 {
 	return HLML_CONSTRUCT( bool3 )
 	{
@@ -355,20 +355,20 @@ HLML_INLINE bool3 bool3_cdivv( const bool3* lhs, const bool3* rhs )
 }
 
 // Returns true if ALL components of the 'x' are true, otherwise returns false.
-HLML_INLINE bool bool3_all( const bool3* x )
+HLML_INLINE bool bool3_all( const bool3 *x )
 {
 	return x->x && x->y && x->z;
 }
 
 // Returns true if ANY one component of 'x' is true, otherwise returns false.
-HLML_INLINE bool bool3_any( const bool3* x )
+HLML_INLINE bool bool3_any( const bool3 *x )
 {
 	return x->x || x->y || x->z;
 }
 
 // bool4
 // Returns true if the contents of 'lhs' are the same as the contents of 'rhs', otherwise returns false.
-HLML_INLINE bool bool4_equals( const bool4* lhs, const bool4* rhs )
+HLML_INLINE bool bool4_equals( const bool4 *lhs, const bool4 *rhs )
 {
 	return
 		lhs->x == rhs->x &&
@@ -378,13 +378,13 @@ HLML_INLINE bool bool4_equals( const bool4* lhs, const bool4* rhs )
 }
 
 // Returns true if the contents of 'lhs' are NOT the same as the contents of 'rhs', otherwise returns false.
-HLML_INLINE bool bool4_not_equals( const bool4* lhs, const bool4* rhs )
+HLML_INLINE bool bool4_not_equals( const bool4 *lhs, const bool4 *rhs )
 {
 	return !bool4_equals( lhs, rhs );
 }
 
 // Performs a component-wise '<' check against the two vectors and returns the result.
-HLML_INLINE bool4 bool4_less_than( const bool4* lhs, const bool4* rhs )
+HLML_INLINE bool4 bool4_less_than( const bool4 *lhs, const bool4* rhs )
 {
 	return HLML_CONSTRUCT( bool4 )
 	{
@@ -396,7 +396,7 @@ HLML_INLINE bool4 bool4_less_than( const bool4* lhs, const bool4* rhs )
 }
 
 // Performs a component-wise '<=' check against the two vectors and returns the result.
-HLML_INLINE bool4 bool4_less_than_equal( const bool4* lhs, const bool4* rhs )
+HLML_INLINE bool4 bool4_less_than_equal( const bool4 *lhs, const bool4* rhs )
 {
 	return HLML_CONSTRUCT( bool4 )
 	{
@@ -408,7 +408,7 @@ HLML_INLINE bool4 bool4_less_than_equal( const bool4* lhs, const bool4* rhs )
 }
 
 // Performs a component-wise '>' check against the two vectors and returns the result.
-HLML_INLINE bool4 bool4_greater_than( const bool4* lhs, const bool4* rhs )
+HLML_INLINE bool4 bool4_greater_than( const bool4 *lhs, const bool4* rhs )
 {
 	return HLML_CONSTRUCT( bool4 )
 	{
@@ -420,7 +420,7 @@ HLML_INLINE bool4 bool4_greater_than( const bool4* lhs, const bool4* rhs )
 }
 
 // Performs a component-wise '>=' check against the two vectors and returns the result.
-HLML_INLINE bool4 bool4_greater_than_equal( const bool4* lhs, const bool4* rhs )
+HLML_INLINE bool4 bool4_greater_than_equal( const bool4 *lhs, const bool4* rhs )
 {
 	return HLML_CONSTRUCT( bool4 )
 	{
@@ -432,7 +432,7 @@ HLML_INLINE bool4 bool4_greater_than_equal( const bool4* lhs, const bool4* rhs )
 }
 
 // Performs a component-wise + on the vector by the scalar and returns the result.
-HLML_INLINE bool4 bool4_cadds( const bool4* lhs, const bool32_t rhs )
+HLML_INLINE bool4 bool4_cadds( const bool4 *lhs, const bool32_t rhs )
 {
 	return HLML_CONSTRUCT( bool4 )
 	{
@@ -444,7 +444,7 @@ HLML_INLINE bool4 bool4_cadds( const bool4* lhs, const bool32_t rhs )
 }
 
 // Performs a component-wise + against the two vectors and returns the result.
-HLML_INLINE bool4 bool4_caddv( const bool4* lhs, const bool4* rhs )
+HLML_INLINE bool4 bool4_caddv( const bool4 *lhs, const bool4* rhs )
 {
 	return HLML_CONSTRUCT( bool4 )
 	{
@@ -456,7 +456,7 @@ HLML_INLINE bool4 bool4_caddv( const bool4* lhs, const bool4* rhs )
 }
 
 // Performs a component-wise - on the vector by the scalar and returns the result.
-HLML_INLINE bool4 bool4_csubs( const bool4* lhs, const bool32_t rhs )
+HLML_INLINE bool4 bool4_csubs( const bool4 *lhs, const bool32_t rhs )
 {
 	return HLML_CONSTRUCT( bool4 )
 	{
@@ -468,7 +468,7 @@ HLML_INLINE bool4 bool4_csubs( const bool4* lhs, const bool32_t rhs )
 }
 
 // Performs a component-wise - against the two vectors and returns the result.
-HLML_INLINE bool4 bool4_csubv( const bool4* lhs, const bool4* rhs )
+HLML_INLINE bool4 bool4_csubv( const bool4 *lhs, const bool4* rhs )
 {
 	return HLML_CONSTRUCT( bool4 )
 	{
@@ -480,7 +480,7 @@ HLML_INLINE bool4 bool4_csubv( const bool4* lhs, const bool4* rhs )
 }
 
 // Performs a component-wise * on the vector by the scalar and returns the result.
-HLML_INLINE bool4 bool4_cmuls( const bool4* lhs, const bool32_t rhs )
+HLML_INLINE bool4 bool4_cmuls( const bool4 *lhs, const bool32_t rhs )
 {
 	return HLML_CONSTRUCT( bool4 )
 	{
@@ -492,7 +492,7 @@ HLML_INLINE bool4 bool4_cmuls( const bool4* lhs, const bool32_t rhs )
 }
 
 // Performs a component-wise * against the two vectors and returns the result.
-HLML_INLINE bool4 bool4_cmulv( const bool4* lhs, const bool4* rhs )
+HLML_INLINE bool4 bool4_cmulv( const bool4 *lhs, const bool4* rhs )
 {
 	return HLML_CONSTRUCT( bool4 )
 	{
@@ -504,7 +504,7 @@ HLML_INLINE bool4 bool4_cmulv( const bool4* lhs, const bool4* rhs )
 }
 
 // Performs a component-wise / on the vector by the scalar and returns the result.
-HLML_INLINE bool4 bool4_cdivs( const bool4* lhs, const bool32_t rhs )
+HLML_INLINE bool4 bool4_cdivs( const bool4 *lhs, const bool32_t rhs )
 {
 	return HLML_CONSTRUCT( bool4 )
 	{
@@ -516,7 +516,7 @@ HLML_INLINE bool4 bool4_cdivs( const bool4* lhs, const bool32_t rhs )
 }
 
 // Performs a component-wise / against the two vectors and returns the result.
-HLML_INLINE bool4 bool4_cdivv( const bool4* lhs, const bool4* rhs )
+HLML_INLINE bool4 bool4_cdivv( const bool4 *lhs, const bool4* rhs )
 {
 	return HLML_CONSTRUCT( bool4 )
 	{
@@ -528,20 +528,20 @@ HLML_INLINE bool4 bool4_cdivv( const bool4* lhs, const bool4* rhs )
 }
 
 // Returns true if ALL components of the 'x' are true, otherwise returns false.
-HLML_INLINE bool bool4_all( const bool4* x )
+HLML_INLINE bool bool4_all( const bool4 *x )
 {
 	return x->x && x->y && x->z && x->w;
 }
 
 // Returns true if ANY one component of 'x' is true, otherwise returns false.
-HLML_INLINE bool bool4_any( const bool4* x )
+HLML_INLINE bool bool4_any( const bool4 *x )
 {
 	return x->x || x->y || x->z || x->w;
 }
 
 // int2
 // Returns true if the contents of 'lhs' are the same as the contents of 'rhs', otherwise returns false.
-HLML_INLINE bool int2_equals( const int2* lhs, const int2* rhs )
+HLML_INLINE bool int2_equals( const int2 *lhs, const int2 *rhs )
 {
 	return
 		lhs->x == rhs->x &&
@@ -549,13 +549,13 @@ HLML_INLINE bool int2_equals( const int2* lhs, const int2* rhs )
 }
 
 // Returns true if the contents of 'lhs' are NOT the same as the contents of 'rhs', otherwise returns false.
-HLML_INLINE bool int2_not_equals( const int2* lhs, const int2* rhs )
+HLML_INLINE bool int2_not_equals( const int2 *lhs, const int2 *rhs )
 {
 	return !int2_equals( lhs, rhs );
 }
 
 // Performs a component-wise '<' check against the two vectors and returns the result.
-HLML_INLINE bool2 int2_less_than( const int2* lhs, const int2* rhs )
+HLML_INLINE bool2 int2_less_than( const int2 *lhs, const int2* rhs )
 {
 	return HLML_CONSTRUCT( bool2 )
 	{
@@ -565,7 +565,7 @@ HLML_INLINE bool2 int2_less_than( const int2* lhs, const int2* rhs )
 }
 
 // Performs a component-wise '<=' check against the two vectors and returns the result.
-HLML_INLINE bool2 int2_less_than_equal( const int2* lhs, const int2* rhs )
+HLML_INLINE bool2 int2_less_than_equal( const int2 *lhs, const int2* rhs )
 {
 	return HLML_CONSTRUCT( bool2 )
 	{
@@ -575,7 +575,7 @@ HLML_INLINE bool2 int2_less_than_equal( const int2* lhs, const int2* rhs )
 }
 
 // Performs a component-wise '>' check against the two vectors and returns the result.
-HLML_INLINE bool2 int2_greater_than( const int2* lhs, const int2* rhs )
+HLML_INLINE bool2 int2_greater_than( const int2 *lhs, const int2* rhs )
 {
 	return HLML_CONSTRUCT( bool2 )
 	{
@@ -585,7 +585,7 @@ HLML_INLINE bool2 int2_greater_than( const int2* lhs, const int2* rhs )
 }
 
 // Performs a component-wise '>=' check against the two vectors and returns the result.
-HLML_INLINE bool2 int2_greater_than_equal( const int2* lhs, const int2* rhs )
+HLML_INLINE bool2 int2_greater_than_equal( const int2 *lhs, const int2* rhs )
 {
 	return HLML_CONSTRUCT( bool2 )
 	{
@@ -595,7 +595,7 @@ HLML_INLINE bool2 int2_greater_than_equal( const int2* lhs, const int2* rhs )
 }
 
 // Performs a component-wise + on the vector by the scalar and returns the result.
-HLML_INLINE int2 int2_cadds( const int2* lhs, const int32_t rhs )
+HLML_INLINE int2 int2_cadds( const int2 *lhs, const int32_t rhs )
 {
 	return HLML_CONSTRUCT( int2 )
 	{
@@ -605,7 +605,7 @@ HLML_INLINE int2 int2_cadds( const int2* lhs, const int32_t rhs )
 }
 
 // Performs a component-wise + against the two vectors and returns the result.
-HLML_INLINE int2 int2_caddv( const int2* lhs, const int2* rhs )
+HLML_INLINE int2 int2_caddv( const int2 *lhs, const int2* rhs )
 {
 	return HLML_CONSTRUCT( int2 )
 	{
@@ -615,7 +615,7 @@ HLML_INLINE int2 int2_caddv( const int2* lhs, const int2* rhs )
 }
 
 // Performs a component-wise - on the vector by the scalar and returns the result.
-HLML_INLINE int2 int2_csubs( const int2* lhs, const int32_t rhs )
+HLML_INLINE int2 int2_csubs( const int2 *lhs, const int32_t rhs )
 {
 	return HLML_CONSTRUCT( int2 )
 	{
@@ -625,7 +625,7 @@ HLML_INLINE int2 int2_csubs( const int2* lhs, const int32_t rhs )
 }
 
 // Performs a component-wise - against the two vectors and returns the result.
-HLML_INLINE int2 int2_csubv( const int2* lhs, const int2* rhs )
+HLML_INLINE int2 int2_csubv( const int2 *lhs, const int2* rhs )
 {
 	return HLML_CONSTRUCT( int2 )
 	{
@@ -635,7 +635,7 @@ HLML_INLINE int2 int2_csubv( const int2* lhs, const int2* rhs )
 }
 
 // Performs a component-wise * on the vector by the scalar and returns the result.
-HLML_INLINE int2 int2_cmuls( const int2* lhs, const int32_t rhs )
+HLML_INLINE int2 int2_cmuls( const int2 *lhs, const int32_t rhs )
 {
 	return HLML_CONSTRUCT( int2 )
 	{
@@ -645,7 +645,7 @@ HLML_INLINE int2 int2_cmuls( const int2* lhs, const int32_t rhs )
 }
 
 // Performs a component-wise * against the two vectors and returns the result.
-HLML_INLINE int2 int2_cmulv( const int2* lhs, const int2* rhs )
+HLML_INLINE int2 int2_cmulv( const int2 *lhs, const int2* rhs )
 {
 	return HLML_CONSTRUCT( int2 )
 	{
@@ -655,7 +655,7 @@ HLML_INLINE int2 int2_cmulv( const int2* lhs, const int2* rhs )
 }
 
 // Performs a component-wise / on the vector by the scalar and returns the result.
-HLML_INLINE int2 int2_cdivs( const int2* lhs, const int32_t rhs )
+HLML_INLINE int2 int2_cdivs( const int2 *lhs, const int32_t rhs )
 {
 	return HLML_CONSTRUCT( int2 )
 	{
@@ -665,7 +665,7 @@ HLML_INLINE int2 int2_cdivs( const int2* lhs, const int32_t rhs )
 }
 
 // Performs a component-wise / against the two vectors and returns the result.
-HLML_INLINE int2 int2_cdivv( const int2* lhs, const int2* rhs )
+HLML_INLINE int2 int2_cdivv( const int2 *lhs, const int2* rhs )
 {
 	return HLML_CONSTRUCT( int2 )
 	{
@@ -675,7 +675,7 @@ HLML_INLINE int2 int2_cdivv( const int2* lhs, const int2* rhs )
 }
 
 // Returns a copy of the vector that has been negated.
-HLML_INLINE int2 int2_negate( const int2* x )
+HLML_INLINE int2 int2_negate( const int2 *x )
 {
 	return HLML_CONSTRUCT( int2 )
 	{
@@ -685,7 +685,7 @@ HLML_INLINE int2 int2_negate( const int2* x )
 }
 
 // Returns a copy of the vector where each component has been bitwise NOT'd.
-HLML_INLINE int2 int2_not( const int2* x )
+HLML_INLINE int2 int2_not( const int2 *x )
 {
 	return HLML_CONSTRUCT( int2 )
 	{
@@ -695,7 +695,7 @@ HLML_INLINE int2 int2_not( const int2* x )
 }
 
 // Performs a component-wise bitwise & on the vector by the scalar and returns the result.
-HLML_INLINE int2 int2_cands( const int2* lhs, const int32_t rhs )
+HLML_INLINE int2 int2_cands( const int2 *lhs, const int32_t rhs )
 {
 	return HLML_CONSTRUCT( int2 )
 	{
@@ -705,7 +705,7 @@ HLML_INLINE int2 int2_cands( const int2* lhs, const int32_t rhs )
 }
 
 // Performs a component-wise bitwise & against the two vectors and returns the result.
-HLML_INLINE int2 int2_candv( const int2* lhs, const int2* rhs )
+HLML_INLINE int2 int2_candv( const int2 *lhs, const int2* rhs )
 {
 	return HLML_CONSTRUCT( int2 )
 	{
@@ -715,7 +715,7 @@ HLML_INLINE int2 int2_candv( const int2* lhs, const int2* rhs )
 }
 
 // Performs a component-wise bitwise | on the vector by the scalar and returns the result.
-HLML_INLINE int2 int2_cors( const int2* lhs, const int32_t rhs )
+HLML_INLINE int2 int2_cors( const int2 *lhs, const int32_t rhs )
 {
 	return HLML_CONSTRUCT( int2 )
 	{
@@ -725,7 +725,7 @@ HLML_INLINE int2 int2_cors( const int2* lhs, const int32_t rhs )
 }
 
 // Performs a component-wise bitwise | against the two vectors and returns the result.
-HLML_INLINE int2 int2_corv( const int2* lhs, const int2* rhs )
+HLML_INLINE int2 int2_corv( const int2 *lhs, const int2* rhs )
 {
 	return HLML_CONSTRUCT( int2 )
 	{
@@ -735,7 +735,7 @@ HLML_INLINE int2 int2_corv( const int2* lhs, const int2* rhs )
 }
 
 // Performs a component-wise bitwise ^ on the vector by the scalar and returns the result.
-HLML_INLINE int2 int2_cxors( const int2* lhs, const int32_t rhs )
+HLML_INLINE int2 int2_cxors( const int2 *lhs, const int32_t rhs )
 {
 	return HLML_CONSTRUCT( int2 )
 	{
@@ -745,7 +745,7 @@ HLML_INLINE int2 int2_cxors( const int2* lhs, const int32_t rhs )
 }
 
 // Performs a component-wise bitwise ^ against the two vectors and returns the result.
-HLML_INLINE int2 int2_cxorv( const int2* lhs, const int2* rhs )
+HLML_INLINE int2 int2_cxorv( const int2 *lhs, const int2* rhs )
 {
 	return HLML_CONSTRUCT( int2 )
 	{
@@ -755,7 +755,7 @@ HLML_INLINE int2 int2_cxorv( const int2* lhs, const int2* rhs )
 }
 
 // Performs a component-wise bitwise << on the vector by the scalar and returns the result.
-HLML_INLINE int2 int2_cshift_lefts( const int2* lhs, const int32_t rhs )
+HLML_INLINE int2 int2_cshift_lefts( const int2 *lhs, const int32_t rhs )
 {
 	return HLML_CONSTRUCT( int2 )
 	{
@@ -765,7 +765,7 @@ HLML_INLINE int2 int2_cshift_lefts( const int2* lhs, const int32_t rhs )
 }
 
 // Performs a component-wise bitwise << against the two vectors and returns the result.
-HLML_INLINE int2 int2_cshift_leftv( const int2* lhs, const int2* rhs )
+HLML_INLINE int2 int2_cshift_leftv( const int2 *lhs, const int2* rhs )
 {
 	return HLML_CONSTRUCT( int2 )
 	{
@@ -775,7 +775,7 @@ HLML_INLINE int2 int2_cshift_leftv( const int2* lhs, const int2* rhs )
 }
 
 // Performs a component-wise bitwise >> on the vector by the scalar and returns the result.
-HLML_INLINE int2 int2_cshift_rights( const int2* lhs, const int32_t rhs )
+HLML_INLINE int2 int2_cshift_rights( const int2 *lhs, const int32_t rhs )
 {
 	return HLML_CONSTRUCT( int2 )
 	{
@@ -785,7 +785,7 @@ HLML_INLINE int2 int2_cshift_rights( const int2* lhs, const int32_t rhs )
 }
 
 // Performs a component-wise bitwise >> against the two vectors and returns the result.
-HLML_INLINE int2 int2_cshift_rightv( const int2* lhs, const int2* rhs )
+HLML_INLINE int2 int2_cshift_rightv( const int2 *lhs, const int2* rhs )
 {
 	return HLML_CONSTRUCT( int2 )
 	{
@@ -878,7 +878,7 @@ HLML_INLINE float int2_distance( const int2* lhs, const int2* rhs )
 
 // int3
 // Returns true if the contents of 'lhs' are the same as the contents of 'rhs', otherwise returns false.
-HLML_INLINE bool int3_equals( const int3* lhs, const int3* rhs )
+HLML_INLINE bool int3_equals( const int3 *lhs, const int3 *rhs )
 {
 	return
 		lhs->x == rhs->x &&
@@ -887,13 +887,13 @@ HLML_INLINE bool int3_equals( const int3* lhs, const int3* rhs )
 }
 
 // Returns true if the contents of 'lhs' are NOT the same as the contents of 'rhs', otherwise returns false.
-HLML_INLINE bool int3_not_equals( const int3* lhs, const int3* rhs )
+HLML_INLINE bool int3_not_equals( const int3 *lhs, const int3 *rhs )
 {
 	return !int3_equals( lhs, rhs );
 }
 
 // Performs a component-wise '<' check against the two vectors and returns the result.
-HLML_INLINE bool3 int3_less_than( const int3* lhs, const int3* rhs )
+HLML_INLINE bool3 int3_less_than( const int3 *lhs, const int3* rhs )
 {
 	return HLML_CONSTRUCT( bool3 )
 	{
@@ -904,7 +904,7 @@ HLML_INLINE bool3 int3_less_than( const int3* lhs, const int3* rhs )
 }
 
 // Performs a component-wise '<=' check against the two vectors and returns the result.
-HLML_INLINE bool3 int3_less_than_equal( const int3* lhs, const int3* rhs )
+HLML_INLINE bool3 int3_less_than_equal( const int3 *lhs, const int3* rhs )
 {
 	return HLML_CONSTRUCT( bool3 )
 	{
@@ -915,7 +915,7 @@ HLML_INLINE bool3 int3_less_than_equal( const int3* lhs, const int3* rhs )
 }
 
 // Performs a component-wise '>' check against the two vectors and returns the result.
-HLML_INLINE bool3 int3_greater_than( const int3* lhs, const int3* rhs )
+HLML_INLINE bool3 int3_greater_than( const int3 *lhs, const int3* rhs )
 {
 	return HLML_CONSTRUCT( bool3 )
 	{
@@ -926,7 +926,7 @@ HLML_INLINE bool3 int3_greater_than( const int3* lhs, const int3* rhs )
 }
 
 // Performs a component-wise '>=' check against the two vectors and returns the result.
-HLML_INLINE bool3 int3_greater_than_equal( const int3* lhs, const int3* rhs )
+HLML_INLINE bool3 int3_greater_than_equal( const int3 *lhs, const int3* rhs )
 {
 	return HLML_CONSTRUCT( bool3 )
 	{
@@ -937,7 +937,7 @@ HLML_INLINE bool3 int3_greater_than_equal( const int3* lhs, const int3* rhs )
 }
 
 // Performs a component-wise + on the vector by the scalar and returns the result.
-HLML_INLINE int3 int3_cadds( const int3* lhs, const int32_t rhs )
+HLML_INLINE int3 int3_cadds( const int3 *lhs, const int32_t rhs )
 {
 	return HLML_CONSTRUCT( int3 )
 	{
@@ -948,7 +948,7 @@ HLML_INLINE int3 int3_cadds( const int3* lhs, const int32_t rhs )
 }
 
 // Performs a component-wise + against the two vectors and returns the result.
-HLML_INLINE int3 int3_caddv( const int3* lhs, const int3* rhs )
+HLML_INLINE int3 int3_caddv( const int3 *lhs, const int3* rhs )
 {
 	return HLML_CONSTRUCT( int3 )
 	{
@@ -959,7 +959,7 @@ HLML_INLINE int3 int3_caddv( const int3* lhs, const int3* rhs )
 }
 
 // Performs a component-wise - on the vector by the scalar and returns the result.
-HLML_INLINE int3 int3_csubs( const int3* lhs, const int32_t rhs )
+HLML_INLINE int3 int3_csubs( const int3 *lhs, const int32_t rhs )
 {
 	return HLML_CONSTRUCT( int3 )
 	{
@@ -970,7 +970,7 @@ HLML_INLINE int3 int3_csubs( const int3* lhs, const int32_t rhs )
 }
 
 // Performs a component-wise - against the two vectors and returns the result.
-HLML_INLINE int3 int3_csubv( const int3* lhs, const int3* rhs )
+HLML_INLINE int3 int3_csubv( const int3 *lhs, const int3* rhs )
 {
 	return HLML_CONSTRUCT( int3 )
 	{
@@ -981,7 +981,7 @@ HLML_INLINE int3 int3_csubv( const int3* lhs, const int3* rhs )
 }
 
 // Performs a component-wise * on the vector by the scalar and returns the result.
-HLML_INLINE int3 int3_cmuls( const int3* lhs, const int32_t rhs )
+HLML_INLINE int3 int3_cmuls( const int3 *lhs, const int32_t rhs )
 {
 	return HLML_CONSTRUCT( int3 )
 	{
@@ -992,7 +992,7 @@ HLML_INLINE int3 int3_cmuls( const int3* lhs, const int32_t rhs )
 }
 
 // Performs a component-wise * against the two vectors and returns the result.
-HLML_INLINE int3 int3_cmulv( const int3* lhs, const int3* rhs )
+HLML_INLINE int3 int3_cmulv( const int3 *lhs, const int3* rhs )
 {
 	return HLML_CONSTRUCT( int3 )
 	{
@@ -1003,7 +1003,7 @@ HLML_INLINE int3 int3_cmulv( const int3* lhs, const int3* rhs )
 }
 
 // Performs a component-wise / on the vector by the scalar and returns the result.
-HLML_INLINE int3 int3_cdivs( const int3* lhs, const int32_t rhs )
+HLML_INLINE int3 int3_cdivs( const int3 *lhs, const int32_t rhs )
 {
 	return HLML_CONSTRUCT( int3 )
 	{
@@ -1014,7 +1014,7 @@ HLML_INLINE int3 int3_cdivs( const int3* lhs, const int32_t rhs )
 }
 
 // Performs a component-wise / against the two vectors and returns the result.
-HLML_INLINE int3 int3_cdivv( const int3* lhs, const int3* rhs )
+HLML_INLINE int3 int3_cdivv( const int3 *lhs, const int3* rhs )
 {
 	return HLML_CONSTRUCT( int3 )
 	{
@@ -1025,7 +1025,7 @@ HLML_INLINE int3 int3_cdivv( const int3* lhs, const int3* rhs )
 }
 
 // Returns a copy of the vector that has been negated.
-HLML_INLINE int3 int3_negate( const int3* x )
+HLML_INLINE int3 int3_negate( const int3 *x )
 {
 	return HLML_CONSTRUCT( int3 )
 	{
@@ -1036,7 +1036,7 @@ HLML_INLINE int3 int3_negate( const int3* x )
 }
 
 // Returns a copy of the vector where each component has been bitwise NOT'd.
-HLML_INLINE int3 int3_not( const int3* x )
+HLML_INLINE int3 int3_not( const int3 *x )
 {
 	return HLML_CONSTRUCT( int3 )
 	{
@@ -1047,7 +1047,7 @@ HLML_INLINE int3 int3_not( const int3* x )
 }
 
 // Performs a component-wise bitwise & on the vector by the scalar and returns the result.
-HLML_INLINE int3 int3_cands( const int3* lhs, const int32_t rhs )
+HLML_INLINE int3 int3_cands( const int3 *lhs, const int32_t rhs )
 {
 	return HLML_CONSTRUCT( int3 )
 	{
@@ -1058,7 +1058,7 @@ HLML_INLINE int3 int3_cands( const int3* lhs, const int32_t rhs )
 }
 
 // Performs a component-wise bitwise & against the two vectors and returns the result.
-HLML_INLINE int3 int3_candv( const int3* lhs, const int3* rhs )
+HLML_INLINE int3 int3_candv( const int3 *lhs, const int3* rhs )
 {
 	return HLML_CONSTRUCT( int3 )
 	{
@@ -1069,7 +1069,7 @@ HLML_INLINE int3 int3_candv( const int3* lhs, const int3* rhs )
 }
 
 // Performs a component-wise bitwise | on the vector by the scalar and returns the result.
-HLML_INLINE int3 int3_cors( const int3* lhs, const int32_t rhs )
+HLML_INLINE int3 int3_cors( const int3 *lhs, const int32_t rhs )
 {
 	return HLML_CONSTRUCT( int3 )
 	{
@@ -1080,7 +1080,7 @@ HLML_INLINE int3 int3_cors( const int3* lhs, const int32_t rhs )
 }
 
 // Performs a component-wise bitwise | against the two vectors and returns the result.
-HLML_INLINE int3 int3_corv( const int3* lhs, const int3* rhs )
+HLML_INLINE int3 int3_corv( const int3 *lhs, const int3* rhs )
 {
 	return HLML_CONSTRUCT( int3 )
 	{
@@ -1091,7 +1091,7 @@ HLML_INLINE int3 int3_corv( const int3* lhs, const int3* rhs )
 }
 
 // Performs a component-wise bitwise ^ on the vector by the scalar and returns the result.
-HLML_INLINE int3 int3_cxors( const int3* lhs, const int32_t rhs )
+HLML_INLINE int3 int3_cxors( const int3 *lhs, const int32_t rhs )
 {
 	return HLML_CONSTRUCT( int3 )
 	{
@@ -1102,7 +1102,7 @@ HLML_INLINE int3 int3_cxors( const int3* lhs, const int32_t rhs )
 }
 
 // Performs a component-wise bitwise ^ against the two vectors and returns the result.
-HLML_INLINE int3 int3_cxorv( const int3* lhs, const int3* rhs )
+HLML_INLINE int3 int3_cxorv( const int3 *lhs, const int3* rhs )
 {
 	return HLML_CONSTRUCT( int3 )
 	{
@@ -1113,7 +1113,7 @@ HLML_INLINE int3 int3_cxorv( const int3* lhs, const int3* rhs )
 }
 
 // Performs a component-wise bitwise << on the vector by the scalar and returns the result.
-HLML_INLINE int3 int3_cshift_lefts( const int3* lhs, const int32_t rhs )
+HLML_INLINE int3 int3_cshift_lefts( const int3 *lhs, const int32_t rhs )
 {
 	return HLML_CONSTRUCT( int3 )
 	{
@@ -1124,7 +1124,7 @@ HLML_INLINE int3 int3_cshift_lefts( const int3* lhs, const int32_t rhs )
 }
 
 // Performs a component-wise bitwise << against the two vectors and returns the result.
-HLML_INLINE int3 int3_cshift_leftv( const int3* lhs, const int3* rhs )
+HLML_INLINE int3 int3_cshift_leftv( const int3 *lhs, const int3* rhs )
 {
 	return HLML_CONSTRUCT( int3 )
 	{
@@ -1135,7 +1135,7 @@ HLML_INLINE int3 int3_cshift_leftv( const int3* lhs, const int3* rhs )
 }
 
 // Performs a component-wise bitwise >> on the vector by the scalar and returns the result.
-HLML_INLINE int3 int3_cshift_rights( const int3* lhs, const int32_t rhs )
+HLML_INLINE int3 int3_cshift_rights( const int3 *lhs, const int32_t rhs )
 {
 	return HLML_CONSTRUCT( int3 )
 	{
@@ -1146,7 +1146,7 @@ HLML_INLINE int3 int3_cshift_rights( const int3* lhs, const int32_t rhs )
 }
 
 // Performs a component-wise bitwise >> against the two vectors and returns the result.
-HLML_INLINE int3 int3_cshift_rightv( const int3* lhs, const int3* rhs )
+HLML_INLINE int3 int3_cshift_rightv( const int3 *lhs, const int3* rhs )
 {
 	return HLML_CONSTRUCT( int3 )
 	{
@@ -1245,7 +1245,7 @@ HLML_INLINE float int3_distance( const int3* lhs, const int3* rhs )
 
 // int4
 // Returns true if the contents of 'lhs' are the same as the contents of 'rhs', otherwise returns false.
-HLML_INLINE bool int4_equals( const int4* lhs, const int4* rhs )
+HLML_INLINE bool int4_equals( const int4 *lhs, const int4 *rhs )
 {
 	return
 		lhs->x == rhs->x &&
@@ -1255,13 +1255,13 @@ HLML_INLINE bool int4_equals( const int4* lhs, const int4* rhs )
 }
 
 // Returns true if the contents of 'lhs' are NOT the same as the contents of 'rhs', otherwise returns false.
-HLML_INLINE bool int4_not_equals( const int4* lhs, const int4* rhs )
+HLML_INLINE bool int4_not_equals( const int4 *lhs, const int4 *rhs )
 {
 	return !int4_equals( lhs, rhs );
 }
 
 // Performs a component-wise '<' check against the two vectors and returns the result.
-HLML_INLINE bool4 int4_less_than( const int4* lhs, const int4* rhs )
+HLML_INLINE bool4 int4_less_than( const int4 *lhs, const int4* rhs )
 {
 	return HLML_CONSTRUCT( bool4 )
 	{
@@ -1273,7 +1273,7 @@ HLML_INLINE bool4 int4_less_than( const int4* lhs, const int4* rhs )
 }
 
 // Performs a component-wise '<=' check against the two vectors and returns the result.
-HLML_INLINE bool4 int4_less_than_equal( const int4* lhs, const int4* rhs )
+HLML_INLINE bool4 int4_less_than_equal( const int4 *lhs, const int4* rhs )
 {
 	return HLML_CONSTRUCT( bool4 )
 	{
@@ -1285,7 +1285,7 @@ HLML_INLINE bool4 int4_less_than_equal( const int4* lhs, const int4* rhs )
 }
 
 // Performs a component-wise '>' check against the two vectors and returns the result.
-HLML_INLINE bool4 int4_greater_than( const int4* lhs, const int4* rhs )
+HLML_INLINE bool4 int4_greater_than( const int4 *lhs, const int4* rhs )
 {
 	return HLML_CONSTRUCT( bool4 )
 	{
@@ -1297,7 +1297,7 @@ HLML_INLINE bool4 int4_greater_than( const int4* lhs, const int4* rhs )
 }
 
 // Performs a component-wise '>=' check against the two vectors and returns the result.
-HLML_INLINE bool4 int4_greater_than_equal( const int4* lhs, const int4* rhs )
+HLML_INLINE bool4 int4_greater_than_equal( const int4 *lhs, const int4* rhs )
 {
 	return HLML_CONSTRUCT( bool4 )
 	{
@@ -1309,7 +1309,7 @@ HLML_INLINE bool4 int4_greater_than_equal( const int4* lhs, const int4* rhs )
 }
 
 // Performs a component-wise + on the vector by the scalar and returns the result.
-HLML_INLINE int4 int4_cadds( const int4* lhs, const int32_t rhs )
+HLML_INLINE int4 int4_cadds( const int4 *lhs, const int32_t rhs )
 {
 	return HLML_CONSTRUCT( int4 )
 	{
@@ -1321,7 +1321,7 @@ HLML_INLINE int4 int4_cadds( const int4* lhs, const int32_t rhs )
 }
 
 // Performs a component-wise + against the two vectors and returns the result.
-HLML_INLINE int4 int4_caddv( const int4* lhs, const int4* rhs )
+HLML_INLINE int4 int4_caddv( const int4 *lhs, const int4* rhs )
 {
 	return HLML_CONSTRUCT( int4 )
 	{
@@ -1333,7 +1333,7 @@ HLML_INLINE int4 int4_caddv( const int4* lhs, const int4* rhs )
 }
 
 // Performs a component-wise - on the vector by the scalar and returns the result.
-HLML_INLINE int4 int4_csubs( const int4* lhs, const int32_t rhs )
+HLML_INLINE int4 int4_csubs( const int4 *lhs, const int32_t rhs )
 {
 	return HLML_CONSTRUCT( int4 )
 	{
@@ -1345,7 +1345,7 @@ HLML_INLINE int4 int4_csubs( const int4* lhs, const int32_t rhs )
 }
 
 // Performs a component-wise - against the two vectors and returns the result.
-HLML_INLINE int4 int4_csubv( const int4* lhs, const int4* rhs )
+HLML_INLINE int4 int4_csubv( const int4 *lhs, const int4* rhs )
 {
 	return HLML_CONSTRUCT( int4 )
 	{
@@ -1357,7 +1357,7 @@ HLML_INLINE int4 int4_csubv( const int4* lhs, const int4* rhs )
 }
 
 // Performs a component-wise * on the vector by the scalar and returns the result.
-HLML_INLINE int4 int4_cmuls( const int4* lhs, const int32_t rhs )
+HLML_INLINE int4 int4_cmuls( const int4 *lhs, const int32_t rhs )
 {
 	return HLML_CONSTRUCT( int4 )
 	{
@@ -1369,7 +1369,7 @@ HLML_INLINE int4 int4_cmuls( const int4* lhs, const int32_t rhs )
 }
 
 // Performs a component-wise * against the two vectors and returns the result.
-HLML_INLINE int4 int4_cmulv( const int4* lhs, const int4* rhs )
+HLML_INLINE int4 int4_cmulv( const int4 *lhs, const int4* rhs )
 {
 	return HLML_CONSTRUCT( int4 )
 	{
@@ -1381,7 +1381,7 @@ HLML_INLINE int4 int4_cmulv( const int4* lhs, const int4* rhs )
 }
 
 // Performs a component-wise / on the vector by the scalar and returns the result.
-HLML_INLINE int4 int4_cdivs( const int4* lhs, const int32_t rhs )
+HLML_INLINE int4 int4_cdivs( const int4 *lhs, const int32_t rhs )
 {
 	return HLML_CONSTRUCT( int4 )
 	{
@@ -1393,7 +1393,7 @@ HLML_INLINE int4 int4_cdivs( const int4* lhs, const int32_t rhs )
 }
 
 // Performs a component-wise / against the two vectors and returns the result.
-HLML_INLINE int4 int4_cdivv( const int4* lhs, const int4* rhs )
+HLML_INLINE int4 int4_cdivv( const int4 *lhs, const int4* rhs )
 {
 	return HLML_CONSTRUCT( int4 )
 	{
@@ -1405,7 +1405,7 @@ HLML_INLINE int4 int4_cdivv( const int4* lhs, const int4* rhs )
 }
 
 // Returns a copy of the vector that has been negated.
-HLML_INLINE int4 int4_negate( const int4* x )
+HLML_INLINE int4 int4_negate( const int4 *x )
 {
 	return HLML_CONSTRUCT( int4 )
 	{
@@ -1417,7 +1417,7 @@ HLML_INLINE int4 int4_negate( const int4* x )
 }
 
 // Returns a copy of the vector where each component has been bitwise NOT'd.
-HLML_INLINE int4 int4_not( const int4* x )
+HLML_INLINE int4 int4_not( const int4 *x )
 {
 	return HLML_CONSTRUCT( int4 )
 	{
@@ -1429,7 +1429,7 @@ HLML_INLINE int4 int4_not( const int4* x )
 }
 
 // Performs a component-wise bitwise & on the vector by the scalar and returns the result.
-HLML_INLINE int4 int4_cands( const int4* lhs, const int32_t rhs )
+HLML_INLINE int4 int4_cands( const int4 *lhs, const int32_t rhs )
 {
 	return HLML_CONSTRUCT( int4 )
 	{
@@ -1441,7 +1441,7 @@ HLML_INLINE int4 int4_cands( const int4* lhs, const int32_t rhs )
 }
 
 // Performs a component-wise bitwise & against the two vectors and returns the result.
-HLML_INLINE int4 int4_candv( const int4* lhs, const int4* rhs )
+HLML_INLINE int4 int4_candv( const int4 *lhs, const int4* rhs )
 {
 	return HLML_CONSTRUCT( int4 )
 	{
@@ -1453,7 +1453,7 @@ HLML_INLINE int4 int4_candv( const int4* lhs, const int4* rhs )
 }
 
 // Performs a component-wise bitwise | on the vector by the scalar and returns the result.
-HLML_INLINE int4 int4_cors( const int4* lhs, const int32_t rhs )
+HLML_INLINE int4 int4_cors( const int4 *lhs, const int32_t rhs )
 {
 	return HLML_CONSTRUCT( int4 )
 	{
@@ -1465,7 +1465,7 @@ HLML_INLINE int4 int4_cors( const int4* lhs, const int32_t rhs )
 }
 
 // Performs a component-wise bitwise | against the two vectors and returns the result.
-HLML_INLINE int4 int4_corv( const int4* lhs, const int4* rhs )
+HLML_INLINE int4 int4_corv( const int4 *lhs, const int4* rhs )
 {
 	return HLML_CONSTRUCT( int4 )
 	{
@@ -1477,7 +1477,7 @@ HLML_INLINE int4 int4_corv( const int4* lhs, const int4* rhs )
 }
 
 // Performs a component-wise bitwise ^ on the vector by the scalar and returns the result.
-HLML_INLINE int4 int4_cxors( const int4* lhs, const int32_t rhs )
+HLML_INLINE int4 int4_cxors( const int4 *lhs, const int32_t rhs )
 {
 	return HLML_CONSTRUCT( int4 )
 	{
@@ -1489,7 +1489,7 @@ HLML_INLINE int4 int4_cxors( const int4* lhs, const int32_t rhs )
 }
 
 // Performs a component-wise bitwise ^ against the two vectors and returns the result.
-HLML_INLINE int4 int4_cxorv( const int4* lhs, const int4* rhs )
+HLML_INLINE int4 int4_cxorv( const int4 *lhs, const int4* rhs )
 {
 	return HLML_CONSTRUCT( int4 )
 	{
@@ -1501,7 +1501,7 @@ HLML_INLINE int4 int4_cxorv( const int4* lhs, const int4* rhs )
 }
 
 // Performs a component-wise bitwise << on the vector by the scalar and returns the result.
-HLML_INLINE int4 int4_cshift_lefts( const int4* lhs, const int32_t rhs )
+HLML_INLINE int4 int4_cshift_lefts( const int4 *lhs, const int32_t rhs )
 {
 	return HLML_CONSTRUCT( int4 )
 	{
@@ -1513,7 +1513,7 @@ HLML_INLINE int4 int4_cshift_lefts( const int4* lhs, const int32_t rhs )
 }
 
 // Performs a component-wise bitwise << against the two vectors and returns the result.
-HLML_INLINE int4 int4_cshift_leftv( const int4* lhs, const int4* rhs )
+HLML_INLINE int4 int4_cshift_leftv( const int4 *lhs, const int4* rhs )
 {
 	return HLML_CONSTRUCT( int4 )
 	{
@@ -1525,7 +1525,7 @@ HLML_INLINE int4 int4_cshift_leftv( const int4* lhs, const int4* rhs )
 }
 
 // Performs a component-wise bitwise >> on the vector by the scalar and returns the result.
-HLML_INLINE int4 int4_cshift_rights( const int4* lhs, const int32_t rhs )
+HLML_INLINE int4 int4_cshift_rights( const int4 *lhs, const int32_t rhs )
 {
 	return HLML_CONSTRUCT( int4 )
 	{
@@ -1537,7 +1537,7 @@ HLML_INLINE int4 int4_cshift_rights( const int4* lhs, const int32_t rhs )
 }
 
 // Performs a component-wise bitwise >> against the two vectors and returns the result.
-HLML_INLINE int4 int4_cshift_rightv( const int4* lhs, const int4* rhs )
+HLML_INLINE int4 int4_cshift_rightv( const int4 *lhs, const int4* rhs )
 {
 	return HLML_CONSTRUCT( int4 )
 	{
@@ -1628,7 +1628,7 @@ HLML_INLINE int32_t int4_dot( const int4* lhs, const int4* rhs )
 
 // uint2
 // Returns true if the contents of 'lhs' are the same as the contents of 'rhs', otherwise returns false.
-HLML_INLINE bool uint2_equals( const uint2* lhs, const uint2* rhs )
+HLML_INLINE bool uint2_equals( const uint2 *lhs, const uint2 *rhs )
 {
 	return
 		lhs->x == rhs->x &&
@@ -1636,13 +1636,13 @@ HLML_INLINE bool uint2_equals( const uint2* lhs, const uint2* rhs )
 }
 
 // Returns true if the contents of 'lhs' are NOT the same as the contents of 'rhs', otherwise returns false.
-HLML_INLINE bool uint2_not_equals( const uint2* lhs, const uint2* rhs )
+HLML_INLINE bool uint2_not_equals( const uint2 *lhs, const uint2 *rhs )
 {
 	return !uint2_equals( lhs, rhs );
 }
 
 // Performs a component-wise '<' check against the two vectors and returns the result.
-HLML_INLINE bool2 uint2_less_than( const uint2* lhs, const uint2* rhs )
+HLML_INLINE bool2 uint2_less_than( const uint2 *lhs, const uint2* rhs )
 {
 	return HLML_CONSTRUCT( bool2 )
 	{
@@ -1652,7 +1652,7 @@ HLML_INLINE bool2 uint2_less_than( const uint2* lhs, const uint2* rhs )
 }
 
 // Performs a component-wise '<=' check against the two vectors and returns the result.
-HLML_INLINE bool2 uint2_less_than_equal( const uint2* lhs, const uint2* rhs )
+HLML_INLINE bool2 uint2_less_than_equal( const uint2 *lhs, const uint2* rhs )
 {
 	return HLML_CONSTRUCT( bool2 )
 	{
@@ -1662,7 +1662,7 @@ HLML_INLINE bool2 uint2_less_than_equal( const uint2* lhs, const uint2* rhs )
 }
 
 // Performs a component-wise '>' check against the two vectors and returns the result.
-HLML_INLINE bool2 uint2_greater_than( const uint2* lhs, const uint2* rhs )
+HLML_INLINE bool2 uint2_greater_than( const uint2 *lhs, const uint2* rhs )
 {
 	return HLML_CONSTRUCT( bool2 )
 	{
@@ -1672,7 +1672,7 @@ HLML_INLINE bool2 uint2_greater_than( const uint2* lhs, const uint2* rhs )
 }
 
 // Performs a component-wise '>=' check against the two vectors and returns the result.
-HLML_INLINE bool2 uint2_greater_than_equal( const uint2* lhs, const uint2* rhs )
+HLML_INLINE bool2 uint2_greater_than_equal( const uint2 *lhs, const uint2* rhs )
 {
 	return HLML_CONSTRUCT( bool2 )
 	{
@@ -1682,7 +1682,7 @@ HLML_INLINE bool2 uint2_greater_than_equal( const uint2* lhs, const uint2* rhs )
 }
 
 // Performs a component-wise + on the vector by the scalar and returns the result.
-HLML_INLINE uint2 uint2_cadds( const uint2* lhs, const uint32_t rhs )
+HLML_INLINE uint2 uint2_cadds( const uint2 *lhs, const uint32_t rhs )
 {
 	return HLML_CONSTRUCT( uint2 )
 	{
@@ -1692,7 +1692,7 @@ HLML_INLINE uint2 uint2_cadds( const uint2* lhs, const uint32_t rhs )
 }
 
 // Performs a component-wise + against the two vectors and returns the result.
-HLML_INLINE uint2 uint2_caddv( const uint2* lhs, const uint2* rhs )
+HLML_INLINE uint2 uint2_caddv( const uint2 *lhs, const uint2* rhs )
 {
 	return HLML_CONSTRUCT( uint2 )
 	{
@@ -1702,7 +1702,7 @@ HLML_INLINE uint2 uint2_caddv( const uint2* lhs, const uint2* rhs )
 }
 
 // Performs a component-wise - on the vector by the scalar and returns the result.
-HLML_INLINE uint2 uint2_csubs( const uint2* lhs, const uint32_t rhs )
+HLML_INLINE uint2 uint2_csubs( const uint2 *lhs, const uint32_t rhs )
 {
 	return HLML_CONSTRUCT( uint2 )
 	{
@@ -1712,7 +1712,7 @@ HLML_INLINE uint2 uint2_csubs( const uint2* lhs, const uint32_t rhs )
 }
 
 // Performs a component-wise - against the two vectors and returns the result.
-HLML_INLINE uint2 uint2_csubv( const uint2* lhs, const uint2* rhs )
+HLML_INLINE uint2 uint2_csubv( const uint2 *lhs, const uint2* rhs )
 {
 	return HLML_CONSTRUCT( uint2 )
 	{
@@ -1722,7 +1722,7 @@ HLML_INLINE uint2 uint2_csubv( const uint2* lhs, const uint2* rhs )
 }
 
 // Performs a component-wise * on the vector by the scalar and returns the result.
-HLML_INLINE uint2 uint2_cmuls( const uint2* lhs, const uint32_t rhs )
+HLML_INLINE uint2 uint2_cmuls( const uint2 *lhs, const uint32_t rhs )
 {
 	return HLML_CONSTRUCT( uint2 )
 	{
@@ -1732,7 +1732,7 @@ HLML_INLINE uint2 uint2_cmuls( const uint2* lhs, const uint32_t rhs )
 }
 
 // Performs a component-wise * against the two vectors and returns the result.
-HLML_INLINE uint2 uint2_cmulv( const uint2* lhs, const uint2* rhs )
+HLML_INLINE uint2 uint2_cmulv( const uint2 *lhs, const uint2* rhs )
 {
 	return HLML_CONSTRUCT( uint2 )
 	{
@@ -1742,7 +1742,7 @@ HLML_INLINE uint2 uint2_cmulv( const uint2* lhs, const uint2* rhs )
 }
 
 // Performs a component-wise / on the vector by the scalar and returns the result.
-HLML_INLINE uint2 uint2_cdivs( const uint2* lhs, const uint32_t rhs )
+HLML_INLINE uint2 uint2_cdivs( const uint2 *lhs, const uint32_t rhs )
 {
 	return HLML_CONSTRUCT( uint2 )
 	{
@@ -1752,7 +1752,7 @@ HLML_INLINE uint2 uint2_cdivs( const uint2* lhs, const uint32_t rhs )
 }
 
 // Performs a component-wise / against the two vectors and returns the result.
-HLML_INLINE uint2 uint2_cdivv( const uint2* lhs, const uint2* rhs )
+HLML_INLINE uint2 uint2_cdivv( const uint2 *lhs, const uint2* rhs )
 {
 	return HLML_CONSTRUCT( uint2 )
 	{
@@ -1766,7 +1766,7 @@ HLML_INLINE uint2 uint2_cdivv( const uint2* lhs, const uint2* rhs )
 #pragma warning( disable : 4146 )
 #endif
 // Returns a copy of the vector that has been negated.
-HLML_INLINE uint2 uint2_negate( const uint2* x )
+HLML_INLINE uint2 uint2_negate( const uint2 *x )
 {
 	return HLML_CONSTRUCT( uint2 )
 	{
@@ -1779,7 +1779,7 @@ HLML_INLINE uint2 uint2_negate( const uint2* x )
 #pragma warning( pop )
 #endif
 // Returns a copy of the vector where each component has been bitwise NOT'd.
-HLML_INLINE uint2 uint2_not( const uint2* x )
+HLML_INLINE uint2 uint2_not( const uint2 *x )
 {
 	return HLML_CONSTRUCT( uint2 )
 	{
@@ -1789,7 +1789,7 @@ HLML_INLINE uint2 uint2_not( const uint2* x )
 }
 
 // Performs a component-wise bitwise & on the vector by the scalar and returns the result.
-HLML_INLINE uint2 uint2_cands( const uint2* lhs, const uint32_t rhs )
+HLML_INLINE uint2 uint2_cands( const uint2 *lhs, const uint32_t rhs )
 {
 	return HLML_CONSTRUCT( uint2 )
 	{
@@ -1799,7 +1799,7 @@ HLML_INLINE uint2 uint2_cands( const uint2* lhs, const uint32_t rhs )
 }
 
 // Performs a component-wise bitwise & against the two vectors and returns the result.
-HLML_INLINE uint2 uint2_candv( const uint2* lhs, const uint2* rhs )
+HLML_INLINE uint2 uint2_candv( const uint2 *lhs, const uint2* rhs )
 {
 	return HLML_CONSTRUCT( uint2 )
 	{
@@ -1809,7 +1809,7 @@ HLML_INLINE uint2 uint2_candv( const uint2* lhs, const uint2* rhs )
 }
 
 // Performs a component-wise bitwise | on the vector by the scalar and returns the result.
-HLML_INLINE uint2 uint2_cors( const uint2* lhs, const uint32_t rhs )
+HLML_INLINE uint2 uint2_cors( const uint2 *lhs, const uint32_t rhs )
 {
 	return HLML_CONSTRUCT( uint2 )
 	{
@@ -1819,7 +1819,7 @@ HLML_INLINE uint2 uint2_cors( const uint2* lhs, const uint32_t rhs )
 }
 
 // Performs a component-wise bitwise | against the two vectors and returns the result.
-HLML_INLINE uint2 uint2_corv( const uint2* lhs, const uint2* rhs )
+HLML_INLINE uint2 uint2_corv( const uint2 *lhs, const uint2* rhs )
 {
 	return HLML_CONSTRUCT( uint2 )
 	{
@@ -1829,7 +1829,7 @@ HLML_INLINE uint2 uint2_corv( const uint2* lhs, const uint2* rhs )
 }
 
 // Performs a component-wise bitwise ^ on the vector by the scalar and returns the result.
-HLML_INLINE uint2 uint2_cxors( const uint2* lhs, const uint32_t rhs )
+HLML_INLINE uint2 uint2_cxors( const uint2 *lhs, const uint32_t rhs )
 {
 	return HLML_CONSTRUCT( uint2 )
 	{
@@ -1839,7 +1839,7 @@ HLML_INLINE uint2 uint2_cxors( const uint2* lhs, const uint32_t rhs )
 }
 
 // Performs a component-wise bitwise ^ against the two vectors and returns the result.
-HLML_INLINE uint2 uint2_cxorv( const uint2* lhs, const uint2* rhs )
+HLML_INLINE uint2 uint2_cxorv( const uint2 *lhs, const uint2* rhs )
 {
 	return HLML_CONSTRUCT( uint2 )
 	{
@@ -1849,7 +1849,7 @@ HLML_INLINE uint2 uint2_cxorv( const uint2* lhs, const uint2* rhs )
 }
 
 // Performs a component-wise bitwise << on the vector by the scalar and returns the result.
-HLML_INLINE uint2 uint2_cshift_lefts( const uint2* lhs, const uint32_t rhs )
+HLML_INLINE uint2 uint2_cshift_lefts( const uint2 *lhs, const uint32_t rhs )
 {
 	return HLML_CONSTRUCT( uint2 )
 	{
@@ -1859,7 +1859,7 @@ HLML_INLINE uint2 uint2_cshift_lefts( const uint2* lhs, const uint32_t rhs )
 }
 
 // Performs a component-wise bitwise << against the two vectors and returns the result.
-HLML_INLINE uint2 uint2_cshift_leftv( const uint2* lhs, const uint2* rhs )
+HLML_INLINE uint2 uint2_cshift_leftv( const uint2 *lhs, const uint2* rhs )
 {
 	return HLML_CONSTRUCT( uint2 )
 	{
@@ -1869,7 +1869,7 @@ HLML_INLINE uint2 uint2_cshift_leftv( const uint2* lhs, const uint2* rhs )
 }
 
 // Performs a component-wise bitwise >> on the vector by the scalar and returns the result.
-HLML_INLINE uint2 uint2_cshift_rights( const uint2* lhs, const uint32_t rhs )
+HLML_INLINE uint2 uint2_cshift_rights( const uint2 *lhs, const uint32_t rhs )
 {
 	return HLML_CONSTRUCT( uint2 )
 	{
@@ -1879,7 +1879,7 @@ HLML_INLINE uint2 uint2_cshift_rights( const uint2* lhs, const uint32_t rhs )
 }
 
 // Performs a component-wise bitwise >> against the two vectors and returns the result.
-HLML_INLINE uint2 uint2_cshift_rightv( const uint2* lhs, const uint2* rhs )
+HLML_INLINE uint2 uint2_cshift_rightv( const uint2 *lhs, const uint2* rhs )
 {
 	return HLML_CONSTRUCT( uint2 )
 	{
@@ -1962,7 +1962,7 @@ HLML_INLINE float uint2_distance( const uint2* lhs, const uint2* rhs )
 
 // uint3
 // Returns true if the contents of 'lhs' are the same as the contents of 'rhs', otherwise returns false.
-HLML_INLINE bool uint3_equals( const uint3* lhs, const uint3* rhs )
+HLML_INLINE bool uint3_equals( const uint3 *lhs, const uint3 *rhs )
 {
 	return
 		lhs->x == rhs->x &&
@@ -1971,13 +1971,13 @@ HLML_INLINE bool uint3_equals( const uint3* lhs, const uint3* rhs )
 }
 
 // Returns true if the contents of 'lhs' are NOT the same as the contents of 'rhs', otherwise returns false.
-HLML_INLINE bool uint3_not_equals( const uint3* lhs, const uint3* rhs )
+HLML_INLINE bool uint3_not_equals( const uint3 *lhs, const uint3 *rhs )
 {
 	return !uint3_equals( lhs, rhs );
 }
 
 // Performs a component-wise '<' check against the two vectors and returns the result.
-HLML_INLINE bool3 uint3_less_than( const uint3* lhs, const uint3* rhs )
+HLML_INLINE bool3 uint3_less_than( const uint3 *lhs, const uint3* rhs )
 {
 	return HLML_CONSTRUCT( bool3 )
 	{
@@ -1988,7 +1988,7 @@ HLML_INLINE bool3 uint3_less_than( const uint3* lhs, const uint3* rhs )
 }
 
 // Performs a component-wise '<=' check against the two vectors and returns the result.
-HLML_INLINE bool3 uint3_less_than_equal( const uint3* lhs, const uint3* rhs )
+HLML_INLINE bool3 uint3_less_than_equal( const uint3 *lhs, const uint3* rhs )
 {
 	return HLML_CONSTRUCT( bool3 )
 	{
@@ -1999,7 +1999,7 @@ HLML_INLINE bool3 uint3_less_than_equal( const uint3* lhs, const uint3* rhs )
 }
 
 // Performs a component-wise '>' check against the two vectors and returns the result.
-HLML_INLINE bool3 uint3_greater_than( const uint3* lhs, const uint3* rhs )
+HLML_INLINE bool3 uint3_greater_than( const uint3 *lhs, const uint3* rhs )
 {
 	return HLML_CONSTRUCT( bool3 )
 	{
@@ -2010,7 +2010,7 @@ HLML_INLINE bool3 uint3_greater_than( const uint3* lhs, const uint3* rhs )
 }
 
 // Performs a component-wise '>=' check against the two vectors and returns the result.
-HLML_INLINE bool3 uint3_greater_than_equal( const uint3* lhs, const uint3* rhs )
+HLML_INLINE bool3 uint3_greater_than_equal( const uint3 *lhs, const uint3* rhs )
 {
 	return HLML_CONSTRUCT( bool3 )
 	{
@@ -2021,7 +2021,7 @@ HLML_INLINE bool3 uint3_greater_than_equal( const uint3* lhs, const uint3* rhs )
 }
 
 // Performs a component-wise + on the vector by the scalar and returns the result.
-HLML_INLINE uint3 uint3_cadds( const uint3* lhs, const uint32_t rhs )
+HLML_INLINE uint3 uint3_cadds( const uint3 *lhs, const uint32_t rhs )
 {
 	return HLML_CONSTRUCT( uint3 )
 	{
@@ -2032,7 +2032,7 @@ HLML_INLINE uint3 uint3_cadds( const uint3* lhs, const uint32_t rhs )
 }
 
 // Performs a component-wise + against the two vectors and returns the result.
-HLML_INLINE uint3 uint3_caddv( const uint3* lhs, const uint3* rhs )
+HLML_INLINE uint3 uint3_caddv( const uint3 *lhs, const uint3* rhs )
 {
 	return HLML_CONSTRUCT( uint3 )
 	{
@@ -2043,7 +2043,7 @@ HLML_INLINE uint3 uint3_caddv( const uint3* lhs, const uint3* rhs )
 }
 
 // Performs a component-wise - on the vector by the scalar and returns the result.
-HLML_INLINE uint3 uint3_csubs( const uint3* lhs, const uint32_t rhs )
+HLML_INLINE uint3 uint3_csubs( const uint3 *lhs, const uint32_t rhs )
 {
 	return HLML_CONSTRUCT( uint3 )
 	{
@@ -2054,7 +2054,7 @@ HLML_INLINE uint3 uint3_csubs( const uint3* lhs, const uint32_t rhs )
 }
 
 // Performs a component-wise - against the two vectors and returns the result.
-HLML_INLINE uint3 uint3_csubv( const uint3* lhs, const uint3* rhs )
+HLML_INLINE uint3 uint3_csubv( const uint3 *lhs, const uint3* rhs )
 {
 	return HLML_CONSTRUCT( uint3 )
 	{
@@ -2065,7 +2065,7 @@ HLML_INLINE uint3 uint3_csubv( const uint3* lhs, const uint3* rhs )
 }
 
 // Performs a component-wise * on the vector by the scalar and returns the result.
-HLML_INLINE uint3 uint3_cmuls( const uint3* lhs, const uint32_t rhs )
+HLML_INLINE uint3 uint3_cmuls( const uint3 *lhs, const uint32_t rhs )
 {
 	return HLML_CONSTRUCT( uint3 )
 	{
@@ -2076,7 +2076,7 @@ HLML_INLINE uint3 uint3_cmuls( const uint3* lhs, const uint32_t rhs )
 }
 
 // Performs a component-wise * against the two vectors and returns the result.
-HLML_INLINE uint3 uint3_cmulv( const uint3* lhs, const uint3* rhs )
+HLML_INLINE uint3 uint3_cmulv( const uint3 *lhs, const uint3* rhs )
 {
 	return HLML_CONSTRUCT( uint3 )
 	{
@@ -2087,7 +2087,7 @@ HLML_INLINE uint3 uint3_cmulv( const uint3* lhs, const uint3* rhs )
 }
 
 // Performs a component-wise / on the vector by the scalar and returns the result.
-HLML_INLINE uint3 uint3_cdivs( const uint3* lhs, const uint32_t rhs )
+HLML_INLINE uint3 uint3_cdivs( const uint3 *lhs, const uint32_t rhs )
 {
 	return HLML_CONSTRUCT( uint3 )
 	{
@@ -2098,7 +2098,7 @@ HLML_INLINE uint3 uint3_cdivs( const uint3* lhs, const uint32_t rhs )
 }
 
 // Performs a component-wise / against the two vectors and returns the result.
-HLML_INLINE uint3 uint3_cdivv( const uint3* lhs, const uint3* rhs )
+HLML_INLINE uint3 uint3_cdivv( const uint3 *lhs, const uint3* rhs )
 {
 	return HLML_CONSTRUCT( uint3 )
 	{
@@ -2113,7 +2113,7 @@ HLML_INLINE uint3 uint3_cdivv( const uint3* lhs, const uint3* rhs )
 #pragma warning( disable : 4146 )
 #endif
 // Returns a copy of the vector that has been negated.
-HLML_INLINE uint3 uint3_negate( const uint3* x )
+HLML_INLINE uint3 uint3_negate( const uint3 *x )
 {
 	return HLML_CONSTRUCT( uint3 )
 	{
@@ -2127,7 +2127,7 @@ HLML_INLINE uint3 uint3_negate( const uint3* x )
 #pragma warning( pop )
 #endif
 // Returns a copy of the vector where each component has been bitwise NOT'd.
-HLML_INLINE uint3 uint3_not( const uint3* x )
+HLML_INLINE uint3 uint3_not( const uint3 *x )
 {
 	return HLML_CONSTRUCT( uint3 )
 	{
@@ -2138,7 +2138,7 @@ HLML_INLINE uint3 uint3_not( const uint3* x )
 }
 
 // Performs a component-wise bitwise & on the vector by the scalar and returns the result.
-HLML_INLINE uint3 uint3_cands( const uint3* lhs, const uint32_t rhs )
+HLML_INLINE uint3 uint3_cands( const uint3 *lhs, const uint32_t rhs )
 {
 	return HLML_CONSTRUCT( uint3 )
 	{
@@ -2149,7 +2149,7 @@ HLML_INLINE uint3 uint3_cands( const uint3* lhs, const uint32_t rhs )
 }
 
 // Performs a component-wise bitwise & against the two vectors and returns the result.
-HLML_INLINE uint3 uint3_candv( const uint3* lhs, const uint3* rhs )
+HLML_INLINE uint3 uint3_candv( const uint3 *lhs, const uint3* rhs )
 {
 	return HLML_CONSTRUCT( uint3 )
 	{
@@ -2160,7 +2160,7 @@ HLML_INLINE uint3 uint3_candv( const uint3* lhs, const uint3* rhs )
 }
 
 // Performs a component-wise bitwise | on the vector by the scalar and returns the result.
-HLML_INLINE uint3 uint3_cors( const uint3* lhs, const uint32_t rhs )
+HLML_INLINE uint3 uint3_cors( const uint3 *lhs, const uint32_t rhs )
 {
 	return HLML_CONSTRUCT( uint3 )
 	{
@@ -2171,7 +2171,7 @@ HLML_INLINE uint3 uint3_cors( const uint3* lhs, const uint32_t rhs )
 }
 
 // Performs a component-wise bitwise | against the two vectors and returns the result.
-HLML_INLINE uint3 uint3_corv( const uint3* lhs, const uint3* rhs )
+HLML_INLINE uint3 uint3_corv( const uint3 *lhs, const uint3* rhs )
 {
 	return HLML_CONSTRUCT( uint3 )
 	{
@@ -2182,7 +2182,7 @@ HLML_INLINE uint3 uint3_corv( const uint3* lhs, const uint3* rhs )
 }
 
 // Performs a component-wise bitwise ^ on the vector by the scalar and returns the result.
-HLML_INLINE uint3 uint3_cxors( const uint3* lhs, const uint32_t rhs )
+HLML_INLINE uint3 uint3_cxors( const uint3 *lhs, const uint32_t rhs )
 {
 	return HLML_CONSTRUCT( uint3 )
 	{
@@ -2193,7 +2193,7 @@ HLML_INLINE uint3 uint3_cxors( const uint3* lhs, const uint32_t rhs )
 }
 
 // Performs a component-wise bitwise ^ against the two vectors and returns the result.
-HLML_INLINE uint3 uint3_cxorv( const uint3* lhs, const uint3* rhs )
+HLML_INLINE uint3 uint3_cxorv( const uint3 *lhs, const uint3* rhs )
 {
 	return HLML_CONSTRUCT( uint3 )
 	{
@@ -2204,7 +2204,7 @@ HLML_INLINE uint3 uint3_cxorv( const uint3* lhs, const uint3* rhs )
 }
 
 // Performs a component-wise bitwise << on the vector by the scalar and returns the result.
-HLML_INLINE uint3 uint3_cshift_lefts( const uint3* lhs, const uint32_t rhs )
+HLML_INLINE uint3 uint3_cshift_lefts( const uint3 *lhs, const uint32_t rhs )
 {
 	return HLML_CONSTRUCT( uint3 )
 	{
@@ -2215,7 +2215,7 @@ HLML_INLINE uint3 uint3_cshift_lefts( const uint3* lhs, const uint32_t rhs )
 }
 
 // Performs a component-wise bitwise << against the two vectors and returns the result.
-HLML_INLINE uint3 uint3_cshift_leftv( const uint3* lhs, const uint3* rhs )
+HLML_INLINE uint3 uint3_cshift_leftv( const uint3 *lhs, const uint3* rhs )
 {
 	return HLML_CONSTRUCT( uint3 )
 	{
@@ -2226,7 +2226,7 @@ HLML_INLINE uint3 uint3_cshift_leftv( const uint3* lhs, const uint3* rhs )
 }
 
 // Performs a component-wise bitwise >> on the vector by the scalar and returns the result.
-HLML_INLINE uint3 uint3_cshift_rights( const uint3* lhs, const uint32_t rhs )
+HLML_INLINE uint3 uint3_cshift_rights( const uint3 *lhs, const uint32_t rhs )
 {
 	return HLML_CONSTRUCT( uint3 )
 	{
@@ -2237,7 +2237,7 @@ HLML_INLINE uint3 uint3_cshift_rights( const uint3* lhs, const uint32_t rhs )
 }
 
 // Performs a component-wise bitwise >> against the two vectors and returns the result.
-HLML_INLINE uint3 uint3_cshift_rightv( const uint3* lhs, const uint3* rhs )
+HLML_INLINE uint3 uint3_cshift_rightv( const uint3 *lhs, const uint3* rhs )
 {
 	return HLML_CONSTRUCT( uint3 )
 	{
@@ -2325,7 +2325,7 @@ HLML_INLINE float uint3_distance( const uint3* lhs, const uint3* rhs )
 
 // uint4
 // Returns true if the contents of 'lhs' are the same as the contents of 'rhs', otherwise returns false.
-HLML_INLINE bool uint4_equals( const uint4* lhs, const uint4* rhs )
+HLML_INLINE bool uint4_equals( const uint4 *lhs, const uint4 *rhs )
 {
 	return
 		lhs->x == rhs->x &&
@@ -2335,13 +2335,13 @@ HLML_INLINE bool uint4_equals( const uint4* lhs, const uint4* rhs )
 }
 
 // Returns true if the contents of 'lhs' are NOT the same as the contents of 'rhs', otherwise returns false.
-HLML_INLINE bool uint4_not_equals( const uint4* lhs, const uint4* rhs )
+HLML_INLINE bool uint4_not_equals( const uint4 *lhs, const uint4 *rhs )
 {
 	return !uint4_equals( lhs, rhs );
 }
 
 // Performs a component-wise '<' check against the two vectors and returns the result.
-HLML_INLINE bool4 uint4_less_than( const uint4* lhs, const uint4* rhs )
+HLML_INLINE bool4 uint4_less_than( const uint4 *lhs, const uint4* rhs )
 {
 	return HLML_CONSTRUCT( bool4 )
 	{
@@ -2353,7 +2353,7 @@ HLML_INLINE bool4 uint4_less_than( const uint4* lhs, const uint4* rhs )
 }
 
 // Performs a component-wise '<=' check against the two vectors and returns the result.
-HLML_INLINE bool4 uint4_less_than_equal( const uint4* lhs, const uint4* rhs )
+HLML_INLINE bool4 uint4_less_than_equal( const uint4 *lhs, const uint4* rhs )
 {
 	return HLML_CONSTRUCT( bool4 )
 	{
@@ -2365,7 +2365,7 @@ HLML_INLINE bool4 uint4_less_than_equal( const uint4* lhs, const uint4* rhs )
 }
 
 // Performs a component-wise '>' check against the two vectors and returns the result.
-HLML_INLINE bool4 uint4_greater_than( const uint4* lhs, const uint4* rhs )
+HLML_INLINE bool4 uint4_greater_than( const uint4 *lhs, const uint4* rhs )
 {
 	return HLML_CONSTRUCT( bool4 )
 	{
@@ -2377,7 +2377,7 @@ HLML_INLINE bool4 uint4_greater_than( const uint4* lhs, const uint4* rhs )
 }
 
 // Performs a component-wise '>=' check against the two vectors and returns the result.
-HLML_INLINE bool4 uint4_greater_than_equal( const uint4* lhs, const uint4* rhs )
+HLML_INLINE bool4 uint4_greater_than_equal( const uint4 *lhs, const uint4* rhs )
 {
 	return HLML_CONSTRUCT( bool4 )
 	{
@@ -2389,7 +2389,7 @@ HLML_INLINE bool4 uint4_greater_than_equal( const uint4* lhs, const uint4* rhs )
 }
 
 // Performs a component-wise + on the vector by the scalar and returns the result.
-HLML_INLINE uint4 uint4_cadds( const uint4* lhs, const uint32_t rhs )
+HLML_INLINE uint4 uint4_cadds( const uint4 *lhs, const uint32_t rhs )
 {
 	return HLML_CONSTRUCT( uint4 )
 	{
@@ -2401,7 +2401,7 @@ HLML_INLINE uint4 uint4_cadds( const uint4* lhs, const uint32_t rhs )
 }
 
 // Performs a component-wise + against the two vectors and returns the result.
-HLML_INLINE uint4 uint4_caddv( const uint4* lhs, const uint4* rhs )
+HLML_INLINE uint4 uint4_caddv( const uint4 *lhs, const uint4* rhs )
 {
 	return HLML_CONSTRUCT( uint4 )
 	{
@@ -2413,7 +2413,7 @@ HLML_INLINE uint4 uint4_caddv( const uint4* lhs, const uint4* rhs )
 }
 
 // Performs a component-wise - on the vector by the scalar and returns the result.
-HLML_INLINE uint4 uint4_csubs( const uint4* lhs, const uint32_t rhs )
+HLML_INLINE uint4 uint4_csubs( const uint4 *lhs, const uint32_t rhs )
 {
 	return HLML_CONSTRUCT( uint4 )
 	{
@@ -2425,7 +2425,7 @@ HLML_INLINE uint4 uint4_csubs( const uint4* lhs, const uint32_t rhs )
 }
 
 // Performs a component-wise - against the two vectors and returns the result.
-HLML_INLINE uint4 uint4_csubv( const uint4* lhs, const uint4* rhs )
+HLML_INLINE uint4 uint4_csubv( const uint4 *lhs, const uint4* rhs )
 {
 	return HLML_CONSTRUCT( uint4 )
 	{
@@ -2437,7 +2437,7 @@ HLML_INLINE uint4 uint4_csubv( const uint4* lhs, const uint4* rhs )
 }
 
 // Performs a component-wise * on the vector by the scalar and returns the result.
-HLML_INLINE uint4 uint4_cmuls( const uint4* lhs, const uint32_t rhs )
+HLML_INLINE uint4 uint4_cmuls( const uint4 *lhs, const uint32_t rhs )
 {
 	return HLML_CONSTRUCT( uint4 )
 	{
@@ -2449,7 +2449,7 @@ HLML_INLINE uint4 uint4_cmuls( const uint4* lhs, const uint32_t rhs )
 }
 
 // Performs a component-wise * against the two vectors and returns the result.
-HLML_INLINE uint4 uint4_cmulv( const uint4* lhs, const uint4* rhs )
+HLML_INLINE uint4 uint4_cmulv( const uint4 *lhs, const uint4* rhs )
 {
 	return HLML_CONSTRUCT( uint4 )
 	{
@@ -2461,7 +2461,7 @@ HLML_INLINE uint4 uint4_cmulv( const uint4* lhs, const uint4* rhs )
 }
 
 // Performs a component-wise / on the vector by the scalar and returns the result.
-HLML_INLINE uint4 uint4_cdivs( const uint4* lhs, const uint32_t rhs )
+HLML_INLINE uint4 uint4_cdivs( const uint4 *lhs, const uint32_t rhs )
 {
 	return HLML_CONSTRUCT( uint4 )
 	{
@@ -2473,7 +2473,7 @@ HLML_INLINE uint4 uint4_cdivs( const uint4* lhs, const uint32_t rhs )
 }
 
 // Performs a component-wise / against the two vectors and returns the result.
-HLML_INLINE uint4 uint4_cdivv( const uint4* lhs, const uint4* rhs )
+HLML_INLINE uint4 uint4_cdivv( const uint4 *lhs, const uint4* rhs )
 {
 	return HLML_CONSTRUCT( uint4 )
 	{
@@ -2489,7 +2489,7 @@ HLML_INLINE uint4 uint4_cdivv( const uint4* lhs, const uint4* rhs )
 #pragma warning( disable : 4146 )
 #endif
 // Returns a copy of the vector that has been negated.
-HLML_INLINE uint4 uint4_negate( const uint4* x )
+HLML_INLINE uint4 uint4_negate( const uint4 *x )
 {
 	return HLML_CONSTRUCT( uint4 )
 	{
@@ -2504,7 +2504,7 @@ HLML_INLINE uint4 uint4_negate( const uint4* x )
 #pragma warning( pop )
 #endif
 // Returns a copy of the vector where each component has been bitwise NOT'd.
-HLML_INLINE uint4 uint4_not( const uint4* x )
+HLML_INLINE uint4 uint4_not( const uint4 *x )
 {
 	return HLML_CONSTRUCT( uint4 )
 	{
@@ -2516,7 +2516,7 @@ HLML_INLINE uint4 uint4_not( const uint4* x )
 }
 
 // Performs a component-wise bitwise & on the vector by the scalar and returns the result.
-HLML_INLINE uint4 uint4_cands( const uint4* lhs, const uint32_t rhs )
+HLML_INLINE uint4 uint4_cands( const uint4 *lhs, const uint32_t rhs )
 {
 	return HLML_CONSTRUCT( uint4 )
 	{
@@ -2528,7 +2528,7 @@ HLML_INLINE uint4 uint4_cands( const uint4* lhs, const uint32_t rhs )
 }
 
 // Performs a component-wise bitwise & against the two vectors and returns the result.
-HLML_INLINE uint4 uint4_candv( const uint4* lhs, const uint4* rhs )
+HLML_INLINE uint4 uint4_candv( const uint4 *lhs, const uint4* rhs )
 {
 	return HLML_CONSTRUCT( uint4 )
 	{
@@ -2540,7 +2540,7 @@ HLML_INLINE uint4 uint4_candv( const uint4* lhs, const uint4* rhs )
 }
 
 // Performs a component-wise bitwise | on the vector by the scalar and returns the result.
-HLML_INLINE uint4 uint4_cors( const uint4* lhs, const uint32_t rhs )
+HLML_INLINE uint4 uint4_cors( const uint4 *lhs, const uint32_t rhs )
 {
 	return HLML_CONSTRUCT( uint4 )
 	{
@@ -2552,7 +2552,7 @@ HLML_INLINE uint4 uint4_cors( const uint4* lhs, const uint32_t rhs )
 }
 
 // Performs a component-wise bitwise | against the two vectors and returns the result.
-HLML_INLINE uint4 uint4_corv( const uint4* lhs, const uint4* rhs )
+HLML_INLINE uint4 uint4_corv( const uint4 *lhs, const uint4* rhs )
 {
 	return HLML_CONSTRUCT( uint4 )
 	{
@@ -2564,7 +2564,7 @@ HLML_INLINE uint4 uint4_corv( const uint4* lhs, const uint4* rhs )
 }
 
 // Performs a component-wise bitwise ^ on the vector by the scalar and returns the result.
-HLML_INLINE uint4 uint4_cxors( const uint4* lhs, const uint32_t rhs )
+HLML_INLINE uint4 uint4_cxors( const uint4 *lhs, const uint32_t rhs )
 {
 	return HLML_CONSTRUCT( uint4 )
 	{
@@ -2576,7 +2576,7 @@ HLML_INLINE uint4 uint4_cxors( const uint4* lhs, const uint32_t rhs )
 }
 
 // Performs a component-wise bitwise ^ against the two vectors and returns the result.
-HLML_INLINE uint4 uint4_cxorv( const uint4* lhs, const uint4* rhs )
+HLML_INLINE uint4 uint4_cxorv( const uint4 *lhs, const uint4* rhs )
 {
 	return HLML_CONSTRUCT( uint4 )
 	{
@@ -2588,7 +2588,7 @@ HLML_INLINE uint4 uint4_cxorv( const uint4* lhs, const uint4* rhs )
 }
 
 // Performs a component-wise bitwise << on the vector by the scalar and returns the result.
-HLML_INLINE uint4 uint4_cshift_lefts( const uint4* lhs, const uint32_t rhs )
+HLML_INLINE uint4 uint4_cshift_lefts( const uint4 *lhs, const uint32_t rhs )
 {
 	return HLML_CONSTRUCT( uint4 )
 	{
@@ -2600,7 +2600,7 @@ HLML_INLINE uint4 uint4_cshift_lefts( const uint4* lhs, const uint32_t rhs )
 }
 
 // Performs a component-wise bitwise << against the two vectors and returns the result.
-HLML_INLINE uint4 uint4_cshift_leftv( const uint4* lhs, const uint4* rhs )
+HLML_INLINE uint4 uint4_cshift_leftv( const uint4 *lhs, const uint4* rhs )
 {
 	return HLML_CONSTRUCT( uint4 )
 	{
@@ -2612,7 +2612,7 @@ HLML_INLINE uint4 uint4_cshift_leftv( const uint4* lhs, const uint4* rhs )
 }
 
 // Performs a component-wise bitwise >> on the vector by the scalar and returns the result.
-HLML_INLINE uint4 uint4_cshift_rights( const uint4* lhs, const uint32_t rhs )
+HLML_INLINE uint4 uint4_cshift_rights( const uint4 *lhs, const uint32_t rhs )
 {
 	return HLML_CONSTRUCT( uint4 )
 	{
@@ -2624,7 +2624,7 @@ HLML_INLINE uint4 uint4_cshift_rights( const uint4* lhs, const uint32_t rhs )
 }
 
 // Performs a component-wise bitwise >> against the two vectors and returns the result.
-HLML_INLINE uint4 uint4_cshift_rightv( const uint4* lhs, const uint4* rhs )
+HLML_INLINE uint4 uint4_cshift_rightv( const uint4 *lhs, const uint4* rhs )
 {
 	return HLML_CONSTRUCT( uint4 )
 	{
@@ -2721,7 +2721,7 @@ HLML_INLINE uint4 uint4_unpack( const uint32_t x )
 
 // float2
 // Returns true if the contents of 'lhs' are the same as the contents of 'rhs', otherwise returns false.
-HLML_INLINE bool float2_equals( const float2* lhs, const float2* rhs )
+HLML_INLINE bool float2_equals( const float2 *lhs, const float2 *rhs )
 {
 	return
 		floateq( lhs->x, rhs->x ) &&
@@ -2729,13 +2729,13 @@ HLML_INLINE bool float2_equals( const float2* lhs, const float2* rhs )
 }
 
 // Returns true if the contents of 'lhs' are NOT the same as the contents of 'rhs', otherwise returns false.
-HLML_INLINE bool float2_not_equals( const float2* lhs, const float2* rhs )
+HLML_INLINE bool float2_not_equals( const float2 *lhs, const float2 *rhs )
 {
 	return !float2_equals( lhs, rhs );
 }
 
 // Performs a component-wise '<' check against the two vectors and returns the result.
-HLML_INLINE bool2 float2_less_than( const float2* lhs, const float2* rhs )
+HLML_INLINE bool2 float2_less_than( const float2 *lhs, const float2* rhs )
 {
 	return HLML_CONSTRUCT( bool2 )
 	{
@@ -2745,7 +2745,7 @@ HLML_INLINE bool2 float2_less_than( const float2* lhs, const float2* rhs )
 }
 
 // Performs a component-wise '<=' check against the two vectors and returns the result.
-HLML_INLINE bool2 float2_less_than_equal( const float2* lhs, const float2* rhs )
+HLML_INLINE bool2 float2_less_than_equal( const float2 *lhs, const float2* rhs )
 {
 	return HLML_CONSTRUCT( bool2 )
 	{
@@ -2755,7 +2755,7 @@ HLML_INLINE bool2 float2_less_than_equal( const float2* lhs, const float2* rhs )
 }
 
 // Performs a component-wise '>' check against the two vectors and returns the result.
-HLML_INLINE bool2 float2_greater_than( const float2* lhs, const float2* rhs )
+HLML_INLINE bool2 float2_greater_than( const float2 *lhs, const float2* rhs )
 {
 	return HLML_CONSTRUCT( bool2 )
 	{
@@ -2765,7 +2765,7 @@ HLML_INLINE bool2 float2_greater_than( const float2* lhs, const float2* rhs )
 }
 
 // Performs a component-wise '>=' check against the two vectors and returns the result.
-HLML_INLINE bool2 float2_greater_than_equal( const float2* lhs, const float2* rhs )
+HLML_INLINE bool2 float2_greater_than_equal( const float2 *lhs, const float2* rhs )
 {
 	return HLML_CONSTRUCT( bool2 )
 	{
@@ -2775,7 +2775,7 @@ HLML_INLINE bool2 float2_greater_than_equal( const float2* lhs, const float2* rh
 }
 
 // Performs a component-wise + on the vector by the scalar and returns the result.
-HLML_INLINE float2 float2_cadds( const float2* lhs, const float rhs )
+HLML_INLINE float2 float2_cadds( const float2 *lhs, const float rhs )
 {
 	return HLML_CONSTRUCT( float2 )
 	{
@@ -2785,7 +2785,7 @@ HLML_INLINE float2 float2_cadds( const float2* lhs, const float rhs )
 }
 
 // Performs a component-wise + against the two vectors and returns the result.
-HLML_INLINE float2 float2_caddv( const float2* lhs, const float2* rhs )
+HLML_INLINE float2 float2_caddv( const float2 *lhs, const float2* rhs )
 {
 	return HLML_CONSTRUCT( float2 )
 	{
@@ -2795,7 +2795,7 @@ HLML_INLINE float2 float2_caddv( const float2* lhs, const float2* rhs )
 }
 
 // Performs a component-wise - on the vector by the scalar and returns the result.
-HLML_INLINE float2 float2_csubs( const float2* lhs, const float rhs )
+HLML_INLINE float2 float2_csubs( const float2 *lhs, const float rhs )
 {
 	return HLML_CONSTRUCT( float2 )
 	{
@@ -2805,7 +2805,7 @@ HLML_INLINE float2 float2_csubs( const float2* lhs, const float rhs )
 }
 
 // Performs a component-wise - against the two vectors and returns the result.
-HLML_INLINE float2 float2_csubv( const float2* lhs, const float2* rhs )
+HLML_INLINE float2 float2_csubv( const float2 *lhs, const float2* rhs )
 {
 	return HLML_CONSTRUCT( float2 )
 	{
@@ -2815,7 +2815,7 @@ HLML_INLINE float2 float2_csubv( const float2* lhs, const float2* rhs )
 }
 
 // Performs a component-wise * on the vector by the scalar and returns the result.
-HLML_INLINE float2 float2_cmuls( const float2* lhs, const float rhs )
+HLML_INLINE float2 float2_cmuls( const float2 *lhs, const float rhs )
 {
 	return HLML_CONSTRUCT( float2 )
 	{
@@ -2825,7 +2825,7 @@ HLML_INLINE float2 float2_cmuls( const float2* lhs, const float rhs )
 }
 
 // Performs a component-wise * against the two vectors and returns the result.
-HLML_INLINE float2 float2_cmulv( const float2* lhs, const float2* rhs )
+HLML_INLINE float2 float2_cmulv( const float2 *lhs, const float2* rhs )
 {
 	return HLML_CONSTRUCT( float2 )
 	{
@@ -2835,7 +2835,7 @@ HLML_INLINE float2 float2_cmulv( const float2* lhs, const float2* rhs )
 }
 
 // Performs a component-wise / on the vector by the scalar and returns the result.
-HLML_INLINE float2 float2_cdivs( const float2* lhs, const float rhs )
+HLML_INLINE float2 float2_cdivs( const float2 *lhs, const float rhs )
 {
 	return HLML_CONSTRUCT( float2 )
 	{
@@ -2845,7 +2845,7 @@ HLML_INLINE float2 float2_cdivs( const float2* lhs, const float rhs )
 }
 
 // Performs a component-wise / against the two vectors and returns the result.
-HLML_INLINE float2 float2_cdivv( const float2* lhs, const float2* rhs )
+HLML_INLINE float2 float2_cdivv( const float2 *lhs, const float2* rhs )
 {
 	return HLML_CONSTRUCT( float2 )
 	{
@@ -2855,7 +2855,7 @@ HLML_INLINE float2 float2_cdivv( const float2* lhs, const float2* rhs )
 }
 
 // Returns a copy of the vector that has been negated.
-HLML_INLINE float2 float2_negate( const float2* x )
+HLML_INLINE float2 float2_negate( const float2 *x )
 {
 	return HLML_CONSTRUCT( float2 )
 	{
@@ -2982,7 +2982,7 @@ HLML_INLINE float float2_distance( const float2* lhs, const float2* rhs )
 
 // float3
 // Returns true if the contents of 'lhs' are the same as the contents of 'rhs', otherwise returns false.
-HLML_INLINE bool float3_equals( const float3* lhs, const float3* rhs )
+HLML_INLINE bool float3_equals( const float3 *lhs, const float3 *rhs )
 {
 	return
 		floateq( lhs->x, rhs->x ) &&
@@ -2991,13 +2991,13 @@ HLML_INLINE bool float3_equals( const float3* lhs, const float3* rhs )
 }
 
 // Returns true if the contents of 'lhs' are NOT the same as the contents of 'rhs', otherwise returns false.
-HLML_INLINE bool float3_not_equals( const float3* lhs, const float3* rhs )
+HLML_INLINE bool float3_not_equals( const float3 *lhs, const float3 *rhs )
 {
 	return !float3_equals( lhs, rhs );
 }
 
 // Performs a component-wise '<' check against the two vectors and returns the result.
-HLML_INLINE bool3 float3_less_than( const float3* lhs, const float3* rhs )
+HLML_INLINE bool3 float3_less_than( const float3 *lhs, const float3* rhs )
 {
 	return HLML_CONSTRUCT( bool3 )
 	{
@@ -3008,7 +3008,7 @@ HLML_INLINE bool3 float3_less_than( const float3* lhs, const float3* rhs )
 }
 
 // Performs a component-wise '<=' check against the two vectors and returns the result.
-HLML_INLINE bool3 float3_less_than_equal( const float3* lhs, const float3* rhs )
+HLML_INLINE bool3 float3_less_than_equal( const float3 *lhs, const float3* rhs )
 {
 	return HLML_CONSTRUCT( bool3 )
 	{
@@ -3019,7 +3019,7 @@ HLML_INLINE bool3 float3_less_than_equal( const float3* lhs, const float3* rhs )
 }
 
 // Performs a component-wise '>' check against the two vectors and returns the result.
-HLML_INLINE bool3 float3_greater_than( const float3* lhs, const float3* rhs )
+HLML_INLINE bool3 float3_greater_than( const float3 *lhs, const float3* rhs )
 {
 	return HLML_CONSTRUCT( bool3 )
 	{
@@ -3030,7 +3030,7 @@ HLML_INLINE bool3 float3_greater_than( const float3* lhs, const float3* rhs )
 }
 
 // Performs a component-wise '>=' check against the two vectors and returns the result.
-HLML_INLINE bool3 float3_greater_than_equal( const float3* lhs, const float3* rhs )
+HLML_INLINE bool3 float3_greater_than_equal( const float3 *lhs, const float3* rhs )
 {
 	return HLML_CONSTRUCT( bool3 )
 	{
@@ -3041,7 +3041,7 @@ HLML_INLINE bool3 float3_greater_than_equal( const float3* lhs, const float3* rh
 }
 
 // Performs a component-wise + on the vector by the scalar and returns the result.
-HLML_INLINE float3 float3_cadds( const float3* lhs, const float rhs )
+HLML_INLINE float3 float3_cadds( const float3 *lhs, const float rhs )
 {
 	return HLML_CONSTRUCT( float3 )
 	{
@@ -3052,7 +3052,7 @@ HLML_INLINE float3 float3_cadds( const float3* lhs, const float rhs )
 }
 
 // Performs a component-wise + against the two vectors and returns the result.
-HLML_INLINE float3 float3_caddv( const float3* lhs, const float3* rhs )
+HLML_INLINE float3 float3_caddv( const float3 *lhs, const float3* rhs )
 {
 	return HLML_CONSTRUCT( float3 )
 	{
@@ -3063,7 +3063,7 @@ HLML_INLINE float3 float3_caddv( const float3* lhs, const float3* rhs )
 }
 
 // Performs a component-wise - on the vector by the scalar and returns the result.
-HLML_INLINE float3 float3_csubs( const float3* lhs, const float rhs )
+HLML_INLINE float3 float3_csubs( const float3 *lhs, const float rhs )
 {
 	return HLML_CONSTRUCT( float3 )
 	{
@@ -3074,7 +3074,7 @@ HLML_INLINE float3 float3_csubs( const float3* lhs, const float rhs )
 }
 
 // Performs a component-wise - against the two vectors and returns the result.
-HLML_INLINE float3 float3_csubv( const float3* lhs, const float3* rhs )
+HLML_INLINE float3 float3_csubv( const float3 *lhs, const float3* rhs )
 {
 	return HLML_CONSTRUCT( float3 )
 	{
@@ -3085,7 +3085,7 @@ HLML_INLINE float3 float3_csubv( const float3* lhs, const float3* rhs )
 }
 
 // Performs a component-wise * on the vector by the scalar and returns the result.
-HLML_INLINE float3 float3_cmuls( const float3* lhs, const float rhs )
+HLML_INLINE float3 float3_cmuls( const float3 *lhs, const float rhs )
 {
 	return HLML_CONSTRUCT( float3 )
 	{
@@ -3096,7 +3096,7 @@ HLML_INLINE float3 float3_cmuls( const float3* lhs, const float rhs )
 }
 
 // Performs a component-wise * against the two vectors and returns the result.
-HLML_INLINE float3 float3_cmulv( const float3* lhs, const float3* rhs )
+HLML_INLINE float3 float3_cmulv( const float3 *lhs, const float3* rhs )
 {
 	return HLML_CONSTRUCT( float3 )
 	{
@@ -3107,7 +3107,7 @@ HLML_INLINE float3 float3_cmulv( const float3* lhs, const float3* rhs )
 }
 
 // Performs a component-wise / on the vector by the scalar and returns the result.
-HLML_INLINE float3 float3_cdivs( const float3* lhs, const float rhs )
+HLML_INLINE float3 float3_cdivs( const float3 *lhs, const float rhs )
 {
 	return HLML_CONSTRUCT( float3 )
 	{
@@ -3118,7 +3118,7 @@ HLML_INLINE float3 float3_cdivs( const float3* lhs, const float rhs )
 }
 
 // Performs a component-wise / against the two vectors and returns the result.
-HLML_INLINE float3 float3_cdivv( const float3* lhs, const float3* rhs )
+HLML_INLINE float3 float3_cdivv( const float3 *lhs, const float3* rhs )
 {
 	return HLML_CONSTRUCT( float3 )
 	{
@@ -3129,7 +3129,7 @@ HLML_INLINE float3 float3_cdivv( const float3* lhs, const float3* rhs )
 }
 
 // Returns a copy of the vector that has been negated.
-HLML_INLINE float3 float3_negate( const float3* x )
+HLML_INLINE float3 float3_negate( const float3 *x )
 {
 	return HLML_CONSTRUCT( float3 )
 	{
@@ -3274,7 +3274,7 @@ HLML_INLINE float float3_distance( const float3* lhs, const float3* rhs )
 
 // float4
 // Returns true if the contents of 'lhs' are the same as the contents of 'rhs', otherwise returns false.
-HLML_INLINE bool float4_equals( const float4* lhs, const float4* rhs )
+HLML_INLINE bool float4_equals( const float4 *lhs, const float4 *rhs )
 {
 	return
 		floateq( lhs->x, rhs->x ) &&
@@ -3284,13 +3284,13 @@ HLML_INLINE bool float4_equals( const float4* lhs, const float4* rhs )
 }
 
 // Returns true if the contents of 'lhs' are NOT the same as the contents of 'rhs', otherwise returns false.
-HLML_INLINE bool float4_not_equals( const float4* lhs, const float4* rhs )
+HLML_INLINE bool float4_not_equals( const float4 *lhs, const float4 *rhs )
 {
 	return !float4_equals( lhs, rhs );
 }
 
 // Performs a component-wise '<' check against the two vectors and returns the result.
-HLML_INLINE bool4 float4_less_than( const float4* lhs, const float4* rhs )
+HLML_INLINE bool4 float4_less_than( const float4 *lhs, const float4* rhs )
 {
 	return HLML_CONSTRUCT( bool4 )
 	{
@@ -3302,7 +3302,7 @@ HLML_INLINE bool4 float4_less_than( const float4* lhs, const float4* rhs )
 }
 
 // Performs a component-wise '<=' check against the two vectors and returns the result.
-HLML_INLINE bool4 float4_less_than_equal( const float4* lhs, const float4* rhs )
+HLML_INLINE bool4 float4_less_than_equal( const float4 *lhs, const float4* rhs )
 {
 	return HLML_CONSTRUCT( bool4 )
 	{
@@ -3314,7 +3314,7 @@ HLML_INLINE bool4 float4_less_than_equal( const float4* lhs, const float4* rhs )
 }
 
 // Performs a component-wise '>' check against the two vectors and returns the result.
-HLML_INLINE bool4 float4_greater_than( const float4* lhs, const float4* rhs )
+HLML_INLINE bool4 float4_greater_than( const float4 *lhs, const float4* rhs )
 {
 	return HLML_CONSTRUCT( bool4 )
 	{
@@ -3326,7 +3326,7 @@ HLML_INLINE bool4 float4_greater_than( const float4* lhs, const float4* rhs )
 }
 
 // Performs a component-wise '>=' check against the two vectors and returns the result.
-HLML_INLINE bool4 float4_greater_than_equal( const float4* lhs, const float4* rhs )
+HLML_INLINE bool4 float4_greater_than_equal( const float4 *lhs, const float4* rhs )
 {
 	return HLML_CONSTRUCT( bool4 )
 	{
@@ -3338,7 +3338,7 @@ HLML_INLINE bool4 float4_greater_than_equal( const float4* lhs, const float4* rh
 }
 
 // Performs a component-wise + on the vector by the scalar and returns the result.
-HLML_INLINE float4 float4_cadds( const float4* lhs, const float rhs )
+HLML_INLINE float4 float4_cadds( const float4 *lhs, const float rhs )
 {
 	return HLML_CONSTRUCT( float4 )
 	{
@@ -3350,7 +3350,7 @@ HLML_INLINE float4 float4_cadds( const float4* lhs, const float rhs )
 }
 
 // Performs a component-wise + against the two vectors and returns the result.
-HLML_INLINE float4 float4_caddv( const float4* lhs, const float4* rhs )
+HLML_INLINE float4 float4_caddv( const float4 *lhs, const float4* rhs )
 {
 	return HLML_CONSTRUCT( float4 )
 	{
@@ -3362,7 +3362,7 @@ HLML_INLINE float4 float4_caddv( const float4* lhs, const float4* rhs )
 }
 
 // Performs a component-wise - on the vector by the scalar and returns the result.
-HLML_INLINE float4 float4_csubs( const float4* lhs, const float rhs )
+HLML_INLINE float4 float4_csubs( const float4 *lhs, const float rhs )
 {
 	return HLML_CONSTRUCT( float4 )
 	{
@@ -3374,7 +3374,7 @@ HLML_INLINE float4 float4_csubs( const float4* lhs, const float rhs )
 }
 
 // Performs a component-wise - against the two vectors and returns the result.
-HLML_INLINE float4 float4_csubv( const float4* lhs, const float4* rhs )
+HLML_INLINE float4 float4_csubv( const float4 *lhs, const float4* rhs )
 {
 	return HLML_CONSTRUCT( float4 )
 	{
@@ -3386,7 +3386,7 @@ HLML_INLINE float4 float4_csubv( const float4* lhs, const float4* rhs )
 }
 
 // Performs a component-wise * on the vector by the scalar and returns the result.
-HLML_INLINE float4 float4_cmuls( const float4* lhs, const float rhs )
+HLML_INLINE float4 float4_cmuls( const float4 *lhs, const float rhs )
 {
 	return HLML_CONSTRUCT( float4 )
 	{
@@ -3398,7 +3398,7 @@ HLML_INLINE float4 float4_cmuls( const float4* lhs, const float rhs )
 }
 
 // Performs a component-wise * against the two vectors and returns the result.
-HLML_INLINE float4 float4_cmulv( const float4* lhs, const float4* rhs )
+HLML_INLINE float4 float4_cmulv( const float4 *lhs, const float4* rhs )
 {
 	return HLML_CONSTRUCT( float4 )
 	{
@@ -3410,7 +3410,7 @@ HLML_INLINE float4 float4_cmulv( const float4* lhs, const float4* rhs )
 }
 
 // Performs a component-wise / on the vector by the scalar and returns the result.
-HLML_INLINE float4 float4_cdivs( const float4* lhs, const float rhs )
+HLML_INLINE float4 float4_cdivs( const float4 *lhs, const float rhs )
 {
 	return HLML_CONSTRUCT( float4 )
 	{
@@ -3422,7 +3422,7 @@ HLML_INLINE float4 float4_cdivs( const float4* lhs, const float rhs )
 }
 
 // Performs a component-wise / against the two vectors and returns the result.
-HLML_INLINE float4 float4_cdivv( const float4* lhs, const float4* rhs )
+HLML_INLINE float4 float4_cdivv( const float4 *lhs, const float4* rhs )
 {
 	return HLML_CONSTRUCT( float4 )
 	{
@@ -3434,7 +3434,7 @@ HLML_INLINE float4 float4_cdivv( const float4* lhs, const float4* rhs )
 }
 
 // Returns a copy of the vector that has been negated.
-HLML_INLINE float4 float4_negate( const float4* x )
+HLML_INLINE float4 float4_negate( const float4 *x )
 {
 	return HLML_CONSTRUCT( float4 )
 	{
@@ -3561,7 +3561,7 @@ HLML_INLINE float float4_angle( const float4* lhs, const float4* rhs )
 
 // double2
 // Returns true if the contents of 'lhs' are the same as the contents of 'rhs', otherwise returns false.
-HLML_INLINE bool double2_equals( const double2* lhs, const double2* rhs )
+HLML_INLINE bool double2_equals( const double2 *lhs, const double2 *rhs )
 {
 	return
 		doubleeq( lhs->x, rhs->x ) &&
@@ -3569,13 +3569,13 @@ HLML_INLINE bool double2_equals( const double2* lhs, const double2* rhs )
 }
 
 // Returns true if the contents of 'lhs' are NOT the same as the contents of 'rhs', otherwise returns false.
-HLML_INLINE bool double2_not_equals( const double2* lhs, const double2* rhs )
+HLML_INLINE bool double2_not_equals( const double2 *lhs, const double2 *rhs )
 {
 	return !double2_equals( lhs, rhs );
 }
 
 // Performs a component-wise '<' check against the two vectors and returns the result.
-HLML_INLINE bool2 double2_less_than( const double2* lhs, const double2* rhs )
+HLML_INLINE bool2 double2_less_than( const double2 *lhs, const double2* rhs )
 {
 	return HLML_CONSTRUCT( bool2 )
 	{
@@ -3585,7 +3585,7 @@ HLML_INLINE bool2 double2_less_than( const double2* lhs, const double2* rhs )
 }
 
 // Performs a component-wise '<=' check against the two vectors and returns the result.
-HLML_INLINE bool2 double2_less_than_equal( const double2* lhs, const double2* rhs )
+HLML_INLINE bool2 double2_less_than_equal( const double2 *lhs, const double2* rhs )
 {
 	return HLML_CONSTRUCT( bool2 )
 	{
@@ -3595,7 +3595,7 @@ HLML_INLINE bool2 double2_less_than_equal( const double2* lhs, const double2* rh
 }
 
 // Performs a component-wise '>' check against the two vectors and returns the result.
-HLML_INLINE bool2 double2_greater_than( const double2* lhs, const double2* rhs )
+HLML_INLINE bool2 double2_greater_than( const double2 *lhs, const double2* rhs )
 {
 	return HLML_CONSTRUCT( bool2 )
 	{
@@ -3605,7 +3605,7 @@ HLML_INLINE bool2 double2_greater_than( const double2* lhs, const double2* rhs )
 }
 
 // Performs a component-wise '>=' check against the two vectors and returns the result.
-HLML_INLINE bool2 double2_greater_than_equal( const double2* lhs, const double2* rhs )
+HLML_INLINE bool2 double2_greater_than_equal( const double2 *lhs, const double2* rhs )
 {
 	return HLML_CONSTRUCT( bool2 )
 	{
@@ -3615,7 +3615,7 @@ HLML_INLINE bool2 double2_greater_than_equal( const double2* lhs, const double2*
 }
 
 // Performs a component-wise + on the vector by the scalar and returns the result.
-HLML_INLINE double2 double2_cadds( const double2* lhs, const double rhs )
+HLML_INLINE double2 double2_cadds( const double2 *lhs, const double rhs )
 {
 	return HLML_CONSTRUCT( double2 )
 	{
@@ -3625,7 +3625,7 @@ HLML_INLINE double2 double2_cadds( const double2* lhs, const double rhs )
 }
 
 // Performs a component-wise + against the two vectors and returns the result.
-HLML_INLINE double2 double2_caddv( const double2* lhs, const double2* rhs )
+HLML_INLINE double2 double2_caddv( const double2 *lhs, const double2* rhs )
 {
 	return HLML_CONSTRUCT( double2 )
 	{
@@ -3635,7 +3635,7 @@ HLML_INLINE double2 double2_caddv( const double2* lhs, const double2* rhs )
 }
 
 // Performs a component-wise - on the vector by the scalar and returns the result.
-HLML_INLINE double2 double2_csubs( const double2* lhs, const double rhs )
+HLML_INLINE double2 double2_csubs( const double2 *lhs, const double rhs )
 {
 	return HLML_CONSTRUCT( double2 )
 	{
@@ -3645,7 +3645,7 @@ HLML_INLINE double2 double2_csubs( const double2* lhs, const double rhs )
 }
 
 // Performs a component-wise - against the two vectors and returns the result.
-HLML_INLINE double2 double2_csubv( const double2* lhs, const double2* rhs )
+HLML_INLINE double2 double2_csubv( const double2 *lhs, const double2* rhs )
 {
 	return HLML_CONSTRUCT( double2 )
 	{
@@ -3655,7 +3655,7 @@ HLML_INLINE double2 double2_csubv( const double2* lhs, const double2* rhs )
 }
 
 // Performs a component-wise * on the vector by the scalar and returns the result.
-HLML_INLINE double2 double2_cmuls( const double2* lhs, const double rhs )
+HLML_INLINE double2 double2_cmuls( const double2 *lhs, const double rhs )
 {
 	return HLML_CONSTRUCT( double2 )
 	{
@@ -3665,7 +3665,7 @@ HLML_INLINE double2 double2_cmuls( const double2* lhs, const double rhs )
 }
 
 // Performs a component-wise * against the two vectors and returns the result.
-HLML_INLINE double2 double2_cmulv( const double2* lhs, const double2* rhs )
+HLML_INLINE double2 double2_cmulv( const double2 *lhs, const double2* rhs )
 {
 	return HLML_CONSTRUCT( double2 )
 	{
@@ -3675,7 +3675,7 @@ HLML_INLINE double2 double2_cmulv( const double2* lhs, const double2* rhs )
 }
 
 // Performs a component-wise / on the vector by the scalar and returns the result.
-HLML_INLINE double2 double2_cdivs( const double2* lhs, const double rhs )
+HLML_INLINE double2 double2_cdivs( const double2 *lhs, const double rhs )
 {
 	return HLML_CONSTRUCT( double2 )
 	{
@@ -3685,7 +3685,7 @@ HLML_INLINE double2 double2_cdivs( const double2* lhs, const double rhs )
 }
 
 // Performs a component-wise / against the two vectors and returns the result.
-HLML_INLINE double2 double2_cdivv( const double2* lhs, const double2* rhs )
+HLML_INLINE double2 double2_cdivv( const double2 *lhs, const double2* rhs )
 {
 	return HLML_CONSTRUCT( double2 )
 	{
@@ -3695,7 +3695,7 @@ HLML_INLINE double2 double2_cdivv( const double2* lhs, const double2* rhs )
 }
 
 // Returns a copy of the vector that has been negated.
-HLML_INLINE double2 double2_negate( const double2* x )
+HLML_INLINE double2 double2_negate( const double2 *x )
 {
 	return HLML_CONSTRUCT( double2 )
 	{
@@ -3822,7 +3822,7 @@ HLML_INLINE double double2_distance( const double2* lhs, const double2* rhs )
 
 // double3
 // Returns true if the contents of 'lhs' are the same as the contents of 'rhs', otherwise returns false.
-HLML_INLINE bool double3_equals( const double3* lhs, const double3* rhs )
+HLML_INLINE bool double3_equals( const double3 *lhs, const double3 *rhs )
 {
 	return
 		doubleeq( lhs->x, rhs->x ) &&
@@ -3831,13 +3831,13 @@ HLML_INLINE bool double3_equals( const double3* lhs, const double3* rhs )
 }
 
 // Returns true if the contents of 'lhs' are NOT the same as the contents of 'rhs', otherwise returns false.
-HLML_INLINE bool double3_not_equals( const double3* lhs, const double3* rhs )
+HLML_INLINE bool double3_not_equals( const double3 *lhs, const double3 *rhs )
 {
 	return !double3_equals( lhs, rhs );
 }
 
 // Performs a component-wise '<' check against the two vectors and returns the result.
-HLML_INLINE bool3 double3_less_than( const double3* lhs, const double3* rhs )
+HLML_INLINE bool3 double3_less_than( const double3 *lhs, const double3* rhs )
 {
 	return HLML_CONSTRUCT( bool3 )
 	{
@@ -3848,7 +3848,7 @@ HLML_INLINE bool3 double3_less_than( const double3* lhs, const double3* rhs )
 }
 
 // Performs a component-wise '<=' check against the two vectors and returns the result.
-HLML_INLINE bool3 double3_less_than_equal( const double3* lhs, const double3* rhs )
+HLML_INLINE bool3 double3_less_than_equal( const double3 *lhs, const double3* rhs )
 {
 	return HLML_CONSTRUCT( bool3 )
 	{
@@ -3859,7 +3859,7 @@ HLML_INLINE bool3 double3_less_than_equal( const double3* lhs, const double3* rh
 }
 
 // Performs a component-wise '>' check against the two vectors and returns the result.
-HLML_INLINE bool3 double3_greater_than( const double3* lhs, const double3* rhs )
+HLML_INLINE bool3 double3_greater_than( const double3 *lhs, const double3* rhs )
 {
 	return HLML_CONSTRUCT( bool3 )
 	{
@@ -3870,7 +3870,7 @@ HLML_INLINE bool3 double3_greater_than( const double3* lhs, const double3* rhs )
 }
 
 // Performs a component-wise '>=' check against the two vectors and returns the result.
-HLML_INLINE bool3 double3_greater_than_equal( const double3* lhs, const double3* rhs )
+HLML_INLINE bool3 double3_greater_than_equal( const double3 *lhs, const double3* rhs )
 {
 	return HLML_CONSTRUCT( bool3 )
 	{
@@ -3881,7 +3881,7 @@ HLML_INLINE bool3 double3_greater_than_equal( const double3* lhs, const double3*
 }
 
 // Performs a component-wise + on the vector by the scalar and returns the result.
-HLML_INLINE double3 double3_cadds( const double3* lhs, const double rhs )
+HLML_INLINE double3 double3_cadds( const double3 *lhs, const double rhs )
 {
 	return HLML_CONSTRUCT( double3 )
 	{
@@ -3892,7 +3892,7 @@ HLML_INLINE double3 double3_cadds( const double3* lhs, const double rhs )
 }
 
 // Performs a component-wise + against the two vectors and returns the result.
-HLML_INLINE double3 double3_caddv( const double3* lhs, const double3* rhs )
+HLML_INLINE double3 double3_caddv( const double3 *lhs, const double3* rhs )
 {
 	return HLML_CONSTRUCT( double3 )
 	{
@@ -3903,7 +3903,7 @@ HLML_INLINE double3 double3_caddv( const double3* lhs, const double3* rhs )
 }
 
 // Performs a component-wise - on the vector by the scalar and returns the result.
-HLML_INLINE double3 double3_csubs( const double3* lhs, const double rhs )
+HLML_INLINE double3 double3_csubs( const double3 *lhs, const double rhs )
 {
 	return HLML_CONSTRUCT( double3 )
 	{
@@ -3914,7 +3914,7 @@ HLML_INLINE double3 double3_csubs( const double3* lhs, const double rhs )
 }
 
 // Performs a component-wise - against the two vectors and returns the result.
-HLML_INLINE double3 double3_csubv( const double3* lhs, const double3* rhs )
+HLML_INLINE double3 double3_csubv( const double3 *lhs, const double3* rhs )
 {
 	return HLML_CONSTRUCT( double3 )
 	{
@@ -3925,7 +3925,7 @@ HLML_INLINE double3 double3_csubv( const double3* lhs, const double3* rhs )
 }
 
 // Performs a component-wise * on the vector by the scalar and returns the result.
-HLML_INLINE double3 double3_cmuls( const double3* lhs, const double rhs )
+HLML_INLINE double3 double3_cmuls( const double3 *lhs, const double rhs )
 {
 	return HLML_CONSTRUCT( double3 )
 	{
@@ -3936,7 +3936,7 @@ HLML_INLINE double3 double3_cmuls( const double3* lhs, const double rhs )
 }
 
 // Performs a component-wise * against the two vectors and returns the result.
-HLML_INLINE double3 double3_cmulv( const double3* lhs, const double3* rhs )
+HLML_INLINE double3 double3_cmulv( const double3 *lhs, const double3* rhs )
 {
 	return HLML_CONSTRUCT( double3 )
 	{
@@ -3947,7 +3947,7 @@ HLML_INLINE double3 double3_cmulv( const double3* lhs, const double3* rhs )
 }
 
 // Performs a component-wise / on the vector by the scalar and returns the result.
-HLML_INLINE double3 double3_cdivs( const double3* lhs, const double rhs )
+HLML_INLINE double3 double3_cdivs( const double3 *lhs, const double rhs )
 {
 	return HLML_CONSTRUCT( double3 )
 	{
@@ -3958,7 +3958,7 @@ HLML_INLINE double3 double3_cdivs( const double3* lhs, const double rhs )
 }
 
 // Performs a component-wise / against the two vectors and returns the result.
-HLML_INLINE double3 double3_cdivv( const double3* lhs, const double3* rhs )
+HLML_INLINE double3 double3_cdivv( const double3 *lhs, const double3* rhs )
 {
 	return HLML_CONSTRUCT( double3 )
 	{
@@ -3969,7 +3969,7 @@ HLML_INLINE double3 double3_cdivv( const double3* lhs, const double3* rhs )
 }
 
 // Returns a copy of the vector that has been negated.
-HLML_INLINE double3 double3_negate( const double3* x )
+HLML_INLINE double3 double3_negate( const double3 *x )
 {
 	return HLML_CONSTRUCT( double3 )
 	{
@@ -4114,7 +4114,7 @@ HLML_INLINE double double3_distance( const double3* lhs, const double3* rhs )
 
 // double4
 // Returns true if the contents of 'lhs' are the same as the contents of 'rhs', otherwise returns false.
-HLML_INLINE bool double4_equals( const double4* lhs, const double4* rhs )
+HLML_INLINE bool double4_equals( const double4 *lhs, const double4 *rhs )
 {
 	return
 		doubleeq( lhs->x, rhs->x ) &&
@@ -4124,13 +4124,13 @@ HLML_INLINE bool double4_equals( const double4* lhs, const double4* rhs )
 }
 
 // Returns true if the contents of 'lhs' are NOT the same as the contents of 'rhs', otherwise returns false.
-HLML_INLINE bool double4_not_equals( const double4* lhs, const double4* rhs )
+HLML_INLINE bool double4_not_equals( const double4 *lhs, const double4 *rhs )
 {
 	return !double4_equals( lhs, rhs );
 }
 
 // Performs a component-wise '<' check against the two vectors and returns the result.
-HLML_INLINE bool4 double4_less_than( const double4* lhs, const double4* rhs )
+HLML_INLINE bool4 double4_less_than( const double4 *lhs, const double4* rhs )
 {
 	return HLML_CONSTRUCT( bool4 )
 	{
@@ -4142,7 +4142,7 @@ HLML_INLINE bool4 double4_less_than( const double4* lhs, const double4* rhs )
 }
 
 // Performs a component-wise '<=' check against the two vectors and returns the result.
-HLML_INLINE bool4 double4_less_than_equal( const double4* lhs, const double4* rhs )
+HLML_INLINE bool4 double4_less_than_equal( const double4 *lhs, const double4* rhs )
 {
 	return HLML_CONSTRUCT( bool4 )
 	{
@@ -4154,7 +4154,7 @@ HLML_INLINE bool4 double4_less_than_equal( const double4* lhs, const double4* rh
 }
 
 // Performs a component-wise '>' check against the two vectors and returns the result.
-HLML_INLINE bool4 double4_greater_than( const double4* lhs, const double4* rhs )
+HLML_INLINE bool4 double4_greater_than( const double4 *lhs, const double4* rhs )
 {
 	return HLML_CONSTRUCT( bool4 )
 	{
@@ -4166,7 +4166,7 @@ HLML_INLINE bool4 double4_greater_than( const double4* lhs, const double4* rhs )
 }
 
 // Performs a component-wise '>=' check against the two vectors and returns the result.
-HLML_INLINE bool4 double4_greater_than_equal( const double4* lhs, const double4* rhs )
+HLML_INLINE bool4 double4_greater_than_equal( const double4 *lhs, const double4* rhs )
 {
 	return HLML_CONSTRUCT( bool4 )
 	{
@@ -4178,7 +4178,7 @@ HLML_INLINE bool4 double4_greater_than_equal( const double4* lhs, const double4*
 }
 
 // Performs a component-wise + on the vector by the scalar and returns the result.
-HLML_INLINE double4 double4_cadds( const double4* lhs, const double rhs )
+HLML_INLINE double4 double4_cadds( const double4 *lhs, const double rhs )
 {
 	return HLML_CONSTRUCT( double4 )
 	{
@@ -4190,7 +4190,7 @@ HLML_INLINE double4 double4_cadds( const double4* lhs, const double rhs )
 }
 
 // Performs a component-wise + against the two vectors and returns the result.
-HLML_INLINE double4 double4_caddv( const double4* lhs, const double4* rhs )
+HLML_INLINE double4 double4_caddv( const double4 *lhs, const double4* rhs )
 {
 	return HLML_CONSTRUCT( double4 )
 	{
@@ -4202,7 +4202,7 @@ HLML_INLINE double4 double4_caddv( const double4* lhs, const double4* rhs )
 }
 
 // Performs a component-wise - on the vector by the scalar and returns the result.
-HLML_INLINE double4 double4_csubs( const double4* lhs, const double rhs )
+HLML_INLINE double4 double4_csubs( const double4 *lhs, const double rhs )
 {
 	return HLML_CONSTRUCT( double4 )
 	{
@@ -4214,7 +4214,7 @@ HLML_INLINE double4 double4_csubs( const double4* lhs, const double rhs )
 }
 
 // Performs a component-wise - against the two vectors and returns the result.
-HLML_INLINE double4 double4_csubv( const double4* lhs, const double4* rhs )
+HLML_INLINE double4 double4_csubv( const double4 *lhs, const double4* rhs )
 {
 	return HLML_CONSTRUCT( double4 )
 	{
@@ -4226,7 +4226,7 @@ HLML_INLINE double4 double4_csubv( const double4* lhs, const double4* rhs )
 }
 
 // Performs a component-wise * on the vector by the scalar and returns the result.
-HLML_INLINE double4 double4_cmuls( const double4* lhs, const double rhs )
+HLML_INLINE double4 double4_cmuls( const double4 *lhs, const double rhs )
 {
 	return HLML_CONSTRUCT( double4 )
 	{
@@ -4238,7 +4238,7 @@ HLML_INLINE double4 double4_cmuls( const double4* lhs, const double rhs )
 }
 
 // Performs a component-wise * against the two vectors and returns the result.
-HLML_INLINE double4 double4_cmulv( const double4* lhs, const double4* rhs )
+HLML_INLINE double4 double4_cmulv( const double4 *lhs, const double4* rhs )
 {
 	return HLML_CONSTRUCT( double4 )
 	{
@@ -4250,7 +4250,7 @@ HLML_INLINE double4 double4_cmulv( const double4* lhs, const double4* rhs )
 }
 
 // Performs a component-wise / on the vector by the scalar and returns the result.
-HLML_INLINE double4 double4_cdivs( const double4* lhs, const double rhs )
+HLML_INLINE double4 double4_cdivs( const double4 *lhs, const double rhs )
 {
 	return HLML_CONSTRUCT( double4 )
 	{
@@ -4262,7 +4262,7 @@ HLML_INLINE double4 double4_cdivs( const double4* lhs, const double rhs )
 }
 
 // Performs a component-wise / against the two vectors and returns the result.
-HLML_INLINE double4 double4_cdivv( const double4* lhs, const double4* rhs )
+HLML_INLINE double4 double4_cdivv( const double4 *lhs, const double4* rhs )
 {
 	return HLML_CONSTRUCT( double4 )
 	{
@@ -4274,7 +4274,7 @@ HLML_INLINE double4 double4_cdivv( const double4* lhs, const double4* rhs )
 }
 
 // Returns a copy of the vector that has been negated.
-HLML_INLINE double4 double4_negate( const double4* x )
+HLML_INLINE double4 double4_negate( const double4 *x )
 {
 	return HLML_CONSTRUCT( double4 )
 	{

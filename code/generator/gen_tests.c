@@ -24,8 +24,6 @@ along with The HLML Generator.  If not, see <http://www.gnu.org/licenses/>.
 
 #include "tests_shared.h"
 
-#include "tests_vector.h"
-
 #include "common_names.h"
 
 #include "file_io.h"

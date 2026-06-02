@@ -165,7 +165,7 @@ TEMPER_TEST( Test_TypeSizes, TEMPER_FLAG_SHOULD_RUN )
 
 #define TEST_PADDING "................................................................"
 
-static void OnBeforeTest( const temperTestInfo_t* testInfo )
+static void OnBeforeTest( const temperTestInfo_t *testInfo )
 {
 	const int padLengthMax = (int) strlen( TEST_PADDING );
 
@@ -175,7 +175,7 @@ static void OnBeforeTest( const temperTestInfo_t* testInfo )
 	printf( "%s %*.*s ", testInfo->testNameStr, dotLength, dotLength, TEST_PADDING );
 }
 
-static void OnAfterTest( const temperTestInfo_t* testInfo )
+static void OnAfterTest( const temperTestInfo_t *testInfo )
 {
 	if ( testInfo->testingFlag == TEMPER_FLAG_SHOULD_SKIP )
 	{
@@ -202,7 +202,7 @@ static void OnAfterTest( const temperTestInfo_t* testInfo )
 	}
 }
 
-int main( int argc, char** argv )
+int main( int argc, char **argv )
 {
 	g_temperTestContext.callbacks.OnBeforeTest = OnBeforeTest;
 	g_temperTestContext.callbacks.OnAfterTest = OnAfterTest;

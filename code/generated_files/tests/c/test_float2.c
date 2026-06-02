@@ -401,7 +401,7 @@ TEMPER_TEST_PARAMETRIC( Test_float2_negate_prefix, TEMPER_FLAG_SHOULD_RUN, const
 {
 	// make local copy of x and use that because we cant do increment or decrement operations on a const reference
 	// and MSVC throws warnings if we just make the parameter a non-const reference
-	float2* xlocal = (float2*) x;
+	float2 *xlocal = (float2 *) x;
 	float2 actualAnswer = float2_negate( xlocal );
 	TEMPER_CHECK_TRUE( float2_equals( &actualAnswer, expectedAnswer ) );
 }
