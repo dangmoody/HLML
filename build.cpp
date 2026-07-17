@@ -55,6 +55,38 @@ static std::vector<std::string> GetAdditionalBuildArgs( const config_t config ) 
 	return {};
 }
 
+static BuildConfig CreateTestConfig( const language_t language, const std::string &compilerName, CommandLineArgs *args ) {
+	const std::string languageFileExtension = GetLanguageFileExtension( language );
+
+	BuildConfig testConfig = {
+		.name				= "tests-" + languageFileExtension,
+		.binaryName			= "hlml-tests-" + compilerName + "-" + languageFileExtension,
+		.sourceFiles		= { "code/generated_files/tests/" + languageFileExtension + "/test_main." + languageFileExtension },
+		.additionalIncludes	= { "code/3rdparty/include" },
+#if defined( __linux__ )
+		.additionalLibs		= { "m", "stdc++" },
+#endif
+	};
+
+	if ( HasCommandLineArg( args, "--release" ) ) {
+		testConfig.binaryFolder = "bin/release";
+	} else {
+		testConfig.binaryFolder = "bin/debug";
+	}
+
+	if ( HasCommandLineArg( args, "--gcc" ) ) {
+#if !defined( __linux__ )
+		testConfig.additionalCompilerArguments.push_back( "-Wa,-mbig-obj" );
+#endif
+
+		testConfig.additionalLinkerArguments.push_back( "-static" );
+		testConfig.additionalLinkerArguments.push_back( "-static-libstdc++" );
+		testConfig.additionalLinkerArguments.push_back( "-static-libgcc" );
+	}
+
+	return testConfig;
+}
+
 BUILDER_CALLBACK void SetBuilderOptions( BuilderOptions *options, CommandLineArgs *args ) {
 	options->consolidateCompilerArgs = true;
 
@@ -100,16 +132,15 @@ BUILDER_CALLBACK void SetBuilderOptions( BuilderOptions *options, CommandLineArg
 
 	AddBuildConfig( options, &generator );
 
-	// setup visual studio solution now, add tests afterwards
-	//options->generateSolution = true;
+	options->generateSolution = HasCommandLineArg( args, "--sln" );
+
 	options->solution = {
 		.name		= "HLML",
 		.path		= "visual_studio",
 		.platforms	= { "x64" },
 		.projects = {
 			{
-				.name			= "generator",
-				.codeFolders	= { "code" },
+				.name = "generator",
 				.configs = {
 					{ GetConfigName( CONFIG_DEBUG ),   generator, GetAdditionalBuildArgs( CONFIG_DEBUG ),   { /* debugger arguments */ } },
 					{ GetConfigName( CONFIG_RELEASE ), generator, GetAdditionalBuildArgs( CONFIG_RELEASE ), { /* debugger arguments */ } },
@@ -118,56 +149,21 @@ BUILDER_CALLBACK void SetBuilderOptions( BuilderOptions *options, CommandLineArg
 		},
 	};
 
+	BuildConfig testConfigC   = CreateTestConfig( LANGUAGE_C,   compilerName, args );
+	BuildConfig testConfigCpp = CreateTestConfig( LANGUAGE_CPP, compilerName, args );
+
+	AddBuildConfig( options, &testConfigC );
+	AddBuildConfig( options, &testConfigCpp );
+
 	options->solution.projects.push_back( {
-		.name			= "tests",
-		.codeFolders	= { "code/generated_files/tests" },
+		.name = "tests",
+		.configs = {
+			{ "c-"   + GetConfigName( CONFIG_DEBUG ),   testConfigC,   GetAdditionalBuildArgs( CONFIG_DEBUG ),   { /* debugger arguments */ } },
+			{ "c-"   + GetConfigName( CONFIG_RELEASE ), testConfigC,   GetAdditionalBuildArgs( CONFIG_RELEASE ), { /* debugger arguments */ } },
+			{ "cpp-" + GetConfigName( CONFIG_DEBUG ),   testConfigCpp, GetAdditionalBuildArgs( CONFIG_DEBUG ),   { /* debugger arguments */ } },
+			{ "cpp-" + GetConfigName( CONFIG_RELEASE ), testConfigCpp, GetAdditionalBuildArgs( CONFIG_RELEASE ), { /* debugger arguments */ } },
+		},
 	} );
-
-	VisualStudioProject *testsProject = &options->solution.projects.back();
-
-	bool buildC   = HasCommandLineArg( args, "--c" );
-	bool buildCpp = HasCommandLineArg( args, "--cpp" );
-
-	if ( buildC && buildCpp ) {
-		fprintf( stderr, "ERROR: --c and --cpp are mutually exclusive.  Pass one or the other.\n" );
-		return;
-	}
-
-	if ( buildC || buildCpp ) {
-		const language_t language = buildCpp ? LANGUAGE_CPP : LANGUAGE_C;
-		const std::string languageFileExtension = GetLanguageFileExtension( language );
-
-		BuildConfig testConfig = {
-			.name				= "tests",
-			.binaryName			= "hlml-tests-" + compilerName + "-" + languageFileExtension,
-			.sourceFiles		= { "code/generated_files/tests/" + languageFileExtension + "/test_main." + languageFileExtension },
-			.additionalIncludes	= { "code/3rdparty/include" },
-#if defined( __linux__ )
-			.additionalLibs		= { "m", "stdc++" },
-#endif
-		};
-
-		if ( HasCommandLineArg( args, "--release" ) ) {
-			testConfig.binaryFolder = "bin/release";
-		} else {
-			testConfig.binaryFolder = "bin/debug";
-		}
-
-		if ( HasCommandLineArg( args, "--gcc" ) ) {
-#if !defined( __linux__ )
-			testConfig.additionalCompilerArguments.push_back( "-Wa,-mbig-obj" );
-#endif
-
-			testConfig.additionalLinkerArguments.push_back( "-static" );
-			testConfig.additionalLinkerArguments.push_back( "-static-libstdc++" );
-			testConfig.additionalLinkerArguments.push_back( "-static-libgcc" );
-		}
-
-		AddBuildConfig( options, &testConfig );
-
-		testsProject->configs.push_back( { GetConfigName( CONFIG_DEBUG ),   testConfig, GetAdditionalBuildArgs( CONFIG_DEBUG ),   { /* debugger args */ } } );
-		testsProject->configs.push_back( { GetConfigName( CONFIG_RELEASE ), testConfig, GetAdditionalBuildArgs( CONFIG_RELEASE ), { /* debugger args */ } } );
-	}
 }
 
 #pragma clang diagnostic push
