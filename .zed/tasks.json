@@ -2,7 +2,7 @@
 	// generator
 	{
 		"label": "build: generator",
-		"command": "~/builder/bin/builder",
+		"command": "builder",
 		"args": ["build.cpp", "--config=generator"],
 		"cwd": "$ZED_WORKTREE_ROOT",
 	},
@@ -10,13 +10,13 @@
 	// clang
 	{
 		"label": "build: tests clang C",
-		"command": "~/builder/bin/builder",
+		"command": "builder",
 		"args": ["build.cpp", "--config=tests-c"],
 		"cwd": "$ZED_WORKTREE_ROOT",
 	},
 	{
 		"label": "build: tests clang C++",
-		"command": "~/builder/bin/builder",
+		"command": "builder",
 		"args": ["build.cpp", "--config=tests-cpp"],
 		"cwd": "$ZED_WORKTREE_ROOT",
 	},
@@ -24,13 +24,13 @@
 	// gcc
 	{
 		"label": "build: tests gcc C",
-		"command": "~/builder/bin/builder",
+		"command": "builder",
 		"args": ["build.cpp", "--gcc", "--config=tests-c"],
 		"cwd": "$ZED_WORKTREE_ROOT",
 	},
 	{
 		"label": "build: tests gcc C++",
-		"command": "~/builder/bin/builder",
+		"command": "builder",
 		"args": ["build.cpp", "--gcc", "--config=tests-cpp"],
 		"cwd": "$ZED_WORKTREE_ROOT",
 	},
@@ -38,13 +38,13 @@
 	// msvc
 	{
 		"label": "build: tests msvc C",
-		"command": "~/builder/bin/builder",
+		"command": "builder",
 		"args": ["build.cpp", "--msvc", "--config=tests-c"],
 		"cwd": "$ZED_WORKTREE_ROOT",
 	},
 	{
 		"label": "build: tests msvc C++",
-		"command": "~/builder/bin/builder",
+		"command": "builder",
 		"args": ["build.cpp", "--msvc", "--config=tests-cpp"],
 		"cwd": "$ZED_WORKTREE_ROOT",
 	},
