@@ -31,6 +31,8 @@ SOFTWARE.
 
 #include "../timer.h"
 
+#include <Windows.h>
+
 static s64 Frequency( void ) {
 	static LARGE_INTEGER frequency = { 0 };
 	QueryPerformanceFrequency( &frequency );

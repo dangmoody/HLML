@@ -29,11 +29,11 @@ SOFTWARE.
 
 #ifdef _WIN32
 
-#include "file_io.h"
-#include "defines.h"
+#include "../file_io.h"
+#include "../defines.h"
 
-#include "timer.h"
-#include "string_helpers.h"
+#include "../timer.h"
+#include "../string_helpers.h"
 
 #include <Windows.h>
 
