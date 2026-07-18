@@ -2,11 +2,8 @@
 ===========================================================================
 
 HLML
-v2.2.0
 
-MIT License:
-
-Copyright (c) 2019 Dan Moody (daniel.guy.moody@gmail.com).
+Copyright (c) Dan Moody 2018 - Present.
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -108,88 +105,6 @@ TEMPER_TEST( Test_TypeSizes, TEMPER_FLAG_SHOULD_RUN )
 	TEMPER_CHECK_TRUE( sizeof( double4x3 ) == 96 );
 	TEMPER_CHECK_TRUE( sizeof( double4x4 ) == 128 );
 }
-
-#include "test_int.cpp"
-#include "test_uint.cpp"
-#include "test_float.cpp"
-#include "test_double.cpp"
-
-#include "test_int2.cpp"
-#include "test_int2_swizzle_xyzw.cpp"
-#include "test_int2_swizzle_rgba.cpp"
-#include "test_int3.cpp"
-#include "test_int3_swizzle_xyzw.cpp"
-#include "test_int3_swizzle_rgba.cpp"
-#include "test_int4.cpp"
-#include "test_int4_swizzle_xyzw.cpp"
-#include "test_int4_swizzle_rgba.cpp"
-#include "test_uint2.cpp"
-#include "test_uint2_swizzle_xyzw.cpp"
-#include "test_uint2_swizzle_rgba.cpp"
-#include "test_uint3.cpp"
-#include "test_uint3_swizzle_xyzw.cpp"
-#include "test_uint3_swizzle_rgba.cpp"
-#include "test_uint4.cpp"
-#include "test_uint4_swizzle_xyzw.cpp"
-#include "test_uint4_swizzle_rgba.cpp"
-#include "test_float2.cpp"
-#include "test_float2_swizzle_xyzw.cpp"
-#include "test_float2_swizzle_rgba.cpp"
-#include "test_float3.cpp"
-#include "test_float3_swizzle_xyzw.cpp"
-#include "test_float3_swizzle_rgba.cpp"
-#include "test_float4.cpp"
-#include "test_float4_swizzle_xyzw.cpp"
-#include "test_float4_swizzle_rgba.cpp"
-#include "test_double2.cpp"
-#include "test_double2_swizzle_xyzw.cpp"
-#include "test_double2_swizzle_rgba.cpp"
-#include "test_double3.cpp"
-#include "test_double3_swizzle_xyzw.cpp"
-#include "test_double3_swizzle_rgba.cpp"
-#include "test_double4.cpp"
-#include "test_double4_swizzle_xyzw.cpp"
-#include "test_double4_swizzle_rgba.cpp"
-
-#include "test_quat_float4.cpp"
-#include "test_quat_double4.cpp"
-
-#include "test_int2x2.cpp"
-#include "test_int2x3.cpp"
-#include "test_int2x4.cpp"
-#include "test_int3x2.cpp"
-#include "test_int3x3.cpp"
-#include "test_int3x4.cpp"
-#include "test_int4x2.cpp"
-#include "test_int4x3.cpp"
-#include "test_int4x4.cpp"
-#include "test_uint2x2.cpp"
-#include "test_uint2x3.cpp"
-#include "test_uint2x4.cpp"
-#include "test_uint3x2.cpp"
-#include "test_uint3x3.cpp"
-#include "test_uint3x4.cpp"
-#include "test_uint4x2.cpp"
-#include "test_uint4x3.cpp"
-#include "test_uint4x4.cpp"
-#include "test_float2x2.cpp"
-#include "test_float2x3.cpp"
-#include "test_float2x4.cpp"
-#include "test_float3x2.cpp"
-#include "test_float3x3.cpp"
-#include "test_float3x4.cpp"
-#include "test_float4x2.cpp"
-#include "test_float4x3.cpp"
-#include "test_float4x4.cpp"
-#include "test_double2x2.cpp"
-#include "test_double2x3.cpp"
-#include "test_double2x4.cpp"
-#include "test_double3x2.cpp"
-#include "test_double3x3.cpp"
-#include "test_double3x4.cpp"
-#include "test_double4x2.cpp"
-#include "test_double4x3.cpp"
-#include "test_double4x4.cpp"
 
 #define TEST_PADDING "................................................................"
 

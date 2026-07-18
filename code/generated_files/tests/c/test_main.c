@@ -2,11 +2,8 @@
 ===========================================================================
 
 HLML
-v2.2.0
 
-MIT License:
-
-Copyright (c) 2019 Dan Moody (daniel.guy.moody@gmail.com).
+Copyright (c) Dan Moody 2018 - Present.
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -104,64 +101,6 @@ TEMPER_TEST( Test_TypeSizes, TEMPER_FLAG_SHOULD_RUN )
 	TEMPER_CHECK_TRUE( sizeof( double4x3 ) == 96 );
 	TEMPER_CHECK_TRUE( sizeof( double4x4 ) == 128 );
 }
-
-#include "test_int.c"
-#include "test_uint.c"
-#include "test_float.c"
-#include "test_double.c"
-
-#include "test_int2.c"
-#include "test_int3.c"
-#include "test_int4.c"
-#include "test_uint2.c"
-#include "test_uint3.c"
-#include "test_uint4.c"
-#include "test_float2.c"
-#include "test_float3.c"
-#include "test_float4.c"
-#include "test_double2.c"
-#include "test_double3.c"
-#include "test_double4.c"
-
-#include "test_quat_float4.c"
-#include "test_quat_double4.c"
-
-#include "test_int2x2.c"
-#include "test_int2x3.c"
-#include "test_int2x4.c"
-#include "test_int3x2.c"
-#include "test_int3x3.c"
-#include "test_int3x4.c"
-#include "test_int4x2.c"
-#include "test_int4x3.c"
-#include "test_int4x4.c"
-#include "test_uint2x2.c"
-#include "test_uint2x3.c"
-#include "test_uint2x4.c"
-#include "test_uint3x2.c"
-#include "test_uint3x3.c"
-#include "test_uint3x4.c"
-#include "test_uint4x2.c"
-#include "test_uint4x3.c"
-#include "test_uint4x4.c"
-#include "test_float2x2.c"
-#include "test_float2x3.c"
-#include "test_float2x4.c"
-#include "test_float3x2.c"
-#include "test_float3x3.c"
-#include "test_float3x4.c"
-#include "test_float4x2.c"
-#include "test_float4x3.c"
-#include "test_float4x4.c"
-#include "test_double2x2.c"
-#include "test_double2x3.c"
-#include "test_double2x4.c"
-#include "test_double3x2.c"
-#include "test_double3x3.c"
-#include "test_double3x4.c"
-#include "test_double4x2.c"
-#include "test_double4x3.c"
-#include "test_double4x4.c"
 
 #define TEST_PADDING "................................................................"
 

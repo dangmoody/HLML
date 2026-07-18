@@ -1,10 +1,9 @@
 /*
 ===========================================================================
 
-HLML Generator.
-Copyright (c) Dan Moody 2018 - Present.
+HLML
 
-This file is part of the HLML Generator.
+Copyright (c) Dan Moody 2018 - Present.
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -88,6 +87,25 @@ const char *Gen_GetTestName( allocatorLinear_t *tempStorage, const typeInfo_t *t
 	assert( funcName );
 
 	return String_TPrintf( tempStorage, "Test_%s_%s", typeInfo->fullTypeName, funcName );
+}
+
+void Gen_AppendTestFileIncludes( allocatorLinear_t *tempStorage, stringBuilder_t *code, const char *languageName, const generatorFlags_t flags ) {
+	assert( tempStorage );
+	assert( code );
+	assert( languageName );
+
+	StringBuilder_Append( code, "#include <temper/temper.h>\n\n" );
+
+	StringBuilder_Appendf( code, "#include \"../../../%s%s/%s\"\n\n", GEN_GENERATED_CODE_PATH, languageName, GEN_HEADER_MAIN );
+
+	if ( flags & GENERATOR_FLAG_ALLOW_NAMESPACE ) {
+		StringBuilder_Append( code,
+			"#ifdef HLML_NAMESPACE\n"
+			"using namespace hlml;\n"
+			"#endif\n"
+			"\n"
+		);
+	}
 }
 
 static const char *Gen_GetTestName_SSE( allocatorLinear_t *tempStorage, const typeInfo_t *typeInfo, const char *funcName ) {
@@ -907,7 +925,7 @@ static void Gen_GenerateTests_All( allocatorLinear_t *tempStorage, stringBuilder
 		}
 	};
 
-	const char *funcName = Gen_GetFuncName_Vector( tempStorage, typeInfo, flags, GEN_FUNCTION_NAME_ALL );
+	const char *funcName = GEN_FUNCTION_NAME_ALL;
 
 	Gen_GenerateParametricTestDefinition_Generic( tempStorage, code, typeInfo, strings, flags, &(parametricTestDefinition_t) {
 		.returnType = scalarType,
@@ -1008,8 +1026,7 @@ static void Gen_GenerateTests_Any( allocatorLinear_t *tempStorage, stringBuilder
 		}
 	};
 
-	const char *funcName = Gen_GetFuncName_Vector( tempStorage, typeInfo, flags, GEN_FUNCTION_NAME_ANY );
-	//const char *testName = Gen_GetTestName( tempStorage, typeInfo, funcName );
+	const char *funcName = GEN_FUNCTION_NAME_ANY;
 
 	Gen_GenerateParametricTestDefinition_Generic( tempStorage, code, typeInfo, strings, flags, &(parametricTestDefinition_t) {
 		.returnType = scalarType,

@@ -2,11 +2,8 @@
 ===========================================================================
 
 HLML
-v2.2.0
 
-MIT License:
-
-Copyright (c) 2019 Dan Moody (daniel.guy.moody@gmail.com).
+Copyright (c) Dan Moody 2018 - Present.
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -33,13 +30,17 @@ SOFTWARE.
 // EDITING THIS FILE MAY CAUSE SIDE EFFECTS.
 // DO SO AT YOUR OWN RISK.
 
-TEMPER_TEST_PARAMETRIC( Test_bool3x2_bool3x2_all, TEMPER_FLAG_SHOULD_RUN, const bool3x2* x, const bool32_t expectedAnswer )
+#include <temper/temper.h>
+
+#include "../../../code/generated_files/c/hlml.h"
+
+TEMPER_TEST_PARAMETRIC( Test_bool3x2_all, TEMPER_FLAG_SHOULD_RUN, const bool3x2* x, const bool32_t expectedAnswer )
 {
-	bool32_t actualResult = bool3x2_bool3x2_all( x );
+	bool32_t actualResult = bool3x2_all( x );
 	TEMPER_CHECK_TRUE( actualResult == expectedAnswer );
 }
 
-TEMPER_INVOKE_PARAMETRIC_TEST( Test_bool3x2_bool3x2_all,
+TEMPER_INVOKE_PARAMETRIC_TEST( Test_bool3x2_all,
 	&(bool3x2)
 	{
 		true, true,
@@ -49,7 +50,7 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_bool3x2_bool3x2_all,
 	true
 );
 
-TEMPER_INVOKE_PARAMETRIC_TEST( Test_bool3x2_bool3x2_all,
+TEMPER_INVOKE_PARAMETRIC_TEST( Test_bool3x2_all,
 	&(bool3x2)
 	{
 		true, false,
@@ -59,7 +60,7 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_bool3x2_bool3x2_all,
 	false
 );
 
-TEMPER_INVOKE_PARAMETRIC_TEST( Test_bool3x2_bool3x2_all,
+TEMPER_INVOKE_PARAMETRIC_TEST( Test_bool3x2_all,
 	&(bool3x2)
 	{
 		false, true,
@@ -69,7 +70,7 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_bool3x2_bool3x2_all,
 	false
 );
 
-TEMPER_INVOKE_PARAMETRIC_TEST( Test_bool3x2_bool3x2_all,
+TEMPER_INVOKE_PARAMETRIC_TEST( Test_bool3x2_all,
 	&(bool3x2)
 	{
 		false, true,
@@ -79,7 +80,7 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_bool3x2_bool3x2_all,
 	false
 );
 
-TEMPER_INVOKE_PARAMETRIC_TEST( Test_bool3x2_bool3x2_all,
+TEMPER_INVOKE_PARAMETRIC_TEST( Test_bool3x2_all,
 	&(bool3x2)
 	{
 		false, false,
@@ -89,13 +90,13 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_bool3x2_bool3x2_all,
 	false
 );
 
-TEMPER_TEST_PARAMETRIC( Test_bool3x2_bool3x2_any, TEMPER_FLAG_SHOULD_RUN, const bool3x2* x, const bool32_t expectedAnswer )
+TEMPER_TEST_PARAMETRIC( Test_bool3x2_any, TEMPER_FLAG_SHOULD_RUN, const bool3x2* x, const bool32_t expectedAnswer )
 {
-	bool32_t actualResult = bool3x2_bool3x2_any( x );
+	bool32_t actualResult = bool3x2_any( x );
 	TEMPER_CHECK_TRUE( actualResult == expectedAnswer );
 }
 
-TEMPER_INVOKE_PARAMETRIC_TEST( Test_bool3x2_bool3x2_any,
+TEMPER_INVOKE_PARAMETRIC_TEST( Test_bool3x2_any,
 	&(bool3x2)
 	{
 		true, true,
@@ -105,7 +106,7 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_bool3x2_bool3x2_any,
 	true
 );
 
-TEMPER_INVOKE_PARAMETRIC_TEST( Test_bool3x2_bool3x2_any,
+TEMPER_INVOKE_PARAMETRIC_TEST( Test_bool3x2_any,
 	&(bool3x2)
 	{
 		true, false,
@@ -115,7 +116,7 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_bool3x2_bool3x2_any,
 	true
 );
 
-TEMPER_INVOKE_PARAMETRIC_TEST( Test_bool3x2_bool3x2_any,
+TEMPER_INVOKE_PARAMETRIC_TEST( Test_bool3x2_any,
 	&(bool3x2)
 	{
 		false, true,
@@ -125,7 +126,7 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_bool3x2_bool3x2_any,
 	true
 );
 
-TEMPER_INVOKE_PARAMETRIC_TEST( Test_bool3x2_bool3x2_any,
+TEMPER_INVOKE_PARAMETRIC_TEST( Test_bool3x2_any,
 	&(bool3x2)
 	{
 		false, true,
@@ -135,7 +136,7 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_bool3x2_bool3x2_any,
 	true
 );
 
-TEMPER_INVOKE_PARAMETRIC_TEST( Test_bool3x2_bool3x2_any,
+TEMPER_INVOKE_PARAMETRIC_TEST( Test_bool3x2_any,
 	&(bool3x2)
 	{
 		false, false,

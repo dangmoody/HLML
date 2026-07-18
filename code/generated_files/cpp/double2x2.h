@@ -2,11 +2,8 @@
 ===========================================================================
 
 HLML
-v2.2.0
 
-MIT License:
-
-Copyright (c) 2019 Dan Moody (daniel.guy.moody@gmail.com).
+Copyright (c) Dan Moody 2018 - Present.
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal

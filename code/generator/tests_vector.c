@@ -1,10 +1,9 @@
 /*
 ===========================================================================
 
-HLML Generator.
-Copyright (c) Dan Moody 2018 - Present.
+HLML
 
-This file is part of the HLML Generator.
+Copyright (c) Dan Moody 2018 - Present.
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -142,7 +141,7 @@ static void Gen_GenerateTests_Length_Internal( allocatorLinear_t *tempStorage, s
 	assert( fixtures );
 	assert( fixturesCount );
 
-	if ( !Gen_TypeIsVector( typeInfo ) ) {
+	if ( !Gen_TypeIsVector( typeInfo ) || typeInfo->type == GEN_TYPE_BOOL ) {
 		return;
 	}
 
@@ -261,7 +260,7 @@ static void Gen_GenerateTests_Dot( allocatorLinear_t *tempStorage, stringBuilder
 	assert( typeInfo->fullTypeName );
 	assert( strings );
 
-	if ( !Gen_TypeIsVector( typeInfo ) ) {
+	if ( !Gen_TypeIsVector( typeInfo ) || typeInfo->type == GEN_TYPE_BOOL ) {
 		return;
 	}
 
@@ -1334,6 +1333,8 @@ void GenerateVectorTests( allocatorLinear_t *tempStorage, const char *generatedT
 
 		StringBuilder_Append( code, GEN_FILE_HEADER );
 
+		Gen_AppendTestFileIncludes( tempStorage, code, languageName, flags );
+
 		GenerateComponentWiseTests( tempStorage, code, typeInfo, &scalarType, strings, flags );
 
 		GenerateTests_CtorConversion( tempStorage, code, typeInfo, strings, flags );
@@ -1367,6 +1368,8 @@ void GenerateVectorTests( allocatorLinear_t *tempStorage, const char *generatedT
 
 			StringBuilder_Append( code, GEN_FILE_HEADER );
 
+			Gen_AppendTestFileIncludes( tempStorage, code, languageName, flags );
+
 			GenerateSwizzleFunctions( tempStorage, code, typeInfo, strings, flags, GEN_COMPONENT_NAMES_VECTOR, GenerateSwizzleFunc_Test );
 
 			const char *fileNameHeader = String_TPrintf( tempStorage, "%s/test_%s_swizzle_%s.%s", generatedTestsPath, typeInfo->fullTypeName, GEN_COMPONENT_NAMES_VECTOR, languageName );
@@ -1385,6 +1388,8 @@ void GenerateVectorTests( allocatorLinear_t *tempStorage, const char *generatedT
 			stringBuilder_t *code = StringBuilder_Create( tempStorage, MEGABYTES( 8 ) );
 
 			StringBuilder_Append( code, GEN_FILE_HEADER );
+
+			Gen_AppendTestFileIncludes( tempStorage, code, languageName, flags );
 
 			GenerateSwizzleFunctions( tempStorage, code, typeInfo, strings, flags, GEN_COMPONENT_NAMES_COLOR, GenerateSwizzleFunc_Test );
 
@@ -1419,6 +1424,8 @@ void GenerateQuaternionTests( allocatorLinear_t *tempStorage, const char *genera
 		stringBuilder_t *code = StringBuilder_Create( tempStorage, KILOBYTES( 64 ) );
 
 		StringBuilder_Append( code, GEN_FILE_HEADER );
+
+		Gen_AppendTestFileIncludes( tempStorage, code, languageName, flags );
 
 		Gen_GenerateTests_QuatMulScalar( tempStorage, code, typeInfo, &scalarType, strings, flags );
 		Gen_GenerateTests_QuatMulQuat( tempStorage, code, typeInfo, strings, flags );

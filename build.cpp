@@ -61,7 +61,7 @@ static BuildConfig CreateTestConfig( const language_t language, const std::strin
 	BuildConfig testConfig = {
 		.name				= "tests-" + languageFileExtension,
 		.binaryName			= "hlml-tests-" + compilerName + "-" + languageFileExtension,
-		.sourceFiles		= { "code/generated_files/tests/" + languageFileExtension + "/test_main." + languageFileExtension },
+		.sourceFiles		= { "code/generated_files/tests/" + languageFileExtension + "/**/*." + languageFileExtension },
 		.additionalIncludes	= { "code/3rdparty/include" },
 #if defined( __linux__ )
 		.additionalLibs		= { "m", "stdc++" },

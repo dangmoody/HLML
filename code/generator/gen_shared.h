@@ -1,10 +1,9 @@
 /*
 ===========================================================================
 
-HLML Generator.
-Copyright (c) Dan Moody 2018 - Present.
+HLML
 
-This file is part of the HLML Generator.
+Copyright (c) Dan Moody 2018 - Present.
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -69,9 +68,8 @@ typedef struct stringBuilder_t stringBuilder_t;
 	"===========================================================================\n" \
 	"\n" \
 	"HLML\n" \
-	"v2.2.0\n" \
 	"\n" \
-	"Copyright (c) 2018 - Present Dan Moody.\n" \
+	"Copyright (c) Dan Moody 2018 - Present.\n" \
 	"\n" \
 	"Permission is hereby granted, free of charge, to any person obtaining a copy\n" \
 	"of this software and associated documentation files (the \"Software\"), to deal\n" \

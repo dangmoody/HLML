@@ -2,11 +2,8 @@
 ===========================================================================
 
 HLML
-v2.2.0
 
-MIT License:
-
-Copyright (c) 2019 Dan Moody (daniel.guy.moody@gmail.com).
+Copyright (c) Dan Moody 2018 - Present.
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -33,13 +30,17 @@ SOFTWARE.
 // EDITING THIS FILE MAY CAUSE SIDE EFFECTS.
 // DO SO AT YOUR OWN RISK.
 
-TEMPER_TEST_PARAMETRIC( Test_bool4x3_bool4x3_all, TEMPER_FLAG_SHOULD_RUN, const bool4x3* x, const bool32_t expectedAnswer )
+#include <temper/temper.h>
+
+#include "../../../code/generated_files/c/hlml.h"
+
+TEMPER_TEST_PARAMETRIC( Test_bool4x3_all, TEMPER_FLAG_SHOULD_RUN, const bool4x3* x, const bool32_t expectedAnswer )
 {
-	bool32_t actualResult = bool4x3_bool4x3_all( x );
+	bool32_t actualResult = bool4x3_all( x );
 	TEMPER_CHECK_TRUE( actualResult == expectedAnswer );
 }
 
-TEMPER_INVOKE_PARAMETRIC_TEST( Test_bool4x3_bool4x3_all,
+TEMPER_INVOKE_PARAMETRIC_TEST( Test_bool4x3_all,
 	&(bool4x3)
 	{
 		true, true, true,
@@ -50,7 +51,7 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_bool4x3_bool4x3_all,
 	true
 );
 
-TEMPER_INVOKE_PARAMETRIC_TEST( Test_bool4x3_bool4x3_all,
+TEMPER_INVOKE_PARAMETRIC_TEST( Test_bool4x3_all,
 	&(bool4x3)
 	{
 		true, false, false,
@@ -61,7 +62,7 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_bool4x3_bool4x3_all,
 	false
 );
 
-TEMPER_INVOKE_PARAMETRIC_TEST( Test_bool4x3_bool4x3_all,
+TEMPER_INVOKE_PARAMETRIC_TEST( Test_bool4x3_all,
 	&(bool4x3)
 	{
 		false, true, true,
@@ -72,7 +73,7 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_bool4x3_bool4x3_all,
 	false
 );
 
-TEMPER_INVOKE_PARAMETRIC_TEST( Test_bool4x3_bool4x3_all,
+TEMPER_INVOKE_PARAMETRIC_TEST( Test_bool4x3_all,
 	&(bool4x3)
 	{
 		false, true, false,
@@ -83,7 +84,7 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_bool4x3_bool4x3_all,
 	false
 );
 
-TEMPER_INVOKE_PARAMETRIC_TEST( Test_bool4x3_bool4x3_all,
+TEMPER_INVOKE_PARAMETRIC_TEST( Test_bool4x3_all,
 	&(bool4x3)
 	{
 		false, false, false,
@@ -94,13 +95,13 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_bool4x3_bool4x3_all,
 	false
 );
 
-TEMPER_TEST_PARAMETRIC( Test_bool4x3_bool4x3_any, TEMPER_FLAG_SHOULD_RUN, const bool4x3* x, const bool32_t expectedAnswer )
+TEMPER_TEST_PARAMETRIC( Test_bool4x3_any, TEMPER_FLAG_SHOULD_RUN, const bool4x3* x, const bool32_t expectedAnswer )
 {
-	bool32_t actualResult = bool4x3_bool4x3_any( x );
+	bool32_t actualResult = bool4x3_any( x );
 	TEMPER_CHECK_TRUE( actualResult == expectedAnswer );
 }
 
-TEMPER_INVOKE_PARAMETRIC_TEST( Test_bool4x3_bool4x3_any,
+TEMPER_INVOKE_PARAMETRIC_TEST( Test_bool4x3_any,
 	&(bool4x3)
 	{
 		true, true, true,
@@ -111,7 +112,7 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_bool4x3_bool4x3_any,
 	true
 );
 
-TEMPER_INVOKE_PARAMETRIC_TEST( Test_bool4x3_bool4x3_any,
+TEMPER_INVOKE_PARAMETRIC_TEST( Test_bool4x3_any,
 	&(bool4x3)
 	{
 		true, false, false,
@@ -122,7 +123,7 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_bool4x3_bool4x3_any,
 	true
 );
 
-TEMPER_INVOKE_PARAMETRIC_TEST( Test_bool4x3_bool4x3_any,
+TEMPER_INVOKE_PARAMETRIC_TEST( Test_bool4x3_any,
 	&(bool4x3)
 	{
 		false, true, true,
@@ -133,7 +134,7 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_bool4x3_bool4x3_any,
 	true
 );
 
-TEMPER_INVOKE_PARAMETRIC_TEST( Test_bool4x3_bool4x3_any,
+TEMPER_INVOKE_PARAMETRIC_TEST( Test_bool4x3_any,
 	&(bool4x3)
 	{
 		false, true, false,
@@ -144,7 +145,7 @@ TEMPER_INVOKE_PARAMETRIC_TEST( Test_bool4x3_bool4x3_any,
 	true
 );
 
-TEMPER_INVOKE_PARAMETRIC_TEST( Test_bool4x3_bool4x3_any,
+TEMPER_INVOKE_PARAMETRIC_TEST( Test_bool4x3_any,
 	&(bool4x3)
 	{
 		false, false, false,

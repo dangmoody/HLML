@@ -1,10 +1,9 @@
 /*
 ===========================================================================
 
-HLML Generator.
-Copyright (c) Dan Moody 2018 - Present.
+HLML
 
-This file is part of the HLML Generator.
+Copyright (c) Dan Moody 2018 - Present.
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -99,6 +98,8 @@ void Gen_GenerateTests( allocatorLinear_t *tempStorage,
 
 		StringBuilder_Append( code, GEN_FILE_HEADER );
 
+		Gen_AppendTestFileIncludes( tempStorage, code, languageName, flags );
+
 		GenerateComponentWiseTests( tempStorage, code, &typeInfo, &typeInfo, strings, flags );
 
 		const char *fileNameHeader = String_TPrintf( tempStorage, "%s/test_%s.%s", generatedTestsPath, typeString, languageName );
@@ -166,58 +167,6 @@ void Gen_GenerateTests( allocatorLinear_t *tempStorage,
 		}
 
 		StringBuilder_Append( sb, "}\n\n" );
-
-		// scalar tests
-		for ( u32 i = 0; i < GEN_TYPE_COUNT; i++ ) {
-			genType_t type = (genType_t) i;
-
-			if ( type == GEN_TYPE_BOOL ) {
-				continue;
-			}
-
-			const char *typeString = Gen_GetTypeString( type );
-
-			StringBuilder_Appendf( sb, "#include \"test_%s.%s\"\n", typeString, languageName );
-		}
-		StringBuilder_Append( sb, "\n" );
-
-		// vector tests
-		for ( u32 i = 0; i < vectorTypeInfosCount; i++ ) {
-			const typeInfo_t *typeInfo = &vectorTypeInfos[i];
-
-			if ( typeInfo->type == GEN_TYPE_BOOL ) {
-				continue;
-			}
-
-			StringBuilder_Appendf( sb, "#include \"test_%s.%s\"\n", typeInfo->fullTypeName, languageName );
-
-			if ( flags & GENERATOR_FLAG_VECTOR_UNIONS ) {
-				StringBuilder_Appendf( sb, "#include \"test_%s_swizzle_%s.%s\"\n", typeInfo->fullTypeName, GEN_COMPONENT_NAMES_VECTOR, languageName );
-				StringBuilder_Appendf( sb, "#include \"test_%s_swizzle_%s.%s\"\n", typeInfo->fullTypeName, GEN_COMPONENT_NAMES_COLOR, languageName );
-			}
-		}
-		StringBuilder_Append( sb, "\n" );
-
-		// quaternion tests
-		for ( u32 i = 0; i < quaternionTypeInfosCount; i++ ) {
-			const typeInfo_t *typeInfo = &quaternionTypeInfos[i];
-			assert( Gen_VectorQualifiesAsQuaternion( typeInfo ) );
-
-			StringBuilder_Appendf( sb, "#include \"test_quat_%s.%s\"\n", typeInfo->fullTypeName, languageName );
-		}
-		StringBuilder_Append( sb, "\n" );
-
-		// matrix tests
-		for ( u32 i = 0; i < matrixTypeInfosCount; i++ ) {
-			const typeInfo_t *typeInfo = &matrixTypeInfos[i];
-
-			if ( typeInfo->type == GEN_TYPE_BOOL ) {
-				continue;
-			}
-
-			StringBuilder_Appendf( sb, "#include \"test_%s.%s\"\n", typeInfo->fullTypeName, languageName );
-		}
-		StringBuilder_Append( sb, "\n" );
 
 		StringBuilder_Append( sb,
 			"#define TEST_PADDING \"................................................................\"\n"

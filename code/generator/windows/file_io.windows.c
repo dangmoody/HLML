@@ -1,10 +1,9 @@
 /*
 ===========================================================================
 
-HLML Generator.
-Copyright (c) Dan Moody 2018 - Present.
+HLML
 
-This file is part of the HLML Generator.
+Copyright (c) Dan Moody 2018 - Present.
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal

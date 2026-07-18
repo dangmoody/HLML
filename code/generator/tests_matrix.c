@@ -1,10 +1,9 @@
 /*
 ===========================================================================
 
-HLML Generator.
-Copyright (c) Dan Moody 2018 - Present.
+HLML
 
-This file is part of the HLML Generator.
+Copyright (c) Dan Moody 2018 - Present.
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -1341,6 +1340,8 @@ void GenerateMatrixTests( allocatorLinear_t *tempStorage, const char *generatedT
 		stringBuilder_t *code = StringBuilder_Create( tempStorage, MEGABYTES( 4 ) );
 
 		StringBuilder_Append( code, GEN_FILE_HEADER );
+
+		Gen_AppendTestFileIncludes( tempStorage, code, languageName, flags );
 
 		GenerateComponentWiseTests( tempStorage, code, typeInfo, &scalarType, strings, flags );
 
