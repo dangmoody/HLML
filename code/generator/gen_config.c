@@ -60,12 +60,14 @@ static const genConfigFlagMapping_t s_flagMappings[] = {
 	{ "vector_swizzles",			GENERATOR_FLAG_VECTOR_SWIZZLES },
 	{ "allow_namespace",			GENERATOR_FLAG_ALLOW_NAMESPACE },
 	{ "generate_relational_operators",	GENERATOR_FLAG_GENERATE_RELATIONAL_OPERATORS },
+	{ "generate_quaternions",			GENERATOR_FLAG_GENERATE_QUATERNIONS },
+	{ "generate_non_square_matrices",	GENERATOR_FLAG_GENERATE_NON_SQUARE_MATRICES },
 };
 
 static generatorFlags_t GetDefaultFlagsForLanguage( const genLanguage_t language ) {
 	switch ( language ) {
-		case GEN_LANGUAGE_C:	return GENERATOR_FLAG_PARMS_ARE_POINTERS | GENERATOR_FLAG_C_LINKAGE | GENERATOR_FLAG_GENERATE_RELATIONAL_OPERATORS;
-		case GEN_LANGUAGE_CPP:	return GENERATOR_FLAG_GENERATE_OPERATORS | GENERATOR_FLAG_NAME_MANGLING | GENERATOR_FLAG_VECTOR_UNIONS | GENERATOR_FLAG_GENERATE_CONSTRUCTORS | GENERATOR_FLAG_VECTOR_SWIZZLES | GENERATOR_FLAG_ALLOW_NAMESPACE | GENERATOR_FLAG_GENERATE_RELATIONAL_OPERATORS;
+		case GEN_LANGUAGE_C:	return GENERATOR_FLAG_PARMS_ARE_POINTERS | GENERATOR_FLAG_C_LINKAGE | GENERATOR_FLAG_GENERATE_RELATIONAL_OPERATORS | GENERATOR_FLAG_GENERATE_QUATERNIONS | GENERATOR_FLAG_GENERATE_NON_SQUARE_MATRICES;
+		case GEN_LANGUAGE_CPP:	return GENERATOR_FLAG_GENERATE_OPERATORS | GENERATOR_FLAG_NAME_MANGLING | GENERATOR_FLAG_VECTOR_UNIONS | GENERATOR_FLAG_GENERATE_CONSTRUCTORS | GENERATOR_FLAG_VECTOR_SWIZZLES | GENERATOR_FLAG_ALLOW_NAMESPACE | GENERATOR_FLAG_GENERATE_RELATIONAL_OPERATORS | GENERATOR_FLAG_GENERATE_QUATERNIONS | GENERATOR_FLAG_GENERATE_NON_SQUARE_MATRICES;
 
 		case GEN_LANGUAGE_NONE:
 		case GEN_LANGUAGE_COUNT:
@@ -111,10 +113,9 @@ void Gen_Config_SetDefaults( genConfig_t *outConfig ) {
 
 	outConfig->types.componentCountMin = GEN_CONFIG_COMPONENT_COUNT_MIN;
 	outConfig->types.componentCountMax = GEN_CONFIG_COMPONENT_COUNT_MAX;
-	outConfig->types.generateQuaternions = true;
-	outConfig->types.generateNonSquareMatrices = true;
 
-	// outConfig->flags is left at 0 - there's no language-agnostic default for it.  Gen_Config_LoadFromFile
+	// outConfig->flags (which includes generateQuaternions/generateNonSquareMatrices now that they're
+	// generatorFlagBits_t) is left at 0 - there's no language-agnostic default for it.  Gen_Config_LoadFromFile
 	// seeds it via GetDefaultFlagsForLanguage() once it knows the language, before applying the top-level
 	// flag overrides.
 }
@@ -181,7 +182,7 @@ bool32 Gen_Config_LoadFromFile( const char *filename, genConfig_t *outConfig ) {
 		outConfig->flags = GetDefaultFlagsForLanguage( outConfig->language );
 	}
 
-	// types (scalar_types, component_count_min/max, generate_quaternions, generate_non_square_matrices)
+	// types (scalar_types, component_count_min/max)
 	{
 		toml_array_t *scalarTypesArray = toml_array_in( root, "scalar_types" );
 		if ( scalarTypesArray ) {
@@ -227,16 +228,6 @@ bool32 Gen_Config_LoadFromFile( const char *filename, genConfig_t *outConfig ) {
 		toml_datum_t componentCountMaxDatum = toml_int_in( root, "component_count_max" );
 		if ( componentCountMaxDatum.ok ) {
 			outConfig->types.componentCountMax = (u32) componentCountMaxDatum.u.i;
-		}
-
-		toml_datum_t generateQuaternionsDatum = toml_bool_in( root, "generate_quaternions" );
-		if ( generateQuaternionsDatum.ok ) {
-			outConfig->types.generateQuaternions = (bool32) generateQuaternionsDatum.u.b;
-		}
-
-		toml_datum_t generateNonSquareDatum = toml_bool_in( root, "generate_non_square_matrices" );
-		if ( generateNonSquareDatum.ok ) {
-			outConfig->types.generateNonSquareMatrices = (bool32) generateNonSquareDatum.u.b;
 		}
 	}
 
@@ -298,7 +289,7 @@ bool32 Gen_Config_LoadFromFile( const char *filename, genConfig_t *outConfig ) {
 	return true;
 }
 
-void Gen_BuildTypeInfos( allocatorLinear_t *allocator, const genConfigTypes_t *typesConfig,
+void Gen_BuildTypeInfos( allocatorLinear_t *allocator, const genConfigTypes_t *typesConfig, const generatorFlags_t flags,
 	typeInfo_t **outVectorTypeInfos, u32 *outVectorTypeInfosCount,
 	typeInfo_t **outQuaternionTypeInfos, u32 *outQuaternionTypeInfosCount,
 	typeInfo_t **outMatrixTypeInfos, u32 *outMatrixTypeInfosCount ) {
@@ -347,7 +338,7 @@ void Gen_BuildTypeInfos( allocatorLinear_t *allocator, const genConfigTypes_t *t
 	// quaternions - only if float and double (and 4-component types) are actually going to be generated,
 	// since quaternion codegen assumes a same-sized floating point vector type exists alongside it
 	{
-		bool32 canGenerateQuaternions = typesConfig->generateQuaternions
+		bool32 canGenerateQuaternions = ( flags & GENERATOR_FLAG_GENERATE_QUATERNIONS )
 			&& typesConfig->scalarTypeEnabled[GEN_TYPE_FLOAT]
 			&& typesConfig->scalarTypeEnabled[GEN_TYPE_DOUBLE]
 			&& componentCountMin <= 4
@@ -391,7 +382,7 @@ void Gen_BuildTypeInfos( allocatorLinear_t *allocator, const genConfigTypes_t *t
 
 			for ( u32 row = componentCountMin; row <= componentCountMax; row++ ) {
 				for ( u32 col = componentCountMin; col <= componentCountMax; col++ ) {
-					if ( row != col && !typesConfig->generateNonSquareMatrices ) {
+					if ( row != col && !( flags & GENERATOR_FLAG_GENERATE_NON_SQUARE_MATRICES ) ) {
 						continue;
 					}
 

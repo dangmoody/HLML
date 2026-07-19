@@ -100,7 +100,7 @@ int main( int argc, char **argv ) {
 	typeInfo_t *quaternionTypeInfos = NULL;
 	typeInfo_t *matrixTypeInfos = NULL;
 
-	Gen_BuildTypeInfos( allocator, &config.types,
+	Gen_BuildTypeInfos( allocator, &config.types, config.flags,
 		&vectorTypeInfos, &vectorTypeInfosCount,
 		&quaternionTypeInfos, &quaternionTypeInfosCount,
 		&matrixTypeInfos, &matrixTypeInfosCount );

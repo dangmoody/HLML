@@ -174,6 +174,8 @@ typedef enum generatorFlagBits_t {
 	GENERATOR_FLAG_VECTOR_SWIZZLES			= GEN_BIT( 6 ),	// generate HLSL-style vector swizzles
 	GENERATOR_FLAG_ALLOW_NAMESPACE			= GEN_BIT( 7 ),	// allow an (optional) namespace in the generated code called "hlml"
 	GENERATOR_FLAG_GENERATE_RELATIONAL_OPERATORS	= GEN_BIT( 8 ),	// generates <, <=, >, >= for every type; equality (==, !=) is unaffected, since it's unconditionally required by the generated tests
+	GENERATOR_FLAG_GENERATE_QUATERNIONS			= GEN_BIT( 9 ),	// generate quaternion types/functions (float4/double4 treated as quaternions); also requires float, double, and 4-component types to be enabled, see Gen_BuildTypeInfos in gen_config.c
+	GENERATOR_FLAG_GENERATE_NON_SQUARE_MATRICES	= GEN_BIT( 10 ),	// generate non-square matrices (e.g. float2x3, float4x2) in addition to square ones
 
 	GENERATOR_FLAG_ALL
 } generatorFlagBits_t;
