@@ -1350,10 +1350,14 @@ void GenerateMatrixTests( allocatorLinear_t *tempStorage, const char *generatedT
 
 		Gen_AppendTestFileIncludes( tempStorage, code, languageName, flags );
 
-		// generateQuaternions doesn't matter here - GenerateComponentWiseTests only emits quaternion tests for vector types
+		// the "true" below (generateQuaternions) is never read for a matrix typeInfo: GenerateComponentWiseTests
+		// only checks it inside its quaternion test block, which is itself gated behind
+		// Gen_TypeIsVector( typeInfo ) and so never runs here - see tests_shared.c
 		GenerateComponentWiseTests( tempStorage, code, typeInfo, &scalarType, strings, flags, true );
 
-		// componentCountMin doesn't matter here - GenerateTests_CtorConversion only emits composite ctor tests for vector types
+		// the "2" below (componentCountMin) is never read for a matrix typeInfo: GenerateTests_CtorConversion
+		// only checks it inside its composite-ctor test block, which is itself gated behind
+		// Gen_TypeIsVector( typeInfo ) and so never runs here - see tests_shared.c
 		GenerateTests_CtorConversion( tempStorage, code, typeInfo, strings, flags, 2, scalarTypeEnabled );
 
 		Gen_GenerateTests_Identity( tempStorage, code, typeInfo, strings, flags );

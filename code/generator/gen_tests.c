@@ -100,7 +100,9 @@ void Gen_GenerateTests( allocatorLinear_t *tempStorage,
 
 		Gen_AppendTestFileIncludes( tempStorage, code, languageName, flags );
 
-		// generateQuaternions doesn't matter here - GenerateComponentWiseTests only emits quaternion tests for vector types
+		// the "true" below (generateQuaternions) is never read for a scalar typeInfo: GenerateComponentWiseTests
+		// only checks it inside its quaternion test block, which is itself gated behind
+		// Gen_TypeIsVector( typeInfo ) and so never runs here - see tests_shared.c
 		GenerateComponentWiseTests( tempStorage, code, &typeInfo, &typeInfo, strings, flags, true );
 
 		const char *fileNameHeader = String_TPrintf( tempStorage, "%s/test_%s.%s", generatedTestsPath, typeString, languageName );
