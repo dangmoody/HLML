@@ -1560,18 +1560,23 @@ void GenerateComponentWiseOperators( allocatorLinear_t *tempStorage, const typeI
 	const char *typeDescSingular = Gen_TypeIsVector( typeInfo ) ? "vector" : "matrix";
 	const char *typeDescPlural = Gen_TypeIsVector( typeInfo ) ? "vectors" : "matrices";
 
+	// equality (==, !=) is generated unconditionally, regardless of GENERATOR_FLAG_GENERATE_RELATIONAL_OPERATORS -
+	// the generated test suite's pass/fail checks call into the type's own X_equals()/operator==(), so it can't
+	// be made optional without also reworking how tests verify their results.
 	GenerateFunction_Equals( tempStorage, typeInfo, code, flags );
 	GenerateFunction_NotEquals( tempStorage, typeInfo, code, flags );
 
 	if ( flags & GENERATOR_FLAG_GENERATE_OPERATORS ) {
-		for ( u32 opIndex = 0; opIndex < GEN_OP_RELATIONAL_COUNT; opIndex++ ) {
-			const genOpRelational_t op = (genOpRelational_t) opIndex;
+		if ( flags & GENERATOR_FLAG_GENERATE_RELATIONAL_OPERATORS ) {
+			for ( u32 opIndex = 0; opIndex < GEN_OP_RELATIONAL_COUNT; opIndex++ ) {
+				const genOpRelational_t op = (genOpRelational_t) opIndex;
 
-			const char *opStr = Gen_GetOperatorRelational( op );
+				const char *opStr = Gen_GetOperatorRelational( op );
 
-			commentStr = GetComment_ComponentWiseRelational( tempStorage, opStr, typeDescPlural );
+				commentStr = GetComment_ComponentWiseRelational( tempStorage, opStr, typeDescPlural );
 
-			GenerateComponentWiseOperator( code, &returnTypeBoolVector, typeInfo, typeInfo, opStr, commentStr );
+				GenerateComponentWiseOperator( code, &returnTypeBoolVector, typeInfo, typeInfo, opStr, commentStr );
+			}
 		}
 
 		for ( u32 opIndex = 0; opIndex < GEN_OP_ARITHMETIC_COUNT; opIndex++ ) {
@@ -1669,16 +1674,18 @@ void GenerateComponentWiseOperators( allocatorLinear_t *tempStorage, const typeI
 			}
 		}
 	} else {
-		for ( u32 opIndex = 0; opIndex < GEN_OP_RELATIONAL_COUNT; opIndex++ ) {
-			const genOpRelational_t op = (genOpRelational_t) opIndex;
+		if ( flags & GENERATOR_FLAG_GENERATE_RELATIONAL_OPERATORS ) {
+			for ( u32 opIndex = 0; opIndex < GEN_OP_RELATIONAL_COUNT; opIndex++ ) {
+				const genOpRelational_t op = (genOpRelational_t) opIndex;
 
-			const char *funcName = Gen_GetFuncName_VectorRelational( tempStorage, typeInfo, op );
-			const char *opStr = Gen_GetOperatorRelational( op );
-			const char *memberFuncStr = Gen_GetFuncName_VectorRelational( tempStorage, &memberType, op );
+				const char *funcName = Gen_GetFuncName_VectorRelational( tempStorage, typeInfo, op );
+				const char *opStr = Gen_GetOperatorRelational( op );
+				const char *memberFuncStr = Gen_GetFuncName_VectorRelational( tempStorage, &memberType, op );
 
-			commentStr = GetComment_ComponentWiseRelational( tempStorage, opStr, typeDescPlural );
+				commentStr = GetComment_ComponentWiseRelational( tempStorage, opStr, typeDescPlural );
 
-			GenerateComponentWiseFunction_Operator( code, &returnTypeBoolVector, typeInfo, typeInfo, funcName, memberFuncStr, opStr, commentStr );
+				GenerateComponentWiseFunction_Operator( code, &returnTypeBoolVector, typeInfo, typeInfo, funcName, memberFuncStr, opStr, commentStr );
+			}
 		}
 
 		for ( u32 opIndex = 0; opIndex < GEN_OP_ARITHMETIC_COUNT; opIndex++ ) {

@@ -1078,35 +1078,37 @@ static void GenerateOperatorTests( allocatorLinear_t *tempStorage, stringBuilder
 		return;
 	}
 
-	float32 relationalLHS[4] = { 0.0f, 0.0f, 1.0f, 1.0f };
-	float32 relationalRHS[4] = { 0.0f, 1.0f, 1.0f, 0.0f };
-
-	float32 relationalExpectedAnswers[GEN_OP_RELATIONAL_COUNT][4] = {
-		{ false, true,  false, false },	// less than
-		{ true,  true,  true,  false },	// less than equal
-		{ false, false, false, true  },	// greater than
-		{ true,  false, true,  true  }	// greater than equal
-	};
-
 	// relational
-	for ( u32 opIndex = 0; opIndex < GEN_OP_RELATIONAL_COUNT; opIndex++ ) {
-		genOpRelational_t op = (genOpRelational_t) opIndex;
+	if ( flags & GENERATOR_FLAG_GENERATE_RELATIONAL_OPERATORS ) {
+		float32 relationalLHS[4] = { 0.0f, 0.0f, 1.0f, 1.0f };
+		float32 relationalRHS[4] = { 0.0f, 1.0f, 1.0f, 0.0f };
 
-		const char *opFuncName = Gen_GetRelationalName( op );
-		const char *opStr = Gen_GetOperatorRelational( op );
+		float32 relationalExpectedAnswers[GEN_OP_RELATIONAL_COUNT][4] = {
+			{ false, true,  false, false },	// less than
+			{ true,  true,  true,  false },	// less than equal
+			{ false, false, false, true  },	// greater than
+			{ true,  false, true,  true  }	// greater than equal
+		};
 
-		Gen_GenerateParametricTestsCode_Operator( tempStorage, code, typeInfo, opFuncName, opStr, strings, flags, &(testFixtureOperator_t) {
-			.numTests = 4,
+		for ( u32 opIndex = 0; opIndex < GEN_OP_RELATIONAL_COUNT; opIndex++ ) {
+			genOpRelational_t op = (genOpRelational_t) opIndex;
 
-			.lhsType = typeInfo,
-			.rhsType = typeInfo,
-			.returnType = boolTypeVector,
+			const char *opFuncName = Gen_GetRelationalName( op );
+			const char *opStr = Gen_GetOperatorRelational( op );
 
-			.lhsValues = relationalLHS,
-			.rhsValues = relationalRHS,
+			Gen_GenerateParametricTestsCode_Operator( tempStorage, code, typeInfo, opFuncName, opStr, strings, flags, &(testFixtureOperator_t) {
+				.numTests = 4,
 
-			.outputValues = relationalExpectedAnswers[opIndex]
-		} );
+				.lhsType = typeInfo,
+				.rhsType = typeInfo,
+				.returnType = boolTypeVector,
+
+				.lhsValues = relationalLHS,
+				.rhsValues = relationalRHS,
+
+				.outputValues = relationalExpectedAnswers[opIndex]
+			} );
+		}
 	}
 
 	float32 arithmeticLHS[4] = { 1.0f, 2.0f, 4.0f, 8.0f };

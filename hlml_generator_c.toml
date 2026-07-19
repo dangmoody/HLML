@@ -13,8 +13,8 @@
 language = "c"
 
 # Which scalar kinds participate in vector/matrix generation.
-# NOTE: "bool" currently cannot be excluded - relational operators (==, !=, <, <=, >, >=) generated for
-# every other type return a bool vector/matrix, so it's always generated regardless of this list.
+# NOTE: "bool" currently cannot be excluded - equality operators (==, !=) generated for every other type
+# return a bool vector/matrix, so it's always generated regardless of this list.
 scalar_types = [ "bool", "int", "uint", "float", "double" ]
 
 # Inclusive component-count range, applied to both vector component counts and matrix rows/cols.
@@ -38,3 +38,7 @@ vector_unions = false
 generate_constructors = false
 vector_swizzles = false
 allow_namespace = false
+
+# Whether <, <=, >, >= are generated for every type. Equality (==, !=) is unaffected by this - it's
+# always generated, since the generated tests rely on it to check their results.
+generate_relational_operators = true

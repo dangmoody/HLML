@@ -59,12 +59,13 @@ static const genConfigFlagMapping_t s_flagMappings[] = {
 	{ "generate_constructors",		GENERATOR_FLAG_GENERATE_CONSTRUCTORS },
 	{ "vector_swizzles",			GENERATOR_FLAG_VECTOR_SWIZZLES },
 	{ "allow_namespace",			GENERATOR_FLAG_ALLOW_NAMESPACE },
+	{ "generate_relational_operators",	GENERATOR_FLAG_GENERATE_RELATIONAL_OPERATORS },
 };
 
 static generatorFlags_t GetDefaultFlagsForLanguage( const genLanguage_t language ) {
 	switch ( language ) {
-		case GEN_LANGUAGE_C:	return GENERATOR_FLAG_PARMS_ARE_POINTERS | GENERATOR_FLAG_C_LINKAGE;
-		case GEN_LANGUAGE_CPP:	return GENERATOR_FLAG_GENERATE_OPERATORS | GENERATOR_FLAG_NAME_MANGLING | GENERATOR_FLAG_VECTOR_UNIONS | GENERATOR_FLAG_GENERATE_CONSTRUCTORS | GENERATOR_FLAG_VECTOR_SWIZZLES | GENERATOR_FLAG_ALLOW_NAMESPACE;
+		case GEN_LANGUAGE_C:	return GENERATOR_FLAG_PARMS_ARE_POINTERS | GENERATOR_FLAG_C_LINKAGE | GENERATOR_FLAG_GENERATE_RELATIONAL_OPERATORS;
+		case GEN_LANGUAGE_CPP:	return GENERATOR_FLAG_GENERATE_OPERATORS | GENERATOR_FLAG_NAME_MANGLING | GENERATOR_FLAG_VECTOR_UNIONS | GENERATOR_FLAG_GENERATE_CONSTRUCTORS | GENERATOR_FLAG_VECTOR_SWIZZLES | GENERATOR_FLAG_ALLOW_NAMESPACE | GENERATOR_FLAG_GENERATE_RELATIONAL_OPERATORS;
 
 		case GEN_LANGUAGE_NONE:
 		case GEN_LANGUAGE_COUNT:
@@ -244,12 +245,12 @@ bool32 Gen_Config_LoadFromFile( const char *filename, genConfig_t *outConfig ) {
 		ApplyGenerateFlagsFromTable( root, &outConfig->flags );
 	}
 
-	// "bool" cannot be excluded yet: relational operators generated on every other vector/matrix type
-	// (== != < <= > >=) return a boolN/boolNxM type regardless of whether bool itself is in the enabled
-	// scalar type set - see GenerateComponentWiseOperators() in gen_shared.c.  Rather than silently
-	// dropping the user's request or failing to compile, force it back on and tell them why.
+	// TODO: DM: 20/07/2026: equality operators (== !=) are generated unconditionally on every other
+	// vector/matrix type and return a boolN/boolNxM type - see GenerateComponentWiseOperators() in
+	// gen_shared.c - so "bool" can't be excluded from "scalar_types" yet.  Force it back on and tell them
+	// why, rather than silently dropping the request or failing to compile.
 	if ( !outConfig->types.scalarTypeEnabled[GEN_TYPE_BOOL] ) {
-		printf( "NOTE: \"bool\" cannot be excluded from \"scalar_types\" yet - relational operators on other types return bool vectors/matrices.  Generating it anyway.\n" );
+		printf( "NOTE: \"bool\" cannot be excluded from \"scalar_types\" yet - equality operators on other types return bool vectors/matrices.  Generating it anyway.\n" );
 		outConfig->types.scalarTypeEnabled[GEN_TYPE_BOOL] = true;
 	}
 

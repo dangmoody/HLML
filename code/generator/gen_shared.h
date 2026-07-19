@@ -173,6 +173,7 @@ typedef enum generatorFlagBits_t {
 	GENERATOR_FLAG_C_LINKAGE				= GEN_BIT( 5 ),	// will generate all the extern "C" stuff and all things related to that
 	GENERATOR_FLAG_VECTOR_SWIZZLES			= GEN_BIT( 6 ),	// generate HLSL-style vector swizzles
 	GENERATOR_FLAG_ALLOW_NAMESPACE			= GEN_BIT( 7 ),	// allow an (optional) namespace in the generated code called "hlml"
+	GENERATOR_FLAG_GENERATE_RELATIONAL_OPERATORS	= GEN_BIT( 8 ),	// generates <, <=, >, >= for every type; equality (==, !=) is unaffected, since it's unconditionally required by the generated tests
 
 	GENERATOR_FLAG_ALL
 } generatorFlagBits_t;
