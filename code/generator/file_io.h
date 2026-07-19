@@ -30,8 +30,6 @@ SOFTWARE.
 
 #include "int_types.h"
 
-typedef struct allocatorLinear_t allocatorLinear_t;
-
 /*
 FIle IO
 
@@ -43,7 +41,10 @@ because they work fine there.
 */
 
 void	FS_WriteEntireFile( const char *filename, const char *data, const u64 length );
-char	*FS_ReadEntireFile( allocatorLinear_t *allocator, const char *filename, u64 *outLength );
+
+// Returns NULL if the file doesn't exist. The returned buffer is owned by the caller and must be freed with FS_FreeFileBuffer.
+char	*FS_ReadEntireFile( const char *filename, u64 *outLength );
+void	FS_FreeFileBuffer( char *buffer );
 
 bool32	FS_FileExists( const char *filename );
 

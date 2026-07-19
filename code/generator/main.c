@@ -80,7 +80,7 @@ int main( int argc, char **argv ) {
 
 	printf( "Loading config \"%s\"...\n", configPath );
 
-	if ( !Gen_Config_LoadFromFile( tempStorage, configPath, &config ) ) {
+	if ( !Gen_Config_LoadFromFile( configPath, &config ) ) {
 		printf( "\nExiting due to invalid configuration.\n" );
 
 		Mem_DestroyLinear( &allocator );

@@ -36,7 +36,7 @@ SOFTWARE.
 
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Weverything"
-#include <tomlc99/toml.h>
+#include "tomlc99/toml.h"
 #pragma clang diagnostic pop
 
 #include <stdio.h>
@@ -114,16 +114,16 @@ void Gen_Config_SetDefaults( genConfig_t *outConfig ) {
 	outConfig->types.generateNonSquareMatrices = true;
 
 	// outConfig->flags is left at 0 - there's no language-agnostic default for it.  Gen_Config_LoadFromFile
-	// seeds it via GetDefaultFlagsForLanguage() once it knows the language, before applying [generate].
+	// seeds it via GetDefaultFlagsForLanguage() once it knows the language, before applying the top-level
+	// flag overrides.
 }
 
-bool32 Gen_Config_LoadFromFile( allocatorLinear_t *tempStorage, const char *filename, genConfig_t *outConfig ) {
-	assert( tempStorage );
+bool32 Gen_Config_LoadFromFile( const char *filename, genConfig_t *outConfig ) {
 	assert( filename );
 	assert( outConfig );
 
 	u64 fileLength = 0;
-	char *fileData = FS_ReadEntireFile( tempStorage, filename, &fileLength );
+	char *fileData = FS_ReadEntireFile( filename, &fileLength );
 
 	if ( !fileData ) {
 		printf( "ERROR: Couldn't find config file \"%s\".  Did you type the path correctly?\n", filename );
@@ -135,6 +135,13 @@ bool32 Gen_Config_LoadFromFile( allocatorLinear_t *tempStorage, const char *file
 
 	char errbuf[256] = { 0 };
 	toml_table_t *root = toml_parse( fileData, errbuf, sizeof( errbuf ) );
+
+	// toml_parse() doesn't keep references into fileData - see how toml_parse_file() itself frees its
+	// duplicated buffer immediately after calling toml_parse() - so it's safe to free here regardless
+	// of whether parsing succeeded.
+	FS_FreeFileBuffer( fileData );
+	fileData = NULL;
+
 	if ( !root ) {
 		printf( "ERROR: Failed to parse config file \"%s\": %s\n", filename, errbuf );
 

@@ -31,7 +31,6 @@ SOFTWARE.
 #include "../file_io.h"
 #include "../string_helpers.h"
 #include "../defines.h"
-#include "../linear_allocator.h"
 
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wreserved-id-macro"
@@ -55,6 +54,7 @@ SOFTWARE.
 #include <errno.h>
 
 #include <stdio.h>
+#include <stdlib.h>
 #include <string.h>
 #include <assert.h>
 #include <stdbool.h>
@@ -132,8 +132,7 @@ void FS_WriteEntireFile( const char *filename, const char *data, const size_t le
 	file = NULL;
 }
 
-char *FS_ReadEntireFile( allocatorLinear_t *allocator, const char *filename, u64 *outLength ) {
-	assert( allocator );
+char *FS_ReadEntireFile( const char *filename, u64 *outLength ) {
 	assert( filename );
 	assert( outLength );
 
@@ -158,7 +157,7 @@ char *FS_ReadEntireFile( allocatorLinear_t *allocator, const char *filename, u64
 		return NULL;
 	}
 
-	char *buffer = (char *) Mem_Alloc( allocator, (u64) length + 1 );
+	char *buffer = (char *) malloc( (u64) length + 1 );
 
 	size_t bytesRead = fread( buffer, 1, (size_t) length, file );
 	if ( bytesRead != (size_t) length ) {
@@ -178,6 +177,10 @@ char *FS_ReadEntireFile( allocatorLinear_t *allocator, const char *filename, u64
 	*outLength = (u64) length;
 
 	return buffer;
+}
+
+void FS_FreeFileBuffer( char *buffer ) {
+	free( buffer );
 }
 
 bool32 FS_FileExists( const char *filename ) {

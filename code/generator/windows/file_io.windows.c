@@ -33,7 +33,6 @@ SOFTWARE.
 
 #include "../timer.h"
 #include "../string_helpers.h"
-#include "../linear_allocator.h"
 
 #include <Windows.h>
 
@@ -43,6 +42,7 @@ SOFTWARE.
 #pragma clang diagnostic pop
 
 #include <stdio.h>
+#include <stdlib.h>
 #include <assert.h>
 #include <stdbool.h>
 
@@ -115,8 +115,7 @@ void FS_WriteEntireFile( const char *filename, const char *data, const u64 lengt
 	CloseFileInternal( file );
 }
 
-char *FS_ReadEntireFile( allocatorLinear_t *allocator, const char *filename, u64 *outLength ) {
-	assert( allocator );
+char *FS_ReadEntireFile( const char *filename, u64 *outLength ) {
 	assert( filename );
 	assert( outLength );
 
@@ -140,7 +139,7 @@ char *FS_ReadEntireFile( allocatorLinear_t *allocator, const char *filename, u64
 
 	u64 length = (u64) fileSize.QuadPart;
 
-	char *buffer = (char *) Mem_Alloc( allocator, length + 1 );
+	char *buffer = (char *) malloc( length + 1 );
 
 	DWORD bytesRead = 0;
 	bool32 readResult = ReadFile( file, buffer, (DWORD) length, &bytesRead, NULL );
@@ -155,6 +154,10 @@ char *FS_ReadEntireFile( allocatorLinear_t *allocator, const char *filename, u64
 	*outLength = length;
 
 	return buffer;
+}
+
+void FS_FreeFileBuffer( char *buffer ) {
+	free( buffer );
 }
 
 bool32 FS_FileExists( const char *filename ) {

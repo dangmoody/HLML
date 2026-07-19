@@ -64,7 +64,7 @@ typedef struct genConfig_t {
 // fills in outConfig->types with sensible defaults and clears the rest.  outConfig->language is left as
 // GEN_LANGUAGE_NONE and outConfig->flags as 0 - there is no default language, so Gen_Config_LoadFromFile
 // must supply "language" from the config file, which in turn determines the default flags for that
-// language before any explicit [generate] overrides in the same file are applied on top.
+// language before any explicit top-level flag overrides in the same file are applied on top.
 void	Gen_Config_SetDefaults( genConfig_t *outConfig );
 
 // loads config values from a TOML file at 'filename' on top of whatever outConfig already contains
@@ -73,7 +73,7 @@ void	Gen_Config_SetDefaults( genConfig_t *outConfig );
 // TOML is malformed, "language" is missing/invalid, or any values fail validation - these are normal,
 // expected failure modes, not crashes, so the caller should check the return value and exit gracefully
 // rather than continue with a partially-loaded config.
-bool32	Gen_Config_LoadFromFile( allocatorLinear_t *tempStorage, const char *filename, genConfig_t *outConfig );
+bool32	Gen_Config_LoadFromFile( const char *filename, genConfig_t *outConfig );
 
 // builds the vector/quaternion/matrix typeInfo_t arrays according to the given types config,
 // replacing the hardcoded construction that used to live in main.c
