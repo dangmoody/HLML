@@ -49,7 +49,19 @@ static void UpdateStringsFromFlags( const generatorFlags_t flags, generatorStrin
 }
 
 int main( int argc, char **argv ) {
-	const char *configPath = ( argc > 1 ) ? argv[1] : NULL;
+	if ( argc < 2 ) {
+		printf(
+			"ERROR: No config file specified.\n"
+			"Usage: hlml-generator <config-path>\n"
+			"\n"
+			"Each config file generates exactly one language (see its \"language\" key).  To generate\n"
+			"both C and C++ output, run the generator twice, once per language, each with its own config file.\n"
+		);
+
+		return 1;
+	}
+
+	const char *configPath = argv[1];
 
 	float64 start = Time_NowMS();
 
@@ -66,21 +78,17 @@ int main( int argc, char **argv ) {
 	genConfig_t config;
 	Gen_Config_SetDefaults( &config );
 
-	if ( configPath ) {
-		printf( "Loading config \"%s\"...\n", configPath );
+	printf( "Loading config \"%s\"...\n", configPath );
 
-		if ( !Gen_Config_LoadFromFile( tempStorage, configPath, &config ) ) {
-			printf( "\nExiting due to invalid configuration.\n" );
+	if ( !Gen_Config_LoadFromFile( tempStorage, configPath, &config ) ) {
+		printf( "\nExiting due to invalid configuration.\n" );
 
-			Mem_DestroyLinear( &allocator );
+		Mem_DestroyLinear( &allocator );
 
-			return 1;
-		}
-
-		Mem_Reset( tempStorage );
-	} else {
-		printf( "No config file specified - using defaults.\n" );
+		return 1;
 	}
+
+	Mem_Reset( tempStorage );
 
 	printf( "\n" );
 
@@ -100,29 +108,13 @@ int main( int argc, char **argv ) {
 	const u32 componentCountMin = config.types.componentCountMin;
 	const u32 componentCountMax = config.types.componentCountMax;
 
-	generatorFlags_t flags = 0;
+	const char *languageName = ( config.language == GEN_LANGUAGE_C ) ? "c" : "cpp";
 
 	generatorStrings_t generatorStrings = { 0 };
+	UpdateStringsFromFlags( config.flags, &generatorStrings );
 
-	// C99
-	if ( config.passC.enabled ) {
-		flags = config.passC.flags;
-
-		UpdateStringsFromFlags( flags, &generatorStrings );
-
-		Gen_GenerateAPIFiles( tempStorage, "c", vectorTypeInfos, vectorTypeInfosCount, quaternionTypeInfos, quaternionTypeInfosCount, matrixTypeInfos, matrixTypeInfosCount, &generatorStrings, flags, componentCountMin, componentCountMax );
-		Gen_GenerateTests( tempStorage, "c", vectorTypeInfos, vectorTypeInfosCount, quaternionTypeInfos, quaternionTypeInfosCount, matrixTypeInfos, matrixTypeInfosCount, &generatorStrings, flags, componentCountMin, componentCountMax );
-	}
-
-	// C++
-	if ( config.passCpp.enabled ) {
-		flags = config.passCpp.flags;
-
-		UpdateStringsFromFlags( flags, &generatorStrings );
-
-		Gen_GenerateAPIFiles( tempStorage, "cpp", vectorTypeInfos, vectorTypeInfosCount, quaternionTypeInfos, quaternionTypeInfosCount, matrixTypeInfos, matrixTypeInfosCount, &generatorStrings, flags, componentCountMin, componentCountMax );
-		Gen_GenerateTests( tempStorage, "cpp", vectorTypeInfos, vectorTypeInfosCount, quaternionTypeInfos, quaternionTypeInfosCount, matrixTypeInfos, matrixTypeInfosCount, &generatorStrings, flags, componentCountMin, componentCountMax );
-	}
+	Gen_GenerateAPIFiles( tempStorage, languageName, vectorTypeInfos, vectorTypeInfosCount, quaternionTypeInfos, quaternionTypeInfosCount, matrixTypeInfos, matrixTypeInfosCount, &generatorStrings, config.flags, componentCountMin, componentCountMax );
+	Gen_GenerateTests( tempStorage, languageName, vectorTypeInfos, vectorTypeInfosCount, quaternionTypeInfos, quaternionTypeInfosCount, matrixTypeInfos, matrixTypeInfosCount, &generatorStrings, config.flags, componentCountMin, componentCountMax );
 
 	float64 end = Time_NowMS();
 

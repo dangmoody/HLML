@@ -37,6 +37,16 @@ typedef struct allocatorLinear_t allocatorLinear_t;
 #define GEN_CONFIG_COMPONENT_COUNT_MIN		2
 #define GEN_CONFIG_COMPONENT_COUNT_MAX		4
 
+// a config file generates exactly one language per run - to generate both C and C++ output, run the
+// generator twice, once per language, each with its own config file
+typedef enum genLanguage_t {
+	GEN_LANGUAGE_NONE	= 0,	// unset - there is no default; Gen_Config_LoadFromFile must set this from the config's "language" key
+	GEN_LANGUAGE_C,
+	GEN_LANGUAGE_CPP,
+
+	GEN_LANGUAGE_COUNT
+} genLanguage_t;
+
 typedef struct genConfigTypes_t {
 	bool32	scalarTypeEnabled[GEN_TYPE_COUNT];	// indexed by genType_t; note GEN_TYPE_BOOL is currently always forced on, see gen_config.c
 	u32		componentCountMin;					// inclusive, applies to both vector component counts and matrix rows/cols
@@ -45,26 +55,24 @@ typedef struct genConfigTypes_t {
 	bool32	generateNonSquareMatrices;
 } genConfigTypes_t;
 
-typedef struct genConfigPass_t {
-	bool32				enabled;
-	generatorFlags_t	flags;
-} genConfigPass_t;
-
 typedef struct genConfig_t {
+	genLanguage_t		language;
 	genConfigTypes_t	types;
-	genConfigPass_t		passC;
-	genConfigPass_t		passCpp;
+	generatorFlags_t	flags;
 } genConfig_t;
 
-// fills outConfig with the defaults that reproduce today's hardcoded generator behavior exactly
+// fills in outConfig->types with sensible defaults and clears the rest.  outConfig->language is left as
+// GEN_LANGUAGE_NONE and outConfig->flags as 0 - there is no default language, so Gen_Config_LoadFromFile
+// must supply "language" from the config file, which in turn determines the default flags for that
+// language before any explicit [generate] overrides in the same file are applied on top.
 void	Gen_Config_SetDefaults( genConfig_t *outConfig );
 
 // loads config values from a TOML file at 'filename' on top of whatever outConfig already contains
 // (call Gen_Config_SetDefaults first so unset keys keep their default value).
 // returns false (having already printed a clear "ERROR: ..." message) if 'filename' doesn't exist, the
-// TOML is malformed, or any values fail validation - these are normal, expected failure modes, not
-// crashes, so the caller should check the return value and exit gracefully rather than continue with a
-// partially-loaded config.
+// TOML is malformed, "language" is missing/invalid, or any values fail validation - these are normal,
+// expected failure modes, not crashes, so the caller should check the return value and exit gracefully
+// rather than continue with a partially-loaded config.
 bool32	Gen_Config_LoadFromFile( allocatorLinear_t *tempStorage, const char *filename, genConfig_t *outConfig );
 
 // builds the vector/quaternion/matrix typeInfo_t arrays according to the given types config,

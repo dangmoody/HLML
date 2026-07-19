@@ -36,7 +36,7 @@ Include `hlml.h`.
 
 For more detailed documentation on how to use HLML's experimental SSE functionality, please refer to [the SSE document](https://github.com/dangmoody/HLML/blob/master/doc/SSE.md).
 
-If you run the generator yourself, you can customise its output by passing the path to a TOML config file as its first command line argument, e.g. `hlml-generator my_config.toml` (see the checked-in `hlml_generator.toml` for all available options and their defaults). The config path is optional - if you don't pass one, the generator falls back to defaults that reproduce the checked-in `code/generated_files/` output exactly.
+If you run the generator yourself, you can customise its output by passing the path to a TOML config file as its first command line argument, e.g. `hlml-generator my_config.toml` (see the checked-in `hlml_generator_c.toml`/`hlml_generator_cpp.toml` for all available options and their defaults). A config file is required, and each one generates exactly one language, chosen by its `language` key (`"c"` or `"cpp"`) - to generate both C and C++ output, run the generator twice, once per language.
 
 
 Code Examples

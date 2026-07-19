@@ -1,14 +1,17 @@
-# HLML generator config.
+# HLML generator config - C.
 #
 # Pass the path to this file as the generator's first command line argument, e.g.
 # (from the repo root, after `builder build.cpp --config=generator`):
 #
-#   bin/debug/hlml-generator hlml_generator.toml
+#   bin/debug/hlml-generator hlml_generator_c.toml
 #
-# The config path is optional - if you don't pass one, the generator falls back to the defaults shown
-# below, which reproduce the checked-in code/generated_files/ output exactly.
+# A config file is required and always generates exactly one language, chosen by "language" below.
+# To generate both C and C++ output, run the generator twice - once with this file, once with
+# hlml_generator_cpp.toml. The values shown here reproduce the checked-in code/generated_files/c/
+# and code/generated_files/tests/c/ output exactly.
 
-[types]
+language = "c"
+
 # Which scalar kinds participate in vector/matrix generation.
 # NOTE: "bool" currently cannot be excluded - relational operators (==, !=, <, <=, >, >=) generated for
 # every other type return a bool vector/matrix, so it's always generated regardless of this list.
@@ -26,10 +29,7 @@ generate_quaternions = true
 # Whether non-square matrices (e.g. float2x3, float4x2) are generated, in addition to square ones.
 generate_non_square_matrices = true
 
-# Whether each language pass runs at all. At least one of [generate.c]/[generate.cpp] must be enabled.
-# The remaining flags in each table mirror generatorFlagBits_t in code/generator/gen_shared.h.
-[generate.c]
-enabled = true
+# Flags for this pass. Mirrors generatorFlagBits_t in code/generator/gen_shared.h.
 parms_are_pointers = true
 c_linkage = true
 generate_operators = false
@@ -38,14 +38,3 @@ vector_unions = false
 generate_constructors = false
 vector_swizzles = false
 allow_namespace = false
-
-[generate.cpp]
-enabled = true
-parms_are_pointers = false
-c_linkage = false
-generate_operators = true
-name_mangling = true
-vector_unions = true
-generate_constructors = true
-vector_swizzles = true
-allow_namespace = true

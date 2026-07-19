@@ -61,28 +61,38 @@ static const genConfigFlagMapping_t s_flagMappings[] = {
 	{ "allow_namespace",			GENERATOR_FLAG_ALLOW_NAMESPACE },
 };
 
-static void ApplyPassConfigFromTable( const toml_table_t *passTable, genConfigPass_t *outPass ) {
-	assert( outPass );
+static generatorFlags_t GetDefaultFlagsForLanguage( const genLanguage_t language ) {
+	switch ( language ) {
+		case GEN_LANGUAGE_C:	return GENERATOR_FLAG_PARMS_ARE_POINTERS | GENERATOR_FLAG_C_LINKAGE;
+		case GEN_LANGUAGE_CPP:	return GENERATOR_FLAG_GENERATE_OPERATORS | GENERATOR_FLAG_NAME_MANGLING | GENERATOR_FLAG_VECTOR_UNIONS | GENERATOR_FLAG_GENERATE_CONSTRUCTORS | GENERATOR_FLAG_VECTOR_SWIZZLES | GENERATOR_FLAG_ALLOW_NAMESPACE;
 
-	if ( !passTable ) {
+		case GEN_LANGUAGE_NONE:
+		case GEN_LANGUAGE_COUNT:
+			break;
+	}
+
+	assert( false && "Bad genLanguage_t passed in!\n" );
+
+	return 0;
+}
+
+static void ApplyGenerateFlagsFromTable( const toml_table_t *configTable, generatorFlags_t *outFlags ) {
+	assert( outFlags );
+
+	if ( !configTable ) {
 		return;
 	}
 
-	toml_datum_t enabledDatum = toml_bool_in( passTable, "enabled" );
-	if ( enabledDatum.ok ) {
-		outPass->enabled = (bool32) enabledDatum.u.b;
-	}
-
 	for ( u32 i = 0; i < GEN_COUNTOF( s_flagMappings ); i++ ) {
-		toml_datum_t datum = toml_bool_in( passTable, s_flagMappings[i].key );
+		toml_datum_t datum = toml_bool_in( configTable, s_flagMappings[i].key );
 		if ( !datum.ok ) {
 			continue;
 		}
 
 		if ( datum.u.b ) {
-			outPass->flags |= s_flagMappings[i].bit;
+			*outFlags |= s_flagMappings[i].bit;
 		} else {
-			outPass->flags &= ~s_flagMappings[i].bit;
+			*outFlags &= ~s_flagMappings[i].bit;
 		}
 	}
 }
@@ -91,6 +101,8 @@ void Gen_Config_SetDefaults( genConfig_t *outConfig ) {
 	assert( outConfig );
 
 	memset( outConfig, 0, sizeof( genConfig_t ) );
+
+	outConfig->language = GEN_LANGUAGE_NONE;
 
 	for ( u32 i = 0; i < GEN_TYPE_COUNT; i++ ) {
 		outConfig->types.scalarTypeEnabled[i] = true;
@@ -101,13 +113,8 @@ void Gen_Config_SetDefaults( genConfig_t *outConfig ) {
 	outConfig->types.generateQuaternions = true;
 	outConfig->types.generateNonSquareMatrices = true;
 
-	// matches the "C99" pass in main.c
-	outConfig->passC.enabled = true;
-	outConfig->passC.flags = GENERATOR_FLAG_PARMS_ARE_POINTERS | GENERATOR_FLAG_C_LINKAGE;
-
-	// matches the "C++" pass in main.c
-	outConfig->passCpp.enabled = true;
-	outConfig->passCpp.flags = GENERATOR_FLAG_GENERATE_OPERATORS | GENERATOR_FLAG_NAME_MANGLING | GENERATOR_FLAG_VECTOR_UNIONS | GENERATOR_FLAG_GENERATE_CONSTRUCTORS | GENERATOR_FLAG_VECTOR_SWIZZLES | GENERATOR_FLAG_ALLOW_NAMESPACE;
+	// outConfig->flags is left at 0 - there's no language-agnostic default for it.  Gen_Config_LoadFromFile
+	// seeds it via GetDefaultFlagsForLanguage() once it knows the language, before applying [generate].
 }
 
 bool32 Gen_Config_LoadFromFile( allocatorLinear_t *tempStorage, const char *filename, genConfig_t *outConfig ) {
@@ -134,75 +141,100 @@ bool32 Gen_Config_LoadFromFile( allocatorLinear_t *tempStorage, const char *file
 		return false;
 	}
 
-	// [types]
+	// language
 	{
-		toml_table_t *typesTable = toml_table_in( root, "types" );
-		if ( typesTable ) {
-			toml_array_t *scalarTypesArray = toml_array_in( typesTable, "scalar_types" );
-			if ( scalarTypesArray ) {
-				for ( u32 i = 0; i < GEN_TYPE_COUNT; i++ ) {
-					outConfig->types.scalarTypeEnabled[i] = false;
+		toml_datum_t languageDatum = toml_string_in( root, "language" );
+		if ( !languageDatum.ok ) {
+			printf( "ERROR: Missing required \"language\" key (must be \"c\" or \"cpp\") in \"%s\".\n", filename );
+
+			toml_free( root );
+			root = NULL;
+
+			return false;
+		}
+
+		if ( String_Equals( languageDatum.u.s, "c" ) ) {
+			outConfig->language = GEN_LANGUAGE_C;
+		} else if ( String_Equals( languageDatum.u.s, "cpp" ) ) {
+			outConfig->language = GEN_LANGUAGE_CPP;
+		} else {
+			printf( "ERROR: \"language\" must be \"c\" or \"cpp\", got \"%s\" in \"%s\".\n", languageDatum.u.s, filename );
+
+			free( languageDatum.u.s );
+
+			toml_free( root );
+			root = NULL;
+
+			return false;
+		}
+
+		free( languageDatum.u.s );
+
+		outConfig->flags = GetDefaultFlagsForLanguage( outConfig->language );
+	}
+
+	// types (scalar_types, component_count_min/max, generate_quaternions, generate_non_square_matrices)
+	{
+		toml_array_t *scalarTypesArray = toml_array_in( root, "scalar_types" );
+		if ( scalarTypesArray ) {
+			for ( u32 i = 0; i < GEN_TYPE_COUNT; i++ ) {
+				outConfig->types.scalarTypeEnabled[i] = false;
+			}
+
+			int arrayCount = toml_array_nelem( scalarTypesArray );
+			for ( int i = 0; i < arrayCount; i++ ) {
+				toml_datum_t datum = toml_string_at( scalarTypesArray, i );
+				assert( datum.ok );
+
+				bool32 matched = false;
+
+				for ( u32 typeIndex = 0; typeIndex < GEN_TYPE_COUNT; typeIndex++ ) {
+					if ( String_Equals( datum.u.s, Gen_GetTypeString( (genType_t) typeIndex ) ) ) {
+						outConfig->types.scalarTypeEnabled[typeIndex] = true;
+						matched = true;
+						break;
+					}
 				}
 
-				int arrayCount = toml_array_nelem( scalarTypesArray );
-				for ( int i = 0; i < arrayCount; i++ ) {
-					toml_datum_t datum = toml_string_at( scalarTypesArray, i );
-					assert( datum.ok );
-
-					bool32 matched = false;
-
-					for ( u32 typeIndex = 0; typeIndex < GEN_TYPE_COUNT; typeIndex++ ) {
-						if ( String_Equals( datum.u.s, Gen_GetTypeString( (genType_t) typeIndex ) ) ) {
-							outConfig->types.scalarTypeEnabled[typeIndex] = true;
-							matched = true;
-							break;
-						}
-					}
-
-					if ( !matched ) {
-						printf( "ERROR: Unrecognized scalar type \"%s\" in \"scalar_types\" in \"%s\".\n", datum.u.s, filename );
-
-						free( datum.u.s );
-
-						toml_free( root );
-						root = NULL;
-
-						return false;
-					}
+				if ( !matched ) {
+					printf( "ERROR: Unrecognized scalar type \"%s\" in \"scalar_types\" in \"%s\".\n", datum.u.s, filename );
 
 					free( datum.u.s );
+
+					toml_free( root );
+					root = NULL;
+
+					return false;
 				}
-			}
 
-			toml_datum_t componentCountMinDatum = toml_int_in( typesTable, "component_count_min" );
-			if ( componentCountMinDatum.ok ) {
-				outConfig->types.componentCountMin = (u32) componentCountMinDatum.u.i;
+				free( datum.u.s );
 			}
+		}
 
-			toml_datum_t componentCountMaxDatum = toml_int_in( typesTable, "component_count_max" );
-			if ( componentCountMaxDatum.ok ) {
-				outConfig->types.componentCountMax = (u32) componentCountMaxDatum.u.i;
-			}
+		toml_datum_t componentCountMinDatum = toml_int_in( root, "component_count_min" );
+		if ( componentCountMinDatum.ok ) {
+			outConfig->types.componentCountMin = (u32) componentCountMinDatum.u.i;
+		}
 
-			toml_datum_t generateQuaternionsDatum = toml_bool_in( typesTable, "generate_quaternions" );
-			if ( generateQuaternionsDatum.ok ) {
-				outConfig->types.generateQuaternions = (bool32) generateQuaternionsDatum.u.b;
-			}
+		toml_datum_t componentCountMaxDatum = toml_int_in( root, "component_count_max" );
+		if ( componentCountMaxDatum.ok ) {
+			outConfig->types.componentCountMax = (u32) componentCountMaxDatum.u.i;
+		}
 
-			toml_datum_t generateNonSquareDatum = toml_bool_in( typesTable, "generate_non_square_matrices" );
-			if ( generateNonSquareDatum.ok ) {
-				outConfig->types.generateNonSquareMatrices = (bool32) generateNonSquareDatum.u.b;
-			}
+		toml_datum_t generateQuaternionsDatum = toml_bool_in( root, "generate_quaternions" );
+		if ( generateQuaternionsDatum.ok ) {
+			outConfig->types.generateQuaternions = (bool32) generateQuaternionsDatum.u.b;
+		}
+
+		toml_datum_t generateNonSquareDatum = toml_bool_in( root, "generate_non_square_matrices" );
+		if ( generateNonSquareDatum.ok ) {
+			outConfig->types.generateNonSquareMatrices = (bool32) generateNonSquareDatum.u.b;
 		}
 	}
 
-	// [generate.c] / [generate.cpp]
+	// generate flags (parms_are_pointers, c_linkage, generate_operators, ...)
 	{
-		toml_table_t *generateTable = toml_table_in( root, "generate" );
-		if ( generateTable ) {
-			ApplyPassConfigFromTable( toml_table_in( generateTable, "c" ), &outConfig->passC );
-			ApplyPassConfigFromTable( toml_table_in( generateTable, "cpp" ), &outConfig->passCpp );
-		}
+		ApplyGenerateFlagsFromTable( root, &outConfig->flags );
 	}
 
 	// "bool" cannot be excluded yet: relational operators generated on every other vector/matrix type
@@ -244,15 +276,6 @@ bool32 Gen_Config_LoadFromFile( allocatorLinear_t *tempStorage, const char *file
 
 		if ( !anyScalarTypeEnabled ) {
 			printf( "ERROR: All scalar types are disabled in \"%s\" - nothing would be generated.\n", filename );
-
-			toml_free( root );
-			root = NULL;
-
-			return false;
-		}
-
-		if ( !outConfig->passC.enabled && !outConfig->passCpp.enabled ) {
-			printf( "ERROR: Both \"generate.c.enabled\" and \"generate.cpp.enabled\" are false in \"%s\" - nothing would be generated.\n", filename );
 
 			toml_free( root );
 			root = NULL;

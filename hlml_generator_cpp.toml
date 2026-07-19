@@ -1,0 +1,40 @@
+# HLML generator config - C++.
+#
+# Pass the path to this file as the generator's first command line argument, e.g.
+# (from the repo root, after `builder build.cpp --config=generator`):
+#
+#   bin/debug/hlml-generator hlml_generator_cpp.toml
+#
+# A config file is required and always generates exactly one language, chosen by "language" below.
+# To generate both C and C++ output, run the generator twice - once with this file, once with
+# hlml_generator_c.toml. The values shown here reproduce the checked-in code/generated_files/cpp/
+# and code/generated_files/tests/cpp/ output exactly.
+
+language = "cpp"
+
+# Which scalar kinds participate in vector/matrix generation.
+# NOTE: "bool" currently cannot be excluded - relational operators (==, !=, <, <=, >, >=) generated for
+# every other type return a bool vector/matrix, so it's always generated regardless of this list.
+scalar_types = [ "bool", "int", "uint", "float", "double" ]
+
+# Inclusive component-count range, applied to both vector component counts and matrix rows/cols.
+# Must be within [2, 4].
+component_count_min = 2
+component_count_max = 4
+
+# Whether quaternion types/functions (float4 and double4 treated as quaternions) are generated.
+# Automatically disabled if float/double or 4-component types are excluded above.
+generate_quaternions = true
+
+# Whether non-square matrices (e.g. float2x3, float4x2) are generated, in addition to square ones.
+generate_non_square_matrices = true
+
+# Flags for this pass. Mirrors generatorFlagBits_t in code/generator/gen_shared.h.
+parms_are_pointers = false
+c_linkage = false
+generate_operators = true
+name_mangling = true
+vector_unions = true
+generate_constructors = true
+vector_swizzles = true
+allow_namespace = true
