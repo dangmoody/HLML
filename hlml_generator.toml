@@ -1,10 +1,12 @@
 # HLML generator config.
 #
-# This file is optional - if it's missing, the generator falls back to the defaults shown below,
-# which reproduce the checked-in code/generated_files/ output exactly.
+# Pass the path to this file as the generator's first command line argument, e.g.
+# (from the repo root, after `builder build.cpp --config=generator`):
 #
-# Run `builder build.cpp --config=generator` then the resulting hlml-generator binary from the repo
-# root to regenerate code/generated_files/ using this file.
+#   bin/debug/hlml-generator hlml_generator.toml
+#
+# The config path is optional - if you don't pass one, the generator falls back to the defaults shown
+# below, which reproduce the checked-in code/generated_files/ output exactly.
 
 [types]
 # Which scalar kinds participate in vector/matrix generation.
@@ -24,8 +26,10 @@ generate_quaternions = true
 # Whether non-square matrices (e.g. float2x3, float4x2) are generated, in addition to square ones.
 generate_non_square_matrices = true
 
-# Flags for the C99 code generation pass. Mirrors generatorFlagBits_t in code/generator/gen_shared.h.
+# Whether each language pass runs at all. At least one of [generate.c]/[generate.cpp] must be enabled.
+# The remaining flags in each table mirror generatorFlagBits_t in code/generator/gen_shared.h.
 [generate.c]
+enabled = true
 parms_are_pointers = true
 c_linkage = true
 generate_operators = false
@@ -35,8 +39,8 @@ generate_constructors = false
 vector_swizzles = false
 allow_namespace = false
 
-# Flags for the C++ code generation pass.
 [generate.cpp]
+enabled = true
 parms_are_pointers = false
 c_linkage = false
 generate_operators = true

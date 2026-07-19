@@ -33,9 +33,6 @@ SOFTWARE.
 
 typedef struct allocatorLinear_t allocatorLinear_t;
 
-// path is relative to the current working directory the generator is run from (repo root)
-#define GEN_CONFIG_DEFAULT_PATH	"hlml_generator.toml"
-
 // component count range the codegen is able to support at all - a hard clamp, not just the default
 #define GEN_CONFIG_COMPONENT_COUNT_MIN		2
 #define GEN_CONFIG_COMPONENT_COUNT_MAX		4
@@ -49,7 +46,8 @@ typedef struct genConfigTypes_t {
 } genConfigTypes_t;
 
 typedef struct genConfigPass_t {
-	generatorFlags_t flags;
+	bool32				enabled;
+	generatorFlags_t	flags;
 } genConfigPass_t;
 
 typedef struct genConfig_t {
@@ -63,8 +61,10 @@ void	Gen_Config_SetDefaults( genConfig_t *outConfig );
 
 // loads config values from a TOML file at 'filename' on top of whatever outConfig already contains
 // (call Gen_Config_SetDefaults first so unset keys keep their default value).
-// returns false (and leaves outConfig untouched) if the file doesn't exist.
-// malformed TOML or invalid values are a hard error (assert), not a silent fallback.
+// returns false (having already printed a clear "ERROR: ..." message) if 'filename' doesn't exist, the
+// TOML is malformed, or any values fail validation - these are normal, expected failure modes, not
+// crashes, so the caller should check the return value and exit gracefully rather than continue with a
+// partially-loaded config.
 bool32	Gen_Config_LoadFromFile( allocatorLinear_t *tempStorage, const char *filename, genConfig_t *outConfig );
 
 // builds the vector/quaternion/matrix typeInfo_t arrays according to the given types config,

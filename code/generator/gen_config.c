@@ -61,11 +61,16 @@ static const genConfigFlagMapping_t s_flagMappings[] = {
 	{ "allow_namespace",			GENERATOR_FLAG_ALLOW_NAMESPACE },
 };
 
-static void ApplyPassFlagsFromTable( const toml_table_t *passTable, generatorFlags_t *outFlags ) {
-	assert( outFlags );
+static void ApplyPassConfigFromTable( const toml_table_t *passTable, genConfigPass_t *outPass ) {
+	assert( outPass );
 
 	if ( !passTable ) {
 		return;
+	}
+
+	toml_datum_t enabledDatum = toml_bool_in( passTable, "enabled" );
+	if ( enabledDatum.ok ) {
+		outPass->enabled = (bool32) enabledDatum.u.b;
 	}
 
 	for ( u32 i = 0; i < GEN_COUNTOF( s_flagMappings ); i++ ) {
@@ -75,9 +80,9 @@ static void ApplyPassFlagsFromTable( const toml_table_t *passTable, generatorFla
 		}
 
 		if ( datum.u.b ) {
-			*outFlags |= s_flagMappings[i].bit;
+			outPass->flags |= s_flagMappings[i].bit;
 		} else {
-			*outFlags &= ~s_flagMappings[i].bit;
+			outPass->flags &= ~s_flagMappings[i].bit;
 		}
 	}
 }
@@ -97,9 +102,11 @@ void Gen_Config_SetDefaults( genConfig_t *outConfig ) {
 	outConfig->types.generateNonSquareMatrices = true;
 
 	// matches the "C99" pass in main.c
+	outConfig->passC.enabled = true;
 	outConfig->passC.flags = GENERATOR_FLAG_PARMS_ARE_POINTERS | GENERATOR_FLAG_C_LINKAGE;
 
 	// matches the "C++" pass in main.c
+	outConfig->passCpp.enabled = true;
 	outConfig->passCpp.flags = GENERATOR_FLAG_GENERATE_OPERATORS | GENERATOR_FLAG_NAME_MANGLING | GENERATOR_FLAG_VECTOR_UNIONS | GENERATOR_FLAG_GENERATE_CONSTRUCTORS | GENERATOR_FLAG_VECTOR_SWIZZLES | GENERATOR_FLAG_ALLOW_NAMESPACE;
 }
 
@@ -108,20 +115,21 @@ bool32 Gen_Config_LoadFromFile( allocatorLinear_t *tempStorage, const char *file
 	assert( filename );
 	assert( outConfig );
 
-	if ( !FS_FileExists( filename ) ) {
+	u64 fileLength = 0;
+	char *fileData = FS_ReadEntireFile( tempStorage, filename, &fileLength );
+
+	if ( !fileData ) {
+		printf( "ERROR: Couldn't find config file \"%s\".  Did you type the path correctly?\n", filename );
+
 		return false;
 	}
 
-	u64 fileLength = 0;
-	char *fileData = FS_ReadEntireFile( tempStorage, filename, &fileLength );
-	assert( fileData );
 	GEN_UNUSED( fileLength );
 
 	char errbuf[256] = { 0 };
 	toml_table_t *root = toml_parse( fileData, errbuf, sizeof( errbuf ) );
 	if ( !root ) {
 		printf( "ERROR: Failed to parse config file \"%s\": %s\n", filename, errbuf );
-		assert( false );
 
 		return false;
 	}
@@ -153,7 +161,13 @@ bool32 Gen_Config_LoadFromFile( allocatorLinear_t *tempStorage, const char *file
 
 					if ( !matched ) {
 						printf( "ERROR: Unrecognized scalar type \"%s\" in \"scalar_types\" in \"%s\".\n", datum.u.s, filename );
-						assert( false );
+
+						free( datum.u.s );
+
+						toml_free( root );
+						root = NULL;
+
+						return false;
 					}
 
 					free( datum.u.s );
@@ -186,8 +200,8 @@ bool32 Gen_Config_LoadFromFile( allocatorLinear_t *tempStorage, const char *file
 	{
 		toml_table_t *generateTable = toml_table_in( root, "generate" );
 		if ( generateTable ) {
-			ApplyPassFlagsFromTable( toml_table_in( generateTable, "c" ), &outConfig->passC.flags );
-			ApplyPassFlagsFromTable( toml_table_in( generateTable, "cpp" ), &outConfig->passCpp.flags );
+			ApplyPassConfigFromTable( toml_table_in( generateTable, "c" ), &outConfig->passC );
+			ApplyPassConfigFromTable( toml_table_in( generateTable, "cpp" ), &outConfig->passCpp );
 		}
 	}
 
@@ -200,18 +214,27 @@ bool32 Gen_Config_LoadFromFile( allocatorLinear_t *tempStorage, const char *file
 		outConfig->types.scalarTypeEnabled[GEN_TYPE_BOOL] = true;
 	}
 
-	// validation
+	// validation - each of these is a normal, expected user error (a typo'd or contradictory config file),
+	// not a programming bug, so report it clearly and let the caller exit gracefully rather than asserting
 	{
 		if ( outConfig->types.componentCountMin > outConfig->types.componentCountMax ) {
 			printf( "ERROR: \"component_count_min\" (%u) is greater than \"component_count_max\" (%u) in \"%s\".\n",
 				outConfig->types.componentCountMin, outConfig->types.componentCountMax, filename );
-			assert( false );
+
+			toml_free( root );
+			root = NULL;
+
+			return false;
 		}
 
 		if ( outConfig->types.componentCountMin < GEN_CONFIG_COMPONENT_COUNT_MIN || outConfig->types.componentCountMax > GEN_CONFIG_COMPONENT_COUNT_MAX ) {
 			printf( "ERROR: \"component_count_min\"/\"component_count_max\" must be within [%u, %u] in \"%s\".\n",
 				GEN_CONFIG_COMPONENT_COUNT_MIN, GEN_CONFIG_COMPONENT_COUNT_MAX, filename );
-			assert( false );
+
+			toml_free( root );
+			root = NULL;
+
+			return false;
 		}
 
 		bool32 anyScalarTypeEnabled = false;
@@ -221,11 +244,25 @@ bool32 Gen_Config_LoadFromFile( allocatorLinear_t *tempStorage, const char *file
 
 		if ( !anyScalarTypeEnabled ) {
 			printf( "ERROR: All scalar types are disabled in \"%s\" - nothing would be generated.\n", filename );
-			assert( false );
+
+			toml_free( root );
+			root = NULL;
+
+			return false;
+		}
+
+		if ( !outConfig->passC.enabled && !outConfig->passCpp.enabled ) {
+			printf( "ERROR: Both \"generate.c.enabled\" and \"generate.cpp.enabled\" are false in \"%s\" - nothing would be generated.\n", filename );
+
+			toml_free( root );
+			root = NULL;
+
+			return false;
 		}
 	}
 
 	toml_free( root );
+	root = NULL;
 
 	return true;
 }

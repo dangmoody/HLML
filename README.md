@@ -36,7 +36,7 @@ Include `hlml.h`.
 
 For more detailed documentation on how to use HLML's experimental SSE functionality, please refer to [the SSE document](https://github.com/dangmoody/HLML/blob/master/doc/SSE.md).
 
-If you build the generator yourself, you can customise its output with an `hlml_generator.toml` config file placed at the repo root (see the checked-in `hlml_generator.toml` for all available options and their defaults). It's optional - if it's missing, the generator falls back to defaults that reproduce the checked-in `code/generated_files/` output exactly.
+If you run the generator yourself, you can customise its output by passing the path to a TOML config file as its first command line argument, e.g. `hlml-generator my_config.toml` (see the checked-in `hlml_generator.toml` for all available options and their defaults). The config path is optional - if you don't pass one, the generator falls back to defaults that reproduce the checked-in `code/generated_files/` output exactly.
 
 
 Code Examples

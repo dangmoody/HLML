@@ -31,7 +31,6 @@ SOFTWARE.
 #include "defines.h"
 #include "linear_allocator.h"
 #include "string_helpers.h"
-#include "file_io.h"
 
 #include "gen_shared.h"
 #include "gen_api.h"
@@ -50,8 +49,7 @@ static void UpdateStringsFromFlags( const generatorFlags_t flags, generatorStrin
 }
 
 int main( int argc, char **argv ) {
-	GEN_UNUSED( argc );
-	GEN_UNUSED( argv );
+	const char *configPath = ( argc > 1 ) ? argv[1] : NULL;
 
 	float64 start = Time_NowMS();
 
@@ -68,14 +66,20 @@ int main( int argc, char **argv ) {
 	genConfig_t config;
 	Gen_Config_SetDefaults( &config );
 
-	if ( FS_FileExists( GEN_CONFIG_DEFAULT_PATH ) ) {
-		printf( "Loading config \"%s\"...\n", GEN_CONFIG_DEFAULT_PATH );
+	if ( configPath ) {
+		printf( "Loading config \"%s\"...\n", configPath );
 
-		Gen_Config_LoadFromFile( tempStorage, GEN_CONFIG_DEFAULT_PATH, &config );
+		if ( !Gen_Config_LoadFromFile( tempStorage, configPath, &config ) ) {
+			printf( "\nExiting due to invalid configuration.\n" );
+
+			Mem_DestroyLinear( &allocator );
+
+			return 1;
+		}
 
 		Mem_Reset( tempStorage );
 	} else {
-		printf( "No config found at \"%s\" - using defaults.\n", GEN_CONFIG_DEFAULT_PATH );
+		printf( "No config file specified - using defaults.\n" );
 	}
 
 	printf( "\n" );
@@ -101,7 +105,7 @@ int main( int argc, char **argv ) {
 	generatorStrings_t generatorStrings = { 0 };
 
 	// C99
-	{
+	if ( config.passC.enabled ) {
 		flags = config.passC.flags;
 
 		UpdateStringsFromFlags( flags, &generatorStrings );
@@ -111,7 +115,7 @@ int main( int argc, char **argv ) {
 	}
 
 	// C++
-	{
+	if ( config.passCpp.enabled ) {
 		flags = config.passCpp.flags;
 
 		UpdateStringsFromFlags( flags, &generatorStrings );
