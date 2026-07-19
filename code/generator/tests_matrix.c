@@ -1306,6 +1306,13 @@ void GenerateMatrixTests( allocatorLinear_t *tempStorage, const char *generatedT
 	assert( matrixTypeInfosCount );
 	assert( strings );
 
+	// which scalar types are actually present in matrixTypeInfos - a conversion ctor/test referencing a
+	// scalar type that was excluded from generation (via config) would reference a type that doesn't exist
+	bool32 scalarTypeEnabled[GEN_TYPE_COUNT] = { 0 };
+	for ( u32 i = 0; i < matrixTypeInfosCount; i++ ) {
+		scalarTypeEnabled[matrixTypeInfos[i].type] = true;
+	}
+
 	for ( u32 typeInfoIndex = 0; typeInfoIndex < matrixTypeInfosCount; typeInfoIndex++ ) {
 		const typeInfo_t *typeInfo = &matrixTypeInfos[typeInfoIndex];
 
@@ -1343,9 +1350,11 @@ void GenerateMatrixTests( allocatorLinear_t *tempStorage, const char *generatedT
 
 		Gen_AppendTestFileIncludes( tempStorage, code, languageName, flags );
 
-		GenerateComponentWiseTests( tempStorage, code, typeInfo, &scalarType, strings, flags );
+		// generateQuaternions doesn't matter here - GenerateComponentWiseTests only emits quaternion tests for vector types
+		GenerateComponentWiseTests( tempStorage, code, typeInfo, &scalarType, strings, flags, true );
 
-		GenerateTests_CtorConversion( tempStorage, code, typeInfo, strings, flags );
+		// componentCountMin doesn't matter here - GenerateTests_CtorConversion only emits composite ctor tests for vector types
+		GenerateTests_CtorConversion( tempStorage, code, typeInfo, strings, flags, 2, scalarTypeEnabled );
 
 		Gen_GenerateTests_Identity( tempStorage, code, typeInfo, strings, flags );
 		Gen_GenerateTests_Transpose( tempStorage, code, typeInfo, strings, flags );

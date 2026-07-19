@@ -31,6 +31,7 @@ SOFTWARE.
 #include "../file_io.h"
 #include "../string_helpers.h"
 #include "../defines.h"
+#include "../linear_allocator.h"
 
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wreserved-id-macro"
@@ -129,6 +130,67 @@ void FS_WriteEntireFile( const char *filename, const char *data, const size_t le
 
 	fclose( file );
 	file = NULL;
+}
+
+char *FS_ReadEntireFile( allocatorLinear_t *allocator, const char *filename, u64 *outLength ) {
+	assert( allocator );
+	assert( filename );
+	assert( outLength );
+
+	*outLength = 0;
+
+	FILE *file = fopen( filename, "rb" );
+	if ( !file ) {
+		return NULL;
+	}
+
+	fseek( file, 0, SEEK_END );
+	long length = ftell( file );
+	fseek( file, 0, SEEK_SET );
+
+	if ( length < 0 ) {
+		printf( "ERROR: Failed to get file size of \"%s\".\n", filename );
+
+		fclose( file );
+
+		assert( false );
+
+		return NULL;
+	}
+
+	char *buffer = (char *) Mem_Alloc( allocator, (u64) length + 1 );
+
+	size_t bytesRead = fread( buffer, 1, (size_t) length, file );
+	if ( bytesRead != (size_t) length ) {
+		printf( "ERROR: Failed to read entire file \"%s\".\n", filename );
+
+		fclose( file );
+
+		assert( false );
+
+		return NULL;
+	}
+
+	buffer[length] = 0;
+
+	fclose( file );
+
+	*outLength = (u64) length;
+
+	return buffer;
+}
+
+bool32 FS_FileExists( const char *filename ) {
+	assert( filename );
+
+	struct stat info;
+
+	int result = stat( filename, &info );
+	if ( result != 0 ) {
+		return false;
+	}
+
+	return S_ISREG( info.st_mode );
 }
 
 bool32 FS_CreateFolder( const char *name ) {

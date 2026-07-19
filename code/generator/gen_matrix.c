@@ -1150,6 +1150,13 @@ void GenerateMatrixFiles( allocatorLinear_t *tempStorage, const char *generatedC
 
 	bool32 generateInlFile = generateConstructors || generateOperators;
 
+	// which scalar types are actually present in typeInfos - a conversion ctor referencing a scalar type
+	// that was excluded from generation (via config) would reference a type that doesn't exist
+	bool32 scalarTypeEnabled[GEN_TYPE_COUNT] = { 0 };
+	for ( u32 i = 0; i < typeInfosCount; i++ ) {
+		scalarTypeEnabled[typeInfos[i].type] = true;
+	}
+
 	// matrix types
 	for ( u32 typeInfoIndex = 0; typeInfoIndex < typeInfosCount; typeInfoIndex++ ) {
 		const typeInfo_t *typeInfo = &typeInfos[typeInfoIndex];
@@ -1280,6 +1287,11 @@ void GenerateMatrixFiles( allocatorLinear_t *tempStorage, const char *generatedC
 
 					// dont generate the ctor for the same type because we already generated that one
 					if ( otherType == typeInfo->type ) {
+						continue;
+					}
+
+					// this scalar type was excluded from generation - can't reference it here
+					if ( !scalarTypeEnabled[otherType] ) {
 						continue;
 					}
 
@@ -1436,6 +1448,11 @@ void GenerateMatrixFiles( allocatorLinear_t *tempStorage, const char *generatedC
 
 					// dont do the conversion ctor for the same type because we just generated that
 					if ( otherType == typeInfo->type ) {
+						continue;
+					}
+
+					// this scalar type was excluded from generation - can't reference it here
+					if ( !scalarTypeEnabled[otherType] ) {
 						continue;
 					}
 

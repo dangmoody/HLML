@@ -113,8 +113,9 @@ BUILDER_CALLBACK void SetBuilderOptions( BuilderOptions *options, CommandLineArg
 		.binaryFolder		= "bin",
 		.sourceFiles = {
 			"code/generator/**/*.c",
+			"code/3rdparty/source/tomlc99/*.c",
 		},
-		.additionalIncludes	= { "code/3rdparty/include" },
+		.additionalIncludes	= { "code/3rdparty/include", "code/3rdparty/source" },
 	};
 
 #if defined( __linux__ )

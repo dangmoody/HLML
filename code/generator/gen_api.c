@@ -48,6 +48,7 @@ static void GenerateMainHeader(
 	const char *generatedCodePath,
 	const typeInfo_t *vectorTypeInfos, const u32 vectorTypeInfosCount,
 	const typeInfo_t *matrixTypeInfos, const u32 matrixTypeInfosCount,
+	const u32 quaternionTypeInfosCount,
 	const generatorFlags_t flags )
 {
 	assert( tempStorage );
@@ -117,7 +118,9 @@ static void GenerateMainHeader(
 	StringBuilder_Appendf( code, "#include \"%s.h\"\n", GEN_FILENAME_FUNCTIONS_SCALAR_SSE );
 	StringBuilder_Appendf( code, "#include \"%s.h\"\n", GEN_FILENAME_FUNCTIONS_VECTOR );
 	StringBuilder_Appendf( code, "#include \"%s.h\"\n", GEN_FILENAME_FUNCTIONS_VECTOR_SSE );
-	StringBuilder_Appendf( code, "#include \"%s.h\"\n", GEN_FILENAME_FUNCTIONS_QUATERNION );
+	if ( quaternionTypeInfosCount > 0 ) {
+		StringBuilder_Appendf( code, "#include \"%s.h\"\n", GEN_FILENAME_FUNCTIONS_QUATERNION );
+	}
 	StringBuilder_Appendf( code, "#include \"%s.h\"\n", GEN_FILENAME_FUNCTIONS_MATRIX );
 	StringBuilder_Appendf( code, "\n" );
 
@@ -326,7 +329,8 @@ void Gen_GenerateAPIFiles( allocatorLinear_t *tempStorage,
 						   const typeInfo_t *quaternionTypeInfos, const u32 quaternionTypeInfosCount,
 						   const typeInfo_t *matrixTypeInfos, const u32 matrixTypeInfosCount,
 						   const generatorStrings_t *strings,
-						   const generatorFlags_t flags )
+						   const generatorFlags_t flags,
+						   const u32 componentCountMin, const u32 componentCountMax )
 {
 	assert( tempStorage );
 	assert( languageName );
@@ -342,7 +346,7 @@ void Gen_GenerateAPIFiles( allocatorLinear_t *tempStorage,
 
 	FS_CreateFolder( generatedCodePath );
 
-	GenerateMainHeader( tempStorage, generatedCodePath, vectorTypeInfos, vectorTypeInfosCount, matrixTypeInfos, matrixTypeInfosCount, flags );
+	GenerateMainHeader( tempStorage, generatedCodePath, vectorTypeInfos, vectorTypeInfosCount, matrixTypeInfos, matrixTypeInfosCount, quaternionTypeInfosCount, flags );
 	GenerateTypesHeader( tempStorage, generatedCodePath );
 	GenerateConstantsHeader( tempStorage, generatedCodePath );
 	GenerateDefinesHeader( tempStorage, generatedCodePath );
@@ -350,9 +354,11 @@ void Gen_GenerateAPIFiles( allocatorLinear_t *tempStorage,
 
 	GenerateScalarFiles( tempStorage, generatedCodePath, flags );
 	GenerateScalarFiles_SSE( tempStorage, generatedCodePath, flags );
-	GenerateVectorFiles( tempStorage, generatedCodePath, vectorTypeInfos, vectorTypeInfosCount, strings, flags );
+	GenerateVectorFiles( tempStorage, generatedCodePath, vectorTypeInfos, vectorTypeInfosCount, strings, flags, componentCountMin, componentCountMax );
 	GenerateVectorFiles_SSE( tempStorage, generatedCodePath, vectorTypeInfos, vectorTypeInfosCount, strings, flags );
-	GenerateQuaternionFiles( tempStorage, generatedCodePath, quaternionTypeInfos, quaternionTypeInfosCount, strings, flags );
+	if ( quaternionTypeInfosCount > 0 ) {
+		GenerateQuaternionFiles( tempStorage, generatedCodePath, quaternionTypeInfos, quaternionTypeInfosCount, strings, flags );
+	}
 	GenerateMatrixFiles( tempStorage, generatedCodePath, matrixTypeInfos, matrixTypeInfosCount, strings, flags );
 
 	printf( "\n" );

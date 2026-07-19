@@ -47,14 +47,14 @@ void Gen_GenerateTests( allocatorLinear_t *tempStorage,
 						const typeInfo_t *quaternionTypeInfos, const u32 quaternionTypeInfosCount,
 						const typeInfo_t *matrixTypeInfos, const u32 matrixTypeInfosCount,
 						const generatorStrings_t *strings,
-						const generatorFlags_t flags )
+						const generatorFlags_t flags,
+						const u32 componentCountMin, const u32 componentCountMax )
 {
 	assert( tempStorage );
 	assert( languageName );
 	assert( vectorTypeInfos );
 	assert( vectorTypeInfosCount );
-	assert( quaternionTypeInfos );
-	assert( quaternionTypeInfosCount );
+	assert( ( quaternionTypeInfosCount == 0 ) == ( quaternionTypeInfos == NULL ) );
 	assert( matrixTypeInfos );
 	assert( matrixTypeInfosCount );
 
@@ -100,7 +100,8 @@ void Gen_GenerateTests( allocatorLinear_t *tempStorage,
 
 		Gen_AppendTestFileIncludes( tempStorage, code, languageName, flags );
 
-		GenerateComponentWiseTests( tempStorage, code, &typeInfo, &typeInfo, strings, flags );
+		// generateQuaternions doesn't matter here - GenerateComponentWiseTests only emits quaternion tests for vector types
+		GenerateComponentWiseTests( tempStorage, code, &typeInfo, &typeInfo, strings, flags, true );
 
 		const char *fileNameHeader = String_TPrintf( tempStorage, "%s/test_%s.%s", generatedTestsPath, typeString, languageName );
 		FS_WriteEntireFile( fileNameHeader, code->str, code->length );
@@ -110,8 +111,14 @@ void Gen_GenerateTests( allocatorLinear_t *tempStorage,
 		Mem_Reset( tempStorage );
 	}
 
-	GenerateVectorTests( tempStorage, generatedTestsPath, languageName, vectorTypeInfos, vectorTypeInfosCount, strings, flags );
-	GenerateQuaternionTests( tempStorage, generatedTestsPath, languageName, vectorTypeInfos, vectorTypeInfosCount, strings, flags );
+	GenerateVectorTests( tempStorage, generatedTestsPath, languageName, vectorTypeInfos, vectorTypeInfosCount, strings, flags, componentCountMin, componentCountMax, quaternionTypeInfosCount > 0 );
+	if ( quaternionTypeInfosCount > 0 ) {
+		// NB: intentionally passes vectorTypeInfos, not quaternionTypeInfos - matches pre-existing
+		// behavior where quaternion tests are generated per vector type, not just the two "true"
+		// quaternion-qualifying types.  Only gated here on quaternionTypeInfosCount so that disabling
+		// quaternions via config actually suppresses this output.
+		GenerateQuaternionTests( tempStorage, generatedTestsPath, languageName, vectorTypeInfos, vectorTypeInfosCount, strings, flags );
+	}
 	GenerateMatrixTests( tempStorage, generatedTestsPath, languageName, matrixTypeInfos, matrixTypeInfosCount, strings, flags );
 
 	// generate test_main

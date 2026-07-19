@@ -33,6 +33,7 @@ SOFTWARE.
 
 #include "../timer.h"
 #include "../string_helpers.h"
+#include "../linear_allocator.h"
 
 #include <Windows.h>
 
@@ -112,6 +113,56 @@ void FS_WriteEntireFile( const char *filename, const char *data, const u64 lengt
 	assert( bytesWritten == length );
 
 	CloseFileInternal( file );
+}
+
+char *FS_ReadEntireFile( allocatorLinear_t *allocator, const char *filename, u64 *outLength ) {
+	assert( allocator );
+	assert( filename );
+	assert( outLength );
+
+	*outLength = 0;
+
+	if ( !FS_FileExists( filename ) ) {
+		return NULL;
+	}
+
+	DWORD accessFlags = GENERIC_READ;
+	DWORD shareFlags = FILE_SHARE_READ;
+	DWORD disposition = OPEN_EXISTING;
+	DWORD flagsAndAttributes = FILE_ATTRIBUTE_NORMAL;
+
+	HANDLE file = CreateFileA( filename, accessFlags, shareFlags, NULL, disposition, flagsAndAttributes, NULL );
+	WIN64_ASSERT( file != INVALID_HANDLE_VALUE );
+
+	LARGE_INTEGER fileSize = { 0 };
+	bool32 sizeResult = GetFileSizeEx( file, &fileSize );
+	WIN64_ASSERT( sizeResult );
+
+	u64 length = (u64) fileSize.QuadPart;
+
+	char *buffer = (char *) Mem_Alloc( allocator, length + 1 );
+
+	DWORD bytesRead = 0;
+	bool32 readResult = ReadFile( file, buffer, (DWORD) length, &bytesRead, NULL );
+	WIN64_ASSERT( readResult );
+
+	assert( bytesRead == length );
+
+	buffer[length] = 0;
+
+	CloseFileInternal( file );
+
+	*outLength = length;
+
+	return buffer;
+}
+
+bool32 FS_FileExists( const char *filename ) {
+	assert( filename );
+
+	DWORD attribs = GetFileAttributesA( filename );
+
+	return ( attribs != INVALID_FILE_ATTRIBUTES ) && ( ( attribs & FILE_ATTRIBUTE_DIRECTORY ) == 0 );
 }
 
 bool32 FS_CreateFolder( const char *path ) {

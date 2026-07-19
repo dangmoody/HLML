@@ -1,9 +1,7 @@
-/*
-===========================================================================
+MIT License
 
-HLML
-
-Copyright (c) Dan Moody 2018 - Present.
+Copyright (c) CK Tan
+https://github.com/cktan/tomlc99
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -22,32 +20,3 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
-
-===========================================================================
-*/
-
-#pragma once
-
-#include "int_types.h"
-
-typedef struct allocatorLinear_t allocatorLinear_t;
-
-/*
-FIle IO
-
-Must be done completely per-platform because Windows requires shared R/W access
-to all of the files that it touches.
-
-Linux/MacOS implementation does make heavy use of POSIX file IO functions
-because they work fine there.
-*/
-
-void	FS_WriteEntireFile( const char *filename, const char *data, const u64 length );
-char	*FS_ReadEntireFile( allocatorLinear_t *allocator, const char *filename, u64 *outLength );
-
-bool32	FS_FileExists( const char *filename );
-
-bool32	FS_CreateFolder( const char *name );
-void	FS_DeleteFolder( const char *name );
-bool32	FS_FolderExists( const char *name );
-void	FS_DeleteAllFilesInFolder( const char *name );

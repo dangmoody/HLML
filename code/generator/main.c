@@ -31,9 +31,11 @@ SOFTWARE.
 #include "defines.h"
 #include "linear_allocator.h"
 #include "string_helpers.h"
+#include "file_io.h"
 
 #include "gen_shared.h"
 #include "gen_api.h"
+#include "gen_config.h"
 
 #include <stdio.h>
 #include <assert.h>
@@ -63,6 +65,21 @@ int main( int argc, char **argv ) {
 	allocatorLinear_t *allocator = Mem_CreateLinear( GIGABYTES( 6 ) );
 	allocatorLinear_t *tempStorage = Mem_CreateFromOther( allocator, GIGABYTES( 5 ) );
 
+	genConfig_t config;
+	Gen_Config_SetDefaults( &config );
+
+	if ( FS_FileExists( GEN_CONFIG_DEFAULT_PATH ) ) {
+		printf( "Loading config \"%s\"...\n", GEN_CONFIG_DEFAULT_PATH );
+
+		Gen_Config_LoadFromFile( tempStorage, GEN_CONFIG_DEFAULT_PATH, &config );
+
+		Mem_Reset( tempStorage );
+	} else {
+		printf( "No config found at \"%s\" - using defaults.\n", GEN_CONFIG_DEFAULT_PATH );
+	}
+
+	printf( "\n" );
+
 	u32 vectorTypeInfosCount = 0;
 	u32 quaternionTypeInfosCount = 0;
 	u32 matrixTypeInfosCount = 0;
@@ -71,76 +88,13 @@ int main( int argc, char **argv ) {
 	typeInfo_t *quaternionTypeInfos = NULL;
 	typeInfo_t *matrixTypeInfos = NULL;
 
-	// create type infos
-	{
-		u32 numComponentPermutations = ( 4 - 2 ) + 1;
+	Gen_BuildTypeInfos( allocator, &config.types,
+		&vectorTypeInfos, &vectorTypeInfosCount,
+		&quaternionTypeInfos, &quaternionTypeInfosCount,
+		&matrixTypeInfos, &matrixTypeInfosCount );
 
-		// create vector type infos
-		{
-			u32 typeInfoIndex = 0;
-
-			vectorTypeInfosCount = GEN_TYPE_COUNT * numComponentPermutations;
-			vectorTypeInfos = (typeInfo_t *) Mem_Alloc( allocator, vectorTypeInfosCount * sizeof( typeInfo_t ) );
-
-			for ( u32 typeIndex = 0; typeIndex < GEN_TYPE_COUNT; typeIndex++ ) {
-				genType_t type = (genType_t) typeIndex;
-
-				const char *typeString = Gen_GetTypeString( type );
-
-				for ( u32 componentIndex = 2; componentIndex <= 4; componentIndex++ ) {
-					typeInfo_t *typeInfo = &vectorTypeInfos[typeInfoIndex++];
-					typeInfo->type = type;
-					typeInfo->numRows = 1;
-					typeInfo->numCols = componentIndex;
-					typeInfo->fullTypeName = String_TPrintf( allocator, "%s%d", typeString, typeInfo->numCols );
-				}
-			}
-		}
-
-		// create quaternion type infos
-		{
-			quaternionTypeInfosCount = 2;
-			quaternionTypeInfos = (typeInfo_t *) Mem_Alloc( allocator, quaternionTypeInfosCount * sizeof( typeInfo_t ) );
-
-			typeInfo_t *typeInfo = NULL;
-
-			typeInfo = &quaternionTypeInfos[0];
-			typeInfo->type = GEN_TYPE_FLOAT;
-			typeInfo->numRows = 1;
-			typeInfo->numCols = 4;
-			typeInfo->fullTypeName = "float4";
-
-			typeInfo = &quaternionTypeInfos[1];
-			typeInfo->type = GEN_TYPE_DOUBLE;
-			typeInfo->numRows = 1;
-			typeInfo->numCols = 4;
-			typeInfo->fullTypeName = "double4";
-		}
-
-		// create matrix type infos
-		{
-			u32 typeInfoIndex = 0;
-
-			matrixTypeInfosCount = GEN_TYPE_COUNT * numComponentPermutations * numComponentPermutations;
-			matrixTypeInfos = (typeInfo_t *) Mem_Alloc( allocator, matrixTypeInfosCount * sizeof( typeInfo_t ) );
-
-			for ( u32 typeIndex = 0; typeIndex < GEN_TYPE_COUNT; typeIndex++ ) {
-				genType_t type = (genType_t) typeIndex;
-
-				const char *typeString = Gen_GetTypeString( type );
-
-				for ( u32 row = 2; row <= 4; row++ ) {
-					for ( u32 col = 2; col <= 4; col++ ) {
-						typeInfo_t *typeInfo = &matrixTypeInfos[typeInfoIndex++];
-						typeInfo->type = type;
-						typeInfo->numRows = row;
-						typeInfo->numCols = col;
-						typeInfo->fullTypeName = String_TPrintf( allocator, "%s%dx%d", typeString, typeInfo->numRows, typeInfo->numCols );
-					}
-				}
-			}
-		}
-	}
+	const u32 componentCountMin = config.types.componentCountMin;
+	const u32 componentCountMax = config.types.componentCountMax;
 
 	generatorFlags_t flags = 0;
 
@@ -148,22 +102,22 @@ int main( int argc, char **argv ) {
 
 	// C99
 	{
-		flags = GENERATOR_FLAG_PARMS_ARE_POINTERS | GENERATOR_FLAG_C_LINKAGE;
+		flags = config.passC.flags;
 
 		UpdateStringsFromFlags( flags, &generatorStrings );
 
-		Gen_GenerateAPIFiles( tempStorage, "c", vectorTypeInfos, vectorTypeInfosCount, quaternionTypeInfos, quaternionTypeInfosCount, matrixTypeInfos, matrixTypeInfosCount, &generatorStrings, flags );
-		Gen_GenerateTests( tempStorage, "c", vectorTypeInfos, vectorTypeInfosCount, quaternionTypeInfos, quaternionTypeInfosCount, matrixTypeInfos, matrixTypeInfosCount, &generatorStrings, flags );
+		Gen_GenerateAPIFiles( tempStorage, "c", vectorTypeInfos, vectorTypeInfosCount, quaternionTypeInfos, quaternionTypeInfosCount, matrixTypeInfos, matrixTypeInfosCount, &generatorStrings, flags, componentCountMin, componentCountMax );
+		Gen_GenerateTests( tempStorage, "c", vectorTypeInfos, vectorTypeInfosCount, quaternionTypeInfos, quaternionTypeInfosCount, matrixTypeInfos, matrixTypeInfosCount, &generatorStrings, flags, componentCountMin, componentCountMax );
 	}
 
 	// C++
 	{
-		flags = GENERATOR_FLAG_GENERATE_OPERATORS | GENERATOR_FLAG_NAME_MANGLING | GENERATOR_FLAG_VECTOR_UNIONS | GENERATOR_FLAG_GENERATE_CONSTRUCTORS | GENERATOR_FLAG_VECTOR_SWIZZLES | GENERATOR_FLAG_ALLOW_NAMESPACE;
+		flags = config.passCpp.flags;
 
 		UpdateStringsFromFlags( flags, &generatorStrings );
 
-		Gen_GenerateAPIFiles( tempStorage, "cpp", vectorTypeInfos, vectorTypeInfosCount, quaternionTypeInfos, quaternionTypeInfosCount, matrixTypeInfos, matrixTypeInfosCount, &generatorStrings, flags );
-		Gen_GenerateTests( tempStorage, "cpp", vectorTypeInfos, vectorTypeInfosCount, quaternionTypeInfos, quaternionTypeInfosCount, matrixTypeInfos, matrixTypeInfosCount, &generatorStrings, flags );
+		Gen_GenerateAPIFiles( tempStorage, "cpp", vectorTypeInfos, vectorTypeInfosCount, quaternionTypeInfos, quaternionTypeInfosCount, matrixTypeInfos, matrixTypeInfosCount, &generatorStrings, flags, componentCountMin, componentCountMax );
+		Gen_GenerateTests( tempStorage, "cpp", vectorTypeInfos, vectorTypeInfosCount, quaternionTypeInfos, quaternionTypeInfosCount, matrixTypeInfos, matrixTypeInfosCount, &generatorStrings, flags, componentCountMin, componentCountMax );
 	}
 
 	float64 end = Time_NowMS();

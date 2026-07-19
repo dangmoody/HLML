@@ -36,6 +36,8 @@ Include `hlml.h`.
 
 For more detailed documentation on how to use HLML's experimental SSE functionality, please refer to [the SSE document](https://github.com/dangmoody/HLML/blob/master/doc/SSE.md).
 
+If you build the generator yourself, you can customise its output with an `hlml_generator.toml` config file placed at the repo root (see the checked-in `hlml_generator.toml` for all available options and their defaults). It's optional - if it's missing, the generator falls back to defaults that reproduce the checked-in `code/generated_files/` output exactly.
+
 
 Code Examples
 =============
@@ -180,3 +182,4 @@ HLML's generator also makes use of the following libraries, which are under thei
 
 - [Temper](https://github.com/dangmoody/temper) - MIT
 - [stb_sprintf](https://github.com/nothings/stb/blob/master/stb_sprintf.h) - MIT/Public Domain
+- [tomlc99](https://github.com/cktan/tomlc99) - MIT

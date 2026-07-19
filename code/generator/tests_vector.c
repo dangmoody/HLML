@@ -1303,13 +1303,20 @@ static void Gen_GenerateTests_QuatToRotationMatrix( allocatorLinear_t *tempStora
 	}
 }
 
-void GenerateVectorTests( allocatorLinear_t *tempStorage, const char *generatedTestsPath, const char *languageName, const typeInfo_t *vectorTypeInfos, const u32 vectorTypeInfosCount, const generatorStrings_t *strings, const generatorFlags_t flags ) {
+void GenerateVectorTests( allocatorLinear_t *tempStorage, const char *generatedTestsPath, const char *languageName, const typeInfo_t *vectorTypeInfos, const u32 vectorTypeInfosCount, const generatorStrings_t *strings, const generatorFlags_t flags, const u32 componentCountMin, const u32 componentCountMax, const bool32 generateQuaternions ) {
 	assert( tempStorage );
 	assert( languageName );
 	assert( generatedTestsPath );
 	assert( vectorTypeInfos );
 	assert( vectorTypeInfosCount );
 	assert( strings );
+
+	// which scalar types are actually present in vectorTypeInfos - a conversion ctor/test referencing a
+	// scalar type that was excluded from generation (via config) would reference a type that doesn't exist
+	bool32 scalarTypeEnabled[GEN_TYPE_COUNT] = { 0 };
+	for ( u32 i = 0; i < vectorTypeInfosCount; i++ ) {
+		scalarTypeEnabled[vectorTypeInfos[i].type] = true;
+	}
 
 	for ( u32 i = 0; i < vectorTypeInfosCount; i++ ) {
 		const typeInfo_t *typeInfo = &vectorTypeInfos[i];
@@ -1335,9 +1342,9 @@ void GenerateVectorTests( allocatorLinear_t *tempStorage, const char *generatedT
 
 		Gen_AppendTestFileIncludes( tempStorage, code, languageName, flags );
 
-		GenerateComponentWiseTests( tempStorage, code, typeInfo, &scalarType, strings, flags );
+		GenerateComponentWiseTests( tempStorage, code, typeInfo, &scalarType, strings, flags, generateQuaternions );
 
-		GenerateTests_CtorConversion( tempStorage, code, typeInfo, strings, flags );
+		GenerateTests_CtorConversion( tempStorage, code, typeInfo, strings, flags, componentCountMin, scalarTypeEnabled );
 
 		Gen_GenerateTests_Lengthsq( tempStorage, code, typeInfo, strings, flags );
 		Gen_GenerateTests_Length( tempStorage, code, typeInfo, strings, flags );
@@ -1370,7 +1377,7 @@ void GenerateVectorTests( allocatorLinear_t *tempStorage, const char *generatedT
 
 			Gen_AppendTestFileIncludes( tempStorage, code, languageName, flags );
 
-			GenerateSwizzleFunctions( tempStorage, code, typeInfo, strings, flags, GEN_COMPONENT_NAMES_VECTOR, GenerateSwizzleFunc_Test );
+			GenerateSwizzleFunctions( tempStorage, code, typeInfo, strings, flags, GEN_COMPONENT_NAMES_VECTOR, GenerateSwizzleFunc_Test, componentCountMin, componentCountMax );
 
 			const char *fileNameHeader = String_TPrintf( tempStorage, "%s/test_%s_swizzle_%s.%s", generatedTestsPath, typeInfo->fullTypeName, GEN_COMPONENT_NAMES_VECTOR, languageName );
 			FS_WriteEntireFile( fileNameHeader, code->str, code->length );
@@ -1391,7 +1398,7 @@ void GenerateVectorTests( allocatorLinear_t *tempStorage, const char *generatedT
 
 			Gen_AppendTestFileIncludes( tempStorage, code, languageName, flags );
 
-			GenerateSwizzleFunctions( tempStorage, code, typeInfo, strings, flags, GEN_COMPONENT_NAMES_COLOR, GenerateSwizzleFunc_Test );
+			GenerateSwizzleFunctions( tempStorage, code, typeInfo, strings, flags, GEN_COMPONENT_NAMES_COLOR, GenerateSwizzleFunc_Test, componentCountMin, componentCountMax );
 
 			const char *fileNameHeader = String_TPrintf( tempStorage, "%s/test_%s_swizzle_%s.%s", generatedTestsPath, typeInfo->fullTypeName, GEN_COMPONENT_NAMES_COLOR, languageName );
 			FS_WriteEntireFile( fileNameHeader, code->str, code->length );

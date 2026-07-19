@@ -625,7 +625,7 @@ static void GenerateSwizzleFunc_OperatorDefinitions( allocatorLinear_t *tempStor
 // for vec2, for example, you can count all the 2-component swizzles by counting in base 2 from 0 through to 2^2
 // this can then be repeated for generating the 3-component swizzles for vec2 types by counting in base 2 from 0 through to 2^3 and so on
 // the same logic applies for vec3 and vec4
-void GenerateSwizzleFunctions( allocatorLinear_t *tempStorage, stringBuilder_t *code, const typeInfo_t *typeInfo, const generatorStrings_t *strings, const generatorFlags_t flags, const char *componentNames, generateSwizzleFunc_t generateSwizzleFunc ) {
+void GenerateSwizzleFunctions( allocatorLinear_t *tempStorage, stringBuilder_t *code, const typeInfo_t *typeInfo, const generatorStrings_t *strings, const generatorFlags_t flags, const char *componentNames, generateSwizzleFunc_t generateSwizzleFunc, const u32 componentCountMin, const u32 componentCountMax ) {
 	assert( tempStorage );
 	assert( code );
 	assert( typeInfo );
@@ -635,11 +635,14 @@ void GenerateSwizzleFunctions( allocatorLinear_t *tempStorage, stringBuilder_t *
 	assert( flags & GENERATOR_FLAG_VECTOR_SWIZZLES );
 	assert( componentNames );
 	assert( generateSwizzleFunc );
+	assert( componentCountMin <= componentCountMax );
 
 	u32 numVectorComponents = typeInfo->numCols;
 
-	// for vec2, vec3, vec4...
-	for ( u32 swizzleComponentIndex = 2; swizzleComponentIndex <= 4; swizzleComponentIndex++ ) {
+	// for vec2, vec3, vec4... (only the ones actually configured to be generated - a swizzle
+	// referencing a component count that was excluded from generation would reference a type that
+	// doesn't exist)
+	for ( u32 swizzleComponentIndex = componentCountMin; swizzleComponentIndex <= componentCountMax; swizzleComponentIndex++ ) {
 		// number of permutations that this vector can generate for the given swizzle type
 		u32 numPermutations = (u32) pow( numVectorComponents, swizzleComponentIndex );
 
@@ -675,17 +678,25 @@ void GenerateSwizzleFunctions( allocatorLinear_t *tempStorage, stringBuilder_t *
 	}
 }
 
-void GenerateVectorFiles( allocatorLinear_t *tempStorage, const char *generatedCodePath, const typeInfo_t *typeInfos, const u32 typeInfosCount, const generatorStrings_t *strings, const generatorFlags_t flags ) {
+void GenerateVectorFiles( allocatorLinear_t *tempStorage, const char *generatedCodePath, const typeInfo_t *typeInfos, const u32 typeInfosCount, const generatorStrings_t *strings, const generatorFlags_t flags, const u32 componentCountMin, const u32 componentCountMax ) {
 	assert( tempStorage );
 	assert( generatedCodePath );
 	assert( typeInfos );
 	assert( typeInfosCount );
 	assert( strings );
+	assert( componentCountMin <= componentCountMax );
 
 	bool32 cLinkage = flags & GENERATOR_FLAG_C_LINKAGE;
 	bool32 vectorUnions = flags & GENERATOR_FLAG_VECTOR_UNIONS;
 	bool32 generateConstructors = flags & GENERATOR_FLAG_GENERATE_CONSTRUCTORS;
 	bool32 generateOperators = flags & GENERATOR_FLAG_GENERATE_OPERATORS;
+
+	// which scalar types are actually present in typeInfos - a conversion ctor/operator referencing a
+	// scalar type that was excluded from generation (via config) would reference a type that doesn't exist
+	bool32 scalarTypeEnabled[GEN_TYPE_COUNT] = { 0 };
+	for ( u32 i = 0; i < typeInfosCount; i++ ) {
+		scalarTypeEnabled[typeInfos[i].type] = true;
+	}
 	bool32 generateSwizzles = flags & GENERATOR_FLAG_VECTOR_SWIZZLES;
 
 	bool32 generateInlFile = generateConstructors || generateOperators;
@@ -824,12 +835,12 @@ void GenerateVectorFiles( allocatorLinear_t *tempStorage, const char *generatedC
 				if ( generateSwizzles ) {
 					StringBuilder_Appendf( codeHeader, "\n\t\t// swizzles\n" );
 
-					GenerateSwizzleFunctions( tempStorage, codeHeader, typeInfo, strings, flags, GEN_COMPONENT_NAMES_VECTOR, GenerateSwizzleFunc_Members );
+					GenerateSwizzleFunctions( tempStorage, codeHeader, typeInfo, strings, flags, GEN_COMPONENT_NAMES_VECTOR, GenerateSwizzleFunc_Members, componentCountMin, componentCountMax );
 
 					StringBuilder_Append( codeHeader, "\n" );
 
 					if ( vectorUnions ) {
-						GenerateSwizzleFunctions( tempStorage, codeHeader, typeInfo, strings, flags, GEN_COMPONENT_NAMES_COLOR, GenerateSwizzleFunc_Members );
+						GenerateSwizzleFunctions( tempStorage, codeHeader, typeInfo, strings, flags, GEN_COMPONENT_NAMES_COLOR, GenerateSwizzleFunc_Members, componentCountMin, componentCountMax );
 					}
 				}
 
@@ -875,6 +886,11 @@ void GenerateVectorFiles( allocatorLinear_t *tempStorage, const char *generatedC
 						continue;
 					}
 
+					// this scalar type was excluded from generation - can't reference it here
+					if ( !scalarTypeEnabled[otherType] ) {
+						continue;
+					}
+
 					const char *otherTypeString = Gen_GetTypeString( otherType );
 					const char *otherMemberTypeString = Gen_GetMemberTypeString( otherType );
 
@@ -893,6 +909,11 @@ void GenerateVectorFiles( allocatorLinear_t *tempStorage, const char *generatedC
 						u32 leftoverOnes = typeInfo->numCols - componentIndex;
 
 						if ( !leftoverOnes ) {
+							continue;
+						}
+
+						// a sub-vector of this size was excluded from generation - can't reference it here
+						if ( componentIndex < componentCountMin ) {
 							continue;
 						}
 
@@ -931,7 +952,7 @@ void GenerateVectorFiles( allocatorLinear_t *tempStorage, const char *generatedC
 					}
 
 					// if we can also have a ctors consisting of two input vectors then generate that one now
-					if ( typeInfo->numCols > 2 && typeInfo->numCols % 2 == 0 ) {
+					if ( typeInfo->numCols > 2 && typeInfo->numCols % 2 == 0 && ( typeInfo->numCols - 2 ) >= componentCountMin ) {
 						StringBuilder_Appendf( codeHeader, "\tHLML_INLINE %s( ", typeInfo->fullTypeName );
 
 						const u32 numVectorParms = typeInfo->numCols - 2;
@@ -961,7 +982,7 @@ void GenerateVectorFiles( allocatorLinear_t *tempStorage, const char *generatedC
 
 			if ( generateOperators ) {
 				// assignment operators
-				for ( u32 componentIndex = 2; componentIndex <= typeInfo->numCols; componentIndex++ ) {
+				for ( u32 componentIndex = componentCountMin; componentIndex <= typeInfo->numCols; componentIndex++ ) {
 					const char *otherTypeName = String_TPrintf( tempStorage, "%s%d", Gen_GetTypeString( typeInfo->type ), componentIndex );
 
 					StringBuilder_Append(  codeHeader, "\t// Copies all elements of 'other' into the vector.\n" );
@@ -1102,6 +1123,11 @@ void GenerateVectorFiles( allocatorLinear_t *tempStorage, const char *generatedC
 						continue;
 					}
 
+					// this scalar type was excluded from generation - can't reference it here
+					if ( !scalarTypeEnabled[otherType] ) {
+						continue;
+					}
+
 					const char *otherTypeString = Gen_GetTypeString( otherType );
 
 					StringBuilder_Appendf( codeInl, "%s::%s( const %s%d& vec )\n", typeInfo->fullTypeName, typeInfo->fullTypeName, otherTypeString, typeInfo->numCols );
@@ -1136,6 +1162,11 @@ void GenerateVectorFiles( allocatorLinear_t *tempStorage, const char *generatedC
 						u32 leftoverOnes = typeInfo->numCols - componentIndex;
 
 						if ( !leftoverOnes ) {
+							continue;
+						}
+
+						// a sub-vector of this size was excluded from generation - can't reference it here
+						if ( componentIndex < componentCountMin ) {
 							continue;
 						}
 
@@ -1212,7 +1243,7 @@ void GenerateVectorFiles( allocatorLinear_t *tempStorage, const char *generatedC
 					}
 
 					// if we can also have a ctors consisting of two input vectors then generate that one now
-					if ( typeInfo->numCols > 2 && typeInfo->numCols % 2 == 0 ) {
+					if ( typeInfo->numCols > 2 && typeInfo->numCols % 2 == 0 && ( typeInfo->numCols - 2 ) >= componentCountMin ) {
 						StringBuilder_Appendf( codeInl, "%s::%s( ", typeInfo->fullTypeName, typeInfo->fullTypeName );
 
 						const u32 numVectorParms = typeInfo->numCols - 2;
@@ -1270,7 +1301,7 @@ void GenerateVectorFiles( allocatorLinear_t *tempStorage, const char *generatedC
 
 			if ( generateOperators ) {
 				// assignment operators
-				for ( u32 otherVecComponentIndex = 2; otherVecComponentIndex <= typeInfo->numCols; otherVecComponentIndex++ ) {
+				for ( u32 otherVecComponentIndex = componentCountMin; otherVecComponentIndex <= typeInfo->numCols; otherVecComponentIndex++ ) {
 					const char *otherTypeName = String_TPrintf( tempStorage, "%s%d", Gen_GetTypeString( typeInfo->type ), otherVecComponentIndex );
 
 					StringBuilder_Appendf( codeInl, "%s %s::operator=( const %s& other )\n", typeInfo->fullTypeName, typeInfo->fullTypeName, otherTypeName );
@@ -1343,8 +1374,8 @@ void GenerateVectorFiles( allocatorLinear_t *tempStorage, const char *generatedC
 				}
 				StringBuilder_Append( codeHeader, "\n" );
 
-				GenerateSwizzleFunctions( tempStorage, codeHeader, typeInfo, strings, flags, GEN_COMPONENT_NAMES_VECTOR, GenerateSwizzleFunc_Type );
-				GenerateSwizzleFunctions( tempStorage, codeHeader, typeInfo, strings, flags, GEN_COMPONENT_NAMES_COLOR, GenerateSwizzleFunc_Type );
+				GenerateSwizzleFunctions( tempStorage, codeHeader, typeInfo, strings, flags, GEN_COMPONENT_NAMES_VECTOR, GenerateSwizzleFunc_Type, componentCountMin, componentCountMax );
+				GenerateSwizzleFunctions( tempStorage, codeHeader, typeInfo, strings, flags, GEN_COMPONENT_NAMES_COLOR, GenerateSwizzleFunc_Type, componentCountMin, componentCountMax );
 
 				StringBuilder_Append( codeInl,
 					"#ifdef HLML_NAMESPACE\n"
@@ -1377,11 +1408,11 @@ void GenerateVectorFiles( allocatorLinear_t *tempStorage, const char *generatedC
 				StringBuilder_Appendf( codeInl, "#include \"%s_swizzle_types.h\"\n\n", typeInfo->fullTypeName );
 
 				StringBuilder_Append( codeInl, "// xyzw swizzles\n" );
-				GenerateSwizzleFunctions( tempStorage, codeInl, typeInfo, strings, flags, GEN_COMPONENT_NAMES_VECTOR, GenerateSwizzleFunc_OperatorDefinitions );
+				GenerateSwizzleFunctions( tempStorage, codeInl, typeInfo, strings, flags, GEN_COMPONENT_NAMES_VECTOR, GenerateSwizzleFunc_OperatorDefinitions, componentCountMin, componentCountMax );
 				StringBuilder_Append( codeInl, "\n" );
 
 				StringBuilder_Append( codeInl, "// rgba swizzles\n" );
-				GenerateSwizzleFunctions( tempStorage, codeInl, typeInfo, strings, flags, GEN_COMPONENT_NAMES_COLOR, GenerateSwizzleFunc_OperatorDefinitions );
+				GenerateSwizzleFunctions( tempStorage, codeInl, typeInfo, strings, flags, GEN_COMPONENT_NAMES_COLOR, GenerateSwizzleFunc_OperatorDefinitions, componentCountMin, componentCountMax );
 
 				StringBuilder_Append( codeInl,
 					"#ifdef HLML_NAMESPACE\n"

@@ -96,13 +96,16 @@ void		GenerateComponentWiseTests( allocatorLinear_t *tempStorage,
 										const typeInfo_t *typeInfo,
 										const typeInfo_t *scalarType,
 										const generatorStrings_t *strings,
-										const generatorFlags_t flags );
+										const generatorFlags_t flags,
+										const bool32 generateQuaternions );
 
 void		GenerateTests_CtorConversion( allocatorLinear_t *tempStorage,
 										  stringBuilder_t *code,
 										  const typeInfo_t *typeInfo,
 										  const generatorStrings_t *strings,
-										  const generatorFlags_t flags );
+										  const generatorFlags_t flags,
+										  const u32 componentCountMin,
+										  const bool32 *scalarTypeEnabled );
 
 void		GenerateVectorTests( allocatorLinear_t *tempStorage,
 								 const char *generatedTestsPath,
@@ -110,7 +113,10 @@ void		GenerateVectorTests( allocatorLinear_t *tempStorage,
 								 const typeInfo_t *vectorTypeInfos,
 								 const u32 vectorTypeInfosCount,
 								 const generatorStrings_t *strings,
-								 const generatorFlags_t flags );
+								 const generatorFlags_t flags,
+								 const u32 componentCountMin,
+								 const u32 componentCountMax,
+								 const bool32 generateQuaternions );
 
 void		GenerateQuaternionTests( allocatorLinear_t *tempStorage,
 									 const char *generatedTestsPath,

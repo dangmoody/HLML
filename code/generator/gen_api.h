@@ -41,9 +41,9 @@ void	GenerateScalarFiles_SSE( allocatorLinear_t *tempStorage, const char *genera
 
 bool32	SwizzleTypeIsWritable( const char *swizzleStr, const u32 numSwizzleComponents );
 
-void	GenerateSwizzleFunctions( allocatorLinear_t *tempStorage, stringBuilder_t *code, const typeInfo_t *typeInfo, const generatorStrings_t *strings, const generatorFlags_t flags, const char *componentNames, generateSwizzleFunc_t generateSwizzleFunc );
+void	GenerateSwizzleFunctions( allocatorLinear_t *tempStorage, stringBuilder_t *code, const typeInfo_t *typeInfo, const generatorStrings_t *strings, const generatorFlags_t flags, const char *componentNames, generateSwizzleFunc_t generateSwizzleFunc, const u32 componentCountMin, const u32 componentCountMax );
 
-void	GenerateVectorFiles( allocatorLinear_t *tempStorage, const char *generatedCodePath, const typeInfo_t *typeInfos, const u32 typeInfosCount, const generatorStrings_t *strings, const generatorFlags_t flags );
+void	GenerateVectorFiles( allocatorLinear_t *tempStorage, const char *generatedCodePath, const typeInfo_t *typeInfos, const u32 typeInfosCount, const generatorStrings_t *strings, const generatorFlags_t flags, const u32 componentCountMin, const u32 componentCountMax );
 void	GenerateVectorFiles_SSE( allocatorLinear_t *tempStorage, const char *generatedCodePath, const typeInfo_t *typeInfos, const u32 typeInfosCount, const generatorStrings_t *strings, const generatorFlags_t flags );
 
 void	GenerateQuaternionFiles( allocatorLinear_t *tempStorage, const char *generatedCodePath, const typeInfo_t *typeInfos, const u32 typeInfosCount, const generatorStrings_t *strings, const generatorFlags_t flags );
@@ -56,7 +56,8 @@ void	Gen_GenerateAPIFiles( allocatorLinear_t *tempStorage,
 							  const typeInfo_t *quaternionTypeInfos, const u32 quaternionTypeInfosCount,
 							  const typeInfo_t *matrixTypeInfos, const u32 matrixTypeInfosCount,
 							  const generatorStrings_t *strings,
-							  const generatorFlags_t flags );
+							  const generatorFlags_t flags,
+							  const u32 componentCountMin, const u32 componentCountMax );
 
 void	Gen_GenerateTests( allocatorLinear_t *tempStorage,
 						   const char *languageName,
@@ -64,4 +65,5 @@ void	Gen_GenerateTests( allocatorLinear_t *tempStorage,
 						   const typeInfo_t *quaternionTypeInfos, const u32 quaternionTypeInfosCount,
 						   const typeInfo_t *matrixTypeInfos, const u32 matrixTypeInfosCount,
 						   const generatorStrings_t *strings,
-						   const generatorFlags_t flags );
+						   const generatorFlags_t flags,
+						   const u32 componentCountMin, const u32 componentCountMax );

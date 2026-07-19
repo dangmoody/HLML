@@ -1341,7 +1341,7 @@ static void GenerateOperatorTests( allocatorLinear_t *tempStorage, stringBuilder
 	}
 }
 
-void GenerateComponentWiseTests( allocatorLinear_t *tempStorage, stringBuilder_t *code, const typeInfo_t *typeInfo, const typeInfo_t *scalarType, const generatorStrings_t *strings, const generatorFlags_t flags ) {
+void GenerateComponentWiseTests( allocatorLinear_t *tempStorage, stringBuilder_t *code, const typeInfo_t *typeInfo, const typeInfo_t *scalarType, const generatorStrings_t *strings, const generatorFlags_t flags, const bool32 generateQuaternions ) {
 	assert( tempStorage );
 	assert( code );
 	assert( typeInfo );
@@ -1618,7 +1618,7 @@ void GenerateComponentWiseTests( allocatorLinear_t *tempStorage, stringBuilder_t
 		} );
 	}
 
-	if ( Gen_TypeIsVector( typeInfo ) && Gen_VectorQualifiesAsQuaternion( typeInfo ) ) {
+	if ( generateQuaternions && Gen_TypeIsVector( typeInfo ) && Gen_VectorQualifiesAsQuaternion( typeInfo ) ) {
 		Gen_GenerateParametricTestsCode_ComponentWise( tempStorage, code, typeInfo, GEN_FUNCTION_NAME_QUAT_LENGTH, strings, flags, &(componentWiseTestsData_t) {
 			.parmDefsCount = 1,
 			.parmDefs = (parametricTestDefinitionParm_t[]) {
@@ -1698,7 +1698,7 @@ void GenerateComponentWiseTests( allocatorLinear_t *tempStorage, stringBuilder_t
 	}
 }
 
-void GenerateTests_CtorConversion( allocatorLinear_t *tempStorage, stringBuilder_t *code, const typeInfo_t *typeInfo, const generatorStrings_t *strings, const generatorFlags_t flags ) {
+void GenerateTests_CtorConversion( allocatorLinear_t *tempStorage, stringBuilder_t *code, const typeInfo_t *typeInfo, const generatorStrings_t *strings, const generatorFlags_t flags, const u32 componentCountMin, const bool32 *scalarTypeEnabled ) {
 	assert( tempStorage );
 	assert( code );
 	assert( typeInfo );
@@ -1765,6 +1765,11 @@ void GenerateTests_CtorConversion( allocatorLinear_t *tempStorage, stringBuilder
 		//
 		// so we need a way of handling this
 		if ( otherType == GEN_TYPE_BOOL ) {
+			continue;
+		}
+
+		// this scalar type was excluded from generation - can't reference it here
+		if ( !scalarTypeEnabled[otherType] ) {
 			continue;
 		}
 
@@ -1865,6 +1870,11 @@ void GenerateTests_CtorConversion( allocatorLinear_t *tempStorage, stringBuilder
 			u32 leftoverOnes = typeInfo->numCols - numComponents;
 
 			if ( !leftoverOnes ) {
+				continue;
+			}
+
+			// a sub-vector of this size was excluded from generation - can't reference it here
+			if ( numComponents < componentCountMin ) {
 				continue;
 			}
 
@@ -1976,7 +1986,7 @@ void GenerateTests_CtorConversion( allocatorLinear_t *tempStorage, stringBuilder
 			}
 		}
 
-		if ( typeInfo->numCols > 2 && typeInfo->numCols % 2 == 0 ) {
+		if ( typeInfo->numCols > 2 && typeInfo->numCols % 2 == 0 && ( typeInfo->numCols - 2 ) >= componentCountMin ) {
 			subVecType = (typeInfo_t) {
 				.type = typeInfo->type,
 				.numRows = typeInfo->numRows,
