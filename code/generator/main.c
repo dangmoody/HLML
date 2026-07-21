@@ -100,13 +100,13 @@ int main( int argc, char **argv ) {
 	typeInfo_t *quaternionTypeInfos = NULL;
 	typeInfo_t *matrixTypeInfos = NULL;
 
-	Gen_BuildTypeInfos( allocator, &config.types, config.flags,
+	Gen_BuildTypeInfos( allocator, &config,
 		&vectorTypeInfos, &vectorTypeInfosCount,
 		&quaternionTypeInfos, &quaternionTypeInfosCount,
 		&matrixTypeInfos, &matrixTypeInfosCount );
 
-	const u32 componentCountMin = config.types.componentCountMin;
-	const u32 componentCountMax = config.types.componentCountMax;
+	const u32 componentCountMin = config.componentCountMin;
+	const u32 componentCountMax = config.componentCountMax;
 
 	const char *languageName = ( config.language == GEN_LANGUAGE_C ) ? "c" : "cpp";
 

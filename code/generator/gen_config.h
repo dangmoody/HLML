@@ -47,22 +47,18 @@ typedef enum genLanguage_t {
 	GEN_LANGUAGE_COUNT
 } genLanguage_t;
 
-typedef struct genConfigTypes_t {
-	bool32	scalarTypeEnabled[GEN_TYPE_COUNT];	// indexed by genType_t; note GEN_TYPE_BOOL is currently always forced on, see gen_config.c
-	u32		componentCountMin;					// inclusive, applies to both vector component counts and matrix rows/cols
-	u32		componentCountMax;					// inclusive
-} genConfigTypes_t;
-
 typedef struct genConfig_t {
 	genLanguage_t		language;
-	genConfigTypes_t	types;
+	bool32				scalarTypeEnabled[GEN_TYPE_COUNT];	// indexed by genType_t; note GEN_TYPE_BOOL is currently always forced on, see gen_config.c
+	u32					componentCountMin;					// inclusive, applies to both vector component counts and matrix rows/cols
+	u32					componentCountMax;					// inclusive
 	generatorFlags_t	flags;
 } genConfig_t;
 
-// fills in outConfig->types with sensible defaults and clears the rest.  outConfig->language is left as
-// GEN_LANGUAGE_NONE and outConfig->flags as 0 - there is no default language, so Gen_Config_LoadFromFile
-// must supply "language" from the config file, which in turn determines the default flags for that
-// language before any explicit top-level flag overrides in the same file are applied on top.
+// fills in outConfig with sensible defaults.  outConfig->language is left as GEN_LANGUAGE_NONE and
+// outConfig->flags as 0 - there is no default language, so Gen_Config_LoadFromFile must supply "language"
+// from the config file, which in turn determines the default flags for that language before any explicit
+// top-level flag overrides in the same file are applied on top.
 void	Gen_Config_SetDefaults( genConfig_t *outConfig );
 
 // loads config values from a TOML file at 'filename' on top of whatever outConfig already contains
@@ -73,10 +69,10 @@ void	Gen_Config_SetDefaults( genConfig_t *outConfig );
 // rather than continue with a partially-loaded config.
 bool32	Gen_Config_LoadFromFile( const char *filename, genConfig_t *outConfig );
 
-// builds the vector/quaternion/matrix typeInfo_t arrays according to the given types config and flags
-// (specifically GENERATOR_FLAG_GENERATE_QUATERNIONS/GENERATOR_FLAG_GENERATE_NON_SQUARE_MATRICES), replacing
-// the hardcoded construction that used to live in main.c
-void	Gen_BuildTypeInfos( allocatorLinear_t *allocator, const genConfigTypes_t *typesConfig, const generatorFlags_t flags,
+// builds the vector/quaternion/matrix typeInfo_t arrays according to the given config (specifically
+// GENERATOR_FLAG_GENERATE_QUATERNIONS/GENERATOR_FLAG_GENERATE_NON_SQUARE_MATRICES), replacing the
+// hardcoded construction that used to live in main.c
+void	Gen_BuildTypeInfos( allocatorLinear_t *allocator, const genConfig_t *config,
 	typeInfo_t **outVectorTypeInfos, u32 *outVectorTypeInfosCount,
 	typeInfo_t **outQuaternionTypeInfos, u32 *outQuaternionTypeInfosCount,
 	typeInfo_t **outMatrixTypeInfos, u32 *outMatrixTypeInfosCount );

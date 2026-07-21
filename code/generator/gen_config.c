@@ -108,11 +108,11 @@ void Gen_Config_SetDefaults( genConfig_t *outConfig ) {
 	outConfig->language = GEN_LANGUAGE_NONE;
 
 	for ( u32 i = 0; i < GEN_TYPE_COUNT; i++ ) {
-		outConfig->types.scalarTypeEnabled[i] = true;
+		outConfig->scalarTypeEnabled[i] = true;
 	}
 
-	outConfig->types.componentCountMin = GEN_CONFIG_COMPONENT_COUNT_MIN;
-	outConfig->types.componentCountMax = GEN_CONFIG_COMPONENT_COUNT_MAX;
+	outConfig->componentCountMin = GEN_CONFIG_COMPONENT_COUNT_MIN;
+	outConfig->componentCountMax = GEN_CONFIG_COMPONENT_COUNT_MAX;
 
 	// outConfig->flags (which includes generateQuaternions/generateNonSquareMatrices now that they're
 	// generatorFlagBits_t) is left at 0 - there's no language-agnostic default for it.  Gen_Config_LoadFromFile
@@ -187,7 +187,7 @@ bool32 Gen_Config_LoadFromFile( const char *filename, genConfig_t *outConfig ) {
 		toml_array_t *scalarTypesArray = toml_array_in( root, "scalar_types" );
 		if ( scalarTypesArray ) {
 			for ( u32 i = 0; i < GEN_TYPE_COUNT; i++ ) {
-				outConfig->types.scalarTypeEnabled[i] = false;
+				outConfig->scalarTypeEnabled[i] = false;
 			}
 
 			int arrayCount = toml_array_nelem( scalarTypesArray );
@@ -199,7 +199,7 @@ bool32 Gen_Config_LoadFromFile( const char *filename, genConfig_t *outConfig ) {
 
 				for ( u32 typeIndex = 0; typeIndex < GEN_TYPE_COUNT; typeIndex++ ) {
 					if ( String_Equals( datum.u.s, Gen_GetTypeString( (genType_t) typeIndex ) ) ) {
-						outConfig->types.scalarTypeEnabled[typeIndex] = true;
+						outConfig->scalarTypeEnabled[typeIndex] = true;
 						matched = true;
 						break;
 					}
@@ -222,12 +222,12 @@ bool32 Gen_Config_LoadFromFile( const char *filename, genConfig_t *outConfig ) {
 
 		toml_datum_t componentCountMinDatum = toml_int_in( root, "component_count_min" );
 		if ( componentCountMinDatum.ok ) {
-			outConfig->types.componentCountMin = (u32) componentCountMinDatum.u.i;
+			outConfig->componentCountMin = (u32) componentCountMinDatum.u.i;
 		}
 
 		toml_datum_t componentCountMaxDatum = toml_int_in( root, "component_count_max" );
 		if ( componentCountMaxDatum.ok ) {
-			outConfig->types.componentCountMax = (u32) componentCountMaxDatum.u.i;
+			outConfig->componentCountMax = (u32) componentCountMaxDatum.u.i;
 		}
 	}
 
@@ -240,17 +240,17 @@ bool32 Gen_Config_LoadFromFile( const char *filename, genConfig_t *outConfig ) {
 	// vector/matrix type and return a boolN/boolNxM type - see GenerateComponentWiseOperators() in
 	// gen_shared.c - so "bool" can't be excluded from "scalar_types" yet.  Force it back on and tell them
 	// why, rather than silently dropping the request or failing to compile.
-	if ( !outConfig->types.scalarTypeEnabled[GEN_TYPE_BOOL] ) {
+	if ( !outConfig->scalarTypeEnabled[GEN_TYPE_BOOL] ) {
 		printf( "NOTE: \"bool\" cannot be excluded from \"scalar_types\" yet - equality operators on other types return bool vectors/matrices.  Generating it anyway.\n" );
-		outConfig->types.scalarTypeEnabled[GEN_TYPE_BOOL] = true;
+		outConfig->scalarTypeEnabled[GEN_TYPE_BOOL] = true;
 	}
 
 	// validation - each of these is a normal, expected user error (a typo'd or contradictory config file),
 	// not a programming bug, so report it clearly and let the caller exit gracefully rather than asserting
 	{
-		if ( outConfig->types.componentCountMin > outConfig->types.componentCountMax ) {
+		if ( outConfig->componentCountMin > outConfig->componentCountMax ) {
 			printf( "ERROR: \"component_count_min\" (%u) is greater than \"component_count_max\" (%u) in \"%s\".\n",
-				outConfig->types.componentCountMin, outConfig->types.componentCountMax, filename );
+				outConfig->componentCountMin, outConfig->componentCountMax, filename );
 
 			toml_free( root );
 			root = NULL;
@@ -258,7 +258,7 @@ bool32 Gen_Config_LoadFromFile( const char *filename, genConfig_t *outConfig ) {
 			return false;
 		}
 
-		if ( outConfig->types.componentCountMin < GEN_CONFIG_COMPONENT_COUNT_MIN || outConfig->types.componentCountMax > GEN_CONFIG_COMPONENT_COUNT_MAX ) {
+		if ( outConfig->componentCountMin < GEN_CONFIG_COMPONENT_COUNT_MIN || outConfig->componentCountMax > GEN_CONFIG_COMPONENT_COUNT_MAX ) {
 			printf( "ERROR: \"component_count_min\"/\"component_count_max\" must be within [%u, %u] in \"%s\".\n",
 				GEN_CONFIG_COMPONENT_COUNT_MIN, GEN_CONFIG_COMPONENT_COUNT_MAX, filename );
 
@@ -270,7 +270,7 @@ bool32 Gen_Config_LoadFromFile( const char *filename, genConfig_t *outConfig ) {
 
 		bool32 anyScalarTypeEnabled = false;
 		for ( u32 i = 0; i < GEN_TYPE_COUNT; i++ ) {
-			anyScalarTypeEnabled |= outConfig->types.scalarTypeEnabled[i];
+			anyScalarTypeEnabled |= outConfig->scalarTypeEnabled[i];
 		}
 
 		if ( !anyScalarTypeEnabled ) {
@@ -289,13 +289,13 @@ bool32 Gen_Config_LoadFromFile( const char *filename, genConfig_t *outConfig ) {
 	return true;
 }
 
-void Gen_BuildTypeInfos( allocatorLinear_t *allocator, const genConfigTypes_t *typesConfig, const generatorFlags_t flags,
+void Gen_BuildTypeInfos( allocatorLinear_t *allocator, const genConfig_t *config,
 	typeInfo_t **outVectorTypeInfos, u32 *outVectorTypeInfosCount,
 	typeInfo_t **outQuaternionTypeInfos, u32 *outQuaternionTypeInfosCount,
 	typeInfo_t **outMatrixTypeInfos, u32 *outMatrixTypeInfosCount ) {
 
 	assert( allocator );
-	assert( typesConfig );
+	assert( config );
 	assert( outVectorTypeInfos );
 	assert( outVectorTypeInfosCount );
 	assert( outQuaternionTypeInfos );
@@ -303,8 +303,9 @@ void Gen_BuildTypeInfos( allocatorLinear_t *allocator, const genConfigTypes_t *t
 	assert( outMatrixTypeInfos );
 	assert( outMatrixTypeInfosCount );
 
-	const u32 componentCountMin = typesConfig->componentCountMin;
-	const u32 componentCountMax = typesConfig->componentCountMax;
+	const generatorFlags_t flags = config->flags;
+	const u32 componentCountMin = config->componentCountMin;
+	const u32 componentCountMax = config->componentCountMax;
 	const u32 numComponentPermutations = ( componentCountMax - componentCountMin ) + 1;
 
 	// vectors
@@ -315,7 +316,7 @@ void Gen_BuildTypeInfos( allocatorLinear_t *allocator, const genConfigTypes_t *t
 		u32 typeInfoIndex = 0;
 
 		for ( u32 typeIndex = 0; typeIndex < GEN_TYPE_COUNT; typeIndex++ ) {
-			if ( !typesConfig->scalarTypeEnabled[typeIndex] ) {
+			if ( !config->scalarTypeEnabled[typeIndex] ) {
 				continue;
 			}
 
@@ -339,8 +340,8 @@ void Gen_BuildTypeInfos( allocatorLinear_t *allocator, const genConfigTypes_t *t
 	// since quaternion codegen assumes a same-sized floating point vector type exists alongside it
 	{
 		bool32 canGenerateQuaternions = ( flags & GENERATOR_FLAG_GENERATE_QUATERNIONS )
-			&& typesConfig->scalarTypeEnabled[GEN_TYPE_FLOAT]
-			&& typesConfig->scalarTypeEnabled[GEN_TYPE_DOUBLE]
+			&& config->scalarTypeEnabled[GEN_TYPE_FLOAT]
+			&& config->scalarTypeEnabled[GEN_TYPE_DOUBLE]
 			&& componentCountMin <= 4
 			&& componentCountMax >= 4;
 
@@ -373,7 +374,7 @@ void Gen_BuildTypeInfos( allocatorLinear_t *allocator, const genConfigTypes_t *t
 		u32 typeInfoIndex = 0;
 
 		for ( u32 typeIndex = 0; typeIndex < GEN_TYPE_COUNT; typeIndex++ ) {
-			if ( !typesConfig->scalarTypeEnabled[typeIndex] ) {
+			if ( !config->scalarTypeEnabled[typeIndex] ) {
 				continue;
 			}
 
