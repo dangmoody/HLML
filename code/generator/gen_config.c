@@ -277,12 +277,13 @@ bool32 Gen_Config_LoadFromFile( const char *filename, genConfig_t *outConfig ) {
 		ApplyGenerateFlagsFromTable( root, &outConfig->flags );
 	}
 
-	// TODO: DM: 20/07/2026: equality operators (== !=) are generated unconditionally on every other
-	// vector/matrix type and return a boolN/boolNxM type - see GenerateComponentWiseOperators() in
-	// gen_shared.c - so "bool" can't be excluded from "scalar_types" yet.  Force it back on and tell them
-	// why, rather than silently dropping the request or failing to compile.
-	if ( !outConfig->scalarTypeEnabled[GEN_TYPE_BOOL] ) {
-		printf( "NOTE: \"bool\" cannot be excluded from \"scalar_types\" yet - equality operators on other types return bool vectors/matrices.  Generating it anyway.\n" );
+	// relational operators (<, <=, >, >=) return a boolN/boolNxM type for every other vector/matrix type -
+	// see GenerateComponentWiseOperators() in gen_shared.c - so "bool" can't be excluded from
+	// "scalar_types" while "generate_relational_operators" is on.  Equality (==, !=) is unaffected: it
+	// always returns a plain scalar bool, not a generated type, regardless of scalar_types.  Force bool
+	// back on and tell them why, rather than silently dropping the request or failing to compile.
+	if ( !outConfig->scalarTypeEnabled[GEN_TYPE_BOOL] && ( outConfig->flags & GENERATOR_FLAG_GENERATE_RELATIONAL_OPERATORS ) ) {
+		printf( "NOTE: \"bool\" cannot be excluded from \"scalar_types\" while \"generate_relational_operators\" is enabled - relational operators on other types return bool vectors/matrices.  Generating it anyway.\n" );
 		outConfig->scalarTypeEnabled[GEN_TYPE_BOOL] = true;
 	}
 
