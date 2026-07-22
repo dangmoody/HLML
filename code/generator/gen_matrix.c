@@ -1201,21 +1201,15 @@ void GenerateMatrixFiles( allocatorLinear_t *tempStorage, const char *generatedC
 			}
 
 			if ( !cLinkage ) {
-				for ( u32 typeIndex = 0; typeIndex < GEN_TYPE_COUNT; typeIndex++ ) {
-					const genType_t otherType = (genType_t) typeIndex;
+				for ( u32 otherTypeInfoIndex = 0; otherTypeInfoIndex < typeInfosCount; otherTypeInfoIndex++ ) {
+					const typeInfo_t *otherTypeInfo = &typeInfos[otherTypeInfoIndex];
 
-					const char *otherTypeString = Gen_GetTypeString( otherType );
-
-					for ( u32 row = 2; row <= 4; row++ ) {
-						for ( u32 col = 2; col <= 4; col++ ) {
-							// dont forward declare the same type as what were about to define
-							if ( otherType == typeInfo->type && row == typeInfo->numRows && col == typeInfo->numCols ) {
-								continue;
-							}
-
-							StringBuilder_Appendf( codeHeader, "struct %s%dx%d;\n", otherTypeString, row, col );
-						}
+					// dont forward declare the same type as what were about to define
+					if ( otherTypeInfo->type == typeInfo->type && otherTypeInfo->numRows == typeInfo->numRows && otherTypeInfo->numCols == typeInfo->numCols ) {
+						continue;
 					}
+
+					StringBuilder_Appendf( codeHeader, "struct %s;\n", otherTypeInfo->fullTypeName );
 				}
 			}
 
