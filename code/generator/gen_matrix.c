@@ -245,6 +245,8 @@ static void GenerateFunction_Inverse_Matrix( allocatorLinear_t *tempStorage, con
 	assert( code );
 	assert( strings );
 
+	bool32 generateConstructors = flags & GENERATOR_FLAG_GENERATE_CONSTRUCTORS;
+
 	if ( !Gen_TypeIsFloatingPoint( typeInfo->type ) ) {
 		return;
 	}
@@ -374,17 +376,35 @@ static void GenerateFunction_Inverse_Matrix( allocatorLinear_t *tempStorage, con
 				StringBuilder_Appendf( code, "\t%s inv2 = vec0 * fac1 - vec1 * fac3 + vec3 * fac5;\n", memberTypeInfo->fullTypeName );
 				StringBuilder_Appendf( code, "\t%s inv3 = vec0 * fac2 - vec1 * fac4 + vec2 * fac5;\n", memberTypeInfo->fullTypeName );
 				StringBuilder_Append(  code, "\n" );
-				StringBuilder_Appendf( code, "\t%s sign0 = %s(  1, -1,  1, -1 );\n", memberTypeInfo->fullTypeName, memberTypeInfo->fullTypeName );
-				StringBuilder_Appendf( code, "\t%s sign1 = %s( -1,  1, -1,  1 );\n", memberTypeInfo->fullTypeName, memberTypeInfo->fullTypeName );
+				if ( generateConstructors ) {
+					StringBuilder_Appendf( code, "\t%s sign0 = %s(  1, -1,  1, -1 );\n", memberTypeInfo->fullTypeName, memberTypeInfo->fullTypeName );
+					StringBuilder_Appendf( code, "\t%s sign1 = %s( -1,  1, -1,  1 );\n", memberTypeInfo->fullTypeName, memberTypeInfo->fullTypeName );
+				} else {
+					StringBuilder_Appendf( code, "\t%s sign0 = {  1, -1,  1, -1 };\n", memberTypeInfo->fullTypeName );
+					StringBuilder_Appendf( code, "\t%s sign1 = { -1,  1, -1,  1 };\n", memberTypeInfo->fullTypeName );
+				}
 				StringBuilder_Append(  code, "\n" );
-				StringBuilder_Appendf( code, "\t%s result = %s(\n", typeInfo->fullTypeName, typeInfo->fullTypeName );
+				if ( generateConstructors ) {
+					StringBuilder_Appendf( code, "\t%s result = %s(\n", typeInfo->fullTypeName, typeInfo->fullTypeName );
+				} else {
+					StringBuilder_Appendf( code, "\t%s result =\n", typeInfo->fullTypeName );
+					StringBuilder_Append(  code, "\t{\n" );
+				}
 				StringBuilder_Append(  code, "\t\tinv0 * sign0,\n" );
 				StringBuilder_Append(  code, "\t\tinv1 * sign1,\n" );
 				StringBuilder_Append(  code, "\t\tinv2 * sign0,\n" );
 				StringBuilder_Append(  code, "\t\tinv3 * sign1\n" );
-				StringBuilder_Append(  code, "\t);\n" );
+				if ( generateConstructors ) {
+					StringBuilder_Append(  code, "\t);\n" );
+				} else {
+					StringBuilder_Append(  code, "\t};\n" );
+				}
 				StringBuilder_Append(  code, "\n" );
-				StringBuilder_Appendf( code, "\t%s row0 = %s( result.rows[0][0], result.rows[1][0], result.rows[2][0], result.rows[3][0] );\n", memberTypeInfo->fullTypeName, memberTypeInfo->fullTypeName );
+				if ( generateConstructors ) {
+					StringBuilder_Appendf( code, "\t%s row0 = %s( result.rows[0][0], result.rows[1][0], result.rows[2][0], result.rows[3][0] );\n", memberTypeInfo->fullTypeName, memberTypeInfo->fullTypeName );
+				} else {
+					StringBuilder_Appendf( code, "\t%s row0 = { result.rows[0][0], result.rows[1][0], result.rows[2][0], result.rows[3][0] };\n", memberTypeInfo->fullTypeName );
+				}
 				StringBuilder_Appendf( code, "\t%s dot0 = mat.rows[0] * row0;\n", memberTypeInfo->fullTypeName );
 				StringBuilder_Append(  code, "\n" );
 				StringBuilder_Appendf( code, "\tconst %s dot1 = ( dot0.x + dot0.y ) + ( dot0.z + dot0.w );\n", memberTypeString );
