@@ -96,7 +96,8 @@ void		GenerateComponentWiseTests( allocatorLinear_t *tempStorage,
 										const typeInfo_t *scalarType,
 										const generatorStrings_t *strings,
 										const generatorFlags_t flags,
-										const bool32 generateQuaternions );
+										const bool32 generateQuaternions,
+										const bool32 *scalarTypeEnabled );
 
 void		GenerateTests_CtorConversion( allocatorLinear_t *tempStorage,
 										  stringBuilder_t *code,

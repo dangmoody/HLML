@@ -221,7 +221,7 @@ stringBuilder_t	*Gen_GetParmList_MatrixMultiply( allocatorLinear_t *tempStorage,
 
 stringBuilder_t	*Gen_GetConstructor( allocatorLinear_t *tempStorage, const typeInfo_t *typeInfo, const float32 *values, const generatorStrings_t *strings, const generatorFlags_t flags );
 
-void				GenerateComponentWiseFunctions( allocatorLinear_t *tempStorage, const typeInfo_t *typeInfo, const typeInfo_t *memberTypeInfo, stringBuilder_t *code, const generatorStrings_t *strings, const generatorFlags_t flags );
+void				GenerateComponentWiseFunctions( allocatorLinear_t *tempStorage, const typeInfo_t *typeInfo, const typeInfo_t *memberTypeInfo, stringBuilder_t *code, const generatorStrings_t *strings, const generatorFlags_t flags, const bool32 *scalarTypeEnabled );
 
 void				GenerateComponentWiseOperators( allocatorLinear_t *tempStorage, const typeInfo_t *typeInfo, stringBuilder_t *code, const generatorStrings_t *strings, const generatorFlags_t flags );
 

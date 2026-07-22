@@ -1564,7 +1564,7 @@ void GenerateMatrixFiles( allocatorLinear_t *tempStorage, const char *generatedC
 
 			StringBuilder_Appendf( code, "// %s\n", typeInfo->fullTypeName );
 
-			GenerateComponentWiseFunctions( tempStorage, typeInfo, &vectorMemberType, code, strings, flags );
+			GenerateComponentWiseFunctions( tempStorage, typeInfo, &vectorMemberType, code, strings, flags, scalarTypeEnabled );
 
 			GenerateComponentWiseOperators( tempStorage, typeInfo, code, strings, flags );
 

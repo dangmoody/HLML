@@ -1610,7 +1610,7 @@ void GenerateVectorFiles( allocatorLinear_t *tempStorage, const char *generatedC
 
 			GenerateComponentWiseOperators( tempStorage, typeInfo, code, strings, flags );
 
-			GenerateComponentWiseFunctions( tempStorage, typeInfo, &scalarMemberType, code, strings, flags );
+			GenerateComponentWiseFunctions( tempStorage, typeInfo, &scalarMemberType, code, strings, flags, scalarTypeEnabled );
 
 			GenerateFunction_All( tempStorage, typeInfo, code, flags );
 			GenerateFunction_Any( tempStorage, typeInfo, code, flags );

@@ -1344,7 +1344,7 @@ static void GenerateOperatorTests( allocatorLinear_t *tempStorage, stringBuilder
 	}
 }
 
-void GenerateComponentWiseTests( allocatorLinear_t *tempStorage, stringBuilder_t *code, const typeInfo_t *typeInfo, const typeInfo_t *scalarType, const generatorStrings_t *strings, const generatorFlags_t flags, const bool32 generateQuaternions ) {
+void GenerateComponentWiseTests( allocatorLinear_t *tempStorage, stringBuilder_t *code, const typeInfo_t *typeInfo, const typeInfo_t *scalarType, const generatorStrings_t *strings, const generatorFlags_t flags, const bool32 generateQuaternions, const bool32 *scalarTypeEnabled ) {
 	assert( tempStorage );
 	assert( code );
 	assert( typeInfo );
@@ -1352,6 +1352,7 @@ void GenerateComponentWiseTests( allocatorLinear_t *tempStorage, stringBuilder_t
 	assert( scalarType );
 	assert( scalarType->fullTypeName );
 	assert( strings );
+	assert( Gen_TypeIsScalar( typeInfo ) || scalarTypeEnabled );
 
 	typeInfo_t boolReturnTypeScalar = {
 		.type			= GEN_TYPE_BOOL,
@@ -1472,7 +1473,7 @@ void GenerateComponentWiseTests( allocatorLinear_t *tempStorage, stringBuilder_t
 		} );
 	}
 
-	if ( typeInfo->type != GEN_TYPE_BOOL && typeInfo->type != GEN_TYPE_UINT ) {
+	if ( typeInfo->type != GEN_TYPE_BOOL && typeInfo->type != GEN_TYPE_UINT && ( Gen_TypeIsScalar( typeInfo ) || scalarTypeEnabled[GEN_TYPE_INT] ) ) {
 		// sign
 		typeInfo_t returnType = {
 			.type			= GEN_TYPE_INT,

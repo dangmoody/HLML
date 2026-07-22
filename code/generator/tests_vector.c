@@ -1342,7 +1342,7 @@ void GenerateVectorTests( allocatorLinear_t *tempStorage, const char *generatedT
 
 		Gen_AppendTestFileIncludes( tempStorage, code, flags );
 
-		GenerateComponentWiseTests( tempStorage, code, typeInfo, &scalarType, strings, flags, generateQuaternions );
+		GenerateComponentWiseTests( tempStorage, code, typeInfo, &scalarType, strings, flags, generateQuaternions, scalarTypeEnabled );
 
 		GenerateTests_CtorConversion( tempStorage, code, typeInfo, strings, flags, componentCountMin, scalarTypeEnabled );
 

@@ -102,7 +102,9 @@ void Gen_GenerateTests( allocatorLinear_t *tempStorage,
 		// the "true" below (generateQuaternions) is never read for a scalar typeInfo: GenerateComponentWiseTests
 		// only checks it inside its quaternion test block, which is itself gated behind
 		// Gen_TypeIsVector( typeInfo ) and so never runs here - see tests_shared.c
-		GenerateComponentWiseTests( tempStorage, code, &typeInfo, &typeInfo, strings, flags, true );
+		// scalarTypeEnabled (NULL below) is likewise only read for the vector/matrix "sign" test, which
+		// is unreachable for a scalar typeInfo since Gen_TypeIsScalar( typeInfo ) short-circuits it
+		GenerateComponentWiseTests( tempStorage, code, &typeInfo, &typeInfo, strings, flags, true, NULL );
 
 		const char *fileNameHeader = String_TPrintf( tempStorage, "%s/test_%s.%s", generatedTestsPath, typeString, languageName );
 		FS_WriteEntireFile( fileNameHeader, code->str, code->length );

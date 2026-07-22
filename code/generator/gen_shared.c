@@ -1276,7 +1276,7 @@ static void GenerateComponentWiseFunction( allocatorLinear_t *tempStorage, strin
 	StringBuilder_Append( code, "}\n\n" );
 }
 
-void GenerateComponentWiseFunctions( allocatorLinear_t *tempStorage, const typeInfo_t *typeInfo, const typeInfo_t *memberTypeInfo, stringBuilder_t *code, const generatorStrings_t *strings, const generatorFlags_t flags ) {
+void GenerateComponentWiseFunctions( allocatorLinear_t *tempStorage, const typeInfo_t *typeInfo, const typeInfo_t *memberTypeInfo, stringBuilder_t *code, const generatorStrings_t *strings, const generatorFlags_t flags, const bool32 *scalarTypeEnabled ) {
 	assert( tempStorage );
 	assert( typeInfo );
 	assert( typeInfo->fullTypeName );
@@ -1285,6 +1285,7 @@ void GenerateComponentWiseFunctions( allocatorLinear_t *tempStorage, const typeI
 	assert( memberTypeInfo->fullTypeName );
 	assert( code );
 	assert( strings );
+	assert( scalarTypeEnabled );
 
 	typeInfo_t returnTypeInt = {
 		.type		= GEN_TYPE_INT,
@@ -1345,7 +1346,7 @@ void GenerateComponentWiseFunctions( allocatorLinear_t *tempStorage, const typeI
 	}
 
 	if ( typeInfo->type != GEN_TYPE_BOOL ) {
-		if ( typeInfo->type != GEN_TYPE_UINT ) {
+		if ( typeInfo->type != GEN_TYPE_UINT && scalarTypeEnabled[GEN_TYPE_INT] ) {
 			GenerateComponentWiseFunction( tempStorage, code, typeInfo,
 				GEN_FUNCTION_NAME_SIGN,
 				&returnTypeInt,
