@@ -33,9 +33,6 @@ SOFTWARE.
 typedef struct allocatorLinear_t allocatorLinear_t;
 typedef struct stringBuilder_t stringBuilder_t;
 
-#define GEN_GENERATED_CODE_PATH					"code/generated_files/"
-#define GEN_GENERATED_TESTS_PATH				"code/generated_files/tests/"
-
 #define GEN_HEADER_MAIN							"hlml.h"
 #define GEN_HEADER_TYPES						"hlml_types.h"
 #define GEN_HEADER_CONSTANTS					"hlml_constants.h"

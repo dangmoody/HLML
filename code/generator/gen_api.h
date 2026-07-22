@@ -51,6 +51,7 @@ void	GenerateQuaternionFiles( allocatorLinear_t *tempStorage, const char *genera
 void	GenerateMatrixFiles( allocatorLinear_t *tempStorage, const char *generatedCodePath, const typeInfo_t *typeInfos, const u32 typeInfosCount, const generatorStrings_t *strings, const generatorFlags_t flags );
 
 void	Gen_GenerateAPIFiles( allocatorLinear_t *tempStorage,
+							  const char *outputPath,
 							  const char *languageName,
 							  const typeInfo_t *vectorTypeInfos, const u32 vectorTypeInfosCount,
 							  const typeInfo_t *quaternionTypeInfos, const u32 quaternionTypeInfosCount,
@@ -60,6 +61,7 @@ void	Gen_GenerateAPIFiles( allocatorLinear_t *tempStorage,
 							  const u32 componentCountMin, const u32 componentCountMax );
 
 void	Gen_GenerateTests( allocatorLinear_t *tempStorage,
+						   const char *outputPath,
 						   const char *languageName,
 						   const typeInfo_t *vectorTypeInfos, const u32 vectorTypeInfosCount,
 						   const typeInfo_t *quaternionTypeInfos, const u32 quaternionTypeInfosCount,

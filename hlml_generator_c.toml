@@ -8,9 +8,14 @@
 # A config file is required and always generates exactly one language, chosen by "language" below.
 # To generate both C and C++ output, run the generator twice - once with this file, once with
 # hlml_generator_cpp.toml. The values shown here reproduce the checked-in code/generated_files/c/
-# and code/generated_files/tests/c/ output exactly.
+# and code/generated_files/c/tests/ output exactly.
 
 language = "c"
+
+# Folder the API code is written into; tests are written to <output_path>/tests/ beneath it. No
+# trailing slash. Unlike before, the language is NOT auto-appended - if you want a per-language
+# subfolder (as the checked-in output does), put it in this path yourself, as below.
+output_path = "code/generated_files/c"
 
 # Which scalar kinds participate in vector/matrix generation.
 # NOTE: "bool" currently cannot be excluded - equality operators (==, !=) generated for every other type

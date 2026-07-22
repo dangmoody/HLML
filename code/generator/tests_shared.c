@@ -89,14 +89,15 @@ const char *Gen_GetTestName( allocatorLinear_t *tempStorage, const typeInfo_t *t
 	return String_TPrintf( tempStorage, "Test_%s_%s", typeInfo->fullTypeName, funcName );
 }
 
-void Gen_AppendTestFileIncludes( allocatorLinear_t *tempStorage, stringBuilder_t *code, const char *languageName, const generatorFlags_t flags ) {
+void Gen_AppendTestFileIncludes( allocatorLinear_t *tempStorage, stringBuilder_t *code, const generatorFlags_t flags ) {
 	assert( tempStorage );
 	assert( code );
-	assert( languageName );
 
 	StringBuilder_Append( code, "#include <temper/temper.h>\n\n" );
 
-	StringBuilder_Appendf( code, "#include \"../../../%s%s/%s\"\n\n", GEN_GENERATED_CODE_PATH, languageName, GEN_HEADER_MAIN );
+	// test files always live one level below the API code root (see Gen_GenerateTests in gen_tests.c),
+	// so this is always correct regardless of where the user points "output_path" at
+	StringBuilder_Appendf( code, "#include \"../%s\"\n\n", GEN_HEADER_MAIN );
 
 	if ( flags & GENERATOR_FLAG_ALLOW_NAMESPACE ) {
 		StringBuilder_Append( code,

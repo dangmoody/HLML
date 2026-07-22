@@ -373,6 +373,7 @@ static void GenerateSSEConstantsHeader( allocatorLinear_t *tempStorage, const ch
 }
 
 void Gen_GenerateAPIFiles( allocatorLinear_t *tempStorage,
+						   const char *outputPath,
 						   const char *languageName,
 						   const typeInfo_t *vectorTypeInfos, const u32 vectorTypeInfosCount,
 						   const typeInfo_t *quaternionTypeInfos, const u32 quaternionTypeInfosCount,
@@ -382,6 +383,7 @@ void Gen_GenerateAPIFiles( allocatorLinear_t *tempStorage,
 						   const u32 componentCountMin, const u32 componentCountMax )
 {
 	assert( tempStorage );
+	assert( outputPath );
 	assert( languageName );
 	assert( vectorTypeInfos );
 	assert( vectorTypeInfosCount );
@@ -390,8 +392,7 @@ void Gen_GenerateAPIFiles( allocatorLinear_t *tempStorage,
 
 	printf( "Generating API files for \"%s\"...\n", languageName );
 
-	char generatedCodePath[1024] = { 0 };
-	stbsp_snprintf( generatedCodePath, 1024, "%s%s", GEN_GENERATED_CODE_PATH, languageName );
+	const char *generatedCodePath = outputPath;
 
 	FS_CreateFolder( generatedCodePath );
 

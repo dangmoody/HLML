@@ -56,7 +56,6 @@ const char	*Gen_GetTestName( allocatorLinear_t *tempStorage, const typeInfo_t *t
 
 void		Gen_AppendTestFileIncludes( allocatorLinear_t *tempStorage,
 										stringBuilder_t *code,
-										const char *languageName,
 										const generatorFlags_t flags );
 
 void		Gen_GenerateParametricTestDefinition_Generic_SSE( allocatorLinear_t *tempStorage,

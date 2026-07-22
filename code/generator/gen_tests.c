@@ -42,6 +42,7 @@ SOFTWARE.
 #include <math.h>
 
 void Gen_GenerateTests( allocatorLinear_t *tempStorage,
+						const char *outputPath,
 						const char *languageName,
 						const typeInfo_t *vectorTypeInfos, const u32 vectorTypeInfosCount,
 						const typeInfo_t *quaternionTypeInfos, const u32 quaternionTypeInfosCount,
@@ -51,6 +52,7 @@ void Gen_GenerateTests( allocatorLinear_t *tempStorage,
 						const u32 componentCountMin, const u32 componentCountMax )
 {
 	assert( tempStorage );
+	assert( outputPath );
 	assert( languageName );
 	assert( vectorTypeInfos );
 	assert( vectorTypeInfosCount );
@@ -60,11 +62,8 @@ void Gen_GenerateTests( allocatorLinear_t *tempStorage,
 
 	printf( "Generating tests for \"%s\"...\n", languageName );
 
-	char generatedCodePath[1024] = { 0 };
-	stbsp_snprintf( generatedCodePath, 1024, "%s%s", GEN_GENERATED_CODE_PATH, languageName );
-
 	char generatedTestsPath[1024] = { 0 };
-	stbsp_snprintf( generatedTestsPath, 1024, "%s%s", GEN_GENERATED_TESTS_PATH, languageName );
+	stbsp_snprintf( generatedTestsPath, 1024, "%s/tests", outputPath );
 
 	FS_CreateFolder( generatedTestsPath );
 
@@ -98,7 +97,7 @@ void Gen_GenerateTests( allocatorLinear_t *tempStorage,
 
 		StringBuilder_Append( code, GEN_FILE_HEADER );
 
-		Gen_AppendTestFileIncludes( tempStorage, code, languageName, flags );
+		Gen_AppendTestFileIncludes( tempStorage, code, flags );
 
 		// the "true" below (generateQuaternions) is never read for a scalar typeInfo: GenerateComponentWiseTests
 		// only checks it inside its quaternion test block, which is itself gated behind
@@ -144,7 +143,9 @@ void Gen_GenerateTests( allocatorLinear_t *tempStorage,
 		//	StringBuilder_Append( sb, "#define HLML_NAMESPACE\n" );
 		//	StringBuilder_Append( sb, "#endif\n");
 		//}
-		StringBuilder_Appendf( sb, "#include \"../../../%s/%s\"\n\n", generatedCodePath, GEN_HEADER_MAIN );
+		// test_main lives one level below the API code root (see generatedTestsPath above), so this is
+		// always correct regardless of where the user points "output_path" at
+		StringBuilder_Appendf( sb, "#include \"../%s\"\n\n", GEN_HEADER_MAIN );
 
 		if ( flags & GENERATOR_FLAG_ALLOW_NAMESPACE ) {
 			StringBuilder_Append( sb,

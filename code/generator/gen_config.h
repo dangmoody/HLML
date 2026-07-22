@@ -37,6 +37,8 @@ typedef struct allocatorLinear_t allocatorLinear_t;
 #define GEN_CONFIG_COMPONENT_COUNT_MIN		2
 #define GEN_CONFIG_COMPONENT_COUNT_MAX		4
 
+#define GEN_CONFIG_OUTPUT_PATH_DEFAULT		"code/generated_files"
+
 // a config file generates exactly one language per run - to generate both C and C++ output, run the
 // generator twice, once per language, each with its own config file
 typedef enum genLanguage_t {
@@ -53,6 +55,7 @@ typedef struct genConfig_t {
 	u32					componentCountMin;					// inclusive, applies to both vector component counts and matrix rows/cols
 	u32					componentCountMax;					// inclusive
 	generatorFlags_t	flags;
+	char				*outputPath;	// folder the API code is written into, with tests written to <outputPath>/tests/ beneath it; never has a trailing slash; language is NOT auto-appended - see Gen_GenerateAPIFiles/Gen_GenerateTests.  Either GEN_CONFIG_OUTPUT_PATH_DEFAULT (static storage) or an owned heap string from Gen_Config_LoadFromFile - never freed, config lives for the whole process
 } genConfig_t;
 
 // fills in outConfig with sensible defaults.  outConfig->language is left as GEN_LANGUAGE_NONE and

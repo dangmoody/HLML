@@ -115,6 +115,8 @@ void Gen_Config_SetDefaults( genConfig_t *outConfig ) {
 	outConfig->componentCountMin = GEN_CONFIG_COMPONENT_COUNT_MIN;
 	outConfig->componentCountMax = GEN_CONFIG_COMPONENT_COUNT_MAX;
 
+	outConfig->outputPath = GEN_CONFIG_OUTPUT_PATH_DEFAULT;
+
 	// outConfig->flags (which includes generateQuaternions/generateNonSquareMatrices now that they're
 	// generatorFlagBits_t) is left at 0 - there's no language-agnostic default for it.  Gen_Config_LoadFromFile
 	// seeds it via GetDefaultFlagsForLanguage() once it knows the language, before applying the top-level
@@ -229,6 +231,44 @@ bool32 Gen_Config_LoadFromFile( const char *filename, genConfig_t *outConfig ) {
 		toml_datum_t componentCountMaxDatum = toml_int_in( root, "component_count_max" );
 		if ( componentCountMaxDatum.ok ) {
 			outConfig->componentCountMax = (u32) componentCountMaxDatum.u.i;
+		}
+	}
+
+	// output_path
+	{
+		toml_datum_t outputPathDatum = toml_string_in( root, "output_path" );
+		if ( outputPathDatum.ok ) {
+			if ( outputPathDatum.u.s[0] == '\0' ) {
+				printf( "ERROR: \"output_path\" cannot be empty in \"%s\".\n", filename );
+
+				free( outputPathDatum.u.s );
+
+				toml_free( root );
+				root = NULL;
+
+				return false;
+			}
+
+			// normalize away any trailing slash(es) - Gen_GenerateAPIFiles/Gen_GenerateTests and everything
+			// downstream of them assume outputPath has no trailing slash
+			size_t outputPathLength = strlen( outputPathDatum.u.s );
+			while ( outputPathLength > 0 && outputPathDatum.u.s[outputPathLength - 1] == '/' ) {
+				outputPathDatum.u.s[--outputPathLength] = '\0';
+			}
+
+			if ( outputPathLength == 0 ) {
+				printf( "ERROR: \"output_path\" cannot be just a slash in \"%s\".\n", filename );
+
+				free( outputPathDatum.u.s );
+
+				toml_free( root );
+				root = NULL;
+
+				return false;
+			}
+
+			// ownership of this heap string transfers to outConfig - it lives for the rest of the process
+			outConfig->outputPath = outputPathDatum.u.s;
 		}
 	}
 
