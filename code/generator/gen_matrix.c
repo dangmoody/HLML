@@ -1145,6 +1145,7 @@ void GenerateMatrixFiles( allocatorLinear_t *tempStorage, const char *generatedC
 	assert( typeInfosCount );
 
 	bool32 cLinkage = flags & GENERATOR_FLAG_C_LINKAGE;
+	bool32 allowNamespace = flags & GENERATOR_FLAG_ALLOW_NAMESPACE;
 	bool32 generateConstructors = flags & GENERATOR_FLAG_GENERATE_CONSTRUCTORS;
 	bool32 generateOperators = flags & GENERATOR_FLAG_GENERATE_OPERATORS;
 
@@ -1189,7 +1190,7 @@ void GenerateMatrixFiles( allocatorLinear_t *tempStorage, const char *generatedC
 
 			StringBuilder_Appendf( codeHeader, "#include \"%s.h\"\n\n", vectorMemberTypeName );
 
-			if ( !cLinkage ) {
+			if ( allowNamespace ) {
 				StringBuilder_Append( codeHeader,
 					"#ifdef HLML_NAMESPACE\n"
 					"namespace hlml\n"
@@ -1334,7 +1335,7 @@ void GenerateMatrixFiles( allocatorLinear_t *tempStorage, const char *generatedC
 				);
 			}
 
-			if ( !cLinkage ) {
+			if ( allowNamespace ) {
 				StringBuilder_Append( codeHeader,
 					"#ifdef HLML_NAMESPACE\n"
 					"}\n"
@@ -1359,13 +1360,15 @@ void GenerateMatrixFiles( allocatorLinear_t *tempStorage, const char *generatedC
 			StringBuilder_Appendf( codeInl, "#include \"%s.h\"\n", typeInfo->fullTypeName );
 			StringBuilder_Appendf( codeInl, "#include \"%s.inl\"\n\n", vectorMemberTypeName );
 
-			StringBuilder_Append( codeInl,
-				"#ifdef HLML_NAMESPACE\n"
-				"namespace hlml\n"
-				"{\n"
-				"#endif\n"
-				"\n"
-			);
+			if ( allowNamespace ) {
+				StringBuilder_Append( codeInl,
+					"#ifdef HLML_NAMESPACE\n"
+					"namespace hlml\n"
+					"{\n"
+					"#endif\n"
+					"\n"
+				);
+			}
 
 			if ( generateConstructors ) {
 				// diagonal scalar ctor
@@ -1494,11 +1497,13 @@ void GenerateMatrixFiles( allocatorLinear_t *tempStorage, const char *generatedC
 
 			StringBuilder_Append( codeInl, "\n" );
 
-			StringBuilder_Append( codeInl,
-				"#ifdef HLML_NAMESPACE\n"
-				"}\n"
-				"#endif\n"
-			);
+			if ( allowNamespace ) {
+				StringBuilder_Append( codeInl,
+					"#ifdef HLML_NAMESPACE\n"
+					"}\n"
+					"#endif\n"
+				);
+			}
 
 			const char *fileNameInl = String_TPrintf( tempStorage, "%s/%s.inl", generatedCodePath, typeInfo->fullTypeName );
 
@@ -1534,7 +1539,7 @@ void GenerateMatrixFiles( allocatorLinear_t *tempStorage, const char *generatedC
 
 		StringBuilder_Appendf( code, "#include \"" GEN_FILENAME_FUNCTIONS_VECTOR ".h\"\n\n" );
 
-		if ( !cLinkage ) {
+		if ( allowNamespace ) {
 			StringBuilder_Append( code,
 				"#ifdef HLML_NAMESPACE\n"
 				"namespace hlml\n"
@@ -1597,7 +1602,7 @@ void GenerateMatrixFiles( allocatorLinear_t *tempStorage, const char *generatedC
 			);
 		}
 
-		if ( !cLinkage ) {
+		if ( allowNamespace ) {
 			StringBuilder_Append( code,
 				"#ifdef HLML_NAMESPACE\n"
 				"}\n"

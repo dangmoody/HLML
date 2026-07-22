@@ -687,6 +687,7 @@ void GenerateVectorFiles( allocatorLinear_t *tempStorage, const char *generatedC
 	assert( componentCountMin <= componentCountMax );
 
 	bool32 cLinkage = flags & GENERATOR_FLAG_C_LINKAGE;
+	bool32 allowNamespace = flags & GENERATOR_FLAG_ALLOW_NAMESPACE;
 	bool32 vectorUnions = flags & GENERATOR_FLAG_VECTOR_UNIONS;
 	bool32 generateConstructors = flags & GENERATOR_FLAG_GENERATE_CONSTRUCTORS;
 	bool32 generateOperators = flags & GENERATOR_FLAG_GENERATE_OPERATORS;
@@ -744,13 +745,15 @@ void GenerateVectorFiles( allocatorLinear_t *tempStorage, const char *generatedC
 			}
 
 			if ( !cLinkage ) {
-				StringBuilder_Append( codeHeader,
-					"#ifdef HLML_NAMESPACE\n"
-					"namespace hlml\n"
-					"{\n"
-					"#endif\n"
-					"\n"
-				);
+				if ( allowNamespace ) {
+					StringBuilder_Append( codeHeader,
+						"#ifdef HLML_NAMESPACE\n"
+						"namespace hlml\n"
+						"{\n"
+						"#endif\n"
+						"\n"
+					);
+				}
 
 				for ( u32 componentIndex = 2; componentIndex <= 4; componentIndex++ ) {
 					if ( componentIndex != typeInfo->numCols ) {
@@ -1028,7 +1031,7 @@ void GenerateVectorFiles( allocatorLinear_t *tempStorage, const char *generatedC
 				);
 			}
 
-			if ( !cLinkage ) {
+			if ( allowNamespace ) {
 				StringBuilder_Append( codeHeader,
 					"#ifdef HLML_NAMESPACE\n"
 					"}\n"
@@ -1050,12 +1053,17 @@ void GenerateVectorFiles( allocatorLinear_t *tempStorage, const char *generatedC
 				GEN_FILE_HEADER
 				"#pragma once\n"
 				"\n"
-				"#ifdef HLML_NAMESPACE\n"
-				"namespace hlml\n"
-				"{\n"
-				"#endif\n"
-				"\n"
 			);
+
+			if ( allowNamespace ) {
+				StringBuilder_Append( codeInl,
+					"#ifdef HLML_NAMESPACE\n"
+					"namespace hlml\n"
+					"{\n"
+					"#endif\n"
+					"\n"
+				);
+			}
 
 			StringBuilder_Appendf( codeInl, "#include \"%s.h\"\n\n", typeInfo->fullTypeName );
 			StringBuilder_Appendf( codeInl, "#include \"%s\"\n\n", GEN_HEADER_DEFINES );
@@ -1330,7 +1338,7 @@ void GenerateVectorFiles( allocatorLinear_t *tempStorage, const char *generatedC
 				StringBuilder_Append(  codeInl, "}\n" );
 			}
 
-			if ( !cLinkage ) {
+			if ( allowNamespace ) {
 				StringBuilder_Append( codeInl,
 					"#ifdef HLML_NAMESPACE\n"
 					"}\n"
@@ -1361,13 +1369,15 @@ void GenerateVectorFiles( allocatorLinear_t *tempStorage, const char *generatedC
 					"#pragma once\n\n"
 				);
 
-				StringBuilder_Append( codeInl,
-					"#ifdef HLML_NAMESPACE\n"
-					"namespace hlml\n"
-					"{\n"
-					"#endif\n"
-					"\n"
-				);
+				if ( allowNamespace ) {
+					StringBuilder_Append( codeInl,
+						"#ifdef HLML_NAMESPACE\n"
+						"namespace hlml\n"
+						"{\n"
+						"#endif\n"
+						"\n"
+					);
+				}
 
 				for ( uint32_t i = 2; i <= 4; i++ ) {
 					StringBuilder_Appendf( codeHeader, "struct %s%d;\n", typeString, i );
@@ -1377,11 +1387,13 @@ void GenerateVectorFiles( allocatorLinear_t *tempStorage, const char *generatedC
 				GenerateSwizzleFunctions( tempStorage, codeHeader, typeInfo, strings, flags, GEN_COMPONENT_NAMES_VECTOR, GenerateSwizzleFunc_Type, componentCountMin, componentCountMax );
 				GenerateSwizzleFunctions( tempStorage, codeHeader, typeInfo, strings, flags, GEN_COMPONENT_NAMES_COLOR, GenerateSwizzleFunc_Type, componentCountMin, componentCountMax );
 
-				StringBuilder_Append( codeInl,
-					"#ifdef HLML_NAMESPACE\n"
-					"}\n"
-					"#endif\n"
-				);
+				if ( allowNamespace ) {
+					StringBuilder_Append( codeInl,
+						"#ifdef HLML_NAMESPACE\n"
+						"}\n"
+						"#endif\n"
+					);
+				}
 
 				const char *fileNameHeader = String_TPrintf( tempStorage, "%s/%s_swizzle_types.h", generatedCodePath, typeInfo->fullTypeName );
 
@@ -1397,13 +1409,15 @@ void GenerateVectorFiles( allocatorLinear_t *tempStorage, const char *generatedC
 					"#pragma once\n\n"
 				);
 
-				StringBuilder_Append( codeInl,
-					"#ifdef HLML_NAMESPACE\n"
-					"namespace hlml\n"
-					"{\n"
-					"#endif\n"
-					"\n"
-				);
+				if ( allowNamespace ) {
+					StringBuilder_Append( codeInl,
+						"#ifdef HLML_NAMESPACE\n"
+						"namespace hlml\n"
+						"{\n"
+						"#endif\n"
+						"\n"
+					);
+				}
 
 				StringBuilder_Appendf( codeInl, "#include \"%s_swizzle_types.h\"\n\n", typeInfo->fullTypeName );
 
@@ -1414,11 +1428,13 @@ void GenerateVectorFiles( allocatorLinear_t *tempStorage, const char *generatedC
 				StringBuilder_Append( codeInl, "// rgba swizzles\n" );
 				GenerateSwizzleFunctions( tempStorage, codeInl, typeInfo, strings, flags, GEN_COMPONENT_NAMES_COLOR, GenerateSwizzleFunc_OperatorDefinitions, componentCountMin, componentCountMax );
 
-				StringBuilder_Append( codeInl,
-					"#ifdef HLML_NAMESPACE\n"
-					"}\n"
-					"#endif\n"
-				);
+				if ( allowNamespace ) {
+					StringBuilder_Append( codeInl,
+						"#ifdef HLML_NAMESPACE\n"
+						"}\n"
+						"#endif\n"
+					);
+				}
 
 				const char *fileNameInl = String_TPrintf( tempStorage, "%s/%s_swizzle_types.inl", generatedCodePath, typeInfo->fullTypeName );
 
@@ -1567,7 +1583,7 @@ void GenerateVectorFiles( allocatorLinear_t *tempStorage, const char *generatedC
 
 		StringBuilder_Appendf( code, "#include \"" GEN_FILENAME_FUNCTIONS_SCALAR ".h\"\n\n" );
 
-		if ( !cLinkage ) {
+		if ( allowNamespace ) {
 			StringBuilder_Append( code,
 				"#ifdef HLML_NAMESPACE\n"
 				"namespace hlml\n"
@@ -1622,7 +1638,7 @@ void GenerateVectorFiles( allocatorLinear_t *tempStorage, const char *generatedC
 			);
 		}
 
-		if ( !cLinkage ) {
+		if ( allowNamespace ) {
 			StringBuilder_Append( code,
 				"#ifdef HLML_NAMESPACE\n"
 				"}\n"

@@ -462,6 +462,7 @@ void GenerateQuaternionFiles( allocatorLinear_t *tempStorage, const char *genera
 	assert( strings );
 
 	bool32 cLinkage = flags & GENERATOR_FLAG_C_LINKAGE;
+	bool32 allowNamespace = flags & GENERATOR_FLAG_ALLOW_NAMESPACE;
 
 	// quaternion functions
 	stringBuilder_t *code = StringBuilder_Create( tempStorage, KILOBYTES( 64 ) );
@@ -481,7 +482,7 @@ void GenerateQuaternionFiles( allocatorLinear_t *tempStorage, const char *genera
 		);
 	}
 
-	if ( !cLinkage ) {
+	if ( allowNamespace ) {
 		StringBuilder_Append( code,
 			"#ifdef HLML_NAMESPACE\n"
 			"namespace hlml\n"
@@ -524,7 +525,7 @@ void GenerateQuaternionFiles( allocatorLinear_t *tempStorage, const char *genera
 		);
 	}
 
-	if ( !cLinkage ) {
+	if ( allowNamespace ) {
 		StringBuilder_Append( code,
 			"#ifdef HLML_NAMESPACE\n"
 			"}\n"

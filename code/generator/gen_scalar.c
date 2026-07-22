@@ -301,6 +301,7 @@ void GenerateScalarFiles( allocatorLinear_t *tempStorage, const char *generatedC
 	assert( generatedCodePath );
 
 	bool32 cLinkage = flags & GENERATOR_FLAG_C_LINKAGE;
+	bool32 allowNamespace = flags & GENERATOR_FLAG_ALLOW_NAMESPACE;
 
 	stringBuilder_t *code = StringBuilder_Create( tempStorage, KILOBYTES( 12 ) );
 
@@ -337,7 +338,7 @@ void GenerateScalarFiles( allocatorLinear_t *tempStorage, const char *generatedC
 		);
 	}
 
-	if ( !cLinkage ) {
+	if ( allowNamespace ) {
 		StringBuilder_Append( code,
 			"#ifdef HLML_NAMESPACE\n"
 			"namespace hlml\n"
@@ -383,7 +384,7 @@ void GenerateScalarFiles( allocatorLinear_t *tempStorage, const char *generatedC
 		);
 	}
 
-	if ( !cLinkage ) {
+	if ( allowNamespace ) {
 		StringBuilder_Append( code,
 			"#ifdef HLML_NAMESPACE\n"
 			"}\n"

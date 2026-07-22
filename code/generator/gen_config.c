@@ -248,6 +248,15 @@ bool32 Gen_Config_LoadFromFile( const char *filename, genConfig_t *outConfig ) {
 	// validation - each of these is a normal, expected user error (a typo'd or contradictory config file),
 	// not a programming bug, so report it clearly and let the caller exit gracefully rather than asserting
 	{
+		if ( ( outConfig->flags & GENERATOR_FLAG_C_LINKAGE ) && ( outConfig->flags & GENERATOR_FLAG_ALLOW_NAMESPACE ) ) {
+			printf( "ERROR: \"c_linkage\" and \"allow_namespace\" cannot both be set in \"%s\" - namespaces are a C++ concept.\n", filename );
+
+			toml_free( root );
+			root = NULL;
+
+			return false;
+		}
+
 		if ( outConfig->componentCountMin > outConfig->componentCountMax ) {
 			printf( "ERROR: \"component_count_min\" (%u) is greater than \"component_count_max\" (%u) in \"%s\".\n",
 				outConfig->componentCountMin, outConfig->componentCountMax, filename );
