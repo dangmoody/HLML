@@ -69,6 +69,8 @@ static void GenerateMainHeader(
 
 	stringBuilder_t *code = StringBuilder_Create( tempStorage, KILOBYTES( 4 ) );
 
+	StringBuilder_Append( code, GEN_FILE_HEADER );
+
 	StringBuilder_Append( code, "#pragma once\n\n" );
 
 	if ( cLinkage ) {
