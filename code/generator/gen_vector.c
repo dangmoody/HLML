@@ -755,7 +755,7 @@ void GenerateVectorFiles( allocatorLinear_t *tempStorage, const char *generatedC
 					);
 				}
 
-				for ( u32 componentIndex = 2; componentIndex <= 4; componentIndex++ ) {
+				for ( u32 componentIndex = componentCountMin; componentIndex <= componentCountMax; componentIndex++ ) {
 					if ( componentIndex != typeInfo->numCols ) {
 						StringBuilder_Appendf( codeHeader, "struct %s%d;\n", typeString, componentIndex );
 					}
@@ -768,6 +768,11 @@ void GenerateVectorFiles( allocatorLinear_t *tempStorage, const char *generatedC
 
 					// dont forward declare the same type as what were about to define
 					if ( type == typeInfo->type ) {
+						continue;
+					}
+
+					// this scalar type was excluded from generation - cant reference it here
+					if ( !scalarTypeEnabled[type] ) {
 						continue;
 					}
 
