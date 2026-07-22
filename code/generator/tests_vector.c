@@ -153,7 +153,7 @@ static void Gen_GenerateTests_Length_Internal( allocatorLinear_t *tempStorage, s
 	};
 
 	Gen_GenerateParametricTestDefinition_Generic( tempStorage, code, typeInfo, strings, flags, &(parametricTestDefinition_t) {
-		.alsoGenerateSSE = Gen_TypeSupportsSIMD( typeInfo->type ),
+		.alsoGenerateSSE = Gen_ShouldGenerateSSE( typeInfo->type, flags ),
 		.returnType = &floatingPointTypeScalar,
 		.funcName = funcName,
 		.parmsCount = 1,
@@ -179,7 +179,7 @@ static void Gen_GenerateTests_Length_Internal( allocatorLinear_t *tempStorage, s
 		Gen_GenerateParametricTestInvokation_Generic( tempStorage, code, typeInfo, funcName, strings, flags, parms, GEN_COUNTOF( parms ) );
 	}
 
-	if ( Gen_TypeSupportsSIMD( typeInfo->type ) ) {
+	if ( Gen_ShouldGenerateSSE( typeInfo->type, flags ) ) {
 		for ( u32 i = 0; i < fixturesCount; i++ ) {
 			const testFixture_Length_t *fixture = &fixtures[i];
 
@@ -267,7 +267,7 @@ static void Gen_GenerateTests_Dot( allocatorLinear_t *tempStorage, stringBuilder
 	typeInfo_t floatingPointTypeScalar = Gen_GetScalarType( typeInfo );
 
 	Gen_GenerateParametricTestDefinition_Generic( tempStorage, code, typeInfo, strings, flags, &(parametricTestDefinition_t) {
-		.alsoGenerateSSE = Gen_TypeSupportsSIMD( typeInfo->type ),
+		.alsoGenerateSSE = Gen_ShouldGenerateSSE( typeInfo->type, flags ),
 		.returnType = &floatingPointTypeScalar,
 		.funcName = GEN_FUNCTION_NAME_DOT,
 		.parmsCount = 2,
@@ -321,7 +321,7 @@ static void Gen_GenerateTests_Dot( allocatorLinear_t *tempStorage, stringBuilder
 		Gen_GenerateParametricTestInvokation_Generic( tempStorage, code, typeInfo, GEN_FUNCTION_NAME_DOT, strings, flags, parms, GEN_COUNTOF( parms ) );
 	}
 
-	if ( Gen_TypeSupportsSIMD( typeInfo->type ) ) {
+	if ( Gen_ShouldGenerateSSE( typeInfo->type, flags ) ) {
 		for ( u32 i = 0; i < GEN_COUNTOF( fixtures ); i++ ) {
 			const testFixture_Dot_t *fixture = &fixtures[i];
 
@@ -356,7 +356,7 @@ static void Gen_GenerateTests_Cross( allocatorLinear_t *tempStorage, stringBuild
 	}
 
 	Gen_GenerateParametricTestDefinition_Generic( tempStorage, code, typeInfo, strings, flags, &(parametricTestDefinition_t) {
-		.alsoGenerateSSE = Gen_TypeSupportsSIMD( typeInfo->type ),
+		.alsoGenerateSSE = Gen_ShouldGenerateSSE( typeInfo->type, flags ),
 		.returnType = typeInfo,
 		.funcName = GEN_FUNCTION_NAME_CROSS,
 		.parmsCount = 2,
@@ -385,7 +385,7 @@ static void Gen_GenerateTests_Cross( allocatorLinear_t *tempStorage, stringBuild
 
 		Gen_GenerateParametricTestInvokation_Generic( tempStorage, code, typeInfo, GEN_FUNCTION_NAME_CROSS, strings, flags, parms, GEN_COUNTOF( parms ) );
 
-		if ( Gen_TypeSupportsSIMD( typeInfo->type ) ) {
+		if ( Gen_ShouldGenerateSSE( typeInfo->type, flags ) ) {
 			Gen_GenerateParametricTestInvokation_Generic_SSE( tempStorage, code, typeInfo, GEN_FUNCTION_NAME_CROSS, strings, flags, parms, GEN_COUNTOF( parms ) );
 		}
 	}
@@ -472,7 +472,7 @@ static void Gen_GenerateTests_Distance_Internal( allocatorLinear_t *tempStorage,
 	};
 
 	Gen_GenerateParametricTestDefinition_Generic( tempStorage, code, typeInfo, strings, flags, &(parametricTestDefinition_t) {
-		.alsoGenerateSSE = Gen_TypeSupportsSIMD( typeInfo->type ),
+		.alsoGenerateSSE = Gen_ShouldGenerateSSE( typeInfo->type, flags ),
 		.returnType = &floatingPointTypeScalar,
 		.funcName = funcName,
 		.parmsCount = 2,
@@ -500,7 +500,7 @@ static void Gen_GenerateTests_Distance_Internal( allocatorLinear_t *tempStorage,
 		Gen_GenerateParametricTestInvokation_Generic( tempStorage, code, typeInfo, funcName, strings, flags, parms, GEN_COUNTOF( parms ) );
 	}
 
-	if ( Gen_TypeSupportsSIMD( typeInfo->type ) ) {
+	if ( Gen_ShouldGenerateSSE( typeInfo->type, flags ) ) {
 		for ( u32 i = 0; i < fixturesCount; i++ ) {
 			const testFixture_Distance_t *fixture = &fixtures[i];
 
@@ -616,7 +616,7 @@ static void Gen_GenerateTests_Normalize( allocatorLinear_t *tempStorage, stringB
 	StringBuilder_Appendf( code, "\tTEMPER_CHECK_TRUE( %s( %s( %svecNormalized ), %s ) );\n", floateqStr, lengthFuncStr, strings->parmReferenceStr, oneStr );
 	StringBuilder_Appendf( code, "}\n\n" );
 
-	if ( Gen_TypeSupportsSIMD( typeInfo->type ) ) {
+	if ( Gen_ShouldGenerateSSE( typeInfo->type, flags ) ) {
 		Gen_GenerateParametricTestDefinition_Generic_SSE( tempStorage, code, typeInfo, strings, flags, &(parametricTestDefinition_t) {
 			.returnType = typeInfo,
 			.funcName = GEN_FUNCTION_NAME_NORMALIZE,
@@ -658,7 +658,7 @@ static void Gen_GenerateTests_Normalize( allocatorLinear_t *tempStorage, stringB
 		Gen_GenerateParametricTestInvokation_Generic( tempStorage, code, typeInfo, GEN_FUNCTION_NAME_NORMALIZE, strings, flags, parms, GEN_COUNTOF( parms ) );
 	}
 
-	if ( Gen_TypeSupportsSIMD( typeInfo->type ) ) {
+	if ( Gen_ShouldGenerateSSE( typeInfo->type, flags ) ) {
 		for ( u32 i = 0; i < GEN_COUNTOF( fixtures ); i++ ) {
 			const testFixture_Normalize_t *fixture = &fixtures[i];
 

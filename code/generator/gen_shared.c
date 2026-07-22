@@ -61,6 +61,10 @@ bool32 Gen_TypeSupportsSIMD( const genType_t type ) {
 	return type == GEN_TYPE_FLOAT;
 }
 
+bool32 Gen_ShouldGenerateSSE( const genType_t type, const generatorFlags_t flags ) {
+	return Gen_TypeSupportsSIMD( type ) && ( flags & GENERATOR_FLAG_GENERATE_SSE );
+}
+
 const char *Gen_GetTypeString( const genType_t type ) {
 	assert( type != GEN_TYPE_COUNT && "Bad enum passed in!\n" );
 

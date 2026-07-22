@@ -29,6 +29,10 @@ generate_quaternions = true
 # Whether non-square matrices (e.g. float2x3, float4x2) are generated, in addition to square ones.
 generate_non_square_matrices = true
 
+# Whether the SSE API (hlml_functions_scalar_sse.h/hlml_functions_vector_sse.h and their #includes in
+# hlml.h) is generated, for the types that support it (currently just float).
+generate_sse = true
+
 # Flags for this pass. Mirrors generatorFlagBits_t in code/generator/gen_shared.h.
 parms_are_pointers = true
 c_linkage = true

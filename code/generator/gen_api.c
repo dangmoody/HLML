@@ -63,6 +63,7 @@ static void GenerateMainHeader(
 	bool32 cLinkage = flags & GENERATOR_FLAG_C_LINKAGE;
 	bool32 generateConstructors = flags & GENERATOR_FLAG_GENERATE_CONSTRUCTORS;
 	bool32 generateOperators = flags & GENERATOR_FLAG_GENERATE_OPERATORS;
+	bool32 generateSSE = flags & GENERATOR_FLAG_GENERATE_SSE;
 
 	bool32 generateInlFile = generateConstructors || generateOperators;
 
@@ -115,9 +116,13 @@ static void GenerateMainHeader(
 
 	// function file includes
 	StringBuilder_Appendf( code, "#include \"%s.h\"\n", GEN_FILENAME_FUNCTIONS_SCALAR );
-	StringBuilder_Appendf( code, "#include \"%s.h\"\n", GEN_FILENAME_FUNCTIONS_SCALAR_SSE );
+	if ( generateSSE ) {
+		StringBuilder_Appendf( code, "#include \"%s.h\"\n", GEN_FILENAME_FUNCTIONS_SCALAR_SSE );
+	}
 	StringBuilder_Appendf( code, "#include \"%s.h\"\n", GEN_FILENAME_FUNCTIONS_VECTOR );
-	StringBuilder_Appendf( code, "#include \"%s.h\"\n", GEN_FILENAME_FUNCTIONS_VECTOR_SSE );
+	if ( generateSSE ) {
+		StringBuilder_Appendf( code, "#include \"%s.h\"\n", GEN_FILENAME_FUNCTIONS_VECTOR_SSE );
+	}
 	if ( quaternionTypeInfosCount > 0 ) {
 		StringBuilder_Appendf( code, "#include \"%s.h\"\n", GEN_FILENAME_FUNCTIONS_QUATERNION );
 	}
@@ -394,12 +399,16 @@ void Gen_GenerateAPIFiles( allocatorLinear_t *tempStorage,
 	GenerateTypesHeader( tempStorage, generatedCodePath, flags );
 	GenerateConstantsHeader( tempStorage, generatedCodePath, flags );
 	GenerateDefinesHeader( tempStorage, generatedCodePath, flags );
-	GenerateSSEConstantsHeader( tempStorage, generatedCodePath, flags );
 
 	GenerateScalarFiles( tempStorage, generatedCodePath, flags );
-	GenerateScalarFiles_SSE( tempStorage, generatedCodePath, flags );
 	GenerateVectorFiles( tempStorage, generatedCodePath, vectorTypeInfos, vectorTypeInfosCount, strings, flags, componentCountMin, componentCountMax );
-	GenerateVectorFiles_SSE( tempStorage, generatedCodePath, vectorTypeInfos, vectorTypeInfosCount, strings, flags );
+
+	if ( flags & GENERATOR_FLAG_GENERATE_SSE ) {
+		GenerateSSEConstantsHeader( tempStorage, generatedCodePath, flags );
+		GenerateScalarFiles_SSE( tempStorage, generatedCodePath, flags );
+		GenerateVectorFiles_SSE( tempStorage, generatedCodePath, vectorTypeInfos, vectorTypeInfosCount, strings, flags );
+	}
+
 	if ( quaternionTypeInfosCount > 0 ) {
 		GenerateQuaternionFiles( tempStorage, generatedCodePath, quaternionTypeInfos, quaternionTypeInfosCount, strings, flags );
 	}

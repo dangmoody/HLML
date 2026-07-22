@@ -1556,7 +1556,7 @@ void GenerateComponentWiseTests( allocatorLinear_t *tempStorage, stringBuilder_t
 
 			// degrees
 			Gen_GenerateParametricTestsCode_ComponentWise( tempStorage, code, typeInfo, GEN_FUNCTION_NAME_DEGREES, strings, flags, &(componentWiseTestsData_t) {
-				.generateSSE = Gen_TypeIsScalar( typeInfo ) && Gen_TypeSupportsSIMD( typeInfo->type ),
+				.generateSSE = Gen_TypeIsScalar( typeInfo ) && Gen_ShouldGenerateSSE( typeInfo->type, flags ),
 				.parmDefsCount = 1,
 				.parmDefs = (parametricTestDefinitionParm_t[]) {
 					{ typeInfo, "x" }
@@ -1576,7 +1576,7 @@ void GenerateComponentWiseTests( allocatorLinear_t *tempStorage, stringBuilder_t
 
 			// radians
 			Gen_GenerateParametricTestsCode_ComponentWise( tempStorage, code, typeInfo, GEN_FUNCTION_NAME_RADIANS, strings, flags, &(componentWiseTestsData_t) {
-				.generateSSE = Gen_TypeIsScalar( typeInfo ) && Gen_TypeSupportsSIMD( typeInfo->type ),
+				.generateSSE = Gen_TypeIsScalar( typeInfo ) && Gen_ShouldGenerateSSE( typeInfo->type, flags ),
 				.parmDefsCount = 1,
 				.parmDefs = (parametricTestDefinitionParm_t[]) {
 					{ typeInfo, "x" }
@@ -1597,7 +1597,7 @@ void GenerateComponentWiseTests( allocatorLinear_t *tempStorage, stringBuilder_t
 
 		// lerp
 		Gen_GenerateParametricTestsCode_ComponentWise( tempStorage, code, typeInfo, GEN_FUNCTION_NAME_LERP, strings, flags, &(componentWiseTestsData_t) {
-			.generateSSE = Gen_TypeIsScalar( typeInfo ) && Gen_TypeSupportsSIMD( typeInfo->type ),
+			.generateSSE = Gen_TypeIsScalar( typeInfo ) && Gen_ShouldGenerateSSE( typeInfo->type, flags ),
 			.parmDefsCount = 3,
 			.parmDefs = (parametricTestDefinitionParm_t[]) {
 				{ typeInfo,   "lhs" },
