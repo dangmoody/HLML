@@ -63,12 +63,13 @@ static const genConfigFlagMapping_t s_flagMappings[] = {
 	{ "generate_quaternions",			GENERATOR_FLAG_GENERATE_QUATERNIONS },
 	{ "generate_non_square_matrices",	GENERATOR_FLAG_GENERATE_NON_SQUARE_MATRICES },
 	{ "generate_sse",					GENERATOR_FLAG_GENERATE_SSE },
+	{ "generate_rgba",					GENERATOR_FLAG_GENERATE_RGBA },
 };
 
 static generatorFlags_t GetDefaultFlagsForLanguage( const genLanguage_t language ) {
 	switch ( language ) {
 		case GEN_LANGUAGE_C:	return GENERATOR_FLAG_PARMS_ARE_POINTERS | GENERATOR_FLAG_C_LINKAGE | GENERATOR_FLAG_GENERATE_RELATIONAL_OPERATORS | GENERATOR_FLAG_GENERATE_QUATERNIONS | GENERATOR_FLAG_GENERATE_NON_SQUARE_MATRICES | GENERATOR_FLAG_GENERATE_SSE;
-		case GEN_LANGUAGE_CPP:	return GENERATOR_FLAG_GENERATE_OPERATORS | GENERATOR_FLAG_NAME_MANGLING | GENERATOR_FLAG_VECTOR_UNIONS | GENERATOR_FLAG_GENERATE_CONSTRUCTORS | GENERATOR_FLAG_VECTOR_SWIZZLES | GENERATOR_FLAG_ALLOW_NAMESPACE | GENERATOR_FLAG_GENERATE_RELATIONAL_OPERATORS | GENERATOR_FLAG_GENERATE_QUATERNIONS | GENERATOR_FLAG_GENERATE_NON_SQUARE_MATRICES | GENERATOR_FLAG_GENERATE_SSE;
+		case GEN_LANGUAGE_CPP:	return GENERATOR_FLAG_GENERATE_OPERATORS | GENERATOR_FLAG_NAME_MANGLING | GENERATOR_FLAG_VECTOR_UNIONS | GENERATOR_FLAG_GENERATE_CONSTRUCTORS | GENERATOR_FLAG_VECTOR_SWIZZLES | GENERATOR_FLAG_ALLOW_NAMESPACE | GENERATOR_FLAG_GENERATE_RELATIONAL_OPERATORS | GENERATOR_FLAG_GENERATE_QUATERNIONS | GENERATOR_FLAG_GENERATE_NON_SQUARE_MATRICES | GENERATOR_FLAG_GENERATE_SSE | GENERATOR_FLAG_GENERATE_RGBA;
 
 		case GEN_LANGUAGE_NONE:
 		case GEN_LANGUAGE_COUNT:
@@ -292,6 +293,15 @@ bool32 Gen_Config_LoadFromFile( const char *filename, genConfig_t *outConfig ) {
 	{
 		if ( ( outConfig->flags & GENERATOR_FLAG_C_LINKAGE ) && ( outConfig->flags & GENERATOR_FLAG_ALLOW_NAMESPACE ) ) {
 			printf( "ERROR: \"c_linkage\" and \"allow_namespace\" cannot both be set in \"%s\" - namespaces are a C++ concept.\n", filename );
+
+			toml_free( root );
+			root = NULL;
+
+			return false;
+		}
+
+		if ( ( outConfig->flags & GENERATOR_FLAG_GENERATE_RGBA ) && !( outConfig->flags & GENERATOR_FLAG_VECTOR_UNIONS ) ) {
+			printf( "ERROR: \"generate_rgba\" requires \"vector_unions\" to be enabled in \"%s\" - rgba members live inside that union.\n", filename );
 
 			toml_free( root );
 			root = NULL;

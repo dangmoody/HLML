@@ -55,10 +55,15 @@ generate_operators = false
 # suffixed per type (e.g. "float3_add").
 name_mangling = false
 
-# Whether vector types wrap their members in an anonymous union that also exposes rgba-named members,
-# a v[] array, and (if vector_swizzles is on) swizzle members, all aliasing the same memory. If off,
+# Whether vector types wrap their members in an anonymous union that also exposes a v[] array and (if
+# vector_swizzles/generate_rgba are on) swizzle/rgba members, all aliasing the same memory. If off,
 # vectors only have plain x/y/z/w members.
 vector_unions = false
+
+# Whether rgba-named vector members (and, if vector_swizzles is on, rgba-named swizzles) are generated
+# alongside xyzw, inside the same union. Requires vector_unions to be enabled - the generator errors out
+# otherwise, since rgba members have nowhere to live without that union.
+generate_rgba = false
 
 # Whether constructors (and destructors) are generated for vector/matrix types. C++ only.
 generate_constructors = false

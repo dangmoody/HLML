@@ -689,6 +689,7 @@ void GenerateVectorFiles( allocatorLinear_t *tempStorage, const char *generatedC
 	bool32 cLinkage = flags & GENERATOR_FLAG_C_LINKAGE;
 	bool32 allowNamespace = flags & GENERATOR_FLAG_ALLOW_NAMESPACE;
 	bool32 vectorUnions = flags & GENERATOR_FLAG_VECTOR_UNIONS;
+	bool32 generateRgba = flags & GENERATOR_FLAG_GENERATE_RGBA;
 	bool32 generateConstructors = flags & GENERATOR_FLAG_GENERATE_CONSTRUCTORS;
 	bool32 generateOperators = flags & GENERATOR_FLAG_GENERATE_OPERATORS;
 
@@ -825,7 +826,7 @@ void GenerateVectorFiles( allocatorLinear_t *tempStorage, const char *generatedC
 				}
 
 				// rgba
-				{
+				if ( generateRgba ) {
 					StringBuilder_Append( codeHeader,
 						"\t\tstruct\n"
 						"\t\t{\n"
@@ -847,7 +848,7 @@ void GenerateVectorFiles( allocatorLinear_t *tempStorage, const char *generatedC
 
 					StringBuilder_Append( codeHeader, "\n" );
 
-					if ( vectorUnions ) {
+					if ( generateRgba ) {
 						GenerateSwizzleFunctions( tempStorage, codeHeader, typeInfo, strings, flags, GEN_COMPONENT_NAMES_COLOR, GenerateSwizzleFunc_Members, componentCountMin, componentCountMax );
 					}
 				}

@@ -1387,25 +1387,27 @@ void GenerateVectorTests( allocatorLinear_t *tempStorage, const char *generatedT
 			Mem_Reset( tempStorage );
 		}
 
-		for ( u32 i = 0; i < vectorTypeInfosCount; i++ ) {
-			const typeInfo_t *typeInfo = &vectorTypeInfos[i];
+		if ( flags & GENERATOR_FLAG_GENERATE_RGBA ) {
+			for ( u32 i = 0; i < vectorTypeInfosCount; i++ ) {
+				const typeInfo_t *typeInfo = &vectorTypeInfos[i];
 
-			printf( "Generating test_%s_swizzle_%s.%s...", typeInfo->fullTypeName, GEN_COMPONENT_NAMES_COLOR, languageName );
+				printf( "Generating test_%s_swizzle_%s.%s...", typeInfo->fullTypeName, GEN_COMPONENT_NAMES_COLOR, languageName );
 
-			stringBuilder_t *code = StringBuilder_Create( tempStorage, MEGABYTES( 8 ) );
+				stringBuilder_t *code = StringBuilder_Create( tempStorage, MEGABYTES( 8 ) );
 
-			StringBuilder_Append( code, GEN_FILE_HEADER );
+				StringBuilder_Append( code, GEN_FILE_HEADER );
 
-			Gen_AppendTestFileIncludes( tempStorage, code, flags );
+				Gen_AppendTestFileIncludes( tempStorage, code, flags );
 
-			GenerateSwizzleFunctions( tempStorage, code, typeInfo, strings, flags, GEN_COMPONENT_NAMES_COLOR, GenerateSwizzleFunc_Test, componentCountMin, componentCountMax );
+				GenerateSwizzleFunctions( tempStorage, code, typeInfo, strings, flags, GEN_COMPONENT_NAMES_COLOR, GenerateSwizzleFunc_Test, componentCountMin, componentCountMax );
 
-			const char *fileNameHeader = String_TPrintf( tempStorage, "%s/test_%s_swizzle_%s.%s", generatedTestsPath, typeInfo->fullTypeName, GEN_COMPONENT_NAMES_COLOR, languageName );
-			FS_WriteEntireFile( fileNameHeader, code->str, code->length );
+				const char *fileNameHeader = String_TPrintf( tempStorage, "%s/test_%s_swizzle_%s.%s", generatedTestsPath, typeInfo->fullTypeName, GEN_COMPONENT_NAMES_COLOR, languageName );
+				FS_WriteEntireFile( fileNameHeader, code->str, code->length );
 
-			printf( "OK.\n" );
+				printf( "OK.\n" );
 
-			Mem_Reset( tempStorage );
+				Mem_Reset( tempStorage );
+			}
 		}
 	}
 }
