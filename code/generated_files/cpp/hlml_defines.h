@@ -33,10 +33,6 @@ SOFTWARE.
 #pragma once
 
 #ifdef __cplusplus
-extern "C" {
-#endif
-
-#ifdef __cplusplus
 #define HLML_CONSTRUCT( type ) type
 #else
 #define HLML_CONSTRUCT( type ) (type)
@@ -57,6 +53,3 @@ extern "C" {
 #endif
 #endif
 
-#ifdef __cplusplus
-}
-#endif
