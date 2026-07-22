@@ -38,14 +38,34 @@ generate_non_square_matrices = true
 # hlml.h) is generated, for the types that support it (currently just float).
 generate_sse = true
 
-# Flags for this pass. Mirrors generatorFlagBits_t in code/generator/gen_shared.h.
+# Whether function parameters are passed by pointer, C style (`*`/`->`), or by reference, C++ style
+# (`&`/`.`).
 parms_are_pointers = false
+
+# Whether the API is wrapped in extern "C" guards. Cannot be combined with allow_namespace, since
+# namespaces are a C++-only concept.
 c_linkage = false
+
+# Whether overloaded operators (+, -, ==, etc.) are generated. C++ only.
 generate_operators = true
+
+# Whether generated function names rely on C++ overload resolution (e.g. "add") instead of being
+# suffixed per type (e.g. "float3_add").
 name_mangling = true
+
+# Whether vector types wrap their members in an anonymous union that also exposes rgba-named members,
+# a v[] array, and (if vector_swizzles is on) swizzle members, all aliasing the same memory. If off,
+# vectors only have plain x/y/z/w members.
 vector_unions = true
+
+# Whether constructors (and destructors) are generated for vector/matrix types. C++ only.
 generate_constructors = true
+
+# Whether HLSL-style vector swizzles (e.g. ".xyz") are generated. C++ only.
 vector_swizzles = true
+
+# Whether generated code can optionally be wrapped in a "hlml" namespace, behind the HLML_NAMESPACE
+# #define. Cannot be combined with c_linkage.
 allow_namespace = true
 
 # Whether <, <=, >, >= are generated for every type. Equality (==, !=) is unaffected by this - it's
