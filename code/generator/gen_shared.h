@@ -148,6 +148,7 @@ typedef enum generatorFlagBits_t {
 	GENERATOR_FLAG_GENERATE_SSE					= GEN_BIT( 11 ),	// generate the SSE API (hlml_functions_scalar_sse.h/hlml_functions_vector_sse.h and their #includes in hlml.h) for types that support it, see Gen_TypeSupportsSIMD in gen_shared.c
 	GENERATOR_FLAG_GENERATE_RGBA					= GEN_BIT( 12 ),	// generate rgba-named vector members/swizzles alongside xyzw; only meaningful when GENERATOR_FLAG_VECTOR_UNIONS is also set, since rgba members live inside that union - gen_config.c rejects a config that sets this without it
 	GENERATOR_FLAG_GENERATE_ASSIGNMENT_OPERATOR	= GEN_BIT( 13 ),	// generate operator= for vectors and matrices; only meaningful when GENERATOR_FLAG_GENERATE_OPERATORS is also set
+	GENERATOR_FLAG_SUPPRESS_ANONYMOUS_STRUCT_WARNINGS	= GEN_BIT( 14 ),	// wrap vector types' anonymous struct/union members in a push/pop of Clang/GCC's -Wpedantic and MSVC's C4201, since anonymous structs/unions are a nonstandard extension; only meaningful when GENERATOR_FLAG_VECTOR_UNIONS is also set, since that's the only place vectors use anonymous structs/unions
 
 	GENERATOR_FLAG_ALL
 } generatorFlagBits_t;

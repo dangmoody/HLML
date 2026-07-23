@@ -693,6 +693,7 @@ void GenerateVectorFiles( allocatorLinear_t *tempStorage, const char *generatedC
 	bool32 generateConstructors = flags & GENERATOR_FLAG_GENERATE_CONSTRUCTORS;
 	bool32 generateOperators = flags & GENERATOR_FLAG_GENERATE_OPERATORS;
 	bool32 generateAssignmentOperator = flags & GENERATOR_FLAG_GENERATE_ASSIGNMENT_OPERATOR;
+	bool32 suppressAnonymousStructWarnings = flags & GENERATOR_FLAG_SUPPRESS_ANONYMOUS_STRUCT_WARNINGS;
 
 	// which scalar types are actually present in typeInfos - a conversion ctor/operator referencing a
 	// scalar type that was excluded from generation (via config) would reference a type that doesn't exist
@@ -786,7 +787,7 @@ void GenerateVectorFiles( allocatorLinear_t *tempStorage, const char *generatedC
 				StringBuilder_Append( codeHeader, "\n" );
 			}
 
-			if ( vectorUnions ) {
+			if ( vectorUnions && suppressAnonymousStructWarnings ) {
 				StringBuilder_Appendf( codeHeader,
 					"// ignore prohibition of anymous structs for GCC\n"
 					"#if defined( __clang__ ) || defined( __GNUC__ )\n"
@@ -1020,7 +1021,7 @@ void GenerateVectorFiles( allocatorLinear_t *tempStorage, const char *generatedC
 				StringBuilder_Append( codeHeader, "};\n" );
 			}
 
-			if ( vectorUnions ) {
+			if ( vectorUnions && suppressAnonymousStructWarnings ) {
 				StringBuilder_Appendf( codeHeader,
 					"\n"
 					"#if defined( __clang__ ) || defined( __GNUC__ )\n"

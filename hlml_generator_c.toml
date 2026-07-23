@@ -64,6 +64,11 @@ name_mangling = false
 # vectors only have plain x/y/z/w members.
 vector_unions = false
 
+# Whether vector types' anonymous struct/union members are wrapped in a push/pop of Clang/GCC's
+# -Wpedantic and MSVC's C4201, since anonymous structs/unions are a nonstandard extension. Only
+# meaningful when vector_unions is also enabled.
+suppress_anonymous_struct_warnings = true
+
 # Whether rgba-named vector members (and, if vector_swizzles is on, rgba-named swizzles) are generated
 # alongside xyzw, inside the same union. Requires vector_unions to be enabled - the generator errors out
 # otherwise, since rgba members have nowhere to live without that union.
