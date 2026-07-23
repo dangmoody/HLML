@@ -51,6 +51,10 @@ c_linkage = false
 # Whether overloaded operators (+, -, ==, etc.) are generated. C++ only.
 generate_operators = true
 
+# Whether vector/matrix types generate operator=. Only meaningful when generate_operators is also
+# enabled. C++ only.
+generate_assignment_operator = true
+
 # Whether generated function names rely on C++ overload resolution (e.g. "add") instead of being
 # suffixed per type (e.g. "float3_add").
 name_mangling = true

@@ -1168,6 +1168,7 @@ void GenerateMatrixFiles( allocatorLinear_t *tempStorage, const char *generatedC
 	bool32 allowNamespace = flags & GENERATOR_FLAG_ALLOW_NAMESPACE;
 	bool32 generateConstructors = flags & GENERATOR_FLAG_GENERATE_CONSTRUCTORS;
 	bool32 generateOperators = flags & GENERATOR_FLAG_GENERATE_OPERATORS;
+	bool32 generateAssignmentOperator = flags & GENERATOR_FLAG_GENERATE_ASSIGNMENT_OPERATOR;
 
 	bool32 generateInlFile = generateConstructors || generateOperators;
 
@@ -1319,9 +1320,11 @@ void GenerateMatrixFiles( allocatorLinear_t *tempStorage, const char *generatedC
 			}
 
 			if ( generateOperators ) {
-				// assignment operator
-				StringBuilder_Append(  codeHeader, "\t// Sets each row of the matrix to be the same as the parameter.\n" );
-				StringBuilder_Appendf( codeHeader, "\tHLML_INLINE %s operator=( const %s& mat );\n\n", typeInfo->fullTypeName, typeInfo->fullTypeName );
+				if ( generateAssignmentOperator ) {
+					// assignment operator
+					StringBuilder_Append(  codeHeader, "\t// Sets each row of the matrix to be the same as the parameter.\n" );
+					StringBuilder_Appendf( codeHeader, "\tHLML_INLINE %s operator=( const %s& mat );\n\n", typeInfo->fullTypeName, typeInfo->fullTypeName );
+				}
 
 				// array access operators
 				StringBuilder_Appendf( codeHeader,
@@ -1485,15 +1488,17 @@ void GenerateMatrixFiles( allocatorLinear_t *tempStorage, const char *generatedC
 			}
 
 			if ( generateOperators ) {
-				// assignment operator
-				StringBuilder_Appendf( codeInl, "%s %s::operator=( const %s& other )\n", typeInfo->fullTypeName, typeInfo->fullTypeName, typeInfo->fullTypeName );
-				StringBuilder_Append(  codeInl, "{\n" );
-				for ( u32 row = 0; row < typeInfo->numRows; row++ ) {
-					StringBuilder_Appendf( codeInl, "\trows[%d] = other[%d];\n", row, row );
+				if ( generateAssignmentOperator ) {
+					// assignment operator
+					StringBuilder_Appendf( codeInl, "%s %s::operator=( const %s& other )\n", typeInfo->fullTypeName, typeInfo->fullTypeName, typeInfo->fullTypeName );
+					StringBuilder_Append(  codeInl, "{\n" );
+					for ( u32 row = 0; row < typeInfo->numRows; row++ ) {
+						StringBuilder_Appendf( codeInl, "\trows[%d] = other[%d];\n", row, row );
+					}
+					StringBuilder_Append( codeInl, "\n" );
+					StringBuilder_Append( codeInl, "\treturn *this;\n" );
+					StringBuilder_Append( codeInl, "}\n\n" );
 				}
-				StringBuilder_Append( codeInl, "\n" );
-				StringBuilder_Append( codeInl, "\treturn *this;\n" );
-				StringBuilder_Append( codeInl, "}\n\n" );
 
 				// array operators
 				StringBuilder_Appendf( codeInl, "%s& %s::operator[]( const %s index )\n", vectorMemberTypeName, typeInfo->fullTypeName, Gen_GetMemberTypeString( GEN_TYPE_INT ) );

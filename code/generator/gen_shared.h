@@ -147,6 +147,7 @@ typedef enum generatorFlagBits_t {
 	GENERATOR_FLAG_GENERATE_NON_SQUARE_MATRICES	= GEN_BIT( 10 ),	// generate non-square matrices (e.g. float2x3, float4x2) in addition to square ones
 	GENERATOR_FLAG_GENERATE_SSE					= GEN_BIT( 11 ),	// generate the SSE API (hlml_functions_scalar_sse.h/hlml_functions_vector_sse.h and their #includes in hlml.h) for types that support it, see Gen_TypeSupportsSIMD in gen_shared.c
 	GENERATOR_FLAG_GENERATE_RGBA					= GEN_BIT( 12 ),	// generate rgba-named vector members/swizzles alongside xyzw; only meaningful when GENERATOR_FLAG_VECTOR_UNIONS is also set, since rgba members live inside that union - gen_config.c rejects a config that sets this without it
+	GENERATOR_FLAG_GENERATE_ASSIGNMENT_OPERATOR	= GEN_BIT( 13 ),	// generate operator= for vectors and matrices; only meaningful when GENERATOR_FLAG_GENERATE_OPERATORS is also set
 
 	GENERATOR_FLAG_ALL
 } generatorFlagBits_t;

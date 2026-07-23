@@ -692,6 +692,7 @@ void GenerateVectorFiles( allocatorLinear_t *tempStorage, const char *generatedC
 	bool32 generateRgba = flags & GENERATOR_FLAG_GENERATE_RGBA;
 	bool32 generateConstructors = flags & GENERATOR_FLAG_GENERATE_CONSTRUCTORS;
 	bool32 generateOperators = flags & GENERATOR_FLAG_GENERATE_OPERATORS;
+	bool32 generateAssignmentOperator = flags & GENERATOR_FLAG_GENERATE_ASSIGNMENT_OPERATOR;
 
 	// which scalar types are actually present in typeInfos - a conversion ctor/operator referencing a
 	// scalar type that was excluded from generation (via config) would reference a type that doesn't exist
@@ -990,12 +991,14 @@ void GenerateVectorFiles( allocatorLinear_t *tempStorage, const char *generatedC
 			}
 
 			if ( generateOperators ) {
-				// assignment operators
-				for ( u32 componentIndex = componentCountMin; componentIndex <= typeInfo->numCols; componentIndex++ ) {
-					const char *otherTypeName = String_TPrintf( tempStorage, "%s%d", Gen_GetTypeString( typeInfo->type ), componentIndex );
+				if ( generateAssignmentOperator ) {
+					// assignment operators
+					for ( u32 componentIndex = componentCountMin; componentIndex <= typeInfo->numCols; componentIndex++ ) {
+						const char *otherTypeName = String_TPrintf( tempStorage, "%s%d", Gen_GetTypeString( typeInfo->type ), componentIndex );
 
-					StringBuilder_Append(  codeHeader, "\t// Copies all elements of 'other' into the vector.\n" );
-					StringBuilder_Appendf( codeHeader, "\tHLML_INLINE %s operator=( const %s& other );\n\n", typeInfo->fullTypeName, otherTypeName );
+						StringBuilder_Append(  codeHeader, "\t// Copies all elements of 'other' into the vector.\n" );
+						StringBuilder_Appendf( codeHeader, "\tHLML_INLINE %s operator=( const %s& other );\n\n", typeInfo->fullTypeName, otherTypeName );
+					}
 				}
 
 				const char *returnTypeName = Gen_GetMemberTypeString( GEN_TYPE_INT );
@@ -1314,20 +1317,22 @@ void GenerateVectorFiles( allocatorLinear_t *tempStorage, const char *generatedC
 			}
 
 			if ( generateOperators ) {
-				// assignment operators
-				for ( u32 otherVecComponentIndex = componentCountMin; otherVecComponentIndex <= typeInfo->numCols; otherVecComponentIndex++ ) {
-					const char *otherTypeName = String_TPrintf( tempStorage, "%s%d", Gen_GetTypeString( typeInfo->type ), otherVecComponentIndex );
+				if ( generateAssignmentOperator ) {
+					// assignment operators
+					for ( u32 otherVecComponentIndex = componentCountMin; otherVecComponentIndex <= typeInfo->numCols; otherVecComponentIndex++ ) {
+						const char *otherTypeName = String_TPrintf( tempStorage, "%s%d", Gen_GetTypeString( typeInfo->type ), otherVecComponentIndex );
 
-					StringBuilder_Appendf( codeInl, "%s %s::operator=( const %s& other )\n", typeInfo->fullTypeName, typeInfo->fullTypeName, otherTypeName );
-					StringBuilder_Append(  codeInl, "{\n" );
-					for ( u32 componentIndex = 0; componentIndex < otherVecComponentIndex; componentIndex++ ) {
-						const char componentName = GEN_COMPONENT_NAMES_VECTOR[componentIndex];
+						StringBuilder_Appendf( codeInl, "%s %s::operator=( const %s& other )\n", typeInfo->fullTypeName, typeInfo->fullTypeName, otherTypeName );
+						StringBuilder_Append(  codeInl, "{\n" );
+						for ( u32 componentIndex = 0; componentIndex < otherVecComponentIndex; componentIndex++ ) {
+							const char componentName = GEN_COMPONENT_NAMES_VECTOR[componentIndex];
 
-						StringBuilder_Appendf( codeInl, "\tthis->%c = other.%c;\n", componentName, componentName );
+							StringBuilder_Appendf( codeInl, "\tthis->%c = other.%c;\n", componentName, componentName );
+						}
+						StringBuilder_Append( codeInl, "\n" );
+						StringBuilder_Append( codeInl, "\treturn *this;\n" );
+						StringBuilder_Append( codeInl, "}\n\n" );
 					}
-					StringBuilder_Append( codeInl, "\n" );
-					StringBuilder_Append( codeInl, "\treturn *this;\n" );
-					StringBuilder_Append( codeInl, "}\n\n" );
 				}
 
 				// array operators
