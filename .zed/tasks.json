@@ -6,6 +6,24 @@
 		"args": ["build.cpp", "--config=generator"],
 		"cwd": "$ZED_WORKTREE_ROOT",
 	},
+	{
+		"label": "build: generator (release)",
+		"command": "builder",
+		"args": ["build.cpp", "--config=generator", "--release"],
+		"cwd": "$ZED_WORKTREE_ROOT",
+	},
+	{
+		"label": "rebuild: generator",
+		"command": "builder",
+		"args": ["build.cpp", "--config=generator", "--force"],
+		"cwd": "$ZED_WORKTREE_ROOT",
+	},
+	{
+		"label": "rebuild: generator (release)",
+		"command": "builder",
+		"args": ["build.cpp", "--config=generator", "--force", "--release"],
+		"cwd": "$ZED_WORKTREE_ROOT",
+	},
 
 	// clang
 	{
