@@ -66,6 +66,7 @@ static const genConfigFlagMapping_t s_flagMappings[] = {
 	{ "generate_rgba",					GENERATOR_FLAG_GENERATE_RGBA },
 	{ "generate_assignment_operator",	GENERATOR_FLAG_GENERATE_ASSIGNMENT_OPERATOR },
 	{ "suppress_anonymous_struct_warnings",	GENERATOR_FLAG_SUPPRESS_ANONYMOUS_STRUCT_WARNINGS },
+	{ "braces_same_line",				GENERATOR_FLAG_BRACES_SAME_LINE },
 };
 
 static generatorFlags_t GetDefaultFlagsForLanguage( const genLanguage_t language ) {

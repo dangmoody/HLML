@@ -56,7 +56,7 @@ static void GenerateFunction_Radians_SSE( allocatorLinear_t *tempStorage, string
 	const char *funcName = Gen_GetFuncName_Scalar_SSE( tempStorage, type, flags, GEN_FUNCTION_NAME_RADIANS );
 
 	StringBuilder_Appendf( code, "inline static __m128 %s( const __m128 degrees )\n", funcName );
-	StringBuilder_Append(  code, "{\n" );
+	Gen_AppendOpenBrace( code, flags, "" );
 	StringBuilder_Append(  code, "\treturn _mm_mul_ps( degrees, HLML_DEG_TO_RAD_SSE );\n" );
 	StringBuilder_Append(  code, "}\n\n" );
 }
@@ -69,7 +69,7 @@ static void GenerateFunction_Degrees_SSE( allocatorLinear_t *tempStorage, string
 	const char *funcName = Gen_GetFuncName_Scalar_SSE( tempStorage, type, flags, GEN_FUNCTION_NAME_DEGREES );
 
 	StringBuilder_Appendf( code, "inline static __m128 %s( const __m128 radians )\n", funcName );
-	StringBuilder_Append(  code, "{\n" );
+	Gen_AppendOpenBrace( code, flags, "" );
 	StringBuilder_Append(  code, "\treturn _mm_mul_ps( radians, HLML_RAD_TO_DEG_SSE );\n" );
 	StringBuilder_Append(  code, "}\n\n" );
 }
@@ -82,7 +82,7 @@ static void GenerateFunction_Lerp_SSE( allocatorLinear_t *tempStorage, stringBui
 	const char *funcName = Gen_GetFuncName_Scalar_SSE( tempStorage, type, flags, GEN_FUNCTION_NAME_LERP );
 
 	StringBuilder_Appendf( code, "inline static __m128 %s( const __m128 lhs, const __m128 rhs, const __m128 t )\n", funcName );
-	StringBuilder_Append(  code, "{\n" );
+	Gen_AppendOpenBrace( code, flags, "" );
 	StringBuilder_Append(  code, "\t__m128 sub = _mm_sub_ps( HLML_ONE_SSE, t );\n" );
 	StringBuilder_Append(  code, "\n" );
 	StringBuilder_Append(  code, "\treturn _mm_add_ps(\n" );

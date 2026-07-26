@@ -119,7 +119,7 @@ static const char *Gen_GetTestName_SSE( allocatorLinear_t *tempStorage, const ty
 	return String_TPrintf( tempStorage, "%s_sse", testName );
 }
 
-static void Gen_GenerateParametricTestDefinition_Operator( allocatorLinear_t *tempStorage, stringBuilder_t *code, const typeInfo_t *lhsType, const typeInfo_t *rhsType, const typeInfo_t *returnType, const char *opName, const char *opStr, const generatorStrings_t *strings ) {
+static void Gen_GenerateParametricTestDefinition_Operator( allocatorLinear_t *tempStorage, stringBuilder_t *code, const typeInfo_t *lhsType, const typeInfo_t *rhsType, const typeInfo_t *returnType, const char *opName, const char *opStr, const generatorStrings_t *strings, const generatorFlags_t flags ) {
 	assert( tempStorage );
 	assert( code );
 	assert( lhsType );
@@ -136,7 +136,7 @@ static void Gen_GenerateParametricTestDefinition_Operator( allocatorLinear_t *te
 	const char *testName = Gen_GetTestName( tempStorage, lhsType, opName );
 
 	StringBuilder_Appendf( code, "TEMPER_TEST_PARAMETRIC( %s, TEMPER_FLAG_SHOULD_RUN, const %s%s lhs, const %s%s rhs, const %s%s expectedAnswer )\n", testName, lhsType->fullTypeName, strings->parmPassByStr, rhsType->fullTypeName, strings->parmPassByStr, returnType->fullTypeName, strings->parmPassByStr );
-	StringBuilder_Append(  code, "{\n" );
+	Gen_AppendOpenBrace( code, flags, "" );
 	StringBuilder_Appendf( code, "\t%s actualResult = lhs %s rhs;\n", returnType->fullTypeName, opStr );
 	StringBuilder_Append(  code, "\tTEMPER_CHECK_TRUE( actualResult == expectedAnswer );\n" );
 	StringBuilder_Append(  code, "}\n\n" );
@@ -188,7 +188,7 @@ void Gen_GenerateParametricTestDefinition_Generic_SSE( allocatorLinear_t *tempSt
 	}
 
 	StringBuilder_Appendf( code, ", const %s%s expectedAnswer )\n", def->returnType->fullTypeName, returnPassByStr );
-	StringBuilder_Append(  code, "{\n" );
+	Gen_AppendOpenBrace( code, flags, "" );
 
 	for ( u32 parmIndex = 0; parmIndex < def->parmsCount; parmIndex++ ) {
 		const parametricTestDefinitionParm_t *parm = &def->parms[parmIndex];
@@ -347,7 +347,7 @@ void Gen_GenerateParametricTestDefinition_Generic( allocatorLinear_t *tempStorag
 	}
 
 	StringBuilder_Appendf( code, ", const %s%s expectedAnswer )\n", def->returnType->fullTypeName, passByStr );
-	StringBuilder_Append(  code, "{\n" );
+	Gen_AppendOpenBrace( code, flags, "" );
 	StringBuilder_Appendf( code, "\t%s actualResult = %s( ", def->returnType->fullTypeName, funcToCall );
 
 	for ( u32 i = 0; i < def->parmsCount; i++ ) {
@@ -450,7 +450,7 @@ static void Gen_GenerateParametricTestDefinition_ComponentWise_SSE( allocatorLin
 	}
 
 	StringBuilder_Appendf( code, ", const %s%s expectedAnswer )\n", def->returnType->fullTypeName, passByStr );
-	StringBuilder_Append(  code, "{\n" );
+	Gen_AppendOpenBrace( code, flags, "" );
 
 	for ( u32 i = 0; i < def->parmsCount; i++ ) {
 		const parametricTestDefinitionParm_t *parm = &def->parms[i];
@@ -640,7 +640,7 @@ static void Gen_GenerateParametricTestsCode_Operator( allocatorLinear_t *tempSto
 	const char *testName = Gen_GetTestName( tempStorage, typeInfo, opName );
 
 	if ( flags & GENERATOR_FLAG_GENERATE_OPERATORS ) {
-		Gen_GenerateParametricTestDefinition_Operator( tempStorage, code, fixture->lhsType, fixture->rhsType, fixture->returnType, opName, opStr, strings );
+		Gen_GenerateParametricTestDefinition_Operator( tempStorage, code, fixture->lhsType, fixture->rhsType, fixture->returnType, opName, opStr, strings, flags );
 	} else {
 		Gen_GenerateParametricTestDefinition_Generic( tempStorage, code, typeInfo, strings, flags, &(parametricTestDefinition_t) {
 			.returnType = fixture->returnType,
@@ -728,7 +728,7 @@ static void Gen_GenerateParametricTestCode_OperatorSingleParm( allocatorLinear_t
 	const char *testName = Gen_GetTestName( tempStorage, typeInfo, testNameSuffix );
 
 	StringBuilder_Appendf( code, "TEMPER_TEST_PARAMETRIC( %s, TEMPER_FLAG_SHOULD_RUN, const %s%s x, const %s%s expectedAnswer )\n", testName, typeInfo->fullTypeName, strings->parmPassByStr, typeInfo->fullTypeName, strings->parmPassByStr );
-	StringBuilder_Append(  code, "{\n" );
+	Gen_AppendOpenBrace( code, flags, "" );
 	StringBuilder_Append(  code, "\t// make local copy of x and use that because we cant do increment or decrement operations on a const reference\n" );
 	StringBuilder_Append(  code, "\t// and MSVC throws warnings if we just make the parameter a non-const reference\n" );
 	if ( generateOperators ) {
@@ -1796,7 +1796,7 @@ void GenerateTests_CtorConversion( allocatorLinear_t *tempStorage, stringBuilder
 
 		// this test cant use any of the main test generation functions because we only a certain number of components get assigned based on the type being converting from
 		StringBuilder_Appendf( code, "TEMPER_TEST_PARAMETRIC( Test_%s_%s, TEMPER_FLAG_SHOULD_RUN, const %s& convertFrom, const %s& expectedAnswer )\n", typeInfo->fullTypeName, otherTypeInfo.fullTypeName, otherTypeInfo.fullTypeName, typeInfo->fullTypeName );
-		StringBuilder_Append(  code, "{\n" );
+		Gen_AppendOpenBrace( code, flags, "" );
 		StringBuilder_Appendf( code, "\t%s actualAnswer = %s( convertFrom );\n", typeInfo->fullTypeName, typeInfo->fullTypeName );
 		StringBuilder_Append(  code, "\n" );
 		if ( Gen_TypeIsMatrix( typeInfo ) ) {
@@ -1893,7 +1893,7 @@ void GenerateTests_CtorConversion( allocatorLinear_t *tempStorage, stringBuilder
 					StringBuilder_Appendf( code, "const %s scalar%d, ", memberTypeString, i );
 				}
 				StringBuilder_Appendf( code, "const %s expectedAnswer )\n", typeInfo->fullTypeName );
-				StringBuilder_Append(  code, "{\n" );
+				Gen_AppendOpenBrace( code, flags, "" );
 				StringBuilder_Appendf( code, "\t%s actualAnswer = %s( vecPart, ", typeInfo->fullTypeName, typeInfo->fullTypeName );
 				for ( u32 i = 0; i < leftoverOnes; i++ ) {
 					StringBuilder_Appendf( code, "scalar%d", i );
@@ -1951,7 +1951,7 @@ void GenerateTests_CtorConversion( allocatorLinear_t *tempStorage, stringBuilder
 				}
 				StringBuilder_Appendf( code, "const %s%d& vecPart, ", typeString, numComponents );
 				StringBuilder_Appendf( code, "const %s expectedAnswer )\n", typeInfo->fullTypeName );
-				StringBuilder_Append(  code, "{\n" );
+				Gen_AppendOpenBrace( code, flags, "" );
 				StringBuilder_Appendf( code, "\t%s actualAnswer = %s( ", typeInfo->fullTypeName, typeInfo->fullTypeName );
 				for ( u32 i = 0; i < leftoverOnes; i++ ) {
 					StringBuilder_Appendf( code, "scalar%d, ", i );
@@ -2002,7 +2002,7 @@ void GenerateTests_CtorConversion( allocatorLinear_t *tempStorage, stringBuilder
 			testName = Gen_GetTestName( tempStorage, typeInfo, funcName );
 
 			StringBuilder_Appendf( code, "TEMPER_TEST_PARAMETRIC( %s, TEMPER_FLAG_SHOULD_RUN, const %s& vec0, const %s& vec1, const %s& expectedAnswer )\n", testName, subVecType.fullTypeName, subVecType.fullTypeName, typeInfo->fullTypeName );
-			StringBuilder_Append(  code, "{\n" );
+			Gen_AppendOpenBrace( code, flags, "" );
 			StringBuilder_Appendf( code, "\t%s actualAnswer = %s( vec0, vec1 );\n", typeInfo->fullTypeName, typeInfo->fullTypeName );
 			StringBuilder_Append(  code, "\n" );
 			if ( Gen_TypeIsFloatingPoint( typeInfo->type ) ) {

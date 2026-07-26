@@ -67,7 +67,7 @@ static void GenerateFunction_QuaternionMulScalar( allocatorLinear_t *tempStorage
 
 	StringBuilder_Append(  code, "// Performs a quaternion multiplication against the given scalar.\n" );
 	StringBuilder_Appendf( code, "HLML_INLINE %s %s( const %s%s lhs, const %s rhs )\n", typeInfo->fullTypeName, mulQuaternionFuncStr, typeInfo->fullTypeName, strings->parmPassByStr, memberTypeString );
-	StringBuilder_Append(  code, "{\n" );
+	Gen_AppendOpenBrace( code, flags, "" );
 	StringBuilder_Appendf( code, "\t%s scalar = lhs%sw * rhs;\n", memberTypeString, strings->parmAccessOperatorStr );
 	StringBuilder_Appendf( code, "\t%s3 imaginary = { lhs%sx, lhs%sy, lhs%sz };\n", typeString, strings->parmAccessOperatorStr, strings->parmAccessOperatorStr, strings->parmAccessOperatorStr );
 	if ( generateOperators ) {
@@ -97,7 +97,7 @@ static void GenerateFunction_QuaternionMulQuaternion( allocatorLinear_t *tempSto
 
 	StringBuilder_Append(  code, "// Performs a quaternion multiplication against the other quaternion.\n" );
 	StringBuilder_Appendf( code, "HLML_INLINE %s %s( const %s%s lhs, const %s%s rhs )\n", typeInfo->fullTypeName, mulQuaternionFuncStr, typeInfo->fullTypeName, strings->parmPassByStr, typeInfo->fullTypeName, strings->parmPassByStr );
-	StringBuilder_Append(  code, "{\n" );
+	Gen_AppendOpenBrace( code, flags, "" );
 	StringBuilder_Appendf( code, "\t%s quat;\n", typeInfo->fullTypeName );
 	StringBuilder_Appendf( code, "\tquat.x =  lhs%sx * rhs%sw + lhs%sy * rhs%sz - lhs%sz * rhs%sy + lhs%sw * rhs%sx;\n", strings->parmAccessOperatorStr, strings->parmAccessOperatorStr, strings->parmAccessOperatorStr, strings->parmAccessOperatorStr, strings->parmAccessOperatorStr, strings->parmAccessOperatorStr, strings->parmAccessOperatorStr, strings->parmAccessOperatorStr );
 	StringBuilder_Appendf( code, "\tquat.y = -lhs%sx * rhs%sz + lhs%sy * rhs%sw + lhs%sz * rhs%sx + lhs%sw * rhs%sy;\n", strings->parmAccessOperatorStr, strings->parmAccessOperatorStr, strings->parmAccessOperatorStr, strings->parmAccessOperatorStr, strings->parmAccessOperatorStr, strings->parmAccessOperatorStr, strings->parmAccessOperatorStr, strings->parmAccessOperatorStr );
@@ -124,7 +124,7 @@ static void GenerateFunction_QuaternionLength( allocatorLinear_t *tempStorage, c
 
 	StringBuilder_Append(  code, "// Returns the magnitude of the quaternion.\n" );
 	StringBuilder_Appendf( code, "HLML_INLINE %s %s( const %s%s quat )\n", memberTypeString, quatLengthFuncStr, typeInfo->fullTypeName, strings->parmPassByStr );
-	StringBuilder_Append(  code, "{\n" );
+	Gen_AppendOpenBrace( code, flags, "" );
 	StringBuilder_Appendf( code, "\treturn %s( ", Gen_GetBuiltinFunction( tempStorage, typeInfo->type, GEN_BUILTIN_FUNCTION_NAME_SQRT ) );
 	for ( u32 i = 0; i < typeInfo->numCols; i++ ) {
 		const char componentName = GEN_COMPONENT_NAMES_VECTOR[i];
@@ -165,12 +165,12 @@ static void GenerateFunction_QuaternionNormalize( allocatorLinear_t *tempStorage
 
 	StringBuilder_Append(  code, "// Normalizes the quaternion.\n" );
 	StringBuilder_Appendf( code, "HLML_INLINE %s %s( const %s%s quat )\n", typeInfo->fullTypeName, normalizeQuaternionFuncStr, typeInfo->fullTypeName, strings->parmPassByStr );
-	StringBuilder_Append(  code, "{\n");
+	Gen_AppendOpenBrace( code, flags, "" );
 	StringBuilder_Appendf( code, "\t%s3 normV = { quat%sx, quat%sy, quat%sz };\n", typeString, strings->parmAccessOperatorStr, strings->parmAccessOperatorStr, strings->parmAccessOperatorStr );
 	StringBuilder_Appendf( code, "\t%s normS = quat%sw;\n", memberTypeString, strings->parmAccessOperatorStr );
 	StringBuilder_Appendf( code, "\t%s mag = %s( quat );\n", memberTypeString, lengthQuaternionFuncStr );
 	StringBuilder_Appendf( code, "\tif ( mag >= %s )\n", zeroStr );
-	StringBuilder_Append(  code, "\t{\n" );
+	Gen_AppendOpenBrace( code, flags, "\t" );
 	StringBuilder_Appendf( code, "\t\t%s magInverse = %s / mag;\n", typeString, oneStr );
 	if ( flags & GENERATOR_FLAG_GENERATE_OPERATORS ) {
 		StringBuilder_Appendf( code, "\t\tnormV = normV %s magInverse;\n", Gen_GetOperatorArithmetic( GEN_OP_ARITHMETIC_MUL ) );
@@ -199,9 +199,9 @@ static void GenerateFunction_QuaternionConjugate( allocatorLinear_t *tempStorage
 
 	StringBuilder_Append(  code, "// Returns the conjugate of the quaternion.\n" );
 	StringBuilder_Appendf( code, "HLML_INLINE %s %s( const %s%s quat )\n", typeInfo->fullTypeName, conjugateQuaternionFuncStr, typeInfo->fullTypeName, strings->parmPassByStr );
-	StringBuilder_Append(  code, "{\n" );
+	Gen_AppendOpenBrace( code, flags, "" );
 	StringBuilder_Appendf( code, "\treturn HLML_CONSTRUCT( %s )\n", typeInfo->fullTypeName );
-	StringBuilder_Append(  code, "\t{\n" );
+	Gen_AppendOpenBrace( code, flags, "\t" );
 
 	const int numCols = 3;
 	for (u32 i = 0; i < numCols; i++) {
@@ -236,7 +236,7 @@ static void GenerateFunction_QuaternionInverse( allocatorLinear_t *tempStorage, 
 
 	StringBuilder_Append(  code, "// Returns the inverse of the quaternion.\n" );
 	StringBuilder_Appendf( code, "HLML_INLINE %s %s( const %s%s quat )\n", typeInfo->fullTypeName, inverseQuaternionFuncStr, typeInfo->fullTypeName, strings->parmPassByStr );
-	StringBuilder_Append(  code, "{\n");
+	Gen_AppendOpenBrace( code, flags, "" );
 	StringBuilder_Appendf( code, "\t%s magnitude = %s( quat );\n", memberTypeString, lengthQuaternionFuncStr );
 	StringBuilder_Append(  code, "\tmagnitude *= magnitude;\n" );
 	StringBuilder_Appendf( code, "\tmagnitude = %s / magnitude;\n", oneStr );
@@ -279,7 +279,7 @@ static void GenerateFunction_QuaternionRotationAxis( allocatorLinear_t *tempStor
 
 	StringBuilder_Append(  code, "// Performs a rotation on the quaternion by the given axis-angle and angle (in radians).\n" );
 	StringBuilder_Appendf( code, "HLML_INLINE %s %s( const %s%s vect, const %s angle, const %s3%s axis )\n", imaginaryPartType.fullTypeName, rotateQuaternionFuncStr, typeInfo->fullTypeName, strings->parmPassByStr, memberTypeString, memberTypeString, strings->parmPassByStr );
-	StringBuilder_Append(  code, "{\n" );
+	Gen_AppendOpenBrace( code, flags, "" );
 	StringBuilder_Appendf( code, "\t%s pureQuat = HLML_CONSTRUCT( %s ) { vect%sx, vect%sy, vect%sz, %s };\n", typeInfo->fullTypeName, typeInfo->fullTypeName, strings->parmAccessOperatorStr, strings->parmAccessOperatorStr, strings->parmAccessOperatorStr, zeroStr );
 	StringBuilder_Appendf( code, "\t%s normalizedAxis = %saxis;\n", imaginaryPartType.fullTypeName, strings->parmDereferenceStr );
 	StringBuilder_Appendf( code, "\t%s( %snormalizedAxis );\n", normalizeVectorFuncStr, strings->parmReferenceStr );
@@ -325,7 +325,7 @@ static void GenerateFunction_QuaternionLerp( allocatorLinear_t *tempStorage, con
 
 	StringBuilder_Append(  code, "// Returns a linearly interpolated float4 quaternion between 'a' and 'b' where 'percent' is the percentage (between 0 and 1) to interpolate by.\n" );
 	StringBuilder_Appendf( code, "HLML_INLINE %s %s( const %s%s lhs, const %s%s rhs, const %s percent )\n", typeInfo->fullTypeName, lerpQuaternionFuncStr, typeInfo->fullTypeName, strings->parmPassByStr, typeInfo->fullTypeName, strings->parmPassByStr, memberTypeString );
-	StringBuilder_Append(  code, "{\n" );
+	Gen_AppendOpenBrace( code, flags, "" );
 	StringBuilder_Appendf( code, "\t%s quat;\n", typeInfo->fullTypeName );
 	StringBuilder_Appendf( code, "\t%s t = %s - percent;\n", memberTypeString, oneStr );
 
@@ -361,7 +361,7 @@ static void GenerateFunction_QuaternionSlerp( allocatorLinear_t *tempStorage, co
 
 	StringBuilder_Append(  code, "// Returns a spherically interpolated float4 between 'a' and 'b' where 'percent' is the percentage (between 0 and 1) to interpolate by.\n" );
 	StringBuilder_Appendf( code, "HLML_INLINE %s %s( const %s%s lhs, const %s%s rhs, const %s percent )\n", typeInfo->fullTypeName, slerpQuaternionFuncStr, typeInfo->fullTypeName, strings->parmPassByStr, typeInfo->fullTypeName, strings->parmPassByStr, memberTypeString );
-	StringBuilder_Append(  code, "{\n" );
+	Gen_AppendOpenBrace( code, flags, "" );
 	StringBuilder_Appendf( code, "\t%s quat;\n", typeInfo->fullTypeName );
 	StringBuilder_Appendf( code, "\t%s t = %s - percent;\n", memberTypeString, oneStr );
 	StringBuilder_Appendf( code, "\t%s cosTheta = ", memberTypeString );
@@ -378,7 +378,7 @@ static void GenerateFunction_QuaternionSlerp( allocatorLinear_t *tempStorage, co
 
 	StringBuilder_Append(  code, ";\n" );
 	StringBuilder_Appendf( code, "\tif ( cosTheta >= %s )\n", oneStr );
-	StringBuilder_Append(  code, "\t{\n" );
+	Gen_AppendOpenBrace( code, flags, "\t" );
 	StringBuilder_Appendf( code, "\t\treturn HLML_CONSTRUCT( %s ) { ", typeInfo->fullTypeName );
 	for (u32 i = 0; i < typeInfo->numCols; i++) {
 		const char componentName = GEN_COMPONENT_NAMES_VECTOR[i];
@@ -428,9 +428,9 @@ static void GenerateFunction_QuaternionToRotationMatrix( allocatorLinear_t *temp
 
 	StringBuilder_Appendf( code, "// Converts the quaternion into a rotation matrix and returns the result.\n" );
 	StringBuilder_Appendf( code, "HLML_INLINE %s %s( const %s%s quat )\n", returnTypeName, funcName, typeInfo->fullTypeName, strings->parmPassByStr );
-	StringBuilder_Append(  code, "{\n" );
+	Gen_AppendOpenBrace( code, flags, "" );
 	StringBuilder_Appendf( code, "\treturn HLML_CONSTRUCT( %s )\n", returnTypeName );
-	StringBuilder_Append(  code, "\t{\n" );
+	Gen_AppendOpenBrace( code, flags, "\t" );
 	StringBuilder_Appendf( code, "\t\t%s - ( %s * ( quat%sy * quat%sy ) ) - ( %s * ( quat%sz * quat%sz ) ),\n", oneStr, twoStr, strings->parmAccessOperatorStr, strings->parmAccessOperatorStr, twoStr, strings->parmAccessOperatorStr, strings->parmAccessOperatorStr );
 	StringBuilder_Appendf( code, "\t\t( %s * ( quat%sx * quat%sy ) ) - ( %s * ( quat%sw * quat%sz ) ),\n", twoStr, strings->parmAccessOperatorStr, strings->parmAccessOperatorStr, twoStr, strings->parmAccessOperatorStr, strings->parmAccessOperatorStr );
 	StringBuilder_Appendf( code, "\t\t( %s * ( quat%sx * quat%sz ) ) + ( %s * ( quat%sw * quat%sy ) ),\n", twoStr, strings->parmAccessOperatorStr, strings->parmAccessOperatorStr, twoStr, strings->parmAccessOperatorStr, strings->parmAccessOperatorStr );
@@ -483,10 +483,9 @@ void GenerateQuaternionFiles( allocatorLinear_t *tempStorage, const char *genera
 	}
 
 	if ( allowNamespace ) {
+		StringBuilder_Append( code, "#ifdef HLML_NAMESPACE\n" "namespace hlml\n" );
+		Gen_AppendOpenBrace( code, flags, "" );
 		StringBuilder_Append( code,
-			"#ifdef HLML_NAMESPACE\n"
-			"namespace hlml\n"
-			"{\n"
 			"#endif\n"
 			"\n"
 		);

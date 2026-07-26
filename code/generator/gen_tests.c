@@ -159,7 +159,7 @@ void Gen_GenerateTests( allocatorLinear_t *tempStorage,
 		}
 
 		StringBuilder_Append( sb, "TEMPER_TEST( Test_TypeSizes, TEMPER_FLAG_SHOULD_RUN )\n" );
-		StringBuilder_Append( sb, "{\n" );
+		Gen_AppendOpenBrace( sb, flags, "" );
 
 		for ( u32 i = 0; i < vectorTypeInfosCount; i++ ) {
 			const typeInfo_t *typeInfo = &vectorTypeInfos[i];
@@ -185,7 +185,9 @@ void Gen_GenerateTests( allocatorLinear_t *tempStorage,
 			"\n"
 
 			"static void OnBeforeTest( const temperTestInfo_t *testInfo )\n"
-			"{\n"
+		);
+		Gen_AppendOpenBrace( sb, flags, "" );
+		StringBuilder_Append( sb,
 			"\tconst int padLengthMax = (int) strlen( TEST_PADDING );\n"
 			"\n"
 			"\tconst int dotLength = padLengthMax - (int) strlen( testInfo->testNameStr );\n"
@@ -196,23 +198,33 @@ void Gen_GenerateTests( allocatorLinear_t *tempStorage,
 			"\n"
 
 			"static void OnAfterTest( const temperTestInfo_t *testInfo )\n"
-			"{\n"
+		);
+		Gen_AppendOpenBrace( sb, flags, "" );
+		StringBuilder_Append( sb,
 			"\tif ( testInfo->testingFlag == TEMPER_FLAG_SHOULD_SKIP )\n"
-			"\t{\n"
+		);
+		Gen_AppendOpenBrace( sb, flags, "\t" );
+		StringBuilder_Append( sb,
 			"\t\tTemperSetTextColorInternal( TEMPERDEV_COLOR_YELLOW );\n"
 			"\t\tprintf( \"SKIPPED\\n\" );\n"
 			"\t\tTemperSetTextColorInternal( TEMPERDEV_COLOR_DEFAULT );\n"
 			"\t}\n"
 			"\telse\n"
-			"\t{\n"
+		);
+		Gen_AppendOpenBrace( sb, flags, "\t" );
+		StringBuilder_Append( sb,
 			"\t\tif ( g_temperTestContext.currentTestErrorCount == 0 )\n"
-			"\t\t{\n"
+		);
+		Gen_AppendOpenBrace( sb, flags, "\t\t" );
+		StringBuilder_Append( sb,
 			"\t\t\tTemperSetTextColorInternal( TEMPERDEV_COLOR_GREEN );\n"
 			"\t\t\tprintf( \"OK\" );\n"
 			"\t\t\tTemperSetTextColorInternal( TEMPERDEV_COLOR_DEFAULT );\n"
 			"\t\t}\n"
 			"\t\telse\n"
-			"\t\t{\n"
+		);
+		Gen_AppendOpenBrace( sb, flags, "\t\t" );
+		StringBuilder_Append( sb,
 			"\t\t\tTemperSetTextColorInternal( TEMPERDEV_COLOR_RED );\n"
 			"\t\t\tprintf( \"FAILED\\n\" );\n"
 			"\t\t\tTemperSetTextColorInternal( TEMPERDEV_COLOR_DEFAULT );\n"
@@ -224,7 +236,9 @@ void Gen_GenerateTests( allocatorLinear_t *tempStorage,
 			"\n"
 
 			"int main( int argc, char **argv )\n"
-			"{\n"
+		);
+		Gen_AppendOpenBrace( sb, flags, "" );
+		StringBuilder_Append( sb,
 			"\tg_temperTestContext.callbacks.OnBeforeTest = OnBeforeTest;\n"
 			"\tg_temperTestContext.callbacks.OnAfterTest = OnAfterTest;\n"
 			"\n"

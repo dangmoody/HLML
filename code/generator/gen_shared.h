@@ -149,6 +149,7 @@ typedef enum generatorFlagBits_t {
 	GENERATOR_FLAG_GENERATE_RGBA					= GEN_BIT( 12 ),	// generate rgba-named vector members/swizzles alongside xyzw; only meaningful when GENERATOR_FLAG_VECTOR_UNIONS is also set, since rgba members live inside that union - gen_config.c rejects a config that sets this without it
 	GENERATOR_FLAG_GENERATE_ASSIGNMENT_OPERATOR	= GEN_BIT( 13 ),	// generate operator= for vectors and matrices; only meaningful when GENERATOR_FLAG_GENERATE_OPERATORS is also set
 	GENERATOR_FLAG_SUPPRESS_ANONYMOUS_STRUCT_WARNINGS	= GEN_BIT( 14 ),	// wrap vector types' anonymous struct/union members in a push/pop of Clang/GCC's -Wpedantic and MSVC's C4201, since anonymous structs/unions are a nonstandard extension; only meaningful when GENERATOR_FLAG_VECTOR_UNIONS is also set, since that's the only place vectors use anonymous structs/unions
+	GENERATOR_FLAG_BRACES_SAME_LINE					= GEN_BIT( 15 ),	// put opening scope braces (functions, structs, namespace blocks, control-flow) on the same line as the preceding statement instead of on their own line; does not affect aggregate-initializer braces (e.g. HLML_CONSTRUCT( type ) { ... })
 
 	GENERATOR_FLAG_ALL
 } generatorFlagBits_t;
@@ -214,11 +215,16 @@ const char			*Gen_GetFuncName_VectorArithmeticVector( allocatorLinear_t *tempSto
 
 const char			*Gen_GetFuncName_MatrixMul( allocatorLinear_t *tempStorage, const typeInfo_t *lhsType, const typeInfo_t *rhsType, const generatorFlags_t flags );
 
-void				GetMatrixCodeMultiply( allocatorLinear_t *tempStorage, const typeInfo_t *typeInfo, stringBuilder_t *code, const char *accessOperatorStr, const bool32 useConstructor );
+void				GetMatrixCodeMultiply( allocatorLinear_t *tempStorage, const typeInfo_t *typeInfo, stringBuilder_t *code, const char *accessOperatorStr, const bool32 useConstructor, const generatorFlags_t flags );
 
 const char			*Gen_GetNumericLiteral( allocatorLinear_t *tempStorage, const genType_t type, const float32 x, const u32 decimalPlaces );
 
-void				GetMatrixCodeMultiplyVector( const typeInfo_t *matrixType, const typeInfo_t *vectorType, stringBuilder_t *code, const char *accessOperatorStr, const bool32 useConstructor );
+// Appends an opening scope brace to 'sb'. If GENERATOR_FLAG_BRACES_SAME_LINE is set, joins it onto the end
+// of the line already in 'sb' (which must end in '\n'); otherwise appends it on its own line, indented by
+// 'indent' (a string of tabs). Not for aggregate-initializer braces - those aren't a "scope".
+void				Gen_AppendOpenBrace( stringBuilder_t *sb, const generatorFlags_t flags, const char *indent );
+
+void				GetMatrixCodeMultiplyVector( const typeInfo_t *matrixType, const typeInfo_t *vectorType, stringBuilder_t *code, const char *accessOperatorStr, const bool32 useConstructor, const generatorFlags_t flags );
 
 stringBuilder_t	*Gen_GetParmList_MatrixMultiply( allocatorLinear_t *tempStorage, const typeInfo_t *lhsType, const typeInfo_t *rhsType, const float32 *valuesLhs, const float32 *valuesRhs );
 

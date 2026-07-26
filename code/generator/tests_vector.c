@@ -605,7 +605,7 @@ static void Gen_GenerateTests_Normalize( allocatorLinear_t *tempStorage, stringB
 	const char *oneStr = Gen_GetNumericLiteral( tempStorage, floatingPointType, 1.0f, 1 );
 
 	StringBuilder_Appendf( code, "TEMPER_TEST_PARAMETRIC( %s, TEMPER_FLAG_SHOULD_RUN, const %s%s vec, const %s%s expectedAnswer )\n", testName, typeInfo->fullTypeName, strings->parmPassByStr, typeInfo->fullTypeName, strings->parmPassByStr );
-	StringBuilder_Appendf( code, "{\n" );
+	Gen_AppendOpenBrace( code, flags, "" );
 	StringBuilder_Appendf( code, "\t%s vecNormalized = %svec;\n", typeInfo->fullTypeName, strings->parmDereferenceStr );
 	StringBuilder_Appendf( code, "\t%s( %svecNormalized );\n", actualFuncName, strings->parmReferenceStr );
 	if ( flags & GENERATOR_FLAG_GENERATE_OPERATORS ) {
@@ -806,7 +806,7 @@ static void GenerateSwizzleFunc_Test( allocatorLinear_t *tempStorage, stringBuil
 	}
 
 	StringBuilder_Appendf( code, "TEMPER_TEST_PARAMETRIC( Test_%s_%s, TEMPER_FLAG_SHOULD_RUN, const %s%s vec, const %s%s expectedAnswer )\n", typeInfo->fullTypeName, funcName, typeInfo->fullTypeName, strings->parmPassByStr, swizzleTypeInfo.fullTypeName, strings->parmPassByStr );
-	StringBuilder_Appendf( code, "{\n" );
+	Gen_AppendOpenBrace( code, flags, "" );
 	StringBuilder_Appendf( code, "\t%s vecCopy = vec;\n", typeInfo->fullTypeName );
 	StringBuilder_Appendf( code, "\n" );
 	StringBuilder_Appendf( code, "\t%s vecSwizzled = vecCopy.%s;\n", swizzleTypeInfo.fullTypeName, swizzleStr );
@@ -814,7 +814,7 @@ static void GenerateSwizzleFunc_Test( allocatorLinear_t *tempStorage, stringBuil
 	if ( isWritable ) {
 		StringBuilder_Appendf( code, "\n" );
 		StringBuilder_Appendf( code, "\t// write swizzle test\n" );
-		StringBuilder_Appendf( code, "\t{\n" );
+		Gen_AppendOpenBrace( code, flags, "\t" );
 		for ( u32 i = 0; i < numSwizzleComponents; i++ ) {
 			const char componentName = swizzleStr[i];
 
@@ -898,7 +898,7 @@ static void Gen_GenerateTests_QuatMulScalar( allocatorLinear_t *tempStorage, str
 	const char *testName = String_TPrintf( tempStorage, "Test_%s_%ss", typeInfo->fullTypeName, GEN_FUNCTION_NAME_QUAT_MUL, suffix );
 
 	StringBuilder_Appendf( code, "TEMPER_TEST_PARAMETRIC( %s, TEMPER_FLAG_SHOULD_RUN, const %s%s quat, const %s scalar, const %s%s expectedAnswer )\n", testName, typeInfo->fullTypeName, strings->parmPassByStr, scalarType->fullTypeName, typeInfo->fullTypeName, strings->parmPassByStr );
-	StringBuilder_Append(  code, "{\n" );
+	Gen_AppendOpenBrace( code, flags, "" );
 	StringBuilder_Appendf( code, "\t%s actualAnswer = %s( quat, scalar );\n", typeInfo->fullTypeName, funcToCall );
 	if ( flags & GENERATOR_FLAG_GENERATE_OPERATORS ) {
 		StringBuilder_Append(  code, "\tTEMPER_CHECK_TRUE( actualAnswer == expectedAnswer );\n" );
@@ -973,7 +973,7 @@ static void Gen_GenerateTests_QuatMulQuat( allocatorLinear_t *tempStorage, strin
 	const char *testName = String_TPrintf( tempStorage, "Test_%s_%sq", typeInfo->fullTypeName, GEN_FUNCTION_NAME_QUAT_MUL, suffix );
 
 	StringBuilder_Appendf( code, "TEMPER_TEST_PARAMETRIC( %s, TEMPER_FLAG_SHOULD_RUN, const %s%s lhs, const %s%s rhs, const %s%s expectedAnswer )\n", testName, typeInfo->fullTypeName, strings->parmPassByStr, typeInfo->fullTypeName, strings->parmPassByStr, typeInfo->fullTypeName, strings->parmPassByStr );
-	StringBuilder_Append(  code, "{\n" );
+	Gen_AppendOpenBrace( code, flags, "" );
 	StringBuilder_Appendf( code, "\t%s actualAnswer = %s( lhs, rhs );\n", typeInfo->fullTypeName, funcToCall );
 	if ( flags & GENERATOR_FLAG_GENERATE_OPERATORS ) {
 		StringBuilder_Append(  code, "\tTEMPER_CHECK_TRUE( actualAnswer == expectedAnswer );\n" );

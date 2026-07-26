@@ -55,7 +55,7 @@ static void GenerateFunction_All_Matrix( allocatorLinear_t *tempStorage, const t
 
 	StringBuilder_Append(  code, "// Returns true if ALL components of the 'x' are true, otherwise returns false.\n" );
 	StringBuilder_Appendf( code, "HLML_INLINE bool %s( const %s *x )\n", allFuncMatrixStr, typeInfo->fullTypeName );
-	StringBuilder_Append(  code, "{\n" );
+	Gen_AppendOpenBrace( code, flags, "" );
 	StringBuilder_Append(  code, "\treturn\n" );
 
 	for ( u32 row = 0; row < typeInfo->numRows; row++ ) {
@@ -84,7 +84,7 @@ static void GenerateFunction_Any_Matrix( allocatorLinear_t *tempStorage, const t
 
 	StringBuilder_Append(  code, "// Returns true if ANY one component of 'x' is true, otherwise returns false.\n" );
 	StringBuilder_Appendf( code, "HLML_INLINE bool %s( const %s *x )\n", anyFuncStrMatrix, typeInfo->fullTypeName );
-	StringBuilder_Append(  code, "{\n" );
+	Gen_AppendOpenBrace( code, flags, "" );
 	StringBuilder_Append(  code, "\treturn\n" );
 
 	for ( u32 row = 0; row < typeInfo->numRows; row++ ) {
@@ -116,7 +116,7 @@ static void GenerateFunction_Identity_Matrix( allocatorLinear_t *tempStorage, co
 
 	StringBuilder_Append(  code, "// Sets the matrix to an identity matrix.\n" );
 	StringBuilder_Appendf( code, "HLML_INLINE void %s( %s%s mat )\n", identityFuncStr, typeInfo->fullTypeName, strings->parmPassByStr );
-	StringBuilder_Append(  code, "{\n" );
+	Gen_AppendOpenBrace( code, flags, "" );
 
 	for ( u32 row = 0; row < typeInfo->numRows; row++ ) {
 		StringBuilder_Appendf( code, "\tmat%srows[%d] = HLML_CONSTRUCT( %s ) { ", strings->parmAccessOperatorStr, row, memberTypeInfo->fullTypeName );
@@ -148,9 +148,9 @@ static void GenerateFunction_Transpose_Matrix( allocatorLinear_t *tempStorage, c
 
 	StringBuilder_Append(  code, "// Returns a copy of the matrix that is transposed, where the value of each row is set to the value of each column and vice versa.\n" );
 	StringBuilder_Appendf( code, "HLML_INLINE %s %s( const %s%s mat )\n", transposeTypeName, transposeFuncStr, typeInfo->fullTypeName, strings->parmPassByStr );
-	StringBuilder_Append(  code, "{\n" );
+	Gen_AppendOpenBrace( code, flags, "" );
 	StringBuilder_Appendf( code, "\treturn HLML_CONSTRUCT( %s )\n", transposeTypeName );
-	StringBuilder_Append(  code, "\t{\n" );
+	Gen_AppendOpenBrace( code, flags, "\t" );
 
 	// row/col iteration order reversed here because we are returning the transposed type
 	for ( u32 col = 0; col < typeInfo->numCols; col++ ) {
@@ -196,7 +196,7 @@ static void GenerateFunction_Determinant_Matrix( allocatorLinear_t *tempStorage,
 
 	StringBuilder_Append(  code, "// Returns the determinant of the matrix.\n" );
 	StringBuilder_Appendf( code, "HLML_INLINE %s %s( const %s%s mat )\n", memberTypeString, determinantFuncStr, typeInfo->fullTypeName, strings->parmPassByStr );
-	StringBuilder_Appendf( code, "{\n" );
+	Gen_AppendOpenBrace( code, flags, "" );
 	switch ( typeInfo->numRows ) {
 		case 2: {
 			StringBuilder_Appendf( code, "\treturn mat%srows[0].x * mat%srows[1].y - mat%srows[1].x * mat%srows[0].y;\n", strings->parmAccessOperatorStr, strings->parmAccessOperatorStr, strings->parmAccessOperatorStr, strings->parmAccessOperatorStr );
@@ -221,7 +221,7 @@ static void GenerateFunction_Determinant_Matrix( allocatorLinear_t *tempStorage,
 			StringBuilder_Appendf( code, "\t%s sub05 = mat%srows[2].x * mat%srows[3].y - mat%srows[3].x * mat%srows[2].y;\n", memberTypeString, strings->parmAccessOperatorStr, strings->parmAccessOperatorStr, strings->parmAccessOperatorStr, strings->parmAccessOperatorStr );
 			StringBuilder_Append(  code, "\n" );
 			StringBuilder_Appendf( code, "\t%s cofactor = HLML_CONSTRUCT( %s )\n", memberTypeInfo->fullTypeName, memberTypeInfo->fullTypeName );
-			StringBuilder_Append(  code, "\t{\n" );
+			Gen_AppendOpenBrace( code, flags, "\t" );
 			StringBuilder_Appendf( code, "\t\t ( ( ( mat%srows[1].y * sub00 ) - ( mat%srows[1].z * sub01 ) ) + ( mat%srows[1].w * sub02 ) ),\n", strings->parmAccessOperatorStr, strings->parmAccessOperatorStr, strings->parmAccessOperatorStr );
 			StringBuilder_Appendf( code, "\t\t-( ( ( mat%srows[1].x * sub00 ) - ( mat%srows[1].z * sub03 ) ) + ( mat%srows[1].w * sub04 ) ),\n", strings->parmAccessOperatorStr, strings->parmAccessOperatorStr, strings->parmAccessOperatorStr );
 			StringBuilder_Appendf( code, "\t\t ( ( ( mat%srows[1].x * sub01 ) - ( mat%srows[1].y * sub03 ) ) + ( mat%srows[1].w * sub05 ) ),\n", strings->parmAccessOperatorStr, strings->parmAccessOperatorStr, strings->parmAccessOperatorStr );
@@ -274,13 +274,13 @@ static void GenerateFunction_Inverse_Matrix( allocatorLinear_t *tempStorage, con
 		"// This is only applicable for square matrices.\n"
 	);
 	StringBuilder_Appendf( code, "HLML_INLINE %s %s( const %s%s mat )\n", typeInfo->fullTypeName, inverseFuncStr, typeInfo->fullTypeName, strings->parmPassByStr );
-	StringBuilder_Append(  code, "{\n" );
+	Gen_AppendOpenBrace( code, flags, "" );
 
 	switch ( typeInfo->numRows ) {
 		case 2: {
 			StringBuilder_Appendf( code, "\tconst %s invdet = %s / %s( mat );\n", memberTypeString, oneStr, determinantFuncStr );
 			StringBuilder_Appendf( code, "\treturn HLML_CONSTRUCT( %s )\n", typeInfo->fullTypeName );
-			StringBuilder_Append(  code, "\t{\n" );
+			Gen_AppendOpenBrace( code, flags, "\t" );
 			StringBuilder_Appendf( code, "\t\t mat%srows[1].y * invdet, -mat%srows[0].y * invdet,\n", strings->parmAccessOperatorStr, strings->parmAccessOperatorStr );
 			StringBuilder_Appendf( code, "\t\t-mat%srows[1].x * invdet,  mat%srows[0].x * invdet\n", strings->parmAccessOperatorStr, strings->parmAccessOperatorStr );
 			StringBuilder_Append(  code, "\t};\n" );
@@ -290,7 +290,7 @@ static void GenerateFunction_Inverse_Matrix( allocatorLinear_t *tempStorage, con
 		case 3: {
 			StringBuilder_Appendf( code, "\tconst %s invdet = %s / %s( mat );\n", memberTypeString, oneStr, determinantFuncStr );
 			StringBuilder_Appendf( code, "\treturn HLML_CONSTRUCT( %s )\n", typeInfo->fullTypeName );
-			StringBuilder_Append(  code, "\t{\n" );
+			Gen_AppendOpenBrace( code, flags, "\t" );
 			StringBuilder_Appendf( code, "\t\t ( mat%srows[1].y * mat%srows[2].z - mat%srows[1].z * mat%srows[2].y ) * invdet,\n", strings->parmAccessOperatorStr, strings->parmAccessOperatorStr, strings->parmAccessOperatorStr, strings->parmAccessOperatorStr );
 			StringBuilder_Appendf( code, "\t\t-( mat%srows[0].y * mat%srows[2].z - mat%srows[0].z * mat%srows[2].y ) * invdet,\n", strings->parmAccessOperatorStr, strings->parmAccessOperatorStr, strings->parmAccessOperatorStr, strings->parmAccessOperatorStr );
 			StringBuilder_Appendf( code, "\t\t ( mat%srows[0].y * mat%srows[1].z - mat%srows[0].z * mat%srows[1].y ) * invdet,\n", strings->parmAccessOperatorStr, strings->parmAccessOperatorStr, strings->parmAccessOperatorStr, strings->parmAccessOperatorStr );
@@ -388,7 +388,7 @@ static void GenerateFunction_Inverse_Matrix( allocatorLinear_t *tempStorage, con
 					StringBuilder_Appendf( code, "\t%s result = %s(\n", typeInfo->fullTypeName, typeInfo->fullTypeName );
 				} else {
 					StringBuilder_Appendf( code, "\t%s result =\n", typeInfo->fullTypeName );
-					StringBuilder_Append(  code, "\t{\n" );
+					Gen_AppendOpenBrace( code, flags, "\t" );
 				}
 				StringBuilder_Append(  code, "\t\tinv0 * sign0,\n" );
 				StringBuilder_Append(  code, "\t\tinv1 * sign1,\n" );
@@ -487,8 +487,8 @@ static void GenerateFunction_Multiply_Matrix( allocatorLinear_t *tempStorage, co
 
 	StringBuilder_Append(  code, "// Performs a matrix multiplication with 'lhs' and 'rhs' and returns the result.\n" );
 	StringBuilder_Appendf( code, "HLML_INLINE %s %s( const %s%s lhs, const %s%s rhs )\n", typeNameReturn, matrixMulFuncStr, typeNameLhs, strings->parmPassByStr, typeNameRhs, strings->parmPassByStr );
-	StringBuilder_Append(  code, "{\n" );
-	GetMatrixCodeMultiply( tempStorage, typeInfo, code, strings->parmAccessOperatorStr, false );
+	Gen_AppendOpenBrace( code, flags, "" );
+	GetMatrixCodeMultiply( tempStorage, typeInfo, code, strings->parmAccessOperatorStr, false, flags );
 	StringBuilder_Append(  code, "}\n\n" );
 }
 
@@ -517,8 +517,8 @@ static void GenerateFunction_MultiplyVector_Matrix( allocatorLinear_t *tempStora
 
 	StringBuilder_Append(  code, "// Multiplies the vector 'lhs' against the matrix 'rhs' and returns the result.\n" );
 	StringBuilder_Appendf( code, "HLML_INLINE %s %s( const %s%s lhs, const %s%s rhs )\n", vectorTypeName, mulVectorFuncStr, vectorTypeName, strings->parmPassByStr, typeInfo->fullTypeName, strings->parmPassByStr );
-	StringBuilder_Append(  code, "{\n" );
-	GetMatrixCodeMultiplyVector( typeInfo, memberTypeInfo, code, strings->parmAccessOperatorStr, false );
+	Gen_AppendOpenBrace( code, flags, "" );
+	GetMatrixCodeMultiplyVector( typeInfo, memberTypeInfo, code, strings->parmAccessOperatorStr, false, flags );
 	StringBuilder_Append(  code, "}\n\n" );
 }
 
@@ -544,9 +544,9 @@ static void GenerateFunction_Translate_Matrix( allocatorLinear_t *tempStorage, c
 
 	StringBuilder_Append(  code, "// \"Translates\" the matrix.  Adds the last column of 'mat' by the position vector 'vec'.\n" );
 	StringBuilder_Appendf( code, "HLML_INLINE %s %s( const %s%s mat, const %s%d%s vec )\n", typeInfo->fullTypeName, translateFuncStr, typeInfo->fullTypeName, strings->parmPassByStr, typeString, vecComponents, strings->parmPassByStr );
-	StringBuilder_Append(  code, "{\n" );
+	Gen_AppendOpenBrace( code, flags, "" );
 	StringBuilder_Appendf( code, "\treturn HLML_CONSTRUCT( %s )\n", typeInfo->fullTypeName );
-	StringBuilder_Append(  code, "\t{\n" );
+	Gen_AppendOpenBrace( code, flags, "\t" );
 	for ( u32 row = 0; row < typeInfo->numRows; row++ ) {
 		StringBuilder_Append(  code, "\t\t" );
 
@@ -623,7 +623,7 @@ static void GenerateFunction_Rotate_Matrix( allocatorLinear_t *tempStorage, cons
 
 	StringBuilder_Append(  code, "// Rotates the matrix by the given axis-angle (in radians) and returns the result.\n" );
 	StringBuilder_Appendf( code, "HLML_INLINE %s %s( %s )\n", typeInfo->fullTypeName, rotateFuncStr, parmListStr->str );
-	StringBuilder_Append(  code, "{\n" );
+	Gen_AppendOpenBrace( code, flags, "" );
 	StringBuilder_Appendf( code, "\tconst %s c = %s( rad );\n", typeString, cosFuncStr );
 	StringBuilder_Appendf( code, "\tconst %s s = %s( rad );\n", typeString, sinFuncStr );
 	StringBuilder_Append(  code, "\n" );
@@ -671,9 +671,9 @@ static void GenerateFunction_Scale_Matrix( allocatorLinear_t *tempStorage, const
 
 	StringBuilder_Append(  code, "// Applies a non-uniform scale to the matrix and returns the result.\n" );
 	StringBuilder_Appendf( code, "HLML_INLINE %s %s( const %s%s mat, const %s%s scale )\n", typeInfo->fullTypeName, scaleFuncStr, typeInfo->fullTypeName, strings->parmPassByStr, scaleVectorTypeString, strings->parmPassByStr );
-	StringBuilder_Append(  code, "{\n" );
+	Gen_AppendOpenBrace( code, flags, "" );
 	StringBuilder_Appendf( code, "\treturn HLML_CONSTRUCT( %s )\n", typeInfo->fullTypeName );
-	StringBuilder_Append(  code, "\t{\n" );
+	Gen_AppendOpenBrace( code, flags, "\t" );
 	StringBuilder_Appendf( code, "\t\tmat%srows[0].x * scale%sx,\n", strings->parmAccessOperatorStr, strings->parmAccessOperatorStr );
 	StringBuilder_Appendf( code, "\t\tmat%srows[0].y,\n", strings->parmAccessOperatorStr );
 	StringBuilder_Appendf( code, "\t\tmat%srows[0].z,\n", strings->parmAccessOperatorStr );
@@ -721,7 +721,7 @@ static void GenerateFunction_Ortho_LH_ZO_Matrix( allocatorLinear_t *tempStorage,
 	StringBuilder_Append(  code, "// Returns an left-handed orthographic projection matrix with the clip-space range 0 to 1.\n" );
 	StringBuilder_Appendf( code, "HLML_INLINE %s %s( const %s left, const %s right, const %s top, const %s bottom, const %s znear, const %s zfar )\n",
 			typeInfo->fullTypeName, orthoFuncStr, memberTypeString, memberTypeString, memberTypeString, memberTypeString, memberTypeString, memberTypeString );
-	StringBuilder_Appendf( code, "{\n" );
+	Gen_AppendOpenBrace( code, flags, "" );
 	StringBuilder_Appendf( code, "\t// left-handed, clip space range: zero-to-one\n" );
 	StringBuilder_Appendf( code, "\tconst %s right_minus_left = right - left;\n", memberTypeString );
 	StringBuilder_Appendf( code, "\tconst %s right_plus_left = right + left;\n", memberTypeString );
@@ -730,7 +730,7 @@ static void GenerateFunction_Ortho_LH_ZO_Matrix( allocatorLinear_t *tempStorage,
 	StringBuilder_Appendf( code, "\tconst %s far_minus_near = zfar - znear;\n", memberTypeString );
 	StringBuilder_Append(  code, "\n" );
 	StringBuilder_Appendf( code, "\treturn HLML_CONSTRUCT( %s )\n", typeInfo->fullTypeName );
-	StringBuilder_Append(  code, "\t{\n" );
+	Gen_AppendOpenBrace( code, flags, "\t" );
 	StringBuilder_Appendf( code, "\t\t%s / right_minus_left, %s, %s, -right_plus_left / right_minus_left,\n", twoStr, zeroStr, zeroStr );
 	StringBuilder_Appendf( code, "\t\t%s, %s / top_minus_bottom, %s, -top_plus_bottom / top_minus_bottom,\n", zeroStr, twoStr, zeroStr );
 	StringBuilder_Appendf( code, "\t\t%s, %s, %s / far_minus_near, -znear / far_minus_near,\n", zeroStr, zeroStr, oneStr );
@@ -763,7 +763,7 @@ static void GenerateFunction_Ortho_LH_NO_Matrix( allocatorLinear_t *tempStorage,
 	StringBuilder_Append(  code, "// Returns an left-handed orthographic projection matrix with the clip-space range -1 to 1.\n" );
 	StringBuilder_Appendf( code, "HLML_INLINE %s %s( const %s left, const %s right, const %s top, const %s bottom, const %s znear, const %s zfar )\n",
 			typeInfo->fullTypeName, orthoFuncStr, memberTypeString, memberTypeString, memberTypeString, memberTypeString, memberTypeString, memberTypeString );
-	StringBuilder_Appendf( code, "{\n" );
+	Gen_AppendOpenBrace( code, flags, "" );
 	StringBuilder_Appendf( code, "\t// left-handed, clip space range: minus-one-to-one\n" );
 	StringBuilder_Appendf( code, "\tconst %s right_minus_left = right - left;\n", memberTypeString );
 	StringBuilder_Appendf( code, "\tconst %s right_plus_left = right + left;\n", memberTypeString );
@@ -773,7 +773,7 @@ static void GenerateFunction_Ortho_LH_NO_Matrix( allocatorLinear_t *tempStorage,
 	StringBuilder_Appendf( code, "\tconst %s far_plus_near = zfar + znear;\n", memberTypeString );
 	StringBuilder_Append(  code, "\n" );
 	StringBuilder_Appendf( code, "\treturn HLML_CONSTRUCT( %s )\n", typeInfo->fullTypeName );
-	StringBuilder_Append(  code, "\t{\n" );
+	Gen_AppendOpenBrace( code, flags, "\t" );
 	StringBuilder_Appendf( code, "\t\t%s / right_minus_left, %s, %s, -right_plus_left / right_minus_left,\n", twoStr, zeroStr, zeroStr );
 	StringBuilder_Appendf( code, "\t\t%s, %s / top_minus_bottom, %s, -top_plus_bottom / top_minus_bottom,\n", zeroStr, twoStr, zeroStr );
 	StringBuilder_Appendf( code, "\t\t%s, %s, %s / far_minus_near, -far_plus_near / far_minus_near,\n", zeroStr, zeroStr, twoStr );
@@ -807,7 +807,7 @@ static void GenerateFunction_Ortho_RH_ZO_Matrix( allocatorLinear_t *tempStorage,
 	StringBuilder_Append(  code, "// Returns an right-handed orthographic projection matrix with the clip-space range 0 to 1.\n" );
 	StringBuilder_Appendf( code, "HLML_INLINE %s %s( const %s left, const %s right, const %s top, const %s bottom, const %s znear, const %s zfar )\n",
 			typeInfo->fullTypeName, orthoFuncStr, memberTypeString, memberTypeString, memberTypeString, memberTypeString, memberTypeString, memberTypeString );
-	StringBuilder_Appendf( code, "{\n" );
+	Gen_AppendOpenBrace( code, flags, "" );
 	StringBuilder_Appendf( code, "\t// right-handed, clip space range: zero-to-one\n" );
 	StringBuilder_Appendf( code, "\tconst %s right_minus_left = right - left;\n", memberTypeString );
 	StringBuilder_Appendf( code, "\tconst %s right_plus_left = right + left;\n", memberTypeString );
@@ -816,7 +816,7 @@ static void GenerateFunction_Ortho_RH_ZO_Matrix( allocatorLinear_t *tempStorage,
 	StringBuilder_Appendf( code, "\tconst %s far_minus_near = zfar - znear;\n", memberTypeString );
 	StringBuilder_Append(  code, "\n" );
 	StringBuilder_Appendf( code, "\treturn HLML_CONSTRUCT( %s )\n", typeInfo->fullTypeName );
-	StringBuilder_Append(  code, "\t{\n" );
+	Gen_AppendOpenBrace( code, flags, "\t" );
 	StringBuilder_Appendf( code, "\t\t%s / right_minus_left, %s, %s, -right_plus_left / right_minus_left,\n", twoStr, zeroStr, zeroStr );
 	StringBuilder_Appendf( code, "\t\t%s, %s / top_minus_bottom, %s, -top_plus_bottom / top_minus_bottom,\n", zeroStr, twoStr, zeroStr );
 	StringBuilder_Appendf( code, "\t\t%s, %s, %s / far_minus_near, -znear / far_minus_near,\n", zeroStr, zeroStr, minusOneStr );
@@ -850,7 +850,7 @@ static void GenerateFunction_Ortho_RH_NO_Matrix( allocatorLinear_t *tempStorage,
 	StringBuilder_Append(  code, "// Returns an right-handed orthographic projection matrix with the clip-space range -1 to 1.\n" );
 	StringBuilder_Appendf( code, "HLML_INLINE %s %s( const %s left, const %s right, const %s top, const %s bottom, const %s znear, const %s zfar )\n",
 			typeInfo->fullTypeName, orthoFuncStr, memberTypeString, memberTypeString, memberTypeString, memberTypeString, memberTypeString, memberTypeString );
-	StringBuilder_Appendf( code, "{\n" );
+	Gen_AppendOpenBrace( code, flags, "" );
 	StringBuilder_Appendf( code, "\t// right-handed, clip space range: minus-one-to-one\n" );
 	StringBuilder_Appendf( code, "\tconst %s right_minus_left = right - left;\n", memberTypeString );
 	StringBuilder_Appendf( code, "\tconst %s right_plus_left = right + left;\n", memberTypeString );
@@ -860,7 +860,7 @@ static void GenerateFunction_Ortho_RH_NO_Matrix( allocatorLinear_t *tempStorage,
 	StringBuilder_Appendf( code, "\tconst %s far_plus_near = zfar + znear;\n", memberTypeString );
 	StringBuilder_Append(  code, "\n" );
 	StringBuilder_Appendf( code, "\treturn HLML_CONSTRUCT( %s )\n", typeInfo->fullTypeName );
-	StringBuilder_Append(  code, "\t{\n" );
+	Gen_AppendOpenBrace( code, flags, "\t" );
 	StringBuilder_Appendf( code, "\t\t%s / right_minus_left, %s, %s, -right_plus_left / right_minus_left,\n", twoStr, zeroStr, zeroStr );
 	StringBuilder_Appendf( code, "\t\t%s, %s / top_minus_bottom, %s, -top_plus_bottom / top_minus_bottom,\n", zeroStr, twoStr, zeroStr );
 	StringBuilder_Appendf( code, "\t\t%s, %s, %s / far_minus_near, -far_plus_near / far_minus_near,\n", zeroStr, zeroStr, minusTwoStr );
@@ -895,13 +895,13 @@ static void GenerateFunction_Perspective_LH_ZO_Matrix( allocatorLinear_t *tempSt
 	StringBuilder_Append(  code, "// Returns a left-handed perspective projection matrix based on a vertical field-of-view in degrees and an aspect ratio in the clip-space range of 0 to 1.\n" );
 	StringBuilder_Appendf( code, "HLML_INLINE %s %s( const %s fovdeg, const %s aspect, const %s znear, const %s zfar )\n",
 		typeInfo->fullTypeName, perspectiveFuncStr, memberTypeString, memberTypeString, memberTypeString, memberTypeString );
-	StringBuilder_Appendf( code, "{\n" );
+	Gen_AppendOpenBrace( code, flags, "" );
 	StringBuilder_Append(  code, "\t// left-handed, clip space range: zero-to-one\n" );
 	StringBuilder_Appendf( code, "\tconst %s far_minus_near = zfar - znear;\n", memberTypeString );
 	StringBuilder_Appendf( code, "\tconst %s tan_half_fov = %s( fovdeg * %s );\n", memberTypeString, tanFuncStr, halfStr );
 	StringBuilder_Append(  code, "\n" );
 	StringBuilder_Appendf( code, "\treturn HLML_CONSTRUCT( %s )\n", typeInfo->fullTypeName );
-	StringBuilder_Append(  code, "\t{\n" );
+	Gen_AppendOpenBrace( code, flags, "\t" );
 	StringBuilder_Appendf( code, "\t\t%s / ( aspect * tan_half_fov ), %s, %s, %s,\n", oneStr, zeroStr, zeroStr, zeroStr );
 	StringBuilder_Appendf( code, "\t\t%s, %s / tan_half_fov, %s, %s,\n", zeroStr, oneStr, zeroStr, zeroStr );
 	StringBuilder_Appendf( code, "\t\t%s, %s, zfar / far_minus_near, -( zfar * znear ) / far_minus_near,\n", zeroStr, zeroStr );
@@ -937,14 +937,14 @@ static void GenerateFunction_Perspective_LH_NO_Matrix( allocatorLinear_t *tempSt
 	StringBuilder_Append(  code, "// Returns a right-handed perspective projection matrix based on a vertical field-of-view in degrees and an aspect ratio in the clip-space range of -1 to 1.\n" );
 	StringBuilder_Appendf( code, "HLML_INLINE %s %s( const %s fovdeg, const %s aspect, const %s znear, const %s zfar )\n",
 		typeInfo->fullTypeName, perspectiveFuncStr, memberTypeString, memberTypeString, memberTypeString, memberTypeString );
-	StringBuilder_Append(  code, "{\n" );
+	Gen_AppendOpenBrace( code, flags, "" );
 	StringBuilder_Append(  code, "\t// left-handed, clip space range: minus-one-to-one\n" );
 	StringBuilder_Appendf( code, "\tconst %s far_minus_near = zfar - znear;\n", memberTypeString );
 	StringBuilder_Appendf( code, "\tconst %s far_plus_near = zfar + znear;\n", memberTypeString );
 	StringBuilder_Appendf( code, "\tconst %s tan_half_fov = %s( fovdeg * %s );\n", memberTypeString, tanFuncStr, halfStr );
 	StringBuilder_Append(  code, "\n" );
 	StringBuilder_Appendf( code, "\treturn HLML_CONSTRUCT( %s )\n", typeInfo->fullTypeName );
-	StringBuilder_Append(  code, "\t{\n" );
+	Gen_AppendOpenBrace( code, flags, "\t" );
 	StringBuilder_Appendf( code, "\t\t%s / ( aspect * tan_half_fov ), %s, %s, %s,\n", oneStr, zeroStr, zeroStr, zeroStr );
 	StringBuilder_Appendf( code, "\t\t%s, %s / tan_half_fov, %s, %s,\n", zeroStr, oneStr, zeroStr, zeroStr );
 	StringBuilder_Appendf( code, "\t\t%s, %s, far_plus_near / far_minus_near, -( %s * zfar * znear ) / far_minus_near,\n", zeroStr, zeroStr, twoStr );
@@ -980,12 +980,12 @@ static void GenerateFunction_Perspective_RH_ZO_Matrix( allocatorLinear_t *tempSt
 	StringBuilder_Append(  code, "// Returns a right-handed perspective projection matrix based on a vertical field-of-view in degrees and an aspect ratio in the clip-space range of 0 to 1.\n" );
 	StringBuilder_Appendf( code, "HLML_INLINE %s %s( const %s fovdeg, const %s aspect, const %s znear, const %s zfar )\n",
 		typeInfo->fullTypeName, perspectiveFuncStr, memberTypeString, memberTypeString, memberTypeString, memberTypeString );
-	StringBuilder_Append(  code, "{\n" );
+	Gen_AppendOpenBrace( code, flags, "" );
 	StringBuilder_Append(  code, "\t// right-handed, clip space range: zero-to-one\n" );
 	StringBuilder_Appendf( code, "\tconst %s tan_half_fov = %s( fovdeg * %s );\n", memberTypeString, tanFuncStr, halfStr );
 	StringBuilder_Append(  code, "\n" );
 	StringBuilder_Appendf( code, "\treturn HLML_CONSTRUCT( %s )\n", typeInfo->fullTypeName );
-	StringBuilder_Append(  code, "\t{\n" );
+	Gen_AppendOpenBrace( code, flags, "\t" );
 	StringBuilder_Appendf( code, "\t\t%s / ( aspect * tan_half_fov ), %s, %s, %s,\n", oneStr, zeroStr, zeroStr, zeroStr );
 	StringBuilder_Appendf( code, "\t\t%s, %s / tan_half_fov, %s, %s,\n", zeroStr, oneStr, zeroStr, zeroStr );
 	StringBuilder_Appendf( code, "\t\t%s, %s, zfar / ( znear - zfar ), -( zfar * znear ) / ( zfar - znear ),\n", zeroStr, zeroStr );
@@ -1022,14 +1022,14 @@ static void GenerateFunction_Perspective_RH_NO_Matrix( allocatorLinear_t *tempSt
 	StringBuilder_Append(  code, "// Returns a right-handed perspective projection matrix based on a vertical field-of-view in degrees and an aspect ratio in the clip-space range of -1 to 1.\n" );
 	StringBuilder_Appendf( code, "HLML_INLINE %s %s( const %s fovdeg, const %s aspect, const %s znear, const %s zfar )\n",
 		typeInfo->fullTypeName, perspectiveFuncStr, memberTypeString, memberTypeString, memberTypeString, memberTypeString );
-	StringBuilder_Append(  code, "{\n" );
+	Gen_AppendOpenBrace( code, flags, "" );
 	StringBuilder_Append(  code, "\t// right-handed, clip space range: minus-one-to-one\n" );
 	StringBuilder_Appendf( code, "\tconst %s far_minus_near = zfar - znear;\n", memberTypeString );
 	StringBuilder_Appendf( code, "\tconst %s far_plus_near = zfar + znear;\n", memberTypeString );
 	StringBuilder_Appendf( code, "\tconst %s tan_half_fov = %s( fovdeg * %s );\n", memberTypeString, tanFuncStr, halfStr );
 	StringBuilder_Append(  code, "\n" );
 	StringBuilder_Appendf( code, "\treturn HLML_CONSTRUCT( %s )\n", typeInfo->fullTypeName );
-	StringBuilder_Append(  code, "\t{\n" );
+	Gen_AppendOpenBrace( code, flags, "\t" );
 	StringBuilder_Appendf( code, "\t\t%s / ( aspect * tan_half_fov ), %s, %s, %s,\n", oneStr, zeroStr, zeroStr, zeroStr );
 	StringBuilder_Appendf( code, "\t\t%s, %s / tan_half_fov, %s, %s,\n", zeroStr, oneStr, zeroStr, zeroStr );
 	StringBuilder_Appendf( code, "\t\t%s, %s, -far_plus_near / far_minus_near, -( %s * zfar * znear ) / far_minus_near,\n", zeroStr, zeroStr, twoStr );
@@ -1074,7 +1074,7 @@ static void GenerateFunction_LookAt_LH_Matrix( allocatorLinear_t *tempStorage, c
 	StringBuilder_Append(  code, "// Returns a left-handed orthonormal matrix that is oriented at position 'eye' to look at position 'target'.\n" );
 	StringBuilder_Appendf( code, "HLML_INLINE %s %s( const %s%s eye, const %s%s target, const %s%s up )\n",
 		typeInfo->fullTypeName, lookAtFuncStr, vectorTypeName, strings->parmPassByStr, vectorTypeName, strings->parmPassByStr, vectorTypeName, strings->parmPassByStr );
-	StringBuilder_Append(  code, "{\n" );
+	Gen_AppendOpenBrace( code, flags, "" );
 	StringBuilder_Append(  code, "\t// left handed\n" );
 	if ( flags & GENERATOR_FLAG_GENERATE_OPERATORS ) {
 		StringBuilder_Appendf( code, "\tconst %s forward = %s( target - eye );\n", vectorTypeName, normalizedFuncStr );
@@ -1089,7 +1089,7 @@ static void GenerateFunction_LookAt_LH_Matrix( allocatorLinear_t *tempStorage, c
 	StringBuilder_Appendf( code, "\tconst %s up1 = %s( %sforward, %sright );\n", vectorTypeName, crossFuncStr, strings->parmReferenceStr, strings->parmReferenceStr );
 	StringBuilder_Append(  code, "\n" );
 	StringBuilder_Appendf( code, "\treturn HLML_CONSTRUCT( %s )\n", typeInfo->fullTypeName );
-	StringBuilder_Append(  code, "\t{\n" );
+	Gen_AppendOpenBrace( code, flags, "\t" );
 	StringBuilder_Appendf( code, "\t\tright.x,   right.y,   right.z,   -%s( %sright, eye ),\n", dotFuncStr, strings->parmReferenceStr );
 	StringBuilder_Appendf( code, "\t\tup1.x,     up1.y,     up1.z,     -%s( %sup1, eye ),\n", dotFuncStr, strings->parmReferenceStr );
 	StringBuilder_Appendf( code, "\t\tforward.x, forward.y, forward.z, -%s( %sforward, eye ),\n", dotFuncStr, strings->parmReferenceStr );
@@ -1134,7 +1134,7 @@ static void GenerateFunction_LookAt_RH_Matrix( allocatorLinear_t *tempStorage, c
 	StringBuilder_Append(  code, "// Returns a right-handed orthonormal matrix that is oriented at position 'eye' to look at position 'target'.\n" );
 	StringBuilder_Appendf( code, "HLML_INLINE %s %s( const %s%s eye, const %s%s target, const %s%s up )\n",
 		typeInfo->fullTypeName, lookAtFuncStr, vectorTypeName, strings->parmPassByStr, vectorTypeName, strings->parmPassByStr, vectorTypeName, strings->parmPassByStr );
-	StringBuilder_Append(  code, "{\n" );
+	Gen_AppendOpenBrace( code, flags, "" );
 	StringBuilder_Append(  code, "\t// right handed\n" );
 	if ( flags & GENERATOR_FLAG_GENERATE_OPERATORS ) {
 		StringBuilder_Appendf( code, "\tconst %s forward = %s( target - eye );\n", vectorTypeName, normalizedFuncStr );
@@ -1149,7 +1149,7 @@ static void GenerateFunction_LookAt_RH_Matrix( allocatorLinear_t *tempStorage, c
 	StringBuilder_Appendf( code, "\tconst %s up1 = %s( %sright, %sforward );\n", vectorTypeName, crossFuncStr, strings->parmReferenceStr, strings->parmReferenceStr );
 	StringBuilder_Append(  code, "\n" );
 	StringBuilder_Appendf( code, "\treturn HLML_CONSTRUCT( %s )\n", typeInfo->fullTypeName );
-	StringBuilder_Append(  code, "\t{\n" );
+	Gen_AppendOpenBrace( code, flags, "\t" );
 	StringBuilder_Appendf( code, "\t\t right.x,    right.y,    right.z,   -%s( %sright, eye ),\n", dotFuncStr, strings->parmReferenceStr );
 	StringBuilder_Appendf( code, "\t\t up1.x,      up1.y,      up1.z,     -%s( %sup1, eye ),\n", dotFuncStr, strings->parmReferenceStr );
 	StringBuilder_Appendf( code, "\t\t-forward.x, -forward.y, -forward.z,  %s( %sforward, eye ),\n", dotFuncStr, strings->parmReferenceStr );
@@ -1212,10 +1212,9 @@ void GenerateMatrixFiles( allocatorLinear_t *tempStorage, const char *generatedC
 			StringBuilder_Appendf( codeHeader, "#include \"%s.h\"\n\n", vectorMemberTypeName );
 
 			if ( allowNamespace ) {
+				StringBuilder_Append( codeHeader, "#ifdef HLML_NAMESPACE\n" "namespace hlml\n" );
+				Gen_AppendOpenBrace( codeHeader, flags, "" );
 				StringBuilder_Append( codeHeader,
-					"#ifdef HLML_NAMESPACE\n"
-					"namespace hlml\n"
-					"{\n"
 					"#endif\n"
 					"\n"
 				);
@@ -1242,7 +1241,7 @@ void GenerateMatrixFiles( allocatorLinear_t *tempStorage, const char *generatedC
 				StringBuilder_Appendf( codeHeader, "struct %s\n", typeInfo->fullTypeName );
 			}
 
-			StringBuilder_Append(  codeHeader, "{\n" );
+			Gen_AppendOpenBrace( codeHeader, flags, "" );
 			StringBuilder_Appendf( codeHeader, "\t%s rows[%d];\n", vectorMemberTypeName, typeInfo->numRows );
 
 			if ( generateConstructors ) {
@@ -1378,10 +1377,9 @@ void GenerateMatrixFiles( allocatorLinear_t *tempStorage, const char *generatedC
 			StringBuilder_Appendf( codeInl, "#include \"%s.inl\"\n\n", vectorMemberTypeName );
 
 			if ( allowNamespace ) {
+				StringBuilder_Append( codeInl, "#ifdef HLML_NAMESPACE\n" "namespace hlml\n" );
+				Gen_AppendOpenBrace( codeInl, flags, "" );
 				StringBuilder_Append( codeInl,
-					"#ifdef HLML_NAMESPACE\n"
-					"namespace hlml\n"
-					"{\n"
 					"#endif\n"
 					"\n"
 				);
@@ -1390,7 +1388,7 @@ void GenerateMatrixFiles( allocatorLinear_t *tempStorage, const char *generatedC
 			if ( generateConstructors ) {
 				// diagonal scalar ctor
 				StringBuilder_Appendf( codeInl, "%s::%s( const %s diagonal )\n", typeInfo->fullTypeName, typeInfo->fullTypeName, memberTypeString );
-				StringBuilder_Append(  codeInl, "{\n" );
+				Gen_AppendOpenBrace( codeInl, flags, "" );
 				for ( u32 row = 0; row < typeInfo->numRows; row++ ) {
 					StringBuilder_Appendf( codeInl, "\trows[%d][%d] = diagonal;\n", row, row );
 				}
@@ -1398,7 +1396,7 @@ void GenerateMatrixFiles( allocatorLinear_t *tempStorage, const char *generatedC
 
 				// diagonal vector ctor
 				StringBuilder_Appendf( codeInl, "%s::%s( const %s& diagonal )\n", typeInfo->fullTypeName, typeInfo->fullTypeName, vectorMemberTypeName );
-				StringBuilder_Append(  codeInl, "{\n" );
+				Gen_AppendOpenBrace( codeInl, flags, "" );
 				for ( u32 row = 0; row < typeInfo->numRows; row++ ) {
 					StringBuilder_Appendf( codeInl, "\trows[%d][%d] = diagonal[%d];\n", row, row, row );
 				}
@@ -1415,7 +1413,7 @@ void GenerateMatrixFiles( allocatorLinear_t *tempStorage, const char *generatedC
 					}
 				}
 				StringBuilder_Append( codeInl, " )\n" );
-				StringBuilder_Append( codeInl, "{\n" );
+				Gen_AppendOpenBrace( codeInl, flags, "" );
 				for ( u32 row = 0; row < typeInfo->numRows; row++ ) {
 					StringBuilder_Appendf( codeInl, "\trows[%d] = row%d;\n", row, row );
 				}
@@ -1438,7 +1436,7 @@ void GenerateMatrixFiles( allocatorLinear_t *tempStorage, const char *generatedC
 					}
 				}
 				StringBuilder_Append( codeInl, " )\n" );
-				StringBuilder_Append( codeInl, "{\n" );
+				Gen_AppendOpenBrace( codeInl, flags, "" );
 				for ( u32 row = 0; row < typeInfo->numRows; row++ ) {
 					StringBuilder_Appendf( codeInl, "\trows[%d] = %s( ", row, vectorMemberTypeName );
 					for ( u32 col = 0; col < typeInfo->numCols; col++ ) {
@@ -1454,7 +1452,7 @@ void GenerateMatrixFiles( allocatorLinear_t *tempStorage, const char *generatedC
 
 				// copy ctor
 				StringBuilder_Appendf( codeInl, "%s::%s( const %s& mat )\n", typeInfo->fullTypeName, typeInfo->fullTypeName, typeInfo->fullTypeName );
-				StringBuilder_Append(  codeInl, "{\n" );
+				Gen_AppendOpenBrace( codeInl, flags, "" );
 				for ( u32 row = 0; row < typeInfo->numRows; row++ ) {
 					StringBuilder_Appendf( codeInl, "\trows[%d] = mat[%d];\n", row, row );
 				}
@@ -1477,7 +1475,7 @@ void GenerateMatrixFiles( allocatorLinear_t *tempStorage, const char *generatedC
 					}
 
 					StringBuilder_Appendf( codeInl, "%s::%s( const %s%dx%d& mat )\n", typeInfo->fullTypeName, typeInfo->fullTypeName, otherTypeString, typeInfo->numRows, typeInfo->numCols );
-					StringBuilder_Append(  codeInl, "{\n" );
+					Gen_AppendOpenBrace( codeInl, flags, "" );
 
 					for ( u32 i = 0; i < typeInfo->numRows; i++ ) {
 						StringBuilder_Appendf( codeInl, "\trows[%d] = %s( mat[%d] );\n", i, vectorMemberTypeName, i );
@@ -1491,7 +1489,7 @@ void GenerateMatrixFiles( allocatorLinear_t *tempStorage, const char *generatedC
 				if ( generateAssignmentOperator ) {
 					// assignment operator
 					StringBuilder_Appendf( codeInl, "%s %s::operator=( const %s& other )\n", typeInfo->fullTypeName, typeInfo->fullTypeName, typeInfo->fullTypeName );
-					StringBuilder_Append(  codeInl, "{\n" );
+					Gen_AppendOpenBrace( codeInl, flags, "" );
 					for ( u32 row = 0; row < typeInfo->numRows; row++ ) {
 						StringBuilder_Appendf( codeInl, "\trows[%d] = other[%d];\n", row, row );
 					}
@@ -1502,13 +1500,13 @@ void GenerateMatrixFiles( allocatorLinear_t *tempStorage, const char *generatedC
 
 				// array operators
 				StringBuilder_Appendf( codeInl, "%s& %s::operator[]( const %s index )\n", vectorMemberTypeName, typeInfo->fullTypeName, Gen_GetMemberTypeString( GEN_TYPE_INT ) );
-				StringBuilder_Append(  codeInl, "{\n" );
+				Gen_AppendOpenBrace( codeInl, flags, "" );
 				StringBuilder_Appendf( codeInl, "\tHLML_ASSERT( index >= 0 && index < %d );\n", typeInfo->numRows );
 				StringBuilder_Append( codeInl, "\treturn rows[index];\n" );
 				StringBuilder_Append(  codeInl, "}\n\n" );
 
 				StringBuilder_Appendf( codeInl, "const %s& %s::operator[]( const %s index ) const\n", vectorMemberTypeName, typeInfo->fullTypeName, Gen_GetMemberTypeString( GEN_TYPE_INT ) );
-				StringBuilder_Append(  codeInl, "{\n" );
+				Gen_AppendOpenBrace( codeInl, flags, "" );
 				StringBuilder_Appendf( codeInl, "\tHLML_ASSERT( index >= 0 && index < %d );\n", typeInfo->numRows );
 				StringBuilder_Append( codeInl, "\treturn rows[index];\n" );
 				StringBuilder_Append(  codeInl, "}\n" );
@@ -1559,10 +1557,9 @@ void GenerateMatrixFiles( allocatorLinear_t *tempStorage, const char *generatedC
 		StringBuilder_Appendf( code, "#include \"" GEN_FILENAME_FUNCTIONS_VECTOR ".h\"\n\n" );
 
 		if ( allowNamespace ) {
+			StringBuilder_Append( code, "#ifdef HLML_NAMESPACE\n" "namespace hlml\n" );
+			Gen_AppendOpenBrace( code, flags, "" );
 			StringBuilder_Append( code,
-				"#ifdef HLML_NAMESPACE\n"
-				"namespace hlml\n"
-				"{\n"
 				"#endif\n"
 				"\n"
 			);

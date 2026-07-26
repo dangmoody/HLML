@@ -124,7 +124,7 @@ static void GenerateFunction_Dot_SSE( allocatorLinear_t *tempStorage, stringBuil
 	StringBuilder_Appendf( code, "inline static __m128 %s( ", dotFuncStr );
 	MakeSSEParmList( code, typeInfo->numCols, strings, SIMD_PARM_LIST_FLAG_LHS | SIMD_PARM_LIST_FLAG_RHS );
 	StringBuilder_Append( code, " )\n" );
-	StringBuilder_Append( code, "{\n" );
+	Gen_AppendOpenBrace( code, flags, "" );
 
 	for ( u32 i = 0; i < typeInfo->numCols; i++ ) {
 		const char componentStr = GEN_COMPONENT_NAMES_VECTOR[i];
@@ -173,7 +173,7 @@ static void GenerateFunction_Cross_SSE( allocatorLinear_t *tempStorage, stringBu
 	StringBuilder_Appendf( code, "inline static void %s( ", crossFuncStr );
 	MakeSSEParmList( code, numComponents, strings, SIMD_PARM_LIST_FLAG_LHS | SIMD_PARM_LIST_FLAG_RHS | SIMD_PARM_LIST_FLAG_OUT );
 	StringBuilder_Append(  code, " )\n" );
-	StringBuilder_Append(  code, "{\n" );
+	Gen_AppendOpenBrace( code, flags, "" );
 
 	StringBuilder_Append(  code, "\t__m128 mul_xa = _mm_mul_ps( lhs_y, rhs_z );\n" );
 	StringBuilder_Append(  code, "\t__m128 mul_xb = _mm_mul_ps( lhs_z, rhs_y );\n" );
@@ -204,7 +204,7 @@ static void GenerateFunction_Lengthsq_SSE( allocatorLinear_t *tempStorage, strin
 	StringBuilder_Appendf( code, "inline static __m128 %s( ", funcName );
 	MakeSSEParmList( code, typeInfo->numCols, strings, SIMD_PARM_LIST_FLAG_LHS );
 	StringBuilder_Append( code, " )\n" );
-	StringBuilder_Append( code, "{\n" );
+	Gen_AppendOpenBrace( code, flags, "" );
 
 	for ( u32 i = 0; i < typeInfo->numCols; i++ ) {
 		const char componentStr = GEN_COMPONENT_NAMES_VECTOR[i];
@@ -247,7 +247,7 @@ static void GenerateFunction_Length_SSE( allocatorLinear_t *tempStorage, stringB
 	StringBuilder_Appendf( code, "inline static __m128 %s( ", funcName );
 	MakeSSEParmList( code, typeInfo->numCols, strings, SIMD_PARM_LIST_FLAG_LHS );
 	StringBuilder_Append(  code, " )\n" );
-	StringBuilder_Append(  code, "{\n" );
+	Gen_AppendOpenBrace( code, flags, "" );
 	StringBuilder_Append(  code, "\t" );
 	StringBuilder_Appendf( code, "return _mm_sqrt_ps( %s( ", lengthsqFuncStr );
 	for ( u32 i = 0; i < typeInfo->numCols; i++ ) {
@@ -275,7 +275,7 @@ static void GenerateFunction_Normalize_SSE( allocatorLinear_t *tempStorage, stri
 	StringBuilder_Appendf( code, "inline static void %s( ", funcName );
 	MakeSSEParmList( code, typeInfo->numCols, strings, SIMD_PARM_LIST_FLAG_LHS | SIMD_PARM_LIST_FLAG_OUT );
 	StringBuilder_Append(  code, " )\n" );
-	StringBuilder_Append(  code, "{\n" );
+	Gen_AppendOpenBrace( code, flags, "" );
 	StringBuilder_Appendf( code, "\t__m128 invlen = %s( ", lengthSSEFuncStr );
 	for ( u32 i = 0; i < typeInfo->numCols; i++ ) {
 		StringBuilder_Appendf( code, "lhs_%c", GEN_COMPONENT_NAMES_VECTOR[i] );
@@ -307,7 +307,7 @@ static void GenerateFunction_Distancesq_SSE( allocatorLinear_t *tempStorage, str
 	StringBuilder_Appendf( code, "inline static __m128 %s( ", funcName );
 	MakeSSEParmList( code, typeInfo->numCols, strings, SIMD_PARM_LIST_FLAG_LHS | SIMD_PARM_LIST_FLAG_RHS );
 	StringBuilder_Append(  code, " )\n" );
-	StringBuilder_Append(  code, "{\n" );
+	Gen_AppendOpenBrace( code, flags, "" );
 
 	for ( u32 i = 0; i < typeInfo->numCols; i++ ) {
 		const char componentStr = GEN_COMPONENT_NAMES_VECTOR[i];
