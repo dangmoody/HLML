@@ -401,30 +401,43 @@ void Gen_BuildTypeInfos( allocatorLinear_t *allocator, const genConfig_t *config
 		*outVectorTypeInfosCount = typeInfoIndex;
 	}
 
-	// quaternions - only if float and double (and 4-component types) are actually going to be generated,
-	// since quaternion codegen assumes a same-sized floating point vector type exists alongside it
+	// quaternions - only for the floating-point scalar types (float and/or double) that are actually
+	// enabled, and only if 4-component types are in range, since quaternion codegen assumes a
+	// same-sized floating point vector type exists alongside it. float and double are independent of
+	// each other here - e.g. scalar_types = [ "float" ] should still generate float4 quaternions.
 	{
-		bool32 canGenerateQuaternions = ( flags & GENERATOR_FLAG_GENERATE_QUATERNIONS )
-			&& config->scalarTypeEnabled[GEN_TYPE_FLOAT]
-			&& config->scalarTypeEnabled[GEN_TYPE_DOUBLE]
+		bool32 quaternionsRequested = ( flags & GENERATOR_FLAG_GENERATE_QUATERNIONS )
 			&& componentCountMin <= 4
 			&& componentCountMax >= 4;
 
-		if ( canGenerateQuaternions ) {
-			typeInfo_t *quaternionTypeInfos = (typeInfo_t *) Mem_Alloc( allocator, 2 * sizeof( typeInfo_t ) );
+		bool32 generateQuaternionFloat = quaternionsRequested && config->scalarTypeEnabled[GEN_TYPE_FLOAT];
+		bool32 generateQuaternionDouble = quaternionsRequested && config->scalarTypeEnabled[GEN_TYPE_DOUBLE];
 
-			quaternionTypeInfos[0].type = GEN_TYPE_FLOAT;
-			quaternionTypeInfos[0].numRows = 1;
-			quaternionTypeInfos[0].numCols = 4;
-			quaternionTypeInfos[0].fullTypeName = "float4";
+		u32 quaternionTypeInfosCount = ( generateQuaternionFloat ? 1 : 0 ) + ( generateQuaternionDouble ? 1 : 0 );
 
-			quaternionTypeInfos[1].type = GEN_TYPE_DOUBLE;
-			quaternionTypeInfos[1].numRows = 1;
-			quaternionTypeInfos[1].numCols = 4;
-			quaternionTypeInfos[1].fullTypeName = "double4";
+		if ( quaternionTypeInfosCount > 0 ) {
+			typeInfo_t *quaternionTypeInfos = (typeInfo_t *) Mem_Alloc( allocator, quaternionTypeInfosCount * sizeof( typeInfo_t ) );
+
+			u32 typeInfoIndex = 0;
+
+			if ( generateQuaternionFloat ) {
+				quaternionTypeInfos[typeInfoIndex].type = GEN_TYPE_FLOAT;
+				quaternionTypeInfos[typeInfoIndex].numRows = 1;
+				quaternionTypeInfos[typeInfoIndex].numCols = 4;
+				quaternionTypeInfos[typeInfoIndex].fullTypeName = "float4";
+				typeInfoIndex++;
+			}
+
+			if ( generateQuaternionDouble ) {
+				quaternionTypeInfos[typeInfoIndex].type = GEN_TYPE_DOUBLE;
+				quaternionTypeInfos[typeInfoIndex].numRows = 1;
+				quaternionTypeInfos[typeInfoIndex].numCols = 4;
+				quaternionTypeInfos[typeInfoIndex].fullTypeName = "double4";
+				typeInfoIndex++;
+			}
 
 			*outQuaternionTypeInfos = quaternionTypeInfos;
-			*outQuaternionTypeInfosCount = 2;
+			*outQuaternionTypeInfosCount = quaternionTypeInfosCount;
 		} else {
 			*outQuaternionTypeInfos = NULL;
 			*outQuaternionTypeInfosCount = 0;
